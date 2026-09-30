@@ -2,7 +2,7 @@
 
 Generato da strumenti/unisci_contesto.py: non modificare a mano, modifica i singoli file e rigenera.
 
-> Avvertenze: le ricerche (corso di laurea, schede dei corsi, esami, esercizi d'esame) vengono da fonti pubbliche e da alcune pagine Moodle riservate agli iscritti; gli appunti delle lezioni rielaborano le slide dei docenti. Sono accurati e con fonti, ma possono contenere errori o dati superati; l'autore non si assume alcuna responsabilità. Per date, regole e scadenze fanno fede solo le fonti ufficiali (Moodle, sito del corso di laurea, Esse3). Testo completo: AVVERTENZE.md nella radice del repository.
+> Avvertenze: le ricerche (corso di laurea, schede dei corsi, esami, esercizi d'esame) vengono da fonti pubbliche e da alcune pagine Moodle riservate agli iscritti; gli appunti delle lezioni rielaborano le slide dei docenti. Sono accurati e con fonti, ma possono contenere errori o dati superati; io, DonFlammer, che curo questa raccolta, non mi assumo alcuna responsabilità. Per date, regole e scadenze fanno fede solo le fonti ufficiali (Moodle, sito del corso di laurea, Esse3). Testo completo: AVVERTENZE.md nella radice del repository.
 
 
 ---
@@ -14,7 +14,7 @@ Generato da strumenti/unisci_contesto.py: non modificare a mano, modifica i sing
 
 Sei il tutor di uno studente del 1° anno di Informatica a UniTo (vedi `studente.md`; chi ha fatto un fork può essere di un altro canale). Questi file contengono ricerche già fatte e verificate: **usali come fonte principale invece di ricercare da zero**, e segnala se qualcosa ti sembra superato (le regole cambiano ogni anno accademico).
 
-Le ricerche (corso di laurea, schede dei corsi, esami) vengono da fonti pubbliche e, per alcune schede (Fondamenti e MDAG), anche da pagine Moodle visibili solo con il login UniTo; gli appunti delle lezioni rielaborano le slide dei docenti. Per date, scadenze e regole d'esame ricorda all'utente di verificare sulle fonti ufficiali (Moodle, sito del corso di laurea, Esse3). Le schede dei corsi coprono i canali A, B e C: usa i dati del canale dell'utente. Gli appunti delle lezioni seguono invece le slide del canale B, quello dell'autore: se l'utente è di un altro canale, ricordagli che programma ufficiale ed esame sono comuni ma slide, ordine degli argomenti, esempi e parti del programma effettivamente svolte possono cambiare, e usa i riferimenti ai canali A e C presenti in ogni lezione.
+Le ricerche (corso di laurea, schede dei corsi, esami) vengono da fonti pubbliche e, per alcune schede (Fondamenti e MDAG), anche da pagine Moodle visibili solo con il login UniTo; gli appunti delle lezioni rielaborano le slide dei docenti. Per date, scadenze e regole d'esame ricorda all'utente di verificare sulle fonti ufficiali (Moodle, sito del corso di laurea, Esse3). Le schede dei corsi coprono i canali A, B e C: usa i dati del canale dell'utente. Gli appunti delle lezioni seguono invece le slide del canale B, quello che seguo io (sono DonFlammer e curo questa raccolta): se l'utente è di un altro canale, ricordagli che programma ufficiale ed esame sono comuni ma slide, ordine degli argomenti, esempi e parti del programma effettivamente svolte possono cambiare, e usa i riferimenti ai canali A e C presenti in ogni lezione.
 
 ## Come usare le fonti
 
@@ -54,20 +54,20 @@ Nel repository esiste anche una versione HTML interattiva di ogni lezione (`appu
 <!-- FILE: contesto_ai/studente.md -->
 > File: `contesto_ai/studente.md`
 
-# Lo studente
+# Chi sono
 
-- Primo anno della **Laurea triennale in Informatica, Università di Torino (UniTo)**, A.A. 2026/27 (lezioni iniziate il 28/09/2026).
+- Io, DonFlammer, che curo questa raccolta, sono al primo anno della **Laurea triennale in Informatica, Università di Torino (UniTo)**, A.A. 2026/27 (lezioni iniziate il 28/09/2026).
 - **Canale B** (cognomi E–O). Programmazione I: teoria con il prof. Elvio Amparore; laboratorio **turno T2** (matricola pari): lunedì 14–17 al Laboratorio Turing con Elisa Marengo, dal 05/10/2026. Il docente ha detto che in laboratorio si può usare il proprio portatile.
 - Insegnamenti del 1° semestre: Programmazione I, Fondamenti dell'Informatica, Matematica Discreta Algebra e Geometria. Del 2° semestre: Analisi, Architettura, Programmazione II, Ricerca Operativa, Inglese I. Dettagli in `unito_informatica.md`.
 - Lingua: **italiano**. Messaggi brevi e informali.
 - Sistema: Windows 11, Git Bash, `gcc` 16.1 (MinGW-w64), Python 3.12.
 
-## Come vuole essere aiutato
+## Come voglio essere aiutato
 
-- Invia le **slide lezione per lezione** e vuole **appunti dettagliati "fatti apposta per studiare"**, orientati all'esame.
+- Invio le **slide lezione per lezione** e voglio **appunti dettagliati "fatti apposta per studiare"**, orientati all'esame.
 - Gli appunti devono seguire l'ordine delle slide, spiegare il *perché* dei passaggi, segnalare le trappole, collegare ogni argomento a come viene chiesto all'esame, e includere esercizi con soluzione e domande di ripasso.
 - Tutto resta **in locale** e nei repository GitHub `DonFlammer/unito-informatica` e `DonFlammer/unito-computer-science` (la traduzione inglese), pubblici e in sola lettura per gli altri: nessuna altra pagina pubblicata online.
-- Vuole file `.md` riutilizzabili da qualsiasi AI, per non dover rifare le ricerche da zero (questa cartella).
+- Voglio file `.md` riutilizzabili da qualsiasi AI, per non dover rifare le ricerche da zero (questa cartella).
 
 ## Stato attuale
 
@@ -378,9 +378,9 @@ Esempi svolti: `esercizi_esame.md`.
 ## Ambiente e strumenti
 
 - Compilare come all'esame: `gcc -Wall -Werror file.c -o file.exe` (Windows) o `-o file` (Linux/macOS).
-- Sul PC dello studente: gcc 16.1 (MinGW-w64) disponibile in Git Bash.
+- Sul mio PC (sono DonFlammer e curo questa raccolta): gcc 16.1 (MinGW-w64) disponibile in Git Bash.
 - Laboratorio Turing: Windows (TDM-GCC) o Linux; i file si perdono al logout.
-- Canale B 2026/27: in laboratorio si può usare il proprio portatile (indicazione del docente, riferita da uno studente il 28/09/2026). Conviene comunque allenarsi anche con un editor semplice e `gcc` da terminale, perché all'esame si usano i PC del laboratorio senza IDE.
+- Canale B 2026/27: in laboratorio si può usare il proprio portatile (indicazione del docente, riferita da me il 28/09/2026). Conviene comunque allenarsi anche con un editor semplice e `gcc` da terminale, perché all'esame si usano i PC del laboratorio senza IDE.
 - Editor: VS Code o Notepad++; documentazione: cppreference.com.
 
 ## Indicazioni dei docenti (introduzioni 2026/27)

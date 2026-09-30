@@ -130,9 +130,9 @@ Esempi svolti: `esercizi_esame.md`.
 ## Ambiente e strumenti
 
 - Compilare come all'esame: `gcc -Wall -Werror file.c -o file.exe` (Windows) o `-o file` (Linux/macOS).
-- Sul PC dello studente: gcc 16.1 (MinGW-w64) disponibile in Git Bash.
+- Sul mio PC (sono DonFlammer e curo questa raccolta): gcc 16.1 (MinGW-w64) disponibile in Git Bash.
 - Laboratorio Turing: Windows (TDM-GCC) o Linux; i file si perdono al logout.
-- Canale B 2026/27: in laboratorio si può usare il proprio portatile (indicazione del docente, riferita da uno studente il 28/09/2026). Conviene comunque allenarsi anche con un editor semplice e `gcc` da terminale, perché all'esame si usano i PC del laboratorio senza IDE.
+- Canale B 2026/27: in laboratorio si può usare il proprio portatile (indicazione del docente, riferita da me il 28/09/2026). Conviene comunque allenarsi anche con un editor semplice e `gcc` da terminale, perché all'esame si usano i PC del laboratorio senza IDE.
 - Editor: VS Code o Notepad++; documentazione: cppreference.com.
 
 ## Indicazioni dei docenti (introduzioni 2026/27)

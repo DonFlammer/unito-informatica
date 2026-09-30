@@ -22,8 +22,8 @@ INTESTAZIONE = (
     "> Avvertenze: le ricerche (corso di laurea, schede dei corsi, esami, esercizi d'esame) vengono da "
     "fonti pubbliche e da alcune pagine Moodle riservate agli iscritti; gli appunti delle lezioni "
     "rielaborano le slide dei docenti. "
-    "Sono accurati e con fonti, ma possono contenere errori o dati superati; l'autore "
-    "non si assume alcuna responsabilità. Per date, regole e scadenze fanno fede solo le fonti ufficiali "
+    "Sono accurati e con fonti, ma possono contenere errori o dati superati; io, DonFlammer, che curo "
+    "questa raccolta, non mi assumo alcuna responsabilità. Per date, regole e scadenze fanno fede solo le fonti ufficiali "
     "(Moodle, sito del corso di laurea, Esse3). Testo completo: AVVERTENZE.md nella radice del repository.\n"
 )
 

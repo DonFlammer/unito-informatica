@@ -118,6 +118,7 @@ def testata(radice, url_en, attiva=""):
     corsi = ' aria-current="page"' if attiva == "corsi" else ""
     return f"""<a class="salta" href="#contenuto">Vai al contenuto</a>
 <canvas id="rete" aria-hidden="true"></canvas>
+<script src="{radice}assets/js/rete.js"></script>
 <header class="barra">
   <div class="barra-in">
     <a class="marchio" href="{radice}index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
@@ -143,7 +144,7 @@ def piede(radice):
   <div class="piede-in">
     <div>
       <h2>Appunti di Informatica</h2>
-      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; nessuna responsabilità dell'autore: leggi le <a href="{REPO}/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="{REPO}/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
       <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
     </div>
     <div>
@@ -168,7 +169,6 @@ def piede(radice):
   </div>
 </footer>
 <script src="{radice}assets/js/appunti.js" defer></script>
-<script src="{radice}assets/js/rete.js" defer></script>
 <script src="{radice}assets/js/studio.js" defer></script>"""
 
 
@@ -216,18 +216,18 @@ def pagina_materia(m, lez):
     sem = f"{m['semestre']}° semestre"
     etichetta = " · ".join(x for x in ["Primo anno", sem, m["insegnamento"], m.get("extra", "")] if x)
     if lez:
-        lede = ("L'autore segue il canale B: gli appunti di ogni lezione sono scritti sulle slide del canale B, "
+        lede = ("Seguo il canale B: gli appunti di ogni lezione sono scritti sulle slide del canale B, "
                 "con i riferimenti ai canali A e C. Programma ufficiale ed esame sono comuni, quindi valgono in gran parte "
                 "anche per A e C, ma slide, ordine, esempi e parti del programma svolte possono cambiare. "
                 "Docenti, orari, Moodle ed esame "
                 "per tutti e tre i canali sono nella scheda del corso.")
     elif m["semestre"] == 2:
         lede = ("Il corso inizia nel secondo semestre: per ora c'è la scheda con docenti, esame e materiale "
-                "per i canali A, B e C. Gli appunti arriveranno lezione per lezione, sulle slide del canale B "
-                "seguito dall'autore: dovrebbero valere in gran parte anche per A e C, ma docenti, slide, ordine "
+                "per i canali A, B e C. Gli appunti arriveranno lezione per lezione, sulle slide del canale B, "
+                "quello che seguo: dovrebbero valere in gran parte anche per A e C, ma docenti, slide, ordine "
                 "ed esempi possono cambiare.")
     else:
-        lede = ("Gli appunti arrivano lezione per lezione, sulle slide del canale B seguito dall'autore, con i "
+        lede = ("Gli appunti arrivano lezione per lezione, sulle slide del canale B, quello che seguo, con i "
                 "riferimenti ai canali A e C: programma ufficiale ed esame sono comuni, ma slide, esempi e parti del "
                 "programma svolte possono cambiare. "
                 "Intanto la scheda del corso ha docenti, orari, Moodle ed esame per tutti e tre i canali.")

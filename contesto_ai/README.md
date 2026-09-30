@@ -1,8 +1,8 @@
 # Contesto per le AI
 
-Questa cartella raccoglie in Markdown tutto ciò che serve a un'AI per aiutare negli studi del primo anno di Informatica a UniTo **senza rifare le ricerche da zero**: com'è organizzato il corso di laurea, come sono fatti gli esami, le schede di tutti i corsi per i canali A, B e C, gli appunti di ogni lezione ed esercizi d'esame svolti. L'autore segue il **canale B**: gli appunti delle lezioni sono scritti sulle slide del canale B; programma ufficiale ed esame sono comuni ai tre canali, quindi dovrebbero valere in gran parte anche per A e C, ma slide, ordine degli argomenti, esempi e parti del programma effettivamente svolte possono cambiare.
+Questa cartella raccoglie in Markdown tutto ciò che serve a un'AI per aiutare negli studi del primo anno di Informatica a UniTo **senza rifare le ricerche da zero**: com'è organizzato il corso di laurea, come sono fatti gli esami, le schede di tutti i corsi per i canali A, B e C, gli appunti di ogni lezione ed esercizi d'esame svolti. Io, DonFlammer, che curo questa raccolta, seguo il **canale B**: gli appunti delle lezioni sono scritti sulle slide del canale B; programma ufficiale ed esame sono comuni ai tre canali, quindi dovrebbero valere in gran parte anche per A e C, ma slide, ordine degli argomenti, esempi e parti del programma effettivamente svolte possono cambiare.
 
-> **⚠️ Avvertenze.** Le ricerche (corso di laurea, schede dei corsi, esami, esercizi d'esame) vengono da fonti pubbliche e, per alcune schede (Fondamenti, in particolare il canale B e la pagina d'esame su Moodle Esami, e MDAG), anche da pagine Moodle visibili solo con il login UniTo, consultate dall'autore; gli appunti delle lezioni rielaborano le slide dei docenti. Sono accurati e con fonti, ma possono contenere errori o dati superati. **L'autore non si assume alcuna responsabilità, per niente**; chi li usa lo fa a proprio rischio e deve verificare le informazioni importanti sulle fonti ufficiali. L'autore aggiorna i file lezione per lezione, niente di più. Testo completo: [../AVVERTENZE.md](../AVVERTENZE.md).
+> **⚠️ Avvertenze.** Le ricerche (corso di laurea, schede dei corsi, esami, esercizi d'esame) vengono da fonti pubbliche e, per alcune schede (Fondamenti, in particolare il canale B e la pagina d'esame su Moodle Esami, e MDAG), anche da pagine Moodle visibili solo con il login UniTo, consultate da me; gli appunti delle lezioni rielaborano le slide dei docenti. Sono accurati e con fonti, ma possono contenere errori o dati superati. **Non mi assumo alcuna responsabilità, per niente**; chi li usa lo fa a proprio rischio e deve verificare le informazioni importanti sulle fonti ufficiali. Aggiorno i file lezione per lezione, niente di più. Testo completo: [../AVVERTENZE.md](../AVVERTENZE.md).
 
 ## Uso rapido
 
@@ -24,7 +24,7 @@ La mia richiesta: <scrivi qui la domanda>
 | File | Contenuto |
 |---|---|
 | `istruzioni_per_ai.md` | regole per l'AI: come usare le fonti, politica dei docenti sugli LLM, regole d'esame per il codice C, formato degli appunti |
-| `studente.md` | chi ha creato questi file e come vuole essere aiutato (chi fa un fork può adattarlo a sé) |
+| `studente.md` | chi sono e come voglio essere aiutato (chi fa un fork può adattarlo a sé) |
 | `unito_informatica.md` | corso di laurea, canali e turni, **docenti e orari per canale**, appelli del 1° semestre, calendario 2026/27, regole d'esame, Moodle, gruppi Telegram |
 | `PROG1/corso.md` | Programmazione I: docenti e orari dei tre canali, sequenza delle lezioni per canale, esame e regole, trappole, convenzioni, materiale |
 | `PROG1/esercizi_esame.md` | esercizi d'esame tipo di Programmazione I con soluzioni verificate |
@@ -41,6 +41,6 @@ La mia richiesta: <scrivi qui la domanda>
 
 Gli stessi appunti in versione HTML interattiva sono online: https://donflammer.github.io/unito-informatica/
 English version of this folder, for those who don't speak Italian (an English translation; if the two differ, the Italian version prevails): [ai_context/](https://github.com/DonFlammer/unito-computer-science/tree/main/ai_context) in DonFlammer/unito-computer-science.
-Autore: DonFlammer · Telegram @rapsodico (https://t.me/rapsodico), senza impegno di risposta.
+Sono DonFlammer · Telegram @rapsodico (https://t.me/rapsodico), senza impegno di risposta.
 
 Ultimo aggiornamento: 28/09/2026 (schede di tutti i corsi del 1° anno per i canali A, B, C; Programmazione I, lezione 01A; Fondamenti, programma del canale B, regole ufficiali d'esame e libro; MDAG, Moodle 2026/27 e mercoledì per canale; traduzione inglese di tutto il repository in DonFlammer/unito-computer-science).

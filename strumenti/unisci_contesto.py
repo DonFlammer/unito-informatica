@@ -9,7 +9,7 @@ CONTESTO = RADICE / "contesto_ai"
 USCITA = CONTESTO / "_TUTTO_IN_UNO.md"
 
 # file generali, in ordine di lettura
-GENERALI = ["istruzioni_per_ai.md", "studente.md", "unito_informatica.md"]
+GENERALI = ["istruzioni_per_ai.md", "formato_lezioni.md", "studente.md", "unito_informatica.md"]
 # corsi in ordine di semestre; eventuali cartelle nuove vengono aggiunte in fondo
 ORDINE_CORSI = ["PROG1", "FDA", "MDAG", "ANMAT", "ARCH", "PROG2", "RO", "INGLESE"]
 # per ogni corso: prima la scheda, poi l'indice, gli esercizi e le lezioni

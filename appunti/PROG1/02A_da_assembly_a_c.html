@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02A · Dal linguaggio macchina al C</title>
+<meta name="lezione" content="02A">
+<meta name="data" content="2026-09-30">
+<meta name="description" content="Appunti della lezione 02A di Programmazione I (canale B): linguaggio macchina e assembly, addizione e moltiplicazione in assembly con un simulatore della macchina di Von Neumann, FORTRAN e linguaggi di alto livello, storia e caratteristiche del C, il primo programma, printf e sequenze di escape, sintassi, identificatori, compilazione con gcc, errori di compilazione, a runtime e logici.">
+<link rel="alternate" hreflang="en" href="https://donflammer.github.io/unito-computer-science/notes/PROG1/">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/02A_da_assembly_a_c.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<canvas id="rete" aria-hidden="true"></canvas>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <a class="lingua" href="https://donflammer.github.io/unito-computer-science/notes/PROG1/" hreflang="en" lang="en">English</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span>In breve</a></li>
+<li><a href="#linguaggio-macchina-e-assembly"><span class="n">§1</span>Linguaggio macchina e assembly</a></li>
+<li><a href="#l-addizione-in-assembly-passo-per-passo"><span class="n">§2</span>L&#39;addizione in assembly, passo per passo</a></li>
+<li><a href="#la-moltiplicazione-in-assembly"><span class="n">§3</span>La moltiplicazione in assembly</a></li>
+<li><a href="#verso-i-linguaggi-di-alto-livello"><span class="n">§4</span>Verso i linguaggi di alto livello</a></li>
+<li><a href="#il-linguaggio-c-un-po-di-storia"><span class="n">§5</span>Il linguaggio C: un po&#39; di storia</a></li>
+<li><a href="#le-caratteristiche-del-c"><span class="n">§6</span>Le caratteristiche del C</a></li>
+<li><a href="#la-radiografia-del-primo-programma"><span class="n">§7</span>La radiografia del primo programma</a></li>
+<li><a href="#sintassi-identificatori-e-indentazione"><span class="n">§8</span>Sintassi, identificatori e indentazione</a></li>
+<li><a href="#dal-sorgente-all-eseguibile"><span class="n">§9</span>Dal sorgente all&#39;eseguibile</a></li>
+<li><a href="#errori-di-compilazione-a-runtime-e-logici"><span class="n">§10</span>Errori di compilazione, a runtime e logici</a></li>
+<li><a href="#come-si-sviluppa-un-programma-c"><span class="n">§11</span>Come si sviluppa un programma C</a></li>
+<li><a href="#esame"><span class="n">§12</span>Verso l&#39;esame</a></li>
+<li><a href="#esercizi"><span class="n">§13</span>Esercizi</a></li>
+<li><a href="#domande"><span class="n">§14</span>Domande di ripasso</a></li>
+<li><a href="#glossario"><span class="n">§15</span>Glossario</a></li>
+<li><a href="#checklist"><span class="n">§16</span>Checklist</a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 02A</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 02A</p>
+      <h1>Dal linguaggio macchina al C</h1>
+      <p class="lede">Dai bit nei registri al primo programma in C. Prima si programma la macchina di Von Neumann in assembly, istruzione per istruzione, e si capisce perché è faticoso; poi si passa ai linguaggi di alto livello, dal FORTRAN al C. Infine la «radiografia» del primo programma C, le regole di sintassi e il percorso dal file sorgente all&#39;eseguibile con gcc, con i messaggi d&#39;errore veri del compilatore.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>02A_da_assembly_a_c · 50 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>90–120 minuti</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title">
+<h2 id="tldr-title">La lezione in 8 punti</h2>
+<ul>
+<li>Il <strong>linguaggio macchina</strong> è fatto di numeri (sequenze di bit) che il processore esegue direttamente; ogni architettura ha il suo <em>instruction set</em>, quindi <strong>non è portabile</strong>.</li>
+<li>L&#39;<strong>assembly</strong> scrive le stesse istruzioni con nomi leggibili (<code>LOAD</code>, <code>ADD</code>, <code>STORE</code>…); un programma chiamato <strong>assembler</strong> lo traduce in linguaggio macchina.</li>
+<li>Nell&#39;esempio delle slide un&#39;addizione richiede <strong>4 istruzioni</strong> e la moltiplicazione della lezione 01A ne richiede <strong>10</strong>, con <code>CMP</code> e i salti <code>JMPEQ</code> e <code>JMP</code>.</li>
+<li>Programmare in assembly è lungo, facile da sbagliare, legato alla CPU: dagli anni &#39;50 nascono i <strong>linguaggi di alto livello</strong>, a partire dal <strong>FORTRAN</strong>, che un <strong>compilatore</strong> traduce per la macchina.</li>
+<li>Il <strong>C</strong> nasce nel 1972 (Dennis Ritchie, Bell Labs) per riscrivere Unix: efficiente e <strong>portabile</strong>. È <strong>compilato</strong>, <strong>imperativo</strong>, <strong>strutturato</strong> e <strong>tipizzato</strong>.</li>
+<li>Il primo programma: commenti <code>//</code>, direttiva <code>#include &lt;stdio.h&gt;</code>, la funzione <code>main</code>, un blocco tra graffe, <code>printf</code> con le <strong>sequenze di escape</strong> (<code>\n</code>, <code>\t</code>, <code>\\</code>, <code>\&quot;</code>, <code>\0</code>); ogni istruzione finisce con <code>;</code>.</li>
+<li>Si compila con <code>gcc -Wall -Werror sorgente.c -o eseguibile</code>: <strong>preprocessore</strong>, <strong>compilatore</strong>, <strong>assemblatore</strong>, <strong>linker</strong>.</li>
+<li>Tre tipi di errore: di <strong>compilazione</strong> (sintassi), a <strong>runtime</strong> (per esempio divisione per zero) e <strong>logici</strong> (il programma gira ma fa la cosa sbagliata).</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label">Sei del canale A o C?</p><p><strong>Canale A (Fiandrotti):</strong> il deck «Dal linguaggio assembly al C» (52 slide) ha gli stessi contenuti. Aggiunge un esempio che carica un solo dato dalla memoria (slide 5) e la stessa moltiplicazione nel linguaggio <strong>BASIC</strong>, scritta con i numeri di riga e i <code>GOTO</code>, come esempio di linguaggio <strong>non strutturato</strong> (slide 23).</p>
+<p><strong>Canale C (Mazzei):</strong> assembly, moltiplicazione in assembly e FORTRAN sono alla fine della lezione 01 «Introduzione» (slide 67–83), con istruzioni leggermente diverse (per esempio <code>JEQ</code> al posto di <code>JMPEQ</code>). La parte sul C (<code>main</code>, <code>printf</code>, gcc) è nella lezione 02 «Il C», non ancora pubblicata al 30/09/2026.</p>
+<p>L&#39;esame è unico per i tre canali.</p>
+</div>
+
+
+<section id="linguaggio-macchina-e-assembly" aria-labelledby="h-linguaggio-macchina-e-assembly">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-linguaggio-macchina-e-assembly">Linguaggio macchina e assembly</h2><span class="slides">slide 2–4</span></div>
+<p>I primi computer si programmavano direttamente in <strong>linguaggio macchina</strong>, cambiando i bit dei registri con <strong>interruttori</strong> o <strong>schede perforate</strong>. È un po&#39; come l&#39;esecuzione passo per passo che si usa ancora oggi per controllare l&#39;hardware mentre lo si progetta.</p>
+<div class="box def"><p class="box-label">Definizione · Linguaggio macchina · slide 3</p><p>È il linguaggio <strong>direttamente eseguibile dal processore</strong>:</p>
+<ul>
+<li>è fatto di <strong>codici numerici</strong> (sequenze di bit) che identificano istruzioni e operandi;</li>
+<li>ogni architettura definisce il proprio insieme di istruzioni macchina (<em>instruction set</em>);</li>
+<li>quindi <strong>dipende dal processore</strong> e <strong>non è portabile</strong> tra architetture diverse.</li>
+</ul>
+</div>
+<div class="box def"><p class="box-label">Definizione · Linguaggio assembly · slide 3</p><p>È una <strong>rappresentazione testuale e simbolica</strong> del linguaggio macchina:</p>
+<ul>
+<li>usa <strong>mnemonici</strong> come <code>mov</code>, <code>add</code>, <code>ldr</code> al posto dei codici numerici;</li>
+<li>viene tradotto in linguaggio macchina da un programma chiamato <strong>assembler</strong>;</li>
+<li>è più leggibile per chi programma, ma resta <strong>strettamente legato all&#39;architettura</strong> hardware.</li>
+</ul>
+</div>
+<p>In pratica ogni riga di assembly corrisponde a <strong>una</strong> istruzione macchina: l&#39;assembler sostituisce ogni nome con il suo codice numerico (slide 4).</p>
+<div class="table-wrap"><table><thead><tr><th>Assembly (per le persone)</th><th>Linguaggio macchina (per la CPU)</th></tr></thead><tbody><tr><td><code>LOAD, R0, @A</code></td><td><code>0010000110010000</code></td></tr>
+<tr><td><code>LOAD, R1, @B</code></td><td><code>0010010110010010</code></td></tr>
+<tr><td><code>ADD, R0, R1</code></td><td><code>0100000100000000</code></td></tr>
+<tr><td><code>STORE, R0, @A</code></td><td><code>0011000100000000</code></td></tr></tbody></table></div>
+<div class="box trap"><p class="box-label">Trappola · Portabile non vuol dire «che funziona ovunque così com&#39;è»</p><p>Un programma in linguaggio macchina scritto per una CPU non gira su una CPU con un <em>instruction set</em> diverso: va <strong>riscritto</strong>. È il problema che i linguaggi di alto livello risolvono (più avanti in questa lezione).</p>
+</div>
+</section>
+
+<section id="l-addizione-in-assembly-passo-per-passo" aria-labelledby="h-l-addizione-in-assembly-passo-per-passo">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-l-addizione-in-assembly-passo-per-passo">L&#39;addizione in assembly, passo per passo</h2><span class="slides">slide 5–14</span></div>
+<p><strong>Il problema</strong>: sommare due numeri interi che stanno in memoria agli indirizzi <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>400</mn></mrow><annotation encoding="application/x-tex">A = 400</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span></span></span></span> e <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mn>404</mn></mrow><annotation encoding="application/x-tex">B = 404</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">404</span></span></span></span>, e mettere il risultato nella cella all&#39;indirizzo <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span>. Il linguaggio è un assembly di tipo RISC, come quello del processore MIPS32. Il programma fa quattro cose:</p>
+<ol>
+<li>definisce gli indirizzi <code>A</code> e <code>B</code>;</li>
+<li>carica i due numeri nei registri <code>R0</code> e <code>R1</code> della CPU, con due istruzioni <code>LOAD</code>;</li>
+<li>li somma con un&#39;istruzione <code>ADD</code> tra i registri <code>R0</code> e <code>R1</code>;</li>
+<li>copia il risultato dal registro <code>R0</code> all&#39;indirizzo <code>A</code> della memoria, con un&#39;istruzione <code>STORE</code>.</li>
+</ol>
+<pre class="code" data-lingua="text"><code>ADDR  A = 400        ; definisce l'indirizzo A
+ADDR  B = 404        ; definisce l'indirizzo B
+LOAD,  R0, @A        ; carica in R0 il numero all'indirizzo A
+LOAD,  R1, @B        ; carica in R1 il numero all'indirizzo B
+ADD,   R0, R1        ; R0 ← R0 + R1
+STORE, R0, @A        ; copia R0 all'indirizzo A</code></pre>
+<p>Il simbolo <code>@A</code> vuol dire «<strong>il contenuto della memoria all&#39;indirizzo A</strong>», non il numero 400. Le righe <code>ADDR</code> non diventano istruzioni: servono solo a dare un nome agli indirizzi.</p>
+<h3 id="che-cosa-succede-nella-macchina-slide-7-14">Che cosa succede nella macchina (slide 7–14)</h3>
+<p>In memoria il programma occupa i byte 0–15 (4 istruzioni da 4 byte), i dati stanno a 400 (il numero 12) e a 404 (il numero <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">-8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">8</span></span></span></span>). Le slide seguono l&#39;esecuzione con due passi per istruzione: prima il <strong>prelievo</strong> («carica la prossima istruzione leggendo il program counter nell&#39;instruction register»), poi l&#39;<strong>esecuzione</strong> («decodifica IR ed esegue l&#39;istruzione elementare»).</p>
+<div class="table-wrap"><table><thead><tr><th>Istruzione</th><th class="num">PC</th><th>IR</th><th class="num">R0</th><th class="num">R1</th><th class="num">memoria[400]</th></tr></thead><tbody><tr><td>(inizio)</td><td class="num">0</td><td>—</td><td class="num">—</td><td class="num">—</td><td class="num">12</td></tr>
+<tr><td><code>LOAD, R0, @A</code></td><td class="num">0</td><td>LOAD</td><td class="num"><strong>12</strong></td><td class="num">—</td><td class="num">12</td></tr>
+<tr><td><code>LOAD, R1, @B</code></td><td class="num">4</td><td>LOAD</td><td class="num">12</td><td class="num"><strong>−8</strong></td><td class="num">12</td></tr>
+<tr><td><code>ADD, R0, R1</code></td><td class="num">8</td><td>ADD</td><td class="num"><strong>4</strong></td><td class="num">−8</td><td class="num">12</td></tr>
+<tr><td><code>STORE, R0, @A</code></td><td class="num">12</td><td>STORE</td><td class="num">4</td><td class="num">−8</td><td class="num"><strong>4</strong></td></tr></tbody></table></div>
+<p>Il PC avanza di 4 in 4 (0, 4, 8, 12), perché ogni istruzione occupa una parola da 32 bit. Alla fine all&#39;indirizzo 400 non c&#39;è più 12 ma <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>=</mo><mn>12</mn><mo>+</mo><mo stretchy="false">(</mo><mo>−</mo><mn>8</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">4 = 12 + (-8)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">12</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">8</span><span class="mclose">)</span></span></span></span>: il risultato è nello <strong>stato finale della memoria</strong>, come diceva la lezione 01B.</p>
+<figure class="widget" id="strumento-1" data-widget="macchina" data-programma="addizione"><figcaption class="widget-titolo">Simulatore della macchina di Von Neumann: premi «Passo» e guarda PC, IR, registri e memoria</figcaption><p class="widget-carica">Caricamento dello strumento interattivo…</p></figure>
+<div class="box idea"><p class="box-label">L'idea · perché passare dai registri</p><p>La ALU lavora solo sui <strong>registri</strong> (lezione 01B): non sa sommare direttamente due celle di memoria. Per questo servono <code>LOAD</code> (memoria → registro), <code>ADD</code> (registro + registro) e <code>STORE</code> (registro → memoria).</p>
+</div>
+</section>
+
+<section id="la-moltiplicazione-in-assembly" aria-labelledby="h-la-moltiplicazione-in-assembly">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-la-moltiplicazione-in-assembly">La moltiplicazione in assembly</h2><span class="slides">slide 15–16</span></div>
+<p>Ora la stessa <strong>moltiplicazione per somme ripetute</strong> della lezione 01A. I numeri stanno agli indirizzi simbolici <code>m</code> e <code>n</code>; il risultato va all&#39;indirizzo <code>m</code>. Si usano l&#39;accumulatore <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span> (nel registro <code>R0</code>) e il contatore <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> (in <code>R1</code>).</p>
+<pre class="code" data-lingua="text"><code> 1.  LOAD,  R0, 0         // inizializza R0 come accumulatore s
+ 2.  LOAD,  R1, 0         // inizializza R1 come contatore i
+ 3.  LOAD,  R2, @m        // carica il valore all'indirizzo m in R2
+ 4.  LOAD,  R3, @n        // carica il valore all'indirizzo n in R3
+ 5.  CMP    R1, R3        // confronta R1 ed R3, cioè i ed n
+ 6.  JMPEQ  &lt;riga 10&gt;     // se i = n salta alla riga 10, altrimenti continua
+ 7.  ADD,   R0, R2        // R0 ← R0 + R2, cioè s ← s + m
+ 8.  INC,   R1            // R1 ← R1 + 1, cioè i ← i + 1
+ 9.  JMP    &lt;riga 5&gt;      // salto incondizionato alla riga 5
+10.  STORE, R0, @m        // salva R0, cioè il risultato s, all'indirizzo di m</code></pre>
+<p>Le istruzioni nuove:</p>
+<div class="table-wrap"><table><thead><tr><th>Istruzione</th><th>Che cosa fa</th></tr></thead><tbody><tr><td><code>LOAD, R0, 0</code></td><td>mette nel registro il <strong>numero</strong> 0 (senza <code>@</code>: è un valore, non un indirizzo)</td></tr>
+<tr><td><code>CMP R1, R3</code></td><td><strong>confronta</strong> i due registri; l&#39;esito (uguali o no) resta nella CPU, nel registro di stato</td></tr>
+<tr><td><code>JMPEQ &lt;riga 10&gt;</code></td><td><strong>salto condizionato</strong>: salta alla riga 10 solo se l&#39;ultimo confronto ha dato «uguali» (<em>jump if equal</em>)</td></tr>
+<tr><td><code>INC R1</code></td><td>aggiunge 1 al registro (<em>increment</em>)</td></tr>
+<tr><td><code>JMP &lt;riga 5&gt;</code></td><td><strong>salto incondizionato</strong>: salta sempre alla riga 5</td></tr></tbody></table></div>
+<p>È <strong>esattamente</strong> la versione V6 della lezione 01A, riga per riga:</p>
+<div class="table-wrap"><table><thead><tr><th>Lezione 01A, versione V6</th><th>Assembly</th></tr></thead><tbody><tr><td><code>s ← 0, i ← 0</code></td><td>righe 1–2</td></tr>
+<tr><td>(i dati <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> sono già noti)</td><td>righe 3–4: si caricano nei registri</td></tr>
+<tr><td><code>se i = n allora salta alla riga 7</code></td><td>righe 5–6: <code>CMP</code> + <code>JMPEQ</code> (salto condizionato)</td></tr>
+<tr><td><code>s ← s + m</code></td><td>riga 7: <code>ADD</code></td></tr>
+<tr><td><code>i ← i + 1</code></td><td>riga 8: <code>INC</code></td></tr>
+<tr><td><code>salta alla riga 3</code></td><td>riga 9: <code>JMP</code> (salto non condizionato)</td></tr>
+<tr><td><code>Fine</code></td><td>riga 10: il risultato va in memoria</td></tr></tbody></table></div>
+<div class="box exam"><p class="box-label">Conta all'esame · Prima verificare, poi eseguire</p><p>Anche qui il confronto (riga 5) viene <strong>prima</strong> della somma (riga 7): con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> si salta subito alla riga 10 e il risultato è 0. È il principio della lezione 01A, «tipica fonte di errori, anche in sede d&#39;esame».</p>
+</div>
+<p>Prova il simulatore con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">m = 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> e poi con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>: conta quante volte viene eseguita la riga 5.</p>
+<figure class="widget" id="strumento-2" data-widget="macchina" data-programma="moltiplicazione" data-m="4" data-n="3"><figcaption class="widget-titolo">La moltiplicazione per somme ripetute, eseguita dalla macchina</figcaption><p class="widget-carica">Caricamento dello strumento interattivo…</p></figure>
+<div class="box neutro"><p class="box-label">Nota · Due piccole differenze nella slide 20</p><p>Nella slide 20 lo stesso programma compare con <code>ADD, R1, 1</code> al posto di <code>INC, R1</code> (fa la stessa cosa: aggiunge 1) e con <code>STORE, R0, A</code> alla riga 10.</p>
+</div>
+</section>
+
+<section id="verso-i-linguaggi-di-alto-livello" aria-labelledby="h-verso-i-linguaggi-di-alto-livello">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-verso-i-linguaggi-di-alto-livello">Verso i linguaggi di alto livello</h2><span class="slides">slide 17–22</span></div>
+<h3 id="perche-l-assembly-non-basta-slide-17">Perché l&#39;assembly non basta (slide 17)</h3>
+<ul>
+<li>È <strong>faticoso</strong> e <strong>facile sbagliare</strong>: 4 righe per un&#39;addizione, 10 per una moltiplicazione.</li>
+<li>Richiede di <strong>conoscere l&#39;architettura della CPU</strong> (registri, istruzioni).</li>
+<li><strong>Non si vede la struttura</strong> del codice né la logica: dove comincia e dove finisce la ripetizione?</li>
+<li>Il codice scritto per la CPU X va <strong>riscritto da capo</strong> per la CPU Y, se i linguaggi macchina sono diversi.</li>
+</ul>
+<p>Per questo, dagli anni &#39;50, si sviluppano <strong>linguaggi di programmazione</strong> con istruzioni di <strong>livello semantico</strong> più vicino al linguaggio <strong>matematico e naturale</strong>, che permettono di <strong>astrarre</strong> il programma dalle caratteristiche dell&#39;hardware.</p>
+<h3 id="il-fortran-slide-18-20">Il FORTRAN (slide 18–20)</h3>
+<p>All&#39;inizio degli anni &#39;50 IBM progetta il calcolatore <strong>modello 704</strong> per i calcoli scientifici, con due requisiti:</p>
+<ul>
+<li>gli scienziati devono potersi concentrare sulla <strong>programmazione di formule</strong>, ignorando i dettagli della CPU;</li>
+<li>i programmi devono potersi <strong>trasportare</strong> sui futuri modelli IBM <strong>senza riscriverli</strong> da capo.</li>
+</ul>
+<p>Per il 704 nasce il <strong>FORTRAN</strong> (<em>FORmula TRANslator</em>):</p>
+<ul>
+<li>un <strong>compilatore</strong> traduce ogni istruzione FORTRAN in <strong>una o più</strong> istruzioni assembly della macchina usata;</li>
+<li>se cambia la macchina, <strong>basta ricompilare</strong> il programma;</li>
+<li>insieme a LISP, ALGOL e COBOL è tra i capostipiti dei <strong>linguaggi di terza generazione</strong>, la famiglia del C originario che studierai in questo corso;</li>
+<li>le versioni moderne (FORTRAN 90) hanno costrutti come <code>if</code> e <code>while</code>.</li>
+</ul>
+<p>La moltiplicazione in FORTRAN (slide 20):</p>
+<pre class="code" data-lingua="text"><code>Program Hello
+INTEGER :: m
+INTEGER :: n
+INTEGER :: s
+INTEGER :: i
+
+WRITE(*,*) 'Inserisci m:'
+READ(*,*) m
+WRITE(*,*) 'Inserisci n:'
+READ(*,*) n
+
+s = 0
+i = 0
+do while (i&lt;n)
+    s = s + m
+    i = i + 1
+end do
+
+WRITE(*,*) &quot;Risultato :&quot;,s
+End Program Hello</code></pre>
+<p>Le 10 righe di assembly diventano 6 righe leggibili (da <code>s = 0</code> a <code>end do</code>): la ripetizione è un blocco <code>do while … end do</code> e <strong>i salti non si vedono più</strong>, li scrive il compilatore. In più il programma chiede <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span> e <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> a chi lo usa (<code>READ</code>) e stampa il risultato (<code>WRITE</code>).</p>
+<h3 id="l-albero-dei-linguaggi-slide-21-22">L&#39;albero dei linguaggi (slide 21–22)</h3>
+<p>La slide 21 mostra come i linguaggi discendono uno dall&#39;altro, dal 1956 al 2004: dal <strong>Fortran I</strong> e da <strong>ALGOL 60</strong> nasce, tra gli altri, il <strong>C</strong> (versione K&amp;R, fine anni &#39;70), da cui discendono <strong>C++</strong>, e poi <strong>Java</strong>, <strong>C#</strong>, e in parte <strong>Python</strong>. Imparare il C vuol dire imparare la base di molti linguaggi usati oggi.</p>
+<p>Punti chiave della prima parte (slide 22):</p>
+<ul>
+<li>abbiamo scritto un semplice algoritmo per moltiplicare interi come <strong>somma ripetuta</strong>;</li>
+<li>si può programmare la macchina <strong>a basso livello</strong> (assembly), ma scrivere programmi è <strong>lungo e difficile</strong>;</li>
+<li>i linguaggi di <strong>alto livello</strong> come il C <strong>nascondono</strong> molti dettagli dell&#39;hardware sottostante.</li>
+</ul>
+<div class="box extra"><p class="box-label">Oltre le slide · che cosa scrive davvero il compilatore</p><p>Ecco la moltiplicazione in C e un pezzo dell&#39;assembly x86-64 che gcc ne ricava con <code>gcc -S</code> (compilatore gcc 16.1, senza ottimizzazioni):</p>
+<pre class="code" data-lingua="c"><code><span class="kw">while</span> (i &lt; n) {
+    s = s + m;
+    i = i + 1;
+}</code></pre>
+<pre class="code" data-lingua="text"><code>        jmp  .L2                      ; salta subito al controllo
+.L3:    mov  eax, DWORD PTR -12[rbp]  ; carica m (LOAD)
+        add  DWORD PTR -4[rbp], eax   ; s ← s + m (ADD)
+        add  DWORD PTR -8[rbp], 1     ; i ← i + 1 (INC)
+.L2:    mov  eax, DWORD PTR -8[rbp]   ; carica i
+        cmp  eax, DWORD PTR -16[rbp]  ; confronta i con n (CMP)
+        jl   .L3                      ; se i &lt; n torna al corpo (salto condizionato)</code></pre>
+<p>Le istruzioni hanno nomi diversi, ma l&#39;idea è quella delle slide: caricare, sommare, confrontare, saltare. E il compilatore rispetta «prima verificare, poi eseguire»: la prima istruzione salta al controllo.</p>
+</div>
+</section>
+
+<section id="il-linguaggio-c-un-po-di-storia" aria-labelledby="h-il-linguaggio-c-un-po-di-storia">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-il-linguaggio-c-un-po-di-storia">Il linguaggio C: un po&#39; di storia</h2><span class="slides">slide 23–26</span></div>
+<ul>
+<li><strong>1969</strong>: Ken Thompson (Bell Labs, AT&amp;T) sviluppa il sistema operativo <strong>Unix</strong> per il minicomputer PDP-7, scritto inizialmente in <strong>assembly</strong>.</li>
+<li>L&#39;esperienza mostra che l&#39;assembly rende lo sviluppo di un sistema operativo <strong>oneroso e poco flessibile</strong>.</li>
+<li><strong>Dennis Ritchie</strong> progetta allora il <strong>linguaggio C</strong>, pensato per unire <strong>efficienza</strong> e <strong>portabilità</strong>.</li>
+<li>Unix viene riscritto progressivamente in C: si diffonde (a partire dalle università) e influenza in modo decisivo la storia dell&#39;informatica.</li>
+<li><strong>1972</strong>: prima versione del C, per uso interno sui PDP-7 e PDP-11, oggi nota come <strong>K&amp;R C</strong> (dalle iniziali di Kernighan e Ritchie, autori del libro che lo descrisse).</li>
+<li>Alla <strong>fine degli anni &#39;80</strong> il C viene <strong>standardizzato</strong> da ANSI e ISO (<strong>ANSI C</strong>, <strong>C89</strong>), per usarlo su hardware molto diversi.</li>
+<li>Lo standard è stato aggiornato più volte: <strong>C99, C11, C17, C23</strong>. Il libro di testo del corso fa riferimento al <strong>C11</strong>.</li>
+</ul>
+<p>Nonostante l&#39;età, il C è ancora centrale: è il linguaggio di riferimento per <strong>sistemi operativi</strong>, <strong>compilatori</strong>, <strong>driver</strong>, <strong>librerie di basso livello</strong>, applicazioni ad <strong>alte prestazioni</strong> e <strong>sistemi embedded/IoT</strong>. Offre un <strong>controllo diretto</strong> su hardware e memoria, restando molto più astratto dell&#39;assembly.</p>
+</section>
+
+<section id="le-caratteristiche-del-c" aria-labelledby="h-le-caratteristiche-del-c">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-le-caratteristiche-del-c">Le caratteristiche del C</h2><span class="slides">slide 27</span></div>
+<div class="table-wrap"><table><thead><tr><th>Il C è…</th><th>Che cosa vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><strong>compilato</strong></td><td>un <strong>compilatore</strong> traduce i sorgenti C nel linguaggio macchina del computer</td><td><code>gcc</code> produce un eseguibile</td></tr>
+<tr><td><strong>imperativo</strong></td><td>il programma è un insieme di <strong>istruzioni</strong>, pensate come ordini</td><td><code>s = s + m;</code> è un ordine: «aggiorna s»</td></tr>
+<tr><td><strong>strutturato</strong></td><td>il codice è organizzato in <strong>blocchi</strong> racchiusi da delimitatori</td><td>le graffe <code>{ … }</code> (lezione 01A, blocchi Inizio/Fine)</td></tr>
+<tr><td><strong>fortemente tipizzato</strong></td><td>chi programma deve <strong>specificare il tipo</strong> di ogni variabile</td><td><code>int s = 0;</code> dice che <code>s</code> è un intero</td></tr></tbody></table></div>
+</section>
+
+<section id="la-radiografia-del-primo-programma" aria-labelledby="h-la-radiografia-del-primo-programma">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-la-radiografia-del-primo-programma">La radiografia del primo programma</h2><span class="slides">slide 28–36</span></div>
+<pre class="code" data-lingua="c"><code><span class="cm">// Un primo programma in C</span>
+<span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="cm">// La funzione &quot;main&quot; e' il punto di ingresso del programma</span>
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    printf(<span class="str">&quot;Buongiorno dal C.\n&quot;</span>);
+}
+<span class="cm">// fine della funzione main</span></code></pre>
+<p>Compilato con <code>gcc -Wall -Werror</code> stampa <code>Buongiorno dal C.</code> e va a capo. Vediamolo pezzo per pezzo.</p>
+<h3 id="commenti-slide-28">Commenti (slide 28)</h3>
+<p>Le righe che iniziano con <code>//</code> sono <strong>commenti</strong>: non sono istruzioni e il compilatore le <strong>ignora</strong>. Servono a chi legge: un commento prima di una funzione o di un gruppo di istruzioni ne chiarisce lo <strong>scopo</strong> (slide 32). Il codice deve essere comprensibile per un programmatore, non solo per il compilatore.</p>
+<div class="box extra"><p class="box-label">Oltre le slide · l&#39;altro tipo di commento</p><p>Il C ha anche i commenti su più righe, tra <code>/*</code> e <code>*/</code>: <code>/* questo è un commento */</code>.</p>
+</div>
+<h3 id="la-direttiva-k104-slide-29">La direttiva <code>#include</code> (slide 29)</h3>
+<ul>
+<li>Le righe che iniziano con <code>#</code> sono <strong>direttive per il preprocessore</strong> (argomento che si vedrà poco qui e meglio in Programmazione II).</li>
+<li><code>#include &lt;stdio.h&gt;</code> <strong>include</strong> nel programma il file <code>stdio.h</code> (<em>standard input/output header</em>) e ne importa le definizioni.</li>
+<li>I file <code>.h</code> si chiamano <strong>file di intestazione</strong> (<em>header</em>): contengono le <strong>dichiarazioni</strong> di funzioni, per esempio quelle delle librerie di sistema (<code>printf()</code> sta nella libreria C, <code>libc</code>).</li>
+<li><code>stdio.h</code> dichiara funzioni come <code>printf()</code> e <code>scanf()</code>.</li>
+<li>Nelle slide a volte gli <code>#include</code> sono omessi, solo per ragioni di spazio.</li>
+</ul>
+<div class="box trap"><p class="box-label">Trappola · Senza <code>#include &lt;stdio.h&gt;</code></p><p>Se lo dimentichi e usi <code>printf</code>, gcc 16 si ferma con un errore: <code>implicit declaration of function 'printf'</code>, e ti suggerisce <code>include '&lt;stdio.h&gt;'</code>.</p>
+</div>
+<h3 id="la-funzione-k115-slide-30-31">La funzione <code>main</code> (slide 30–31)</h3>
+<ul>
+<li>I programmi C sono organizzati in moduli chiamati <strong>funzioni</strong>, che contengono le istruzioni da eseguire. Ogni funzione ha un <strong>input</strong> e un <strong>output</strong>.</li>
+<li>La funzione <strong><code>main</code></strong> è <strong>obbligatoria</strong>: è il punto da cui <strong>comincia l&#39;esecuzione</strong>.</li>
+<li><code>(void)</code> vuol dire che <code>main</code> riceve un <strong>input vuoto</strong>.</li>
+<li><code>int</code> vuol dire che <code>main</code> restituisce un <strong>intero</strong>: un codice di successo o di errore per il sistema operativo (nel corso non lo useremo). Il compilatore permette di ometterlo, ma si può scrivere esplicitamente <code>return 0;</code> prima della graffa finale.</li>
+<li>Per ora tutto il codice va <strong>dentro il <code>main</code></strong>.</li>
+</ul>
+<h3 id="blocchi-e-programmazione-strutturata-slide-32-33">Blocchi e programmazione strutturata (slide 32–33)</h3>
+<ul>
+<li>Le parentesi <strong>graffe</strong> <code>{ }</code> delimitano il <strong>corpo</strong> (<em>body</em>) della funzione, cioè un <strong>blocco</strong> di istruzioni. Devono essere <strong>sempre bilanciate</strong>: ogni <code>{</code> ha la sua <code>}</code>.</li>
+<li>Un blocco è un&#39;<strong>unità logica</strong> e può contenere: <strong>dichiarazioni</strong> di dati (le <strong>variabili</strong>), <strong>comandi</strong>, <strong>chiamate</strong> di altre funzioni e <strong>altri blocchi</strong> (annidati, sempre tra graffe).</li>
+<li>Per convenzione il codice C si <strong>indenta</strong> con le tabulazioni (il tasto Tab).</li>
+</ul>
+<p>Sono i blocchi Inizio/Fine della versione V6 della lezione 01A, scritti con le graffe.</p>
+<h3 id="programmare-per-la-chiarezza-slide-34">Programmare per la chiarezza (slide 34)</h3>
+<blockquote>
+<p>«Il codice è letto molto più spesso di quanto venga scritto: programmate per la chiarezza, non per la brevità.» (citazione attribuita a Donald Knuth nella slide 34)</p>
+</blockquote>
+<p>Per mantenere il codice chiaro:</p>
+<ul>
+<li><strong>indentazione corretta</strong>, che mostri la struttura logica;</li>
+<li><strong>commenti significativi</strong>, soprattutto per funzioni e parti complesse;</li>
+<li><strong>nomi descrittivi</strong> per variabili e funzioni, così che il codice si spieghi da solo;</li>
+<li><strong>blocchi non troppo lunghi</strong>: meglio spezzare in funzioni più piccole e riutilizzabili (lo vedrai più avanti).</li>
+</ul>
+<h3 id="k126-istruzioni-e-stringhe-slide-35-36"><code>printf</code>, istruzioni e stringhe (slide 35–36)</h3>
+<ul>
+<li><code>printf(…)</code> è una <strong>chiamata di funzione</strong> (<em>function call</em>): si chiama la funzione passandole i <strong>parametri</strong> di input tra parentesi.</li>
+<li>Ogni istruzione (<em>statement</em>) termina con il <strong>punto e virgola</strong> <code>;</code>.</li>
+<li>Una <strong>stringa</strong> è un pezzo di testo tra <strong>doppi apici</strong> <code>&quot;…&quot;</code>.</li>
+<li>Dentro le stringhe possono comparire <strong>sequenze di escape</strong> (sequenze speciali), che cominciano con la barra rovesciata <code>\</code> (<em>backslash</em>).</li>
+</ul>
+<div class="table-wrap"><table><thead><tr><th>Sequenza</th><th>Che cosa produce</th></tr></thead><tbody><tr><td><code>\n</code></td><td>nuova riga: va a capo</td></tr>
+<tr><td><code>\t</code></td><td>tabulazione (Tab)</td></tr>
+<tr><td><code>\\</code></td><td>il carattere backslash <code>\</code></td></tr>
+<tr><td><code>\&quot;</code></td><td>il doppio apice <code>&quot;</code></td></tr>
+<tr><td><code>\0</code></td><td>il terminatore della stringa (lo userai più avanti)</td></tr></tbody></table></div>
+<p>Per ora <code>printf</code> si usa solo con testo tra doppi apici. Per esempio:</p>
+<pre class="code" data-lingua="c"><code>printf(<span class="str">&quot;Ha detto \&quot;ciao\&quot;\n&quot;</span>);     <span class="cm">// stampa: Ha detto &quot;ciao&quot;</span>
+printf(<span class="str">&quot;C:\\corso\\lab1\n&quot;</span>);        <span class="cm">// stampa: C:\corso\lab1</span>
+printf(<span class="str">&quot;nome\tvoto\n&quot;</span>);             <span class="cm">// stampa nome e voto separati da una tabulazione</span></code></pre>
+<div class="box trap"><p class="box-label">Trappola · Il backslash da solo</p><p>Un <code>\</code> isolato in una stringa inizia sempre una sequenza di escape. Per stampare un backslash ne servono <strong>due</strong>: <code>\\</code>. E per stampare un doppio apice serve <code>\&quot;</code>, altrimenti il compilatore crede che la stringa finisca lì.</p>
+</div>
+</section>
+
+<section id="sintassi-identificatori-e-indentazione" aria-labelledby="h-sintassi-identificatori-e-indentazione">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-sintassi-identificatori-e-indentazione">Sintassi, identificatori e indentazione</h2><span class="slides">slide 37–41</span></div>
+<h3 id="sintassi-e-token-slide-37-38">Sintassi e token (slide 37–38)</h3>
+<p>Il C va <strong>compilato</strong>: il codice sorgente, che è testo, viene tradotto in linguaggio macchina. Durante la compilazione l&#39;<strong>analizzatore lessicale</strong> (<em>parser</em>) divide il codice in <strong>token</strong>, le unità sintattiche: parole chiave, identificatori, operatori, punteggiatura, stringhe, costanti. Come una lingua naturale, un linguaggio di programmazione ha una <strong>sintassi</strong>, più formale, con le regole per scrivere programmi corretti. Se una regola non è rispettata, il compilatore segnala un <strong>errore di compilazione</strong> e <strong>non</strong> produce il programma.</p>
+<p>Tre regole da sapere subito:</p>
+<ol>
+<li><strong>Ogni istruzione termina con <code>;</code></strong>. Errore tipico: dimenticarlo. gcc risponde <code>expected ';' before …</code>.</li>
+<li>Un&#39;istruzione può occupare <strong>più righe</strong>: si può andare a capo <strong>ovunque sia ammesso uno spazio</strong>. Due stringhe una dopo l&#39;altra vengono unite:<pre class="code" data-lingua="c"><code>printf(<span class="str">&quot;Questo è un messaggio &quot;</span>
+       <span class="str">&quot;spezzato su più righe\n&quot;</span>);</code></pre>
+</li>
+<li><strong>Non</strong> si va a capo <strong>dentro una stringa</strong> senza chiuderla: errore <code>missing terminating &quot; character</code>.</li>
+</ol>
+<h3 id="identificatori-slide-39-40">Identificatori (slide 39–40)</h3>
+<p>Gli <strong>identificatori</strong> sono i <strong>nomi</strong> che dai agli elementi del programma (variabili, funzioni, costanti, tipi…), per poterli riconoscere e usare.</p>
+<ul>
+<li><p>Maiuscole e minuscole <strong>contano</strong> (<em>case-sensitive</em>): <code>Var</code>, <code>var</code> e <code>VAR</code> sono tre identificatori diversi.</p>
+</li>
+<li><p>Scegli nomi <strong>chiari</strong>: evita nomi troppo simili tra loro o senza significato. Esempi: <code>somma</code>, <code>accumulatore</code>.</p>
+</li>
+<li><p><strong>Non</strong> si possono usare le <strong>parole chiave</strong> del linguaggio:</p>
+<p><code>auto break case char const continue default do double else enum extern float for goto if int long register return short signed sizeof static struct switch typedef union unsigned void volatile while</code></p>
+</li>
+<li><p><strong>Non</strong> usare i nomi delle funzioni della libreria standard, come <code>main</code> e <code>printf</code> (anche se non le usi, come <code>sin</code> e <code>cos</code>), né i nomi definiti nei file di intestazione.</p>
+</li>
+</ul>
+<div class="box extra"><p class="box-label">Oltre le slide · quali caratteri sono ammessi</p><p>Un identificatore contiene <strong>lettere</strong>, <strong>cifre</strong> e il trattino basso <code>_</code>, e <strong>non comincia con una cifra</strong>: <code>x2</code> e <code>conto_totale</code> vanno bene, <code>2x</code> e <code>conto-totale</code> no (il trattino è il segno meno). Gli spazi non sono ammessi. Evita anche i nomi che cominciano con <code>_</code>: sono riservati in molti casi.</p>
+</div>
+<h3 id="indentazione-slide-41">Indentazione (slide 41)</h3>
+<p>Le istruzioni di un blocco (<strong>non</strong> le graffe) si scrivono <strong>rientrate</strong> di un numero fisso di spazi (per esempio 4) o, meglio, con il carattere Tab. L&#39;indentazione aiuta a capire il flusso del programma, e va fatta <strong>mentre si programma</strong>, non dopo.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (a &gt; 15) {
+    x = 5;
+    y = 2;
+    z = a + b;
+}</code></pre>
+<p>L&#39;<code>if</code> arriverà nelle prossime settimane: qui conta la forma, con le tre istruzioni rientrate dentro le graffe.</p>
+</section>
+
+<section id="dal-sorgente-all-eseguibile" aria-labelledby="h-dal-sorgente-all-eseguibile">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-dal-sorgente-all-eseguibile">Dal sorgente all&#39;eseguibile</h2><span class="slides">slide 42–45</span></div>
+<p>Il percorso (slide 42): i <strong>file sorgente</strong> (<code>.c</code>, il codice in forma di testo; ognuno è un&#39;<strong>unità di compilazione</strong>) includono i <strong>file di intestazione</strong> (<code>.h</code>). Preprocessore, compilatore e assemblatore trasformano ogni sorgente in un <strong>file oggetto</strong> (linguaggio macchina); il <strong>collegatore</strong> (<em>linker</em>) unisce i file oggetto in un <strong>programma eseguibile</strong>.</p>
+<p>Il compilatore del corso è <strong>gcc</strong> (la slide dice GNU C Compiler; oggi il nome è <em>GNU Compiler Collection</em>): libero, conforme agli standard, disponibile per i principali sistemi operativi, capace di produrre codice per molte architetture. È un <em>frontend</em> per un sistema di compilazione a più stadi (slide 43–44):</p>
+<div class="table-wrap"><table><thead><tr><th>Stadio</th><th>Programma</th><th>Che cosa fa</th></tr></thead><tbody><tr><td>1. preprocessore</td><td><code>cpp</code></td><td>elabora le direttive <code>#include</code>, <code>#define</code>… e produce un sorgente intermedio</td></tr>
+<tr><td>2. compilatore</td><td><code>cc</code></td><td>traduce il C in assembly, con opzioni per ottimizzare velocità o dimensione, oppure senza ottimizzazione per il debug (opzione <code>-g</code>)</td></tr>
+<tr><td>3. assemblatore</td><td><code>as</code></td><td>produce il file oggetto <code>.o</code> in linguaggio macchina</td></tr>
+<tr><td>4. linker</td><td><code>ld</code></td><td>unisce i file oggetto dei sorgenti C, altri file oggetto (anche da altri linguaggi) e le <strong>librerie</strong> (input/output, matematica, rete…) in un eseguibile</td></tr></tbody></table></div>
+<h3 id="compilare-ed-eseguire-slide-45">Compilare ed eseguire (slide 45)</h3>
+<p>Per ora si compila così:</p>
+<pre class="code" data-lingua="text"><code>Unix:     gcc -Wall -Werror sorgente.c -o eseguibile
+Windows:  gcc -Wall -Werror sorgente.c -o eseguibile.exe</code></pre>
+<ul>
+<li><code>-Wall</code> attiva gli <strong>avvisi</strong> (<em>warning</em>) più utili;</li>
+<li><code>-Werror</code> trasforma ogni avviso in <strong>errore</strong>: con un solo avviso il programma non viene prodotto;</li>
+<li><code>-o eseguibile</code> sceglie il <strong>nome</strong> del file prodotto.</li>
+</ul>
+<p>Poi si esegue: <code>./buongiorno</code> nella shell di Unix, <code>buongiorno</code> nel Prompt dei comandi di Windows.</p>
+<div class="box exam"><p class="box-label">Conta all'esame · Le opzioni dell&#39;esame</p><p><code>-Wall -Werror</code> sono le opzioni usate all&#39;esame negli anni scorsi: allenati da subito così. Un programma che non compila non passa nessun test.</p>
+</div>
+</section>
+
+<section id="errori-di-compilazione-a-runtime-e-logici" aria-labelledby="h-errori-di-compilazione-a-runtime-e-logici">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-errori-di-compilazione-a-runtime-e-logici">Errori di compilazione, a runtime e logici</h2><span class="slides">slide 46–48</span></div>
+<p>Un programma può <strong>compilare</strong> senza errori di sintassi e contenere lo stesso errori che si vedono solo <strong>durante l&#39;esecuzione</strong> (<em>runtime</em>). Le cause possono essere:</p>
+<ul>
+<li>una <strong>progettazione sbagliata</strong> dell&#39;algoritmo, per esempio eseguire un ciclo <strong>prima</strong> di verificarne la condizione di terminazione (è il bug della versione V2 della lezione 01A);</li>
+<li>una <strong>realizzazione sbagliata</strong> del programma, per esempio una divisione per zero o un accesso non valido alla memoria.</li>
+</ul>
+<div class="table-wrap"><table><thead><tr><th>Tipo</th><th>Quando si vede</th><th>Esempio</th></tr></thead><tbody><tr><td><strong>di compilazione</strong></td><td>subito, lo segnala il compilatore</td><td>manca un <code>;</code>, stringa non chiusa</td></tr>
+<tr><td><strong>a runtime</strong></td><td>durante l&#39;esecuzione</td><td>divisione per zero</td></tr>
+<tr><td><strong>logico</strong></td><td>mai da solo: il programma gira ma fa la cosa sbagliata</td><td>somma da 0 a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> invece che da 1 a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span></td></tr></tbody></table></div>
+<h3 id="un-errore-di-compilazione-slide-47">Un errore di compilazione (slide 47)</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    printf(<span class="str">&quot;Buongiorno dal C.\n&quot;</span>)
+}</code></pre>
+<p>Manca il <code>;</code> alla riga 4. gcc 16.1 risponde così (verificato):</p>
+<pre class="code" data-lingua="text"><code>manca.c:4:34: error: expected ';' before '}' token</code></pre>
+<p>I numeri <code>4:34</code> sono <strong>riga</strong> e <strong>colonna</strong>: il compilatore dice dove si è accorto del problema. A volte è la riga <strong>dopo</strong> l&#39;errore vero, perché se ne accorge solo quando trova il simbolo successivo (qui la <code>}</code> della riga 5): guarda sempre anche la riga prima.</p>
+<h3 id="un-errore-a-runtime-slide-48">Un errore a runtime (slide 48)</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 5;
+    <span class="kw">int</span> y = 0;
+    printf(<span class="str">&quot;5/2 uguale a %d\n&quot;</span>, x/y);
+}</code></pre>
+<p>Il programma <strong>compila senza errori</strong> anche con <code>-Wall -Werror</code>, ma all&#39;esecuzione divide per zero. Nella slide, su Linux, il programma si interrompe con il messaggio <code>Eccezione in virgola mobile</code> (anche se la divisione è tra interi: il nome del segnale è storico). Su Windows il programma si interrompe in modo anomalo senza stampare il risultato. Il <code>%d</code> dentro la stringa serve a stampare un numero intero: lo vedrai presto.</p>
+<div class="box trap"><p class="box-label">Trappola · «Compila» non vuol dire «funziona»</p><p>Il compilatore controlla la <strong>sintassi</strong>, non la <strong>logica</strong>. Dopo averlo compilato, un programma va <strong>provato</strong> (test), anche sui casi limite come <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>.</p>
+</div>
+</section>
+
+<section id="come-si-sviluppa-un-programma-c" aria-labelledby="h-come-si-sviluppa-un-programma-c">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-come-si-sviluppa-un-programma-c">Come si sviluppa un programma C</h2><span class="slides">slide 49–50</span></div>
+<ol>
+<li><strong>Scrivi o modifica</strong> il sorgente con un editor di testo (per esempio Notepad++).</li>
+<li><strong>Salva</strong> il file con estensione <code>.c</code> in una cartella.</li>
+<li><strong>Compila</strong> con gcc.</li>
+<li><strong>Analizza e correggi</strong> gli errori di sintassi: <strong>leggi con attenzione che cosa dice il compilatore</strong>.</li>
+<li><strong>Esegui</strong> il programma.</li>
+<li><strong>Verifica</strong> che si comporti in modo corretto (test).</li>
+<li>Se qualcosa non va, <strong>correggi</strong> e ricomincia.</li>
+</ol>
+<p>Prerequisiti: saper scrivere e gestire file di testo, muoversi tra le cartelle, usare la <strong>linea di comando</strong> (shell) per le cose essenziali. Sul tuo PC dovrai installare un ambiente con il compilatore gcc (se ne occupano i laboratori). Per iniziare senza installare niente c&#39;è l&#39;ambiente online <a href="https://pythontutor.com/c.html#mode=edit" target="_blank" rel="noopener">pythontutor.com/c.html</a>, che mostra anche lo stato della memoria passo per passo.</p>
+</section>
+
+<section id="esame" aria-labelledby="h-esame">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>L&#39;esame di Programmazione I è al PC su Moodle, con esercizi in C corretti anche da <strong>test automatici</strong> (CodeRunner), comune ai canali A, B e C. Questa lezione ti dà gli strumenti di base:</p>
+<ul>
+<li><strong>compilare sempre con <code>-Wall -Werror</code></strong>, come all&#39;esame: anche un solo avviso blocca la compilazione;</li>
+<li><strong>leggere i messaggi del compilatore</strong>: riga, colonna e descrizione (<code>expected ';'</code>, <code>missing terminating &quot; character</code>, <code>implicit declaration of function</code>);</li>
+<li>all&#39;esame si scrive in un <strong>editor di testo semplice</strong>, senza IDE né completamento automatico: esercitati così, anche con Notepad++;</li>
+<li><strong>provare</strong> i programmi su più casi, compresi quelli limite: i test automatici lo faranno;</li>
+<li>il modello «istruzione dopo istruzione» dell&#39;assembly è la base degli esercizi sullo <strong>stato della memoria</strong>.</li>
+</ul>
+<div class="box exam"><p class="box-label">Conta all'esame · Cosa fare già da questa settimana</p><ul>
+<li>Primo laboratorio (Lab01, riga di comando e compilatore): turno 2 (matricola pari) lunedì 5/10, turno 1 (matricola dispari) martedì 6/10, 14–17, laboratorio Turing.</li>
+<li>Copia il programma «Buongiorno dal C.», compilalo con <code>gcc -Wall -Werror</code> e poi <strong>rompilo di proposito</strong> (togli un <code>;</code>, una graffa, una virgoletta) per imparare a riconoscere i messaggi d&#39;errore.</li>
+</ul>
+</div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Traccia dell&#39;addizione con altri dati <span class="lvl">base</span></h3><p>Esegui a mano il programma dell&#39;addizione (slide 5–14) con 7 all&#39;indirizzo <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>400</mn></mrow><annotation encoding="application/x-tex">A = 400</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span></span></span></span> e 5 all&#39;indirizzo <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mn>404</mn></mrow><annotation encoding="application/x-tex">B = 404</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">404</span></span></span></span>. Scrivi dopo ogni istruzione il PC, R0, R1 e il contenuto dell&#39;indirizzo 400. Controlla con il simulatore.</p>
+<details class="sol"><summary>Soluzione</summary><div class="table-wrap"><table><thead><tr><th>Istruzione</th><th class="num">PC</th><th class="num">R0</th><th class="num">R1</th><th class="num">memoria[400]</th></tr></thead><tbody><tr><td><code>LOAD, R0, @A</code></td><td class="num">0</td><td class="num">7</td><td class="num">—</td><td class="num">7</td></tr>
+<tr><td><code>LOAD, R1, @B</code></td><td class="num">4</td><td class="num">7</td><td class="num">5</td><td class="num">7</td></tr>
+<tr><td><code>ADD, R0, R1</code></td><td class="num">8</td><td class="num">12</td><td class="num">5</td><td class="num">7</td></tr>
+<tr><td><code>STORE, R0, @A</code></td><td class="num">12</td><td class="num">12</td><td class="num">5</td><td class="num"><strong>12</strong></td></tr></tbody></table></div>
+<p>Dopo l&#39;ultima istruzione il PC vale 16 e il programma è finito: all&#39;indirizzo 400 c&#39;è <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn><mo>+</mo><mn>5</mn><mo>=</mo><mn>12</mn></mrow><annotation encoding="application/x-tex">7 + 5 = 12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">12</span></span></span></span>. Nota che il valore 5 all&#39;indirizzo 404 non cambia.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Quante istruzioni per una moltiplicazione <span class="lvl">base</span></h3><p>Quante istruzioni esegue il programma della moltiplicazione (slide 16) con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>? E con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>? Trova una formula per <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> qualsiasi.</p>
+<details class="sol"><summary>Soluzione</summary><p>Contiamo le righe eseguite:</p>
+<ul>
+<li>righe 1–4 una volta sola: <strong>4</strong>;</li>
+<li>per ogni giro del ciclo le righe 5, 6, 7, 8, 9: <strong>5 per giro</strong>, e i giri sono <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>;</li>
+<li>alla fine le righe 5 e 6 un&#39;ultima volta (il confronto che fa uscire) e la riga 10: <strong>3</strong>.</li>
+</ul>
+<p>Totale: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mo>+</mo><mn>5</mn><mi>n</mi><mo>+</mo><mn>3</mn><mo>=</mo><mn>5</mn><mi>n</mi><mo>+</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">4 + 5n + 3 = 5n + 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span>.</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>⋅</mo><mn>3</mn><mo>+</mo><mn>7</mn><mo>=</mo><mn>22</mn></mrow><annotation encoding="application/x-tex">5 \cdot 3 + 7 = 22</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">22</span></span></span></span> istruzioni (44 passi nel simulatore, che conta prelievo ed esecuzione separati).</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span> istruzioni: righe 1–4, 5, 6 (salto) e 10.</li>
+</ul>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Il doppio di un numero in assembly <span class="lvl">medio</span></h3><p>Con le istruzioni delle slide (<code>LOAD</code>, <code>STORE</code>, <code>ADD</code>, <code>INC</code>, <code>CMP</code>, <code>JMPEQ</code>, <code>JMP</code>) scrivi un programma che calcola <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">2m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mord mathnormal">m</span></span></span></span> e lo salva all&#39;indirizzo di <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="text"><code>1.  LOAD,  R0, @m        // R0 ← m
+2.  ADD,   R0, R0        // R0 ← R0 + R0 = 2m
+3.  STORE, R0, @m        // salva il risultato all'indirizzo di m</code></pre>
+<p>Un registro si può sommare a sé stesso. Una soluzione più lunga ma corretta carica <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span> in due registri e poi li somma.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Somma dei primi n numeri in assembly <span class="lvl">medio</span></h3><p>Scrivi in assembly un programma che calcola <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mo>⋯</mo><mo>+</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">1 + 2 + \dots + n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> (con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n \ge 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> all&#39;indirizzo <code>n</code>) e salva il risultato all&#39;indirizzo di <code>n</code>. Suggerimento: è l&#39;esercizio 6 della lezione 01A.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="text"><code>1.  LOAD,  R0, 0         // s ← 0
+2.  LOAD,  R1, 0         // i ← 0
+3.  LOAD,  R3, @n        // R3 ← n
+4.  CMP    R1, R3        // i = n ?
+5.  JMPEQ  &lt;riga 9&gt;      // se sì, fine del ciclo
+6.  INC,   R1            // i ← i + 1   (prima avanzo il contatore...)
+7.  ADD,   R0, R1        // s ← s + i   (...poi lo sommo)
+8.  JMP    &lt;riga 4&gt;      // torna al confronto
+9.  STORE, R0, @n        // salva s</code></pre>
+<p>Traccia con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mn>3</mn><mo separator="true">,</mo><mn>6</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i, s) = (0, 0) \to (1, 1) \to (2, 3) \to (3, 6)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">6</span><span class="mclose">)</span></span></span></span>, poi <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">3 = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> e salto alla riga 9: il risultato è 6. Con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> si salta subito e il risultato è 0. Se scambi le righe 6 e 7 sommi <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>+</mo><mn>1</mn><mo>+</mo><mn>2</mn><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">0 + 1 + 2 = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>: il solito errore «di uno».</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Trova gli errori <span class="lvl">base</span></h3><p>Il programma seguente non compila. Trova i due errori e scrivi che cosa dice gcc.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    printf(<span class="str">&quot;Ciao\n&quot;</span>)
+    printf(&quot;Seconda riga\n);
+}</code></pre>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>Riga 4: manca il <code>;</code>. gcc: <code>4:21: error: expected ';' before 'printf'</code> (se ne accorge quando trova il <code>printf</code> della riga dopo).</li>
+<li>Riga 5: la stringa non è chiusa, manca il <code>&quot;</code> prima di <code>)</code>. gcc: <code>5:12: error: missing terminating &quot; character</code>.</li>
+</ol>
+<p>Versione corretta:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    printf(<span class="str">&quot;Ciao\n&quot;</span>);
+    printf(<span class="str">&quot;Seconda riga\n&quot;</span>);
+}</code></pre>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Sequenze di escape <span class="lvl">base</span></h3><p>Scrivi le istruzioni <code>printf</code> che stampano esattamente queste tre righe (nella terza, tra <code>nome</code> e <code>voto</code> c&#39;è una tabulazione):</p>
+<pre class="code" data-lingua="text"><code>Il file si trova in C:\corso\lab1
+Ha detto &quot;ciao&quot;
+nome	voto</code></pre>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code>printf(<span class="str">&quot;Il file si trova in C:\\corso\\lab1\n&quot;</span>);
+printf(<span class="str">&quot;Ha detto \&quot;ciao\&quot;\n&quot;</span>);
+printf(<span class="str">&quot;nome\tvoto\n&quot;</span>);</code></pre>
+<p>Ogni <code>\</code> da stampare diventa <code>\\</code>, ogni <code>&quot;</code> diventa <code>\&quot;</code>, la tabulazione è <code>\t</code>, e ogni riga finisce con <code>\n</code>. Verificato con <code>gcc -Wall -Werror</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · Identificatori validi <span class="lvl">base</span></h3><p>Quali di questi sono identificatori validi e adatti? <code>somma</code>, <code>Somma</code>, <code>2x</code>, <code>x2</code>, <code>int</code>, <code>conto-totale</code>, <code>conto_totale</code>, <code>printf</code>.</p>
+<details class="sol"><summary>Soluzione</summary><div class="table-wrap"><table><thead><tr><th>Nome</th><th>Valido?</th><th>Perché</th></tr></thead><tbody><tr><td><code>somma</code></td><td>sì</td><td></td></tr>
+<tr><td><code>Somma</code></td><td>sì</td><td>ma è <strong>diverso</strong> da <code>somma</code> (maiuscole e minuscole contano): meglio evitare nomi così simili</td></tr>
+<tr><td><code>2x</code></td><td>no</td><td>comincia con una cifra</td></tr>
+<tr><td><code>x2</code></td><td>sì</td><td></td></tr>
+<tr><td><code>int</code></td><td>no</td><td>è una parola chiave</td></tr>
+<tr><td><code>conto-totale</code></td><td>no</td><td>il <code>-</code> è il segno meno: il compilatore legge «conto meno totale»</td></tr>
+<tr><td><code>conto_totale</code></td><td>sì</td><td>il trattino basso è ammesso</td></tr>
+<tr><td><code>printf</code></td><td>da non usare</td><td>è il nome di una funzione della libreria standard (slide 40)</td></tr></tbody></table></div>
+</details></article>
+<article class="ex" id="esercizio-8"><h3>8 · Quale stadio si lamenta? <span class="lvl">medio</span></h3><p>Per ciascun errore di&#39; quale stadio della compilazione lo segnala: (a) <code>#include &lt;stdoi.h&gt;</code> (nome del file sbagliato); (b) un <code>;</code> mancante; (c) una funzione dichiarata e chiamata, ma mai scritta:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> saluta(<span class="kw">void</span>);
+<span class="kw">int</span> main(<span class="kw">void</span>) { saluta(); <span class="kw">return</span> 0; }</code></pre>
+<details class="sol"><summary>Soluzione</summary><p>(a) Il <strong>preprocessore</strong>, che cerca il file da includere: <code>fatal error: stdoi.h: No such file or directory</code>.</p>
+<p>(b) Il <strong>compilatore</strong>, che controlla la sintassi: <code>expected ';' before …</code>.</p>
+<p>(c) Il <strong>linker</strong>: il compilatore accetta la chiamata perché la funzione è dichiarata, ma al momento di unire i pezzi il linker non trova il suo codice: <code>undefined reference to 'saluta'</code> e poi <code>ld returned 1 exit status</code>.</p>
+<p>Tutti e tre i messaggi sono quelli di gcc 16.1.</p>
+</details></article>
+<article class="ex" id="esercizio-9"><h3>9 · Dal FORTRAN al C <span class="lvl">medio</span></h3><p>Riscrivi in C la moltiplicazione FORTRAN della slide 20, con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">m = 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> e <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> fissati nel codice (la lettura dei numeri arriverà con <code>scanf</code>). Stampa il risultato con <code>printf(&quot;%d x %d = %d\n&quot;, m, n, s);</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> m = 4, n = 3;
+    <span class="kw">int</span> s = 0;          <span class="cm">// accumulatore</span>
+    <span class="kw">int</span> i = 0;          <span class="cm">// contatore</span>
+    <span class="kw">while</span> (i &lt; n) {     <span class="cm">// do while (i&lt;n)</span>
+        s = s + m;
+        i = i + 1;
+    }                   <span class="cm">// end do</span>
+    printf(<span class="str">&quot;%d x %d = %d\n&quot;</span>, m, n, s);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa <code>4 x 3 = 12</code> (verificato con <code>gcc -Wall -Werror</code>). Il <code>while</code> del C corrisponde al <code>do while … end do</code> del FORTRAN e alle righe 5–9 dell&#39;assembly.</p>
+</details></article>
+<article class="ex" id="esercizio-10"><h3>10 · Un errore logico che compila <span class="lvl">difficile</span></h3><p>Questa versione compila senza avvisi e con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">m = 4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">n = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> stampa 12. Che cosa succede con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>? Che tipo di errore è?</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> s = 0, i = 0;
+<span class="kw">do</span> {
+    s = s + m;
+    i = i + 1;
+} <span class="kw">while</span> (i != n);</code></pre>
+<details class="sol"><summary>Soluzione</summary><p>Il <code>do … while</code> esegue il corpo <strong>prima</strong> di controllare la condizione, come la versione V2 della lezione 01A. Con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>: dopo il primo giro <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>, e la condizione <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo mathvariant="normal">≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">i \ne 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> resta vera per sempre: il ciclo non termina (dopo miliardi di giri <code>i</code> supererebbe il valore massimo di un <code>int</code>, e in C quello è un comportamento non definito). È un <strong>errore logico</strong> (di progettazione): il compilatore non può accorgersene, perché la sintassi è corretta. Correzione: controllare prima, con <code>while (i != n) { … }</code>.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary>Che differenza c&#39;è tra linguaggio macchina e assembly?</summary><div class="ans"><p>Il linguaggio macchina è fatto di codici numerici (bit) eseguiti direttamente dal processore e dipende dall&#39;architettura. L&#39;assembly scrive le stesse istruzioni con nomi simbolici (mnemonici) più leggibili; un assembler lo traduce in linguaggio macchina. Anche l&#39;assembly resta legato all&#39;architettura.</p>
+</div></details>
+<details class="qa"><summary>Quali istruzioni servono per sommare due numeri in memoria, e perché?</summary><div class="ans"><p>Due <code>LOAD</code> per portare i numeri dalla memoria nei registri, una <code>ADD</code> tra registri (la ALU lavora solo sui registri) e una <code>STORE</code> per riportare il risultato in memoria.</p>
+</div></details>
+<details class="qa"><summary>Che cosa vuol dire <code>@A</code> e che differenza c&#39;è con <code>LOAD, R0, 0</code>?</summary><div class="ans"><p><code>@A</code> indica il contenuto della memoria all&#39;indirizzo A. In <code>LOAD, R0, 0</code> lo 0 è un valore: il registro viene messo a zero.</p>
+</div></details>
+<details class="qa"><summary>Come si realizza un ciclo in assembly?</summary><div class="ans"><p>Con un confronto (<code>CMP</code>) seguito da un salto condizionato (<code>JMPEQ</code>) che esce dal ciclo quando la condizione è vera, e da un salto incondizionato (<code>JMP</code>) alla fine del corpo che torna al confronto.</p>
+</div></details>
+<details class="qa"><summary>Perché sono nati i linguaggi di alto livello?</summary><div class="ans"><p>Perché l&#39;assembly è faticoso, facile da sbagliare, richiede di conoscere la CPU, non mostra la struttura del programma e va riscritto per ogni architettura. I linguaggi di alto livello usano istruzioni vicine al linguaggio matematico e naturale e un compilatore li traduce per ogni macchina.</p>
+</div></details>
+<details class="qa"><summary>Che cosa ha di nuovo il FORTRAN?</summary><div class="ans"><p>È un linguaggio per scrivere formule, nato per l&#39;IBM 704: un compilatore traduce ogni istruzione in una o più istruzioni assembly; se cambia la macchina basta ricompilare. È tra i capostipiti dei linguaggi di terza generazione.</p>
+</div></details>
+<details class="qa"><summary>Perché è nato il C e chi l&#39;ha progettato?</summary><div class="ans"><p>Dennis Ritchie lo progettò ai Bell Labs per riscrivere Unix, che Ken Thompson aveva scritto in assembly: serviva un linguaggio efficiente e portabile. La prima versione è del 1972 (K&amp;R C); fu standardizzato alla fine degli anni &#39;80 (C89) e poi aggiornato (C99, C11, C17, C23).</p>
+</div></details>
+<details class="qa"><summary>Quali sono le quattro caratteristiche del C secondo la slide 27?</summary><div class="ans"><p>Compilato (un compilatore lo traduce in linguaggio macchina), imperativo (istruzioni come ordini), strutturato (blocchi tra graffe), fortemente tipizzato (bisogna dichiarare il tipo di ogni variabile).</p>
+</div></details>
+<details class="qa"><summary>Che cosa fanno <code>#include &lt;stdio.h&gt;</code> e la funzione <code>main</code>?</summary><div class="ans"><p>La direttiva chiede al preprocessore di includere l&#39;header stdio.h, che dichiara funzioni come printf e scanf. <code>main</code> è la funzione obbligatoria da cui parte l&#39;esecuzione: <code>int main(void)</code> non riceve input e restituisce un intero al sistema operativo.</p>
+</div></details>
+<details class="qa"><summary>Quali sono le sequenze di escape principali?</summary><div class="ans"><p><code>\n</code> nuova riga, <code>\t</code> tabulazione, <code>\\</code> backslash, <code>\&quot;</code> doppio apice, <code>\0</code> terminatore della stringa.</p>
+</div></details>
+<details class="qa"><summary>Quali regole valgono per gli identificatori?</summary><div class="ans"><p>Distinguono maiuscole e minuscole; non possono essere parole chiave né nomi della libreria standard; devono essere chiari e non troppo simili tra loro. In più: solo lettere, cifre e trattino basso, senza cominciare con una cifra.</p>
+</div></details>
+<details class="qa"><summary>Quali sono gli stadi della compilazione con gcc?</summary><div class="ans"><p>Preprocessore (direttive come #include), compilatore (dal C all&#39;assembly), assemblatore (dall&#39;assembly al file oggetto in linguaggio macchina), linker (unisce file oggetto e librerie in un eseguibile).</p>
+</div></details>
+<details class="qa"><summary>Che cosa fanno le opzioni <code>-Wall</code> e <code>-Werror</code>?</summary><div class="ans"><p><code>-Wall</code> attiva i principali avvisi del compilatore; <code>-Werror</code> li trasforma in errori, così con un solo avviso il programma non viene prodotto. Sono le opzioni dell&#39;esame.</p>
+</div></details>
+<details class="qa"><summary>Che differenza c&#39;è tra errori di compilazione, a runtime e logici?</summary><div class="ans"><p>Quelli di compilazione violano la sintassi e li trova subito il compilatore; quelli a runtime emergono durante l&#39;esecuzione (divisione per zero, accesso non valido alla memoria); quelli logici lasciano girare il programma, che però fa la cosa sbagliata.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Linguaggio macchina</dt><dd>Istruzioni in forma numerica (bit), eseguite direttamente dal processore; diverso per ogni architettura.</dd></div>
+<div><dt>Instruction set</dt><dd>L&#39;insieme delle istruzioni macchina di un&#39;architettura.</dd></div>
+<div><dt>Assembly</dt><dd>Rappresentazione simbolica del linguaggio macchina, con mnemonici come LOAD, ADD, STORE.</dd></div>
+<div><dt>Assembler</dt><dd>Programma che traduce l&#39;assembly in linguaggio macchina.</dd></div>
+<div><dt>LOAD / STORE</dt><dd>Copiano un dato dalla memoria a un registro / da un registro alla memoria.</dd></div>
+<div><dt>CMP</dt><dd>Confronta due registri; l&#39;esito resta nella CPU (registro di stato).</dd></div>
+<div><dt>Salto condizionato / incondizionato</dt><dd>JMPEQ salta solo se l&#39;ultimo confronto ha dato «uguali»; JMP salta sempre.</dd></div>
+<div><dt>Linguaggio di alto livello</dt><dd>Linguaggio con istruzioni vicine al linguaggio matematico e naturale, indipendente dall&#39;hardware.</dd></div>
+<div><dt>Compilatore</dt><dd>Programma che traduce un linguaggio di alto livello in linguaggio macchina (o in assembly).</dd></div>
+<div><dt>Portabilità</dt><dd>Possibilità di usare lo stesso programma su macchine diverse, ricompilandolo.</dd></div>
+<div><dt>FORTRAN</dt><dd>FORmula TRANslator, linguaggio IBM degli anni &#39;50 per il calcolo scientifico.</dd></div>
+<div><dt>Commento</dt><dd>Testo ignorato dal compilatore: da <code>//</code> a fine riga, oppure tra <code>/*</code> e <code>*/</code>.</dd></div>
+<div><dt>Direttiva del preprocessore</dt><dd>Riga che inizia con #, come #include.</dd></div>
+<div><dt>File di intestazione (header)</dt><dd>File .h con dichiarazioni di funzioni, come stdio.h.</dd></div>
+<div><dt>Funzione main</dt><dd>La funzione obbligatoria da cui comincia l&#39;esecuzione.</dd></div>
+<div><dt>Blocco</dt><dd>Gruppo di istruzioni tra graffe { }; i blocchi si possono annidare.</dd></div>
+<div><dt>Istruzione (statement)</dt><dd>Un comando del programma; in C termina con ;.</dd></div>
+<div><dt>Stringa</dt><dd>Testo tra doppi apici.</dd></div>
+<div><dt>Sequenza di escape</dt><dd>Coppia di caratteri che inizia con la barra rovesciata e rappresenta un carattere speciale: <code>\n</code>, <code>\t</code>, <code>\\</code>, <code>\&quot;</code>, <code>\0</code>.</dd></div>
+<div><dt>Token</dt><dd>Unità sintattica in cui il parser divide il codice: parole chiave, identificatori, operatori, stringhe, costanti.</dd></div>
+<div><dt>Identificatore</dt><dd>Nome di una variabile, funzione, costante o tipo; distingue maiuscole e minuscole.</dd></div>
+<div><dt>Parola chiave (keyword)</dt><dd>Parola riservata del C, come int, while, return.</dd></div>
+<div><dt>File oggetto</dt><dd>Unità di compilazione tradotta in linguaggio macchina (.o).</dd></div>
+<div><dt>Linker</dt><dd>Unisce file oggetto e librerie in un programma eseguibile.</dd></div>
+<div><dt>gcc</dt><dd>Il compilatore del corso (GNU Compiler Collection).</dd></div>
+<div><dt>Errore a runtime</dt><dd>Errore che si manifesta durante l&#39;esecuzione.</dd></div>
+<div><dt>Errore logico</dt><dd>Il programma gira ma non fa ciò che dovrebbe.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 11</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-02A-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So spiegare la differenza tra linguaggio macchina e assembly e perché nessuno dei due è portabile.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So eseguire a mano il programma dell&#39;addizione, con PC, registri e memoria dopo ogni istruzione.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So leggere il programma della moltiplicazione in assembly e collegarlo riga per riga alla versione V6 della lezione 01A.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So spiegare CMP, JMPEQ e JMP e come formano un ciclo.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So dire perché sono nati i linguaggi di alto livello e che cosa fa un compilatore.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So raccontare in breve la nascita del C e le sue quattro caratteristiche.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So spiegare ogni riga del programma «Buongiorno dal C.».</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So usare le sequenze di escape <code>\n</code>, <code>\t</code>, <code>\\</code>, <code>\&quot;</code> in <code>printf</code>.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So riconoscere un identificatore valido e le parole chiave.</span></label></li>
+<li><label><input type="checkbox" id="chk-10"><span>So elencare gli stadi della compilazione e compilare con gcc -Wall -Werror.</span></label></li>
+<li><label><input type="checkbox" id="chk-11"><span>So distinguere errori di compilazione, a runtime e logici, e leggere un messaggio di gcc.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li><strong>Slide della lezione</strong>: «Dal linguaggio macchina al C. Dai bit e registri alla programmazione strutturata di alto livello e portabile» (02A_da_assembly_a_c), Programmazione I – Teoria, canale B, A.A. 2026/27, 50 pagine; il numero di slide è accanto a ogni titolo.</li>
+<li><strong>Canali A e C</strong>: deck «Dal linguaggio assembly al C» del canale A e lezione 01 «Introduzione» del canale C sulle pagine Moodle 2026/27 (<a href="https://informatica.i-learn.unito.it/course/view.php?id=3701" target="_blank" rel="noopener">canale A</a>, <a href="https://informatica.i-learn.unito.it/course/view.php?id=3767" target="_blank" rel="noopener">canale C</a>), consultate il 30/09/2026.</li>
+<li><strong>Messaggi del compilatore e assembly</strong>: ottenuti con gcc 16.1 (MinGW-w64) compilando gli esempi con <code>-Wall -Werror</code>; l&#39;assembly con <code>gcc -S -O0 -masm=intel</code>.</li>
+<li><strong>Esame e laboratori</strong>: <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+<li>Le parti <strong>«Oltre le slide»</strong> (assembly prodotto da gcc, commenti su più righe, caratteri degli identificatori) e gli esercizi sono aggiunte di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+        <li><a href="https://donflammer.github.io/unito-computer-science/" hreflang="en" lang="en">English version</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+<script src="../../assets/js/macchina.js" defer></script>
+</body>
+</html>

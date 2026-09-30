@@ -6,6 +6,9 @@ Ogni lezione è un file appunti/<MATERIA>/<codice>_<titolo>.html che nell'<head>
     <meta name="data" content="2026-09-28">
     <meta name="modulo" content="MD">      (solo per le materie divise in moduli, come MDAG)
 
+Le lezioni scritte in Markdown (contesto_ai/<MATERIA>/lezioni/*.md con «genera_html: true») diventano prima pagine
+HTML con strumenti/lezioni.mjs, che questo script lancia da solo (serve Node.js, e «npm ci» nella cartella strumenti).
+
 Uso, dalla radice del repository, dopo ogni nuova lezione:
     python strumenti/genera_materie.py
 """
@@ -14,6 +17,7 @@ import base64
 import hashlib
 import html
 import re
+import subprocess
 from pathlib import Path
 
 RADICE = Path(__file__).resolve().parent.parent
@@ -216,10 +220,11 @@ def data_it(iso):
 
 
 def elenco_lezioni(lez):
+    # le lezioni scritte in anticipo (per esempio dalle dispense complete) non hanno ancora una data
     righe = "\n".join(
         f'      <li><span class="nodo" aria-hidden="true">{e(l["codice"])}</span><a href="{e(l["file"])}">'
         f'<span class="tit">{e(l["titolo"])}</span><span class="tenue">{e((l["modulo"] + " · ") if l["modulo"] else "")}Lezione {e(l["codice"])}</span>'
-        f'<time datetime="{e(l["data"])}">{e(data_it(l["data"]))}</time></a></li>'
+        + (f'<time datetime="{e(l["data"])}">{e(data_it(l["data"]))}</time>' if l["data"] else "") + '</a></li>'
         for l in lez)
     return f'<ol class="lezioni">\n{righe}\n    </ol>'
 
@@ -359,7 +364,7 @@ def blocco_appelli():
 def blocco_index(tutte):
     """Sezioni dei corsi della pagina iniziale, con le ultime lezioni."""
     nomi = {m["sigla"]: m["nome"] for m in MATERIE}
-    ultime = sorted((l for lez in tutte.values() for l in lez),
+    ultime = sorted((l for lez in tutte.values() for l in lez if l["data"]),
                     key=lambda l: (l["data"], l["sigla"], l["modulo"], l["codice"]), reverse=True)[:5]
     if ultime:
         righe = "\n".join(
@@ -397,7 +402,39 @@ def sostituisci(testo, inizio, fine, nuovo):
     return testo[:i] + nuovo + testo[j + len(fine):]
 
 
+def lezioni_markdown():
+    """Le lezioni scritte in Markdown (genera_html: true) diventano pagine con strumenti/lezioni.mjs (serve Node.js)."""
+    script = RADICE / "strumenti" / "lezioni.mjs"
+    if not script.exists():
+        return
+    if not (RADICE / "strumenti" / "node_modules" / "katex").is_dir():
+        raise SystemExit("mancano i pacchetti di Node: esegui «npm ci» nella cartella strumenti, poi rilancia")
+    esito = subprocess.run(["node", str(script)], cwd=RADICE)
+    if esito.returncode:
+        raise SystemExit("strumenti/lezioni.mjs ha trovato errori: correggi il Markdown e rilancia")
+
+
+def barre_lezioni():
+    """Barra in alto e piede delle lezioni generate dal Markdown, uguali a quelli delle altre pagine."""
+    for pagina in sorted(APPUNTI.glob("*/*.html")):
+        if pagina.name == "index.html":
+            continue
+        testo = pagina.read_text(encoding="utf-8")
+        if "<!-- TESTATA:INIZIO" not in testo:
+            continue
+        en = re.search(r'<link rel="alternate" hreflang="en" href="([^"]+)"', testo)
+        nuovo = sostituisci(testo, "<!-- TESTATA:INIZIO", "<!-- TESTATA:FINE -->",
+                            f"<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->\n"
+                            f"{testata('../../', en.group(1) if en else SITO_EN)}\n<!-- TESTATA:FINE -->")
+        nuovo = sostituisci(nuovo, "<!-- PIEDE:INIZIO", "<!-- PIEDE:FINE -->",
+                            f"<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->\n{piede('../../')}\n<!-- PIEDE:FINE -->")
+        if nuovo != testo:
+            pagina.write_text(nuovo, encoding="utf-8", newline="\n")
+
+
 def main():
+    lezioni_markdown()
+    barre_lezioni()
     tutte = {}
     for m in MATERIE:
         lez = lezioni(m["sigla"])

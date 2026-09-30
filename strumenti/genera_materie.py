@@ -32,6 +32,7 @@ MATERIE = [
         "extra": "linguaggio C",
         "esame": "Esame al PC su Moodle, unico per i tre canali: esercizi in C con test automatici, e il codice viene anche letto.",
         "appelli": "25/01 e 11/02/2027",
+        "moodle": [("Canale A · cognomi A–D", 3701), ("Canale B · cognomi E–O", 3773), ("Canale C · cognomi P–Z", 3767)],
         "link": [("Scheda del corso ed esame", "PROG1/corso.md"),
                  ("Esercizi d'esame tipo", "PROG1/esercizi_esame.md"),
                  ("Indice e collegamenti tra lezioni", "PROG1/indice_lezioni.md")],
@@ -45,6 +46,8 @@ MATERIE = [
                  "quindi potrebbero non coprirle, ma l'esame è unico per i tre canali: studiale sul libro (dettagli nella "
                  "scheda del corso)."),
         "appelli": "29/01 e 18/02/2027",
+        "moodle": [("Canale A · cognomi A–D", 3851), ("Canale B · cognomi E–O", 3747), ("Canale C · cognomi P–Z", 3635),
+                   ("Pagina d'esame su Moodle Esami, comune ai tre canali", "https://esami.i-learn.unito.it/course/view.php?id=2673")],
         "link": [("Scheda del corso ed esame", "FDA/corso.md")],
     },
     {
@@ -53,26 +56,35 @@ MATERIE = [
         "esame": "Due prove scritte separate, Matematica Discreta e Geometria; il voto è la media.",
         "appelli": "Matematica Discreta 19/01 e 03/02, Geometria 22/01 e 05/02/2027",
         "moduli": [("MD", "Matematica Discreta"), ("AG", "Algebra lineare e Geometria")],
+        "moodle": [("Parte 1 · Matematica Discreta, canali A, B e C", 3829),
+                   ("Parte 2 · Algebra lineare e Geometria, canali A, B e C", 3831)],
         "link": [("Scheda del corso ed esame", "MDAG/corso.md")],
     },
     {
         "sigla": "ANMAT", "nome": "Analisi Matematica", "insegnamento": "MFN0570", "cfu": 9, "semestre": 2,
         "esame": "Tre prove al PC: quiz, teoria, esercizi.",
+        "moodle": [("Pagina unica per i canali A, B e C", 3703)],
         "link": [("Scheda del corso ed esame", "ANMAT/corso.md")],
     },
     {
         "sigla": "ARCH", "nome": "Architettura degli Elaboratori", "insegnamento": "INF0326", "cfu": 6, "semestre": 2,
         "esame": "Scritto al PC con laboratorio RISC-V, poi orale.",
+        "moodle": [("Pagina unica per i canali A, B e C", 3833)],
         "link": [("Scheda del corso ed esame", "ARCH/corso.md")],
     },
     {
         "sigla": "PROG2", "nome": "Programmazione II", "insegnamento": "INF0330", "cfu": 6, "semestre": 2,
         "esame": "Progetti obbligatori, esonero e scritto.",
+        "moodle": [("Canale A · teoria", 3651), ("Canale A · laboratorio A1, matricola dispari", 3653),
+                   ("Canale A · laboratorio A2, matricola pari", 3655), ("Canale B · non ancora su Moodle (30/09/2026)", None),
+                   ("Canale C · teoria e laboratorio C1: non ancora su Moodle (30/09/2026)", None),
+                   ("Canale C · laboratorio C2, matricola pari", 3757)],
         "link": [("Scheda del corso ed esame", "PROG2/corso.md")],
     },
     {
         "sigla": "RO", "nome": "Ricerca Operativa", "insegnamento": "INF0327", "cfu": 6, "semestre": 2,
         "esame": "Scritto al PC e orale facoltativo.",
+        "moodle": [("Pagina unica per i canali A, B e C", 3719)],
         "link": [("Scheda del corso ed esame", "RO/corso.md")],
     },
     {
@@ -81,6 +93,7 @@ MATERIE = [
         "lede": ("Il corso inizia nel secondo semestre ed è unico per i canali A, B e C (esercitazioni online, "
                  "nessuna divisione per canale): per ora c'è la scheda con esame, materiale e riconoscimento delle "
                  "certificazioni. Gli appunti arriveranno lezione per lezione."),
+        "moodle": [("Pagina unica per i canali A, B e C", 3805)],
         "link": [("Scheda del corso ed esame", "INGLESE/corso.md")],
     },
 ]
@@ -92,6 +105,9 @@ ICONA = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='
          "text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E")
 REPO = "https://github.com/DonFlammer/unito-informatica"
 OFA = "https://donflammer.github.io/unito-ofa-matematica/"
+# Moodle 2026/27 (I-Learn Informatica): pagine dei corsi e catalogo del primo anno, verificati il 30/09/2026
+MOODLE = "https://informatica.i-learn.unito.it/course/view.php?id="
+MOODLE_PRIMO_ANNO = "https://informatica.i-learn.unito.it/course/index.php?categoryid=485"
 LICENZA = "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it"
 
 e = html.escape
@@ -256,6 +272,10 @@ def pagina_materia(m, lez):
     scheda = "\n".join(f'      <div class="dato"><dt>{t}</dt><dd class="{c.strip()}">{v}</dd></div>' if c else
                        f'      <div class="dato"><dt>{t}</dt><dd>{v}</dd></div>' for t, v, c in dati)
     link = "\n".join(f'      <li><a href="{GH}{u}">{e(t)}</a></li>' for t, u in m["link"])
+    # pagine Moodle del corso: un id di I-Learn, un indirizzo completo, oppure None se la pagina non esiste ancora
+    moodle = "\n".join(
+        f'      <li><span class="manca">{e(t)}</span></li>' if dove is None else
+        f'      <li><a href="{dove if isinstance(dove, str) else MOODLE + str(dove)}">{e(t)}</a></li>' for t, dove in m["moodle"])
     titolo = f"{m['nome']} · Appunti di Informatica UniTo"
     descr = f"Appunti di {m['nome']} (Informatica UniTo, A.A. 2026/27): lezioni, esame e scheda del corso per i canali A, B e C."
     return f"""<!doctype html>
@@ -286,6 +306,13 @@ def pagina_materia(m, lez):
     <div class="sez-testa"><h2 id="h-link">Per approfondire</h2><p>Le schede in Markdown del contesto per le AI: docenti, orari e Moodle dei tre canali, esame e materiale.</p></div>
     <ul class="link-lista">
 {link}
+    </ul>
+  </section>
+
+  <section class="sezione" aria-labelledby="h-moodle">
+    <div class="sez-testa"><h2 id="h-moodle">Moodle</h2><p>Le pagine del corso su Moodle, A.A. 2026/27. Di solito serve il login UniTo; alcune si aprono anche come ospite. Tutti i corsi del primo anno: <a href="{MOODLE_PRIMO_ANNO}">elenco su Moodle</a>.</p></div>
+    <ul class="link-lista">
+{moodle}
     </ul>
   </section>
 </main>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Appunti di Informatica · UniTo 2026/27</title>
+<meta name="description" content="Appunti di studio del primo anno di Informatica all'Università di Torino (A.A. 2026/27): lezioni con simulatori ed esercizi, schede dei corsi e degli esami per i canali A, B e C.">
+<meta name="theme-color" content="#000000">
+<link rel="alternate" hreflang="en" href="https://donflammer.github.io/unito-computer-science/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/appunti.css">
+</head>
+<body class="home">
+<div class="lingua-bar" lang="en"><strong>Don't speak Italian?</strong> Read the <a href="https://donflammer.github.io/unito-computer-science/" hreflang="en">English version</a> of these notes: a full translation of this site for students who don't speak Italian.</div>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<canvas id="rete" aria-hidden="true"></canvas>
+<header class="barra">
+  <div class="barra-in">
+    <a class="marchio" href="index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <a class="lingua" href="https://donflammer.github.io/unito-computer-science/" hreflang="en" lang="en">English</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+<main class="pagina" id="contenuto">
+  <section class="apertura">
+    <div class="rivela">
+      <span class="etichetta">Laurea triennale in Informatica · Università di Torino · A.A. 2026/27</span>
+      <h1>Appunti del <em>primo anno</em></h1>
+      <p class="intro">Appunti di studio lezione per lezione, con esempi svolti, simulatori ed esercizi, e le schede di tutti i corsi del primo anno per i canali A, B e C.</p>
+      <p class="canali">Il primo anno è diviso in tre canali per cognome: A (A–D), B (E–O) e C (P–Z). <strong>L'autore segue il canale B</strong>: gli appunti delle lezioni sono scritti sulle slide del canale B, con i riferimenti alle lezioni di A e C. Programma ufficiale ed esame sono comuni ai tre canali, quindi gli appunti dovrebbero valere in gran parte anche per A e C; slide, ordine degli argomenti, esempi e parti del programma effettivamente svolte però possono cambiare, e per il tuo canale fanno fede le slide e il Moodle del tuo docente.</p>
+      <span class="badge"><i aria-hidden="true"></i>Appunti non ufficiali · possono contenere errori</span>
+    </div>
+    <!-- APPELLI:INIZIO (generato da strumenti/genera_materie.py: non modificare a mano) -->
+    <aside class="pannello prossimi rivela" style="--i:2" aria-labelledby="h-appelli">
+      <h2 id="h-appelli">Primi appelli · sessione invernale</h2>
+      <ol>
+        <li><span class="quando">19/01</span><span class="cosa">Matematica Discreta, Algebra e Geometria</span><span class="dett">Matematica Discreta 19/01 e 03/02, Geometria 22/01 e 05/02/2027</span></li>
+        <li><span class="quando">25/01</span><span class="cosa">Programmazione I</span><span class="dett">25/01 e 11/02/2027</span></li>
+        <li><span class="quando">29/01</span><span class="cosa">Fondamenti dell&#x27;Informatica</span><span class="dett">29/01 e 18/02/2027</span></li>
+      </ol>
+      <p class="fonte">Date dalle schede dei corsi; fanno fede Esse3 e il Moodle del corso.</p>
+    </aside>
+    <!-- APPELLI:FINE -->
+  </section>
+
+  <aside class="avviso rivela" aria-labelledby="h-warn">
+    <span class="segno" aria-hidden="true">!</span>
+    <div>
+      <h2 id="h-warn">Prima di usare questi appunti</h2>
+      <ul>
+        <li>Le <strong>ricerche</strong> (schede dei corsi, esami, regole, docenti, orari) vengono da fonti pubbliche indicate caso per caso e da alcune pagine Moodle riservate agli iscritti, consultate dall'autore.</li>
+        <li>Gli <strong>appunti delle lezioni</strong> rielaborano le slide dei docenti, lezione per lezione. Sia le ricerche sia gli appunti <strong>possono contenere errori</strong>.</li>
+        <li><strong>L'autore non si assume alcuna responsabilità, per niente</strong>: né per i contenuti, né per decisioni prese in base a essi (iscrizioni, scadenze, preparazione ed esiti degli esami).</li>
+        <li>Chiunque può leggerli e usarli, <strong>a proprio rischio</strong>. Vengono aggiornati <strong>lezione per lezione, niente di più</strong>: nessun supporto e nessuna garanzia.</li>
+        <li>Non sono materiale ufficiale: per date, regole e scadenze fanno fede solo Moodle, sito del corso di laurea ed Esse3.</li>
+      </ul>
+      <p><a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">Testo completo delle avvertenze</a></p>
+    </div>
+  </aside>
+
+  <!-- MATERIE:INIZIO (generato da strumenti/genera_materie.py: non modificare a mano) -->
+  <section class="sezione" id="corsi" aria-labelledby="h-sem1">
+    <div class="sez-testa rivela"><div><span class="etichetta">Primo semestre · da settembre</span><h2 id="h-sem1">I corsi di adesso</h2></div><p>Appunti lezione per lezione e schede con esame, appelli, docenti e orari dei tre canali.</p></div>
+    <div class="griglia-corsi">
+      <a class="corso rivela" style="--i:0" data-corso="PROG1" href="appunti/PROG1/index.html">
+        <span class="riga"><span class="chip c">MFN0582</span><span class="chip">9 CFU</span><span class="chip">linguaggio C</span></span>
+        <h3>Programmazione I</h3>
+        <p class="esame">Esame al PC su Moodle, unico per i tre canali: esercizi in C con test automatici, e il codice viene anche letto.</p>
+        <p class="date">Appelli: 25/01 e 11/02/2027</p>
+        <span class="piede-card"><span>1 lezione</span><span class="apri">apri →</span></span>
+      </a>
+      <a class="corso rivela" style="--i:1" data-corso="FDA" href="appunti/FDA/index.html">
+        <span class="riga"><span class="chip c">INF0348</span><span class="chip">9 CFU</span></span>
+        <h3>Fondamenti dell&#x27;Informatica</h3>
+        <p class="esame">Scritto su Moodle Esami, unico per i tre canali: 9 quiz (almeno 18) e una domanda aperta facoltativa, fino a 33.</p>
+        <p class="date">Appelli: 29/01 e 18/02/2027</p>
+        <span class="piede-card"><span>scheda del corso</span><span class="apri">apri →</span></span>
+      </a>
+      <a class="corso rivela" style="--i:2" data-corso="MDAG" href="appunti/MDAG/index.html">
+        <span class="riga"><span class="chip c">INF0328</span><span class="chip">12 CFU</span></span>
+        <h3>Matematica Discreta, Algebra e Geometria</h3>
+        <p class="esame">Due prove scritte separate, Matematica Discreta e Geometria; il voto è la media.</p>
+        <p class="date">Appelli: Matematica Discreta 19/01 e 03/02, Geometria 22/01 e 05/02/2027</p>
+        <span class="piede-card"><span>scheda del corso</span><span class="apri">apri →</span></span>
+      </a>
+    </div>
+    <div class="ultime rivela"><h3>Ultime lezioni</h3>
+      <ol class="flusso">
+        <li style="--c:var(--c-prog1)"><time datetime="2026-09-28">28/09/2026</time><a href="appunti/PROG1/01A_primo_algoritmo.html">01A · Un primo algoritmo</a><span class="di">Programmazione I</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sezione" id="secondo-semestre" aria-labelledby="h-sem2">
+    <div class="sez-testa rivela"><div><span class="etichetta">Secondo semestre · da febbraio 2027</span><h2 id="h-sem2">I corsi che verranno</h2></div><p>Per ora ci sono le schede con docenti, esame e materiale; gli appunti arriveranno con le lezioni.</p></div>
+    <div class="griglia-corsi compatta">
+      <a class="corso rivela" style="--i:0" data-corso="ANMAT" href="appunti/ANMAT/index.html">
+        <span class="riga"><span class="chip c">MFN0570</span><span class="chip">9 CFU</span></span>
+        <h3>Analisi Matematica</h3>
+        <p class="esame">Tre prove al PC: quiz, teoria, esercizi.</p>
+        <span class="piede-card"><span>scheda del corso</span><span class="apri">apri →</span></span>
+      </a>
+      <a class="corso rivela" style="--i:1" data-corso="ARCH" href="appunti/ARCH/index.html">
+        <span class="riga"><span class="chip c">INF0326</span><span class="chip">6 CFU</span></span>
+        <h3>Architettura degli Elaboratori</h3>
+        <p class="esame">Scritto al PC con laboratorio RISC-V, poi orale.</p>
+        <span class="piede-card"><span>scheda del corso</span><span class="apri">apri →</span></span>
+      </a>
+      <a class="corso rivela" style="--i:2" data-corso="PROG2" href="appunti/PROG2/index.html">
+        <span class="riga"><span class="chip c">INF0330</span><span class="chip">6 CFU</span></span>
+        <h3>Programmazione II</h3>
+        <p class="esame">Progetti obbligatori, esonero e scritto.</p>
+        <span class="piede-card"><span>scheda del corso</span><span class="apri">apri →</span></span>
+      </a>
+      <a class="corso rivela" style="--i:3" data-corso="RO" href="appunti/RO/index.html">
+        <span class="riga"><span class="chip c">INF0327</span><span class="chip">6 CFU</span></span>
+        <h3>Ricerca Operativa</h3>
+        <p class="esame">Scritto al PC e orale facoltativo.</p>
+        <span class="piede-card"><span>scheda del corso</span><span class="apri">apri →</span></span>
+      </a>
+      <a class="corso rivela" style="--i:4" data-corso="INGLESE" href="appunti/INGLESE/index.html">
+        <span class="riga"><span class="chip c">MFN0590</span><span class="chip">3 CFU</span></span>
+        <h3>Lingua Inglese I</h3>
+        <p class="esame">Test SET senza voto (idoneità), oppure riconoscimento di una certificazione almeno B1 (con tutte e 4 le abilità).</p>
+        <span class="piede-card"><span>scheda del corso</span><span class="apri">apri →</span></span>
+      </a>
+    </div>
+  </section>
+  <!-- MATERIE:FINE -->
+
+  <section class="sezione" aria-labelledby="h-altro">
+    <div class="sez-testa rivela"><div><span class="etichetta">Tutto il resto</span><h2 id="h-altro">Informazioni, AI e licenza</h2></div></div>
+    <div class="info-griglia">
+      <article class="pannello info rivela" aria-labelledby="h-gen">
+        <span class="num">01</span>
+        <h2 id="h-gen">Informazioni generali</h2>
+        <p><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Canali e turni, docenti e orari per canale, appelli, calendario 2026/27, regole d'esame, Moodle, gruppi Telegram</a>: tutto in una pagina, con le fonti.</p>
+      </article>
+      <article class="pannello info rivela" style="--i:1" aria-labelledby="h-ai">
+        <span class="num">02</span>
+        <h2 id="h-ai">Contesto per le AI</h2>
+        <p>La cartella <code>contesto_ai</code> contiene gli stessi contenuti in Markdown, più le ricerche su corso di laurea ed esami, pronti da allegare a qualsiasi AI per non ripartire da zero.</p>
+        <ul>
+          <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Cartella contesto_ai e istruzioni d'uso</a>, con un prompt pronto da incollare</li>
+          <li><a href="https://raw.githubusercontent.com/DonFlammer/unito-informatica/main/contesto_ai/_TUTTO_IN_UNO.md">_TUTTO_IN_UNO.md</a>: tutti i file uniti, da allegare in un colpo solo</li>
+        </ul>
+      </article>
+      <article class="pannello info rivela" style="--i:2" aria-labelledby="h-info">
+        <span class="num">03</span>
+        <h2 id="h-info">Usare e copiare questi appunti</h2>
+        <ul>
+          <li>Il codice sorgente è su <a href="https://github.com/DonFlammer/unito-informatica">github.com/DonFlammer/unito-informatica</a>. Per avere una copia tua da modificare usa il pulsante <strong>Fork</strong>.</li>
+          <li lang="en"><strong>English version</strong>: <a href="https://donflammer.github.io/unito-computer-science/" hreflang="en">donflammer.github.io/unito-computer-science</a> (source on <a href="https://github.com/DonFlammer/unito-computer-science" hreflang="en">github.com/DonFlammer/unito-computer-science</a>), an English translation of these notes for students who don't speak Italian. It is updated after the Italian version, which prevails if the two differ.</li>
+          <li>Licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">CC BY-NC-SA 4.0</a>: puoi copiare e modificare citando la fonte, non per scopi commerciali, e con la stessa licenza.</li>
+          <li>Segnalazioni di errori: Telegram <a href="https://t.me/rapsodico">@rapsodico</a>, senza alcun impegno di risposta o correzione.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="ofa rivela" aria-labelledby="h-ofa">
+    <div class="stelline" aria-hidden="true"></div>
+    <div class="ofa-in">
+      <div>
+        <span class="etichetta">Obbligo formativo aggiuntivo · matematica</span>
+        <h2 id="h-ofa">Meno di 5 su 20 in Matematica di base al TOLC-S?</h2>
+        <p>Allora hai l'<strong>OFA di matematica</strong>, da recuperare entro il primo anno: finché non lo superi non puoi registrare gli esami del secondo. Per quello c'è una guida a parte, fatta apposta: regole e date verificate, appunti degli otto moduli del corso ufficiale, un test d'ingresso, simulazioni della prova a tempo e un piano di studio calcolato sulla data del tuo turno.</p>
+      </div>
+      <a class="vai" href="https://donflammer.github.io/unito-ofa-matematica/">Apri la guida all'OFA <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</main>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; nessuna responsabilità dell'autore: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+        <li><a href="https://donflammer.github.io/unito-computer-science/" hreflang="en" lang="en">English version</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="assets/js/appunti.js" defer></script>
+<script src="assets/js/rete.js" defer></script>
+<script src="assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+</body>
+</html>

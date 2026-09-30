@@ -1,0 +1,21 @@
+# copia parziale della guida degli studenti: è un repository git separato (~84 MB)
+guida_degli_studenti_di/
+
+# slide dei docenti: materiale del corso protetto da diritto d'autore, restano solo in locale
+slide/
+
+# pagine e documenti salvati da Moodle (visibili solo agli iscritti): restano solo in locale
+moodle/
+
+# file compilati
+*.exe
+*.o
+*.obj
+
+# file di sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# cache di Python
+__pycache__/

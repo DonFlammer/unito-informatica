@@ -500,10 +500,13 @@ const fmt = v => {
   const s = Math.abs(v - Math.round(v)) < 1e-9 ? String(Math.round(v)) : String(+v.toFixed(3)).replace('.', LINGUA === 'it' ? ',' : '.');
   return s.replace('-', '−');
 };
+// nomi inglesi delle opzioni dei grafici, per i file della versione inglese
+const OPZIONI_EN = { accent: 'accento', blue: 'blu', amber: 'ambra', pink: 'rosa', rose: 'rosa', violet: 'viola', green: 'verde', grey: 'grigio',
+  gray: 'grigio', dashed: 'tratteggio', thin: 'sottile', thick: 'spesso', hollow: 'vuoto', faint: 'tenue', filled: 'pieno', w: 'o', nw: 'no', sw: 'so' };
 function opzioniGrafico(parti) {
   const o = { classi: [], etichetta: '', pos: '' };
   for (const p of parti) {
-    const t = p.trim();
+    const t = OPZIONI_EN[p.trim()] || p.trim();
     if (!t) continue;
     if (/^\$.*\$$/.test(t) || /^".*"$/.test(t)) o.etichetta = t.replace(/^"|"$/g, '');
     else if (/^(accento|blu|ambra|rosa|viola|verde|grigio|tratteggio|sottile|spesso|vuoto|tenue|pieno)$/.test(t)) o.classi.push(t);
@@ -647,7 +650,7 @@ function compila(file) {
   for (const k of ['corso', 'lezione', 'titolo', 'descrizione', 'appunti_html', 'file_altro'])
     if (!meta[k]) ctx.errore(1, `nell'intestazione manca «${Object.entries(L.chiavi).find(([, v]) => v === k)?.[0] || k}»`);
   const corso = String(meta.corso || ''), lezione = String(meta.lezione || '');
-  ctx.materiale = meta.materiale || 'slide';
+  ctx.materiale = { handouts: 'dispense', slides: 'slide', book: 'libro' }[meta.materiale] || meta.materiale || 'slide';
   ctx.chiave = `${corso.toLowerCase()}-${lezione}-checklist`;
   if (!/^[A-Za-z0-9-]{1,60}-checklist$/.test(ctx.chiave)) ctx.errore(1, `chiave della checklist non valida «${ctx.chiave}»`);
   if (meta.data && !/^\d{4}-\d{2}-\d{2}$/.test(meta.data instanceof Date ? meta.data.toISOString().slice(0, 10) : String(meta.data))) ctx.errore(1, 'data nel formato AAAA-MM-GG');

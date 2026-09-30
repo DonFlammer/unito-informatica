@@ -35,7 +35,7 @@ Informazioni generali (canali e turni, docenti per canale, orari, calendario 202
 |---|---|
 | `appunti/<MATERIA>/` | una cartella per materia. `index.html` è la pagina della materia (lezioni, esame, collegamenti); gli altri file sono gli appunti di ogni lezione in HTML interattivo (simulatori, esercizi con soluzioni a scomparsa, checklist), che si aprono con doppio clic nel browser, anche offline |
 | `contesto_ai/` | gli stessi contenuti in Markdown, sempre una cartella per materia, più corso di laurea, schede dei corsi ed esercizi d'esame tipo: **da allegare a qualsiasi AI** per non rifare le ricerche. Istruzioni in [contesto_ai/README.md](contesto_ai/README.md) |
-| `strumenti/` | `genera_materie.py` rigenera le pagine delle materie e l'elenco nella pagina iniziale; `unisci_contesto.py` rigenera `contesto_ai/_TUTTO_IN_UNO.md` |
+| `strumenti/` | `genera_materie.py` rigenera le pagine delle materie e l'elenco nella pagina iniziale, e prima trasforma con `lezioni.mjs` le lezioni scritte in Markdown (`contesto_ai/<MATERIA>/lezioni/*.md` con `genera_html: true`) nelle pagine HTML (serve Node.js: `npm ci` nella cartella `strumenti`); `unisci_contesto.py` rigenera `contesto_ai/_TUTTO_IN_UNO.md` |
 | `index.html` | pagina iniziale del sito GitHub Pages |
 
 Solo in locale (esclusi da git, vedi `.gitignore`): le slide dei docenti in PDF (`slide/`), eventuali pagine salvate da Moodle (`moodle/`) e la copia parziale della guida degli studenti (`guida_degli_studenti_di/`).

@@ -19,13 +19,13 @@ Le ricerche (corso di laurea, schede dei corsi, esami) vengono da fonti pubblich
 ## Come usare le fonti
 
 - Ogni file indica data di aggiornamento e fonti. Distingui sempre ciò che è **ufficiale per il 2026/27** da ciò che deriva da **anni o canali precedenti** (i file lo segnalano).
-- Nelle lezioni (`<CORSO>/lezioni/*.md`) tutto segue le slide, tranne le parti marcate **[OLTRE LE SLIDE]**.
+- Nelle lezioni (`<CORSO>/lezioni/*.md`) tutto segue le slide o le dispense del corso, tranne le parti marcate **[OLTRE LE SLIDE]** (lezioni più vecchie) o i riquadri `> [!OLTRE]` (lezioni più recenti). Riquadri, quiz, esercizi e formule sono spiegati in `formato_lezioni.md`.
 - In caso di dubbio fanno fede le slide del docente, il Moodle del corso e il sito del corso di laurea.
 
 ## Regole didattiche
 
 - **Politica dei docenti di Programmazione I sugli LLM**: servono per rivedere esercizi già svolti o capire perché un programma non compila, **non per delegare la soluzione**. Quindi: per esercizi da svolgere, guida con domande e suggerimenti progressivi prima di dare la soluzione completa; per correggere codice, spiega l'errore.
-- Rispondi in italiano, con esempi concreti e casi limite.
+- Rispondi in italiano, con esempi concreti e casi limite. In matematica spiega passo per passo, partendo da un esempio con numeri piccoli, e scrivi tutti i passaggi dei conti.
 - Quando scrivi codice C per Programmazione I rispetta le regole d'esame:
   - funzioni iterative: **una sola `return`**, variabili sentinella, **niente `break`, `switch`, `case`, `static`**;
   - funzioni ricorsive: **niente `for`/`while`**, rispetta il tipo richiesto (co-variante, contro-variante, dicotomica);
@@ -35,18 +35,74 @@ Le ricerche (corso di laurea, schede dei corsi, esami) vengono da fonti pubblich
 
 ## Se devi scrivere gli appunti di una nuova lezione
 
-Il repository segue questo schema (vedi `PROG1/lezioni/01A_primo_algoritmo.md` come modello):
+Le lezioni nuove si scrivono nel formato di `formato_lezioni.md` (modelli: `PROG1/lezioni/02A_da_assembly_a_c.md` e `MDAG/lezioni/L01_numeri_reali.md`), da cui viene generata la pagina HTML. In sostanza:
 
 1. Intestazione YAML con corso, docente, lezione, data, fonte (nome del PDF delle slide).
 2. "In breve": 5–8 punti con i concetti chiave.
 3. Una sezione per ogni gruppo di slide, **con i numeri di slide**; definizioni esatte in corsivo o in citazione; tabelle per confronti.
-4. Pseudocodice e codice in blocchi di codice; diagrammi in `mermaid`.
+4. Pseudocodice e codice in blocchi di codice; formule in LaTeX; figure e strumenti interattivi con i blocchi `grafico` e `widget`.
 5. Trappole ed errori tipici; collegamento con l'esame (vedi `PROG1/corso.md` ed `esercizi_esame.md`).
 6. Esercizi con soluzione (compilare il C con `gcc -Wall -Werror` prima di scriverlo); domande di ripasso con risposta breve; glossario.
 7. Aggiornare `<CORSO>/indice_lezioni.md` con i concetti chiave della nuova lezione e i fili conduttori con le lezioni precedenti.
-8. Marcare con **[OLTRE LE SLIDE]** tutto ciò che non viene dalle slide.
+8. Mettere in un riquadro `OLTRE` tutto ciò che non viene dalle slide o dalle dispense.
 
 Nel repository esiste anche una versione HTML interattiva di ogni lezione (`appunti/<CORSO>/`), pensata per lo studio al computer; il contenuto è lo stesso.
+
+
+---
+
+<!-- FILE: contesto_ai/formato_lezioni.md -->
+> File: `contesto_ai/formato_lezioni.md`
+
+# Formato dei file delle lezioni
+
+I file delle lezioni più recenti (`<CORSO>/lezioni/*.md` con `genera_html: true` nell'intestazione) sono la fonte da cui viene generata la pagina HTML della lezione sul sito, con `strumenti/lezioni.mjs`. Il contenuto è lo stesso; il Markdown ha in più qualche convenzione, spiegata qui per chi lo legge (persone o AI).
+
+## Intestazione YAML
+
+`corso`, `modulo` (per MDAG: `MD` Matematica Discreta, `AG` Algebra lineare e Geometria), `lezione` (codice, per esempio `01B` o `L05`), `titolo`, `data` (solo per le lezioni già svolte), `docenti`, `fonte` (slide o dispense usate), `scheda` (i dati mostrati in cima alla pagina), `materiale` (`slide` o `dispense`), più i campi tecnici per la pagina (`descrizione`, `lede`, `file_en`, `appunti_html`, `genera_html`).
+
+## Struttura
+
+- `## In breve`: i punti chiave della lezione.
+- Sezioni `## Titolo (slide 2–5)` o `## Titolo (pp. 20–21)`: tra parentesi le slide o le pagine delle dispense da cui viene la sezione.
+- `## Verso l'esame`, `## Quiz`, `## Esercizi`, `## Domande di ripasso`, `## Glossario`, `## Checklist`, `## Fonti`.
+
+## Formule
+
+LaTeX tra `$…$` (nel testo) e `$$…$$` (in un blocco a sé). Abbreviazioni: `\R \N \Z \Q \C \K` per gli insiemi numerici e il campo, `\rk` rango, `\Span`, `\Ker` nucleo, `\Imm` immagine, `\tr` traccia, `\Mat`, `\sgn`, `\id`. `{}^tA` è la trasposta.
+
+## Riquadri
+
+Righe che cominciano con `> [!TIPO] titolo`:
+
+| Tipo | Significato |
+|---|---|
+| `DEF` | definizione da sapere |
+| `PROP`, `TEOREMA`, `LEMMA`, `COROLLARIO` | enunciati, con la numerazione delle dispense o delle slide |
+| `ESEMPIO` | esempio svolto |
+| `IDEA`, `METODO` | l'idea intuitiva, il procedimento passo per passo |
+| `TRAPPOLA` | errore tipico |
+| `ESAME` | conta all'esame |
+| `OLTRE` | **non** viene dal materiale del corso: aggiunta degli appunti (esempi, collegamenti, richiami) |
+| `NOTA`, `OSSERVAZIONE` | osservazioni |
+| `DIM` | dimostrazione |
+| `CANALI` | differenze e corrispondenze tra i canali A, B e C |
+
+Tutto ciò che sta fuori da un riquadro `OLTRE` (o da una sezione con «oltre le slide/dispense» nel titolo) segue le slide o le dispense. Le lezioni più vecchie, come `PROG1/lezioni/01A_primo_algoritmo.md`, usano ancora il segno **[OLTRE LE SLIDE]**.
+
+## Esercizi, domande, quiz
+
+- `::: esercizio livello titolo` … `::: soluzione` … `:::`, con livello `base`, `medio`, `difficile` o `esame`.
+- `::: domanda testo della domanda` … risposta … `:::`.
+- Blocco `quiz`: `D:` domanda; `+` risposta giusta, `-` risposta sbagliata (nella pagina l'ordine viene mescolato); `N:` risposta numerica; `=` spiegazione.
+
+## Altri blocchi
+
+- `glossario`: una riga per termine, `Termine | definizione`.
+- `checklist`: le voci «So …» da spuntare.
+- `grafico`: una figura statica (punti, vettori, rette, poligoni, cerchi), una riga per elemento.
+- `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann). Nel Markdown restano solo i parametri iniziali.
 
 
 ---
@@ -411,6 +467,8 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 | # | Data | Titolo | File | Concetti chiave |
 |---|---|---|---|---|
 | 01A | 28/09/2026 | Un primo algoritmo | `lezioni/01A_primo_algoritmo.md` · HTML: `appunti/PROG1/01A_primo_algoritmo.html` | informatica = studio degli algoritmi (Dijkstra); definizione di algoritmo (ordinato, non ambiguo, effettivamente computabile, produce un risultato, termina); tutto è numero; programmazione imperativa; m × n per somme ripetute da 0; accumulatore `s` e contatore `i`; Wirth "Programma = Algoritmi + Strutture Dati"; 7 versioni dell'algoritmo; bug del caso n = 0 → **prima verificare, poi eseguire**; `←` vs `=`; salti condizionati/non condizionati; blocchi Inizio/Fine e indentazione; diagramma di flusso; basso/alto livello; implementare vs tradurre; prossimo: Von Neumann |
+| 01B | 29/09/2026 | Architettura del calcolatore | `lezioni/01B_architettura.md` · HTML: `appunti/PROG1/01B_architettura.html` | abaco e Pascalina (riporto meccanico); calcolatori cablati vs **programmabili** (operazioni elementari + sequenza codificata con numeri); Babbage (macchina analitica, schede perforate, salti condizionati), Turing 1936 (macchina universale); ENIAC (decimale, cavi) → **EDVAC** (programma memorizzato, memoria unificata, binario); bit, byte, $2^N$; **architettura di Von Neumann** (CPU = unità di controllo + ALU + registri, RAM, memoria secondaria, bus); memoria come fila di byte con **indirizzi** da 0, **parole** da 32 bit; ciclo prelievo–decodifica–esecuzione, **PC** e **IR**; determinismo |
+| 02A | 30/09/2026 | Dal linguaggio macchina al C | `lezioni/02A_da_assembly_a_c.md` · HTML: `appunti/PROG1/02A_da_assembly_a_c.html` | linguaggio macchina vs **assembly** (mnemonici, assembler, non portabili); addizione in assembly (`LOAD`, `ADD`, `STORE`, `@A` = contenuto all'indirizzo A, PC 0-4-8-12); moltiplicazione in assembly (`CMP`, `JMPEQ`, `INC`, `JMP`) = versione V6 della 01A; FORTRAN e linguaggi di alto livello (compilatore, ricompilare = portabilità); storia del C (Thompson, Ritchie, Unix, K&R 1972, C89…C23); C compilato, imperativo, strutturato, tipizzato; radiografia di `Buongiorno dal C.`: commenti, `#include <stdio.h>`, `main`, blocchi, `;`, stringhe, **sequenze di escape**; identificatori e parole chiave; stadi di gcc (preprocessore, compilatore, assemblatore, linker); `gcc -Wall -Werror`; errori di compilazione, a runtime, logici |
 
 ## Fili conduttori (da ricollegare nelle prossime lezioni)
 
@@ -420,6 +478,10 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 - **Invariante `s = m × i`, pre/postcondizioni** → correttezza con `assert` e ragionamento all'indietro.
 - **Traccia di esecuzione** → modello della memoria (stack di frame) negli esercizi d'esame.
 - `while (i != n)` ↔ V7; `do-while` ↔ V2 (corpo eseguito almeno una volta).
+- **Salti e program counter** (01B, 02A): il «salta alla riga» della V6 è una scrittura nel PC; in assembly il ciclo è `CMP` + `JMPEQ` (uscita) + `JMP` (ritorno), e anche gcc compila `while` saltando prima al controllo.
+- **Stato della macchina e traccia** (01A, 01B, 02A): eseguire = passare da uno stato della memoria al successivo, istruzione per istruzione; è la base degli esercizi d'esame sullo stato della memoria.
+- **Indirizzi da 0** (01B): memoria come fila di byte numerati da 0 → indirizzi delle variabili e puntatori (settimana 2), indici degli array.
+- **`-Wall -Werror` e messaggi del compilatore** (02A): allenarsi a leggere riga, colonna e descrizione dell'errore, come all'esame.
 
 
 ---
@@ -1031,6 +1093,1326 @@ Algoritmo · Input/Output · Istruzione · Variabile · Stato · Assegnamento (`
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/lezioni/01B_architettura.md -->
+> File: `contesto_ai/PROG1/lezioni/01B_architettura.md`
+
+```yaml
+corso: PROG1
+lezione: 01B
+titolo: Architettura del calcolatore
+data: 2026-09-29
+docenti: Elvio Amparore
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 01B
+descrizione: >-
+  Appunti della lezione 01B di Programmazione I (canale B): storia del calcolo automatico, calcolatori cablati e
+  programmabili, Babbage, Turing, ENIAC ed EDVAC, bit e byte, architettura di Von Neumann, modello della memoria,
+  funzionamento della CPU, con esercizi e domande di ripasso.
+lede: >-
+  Dall'abaco alla macchina di Von Neumann: perché un calcolatore diventa «programmabile», che cosa cambia con il
+  programma memorizzato dell'EDVAC, come si rappresentano le informazioni con i bit, com'è fatta la memoria vista dalla
+  CPU e come la CPU esegue un'istruzione dopo l'altra con il program counter. È il modello di macchina su cui si
+  appoggia tutto il corso.
+materiale: slide
+scheda:
+  Slide: 01B_architettura · 19 pagine
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 45–60 minuti
+fonte: >-
+  Slide «Storia e principi del calcolo automatico» (01B_architettura), Programmazione I – Teoria, canale B, A.A. 2026/27
+file_en: 01B_computer_architecture.html
+appunti_html: appunti/PROG1/01B_architettura.html
+genera_html: true
+```
+
+## In breve
+
+- I primi strumenti (abaco, Pascalina) **aiutano** a calcolare, ma la logica la mette chi li usa. I **calcolatori cablati** sanno fare solo le operazioni costruite nel loro hardware.
+- L'idea decisiva è separare **che cosa** la macchina sa fare (poche operazioni elementari) dall'**ordine** in cui farle, e scrivere quest'ordine con dei **numeri**: nasce il **calcolatore programmabile**.
+- Babbage (macchina analitica, circa 1840) e Turing (macchina universale, 1936) sono le tappe teoriche; ENIAC (1943–46) è il primo computer *general purpose*, ma si programma spostando cavi.
+- Con l'**EDVAC** arrivano tre idee che usiamo ancora: **programma memorizzato** in memoria, **stessa memoria** per istruzioni e dati, numeri in **binario**.
+- Un **bit** vale 0 o 1; con $N$ bit si distinguono $2^N$ informazioni; 8 bit formano un **byte** (256 valori).
+- **Architettura di Von Neumann**: CPU (unità di controllo, ALU, registri), memoria principale (RAM) con programma e dati, memoria secondaria, tutto collegato dal **bus di sistema**.
+- La memoria è una fila di byte, ognuno con il suo **indirizzo**; i numeri stanno in **parole** (per esempio da 32 bit, cioè 4 byte).
+- La CPU **preleva** un'istruzione, la **decodifica**, la **esegue**; il **program counter** (PC) dice dove sta la prossima, l'**instruction register** (IR) contiene quella in corso. Stesso programma e stesso stato iniziale danno sempre lo stesso risultato.
+
+> [!CANALI] Sei del canale A o C?
+> **Canale A (Fiandrotti):** il deck «Architettura del computer» (18 slide) è praticamente identico a questo: stessi titoli e stessi contenuti, dall'abaco al funzionamento della CPU.
+>
+> **Canale C (Mazzei):** gli stessi argomenti sono nella lezione 01 «Introduzione» (slide 43–66). In più ci sono due slide sulla **macchina di Turing** (universale perché calcola tutte le funzioni calcolabili; esistono problemi che nessun algoritmo risolve), una tabella dei multipli del byte e l'elenco delle istruzioni della CPU (LOAD, STORE, ADD, CMP, JMP, JEQ…), che nel canale B arrivano nella lezione 02A.
+>
+> L'esame è unico per i tre canali.
+
+## Dal calcolo a mano alle prime macchine (slide 2–5)
+
+La slide 2 mette in fila le tappe principali su una linea del tempo. Eccole in una tabella:
+
+| Quando | Che cosa |
+|---|---|
+| 30000–20000 a.C. | ossa intagliate per contare |
+| 3500 a.C. | gettoni di argilla per la contabilità (Mesopotamia) |
+| 595 d.C. | numerazione posizionale (le cifre che usiamo oggi) |
+| 780–840 d.C. | al-Khwārizmī, da cui viene la parola «algoritmo» (lezione 01A) |
+| 1652 | Pascal: la Pascalina |
+| 1673 | Leibniz: una macchina che sa anche moltiplicare |
+| 1822 e 1837 | Babbage: *Difference Engine* e *Analytical Engine* |
+| 1936 | Turing: la macchina universale |
+| 1945 | l'architettura di Von Neumann |
+| 1946 | ENIAC |
+| 1975 | il personal computer |
+| 1984 | Apple Macintosh |
+| 1990 | info.cern.ch, il primo sito web |
+
+### L'abaco (slide 3)
+
+È la prima «macchina» di calcolo conosciuta, dall'antichità. Ma attenzione a che cosa fa davvero: **tiene traccia di quanto è già stato fatto** (le palline spostate ricordano i numeri parziali). La **logica** dell'operazione e la sua **correttezza** dipendono interamente da chi lo usa: se sposti la pallina sbagliata, l'abaco non se ne accorge.
+
+### La Pascalina (slide 4)
+
+Inventata dal matematico francese Blaise Pascal nel 1642 (sulla linea del tempo compare il 1652, anno di uno degli esemplari successivi). È fatta di ingranaggi: su ognuno sono scritte le cifre da 0 a 9. Funziona come un abaco, con una differenza importante: il **riporto** dell'addizione lo fa **la macchina**, con una leva tra un ingranaggio e il successivo. Quando le unità passano da 9 a 0, la leva fa avanzare di un passo l'ingranaggio delle decine. Per la prima volta un pezzo di logica (il riporto) sta dentro la macchina.
+
+### I calcolatori cablati (slide 5)
+
+Le prime macchine erano **cablate** (in inglese *hardwired*):
+
+- sapevano fare un insieme **limitato** di operazioni specifiche, di solito addizione e sottrazione;
+- la **logica di funzionamento era costruita nell'hardware**: i collegamenti fisici decidevano che cosa faceva la macchina;
+- per aggiungere una funzione nuova, come un **confronto** o un **salto condizionato**, bisognava **modificare o riprogettare l'hardware**;
+- operazioni più complesse come moltiplicazione e divisione erano difficili da realizzare con le tecnologie dell'epoca.
+
+> [!IDEA] · un'immagine
+> Una macchina cablata è come un frullatore: fa bene una cosa sola, quella per cui è stata costruita. Se vuoi che faccia altro, devi smontarla e ricostruirla.
+
+## L'idea decisiva: il calcolatore programmabile (slide 6–8)
+
+La slide 6 contiene l'idea più importante della lezione. Invece di costruire una macchina diversa per ogni compito:
+
+1. si sceglie un **insieme base di operazioni elementari**, per esempio addizione e confronto, che l'hardware sa fare direttamente;
+2. si **combinano** queste operazioni, anche **ripetendole**, per ottenere operazioni più complesse, come la moltiplicazione;
+3. l'**ordine** delle operazioni, il **numero di ripetizioni** e i loro **argomenti** si possono **codificare con numeri interi**;
+4. quindi il comportamento della macchina si descrive con **dati numerici** che dicono quali operazioni eseguire.
+
+> [!DEF] Calcolatore programmabile · slide 6
+> La **stessa macchina** può eseguire **compiti diversi** cambiando la **sequenza di istruzioni**, senza modificarne l'hardware.
+
+È esattamente ciò che hai fatto nella lezione 01A: la macchina sapeva solo sommare, assegnare e confrontare, e la moltiplicazione l'hai ottenuta **combinando e ripetendo** somme. Il programma (le righe [1]–[8] della versione V6) dice alla macchina in che ordine fare le operazioni.
+
+### La macchina analitica di Babbage (slide 7)
+
+Descritta da **Charles Babbage** intorno al 1840, è il **primo esempio di macchina di calcolo programmabile**:
+
+- dati e istruzioni erano memorizzati su **schede perforate** (cartoncini con i buchi, come quelli dei telai tessili);
+- il suo linguaggio era simile all'**assembly** (lo vedrai nella lezione 02A), **salti condizionati compresi**;
+- a posteriori sappiamo che era **Turing-completa**: in linea di principio poteva calcolare tutto ciò che è calcolabile.
+
+Non fu mai costruita per intero: la meccanica dell'epoca non bastava.
+
+> [!OLTRE] · il primo programma
+> Per la macchina analitica **Ada Lovelace** scrisse nel 1843 un procedimento per calcolare i numeri di Bernoulli: è considerato il primo programma della storia, scritto per una macchina che ancora non esisteva.
+
+### Alan Turing (slide 8)
+
+**Alan Turing**, matematico inglese, è considerato l'inventore della **teoria della calcolabilità** (e, secondo alcuni, dell'informatica).
+
+- Nel **1936** introduce la **macchina universale**: un **modello astratto** di calcolatore, cioè una macchina immaginaria descritta con precisione matematica.
+- Turing la usa per studiare **quali funzioni si possono calcolare in modo automatico**, cioè con un algoritmo.
+- Diversi tentativi di costruire davvero un calcolatore **Turing-completo** si scontrano con i limiti tecnologici dell'epoca.
+
+> [!OLTRE] · Turing-completo, in parole
+> Un sistema è **Turing-completo** se può calcolare tutto quello che calcola una macchina universale di Turing. Il C, come quasi tutti i linguaggi di programmazione, lo è: in teoria qualsiasi cosa calcolabile si può scrivere in C (con memoria sufficiente).
+
+## ENIAC ed EDVAC (slide 9–10)
+
+### ENIAC (slide 9)
+
+L'**Electronic Numerical Integrator and Computer** fu progettato nel 1943 da John Mauchly e J. Presper Eckert (nella slide «John Adam Presper»: il nome completo è John Adam Presper Eckert Jr.) e presentato nel 1946.
+
+- È il **primo computer *general purpose***: non fatto per un solo compito, ma adattabile a problemi diversi.
+- Rappresentava i numeri in **decimale**.
+- Le operazioni erano svolte da diversi **blocchi funzionali**.
+- Per **programmarlo** bisognava **configurare interruttori e collegare i blocchi con dei cavi**.
+- Quindi **cambiare programma** richiedeva una **riconfigurazione manuale complessa**, che poteva richiedere giorni.
+
+La foto della slide 2 mostra quattro programmatrici con schede di ENIAC, EDVAC, ORDVAC e BRLESC.
+
+### EDVAC (slide 10)
+
+L'**Electronic Discrete Variable Automatic Calculator** fu progettato nel 1944 dagli stessi autori di ENIAC. Introduce tre idee fondamentali:
+
+1. **programma memorizzato** nella memoria centrale;
+2. **memoria unificata** per istruzioni e dati;
+3. **rappresentazione binaria** dei numeri.
+
+La conseguenza è enorme: il programma **non si realizza più ricollegando fisicamente la macchina**, ma **si memorizza e si modifica come un dato**. Cambiare programma diventa come cambiare un numero in memoria.
+
+| | ENIAC | EDVAC |
+|---|---|---|
+| Numeri | decimali | binari |
+| Programma | cavi e interruttori | in memoria, come un dato |
+| Istruzioni e dati | separati | nella stessa memoria |
+| Cambiare programma | riconfigurazione manuale | si carica un altro programma |
+
+> [!ESAME] Perché ti interessa
+> «Programma e dati nella stessa memoria» è la base di tutto il corso: una variabile C sta in memoria a un certo **indirizzo**, e le domande d'esame sullo **stato della memoria** ti chiedono proprio di seguire come cambiano quei valori, istruzione dopo istruzione.
+
+## Il bit e il byte (slide 11–12)
+
+### Perché il binario (slide 11)
+
+L'elemento base dell'informazione è il **bit**; la slide lo spiega come *Binary Information Token*. Un bit può stare in **due stati soltanto**: acceso/spento, vero/falso, sì/no, 1/0.
+
+Due stati sono facili da costruire con dispositivi fisici diversi: **relè**, **valvole**, **transistor**. Basta distinguere «passa corrente» da «non passa corrente». Per questo i calcolatori moderni usano il binario, invece della rappresentazione decimale dei primi calcolatori fino a ENIAC (distinguere dieci livelli diversi è molto più fragile che distinguerne due).
+
+> [!OLTRE] · il nome
+> La spiegazione più diffusa del nome «bit» è *binary digit*, cioè **cifra binaria**.
+
+### Quante informazioni con N bit (slide 12)
+
+Combinando più bit si rappresentano più informazioni. Ogni bit in più **raddoppia** le possibilità, perché ogni combinazione vecchia si può continuare con uno 0 o con un 1.
+
+| Bit | Combinazioni possibili | Quante |
+|---|---|---|
+| 1 | 0, 1 | $2^1 = 2$ |
+| 2 | 00, 01, 10, 11 | $2^2 = 4$ |
+| 3 | 000, 001, 010, 011, 100, 101, 110, 111 | $2^3 = 8$ |
+| 4 | da 0000 a 1111 | $2^4 = 16$ |
+| 8 | da 00000000 a 11111111 | $2^8 = 256$ |
+| $N$ | | $2^N$ |
+
+> [!DEF] Bit e byte · slide 12
+> Con $N$ bit si rappresentano $2^N$ informazioni. Un gruppo di **8 bit** si chiama **byte** e rappresenta $2^8 = 256$ informazioni. Simboli: **b** per il bit, **B** per il byte.
+
+Per esempio con un byte puoi contare da 0 a 255: sono 256 numeri, perché lo 0 conta.
+
+> [!OLTRE] · da binario a decimale
+> In binario ogni posizione vale il doppio di quella alla sua destra: da destra verso sinistra 1, 2, 4, 8, 16, 32, 64, 128. Per leggere un byte sommi i valori delle posizioni dove c'è un 1:
+> $$00001100_2 = 8 + 4 = 12, \qquad 11111111_2 = 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = 255.$$
+> Lo rivedrai quando in C parlerai di tipi e di limiti dei numeri (laboratorio 02).
+
+> [!TRAPPOLA] Bit e byte, b e B
+> 1 B = 8 b. Una connessione da «100 Mb/s» trasferisce 100 milioni di **bit** al secondo, cioè 12,5 milioni di **byte** al secondo.
+
+## L'architettura di Von Neumann (slide 13–15)
+
+### Com'era fatto l'EDVAC (slide 13)
+
+- Una **memoria primaria** di 1024 **parole** da 44 bit: $1024 \cdot 44 = 45\,056$ bit, cioè $5632$ byte, circa **5,5 KB**.
+- Uno **storage secondario** a nastro magnetico, per leggere e scrivere.
+- Una **CPU** (*Central Processing Unit*, unità centrale di elaborazione), composta a sua volta da:
+  - un'**unità di controllo**, che pilota i componenti della CPU e il bus di sistema;
+  - una **ALU**, che esegue operazioni aritmetiche e logiche sui registri (la slide la chiama *Algebraic Logic Unit*; di solito si dice *Arithmetic Logic Unit*, **unità aritmetico-logica**);
+  - i **registri**, piccole celle di memoria dentro la CPU, che contengono dati dell'utente oppure informazioni di stato e di controllo della macchina.
+- Tutto è collegato dal **bus di sistema**, il «canale» su cui viaggiano dati e indirizzi.
+
+```grafico
+titolo: Lo schema delle slide 13–15: la CPU, la memoria principale e quella secondaria, collegate dal bus di sistema
+assi: no
+griglia: no
+x: 0 12
+y: 0 8
+poligono: 0.3 0.4 6 0.4 6 7.6 0.3 7.6 | blu
+testo: 3.15 7.2 | blu | "CPU"
+poligono: 0.7 5.3 5.6 5.3 5.6 6.7 0.7 6.7 | accento
+testo: 3.15 6 | "Unità di controllo"
+poligono: 0.7 3.4 5.6 3.4 5.6 4.8 0.7 4.8 | ambra
+testo: 3.15 4.1 | "ALU"
+poligono: 0.7 0.8 5.6 0.8 5.6 2.9 0.7 2.9 | viola
+testo: 3.15 2.45 | "Registri"
+testo: 3.15 1.45 | "R0 R1 IR PC SP SR"
+segmento: 7.1 0.8 7.1 7.2 | grigio | spesso
+testo: 7.1 7.55 | grigio | "bus"
+segmento: 6 4 7.1 4 | grigio | spesso
+poligono: 7.9 4.5 11.7 4.5 11.7 7 7.9 7 | verde
+testo: 9.8 6.1 | "RAM"
+testo: 9.8 5.3 | "programma e dati"
+segmento: 7.1 5.75 7.9 5.75 | grigio | spesso
+poligono: 7.9 1 11.7 1 11.7 3.5 7.9 3.5 | grigio
+testo: 9.8 2.6 | "Disco"
+testo: 9.8 1.8 | "memoria secondaria"
+segmento: 7.1 2.25 7.9 2.25 | grigio | spesso
+```
+
+### Perché si chiama «di Von Neumann» (slide 14)
+
+**John von Neumann**, matematico e consulente del progetto EDVAC, fu il **primo a descrivere e pubblicare** questa architettura, nel 1945. Da qui il nome usato ancora oggi, «architettura di Von Neumann»; la slide nota che sarebbe più corretto dire «**architettura EDVAC**», perché l'idea nacque nel gruppo di lavoro dell'EDVAC.
+
+### I principi (slide 15)
+
+> [!DEF] Architettura di Von Neumann · slide 15
+> - **Dati e istruzioni** sono memorizzati nella **stessa memoria principale** (RAM).
+> - Una **CPU** esegue operazioni sui dati in memoria e **salva il risultato in memoria**.
+> - CPU, memoria primaria e storage secondario sono **connessi tramite un bus di sistema**.
+> - La macchina **modifica l'area dati** della memoria seguendo le istruzioni del programma e secondo i dati di input.
+
+Quasi tutti i computer di oggi, dal telefono al portatile, seguono ancora questo schema.
+
+> [!OLTRE] · RAM e disco
+> La **RAM** (memoria principale) è veloce ma si cancella quando spegni il computer; il **disco** (memoria secondaria) è più lento ma conserva i dati. Per questo un programma sta su disco finché non lo lanci, e viene copiato in RAM per essere eseguito (slide 18).
+
+## Un primo modello della memoria (slide 16–17)
+
+### Una fila di byte con un indirizzo (slide 16)
+
+La CPU vede la memoria come una **lunga fila di byte**:
+
+- ogni byte può contenere un **piccolo valore numerico** (da 0 a 255);
+- per raggiungere un singolo byte, ognuno ha un numero che lo identifica: il suo **indirizzo**, come il numero civico di una casa;
+- il **byte è l'unità base di indirizzamento**: ogni indirizzo indica un byte.
+
+Nell'esempio della slide la memoria ha 1024 byte, con indirizzi da **0 a 1023**: i primi 256 per il **programma**, gli altri 768 per i **dati**.
+
+> [!TRAPPOLA] Si comincia da zero
+> Con 1024 byte gli indirizzi vanno da 0 a **1023**, non fino a 1024. È lo stesso schema degli array in C, dove il primo elemento ha indice 0.
+
+### Le parole (slide 17)
+
+Un solo byte (al massimo 255) di solito **non basta** per i numeri dei calcoli di tutti i giorni. Per questo la memoria è organizzata in **parole** (*words*) di 16, 32 o 64 bit, a seconda dell'architettura. È una scelta di **efficienza**: per il processore è più veloce e naturale lavorare su una parola intera che su un byte alla volta.
+
+Nell'esempio della slide le parole sono da **32 bit = 4 byte**:
+
+| Zona | Indirizzi | Byte | Parole da 32 bit |
+|---|---|---|---|
+| Programma | 0–255 | 256 | $256 : 4 = 64$ |
+| Dati | 256–1023 | 768 | $768 : 4 = 192$ |
+| Tutta la memoria | 0–1023 | 1024 | 256 |
+
+Una parola da 4 byte occupa quattro indirizzi consecutivi e si indica con l'indirizzo del suo **primo** byte: la prima parola dei dati sta agli indirizzi 256, 257, 258, 259 e si chiama «parola all'indirizzo 256»; la successiva è all'indirizzo 260, poi 264, e così via, di 4 in 4.
+
+> [!ESAME] Da qui ai puntatori
+> Nella settimana 2 (lezione «referenziamento, input e puntatori in C») scoprirai che in C puoi chiedere l'**indirizzo** di una variabile. È proprio questo numero: il «numero civico» del primo byte in cui la variabile è memorizzata.
+
+## Come funziona la macchina (slide 18–19)
+
+### Dal disco all'esecuzione (slide 18)
+
+1. Un **programma di controllo** (un tempo chiamato *monitor*, oggi **sistema operativo**) **carica** programma e dati dalla memoria secondaria nella memoria principale, in posizioni precise identificate da **indirizzi**.
+2. La CPU esegue, **una dopo l'altra**, le **istruzioni macchina** del programma. Ogni istruzione può leggere o modificare dati, e così **trasforma progressivamente lo stato della macchina** (i valori in memoria e nei registri).
+3. Alla fine il **risultato** del programma è nello **stato finale della memoria**, per esempio in una posizione di memoria nota.
+4. Fissati il programma e lo stato iniziale, l'esecuzione produce **sempre lo stesso stato finale**: il comportamento della macchina è **deterministico**.
+
+> [!IDEA] · lo stato
+> Lo **stato** è la «fotografia» di tutti i valori in memoria e nei registri in un certo istante. Eseguire un programma vuol dire passare da una fotografia alla successiva, un'istruzione alla volta: è la stessa **traccia** che hai fatto a mano nella lezione 01A, con le colonne $s$ e $i$.
+
+### Dentro la CPU (slide 19)
+
+- L'**unità di controllo** **preleva** dalla memoria e **decodifica** un'istruzione alla volta.
+- A seconda dell'istruzione, **attiva** le parti giuste della **ALU** per svolgere le operazioni elementari.
+- La **ALU** esegue operazioni semplici fra i **registri** della CPU: addizioni, confronti.
+- Tra i registri c'è il **program counter** (**PC**), che contiene l'**indirizzo della prossima istruzione**. Di solito il PC viene **incrementato**, per passare all'istruzione successiva; oppure viene **modificato** per fare un **salto**, condizionato o no.
+- Un altro registro importante è l'**instruction register** (**IR**): contiene l'**istruzione in esecuzione**, appena caricata dalla memoria.
+
+> [!METODO] · il ciclo della CPU, da ricordare
+> 1. **Prelievo** (*fetch*): l'unità di controllo legge l'istruzione all'indirizzo scritto nel PC e la copia nell'IR.
+> 2. **Decodifica** (*decode*): capisce che cosa chiede l'istruzione.
+> 3. **Esecuzione** (*execute*): la ALU fa l'operazione sui registri, oppure si leggono o scrivono dati in memoria.
+> 4. Il PC passa all'istruzione successiva, oppure salta dove dice l'istruzione. Si ricomincia dal punto 1.
+
+Il «**salta alla riga 3**» della versione V6 della lezione 01A, per la macchina, vuol dire proprio: **scrivi nel PC l'indirizzo della riga 3**. Nella lezione 02A vedrai questo ciclo all'opera, istruzione per istruzione, con un simulatore.
+
+> [!OLTRE] · SP e SR
+> Nello schema compaiono anche due registri che le slide non spiegano ancora. **SP** (*stack pointer*) indica la cima della **pila** (*stack*): servirà per le chiamate di funzione e il modello della memoria a «stack di frame». **SR** (*status register*, registro di stato) conserva informazioni sull'ultima operazione, per esempio l'esito di un **confronto**: un salto condizionato legge proprio lì se la condizione è vera.
+
+## Verso l'esame
+
+Questa lezione è di cultura generale e di vocabolario: all'esame di Programmazione I (al PC, su Moodle con CodeRunner, unico per i canali A, B e C) nessuno ti chiederà in che anno è nato l'EDVAC. Ma le idee della lezione tornano in molti punti:
+
+| Idea della lezione | Dove ritorna |
+|---|---|
+| memoria come fila di byte con indirizzi | variabili, indirizzi e puntatori (settimana 2), array (indice che parte da 0) |
+| stato della macchina che cambia istruzione dopo istruzione | esercizi d'esame sullo **stato della memoria** (esecuzione simulata a mano) |
+| programma memorizzato, istruzioni in sequenza, PC e salti | cicli `while` e `for`, e perché le regole d'esame vietano `break` (lezione 01A) |
+| $N$ bit → $2^N$ valori | tipi del C e loro limiti (laboratorio 02 «operatori e tipi, cast, limiti») |
+| determinismo | stesso input, stesso output: i test automatici dell'esame si basano su questo |
+
+> [!ESAME] Cosa fare già da questa settimana
+> - Il laboratorio parte il 5/10 (turno 2, matricola pari, lunedì 14–17) e il 6/10 (turno 1, matricola dispari, martedì 14–17), al laboratorio Turing: il primo laboratorio è su riga di comando e compilatore (vedi la lezione 02A).
+> - Ripassa la traccia a mano della lezione 01A: è la stessa abilità che servirà per lo stato della memoria.
+
+## Esercizi
+
+::: esercizio base Quante informazioni con N bit
+Quante informazioni diverse si rappresentano con 1, 4, 10, 16 e 32 bit?
+::: soluzione
+Con $N$ bit ci sono $2^N$ combinazioni:
+
+| Bit | Informazioni |
+|---|---|
+| 1 | $2^1 = 2$ |
+| 4 | $2^4 = 16$ |
+| 10 | $2^{10} = 1024$ |
+| 16 | $2^{16} = 65\,536$ |
+| 32 | $2^{32} = 4\,294\,967\,296$ (circa 4,3 miliardi) |
+
+Il 1024 di 10 bit spiega perché «1 KB» a volte vale 1024 byte invece di 1000.
+:::
+
+::: esercizio base Quanti bit servono
+Quanti bit servono al minimo per dare un codice diverso a: (a) le 26 lettere minuscole; (b) 100 colori; (c) 1000 studenti?
+::: soluzione
+Cerco la **più piccola** potenza di 2 che sia almeno grande quanto il numero di oggetti.
+
+(a) $2^4 = 16 < 26 \le 32 = 2^5$: servono **5 bit**.
+
+(b) $2^6 = 64 < 100 \le 128 = 2^7$: servono **7 bit**.
+
+(c) $2^9 = 512 < 1000 \le 1024 = 2^{10}$: servono **10 bit**.
+
+Con un bit in meno le combinazioni non bastano; con uno in più ne avanzano, ma è uno spreco.
+:::
+
+::: esercizio base La memoria dell'EDVAC
+L'EDVAC aveva 1024 parole da 44 bit. Quanti bit sono in tutto? Quanti byte? Quanti KB, con 1 KB = 1024 byte?
+::: soluzione
+- Bit: $1024 \cdot 44 = 45\,056$.
+- Byte: $45\,056 : 8 = 5632$.
+- KB: $5632 : 1024 = 5{,}5$.
+
+Sono i «circa 5,5 KB» della slide 13. Un telefono di oggi ha qualche miliardo di byte di RAM.
+:::
+
+::: esercizio medio Indirizzi e parole
+Nel modello della slide 17 (programma agli indirizzi 0–255, dati agli indirizzi 256–1023, parole da 32 bit):
+(a) a che indirizzo comincia la parola numero $k$ dell'area dati, contando da $k = 0$?
+(b) E la decima parola dei dati?
+(c) In quale parola dell'area dati si trova il byte 1000?
+::: soluzione
+(a) Ogni parola occupa 4 byte e i dati cominciano a 256, quindi la parola $k$ comincia a $256 + 4k$.
+
+(b) La decima parola ha $k = 9$ (si parte da 0): $256 + 4 \cdot 9 = 256 + 36 = 292$. Occupa i byte 292, 293, 294, 295.
+
+(c) Risolvo $256 + 4k \le 1000 < 256 + 4(k + 1)$: $1000 - 256 = 744$ e $744 : 4 = 186$ esatto. Quindi il byte 1000 è il **primo** byte della parola $k = 186$ (byte 1000–1003).
+:::
+
+::: esercizio medio Cablato o programmabile?
+Per ciascuno, di' se è uno strumento in cui la logica la mette l'utente, una macchina cablata o una macchina programmabile, e perché: abaco; Pascalina; ENIAC; EDVAC; il tuo computer.
+::: soluzione
+- **Abaco**: la logica e la correttezza dipendono interamente dall'utente; l'abaco tiene solo traccia dei numeri.
+- **Pascalina**: macchina **cablata**: fa addizioni (con il riporto automatico) e basta.
+- **ENIAC**: **programmabile**, ma il programma si realizza ricollegando cavi e interruttori.
+- **EDVAC**: programmabile con **programma memorizzato**: il programma sta in memoria come un dato.
+- **Il tuo computer**: architettura di Von Neumann, come l'EDVAC: esegue qualsiasi programma tu gli carichi in memoria.
+:::
+
+::: esercizio medio Il PC durante la versione V6
+Riprendi la versione V6 della moltiplicazione (lezione 01A, righe [1]–[8]) e immagina che ogni riga sia un'istruzione da 4 byte, con la riga 1 all'indirizzo 0. Scrivi la sequenza dei valori del PC eseguendo l'algoritmo con $n = 1$.
+::: soluzione
+La riga $r$ sta all'indirizzo $4(r - 1)$: riga 1 → 0, riga 2 → 4, riga 3 → 8, riga 4 → 12, riga 5 → 16, riga 6 → 20, riga 7 → 24, riga 8 → 28.
+
+Con $n = 1$ le righe eseguite sono: 1, 2, 3 (controllo: $0 = 1$? no), 4, 5, 6 (salta a 3), 3 (controllo: $1 = 1$? sì, salta a 7), 7, 8.
+
+Valori del PC: **0, 4, 8, 12, 16, 20, 8, 24, 28**. Il PC non cresce sempre di 4: dopo la riga 6 **torna** a 8 (salto non condizionato), dopo il secondo controllo **salta** a 24 (salto condizionato).
+:::
+
+::: esercizio base Da binario a decimale
+Converti in decimale i byte $00000101$, $00001100$, $10000000$ e $11111111$.
+::: soluzione
+Valori delle posizioni da destra a sinistra: 1, 2, 4, 8, 16, 32, 64, 128.
+
+- $00000101 = 4 + 1 = 5$
+- $00001100 = 8 + 4 = 12$
+- $10000000 = 128$
+- $11111111 = 255$, il valore più grande di un byte (256 valori, da 0 a 255).
+:::
+
+::: esercizio difficile Il programma è un dato
+Spiega con parole tue perché l'idea dell'EDVAC di memorizzare il programma «come un dato» rende possibile un programma che **scrive altri programmi**, come il compilatore che userai dalla prossima lezione.
+::: soluzione
+Se il programma è un insieme di numeri in memoria, allora un altro programma può **produrre quei numeri** come suo risultato, esattamente come produce qualsiasi altro dato. Un compilatore fa proprio questo: legge un testo (il programma in C, che per lui è un dato di input) e scrive in un file le istruzioni macchina corrispondenti (il suo output). Poi il sistema operativo carica quelle istruzioni in memoria e la CPU le esegue. Con ENIAC sarebbe stato impossibile: il programma erano cavi e interruttori, non numeri che un altro programma potesse scrivere.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa fa davvero un abaco? Che cosa aggiunge la Pascalina?
+L'abaco tiene traccia dei calcoli già fatti, ma la logica e la correttezza dell'operazione dipendono da chi lo usa. La Pascalina fa il riporto dell'addizione da sola, con una leva tra un ingranaggio e il successivo.
+:::
+
+::: domanda Che cos'è un calcolatore cablato e qual è il suo limite?
+Una macchina la cui logica di funzionamento è costruita nell'hardware: sa fare un insieme limitato di operazioni (tipicamente addizione e sottrazione) e per aggiungere funzioni nuove, come confronti o salti condizionati, bisogna modificare o riprogettare l'hardware.
+:::
+
+::: domanda Qual è l'idea che porta al calcolatore programmabile?
+Separare le operazioni elementari che l'hardware sa fare dall'ordine in cui eseguirle, combinarle e ripeterle per ottenere operazioni complesse, e codificare ordine, ripetizioni e argomenti con numeri. Così la stessa macchina fa compiti diversi cambiando la sequenza di istruzioni, senza toccare l'hardware.
+:::
+
+::: domanda Che cosa hanno fatto Babbage e Turing?
+Babbage descrisse intorno al 1840 la macchina analitica, primo esempio di macchina programmabile, con dati e istruzioni su schede perforate e salti condizionati. Turing nel 1936 introdusse la macchina universale, un modello astratto di calcolatore usato per studiare quali funzioni si possono calcolare in modo automatico.
+:::
+
+::: domanda Come si programmava l'ENIAC e che cosa cambia con l'EDVAC?
+L'ENIAC si programmava configurando interruttori e collegando blocchi con dei cavi: cambiare programma era una riconfigurazione manuale. L'EDVAC introduce il programma memorizzato nella memoria centrale, la memoria unificata per istruzioni e dati e la rappresentazione binaria: il programma si memorizza e si modifica come un dato.
+:::
+
+::: domanda Perché i calcolatori usano il binario?
+Perché un bit ha solo due stati (acceso/spento, 1/0), facili da realizzare con relè, valvole o transistor; distinguere due livelli è molto più semplice e affidabile che distinguerne dieci.
+:::
+
+::: domanda Quante informazioni si rappresentano con N bit? Che cos'è un byte?
+$2^N$. Un byte è un gruppo di 8 bit e rappresenta $2^8 = 256$ informazioni, per esempio i numeri da 0 a 255.
+:::
+
+::: domanda Quali sono i componenti dell'architettura di Von Neumann?
+La CPU (unità di controllo, ALU e registri), la memoria principale (RAM) che contiene sia i dati sia le istruzioni, la memoria secondaria (storage), tutte collegate dal bus di sistema.
+:::
+
+::: domanda Perché si dice «di Von Neumann» e quale nome sarebbe più corretto?
+Perché John von Neumann, consulente del progetto, fu il primo a descriverla e pubblicarla nel 1945. Sarebbe più corretto dire «architettura EDVAC».
+:::
+
+::: domanda Come vede la memoria la CPU? Che cos'è una parola?
+Come una sequenza di byte, ognuno con un indirizzo; il byte è l'unità base di indirizzamento. Una parola è un gruppo di byte (16, 32 o 64 bit) su cui il processore lavora in un colpo solo, perché un byte da solo non basta per i numeri dei calcoli.
+:::
+
+::: domanda Che cosa fanno il program counter e l'instruction register?
+Il PC contiene l'indirizzo della prossima istruzione: di solito viene incrementato, oppure modificato per fare un salto. L'IR contiene l'istruzione in esecuzione, appena caricata dalla memoria.
+:::
+
+::: domanda Che cosa vuol dire che la macchina è deterministica?
+Che, fissati il programma e lo stato iniziale, l'esecuzione produce sempre lo stesso stato finale.
+:::
+
+## Glossario
+
+```glossario
+Calcolatore cablato | Macchina con la logica di funzionamento costruita nell'hardware (hardwired): fa solo le operazioni previste.
+Calcolatore programmabile | La stessa macchina esegue compiti diversi cambiando la sequenza di istruzioni, senza modificare l'hardware.
+Macchina analitica | Macchina programmabile descritta da Babbage intorno al 1840: schede perforate, salti condizionati.
+Macchina universale | Modello astratto di calcolatore introdotto da Turing nel 1936 per studiare che cosa è calcolabile.
+Turing-completo | Capace di calcolare tutto ciò che calcola una macchina universale di Turing.
+ENIAC | Primo computer general purpose (1943–1946): numeri decimali, programmato con cavi e interruttori.
+EDVAC | Progettato nel 1944: programma memorizzato, memoria unificata per istruzioni e dati, numeri binari.
+Bit | L'unità minima di informazione: due stati, 0 o 1. Simbolo b.
+Byte | 8 bit, 256 valori possibili. Simbolo B. È l'unità base di indirizzamento della memoria.
+Parola (word) | Gruppo di 16, 32 o 64 bit su cui il processore lavora in un colpo solo.
+Indirizzo | Numero che identifica un byte della memoria.
+CPU | Unità centrale di elaborazione: unità di controllo, ALU e registri.
+Unità di controllo | Parte della CPU che preleva e decodifica le istruzioni e pilota gli altri componenti.
+ALU | Unità aritmetico-logica: fa somme, confronti e altre operazioni elementari sui registri.
+Registro | Piccola cella di memoria dentro la CPU (R0, R1, PC, IR, SP, SR…).
+Program counter (PC) | Registro con l'indirizzo della prossima istruzione.
+Instruction register (IR) | Registro con l'istruzione in esecuzione.
+Bus di sistema | Collegamento tra CPU, memoria principale e memoria secondaria.
+RAM | Memoria principale: veloce, contiene programma e dati durante l'esecuzione.
+Sistema operativo | Il programma di controllo (un tempo «monitor») che carica programmi e dati in memoria.
+Stato della macchina | L'insieme dei valori in memoria e nei registri in un certo istante.
+Deterministico | Stesso programma e stesso stato iniziale danno sempre lo stesso stato finale.
+```
+
+## Checklist
+
+```checklist
+- So spiegare la differenza tra abaco, Pascalina e calcolatore cablato.
+- So spiegare con parole mie che cos'è un calcolatore programmabile e perché la moltiplicazione della lezione 01A ne è un esempio.
+- So dire che cosa hanno fatto Babbage e Turing.
+- So elencare le tre idee dell'EDVAC e perché «il programma è un dato» è così importante.
+- So quante informazioni rappresentano N bit e che cos'è un byte.
+- So disegnare lo schema di Von Neumann con CPU (controllo, ALU, registri), RAM, memoria secondaria e bus.
+- So che cos'è un indirizzo, perché si parte da 0 e che cos'è una parola da 32 bit.
+- So descrivere il ciclo prelievo, decodifica, esecuzione e il ruolo di PC e IR.
+- So che cosa vuol dire che la macchina è deterministica.
+```
+
+## Fonti
+
+- **Slide della lezione**: «Storia e principi del calcolo automatico. Storia e architettura dei calcolatori dalle macchine cablate alla macchina di Von Neumann» (01B_architettura), Programmazione I – Teoria, canale B, A.A. 2026/27, 19 pagine; il numero di slide è accanto a ogni titolo.
+- **Canali A e C**: deck «Architettura del computer» del canale A e lezione 01 «Introduzione» del canale C sulle pagine Moodle 2026/27 ([canale A](https://informatica.i-learn.unito.it/course/view.php?id=3701), [canale C](https://informatica.i-learn.unito.it/course/view.php?id=3767)), consultate il 30/09/2026.
+- **Laboratori e orari**: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+- Le parti **«Oltre le slide»** (Ada Lovelace, Turing-completezza, binario, RAM e disco, SP e SR, ciclo della CPU) e gli esercizi sono aggiunte di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/lezioni/02A_da_assembly_a_c.md -->
+> File: `contesto_ai/PROG1/lezioni/02A_da_assembly_a_c.md`
+
+```yaml
+corso: PROG1
+lezione: 02A
+titolo: Dal linguaggio macchina al C
+data: 2026-09-30
+docenti: Elvio Amparore
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 02A
+descrizione: >-
+  Appunti della lezione 02A di Programmazione I (canale B): linguaggio macchina e assembly, addizione e moltiplicazione
+  in assembly con un simulatore della macchina di Von Neumann, FORTRAN e linguaggi di alto livello, storia e
+  caratteristiche del C, il primo programma, printf e sequenze di escape, sintassi, identificatori, compilazione con
+  gcc, errori di compilazione, a runtime e logici.
+lede: >-
+  Dai bit nei registri al primo programma in C. Prima si programma la macchina di Von Neumann in assembly, istruzione
+  per istruzione, e si capisce perché è faticoso; poi si passa ai linguaggi di alto livello, dal FORTRAN al C. Infine la
+  «radiografia» del primo programma C, le regole di sintassi e il percorso dal file sorgente all'eseguibile con gcc,
+  con i messaggi d'errore veri del compilatore.
+materiale: slide
+scheda:
+  Slide: 02A_da_assembly_a_c · 50 pagine
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 90–120 minuti
+fonte: >-
+  Slide «Dal linguaggio macchina al C» (02A_da_assembly_a_c), Programmazione I – Teoria, canale B, A.A. 2026/27
+file_en: 02A_from_assembly_to_c.html
+appunti_html: appunti/PROG1/02A_da_assembly_a_c.html
+genera_html: true
+```
+
+## In breve
+
+- Il **linguaggio macchina** è fatto di numeri (sequenze di bit) che il processore esegue direttamente; ogni architettura ha il suo *instruction set*, quindi **non è portabile**.
+- L'**assembly** scrive le stesse istruzioni con nomi leggibili (`LOAD`, `ADD`, `STORE`…); un programma chiamato **assembler** lo traduce in linguaggio macchina.
+- Nell'esempio delle slide un'addizione richiede **4 istruzioni** e la moltiplicazione della lezione 01A ne richiede **10**, con `CMP` e i salti `JMPEQ` e `JMP`.
+- Programmare in assembly è lungo, facile da sbagliare, legato alla CPU: dagli anni '50 nascono i **linguaggi di alto livello**, a partire dal **FORTRAN**, che un **compilatore** traduce per la macchina.
+- Il **C** nasce nel 1972 (Dennis Ritchie, Bell Labs) per riscrivere Unix: efficiente e **portabile**. È **compilato**, **imperativo**, **strutturato** e **tipizzato**.
+- Il primo programma: commenti `//`, direttiva `#include <stdio.h>`, la funzione `main`, un blocco tra graffe, `printf` con le **sequenze di escape** (`\n`, `\t`, `\\`, `\"`, `\0`); ogni istruzione finisce con `;`.
+- Si compila con `gcc -Wall -Werror sorgente.c -o eseguibile`: **preprocessore**, **compilatore**, **assemblatore**, **linker**.
+- Tre tipi di errore: di **compilazione** (sintassi), a **runtime** (per esempio divisione per zero) e **logici** (il programma gira ma fa la cosa sbagliata).
+
+> [!CANALI] Sei del canale A o C?
+> **Canale A (Fiandrotti):** il deck «Dal linguaggio assembly al C» (52 slide) ha gli stessi contenuti. Aggiunge un esempio che carica un solo dato dalla memoria (slide 5) e la stessa moltiplicazione nel linguaggio **BASIC**, scritta con i numeri di riga e i `GOTO`, come esempio di linguaggio **non strutturato** (slide 23).
+>
+> **Canale C (Mazzei):** assembly, moltiplicazione in assembly e FORTRAN sono alla fine della lezione 01 «Introduzione» (slide 67–83), con istruzioni leggermente diverse (per esempio `JEQ` al posto di `JMPEQ`). La parte sul C (`main`, `printf`, gcc) è nella lezione 02 «Il C», non ancora pubblicata al 30/09/2026.
+>
+> L'esame è unico per i tre canali.
+
+## Linguaggio macchina e assembly (slide 2–4)
+
+I primi computer si programmavano direttamente in **linguaggio macchina**, cambiando i bit dei registri con **interruttori** o **schede perforate**. È un po' come l'esecuzione passo per passo che si usa ancora oggi per controllare l'hardware mentre lo si progetta.
+
+> [!DEF] Linguaggio macchina · slide 3
+> È il linguaggio **direttamente eseguibile dal processore**:
+> - è fatto di **codici numerici** (sequenze di bit) che identificano istruzioni e operandi;
+> - ogni architettura definisce il proprio insieme di istruzioni macchina (*instruction set*);
+> - quindi **dipende dal processore** e **non è portabile** tra architetture diverse.
+
+> [!DEF] Linguaggio assembly · slide 3
+> È una **rappresentazione testuale e simbolica** del linguaggio macchina:
+> - usa **mnemonici** come `mov`, `add`, `ldr` al posto dei codici numerici;
+> - viene tradotto in linguaggio macchina da un programma chiamato **assembler**;
+> - è più leggibile per chi programma, ma resta **strettamente legato all'architettura** hardware.
+
+In pratica ogni riga di assembly corrisponde a **una** istruzione macchina: l'assembler sostituisce ogni nome con il suo codice numerico (slide 4).
+
+| Assembly (per le persone) | Linguaggio macchina (per la CPU) |
+|---|---|
+| `LOAD, R0, @A` | `0010000110010000` |
+| `LOAD, R1, @B` | `0010010110010010` |
+| `ADD, R0, R1` | `0100000100000000` |
+| `STORE, R0, @A` | `0011000100000000` |
+
+> [!TRAPPOLA] Portabile non vuol dire «che funziona ovunque così com'è»
+> Un programma in linguaggio macchina scritto per una CPU non gira su una CPU con un *instruction set* diverso: va **riscritto**. È il problema che i linguaggi di alto livello risolvono (più avanti in questa lezione).
+
+## L'addizione in assembly, passo per passo (slide 5–14)
+
+**Il problema**: sommare due numeri interi che stanno in memoria agli indirizzi $A = 400$ e $B = 404$, e mettere il risultato nella cella all'indirizzo $A$. Il linguaggio è un assembly di tipo RISC, come quello del processore MIPS32. Il programma fa quattro cose:
+
+1. definisce gli indirizzi `A` e `B`;
+2. carica i due numeri nei registri `R0` e `R1` della CPU, con due istruzioni `LOAD`;
+3. li somma con un'istruzione `ADD` tra i registri `R0` e `R1`;
+4. copia il risultato dal registro `R0` all'indirizzo `A` della memoria, con un'istruzione `STORE`.
+
+```text
+ADDR  A = 400        ; definisce l'indirizzo A
+ADDR  B = 404        ; definisce l'indirizzo B
+LOAD,  R0, @A        ; carica in R0 il numero all'indirizzo A
+LOAD,  R1, @B        ; carica in R1 il numero all'indirizzo B
+ADD,   R0, R1        ; R0 ← R0 + R1
+STORE, R0, @A        ; copia R0 all'indirizzo A
+```
+
+Il simbolo `@A` vuol dire «**il contenuto della memoria all'indirizzo A**», non il numero 400. Le righe `ADDR` non diventano istruzioni: servono solo a dare un nome agli indirizzi.
+
+### Che cosa succede nella macchina (slide 7–14)
+
+In memoria il programma occupa i byte 0–15 (4 istruzioni da 4 byte), i dati stanno a 400 (il numero 12) e a 404 (il numero $-8$). Le slide seguono l'esecuzione con due passi per istruzione: prima il **prelievo** («carica la prossima istruzione leggendo il program counter nell'instruction register»), poi l'**esecuzione** («decodifica IR ed esegue l'istruzione elementare»).
+
+| Istruzione | PC | IR | R0 | R1 | memoria[400] |
+|---|--:|---|--:|--:|--:|
+| (inizio) | 0 | — | — | — | 12 |
+| `LOAD, R0, @A` | 0 | LOAD | **12** | — | 12 |
+| `LOAD, R1, @B` | 4 | LOAD | 12 | **−8** | 12 |
+| `ADD, R0, R1` | 8 | ADD | **4** | −8 | 12 |
+| `STORE, R0, @A` | 12 | STORE | 4 | −8 | **4** |
+
+Il PC avanza di 4 in 4 (0, 4, 8, 12), perché ogni istruzione occupa una parola da 32 bit. Alla fine all'indirizzo 400 non c'è più 12 ma $4 = 12 + (-8)$: il risultato è nello **stato finale della memoria**, come diceva la lezione 01B.
+
+```widget macchina
+programma: addizione
+titolo: Simulatore della macchina di Von Neumann: premi «Passo» e guarda PC, IR, registri e memoria
+```
+
+> [!IDEA] · perché passare dai registri
+> La ALU lavora solo sui **registri** (lezione 01B): non sa sommare direttamente due celle di memoria. Per questo servono `LOAD` (memoria → registro), `ADD` (registro + registro) e `STORE` (registro → memoria).
+
+## La moltiplicazione in assembly (slide 15–16)
+
+Ora la stessa **moltiplicazione per somme ripetute** della lezione 01A. I numeri stanno agli indirizzi simbolici `m` e `n`; il risultato va all'indirizzo `m`. Si usano l'accumulatore $s$ (nel registro `R0`) e il contatore $i$ (in `R1`).
+
+```text
+ 1.  LOAD,  R0, 0         // inizializza R0 come accumulatore s
+ 2.  LOAD,  R1, 0         // inizializza R1 come contatore i
+ 3.  LOAD,  R2, @m        // carica il valore all'indirizzo m in R2
+ 4.  LOAD,  R3, @n        // carica il valore all'indirizzo n in R3
+ 5.  CMP    R1, R3        // confronta R1 ed R3, cioè i ed n
+ 6.  JMPEQ  <riga 10>     // se i = n salta alla riga 10, altrimenti continua
+ 7.  ADD,   R0, R2        // R0 ← R0 + R2, cioè s ← s + m
+ 8.  INC,   R1            // R1 ← R1 + 1, cioè i ← i + 1
+ 9.  JMP    <riga 5>      // salto incondizionato alla riga 5
+10.  STORE, R0, @m        // salva R0, cioè il risultato s, all'indirizzo di m
+```
+
+Le istruzioni nuove:
+
+| Istruzione | Che cosa fa |
+|---|---|
+| `LOAD, R0, 0` | mette nel registro il **numero** 0 (senza `@`: è un valore, non un indirizzo) |
+| `CMP R1, R3` | **confronta** i due registri; l'esito (uguali o no) resta nella CPU, nel registro di stato |
+| `JMPEQ <riga 10>` | **salto condizionato**: salta alla riga 10 solo se l'ultimo confronto ha dato «uguali» (*jump if equal*) |
+| `INC R1` | aggiunge 1 al registro (*increment*) |
+| `JMP <riga 5>` | **salto incondizionato**: salta sempre alla riga 5 |
+
+È **esattamente** la versione V6 della lezione 01A, riga per riga:
+
+| Lezione 01A, versione V6 | Assembly |
+|---|---|
+| `s ← 0, i ← 0` | righe 1–2 |
+| (i dati $m$, $n$ sono già noti) | righe 3–4: si caricano nei registri |
+| `se i = n allora salta alla riga 7` | righe 5–6: `CMP` + `JMPEQ` (salto condizionato) |
+| `s ← s + m` | riga 7: `ADD` |
+| `i ← i + 1` | riga 8: `INC` |
+| `salta alla riga 3` | riga 9: `JMP` (salto non condizionato) |
+| `Fine` | riga 10: il risultato va in memoria |
+
+> [!ESAME] Prima verificare, poi eseguire
+> Anche qui il confronto (riga 5) viene **prima** della somma (riga 7): con $n = 0$ si salta subito alla riga 10 e il risultato è 0. È il principio della lezione 01A, «tipica fonte di errori, anche in sede d'esame».
+
+Prova il simulatore con $m = 4$, $n = 3$ e poi con $n = 0$: conta quante volte viene eseguita la riga 5.
+
+```widget macchina
+programma: moltiplicazione
+m: 4
+n: 3
+titolo: La moltiplicazione per somme ripetute, eseguita dalla macchina
+```
+
+> [!NOTA] Due piccole differenze nella slide 20
+> Nella slide 20 lo stesso programma compare con `ADD, R1, 1` al posto di `INC, R1` (fa la stessa cosa: aggiunge 1) e con `STORE, R0, A` alla riga 10.
+
+## Verso i linguaggi di alto livello (slide 17–22)
+
+### Perché l'assembly non basta (slide 17)
+
+- È **faticoso** e **facile sbagliare**: 4 righe per un'addizione, 10 per una moltiplicazione.
+- Richiede di **conoscere l'architettura della CPU** (registri, istruzioni).
+- **Non si vede la struttura** del codice né la logica: dove comincia e dove finisce la ripetizione?
+- Il codice scritto per la CPU X va **riscritto da capo** per la CPU Y, se i linguaggi macchina sono diversi.
+
+Per questo, dagli anni '50, si sviluppano **linguaggi di programmazione** con istruzioni di **livello semantico** più vicino al linguaggio **matematico e naturale**, che permettono di **astrarre** il programma dalle caratteristiche dell'hardware.
+
+### Il FORTRAN (slide 18–20)
+
+All'inizio degli anni '50 IBM progetta il calcolatore **modello 704** per i calcoli scientifici, con due requisiti:
+
+- gli scienziati devono potersi concentrare sulla **programmazione di formule**, ignorando i dettagli della CPU;
+- i programmi devono potersi **trasportare** sui futuri modelli IBM **senza riscriverli** da capo.
+
+Per il 704 nasce il **FORTRAN** (*FORmula TRANslator*):
+
+- un **compilatore** traduce ogni istruzione FORTRAN in **una o più** istruzioni assembly della macchina usata;
+- se cambia la macchina, **basta ricompilare** il programma;
+- insieme a LISP, ALGOL e COBOL è tra i capostipiti dei **linguaggi di terza generazione**, la famiglia del C originario che studierai in questo corso;
+- le versioni moderne (FORTRAN 90) hanno costrutti come `if` e `while`.
+
+La moltiplicazione in FORTRAN (slide 20):
+
+```text
+Program Hello
+INTEGER :: m
+INTEGER :: n
+INTEGER :: s
+INTEGER :: i
+
+WRITE(*,*) 'Inserisci m:'
+READ(*,*) m
+WRITE(*,*) 'Inserisci n:'
+READ(*,*) n
+
+s = 0
+i = 0
+do while (i<n)
+    s = s + m
+    i = i + 1
+end do
+
+WRITE(*,*) "Risultato :",s
+End Program Hello
+```
+
+Le 10 righe di assembly diventano 6 righe leggibili (da `s = 0` a `end do`): la ripetizione è un blocco `do while … end do` e **i salti non si vedono più**, li scrive il compilatore. In più il programma chiede $m$ e $n$ a chi lo usa (`READ`) e stampa il risultato (`WRITE`).
+
+### L'albero dei linguaggi (slide 21–22)
+
+La slide 21 mostra come i linguaggi discendono uno dall'altro, dal 1956 al 2004: dal **Fortran I** e da **ALGOL 60** nasce, tra gli altri, il **C** (versione K&R, fine anni '70), da cui discendono **C++**, e poi **Java**, **C#**, e in parte **Python**. Imparare il C vuol dire imparare la base di molti linguaggi usati oggi.
+
+Punti chiave della prima parte (slide 22):
+
+- abbiamo scritto un semplice algoritmo per moltiplicare interi come **somma ripetuta**;
+- si può programmare la macchina **a basso livello** (assembly), ma scrivere programmi è **lungo e difficile**;
+- i linguaggi di **alto livello** come il C **nascondono** molti dettagli dell'hardware sottostante.
+
+> [!OLTRE] · che cosa scrive davvero il compilatore
+> Ecco la moltiplicazione in C e un pezzo dell'assembly x86-64 che gcc ne ricava con `gcc -S` (compilatore gcc 16.1, senza ottimizzazioni):
+>
+> ```c
+> while (i < n) {
+>     s = s + m;
+>     i = i + 1;
+> }
+> ```
+>
+> ```text
+>         jmp  .L2                      ; salta subito al controllo
+> .L3:    mov  eax, DWORD PTR -12[rbp]  ; carica m (LOAD)
+>         add  DWORD PTR -4[rbp], eax   ; s ← s + m (ADD)
+>         add  DWORD PTR -8[rbp], 1     ; i ← i + 1 (INC)
+> .L2:    mov  eax, DWORD PTR -8[rbp]   ; carica i
+>         cmp  eax, DWORD PTR -16[rbp]  ; confronta i con n (CMP)
+>         jl   .L3                      ; se i < n torna al corpo (salto condizionato)
+> ```
+>
+> Le istruzioni hanno nomi diversi, ma l'idea è quella delle slide: caricare, sommare, confrontare, saltare. E il compilatore rispetta «prima verificare, poi eseguire»: la prima istruzione salta al controllo.
+
+## Il linguaggio C: un po' di storia (slide 23–26)
+
+- **1969**: Ken Thompson (Bell Labs, AT&T) sviluppa il sistema operativo **Unix** per il minicomputer PDP-7, scritto inizialmente in **assembly**.
+- L'esperienza mostra che l'assembly rende lo sviluppo di un sistema operativo **oneroso e poco flessibile**.
+- **Dennis Ritchie** progetta allora il **linguaggio C**, pensato per unire **efficienza** e **portabilità**.
+- Unix viene riscritto progressivamente in C: si diffonde (a partire dalle università) e influenza in modo decisivo la storia dell'informatica.
+- **1972**: prima versione del C, per uso interno sui PDP-7 e PDP-11, oggi nota come **K&R C** (dalle iniziali di Kernighan e Ritchie, autori del libro che lo descrisse).
+- Alla **fine degli anni '80** il C viene **standardizzato** da ANSI e ISO (**ANSI C**, **C89**), per usarlo su hardware molto diversi.
+- Lo standard è stato aggiornato più volte: **C99, C11, C17, C23**. Il libro di testo del corso fa riferimento al **C11**.
+
+Nonostante l'età, il C è ancora centrale: è il linguaggio di riferimento per **sistemi operativi**, **compilatori**, **driver**, **librerie di basso livello**, applicazioni ad **alte prestazioni** e **sistemi embedded/IoT**. Offre un **controllo diretto** su hardware e memoria, restando molto più astratto dell'assembly.
+
+## Le caratteristiche del C (slide 27)
+
+| Il C è… | Che cosa vuol dire | Esempio |
+|---|---|---|
+| **compilato** | un **compilatore** traduce i sorgenti C nel linguaggio macchina del computer | `gcc` produce un eseguibile |
+| **imperativo** | il programma è un insieme di **istruzioni**, pensate come ordini | `s = s + m;` è un ordine: «aggiorna s» |
+| **strutturato** | il codice è organizzato in **blocchi** racchiusi da delimitatori | le graffe `{ … }` (lezione 01A, blocchi Inizio/Fine) |
+| **fortemente tipizzato** | chi programma deve **specificare il tipo** di ogni variabile | `int s = 0;` dice che `s` è un intero |
+
+## La radiografia del primo programma (slide 28–36)
+
+```c
+// Un primo programma in C
+#include <stdio.h>
+
+// La funzione "main" e' il punto di ingresso del programma
+int main(void) {
+    printf("Buongiorno dal C.\n");
+}
+// fine della funzione main
+```
+
+Compilato con `gcc -Wall -Werror` stampa `Buongiorno dal C.` e va a capo. Vediamolo pezzo per pezzo.
+
+### Commenti (slide 28)
+
+Le righe che iniziano con `//` sono **commenti**: non sono istruzioni e il compilatore le **ignora**. Servono a chi legge: un commento prima di una funzione o di un gruppo di istruzioni ne chiarisce lo **scopo** (slide 32). Il codice deve essere comprensibile per un programmatore, non solo per il compilatore.
+
+> [!OLTRE] · l'altro tipo di commento
+> Il C ha anche i commenti su più righe, tra `/*` e `*/`: `/* questo è un commento */`.
+
+### La direttiva `#include` (slide 29)
+
+- Le righe che iniziano con `#` sono **direttive per il preprocessore** (argomento che si vedrà poco qui e meglio in Programmazione II).
+- `#include <stdio.h>` **include** nel programma il file `stdio.h` (*standard input/output header*) e ne importa le definizioni.
+- I file `.h` si chiamano **file di intestazione** (*header*): contengono le **dichiarazioni** di funzioni, per esempio quelle delle librerie di sistema (`printf()` sta nella libreria C, `libc`).
+- `stdio.h` dichiara funzioni come `printf()` e `scanf()`.
+- Nelle slide a volte gli `#include` sono omessi, solo per ragioni di spazio.
+
+> [!TRAPPOLA] Senza `#include <stdio.h>`
+> Se lo dimentichi e usi `printf`, gcc 16 si ferma con un errore: `implicit declaration of function 'printf'`, e ti suggerisce `include '<stdio.h>'`.
+
+### La funzione `main` (slide 30–31)
+
+- I programmi C sono organizzati in moduli chiamati **funzioni**, che contengono le istruzioni da eseguire. Ogni funzione ha un **input** e un **output**.
+- La funzione **`main`** è **obbligatoria**: è il punto da cui **comincia l'esecuzione**.
+- `(void)` vuol dire che `main` riceve un **input vuoto**.
+- `int` vuol dire che `main` restituisce un **intero**: un codice di successo o di errore per il sistema operativo (nel corso non lo useremo). Il compilatore permette di ometterlo, ma si può scrivere esplicitamente `return 0;` prima della graffa finale.
+- Per ora tutto il codice va **dentro il `main`**.
+
+### Blocchi e programmazione strutturata (slide 32–33)
+
+- Le parentesi **graffe** `{ }` delimitano il **corpo** (*body*) della funzione, cioè un **blocco** di istruzioni. Devono essere **sempre bilanciate**: ogni `{` ha la sua `}`.
+- Un blocco è un'**unità logica** e può contenere: **dichiarazioni** di dati (le **variabili**), **comandi**, **chiamate** di altre funzioni e **altri blocchi** (annidati, sempre tra graffe).
+- Per convenzione il codice C si **indenta** con le tabulazioni (il tasto Tab).
+
+Sono i blocchi Inizio/Fine della versione V6 della lezione 01A, scritti con le graffe.
+
+### Programmare per la chiarezza (slide 34)
+
+> «Il codice è letto molto più spesso di quanto venga scritto: programmate per la chiarezza, non per la brevità.» (citazione attribuita a Donald Knuth nella slide 34)
+
+Per mantenere il codice chiaro:
+
+- **indentazione corretta**, che mostri la struttura logica;
+- **commenti significativi**, soprattutto per funzioni e parti complesse;
+- **nomi descrittivi** per variabili e funzioni, così che il codice si spieghi da solo;
+- **blocchi non troppo lunghi**: meglio spezzare in funzioni più piccole e riutilizzabili (lo vedrai più avanti).
+
+### `printf`, istruzioni e stringhe (slide 35–36)
+
+- `printf(…)` è una **chiamata di funzione** (*function call*): si chiama la funzione passandole i **parametri** di input tra parentesi.
+- Ogni istruzione (*statement*) termina con il **punto e virgola** `;`.
+- Una **stringa** è un pezzo di testo tra **doppi apici** `"…"`.
+- Dentro le stringhe possono comparire **sequenze di escape** (sequenze speciali), che cominciano con la barra rovesciata `\` (*backslash*).
+
+| Sequenza | Che cosa produce |
+|---|---|
+| `\n` | nuova riga: va a capo |
+| `\t` | tabulazione (Tab) |
+| `\\` | il carattere backslash `\` |
+| `\"` | il doppio apice `"` |
+| `\0` | il terminatore della stringa (lo userai più avanti) |
+
+Per ora `printf` si usa solo con testo tra doppi apici. Per esempio:
+
+```c
+printf("Ha detto \"ciao\"\n");     // stampa: Ha detto "ciao"
+printf("C:\\corso\\lab1\n");        // stampa: C:\corso\lab1
+printf("nome\tvoto\n");             // stampa nome e voto separati da una tabulazione
+```
+
+> [!TRAPPOLA] Il backslash da solo
+> Un `\` isolato in una stringa inizia sempre una sequenza di escape. Per stampare un backslash ne servono **due**: `\\`. E per stampare un doppio apice serve `\"`, altrimenti il compilatore crede che la stringa finisca lì.
+
+## Sintassi, identificatori e indentazione (slide 37–41)
+
+### Sintassi e token (slide 37–38)
+
+Il C va **compilato**: il codice sorgente, che è testo, viene tradotto in linguaggio macchina. Durante la compilazione l'**analizzatore lessicale** (*parser*) divide il codice in **token**, le unità sintattiche: parole chiave, identificatori, operatori, punteggiatura, stringhe, costanti. Come una lingua naturale, un linguaggio di programmazione ha una **sintassi**, più formale, con le regole per scrivere programmi corretti. Se una regola non è rispettata, il compilatore segnala un **errore di compilazione** e **non** produce il programma.
+
+Tre regole da sapere subito:
+
+1. **Ogni istruzione termina con `;`**. Errore tipico: dimenticarlo. gcc risponde `expected ';' before …`.
+2. Un'istruzione può occupare **più righe**: si può andare a capo **ovunque sia ammesso uno spazio**. Due stringhe una dopo l'altra vengono unite:
+   ```c
+   printf("Questo è un messaggio "
+          "spezzato su più righe\n");
+   ```
+3. **Non** si va a capo **dentro una stringa** senza chiuderla: errore `missing terminating " character`.
+
+### Identificatori (slide 39–40)
+
+Gli **identificatori** sono i **nomi** che dai agli elementi del programma (variabili, funzioni, costanti, tipi…), per poterli riconoscere e usare.
+
+- Maiuscole e minuscole **contano** (*case-sensitive*): `Var`, `var` e `VAR` sono tre identificatori diversi.
+- Scegli nomi **chiari**: evita nomi troppo simili tra loro o senza significato. Esempi: `somma`, `accumulatore`.
+- **Non** si possono usare le **parole chiave** del linguaggio:
+
+  `auto break case char const continue default do double else enum extern float for goto if int long register return short signed sizeof static struct switch typedef union unsigned void volatile while`
+
+- **Non** usare i nomi delle funzioni della libreria standard, come `main` e `printf` (anche se non le usi, come `sin` e `cos`), né i nomi definiti nei file di intestazione.
+
+> [!OLTRE] · quali caratteri sono ammessi
+> Un identificatore contiene **lettere**, **cifre** e il trattino basso `_`, e **non comincia con una cifra**: `x2` e `conto_totale` vanno bene, `2x` e `conto-totale` no (il trattino è il segno meno). Gli spazi non sono ammessi. Evita anche i nomi che cominciano con `_`: sono riservati in molti casi.
+
+### Indentazione (slide 41)
+
+Le istruzioni di un blocco (**non** le graffe) si scrivono **rientrate** di un numero fisso di spazi (per esempio 4) o, meglio, con il carattere Tab. L'indentazione aiuta a capire il flusso del programma, e va fatta **mentre si programma**, non dopo.
+
+```c
+if (a > 15) {
+    x = 5;
+    y = 2;
+    z = a + b;
+}
+```
+
+L'`if` arriverà nelle prossime settimane: qui conta la forma, con le tre istruzioni rientrate dentro le graffe.
+
+## Dal sorgente all'eseguibile (slide 42–45)
+
+Il percorso (slide 42): i **file sorgente** (`.c`, il codice in forma di testo; ognuno è un'**unità di compilazione**) includono i **file di intestazione** (`.h`). Preprocessore, compilatore e assemblatore trasformano ogni sorgente in un **file oggetto** (linguaggio macchina); il **collegatore** (*linker*) unisce i file oggetto in un **programma eseguibile**.
+
+Il compilatore del corso è **gcc** (la slide dice GNU C Compiler; oggi il nome è *GNU Compiler Collection*): libero, conforme agli standard, disponibile per i principali sistemi operativi, capace di produrre codice per molte architetture. È un *frontend* per un sistema di compilazione a più stadi (slide 43–44):
+
+| Stadio | Programma | Che cosa fa |
+|---|---|---|
+| 1. preprocessore | `cpp` | elabora le direttive `#include`, `#define`… e produce un sorgente intermedio |
+| 2. compilatore | `cc` | traduce il C in assembly, con opzioni per ottimizzare velocità o dimensione, oppure senza ottimizzazione per il debug (opzione `-g`) |
+| 3. assemblatore | `as` | produce il file oggetto `.o` in linguaggio macchina |
+| 4. linker | `ld` | unisce i file oggetto dei sorgenti C, altri file oggetto (anche da altri linguaggi) e le **librerie** (input/output, matematica, rete…) in un eseguibile |
+
+### Compilare ed eseguire (slide 45)
+
+Per ora si compila così:
+
+```text
+Unix:     gcc -Wall -Werror sorgente.c -o eseguibile
+Windows:  gcc -Wall -Werror sorgente.c -o eseguibile.exe
+```
+
+- `-Wall` attiva gli **avvisi** (*warning*) più utili;
+- `-Werror` trasforma ogni avviso in **errore**: con un solo avviso il programma non viene prodotto;
+- `-o eseguibile` sceglie il **nome** del file prodotto.
+
+Poi si esegue: `./buongiorno` nella shell di Unix, `buongiorno` nel Prompt dei comandi di Windows.
+
+> [!ESAME] Le opzioni dell'esame
+> `-Wall -Werror` sono le opzioni usate all'esame negli anni scorsi: allenati da subito così. Un programma che non compila non passa nessun test.
+
+## Errori di compilazione, a runtime e logici (slide 46–48)
+
+Un programma può **compilare** senza errori di sintassi e contenere lo stesso errori che si vedono solo **durante l'esecuzione** (*runtime*). Le cause possono essere:
+
+- una **progettazione sbagliata** dell'algoritmo, per esempio eseguire un ciclo **prima** di verificarne la condizione di terminazione (è il bug della versione V2 della lezione 01A);
+- una **realizzazione sbagliata** del programma, per esempio una divisione per zero o un accesso non valido alla memoria.
+
+| Tipo | Quando si vede | Esempio |
+|---|---|---|
+| **di compilazione** | subito, lo segnala il compilatore | manca un `;`, stringa non chiusa |
+| **a runtime** | durante l'esecuzione | divisione per zero |
+| **logico** | mai da solo: il programma gira ma fa la cosa sbagliata | somma da 0 a $n - 1$ invece che da 1 a $n$ |
+
+### Un errore di compilazione (slide 47)
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Buongiorno dal C.\n")
+}
+```
+
+Manca il `;` alla riga 4. gcc 16.1 risponde così (verificato):
+
+```text
+manca.c:4:34: error: expected ';' before '}' token
+```
+
+I numeri `4:34` sono **riga** e **colonna**: il compilatore dice dove si è accorto del problema. A volte è la riga **dopo** l'errore vero, perché se ne accorge solo quando trova il simbolo successivo (qui la `}` della riga 5): guarda sempre anche la riga prima.
+
+### Un errore a runtime (slide 48)
+
+```c
+#include <stdio.h>
+int main(void) {
+    int x = 5;
+    int y = 0;
+    printf("5/2 uguale a %d\n", x/y);
+}
+```
+
+Il programma **compila senza errori** anche con `-Wall -Werror`, ma all'esecuzione divide per zero. Nella slide, su Linux, il programma si interrompe con il messaggio `Eccezione in virgola mobile` (anche se la divisione è tra interi: il nome del segnale è storico). Su Windows il programma si interrompe in modo anomalo senza stampare il risultato. Il `%d` dentro la stringa serve a stampare un numero intero: lo vedrai presto.
+
+> [!TRAPPOLA] «Compila» non vuol dire «funziona»
+> Il compilatore controlla la **sintassi**, non la **logica**. Dopo averlo compilato, un programma va **provato** (test), anche sui casi limite come $n = 0$.
+
+## Come si sviluppa un programma C (slide 49–50)
+
+1. **Scrivi o modifica** il sorgente con un editor di testo (per esempio Notepad++).
+2. **Salva** il file con estensione `.c` in una cartella.
+3. **Compila** con gcc.
+4. **Analizza e correggi** gli errori di sintassi: **leggi con attenzione che cosa dice il compilatore**.
+5. **Esegui** il programma.
+6. **Verifica** che si comporti in modo corretto (test).
+7. Se qualcosa non va, **correggi** e ricomincia.
+
+Prerequisiti: saper scrivere e gestire file di testo, muoversi tra le cartelle, usare la **linea di comando** (shell) per le cose essenziali. Sul tuo PC dovrai installare un ambiente con il compilatore gcc (se ne occupano i laboratori). Per iniziare senza installare niente c'è l'ambiente online [pythontutor.com/c.html](https://pythontutor.com/c.html#mode=edit), che mostra anche lo stato della memoria passo per passo.
+
+## Verso l'esame
+
+L'esame di Programmazione I è al PC su Moodle, con esercizi in C corretti anche da **test automatici** (CodeRunner), comune ai canali A, B e C. Questa lezione ti dà gli strumenti di base:
+
+- **compilare sempre con `-Wall -Werror`**, come all'esame: anche un solo avviso blocca la compilazione;
+- **leggere i messaggi del compilatore**: riga, colonna e descrizione (`expected ';'`, `missing terminating " character`, `implicit declaration of function`);
+- all'esame si scrive in un **editor di testo semplice**, senza IDE né completamento automatico: esercitati così, anche con Notepad++;
+- **provare** i programmi su più casi, compresi quelli limite: i test automatici lo faranno;
+- il modello «istruzione dopo istruzione» dell'assembly è la base degli esercizi sullo **stato della memoria**.
+
+> [!ESAME] Cosa fare già da questa settimana
+> - Primo laboratorio (Lab01, riga di comando e compilatore): turno 2 (matricola pari) lunedì 5/10, turno 1 (matricola dispari) martedì 6/10, 14–17, laboratorio Turing.
+> - Copia il programma «Buongiorno dal C.», compilalo con `gcc -Wall -Werror` e poi **rompilo di proposito** (togli un `;`, una graffa, una virgoletta) per imparare a riconoscere i messaggi d'errore.
+
+## Esercizi
+
+::: esercizio base Traccia dell'addizione con altri dati
+Esegui a mano il programma dell'addizione (slide 5–14) con 7 all'indirizzo $A = 400$ e 5 all'indirizzo $B = 404$. Scrivi dopo ogni istruzione il PC, R0, R1 e il contenuto dell'indirizzo 400. Controlla con il simulatore.
+::: soluzione
+| Istruzione | PC | R0 | R1 | memoria[400] |
+|---|--:|--:|--:|--:|
+| `LOAD, R0, @A` | 0 | 7 | — | 7 |
+| `LOAD, R1, @B` | 4 | 7 | 5 | 7 |
+| `ADD, R0, R1` | 8 | 12 | 5 | 7 |
+| `STORE, R0, @A` | 12 | 12 | 5 | **12** |
+
+Dopo l'ultima istruzione il PC vale 16 e il programma è finito: all'indirizzo 400 c'è $7 + 5 = 12$. Nota che il valore 5 all'indirizzo 404 non cambia.
+:::
+
+::: esercizio base Quante istruzioni per una moltiplicazione
+Quante istruzioni esegue il programma della moltiplicazione (slide 16) con $n = 3$? E con $n = 0$? Trova una formula per $n$ qualsiasi.
+::: soluzione
+Contiamo le righe eseguite:
+- righe 1–4 una volta sola: **4**;
+- per ogni giro del ciclo le righe 5, 6, 7, 8, 9: **5 per giro**, e i giri sono $n$;
+- alla fine le righe 5 e 6 un'ultima volta (il confronto che fa uscire) e la riga 10: **3**.
+
+Totale: $4 + 5n + 3 = 5n + 7$.
+- $n = 3$: $5 \cdot 3 + 7 = 22$ istruzioni (44 passi nel simulatore, che conta prelievo ed esecuzione separati).
+- $n = 0$: $7$ istruzioni: righe 1–4, 5, 6 (salto) e 10.
+:::
+
+::: esercizio medio Il doppio di un numero in assembly
+Con le istruzioni delle slide (`LOAD`, `STORE`, `ADD`, `INC`, `CMP`, `JMPEQ`, `JMP`) scrivi un programma che calcola $2m$ e lo salva all'indirizzo di $m$.
+::: soluzione
+```text
+1.  LOAD,  R0, @m        // R0 ← m
+2.  ADD,   R0, R0        // R0 ← R0 + R0 = 2m
+3.  STORE, R0, @m        // salva il risultato all'indirizzo di m
+```
+Un registro si può sommare a sé stesso. Una soluzione più lunga ma corretta carica $m$ in due registri e poi li somma.
+:::
+
+::: esercizio medio Somma dei primi n numeri in assembly
+Scrivi in assembly un programma che calcola $1 + 2 + \dots + n$ (con $n \ge 0$ all'indirizzo `n`) e salva il risultato all'indirizzo di `n`. Suggerimento: è l'esercizio 6 della lezione 01A.
+::: soluzione
+```text
+1.  LOAD,  R0, 0         // s ← 0
+2.  LOAD,  R1, 0         // i ← 0
+3.  LOAD,  R3, @n        // R3 ← n
+4.  CMP    R1, R3        // i = n ?
+5.  JMPEQ  <riga 9>      // se sì, fine del ciclo
+6.  INC,   R1            // i ← i + 1   (prima avanzo il contatore...)
+7.  ADD,   R0, R1        // s ← s + i   (...poi lo sommo)
+8.  JMP    <riga 4>      // torna al confronto
+9.  STORE, R0, @n        // salva s
+```
+Traccia con $n = 3$: $(i, s) = (0, 0) \to (1, 1) \to (2, 3) \to (3, 6)$, poi $3 = 3$ e salto alla riga 9: il risultato è 6. Con $n = 0$ si salta subito e il risultato è 0. Se scambi le righe 6 e 7 sommi $0 + 1 + 2 = 3$: il solito errore «di uno».
+:::
+
+::: esercizio base Trova gli errori
+Il programma seguente non compila. Trova i due errori e scrivi che cosa dice gcc.
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Ciao\n")
+    printf("Seconda riga\n);
+}
+```
+::: soluzione
+1. Riga 4: manca il `;`. gcc: `4:21: error: expected ';' before 'printf'` (se ne accorge quando trova il `printf` della riga dopo).
+2. Riga 5: la stringa non è chiusa, manca il `"` prima di `)`. gcc: `5:12: error: missing terminating " character`.
+
+Versione corretta:
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Ciao\n");
+    printf("Seconda riga\n");
+}
+```
+:::
+
+::: esercizio base Sequenze di escape
+Scrivi le istruzioni `printf` che stampano esattamente queste tre righe (nella terza, tra `nome` e `voto` c'è una tabulazione):
+```text
+Il file si trova in C:\corso\lab1
+Ha detto "ciao"
+nome	voto
+```
+::: soluzione
+```c
+printf("Il file si trova in C:\\corso\\lab1\n");
+printf("Ha detto \"ciao\"\n");
+printf("nome\tvoto\n");
+```
+Ogni `\` da stampare diventa `\\`, ogni `"` diventa `\"`, la tabulazione è `\t`, e ogni riga finisce con `\n`. Verificato con `gcc -Wall -Werror`.
+:::
+
+::: esercizio base Identificatori validi
+Quali di questi sono identificatori validi e adatti? `somma`, `Somma`, `2x`, `x2`, `int`, `conto-totale`, `conto_totale`, `printf`.
+::: soluzione
+| Nome | Valido? | Perché |
+|---|---|---|
+| `somma` | sì | |
+| `Somma` | sì | ma è **diverso** da `somma` (maiuscole e minuscole contano): meglio evitare nomi così simili |
+| `2x` | no | comincia con una cifra |
+| `x2` | sì | |
+| `int` | no | è una parola chiave |
+| `conto-totale` | no | il `-` è il segno meno: il compilatore legge «conto meno totale» |
+| `conto_totale` | sì | il trattino basso è ammesso |
+| `printf` | da non usare | è il nome di una funzione della libreria standard (slide 40) |
+:::
+
+::: esercizio medio Quale stadio si lamenta?
+Per ciascun errore di' quale stadio della compilazione lo segnala: (a) `#include <stdoi.h>` (nome del file sbagliato); (b) un `;` mancante; (c) una funzione dichiarata e chiamata, ma mai scritta:
+```c
+void saluta(void);
+int main(void) { saluta(); return 0; }
+```
+::: soluzione
+(a) Il **preprocessore**, che cerca il file da includere: `fatal error: stdoi.h: No such file or directory`.
+
+(b) Il **compilatore**, che controlla la sintassi: `expected ';' before …`.
+
+(c) Il **linker**: il compilatore accetta la chiamata perché la funzione è dichiarata, ma al momento di unire i pezzi il linker non trova il suo codice: `undefined reference to 'saluta'` e poi `ld returned 1 exit status`.
+
+Tutti e tre i messaggi sono quelli di gcc 16.1.
+:::
+
+::: esercizio medio Dal FORTRAN al C
+Riscrivi in C la moltiplicazione FORTRAN della slide 20, con $m = 4$ e $n = 3$ fissati nel codice (la lettura dei numeri arriverà con `scanf`). Stampa il risultato con `printf("%d x %d = %d\n", m, n, s);`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int m = 4, n = 3;
+    int s = 0;          // accumulatore
+    int i = 0;          // contatore
+    while (i < n) {     // do while (i<n)
+        s = s + m;
+        i = i + 1;
+    }                   // end do
+    printf("%d x %d = %d\n", m, n, s);
+    return 0;
+}
+```
+Stampa `4 x 3 = 12` (verificato con `gcc -Wall -Werror`). Il `while` del C corrisponde al `do while … end do` del FORTRAN e alle righe 5–9 dell'assembly.
+:::
+
+::: esercizio difficile Un errore logico che compila
+Questa versione compila senza avvisi e con $m = 4$, $n = 3$ stampa 12. Che cosa succede con $n = 0$? Che tipo di errore è?
+```c
+int s = 0, i = 0;
+do {
+    s = s + m;
+    i = i + 1;
+} while (i != n);
+```
+::: soluzione
+Il `do … while` esegue il corpo **prima** di controllare la condizione, come la versione V2 della lezione 01A. Con $n = 0$: dopo il primo giro $i = 1$, e la condizione $i \ne 0$ resta vera per sempre: il ciclo non termina (dopo miliardi di giri `i` supererebbe il valore massimo di un `int`, e in C quello è un comportamento non definito). È un **errore logico** (di progettazione): il compilatore non può accorgersene, perché la sintassi è corretta. Correzione: controllare prima, con `while (i != n) { … }`.
+:::
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra linguaggio macchina e assembly?
+Il linguaggio macchina è fatto di codici numerici (bit) eseguiti direttamente dal processore e dipende dall'architettura. L'assembly scrive le stesse istruzioni con nomi simbolici (mnemonici) più leggibili; un assembler lo traduce in linguaggio macchina. Anche l'assembly resta legato all'architettura.
+:::
+
+::: domanda Quali istruzioni servono per sommare due numeri in memoria, e perché?
+Due `LOAD` per portare i numeri dalla memoria nei registri, una `ADD` tra registri (la ALU lavora solo sui registri) e una `STORE` per riportare il risultato in memoria.
+:::
+
+::: domanda Che cosa vuol dire `@A` e che differenza c'è con `LOAD, R0, 0`?
+`@A` indica il contenuto della memoria all'indirizzo A. In `LOAD, R0, 0` lo 0 è un valore: il registro viene messo a zero.
+:::
+
+::: domanda Come si realizza un ciclo in assembly?
+Con un confronto (`CMP`) seguito da un salto condizionato (`JMPEQ`) che esce dal ciclo quando la condizione è vera, e da un salto incondizionato (`JMP`) alla fine del corpo che torna al confronto.
+:::
+
+::: domanda Perché sono nati i linguaggi di alto livello?
+Perché l'assembly è faticoso, facile da sbagliare, richiede di conoscere la CPU, non mostra la struttura del programma e va riscritto per ogni architettura. I linguaggi di alto livello usano istruzioni vicine al linguaggio matematico e naturale e un compilatore li traduce per ogni macchina.
+:::
+
+::: domanda Che cosa ha di nuovo il FORTRAN?
+È un linguaggio per scrivere formule, nato per l'IBM 704: un compilatore traduce ogni istruzione in una o più istruzioni assembly; se cambia la macchina basta ricompilare. È tra i capostipiti dei linguaggi di terza generazione.
+:::
+
+::: domanda Perché è nato il C e chi l'ha progettato?
+Dennis Ritchie lo progettò ai Bell Labs per riscrivere Unix, che Ken Thompson aveva scritto in assembly: serviva un linguaggio efficiente e portabile. La prima versione è del 1972 (K&R C); fu standardizzato alla fine degli anni '80 (C89) e poi aggiornato (C99, C11, C17, C23).
+:::
+
+::: domanda Quali sono le quattro caratteristiche del C secondo la slide 27?
+Compilato (un compilatore lo traduce in linguaggio macchina), imperativo (istruzioni come ordini), strutturato (blocchi tra graffe), fortemente tipizzato (bisogna dichiarare il tipo di ogni variabile).
+:::
+
+::: domanda Che cosa fanno `#include <stdio.h>` e la funzione `main`?
+La direttiva chiede al preprocessore di includere l'header stdio.h, che dichiara funzioni come printf e scanf. `main` è la funzione obbligatoria da cui parte l'esecuzione: `int main(void)` non riceve input e restituisce un intero al sistema operativo.
+:::
+
+::: domanda Quali sono le sequenze di escape principali?
+`\n` nuova riga, `\t` tabulazione, `\\` backslash, `\"` doppio apice, `\0` terminatore della stringa.
+:::
+
+::: domanda Quali regole valgono per gli identificatori?
+Distinguono maiuscole e minuscole; non possono essere parole chiave né nomi della libreria standard; devono essere chiari e non troppo simili tra loro. In più: solo lettere, cifre e trattino basso, senza cominciare con una cifra.
+:::
+
+::: domanda Quali sono gli stadi della compilazione con gcc?
+Preprocessore (direttive come #include), compilatore (dal C all'assembly), assemblatore (dall'assembly al file oggetto in linguaggio macchina), linker (unisce file oggetto e librerie in un eseguibile).
+:::
+
+::: domanda Che cosa fanno le opzioni `-Wall` e `-Werror`?
+`-Wall` attiva i principali avvisi del compilatore; `-Werror` li trasforma in errori, così con un solo avviso il programma non viene prodotto. Sono le opzioni dell'esame.
+:::
+
+::: domanda Che differenza c'è tra errori di compilazione, a runtime e logici?
+Quelli di compilazione violano la sintassi e li trova subito il compilatore; quelli a runtime emergono durante l'esecuzione (divisione per zero, accesso non valido alla memoria); quelli logici lasciano girare il programma, che però fa la cosa sbagliata.
+:::
+
+## Glossario
+
+```glossario
+Linguaggio macchina | Istruzioni in forma numerica (bit), eseguite direttamente dal processore; diverso per ogni architettura.
+Instruction set | L'insieme delle istruzioni macchina di un'architettura.
+Assembly | Rappresentazione simbolica del linguaggio macchina, con mnemonici come LOAD, ADD, STORE.
+Assembler | Programma che traduce l'assembly in linguaggio macchina.
+LOAD / STORE | Copiano un dato dalla memoria a un registro / da un registro alla memoria.
+CMP | Confronta due registri; l'esito resta nella CPU (registro di stato).
+Salto condizionato / incondizionato | JMPEQ salta solo se l'ultimo confronto ha dato «uguali»; JMP salta sempre.
+Linguaggio di alto livello | Linguaggio con istruzioni vicine al linguaggio matematico e naturale, indipendente dall'hardware.
+Compilatore | Programma che traduce un linguaggio di alto livello in linguaggio macchina (o in assembly).
+Portabilità | Possibilità di usare lo stesso programma su macchine diverse, ricompilandolo.
+FORTRAN | FORmula TRANslator, linguaggio IBM degli anni '50 per il calcolo scientifico.
+Commento | Testo ignorato dal compilatore: da `//` a fine riga, oppure tra `/*` e `*/`.
+Direttiva del preprocessore | Riga che inizia con #, come #include.
+File di intestazione (header) | File .h con dichiarazioni di funzioni, come stdio.h.
+Funzione main | La funzione obbligatoria da cui comincia l'esecuzione.
+Blocco | Gruppo di istruzioni tra graffe { }; i blocchi si possono annidare.
+Istruzione (statement) | Un comando del programma; in C termina con ;.
+Stringa | Testo tra doppi apici.
+Sequenza di escape | Coppia di caratteri che inizia con la barra rovesciata e rappresenta un carattere speciale: `\n`, `\t`, `\\`, `\"`, `\0`.
+Token | Unità sintattica in cui il parser divide il codice: parole chiave, identificatori, operatori, stringhe, costanti.
+Identificatore | Nome di una variabile, funzione, costante o tipo; distingue maiuscole e minuscole.
+Parola chiave (keyword) | Parola riservata del C, come int, while, return.
+File oggetto | Unità di compilazione tradotta in linguaggio macchina (.o).
+Linker | Unisce file oggetto e librerie in un programma eseguibile.
+gcc | Il compilatore del corso (GNU Compiler Collection).
+Errore a runtime | Errore che si manifesta durante l'esecuzione.
+Errore logico | Il programma gira ma non fa ciò che dovrebbe.
+```
+
+## Checklist
+
+```checklist
+- So spiegare la differenza tra linguaggio macchina e assembly e perché nessuno dei due è portabile.
+- So eseguire a mano il programma dell'addizione, con PC, registri e memoria dopo ogni istruzione.
+- So leggere il programma della moltiplicazione in assembly e collegarlo riga per riga alla versione V6 della lezione 01A.
+- So spiegare CMP, JMPEQ e JMP e come formano un ciclo.
+- So dire perché sono nati i linguaggi di alto livello e che cosa fa un compilatore.
+- So raccontare in breve la nascita del C e le sue quattro caratteristiche.
+- So spiegare ogni riga del programma «Buongiorno dal C.».
+- So usare le sequenze di escape `\n`, `\t`, `\\`, `\"` in `printf`.
+- So riconoscere un identificatore valido e le parole chiave.
+- So elencare gli stadi della compilazione e compilare con gcc -Wall -Werror.
+- So distinguere errori di compilazione, a runtime e logici, e leggere un messaggio di gcc.
+```
+
+## Fonti
+
+- **Slide della lezione**: «Dal linguaggio macchina al C. Dai bit e registri alla programmazione strutturata di alto livello e portabile» (02A_da_assembly_a_c), Programmazione I – Teoria, canale B, A.A. 2026/27, 50 pagine; il numero di slide è accanto a ogni titolo.
+- **Canali A e C**: deck «Dal linguaggio assembly al C» del canale A e lezione 01 «Introduzione» del canale C sulle pagine Moodle 2026/27 ([canale A](https://informatica.i-learn.unito.it/course/view.php?id=3701), [canale C](https://informatica.i-learn.unito.it/course/view.php?id=3767)), consultate il 30/09/2026.
+- **Messaggi del compilatore e assembly**: ottenuti con gcc 16.1 (MinGW-w64) compilando gli esempi con `-Wall -Werror`; l'assembly con `gcc -S -O0 -masm=intel`.
+- **Esame e laboratori**: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+- Le parti **«Oltre le slide»** (assembly prodotto da gcc, commenti su più righe, caratteri degli identificatori) e gli esercizi sono aggiunte di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/corso.md -->
 > File: `contesto_ai/FDA/corso.md`
 
@@ -1260,6 +2642,825 @@ Riferimento 2025/26 (iscritti): MD 13/01 (340), 03/02 (325), 08/06 (127), 01/07 
 - Esercizi ricorrenti in MD: decomposizione in cicli, tipo, periodo e numero di permutazioni di un tipo; sottogruppi generati e Lagrange; inversi modulo n con Euclide/Bézout; congruenze lineari; isomorfismi con Z_n.
 - Esercizi ricorrenti in AG: cambi di base e matrici associate, autovalori, Gram-Schmidt, proiezioni, distanze e angoli tra rette e piani, rango, Rouché-Capelli con parametro.
 - Non ripresentarti a una prova già superata se il voto ti va bene: la nuova prova annulla la vecchia.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/L01_numeri_reali.md -->
+> File: `contesto_ai/MDAG/lezioni/L01_numeri_reali.md`
+
+```yaml
+corso: MDAG
+modulo: AG
+lezione: L01
+titolo: Numeri reali
+data: 2026-09-30
+docenti: Reto Buzano e Marco Radeschi
+sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L01
+descrizione: >-
+  Appunti della lezione L01 di Algebra lineare e Geometria (MDAG, parte 2): insiemi numerici, costruzione dei numeri
+  reali, irrazionalità di √2, campi, ordine, notazioni e conti con le radici, con quiz nello stile dell'esame ed
+  esercizi svolti.
+lede: >-
+  Da dove vengono i numeri che useremo per tutto il corso: gli insiemi $\N \subsetneq \Z \subsetneq \Q \subsetneq \R$,
+  come si costruiscono i numeri reali, perché $\sqrt 2$ non è una frazione, le nove regole che fanno di $\R$ un campo,
+  l'ordine e le parentesi da non confondere. In più: i simboli del linguaggio matematico e i conti con le radici senza
+  calcolatrice, che servono in ogni prova d'esame.
+materiale: dispense
+scheda:
+  Dispense: lezione 1 · pp. 2–5
+  Libro: Martelli, §1.1 e complemento 1.II
+  Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
+  Tempo di studio: 90–120 minuti
+fonte: >-
+  Dispense 2026 del corso (Buzano, Radeschi), lezione 1 «Numeri reali»; B. Martelli, Geometria e algebra lineare, §1.1, §1.5 e complemento 1.II
+file_en: L01_real_numbers.html
+appunti_html: appunti/MDAG/L01_numeri_reali.html
+genera_html: true
+```
+
+## In breve
+
+- I numeri del corso stanno in insiemi uno dentro l'altro: $\N = \{0, 1, 2, \dots\}$ (lo zero c'è!), poi $\Z$ con i negativi, $\Q$ con le frazioni, $\R$ con tutti i numeri reali; dalla prossima lezione anche $\C$. Si scrive $\N \subsetneq \Z \subsetneq \Q \subsetneq \R$.
+- Ogni insieme nuovo serve a risolvere equazioni che prima non avevano soluzione: $x + 5 = 3$ non si risolve in $\N$, $2x = 1$ non si risolve in $\Z$, $x^2 = 2$ non si risolve in $\Q$.
+- Un numero reale è un numero con infinite cifre dopo la virgola. Per definirlo con precisione si usano le **successioni di Cauchy**: liste infinite di frazioni che, andando avanti, diventano vicine tra loro quanto si vuole.
+- $\R$ è **completo**: non ha «buchi». $\Q$ invece ne ha tantissimi, per esempio dove stanno $\sqrt 2$, $\pi$ ed $e$.
+- $\sqrt 2$ non è una frazione: è la prima **dimostrazione per assurdo** del corso, da saper rifare.
+- Somma e prodotto in $\R$ rispettano nove regole (elementi neutri, opposti, inversi, proprietà commutativa, associativa e distributiva). Un insieme con queste regole si chiama **campo**: $\Q$, $\R$ e $\C$ lo sono, $\N$ e $\Z$ no.
+- $\R$ è **ordinato**: $a > b$ vuol dire che $a - b$ è positivo.
+- Parentesi diverse, oggetti diversi: $\{1, 2\}$ è un insieme di due numeri, $(1, 2)$ è un intervallo aperto (oppure un punto del piano), $[1, 2]$ è un intervallo chiuso.
+
+> [!CANALI]
+> Algebra lineare e Geometria usa le **stesse dispense** nei tre canali: Buzano insegna nei canali A e B, Radeschi nei canali B e C. Questi appunti seguono le dispense 2026, quindi valgono allo stesso modo per A, B e C. Cambiano solo i giorni delle lezioni: la pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)) avverte che i cambi d'orario vengono annunciati lì e a lezione. Esame e quiz sono comuni ai tre canali.
+
+## Insiemi: il linguaggio di partenza (p. 2)
+
+Prima dei numeri serve una parola: **insieme**. Un insieme è una collezione di oggetti, che si chiamano i suoi **elementi**. Per esempio gli studenti in un'aula formano un insieme, e ogni studente è un elemento di quell'insieme.
+
+In matematica un insieme si scrive con le **parentesi graffe** $\{\ \}$, mettendo dentro gli elementi separati da virgole:
+
+$$A = \{1, 3, 5\}$$
+
+Questo $A$ contiene esattamente tre numeri: 1, 3 e 5. Quando gli elementi sono infiniti se ne scrivono alcuni e poi i **puntini** $\dots$, che vogliono dire «e così via, con la stessa regola».
+
+> [!OLTRE] · due regole sulle graffe
+> In un insieme **l'ordine non conta** e **le ripetizioni non contano**: $\{1, 2\}$, $\{2, 1\}$ e $\{1, 1, 2\}$ sono lo stesso insieme, con due elementi. Conta solo *chi c'è dentro*. Per questo le graffe non vanno mai usate per i punti o per i vettori, dove l'ordine conta eccome (vedi la sezione sulle notazioni).
+
+### I simboli che userai subito
+
+| Simbolo | Si legge | Esempio | Vero o falso? |
+|---|---|---|---|
+| $x \in A$ | «$x$ appartiene ad $A$» | $3 \in \{1, 3, 5\}$ | vero |
+| $x \notin A$ | «$x$ non appartiene ad $A$» | $2 \notin \{1, 3, 5\}$ | vero |
+| $B \subset A$ | «$B$ è contenuto in $A$» (ogni elemento di $B$ sta anche in $A$) | $\{1, 5\} \subset \{1, 3, 5\}$ | vero |
+| $B \subsetneq A$ | «$B$ è contenuto **strettamente** in $A$» ($B \subset A$ e in $A$ c'è almeno un elemento in più) | $\{1, 5\} \subsetneq \{1, 3, 5\}$ | vero: il 3 è in più |
+| $\emptyset$ | «insieme vuoto» (nessun elemento) | $\emptyset \subset A$ per ogni insieme $A$ | vero |
+
+Un insieme si può anche descrivere con una **proprietà**, invece di elencare gli elementi:
+
+$$\{x \in \R \mid 1 < x < 2\}$$
+
+si legge: «l'insieme degli $x$ in $\R$ **tali che** $1 < x < 2$». La barretta $\mid$ vuol dire proprio «tale che» (qualcuno usa i due punti $:$ al suo posto). A sinistra della barretta c'è *dove* si cercano gli elementi, a destra la *condizione* che devono rispettare.
+
+> [!NOTA] Dove si approfondisce
+> Le dispense ricordano che la teoria degli insiemi si fa in dettaglio nella parte di **Matematica Discreta** del corso (MDAG parte 1). Qui servono solo gli insiemi di numeri.
+
+## I numeri naturali, interi e razionali (p. 2)
+
+> [!DEF] 1.1 · Numeri naturali, interi e razionali
+> L'insieme dei **numeri naturali** è $\N = \{0, 1, 2, 3, \dots\}$.
+>
+> Se aggiungiamo i numeri negativi otteniamo l'insieme dei **numeri interi** $\Z = \{\dots, -2, -1, 0, 1, 2, \dots\}$.
+>
+> Se oltre agli interi consideriamo tutti i numeri esprimibili come frazioni $\frac ab$, otteniamo l'insieme dei **numeri razionali**
+> $$\Q = \left\{ \frac ab \ ;\ a, b \in \Z,\ b \neq 0 \right\}.$$
+
+Guardiamo la definizione un pezzo alla volta.
+
+- $\N$ sono i numeri **per contare**: 0, 1, 2, 3 e così via, senza fine.
+- $\Z$ aggiunge i **negativi**: $-1, -2, -3, \dots$ Il simbolo viene dal tedesco *Zahlen*, «numeri».
+- $\Q$ contiene **tutte le frazioni** $\frac ab$ con $a$ e $b$ interi. La condizione $b \neq 0$ c'è perché **non si divide per zero**. La Q viene da *quoziente*.
+- In $\Q$ il punto e virgola dentro le graffe fa lo stesso lavoro della barretta: «dove $a$ e $b$ sono interi e $b$ non è zero».
+
+> [!TRAPPOLA] Lo zero è un numero naturale
+> In questo corso (e nel libro di Martelli) $\N$ **comincia da 0**. In alcuni libri di scuola $\N$ comincia da 1: all'esame vale la convenzione del corso.
+
+### Perché servono insiemi sempre più grandi
+
+C'è un filo che lega tutti questi insiemi: ogni volta troviamo un'equazione semplice che **non ha soluzione** nell'insieme che abbiamo, e allora lo allarghiamo.
+
+| Equazione | Soluzione | Nell'insieme vecchio? | Insieme nuovo |
+|---|---|---|---|
+| $x + 5 = 3$ | $x = -2$ | $-2 \notin \N$ | $\Z$ |
+| $2x = 1$ | $x = \frac 12$ | $\frac 12 \notin \Z$ | $\Q$ |
+| $x^2 = 2$ | $x = \pm\sqrt 2$ | $\sqrt 2 \notin \Q$ (lo dimostriamo più avanti) | $\R$ |
+| $x^2 = -1$ | nessun numero reale | nessun quadrato reale è negativo | $\C$, dalla lezione L02 |
+
+### Una frazione, tante scritture
+
+Lo stesso numero razionale si può scrivere in infiniti modi:
+
+$$\frac 17 = \frac 3{21} = \frac{-8}{-56}$$
+
+Tutte e tre valgono «un settimo». Per costruire $\Q$ in modo preciso bisogna dichiarare che queste frazioni rappresentano **lo stesso numero**: si fa con una *relazione di equivalenza*, un concetto che vedrai bene in Matematica Discreta. In pratica la regola è:
+
+$$\frac ab = \frac cd \quad\Longleftrightarrow\quad ad = bc.$$
+
+Controlliamo con $\frac 17$ e $\frac 3{21}$: $1 \cdot 21 = 21$ e $7 \cdot 3 = 21$. Uguali, quindi sono la stessa frazione.
+
+> [!NOTA] Chi viene prima
+> Le dispense precisano che $\N$ è un **concetto primitivo**: non lo si definisce a partire da altro, si parte da lì. Poi $\Z$ si costruisce a partire da $\N$, e $\Q$ a partire da $\Z$.
+
+> [!OLTRE] · le frazioni in forma decimale
+> Se fai la divisione, ogni frazione diventa un numero decimale **finito** oppure **periodico**, cioè con un gruppo di cifre che si ripete per sempre:
+> $$\frac 14 = 0{,}25 \qquad \frac 13 = 0{,}333\ldots = 0{,}\overline{3} \qquad \frac 17 = 0{,}\overline{142857}$$
+> Vale anche il contrario: ogni decimale periodico è una frazione (esercizio 2). Quindi un numero con infinite cifre **che non si ripetono mai** non può essere razionale: sono proprio i numeri irrazionali.
+
+## Dalla scuola a una definizione precisa dei numeri reali (pp. 2–3)
+
+### L'idea di scuola: infinite cifre dopo la virgola
+
+A scuola si impara che un **numero reale** è un numero che può avere infinite cifre dopo la virgola, come $\pi = 3{,}14159\ldots$ Le dispense dicono che questa definizione è **corretta**, con una sola ambiguità da ricordare: due scritture diverse possono indicare lo stesso numero. Per esempio
+
+$$5{,}973\overline{9} = 5{,}9739999\ldots = 5{,}974.$$
+
+Lo stesso succede con $0{,}\overline 9 = 0{,}999\ldots$, che è **esattamente** $1$. Un modo semplice per convincersene:
+
+1. sappiamo che $\frac 13 = 0{,}333\ldots$;
+2. moltiplichiamo tutti e due i lati per 3: a sinistra $3 \cdot \frac 13 = 1$, a destra ogni cifra 3 diventa 9;
+3. quindi $1 = 0{,}999\ldots$
+
+Non è «un numero appena sotto 1»: è proprio 1, scritto in un altro modo.
+
+### Il problema: come si sommano infinite cifre?
+
+La definizione di scuola però non dice **come si fanno le operazioni**. Per sommare due numeri si parte dalle cifre più a destra, con i riporti. Ma con infinite cifre *non esiste* una cifra più a destra da cui partire. Serve un modo diverso di definire i reali, che le dispense prendono dall'analisi e che ha un pregio in più: non dipende dalla base 10 (che usiamo, scrivono i docenti, solo perché abbiamo dieci dita).
+
+### Successioni
+
+Una **successione** è una lista infinita di numeri, uno per ogni posizione $1, 2, 3, \dots$:
+
+$$a_1,\ a_2,\ a_3,\ a_4,\ \dots$$
+
+Si indica con $(a_n)$. Il numero $a_n$ si chiama **termine** di posto $n$: $a_1$ è il primo, $a_2$ il secondo, e così via.
+
+### Successioni di Cauchy
+
+L'idea è semplice. Prendi una successione di frazioni che, andando avanti, **si stringe**: dopo un po' i termini sono tutti vicinissimi tra loro, vicini *quanto vuoi*. La definizione precisa dice questo, con i simboli.
+
+> [!DEF] Successione di Cauchy (p. 2)
+> Una successione $(a_n)$ di numeri razionali $a_n \in \Q$ è **di Cauchy** se per ogni numero razionale $\varepsilon > 0$ esiste un $N > 0$ per cui
+> $$|a_m - a_n| < \varepsilon \quad \text{per ogni } m, n > N.$$
+
+Pezzo per pezzo:
+
+- $\varepsilon$ (la lettera greca *epsilon*) è una **tolleranza**: un numero positivo piccolo quanto vuoi, per esempio $0{,}01$ oppure $0{,}000001$.
+- $|a_m - a_n|$ è la **distanza** tra due termini: il valore assoluto $|\cdot|$ toglie il segno.
+- «esiste un $N$ per cui … per ogni $m, n > N$» vuol dire: **da un certo punto in poi** (dopo il posto $N$), *qualunque* coppia di termini dista meno di $\varepsilon$.
+- La tolleranza la scegli **tu**, e la definizione deve funzionare per ogni scelta: più $\varepsilon$ è piccolo, più avanti bisognerà andare (più grande sarà $N$).
+
+> [!ESEMPIO] 1.2 · Il numero $\pi$
+> Il numero $\pi = 3{,}1415926\ldots$ corrisponde alla successione di numeri razionali
+> $$a_1 = 3{,}1 \quad a_2 = 3{,}14 \quad a_3 = 3{,}141 \quad a_4 = 3{,}1415 \quad \dots$$
+> Ogni $a_n$ è razionale: per esempio $a_2 = 3{,}14 = \frac{314}{100}$. Ed è di Cauchy: dopo il posto $n$ tutti i termini hanno le **stesse prime $n + 1$ cifre**, quindi distano tra loro meno di $10^{-n}$. Per esempio da $a_3$ in poi i termini cominciano tutti con $3{,}141$, e distano meno di $0{,}001$.
+>
+> La successione che definisce un numero reale **non è unica**: anche $3{,}2;\ 3{,}15;\ 3{,}142;\ 3{,}1416;\ \dots$ (le approssimazioni per eccesso) va bene, perché la differenza con la successione di prima tende a zero.
+
+### I numeri reali, finalmente
+
+> [!DEF] Numeri reali (p. 3)
+> I **numeri reali** sono definiti come *classi di equivalenza* di successioni di Cauchy di numeri razionali. Due successioni di Cauchy sono **equivalenti** se la loro differenza è una successione che tende a zero.
+
+In modo meno astratto, la procedura funziona così. Prendi una successione di Cauchy di numeri razionali:
+
+- se **converge** a un numero razionale $a_\infty$ (cioè si avvicina sempre di più a quel numero), rappresenta semplicemente quel numero $a_\infty$;
+- se **non converge a nessun numero razionale**, «vorrebbe» tendere a qualcosa che in $\Q$ non c'è: allora *definisce un numero nuovo*, che non sta in $\Q$. È un **numero irrazionale**.
+
+Detto con un'immagine: $\Q$ è come un righello con infiniti segni, ma pieno di buchi microscopici. Una successione di Cauchy che «punta» a un buco serve a **riempirlo**.
+
+> [!ESEMPIO] 1.3 · Il numero $e$
+> La successione di numeri razionali
+> $$a_n = \left(1 + \frac 1n\right)^n$$
+> è di Cauchy ma non converge a un numero razionale. Quindi definisce un numero reale nuovo: il **numero di Eulero** $e = 2{,}71828\ldots$
+>
+> Calcoliamo i primi termini, per vedere che sono davvero frazioni:
+> $$a_1 = (1 + 1)^1 = 2, \qquad a_2 = \left(\frac 32\right)^2 = \frac 94 = 2{,}25, \qquad a_3 = \left(\frac 43\right)^3 = \frac{64}{27} \approx 2{,}370.$$
+
+```grafico
+titolo: I termini $a_n = \left(1 + \frac 1n\right)^n$ salgono verso $e \approx 2{,}718$ ma nessuno lo raggiunge
+proporzioni: libere
+x: 0 13
+y: 1.8 2.9
+nomi: $n$ $a_n$
+retta: 0 2.71828 13 2.71828 | ambra | tratteggio | $e$ | no
+punto: 1 2 | accento
+punto: 2 2.25 | accento
+punto: 3 2.37037 | accento
+punto: 4 2.44141 | accento
+punto: 5 2.48832 | accento
+punto: 6 2.52163 | accento
+punto: 7 2.5465 | accento
+punto: 8 2.56578 | accento
+punto: 9 2.58117 | accento
+punto: 10 2.59374 | accento
+punto: 11 2.6042 | accento
+punto: 12 2.61304 | accento
+```
+
+### Completezza: in R non ci sono buchi (p. 3)
+
+Intuitivamente puoi lavorare con due idee:
+
+1. ogni numero reale si può **approssimare** con numeri razionali, con la precisione che vuoi (come $3{,}14159$ approssima $\pi$);
+2. con questa costruzione abbiamo **tappato tutti i buchi** tra i numeri razionali.
+
+La seconda idea ha un nome preciso.
+
+> [!PROP] · $\R$ è completo
+> A differenza di $\Q$, l'insieme $\R$ dei numeri reali è **completo**: ogni successione di Cauchy in $\R$ converge.
+
+Vuol dire che, se rifacessimo tutta la costruzione partendo da successioni di numeri **reali** invece che razionali, **non aggiungeremmo nessun numero nuovo**: i buchi sono già stati riempiti tutti.
+
+> [!OLTRE] · dove trovarlo nel libro
+> Il libro di Martelli presenta questa costruzione nel complemento **1.II «Costruzione dei numeri reali»** (pp. 40–42 del libro). Nei due appelli del 2026 (15/01 e 07/09) non ci sono domande sulla costruzione di $\R$: all'esame servono soprattutto gli insiemi, le notazioni e le proprietà di campo.
+
+## Numeri irrazionali: perché $\sqrt 2$ non è una frazione (p. 4)
+
+Riassumiamo gli insiemi visti finora:
+
+$$\N \subsetneq \Z \subsetneq \Q \subsetneq \R$$
+
+Ogni contenimento è **stretto** ($\subsetneq$): ogni insieme ha almeno un elemento che il precedente non ha. Per dimostrarlo basta un esempio per ogni passaggio: $-1 \in \Z$ ma $-1 \notin \N$; $\frac 12 \in \Q$ ma $\frac 12 \notin \Z$; $\sqrt 2 \in \R$ ma $\sqrt 2 \notin \Q$. L'ultimo esempio è il più delicato, e va dimostrato.
+
+```grafico
+titolo: Ogni insieme contiene il precedente e ha qualcosa in più
+assi: no
+griglia: no
+x: -1.8 5.4
+y: -3.6 3.6
+cerchio: 0 0 1 | accento
+cerchio: 0.6 0 1.8 | blu
+cerchio: 1.2 0 2.6 | viola
+cerchio: 1.8 0 3.4 | ambra
+testo: 0 0.4 | accento | $\N$
+testo: 0 -0.3 | $0,\ 1,\ 2,\ \dots$
+testo: 1.75 0.4 | blu | $\Z$
+testo: 1.75 -0.3 | $-3$
+testo: 3.1 0.4 | viola | $\Q$
+testo: 3.1 -0.3 | $\frac 12$
+testo: 4.5 0.4 | ambra | $\R$
+testo: 4.5 -0.3 | $\sqrt 2,\ \pi$
+```
+
+Da dove viene $\sqrt 2$? Da un quadrato con il lato lungo 1: per il teorema di Pitagora la sua diagonale misura $\sqrt{1^2 + 1^2} = \sqrt 2$. È una lunghezza che si disegna benissimo, eppure non è una frazione.
+
+```grafico
+titolo: La diagonale di un quadrato di lato 1 è lunga $\sqrt 2$
+assi: no
+griglia: no
+x: -0.4 1.6
+y: -0.4 1.4
+poligono: 0 0 1 0 1 1 0 1 | blu
+segmento: 0 0 1 1 | ambra | spesso | $\sqrt 2$ | no
+testo: 0.5 -0.12 | $1$
+testo: 1.12 0.5 | $1$
+```
+
+### La dimostrazione per assurdo
+
+Per dimostrare che una cosa è vera **per assurdo** si fa così:
+
+1. si suppone che sia vera **la cosa opposta**;
+2. si ragiona in modo corretto, passo dopo passo;
+3. si arriva a una **contraddizione**, cioè a una cosa impossibile;
+4. quindi l'ipotesi del punto 1 era sbagliata, e la tesi è vera.
+
+Martelli lo riassume così: si nega la tesi e si dimostra che questo porta a un assurdo; allora la tesi non può essere falsa, e quindi è vera per esclusione.
+
+> [!PROP] 1.4
+> Il numero $\sqrt 2$ non è razionale.
+
+Ecco la dimostrazione delle dispense, con tutti i passaggi spiegati.
+
+1. **Supponiamo per assurdo** che $\sqrt 2$ sia razionale. Allora $\sqrt 2 = \frac ab$ con $a, b$ interi e $b \neq 0$.
+2. Possiamo supporre che la frazione sia **ridotta ai minimi termini**, cioè che $a$ e $b$ non abbiano fattori in comune: se ne avessero, basterebbe semplificarla. Questo punto è importante: tra poco lo contraddiremo.
+3. **Eleviamo al quadrato**: $2 = \frac{a^2}{b^2}$. Moltiplichiamo entrambi i membri per $b^2$:
+   $$a^2 = 2b^2.$$
+4. Allora $a^2$ è **pari**, perché è il doppio di un numero intero ($b^2$).
+5. Allora anche $a$ è **pari**. Perché? Se $a$ fosse dispari, cioè $a = 2k + 1$, avremmo $a^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$, che è dispari. Quindi $a$ non può essere dispari.
+6. Essendo pari, $a = 2k$ per qualche intero $k$, e quindi $a^2 = 4k^2$. Sostituendo nel punto 3: $4k^2 = 2b^2$, cioè, dividendo per 2,
+   $$b^2 = 2k^2.$$
+7. Con lo stesso ragionamento dei punti 4 e 5, anche $b^2$ è pari e quindi **$b$ è pari**.
+8. Ma allora $a$ e $b$ sono **entrambi pari**: hanno il fattore 2 in comune, e la frazione $\frac ab$ **non** era ridotta ai minimi termini. Questo contraddice il punto 2.
+9. L'ipotesi «$\sqrt 2$ è razionale» porta a un assurdo, quindi è falsa: **$\sqrt 2$ non è razionale**. $\square$
+
+> [!DIM] · un'altra via, dal libro di Martelli
+> Martelli arriva anche lui ad $a^2 = 2b^2$ e poi usa la **scomposizione in fattori primi**. In un quadrato ogni fattore primo compare un numero **pari** di volte (per esempio $36 = 2^2 \cdot 3^2$). Allora in $a^2$ il fattore 2 compare un numero pari di volte, mentre in $2b^2$ compare un numero **dispari** di volte (quelle di $b^2$, che sono pari, più una). Due numeri uguali hanno la stessa scomposizione, quindi $a^2 = 2b^2$ è impossibile: il doppio di un quadrato non è mai un quadrato.
+
+> [!IDEA] · il metodo, da ricordare
+> Tre ingredienti: (1) scrivere il numero come frazione **ridotta**; (2) elevare al quadrato e togliere i denominatori; (3) mostrare che $a$ e $b$ hanno un fattore in comune. Con la stessa ricetta si dimostra che $\sqrt 3$, $\sqrt 5$, $\sqrt 6$ non sono razionali (esercizi 4 e 9).
+
+> [!OLTRE] · altri numeri irrazionali
+> Anche $\pi$ ed $e$ sono irrazionali, ma le dimostrazioni sono molto più difficili e nel corso non servono. In generale $\sqrt n$ è irrazionale ogni volta che $n$ **non** è un quadrato perfetto: $\sqrt 4 = 2$ e $\sqrt 9 = 3$ sono interi, mentre $\sqrt 2$, $\sqrt 3$, $\sqrt 5$, $\sqrt 8$ sono irrazionali.
+
+> [!TRAPPOLA] Irrazionale per irrazionale non fa sempre irrazionale
+> $\sqrt 2 \cdot \sqrt 2 = 2$ e $\sqrt 2 + (-\sqrt 2) = 0$ sono razionali. Invece un razionale più un irrazionale è **sempre** irrazionale (esercizio 5): per esempio $1 + \sqrt 2 \notin \Q$.
+
+## Le proprietà di R: che cos'è un campo (p. 4)
+
+Su $\R$ ci sono due **operazioni binarie**: la somma $+$ e il prodotto $\cdot$. «Binaria» vuol dire che prende **due** numeri e ne restituisce **uno**: da $3$ e $4$ la somma dà $7$, il prodotto dà $12$.
+
+> [!PROP] 1.5 · Le nove proprietà di $\R$
+> Su $\R$ le operazioni $+$ e $\cdot$ hanno queste proprietà (il simbolo $\forall$ si legge «per ogni»):
+> 1. esiste l'**elemento neutro** $0$ per l'addizione: $0 + a = a + 0 = a$, $\forall a \in \R$;
+> 2. vale la proprietà **commutativa** $a + b = b + a$, $\forall a, b \in \R$;
+> 3. vale la proprietà **associativa** $a + (b + c) = (a + b) + c$, $\forall a, b, c \in \R$;
+> 4. ogni elemento $a \in \R$ ha un **inverso** (o **opposto**) $-a$, per cui $a + (-a) = (-a) + a = 0$;
+> 5. esiste l'**elemento neutro** $1$ per la moltiplicazione: $1 \cdot a = a \cdot 1 = a$, $\forall a \in \R$;
+> 6. vale la proprietà **commutativa** $a \cdot b = b \cdot a$, $\forall a, b \in \R$;
+> 7. vale la proprietà **associativa** $a \cdot (b \cdot c) = (a \cdot b) \cdot c$, $\forall a, b, c \in \R$;
+> 8. ogni elemento $a \in \R$ con $a \neq 0$ ha un **inverso** $a^{-1}$, per cui $a \cdot a^{-1} = a^{-1} \cdot a = 1$;
+> 9. vale la proprietà **distributiva** $a \cdot (b + c) = a \cdot b + a \cdot c$, $\forall a, b, c \in \R$.
+
+Le prime quattro riguardano la somma, dalla 5 alla 8 il prodotto, la 9 li collega. Ecco che cosa dicono, con i numeri:
+
+| # | In parole | Con i numeri |
+|---|---|---|
+| 1 | sommare 0 non cambia niente | $0 + 7 = 7$ |
+| 2 | l'ordine degli addendi non conta | $2 + 5 = 5 + 2 = 7$ |
+| 3 | come raggruppi gli addendi non conta | $1 + (2 + 3) = (1 + 2) + 3 = 6$ |
+| 4 | ogni numero ha un opposto, che sommato dà 0 | $7 + (-7) = 0$ |
+| 5 | moltiplicare per 1 non cambia niente | $1 \cdot 7 = 7$ |
+| 6 | l'ordine dei fattori non conta | $2 \cdot 5 = 5 \cdot 2 = 10$ |
+| 7 | come raggruppi i fattori non conta | $2 \cdot (3 \cdot 4) = (2 \cdot 3) \cdot 4 = 24$ |
+| 8 | ogni numero **diverso da 0** ha un inverso, che moltiplicato dà 1 | $4 \cdot \frac 14 = 1$ |
+| 9 | «moltiplicare una somma» = sommare i prodotti | $3 \cdot (2 + 5) = 3 \cdot 2 + 3 \cdot 5 = 21$ |
+
+Nota bene la 8: lo **zero non ha inverso**. Non esiste nessun numero che moltiplicato per 0 dia 1, perché $0 \cdot x = 0$ per ogni $x$. È di nuovo il divieto di dividere per zero.
+
+> [!DEF] Campo
+> Un insieme con due operazioni $+$ e $\cdot$ che hanno queste nove proprietà si chiama **campo**.
+
+Le dispense annunciano che il concetto tornerà «in più dettaglio nel futuro»: nella lezione L05 la definizione di campo viene data in modo generale, e da lì in poi **tutto il corso** lavora con vettori «su un campo $\K$» (di solito $\K = \R$ oppure $\K = \C$). Invece di $a \cdot b$ si scrive spesso solo $ab$.
+
+### Quali insiemi sono campi?
+
+| Insieme | opposto di ogni numero (4)? | inverso di ogni numero $\neq 0$ (8)? | È un campo? |
+|---|---|---|---|
+| $\N$ | no: $-3 \notin \N$ | no: $\frac 13 \notin \N$ | **no** |
+| $\Z$ | sì | no: $\frac 12 \notin \Z$ | **no** |
+| $\Q$ | sì | sì: l'inverso di $\frac ab$ è $\frac ba$ | **sì** |
+| $\R$ | sì | sì | **sì** |
+| $\C$ | sì | sì (lezione L02) | **sì** |
+
+Per dire che un insieme **non** è un campo basta **una** proprietà che fallisce, con **un** esempio concreto: «$\Z$ non è un campo perché $2$ non ha inverso in $\Z$» è una risposta completa.
+
+> [!OLTRE] · una piccola conseguenza delle nove regole
+> Dalle regole si può dimostrare anche ciò che sembra ovvio, per esempio che $a \cdot 0 = 0$ per ogni $a$:
+> $$a \cdot 0 = a \cdot (0 + 0) = a \cdot 0 + a \cdot 0.$$
+> Il primo passaggio usa la regola 1 ($0 + 0 = 0$), il secondo la regola 9. Ora sommiamo l'opposto di $a \cdot 0$ a entrambi i membri: a sinistra resta $0$, a destra resta $a \cdot 0$. Quindi $a \cdot 0 = 0$. Nella lezione L05 la stessa idea dimostra che $0v = 0$ per un vettore $v$ (Proposizione 5.5).
+
+## L'ordine: maggiore e minore (p. 5)
+
+$\R$, come $\N$, $\Z$ e $\Q$, è un insieme **ordinato**: c'è una nozione di maggiore e minore, e se $a$ e $b$ sono **distinti** vale sempre una delle due, $a > b$ oppure $b > a$.
+
+La definizione usa un trucco: invece di confrontare due numeri qualsiasi, basta sapere quali numeri sono **positivi**.
+
+> [!DEF] Ordine (p. 5)
+> Diciamo che $a > b$ se $a - b > 0$.
+
+Quindi per definire l'ordine basta chiarire quali numeri sono positivi (maggiori di zero) e quali negativi (minori di zero).
+
+- In $\Z$ i positivi sono $1, 2, 3, \dots$ Per esempio $7 > 4$ perché $7 - 4 = 3$ è positivo.
+- In $\Q$ i positivi sono le frazioni $\frac ab$ in cui $a$ e $b$ hanno **lo stesso segno**: $\frac 34$ e $\frac{-3}{-4}$ sono positive, $\frac{-3}{4}$ no.
+- In $\R$ un numero è positivo se è rappresentato da una successione di Cauchy $(a_n)$ di razionali per cui esiste un razionale $\varepsilon > 0$ con $a_n > \varepsilon$ **definitivamente**, cioè da un certo posto in poi. In parole: i termini, da un certo punto in poi, stanno tutti sopra una soglia positiva fissa.
+
+> [!ESEMPIO] · perché serve «sopra una soglia»
+> La successione $a_n = \frac 1n$ ha tutti i termini positivi ($1,\ \frac 12,\ \frac 13,\ \dots$), ma **tende a zero**: rappresenta il numero $0$, che non è positivo. Non esiste una soglia $\varepsilon > 0$ che i termini superino per sempre. Invece $3{,}1;\ 3{,}14;\ 3{,}141;\ \dots$ sta sempre sopra la soglia $\varepsilon = 3$, e infatti $\pi > 0$.
+
+> [!NOTA] Anticipo della lezione L02
+> I numeri complessi $\C$ sono un campo, ma **non sono ordinati**: tra due numeri complessi non ha senso dire quale sia il maggiore.
+
+## Notazioni da non confondere (p. 5)
+
+Tre scritture che sembrano simili vogliono dire cose diversissime.
+
+| Scrittura | Che cos'è | Quanti elementi | Per esempio contiene |
+|---|---|---|---|
+| $\{1, 2\}$ | l'**insieme** che ha esattamente i due elementi 1 e 2 | 2 | solo 1 e 2 |
+| $(1, 2)$ | l'**intervallo aperto**: tutti i numeri strettamente tra 1 e 2, estremi **esclusi** | infiniti | $1{,}5$ e $1{,}001$, ma non 1 né 2 |
+| $[1, 2]$ | l'**intervallo chiuso**: tutti i numeri tra 1 e 2, estremi **inclusi** | infiniti | $1$, $1{,}5$ e $2$ |
+
+Con la notazione della prima sezione:
+
+$$(1, 2) = \{x \in \R \mid 1 < x < 2\}, \qquad [1, 2] = \{x \in \R \mid 1 \le x \le 2\}.$$
+
+Anche $(1, 2)$ e $[1, 2]$ sono insiemi, ma contengono **infiniti** elementi.
+
+> [!OLTRE] · gli altri intervalli
+> Si possono mescolare le parentesi: $[1, 2) = \{x \in \R \mid 1 \le x < 2\}$ include 1 ed esclude 2. Per le semirette si usa $\infty$, sempre con la parentesi tonda perché $\infty$ non è un numero: $[0, +\infty) = \{x \in \R \mid x \ge 0\}$.
+
+C'è un'ultima complicazione: nel corso $(1, 2)$ indica anche un **punto del piano** $\R^2$, oppure un **vettore**. La stessa scrittura può avere significati molto diversi, e quello giusto si capisce dal **contesto**:
+
+- «$x \in (1, 2)$» con $x$ numero reale: è l'intervallo;
+- «il punto $P = (1, 2)$» oppure «il vettore $v = (1, 2)$»: è la coppia ordinata, con prima coordinata 1 e seconda coordinata 2, e qui $(1, 2) \neq (2, 1)$.
+
+> [!ESAME] La notazione giusta
+> Le dispense insistono: è **essenziale usare sempre la notazione giusta**. In particolare le graffe **non si usano mai** per punti o vettori: scrivere $\{1, 2\}$ per il vettore $(1, 2)$ è un errore, perché in un insieme l'ordine non conta. Negli appelli i vettori colonna compaiono anche come $t(1, 2)$ o ${}^t(1, 2)$, cioè «il trasposto» della riga $(1, 2)$: lo vedrai nella lezione L08.
+
+## L'alfabeto greco del corso (p. 5)
+
+Nel corso si usano regolarmente lettere greche. Le dispense chiedono di imparare queste nove:
+
+| Lettera | Nome | Dove la incontrerai |
+|---|---|---|
+| $\alpha$ | alfa (*alpha*) | angoli, coefficienti |
+| $\varepsilon$ | epsilon | una quantità piccola a piacere (successioni di Cauchy) |
+| $\sigma$ | sigma | coefficienti, permutazioni in Matematica Discreta |
+| $\vartheta$ | theta | angoli, per esempio l'argomento di un numero complesso |
+| $\phi$ | fi (*phi*) | angoli, applicazioni |
+| $\pi$ | pi greco | il numero $3{,}14159\ldots$ |
+| $\lambda$ | lambda | scalari, e poi gli autovalori |
+| $\mu$ | mi (*mu*) | scalari |
+| $\varrho$ | rho | raggi e distanze |
+
+Alcune lettere hanno due forme: $\vartheta$ e $\theta$ sono entrambe theta, $\phi$ e $\varphi$ entrambe fi, $\varrho$ e $\rho$ entrambe rho, $\varepsilon$ ed $\epsilon$ entrambe epsilon.
+
+## Il linguaggio dei simboli (oltre le dispense)
+
+> [!OLTRE] · perché questa sezione
+> Le dispense usano già da questa lezione simboli come $\forall$ e $\Longleftrightarrow$. Il libro di Martelli li spiega nel §1.1 (pp. 4–7). Ecco un piccolo dizionario per leggere le formule ad alta voce.
+
+| Simbolo | Si legge | Esempio |
+|---|---|---|
+| $\forall$ | «per ogni» | $\forall a \in \R:\ a + 0 = a$ |
+| $\exists$ | «esiste» | $\exists x \in \Z:\ x + 5 = 3$ (vero: $x = -2$) |
+| $\exists!$ | «esiste ed è unico» | $\forall x \in \R\ \exists!\, y \in \R:\ 2y = x$ |
+| $:$ oppure $\mid$ | «tale che» | $\{x \in \R \mid x > 0\}$ |
+| $\Longrightarrow$ | «implica», «se … allora …» | $a = 2 \Longrightarrow a^2 = 4$ |
+| $\Longleftrightarrow$ | «se e solo se» (vale in entrambi i versi) | $a - b > 0 \Longleftrightarrow a > b$ |
+| $\cup$, $\cap$ | unione («o»), intersezione («e») | $\{1, 2\} \cup \{2, 3\} = \{1, 2, 3\}$, $\{1, 2\} \cap \{2, 3\} = \{2\}$ |
+| $A \setminus B$ | «$A$ meno $B$» | $\Z \setminus \N = \{-1, -2, -3, \dots\}$ |
+
+I **quantificatori** $\forall$ ed $\exists$ cambiano tutto il senso di una frase, e **l'ordine conta**. Due esempi dal libro:
+
+- $\forall x \in \R\ \exists y \in \R:\ 2y = x$ è **vera**: ogni numero reale si può dividere per 2 (basta $y = \frac x2$);
+- la stessa frase con $\Z$ al posto di $\R$, cioè $\forall x \in \Z\ \exists y \in \Z:\ 2y = x$, è **falsa**: per $x = 1$ non esiste nessun intero $y$ con $2y = 1$.
+
+> [!TRAPPOLA] «Implica» non vuol dire «se e solo se»
+> $a = 2 \Longrightarrow a^2 = 4$ è vera, ma al contrario no: $a^2 = 4$ non implica $a = 2$, perché anche $a = -2$ funziona. Quando una proprietà vale nei due versi si scrive $\Longleftrightarrow$.
+
+## Conti con le radici senza calcolatrice (oltre le dispense)
+
+> [!ESAME] Perché ora
+> All'esame di Algebra lineare **la calcolatrice è vietata**, e le risposte del quiz sono spesso scritte con radici. Nell'appello del 07/09/2026 le cinque risposte possibili per una distanza erano $3$, $\frac{\sqrt 3}3$, $3\sqrt 3$, $\sqrt 3$ e $3 + \sqrt 3$; per un angolo comparivano $\arccos\frac 3{\sqrt{43}}$, $\arccos\frac 6{\sqrt{42}}$ e simili. Bisogna saper riconoscere a colpo d'occhio che, per esempio, $\frac 1{\sqrt 3} = \frac{\sqrt 3}3$.
+
+Le regole che servono (per $a, b \ge 0$):
+
+| Regola | Esempio |
+|---|---|
+| $\sqrt{a}\,\sqrt{b} = \sqrt{ab}$ | $\sqrt 2\,\sqrt 8 = \sqrt{16} = 4$ |
+| $\sqrt{a^2 b} = a\sqrt b$: si **porta fuori** un quadrato | $\sqrt{12} = \sqrt{4 \cdot 3} = 2\sqrt 3$ |
+| $(\sqrt a)^2 = a$ | $(\sqrt 5)^2 = 5$ |
+| $\sqrt{x^2} = \lvert x \rvert$ (anche per $x < 0$) | $\sqrt{(-3)^2} = \sqrt 9 = 3$ |
+| si somma solo la **stessa** radice | $2\sqrt 3 + 5\sqrt 3 = 7\sqrt 3$, ma $\sqrt 2 + \sqrt 3 \neq \sqrt 5$ |
+| per togliere una radice dal denominatore si moltiplica sopra e sotto per quella radice | $\frac 6{\sqrt 3} = \frac{6\sqrt 3}{3} = 2\sqrt 3$ |
+| con una somma al denominatore si usa $(x - y)(x + y) = x^2 - y^2$ | $\frac 1{\sqrt 2 - 1} = \frac{\sqrt 2 + 1}{(\sqrt 2)^2 - 1^2} = \sqrt 2 + 1$ |
+
+> [!TRAPPOLA] La radice di una somma
+> $\sqrt{a + b}$ **non** è $\sqrt a + \sqrt b$. Controllo con i numeri: $\sqrt{9 + 16} = \sqrt{25} = 5$, mentre $\sqrt 9 + \sqrt{16} = 3 + 4 = 7$.
+
+## Verso l'esame
+
+La prova di **Algebra lineare e Geometria** (parte 2 di MDAG) è scritta ed è comune ai canali A, B e C. Al 30/09/2026 le regole del 2026/27 non sono ancora pubblicate (su Moodle: «informazioni seguono»), quindi il riferimento sono quelle del 2025/26, confermate dai testi degli appelli:
+
+- **10 domande a risposta multipla**, ciascuna con 5 risposte (a)–(e) e **una sola giusta**, 1 punto ciascuna;
+- **2 problemi a risposta aperta** con sottodomande, 11 punti ciascuno: per avere punti parziali bisogna mostrare il lavoro;
+- **sbarramento**: i problemi vengono corretti solo a chi fa **almeno 6 punti su 10** nel quiz;
+- **2 ore**, massimo 32 punti, sufficienza con 18;
+- materiale ammesso: **solo un foglio protocollo o due fogli A4 (4 facciate) scritti a mano**, con formulario, appunti ed esercizi; **niente calcolatrice** e niente libri;
+- nel quiz le risposte si segnano con una **X**, non con un cerchio.
+
+| Appello 2026/27 | Iscrizioni su MyUniTo | Ora e aule |
+|---|---|---|
+| ven 22/01/2027 | 02/01 – 15/01/2027 | 14:00, aule A, B, C, D, F |
+| ven 05/02/2027 | 16/01 – 29/01/2027 | 14:00, aule A, B, C, D, F |
+
+Il voto finale di MDAG è la media delle due prove (Matematica Discreta e Algebra lineare), che si possono sostenere anche in appelli diversi. Attenzione: ripresentarsi a una prova già superata **annulla** il voto precedente, anche se va peggio. Dettagli e fonti nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+
+**Che cosa di questa lezione serve all'esame**
+
+1. **Campi.** Gli scalari degli spazi vettoriali (lezioni L05–L07) vivono in un campo. Saper dire perché $\Z$ non è un campo è una tipica domanda di teoria da quiz.
+2. **Notazioni.** Insiemi, intervalli, punti e vettori con le parentesi giuste: nei problemi si scrivono le risposte con questa notazione.
+3. **Conti a mano.** Frazioni e radici compaiono in quasi tutte le domande (norme, angoli, distanze). Allenati adesso con gli esercizi 2 e 8.
+4. **Dimostrazioni per assurdo.** Il quiz non chiede dimostrazioni, ma il ragionamento per assurdo torna spesso nel corso.
+
+> [!ESAME] Il foglio da 4 facciate
+> È l'unico materiale ammesso: conviene costruirlo lezione per lezione. Da questa lezione bastano due righe: le regole delle radici della sezione precedente e «campo = 9 proprietà; $\N$ e $\Z$ non sono campi».
+
+## Quiz
+
+```quiz
+D: Quale di questi insiemi, con la somma e il prodotto usuali, **non** è un campo?
+- $\Q$
+- $\R$
++ $\Z$
+- $\C$
+- Sono tutti campi.
+= In $\Z$ il numero $2$ non ha inverso moltiplicativo: $\frac 12 \notin \Z$. Manca la proprietà 8, quindi $\Z$ non è un campo. $\Q$, $\R$ e $\C$ invece lo sono.
+
+D: Quale di questi numeri è irrazionale?
+- $0{,}125$
+- $\frac{22}{7}$
+- $\sqrt 9$
++ $\sqrt{12}$
+- $0{,}\overline{3}$
+= $\sqrt{12} = 2\sqrt 3$ e $\sqrt 3$ è irrazionale. Gli altri sono razionali: $0{,}125 = \frac 18$, $\sqrt 9 = 3$ e $0{,}\overline 3 = \frac 13$; $\frac{22}7$ è una frazione (solo un'approssimazione di $\pi$).
+
+D: Quale affermazione è vera?
++ $\N \subsetneq \Z \subsetneq \Q \subsetneq \R$
+- $\Q \subsetneq \Z$
+- $\R \subsetneq \Q$
+- $\sqrt 2 \in \Q$
+- $\Z = \N$
+= Ogni insieme è contenuto strettamente nel successivo: $-1 \in \Z \setminus \N$, $\frac 12 \in \Q \setminus \Z$, $\sqrt 2 \in \R \setminus \Q$.
+
+D: L'insieme $\{x \in \R \mid 1 \le x < 2\}$ è:
+- $(1, 2)$
+- $[1, 2]$
++ $[1, 2)$
+- $\{1, 2\}$
+- $(1, 2]$
+= Il $\le$ include 1 (parentesi quadra), il $<$ esclude 2 (parentesi tonda). $\{1, 2\}$ invece è l'insieme con i soli due numeri 1 e 2.
+
+D: Il numero $0{,}999\ldots$ (con infinite cifre 9) è uguale a:
++ $1$
+- un numero appena più piccolo di $1$
+- $0{,}9$
+- $\frac 9{10}$
+- non è un numero reale
+= $\frac 13 = 0{,}333\ldots$; moltiplicando per 3 si ottiene $1 = 0{,}999\ldots$. Come $5{,}973\overline 9 = 5{,}974$ nelle dispense: sono due scritture dello stesso numero.
+
+D: Nella dimostrazione che $\sqrt 2 \notin \Q$, a quale assurdo si arriva?
++ $a$ e $b$ sono entrambi pari, mentre la frazione $\frac ab$ era ridotta ai minimi termini.
+- $\sqrt 2 = 2$.
+- $b = 0$.
+- $a^2$ è dispari.
+- $2$ non è un numero primo.
+= Da $a^2 = 2b^2$ si ricava che $a$ è pari, poi che anche $b$ è pari: allora $a$ e $b$ hanno il fattore 2 in comune, contro l'ipotesi che la frazione fosse ridotta.
+
+D: Quale proprietà manca a $\Z$ per essere un campo?
++ L'esistenza dell'inverso moltiplicativo di ogni elemento non nullo.
+- L'esistenza dell'opposto.
+- La proprietà commutativa del prodotto.
+- La proprietà distributiva.
+- L'esistenza dell'elemento neutro della somma.
+= In $\Z$ ogni numero ha l'opposto, e somma e prodotto sono commutativi, associativi e distributivi. Ma solo $1$ e $-1$ hanno un inverso intero: per esempio $3$ non ce l'ha.
+
+D: Quanto vale $\sqrt 8 + \sqrt{18}$?
++ $5\sqrt 2$
+- $\sqrt{26}$
+- $2\sqrt 2$
+- $13$
+- $6\sqrt 3$
+= $\sqrt 8 = \sqrt{4 \cdot 2} = 2\sqrt 2$ e $\sqrt{18} = \sqrt{9 \cdot 2} = 3\sqrt 2$, quindi la somma è $5\sqrt 2$. Attenzione: $\sqrt 8 + \sqrt{18} \neq \sqrt{26}$, la radice di una somma non è la somma delle radici.
+
+D: Quanto vale $a_2$ nella successione $a_n = \left(1 + \frac 1n\right)^n$? Scrivi una frazione o un decimale.
+N: 9/4
+= $a_2 = \left(1 + \frac 12\right)^2 = \left(\frac 32\right)^2 = \frac 94 = 2{,}25$.
+```
+
+## Esercizi
+
+::: esercizio base Dove abita ogni numero
+Per ciascun numero trova l'insieme **più piccolo** tra $\N$, $\Z$, $\Q$, $\R$ che lo contiene:
+$$-4, \qquad 0, \qquad \frac 72, \qquad \sqrt{16}, \qquad \sqrt 7, \qquad 0{,}\overline{12}, \qquad \pi, \qquad -\frac{\sqrt{25}}{5}.$$
+::: soluzione
+| Numero | Semplificato | Insieme più piccolo | Perché |
+|---|---|---|---|
+| $-4$ | $-4$ | $\Z$ | negativo, quindi non sta in $\N$ |
+| $0$ | $0$ | $\N$ | nel corso lo zero è naturale |
+| $\frac 72$ | $3{,}5$ | $\Q$ | frazione che non è un intero |
+| $\sqrt{16}$ | $4$ | $\N$ | $4 \cdot 4 = 16$ |
+| $\sqrt 7$ | — | $\R$ | 7 non è un quadrato perfetto: irrazionale |
+| $0{,}\overline{12}$ | $\frac 4{33}$ | $\Q$ | decimale periodico (vedi esercizio 2) |
+| $\pi$ | — | $\R$ | irrazionale |
+| $-\frac{\sqrt{25}}5$ | $-\frac 55 = -1$ | $\Z$ | prima si semplifica, poi si decide |
+
+Morale: prima di decidere, **semplifica** sempre. $\sqrt{16}$ sembra irrazionale ma è 4.
+:::
+
+::: esercizio base Da decimale periodico a frazione
+Scrivi come frazione: (a) $0{,}\overline 7$; (b) $2{,}\overline 3$; (c) $0{,}\overline{12}$.
+::: soluzione
+Il trucco: chiamo $x$ il numero, lo moltiplico per $10$ (o per $100$ se il periodo ha due cifre) e sottraggo. Le code infinite, identiche, si cancellano.
+
+(a) $x = 0{,}777\ldots$
+- $10x = 7{,}777\ldots$
+- $10x - x = 7{,}777\ldots - 0{,}777\ldots = 7$, cioè $9x = 7$
+- $x = \frac 79$.
+
+(b) $x = 2{,}333\ldots$
+- $10x = 23{,}333\ldots$
+- $9x = 23{,}333\ldots - 2{,}333\ldots = 21$
+- $x = \frac{21}9 = \frac 73$. Controllo: $7 : 3 = 2{,}333\ldots$ ✓
+
+(c) $x = 0{,}1212\ldots$ ha un periodo di **due** cifre, quindi moltiplico per $100$:
+- $100x = 12{,}1212\ldots$
+- $99x = 12$
+- $x = \frac{12}{99} = \frac 4{33}$.
+:::
+
+::: esercizio base $0{,}\overline 9 = 1$ con il metodo dell'esercizio 2
+Usa lo stesso metodo per mostrare che $0{,}999\ldots = 1$, e poi che $5{,}973\overline 9 = 5{,}974$.
+::: soluzione
+$x = 0{,}999\ldots$, quindi $10x = 9{,}999\ldots$ e $9x = 9$: $x = 1$.
+
+Per il secondo: $5{,}973\overline 9 = 5{,}973 + 0{,}000\overline 9$, e $0{,}000\overline 9 = \frac{0{,}\overline 9}{1000} = \frac 1{1000} = 0{,}001$. Quindi $5{,}973\overline 9 = 5{,}973 + 0{,}001 = 5{,}974$.
+:::
+
+::: esercizio medio $\sqrt 3$ non è razionale
+Dimostra per assurdo che $\sqrt 3 \notin \Q$. Suggerimento: ti serve il fatto «se $a^2$ è divisibile per 3, anche $a$ lo è». Dimostra anche questo.
+::: soluzione
+**Il fatto sui multipli di 3.** Ogni intero $a$ si scrive in uno di tre modi: $a = 3k$, $a = 3k + 1$ oppure $a = 3k + 2$. Nei due ultimi casi:
+- $(3k + 1)^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$: resto 1 nella divisione per 3;
+- $(3k + 2)^2 = 9k^2 + 12k + 4 = 3(3k^2 + 4k + 1) + 1$: resto 1.
+
+Quindi se $a$ non è multiplo di 3, neanche $a^2$ lo è. Detto al contrario: se $a^2$ è multiplo di 3, anche $a$ lo è.
+
+**La dimostrazione**, come per $\sqrt 2$:
+1. Per assurdo $\sqrt 3 = \frac ab$, frazione ridotta ai minimi termini.
+2. Al quadrato: $a^2 = 3b^2$. Quindi $a^2$ è multiplo di 3, e per il fatto appena visto anche $a$: $a = 3k$.
+3. Sostituisco: $9k^2 = 3b^2$, cioè $b^2 = 3k^2$. Quindi anche $b$ è multiplo di 3.
+4. $a$ e $b$ hanno il fattore 3 in comune: la frazione non era ridotta. Assurdo, quindi $\sqrt 3 \notin \Q$.
+:::
+
+::: esercizio medio Razionale più irrazionale
+(a) Dimostra che se $q \in \Q$ e $x \notin \Q$, allora $q + x \notin \Q$. (b) Trova due numeri irrazionali la cui somma è razionale, e due il cui prodotto è razionale.
+::: soluzione
+(a) Per assurdo, supponiamo $q + x = r$ con $r \in \Q$. Allora $x = r - q$. Ma la differenza di due razionali è razionale: $\frac ab - \frac cd = \frac{ad - bc}{bd}$. Quindi $x \in \Q$, contro l'ipotesi. Assurdo: $q + x \notin \Q$.
+
+(b) Somma: $\sqrt 2 + (-\sqrt 2) = 0$. Prodotto: $\sqrt 2 \cdot \sqrt 2 = 2$, oppure $\sqrt 2 \cdot \sqrt 8 = \sqrt{16} = 4$. Quindi «irrazionale + irrazionale» e «irrazionale · irrazionale» possono essere razionali: non c'è una regola generale.
+:::
+
+::: esercizio medio Campo o no?
+Per ciascun insieme, con la somma e il prodotto usuali, di' se è un campo; se non lo è, indica **una** proprietà che fallisce, con un esempio: (a) $\N$; (b) $\Z$; (c) i numeri reali positivi $\{x \in \R \mid x > 0\}$; (d) $\Q$.
+::: soluzione
+(a) $\N$: no. Proprietà 4: $3$ non ha opposto in $\N$, perché $-3 \notin \N$.
+
+(b) $\Z$: no. Proprietà 8: $2$ non ha inverso in $\Z$, perché $\frac 12 \notin \Z$.
+
+(c) Reali positivi: no. Proprietà 1: lo $0$ non ci sta, quindi manca l'elemento neutro della somma (e di conseguenza anche gli opposti).
+
+(d) $\Q$: sì. Tutte le nove proprietà valgono; in particolare l'opposto di $\frac ab$ è $\frac{-a}b$ e, se $a \neq 0$, l'inverso è $\frac ba$, che è ancora una frazione.
+:::
+
+::: esercizio base Intervalli
+(a) Scrivi con le parentesi l'insieme $\{x \in \R \mid -1 < x \le 3\}$. (b) Scrivi con la notazione insiemistica l'intervallo $[0, 5)$. (c) Quale intervallo è $\{x \in \R \mid x^2 < 4\}$? (d) Quanti elementi hanno $\{0, 5\}$ e $(0, 5)$?
+::: soluzione
+(a) $(-1, 3]$: tonda a sinistra perché $-1$ è escluso ($<$), quadra a destra perché $3$ è incluso ($\le$).
+
+(b) $\{x \in \R \mid 0 \le x < 5\}$.
+
+(c) $x^2 < 4$ vuol dire che $x$ sta strettamente tra $-2$ e $2$: prova $x = 1{,}9$ ($3{,}61 < 4$, sì) e $x = -2$ ($4 < 4$, no). Quindi è $(-2, 2)$.
+
+(d) $\{0, 5\}$ ha **2** elementi; $(0, 5)$ ne ha **infiniti**.
+:::
+
+::: esercizio medio Conti senza calcolatrice
+Semplifica: (a) $\sqrt{50}$; (b) $\sqrt{12} \cdot \sqrt 3$; (c) $\frac 6{\sqrt 3}$; (d) $(1 + \sqrt 2)^2$; (e) $\frac 1{\sqrt 2 - 1}$; (f) $\frac{\sqrt 3}3$ e $\frac 1{\sqrt 3}$: sono uguali?
+::: soluzione
+(a) $\sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt 2$.
+
+(b) $\sqrt{12} \cdot \sqrt 3 = \sqrt{36} = 6$.
+
+(c) $\frac 6{\sqrt 3} = \frac{6\sqrt 3}{\sqrt 3 \cdot \sqrt 3} = \frac{6\sqrt 3}3 = 2\sqrt 3$.
+
+(d) $(1 + \sqrt 2)^2 = 1^2 + 2 \cdot 1 \cdot \sqrt 2 + (\sqrt 2)^2 = 1 + 2\sqrt 2 + 2 = 3 + 2\sqrt 2$.
+
+(e) Moltiplico sopra e sotto per $\sqrt 2 + 1$:
+$$\frac 1{\sqrt 2 - 1} \cdot \frac{\sqrt 2 + 1}{\sqrt 2 + 1} = \frac{\sqrt 2 + 1}{(\sqrt 2)^2 - 1^2} = \frac{\sqrt 2 + 1}{2 - 1} = \sqrt 2 + 1.$$
+
+(f) Sì: $\frac 1{\sqrt 3} = \frac{\sqrt 3}{\sqrt 3 \cdot \sqrt 3} = \frac{\sqrt 3}3$. Nel quiz d'esame lo stesso numero può comparire in una delle due forme.
+:::
+
+::: esercizio difficile $\sqrt 2 + \sqrt 3$ è irrazionale
+(a) Dimostra che $\sqrt 6 \notin \Q$. (b) Usalo per dimostrare che $\sqrt 2 + \sqrt 3 \notin \Q$.
+::: soluzione
+(a) Per assurdo $\sqrt 6 = \frac ab$ ridotta. Allora $a^2 = 6b^2 = 2 \cdot 3b^2$ è pari, quindi $a$ è pari: $a = 2k$. Sostituisco: $4k^2 = 6b^2$, cioè $2k^2 = 3b^2$. Allora $3b^2$ è pari; siccome 3 è dispari, $b^2$ deve essere pari (dispari per dispari fa dispari), quindi $b$ è pari. $a$ e $b$ sono entrambi pari: assurdo.
+
+(b) Per assurdo $\sqrt 2 + \sqrt 3 = q$ con $q \in \Q$. Elevo al quadrato:
+$$q^2 = (\sqrt 2)^2 + 2\sqrt 2\sqrt 3 + (\sqrt 3)^2 = 5 + 2\sqrt 6.$$
+Quindi $\sqrt 6 = \frac{q^2 - 5}2$, che è razionale perché $q$ lo è. Ma per il punto (a) $\sqrt 6$ non è razionale: assurdo. Quindi $\sqrt 2 + \sqrt 3 \notin \Q$.
+:::
+
+::: esercizio base I primi termini della successione di $e$
+Calcola come frazioni $a_1$, $a_2$, $a_3$, $a_4$ di $a_n = \left(1 + \frac 1n\right)^n$ e controlla che crescono.
+::: soluzione
+- $a_1 = 2^1 = 2$
+- $a_2 = \left(\frac 32\right)^2 = \frac 94 = 2{,}25$
+- $a_3 = \left(\frac 43\right)^3 = \frac{64}{27} \approx 2{,}370$
+- $a_4 = \left(\frac 54\right)^4 = \frac{625}{256} \approx 2{,}441$
+
+Crescono: $2 < 2{,}25 < 2{,}370 < 2{,}441$, e restano sotto $e \approx 2{,}718$ (vedi il grafico della sezione sui reali). Ogni termine è razionale, ma il numero a cui si avvicinano non lo è.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa contengono $\N$, $\Z$ e $\Q$? Lo zero sta in $\N$?
+$\N = \{0, 1, 2, \dots\}$ sono i naturali, **zero compreso** nella convenzione del corso. $\Z$ aggiunge i negativi. $\Q = \{\frac ab \mid a, b \in \Z,\ b \neq 0\}$ contiene tutte le frazioni.
+:::
+
+::: domanda Perché si passa da $\Q$ a $\R$?
+Perché in $\Q$ ci sono equazioni semplici senza soluzione, come $x^2 = 2$, e successioni di Cauchy che non convergono (per esempio quella che definisce $e$). I reali riempiono questi «buchi».
+:::
+
+::: domanda Che cos'è una successione di Cauchy, in parole?
+Una lista infinita di numeri in cui, da un certo punto in poi, tutti i termini sono vicini tra loro quanto si vuole: per ogni tolleranza $\varepsilon > 0$ esiste un posto $N$ dopo il quale $|a_m - a_n| < \varepsilon$.
+:::
+
+::: domanda Come si definiscono i numeri reali con le successioni di Cauchy?
+Come classi di equivalenza di successioni di Cauchy di razionali; due successioni sono equivalenti se la loro differenza tende a zero. Se una successione converge a un razionale rappresenta quel razionale; altrimenti definisce un numero nuovo, irrazionale.
+:::
+
+::: domanda Che cosa vuol dire che $\R$ è completo?
+Che ogni successione di Cauchy di numeri reali converge a un numero reale: rifacendo la costruzione partendo da $\R$ non si aggiunge niente di nuovo.
+:::
+
+::: domanda Ripeti la dimostrazione che $\sqrt 2$ non è razionale.
+Per assurdo $\sqrt 2 = \frac ab$ ridotta. Allora $a^2 = 2b^2$, quindi $a^2$ è pari e anche $a$ è pari: $a = 2k$. Da $4k^2 = 2b^2$ viene $b^2 = 2k^2$, quindi anche $b$ è pari. $a$ e $b$ sono entrambi pari: la frazione non era ridotta, assurdo.
+:::
+
+::: domanda Che cos'è un campo? Fai un esempio e un controesempio.
+Un insieme con due operazioni $+$ e $\cdot$ che hanno le nove proprietà: neutri 0 e 1, opposti, inversi dei non nulli, commutativa, associativa, distributiva. Esempi: $\Q$, $\R$, $\C$. Controesempio: $\Z$, perché 2 non ha inverso.
+:::
+
+::: domanda Perché lo zero non ha inverso?
+Perché $0 \cdot x = 0$ per ogni $x$: non esiste nessun $x$ con $0 \cdot x = 1$. Per questo la proprietà 8 chiede l'inverso solo per $a \neq 0$.
+:::
+
+::: domanda Come si definisce $a > b$?
+$a > b$ se $a - b > 0$. Quindi basta sapere quali numeri sono positivi: in $\Z$ sono $1, 2, 3, \dots$; in $\Q$ le frazioni con numeratore e denominatore dello stesso segno.
+:::
+
+::: domanda Che differenza c'è tra $\{1, 2\}$, $(1, 2)$ e $[1, 2]$?
+$\{1, 2\}$ è l'insieme con i due elementi 1 e 2. $(1, 2)$ è l'intervallo aperto, estremi esclusi, oppure il punto o il vettore di coordinate 1 e 2, a seconda del contesto. $[1, 2]$ è l'intervallo chiuso, estremi inclusi.
+:::
+
+::: domanda Quali sono le nove lettere greche da sapere?
+$\alpha$ (alfa), $\varepsilon$ (epsilon), $\sigma$ (sigma), $\vartheta$ (theta), $\phi$ (fi), $\pi$ (pi), $\lambda$ (lambda), $\mu$ (mu), $\varrho$ (rho).
+:::
+
+::: domanda Come si toglie una radice dal denominatore?
+Si moltiplicano numeratore e denominatore per la stessa radice: $\frac 6{\sqrt 3} = \frac{6\sqrt 3}3 = 2\sqrt 3$. Se al denominatore c'è una somma come $\sqrt 2 - 1$, si moltiplica per $\sqrt 2 + 1$ e si usa $(x - y)(x + y) = x^2 - y^2$.
+:::
+
+## Glossario
+
+```glossario
+Insieme | Collezione di oggetti, detti elementi; si scrive con le graffe. Ordine e ripetizioni non contano.
+Appartenenza ($\in$) | $x \in A$: $x$ è un elemento di $A$. Il contrario si scrive $x \notin A$.
+Sottoinsieme ($\subset$, $\subsetneq$) | $B \subset A$: ogni elemento di $B$ sta in $A$. $B \subsetneq A$: in più $A$ ha almeno un elemento che $B$ non ha.
+Numeri naturali $\N$ | $\{0, 1, 2, \dots\}$, zero compreso.
+Numeri interi $\Z$ | $\{\dots, -2, -1, 0, 1, 2, \dots\}$.
+Numeri razionali $\Q$ | Le frazioni $\frac ab$ con $a, b \in \Z$ e $b \neq 0$; in forma decimale sono finite o periodiche.
+Numeri reali $\R$ | Classi di equivalenza di successioni di Cauchy di razionali; intuitivamente, i numeri con infinite cifre dopo la virgola.
+Numero irrazionale | Numero reale che non è razionale, come $\sqrt 2$, $\pi$, $e$.
+Successione | Lista infinita $a_1, a_2, a_3, \dots$; si indica con $(a_n)$.
+Successione di Cauchy | Successione i cui termini, da un certo posto in poi, distano tra loro meno di qualsiasi tolleranza $\varepsilon > 0$ fissata.
+Completezza | Proprietà di $\R$: ogni successione di Cauchy converge. $\Q$ non è completo.
+Dimostrazione per assurdo | Si suppone vera la negazione della tesi e si arriva a una contraddizione.
+Operazione binaria | Regola che a due elementi ne associa un terzo, come $+$ e $\cdot$.
+Elemento neutro | $0$ per la somma ($a + 0 = a$), $1$ per il prodotto ($a \cdot 1 = a$).
+Opposto e inverso | L'opposto di $a$ è $-a$ ($a + (-a) = 0$); l'inverso di $a \neq 0$ è $a^{-1}$ ($a \cdot a^{-1} = 1$).
+Campo | Insieme con $+$ e $\cdot$ che hanno le nove proprietà della Proposizione 1.5: $\Q$, $\R$, $\C$ sì; $\N$, $\Z$ no.
+Ordine | $a > b$ se $a - b > 0$; $\R$ è ordinato, $\C$ no.
+Intervallo aperto / chiuso | $(a, b)$ esclude gli estremi, $[a, b]$ li include.
+Quantificatori | $\forall$ «per ogni», $\exists$ «esiste», $\exists!$ «esiste ed è unico».
+```
+
+## Checklist
+
+```checklist
+- So scrivere $\N$, $\Z$, $\Q$ con le parentesi giuste e so che in questo corso $0 \in \N$.
+- So spiegare con un'equazione perché serve ogni insieme nuovo ($x + 5 = 3$, $2x = 1$, $x^2 = 2$).
+- So trasformare un decimale periodico in frazione e spiegare perché $0{,}\overline 9 = 1$.
+- So spiegare in parole che cos'è una successione di Cauchy e come definisce un numero reale.
+- So dire che cosa vuol dire che $\R$ è completo e $\Q$ no.
+- So rifare da solo la dimostrazione che $\sqrt 2$ non è razionale, giustificando ogni passaggio.
+- So elencare le nove proprietà di campo e spiegare perché $\N$ e $\Z$ non sono campi.
+- So la definizione di $a > b$ e quali sono i numeri positivi in $\Z$ e in $\Q$.
+- Non confondo $\{1, 2\}$, $(1, 2)$ e $[1, 2]$, e so leggere $\forall$, $\exists$, $\Longrightarrow$, $\Longleftrightarrow$.
+- So semplificare radici e toglierle dal denominatore senza calcolatrice.
+```
+
+## Fonti
+
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 1 «Numeri reali», pp. 2–5: le sezioni 1.A–1.E sono seguite in ordine, con la pagina indicata accanto a ogni titolo; definizioni, proposizioni ed esempi mantengono la loro numerazione (Definizione 1.1, Esempi 1.2 e 1.3, Proposizioni 1.4 e 1.5).
+- **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §1.1 (insiemi numerici, dimostrazione per assurdo, sottoinsiemi, notazione insiemistica, quantificatori), §1.5 (strutture algebriche) e complemento 1.II (costruzione dei numeri reali).
+- **Pagina Moodle MDAG2 2026/27** ([id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)): calendario, dispense complete L01–L26, capitoli del libro trattati (1–5, 7–9, 11).
+- **Esame**: regole 2025/26 e testi degli appelli del 15/01/2026 e del 07/09/2026 (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)); date degli appelli 2026/27 dalla bacheca Esse3.
+- Le parti **«Oltre le dispense»** (ripasso sugli insiemi, decimali periodici, simboli, conti con le radici, esercizi) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
 
 
 ---

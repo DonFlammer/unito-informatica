@@ -19,3 +19,4 @@ desktop.ini
 
 # cache di Python
 __pycache__/
+strumenti/node_modules/

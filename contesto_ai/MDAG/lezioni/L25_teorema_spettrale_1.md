@@ -36,7 +36,7 @@ genera_html: true
 - Ogni prodotto hermitiano su $\C^n$ è $g_H(x, y) = {}^t x\, H\, \bar y$ con $H$ hermitiana: il coefficiente di $x_i \bar y_j$ è $H_{ij}$.
 - Un endomorfismo è **autoaggiunto** se $\langle T(v), w \rangle = \langle v, T(w) \rangle$. Rispetto a una base **ortonormale** è autoaggiunto se e solo se la sua matrice è hermitiana (nel caso reale: simmetrica). Con una base non ortonormale questo criterio non vale.
 - Un sottospazio $U$ è **$T$-invariante** se $T(U) \subseteq U$. Se $T$ è autoaggiunto e $U$ è invariante, anche $U^\perp$ lo è: è il passo chiave del teorema spettrale (lezione L26).
-- All'esame questa lezione vale quasi sempre un quiz: «quale formula è un prodotto hermitiano?», «quale matrice è hermitiana?», «quale applicazione è autoaggiunta?».
+- All'esame questa lezione vale di solito un quiz (in 9 dei 15 appelli 2023–2026): «quale formula è un prodotto hermitiano?», «quale matrice è hermitiana?», «quale applicazione è autoaggiunta?».
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
@@ -381,7 +381,7 @@ Lo strumento disegna le due rette di autovettori di $A = \begin{pmatrix} 2 & 1 \
 
 La prova scritta di Algebra lineare e Geometria ha **10 quiz** a 5 risposte (una sola giusta) e **2 problemi da 11 punti**, corretti solo con **almeno 6 quiz giusti**; dura **2 ore**, **senza calcolatrice**, e si può portare solo un foglio di **4 facciate scritte a mano**. Gli appelli 2026/27 sono il **22/01/2027** e il **05/02/2027** alle 14:00. Tutti i dettagli nella lezione L01.
 
-**Che cosa di questa lezione compare negli appelli 2023–2026.** Solo quiz, ma frequentissimi: sono punti facili, se si conosce il metodo.
+**Che cosa di questa lezione compare negli appelli 2023–2026.** Solo quiz, ma frequenti: ce n'è uno in 9 dei 15 appelli. Sono punti facili, se si conosce il metodo.
 
 - **«Quale delle seguenti è un prodotto hermitiano su $\C^2$?»**: appelli del 24/01/2024 (domanda 4), 16/01/2025 (domanda 9), 07/02/2025 (domanda 6), 02/09/2025 (domanda 7), 15/01/2026 (domanda 2). Le cinque formule differiscono per i coefficienti e per la presenza delle sbarre del coniugio.
 - **«Quale matrice è (o non è) hermitiana?»**: 10/06/2024 (domanda 9), 10/07/2024 (domanda 10).

@@ -2646,6 +2646,55 @@ Riferimento 2025/26 (iscritti): MD 13/01 (340), 03/02 (325), 08/06 (127), 01/07 
 
 ---
 
+<!-- FILE: contesto_ai/MDAG/indice_lezioni.md -->
+> File: `contesto_ai/MDAG/indice_lezioni.md`
+
+# Algebra lineare e Geometria (MDAG, parte 2) — indice delle lezioni
+
+Scheda completa del corso (entrambi i moduli, orari dei tre canali, esame): `corso.md`. Le 26 lezioni seguono le dispense 2026 del corso (Buzano, Radeschi), comuni ai canali A, B e C, e sono pronte in anticipo rispetto alle lezioni in aula: il ritmo in aula può essere diverso. Ogni file ha quiz nello stile dell'esame, esercizi svolti, domande di ripasso, glossario e una sezione «Verso l'esame» con le domande degli appelli 2023–2026 sugli stessi argomenti. Gli appunti di Matematica Discreta (MDAG, parte 1) non ci sono ancora.
+
+| # | Titolo | Dispense | Libro (Martelli) | File | Argomenti |
+|---|---|---|---|---|---|
+| L01 | Numeri reali | pp. 2–5 | §1.1 e complemento 1.II | `lezioni/L01_numeri_reali.md` · HTML: `appunti/MDAG/L01_numeri_reali.html` | insiemi numerici, costruzione dei numeri reali, irrazionalità di √2, campi, ordine, notazioni e conti con le radici |
+| L02 | Numeri complessi I | pp. 6–9 | §1.4.1–1.4.3 (pp. 25–27) | `lezioni/L02_numeri_complessi_1.md` · HTML: `appunti/MDAG/L02_numeri_complessi_1.html` | i numeri complessi, somma e prodotto, parte reale e parte immaginaria, coniugato, modulo, inverso e divisione, il piano complesso e la regola del parallelogramma |
+| L03 | Numeri complessi II | pp. 10–14 | §1.4.4–1.4.6 (pp. 27–31) | `lezioni/L03_numeri_complessi_2.md` · HTML: `appunti/MDAG/L03_numeri_complessi_2.html` | coordinate polari, forma esponenziale, modulo e argomento di un numero complesso, prodotto e inverso in forma polare, identità di Eulero, potenze e radici n-esime |
+| L04 | Polinomi | pp. 15–19 | §1.3 (pp. 21–25) e §1.4.7–1.4.8 (pp. 31–33) | `lezioni/L04_polinomi.md` · HTML: `appunti/MDAG/L04_polinomi.html` | polinomi e grado, divisione con resto e regola di Ruffini, radici e molteplicità, quante radici può avere un polinomio, teorema fondamentale dell'algebra, equazioni di secondo grado nei complessi e polinomi a coefficienti reali |
+| L05 | Spazi vettoriali I | pp. 20–25 | §1.5, §2.1 e §2.2 | `lezioni/L05_spazi_vettoriali_1.md` · HTML: `appunti/MDAG/L05_spazi_vettoriali_1.html` | lo spazio euclideo, somma di vettori e prodotto per scalare, gruppi, campi, definizione di spazio vettoriale ed esempi (polinomi, funzioni, successioni) |
+| L06 | Spazi vettoriali II | pp. 26–30 | §2.2.5–2.2.16 | `lezioni/L06_spazi_vettoriali_2.md` · HTML: `appunti/MDAG/L06_spazi_vettoriali_2.html` | lo spazio delle matrici, i sottospazi vettoriali, le matrici diagonali, triangolari, simmetriche e antisimmetriche, le combinazioni lineari e il sottospazio generato (Span) |
+| L07 | Spazi vettoriali III | pp. 31–35 | §2.3.1–2.3.7 | `lezioni/L07_spazi_vettoriali_3.md` · HTML: `appunti/MDAG/L07_spazi_vettoriali_3.html` | dipendenza e indipendenza lineare, basi, base canonica di K^n e dei polinomi, dimensione di uno spazio vettoriale e teorema sulle basi |
+| L08 | Matrici I | pp. 36–40 | §2.3.10, §3.2.3, §3.2.6, §3.4.1–3.4.5 e §4.4.5 | `lezioni/L08_matrici_1.md` · HTML: `appunti/MDAG/L08_matrici_1.html` | trasposta di una matrice, matrici simmetriche, rango per righe e per colonne, prodotto riga per colonna e sue proprietà, traccia |
+| L09 | Matrici II | pp. 41–45 | §3.3.1–3.3.4 e §3.3.10 | `lezioni/L09_matrici_2.md` · HTML: `appunti/MDAG/L09_matrici_2.html` | il determinante di una matrice quadrata definito con le permutazioni, le formule per le matrici 2×2 e 3×3, matrici triangolari e matrice identità, lo sviluppo di Laplace e le prime proprietà del determinante |
+| L10 | Matrici III | pp. 46–49 | §3.3.5, §3.3.7, §3.4.5–3.4.7 | `lezioni/L10_matrici_3.md` · HTML: `appunti/MDAG/L10_matrici_3.html` | come cambia il determinante con le mosse di Gauss, determinante nullo e righe dipendenti, teorema di Binet, cofattori, matrice inversa e criterio di invertibilità |
+| L11 | Sistemi lineari I | pp. 50–55 | §3.1 | `lezioni/L11_sistemi_lineari_1.md` · HTML: `appunti/MDAG/L11_sistemi_lineari_1.html` | sistemi lineari e matrice completa, mosse di Gauss, pivot e matrici a scalini, algoritmi di Gauss e di Gauss–Jordan, come si scrivono tutte le soluzioni di un sistema |
+| L12 | Sistemi lineari II | pp. 56–61 | §3.2 | `lezioni/L12_sistemi_lineari_2.md` · HTML: `appunti/MDAG/L12_sistemi_lineari_2.html` | sistema omogeneo associato, soluzione particolare, sottospazi affini, rango e pivot, teorema di Rouché–Capelli, sistemi quadrati e sistemi con un parametro |
+| L13 | Sistemi lineari III | pp. 62–67 | §2.3 e §3.2 | `lezioni/L13_sistemi_lineari_3.md` · HTML: `appunti/MDAG/L13_sistemi_lineari_3.html` | indipendenza lineare, generatori, basi e coordinate rispetto a una base studiati con i sistemi lineari, il rango e il determinante, più un codice che corregge gli errori di trasmissione |
+| L14 | Applicazioni lineari I | pp. 68–73 | §4.1 e §4.2 | `lezioni/L14_applicazioni_lineari_1.md` · HTML: `appunti/MDAG/L14_applicazioni_lineari_1.html` | applicazioni lineari, esempi e non esempi, l'applicazione associata a una matrice, nucleo e immagine, iniettività e suriettività, teorema della dimensione |
+| L15 | Applicazioni lineari II | pp. 74–78 | §4.2.5, §4.2.7 e §4.3 | `lezioni/L15_applicazioni_lineari_2.md` · HTML: `appunti/MDAG/L15_applicazioni_lineari_2.html` | isomorfismi, spazi vettoriali isomorfi, coordinate e matrice associata a un'applicazione lineare rispetto a due basi |
+| L16 | Applicazioni lineari III | pp. 79–84 | §4.2.4, §4.3.3, §4.3.5 e §4.4 | `lezioni/L16_applicazioni_lineari_3.md` · HTML: `appunti/MDAG/L16_applicazioni_lineari_3.html` | matrice di cambiamento di base, composizione di applicazioni lineari e prodotto di matrici, endomorfismi e matrici simili |
+| L17 | Autovalori e autovettori I | pp. 85–89 | §5.1 | `lezioni/L17_autovalori_autovettori_1.md` · HTML: `appunti/MDAG/L17_autovalori_autovettori_1.html` | autovettori e autovalori di un endomorfismo, endomorfismi e matrici diagonalizzabili, potenze di matrici e polinomio caratteristico |
+| L18 | Autovalori e autovettori II | pp. 90–95 | §5.2 | `lezioni/L18_autovalori_autovettori_2.md` · HTML: `appunti/MDAG/L18_autovalori_autovettori_2.html` | indipendenza di autovettori con autovalori distinti, autospazi e somma diretta, molteplicità algebrica e geometrica, teorema di diagonalizzabilità e matrici con un parametro |
+| L19 | Prodotti scalari I | pp. 96–99 | §7.1 e §7.2 | `lezioni/L19_prodotti_scalari_1.md` · HTML: `appunti/MDAG/L19_prodotti_scalari_1.html` | che cos'è un prodotto scalare, prodotti degeneri e definiti positivi, il prodotto scalare euclideo, le matrici simmetriche e la matrice associata a un prodotto scalare in una base |
+| L20 | Prodotti scalari II | pp. 100–104 | §7.1.5, §7.2.2 e §8.1 | `lezioni/L20_prodotti_scalari_2.md` · HTML: `appunti/MDAG/L20_prodotti_scalari_2.html` | come cambia la matrice di un prodotto scalare cambiando base, forme quadratiche, norma, disuguaglianza di Cauchy–Schwarz e triangolare, distanze e angoli tra vettori |
+| L21 | Prodotti scalari III | pp. 105–110 | §7.3 e §8.1.5–8.1.10 | `lezioni/L21_prodotti_scalari_3.md` · HTML: `appunti/MDAG/L21_prodotti_scalari_3.html` | vettori ortogonali, complemento ortogonale, proiezione ortogonale su una retta e su un sottospazio, basi ortogonali e ortonormali, algoritmo di Gram–Schmidt, decomposizione ortogonale e minimi quadrati |
+| L22 | Lo spazio euclideo I | pp. 111–115 | §4.4.8–4.4.9, §7.5, §8.2 e §9.1 | `lezioni/L22_spazio_euclideo_1.md` · HTML: `appunti/MDAG/L22_spazio_euclideo_1.html` | rotazioni e riflessioni del piano, isometrie tra spazi con prodotto scalare, matrici ortogonali, classificazione delle isometrie del piano e dello spazio, prodotto vettoriale in R3 |
+| L23 | Lo spazio euclideo II | pp. 116–121 | §9.1 e §9.2 | `lezioni/L23_spazio_euclideo_2.md` · HTML: `appunti/MDAG/L23_spazio_euclideo_2.html` | proprietà del prodotto vettoriale e area del parallelogramma, forma cartesiana e parametrica di rette e piani, sottospazi affini e giacitura, intersezioni |
+| L24 | Lo spazio euclideo III | pp. 122–128 | §9.2.9, §9.2.10 e §8.1 | `lezioni/L24_spazio_euclideo_3.md` · HTML: `appunti/MDAG/L24_spazio_euclideo_3.html` | angoli fra rette, fra retta e piano e fra piani, distanze fra punti, fra punto e retta, fra rette sghembe e fra punto e piano |
+| L25 | Teorema spettrale I | pp. 129–133 | §11.1 e §11.2 | `lezioni/L25_teorema_spettrale_1.md` · HTML: `appunti/MDAG/L25_teorema_spettrale_1.html` | prodotti hermitiani sugli spazi complessi, matrici hermitiane, matrice associata, endomorfismi autoaggiunti e sottospazi invarianti |
+| L26 | Teorema spettrale II | pp. 134–138 | §11.3 | `lezioni/L26_teorema_spettrale_2.md` · HTML: `appunti/MDAG/L26_teorema_spettrale_2.html` | il teorema spettrale per gli endomorfismi autoaggiunti, la sua dimostrazione, la versione con le matrici simmetriche e ortogonali, il collegamento con la PCA |
+
+## Fili conduttori (collegamenti tra le lezioni)
+
+- **L'algoritmo di Gauss** (L11) serve quasi ovunque: rango (L08, L13), sistemi e Rouché–Capelli (L12), nucleo e immagine (L14), coordinate e cambiamenti di base (L15–L16), autospazi (L18), complementi ortogonali (L21), intersezioni di rette e piani (L23).
+- **Numeri complessi e polinomi** (L02–L04) → autovalori complessi e diagonalizzabilità su $\C$ (L17–L18), prodotti e matrici hermitiane (L25–L26). All'esame sono la domanda 1 del quiz in 11 appelli su 15.
+- **Dimensione** (L07) → teorema della dimensione (L14), molteplicità geometrica $m_g(\lambda) = n - \rk(A - \lambda I)$ (L18), $\dim W + \dim W^\perp = n$ (L21), dimensione dei sottospazi affini $n - \rk A$ (L23).
+- **Determinante** (L09–L10) → invertibilità e inversa (L10), polinomio caratteristico (L17), prodotto vettoriale e prodotto triplo (L22–L23), volume e distanza tra rette sghembe (L24).
+- **Due cambiamenti di base**: per gli endomorfismi $M^{-1}AM$ (L16), per i prodotti scalari ${}^tMSM$ (L20). Coincidono quando $M$ è ortogonale (L22), come nel teorema spettrale (L26).
+- **Proiezioni ortogonali e Gram–Schmidt** (L21) → angolo tra retta e piano e distanze (L24), basi ortonormali di autovettori (L26).
+- **Esame**: il problema 11 è quasi sempre la diagonalizzabilità di una matrice con un parametro (L17–L18, a volte con il teorema spettrale di L26); il problema 12 riguarda prodotti scalari, Gram–Schmidt, proiezioni e geometria di rette e piani (L19–L24).
+
+
+---
+
 <!-- FILE: contesto_ai/MDAG/lezioni/L01_numeri_reali.md -->
 > File: `contesto_ai/MDAG/lezioni/L01_numeri_reali.md`
 
@@ -4193,7 +4242,7 @@ testo: 2 -1.8 | blu | $A$
 
 **2. L'insieme $B$.** $z + \bar z = (x + yi) + (x - yi) = 2x$, che è un numero **reale**. Un numero reale non può essere uguale a $i$, che ha parte immaginaria $1$: uguagliando le parti immaginarie si otterrebbe $0 = 1$. Quindi $B = \emptyset$, l'insieme vuoto: non c'è niente da disegnare.
 
-Se la condizione fosse stata $z - \bar z = i$, avremmo $2yi = i$, cioè $y = \frac 12$: la retta orizzontale $\operatorname{Im}(z) = \frac 12$. Conviene sempre accorgersi quando una condizione è impossibile: è una delle cose che l'esercizio vuole verificare.
+Se la condizione fosse stata $z - \bar z = i$, avremmo $2yi = i$, cioè $y = \frac 12$: la retta orizzontale $\operatorname{Im}(z) = \frac 12$. Conviene sempre accorgersi quando una condizione è impossibile: «l'insieme è vuoto» è una risposta completa, da motivare come sopra.
 
 **3. L'insieme $C$.** $|z - 2|$ è la distanza di $z$ dal punto $2$. La condizione chiede distanza **almeno** $2$: sono i punti **fuori** dal cerchio di centro $2$ e raggio $2$, insieme alla circonferenza stessa. In coordinate: $(x - 2)^2 + y^2 \ge 4$. Il disco aperto $(x - 2)^2 + y^2 < 4$ è escluso; la circonferenza passa per l'origine, che quindi appartiene a $C$ ($|0 - 2| = 2$).
 
@@ -6221,7 +6270,7 @@ $$x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}.$$
 Questa scrittura si chiama **vettore colonna**, e i numeri $x_1, \dots, x_n$ sono le **coordinate** di $x$. Il motivo della scrittura verticale si capirà con il prodotto tra matrici (lezione L08). Per risparmiare spazio, in questi appunti i vettori compaiono spesso anche in riga, come $(1, 2, 3)$: è lo stesso vettore.
 
 > [!NOTA] La scrittura degli appelli
-> Negli appelli d'esame un vettore colonna scritto in riga compare spesso come ${}^t(1, 2, 3)$ oppure $t(1, 2, 3)$: la $t$ sta per «trasposto» e vuol dire «questa riga, messa in verticale». La trasposta si vede nella lezione L08.
+> Negli appelli d'esame un vettore colonna scritto in riga compare spesso come ${}^t(1, 2, 3)$, con una piccola $t$ in alto a sinistra: la $t$ sta per «trasposto» e vuol dire «questa riga, messa in verticale». La trasposta si vede nella lezione L08.
 
 ### La somma di vettori (pp. 20–21)
 
@@ -6626,7 +6675,7 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 > **Soluzione.** È la (e). I vettori sono i numeri complessi e gli scalari i reali; la somma è quella di $\C$ e il prodotto per scalare $\lambda z$ è il prodotto in $\C$ di un reale per un complesso, che è ancora complesso: $\lambda(a + bi) = \lambda a + (\lambda b)i$. Gli assiomi 1–5 valgono perché sono casi particolari delle proprietà del campo $\C$, come per «$\K$ su se stesso» (Esercizio 5.8). Le altre: (a) e (d) dicono cose vere, ma non escludono la struttura su $\R$; (b) è falsa, per esempio $\Q$ non è uno spazio vettoriale su $\R$ perché $\sqrt 2 \cdot 1 \notin \Q$; (c) è falsa, perché $i \cdot 1 = i \notin \R$.
 
 2. **Scartare l'opzione «non è uno spazio vettoriale».** Nelle domande sulla dimensione compare spesso una risposta trappola di questo tipo: «$T^s(3)$ non ha una dimensione perché non è uno spazio vettoriale» (24/01/2024, domanda 5), «$S(3)$ non ha una dimensione perché non è uno spazio vettoriale» e «$X$ non è necessariamente uno spazio vettoriale», con $X = \Span(v_1, v_2, v_3)$ (15/01/2026, domande 4 e 3). Per scartarle bisogna sapere quali insiemi sono spazi vettoriali: le matrici triangolari o simmetriche e gli Span lo sono sempre (lezione L06).
-3. **Sottospazi.** La domanda più frequente di questa parte è «quale di questi insiemi è (o non è) un sottospazio?»: appelli dell'08/02/2024 (domanda 2), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 3). Si risolve con i controlli di questa lezione (lo zero c'è? la somma e i multipli restano dentro?) e con la definizione di sottospazio della lezione L06.
+3. **Sottospazi.** La domanda più frequente di questa parte è «quale di questi insiemi è (o non è) un sottospazio?»: appelli dell'08/02/2024 (domanda 2), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 6). Si risolve con i controlli di questa lezione (lo zero c'è? la somma e i multipli restano dentro?) e con la definizione di sottospazio della lezione L06.
 4. **Conti componente per componente** in $\K^n$, compresi quelli con i complessi in $\C^n$, e con i polinomi: servono in quasi tutti gli esercizi del corso.
 
 > [!METODO] · «È uno spazio vettoriale?» in quattro controlli
@@ -6704,7 +6753,7 @@ D: Con la somma e il prodotto per scalare usuali, quale di questi insiemi di pol
 + I polinomi di grado minore o uguale a $2$, cioè $\R_2[x]$.
 - I polinomi con tutti i coefficienti maggiori o uguali a $0$.
 - I polinomi della forma $x^2 + bx + c$, con $b, c \in \R$.
-= $\R_2[x]$ è lo spazio dell'Esercizio 5.7. Gli altri falliscono: $x^2 + (-x^2 + x) = x$ non ha grado $2$; il polinomio nullo ha $p(0) = 0 \neq 1$; $(-1) \cdot x = -x$ ha un coefficiente negativo; $(x^2 + 1) + (x^2 + 1) = 2x^2 + 2$ non ha la forma $x^2 + bx + c$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 3), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
+= $\R_2[x]$ è lo spazio dell'Esercizio 5.7. Gli altri falliscono: $x^2 + (-x^2 + x) = x$ non ha grado $2$; il polinomio nullo ha $p(0) = 0 \neq 1$; $(-1) \cdot x = -x$ ha un coefficiente negativo; $(x^2 + 1) + (x^2 + 1) = 2x^2 + 2$ non ha la forma $x^2 + bx + c$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 6), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
 
 D: Con le operazioni di $\R^2$, quale di questi sottoinsiemi è uno spazio vettoriale su $\R$?
 + $\{(x, y) \in \R^2 \mid x + y = 0\}$
@@ -7055,7 +7104,7 @@ Operazioni punto per punto | Per le funzioni: $(f + g)(x) = f(x) + g(x)$ e $(\la
 
 - **Dispense 2026 del corso** (Buzano, Radeschi), lezione 5 «Spazi vettoriali I», pp. 20–25: le sezioni 5.A–5.D sono seguite in ordine, con la pagina indicata accanto a ogni titolo; definizioni, proposizioni ed esercizi mantengono la loro numerazione (Definizioni 5.1–5.4, Proposizione 5.5, Esercizi 5.6–5.10).
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §1.5 (gruppi, unicità dell'inverso, semplificazione, anelli e campi), §2.1 (spazio euclideo, somma, prodotto per scalare e loro proprietà), §2.2.1–2.2.4 (definizione di spazio vettoriale, Proposizione 2.2.1, gli spazi $\K^n$, $\K[x]$ e $F(X, \K)$).
-- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domanda 5), 08/02/2024 (domanda 2), 10/07/2024 (domanda 2), 07/02/2025 (domanda 2, riportata con una soluzione scritta per questi appunti), 03/06/2025 (domanda 2), 15/01/2026 (domande 3 e 4), 05/02/2026 (domanda 2), 07/09/2026 (domanda 3).
+- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domanda 5), 08/02/2024 (domanda 2), 10/07/2024 (domanda 2), 07/02/2025 (domanda 2, riportata con una soluzione scritta per questi appunti), 03/06/2025 (domanda 2), 15/01/2026 (domande 3 e 4), 05/02/2026 (domanda 2), 07/09/2026 (domanda 6).
 - Le parti **«Oltre le dispense»** (unicità dell'inverso e semplificazione, perché serve l'assioma 5, altre conseguenze degli assiomi, lo spazio $F(X, \K)$, il metodo per l'esame e gli esercizi 6–10) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
 
 
@@ -7452,7 +7501,7 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 
 **Che cosa di questa lezione serve all'esame**
 
-1. **«È un sottospazio?»** È la domanda più frequente di questa parte del corso: appelli dell'08/02/2024 (domanda 2), del 10/07/2024 (domanda 2, l'insieme $O(2)$ delle matrici ortogonali, che non contiene la matrice nulla), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 3). Due esempi, con la soluzione.
+1. **«È un sottospazio?»** È la domanda più frequente di questa parte del corso: appelli dell'08/02/2024 (domanda 2), del 10/07/2024 (domanda 2, l'insieme $O(2)$ delle matrici ortogonali, che non contiene la matrice nulla), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 6). Due esempi, con la soluzione.
 
 > [!ESAME] Appello dell'08/02/2024, domanda 2
 > **Testo.** Quale dei seguenti insiemi **non** è un sottospazio di $\R_2[x]$? (a) $\{p(x) \in \R_2[x] \mid p(0) = 0\}$; (b) $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$; (c) $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 0\}$; (d) $\{(1 + t)x^2 + tx \mid t \in \R\}$; (e) $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$.
@@ -7879,7 +7928,7 @@ Forma parametrica e cartesiana | Un sottospazio di $\K^n$ descritto come Span op
 
 - **Dispense 2026 del corso** (Buzano, Radeschi), lezione 6 «Spazi vettoriali II», pp. 26–30: lo spazio delle matrici e le sezioni 6.A–6.D seguite in ordine, con la pagina indicata accanto a ogni titolo; definizioni, proposizioni, esempi ed esercizi mantengono la loro numerazione (Definizioni 6.1, 6.2, 6.3 e 6.6, Esempi 6.4 e 6.8, Proposizioni 6.5 e 6.7, Esercizi 6.9 e 6.10).
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §2.2.5–2.2.16 (matrici, sottospazi, sistemi omogenei, combinazioni lineari e Span, forma parametrica e cartesiana, polinomi con restrizioni, matrici speciali, intersezione e unione di sottospazi, Esercizio 2.2.15).
-- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domande 1 e 5, problema 12), 08/02/2024 (domande 2 e 6), 10/07/2024 (domanda 2), 03/06/2025 (domanda 2), 15/01/2026 (domande 4 e 7), 05/02/2026 (domanda 2), 07/09/2026 (domanda 3). Le domande del 24/01/2024 (1), dell'08/02/2024 (2) e del 03/06/2025 (2) sono riportate con soluzioni scritte per questi appunti. Foglio di esercizi 2 del tutorato 2025 (Buzano, Radeschi), esercizi 1 e 2, come modello di due esercizi.
+- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domande 1 e 5, problema 12), 08/02/2024 (domande 2 e 6), 10/07/2024 (domanda 2), 03/06/2025 (domanda 2), 15/01/2026 (domande 4 e 7), 05/02/2026 (domanda 2), 07/09/2026 (domanda 6). Le domande del 24/01/2024 (1), dell'08/02/2024 (2) e del 03/06/2025 (2) sono riportate con soluzioni scritte per questi appunti. Foglio di esercizi 2 del tutorato 2025 (Buzano, Radeschi), esercizi 1 e 2, come modello di due esercizi.
 - Le parti **«Oltre le dispense»** (sistemi omogenei, polinomi che si annullano in un punto, intersezione e unione, relazioni tra le classi di matrici, lo Span come più piccolo sottospazio, forma parametrica e cartesiana, il metodo per l'esame e gli esercizi 3–12) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
 
 
@@ -8785,7 +8834,7 @@ Un vettore colonna occupa tre righe di testo. Per risparmiare spazio lo si scriv
 
 $${}^t(1, 2, 3) = {}^t\begin{pmatrix} 1 & 2 & 3 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}.$$
 
-Negli appelli è ovunque: «$v_1 = {}^t(1, 0, -1)$», «$T({}^t(x, y, z)) = {}^t(x + 2y, \dots)$»; nei testi scansionati la $t$ può comparire staccata, come $t(1, 2)$. Vuol dire sempre: il vettore **colonna** con quelle coordinate.
+Negli appelli è ovunque: «$v_1 = {}^t(1, 0, -1)$», «$T({}^t(x, y, z)) = {}^t(x + 2y, \dots)$», sempre con la piccola $t$ in alto a sinistra. Vuol dire sempre: il vettore **colonna** con quelle coordinate.
 
 ## Il rango di una matrice (p. 37)
 
@@ -13604,7 +13653,7 @@ Qui, come nel teorema, le dimensioni sono finite.
 >
 > Per le matrici: $L_A: \K^n \to \K^m$ è iniettiva se e solo se $\rk(A) = n$, suriettiva se e solo se $\rk(A) = m$ (Martelli, Esempio 4.2.16).
 
-> [!ESEMPIO] Il teorema della dimensione al posto dei conti (dal libro di Martelli, Esempio 4.2.12)
+> [!ESEMPIO] Il teorema della dimensione al posto dei conti (sul modello del libro di Martelli, Esempio 4.2.12, che usa il punto $2$)
 > Quanto vale la dimensione di $W = \{p \in \R_2[x] \mid p(1) = 0\}$? $W$ è il nucleo della valutazione $f: \R_2[x] \to \R$, $f(p) = p(1)$, che è lineare. $f$ è suriettiva: il polinomio costante $\lambda$ va in $\lambda$. Quindi $\dim \Imm f = 1$ e
 > $$\dim W = \dim \Ker f = \dim \R_2[x] - \dim \Imm f = 3 - 1 = 2.$$
 > I polinomi $x - 1$ e $x^2 - 1$ stanno in $W$ (valgono $0$ in $1$) e sono indipendenti (non sono uno multiplo dell'altro): due vettori indipendenti in uno spazio di dimensione 2 sono una base (Teorema 7.12). Quindi $W = \Span(x - 1,\ x^2 - 1)$.
@@ -16597,7 +16646,7 @@ D: Quale di queste matrici è diagonalizzabile su $\C$ ma **non** su $\R$?
 - $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
-= $\lambda^2 + 1$ ha radici $\pm i$ distinte: diagonalizzabile su $\C$, e su $\R$ manca la condizione (1). La seconda e la quarta hanno un autovalore doppio con $m_g = 1$ (non diagonalizzabili su nessun campo); la terza e la quinta (autovalori 1, 3) lo sono su entrambi.
+= $\lambda^2 + 1$ ha radici $\pm i$ distinte: diagonalizzabile su $\C$, e su $\R$ manca la condizione (1). La seconda e la quarta hanno un autovalore doppio con $m_g = 1$ (non diagonalizzabili su nessun campo); la terza (autovalori 1, 2) e la quinta (autovalori 1, 3) hanno due autovalori reali distinti e lo sono su entrambi.
 
 D: Sia $A = \begin{pmatrix} k & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0 \end{pmatrix}$ con $k \in \C$. Per quali $k$ la matrice è diagonalizzabile su $\C$?
 + Per ogni $k \in \C$.
@@ -16613,7 +16662,7 @@ D: Sia $A \in M(4, \R)$ con $\rk(A - 3I_4) = 1$. Quale affermazione è necessari
 - $A$ non è invertibile.
 - $m_g(3) = 1$.
 - $3$ non è un autovalore.
-= $m_g(3) = 4 - 1 = 3$, e $m_a(3) \ge m_g(3) = 3$ (Teorema 18.9). Non segue altro: $\mathrm{diag}(3, 3, 3, 5)$ è diagonalizzabile e invertibile; con un blocco $\begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}$ al posto degli ultimi due 3 si ottiene $m_a(3) = 4 > 3 = m_g(3)$, non diagonalizzabile.
+= $m_g(3) = 4 - 1 = 3$, e $m_a(3) \ge m_g(3) = 3$ (Teorema 18.9). Non segue altro: $\mathrm{diag}(3, 3, 3, 5)$ è diagonalizzabile e invertibile; invece $3I_4$ con un 1 al posto $(3, 4)$ (cioè con il blocco $\begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}$ negli ultimi due posti della diagonale) ha ancora $\rk(A - 3I_4) = 1$, ma $m_a(3) = 4 > 3 = m_g(3)$: non diagonalizzabile.
 ```
 
 ## Esercizi
@@ -16782,7 +16831,7 @@ Basi: dalla terza riga $y = 2iz$; dalla seconda $x = 2iy + 4z = 2i \cdot 2iz + 4
 
 (2) Su $\C$ la condizione (1) vale sempre. Se $k \neq \pm 2i$ gli autovalori sono distinti: diagonalizzabile. Per $k = 2i$ no (punto 1); per $k = -2i$, con lo stesso conto, $A + 2iI_3 = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 2i & -4 \\ 0 & 1 & 2i \end{pmatrix}$ ha rango 2 e $m_g(-2i) = 1 < 2$: no. Quindi: diagonalizzabile su $\C$ se e solo se $k \neq \pm 2i$.
 
-Su $\R$ (con $k$ reale) **mai**: il fattore $\lambda^2 + 4$ non ha radici reali. Confronta con la domanda 9 del quiz: lì, per il valore speciale, la matrice era diagonalizzabile. Cambia la posizione dell'1 in basso a sinistra, e quindi il rango.
+Su $\R$ (con $k$ reale) **mai**: il fattore $\lambda^2 + 4$ non ha radici reali. Confronta con la domanda 9 del quiz: lì, per il valore speciale, la matrice era diagonalizzabile. La differenza che conta è l'1 al posto $(2, 1)$, che qui c'è e nel quiz no: senza di lui la seconda riga di $A - 2iI_3$ sarebbe $(0, -2i, -4) = -2i \cdot (0, 1, -2i)$, il rango scenderebbe a 1 e $m_g(2i)$ salirebbe a 2.
 :::
 
 ## Domande di ripasso
@@ -18977,7 +19026,7 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 Questa lezione è la base del **problema 12** di molti appelli: in 7 dei 15 appelli 2023–2026 il problema 12 riguarda prodotti scalari, Gram–Schmidt e proiezioni, e in altri due chiede anche una proiezione su un piano. Lo schema tipico:
 
 1. **base ortonormale (o ortogonale) di un piano** $V = \Span(v_1, v_2) \subset \R^3$ con Gram–Schmidt: appelli del 10/06/2024, del 03/06/2026 e del 07/09/2026 (prodotto euclideo); del 16/01/2025 e del 03/07/2026 (con un $g_S$);
-2. **proiezione ortogonale** di un vettore su quel piano: stessi appelli, più il 24/01/2024 (proiezione su $\pi_3 = \Span(e_1, e_2 + e_3)$), il 05/02/2026 (con $g_S$) e il 15/01/2026 (punto 4);
+2. **proiezione ortogonale** di un vettore su quel piano: stessi appelli tranne quello del 03/07/2026 (che al posto della proiezione chiede il complemento ortogonale), più il 24/01/2024 (proiezione su $\pi_3 = \Span(e_1, e_2 + e_3)$), il 05/02/2026 (con $g_S$) e il 15/01/2026 (punto 4);
 3. **complemento ortogonale**: appello del 07/02/2025 (di $\Span(x, x^2)$ in $\R_2[x]$) e del 03/07/2026 (di un piano rispetto a $g_S$);
 4. il punto successivo (intersezione di una retta con il piano e angolo di incidenza) è materia delle lezioni L23–L24.
 
@@ -21941,7 +21990,7 @@ genera_html: true
 - Ogni prodotto hermitiano su $\C^n$ è $g_H(x, y) = {}^t x\, H\, \bar y$ con $H$ hermitiana: il coefficiente di $x_i \bar y_j$ è $H_{ij}$.
 - Un endomorfismo è **autoaggiunto** se $\langle T(v), w \rangle = \langle v, T(w) \rangle$. Rispetto a una base **ortonormale** è autoaggiunto se e solo se la sua matrice è hermitiana (nel caso reale: simmetrica). Con una base non ortonormale questo criterio non vale.
 - Un sottospazio $U$ è **$T$-invariante** se $T(U) \subseteq U$. Se $T$ è autoaggiunto e $U$ è invariante, anche $U^\perp$ lo è: è il passo chiave del teorema spettrale (lezione L26).
-- All'esame questa lezione vale quasi sempre un quiz: «quale formula è un prodotto hermitiano?», «quale matrice è hermitiana?», «quale applicazione è autoaggiunta?».
+- All'esame questa lezione vale di solito un quiz (in 9 dei 15 appelli 2023–2026): «quale formula è un prodotto hermitiano?», «quale matrice è hermitiana?», «quale applicazione è autoaggiunta?».
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
@@ -22286,7 +22335,7 @@ Lo strumento disegna le due rette di autovettori di $A = \begin{pmatrix} 2 & 1 \
 
 La prova scritta di Algebra lineare e Geometria ha **10 quiz** a 5 risposte (una sola giusta) e **2 problemi da 11 punti**, corretti solo con **almeno 6 quiz giusti**; dura **2 ore**, **senza calcolatrice**, e si può portare solo un foglio di **4 facciate scritte a mano**. Gli appelli 2026/27 sono il **22/01/2027** e il **05/02/2027** alle 14:00. Tutti i dettagli nella lezione L01.
 
-**Che cosa di questa lezione compare negli appelli 2023–2026.** Solo quiz, ma frequentissimi: sono punti facili, se si conosce il metodo.
+**Che cosa di questa lezione compare negli appelli 2023–2026.** Solo quiz, ma frequenti: ce n'è uno in 9 dei 15 appelli. Sono punti facili, se si conosce il metodo.
 
 - **«Quale delle seguenti è un prodotto hermitiano su $\C^2$?»**: appelli del 24/01/2024 (domanda 4), 16/01/2025 (domanda 9), 07/02/2025 (domanda 6), 02/09/2025 (domanda 7), 15/01/2026 (domanda 2). Le cinque formule differiscono per i coefficienti e per la presenza delle sbarre del coniugio.
 - **«Quale matrice è (o non è) hermitiana?»**: 10/06/2024 (domanda 9), 10/07/2024 (domanda 10).

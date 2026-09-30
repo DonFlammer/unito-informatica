@@ -392,7 +392,7 @@ Qui, come nel teorema, le dimensioni sono finite.
 >
 > Per le matrici: $L_A: \K^n \to \K^m$ è iniettiva se e solo se $\rk(A) = n$, suriettiva se e solo se $\rk(A) = m$ (Martelli, Esempio 4.2.16).
 
-> [!ESEMPIO] Il teorema della dimensione al posto dei conti (dal libro di Martelli, Esempio 4.2.12)
+> [!ESEMPIO] Il teorema della dimensione al posto dei conti (sul modello del libro di Martelli, Esempio 4.2.12, che usa il punto $2$)
 > Quanto vale la dimensione di $W = \{p \in \R_2[x] \mid p(1) = 0\}$? $W$ è il nucleo della valutazione $f: \R_2[x] \to \R$, $f(p) = p(1)$, che è lineare. $f$ è suriettiva: il polinomio costante $\lambda$ va in $\lambda$. Quindi $\dim \Imm f = 1$ e
 > $$\dim W = \dim \Ker f = \dim \R_2[x] - \dim \Imm f = 3 - 1 = 2.$$
 > I polinomi $x - 1$ e $x^2 - 1$ stanno in $W$ (valgono $0$ in $1$) e sono indipendenti (non sono uno multiplo dell'altro): due vettori indipendenti in uno spazio di dimensione 2 sono una base (Teorema 7.12). Quindi $W = \Span(x - 1,\ x^2 - 1)$.

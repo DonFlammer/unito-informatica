@@ -98,7 +98,7 @@ $$x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}.$$
 Questa scrittura si chiama **vettore colonna**, e i numeri $x_1, \dots, x_n$ sono le **coordinate** di $x$. Il motivo della scrittura verticale si capirà con il prodotto tra matrici (lezione L08). Per risparmiare spazio, in questi appunti i vettori compaiono spesso anche in riga, come $(1, 2, 3)$: è lo stesso vettore.
 
 > [!NOTA] La scrittura degli appelli
-> Negli appelli d'esame un vettore colonna scritto in riga compare spesso come ${}^t(1, 2, 3)$ oppure $t(1, 2, 3)$: la $t$ sta per «trasposto» e vuol dire «questa riga, messa in verticale». La trasposta si vede nella lezione L08.
+> Negli appelli d'esame un vettore colonna scritto in riga compare spesso come ${}^t(1, 2, 3)$, con una piccola $t$ in alto a sinistra: la $t$ sta per «trasposto» e vuol dire «questa riga, messa in verticale». La trasposta si vede nella lezione L08.
 
 ### La somma di vettori (pp. 20–21)
 
@@ -503,7 +503,7 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 > **Soluzione.** È la (e). I vettori sono i numeri complessi e gli scalari i reali; la somma è quella di $\C$ e il prodotto per scalare $\lambda z$ è il prodotto in $\C$ di un reale per un complesso, che è ancora complesso: $\lambda(a + bi) = \lambda a + (\lambda b)i$. Gli assiomi 1–5 valgono perché sono casi particolari delle proprietà del campo $\C$, come per «$\K$ su se stesso» (Esercizio 5.8). Le altre: (a) e (d) dicono cose vere, ma non escludono la struttura su $\R$; (b) è falsa, per esempio $\Q$ non è uno spazio vettoriale su $\R$ perché $\sqrt 2 \cdot 1 \notin \Q$; (c) è falsa, perché $i \cdot 1 = i \notin \R$.
 
 2. **Scartare l'opzione «non è uno spazio vettoriale».** Nelle domande sulla dimensione compare spesso una risposta trappola di questo tipo: «$T^s(3)$ non ha una dimensione perché non è uno spazio vettoriale» (24/01/2024, domanda 5), «$S(3)$ non ha una dimensione perché non è uno spazio vettoriale» e «$X$ non è necessariamente uno spazio vettoriale», con $X = \Span(v_1, v_2, v_3)$ (15/01/2026, domande 4 e 3). Per scartarle bisogna sapere quali insiemi sono spazi vettoriali: le matrici triangolari o simmetriche e gli Span lo sono sempre (lezione L06).
-3. **Sottospazi.** La domanda più frequente di questa parte è «quale di questi insiemi è (o non è) un sottospazio?»: appelli dell'08/02/2024 (domanda 2), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 3). Si risolve con i controlli di questa lezione (lo zero c'è? la somma e i multipli restano dentro?) e con la definizione di sottospazio della lezione L06.
+3. **Sottospazi.** La domanda più frequente di questa parte è «quale di questi insiemi è (o non è) un sottospazio?»: appelli dell'08/02/2024 (domanda 2), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 6). Si risolve con i controlli di questa lezione (lo zero c'è? la somma e i multipli restano dentro?) e con la definizione di sottospazio della lezione L06.
 4. **Conti componente per componente** in $\K^n$, compresi quelli con i complessi in $\C^n$, e con i polinomi: servono in quasi tutti gli esercizi del corso.
 
 > [!METODO] · «È uno spazio vettoriale?» in quattro controlli
@@ -581,7 +581,7 @@ D: Con la somma e il prodotto per scalare usuali, quale di questi insiemi di pol
 + I polinomi di grado minore o uguale a $2$, cioè $\R_2[x]$.
 - I polinomi con tutti i coefficienti maggiori o uguali a $0$.
 - I polinomi della forma $x^2 + bx + c$, con $b, c \in \R$.
-= $\R_2[x]$ è lo spazio dell'Esercizio 5.7. Gli altri falliscono: $x^2 + (-x^2 + x) = x$ non ha grado $2$; il polinomio nullo ha $p(0) = 0 \neq 1$; $(-1) \cdot x = -x$ ha un coefficiente negativo; $(x^2 + 1) + (x^2 + 1) = 2x^2 + 2$ non ha la forma $x^2 + bx + c$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 3), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
+= $\R_2[x]$ è lo spazio dell'Esercizio 5.7. Gli altri falliscono: $x^2 + (-x^2 + x) = x$ non ha grado $2$; il polinomio nullo ha $p(0) = 0 \neq 1$; $(-1) \cdot x = -x$ ha un coefficiente negativo; $(x^2 + 1) + (x^2 + 1) = 2x^2 + 2$ non ha la forma $x^2 + bx + c$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 6), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
 
 D: Con le operazioni di $\R^2$, quale di questi sottoinsiemi è uno spazio vettoriale su $\R$?
 + $\{(x, y) \in \R^2 \mid x + y = 0\}$
@@ -932,5 +932,5 @@ Operazioni punto per punto | Per le funzioni: $(f + g)(x) = f(x) + g(x)$ e $(\la
 
 - **Dispense 2026 del corso** (Buzano, Radeschi), lezione 5 «Spazi vettoriali I», pp. 20–25: le sezioni 5.A–5.D sono seguite in ordine, con la pagina indicata accanto a ogni titolo; definizioni, proposizioni ed esercizi mantengono la loro numerazione (Definizioni 5.1–5.4, Proposizione 5.5, Esercizi 5.6–5.10).
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §1.5 (gruppi, unicità dell'inverso, semplificazione, anelli e campi), §2.1 (spazio euclideo, somma, prodotto per scalare e loro proprietà), §2.2.1–2.2.4 (definizione di spazio vettoriale, Proposizione 2.2.1, gli spazi $\K^n$, $\K[x]$ e $F(X, \K)$).
-- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domanda 5), 08/02/2024 (domanda 2), 10/07/2024 (domanda 2), 07/02/2025 (domanda 2, riportata con una soluzione scritta per questi appunti), 03/06/2025 (domanda 2), 15/01/2026 (domande 3 e 4), 05/02/2026 (domanda 2), 07/09/2026 (domanda 3).
+- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domanda 5), 08/02/2024 (domanda 2), 10/07/2024 (domanda 2), 07/02/2025 (domanda 2, riportata con una soluzione scritta per questi appunti), 03/06/2025 (domanda 2), 15/01/2026 (domande 3 e 4), 05/02/2026 (domanda 2), 07/09/2026 (domanda 6).
 - Le parti **«Oltre le dispense»** (unicità dell'inverso e semplificazione, perché serve l'assioma 5, altre conseguenze degli assiomi, lo spazio $F(X, \K)$, il metodo per l'esame e gli esercizi 6–10) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.

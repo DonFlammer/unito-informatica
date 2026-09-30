@@ -30,6 +30,7 @@ La mia richiesta: <scrivi qui la domanda>
 | `PROG1/esercizi_esame.md` | esercizi d'esame tipo di Programmazione I con soluzioni verificate |
 | `PROG1/indice_lezioni.md` | lezioni già studiate con concetti chiave e collegamenti |
 | `PROG1/lezioni/*.md` | appunti completi di ogni lezione (slide del canale B, con i riferimenti ad A e C) |
+| `MDAG/indice_lezioni.md` | le 26 lezioni di Algebra lineare e Geometria con pagine delle dispense, argomenti e collegamenti |
 | `MDAG/lezioni/*.md` | appunti di Algebra lineare e Geometria, lezione per lezione (dispense del corso, comuni ai canali A, B e C) |
 | `formato_lezioni.md` | come sono scritti i file delle lezioni: riquadri, quiz, esercizi, formule |
 | `FDA/corso.md` | Fondamenti dell'Informatica |
@@ -45,4 +46,4 @@ Gli stessi appunti in versione HTML interattiva sono online: https://donflammer.
 English version of this folder, for those who don't speak Italian (an English translation; if the two differ, the Italian version prevails): [ai_context/](https://github.com/DonFlammer/unito-computer-science/tree/main/ai_context) in DonFlammer/unito-computer-science.
 Sono DonFlammer · Telegram @rapsodico (https://t.me/rapsodico), senza impegno di risposta.
 
-Ultimo aggiornamento: 30/09/2026 (Programmazione I, lezioni 01B e 02A; Algebra lineare e Geometria, lezione L01; formato delle lezioni in `formato_lezioni.md`). Prima: 28/09/2026 (schede di tutti i corsi del 1° anno per i canali A, B, C; Programmazione I, lezione 01A; Fondamenti, programma del canale B, regole ufficiali d'esame e libro; MDAG, Moodle 2026/27 e mercoledì per canale; traduzione inglese di tutto il repository in DonFlammer/unito-computer-science).
+Ultimo aggiornamento: 30/09/2026 (Algebra lineare e Geometria, tutte le lezioni L01–L26 e indice delle lezioni; Programmazione I, lezioni 01B e 02A; formato delle lezioni in `formato_lezioni.md`). Prima: 28/09/2026 (schede di tutti i corsi del 1° anno per i canali A, B, C; Programmazione I, lezione 01A; Fondamenti, programma del canale B, regole ufficiali d'esame e libro; MDAG, Moodle 2026/27 e mercoledì per canale; traduzione inglese di tutto il repository in DonFlammer/unito-computer-science).

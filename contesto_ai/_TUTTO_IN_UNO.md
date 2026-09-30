@@ -200,7 +200,7 @@ Altre date:
 
 ## Piattaforme e contatti
 
-- **Moodle I-Learn**: https://informatica.i-learn.unito.it — iscriversi alla pagina di ogni corso: una per canale per Programmazione I (laboratori compresi) e Fondamenti; per Programmazione II una pagina di teoria per canale più una per ogni turno di laboratorio; una pagina comune ai tre canali per MDAG (parte 1 e parte 2), Analisi, Architettura, Ricerca Operativa e Inglese. Al 28/09/2026 l'accesso ospite funziona solo su Programmazione I A/B/C e Fondamenti A e C.
+- **Moodle I-Learn**: https://informatica.i-learn.unito.it (tutti i corsi del primo anno 2026/27: https://informatica.i-learn.unito.it/course/index.php?categoryid=485) — iscriversi alla pagina di ogni corso: una per canale per Programmazione I (laboratori compresi) e Fondamenti; per Programmazione II una pagina di teoria per canale più una per ogni turno di laboratorio; una pagina comune ai tre canali per MDAG (parte 1 e parte 2), Analisi, Architettura, Ricerca Operativa e Inglese. Al 28/09/2026 l'accesso ospite funziona solo su Programmazione I A/B/C e Fondamenti A e C.
 - **MyUniTo / Esse3**: iscrizione agli appelli, esiti, piano carriera. Bacheca pubblica appelli: https://esse3.unito.it/ListaAppelliOfferta.do
 - **Orari**: University Planner o app MyUniTO+.
 - **Edumeter**: https://www.edumeter.unito.it (valutazione degli insegnamenti).

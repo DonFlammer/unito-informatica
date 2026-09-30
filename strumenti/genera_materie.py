@@ -422,7 +422,10 @@ def aggiorna_csp(radice=RADICE):
         meta = ('<meta http-equiv="Content-Security-Policy" content="'
                 + CSP.format(impronte="".join(f" 'sha256-{h}'" for h in impronte)) + '">\n'
                 + '<meta name="referrer" content="strict-origin-when-cross-origin">\n')
-        nuovo = re.sub(r'<meta http-equiv="Content-Security-Policy"[^>]*>\n|<meta name="referrer"[^>]*>\n', "", testo)
+        memoria = '../' * (len(pagina.relative_to(radice).parts) - 1) + 'assets/js/memoria.js'
+        meta += f'<script src="{memoria}"></script>\n'
+        pulito = re.sub(r'<script src="[^"]*assets/js/memoria\.js"></script>\n', '', testo)
+        nuovo = re.sub(r'<meta http-equiv="Content-Security-Policy"[^>]*>\n|<meta name="referrer"[^>]*>\n', "", pulito)
         nuovo, n = re.subn(r'<meta charset="utf-8">\n', lambda m: m.group(0) + meta, nuovo, count=1, flags=re.I)
         if not n:
             raise SystemExit(f'{pagina}: manca <meta charset="utf-8"> in testa')

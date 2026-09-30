@@ -67,3 +67,5 @@ Chi al TOLC-S ha preso meno di 5/20 in Matematica di base ha l'**OFA di matemati
 
 - Sito: https://donflammer.github.io/unito-ofa-matematica/
 - Repository, con il contesto per le AI: [DonFlammer/unito-ofa-matematica](https://github.com/DonFlammer/unito-ofa-matematica)
+
+Profili locali, copie cifrate e limiti: [sicurezza](SECURITY.md).

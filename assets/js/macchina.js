@@ -44,7 +44,8 @@
 
   function macchina(fig) {
     const d = fig.dataset;
-    let chiave = d.programma in PROGRAMMI ? d.programma : 'moltiplicazione';
+    const scelto = { addition: 'addizione', multiplication: 'moltiplicazione' }[d.program] || d.programma || d.program;
+    let chiave = scelto in PROGRAMMI ? scelto : 'moltiplicazione';
     const id = `mc${++contatore}`;
     const sel = el('select', { id: `${id}-p` });
     for (const [k, p] of Object.entries(PROGRAMMI)) sel.append(el('option', { value: k, text: p.nome }));

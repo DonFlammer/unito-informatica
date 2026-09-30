@@ -416,7 +416,7 @@ D: Quale di queste matrici è diagonalizzabile su $\C$ ma **non** su $\R$?
 - $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
-= $\lambda^2 + 1$ ha radici $\pm i$ distinte: diagonalizzabile su $\C$, e su $\R$ manca la condizione (1). La seconda e la quarta hanno un autovalore doppio con $m_g = 1$ (non diagonalizzabili su nessun campo); la terza e la quinta (autovalori 1, 3) lo sono su entrambi.
+= $\lambda^2 + 1$ ha radici $\pm i$ distinte: diagonalizzabile su $\C$, e su $\R$ manca la condizione (1). La seconda e la quarta hanno un autovalore doppio con $m_g = 1$ (non diagonalizzabili su nessun campo); la terza (autovalori 1, 2) e la quinta (autovalori 1, 3) hanno due autovalori reali distinti e lo sono su entrambi.
 
 D: Sia $A = \begin{pmatrix} k & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0 \end{pmatrix}$ con $k \in \C$. Per quali $k$ la matrice è diagonalizzabile su $\C$?
 + Per ogni $k \in \C$.
@@ -432,7 +432,7 @@ D: Sia $A \in M(4, \R)$ con $\rk(A - 3I_4) = 1$. Quale affermazione è necessari
 - $A$ non è invertibile.
 - $m_g(3) = 1$.
 - $3$ non è un autovalore.
-= $m_g(3) = 4 - 1 = 3$, e $m_a(3) \ge m_g(3) = 3$ (Teorema 18.9). Non segue altro: $\mathrm{diag}(3, 3, 3, 5)$ è diagonalizzabile e invertibile; con un blocco $\begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}$ al posto degli ultimi due 3 si ottiene $m_a(3) = 4 > 3 = m_g(3)$, non diagonalizzabile.
+= $m_g(3) = 4 - 1 = 3$, e $m_a(3) \ge m_g(3) = 3$ (Teorema 18.9). Non segue altro: $\mathrm{diag}(3, 3, 3, 5)$ è diagonalizzabile e invertibile; invece $3I_4$ con un 1 al posto $(3, 4)$ (cioè con il blocco $\begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}$ negli ultimi due posti della diagonale) ha ancora $\rk(A - 3I_4) = 1$, ma $m_a(3) = 4 > 3 = m_g(3)$: non diagonalizzabile.
 ```
 
 ## Esercizi
@@ -601,7 +601,7 @@ Basi: dalla terza riga $y = 2iz$; dalla seconda $x = 2iy + 4z = 2i \cdot 2iz + 4
 
 (2) Su $\C$ la condizione (1) vale sempre. Se $k \neq \pm 2i$ gli autovalori sono distinti: diagonalizzabile. Per $k = 2i$ no (punto 1); per $k = -2i$, con lo stesso conto, $A + 2iI_3 = \begin{pmatrix} 0 & 0 & 0 \\ 1 & 2i & -4 \\ 0 & 1 & 2i \end{pmatrix}$ ha rango 2 e $m_g(-2i) = 1 < 2$: no. Quindi: diagonalizzabile su $\C$ se e solo se $k \neq \pm 2i$.
 
-Su $\R$ (con $k$ reale) **mai**: il fattore $\lambda^2 + 4$ non ha radici reali. Confronta con la domanda 9 del quiz: lì, per il valore speciale, la matrice era diagonalizzabile. Cambia la posizione dell'1 in basso a sinistra, e quindi il rango.
+Su $\R$ (con $k$ reale) **mai**: il fattore $\lambda^2 + 4$ non ha radici reali. Confronta con la domanda 9 del quiz: lì, per il valore speciale, la matrice era diagonalizzabile. La differenza che conta è l'1 al posto $(2, 1)$, che qui c'è e nel quiz no: senza di lui la seconda riga di $A - 2iI_3$ sarebbe $(0, -2i, -4) = -2i \cdot (0, 1, -2i)$, il rango scenderebbe a 1 e $m_g(2i)$ salirebbe a 2.
 :::
 
 ## Domande di ripasso

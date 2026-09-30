@@ -62,7 +62,11 @@ MATERIE = [
         "moduli": [("MD", "Matematica Discreta"), ("AG", "Algebra lineare e Geometria")],
         "moodle": [("Parte 1 · Matematica Discreta, canali A, B e C", 3829),
                    ("Parte 2 · Algebra lineare e Geometria, canali A, B e C", 3831)],
-        "link": [("Scheda del corso ed esame", "MDAG/corso.md")],
+        "nota": ("Gli appunti di Algebra lineare e Geometria coprono già tutte le 26 lezioni delle dispense 2026, comuni "
+                 "ai tre canali: sono pronti in anticipo, quindi in aula il ritmo può essere diverso. Gli appunti di "
+                 "Matematica Discreta non ci sono ancora."),
+        "link": [("Scheda del corso ed esame", "MDAG/corso.md"),
+                 ("Indice delle lezioni di Algebra lineare e Geometria", "MDAG/indice_lezioni.md")],
     },
     {
         "sigla": "ANMAT", "nome": "Analisi Matematica", "insegnamento": "MFN0570", "cfu": 9, "semestre": 2,

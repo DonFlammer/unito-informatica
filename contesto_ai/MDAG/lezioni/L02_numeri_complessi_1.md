@@ -723,7 +723,7 @@ testo: 2 -1.8 | blu | $A$
 
 **2. L'insieme $B$.** $z + \bar z = (x + yi) + (x - yi) = 2x$, che è un numero **reale**. Un numero reale non può essere uguale a $i$, che ha parte immaginaria $1$: uguagliando le parti immaginarie si otterrebbe $0 = 1$. Quindi $B = \emptyset$, l'insieme vuoto: non c'è niente da disegnare.
 
-Se la condizione fosse stata $z - \bar z = i$, avremmo $2yi = i$, cioè $y = \frac 12$: la retta orizzontale $\operatorname{Im}(z) = \frac 12$. Conviene sempre accorgersi quando una condizione è impossibile: è una delle cose che l'esercizio vuole verificare.
+Se la condizione fosse stata $z - \bar z = i$, avremmo $2yi = i$, cioè $y = \frac 12$: la retta orizzontale $\operatorname{Im}(z) = \frac 12$. Conviene sempre accorgersi quando una condizione è impossibile: «l'insieme è vuoto» è una risposta completa, da motivare come sopra.
 
 **3. L'insieme $C$.** $|z - 2|$ è la distanza di $z$ dal punto $2$. La condizione chiede distanza **almeno** $2$: sono i punti **fuori** dal cerchio di centro $2$ e raggio $2$, insieme alla circonferenza stessa. In coordinate: $(x - 2)^2 + y^2 \ge 4$. Il disco aperto $(x - 2)^2 + y^2 < 4$ è escluso; la circonferenza passa per l'origine, che quindi appartiene a $C$ ($|0 - 2| = 2$).
 

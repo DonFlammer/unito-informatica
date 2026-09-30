@@ -135,7 +135,7 @@ Un vettore colonna occupa tre righe di testo. Per risparmiare spazio lo si scriv
 
 $${}^t(1, 2, 3) = {}^t\begin{pmatrix} 1 & 2 & 3 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}.$$
 
-Negli appelli è ovunque: «$v_1 = {}^t(1, 0, -1)$», «$T({}^t(x, y, z)) = {}^t(x + 2y, \dots)$»; nei testi scansionati la $t$ può comparire staccata, come $t(1, 2)$. Vuol dire sempre: il vettore **colonna** con quelle coordinate.
+Negli appelli è ovunque: «$v_1 = {}^t(1, 0, -1)$», «$T({}^t(x, y, z)) = {}^t(x + 2y, \dots)$», sempre con la piccola $t$ in alto a sinistra. Vuol dire sempre: il vettore **colonna** con quelle coordinate.
 
 ## Il rango di una matrice (p. 37)
 

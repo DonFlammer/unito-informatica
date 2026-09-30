@@ -476,7 +476,7 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 Questa lezione è la base del **problema 12** di molti appelli: in 7 dei 15 appelli 2023–2026 il problema 12 riguarda prodotti scalari, Gram–Schmidt e proiezioni, e in altri due chiede anche una proiezione su un piano. Lo schema tipico:
 
 1. **base ortonormale (o ortogonale) di un piano** $V = \Span(v_1, v_2) \subset \R^3$ con Gram–Schmidt: appelli del 10/06/2024, del 03/06/2026 e del 07/09/2026 (prodotto euclideo); del 16/01/2025 e del 03/07/2026 (con un $g_S$);
-2. **proiezione ortogonale** di un vettore su quel piano: stessi appelli, più il 24/01/2024 (proiezione su $\pi_3 = \Span(e_1, e_2 + e_3)$), il 05/02/2026 (con $g_S$) e il 15/01/2026 (punto 4);
+2. **proiezione ortogonale** di un vettore su quel piano: stessi appelli tranne quello del 03/07/2026 (che al posto della proiezione chiede il complemento ortogonale), più il 24/01/2024 (proiezione su $\pi_3 = \Span(e_1, e_2 + e_3)$), il 05/02/2026 (con $g_S$) e il 15/01/2026 (punto 4);
 3. **complemento ortogonale**: appello del 07/02/2025 (di $\Span(x, x^2)$ in $\R_2[x]$) e del 03/07/2026 (di un piano rispetto a $g_S$);
 4. il punto successivo (intersezione di una retta con il piano e angolo di incidenza) è materia delle lezioni L23–L24.
 

@@ -64,11 +64,11 @@ I file delle lezioni più recenti (`<CORSO>/lezioni/*.md` con `genera_html: true
 
 ## Struttura
 
-- `## In breve`: i punti chiave della lezione.
+- `## In breve`: i punti chiave della lezione. Subito dopo si parte con il contenuto: niente sezione introduttiva su che cosa serve sapere o che cosa si saprà fare alla fine.
 - Sezioni `## Titolo (slide 2–5)` o `## Titolo (pp. 20–21)`: tra parentesi le slide o le pagine delle dispense da cui viene la sezione.
 - `## Verso l'esame`, `## Quiz`, `## Esercizi`, `## Domande di ripasso`, `## Glossario`, `## Checklist`, `## Fonti`.
 
-Le lezioni di Algebra lineare e Geometria (`MDAG/lezioni/L*.md`) hanno in più: `## Prima di cominciare` (di che cosa parla la lezione, che cosa serve sapere prima, che cosa si saprà fare alla fine) subito dopo «In breve», e `## I simboli di questa lezione` (una tabella: simbolo, come si legge, che cosa vuol dire, esempio) prima di «Verso l'esame». In ogni sezione l'ordine è: un esempio concreto, l'idea a parole, poi l'enunciato delle dispense in un riquadro, seguito da un paragrafo «**Come si legge.**» che lo traduce a parole.
+Le lezioni riscritte nel formato nuovo (Algebra lineare e Geometria `MDAG/lezioni/L*.md`, Matematica Discreta `D*.md`, Fondamenti dell'Informatica) hanno in più `## I simboli di questa lezione` (una tabella: simbolo, come si legge, che cosa vuol dire, esempio) prima di «Verso l'esame». In ogni sezione l'ordine è: un esempio concreto, l'idea a parole, poi l'enunciato delle dispense in un riquadro, seguito da un paragrafo «**Come si legge.**» che lo traduce a parole.
 
 ## Formule
 
@@ -2579,36 +2579,6 @@ genera_html: true
 > [!CANALI]
 > Libro di testo ed esame sono gli stessi nei canali A, B e C; cambiano docenti e ordine delle lezioni. Nel canale B Stefano Berardi segue il libro, in inglese, senza slide sue: il 28/09 ha pubblicato su Moodle la presentazione del libro digitale di Pearson. I riassunti delle lezioni del canale B stanno sul Moodle del canale, che chiede il login: questi appunti seguono il libro dall'inizio, la sezione 1.1. Nel canale A (Felice Cardone) la prima lezione è stata un'introduzione al corso, e i lucidi «Cenni sulla codifica dei dati» partono proprio dai bit e da quante cose si possono etichettare con $n$ bit. Il canale C (Luca Paolini) è partito con i lucidi «Azzeramento» e «Rappresentazione». Attenzione: il programma del canale B salta alcune sezioni del libro che l'esame comune può chiedere (dettagli nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md)).
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Un computer, dentro, sa fare una cosa sola: distinguere tra due stati, come acceso e spento. Tutto il resto, numeri, lettere, foto, musica, si costruisce mettendo in fila tanti di questi due stati. La lezione parte dal mattone più piccolo: il bit, un simbolo che può valere zero oppure uno.
-
-Poi vedi come si combinano i bit. Bastano quattro operazioni, con nomi inglesi: AND, OR, XOR e NOT. Ognuna prende uno o due bit e ne restituisce uno. Dentro il computer queste operazioni le fanno circuiti minuscoli, le porte logiche, e in questa pagina puoi provarle con un clic.
-
-Collegando le porte nel modo giusto si ottiene un circuito che ricorda: il flip-flop. È il primo passo verso la memoria del computer, l'argomento della sezione successiva del libro.
-
-Alla fine c'è un trucco di scrittura. Le lunghe file di zeri e uni si leggono male, e la notazione esadecimale le accorcia di quattro volte.
-
-Il libro è in inglese, mentre l'esame è in italiano: per ogni parola nuova trovi accanto anche il termine inglese del libro.
-
-### Che cosa devi già sapere
-
-Niente di particolare.
-
-- **Contare e fare le moltiplicazioni** con numeri piccoli.
-- **Leggere una tabella** riga per riga.
-- **Le potenze di 2**, come $2^3 = 2 \cdot 2 \cdot 2 = 8$. Il ripasso è nella prima sezione.
-
-### Che cosa saprai fare alla fine
-
-- Dire quante sequenze diverse si scrivono con un certo numero di bit, e quanti bit servono per distinguere un certo numero di oggetti.
-- Calcolare AND, OR, XOR e NOT di due bit.
-- Leggere un piccolo circuito di porte e dire che cosa esce per ogni combinazione di ingressi.
-- Spiegare come fa un flip-flop a ricordare un bit.
-- Passare da una sequenza di bit alla notazione esadecimale, e ritorno.
-
 ## Due simboli per dire tutto: i bit (libro, §1.1)
 
 Un interruttore della luce ha due posizioni, acceso e spento, e nessuna terza. Dentro un computer succede la stessa cosa, miliardi di volte: ogni pezzetto di informazione si trova in uno di due stati. I due stati si scrivono con due simboli, 0 e 1.
@@ -3389,6 +3359,7 @@ Riferimento 2025/26 (iscritti): MD 13/01 (340), 03/02 (325), 08/06 (127), 01/07 
 - **Moodle MDAG2 2026/27**: dispense 2026 del corso (L01–L26, basate su Martelli), fogli di esercizi del tutorato caricati man mano, appunti manoscritti e video.
 - **Moodle 2025/26 (aperti agli ospiti)**: regole d'esame; testi e soluzioni di tutti gli appelli MD e AG fino a settembre 2026; cartella "Quiz 2021/25"; dispense AG complete (L01–L26); videolezioni; fogli di esercizi del tutorato.
 - **Guida TSI** (`Materie/MD`, `Materie/AG`): raccolte di esami con soluzioni (MD dal 2017/18 al 2023/24), formulari (quello di Alessandro Salerno ha anche la classificazione dei problemi d'esame per tipo), appunti. Le regole d'esame 2023/24 lì contenute sono superate.
+- **Rigurgiti di Unicorno** (Valentino Bocchino, febbraio 2026, https://github.com/bocchinovalentino/rigurgiti_di_unicorno, licenza CC BY-NC-SA 4.0): appunti di Matematica Discreta scritti da uno studente seguendo il libro di Mori, in tre PDF (teoria, esercizi svolti, completo) più il sorgente LyX da modificare. Coprono insiemi, funzioni, combinatoria, numeri interi, permutazioni, gruppi e aritmetica modulare. Non sono materiale ufficiale; utili come riepilogo, perché alla prova di MD si possono portare libro e appunti.
 
 ## Consigli e trappole
 
@@ -3497,36 +3468,6 @@ genera_html: true
 
 > [!CANALI]
 > Matematica Discreta, la parte 1 di MDAG, ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C, quindi questi appunti valgono per tutti e tre. Cambiano i docenti e l'ordine degli argomenti. Nel canale B insegna Andrea Mori, che segue il suo libro *Lezioni di Matematica Discreta*: questi appunti seguono il capitolo 1 del libro (pp. 1–8) e il diario del canale B del 2025/26, dove la prima lezione trattava insiemi, insieme vuoto, numeri naturali e induzione, sottoinsiemi e il conto dei sottoinsiemi. Nei canali A e C insegnano Ignazio Longhi e Lea Terracini: nel 2025/26 anche lì si partiva dagli insiemi, poi venivano funzioni e combinatoria, in un ordine un po' diverso da quello del libro. Sulla pagina Moodle del 2025/26 (MDAG1, [id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti) ci sono appunti scritti a mano e video delle lezioni di A e C. La prima lezione del canale A copriva le stesse idee di base (insiemi, cardinalità, sottoinsiemi, insieme vuoto, uguaglianza) e scriveva $\subseteq$ dove Mori scrive $\subset$.
-
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Matematica Discreta parla di oggetti che si possono contare uno per uno: numeri interi, parole, elenchi, scelte. Prima di contare, però, bisogna mettersi d'accordo su come si parla delle raccolte di oggetti. È quello che fa questa prima lezione.
-
-La parola chiave è insieme. Pensa a un sacchetto della spesa: dentro ci metti delle cose, e il sacchetto con il suo contenuto è un insieme. Impari a scriverlo, a dire se una cosa ci sta dentro, a prenderne una parte e a contare quante parti diverse si possono prendere.
-
-Poi arrivano i numeri per contare, zero, uno, due e così via, e un modo di ragionare che li usa: l'induzione. Funziona come una fila di tessere del domino. Se cade la prima, e ogni tessera che cade fa cadere quella dopo, alla fine cadono tutte.
-
-Con l'induzione si dimostra un fatto che torna spesso negli esercizi d'esame: il numero delle parti di un insieme raddoppia ogni volta che aggiungi un elemento.
-
-Gli insiemi sono il linguaggio di tutto il resto del corso: relazioni, funzioni, combinatoria, gruppi. Conviene impararli bene adesso. Una sola parte è teorica, quella sulle regole che descrivono i numeri naturali: sta in un riquadro chiuso e all'esame non viene chiesta.
-
-### Che cosa devi già sapere
-
-Quasi niente: le cose che servono le ripassiamo quando compaiono.
-
-- **Contare e fare le quattro operazioni** con i numeri interi, anche negativi.
-- **Le potenze**: $2^3$ vuol dire $2 \cdot 2 \cdot 2 = 8$. Il ripasso è nella sezione sul conto dei sottoinsiemi.
-- **Pari e dispari**: un numero è pari se è il doppio di un intero, come $6 = 2 \cdot 3$. Lo zero è pari, perché $0 = 2 \cdot 0$.
-
-### Che cosa saprai fare alla fine
-
-- Dire se un oggetto è un elemento o un sottoinsieme di un insieme dato, anche quando gli elementi sono a loro volta insiemi: è la domanda 1 del quiz.
-- Scrivere tutti i sottoinsiemi di un insieme piccolo, e contarli senza scriverli.
-- Negare una frase che contiene «per ogni» o «esiste», e trovare un controesempio.
-- Dimostrare per induzione una formula come $1 + 2 + \dots + n = \frac{n(n + 1)}2$.
-- Contare i sottoinsiemi che contengono, o non contengono, certi elementi, come nei problemi d'esame.
 
 ## Un insieme è un sacchetto di oggetti (pp. 1–3)
 
@@ -4333,7 +4274,7 @@ Le iscrizioni chiudono circa una settimana prima e non si riaprono. Il voto di M
 - Nel passo induttivo, usare la formula per $n + 1$ invece di arrivarci.
 
 > [!ESAME] Libro e appunti sono ammessi, ma il tempo è poco
-> Alla prova di Matematica Discreta puoi portare libro e appunti. Le ore però sono solo 2, per 10 domande e 2 problemi: non c'è tempo per cercare le cose. Conviene preparare un foglio di riepilogo. Da questa lezione: il metodo «elemento o sottoinsieme?» e il conto dei sottoinsiemi con una condizione.
+> Alla prova di Matematica Discreta puoi portare libro e appunti. Le ore però sono solo 2, per 10 domande e 2 problemi: non c'è tempo per cercare le cose. Conviene preparare un foglio di riepilogo. Da questa lezione: il metodo «elemento o sottoinsieme?» e il conto dei sottoinsiemi con una condizione. Un riepilogo già pronto, scritto da uno studente seguendo il libro di Mori, è [Rigurgiti di Unicorno](https://github.com/bocchinovalentino/rigurgiti_di_unicorno): teoria ed esercizi svolti, con licenza CC BY-NC-SA. Non è materiale ufficiale.
 
 ## Quiz
 
@@ -4624,6 +4565,7 @@ Ipotesi induttiva | La frase «la proprietà vale per $n$», che nel passo indut
 - Diario delle lezioni del canale B 2025/26, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): argomenti della lezione 1. Sulla stessa pagina gli appunti a mano della prima lezione del canale A e le regole d'esame 2025/26.
 - Quiz e problemi degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla stessa pagina: 18/01/2023 (domanda 1), 09/06/2023 (problema 1), 05/02/2024, 14/01/2025, 04/02/2025, 06/06/2025 (domanda 2 e problema 1), 07/07/2025, 13/01/2026 (domanda 1), 03/02/2026, 06/06/2026, 01/07/2026 e 10/09/2026 (domanda 1).
 - Calendario degli appelli 2026/27 e regole d'esame: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+- V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (febbraio 2026, licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): usati come controllo. Le sue soluzioni degli esercizi 1.1 e 1.3 coincidono con quelle di questi appunti.
 - Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu», i quiz senza data e gli esercizi senza il numero del libro sono di questi appunti.
 
 
@@ -4672,39 +4614,6 @@ genera_html: true
 
 > [!CANALI]
 > Algebra lineare e Geometria usa le **stesse dispense** nei tre canali: Buzano insegna nei canali A e B, Radeschi nei canali B e C. Questi appunti seguono le dispense 2026, quindi valgono allo stesso modo per A, B e C. Cambiano solo i giorni delle lezioni: la pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)) avverte che i cambi d'orario vengono annunciati lì e a lezione. Esame e quiz sono comuni ai tre canali.
-
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Tutto il corso di Algebra lineare fa conti con i numeri. Per questo la prima lezione non parla ancora di vettori o di matrici: parla dei numeri stessi.
-
-Da piccoli si impara a contare: uno, due, tre. Poi si scoprono i numeri sotto zero, come i gradi di temperatura in inverno. Poi le frazioni, come mezza pizza. Infine i numeri con la virgola che non finiscono mai, come pi greco. Ogni volta la famiglia dei numeri diventa più grande.
-
-In questa lezione dai un nome a ognuna di queste famiglie e impari la lettera con cui si indica. Queste lettere compaiono in ogni pagina delle dispense, quindi conviene conoscerle bene da subito.
-
-Poi vedi quali regole seguono le somme e i prodotti. Sono regole che usi già senza pensarci. Qui ricevono un nome, perché nelle prossime lezioni le stesse regole varranno anche per oggetti che non sono numeri.
-
-Alla fine ci sono due cose pratiche: come si leggono i simboli che trovi nelle formule e come si fanno a mano i conti con le radici.
-
-Una parte della lezione è più astratta delle altre: spiega come si «costruiscono» i numeri con infinite cifre. Serve per capire, ma all'esame non viene chiesta. Dove comincia, trovi un avviso.
-
-### Che cosa devi già sapere
-
-Quasi niente. Bastano queste tre cose, e le ultime due le ripassiamo insieme quando servono.
-
-- **Le quattro operazioni** con i numeri interi: più, meno, per, diviso.
-- **Le frazioni**: che cosa vuol dire «un mezzo» o «tre quarti». Il ripasso è nella sezione sulle famiglie dei numeri.
-- **Quadrati e radici**: che cosa vuol dire «3 al quadrato» e «radice di 9». Il ripasso è nella sezione sulla radice di 2.
-
-### Che cosa saprai fare alla fine
-
-- Dire in quale famiglia sta un numero: per esempio che $-4$ è un intero e che $\frac 72$ è una frazione.
-- Leggere ad alta voce una scrittura come $3 \in \N$.
-- Spiegare perché $\sqrt 2$ non è una frazione.
-- Dire perché gli interi non formano un campo e le frazioni sì.
-- Non confondere $\{1, 2\}$, $(1, 2)$ e $[1, 2]$.
-- Semplificare a mano espressioni come $\sqrt{12}$ e $\frac 6{\sqrt 3}$.
 
 ## Gli insiemi: sacchetti con dentro delle cose (p. 2)
 
@@ -6199,42 +6108,6 @@ genera_html: true
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
-
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Nella lezione L01 ogni famiglia di numeri nasceva da una domanda rimasta senza risposta. L'ultima domanda della lista era: quale numero, moltiplicato per sé stesso, dà meno uno? Tra i numeri reali un numero così non c'è.
-
-In questa lezione quel numero si inventa. Gli si dà un nome e una lettera, e si continua a fare i conti con le regole di sempre. I numeri che nascono così si chiamano numeri complessi.
-
-Per tenerli in testa c'è un'immagine. I numeri reali stanno tutti su una riga: la retta dei numeri. I numeri complessi su una riga non ci stanno, e hanno bisogno di un foglio a quadretti. Ogni numero complesso è un punto del foglio. Per dire dov'è servono due indicazioni: quanti passi a destra e quanti passi in su.
-
-Imparerai a sommarli, a moltiplicarli e a dividerli, e a vedere sul foglio che cosa succede. Sono conti brevi, e all'esame tornano in quasi tutti gli appelli, spesso nella prima domanda del quiz.
-
-Nel resto del corso i numeri complessi servono più avanti: per le radici dei polinomi, nella lezione L04, e per gli autovalori di una matrice, nelle lezioni L17 e L18.
-
-Una sola parte è teorica: la dimostrazione che i numeri complessi non si possono mettere in fila dal più piccolo al più grande. È in un riquadro chiuso, e puoi saltarla.
-
-### Che cosa devi già sapere
-
-Poche cose, e quasi tutte le ripassiamo quando servono.
-
-- **I numeri reali** (lezione L01): gli interi, le frazioni, le radici e i numeri con infinite cifre dopo la virgola. Per esempio $-3$, $\frac 12$ e $\sqrt 2$. Il loro insieme si indica con $\R$.
-- **Il quadrato di un numero** (lezione L01): il numero moltiplicato per sé stesso. Per esempio $3^2 = 3 \cdot 3 = 9$.
-- **Le nove regole dei conti** e la parola **campo** (lezione L01). Le ricordiamo nella sezione sulle regole dei conti.
-- **Il foglio a quadretti con due assi**, cioè il piano cartesiano. Il ripasso è nella sezione «Com'è fatto un numero complesso».
-- **Il prodotto di due parentesi**, come $(2 + 3) \cdot (4 + 1)$. Il ripasso è nella sezione sulla somma e sul prodotto.
-- **Il teorema di Pitagora** e le radici quadrate. Il ripasso è nella sezione sul modulo.
-
-### Che cosa saprai fare alla fine
-
-- Dire qual è la parte reale e qual è la parte immaginaria di un numero come $4 - i$.
-- Sommare e moltiplicare due numeri complessi, per esempio $(7 + i) \cdot (4 - i)$.
-- Calcolare una potenza di $i$ con un esponente grande, come $i^{2026}$.
-- Calcolare il coniugato, il modulo e l'inverso di un numero complesso.
-- Dividere due numeri complessi e risolvere un'equazione come $(1 + i)z = 3 + 2i$.
-- Disegnare un numero complesso come punto del piano, e riconoscere una retta o una circonferenza da una condizione scritta con i simboli.
 
 ## Una domanda senza risposta tra i numeri reali (p. 6)
 
@@ -10000,37 +9873,6 @@ genera_html: true
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Su una mappa a quadretti puoi dire a qualcuno come muoversi con due soli numeri: tre passi a destra, due passi in su. Una lista di numeri come questa si chiama vettore, e da qui in poi quasi ogni lezione del corso parla di vettori.
-
-Con i vettori si fanno due cose. Si sommano, e vuol dire fare uno spostamento dopo l'altro. Si moltiplicano per un numero, e vuol dire ripetere lo stesso spostamento più volte, oppure farlo al contrario.
-
-Poi arriva l'idea che dà il nome alla lezione. Le stesse due operazioni, con le stesse regole, si possono fare anche con oggetti che non sono liste di numeri, come i polinomi della lezione L04. Ogni posto in cui si può sommare e moltiplicare per un numero con le solite regole, senza mai uscire, si chiama spazio vettoriale. Il vantaggio è questo: una cosa dimostrata usando solo quelle regole vale in un colpo per le liste, per i polinomi e per tutto il resto.
-
-Una parte della lezione è più teorica: per scrivere la definizione in modo preciso le dispense usano due liste di regole, che si chiamano gruppo e campo. Servono per capire, ma all'esame non vengono chieste, e dove cominciano trovi un avviso.
-
-Nella lezione L06 userai tutto questo per riconoscere i sottospazi, una delle domande più frequenti del quiz su questa parte del corso.
-
-### Che cosa devi già sapere
-
-Poche cose, e le ripassiamo quando servono.
-
-- **Il piano cartesiano**: un punto si indica con due numeri, per esempio «2 a destra e 3 in su». Il ripasso è nella prima sezione.
-- **Le nove regole dei conti** della lezione L01: per esempio «in una somma l'ordine non conta», cioè $2 + 5 = 5 + 2$. Le ricordiamo nelle sezioni sui gruppi e sui campi.
-- **I simboli degli insiemi** della lezione L01, come le graffe e il simbolo «appartiene». Li rileggiamo la prima volta che compaiono.
-- **I numeri complessi** (lezione L02) e **i polinomi** (lezione L04). Servono solo in alcuni esempi, e lì trovi un riquadro di ripasso.
-
-### Che cosa saprai fare alla fine
-
-- Sommare due vettori e moltiplicare un vettore per un numero: per esempio calcolare $2 \cdot (1, 2, 0) - 3 \cdot (1, 0, -1)$.
-- Disegnare nel piano la somma di due vettori e i multipli di un vettore.
-- Fare gli stessi conti con vettori di numeri complessi, con polinomi e con funzioni.
-- Dire qual è il vettore zero in ogni esempio, senza confonderlo con il numero zero.
-- Dire se un insieme è uno spazio vettoriale. Se non lo è, trovare l'esempio che lo dimostra.
-
 ## Un vettore è una lista di numeri (pp. 20–21)
 
 Immagina una mappa a quadretti, come un foglio di quaderno. Sei fermo su un incrocio e devi spiegare a un amico dove andare.
@@ -13597,41 +13439,6 @@ genera_html: true
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
-
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Una matrice è una tabella di numeri, come un listino dei prezzi o il tabellone di un torneo. Nella lezione L06 hai visto le prime due operazioni sulle matrici: sommare due tabelle casella per casella e moltiplicare tutta una tabella per un numero. In questa lezione ne arrivano altre quattro.
-
-La prima è girare la tabella, in modo che le righe diventino colonne. Il risultato si chiama trasposta.
-
-La seconda è un conteggio: quante colonne della tabella dicono davvero qualcosa di nuovo, e quante invece sono copie o miscele delle altre. Questo numero si chiama rango, e torna in quasi tutte le lezioni che seguono.
-
-La terza è la più importante: il prodotto di due matrici. Non si fa casella per casella, come verrebbe da pensare. Si fa come il conto della spesa: moltiplichi ogni quantità per il suo prezzo e poi sommi tutto. Il prodotto ha una sorpresa: l'ordine conta. Se scambi le due matrici, di solito il risultato cambia.
-
-La quarta è la più corta: sommare i numeri che stanno sulla diagonale della tabella. Il risultato si chiama traccia.
-
-A che cosa serve tutto questo? Dalla lezione L11 i sistemi di equazioni si scrivono e si risolvono con le matrici, e il rango dice quante soluzioni hanno. Dalla lezione L14 le matrici diventano macchine che trasformano vettori, e il prodotto è il modo di farle lavorare una dopo l'altra. All'esame, poi, queste quattro operazioni compaiono nel quiz di quasi ogni appello.
-
-### Che cosa devi già sapere
-
-Poche cose, e le ripassiamo tutte nel punto in cui servono.
-
-- **Che cos'è una matrice** e come si sommano due matrici: casella per casella (lezione L06). Il ripasso è nella prima sezione.
-- **Che cos'è un vettore**: una lista ordinata di numeri, come $(3, 2)$. Puoi pensarlo come uno spostamento su una mappa a quadretti: 3 passi a destra e 2 in su (lezione L05).
-- **Combinazioni lineari e Span**: mescolare dei vettori come gli ingredienti di una ricetta (lezione L06). Il ripasso è nella sezione sul rango.
-- **Vettori indipendenti e dimensione** (lezione L07). Anche questi li ripassiamo nella sezione sul rango.
-- **Una somma di prodotti**, come $2 \cdot 4 + 3 \cdot 1$: prima le moltiplicazioni, poi la somma. Il ripasso è nella sezione sul prodotto.
-
-### Che cosa saprai fare alla fine
-
-- Leggere una matrice: dire quante righe e quante colonne ha, e trovare il numero che sta in una certa casella.
-- Scrivere la trasposta di una matrice e dire se una matrice è simmetrica.
-- Trovare il rango di una matrice piccola, cercando le righe o le colonne che sono «doppioni».
-- Dire se un prodotto di due matrici si può fare, di che taglia viene, e calcolarlo.
-- Calcolare la traccia di un prodotto senza fare tutto il prodotto.
-- Rispondere alla domanda d'esame «quale identità vale?».
 
 ## Le matrici: tabelle di numeri (p. 36)
 
@@ -17323,41 +17130,6 @@ genera_html: true
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
-
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Un indovinello: penso a due numeri. Se li sommo ottengo cinque. Se dal primo tolgo il secondo ottengo uno. Quali sono? Con qualche tentativo trovi tre e due.
-
-In matematica un indovinello così si chiama sistema. Ci sono più indizi, e la risposta deve rispettarli tutti insieme. Con due numeri e due indizi bastano i tentativi. Con cinque numeri e quattro indizi no: serve un metodo.
-
-Questa lezione insegna quel metodo. Porta il nome di Gauss, un matematico tedesco, e funziona sempre, con qualsiasi numero di indizi. L'idea è riscrivere gli indizi in una forma sempre più comoda, senza mai cambiare la risposta. Alla fine gli indizi sono così comodi che la risposta si legge.
-
-Per fare meno fatica non si riscrivono ogni volta le equazioni intere. Si scrivono solo i numeri, in una tabella. Le tabelle di numeri sono le matrici della lezione L08.
-
-Il metodo dice anche come finisce l'indovinello. I finali possibili sono tre: nessuna risposta, una risposta sola, infinite risposte.
-
-Questa è una delle lezioni più usate di tutto il corso. Il metodo serve subito nelle lezioni L12 e L13. Poi torna per i nuclei, per gli autovalori, per le rette e per i piani. All'esame compare in quasi ogni esercizio.
-
-Una sola parte è teorica: la dimostrazione che le mosse non cambiano la risposta. La trovi in un riquadro chiuso, e all'esame non viene chiesta.
-
-### Che cosa devi già sapere
-
-- **I conti con il segno meno**: per esempio $3 - 5 = -2$. Il ripasso è nella sezione sulle mosse di Gauss.
-- **Risolvere un'equazione con una sola lettera**, come $2x = 6$. Il ripasso è nella prima sezione.
-- **Le frazioni**: $\frac 12$ vuol dire «la metà» (lezione L01). Servono poco, e le ricordiamo dove compaiono.
-- **Che cos'è una matrice**: una tabella di numeri fatta di righe e di colonne (lezione L08). Il ripasso è nella sezione sulla matrice completa.
-- **Che cos'è un vettore**: una lista ordinata di numeri, come $(3, 2)$ (lezione L05).
-
-### Che cosa saprai fare alla fine
-
-- Scrivere la matrice completa di un sistema, e tornare dalla matrice al sistema.
-- Fare una mossa di Gauss senza sbagliare i conti.
-- Portare una matrice a scalini con l'algoritmo di Gauss.
-- Dire quante soluzioni ha un sistema: nessuna, una sola oppure infinite, e con quanti parametri.
-- Scrivere tutte le soluzioni, anche quando sono infinite.
-- Controllare una soluzione rimettendola nelle equazioni di partenza.
 
 ## Un indovinello con più indizi: il sistema (p. 50)
 
@@ -22834,44 +22606,6 @@ genera_html: true
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Nelle lezioni L14, L15 e L16 hai conosciuto le applicazioni lineari. Sono macchine: entra un vettore, ne esce un altro. Hai visto anche che la stessa macchina si può scrivere con tabelle di numeri diverse, una per ogni base che scegli. Alcune tabelle sono un groviglio. Altre dicono subito che cosa fa la macchina.
-
-Questa lezione insegna a trovare la tabella migliore. Per capire come, pensa a una foto sullo schermo del telefono. Allargala solo in orizzontale, fino al doppio. Una freccia disegnata in orizzontale resta orizzontale: diventa lunga il doppio e basta. Una freccia verticale resta com'è. Una freccia in diagonale invece cambia inclinazione: si piega verso l'orizzontale.
-
-Le frecce che non cambiano inclinazione sono quelle speciali. In matematica si chiamano autovettori. Il numero che dice quanto si allungano si chiama autovalore: per la freccia orizzontale è due, per quella verticale è uno.
-
-Se le direzioni speciali sono abbastanza, puoi usarle come nuovi assi. Vista da quegli assi, la macchina fa una cosa sola: allunga o accorcia lungo ogni asse. La sua tabella si riempie di zeri, e i numeri restano solo sulla diagonale. Non sempre ci si riesce: una rotazione gira tutte le frecce, e non ne lascia nessuna sulla sua retta.
-
-L'ultima parte della lezione dà lo strumento per trovare le direzioni speciali con un conto, senza andare a tentativi. La lezione L18 completa il discorso: dice quando le direzioni speciali bastano per fare una base.
-
-Alcuni passaggi della lezione sono dimostrazioni. Servono per capire da dove vengono le regole, ma all'esame non vengono chieste: le trovi in riquadri chiusi, che puoi aprire quando vuoi.
-
-### Che cosa devi già sapere
-
-Questa lezione usa molte cose delle lezioni precedenti. Ognuna viene ricordata nel punto in cui serve. Qui c'è l'elenco, per sapere dove andare a rileggere.
-
-- **Vettori e multipli** (lezione L05). Un vettore è una lista di numeri, come $(3, 2)$: «3 a destra, 2 in su». Il suo doppio è $(6, 4)$.
-- **Matrice per vettore** (lezione L08). Il ripasso è nella prima sezione.
-- **Base** (lezione L07). Un gruppo di vettori con cui si costruiscono tutti gli altri, senza doppioni. Nel piano vanno bene $(1, 0)$ e $(0, 1)$.
-- **Applicazione lineare e matrice associata** (lezioni L14 e L15). Una macchina che trasforma vettori, e la tabella che la descrive in una base.
-- **Matrice inversa e matrici simili** (lezioni L10 e L16). Il ripasso è nella sezione sulla diagonalizzazione.
-- **Determinante** (lezione L09). Il ripasso è nella sezione sul polinomio caratteristico.
-- **Radici di un polinomio di secondo grado** (lezione L04). Il ripasso è nella stessa sezione.
-- **Sistemi omogenei** (lezione L12). Sono i sistemi in cui ogni equazione finisce con «= 0».
-
-### Che cosa saprai fare alla fine
-
-- Controllare con un solo prodotto se un vettore è un autovettore, e dire il suo autovalore.
-- Spiegare perché una rotazione non ha autovettori reali.
-- Scrivere le due matrici della diagonalizzazione a partire dagli autovettori, e controllarle senza calcolare inverse.
-- Calcolare una potenza alta di una matrice, come $A^{100}$.
-- Calcolare il polinomio caratteristico di una matrice con 2 o 3 righe e trovare gli autovalori.
-- Trovare gli autovettori di un autovalore risolvendo un sistema.
-
 ## Le direzioni che non girano: autovettori (p. 85)
 
 Una matrice quadrata è una macchina: entra un vettore, ne esce un altro dello stesso tipo. In questa sezione guardiamo che cosa succede alla **direzione** dei vettori quando passano nella macchina.
@@ -25477,39 +25211,6 @@ genera_html: true
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
-
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Fino alla lezione L18 con i vettori hai fatto due operazioni: la somma e la moltiplicazione per un numero. Con queste due operazioni non si riesce a rispondere a tre domande molto naturali. Quanto è lungo un vettore? Due vettori sono perpendicolari? Che angolo formano?
-
-Per rispondere serve un'operazione nuova, che prende due vettori e restituisce un numero. Si chiama prodotto scalare.
-
-L'idea di partenza è il conto della spesa. Hai una lista di quantità e una lista di prezzi. Moltiplichi ogni quantità per il suo prezzo e sommi tutto: da due liste ottieni un numero solo, il totale. Il prodotto scalare più comune fa proprio questo con due vettori.
-
-In questa lezione vedi prima questo conto e le regole che rispetta. Poi vedi altri prodotti scalari, costruiti in modo diverso, anche tra polinomi. Alla fine impari a riassumere un prodotto scalare in una tabella di numeri, la matrice associata: è la cosa che l'esame chiede più spesso.
-
-Lunghezze e angoli arrivano nella lezione L20, perpendicolarità e proiezioni nella lezione L21. Qui si costruisce l'attrezzo che serve a tutte e due.
-
-Le parti solo teoriche, cioè le dimostrazioni, sono in riquadri chiusi: puoi saltarle senza perdere il filo.
-
-### Che cosa devi già sapere
-
-- **Che cos'è un vettore**: una lista ordinata di numeri, come $(3, 2)$. Puoi leggerla come uno spostamento su una mappa a quadretti: 3 passi a destra e 2 in su (lezione L05).
-- **Sommare due vettori e moltiplicare un vettore per un numero**: $(1, 2) + (3, 1) = (4, 3)$ e $2 \cdot (1, 2) = (2, 4)$ (lezione L05).
-- **Che cos'è una matrice**: una tabella di numeri (lezione L08). Il prodotto riga per colonna, la trasposta e le matrici simmetriche sono ricordati in tre riquadri «Ripasso» di questa lezione.
-- **Base e coordinate**: una base è un elenco di vettori con cui si costruiscono tutti gli altri (lezioni L07 e L13). Il ripasso è nella sezione sulla matrice associata.
-- **Polinomi**: espressioni come $1 + 2x + x^2$ (lezione L04). Il ripasso è nella sezione sui polinomi.
-
-### Che cosa saprai fare alla fine
-
-- Calcolare il prodotto scalare euclideo di due vettori e dire, dal segno, se l'angolo tra i due è acuto, retto o ottuso.
-- Dire se una formula è un prodotto scalare oppure no.
-- Dire se un prodotto scalare è degenere, definito positivo, o nessuna delle due cose.
-- Passare da una matrice simmetrica alla formula del suo prodotto scalare, e dalla formula alla matrice.
-- Calcolare la matrice associata a un prodotto scalare in una base, anche tra polinomi: è la domanda del quiz d'esame.
-- Usare la matrice associata per calcolare un prodotto con le coordinate.
 
 ## Da due vettori a un numero: il conto della spesa (p. 96)
 
@@ -29144,39 +28845,6 @@ genera_html: true
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
-
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Appoggia sul tavolo un foglio con un disegno e fallo girare intorno a una puntina. Il disegno cambia posizione, ma non cambia forma: nessuna linea si allunga e nessun angolo si apre o si chiude. Lo stesso succede se guardi il disegno in uno specchio. Movimenti come questi si chiamano movimenti rigidi. In matematica il loro nome è isometrie.
-
-Nelle lezioni L19, L20 e L21 hai imparato a misurare lunghezze, distanze e angoli con il prodotto scalare. Questa lezione fa il passo successivo. Cerca le macchine che trasformano i vettori lasciando uguali tutte queste misure.
-
-La risposta è corta. Nel piano ci sono solo le rotazioni e gli specchi. Tutti e due si riconoscono guardando la tabella di numeri della macchina: le sue colonne devono essere lunghe uno e perpendicolari tra loro.
-
-Nell'ultima parte la lezione cambia argomento. Impari il prodotto vettoriale, una ricetta che da due vettori dello spazio ne costruisce un terzo, perpendicolare a tutti e due. È lo strumento più usato nelle lezioni L23 e L24, dove si lavora con rette e piani, e nei problemi d'esame.
-
-Due parti della lezione sono più teoriche delle altre: la definizione generale di isometria e i movimenti rigidi dello spazio. Servono per capire, ma negli appelli dal 2023 al 2026 non sono state chieste. Dove cominciano trovi un avviso.
-
-### Che cosa devi già sapere
-
-Tutte queste cose vengono ricordate con un esempio nel punto in cui servono.
-
-- **Vettori e matrici** (lezioni L05 e L08). Un vettore è una lista di numeri, come $(3, 2)$. Una matrice è una tabella di numeri. Il ripasso della moltiplicazione «matrice per vettore» è nella prima sezione.
-- **Prodotto scalare, lunghezza, perpendicolare** (lezioni L19, L20 e L21). Il ripasso è nella prima sezione.
-- **Angoli in radianti, coseno e seno.** I due ripassi sono nella sezione sulle rotazioni.
-- **Determinante** di una matrice con due righe e due colonne (lezione L09). Il ripasso è nella sezione sulle rotazioni.
-- **Vettori dipendenti, vettori indipendenti, base** (lezione L07). Servono solo nell'ultima sezione, e li ricordiamo lì.
-
-### Che cosa saprai fare alla fine
-
-- Scrivere la matrice di una rotazione o di una riflessione del piano, e usarla per muovere un vettore.
-- Dire se una matrice è ortogonale guardando le sue colonne.
-- Riconoscere se una matrice ortogonale del piano è una rotazione o una riflessione, e trovare l'angolo oppure la retta dello specchio.
-- Scrivere l'inversa di una matrice ortogonale senza fare conti.
-- Calcolare il prodotto vettoriale di due vettori e controllare il risultato.
-- Usare il prodotto vettoriale per trovare un vettore perpendicolare a un piano.
 
 ## Movimenti che non deformano (p. 111)
 

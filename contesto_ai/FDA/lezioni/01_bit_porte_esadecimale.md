@@ -40,36 +40,6 @@ genera_html: true
 > [!CANALI]
 > Libro di testo ed esame sono gli stessi nei canali A, B e C; cambiano docenti e ordine delle lezioni. Nel canale B Stefano Berardi segue il libro, in inglese, senza slide sue: il 28/09 ha pubblicato su Moodle la presentazione del libro digitale di Pearson. I riassunti delle lezioni del canale B stanno sul Moodle del canale, che chiede il login: questi appunti seguono il libro dall'inizio, la sezione 1.1. Nel canale A (Felice Cardone) la prima lezione è stata un'introduzione al corso, e i lucidi «Cenni sulla codifica dei dati» partono proprio dai bit e da quante cose si possono etichettare con $n$ bit. Il canale C (Luca Paolini) è partito con i lucidi «Azzeramento» e «Rappresentazione». Attenzione: il programma del canale B salta alcune sezioni del libro che l'esame comune può chiedere (dettagli nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md)).
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Un computer, dentro, sa fare una cosa sola: distinguere tra due stati, come acceso e spento. Tutto il resto, numeri, lettere, foto, musica, si costruisce mettendo in fila tanti di questi due stati. La lezione parte dal mattone più piccolo: il bit, un simbolo che può valere zero oppure uno.
-
-Poi vedi come si combinano i bit. Bastano quattro operazioni, con nomi inglesi: AND, OR, XOR e NOT. Ognuna prende uno o due bit e ne restituisce uno. Dentro il computer queste operazioni le fanno circuiti minuscoli, le porte logiche, e in questa pagina puoi provarle con un clic.
-
-Collegando le porte nel modo giusto si ottiene un circuito che ricorda: il flip-flop. È il primo passo verso la memoria del computer, l'argomento della sezione successiva del libro.
-
-Alla fine c'è un trucco di scrittura. Le lunghe file di zeri e uni si leggono male, e la notazione esadecimale le accorcia di quattro volte.
-
-Il libro è in inglese, mentre l'esame è in italiano: per ogni parola nuova trovi accanto anche il termine inglese del libro.
-
-### Che cosa devi già sapere
-
-Niente di particolare.
-
-- **Contare e fare le moltiplicazioni** con numeri piccoli.
-- **Leggere una tabella** riga per riga.
-- **Le potenze di 2**, come $2^3 = 2 \cdot 2 \cdot 2 = 8$. Il ripasso è nella prima sezione.
-
-### Che cosa saprai fare alla fine
-
-- Dire quante sequenze diverse si scrivono con un certo numero di bit, e quanti bit servono per distinguere un certo numero di oggetti.
-- Calcolare AND, OR, XOR e NOT di due bit.
-- Leggere un piccolo circuito di porte e dire che cosa esce per ogni combinazione di ingressi.
-- Spiegare come fa un flip-flop a ricordare un bit.
-- Passare da una sequenza di bit alla notazione esadecimale, e ritorno.
-
 ## Due simboli per dire tutto: i bit (libro, §1.1)
 
 Un interruttore della luce ha due posizioni, acceso e spento, e nessuna terza. Dentro un computer succede la stessa cosa, miliardi di volte: ogni pezzetto di informazione si trova in uno di due stati. I due stati si scrivono con due simboli, 0 e 1.

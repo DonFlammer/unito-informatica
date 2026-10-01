@@ -39,44 +39,6 @@ genera_html: true
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Nelle lezioni L14, L15 e L16 hai conosciuto le applicazioni lineari. Sono macchine: entra un vettore, ne esce un altro. Hai visto anche che la stessa macchina si può scrivere con tabelle di numeri diverse, una per ogni base che scegli. Alcune tabelle sono un groviglio. Altre dicono subito che cosa fa la macchina.
-
-Questa lezione insegna a trovare la tabella migliore. Per capire come, pensa a una foto sullo schermo del telefono. Allargala solo in orizzontale, fino al doppio. Una freccia disegnata in orizzontale resta orizzontale: diventa lunga il doppio e basta. Una freccia verticale resta com'è. Una freccia in diagonale invece cambia inclinazione: si piega verso l'orizzontale.
-
-Le frecce che non cambiano inclinazione sono quelle speciali. In matematica si chiamano autovettori. Il numero che dice quanto si allungano si chiama autovalore: per la freccia orizzontale è due, per quella verticale è uno.
-
-Se le direzioni speciali sono abbastanza, puoi usarle come nuovi assi. Vista da quegli assi, la macchina fa una cosa sola: allunga o accorcia lungo ogni asse. La sua tabella si riempie di zeri, e i numeri restano solo sulla diagonale. Non sempre ci si riesce: una rotazione gira tutte le frecce, e non ne lascia nessuna sulla sua retta.
-
-L'ultima parte della lezione dà lo strumento per trovare le direzioni speciali con un conto, senza andare a tentativi. La lezione L18 completa il discorso: dice quando le direzioni speciali bastano per fare una base.
-
-Alcuni passaggi della lezione sono dimostrazioni. Servono per capire da dove vengono le regole, ma all'esame non vengono chieste: le trovi in riquadri chiusi, che puoi aprire quando vuoi.
-
-### Che cosa devi già sapere
-
-Questa lezione usa molte cose delle lezioni precedenti. Ognuna viene ricordata nel punto in cui serve. Qui c'è l'elenco, per sapere dove andare a rileggere.
-
-- **Vettori e multipli** (lezione L05). Un vettore è una lista di numeri, come $(3, 2)$: «3 a destra, 2 in su». Il suo doppio è $(6, 4)$.
-- **Matrice per vettore** (lezione L08). Il ripasso è nella prima sezione.
-- **Base** (lezione L07). Un gruppo di vettori con cui si costruiscono tutti gli altri, senza doppioni. Nel piano vanno bene $(1, 0)$ e $(0, 1)$.
-- **Applicazione lineare e matrice associata** (lezioni L14 e L15). Una macchina che trasforma vettori, e la tabella che la descrive in una base.
-- **Matrice inversa e matrici simili** (lezioni L10 e L16). Il ripasso è nella sezione sulla diagonalizzazione.
-- **Determinante** (lezione L09). Il ripasso è nella sezione sul polinomio caratteristico.
-- **Radici di un polinomio di secondo grado** (lezione L04). Il ripasso è nella stessa sezione.
-- **Sistemi omogenei** (lezione L12). Sono i sistemi in cui ogni equazione finisce con «= 0».
-
-### Che cosa saprai fare alla fine
-
-- Controllare con un solo prodotto se un vettore è un autovettore, e dire il suo autovalore.
-- Spiegare perché una rotazione non ha autovettori reali.
-- Scrivere le due matrici della diagonalizzazione a partire dagli autovettori, e controllarle senza calcolare inverse.
-- Calcolare una potenza alta di una matrice, come $A^{100}$.
-- Calcolare il polinomio caratteristico di una matrice con 2 o 3 righe e trovare gli autovalori.
-- Trovare gli autovettori di un autovalore risolvendo un sistema.
-
 ## Le direzioni che non girano: autovettori (p. 85)
 
 Una matrice quadrata è una macchina: entra un vettore, ne esce un altro dello stesso tipo. In questa sezione guardiamo che cosa succede alla **direzione** dei vettori quando passano nella macchina.

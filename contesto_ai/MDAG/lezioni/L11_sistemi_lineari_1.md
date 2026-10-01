@@ -38,41 +38,6 @@ genera_html: true
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Un indovinello: penso a due numeri. Se li sommo ottengo cinque. Se dal primo tolgo il secondo ottengo uno. Quali sono? Con qualche tentativo trovi tre e due.
-
-In matematica un indovinello così si chiama sistema. Ci sono più indizi, e la risposta deve rispettarli tutti insieme. Con due numeri e due indizi bastano i tentativi. Con cinque numeri e quattro indizi no: serve un metodo.
-
-Questa lezione insegna quel metodo. Porta il nome di Gauss, un matematico tedesco, e funziona sempre, con qualsiasi numero di indizi. L'idea è riscrivere gli indizi in una forma sempre più comoda, senza mai cambiare la risposta. Alla fine gli indizi sono così comodi che la risposta si legge.
-
-Per fare meno fatica non si riscrivono ogni volta le equazioni intere. Si scrivono solo i numeri, in una tabella. Le tabelle di numeri sono le matrici della lezione L08.
-
-Il metodo dice anche come finisce l'indovinello. I finali possibili sono tre: nessuna risposta, una risposta sola, infinite risposte.
-
-Questa è una delle lezioni più usate di tutto il corso. Il metodo serve subito nelle lezioni L12 e L13. Poi torna per i nuclei, per gli autovalori, per le rette e per i piani. All'esame compare in quasi ogni esercizio.
-
-Una sola parte è teorica: la dimostrazione che le mosse non cambiano la risposta. La trovi in un riquadro chiuso, e all'esame non viene chiesta.
-
-### Che cosa devi già sapere
-
-- **I conti con il segno meno**: per esempio $3 - 5 = -2$. Il ripasso è nella sezione sulle mosse di Gauss.
-- **Risolvere un'equazione con una sola lettera**, come $2x = 6$. Il ripasso è nella prima sezione.
-- **Le frazioni**: $\frac 12$ vuol dire «la metà» (lezione L01). Servono poco, e le ricordiamo dove compaiono.
-- **Che cos'è una matrice**: una tabella di numeri fatta di righe e di colonne (lezione L08). Il ripasso è nella sezione sulla matrice completa.
-- **Che cos'è un vettore**: una lista ordinata di numeri, come $(3, 2)$ (lezione L05).
-
-### Che cosa saprai fare alla fine
-
-- Scrivere la matrice completa di un sistema, e tornare dalla matrice al sistema.
-- Fare una mossa di Gauss senza sbagliare i conti.
-- Portare una matrice a scalini con l'algoritmo di Gauss.
-- Dire quante soluzioni ha un sistema: nessuna, una sola oppure infinite, e con quanti parametri.
-- Scrivere tutte le soluzioni, anche quando sono infinite.
-- Controllare una soluzione rimettendola nelle equazioni di partenza.
-
 ## Un indovinello con più indizi: il sistema (p. 50)
 
 Partiamo da un indovinello: penso a due numeri, la loro somma fa 5 e la loro differenza fa 1. Quali sono?

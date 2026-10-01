@@ -42,36 +42,6 @@ genera_html: true
 > [!CANALI]
 > Matematica Discreta, la parte 1 di MDAG, ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C, quindi questi appunti valgono per tutti e tre. Cambiano i docenti e l'ordine degli argomenti. Nel canale B insegna Andrea Mori, che segue il suo libro *Lezioni di Matematica Discreta*: questi appunti seguono il capitolo 1 del libro (pp. 1–8) e il diario del canale B del 2025/26, dove la prima lezione trattava insiemi, insieme vuoto, numeri naturali e induzione, sottoinsiemi e il conto dei sottoinsiemi. Nei canali A e C insegnano Ignazio Longhi e Lea Terracini: nel 2025/26 anche lì si partiva dagli insiemi, poi venivano funzioni e combinatoria, in un ordine un po' diverso da quello del libro. Sulla pagina Moodle del 2025/26 (MDAG1, [id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti) ci sono appunti scritti a mano e video delle lezioni di A e C. La prima lezione del canale A copriva le stesse idee di base (insiemi, cardinalità, sottoinsiemi, insieme vuoto, uguaglianza) e scriveva $\subseteq$ dove Mori scrive $\subset$.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Matematica Discreta parla di oggetti che si possono contare uno per uno: numeri interi, parole, elenchi, scelte. Prima di contare, però, bisogna mettersi d'accordo su come si parla delle raccolte di oggetti. È quello che fa questa prima lezione.
-
-La parola chiave è insieme. Pensa a un sacchetto della spesa: dentro ci metti delle cose, e il sacchetto con il suo contenuto è un insieme. Impari a scriverlo, a dire se una cosa ci sta dentro, a prenderne una parte e a contare quante parti diverse si possono prendere.
-
-Poi arrivano i numeri per contare, zero, uno, due e così via, e un modo di ragionare che li usa: l'induzione. Funziona come una fila di tessere del domino. Se cade la prima, e ogni tessera che cade fa cadere quella dopo, alla fine cadono tutte.
-
-Con l'induzione si dimostra un fatto che torna spesso negli esercizi d'esame: il numero delle parti di un insieme raddoppia ogni volta che aggiungi un elemento.
-
-Gli insiemi sono il linguaggio di tutto il resto del corso: relazioni, funzioni, combinatoria, gruppi. Conviene impararli bene adesso. Una sola parte è teorica, quella sulle regole che descrivono i numeri naturali: sta in un riquadro chiuso e all'esame non viene chiesta.
-
-### Che cosa devi già sapere
-
-Quasi niente: le cose che servono le ripassiamo quando compaiono.
-
-- **Contare e fare le quattro operazioni** con i numeri interi, anche negativi.
-- **Le potenze**: $2^3$ vuol dire $2 \cdot 2 \cdot 2 = 8$. Il ripasso è nella sezione sul conto dei sottoinsiemi.
-- **Pari e dispari**: un numero è pari se è il doppio di un intero, come $6 = 2 \cdot 3$. Lo zero è pari, perché $0 = 2 \cdot 0$.
-
-### Che cosa saprai fare alla fine
-
-- Dire se un oggetto è un elemento o un sottoinsieme di un insieme dato, anche quando gli elementi sono a loro volta insiemi: è la domanda 1 del quiz.
-- Scrivere tutti i sottoinsiemi di un insieme piccolo, e contarli senza scriverli.
-- Negare una frase che contiene «per ogni» o «esiste», e trovare un controesempio.
-- Dimostrare per induzione una formula come $1 + 2 + \dots + n = \frac{n(n + 1)}2$.
-- Contare i sottoinsiemi che contengono, o non contengono, certi elementi, come nei problemi d'esame.
-
 ## Un insieme è un sacchetto di oggetti (pp. 1–3)
 
 Pensa a un sacchetto della spesa con dentro una mela, una pera e una banana. Il sacchetto, con quello che contiene, è un esempio di **insieme**. Le cose che ci sono dentro si chiamano gli **elementi** dell'insieme.
@@ -877,7 +847,7 @@ Le iscrizioni chiudono circa una settimana prima e non si riaprono. Il voto di M
 - Nel passo induttivo, usare la formula per $n + 1$ invece di arrivarci.
 
 > [!ESAME] Libro e appunti sono ammessi, ma il tempo è poco
-> Alla prova di Matematica Discreta puoi portare libro e appunti. Le ore però sono solo 2, per 10 domande e 2 problemi: non c'è tempo per cercare le cose. Conviene preparare un foglio di riepilogo. Da questa lezione: il metodo «elemento o sottoinsieme?» e il conto dei sottoinsiemi con una condizione.
+> Alla prova di Matematica Discreta puoi portare libro e appunti. Le ore però sono solo 2, per 10 domande e 2 problemi: non c'è tempo per cercare le cose. Conviene preparare un foglio di riepilogo. Da questa lezione: il metodo «elemento o sottoinsieme?» e il conto dei sottoinsiemi con una condizione. Un riepilogo già pronto, scritto da uno studente seguendo il libro di Mori, è [Rigurgiti di Unicorno](https://github.com/bocchinovalentino/rigurgiti_di_unicorno): teoria ed esercizi svolti, con licenza CC BY-NC-SA. Non è materiale ufficiale.
 
 ## Quiz
 
@@ -1168,4 +1138,5 @@ Ipotesi induttiva | La frase «la proprietà vale per $n$», che nel passo indut
 - Diario delle lezioni del canale B 2025/26, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): argomenti della lezione 1. Sulla stessa pagina gli appunti a mano della prima lezione del canale A e le regole d'esame 2025/26.
 - Quiz e problemi degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla stessa pagina: 18/01/2023 (domanda 1), 09/06/2023 (problema 1), 05/02/2024, 14/01/2025, 04/02/2025, 06/06/2025 (domanda 2 e problema 1), 07/07/2025, 13/01/2026 (domanda 1), 03/02/2026, 06/06/2026, 01/07/2026 e 10/09/2026 (domanda 1).
 - Calendario degli appelli 2026/27 e regole d'esame: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+- V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (febbraio 2026, licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): usati come controllo. Le sue soluzioni degli esercizi 1.1 e 1.3 coincidono con quelle di questi appunti.
 - Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu», i quiz senza data e gli esercizi senza il numero del libro sono di questi appunti.

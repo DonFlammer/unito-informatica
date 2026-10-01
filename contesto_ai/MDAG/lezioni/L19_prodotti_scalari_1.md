@@ -40,39 +40,6 @@ genera_html: true
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Fino alla lezione L18 con i vettori hai fatto due operazioni: la somma e la moltiplicazione per un numero. Con queste due operazioni non si riesce a rispondere a tre domande molto naturali. Quanto è lungo un vettore? Due vettori sono perpendicolari? Che angolo formano?
-
-Per rispondere serve un'operazione nuova, che prende due vettori e restituisce un numero. Si chiama prodotto scalare.
-
-L'idea di partenza è il conto della spesa. Hai una lista di quantità e una lista di prezzi. Moltiplichi ogni quantità per il suo prezzo e sommi tutto: da due liste ottieni un numero solo, il totale. Il prodotto scalare più comune fa proprio questo con due vettori.
-
-In questa lezione vedi prima questo conto e le regole che rispetta. Poi vedi altri prodotti scalari, costruiti in modo diverso, anche tra polinomi. Alla fine impari a riassumere un prodotto scalare in una tabella di numeri, la matrice associata: è la cosa che l'esame chiede più spesso.
-
-Lunghezze e angoli arrivano nella lezione L20, perpendicolarità e proiezioni nella lezione L21. Qui si costruisce l'attrezzo che serve a tutte e due.
-
-Le parti solo teoriche, cioè le dimostrazioni, sono in riquadri chiusi: puoi saltarle senza perdere il filo.
-
-### Che cosa devi già sapere
-
-- **Che cos'è un vettore**: una lista ordinata di numeri, come $(3, 2)$. Puoi leggerla come uno spostamento su una mappa a quadretti: 3 passi a destra e 2 in su (lezione L05).
-- **Sommare due vettori e moltiplicare un vettore per un numero**: $(1, 2) + (3, 1) = (4, 3)$ e $2 \cdot (1, 2) = (2, 4)$ (lezione L05).
-- **Che cos'è una matrice**: una tabella di numeri (lezione L08). Il prodotto riga per colonna, la trasposta e le matrici simmetriche sono ricordati in tre riquadri «Ripasso» di questa lezione.
-- **Base e coordinate**: una base è un elenco di vettori con cui si costruiscono tutti gli altri (lezioni L07 e L13). Il ripasso è nella sezione sulla matrice associata.
-- **Polinomi**: espressioni come $1 + 2x + x^2$ (lezione L04). Il ripasso è nella sezione sui polinomi.
-
-### Che cosa saprai fare alla fine
-
-- Calcolare il prodotto scalare euclideo di due vettori e dire, dal segno, se l'angolo tra i due è acuto, retto o ottuso.
-- Dire se una formula è un prodotto scalare oppure no.
-- Dire se un prodotto scalare è degenere, definito positivo, o nessuna delle due cose.
-- Passare da una matrice simmetrica alla formula del suo prodotto scalare, e dalla formula alla matrice.
-- Calcolare la matrice associata a un prodotto scalare in una base, anche tra polinomi: è la domanda del quiz d'esame.
-- Usare la matrice associata per calcolare un prodotto con le coordinate.
-
 ## Da due vettori a un numero: il conto della spesa (p. 96)
 
 Al mercato compri 2 chili di mele e 3 chili di pere. Le mele costano 4 euro al chilo, le pere 1 euro al chilo. Quanto spendi?

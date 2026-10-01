@@ -8,11 +8,11 @@ I file delle lezioni più recenti (`<CORSO>/lezioni/*.md` con `genera_html: true
 
 ## Struttura
 
-- `## In breve`: i punti chiave della lezione.
+- `## In breve`: i punti chiave della lezione. Subito dopo si parte con il contenuto: niente sezione introduttiva su che cosa serve sapere o che cosa si saprà fare alla fine.
 - Sezioni `## Titolo (slide 2–5)` o `## Titolo (pp. 20–21)`: tra parentesi le slide o le pagine delle dispense da cui viene la sezione.
 - `## Verso l'esame`, `## Quiz`, `## Esercizi`, `## Domande di ripasso`, `## Glossario`, `## Checklist`, `## Fonti`.
 
-Le lezioni di Algebra lineare e Geometria (`MDAG/lezioni/L*.md`) hanno in più: `## Prima di cominciare` (di che cosa parla la lezione, che cosa serve sapere prima, che cosa si saprà fare alla fine) subito dopo «In breve», e `## I simboli di questa lezione` (una tabella: simbolo, come si legge, che cosa vuol dire, esempio) prima di «Verso l'esame». In ogni sezione l'ordine è: un esempio concreto, l'idea a parole, poi l'enunciato delle dispense in un riquadro, seguito da un paragrafo «**Come si legge.**» che lo traduce a parole.
+Le lezioni riscritte nel formato nuovo (Algebra lineare e Geometria `MDAG/lezioni/L*.md`, Matematica Discreta `D*.md`, Fondamenti dell'Informatica) hanno in più `## I simboli di questa lezione` (una tabella: simbolo, come si legge, che cosa vuol dire, esempio) prima di «Verso l'esame». In ogni sezione l'ordine è: un esempio concreto, l'idea a parole, poi l'enunciato delle dispense in un riquadro, seguito da un paragrafo «**Come si legge.**» che lo traduce a parole.
 
 ## Formule
 

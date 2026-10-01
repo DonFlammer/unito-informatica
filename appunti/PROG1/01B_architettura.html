@@ -19,14 +19,15 @@
 <link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/appunti.css">
 <link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
 <!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/01B_architettura.md: modifica il Markdown, non questa pagina -->
 </head>
 <body>
 <!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
 <a class="salta" href="#contenuto">Vai al contenuto</a>
-<canvas id="rete" aria-hidden="true"></canvas>
+<div class="sfondo" aria-hidden="true"><canvas class="griglia"></canvas><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
 <script src="../../assets/js/rete.js"></script>
-<header class="barra">
+<header class="barra" id="barra">
   <div class="barra-in">
     <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
     <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
@@ -84,7 +85,7 @@
       </ul>
     </header>
 
-<section class="tldr" id="in-breve" aria-labelledby="tldr-title">
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:850px">
 <h2 id="tldr-title">La lezione in 8 punti</h2>
 <ul>
 <li>I primi strumenti (abaco, Pascalina) <strong>aiutano</strong> a calcolare, ma la logica la mette chi li usa. I <strong>calcolatori cablati</strong> sanno fare solo le operazioni costruite nel loro hardware.</li>
@@ -104,7 +105,7 @@
 </div>
 
 
-<section id="dal-calcolo-a-mano-alle-prime-macchine" aria-labelledby="h-dal-calcolo-a-mano-alle-prime-macchine">
+<section id="dal-calcolo-a-mano-alle-prime-macchine" aria-labelledby="h-dal-calcolo-a-mano-alle-prime-macchine" style="--h:1790px">
 <div class="sec-head"><span class="sec-num">§1</span><h2 id="h-dal-calcolo-a-mano-alle-prime-macchine">Dal calcolo a mano alle prime macchine</h2><span class="slides">slide 2–5</span></div>
 <p>La slide 2 mette in fila le tappe principali su una linea del tempo. Eccole in una tabella:</p>
 <div class="table-wrap"><table><thead><tr><th>Quando</th><th>Che cosa</th></tr></thead><tbody><tr><td>30000–20000 a.C.</td><td>ossa intagliate per contare</td></tr>
@@ -136,7 +137,7 @@
 </div>
 </section>
 
-<section id="l-idea-decisiva-il-calcolatore-programmabile" aria-labelledby="h-l-idea-decisiva-il-calcolatore-programmabile">
+<section id="l-idea-decisiva-il-calcolatore-programmabile" aria-labelledby="h-l-idea-decisiva-il-calcolatore-programmabile" style="--h:1740px">
 <div class="sec-head"><span class="sec-num">§2</span><h2 id="h-l-idea-decisiva-il-calcolatore-programmabile">L&#39;idea decisiva: il calcolatore programmabile</h2><span class="slides">slide 6–8</span></div>
 <p>La slide 6 contiene l&#39;idea più importante della lezione. Invece di costruire una macchina diversa per ogni compito:</p>
 <ol>
@@ -169,7 +170,7 @@
 </div>
 </section>
 
-<section id="eniac-ed-edvac" aria-labelledby="h-eniac-ed-edvac">
+<section id="eniac-ed-edvac" aria-labelledby="h-eniac-ed-edvac" style="--h:1260px">
 <div class="sec-head"><span class="sec-num">§3</span><h2 id="h-eniac-ed-edvac">ENIAC ed EDVAC</h2><span class="slides">slide 9–10</span></div>
 <h3 id="eniac-slide-9">ENIAC (slide 9)</h3>
 <p>L&#39;<strong>Electronic Numerical Integrator and Computer</strong> fu progettato nel 1943 da John Mauchly e J. Presper Eckert (nella slide «John Adam Presper»: il nome completo è John Adam Presper Eckert Jr.) e presentato nel 1946.</p>
@@ -197,7 +198,7 @@
 </div>
 </section>
 
-<section id="il-bit-e-il-byte" aria-labelledby="h-il-bit-e-il-byte">
+<section id="il-bit-e-il-byte" aria-labelledby="h-il-bit-e-il-byte" style="--h:1560px">
 <div class="sec-head"><span class="sec-num">§4</span><h2 id="h-il-bit-e-il-byte">Il bit e il byte</h2><span class="slides">slide 11–12</span></div>
 <h3 id="perche-il-binario-slide-11">Perché il binario (slide 11)</h3>
 <p>L&#39;elemento base dell&#39;informazione è il <strong>bit</strong>; la slide lo spiega come <em>Binary Information Token</em>. Un bit può stare in <strong>due stati soltanto</strong>: acceso/spento, vero/falso, sì/no, 1/0.</p>
@@ -221,7 +222,7 @@
 </div>
 </section>
 
-<section id="l-architettura-di-von-neumann" aria-labelledby="h-l-architettura-di-von-neumann">
+<section id="l-architettura-di-von-neumann" aria-labelledby="h-l-architettura-di-von-neumann" style="--h:1750px">
 <div class="sec-head"><span class="sec-num">§5</span><h2 id="h-l-architettura-di-von-neumann">L&#39;architettura di Von Neumann</h2><span class="slides">slide 13–15</span></div>
 <h3 id="com-era-fatto-l-edvac-slide-13">Com&#39;era fatto l&#39;EDVAC (slide 13)</h3>
 <ul>
@@ -251,7 +252,7 @@
 </div>
 </section>
 
-<section id="un-primo-modello-della-memoria" aria-labelledby="h-un-primo-modello-della-memoria">
+<section id="un-primo-modello-della-memoria" aria-labelledby="h-un-primo-modello-della-memoria" style="--h:1300px">
 <div class="sec-head"><span class="sec-num">§6</span><h2 id="h-un-primo-modello-della-memoria">Un primo modello della memoria</h2><span class="slides">slide 16–17</span></div>
 <h3 id="una-fila-di-byte-con-un-indirizzo-slide-16">Una fila di byte con un indirizzo (slide 16)</h3>
 <p>La CPU vede la memoria come una <strong>lunga fila di byte</strong>:</p>
@@ -274,7 +275,7 @@
 </div>
 </section>
 
-<section id="come-funziona-la-macchina" aria-labelledby="h-come-funziona-la-macchina">
+<section id="come-funziona-la-macchina" aria-labelledby="h-come-funziona-la-macchina" style="--h:1790px">
 <div class="sec-head"><span class="sec-num">§7</span><h2 id="h-come-funziona-la-macchina">Come funziona la macchina</h2><span class="slides">slide 18–19</span></div>
 <h3 id="dal-disco-all-esecuzione-slide-18">Dal disco all&#39;esecuzione (slide 18)</h3>
 <ol>
@@ -305,7 +306,7 @@
 </div>
 </section>
 
-<section id="esame" aria-labelledby="h-esame">
+<section id="esame" aria-labelledby="h-esame" style="--h:1010px">
 <div class="sec-head"><span class="sec-num">§8</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
 <p>Questa lezione è di cultura generale e di vocabolario: all&#39;esame di Programmazione I (al PC, su Moodle con CodeRunner, unico per i canali A, B e C) nessuno ti chiederà in che anno è nato l&#39;EDVAC. Ma le idee della lezione tornano in molti punti:</p>
 <div class="table-wrap"><table><thead><tr><th>Idea della lezione</th><th>Dove ritorna</th></tr></thead><tbody><tr><td>memoria come fila di byte con indirizzi</td><td>variabili, indirizzi e puntatori (settimana 2), array (indice che parte da 0)</td></tr>
@@ -320,7 +321,7 @@
 </div>
 </section>
 
-<section id="esercizi" aria-labelledby="h-esercizi">
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1690px">
 <div class="sec-head"><span class="sec-num">§9</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
 <article class="ex" id="esercizio-1"><h3>1 · Quante informazioni con N bit <span class="lvl">base</span></h3><p>Quante informazioni diverse si rappresentano con 1, 4, 10, 16 e 32 bit?</p>
 <details class="sol"><summary>Soluzione</summary><p>Con <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span> bit ci sono <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>N</mi></msup></mrow><annotation encoding="application/x-tex">2^N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8413em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span></span></span></span></span></span></span></span></span></span></span> combinazioni:</p>
@@ -382,7 +383,7 @@
 </details></article>
 </section>
 
-<section id="domande" aria-labelledby="h-domande">
+<section id="domande" aria-labelledby="h-domande" style="--h:1040px">
 <div class="sec-head"><span class="sec-num">§10</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
 <div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
 <div class="qa-list"><details class="qa"><summary><span>Che cosa fa davvero un abaco? Che cosa aggiunge la Pascalina?</span></summary><div class="ans"><p>L&#39;abaco tiene traccia dei calcoli già fatti, ma la logica e la correttezza dell&#39;operazione dipendono da chi lo usa. La Pascalina fa il riporto dell&#39;addizione da sola, con una leva tra un ingranaggio e il successivo.</p>
@@ -411,7 +412,7 @@
 </div></details></div>
 </section>
 
-<section id="glossario" aria-labelledby="h-glossario">
+<section id="glossario" aria-labelledby="h-glossario" style="--h:1240px">
 <div class="sec-head"><span class="sec-num">§11</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
 <dl class="gloss">
 <div><dt>Calcolatore cablato</dt><dd>Macchina con la logica di funzionamento costruita nell&#39;hardware (hardwired): fa solo le operazioni previste.</dd></div>
@@ -439,7 +440,7 @@
 </dl>
 </section>
 
-<section id="checklist" aria-labelledby="h-checklist">
+<section id="checklist" aria-labelledby="h-checklist" style="--h:570px">
 <div class="sec-head"><span class="sec-num">§12</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 9</span></div>
 <p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
 <ul class="checklist" data-chiave="prog1-01B-checklist">

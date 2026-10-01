@@ -19,14 +19,15 @@
 <link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../assets/css/appunti.css">
 <link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
 <!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/02A_da_assembly_a_c.md: modifica il Markdown, non questa pagina -->
 </head>
 <body>
 <!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
 <a class="salta" href="#contenuto">Vai al contenuto</a>
-<canvas id="rete" aria-hidden="true"></canvas>
+<div class="sfondo" aria-hidden="true"><canvas class="griglia"></canvas><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
 <script src="../../assets/js/rete.js"></script>
-<header class="barra">
+<header class="barra" id="barra">
   <div class="barra-in">
     <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
     <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
@@ -88,7 +89,7 @@
       </ul>
     </header>
 
-<section class="tldr" id="in-breve" aria-labelledby="tldr-title">
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:800px">
 <h2 id="tldr-title">La lezione in 8 punti</h2>
 <ul>
 <li>Il <strong>linguaggio macchina</strong> è fatto di numeri (sequenze di bit) che il processore esegue direttamente; ogni architettura ha il suo <em>instruction set</em>, quindi <strong>non è portabile</strong>.</li>
@@ -108,7 +109,7 @@
 </div>
 
 
-<section id="linguaggio-macchina-e-assembly" aria-labelledby="h-linguaggio-macchina-e-assembly">
+<section id="linguaggio-macchina-e-assembly" aria-labelledby="h-linguaggio-macchina-e-assembly" style="--h:1260px">
 <div class="sec-head"><span class="sec-num">§1</span><h2 id="h-linguaggio-macchina-e-assembly">Linguaggio macchina e assembly</h2><span class="slides">slide 2–4</span></div>
 <p>I primi computer si programmavano direttamente in <strong>linguaggio macchina</strong>, cambiando i bit dei registri con <strong>interruttori</strong> o <strong>schede perforate</strong>. È un po&#39; come l&#39;esecuzione passo per passo che si usa ancora oggi per controllare l&#39;hardware mentre lo si progetta.</p>
 <div class="box def"><p class="box-label"><span>Definizione · Linguaggio macchina · slide 3</span></p><p>È il linguaggio <strong>direttamente eseguibile dal processore</strong>:</p>
@@ -134,7 +135,7 @@
 </div>
 </section>
 
-<section id="l-addizione-in-assembly-passo-per-passo" aria-labelledby="h-l-addizione-in-assembly-passo-per-passo">
+<section id="l-addizione-in-assembly-passo-per-passo" aria-labelledby="h-l-addizione-in-assembly-passo-per-passo" style="--h:1900px">
 <div class="sec-head"><span class="sec-num">§2</span><h2 id="h-l-addizione-in-assembly-passo-per-passo">L&#39;addizione in assembly, passo per passo</h2><span class="slides">slide 5–14</span></div>
 <p><strong>Il problema</strong>: sommare due numeri interi che stanno in memoria agli indirizzi <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>400</mn></mrow><annotation encoding="application/x-tex">A = 400</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span></span></span></span> e <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mn>404</mn></mrow><annotation encoding="application/x-tex">B = 404</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">404</span></span></span></span>, e mettere il risultato nella cella all&#39;indirizzo <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span></span></span></span>. Il linguaggio è un assembly di tipo RISC, come quello del processore MIPS32. Il programma fa quattro cose:</p>
 <ol>
@@ -163,7 +164,7 @@ STORE, R0, @A        ; copia R0 all'indirizzo A</code></pre>
 </div>
 </section>
 
-<section id="la-moltiplicazione-in-assembly" aria-labelledby="h-la-moltiplicazione-in-assembly">
+<section id="la-moltiplicazione-in-assembly" aria-labelledby="h-la-moltiplicazione-in-assembly" style="--h:2250px">
 <div class="sec-head"><span class="sec-num">§3</span><h2 id="h-la-moltiplicazione-in-assembly">La moltiplicazione in assembly</h2><span class="slides">slide 15–16</span></div>
 <p>Ora la stessa <strong>moltiplicazione per somme ripetute</strong> della lezione 01A. I numeri stanno agli indirizzi simbolici <code>m</code> e <code>n</code>; il risultato va all&#39;indirizzo <code>m</code>. Si usano l&#39;accumulatore <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span> (nel registro <code>R0</code>) e il contatore <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> (in <code>R1</code>).</p>
 <pre class="code" data-lingua="text"><code> 1.  LOAD,  R0, 0         // inizializza R0 come accumulatore s
@@ -198,7 +199,7 @@ STORE, R0, @A        ; copia R0 all'indirizzo A</code></pre>
 </div>
 </section>
 
-<section id="verso-i-linguaggi-di-alto-livello" aria-labelledby="h-verso-i-linguaggi-di-alto-livello">
+<section id="verso-i-linguaggi-di-alto-livello" aria-labelledby="h-verso-i-linguaggi-di-alto-livello" style="--h:2180px">
 <div class="sec-head"><span class="sec-num">§4</span><h2 id="h-verso-i-linguaggi-di-alto-livello">Verso i linguaggi di alto livello</h2><span class="slides">slide 17–22</span></div>
 <h3 id="perche-l-assembly-non-basta-slide-17">Perché l&#39;assembly non basta (slide 17)</h3>
 <ul>
@@ -267,7 +268,7 @@ End Program Hello</code></pre>
 </div>
 </section>
 
-<section id="il-linguaggio-c-un-po-di-storia" aria-labelledby="h-il-linguaggio-c-un-po-di-storia">
+<section id="il-linguaggio-c-un-po-di-storia" aria-labelledby="h-il-linguaggio-c-un-po-di-storia" style="--h:770px">
 <div class="sec-head"><span class="sec-num">§5</span><h2 id="h-il-linguaggio-c-un-po-di-storia">Il linguaggio C: un po&#39; di storia</h2><span class="slides">slide 23–26</span></div>
 <ul>
 <li><strong>1969</strong>: Ken Thompson (Bell Labs, AT&amp;T) sviluppa il sistema operativo <strong>Unix</strong> per il minicomputer PDP-7, scritto inizialmente in <strong>assembly</strong>.</li>
@@ -281,7 +282,7 @@ End Program Hello</code></pre>
 <p>Nonostante l&#39;età, il C è ancora centrale: è il linguaggio di riferimento per <strong>sistemi operativi</strong>, <strong>compilatori</strong>, <strong>driver</strong>, <strong>librerie di basso livello</strong>, applicazioni ad <strong>alte prestazioni</strong> e <strong>sistemi embedded/IoT</strong>. Offre un <strong>controllo diretto</strong> su hardware e memoria, restando molto più astratto dell&#39;assembly.</p>
 </section>
 
-<section id="le-caratteristiche-del-c" aria-labelledby="h-le-caratteristiche-del-c">
+<section id="le-caratteristiche-del-c" aria-labelledby="h-le-caratteristiche-del-c" style="--h:530px">
 <div class="sec-head"><span class="sec-num">§6</span><h2 id="h-le-caratteristiche-del-c">Le caratteristiche del C</h2><span class="slides">slide 27</span></div>
 <div class="table-wrap"><table><thead><tr><th>Il C è…</th><th>Che cosa vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><strong>compilato</strong></td><td>un <strong>compilatore</strong> traduce i sorgenti C nel linguaggio macchina del computer</td><td><code>gcc</code> produce un eseguibile</td></tr>
 <tr><td><strong>imperativo</strong></td><td>il programma è un insieme di <strong>istruzioni</strong>, pensate come ordini</td><td><code>s = s + m;</code> è un ordine: «aggiorna s»</td></tr>
@@ -289,7 +290,7 @@ End Program Hello</code></pre>
 <tr><td><strong>fortemente tipizzato</strong></td><td>chi programma deve <strong>specificare il tipo</strong> di ogni variabile</td><td><code>int s = 0;</code> dice che <code>s</code> è un intero</td></tr></tbody></table></div>
 </section>
 
-<section id="la-radiografia-del-primo-programma" aria-labelledby="h-la-radiografia-del-primo-programma">
+<section id="la-radiografia-del-primo-programma" aria-labelledby="h-la-radiografia-del-primo-programma" style="--h:2900px">
 <div class="sec-head"><span class="sec-num">§7</span><h2 id="h-la-radiografia-del-primo-programma">La radiografia del primo programma</h2><span class="slides">slide 28–36</span></div>
 <pre class="code" data-lingua="c"><code><span class="cm">// Un primo programma in C</span>
 <span class="kw">#include</span> &lt;stdio.h&gt;
@@ -360,7 +361,7 @@ printf(<span class="str">&quot;nome\tvoto\n&quot;</span>);             <span cla
 </div>
 </section>
 
-<section id="sintassi-identificatori-e-indentazione" aria-labelledby="h-sintassi-identificatori-e-indentazione">
+<section id="sintassi-identificatori-e-indentazione" aria-labelledby="h-sintassi-identificatori-e-indentazione" style="--h:1650px">
 <div class="sec-head"><span class="sec-num">§8</span><h2 id="h-sintassi-identificatori-e-indentazione">Sintassi, identificatori e indentazione</h2><span class="slides">slide 37–41</span></div>
 <h3 id="sintassi-e-token-slide-37-38">Sintassi e token (slide 37–38)</h3>
 <p>Il C va <strong>compilato</strong>: il codice sorgente, che è testo, viene tradotto in linguaggio macchina. Durante la compilazione l&#39;<strong>analizzatore lessicale</strong> (<em>parser</em>) divide il codice in <strong>token</strong>, le unità sintattiche: parole chiave, identificatori, operatori, punteggiatura, stringhe, costanti. Come una lingua naturale, un linguaggio di programmazione ha una <strong>sintassi</strong>, più formale, con le regole per scrivere programmi corretti. Se una regola non è rispettata, il compilatore segnala un <strong>errore di compilazione</strong> e <strong>non</strong> produce il programma.</p>
@@ -397,7 +398,7 @@ printf(<span class="str">&quot;nome\tvoto\n&quot;</span>);             <span cla
 <p>L&#39;<code>if</code> arriverà nelle prossime settimane: qui conta la forma, con le tre istruzioni rientrate dentro le graffe.</p>
 </section>
 
-<section id="dal-sorgente-all-eseguibile" aria-labelledby="h-dal-sorgente-all-eseguibile">
+<section id="dal-sorgente-all-eseguibile" aria-labelledby="h-dal-sorgente-all-eseguibile" style="--h:1350px">
 <div class="sec-head"><span class="sec-num">§9</span><h2 id="h-dal-sorgente-all-eseguibile">Dal sorgente all&#39;eseguibile</h2><span class="slides">slide 42–45</span></div>
 <p>Il percorso (slide 42): i <strong>file sorgente</strong> (<code>.c</code>, il codice in forma di testo; ognuno è un&#39;<strong>unità di compilazione</strong>) includono i <strong>file di intestazione</strong> (<code>.h</code>). Preprocessore, compilatore e assemblatore trasformano ogni sorgente in un <strong>file oggetto</strong> (linguaggio macchina); il <strong>collegatore</strong> (<em>linker</em>) unisce i file oggetto in un <strong>programma eseguibile</strong>.</p>
 <p>Il compilatore del corso è <strong>gcc</strong> (la slide dice GNU C Compiler; oggi il nome è <em>GNU Compiler Collection</em>): libero, conforme agli standard, disponibile per i principali sistemi operativi, capace di produrre codice per molte architetture. È un <em>frontend</em> per un sistema di compilazione a più stadi (slide 43–44):</p>
@@ -419,7 +420,7 @@ Windows:  gcc -Wall -Werror sorgente.c -o eseguibile.exe</code></pre>
 </div>
 </section>
 
-<section id="errori-di-compilazione-a-runtime-e-logici" aria-labelledby="h-errori-di-compilazione-a-runtime-e-logici">
+<section id="errori-di-compilazione-a-runtime-e-logici" aria-labelledby="h-errori-di-compilazione-a-runtime-e-logici" style="--h:1490px">
 <div class="sec-head"><span class="sec-num">§10</span><h2 id="h-errori-di-compilazione-a-runtime-e-logici">Errori di compilazione, a runtime e logici</h2><span class="slides">slide 46–48</span></div>
 <p>Un programma può <strong>compilare</strong> senza errori di sintassi e contenere lo stesso errori che si vedono solo <strong>durante l&#39;esecuzione</strong> (<em>runtime</em>). Le cause possono essere:</p>
 <ul>
@@ -450,7 +451,7 @@ Windows:  gcc -Wall -Werror sorgente.c -o eseguibile.exe</code></pre>
 </div>
 </section>
 
-<section id="come-si-sviluppa-un-programma-c" aria-labelledby="h-come-si-sviluppa-un-programma-c">
+<section id="come-si-sviluppa-un-programma-c" aria-labelledby="h-come-si-sviluppa-un-programma-c" style="--h:530px">
 <div class="sec-head"><span class="sec-num">§11</span><h2 id="h-come-si-sviluppa-un-programma-c">Come si sviluppa un programma C</h2><span class="slides">slide 49–50</span></div>
 <ol>
 <li><strong>Scrivi o modifica</strong> il sorgente con un editor di testo (per esempio Notepad++).</li>
@@ -464,7 +465,7 @@ Windows:  gcc -Wall -Werror sorgente.c -o eseguibile.exe</code></pre>
 <p>Prerequisiti: saper scrivere e gestire file di testo, muoversi tra le cartelle, usare la <strong>linea di comando</strong> (shell) per le cose essenziali. Sul tuo PC dovrai installare un ambiente con il compilatore gcc (se ne occupano i laboratori). Per iniziare senza installare niente c&#39;è l&#39;ambiente online <a href="https://pythontutor.com/c.html#mode=edit" target="_blank" rel="noopener">pythontutor.com/c.html</a>, che mostra anche lo stato della memoria passo per passo.</p>
 </section>
 
-<section id="esame" aria-labelledby="h-esame">
+<section id="esame" aria-labelledby="h-esame" style="--h:800px">
 <div class="sec-head"><span class="sec-num">§12</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
 <p>L&#39;esame di Programmazione I è al PC su Moodle, con esercizi in C corretti anche da <strong>test automatici</strong> (CodeRunner), comune ai canali A, B e C. Questa lezione ti dà gli strumenti di base:</p>
 <ul>
@@ -481,7 +482,7 @@ Windows:  gcc -Wall -Werror sorgente.c -o eseguibile.exe</code></pre>
 </div>
 </section>
 
-<section id="esercizi" aria-labelledby="h-esercizi">
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:2360px">
 <div class="sec-head"><span class="sec-num">§13</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
 <article class="ex" id="esercizio-1"><h3>1 · Traccia dell&#39;addizione con altri dati <span class="lvl">base</span></h3><p>Esegui a mano il programma dell&#39;addizione (slide 5–14) con 7 all&#39;indirizzo <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mn>400</mn></mrow><annotation encoding="application/x-tex">A = 400</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">400</span></span></span></span> e 5 all&#39;indirizzo <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mo>=</mo><mn>404</mn></mrow><annotation encoding="application/x-tex">B = 404</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">404</span></span></span></span>. Scrivi dopo ogni istruzione il PC, R0, R1 e il contenuto dell&#39;indirizzo 400. Controlla con il simulatore.</p>
 <details class="sol"><summary>Soluzione</summary><div class="table-wrap"><table><thead><tr><th>Istruzione</th><th class="num">PC</th><th class="num">R0</th><th class="num">R1</th><th class="num">memoria[400]</th></tr></thead><tbody><tr><td><code>LOAD, R0, @A</code></td><td class="num">0</td><td class="num">7</td><td class="num">—</td><td class="num">7</td></tr>
@@ -593,7 +594,7 @@ printf(<span class="str">&quot;nome\tvoto\n&quot;</span>);</code></pre>
 </details></article>
 </section>
 
-<section id="domande" aria-labelledby="h-domande">
+<section id="domande" aria-labelledby="h-domande" style="--h:1150px">
 <div class="sec-head"><span class="sec-num">§14</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
 <div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
 <div class="qa-list"><details class="qa"><summary><span>Che differenza c&#39;è tra linguaggio macchina e assembly?</span></summary><div class="ans"><p>Il linguaggio macchina è fatto di codici numerici (bit) eseguiti direttamente dal processore e dipende dall&#39;architettura. L&#39;assembly scrive le stesse istruzioni con nomi simbolici (mnemonici) più leggibili; un assembler lo traduce in linguaggio macchina. Anche l&#39;assembly resta legato all&#39;architettura.</p>
@@ -626,7 +627,7 @@ printf(<span class="str">&quot;nome\tvoto\n&quot;</span>);</code></pre>
 </div></details></div>
 </section>
 
-<section id="glossario" aria-labelledby="h-glossario">
+<section id="glossario" aria-labelledby="h-glossario" style="--h:1370px">
 <div class="sec-head"><span class="sec-num">§15</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
 <dl class="gloss">
 <div><dt>Linguaggio macchina</dt><dd>Istruzioni in forma numerica (bit), eseguite direttamente dal processore; diverso per ogni architettura.</dd></div>
@@ -659,7 +660,7 @@ printf(<span class="str">&quot;nome\tvoto\n&quot;</span>);</code></pre>
 </dl>
 </section>
 
-<section id="checklist" aria-labelledby="h-checklist">
+<section id="checklist" aria-labelledby="h-checklist" style="--h:650px">
 <div class="sec-head"><span class="sec-num">§16</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 11</span></div>
 <p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
 <ul class="checklist" data-chiave="prog1-02A-checklist">

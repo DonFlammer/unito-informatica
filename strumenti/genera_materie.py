@@ -29,8 +29,9 @@ SITO_EN = "https://donflammer.github.io/unito-computer-science/"
 SIGLA_EN = {"INGLESE": "ENGLISH"}
 INIZIO = "<!-- MATERIE:INIZIO"
 FINE = "<!-- MATERIE:FINE -->"
-# materie divise in parti (MDAG): la sigla del modulo diventa «Parte 1», «Parte 2» negli elenchi delle lezioni
-PARTI = {"MD": "Parte 1", "AG": "Parte 2"}
+# materie divise in parti (MDAG): la sigla del modulo diventa «Parte 1 (modA)», «Parte 2 (modB)» negli elenchi delle lezioni
+# (modA e modB sono i nomi delle due parti nell'orario di University Planner)
+PARTI = {"MD": "Parte 1 (modA)", "AG": "Parte 2 (modB)"}
 
 MATERIE = [
     {
@@ -59,17 +60,19 @@ MATERIE = [
     {
         "sigla": "MDAG", "nome": "Matematica Discreta, Algebra e Geometria", "insegnamento": "INF0328", "cfu": 12,
         "semestre": 1,
-        "esame": "Due prove scritte separate, parte 1 (Matematica Discreta) e parte 2 (Algebra lineare e Geometria); il voto è la media.",
-        "appelli": "Parte 1 (Matematica Discreta) 19/01 e 03/02, parte 2 (Geometria) 22/01 e 05/02/2027",
-        "moduli": [("MD", "Parte 1 · Matematica Discreta"), ("AG", "Parte 2 · Algebra lineare e Geometria")],
-        "moodle": [("Parte 1 · Matematica Discreta, canali A, B e C", 3829),
-                   ("Parte 2 · Algebra lineare e Geometria, canali A, B e C", 3831)],
+        "esame": "Due prove scritte separate, parte 1 (modA, Matematica Discreta) e parte 2 (modB, Algebra lineare e Geometria); il voto è la media.",
+        "appelli": "Parte 1 (modA, Matematica Discreta) 19/01 e 03/02, parte 2 (modB, Geometria) 22/01 e 05/02/2027",
+        "moduli": [("MD", "Parte 1 (modA) · Matematica Discreta"), ("AG", "Parte 2 (modB) · Algebra lineare e Geometria")],
+        "moodle": [("Parte 1 (modA) · Matematica Discreta, MDAG1, canali A, B e C", 3829),
+                   ("Parte 2 (modB) · Algebra lineare e Geometria, MDAG2, canali A, B e C", 3831)],
         "nota": ("Il corso ha due parti, con lezioni, pagine Moodle e prove scritte separate: la parte 1 è Matematica "
-                 "Discreta, la parte 2 è Algebra lineare e Geometria. Gli appunti della parte 2 coprono già tutte le "
+                 "Discreta, la parte 2 è Algebra lineare e Geometria. Nell'orario (University Planner) la parte 1 "
+                 "si chiama modA e la parte 2 modB; su Moodle sono MDAG1 e MDAG2. Gli appunti della parte 2 coprono già tutte le "
                  "26 lezioni delle dispense 2026, comuni ai tre canali: sono pronti in anticipo, quindi in aula il "
-                 "ritmo può essere diverso. Gli appunti della parte 1 non ci sono ancora."),
+                 "ritmo può essere diverso. Anche la parte 1 ha programma ed esame comuni ai tre canali: i suoi "
+                 "appunti seguono le lezioni del canale B (Mori, con il suo libro) e arrivano lezione per lezione."),
         "link": [("Scheda del corso ed esame", "MDAG/corso.md"),
-                 ("Indice delle lezioni della parte 2, Algebra lineare e Geometria", "MDAG/indice_lezioni.md")],
+                 ("Indice delle lezioni della parte 2 (modB), Algebra lineare e Geometria", "MDAG/indice_lezioni.md")],
     },
     {
         "sigla": "ANMAT", "nome": "Analisi Matematica", "insegnamento": "MFN0570", "cfu": 9, "semestre": 2,
@@ -244,7 +247,7 @@ def pagina_materia(m, lez):
     sem = f"{m['semestre']}° semestre"
     etichetta = " · ".join(x for x in ["Primo anno", sem, m["insegnamento"], m.get("extra", "")] if x)
     if lez:
-        lede = ("Seguo il canale B: gli appunti di ogni lezione sono scritti sulle slide del canale B, "
+        lede = ("Seguo il canale B: gli appunti di ogni lezione sono scritti sul materiale del canale B (slide, dispense o libro di testo), "
                 "con i riferimenti ai canali A e C. Programma ufficiale ed esame sono comuni, quindi valgono in gran parte "
                 "anche per A e C, ma slide, ordine, esempi e parti del programma svolte possono cambiare. "
                 "Docenti, orari, Moodle ed esame "

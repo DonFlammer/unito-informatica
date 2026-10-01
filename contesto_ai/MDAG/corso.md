@@ -75,7 +75,7 @@ Riferimento 2025/26 (iscritti): MD 13/01 (340), 03/02 (325), 08/06 (127), 01/07 
 
 ## Programma ufficiale (comune)
 
-**Parte 1 — Matematica Discreta**
+**Parte 1 (modA) — Matematica Discreta**
 - Insiemi: vuoto, sottoinsiemi, unione, intersezione, complementare, insieme delle parti.
 - Relazioni e funzioni: relazioni d'ordine e di equivalenza, partizioni, composizione e inversione, iniettività, suriettività, invertibilità.
 - Combinatoria: principi della somma e del prodotto, disposizioni e combinazioni (anche con ripetizione), binomio e triangolo di Tartaglia, inclusione-esclusione.
@@ -83,7 +83,7 @@ Riferimento 2025/26 (iscritti): MD 13/01 (340), 03/02 (325), 08/06 (127), 01/07 
 - Aritmetica modulare: Z e Z_n, divisione, algoritmo di Euclide, identità di Bézout, equazioni diofantee, teorema di Eulero-Fermat.
 - Permutazioni: composizione, potenze e inverse, cicli disgiunti, trasposizioni, parità, sottogruppi.
 
-**Parte 2 — Algebra Lineare e Geometria**
+**Parte 2 (modB) — Algebra Lineare e Geometria**
 - Polinomi, numeri reali e complessi.
 - Spazi vettoriali, indipendenza lineare, basi, dimensione; spazio euclideo.
 - Sistemi lineari: Gauss-Jordan, Rouché-Capelli.

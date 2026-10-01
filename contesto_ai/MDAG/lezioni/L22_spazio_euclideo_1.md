@@ -4,7 +4,7 @@ modulo: AG
 lezione: L22
 titolo: Lo spazio euclideo I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L22
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L22
 descrizione: >-
   Appunti della lezione L22 di Algebra lineare e Geometria (MDAG, parte 2): rotazioni e riflessioni del piano,
   isometrie tra spazi con prodotto scalare, matrici ortogonali, classificazione delle isometrie del piano e dello

@@ -4,7 +4,7 @@ modulo: AG
 lezione: L24
 titolo: Lo spazio euclideo III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L24
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L24
 descrizione: >-
   Appunti della lezione L24 di Algebra lineare e Geometria (MDAG, parte 2): angoli fra rette, fra retta e piano e fra
   piani, distanze fra punti, fra punto e retta, fra rette sghembe e fra punto e piano, con quiz nello stile dell'esame

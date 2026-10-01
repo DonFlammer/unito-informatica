@@ -4,7 +4,7 @@ modulo: AG
 lezione: L23
 titolo: Lo spazio euclideo II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L23
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L23
 descrizione: >-
   Appunti della lezione L23 di Algebra lineare e Geometria (MDAG, parte 2): proprietà del prodotto vettoriale e area
   del parallelogramma, forma cartesiana e parametrica di rette e piani, sottospazi affini e giacitura, intersezioni,

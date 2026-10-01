@@ -4,7 +4,7 @@ modulo: AG
 lezione: L03
 titolo: Numeri complessi II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L03
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L03
 descrizione: >-
   Appunti della lezione L03 di Algebra lineare e Geometria (MDAG, parte 2): coordinate polari, forma esponenziale,
   modulo e argomento di un numero complesso, prodotto e inverso in forma polare, identità di Eulero, potenze e

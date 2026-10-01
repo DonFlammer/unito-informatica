@@ -4,7 +4,7 @@ modulo: AG
 lezione: L14
 titolo: Applicazioni lineari I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L14
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L14
 descrizione: >-
   Appunti della lezione L14 di Algebra lineare e Geometria (MDAG, parte 2): applicazioni lineari, esempi e non
   esempi, l'applicazione associata a una matrice, nucleo e immagine, iniettività e suriettività, teorema della

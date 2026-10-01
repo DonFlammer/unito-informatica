@@ -30,8 +30,9 @@ La mia richiesta: <scrivi qui la domanda>
 | `PROG1/esercizi_esame.md` | esercizi d'esame tipo di Programmazione I con soluzioni verificate |
 | `PROG1/indice_lezioni.md` | lezioni già studiate con concetti chiave e collegamenti |
 | `PROG1/lezioni/*.md` | appunti completi di ogni lezione (slide del canale B, con i riferimenti ad A e C) |
-| `MDAG/indice_lezioni.md` | le 26 lezioni della parte 2 di MDAG (Algebra lineare e Geometria) con pagine delle dispense, argomenti e collegamenti |
-| `MDAG/lezioni/*.md` | appunti della parte 2 di MDAG (Algebra lineare e Geometria), lezione per lezione (dispense del corso, comuni ai canali A, B e C) |
+| `MDAG/indice_lezioni.md` | le 26 lezioni della parte 2 di MDAG (modB, Algebra lineare e Geometria) con pagine delle dispense, argomenti e collegamenti |
+| `MDAG/lezioni/*.md` | appunti di MDAG lezione per lezione: parte 2 (modB, Algebra lineare e Geometria), L01–L26 sulle dispense del corso; parte 1 (modA, Matematica Discreta), D01 e seguenti sul libro di Mori. Programma ed esame sono comuni ai canali A, B e C |
+| `FDA/lezioni/*.md` | appunti di Fondamenti dell'Informatica lezione per lezione (canale B, sul libro di testo, con i riferimenti ad A e C) |
 | `formato_lezioni.md` | come sono scritti i file delle lezioni: riquadri, quiz, esercizi, formule |
 | `FDA/corso.md` | Fondamenti dell'Informatica |
 | `MDAG/corso.md` | Matematica Discreta, Algebra e Geometria |
@@ -46,4 +47,4 @@ Gli stessi appunti in versione HTML interattiva sono online: https://donflammer.
 English version of this folder, for those who don't speak Italian (an English translation; if the two differ, the Italian version prevails): [ai_context/](https://github.com/DonFlammer/unito-computer-science/tree/main/ai_context) in DonFlammer/unito-computer-science.
 Sono DonFlammer · Telegram @rapsodico (https://t.me/rapsodico), senza impegno di risposta.
 
-Ultimo aggiornamento: 01/10/2026 (MDAG: gli appunti di Algebra lineare e Geometria sono quelli della parte 2 del corso; lezioni L01, L02, L05, L08, L11, L17, L19 e L22 riscritte con più esempi e spiegazioni a parole). Prima: 30/09/2026 (Algebra lineare e Geometria, tutte le lezioni L01–L26 e indice delle lezioni; Programmazione I, lezioni 01B e 02A; formato delle lezioni in `formato_lezioni.md`).
+Ultimo aggiornamento: 01/10/2026 (prima lezione di Matematica Discreta, D01, e di Fondamenti dell'Informatica, 01; le due parti di MDAG si chiamano anche modA e modB, come nell'orario; MDAG: gli appunti di Algebra lineare e Geometria sono quelli della parte 2 del corso; lezioni L01, L02, L05, L08, L11, L17, L19 e L22 riscritte con più esempi e spiegazioni a parole). Prima: 30/09/2026 (Algebra lineare e Geometria, tutte le lezioni L01–L26 e indice delle lezioni; Programmazione I, lezioni 01B e 02A; formato delle lezioni in `formato_lezioni.md`).

@@ -4,7 +4,7 @@ modulo: AG
 lezione: L20
 titolo: Prodotti scalari II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L20
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L20
 descrizione: >-
   Appunti della lezione L20 di Algebra lineare e Geometria (MDAG, parte 2): come cambia la matrice di un prodotto
   scalare cambiando base, forme quadratiche, norma, disuguaglianza di Cauchy–Schwarz e triangolare, distanze e angoli

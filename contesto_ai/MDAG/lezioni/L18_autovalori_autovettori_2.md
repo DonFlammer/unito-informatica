@@ -4,7 +4,7 @@ modulo: AG
 lezione: L18
 titolo: Autovalori e autovettori II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L18
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L18
 descrizione: >-
   Appunti della lezione L18 di Algebra lineare e Geometria (MDAG, parte 2): indipendenza di autovettori con autovalori
   distinti, autospazi e somma diretta, molteplicità algebrica e geometrica, teorema di diagonalizzabilità e matrici con

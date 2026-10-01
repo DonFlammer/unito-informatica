@@ -12,7 +12,7 @@ Aggiornato al 28/09/2026. Fonti: scheda INF0326 (https://laurea.informatica.unit
 | Esame | **scritto al computer + orale obbligatorio**, uguale per i tre canali |
 | Lingua | italiano; il corso è segnato "English-friendly" (per il corso di laurea: materiale in inglese per preparare l'esame e possibilità di sostenerlo in inglese; https://laurea.informatica.unito.it/do/home.pl/View?doc=International_students.html) |
 | Competenze attese | Programmazione I e Fondamenti dell'Informatica (1° semestre) |
-| Libro | D. A. Patterson, J. L. Hennessy, *Struttura e progetto dei calcolatori – Progettare con RISC-V*, 2ª ed., Zanichelli 2023 |
+| Libro | D. A. Patterson, J. L. Hennessy, *Struttura e progetto dei calcolatori – Progettare con RISC-V*, 2ª ed., Zanichelli 2023, ISBN 978-88-08-19966-9. Sei capitoli (1 il calcolatore: astrazioni e tecnologia; 2 le istruzioni, il linguaggio dei calcolatori; 3 l'aritmetica dei calcolatori; 4 il processore; 5 grande e veloce: la gerarchia delle memorie; 6 processori paralleli) più il manuale di riferimento RISC-V. Quattro appendici sono online, sul sito dell'editore: A «The Basics of Logic Design», B «Mapping Control to Hardware» e D «Survey of Instruction Set Architectures» in inglese, C «La grafica e il calcolo con la GPU» in italiano |
 | Simulatore | **ARES** (https://ares-sim.github.io), nel browser, RISC-V a 32 bit, dal 2025/26; fino al 2024/25 si usava RARS (a 64 bit) |
 
 ## Docenti e Moodle

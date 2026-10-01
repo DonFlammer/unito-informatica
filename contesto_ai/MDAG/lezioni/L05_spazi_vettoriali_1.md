@@ -416,11 +416,10 @@ Ecco la regola con le lettere.
 
 Le dispense aggiungono la lettura sul disegno. Il vettore si allunga o si accorcia di un fattore $|\lambda|$, e se lo scalare è negativo cambia verso. Le due barre verticali sono il **valore assoluto**: il numero senza il segno meno. Per esempio $|-2| = 2$: moltiplicare per $-2$ raddoppia la lunghezza e gira la freccia.
 
-Nello strumento qui sotto puoi trascinare le punte delle due frecce, che si chiamano $u$ e $v$. Prova queste tre cose.
+Nello strumento qui sotto puoi trascinare le punte delle due frecce, che si chiamano $u$ e $v$. Prova queste due cose.
 
-1. Nel modo «u + v» guarda il parallelogramma. Poi sposta una punta e controlla che la somma cambia un posto alla volta.
-2. Passa al modo «multiplo λu» e muovi il cursore. Con uno scalare tra 0 e 1 la freccia si accorcia. Con uno scalare negativo si ribalta.
-3. Metti il cursore su 0: la freccia si riduce all'origine.
+1. Nel modo «u + v» guarda il parallelogramma. Sposta una punta e controlla che la somma cambia un posto alla volta.
+2. Passa al modo «multiplo λu» e muovi il cursore. Con uno scalare tra 0 e 1 la freccia si accorcia, con uno scalare negativo si ribalta, con 0 si riduce all'origine.
 
 ```widget vettori
 titolo: Somma e prodotto per scalare nel piano
@@ -507,15 +506,9 @@ A destra prima si raddoppiano i due vettori, poi si somma.
 
 Stesso risultato.
 
-**Regola 6.** A sinistra prima si sommano i due scalari, poi si moltiplica.
+**Regola 6.** A sinistra prima si sommano i due scalari: $2 + 3 = 5$. Poi si moltiplica: $5 \cdot (1, 2) = (5, 10)$.
 
-1. $2 + 3 = 5$.
-2. $5 \cdot (1, 2) = (5, 10)$.
-
-A destra prima si fanno i due multipli, poi si sommano.
-
-1. $2 \cdot (1, 2) = (2, 4)$ e $3 \cdot (1, 2) = (3, 6)$.
-2. La somma: $(2 + 3,\ 4 + 6) = (5, 10)$.
+A destra prima si fanno i due multipli, che sono $(2, 4)$ e $(3, 6)$. Poi si sommano: $(2 + 3,\ 4 + 6) = (5, 10)$.
 
 Stesso risultato.
 
@@ -629,9 +622,9 @@ Nella terza riga compare $a^{-1}$, che si legge «a alla meno uno». È un altro
 > [!ESEMPIO] · i conti in $(\Q \setminus \{0\}, \cdot)$
 > Controlliamo che le frazioni diverse da zero, con il prodotto, formano un gruppo.
 >
-> - **Non si esce.** Il prodotto di due frazioni diverse da zero è una frazione diversa da zero. Per esempio $\frac 23 \cdot \left(-\frac 94\right) = -\frac{18}{12} = -\frac 32$.
+> - **Non si esce.** Per esempio $\frac 23 \cdot \left(-\frac 94\right) = -\frac{18}{12} = -\frac 32$: è ancora una frazione diversa da zero.
 > - **Elemento neutro.** È $1$, perché $1 \cdot \frac 23 = \frac 23$.
-> - **Inverso.** Si scambiano il numero sopra e il numero sotto. L'inverso di $-\frac 34$ è $-\frac 43$. Controllo: $\left(-\frac 34\right) \cdot \left(-\frac 43\right) = \frac{12}{12} = 1$.
+> - **Inverso.** Si scambiano il numero sopra e il numero sotto. L'inverso di $-\frac 34$ è $-\frac 43$: moltiplicati danno $\frac{12}{12} = 1$.
 > - **Perché si toglie lo zero.** Lo $0$ non ha inverso: qualunque numero moltiplicato per $0$ dà $0$, mai $1$.
 
 > [!TRAPPOLA] Togliere lo zero serve per il prodotto, non per la somma
@@ -643,8 +636,6 @@ Nella terza riga compare $a^{-1}$, che si legge «a alla meno uno». È un altro
 > **L'inverso è uno solo.** Negli interi con la somma, l'unico numero che sommato a 7 dà 0 è $-7$. Lo stesso vale in ogni gruppo: un elemento non può avere due inversi diversi.
 >
 > **Si può semplificare.** Negli interi: se $5 + x$ e $5 + y$ danno lo stesso risultato, allora $x$ e $y$ sono uguali. Basta sommare $-5$ a tutti e due i lati. Lo stesso vale in ogni gruppo, e quindi anche per la somma di vettori.
->
-> Esistono anche gruppi in cui l'ordine conta, cioè non commutativi. Si studiano in Matematica Discreta. In questo corso i gruppi con la somma sono tutti commutativi.
 
 ::: prova Negli interi con la somma, qual è l'inverso di $-4$? E qual è l'elemento neutro?
 L'inverso di $-4$ è $4$, perché $-4 + 4 = 0$. L'elemento neutro è $0$.
@@ -754,14 +745,6 @@ In tutti e due i casi succedono tre cose.
 - Sommando due elementi ottieni un elemento **dello stesso tipo**.
 - Moltiplicando per un numero resti **nello stesso tipo**.
 - Valgono le **otto regole** della sezione precedente.
-
-Controlliamo la regola 5 sui due polinomi: il doppio della somma deve essere la somma dei doppi.
-
-1. Il doppio della somma: $2 \cdot (x^2 + 2x - 2) = 2x^2 + 4x - 4$.
-2. I due doppi: $2x^2 + 2$ e $4x - 6$.
-3. La loro somma: $2x^2 + 4x + (2 - 6) = 2x^2 + 4x - 4$.
-
-Stesso risultato.
 
 > [!IDEA]
 > Uno **spazio vettoriale** è un insieme in cui puoi sommare due elementi e moltiplicare un elemento per un numero, senza mai uscire dall'insieme e con le otto regole.
@@ -1236,7 +1219,7 @@ $$(1, 0) + (0, 1) = (1, 1)$$
 
 Nel risultato i due numeri sommati fanno 2, non 1. La somma è uscita dall'insieme. Nella figura è il pallino fuori dalla retta tratteggiata.
 
-Un altro esempio, con i polinomi di grado esattamente 2. La somma di $x^2$ e $-x^2 + x$ fa $x$, che ha grado 1: è uscita dall'insieme.
+Succede lo stesso con i polinomi di grado esattamente 2, visti nella sezione precedente.
 
 ### Terzo modo: un multiplo esce
 
@@ -1401,7 +1384,7 @@ D: Con la somma e il prodotto per scalare usuali (coordinata per coordinata), $\
 - Sì, perché ogni spazio vettoriale su $\R$ lo è anche su $\C$.
 - No, perché $\R^2$ con la somma non è un gruppo commutativo.
 - No, perché $\C$ non è un campo.
-= La domanda chiede: se gli scalari sono i numeri complessi, i multipli dei vettori di $\R^2$ restano in $\R^2$? Provo con lo scalare $i$ e il vettore $(1, 0)$: viene $(i \cdot 1,\ i \cdot 0) = (i, 0)$. La prima coordinata è $i$, che non è un numero reale: il multiplo è uscito dall'insieme, quindi la risposta è no. La risposta «Sì, perché $\R \subset \C$» è la più tentatrice, ma ragiona al contrario: va bene quando gli scalari sono una parte dei numeri usati per le coordinate. Infatti $\C$ è uno spazio vettoriale su $\R$ (Esercizio 5.8). Simile all'appello del 07/02/2025, domanda 2.
+= Un prodotto per scalare non deve far uscire dall'insieme. Provo con lo scalare $i$ e il vettore $(1, 0)$: viene $(i \cdot 1,\ i \cdot 0) = (i, 0)$. La prima coordinata non è un numero reale: il multiplo è uscito da $\R^2$. La risposta «Sì, perché $\R \subset \C$» è la più tentatrice, ma ragiona al contrario: va bene quando gli scalari sono una parte dei numeri usati per le coordinate, come per $\C$ su $\R$ (Esercizio 5.8). Simile all'appello del 07/02/2025, domanda 2.
 
 D: $\R$, con la somma usuale e il prodotto per numeri razionali, è uno spazio vettoriale su $\Q$?
 + Sì: un razionale per un reale è un reale, e gli assiomi seguono dalle proprietà del campo $\R$.
@@ -1409,7 +1392,7 @@ D: $\R$, con la somma usuale e il prodotto per numeri razionali, è uno spazio v
 - No: semmai è $\Q$ a essere uno spazio vettoriale su $\R$.
 - Sì, ma solo se ci si limita ai numeri razionali.
 - No, perché $\R$ e $\Q$ sono campi diversi.
-= Qui i vettori sono i numeri reali e gli scalari sono le frazioni. Controllo i multipli: una frazione per un numero reale è ancora un numero reale, per esempio $\frac 12 \cdot \sqrt 2 = \frac{\sqrt 2}2$. Le otto regole valgono perché sono regole dei conti tra numeri reali. Quindi la risposta è sì: è lo stesso ragionamento di «$\C$ su $\R$». La risposta «No, perché $\sqrt 2 \notin \Q$» dice una cosa vera che non c'entra: qui $\sqrt 2$ è un vettore, non uno scalare. È falso invece il contrario: $\Q$ non è uno spazio vettoriale su $\R$, perché $\sqrt 2 \cdot 1$ non è una frazione. Simile all'appello del 07/02/2025, domanda 2.
+= Qui i vettori sono i numeri reali e gli scalari sono le frazioni. Una frazione per un numero reale è ancora un numero reale: i multipli restano dentro. Le regole valgono perché sono regole dei conti tra numeri reali. La risposta «No, perché $\sqrt 2 \notin \Q$» è la più tentatrice: dice una cosa vera che non c'entra, perché qui $\sqrt 2$ è un vettore e non uno scalare. È falso invece il contrario: $\Q$ non è uno spazio vettoriale su $\R$, perché $\sqrt 2 \cdot 1$ non è una frazione. Simile all'appello del 07/02/2025, domanda 2.
 
 D: Quale di questi, con l'operazione indicata, è un gruppo commutativo?
 - $(\N, +)$
@@ -1417,7 +1400,7 @@ D: Quale di questi, con l'operazione indicata, è un gruppo commutativo?
 + $(\Q \setminus \{0\}, \cdot)$
 - $(\R, \cdot)$
 - $(\Z \setminus \{0\}, \cdot)$
-= Un gruppo vuole tre cose: elemento neutro, proprietà associativa, inverso di ogni elemento. Tra le frazioni diverse da zero, cioè in $\Q \setminus \{0\}$, il prodotto non fa uscire, l'elemento neutro è $1$ e l'inverso di $\frac 23$ è $\frac 32$. Gli altri falliscono tutti sull'inverso. In $(\N, +)$ manca l'opposto di $1$. In $(\Z, \cdot)$ e in $(\Z \setminus \{0\}, \cdot)$ manca l'inverso di $2$. La risposta più tentatrice è $(\R, \cdot)$: sembra a posto, ma dentro c'è lo $0$, che non ha inverso.
+= Tra le frazioni diverse da zero, cioè in $\Q \setminus \{0\}$, il prodotto non fa uscire, l'elemento neutro è $1$ e l'inverso di $\frac 23$ è $\frac 32$. Gli altri falliscono sull'inverso. In $(\N, +)$ manca l'opposto di $1$. In $(\Z, \cdot)$ e in $(\Z \setminus \{0\}, \cdot)$ manca l'inverso di $2$. La risposta più tentatrice è $(\R, \cdot)$: dentro c'è lo $0$, che non ha inverso.
 
 D: Quale di questi insiemi, con le operazioni indicate, è un campo?
 - $\Z$, con somma e prodotto usuali.
@@ -1425,7 +1408,7 @@ D: Quale di questi insiemi, con le operazioni indicate, è un campo?
 + $\{0, 1\}$, con $1 + 1 = 0$ e le altre somme e i prodotti come negli interi.
 - $\R \setminus \{0\}$, con somma e prodotto usuali.
 - $\{0, 1, 2, 3\}$, con somma e prodotto dei resti nella divisione per $4$.
-= In un campo si fanno le quattro operazioni senza uscire, e ogni numero diverso da zero ha un inverso. L'insieme $\{0, 1\}$ con $1 + 1 = 0$ è il campo dell'Esercizio 5.9: le sue tabelle sono le regole dei numeri pari e dispari. In $\Z$ il numero $2$ non ha inverso. In $\N$ manca l'opposto di $1$. In $\R \setminus \{0\}$ la somma esce: $1 + (-1) = 0$. La risposta con i resti della divisione per $4$ è la più tentatrice, perché assomiglia a quella giusta. Ma lì $2$ non ha inverso: $2 \cdot 1 = 2$, poi $2 \cdot 2 = 4$ ha resto $0$, poi $2 \cdot 3 = 6$ ha resto $2$. Nessun prodotto dà $1$.
+= L'insieme $\{0, 1\}$ con $1 + 1 = 0$ è il campo dell'Esercizio 5.9: sono le regole dei numeri pari e dispari. In $\Z$ il numero $2$ non ha inverso. In $\N$ manca l'opposto di $1$. In $\R \setminus \{0\}$ la somma esce: $1 + (-1) = 0$. La risposta con i resti della divisione per $4$ è la più tentatrice, perché assomiglia a quella giusta. Ma lì $2$ non ha inverso: $2 \cdot 1 = 2$, poi $2 \cdot 2 = 4$ ha resto $0$, poi $2 \cdot 3 = 6$ ha resto $2$.
 
 D: In $\C^2$, quanto vale $(1 + i)\begin{pmatrix} 2 \\ i \end{pmatrix}$?
 + $\begin{pmatrix} 2 + 2i \\ -1 + i \end{pmatrix}$
@@ -1433,7 +1416,7 @@ D: In $\C^2$, quanto vale $(1 + i)\begin{pmatrix} 2 \\ i \end{pmatrix}$?
 - $\begin{pmatrix} 2 + 2i \\ i \end{pmatrix}$
 - $\begin{pmatrix} 3 + i \\ 1 + 2i \end{pmatrix}$
 - $\begin{pmatrix} 2 \\ -1 \end{pmatrix}$
-= Lo scalare $1 + i$ moltiplica tutte e due le coordinate. Prima coordinata: $(1 + i) \cdot 2 = 2 + 2i$. Seconda coordinata: $(1 + i) \cdot i = i + i^2$. Siccome $i^2 = -1$, viene $i - 1$, cioè $-1 + i$. La risposta con $1 + i$ al secondo posto è la più tentatrice: nasce dallo scrivere $i^2 = 1$ invece di $i^2 = -1$. Quella con $3 + i$ al primo posto somma lo scalare invece di moltiplicare.
+= Lo scalare moltiplica tutte e due le coordinate. Prima coordinata: $(1 + i) \cdot 2 = 2 + 2i$. Seconda coordinata: $(1 + i) \cdot i = i + i^2 = i - 1$, perché $i^2 = -1$. La risposta con $1 + i$ al secondo posto è la più tentatrice: nasce dallo scrivere $i^2 = 1$. Quella con $3 + i$ al primo posto somma lo scalare invece di moltiplicare.
 
 D: In $\R^3$, quanto vale $2\begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix} - 3\begin{pmatrix} 0 \\ 1 \\ 2 \end{pmatrix}$?
 + $(2, -3, -8)$
@@ -1441,7 +1424,7 @@ D: In $\R^3$, quanto vale $2\begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix} - 3\begin
 - $(2, 3, -8)$
 - $(2, -1, -4)$
 - $(2, -3, -7)$
-= Sono due multipli e poi una differenza, sempre un posto alla volta. Primo multiplo: $2 \cdot (1, 0, -1) = (2, 0, -2)$. Secondo multiplo: $3 \cdot (0, 1, 2) = (0, 3, 6)$. Differenza: $(2 - 0,\ 0 - 3,\ -2 - 6) = (2, -3, -8)$. La risposta $(2, -3, 4)$ è la più tentatrice: nasce dal fare $-2 + 6$ all'ultimo posto. È l'errore di chi dimentica che il segno meno vale per tutte le coordinate del secondo vettore.
+= Primo multiplo: $2 \cdot (1, 0, -1) = (2, 0, -2)$. Secondo multiplo: $3 \cdot (0, 1, 2) = (0, 3, 6)$. Differenza, un posto alla volta: $(2 - 0,\ 0 - 3,\ -2 - 6) = (2, -3, -8)$. La risposta $(2, -3, 4)$ è la più tentatrice: nasce dal fare $-2 + 6$ all'ultimo posto. Il segno meno vale per tutte le coordinate del secondo vettore.
 
 D: Con la somma e il prodotto per scalare usuali, quale di questi insiemi di polinomi a coefficienti reali è uno spazio vettoriale su $\R$?
 - I polinomi di grado esattamente $2$.
@@ -1449,7 +1432,7 @@ D: Con la somma e il prodotto per scalare usuali, quale di questi insiemi di pol
 + I polinomi di grado minore o uguale a $2$, cioè $\R_2[x]$.
 - I polinomi con tutti i coefficienti maggiori o uguali a $0$.
 - I polinomi della forma $x^2 + bx + c$, con $b, c \in \R$.
-= La domanda chiede da quale insieme non si esce sommando due polinomi o moltiplicandone uno per uno scalare. In $\R_2[x]$ il grado non supera mai 2 e il polinomio nullo c'è: è lo spazio dell'Esercizio 5.7. La risposta «grado esattamente 2» è la più tentatrice, ma la somma di $x^2$ e $-x^2 + x$ fa $x$, che ha grado 1. La scrittura $p(0) = 1$ vuol dire che il polinomio vale 1 quando al posto di $x$ metti 0: il polinomio nullo lì vale 0, quindi manca. Con i coefficienti non negativi un multiplo esce: $-1 \cdot x = -x$. Con la forma $x^2 + bx + c$ una somma esce: $x^2 + 1$ più se stesso fa $2x^2 + 2$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 6), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
+= In $\R_2[x]$ il grado non supera mai 2, né sommando né moltiplicando per uno scalare, e il polinomio nullo c'è: è lo spazio dell'Esercizio 5.7. La risposta «grado esattamente 2» è la più tentatrice, ma $x^2$ più $-x^2 + x$ fa $x$, che ha grado 1. La scrittura $p(0) = 1$ vuol dire che il polinomio vale 1 quando al posto di $x$ metti 0: il polinomio nullo lì vale 0. Con i coefficienti non negativi un multiplo esce: $-1 \cdot x = -x$. Con la forma $x^2 + bx + c$ una somma esce: $x^2 + 1$ più se stesso fa $2x^2 + 2$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 6), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
 
 D: Con le operazioni di $\R^2$, quale di questi sottoinsiemi è uno spazio vettoriale su $\R$?
 + $\{(x, y) \in \R^2 \mid x + y = 0\}$
@@ -1457,7 +1440,7 @@ D: Con le operazioni di $\R^2$, quale di questi sottoinsiemi è uno spazio vetto
 - $\{(x, y) \in \R^2 \mid x \ge 0\}$
 - $\{(x, y) \in \R^2 \mid xy = 0\}$
 - $\{(x, y) \in \R^2 \mid y = x^2\}$
-= Ogni risposta è un insieme scritto con una condizione: la barretta verticale si legge «tali che». Sono pezzi di $\R^2$ con le operazioni solite, quindi bastano i tre controlli: vettore nullo, somme, multipli. Con $x + y = 0$ il secondo numero è l'opposto del primo, e questo resta vero sommando due liste o moltiplicandone una per uno scalare. Con $x + y = 1$ manca il vettore nullo, perché $0 + 0$ non fa 1: è la risposta più tentatrice, perché cambia solo un numero. Con $x \ge 0$ un multiplo esce: $-1 \cdot (1, 0) = (-1, 0)$. Con $xy = 0$ una somma esce: $(1, 0) + (0, 1) = (1, 1)$. Con $y = x^2$ una somma esce: $(1, 1) + (1, 1) = (2, 2)$, ma $2^2$ fa 4. Simile all'appello del 03/06/2025, domanda 2.
+= La barretta verticale si legge «tali che». Sono pezzi di $\R^2$ con le operazioni solite, quindi bastano tre controlli: vettore nullo, somme, multipli. Con $x + y = 0$ il secondo numero è l'opposto del primo, e resta così sommando due liste o moltiplicandone una per uno scalare. Con $x + y = 1$ manca il vettore nullo: è la risposta più tentatrice, perché cambia solo un numero. Con $x \ge 0$ un multiplo esce: $-1 \cdot (1, 0) = (-1, 0)$. Con $xy = 0$ una somma esce: $(1, 0) + (0, 1) = (1, 1)$. Con $y = x^2$ una somma esce: $(1, 1) + (1, 1) = (2, 2)$, ma $2^2$ fa 4. Simile all'appello del 03/06/2025, domanda 2.
 
 D: Le funzioni $f : [0, 1] \to \R$ con $f(0) = 1$, con le operazioni punto per punto, formano uno spazio vettoriale su $\R$?
 - Sì, come tutte le funzioni da $[0, 1]$ in $\R$.
@@ -1465,11 +1448,11 @@ D: Le funzioni $f : [0, 1] \to \R$ con $f(0) = 1$, con le operazioni punto per p
 - Sì, perché $1$ è l'elemento neutro del prodotto.
 - No, perché le funzioni non sono vettori.
 - Sì, ma solo se ci si limita ai polinomi.
-= Il vettore nullo dello spazio delle funzioni è la funzione nulla, che in 0 vale 0 e non 1: non sta nell'insieme. Anche una somma esce: se due funzioni in 0 valgono 1, la loro somma in 0 vale $1 + 1 = 2$. Quindi la risposta è no. La risposta «Sì, come tutte le funzioni» è la più tentatrice: tutte le funzioni insieme formano uno spazio vettoriale, ma un loro pezzo può non esserlo. È lo stesso motivo dell'appello del 10/07/2024, domanda 2: l'insieme $O(2)$ delle matrici ortogonali non è un sottospazio perché non contiene la matrice nulla.
+= La funzione nulla, che è il vettore nullo, in 0 vale 0 e non 1: non sta nell'insieme. Anche una somma esce: se due funzioni in 0 valgono 1, la loro somma in 0 vale 2. La risposta «Sì, come tutte le funzioni» è la più tentatrice: tutte le funzioni insieme formano uno spazio vettoriale, ma un loro pezzo può non esserlo. È lo stesso motivo dell'appello del 10/07/2024, domanda 2: l'insieme $O(2)$ delle matrici ortogonali non è un sottospazio perché non contiene la matrice nulla.
 
 D: Nel campo $\{0, 1, 2\}$ con somma e prodotto dei resti nella divisione per $3$ (Esercizio 5.10), qual è l'inverso di $2$ rispetto al prodotto?
 N: 2
-= L'inverso di 2 è l'elemento che moltiplicato per 2 dà 1. In questo campo si calcola come negli interi e poi si tiene il resto della divisione per 3. Provo i tre elementi uno alla volta. $2 \cdot 0 = 0$. $2 \cdot 1 = 2$. $2 \cdot 2 = 4$, e 4 diviso 3 fa 1 con resto 1. Quindi in questo campo $2 \cdot 2 = 1$: l'inverso di 2 è 2 stesso.
+= L'inverso di 2 è l'elemento che moltiplicato per 2 dà 1. Si calcola come negli interi e poi si tiene il resto della divisione per 3. $2 \cdot 1 = 2$. $2 \cdot 2 = 4$, che diviso 3 dà resto 1. Quindi in questo campo $2 \cdot 2 = 1$: l'inverso di 2 è 2 stesso.
 ```
 
 ## Esercizi
@@ -1623,12 +1606,7 @@ Nel primo esempio $\C$ è uno spazio vettoriale sul campo $\C$. Dimostra che è 
 
 Ogni proprietà è una regola dei numeri complessi, usata nel caso in cui uno dei numeri è reale. Quindi $\C$ è uno spazio vettoriale su $\R$.
 
-**Controllo con i numeri** della proprietà 2, con lo scalare 2 e i vettori $1 + i$ e $3 - 2i$.
-
-- A sinistra: la somma è $(1 + 3) + (1 - 2)i = 4 - i$. Il doppio è $8 - 2i$.
-- A destra: i due doppi sono $2 + 2i$ e $6 - 4i$. La loro somma è $(2 + 6) + (2 - 4)i = 8 - 2i$.
-
-Stesso risultato.
+**Controllo con i numeri** della proprietà 2, con lo scalare 2 e i vettori $1 + i$ e $3 - 2i$. A sinistra: la somma è $4 - i$, e il doppio è $8 - 2i$. A destra: i due doppi sono $2 + 2i$ e $6 - 4i$, e la loro somma è $8 - 2i$.
 
 **Con le coordinate.** Al numero $a + bi$ fai corrispondere la lista $(a, b)$. La somma di due numeri complessi diventa la somma di due liste. Il multiplo $\lambda(a + bi)$ diventa il multiplo $\lambda(a, b)$. Come spazio vettoriale su $\R$, l'insieme $\C$ si comporta come il piano $\R^2$: è il piano di Gauss della lezione L02.
 
@@ -1722,11 +1700,9 @@ Per fissare le idee prendo $k = 2$: i polinomi $ax^2 + bx + c$. Qualche coeffici
 3. **Il vettore nullo c'è.** Il polinomio nullo ha tutti i coefficienti uguali a 0, e sta nell'insieme.
 4. **Le otto regole.** Valgono per tutti i polinomi (esercizio 9), quindi anche per quelli di grado al massimo 2.
 
-Un esempio con i numeri: $(2x^2 + x) + (-2x^2 + 4) = x + 4$. Il grado è sceso a 1, ma il risultato sta ancora nell'insieme, perché 1 è minore di 2.
-
 Con un $k$ qualsiasi il ragionamento è lo stesso. Un polinomio di grado al massimo $k$ si scrive $a_k x^k + \dots + a_1 x + a_0$. I numeri $a_0, a_1, \dots, a_k$ sono i coefficienti, uno per ogni potenza. Sommando due polinomi così, o moltiplicandone uno per uno scalare, non compaiono potenze più alte di $x^k$.
 
-In breve: un polinomio di grado al massimo $k$ è la lista dei suoi $k + 1$ coefficienti. Quindi $\K_k[x]$ si comporta come $\K^{k+1}$. Per esempio $\R_2[x]$ si comporta come $\R^3$.
+In breve: un polinomio di grado al massimo $k$ è la lista dei suoi $k + 1$ coefficienti. Per esempio $\R_2[x]$ si comporta come $\R^3$.
 
 **Seconda parte: grado esattamente $k$, con $k \ge 1$.** Basta un esempio che esce dall'insieme.
 
@@ -1735,7 +1711,7 @@ In breve: un polinomio di grado al massimo $k$ è la lista dei suoi $k + 1$ coef
 
 Con $k = 2$: i polinomi $x^2 + 1$ e $-x^2$ hanno grado 2. La loro somma è $1$, che non ha grado 2.
 
-**Perché l'esercizio chiede $k \ge 1$?** I polinomi di grado 0 sono i numeri, visti come polinomi senza la $x$. Qui la risposta dipende da una scelta: il polinomio nullo ha grado 0, oppure non ha grado? Nel primo caso l'insieme contiene tutti i numeri del campo, ed è uno spazio vettoriale. Nel secondo caso restano i numeri diversi da zero, e manca il vettore nullo. L'esercizio evita questo caso.
+**Perché l'esercizio chiede $k \ge 1$?** I polinomi di grado 0 sono i numeri, visti come polinomi senza la $x$. Qui la risposta dipende da una scelta: il polinomio nullo ha grado 0, oppure non ha grado? Nel primo caso l'insieme contiene tutti i numeri del campo, ed è uno spazio vettoriale. Nel secondo caso manca il vettore nullo. L'esercizio evita questo caso.
 :::
 
 ::: esercizio medio Tre conseguenze degli assiomi
@@ -1824,8 +1800,6 @@ Sono uguali: vale.
 
 Sono uguali: vale.
 
-Controllo con i numeri dell'assioma 3, con gli scalari 2 e 3 e il vettore $(2, 5)$. A sinistra: $5 \star (2, 5) = (10, 0)$. A destra: $(4, 0) + (6, 0) = (10, 0)$.
-
 (3) **No.** L'assioma 1 vale, perché la somma è quella solita. Ma l'assioma 5 fallisce: $1 \star (2, 5) = (2, 0)$, che è diverso da $(2, 5)$. Basta un assioma falso.
 
 (4) **Sì**: $0 \star (x, y) = (0 \cdot x,\ 0) = (0, 0)$. Non è un caso. La dimostrazione della Proposizione 5.5 usa solo gli assiomi 1 e 3, che qui valgono.
@@ -1870,11 +1844,7 @@ Si resta dentro: il prodotto di due numeri positivi è positivo, e una potenza d
 - Assioma 4. $(\lambda\mu) \odot x = x^{\lambda\mu} = (x^\mu)^\lambda = \lambda \odot (\mu \odot x)$.
 - Assioma 5. $1 \odot x = x^1 = x$.
 
-I passaggi in mezzo sono le regole delle potenze. Con i numeri:
-
-- la potenza di un prodotto: $(3 \cdot 5)^2 = 225$ e $3^2 \cdot 5^2 = 9 \cdot 25 = 225$;
-- la somma degli esponenti: $2^{2 + 3} = 32$ e $2^2 \cdot 2^3 = 4 \cdot 8 = 32$;
-- il prodotto degli esponenti: $2^{2 \cdot 3} = 64$ e $(2^3)^2 = 8^2 = 64$.
+I passaggi in mezzo sono le regole delle potenze. Per esempio la somma degli esponenti, con i numeri: $2^{2 + 3} = 32$ e $2^2 \cdot 2^3 = 4 \cdot 8 = 32$.
 
 Controllo con la Proposizione 5.5: $0 \odot x = x^0 = 1$, che è proprio il vettore nullo di questo spazio.
 

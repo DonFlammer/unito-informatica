@@ -4265,7 +4265,7 @@ genera_html: true
 - Un **numero complesso** è fatto di due numeri reali, come $3 + 2i$. Si disegna come un punto su un foglio a quadretti: qui 3 passi a destra (la **parte reale**) e 2 passi in su (la **parte immaginaria**).
 - I conti si fanno come con una lettera qualsiasi. In più, ogni volta che compare $i \cdot i$, al suo posto si scrive $-1$.
 - Il **coniugato** è il punto visto allo specchio rispetto alla riga orizzontale: cambia solo il segno davanti alla $i$. Il **modulo** è la distanza del punto dal centro del foglio.
-- Per dividere si moltiplicano il numero sopra e il numero sotto per il coniugato di quello sotto: così sotto resta un numero reale.
+- Per dividere si scrive la divisione come frazione. Poi si moltiplicano il numero sopra e il numero sotto per il coniugato di quello sotto: così sotto resta un numero reale.
 - I numeri complessi formano un **campo**, cioè valgono le nove regole dei conti della lezione L01. Però non si possono mettere in ordine dal più piccolo al più grande.
 - All'esame: in tre appelli la prima domanda del quiz chiedeva di trovare un numero complesso sconosciuto da un'uguaglianza come $(1 + i)z = 3 + 2i$. Si risolve con una divisione.
 
@@ -4366,7 +4366,7 @@ A parole: una famiglia più grande, che contiene tutti i numeri reali, e in cui 
 
 ### A che cosa servono
 
-Il guadagno è grande. Tra i numeri complessi ha una soluzione **ogni** equazione costruita con le potenze di $x$, come quella di partenza. Questo risultato si chiama teorema fondamentale dell'algebra, e lo trovi nella lezione L04.
+Il guadagno è grande. Tra i numeri complessi ha una soluzione **ogni** equazione come quella di partenza, anche quando la $x$ è moltiplicata per sé stessa più di due volte. Questo risultato si chiama teorema fondamentale dell'algebra, e lo trovi nella lezione L04.
 
 È il motivo per cui il corso usa i numeri complessi. Torneranno quando cercherai gli **autovalori** di una matrice, nelle lezioni L17 e L18. Un autovalore è la soluzione di un'equazione, e a volte tra i numeri reali quella soluzione non c'è.
 
@@ -4453,7 +4453,7 @@ Guarda la figura: il punto colorato è $3 + 2i$. Il tratto orizzontale segna i 3
 
 Sull'asse orizzontale c'è scritto «Re» e su quello verticale «Im». Sono le prime lettere di «reale» e di «immaginaria»: tra poco vedrai perché.
 
-Questa immagine ti accompagna per tutta la lezione. La sezione «Il piano complesso» la riprende con calma.
+Questa immagine ti accompagna per tutta la lezione.
 
 ### Come lo scrivono le dispense
 
@@ -4480,7 +4480,7 @@ Le dispense danno cinque esempi. Per ognuno cerchiamo i due pezzi.
 | $2 + i$ | $2$ | $1$ | la $i$ da sola vuol dire «1 per $i$» |
 | $23i$ | $0$ | $23$ | manca il pezzo da solo: è come scrivere $0 + 23i$ |
 | $4 - i$ | $4$ | $-1$ | $-i$ vuol dire «$-1$ per $i$» |
-| $-1 + \pi i$ | $-1$ | $\pi$ | $b$ può essere un numero reale qualsiasi, anche $\pi = 3{,}14\ldots$ |
+| $-1 + \pi i$ | $-1$ | $\pi$ | $b$ può essere un numero reale qualsiasi, anche pi greco, cioè $\pi = 3{,}14\ldots$ |
 
 Il segno meno fa parte del numero $b$. In $4 - i$ il pezzo che moltiplica la $i$ è $-1$, non 1.
 
@@ -4530,10 +4530,6 @@ Nelle dispense questa regola non è scritta a parte: è contenuta nel modo in cu
 
 ::: prova In quale punto del foglio sta il numero $-2 + 3i$?
 La parte reale è $-2$: fai 2 passi a **sinistra**. La parte immaginaria è $3$: fai 3 passi in su. È il punto di coordinate $(-2, 3)$.
-:::
-
-::: prova I numeri $x$ e $y$ sono reali, e $x + yi = 5 - i$. Quanto valgono?
-Le parti reali devono essere uguali: $x = 5$. Le parti immaginarie devono essere uguali: $y = -1$.
 :::
 
 > [!RICORDA]
@@ -4628,7 +4624,7 @@ I passi sono sempre questi tre.
 >
 > Non serve una formula a memoria: bastano questi tre passi.
 
-Altri sei prodotti, tutti con lo stesso metodo. Una scrittura come $(1 + i)^2$ vuol dire $(1 + i) \cdot (1 + i)$: il numero per sé stesso.
+Altri sei prodotti, tutti con lo stesso metodo. Due avvisi sulla scrittura. Un numero o una parentesi attaccati a un'altra parentesi vogliono dire «per»: il puntino si può non scrivere. E una scrittura come $(1 + i)^2$ vuol dire $(1 + i) \cdot (1 + i)$: il numero per sé stesso.
 
 | Prodotto | I prodotti pezzo per pezzo | Con $-1$ al posto di $i^2$ | Risultato |
 |---|---|---|--:|
@@ -4677,21 +4673,11 @@ Che cosa ha in più $\C$ rispetto a $\R$? Per esempio la $i$: è un numero compl
 I conti tra numeri reali, invece, restano quelli di sempre. Con il metodo nuovo, 2 per 3 fa ancora 6: i pezzi con la $i$ valgono zero e spariscono. In una parola: $\C$ **estende** $\R$. Aggiunge numeri nuovi senza toccare quelli vecchi.
 
 > [!APPROFONDIMENTO] da dove vengono davvero i numeri complessi
-> Nella storia i numeri complessi sono nati dalle equazioni di **terzo grado**, quelle in cui compare $x^3$, cioè $x \cdot x \cdot x$.
+> Nella storia i numeri complessi sono nati dalle equazioni in cui compare $x^3$, cioè $x \cdot x \cdot x$. Nel Cinquecento Gerolamo Cardano pubblicò una formula per risolvere equazioni come $x^3 = 15x + 4$. Questa equazione ha la soluzione reale $x = 4$: infatti $4 \cdot 4 \cdot 4 = 64$, e anche $15 \cdot 4 + 4 = 64$.
 >
-> Nel Cinquecento Gerolamo Cardano pubblicò una formula per risolvere equazioni come $x^3 = 15x + 4$. Questa equazione ha una soluzione reale: $x = 4$. Controllo: $4^3 = 64$, e anche $15 \cdot 4 + 4 = 64$.
->
-> La formula di Cardano, però, per arrivare a quel 4 chiede di calcolare $\sqrt{-121}$: la radice quadrata di un numero negativo, che tra i numeri reali non esiste.
->
-> Rafael Bombelli ebbe l'idea di andare avanti lo stesso. Trattò $\sqrt{-121}$ come un numero qualsiasi, quello che oggi scriviamo $11i$. Con questa scrittura la formula diventa
-> $$x = \sqrt[3]{2 + 11i} + \sqrt[3]{2 - 11i}.$$
-> Il simbolo $\sqrt[3]{\ }$ è la radice cubica: il numero che, elevato alla terza, dà quello scritto sotto. Nell'esercizio 4 controlli che $(2 + i)^3 = 2 + 11i$ e che $(2 - i)^3 = 2 - 11i$. Quindi le due radici cubiche sono $2 + i$ e $2 - i$, e la loro somma è proprio 4.
+> La formula di Cardano, però, per arrivare a quel 4 chiede di calcolare la radice quadrata di $-121$, che tra i numeri reali non esiste. Rafael Bombelli ebbe l'idea di andare avanti lo stesso, trattandola come un numero qualsiasi: quello che oggi scriviamo $11i$. In fondo ai conti trovò che la soluzione è la somma di $2 + i$ e di $2 - i$, cioè proprio 4. Nell'esercizio 4 rifai il passaggio centrale del suo conto.
 >
 > I numeri «immaginari» servivano a trovare un numero reale.
-
-::: prova Quanto fa $(2 + 3i) + (4 - i)$?
-Parti reali: $2 + 4 = 6$. Parti immaginarie: $3 + (-1) = 2$. Risultato: $6 + 2i$.
-:::
 
 ::: prova Quanto fa $i \cdot (3 + i)$?
 I prodotti sono due: $i \cdot 3 = 3i$ e $i \cdot i = i^2 = -1$. Risultato: $-1 + 3i$.
@@ -4792,8 +4778,6 @@ La prima potenza serve nell'esercizio 6.
 
 Un aiuto per i numeri grandi: per trovare il resto della divisione per 4 bastano **le ultime due cifre**. Il motivo è che 100 è un multiplo di 4, quindi le centinaia non lasciano resto. Per 2026 guardi solo 26: siccome $26 = 4 \cdot 6 + 2$, il resto è 2.
 
-Con le lettere la regola si scrive in una riga. Chiama $n$ l'esponente e $r$ il resto della divisione di $n$ per 4. Allora $i^n = i^r$.
-
 ### C'è un secondo numero con il quadrato uguale a meno uno
 
 Anche $-i$, al quadrato, dà $-1$. Il conto è questo:
@@ -4805,7 +4789,7 @@ Nel secondo passaggio i due segni meno spariscono, perché meno per meno fa più
 Quindi l'equazione da cui siamo partiti, $x^2 = -1$, tra i numeri complessi ha **due** soluzioni: $i$ e $-i$.
 
 > [!ESAME] Le potenze della $i$ in un appello
-> Nell'appello del 05/02/2026 la domanda 1 chiedeva quale numero **non** è soluzione di $z^{2026} = -1$. Tra le cinque risposte c'erano $i$ e $-i$. Per scartarle bisognava controllare che $i^{2026}$ e $(-i)^{2026}$ valgono proprio $-1$. Le altre tre risposte richiedono la lezione L03.
+> Nell'appello del 05/02/2026 la domanda 1 chiedeva quale numero **non** è soluzione di $z^{2026} = -1$. Tra le risposte c'erano $i$ e $-i$: per scartarle bisognava controllare che $i^{2026}$ e $(-i)^{2026}$ valgono $-1$. Le altre risposte richiedono la lezione L03.
 
 ::: prova Quanto valgono $i^6$, $i^{23}$ e $i^{40}$?
 $i^6$: la divisione è $6 = 4 \cdot 1 + 2$, resto 2. Quindi $i^6 = -1$.
@@ -4845,7 +4829,7 @@ Un insieme di numeri in cui valgono tutte e nove si chiama **campo**.
 
 Proviamo alcune di queste regole con i numeri complessi.
 
-**Regola 6: nel prodotto l'ordine non conta.** Moltiplica $1 + i$ per $2 + 3i$, e poi $2 + 3i$ per $1 + i$. I quattro prodotti sono gli stessi, in un ordine diverso: $2$, $3i$, $2i$ e $3i^2$. Il risultato è $-1 + 5i$ tutte e due le volte.
+**Regola 6: nel prodotto l'ordine non conta.** Moltiplica $1 + i$ per $2 + 3i$, e poi $2 + 3i$ per $1 + i$. I quattro prodotti sono gli stessi, in un ordine diverso: $2$, $3i$, $2i$ e $3i^2$, che vale $-3$. Il risultato è $-1 + 5i$ tutte e due le volte.
 
 **Regole 1 e 5: lo zero e l'uno.** Lo zero dei numeri complessi è $0 + 0i$, cioè il solito 0. Sul foglio è l'origine. L'uno è $1 + 0i$, cioè il solito 1.
 
@@ -4890,13 +4874,13 @@ Un'abitudine di scrittura, che da qui in poi useremo sempre. Per non riscrivere 
 Per esempio: «prendiamo $z = 3 + 2i$» vuol dire che da lì in poi la lettera $z$ sta al posto di quel numero.
 
 > [!OLTRE] · che cosa ci guadagni
-> Siccome valgono le nove regole, con i numeri complessi funzionano tutti i modi di fare i conti che conosci per i numeri reali. Per esempio la **legge di annullamento del prodotto**: se un prodotto fa zero, almeno uno dei due numeri è zero. Il motivo: se $zw = 0$ e $z$ non è zero, moltiplichi tutti e due i lati per l'inverso di $z$, e resta $w = 0$. Serve nella lezione L04, per trovare le radici dei polinomi.
+> Siccome valgono le nove regole, con i numeri complessi funzionano tutti i modi di fare i conti che conosci per i numeri reali. Uno servirà nella lezione L04: se un prodotto fa zero, almeno uno dei due numeri è zero. Si chiama **legge di annullamento del prodotto**.
 
 ### I numeri complessi non si possono mettere in fila
 
 C'è però una cosa che i numeri reali hanno e i numeri complessi no: l'ordine.
 
-Sulla retta dei numeri, tra due numeri diversi ce n'è sempre uno più a destra: è il maggiore (lezione L01). Per esempio $7 > 4$, dove il simbolo $>$ si legge «è maggiore di».
+Sulla retta dei numeri, tra due numeri diversi ce n'è sempre uno più a destra: è il maggiore (lezione L01). Per esempio $7 > 4$. Il simbolo $>$ si legge «è maggiore di», e il simbolo rovesciato $<$ si legge «è minore di».
 
 Su un foglio questo non funziona più. Prendi un punto più a destra ma più in basso, e un punto più a sinistra ma più in alto. Quale dei due sarebbe «il maggiore»? Non c'è una risposta sensata.
 
@@ -5011,7 +4995,7 @@ Qualche esempio, con le due parti e il coniugato.
 
 Guarda l'ultima riga: il numero 7 è uguale al suo coniugato. Sul foglio si capisce perché. Il 7 sta sull'asse orizzontale, cioè proprio sullo specchio, e un punto sullo specchio coincide con il suo riflesso.
 
-Succede per tutti i numeri reali, e solo per loro. Le dispense lo scrivono con i simboli: $z \in \R \iff z = \bar z$. Si legge «zeta appartiene a erre se e solo se zeta è uguale a zeta coniugato».
+Succede per tutti i numeri reali, e solo per loro. Le dispense lo scrivono con i simboli: $z \in \R \iff z = \bar z$. La freccia a due punte si legge «se e solo se». Tutta la riga si legge: «zeta appartiene a erre se e solo se zeta è uguale a zeta coniugato».
 
 Il perché, con i conti. Se un numero è uguale al suo coniugato, le due parti immaginarie devono essere uguali: $b = -b$. L'unico numero uguale al suo opposto è lo zero. Quindi la parte immaginaria è zero, e il numero è reale.
 
@@ -5399,8 +5383,8 @@ Questa costruzione si chiama **regola del parallelogramma**. È lo stesso modo i
 >
 > I due punti distano 5.
 >
-> Con le lettere, se $z = a + bi$ e $w = c + di$:
-> $$|z - w| = \sqrt{(a - c)^2 + (b - d)^2}.$$
+> Con le lettere, se $z = a + bi$ e $w = p + qi$:
+> $$|z - w| = \sqrt{(a - p)^2 + (b - q)^2}.$$
 > È la formula della distanza tra due punti del piano cartesiano.
 >
 > Da qui viene un fatto che serve nell'esercizio 9. Fissa un punto $c$ e un numero positivo $r$. I punti $z$ che distano $r$ da $c$ formano una **circonferenza**: quella di centro $c$ e raggio $r$. Con i simboli, sono i punti con $|z - c| = r$.
@@ -5709,7 +5693,7 @@ D: Il numero $z \in \C$ tale che $(1 - i)z = 2 + 4i$ è:
 - $-1 - 3i$
 - $1 + 3i$
 - $-2 + 4i$
-= La domanda chiede quale numero complesso, moltiplicato per $1 - i$, dà $2 + 4i$. Si trova con una divisione: $z = \frac{2 + 4i}{1 - i}$. Moltiplica sopra e sotto per il coniugato del numero sotto, cioè $1 + i$. Sotto viene il quadrato del modulo: $1 + 1 = 2$. Sopra i quattro prodotti sono $2$, $2i$, $4i$ e $4i^2 = -4$: in tutto $-2 + 6i$. Dividi per 2 i due pezzi e ottieni $z = -1 + 3i$. Controllo: $(1 - i)(-1 + 3i) = -1 + 3i + i - 3i^2 = 2 + 4i$. La risposta più tentatrice è $3 + i$: viene se sopra moltiplichi per $1 - i$ invece che per il coniugato. Le quattro risposte sbagliate, moltiplicate per $1 - i$, danno $4 - 2i$, $-4 - 2i$, $4 + 2i$ e $2 + 6i$: nessuna dà $2 + 4i$. È simile alla domanda 1 degli appelli del 08/02/2024 e del 03/06/2025.
+= La domanda chiede quale numero complesso, moltiplicato per $1 - i$, dà $2 + 4i$. Si trova con una divisione: $z = \frac{2 + 4i}{1 - i}$. Moltiplica sopra e sotto per il coniugato del numero sotto, cioè $1 + i$. Sotto viene il quadrato del modulo: $1 + 1 = 2$. Sopra i quattro prodotti sono $2$, $2i$, $4i$ e $4i^2 = -4$: in tutto $-2 + 6i$. Dividi per 2 i due pezzi e ottieni $z = -1 + 3i$. Controllo: $(1 - i)(-1 + 3i) = -1 + 3i + i - 3i^2 = 2 + 4i$. La risposta più tentatrice è $3 + i$: viene se sopra moltiplichi per $1 - i$ invece che per il coniugato. Moltiplicata per $1 - i$ dà $4 - 2i$, non $2 + 4i$. È simile alla domanda 1 degli appelli del 08/02/2024 e del 03/06/2025.
 
 D: Se $(1 + 2i)z = 5$, allora $\frac 1{z + i}$ è uguale a:
 + $\frac{1 + i}2$
@@ -5733,7 +5717,7 @@ D: Quanto vale $i^{2026}$?
 - $i$
 - $-i$
 - $2026\,i$
-= Le potenze di $i$ si ripetono ogni quattro, quindi conta solo il resto della divisione dell'esponente per 4. La divisione è $2026 = 4 \cdot 506 + 2$: il resto è 2. Quindi $i^{2026} = i^2 = -1$. Per trovare il resto bastano le ultime due cifre: $26 = 4 \cdot 6 + 2$. La risposta $1$ sarebbe giusta con il resto 0, per esempio per $i^{2024}$. La risposta $2026\,i$ confonde la potenza con una moltiplicazione. Lo stesso conto serviva nella domanda 1 dell'appello del 05/02/2026, per controllare che $i^{2026}$ e $(-i)^{2026}$ valgono $-1$.
+= Le potenze di $i$ si ripetono ogni quattro, quindi conta solo il resto della divisione dell'esponente per 4. La divisione è $2026 = 4 \cdot 506 + 2$: il resto è 2. Quindi $i^{2026} = i^2 = -1$. La risposta $1$ sarebbe giusta con il resto 0, per esempio per $i^{2024}$. La risposta $2026\,i$ confonde la potenza con una moltiplicazione. Lo stesso conto serviva nella domanda 1 dell'appello del 05/02/2026, per controllare che $i^{2026}$ e $(-i)^{2026}$ valgono $-1$.
 
 D: Quale affermazione è vera per **ogni** $z \in \C$?
 + $z + \bar z$ è un numero reale.
@@ -5769,7 +5753,7 @@ D: Nel piano complesso, l'insieme $\{z \in \C \mid |z - i| = 2\}$ è:
 - la circonferenza di centro $i$ e raggio $4$
 - il disco pieno di centro $i$ e raggio $2$
 - la retta orizzontale $\operatorname{Im}(z) = 2$
-= La scrittura $|z - i|$ è la distanza tra il punto $z$ e il punto $i$. La condizione chiede i punti a distanza esattamente 2 da $i$: formano la circonferenza di centro $i$ e raggio 2. Con le coordinate, cioè con $z = x + yi$, la condizione diventa $x^2 + (y - 1)^2 = 4$. Il centro è $i$ e non $-i$, perché dentro il modulo c'è una sottrazione. Il raggio è 2 e non 4: il 4 compare solo dopo aver elevato al quadrato. Il disco pieno sarebbe $|z - i| \le 2$, con «minore o uguale» al posto dell'uguale.
+= La scrittura $|z - i|$ è la distanza tra il punto $z$ e il punto $i$. La condizione chiede i punti a distanza esattamente 2 da $i$: formano la circonferenza di centro $i$ e raggio 2. Con le coordinate, cioè con $z = x + yi$, la condizione diventa $x^2 + (y - 1)^2 = 4$. Il centro è $i$ e non $-i$, perché dentro il modulo c'è una sottrazione. Il raggio è 2 e non 4: il 4 compare solo dopo aver elevato al quadrato. Il disco pieno sarebbe $|z - i| \le 2$.
 
 D: Nel piano complesso, $0$, $z = 1 + 3i$ e $w = 4 + i$ sono tre vertici di un parallelogramma. Il quarto vertice, opposto a $0$, è:
 + $5 + 4i$
@@ -8465,11 +8449,10 @@ Ecco la regola con le lettere.
 
 Le dispense aggiungono la lettura sul disegno. Il vettore si allunga o si accorcia di un fattore $|\lambda|$, e se lo scalare è negativo cambia verso. Le due barre verticali sono il **valore assoluto**: il numero senza il segno meno. Per esempio $|-2| = 2$: moltiplicare per $-2$ raddoppia la lunghezza e gira la freccia.
 
-Nello strumento qui sotto puoi trascinare le punte delle due frecce, che si chiamano $u$ e $v$. Prova queste tre cose.
+Nello strumento qui sotto puoi trascinare le punte delle due frecce, che si chiamano $u$ e $v$. Prova queste due cose.
 
-1. Nel modo «u + v» guarda il parallelogramma. Poi sposta una punta e controlla che la somma cambia un posto alla volta.
-2. Passa al modo «multiplo λu» e muovi il cursore. Con uno scalare tra 0 e 1 la freccia si accorcia. Con uno scalare negativo si ribalta.
-3. Metti il cursore su 0: la freccia si riduce all'origine.
+1. Nel modo «u + v» guarda il parallelogramma. Sposta una punta e controlla che la somma cambia un posto alla volta.
+2. Passa al modo «multiplo λu» e muovi il cursore. Con uno scalare tra 0 e 1 la freccia si accorcia, con uno scalare negativo si ribalta, con 0 si riduce all'origine.
 
 ```widget vettori
 titolo: Somma e prodotto per scalare nel piano
@@ -8556,15 +8539,9 @@ A destra prima si raddoppiano i due vettori, poi si somma.
 
 Stesso risultato.
 
-**Regola 6.** A sinistra prima si sommano i due scalari, poi si moltiplica.
+**Regola 6.** A sinistra prima si sommano i due scalari: $2 + 3 = 5$. Poi si moltiplica: $5 \cdot (1, 2) = (5, 10)$.
 
-1. $2 + 3 = 5$.
-2. $5 \cdot (1, 2) = (5, 10)$.
-
-A destra prima si fanno i due multipli, poi si sommano.
-
-1. $2 \cdot (1, 2) = (2, 4)$ e $3 \cdot (1, 2) = (3, 6)$.
-2. La somma: $(2 + 3,\ 4 + 6) = (5, 10)$.
+A destra prima si fanno i due multipli, che sono $(2, 4)$ e $(3, 6)$. Poi si sommano: $(2 + 3,\ 4 + 6) = (5, 10)$.
 
 Stesso risultato.
 
@@ -8678,9 +8655,9 @@ Nella terza riga compare $a^{-1}$, che si legge «a alla meno uno». È un altro
 > [!ESEMPIO] · i conti in $(\Q \setminus \{0\}, \cdot)$
 > Controlliamo che le frazioni diverse da zero, con il prodotto, formano un gruppo.
 >
-> - **Non si esce.** Il prodotto di due frazioni diverse da zero è una frazione diversa da zero. Per esempio $\frac 23 \cdot \left(-\frac 94\right) = -\frac{18}{12} = -\frac 32$.
+> - **Non si esce.** Per esempio $\frac 23 \cdot \left(-\frac 94\right) = -\frac{18}{12} = -\frac 32$: è ancora una frazione diversa da zero.
 > - **Elemento neutro.** È $1$, perché $1 \cdot \frac 23 = \frac 23$.
-> - **Inverso.** Si scambiano il numero sopra e il numero sotto. L'inverso di $-\frac 34$ è $-\frac 43$. Controllo: $\left(-\frac 34\right) \cdot \left(-\frac 43\right) = \frac{12}{12} = 1$.
+> - **Inverso.** Si scambiano il numero sopra e il numero sotto. L'inverso di $-\frac 34$ è $-\frac 43$: moltiplicati danno $\frac{12}{12} = 1$.
 > - **Perché si toglie lo zero.** Lo $0$ non ha inverso: qualunque numero moltiplicato per $0$ dà $0$, mai $1$.
 
 > [!TRAPPOLA] Togliere lo zero serve per il prodotto, non per la somma
@@ -8692,8 +8669,6 @@ Nella terza riga compare $a^{-1}$, che si legge «a alla meno uno». È un altro
 > **L'inverso è uno solo.** Negli interi con la somma, l'unico numero che sommato a 7 dà 0 è $-7$. Lo stesso vale in ogni gruppo: un elemento non può avere due inversi diversi.
 >
 > **Si può semplificare.** Negli interi: se $5 + x$ e $5 + y$ danno lo stesso risultato, allora $x$ e $y$ sono uguali. Basta sommare $-5$ a tutti e due i lati. Lo stesso vale in ogni gruppo, e quindi anche per la somma di vettori.
->
-> Esistono anche gruppi in cui l'ordine conta, cioè non commutativi. Si studiano in Matematica Discreta. In questo corso i gruppi con la somma sono tutti commutativi.
 
 ::: prova Negli interi con la somma, qual è l'inverso di $-4$? E qual è l'elemento neutro?
 L'inverso di $-4$ è $4$, perché $-4 + 4 = 0$. L'elemento neutro è $0$.
@@ -8803,14 +8778,6 @@ In tutti e due i casi succedono tre cose.
 - Sommando due elementi ottieni un elemento **dello stesso tipo**.
 - Moltiplicando per un numero resti **nello stesso tipo**.
 - Valgono le **otto regole** della sezione precedente.
-
-Controlliamo la regola 5 sui due polinomi: il doppio della somma deve essere la somma dei doppi.
-
-1. Il doppio della somma: $2 \cdot (x^2 + 2x - 2) = 2x^2 + 4x - 4$.
-2. I due doppi: $2x^2 + 2$ e $4x - 6$.
-3. La loro somma: $2x^2 + 4x + (2 - 6) = 2x^2 + 4x - 4$.
-
-Stesso risultato.
 
 > [!IDEA]
 > Uno **spazio vettoriale** è un insieme in cui puoi sommare due elementi e moltiplicare un elemento per un numero, senza mai uscire dall'insieme e con le otto regole.
@@ -9285,7 +9252,7 @@ $$(1, 0) + (0, 1) = (1, 1)$$
 
 Nel risultato i due numeri sommati fanno 2, non 1. La somma è uscita dall'insieme. Nella figura è il pallino fuori dalla retta tratteggiata.
 
-Un altro esempio, con i polinomi di grado esattamente 2. La somma di $x^2$ e $-x^2 + x$ fa $x$, che ha grado 1: è uscita dall'insieme.
+Succede lo stesso con i polinomi di grado esattamente 2, visti nella sezione precedente.
 
 ### Terzo modo: un multiplo esce
 
@@ -9450,7 +9417,7 @@ D: Con la somma e il prodotto per scalare usuali (coordinata per coordinata), $\
 - Sì, perché ogni spazio vettoriale su $\R$ lo è anche su $\C$.
 - No, perché $\R^2$ con la somma non è un gruppo commutativo.
 - No, perché $\C$ non è un campo.
-= La domanda chiede: se gli scalari sono i numeri complessi, i multipli dei vettori di $\R^2$ restano in $\R^2$? Provo con lo scalare $i$ e il vettore $(1, 0)$: viene $(i \cdot 1,\ i \cdot 0) = (i, 0)$. La prima coordinata è $i$, che non è un numero reale: il multiplo è uscito dall'insieme, quindi la risposta è no. La risposta «Sì, perché $\R \subset \C$» è la più tentatrice, ma ragiona al contrario: va bene quando gli scalari sono una parte dei numeri usati per le coordinate. Infatti $\C$ è uno spazio vettoriale su $\R$ (Esercizio 5.8). Simile all'appello del 07/02/2025, domanda 2.
+= Un prodotto per scalare non deve far uscire dall'insieme. Provo con lo scalare $i$ e il vettore $(1, 0)$: viene $(i \cdot 1,\ i \cdot 0) = (i, 0)$. La prima coordinata non è un numero reale: il multiplo è uscito da $\R^2$. La risposta «Sì, perché $\R \subset \C$» è la più tentatrice, ma ragiona al contrario: va bene quando gli scalari sono una parte dei numeri usati per le coordinate, come per $\C$ su $\R$ (Esercizio 5.8). Simile all'appello del 07/02/2025, domanda 2.
 
 D: $\R$, con la somma usuale e il prodotto per numeri razionali, è uno spazio vettoriale su $\Q$?
 + Sì: un razionale per un reale è un reale, e gli assiomi seguono dalle proprietà del campo $\R$.
@@ -9458,7 +9425,7 @@ D: $\R$, con la somma usuale e il prodotto per numeri razionali, è uno spazio v
 - No: semmai è $\Q$ a essere uno spazio vettoriale su $\R$.
 - Sì, ma solo se ci si limita ai numeri razionali.
 - No, perché $\R$ e $\Q$ sono campi diversi.
-= Qui i vettori sono i numeri reali e gli scalari sono le frazioni. Controllo i multipli: una frazione per un numero reale è ancora un numero reale, per esempio $\frac 12 \cdot \sqrt 2 = \frac{\sqrt 2}2$. Le otto regole valgono perché sono regole dei conti tra numeri reali. Quindi la risposta è sì: è lo stesso ragionamento di «$\C$ su $\R$». La risposta «No, perché $\sqrt 2 \notin \Q$» dice una cosa vera che non c'entra: qui $\sqrt 2$ è un vettore, non uno scalare. È falso invece il contrario: $\Q$ non è uno spazio vettoriale su $\R$, perché $\sqrt 2 \cdot 1$ non è una frazione. Simile all'appello del 07/02/2025, domanda 2.
+= Qui i vettori sono i numeri reali e gli scalari sono le frazioni. Una frazione per un numero reale è ancora un numero reale: i multipli restano dentro. Le regole valgono perché sono regole dei conti tra numeri reali. La risposta «No, perché $\sqrt 2 \notin \Q$» è la più tentatrice: dice una cosa vera che non c'entra, perché qui $\sqrt 2$ è un vettore e non uno scalare. È falso invece il contrario: $\Q$ non è uno spazio vettoriale su $\R$, perché $\sqrt 2 \cdot 1$ non è una frazione. Simile all'appello del 07/02/2025, domanda 2.
 
 D: Quale di questi, con l'operazione indicata, è un gruppo commutativo?
 - $(\N, +)$
@@ -9466,7 +9433,7 @@ D: Quale di questi, con l'operazione indicata, è un gruppo commutativo?
 + $(\Q \setminus \{0\}, \cdot)$
 - $(\R, \cdot)$
 - $(\Z \setminus \{0\}, \cdot)$
-= Un gruppo vuole tre cose: elemento neutro, proprietà associativa, inverso di ogni elemento. Tra le frazioni diverse da zero, cioè in $\Q \setminus \{0\}$, il prodotto non fa uscire, l'elemento neutro è $1$ e l'inverso di $\frac 23$ è $\frac 32$. Gli altri falliscono tutti sull'inverso. In $(\N, +)$ manca l'opposto di $1$. In $(\Z, \cdot)$ e in $(\Z \setminus \{0\}, \cdot)$ manca l'inverso di $2$. La risposta più tentatrice è $(\R, \cdot)$: sembra a posto, ma dentro c'è lo $0$, che non ha inverso.
+= Tra le frazioni diverse da zero, cioè in $\Q \setminus \{0\}$, il prodotto non fa uscire, l'elemento neutro è $1$ e l'inverso di $\frac 23$ è $\frac 32$. Gli altri falliscono sull'inverso. In $(\N, +)$ manca l'opposto di $1$. In $(\Z, \cdot)$ e in $(\Z \setminus \{0\}, \cdot)$ manca l'inverso di $2$. La risposta più tentatrice è $(\R, \cdot)$: dentro c'è lo $0$, che non ha inverso.
 
 D: Quale di questi insiemi, con le operazioni indicate, è un campo?
 - $\Z$, con somma e prodotto usuali.
@@ -9474,7 +9441,7 @@ D: Quale di questi insiemi, con le operazioni indicate, è un campo?
 + $\{0, 1\}$, con $1 + 1 = 0$ e le altre somme e i prodotti come negli interi.
 - $\R \setminus \{0\}$, con somma e prodotto usuali.
 - $\{0, 1, 2, 3\}$, con somma e prodotto dei resti nella divisione per $4$.
-= In un campo si fanno le quattro operazioni senza uscire, e ogni numero diverso da zero ha un inverso. L'insieme $\{0, 1\}$ con $1 + 1 = 0$ è il campo dell'Esercizio 5.9: le sue tabelle sono le regole dei numeri pari e dispari. In $\Z$ il numero $2$ non ha inverso. In $\N$ manca l'opposto di $1$. In $\R \setminus \{0\}$ la somma esce: $1 + (-1) = 0$. La risposta con i resti della divisione per $4$ è la più tentatrice, perché assomiglia a quella giusta. Ma lì $2$ non ha inverso: $2 \cdot 1 = 2$, poi $2 \cdot 2 = 4$ ha resto $0$, poi $2 \cdot 3 = 6$ ha resto $2$. Nessun prodotto dà $1$.
+= L'insieme $\{0, 1\}$ con $1 + 1 = 0$ è il campo dell'Esercizio 5.9: sono le regole dei numeri pari e dispari. In $\Z$ il numero $2$ non ha inverso. In $\N$ manca l'opposto di $1$. In $\R \setminus \{0\}$ la somma esce: $1 + (-1) = 0$. La risposta con i resti della divisione per $4$ è la più tentatrice, perché assomiglia a quella giusta. Ma lì $2$ non ha inverso: $2 \cdot 1 = 2$, poi $2 \cdot 2 = 4$ ha resto $0$, poi $2 \cdot 3 = 6$ ha resto $2$.
 
 D: In $\C^2$, quanto vale $(1 + i)\begin{pmatrix} 2 \\ i \end{pmatrix}$?
 + $\begin{pmatrix} 2 + 2i \\ -1 + i \end{pmatrix}$
@@ -9482,7 +9449,7 @@ D: In $\C^2$, quanto vale $(1 + i)\begin{pmatrix} 2 \\ i \end{pmatrix}$?
 - $\begin{pmatrix} 2 + 2i \\ i \end{pmatrix}$
 - $\begin{pmatrix} 3 + i \\ 1 + 2i \end{pmatrix}$
 - $\begin{pmatrix} 2 \\ -1 \end{pmatrix}$
-= Lo scalare $1 + i$ moltiplica tutte e due le coordinate. Prima coordinata: $(1 + i) \cdot 2 = 2 + 2i$. Seconda coordinata: $(1 + i) \cdot i = i + i^2$. Siccome $i^2 = -1$, viene $i - 1$, cioè $-1 + i$. La risposta con $1 + i$ al secondo posto è la più tentatrice: nasce dallo scrivere $i^2 = 1$ invece di $i^2 = -1$. Quella con $3 + i$ al primo posto somma lo scalare invece di moltiplicare.
+= Lo scalare moltiplica tutte e due le coordinate. Prima coordinata: $(1 + i) \cdot 2 = 2 + 2i$. Seconda coordinata: $(1 + i) \cdot i = i + i^2 = i - 1$, perché $i^2 = -1$. La risposta con $1 + i$ al secondo posto è la più tentatrice: nasce dallo scrivere $i^2 = 1$. Quella con $3 + i$ al primo posto somma lo scalare invece di moltiplicare.
 
 D: In $\R^3$, quanto vale $2\begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix} - 3\begin{pmatrix} 0 \\ 1 \\ 2 \end{pmatrix}$?
 + $(2, -3, -8)$
@@ -9490,7 +9457,7 @@ D: In $\R^3$, quanto vale $2\begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix} - 3\begin
 - $(2, 3, -8)$
 - $(2, -1, -4)$
 - $(2, -3, -7)$
-= Sono due multipli e poi una differenza, sempre un posto alla volta. Primo multiplo: $2 \cdot (1, 0, -1) = (2, 0, -2)$. Secondo multiplo: $3 \cdot (0, 1, 2) = (0, 3, 6)$. Differenza: $(2 - 0,\ 0 - 3,\ -2 - 6) = (2, -3, -8)$. La risposta $(2, -3, 4)$ è la più tentatrice: nasce dal fare $-2 + 6$ all'ultimo posto. È l'errore di chi dimentica che il segno meno vale per tutte le coordinate del secondo vettore.
+= Primo multiplo: $2 \cdot (1, 0, -1) = (2, 0, -2)$. Secondo multiplo: $3 \cdot (0, 1, 2) = (0, 3, 6)$. Differenza, un posto alla volta: $(2 - 0,\ 0 - 3,\ -2 - 6) = (2, -3, -8)$. La risposta $(2, -3, 4)$ è la più tentatrice: nasce dal fare $-2 + 6$ all'ultimo posto. Il segno meno vale per tutte le coordinate del secondo vettore.
 
 D: Con la somma e il prodotto per scalare usuali, quale di questi insiemi di polinomi a coefficienti reali è uno spazio vettoriale su $\R$?
 - I polinomi di grado esattamente $2$.
@@ -9498,7 +9465,7 @@ D: Con la somma e il prodotto per scalare usuali, quale di questi insiemi di pol
 + I polinomi di grado minore o uguale a $2$, cioè $\R_2[x]$.
 - I polinomi con tutti i coefficienti maggiori o uguali a $0$.
 - I polinomi della forma $x^2 + bx + c$, con $b, c \in \R$.
-= La domanda chiede da quale insieme non si esce sommando due polinomi o moltiplicandone uno per uno scalare. In $\R_2[x]$ il grado non supera mai 2 e il polinomio nullo c'è: è lo spazio dell'Esercizio 5.7. La risposta «grado esattamente 2» è la più tentatrice, ma la somma di $x^2$ e $-x^2 + x$ fa $x$, che ha grado 1. La scrittura $p(0) = 1$ vuol dire che il polinomio vale 1 quando al posto di $x$ metti 0: il polinomio nullo lì vale 0, quindi manca. Con i coefficienti non negativi un multiplo esce: $-1 \cdot x = -x$. Con la forma $x^2 + bx + c$ una somma esce: $x^2 + 1$ più se stesso fa $2x^2 + 2$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 6), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
+= In $\R_2[x]$ il grado non supera mai 2, né sommando né moltiplicando per uno scalare, e il polinomio nullo c'è: è lo spazio dell'Esercizio 5.7. La risposta «grado esattamente 2» è la più tentatrice, ma $x^2$ più $-x^2 + x$ fa $x$, che ha grado 1. La scrittura $p(0) = 1$ vuol dire che il polinomio vale 1 quando al posto di $x$ metti 0: il polinomio nullo lì vale 0. Con i coefficienti non negativi un multiplo esce: $-1 \cdot x = -x$. Con la forma $x^2 + bx + c$ una somma esce: $x^2 + 1$ più se stesso fa $2x^2 + 2$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 6), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
 
 D: Con le operazioni di $\R^2$, quale di questi sottoinsiemi è uno spazio vettoriale su $\R$?
 + $\{(x, y) \in \R^2 \mid x + y = 0\}$
@@ -9506,7 +9473,7 @@ D: Con le operazioni di $\R^2$, quale di questi sottoinsiemi è uno spazio vetto
 - $\{(x, y) \in \R^2 \mid x \ge 0\}$
 - $\{(x, y) \in \R^2 \mid xy = 0\}$
 - $\{(x, y) \in \R^2 \mid y = x^2\}$
-= Ogni risposta è un insieme scritto con una condizione: la barretta verticale si legge «tali che». Sono pezzi di $\R^2$ con le operazioni solite, quindi bastano i tre controlli: vettore nullo, somme, multipli. Con $x + y = 0$ il secondo numero è l'opposto del primo, e questo resta vero sommando due liste o moltiplicandone una per uno scalare. Con $x + y = 1$ manca il vettore nullo, perché $0 + 0$ non fa 1: è la risposta più tentatrice, perché cambia solo un numero. Con $x \ge 0$ un multiplo esce: $-1 \cdot (1, 0) = (-1, 0)$. Con $xy = 0$ una somma esce: $(1, 0) + (0, 1) = (1, 1)$. Con $y = x^2$ una somma esce: $(1, 1) + (1, 1) = (2, 2)$, ma $2^2$ fa 4. Simile all'appello del 03/06/2025, domanda 2.
+= La barretta verticale si legge «tali che». Sono pezzi di $\R^2$ con le operazioni solite, quindi bastano tre controlli: vettore nullo, somme, multipli. Con $x + y = 0$ il secondo numero è l'opposto del primo, e resta così sommando due liste o moltiplicandone una per uno scalare. Con $x + y = 1$ manca il vettore nullo: è la risposta più tentatrice, perché cambia solo un numero. Con $x \ge 0$ un multiplo esce: $-1 \cdot (1, 0) = (-1, 0)$. Con $xy = 0$ una somma esce: $(1, 0) + (0, 1) = (1, 1)$. Con $y = x^2$ una somma esce: $(1, 1) + (1, 1) = (2, 2)$, ma $2^2$ fa 4. Simile all'appello del 03/06/2025, domanda 2.
 
 D: Le funzioni $f : [0, 1] \to \R$ con $f(0) = 1$, con le operazioni punto per punto, formano uno spazio vettoriale su $\R$?
 - Sì, come tutte le funzioni da $[0, 1]$ in $\R$.
@@ -9514,11 +9481,11 @@ D: Le funzioni $f : [0, 1] \to \R$ con $f(0) = 1$, con le operazioni punto per p
 - Sì, perché $1$ è l'elemento neutro del prodotto.
 - No, perché le funzioni non sono vettori.
 - Sì, ma solo se ci si limita ai polinomi.
-= Il vettore nullo dello spazio delle funzioni è la funzione nulla, che in 0 vale 0 e non 1: non sta nell'insieme. Anche una somma esce: se due funzioni in 0 valgono 1, la loro somma in 0 vale $1 + 1 = 2$. Quindi la risposta è no. La risposta «Sì, come tutte le funzioni» è la più tentatrice: tutte le funzioni insieme formano uno spazio vettoriale, ma un loro pezzo può non esserlo. È lo stesso motivo dell'appello del 10/07/2024, domanda 2: l'insieme $O(2)$ delle matrici ortogonali non è un sottospazio perché non contiene la matrice nulla.
+= La funzione nulla, che è il vettore nullo, in 0 vale 0 e non 1: non sta nell'insieme. Anche una somma esce: se due funzioni in 0 valgono 1, la loro somma in 0 vale 2. La risposta «Sì, come tutte le funzioni» è la più tentatrice: tutte le funzioni insieme formano uno spazio vettoriale, ma un loro pezzo può non esserlo. È lo stesso motivo dell'appello del 10/07/2024, domanda 2: l'insieme $O(2)$ delle matrici ortogonali non è un sottospazio perché non contiene la matrice nulla.
 
 D: Nel campo $\{0, 1, 2\}$ con somma e prodotto dei resti nella divisione per $3$ (Esercizio 5.10), qual è l'inverso di $2$ rispetto al prodotto?
 N: 2
-= L'inverso di 2 è l'elemento che moltiplicato per 2 dà 1. In questo campo si calcola come negli interi e poi si tiene il resto della divisione per 3. Provo i tre elementi uno alla volta. $2 \cdot 0 = 0$. $2 \cdot 1 = 2$. $2 \cdot 2 = 4$, e 4 diviso 3 fa 1 con resto 1. Quindi in questo campo $2 \cdot 2 = 1$: l'inverso di 2 è 2 stesso.
+= L'inverso di 2 è l'elemento che moltiplicato per 2 dà 1. Si calcola come negli interi e poi si tiene il resto della divisione per 3. $2 \cdot 1 = 2$. $2 \cdot 2 = 4$, che diviso 3 dà resto 1. Quindi in questo campo $2 \cdot 2 = 1$: l'inverso di 2 è 2 stesso.
 ```
 
 ## Esercizi
@@ -9672,12 +9639,7 @@ Nel primo esempio $\C$ è uno spazio vettoriale sul campo $\C$. Dimostra che è 
 
 Ogni proprietà è una regola dei numeri complessi, usata nel caso in cui uno dei numeri è reale. Quindi $\C$ è uno spazio vettoriale su $\R$.
 
-**Controllo con i numeri** della proprietà 2, con lo scalare 2 e i vettori $1 + i$ e $3 - 2i$.
-
-- A sinistra: la somma è $(1 + 3) + (1 - 2)i = 4 - i$. Il doppio è $8 - 2i$.
-- A destra: i due doppi sono $2 + 2i$ e $6 - 4i$. La loro somma è $(2 + 6) + (2 - 4)i = 8 - 2i$.
-
-Stesso risultato.
+**Controllo con i numeri** della proprietà 2, con lo scalare 2 e i vettori $1 + i$ e $3 - 2i$. A sinistra: la somma è $4 - i$, e il doppio è $8 - 2i$. A destra: i due doppi sono $2 + 2i$ e $6 - 4i$, e la loro somma è $8 - 2i$.
 
 **Con le coordinate.** Al numero $a + bi$ fai corrispondere la lista $(a, b)$. La somma di due numeri complessi diventa la somma di due liste. Il multiplo $\lambda(a + bi)$ diventa il multiplo $\lambda(a, b)$. Come spazio vettoriale su $\R$, l'insieme $\C$ si comporta come il piano $\R^2$: è il piano di Gauss della lezione L02.
 
@@ -9771,11 +9733,9 @@ Per fissare le idee prendo $k = 2$: i polinomi $ax^2 + bx + c$. Qualche coeffici
 3. **Il vettore nullo c'è.** Il polinomio nullo ha tutti i coefficienti uguali a 0, e sta nell'insieme.
 4. **Le otto regole.** Valgono per tutti i polinomi (esercizio 9), quindi anche per quelli di grado al massimo 2.
 
-Un esempio con i numeri: $(2x^2 + x) + (-2x^2 + 4) = x + 4$. Il grado è sceso a 1, ma il risultato sta ancora nell'insieme, perché 1 è minore di 2.
-
 Con un $k$ qualsiasi il ragionamento è lo stesso. Un polinomio di grado al massimo $k$ si scrive $a_k x^k + \dots + a_1 x + a_0$. I numeri $a_0, a_1, \dots, a_k$ sono i coefficienti, uno per ogni potenza. Sommando due polinomi così, o moltiplicandone uno per uno scalare, non compaiono potenze più alte di $x^k$.
 
-In breve: un polinomio di grado al massimo $k$ è la lista dei suoi $k + 1$ coefficienti. Quindi $\K_k[x]$ si comporta come $\K^{k+1}$. Per esempio $\R_2[x]$ si comporta come $\R^3$.
+In breve: un polinomio di grado al massimo $k$ è la lista dei suoi $k + 1$ coefficienti. Per esempio $\R_2[x]$ si comporta come $\R^3$.
 
 **Seconda parte: grado esattamente $k$, con $k \ge 1$.** Basta un esempio che esce dall'insieme.
 
@@ -9784,7 +9744,7 @@ In breve: un polinomio di grado al massimo $k$ è la lista dei suoi $k + 1$ coef
 
 Con $k = 2$: i polinomi $x^2 + 1$ e $-x^2$ hanno grado 2. La loro somma è $1$, che non ha grado 2.
 
-**Perché l'esercizio chiede $k \ge 1$?** I polinomi di grado 0 sono i numeri, visti come polinomi senza la $x$. Qui la risposta dipende da una scelta: il polinomio nullo ha grado 0, oppure non ha grado? Nel primo caso l'insieme contiene tutti i numeri del campo, ed è uno spazio vettoriale. Nel secondo caso restano i numeri diversi da zero, e manca il vettore nullo. L'esercizio evita questo caso.
+**Perché l'esercizio chiede $k \ge 1$?** I polinomi di grado 0 sono i numeri, visti come polinomi senza la $x$. Qui la risposta dipende da una scelta: il polinomio nullo ha grado 0, oppure non ha grado? Nel primo caso l'insieme contiene tutti i numeri del campo, ed è uno spazio vettoriale. Nel secondo caso manca il vettore nullo. L'esercizio evita questo caso.
 :::
 
 ::: esercizio medio Tre conseguenze degli assiomi
@@ -9873,8 +9833,6 @@ Sono uguali: vale.
 
 Sono uguali: vale.
 
-Controllo con i numeri dell'assioma 3, con gli scalari 2 e 3 e il vettore $(2, 5)$. A sinistra: $5 \star (2, 5) = (10, 0)$. A destra: $(4, 0) + (6, 0) = (10, 0)$.
-
 (3) **No.** L'assioma 1 vale, perché la somma è quella solita. Ma l'assioma 5 fallisce: $1 \star (2, 5) = (2, 0)$, che è diverso da $(2, 5)$. Basta un assioma falso.
 
 (4) **Sì**: $0 \star (x, y) = (0 \cdot x,\ 0) = (0, 0)$. Non è un caso. La dimostrazione della Proposizione 5.5 usa solo gli assiomi 1 e 3, che qui valgono.
@@ -9919,11 +9877,7 @@ Si resta dentro: il prodotto di due numeri positivi è positivo, e una potenza d
 - Assioma 4. $(\lambda\mu) \odot x = x^{\lambda\mu} = (x^\mu)^\lambda = \lambda \odot (\mu \odot x)$.
 - Assioma 5. $1 \odot x = x^1 = x$.
 
-I passaggi in mezzo sono le regole delle potenze. Con i numeri:
-
-- la potenza di un prodotto: $(3 \cdot 5)^2 = 225$ e $3^2 \cdot 5^2 = 9 \cdot 25 = 225$;
-- la somma degli esponenti: $2^{2 + 3} = 32$ e $2^2 \cdot 2^3 = 4 \cdot 8 = 32$;
-- il prodotto degli esponenti: $2^{2 \cdot 3} = 64$ e $(2^3)^2 = 8^2 = 64$.
+I passaggi in mezzo sono le regole delle potenze. Per esempio la somma degli esponenti, con i numeri: $2^{2 + 3} = 32$ e $2^2 \cdot 2^3 = 4 \cdot 8 = 32$.
 
 Controllo con la Proposizione 5.5: $0 \odot x = x^0 = 1$, che è proprio il vettore nullo di questo spazio.
 
@@ -15452,7 +15406,7 @@ In matematica un indovinello così si chiama sistema. Ci sono più indizi, e la 
 
 Questa lezione insegna quel metodo. Porta il nome di Gauss, un matematico tedesco, e funziona sempre, con qualsiasi numero di indizi. L'idea è riscrivere gli indizi in una forma sempre più comoda, senza mai cambiare la risposta. Alla fine gli indizi sono così comodi che la risposta si legge.
 
-Per fare meno fatica non si riscrivono ogni volta le equazioni intere. Si scrivono solo i numeri, in una tabella. Le tabelle di numeri sono le matrici della lezione L08: qui trovano il loro primo vero lavoro.
+Per fare meno fatica non si riscrivono ogni volta le equazioni intere. Si scrivono solo i numeri, in una tabella. Le tabelle di numeri sono le matrici della lezione L08.
 
 Il metodo dice anche come finisce l'indovinello. I finali possibili sono tre: nessuna risposta, una risposta sola, infinite risposte.
 
@@ -15580,7 +15534,7 @@ Non sono permesse tre cose: un'incognita moltiplicata per sé stessa, due incogn
 |---|---|---|
 | $2x - 3y + z = 7$ | sì | ogni incognita è solo moltiplicata per un numero |
 | $x_1 + x_4 = 0$ | sì | le incognite che non compaiono contano come moltiplicate per 0 |
-| $\sqrt 2\, x - \pi y = \frac 13$ | sì | i coefficienti possono essere numeri qualsiasi, anche radici e frazioni |
+| $\sqrt 2\, x - \pi y = \frac 13$ | sì | i coefficienti e il termine noto possono essere numeri qualsiasi: qui la radice di 2, pi greco e un terzo |
 | $x^2 + y = 1$ | no | $x^2$ vuol dire $x \cdot x$: l'incognita è moltiplicata per sé stessa |
 | $xy = 4$ | no | $xy$ vuol dire $x \cdot y$: due incognite moltiplicate tra loro |
 | $x + \sin y = 0$ | no | l'incognita $y$ sta dentro la funzione seno (lezione L03) |
@@ -15639,7 +15593,7 @@ retta: 1 0 4 3 | blu | $x - y = 1$ | se
 punto: 3 2 | ambra | $(3, 2)$ | e
 ```
 
-**Secondo finale: le rette sono parallele.** Prendi questi due indizi: «la somma fa 2» e «la somma fa 4». La somma di due numeri non può fare 2 e 4 nello stesso momento. I due indizi si contraddicono. Guarda la figura: le due rette non si toccano mai. Il sistema ha **nessuna soluzione**.
+**Secondo finale: le rette sono parallele.** Prendi questi due indizi: «la somma fa 2» e «la somma fa 4». La somma di due numeri non può fare 2 e 4 nello stesso momento. I due indizi si contraddicono. Guarda la figura: le due rette non si toccano mai. Il sistema **non ha nessuna soluzione**.
 
 ```grafico
 titolo: $x + y = 2$ e $x + y = 4$ sono parallele: nessun punto comune, nessuna soluzione
@@ -15853,7 +15807,7 @@ Sulla matrice vuol dire moltiplicare per lo stesso numero **tutti** i numeri di 
 | riga 1 | $1$ | $1$ | $5$ |
 | 2 volte la riga 1 | $2 \cdot 1 = 2$ | $2 \cdot 1 = 2$ | $2 \cdot 5 = 10$ |
 
-La nuova riga 1 è $(2, 2 \mid 10)$, cioè l'equazione $2x + 2y = 10$. La soluzione dell'indovinello la rispetta ancora:
+La nuova riga 1 è $(2, 2 \mid 10)$: i due coefficienti, la barra e il termine noto. È l'equazione $2x + 2y = 10$. La soluzione dell'indovinello la rispetta ancora:
 
 $$2 \cdot 3 + 2 \cdot 2 = 6 + 4 = 10$$
 
@@ -15932,6 +15886,7 @@ Ora che le tre mosse sono chiare, ecco la definizione con le parole delle dispen
 - $\lambda$ è la lettera greca *lambda*. Sta al posto di un numero qualsiasi, come 2 oppure $-3$.
 - $\lambda \neq 0$ si legge «lambda diverso da zero». È il divieto della seconda mossa.
 - $R_i$ e $R_j$ sono due righe qualsiasi. Le lettere $i$ e $j$ stanno al posto dei numeri delle due righe. «La $i$-esima riga» vuol dire «la riga numero $i$».
+- Le frecce sono quelle di prima, disegnate più lunghe: «si scambia con» e «diventa».
 - La scrittura della mossa (I) dice: la riga $i$ e la riga $j$ si scambiano.
 - La scrittura della mossa (II) dice: la riga $i$ diventa $\lambda$ volte sé stessa.
 - La scrittura della mossa (III) dice: alla riga $i$ sommi $\lambda$ volte la riga $j$. Se $\lambda$ è negativo stai togliendo. Per esempio con $\lambda = -4$ la riga $i$ diventa «la riga $i$ meno 4 volte la riga $j$».
@@ -16547,7 +16502,7 @@ Un altro esempio con più parametri, preso dal libro.
 > $$\begin{cases} x_1 = 1 - 3t_1 - 4t_3 \\ x_2 = t_1 \\ x_3 = 3 + 2t_2 \\ x_4 = t_2 \\ x_5 = t_3 \end{cases}$$
 > Controllo con tutti i parametri uguali a 0. La soluzione è $(1, 0, 3, 0, 0)$. Prima equazione: $1 + 0 + 0 = 1$. Seconda equazione: $3 - 0 = 3$. Tutte e due vere.
 
-Nello strumento qui sotto c'è il sistema dell'esempio con un parametro. L'ultima colonna è quella dei termini noti. Premi «Calcola»: lo strumento fa Gauss–Jordan, dice se ci sono soluzioni e le scrive con i parametri. Per le incognite usa una lettera sola con i numerini in basso, non tre lettere diverse. Poi cambia l'ultimo numero da 5 a 6 e ricalcola. La terza equazione non va più d'accordo con le altre due, e compare la riga impossibile.
+Nello strumento qui sotto c'è il sistema dell'esempio con un parametro. L'ultima colonna è quella dei termini noti. Premi «Calcola»: lo strumento fa Gauss–Jordan, dice se ci sono soluzioni e le scrive con i parametri. Per le incognite usa una lettera sola con i numerini in basso, non tre lettere diverse. Le scritture con «rk» contano i pivot: le spiega la lezione L12. Poi cambia l'ultimo numero da 5 a 6 e ricalcola. La terza equazione non va più d'accordo con le altre due, e compare la riga impossibile.
 
 ```widget gauss
 titolo: Risolvi un sistema: l'ultima colonna è quella dei termini noti
@@ -20993,6 +20948,8 @@ Questa lezione usa molte cose delle lezioni precedenti. Ognuna viene ricordata n
 
 Una matrice quadrata è una macchina: entra un vettore, ne esce un altro dello stesso tipo. In questa sezione guardiamo che cosa succede alla **direzione** dei vettori quando passano nella macchina.
 
+In tutta la lezione le macchine sono **lineari**: rispettano le somme e i multipli (lezione L14). Per esempio, se in entrata metti il doppio di un vettore, in uscita trovi il doppio. Le macchine fatte con una matrice sono sempre lineari.
+
 Prima due avvisi su come sono scritti i vettori.
 
 - Nelle dispense i vettori sono scritti in colonna, con i numeri uno sotto l'altro. In queste pagine, dentro le frasi, li scriviamo in riga per risparmiare spazio: $(1, 2)$ è il vettore con 1 sopra e 2 sotto.
@@ -21081,11 +21038,11 @@ Con la matrice di prima e il vettore $(1, 0)$ la riga dice: esce 3 volte $(1, 0)
 
 Le dispense usano altri tre simboli.
 
-- $T : V \to V$ è la macchina. Si chiama $T$, prende i vettori da uno spazio $V$ e li restituisce nello stesso spazio. La freccia si legge «da $V$ a $V$». La scrittura $T(v)$ si legge «$T$ di $v$»: è il vettore che esce quando entra $v$.
+- $T : V \to V$ è la macchina. Si chiama $T$, prende i vettori da uno **spazio vettoriale** $V$ e li restituisce nello stesso spazio. Uno spazio vettoriale è un insieme di vettori in cui si può sommare e moltiplicare per un numero senza uscire (lezione L05): per esempio il piano. La freccia si legge «da $V$ a $V$». La scrittura $T(v)$ si legge «$T$ di $v$»: è il vettore che esce quando entra $v$.
 - $L_A$ è la macchina «moltiplica per la matrice $A$» (lezione L14). Quindi $L_A(v)$ e $Av$ sono la stessa cosa.
 - $\K$ è un modo breve per dire «i numeri reali oppure i numeri complessi». In questa lezione i numeri sono quasi sempre reali.
 
-Ecco l'esempio delle dispense. La matrice e i vettori sono quelli della tabella di prima, dove trovi tutti i conti.
+Ecco l'esempio delle dispense. La matrice e i vettori sono quelli della tabella di prima, dove trovi tutti i conti. Nel titolo, $2 \times 2$ si legge «due per due»: vuol dire una matrice con 2 righe e 2 colonne.
 
 > [!ESEMPIO] 17.2 · Due autovettori di una matrice $2 \times 2$
 > Prendiamo la macchina $L_A$ che lavora sui vettori del piano, con
@@ -21493,9 +21450,13 @@ Le dispense riassumono così. Un endomorfismo è diagonalizzabile se e solo se e
 
 ### La stessa idea per le matrici
 
-Finora abbiamo parlato di macchine. Per le matrici c'è una definizione che dice la stessa cosa con un prodotto. Servono tre richiami.
+Finora abbiamo parlato di macchine. Per le matrici c'è una definizione che dice la stessa cosa con un prodotto. Servono quattro richiami.
 
-> [!RIPASSO] identità, inversa, matrici simili
+> [!RIPASSO] determinante, identità, inversa, matrici simili
+> **Determinante** (lezione L09). È un numero che si calcola da una matrice quadrata. Se è zero, la matrice schiaccia tutto lo spazio su qualcosa di più piccolo. Con 2 righe la regola è «diagonale meno l'altra diagonale»: il prodotto dei due numeri sulla diagonale principale, meno il prodotto degli altri due.
+> $$\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = a \cdot d - b \cdot c$$
+> Per la matrice con le righe $(1, 2)$ e $(3, 4)$ il conto è 1 per 4, meno 2 per 3. Viene $-2$.
+>
 > **Matrice identità.** È la matrice con 1 sulla diagonale e 0 altrove. Si scrive $I$, oppure $I_n$ se ha $n$ righe. Moltiplicare per l'identità non cambia niente, come moltiplicare un numero per 1.
 >
 > **Matrice inversa** (lezione L10). L'inversa di $M$ si scrive $M^{-1}$ e si legge «$M$ alla meno uno». È la matrice che disfa quello che fa $M$: il prodotto $M^{-1}M$ dà l'identità. Esiste solo se il determinante di $M$ non è zero. Una matrice che ha l'inversa si chiama **invertibile**.
@@ -21699,7 +21660,7 @@ $$\begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}^k =
 
 E se la matrice non è diagonale, ma è diagonalizzabile? Allora le potenze si calcolano passando per la matrice diagonale $D$. Il trucco sta in due passaggi.
 
-**Primo passaggio: scrivere $A$ con $M$ e $D$.** Sappiamo che $D = M^{-1}AM$. Moltiplichiamo i due lati a sinistra per $M$ e a destra per $M^{-1}$. A destra dell'uguale compaiono due coppie fatte da $M$ e dalla sua inversa: danno l'identità e spariscono. Resta
+**Primo passaggio: scrivere $A$ con $M$ e $D$.** Sappiamo che $D = M^{-1}AM$. Moltiplichiamo i due lati a sinistra per $M$ e a destra per $M^{-1}$. Dal lato di $D$ viene $MDM^{-1}$. Dall'altro lato compaiono due coppie fatte da $M$ e dalla sua inversa: danno l'identità e spariscono, e resta solo $A$. Quindi
 
 $$A = MDM^{-1}$$
 
@@ -21805,10 +21766,7 @@ $$A - \lambda I = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix} - \begin{pmatrix}
 
 ### Il primo esempio
 
-> [!RIPASSO] il determinante di una matrice con 2 righe
-> Il determinante si calcola con la regola «diagonale meno l'altra diagonale» (lezione L09): il prodotto dei due numeri sulla diagonale principale, meno il prodotto degli altri due.
-> $$\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = a \cdot d - b \cdot c$$
-> Esempio: per la matrice con le righe $(1, 2)$ e $(3, 4)$ il conto è 1 per 4, meno 2 per 3. Viene $-2$.
+Serve il determinante di una matrice con 2 righe: è la regola «diagonale meno l'altra diagonale», ricordata nella sezione sulla diagonalizzazione.
 
 Applichiamo le tre mosse alla matrice dell'Esempio 17.2. Dovremmo ritrovare gli autovalori 3 e 2.
 
@@ -21960,7 +21918,7 @@ Un avviso che evita molti errori: questo sistema ha **sempre infinite soluzioni*
 >
 > **Passo 3: gli autovettori dell'autovalore 1.** Tolgo 1 sulla diagonale.
 > $$A - I = \begin{pmatrix} -2 & 2 \\ -4 & 4 \end{pmatrix}$$
-> Chiamo $(x, y)$ il vettore che cerco. Il sistema ha un'equazione per ogni riga: $-2x + 2y = 0$ e $-4x + 4y = 0$. La seconda è il doppio della prima, quindi non dice niente di nuovo. Dalla prima: $2y = 2x$, cioè $y = x$. Gli autovettori sono i vettori con i due numeri uguali. Scelgo $(1, 1)$.
+> Chiamo $(x, y)$ il vettore che cerco. Il sistema ha un'equazione per ogni riga: la riga, moltiplicata per il vettore, deve dare 0. Dalla prima riga viene $-2x + 2y = 0$, dalla seconda $-4x + 4y = 0$. La seconda è il doppio della prima, quindi non dice niente di nuovo. Dalla prima: $2y = 2x$, cioè $y = x$. Gli autovettori sono i vettori con i due numeri uguali. Scelgo $(1, 1)$.
 >
 > **Passo 3, di nuovo: gli autovettori dell'autovalore 3.** Tolgo 3 sulla diagonale.
 > $$A - 3I = \begin{pmatrix} -4 & 2 \\ -4 & 2 \end{pmatrix}$$
@@ -22091,13 +22049,17 @@ La matrice è triangolare: sotto la diagonale c'è 0. Gli autovalori sono i nume
 |---|---|---|---|
 | $Av$ | «$A$ per $v$» | il vettore che esce dalla matrice $A$ quando entra il vettore $v$ | $\begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 3 \\ 0 \end{pmatrix}$ |
 | $\lambda$ | «lambda» | una lettera greca che indica un numero; qui di solito l'autovalore | $\lambda = 3$ |
+| $\lambda_1$, $\lambda_2$ | «lambda uno», «lambda due» | il primo autovalore, il secondo autovalore | $\lambda_1 = 2$ |
 | $\mu$ | «mi» | un'altra lettera greca che indica un numero | $\mu = 3$ nel multiplo $3v$ |
 | $Av = \lambda v$ | «$A$ per $v$ è uguale a lambda per $v$» | dalla macchina esce un multiplo del vettore entrato: $v$ è un autovettore | $A(1, 0) = 3 \cdot (1, 0)$ |
 | $v \neq 0$ | «$v$ diverso da zero» | $v$ non è il vettore nullo | $(1, 0) \neq 0$ |
 | $T : V \to V$ | «$T$ da $V$ a $V$» | una macchina che prende i vettori dello spazio $V$ e li restituisce in $V$: un endomorfismo | $T(x, y) = (x, 0)$ |
 | $T(v)$ | «$T$ di $v$» | il vettore che esce dalla macchina $T$ quando entra $v$ | $T(3, 2) = (3, 0)$ |
 | $L_A$ | «elle con $A$» | la macchina «moltiplica per la matrice $A$» | $L_A(v) = Av$ |
+| $\R$, $\C$ | «erre», «ci» | i numeri reali, i numeri complessi | $3 \in \R$, $i \in \C$ |
 | $\K$ | «cappa» | i numeri reali oppure i numeri complessi | $\K = \R$ |
+| $\R^2$, $\R^3$, $\R^n$ | «erre due», «erre tre», «erre enne» | i vettori fatti di 2, di 3, di $n$ numeri reali: il piano, lo spazio | $(1, 2) \in \R^2$ |
+| $2 \times 2$, $3 \times 3$ | «due per due», «tre per tre» | una matrice con 2 righe e 2 colonne, con 3 righe e 3 colonne | |
 | $\in$ | «appartiene a» | sta dentro l'insieme | $\lambda \in \R$ |
 | $e_1$, $e_2$ | «e uno», «e due» | i vettori «un passo lungo un asse» | $e_1 = (1, 0)$ |
 | ${}^t(x, y)$ | «$x$, $y$ trasposto» | il vettore $(x, y)$ scritto in colonna; si trova nei testi d'esame | ${}^t(1, 2)$ |
@@ -22181,7 +22143,7 @@ Per la domanda «trova l'insieme degli autovalori» di una matrice con 3 righe i
 >
 > **Passo 2: la risposta.** È $(1, 1)$, un autovettore con autovalore 3.
 >
-> **Perché l'ultima risposta è sbagliata.** La matrice della macchina ha le righe $(2, 1)$ e $(0, 3)$. È triangolare, quindi i suoi autovalori sono i numeri sulla diagonale: 2 e 3. Sono reali, e ogni autovalore ha i suoi autovettori.
+> **Perché la risposta «$T$ non ha autovettori reali» è sbagliata.** La matrice della macchina ha le righe $(2, 1)$ e $(0, 3)$. È triangolare, quindi i suoi autovalori sono i numeri sulla diagonale: 2 e 3. Sono reali, e ogni autovalore ha i suoi autovettori.
 
 ### Altre due domande vere
 
@@ -22189,7 +22151,7 @@ Per la domanda «trova l'insieme degli autovalori» di una matrice con 3 righe i
 
 La risposta che tenta è $\{1, 2, 3\}$: ha tre numeri diversi e sembra più completa. Ma 2 non è una radice. Mettendo 2 al posto di $\lambda$ viene $(3 - 2) \cdot (2 - 1)^2 = 1$, non 0.
 
-**Appello del 02/09/2025, domanda 4.** Il testo: l'endomorfismo $T(x, y, z) = (2x + 2y,\ -2x - 2y + 2z,\ 2x)$ «ha autovalore $\lambda_1 = 2$. Quali sono i suoi altri autovalori?». Ecco le cinque risposte.
+**Appello del 02/09/2025, domanda 4.** Il testo: l'endomorfismo $T(x, y, z) = (2x + 2y,\ -2x - 2y + 2z,\ 2x)$ «ha autovalore $\lambda_1 = 2$. Quali sono i suoi altri autovalori?». Il numerino in $\lambda_1$ dice solo che è il primo dei tre autovalori. Ecco le cinque risposte.
 
 | Risposta | I due autovalori proposti |
 |---|---|
@@ -22287,7 +22249,7 @@ D: Sia $T : \R^2 \to \R^2$, $T(x, y) = (x + 2y,\ 3y)$. Quale di questi vettori �
 - $(1, 2)$
 - $(2, 1)$
 - $T$ non ha autovettori reali.
-= La domanda chiede: da quale di questi vettori la macchina fa uscire un suo multiplo? Si prova una risposta alla volta, mettendo i due numeri al posto di $x$ e di $y$. Da $(1, 1)$ esce $(1 + 2 \cdot 1,\ 3 \cdot 1) = (3, 3)$, che è 3 volte $(1, 1)$: è un autovettore, con autovalore 3. Da $(0, 1)$ esce $(2, 3)$: il primo posto dovrebbe restare 0, quindi no. Da $(1, 2)$ esce $(5, 6)$: servirebbe «per 5» nel primo posto e «per 3» nel secondo, quindi no. Da $(2, 1)$ esce $(4, 3)$: servirebbe «per 2» e «per 3», quindi no. L'ultima risposta è falsa. La matrice della macchina ha le righe $(1, 2)$ e $(0, 3)$: è triangolare, e i suoi autovalori sono i numeri reali 1 e 3 sulla diagonale. Domanda simile a quella dell'appello del 03/07/2026, domanda 2.
+= La domanda chiede: da quale di questi vettori la macchina fa uscire un suo multiplo? Si prova una risposta alla volta, mettendo i due numeri al posto di $x$ e di $y$. Da $(1, 1)$ esce $(1 + 2 \cdot 1,\ 3 \cdot 1) = (3, 3)$, che è 3 volte $(1, 1)$: è un autovettore, con autovalore 3. Da $(0, 1)$ esce $(2, 3)$: il primo posto dovrebbe restare 0, quindi no. Da $(1, 2)$ esce $(5, 6)$: servirebbe «per 5» nel primo posto e «per 3» nel secondo, quindi no. Da $(2, 1)$ esce $(4, 3)$: servirebbe «per 2» e «per 3», quindi no. La risposta «$T$ non ha autovettori reali» è falsa. La matrice della macchina ha le righe $(1, 2)$ e $(0, 3)$: è triangolare, e i suoi autovalori sono i numeri reali 1 e 3 sulla diagonale. Domanda simile a quella dell'appello del 03/07/2026, domanda 2.
 
 D: L'insieme degli autovalori di $T : \R^3 \to \R^3$, $T(x, y, z) = (2x + z,\ x + 3y - z,\ z)$, è:
 + $\{1, 2, 3\}$
@@ -22311,7 +22273,7 @@ D: $T(x, y) = (2x,\ x + 3y)$ ha autovalori 2 e 3. Una base di autovettori è:
 - $\{(1, 1), (0, 1)\}$
 - $\{(1, 0), (0, 1)\}$
 - $\{(1, -1), (2, -2)\}$
-= Serve un autovettore per ogni autovalore, e i due vettori non devono stare sulla stessa retta. Si prova ogni vettore proposto nella formula della macchina. Da $(0, 1)$ esce $(0, 3)$, cioè 3 volte $(0, 1)$: è un autovettore con autovalore 3. Da $(1, -1)$ esce $(2,\ 1 - 3) = (2, -2)$, cioè 2 volte $(1, -1)$: è un autovettore con autovalore 2. I due vettori non sono uno multiplo dell'altro, quindi formano una base. Le altre risposte non vanno bene. I vettori $(2, 1)$ e $(0, 3)$ sono le colonne della matrice, e da $(2, 1)$ esce $(4, 5)$, che non è un suo multiplo. Da $(1, 1)$ esce $(2, 4)$ e da $(1, 0)$ esce $(2, 1)$: nessuno dei due è un autovettore. Nell'ultima risposta $(2, -2)$ è il doppio di $(1, -1)$: sono due autovettori sulla stessa retta, e non formano una base. Domanda simile a quella dell'appello del 03/06/2026, domanda 6.
+= Serve un autovettore per ogni autovalore, e i due vettori non devono stare sulla stessa retta. Si prova ogni vettore proposto nella formula della macchina. Da $(0, 1)$ esce $(0, 3)$, cioè 3 volte $(0, 1)$: è un autovettore con autovalore 3. Da $(1, -1)$ esce $(2,\ 1 - 3) = (2, -2)$, cioè 2 volte $(1, -1)$: è un autovettore con autovalore 2. I due vettori non sono uno multiplo dell'altro, quindi formano una base. Le altre risposte non vanno bene. I vettori $(2, 1)$ e $(0, 3)$ sono le colonne della matrice, e da $(2, 1)$ esce $(4, 5)$, che non è un suo multiplo. Da $(1, 1)$ esce $(2, 4)$ e da $(1, 0)$ esce $(2, 1)$: nessuno dei due è un autovettore. Nella risposta con $(1, -1)$ e $(2, -2)$ il secondo vettore è il doppio del primo: sono due autovettori sulla stessa retta, e non formano una base. Domanda simile a quella dell'appello del 03/06/2026, domanda 6.
 
 D: Sia $\lambda$ un autovalore dell'endomorfismo $T : \R^n \to \R^n$. Quale di queste affermazioni è **sempre falsa**?
 + $\Ker(T - \lambda\,\id) = \{0\}$
@@ -22319,7 +22281,7 @@ D: Sia $\lambda$ un autovalore dell'endomorfismo $T : \R^n \to \R^n$. Quale di q
 - $T$ è invertibile.
 - $p_T(\lambda) = 0$
 - $T - \lambda\,\id$ non è iniettiva.
-= La domanda chiede quale frase non può mai essere vera quando $\lambda$ è un autovalore. Due simboli: $\id$ è la macchina identità, che lascia ogni vettore com'è, e $\Ker$ è il nucleo, cioè l'insieme dei vettori mandati in zero. Se $\lambda$ è un autovalore, c'è un vettore non nullo $v$ con $T(v) = \lambda v$. Portando tutto a sinistra, la macchina $T - \lambda\,\id$ manda $v$ in zero. Quindi nel suo nucleo c'è un vettore non nullo: il nucleo non è mai fatto del solo vettore nullo, e la prima frase è sempre falsa. Le ultime due frasi sono sempre vere. Un autovalore è una radice del polinomio caratteristico (Proposizione 17.13). E una macchina che manda in zero un vettore non nullo non è iniettiva, cioè manda due vettori diversi nello stesso vettore (lezione L14). Le altre due frasi possono succedere: l'autovalore può essere 0, e $T$ può essere invertibile quando 0 non è tra i suoi autovalori. Domanda simile a quella dell'appello del 03/06/2025, domanda 8.
+= La domanda chiede quale frase non può mai essere vera quando $\lambda$ è un autovalore. Due simboli: $\id$ è la macchina identità, che lascia ogni vettore com'è, e $\Ker$ è il nucleo, cioè l'insieme dei vettori mandati in zero. Se $\lambda$ è un autovalore, c'è un vettore non nullo $v$ con $T(v) = \lambda v$. Portando tutto a sinistra, la macchina $T - \lambda\,\id$ manda $v$ in zero. Quindi nel suo nucleo c'è un vettore non nullo: il nucleo non è mai fatto del solo vettore nullo. La frase con $\Ker$ è sempre falsa. Due frasi sono invece sempre vere. La frase «$p_T(\lambda) = 0$» lo è perché un autovalore è una radice del polinomio caratteristico (Proposizione 17.13). La frase «non è iniettiva» lo è perché una macchina che manda in zero un vettore non nullo manda due vettori diversi nello stesso vettore (lezione L14). Le altre due frasi possono succedere: l'autovalore può essere 0, e $T$ può essere invertibile quando 0 non è tra i suoi autovalori. Domanda simile a quella dell'appello del 03/06/2025, domanda 8.
 
 D: Il polinomio caratteristico di $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ è:
 + $\lambda^2 - 5\lambda - 2$
@@ -22347,7 +22309,7 @@ D: Quale di queste matrici reali **non** ha autovalori reali?
 - $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 0 \\ 0 & -3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$
-= Una matrice non ha autovalori reali quando il suo polinomio caratteristico non ha radici reali. Per una matrice con 2 righe il polinomio è $\lambda^2$, meno la traccia per $\lambda$, più il determinante. La prima matrice ha traccia 0 e determinante $0 \cdot 0 - (-1) \cdot 1 = 1$. Il suo polinomio è $\lambda^2 + 1$, che non è mai zero per un numero reale, perché un quadrato non è negativo. È la rotazione di un quarto di giro. La seconda ha traccia 0 e determinante $-1$: il polinomio $\lambda^2 - 1$ ha le radici 1 e $-1$. La terza e la quarta sono triangolari, con gli autovalori sulla diagonale: 1 per la terza, 2 e $-3$ per la quarta. La quinta ha traccia 2 e determinante $1 - 4 = -3$: il polinomio $\lambda^2 - 2\lambda - 3$ ha discriminante $4 + 12 = 16$ e radici 3 e $-1$.
+= Una matrice non ha autovalori reali quando il suo polinomio caratteristico non ha radici reali. Per una matrice con 2 righe il polinomio è $\lambda^2$, meno la traccia per $\lambda$, più il determinante. La matrice con le righe $(0, -1)$ e $(1, 0)$ ha traccia 0 e determinante $0 \cdot 0 - (-1) \cdot 1 = 1$. Il suo polinomio è $\lambda^2 + 1$, che non è mai zero per un numero reale, perché un quadrato non è negativo. È la rotazione di un quarto di giro. La matrice con le righe $(0, 1)$ e $(1, 0)$ ha traccia 0 e determinante $-1$: il polinomio $\lambda^2 - 1$ ha le radici 1 e $-1$. Le due matrici con uno 0 sotto la diagonale sono triangolari, e i loro autovalori si leggono sulla diagonale: 1 per una, 2 e $-3$ per l'altra. La matrice con le righe $(1, 2)$ e $(2, 1)$ ha traccia 2 e determinante $1 - 4 = -3$: il polinomio $\lambda^2 - 2\lambda - 3$ ha discriminante $4 + 12 = 16$ e radici 3 e $-1$.
 
 D: Le matrici $A$ e $B$ sono simili e $p_A(\lambda) = \lambda^2 - 3\lambda + 2$. Quale affermazione è vera?
 + $B$ ha autovalori $1$ e $2$.
@@ -22355,7 +22317,7 @@ D: Le matrici $A$ e $B$ sono simili e $p_A(\lambda) = \lambda^2 - 3\lambda + 2$.
 - $A$ e $B$ hanno gli stessi autovettori.
 - $\det B = 3$.
 - $\tr B = 2$.
-= Matrici simili hanno lo stesso polinomio caratteristico, quindi anche quello di $B$ è $\lambda^2 - 3\lambda + 2$. Il discriminante è $9 - 8 = 1$, e le radici sono $\frac{3 + 1}{2} = 2$ e $\frac{3 - 1}{2} = 1$: gli autovalori di $B$ sono 1 e 2. Dalla formula veloce si leggono anche la traccia, che è 3, e il determinante, che è 2. Le ultime due risposte hanno questi due numeri scambiati. Simili non vuol dire uguali. E gli autovettori di solito cambiano. Nell'Esempio 16.10 il vettore $(0, 1)$ è un autovettore della matrice con le righe $(1, 0)$ e $(0, -1)$. Non lo è della matrice simile con le righe $(1, 1)$ e $(0, -1)$: da lì esce $(1, -1)$.
+= Matrici simili hanno lo stesso polinomio caratteristico, quindi anche quello di $B$ è $\lambda^2 - 3\lambda + 2$. Il discriminante è $9 - 8 = 1$, e le radici sono $\frac{3 + 1}{2} = 2$ e $\frac{3 - 1}{2} = 1$: gli autovalori di $B$ sono 1 e 2. Dalla formula veloce si leggono anche la traccia, che è 3, e il determinante, che è 2. Le due risposte con $\det B$ e con $\tr B$ hanno questi due numeri scambiati. Simili non vuol dire uguali. E gli autovettori di solito cambiano. Nell'Esempio 16.10 il vettore $(0, 1)$ è un autovettore della matrice con le righe $(1, 0)$ e $(0, -1)$. Non lo è della matrice simile con le righe $(1, 1)$ e $(0, -1)$: da lì esce $(1, -1)$.
 ```
 
 ## Esercizi
@@ -22445,7 +22407,7 @@ Trova autovalori e autovettori di $A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatr
 2. **Autovalori.** Il discriminante è $49 - 40 = 9$, con radice quadrata 3. Le radici sono $\frac{7 + 3}{2} = 5$ e $\frac{7 - 3}{2} = 2$. Controllo: la somma è 7 come la traccia, il prodotto è 10 come il determinante.
 3. **Autovettori dell'autovalore 2.** Tolgo 2 sulla diagonale:
    $$A - 2I = \begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix}$$
-   Le due righe sono uguali. Resta l'equazione $2x + y = 0$, cioè $y = -2x$. Scelgo $x = 1$: l'autovettore è $(1, -2)$.
+   Chiamo $(x, y)$ il vettore che cerco: ogni riga, moltiplicata per il vettore, deve dare 0. Le due righe sono uguali. Resta l'equazione $2x + y = 0$, cioè $y = -2x$. Scelgo $x = 1$: l'autovettore è $(1, -2)$.
 4. **Autovettori dell'autovalore 5.** Tolgo 5 sulla diagonale:
    $$A - 5I = \begin{pmatrix} -1 & 1 \\ 2 & -2 \end{pmatrix}$$
    La seconda riga è la prima moltiplicata per $-2$. Resta l'equazione $-x + y = 0$, cioè $y = x$. Scelgo $x = 1$: l'autovettore è $(1, 1)$.
@@ -22503,8 +22465,8 @@ Calcola il polinomio caratteristico di $A = \begin{pmatrix} 1 & 1 & -1 \\ 2 & 1 
 1. Tolgo $\lambda$ sulla diagonale:
    $$A - \lambda I = \begin{pmatrix} 1 - \lambda & 1 & -1 \\ 2 & 1 - \lambda & 1 \\ 3 & 0 & 2 - \lambda \end{pmatrix}$$
 2. La seconda colonna, $(1,\ 1 - \lambda,\ 0)$, ha uno zero: sviluppo lungo quella. I segni dei suoi tre posti, dalla scacchiera, sono meno, più, meno.
-3. Primo pezzo: il numero 1, con il segno meno. Cancello la prima riga e la seconda colonna. Restano le righe $(2,\ 1)$ e $(3,\ 2 - \lambda)$. Il determinante è $2 \cdot (2 - \lambda) - 1 \cdot 3 = 1 - 2\lambda$. Con il segno meno il pezzo vale $-1 + 2\lambda$.
-4. Secondo pezzo: il numero $1 - \lambda$, con il segno più. Cancello la seconda riga e la seconda colonna. Restano le righe $(1 - \lambda,\ -1)$ e $(3,\ 2 - \lambda)$. Il determinante è $(1 - \lambda)(2 - \lambda) + 3$. Il prodotto fa $2 - 3\lambda + \lambda^2$, quindi il determinante è $\lambda^2 - 3\lambda + 5$.
+3. Primo pezzo: il numero 1, con il segno meno. Cancello la prima riga e la seconda colonna. Restano le righe $(2,\ 1)$ e $(3,\ 2 - \lambda)$. Il determinante è $2 \cdot (2 - \lambda) - 1 \cdot 3 = 4 - 2\lambda - 3$, cioè $1 - 2\lambda$. Con il segno meno il pezzo vale $-1 + 2\lambda$.
+4. Secondo pezzo: il numero $1 - \lambda$, con il segno più. Cancello la seconda riga e la seconda colonna. Restano le righe $(1 - \lambda,\ -1)$ e $(3,\ 2 - \lambda)$. Il determinante è $(1 - \lambda)(2 - \lambda) - (-1) \cdot 3$, cioè $(1 - \lambda)(2 - \lambda) + 3$. Il prodotto fa $2 - 3\lambda + \lambda^2$, quindi il determinante è $\lambda^2 - 3\lambda + 5$.
 5. Moltiplico il secondo pezzo per $1 - \lambda$:
    $$(1 - \lambda)(\lambda^2 - 3\lambda + 5) = \lambda^2 - 3\lambda + 5 - \lambda^3 + 3\lambda^2 - 5\lambda = -\lambda^3 + 4\lambda^2 - 8\lambda + 5$$
 6. Sommo i due pezzi:
@@ -22532,7 +22494,7 @@ Controllo: la somma dei tre è $2 + 1 + 1 = 4$, perché i pezzi con la $i$ si ca
 
 10. Con i numeri reali l'unico autovalore è 2. Cerco i suoi autovettori. Tolgo 2 sulla diagonale:
     $$A - 2I = \begin{pmatrix} -1 & 1 & -1 \\ 2 & -1 & 1 \\ 3 & 0 & 0 \end{pmatrix}$$
-11. La terza riga dice $3x = 0$, cioè $x = 0$. Con $x = 0$ la prima riga diventa $y - z = 0$, cioè $y = z$. La seconda diventa $-y + z = 0$: dice la stessa cosa.
+11. Chiamo $(x, y, z)$ il vettore che cerco. La terza riga dice $3x = 0$, cioè $x = 0$. Con $x = 0$ la prima riga diventa $y - z = 0$, cioè $y = z$. La seconda diventa $-y + z = 0$: dice la stessa cosa.
 12. Gli autovettori sono i multipli di $(0, 1, 1)$: una sola retta.
 
 Per una base dello spazio servono tre autovettori indipendenti. Qui tutti gli autovettori reali stanno su una retta. Quindi la matrice **non** è diagonalizzabile con i numeri reali.
@@ -22574,7 +22536,7 @@ Nel testo, $\R^2$ indica i vettori fatti da due numeri reali, e $\C^2$ quelli fa
 4. **Autovalori.** $\lambda^2 + 1 = 0$ vuol dire $\lambda^2 = -1$. I numeri complessi con quadrato $-1$ sono $i$ e $-i$.
 5. **Autovettori dell'autovalore $i$.** Tolgo $i$ sulla diagonale:
    $$A - iI = \begin{pmatrix} -i & -1 \\ 1 & -i \end{pmatrix}$$
-   La seconda riga dice $x - iy = 0$, cioè $x = iy$. Scelgo $y = 1$: l'autovettore è $(i, 1)$. La prima riga è rispettata: $-i \cdot i - 1 = 1 - 1 = 0$.
+   Chiamo $(x, y)$ il vettore che cerco. La seconda riga dice $x - iy = 0$, cioè $x = iy$. Scelgo $y = 1$: l'autovettore è $(i, 1)$. La prima riga è rispettata: $-i \cdot i - 1 = 1 - 1 = 0$.
 6. **Autovettori dell'autovalore $-i$.** Togliere $-i$ vuol dire sommare $i$ sulla diagonale:
    $$A + iI = \begin{pmatrix} i & -1 \\ 1 & i \end{pmatrix}$$
    La seconda riga dice $x + iy = 0$, cioè $x = -iy$. Scelgo $y = 1$: l'autovettore è $(-i, 1)$. La prima riga è rispettata: $i \cdot (-i) - 1 = 1 - 1 = 0$.
@@ -22645,7 +22607,7 @@ Per completezza, ecco gli autovettori della trasposta.
 
 3. Autovalore 3. Tolgo 3 sulla diagonale:
    $${}^tA - 3I = \begin{pmatrix} 0 & 0 \\ 4 & -1 \end{pmatrix}$$
-   Resta l'equazione $4x - y = 0$, cioè $y = 4x$. Con $x = 1$ l'autovettore è $(1, 4)$.
+   Chiamo $(x, y)$ il vettore che cerco. Resta l'equazione $4x - y = 0$, cioè $y = 4x$. Con $x = 1$ l'autovettore è $(1, 4)$.
 4. Autovalore 2. Tolgo 2 sulla diagonale:
    $${}^tA - 2I = \begin{pmatrix} 1 & 0 \\ 4 & 0 \end{pmatrix}$$
    Le due righe dicono $x = 0$. La $y$ è libera. Con $y = 1$ l'autovettore è $(0, 1)$.
@@ -22676,7 +22638,7 @@ Sia $T : \R^3 \to \R^3$, $T(x, y, z) = (x + 2y,\ 2x + y,\ x + y + 2z)$.
 6. Controllo con la traccia: $1 + 1 + 2 = 4$, e $3 - 1 + 2 = 4$.
 7. **Autovalore 3.** Tolgo 3 sulla diagonale:
    $$A - 3I = \begin{pmatrix} -2 & 2 & 0 \\ 2 & -2 & 0 \\ 1 & 1 & -1 \end{pmatrix}$$
-   La prima riga dice $-2x + 2y = 0$, cioè $y = x$. La seconda dice la stessa cosa. La terza dice $x + y - z = 0$, cioè $z = x + y = 2x$. Con $x = 1$ l'autovettore è $(1, 1, 2)$.
+   Chiamo $(x, y, z)$ il vettore che cerco. La prima riga dice $-2x + 2y = 0$, cioè $y = x$. La seconda dice la stessa cosa. La terza dice $x + y - z = 0$, cioè $z = x + y = 2x$. Con $x = 1$ l'autovettore è $(1, 1, 2)$.
 8. **Autovalore $-1$.** Sommo 1 sulla diagonale:
    $$A + I = \begin{pmatrix} 2 & 2 & 0 \\ 2 & 2 & 0 \\ 1 & 1 & 3 \end{pmatrix}$$
    Le prime due righe dicono $2x + 2y = 0$, cioè $y = -x$. Nella terza, $x + y + 3z = 0$, la somma $x + y$ vale 0: resta $3z = 0$, cioè $z = 0$. Con $x = 1$ l'autovettore è $(1, -1, 0)$.

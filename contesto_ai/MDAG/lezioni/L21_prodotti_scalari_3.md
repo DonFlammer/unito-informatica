@@ -4,7 +4,7 @@ modulo: AG
 lezione: L21
 titolo: Prodotti scalari III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L21
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L21
 descrizione: >-
   Appunti della lezione L21 di Algebra lineare e Geometria (MDAG, parte 2): vettori ortogonali, complemento ortogonale,
   proiezione ortogonale su una retta e su un sottospazio, basi ortogonali e ortonormali, algoritmo di Gram–Schmidt,

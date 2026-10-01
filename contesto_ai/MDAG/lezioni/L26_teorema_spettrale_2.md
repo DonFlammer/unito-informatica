@@ -4,7 +4,7 @@ modulo: AG
 lezione: L26
 titolo: Teorema spettrale II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L26
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L26
 descrizione: >-
   Appunti della lezione L26 di Algebra lineare e Geometria (MDAG, parte 2): il teorema spettrale per gli endomorfismi
   autoaggiunti, la sua dimostrazione, la versione con le matrici simmetriche e ortogonali, il collegamento con la PCA e

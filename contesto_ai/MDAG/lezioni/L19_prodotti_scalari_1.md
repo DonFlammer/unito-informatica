@@ -4,7 +4,7 @@ modulo: AG
 lezione: L19
 titolo: Prodotti scalari I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L19
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L19
 descrizione: >-
   Appunti della lezione L19 di Algebra lineare e Geometria (MDAG, parte 2): che cos'è un prodotto scalare, prodotti
   degeneri e definiti positivi, il prodotto scalare euclideo, le matrici simmetriche e la matrice associata a un

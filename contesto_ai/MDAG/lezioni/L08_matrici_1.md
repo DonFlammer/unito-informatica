@@ -4,7 +4,7 @@ modulo: AG
 lezione: L08
 titolo: Matrici I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L08
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L08
 descrizione: >-
   Appunti della lezione L08 di Algebra lineare e Geometria (MDAG, parte 2): trasposta di una matrice, matrici
   simmetriche, rango per righe e per colonne, prodotto riga per colonna e sue proprietà, traccia, con quiz nello

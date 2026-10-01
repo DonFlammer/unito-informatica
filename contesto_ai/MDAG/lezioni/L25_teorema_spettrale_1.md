@@ -4,7 +4,7 @@ modulo: AG
 lezione: L25
 titolo: Teorema spettrale I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L25
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L25
 descrizione: >-
   Appunti della lezione L25 di Algebra lineare e Geometria (MDAG, parte 2): prodotti hermitiani sugli spazi complessi,
   matrici hermitiane, matrice associata, endomorfismi autoaggiunti e sottospazi invarianti, con quiz nello stile

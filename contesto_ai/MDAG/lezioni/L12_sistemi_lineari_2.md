@@ -4,7 +4,7 @@ modulo: AG
 lezione: L12
 titolo: Sistemi lineari II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L12
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L12
 descrizione: >-
   Appunti della lezione L12 di Algebra lineare e Geometria (MDAG, parte 2): sistema omogeneo associato, soluzione
   particolare, sottospazi affini, rango e pivot, teorema di Rouché–Capelli, sistemi quadrati e sistemi con un

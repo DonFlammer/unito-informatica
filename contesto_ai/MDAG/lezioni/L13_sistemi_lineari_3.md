@@ -4,7 +4,7 @@ modulo: AG
 lezione: L13
 titolo: Sistemi lineari III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L13
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L13
 descrizione: >-
   Appunti della lezione L13 di Algebra lineare e Geometria (MDAG, parte 2): indipendenza lineare, generatori, basi e
   coordinate rispetto a una base studiati con i sistemi lineari, il rango e il determinante, più un codice che

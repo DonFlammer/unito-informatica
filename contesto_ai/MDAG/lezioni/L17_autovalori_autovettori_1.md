@@ -4,7 +4,7 @@ modulo: AG
 lezione: L17
 titolo: Autovalori e autovettori I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L17
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L17
 descrizione: >-
   Appunti della lezione L17 di Algebra lineare e Geometria (MDAG, parte 2): autovettori e autovalori di un
   endomorfismo, endomorfismi e matrici diagonalizzabili, potenze di matrici e polinomio caratteristico, con quiz nello

@@ -29,6 +29,8 @@ SITO_EN = "https://donflammer.github.io/unito-computer-science/"
 SIGLA_EN = {"INGLESE": "ENGLISH"}
 INIZIO = "<!-- MATERIE:INIZIO"
 FINE = "<!-- MATERIE:FINE -->"
+# materie divise in parti (MDAG): la sigla del modulo diventa «Parte 1», «Parte 2» negli elenchi delle lezioni
+PARTI = {"MD": "Parte 1", "AG": "Parte 2"}
 
 MATERIE = [
     {
@@ -57,16 +59,17 @@ MATERIE = [
     {
         "sigla": "MDAG", "nome": "Matematica Discreta, Algebra e Geometria", "insegnamento": "INF0328", "cfu": 12,
         "semestre": 1,
-        "esame": "Due prove scritte separate, Matematica Discreta e Geometria; il voto è la media.",
-        "appelli": "Matematica Discreta 19/01 e 03/02, Geometria 22/01 e 05/02/2027",
-        "moduli": [("MD", "Matematica Discreta"), ("AG", "Algebra lineare e Geometria")],
+        "esame": "Due prove scritte separate, parte 1 (Matematica Discreta) e parte 2 (Algebra lineare e Geometria); il voto è la media.",
+        "appelli": "Parte 1 (Matematica Discreta) 19/01 e 03/02, parte 2 (Geometria) 22/01 e 05/02/2027",
+        "moduli": [("MD", "Parte 1 · Matematica Discreta"), ("AG", "Parte 2 · Algebra lineare e Geometria")],
         "moodle": [("Parte 1 · Matematica Discreta, canali A, B e C", 3829),
                    ("Parte 2 · Algebra lineare e Geometria, canali A, B e C", 3831)],
-        "nota": ("Gli appunti di Algebra lineare e Geometria coprono già tutte le 26 lezioni delle dispense 2026, comuni "
-                 "ai tre canali: sono pronti in anticipo, quindi in aula il ritmo può essere diverso. Gli appunti di "
-                 "Matematica Discreta non ci sono ancora."),
+        "nota": ("Il corso ha due parti, con lezioni, pagine Moodle e prove scritte separate: la parte 1 è Matematica "
+                 "Discreta, la parte 2 è Algebra lineare e Geometria. Gli appunti della parte 2 coprono già tutte le "
+                 "26 lezioni delle dispense 2026, comuni ai tre canali: sono pronti in anticipo, quindi in aula il "
+                 "ritmo può essere diverso. Gli appunti della parte 1 non ci sono ancora."),
         "link": [("Scheda del corso ed esame", "MDAG/corso.md"),
-                 ("Indice delle lezioni di Algebra lineare e Geometria", "MDAG/indice_lezioni.md")],
+                 ("Indice delle lezioni della parte 2, Algebra lineare e Geometria", "MDAG/indice_lezioni.md")],
     },
     {
         "sigla": "ANMAT", "nome": "Analisi Matematica", "insegnamento": "MFN0570", "cfu": 9, "semestre": 2,
@@ -227,7 +230,7 @@ def elenco_lezioni(lez):
     # le lezioni scritte in anticipo (per esempio dalle dispense complete) non hanno ancora una data
     righe = "\n".join(
         f'      <li><span class="nodo" aria-hidden="true">{e(l["codice"])}</span><a href="{e(l["file"])}">'
-        f'<span class="tit">{e(l["titolo"])}</span><span class="tenue">{e((l["modulo"] + " · ") if l["modulo"] else "")}Lezione {e(l["codice"])}</span>'
+        f'<span class="tit">{e(l["titolo"])}</span><span class="tenue">{e((PARTI.get(l["modulo"], l["modulo"]) + " · ") if l["modulo"] else "")}Lezione {e(l["codice"])}</span>'
         + (f'<time datetime="{e(l["data"])}">{e(data_it(l["data"]))}</time>' if l["data"] else "") + '</a></li>'
         for l in lez)
     return f'<ol class="lezioni">\n{righe}\n    </ol>'
@@ -373,7 +376,7 @@ def blocco_index(tutte):
     if ultime:
         righe = "\n".join(
             f'        <li style="--c:var(--c-{l["sigla"].lower()})"><time datetime="{e(l["data"])}">{e(data_it(l["data"]))}</time>'
-            f'<a href="appunti/{l["sigla"]}/{e(l["file"])}">{e((l["modulo"] + " ") if l["modulo"] else "")}{e(l["codice"])} · {e(l["titolo"])}</a>'
+            f'<a href="appunti/{l["sigla"]}/{e(l["file"])}">{e((PARTI.get(l["modulo"], l["modulo"]) + " · ") if l["modulo"] else "")}{e(l["codice"])} · {e(l["titolo"])}</a>'
             f'<span class="di">{e(nomi[l["sigla"]])}</span></li>'
             for l in ultime)
         recenti = f'<ol class="flusso">\n{righe}\n      </ol>'

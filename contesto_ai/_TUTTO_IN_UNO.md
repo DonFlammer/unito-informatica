@@ -2711,7 +2711,7 @@ lezione: L01
 titolo: Numeri reali
 data: 2026-09-30
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L01
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L01
 descrizione: >-
   Appunti della lezione L01 di Algebra lineare e Geometria (MDAG, parte 2): insiemi numerici, costruzione dei numeri
   reali, irrazionalità di √2, campi, ordine, notazioni e conti con le radici, con quiz nello stile dell'esame ed
@@ -4237,7 +4237,7 @@ modulo: AG
 lezione: L02
 titolo: Numeri complessi I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L02
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L02
 descrizione: >-
   Appunti della lezione L02 di Algebra lineare e Geometria (MDAG, parte 2): i numeri complessi, somma e prodotto,
   parte reale e parte immaginaria, coniugato, modulo, inverso e divisione, il piano complesso e la regola del
@@ -6305,7 +6305,7 @@ modulo: AG
 lezione: L03
 titolo: Numeri complessi II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L03
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L03
 descrizione: >-
   Appunti della lezione L03 di Algebra lineare e Geometria (MDAG, parte 2): coordinate polari, forma esponenziale,
   modulo e argomento di un numero complesso, prodotto e inverso in forma polare, identità di Eulero, potenze e
@@ -7237,7 +7237,7 @@ modulo: AG
 lezione: L04
 titolo: Polinomi
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L04
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L04
 descrizione: >-
   Appunti della lezione L04 di Algebra lineare e Geometria (MDAG, parte 2): polinomi e grado, divisione con resto
   e regola di Ruffini, radici e molteplicità, quante radici può avere un polinomio, teorema fondamentale
@@ -8037,7 +8037,7 @@ modulo: AG
 lezione: L05
 titolo: Spazi vettoriali I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L05
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L05
 descrizione: >-
   Appunti della lezione L05 di Algebra lineare e Geometria (MDAG, parte 2): lo spazio euclideo, somma di vettori e
   prodotto per scalare, gruppi, campi, definizione di spazio vettoriale ed esempi (polinomi, funzioni, successioni),
@@ -10051,7 +10051,7 @@ modulo: AG
 lezione: L06
 titolo: Spazi vettoriali II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L06
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L06
 descrizione: >-
   Appunti della lezione L06 di Algebra lineare e Geometria (MDAG, parte 2): lo spazio delle matrici, i sottospazi
   vettoriali, le matrici diagonali, triangolari, simmetriche e antisimmetriche, le combinazioni lineari e il
@@ -10875,7 +10875,7 @@ modulo: AG
 lezione: L07
 titolo: Spazi vettoriali III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L07
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L07
 descrizione: >-
   Appunti della lezione L07 di Algebra lineare e Geometria (MDAG, parte 2): dipendenza e indipendenza lineare,
   basi, base canonica di K^n e dei polinomi, dimensione di uno spazio vettoriale e teorema sulle basi, con quiz
@@ -11635,7 +11635,7 @@ modulo: AG
 lezione: L08
 titolo: Matrici I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L08
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L08
 descrizione: >-
   Appunti della lezione L08 di Algebra lineare e Geometria (MDAG, parte 2): trasposta di una matrice, matrici
   simmetriche, rango per righe e per colonne, prodotto riga per colonna e sue proprietà, traccia, con quiz nello
@@ -13825,7 +13825,7 @@ modulo: AG
 lezione: L09
 titolo: Matrici II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L09
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L09
 descrizione: >-
   Appunti della lezione L09 di Algebra lineare e Geometria (MDAG, parte 2): il determinante di una matrice quadrata
   definito con le permutazioni, le formule per le matrici 2×2 e 3×3, matrici triangolari e matrice identità, lo
@@ -14582,7 +14582,7 @@ modulo: AG
 lezione: L10
 titolo: Matrici III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L10
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L10
 descrizione: >-
   Appunti della lezione L10 di Algebra lineare e Geometria (MDAG, parte 2): come cambia il determinante con le mosse
   di Gauss, determinante nullo e righe dipendenti, teorema di Binet, cofattori, matrice inversa e criterio di
@@ -15362,7 +15362,7 @@ modulo: AG
 lezione: L11
 titolo: Sistemi lineari I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L11
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L11
 descrizione: >-
   Appunti della lezione L11 di Algebra lineare e Geometria (MDAG, parte 2): sistemi lineari e matrice completa,
   mosse di Gauss, pivot e matrici a scalini, algoritmi di Gauss e di Gauss–Jordan, come si scrivono tutte le
@@ -17171,7 +17171,7 @@ modulo: AG
 lezione: L12
 titolo: Sistemi lineari II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L12
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L12
 descrizione: >-
   Appunti della lezione L12 di Algebra lineare e Geometria (MDAG, parte 2): sistema omogeneo associato, soluzione
   particolare, sottospazi affini, rango e pivot, teorema di Rouché–Capelli, sistemi quadrati e sistemi con un
@@ -17902,7 +17902,7 @@ modulo: AG
 lezione: L13
 titolo: Sistemi lineari III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L13
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L13
 descrizione: >-
   Appunti della lezione L13 di Algebra lineare e Geometria (MDAG, parte 2): indipendenza lineare, generatori, basi e
   coordinate rispetto a una base studiati con i sistemi lineari, il rango e il determinante, più un codice che
@@ -18597,7 +18597,7 @@ modulo: AG
 lezione: L14
 titolo: Applicazioni lineari I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L14
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L14
 descrizione: >-
   Appunti della lezione L14 di Algebra lineare e Geometria (MDAG, parte 2): applicazioni lineari, esempi e non
   esempi, l'applicazione associata a una matrice, nucleo e immagine, iniettività e suriettività, teorema della
@@ -19358,7 +19358,7 @@ modulo: AG
 lezione: L15
 titolo: Applicazioni lineari II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L15
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L15
 descrizione: >-
   Appunti della lezione L15 di Algebra lineare e Geometria (MDAG, parte 2): isomorfismi, spazi vettoriali isomorfi,
   coordinate e matrice associata a un'applicazione lineare rispetto a due basi, con quiz nello stile dell'esame ed
@@ -20144,7 +20144,7 @@ modulo: AG
 lezione: L16
 titolo: Applicazioni lineari III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L16
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L16
 descrizione: >-
   Appunti della lezione L16 di Algebra lineare e Geometria (MDAG, parte 2): matrice di cambiamento di base,
   composizione di applicazioni lineari e prodotto di matrici, endomorfismi e matrici simili, con quiz nello stile
@@ -20871,7 +20871,7 @@ modulo: AG
 lezione: L17
 titolo: Autovalori e autovettori I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L17
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L17
 descrizione: >-
   Appunti della lezione L17 di Algebra lineare e Geometria (MDAG, parte 2): autovettori e autovalori di un
   endomorfismo, endomorfismi e matrici diagonalizzabili, potenze di matrici e polinomio caratteristico, con quiz nello
@@ -22810,7 +22810,7 @@ modulo: AG
 lezione: L18
 titolo: Autovalori e autovettori II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L18
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L18
 descrizione: >-
   Appunti della lezione L18 di Algebra lineare e Geometria (MDAG, parte 2): indipendenza di autovettori con autovalori
   distinti, autospazi e somma diretta, molteplicità algebrica e geometrica, teorema di diagonalizzabilità e matrici con
@@ -23514,7 +23514,7 @@ modulo: AG
 lezione: L19
 titolo: Prodotti scalari I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L19
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L19
 descrizione: >-
   Appunti della lezione L19 di Algebra lineare e Geometria (MDAG, parte 2): che cos'è un prodotto scalare, prodotti
   degeneri e definiti positivi, il prodotto scalare euclideo, le matrici simmetriche e la matrice associata a un
@@ -25556,7 +25556,7 @@ modulo: AG
 lezione: L20
 titolo: Prodotti scalari II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L20
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L20
 descrizione: >-
   Appunti della lezione L20 di Algebra lineare e Geometria (MDAG, parte 2): come cambia la matrice di un prodotto
   scalare cambiando base, forme quadratiche, norma, disuguaglianza di Cauchy–Schwarz e triangolare, distanze e angoli
@@ -26320,7 +26320,7 @@ modulo: AG
 lezione: L21
 titolo: Prodotti scalari III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L21
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L21
 descrizione: >-
   Appunti della lezione L21 di Algebra lineare e Geometria (MDAG, parte 2): vettori ortogonali, complemento ortogonale,
   proiezione ortogonale su una retta e su un sottospazio, basi ortogonali e ortonormali, algoritmo di Gram–Schmidt,
@@ -27181,7 +27181,7 @@ modulo: AG
 lezione: L22
 titolo: Lo spazio euclideo I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L22
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L22
 descrizione: >-
   Appunti della lezione L22 di Algebra lineare e Geometria (MDAG, parte 2): rotazioni e riflessioni del piano,
   isometrie tra spazi con prodotto scalare, matrici ortogonali, classificazione delle isometrie del piano e dello
@@ -29277,7 +29277,7 @@ modulo: AG
 lezione: L23
 titolo: Lo spazio euclideo II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L23
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L23
 descrizione: >-
   Appunti della lezione L23 di Algebra lineare e Geometria (MDAG, parte 2): proprietà del prodotto vettoriale e area
   del parallelogramma, forma cartesiana e parametrica di rette e piani, sottospazi affini e giacitura, intersezioni,
@@ -30233,7 +30233,7 @@ modulo: AG
 lezione: L24
 titolo: Lo spazio euclideo III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L24
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L24
 descrizione: >-
   Appunti della lezione L24 di Algebra lineare e Geometria (MDAG, parte 2): angoli fra rette, fra retta e piano e fra
   piani, distanze fra punti, fra punto e retta, fra rette sghembe e fra punto e piano, con quiz nello stile dell'esame
@@ -31043,7 +31043,7 @@ modulo: AG
 lezione: L25
 titolo: Teorema spettrale I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L25
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L25
 descrizione: >-
   Appunti della lezione L25 di Algebra lineare e Geometria (MDAG, parte 2): prodotti hermitiani sugli spazi complessi,
   matrici hermitiane, matrice associata, endomorfismi autoaggiunti e sottospazi invarianti, con quiz nello stile
@@ -31770,7 +31770,7 @@ modulo: AG
 lezione: L26
 titolo: Teorema spettrale II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L26
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L26
 descrizione: >-
   Appunti della lezione L26 di Algebra lineare e Geometria (MDAG, parte 2): il teorema spettrale per gli endomorfismi
   autoaggiunti, la sua dimostrazione, la versione con le matrici simmetriche e ortogonali, il collegamento con la PCA e

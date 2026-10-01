@@ -4,7 +4,7 @@ modulo: AG
 lezione: L02
 titolo: Numeri complessi I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Algebra lineare e Geometria · Canali A, B e C · Lezione L02
+sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L02
 descrizione: >-
   Appunti della lezione L02 di Algebra lineare e Geometria (MDAG, parte 2): i numeri complessi, somma e prodotto,
   parte reale e parte immaginaria, coniugato, modulo, inverso e divisione, il piano complesso e la regola del

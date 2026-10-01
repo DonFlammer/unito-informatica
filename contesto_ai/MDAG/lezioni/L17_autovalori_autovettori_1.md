@@ -81,6 +81,8 @@ Questa lezione usa molte cose delle lezioni precedenti. Ognuna viene ricordata n
 
 Una matrice quadrata è una macchina: entra un vettore, ne esce un altro dello stesso tipo. In questa sezione guardiamo che cosa succede alla **direzione** dei vettori quando passano nella macchina.
 
+In tutta la lezione le macchine sono **lineari**: rispettano le somme e i multipli (lezione L14). Per esempio, se in entrata metti il doppio di un vettore, in uscita trovi il doppio. Le macchine fatte con una matrice sono sempre lineari.
+
 Prima due avvisi su come sono scritti i vettori.
 
 - Nelle dispense i vettori sono scritti in colonna, con i numeri uno sotto l'altro. In queste pagine, dentro le frasi, li scriviamo in riga per risparmiare spazio: $(1, 2)$ è il vettore con 1 sopra e 2 sotto.
@@ -169,11 +171,11 @@ Con la matrice di prima e il vettore $(1, 0)$ la riga dice: esce 3 volte $(1, 0)
 
 Le dispense usano altri tre simboli.
 
-- $T : V \to V$ è la macchina. Si chiama $T$, prende i vettori da uno spazio $V$ e li restituisce nello stesso spazio. La freccia si legge «da $V$ a $V$». La scrittura $T(v)$ si legge «$T$ di $v$»: è il vettore che esce quando entra $v$.
+- $T : V \to V$ è la macchina. Si chiama $T$, prende i vettori da uno **spazio vettoriale** $V$ e li restituisce nello stesso spazio. Uno spazio vettoriale è un insieme di vettori in cui si può sommare e moltiplicare per un numero senza uscire (lezione L05): per esempio il piano. La freccia si legge «da $V$ a $V$». La scrittura $T(v)$ si legge «$T$ di $v$»: è il vettore che esce quando entra $v$.
 - $L_A$ è la macchina «moltiplica per la matrice $A$» (lezione L14). Quindi $L_A(v)$ e $Av$ sono la stessa cosa.
 - $\K$ è un modo breve per dire «i numeri reali oppure i numeri complessi». In questa lezione i numeri sono quasi sempre reali.
 
-Ecco l'esempio delle dispense. La matrice e i vettori sono quelli della tabella di prima, dove trovi tutti i conti.
+Ecco l'esempio delle dispense. La matrice e i vettori sono quelli della tabella di prima, dove trovi tutti i conti. Nel titolo, $2 \times 2$ si legge «due per due»: vuol dire una matrice con 2 righe e 2 colonne.
 
 > [!ESEMPIO] 17.2 · Due autovettori di una matrice $2 \times 2$
 > Prendiamo la macchina $L_A$ che lavora sui vettori del piano, con
@@ -581,9 +583,13 @@ Le dispense riassumono così. Un endomorfismo è diagonalizzabile se e solo se e
 
 ### La stessa idea per le matrici
 
-Finora abbiamo parlato di macchine. Per le matrici c'è una definizione che dice la stessa cosa con un prodotto. Servono tre richiami.
+Finora abbiamo parlato di macchine. Per le matrici c'è una definizione che dice la stessa cosa con un prodotto. Servono quattro richiami.
 
-> [!RIPASSO] identità, inversa, matrici simili
+> [!RIPASSO] determinante, identità, inversa, matrici simili
+> **Determinante** (lezione L09). È un numero che si calcola da una matrice quadrata. Se è zero, la matrice schiaccia tutto lo spazio su qualcosa di più piccolo. Con 2 righe la regola è «diagonale meno l'altra diagonale»: il prodotto dei due numeri sulla diagonale principale, meno il prodotto degli altri due.
+> $$\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = a \cdot d - b \cdot c$$
+> Per la matrice con le righe $(1, 2)$ e $(3, 4)$ il conto è 1 per 4, meno 2 per 3. Viene $-2$.
+>
 > **Matrice identità.** È la matrice con 1 sulla diagonale e 0 altrove. Si scrive $I$, oppure $I_n$ se ha $n$ righe. Moltiplicare per l'identità non cambia niente, come moltiplicare un numero per 1.
 >
 > **Matrice inversa** (lezione L10). L'inversa di $M$ si scrive $M^{-1}$ e si legge «$M$ alla meno uno». È la matrice che disfa quello che fa $M$: il prodotto $M^{-1}M$ dà l'identità. Esiste solo se il determinante di $M$ non è zero. Una matrice che ha l'inversa si chiama **invertibile**.
@@ -787,7 +793,7 @@ $$\begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}^k =
 
 E se la matrice non è diagonale, ma è diagonalizzabile? Allora le potenze si calcolano passando per la matrice diagonale $D$. Il trucco sta in due passaggi.
 
-**Primo passaggio: scrivere $A$ con $M$ e $D$.** Sappiamo che $D = M^{-1}AM$. Moltiplichiamo i due lati a sinistra per $M$ e a destra per $M^{-1}$. A destra dell'uguale compaiono due coppie fatte da $M$ e dalla sua inversa: danno l'identità e spariscono. Resta
+**Primo passaggio: scrivere $A$ con $M$ e $D$.** Sappiamo che $D = M^{-1}AM$. Moltiplichiamo i due lati a sinistra per $M$ e a destra per $M^{-1}$. Dal lato di $D$ viene $MDM^{-1}$. Dall'altro lato compaiono due coppie fatte da $M$ e dalla sua inversa: danno l'identità e spariscono, e resta solo $A$. Quindi
 
 $$A = MDM^{-1}$$
 
@@ -893,10 +899,7 @@ $$A - \lambda I = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix} - \begin{pmatrix}
 
 ### Il primo esempio
 
-> [!RIPASSO] il determinante di una matrice con 2 righe
-> Il determinante si calcola con la regola «diagonale meno l'altra diagonale» (lezione L09): il prodotto dei due numeri sulla diagonale principale, meno il prodotto degli altri due.
-> $$\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = a \cdot d - b \cdot c$$
-> Esempio: per la matrice con le righe $(1, 2)$ e $(3, 4)$ il conto è 1 per 4, meno 2 per 3. Viene $-2$.
+Serve il determinante di una matrice con 2 righe: è la regola «diagonale meno l'altra diagonale», ricordata nella sezione sulla diagonalizzazione.
 
 Applichiamo le tre mosse alla matrice dell'Esempio 17.2. Dovremmo ritrovare gli autovalori 3 e 2.
 
@@ -1048,7 +1051,7 @@ Un avviso che evita molti errori: questo sistema ha **sempre infinite soluzioni*
 >
 > **Passo 3: gli autovettori dell'autovalore 1.** Tolgo 1 sulla diagonale.
 > $$A - I = \begin{pmatrix} -2 & 2 \\ -4 & 4 \end{pmatrix}$$
-> Chiamo $(x, y)$ il vettore che cerco. Il sistema ha un'equazione per ogni riga: $-2x + 2y = 0$ e $-4x + 4y = 0$. La seconda è il doppio della prima, quindi non dice niente di nuovo. Dalla prima: $2y = 2x$, cioè $y = x$. Gli autovettori sono i vettori con i due numeri uguali. Scelgo $(1, 1)$.
+> Chiamo $(x, y)$ il vettore che cerco. Il sistema ha un'equazione per ogni riga: la riga, moltiplicata per il vettore, deve dare 0. Dalla prima riga viene $-2x + 2y = 0$, dalla seconda $-4x + 4y = 0$. La seconda è il doppio della prima, quindi non dice niente di nuovo. Dalla prima: $2y = 2x$, cioè $y = x$. Gli autovettori sono i vettori con i due numeri uguali. Scelgo $(1, 1)$.
 >
 > **Passo 3, di nuovo: gli autovettori dell'autovalore 3.** Tolgo 3 sulla diagonale.
 > $$A - 3I = \begin{pmatrix} -4 & 2 \\ -4 & 2 \end{pmatrix}$$
@@ -1179,13 +1182,17 @@ La matrice è triangolare: sotto la diagonale c'è 0. Gli autovalori sono i nume
 |---|---|---|---|
 | $Av$ | «$A$ per $v$» | il vettore che esce dalla matrice $A$ quando entra il vettore $v$ | $\begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 3 \\ 0 \end{pmatrix}$ |
 | $\lambda$ | «lambda» | una lettera greca che indica un numero; qui di solito l'autovalore | $\lambda = 3$ |
+| $\lambda_1$, $\lambda_2$ | «lambda uno», «lambda due» | il primo autovalore, il secondo autovalore | $\lambda_1 = 2$ |
 | $\mu$ | «mi» | un'altra lettera greca che indica un numero | $\mu = 3$ nel multiplo $3v$ |
 | $Av = \lambda v$ | «$A$ per $v$ è uguale a lambda per $v$» | dalla macchina esce un multiplo del vettore entrato: $v$ è un autovettore | $A(1, 0) = 3 \cdot (1, 0)$ |
 | $v \neq 0$ | «$v$ diverso da zero» | $v$ non è il vettore nullo | $(1, 0) \neq 0$ |
 | $T : V \to V$ | «$T$ da $V$ a $V$» | una macchina che prende i vettori dello spazio $V$ e li restituisce in $V$: un endomorfismo | $T(x, y) = (x, 0)$ |
 | $T(v)$ | «$T$ di $v$» | il vettore che esce dalla macchina $T$ quando entra $v$ | $T(3, 2) = (3, 0)$ |
 | $L_A$ | «elle con $A$» | la macchina «moltiplica per la matrice $A$» | $L_A(v) = Av$ |
+| $\R$, $\C$ | «erre», «ci» | i numeri reali, i numeri complessi | $3 \in \R$, $i \in \C$ |
 | $\K$ | «cappa» | i numeri reali oppure i numeri complessi | $\K = \R$ |
+| $\R^2$, $\R^3$, $\R^n$ | «erre due», «erre tre», «erre enne» | i vettori fatti di 2, di 3, di $n$ numeri reali: il piano, lo spazio | $(1, 2) \in \R^2$ |
+| $2 \times 2$, $3 \times 3$ | «due per due», «tre per tre» | una matrice con 2 righe e 2 colonne, con 3 righe e 3 colonne | |
 | $\in$ | «appartiene a» | sta dentro l'insieme | $\lambda \in \R$ |
 | $e_1$, $e_2$ | «e uno», «e due» | i vettori «un passo lungo un asse» | $e_1 = (1, 0)$ |
 | ${}^t(x, y)$ | «$x$, $y$ trasposto» | il vettore $(x, y)$ scritto in colonna; si trova nei testi d'esame | ${}^t(1, 2)$ |
@@ -1269,7 +1276,7 @@ Per la domanda «trova l'insieme degli autovalori» di una matrice con 3 righe i
 >
 > **Passo 2: la risposta.** È $(1, 1)$, un autovettore con autovalore 3.
 >
-> **Perché l'ultima risposta è sbagliata.** La matrice della macchina ha le righe $(2, 1)$ e $(0, 3)$. È triangolare, quindi i suoi autovalori sono i numeri sulla diagonale: 2 e 3. Sono reali, e ogni autovalore ha i suoi autovettori.
+> **Perché la risposta «$T$ non ha autovettori reali» è sbagliata.** La matrice della macchina ha le righe $(2, 1)$ e $(0, 3)$. È triangolare, quindi i suoi autovalori sono i numeri sulla diagonale: 2 e 3. Sono reali, e ogni autovalore ha i suoi autovettori.
 
 ### Altre due domande vere
 
@@ -1277,7 +1284,7 @@ Per la domanda «trova l'insieme degli autovalori» di una matrice con 3 righe i
 
 La risposta che tenta è $\{1, 2, 3\}$: ha tre numeri diversi e sembra più completa. Ma 2 non è una radice. Mettendo 2 al posto di $\lambda$ viene $(3 - 2) \cdot (2 - 1)^2 = 1$, non 0.
 
-**Appello del 02/09/2025, domanda 4.** Il testo: l'endomorfismo $T(x, y, z) = (2x + 2y,\ -2x - 2y + 2z,\ 2x)$ «ha autovalore $\lambda_1 = 2$. Quali sono i suoi altri autovalori?». Ecco le cinque risposte.
+**Appello del 02/09/2025, domanda 4.** Il testo: l'endomorfismo $T(x, y, z) = (2x + 2y,\ -2x - 2y + 2z,\ 2x)$ «ha autovalore $\lambda_1 = 2$. Quali sono i suoi altri autovalori?». Il numerino in $\lambda_1$ dice solo che è il primo dei tre autovalori. Ecco le cinque risposte.
 
 | Risposta | I due autovalori proposti |
 |---|---|
@@ -1375,7 +1382,7 @@ D: Sia $T : \R^2 \to \R^2$, $T(x, y) = (x + 2y,\ 3y)$. Quale di questi vettori �
 - $(1, 2)$
 - $(2, 1)$
 - $T$ non ha autovettori reali.
-= La domanda chiede: da quale di questi vettori la macchina fa uscire un suo multiplo? Si prova una risposta alla volta, mettendo i due numeri al posto di $x$ e di $y$. Da $(1, 1)$ esce $(1 + 2 \cdot 1,\ 3 \cdot 1) = (3, 3)$, che è 3 volte $(1, 1)$: è un autovettore, con autovalore 3. Da $(0, 1)$ esce $(2, 3)$: il primo posto dovrebbe restare 0, quindi no. Da $(1, 2)$ esce $(5, 6)$: servirebbe «per 5» nel primo posto e «per 3» nel secondo, quindi no. Da $(2, 1)$ esce $(4, 3)$: servirebbe «per 2» e «per 3», quindi no. L'ultima risposta è falsa. La matrice della macchina ha le righe $(1, 2)$ e $(0, 3)$: è triangolare, e i suoi autovalori sono i numeri reali 1 e 3 sulla diagonale. Domanda simile a quella dell'appello del 03/07/2026, domanda 2.
+= La domanda chiede: da quale di questi vettori la macchina fa uscire un suo multiplo? Si prova una risposta alla volta, mettendo i due numeri al posto di $x$ e di $y$. Da $(1, 1)$ esce $(1 + 2 \cdot 1,\ 3 \cdot 1) = (3, 3)$, che è 3 volte $(1, 1)$: è un autovettore, con autovalore 3. Da $(0, 1)$ esce $(2, 3)$: il primo posto dovrebbe restare 0, quindi no. Da $(1, 2)$ esce $(5, 6)$: servirebbe «per 5» nel primo posto e «per 3» nel secondo, quindi no. Da $(2, 1)$ esce $(4, 3)$: servirebbe «per 2» e «per 3», quindi no. La risposta «$T$ non ha autovettori reali» è falsa. La matrice della macchina ha le righe $(1, 2)$ e $(0, 3)$: è triangolare, e i suoi autovalori sono i numeri reali 1 e 3 sulla diagonale. Domanda simile a quella dell'appello del 03/07/2026, domanda 2.
 
 D: L'insieme degli autovalori di $T : \R^3 \to \R^3$, $T(x, y, z) = (2x + z,\ x + 3y - z,\ z)$, è:
 + $\{1, 2, 3\}$
@@ -1399,7 +1406,7 @@ D: $T(x, y) = (2x,\ x + 3y)$ ha autovalori 2 e 3. Una base di autovettori è:
 - $\{(1, 1), (0, 1)\}$
 - $\{(1, 0), (0, 1)\}$
 - $\{(1, -1), (2, -2)\}$
-= Serve un autovettore per ogni autovalore, e i due vettori non devono stare sulla stessa retta. Si prova ogni vettore proposto nella formula della macchina. Da $(0, 1)$ esce $(0, 3)$, cioè 3 volte $(0, 1)$: è un autovettore con autovalore 3. Da $(1, -1)$ esce $(2,\ 1 - 3) = (2, -2)$, cioè 2 volte $(1, -1)$: è un autovettore con autovalore 2. I due vettori non sono uno multiplo dell'altro, quindi formano una base. Le altre risposte non vanno bene. I vettori $(2, 1)$ e $(0, 3)$ sono le colonne della matrice, e da $(2, 1)$ esce $(4, 5)$, che non è un suo multiplo. Da $(1, 1)$ esce $(2, 4)$ e da $(1, 0)$ esce $(2, 1)$: nessuno dei due è un autovettore. Nell'ultima risposta $(2, -2)$ è il doppio di $(1, -1)$: sono due autovettori sulla stessa retta, e non formano una base. Domanda simile a quella dell'appello del 03/06/2026, domanda 6.
+= Serve un autovettore per ogni autovalore, e i due vettori non devono stare sulla stessa retta. Si prova ogni vettore proposto nella formula della macchina. Da $(0, 1)$ esce $(0, 3)$, cioè 3 volte $(0, 1)$: è un autovettore con autovalore 3. Da $(1, -1)$ esce $(2,\ 1 - 3) = (2, -2)$, cioè 2 volte $(1, -1)$: è un autovettore con autovalore 2. I due vettori non sono uno multiplo dell'altro, quindi formano una base. Le altre risposte non vanno bene. I vettori $(2, 1)$ e $(0, 3)$ sono le colonne della matrice, e da $(2, 1)$ esce $(4, 5)$, che non è un suo multiplo. Da $(1, 1)$ esce $(2, 4)$ e da $(1, 0)$ esce $(2, 1)$: nessuno dei due è un autovettore. Nella risposta con $(1, -1)$ e $(2, -2)$ il secondo vettore è il doppio del primo: sono due autovettori sulla stessa retta, e non formano una base. Domanda simile a quella dell'appello del 03/06/2026, domanda 6.
 
 D: Sia $\lambda$ un autovalore dell'endomorfismo $T : \R^n \to \R^n$. Quale di queste affermazioni è **sempre falsa**?
 + $\Ker(T - \lambda\,\id) = \{0\}$
@@ -1407,7 +1414,7 @@ D: Sia $\lambda$ un autovalore dell'endomorfismo $T : \R^n \to \R^n$. Quale di q
 - $T$ è invertibile.
 - $p_T(\lambda) = 0$
 - $T - \lambda\,\id$ non è iniettiva.
-= La domanda chiede quale frase non può mai essere vera quando $\lambda$ è un autovalore. Due simboli: $\id$ è la macchina identità, che lascia ogni vettore com'è, e $\Ker$ è il nucleo, cioè l'insieme dei vettori mandati in zero. Se $\lambda$ è un autovalore, c'è un vettore non nullo $v$ con $T(v) = \lambda v$. Portando tutto a sinistra, la macchina $T - \lambda\,\id$ manda $v$ in zero. Quindi nel suo nucleo c'è un vettore non nullo: il nucleo non è mai fatto del solo vettore nullo, e la prima frase è sempre falsa. Le ultime due frasi sono sempre vere. Un autovalore è una radice del polinomio caratteristico (Proposizione 17.13). E una macchina che manda in zero un vettore non nullo non è iniettiva, cioè manda due vettori diversi nello stesso vettore (lezione L14). Le altre due frasi possono succedere: l'autovalore può essere 0, e $T$ può essere invertibile quando 0 non è tra i suoi autovalori. Domanda simile a quella dell'appello del 03/06/2025, domanda 8.
+= La domanda chiede quale frase non può mai essere vera quando $\lambda$ è un autovalore. Due simboli: $\id$ è la macchina identità, che lascia ogni vettore com'è, e $\Ker$ è il nucleo, cioè l'insieme dei vettori mandati in zero. Se $\lambda$ è un autovalore, c'è un vettore non nullo $v$ con $T(v) = \lambda v$. Portando tutto a sinistra, la macchina $T - \lambda\,\id$ manda $v$ in zero. Quindi nel suo nucleo c'è un vettore non nullo: il nucleo non è mai fatto del solo vettore nullo. La frase con $\Ker$ è sempre falsa. Due frasi sono invece sempre vere. La frase «$p_T(\lambda) = 0$» lo è perché un autovalore è una radice del polinomio caratteristico (Proposizione 17.13). La frase «non è iniettiva» lo è perché una macchina che manda in zero un vettore non nullo manda due vettori diversi nello stesso vettore (lezione L14). Le altre due frasi possono succedere: l'autovalore può essere 0, e $T$ può essere invertibile quando 0 non è tra i suoi autovalori. Domanda simile a quella dell'appello del 03/06/2025, domanda 8.
 
 D: Il polinomio caratteristico di $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ è:
 + $\lambda^2 - 5\lambda - 2$
@@ -1435,7 +1442,7 @@ D: Quale di queste matrici reali **non** ha autovalori reali?
 - $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 0 \\ 0 & -3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$
-= Una matrice non ha autovalori reali quando il suo polinomio caratteristico non ha radici reali. Per una matrice con 2 righe il polinomio è $\lambda^2$, meno la traccia per $\lambda$, più il determinante. La prima matrice ha traccia 0 e determinante $0 \cdot 0 - (-1) \cdot 1 = 1$. Il suo polinomio è $\lambda^2 + 1$, che non è mai zero per un numero reale, perché un quadrato non è negativo. È la rotazione di un quarto di giro. La seconda ha traccia 0 e determinante $-1$: il polinomio $\lambda^2 - 1$ ha le radici 1 e $-1$. La terza e la quarta sono triangolari, con gli autovalori sulla diagonale: 1 per la terza, 2 e $-3$ per la quarta. La quinta ha traccia 2 e determinante $1 - 4 = -3$: il polinomio $\lambda^2 - 2\lambda - 3$ ha discriminante $4 + 12 = 16$ e radici 3 e $-1$.
+= Una matrice non ha autovalori reali quando il suo polinomio caratteristico non ha radici reali. Per una matrice con 2 righe il polinomio è $\lambda^2$, meno la traccia per $\lambda$, più il determinante. La matrice con le righe $(0, -1)$ e $(1, 0)$ ha traccia 0 e determinante $0 \cdot 0 - (-1) \cdot 1 = 1$. Il suo polinomio è $\lambda^2 + 1$, che non è mai zero per un numero reale, perché un quadrato non è negativo. È la rotazione di un quarto di giro. La matrice con le righe $(0, 1)$ e $(1, 0)$ ha traccia 0 e determinante $-1$: il polinomio $\lambda^2 - 1$ ha le radici 1 e $-1$. Le due matrici con uno 0 sotto la diagonale sono triangolari, e i loro autovalori si leggono sulla diagonale: 1 per una, 2 e $-3$ per l'altra. La matrice con le righe $(1, 2)$ e $(2, 1)$ ha traccia 2 e determinante $1 - 4 = -3$: il polinomio $\lambda^2 - 2\lambda - 3$ ha discriminante $4 + 12 = 16$ e radici 3 e $-1$.
 
 D: Le matrici $A$ e $B$ sono simili e $p_A(\lambda) = \lambda^2 - 3\lambda + 2$. Quale affermazione è vera?
 + $B$ ha autovalori $1$ e $2$.
@@ -1443,7 +1450,7 @@ D: Le matrici $A$ e $B$ sono simili e $p_A(\lambda) = \lambda^2 - 3\lambda + 2$.
 - $A$ e $B$ hanno gli stessi autovettori.
 - $\det B = 3$.
 - $\tr B = 2$.
-= Matrici simili hanno lo stesso polinomio caratteristico, quindi anche quello di $B$ è $\lambda^2 - 3\lambda + 2$. Il discriminante è $9 - 8 = 1$, e le radici sono $\frac{3 + 1}{2} = 2$ e $\frac{3 - 1}{2} = 1$: gli autovalori di $B$ sono 1 e 2. Dalla formula veloce si leggono anche la traccia, che è 3, e il determinante, che è 2. Le ultime due risposte hanno questi due numeri scambiati. Simili non vuol dire uguali. E gli autovettori di solito cambiano. Nell'Esempio 16.10 il vettore $(0, 1)$ è un autovettore della matrice con le righe $(1, 0)$ e $(0, -1)$. Non lo è della matrice simile con le righe $(1, 1)$ e $(0, -1)$: da lì esce $(1, -1)$.
+= Matrici simili hanno lo stesso polinomio caratteristico, quindi anche quello di $B$ è $\lambda^2 - 3\lambda + 2$. Il discriminante è $9 - 8 = 1$, e le radici sono $\frac{3 + 1}{2} = 2$ e $\frac{3 - 1}{2} = 1$: gli autovalori di $B$ sono 1 e 2. Dalla formula veloce si leggono anche la traccia, che è 3, e il determinante, che è 2. Le due risposte con $\det B$ e con $\tr B$ hanno questi due numeri scambiati. Simili non vuol dire uguali. E gli autovettori di solito cambiano. Nell'Esempio 16.10 il vettore $(0, 1)$ è un autovettore della matrice con le righe $(1, 0)$ e $(0, -1)$. Non lo è della matrice simile con le righe $(1, 1)$ e $(0, -1)$: da lì esce $(1, -1)$.
 ```
 
 ## Esercizi
@@ -1533,7 +1540,7 @@ Trova autovalori e autovettori di $A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatr
 2. **Autovalori.** Il discriminante è $49 - 40 = 9$, con radice quadrata 3. Le radici sono $\frac{7 + 3}{2} = 5$ e $\frac{7 - 3}{2} = 2$. Controllo: la somma è 7 come la traccia, il prodotto è 10 come il determinante.
 3. **Autovettori dell'autovalore 2.** Tolgo 2 sulla diagonale:
    $$A - 2I = \begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix}$$
-   Le due righe sono uguali. Resta l'equazione $2x + y = 0$, cioè $y = -2x$. Scelgo $x = 1$: l'autovettore è $(1, -2)$.
+   Chiamo $(x, y)$ il vettore che cerco: ogni riga, moltiplicata per il vettore, deve dare 0. Le due righe sono uguali. Resta l'equazione $2x + y = 0$, cioè $y = -2x$. Scelgo $x = 1$: l'autovettore è $(1, -2)$.
 4. **Autovettori dell'autovalore 5.** Tolgo 5 sulla diagonale:
    $$A - 5I = \begin{pmatrix} -1 & 1 \\ 2 & -2 \end{pmatrix}$$
    La seconda riga è la prima moltiplicata per $-2$. Resta l'equazione $-x + y = 0$, cioè $y = x$. Scelgo $x = 1$: l'autovettore è $(1, 1)$.
@@ -1591,8 +1598,8 @@ Calcola il polinomio caratteristico di $A = \begin{pmatrix} 1 & 1 & -1 \\ 2 & 1 
 1. Tolgo $\lambda$ sulla diagonale:
    $$A - \lambda I = \begin{pmatrix} 1 - \lambda & 1 & -1 \\ 2 & 1 - \lambda & 1 \\ 3 & 0 & 2 - \lambda \end{pmatrix}$$
 2. La seconda colonna, $(1,\ 1 - \lambda,\ 0)$, ha uno zero: sviluppo lungo quella. I segni dei suoi tre posti, dalla scacchiera, sono meno, più, meno.
-3. Primo pezzo: il numero 1, con il segno meno. Cancello la prima riga e la seconda colonna. Restano le righe $(2,\ 1)$ e $(3,\ 2 - \lambda)$. Il determinante è $2 \cdot (2 - \lambda) - 1 \cdot 3 = 1 - 2\lambda$. Con il segno meno il pezzo vale $-1 + 2\lambda$.
-4. Secondo pezzo: il numero $1 - \lambda$, con il segno più. Cancello la seconda riga e la seconda colonna. Restano le righe $(1 - \lambda,\ -1)$ e $(3,\ 2 - \lambda)$. Il determinante è $(1 - \lambda)(2 - \lambda) + 3$. Il prodotto fa $2 - 3\lambda + \lambda^2$, quindi il determinante è $\lambda^2 - 3\lambda + 5$.
+3. Primo pezzo: il numero 1, con il segno meno. Cancello la prima riga e la seconda colonna. Restano le righe $(2,\ 1)$ e $(3,\ 2 - \lambda)$. Il determinante è $2 \cdot (2 - \lambda) - 1 \cdot 3 = 4 - 2\lambda - 3$, cioè $1 - 2\lambda$. Con il segno meno il pezzo vale $-1 + 2\lambda$.
+4. Secondo pezzo: il numero $1 - \lambda$, con il segno più. Cancello la seconda riga e la seconda colonna. Restano le righe $(1 - \lambda,\ -1)$ e $(3,\ 2 - \lambda)$. Il determinante è $(1 - \lambda)(2 - \lambda) - (-1) \cdot 3$, cioè $(1 - \lambda)(2 - \lambda) + 3$. Il prodotto fa $2 - 3\lambda + \lambda^2$, quindi il determinante è $\lambda^2 - 3\lambda + 5$.
 5. Moltiplico il secondo pezzo per $1 - \lambda$:
    $$(1 - \lambda)(\lambda^2 - 3\lambda + 5) = \lambda^2 - 3\lambda + 5 - \lambda^3 + 3\lambda^2 - 5\lambda = -\lambda^3 + 4\lambda^2 - 8\lambda + 5$$
 6. Sommo i due pezzi:
@@ -1620,7 +1627,7 @@ Controllo: la somma dei tre è $2 + 1 + 1 = 4$, perché i pezzi con la $i$ si ca
 
 10. Con i numeri reali l'unico autovalore è 2. Cerco i suoi autovettori. Tolgo 2 sulla diagonale:
     $$A - 2I = \begin{pmatrix} -1 & 1 & -1 \\ 2 & -1 & 1 \\ 3 & 0 & 0 \end{pmatrix}$$
-11. La terza riga dice $3x = 0$, cioè $x = 0$. Con $x = 0$ la prima riga diventa $y - z = 0$, cioè $y = z$. La seconda diventa $-y + z = 0$: dice la stessa cosa.
+11. Chiamo $(x, y, z)$ il vettore che cerco. La terza riga dice $3x = 0$, cioè $x = 0$. Con $x = 0$ la prima riga diventa $y - z = 0$, cioè $y = z$. La seconda diventa $-y + z = 0$: dice la stessa cosa.
 12. Gli autovettori sono i multipli di $(0, 1, 1)$: una sola retta.
 
 Per una base dello spazio servono tre autovettori indipendenti. Qui tutti gli autovettori reali stanno su una retta. Quindi la matrice **non** è diagonalizzabile con i numeri reali.
@@ -1662,7 +1669,7 @@ Nel testo, $\R^2$ indica i vettori fatti da due numeri reali, e $\C^2$ quelli fa
 4. **Autovalori.** $\lambda^2 + 1 = 0$ vuol dire $\lambda^2 = -1$. I numeri complessi con quadrato $-1$ sono $i$ e $-i$.
 5. **Autovettori dell'autovalore $i$.** Tolgo $i$ sulla diagonale:
    $$A - iI = \begin{pmatrix} -i & -1 \\ 1 & -i \end{pmatrix}$$
-   La seconda riga dice $x - iy = 0$, cioè $x = iy$. Scelgo $y = 1$: l'autovettore è $(i, 1)$. La prima riga è rispettata: $-i \cdot i - 1 = 1 - 1 = 0$.
+   Chiamo $(x, y)$ il vettore che cerco. La seconda riga dice $x - iy = 0$, cioè $x = iy$. Scelgo $y = 1$: l'autovettore è $(i, 1)$. La prima riga è rispettata: $-i \cdot i - 1 = 1 - 1 = 0$.
 6. **Autovettori dell'autovalore $-i$.** Togliere $-i$ vuol dire sommare $i$ sulla diagonale:
    $$A + iI = \begin{pmatrix} i & -1 \\ 1 & i \end{pmatrix}$$
    La seconda riga dice $x + iy = 0$, cioè $x = -iy$. Scelgo $y = 1$: l'autovettore è $(-i, 1)$. La prima riga è rispettata: $i \cdot (-i) - 1 = 1 - 1 = 0$.
@@ -1733,7 +1740,7 @@ Per completezza, ecco gli autovettori della trasposta.
 
 3. Autovalore 3. Tolgo 3 sulla diagonale:
    $${}^tA - 3I = \begin{pmatrix} 0 & 0 \\ 4 & -1 \end{pmatrix}$$
-   Resta l'equazione $4x - y = 0$, cioè $y = 4x$. Con $x = 1$ l'autovettore è $(1, 4)$.
+   Chiamo $(x, y)$ il vettore che cerco. Resta l'equazione $4x - y = 0$, cioè $y = 4x$. Con $x = 1$ l'autovettore è $(1, 4)$.
 4. Autovalore 2. Tolgo 2 sulla diagonale:
    $${}^tA - 2I = \begin{pmatrix} 1 & 0 \\ 4 & 0 \end{pmatrix}$$
    Le due righe dicono $x = 0$. La $y$ è libera. Con $y = 1$ l'autovettore è $(0, 1)$.
@@ -1764,7 +1771,7 @@ Sia $T : \R^3 \to \R^3$, $T(x, y, z) = (x + 2y,\ 2x + y,\ x + y + 2z)$.
 6. Controllo con la traccia: $1 + 1 + 2 = 4$, e $3 - 1 + 2 = 4$.
 7. **Autovalore 3.** Tolgo 3 sulla diagonale:
    $$A - 3I = \begin{pmatrix} -2 & 2 & 0 \\ 2 & -2 & 0 \\ 1 & 1 & -1 \end{pmatrix}$$
-   La prima riga dice $-2x + 2y = 0$, cioè $y = x$. La seconda dice la stessa cosa. La terza dice $x + y - z = 0$, cioè $z = x + y = 2x$. Con $x = 1$ l'autovettore è $(1, 1, 2)$.
+   Chiamo $(x, y, z)$ il vettore che cerco. La prima riga dice $-2x + 2y = 0$, cioè $y = x$. La seconda dice la stessa cosa. La terza dice $x + y - z = 0$, cioè $z = x + y = 2x$. Con $x = 1$ l'autovettore è $(1, 1, 2)$.
 8. **Autovalore $-1$.** Sommo 1 sulla diagonale:
    $$A + I = \begin{pmatrix} 2 & 2 & 0 \\ 2 & 2 & 0 \\ 1 & 1 & 3 \end{pmatrix}$$
    Le prime due righe dicono $2x + 2y = 0$, cioè $y = -x$. Nella terza, $x + y + 3z = 0$, la somma $x + y$ vale 0: resta $3z = 0$, cioè $z = 0$. Con $x = 1$ l'autovettore è $(1, -1, 0)$.

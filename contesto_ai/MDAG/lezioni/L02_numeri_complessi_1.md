@@ -32,7 +32,7 @@ genera_html: true
 - Un **numero complesso** è fatto di due numeri reali, come $3 + 2i$. Si disegna come un punto su un foglio a quadretti: qui 3 passi a destra (la **parte reale**) e 2 passi in su (la **parte immaginaria**).
 - I conti si fanno come con una lettera qualsiasi. In più, ogni volta che compare $i \cdot i$, al suo posto si scrive $-1$.
 - Il **coniugato** è il punto visto allo specchio rispetto alla riga orizzontale: cambia solo il segno davanti alla $i$. Il **modulo** è la distanza del punto dal centro del foglio.
-- Per dividere si moltiplicano il numero sopra e il numero sotto per il coniugato di quello sotto: così sotto resta un numero reale.
+- Per dividere si scrive la divisione come frazione. Poi si moltiplicano il numero sopra e il numero sotto per il coniugato di quello sotto: così sotto resta un numero reale.
 - I numeri complessi formano un **campo**, cioè valgono le nove regole dei conti della lezione L01. Però non si possono mettere in ordine dal più piccolo al più grande.
 - All'esame: in tre appelli la prima domanda del quiz chiedeva di trovare un numero complesso sconosciuto da un'uguaglianza come $(1 + i)z = 3 + 2i$. Si risolve con una divisione.
 
@@ -133,7 +133,7 @@ A parole: una famiglia più grande, che contiene tutti i numeri reali, e in cui 
 
 ### A che cosa servono
 
-Il guadagno è grande. Tra i numeri complessi ha una soluzione **ogni** equazione costruita con le potenze di $x$, come quella di partenza. Questo risultato si chiama teorema fondamentale dell'algebra, e lo trovi nella lezione L04.
+Il guadagno è grande. Tra i numeri complessi ha una soluzione **ogni** equazione come quella di partenza, anche quando la $x$ è moltiplicata per sé stessa più di due volte. Questo risultato si chiama teorema fondamentale dell'algebra, e lo trovi nella lezione L04.
 
 È il motivo per cui il corso usa i numeri complessi. Torneranno quando cercherai gli **autovalori** di una matrice, nelle lezioni L17 e L18. Un autovalore è la soluzione di un'equazione, e a volte tra i numeri reali quella soluzione non c'è.
 
@@ -220,7 +220,7 @@ Guarda la figura: il punto colorato è $3 + 2i$. Il tratto orizzontale segna i 3
 
 Sull'asse orizzontale c'è scritto «Re» e su quello verticale «Im». Sono le prime lettere di «reale» e di «immaginaria»: tra poco vedrai perché.
 
-Questa immagine ti accompagna per tutta la lezione. La sezione «Il piano complesso» la riprende con calma.
+Questa immagine ti accompagna per tutta la lezione.
 
 ### Come lo scrivono le dispense
 
@@ -247,7 +247,7 @@ Le dispense danno cinque esempi. Per ognuno cerchiamo i due pezzi.
 | $2 + i$ | $2$ | $1$ | la $i$ da sola vuol dire «1 per $i$» |
 | $23i$ | $0$ | $23$ | manca il pezzo da solo: è come scrivere $0 + 23i$ |
 | $4 - i$ | $4$ | $-1$ | $-i$ vuol dire «$-1$ per $i$» |
-| $-1 + \pi i$ | $-1$ | $\pi$ | $b$ può essere un numero reale qualsiasi, anche $\pi = 3{,}14\ldots$ |
+| $-1 + \pi i$ | $-1$ | $\pi$ | $b$ può essere un numero reale qualsiasi, anche pi greco, cioè $\pi = 3{,}14\ldots$ |
 
 Il segno meno fa parte del numero $b$. In $4 - i$ il pezzo che moltiplica la $i$ è $-1$, non 1.
 
@@ -297,10 +297,6 @@ Nelle dispense questa regola non è scritta a parte: è contenuta nel modo in cu
 
 ::: prova In quale punto del foglio sta il numero $-2 + 3i$?
 La parte reale è $-2$: fai 2 passi a **sinistra**. La parte immaginaria è $3$: fai 3 passi in su. È il punto di coordinate $(-2, 3)$.
-:::
-
-::: prova I numeri $x$ e $y$ sono reali, e $x + yi = 5 - i$. Quanto valgono?
-Le parti reali devono essere uguali: $x = 5$. Le parti immaginarie devono essere uguali: $y = -1$.
 :::
 
 > [!RICORDA]
@@ -395,7 +391,7 @@ I passi sono sempre questi tre.
 >
 > Non serve una formula a memoria: bastano questi tre passi.
 
-Altri sei prodotti, tutti con lo stesso metodo. Una scrittura come $(1 + i)^2$ vuol dire $(1 + i) \cdot (1 + i)$: il numero per sé stesso.
+Altri sei prodotti, tutti con lo stesso metodo. Due avvisi sulla scrittura. Un numero o una parentesi attaccati a un'altra parentesi vogliono dire «per»: il puntino si può non scrivere. E una scrittura come $(1 + i)^2$ vuol dire $(1 + i) \cdot (1 + i)$: il numero per sé stesso.
 
 | Prodotto | I prodotti pezzo per pezzo | Con $-1$ al posto di $i^2$ | Risultato |
 |---|---|---|--:|
@@ -444,21 +440,11 @@ Che cosa ha in più $\C$ rispetto a $\R$? Per esempio la $i$: è un numero compl
 I conti tra numeri reali, invece, restano quelli di sempre. Con il metodo nuovo, 2 per 3 fa ancora 6: i pezzi con la $i$ valgono zero e spariscono. In una parola: $\C$ **estende** $\R$. Aggiunge numeri nuovi senza toccare quelli vecchi.
 
 > [!APPROFONDIMENTO] da dove vengono davvero i numeri complessi
-> Nella storia i numeri complessi sono nati dalle equazioni di **terzo grado**, quelle in cui compare $x^3$, cioè $x \cdot x \cdot x$.
+> Nella storia i numeri complessi sono nati dalle equazioni in cui compare $x^3$, cioè $x \cdot x \cdot x$. Nel Cinquecento Gerolamo Cardano pubblicò una formula per risolvere equazioni come $x^3 = 15x + 4$. Questa equazione ha la soluzione reale $x = 4$: infatti $4 \cdot 4 \cdot 4 = 64$, e anche $15 \cdot 4 + 4 = 64$.
 >
-> Nel Cinquecento Gerolamo Cardano pubblicò una formula per risolvere equazioni come $x^3 = 15x + 4$. Questa equazione ha una soluzione reale: $x = 4$. Controllo: $4^3 = 64$, e anche $15 \cdot 4 + 4 = 64$.
->
-> La formula di Cardano, però, per arrivare a quel 4 chiede di calcolare $\sqrt{-121}$: la radice quadrata di un numero negativo, che tra i numeri reali non esiste.
->
-> Rafael Bombelli ebbe l'idea di andare avanti lo stesso. Trattò $\sqrt{-121}$ come un numero qualsiasi, quello che oggi scriviamo $11i$. Con questa scrittura la formula diventa
-> $$x = \sqrt[3]{2 + 11i} + \sqrt[3]{2 - 11i}.$$
-> Il simbolo $\sqrt[3]{\ }$ è la radice cubica: il numero che, elevato alla terza, dà quello scritto sotto. Nell'esercizio 4 controlli che $(2 + i)^3 = 2 + 11i$ e che $(2 - i)^3 = 2 - 11i$. Quindi le due radici cubiche sono $2 + i$ e $2 - i$, e la loro somma è proprio 4.
+> La formula di Cardano, però, per arrivare a quel 4 chiede di calcolare la radice quadrata di $-121$, che tra i numeri reali non esiste. Rafael Bombelli ebbe l'idea di andare avanti lo stesso, trattandola come un numero qualsiasi: quello che oggi scriviamo $11i$. In fondo ai conti trovò che la soluzione è la somma di $2 + i$ e di $2 - i$, cioè proprio 4. Nell'esercizio 4 rifai il passaggio centrale del suo conto.
 >
 > I numeri «immaginari» servivano a trovare un numero reale.
-
-::: prova Quanto fa $(2 + 3i) + (4 - i)$?
-Parti reali: $2 + 4 = 6$. Parti immaginarie: $3 + (-1) = 2$. Risultato: $6 + 2i$.
-:::
 
 ::: prova Quanto fa $i \cdot (3 + i)$?
 I prodotti sono due: $i \cdot 3 = 3i$ e $i \cdot i = i^2 = -1$. Risultato: $-1 + 3i$.
@@ -559,8 +545,6 @@ La prima potenza serve nell'esercizio 6.
 
 Un aiuto per i numeri grandi: per trovare il resto della divisione per 4 bastano **le ultime due cifre**. Il motivo è che 100 è un multiplo di 4, quindi le centinaia non lasciano resto. Per 2026 guardi solo 26: siccome $26 = 4 \cdot 6 + 2$, il resto è 2.
 
-Con le lettere la regola si scrive in una riga. Chiama $n$ l'esponente e $r$ il resto della divisione di $n$ per 4. Allora $i^n = i^r$.
-
 ### C'è un secondo numero con il quadrato uguale a meno uno
 
 Anche $-i$, al quadrato, dà $-1$. Il conto è questo:
@@ -572,7 +556,7 @@ Nel secondo passaggio i due segni meno spariscono, perché meno per meno fa più
 Quindi l'equazione da cui siamo partiti, $x^2 = -1$, tra i numeri complessi ha **due** soluzioni: $i$ e $-i$.
 
 > [!ESAME] Le potenze della $i$ in un appello
-> Nell'appello del 05/02/2026 la domanda 1 chiedeva quale numero **non** è soluzione di $z^{2026} = -1$. Tra le cinque risposte c'erano $i$ e $-i$. Per scartarle bisognava controllare che $i^{2026}$ e $(-i)^{2026}$ valgono proprio $-1$. Le altre tre risposte richiedono la lezione L03.
+> Nell'appello del 05/02/2026 la domanda 1 chiedeva quale numero **non** è soluzione di $z^{2026} = -1$. Tra le risposte c'erano $i$ e $-i$: per scartarle bisognava controllare che $i^{2026}$ e $(-i)^{2026}$ valgono $-1$. Le altre risposte richiedono la lezione L03.
 
 ::: prova Quanto valgono $i^6$, $i^{23}$ e $i^{40}$?
 $i^6$: la divisione è $6 = 4 \cdot 1 + 2$, resto 2. Quindi $i^6 = -1$.
@@ -612,7 +596,7 @@ Un insieme di numeri in cui valgono tutte e nove si chiama **campo**.
 
 Proviamo alcune di queste regole con i numeri complessi.
 
-**Regola 6: nel prodotto l'ordine non conta.** Moltiplica $1 + i$ per $2 + 3i$, e poi $2 + 3i$ per $1 + i$. I quattro prodotti sono gli stessi, in un ordine diverso: $2$, $3i$, $2i$ e $3i^2$. Il risultato è $-1 + 5i$ tutte e due le volte.
+**Regola 6: nel prodotto l'ordine non conta.** Moltiplica $1 + i$ per $2 + 3i$, e poi $2 + 3i$ per $1 + i$. I quattro prodotti sono gli stessi, in un ordine diverso: $2$, $3i$, $2i$ e $3i^2$, che vale $-3$. Il risultato è $-1 + 5i$ tutte e due le volte.
 
 **Regole 1 e 5: lo zero e l'uno.** Lo zero dei numeri complessi è $0 + 0i$, cioè il solito 0. Sul foglio è l'origine. L'uno è $1 + 0i$, cioè il solito 1.
 
@@ -657,13 +641,13 @@ Un'abitudine di scrittura, che da qui in poi useremo sempre. Per non riscrivere 
 Per esempio: «prendiamo $z = 3 + 2i$» vuol dire che da lì in poi la lettera $z$ sta al posto di quel numero.
 
 > [!OLTRE] · che cosa ci guadagni
-> Siccome valgono le nove regole, con i numeri complessi funzionano tutti i modi di fare i conti che conosci per i numeri reali. Per esempio la **legge di annullamento del prodotto**: se un prodotto fa zero, almeno uno dei due numeri è zero. Il motivo: se $zw = 0$ e $z$ non è zero, moltiplichi tutti e due i lati per l'inverso di $z$, e resta $w = 0$. Serve nella lezione L04, per trovare le radici dei polinomi.
+> Siccome valgono le nove regole, con i numeri complessi funzionano tutti i modi di fare i conti che conosci per i numeri reali. Uno servirà nella lezione L04: se un prodotto fa zero, almeno uno dei due numeri è zero. Si chiama **legge di annullamento del prodotto**.
 
 ### I numeri complessi non si possono mettere in fila
 
 C'è però una cosa che i numeri reali hanno e i numeri complessi no: l'ordine.
 
-Sulla retta dei numeri, tra due numeri diversi ce n'è sempre uno più a destra: è il maggiore (lezione L01). Per esempio $7 > 4$, dove il simbolo $>$ si legge «è maggiore di».
+Sulla retta dei numeri, tra due numeri diversi ce n'è sempre uno più a destra: è il maggiore (lezione L01). Per esempio $7 > 4$. Il simbolo $>$ si legge «è maggiore di», e il simbolo rovesciato $<$ si legge «è minore di».
 
 Su un foglio questo non funziona più. Prendi un punto più a destra ma più in basso, e un punto più a sinistra ma più in alto. Quale dei due sarebbe «il maggiore»? Non c'è una risposta sensata.
 
@@ -778,7 +762,7 @@ Qualche esempio, con le due parti e il coniugato.
 
 Guarda l'ultima riga: il numero 7 è uguale al suo coniugato. Sul foglio si capisce perché. Il 7 sta sull'asse orizzontale, cioè proprio sullo specchio, e un punto sullo specchio coincide con il suo riflesso.
 
-Succede per tutti i numeri reali, e solo per loro. Le dispense lo scrivono con i simboli: $z \in \R \iff z = \bar z$. Si legge «zeta appartiene a erre se e solo se zeta è uguale a zeta coniugato».
+Succede per tutti i numeri reali, e solo per loro. Le dispense lo scrivono con i simboli: $z \in \R \iff z = \bar z$. La freccia a due punte si legge «se e solo se». Tutta la riga si legge: «zeta appartiene a erre se e solo se zeta è uguale a zeta coniugato».
 
 Il perché, con i conti. Se un numero è uguale al suo coniugato, le due parti immaginarie devono essere uguali: $b = -b$. L'unico numero uguale al suo opposto è lo zero. Quindi la parte immaginaria è zero, e il numero è reale.
 
@@ -1166,8 +1150,8 @@ Questa costruzione si chiama **regola del parallelogramma**. È lo stesso modo i
 >
 > I due punti distano 5.
 >
-> Con le lettere, se $z = a + bi$ e $w = c + di$:
-> $$|z - w| = \sqrt{(a - c)^2 + (b - d)^2}.$$
+> Con le lettere, se $z = a + bi$ e $w = p + qi$:
+> $$|z - w| = \sqrt{(a - p)^2 + (b - q)^2}.$$
 > È la formula della distanza tra due punti del piano cartesiano.
 >
 > Da qui viene un fatto che serve nell'esercizio 9. Fissa un punto $c$ e un numero positivo $r$. I punti $z$ che distano $r$ da $c$ formano una **circonferenza**: quella di centro $c$ e raggio $r$. Con i simboli, sono i punti con $|z - c| = r$.
@@ -1476,7 +1460,7 @@ D: Il numero $z \in \C$ tale che $(1 - i)z = 2 + 4i$ è:
 - $-1 - 3i$
 - $1 + 3i$
 - $-2 + 4i$
-= La domanda chiede quale numero complesso, moltiplicato per $1 - i$, dà $2 + 4i$. Si trova con una divisione: $z = \frac{2 + 4i}{1 - i}$. Moltiplica sopra e sotto per il coniugato del numero sotto, cioè $1 + i$. Sotto viene il quadrato del modulo: $1 + 1 = 2$. Sopra i quattro prodotti sono $2$, $2i$, $4i$ e $4i^2 = -4$: in tutto $-2 + 6i$. Dividi per 2 i due pezzi e ottieni $z = -1 + 3i$. Controllo: $(1 - i)(-1 + 3i) = -1 + 3i + i - 3i^2 = 2 + 4i$. La risposta più tentatrice è $3 + i$: viene se sopra moltiplichi per $1 - i$ invece che per il coniugato. Le quattro risposte sbagliate, moltiplicate per $1 - i$, danno $4 - 2i$, $-4 - 2i$, $4 + 2i$ e $2 + 6i$: nessuna dà $2 + 4i$. È simile alla domanda 1 degli appelli del 08/02/2024 e del 03/06/2025.
+= La domanda chiede quale numero complesso, moltiplicato per $1 - i$, dà $2 + 4i$. Si trova con una divisione: $z = \frac{2 + 4i}{1 - i}$. Moltiplica sopra e sotto per il coniugato del numero sotto, cioè $1 + i$. Sotto viene il quadrato del modulo: $1 + 1 = 2$. Sopra i quattro prodotti sono $2$, $2i$, $4i$ e $4i^2 = -4$: in tutto $-2 + 6i$. Dividi per 2 i due pezzi e ottieni $z = -1 + 3i$. Controllo: $(1 - i)(-1 + 3i) = -1 + 3i + i - 3i^2 = 2 + 4i$. La risposta più tentatrice è $3 + i$: viene se sopra moltiplichi per $1 - i$ invece che per il coniugato. Moltiplicata per $1 - i$ dà $4 - 2i$, non $2 + 4i$. È simile alla domanda 1 degli appelli del 08/02/2024 e del 03/06/2025.
 
 D: Se $(1 + 2i)z = 5$, allora $\frac 1{z + i}$ è uguale a:
 + $\frac{1 + i}2$
@@ -1500,7 +1484,7 @@ D: Quanto vale $i^{2026}$?
 - $i$
 - $-i$
 - $2026\,i$
-= Le potenze di $i$ si ripetono ogni quattro, quindi conta solo il resto della divisione dell'esponente per 4. La divisione è $2026 = 4 \cdot 506 + 2$: il resto è 2. Quindi $i^{2026} = i^2 = -1$. Per trovare il resto bastano le ultime due cifre: $26 = 4 \cdot 6 + 2$. La risposta $1$ sarebbe giusta con il resto 0, per esempio per $i^{2024}$. La risposta $2026\,i$ confonde la potenza con una moltiplicazione. Lo stesso conto serviva nella domanda 1 dell'appello del 05/02/2026, per controllare che $i^{2026}$ e $(-i)^{2026}$ valgono $-1$.
+= Le potenze di $i$ si ripetono ogni quattro, quindi conta solo il resto della divisione dell'esponente per 4. La divisione è $2026 = 4 \cdot 506 + 2$: il resto è 2. Quindi $i^{2026} = i^2 = -1$. La risposta $1$ sarebbe giusta con il resto 0, per esempio per $i^{2024}$. La risposta $2026\,i$ confonde la potenza con una moltiplicazione. Lo stesso conto serviva nella domanda 1 dell'appello del 05/02/2026, per controllare che $i^{2026}$ e $(-i)^{2026}$ valgono $-1$.
 
 D: Quale affermazione è vera per **ogni** $z \in \C$?
 + $z + \bar z$ è un numero reale.
@@ -1536,7 +1520,7 @@ D: Nel piano complesso, l'insieme $\{z \in \C \mid |z - i| = 2\}$ è:
 - la circonferenza di centro $i$ e raggio $4$
 - il disco pieno di centro $i$ e raggio $2$
 - la retta orizzontale $\operatorname{Im}(z) = 2$
-= La scrittura $|z - i|$ è la distanza tra il punto $z$ e il punto $i$. La condizione chiede i punti a distanza esattamente 2 da $i$: formano la circonferenza di centro $i$ e raggio 2. Con le coordinate, cioè con $z = x + yi$, la condizione diventa $x^2 + (y - 1)^2 = 4$. Il centro è $i$ e non $-i$, perché dentro il modulo c'è una sottrazione. Il raggio è 2 e non 4: il 4 compare solo dopo aver elevato al quadrato. Il disco pieno sarebbe $|z - i| \le 2$, con «minore o uguale» al posto dell'uguale.
+= La scrittura $|z - i|$ è la distanza tra il punto $z$ e il punto $i$. La condizione chiede i punti a distanza esattamente 2 da $i$: formano la circonferenza di centro $i$ e raggio 2. Con le coordinate, cioè con $z = x + yi$, la condizione diventa $x^2 + (y - 1)^2 = 4$. Il centro è $i$ e non $-i$, perché dentro il modulo c'è una sottrazione. Il raggio è 2 e non 4: il 4 compare solo dopo aver elevato al quadrato. Il disco pieno sarebbe $|z - i| \le 2$.
 
 D: Nel piano complesso, $0$, $z = 1 + 3i$ e $w = 4 + i$ sono tre vertici di un parallelogramma. Il quarto vertice, opposto a $0$, è:
 + $5 + 4i$

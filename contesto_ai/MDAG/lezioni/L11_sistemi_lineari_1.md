@@ -48,7 +48,7 @@ In matematica un indovinello così si chiama sistema. Ci sono più indizi, e la 
 
 Questa lezione insegna quel metodo. Porta il nome di Gauss, un matematico tedesco, e funziona sempre, con qualsiasi numero di indizi. L'idea è riscrivere gli indizi in una forma sempre più comoda, senza mai cambiare la risposta. Alla fine gli indizi sono così comodi che la risposta si legge.
 
-Per fare meno fatica non si riscrivono ogni volta le equazioni intere. Si scrivono solo i numeri, in una tabella. Le tabelle di numeri sono le matrici della lezione L08: qui trovano il loro primo vero lavoro.
+Per fare meno fatica non si riscrivono ogni volta le equazioni intere. Si scrivono solo i numeri, in una tabella. Le tabelle di numeri sono le matrici della lezione L08.
 
 Il metodo dice anche come finisce l'indovinello. I finali possibili sono tre: nessuna risposta, una risposta sola, infinite risposte.
 
@@ -176,7 +176,7 @@ Non sono permesse tre cose: un'incognita moltiplicata per sé stessa, due incogn
 |---|---|---|
 | $2x - 3y + z = 7$ | sì | ogni incognita è solo moltiplicata per un numero |
 | $x_1 + x_4 = 0$ | sì | le incognite che non compaiono contano come moltiplicate per 0 |
-| $\sqrt 2\, x - \pi y = \frac 13$ | sì | i coefficienti possono essere numeri qualsiasi, anche radici e frazioni |
+| $\sqrt 2\, x - \pi y = \frac 13$ | sì | i coefficienti e il termine noto possono essere numeri qualsiasi: qui la radice di 2, pi greco e un terzo |
 | $x^2 + y = 1$ | no | $x^2$ vuol dire $x \cdot x$: l'incognita è moltiplicata per sé stessa |
 | $xy = 4$ | no | $xy$ vuol dire $x \cdot y$: due incognite moltiplicate tra loro |
 | $x + \sin y = 0$ | no | l'incognita $y$ sta dentro la funzione seno (lezione L03) |
@@ -235,7 +235,7 @@ retta: 1 0 4 3 | blu | $x - y = 1$ | se
 punto: 3 2 | ambra | $(3, 2)$ | e
 ```
 
-**Secondo finale: le rette sono parallele.** Prendi questi due indizi: «la somma fa 2» e «la somma fa 4». La somma di due numeri non può fare 2 e 4 nello stesso momento. I due indizi si contraddicono. Guarda la figura: le due rette non si toccano mai. Il sistema ha **nessuna soluzione**.
+**Secondo finale: le rette sono parallele.** Prendi questi due indizi: «la somma fa 2» e «la somma fa 4». La somma di due numeri non può fare 2 e 4 nello stesso momento. I due indizi si contraddicono. Guarda la figura: le due rette non si toccano mai. Il sistema **non ha nessuna soluzione**.
 
 ```grafico
 titolo: $x + y = 2$ e $x + y = 4$ sono parallele: nessun punto comune, nessuna soluzione
@@ -449,7 +449,7 @@ Sulla matrice vuol dire moltiplicare per lo stesso numero **tutti** i numeri di 
 | riga 1 | $1$ | $1$ | $5$ |
 | 2 volte la riga 1 | $2 \cdot 1 = 2$ | $2 \cdot 1 = 2$ | $2 \cdot 5 = 10$ |
 
-La nuova riga 1 è $(2, 2 \mid 10)$, cioè l'equazione $2x + 2y = 10$. La soluzione dell'indovinello la rispetta ancora:
+La nuova riga 1 è $(2, 2 \mid 10)$: i due coefficienti, la barra e il termine noto. È l'equazione $2x + 2y = 10$. La soluzione dell'indovinello la rispetta ancora:
 
 $$2 \cdot 3 + 2 \cdot 2 = 6 + 4 = 10$$
 
@@ -528,6 +528,7 @@ Ora che le tre mosse sono chiare, ecco la definizione con le parole delle dispen
 - $\lambda$ è la lettera greca *lambda*. Sta al posto di un numero qualsiasi, come 2 oppure $-3$.
 - $\lambda \neq 0$ si legge «lambda diverso da zero». È il divieto della seconda mossa.
 - $R_i$ e $R_j$ sono due righe qualsiasi. Le lettere $i$ e $j$ stanno al posto dei numeri delle due righe. «La $i$-esima riga» vuol dire «la riga numero $i$».
+- Le frecce sono quelle di prima, disegnate più lunghe: «si scambia con» e «diventa».
 - La scrittura della mossa (I) dice: la riga $i$ e la riga $j$ si scambiano.
 - La scrittura della mossa (II) dice: la riga $i$ diventa $\lambda$ volte sé stessa.
 - La scrittura della mossa (III) dice: alla riga $i$ sommi $\lambda$ volte la riga $j$. Se $\lambda$ è negativo stai togliendo. Per esempio con $\lambda = -4$ la riga $i$ diventa «la riga $i$ meno 4 volte la riga $j$».
@@ -1143,7 +1144,7 @@ Un altro esempio con più parametri, preso dal libro.
 > $$\begin{cases} x_1 = 1 - 3t_1 - 4t_3 \\ x_2 = t_1 \\ x_3 = 3 + 2t_2 \\ x_4 = t_2 \\ x_5 = t_3 \end{cases}$$
 > Controllo con tutti i parametri uguali a 0. La soluzione è $(1, 0, 3, 0, 0)$. Prima equazione: $1 + 0 + 0 = 1$. Seconda equazione: $3 - 0 = 3$. Tutte e due vere.
 
-Nello strumento qui sotto c'è il sistema dell'esempio con un parametro. L'ultima colonna è quella dei termini noti. Premi «Calcola»: lo strumento fa Gauss–Jordan, dice se ci sono soluzioni e le scrive con i parametri. Per le incognite usa una lettera sola con i numerini in basso, non tre lettere diverse. Poi cambia l'ultimo numero da 5 a 6 e ricalcola. La terza equazione non va più d'accordo con le altre due, e compare la riga impossibile.
+Nello strumento qui sotto c'è il sistema dell'esempio con un parametro. L'ultima colonna è quella dei termini noti. Premi «Calcola»: lo strumento fa Gauss–Jordan, dice se ci sono soluzioni e le scrive con i parametri. Per le incognite usa una lettera sola con i numerini in basso, non tre lettere diverse. Le scritture con «rk» contano i pivot: le spiega la lezione L12. Poi cambia l'ultimo numero da 5 a 6 e ricalcola. La terza equazione non va più d'accordo con le altre due, e compare la riga impossibile.
 
 ```widget gauss
 titolo: Risolvi un sistema: l'ultima colonna è quella dei termini noti

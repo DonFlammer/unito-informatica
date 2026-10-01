@@ -128,7 +128,12 @@ e = html.escape
 
 
 def testa_html(radice, titolo, descrizione, url_en):
-    """<head> comune: tema e animazioni scelti prima del disegno, caratteri, foglio di stile."""
+    """<head> comune: tema e animazioni scelti prima del disegno, caratteri, foglio di stile.
+    In fondo, link rel=expect (blocking=render): il browser non disegna niente finché non ha letto la barra in alto, che
+    viene subito dopo rete.js. Così nel primo fotogramma ci sono già il reticolo e gli impulsi, e la dissolvenza tra le
+    pagine parte sempre: Chrome decide se farla (regola @view-transition di appunti.css) al primo fotogramma con gli stili
+    calcolati fino a quel momento, e rete.js li ha già letti. Senza questa attesa, se la pagina arriva già tutta (chiesta in
+    anticipo da appunti.js) e rete.js no, il primo fotogramma può venire prima: sfondo vuoto o dissolvenza saltata."""
     return f"""<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(titolo)}</title>
@@ -140,16 +145,18 @@ def testa_html(radice, titolo, descrizione, url_en):
   var t = null; try {{ t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); }} catch (e) {{}} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
 </script>
 <link rel="preload" href="{radice}assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="{radice}assets/css/appunti.css">"""
+<link rel="stylesheet" href="{radice}assets/css/appunti.css">
+<link rel="expect" href="#barra" blocking="render">"""
 
 
 def testata(radice, url_en, attiva=""):
-    """Barra in alto, uguale in tutte le pagine; radice = percorso relativo della pagina iniziale."""
+    """Barra in alto, uguale in tutte le pagine; radice = percorso relativo della pagina iniziale.
+    id="barra": la <head> aspetta questo elemento prima del primo disegno (vedi testa_html)."""
     corsi = ' aria-current="page"' if attiva == "corsi" else ""
     return f"""<a class="salta" href="#contenuto">Vai al contenuto</a>
-<canvas id="rete" aria-hidden="true"></canvas>
+<div class="sfondo" aria-hidden="true"><canvas class="griglia"></canvas><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
 <script src="{radice}assets/js/rete.js"></script>
-<header class="barra">
+<header class="barra" id="barra">
   <div class="barra-in">
     <a class="marchio" href="{radice}index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
     <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>

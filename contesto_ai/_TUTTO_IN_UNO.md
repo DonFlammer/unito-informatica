@@ -4322,7 +4322,7 @@ Una scrittura così, con un uguale e una lettera da trovare, si chiama **equazio
 
 ### Proviamo con i numeri reali
 
-I **numeri reali** sono tutti i numeri della lezione L01: gli interi, le frazioni, le radici, i numeri con infinite cifre dopo la virgola. Il loro insieme si indica con $\R$, che si legge «erre».
+I **numeri reali** sono tutti i numeri della lezione L01. Il loro insieme si indica con $\R$, che si legge «erre».
 
 Prendiamo qualche numero reale e calcoliamo il suo quadrato.
 
@@ -4514,9 +4514,9 @@ Un esempio. Ti dicono che $x + yi$ è uguale a $3 - 2i$, dove $x$ e $y$ sono due
 - Le parti reali devono essere uguali: $x = 3$.
 - Le parti immaginarie devono essere uguali: $y = -2$.
 
-Quindi un'uguaglianza tra numeri complessi vale **due** uguaglianze tra numeri reali. È il trucco che risolve molte equazioni: lo userai negli esercizi 8 e 14.
+Quindi un'uguaglianza tra numeri complessi vale **due** uguaglianze tra numeri reali. È il trucco che risolve molte equazioni: lo userai negli esercizi 7 e 13.
 
-Nelle dispense questa regola non è scritta a parte. È contenuta nel modo in cui si scrive un numero complesso, e si vede bene sul foglio: ogni numero è un punto solo.
+Nelle dispense questa regola non è scritta a parte: è contenuta nel modo in cui si scrive un numero complesso.
 
 ::: prova Per ogni numero di' la parte reale e la parte immaginaria: (a) $5 + 3i$; (b) $2 - 7i$; (c) $-4i$; (d) $6$.
 (a) Parte reale $5$, parte immaginaria $3$.
@@ -4653,23 +4653,14 @@ Si legge da sinistra a destra. Prima ci sono i quattro prodotti. Poi, al posto d
 
 Una scrittura come $ac$ vuol dire «$a$ per $c$»: tra due lettere il puntino non si scrive.
 
-Controlliamo la formula sul prodotto delle dispense. Lì $a = 7$, $b = 1$, $c = 4$ e $d = -1$.
-
-| Pezzo del risultato | Con le lettere | Con i numeri |
-|---|---|---|
-| parte reale | $ac - bd$ | $7 \cdot 4 - 1 \cdot (-1) = 28 + 1 = 29$ |
-| parte immaginaria | $ad + bc$ | $7 \cdot (-1) + 1 \cdot 4 = -7 + 4 = -3$ |
-
-Viene $29 - 3i$, come prima.
-
 Nel prodotto c'è un segno meno che nella somma non c'era. Viene tutto dalla regola della $i$.
 
 > [!TRAPPOLA] Non si moltiplica «pezzo per pezzo»
-> La somma si fa pezzo per pezzo: parte reale con parte reale, parte immaginaria con parte immaginaria. Il prodotto **no**.
+> La somma si fa pezzo per pezzo. Il prodotto **no**.
 >
 > Prendi $(1 + 2i)(3 - i)$. Se moltiplichi solo le parti reali tra loro e le parti immaginarie tra loro, ottieni $3 - 2i$. È sbagliato: mancano i due prodotti «incrociati», primo per secondo e secondo per primo. Il risultato giusto è $5 + 5i$.
 >
-> Secondo errore tipico: dimenticare che $i^2$ vale $-1$ e trattarlo come $+1$. Nello stesso conto verrebbe $1 + 5i$, sbagliato anche questo.
+> Secondo errore tipico: trattare $i^2$ come $+1$. Nello stesso conto verrebbe $1 + 5i$, sbagliato anche questo.
 
 ### Tutti i numeri complessi insieme
 
@@ -4683,23 +4674,19 @@ Si legge da sinistra a destra: i naturali stanno dentro gli interi, gli interi d
 
 Che cosa ha in più $\C$ rispetto a $\R$? Per esempio la $i$: è un numero complesso, ma non è un numero reale.
 
-Resta una cosa da controllare. Un numero reale è anche un numero complesso, con la parte immaginaria uguale a zero. Se moltiplichi due numeri reali con il metodo nuovo, viene il risultato di sempre? Proviamo con 2 per 3:
-
-$$(2 + 0i) \cdot (3 + 0i) = 6 + 0i + 0i + 0i^2 = 6$$
-
-I tre pezzi con lo zero spariscono e resta 6. I conti tra numeri reali non cambiano. In una parola: $\C$ **estende** $\R$. Aggiunge numeri nuovi senza toccare quelli vecchi.
+I conti tra numeri reali, invece, restano quelli di sempre. Con il metodo nuovo, 2 per 3 fa ancora 6: i pezzi con la $i$ valgono zero e spariscono. In una parola: $\C$ **estende** $\R$. Aggiunge numeri nuovi senza toccare quelli vecchi.
 
 > [!APPROFONDIMENTO] da dove vengono davvero i numeri complessi
-> Nella storia i numeri complessi non sono nati dall'equazione $x^2 = -1$. Sono nati dalle equazioni di **terzo grado**, quelle in cui compare $x^3$, cioè $x \cdot x \cdot x$.
+> Nella storia i numeri complessi sono nati dalle equazioni di **terzo grado**, quelle in cui compare $x^3$, cioè $x \cdot x \cdot x$.
 >
-> Nel Cinquecento Gerolamo Cardano pubblicò una formula per risolvere equazioni come $x^3 = 15x + 4$. Questa equazione ha una soluzione reale che si trova per tentativi: $x = 4$. Controllo: $4^3 = 4 \cdot 4 \cdot 4 = 64$, e anche $15 \cdot 4 + 4 = 60 + 4 = 64$.
+> Nel Cinquecento Gerolamo Cardano pubblicò una formula per risolvere equazioni come $x^3 = 15x + 4$. Questa equazione ha una soluzione reale: $x = 4$. Controllo: $4^3 = 64$, e anche $15 \cdot 4 + 4 = 64$.
 >
-> La formula di Cardano, però, per arrivare a quel 4 chiede di calcolare $\sqrt{-121}$: la radice quadrata di un numero negativo. Tra i numeri reali non esiste.
+> La formula di Cardano, però, per arrivare a quel 4 chiede di calcolare $\sqrt{-121}$: la radice quadrata di un numero negativo, che tra i numeri reali non esiste.
 >
-> Rafael Bombelli ebbe l'idea di andare avanti lo stesso. Trattò $\sqrt{-121}$ come un numero qualsiasi, quello che oggi scriviamo $11i$. Infatti $11i \cdot 11i = 121 \cdot i^2 = -121$. Con questa scrittura la formula di Cardano diventa
+> Rafael Bombelli ebbe l'idea di andare avanti lo stesso. Trattò $\sqrt{-121}$ come un numero qualsiasi, quello che oggi scriviamo $11i$. Con questa scrittura la formula diventa
 > $$x = \sqrt[3]{2 + 11i} + \sqrt[3]{2 - 11i}.$$
-> Il simbolo $\sqrt[3]{\ }$ è la radice cubica: il numero che, elevato alla terza, dà quello scritto sotto. Nell'esercizio 5 controlli che $(2 + i)^3 = 2 + 11i$ e che $(2 - i)^3 = 2 - 11i$. Quindi le due radici cubiche sono $2 + i$ e $2 - i$, e la formula dà
-> $$x = (2 + i) + (2 - i) = 4.$$
+> Il simbolo $\sqrt[3]{\ }$ è la radice cubica: il numero che, elevato alla terza, dà quello scritto sotto. Nell'esercizio 4 controlli che $(2 + i)^3 = 2 + 11i$ e che $(2 - i)^3 = 2 - 11i$. Quindi le due radici cubiche sono $2 + i$ e $2 - i$, e la loro somma è proprio 4.
+>
 > I numeri «immaginari» servivano a trovare un numero reale.
 
 ::: prova Quanto fa $(2 + 3i) + (4 - i)$?
@@ -4744,15 +4731,9 @@ Calcoliamo le potenze di $i$ una alla volta. Ogni potenza è quella di prima, mo
 | $i^5$ | $i^4 \cdot i = 1 \cdot i$ | $i$ |
 | $i^6$ | $i^5 \cdot i = i \cdot i$ | $-1$ |
 
-Alla quarta potenza si arriva a 1. Moltiplicare per 1 non cambia niente, quindi dalla quinta potenza in poi tutto ricomincia da capo.
+Alla quarta potenza si arriva a 1. Moltiplicare per 1 non cambia niente, quindi dalla quinta potenza in poi tutto ricomincia da capo. I risultati sono sempre gli stessi quattro, nello stesso ordine: $i$, $-1$, $-i$, $1$.
 
-I risultati sono sempre gli stessi quattro, nello stesso ordine. Ecco i primi nove, a partire dall'esponente 0.
-
-| Esponente | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ |
-|---|---|---|---|---|---|---|---|---|---|
-| Potenza di $i$ | $1$ | $i$ | $-1$ | $-i$ | $1$ | $i$ | $-1$ | $-i$ | $1$ |
-
-Sul foglio i quattro risultati sono quattro punti intorno all'origine, tutti a un passo di distanza: a destra, in alto, a sinistra, in basso.
+Sul foglio i quattro risultati sono quattro punti intorno all'origine, tutti a un passo di distanza: in alto, a sinistra, in basso, a destra.
 
 ```grafico
 titolo: Le potenze di $i$ girano su quattro punti: $1$, $i$, $-1$, $-i$. Poi ricominciano
@@ -4807,7 +4788,7 @@ Tre esempi.
 | $i^{100}$ | $100 = 4 \cdot 25 + 0$ | $0$ | $1$ |
 | $i^{2026}$ | $2026 = 4 \cdot 506 + 2$ | $2$ | $-1$ |
 
-La prima potenza serve nell'esercizio 7.
+La prima potenza serve nell'esercizio 6.
 
 Un aiuto per i numeri grandi: per trovare il resto della divisione per 4 bastano **le ultime due cifre**. Il motivo è che 100 è un multiplo di 4, quindi le centinaia non lasciano resto. Per 2026 guardi solo 26: siccome $26 = 4 \cdot 6 + 2$, il resto è 2.
 
@@ -4849,19 +4830,14 @@ Nei conti delle sezioni precedenti hai usato le regole di sempre senza pensarci.
 
 Hai raccolto i pezzi nell'ordine più comodo. Hai moltiplicato le parentesi un pezzo alla volta. Chi garantisce che con i numeri complessi queste regole valgano ancora? Le dispense lo mettono nero su bianco in una proposizione.
 
-**Ricorda (lezione L01).** Le regole dei conti sono nove. Eccole, con un esempio tra i numeri reali.
+**Ricorda (lezione L01).** Le regole dei conti sono nove.
 
-| N. | La regola a parole | Un esempio con i numeri reali |
-|---|---|---|
-| 1 | sommare 0 non cambia niente | $0 + 7 = 7$ |
-| 2 | in una somma l'ordine non conta | $2 + 5 = 5 + 2$ |
-| 3 | in una somma di tre numeri puoi cominciare da dove vuoi | $1 + (2 + 3) = (1 + 2) + 3$ |
-| 4 | ogni numero ha un **opposto**: sommati fanno 0 | $7 + (-7) = 0$ |
-| 5 | moltiplicare per 1 non cambia niente | $1 \cdot 7 = 7$ |
-| 6 | in un prodotto l'ordine non conta | $2 \cdot 5 = 5 \cdot 2$ |
-| 7 | in un prodotto di tre numeri puoi cominciare da dove vuoi | $2 \cdot (3 \cdot 4) = (2 \cdot 3) \cdot 4$ |
-| 8 | ogni numero **diverso da 0** ha un **inverso**: moltiplicati fanno 1 | $4 \cdot \frac 14 = 1$ |
-| 9 | moltiplicare una somma è come moltiplicare i due pezzi e poi sommare | $3 \cdot (2 + 5) = 3 \cdot 2 + 3 \cdot 5$ |
+- Lo 0 nella somma e l'1 nel prodotto non cambiano niente: sono le regole 1 e 5.
+- L'ordine non conta, né nella somma né nel prodotto: regole 2 e 6. Per esempio $2 \cdot 5 = 5 \cdot 2$.
+- Con tre numeri puoi cominciare da dove vuoi: regole 3 e 7.
+- Ogni numero ha un **opposto**, e sommati fanno 0: regola 4. Per esempio $7 + (-7) = 0$.
+- Ogni numero diverso da 0 ha un **inverso**, e moltiplicati fanno 1: regola 8. Per esempio $4 \cdot \frac 14 = 1$.
+- Moltiplicare una somma è come moltiplicare i due pezzi e poi sommare: regola 9.
 
 Un insieme di numeri in cui valgono tutte e nove si chiama **campo**.
 
@@ -4869,14 +4845,7 @@ Un insieme di numeri in cui valgono tutte e nove si chiama **campo**.
 
 Proviamo alcune di queste regole con i numeri complessi.
 
-**Regola 6: nel prodotto l'ordine non conta.** Moltiplichiamo gli stessi due numeri nei due ordini possibili.
-
-| Prodotto | I quattro prodotti | Risultato |
-|---|---|--:|
-| $(1 + i)(2 + 3i)$ | $2 + 3i + 2i + 3i^2$ | $-1 + 5i$ |
-| $(2 + 3i)(1 + i)$ | $2 + 2i + 3i + 3i^2$ | $-1 + 5i$ |
-
-In tutte e due le righe i pezzi sono gli stessi, scritti in un ordine diverso. Il risultato è lo stesso.
+**Regola 6: nel prodotto l'ordine non conta.** Moltiplica $1 + i$ per $2 + 3i$, e poi $2 + 3i$ per $1 + i$. I quattro prodotti sono gli stessi, in un ordine diverso: $2$, $3i$, $2i$ e $3i^2$. Il risultato è $-1 + 5i$ tutte e due le volte.
 
 **Regole 1 e 5: lo zero e l'uno.** Lo zero dei numeri complessi è $0 + 0i$, cioè il solito 0. Sul foglio è l'origine. L'uno è $1 + 0i$, cioè il solito 1.
 
@@ -4904,7 +4873,7 @@ Nella proposizione qui sotto c'è un cambio di lettere a cui fare attenzione. Fi
 
 - Il simbolo $\forall$, una A rovesciata, si legge «per ogni». Il simbolo $\in$ si legge «appartiene a».
 - La scrittura $\forall a \in \C$ si legge «per ogni $a$ che appartiene a $\C$». Vuol dire: qualunque numero complesso tu metta al posto della lettera.
-- Ogni riga è una delle nove regole della tabella, con le lettere al posto dei numeri. «Elemento neutro» è il numero che non cambia niente. «Commutativa» vuol dire che l'ordine non conta. «Associativa» vuol dire che puoi cominciare da dove vuoi.
+- Ogni riga è una delle nove regole dell'elenco di prima, con le lettere al posto dei numeri. «Elemento neutro» è il numero che non cambia niente. «Commutativa» vuol dire che l'ordine non conta. «Associativa» vuol dire che puoi cominciare da dove vuoi. «Distributiva» è la regola 9.
 - $-a$ è l'opposto di $a$. La scrittura $a^{-1}$, con un piccolo $-1$ in alto, è l'inverso di $a$: si legge «$a$ alla meno uno».
 - $a \neq 0$ si legge «$a$ diverso da zero». Anche tra i numeri complessi lo zero non ha inverso.
 
@@ -4921,16 +4890,7 @@ Un'abitudine di scrittura, che da qui in poi useremo sempre. Per non riscrivere 
 Per esempio: «prendiamo $z = 3 + 2i$» vuol dire che da lì in poi la lettera $z$ sta al posto di quel numero.
 
 > [!OLTRE] · che cosa ci guadagni
-> Siccome valgono le nove regole, con i numeri complessi funzionano tutti i modi di fare i conti che conosci per i numeri reali. Due esempi, in cui $z$ e $w$ sono due numeri complessi qualsiasi.
->
-> | Regola | Con i simboli |
-> |---|---|
-> | il quadrato di una somma | $(z + w)^2 = z^2 + 2zw + w^2$ |
-> | la somma per la differenza | $(z - w)(z + w) = z^2 - w^2$ |
->
-> Vale anche la **legge di annullamento del prodotto**: se un prodotto fa zero, almeno uno dei due numeri è zero. Il motivo: se $zw = 0$ e $z$ non è zero, moltiplichi tutti e due i lati per l'inverso di $z$. A sinistra resta $w$, a destra resta 0.
->
-> Questa legge serve nella lezione L04, per trovare le radici dei polinomi.
+> Siccome valgono le nove regole, con i numeri complessi funzionano tutti i modi di fare i conti che conosci per i numeri reali. Per esempio la **legge di annullamento del prodotto**: se un prodotto fa zero, almeno uno dei due numeri è zero. Il motivo: se $zw = 0$ e $z$ non è zero, moltiplichi tutti e due i lati per l'inverso di $z$, e resta $w = 0$. Serve nella lezione L04, per trovare le radici dei polinomi.
 
 ### I numeri complessi non si possono mettere in fila
 
@@ -4950,30 +4910,23 @@ Il motivo, in una riga delle dispense: in un campo ordinato un quadrato è sempr
 > [!DIM] · perché $\C$ non si può ordinare
 > In un campo ordinato come $\R$ i numeri positivi rispettano due regole.
 >
-> - **Regola A.** La somma e il prodotto di due numeri positivi sono positivi.
+> - **Regola A.** Il prodotto di due numeri positivi è positivo.
 > - **Regola B.** Preso un numero diverso da zero, **uno solo** tra lui e il suo opposto è positivo. Per esempio tra $3$ e $-3$ è positivo solo $3$.
 >
-> **Primo fatto: in un campo ordinato il quadrato di un numero diverso da zero è positivo.**
->
-> 1. Se il numero è positivo, il suo quadrato è un prodotto di due numeri positivi. Per la regola A è positivo.
-> 2. Se il numero è negativo, per la regola B il suo opposto è positivo. Il quadrato del numero è uguale al quadrato del suo opposto, perché meno per meno fa più: per esempio $(-3)^2 = 3^2$. Quindi è di nuovo un prodotto di due numeri positivi, ed è positivo.
+> **Primo fatto: in un campo ordinato il quadrato di un numero diverso da zero è positivo.** Se il numero è positivo, lo dice la regola A. Se è negativo, il suo opposto è positivo per la regola B. E un numero e il suo opposto hanno lo stesso quadrato, perché meno per meno fa più: per esempio $(-3)^2 = 3^2$.
 >
 > **Secondo fatto: in $\C$ questo porta a una cosa impossibile.** Si ragiona per assurdo, come nella lezione L01: facciamo finta che $\C$ abbia un ordine con queste due regole.
 >
-> 1. Il numero $1$ è il quadrato di $1$, perché $1 \cdot 1 = 1$. Per il primo fatto, $1$ è positivo.
-> 2. Il numero $-1$ è il quadrato di $i$, perché $i \cdot i = -1$. Per il primo fatto, anche $-1$ è positivo.
+> 1. Il numero $1$ è il quadrato di $1$. Per il primo fatto, $1$ è positivo.
+> 2. Il numero $-1$ è il quadrato di $i$. Per il primo fatto, anche $-1$ è positivo.
 > 3. Ma $1$ e $-1$ sono uno l'opposto dell'altro. Per la regola B non possono essere positivi tutti e due.
 >
 > Siamo arrivati a una cosa impossibile. Quindi un ordine così, in $\C$, non esiste.
 >
-> Una precisazione. I numeri complessi si possono mettere in fila in qualche modo: per esempio guardando prima la parte reale e poi la parte immaginaria. Ma nessuna fila di questo tipo rispetta le regole dei conti. «Non ordinato» vuol dire questo.
+> Una precisazione. I numeri complessi si possono mettere in fila in qualche modo, per esempio guardando prima la parte reale e poi la parte immaginaria. Ma nessuna fila rispetta le regole dei conti: «non ordinato» vuol dire questo.
 
 > [!TRAPPOLA] Niente «maggiore» e «minore» tra numeri complessi
 > Scritture come $3i > 2i$ oppure $1 + i < 2$ **non hanno senso**: non sono né vere né false. Si possono confrontare solo i numeri **reali** legati a un numero complesso: la parte reale, la parte immaginaria, e il modulo che vedrai tra due sezioni.
-
-::: prova Qual è l'opposto di $2 - 5i$?
-Si cambia il segno a tutti e due i pezzi: $-2 + 5i$. Controllo: $(2 - 5i) + (-2 + 5i) = 0 + 0i = 0$.
-:::
 
 ::: prova Vero o falso: $2i > i$?
 Né vero né falso: la scrittura non ha senso. Tra numeri complessi non esistono «maggiore» e «minore».
@@ -5072,23 +5025,10 @@ Il perché, con i conti. Se un numero è uguale al suo coniugato, le due parti i
 > | il coniugato del coniugato | da $3 - 4i$ si torna a $3 + 4i$ | $\bar{\bar z} = z$ |
 > | il coniugato di una somma o di un prodotto | il controllo è qui sotto | $\overline{z + w} = \bar z + \bar w$ e $\overline{zw} = \bar z\,\bar w$ |
 >
-> Dalle prime due righe si ricavano le due parti di un numero: $\operatorname{Re}(z) = \frac{z + \bar z}2$ e $\operatorname{Im}(z) = \frac{z - \bar z}{2i}$.
->
-> L'ultima riga dice che puoi coniugare prima o dopo aver fatto il conto: il risultato non cambia. Controllo sul prodotto di $1 + 2i$ e $3 - i$.
->
-> - **Prima il prodotto, poi il coniugato.** Il prodotto è $5 + 5i$, calcolato nella tabella dei sei prodotti. Il suo coniugato è $5 - 5i$.
-> - **Prima i coniugati, poi il prodotto.** I coniugati sono $1 - 2i$ e $3 + i$. Il loro prodotto è $3 + i - 6i - 2i^2$, cioè $5 - 5i$.
->
-> Stesso risultato. La dimostrazione con le lettere è nell'esercizio 9.
+> L'ultima riga dice che puoi coniugare prima o dopo aver fatto il conto: il risultato non cambia. Un controllo con i numeri: il prodotto di $1 + 2i$ e $3 - i$ è $5 + 5i$. Il prodotto dei loro coniugati è $5 - 5i$. La dimostrazione con le lettere è nell'esercizio 8.
 
 ::: prova Scrivi parte reale, parte immaginaria e coniugato di $z = -2 + 5i$.
 $\operatorname{Re}(z) = -2$ e $\operatorname{Im}(z) = 5$. Il coniugato cambia il segno davanti alla $i$: $\bar z = -2 - 5i$.
-:::
-
-::: prova Qual è il coniugato di $7i$? E quello di $-3$?
-$7i$ ha parte reale 0 e parte immaginaria 7. Il coniugato è $-7i$.
-
-$-3$ è un numero reale. Il coniugato è ancora $-3$.
 :::
 
 ::: prova Quanto fa $z + \bar z$ quando $z = 4 - 9i$?
@@ -5285,12 +5225,7 @@ $$z \cdot z^{-1} = \frac{z \cdot \bar z}{|z|^2} = \frac{|z|^2}{|z|^2} = 1$$
 
 Nel secondo passaggio si usa la formula della sezione precedente: un numero per il suo coniugato dà il quadrato del modulo. Così sopra e sotto c'è lo stesso numero, e la frazione vale 1.
 
-Altri due inversi, con lo stesso metodo.
-
-| Numero | Coniugato | Quadrato del modulo | Inverso |
-|---|---|---|---|
-| $3 + 4i$ | $3 - 4i$ | $9 + 16 = 25$ | $\frac{3 - 4i}{25} = \frac 3{25} - \frac 4{25}i$ |
-| $1 - i$ | $1 + i$ | $1 + 1 = 2$ | $\frac{1 + i}2 = \frac 12 + \frac 12 i$ |
+Un altro inverso, con lo stesso metodo. Il numero $3 + 4i$ ha coniugato $3 - 4i$, e il quadrato del suo modulo è $9 + 16 = 25$. Quindi il suo inverso è $\frac{3 - 4i}{25}$, cioè $\frac 3{25} - \frac 4{25}i$.
 
 ### Dividere due numeri complessi
 
@@ -5312,14 +5247,6 @@ Dividere per un numero vuol dire moltiplicare per il suo inverso. In pratica si 
 > 5. Dividi per 5 tutti e due i pezzi: $\frac{10 - 5i}5 = 2 - i$.
 >
 > **Controllo.** Moltiplica $2 - i$ per $1 + 2i$. I quattro prodotti sono $2$, $4i$, $-i$ e $-2i^2 = +2$. In tutto $4 + 3i$: è il numero che stava sopra.
-
-> [!ESEMPIO] · La divisione $\frac{1 + i}{1 - i}$
-> 1. Il numero sotto è $1 - i$. Il suo coniugato è $1 + i$.
-> 2. Sotto: $(1 - i)(1 + i) = 1^2 + 1^2 = 2$.
-> 3. Sopra: $(1 + i)(1 + i)$. I quattro prodotti sono $1$, $i$, $i$ e $i^2 = -1$. In tutto $2i$.
-> 4. Dividi per 2: $\frac{2i}2 = i$.
->
-> **Controllo.** $i \cdot (1 - i) = i - i^2 = i + 1$: è il numero che stava sopra.
 
 > [!TRAPPOLA] Non si divide «pezzo per pezzo»
 > La frazione $\frac{4 + 3i}{1 + 2i}$ **non** è $\frac 41 + \frac 32 i$. Il risultato giusto, calcolato qui sopra, è $2 - i$. Se moltiplichi il risultato sbagliato per $1 + 2i$ ottieni $1 + \frac{19}2 i$, non $4 + 3i$.
@@ -5352,10 +5279,10 @@ Questa divisione l'abbiamo appena fatta: viene $z = 2 - i$.
 Il coniugato è $1 - i$. Il quadrato del modulo è $1 + 1 = 2$. L'inverso è $\frac{1 - i}2$, cioè $\frac 12 - \frac 12 i$.
 :::
 
-::: prova Scrivi $\frac 2{1 + i}$ con parte reale e parte immaginaria.
-Moltiplica sopra e sotto per $1 - i$. Sopra: $2 \cdot (1 - i) = 2 - 2i$. Sotto: $1 + 1 = 2$. Dividi per 2 tutti e due i pezzi: viene $1 - i$.
+::: prova Calcola $\frac{1 + i}{1 - i}$.
+Il coniugato del numero sotto è $1 + i$. Sotto viene $1 + 1 = 2$. Sopra viene $(1 + i)(1 + i)$: i quattro prodotti sono $1$, $i$, $i$ e $i^2 = -1$, in tutto $2i$. Dividi per 2: il risultato è $i$.
 
-Controllo: $(1 - i)(1 + i) = 2$, che è il numero che stava sopra.
+Controllo: $i \cdot (1 - i) = i - i^2 = 1 + i$, che è il numero che stava sopra.
 :::
 
 ::: prova Risolvi l'equazione $i \cdot z = 3$.
@@ -5476,7 +5403,7 @@ Questa costruzione si chiama **regola del parallelogramma**. È lo stesso modo i
 > $$|z - w| = \sqrt{(a - c)^2 + (b - d)^2}.$$
 > È la formula della distanza tra due punti del piano cartesiano.
 >
-> Da qui viene un fatto che serve nell'esercizio 10. Fissa un punto $c$ e un numero positivo $r$. I punti $z$ che distano $r$ da $c$ formano una **circonferenza**: quella di centro $c$ e raggio $r$. Con i simboli, sono i punti con $|z - c| = r$.
+> Da qui viene un fatto che serve nell'esercizio 9. Fissa un punto $c$ e un numero positivo $r$. I punti $z$ che distano $r$ da $c$ formano una **circonferenza**: quella di centro $c$ e raggio $r$. Con i simboli, sono i punti con $|z - c| = r$.
 
 ### E il prodotto?
 
@@ -5509,7 +5436,7 @@ Lo strumento qui sotto mostra queste operazioni sul piano. Ecco che cosa provare
 
 - Nel modo **z + w** trascina i due punti $z$ e $w$. Il parallelogramma si aggiorna, e sotto il disegno leggi la somma con le sue due parti.
 - Scegli poi il modo **coniugato e inverso di z**. Vedi il coniugato, specchiato rispetto all'asse reale, e l'inverso, scritto $1/z$. La barra obliqua vuol dire «diviso».
-- Trascina $z$ lontano dall'origine e poi vicino. Quando il modulo di $z$ è più grande di 1, l'inverso sta **dentro** il cerchio di raggio 1. Quando è più piccolo di 1, l'inverso sta **fuori**. Il motivo è nell'esercizio 9: il modulo dell'inverso è 1 diviso il modulo del numero.
+- Trascina $z$ lontano dall'origine e poi vicino. Quando il modulo di $z$ è più grande di 1, l'inverso sta **dentro** il cerchio di raggio 1. Quando è più piccolo di 1, l'inverso sta **fuori**. Il motivo è nell'esercizio 8: il modulo dell'inverso è 1 diviso il modulo del numero.
 
 ```widget complessi
 titolo: Somma, coniugato e inverso nel piano complesso
@@ -5519,10 +5446,6 @@ modo: somma
 modi: somma coniugato
 raggio: 6
 ```
-
-::: prova Su quale asse sta il numero $-3i$? In quale punto?
-Ha parte reale 0, quindi sta sull'asse immaginario. È il punto $(0, -3)$: 3 passi in giù dall'origine.
-:::
 
 ::: prova I punti $0$, $2 + i$ e $1 + 3i$ sono tre vertici di un parallelogramma. Qual è il quarto vertice, quello opposto all'origine?
 È la somma. Parti reali: $2 + 1 = 3$. Parti immaginarie: $1 + 3 = 4$. Il quarto vertice è $3 + 4i$.
@@ -5542,7 +5465,7 @@ $i \cdot (1 + i) = i + i^2 = -1 + i$. Il punto stava 1 passo a destra e 1 in su.
 
 Un tipo di esercizio chiede di disegnare tutti i numeri complessi che rispettano una condizione.
 
-Le dispense non spiegano il metodo, ma lo chiedono nel loro esercizio 2.6, che qui è l'esercizio 10. L'idea è sempre la stessa: tradurre la condizione in una frase sul punto, e poi riconoscere la figura.
+Le dispense non spiegano il metodo, ma lo chiedono nel loro esercizio 2.6, che qui è l'esercizio 9. L'idea è sempre la stessa: tradurre la condizione in una frase sul punto, e poi riconoscere la figura.
 
 L'insieme da disegnare è scritto con le parentesi graffe, come nella lezione L01. Per esempio:
 
@@ -5552,13 +5475,13 @@ Si legge: «l'insieme dei numeri complessi $z$ per cui la parte reale di $z$ è 
 
 ### Cinque condizioni, una alla volta
 
-**La parte reale è uguale a 2.** La parte reale dice quanti passi a destra. Quindi i punti che vanno bene stanno tutti 2 passi a destra dell'origine, a qualunque altezza. Formano una **retta verticale**.
+**La parte reale è uguale a 2.** La parte reale dice quanti passi a destra. I punti che vanno bene stanno tutti 2 passi a destra dell'origine, a qualunque altezza. Formano una **retta verticale**.
 
-**La parte immaginaria è maggiore di 1.** La parte immaginaria dice quanti passi in su. Vanno bene i punti che stanno più in alto dell'altezza 1. Formano un **semipiano**, cioè una metà del piano: quella sopra la retta orizzontale di altezza 1. La retta stessa è esclusa, perché lì la parte immaginaria è uguale a 1, non maggiore.
+**La parte immaginaria è maggiore di 1.** Vanno bene i punti che stanno più in alto dell'altezza 1. Formano un **semipiano**, cioè una metà del piano: quella sopra la retta orizzontale di altezza 1. La retta è esclusa, perché lì la parte immaginaria è uguale a 1, non maggiore.
 
 **Il modulo è uguale a 3.** Il modulo è la distanza dall'origine. I punti a distanza 3 dall'origine formano una **circonferenza**: il centro è l'origine, il raggio è 3.
 
-**La distanza dal punto $i$ è al massimo 1.** Con i simboli si scrive $|z - i| \le 1$. Il simbolo $\le$ si legge «minore o uguale». Il modulo di una differenza è la distanza tra i due punti: qui tra il punto $z$ e il punto $i$. Vanno bene i punti sulla circonferenza di centro $i$ e raggio 1, e anche tutti quelli dentro. La figura piena si chiama **disco**.
+**La distanza dal punto $i$ è al massimo 1.** Con i simboli si scrive $|z - i| \le 1$. Il simbolo $\le$ si legge «minore o uguale». Il modulo di una differenza è la distanza tra i due punti. Vanno bene i punti sulla circonferenza di centro $i$ e raggio 1, e anche tutti quelli dentro. La figura piena si chiama **disco**.
 
 **La distanza da 1 è uguale alla distanza da meno 1.** Con i simboli si scrive $|z - 1| = |z + 1|$. Attenzione al secondo modulo: sommare 1 è come sottrarre $-1$, quindi è la distanza dal punto $-1$. I punti che distano ugualmente dai due numeri stanno a metà strada: formano l'**asse immaginario**.
 
@@ -5596,12 +5519,9 @@ L'ultima riga non si indovina a occhio. Controlliamola con i conti.
 2. La seconda è $z + 1 = (x + 1) + yi$. Il quadrato del suo modulo è $(x + 1)^2 + y^2$.
 3. Due moduli sono uguali quando sono uguali i loro quadrati:
    $$(x - 1)^2 + y^2 = (x + 1)^2 + y^2.$$
-4. Svolgi il primo quadrato. È $(x - 1)(x - 1)$: i quattro prodotti sono $x^2$, $-x$, $-x$ e $1$. In tutto $x^2 - 2x + 1$.
-5. Svolgi il secondo quadrato. È $(x + 1)(x + 1)$: i quattro prodotti sono $x^2$, $x$, $x$ e $1$. In tutto $x^2 + 2x + 1$.
-6. L'uguaglianza del passo 3 diventa:
-   $$x^2 - 2x + 1 + y^2 = x^2 + 2x + 1 + y^2.$$
-7. Togli da tutti e due i lati i pezzi uguali: $x^2$, $1$ e $y^2$. Resta $-2x = 2x$.
-8. Togli $2x$ da tutti e due i lati: resta $-4x = 0$. Quindi $x = 0$.
+4. Svolgi i due quadrati. Il primo è $(x - 1)(x - 1)$, cioè $x^2 - 2x + 1$. Il secondo è $(x + 1)(x + 1)$, cioè $x^2 + 2x + 1$.
+5. Togli da tutti e due i lati i pezzi uguali: $x^2$, $1$ e $y^2$. Resta $-2x = 2x$.
+6. Togli $2x$ da tutti e due i lati: resta $-4x = 0$. Quindi $x = 0$.
 
 I punti con $x = 0$ fanno zero passi a destra: sono quelli dell'asse immaginario.
 
@@ -5622,10 +5542,6 @@ segmento: 1 1 3 1 | accento | $2$ | n
 
 ::: prova Che figura formano i numeri complessi con $|z| = 2$?
 Sono i punti a distanza 2 dall'origine: la circonferenza di centro $0$ e raggio 2.
-:::
-
-::: prova Che figura formano i numeri complessi con $\operatorname{Re}(z) = -1$?
-Sono i punti che stanno 1 passo a sinistra dell'origine, a qualunque altezza: una retta verticale.
 :::
 
 ::: prova Che figura formano i numeri complessi con $|z - 3| < 1$?
@@ -5703,15 +5619,7 @@ $$z = \frac{3 + 2i}{1 + i}$$
 
 1. Il numero sotto è $1 + i$. Il suo coniugato è $1 - i$.
 2. Sotto: $(1 + i)(1 - i)$ è il quadrato del modulo, cioè $1^2 + 1^2 = 2$.
-3. Sopra: $(3 + 2i)(1 - i)$. I quattro prodotti sono nella tabella.
-
-   | Quale prodotto | Conto | Risultato |
-   |---|---|--:|
-   | primo per primo | $3 \cdot 1$ | $3$ |
-   | primo per secondo | $3 \cdot (-i)$ | $-3i$ |
-   | secondo per primo | $2i \cdot 1$ | $2i$ |
-   | secondo per secondo | $2i \cdot (-i)$ | $-2i^2 = 2$ |
-
+3. Sopra: $(3 + 2i)(1 - i)$. I quattro prodotti sono $3$, $-3i$, $2i$ e $-2i^2$. L'ultimo vale $+2$.
 4. Raccogli sopra. Pezzi senza la $i$: $3 + 2 = 5$. Pezzi con la $i$: $-3i + 2i = -i$. Sopra c'è $5 - i$.
 5. Quindi $z = \frac{5 - i}2$.
 
@@ -5891,22 +5799,6 @@ Nella seconda riga la parte immaginaria è $-1$: la $i$ da sola vuol dire «1 pe
 Nell'ultima riga il numero è reale, quindi coincide con il suo coniugato.
 :::
 
-::: esercizio base Somme e differenze
-Calcola: (a) $(2 + 3i) + (5 - i)$; (b) $(4 - 2i) - (1 + 3i)$; (c) $(-1 + i) + (1 - i)$.
-::: soluzione
-Si sommano le parti reali tra loro e le parti immaginarie tra loro.
-
-(a) Parti reali: $2 + 5 = 7$. Parti immaginarie: $3 + (-1) = 2$. Risultato: $7 + 2i$.
-
-(b) Il segno meno davanti alla seconda parentesi cambia il segno a tutti e due i suoi pezzi: $-(1 + 3i)$ diventa $-1 - 3i$.
-
-1. Parti reali: $4 - 1 = 3$.
-2. Parti immaginarie: $-2 - 3 = -5$.
-3. Risultato: $3 - 5i$.
-
-(c) Parti reali: $-1 + 1 = 0$. Parti immaginarie: $1 + (-1) = 0$. Risultato: $0$. I due numeri sono uno l'opposto dell'altro.
-:::
-
 ::: esercizio base Potenze di $i$
 Calcola: (a) $i^7$; (b) $i^{10}$; (c) $i^{33}$; (d) $i^{400}$.
 ::: soluzione
@@ -6018,7 +5910,7 @@ La parte reale è $\frac{13}{10}$. La parte immaginaria è $\frac{21}{10}$.
 
 **Secondo numero.**
 
-1. Sopra c'è $(2 + i)^3$, che vale $2 + 11i$: è il conto dell'esercizio 5.
+1. Sopra c'è $(2 + i)^3$, che vale $2 + 11i$: è il conto dell'esercizio 4.
 2. Sotto c'è una potenza di $i$. La divisione è $15 = 4 \cdot 3 + 3$, resto 3. Quindi $i^{15} = i^3 = -i$, e sotto c'è $-5i$.
 3. La frazione è $\frac{2 + 11i}{-5i}$. Sotto c'è un immaginario puro: per farlo diventare reale basta moltiplicare sopra e sotto per $i$.
 4. Sotto: $-5i \cdot i = -5i^2 = 5$.
@@ -6229,17 +6121,9 @@ La risposta è la (a).
 
 **Controllo.** $(3 + i)(1 - i) = 3 - 3i + i - i^2 = 4 - 2i$. È il numero a destra dell'equazione.
 
-**Una strada alternativa per il quiz.** Moltiplica ogni risposta per $3 + i$ e guarda quale dà $4 - 2i$.
+**Una strada alternativa per il quiz.** Moltiplica ogni risposta per $3 + i$ e guarda quale dà $4 - 2i$. La (b) dà $2 + 4i$, la (c) dà $7 - i$, la (d) dà $-4 + 2i$, la (e) dà $40 - 20i$. Solo la (a) funziona.
 
-| Risposta | Moltiplicata per $3 + i$ |
-|---|---|
-| (a) $1 - i$ | $4 - 2i$ |
-| (b) $1 + i$ | $2 + 4i$ |
-| (c) $2 - i$ | $7 - i$ |
-| (d) $-1 + i$ | $-4 + 2i$ |
-| (e) $10 - 10i$ | $40 - 20i$ |
-
-Solo la (a) funziona. La (e) è la trappola per chi dimentica di dividere per 10 al passo 6.
+La (e) è la trappola per chi dimentica di dividere per 10 al passo 6.
 :::
 
 ::: esercizio esame Come all'esame: prima $z$, poi un'espressione
@@ -6420,7 +6304,7 @@ Distanza tra due numeri complessi | Il modulo della differenza, $\lvert z - w \r
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 2 «Numeri complessi I», pp. 6–9: le sezioni 2.A–2.E sono seguite in ordine, con la pagina accanto a ogni titolo; la Definizione 2.1, la Proposizione 2.2 e l'Esempio 2.3 mantengono la loro numerazione; gli esercizi 2.4, 2.5 e 2.6 sono svolti nella sezione «Esercizi» (esercizi 7, 9 e 10); le Figure 1 e 2 sono ridisegnate con i grafici.
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 2 «Numeri complessi I», pp. 6–9: le sezioni 2.A–2.E sono seguite in ordine, con la pagina accanto a ogni titolo; la Definizione 2.1, la Proposizione 2.2 e l'Esempio 2.3 mantengono la loro numerazione; gli esercizi 2.4, 2.5 e 2.6 sono svolti nella sezione «Esercizi» (esercizi 6, 8 e 9); le Figure 1 e 2 sono ridisegnate con i grafici.
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §1.4.1–1.4.3 (pp. 25–27), Esercizio 1.4.3 (p. 30), §1.5.3 sui campi (p. 36).
 - **Appelli d'esame** (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): domande 1 del 08/02/2024, del 03/06/2025 e del 03/06/2026, riportate con soluzioni scritte per questi appunti; la tabella degli altri appelli ne indica solo il tipo. Regole d'esame 2025/26 e date 2026/27 come nella lezione L01.
 - Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu» e gli esercizi sono di questi appunti. Le parti **«Oltre le dispense»** (la storia di Cardano e Bombelli, le potenze di $i$, le regole sul coniugato, la distanza, il metodo per disegnare insiemi, il perché $\C$ non è ordinato, gli esercizi che non vengono dalle dispense) collegano la lezione al resto del corso e all'esame.
@@ -8175,16 +8059,15 @@ descrizione: >-
   prodotto per scalare, gruppi, campi, definizione di spazio vettoriale ed esempi (polinomi, funzioni, successioni),
   con quiz nello stile dell'esame ed esercizi svolti.
 lede: >-
-  Dalle frecce del piano a un'idea molto più generale: lo spazio euclideo $\R^n$ con la somma e il prodotto per
-  scalare, i gruppi e i campi, e infine gli spazi vettoriali, cioè tutti gli insiemi in cui si calcola con le stesse
-  regole di $\R^n$. Scoprirai che anche i polinomi, le funzioni e le successioni sono vettori, e imparerai a
-  riconoscere quando un insieme non è uno spazio vettoriale.
+  Che cos'è un vettore: una lista di numeri, da leggere come uno spostamento su una mappa a quadretti. Impari a
+  sommare due vettori e a moltiplicarli per un numero. Poi vedi che le stesse regole valgono anche per i polinomi e
+  per le funzioni: ogni posto in cui valgono si chiama spazio vettoriale.
 materiale: dispense
 scheda:
   Dispense: lezione 5 · pp. 20–25
   Libro: Martelli, §1.5, §2.1 e §2.2
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 90–120 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 5 «Spazi vettoriali I»; B. Martelli, Geometria e algebra lineare, §1.5, §2.1 e §2.2.1–2.2.4
 file_en: L05_vector_spaces_1.html
@@ -8194,59 +8077,159 @@ genera_html: true
 
 ## In breve
 
-- Lo **spazio euclideo** $\R^n$ è l'insieme delle liste ordinate $(x_1, \dots, x_n)$ di $n$ numeri reali. Ogni elemento si può vedere come un **punto** oppure come un **vettore**, una freccia che parte dall'origine.
-- In $\R^n$ ci sono due operazioni, fatte sempre **componente per componente**: la **somma** $x + y$ (in $\R^2$ è la regola del parallelogramma) e il **prodotto per scalare** $\lambda x$ (allunga, accorcia o ribalta il vettore).
-- Un **gruppo** è un insieme con un'operazione che ha un elemento neutro, è associativa e in cui ogni elemento ha un inverso. $(\Z, +)$ è un gruppo, $(\N, +)$ no.
-- Un **campo** è un insieme con somma e prodotto in cui si fanno le quattro operazioni, dividendo solo per elementi diversi da $0$. $\Q$, $\R$ e $\C$ sono campi, $\Z$ no; anche $\{0, 1\}$ con $1 + 1 = 0$ è un campo.
-- Uno **spazio vettoriale** su un campo $\K$ è un insieme $V$ con una somma e un prodotto per scalare che rispettano **cinque assiomi**: le stesse regole di calcolo di $\R^n$.
-- Ci sono **due zeri** da non confondere: lo $0$ del campo e l'origine $0_V$ dello spazio. La Proposizione 5.5 li collega: $0v = 0_V$.
-- Sono spazi vettoriali $\K^n$ (anche $\C^n$), le successioni, le funzioni $[0, 1] \to \K$ e i polinomi $\K[x]$: in tutti si somma e si moltiplica «un pezzo alla volta».
-- Per dimostrare che un insieme **non** è uno spazio vettoriale basta un controesempio: manca lo zero, oppure una somma o un multiplo escono dall'insieme. I polinomi di grado esattamente $2$, per esempio, non lo sono.
-- All'esame servono nelle domande a risposta multipla: «$\C$ ammette una struttura di spazio vettoriale su $\R$?» (appello del 07/02/2025) e, dalla lezione L06, «quale di questi insiemi è un sottospazio?».
+- Un **vettore** è una lista ordinata di numeri, come $(3, 2)$. Puoi leggerlo come uno spostamento su una mappa a quadretti: 3 passi a destra e 2 in su.
+- I vettori si **sommano** numero per numero: è come fare uno spostamento dopo l'altro. Si **moltiplicano per un numero** moltiplicando ogni numero della lista: è come ripetere lo stesso spostamento, oppure farlo al contrario.
+- Queste due operazioni seguono otto regole, simili a quelle dei conti con i numeri. Un insieme in cui si può sommare e moltiplicare per un numero con queste regole, senza mai uscire, si chiama **spazio vettoriale**.
+- Anche i polinomi, le funzioni e le liste infinite di numeri formano spazi vettoriali. Per questo in matematica si chiamano «vettori» anche loro.
+- Ci sono **due zeri** diversi: il numero zero e il vettore zero, quello che non sposta niente. Qualunque vettore moltiplicato per il numero zero dà il vettore zero.
+- **Gruppo** e **campo** sono i nomi di due liste di regole. Servono a scrivere la definizione in modo preciso: è la parte più teorica della lezione.
+- All'esame devi saper dire se un insieme è uno spazio vettoriale. Per dire di no basta un esempio: manca il vettore zero, oppure una somma o un multiplo escono dall'insieme.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Perché gli spazi vettoriali (p. 20)
+## Prima di cominciare
 
-Il corso studia oggetti geometrici (punti, rette, piani) che vivono in $\R^n$. Le dispense però fanno subito un passo in più: invece di lavorare solo con $\R^n$, considerano **tutti gli insiemi che hanno le stesse proprietà algebriche di $\R^n$**. Questi insiemi si chiamano **spazi vettoriali**.
+### Di che cosa parla questa lezione
 
-Per capire perché conviene, guarda tre oggetti molto diversi tra loro.
+Su una mappa a quadretti puoi dire a qualcuno come muoversi con due soli numeri: tre passi a destra, due passi in su. Una lista di numeri come questa si chiama vettore, e da qui in poi quasi ogni lezione del corso parla di vettori.
 
-| | frecce del piano | polinomi | funzioni su $[0, 1]$ |
-|---|---|---|---|
-| due elementi | $(1, 2)$ e $(3, 1)$ | $x^2 + 1$ e $2x - 3$ | $f(x) = x^2$ e $g(x) = 1 - x$ |
-| la loro somma | $(4, 3)$ | $x^2 + 2x - 2$ | $x^2 - x + 1$ |
-| il doppio del primo | $(2, 4)$ | $2x^2 + 2$ | $2x^2$ |
-| l'elemento «zero» | $(0, 0)$ | il polinomio nullo | la funzione che vale sempre $0$ |
+Con i vettori si fanno due cose. Si sommano, e vuol dire fare uno spostamento dopo l'altro. Si moltiplicano per un numero, e vuol dire ripetere lo stesso spostamento più volte, oppure farlo al contrario.
 
-In tutti e tre i casi:
+Poi arriva l'idea che dà il nome alla lezione. Le stesse due operazioni, con le stesse regole, si possono fare anche con oggetti che non sono liste di numeri, come i polinomi della lezione L04. Ogni posto in cui si può sommare e moltiplicare per un numero con le solite regole, senza mai uscire, si chiama spazio vettoriale. Il vantaggio è questo: una cosa dimostrata usando solo quelle regole vale in un colpo per le liste, per i polinomi e per tutto il resto.
 
-- sommando due elementi ottieni un elemento **dello stesso tipo**;
-- moltiplicando per un numero resti **nello stesso tipo**;
-- valgono le **stesse regole di calcolo**, per esempio $2(a + b) = 2a + 2b$.
+Una parte della lezione è più teorica: per scrivere la definizione in modo preciso le dispense usano due liste di regole, che si chiamano gruppo e campo. Servono per capire, ma all'esame non vengono chieste, e dove cominciano trovi un avviso.
 
-Se dimostri un teorema usando **solo** quelle regole, il teorema vale in una volta sola per le frecce, per i polinomi, per le funzioni e per tutto ciò che rispetta le stesse regole. È il vantaggio dell'astrazione. Le dispense citano tre esempi che userai spesso: gli **insiemi di soluzioni dei sistemi lineari** (lezioni L11–L13), gli **spazi di funzioni** (in questa lezione) e gli **spazi di matrici** (lezione L06).
+Nella lezione L06 userai tutto questo per riconoscere i sottospazi, una delle domande più frequenti del quiz su questa parte del corso.
 
-## Lo spazio euclideo $\R^n$ (pp. 20–21)
+### Che cosa devi già sapere
 
-Nel piano cartesiano un punto è individuato da due numeri, per esempio $(2, 3)$: 2 passi a destra e 3 in alto. Nello spazio ne servono tre, $(x, y, z)$. Lo spazio euclideo generalizza questa idea a un numero qualsiasi di coordinate.
+Poche cose, e le ripassiamo quando servono.
+
+- **Il piano cartesiano**: un punto si indica con due numeri, per esempio «2 a destra e 3 in su». Il ripasso è nella prima sezione.
+- **Le nove regole dei conti** della lezione L01: per esempio «in una somma l'ordine non conta», cioè $2 + 5 = 5 + 2$. Le ricordiamo nelle sezioni sui gruppi e sui campi.
+- **I simboli degli insiemi** della lezione L01, come le graffe e il simbolo «appartiene». Li rileggiamo la prima volta che compaiono.
+- **I numeri complessi** (lezione L02) e **i polinomi** (lezione L04). Servono solo in alcuni esempi, e lì trovi un riquadro di ripasso.
+
+### Che cosa saprai fare alla fine
+
+- Sommare due vettori e moltiplicare un vettore per un numero: per esempio calcolare $2 \cdot (1, 2, 0) - 3 \cdot (1, 0, -1)$.
+- Disegnare nel piano la somma di due vettori e i multipli di un vettore.
+- Fare gli stessi conti con vettori di numeri complessi, con polinomi e con funzioni.
+- Dire qual è il vettore zero in ogni esempio, senza confonderlo con il numero zero.
+- Dire se un insieme è uno spazio vettoriale. Se non lo è, trovare l'esempio che lo dimostra.
+
+## Un vettore è una lista di numeri (pp. 20–21)
+
+Immagina una mappa a quadretti, come un foglio di quaderno. Sei fermo su un incrocio e devi spiegare a un amico dove andare.
+
+Gli dici: «3 quadretti a destra e 2 in su». Bastano due numeri: il 3 e il 2. In matematica si scrivono tra parentesi tonde, separati da una virgola:
+
+$$(3, 2)$$
+
+Questa lista di due numeri è un **vettore**. Si legge «tre, due».
+
+```grafico
+titolo: Il vettore $(3, 2)$ è lo spostamento «3 a destra e 2 in su»
+x: -1 5
+y: -1 4
+segmento: 0 0 3 0 | blu | tratteggio
+segmento: 3 0 3 2 | blu | tratteggio
+vettore: 3 2 | accento | spesso | $(3, 2)$ | n
+testo: 1.5 -0.4 | blu | "3 a destra"
+testo: 3.8 1 | blu | "2 in su"
+```
+
+Guarda la figura. I due tratti blu sono i passi: prima 3 a destra, poi 2 in su. La freccia va dritta dalla partenza all'arrivo. È il disegno del vettore.
+
+### L'ordine conta
+
+Il primo numero dice sempre quanto ti muovi in orizzontale. Il secondo dice quanto ti muovi in verticale.
+
+Quindi $(3, 2)$ e $(2, 3)$ sono due vettori diversi. Il secondo vuol dire «2 a destra e 3 in su», e ti porta in un altro posto.
+
+I numeri possono essere anche negativi, oppure zero. Un numero negativo al primo posto vuol dire «a sinistra». Un numero negativo al secondo posto vuol dire «in giù».
+
+| Vettore | Spostamento |
+|---|---|
+| $(3, 2)$ | 3 a destra, 2 in su |
+| $(-3, 1)$ | 3 a sinistra, 1 in su |
+| $(2, -4)$ | 2 a destra, 4 in giù |
+| $(0, 5)$ | fermo in orizzontale, 5 in su |
+| $(0, 0)$ | resti dove sei |
+
+> [!RIPASSO] il piano cartesiano
+> Il **piano cartesiano** è la mappa a quadretti con due righe di riferimento. Una è orizzontale e si chiama *asse $x$*. L'altra è verticale e si chiama *asse $y$*. Il punto in cui si incrociano si chiama **origine**.
+>
+> Ogni punto della mappa si indica con due numeri. Il primo dice quanti passi fare dall'origine in orizzontale. Il secondo dice quanti passi fare in verticale.
+>
+> Per esempio il punto $(2, 3)$ si raggiunge così: dall'origine fai 2 passi a destra e 3 passi in su.
+
+### I nomi: coordinate e spazio euclideo
+
+I numeri che formano un vettore si chiamano **coordinate**. Le dispense li chiamano anche *componenti*. Il vettore $(3, 2)$ ha due coordinate: la prima è 3, la seconda è 2.
+
+Tutti i vettori con due coordinate, messi insieme, formano un insieme. Si indica con $\R^2$ e si legge «erre due».
+
+- La $\R$ è l'insieme dei **numeri reali**: tutti i numeri della retta, anche quelli con la virgola (lezione L01).
+- Il piccolo 2 in alto dice quanti numeri ci sono in ogni lista.
+
+Per dire che un vettore sta in questo insieme si usa il simbolo $\in$ della lezione L01. Si legge «appartiene a».
+
+$$(3, 2) \in \R^2$$
+
+Vuol dire: «tre, due» è una lista di 2 numeri reali.
+
+Una lista può avere anche tre numeri, come $(1, 4, 2)$. Serve per muoversi in una stanza invece che su un foglio: 1 passo a destra, 4 passi in avanti, 2 passi verso l'alto. L'insieme delle liste di tre numeri si chiama $\R^3$, «erre tre».
+
+Il simbolo di prima con una sbarra sopra, $\notin$, si legge «non appartiene a». Per esempio $(3, 2) \notin \R^3$: la lista ha due numeri, non tre.
+
+E si può andare avanti. Una lista di quattro numeri, come $(1, 0, -2, 5)$, è un vettore di $\R^4$. Non si può più disegnare, perché manca una quarta direzione in cui muoversi. Ma i conti si fanno nello stesso modo, e per il corso è questo che conta.
+
+In generale il numero di coordinate si indica con la lettera $n$. L'insieme delle liste di $n$ numeri reali si scrive $\R^n$ e si legge «erre enne». Si chiama **spazio euclideo**. Con $n = 2$ è il piano, con $n = 3$ è lo spazio.
+
+### Dare un nome a un vettore e alle sue coordinate
+
+Per non riscrivere ogni volta tutta la lista, a un vettore si dà un nome: una lettera minuscola, come $x$, $v$ o $w$.
+
+$$x = (3, 2)$$
+
+Le coordinate prendono il nome del vettore, con un numerino in basso che dice il posto. Il numerino si chiama **indice**.
+
+- $x_1$ si legge «ics uno»: è la prima coordinata. Qui $x_1 = 3$.
+- $x_2$ si legge «ics due»: è la seconda coordinata. Qui $x_2 = 2$.
+
+Per un vettore con $n$ coordinate le dispense scrivono $(x_1, \dots, x_n)$. Vuol dire: una lista di numeri. Il primo si chiama $x_1$ e l'ultimo $x_n$. I tre puntini stanno per tutti quelli in mezzo.
+
+Il vettore fatto di soli zeri ha un nome: **origine**. Sulla mappa è lo spostamento «resta dove sei». Si indica con $0$, oppure con la lettera $O$.
+
+### Come lo scrivono le dispense
+
+Ecco la definizione con le parole delle dispense.
 
 > [!DEF] 5.1 · Spazio euclideo
 > Sia $n \ge 1$ un numero naturale. Lo **spazio euclideo $n$-dimensionale** è l'insieme
 > $$\R^n = \underbrace{\R \times \cdots \times \R}_{n \text{ volte}}.$$
 > I suoi elementi sono successioni $(x_1, \dots, x_n)$ di $n$ numeri reali.
 
-Pezzo per pezzo:
+**Come si legge.** Un pezzo alla volta:
 
-- $\R \times \R$ è il **prodotto cartesiano**: l'insieme di tutte le **coppie ordinate** $(a, b)$ con $a, b \in \R$. Con $n$ fattori si ottengono le liste ordinate di $n$ numeri, dette anche **$n$-uple**.
-- Qui «successione» vuol dire lista **finita e ordinata** di $n$ numeri (nella lezione L01 le successioni erano infinite). L'ordine conta: $(1, 2) \neq (2, 1)$.
-- $\R^2$ è il **piano cartesiano**, $\R^3$ lo **spazio cartesiano**. Per $n \ge 4$ non si può più disegnare, ma si calcola allo stesso modo: $(1, 0, -2, 5)$ è un elemento di $\R^4$.
-- L'elemento $(0, \dots, 0)$ si chiama **origine** e si indica con $0$ oppure $O$.
+- $n \ge 1$ si legge «enne maggiore o uguale a 1». La lettera $n$ è il numero di coordinate, e deve essere almeno 1.
+- «$n$-dimensionale» vuol dire «con $n$ coordinate». Il piano ha 2 dimensioni, lo spazio ne ha 3.
+- Il simbolo $\times$ qui non è una moltiplicazione tra numeri. La scrittura $\R \times \R$ si legge «erre per erre» e indica tutte le coppie ordinate di numeri reali. Si chiama **prodotto cartesiano**.
+- La graffa orizzontale con la scritta «$n$ volte» dice che la $\R$ è ripetuta $n$ volte. Con tre $\R$ si ottengono le liste di tre numeri.
+- Qui «successioni» vuol dire liste **finite e ordinate** di numeri. Nella lezione L01 la stessa parola indicava liste infinite.
+
+Tutta insieme: «$\R^n$ è l'insieme delle liste ordinate di $n$ numeri reali».
 
 ### Punto o vettore?
 
-Un elemento $x \in \R^n$ si può leggere in due modi: come un **punto**, oppure come un **vettore**, cioè una freccia che parte dall'origine e arriva in $x$. Sono due modi di disegnare la stessa lista di numeri. Di solito si usano le lettere $P, Q$ per i punti e $v, w$ per i vettori.
+La stessa lista di numeri si può disegnare in due modi.
+
+- Come un **punto**: il posto della mappa in cui arrivi.
+- Come un **vettore**: la freccia che parte dall'origine e arriva in quel posto. È lo spostamento.
+
+Sono due disegni della stessa lista. Di solito si usano le lettere maiuscole $P$ e $Q$ quando si pensa ai punti, e le minuscole $v$ e $w$ quando si pensa ai vettori.
 
 ```grafico
 titolo: Due elementi di $\R^2$: $(2, 3)$ disegnato come punto e $(-3, 1)$ disegnato come vettore
@@ -8256,27 +8239,90 @@ punto: 2 3 | ambra | $P = (2, 3)$ | e
 vettore: -3 1 | accento | spesso | $v = (-3, 1)$ | n
 ```
 
-Le dispense scrivono spesso i vettori in **verticale**:
+Guarda la figura. A destra c'è un pallino: è la lista «due, tre» disegnata come punto. A sinistra c'è una freccia: è la lista «meno tre, uno» disegnata come vettore. Nelle dispense la freccia di un vettore parte sempre dall'origine.
 
-$$x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}.$$
+### Scrivere un vettore in verticale
 
-Questa scrittura si chiama **vettore colonna**, e i numeri $x_1, \dots, x_n$ sono le **coordinate** di $x$. Il motivo della scrittura verticale si capirà con il prodotto tra matrici (lezione L08). Per risparmiare spazio, in questi appunti i vettori compaiono spesso anche in riga, come $(1, 2, 3)$: è lo stesso vettore.
+Le dispense scrivono spesso i vettori in verticale, con i numeri uno sotto l'altro:
+
+$$\begin{pmatrix} 3 \\ 2 \end{pmatrix}$$
+
+È lo stesso vettore di prima: in alto la prima coordinata, sotto la seconda. Scritto così si chiama **vettore colonna**.
+
+Per un vettore con $n$ coordinate le dispense scrivono:
+
+$$x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}$$
+
+I tre puntini in verticale vogliono dire «e avanti così, fino all'ultima coordinata».
+
+Il motivo della scrittura in verticale si capisce con il prodotto tra matrici, nella lezione L08. In questi appunti i vettori compaiono spesso in riga, come $(1, 2, 3)$, per occupare meno spazio. È lo stesso vettore.
 
 > [!NOTA] La scrittura degli appelli
-> Negli appelli d'esame un vettore colonna scritto in riga compare spesso come ${}^t(1, 2, 3)$, con una piccola $t$ in alto a sinistra: la $t$ sta per «trasposto» e vuol dire «questa riga, messa in verticale». La trasposta si vede nella lezione L08.
+> Negli appelli un vettore colonna scritto in riga compare spesso come ${}^t(1, 2, 3)$, con una piccola $t$ in alto a sinistra. La $t$ sta per «trasposto» e vuol dire «questa riga, messa in verticale». La trasposta si vede nella lezione L08.
 
-### La somma di vettori (pp. 20–21)
+> [!TRAPPOLA] Mai le graffe per un vettore
+> La scrittura $\{3, 2\}$ con le graffe indica un insieme, e in un insieme l'ordine non conta (lezione L01). In un vettore l'ordine conta: per questo si usano sempre le parentesi tonde.
 
-> [!DEF] Somma di vettori (p. 20)
-> Lo spazio $\R^n$ è dotato di una somma definita **componente per componente**: se
-> $$x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}, \qquad y = \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix}, \qquad \text{allora} \qquad x + y = \begin{pmatrix} x_1 + y_1 \\ \vdots \\ x_n + y_n \end{pmatrix}.$$
+::: prova Che spostamento indica il vettore $(-1, 4)$? E il vettore $(0, -2)$?
+$(-1, 4)$: 1 passo a sinistra e 4 in su. Il primo numero è negativo, quindi si va a sinistra.
 
-In parole: si sommano le prime coordinate tra loro, le seconde tra loro, e così via.
+$(0, -2)$: fermo in orizzontale e 2 passi in giù.
+:::
 
-> [!ESEMPIO] · somme in $\R^2$ e in $\R^4$
-> $$\begin{pmatrix} 1 \\ 2 \end{pmatrix} + \begin{pmatrix} 3 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 + 3 \\ 2 + 1 \end{pmatrix} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}, \qquad \begin{pmatrix} 1 \\ 0 \\ -2 \\ 5 \end{pmatrix} + \begin{pmatrix} 3 \\ 1 \\ 2 \\ -5 \end{pmatrix} = \begin{pmatrix} 4 \\ 1 \\ 0 \\ 0 \end{pmatrix}.$$
+::: prova Se $x = (7, 0, -2)$, quanto valgono $x_1$ e $x_3$?
+$x_1 = 7$: è la prima coordinata. $x_3 = -2$: è la terza.
+:::
 
-In $\R^2$ questa somma coincide con la **regola del parallelogramma**, quella che in fisica si usa per sommare le forze. Disegna $v$ e $w$ partendo dall'origine e completa il parallelogramma che li ha come lati: la diagonale che parte dall'origine è $v + w$. Oppure, che è lo stesso: sposta $w$ in modo che parta dalla punta di $v$, e la sua punta arriva proprio in $v + w$.
+> [!RICORDA]
+> - Un **vettore** è una lista ordinata di numeri, scritta con le parentesi tonde. I numeri si chiamano **coordinate**.
+> - Nel piano si legge come uno spostamento: il primo numero è «a destra», il secondo «in su». Con il segno meno il verso è quello contrario.
+> - $\R^n$ è l'insieme delle liste di $n$ numeri reali. $\R^2$ è il piano, $\R^3$ lo spazio.
+> - La lista di soli zeri si chiama **origine**.
+
+## Sommare: uno spostamento dopo l'altro (pp. 20–21)
+
+Fai due spostamenti di fila sulla mappa.
+
+- Primo spostamento: 1 a destra e 2 in su. È il vettore $(1, 2)$.
+- Secondo spostamento: 3 a destra e 1 in su. È il vettore $(3, 1)$.
+
+Di quanto ti sei spostato in tutto? Conta i passi in orizzontale e quelli in verticale, separati.
+
+- In orizzontale: $1 + 3 = 4$ passi a destra.
+- In verticale: $2 + 1 = 3$ passi in su.
+
+In tutto ti sei spostato di 4 a destra e 3 in su. Questo spostamento totale è la **somma** dei due vettori:
+
+$$(1, 2) + (3, 1) = (1 + 3,\ 2 + 1) = (4, 3)$$
+
+> [!IDEA]
+> Sommare due vettori vuol dire fare uno spostamento dopo l'altro. Il conto si fa un posto alla volta: il primo numero con il primo, il secondo con il secondo.
+
+Le dispense dicono che la somma si fa **componente per componente**. È la stessa cosa: una coordinata alla volta.
+
+```grafico
+titolo: Prima lo spostamento $v = (1, 2)$, poi $w = (3, 1)$: l'arrivo è $(4, 3)$
+x: -1 5
+y: -1 4
+vettore: 4 3 | ambra | tratteggio | $v + w = (4, 3)$ | n
+vettore: 1 2 | accento | spesso
+freccia: 1 2 4 3 | blu | spesso
+testo: 0.2 1.3 | accento | $v$
+testo: 2.4 2.9 | blu | $w$
+```
+
+Guarda la figura. La prima freccia, $v$, parte dall'origine. La seconda, $w$, è disegnata a partire dalla punta della prima. La freccia tratteggiata va dall'origine al punto di arrivo: è la somma.
+
+### Cambiando l'ordine si arriva nello stesso posto
+
+Fai i due spostamenti nell'ordine contrario: prima quello da 3 a destra e 1 in su, poi quello da 1 a destra e 2 in su.
+
+- In orizzontale: $3 + 1 = 4$.
+- In verticale: $1 + 2 = 3$.
+
+Arrivi nello stesso punto. Hai solo fatto un'altra strada.
+
+Le due strade insieme disegnano un **parallelogramma**, cioè una figura con quattro lati, paralleli a due a due. La somma è la diagonale che parte dall'origine. Per questo la somma di due vettori del piano si chiama anche **regola del parallelogramma**. In fisica si usa per sommare due forze.
 
 ```grafico
 titolo: La somma $v + w$ è la diagonale del parallelogramma costruito su $v = (1, 2)$ e $w = (3, 1)$
@@ -8290,34 +8336,102 @@ vettore: 1 2 | accento | spesso | $v$ | no
 vettore: 3 1 | blu | spesso | $w$ | se
 ```
 
+Guarda la figura. Le due frecce piene sono i due vettori, disegnati dall'origine. I lati tratteggiati sono gli stessi spostamenti fatti per secondi. La diagonale arriva nel punto «quattro, tre».
+
+### Un esempio con quattro coordinate
+
+Con liste più lunghe il disegno non c'è più, ma il conto è lo stesso.
+
+> [!ESEMPIO] · somme in $\R^2$ e in $\R^4$
+> **Con due coordinate**, scrivendo i vettori in colonna. Si somma riga per riga:
+> $$\begin{pmatrix} 1 \\ 2 \end{pmatrix} + \begin{pmatrix} 3 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 + 3 \\ 2 + 1 \end{pmatrix} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}$$
+>
+> **Con quattro coordinate.** Vogliamo sommare $(1, 0, -2, 5)$ e $(3, 1, 2, -5)$. Un posto alla volta:
+>
+> | Posto | Primo vettore | Secondo vettore | Somma |
+> |---|---|---|---|
+> | 1 | $1$ | $3$ | $1 + 3 = 4$ |
+> | 2 | $0$ | $1$ | $0 + 1 = 1$ |
+> | 3 | $-2$ | $2$ | $-2 + 2 = 0$ |
+> | 4 | $5$ | $-5$ | $5 - 5 = 0$ |
+>
+> Quindi la somma è $(4, 1, 0, 0)$.
+
+### Come lo scrivono le dispense
+
+Ecco la stessa regola con le lettere al posto dei numeri.
+
+> [!DEF] Somma di vettori (p. 20)
+> Lo spazio $\R^n$ è dotato di una somma definita **componente per componente**: se
+> $$x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix}, \qquad y = \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix}, \qquad \text{allora} \qquad x + y = \begin{pmatrix} x_1 + y_1 \\ \vdots \\ x_n + y_n \end{pmatrix}.$$
+
+**Come si legge.**
+
+- Le lettere $x$ e $y$ sono i nomi di due vettori con $n$ coordinate, scritti in colonna.
+- In alto nella colonna della somma c'è $x_1 + y_1$: la prima coordinata dell'uno più la prima coordinata dell'altro.
+- In basso c'è $x_n + y_n$: l'ultima più l'ultima.
+- I puntini in mezzo dicono che si fa così per tutte le altre coordinate.
+
 > [!TRAPPOLA] Solo vettori con lo stesso numero di coordinate
-> Si sommano solo vettori dello **stesso** $\R^n$: $(1, 2) + (1, 2, 3)$ non ha senso, perché alla terza coordinata manca il compagno.
+> Si sommano solo vettori lunghi uguale. La scrittura $(1, 2) + (1, 2, 3)$ non ha senso: al terzo numero del secondo vettore manca il compagno.
 
-### Il prodotto per scalare (p. 21)
+::: prova Quanto fa $(2, 5) + (1, -3)$?
+Un posto alla volta: $(2 + 1,\ 5 - 3) = (3, 2)$.
+:::
 
-> [!DEF] Prodotto per scalare (p. 21)
-> Dato $x \in \R^n$ e uno scalare $\lambda \in \R$, definiamo
-> $$\lambda x = \begin{pmatrix} \lambda x_1 \\ \vdots \\ \lambda x_n \end{pmatrix}.$$
-> Il numero reale $\lambda$ è detto **scalare**; l'operazione $x \mapsto \lambda x$ è detta **prodotto per scalare**.
+::: prova Quanto fa $(1, 0, 4) + (2, 2, -4)$?
+$(1 + 2,\ 0 + 2,\ 4 - 4) = (3, 2, 0)$.
+:::
 
-Pezzo per pezzo:
+::: prova Parti dall'origine. Fai lo spostamento $(2, 1)$ e poi lo spostamento $(-2, 3)$. Dove arrivi?
+Sommi i due vettori: $(2 - 2,\ 1 + 3) = (0, 4)$. Sei 4 quadretti sopra il punto di partenza: i passi a destra e quelli a sinistra si sono annullati.
+:::
 
-- $\lambda$ è la lettera greca *lambda*: indica un **numero**, non un vettore. Per distinguerli, i numeri che moltiplicano i vettori si chiamano **scalari**.
-- Ogni coordinata viene moltiplicata per lo **stesso** numero $\lambda$.
-- $x \mapsto \lambda x$ si legge «$x$ va in $\lambda x$»: a ogni vettore l'operazione associa il suo multiplo.
+> [!RICORDA]
+> - Sommare due vettori vuol dire fare uno spostamento dopo l'altro.
+> - Il conto si fa un posto alla volta: $(1, 2) + (3, 1) = (4, 3)$.
+> - Nel piano la somma è la diagonale del parallelogramma costruito sui due vettori.
+> - Si sommano solo vettori con lo stesso numero di coordinate.
 
-Geometricamente, $\lambda x$ si ottiene **allungando o accorciando** $x$ di un fattore $|\lambda|$ e, se $\lambda < 0$, **invertendone il verso**. Prova con $v = (1, 2)$:
+## Multipli: ripetere lo stesso spostamento (p. 21)
 
-| $\lambda$ | $\lambda v$ | che cosa succede |
-|---:|---|---|
-| $2$ | $(2, 4)$ | stesso verso, lungo il doppio |
-| $\frac 12$ | $(\frac 12, 1)$ | stesso verso, lungo la metà |
-| $1$ | $(1, 2)$ | resta uguale |
-| $0$ | $(0, 0)$ | diventa il vettore nullo |
-| $-1$ | $(-1, -2)$ | verso opposto, stessa lunghezza: è l'**opposto** $-v$ |
-| $-2$ | $(-2, -4)$ | verso opposto, lungo il doppio |
+Fai due volte di fila lo stesso spostamento: 1 a destra e 2 in su, e poi ancora 1 a destra e 2 in su.
 
-Tutti i multipli di $v$ stanno sulla **retta** che passa per l'origine e per $v$, qui la retta $y = 2x$. Questa osservazione torna nella lezione L06, dove l'insieme dei multipli di $v$ si chiamerà $\Span(v)$.
+In tutto hai fatto 2 passi a destra e 4 in su. Ogni numero è raddoppiato:
+
+$$2 \cdot (1, 2) = (2 \cdot 1,\ 2 \cdot 2) = (2, 4)$$
+
+Il puntino $\cdot$ è il segno «per». Lo stesso si può fare con altri numeri.
+
+- **Metà spostamento.** Moltiplica per $\frac 12$, cioè dividi tutto a metà: viene $(\frac 12, 1)$. Stessa direzione, metà strada.
+- **Lo spostamento al contrario.** Moltiplica per $-1$: viene $(-1, -2)$, cioè 1 a sinistra e 2 in giù. È la strada per tornare indietro.
+- **Zero volte.** Moltiplica per 0: viene $(0, 0)$. Resti dove sei.
+
+> [!IDEA]
+> Moltiplicare un vettore per un numero vuol dire moltiplicare per quel numero **ogni** coordinata. La freccia si allunga o si accorcia. Se il numero è negativo, si gira dalla parte opposta.
+
+### I nomi: scalare e multiplo
+
+Il numero che moltiplica il vettore si chiama **scalare**. Uno scalare è un numero normale, come 2 o $-3$: la parola serve solo a distinguerlo dai vettori. Viene da «scala»: cambia la scala del disegno, come lo zoom di una mappa.
+
+L'operazione si chiama **prodotto per scalare**. Il risultato si chiama **multiplo** del vettore.
+
+Per indicare uno scalare qualsiasi le dispense usano la lettera greca $\lambda$, che si legge «lambda» (lezione L01).
+
+Tra lo scalare e il vettore il puntino di solito non si scrive. La scrittura $2v$ vuol dire «2 per $v$», e $\lambda x$ vuol dire «lambda per $x$».
+
+### Tutti i multipli di un vettore
+
+Prendiamo il vettore $v = (1, 2)$ e moltiplichiamolo per sei scalari diversi.
+
+| Scalare | Conto | Multiplo | Che cosa succede alla freccia |
+|--:|---|---|---|
+| $2$ | $(2 \cdot 1,\ 2 \cdot 2)$ | $(2, 4)$ | stesso verso, lunga il doppio |
+| $\frac 12$ | $(\frac 12 \cdot 1,\ \frac 12 \cdot 2)$ | $(\frac 12, 1)$ | stesso verso, lunga la metà |
+| $1$ | $(1 \cdot 1,\ 1 \cdot 2)$ | $(1, 2)$ | resta uguale |
+| $0$ | $(0 \cdot 1,\ 0 \cdot 2)$ | $(0, 0)$ | si riduce all'origine |
+| $-1$ | $(-1 \cdot 1,\ -1 \cdot 2)$ | $(-1, -2)$ | verso opposto, stessa lunghezza |
+| $-2$ | $(-2 \cdot 1,\ -2 \cdot 2)$ | $(-2, -4)$ | verso opposto, lunga il doppio |
 
 ```grafico
 titolo: I multipli di $v = (1, 2)$ stanno tutti sulla retta $y = 2x$
@@ -8329,7 +8443,33 @@ vettore: 1 2 | accento | spesso | $v$ | o
 vettore: -2 -4 | rosa | $-2v$ | e
 ```
 
-Prova tu. Nello strumento qui sotto puoi trascinare le punte di $u$ e $v$. Nel modo «u + v» vedi il parallelogramma; nel modo «multiplo» sposta il cursore $\lambda$: con $\lambda = -2$ ritrovi la Figura 6 delle dispense, con $\lambda$ tra $0$ e $1$ il vettore si accorcia, con $\lambda$ negativo si ribalta, con $\lambda = 0$ si riduce all'origine.
+Guarda la figura. Tutti i multipli stanno sulla stessa retta: quella che passa per l'origine e per la punta di $v$. In ogni punto di questa retta il secondo numero è il doppio del primo. Per questo la retta ha l'etichetta $y = 2x$, che si legge «ipsilon uguale due ics».
+
+Questa osservazione torna nella lezione L06: l'insieme di tutti i multipli di un vettore lì riceve un nome e un simbolo.
+
+### Come lo scrivono le dispense
+
+Ecco la regola con le lettere.
+
+> [!DEF] Prodotto per scalare (p. 21)
+> Dato $x \in \R^n$ e uno scalare $\lambda \in \R$, definiamo
+> $$\lambda x = \begin{pmatrix} \lambda x_1 \\ \vdots \\ \lambda x_n \end{pmatrix}.$$
+> Il numero reale $\lambda$ è detto **scalare**; l'operazione $x \mapsto \lambda x$ è detta **prodotto per scalare**.
+
+**Come si legge.**
+
+- $x \in \R^n$ si legge «ics appartiene a erre enne». Vuol dire: $x$ è un vettore con $n$ coordinate.
+- $\lambda \in \R$ si legge «lambda appartiene a erre». Vuol dire: lo scalare è un numero reale.
+- Nella colonna ogni coordinata è moltiplicata per lo stesso scalare. La prima diventa $\lambda x_1$, l'ultima $\lambda x_n$.
+- La freccia $\mapsto$ si legge «va in». La scrittura $x \mapsto \lambda x$ vuol dire: a ogni vettore l'operazione fa corrispondere il suo multiplo.
+
+Le dispense aggiungono la lettura sul disegno. Il vettore si allunga o si accorcia di un fattore $|\lambda|$, e se lo scalare è negativo cambia verso. Le due barre verticali sono il **valore assoluto**: il numero senza il segno meno. Per esempio $|-2| = 2$: moltiplicare per $-2$ raddoppia la lunghezza e gira la freccia.
+
+Nello strumento qui sotto puoi trascinare le punte delle due frecce, che si chiamano $u$ e $v$. Prova queste tre cose.
+
+1. Nel modo «u + v» guarda il parallelogramma. Poi sposta una punta e controlla che la somma cambia un posto alla volta.
+2. Passa al modo «multiplo λu» e muovi il cursore. Con uno scalare tra 0 e 1 la freccia si accorcia. Con uno scalare negativo si ribalta.
+3. Metti il cursore su 0: la freccia si riduce all'origine.
 
 ```widget vettori
 titolo: Somma e prodotto per scalare nel piano
@@ -8340,28 +8480,164 @@ modi: somma multiplo
 lambda: -2
 ```
 
-### Le regole di calcolo di $\R^n$
+All'apertura il cursore è su $-2$: è lo stesso disegno della Figura 6 delle dispense.
 
-Le due operazioni di $\R^n$ rispettano otto regole. Le dispense le richiamano nella Definizione 5.4 («le stesse proprietà delle corrispondenti operazioni dello spazio euclideo»); il libro di Martelli le elenca nel §2.1.5. Eccole, controllate con $v = (1, 2)$, $w = (3, -1)$, $u = (0, 5)$, $\lambda = 2$ e $\mu = 3$:
+### L'opposto e la differenza
 
-| Regola | Controllo con i numeri |
-|---|---|
-| $v + w = w + v$ | $(1, 2) + (3, -1) = (4, 1) = (3, -1) + (1, 2)$ |
-| $(v + w) + u = v + (w + u)$ | $(4, 1) + (0, 5) = (4, 6)$ e $(1, 2) + (3, 4) = (4, 6)$ |
-| $v + 0 = v$ | $(1, 2) + (0, 0) = (1, 2)$ |
-| $v + (-v) = 0$ | $(1, 2) + (-1, -2) = (0, 0)$ |
-| $\lambda(v + w) = \lambda v + \lambda w$ | $2 \cdot (4, 1) = (8, 2)$ e $(2, 4) + (6, -2) = (8, 2)$ |
-| $(\lambda + \mu) v = \lambda v + \mu v$ | $5 \cdot (1, 2) = (5, 10)$ e $(2, 4) + (3, 6) = (5, 10)$ |
-| $(\lambda\mu) v = \lambda(\mu v)$ | $6 \cdot (1, 2) = (6, 12)$ e $2 \cdot (3, 6) = (6, 12)$ |
-| $1v = v$ | $1 \cdot (1, 2) = (1, 2)$ |
+Il multiplo con lo scalare $-1$ ha un nome: **opposto** del vettore. Si scrive con un segno meno davanti. L'opposto di $v = (1, 2)$ è $-v = (-1, -2)$.
 
-Ogni regola vale perché vale per i numeri reali, una coordinata alla volta. Sono esattamente le regole che la definizione di spazio vettoriale chiederà a ogni insieme che voglia «comportarsi come $\R^n$».
+Un vettore più il suo opposto dà l'origine. È come andare e tornare:
 
-## Gruppi (pp. 21–22)
+$$(1, 2) + (-1, -2) = (1 - 1,\ 2 - 2) = (0, 0)$$
 
-Per dire che cos'è uno spazio vettoriale servono due strutture algebriche: il **gruppo**, per i vettori con la somma, e il **campo**, per gli scalari. Si comincia dal gruppo.
+Con l'opposto si fa anche la **differenza** di due vettori. «$v$ meno $w$» vuol dire «$v$ più l'opposto di $w$». In pratica si sottrae un posto alla volta:
 
-Pensa agli interi con la somma. Sommando due interi ottieni un intero. Lo $0$ non cambia niente: $0 + 7 = 7$. Ogni intero ha un opposto che «annulla» la somma: $7 + (-7) = 0$. E puoi spostare le parentesi: $(2 + 3) + 4 = 2 + (3 + 4) = 9$. Con i naturali invece qualcosa si rompe: l'equazione $3 + x = 0$ non ha soluzione in $\N$, perché manca l'opposto di $3$. La definizione di gruppo mette nero su bianco proprio queste proprietà.
+$$(5, 1) - (2, 3) = (5 - 2,\ 1 - 3) = (3, -2)$$
+
+> [!ESEMPIO] · multipli e differenza nello stesso conto
+> Calcoliamo $2 \cdot (1, 2, 0) - 3 \cdot (1, 0, -1)$. Prima i due multipli, poi la differenza.
+>
+> 1. Primo multiplo: $2 \cdot (1, 2, 0) = (2 \cdot 1,\ 2 \cdot 2,\ 2 \cdot 0) = (2, 4, 0)$.
+> 2. Secondo multiplo: $3 \cdot (1, 0, -1) = (3 \cdot 1,\ 3 \cdot 0,\ 3 \cdot (-1)) = (3, 0, -3)$.
+> 3. Differenza, un posto alla volta: $(2 - 3,\ 4 - 0,\ 0 - (-3)) = (-1, 4, 3)$.
+>
+> Attenzione al terzo posto. Togliere un numero negativo vuol dire aggiungere: $0 - (-3) = 0 + 3 = 3$.
+>
+> Il risultato è $(-1, 4, 3)$.
+
+::: prova Quanto fa $3 \cdot (2, -1)$? E $-2 \cdot (1, 0, 4)$?
+$3 \cdot (2, -1) = (3 \cdot 2,\ 3 \cdot (-1)) = (6, -3)$.
+
+$-2 \cdot (1, 0, 4) = (-2 \cdot 1,\ -2 \cdot 0,\ -2 \cdot 4) = (-2, 0, -8)$.
+:::
+
+::: prova Quanto fa $(6, 2) - 2 \cdot (1, 3)$?
+Prima il multiplo: $2 \cdot (1, 3) = (2, 6)$. Poi la differenza: $(6 - 2,\ 2 - 6) = (4, -4)$.
+:::
+
+> [!RICORDA]
+> - Uno **scalare** è un numero. Moltiplicare un vettore per uno scalare vuol dire moltiplicare ogni coordinata.
+> - Scalare maggiore di 1: la freccia si allunga. Tra 0 e 1: si accorcia. Negativo: si gira.
+> - Tutti i multipli di un vettore stanno su una retta che passa per l'origine.
+> - L'**opposto** di un vettore è il suo multiplo con lo scalare $-1$.
+
+## Le otto regole dei conti con i vettori (pp. 21–22)
+
+Con i numeri usi delle regole senza pensarci. Per esempio sai che in una somma l'ordine non conta: $2 + 5$ e $5 + 2$ danno lo stesso risultato (lezione L01).
+
+Con i vettori succede lo stesso. La somma e il prodotto per scalare seguono otto regole. Le dispense le elencano nella definizione di spazio vettoriale, che trovi più avanti. Conviene conoscerle adesso, sui vettori del piano.
+
+Per controllarle usiamo sempre gli stessi tre vettori e gli stessi due scalari:
+
+$$v = (1, 2) \qquad w = (3, -1) \qquad u = (0, 5) \qquad \text{scalari: } 2 \text{ e } 3$$
+
+| N. | La regola a parole | Controllo con i numeri |
+|---|---|---|
+| 1 | in una somma l'ordine non conta | $(1, 2) + (3, -1) = (4, 1)$ e $(3, -1) + (1, 2) = (4, 1)$ |
+| 2 | in una somma di tre vettori puoi cominciare da dove vuoi | $(4, 1) + (0, 5) = (4, 6)$ e $(1, 2) + (3, 4) = (4, 6)$ |
+| 3 | sommare il vettore di soli zeri non cambia niente | $(1, 2) + (0, 0) = (1, 2)$ |
+| 4 | ogni vettore ha un opposto: sommati danno il vettore di soli zeri | $(1, 2) + (-1, -2) = (0, 0)$ |
+| 5 | il multiplo di una somma è la somma dei multipli | $2 \cdot (4, 1) = (8, 2)$ e $(2, 4) + (6, -2) = (8, 2)$ |
+| 6 | moltiplicare per la somma di due scalari è come fare i due multipli e sommarli | $5 \cdot (1, 2) = (5, 10)$ e $(2, 4) + (3, 6) = (5, 10)$ |
+| 7 | moltiplicare per due scalari uno dopo l'altro è come moltiplicare per il loro prodotto | $6 \cdot (1, 2) = (6, 12)$ e $2 \cdot (3, 6) = (6, 12)$ |
+| 8 | moltiplicare per 1 non cambia niente | $1 \cdot (1, 2) = (1, 2)$ |
+
+Nella tabella i conti sono scritti in breve. Controlliamo per intero le regole 5 e 6, che sono le meno immediate.
+
+**Regola 5.** A sinistra prima si somma, poi si raddoppia.
+
+1. $v + w = (1 + 3,\ 2 - 1) = (4, 1)$.
+2. Il doppio: $(2 \cdot 4,\ 2 \cdot 1) = (8, 2)$.
+
+A destra prima si raddoppiano i due vettori, poi si somma.
+
+1. Il doppio di $v$ è $(2, 4)$. Il doppio di $w$ è $(6, -2)$.
+2. La somma: $(2 + 6,\ 4 - 2) = (8, 2)$.
+
+Stesso risultato.
+
+**Regola 6.** A sinistra prima si sommano i due scalari, poi si moltiplica.
+
+1. $2 + 3 = 5$.
+2. $5 \cdot (1, 2) = (5, 10)$.
+
+A destra prima si fanno i due multipli, poi si sommano.
+
+1. $2 \cdot (1, 2) = (2, 4)$ e $3 \cdot (1, 2) = (3, 6)$.
+2. La somma: $(2 + 3,\ 4 + 6) = (5, 10)$.
+
+Stesso risultato.
+
+### Perché valgono
+
+Ogni conto tra vettori è fatto di conti tra numeri, un posto alla volta. E per i numeri queste regole valgono già: sono le nove regole della lezione L01.
+
+Guarda la regola 1. Al primo posto c'è $1 + 3$ da una parte e $3 + 1$ dall'altra. Sono uguali perché nella somma di due numeri l'ordine non conta. Al secondo posto succede lo stesso.
+
+I nomi delle regole sono quelli della lezione L01: la regola 1 è la proprietà **commutativa**, la regola 2 è la proprietà **associativa**. Le regole 5 e 6 sono due forme della proprietà **distributiva**.
+
+::: prova Controlla la regola 5 con lo scalare 3 e i vettori $(1, 1)$ e $(2, 0)$.
+A sinistra: prima la somma, $(1 + 2,\ 1 + 0) = (3, 1)$. Poi il triplo: $(9, 3)$.
+
+A destra: il triplo di $(1, 1)$ è $(3, 3)$, il triplo di $(2, 0)$ è $(6, 0)$. La somma: $(3 + 6,\ 3 + 0) = (9, 3)$.
+
+Stesso risultato.
+:::
+
+::: prova Quale regola dice che $(2, 7) + (0, 0) = (2, 7)$? E quale dice che $1 \cdot (2, 7) = (2, 7)$?
+La prima è la regola 3: sommare il vettore di soli zeri non cambia niente. La seconda è la regola 8: moltiplicare per 1 non cambia niente.
+:::
+
+> [!RICORDA]
+> - La somma di vettori e il prodotto per scalare seguono otto regole.
+> - Quattro parlano solo della somma: l'ordine non conta, si può cominciare da dove si vuole, c'è il vettore di soli zeri, ogni vettore ha l'opposto.
+> - Quattro parlano dei multipli: due distributive, quella dei due scalari uno dopo l'altro, e quella dello scalare 1.
+> - Valgono perché valgono per i numeri, una coordinata alla volta.
+
+## Gruppi: un'operazione e tre regole (pp. 21–22)
+
+Per due sezioni lasciamo da parte i vettori e parliamo solo di regole.
+
+> [!NOTA] Serve per capire, non per l'esame
+> Questa sezione e la prossima spiegano due parole, **gruppo** e **campo**. Le dispense le usano per scrivere in modo preciso la definizione di spazio vettoriale. Negli appelli dal 2024 al 2026 non c'è nessuna domanda sulle regole dei gruppi, e la parola «campo» compare solo dentro domande sugli spazi vettoriali. Se hai poco tempo, leggi i due riquadri «Da ricordare» e passa alla sezione «Che cos'è uno spazio vettoriale».
+
+### Che cosa succede con gli interi e la somma
+
+Prendi i numeri interi, cioè $\dots, -2, -1, 0, 1, 2, \dots$, e l'operazione di somma. Succedono quattro cose.
+
+1. **Non si esce.** La somma di due interi è sempre un intero: $3 + (-5) = -2$.
+2. **C'è un numero che non cambia niente.** È lo zero: $0 + 7 = 7$.
+3. **Le parentesi si possono spostare.** $(2 + 3) + 4$ fa $5 + 4 = 9$. Anche $2 + (3 + 4)$ fa $2 + 7 = 9$.
+4. **Ogni numero ha un compagno che lo annulla.** Il compagno di 7 è $-7$: sommati fanno zero.
+
+Ora prendi i numeri naturali, cioè $0, 1, 2, 3, \dots$, sempre con la somma. Le prime tre cose valgono ancora. La quarta no: il compagno di 3 sarebbe $-3$, che non è un numero naturale.
+
+> [!IDEA]
+> Un **gruppo** è un insieme con un'operazione che non fa uscire dall'insieme e che rispetta tre regole: c'è un elemento che non cambia niente, le parentesi si possono spostare, ogni elemento ha un compagno che lo annulla.
+
+Gli interi con la somma sono un gruppo. I naturali con la somma no.
+
+### I nomi delle tre regole
+
+- L'elemento che non cambia niente si chiama **elemento neutro**. Per la somma è lo 0. Per il prodotto è l'1, perché $1 \cdot 7 = 7$.
+- «Le parentesi si possono spostare» è la proprietà **associativa**.
+- Il compagno che annulla si chiama **inverso**. «Annullare» vuol dire: riportare all'elemento neutro.
+
+Per la somma l'inverso è l'opposto: quello di 7 è $-7$, perché sommati fanno 0. Per il prodotto l'inverso è il numero che moltiplicato dà 1: quello di 7 è $\frac 17$.
+
+Un'operazione che prende due elementi di un insieme e ne restituisce uno **dello stesso insieme** si chiama **operazione binaria** (lezione L01). La sottrazione non è un'operazione binaria sui naturali: $2 - 5$ fa $-3$, che esce dall'insieme.
+
+Se in più nell'operazione l'ordine non conta, il gruppo si chiama **commutativo**.
+
+Le tre regole valgono per la somma degli interi. Valgono anche per altre operazioni, per esempio per il prodotto delle frazioni diverse da zero. Per scriverle una volta sola, qualunque sia l'operazione, le dispense usano tre segni.
+
+- L'asterisco $*$ sta per «l'operazione, qualunque sia». La scrittura $a * b$ vuol dire «il risultato dell'operazione tra $a$ e $b$». Nei casi concreti al posto dell'asterisco c'è il segno più oppure il segno per.
+- La lettera $e$ indica l'elemento neutro.
+- $a'$ si legge «a primo» e indica l'inverso di $a$.
+
+### Come lo scrivono le dispense
+
+Ecco la definizione delle dispense.
 
 > [!DEF] 5.2 · Gruppo
 > Un **gruppo** è un insieme $G$ dotato di un'operazione binaria, cioè di una funzione che associa a ogni coppia $a, b$ di elementi in $G$ un nuovo elemento di $G$ che indichiamo con $a * b$. Il simbolo $*$ indica l'operazione binaria. L'operazione deve soddisfare i seguenti tre assiomi:
@@ -8371,43 +8647,76 @@ Pensa agli interi con la somma. Sommando due interi ottieni un intero. Lo $0$ no
 >
 > Il gruppo $G$ è **commutativo** se vale anche la proprietà commutativa $a * b = b * a,\ \forall a, b \in G$.
 
-Pezzo per pezzo:
+**Come si legge.** La definizione usa due simboli della lezione L01: $\forall$ si legge «per ogni» ed $\exists$ si legge «esiste». I due punti dopo «esiste» si leggono «per cui».
 
-- **Operazione binaria**: prende due elementi di $G$ e ne restituisce uno **ancora in $G$**. Se il risultato può uscire da $G$, non è un'operazione su $G$: la sottrazione non è un'operazione su $\N$, perché $2 - 5 = -3 \notin \N$.
-- Il simbolo $*$ è un segnaposto: nei casi concreti è la somma $+$, il prodotto $\cdot$ o la composizione di funzioni $\circ$.
-- **Assioma 1**: c'è un elemento $e$ che non cambia niente, lo **stesso** per tutti gli $a$. Per la somma è $0$, per il prodotto è $1$.
-- **Assioma 2**: le parentesi si possono spostare, quindi anche togliere: $a * b * c$ ha un solo significato.
-- **Assioma 3**: ogni $a$ ha un «annullatore» $a'$, che dipende da $a$: combinato con $a$ restituisce $e$. Per la somma $a'$ è l'opposto $-a$, per il prodotto è l'inverso $\frac 1a$.
-- **Commutativo**: l'ordine non conta. Non tutti i gruppi sono commutativi (riquadro più sotto), ma i gruppi di questo corso con la somma lo sono tutti.
+- **La prima frase.** La lettera $G$ è il nome dell'insieme. L'operazione prende due elementi dell'insieme e ne restituisce uno dello stesso insieme: non si esce.
+- **Assioma 1.** A parole: «esiste un elemento $e$ che, combinato con qualunque elemento $a$, restituisce $a$». È l'elemento neutro, ed è lo stesso per tutti.
+- **Assioma 2.** Le parentesi si possono spostare. Quindi in una scrittura con tre elementi si possono anche togliere.
+- **Assioma 3.** A parole: «per ogni elemento $a$ esiste un elemento $a'$ che, combinato con $a$, restituisce l'elemento neutro». È l'inverso, e cambia da elemento a elemento.
+- **L'ultima riga.** Il gruppo è commutativo se l'ordine non conta.
 
-Ecco gli esempi e i controesempi delle dispense, con il motivo.
+La parola **assioma** indica una regola che fa parte di una definizione.
 
-| Insieme e operazione | neutro $e$ | inverso di $a$ | gruppo commutativo? |
+### Quali sono gruppi e quali no
+
+Per indicare un insieme con la sua operazione si scrive una coppia tra parentesi. Per esempio $(\Z, +)$ vuol dire «gli interi con la somma».
+
+Ricorda le lettere della lezione L01: $\N$ sono i naturali, $\Z$ gli interi, $\Q$ le frazioni, $\R$ i reali, $\C$ i complessi. La scrittura $\Q \setminus \{0\}$ si legge «cu senza lo zero»: sono tutte le frazioni tranne lo 0.
+
+Ecco gli esempi delle dispense, con il motivo.
+
+| Insieme e operazione | Elemento neutro | Inverso di $a$ | È un gruppo commutativo? |
 |---|---|---|---|
 | $(\Z, +)$ | $0$ | $-a$ | sì |
 | $(\Q, +)$, $(\R, +)$, $(\C, +)$ | $0$ | $-a$ | sì |
 | $(\Q \setminus \{0\}, \cdot)$, $(\R \setminus \{0\}, \cdot)$, $(\C \setminus \{0\}, \cdot)$ | $1$ | $a^{-1} = \frac 1a$ | sì |
-| $(\N, +)$ | $0$ | manca: per $a = 1$ servirebbe $-1 \notin \N$ | **no**, fallisce l'assioma 3 |
-| $(\Z, \cdot)$ e $(\Z \setminus \{0\}, \cdot)$ | $1$ | manca: per $a = 2$ servirebbe $\frac 12 \notin \Z$ | **no**, fallisce l'assioma 3 |
+| $(\N, +)$ | $0$ | manca: quello di $1$ sarebbe $-1$, che non è un naturale | **no**: fallisce l'assioma 3 |
+| $(\Z, \cdot)$ e $(\Z \setminus \{0\}, \cdot)$ | $1$ | manca: quello di $2$ sarebbe $\frac 12$, che non è un intero | **no**: fallisce l'assioma 3 |
+
+Nella terza riga compare $a^{-1}$, che si legge «a alla meno uno». È un altro modo di scrivere l'inverso per il prodotto, cioè $\frac 1a$.
 
 > [!ESEMPIO] · i conti in $(\Q \setminus \{0\}, \cdot)$
-> - L'operazione resta nell'insieme: il prodotto di due frazioni diverse da $0$ è una frazione diversa da $0$, per esempio $\frac 23 \cdot \left(-\frac 94\right) = -\frac{18}{12} = -\frac 32$.
-> - Il neutro è $e = 1$: $1 \cdot \frac 23 = \frac 23$.
-> - L'inverso di $-\frac 34$ è $-\frac 43$, perché $\left(-\frac 34\right)\left(-\frac 43\right) = \frac{12}{12} = 1$.
-> - Lo $0$ va tolto perché **non ha inverso**: $0 \cdot x = 0 \neq 1$ per ogni $x$.
+> Controlliamo che le frazioni diverse da zero, con il prodotto, formano un gruppo.
+>
+> - **Non si esce.** Il prodotto di due frazioni diverse da zero è una frazione diversa da zero. Per esempio $\frac 23 \cdot \left(-\frac 94\right) = -\frac{18}{12} = -\frac 32$.
+> - **Elemento neutro.** È $1$, perché $1 \cdot \frac 23 = \frac 23$.
+> - **Inverso.** Si scambiano il numero sopra e il numero sotto. L'inverso di $-\frac 34$ è $-\frac 43$. Controllo: $\left(-\frac 34\right) \cdot \left(-\frac 43\right) = \frac{12}{12} = 1$.
+> - **Perché si toglie lo zero.** Lo $0$ non ha inverso: qualunque numero moltiplicato per $0$ dà $0$, mai $1$.
 
 > [!TRAPPOLA] Togliere lo zero serve per il prodotto, non per la somma
-> $\Q \setminus \{0\}$ è un gruppo con il prodotto, ma **non** con la somma: $1 + (-1) = 0$ esce dall'insieme, e manca l'elemento neutro $0$.
+> Le frazioni senza lo zero sono un gruppo con il prodotto, ma **non** con la somma. Infatti $1 + (-1) = 0$ esce dall'insieme. E manca l'elemento neutro della somma, che è proprio lo 0.
 
-> [!OLTRE] · unicità, semplificazione e un gruppo non commutativo
-> Dal libro di Martelli (§1.5.1), tre fatti utili.
-> - **L'inverso è unico.** Se $a'$ e $a''$ sono entrambi inversi di $a$, allora $a' = a' * e = a' * (a * a'') = (a' * a) * a'' = e * a'' = a''$.
-> - **Si può semplificare.** Da $a * b = a * c$ segue $b = c$: basta combinare a sinistra entrambi i membri con l'inverso di $a$ e usare l'associatività. Con la somma: da $v + x = v + y$ segue $x = y$. Servirà tra poco, nella Proposizione 5.5.
-> - **Un gruppo non commutativo.** Le permutazioni di $\{1, 2, 3\}$ con la composizione formano un gruppo (il gruppo simmetrico $S_3$, che si studia in Matematica Discreta) in cui l'ordine conta: in generale $\sigma \circ \tau \neq \tau \circ \sigma$.
+> [!OLTRE] · due fatti utili sui gruppi
+> Vengono dal libro di Martelli (§1.5.1). Servono tra poco, con i vettori.
+>
+> **L'inverso è uno solo.** Negli interi con la somma, l'unico numero che sommato a 7 dà 0 è $-7$. Lo stesso vale in ogni gruppo: un elemento non può avere due inversi diversi.
+>
+> **Si può semplificare.** Negli interi: se $5 + x$ e $5 + y$ danno lo stesso risultato, allora $x$ e $y$ sono uguali. Basta sommare $-5$ a tutti e due i lati. Lo stesso vale in ogni gruppo, e quindi anche per la somma di vettori.
+>
+> Esistono anche gruppi in cui l'ordine conta, cioè non commutativi. Si studiano in Matematica Discreta. In questo corso i gruppi con la somma sono tutti commutativi.
 
-## Campi (p. 22)
+::: prova Negli interi con la somma, qual è l'inverso di $-4$? E qual è l'elemento neutro?
+L'inverso di $-4$ è $4$, perché $-4 + 4 = 0$. L'elemento neutro è $0$.
+:::
 
-Negli insiemi numerici $\Z$, $\Q$, $\R$ e $\C$ ci sono **due** operazioni, $+$ e $\cdot$. La struttura che le mette insieme è il **campo**. L'idea: un campo è un insieme in cui puoi fare **le quattro operazioni** con le solite regole, dividendo solo per elementi diversi da $0$. In $\Q$ l'equazione $2x = 1$ ha la soluzione $x = \frac 12$; in $\Z$ no.
+::: prova I numeri naturali con il prodotto formano un gruppo?
+No. L'elemento neutro c'è, ed è l'1. Ma manca l'inverso di 2: sarebbe $\frac 12$, che non è un naturale. Fallisce l'assioma 3.
+:::
+
+> [!RICORDA]
+> - Un **gruppo** è un insieme con un'operazione che non fa uscire dall'insieme e rispetta tre regole: elemento neutro, proprietà associativa, inverso di ogni elemento.
+> - Se in più l'ordine non conta, il gruppo è **commutativo**.
+> - Gli interi con la somma sono un gruppo. I naturali con la somma no: manca l'opposto.
+
+## Campi: dove si fanno le quattro operazioni (p. 22)
+
+Negli insiemi di numeri le operazioni sono due: la somma e il prodotto.
+
+Un **campo** è un insieme di numeri in cui le due operazioni funzionano bene insieme. In pratica: puoi fare più, meno, per e diviso senza mai uscire dall'insieme. C'è un solo divieto: non si divide per zero.
+
+Un esempio. Prendi l'indovinello «quale numero, moltiplicato per 2, dà 1?». Tra le frazioni la risposta c'è: è $\frac 12$. Tra gli interi non c'è, perché $\frac 12$ non è un intero. Le frazioni formano un campo, gli interi no.
+
+Nella lezione L01 un campo era «un insieme in cui valgono le nove regole dei conti». Qui le dispense dicono la stessa cosa in tre righe, usando la parola «gruppo».
 
 > [!DEF] 5.3 · Campo
 > Un **campo** è un insieme $A$ dotato di due operazioni binarie $+$ e $\cdot$ che soddisfano questi assiomi:
@@ -8415,43 +8724,113 @@ Negli insiemi numerici $\Z$, $\Q$, $\R$ e $\C$ ci sono **due** operazioni, $+$ e
 > 2. $A \setminus \{0_A\}$ è un gruppo commutativo con l'operazione $\cdot$, con elemento neutro $1_A$;
 > 3. vale la proprietà distributiva $a \cdot (b + c) = (a \cdot b) + (a \cdot c),\ \forall a, b, c \in A$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- **Assioma 1**: contiene quattro regole della somma. C'è lo zero $0_A$, ogni elemento ha l'opposto, la somma è associativa e commutativa.
-- **Assioma 2**: contiene quattro regole del prodotto, ma **solo per gli elementi diversi da zero**. Il prodotto di due elementi non nulli è non nullo, c'è l'uno $1_A$ (che quindi è diverso da $0_A$), ogni elemento **non nullo** ha l'inverso, il prodotto è associativo e commutativo.
-- **Assioma 3**: collega le due operazioni.
-- Sono le stesse regole delle nove proprietà di $\R$ della lezione L01 (Proposizione 1.5), raggruppate in modo diverso: le proprietà 1–4 stanno nell'assioma 1, le 5–8 nell'assioma 2, la 9 è l'assioma 3.
+- La lettera $A$ è il nome dell'insieme.
+- $0_A$ si legge «zero di $A$». È l'elemento neutro della somma. La piccola lettera in basso ricorda di quale insieme si parla.
+- $1_A$ si legge «uno di $A$». È l'elemento neutro del prodotto.
+- $A \setminus \{0_A\}$ si legge «$A$ senza lo zero».
+- **Assioma 1.** Con la somma, l'insieme è un gruppo commutativo. Dentro ci sono quattro regole: c'è lo zero, ogni elemento ha l'opposto, le parentesi si spostano, l'ordine non conta.
+- **Assioma 2.** Tolto lo zero, l'insieme è un gruppo commutativo anche con il prodotto. Sono altre quattro regole: c'è l'uno, ogni elemento diverso da zero ha l'inverso, le parentesi si spostano, l'ordine non conta.
+- **Assioma 3.** È la proprietà **distributiva**, che lega le due operazioni. Con i numeri: $3 \cdot (2 + 5)$ fa 21, e anche $3 \cdot 2 + 3 \cdot 5$ fa 21. Il simbolo $\forall$ si legge «per ogni».
 
-| Insieme, con $+$ e $\cdot$ | è un campo? | perché |
+Quattro regole, più quattro, più una: sono le nove regole della lezione L01 (Proposizione 1.5), raggruppate in un altro modo.
+
+### Quali insiemi sono campi
+
+| Insieme, con somma e prodotto | È un campo? | Perché |
 |---|---|---|
-| $\Q$, $\R$, $\C$ | sì | valgono tutte le regole; per esempio l'inverso di $\frac ab \neq 0$ è $\frac ba$ |
-| $\Z$ | no | $2$ non ha inverso per il prodotto: $\frac 12 \notin \Z$ |
-| $\N$ | no | già la somma non forma un gruppo: manca $-1$ |
+| $\Q$, $\R$, $\C$ | sì | valgono tutte le regole; per esempio l'inverso di $\frac 23$ è $\frac 32$ |
+| $\Z$ | no | $2$ non ha inverso: $\frac 12$ non è un intero |
+| $\N$ | no | già con la somma non è un gruppo: manca $-1$ |
 | $\R \setminus \{0\}$ | no | la somma esce dall'insieme: $1 + (-1) = 0$ |
-| $\{0, 1\}$ con $1 + 1 = 0$ | sì | è l'Esercizio 5.9, qui sotto |
+| $\{0, 1\}$ con $1 + 1 = 0$ | sì | è il campo con due elementi, qui sotto |
+
+Per dire che un insieme **non** è un campo basta una regola che fallisce, con un esempio.
 
 ### Un campo con due soli elementi
 
-Nell'Esercizio 5.9 le dispense definiscono su $\K = \{0, 1\}$ queste due operazioni:
+Un campo non deve per forza avere infiniti elementi. Nell'Esercizio 5.9 le dispense ne costruiscono uno che ne ha solo due: lo 0 e l'1.
 
-| $+$ | $0$ | $1$ |
-|---|---|---|
-| $0$ | $0$ | $1$ |
-| $1$ | $1$ | $0$ |
+Somme e prodotti si fanno come negli interi, con una sola eccezione: $1 + 1 = 0$.
 
-| $\cdot$ | $0$ | $1$ |
-|---|---|---|
-| $0$ | $0$ | $0$ |
-| $1$ | $0$ | $1$ |
+Un modo per ricordarlo: leggi 0 come «pari» e 1 come «dispari». Dispari più dispari fa pari, quindi $1 + 1 = 0$. Dispari per dispari fa dispari, quindi $1 \cdot 1 = 1$. Sono le regole dei numeri pari e dispari.
 
-L'unica regola insolita è $1 + 1 = 0$. Leggi $0$ come «pari» e $1$ come «dispari»: dispari più dispari fa pari, dispari per dispari fa dispari. Le tabelle sono le regole della parità, e per questo valgono tutte le proprietà di campo (la verifica è nell'esercizio 4). In informatica è il campo dei bit: la somma è lo XOR, il prodotto è l'AND.
+In informatica questo è il campo dei **bit**. La somma è l'operazione XOR e il prodotto è l'operazione AND. Che le regole dei campi valgano davvero si controlla nell'esercizio 8.
 
 > [!NOTA] Il campo del corso
-> Nel corso il campo è quasi sempre $\K = \R$ oppure $\K = \C$. La lettera $\K$ indica «un campo qualsiasi»: ciò che si dimostra per $\K$ vale per entrambi.
+> Nelle dispense il campo si indica con la lettera $\K$, che si legge «cappa». Sta per «un campo qualsiasi». Nel corso è quasi sempre $\R$, i numeri reali, oppure $\C$, i numeri complessi. Quello che si dimostra per $\K$ vale per tutti e due.
 
-## Spazi vettoriali (pp. 22–23)
+::: prova Nel campo con due elementi, quanto fa $1 + 1 + 1$?
+Prima $1 + 1 = 0$. Poi $0 + 1 = 1$. Quindi fa $1$: tre numeri dispari sommati danno un numero dispari.
+:::
 
-Ora ci sono tutti gli ingredienti. In $\R^n$ ci sono due operazioni, somma e prodotto per scalare, con le otto regole della tabella vista sopra. La definizione di spazio vettoriale dice: **qualsiasi** insieme con due operazioni di questo tipo, che rispettano le stesse regole, è uno spazio vettoriale.
+::: prova I numeri naturali sono un campo? E i numeri razionali?
+I naturali no: manca già l'opposto di 1, che sarebbe $-1$. I razionali sì: valgono tutte e nove le regole.
+:::
+
+> [!RICORDA]
+> - Un **campo** è un insieme di numeri in cui si fanno le quattro operazioni senza uscire, dividendo solo per numeri diversi da zero.
+> - $\Q$, $\R$ e $\C$ sono campi. $\N$ e $\Z$ no.
+> - La lettera $\K$ indica un campo qualsiasi: nel corso è $\R$ oppure $\C$.
+
+## Che cos'è uno spazio vettoriale (pp. 20 e 22–23)
+
+Finora i vettori erano liste di numeri. Adesso guarda oggetti di tutt'altro tipo: i polinomi.
+
+> [!RIPASSO] che cos'è un polinomio
+> Un **polinomio** è una somma di potenze di una lettera, di solito $x$, ognuna moltiplicata per un numero (lezione L04). Per esempio $x^2 + 1$ oppure $2x - 3$. I numeri che moltiplicano le potenze si chiamano **coefficienti**.
+>
+> Il **grado** è l'esponente più alto. Il primo esempio ha grado 2, il secondo ha grado 1.
+>
+> Due polinomi si **sommano** mettendo insieme i pezzi con la stessa potenza:
+> $$(x^2 + 1) + (2x - 3) = x^2 + 2x + (1 - 3) = x^2 + 2x - 2$$
+>
+> Un polinomio si **moltiplica per un numero** moltiplicando ogni coefficiente:
+> $$2 \cdot (x^2 + 1) = 2x^2 + 2$$
+
+Mettiamo le liste e i polinomi uno accanto all'altro.
+
+| | Liste di due numeri | Polinomi |
+|---|---|---|
+| due elementi | $(1, 2)$ e $(3, 1)$ | $x^2 + 1$ e $2x - 3$ |
+| la loro somma | $(4, 3)$ | $x^2 + 2x - 2$ |
+| il doppio del primo | $(2, 4)$ | $2x^2 + 2$ |
+| l'elemento che non cambia niente | $(0, 0)$ | il polinomio $0$ |
+
+In tutti e due i casi succedono tre cose.
+
+- Sommando due elementi ottieni un elemento **dello stesso tipo**.
+- Moltiplicando per un numero resti **nello stesso tipo**.
+- Valgono le **otto regole** della sezione precedente.
+
+Controlliamo la regola 5 sui due polinomi: il doppio della somma deve essere la somma dei doppi.
+
+1. Il doppio della somma: $2 \cdot (x^2 + 2x - 2) = 2x^2 + 4x - 4$.
+2. I due doppi: $2x^2 + 2$ e $4x - 6$.
+3. La loro somma: $2x^2 + 4x + (2 - 6) = 2x^2 + 4x - 4$.
+
+Stesso risultato.
+
+> [!IDEA]
+> Uno **spazio vettoriale** è un insieme in cui puoi sommare due elementi e moltiplicare un elemento per un numero, senza mai uscire dall'insieme e con le otto regole.
+
+Gli elementi di uno spazio vettoriale si chiamano **vettori**, qualunque cosa siano. Qui l'immagine della freccia non regge più: un polinomio non è uno spostamento su una mappa. Da questo punto in poi «vettore» vuol dire solo «elemento di uno spazio vettoriale».
+
+### A che cosa serve un'idea così generale
+
+Se dimostri una cosa usando **solo** le otto regole, quella cosa vale in una volta sola per le liste, per i polinomi e per ogni altro spazio vettoriale. Non devi rifare il lavoro ogni volta.
+
+Le dispense citano tre esempi che userai spesso: gli insiemi di soluzioni dei sistemi lineari (lezioni L11–L13), gli spazi di funzioni (più avanti in questa lezione) e gli spazi di matrici (lezione L06).
+
+### Le lettere della definizione
+
+Nella definizione delle dispense compaiono queste lettere.
+
+- $V$ è l'insieme dei vettori.
+- $v$ e $w$ sono due vettori qualsiasi.
+- $\lambda$ e $\mu$ sono due scalari qualsiasi. La seconda è la lettera greca «mi» (lezione L01).
+- $\K$ è l'insieme da cui si prendono gli scalari. Deve essere un campo, perché con gli scalari servono tutte e quattro le operazioni. Se hai saltato la sezione sui campi, leggi «i numeri reali».
 
 > [!DEF] 5.4 · Spazio vettoriale
 > Fissiamo un campo $\K$. Questo per noi è generalmente o il campo $\K = \R$ dei numeri reali o il campo $\K = \C$ dei numeri complessi (però per la definizione può essere qualsiasi campo). Gli elementi di $\K$ sono detti **scalari**. Uno **spazio vettoriale** su $\K$ è un insieme $V$ di elementi, detti **vettori**, dotato di due operazioni:
@@ -8467,227 +8846,600 @@ Ora ci sono tutti gli ingredienti. In $\R^n$ ci sono due operazioni, somma e pro
 >
 > Le proprietà devono valere per ogni $v, w \in V$ e ogni $\lambda, \mu \in \K$.
 
-Pezzo per pezzo:
+**Come si legge.** Un pezzo alla volta:
 
-- **Il campo $\K$** fornisce i numeri per cui si moltiplica: gli scalari. Se cambi il campo cambia lo spazio vettoriale, anche con lo stesso insieme $V$ (lo vedrai con $\C$, che è uno spazio vettoriale sia su $\C$ sia su $\R$).
-- **I vettori** possono essere oggetti di qualsiasi tipo: frecce, polinomi, funzioni, matrici. Conta solo come si comportano le operazioni.
-- **Le due operazioni** devono dare risultati **dentro $V$**: $v + w \in V$ e $\lambda v \in V$. È la prima cosa da controllare, ed è il punto in cui cade la maggior parte degli insiemi che *non* sono spazi vettoriali.
-- **Assioma 1**, «gruppo commutativo con la somma», contiene quattro regole: la somma è associativa, $(u + v) + w = u + (v + w)$; esiste un vettore nullo $0_V$ con $v + 0_V = v$; ogni $v$ ha un opposto $-v$ con $v + (-v) = 0_V$; la somma è commutativa, $v + w = w + v$.
-- **Assioma 2**: uno scalare si distribuisce su una somma di **vettori**.
-- **Assioma 3**: un vettore si distribuisce su una somma di **scalari**. Attenzione: a sinistra il $+$ è la somma in $\K$, a destra è la somma in $V$. Stesso simbolo, due operazioni diverse.
-- **Assioma 4**: a sinistra $\lambda\mu$ è un prodotto tra numeri, fatto in $\K$; a destra si moltiplica prima $v$ per $\mu$ e poi il risultato per $\lambda$.
-- **Assioma 5**: lo scalare $1$ del campo lascia i vettori come sono. Sembra scontato, ma non segue dagli altri (riquadro qui sotto).
-- In tutto sono **otto regole**, più la richiesta che le operazioni non escano da $V$: le stesse della tabella di $\R^n$.
+- **«Fissiamo un campo».** Prima di tutto si decide quali numeri usare come scalari.
+- **«Uno spazio vettoriale su $\K$».** La parola «su» dice da dove vengono gli scalari. Con i numeri reali si scrive «su $\R$».
+- **La somma.** $v + w \in V$ si legge «vu più vu doppia appartiene a $V$». Vuol dire: la somma di due vettori dell'insieme sta ancora nell'insieme.
+- **Il prodotto per scalare.** $\lambda v \in V$ dice la stessa cosa per i multipli: non si esce.
+- **Proprietà 1.** «Gruppo commutativo con la somma» riassume le regole da 1 a 4 della tabella: l'ordine non conta, le parentesi si spostano, c'è un vettore che non cambia niente, ogni vettore ha l'opposto.
+- **Proprietà 2.** È la regola 5: il multiplo di una somma di vettori.
+- **Proprietà 3.** È la regola 6: la somma di due scalari. Attenzione: a sinistra il segno più sta tra due numeri, a destra sta tra due vettori.
+- **Proprietà 4.** È la regola 7. La scrittura $\lambda\mu$ è il prodotto dei due scalari.
+- **Proprietà 5.** È la regola 8: lo scalare 1 non cambia niente.
+- **L'ultima riga.** Le proprietà devono valere per tutti i vettori e per tutti gli scalari, non solo per qualche esempio.
+
+In tutto: due operazioni che non fanno uscire dall'insieme, più otto regole. Le dispense chiamano le cinque proprietà anche **assiomi** dello spazio vettoriale.
 
 > [!TRAPPOLA] Tra due vettori non c'è un prodotto
-> In uno spazio vettoriale si sommano due vettori e si moltiplica un vettore per uno **scalare**. Un prodotto «vettore per vettore» non fa parte della definizione. Il prodotto scalare tra vettori arriverà nella lezione L19, ed è un'altra cosa.
+> In uno spazio vettoriale si sommano due vettori e si moltiplica un vettore per uno **scalare**. Un prodotto «vettore per vettore» non fa parte della definizione. Il prodotto scalare tra due vettori arriva nella lezione L19, ed è un'altra cosa.
 
-> [!OLTRE] · perché serve l'assioma 5
-> Prendi $V = \R^2$ con la somma usuale, ma con un prodotto per scalare «pigro» che dà sempre il vettore nullo: $\lambda \star v = 0$ per ogni $\lambda$ e ogni $v$. Gli assiomi 1–4 valgono: per esempio $\lambda \star (v + w) = 0 = 0 + 0 = \lambda \star v + \lambda \star w$. L'assioma 5 invece fallisce: $1 \star (1, 2) = (0, 0) \neq (1, 2)$. Quindi l'assioma 5 non è una conseguenza degli altri: senza di lui il «prodotto per scalare» potrebbe cancellare tutta l'informazione. Un altro esempio, in cui fallisce solo l'assioma 5, è l'esercizio 9.
+La proprietà 5 sembra scontata, ma non si ricava dalle altre quattro. L'esercizio 12 mostra un prodotto per scalare «strano» che rispetta le prime quattro e non la quinta.
 
-### L'origine e i due zeri (p. 23)
+::: prova L'insieme che contiene il solo vettore $(1, 2)$ è uno spazio vettoriale?
+No. La somma $(1, 2) + (1, 2) = (2, 4)$ non sta nell'insieme: si esce.
+:::
 
-L'elemento neutro del gruppo $(V, +)$ si indica con $0$ (o $0_V$) e si chiama **origine** dello spazio vettoriale $V$. Non va confuso con lo zero $0$ del campo $\K$: le dispense avvertono che nel corso il simbolo $0$ indica cose diverse, e il significato si capisce dal contesto.
+::: prova Prendi le liste di due numeri **interi**, come $(1, 2)$ e $(-3, 0)$, con gli scalari reali. I multipli restano nell'insieme?
+No. Per esempio $\frac 12 \cdot (1, 2) = (\frac 12, 1)$, e $\frac 12$ non è un intero. Un multiplo è uscito dall'insieme, quindi non è uno spazio vettoriale.
+:::
 
-| Spazio | lo zero del campo | l'origine $0_V$ |
+> [!RICORDA]
+> - Uno **spazio vettoriale** è un insieme con una somma e un prodotto per scalare che non fanno uscire dall'insieme e rispettano le otto regole.
+> - I suoi elementi si chiamano **vettori**, anche quando non sono liste di numeri.
+> - Gli **scalari** sono i numeri di un campo: nel corso i reali oppure i complessi.
+> - Tra due vettori non c'è un prodotto.
+
+## Due zeri da non confondere (p. 23)
+
+In ogni spazio vettoriale c'è un vettore speciale: quello che, sommato a un altro, non cambia niente.
+
+Sulla mappa è lo spostamento «resta dove sei», cioè $(0, 0)$. Tra i polinomi è il polinomio $0$.
+
+Questo vettore si chiama **vettore nullo**, oppure **origine** dello spazio. Le dispense lo scrivono $0$. Quando serve ricordare che è un vettore dell'insieme $V$, scrivono $0_V$, che si legge «zero di $V$».
+
+Il problema è che anche il numero zero si scrive $0$. Sono due cose diverse.
+
+- Il **numero zero** è uno scalare.
+- Il **vettore nullo** è un vettore.
+
+| Spazio vettoriale | Lo zero degli scalari | Il vettore nullo |
 |---|---|---|
-| $\R^3$ | il numero $0$ | il vettore $(0, 0, 0)$ |
-| $\C^2$ | il numero complesso $0$ | il vettore $(0, 0)$ |
-| $\K[x]$ (polinomi) | il numero $0$ | il polinomio nullo, con tutti i coefficienti uguali a $0$ |
-| funzioni $[0, 1] \to \R$ | il numero $0$ | la funzione che vale $0$ in ogni punto |
+| le liste di tre numeri reali | il numero $0$ | la lista $(0, 0, 0)$ |
+| i polinomi | il numero $0$ | il polinomio con tutti i coefficienti uguali a 0 |
 
-Dagli assiomi si ricava subito un primo risultato.
+Le dispense avvertono: in questo corso il simbolo $0$ può indicare cose diverse, e il significato si capisce dal contesto.
+
+### Un vettore per il numero zero
+
+Moltiplica un vettore per il numero zero:
+
+$$0 \cdot (3, -1) = (0 \cdot 3,\ 0 \cdot (-1)) = (0, 0)$$
+
+Viene il vettore nullo. Con un polinomio succede lo stesso:
+
+$$0 \cdot (x^2 + 1) = 0 \cdot x^2 + 0 \cdot 1 = 0$$
+
+Viene il polinomio nullo. Le dispense dicono che succede sempre.
 
 > [!PROP] 5.5
 > Vale la relazione $0v = 0$.
 
-Il primo $0$ è l'elemento neutro di $\K$ (un numero), il secondo è l'origine di $V$ (un vettore). In parole: **moltiplicando un vettore qualsiasi per lo scalare zero si ottiene il vettore nullo**. Per esempio $0 \cdot (3, -1) = (0, 0)$ in $\R^2$.
+**Come si legge.** Nella formula ci sono due zeri diversi. Il primo, quello attaccato a $v$, è il numero zero. Il secondo, dopo l'uguale, è il vettore nullo. A parole: **un vettore qualsiasi, moltiplicato per il numero zero, dà il vettore nullo**.
 
-In $\R^n$ lo si controlla coordinata per coordinata. Il punto della proposizione è che vale in **ogni** spazio vettoriale, e si dimostra usando solo gli assiomi. La dimostrazione delle dispense sta in una riga; eccola con tutti i passaggi.
+Per le liste di numeri basta fare il conto, come sopra. Ma la proposizione dice di più: vale in **ogni** spazio vettoriale, anche in quelli che non hai ancora visto. Per questo la dimostrazione usa solo le regole della definizione.
 
-1. Nel campo vale $0 + 0 = 0$. Quindi $0v = (0 + 0)v$.
-2. Per l'assioma 3, $(0 + 0)v = 0v + 0v$. Mettendo insieme: $0v = 0v + 0v$.
-3. Chiama $w = 0v$: hai $w = w + w$. Somma a entrambi i membri l'opposto $-w$, che esiste per l'assioma 1:
-   $$w + (-w) = (w + w) + (-w).$$
-4. A sinistra c'è $0_V$. A destra, per la proprietà associativa, $(w + w) + (-w) = w + (w + (-w)) = w + 0_V = w$.
-5. Quindi $0_V = w$, cioè $0v = 0_V$. $\square$
+L'idea è quella vista nella lezione L01 per i numeri. Si scrive lo zero come «zero più zero», si usa la proprietà 3 e poi si semplifica.
 
-È il «semplificando» delle dispense: in un gruppo si semplifica sommando l'opposto a entrambi i membri.
-
-> [!OLTRE] · altre tre conseguenze degli assiomi
-> Con la stessa tecnica si dimostra (esercizio 8) che in ogni spazio vettoriale:
-> - $\lambda 0_V = 0_V$ per ogni scalare $\lambda$;
-> - $(-1)v = -v$: moltiplicare per $-1$ dà l'opposto;
-> - se $\lambda v = 0_V$, allora $\lambda = 0$ oppure $v = 0_V$.
+> [!DIM] · la Proposizione 5.5, un passo alla volta
+> 1. Tra i numeri vale $0 + 0 = 0$. Quindi $0v$ è uguale a $(0 + 0)v$.
+> 2. Per la proprietà 3 della definizione, $(0 + 0)v = 0v + 0v$.
+> 3. Mettendo insieme i due passi: $0v = 0v + 0v$.
+> 4. Per scrivere meno, chiamiamo $w$ il vettore $0v$. La riga del passo 3 diventa $w = w + w$.
+> 5. Sommiamo a tutti e due i lati l'opposto $-w$, che esiste per la proprietà 1. A sinistra viene $w + (-w) = 0_V$.
+> 6. A destra viene $(w + w) + (-w)$. Spostiamo le parentesi: $w + (w + (-w)) = w + 0_V = w$.
+> 7. Quindi $0_V = w$, cioè $0v = 0_V$.
 >
-> L'ultima usa il fatto che in un campo ogni $\lambda \neq 0$ ha un inverso: è uno dei motivi per cui gli scalari devono stare in un campo.
+> Le dispense scrivono solo $0v = (0 + 0)v = 0v + 0v$ e poi «semplificando deduciamo che $0v = 0$». I passi da 4 a 7 sono quel «semplificando»: in un gruppo si semplifica sommando l'opposto a tutti e due i lati.
 
-## Esempi di spazi vettoriali (pp. 23–25)
+> [!OLTRE] · altre tre conseguenze delle regole
+> Con lo stesso tipo di ragionamento si dimostrano altri tre fatti, veri in ogni spazio vettoriale. Le dimostrazioni sono nell'esercizio 11.
+>
+> - **Uno scalare per il vettore nullo dà il vettore nullo.** Con i numeri: $5 \cdot (0, 0) = (0, 0)$.
+> - **Moltiplicare per $-1$ dà l'opposto.** Con i numeri: $-1 \cdot (1, 2) = (-1, -2)$.
+> - **Un multiplo è il vettore nullo solo in due casi:** quando lo scalare è zero, oppure quando il vettore è già quello nullo.
+>
+> L'ultimo fatto usa l'inverso dello scalare. È uno dei motivi per cui gli scalari devono stare in un campo.
 
-Le dispense presentano cinque esempi. Per ognuno bisogna dire chi sono i vettori, come si sommano e come si moltiplicano per uno scalare; poi si controllano gli assiomi (è l'Esercizio 5.6).
+::: prova Quanto fa $0 \cdot (7, -2, 5)$? E $5 \cdot (0, 0)$?
+$0 \cdot (7, -2, 5) = (0 \cdot 7,\ 0 \cdot (-2),\ 0 \cdot 5) = (0, 0, 0)$: il numero zero per un vettore dà il vettore nullo.
 
-### Il campo $\K$ su se stesso (p. 23)
+$5 \cdot (0, 0) = (5 \cdot 0,\ 5 \cdot 0) = (0, 0)$: uno scalare per il vettore nullo dà il vettore nullo.
+:::
 
-Se $(\K, +, \cdot)$ è un campo, allora è anche uno spazio vettoriale su se stesso. I vettori sono gli elementi di $\K$, e anche gli scalari; la somma di vettori è la somma di $\K$ e il prodotto per scalare è il prodotto di $\K$. Per $\K = \R$ i vettori sono numeri reali: è $\R = \R^1$, la retta.
+::: prova Nella scrittura $0v = 0$, quale zero è un numero e quale è un vettore?
+Il primo è un numero: è lo scalare che moltiplica $v$. Il secondo è un vettore: è il risultato, cioè il vettore nullo.
+:::
 
-Le dispense spiegano perché valgono i cinque assiomi. Nella terza colonna c'è un controllo con $\lambda = 2$, $\mu = 3$, $v = 4$ e $w = 5$.
+> [!RICORDA]
+> - Il **vettore nullo** è il vettore che sommato non cambia niente. Si scrive $0$ oppure $0_V$.
+> - Non va confuso con il **numero zero**, che è uno scalare.
+> - Un vettore qualsiasi per il numero zero dà il vettore nullo (Proposizione 5.5).
 
-| Assioma | perché vale | con i numeri |
+## I primi esempi: numeri e liste di numeri (pp. 23–24)
+
+Le dispense presentano cinque esempi di spazi vettoriali.
+
+Per ognuno bisogna dire tre cose: chi sono i vettori, come si sommano e come si moltiplicano per uno scalare. Poi si controlla che valgano le regole. In questa sezione ci sono i primi due esempi.
+
+### I numeri da soli
+
+Il primo esempio è il più piccolo: i numeri reali, senza liste.
+
+Un numero è come una lista con una sola coordinata. Sommare due vettori vuol dire sommare due numeri. Moltiplicare per uno scalare vuol dire moltiplicare due numeri. Sulla mappa è come muoversi avanti e indietro lungo una sola riga: la retta dei numeri.
+
+Le dispense lo dicono per un campo qualsiasi: un campo è uno spazio vettoriale **su se stesso**. «Su se stesso» vuol dire che i vettori e gli scalari sono presi dallo stesso insieme.
+
+Le cinque proprietà della definizione valgono perché sono regole dei numeri. Nella terza colonna c'è un controllo con gli scalari 2 e 3 e con i «vettori» 4 e 5.
+
+| Proprietà | Perché vale tra i numeri | Controllo |
 |---|---|---|
-| 1. $(\K, +)$ gruppo commutativo | è l'assioma 1 del campo | $4 + 5 = 5 + 4 = 9$ |
-| 2. $\lambda(v + w) = \lambda v + \lambda w$ | proprietà distributiva del campo | $2 \cdot 9 = 18 = 8 + 10$ |
-| 3. $(\lambda + \mu)v = \lambda v + \mu v$ | commutatività e distributività | $5 \cdot 4 = 20 = 8 + 12$ |
-| 4. $(\lambda\mu)v = \lambda(\mu v)$ | associatività del prodotto | $6 \cdot 4 = 24 = 2 \cdot 12$ |
-| 5. $1v = v$ | $1$ è l'elemento neutro del prodotto | $1 \cdot 4 = 4$ |
+| 1. gruppo commutativo con la somma | è l'assioma 1 dei campi | $4 + 5 = 5 + 4 = 9$ |
+| 2. il multiplo di una somma | proprietà distributiva | $2 \cdot (4 + 5) = 18$ e $2 \cdot 4 + 2 \cdot 5 = 18$ |
+| 3. la somma di due scalari | proprietà commutativa e distributiva | $(2 + 3) \cdot 4 = 20$ e $2 \cdot 4 + 3 \cdot 4 = 20$ |
+| 4. due scalari uno dopo l'altro | proprietà associativa del prodotto | $(2 \cdot 3) \cdot 4 = 24$ e $2 \cdot (3 \cdot 4) = 24$ |
+| 5. lo scalare 1 | l'1 è l'elemento neutro del prodotto | $1 \cdot 4 = 4$ |
 
-### Lo spazio $\K^n$ (pp. 23–24)
+### Le liste di numeri, con un campo qualsiasi
 
-L'esempio principale di spazio vettoriale su $\R$ è lo spazio euclideo $\R^n$. Per un campo qualsiasi si definisce $\K^n$ allo stesso modo.
+L'esempio principale è quello da cui siamo partiti: le liste di numeri reali.
+
+Le dispense ripetono la stessa costruzione con un campo qualsiasi al posto dei numeri reali. L'insieme delle liste di $n$ numeri presi dal campo $\K$ si scrive $\K^n$ e si legge «cappa enne».
 
 > [!DEF] Lo spazio $\K^n$ (pp. 23–24)
 > Sia $n \ge 1$ un numero naturale. Lo spazio $\K^n$ è l'insieme delle sequenze $(x_1, \dots, x_n)$ di numeri in $\K$, descritte generalmente come vettori colonna. La somma e la moltiplicazione per scalare sono definite termine a termine:
 > $$\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} + \begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix} = \begin{pmatrix} x_1 + y_1 \\ \vdots \\ x_n + y_n \end{pmatrix}, \qquad \lambda \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = \begin{pmatrix} \lambda x_1 \\ \vdots \\ \lambda x_n \end{pmatrix}.$$
 
-Con $\K = \C$ si ottiene $\C^n$: sono complessi sia le coordinate sia gli scalari. I conti si fanno con le regole della lezione L02, ricordando che $i^2 = -1$.
+**Come si legge.** È la definizione già vista per le liste di numeri reali, con un campo qualsiasi al posto di $\R$.
+
+- «Sequenze» vuol dire liste ordinate.
+- «Termine a termine» vuol dire «un posto alla volta».
+- La prima uguaglianza è la somma: la prima coordinata con la prima, e avanti così fino all'ultima.
+- La seconda uguaglianza è il multiplo: ogni coordinata viene moltiplicata per lo scalare $\lambda$.
+
+### Vettori di numeri complessi
+
+Se il campo è quello dei numeri complessi si ottiene $\C^n$: le liste di $n$ numeri complessi. Qui anche gli scalari sono numeri complessi.
+
+> [!RIPASSO] i conti con i numeri complessi
+> Un **numero complesso** si scrive come $1 + 2i$: un numero reale, più un altro numero reale moltiplicato per $i$ (lezione L02). Il primo pezzo si chiama *parte reale*, il secondo *parte immaginaria*.
+>
+> La lettera $i$ è un numero nuovo con una sola regola speciale: $i \cdot i = -1$. In breve: $i^2 = -1$.
+>
+> **Somma.** Parte reale con parte reale, parte immaginaria con parte immaginaria:
+> $$(1 + 2i) + (3 + i) = (1 + 3) + (2 + 1)i = 4 + 3i$$
+>
+> **Prodotto.** Si moltiplica ogni pezzo per ogni pezzo, come con le lettere. Poi al posto di $i^2$ si scrive $-1$:
+> $$(1 + i) \cdot i = 1 \cdot i + i \cdot i = i + i^2 = i - 1$$
 
 > [!ESEMPIO] · i due conti delle dispense in $\C^2$
-> **Somma.** Riga per riga, si sommano le parti reali tra loro e le parti immaginarie tra loro:
-> $$\begin{pmatrix} 1 + i \\ -2 \end{pmatrix} + \begin{pmatrix} 3i \\ 1 - i \end{pmatrix} = \begin{pmatrix} 1 + (1 + 3)i \\ (-2 + 1) - i \end{pmatrix} = \begin{pmatrix} 1 + 4i \\ -1 - i \end{pmatrix}.$$
-> **Prodotto per scalare.** Lo scalare $2 + i$ moltiplica entrambe le coordinate:
-> $$(2 + i)\begin{pmatrix} 3 \\ 1 - i \end{pmatrix} = \begin{pmatrix} (2 + i) \cdot 3 \\ (2 + i)(1 - i) \end{pmatrix} = \begin{pmatrix} 6 + 3i \\ 3 - i \end{pmatrix}.$$
-> Il secondo conto per esteso: $(2 + i)(1 - i) = 2 - 2i + i - i^2 = 2 - i - (-1) = 3 - i$.
+> **Somma.** Vogliamo sommare questi due vettori, una riga alla volta:
+> $$\begin{pmatrix} 1 + i \\ -2 \end{pmatrix} + \begin{pmatrix} 3i \\ 1 - i \end{pmatrix}$$
+>
+> 1. Prima riga: $(1 + i) + 3i = 1 + (1 + 3)i = 1 + 4i$.
+> 2. Seconda riga: $-2 + (1 - i) = (-2 + 1) - i = -1 - i$.
+>
+> La somma è il vettore con le coordinate $1 + 4i$ e $-1 - i$:
+> $$\begin{pmatrix} 1 + i \\ -2 \end{pmatrix} + \begin{pmatrix} 3i \\ 1 - i \end{pmatrix} = \begin{pmatrix} 1 + 4i \\ -1 - i \end{pmatrix}.$$
+>
+> **Prodotto per scalare.** Lo scalare è $2 + i$, e moltiplica tutte e due le righe del vettore:
+> $$(2 + i)\begin{pmatrix} 3 \\ 1 - i \end{pmatrix}$$
+>
+> 1. Prima riga: $(2 + i) \cdot 3 = 2 \cdot 3 + i \cdot 3 = 6 + 3i$.
+> 2. Seconda riga: $(2 + i) \cdot (1 - i)$. Ogni pezzo per ogni pezzo: $2 \cdot 1 = 2$, poi $2 \cdot (-i) = -2i$, poi $i \cdot 1 = i$, poi $i \cdot (-i) = -i^2$.
+> 3. Sommo i quattro pezzi: $2 - 2i + i - i^2 = 2 - i - i^2$.
+> 4. Al posto di $i^2$ scrivo $-1$: $2 - i - (-1) = 2 - i + 1 = 3 - i$.
+>
+> Il risultato:
+> $$(2 + i)\begin{pmatrix} 3 \\ 1 - i \end{pmatrix} = \begin{pmatrix} 6 + 3i \\ 3 - i \end{pmatrix}.$$
 
-Resta da controllare che $\K^n$ sia davvero uno spazio vettoriale. Le dispense controllano l'assioma 2, e il loro metodo è quello da imitare per tutti gli altri:
+### Perché le liste rispettano le regole
 
-$$\begin{aligned} \lambda(x + y) &= \lambda \begin{pmatrix} x_1 + y_1 \\ \vdots \\ x_n + y_n \end{pmatrix} = \begin{pmatrix} \lambda(x_1 + y_1) \\ \vdots \\ \lambda(x_n + y_n) \end{pmatrix} \\ &= \begin{pmatrix} \lambda x_1 + \lambda y_1 \\ \vdots \\ \lambda x_n + \lambda y_n \end{pmatrix} = \begin{pmatrix} \lambda x_1 \\ \vdots \\ \lambda x_n \end{pmatrix} + \begin{pmatrix} \lambda y_1 \\ \vdots \\ \lambda y_n \end{pmatrix} = \lambda x + \lambda y. \end{aligned}$$
+Resta da controllare che le liste rispettino davvero le otto regole. Le dispense controllano la proprietà 2: il multiplo di una somma è la somma dei multipli.
 
-Ogni uguaglianza ha il suo motivo:
+Proviamo prima con i numeri. Lo scalare è 2, i vettori sono $(1, 3)$ e $(4, -1)$.
 
-1. la definizione della somma: $x + y$ ha coordinate $x_k + y_k$;
-2. la definizione del prodotto per scalare: ogni coordinata va moltiplicata per $\lambda$;
-3. la proprietà distributiva **nel campo**, in ognuna delle $n$ coordinate: $\lambda(x_k + y_k) = \lambda x_k + \lambda y_k$;
-4. la definizione della somma, letta al contrario;
-5. la definizione del prodotto per scalare, letta al contrario.
+A sinistra, prima la somma e poi il doppio:
 
-L'idea generale da portarsi via: **ogni assioma di $\K^n$ si riduce alla stessa proprietà in $\K$, una coordinata alla volta.**
+1. $(1, 3) + (4, -1) = (1 + 4,\ 3 - 1) = (5, 2)$.
+2. Il doppio: $(2 \cdot 5,\ 2 \cdot 2) = (10, 4)$.
 
-> [!TRAPPOLA] In $\C^n$ gli scalari sono complessi
-> In $\C^2$ puoi moltiplicare per $i$: $i \cdot (1, 0) = (i, 0)$. In $\R^2$ no: gli scalari sono solo reali, e $(i, 0) \notin \R^2$. Per questo $\R^2$, con le operazioni usuali, **non** è uno spazio vettoriale su $\C$.
+A destra, prima i due doppi e poi la somma:
 
-### Lo spazio delle successioni (p. 24)
+1. Il doppio del primo vettore è $(2, 6)$. Il doppio del secondo è $(8, -2)$.
+2. La somma: $(2 + 8,\ 6 - 2) = (10, 4)$.
 
-Invece di vettori con $n$ componenti si possono prendere **successioni infinite** $(x_n)_{n \in \N} = (x_0, x_1, x_2, \dots)$, con ogni $x_k \in \K$: vettori con infinite coordinate. Somma e prodotto per scalare si fanno di nuovo componente per componente:
+Stesso risultato. Il motivo si vede guardando un posto solo. Al primo posto, a sinistra c'è $2 \cdot (1 + 4)$ e a destra c'è $2 \cdot 1 + 2 \cdot 4$. Sono uguali per la proprietà distributiva dei numeri.
+
+> [!IDEA]
+> Ogni regola delle liste si riduce alla stessa regola dei numeri, una coordinata alla volta.
+
+> [!DIM] · la proprietà 2 per le liste, con le lettere (p. 24)
+> Le dispense scrivono lo stesso controllo con le lettere, in una catena di cinque uguaglianze:
+> $$\begin{aligned} \lambda(x + y) &= \lambda \begin{pmatrix} x_1 + y_1 \\ \vdots \\ x_n + y_n \end{pmatrix} = \begin{pmatrix} \lambda(x_1 + y_1) \\ \vdots \\ \lambda(x_n + y_n) \end{pmatrix} \\ &= \begin{pmatrix} \lambda x_1 + \lambda y_1 \\ \vdots \\ \lambda x_n + \lambda y_n \end{pmatrix} = \begin{pmatrix} \lambda x_1 \\ \vdots \\ \lambda x_n \end{pmatrix} + \begin{pmatrix} \lambda y_1 \\ \vdots \\ \lambda y_n \end{pmatrix} = \lambda x + \lambda y. \end{aligned}$$
+>
+> Ogni uguaglianza ha il suo motivo.
+>
+> 1. La definizione della somma: si somma un posto alla volta.
+> 2. La definizione del prodotto per scalare: ogni coordinata viene moltiplicata per $\lambda$.
+> 3. La proprietà distributiva dei numeri del campo, in ognuna delle $n$ coordinate.
+> 4. La definizione della somma, letta da destra a sinistra.
+> 5. La definizione del prodotto per scalare, letta da destra a sinistra.
+>
+> Le altre proprietà si controllano con lo stesso metodo: sono nell'esercizio 9.
+
+> [!TRAPPOLA] Con le liste di numeri complessi anche gli scalari sono complessi
+> In $\C^2$ puoi moltiplicare un vettore per $i$. Per esempio $i \cdot (1, 0) = (i, 0)$. Con le liste di numeri reali non puoi farlo senza uscire dall'insieme: la lista $(i, 0)$ non è fatta di numeri reali. Per questo $\R^2$ è uno spazio vettoriale su $\R$, ma **non** su $\C$.
+
+::: prova Calcola in $\C^2$ la somma $(1 + i,\ 2) + (3,\ i)$.
+Un posto alla volta. Primo posto: $(1 + i) + 3 = 4 + i$. Secondo posto: $2 + i$. Risultato: $(4 + i,\ 2 + i)$.
+:::
+
+::: prova Calcola in $\C^2$ il multiplo $i \cdot (1,\ i)$.
+Primo posto: $i \cdot 1 = i$. Secondo posto: $i \cdot i = i^2 = -1$. Risultato: $(i,\ -1)$.
+:::
+
+> [!RICORDA]
+> - I numeri da soli formano uno spazio vettoriale: sono liste con una sola coordinata.
+> - $\K^n$ è l'insieme delle liste di $n$ numeri del campo $\K$. Somma e multiplo si fanno un posto alla volta.
+> - In $\C^n$ le coordinate e gli scalari sono numeri complessi: nei conti ricorda che $i^2 = -1$.
+> - Le regole valgono perché valgono per i numeri, una coordinata alla volta.
+
+## Successioni, funzioni e polinomi come vettori (pp. 24–25)
+
+Gli ultimi tre esempi delle dispense non sono liste finite di numeri.
+
+In tutti e tre il modo di fare i conti è lo stesso: si somma e si moltiplica **un pezzo alla volta**.
+
+### Liste che non finiscono: le successioni
+
+Una **successione** è una lista di numeri che non finisce mai (lezione L01). Per esempio $(1, 2, 3, 4, \dots)$. È come un vettore con infinite coordinate.
+
+Si somma e si moltiplica come con le liste finite: un posto alla volta.
+
+> [!ESEMPIO] · due successioni reali
+> Prendiamo due successioni. La prima è $x = (1, 2, 3, 4, \dots)$: i numeri in fila. La seconda è $y = (1, 1, 1, 1, \dots)$: sempre 1.
+>
+> - **Somma.** Un posto alla volta: $x + y = (1 + 1,\ 2 + 1,\ 3 + 1,\ 4 + 1,\ \dots) = (2, 3, 4, 5, \dots)$.
+> - **Multiplo.** Ogni termine per 3: $3x = (3, 6, 9, 12, \dots)$.
+> - **Differenza.** Un posto alla volta: $x - y = (1 - 1,\ 2 - 1,\ 3 - 1,\ 4 - 1,\ \dots) = (0, 1, 2, 3, \dots)$.
+>
+> Il vettore nullo è la successione di soli zeri, $(0, 0, 0, \dots)$. L'opposto di $x$ è $(-1, -2, -3, \dots)$.
+
+Per indicare una successione qualsiasi le dispense usano questa scrittura:
+
+$$(x_n)_{n \in \N} = (x_0, x_1, x_2, \dots)$$
+
+Si legge «la successione degli ics enne, con enne nei naturali». Il termine $x_0$ è il primo, $x_1$ è il secondo. L'indice comincia da 0 perché i numeri naturali cominciano da 0. Ogni termine è un numero del campo.
+
+Le due operazioni, scritte con le lettere:
 
 $$(x_n)_{n \in \N} + (y_n)_{n \in \N} = (x_n + y_n)_{n \in \N}, \qquad \lambda (x_n)_{n \in \N} = (\lambda x_n)_{n \in \N}.$$
 
-Con queste operazioni si ottiene uno spazio vettoriale.
+A parole: in ogni posto, il termine della somma è la somma dei due termini di quel posto. E il termine del multiplo è lo scalare per il termine di quel posto. Le dispense dicono che con queste operazioni le successioni formano uno spazio vettoriale.
 
-> [!ESEMPIO] · due successioni reali
-> Siano $x = (1, 2, 3, 4, \dots)$, cioè $x_n = n + 1$, e $y = (1, 1, 1, 1, \dots)$, la successione costante. Allora
-> $$x + y = (2, 3, 4, 5, \dots), \qquad 3x = (3, 6, 9, 12, \dots), \qquad x + (-1)y = (0, 1, 2, 3, \dots).$$
-> Il vettore nullo è la successione $(0, 0, 0, \dots)$ e l'opposto di $x$ è $(-1, -2, -3, \dots)$.
+### Un numero per ogni punto: le funzioni
 
-### Le funzioni $[0, 1] \to \K$ (p. 24)
+> [!RIPASSO] che cos'è una funzione
+> Una **funzione** è una regola: per ogni numero che entra dice quale numero esce. Di solito si chiama $f$. La scrittura $f(x)$ si legge «effe di ics» ed è il numero che esce quando entra $x$.
+>
+> Per esempio la regola «eleva al quadrato» si scrive $f(x) = x^2$. Se entra 3, esce $f(3) = 3^2 = 9$. Se entra $\frac 12$, esce $\frac 12 \cdot \frac 12 = \frac 14$.
+>
+> Bisogna dire anche quali numeri possono entrare. Qui sono quelli dell'intervallo $[0, 1]$: tutti i numeri reali tra 0 e 1, compresi lo 0 e l'1 (lezione L01).
 
-Nelle successioni a ogni $n \in \N$ corrisponde un numero $x_n$. Si può fare lo stesso con **ogni** numero reale $x \in [0, 1]$: a ciascuno si associa un elemento $f(x) \in \K$, e si ottiene una funzione $f : [0, 1] \to \K$. Somma e prodotto per scalare si definiscono **punto per punto**:
+Le dispense scrivono $f : [0, 1] \to \K$. Si legge «effe, da zero-uno a cappa». Vuol dire: entrano i numeri tra 0 e 1, escono numeri del campo.
 
-$$(f + g)(x) = f(x) + g(x), \qquad (\lambda f)(x) = \lambda f(x), \qquad \forall x \in [0, 1].$$
-
-Pezzo per pezzo:
-
-- $f + g$ è una **nuova funzione**: per sapere quanto vale in un punto $x$ calcoli $f(x)$ e $g(x)$ e li sommi. Le parentesi in $(f + g)(x)$ dicono proprio questo: prima si forma la funzione $f + g$, poi la si valuta in $x$.
-- $\lambda f$ è la funzione che in ogni punto vale $\lambda$ volte $f$.
-- Il vettore nullo è la **funzione nulla**, che vale $0$ in ogni punto; l'opposto di $f$ è la funzione $x \mapsto -f(x)$.
-- Una funzione è come un vettore con una coordinata per ogni punto di $[0, 1]$: i suoi valori.
+Come si sommano due funzioni? In una successione c'è un numero per ogni posto. In una funzione c'è un numero per ogni punto dell'intervallo. L'idea è la stessa: si somma **punto per punto**. Per ogni numero che entra, si sommano i due numeri che escono.
 
 > [!ESEMPIO] · somma di due funzioni, punto per punto
-> Siano $f(x) = x^2$ e $g(x) = 1 - x$. Allora $(f + g)(x) = x^2 - x + 1$ e $(3f)(x) = 3x^2$. In alcuni punti:
+> Prendiamo $f(x) = x^2$ e $g(x) = 1 - x$. Calcoliamo la somma $f + g$ e il multiplo $3f$ in quattro punti.
 >
-> | $x$ | $0$ | $\frac 14$ | $\frac 12$ | $1$ |
+> | Entra $x$ | $0$ | $\frac 14$ | $\frac 12$ | $1$ |
 > |---|---|---|---|---|
-> | $f(x)$ | $0$ | $\frac 1{16}$ | $\frac 14$ | $1$ |
-> | $g(x)$ | $1$ | $\frac 34$ | $\frac 12$ | $0$ |
-> | $(f + g)(x)$ | $1$ | $\frac{13}{16}$ | $\frac 34$ | $1$ |
-> | $(3f)(x)$ | $0$ | $\frac 3{16}$ | $\frac 34$ | $3$ |
+> | esce da $f$ | $0$ | $\frac 1{16}$ | $\frac 14$ | $1$ |
+> | esce da $g$ | $1$ | $\frac 34$ | $\frac 12$ | $0$ |
+> | esce da $f + g$ | $1$ | $\frac{13}{16}$ | $\frac 34$ | $1$ |
+> | esce da $3f$ | $0$ | $\frac 3{16}$ | $\frac 34$ | $3$ |
 >
-> Ogni colonna si somma come una coordinata di $\K^n$.
+> Il conto della colonna di $\frac 14$, per intero. Da $f$ esce $\frac 14 \cdot \frac 14 = \frac 1{16}$. Da $g$ esce $1 - \frac 14 = \frac 34$, cioè $\frac{12}{16}$. La somma è $\frac 1{16} + \frac{12}{16} = \frac{13}{16}$. Il triplo di $\frac 1{16}$ è $\frac 3{16}$.
+>
+> Ogni colonna si somma come una coordinata di una lista. Con le formule: la somma è la funzione $x^2 + (1 - x) = x^2 - x + 1$, e il multiplo è la funzione $3x^2$.
 
-> [!OLTRE] · sono tutte funzioni
-> Il libro di Martelli (§2.2.4) riunisce gli ultimi esempi in uno solo: per un insieme qualsiasi $X$, le funzioni $X \to \K$ formano uno spazio vettoriale $F(X, \K)$. Con $X = \{1, \dots, n\}$ si ritrova $\K^n$ (una funzione su $n$ punti è una lista di $n$ numeri), con $X = \N$ le successioni, con $X = [0, 1]$ le funzioni delle dispense.
+Le dispense lo scrivono così.
 
-### Lo spazio $\K[x]$ dei polinomi (p. 25)
+> [!DEF] Somma e multiplo di funzioni (p. 24)
+> Per due funzioni $f, g : [0, 1] \to \K$ e uno scalare $\lambda$ definiamo le funzioni
+> $$(f + g)(x) = f(x) + g(x), \qquad (\lambda f)(x) = \lambda f(x), \qquad \forall x \in [0, 1].$$
 
-Fissato un campo $\K$, $\K[x]$ è l'insieme di tutti i polinomi con coefficienti in $\K$ (lezione L04). Due polinomi si sommano, e moltiplicando un polinomio per uno scalare si ottiene ancora un polinomio.
+**Come si legge.**
+
+- $f + g$ è una funzione nuova. La scrittura $(f + g)(x)$ indica il numero che esce da questa funzione quando entra $x$.
+- La prima uguaglianza dice come si calcola: fai uscire un numero da $f$, uno da $g$, e li sommi.
+- $\lambda f$ è un'altra funzione nuova. La seconda uguaglianza dice che in ogni punto vale lo scalare per il numero che esce da $f$.
+- Il simbolo $\forall$ si legge «per ogni». L'ultimo pezzo dice che le due regole valgono per ogni numero dell'intervallo.
+
+Il vettore nullo di questo spazio è la **funzione nulla**: quella che fa uscire 0 qualunque numero entri. L'opposto di una funzione fa uscire, in ogni punto, lo stesso numero con il segno cambiato.
+
+### I polinomi
+
+I polinomi li hai già incontrati nella sezione sulla definizione. L'insieme di tutti i polinomi con i coefficienti presi dal campo $\K$ si scrive $\K[x]$ e si legge «cappa di ics». Con i coefficienti reali si scrive $\R[x]$.
 
 > [!ESEMPIO] · i conti delle dispense
-> Per sommare si raccolgono i termini dello stesso grado:
-> $$(x^3 - 2x + 1) + (4x^4 + x - 3) = 4x^4 + x^3 + (-2 + 1)x + (1 - 3) = 4x^4 + x^3 - x - 2.$$
-> Per moltiplicare per uno scalare si moltiplica ogni coefficiente:
-> $$3(x^3 - 2x) = 3x^3 - 6x.$$
+> **Somma.** Vogliamo sommare $x^3 - 2x + 1$ e $4x^4 + x - 3$. Si mettono insieme i pezzi con la stessa potenza.
+>
+> - Potenza 4: c'è solo $4x^4$.
+> - Potenza 3: c'è solo $x^3$.
+> - Potenza 1: $-2x + x = (-2 + 1)x = -x$.
+> - Numeri senza la $x$: $1 - 3 = -2$.
+>
+> Il risultato:
+> $$(x^3 - 2x + 1) + (4x^4 + x - 3) = 4x^4 + x^3 - x - 2.$$
+>
+> **Multiplo.** Si moltiplica ogni coefficiente per lo scalare:
+> $$3(x^3 - 2x) = 3 \cdot x^3 - 3 \cdot 2x = 3x^3 - 6x.$$
 
-Se scrivi i coefficienti in una tabella, grado per grado, la somma diventa proprio una somma **componente per componente**, come in $\K^n$:
+Se scrivi i coefficienti in una tabella, una colonna per ogni potenza, la somma dei due polinomi diventa una somma di liste.
 
-| | $x^4$ | $x^3$ | $x^2$ | $x$ | $1$ |
+| | $x^4$ | $x^3$ | $x^2$ | $x$ | senza $x$ |
 |---|---:|---:|---:|---:|---:|
 | $x^3 - 2x + 1$ | $0$ | $1$ | $0$ | $-2$ | $1$ |
 | $4x^4 + x - 3$ | $4$ | $0$ | $0$ | $1$ | $-3$ |
 | somma | $4$ | $1$ | $0$ | $-1$ | $-2$ |
 
-Il vettore nullo è il **polinomio nullo**, con tutti i coefficienti uguali a $0$, e l'opposto di $p(x)$ è $-p(x)$, con tutti i coefficienti cambiati di segno. Gli assiomi 1–5 si controllano coefficiente per coefficiente (Esercizio 5.6).
+Dove una potenza manca, il coefficiente è 0. L'ultima riga si legge $4x^4 + x^3 - x - 2$: lo stesso risultato di prima.
+
+Il vettore nullo è il **polinomio nullo**, quello con tutti i coefficienti uguali a 0. L'opposto di un polinomio si ottiene cambiando il segno a tutti i coefficienti.
 
 > [!TRAPPOLA] Il prodotto tra polinomi non c'entra
-> Due polinomi si possono anche moltiplicare tra loro, ma questa operazione **non** fa parte della struttura di spazio vettoriale: in $\K[x]$ contano solo la somma e il prodotto per uno scalare.
+> Due polinomi si possono anche moltiplicare tra loro. Ma questa operazione **non** fa parte dello spazio vettoriale: qui contano solo la somma e il prodotto per uno scalare.
+
+### Polinomi con il grado limitato
+
+Spesso non servono tutti i polinomi, ma solo quelli che non superano un certo grado. L'insieme dei polinomi di grado **al massimo** $k$ si scrive $\K_k[x]$. Per esempio $\R_2[x]$ contiene i polinomi reali di grado al massimo 2:
+
+$$\R_2[x] = \{ax^2 + bx + c \mid a, b, c \in \R\}$$
+
+Si legge: «i polinomi $ax^2 + bx + c$, dove $a$, $b$ e $c$ sono numeri reali». La barretta verticale si legge «dove». Dentro ci sono anche i polinomi di grado più basso, come $3x + 1$, e il polinomio nullo: basta prendere qualche coefficiente uguale a 0.
+
+Questo insieme è uno spazio vettoriale: è l'Esercizio 5.7 delle dispense, qui esercizio 10. Sommando due polinomi di grado al massimo 2 il grado non sale. Moltiplicando per uno scalare nemmeno.
 
 > [!TRAPPOLA] Grado al massimo $k$ sì, grado esattamente $k$ no
-> I polinomi di grado **al massimo** $k$ formano uno spazio vettoriale, indicato con $\K_k[x]$ (Esercizio 5.7): per esempio $\R_2[x] = \{ax^2 + bx + c \mid a, b, c \in \R\}$. I polinomi di grado **esattamente** $2$ invece no: $x^2$ e $-x^2 + x$ hanno grado $2$, ma la loro somma $x$ ha grado $1$. E il polinomio nullo non ha grado $2$.
+> I polinomi di grado **esattamente** 2 non formano uno spazio vettoriale. Prendi $x^2$ e $-x^2 + x$: hanno tutti e due grado 2. La loro somma è $x$, che ha grado 1: è uscita dall'insieme. Inoltre il polinomio nullo non ha grado 2, quindi manca il vettore nullo.
 
-### Tutti gli esempi a colpo d'occhio
+### Tutti gli esempi in una tabella
 
-| Spazio | un vettore è | la somma si fa | $\lambda v$ si fa | vettore nullo |
-|---|---|---|---|---|
-| $\K$ | un numero | come in $\K$ | come in $\K$ | $0$ |
-| $\K^n$ | una colonna di $n$ numeri | coordinata per coordinata | coordinata per coordinata | $(0, \dots, 0)$ |
-| successioni | una lista infinita $(x_n)$ | termine per termine | termine per termine | $(0, 0, 0, \dots)$ |
-| funzioni $[0, 1] \to \K$ | una funzione $f$ | punto per punto | punto per punto | la funzione nulla |
-| $\K[x]$ | un polinomio | grado per grado | coefficiente per coefficiente | il polinomio nullo |
+| Spazio | Un vettore è | Somma e multiplo si fanno | Vettore nullo |
+|---|---|---|---|
+| $\K$ | un numero | come tra i numeri | $0$ |
+| $\K^n$ | una lista di $n$ numeri | una coordinata alla volta | $(0, \dots, 0)$ |
+| successioni | una lista infinita | un termine alla volta | $(0, 0, 0, \dots)$ |
+| funzioni $[0, 1] \to \K$ | una funzione | un punto alla volta | la funzione nulla |
+| $\K[x]$ | un polinomio | un coefficiente alla volta | il polinomio nullo |
 
 > [!OLTRE] · dove trovarlo nel libro
-> Nel libro di Martelli: gruppi, anelli e campi nel **§1.5 «Strutture algebriche»** (pp. 34–36); lo spazio euclideo, la somma e il prodotto per scalare nel **§2.1** (pp. 43–46); la definizione di spazio vettoriale, la Proposizione 2.2.1 ($0v = 0$) e gli esempi $\K^n$, $\K[x]$ e $F(X, \K)$ nei **§2.2.1–2.2.4** (pp. 46–49). Le matrici (§2.2.5) sono nella lezione L06.
+> Nel libro di Martelli:
+>
+> - gruppi, anelli e campi sono nel **§1.5 «Strutture algebriche»** (pp. 34–36);
+> - lo spazio euclideo, la somma e il prodotto per scalare sono nel **§2.1** (pp. 43–46);
+> - la definizione di spazio vettoriale, la Proposizione 2.2.1 ($0v = 0$) e gli esempi (liste, polinomi, funzioni) sono nei **§2.2.1–2.2.4** (pp. 46–49);
+> - le matrici (§2.2.5) sono nella lezione L06.
+
+::: prova Scrivi i primi quattro termini della somma delle successioni $(1, 2, 3, 4, \dots)$ e $(10, 10, 10, 10, \dots)$.
+Un posto alla volta: $(11, 12, 13, 14, \dots)$.
+:::
+
+::: prova Con $f(x) = 2x$ e $g(x) = x^2$, quanto vale $(f + g)(1)$? E $(5g)(1)$?
+Quando entra 1, da $f$ esce $2 \cdot 1 = 2$ e da $g$ esce $1^2 = 1$. Quindi $(f + g)(1) = 2 + 1 = 3$.
+
+Poi $(5g)(1) = 5 \cdot 1 = 5$.
+:::
+
+::: prova Quanto fa $(x^2 + 3x) + (2x^2 - x + 1)$?
+Potenza 2: $1 + 2 = 3$. Potenza 1: $3 - 1 = 2$. Senza la $x$: $0 + 1 = 1$. Risultato: $3x^2 + 2x + 1$.
+:::
+
+> [!RICORDA]
+> - Successioni, funzioni e polinomi si sommano e si moltiplicano per uno scalare un pezzo alla volta: termine per termine, punto per punto, coefficiente per coefficiente.
+> - Il vettore nullo è, nei tre casi: la successione di soli zeri, la funzione che vale sempre 0, il polinomio nullo.
+> - I polinomi di grado **al massimo** $k$ formano uno spazio vettoriale. Quelli di grado **esattamente** $k$ no.
+
+## Come si vede che non è uno spazio vettoriale (oltre le dispense)
+
+All'esame la domanda tipica è: «quale di questi insiemi è uno spazio vettoriale?».
+
+Di solito l'insieme è un pezzo di uno spazio già noto: alcune liste, alcuni polinomi, alcune funzioni. Le operazioni sono quelle solite. In questo caso le otto regole non vanno ricontrollate: valgono per tutti i vettori dello spazio grande, quindi anche per quelli del pezzo.
+
+Resta una sola cosa da controllare: che facendo somme e multipli **non si esca** dal pezzo. Può andare storto in tre modi.
+
+### Primo modo: manca il vettore nullo
+
+Prendi le liste di due numeri la cui somma fa 1, come $(1, 0)$, $(0, 1)$ e $(3, -2)$. Sulla mappa formano una retta.
+
+Negli appelli un insieme così è scritto con le graffe e con una condizione:
+
+$$\{(x, y) \in \R^2 \mid x + y = 1\}$$
+
+Si legge: «le liste $(x, y)$ di $\R^2$ tali che $x + y$ fa 1». La barretta verticale si legge «tali che»: a sinistra dice dove si cercano gli elementi, a destra la condizione che devono rispettare.
+
+Il vettore nullo non sta in questo insieme: i suoi due numeri sommati fanno 0, non 1. E senza vettore nullo non c'è uno spazio vettoriale.
+
+```grafico
+titolo: Due rette: quella che passa per l'origine è uno spazio vettoriale, l'altra no
+x: -3 3
+y: -3 3
+retta: 0 0 2 -2 | accento | spesso | $x + y = 0$ | so
+retta: 0 1 -1.5 2.5 | rosa | tratteggio | $x + y = 1$ | ne
+punto: 0 0 | accento
+punto: 1 0 | rosa
+punto: 0 1 | rosa
+punto: 1 1 | ambra | $(1, 1)$ | ne
+```
+
+Guarda la figura. La retta tratteggiata è l'insieme appena visto: non passa per l'origine. La retta continua è fatta delle liste in cui la somma dei due numeri fa 0: passa per l'origine.
+
+### Secondo modo: una somma esce
+
+Resta sulla retta tratteggiata e somma due suoi elementi:
+
+$$(1, 0) + (0, 1) = (1, 1)$$
+
+Nel risultato i due numeri sommati fanno 2, non 1. La somma è uscita dall'insieme. Nella figura è il pallino fuori dalla retta tratteggiata.
+
+Un altro esempio, con i polinomi di grado esattamente 2. La somma di $x^2$ e $-x^2 + x$ fa $x$, che ha grado 1: è uscita dall'insieme.
+
+### Terzo modo: un multiplo esce
+
+Prendi le liste di due numeri in cui il primo numero non è negativo, come $(1, 0)$ e $(2, 5)$. Sulla mappa è la metà di destra.
+
+Qui il vettore nullo c'è. E la somma di due elementi resta dentro: due numeri non negativi sommati danno un numero non negativo. Ma moltiplica per $-1$:
+
+$$-1 \cdot (1, 0) = (-1, 0)$$
+
+Il primo numero è diventato negativo: il multiplo è uscito dall'insieme.
+
+### Quando la risposta è sì
+
+Prendi le liste in cui la somma dei due numeri fa 0, come $(1, -1)$ e $(2, -2)$. È la retta continua della figura.
+
+- Il vettore nullo c'è: $0 + 0 = 0$.
+- Una somma: $(1, -1) + (2, -2) = (3, -3)$. È rimasta dentro, perché $3 - 3 = 0$.
+- Un multiplo: $5 \cdot (1, -1) = (5, -5)$. È rimasto dentro, perché $5 - 5 = 0$.
+
+Gli esempi non bastano per dire sì: serve un motivo che valga per tutti gli elementi. Qui il motivo è questo. In ogni lista dell'insieme il secondo numero è l'opposto del primo. Sommando due liste così, il secondo numero resta l'opposto del primo. Moltiplicandone una per uno scalare, anche.
+
+Quindi questo insieme è uno spazio vettoriale. Nella lezione L06 un insieme così si chiamerà **sottospazio**.
+
+> [!IDEA]
+> Per dire **no** basta un solo esempio che esce dall'insieme. Per dire **sì** serve un ragionamento che valga per tutti i vettori e per tutti gli scalari.
+
+::: prova Le liste di due numeri con il secondo numero uguale a 1, come $(0, 1)$ e $(4, 1)$, formano uno spazio vettoriale?
+No. Il vettore nullo $(0, 0)$ ha il secondo numero uguale a 0, non a 1: non sta nell'insieme.
+:::
+
+::: prova Le liste in cui il secondo numero è il doppio del primo, come $(1, 2)$ e $(-3, -6)$, formano uno spazio vettoriale?
+Sì. Il vettore nullo c'è, perché 0 è il doppio di 0. Sommando due liste così il secondo numero resta il doppio del primo: per esempio $(1, 2) + (-3, -6) = (-2, -4)$. Lo stesso succede con i multipli: per esempio $3 \cdot (1, 2) = (3, 6)$.
+
+Sono i multipli del vettore $(1, 2)$: la retta della figura nella sezione sui multipli.
+:::
+
+::: prova I polinomi che in 0 valgono 1, come $x + 1$ e $x^2 + 1$, formano uno spazio vettoriale?
+No. Il polinomio nullo in 0 vale 0, non 1: manca il vettore nullo. Anche la somma esce: $(x + 1) + (x^2 + 1) = x^2 + x + 2$, che in 0 vale 2.
+:::
+
+> [!RICORDA]
+> - Per un pezzo di uno spazio noto, con le operazioni solite, bastano tre controlli: c'è il vettore nullo? Le somme restano dentro? I multipli restano dentro?
+> - Se uno dei tre controlli fallisce, non è uno spazio vettoriale. Basta un esempio.
+> - Una retta che passa per l'origine supera i tre controlli. Una retta che non passa per l'origine no.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $(3, 2)$ | «tre, due» | un vettore: una lista ordinata di numeri | 3 a destra e 2 in su |
+| $\begin{pmatrix} 3 \\ 2 \end{pmatrix}$ | «tre, due», in colonna | lo stesso vettore scritto in verticale | |
+| ${}^t(1, 2, 3)$ | «trasposto di uno, due, tre» | la riga messa in verticale: scrittura degli appelli | |
+| $\R^n$ | «erre enne» | l'insieme delle liste di $n$ numeri reali | $(3, 2) \in \R^2$ |
+| $\in$, $\notin$ | «appartiene a», «non appartiene a» | sta dentro l'insieme, non sta dentro l'insieme | $(3, 2) \notin \R^3$ |
+| $\subset$ | «è contenuto in» | tutti gli elementi del primo insieme stanno nel secondo | $\R \subset \C$ |
+| $\ge$ | «maggiore o uguale» | confronto tra due numeri, con l'uguale permesso | $n \ge 1$ |
+| $x_1$, $x_n$ | «ics uno», «ics enne» | la prima e l'ultima coordinata del vettore $x$ | se $x = (3, 2)$, allora $x_1 = 3$ |
+| $\times$ | «per» | prodotto cartesiano: le coppie ordinate | $\R \times \R = \R^2$ |
+| $\lambda$, $\mu$ | «lambda», «mi» | due scalari, cioè due numeri | $\lambda = 2$ |
+| $\lambda v$ | «lambda per vu» | il multiplo: ogni coordinata per lo scalare | $2(1, 2) = (2, 4)$ |
+| $-v$ | «meno vu» | l'opposto: il multiplo con lo scalare $-1$ | $-(1, 2) = (-1, -2)$ |
+| $\mapsto$ | «va in» | a questo elemento corrisponde quest'altro | $x \mapsto 2x$ |
+| $\lvert \lambda \rvert$ | «valore assoluto di lambda» | il numero senza il segno meno | $\lvert -2 \rvert = 2$ |
+| $a * b$ | «a asterisco b» | il risultato di un'operazione qualsiasi | $2 + 3$ oppure $2 \cdot 3$ |
+| $e$, $a'$ | «e», «a primo» | in un gruppo: l'elemento neutro e l'inverso di $a$ | con la somma: $0$ e $-a$ |
+| $a^{-1}$ | «a alla meno uno» | l'inverso per il prodotto | $7^{-1} = \frac 17$ |
+| $\setminus$ | «senza» | il primo insieme, tolti gli elementi del secondo | $\Q \setminus \{0\}$ |
+| $\forall$, $\exists$ | «per ogni», «esiste» | vale per tutti gli elementi; ce n'è almeno uno | $\forall a \in G$ |
+| $\K$ | «cappa» | un campo qualsiasi: nel corso $\R$ oppure $\C$ | |
+| $0_A$, $1_A$ | «zero di A», «uno di A» | gli elementi neutri di somma e prodotto in un campo | $0$ e $1$ |
+| $0_V$ | «zero di vu» | il vettore nullo dello spazio vettoriale $V$ | $(0, 0)$ in $\R^2$ |
+| $\K^n$, $\C^n$ | «cappa enne», «ci enne» | le liste di $n$ numeri del campo | $(i, 0) \in \C^2$ |
+| $(x_n)_{n \in \N}$ | «la successione degli ics enne» | una lista infinita $x_0, x_1, x_2, \dots$ | $(1, 2, 3, \dots)$ |
+| $f : [0, 1] \to \K$ | «effe, da zero-uno a cappa» | una funzione: entra un numero tra 0 e 1, esce un numero del campo | $f(x) = x^2$ |
+| $\K[x]$, $\K_k[x]$ | «cappa di ics» | tutti i polinomi; quelli di grado al massimo $k$ | $3x + 1$ sta in $\R_2[x]$ |
+| $\mid$ | «tali che» | introduce la condizione da rispettare | $\{(x, y) \in \R^2 \mid x + y = 0\}$ |
 
 ## Verso l'esame
 
-La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipla con 5 risposte (servono almeno 6 punti per far correggere i 2 problemi da 11 punti), dura 2 ore, senza calcolatrice e con solo 4 facciate scritte a mano; gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
+La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipla, ognuna con 5 risposte. Servono almeno 6 risposte giuste per far correggere i 2 problemi, che valgono 11 punti l'uno. La prova dura 2 ore, senza calcolatrice. Si possono portare solo 4 facciate di appunti scritti a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
-**Che cosa di questa lezione serve all'esame**
+**Che cosa viene chiesto di questa lezione**
 
-1. **Riconoscere uno spazio vettoriale.** Nei quiz compaiono domande di teoria con cinque risposte motivate, come questa.
+1. **Riconoscere uno spazio vettoriale.** Nel quiz compaiono domande di teoria con cinque risposte, ognuna con la sua motivazione. Un esempio è la domanda 2 dell'appello del 07/02/2025, che leggiamo insieme qui sotto.
+2. **Scartare la risposta «non è uno spazio vettoriale».** Nelle domande sulla dimensione (lezione L07) c'è spesso una risposta trappola di questo tipo. Tre esempi veri sono nell'elenco qui sotto.
+3. **Sottospazi.** La domanda più frequente di questa parte è «quale di questi insiemi è (o non è) un sottospazio?». Compare negli appelli dell'08/02/2024 (domanda 2), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 6). Si risolve con i tre controlli di questa lezione e con la definizione di sottospazio della lezione L06.
+4. **Conti un posto alla volta.** Somme e multipli di liste, anche con i numeri complessi, e di polinomi. Servono in quasi tutti gli esercizi del corso.
 
-> [!ESAME] Appello del 07/02/2025, domanda 2
-> «Identificate la risposta corretta alla domanda “$\C$ ammette una struttura di spazio vettoriale su $\R$?”»: (a) No, poiché $\C$ è già uno spazio vettoriale su $\C$ stesso. (b) Sì, perché ogni campo è uno spazio vettoriale su $\R$. (c) No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$. (d) No, in quanto $\C$ e $\R$ sono campi diversi. (e) Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$, $\cdot$ su $\R$ sono le stesse che in $\C$.
->
-> **Soluzione.** È la (e). I vettori sono i numeri complessi e gli scalari i reali; la somma è quella di $\C$ e il prodotto per scalare $\lambda z$ è il prodotto in $\C$ di un reale per un complesso, che è ancora complesso: $\lambda(a + bi) = \lambda a + (\lambda b)i$. Gli assiomi 1–5 valgono perché sono casi particolari delle proprietà del campo $\C$, come per «$\K$ su se stesso» (Esercizio 5.8). Le altre: (a) e (d) dicono cose vere, ma non escludono la struttura su $\R$; (b) è falsa, per esempio $\Q$ non è uno spazio vettoriale su $\R$ perché $\sqrt 2 \cdot 1 \notin \Q$; (c) è falsa, perché $i \cdot 1 = i \notin \R$.
+Le tre risposte trappola del punto 2:
 
-2. **Scartare l'opzione «non è uno spazio vettoriale».** Nelle domande sulla dimensione compare spesso una risposta trappola di questo tipo: «$T^s(3)$ non ha una dimensione perché non è uno spazio vettoriale» (24/01/2024, domanda 5), «$S(3)$ non ha una dimensione perché non è uno spazio vettoriale» e «$X$ non è necessariamente uno spazio vettoriale», con $X = \Span(v_1, v_2, v_3)$ (15/01/2026, domande 4 e 3). Per scartarle bisogna sapere quali insiemi sono spazi vettoriali: le matrici triangolari o simmetriche e gli Span lo sono sempre (lezione L06).
-3. **Sottospazi.** La domanda più frequente di questa parte è «quale di questi insiemi è (o non è) un sottospazio?»: appelli dell'08/02/2024 (domanda 2), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 6). Si risolve con i controlli di questa lezione (lo zero c'è? la somma e i multipli restano dentro?) e con la definizione di sottospazio della lezione L06.
-4. **Conti componente per componente** in $\K^n$, compresi quelli con i complessi in $\C^n$, e con i polinomi: servono in quasi tutti gli esercizi del corso.
+- «$T^s(3)$ non ha una dimensione perché non è uno spazio vettoriale» (24/01/2024, domanda 5);
+- «$S(3)$ non ha una dimensione perché non è uno spazio vettoriale» (15/01/2026, domanda 4);
+- «$X$ non è necessariamente uno spazio vettoriale», dove $X = \Span(v_1, v_2, v_3)$ (15/01/2026, domanda 3).
+
+I simboli di queste tre frasi si spiegano nella lezione L06. I primi due sono insiemi di tabelle di numeri, cioè di matrici: quelle triangolari e quelle simmetriche. Il terzo è l'insieme di tutto ciò che si ottiene sommando multipli di tre vettori. Per ora basta sapere che sono sempre spazi vettoriali. Quindi le tre risposte sono sbagliate.
 
 > [!METODO] · «È uno spazio vettoriale?» in quattro controlli
-> 1. **Chi è chi.** Scrivi il campo degli scalari $\K$, l'insieme $V$ e le due operazioni.
-> 2. **Le operazioni restano in $V$?** Prova con elementi concreti: la somma di due elementi e un multiplo (anche con $\lambda = -1$ e $\lambda = 0$) stanno ancora in $V$?
-> 3. **Lo zero c'è?** Il vettore nullo deve stare in $V$. Se le operazioni sono quelle usuali, ricorda che $0v = 0_V$: se $V$ non è vuoto ed è chiuso rispetto ai multipli, lo zero c'è per forza.
-> 4. **Gli assiomi.** Se $V$ sta dentro uno spazio noto ($\K^n$, $\K[x]$, le funzioni) con le stesse operazioni, gli assiomi 1–5 valgono già lì e restano veri. Se le operazioni sono «strane», prova ogni assioma con numeri piccoli: un solo caso che non torna basta per dire di no.
+> 1. **Chi è chi.** Scrivi chi sono i vettori, chi sono gli scalari e quali sono le due operazioni.
+> 2. **Si resta dentro?** Prova con elementi concreti. Somma due elementi. Moltiplica un elemento per uno scalare: prova anche con $-1$ e con 0.
+> 3. **Il vettore nullo c'è?** Deve stare nell'insieme.
+> 4. **Le regole.** Se l'insieme è un pezzo di uno spazio noto, con le stesse operazioni, le otto regole valgono già. Se le operazioni sono insolite, prova ogni regola con numeri piccoli.
 >
-> Per rispondere **no** basta **un** controesempio con i numeri; per rispondere **sì** serve un ragionamento che valga per tutti i vettori e tutti gli scalari.
+> Per rispondere **no** basta **un** esempio che non torna. Per rispondere **sì** serve un ragionamento che valga per tutti i vettori e per tutti gli scalari.
+
+**Una domanda vera, letta insieme**
+
+> [!ESAME] Appello del 07/02/2025, domanda 2
+> «Identificate la risposta corretta alla domanda “$\C$ ammette una struttura di spazio vettoriale su $\R$?”»
+>
+> - (a) «No, poiché $\C$ è già uno spazio vettoriale su $\C$ stesso.»
+> - (b) «Sì, perché ogni campo è uno spazio vettoriale su $\R$.»
+> - (c) «No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.»
+> - (d) «No, in quanto $\C$ e $\R$ sono campi diversi.»
+> - (e) «Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$, $\cdot$ su $\R$ sono le stesse che in $\C$.»
+
+**In pratica chiede:** i numeri complessi sono uno spazio vettoriale, se come scalari si usano solo i numeri reali? «Ammette una struttura di» vuol dire «si può vedere come».
+
+Primo controllo del metodo: chi è chi.
+
+- I vettori sono i numeri complessi, come $2 + 3i$.
+- Gli scalari sono i numeri reali, come 5.
+- La somma è quella solita tra numeri complessi.
+- Il prodotto per scalare è il prodotto solito tra un numero reale e un numero complesso.
+
+Poi gli altri controlli.
+
+1. **Le somme restano dentro?** Sì: la somma di due numeri complessi è un numero complesso. Per esempio $(2 + 3i) + (1 - i) = 3 + 2i$.
+2. **I multipli restano dentro?** Sì: un numero reale per un numero complesso è un numero complesso. Per esempio $5 \cdot (2 + 3i) = 10 + 15i$.
+3. **Il vettore nullo c'è?** Sì: è il numero complesso 0.
+4. **Le otto regole valgono?** Sì. Sono regole dei conti tra numeri complessi, usate nel caso in cui uno dei due numeri è reale.
+
+Quindi la risposta è sì. Restano la (b) e la (e): per scegliere bisogna guardare la motivazione.
+
+- La (e) dà il motivo giusto. «$\R$ è sottoinsieme di $\C$» vuol dire che ogni numero reale è anche un numero complesso. Con i simboli della lezione L01 si scrive $\R \subset \C$, che si legge «erre è contenuto in ci». Per questo le operazioni dei complessi funzionano anche quando uno dei numeri è reale.
+- La (b) dice sì, ma con un motivo falso. Non ogni campo è uno spazio vettoriale sui reali. Le frazioni, per esempio, no: $\sqrt 2 \cdot 1 = \sqrt 2$ non è una frazione, quindi un multiplo esce.
+- La (a) e la (d) dicono cose vere, che però non impediscono niente. Lo stesso insieme può essere uno spazio vettoriale su due campi diversi.
+- La (c) è falsa. I reali non sono uno spazio vettoriale sui complessi: $i \cdot 1 = i$ non è un numero reale.
+
+La risposta giusta è la **(e)**. La soluzione ufficiale dice lo stesso: (a) e (d) sono affermazioni vere che non rispondono alla domanda, (b) e (c) danno motivazioni false.
 
 > [!TRAPPOLA] Gli errori più comuni
-> - Confondere lo $0$ del campo con l'origine $0_V$.
-> - Dimenticare di controllare che somma e multipli restino nell'insieme.
+> - Confondere il numero zero con il vettore nullo.
+> - Dimenticare di controllare che somme e multipli restino nell'insieme.
 > - Credere che «grado esattamente $k$» vada bene come «grado al massimo $k$».
-> - In $\C^n$, dimenticare che $i^2 = -1$.
-> - Dire «è uno spazio vettoriale» senza dire **su quale campo**: $\C$ lo è su $\R$ e su $\C$, mentre $\R^2$ lo è su $\R$ ma non su $\C$.
+> - Nei conti con i numeri complessi, dimenticare che $i^2 = -1$.
+> - Dire «è uno spazio vettoriale» senza dire **su quale campo**. I numeri complessi lo sono su $\R$ e su $\C$. Le liste di due numeri reali lo sono su $\R$, ma non su $\C$.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: i cinque assiomi, con le quattro regole nascoste nel primo; $0v = 0_V$ e $(-1)v = -v$; la tabella dei cinque esempi con il loro vettore nullo; i tre controesempi tipici: manca lo zero, la somma esce, un multiplo esce.
+> Da questa lezione conviene copiare:
+>
+> - le cinque proprietà della definizione, con le quattro regole contenute nella prima;
+> - le due righe $0v = 0_V$ e $(-1)v = -v$;
+> - la tabella dei cinque esempi, ognuno con il suo vettore nullo;
+> - i tre modi di uscire da un insieme: manca il vettore nullo, una somma esce, un multiplo esce.
 
 ## Quiz
 
@@ -8698,7 +9450,7 @@ D: Con la somma e il prodotto per scalare usuali (coordinata per coordinata), $\
 - Sì, perché ogni spazio vettoriale su $\R$ lo è anche su $\C$.
 - No, perché $\R^2$ con la somma non è un gruppo commutativo.
 - No, perché $\C$ non è un campo.
-= Il prodotto per scalare deve dare un vettore di $V$: con lo scalare complesso $i$ si esce da $\R^2$. Le altre motivazioni sono false: $(\R^2, +)$ è un gruppo commutativo e $\C$ è un campo. Al contrario, $\C$ è uno spazio vettoriale su $\R$ (Esercizio 5.8). Simile all'appello del 07/02/2025, domanda 2.
+= La domanda chiede: se gli scalari sono i numeri complessi, i multipli dei vettori di $\R^2$ restano in $\R^2$? Provo con lo scalare $i$ e il vettore $(1, 0)$: viene $(i \cdot 1,\ i \cdot 0) = (i, 0)$. La prima coordinata è $i$, che non è un numero reale: il multiplo è uscito dall'insieme, quindi la risposta è no. La risposta «Sì, perché $\R \subset \C$» è la più tentatrice, ma ragiona al contrario: va bene quando gli scalari sono una parte dei numeri usati per le coordinate. Infatti $\C$ è uno spazio vettoriale su $\R$ (Esercizio 5.8). Simile all'appello del 07/02/2025, domanda 2.
 
 D: $\R$, con la somma usuale e il prodotto per numeri razionali, è uno spazio vettoriale su $\Q$?
 + Sì: un razionale per un reale è un reale, e gli assiomi seguono dalle proprietà del campo $\R$.
@@ -8706,7 +9458,7 @@ D: $\R$, con la somma usuale e il prodotto per numeri razionali, è uno spazio v
 - No: semmai è $\Q$ a essere uno spazio vettoriale su $\R$.
 - Sì, ma solo se ci si limita ai numeri razionali.
 - No, perché $\R$ e $\Q$ sono campi diversi.
-= È lo stesso ragionamento di «$\C$ su $\R$»: gli scalari ($\Q$) stanno dentro l'insieme dei vettori ($\R$), quindi $\lambda v$ resta in $\R$ e gli assiomi sono casi particolari di distributività, associatività ed elemento neutro in $\R$. Invece $\Q$ non è uno spazio vettoriale su $\R$: $\sqrt 2 \cdot 1 \notin \Q$. Simile all'appello del 07/02/2025, domanda 2.
+= Qui i vettori sono i numeri reali e gli scalari sono le frazioni. Controllo i multipli: una frazione per un numero reale è ancora un numero reale, per esempio $\frac 12 \cdot \sqrt 2 = \frac{\sqrt 2}2$. Le otto regole valgono perché sono regole dei conti tra numeri reali. Quindi la risposta è sì: è lo stesso ragionamento di «$\C$ su $\R$». La risposta «No, perché $\sqrt 2 \notin \Q$» dice una cosa vera che non c'entra: qui $\sqrt 2$ è un vettore, non uno scalare. È falso invece il contrario: $\Q$ non è uno spazio vettoriale su $\R$, perché $\sqrt 2 \cdot 1$ non è una frazione. Simile all'appello del 07/02/2025, domanda 2.
 
 D: Quale di questi, con l'operazione indicata, è un gruppo commutativo?
 - $(\N, +)$
@@ -8714,7 +9466,7 @@ D: Quale di questi, con l'operazione indicata, è un gruppo commutativo?
 + $(\Q \setminus \{0\}, \cdot)$
 - $(\R, \cdot)$
 - $(\Z \setminus \{0\}, \cdot)$
-= In $\Q \setminus \{0\}$ il prodotto di due frazioni non nulle è non nullo, il neutro è $1$ e l'inverso di $\frac ab$ è $\frac ba$. In $\N$ manca l'opposto di $1$; in $\Z$ e in $\Z \setminus \{0\}$ manca l'inverso di $2$; in $(\R, \cdot)$ lo $0$ non ha inverso.
+= Un gruppo vuole tre cose: elemento neutro, proprietà associativa, inverso di ogni elemento. Tra le frazioni diverse da zero, cioè in $\Q \setminus \{0\}$, il prodotto non fa uscire, l'elemento neutro è $1$ e l'inverso di $\frac 23$ è $\frac 32$. Gli altri falliscono tutti sull'inverso. In $(\N, +)$ manca l'opposto di $1$. In $(\Z, \cdot)$ e in $(\Z \setminus \{0\}, \cdot)$ manca l'inverso di $2$. La risposta più tentatrice è $(\R, \cdot)$: sembra a posto, ma dentro c'è lo $0$, che non ha inverso.
 
 D: Quale di questi insiemi, con le operazioni indicate, è un campo?
 - $\Z$, con somma e prodotto usuali.
@@ -8722,7 +9474,7 @@ D: Quale di questi insiemi, con le operazioni indicate, è un campo?
 + $\{0, 1\}$, con $1 + 1 = 0$ e le altre somme e i prodotti come negli interi.
 - $\R \setminus \{0\}$, con somma e prodotto usuali.
 - $\{0, 1, 2, 3\}$, con somma e prodotto dei resti nella divisione per $4$.
-= $\{0, 1\}$ con quelle regole è il campo dell'Esercizio 5.9 (le regole della parità). $\Z$: $2$ non ha inverso. $\N$: manca l'opposto di $1$. $\R \setminus \{0\}$: la somma esce, $1 + (-1) = 0$. Con i resti modulo $4$: $2 \cdot 2 = 4$ ha resto $0$, e $2$ non ha inverso.
+= In un campo si fanno le quattro operazioni senza uscire, e ogni numero diverso da zero ha un inverso. L'insieme $\{0, 1\}$ con $1 + 1 = 0$ è il campo dell'Esercizio 5.9: le sue tabelle sono le regole dei numeri pari e dispari. In $\Z$ il numero $2$ non ha inverso. In $\N$ manca l'opposto di $1$. In $\R \setminus \{0\}$ la somma esce: $1 + (-1) = 0$. La risposta con i resti della divisione per $4$ è la più tentatrice, perché assomiglia a quella giusta. Ma lì $2$ non ha inverso: $2 \cdot 1 = 2$, poi $2 \cdot 2 = 4$ ha resto $0$, poi $2 \cdot 3 = 6$ ha resto $2$. Nessun prodotto dà $1$.
 
 D: In $\C^2$, quanto vale $(1 + i)\begin{pmatrix} 2 \\ i \end{pmatrix}$?
 + $\begin{pmatrix} 2 + 2i \\ -1 + i \end{pmatrix}$
@@ -8730,7 +9482,7 @@ D: In $\C^2$, quanto vale $(1 + i)\begin{pmatrix} 2 \\ i \end{pmatrix}$?
 - $\begin{pmatrix} 2 + 2i \\ i \end{pmatrix}$
 - $\begin{pmatrix} 3 + i \\ 1 + 2i \end{pmatrix}$
 - $\begin{pmatrix} 2 \\ -1 \end{pmatrix}$
-= Lo scalare moltiplica entrambe le coordinate: $(1 + i) \cdot 2 = 2 + 2i$ e $(1 + i) \cdot i = i + i^2 = -1 + i$. La seconda risposta dimentica che $i^2 = -1$, la terza non moltiplica la seconda coordinata, la quarta somma invece di moltiplicare.
+= Lo scalare $1 + i$ moltiplica tutte e due le coordinate. Prima coordinata: $(1 + i) \cdot 2 = 2 + 2i$. Seconda coordinata: $(1 + i) \cdot i = i + i^2$. Siccome $i^2 = -1$, viene $i - 1$, cioè $-1 + i$. La risposta con $1 + i$ al secondo posto è la più tentatrice: nasce dallo scrivere $i^2 = 1$ invece di $i^2 = -1$. Quella con $3 + i$ al primo posto somma lo scalare invece di moltiplicare.
 
 D: In $\R^3$, quanto vale $2\begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix} - 3\begin{pmatrix} 0 \\ 1 \\ 2 \end{pmatrix}$?
 + $(2, -3, -8)$
@@ -8738,7 +9490,7 @@ D: In $\R^3$, quanto vale $2\begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix} - 3\begin
 - $(2, 3, -8)$
 - $(2, -1, -4)$
 - $(2, -3, -7)$
-= $2(1, 0, -1) = (2, 0, -2)$ e $3(0, 1, 2) = (0, 3, 6)$; poi si sottrae coordinata per coordinata: $(2 - 0,\ 0 - 3,\ -2 - 6) = (2, -3, -8)$.
+= Sono due multipli e poi una differenza, sempre un posto alla volta. Primo multiplo: $2 \cdot (1, 0, -1) = (2, 0, -2)$. Secondo multiplo: $3 \cdot (0, 1, 2) = (0, 3, 6)$. Differenza: $(2 - 0,\ 0 - 3,\ -2 - 6) = (2, -3, -8)$. La risposta $(2, -3, 4)$ è la più tentatrice: nasce dal fare $-2 + 6$ all'ultimo posto. È l'errore di chi dimentica che il segno meno vale per tutte le coordinate del secondo vettore.
 
 D: Con la somma e il prodotto per scalare usuali, quale di questi insiemi di polinomi a coefficienti reali è uno spazio vettoriale su $\R$?
 - I polinomi di grado esattamente $2$.
@@ -8746,7 +9498,7 @@ D: Con la somma e il prodotto per scalare usuali, quale di questi insiemi di pol
 + I polinomi di grado minore o uguale a $2$, cioè $\R_2[x]$.
 - I polinomi con tutti i coefficienti maggiori o uguali a $0$.
 - I polinomi della forma $x^2 + bx + c$, con $b, c \in \R$.
-= $\R_2[x]$ è lo spazio dell'Esercizio 5.7. Gli altri falliscono: $x^2 + (-x^2 + x) = x$ non ha grado $2$; il polinomio nullo ha $p(0) = 0 \neq 1$; $(-1) \cdot x = -x$ ha un coefficiente negativo; $(x^2 + 1) + (x^2 + 1) = 2x^2 + 2$ non ha la forma $x^2 + bx + c$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 6), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
+= La domanda chiede da quale insieme non si esce sommando due polinomi o moltiplicandone uno per uno scalare. In $\R_2[x]$ il grado non supera mai 2 e il polinomio nullo c'è: è lo spazio dell'Esercizio 5.7. La risposta «grado esattamente 2» è la più tentatrice, ma la somma di $x^2$ e $-x^2 + x$ fa $x$, che ha grado 1. La scrittura $p(0) = 1$ vuol dire che il polinomio vale 1 quando al posto di $x$ metti 0: il polinomio nullo lì vale 0, quindi manca. Con i coefficienti non negativi un multiplo esce: $-1 \cdot x = -x$. Con la forma $x^2 + bx + c$ una somma esce: $x^2 + 1$ più se stesso fa $2x^2 + 2$. Simile agli appelli dell'08/02/2024 (domanda 2) e del 07/09/2026 (domanda 6), che chiedono quale insieme di polinomi è (o non è) un sottospazio.
 
 D: Con le operazioni di $\R^2$, quale di questi sottoinsiemi è uno spazio vettoriale su $\R$?
 + $\{(x, y) \in \R^2 \mid x + y = 0\}$
@@ -8754,7 +9506,7 @@ D: Con le operazioni di $\R^2$, quale di questi sottoinsiemi è uno spazio vetto
 - $\{(x, y) \in \R^2 \mid x \ge 0\}$
 - $\{(x, y) \in \R^2 \mid xy = 0\}$
 - $\{(x, y) \in \R^2 \mid y = x^2\}$
-= Se $x + y = 0$ e $x' + y' = 0$, anche $(x + x') + (y + y') = 0$ e $\lambda x + \lambda y = 0$: le operazioni restano nell'insieme, che contiene $(0, 0)$. Controesempi per gli altri: $(0, 0)$ non soddisfa $x + y = 1$; $(-1) \cdot (1, 0) = (-1, 0)$ ha $x < 0$; $(1, 0) + (0, 1) = (1, 1)$ ha $xy = 1$; $(1, 1) + (1, 1) = (2, 2)$, ma $2 \neq 2^2$. Simile all'appello del 03/06/2025, domanda 2.
+= Ogni risposta è un insieme scritto con una condizione: la barretta verticale si legge «tali che». Sono pezzi di $\R^2$ con le operazioni solite, quindi bastano i tre controlli: vettore nullo, somme, multipli. Con $x + y = 0$ il secondo numero è l'opposto del primo, e questo resta vero sommando due liste o moltiplicandone una per uno scalare. Con $x + y = 1$ manca il vettore nullo, perché $0 + 0$ non fa 1: è la risposta più tentatrice, perché cambia solo un numero. Con $x \ge 0$ un multiplo esce: $-1 \cdot (1, 0) = (-1, 0)$. Con $xy = 0$ una somma esce: $(1, 0) + (0, 1) = (1, 1)$. Con $y = x^2$ una somma esce: $(1, 1) + (1, 1) = (2, 2)$, ma $2^2$ fa 4. Simile all'appello del 03/06/2025, domanda 2.
 
 D: Le funzioni $f : [0, 1] \to \R$ con $f(0) = 1$, con le operazioni punto per punto, formano uno spazio vettoriale su $\R$?
 - Sì, come tutte le funzioni da $[0, 1]$ in $\R$.
@@ -8762,82 +9514,174 @@ D: Le funzioni $f : [0, 1] \to \R$ con $f(0) = 1$, con le operazioni punto per p
 - Sì, perché $1$ è l'elemento neutro del prodotto.
 - No, perché le funzioni non sono vettori.
 - Sì, ma solo se ci si limita ai polinomi.
-= Il vettore nullo sarebbe la funzione nulla, che in $0$ vale $0$: non sta nell'insieme. Anche la somma esce. È lo stesso motivo dell'appello del 10/07/2024, domanda 2: l'insieme $O(2)$ delle matrici ortogonali non è un sottospazio perché non contiene la matrice nulla.
+= Il vettore nullo dello spazio delle funzioni è la funzione nulla, che in 0 vale 0 e non 1: non sta nell'insieme. Anche una somma esce: se due funzioni in 0 valgono 1, la loro somma in 0 vale $1 + 1 = 2$. Quindi la risposta è no. La risposta «Sì, come tutte le funzioni» è la più tentatrice: tutte le funzioni insieme formano uno spazio vettoriale, ma un loro pezzo può non esserlo. È lo stesso motivo dell'appello del 10/07/2024, domanda 2: l'insieme $O(2)$ delle matrici ortogonali non è un sottospazio perché non contiene la matrice nulla.
 
 D: Nel campo $\{0, 1, 2\}$ con somma e prodotto dei resti nella divisione per $3$ (Esercizio 5.10), qual è l'inverso di $2$ rispetto al prodotto?
 N: 2
-= $2 \cdot 2 = 4$, che diviso per $3$ dà resto $1$: quindi $2 \cdot 2 = 1$, e l'inverso di $2$ è $2$ stesso.
+= L'inverso di 2 è l'elemento che moltiplicato per 2 dà 1. In questo campo si calcola come negli interi e poi si tiene il resto della divisione per 3. Provo i tre elementi uno alla volta. $2 \cdot 0 = 0$. $2 \cdot 1 = 2$. $2 \cdot 2 = 4$, e 4 diviso 3 fa 1 con resto 1. Quindi in questo campo $2 \cdot 2 = 1$: l'inverso di 2 è 2 stesso.
 ```
 
 ## Esercizi
 
-::: esercizio medio Esercizio 5.6 delle dispense: i cinque assiomi per tutti gli esempi
-Per tutti gli esempi di spazi vettoriali visti sopra ($\K$ su se stesso, $\K^n$, le successioni, le funzioni $[0, 1] \to \K$, i polinomi $\K[x]$) verifica i 5 assiomi, come le dispense hanno controllato l'assioma 2 per $\K^n$.
+::: esercizio base Somme, un posto alla volta
+Calcola: (a) $(2, 1) + (1, 3)$; (b) $(1, 0, -2) + (4, 5, 2)$; (c) $(3, -1) + (-3, 1)$.
 ::: soluzione
-L'idea: in tutti gli esempi le operazioni si fanno «un pezzo alla volta» (coordinata, termine, punto o coefficiente), e ogni pezzo è un elemento di $\K$. Quindi ogni assioma si riduce a una proprietà del campo $\K$. Lo scriviamo per esteso per $\K^n$, poi vediamo che cosa cambia negli altri casi.
+Si somma il primo numero con il primo, il secondo con il secondo, e avanti così.
 
-**$\K^n$.** Siano $x = (x_1, \dots, x_n)$, $y$, $z$ in $\K^n$ e $\lambda, \mu \in \K$. Le operazioni restano in $\K^n$, perché somme e prodotti di elementi di $\K$ stanno in $\K$.
-- Assioma 1, gruppo commutativo:
-  - associativa: la coordinata $k$ di $(x + y) + z$ è $(x_k + y_k) + z_k$, quella di $x + (y + z)$ è $x_k + (y_k + z_k)$, e sono uguali per l'associatività della somma in $\K$;
-  - neutro: $0 = (0, \dots, 0)$, perché $x_k + 0 = x_k$;
-  - opposto: $-x = (-x_1, \dots, -x_n)$, perché $x_k + (-x_k) = 0$;
-  - commutativa: $x_k + y_k = y_k + x_k$ in $\K$.
-- Assioma 2: fatto nelle dispense, con la distributività in $\K$.
-- Assioma 3: la coordinata $k$ di $(\lambda + \mu)x$ è $(\lambda + \mu)x_k = \lambda x_k + \mu x_k$, che è la coordinata $k$ di $\lambda x + \mu x$ (distributività e commutatività in $\K$).
-- Assioma 4: $(\lambda\mu)x_k = \lambda(\mu x_k)$ per l'associatività del prodotto in $\K$.
-- Assioma 5: $1 \cdot x_k = x_k$, perché $1$ è il neutro del prodotto in $\K$.
+(a) $(2 + 1,\ 1 + 3) = (3, 4)$.
 
-**$\K$ su se stesso.** È il caso $n = 1$ di $\K^n$; il motivo di ogni assioma è nella tabella della sezione sugli esempi.
+(b) $(1 + 4,\ 0 + 5,\ -2 + 2) = (5, 5, 0)$.
 
-**Successioni.** Stessa verifica, con «termine $k$» al posto di «coordinata $k$». Ora $k$ va da $0$ all'infinito, ma ogni controllo riguarda un termine alla volta. Neutro: $(0, 0, 0, \dots)$; opposto di $(x_n)$: $(-x_n)$.
-
-**Funzioni $[0, 1] \to \K$.** Stessa verifica «punto per punto»: due funzioni sono uguali se hanno lo stesso valore in ogni $x \in [0, 1]$. Per esempio l'assioma 2: per ogni $x$,
-$$\big(\lambda(f + g)\big)(x) = \lambda\big(f(x) + g(x)\big) = \lambda f(x) + \lambda g(x) = (\lambda f + \lambda g)(x).$$
-Neutro: la funzione nulla; opposto di $f$: la funzione $x \mapsto -f(x)$.
-
-**Polinomi $\K[x]$.** Un polinomio è determinato dai suoi coefficienti, e somma e prodotto per scalare agiscono coefficiente per coefficiente: si ripete la verifica di $\K^n$ con «coefficiente di $x^k$» al posto di «coordinata $k$». La somma $p + q$ ha grado al massimo uguale al più grande dei due gradi, quindi è ancora un polinomio. Neutro: il polinomio nullo; opposto: $-p(x)$.
+(c) $(3 - 3,\ -1 + 1) = (0, 0)$. Viene il vettore nullo: il secondo vettore è l'opposto del primo.
 :::
 
-::: esercizio medio Esercizio 5.7 delle dispense: grado al massimo $k$
-Controlla che l'insieme $\K_k[x]$ dei polinomi a coefficienti in $\K$ di grado $\le k$ sia uno spazio vettoriale. Perché l'insieme dei polinomi di grado **esattamente** $k$ non è uno spazio vettoriale se $k \ge 1$?
+::: esercizio base Multipli di un vettore
+Calcola: (a) $3 \cdot (1, -2)$; (b) $-1 \cdot (2, 0, 5)$; (c) $\frac 12 \cdot (4, 6)$; (d) $0 \cdot (3, 3)$.
 ::: soluzione
-**$\K_k[x]$ è uno spazio vettoriale.** Ogni elemento si scrive $p(x) = a_k x^k + \dots + a_1 x + a_0$ con $a_0, \dots, a_k \in \K$ (qualche coefficiente, anche il primo, può essere $0$).
-1. Le operazioni restano in $\K_k[x]$. Se $p(x) = a_k x^k + \dots + a_0$ e $q(x) = b_k x^k + \dots + b_0$, allora
-   $$p(x) + q(x) = (a_k + b_k)x^k + \dots + (a_0 + b_0), \qquad \lambda p(x) = \lambda a_k x^k + \dots + \lambda a_0,$$
-   e non compaiono potenze più alte di $x^k$: il grado resta $\le k$.
-2. Il polinomio nullo sta in $\K_k[x]$ (tutti i coefficienti nulli), e l'opposto $-p(x)$ ha lo stesso grado di $p$.
-3. Gli assiomi 1–5 valgono in tutto $\K[x]$ (esercizio 1), quindi valgono in particolare per i polinomi di grado $\le k$.
+Lo scalare moltiplica ogni coordinata.
 
-In breve: $\K_k[x]$ si comporta come $\K^{k+1}$, perché un polinomio di grado $\le k$ è dato dalla lista dei suoi $k + 1$ coefficienti $(a_0, a_1, \dots, a_k)$.
+(a) $(3 \cdot 1,\ 3 \cdot (-2)) = (3, -6)$.
 
-**Grado esattamente $k$, con $k \ge 1$: non è uno spazio vettoriale.** Basta un controesempio.
-- La somma può abbassare il grado: $x^k + 1$ e $-x^k$ hanno grado $k$, ma $(x^k + 1) + (-x^k) = 1$ ha grado $0 \neq k$.
-- Il vettore nullo non c'è: il polinomio nullo non ha grado $k$ (e infatti $0 \cdot x^k = 0$ esce dall'insieme).
+(b) $(-1 \cdot 2,\ -1 \cdot 0,\ -1 \cdot 5) = (-2, 0, -5)$. È l'opposto del vettore di partenza.
 
-Con $k = 2$: $x^2 + 1$ e $-x^2$ hanno grado $2$, la loro somma $1$ no.
+(c) $(\frac 12 \cdot 4,\ \frac 12 \cdot 6) = (2, 3)$. Moltiplicare per $\frac 12$ vuol dire dividere a metà.
 
-**Perché $k \ge 1$?** Per $k = 0$ i polinomi di grado $0$ sono le costanti. Se si decide che anche il polinomio nullo ha grado $0$, sono tutte le costanti, cioè $\K$ stesso, che è uno spazio vettoriale; se il polinomio nullo non ha grado, restano le costanti non nulle, che non lo sono (manca lo zero). La risposta dipende da una convenzione, e l'esercizio evita il caso.
+(d) $(0 \cdot 3,\ 0 \cdot 3) = (0, 0)$. Il numero zero per un vettore dà il vettore nullo (Proposizione 5.5).
+:::
+
+::: esercizio base Polinomi e funzioni, un pezzo alla volta
+(a) Somma i polinomi $x^2 + 2x$ e $3x + 1$. (b) Calcola $2 \cdot (x^2 - 1)$. (c) Con $f(x) = x + 1$ e $g(x) = x^2$, quanto vale $(f + g)(1)$?
+::: soluzione
+(a) Si mettono insieme i pezzi con la stessa potenza.
+
+- Potenza 2: c'è solo $x^2$.
+- Potenza 1: $2x + 3x = 5x$.
+- Senza la $x$: c'è solo $1$.
+
+Risultato: $x^2 + 5x + 1$.
+
+(b) Lo scalare moltiplica ogni coefficiente: $2 \cdot x^2 - 2 \cdot 1 = 2x^2 - 2$.
+
+(c) Quando entra 1, da $f$ esce $1 + 1 = 2$ e da $g$ esce $1^2 = 1$. La somma è $2 + 1 = 3$.
+:::
+
+::: esercizio base Il vettore nullo c'è?
+Per ogni insieme di' se contiene il vettore nullo: (a) le liste $(x, y)$ con $y = 3$; (b) le liste $(x, y)$ con $y = 3x$; (c) i polinomi di grado esattamente $1$; (d) le funzioni che in $1$ valgono $0$.
+::: soluzione
+(a) **No.** Il vettore nullo è $(0, 0)$: il suo secondo numero è 0, non 3.
+
+(b) **Sì.** In $(0, 0)$ il secondo numero è 0, e il triplo del primo è $3 \cdot 0 = 0$. La condizione è rispettata.
+
+(c) **No.** Il vettore nullo è il polinomio nullo, che non ha grado 1.
+
+(d) **Sì.** Il vettore nullo è la funzione nulla, che vale 0 in ogni punto, quindi anche in 1.
+
+Che cosa se ne ricava: (a) e (c) non sono spazi vettoriali. Per (b) e (d) il primo controllo è superato. Restano da controllare le somme e i multipli.
+:::
+
+::: esercizio base Conti in $\R^3$, in $\C^2$ e tra polinomi
+Calcola:
+(a) $2u - 3v$ con $u = (1, 0, -1)$ e $v = (2, -1, 1)$ in $\R^3$;
+(b) $iz + w$ con $z = (1 + i, 2)$ e $w = (3, -i)$ in $\C^2$;
+(c) $2p - q$ con $p(x) = x^3 - x + 2$ e $q(x) = 2x^3 + x^2 - 4$;
+(d) il vettore $x \in \R^3$ per cui $x + (1, 2, 3) = (4, 0, 3)$.
+::: soluzione
+(a) Prima i due multipli, poi la differenza.
+
+1. $2u = (2 \cdot 1,\ 2 \cdot 0,\ 2 \cdot (-1)) = (2, 0, -2)$.
+2. $3v = (3 \cdot 2,\ 3 \cdot (-1),\ 3 \cdot 1) = (6, -3, 3)$.
+3. $2u - 3v = (2 - 6,\ 0 - (-3),\ -2 - 3) = (-4, 3, -5)$.
+
+Al secondo posto si toglie un numero negativo: $0 - (-3) = 0 + 3 = 3$.
+
+(b) Prima il multiplo con lo scalare $i$, poi la somma.
+
+1. Primo posto di $iz$: $i \cdot (1 + i) = i + i^2 = i - 1$, cioè $-1 + i$.
+2. Secondo posto di $iz$: $i \cdot 2 = 2i$.
+3. Quindi $iz = (-1 + i,\ 2i)$.
+4. Somma con $w$, primo posto: $(-1 + i) + 3 = 2 + i$.
+5. Somma con $w$, secondo posto: $2i + (-i) = i$.
+
+Risultato: $iz + w = (2 + i,\ i)$.
+
+(c) Prima il doppio di $p$, poi la differenza, una potenza alla volta.
+
+1. $2p(x) = 2x^3 - 2x + 4$.
+2. Potenza 3: $2 - 2 = 0$. Il pezzo con $x^3$ sparisce.
+3. Potenza 2: in $2p$ non c'è, quindi $0 - 1 = -1$. Viene $-x^2$.
+4. Potenza 1: in $q$ non c'è, quindi $-2 - 0 = -2$. Viene $-2x$.
+5. Senza la $x$: $4 - (-4) = 4 + 4 = 8$.
+
+Risultato: $2p(x) - q(x) = -x^2 - 2x + 8$.
+
+(d) Bisogna togliere $(1, 2, 3)$ da tutti e due i lati, cioè sommare il suo opposto.
+
+1. A sinistra resta $x$.
+2. A destra: $(4, 0, 3) - (1, 2, 3) = (4 - 1,\ 0 - 2,\ 3 - 3) = (3, -2, 0)$.
+
+Quindi $x = (3, -2, 0)$.
+
+Controllo: $(3, -2, 0) + (1, 2, 3) = (3 + 1,\ -2 + 2,\ 0 + 3) = (4, 0, 3)$.
+:::
+
+::: esercizio base Gruppo o no?
+Per ciascun caso di' se è un gruppo. Se lo è, indica l'elemento neutro e l'inverso di un elemento; se non lo è, indica che cosa fallisce, con un esempio.
+(a) I numeri pari $\{\dots, -2, 0, 2, 4, \dots\}$ con la somma.
+(b) I numeri dispari con la somma.
+(c) $\Z$ con la sottrazione, $a * b = a - b$.
+(d) $\{1, -1\}$ con il prodotto.
+(e) I numeri reali positivi con il prodotto.
+::: soluzione
+Per ogni caso si controlla: si resta dentro? C'è l'elemento neutro? Le parentesi si spostano? Ogni elemento ha l'inverso?
+
+(a) **Sì**, ed è commutativo. La somma di due numeri pari è pari: per esempio $2 + 4 = 6$. L'elemento neutro è 0, che è pari. L'inverso di 4 è $-4$, che è pari. La proprietà associativa vale perché vale per tutti gli interi.
+
+(b) **No.** Si esce dall'insieme: $1 + 3 = 4$, che non è dispari. Manca anche l'elemento neutro, perché lo 0 è pari.
+
+(c) **No.** La sottrazione non è associativa.
+
+- A sinistra: $(5 - 3) - 1 = 2 - 1 = 1$.
+- A destra: $5 - (3 - 1) = 5 - 2 = 3$.
+
+I due risultati sono diversi. Manca anche l'elemento neutro. Lo 0 funziona solo se sta a destra: $5 - 0 = 5$, ma $0 - 5 = -5$.
+
+(d) **Sì**, ed è commutativo. I prodotti possibili sono tre: $1 \cdot 1 = 1$, poi $1 \cdot (-1) = -1$, poi $(-1) \cdot (-1) = 1$. Non si esce mai. L'elemento neutro è 1. L'inverso di $-1$ è $-1$ stesso.
+
+(e) **Sì**, ed è commutativo. Il prodotto di due numeri positivi è positivo. L'elemento neutro è 1. L'inverso di 5 è $\frac 15$, che è ancora positivo.
 :::
 
 ::: esercizio base Esercizio 5.8 delle dispense: $\C$ è uno spazio vettoriale su $\R$
 Nel primo esempio $\C$ è uno spazio vettoriale sul campo $\C$. Dimostra che è anche uno spazio vettoriale su $\R$.
 ::: soluzione
-Vettori: i numeri complessi $z = a + bi$. Scalari: i numeri reali $\lambda$. Somma: quella di $\C$. Prodotto per scalare: il prodotto in $\C$ tra il reale $\lambda$ e il complesso $z$,
-$$\lambda(a + bi) = \lambda a + (\lambda b)i,$$
-che è ancora un numero complesso. Le operazioni restano in $\C$.
+**Chi è chi.**
 
-Gli assiomi:
-1. $(\C, +)$ è un gruppo commutativo, perché $\C$ è un campo (assioma 1 del campo).
-2. $\lambda(z + w) = \lambda z + \lambda w$: è la proprietà distributiva di $\C$, applicata con $\lambda \in \R \subset \C$.
-3. $(\lambda + \mu)z = \lambda z + \mu z$: distributività e commutatività di $\C$.
-4. $(\lambda\mu)z = \lambda(\mu z)$: associatività del prodotto in $\C$.
-5. $1z = z$: $1$ è il neutro del prodotto in $\C$.
+- I vettori sono i numeri complessi. Un numero complesso si scrive $a + bi$, con $a$ e $b$ reali.
+- Gli scalari sono i numeri reali.
+- La somma è quella solita dei numeri complessi.
+- Il prodotto per scalare è il prodotto solito tra un reale e un complesso: $\lambda(a + bi) = \lambda a + (\lambda b)i$.
 
-Ogni assioma è un caso particolare di una proprietà di $\C$ in cui uno dei numeri è reale.
+**Si resta dentro?** Sì. La somma di due complessi è un complesso. Un reale per un complesso è un complesso: per esempio $5 \cdot (2 + 3i) = 10 + 15i$.
 
-**Con le coordinate.** La corrispondenza $a + bi \leftrightarrow (a, b)$ trasforma le operazioni in quelle di $\R^2$: $(a + bi) + (c + di) = (a + c) + (b + d)i$ corrisponde a $(a, b) + (c, d)$, e $\lambda(a + bi)$ corrisponde a $\lambda(a, b)$. Come spazio vettoriale su $\R$, $\C$ si comporta come il piano $\R^2$: è il piano di Gauss della lezione L02.
+**Le cinque proprietà della Definizione 5.4.** Chiamo $z$ e $w$ due numeri complessi, e $\lambda$ e $\mu$ due numeri reali.
 
-**Attenzione al contrario.** $\R$ **non** è uno spazio vettoriale su $\C$ con il prodotto usuale, perché $i \cdot 1 = i \notin \R$.
+1. I complessi con la somma sono un gruppo commutativo. È l'assioma 1 dei campi, e $\C$ è un campo.
+2. $\lambda(z + w) = \lambda z + \lambda w$. È la proprietà distributiva di $\C$: vale per tutti i complessi, quindi anche quando il primo numero è reale.
+3. $(\lambda + \mu)z = \lambda z + \mu z$. Sono le proprietà distributiva e commutativa di $\C$.
+4. $(\lambda\mu)z = \lambda(\mu z)$. È la proprietà associativa del prodotto di $\C$.
+5. $1z = z$. L'1 è l'elemento neutro del prodotto di $\C$.
+
+Ogni proprietà è una regola dei numeri complessi, usata nel caso in cui uno dei numeri è reale. Quindi $\C$ è uno spazio vettoriale su $\R$.
+
+**Controllo con i numeri** della proprietà 2, con lo scalare 2 e i vettori $1 + i$ e $3 - 2i$.
+
+- A sinistra: la somma è $(1 + 3) + (1 - 2)i = 4 - i$. Il doppio è $8 - 2i$.
+- A destra: i due doppi sono $2 + 2i$ e $6 - 4i$. La loro somma è $(2 + 6) + (2 - 4)i = 8 - 2i$.
+
+Stesso risultato.
+
+**Con le coordinate.** Al numero $a + bi$ fai corrispondere la lista $(a, b)$. La somma di due numeri complessi diventa la somma di due liste. Il multiplo $\lambda(a + bi)$ diventa il multiplo $\lambda(a, b)$. Come spazio vettoriale su $\R$, l'insieme $\C$ si comporta come il piano $\R^2$: è il piano di Gauss della lezione L02.
+
+**Attenzione al contrario.** $\R$ **non** è uno spazio vettoriale su $\C$ con il prodotto solito: $i \cdot 1 = i$ non è un numero reale.
 :::
 
 ::: esercizio medio Esercizio 5.9 delle dispense: il campo con due elementi
@@ -8845,26 +9689,258 @@ Sia $\K = \{0, 1\}$ con le operazioni
 $$0 + 0 = 0, \quad 0 + 1 = 1, \quad 1 + 0 = 1, \quad 1 + 1 = 0, \qquad 0 \cdot 0 = 0, \quad 0 \cdot 1 = 0, \quad 1 \cdot 0 = 0, \quad 1 \cdot 1 = 1.$$
 Dimostra che $(\K, +, \cdot)$ è un campo.
 ::: soluzione
-Si controllano i tre assiomi della Definizione 5.3.
+Bisogna controllare i tre assiomi della Definizione 5.3.
 
-**Assioma 1: $(\K, +)$ è un gruppo commutativo con neutro $0$.**
-- Le somme restano in $\{0, 1\}$ (lo dice la tabella).
-- Neutro: $0 + 0 = 0$ e $0 + 1 = 1 + 0 = 1$, quindi $0$ lascia tutto com'è.
-- Opposti: $0 + 0 = 0$, quindi $-0 = 0$; $1 + 1 = 0$, quindi $-1 = 1$.
-- Commutativa: $0 + 1 = 1 + 0$, e gli altri casi hanno due addendi uguali.
-- Associativa: le terne $(a, b, c)$ sono $2^3 = 8$. Invece di provarle una per una, nota che $a + b + c$ vale $0$ se tra $a$, $b$, $c$ ci sono un numero pari di $1$, e vale $1$ se ce ne sono un numero dispari, comunque si mettano le parentesi. Per esempio $(1 + 1) + 1 = 0 + 1 = 1$ e $1 + (1 + 1) = 1 + 0 = 1$.
+**Assioma 1: con la somma è un gruppo commutativo, e l'elemento neutro è 0.**
 
-**Assioma 2: $\K \setminus \{0\} = \{1\}$ è un gruppo commutativo con il prodotto.** C'è un solo elemento: $1 \cdot 1 = 1$ resta nell'insieme, $1$ è il neutro ed è l'inverso di se stesso; associatività e commutatività valgono perché c'è un solo prodotto possibile, $1 \cdot 1$.
+- Non si esce: i risultati delle quattro somme sono solo 0 e 1.
+- Elemento neutro: $0 + 0 = 0$ e $0 + 1 = 1 + 0 = 1$. Lo 0 non cambia niente.
+- Inversi: $0 + 0 = 0$, quindi l'opposto di 0 è 0. E $1 + 1 = 0$, quindi l'opposto di 1 è 1.
+- Commutativa: $0 + 1 = 1 + 0$. Negli altri due casi i due numeri sono uguali.
+- Associativa: le scelte possibili di tre elementi sono $2 \cdot 2 \cdot 2 = 8$. Sono tutte nella tabella qui sotto.
 
-**Assioma 3: la distributiva $a(b + c) = ab + ac$.** Se $a = 0$ entrambi i membri valgono $0$. Se $a = 1$ entrambi i membri valgono $b + c$. Quindi vale in tutti gli $8$ casi.
+| $a$ | $b$ | $c$ | $(a + b) + c$ | $a + (b + c)$ |
+|---|---|---|---|---|
+| $0$ | $0$ | $0$ | $0 + 0 = 0$ | $0 + 0 = 0$ |
+| $0$ | $0$ | $1$ | $0 + 1 = 1$ | $0 + 1 = 1$ |
+| $0$ | $1$ | $0$ | $1 + 0 = 1$ | $0 + 1 = 1$ |
+| $0$ | $1$ | $1$ | $1 + 1 = 0$ | $0 + 0 = 0$ |
+| $1$ | $0$ | $0$ | $1 + 0 = 1$ | $1 + 0 = 1$ |
+| $1$ | $0$ | $1$ | $1 + 1 = 0$ | $1 + 1 = 0$ |
+| $1$ | $1$ | $0$ | $0 + 0 = 0$ | $1 + 1 = 0$ |
+| $1$ | $1$ | $1$ | $0 + 1 = 1$ | $1 + 0 = 1$ |
 
-**Il perché.** Leggi $0$ come «pari» e $1$ come «dispari»: le tabelle sono le regole della parità (dispari più dispari fa pari, e così via). Le proprietà della somma e del prodotto degli interi passano ai resti della divisione per $2$. Questo campo si indica spesso con $\mathbb{F}_2$ o $\Z_2$.
+Le ultime due colonne sono uguali in ogni riga.
+
+**Assioma 2: tolto lo 0, con il prodotto è un gruppo commutativo, e l'elemento neutro è 1.** Tolto lo 0 resta il solo elemento 1. L'unico prodotto possibile è $1 \cdot 1 = 1$. Non si esce. L'1 è l'elemento neutro ed è l'inverso di se stesso. Le proprietà associativa e commutativa valgono perché c'è un solo prodotto da fare.
+
+**Assioma 3: la proprietà distributiva** $a \cdot (b + c) = a \cdot b + a \cdot c$.
+
+- Se $a = 0$: a sinistra $0 \cdot (b + c) = 0$. A destra $0 + 0 = 0$.
+- Se $a = 1$: a sinistra $1 \cdot (b + c) = b + c$. A destra $b + c$.
+
+Vale in tutti e due i casi, quindi vale sempre.
+
+**Il perché, in breve.** Leggi 0 come «pari» e 1 come «dispari»: le due tabelle sono le regole dei numeri pari e dispari. Le proprietà della somma e del prodotto degli interi passano ai resti della divisione per 2. Questo campo si indica spesso con $\mathbb{F}_2$ oppure con $\Z_2$.
+:::
+
+::: esercizio medio Esercizio 5.6 delle dispense: i cinque assiomi per tutti gli esempi
+Per tutti gli esempi di spazi vettoriali visti sopra ($\K$ su se stesso, $\K^n$, le successioni, le funzioni $[0, 1] \to \K$, i polinomi $\K[x]$) verifica i 5 assiomi, come le dispense hanno controllato l'assioma 2 per $\K^n$.
+::: soluzione
+L'idea è una sola. In tutti gli esempi le operazioni si fanno un pezzo alla volta: una coordinata, un termine, un punto, un coefficiente. Ogni pezzo è un numero del campo, quindi ogni proprietà si riduce a una regola dei numeri.
+
+**Le liste.** Chiamo $x$, $y$ e $z$ tre liste, e $\lambda$ e $\mu$ due scalari. La coordinata di posto $k$ della lista $x$ si scrive $x_k$. Le operazioni non fanno uscire: somme e prodotti di numeri del campo sono numeri del campo. La tabella dice che cosa succede in un posto qualsiasi.
+
+| Proprietà | Che cosa succede al posto $k$ | Regola dei numeri usata |
+|---|---|---|
+| 1, associativa | $(x_k + y_k) + z_k = x_k + (y_k + z_k)$ | associativa della somma |
+| 1, vettore nullo | $x_k + 0 = x_k$: è la lista di soli zeri | lo 0 è l'elemento neutro della somma |
+| 1, opposto | $x_k + (-x_k) = 0$: è la lista con i segni cambiati | ogni numero ha l'opposto |
+| 1, commutativa | $x_k + y_k = y_k + x_k$ | commutativa della somma |
+| 2 | $\lambda(x_k + y_k) = \lambda x_k + \lambda y_k$ | distributiva |
+| 3 | $(\lambda + \mu)x_k = \lambda x_k + \mu x_k$ | distributiva |
+| 4 | $(\lambda\mu)x_k = \lambda(\mu x_k)$ | associativa del prodotto |
+| 5 | $1 \cdot x_k = x_k$ | l'1 è l'elemento neutro del prodotto |
+
+Ogni riga vale in tutti i posti, quindi vale per le liste intere.
+
+Controllo con i numeri della proprietà 3, con gli scalari 2 e 3 e la lista $(1, 4)$. A sinistra: $5 \cdot (1, 4) = (5, 20)$. A destra: $(2, 8) + (3, 12) = (5, 20)$.
+
+**I numeri da soli.** Sono le liste con una sola coordinata.
+
+**Le successioni.** Stesso controllo, con «termine di posto $k$» al posto di «coordinata di posto $k$». I posti sono infiniti, ma ogni controllo riguarda un posto alla volta. Il vettore nullo è la successione di soli zeri.
+
+**Le funzioni.** Stesso controllo, punto per punto. Due funzioni sono uguali quando fanno uscire lo stesso numero per ogni numero che entra. Per esempio la proprietà 2: per ogni $x$ dell'intervallo,
+$$\big(\lambda(f + g)\big)(x) = \lambda\big(f(x) + g(x)\big) = \lambda f(x) + \lambda g(x) = (\lambda f + \lambda g)(x).$$
+La prima e l'ultima uguaglianza sono la definizione di somma e di multiplo di funzioni. Quella in mezzo è la proprietà distributiva dei numeri. Il vettore nullo è la funzione nulla.
+
+**I polinomi.** Le due operazioni agiscono un coefficiente alla volta. Si ripete il controllo delle liste, con «coefficiente di $x^k$» al posto di «coordinata di posto $k$». La somma di due polinomi è ancora un polinomio: il suo grado non supera il più grande dei due gradi. Il vettore nullo è il polinomio nullo.
+:::
+
+::: esercizio medio Esercizio 5.7 delle dispense: grado al massimo $k$
+Controlla che l'insieme $\K_k[x]$ dei polinomi a coefficienti in $\K$ di grado $\le k$ sia uno spazio vettoriale. Perché l'insieme dei polinomi di grado **esattamente** $k$ non è uno spazio vettoriale se $k \ge 1$?
+::: soluzione
+**Prima parte: i polinomi di grado al massimo $k$ formano uno spazio vettoriale.**
+
+Per fissare le idee prendo $k = 2$: i polinomi $ax^2 + bx + c$. Qualche coefficiente può essere 0, anche il primo.
+
+1. **Le somme restano dentro.** Sommo $ax^2 + bx + c$ e $px^2 + qx + r$, una potenza alla volta:
+   $$(a + p)x^2 + (b + q)x + (c + r).$$
+   Non compaiono potenze più alte di $x^2$: il grado resta al massimo 2.
+2. **I multipli restano dentro.** $\lambda(ax^2 + bx + c) = \lambda a x^2 + \lambda b x + \lambda c$. Anche qui non compaiono potenze più alte.
+3. **Il vettore nullo c'è.** Il polinomio nullo ha tutti i coefficienti uguali a 0, e sta nell'insieme.
+4. **Le otto regole.** Valgono per tutti i polinomi (esercizio 9), quindi anche per quelli di grado al massimo 2.
+
+Un esempio con i numeri: $(2x^2 + x) + (-2x^2 + 4) = x + 4$. Il grado è sceso a 1, ma il risultato sta ancora nell'insieme, perché 1 è minore di 2.
+
+Con un $k$ qualsiasi il ragionamento è lo stesso. Un polinomio di grado al massimo $k$ si scrive $a_k x^k + \dots + a_1 x + a_0$. I numeri $a_0, a_1, \dots, a_k$ sono i coefficienti, uno per ogni potenza. Sommando due polinomi così, o moltiplicandone uno per uno scalare, non compaiono potenze più alte di $x^k$.
+
+In breve: un polinomio di grado al massimo $k$ è la lista dei suoi $k + 1$ coefficienti. Quindi $\K_k[x]$ si comporta come $\K^{k+1}$. Per esempio $\R_2[x]$ si comporta come $\R^3$.
+
+**Seconda parte: grado esattamente $k$, con $k \ge 1$.** Basta un esempio che esce dall'insieme.
+
+- Una somma abbassa il grado. I polinomi $x^k + 1$ e $-x^k$ hanno grado $k$. La loro somma è $1$, che ha grado 0.
+- Il vettore nullo manca: il polinomio nullo non ha grado $k$.
+
+Con $k = 2$: i polinomi $x^2 + 1$ e $-x^2$ hanno grado 2. La loro somma è $1$, che non ha grado 2.
+
+**Perché l'esercizio chiede $k \ge 1$?** I polinomi di grado 0 sono i numeri, visti come polinomi senza la $x$. Qui la risposta dipende da una scelta: il polinomio nullo ha grado 0, oppure non ha grado? Nel primo caso l'insieme contiene tutti i numeri del campo, ed è uno spazio vettoriale. Nel secondo caso restano i numeri diversi da zero, e manca il vettore nullo. L'esercizio evita questo caso.
+:::
+
+::: esercizio medio Tre conseguenze degli assiomi
+Usando solo gli assiomi della Definizione 5.4 e la Proposizione 5.5, dimostra che in ogni spazio vettoriale $V$ su $\K$:
+(a) $\lambda 0_V = 0_V$ per ogni $\lambda \in \K$;
+(b) $(-1)v = -v$ per ogni $v \in V$;
+(c) se $\lambda v = 0_V$, allora $\lambda = 0$ oppure $v = 0_V$.
+::: soluzione
+(a) A parole: uno scalare per il vettore nullo dà il vettore nullo. È il ragionamento della Proposizione 5.5, con i ruoli scambiati.
+
+1. Il vettore nullo sommato a se stesso non cambia: $0_V + 0_V = 0_V$.
+2. Quindi $\lambda 0_V = \lambda(0_V + 0_V)$.
+3. Per la proprietà 2, $\lambda(0_V + 0_V) = \lambda 0_V + \lambda 0_V$.
+4. Mettendo insieme: $\lambda 0_V = \lambda 0_V + \lambda 0_V$.
+5. Sommo a tutti e due i lati l'opposto di $\lambda 0_V$. A sinistra resta $0_V$. A destra resta $\lambda 0_V$.
+
+Quindi $0_V = \lambda 0_V$.
+
+Controllo con i numeri: $5 \cdot (0, 0) = (5 \cdot 0,\ 5 \cdot 0) = (0, 0)$.
+
+(b) A parole: moltiplicare per $-1$ dà l'opposto. Basta mostrare che $(-1)v$, sommato a $v$, dà il vettore nullo.
+
+1. $v = 1v$, per la proprietà 5.
+2. Quindi $v + (-1)v = 1v + (-1)v$.
+3. Per la proprietà 3, letta da destra a sinistra, $1v + (-1)v = (1 + (-1))v$.
+4. Tra i numeri $1 + (-1) = 0$. Quindi viene $0v$.
+5. Per la Proposizione 5.5, $0v = 0_V$.
+
+Quindi $v + (-1)v = 0_V$: il vettore $(-1)v$ è un opposto di $v$. In un gruppo l'opposto è uno solo (riquadro «due fatti utili sui gruppi»). Quindi $(-1)v = -v$.
+
+Controllo con i numeri: $(1, 2) + (-1) \cdot (1, 2) = (1, 2) + (-1, -2) = (0, 0)$.
+
+(c) A parole: un multiplo è il vettore nullo solo se lo scalare è zero, oppure se il vettore è nullo. Supponiamo che $\lambda v = 0_V$. I casi sono due.
+
+- Se $\lambda = 0$, la frase è già vera.
+- Se $\lambda$ non è zero, bisogna mostrare che $v = 0_V$.
+
+Nel secondo caso si usa l'inverso di $\lambda$, che si scrive $\lambda^{-1}$. Esiste perché gli scalari stanno in un campo.
+
+1. $v = 1v$, per la proprietà 5.
+2. Un numero per il suo inverso dà 1, cioè $\lambda^{-1}\lambda = 1$. Quindi $v = (\lambda^{-1}\lambda)v$.
+3. Per la proprietà 4, $(\lambda^{-1}\lambda)v = \lambda^{-1}(\lambda v)$.
+4. Avevamo supposto $\lambda v = 0_V$. Quindi viene $\lambda^{-1} 0_V$.
+5. Per il punto (a), $\lambda^{-1} 0_V = 0_V$.
+
+Quindi $v = 0_V$.
+
+Controllo con i numeri: se $2 \cdot (x, y) = (0, 0)$ allora $2x = 0$ e $2y = 0$. Dividendo per 2 viene $x = 0$ e $y = 0$: il vettore è quello nullo.
+:::
+
+::: esercizio esame Un prodotto per scalare strano
+Su $V = \R^2$ considera la somma usuale e il prodotto per scalare
+$$\lambda \star (x, y) = (\lambda x, 0).$$
+(1) Calcola $3 \star (2, 5)$ e $1 \star (2, 5)$.
+(2) Verifica gli assiomi 2, 3 e 4 della Definizione 5.4.
+(3) $V$, con queste operazioni, è uno spazio vettoriale su $\R$?
+(4) Vale ancora $0 \star v = 0_V$ per ogni $v$?
+::: soluzione
+La stella $\star$ indica un prodotto per scalare diverso da quello solito. La regola dice: moltiplica il primo numero per lo scalare, e al secondo posto metti 0.
+
+(1) Applico la regola.
+
+- $3 \star (2, 5) = (3 \cdot 2,\ 0) = (6, 0)$.
+- $1 \star (2, 5) = (1 \cdot 2,\ 0) = (2, 0)$.
+
+(2) Chiamo $v = (x, y)$ e $w = (a, b)$ due vettori, e $\lambda$ e $\mu$ due scalari.
+
+*Assioma 2.*
+
+- A sinistra: $v + w = (x + a,\ y + b)$. Quindi $\lambda \star (v + w) = (\lambda(x + a),\ 0) = (\lambda x + \lambda a,\ 0)$.
+- A destra: $\lambda \star v + \lambda \star w = (\lambda x, 0) + (\lambda a, 0) = (\lambda x + \lambda a,\ 0)$.
+
+Sono uguali: vale.
+
+*Assioma 3.*
+
+- A sinistra: $(\lambda + \mu) \star v = ((\lambda + \mu)x,\ 0) = (\lambda x + \mu x,\ 0)$.
+- A destra: $\lambda \star v + \mu \star v = (\lambda x, 0) + (\mu x, 0) = (\lambda x + \mu x,\ 0)$.
+
+Sono uguali: vale.
+
+*Assioma 4.*
+
+- A sinistra: $(\lambda\mu) \star v = (\lambda\mu x,\ 0)$.
+- A destra: prima $\mu \star v = (\mu x, 0)$. Poi $\lambda \star (\mu x, 0) = (\lambda\mu x,\ 0)$.
+
+Sono uguali: vale.
+
+Controllo con i numeri dell'assioma 3, con gli scalari 2 e 3 e il vettore $(2, 5)$. A sinistra: $5 \star (2, 5) = (10, 0)$. A destra: $(4, 0) + (6, 0) = (10, 0)$.
+
+(3) **No.** L'assioma 1 vale, perché la somma è quella solita. Ma l'assioma 5 fallisce: $1 \star (2, 5) = (2, 0)$, che è diverso da $(2, 5)$. Basta un assioma falso.
+
+(4) **Sì**: $0 \star (x, y) = (0 \cdot x,\ 0) = (0, 0)$. Non è un caso. La dimostrazione della Proposizione 5.5 usa solo gli assiomi 1 e 3, che qui valgono.
+
+All'esame una domanda così compare a risposta multipla, nella forma «è uno spazio vettoriale?». La motivazione giusta è l'esempio che fa fallire l'assioma 5.
+:::
+
+::: esercizio esame Come all'esame: è uno spazio vettoriale su $\R$?
+Per ciascuno dei seguenti insiemi, con le operazioni indicate, stabilisci se è uno spazio vettoriale su $\R$, motivando la risposta.
+(a) $\C$, con la somma usuale e il prodotto per numeri reali.
+(b) $\R^2$, con la somma usuale e $\lambda \cdot (x, y) = (\lambda x, y)$.
+(c) I polinomi reali di grado esattamente $3$, con le operazioni usuali.
+(d) Le funzioni $f : [0, 1] \to \R$ con $f(1) = 0$, con le operazioni punto per punto.
+(e) I numeri reali positivi, con la «somma» $x \oplus y = xy$ e il «prodotto per scalare» $\lambda \odot x = x^\lambda$.
+::: soluzione
+(a) **Sì.** È l'Esercizio 5.8 delle dispense (qui esercizio 7), ed è la domanda 2 dell'appello del 07/02/2025.
+
+(b) **No**: fallisce l'assioma 3. Qui lo scalare moltiplica solo il primo numero e lascia il secondo com'è. Provo con gli scalari 1 e 1 e con il vettore $(0, 1)$.
+
+- A sinistra: $(1 + 1) \cdot (0, 1) = 2 \cdot (0, 1) = (2 \cdot 0,\ 1) = (0, 1)$.
+- A destra: $1 \cdot (0, 1) + 1 \cdot (0, 1) = (0, 1) + (0, 1) = (0, 2)$.
+
+I due risultati sono diversi. Si vede anche dalla Proposizione 5.5: qui $0 \cdot (0, 1) = (0, 1)$, che non è il vettore nullo.
+
+(c) **No.** Una somma esce: $(x^3 + x) + (-x^3) = x$, che ha grado 1. E il polinomio nullo non ha grado 3.
+
+(d) **Sì.** L'insieme è un pezzo dello spazio di tutte le funzioni, con le stesse operazioni. Bastano i tre controlli.
+
+1. Il vettore nullo c'è: la funzione nulla in 1 vale 0.
+2. Le somme restano dentro: se $f(1) = 0$ e $g(1) = 0$, allora $(f + g)(1) = 0 + 0 = 0$.
+3. I multipli restano dentro: $(\lambda f)(1) = \lambda \cdot 0 = 0$.
+
+Nella lezione L06 un insieme così si chiamerà **sottospazio**.
+
+(e) **Sì**, anche se sembra strano. I simboli $\oplus$ e $\odot$ sono un più e un per dentro un cerchio: servono a non confondere queste operazioni con quelle solite. La «somma» di due vettori è il loro prodotto come numeri. Il «multiplo» è una potenza. Per esempio $2 \oplus 3 = 2 \cdot 3 = 6$ e $3 \odot 2 = 2^3 = 8$.
+
+Si resta dentro: il prodotto di due numeri positivi è positivo, e una potenza di un numero positivo è positiva.
+
+- Assioma 1. La «somma» è il prodotto dei numeri positivi, che è un gruppo commutativo (esercizio 6, punto (e)). Il «vettore nullo» è il numero 1, perché $x \oplus 1 = x \cdot 1 = x$. L'«opposto» di $x$ è $\frac 1x$.
+- Assioma 2. $\lambda \odot (x \oplus y) = (xy)^\lambda = x^\lambda y^\lambda = (\lambda \odot x) \oplus (\lambda \odot y)$.
+- Assioma 3. $(\lambda + \mu) \odot x = x^{\lambda + \mu} = x^\lambda x^\mu = (\lambda \odot x) \oplus (\mu \odot x)$.
+- Assioma 4. $(\lambda\mu) \odot x = x^{\lambda\mu} = (x^\mu)^\lambda = \lambda \odot (\mu \odot x)$.
+- Assioma 5. $1 \odot x = x^1 = x$.
+
+I passaggi in mezzo sono le regole delle potenze. Con i numeri:
+
+- la potenza di un prodotto: $(3 \cdot 5)^2 = 225$ e $3^2 \cdot 5^2 = 9 \cdot 25 = 225$;
+- la somma degli esponenti: $2^{2 + 3} = 32$ e $2^2 \cdot 2^3 = 4 \cdot 8 = 32$;
+- il prodotto degli esponenti: $2^{2 \cdot 3} = 64$ e $(2^3)^2 = 8^2 = 64$.
+
+Controllo con la Proposizione 5.5: $0 \odot x = x^0 = 1$, che è proprio il vettore nullo di questo spazio.
+
+Che cosa insegna: i vettori possono essere qualsiasi cosa, e le operazioni possono avere un aspetto insolito. Conta solo che rispettino le regole.
 :::
 
 ::: esercizio difficile Esercizio 5.10 delle dispense: un campo con tre elementi
-Sia $\K = \{0, 1, 2\}$. Trova, in modo simile all'esercizio precedente, due operazioni $+$ e $\cdot$ che rendano $(\K, +, \cdot)$ un campo. Per chi è molto coraggioso: prova a generalizzare a $\K = \{0, 1, 2, \dots, p - 1\}$ con $p$ numero primo.
+Sia $\K = \{0, 1, 2\}$. Trova, in modo simile all'Esercizio 5.9 (qui esercizio 8), due operazioni $+$ e $\cdot$ che rendano $(\K, +, \cdot)$ un campo. Per chi è molto coraggioso: prova a generalizzare a $\K = \{0, 1, 2, \dots, p - 1\}$ con $p$ numero primo.
 ::: soluzione
-**L'idea.** Nell'esercizio precedente le operazioni erano quelle dei resti della divisione per $2$. Qui si usano i **resti della divisione per $3$**: si calcola come negli interi e poi si tiene il resto. Per esempio $2 + 2 = 4$, che diviso per $3$ dà resto $1$: quindi $2 + 2 = 1$. E $2 \cdot 2 = 4$, resto $1$: quindi $2 \cdot 2 = 1$.
+**L'idea.** Nel campo con due elementi le operazioni erano quelle dei resti della divisione per 2. Qui si usano i **resti della divisione per 3**: si calcola come negli interi e poi si tiene il resto.
+
+Due esempi.
+
+- $2 + 2 = 4$. Poi 4 diviso 3 fa 1 con resto 1. Quindi in questo campo $2 + 2 = 1$.
+- $2 \cdot 2 = 4$, che ha resto 1. Quindi in questo campo $2 \cdot 2 = 1$.
+
+Le due tabelle complete:
 
 | $+$ | $0$ | $1$ | $2$ |
 |---|---|---|---|
@@ -8878,227 +9954,136 @@ Sia $\K = \{0, 1, 2\}$. Trova, in modo simile all'esercizio precedente, due oper
 | $1$ | $0$ | $1$ | $2$ |
 | $2$ | $0$ | $2$ | $1$ |
 
-La verifica:
-1. $(\K, +)$ è un gruppo commutativo: neutro $0$; opposti $-0 = 0$, $-1 = 2$ (perché $1 + 2 = 0$) e $-2 = 1$; la tabella è simmetrica, quindi la somma è commutativa. L'associatività passa dagli interi: $(a + b) + c$ e $a + (b + c)$ sono lo stesso numero intero, quindi hanno lo stesso resto.
-2. $\{1, 2\}$ con il prodotto: $1 \cdot 1 = 1$, $1 \cdot 2 = 2$, $2 \cdot 2 = 1$, quindi il prodotto di due elementi non nulli è non nullo. Neutro $1$; inversi $1^{-1} = 1$ e $2^{-1} = 2$; commutatività e associatività come negli interi.
-3. Distributiva: vale negli interi, e prendere il resto rispetta somme e prodotti, quindi vale anche per i resti.
+**Il controllo dei tre assiomi della Definizione 5.3.**
 
-**Il caso generale, con $p$ primo.** Su $\{0, 1, \dots, p - 1\}$ si usano somma e prodotto «modulo $p$», cioè si tiene il resto della divisione per $p$. Tutte le proprietà passano dagli interi come sopra, tranne una che va dimostrata: **ogni $a \neq 0$ ha un inverso**.
-- Moltiplica $a$ per tutti gli elementi non nulli: $a \cdot 1, a \cdot 2, \dots, a \cdot (p - 1)$.
-- Hanno resti tutti diversi. Se $ab$ e $ac$ avessero lo stesso resto, $p$ dividerebbe $a(b - c)$; siccome $p$ è primo, dividerebbe $a$ oppure $b - c$. Non divide $a$, perché $1 \le a \le p - 1$; e $b - c$ è compreso tra $-(p - 2)$ e $p - 2$, quindi è divisibile per $p$ solo se $b = c$.
-- Nessuno ha resto $0$: $p$ dovrebbe dividere $a$ oppure $b$, entrambi tra $1$ e $p - 1$.
-- Sono quindi $p - 1$ resti diversi e non nulli: sono **tutti** i resti $1, \dots, p - 1$, in un altro ordine. Uno di loro vale $1$, e quello dà l'inverso di $a$.
+1. Con la somma è un gruppo commutativo. L'elemento neutro è 0. Gli opposti: quello di 0 è 0, quello di 1 è 2 perché $1 + 2 = 3$ ha resto 0, quello di 2 è 1. La tabella è simmetrica, quindi l'ordine non conta. La proprietà associativa passa dagli interi: $(a + b) + c$ e $a + (b + c)$ sono lo stesso numero intero, quindi hanno lo stesso resto.
+2. Tolto lo 0 restano 1 e 2. I prodotti sono $1 \cdot 1 = 1$, poi $1 \cdot 2 = 2$, poi $2 \cdot 2 = 1$. Non si esce e non compare mai lo 0. L'elemento neutro è 1. L'inverso di 1 è 1, l'inverso di 2 è 2. Le proprietà commutativa e associativa passano dagli interi.
+3. La proprietà distributiva vale negli interi, e prendere il resto rispetta somme e prodotti. Quindi vale anche per i resti.
 
-**Perché serve $p$ primo.** Con $\{0, 1, 2, 3\}$ e i resti modulo $4$ non si ottiene un campo: $2 \cdot 2 = 4$ ha resto $0$, e $2$ non ha inverso ($2 \cdot 1 = 2$, $2 \cdot 2 = 0$, $2 \cdot 3 = 2$). Questi insiemi di resti si studiano in Matematica Discreta (aritmetica modulare).
-:::
+Controllo con i numeri della proprietà distributiva, su $2 \cdot (1 + 2)$.
 
-::: esercizio base Conti in $\R^3$, in $\C^2$ e tra polinomi
-Calcola:
-(a) $2u - 3v$ con $u = (1, 0, -1)$ e $v = (2, -1, 1)$ in $\R^3$;
-(b) $iz + w$ con $z = (1 + i, 2)$ e $w = (3, -i)$ in $\C^2$;
-(c) $2p - q$ con $p(x) = x^3 - x + 2$ e $q(x) = 2x^3 + x^2 - 4$;
-(d) il vettore $x \in \R^3$ tale che $x + (1, 2, 3) = (4, 0, 3)$.
-::: soluzione
-(a) $2u = (2, 0, -2)$ e $3v = (6, -3, 3)$. Quindi
-$$2u - 3v = (2 - 6,\ 0 - (-3),\ -2 - 3) = (-4, 3, -5).$$
+- A sinistra: $1 + 2 = 0$, poi $2 \cdot 0 = 0$.
+- A destra: $2 \cdot 1 = 2$ e $2 \cdot 2 = 1$, poi $2 + 1 = 0$.
 
-(b) Prima il prodotto per lo scalare $i$, coordinata per coordinata: $iz = (i(1 + i),\ 2i) = (i + i^2,\ 2i) = (-1 + i,\ 2i)$. Poi la somma:
-$$iz + w = (-1 + i + 3,\ 2i - i) = (2 + i,\ i).$$
+Stesso risultato.
 
-(c) $2p(x) = 2x^3 - 2x + 4$. Sottraendo $q$ grado per grado:
-$$2p(x) - q(x) = (2 - 2)x^3 + (0 - 1)x^2 + (-2 - 0)x + (4 - (-4)) = -x^2 - 2x + 8.$$
+**Il caso generale, con $p$ primo.** Un numero **primo** è un numero maggiore di 1 che si divide solo per 1 e per se stesso, come 2, 3, 5 e 7. Sull'insieme $\{0, 1, \dots, p - 1\}$ si usano la somma e il prodotto dei resti della divisione per $p$. Tutte le proprietà passano dagli interi, come sopra. Ne resta una da dimostrare: ogni elemento diverso da 0 ha un inverso.
 
-(d) Si somma a entrambi i membri l'opposto di $(1, 2, 3)$:
-$$x = (4, 0, 3) + (-1, -2, -3) = (3, -2, 0).$$
-Controllo: $(3, -2, 0) + (1, 2, 3) = (4, 0, 3)$.
-:::
+Vediamolo prima con $p = 5$ e con l'elemento 2. Moltiplico 2 per tutti gli elementi diversi da zero e tengo i resti: $2 \cdot 1 = 2$, poi $2 \cdot 2 = 4$, poi $2 \cdot 3 = 6$ che ha resto 1, poi $2 \cdot 4 = 8$ che ha resto 3. I resti sono 2, 4, 1 e 3: tutti i numeri da 1 a 4, in un altro ordine. Tra loro c'è l'1, che viene da $2 \cdot 3$. Quindi l'inverso di 2 è 3.
 
-::: esercizio base Gruppo o no?
-Per ciascun caso di' se è un gruppo. Se lo è, indica l'elemento neutro e l'inverso di un elemento; se non lo è, indica che cosa fallisce, con un esempio.
-(a) I numeri pari $\{\dots, -2, 0, 2, 4, \dots\}$ con la somma.
-(b) I numeri dispari con la somma.
-(c) $\Z$ con la sottrazione, $a * b = a - b$.
-(d) $\{1, -1\}$ con il prodotto.
-(e) I numeri reali positivi con il prodotto.
-::: soluzione
-(a) **Sì**, ed è commutativo. La somma di due pari è pari; il neutro $0$ è pari; l'inverso di $4$ è $-4$, anch'esso pari.
+In generale chiamo $a$ un elemento diverso da 0 e lo moltiplico per tutti gli elementi da 1 a $p - 1$.
 
-(b) **No**. L'operazione esce dall'insieme: $1 + 3 = 4$ non è dispari. E manca anche il neutro, perché $0$ è pari.
+1. I resti che ottengo sono tutti diversi tra loro. Se $ab$ e $ac$ avessero lo stesso resto, $p$ dividerebbe la differenza $a(b - c)$. Un numero primo che divide un prodotto divide uno dei due pezzi. Ma $a$ sta tra 1 e $p - 1$, e $b - c$ sta tra $-(p - 2)$ e $p - 2$. L'unica possibilità è $b - c = 0$, cioè $b = c$.
+2. Nessun resto è 0, per lo stesso motivo: $p$ dovrebbe dividere $a$ oppure $b$.
+3. Sono quindi $p - 1$ resti, diversi tra loro e diversi da zero: ci sono tutti i numeri da 1 a $p - 1$. Uno di loro è 1, e l'elemento che lo produce è l'inverso di $a$.
 
-(c) **No**. La sottrazione non è associativa: $(5 - 3) - 1 = 1$, mentre $5 - (3 - 1) = 3$. Manca anche un elemento neutro: $a - 0 = a$, ma $0 - a = -a \neq a$ per $a \neq 0$.
-
-(d) **Sì**, commutativo. $1 \cdot 1 = 1$, $1 \cdot (-1) = -1$, $(-1)(-1) = 1$: i prodotti restano nell'insieme. Il neutro è $1$ e l'inverso di $-1$ è $-1$ stesso.
-
-(e) **Sì**, commutativo. Il prodotto di due positivi è positivo; il neutro è $1$; l'inverso di $5$ è $\frac 15$, ancora positivo.
-:::
-
-::: esercizio medio Tre conseguenze degli assiomi
-Usando solo gli assiomi della Definizione 5.4 e la Proposizione 5.5, dimostra che in ogni spazio vettoriale $V$ su $\K$:
-(a) $\lambda 0_V = 0_V$ per ogni $\lambda \in \K$;
-(b) $(-1)v = -v$ per ogni $v \in V$;
-(c) se $\lambda v = 0_V$, allora $\lambda = 0$ oppure $v = 0_V$.
-::: soluzione
-(a) Poiché $0_V + 0_V = 0_V$ (elemento neutro), per l'assioma 2
-$$\lambda 0_V = \lambda(0_V + 0_V) = \lambda 0_V + \lambda 0_V.$$
-Sommando a entrambi i membri l'opposto di $\lambda 0_V$ e semplificando come nella Proposizione 5.5, resta $0_V = \lambda 0_V$.
-
-(b) Si mostra che $(-1)v$ sommato a $v$ dà $0_V$:
-$$v + (-1)v = 1v + (-1)v = (1 + (-1))v = 0v = 0_V.$$
-I passaggi usano, nell'ordine, l'assioma 5, l'assioma 3, il fatto che $1 + (-1) = 0$ nel campo e la Proposizione 5.5. Quindi $(-1)v$ è un opposto di $v$; siccome l'opposto è unico (riquadro sui gruppi), $(-1)v = -v$.
-
-(c) Supponi $\lambda v = 0_V$ con $\lambda \neq 0$: bisogna mostrare che $v = 0_V$. Poiché $\K$ è un campo, $\lambda$ ha un inverso $\lambda^{-1}$. Allora
-$$v = 1v = (\lambda^{-1}\lambda)v = \lambda^{-1}(\lambda v) = \lambda^{-1} 0_V = 0_V,$$
-usando l'assioma 5, il fatto che $\lambda^{-1}\lambda = 1$, l'assioma 4 e il punto (a). Se invece $\lambda = 0$ non c'è niente da dimostrare.
-:::
-
-::: esercizio esame Un prodotto per scalare strano
-Su $V = \R^2$ considera la somma usuale e il prodotto per scalare
-$$\lambda \star (x, y) = (\lambda x, 0).$$
-(1) Calcola $3 \star (2, 5)$ e $1 \star (2, 5)$.
-(2) Verifica gli assiomi 2, 3 e 4 della Definizione 5.4.
-(3) $V$, con queste operazioni, è uno spazio vettoriale su $\R$?
-(4) Vale ancora $0 \star v = 0_V$ per ogni $v$?
-::: soluzione
-(1) $3 \star (2, 5) = (3 \cdot 2, 0) = (6, 0)$ e $1 \star (2, 5) = (2, 0)$.
-
-(2) Siano $v = (x, y)$, $w = (x', y')$ e $\lambda, \mu \in \R$.
-- Assioma 2: $\lambda \star (v + w) = \lambda \star (x + x', y + y') = (\lambda x + \lambda x', 0) = (\lambda x, 0) + (\lambda x', 0) = \lambda \star v + \lambda \star w$. Vale.
-- Assioma 3: $(\lambda + \mu) \star v = ((\lambda + \mu)x, 0) = (\lambda x, 0) + (\mu x, 0) = \lambda \star v + \mu \star v$. Vale.
-- Assioma 4: $(\lambda\mu) \star v = (\lambda\mu x, 0)$ e $\lambda \star (\mu \star v) = \lambda \star (\mu x, 0) = (\lambda\mu x, 0)$. Vale.
-
-(3) **No.** L'assioma 1 vale (la somma è quella usuale di $\R^2$), ma l'assioma 5 fallisce: $1 \star (2, 5) = (2, 0) \neq (2, 5)$. Un solo assioma falso basta.
-
-(4) **Sì**: $0 \star (x, y) = (0, 0)$. Non è un caso: la dimostrazione della Proposizione 5.5 usa solo gli assiomi 1 e 3, che qui valgono.
-
-All'esame una domanda così compare come risposta multipla («è uno spazio vettoriale?»): la motivazione giusta è il controesempio all'assioma 5.
-:::
-
-::: esercizio esame Come all'esame: è uno spazio vettoriale su $\R$?
-Per ciascuno dei seguenti insiemi, con le operazioni indicate, stabilisci se è uno spazio vettoriale su $\R$, motivando la risposta.
-(a) $\C$, con la somma usuale e il prodotto per numeri reali.
-(b) $\R^2$, con la somma usuale e $\lambda \cdot (x, y) = (\lambda x, y)$.
-(c) I polinomi reali di grado esattamente $3$, con le operazioni usuali.
-(d) Le funzioni $f : [0, 1] \to \R$ con $f(1) = 0$, con le operazioni punto per punto.
-(e) I numeri reali positivi, con la «somma» $x \oplus y = xy$ e il «prodotto per scalare» $\lambda \odot x = x^\lambda$.
-::: soluzione
-(a) **Sì**: è l'Esercizio 5.8, e la domanda dell'appello del 07/02/2025.
-
-(b) **No**: fallisce l'assioma 3. Con $\lambda = \mu = 1$ e $v = (0, 1)$:
-$$(1 + 1) \cdot (0, 1) = (0, 1), \qquad 1 \cdot (0, 1) + 1 \cdot (0, 1) = (0, 1) + (0, 1) = (0, 2).$$
-I due risultati sono diversi. Si vede anche dalla Proposizione 5.5: $0 \cdot (0, 1) = (0, 1)$ non è il vettore nullo.
-
-(c) **No**: $(x^3 + x) + (-x^3) = x$ ha grado $1$, quindi la somma esce dall'insieme; inoltre il polinomio nullo non ha grado $3$.
-
-(d) **Sì**. La funzione nulla vale $0$ in $1$, quindi sta nell'insieme. Se $f(1) = g(1) = 0$, allora $(f + g)(1) = 0 + 0 = 0$ e $(\lambda f)(1) = \lambda \cdot 0 = 0$: somma e multipli restano nell'insieme. Gli assiomi valgono perché valgono per tutte le funzioni $[0, 1] \to \R$ con le stesse operazioni. Nella lezione L06 un insieme così si chiamerà **sottospazio**.
-
-(e) **Sì**, anche se sembra strano. Le operazioni restano tra i positivi: $xy > 0$ e $x^\lambda > 0$.
-- Assioma 1: $\oplus$ è il prodotto dei positivi, che è un gruppo commutativo (esercizio 7 (e)). Il «vettore nullo» è il numero $1$, perché $x \oplus 1 = x$, e l'«opposto» di $x$ è $\frac 1x$.
-- Assioma 2: $\lambda \odot (x \oplus y) = (xy)^\lambda = x^\lambda y^\lambda = (\lambda \odot x) \oplus (\lambda \odot y)$.
-- Assioma 3: $(\lambda + \mu) \odot x = x^{\lambda + \mu} = x^\lambda x^\mu = (\lambda \odot x) \oplus (\mu \odot x)$.
-- Assioma 4: $(\lambda\mu) \odot x = x^{\lambda\mu} = (x^\mu)^\lambda = \lambda \odot (\mu \odot x)$.
-- Assioma 5: $1 \odot x = x^1 = x$.
-
-Controllo con la Proposizione 5.5: $0 \odot x = x^0 = 1$, che è proprio il vettore nullo di questo spazio. Morale: i vettori possono essere qualsiasi cosa e le operazioni possono avere un aspetto insolito; conta solo che rispettino gli assiomi.
+**Perché serve che $p$ sia primo.** Con $\{0, 1, 2, 3\}$ e i resti della divisione per 4 non si ottiene un campo: il 2 non ha inverso. Infatti $2 \cdot 1 = 2$, poi $2 \cdot 2 = 4$ ha resto 0, poi $2 \cdot 3 = 6$ ha resto 2. Questi insiemi di resti si studiano in Matematica Discreta, con il nome di aritmetica modulare.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Che cos'è $\R^n$, e in quali due modi si può leggere un suo elemento?
-È l'insieme delle liste ordinate $(x_1, \dots, x_n)$ di $n$ numeri reali, il prodotto cartesiano di $n$ copie di $\R$. Un elemento si può leggere come un punto oppure come un vettore, cioè una freccia dall'origine a quel punto.
+È l'insieme delle liste ordinate di $n$ numeri reali. Un suo elemento si può leggere come un punto, cioè un posto. Oppure come un vettore, cioè la freccia che va dall'origine a quel posto: uno spostamento.
 :::
 
 ::: domanda Come si sommano due vettori di $\R^n$, e che cosa vuol dire la somma in $\R^2$?
-Componente per componente: $(x_1, \dots, x_n) + (y_1, \dots, y_n) = (x_1 + y_1, \dots, x_n + y_n)$. In $\R^2$ è la regola del parallelogramma: $v + w$ è la diagonale del parallelogramma che ha $v$ e $w$ come lati.
+Un posto alla volta: il primo numero con il primo, il secondo con il secondo, fino all'ultimo. Per esempio $(1, 2) + (3, 1) = (4, 3)$. Nel piano vuol dire fare uno spostamento dopo l'altro. Sul disegno la somma è la diagonale del parallelogramma costruito sui due vettori.
 :::
 
 ::: domanda Che effetto ha il prodotto per scalare $\lambda v$ al variare di $\lambda$?
-Moltiplica ogni coordinata per $\lambda$. Allunga $v$ se $|\lambda| > 1$, lo accorcia se $|\lambda| < 1$, ne inverte il verso se $\lambda < 0$; con $\lambda = 0$ dà il vettore nullo, con $\lambda = -1$ l'opposto. Tutti i multipli di $v \neq 0$ stanno sulla retta per l'origine e per $v$.
+Ogni coordinata viene moltiplicata per lo scalare. Con uno scalare maggiore di 1 la freccia si allunga. Con uno scalare tra 0 e 1 si accorcia. Con uno scalare negativo cambia verso. Con lo scalare 0 viene il vettore nullo, con $-1$ viene l'opposto. Tutti i multipli di un vettore non nullo stanno sulla retta che passa per l'origine e per la punta di quel vettore.
 :::
 
 ::: domanda Quali sono gli assiomi di gruppo? Fai un esempio e un controesempio.
-Elemento neutro, proprietà associativa, esistenza dell'inverso di ogni elemento (più la commutativa, per i gruppi commutativi). Esempio: $(\Z, +)$, con neutro $0$ e inverso $-a$. Controesempio: $(\N, +)$, perché $1$ non ha opposto in $\N$.
+Sono tre: c'è un elemento neutro, vale la proprietà associativa, ogni elemento ha un inverso. In più l'operazione non deve far uscire dall'insieme. Se l'ordine non conta, il gruppo è commutativo. Esempio: gli interi con la somma, con elemento neutro 0 e inverso $-a$. Controesempio: i naturali con la somma, perché 1 non ha opposto tra i naturali.
 :::
 
 ::: domanda Perché $\Q \setminus \{0\}$ è un gruppo con il prodotto e $\Z \setminus \{0\}$ no?
-In $\Q \setminus \{0\}$ ogni elemento $\frac ab$ ha l'inverso $\frac ba$, che è ancora una frazione non nulla. In $\Z \setminus \{0\}$ il numero $2$ non ha inverso, perché $\frac 12$ non è intero.
+Tra le frazioni diverse da zero ogni elemento ha l'inverso: quello di $\frac 23$ è $\frac 32$, ed è ancora una frazione diversa da zero. Tra gli interi diversi da zero il 2 non ha inverso, perché $\frac 12$ non è un intero.
 :::
 
 ::: domanda Che cos'è un campo? Perché $\Z$ non lo è?
-Un insieme con due operazioni $+$ e $\cdot$ tale che $(A, +)$ è un gruppo commutativo con neutro $0_A$, $(A \setminus \{0_A\}, \cdot)$ è un gruppo commutativo con neutro $1_A$, e vale la distributiva. $\Z$ non lo è perché $2$ non ha inverso per il prodotto.
+È un insieme con una somma e un prodotto che rispettano tre assiomi. Con la somma è un gruppo commutativo. Tolto lo zero, con il prodotto è un gruppo commutativo. Vale la proprietà distributiva. In pratica: si fanno le quattro operazioni senza uscire. $\Z$ non è un campo perché 2 non ha inverso per il prodotto.
 :::
 
 ::: domanda Quali sono i cinque assiomi di spazio vettoriale? Che cosa contiene il primo?
-(1) $(V, +)$ è un gruppo commutativo; (2) $\lambda(v + w) = \lambda v + \lambda w$; (3) $(\lambda + \mu)v = \lambda v + \mu v$; (4) $(\lambda\mu)v = \lambda(\mu v)$; (5) $1v = v$. Il primo contiene quattro regole: associativa, vettore nullo, opposto, commutativa. Inoltre somma e prodotto per scalare devono dare risultati in $V$.
+(1) Con la somma i vettori formano un gruppo commutativo. (2) Il multiplo di una somma è la somma dei multipli: $\lambda(v + w) = \lambda v + \lambda w$. (3) $(\lambda + \mu)v = \lambda v + \mu v$. (4) $(\lambda\mu)v = \lambda(\mu v)$. (5) $1v = v$.
+
+Il primo contiene quattro regole: associativa, vettore nullo, opposto, commutativa. Inoltre la somma e il prodotto per scalare non devono far uscire dall'insieme.
 :::
 
 ::: domanda Qual è la differenza tra lo $0$ del campo e l'origine $0_V$?
-Lo $0$ del campo è uno scalare, un numero. L'origine $0_V$ è un vettore, l'elemento neutro della somma di $V$: in $\R^3$ è $(0, 0, 0)$, tra i polinomi è il polinomio nullo, tra le funzioni è la funzione nulla.
+Lo 0 del campo è uno scalare, cioè un numero. L'origine $0_V$ è un vettore: quello che sommato non cambia niente. In $\R^3$ è la lista $(0, 0, 0)$. Tra i polinomi è il polinomio nullo. Tra le funzioni è la funzione nulla.
 :::
 
 ::: domanda Enuncia e dimostra la Proposizione 5.5.
-$0v = 0_V$ per ogni $v$. Infatti $0v = (0 + 0)v = 0v + 0v$ per l'assioma 3; sommando l'opposto di $0v$ a entrambi i membri si ottiene $0_V = 0v$.
+Dice che $0v = 0_V$: un vettore qualsiasi per il numero zero dà il vettore nullo.
+
+Dimostrazione. Siccome $0 + 0 = 0$, vale $0v = (0 + 0)v$. Per la proprietà 3 questo è uguale a $0v + 0v$. Quindi $0v = 0v + 0v$. Sommando a tutti e due i lati l'opposto di $0v$ resta $0_V = 0v$.
 :::
 
 ::: domanda Perché $\C$ è uno spazio vettoriale su $\R$, mentre $\R$ non lo è su $\C$?
-Un reale per un complesso è un complesso, e gli assiomi sono casi particolari delle proprietà di campo di $\C$. Al contrario, uno scalare complesso per un reale può non essere reale: $i \cdot 1 = i \notin \R$.
+Un numero reale per un numero complesso è un numero complesso: i multipli restano dentro. E le regole sono regole dei conti tra numeri complessi. Al contrario, uno scalare complesso per un numero reale può non essere reale: $i \cdot 1 = i$. Un multiplo esce.
 :::
 
 ::: domanda Come si sommano due funzioni $[0, 1] \to \R$? Qual è il vettore nullo?
-Punto per punto: $(f + g)(x) = f(x) + g(x)$ e $(\lambda f)(x) = \lambda f(x)$ per ogni $x \in [0, 1]$. Il vettore nullo è la funzione che vale $0$ in ogni punto.
+Punto per punto. Per ogni numero che entra si sommano i due numeri che escono: $(f + g)(x) = f(x) + g(x)$. Per il multiplo: $(\lambda f)(x) = \lambda f(x)$. Il vettore nullo è la funzione che vale 0 in ogni punto.
 :::
 
 ::: domanda Perché i polinomi di grado esattamente $2$ non formano uno spazio vettoriale, mentre $\R_2[x]$ sì?
-La somma può abbassare il grado ($x^2 + (-x^2 + x) = x$) e il polinomio nullo non ha grado $2$. In $\R_2[x]$ invece somme e multipli hanno ancora grado $\le 2$, e il polinomio nullo c'è.
+Perché una somma può abbassare il grado: $x^2$ più $-x^2 + x$ fa $x$, che ha grado 1. E il polinomio nullo non ha grado 2. In $\R_2[x]$ invece ci sono tutti i polinomi di grado al massimo 2: somme e multipli restano dentro, e il polinomio nullo c'è.
 :::
 
 ::: domanda Come si dimostra che un insieme, con certe operazioni, non è uno spazio vettoriale?
-Con un solo controesempio concreto: lo zero non sta nell'insieme, oppure la somma di due elementi o un multiplo escono dall'insieme, oppure un assioma fallisce per certi numeri.
+Con un solo esempio concreto. Il vettore nullo non sta nell'insieme. Oppure la somma di due elementi esce dall'insieme. Oppure un multiplo esce. Oppure una delle regole fallisce per certi numeri.
 :::
 
 ## Glossario
 
 ```glossario
-Spazio euclideo $\R^n$ | L'insieme delle liste ordinate $(x_1, \dots, x_n)$ di $n$ numeri reali, con somma e prodotto per scalare componente per componente.
-Prodotto cartesiano | $A \times B$ è l'insieme delle coppie ordinate $(a, b)$ con $a \in A$ e $b \in B$.
-Vettore colonna | Un vettore scritto in verticale; negli appelli, scritto in riga, compare come ${}^t(x_1, \dots, x_n)$.
-Coordinate | I numeri $x_1, \dots, x_n$ che formano il vettore $x$.
-Origine | Il vettore $(0, \dots, 0)$ di $\R^n$; in uno spazio vettoriale qualsiasi, l'elemento neutro $0_V$ della somma.
-Scalare | Un elemento del campo $\K$, cioè un numero che moltiplica i vettori.
-Prodotto per scalare | L'operazione che a $\lambda \in \K$ e $v \in V$ associa il vettore $\lambda v$; in $\R^n$ moltiplica ogni coordinata per $\lambda$.
-Regola del parallelogramma | In $\R^2$, $v + w$ è la diagonale del parallelogramma con lati $v$ e $w$.
-Operazione binaria | Regola che a due elementi di un insieme associa un elemento dello stesso insieme.
-Gruppo | Insieme con un'operazione binaria che ha elemento neutro, è associativa e in cui ogni elemento ha un inverso.
-Gruppo commutativo | Gruppo in cui vale anche $a * b = b * a$ per ogni $a, b$.
-Campo | Insieme con $+$ e $\cdot$: gruppo commutativo con la somma, gruppo commutativo con il prodotto una volta tolto lo $0$, distributiva. Esempi: $\Q$, $\R$, $\C$.
-Spazio vettoriale | Insieme $V$ con somma e prodotto per scalari di un campo $\K$ che rispettano i cinque assiomi della Definizione 5.4.
-Vettore nullo $0_V$ | L'elemento neutro della somma di $V$: $v + 0_V = v$ per ogni $v$.
-Opposto $-v$ | Il vettore tale che $v + (-v) = 0_V$; vale $-v = (-1)v$.
-Lo spazio $\K^n$ | Le colonne di $n$ elementi di $\K$, con operazioni termine a termine; per esempio $\C^2$.
-Polinomi $\K[x]$ e $\K_k[x]$ | $\K[x]$: tutti i polinomi a coefficienti in $\K$; $\K_k[x]$: quelli di grado al massimo $k$. Entrambi sono spazi vettoriali.
-Operazioni punto per punto | Per le funzioni: $(f + g)(x) = f(x) + g(x)$ e $(\lambda f)(x) = \lambda f(x)$ in ogni punto $x$.
+Vettore | Un elemento di uno spazio vettoriale. Nel caso più comune è una lista ordinata di numeri, come $(3, 2)$: nel piano si legge «3 a destra e 2 in su».
+Spazio euclideo $\R^n$ | L'insieme delle liste ordinate di $n$ numeri reali. $\R^2$ è il piano, $\R^3$ lo spazio. Somma e multiplo si fanno un posto alla volta.
+Prodotto cartesiano | $A \times B$ è l'insieme delle coppie ordinate con il primo elemento preso da $A$ e il secondo da $B$. Per esempio $\R \times \R$ è $\R^2$.
+Vettore colonna | Un vettore scritto in verticale, con i numeri uno sotto l'altro. Negli appelli, scritto in riga, compare come ${}^t(1, 2, 3)$.
+Coordinate | I numeri che formano un vettore. In $x = (3, 2)$ la prima coordinata è $x_1 = 3$ e la seconda è $x_2 = 2$.
+Origine | Il vettore fatto di soli zeri, come $(0, 0)$. In uno spazio vettoriale qualsiasi è il vettore nullo $0_V$.
+Scalare | Un numero che moltiplica un vettore. Nel corso è un numero reale oppure complesso.
+Prodotto per scalare | L'operazione che moltiplica un vettore per uno scalare. Nelle liste si moltiplica ogni coordinata: $2 \cdot (1, 2) = (2, 4)$.
+Regola del parallelogramma | Nel piano la somma di due vettori è la diagonale del parallelogramma che ha i due vettori come lati.
+Operazione binaria | Una regola che prende due elementi di un insieme e ne restituisce uno dello stesso insieme, come la somma tra interi.
+Assioma | Una regola che fa parte di una definizione. Un gruppo ha tre assiomi, un campo tre, uno spazio vettoriale cinque.
+Gruppo | Un insieme con un'operazione binaria che ha un elemento neutro, è associativa e dà a ogni elemento un inverso. Esempio: gli interi con la somma.
+Gruppo commutativo | Un gruppo in cui l'ordine non conta: $a * b = b * a$ per tutti gli elementi.
+Campo | Un insieme con somma e prodotto in cui si fanno le quattro operazioni senza uscire, dividendo solo per elementi diversi da zero. Esempi: $\Q$, $\R$, $\C$.
+Spazio vettoriale | Un insieme con una somma e un prodotto per scalare che non fanno uscire dall'insieme e rispettano le cinque proprietà della Definizione 5.4.
+Vettore nullo $0_V$ | Il vettore che sommato non cambia niente: $v + 0_V = v$. Nelle liste è la lista di soli zeri.
+Opposto $-v$ | Il vettore che sommato a $v$ dà il vettore nullo. È il multiplo con lo scalare $-1$: l'opposto di $(1, 2)$ è $(-1, -2)$.
+Lo spazio $\K^n$ | Le liste di $n$ numeri del campo $\K$, con somma e multiplo un posto alla volta. Per esempio $\C^2$.
+Polinomi $\K[x]$ e $\K_k[x]$ | $\K[x]$ contiene tutti i polinomi con i coefficienti nel campo. $\K_k[x]$ contiene quelli di grado al massimo $k$. Sono tutti e due spazi vettoriali.
+Operazioni punto per punto | Per le funzioni: in ogni punto si sommano i due numeri che escono, $(f + g)(x) = f(x) + g(x)$. Per il multiplo: $(\lambda f)(x) = \lambda f(x)$.
 ```
 
 ## Checklist
 
 ```checklist
 - So scrivere un elemento di $\R^n$ come punto, come vettore e come vettore colonna.
-- So sommare vettori e moltiplicarli per uno scalare, anche in $\C^n$, e so disegnare la somma in $\R^2$ con il parallelogramma.
-- So elencare gli assiomi di gruppo e spiegare perché $(\N, +)$ e $(\Z, \cdot)$ non sono gruppi.
+- So sommare due vettori e moltiplicarli per uno scalare, anche con i numeri complessi, e so disegnare la somma nel piano con il parallelogramma.
+- So elencare le tre regole di un gruppo e spiegare perché i naturali con la somma e gli interi con il prodotto non sono gruppi.
 - So dire che cos'è un campo e perché $\Z$ non lo è, mentre $\{0, 1\}$ con $1 + 1 = 0$ sì.
-- So scrivere i cinque assiomi di spazio vettoriale e le quattro regole contenute nel primo.
-- Distinguo lo zero del campo dall'origine $0_V$ e so dimostrare che $0v = 0_V$.
-- So spiegare perché $\K^n$, le successioni, le funzioni $[0, 1] \to \K$ e $\K[x]$ sono spazi vettoriali, e qual è il vettore nullo in ognuno.
+- So scrivere le cinque proprietà di uno spazio vettoriale e le quattro regole contenute nella prima.
+- Distinguo il numero zero dal vettore nullo $0_V$ e so dimostrare che $0v = 0_V$.
+- So spiegare perché le liste, le successioni, le funzioni e i polinomi sono spazi vettoriali, e so dire qual è il vettore nullo in ognuno.
 - So dimostrare che $\C$ è uno spazio vettoriale su $\R$ e spiegare perché $\R^2$ non lo è su $\C$.
-- So trovare un controesempio quando un insieme non è uno spazio vettoriale: manca lo zero, oppure una somma o un multiplo escono.
-- So controllare un assioma con operazioni insolite, come negli esercizi 9 e 10.
+- So trovare un esempio quando un insieme non è uno spazio vettoriale: manca il vettore nullo, oppure una somma o un multiplo escono.
+- So controllare una proprietà con operazioni insolite, come negli esercizi 12 e 13.
 ```
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 5 «Spazi vettoriali I», pp. 20–25: le sezioni 5.A–5.D sono seguite in ordine, con la pagina indicata accanto a ogni titolo; definizioni, proposizioni ed esercizi mantengono la loro numerazione (Definizioni 5.1–5.4, Proposizione 5.5, Esercizi 5.6–5.10).
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 5 «Spazi vettoriali I», pp. 20–25: le sezioni 5.A–5.D sono seguite in ordine, con la pagina indicata accanto a ogni titolo (l'introduzione di p. 20 è ripresa nella sezione sulla definizione); definizioni, proposizioni ed esercizi mantengono la loro numerazione (Definizioni 5.1–5.4, Proposizione 5.5, Esercizi 5.6–5.10).
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §1.5 (gruppi, unicità dell'inverso, semplificazione, anelli e campi), §2.1 (spazio euclideo, somma, prodotto per scalare e loro proprietà), §2.2.1–2.2.4 (definizione di spazio vettoriale, Proposizione 2.2.1, gli spazi $\K^n$, $\K[x]$ e $F(X, \K)$).
 - **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domanda 5), 08/02/2024 (domanda 2), 10/07/2024 (domanda 2), 07/02/2025 (domanda 2, riportata con una soluzione scritta per questi appunti), 03/06/2025 (domanda 2), 15/01/2026 (domande 3 e 4), 05/02/2026 (domanda 2), 07/09/2026 (domanda 6).
-- Le parti **«Oltre le dispense»** (unicità dell'inverso e semplificazione, perché serve l'assioma 5, altre conseguenze degli assiomi, lo spazio $F(X, \K)$, il metodo per l'esame e gli esercizi 6–10) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu» e gli esercizi sono di questi appunti. Le parti **«Oltre le dispense»** (i due fatti sui gruppi, le altre conseguenze delle regole, la sezione su come si riconosce ciò che non è uno spazio vettoriale e il metodo per l'esame) collegano la lezione al resto del corso e all'esame.
 
 
 ---
@@ -10702,15 +11687,15 @@ descrizione: >-
   simmetriche, rango per righe e per colonne, prodotto riga per colonna e sue proprietà, traccia, con quiz nello
   stile dell'esame ed esercizi svolti.
 lede: >-
-  Le matrici smettono di essere semplici tabelle e diventano strumenti di calcolo: la trasposta ${}^tA$, il rango
-  $\rk(A)$ (quante colonne indipendenti ci sono davvero), il prodotto riga per colonna, che non è commutativo, e la
-  traccia $\tr A$. Sono le operazioni che compaiono in quasi ogni quiz d'esame, spesso con un tranello.
+  Quattro cose che si possono fare con una tabella di numeri: girarla, contare quante colonne dicono davvero
+  qualcosa di nuovo, moltiplicarla per un'altra tabella e sommare i numeri della sua diagonale. Sono i conti che
+  trovi in quasi ogni quiz d'esame, spesso con un tranello.
 materiale: dispense
 scheda:
   Dispense: lezione 8 · pp. 36–40
   Libro: Martelli, §2.3.10, §3.2.3, §3.2.6, §3.4.1–3.4.5 e §4.4.5
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 100–130 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 8 «Matrici I»; B. Martelli, Geometria e algebra lineare, §2.3.10, §3.2.3, §3.2.6, §3.4.1–3.4.5 e §4.4.5
 file_en: L08_matrices_1.html
@@ -10720,57 +11705,296 @@ genera_html: true
 
 ## In breve
 
-- Una matrice $m \times n$ ha $m$ righe e $n$ colonne. Le matrici $m \times n$ a coefficienti in $\K$ formano lo spazio vettoriale $M(m, n, \K)$, di dimensione $mn$. Le righe si indicano $A_1, \dots, A_m$ (indice in basso), le colonne $A^1, \dots, A^n$ (indice in alto).
-- La **trasposta** ${}^tA$ scambia righe e colonne: $({}^tA)_{ij} = A_{ji}$, e una matrice $m \times n$ diventa $n \times m$. Una matrice quadrata è **simmetrica** se ${}^tA = A$, **antisimmetrica** se ${}^tA = -A$.
-- Il **rango** $\rk(A)$ è la dimensione dello spazio generato dalle colonne, cioè il **massimo numero di colonne linearmente indipendenti**.
-- Rango per righe e rango per colonne coincidono: $\rk({}^tA) = \rk(A)$. Di conseguenza $\rk(A) \le \min(m, n)$.
-- Il **prodotto riga per colonna** $AB$ esiste solo se $A$ ha tante colonne quante sono le righe di $B$: $(m \times n) \cdot (n \times p)$ dà una matrice $m \times p$, con $(AB)_{ij} = A_{i1}B_{1j} + \dots + A_{in}B_{nj}$.
-- Il prodotto **non è commutativo**: di solito $AB \neq BA$, e può succedere che $AB = 0$ con $A \neq 0$ e $B \neq 0$. Valgono però l'associatività e la distributività.
-- La **traccia** di una matrice quadrata è la somma dei numeri sulla diagonale principale, e $\tr(AB) = \tr(BA)$ anche quando $AB \neq BA$.
-- All'esame compaiono quasi sempre una domanda «quale identità vale tra $AB$, $BA$, $A$ e $B$?», una traccia di un prodotto e un rango da calcolare.
+- Una **matrice** è una tabella di numeri. La sua **taglia** si scrive mettendo prima il numero delle righe e poi quello delle colonne: una matrice «2 per 3» ha 2 righe e 3 colonne.
+- La **trasposta** è la stessa tabella girata: le righe diventano colonne e le colonne diventano righe. Una matrice quadrata che girata resta uguale si chiama **simmetrica**.
+- Il **rango** conta quante colonne dicono davvero qualcosa di nuovo, cioè non si ottengono mescolando le altre. Se conti le righe al posto delle colonne viene lo stesso numero.
+- Il **prodotto riga per colonna** funziona come il conto della spesa: quantità per prezzi, poi si somma. Si può fare solo se le colonne della prima matrice sono tante quante le righe della seconda.
+- Nel prodotto **l'ordine conta**: se scambi le due matrici, di solito il risultato cambia. E un prodotto può dare una tabella di soli zeri anche se nessuna delle due matrici è fatta di soli zeri.
+- La **traccia** di una matrice quadrata è la somma dei numeri sulla diagonale. Se scambi le due matrici di un prodotto, la traccia resta la stessa.
+- All'esame trovi quasi sempre tre domande su questa lezione: «quale identità vale?» tra due prodotti, la traccia di un prodotto e un rango da calcolare.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Da dove ripartiamo: le matrici (p. 36)
+## Prima di cominciare
 
-Una **matrice** è una tabella rettangolare di numeri. Nella lezione L06 l'abbiamo definita così: una matrice con $m$ righe e $n$ colonne a coefficienti in un campo $\K$ (per noi quasi sempre $\K = \R$ o $\K = \C$) è
+### Di che cosa parla questa lezione
 
-$$A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix}.$$
+Una matrice è una tabella di numeri, come un listino dei prezzi o il tabellone di un torneo. Nella lezione L06 hai visto le prime due operazioni sulle matrici: sommare due tabelle casella per casella e moltiplicare tutta una tabella per un numero. In questa lezione ne arrivano altre quattro.
 
-Si dice brevemente che $A$ è una matrice $m \times n$ (si legge «$m$ per $n$»): **prima le righe, poi le colonne**.
+La prima è girare la tabella, in modo che le righe diventino colonne. Il risultato si chiama trasposta.
 
-- Il numero $a_{ij}$ sta nella riga $i$ e nella colonna $j$: **il primo indice è la riga, il secondo la colonna**. Le dispense lo scrivono anche $A_{ij}$: è la stessa cosa.
-- La riga $i$-esima si indica $A_i$ (indice in basso), la colonna $j$-esima $A^j$ (indice in alto). Attenzione: qui $A^2$ vuol dire «seconda colonna», non «$A$ al quadrato»; di solito il contesto chiarisce.
-- $M(m, n, \K)$ è l'insieme di tutte le matrici $m \times n$ a coefficienti in $\K$; le matrici quadrate $n \times n$ formano $M(n, \K)$, o più brevemente $M(n)$.
-- Una matrice $m \times 1$ è un **vettore colonna**: $M(m, 1, \K) = \K^m$.
+La seconda è un conteggio: quante colonne della tabella dicono davvero qualcosa di nuovo, e quante invece sono copie o miscele delle altre. Questo numero si chiama rango, e torna in quasi tutte le lezioni che seguono.
+
+La terza è la più importante: il prodotto di due matrici. Non si fa casella per casella, come verrebbe da pensare. Si fa come il conto della spesa: moltiplichi ogni quantità per il suo prezzo e poi sommi tutto. Il prodotto ha una sorpresa: l'ordine conta. Se scambi le due matrici, di solito il risultato cambia.
+
+La quarta è la più corta: sommare i numeri che stanno sulla diagonale della tabella. Il risultato si chiama traccia.
+
+A che cosa serve tutto questo? Dalla lezione L11 i sistemi di equazioni si scrivono e si risolvono con le matrici, e il rango dice quante soluzioni hanno. Dalla lezione L14 le matrici diventano macchine che trasformano vettori, e il prodotto è il modo di farle lavorare una dopo l'altra. All'esame, poi, queste quattro operazioni compaiono nel quiz di quasi ogni appello.
+
+### Che cosa devi già sapere
+
+Poche cose, e le ripassiamo tutte nel punto in cui servono.
+
+- **Che cos'è una matrice** e come si sommano due matrici: casella per casella (lezione L06). Il ripasso è nella prima sezione.
+- **Che cos'è un vettore**: una lista ordinata di numeri, come $(3, 2)$. Puoi pensarlo come uno spostamento su una mappa a quadretti: 3 passi a destra e 2 in su (lezione L05).
+- **Combinazioni lineari e Span**: mescolare dei vettori come gli ingredienti di una ricetta (lezione L06). Il ripasso è nella sezione sul rango.
+- **Vettori indipendenti e dimensione** (lezione L07). Anche questi li ripassiamo nella sezione sul rango.
+- **Una somma di prodotti**, come $2 \cdot 4 + 3 \cdot 1$: prima le moltiplicazioni, poi la somma. Il ripasso è nella sezione sul prodotto.
+
+### Che cosa saprai fare alla fine
+
+- Leggere una matrice: dire quante righe e quante colonne ha, e trovare il numero che sta in una certa casella.
+- Scrivere la trasposta di una matrice e dire se una matrice è simmetrica.
+- Trovare il rango di una matrice piccola, cercando le righe o le colonne che sono «doppioni».
+- Dire se un prodotto di due matrici si può fare, di che taglia viene, e calcolarlo.
+- Calcolare la traccia di un prodotto senza fare tutto il prodotto.
+- Rispondere alla domanda d'esame «quale identità vale?».
+
+## Le matrici: tabelle di numeri (p. 36)
+
+Una matrice è una tabella con dei numeri dentro. Questa sezione ripassa come si legge e come si scrive: è quello che le dispense ricordano all'inizio della lezione, prima delle operazioni nuove.
+
+Partiamo da un esempio. Anna e Bruno vanno in cartoleria. Anna compra 2 quaderni e 3 penne. Bruno compra 1 quaderno e 5 penne. Tutto questo sta in una tabella.
+
+| | quaderni | penne |
+|---|---|---|
+| Anna | 2 | 3 |
+| Bruno | 1 | 5 |
+
+Ora togli le scritte e tieni solo i numeri, chiusi tra due parentesi tonde grandi:
+
+$$\begin{pmatrix} 2 & 3 \\ 1 & 5 \end{pmatrix}$$
+
+Questa è una **matrice**: una tabella rettangolare di numeri. A una matrice si dà un nome con una lettera maiuscola, per esempio $A$.
+
+### Righe, colonne e taglia
+
+Le **righe** sono le file orizzontali: si leggono da sinistra a destra. Le **colonne** sono le file verticali: si leggono dall'alto in basso.
+
+Nella matrice di Anna e Bruno la prima riga contiene 2 e 3. La seconda riga contiene 1 e 5. La prima colonna contiene 2 e 1. La seconda colonna contiene 3 e 5.
+
+La **taglia** di una matrice dice quante righe e quante colonne ha. Si scrive con il segno $\times$, che qui si legge «per». La matrice di Anna e Bruno ha 2 righe e 2 colonne: è una matrice $2 \times 2$, «due per due».
+
+Guarda quest'altra matrice:
+
+$$\begin{pmatrix} 3 & 0 & -1 \\ 2 & 5 & 4 \end{pmatrix}$$
+
+Ha 2 righe e 3 colonne. Quindi è una matrice $2 \times 3$, «due per tre».
+
+> [!TRAPPOLA] Prima le righe, poi le colonne
+> Nella taglia il primo numero è sempre quello delle righe. Una matrice $2 \times 3$ ha 2 righe e 3 colonne. Una matrice $3 \times 2$ ha 3 righe e 2 colonne: è un'altra cosa.
+
+Per parlare di una matrice qualsiasi le dispense scrivono «matrice $m \times n$». Le lettere $m$ e $n$ stanno al posto di due numeri: $m$ è il numero delle righe, $n$ è il numero delle colonne.
+
+Una matrice con tante righe quante colonne si chiama **quadrata**: per esempio una $2 \times 2$ oppure una $3 \times 3$. Una matrice fatta di soli zeri si chiama **matrice nulla** e si indica con $0$, come il numero.
+
+### L'indirizzo di ogni numero
+
+Ogni numero della tabella ha un indirizzo: la riga e la colonna in cui si trova. Funziona come al cinema: fila 2, posto 3.
+
+Diamo un nome alla matrice di prima:
+
+$$A = \begin{pmatrix} 3 & 0 & -1 \\ 2 & 5 & 4 \end{pmatrix}$$
+
+Il numero che sta nella riga 2 e nella colonna 3 è il 4. Si scrive così:
+
+$$a_{23} = 4$$
+
+Si legge «a due tre», non «a ventitré». I due numerini in basso si chiamano **indici**. Sono l'indirizzo della casella: **il primo indice è la riga, il secondo è la colonna**. La lettera è minuscola perché indica un numero dentro la matrice che si chiama $A$.
+
+Un altro esempio: $a_{12}$ è il numero nella riga 1 e nella colonna 2. Nella matrice qui sopra è lo 0.
+
+Per una casella qualsiasi le dispense scrivono $a_{ij}$. Vuol dire: il numero nella riga $i$ e nella colonna $j$. Le lettere $i$ e $j$ stanno al posto dei due numeri dell'indirizzo. A volte le dispense scrivono $A_{ij}$, con la lettera maiuscola: è la stessa cosa.
+
+### I nomi delle righe e delle colonne
+
+Anche una riga intera e una colonna intera hanno un nome.
+
+- La riga numero 2 si scrive $A_2$, con l'indice **in basso**.
+- La colonna numero 3 si scrive $A^3$, con l'indice **in alto**.
+
+Nella matrice $A$ di prima la riga $A_2$ contiene i numeri 2, 5 e 4. La colonna $A^3$ contiene $-1$ sopra e 4 sotto.
+
+> [!TRAPPOLA] Un numero in alto non è sempre una potenza
+> In questa lezione $A^3$ può voler dire «la terza colonna di $A$». Più avanti la stessa scrittura vorrà dire «$A$ moltiplicata per sé stessa tre volte». Di solito la frase intorno chiarisce quale dei due significati vale. In questi appunti, quando c'è il rischio di confondersi, trovi scritto «la colonna 3» a parole.
+
+Una riga è una lista ordinata di numeri. Anche una colonna lo è. Le liste ordinate di numeri le conosci già: sono i **vettori** della lezione L05. Quindi ogni riga e ogni colonna di una matrice è un vettore.
+
+Conta quanti numeri ci sono in ciascuna.
+
+- Una **colonna** ha un numero per ogni riga della matrice. In una matrice con 2 righe, ogni colonna è un vettore con 2 numeri.
+- Una **riga** ha un numero per ogni colonna della matrice. In una matrice con 3 colonne, ogni riga è un vettore con 3 numeri.
 
 > [!ESEMPIO] · Leggere una matrice
 > $$A = \begin{pmatrix} 3 & 0 & -1 \\ 2 & 5 & 4 \end{pmatrix}$$
-> è una matrice $2 \times 3$: due righe e tre colonne. Il numero nella riga 2 e colonna 3 è $a_{23} = 4$; quello nella riga 1 e colonna 2 è $a_{12} = 0$. La seconda riga è $A_2 = (2, 5, 4)$, la terza colonna è
-> $$A^3 = \begin{pmatrix} -1 \\ 4 \end{pmatrix} \in \R^2.$$
-> Ogni colonna ha tanti numeri quante sono le righe (qui 2), quindi le colonne sono vettori di $\R^2$; ogni riga ha tanti numeri quante sono le colonne (qui 3), quindi le righe sono vettori di $\R^3$.
+> **La taglia.** Le righe sono 2, le colonne sono 3. Quindi $A$ è una matrice $2 \times 3$.
+>
+> **Due caselle.**
+>
+> - $a_{23}$: riga 2, colonna 3. Nella seconda riga il terzo numero è 4. Quindi $a_{23} = 4$.
+> - $a_{12}$: riga 1, colonna 2. Nella prima riga il secondo numero è 0. Quindi $a_{12} = 0$.
+>
+> **Una riga e una colonna.** La seconda riga è $A_2 = (2, 5, 4)$. La terza colonna è
+> $$A^3 = \begin{pmatrix} -1 \\ 4 \end{pmatrix}.$$
+>
+> **Quanti numeri hanno.** Ogni colonna ha 2 numeri, tanti quante sono le righe: le colonne sono vettori di $\R^2$. Ogni riga ha 3 numeri, tanti quante sono le colonne: le righe sono vettori di $\R^3$. La scrittura $\R^2$ si legge «erre due» e indica tutti i vettori fatti di 2 numeri reali. $\R^3$ indica quelli fatti di 3 numeri reali (lezione L05).
 
-Le dispense ricordano le due operazioni già viste nella lezione L06, entrambe **casella per casella**: la somma di due matrici della stessa taglia e il prodotto per uno scalare $\lambda \in \K$,
+### Una matrice qualsiasi, scritta con le lettere
+
+Quando non si vuole parlare di una matrice precisa ma di una matrice qualsiasi, al posto dei numeri si mettono delle lettere con gli indici. Le dispense scrivono così una matrice con $m$ righe e $n$ colonne:
+
+$$A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix}$$
+
+**Come si legge.** È una tabella di cui sono scritti solo i quattro angoli.
+
+- In alto a sinistra c'è $a_{11}$: riga 1, colonna 1.
+- In alto a destra c'è $a_{1n}$: riga 1, ultima colonna. L'ultima colonna è la numero $n$, perché le colonne sono $n$.
+- In basso a sinistra c'è $a_{m1}$: ultima riga, colonna 1. L'ultima riga è la numero $m$.
+- In basso a destra c'è $a_{mn}$: ultima riga, ultima colonna.
+- I puntini vogliono dire «e avanti così»: in mezzo ci sono tutte le altre caselle, che non si scrivono per non riempire la pagina.
+
+Tutte le matrici della stessa taglia si mettono in un insieme. Un insieme è un sacchetto di oggetti (lezione L01). Questo sacchetto ha un nome:
+
+$$M(m, n, \K)$$
+
+**Come si legge.** «Le matrici $m$ per $n$ a coefficienti in $\K$». Un pezzo alla volta:
+
+- la $M$ sta per «matrici»;
+- $m$ e $n$ sono la taglia: righe e colonne;
+- i **coefficienti** sono i numeri scritti nella tabella;
+- $\K$ dice che tipo di numeri sono. Le dispense scrivono $\K$ per dire «$\R$ oppure $\C$», cioè i numeri reali oppure i numeri complessi. In questa lezione puoi pensare sempre ai numeri reali.
+
+Un esempio: $M(2, 3, \R)$ è l'insieme di tutte le matrici $2 \times 3$ fatte di numeri reali. La matrice $A$ dell'esempio sta lì dentro. Con il simbolo $\in$, che si legge «appartiene a», si scrive $A \in M(2, 3, \R)$.
+
+Per le matrici quadrate, che hanno $n$ righe e $n$ colonne, basta un numero solo: si scrive $M(n, \K)$, o ancora più corto $M(n)$. Per esempio $M(2)$ sono le matrici $2 \times 2$.
+
+Una matrice con una sola colonna è un **vettore colonna**: un vettore scritto in verticale. Per questo le matrici con $m$ righe e 1 colonna sono la stessa cosa dei vettori con $m$ numeri, che si indicano con $\K^m$.
+
+### Le due operazioni che conosci già
+
+Le dispense ricordano le due operazioni della lezione L06. Tutte e due si fanno **casella per casella**.
+
+**Sommare due matrici della stessa taglia.** Sommi i numeri che stanno nello stesso posto.
+
+$$\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} + \begin{pmatrix} 0 & -2 \\ 5 & 1 \end{pmatrix} = \begin{pmatrix} 1 + 0 & 2 + (-2) \\ 3 + 5 & 4 + 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 8 & 5 \end{pmatrix}$$
+
+**Moltiplicare una matrice per un numero.** Moltiplichi ogni casella per quel numero.
+
+$$3 \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} = \begin{pmatrix} 3 \cdot 1 & 3 \cdot 2 \\ 3 \cdot 3 & 3 \cdot 4 \end{pmatrix} = \begin{pmatrix} 3 & 6 \\ 9 & 12 \end{pmatrix}$$
+
+Il numero davanti alla matrice si chiama **scalare**, cioè un numero normale come 3 o $-2$. Le dispense lo indicano con la lettera greca $\lambda$, che si legge «lambda».
+
+Con le lettere, le due regole si scrivono così:
 
 $$(A + B)_{ij} = a_{ij} + b_{ij}, \qquad (\lambda A)_{ij} = \lambda a_{ij}.$$
 
-Per esempio:
+**Come si legge.** La prima: nella casella di riga $i$ e colonna $j$ della somma c'è il numero di $A$ più il numero di $B$ che stanno in quella stessa casella. La seconda: nella casella di riga $i$ e colonna $j$ di $\lambda A$ c'è il numero di $A$ moltiplicato per $\lambda$.
 
-$$\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} + \begin{pmatrix} 0 & -2 \\ 5 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 8 & 5 \end{pmatrix}, \qquad 3 \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} = \begin{pmatrix} 3 & 6 \\ 9 & 12 \end{pmatrix}.$$
+### Quanti numeri servono per fare una matrice
 
-Con queste due operazioni $M(m, n, \K)$ è uno **spazio vettoriale di dimensione $mn$** (Esercizio 7.13 delle dispense): una base è formata dalle $mn$ matrici $e_{ij}$ che hanno un 1 nella casella $(i, j)$ e 0 altrove. In questa lezione arrivano quattro operazioni nuove.
+Con queste due operazioni le matrici si comportano come i vettori: si sommano e si moltiplicano per un numero, con le solite regole. Per questo le dispense ricordano che $M(m, n, \K)$ è uno **spazio vettoriale** (lezione L05).
 
-| Operazione | Si può fare se | Parte da | Dà |
+Ogni spazio vettoriale ha una **dimensione**: quanti numeri servono per dire quale dei suoi elementi hai in mano (lezione L07). Per scegliere una matrice $2 \times 2$ servono 4 numeri, uno per casella. Infatti ogni matrice $2 \times 2$ si costruisce con quattro mattoni, ognuno con un solo 1 e il resto zeri:
+
+$$\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} = 1 \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} + 2 \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} + 3 \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} + 4 \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$$
+
+I mattoni sono 4, cioè 2 per 2. Quindi lo spazio delle matrici $2 \times 2$ ha dimensione 4.
+
+Per una taglia qualsiasi il conto è lo stesso: le caselle sono $m$ per $n$, quindi la dimensione di $M(m, n, \K)$ è $mn$. È l'Esercizio 7.13 delle dispense. Il mattone con l'1 nella casella di riga $i$ e colonna $j$ si indica con $e_{ij}$.
+
+### Le quattro operazioni nuove
+
+Ecco che cosa arriva in questa lezione. La tabella ti serve come mappa: a ogni riga corrisponde una delle prossime sezioni.
+
+| Operazione | Simbolo | Quando si può fare | Che cosa viene fuori |
 |---|---|---|---|
-| trasposta ${}^tA$ | sempre | $A$ di taglia $m \times n$ | una matrice $n \times m$ |
-| rango $\rk(A)$ | sempre | $A$ di taglia $m \times n$ | un numero intero tra $0$ e $\min(m, n)$ |
-| prodotto $AB$ | colonne di $A$ = righe di $B$ | $A$ di taglia $m \times n$, $B$ di taglia $n \times p$ | una matrice $m \times p$ |
-| traccia $\tr A$ | $A$ quadrata | $A$ di taglia $n \times n$ | un numero |
+| trasposta | ${}^tA$ | sempre | una matrice con righe e colonne scambiate |
+| rango | $\rk(A)$ | sempre | un numero intero |
+| prodotto | $AB$ | solo se le colonne di $A$ sono tante quante le righe di $B$ | una matrice |
+| traccia | $\tr A$ | solo se $A$ è quadrata | un numero |
 
-## La trasposta di una matrice (p. 36)
+::: prova Che taglia ha la matrice $\begin{pmatrix} 1 & 0 \\ 2 & 7 \\ 5 & 3 \end{pmatrix}$? Quanto valgono $a_{21}$ e $a_{32}$?
+Ha 3 righe e 2 colonne: è una matrice $3 \times 2$.
 
-Prendi una matrice e **ribaltala lungo la diagonale** che scende dall'angolo in alto a sinistra: la prima colonna diventa la prima riga, la seconda colonna diventa la seconda riga, e così via. Il risultato è la trasposta.
+$a_{21}$ è nella riga 2 e nella colonna 1: vale 2.
+
+$a_{32}$ è nella riga 3 e nella colonna 2: vale 3.
+:::
+
+::: prova Nella stessa matrice, chiamala $A$: quali numeri contiene la riga $A_3$? E la colonna $A^1$?
+La riga $A_3$ è la terza riga: contiene 5 e 3.
+
+La colonna $A^1$ è la prima colonna: contiene 1, 2 e 5, dall'alto in basso.
+:::
+
+::: prova Quanto fa $\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} 1 & 1 \\ 4 & -3 \end{pmatrix}$? E quanto fa $2 \begin{pmatrix} 1 & -1 \\ 0 & 4 \end{pmatrix}$?
+La somma si fa casella per casella: $2 + 1 = 3$, $1 + 1 = 2$, $0 + 4 = 4$, $3 + (-3) = 0$. Il risultato è $\begin{pmatrix} 3 & 2 \\ 4 & 0 \end{pmatrix}$.
+
+Nel multiplo ogni casella si moltiplica per 2: $2 \cdot 1 = 2$, $2 \cdot (-1) = -2$, $2 \cdot 0 = 0$, $2 \cdot 4 = 8$. Il risultato è $\begin{pmatrix} 2 & -2 \\ 0 & 8 \end{pmatrix}$.
+:::
+
+> [!RICORDA]
+> - Una **matrice** è una tabella di numeri. La taglia $m \times n$ dice: $m$ righe e $n$ colonne. Prima le righe.
+> - $a_{ij}$ è il numero nella riga $i$ e nella colonna $j$: primo indice la riga, secondo la colonna.
+> - La riga numero $i$ si scrive $A_i$ (indice in basso), la colonna numero $j$ si scrive $A^j$ (indice in alto).
+> - Somma e multiplo si fanno casella per casella.
+
+## La trasposta: scambiare righe e colonne (p. 36)
+
+La stessa tabella si può scrivere in due versi.
+
+Torna agli acquisti di Anna e Bruno. Avevamo messo le persone sulle righe e gli articoli sulle colonne.
+
+| | quaderni | penne |
+|---|---|---|
+| Anna | 2 | 3 |
+| Bruno | 1 | 5 |
+
+Nessuno vieta di fare il contrario: gli articoli sulle righe e le persone sulle colonne.
+
+| | Anna | Bruno |
+|---|---|---|
+| quaderni | 2 | 1 |
+| penne | 3 | 5 |
+
+Le informazioni sono le stesse: Anna ha sempre 2 quaderni e 3 penne. È cambiato solo il verso della tabella. Quello che prima era una riga, «Anna: 2 e 3», adesso è una colonna.
+
+Con i soli numeri, la prima tabella e la seconda sono queste due matrici:
+
+$$\begin{pmatrix} 2 & 3 \\ 1 & 5 \end{pmatrix} \qquad\qquad \begin{pmatrix} 2 & 1 \\ 3 & 5 \end{pmatrix}$$
+
+La seconda matrice si chiama **trasposta** della prima.
+
+> [!IDEA]
+> **Trasporre** una matrice vuol dire scambiare le righe con le colonne. La prima riga diventa la prima colonna, la seconda riga diventa la seconda colonna, e avanti così.
+
+La trasposta di una matrice $A$ si scrive ${}^tA$, con una piccola $t$ in alto **a sinistra**. Si legge «$A$ trasposta». In altri libri trovi la lettera in alto a destra, maiuscola o minuscola: è la stessa cosa.
+
+### Un esempio passo per passo
+
+Prendiamo una matrice che non è quadrata, così si vede meglio che cosa succede.
+
+$$A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}$$
+
+Ha 2 righe e 3 colonne. Costruiamo la trasposta una riga alla volta.
+
+1. La prima riga di $A$ contiene 1, 2, 3. La scrivo in verticale: è la prima colonna della trasposta.
+2. La seconda riga di $A$ contiene 4, 5, 6. La scrivo in verticale: è la seconda colonna della trasposta.
+3. Le righe di $A$ sono finite, quindi la trasposta è completa.
+
+$${}^tA = \begin{pmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{pmatrix}$$
+
+Guarda che cosa è cambiato.
+
+- **La taglia si è scambiata.** La matrice di partenza era $2 \times 3$, la trasposta è $3 \times 2$. Le 2 righe sono diventate 2 colonne, le 3 colonne sono diventate 3 righe.
+- **Gli indirizzi si sono scambiati.** Nella matrice di partenza il 6 stava nella riga 2 e nella colonna 3. Nella trasposta sta nella riga 3 e nella colonna 2.
+
+C'è un altro modo di vedere la stessa mossa: ribaltare la tabella attorno alla diagonale che scende dall'angolo in alto a sinistra. I numeri su quella diagonale, qui l'1 e il 5, restano dove sono. Tutti gli altri saltano dall'altra parte.
+
+### Come lo scrivono le dispense
+
+Ecco la definizione con le parole e i simboli delle dispense.
 
 > [!DEF] 8.1 · Trasposta
 > La **trasposta** di una matrice $A \in M(m, n, \K)$ è la matrice
@@ -10778,67 +12002,231 @@ Prendi una matrice e **ribaltala lungo la diagonale** che scende dall'angolo in 
 > definita scambiando righe e colonne, cioè:
 > $$({}^tA)_{ij} = A_{ji}.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- ${}^tA$ si legge «$A$ trasposta». La $t$ piccola **in alto a sinistra** è la notazione del corso; in altri libri trovi $A^T$ o $A^t$.
-- $A \in M(m, n, \K)$ e ${}^tA \in M(n, m, \K)$: le dimensioni **si scambiano**. Da $3 \times 2$ si passa a $2 \times 3$.
-- $({}^tA)_{ij} = A_{ji}$: il numero che la trasposta ha nella riga $i$ e colonna $j$ è quello che $A$ ha nella riga $j$ e colonna $i$. Gli indici si scambiano, proprio come righe e colonne.
-- Di conseguenza la riga $i$ di ${}^tA$ contiene gli stessi numeri della colonna $i$ di $A$, e la colonna $j$ di ${}^tA$ gli stessi numeri della riga $j$ di $A$.
+- $A \in M(m, n, \K)$: la matrice $A$ ha $m$ righe e $n$ colonne.
+- ${}^tA \in M(n, m, \K)$: le due lettere si sono scambiate. La trasposta ha $n$ righe e $m$ colonne.
+- L'ultima riga è la regola degli indirizzi. A sinistra c'è il numero che la trasposta ha nella riga $i$ e nella colonna $j$. A destra c'è il numero che $A$ ha nella riga $j$ e nella colonna $i$. I due indici sono scambiati.
+
+Con i numeri dell'esempio di prima la regola degli indirizzi diventa:
+
+$$({}^tA)_{32} = A_{23} = 6$$
+
+A parole: il numero che la trasposta ha nella riga 3 e nella colonna 2 è quello che $A$ ha nella riga 2 e nella colonna 3, cioè 6.
 
 > [!ESEMPIO] 8.2 · Una matrice $3 \times 2$ e la sua trasposta
-> $$A = \begin{pmatrix} 2 & 1 \\ -1 & 0 \\ 5 & 7 \end{pmatrix} \quad\Longrightarrow\quad {}^tA = \begin{pmatrix} 2 & -1 & 5 \\ 1 & 0 & 7 \end{pmatrix}$$
-> La prima colonna di $A$, cioè $2, -1, 5$ letta dall'alto in basso, è diventata la prima riga di ${}^tA$; la seconda colonna $1, 0, 7$ è diventata la seconda riga. Controllo di due caselle con la definizione:
-> - $({}^tA)_{13} = A_{31} = 5$ (riga 3 e colonna 1 di $A$);
-> - $({}^tA)_{21} = A_{12} = 1$ (riga 1 e colonna 2 di $A$).
+> Le dispense partono da questa matrice, che ha 3 righe e 2 colonne:
+> $$A = \begin{pmatrix} 2 & 1 \\ -1 & 0 \\ 5 & 7 \end{pmatrix}$$
+> Questa volta costruiamo la trasposta guardando le colonne.
 >
-> $A$ è $3 \times 2$, ${}^tA$ è $2 \times 3$.
+> 1. La prima colonna di $A$, letta dall'alto in basso, contiene $2, -1, 5$. Diventa la prima riga della trasposta.
+> 2. La seconda colonna di $A$ contiene $1, 0, 7$. Diventa la seconda riga della trasposta.
+>
+> $${}^tA = \begin{pmatrix} 2 & -1 & 5 \\ 1 & 0 & 7 \end{pmatrix}$$
+> $A$ è $3 \times 2$, la sua trasposta è $2 \times 3$.
+>
+> Controllo di due caselle con la regola degli indirizzi.
+>
+> - $({}^tA)_{13}$ deve essere uguale ad $A_{31}$. In $A$, nella riga 3 e colonna 1, c'è 5. In ${}^tA$, nella riga 1 e colonna 3, c'è 5. Torna.
+> - $({}^tA)_{21}$ deve essere uguale ad $A_{12}$. In $A$, nella riga 1 e colonna 2, c'è 1. In ${}^tA$, nella riga 2 e colonna 1, c'è 1. Torna.
 
-Le dispense elencano subito alcune proprietà.
+Nel primo esempio abbiamo trasformato le righe in colonne, nel secondo le colonne in righe. È la stessa mossa vista da due lati, e il risultato non cambia.
+
+::: prova Scrivi la trasposta di $\begin{pmatrix} 1 & 0 & 2 \\ 3 & 1 & 4 \end{pmatrix}$. Che taglia ha?
+La prima riga, che contiene $1, 0, 2$, diventa la prima colonna. La seconda riga, che contiene $3, 1, 4$, diventa la seconda colonna.
+
+La trasposta è $\begin{pmatrix} 1 & 3 \\ 0 & 1 \\ 2 & 4 \end{pmatrix}$. La matrice di partenza era $2 \times 3$, la trasposta è $3 \times 2$.
+:::
+
+### Somme e multipli: prima o dopo è lo stesso
+
+Se devi sommare due matrici e poi trasporre il risultato, puoi anche fare al contrario: prima trasporre e poi sommare. Vediamolo con i numeri. Prendiamo due matrici:
+
+$$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \qquad B = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$$
+
+**Prima strada: sommo, poi traspongo.**
+
+1. La somma, casella per casella:
+   $$A + B = \begin{pmatrix} 1 & 3 \\ 4 & 4 \end{pmatrix}$$
+2. La trasposta della somma (le righe diventano colonne):
+   $${}^t(A + B) = \begin{pmatrix} 1 & 4 \\ 3 & 4 \end{pmatrix}$$
+
+**Seconda strada: traspongo, poi sommo.**
+
+1. Le due trasposte:
+   $${}^tA = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix} \qquad {}^tB = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$$
+2. La loro somma, casella per casella:
+   $${}^tA + {}^tB = \begin{pmatrix} 1 & 4 \\ 3 & 4 \end{pmatrix}$$
+
+Le due strade portano alla stessa matrice. Il motivo: trasporre sposta le caselle, sommare lavora casella per casella. Spostare e poi sommare, oppure sommare e poi spostare, mette gli stessi numeri negli stessi posti.
+
+Lo stesso succede con i multipli. Moltiplichiamo la matrice $A$ di prima per 3, in due modi.
+
+- Prima moltiplico per 3 e poi traspongo:
+  $$3A = \begin{pmatrix} 3 & 6 \\ 9 & 12 \end{pmatrix} \qquad \text{trasposta:} \qquad \begin{pmatrix} 3 & 9 \\ 6 & 12 \end{pmatrix}$$
+- Prima traspongo e poi moltiplico per 3:
+  $${}^tA = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix} \qquad \text{per 3:} \qquad \begin{pmatrix} 3 & 9 \\ 6 & 12 \end{pmatrix}$$
+
+Stesso risultato. In breve: la trasposta **rispetta le somme e i multipli**. Dalla lezione L14 una trasformazione con questa proprietà si chiamerà *lineare*.
+
+### Matrici che girate restano uguali
+
+Alcune matrici quadrate, quando le giri, restano identiche. Guarda questa:
+
+$$S = \begin{pmatrix} 1 & 4 & 5 \\ 4 & 2 & 6 \\ 5 & 6 & 3 \end{pmatrix}$$
+
+La prima riga contiene 1, 4, 5. Anche la prima colonna contiene 1, 4, 5. La seconda riga contiene 4, 2, 6, e la seconda colonna pure. La terza riga contiene 5, 6, 3, e la terza colonna pure. Ogni riga è uguale alla colonna con lo stesso numero. Quindi scambiare righe e colonne non cambia niente: la trasposta di $S$ è ancora $S$.
+
+Una matrice quadrata fatta così si chiama **simmetrica**. La diagonale che scende da sinistra a destra fa da specchio: ogni numero sopra la diagonale ha un gemello sotto, nella casella ribaltata.
+
+L'hai già incontrata nella lezione L06 (Definizione 6.3), scritta con gli indici: $a_{ij} = a_{ji}$ in ogni casella. A parole: il numero di riga $i$ e colonna $j$ è uguale al numero di riga $j$ e colonna $i$.
+
+Esiste anche il caso «a specchio, ma con il segno cambiato»:
+
+$$N = \begin{pmatrix} 0 & 2 & -1 \\ -2 & 0 & 3 \\ 1 & -3 & 0 \end{pmatrix}$$
+
+Qui ogni numero ha, dall'altra parte della diagonale, il suo opposto. Una matrice quadrata fatta così si chiama **antisimmetrica**. Con gli indici: $a_{ij} = -a_{ji}$ in ogni casella. Se la giri, ottieni la stessa matrice con tutti i segni cambiati.
+
+> [!ESEMPIO] · Una simmetrica e un'antisimmetrica
+> **La matrice $S$ è simmetrica.** Controllo le tre coppie di caselle fuori dalla diagonale.
+>
+> | Casella sopra la diagonale | Numero | Casella ribaltata | Numero |
+> |---|---|---|---|
+> | riga 1, colonna 2 | $4$ | riga 2, colonna 1 | $4$ |
+> | riga 1, colonna 3 | $5$ | riga 3, colonna 1 | $5$ |
+> | riga 2, colonna 3 | $6$ | riga 3, colonna 2 | $6$ |
+>
+> I numeri sono uguali a coppie, quindi ${}^tS = S$.
+>
+> **La matrice $N$ è antisimmetrica.** Stesso controllo.
+>
+> | Casella sopra la diagonale | Numero | Casella ribaltata | Numero |
+> |---|---|---|---|
+> | riga 1, colonna 2 | $2$ | riga 2, colonna 1 | $-2$ |
+> | riga 1, colonna 3 | $-1$ | riga 3, colonna 1 | $1$ |
+> | riga 2, colonna 3 | $3$ | riga 3, colonna 2 | $-3$ |
+>
+> I numeri sono opposti a coppie, quindi ${}^tN = -N$. La scrittura $-N$ indica la matrice $N$ con tutti i segni cambiati.
+>
+> **La diagonale di $N$ è fatta di zeri, e non è un caso.** Una casella sulla diagonale, ribaltata, resta sé stessa. Quindi il suo numero deve essere uguale al proprio opposto. L'unico numero uguale al proprio opposto è lo 0. Con gli indici: da $a_{ii} = -a_{ii}$ viene $2a_{ii} = 0$, cioè $a_{ii} = 0$.
+
+### Le proprietà, come le scrivono le dispense
+
+Tutto quello che abbiamo visto sta in tre righe delle dispense.
 
 > [!PROP] · Proprietà della trasposta (p. 36)
 > - ${}^t(A + B) = {}^tA + {}^tB$, $\quad {}^t(\lambda A) = \lambda({}^tA)$.
 > - Se $A \in M(n)$, allora anche ${}^tA \in M(n)$.
 > - $A \in M(n)$ è simmetrica $\iff {}^tA = A$; $A \in M(n)$ è antisimmetrica $\iff {}^tA = -A$.
 
-Vediamole una alla volta.
+**Come si legge.**
 
-1. **Somma e multipli.** Sommare e poi trasporre dà lo stesso risultato che trasporre e poi sommare: in entrambi i casi nella casella $(i, j)$ c'è $a_{ji} + b_{ji}$. Con i numeri:
-   $${}^t\left(\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} + \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\right) = {}^t\begin{pmatrix} 1 & 3 \\ 4 & 4 \end{pmatrix} = \begin{pmatrix} 1 & 4 \\ 3 & 4 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix} + \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}.$$
-   Lo stesso vale per i multipli: moltiplicare ogni numero per $\lambda$ e poi ribaltare, oppure il contrario, porta alla stessa matrice. In altre parole la trasposizione **rispetta somme e multipli**: dalla lezione L14 una funzione con questa proprietà si chiamerà *lineare*.
-2. **Quadrate restano quadrate.** Da $n \times n$ si passa a $n \times n$. La diagonale principale (le caselle $a_{11}, a_{22}, \dots, a_{nn}$) **non si muove**: $({}^tA)_{ii} = A_{ii}$.
-3. **Simmetriche e antisimmetriche.** Nella lezione L06 (Definizione 6.3) una matrice quadrata è simmetrica se $a_{ij} = a_{ji}$ per ogni $i, j$, antisimmetrica se $a_{ij} = -a_{ji}$ per ogni $i, j$. Con la trasposta si dice in una formula: ${}^tA = A$ vuol dire proprio $A_{ji} = A_{ij}$ in ogni casella.
+- **Prima riga.** La trasposta di una somma è la somma delle trasposte. La trasposta di un multiplo è il multiplo della trasposta. La lettera $\lambda$ («lambda») sta per un numero qualsiasi.
+- **Seconda riga.** $A \in M(n)$ vuol dire che $A$ è quadrata, con $n$ righe e $n$ colonne. La riga dice che anche la sua trasposta è quadrata, della stessa taglia. In più i numeri sulla diagonale non si muovono: la loro casella, ribaltata, è la stessa casella.
+- **Terza riga.** Il simbolo $\iff$ si legge «se e solo se», cioè «esattamente quando». Una matrice quadrata è simmetrica esattamente quando è uguale alla sua trasposta. È antisimmetrica esattamente quando la sua trasposta è la matrice con tutti i segni cambiati.
 
-> [!ESEMPIO] · Una simmetrica e un'antisimmetrica
-> $$S = \begin{pmatrix} 1 & 4 & 5 \\ 4 & 2 & 6 \\ 5 & 6 & 3 \end{pmatrix}, \qquad N = \begin{pmatrix} 0 & 2 & -1 \\ -2 & 0 & 3 \\ 1 & -3 & 0 \end{pmatrix}.$$
-> In $S$ la diagonale fa da **specchio**: il 4 in posizione $(1, 2)$ ritorna in posizione $(2, 1)$, il 5 in $(1, 3)$ e $(3, 1)$, il 6 in $(2, 3)$ e $(3, 2)$. Quindi ${}^tS = S$.
+La terza riga è quella che serve di più. Per controllare se una matrice è simmetrica non devi ricordare formule: la giri e guardi se è rimasta uguale.
+
+> [!OLTRE] · altre tre proprietà utili
+> **Girare due volte.** Se trasponi due volte torni alla matrice di partenza: le righe diventano colonne e poi di nuovo righe. Con i simboli: ${}^t({}^tA) = A$.
 >
-> In $N$ ogni numero ritorna dall'altra parte **col segno cambiato**: $2$ e $-2$, $-1$ e $1$, $3$ e $-3$. Quindi ${}^tN = -N$. La diagonale di un'antisimmetrica è tutta nulla: da $a_{ii} = -a_{ii}$ segue $2a_{ii} = 0$, cioè $a_{ii} = 0$.
+> **La differenza tra la trasposta e la matrice.** Per una matrice quadrata, ${}^tA - A$ è la matrice nulla esattamente quando $A$ è simmetrica. Per questo alcuni problemi d'esame chiedono di calcolarla (la trovi in «Verso l'esame»). In più ${}^tA - A$ è sempre antisimmetrica.
+>
+> **Ogni matrice quadrata è la somma di una simmetrica e di un'antisimmetrica** (Martelli, Esempio 2.3.33). La formula è questa:
+> $$A = \underbrace{\frac{A + {}^tA}2}_{\text{simmetrica}} + \underbrace{\frac{A - {}^tA}2}_{\text{antisimmetrica}}.$$
+> Proviamo con una matrice $2 \times 2$ e la sua trasposta:
+> $$A = \begin{pmatrix} 1 & 2 \\ 4 & 3 \end{pmatrix} \qquad {}^tA = \begin{pmatrix} 1 & 4 \\ 2 & 3 \end{pmatrix}$$
+> Primo pezzo: sommo le due matrici e divido ogni casella per 2.
+> $$A + {}^tA = \begin{pmatrix} 2 & 6 \\ 6 & 6 \end{pmatrix} \qquad \frac{A + {}^tA}2 = \begin{pmatrix} 1 & 3 \\ 3 & 3 \end{pmatrix}$$
+> Secondo pezzo: sottraggo e divido ogni casella per 2.
+> $$A - {}^tA = \begin{pmatrix} 0 & -2 \\ 2 & 0 \end{pmatrix} \qquad \frac{A - {}^tA}2 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$$
+> Il primo pezzo è una matrice simmetrica, il secondo è antisimmetrica. Sommati ridanno la matrice di partenza:
+> $$\begin{pmatrix} 1 & 3 \\ 3 & 3 \end{pmatrix} + \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 4 & 3 \end{pmatrix}$$
+> L'esercizio 5 rifà lo stesso conto con una matrice $3 \times 3$.
 
-> [!OLTRE] · altre due proprietà utili
-> - Trasporre due volte riporta alla matrice di partenza: ${}^t({}^tA) = A$.
-> - Ogni matrice quadrata è somma di una simmetrica e di un'antisimmetrica (Martelli, Esempio 2.3.33):
->   $$A = \underbrace{\frac{A + {}^tA}2}_{\text{simmetrica}} + \underbrace{\frac{A - {}^tA}2}_{\text{antisimmetrica}}.$$
->   Per esempio con $A = \begin{pmatrix} 1 & 2 \\ 4 & 3 \end{pmatrix}$ si trova $\frac{A + {}^tA}2 = \begin{pmatrix} 1 & 3 \\ 3 & 3 \end{pmatrix}$ e $\frac{A - {}^tA}2 = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$, che sommate ridanno $A$.
-> - La matrice ${}^tA - A$ è sempre antisimmetrica, ed è nulla **esattamente** quando $A$ è simmetrica. Per questo alcuni problemi d'esame chiedono di calcolarla (vedi «Verso l'esame»).
+### Vettori scritti in riga: la piccola t
 
-### Vettori scritti in riga: la notazione ${}^t(x, y, z)$
+Un vettore colonna occupa tanto spazio sulla pagina: tre numeri, tre righe di testo. Per risparmiare spazio lo si scrive in riga, con una piccola $t$ davanti:
 
-Un vettore colonna occupa tre righe di testo. Per risparmiare spazio lo si scrive come **trasposto di una riga**:
+$${}^t(1, 2, 3) = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$$
 
-$${}^t(1, 2, 3) = {}^t\begin{pmatrix} 1 & 2 & 3 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}.$$
+La $t$ è quella della trasposta. Dice: «prendi questa riga e girala», cioè mettila in verticale.
 
-Negli appelli è ovunque: «$v_1 = {}^t(1, 0, -1)$», «$T({}^t(x, y, z)) = {}^t(x + 2y, \dots)$», sempre con la piccola $t$ in alto a sinistra. Vuol dire sempre: il vettore **colonna** con quelle coordinate.
+Negli appelli questa scrittura è dappertutto. Trovi per esempio «$v_1 = {}^t(1, 0, -1)$». Vuol dire sempre la stessa cosa: il vettore **colonna** con quei numeri, letti dall'alto in basso.
 
-## Il rango di una matrice (p. 37)
+::: prova La matrice $\begin{pmatrix} 1 & 2 \\ 2 & 5 \end{pmatrix}$ è simmetrica? E la matrice $\begin{pmatrix} 1 & 2 \\ 3 & 1 \end{pmatrix}$?
+La prima sì. Fuori dalla diagonale ci sono due caselle, una il ribaltamento dell'altra, e contengono tutte e due 2.
 
-Guarda questa matrice:
+La seconda no. Nella riga 1 e colonna 2 c'è 2, nella riga 2 e colonna 1 c'è 3. Sono diversi.
+:::
 
-$$A = \begin{pmatrix} 2 & 4 & -2 \\ 1 & 2 & -1 \end{pmatrix}.$$
+::: prova Una matrice ha taglia $2 \times 4$. Che taglia ha la sua trasposta?
+$4 \times 2$. Le 2 righe diventano 2 colonne, le 4 colonne diventano 4 righe.
+:::
 
-Ha tre colonne, $A^1 = {}^t(2, 1)$, $A^2 = {}^t(4, 2)$ e $A^3 = {}^t(-2, -1)$, ma sono tutte **multiple della prima**: $A^2 = 2A^1$ e $A^3 = -A^1$. Stanno tutte sulla stessa retta. Tre colonne, ma un solo «pezzo di informazione»: il rango misura proprio questo.
+::: prova Scrivi in verticale il vettore ${}^t(7, -2, 0)$.
+È il vettore colonna $\begin{pmatrix} 7 \\ -2 \\ 0 \end{pmatrix}$: il primo numero in alto, l'ultimo in basso.
+:::
+
+> [!RICORDA]
+> - La **trasposta** ${}^tA$ si ottiene scambiando righe e colonne. Una matrice $m \times n$ diventa $n \times m$.
+> - La regola degli indirizzi: $({}^tA)_{ij} = A_{ji}$.
+> - Una matrice quadrata è **simmetrica** se ${}^tA = A$, **antisimmetrica** se ${}^tA = -A$.
+> - ${}^t(1, 2, 3)$ è un vettore colonna scritto in riga per risparmiare spazio.
+
+## Il rango: quante colonne contano davvero (p. 37)
+
+Una tabella può essere grande e dire poco.
+
+Guarda il listino di una cartoleria che vende quaderni e penne in tre confezioni.
+
+| | quaderni | penne |
+|---|---|---|
+| confezione piccola | 1 | 2 |
+| confezione media | 2 | 4 |
+| confezione grande | 3 | 6 |
+
+Le righe sono tre, ma la seconda e la terza non dicono niente di nuovo. La confezione media è fatta di due confezioni piccole. La confezione grande è fatta di tre confezioni piccole. Chi conosce la prima riga può ricostruire le altre due.
+
+Adesso guarda le colonne. In ogni confezione le penne sono il doppio dei quaderni. Quindi la colonna delle penne è la colonna dei quaderni moltiplicata per 2. Anche qui: chi conosce la prima colonna può ricostruire la seconda.
+
+In questa tabella c'è **un solo** pezzo di informazione, sia guardando le righe sia guardando le colonne. Il numero che conta i pezzi di informazione di una matrice si chiama **rango**. Il rango di questa tabella è 1.
+
+> [!IDEA]
+> Il **rango** di una matrice è il numero di colonne che dicono davvero qualcosa di nuovo: quelle che non si possono ottenere mescolando le altre. Se al posto delle colonne conti le righe, viene lo stesso numero.
+
+Il rango serve in quasi tutto il resto del corso. Nelle lezioni L11 e L12 dice quante soluzioni ha un sistema di equazioni. Nella lezione L14 dice quanto «spazio» riesce a produrre una macchina che trasforma vettori. All'esame c'è quasi sempre una domanda che chiede il rango di una matrice.
+
+Per dire in modo preciso che cosa vuol dire «mescolare» e «qualcosa di nuovo» servono quattro parole delle lezioni precedenti.
+
+> [!RIPASSO] quattro parole delle lezioni L06 e L07
+> **Combinazione lineare** (lezione L06). È una ricetta: prendi dei vettori, moltiplichi ognuno per un numero e sommi i risultati. Per esempio «2 parti del primo vettore più 3 parti del secondo»:
+> $$2 \cdot (1, 0) + 3 \cdot (0, 1) = (2, 0) + (0, 3) = (2, 3)$$
+>
+> **Span** (lezione L06). Lo Span di alcuni vettori è l'insieme di tutto quello che si ottiene con le loro ricette. Lo Span di un solo vettore, che non sia fatto di soli zeri, contiene tutti i suoi multipli: è una retta. Lo Span di due vettori che non stanno sulla stessa retta è un piano.
+>
+> **Dipendenti e indipendenti** (lezione L07). Dei vettori sono **dipendenti** quando almeno uno è un doppione: si ottiene con una ricetta fatta con gli altri. Sono **indipendenti** quando nessuno è un doppione. Per due vettori il controllo è rapido: sono dipendenti esattamente quando uno è un multiplo dell'altro.
+>
+> **Dimensione** (lezione L07). È il numero di vettori indipendenti che servono per ottenere tutto uno spazio. Una retta ha dimensione 1, un piano ha dimensione 2, lo spazio in cui viviamo ha dimensione 3.
+
+### Un esempio da guardare in figura
+
+Prendiamo questa matrice:
+
+$$A = \begin{pmatrix} 2 & 4 & -2 \\ 1 & 2 & -1 \end{pmatrix}$$
+
+Le colonne sono tre. Ognuna ha 2 numeri, quindi è un vettore di $\R^2$: una freccia disegnata sul piano, che parte dall'origine.
+
+| Colonna | Vettore | Confronto con la prima colonna |
+|---|---|---|
+| $A^1$ | $(2, 1)$ | |
+| $A^2$ | $(4, 2)$ | è la prima moltiplicata per $2$ |
+| $A^3$ | $(-2, -1)$ | è la prima moltiplicata per $-1$ |
+
+Guarda la figura. Le tre frecce stanno tutte sulla stessa retta, quella tratteggiata. La seconda colonna è la prima allungata del doppio. La terza è la prima girata dalla parte opposta.
 
 ```grafico
-titolo: Le tre colonne di $A$ stanno sulla retta $y = \frac x2$: lo spazio che generano ha dimensione 1
+titolo: Le tre colonne di $A$ stanno sulla stessa retta: lo spazio che generano ha dimensione 1
 x: -3 5
 y: -2 3
 retta: 0 0 2 1 | grigio | tratteggio
@@ -10847,79 +12235,159 @@ vettore: 2 1 | accento | spesso | $A^1$ | no
 vettore: -2 -1 | viola | $A^3$ | so
 ```
 
+Che cosa si ottiene con le ricette fatte con queste tre colonne? Solo multipli della prima, cioè punti di quella retta. Lo Span delle tre colonne è la retta tratteggiata. Una retta ha dimensione 1. Quindi il rango di $A$ è 1: tre colonne, ma un solo pezzo di informazione.
+
+Per confronto, guarda una matrice con due colonne che **non** stanno sulla stessa retta:
+
+$$B = \begin{pmatrix} 2 & -1 \\ 1 & 2 \end{pmatrix}$$
+
+```grafico
+titolo: Le due colonne di $B$ puntano in direzioni diverse: insieme riempiono tutto il piano
+x: -3 5
+y: -2 3
+vettore: 2 1 | accento | spesso | $B^1$ | ne
+vettore: -1 2 | blu | $B^2$ | no
+```
+
+Qui nessuna delle due colonne è un multiplo dell'altra. Con le ricette fatte con queste due frecce si raggiunge ogni punto del piano. Lo Span delle colonne è tutto il piano, che ha dimensione 2. Quindi il rango di $B$ è 2.
+
+### Come lo scrivono le dispense
+
+Le dispense dicono la stessa cosa con i simboli.
+
 > [!DEF] 8.3 · Rango
 > Sia $A$ una matrice $m \times n$ a coefficienti in $\K$, con colonne $A^1, \dots, A^n$; ciascun $A^i$ è un vettore in $\K^m$. Il **rango** di $A$ (o **rango per colonne** di $A$) è la dimensione dello spazio
 > $$\Span(A^1, \dots, A^n) \subset \K^m.$$
 > Viene comunemente indicato con $\rk(A)$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $A^1, \dots, A^n$ sono le colonne: ognuna ha $m$ numeri, quindi è un vettore di $\K^m$.
-- $\Span(A^1, \dots, A^n)$ è l'insieme di **tutte** le combinazioni lineari $\lambda_1 A^1 + \dots + \lambda_n A^n$ (lezione L06, Definizione 6.6): è un sottospazio di $\K^m$.
-- La **dimensione** è il numero di vettori di una sua base (lezione L07, Definizione 7.11).
-- $\rk$ viene dall'inglese *rank*, «rango».
+- $A^1, \dots, A^n$ è l'elenco delle colonne. La prima si chiama $A^1$, l'ultima $A^n$, e sono $n$ in tutto. I numeri in alto sono indici, non potenze.
+- «Ciascun $A^i$ è un vettore in $\K^m$»: ogni colonna ha $m$ numeri, uno per ogni riga della matrice.
+- $\Span(A^1, \dots, A^n)$ è l'insieme di tutto quello che si ottiene mescolando le colonne con delle ricette.
+- Il simbolo $\subset$ si legge «è contenuto in». Lo Span delle colonne è un pezzo di $\K^m$: può essere una retta, un piano, oppure tutto.
+- $\rk(A)$ si legge «rango di $A$». Le due lettere vengono dall'inglese *rank*.
 
-Nell'esempio sopra $\Span(A^1, A^2, A^3) = \Span(A^1)$ è una retta, che ha dimensione 1: $\rk(A) = 1$.
+Tutta insieme: il rango è la dimensione dello spazio che le colonne riescono a riempire. Nel primo esempio le colonne riempiono solo una retta, e il rango è 1. Nel secondo riempiono tutto il piano, e il rango è 2.
+
+### Un altro modo di dirlo: contare le colonne indipendenti
+
+Torna alla matrice $A$ con le tre colonne sulla stessa retta. Quante colonne indipendenti riesci a scegliere, al massimo? Una sola: appena ne prendi due, una è un multiplo dell'altra. E il rango era proprio 1.
+
+Nella matrice $B$ le due colonne sono indipendenti, e il rango era 2. Non è un caso.
 
 > [!PROP] 8.4
 > Il rango di $A$ è il massimo numero di colonne linearmente indipendenti di $A$.
 
-Le dispense la ricavano «con un'osservazione della lezione 7». Ecco il ragionamento, passo per passo.
+**Come si legge.** «Linearmente indipendenti» è il nome completo di «indipendenti»: nessuna colonna è un doppione delle altre. Guarda tutti i gruppi di colonne indipendenti che puoi scegliere, e prendi il gruppo più numeroso. Il numero delle sue colonne è il rango.
 
-1. Le colonne $A^1, \dots, A^n$ **generano** $W = \Span(A^1, \dots, A^n)$, per definizione.
-2. Se sono linearmente dipendenti, una di loro è combinazione lineare delle altre (Proposizione 7.2). Togliendola lo Span **non cambia**: ogni combinazione che la usava si può riscrivere con le altre.
-3. Si ripete finché le colonne rimaste sono indipendenti. A quel punto sono indipendenti e generano $W$: sono una **base** di $W$, quindi il loro numero è $\dim W = \rk(A)$.
-4. Nessun gruppo di colonne indipendenti può essere più numeroso: in uno spazio di dimensione $d$, più di $d$ vettori sono sempre dipendenti (Martelli, §2.3).
+Il perché, a parole. Se tra le colonne c'è un doppione, puoi toglierlo senza perdere niente: tutto quello che si otteneva usandolo si ottiene anche con le altre colonne. Togli un doppione alla volta. Quando non ce ne sono più, le colonne rimaste sono indipendenti e riempiono ancora lo stesso spazio di prima. Il loro numero è la dimensione di quello spazio, cioè il rango.
 
-Quindi il massimo numero di colonne indipendenti è esattamente $\dim W$. Martelli chiama questa procedura **algoritmo di estrazione** di una base da un insieme di generatori.
+> [!DIM] della Proposizione 8.4
+> Le dispense la ricavano «con un'osservazione della lezione 7». Ecco i passi.
+>
+> 1. Chiamiamo $W$ lo Span delle colonne. Le colonne **generano** $W$: ogni vettore di $W$ è una loro combinazione lineare, per come è fatto lo Span.
+> 2. Se le colonne sono dipendenti, una di loro è combinazione lineare delle altre (Proposizione 7.2). La togliamo. Lo Span non cambia: ogni ricetta che usava quella colonna si riscrive usando le altre.
+> 3. Ripetiamo il passo 2 finché le colonne rimaste sono indipendenti.
+> 4. Le colonne rimaste sono indipendenti e generano $W$. Quindi sono una **base** di $W$ (lezione L07), e il loro numero è la dimensione di $W$, cioè $\rk(A)$.
+> 5. Un gruppo di colonne indipendenti più numeroso non esiste: in uno spazio di dimensione $d$, più di $d$ vettori sono sempre dipendenti (Martelli, §2.3).
+>
+> Quindi il massimo numero di colonne indipendenti è proprio la dimensione di $W$. Martelli chiama questa procedura **algoritmo di estrazione** di una base da un insieme di generatori.
 
-Si può fare lo stesso discorso con le righe.
+### Le righe al posto delle colonne
+
+Tutto quello che abbiamo fatto con le colonne si può rifare con le righe. Torna alla matrice $A$ di prima:
+
+$$A = \begin{pmatrix} 2 & 4 & -2 \\ 1 & 2 & -1 \end{pmatrix}$$
+
+Le righe sono due. La prima è il doppio della seconda: $2 \cdot 1 = 2$, poi $2 \cdot 2 = 4$, poi $2 \cdot (-1) = -2$. Quindi anche tra le righe c'è un solo pezzo di informazione.
 
 > [!DEF] 8.5 · Rango per righe
 > Definiamo il **rango per righe** di $A$ come la dimensione dello spazio generato dalle righe
 > $$\Span(A_1, \dots, A_m) \subset \K^n.$$
 > In altre parole, il rango per righe di $A$ è il rango della trasposta ${}^tA$.
 
-Le righe hanno $n$ numeri, quindi stanno in $\K^n$. «In altre parole»: le colonne di ${}^tA$ sono proprio le righe di $A$, quindi lo Span delle righe di $A$ è lo Span delle colonne di ${}^tA$.
+**Come si legge.**
 
-A prima vista rango per righe e rango per colonne non hanno niente in comune: in una matrice $2 \times 5$ le colonne sono cinque vettori di $\K^2$, le righe due vettori di $\K^5$. Invece:
+- $A_1, \dots, A_m$ è l'elenco delle righe. Sono $m$ e hanno l'indice in basso.
+- Ogni riga ha $n$ numeri, uno per ogni colonna. Per questo lo Span delle righe è contenuto in $\K^n$.
+- «In altre parole»: le righe di una matrice sono le colonne della sua trasposta. Quindi contare le righe indipendenti di $A$ è come contare le colonne indipendenti di ${}^tA$.
+
+A prima vista le righe e le colonne non hanno motivo di dare lo stesso numero. In una matrice $2 \times 5$ le colonne sono cinque vettori con 2 numeri. Le righe sono due vettori con 5 numeri. Sono oggetti diversi, che stanno in posti diversi. Eppure il conteggio viene sempre uguale.
 
 > [!PROP] 8.6
 > Per ogni matrice $A$ il rango per righe è uguale al rango per colonne. Vale allora $\rk({}^tA) = \rk(A)$.
 
+**Come si legge.** Conta le righe indipendenti oppure le colonne indipendenti: viene lo stesso numero. La formula dice la stessa cosa usando la trasposta: una matrice e la sua trasposta hanno lo stesso rango. In pratica, quando devi calcolare un rango puoi guardare le righe oppure le colonne, come ti è più comodo.
+
 > [!ESEMPIO] · Righe e colonne di una matrice $2 \times 5$
 > $$C = \begin{pmatrix} 1 & 2 & 0 & 1 & 3 \\ 2 & 4 & 1 & 0 & 5 \end{pmatrix}$$
-> **Righe.** $C_1 = (1, 2, 0, 1, 3)$ e $C_2 = (2, 4, 1, 0, 5)$ non sono una multipla dell'altra (nella terza posizione $C_1$ ha $0$ e $C_2$ ha $1$), quindi sono indipendenti: il rango per righe è 2.
+> **Le righe.** Sono due: $C_1 = (1, 2, 0, 1, 3)$ e $C_2 = (2, 4, 1, 0, 5)$. Sono una il multiplo dell'altra? Guardo il terzo posto: la prima riga ha 0, la seconda ha 1.
 >
-> **Colonne.** Cinque vettori di $\R^2$: non possono essere indipendenti tutti e cinque, perché $\dim \R^2 = 2$. Ma $C^1 = {}^t(1, 2)$ e $C^3 = {}^t(0, 1)$ non sono multipli, quindi sono indipendenti: il rango per colonne è 2.
+> - La seconda riga non è un multiplo della prima: qualunque numero moltiplicato per 0 dà 0, mai 1.
+> - La prima riga non è un multiplo della seconda: per ottenere 0 da 1 dovrei moltiplicare per 0, ma allora tutta la riga diventerebbe zero.
+>
+> Le due righe sono indipendenti. Il rango per righe è 2.
+>
+> **Le colonne.** Sono cinque vettori con 2 numeri, cioè cinque frecce nel piano. Non possono essere indipendenti tutte e cinque: il piano ha dimensione 2, e lì più di due vettori sono sempre dipendenti. Ma due colonne indipendenti ci sono. Prendo la prima, che contiene 1 e 2, e la terza, che contiene 0 e 1. Guardo il numero in alto: 1 nella prima, 0 nella terza. Per lo stesso motivo di prima, nessuna delle due è un multiplo dell'altra. Il rango per colonne è 2.
 >
 > I due ranghi coincidono, come dice la Proposizione 8.6.
 
-Una conseguenza da ricordare, che non ha bisogno di calcoli:
+### Un tetto per il rango
 
-$$\rk(A) \le \min(m, n).$$
+C'è una conseguenza che non ha bisogno di conti. Il rango conta colonne indipendenti: non possono essere più delle colonne che ci sono. Conta anche righe indipendenti: non possono essere più delle righe che ci sono. Quindi il rango non supera né il numero delle righe né quello delle colonne. Per una matrice con $m$ righe e $n$ colonne si scrive così:
 
-Infatti $\Span(A^1, \dots, A^n)$ è un sottospazio di $\K^m$, quindi ha dimensione al più $m$; ed è generato da $n$ vettori, quindi ha dimensione al più $n$. Una matrice $3 \times 5$ ha rango al massimo 3, una $4 \times 2$ al massimo 2.
+$$\rk(A) \le \min(m, n)$$
+
+**Come si legge.** Il simbolo $\le$ si legge «minore o uguale». La scrittura $\min(m, n)$ si legge «il minimo tra $m$ e $n$»: è il più piccolo dei due numeri. Tutta insieme: il rango è al massimo il più piccolo tra il numero delle righe e il numero delle colonne.
+
+Due esempi. Una matrice $3 \times 5$ ha rango al massimo 3. Una matrice $4 \times 2$ ha rango al massimo 2.
 
 > [!OLTRE] · perché righe e colonne danno lo stesso rango
-> Le dispense non lo dimostrano qui. Martelli (Proposizione 3.2.20) usa le **mosse di Gauss** sulle righe, che vedrai nelle lezioni L11 e L12: non cambiano né il rango per righe né quello per colonne, e trasformano la matrice in una matrice «a scalini», in cui i due ranghi sono entrambi uguali al numero di **pivot** (i primi numeri non nulli delle righe). Da lì segue anche il metodo pratico: **il rango è il numero di righe non nulle di una riduzione a scalini**.
+> Le dispense non lo dimostrano in questa lezione. Il libro di Martelli (Proposizione 3.2.20) usa le **mosse di Gauss**, che vedrai nelle lezioni L11 e L12. Sono tre modi di cambiare le righe di una matrice che lasciano uguali sia il rango per righe sia il rango per colonne. Con queste mosse si arriva a una matrice «a scalini». Lì i due ranghi si leggono a occhio e sono uguali: tutti e due valgono il numero dei **pivot**, cioè dei primi numeri diversi da zero di ogni riga.
+>
+> Da qui viene anche il metodo pratico che userai all'esame: **il rango è il numero di righe non nulle di una riduzione a scalini**.
 
 ### Calcolare il rango a mano
 
+Per le matrici piccole, come quelle del quiz, spesso basta guardare bene.
+
 > [!METODO] Il rango senza mosse di Gauss
-> 1. Se $A$ è la matrice nulla, $\rk(A) = 0$; se ha almeno un numero diverso da zero, $\rk(A) \ge 1$.
-> 2. Scrivi subito il limite $\rk(A) \le \min(m, n)$.
-> 3. Cerca colonne **oppure righe** (il rango è lo stesso, scegli le più comode) nulle, uguali, multiple di altre o somme di altre: toglierle non cambia lo Span.
-> 4. Controlla che quelle rimaste siano indipendenti: due vettori lo sono se non sono multipli; con tre o più risolvi $\lambda_1 v_1 + \lambda_2 v_2 + \dots = 0$.
-> 5. Quante ne restano, tanto vale il rango.
+> 1. Guarda se la matrice è fatta di soli zeri. Se sì, il rango è 0. Se c'è almeno un numero diverso da zero, il rango è almeno 1.
+> 2. Scrivi il tetto: il rango non supera il più piccolo tra il numero delle righe e quello delle colonne.
+> 3. Scegli se guardare le righe o le colonne. Il rango è lo stesso: prendi le più comode.
+> 4. Cerca i doppioni: una riga di soli zeri, due righe uguali, una riga multipla di un'altra, una riga che è la somma di altre. Toglili: il rango non cambia.
+> 5. Controlla che le righe rimaste siano indipendenti. Se sono due, basta che non siano una il multiplo dell'altra. Se sono tre o più, serve il controllo della lezione L07.
+> 6. Conta le righe rimaste: è il rango.
 
 > [!ESEMPIO] · Quattro ranghi
-> 1. $I_3 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$: le colonne sono $e_1, e_2, e_3$, indipendenti (lezione L07, Esempio 7.5). $\rk = 3$.
-> 2. $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$: le colonne ${}^t(1, 3)$ e ${}^t(2, 4)$ non sono multiple (servirebbe $2 = 1 \cdot c$ e $4 = 3 \cdot c$, cioè $c = 2$ e $c = \frac 43$ insieme). $\rk = 2$.
-> 3. $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 2 \end{pmatrix}$: la terza colonna è la somma delle prime due, ${}^t(1, 1, 2) = {}^t(1, 0, 1) + {}^t(0, 1, 1)$, e le prime due non sono multiple. $\rk = 2$.
-> 4. $\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$: qui conviene guardare le righe. La terza è $2 \cdot (4, 5, 6) - (1, 2, 3) = (8 - 1, 10 - 2, 12 - 3) = (7, 8, 9)$, e le prime due non sono multiple. $\rk = 2$.
+> **Prima matrice.**
+> $$I_3 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
+> Le colonne sono i tre vettori $e_1$, $e_2$, $e_3$: ognuno ha un solo 1 e due zeri. Sono indipendenti (lezione L07, Esempio 7.5): nessuno si ottiene dagli altri due, perché ha un 1 proprio dove gli altri due hanno 0. Il rango è 3.
+>
+> **Seconda matrice.**
+> $$\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$$
+> La prima colonna contiene 1 e 3, la seconda contiene 2 e 4. La seconda è un multiplo della prima? In alto, per passare da 1 a 2 devo moltiplicare per 2. Ma allora in basso verrebbe $3 \cdot 2 = 6$, e invece c'è 4. Non sono multiple, quindi sono indipendenti. Il rango è 2.
+>
+> **Terza matrice.**
+> $$\begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 2 \end{pmatrix}$$
+> La terza colonna è la somma delle prime due:
+> $$\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 + 0 \\ 0 + 1 \\ 1 + 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \\ 2 \end{pmatrix}$$
+> Quindi è un doppione, e la tolgo. Le prime due colonne non sono una il multiplo dell'altra: in alto la prima ha 1 e la seconda ha 0, nel mezzo la prima ha 0 e la seconda ha 1. Restano 2 colonne indipendenti. Il rango è 2.
+>
+> **Quarta matrice.**
+> $$\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$$
+> Qui conviene guardare le righe. La terza riga si ottiene dalle prime due: è due volte la seconda, meno la prima.
+>
+> | | primo numero | secondo numero | terzo numero |
+> |---|---|---|---|
+> | 2 volte la riga 2 | $2 \cdot 4 = 8$ | $2 \cdot 5 = 10$ | $2 \cdot 6 = 12$ |
+> | riga 1 | $1$ | $2$ | $3$ |
+> | differenza | $8 - 1 = 7$ | $10 - 2 = 8$ | $12 - 3 = 9$ |
+>
+> Viene $(7, 8, 9)$, che è proprio la terza riga: è un doppione, e la tolgo. Le prime due righe non sono una il multiplo dell'altra: per passare da 1 a 4 devo moltiplicare per 4, ma allora al secondo posto verrebbe $2 \cdot 4 = 8$, e invece c'è 5. Restano 2 righe indipendenti. Il rango è 2.
 
-Nello strumento qui sotto trovi l'ultima matrice. Premi «Calcola»: lo strumento la trasforma con le mosse di Gauss (le vedrai nelle lezioni L10 e L11) e conta le righe non nulle che restano. Poi prova $I_3$ (scrivi `1 0 0; 0 1 0; 0 0 1`), che ha rango 3, e `1 2; 2 4`, che ha rango 1.
+Nello strumento qui sotto trovi la quarta matrice. Premi «Calcola». Lo strumento la trasforma con le mosse di Gauss, che vedrai nelle lezioni L10 e L11, e conta le righe che alla fine non sono fatte di soli zeri. Poi prova a scrivere altre matrici. Con `1 0 0; 0 1 0; 0 0 1` deve venire rango 3. Con `1 2; 2 4` deve venire rango 1.
 
 ```widget gauss
 titolo: Il rango di una matrice, con i passaggi
@@ -10929,38 +12397,166 @@ modi: rango
 ```
 
 > [!TRAPPOLA] Tre errori tipici sul rango
-> - Il rango **non** è il numero di righe, né il numero di righe con qualche numero diverso da zero: la matrice $4$ dell'esempio ha tre righe non nulle ma rango 2.
-> - Il rango non supera mai $\min(m, n)$: una matrice $2 \times 5$ non può avere rango 5.
-> - Due vettori sono dipendenti solo se sono **multipli**; tre vettori possono essere dipendenti anche se a due a due non lo sono (lezione L07, Esempio 7.4). Non fermarti ai controlli a coppie.
+> - Il rango **non** è il numero delle righe. E non è nemmeno il numero delle righe che contengono qualche numero diverso da zero. La quarta matrice dell'esempio ha tre righe piene di numeri, ma il suo rango è 2.
+> - Il rango non supera mai il più piccolo tra il numero delle righe e quello delle colonne. Una matrice $2 \times 5$ non può avere rango 5.
+> - Il controllo «non sono multipli» basta solo per **due** vettori. Tre vettori possono essere dipendenti anche se, presi a due a due, non sono multipli (lezione L07, Esempio 7.4). Succede nella terza e nella quarta matrice dell'esempio: non fermarti ai controlli a coppie.
 
-## Il prodotto fra matrici (pp. 37–38)
+::: prova Qual è il rango di $\begin{pmatrix} 1 & 3 \\ 2 & 6 \end{pmatrix}$?
+La seconda colonna è la prima moltiplicata per 3: $3 \cdot 1 = 3$ e $3 \cdot 2 = 6$. È un doppione. Resta una colonna sola, che non è fatta di zeri. Il rango è 1.
+:::
 
-### L'idea con un esempio di tutti i giorni
+::: prova Qual è il rango di $\begin{pmatrix} 1 & 1 & 0 \\ 2 & 2 & 0 \end{pmatrix}$?
+Guardo le righe: la seconda è il doppio della prima. Resta una riga sola. Il rango è 1.
 
-Anna compra 2 quaderni e 3 penne; Bruno compra 1 quaderno e 5 penne. Nel negozio X un quaderno costa 4 € e una penna 1 €; nel negozio Y un quaderno costa 3 € e una penna 2 €. Quanto spende ciascuno in ciascun negozio?
+Con le colonne viene lo stesso numero: la seconda colonna è uguale alla prima, e la terza è fatta di zeri.
+:::
 
-Per Anna nel negozio X: $2 \cdot 4 + 3 \cdot 1 = 11$ €. È una «riga» (quello che compra Anna) per una «colonna» (i prezzi di X): primo per primo, secondo per secondo, e si somma. Mettendo tutto in due tabelle:
+::: prova Una matrice ha 4 righe e 3 colonne. Può avere rango 4?
+No. Il rango è al massimo il più piccolo tra 4 e 3, cioè 3.
+:::
 
-$$\underbrace{\begin{pmatrix} 2 & 3 \\ 1 & 5 \end{pmatrix}}_{\text{acquisti: persone} \times \text{articoli}} \underbrace{\begin{pmatrix} 4 & 3 \\ 1 & 2 \end{pmatrix}}_{\text{prezzi: articoli} \times \text{negozi}} = \begin{pmatrix} 2 \cdot 4 + 3 \cdot 1 & 2 \cdot 3 + 3 \cdot 2 \\ 1 \cdot 4 + 5 \cdot 1 & 1 \cdot 3 + 5 \cdot 2 \end{pmatrix} = \underbrace{\begin{pmatrix} 11 & 12 \\ 9 & 13 \end{pmatrix}}_{\text{spesa: persone} \times \text{negozi}}.$$
+::: prova Qual è il rango di $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 1 \\ 1 & 3 & 4 \end{pmatrix}$?
+La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $2 + 1 = 3$, poi $3 + 1 = 4$. È un doppione. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1, la seconda con 0. Il rango è 2.
+:::
 
-Il 12 nella riga 1 e colonna 2 è quanto spende Anna (riga 1) nel negozio Y (colonna 2). Nota due cose che valgono sempre: il prodotto si può fare perché le **colonne** della prima tabella e le **righe** della seconda parlano delle stesse cose (gli articoli); il risultato ha le **righe** della prima (le persone) e le **colonne** della seconda (i negozi).
+> [!RICORDA]
+> - Il **rango** $\rk(A)$ è il massimo numero di colonne indipendenti. È la dimensione dello spazio che le colonne riempiono.
+> - Con le righe viene lo stesso numero: $\rk({}^tA) = \rk(A)$.
+> - Il rango è al massimo il più piccolo tra il numero delle righe e quello delle colonne.
+> - In pratica: togli i doppioni e conta quello che resta.
+
+## Il prodotto riga per colonna (pp. 37–38)
+
+Moltiplicare due matrici è come fare il conto della spesa.
+
+È l'operazione più importante della lezione, e quella che all'esame compare più spesso. Non si fa casella per casella, come la somma. Si fa incrociando le righe della prima matrice con le colonne della seconda.
+
+> [!RIPASSO] una somma di prodotti
+> Un conto come $2 \cdot 4 + 3 \cdot 1$ è una *somma di prodotti*. Il puntino $\cdot$ è il segno «per». Si fanno **prima le moltiplicazioni e poi la somma**:
+> $$2 \cdot 4 + 3 \cdot 1 = 8 + 3 = 11$$
+> Con i numeri negativi valgono le regole dei segni: più per meno fa meno, meno per meno fa più. Un numero negativo dopo il puntino si scrive tra parentesi. Due esempi:
+> $$1 \cdot (-1) + 2 \cdot 3 = -1 + 6 = 5 \qquad\qquad (-1) \cdot (-1) + 1 \cdot 3 = 1 + 3 = 4$$
+
+### Un conto solo: una riga per una colonna
+
+Anna compra 2 quaderni e 3 penne. Nel negozio X un quaderno costa 4 euro e una penna costa 1 euro. Quanto spende Anna?
+
+1. Per i quaderni: 2 quaderni da 4 euro, cioè $2 \cdot 4 = 8$ euro.
+2. Per le penne: 3 penne da 1 euro, cioè $3 \cdot 1 = 3$ euro.
+3. In tutto: $8 + 3 = 11$ euro.
+
+Ora scrivi le quantità in riga e i prezzi in colonna. Il conto di prima diventa:
+
+$$\begin{pmatrix} 2 & 3 \end{pmatrix} \begin{pmatrix} 4 \\ 1 \end{pmatrix} = 2 \cdot 4 + 3 \cdot 1 = 11$$
+
+Questa è la mossa di base: **una riga per una colonna**. Moltiplichi il primo numero della riga per il primo della colonna, il secondo per il secondo, e poi sommi tutto. Il risultato è un numero solo.
+
+Perché il conto si possa fare, la riga e la colonna devono contenere **lo stesso numero di numeri**: a ogni quantità deve corrispondere il suo prezzo.
+
+### Tutti i conti insieme: una matrice per una matrice
+
+Adesso le persone sono due e i negozi sono due.
+
+La tabella degli **acquisti**: ogni riga è una persona, ogni colonna è un articolo.
+
+| | quaderni | penne |
+|---|---|---|
+| Anna | 2 | 3 |
+| Bruno | 1 | 5 |
+
+La tabella dei **prezzi**: ogni riga è un articolo, ogni colonna è un negozio.
+
+| | negozio X | negozio Y |
+|---|---|---|
+| quaderno | 4 | 3 |
+| penna | 1 | 2 |
+
+Quanto spende ciascuno in ciascun negozio? Sono quattro conti. Ogni conto è una riga degli acquisti (una persona) per una colonna dei prezzi (un negozio).
+
+| | negozio X | negozio Y |
+|---|---|---|
+| Anna | $2 \cdot 4 + 3 \cdot 1 = 11$ | $2 \cdot 3 + 3 \cdot 2 = 12$ |
+| Bruno | $1 \cdot 4 + 5 \cdot 1 = 9$ | $1 \cdot 3 + 5 \cdot 2 = 13$ |
+
+Con le matrici si scrive così:
+
+$$\begin{pmatrix} 2 & 3 \\ 1 & 5 \end{pmatrix} \begin{pmatrix} 4 & 3 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 11 & 12 \\ 9 & 13 \end{pmatrix}$$
+
+La matrice a destra dell'uguale è il **prodotto** delle due matrici a sinistra. Le due matrici si scrivono una accanto all'altra, senza nessun segno in mezzo.
+
+Guarda dove finisce ogni risultato. Il 12 sta nella riga 1 e nella colonna 2 del prodotto. Viene dalla riga 1 degli acquisti (Anna) e dalla colonna 2 dei prezzi (il negozio Y). Funziona così per ogni casella.
+
+> [!IDEA]
+> Per riempire la casella di riga $i$ e colonna $j$ del prodotto: prendi la riga $i$ della prima matrice e la colonna $j$ della seconda, e fai «riga per colonna».
+
+### Quando si può fare, e di che taglia viene
+
+Guarda le etichette delle tre tabelle.
+
+| Tabella | Sulle righe | Sulle colonne |
+|---|---|---|
+| acquisti | le persone | gli articoli |
+| prezzi | gli articoli | i negozi |
+| spesa | le persone | i negozi |
+
+Il prodotto si può fare perché le **colonne** della prima tabella e le **righe** della seconda parlano delle stesse cose: gli articoli. Se Anna e Bruno comprassero anche le gomme, la tabella degli acquisti avrebbe 3 colonne. Allora alla tabella dei prezzi servirebbero 3 righe, una per articolo. Altrimenti a qualche quantità mancherebbe il prezzo.
+
+Il risultato prende le **righe** dalla prima tabella (le persone) e le **colonne** dalla seconda (i negozi). Gli articoli, che stavano in mezzo, non compaiono più.
+
+Con le taglie la regola diventa questa. Scrivi le due taglie una accanto all'altra, per esempio:
+
+$$(2 \times 3) \cdot (3 \times 4)$$
+
+- I due numeri **interni**, quelli vicini al puntino, devono essere **uguali**. Qui sono 3 e 3: il prodotto si può fare.
+- I due numeri **esterni** danno la taglia del risultato. Qui sono 2 e 4: il prodotto è una matrice $2 \times 4$.
+
+Se i due numeri interni sono diversi, il prodotto **non esiste**.
+
+| Prima matrice | Seconda matrice | Numeri interni | Si può fare? | Taglia del prodotto |
+|---|---|---|---|---|
+| $2 \times 2$ | $2 \times 2$ | 2 e 2 | sì | $2 \times 2$ |
+| $3 \times 2$ | $2 \times 4$ | 2 e 2 | sì | $3 \times 4$ |
+| $2 \times 4$ | $3 \times 2$ | 4 e 3 | no | |
+| $2 \times 3$ | $3 \times 1$ | 3 e 3 | sì | $2 \times 1$ |
+
+### Come lo scrivono le dispense
+
+Le dispense mettono tutto questo in una definizione sola: quando il prodotto si può fare, che taglia ha e come si calcola ogni casella.
 
 > [!DEF] 8.7 · Prodotto riga per colonna
 > Se $A$ è una matrice $m \times n$ e $B$ è una matrice $n \times p$, il prodotto $AB$ è una nuova matrice $m \times p$ definita nel modo seguente: l'elemento $(AB)_{ij}$ della nuova matrice $AB$ è
 > $$(AB)_{ij} = \sum_{k=1}^n A_{ik}B_{kj} = A_{i1}B_{1j} + \dots + A_{in}B_{nj}.$$
 > Questo tipo di prodotto fra matrici si chiama **prodotto riga per colonna** perché l'elemento $(AB)_{ij}$ si ottiene facendo un opportuno prodotto fra la riga $i$-esima $A_i$ di $A$ e la colonna $j$-esima $B^j$ di $B$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- **Le taglie.** $(m \times \mathbf{n}) \cdot (\mathbf{n} \times p) = m \times p$: i due numeri «interni» devono essere **uguali**, quelli «esterni» danno la taglia del risultato. Se i numeri interni sono diversi, il prodotto **non esiste**.
-- **Il simbolo $\sum$** (sigma maiuscola) è una somma: $\sum_{k=1}^n x_k$ vuol dire $x_1 + x_2 + \dots + x_n$. L'indice $k$ scorre da 1 a $n$.
-- **Riga per colonna.** La riga $A_i = (A_{i1}, \dots, A_{in})$ e la colonna $B^j = {}^t(B_{1j}, \dots, B_{nj})$ hanno entrambe $n$ numeri: si moltiplicano **il primo con il primo, il secondo con il secondo**, e così via, e si sommano i risultati. Per questo servono tanti numeri nella riga quanti nella colonna.
-- Il risultato va nella casella che sta **nella stessa riga della riga usata e nella stessa colonna della colonna usata**. Schematicamente, riga 2 per colonna 2:
-  $$\begin{pmatrix} \cdot & \cdot \\ a & b \\ \cdot & \cdot \end{pmatrix} \begin{pmatrix} \cdot & x & \cdot \\ \cdot & y & \cdot \end{pmatrix} = \begin{pmatrix} \cdot & \cdot & \cdot \\ \cdot & ax + by & \cdot \\ \cdot & \cdot & \cdot \end{pmatrix}$$
+- **Le taglie.** La prima matrice ha $m$ righe e $n$ colonne. La seconda ha $n$ righe e $p$ colonne. La lettera $n$ compare due volte: sono i due numeri interni, che devono essere uguali. Il prodotto ha $m$ righe e $p$ colonne, cioè i due numeri esterni.
+- $AB$ si legge «$A$ per $B$».
+- $(AB)_{ij}$ è il numero che il prodotto ha nella riga $i$ e nella colonna $j$. Le dispense lo chiamano **elemento**: è un altro nome per il numero che sta in una casella.
+- **Il simbolo $\sum$** è una sigma maiuscola, la S dell'alfabeto greco. Si legge «somma». Sotto c'è scritto da dove parte il contatore $k$, sopra dove arriva. Qui il contatore parte da 1 e arriva a $n$: scrivi il pezzo che segue con $k = 1$, poi con $k = 2$, e avanti fino a $n$. Poi sommi tutto.
+- $A_{ik}B_{kj}$ è un prodotto di due numeri: il numero di posto $k$ nella riga $i$ di $A$, per il numero di posto $k$ nella colonna $j$ di $B$.
+- Dopo il secondo uguale c'è la stessa somma scritta per esteso: il primo della riga per il primo della colonna, più il secondo per il secondo, e avanti fino all'ultimo.
+- «Riga $i$-esima» vuol dire «la riga numero $i$». La scrittura «-esima» è quella di «terza», «quarta», «quinta», con una lettera al posto del numero.
+
+Proviamo la formula sulla spesa. La casella di riga 1 e colonna 2 del prodotto è:
+
+$$(AB)_{12} = A_{11}B_{12} + A_{12}B_{22} = 2 \cdot 3 + 3 \cdot 2 = 12$$
+
+Il contatore $k$ fa solo due passi, perché la riga ha due numeri. È lo stesso conto di Anna nel negozio Y.
+
+Lo schema qui sotto mostra dove va a finire un risultato. I puntini stanno al posto dei numeri che in quel momento non servono.
+
+$$\begin{pmatrix} \cdot & \cdot \\ a & b \\ \cdot & \cdot \end{pmatrix} \begin{pmatrix} \cdot & x & \cdot \\ \cdot & y & \cdot \end{pmatrix} = \begin{pmatrix} \cdot & \cdot & \cdot \\ \cdot & ax + by & \cdot \\ \cdot & \cdot & \cdot \end{pmatrix}$$
+
+La riga 2 della prima matrice per la colonna 2 della seconda dà un numero. Quel numero va nella casella di riga 2 e colonna 2 del prodotto: **stessa riga della riga usata, stessa colonna della colonna usata**.
 
 > [!ESEMPIO] 8.8 · Una $3 \times 2$ per una $2 \times 4$
 > $$A = \begin{pmatrix} 1 & 2 \\ -1 & 1 \\ 0 & 3 \end{pmatrix}, \qquad B = \begin{pmatrix} -1 & 2 & 0 & 1 \\ 3 & 0 & 3 & 0 \end{pmatrix}$$
-> $A$ è $3 \times 2$ e $B$ è $2 \times 4$: i numeri interni sono $2$ e $2$, quindi $AB$ esiste ed è $3 \times 4$. Le righe di $A$ sono $(1, 2)$, $(-1, 1)$, $(0, 3)$; le colonne di $B$ sono ${}^t(-1, 3)$, ${}^t(2, 0)$, ${}^t(0, 3)$, ${}^t(1, 0)$. I dodici conti:
+> **Si può fare?** $A$ è $3 \times 2$ e $B$ è $2 \times 4$. I numeri interni sono 2 e 2: il prodotto $AB$ esiste. I numeri esterni sono 3 e 4: il prodotto è una matrice $3 \times 4$, con dodici caselle da riempire.
+>
+> **Che cosa serve.** Le righe di $A$ sono $(1, 2)$, $(-1, 1)$ e $(0, 3)$. Le colonne di $B$, lette dall'alto in basso, contengono $-1$ e $3$, poi $2$ e $0$, poi $0$ e $3$, poi $1$ e $0$.
+>
+> **I dodici conti.** In ogni casella: la riga di $A$ scritta a sinistra per la colonna di $B$ scritta in alto.
 >
 > | | colonna 1 | colonna 2 | colonna 3 | colonna 4 |
 > |---|---|---|---|---|
@@ -10968,10 +12564,11 @@ Pezzo per pezzo:
 > | riga 2 | $(-1)(-1) + 1 \cdot 3 = 4$ | $(-1) \cdot 2 + 1 \cdot 0 = -2$ | $(-1) \cdot 0 + 1 \cdot 3 = 3$ | $(-1) \cdot 1 + 1 \cdot 0 = -1$ |
 > | riga 3 | $0 \cdot (-1) + 3 \cdot 3 = 9$ | $0 \cdot 2 + 3 \cdot 0 = 0$ | $0 \cdot 0 + 3 \cdot 3 = 9$ | $0 \cdot 1 + 3 \cdot 0 = 0$ |
 >
+> **Il risultato.**
 > $$AB = \begin{pmatrix} 1 & 2 \\ -1 & 1 \\ 0 & 3 \end{pmatrix} \cdot \begin{pmatrix} -1 & 2 & 0 & 1 \\ 3 & 0 & 3 & 0 \end{pmatrix} = \begin{pmatrix} 5 & 2 & 6 & 1 \\ 4 & -2 & 3 & -1 \\ 9 & 0 & 9 & 0 \end{pmatrix}.$$
 > Possiamo fare il prodotto $AB$ perché il numero di colonne di $A$ è pari al numero di righe di $B$. Viceversa, **non** possiamo fare il prodotto $BA$: il numero di colonne di $B$ è 4, mentre il numero di righe di $A$ è 3.
 
-Nello strumento qui sotto ci sono le matrici dell'Esempio 8.8: premi «Calcola» e confronta i dodici conti con la tabella. Poi scambia le due matrici (scrivi $B$ nel primo riquadro e $A$ nel secondo): lo strumento ti avvisa che il prodotto non si può fare.
+Nello strumento qui sotto ci sono le due matrici dell'Esempio 8.8. Premi «Calcola» e confronta i dodici conti con la tabella. Poi scambia le due matrici: scrivi la seconda nel primo riquadro e la prima nel secondo. Lo strumento ti avvisa che il prodotto non si può fare.
 
 ```widget gauss
 titolo: Il prodotto riga per colonna, un elemento alla volta
@@ -10981,42 +12578,171 @@ modo: prodotto
 modi: prodotto
 ```
 
-Un caso speciale importantissimo: il secondo fattore è un vettore colonna.
+::: prova Calcola la riga per colonna $\begin{pmatrix} 1 & 2 & 3 \end{pmatrix} \begin{pmatrix} 2 \\ 0 \\ 1 \end{pmatrix}$.
+Primo per primo, secondo per secondo, terzo per terzo, poi sommo: $1 \cdot 2 + 2 \cdot 0 + 3 \cdot 1 = 2 + 0 + 3 = 5$.
+:::
+
+::: prova $A$ è una matrice $3 \times 2$ e $B$ è una matrice $2 \times 5$. Si può fare $AB$? Di che taglia viene? E $BA$?
+Per $AB$ scrivo $(3 \times 2) \cdot (2 \times 5)$. I numeri interni sono 2 e 2: si può fare. I numeri esterni sono 3 e 5: viene una matrice $3 \times 5$.
+
+Per $BA$ scrivo $(2 \times 5) \cdot (3 \times 2)$. I numeri interni sono 5 e 3: sono diversi, quindi $BA$ non esiste.
+:::
+
+::: prova Calcola $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$.
+Riga 1 per colonna 1: $1 \cdot 1 + 2 \cdot 2 = 5$.
+
+Riga 1 per colonna 2: $1 \cdot 0 + 2 \cdot 1 = 2$.
+
+Riga 2 per colonna 1: $3 \cdot 1 + 4 \cdot 2 = 11$.
+
+Riga 2 per colonna 2: $3 \cdot 0 + 4 \cdot 1 = 4$.
+
+Il prodotto è $\begin{pmatrix} 5 & 2 \\ 11 & 4 \end{pmatrix}$.
+:::
+
+### Una matrice per un vettore
+
+C'è un caso speciale che userai moltissimo: la seconda matrice ha una sola colonna. Cioè è un vettore colonna.
+
+Le taglie dicono subito che cosa viene fuori. Una matrice $3 \times 2$ per un vettore con 2 numeri è $(3 \times 2) \cdot (2 \times 1)$. I numeri interni sono uguali, e il risultato è $3 \times 1$: un vettore colonna con 3 numeri. In breve: **matrice per vettore dà un vettore**.
 
 > [!ESEMPIO] 8.9 · Matrice per vettore
 > Se $A$ è una matrice $m \times n$ e $x$ è una matrice $n \times 1$, cioè un vettore colonna $x \in \K^n$, allora il prodotto $Ax$ è una matrice $m \times 1$, cioè un vettore colonna in $\K^m$. Ad esempio:
 > $$\begin{pmatrix} 1 & 2 \\ -1 & 1 \\ 0 & 3 \end{pmatrix} \cdot \begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} 1 \cdot 1 + 2 \cdot (-1) \\ (-1) \cdot 1 + 1 \cdot (-1) \\ 0 \cdot 1 + 3 \cdot (-1) \end{pmatrix} = \begin{pmatrix} -1 \\ -2 \\ -3 \end{pmatrix}.$$
-
-> [!OLTRE] · $Ax$ è una combinazione delle colonne di $A$
-> Guarda di nuovo l'Esempio 8.9, questa volta **per colonne**:
-> $$1 \cdot \begin{pmatrix} 1 \\ -1 \\ 0 \end{pmatrix} + (-1) \cdot \begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{pmatrix} -1 \\ -2 \\ -3 \end{pmatrix}.$$
-> In generale $Ax = x_1 A^1 + x_2 A^2 + \dots + x_n A^n$: il prodotto matrice per vettore è la **combinazione lineare delle colonne** con coefficienti le coordinate di $x$. Quindi l'insieme di tutti i vettori $Ax$ è $\Span(A^1, \dots, A^n)$, e il rango è la sua dimensione.
+> I tre conti, uno per ogni riga della matrice:
 >
-> È anche il motivo per cui questo prodotto, all'apparenza strano, è quello giusto: il sistema $\begin{cases} 2x + 3y = 5 \\ x - y = 1 \end{cases}$ si scrive in una riga come
-> $$\begin{pmatrix} 2 & 3 \\ 1 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 5 \\ 1 \end{pmatrix},$$
-> cioè $Ax = b$ (Martelli, §3.4.2). Sui sistemi lineari scritti così si lavora dalla lezione L11.
+> | Riga della matrice | Riga per il vettore | Risultato |
+> |---|---|---|
+> | $(1, 2)$ | $1 \cdot 1 + 2 \cdot (-1) = 1 - 2$ | $-1$ |
+> | $(-1, 1)$ | $(-1) \cdot 1 + 1 \cdot (-1) = -1 - 1$ | $-2$ |
+> | $(0, 3)$ | $0 \cdot 1 + 3 \cdot (-1) = 0 - 3$ | $-3$ |
+>
+> La matrice ha 3 righe, quindi il risultato ha 3 numeri. Il vettore di partenza ne aveva 2.
 
-### Il prodotto non è commutativo
+> [!OLTRE] · una matrice per un vettore è una ricetta fatta con le colonne
+> Guarda di nuovo l'Esempio 8.9, questa volta **per colonne**. Prendi 1 volta la prima colonna della matrice e $-1$ volte la seconda:
+> $$1 \cdot \begin{pmatrix} 1 \\ -1 \\ 0 \end{pmatrix} + (-1) \cdot \begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{pmatrix} 1 - 2 \\ -1 - 1 \\ 0 - 3 \end{pmatrix} = \begin{pmatrix} -1 \\ -2 \\ -3 \end{pmatrix}.$$
+> Viene lo stesso vettore di prima. Succede sempre: il prodotto di una matrice per un vettore è la **combinazione lineare delle colonne** della matrice, e le quantità della ricetta sono i numeri del vettore. Con le lettere:
+> $$Ax = x_1 A^1 + x_2 A^2 + \dots + x_n A^n.$$
+> Qui $x_1, \dots, x_n$ sono i numeri del vettore $x$, e $A^1, \dots, A^n$ sono le colonne di $A$.
+>
+> Questo spiega due cose. La prima riguarda il rango: i vettori che si possono ottenere come $Ax$ sono tutte le ricette fatte con le colonne, cioè lo Span delle colonne. Il rango è la dimensione di questo Span.
+>
+> La seconda riguarda i sistemi di equazioni. Prendi il sistema
+> $$\begin{cases} 2x + 3y = 5 \\ x - y = 1 \end{cases}$$
+> Si scrive in una riga sola con un prodotto:
+> $$\begin{pmatrix} 2 & 3 \\ 1 & -1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 5 \\ 1 \end{pmatrix}.$$
+> Infatti la riga 1 della matrice per il vettore dà $2x + 3y$, e la riga 2 dà $x - y$: sono i lati sinistri delle due equazioni. In breve si scrive $Ax = b$ (Martelli, §3.4.2). Dalla lezione L11 i sistemi si scrivono così. È il motivo per cui il prodotto riga per colonna, che a prima vista sembra strano, è quello giusto.
 
-Se $A$ e $B$ sono due matrici $n \times n$, si possono fare sia $AB$ sia $BA$, e il risultato è $n \times n$ in entrambi i casi. Ma **in generale questi due prodotti non sono uguali**: il prodotto di matrici **non è commutativo**.
+::: prova Calcola $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix}$.
+Riga 1 per il vettore: $1 \cdot 1 + 2 \cdot 1 = 3$.
+
+Riga 2 per il vettore: $3 \cdot 1 + 4 \cdot 1 = 7$.
+
+Il risultato è il vettore colonna $\begin{pmatrix} 3 \\ 7 \end{pmatrix}$.
+:::
+
+> [!RICORDA]
+> - **Riga per colonna**: primo per primo, secondo per secondo, poi si somma tutto.
+> - La casella di riga $i$ e colonna $j$ del prodotto è la riga $i$ della prima matrice per la colonna $j$ della seconda.
+> - Taglie: $(m \times n) \cdot (n \times p)$ dà $m \times p$. I numeri interni devono essere uguali, quelli esterni danno la taglia.
+> - Una matrice per un vettore dà un vettore.
+
+## Nel prodotto l'ordine conta (pp. 38–39)
+
+Con i numeri l'ordine di una moltiplicazione non conta: tre per cinque e cinque per tre fanno tutti e due quindici. Con le matrici non è più così.
+
+La proprietà «l'ordine non conta» si chiama **commutativa** (lezione L01). Il prodotto di matrici **non è commutativo**. È il tranello più usato nei quiz d'esame, quindi vale la pena di guardarlo bene.
+
+Prendi due matrici $A$ e $B$. Il prodotto con $A$ a sinistra si scrive $AB$. Quello con $B$ a sinistra si scrive $BA$. Quando scambi le due matrici possono succedere tre cose.
+
+**Primo caso: uno dei due prodotti non esiste.** È quello che succede nell'Esempio 8.8. Lì $A$ è $3 \times 2$ e $B$ è $2 \times 4$, e $AB$ si può fare. Per $BA$ le taglie sono $(2 \times 4) \cdot (3 \times 2)$: i numeri interni sono 4 e 3, quindi il prodotto non esiste.
+
+**Secondo caso: esistono tutti e due, ma hanno taglie diverse.** Se $A$ è $3 \times 2$ e $B$ è $2 \times 3$, allora $AB$ è una matrice $3 \times 3$ e $BA$ è una matrice $2 \times 2$. Due matrici di taglia diversa non possono essere uguali. È l'Esercizio 8.15 delle dispense, che qui trovi come esercizio 6.
+
+**Terzo caso: stessa taglia, numeri diversi.** Se $A$ e $B$ sono quadrate della stessa taglia, i due prodotti esistono e hanno la stessa taglia. Ma di solito contengono numeri diversi.
+
+Proviamo con le due tabelle della spesa. Con gli acquisti a sinistra e i prezzi a destra avevamo trovato:
+
+$$\begin{pmatrix} 2 & 3 \\ 1 & 5 \end{pmatrix} \begin{pmatrix} 4 & 3 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 11 & 12 \\ 9 & 13 \end{pmatrix}$$
+
+Adesso mettiamo i prezzi a sinistra e gli acquisti a destra:
+
+$$\begin{pmatrix} 4 & 3 \\ 1 & 2 \end{pmatrix} \begin{pmatrix} 2 & 3 \\ 1 & 5 \end{pmatrix} = \begin{pmatrix} 4 \cdot 2 + 3 \cdot 1 & 4 \cdot 3 + 3 \cdot 5 \\ 1 \cdot 2 + 2 \cdot 1 & 1 \cdot 3 + 2 \cdot 5 \end{pmatrix} = \begin{pmatrix} 11 & 27 \\ 4 & 13 \end{pmatrix}$$
+
+È un'altra matrice. Del resto questo secondo conto, per la spesa, non ha nemmeno un significato: incrocia i negozi con le persone al posto degli articoli.
+
+Le dispense fanno un esempio ancora più piccolo, con matrici quasi vuote.
 
 > [!ESEMPIO] 8.10 · $AB \neq BA$
-> Siano $A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ e $B = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$.
+> Le dispense prendono queste due matrici $2 \times 2$:
+> $$A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} \qquad B = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$$
+> I due prodotti esistono tutti e due, perché le matrici sono quadrate e della stessa taglia.
 >
-> $AB$, casella per casella: $(1, 1)$: $1 \cdot 0 + 0 \cdot 0 = 0$; $(1, 2)$: $1 \cdot 1 + 0 \cdot 0 = 1$; $(2, 1)$: $0 \cdot 0 + 0 \cdot 0 = 0$; $(2, 2)$: $0 \cdot 1 + 0 \cdot 0 = 0$.
+> **Il prodotto $AB$.** Le righe di $A$ per le colonne di $B$.
 >
-> $BA$: $(1, 1)$: $0 \cdot 1 + 1 \cdot 0 = 0$; $(1, 2)$: $0 \cdot 0 + 1 \cdot 0 = 0$; $(2, 1)$: $0 \cdot 1 + 0 \cdot 0 = 0$; $(2, 2)$: $0 \cdot 0 + 0 \cdot 0 = 0$.
+> | | colonna 1 di $B$ | colonna 2 di $B$ |
+> |---|---|---|
+> | riga 1 di $A$ | $1 \cdot 0 + 0 \cdot 0 = 0$ | $1 \cdot 1 + 0 \cdot 0 = 1$ |
+> | riga 2 di $A$ | $0 \cdot 0 + 0 \cdot 0 = 0$ | $0 \cdot 1 + 0 \cdot 0 = 0$ |
+>
+> **Il prodotto $BA$.** Le righe di $B$ per le colonne di $A$.
+>
+> | | colonna 1 di $A$ | colonna 2 di $A$ |
+> |---|---|---|
+> | riga 1 di $B$ | $0 \cdot 1 + 1 \cdot 0 = 0$ | $0 \cdot 0 + 1 \cdot 0 = 0$ |
+> | riga 2 di $B$ | $0 \cdot 1 + 0 \cdot 0 = 0$ | $0 \cdot 0 + 0 \cdot 0 = 0$ |
+>
+> **Il confronto.**
 > $$AB = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = B, \qquad BA = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} = 0,$$
-> quindi $AB \neq BA$.
+> quindi $AB \neq BA$. Il simbolo $\neq$ si legge «diverso da». Lo $0$ dopo l'ultimo uguale è la matrice nulla, quella fatta di soli zeri.
 
-L'esempio mostra anche che alcune regole dei numeri, con le matrici, non valgono più.
+L'esempio mostra anche altre due cose che con i numeri non succedono mai.
+
+> [!RIPASSO] due regole dei numeri che qui si perdono
+> **Se un prodotto di due numeri fa zero, almeno uno dei due è zero.** Per esempio da $3 \cdot x = 0$ si ricava che $x$ è 0.
+>
+> **Si può dividere.** Se $a \cdot b = b$ e $b$ non è zero, dividendo tutti e due i lati per $b$ si ricava che $a$ è 1.
 
 > [!TRAPPOLA] Con le matrici non si «semplifica»
-> - $BA = 0$ anche se $A \neq 0$ e $B \neq 0$: un prodotto nullo **non** implica che un fattore sia nullo.
-> - $AB = B$, ma $A$ non è la matrice che «non cambia niente» (la matrice identità $I_2$, lezione L09): da $AB = B$ **non** si può «dividere per $B$» e concludere $A = I_2$.
-> - L'ordine dei fattori va sempre rispettato: $(A + B)^2 = (A + B)(A + B) = A^2 + AB + BA + B^2$, che in generale **non** è $A^2 + 2AB + B^2$ (esercizio 6).
+> - **Un prodotto può essere nullo anche se nessun fattore lo è.** Nell'Esempio 8.10 $BA$ è la matrice nulla. Ma né $A$ né $B$ sono la matrice nulla: tutte e due contengono un 1.
+> - **Non si può «dividere» per una matrice.** Nell'esempio $AB = B$. Con i numeri si dividerebbe per $B$ e si concluderebbe che $A$ «vale 1». Qui no: $A$ non è la matrice che nel prodotto non cambia niente. Quella si chiama matrice identità, e la trovi più sotto.
+> - **L'ordine dei fattori va sempre rispettato.** Il quadrato di una somma è $(A + B)(A + B) = A^2 + AB + BA + B^2$, dove $A^2$ vuol dire $A$ per $A$. Di solito **non** è uguale ad $A^2 + 2AB + B^2$, perché $AB$ e $BA$ sono diversi (esercizio 9).
 
-Anche quando $AB$ e $BA$ esistono entrambi, possono avere **taglie diverse**: se $A$ è $3 \times 2$ e $B$ è $2 \times 3$, allora $AB$ è $3 \times 3$ e $BA$ è $2 \times 2$ (Esercizio 8.15). Le regole che invece funzionano come con i numeri sono queste.
+### Le regole che restano vere
+
+Tre regole dei numeri valgono anche per le matrici. Prima le controlliamo su un esempio.
+
+> [!ESEMPIO] · Parentesi, somme e numeri: tre controlli
+> $$A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} \qquad B = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix} \qquad C = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$$
+> **Primo controllo: le parentesi si possono spostare.** Le parentesi dicono quale prodotto va fatto per primo. Vogliamo vedere che $(AB)C$ e $A(BC)$ danno la stessa matrice.
+>
+> Prima strada. Calcolo $AB$:
+> $$AB = \begin{pmatrix} 1 \cdot 1 + 2 \cdot 1 & 1 \cdot 0 + 2 \cdot 1 \\ 0 \cdot 1 + 1 \cdot 1 & 0 \cdot 0 + 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 3 & 2 \\ 1 & 1 \end{pmatrix}$$
+> Poi moltiplico il risultato per $C$:
+> $$(AB)C = \begin{pmatrix} 3 \cdot 0 + 2 \cdot 1 & 3 \cdot 1 + 2 \cdot 0 \\ 1 \cdot 0 + 1 \cdot 1 & 1 \cdot 1 + 1 \cdot 0 \end{pmatrix} = \begin{pmatrix} 2 & 3 \\ 1 & 1 \end{pmatrix}$$
+> Seconda strada. Calcolo $BC$:
+> $$BC = \begin{pmatrix} 1 \cdot 0 + 0 \cdot 1 & 1 \cdot 1 + 0 \cdot 0 \\ 1 \cdot 0 + 1 \cdot 1 & 1 \cdot 1 + 1 \cdot 0 \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$$
+> Poi moltiplico $A$ per il risultato:
+> $$A(BC) = \begin{pmatrix} 1 \cdot 0 + 2 \cdot 1 & 1 \cdot 1 + 2 \cdot 1 \\ 0 \cdot 0 + 1 \cdot 1 & 0 \cdot 1 + 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 3 \\ 1 & 1 \end{pmatrix}$$
+> Le due strade danno la stessa matrice.
+>
+> **Secondo controllo: moltiplicare per una somma.** Vogliamo vedere che $A(B + C)$ e $AB + AC$ danno la stessa matrice.
+>
+> Prima strada. Sommo $B$ e $C$ casella per casella, poi moltiplico $A$ per la somma:
+> $$B + C = \begin{pmatrix} 1 & 1 \\ 2 & 1 \end{pmatrix} \qquad A(B + C) = \begin{pmatrix} 1 \cdot 1 + 2 \cdot 2 & 1 \cdot 1 + 2 \cdot 1 \\ 0 \cdot 1 + 1 \cdot 2 & 0 \cdot 1 + 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 5 & 3 \\ 2 & 1 \end{pmatrix}$$
+> Seconda strada. $AB$ l'ho già. Calcolo $AC$ e poi sommo:
+> $$AC = \begin{pmatrix} 1 \cdot 0 + 2 \cdot 1 & 1 \cdot 1 + 2 \cdot 0 \\ 0 \cdot 0 + 1 \cdot 1 & 0 \cdot 1 + 1 \cdot 0 \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix}$$
+> $$AB + AC = \begin{pmatrix} 3 + 2 & 2 + 1 \\ 1 + 1 & 1 + 0 \end{pmatrix} = \begin{pmatrix} 5 & 3 \\ 2 & 1 \end{pmatrix}$$
+> Anche qui le due strade danno la stessa matrice.
+>
+> **Terzo controllo: un numero si può spostare.** Moltiplico per 2 in due modi. Il doppio del prodotto $AB$ è
+> $$2(AB) = 2 \begin{pmatrix} 3 & 2 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 6 & 4 \\ 2 & 2 \end{pmatrix}$$
+> Se invece raddoppio prima $A$ e poi moltiplico per $B$:
+> $$2A = \begin{pmatrix} 2 & 4 \\ 0 & 2 \end{pmatrix} \qquad (2A)B = \begin{pmatrix} 2 \cdot 1 + 4 \cdot 1 & 2 \cdot 0 + 4 \cdot 1 \\ 0 \cdot 1 + 2 \cdot 1 & 0 \cdot 0 + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} 6 & 4 \\ 2 & 2 \end{pmatrix}$$
+> Stessa matrice.
+
+Le dispense raccolgono queste tre regole in una proposizione.
 
 > [!PROP] 8.11
 > Per ogni $A, B, C$ matrici per cui i prodotti e le somme abbiano senso e per ogni $\lambda \in \K$, abbiamo
@@ -11024,133 +12750,418 @@ Anche quando $AB$ e $BA$ esistono entrambi, possono avere **taglie diverse**: se
 > 2. $A(B + C) = AB + AC$ e $(A + B)C = AC + BC$ (distributività),
 > 3. $\lambda(AB) = (\lambda A)B = A(\lambda B)$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- «Per cui i prodotti e le somme abbiano senso»: le taglie devono essere compatibili. Per esempio in (1) $A$ è $m \times n$, $B$ è $n \times p$, $C$ è $p \times q$.
-- **Associatività**: si può scrivere $ABC$ senza parentesi e calcolarlo come si preferisce, $(AB)C$ oppure $A(BC)$. Ma **l'ordine delle lettere resta quello**: $ABC$ non è $ACB$.
-- **Distributività** in due versioni, perché il prodotto non è commutativo: nella prima $A$ moltiplica **a sinistra** e resta a sinistra, nella seconda $C$ moltiplica **a destra** e resta a destra.
-- Gli **scalari** invece si spostano liberamente: $\lambda(AB) = (\lambda A)B = A(\lambda B)$.
+- «Per cui i prodotti e le somme abbiano senso»: le taglie devono andare d'accordo. In ogni prodotto i numeri interni devono essere uguali, e si sommano solo matrici della stessa taglia.
+- $\lambda \in \K$ vuol dire che $\lambda$ è un numero qualsiasi.
+- **Riga 1, associatività.** In un prodotto di tre matrici puoi cominciare da dove vuoi: dal prodotto delle ultime due oppure dal prodotto delle prime due. Per questo si scrive $ABC$ senza parentesi. Attenzione: si spostano le parentesi, **non le lettere**. $ABC$ e $ACB$ sono due cose diverse.
+- **Riga 2, distributività.** Moltiplicare per una somma è come moltiplicare per i due pezzi e poi sommare. Le versioni sono due perché l'ordine conta. Nella prima $A$ moltiplica da sinistra e resta a sinistra. Nella seconda $C$ moltiplica da destra e resta a destra.
+- **Riga 3.** Un numero si può mettere dove si vuole: davanti a tutto, dentro la prima matrice o dentro la seconda. Solo le matrici devono restare in ordine.
 
 > [!DIM] della Proposizione 8.11, punti (1) e (2)
-> Seguiamo Martelli (Proposizione 3.4.2). Per la distributività, con la definizione di prodotto e di somma:
+> Seguiamo Martelli (Proposizione 3.4.2). L'idea è confrontare i due lati **una casella alla volta**, con la formula del prodotto.
+>
+> **Distributività.** Guardiamo la casella di riga $i$ e colonna $j$ di $A(B + C)$.
+>
+> 1. Per la formula del prodotto, è la somma dei numeri $A_{ik}(B + C)_{kj}$ al variare del contatore $k$.
+> 2. La somma di matrici si fa casella per casella: $(B + C)_{kj} = B_{kj} + C_{kj}$.
+> 3. Tra numeri vale la proprietà distributiva: $A_{ik}(B_{kj} + C_{kj}) = A_{ik}B_{kj} + A_{ik}C_{kj}$.
+> 4. I primi pezzi, sommati, danno la casella di $AB$. I secondi pezzi, sommati, danno la casella di $AC$.
+>
+> In una riga:
 > $$(A(B + C))_{ij} = \sum_k A_{ik}(B + C)_{kj} = \sum_k A_{ik}B_{kj} + \sum_k A_{ik}C_{kj} = (AB)_{ij} + (AC)_{ij}.$$
-> Per l'associatività si scrivono entrambi i membri come somme doppie:
+> **Associatività.** Si scrivono tutti e due i lati come somme doppie, cioè con due contatori $k$ e $h$:
 > $$(A(BC))_{ij} = \sum_k A_{ik}(BC)_{kj} = \sum_k \sum_h A_{ik}B_{kh}C_{hj},$$
 > $$((AB)C)_{ij} = \sum_h (AB)_{ih}C_{hj} = \sum_h \sum_k A_{ik}B_{kh}C_{hj}.$$
-> Sono le stesse somme di prodotti $A_{ik}B_{kh}C_{hj}$, su tutte le coppie $(k, h)$, solo in ordine diverso: quindi coincidono. Il punto (3) si verifica allo stesso modo.
+> Sono le stesse somme di prodotti $A_{ik}B_{kh}C_{hj}$, su tutte le coppie $(k, h)$, solo in ordine diverso. Quindi i due lati sono uguali.
+>
+> **Il punto (3).** La casella di riga $i$ e colonna $j$ di $\lambda(AB)$ è $\lambda$ per la somma dei prodotti $A_{ik}B_{kj}$. Tra numeri, $\lambda$ si può portare dentro la somma e attaccare al primo fattore oppure al secondo:
+> $$\lambda \sum_k A_{ik}B_{kj} = \sum_k (\lambda A_{ik})B_{kj} = \sum_k A_{ik}(\lambda B_{kj}).$$
+> La seconda scrittura è la casella di $(\lambda A)B$, la terza è la casella di $A(\lambda B)$.
+
+### La trasposta di un prodotto: l'ordine si rovescia
+
+C'è un'ultima regola in cui l'ordine conta, e nei quiz viene chiesta. Riguarda la trasposta di un prodotto. Le dispense la lasciano come esercizio (Esercizio 8.14): la trasposta di $AB$ è il prodotto delle due trasposte, ma **in ordine rovesciato**.
+
+$${}^t(AB) = {}^tB\,{}^tA$$
+
+**Come si legge.** A sinistra: fai il prodotto e poi giri il risultato. A destra: giri le due matrici e poi le moltiplichi, mettendo per prima la trasposta di $B$.
+
+> [!ESEMPIO] · Un controllo con i numeri
+> $$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \qquad B = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$$
+> **Lato sinistro.** Prima il prodotto, poi la trasposta:
+> $$AB = \begin{pmatrix} 1 \cdot 0 + 2 \cdot 1 & 1 \cdot 1 + 2 \cdot 1 \\ 3 \cdot 0 + 4 \cdot 1 & 3 \cdot 1 + 4 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 3 \\ 4 & 7 \end{pmatrix} \qquad {}^t(AB) = \begin{pmatrix} 2 & 4 \\ 3 & 7 \end{pmatrix}$$
+> **Lato destro.** Prima le due trasposte:
+> $${}^tB = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} \qquad {}^tA = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix}$$
+> Qui ${}^tB$ è uguale a $B$, perché $B$ è simmetrica. Poi il prodotto, con ${}^tB$ a sinistra:
+> $${}^tB\,{}^tA = \begin{pmatrix} 0 \cdot 1 + 1 \cdot 2 & 0 \cdot 3 + 1 \cdot 4 \\ 1 \cdot 1 + 1 \cdot 2 & 1 \cdot 3 + 1 \cdot 4 \end{pmatrix} = \begin{pmatrix} 2 & 4 \\ 3 & 7 \end{pmatrix}$$
+> I due lati sono uguali.
+>
+> **Nell'ordine sbagliato.** Con ${}^tA$ a sinistra viene un'altra matrice:
+> $${}^tA\,{}^tB = \begin{pmatrix} 1 \cdot 0 + 3 \cdot 1 & 1 \cdot 1 + 3 \cdot 1 \\ 2 \cdot 0 + 4 \cdot 1 & 2 \cdot 1 + 4 \cdot 1 \end{pmatrix} = \begin{pmatrix} 3 & 4 \\ 4 & 6 \end{pmatrix}$$
+
+Il motivo del rovesciamento si vede già dalle taglie. Se $A$ è $3 \times 2$ e $B$ è $2 \times 4$, le trasposte sono $2 \times 3$ e $4 \times 2$. Nell'ordine rovesciato le taglie sono $(4 \times 2) \cdot (2 \times 3)$, e il prodotto si può fare. Nell'ordine di partenza sarebbero $(2 \times 3) \cdot (4 \times 2)$, e il prodotto non esiste nemmeno. La dimostrazione completa è nell'esercizio 11.
 
 > [!OLTRE] · la matrice identità e le potenze
-> La **matrice identità** $I_n$ ha 1 sulla diagonale e 0 altrove; le dispense la introducono nella lezione L09 (Definizione 9.4). Nel prodotto fa la parte del numero 1: $I_n A = A I_n = A$ per ogni $A \in M(n)$ (Martelli, Proposizione 3.4.4). Con le matrici quadrate si possono fare le **potenze**: $A^2 = AA$, $A^3 = AAA$, e così via. Per esempio
+> **La matrice identità.** È la matrice quadrata con 1 sulla diagonale e 0 in tutte le altre caselle. Si indica con $I_n$, dove $n$ è il numero delle righe:
+> $$I_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \qquad I_3 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
+> Nel prodotto fa la parte del numero 1: moltiplicare per lei non cambia niente. Un controllo:
+> $$\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 5 & 7 \\ 2 & 9 \end{pmatrix} = \begin{pmatrix} 1 \cdot 5 + 0 \cdot 2 & 1 \cdot 7 + 0 \cdot 9 \\ 0 \cdot 5 + 1 \cdot 2 & 0 \cdot 7 + 1 \cdot 9 \end{pmatrix} = \begin{pmatrix} 5 & 7 \\ 2 & 9 \end{pmatrix}$$
+> Con i simboli: $I_n A = A I_n = A$ per ogni matrice quadrata $A$ con $n$ righe (Martelli, Proposizione 3.4.4). Le dispense introducono la matrice identità nella lezione L09 (Definizione 9.4).
+>
+> **Le potenze.** Una matrice quadrata si può moltiplicare per sé stessa. $A^2$ vuol dire $A$ per $A$, $A^3$ vuol dire $A$ per $A$ per $A$, e avanti così. Per esempio:
 > $$A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, \quad A^2 = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}, \quad A^3 = A^2 A = \begin{pmatrix} 1 & 3 \\ 0 & 1 \end{pmatrix}.$$
-> In Matematica Discreta dirai che $M(n)$, con somma e prodotto, è un **anello non commutativo** (per $n \ge 2$).
+> I conti, casella per casella, sono nell'esercizio 9. In Matematica Discreta vedrai che le matrici quadrate, con la somma e il prodotto, formano un **anello non commutativo** (se hanno almeno 2 righe).
 
 > [!METODO] «Quale identità vale?»
-> È una domanda d'esame frequentissima: date $A$ e $B$ quadrate $3 \times 3$, quale tra $AB = BA$, $AB = A$, $AB = B$, $BA = A$, $BA = B$ è vera?
-> 1. Calcola $AB$ riga per riga (nove conti). Spesso le matrici hanno molti zeri e molti 1: sfruttali.
+> È una domanda d'esame molto frequente. Ti danno due matrici quadrate $A$ e $B$, di solito $3 \times 3$, e cinque uguaglianze: $AB = BA$, $AB = A$, $AB = B$, $BA = A$, $BA = B$. Una sola è vera.
+>
+> 1. Calcola $AB$ una riga alla volta: sono nove conti. Le matrici hanno quasi sempre molti 0 e molti 1: sfruttali.
 > 2. Confronta $AB$ con $A$ e con $B$.
-> 3. Se nessuna delle due va bene, calcola $BA$ e confrontala con $A$, con $B$ e con $AB$.
-> 4. Per **escludere** un'uguaglianza basta **una** casella diversa: non serve finire tutto il prodotto.
+> 3. Se non è uguale a nessuna delle due, calcola $BA$. Confrontala con $A$, con $B$ e con $AB$.
+> 4. Per **scartare** un'uguaglianza basta **una** casella diversa: non serve finire tutto il prodotto.
 
-## La traccia di una matrice quadrata (p. 39)
+::: prova Calcola $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ e poi il prodotto con le due matrici scambiate. Vengono uguali?
+Primo prodotto. Riga 1: $0 \cdot 1 + 1 \cdot 3 = 3$ e $0 \cdot 2 + 1 \cdot 4 = 4$. Riga 2: $1 \cdot 1 + 0 \cdot 3 = 1$ e $1 \cdot 2 + 0 \cdot 4 = 2$. Viene $\begin{pmatrix} 3 & 4 \\ 1 & 2 \end{pmatrix}$.
 
-Nella matrice $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ la diagonale principale contiene 1 e 4: la loro somma, 5, è la traccia.
+Secondo prodotto, cioè $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. Riga 1: $1 \cdot 0 + 2 \cdot 1 = 2$ e $1 \cdot 1 + 2 \cdot 0 = 1$. Riga 2: $3 \cdot 0 + 4 \cdot 1 = 4$ e $3 \cdot 1 + 4 \cdot 0 = 3$. Viene $\begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix}$.
+
+Non sono uguali. Nel primo caso si sono scambiate le due righe della matrice con 1, 2, 3, 4. Nel secondo si sono scambiate le due colonne.
+:::
+
+::: prova Per tre matrici quadrate della stessa taglia è sempre vero che $ABC = ACB$?
+No. L'associatività permette di spostare le parentesi, non le lettere. Per passare da $ABC$ ad $ACB$ bisognerebbe scambiare $B$ e $C$, e di solito $BC$ e $CB$ sono diversi.
+:::
+
+::: prova Il prodotto $AB$ è la matrice nulla. Si può concludere che $A$ oppure $B$ è la matrice nulla?
+No. Nell'Esempio 8.10 il prodotto $BA$ è la matrice nulla, ma tutte e due le matrici contengono un 1.
+:::
+
+> [!RICORDA]
+> - Di solito $AB$ e $BA$ sono diversi: il prodotto di matrici **non è commutativo**.
+> - Un prodotto può essere la matrice nulla anche se nessun fattore lo è. Non si «divide» per una matrice.
+> - Valgono l'associatività e la distributività: si spostano le parentesi, mai le lettere.
+> - La trasposta di un prodotto rovescia l'ordine: ${}^t(AB) = {}^tB\,{}^tA$.
+
+## La traccia: la somma della diagonale (p. 39)
+
+L'ultima operazione della lezione è la più corta: una somma.
+
+In una matrice quadrata la **diagonale principale** è la fila di caselle che scende dall'angolo in alto a sinistra all'angolo in basso a destra. Sono le caselle in cui il numero della riga è uguale al numero della colonna: riga 1 e colonna 1, riga 2 e colonna 2, e avanti così.
+
+Guarda questa matrice:
+
+$$\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$$
+
+Sulla diagonale principale ci sono 1 e 4. La loro somma è 5. Questa somma si chiama **traccia** della matrice.
+
+La traccia di una matrice $A$ si scrive $\tr A$ e si legge «traccia di $A$». Le due lettere vengono dall'inglese *trace*.
+
+Un esempio con una matrice $3 \times 3$. I numeri sulla diagonale sono 2, $-3$ e 6:
+
+$$\tr \begin{pmatrix} 2 & 7 & -1 \\ 0 & -3 & 5 \\ 4 & 1 & 6 \end{pmatrix} = 2 + (-3) + 6 = 5$$
+
+Tutti gli altri numeri della matrice non contano.
+
+Le dispense la scrivono così.
 
 > [!DEF] 8.12 · Traccia
 > La **traccia** di una matrice quadrata $A \in M(n)$ è il numero
 > $$\tr A = A_{11} + \dots + A_{nn}.$$
 > Cioè, la traccia di $A$ è la somma dei numeri presenti sulla diagonale principale di $A$.
 
-- Si calcola solo per le matrici **quadrate**: in una $2 \times 3$ la diagonale principale non arriva «da angolo ad angolo».
-- $\tr$ viene dall'inglese *trace*.
-- Per esempio $\tr \begin{pmatrix} 2 & 7 & -1 \\ 0 & -3 & 5 \\ 4 & 1 & 6 \end{pmatrix} = 2 + (-3) + 6 = 5$, e $\tr I_n = 1 + \dots + 1 = n$.
+**Come si legge.**
 
-Il prodotto non è commutativo, ma la traccia «non se ne accorge».
+- $A \in M(n)$: la matrice $A$ è quadrata, con $n$ righe e $n$ colonne.
+- $A_{11}$ è il numero di riga 1 e colonna 1. $A_{nn}$ è il numero dell'ultima riga e dell'ultima colonna. Sono il primo e l'ultimo numero della diagonale.
+- I puntini in mezzo vogliono dire «e avanti così»: si sommano tutti i numeri con i due indici uguali.
+
+Due cose da notare.
+
+- La traccia si calcola solo per le matrici **quadrate**. In una matrice $2 \times 3$ la diagonale che parte dall'angolo in alto a sinistra non arriva all'angolo in basso a destra.
+- La matrice identità con $n$ righe ha $n$ numeri 1 sulla diagonale. Quindi la sua traccia è $n$. Per esempio $\tr I_3 = 1 + 1 + 1 = 3$.
+
+::: prova Calcola la traccia di $\begin{pmatrix} 3 & 1 \\ 4 & -2 \end{pmatrix}$ e quella di $\begin{pmatrix} 5 & 0 & 0 \\ 1 & 2 & 0 \\ 7 & 8 & -4 \end{pmatrix}$.
+Nella prima la diagonale contiene 3 e $-2$: la traccia è $3 + (-2) = 1$.
+
+Nella seconda la diagonale contiene 5, 2 e $-4$: la traccia è $5 + 2 + (-4) = 3$.
+:::
+
+### Scambiare i due fattori non cambia la traccia
+
+Il prodotto di matrici non è commutativo, ma la traccia «non se ne accorge». Vediamolo prima con i numeri.
+
+> [!ESEMPIO] · Prodotti diversi, stessa traccia
+> $$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \qquad B = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$$
+> **Il prodotto con $A$ a sinistra.**
+> $$AB = \begin{pmatrix} 1 \cdot 0 + 2 \cdot 1 & 1 \cdot 1 + 2 \cdot 1 \\ 3 \cdot 0 + 4 \cdot 1 & 3 \cdot 1 + 4 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 3 \\ 4 & 7 \end{pmatrix}$$
+> **Il prodotto con $B$ a sinistra.**
+> $$BA = \begin{pmatrix} 0 \cdot 1 + 1 \cdot 3 & 0 \cdot 2 + 1 \cdot 4 \\ 1 \cdot 1 + 1 \cdot 3 & 1 \cdot 2 + 1 \cdot 4 \end{pmatrix} = \begin{pmatrix} 3 & 4 \\ 4 & 6 \end{pmatrix}$$
+> Le due matrici sono diverse: $AB \neq BA$.
+>
+> **Le due tracce.** Per $AB$ la diagonale contiene 2 e 7: la traccia è $2 + 7 = 9$. Per $BA$ la diagonale contiene 3 e 6: la traccia è $3 + 6 = 9$.
+>
+> Prodotti diversi, stessa traccia.
+
+Succede sempre.
 
 > [!PROP] 8.13
 > Se $A, B \in M(n)$, vale la relazione $\tr(AB) = \tr(BA)$.
 
-La spiegazione delle dispense è una riga:
+**Come si legge.** $A, B \in M(n)$ vuol dire che $A$ e $B$ sono due matrici quadrate della stessa taglia. La formula dice: la traccia del prodotto fatto in un ordine è uguale alla traccia del prodotto fatto nell'altro ordine. Vale anche quando i due prodotti sono matrici diverse.
 
-$$\tr(AB) = \sum_{i, j = 1}^n A_{ij}B_{ji} = \sum_{j, i = 1}^n B_{ji}A_{ij} = \tr(BA).$$
+Perché succede? Guardiamo il caso $2 \times 2$ con le lettere al posto dei numeri. Chiamiamo $a_{11}, a_{12}, a_{21}, a_{22}$ i quattro numeri di $A$. Chiamiamo $b_{11}, b_{12}, b_{21}, b_{22}$ i quattro numeri di $B$.
 
-Eccola passo per passo.
+Per la traccia di $AB$ servono le due caselle diagonali di $AB$.
 
-1. L'elemento diagonale $(AB)_{ii}$ è la riga $i$ di $A$ per la colonna $i$ di $B$: $(AB)_{ii} = \sum_{j} A_{ij}B_{ji}$ (qui l'indice della somma si chiama $j$).
-2. Sommando su $i$: $\tr(AB) = \sum_i \sum_j A_{ij}B_{ji}$, una somma con un addendo per **ogni coppia** $(i, j)$.
-3. Allo stesso modo $(BA)_{jj} = \sum_i B_{ji}A_{ij}$, quindi $\tr(BA) = \sum_j \sum_i B_{ji}A_{ij}$.
-4. I due totali contengono gli stessi addendi ($A_{ij}B_{ji} = B_{ji}A_{ij}$, perché tra **numeri** il prodotto è commutativo), per le stesse coppie $(i, j)$: sono uguali.
+| Casella di $AB$ | Conto | Risultato |
+|---|---|---|
+| riga 1, colonna 1 | riga 1 di $A$ per colonna 1 di $B$ | $a_{11}b_{11} + a_{12}b_{21}$ |
+| riga 2, colonna 2 | riga 2 di $A$ per colonna 2 di $B$ | $a_{21}b_{12} + a_{22}b_{22}$ |
 
-Nel caso $2 \times 2$ si vede a occhio: con $A = (a_{ij})$ e $B = (b_{ij})$,
+Sommando le due caselle:
 
-$$\tr(AB) = a_{11}b_{11} + a_{12}b_{21} + a_{21}b_{12} + a_{22}b_{22},$$
+$$\tr(AB) = a_{11}b_{11} + a_{12}b_{21} + a_{21}b_{12} + a_{22}b_{22}$$
 
-$$\tr(BA) = b_{11}a_{11} + b_{12}a_{21} + b_{21}a_{12} + b_{22}a_{22}:$$
+Rifacciamo il conto per $BA$.
 
-sono gli stessi quattro prodotti.
+| Casella di $BA$ | Conto | Risultato |
+|---|---|---|
+| riga 1, colonna 1 | riga 1 di $B$ per colonna 1 di $A$ | $b_{11}a_{11} + b_{12}a_{21}$ |
+| riga 2, colonna 2 | riga 2 di $B$ per colonna 2 di $A$ | $b_{21}a_{12} + b_{22}a_{22}$ |
 
-> [!ESEMPIO] · Prodotti diversi, stessa traccia
-> $$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}, \quad B = \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}: \qquad AB = \begin{pmatrix} 1 \cdot 0 + 2 \cdot 1 & 1 \cdot 1 + 2 \cdot 1 \\ 3 \cdot 0 + 4 \cdot 1 & 3 \cdot 1 + 4 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 3 \\ 4 & 7 \end{pmatrix},$$
-> $$BA = \begin{pmatrix} 0 \cdot 1 + 1 \cdot 3 & 0 \cdot 2 + 1 \cdot 4 \\ 1 \cdot 1 + 1 \cdot 3 & 1 \cdot 2 + 1 \cdot 4 \end{pmatrix} = \begin{pmatrix} 3 & 4 \\ 4 & 6 \end{pmatrix}.$$
-> $AB \neq BA$, ma $\tr(AB) = 2 + 7 = 9$ e $\tr(BA) = 3 + 6 = 9$.
+Sommando le due caselle:
+
+$$\tr(BA) = b_{11}a_{11} + b_{12}a_{21} + b_{21}a_{12} + b_{22}a_{22}$$
+
+Confronta le due somme: contengono gli stessi quattro prodotti, scritti in un altro ordine. Per esempio il secondo pezzo della prima somma e il terzo della seconda sono lo stesso numero. Tra numeri, infatti, l'ordine di un prodotto non conta.
+
+> [!DIM] della Proposizione 8.13
+> La spiegazione delle dispense è una riga:
+> $$\tr(AB) = \sum_{i, j = 1}^n A_{ij}B_{ji} = \sum_{j, i = 1}^n B_{ji}A_{ij} = \tr(BA).$$
+> Eccola passo per passo.
+>
+> 1. La casella di riga $i$ e colonna $i$ di $AB$ è la riga $i$ di $A$ per la colonna $i$ di $B$: $(AB)_{ii} = \sum_{j} A_{ij}B_{ji}$. Qui il contatore della somma si chiama $j$.
+> 2. La traccia somma queste caselle per tutti gli $i$: $\tr(AB) = \sum_i \sum_j A_{ij}B_{ji}$. È una somma con un addendo per **ogni coppia** $(i, j)$. La scrittura $\sum_{i, j = 1}^n$ vuol dire proprio questo: $i$ e $j$ vanno tutti e due da 1 a $n$.
+> 3. Con lo stesso conto per $BA$: $(BA)_{jj} = \sum_i B_{ji}A_{ij}$, quindi $\tr(BA) = \sum_j \sum_i B_{ji}A_{ij}$.
+> 4. I due totali contengono gli stessi addendi, perché $A_{ij}B_{ji} = B_{ji}A_{ij}$: tra **numeri** il prodotto è commutativo. E li contengono per le stesse coppie $(i, j)$. Quindi sono uguali.
+
+### La scorciatoia per i quiz
+
+Per la traccia di un prodotto servono solo le caselle sulla diagonale. Le altre non vanno calcolate.
+
+In un prodotto di matrici $3 \times 3$ vuol dire fare tre conti «riga per colonna» al posto di nove: la riga 1 per la colonna 1, la riga 2 per la colonna 2, la riga 3 per la colonna 3. Poi si sommano i tre risultati.
+
+Con le matrici dell'esempio di prima bastano due conti:
+
+1. riga 1 di $A$ per colonna 1 di $B$: $1 \cdot 0 + 2 \cdot 1 = 2$;
+2. riga 2 di $A$ per colonna 2 di $B$: $3 \cdot 1 + 4 \cdot 1 = 7$;
+3. la traccia di $AB$ è $2 + 7 = 9$.
 
 > [!OLTRE] · altre proprietà della traccia, utili nei quiz
-> - È lineare: $\tr(A + B) = \tr A + \tr B$ e $\tr(\lambda A) = \lambda \tr A$. Inoltre $\tr({}^tA) = \tr A$, perché la diagonale non si muove.
-> - **Non** è moltiplicativa: $\tr(AB) \neq \tr A \cdot \tr B$ in generale. Con $A = B = I_2$: $\tr(I_2 I_2) = 2$, mentre $\tr I_2 \cdot \tr I_2 = 4$.
-> - La stessa dimostrazione funziona se $A$ è $m \times n$ e $B$ è $n \times m$: $AB$ e $BA$ hanno taglie diverse ma la stessa traccia (lo verifichi nell'Esercizio 8.15).
-> - Con tre fattori si può «ruotare»: $\tr(ABC) = \tr(BCA) = \tr(CAB)$ (basta applicare la Proposizione 8.13 ad $A$ e $BC$), ma **non** scambiare due fattori: $\tr(ACB)$ può essere diversa (esercizio 11).
-> - Per $\tr(AB)$ bastano gli elementi diagonali: $\tr(AB) = \sum_i (\text{riga } i \text{ di } A) \cdot (\text{colonna } i \text{ di } B)$. E per una matrice reale $\tr(A\,{}^tA)$ è la **somma dei quadrati di tutti i suoi numeri**, perché $(A\,{}^tA)_{ii}$ è la riga $i$ di $A$ per sé stessa.
+> **La traccia rispetta somme e multipli.** La traccia di una somma è la somma delle tracce: $\tr(A + B) = \tr A + \tr B$. La traccia di un multiplo è il multiplo della traccia: $\tr(\lambda A) = \lambda \tr A$. In più una matrice e la sua trasposta hanno la stessa traccia, perché trasponendo la diagonale non si muove.
+>
+> **La traccia non rispetta i prodotti.** Di solito $\tr(AB)$ è diversa da $\tr A \cdot \tr B$. Basta provare con due copie della matrice identità $I_2$. Il loro prodotto è ancora $I_2$, che ha traccia 2. Invece il prodotto delle due tracce è $2 \cdot 2 = 4$.
+>
+> **Vale anche per matrici non quadrate.** Se $A$ è $m \times n$ e $B$ è $n \times m$, i prodotti $AB$ e $BA$ hanno taglie diverse ma la stessa traccia. La dimostrazione è la stessa. Lo controlli con i numeri nell'esercizio 6.
+>
+> **Con tre fattori si può far girare, non scambiare.** Vale $\tr(ABC) = \tr(BCA) = \tr(CAB)$: l'ultima matrice passa davanti, come in un girotondo. Basta usare la Proposizione 8.13 con le due matrici $A$ e $BC$. Invece scambiare due matrici vicine può cambiare il risultato: $\tr(ACB)$ può essere diversa (esercizio 15).
+>
+> **Una matrice per la sua trasposta.** Per una matrice di numeri reali, $\tr(A\,{}^tA)$ è la **somma dei quadrati di tutti i suoi numeri**. Il motivo: la casella diagonale numero $i$ di $A\,{}^tA$ è la riga $i$ di $A$ per sé stessa. Con la matrice che contiene 1, 2, 3, 4 viene $1 + 4 + 9 + 16 = 30$. Un esempio svolto è in «Verso l'esame».
 
 > [!OLTRE] · dove trovarlo nel libro
-> Nel libro di Martelli: la trasposta nel §2.3.10 (p. 73) e le matrici simmetriche e antisimmetriche nel §2.3.11 (pp. 73–74); il rango nel §3.2.3 (pp. 88–89: Definizione 3.2.7, Proposizione 3.2.8, Corollario 3.2.11) e rango per righe e per colonne nel §3.2.6 (p. 92, Proposizione 3.2.20 e Corollario 3.2.21); il prodotto fra matrici e le sue proprietà nei §3.4.1–3.4.5 (pp. 104–107), con l'Esercizio 3.4.3 sulla trasposta del prodotto; la traccia nel §4.4.5 (p. 141, Proposizione 4.4.11).
+> Nel libro di Martelli: la trasposta è nel §2.3.10 (p. 73), le matrici simmetriche e antisimmetriche nel §2.3.11 (pp. 73–74). Il rango è nel §3.2.3 (pp. 88–89: Definizione 3.2.7, Proposizione 3.2.8, Corollario 3.2.11), il rango per righe e per colonne nel §3.2.6 (p. 92, Proposizione 3.2.20 e Corollario 3.2.21). Il prodotto fra matrici e le sue proprietà sono nei §3.4.1–3.4.5 (pp. 104–107), con l'Esercizio 3.4.3 sulla trasposta del prodotto. La traccia è nel §4.4.5 (p. 141, Proposizione 4.4.11).
+
+::: prova Calcola $\tr(AB)$ con $A = \begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix}$ e $B = \begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix}$, facendo solo due conti.
+Riga 1 di $A$ per colonna 1 di $B$: $1 \cdot 2 + 1 \cdot 1 = 3$.
+
+Riga 2 di $A$ per colonna 2 di $B$: $0 \cdot 0 + 2 \cdot 1 = 2$.
+
+La traccia è $3 + 2 = 5$.
+:::
+
+::: prova Si può calcolare la traccia di una matrice $2 \times 3$?
+No. La traccia esiste solo per le matrici quadrate.
+:::
+
+> [!RICORDA]
+> - La **traccia** $\tr A$ è la somma dei numeri sulla diagonale principale. Esiste solo per le matrici quadrate.
+> - $\tr(AB) = \tr(BA)$, anche quando $AB$ e $BA$ sono diversi.
+> - Per la traccia di un prodotto bastano le caselle diagonali del prodotto.
+> - Di solito $\tr(AB)$ **non** è $\tr A \cdot \tr B$.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $m \times n$ | «emme per enne» | la taglia: $m$ righe e $n$ colonne | una matrice $2 \times 3$ ha 2 righe e 3 colonne |
+| $a_{ij}$, $A_{ij}$ | «a i gei» | il numero nella riga $i$ e nella colonna $j$ | $a_{23}$: riga 2, colonna 3 |
+| $A_i$ | «A con i in basso» | la riga numero $i$ | $A_2$ è la seconda riga |
+| $A^j$ | «A con gei in alto» | la colonna numero $j$ (in questa lezione non è una potenza) | $A^3$ è la terza colonna |
+| $\K$ | «cappa» | i numeri che si usano: $\R$ oppure $\C$ | |
+| $M(m, n, \K)$ | «emme di emme, enne, cappa» | l'insieme delle matrici $m \times n$ con numeri in $\K$ | $M(2, 3, \R)$ |
+| $M(n)$ | «emme di enne» | le matrici quadrate con $n$ righe e $n$ colonne | $M(2)$: le matrici $2 \times 2$ |
+| $\in$ | «appartiene a» | sta dentro l'insieme | $A \in M(2, 3, \R)$ |
+| $\R^2$, $\K^m$ | «erre due», «cappa alla emme» | i vettori con 2 numeri, con $m$ numeri | $(2, 1) \in \R^2$ |
+| $\lambda$ | «lambda» | un numero qualsiasi (uno scalare) | $3A$: qui $\lambda = 3$ |
+| ${}^tA$ | «A trasposta» | la matrice con righe e colonne scambiate | la trasposta di una $2 \times 3$ è $3 \times 2$ |
+| ${}^t(x, y, z)$ | «il trasposto di x, y, z» | il vettore colonna con quei numeri | ${}^t(1, 2, 3)$ |
+| $-A$ | «meno A» | la matrice con tutti i segni cambiati | |
+| $\iff$ | «se e solo se» | esattamente quando | simmetrica $\iff {}^tA = A$ |
+| $\Span(\dots)$ | «Span di…» | tutto quello che si ottiene con le ricette fatte con quei vettori | lo Span di un vettore è una retta |
+| $\subset$ | «è contenuto in» | sta dentro, come insieme | una retta del piano $\subset \R^2$ |
+| $\rk(A)$ | «rango di A» | il massimo numero di colonne (o di righe) indipendenti | $\rk(I_3) = 3$ |
+| $\min(m, n)$ | «il minimo tra emme ed enne» | il più piccolo dei due numeri | $\min(3, 5) = 3$ |
+| $\le$ | «minore o uguale» | più piccolo, oppure uguale | $\rk(A) \le 3$ |
+| $AB$ | «A per B» | il prodotto riga per colonna | $(2 \times 3) \cdot (3 \times 4)$ dà $2 \times 4$ |
+| $(AB)_{ij}$ | «A B, i gei» | il numero di riga $i$ e colonna $j$ del prodotto | riga $i$ di $A$ per colonna $j$ di $B$ |
+| $\sum_{k=1}^n$ | «somma per k da 1 a enne» | somma dei pezzi che si ottengono con $k = 1, 2, \dots, n$ | $\sum_{k=1}^3 k = 1 + 2 + 3$ |
+| $\neq$ | «diverso da» | non uguale | di solito $AB \neq BA$ |
+| $0$ | «zero», «matrice nulla» | tra matrici: la matrice fatta di soli zeri | $BA = 0$ nell'Esempio 8.10 |
+| $I_n$ | «i con enne», «identità» | la matrice con 1 sulla diagonale e 0 altrove | $I_2$ ha due righe |
+| $A^2$, $A^3$ | «A alla seconda», «A alla terza» | $A$ per $A$, $A$ per $A$ per $A$ (quando si parla di potenze) | |
+| $\tr A$ | «traccia di A» | la somma dei numeri sulla diagonale principale | $\tr I_3 = 3$ |
+| $e_{ij}$ | «e i gei» | la matrice con un 1 nella riga $i$ e colonna $j$, e 0 altrove | |
+| $\dots$, $\cdots$, $\vdots$ | «e avanti così» | i numeri in mezzo, che non si scrivono | $A_{11} + \dots + A_{nn}$ |
 
 ## Verso l'esame
 
-La prova scritta di Algebra lineare e Geometria ha 10 quiz a 5 risposte (servono almeno 6 risposte giuste perché vengano corretti i 2 problemi da 11 punti), dura 2 ore, senza calcolatrice e con solo 4 facciate di appunti scritti a mano; gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. I dettagli sono nella lezione L01.
+La prova scritta di Algebra lineare e Geometria ha 10 quiz, ognuno con 5 risposte. Servono almeno 6 risposte giuste perché vengano corretti i 2 problemi, che valgono 11 punti l'uno. Dura 2 ore, senza calcolatrice, e puoi portare solo 4 facciate di appunti scritti a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. I dettagli sono nella lezione L01.
 
-Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 2026:
+**Che cosa viene chiesto di questa lezione**
+
+Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 2026.
 
 | Tipo di domanda | Appelli (numero della domanda) | Che cosa serve |
 |---|---|---|
-| «Quale identità vale?» tra $AB$, $BA$, $A$, $B$ | 24/01/2024 (6), 10/06/2024 (5), 10/07/2024 (3), 15/01/2026 (1), 03/06/2026 (5) | prodotto riga per colonna, $AB \neq BA$ |
+| «Quale identità vale?» tra $AB$, $BA$, $A$, $B$ | 24/01/2024 (6), 10/06/2024 (5), 10/07/2024 (3), 15/01/2026 (1), 03/06/2026 (5) | il prodotto riga per colonna, e ricordare che l'ordine conta |
 | traccia di un prodotto | 08/02/2024 (4), 06/09/2024 (8), 16/01/2025 (3), 10/07/2025 (9), 05/02/2026 (3), 03/07/2026 (9), 07/09/2026 (8) | solo la diagonale del prodotto |
 | prodotto di tre matrici $2 \times 2$ | 07/02/2025 (3) | associatività, ordine dei fattori |
-| rango di una matrice $3 \times 3$, $4 \times 4$ o $5 \times 5$ | 10/06/2024 (10), 16/01/2025 (6), 07/02/2025 (4), 05/02/2026 (4), 07/09/2026 (9) | relazioni tra righe o colonne, poi Gauss (L11–L12) |
+| rango di una matrice $3 \times 3$, $4 \times 4$ o $5 \times 5$ | 10/06/2024 (10), 16/01/2025 (6), 07/02/2025 (4), 05/02/2026 (4), 07/09/2026 (9) | doppioni tra righe o colonne, poi Gauss (lezioni L11–L12) |
 | calcolare ${}^tA - A$ in un problema | 24/01/2024 (11), 15/01/2026 (11) | trasposta, matrici simmetriche |
 
-Tre domande vere, con la soluzione svolta.
+**Una domanda vera, letta insieme**
 
-> [!ESAME] Appello del 15/01/2026, domanda 1
-> Siano $A = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix}$. Quale identità vale? (a) $AB = BA$; (b) $BA = B$; (c) $AB = B$; (d) $AB = A$; (e) $BA = A$.
->
-> **Soluzione.** Calcolo $AB$ riga per riga. La riga 1 di $A$ è $(1, 1, 1)$: per le tre colonne di $B$ dà $1 + 0 + 0 = 1$, poi $-1 + 1 + 0 = 0$, poi $0 - 1 + 1 = 0$. La riga 2, $(0, 1, 1)$, dà $0$, $1$, $-1 + 1 = 0$. La riga 3, $(0, 0, 1)$, dà $0, 0, 1$. Quindi $AB = I_3$, che non è né $A$ né $B$: (c) e (d) sono false. Rifacendo il conto nell'altro ordine si trova anche $BA = I_3$ (riga 2 di $B$ per le colonne di $A$: $0$, $1$, $1 - 1 = 0$, e così via). Quindi $AB = BA$: risposta **(a)**. Le due matrici sono una l'inversa dell'altra, un concetto della lezione L10.
+È la domanda 1 dell'appello del 15/01/2026. Il testo dice:
 
-> [!ESAME] Appello del 10/07/2025, domanda 9
-> Data la matrice $A = \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 1 \end{pmatrix}$, la traccia di $A \cdot {}^tA$ è: (a) 7; (b) 9; (c) non si può calcolare, poiché $A$ non è una matrice quadrata; (d) 6; (e) 0.
->
-> **Soluzione.** $A$ è $3 \times 2$ e ${}^tA$ è $2 \times 3$, quindi $A \cdot {}^tA$ è $3 \times 3$: è **quadrata**, e la traccia esiste. La (c) è il tranello. Servono solo gli elementi diagonali: $(A\,{}^tA)_{ii}$ è la riga $i$ di $A$ per sé stessa, cioè $2^2 + 1^2 = 5$, poi $0^2 + 1^2 = 1$, poi $0^2 + 1^2 = 1$. Traccia: $5 + 1 + 1 = 7$, risposta **(a)**. Controllo con la Proposizione 8.13: ${}^tA\,A = \begin{pmatrix} 4 & 2 \\ 2 & 3 \end{pmatrix}$ ha traccia $4 + 3 = 7$.
+«Siano $A = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix}$. Quale identità vale? (a) $AB = BA$; (b) $BA = B$; (c) $AB = B$; (d) $AB = A$; (e) $BA = A$.»
 
-> [!ESAME] Appello del 15/01/2026, problema 11, punto (2), prima parte
-> Data $A = \begin{pmatrix} 1 & k^2 & 0 \\ k & k + 1 & k \\ 0 & k & 1 \end{pmatrix}$ in $M(3, \R)$, con $k$ parametro reale, calcolare ${}^tA - A$.
+**In pratica chiede:** calcola il prodotto con $A$ a sinistra e il prodotto con $B$ a sinistra. Poi guarda se uno dei due è uguale ad $A$, oppure a $B$, oppure se i due prodotti sono uguali tra loro. «Identità» qui vuol dire soltanto «uguaglianza». Delle cinque uguaglianze una sola è vera.
+
+> [!ESEMPIO] Appello del 15/01/2026, domanda 1: la soluzione
+> **Passo 1: calcolo $AB$.** Le righe di $A$ per le colonne di $B$. Le colonne di $B$, lette dall'alto in basso, contengono $1, 0, 0$, poi $-1, 1, 0$, poi $0, -1, 1$.
 >
-> **Soluzione.** ${}^tA = \begin{pmatrix} 1 & k & 0 \\ k^2 & k + 1 & k \\ 0 & k & 1 \end{pmatrix}$ (la prima riga di $A$ diventa la prima colonna, eccetera). Sottraendo casella per casella:
+> | | colonna 1 di $B$ | colonna 2 di $B$ | colonna 3 di $B$ |
+> |---|---|---|---|
+> | riga 1 di $A$: $(1, 1, 1)$ | $1 \cdot 1 + 1 \cdot 0 + 1 \cdot 0 = 1$ | $1 \cdot (-1) + 1 \cdot 1 + 1 \cdot 0 = 0$ | $1 \cdot 0 + 1 \cdot (-1) + 1 \cdot 1 = 0$ |
+> | riga 2 di $A$: $(0, 1, 1)$ | $0 \cdot 1 + 1 \cdot 0 + 1 \cdot 0 = 0$ | $0 \cdot (-1) + 1 \cdot 1 + 1 \cdot 0 = 1$ | $0 \cdot 0 + 1 \cdot (-1) + 1 \cdot 1 = 0$ |
+> | riga 3 di $A$: $(0, 0, 1)$ | $0 \cdot 1 + 0 \cdot 0 + 1 \cdot 0 = 0$ | $0 \cdot (-1) + 0 \cdot 1 + 1 \cdot 0 = 0$ | $0 \cdot 0 + 0 \cdot (-1) + 1 \cdot 1 = 1$ |
+>
+> **Passo 2: confronto.** Il prodotto ha 1 sulla diagonale e 0 in tutte le altre caselle:
+> $$AB = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = I_3$$
+> È la matrice identità. Non è uguale ad $A$ e non è uguale a $B$. Quindi le risposte (c) e (d) sono false.
+>
+> **Passo 3: calcolo $BA$.** Le righe di $B$ per le colonne di $A$. Le colonne di $A$ contengono $1, 0, 0$, poi $1, 1, 0$, poi $1, 1, 1$.
+>
+> | | colonna 1 di $A$ | colonna 2 di $A$ | colonna 3 di $A$ |
+> |---|---|---|---|
+> | riga 1 di $B$: $(1, -1, 0)$ | $1 \cdot 1 + (-1) \cdot 0 + 0 \cdot 0 = 1$ | $1 \cdot 1 + (-1) \cdot 1 + 0 \cdot 0 = 0$ | $1 \cdot 1 + (-1) \cdot 1 + 0 \cdot 1 = 0$ |
+> | riga 2 di $B$: $(0, 1, -1)$ | $0 \cdot 1 + 1 \cdot 0 + (-1) \cdot 0 = 0$ | $0 \cdot 1 + 1 \cdot 1 + (-1) \cdot 0 = 1$ | $0 \cdot 1 + 1 \cdot 1 + (-1) \cdot 1 = 0$ |
+> | riga 3 di $B$: $(0, 0, 1)$ | $0 \cdot 1 + 0 \cdot 0 + 1 \cdot 0 = 0$ | $0 \cdot 1 + 0 \cdot 1 + 1 \cdot 0 = 0$ | $0 \cdot 1 + 0 \cdot 1 + 1 \cdot 1 = 1$ |
+>
+> Anche $BA$ è la matrice identità $I_3$. Quindi le risposte (b) ed (e) sono false.
+>
+> **Passo 4: la risposta.** I due prodotti sono uguali tra loro: la risposta giusta è la **(a)**.
+>
+> Di solito $AB$ e $BA$ sono diversi. Qui sono uguali perché le due matrici sono una l'*inversa* dell'altra: un'idea che arriva nella lezione L10.
+
+**Una traccia con il tranello**
+
+È la domanda 9 dell'appello del 10/07/2025. Il testo dice:
+
+«Data la matrice $A = \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 1 \end{pmatrix}$, la traccia di $A \cdot {}^tA$ è: (a) 7; (b) 9; (c) non si può calcolare, poiché $A$ non è una matrice quadrata; (d) 6; (e) 0.»
+
+**In pratica chiede:** moltiplica la matrice per la sua trasposta, poi somma i numeri sulla diagonale del risultato. Il tranello è la risposta (c): la matrice di partenza non è quadrata, ma la traccia si calcola del **prodotto**, non della matrice di partenza.
+
+> [!ESEMPIO] Appello del 10/07/2025, domanda 9: la soluzione
+> **Passo 1: le taglie.** $A$ è $3 \times 2$, quindi la sua trasposta è $2 \times 3$. Il prodotto ha taglie $(3 \times 2) \cdot (2 \times 3)$: i numeri interni sono uguali, e il risultato è $3 \times 3$. È una matrice **quadrata**, quindi la traccia esiste. La (c) è falsa.
+>
+> **Passo 2: servono solo le tre caselle diagonali.** La casella diagonale numero $i$ del prodotto è la riga $i$ di $A$ per la colonna $i$ di ${}^tA$. Ma la colonna $i$ della trasposta contiene gli stessi numeri della riga $i$ di $A$. Quindi ogni casella diagonale è una riga di $A$ moltiplicata per sé stessa.
+>
+> | Riga di $A$ | La riga per sé stessa | Risultato |
+> |---|---|---|
+> | $(2, 1)$ | $2 \cdot 2 + 1 \cdot 1$ | $5$ |
+> | $(0, 1)$ | $0 \cdot 0 + 1 \cdot 1$ | $1$ |
+> | $(0, 1)$ | $0 \cdot 0 + 1 \cdot 1$ | $1$ |
+>
+> **Passo 3: la traccia.** $5 + 1 + 1 = 7$. La risposta giusta è la **(a)**.
+>
+> **Controllo.** Scambio i due fattori: la traccia non deve cambiare. Il prodotto con la trasposta a sinistra è una matrice $2 \times 2$:
+> $${}^tA\,A = \begin{pmatrix} 2 & 0 & 0 \\ 1 & 1 & 1 \end{pmatrix} \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 2 \cdot 2 + 0 \cdot 0 + 0 \cdot 0 & 2 \cdot 1 + 0 \cdot 1 + 0 \cdot 1 \\ 1 \cdot 2 + 1 \cdot 0 + 1 \cdot 0 & 1 \cdot 1 + 1 \cdot 1 + 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 4 & 2 \\ 2 & 3 \end{pmatrix}$$
+> La sua traccia è $4 + 3 = 7$. Torna.
+
+**Una trasposta dentro un problema**
+
+È la prima parte del punto (2) del problema 11 dell'appello del 15/01/2026. Il testo dice:
+
+«Data $A = \begin{pmatrix} 1 & k^2 & 0 \\ k & k + 1 & k \\ 0 & k & 1 \end{pmatrix}$ in $M(3, \R)$, con $k$ parametro reale, calcolare ${}^tA - A$.»
+
+**In pratica chiede:** scrivi la trasposta della matrice e poi fai la differenza, casella per casella. La lettera $k$ è un **parametro**: un numero che non conosci. Nei conti resta scritto come lettera. La scrittura $k^2$ vuol dire $k$ per $k$.
+
+> [!ESEMPIO] Appello del 15/01/2026, problema 11, punto (2), prima parte: la soluzione
+> **Passo 1: la trasposta.** Le righe diventano colonne. La prima riga di $A$ contiene $1, k^2, 0$ e diventa la prima colonna. La seconda riga contiene $k, k + 1, k$ e diventa la seconda colonna. La terza riga contiene $0, k, 1$ e diventa la terza colonna.
+> $${}^tA = \begin{pmatrix} 1 & k & 0 \\ k^2 & k + 1 & k \\ 0 & k & 1 \end{pmatrix}$$
+> **Passo 2: la differenza, casella per casella.** In ogni casella: il numero di ${}^tA$ meno il numero di $A$.
+>
+> | | colonna 1 | colonna 2 | colonna 3 |
+> |---|---|---|---|
+> | riga 1 | $1 - 1 = 0$ | $k - k^2$ | $0 - 0 = 0$ |
+> | riga 2 | $k^2 - k$ | $(k + 1) - (k + 1) = 0$ | $k - k = 0$ |
+> | riga 3 | $0 - 0 = 0$ | $k - k = 0$ | $1 - 1 = 0$ |
+>
 > $${}^tA - A = \begin{pmatrix} 0 & k - k^2 & 0 \\ k^2 - k & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}.$$
-> È nulla se e solo se $k - k^2 = k(1 - k) = 0$, cioè per $k = 0$ oppure $k = 1$: **solo per questi valori $A$ è simmetrica**. Nel resto del problema serviva proprio questo, perché le matrici reali simmetriche hanno autovalori reali e una base ortonormale di autovettori (teorema spettrale, lezioni L25–L26). Nota che il risultato è antisimmetrico, come deve essere.
+> **Passo 3: quando $A$ è simmetrica.** La matrice è simmetrica esattamente quando questa differenza è la matrice nulla. Serve che $k - k^2$ sia zero. Raccolgo $k$: $k - k^2 = k \cdot (1 - k)$. Un prodotto di due numeri è zero quando uno dei due è zero. Quindi $k = 0$, oppure $1 - k = 0$, cioè $k = 1$.
+>
+> **Solo per $k = 0$ e per $k = 1$ la matrice $A$ è simmetrica.** Nel resto del problema serviva proprio questo: le matrici reali simmetriche hanno autovalori reali e una base ortonormale di autovettori (teorema spettrale, lezioni L25–L26).
+>
+> **Controllo.** Il risultato del passo 2 è una matrice antisimmetrica, come deve essere: la diagonale è fatta di zeri, e le due caselle $k - k^2$ e $k^2 - k$ sono una l'opposto dell'altra.
 
-**Il metodo per le domande sul rango.** Prima cerca relazioni evidenti tra righe o colonne: colonne uguali, righe multiple, una riga somma di altre due. Nei quiz degli ultimi anni c'erano quasi sempre: nelle matrici $3 \times 3$ una colonna doppia di un'altra, oppure una riga somma delle altre due, oppure una combinazione con coefficienti piccoli (come $-2$ e $3$); nella $4 \times 4$ del 05/02/2026 due righe erano combinazioni delle prime due. Poi controlla che le righe rimaste siano indipendenti. Se non vedi niente, riduci a scalini con Gauss (lezioni L11–L12) oppure, per una matrice quadrata, calcola il determinante (lezioni L09–L10: $\det A \neq 0$ vuol dire rango massimo).
+**I metodi**
 
-**Il metodo per le tracce.** Non calcolare tutto il prodotto: servono solo gli elementi diagonali, cioè $n$ prodotti «riga $i$ per colonna $i$». Con tre fattori, $\tr(ABC)$, calcola prima $AB$ (serve tutta) e poi solo la diagonale di $(AB)C$; oppure usa $\tr(ABC) = \tr(CAB)$ se conviene. Nelle domande con radici e $\pi$ (08/02/2024, 07/09/2026) i numeri «brutti» si cancellano quasi sempre: fidati del conto.
+Per la domanda «quale identità vale?» il metodo è nel riquadro alla fine della sezione sull'ordine nel prodotto. Per il rango e per la traccia eccone altri due.
 
-Errori da evitare:
+> [!METODO] Il rango nel quiz
+> 1. Cerca i doppioni a occhio: due colonne uguali, una riga multipla di un'altra, una riga che è la somma di altre due.
+> 2. Se non ne vedi, prova una combinazione con numeri piccoli, come $-2$ e $3$. Nei quiz degli ultimi anni un doppione c'era quasi sempre. Nelle matrici $3 \times 3$: una colonna doppia di un'altra, oppure una riga somma delle altre due. Nella $4 \times 4$ del 05/02/2026 due righe erano combinazioni delle prime due.
+> 3. Controlla che le righe rimaste siano indipendenti.
+> 4. Se non trovi niente, riduci la matrice a scalini con Gauss (lezioni L11–L12). Per una matrice quadrata puoi anche calcolare il determinante (lezioni L09–L10): se è diverso da zero, il rango è il più grande possibile.
 
-- moltiplicare **colonna per riga** invece che riga per colonna, o scambiare l'ordine dei fattori;
-- dare per scontato che $AB = BA$, oppure che $AB = 0$ implichi $A = 0$ o $B = 0$;
-- scrivere $\tr(AB) = \tr A \cdot \tr B$;
-- dimenticare che ${}^t(AB) = {}^tB\,{}^tA$ (con l'ordine **rovesciato**);
-- rispondere «non si può calcolare» quando il prodotto finale è quadrato anche se i fattori non lo sono;
-- dichiarare un rango maggiore di $\min(m, n)$.
+> [!METODO] La traccia di un prodotto
+> 1. Controlla che il prodotto finale sia quadrato. I fattori possono anche non esserlo.
+> 2. Non calcolare tutto il prodotto. Servono solo le caselle diagonali: la riga 1 per la colonna 1, la riga 2 per la colonna 2, e avanti così.
+> 3. Somma i risultati.
+> 4. Con tre fattori, come in $\tr(ABC)$: calcola per intero il prodotto delle prime due, poi solo la diagonale del prodotto con la terza. Se conviene, prima fai girare i fattori: $\tr(ABC) = \tr(CAB)$.
+> 5. Nelle domande con radici e $\pi$ (appelli dell'08/02/2024 e del 07/09/2026) i numeri scomodi quasi sempre si cancellano: fidati del conto.
+
+**Gli errori da evitare**
+
+- Moltiplicare colonna per riga al posto di riga per colonna, oppure scambiare l'ordine dei due fattori.
+- Dare per scontato che $AB$ e $BA$ siano uguali.
+- Pensare che, se $AB$ è la matrice nulla, allora $A$ oppure $B$ sia la matrice nulla.
+- Scrivere che la traccia di un prodotto è il prodotto delle tracce.
+- Dimenticare che nella trasposta di un prodotto l'ordine si rovescia: ${}^t(AB) = {}^tB\,{}^tA$.
+- Rispondere «non si può calcolare» quando il prodotto finale è quadrato, anche se i fattori non lo sono.
+- Dichiarare un rango più grande del numero delle righe o del numero delle colonne.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: $(m \times n)(n \times p) = m \times p$ e $(AB)_{ij} = \sum_k A_{ik}B_{kj}$; $AB \neq BA$ in generale; ${}^t(AB) = {}^tB\,{}^tA$; $\tr(AB) = \tr(BA)$, $\tr(ABC) = \tr(CAB)$, $\tr(A\,{}^tA)$ uguale alla somma dei quadrati dei numeri di $A$; $\rk(A) = \rk({}^tA) \le \min(m, n)$; simmetrica $\iff {}^tA = A$.
+> Da questa lezione conviene copiare queste righe.
+>
+> - Taglie del prodotto: $(m \times n) \cdot (n \times p)$ dà $m \times p$. La formula: $(AB)_{ij} = \sum_k A_{ik}B_{kj}$.
+> - Di solito $AB \neq BA$. Un prodotto può essere nullo senza che lo sia un fattore.
+> - Trasposta di un prodotto: ${}^t(AB) = {}^tB\,{}^tA$.
+> - Tracce: $\tr(AB) = \tr(BA)$ e $\tr(ABC) = \tr(CAB)$. In più $\tr(A\,{}^tA)$ è la somma dei quadrati dei numeri di $A$.
+> - Rango: $\rk(A) = \rk({}^tA) \le \min(m, n)$.
+> - Simmetrica vuol dire ${}^tA = A$. Antisimmetrica vuol dire ${}^tA = -A$.
 
 ## Quiz
 
@@ -11161,7 +13172,7 @@ D: Siano $A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$
 - $AB = B$
 - $BA = A$
 - $BA = B$
-= Riga per colonna: la riga 2 di $A$, $(1, 1, 0)$, per le colonne di $B$ dà $1 - 1 = 0$, $1$, $0$; la riga 3, $(1, 1, 1)$, dà $1 - 1 + 0 = 0$, $1 - 1 = 0$, $1$. Quindi $AB = I_3$, e allo stesso modo $BA = I_3$: vale $AB = BA$. Le altre sono false perché $I_3$ non è né $A$ né $B$. Simile all'appello del 15/01/2026, domanda 1.
+= La domanda chiede di calcolare i due prodotti e di confrontarli con $A$, con $B$ e tra loro. Si usa la regola riga per colonna. Per $AB$: la riga 1 di $A$ è $(1, 0, 0)$ e con le tre colonne di $B$ dà $1$, $0$, $0$. La riga 2 è $(1, 1, 0)$ e dà $1 - 1 = 0$, poi $0 + 1 = 1$, poi $0$. La riga 3 è $(1, 1, 1)$ e dà $1 - 1 + 0 = 0$, poi $0 + 1 - 1 = 0$, poi $1$. Quindi $AB$ ha 1 sulla diagonale e 0 altrove: è la matrice identità $I_3$. Per $BA$: la riga 1 di $B$ è $(1, 0, 0)$ e con le tre colonne di $A$ dà $1$, $0$, $0$. La riga 2 è $(-1, 1, 0)$ e dà $-1 + 1 = 0$, poi $1$, poi $0$. La riga 3 è $(0, -1, 1)$ e dà $-1 + 1 = 0$, poi $-1 + 1 = 0$, poi $1$. Anche $BA$ è $I_3$, quindi vale $AB = BA$. Le altre risposte sono false, perché $I_3$ non è né $A$ né $B$. È simile alla domanda 1 dell'appello del 15/01/2026.
 
 D: Siano $A = \begin{pmatrix} 0 & 1 & 2 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{pmatrix}$ e $B = \begin{pmatrix} 3 & 1 & -1 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$. Quale identità vale?
 + $AB = A$
@@ -11169,7 +13180,7 @@ D: Siano $A = \begin{pmatrix} 0 & 1 & 2 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{pmatrix}$
 - $BA = A$
 - $BA = B$
 - $AB = BA$
-= Ogni riga di $A$ ha 0 al primo posto, quindi la prima riga di $B$ viene moltiplicata per 0; le altre righe di $B$ sono $(0, 1, 0)$ e $(0, 0, 1)$ e ricopiano il resto. Per esempio la riga 1 di $AB$ è $0 \cdot (3, 1, -1) + 1 \cdot (0, 1, 0) + 2 \cdot (0, 0, 1) = (0, 1, 2)$. Quindi $AB = A$. Invece la prima riga di $BA$ è $3(0, 1, 2) + (0, 1, 1) - (0, 0, 0) = (0, 4, 7)$, diversa da quelle di $A$, di $B$ e di $AB$. Simile agli appelli del 03/06/2026 (domanda 5) e del 24/01/2024 (domanda 6).
+= La domanda chiede di calcolare i prodotti e di vedere se uno è uguale ad $A$ oppure a $B$. Si usa la regola riga per colonna. Le colonne di $B$ contengono $3, 0, 0$, poi $1, 1, 0$, poi $-1, 0, 1$. La riga 1 di $A$ è $(0, 1, 2)$. Con la colonna 1 di $B$ dà $0 \cdot 3 + 1 \cdot 0 + 2 \cdot 0 = 0$. Con la colonna 2 dà $0 \cdot 1 + 1 \cdot 1 + 2 \cdot 0 = 1$. Con la colonna 3 dà $0 \cdot (-1) + 1 \cdot 0 + 2 \cdot 1 = 2$. Viene $(0, 1, 2)$, cioè di nuovo la riga 1 di $A$. La riga 2 di $A$ è $(0, 1, 1)$, e gli stessi tre conti danno $0$, $1$, $1$: di nuovo la riga di partenza. La riga 3 è fatta di zeri e dà zeri. Quindi $AB = A$. La risposta $AB = BA$ è la più tentatrice, ma è falsa. La riga 1 di $B$ è $(3, 1, -1)$, e con le colonne di $A$ dà $0$, poi $3 + 1 = 4$, poi $6 + 1 = 7$. La prima riga di $BA$ è $(0, 4, 7)$, diversa da quella di $AB$, di $A$ e di $B$. È simile alle domande 5 del 03/06/2026 e 6 del 24/01/2024.
 
 D: Siano $A = \begin{pmatrix} \sqrt 5 & 0 & -\pi \\ 0 & \sqrt 2 & \sqrt 2 \\ \pi & \sqrt 5 & 0 \end{pmatrix}$ e $B = \begin{pmatrix} \sqrt 5 & \pi & \sqrt 5 \\ \pi & 0 & -\pi \\ 0 & \sqrt 2 & \sqrt 2 \end{pmatrix}$. Quanto vale $\tr(AB)$?
 + $7$
@@ -11177,7 +13188,7 @@ D: Siano $A = \begin{pmatrix} \sqrt 5 & 0 & -\pi \\ 0 & \sqrt 2 & \sqrt 2 \\ \pi
 - $5 + 2\pi^2$
 - $\sqrt 7$
 - $2\pi\sqrt 5$
-= Servono solo gli elementi diagonali. $(AB)_{11} = \sqrt 5 \cdot \sqrt 5 + 0 \cdot \pi + (-\pi) \cdot 0 = 5$; $(AB)_{22} = 0 \cdot \pi + \sqrt 2 \cdot 0 + \sqrt 2 \cdot \sqrt 2 = 2$; $(AB)_{33} = \pi\sqrt 5 + \sqrt 5 \cdot (-\pi) + 0 \cdot \sqrt 2 = 0$. Totale $7$. Simile agli appelli del 07/09/2026 (domanda 8) e dell'08/02/2024 (domanda 4).
+= La domanda chiede la somma dei numeri sulla diagonale del prodotto. Bastano le tre caselle diagonali: riga 1 per colonna 1, riga 2 per colonna 2, riga 3 per colonna 3. Prima casella: $\sqrt 5 \cdot \sqrt 5 + 0 \cdot \pi + (-\pi) \cdot 0 = 5$, perché radice di 5 per radice di 5 fa 5. Seconda casella: $0 \cdot \pi + \sqrt 2 \cdot 0 + \sqrt 2 \cdot \sqrt 2 = 2$. Terza casella: $\pi \cdot \sqrt 5 + \sqrt 5 \cdot (-\pi) + 0 \cdot \sqrt 2 = 0$, perché i primi due pezzi sono uno l'opposto dell'altro. La traccia è $5 + 2 + 0 = 7$. Le risposte con $\pi$ e con le radici sono trappole: i numeri scomodi si cancellano. È simile alle domande 8 del 07/09/2026 e 4 dell'08/02/2024.
 
 D: Data $A = \begin{pmatrix} 1 & 0 & 2 \\ 3 & 1 & 0 \end{pmatrix}$, quanto vale $\tr(A \cdot {}^tA)$?
 + $15$
@@ -11185,7 +13196,7 @@ D: Data $A = \begin{pmatrix} 1 & 0 & 2 \\ 3 & 1 & 0 \end{pmatrix}$, quanto vale 
 - $2$
 - $7$
 - $49$
-= $A$ è $2 \times 3$, quindi $A \cdot {}^tA$ è $2 \times 2$: quadrata, la traccia esiste. Gli elementi diagonali sono le righe di $A$ per sé stesse: $1 + 0 + 4 = 5$ e $9 + 1 + 0 = 10$, totale $15$, cioè la somma dei quadrati di tutti i numeri di $A$. Il $2$ è la somma $a_{11} + a_{22}$ di $A$, il $7$ la somma dei suoi numeri. Simile all'appello del 10/07/2025, domanda 9.
+= La domanda chiede di moltiplicare $A$ per la sua trasposta e di sommare la diagonale del risultato. $A$ è $2 \times 3$ e la sua trasposta è $3 \times 2$, quindi il prodotto è $2 \times 2$: è quadrato, e la traccia esiste. La risposta «non si può calcolare» è la trappola: a non essere quadrata è $A$, non il prodotto. Ogni casella diagonale del prodotto è una riga di $A$ per sé stessa. Riga 1: $1 \cdot 1 + 0 \cdot 0 + 2 \cdot 2 = 5$. Riga 2: $3 \cdot 3 + 1 \cdot 1 + 0 \cdot 0 = 10$. La traccia è $5 + 10 = 15$, cioè la somma dei quadrati di tutti i numeri di $A$. Il $2$ è la somma $a_{11} + a_{22}$, il $7$ è la somma di tutti i numeri di $A$. È simile alla domanda 9 dell'appello del 10/07/2025.
 
 D: Qual è il rango della matrice $\begin{pmatrix} 2 & 1 & 3 \\ 1 & 1 & 2 \\ 3 & 2 & 5 \end{pmatrix}$?
 + $2$
@@ -11193,7 +13204,7 @@ D: Qual è il rango della matrice $\begin{pmatrix} 2 & 1 & 3 \\ 1 & 1 & 2 \\ 3 &
 - $1$
 - $0$
 - $5$
-= La terza riga è la somma delle prime due: $(2 + 1, 1 + 1, 3 + 2) = (3, 2, 5)$. Le prime due non sono multiple (servirebbe $2 = c \cdot 1$ e $1 = c \cdot 1$ insieme). Quindi le righe indipendenti sono al massimo 2, e 2 ci sono: rango 2. Simile agli appelli del 07/09/2026 (domanda 9) e del 16/01/2025 (domanda 6).
+= La domanda chiede quante righe indipendenti ha la matrice. Si cercano i doppioni. La terza riga è la somma delle prime due: $2 + 1 = 3$, poi $1 + 1 = 2$, poi $3 + 2 = 5$. Quindi si può togliere. Le prime due righe non sono una il multiplo dell'altra: al primo posto, per passare da $1$ a $2$ si moltiplica per 2, ma al secondo posto $1 \cdot 2$ fa $2$ e non $1$. Restano 2 righe indipendenti: il rango è 2. La risposta $3$ è la trappola: tre righe piene di numeri non vogliono dire rango 3. È simile alle domande 9 del 07/09/2026 e 6 del 16/01/2025.
 
 D: $A$ è una matrice $2 \times 3$ e $B$ è una matrice $3 \times 4$. Quale affermazione è vera?
 + $AB$ è una matrice $2 \times 4$ e $BA$ non è definito.
@@ -11201,7 +13212,7 @@ D: $A$ è una matrice $2 \times 3$ e $B$ è una matrice $3 \times 4$. Quale affe
 - $AB$ è una matrice $3 \times 3$.
 - $AB$ non è definito, $BA$ è una matrice $4 \times 3$.
 - $AB$ è $2 \times 4$ e $BA$ è $4 \times 2$.
-= $(2 \times 3)(3 \times 4)$: i numeri interni coincidono, il risultato è $2 \times 4$. Per $BA$ servirebbe che le 4 colonne di $B$ fossero tante quante le 2 righe di $A$: non lo sono, quindi $BA$ non esiste.
+= La domanda chiede quali prodotti si possono fare e di che taglia vengono. Si scrivono le due taglie una accanto all'altra. Per $AB$: $(2 \times 3) \cdot (3 \times 4)$. I numeri interni sono 3 e 3, quindi il prodotto esiste. I numeri esterni sono 2 e 4, quindi è una matrice $2 \times 4$. Per $BA$: $(3 \times 4) \cdot (2 \times 3)$. I numeri interni sono 4 e 2: sono diversi, quindi $BA$ non esiste. «Non è definito» vuol dire proprio «non esiste». L'ultima risposta è la più tentatrice, perché la taglia di $AB$ è giusta: ma sbaglia su $BA$.
 
 D: Per matrici $A$ e $B$ per cui il prodotto $AB$ è definito, ${}^t(AB)$ è uguale a:
 + ${}^tB\,{}^tA$
@@ -11209,7 +13220,7 @@ D: Per matrici $A$ e $B$ per cui il prodotto $AB$ è definito, ${}^t(AB)$ è ugu
 - $AB$
 - $BA$
 - ${}^tA\,B$
-= È l'Esercizio 8.14 delle dispense: la trasposta di un prodotto è il prodotto delle trasposte in ordine rovesciato. ${}^tA\,{}^tB$ in generale non è nemmeno definito: con $A$ $3 \times 2$ e $B$ $2 \times 4$ sarebbe $(2 \times 3)(4 \times 2)$.
+= La domanda chiede la regola per la trasposta di un prodotto. È l'Esercizio 8.14 delle dispense: la trasposta di un prodotto è il prodotto delle trasposte **in ordine rovesciato**, cioè ${}^tB\,{}^tA$. La risposta ${}^tA\,{}^tB$ è la trappola, e di solito quel prodotto non esiste nemmeno. Se $A$ è $3 \times 2$ e $B$ è $2 \times 4$, le trasposte sono $2 \times 3$ e $4 \times 2$. Nell'ordine sbagliato le taglie sarebbero $(2 \times 3) \cdot (4 \times 2)$, con i numeri interni 3 e 4 diversi.
 
 D: Per quali $k \in \R$ la matrice $A = \begin{pmatrix} 1 & k^2 & 2 \\ k & 0 & 1 \\ 2 & 1 & 3 \end{pmatrix}$ è simmetrica?
 + Per $k = 0$ oppure $k = 1$.
@@ -11217,11 +13228,11 @@ D: Per quali $k \in \R$ la matrice $A = \begin{pmatrix} 1 & k^2 & 2 \\ k & 0 & 1
 - Solo per $k = 0$.
 - Per $k = \pm 1$.
 - Per nessun valore di $k$.
-= ${}^tA = A$ vuol dire $a_{ij} = a_{ji}$: $a_{13} = a_{31} = 2$ e $a_{23} = a_{32} = 1$ vanno già bene, resta $a_{12} = a_{21}$, cioè $k^2 = k$, che dà $k(k - 1) = 0$. Con $k = -1$ si avrebbe $a_{12} = 1 \neq -1 = a_{21}$. Simile all'appello del 15/01/2026, problema 11.
+= La domanda chiede per quali numeri $k$ la matrice è uguale alla sua trasposta. Si confrontano le caselle ribaltate rispetto alla diagonale. Riga 1 e colonna 3 contro riga 3 e colonna 1: c'è $2$ in tutte e due. Riga 2 e colonna 3 contro riga 3 e colonna 2: c'è $1$ in tutte e due. Resta la coppia riga 1 e colonna 2 contro riga 2 e colonna 1: serve $k^2 = k$. Porto tutto a sinistra: $k^2 - k = 0$. Raccolgo $k$: $k \cdot (k - 1) = 0$. Un prodotto di due numeri è zero quando uno dei due è zero: $k = 0$ oppure $k = 1$. Le risposte con un valore solo dimenticano l'altro. Con $k = -1$ le due caselle sarebbero $1$ e $-1$, che sono diverse. È simile al problema 11 dell'appello del 15/01/2026.
 
 D: Siano $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. Quanto vale $\tr(ABA)$?
 N: 4
-= $AB = \begin{pmatrix} 1 \cdot 0 + 2 \cdot 1 & 1 \cdot 1 + 2 \cdot 0 \\ 0 + 1 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix}$, poi $(ABA)_{11} = 2 \cdot 1 + 1 \cdot 0 = 2$ e $(ABA)_{22} = 1 \cdot 2 + 0 \cdot 1 = 2$: traccia $4$. Attenzione: $\tr A \cdot \tr B \cdot \tr A = 2 \cdot 0 \cdot 2 = 0$ è sbagliato. Simile all'appello del 05/02/2026, domanda 3.
+= La domanda chiede la traccia di un prodotto di tre matrici. Prima si calcola per intero $AB$, poi bastano le due caselle diagonali di $(AB)A$. Prima riga di $AB$: $1 \cdot 0 + 2 \cdot 1 = 2$ e $1 \cdot 1 + 2 \cdot 0 = 1$. Seconda riga: $0 \cdot 0 + 1 \cdot 1 = 1$ e $0 \cdot 1 + 1 \cdot 0 = 0$. Quindi $AB = \begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix}$. Prima casella diagonale di $(AB)A$: la riga $(2, 1)$ per la colonna 1 di $A$, che contiene $1$ e $0$, dà $2 \cdot 1 + 1 \cdot 0 = 2$. Seconda casella diagonale: la riga $(1, 0)$ per la colonna 2 di $A$, che contiene $2$ e $1$, dà $1 \cdot 2 + 0 \cdot 1 = 2$. La traccia è $2 + 2 = 4$. L'errore tipico è moltiplicare le tre tracce: $2 \cdot 0 \cdot 2 = 0$. Ma la traccia di un prodotto non è il prodotto delle tracce. È simile alla domanda 3 dell'appello del 05/02/2026.
 
 D: Sia $A$ una matrice $3 \times 5$ a coefficienti reali. Quale affermazione è sempre vera?
 + $\rk(A) \le 3$.
@@ -11229,282 +13240,613 @@ D: Sia $A$ una matrice $3 \times 5$ a coefficienti reali. Quale affermazione è 
 - $\rk({}^tA)$ può essere diverso da $\rk(A)$.
 - $\rk(A) = 3$.
 - Le 5 colonne di $A$ sono linearmente indipendenti.
-= Le colonne stanno in $\R^3$, quindi lo spazio che generano ha dimensione al più 3: $\rk(A) \le \min(3, 5) = 3$. Cinque vettori di $\R^3$ sono sempre dipendenti. Il rango può essere minore di 3 (per esempio la matrice nulla ha rango 0), e $\rk({}^tA) = \rk(A)$ sempre (Proposizione 8.6).
+= La domanda chiede che cosa si può dire del rango conoscendo solo la taglia. Il rango non supera né il numero delle righe né quello delle colonne. Qui le righe sono 3 e le colonne sono 5, quindi il rango è al massimo 3: è la risposta giusta. Il rango non può essere 5: le colonne hanno 3 numeri, e in $\R^3$ più di tre vettori sono sempre dipendenti. Per lo stesso motivo le 5 colonne non sono mai indipendenti. La risposta «il rango è 3» è la più tentatrice, ma non è **sempre** vera: la matrice nulla, per esempio, ha rango 0. Infine una matrice e la sua trasposta hanno sempre lo stesso rango (Proposizione 8.6).
 ```
 
 ## Esercizi
 
-::: esercizio base Esercizio 8.15 delle dispense: $AB$, $BA$ e le loro tracce
-Siano $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}$. Calcolare $AB$ e $BA$. Calcolare la traccia di $AB$ e di $BA$.
+::: esercizio base Leggere una matrice
+Prendi la matrice $A = \begin{pmatrix} 4 & -1 & 0 \\ 2 & 3 & 7 \end{pmatrix}$. (a) Che taglia ha? (b) Quanto valgono $a_{13}$ e $a_{21}$? (c) Scrivi la riga $A_2$ e la colonna $A^2$.
 ::: soluzione
-**Taglie.** $A$ è $3 \times 2$, $B$ è $2 \times 3$: $AB$ è $(3 \times 2)(2 \times 3) = 3 \times 3$, $BA$ è $(2 \times 3)(3 \times 2) = 2 \times 2$. Esistono entrambi, ma hanno taglie diverse.
+(a) Conto le righe: sono 2. Conto le colonne: sono 3. La taglia è $2 \times 3$: prima le righe, poi le colonne.
 
-**$AB$.** Le righe di $A$ sono $(1, 2)$, $(3, 4)$, $(5, 6)$; le colonne di $B$ sono ${}^t(1, 4)$, ${}^t(2, 5)$, ${}^t(3, 6)$.
-- riga 1: $1 + 8 = 9$, $\ 2 + 10 = 12$, $\ 3 + 12 = 15$;
-- riga 2: $3 + 16 = 19$, $\ 6 + 20 = 26$, $\ 9 + 24 = 33$;
-- riga 3: $5 + 24 = 29$, $\ 10 + 30 = 40$, $\ 15 + 36 = 51$.
+(b) $a_{13}$ è il numero nella riga 1 e nella colonna 3. Nella prima riga il terzo numero è 0. Quindi $a_{13} = 0$.
 
-$$AB = \begin{pmatrix} 9 & 12 & 15 \\ 19 & 26 & 33 \\ 29 & 40 & 51 \end{pmatrix}, \qquad \tr(AB) = 9 + 26 + 51 = 86.$$
+$a_{21}$ è il numero nella riga 2 e nella colonna 1. Nella seconda riga il primo numero è 2. Quindi $a_{21} = 2$.
 
-**$BA$.** Le righe di $B$ sono $(1, 2, 3)$ e $(4, 5, 6)$; le colonne di $A$ sono ${}^t(1, 3, 5)$ e ${}^t(2, 4, 6)$.
-- riga 1: $1 + 6 + 15 = 22$, $\ 2 + 8 + 18 = 28$;
-- riga 2: $4 + 15 + 30 = 49$, $\ 8 + 20 + 36 = 64$.
+(c) L'indice in basso indica una riga: $A_2$ è la seconda riga, cioè $(2, 3, 7)$.
 
-$$BA = \begin{pmatrix} 22 & 28 \\ 49 & 64 \end{pmatrix}, \qquad \tr(BA) = 22 + 64 = 86.$$
-
-Le due tracce coincidono anche se le matrici hanno taglie diverse: la dimostrazione della Proposizione 8.13 funziona anche per $A$ di taglia $m \times n$ e $B$ di taglia $n \times m$.
+L'indice in alto indica una colonna: $A^2$ è la seconda colonna. Contiene $-1$ sopra e 3 sotto:
+$$A^2 = \begin{pmatrix} -1 \\ 3 \end{pmatrix}.$$
 :::
 
-::: esercizio medio Esercizio 8.16 delle dispense: associatività sì, commutatività no
-Siano $A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$, $B = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}$, $C = \begin{pmatrix} -1 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & -1 & 0 \end{pmatrix}$. Calcolare $(AB)C$, $A(BC)$, $(BA)C$ e $C(BA)$.
+::: esercizio base Una trasposta e due controlli di simmetria
+(a) Scrivi la trasposta di $\begin{pmatrix} 1 & 0 & 2 \\ -3 & 5 & 4 \end{pmatrix}$. (b) Quale di queste due matrici è simmetrica? $\begin{pmatrix} 2 & 7 \\ 7 & 1 \end{pmatrix}$ e $\begin{pmatrix} 0 & 3 \\ -3 & 1 \end{pmatrix}$.
 ::: soluzione
-Conviene prima capire che cosa fanno $B$ e $C$, usando l'osservazione «$Ax$ è una combinazione delle colonne di $A$» (e l'analoga per le righe).
+(a) Le righe diventano colonne.
 
-**$AB$.** Le colonne di $B$ sono ${}^t(1, 0, 1)$, ${}^t(0, 1, 0)$, ${}^t(1, 0, 1)$, quindi le colonne di $AB$ sono $A^1 + A^3$, $A^2$, $A^1 + A^3$. Con $A^1 = {}^t(1, 4, 7)$, $A^2 = {}^t(2, 5, 8)$, $A^3 = {}^t(3, 6, 9)$:
-$$AB = \begin{pmatrix} 4 & 2 & 4 \\ 10 & 5 & 10 \\ 16 & 8 & 16 \end{pmatrix}.$$
-Controllo di una casella con la definizione: $(AB)_{21} = 4 \cdot 1 + 5 \cdot 0 + 6 \cdot 1 = 10$ ✓.
+1. La prima riga contiene $1, 0, 2$: diventa la prima colonna.
+2. La seconda riga contiene $-3, 5, 4$: diventa la seconda colonna.
 
-**Moltiplicare a destra per $C$.** Le colonne di $C$ sono $-e_1$, $-e_3$, $-e_2$: le colonne di $XC$ sono $-X^1$, $-X^3$, $-X^2$ (cambio di segno e scambio della seconda con la terza). Quindi
-$$(AB)C = \begin{pmatrix} -4 & -4 & -2 \\ -10 & -10 & -5 \\ -16 & -16 & -8 \end{pmatrix}.$$
+La trasposta è
+$$\begin{pmatrix} 1 & -3 \\ 0 & 5 \\ 2 & 4 \end{pmatrix}.$$
+La matrice di partenza era $2 \times 3$, la trasposta è $3 \times 2$.
 
-**$A(BC)$.** $BC$ ha colonne $-B^1$, $-B^3$, $-B^2$: $BC = \begin{pmatrix} -1 & -1 & 0 \\ 0 & 0 & -1 \\ -1 & -1 & 0 \end{pmatrix}$. Riga per colonna, per esempio $(A(BC))_{11} = 1 \cdot (-1) + 2 \cdot 0 + 3 \cdot (-1) = -4$ e $(A(BC))_{23} = 4 \cdot 0 + 5 \cdot (-1) + 6 \cdot 0 = -5$. Completando:
-$$A(BC) = \begin{pmatrix} -4 & -4 & -2 \\ -10 & -10 & -5 \\ -16 & -16 & -8 \end{pmatrix} = (AB)C,$$
-come garantisce l'associatività (Proposizione 8.11).
+(b) Una matrice è simmetrica quando le caselle ribaltate rispetto alla diagonale contengono lo stesso numero. In una $2 \times 2$ c'è una sola coppia da controllare: riga 1 e colonna 2 contro riga 2 e colonna 1.
 
-**$BA$.** Moltiplicare **a sinistra** per $B$ agisce sulle righe: le righe di $BA$ sono $A_1 + A_3$, $A_2$, $A_1 + A_3$:
-$$BA = \begin{pmatrix} 8 & 10 & 12 \\ 4 & 5 & 6 \\ 8 & 10 & 12 \end{pmatrix}.$$
+- Prima matrice: 7 e 7. Sono uguali, quindi è **simmetrica**.
+- Seconda matrice: 3 e $-3$. Sono diversi, quindi **non è simmetrica**.
 
-**$(BA)C$**: colonne $-X^1, -X^3, -X^2$ con $X = BA$:
-$$(BA)C = \begin{pmatrix} -8 & -12 & -10 \\ -4 & -6 & -5 \\ -8 & -12 & -10 \end{pmatrix}.$$
-
-**$C(BA)$**: a sinistra $C$ agisce sulle righe, che diventano $-X_1$, $-X_3$, $-X_2$:
-$$C(BA) = \begin{pmatrix} -8 & -10 & -12 \\ -8 & -10 & -12 \\ -4 & -5 & -6 \end{pmatrix}.$$
-
-Morale: $(AB)C = A(BC)$, ma $(BA)C \neq C(BA)$, perché $C$ e $BA$ non commutano.
+La seconda matrice non è nemmeno antisimmetrica. I due numeri fuori dalla diagonale sono opposti, ma sulla diagonale c'è un 1, mentre in una matrice antisimmetrica la diagonale è fatta di zeri.
 :::
 
-::: esercizio medio Esercizio 8.14 delle dispense: la trasposta di un prodotto
-Dimostrare che vale la relazione ${}^t(AB) = {}^tB\,{}^tA$.
+::: esercizio base Quali prodotti si possono fare?
+$A$ è una matrice $2 \times 3$, $B$ è una matrice $3 \times 3$, $C$ è una matrice $3 \times 2$. Per ciascuno dei prodotti $AB$, $BA$, $AC$, $CA$, $BC$, $CB$ di' se si può fare e di che taglia viene.
 ::: soluzione
-Sia $A$ di taglia $m \times n$ e $B$ di taglia $n \times p$, così che $AB$ esiste ed è $m \times p$.
+Per ogni prodotto scrivo le due taglie una accanto all'altra. Se i due numeri interni sono uguali il prodotto si può fare, e i due numeri esterni danno la taglia.
 
-1. **Le taglie tornano.** ${}^t(AB)$ è $p \times m$. ${}^tB$ è $p \times n$ e ${}^tA$ è $n \times m$, quindi ${}^tB\,{}^tA$ esiste ed è $p \times m$. (Invece ${}^tA\,{}^tB$ sarebbe $(n \times m)(p \times n)$, che in generale non esiste.)
-2. **Casella $(i, j)$ del primo membro.** Per la definizione di trasposta e poi di prodotto:
-   $$({}^t(AB))_{ij} = (AB)_{ji} = \sum_{k=1}^n A_{jk}B_{ki}.$$
-3. **Casella $(i, j)$ del secondo membro.** Per la definizione di prodotto e poi di trasposta:
-   $$({}^tB\,{}^tA)_{ij} = \sum_{k=1}^n ({}^tB)_{ik}({}^tA)_{kj} = \sum_{k=1}^n B_{ki}A_{jk}.$$
-4. Le due somme hanno gli stessi addendi, perché $A_{jk}B_{ki} = B_{ki}A_{jk}$ (sono numeri). Le matrici hanno la stessa taglia e le stesse caselle: sono uguali. $\square$
+| Prodotto | Taglie | Numeri interni | Si può fare? | Taglia del prodotto |
+|---|---|---|---|---|
+| $AB$ | $(2 \times 3) \cdot (3 \times 3)$ | 3 e 3 | sì | $2 \times 3$ |
+| $BA$ | $(3 \times 3) \cdot (2 \times 3)$ | 3 e 2 | no | |
+| $AC$ | $(2 \times 3) \cdot (3 \times 2)$ | 3 e 3 | sì | $2 \times 2$ |
+| $CA$ | $(3 \times 2) \cdot (2 \times 3)$ | 2 e 2 | sì | $3 \times 3$ |
+| $BC$ | $(3 \times 3) \cdot (3 \times 2)$ | 3 e 3 | sì | $3 \times 2$ |
+| $CB$ | $(3 \times 2) \cdot (3 \times 3)$ | 2 e 3 | no | |
 
-**Controllo con i numeri** (Esempio 8.8): ${}^t(AB) = {}^t\begin{pmatrix} 5 & 2 & 6 & 1 \\ 4 & -2 & 3 & -1 \\ 9 & 0 & 9 & 0 \end{pmatrix}$ ha prima riga $(5, 4, 9)$. E la prima riga di ${}^tB\,{}^tA$ è la riga $(-1, 3)$ di ${}^tB$ per le colonne ${}^t(1, 2)$, ${}^t(-1, 1)$, ${}^t(0, 3)$ di ${}^tA$: $-1 + 6 = 5$, $1 + 3 = 4$, $0 + 9 = 9$ ✓.
+Nota le righe di $AC$ e $CA$: i due prodotti esistono tutti e due, ma hanno taglie diverse.
+:::
+
+::: esercizio base Un prodotto $2 \times 2$ e due tracce
+Prendi $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 3 & 1 \\ 1 & 0 \end{pmatrix}$. Calcola $AB$ e $BA$. Poi calcola le due tracce.
+::: soluzione
+**Il prodotto $AB$.** Le righe di $A$ sono $(1, 2)$ e $(0, 1)$. Le colonne di $B$ contengono 3 e 1, poi 1 e 0.
+
+| | colonna 1 di $B$ | colonna 2 di $B$ |
+|---|---|---|
+| riga 1 di $A$ | $1 \cdot 3 + 2 \cdot 1 = 5$ | $1 \cdot 1 + 2 \cdot 0 = 1$ |
+| riga 2 di $A$ | $0 \cdot 3 + 1 \cdot 1 = 1$ | $0 \cdot 1 + 1 \cdot 0 = 0$ |
+
+$$AB = \begin{pmatrix} 5 & 1 \\ 1 & 0 \end{pmatrix}$$
+
+**Il prodotto $BA$.** Le righe di $B$ sono $(3, 1)$ e $(1, 0)$. Le colonne di $A$ contengono 1 e 0, poi 2 e 1.
+
+| | colonna 1 di $A$ | colonna 2 di $A$ |
+|---|---|---|
+| riga 1 di $B$ | $3 \cdot 1 + 1 \cdot 0 = 3$ | $3 \cdot 2 + 1 \cdot 1 = 7$ |
+| riga 2 di $B$ | $1 \cdot 1 + 0 \cdot 0 = 1$ | $1 \cdot 2 + 0 \cdot 1 = 2$ |
+
+$$BA = \begin{pmatrix} 3 & 7 \\ 1 & 2 \end{pmatrix}$$
+
+**Le tracce.** Sommo i numeri sulla diagonale. Per $AB$: $5 + 0 = 5$. Per $BA$: $3 + 2 = 5$.
+
+I due prodotti sono matrici diverse, ma le tracce sono uguali: è la Proposizione 8.13.
 :::
 
 ::: esercizio base Trasposta, parte simmetrica e parte antisimmetrica
-Sia $A = \begin{pmatrix} 1 & 4 & 2 \\ 0 & 3 & 5 \\ -2 & 1 & 6 \end{pmatrix}$. (a) Calcola ${}^tA$. (b) Calcola $S = \frac{A + {}^tA}2$ e $N = \frac{A - {}^tA}2$ e verifica che $S$ è simmetrica, $N$ è antisimmetrica e $S + N = A$. (c) Calcola $\tr A$ e $\tr({}^tA)$.
+Prendi $A = \begin{pmatrix} 1 & 4 & 2 \\ 0 & 3 & 5 \\ -2 & 1 & 6 \end{pmatrix}$. (a) Calcola ${}^tA$. (b) Calcola $S = \frac{A + {}^tA}2$ e $N = \frac{A - {}^tA}2$ e verifica che $S$ è simmetrica, $N$ è antisimmetrica e $S + N = A$. (c) Calcola $\tr A$ e $\tr({}^tA)$.
 ::: soluzione
-(a) Le righe di ${}^tA$ sono le colonne di $A$:
+(a) Le righe di $A$ diventano le colonne della trasposta.
+
+1. La prima riga contiene $1, 4, 2$: diventa la prima colonna.
+2. La seconda riga contiene $0, 3, 5$: diventa la seconda colonna.
+3. La terza riga contiene $-2, 1, 6$: diventa la terza colonna.
+
 $${}^tA = \begin{pmatrix} 1 & 0 & -2 \\ 4 & 3 & 1 \\ 2 & 5 & 6 \end{pmatrix}.$$
 
-(b) Somma e differenza casella per casella:
-$$A + {}^tA = \begin{pmatrix} 2 & 4 & 0 \\ 4 & 6 & 6 \\ 0 & 6 & 12 \end{pmatrix}, \qquad A - {}^tA = \begin{pmatrix} 0 & 4 & 4 \\ -4 & 0 & 4 \\ -4 & -4 & 0 \end{pmatrix},$$
-quindi
-$$S = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 3 & 3 \\ 0 & 3 & 6 \end{pmatrix}, \qquad N = \begin{pmatrix} 0 & 2 & 2 \\ -2 & 0 & 2 \\ -2 & -2 & 0 \end{pmatrix}.$$
-$S$ è simmetrica: i numeri fuori diagonale si specchiano ($2$ e $2$, $0$ e $0$, $3$ e $3$). $N$ è antisimmetrica: diagonale nulla e numeri specchiati col segno cambiato. Infine $S + N = \begin{pmatrix} 1 & 4 & 2 \\ 0 & 3 & 5 \\ -2 & 1 & 6 \end{pmatrix} = A$ ✓.
+(b) **La somma**, casella per casella:
+$$A + {}^tA = \begin{pmatrix} 1 + 1 & 4 + 0 & 2 + (-2) \\ 0 + 4 & 3 + 3 & 5 + 1 \\ -2 + 2 & 1 + 5 & 6 + 6 \end{pmatrix} = \begin{pmatrix} 2 & 4 & 0 \\ 4 & 6 & 6 \\ 0 & 6 & 12 \end{pmatrix}$$
 
-(c) $\tr A = 1 + 3 + 6 = 10$ e $\tr({}^tA) = 1 + 3 + 6 = 10$: la diagonale non cambia trasponendo.
+**La differenza**, casella per casella:
+$$A - {}^tA = \begin{pmatrix} 1 - 1 & 4 - 0 & 2 - (-2) \\ 0 - 4 & 3 - 3 & 5 - 1 \\ -2 - 2 & 1 - 5 & 6 - 6 \end{pmatrix} = \begin{pmatrix} 0 & 4 & 4 \\ -4 & 0 & 4 \\ -4 & -4 & 0 \end{pmatrix}$$
+
+**Divido per 2** ogni casella delle due matrici:
+$$S = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 3 & 3 \\ 0 & 3 & 6 \end{pmatrix}, \qquad N = \begin{pmatrix} 0 & 2 & 2 \\ -2 & 0 & 2 \\ -2 & -2 & 0 \end{pmatrix}.$$
+
+**$S$ è simmetrica.** Le coppie di caselle ribaltate contengono lo stesso numero: 2 e 2, poi 0 e 0, poi 3 e 3.
+
+**$N$ è antisimmetrica.** La diagonale è fatta di zeri. Le coppie di caselle ribaltate contengono numeri opposti: 2 e $-2$ in tutte e tre le coppie.
+
+**La somma ridà $A$.**
+$$S + N = \begin{pmatrix} 1 + 0 & 2 + 2 & 0 + 2 \\ 2 - 2 & 3 + 0 & 3 + 2 \\ 0 - 2 & 3 - 2 & 6 + 0 \end{pmatrix} = \begin{pmatrix} 1 & 4 & 2 \\ 0 & 3 & 5 \\ -2 & 1 & 6 \end{pmatrix} = A$$
+
+(c) La diagonale di $A$ contiene 1, 3 e 6: $\tr A = 1 + 3 + 6 = 10$. La diagonale della trasposta contiene gli stessi numeri, quindi $\tr({}^tA) = 10$. Trasponendo, la diagonale non cambia.
+:::
+
+::: esercizio base Esercizio 8.15 delle dispense: $AB$, $BA$ e le loro tracce
+Siano $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}$. Calcolare $AB$ e $BA$. Calcolare la traccia di $AB$ e di $BA$.
+::: soluzione
+**Le taglie.** $A$ è $3 \times 2$ e $B$ è $2 \times 3$.
+
+- Per $AB$: $(3 \times 2) \cdot (2 \times 3)$. I numeri interni sono 2 e 2: si può fare, e viene una $3 \times 3$.
+- Per $BA$: $(2 \times 3) \cdot (3 \times 2)$. I numeri interni sono 3 e 3: si può fare, e viene una $2 \times 2$.
+
+I due prodotti esistono tutti e due, ma hanno taglie diverse.
+
+**Il prodotto $AB$.** Le righe di $A$ sono $(1, 2)$, $(3, 4)$, $(5, 6)$. Le colonne di $B$ contengono 1 e 4, poi 2 e 5, poi 3 e 6.
+
+| | colonna 1 di $B$ | colonna 2 di $B$ | colonna 3 di $B$ |
+|---|---|---|---|
+| riga 1 di $A$ | $1 \cdot 1 + 2 \cdot 4 = 9$ | $1 \cdot 2 + 2 \cdot 5 = 12$ | $1 \cdot 3 + 2 \cdot 6 = 15$ |
+| riga 2 di $A$ | $3 \cdot 1 + 4 \cdot 4 = 19$ | $3 \cdot 2 + 4 \cdot 5 = 26$ | $3 \cdot 3 + 4 \cdot 6 = 33$ |
+| riga 3 di $A$ | $5 \cdot 1 + 6 \cdot 4 = 29$ | $5 \cdot 2 + 6 \cdot 5 = 40$ | $5 \cdot 3 + 6 \cdot 6 = 51$ |
+
+$$AB = \begin{pmatrix} 9 & 12 & 15 \\ 19 & 26 & 33 \\ 29 & 40 & 51 \end{pmatrix}, \qquad \tr(AB) = 9 + 26 + 51 = 86.$$
+
+**Il prodotto $BA$.** Le righe di $B$ sono $(1, 2, 3)$ e $(4, 5, 6)$. Le colonne di $A$ contengono 1, 3, 5 e poi 2, 4, 6.
+
+| | colonna 1 di $A$ | colonna 2 di $A$ |
+|---|---|---|
+| riga 1 di $B$ | $1 \cdot 1 + 2 \cdot 3 + 3 \cdot 5 = 22$ | $1 \cdot 2 + 2 \cdot 4 + 3 \cdot 6 = 28$ |
+| riga 2 di $B$ | $4 \cdot 1 + 5 \cdot 3 + 6 \cdot 5 = 49$ | $4 \cdot 2 + 5 \cdot 4 + 6 \cdot 6 = 64$ |
+
+$$BA = \begin{pmatrix} 22 & 28 \\ 49 & 64 \end{pmatrix}, \qquad \tr(BA) = 22 + 64 = 86.$$
+
+**Che cosa si nota.** Le due tracce sono uguali anche se le due matrici hanno taglie diverse. La Proposizione 8.13 parla di matrici quadrate, ma la sua dimostrazione funziona anche quando $A$ è $m \times n$ e $B$ è $n \times m$.
 :::
 
 ::: esercizio medio Quattro ranghi
 Determina il rango delle matrici
 $$A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 0 \\ 0 & 3 & 6 \end{pmatrix}, \quad B = \begin{pmatrix} 1 & -1 & 2 \\ -2 & 2 & -4 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 0 & 2 & 1 \\ 0 & 1 & 1 & 1 \\ 1 & 1 & 3 & 2 \end{pmatrix}, \quad D = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}.$$
 ::: soluzione
-**$A$** (dal Foglio di esercizi 2 del tutorato 2025). Cerco una relazione tra le righe: $2A_1 - A_2 = (2 - 2, 4 - 1, 6 - 0) = (0, 3, 6) = A_3$. Quindi la terza riga è combinazione delle prime due, che non sono multiple ($(1, 2, 3)$ e $(2, 1, 0)$: la terza coordinata darebbe $3c = 0$, cioè $c = 0$, impossibile). $\rk(A) = 2$.
+Per ogni matrice cerco i doppioni tra le righe (o tra le colonne), li tolgo e conto quello che resta.
 
-**$B$.** La seconda riga è $-2$ volte la prima: $(-2, 2, -4) = -2(1, -1, 2)$. La matrice non è nulla, quindi $\rk(B) = 1$.
+**La matrice $A$** (dal Foglio di esercizi 2 del tutorato 2025). Provo a ottenere la terza riga dalle prime due: due volte la prima, meno la seconda.
 
-**$C$.** $C_3 = C_1 + C_2 = (1, 1, 3, 2)$ ✓, e $C_1$, $C_2$ non sono multiple (nella prima posizione $1$ e $0$, nella seconda $0$ e $1$). $\rk(C) = 2$, anche se $C$ ha quattro colonne.
+| | primo numero | secondo numero | terzo numero |
+|---|---|---|---|
+| 2 volte la riga 1 | $2 \cdot 1 = 2$ | $2 \cdot 2 = 4$ | $2 \cdot 3 = 6$ |
+| riga 2 | $2$ | $1$ | $0$ |
+| differenza | $2 - 2 = 0$ | $4 - 1 = 3$ | $6 - 0 = 6$ |
 
-**$D$.** $\rk(D) \le \min(3, 2) = 2$. Le due colonne ${}^t(1, 3, 5)$ e ${}^t(2, 4, 6)$ non sono multiple ($2 = c \cdot 1$ dà $c = 2$, ma $4 \neq 2 \cdot 3$). $\rk(D) = 2$: rango massimo.
-:::
+Viene $(0, 3, 6)$, che è la terza riga: è un doppione. Le prime due righe sono $(1, 2, 3)$ e $(2, 1, 0)$. Non sono una il multiplo dell'altra: al primo posto si passa da 1 a 2 moltiplicando per 2, ma al secondo posto $2 \cdot 2 = 4$ e non 1. Restano 2 righe indipendenti: $\rk(A) = 2$.
 
-::: esercizio medio Potenze e il quadrato di una somma
-Siano $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$. (a) Calcola $A^2$ e $A^3$ e indovina $A^n$. (b) Calcola $(A + B)^2$ e $A^2 + 2AB + B^2$: sono uguali?
-::: soluzione
-(a) $A^2 = AA = \begin{pmatrix} 1 \cdot 1 + 1 \cdot 0 & 1 \cdot 1 + 1 \cdot 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$, e $A^3 = A^2 A = \begin{pmatrix} 1 & 1 + 2 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 0 & 1 \end{pmatrix}$. Ogni volta il numero in alto a destra aumenta di 1: $A^n = \begin{pmatrix} 1 & n \\ 0 & 1 \end{pmatrix}$ (si dimostra per induzione: $A^{n+1} = A^n A = \begin{pmatrix} 1 & n + 1 \\ 0 & 1 \end{pmatrix}$).
+**La matrice $B$.** La seconda riga è la prima moltiplicata per $-2$:
+$$-2 \cdot (1, -1, 2) = (-2, 2, -4).$$
+È un doppione. Resta una riga sola, che non è fatta di zeri: $\rk(B) = 1$.
 
-(b) $A + B = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, quindi $(A + B)^2 = \begin{pmatrix} 2 & 2 \\ 2 & 2 \end{pmatrix}$ (ogni casella è $1 \cdot 1 + 1 \cdot 1$).
+**La matrice $C$.** La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $0 + 1 = 1$, poi $2 + 1 = 3$, poi $1 + 1 = 2$. È un doppione. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1 e la seconda con 0, e al secondo posto succede il contrario. Restano 2 righe: $\rk(C) = 2$, anche se le colonne sono quattro.
 
-Poi $AB = \begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix}$, $BA = \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}$ e $B^2 = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$ (anche qui un prodotto nullo con $B \neq 0$). Quindi
-$$A^2 + 2AB + B^2 = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} + \begin{pmatrix} 2 & 0 \\ 2 & 0 \end{pmatrix} = \begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix} \neq (A + B)^2.$$
-La formula giusta è $(A + B)^2 = A^2 + AB + BA + B^2 = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} + \begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 2 \end{pmatrix}$ ✓. Il «$2AB$» della scuola funziona solo se $AB = BA$.
-:::
-
-::: esercizio difficile Le matrici che commutano con una matrice data
-Trova tutte le matrici $X = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in M(2, \R)$ tali che $AX = XA$, dove $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$.
-::: soluzione
-Calcolo i due prodotti:
-$$AX = \begin{pmatrix} a + c & b + d \\ c & d \end{pmatrix}, \qquad XA = \begin{pmatrix} a & a + b \\ c & c + d \end{pmatrix}.$$
-Uguaglio casella per casella:
-- $(1, 1)$: $a + c = a$, quindi $c = 0$;
-- $(1, 2)$: $b + d = a + b$, quindi $d = a$;
-- $(2, 1)$: $c = c$, sempre vera;
-- $(2, 2)$: $d = c + d$, quindi di nuovo $c = 0$.
-
-Le matrici cercate sono
-$$X = \begin{pmatrix} a & b \\ 0 & a \end{pmatrix} = a \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + b \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \qquad a, b \in \R.$$
-Formano un sottospazio di $M(2, \R)$ di dimensione 2. Per esempio $X = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$ ($c = 1$) **non** commuta con $A$: commutare è un'eccezione, non la regola.
+**La matrice $D$.** Ha 3 righe e 2 colonne, quindi il rango è al massimo 2. Guardo le due colonne: contengono $1, 3, 5$ e $2, 4, 6$. In alto si passa da 1 a 2 moltiplicando per 2. Ma nel mezzo $3 \cdot 2 = 6$ e non 4. Le colonne non sono una il multiplo dell'altra, quindi sono indipendenti: $\rk(D) = 2$, il più grande possibile per questa taglia.
 :::
 
 ::: esercizio medio Un prodotto nullo con fattori non nulli
-Siano $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$ e $B = \begin{pmatrix} 2 & -4 \\ -1 & 2 \end{pmatrix}$. Calcola $AB$ e $BA$. Che cosa impari?
+Prendi $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$ e $B = \begin{pmatrix} 2 & -4 \\ -1 & 2 \end{pmatrix}$. Calcola $AB$ e $BA$. Che cosa impari?
 ::: soluzione
-$$AB = \begin{pmatrix} 1 \cdot 2 + 2 \cdot (-1) & 1 \cdot (-4) + 2 \cdot 2 \\ 2 \cdot 2 + 4 \cdot (-1) & 2 \cdot (-4) + 4 \cdot 2 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix},$$
-$$BA = \begin{pmatrix} 2 \cdot 1 + (-4) \cdot 2 & 2 \cdot 2 + (-4) \cdot 4 \\ (-1) \cdot 1 + 2 \cdot 2 & (-1) \cdot 2 + 2 \cdot 4 \end{pmatrix} = \begin{pmatrix} -6 & -12 \\ 3 & 6 \end{pmatrix}.$$
-Tre lezioni in un esercizio: (1) $AB = 0$ anche se $A \neq 0$ e $B \neq 0$; (2) $AB = 0$ ma $BA \neq 0$, quindi $AB \neq BA$; (3) non si può «semplificare»: per esempio $AB = A \cdot 0$ ma $B \neq 0$. Il motivo: le colonne di $B$, ${}^t(2, -1)$ e ${}^t(-4, 2)$, sono combinazioni delle colonne di $A$ che danno zero ($2A^1 - A^2 = 0$), e $A$ ha rango 1.
+**Il prodotto $AB$.**
+$$AB = \begin{pmatrix} 1 \cdot 2 + 2 \cdot (-1) & 1 \cdot (-4) + 2 \cdot 2 \\ 2 \cdot 2 + 4 \cdot (-1) & 2 \cdot (-4) + 4 \cdot 2 \end{pmatrix} = \begin{pmatrix} 2 - 2 & -4 + 4 \\ 4 - 4 & -8 + 8 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$$
+
+**Il prodotto $BA$.**
+$$BA = \begin{pmatrix} 2 \cdot 1 + (-4) \cdot 2 & 2 \cdot 2 + (-4) \cdot 4 \\ (-1) \cdot 1 + 2 \cdot 2 & (-1) \cdot 2 + 2 \cdot 4 \end{pmatrix} = \begin{pmatrix} 2 - 8 & 4 - 16 \\ -1 + 4 & -2 + 8 \end{pmatrix} = \begin{pmatrix} -6 & -12 \\ 3 & 6 \end{pmatrix}$$
+
+**Che cosa si impara.** Tre cose.
+
+1. Il prodotto $AB$ è la matrice nulla, ma né $A$ né $B$ sono la matrice nulla.
+2. $AB$ è la matrice nulla e $BA$ no. Quindi $AB \neq BA$.
+3. Non si può «semplificare». Anche $A$ per la matrice nulla dà la matrice nulla. Quindi $A$ per $B$ e $A$ per la matrice nulla danno lo stesso risultato, ma $B$ non è la matrice nulla.
+
+**Perché succede.** La seconda colonna di $A$ è il doppio della prima: $A$ ha rango 1. Ogni colonna di $AB$ è una ricetta fatta con le colonne di $A$, e le quantità sono i numeri di una colonna di $B$. La prima colonna di $B$ contiene 2 e $-1$: la ricetta è «due volte la prima colonna di $A$, meno la seconda». Viene $(2 - 2,\ 4 - 4)$, cioè zero. La seconda colonna di $B$ contiene $-4$ e 2: la ricetta è «$-4$ volte la prima colonna di $A$, più due volte la seconda». Viene $(-4 + 4,\ -8 + 8)$, di nuovo zero.
+:::
+
+::: esercizio medio Potenze e il quadrato di una somma
+Prendi $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$. (a) Calcola $A^2$ e $A^3$ e indovina $A^n$. (b) Calcola $(A + B)^2$ e $A^2 + 2AB + B^2$: sono uguali?
+::: soluzione
+Qui il numero in alto è una potenza: $A^2$ vuol dire $A$ per $A$, e $A^3$ vuol dire $A^2$ per $A$.
+
+(a) **Il quadrato.**
+$$A^2 = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 \cdot 1 + 1 \cdot 0 & 1 \cdot 1 + 1 \cdot 1 \\ 0 \cdot 1 + 1 \cdot 0 & 0 \cdot 1 + 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$$
+
+**Il cubo.** Moltiplico il quadrato per $A$:
+$$A^3 = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 1 \cdot 1 + 2 \cdot 0 & 1 \cdot 1 + 2 \cdot 1 \\ 0 \cdot 1 + 1 \cdot 0 & 0 \cdot 1 + 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 0 & 1 \end{pmatrix}$$
+
+**La regola.** Ogni volta il numero in alto a destra aumenta di 1, e gli altri restano fermi. Quindi dopo $n$ moltiplicazioni:
+$$A^n = \begin{pmatrix} 1 & n \\ 0 & 1 \end{pmatrix}$$
+Il controllo: se moltiplico questa matrice ancora per $A$, in alto a destra viene $1 \cdot 1 + n \cdot 1 = n + 1$. Il numero aumenta di 1 a ogni passo, come previsto.
+
+(b) **Il lato sinistro.** Prima la somma, poi il quadrato:
+$$A + B = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix} \qquad (A + B)^2 = \begin{pmatrix} 1 \cdot 1 + 1 \cdot 1 & 1 \cdot 1 + 1 \cdot 1 \\ 1 \cdot 1 + 1 \cdot 1 & 1 \cdot 1 + 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 2 \end{pmatrix}$$
+
+**I pezzi del lato destro.**
+$$AB = \begin{pmatrix} 1 \cdot 0 + 1 \cdot 1 & 1 \cdot 0 + 1 \cdot 0 \\ 0 \cdot 0 + 1 \cdot 1 & 0 \cdot 0 + 1 \cdot 0 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix}$$
+$$B^2 = \begin{pmatrix} 0 \cdot 0 + 0 \cdot 1 & 0 \cdot 0 + 0 \cdot 0 \\ 1 \cdot 0 + 0 \cdot 1 & 1 \cdot 0 + 0 \cdot 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$$
+Anche qui un prodotto è nullo senza che lo sia il fattore $B$.
+
+**Il lato destro.**
+$$A^2 + 2AB + B^2 = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} + \begin{pmatrix} 2 & 0 \\ 2 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix}$$
+Non è uguale a $(A + B)^2$: i due lati sono diversi.
+
+**La formula giusta.** Il quadrato di una somma è $(A + B)(A + B) = A^2 + AB + BA + B^2$. Serve anche $BA$:
+$$BA = \begin{pmatrix} 0 \cdot 1 + 0 \cdot 0 & 0 \cdot 1 + 0 \cdot 1 \\ 1 \cdot 1 + 0 \cdot 0 & 1 \cdot 1 + 0 \cdot 1 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}$$
+$$A^2 + AB + BA + B^2 = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} + \begin{pmatrix} 1 & 0 \\ 1 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 2 & 2 \end{pmatrix}$$
+Questa volta torna. Il «doppio prodotto» imparato a scuola funziona solo quando $AB$ e $BA$ sono uguali.
+:::
+
+::: esercizio medio Esercizio 8.16 delle dispense: associatività sì, commutatività no
+Siano $A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$, $B = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}$, $C = \begin{pmatrix} -1 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & -1 & 0 \end{pmatrix}$. Calcolare $(AB)C$, $A(BC)$, $(BA)C$ e $C(BA)$.
+::: soluzione
+Le parentesi dicono quale prodotto va fatto per primo. Servono sette prodotti in tutto. In ogni tabella: la riga scritta a sinistra per la colonna scritta in alto.
+
+**1. Il prodotto $AB$.** Le colonne di $B$ contengono $1, 0, 1$, poi $0, 1, 0$, poi $1, 0, 1$.
+
+| | colonna 1 di $B$ | colonna 2 di $B$ | colonna 3 di $B$ |
+|---|---|---|---|
+| riga 1 di $A$: $(1, 2, 3)$ | $1 \cdot 1 + 2 \cdot 0 + 3 \cdot 1 = 4$ | $1 \cdot 0 + 2 \cdot 1 + 3 \cdot 0 = 2$ | $1 \cdot 1 + 2 \cdot 0 + 3 \cdot 1 = 4$ |
+| riga 2 di $A$: $(4, 5, 6)$ | $4 \cdot 1 + 5 \cdot 0 + 6 \cdot 1 = 10$ | $4 \cdot 0 + 5 \cdot 1 + 6 \cdot 0 = 5$ | $4 \cdot 1 + 5 \cdot 0 + 6 \cdot 1 = 10$ |
+| riga 3 di $A$: $(7, 8, 9)$ | $7 \cdot 1 + 8 \cdot 0 + 9 \cdot 1 = 16$ | $7 \cdot 0 + 8 \cdot 1 + 9 \cdot 0 = 8$ | $7 \cdot 1 + 8 \cdot 0 + 9 \cdot 1 = 16$ |
+
+$$AB = \begin{pmatrix} 4 & 2 & 4 \\ 10 & 5 & 10 \\ 16 & 8 & 16 \end{pmatrix}$$
+
+**2. Il prodotto $(AB)C$.** Le colonne di $C$ contengono $-1, 0, 0$, poi $0, 0, -1$, poi $0, -1, 0$. In ogni colonna c'è un solo numero diverso da zero. Quindi in ogni conto resta un pezzo solo: gli altri due sono moltiplicati per 0.
+
+| | colonna 1 di $C$ | colonna 2 di $C$ | colonna 3 di $C$ |
+|---|---|---|---|
+| riga 1 di $AB$: $(4, 2, 4)$ | $4 \cdot (-1) = -4$ | $4 \cdot (-1) = -4$ | $2 \cdot (-1) = -2$ |
+| riga 2 di $AB$: $(10, 5, 10)$ | $10 \cdot (-1) = -10$ | $10 \cdot (-1) = -10$ | $5 \cdot (-1) = -5$ |
+| riga 3 di $AB$: $(16, 8, 16)$ | $16 \cdot (-1) = -16$ | $16 \cdot (-1) = -16$ | $8 \cdot (-1) = -8$ |
+
+Nella prima colonna si usa il primo numero della riga. Nella seconda colonna si usa il terzo, perché il $-1$ di quella colonna sta in basso. Nella terza colonna si usa il secondo.
+
+$$(AB)C = \begin{pmatrix} -4 & -4 & -2 \\ -10 & -10 & -5 \\ -16 & -16 & -8 \end{pmatrix}$$
+
+**3. Il prodotto $BC$.** Stesso criterio: in ogni conto resta un pezzo solo.
+
+| | colonna 1 di $C$ | colonna 2 di $C$ | colonna 3 di $C$ |
+|---|---|---|---|
+| riga 1 di $B$: $(1, 0, 1)$ | $1 \cdot (-1) = -1$ | $1 \cdot (-1) = -1$ | $0 \cdot (-1) = 0$ |
+| riga 2 di $B$: $(0, 1, 0)$ | $0 \cdot (-1) = 0$ | $0 \cdot (-1) = 0$ | $1 \cdot (-1) = -1$ |
+| riga 3 di $B$: $(1, 0, 1)$ | $1 \cdot (-1) = -1$ | $1 \cdot (-1) = -1$ | $0 \cdot (-1) = 0$ |
+
+$$BC = \begin{pmatrix} -1 & -1 & 0 \\ 0 & 0 & -1 \\ -1 & -1 & 0 \end{pmatrix}$$
+
+**4. Il prodotto $A(BC)$.** Le colonne di $BC$ contengono $-1, 0, -1$, poi di nuovo $-1, 0, -1$, poi $0, -1, 0$.
+
+| | colonna 1 di $BC$ | colonna 2 di $BC$ | colonna 3 di $BC$ |
+|---|---|---|---|
+| riga 1 di $A$: $(1, 2, 3)$ | $1 \cdot (-1) + 2 \cdot 0 + 3 \cdot (-1) = -4$ | $1 \cdot (-1) + 2 \cdot 0 + 3 \cdot (-1) = -4$ | $1 \cdot 0 + 2 \cdot (-1) + 3 \cdot 0 = -2$ |
+| riga 2 di $A$: $(4, 5, 6)$ | $4 \cdot (-1) + 5 \cdot 0 + 6 \cdot (-1) = -10$ | $4 \cdot (-1) + 5 \cdot 0 + 6 \cdot (-1) = -10$ | $4 \cdot 0 + 5 \cdot (-1) + 6 \cdot 0 = -5$ |
+| riga 3 di $A$: $(7, 8, 9)$ | $7 \cdot (-1) + 8 \cdot 0 + 9 \cdot (-1) = -16$ | $7 \cdot (-1) + 8 \cdot 0 + 9 \cdot (-1) = -16$ | $7 \cdot 0 + 8 \cdot (-1) + 9 \cdot 0 = -8$ |
+
+$$A(BC) = \begin{pmatrix} -4 & -4 & -2 \\ -10 & -10 & -5 \\ -16 & -16 & -8 \end{pmatrix} = (AB)C$$
+
+Le due matrici sono uguali, come dice l'associatività (Proposizione 8.11).
+
+**5. Il prodotto $BA$.** Le colonne di $A$ contengono $1, 4, 7$, poi $2, 5, 8$, poi $3, 6, 9$.
+
+| | colonna 1 di $A$ | colonna 2 di $A$ | colonna 3 di $A$ |
+|---|---|---|---|
+| riga 1 di $B$: $(1, 0, 1)$ | $1 \cdot 1 + 0 \cdot 4 + 1 \cdot 7 = 8$ | $1 \cdot 2 + 0 \cdot 5 + 1 \cdot 8 = 10$ | $1 \cdot 3 + 0 \cdot 6 + 1 \cdot 9 = 12$ |
+| riga 2 di $B$: $(0, 1, 0)$ | $0 \cdot 1 + 1 \cdot 4 + 0 \cdot 7 = 4$ | $0 \cdot 2 + 1 \cdot 5 + 0 \cdot 8 = 5$ | $0 \cdot 3 + 1 \cdot 6 + 0 \cdot 9 = 6$ |
+| riga 3 di $B$: $(1, 0, 1)$ | $1 \cdot 1 + 0 \cdot 4 + 1 \cdot 7 = 8$ | $1 \cdot 2 + 0 \cdot 5 + 1 \cdot 8 = 10$ | $1 \cdot 3 + 0 \cdot 6 + 1 \cdot 9 = 12$ |
+
+$$BA = \begin{pmatrix} 8 & 10 & 12 \\ 4 & 5 & 6 \\ 8 & 10 & 12 \end{pmatrix}$$
+
+**6. Il prodotto $(BA)C$.** Come al punto 2: in ogni conto resta un pezzo solo.
+
+| | colonna 1 di $C$ | colonna 2 di $C$ | colonna 3 di $C$ |
+|---|---|---|---|
+| riga 1 di $BA$: $(8, 10, 12)$ | $8 \cdot (-1) = -8$ | $12 \cdot (-1) = -12$ | $10 \cdot (-1) = -10$ |
+| riga 2 di $BA$: $(4, 5, 6)$ | $4 \cdot (-1) = -4$ | $6 \cdot (-1) = -6$ | $5 \cdot (-1) = -5$ |
+| riga 3 di $BA$: $(8, 10, 12)$ | $8 \cdot (-1) = -8$ | $12 \cdot (-1) = -12$ | $10 \cdot (-1) = -10$ |
+
+$$(BA)C = \begin{pmatrix} -8 & -12 & -10 \\ -4 & -6 & -5 \\ -8 & -12 & -10 \end{pmatrix}$$
+
+**7. Il prodotto $C(BA)$.** Adesso $C$ sta a sinistra, quindi si usano le sue righe: $(-1, 0, 0)$, $(0, 0, -1)$, $(0, -1, 0)$. Le colonne di $BA$ contengono $8, 4, 8$, poi $10, 5, 10$, poi $12, 6, 12$.
+
+| | colonna 1 di $BA$ | colonna 2 di $BA$ | colonna 3 di $BA$ |
+|---|---|---|---|
+| riga 1 di $C$: $(-1, 0, 0)$ | $(-1) \cdot 8 = -8$ | $(-1) \cdot 10 = -10$ | $(-1) \cdot 12 = -12$ |
+| riga 2 di $C$: $(0, 0, -1)$ | $(-1) \cdot 8 = -8$ | $(-1) \cdot 10 = -10$ | $(-1) \cdot 12 = -12$ |
+| riga 3 di $C$: $(0, -1, 0)$ | $(-1) \cdot 4 = -4$ | $(-1) \cdot 5 = -5$ | $(-1) \cdot 6 = -6$ |
+
+La riga 1 di $C$ usa il primo numero di ogni colonna, la riga 2 usa il terzo, la riga 3 usa il secondo.
+
+$$C(BA) = \begin{pmatrix} -8 & -10 & -12 \\ -8 & -10 & -12 \\ -4 & -5 & -6 \end{pmatrix}$$
+
+**La morale.** $(AB)C$ e $A(BC)$ sono uguali: le parentesi si possono spostare. Invece $(BA)C$ e $C(BA)$ sono diverse: le lettere non si possono scambiare. Nota che moltiplicare per $C$ **a destra** cambia segno e scambia due **colonne**, mentre moltiplicare per $C$ **a sinistra** cambia segno e scambia due **righe**.
+:::
+
+::: esercizio medio Esercizio 8.14 delle dispense: la trasposta di un prodotto
+Dimostrare che vale la relazione ${}^t(AB) = {}^tB\,{}^tA$.
+::: soluzione
+**L'idea.** Due matrici sono uguali quando hanno la stessa taglia e lo stesso numero in ogni casella. Quindi controllo la taglia, e poi una casella qualsiasi.
+
+Chiamo $m \times n$ la taglia di $A$ e $n \times p$ la taglia di $B$. Così il prodotto $AB$ esiste ed è $m \times p$.
+
+1. **Le taglie tornano.** La trasposta di $AB$ è $p \times m$. La trasposta di $B$ è $p \times n$ e quella di $A$ è $n \times m$. I numeri interni sono uguali, quindi ${}^tB\,{}^tA$ esiste ed è $p \times m$. Nell'ordine sbagliato le taglie sarebbero $(n \times m) \cdot (p \times n)$, e di solito quel prodotto non esiste.
+2. **La casella di riga $i$ e colonna $j$ del lato sinistro.** Per la regola della trasposta è la casella di riga $j$ e colonna $i$ di $AB$. Per la formula del prodotto è la riga $j$ di $A$ per la colonna $i$ di $B$:
+   $$({}^t(AB))_{ij} = (AB)_{ji} = \sum_{k=1}^n A_{jk}B_{ki}.$$
+3. **La casella di riga $i$ e colonna $j$ del lato destro.** Per la formula del prodotto è la riga $i$ di ${}^tB$ per la colonna $j$ di ${}^tA$. Per la regola della trasposta, in ogni pezzo gli indici si scambiano:
+   $$({}^tB\,{}^tA)_{ij} = \sum_{k=1}^n ({}^tB)_{ik}({}^tA)_{kj} = \sum_{k=1}^n B_{ki}A_{jk}.$$
+4. **Il confronto.** Le due somme hanno gli stessi pezzi: $A_{jk}B_{ki}$ e $B_{ki}A_{jk}$ sono lo stesso numero, perché tra numeri l'ordine di un prodotto non conta. Le due matrici hanno la stessa taglia e lo stesso numero in ogni casella: sono uguali.
+
+**Lo stesso ragionamento a parole.** La riga $i$ di ${}^tB$ contiene i numeri della colonna $i$ di $B$. La colonna $j$ di ${}^tA$ contiene i numeri della riga $j$ di $A$. Quindi «riga $i$ di ${}^tB$ per colonna $j$ di ${}^tA$» usa gli stessi numeri di «riga $j$ di $A$ per colonna $i$ di $B$». E quest'ultimo conto è la casella di $AB$ che, dopo la trasposizione, finisce nella riga $i$ e nella colonna $j$.
+
+**Controllo con i numeri** dell'Esempio 8.8. Lì avevamo trovato
+$$AB = \begin{pmatrix} 5 & 2 & 6 & 1 \\ 4 & -2 & 3 & -1 \\ 9 & 0 & 9 & 0 \end{pmatrix}$$
+La prima riga della trasposta di $AB$ è la prima colonna di $AB$: contiene $5, 4, 9$.
+
+Dall'altro lato, la prima riga di ${}^tB$ è la prima colonna di $B$: $(-1, 3)$. Le colonne di ${}^tA$ sono le righe di $A$: contengono 1 e 2, poi $-1$ e 1, poi 0 e 3. I tre conti:
+
+- $(-1) \cdot 1 + 3 \cdot 2 = -1 + 6 = 5$;
+- $(-1) \cdot (-1) + 3 \cdot 1 = 1 + 3 = 4$;
+- $(-1) \cdot 0 + 3 \cdot 3 = 0 + 9 = 9$.
+
+Viene $5, 4, 9$: la stessa riga.
+:::
+
+::: esercizio difficile Le matrici che commutano con una matrice data
+Trova tutte le matrici $X = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in M(2, \R)$ per cui $AX = XA$, dove $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$.
+::: soluzione
+Due matrici **commutano** quando il loro prodotto è lo stesso nei due ordini. Le lettere $a$, $b$, $c$, $d$ sono i quattro numeri di $X$, che non conosciamo: l'esercizio chiede quali valori possono avere.
+
+**1. Il prodotto $AX$.** Le righe di $A$ sono $(1, 1)$ e $(0, 1)$. Le colonne di $X$ contengono $a$ e $c$, poi $b$ e $d$.
+$$AX = \begin{pmatrix} 1 \cdot a + 1 \cdot c & 1 \cdot b + 1 \cdot d \\ 0 \cdot a + 1 \cdot c & 0 \cdot b + 1 \cdot d \end{pmatrix} = \begin{pmatrix} a + c & b + d \\ c & d \end{pmatrix}$$
+
+**2. Il prodotto $XA$.** Le righe di $X$ sono $(a, b)$ e $(c, d)$. Le colonne di $A$ contengono 1 e 0, poi 1 e 1.
+$$XA = \begin{pmatrix} a \cdot 1 + b \cdot 0 & a \cdot 1 + b \cdot 1 \\ c \cdot 1 + d \cdot 0 & c \cdot 1 + d \cdot 1 \end{pmatrix} = \begin{pmatrix} a & a + b \\ c & c + d \end{pmatrix}$$
+
+**3. Uguaglio casella per casella.** Le due matrici sono uguali quando lo sono tutte e quattro le caselle.
+
+| Casella | Condizione | Che cosa dice |
+|---|---|---|
+| riga 1, colonna 1 | $a + c = a$ | tolgo $a$ dai due lati: $c = 0$ |
+| riga 1, colonna 2 | $b + d = a + b$ | tolgo $b$ dai due lati: $d = a$ |
+| riga 2, colonna 1 | $c = c$ | sempre vera |
+| riga 2, colonna 2 | $d = c + d$ | tolgo $d$ dai due lati: di nuovo $c = 0$ |
+
+**4. La risposta.** Serve $c = 0$ e $d = a$. I numeri $a$ e $b$ restano liberi: puoi sceglierli come vuoi. Le matrici cercate sono
+$$X = \begin{pmatrix} a & b \\ 0 & a \end{pmatrix} = a \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + b \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \qquad a, b \in \R.$$
+Sono tutte le ricette fatte con due matrici fisse. Per questo formano un sottospazio di $M(2, \R)$ di dimensione 2.
+
+**Controllo** con $a = 2$ e $b = 3$, cioè $X = \begin{pmatrix} 2 & 3 \\ 0 & 2 \end{pmatrix}$:
+$$AX = \begin{pmatrix} 1 \cdot 2 + 1 \cdot 0 & 1 \cdot 3 + 1 \cdot 2 \\ 0 \cdot 2 + 1 \cdot 0 & 0 \cdot 3 + 1 \cdot 2 \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ 0 & 2 \end{pmatrix} \qquad XA = \begin{pmatrix} 2 \cdot 1 + 3 \cdot 0 & 2 \cdot 1 + 3 \cdot 1 \\ 0 \cdot 1 + 2 \cdot 0 & 0 \cdot 1 + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ 0 & 2 \end{pmatrix}$$
+I due prodotti sono uguali.
+
+Una matrice con $c$ diverso da zero, invece, **non** commuta con $A$. È il caso della matrice $B$ dell'esercizio 9, che ha $c = 1$: lì $AB$ e $BA$ sono diverse. Commutare è un'eccezione, non la regola.
 :::
 
 ::: esercizio difficile La traccia di $A\,{}^tA$
 (a) Dimostra che per ogni matrice reale $A$ di taglia $m \times n$ vale $\tr(A\,{}^tA) = \sum_{i, j} a_{ij}^2$. (b) Deduci che se $\tr(A\,{}^tA) = 0$ allora $A = 0$. (c) Mostra con $A = \begin{pmatrix} 1 & i \\ 0 & 0 \end{pmatrix} \in M(2, \C)$ che (b) è falso sui numeri complessi.
 ::: soluzione
-(a) $A\,{}^tA$ è $m \times m$. Il suo elemento diagonale $(i, i)$ è la riga $i$ di $A$ per la colonna $i$ di ${}^tA$, che è di nuovo la riga $i$ di $A$:
+A parole, il punto (a) dice: la traccia di una matrice per la sua trasposta è la **somma dei quadrati di tutti i suoi numeri**. La scrittura $\sum_{i, j} a_{ij}^2$ vuol dire proprio questo: si somma $a_{ij}^2$ per tutte le caselle.
+
+(a) **Passo 1: la traccia esiste.** $A$ è $m \times n$ e la sua trasposta è $n \times m$. Il prodotto $A\,{}^tA$ è $m \times m$: è quadrato.
+
+**Passo 2: una casella diagonale.** La casella di riga $i$ e colonna $i$ del prodotto è la riga $i$ di $A$ per la colonna $i$ di ${}^tA$. Ma la colonna $i$ della trasposta contiene i numeri della riga $i$ di $A$. Quindi è la riga $i$ per sé stessa: ogni numero della riga viene moltiplicato per sé stesso, e poi si somma.
 $$(A\,{}^tA)_{ii} = \sum_{j=1}^n A_{ij}({}^tA)_{ji} = \sum_{j=1}^n A_{ij}A_{ij} = \sum_{j=1}^n a_{ij}^2.$$
-Sommando su $i$ si ottiene la somma dei quadrati di tutti i numeri di $A$.
+È la somma dei quadrati dei numeri della riga $i$.
 
-(b) Una somma di quadrati di numeri **reali** è zero solo se ogni quadrato è zero, perché nessun addendo è negativo. Quindi ogni $a_{ij} = 0$ e $A = 0$.
+**Passo 3: la traccia.** La traccia somma le caselle diagonali, una per ogni riga. Sommando le righe si ottiene la somma dei quadrati di tutti i numeri della matrice.
 
-(c) $A\,{}^tA = \begin{pmatrix} 1 & i \\ 0 & 0 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ i & 0 \end{pmatrix} = \begin{pmatrix} 1 + i^2 & 0 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$, quindi la traccia è $0$ ma $A \neq 0$. Con i complessi $1^2 + i^2 = 0$: i quadrati possono cancellarsi. È uno dei motivi per cui, per i vettori complessi, nella lezione L25 arriverà il prodotto hermitiano.
+**Un controllo con i numeri.** Per la matrice $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ le due caselle diagonali del prodotto sono $1 \cdot 1 + 2 \cdot 2 = 5$ e $3 \cdot 3 + 4 \cdot 4 = 25$. La traccia è $5 + 25 = 30$. La somma dei quadrati è $1 + 4 + 9 + 16 = 30$.
+
+(b) Il quadrato di un numero reale non è mai negativo: è zero solo per il numero zero, altrimenti è positivo. Una somma di numeri che non sono mai negativi fa zero solo se sono **tutti** zero. Quindi ogni $a_{ij}^2$ è zero, cioè ogni $a_{ij}$ è zero. La matrice $A$ è la matrice nulla.
+
+(c) Qui $i$ non è un indice: è l'unità immaginaria della lezione L02, il numero per cui $i \cdot i = -1$. La trasposta è ${}^tA = \begin{pmatrix} 1 & 0 \\ i & 0 \end{pmatrix}$. Il prodotto:
+$$A\,{}^tA = \begin{pmatrix} 1 & i \\ 0 & 0 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ i & 0 \end{pmatrix} = \begin{pmatrix} 1 \cdot 1 + i \cdot i & 1 \cdot 0 + i \cdot 0 \\ 0 \cdot 1 + 0 \cdot i & 0 \cdot 0 + 0 \cdot 0 \end{pmatrix} = \begin{pmatrix} 1 - 1 & 0 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$$
+La traccia è 0, ma $A$ non è la matrice nulla. Con i numeri complessi i quadrati possono cancellarsi tra loro: $1^2 + i^2 = 1 - 1 = 0$. È uno dei motivi per cui, per i vettori complessi, nella lezione L25 arriverà il prodotto hermitiano.
 :::
 
 ::: esercizio esame Quale identità vale?
 Siano $A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 2 & -1 & 3 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 0 \\ 3 & -1 & 0 \end{pmatrix}$. Quale identità vale? (a) $AB = BA$; (b) $AB = A$; (c) $AB = B$; (d) $BA = A$; (e) $BA = B$.
 ::: soluzione
-**$AB$.** Moltiplicare a sinistra per $A$ agisce sulle righe di $B$: le righe di $AB$ sono $1 \cdot B_1$, $1 \cdot B_2$ e $2B_1 - B_2 + 3B_3$.
-- riga 1: $(1, 2, 0)$; riga 2: $(0, 1, 0)$;
-- riga 3: $2(1, 2, 0) - (0, 1, 0) + 3(3, -1, 0) = (2 + 9, 4 - 1 - 3, 0) = (11, 0, 0)$.
+Seguo il metodo «Quale identità vale?»: calcolo $AB$, lo confronto con $A$ e con $B$, poi calcolo $BA$.
 
-$AB = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 0 \\ 11 & 0 & 0 \end{pmatrix}$: basta la casella $(3, 1)$ (11 contro 2 in $A$ e 3 in $B$) per escludere (b) e (c).
+**1. Il prodotto $AB$.** Le colonne di $B$ contengono $1, 0, 3$, poi $2, 1, -1$, poi $0, 0, 0$.
 
-**$BA$.** Le righe di $BA$ sono combinazioni delle righe di $A$ con i coefficienti delle righe di $B$. La terza colonna di $B$ è nulla, quindi la terza riga di $A$ non entra mai; le prime due righe di $A$ sono $(1, 0, 0)$ e $(0, 1, 0)$ e ricopiano i coefficienti:
-- riga 1: $1 \cdot (1, 0, 0) + 2 \cdot (0, 1, 0) = (1, 2, 0)$;
-- riga 2: $(0, 1, 0)$;
-- riga 3: $3 \cdot (1, 0, 0) - 1 \cdot (0, 1, 0) = (3, -1, 0)$.
+| | colonna 1 di $B$ | colonna 2 di $B$ | colonna 3 di $B$ |
+|---|---|---|---|
+| riga 1 di $A$: $(1, 0, 0)$ | $1 \cdot 1 + 0 \cdot 0 + 0 \cdot 3 = 1$ | $1 \cdot 2 + 0 \cdot 1 + 0 \cdot (-1) = 2$ | $0$ |
+| riga 2 di $A$: $(0, 1, 0)$ | $0 \cdot 1 + 1 \cdot 0 + 0 \cdot 3 = 0$ | $0 \cdot 2 + 1 \cdot 1 + 0 \cdot (-1) = 1$ | $0$ |
+| riga 3 di $A$: $(2, -1, 3)$ | $2 \cdot 1 + (-1) \cdot 0 + 3 \cdot 3 = 11$ | $2 \cdot 2 + (-1) \cdot 1 + 3 \cdot (-1) = 0$ | $0$ |
 
-Quindi $BA = B$: risposta **(e)**. Le altre sono false: $BA = B \neq A$ esclude la (d), e $AB \neq BA$ (casella $(3, 1)$: 11 contro 3) esclude la (a).
+Nella terza colonna viene sempre 0, perché la terza colonna di $B$ è fatta di zeri.
+
+$$AB = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 0 \\ 11 & 0 & 0 \end{pmatrix}$$
+
+**2. Il confronto.** Guardo la casella di riga 3 e colonna 1. In $AB$ c'è 11, in $A$ c'è 2, in $B$ c'è 3. Basta questa casella: $AB$ non è uguale ad $A$ e non è uguale a $B$. Le risposte (b) e (c) sono false.
+
+**3. Il prodotto $BA$.** Le colonne di $A$ contengono $1, 0, 2$, poi $0, 1, -1$, poi $0, 0, 3$.
+
+| | colonna 1 di $A$ | colonna 2 di $A$ | colonna 3 di $A$ |
+|---|---|---|---|
+| riga 1 di $B$: $(1, 2, 0)$ | $1 \cdot 1 + 2 \cdot 0 + 0 \cdot 2 = 1$ | $1 \cdot 0 + 2 \cdot 1 + 0 \cdot (-1) = 2$ | $1 \cdot 0 + 2 \cdot 0 + 0 \cdot 3 = 0$ |
+| riga 2 di $B$: $(0, 1, 0)$ | $0 \cdot 1 + 1 \cdot 0 + 0 \cdot 2 = 0$ | $0 \cdot 0 + 1 \cdot 1 + 0 \cdot (-1) = 1$ | $0 \cdot 0 + 1 \cdot 0 + 0 \cdot 3 = 0$ |
+| riga 3 di $B$: $(3, -1, 0)$ | $3 \cdot 1 + (-1) \cdot 0 + 0 \cdot 2 = 3$ | $3 \cdot 0 + (-1) \cdot 1 + 0 \cdot (-1) = -1$ | $3 \cdot 0 + (-1) \cdot 0 + 0 \cdot 3 = 0$ |
+
+$$BA = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 0 \\ 3 & -1 & 0 \end{pmatrix} = B$$
+
+**4. La risposta.** $BA = B$: la risposta giusta è la **(e)**. Le altre due sono false. La (d) perché $BA$ è uguale a $B$, e $B$ è diversa da $A$. La (a) perché nella riga 3 e colonna 1 il prodotto $AB$ ha 11 e il prodotto $BA$ ha 3.
 :::
 
 ::: esercizio esame Una traccia di tre fattori e un rango $4 \times 4$
 (a) Siano $A = \begin{pmatrix} 1 & -1 \\ 0 & 2 \end{pmatrix}$, $B = \begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix}$, $C = \begin{pmatrix} 0 & 1 \\ 1 & -1 \end{pmatrix}$. Calcola $\tr(ABC)$ e confrontala con $\tr(ACB)$. (b) Determina il rango di $M = \begin{pmatrix} 1 & 0 & 1 & 2 \\ 0 & 3 & 0 & 1 \\ 1 & 6 & 1 & 4 \\ 2 & 3 & 2 & 5 \end{pmatrix}$.
 ::: soluzione
-(a) Prima $AB = \begin{pmatrix} 1 \cdot 2 + (-1) \cdot 1 & 1 \cdot 0 + (-1) \cdot 1 \\ 0 \cdot 2 + 2 \cdot 1 & 0 \cdot 0 + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} 1 & -1 \\ 2 & 2 \end{pmatrix}$. Di $(AB)C$ servono solo le caselle diagonali:
-- $((AB)C)_{11} = 1 \cdot 0 + (-1) \cdot 1 = -1$;
-- $((AB)C)_{22} = 2 \cdot 1 + 2 \cdot (-1) = 0$.
+(a) Seguo il metodo per le tracce: calcolo per intero il prodotto delle prime due matrici, poi solo le caselle diagonali del prodotto con la terza.
 
-$\tr(ABC) = -1$. Per confronto, $AC = \begin{pmatrix} -1 & 2 \\ 2 & -2 \end{pmatrix}$ e $(ACB)_{11} = -2 + 2 = 0$, $(ACB)_{22} = 0 - 2 = -2$: $\tr(ACB) = -2 \neq \tr(ABC)$. Le rotazioni ($BCA$, $CAB$) conservano la traccia, gli scambi no.
+**1. Il prodotto $AB$.**
+$$AB = \begin{pmatrix} 1 \cdot 2 + (-1) \cdot 1 & 1 \cdot 0 + (-1) \cdot 1 \\ 0 \cdot 2 + 2 \cdot 1 & 0 \cdot 0 + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} 1 & -1 \\ 2 & 2 \end{pmatrix}$$
 
-(b) Cerco relazioni tra le righe. $M_1 + 2M_2 = (1, 6, 1, 2 + 2) = (1, 6, 1, 4) = M_3$ e $2M_1 + M_2 = (2, 3, 2, 4 + 1) = (2, 3, 2, 5) = M_4$. Le righe 3 e 4 sono combinazioni delle prime due, che non sono multiple ($M_1$ ha $0$ al secondo posto, $M_2$ ha $0$ al primo). Quindi $\rk(M) = 2$. Si poteva notare anche che la terza colonna è uguale alla prima: il rango è al massimo 3, ma serve comunque trovare le relazioni tra le righe.
+**2. La diagonale di $(AB)C$.** Le colonne di $C$ contengono 0 e 1, poi 1 e $-1$.
+
+- Riga 1 di $AB$ per colonna 1 di $C$: $1 \cdot 0 + (-1) \cdot 1 = -1$.
+- Riga 2 di $AB$ per colonna 2 di $C$: $2 \cdot 1 + 2 \cdot (-1) = 0$.
+
+Quindi $\tr(ABC) = -1 + 0 = -1$.
+
+**3. Il prodotto $AC$.**
+$$AC = \begin{pmatrix} 1 \cdot 0 + (-1) \cdot 1 & 1 \cdot 1 + (-1) \cdot (-1) \\ 0 \cdot 0 + 2 \cdot 1 & 0 \cdot 1 + 2 \cdot (-1) \end{pmatrix} = \begin{pmatrix} -1 & 2 \\ 2 & -2 \end{pmatrix}$$
+
+**4. La diagonale di $(AC)B$.** Le colonne di $B$ contengono 2 e 1, poi 0 e 1.
+
+- Riga 1 di $AC$ per colonna 1 di $B$: $(-1) \cdot 2 + 2 \cdot 1 = 0$.
+- Riga 2 di $AC$ per colonna 2 di $B$: $2 \cdot 0 + (-2) \cdot 1 = -2$.
+
+Quindi $\tr(ACB) = 0 + (-2) = -2$.
+
+**5. Il confronto.** Le due tracce sono diverse: $-1$ e $-2$. Far girare i fattori ($BCA$, $CAB$) non cambia la traccia. Scambiare due fattori vicini, come $B$ e $C$, può cambiarla.
+
+(b) Cerco i doppioni tra le righe. Le chiamo riga 1, riga 2, riga 3 e riga 4.
+
+**La riga 3 è la riga 1 più due volte la riga 2.**
+
+| | primo numero | secondo numero | terzo numero | quarto numero |
+|---|---|---|---|---|
+| riga 1 | $1$ | $0$ | $1$ | $2$ |
+| 2 volte la riga 2 | $2 \cdot 0 = 0$ | $2 \cdot 3 = 6$ | $2 \cdot 0 = 0$ | $2 \cdot 1 = 2$ |
+| somma | $1 + 0 = 1$ | $0 + 6 = 6$ | $1 + 0 = 1$ | $2 + 2 = 4$ |
+
+Viene $(1, 6, 1, 4)$: è la riga 3.
+
+**La riga 4 è due volte la riga 1 più la riga 2.**
+
+| | primo numero | secondo numero | terzo numero | quarto numero |
+|---|---|---|---|---|
+| 2 volte la riga 1 | $2 \cdot 1 = 2$ | $2 \cdot 0 = 0$ | $2 \cdot 1 = 2$ | $2 \cdot 2 = 4$ |
+| riga 2 | $0$ | $3$ | $0$ | $1$ |
+| somma | $2 + 0 = 2$ | $0 + 3 = 3$ | $2 + 0 = 2$ | $4 + 1 = 5$ |
+
+Viene $(2, 3, 2, 5)$: è la riga 4.
+
+Le righe 3 e 4 sono doppioni, e le tolgo. Restano la riga 1 e la riga 2. Non sono una il multiplo dell'altra: la riga 1 ha 0 al secondo posto, dove la riga 2 ha 3. La riga 2 ha 0 al primo posto, dove la riga 1 ha 1. Quindi sono indipendenti, e $\rk(M) = 2$.
+
+Si poteva notare anche che la terza colonna è uguale alla prima. Ma questo dice solo che il rango è al massimo 3: per arrivare a 2 servono le relazioni tra le righe.
 :::
 
 ::: esercizio esame Quando $A$ è simmetrica?
-Sia $A = \begin{pmatrix} 2 & k & 1 \\ k^2 & 1 & k \\ 1 & 1 & 0 \end{pmatrix}$, con $k \in \R$. (a) Calcola ${}^tA - A$. (b) Per quali $k$ la matrice $A$ è simmetrica? (c) Verifica che ${}^tA - A$ è antisimmetrica per ogni $k$.
+Prendi $A = \begin{pmatrix} 2 & k & 1 \\ k^2 & 1 & k \\ 1 & 1 & 0 \end{pmatrix}$, con $k \in \R$. (a) Calcola ${}^tA - A$. (b) Per quali $k$ la matrice $A$ è simmetrica? (c) Verifica che ${}^tA - A$ è antisimmetrica per ogni $k$.
 ::: soluzione
-(a) ${}^tA = \begin{pmatrix} 2 & k^2 & 1 \\ k & 1 & 1 \\ 1 & k & 0 \end{pmatrix}$, quindi
+La lettera $k$ è un parametro: un numero reale che non conosciamo, e che nei conti resta scritto come lettera.
+
+(a) **La trasposta.** Le righe diventano colonne. La prima riga contiene $2, k, 1$. La seconda contiene $k^2, 1, k$. La terza contiene $1, 1, 0$.
+$${}^tA = \begin{pmatrix} 2 & k^2 & 1 \\ k & 1 & 1 \\ 1 & k & 0 \end{pmatrix}$$
+
+**La differenza, casella per casella.** In ogni casella: il numero di ${}^tA$ meno il numero di $A$.
+
+| | colonna 1 | colonna 2 | colonna 3 |
+|---|---|---|---|
+| riga 1 | $2 - 2 = 0$ | $k^2 - k$ | $1 - 1 = 0$ |
+| riga 2 | $k - k^2$ | $1 - 1 = 0$ | $1 - k$ |
+| riga 3 | $1 - 1 = 0$ | $k - 1$ | $0 - 0 = 0$ |
+
 $${}^tA - A = \begin{pmatrix} 0 & k^2 - k & 0 \\ k - k^2 & 0 & 1 - k \\ 0 & k - 1 & 0 \end{pmatrix}.$$
 
-(b) $A$ è simmetrica se e solo se ${}^tA - A = 0$, cioè se valgono insieme $k^2 - k = 0$ (quindi $k = 0$ oppure $k = 1$) e $1 - k = 0$ (quindi $k = 1$). Entrambe: **solo $k = 1$**. Controllo: con $k = 1$, $A = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 0 \end{pmatrix}$ è simmetrica. Con $k = 0$ invece $a_{23} = 0 \neq 1 = a_{32}$.
+(b) La matrice è simmetrica esattamente quando ${}^tA - A$ è la matrice nulla. Servono due condizioni **insieme**.
 
-(c) La diagonale è nulla, e le caselle simmetriche hanno segni opposti: $k^2 - k$ e $k - k^2$, $1 - k$ e $k - 1$. In generale ${}^t({}^tA - A) = A - {}^tA = -({}^tA - A)$.
+1. $k^2 - k = 0$. Raccolgo $k$: $k \cdot (k - 1) = 0$. Un prodotto di due numeri è zero quando uno dei due è zero: $k = 0$ oppure $k = 1$.
+2. $1 - k = 0$, cioè $k = 1$.
+
+Il solo valore che va bene per tutte e due è $k = 1$. Quindi $A$ è simmetrica **solo per $k = 1$**.
+
+**Controllo.** Con $k = 1$ la matrice diventa $\begin{pmatrix} 2 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 0 \end{pmatrix}$, che è simmetrica. Con $k = 0$ diventa $\begin{pmatrix} 2 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 1 & 0 \end{pmatrix}$: nella riga 2 e colonna 3 c'è 0, nella riga 3 e colonna 2 c'è 1. Non è simmetrica.
+
+(c) Guardo la matrice del punto (a). La diagonale è fatta di zeri. Le coppie di caselle ribaltate contengono numeri opposti:
+
+- $k^2 - k$ e $k - k^2$;
+- $0$ e $0$;
+- $1 - k$ e $k - 1$.
+
+Quindi la matrice è antisimmetrica, qualunque sia $k$. Vale per ogni matrice quadrata: se trasponi ${}^tA - A$ ottieni $A - {}^tA$, perché trasporre due volte riporta ad $A$. E $A - {}^tA$ è la matrice di partenza con tutti i segni cambiati.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Che cos'è la trasposta di una matrice e che taglia ha?
-È la matrice ${}^tA$ ottenuta scambiando righe e colonne: $({}^tA)_{ij} = A_{ji}$. Se $A$ è $m \times n$, ${}^tA$ è $n \times m$: la riga $i$ di ${}^tA$ è la colonna $i$ di $A$.
+È la matrice che si ottiene scambiando le righe con le colonne: la prima riga diventa la prima colonna, la seconda riga la seconda colonna, e avanti così. Si scrive ${}^tA$. Se la matrice di partenza è $m \times n$, la trasposta è $n \times m$. La regola degli indirizzi è $({}^tA)_{ij} = A_{ji}$.
 :::
 
 ::: domanda Come si riconoscono con la trasposta le matrici simmetriche e antisimmetriche? Perché un'antisimmetrica ha la diagonale nulla?
-$A$ quadrata è simmetrica se ${}^tA = A$ e antisimmetrica se ${}^tA = -A$. Sulla diagonale la trasposta non cambia niente, quindi in un'antisimmetrica $a_{ii} = -a_{ii}$, cioè $a_{ii} = 0$.
+Una matrice quadrata è simmetrica se è uguale alla sua trasposta: ${}^tA = A$. È antisimmetrica se la sua trasposta è la matrice con tutti i segni cambiati: ${}^tA = -A$.
+
+Una casella della diagonale, ribaltata, resta sé stessa. In una matrice antisimmetrica il suo numero deve quindi essere uguale al proprio opposto. L'unico numero così è lo 0.
 :::
 
 ::: domanda Che cosa vuol dire la scrittura ${}^t(1, 0, -1)$?
-È il vettore colonna con coordinate $1, 0, -1$, scritto come trasposto di una riga per risparmiare spazio.
+È il vettore colonna con i numeri 1, 0 e $-1$, letti dall'alto in basso. Si scrive in riga, con la piccola $t$ davanti, per risparmiare spazio.
 :::
 
 ::: domanda Come si definisce il rango di una matrice?
-$\rk(A)$ è la dimensione del sottospazio di $\K^m$ generato dalle colonne: $\rk(A) = \dim \Span(A^1, \dots, A^n)$. Equivale al massimo numero di colonne linearmente indipendenti (Proposizione 8.4).
+È la dimensione dello spazio generato dalle colonne, cioè dello Span delle colonne. Lo stesso numero si ottiene contando quante colonne indipendenti si possono scegliere al massimo (Proposizione 8.4).
 :::
 
 ::: domanda Perché il rango è il massimo numero di colonne indipendenti?
-Perché dalle colonne, che generano lo Span, si possono togliere una alla volta quelle che sono combinazione delle altre senza cambiare lo Span, finché restano colonne indipendenti: sono una base, e il loro numero è la dimensione. Più colonne di così sarebbero dipendenti.
+Le colonne generano il loro Span. Se una colonna è un doppione, cioè una combinazione lineare delle altre, si può togliere: lo Span non cambia. Togliendo un doppione alla volta restano colonne indipendenti che generano lo stesso spazio. Sono una base, e il loro numero è la dimensione. Un gruppo più numeroso sarebbe dipendente.
 :::
 
 ::: domanda Che relazione c'è tra rango per righe e rango per colonne?
-Sono uguali per ogni matrice (Proposizione 8.6): $\rk({}^tA) = \rk(A)$. Per calcolare il rango si possono quindi guardare le righe o le colonne, a scelta.
+Sono uguali per ogni matrice (Proposizione 8.6). Con la trasposta si scrive $\rk({}^tA) = \rk(A)$. Per calcolare un rango si possono guardare le righe oppure le colonne, a scelta.
 :::
 
 ::: domanda Perché $\rk(A) \le \min(m, n)$?
-Lo Span delle colonne è un sottospazio di $\K^m$, quindi ha dimensione al più $m$, ed è generato da $n$ vettori, quindi ha dimensione al più $n$.
+Il rango conta colonne indipendenti, che non possono essere più delle $n$ colonne della matrice. Conta anche righe indipendenti, che non possono essere più delle $m$ righe. Quindi non supera il più piccolo dei due numeri.
 :::
 
 ::: domanda Quando si può fare il prodotto $AB$, e che taglia ha?
-Quando il numero di colonne di $A$ è uguale al numero di righe di $B$: $(m \times n)(n \times p)$ dà una matrice $m \times p$.
+Quando le colonne di $A$ sono tante quante le righe di $B$. Scrivendo le taglie una accanto all'altra, i due numeri interni devono essere uguali. I due numeri esterni danno la taglia del prodotto: $(m \times n) \cdot (n \times p)$ dà una matrice $m \times p$.
 :::
 
 ::: domanda Come si calcola l'elemento $(AB)_{ij}$?
-Riga $i$ di $A$ per colonna $j$ di $B$: si moltiplicano i numeri corrispondenti e si sommano, $(AB)_{ij} = A_{i1}B_{1j} + \dots + A_{in}B_{nj}$.
+Si prende la riga $i$ di $A$ e la colonna $j$ di $B$. Si moltiplica il primo numero della riga per il primo della colonna, il secondo per il secondo, e avanti così. Poi si somma tutto. Con i simboli: $(AB)_{ij} = A_{i1}B_{1j} + \dots + A_{in}B_{nj}$.
 :::
 
 ::: domanda Il prodotto di matrici è commutativo? Fai un esempio.
-No. Con $A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ e $B = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ si trova $AB = B$ e $BA = 0$ (Esempio 8.10).
+No: di solito scambiando le due matrici il risultato cambia. Nell'Esempio 8.10, con $A = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ e $B = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, il prodotto $AB$ è uguale a $B$ e il prodotto $BA$ è la matrice nulla.
 :::
 
 ::: domanda Quali proprietà valgono per il prodotto di matrici?
-L'associatività $A(BC) = (AB)C$, le due distributività $A(B + C) = AB + AC$ e $(A + B)C = AC + BC$, e $\lambda(AB) = (\lambda A)B = A(\lambda B)$ (Proposizione 8.11). Non vale la commutatività, e un prodotto può essere nullo con entrambi i fattori non nulli.
+Tre (Proposizione 8.11). L'associatività: $A(BC) = (AB)C$. La distributività, in due versioni: $A(B + C) = AB + AC$ e $(A + B)C = AC + BC$. E un numero si può spostare: $\lambda(AB) = (\lambda A)B = A(\lambda B)$.
+
+Non vale la proprietà commutativa. E un prodotto può essere la matrice nulla anche se nessuno dei due fattori lo è.
 :::
 
 ::: domanda Che cos'è la traccia e che cosa dice la Proposizione 8.13?
-La traccia di una matrice quadrata è la somma dei numeri sulla diagonale principale. La Proposizione 8.13 dice che $\tr(AB) = \tr(BA)$ per $A, B \in M(n)$, anche quando $AB \neq BA$.
+La traccia di una matrice quadrata è la somma dei numeri sulla diagonale principale. La Proposizione 8.13 dice che $\tr(AB) = \tr(BA)$ per due matrici quadrate della stessa taglia, anche quando $AB$ e $BA$ sono matrici diverse.
 :::
 
 ::: domanda Qual è la trasposta di un prodotto?
-${}^t(AB) = {}^tB\,{}^tA$: il prodotto delle trasposte in ordine rovesciato (Esercizio 8.14).
+Il prodotto delle trasposte in ordine rovesciato: ${}^t(AB) = {}^tB\,{}^tA$ (Esercizio 8.14 delle dispense).
 :::
 
 ::: domanda Come si calcola in fretta $\tr(AB)$ in un quiz?
-Si calcolano solo gli elementi diagonali di $AB$, cioè per ogni $i$ la riga $i$ di $A$ per la colonna $i$ di $B$, e si sommano. Per $\tr(A\,{}^tA)$ basta sommare i quadrati di tutti i numeri di $A$.
+Si calcolano solo le caselle diagonali del prodotto: la riga 1 di $A$ per la colonna 1 di $B$, la riga 2 per la colonna 2, e avanti così. Poi si sommano. Per $\tr(A\,{}^tA)$ basta sommare i quadrati di tutti i numeri di $A$.
 :::
 
 ## Glossario
 
 ```glossario
-Matrice $m \times n$ | Tabella di numeri con $m$ righe e $n$ colonne; $a_{ij}$ (o $A_{ij}$) è il numero nella riga $i$ e colonna $j$.
-$M(m, n, \K)$, $M(n)$ | L'insieme delle matrici $m \times n$ a coefficienti in $\K$, spazio vettoriale di dimensione $mn$; $M(n)$ sono le quadrate $n \times n$.
-Riga $A_i$ e colonna $A^j$ | La riga $i$-esima (indice in basso, vettore di $\K^n$) e la colonna $j$-esima (indice in alto, vettore di $\K^m$).
-Diagonale principale | Le caselle $a_{11}, a_{22}, \dots, a_{nn}$ di una matrice quadrata.
-Trasposta ${}^tA$ | La matrice con righe e colonne scambiate: $({}^tA)_{ij} = A_{ji}$; da $m \times n$ diventa $n \times m$.
-${}^t(x, y, z)$ | Il vettore colonna di coordinate $x, y, z$, scritto come trasposto di una riga.
-Matrice simmetrica | Matrice quadrata con ${}^tA = A$, cioè $a_{ij} = a_{ji}$.
-Matrice antisimmetrica | Matrice quadrata con ${}^tA = -A$; ha la diagonale nulla.
-Rango $\rk(A)$ | Dimensione dello spazio generato dalle colonne; massimo numero di colonne linearmente indipendenti.
-Rango per righe | Dimensione dello spazio generato dalle righe, cioè $\rk({}^tA)$; è sempre uguale al rango.
-Prodotto riga per colonna | $(AB)_{ij} = \sum_k A_{ik}B_{kj}$; si fa se le colonne di $A$ sono tante quante le righe di $B$, e $(m \times n)(n \times p) = m \times p$.
-Prodotto matrice per vettore | $Ax$, con $x \in \K^n$: un vettore di $\K^m$, uguale a $x_1A^1 + \dots + x_nA^n$.
-Non commutatività | In generale $AB \neq BA$, anche per matrici quadrate.
-Associatività e distributività | $A(BC) = (AB)C$; $A(B + C) = AB + AC$ e $(A + B)C = AC + BC$.
-Potenza di una matrice | Per $A$ quadrata, $A^2 = AA$, $A^3 = AAA$, e così via.
-Traccia $\tr A$ | Somma degli elementi della diagonale principale di una matrice quadrata; $\tr(AB) = \tr(BA)$.
-Matrice identità $I_n$ | La matrice quadrata con 1 sulla diagonale e 0 altrove; $I_nA = AI_n = A$ (lezione L09).
+Matrice $m \times n$ | Una tabella di numeri con $m$ righe e $n$ colonne. Il numero nella riga $i$ e nella colonna $j$ si scrive $a_{ij}$ oppure $A_{ij}$.
+Taglia | Quante righe e quante colonne ha una matrice, in quest'ordine. Una matrice $2 \times 3$ ha 2 righe e 3 colonne.
+Matrice quadrata | Una matrice con tante righe quante colonne, come una $2 \times 2$ o una $3 \times 3$.
+Matrice nulla | La matrice fatta di soli zeri. Si indica con $0$.
+$M(m, n, \K)$, $M(n)$ | L'insieme di tutte le matrici $m \times n$ con numeri in $\K$: è uno spazio vettoriale di dimensione $mn$. $M(n)$ sono le matrici quadrate con $n$ righe.
+Riga $A_i$ e colonna $A^j$ | La riga numero $i$, con l'indice in basso, e la colonna numero $j$, con l'indice in alto. Sono vettori: la riga ha $n$ numeri, la colonna ne ha $m$.
+Diagonale principale | In una matrice quadrata, le caselle che scendono dall'angolo in alto a sinistra a quello in basso a destra: riga 1 e colonna 1, riga 2 e colonna 2, e avanti così.
+Trasposta ${}^tA$ | La matrice con le righe e le colonne scambiate: $({}^tA)_{ij} = A_{ji}$. Una matrice $m \times n$ diventa $n \times m$.
+${}^t(x, y, z)$ | Il vettore colonna con i numeri $x, y, z$ letti dall'alto in basso, scritto in riga per risparmiare spazio.
+Matrice simmetrica | Una matrice quadrata uguale alla sua trasposta: ${}^tA = A$. La diagonale fa da specchio.
+Matrice antisimmetrica | Una matrice quadrata con ${}^tA = -A$: ogni numero ha, dall'altra parte della diagonale, il suo opposto. La diagonale è fatta di zeri.
+Rango $\rk(A)$ | Il massimo numero di colonne indipendenti. È la dimensione dello spazio generato dalle colonne.
+Rango per righe | La dimensione dello spazio generato dalle righe, cioè il rango della trasposta. È sempre uguale al rango.
+Prodotto riga per colonna | Il prodotto $AB$: nella riga $i$ e colonna $j$ c'è la riga $i$ di $A$ per la colonna $j$ di $B$. Si fa solo se le colonne di $A$ sono tante quante le righe di $B$.
+Prodotto matrice per vettore | Una matrice per un vettore colonna dà un vettore colonna. È la combinazione lineare delle colonne della matrice, con i numeri del vettore come quantità.
+Non commutatività | Di solito $AB$ e $BA$ sono diversi, anche per matrici quadrate: nel prodotto l'ordine conta.
+Associatività e distributività | Le parentesi si possono spostare: $A(BC) = (AB)C$. Un prodotto si distribuisce sulla somma: $A(B + C) = AB + AC$ e $(A + B)C = AC + BC$.
+Potenza di una matrice | Una matrice quadrata moltiplicata per sé stessa: $A^2$ è $A$ per $A$, $A^3$ è $A$ per $A$ per $A$.
+Traccia $\tr A$ | La somma dei numeri sulla diagonale principale di una matrice quadrata. Vale $\tr(AB) = \tr(BA)$.
+Matrice identità $I_n$ | La matrice quadrata con 1 sulla diagonale e 0 altrove. Nel prodotto non cambia niente: $I_nA = AI_n = A$ (lezione L09).
 ```
 
 ## Checklist
 
 ```checklist
-- So leggere una matrice: taglia $m \times n$, elemento $a_{ij}$, riga $A_i$, colonna $A^j$.
-- So calcolare la trasposta e riconoscere con essa una matrice simmetrica o antisimmetrica.
-- So leggere la notazione ${}^t(x, y, z)$ per i vettori colonna.
-- So la definizione di rango e perché è il massimo numero di colonne indipendenti.
-- So che rango per righe e per colonne coincidono e che $\rk(A) \le \min(m, n)$.
-- So trovare il rango di una matrice piccola cercando relazioni tra righe o colonne.
-- So dire se un prodotto $AB$ esiste, che taglia ha, e calcolarlo riga per colonna senza errori.
-- So spiegare con un esempio che $AB \neq BA$ e che $AB = 0$ non implica $A = 0$ o $B = 0$.
+- So leggere una matrice: la taglia $m \times n$, il numero $a_{ij}$, la riga $A_i$, la colonna $A^j$.
+- So scrivere la trasposta di una matrice e riconoscere una matrice simmetrica o antisimmetrica.
+- So leggere la scrittura ${}^t(x, y, z)$ per i vettori colonna.
+- So dire che cos'è il rango e perché è il massimo numero di colonne indipendenti.
+- So che con le righe e con le colonne viene lo stesso rango, e che $\rk(A) \le \min(m, n)$.
+- So trovare il rango di una matrice piccola cercando i doppioni tra le righe o tra le colonne.
+- So dire se un prodotto $AB$ si può fare, di che taglia viene, e calcolarlo riga per colonna senza errori.
+- So mostrare con un esempio che $AB \neq BA$, e che un prodotto può essere nullo senza che lo sia un fattore.
 - So enunciare associatività e distributività e usare ${}^t(AB) = {}^tB\,{}^tA$.
 - So calcolare una traccia e usare $\tr(AB) = \tr(BA)$ per risparmiare conti nei quiz.
 - So rispondere alla domanda d'esame «quale identità vale tra $AB$, $BA$, $A$ e $B$?».
@@ -11515,7 +13857,7 @@ Matrice identità $I_n$ | La matrice quadrata con 1 sulla diagonale e 0 altrove;
 - **Dispense 2026 del corso** (Buzano, Radeschi), lezione 8 «Matrici I», pp. 36–40: il richiamo iniziale e le sezioni 8.A (trasposta), 8.B (rango), 8.C (prodotto fra matrici), 8.D (traccia) ed 8.E (esercizi) sono seguiti in ordine, con la pagina accanto a ogni titolo; definizioni, proposizioni, esempi ed esercizi mantengono la loro numerazione (Definizioni 8.1, 8.3, 8.5, 8.7, 8.12; Proposizioni 8.4, 8.6, 8.11, 8.13; Esempi 8.2, 8.8, 8.9, 8.10; Esercizi 8.14, 8.15, 8.16). Per i richiami: lezioni 6 e 7 (Definizioni 6.1, 6.3, 6.6, 7.11, Proposizione 7.2, Esercizio 7.13).
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §2.3.10–2.3.11 (trasposta, simmetriche e antisimmetriche, Esempio 2.3.33), §3.2.3 e §3.2.6 (rango, Proposizioni 3.2.8 e 3.2.20, Corollario 3.2.11), §3.4.1–3.4.5 (prodotto, Proposizioni 3.4.2 e 3.4.4, sistemi scritti come $Ax = b$), §4.4.5 (traccia).
 - **Esame**: testi degli appelli di Algebra lineare dal 24/01/2024 al 07/09/2026 (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)); riportate con soluzione propria le domande 1 del 15/01/2026 e 9 del 10/07/2025 e il problema 11 (punto 2) del 15/01/2026; le altre sono citate per numero. Foglio di esercizi 2 del tutorato (11/11/2025), esercizio 8.
-- Le parti **«Oltre le dispense»** (proprietà in più della trasposta e della traccia, prodotto come combinazione di colonne, identità e potenze, metodi per il quiz, esercizi senza numero) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu» e gli esercizi sono di questi appunti. Le parti **«Oltre le dispense»** (proprietà in più della trasposta e della traccia, prodotto come combinazione di colonne, identità e potenze, metodi per il quiz, esercizi senza numero) collegano la lezione al resto del corso e all'esame.
 
 
 ---
@@ -13263,12 +15605,6 @@ No. Prima equazione: $1 + 4 = 5$, vera. Seconda equazione: $1 - 4 = -3$, ma dove
 I coefficienti sono 5, $-1$ e 2. Davanti a $y$ c'è solo il segno meno, quindi il suo coefficiente è $-1$. Il termine noto è 8.
 :::
 
-::: prova Risolvi l'indovinello: la somma di due numeri fa 4 e la loro differenza fa 2.
-Le equazioni sono $x + y = 4$ e $x - y = 2$. Sommale: a sinistra resta $2x$, a destra viene $4 + 2 = 6$. Quindi $2x = 6$ e $x = 3$. Dalla prima equazione: $3 + y = 4$, quindi $y = 1$.
-
-Controllo: $3 + 1 = 4$ e $3 - 1 = 2$.
-:::
-
 > [!RICORDA]
 > - Un **sistema** è un gruppo di equazioni da rispettare tutte insieme. Una **soluzione** è una lista di numeri che le rende vere tutte.
 > - **Lineare** vuol dire: le incognite sono solo moltiplicate per numeri e poi sommate.
@@ -13398,15 +15734,11 @@ Per dire che la matrice completa è fatta dei coefficienti con accanto i termini
 
 > [!ESEMPIO] Un sistema con tre equazioni e tre incognite
 > $$\begin{cases} x + y + 2z = 9 \\ 2x + 4y - 3z = 1 \\ 3x + 6y - 5z = 0 \end{cases}$$
-> Le incognite sono tre: $x$, $y$ e $z$. Quindi prima della barra servono tre colonne.
->
-> - Prima equazione: davanti a $x$ c'è 1, davanti a $y$ c'è 1, davanti a $z$ c'è 2. A destra c'è 9.
-> - Seconda equazione: davanti a $x$ c'è 2, davanti a $y$ c'è 4, davanti a $z$ c'è $-3$. A destra c'è 1.
-> - Terza equazione: davanti a $x$ c'è 3, davanti a $y$ c'è 6, davanti a $z$ c'è $-5$. A destra c'è 0.
+> Le incognite sono tre: $x$, $y$ e $z$. Quindi prima della barra servono tre colonne. Per esempio nella seconda equazione davanti a $x$ c'è 2, davanti a $y$ c'è 4 e davanti a $z$ c'è $-3$. A destra dell'uguale c'è 1.
 >
 > La matrice completa è
 > $$C = \left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 2 & 4 & -3 & 1 \\ 3 & 6 & -5 & 0 \end{array}\right).$$
-> Ha 3 righe, perché le equazioni sono 3. Ha 4 colonne: 3 per le incognite e 1 per i termini noti. Questo sistema viene risolto per intero nell'esercizio 7.
+> Ha 3 righe, perché le equazioni sono 3. Ha 4 colonne: 3 per le incognite e 1 per i termini noti. Questo sistema viene risolto per intero nell'esercizio 6.
 
 > [!TRAPPOLA] Prima di scrivere la matrice, metti in ordine il sistema
 > La tabella funziona solo se ogni numero sta nella colonna giusta. Le regole sono tre.
@@ -13478,8 +15810,6 @@ Prima riga: 1 davanti a $x$, 2 davanti a $y$, 7 a destra. Seconda riga: 3 davant
 
 ::: prova Quale sistema corrisponde alla matrice completa $\left(\begin{array}{cc|c} 2 & 0 & 6 \\ 1 & 1 & 5 \end{array}\right)$?
 La prima riga è $2x + 0y = 6$, cioè $2x = 6$. La seconda riga è $x + y = 5$.
-
-Dalla prima equazione $x = 3$. Dalla seconda $3 + y = 5$, quindi $y = 2$. È ancora l'indovinello, con gli indizi scritti in un altro modo.
 :::
 
 ::: prova Una matrice completa ha 2 righe e 4 colonne. Quante sono le equazioni? Quante le incognite?
@@ -13620,14 +15950,7 @@ Nella terza mossa le due righe devono essere **diverse**. Cambia solo la riga sc
 
 ### Perché le mosse non cambiano le soluzioni
 
-Tutto il metodo si regge su una promessa: dopo una mossa le soluzioni sono **le stesse** di prima. Nessuna in più, nessuna in meno.
-
-Controlliamo sull'indovinello. La soluzione era $(3, 2)$. Dopo la mossa «riga 2 meno riga 1» le righe sono $(1, 1 \mid 5)$ e $(0, -2 \mid -4)$.
-
-- La riga 1 è l'equazione $x + y = 5$. Con 3 e 2 viene $3 + 2 = 5$. Vera.
-- La riga 2 è l'equazione $-2y = -4$. Con $y$ uguale a 2 viene $-2 \cdot 2 = -4$. Vera.
-
-Un controllo su un esempio non basta per fidarsi sempre. Il motivo vero è un altro.
+Tutto il metodo si regge su una promessa: dopo una mossa le soluzioni sono **le stesse** di prima. Nessuna in più, nessuna in meno. Nell'indovinello l'hai visto con la riga moltiplicata per 2: la soluzione la rispettava ancora. Il motivo per cui succede sempre è questo.
 
 > [!IDEA] ogni mossa si può disfare
 > Ogni mossa di Gauss ha una mossa che la annulla e rimette la matrice com'era.
@@ -13655,12 +15978,9 @@ Le dispense lo scrivono così.
 > 2. **Mossa (II).** La riga $i$ è l'equazione $a_{i1}x_1 + \cdots + a_{in}x_n = b_i$. Dopo la mossa diventa
 >    $$\lambda a_{i1}x_1 + \cdots + \lambda a_{in}x_n = \lambda b_i.$$
 >    Se una lista risolve l'equazione vecchia, moltiplicando i due lati per $\lambda$ risolve la nuova. Se risolve la nuova, moltiplicando i due lati per $\frac 1\lambda$ torna la vecchia. Qui serve $\lambda \neq 0$: altrimenti $\frac 1\lambda$ non esiste. Le altre equazioni non cambiano.
-> 3. **Mossa (III).** Cambia solo la riga $i$. Prima della mossa le equazioni $i$ e $j$ sono
->    $$a_{i1}x_1 + \cdots + a_{in}x_n = b_i, \qquad a_{j1}x_1 + \cdots + a_{jn}x_n = b_j.$$
->    Dopo la mossa sono
->    $$(a_{i1} + \lambda a_{j1})x_1 + \cdots + (a_{in} + \lambda a_{jn})x_n = b_i + \lambda b_j,$$
->    $$a_{j1}x_1 + \cdots + a_{jn}x_n = b_j.$$
->    Se una lista risolve le due vecchie, somma all'equazione $i$ l'equazione $j$ moltiplicata per $\lambda$: ottieni la nuova riga $i$, che quindi è vera. Se una lista risolve le due nuove, togli dalla nuova riga $i$ la riga $j$ moltiplicata per $\lambda$: ritrovi la vecchia riga $i$. Funziona perché la riga $j$ è rimasta intatta. Per questo le due righe devono essere diverse.
+> 3. **Mossa (III).** Cambia solo la riga $i$: la nuova equazione $i$ è la vecchia più $\lambda$ volte l'equazione $j$, cioè
+>    $$(a_{i1} + \lambda a_{j1})x_1 + \cdots + (a_{in} + \lambda a_{jn})x_n = b_i + \lambda b_j.$$
+>    Se una lista risolve le due vecchie, risolve anche la loro somma: quindi risolve la nuova riga $i$. Se una lista risolve le due nuove, togli dalla nuova riga $i$ la riga $j$ moltiplicata per $\lambda$: ritrovi la vecchia riga $i$. Funziona perché la riga $j$ è rimasta intatta. Per questo le due righe devono essere diverse.
 > 4. In tutti e tre i casi le liste che risolvono il sistema sono le stesse prima e dopo la mossa. Quindi $S$ non cambia.
 
 ### L'indovinello risolto solo con le mosse
@@ -13681,10 +16001,8 @@ Adesso rifacciamo l'indovinello dall'inizio alla fine, senza scrivere nessuna le
 >
 > Parti dalla matrice dell'indovinello. Fai nello stesso momento due mosse: «riga 1 meno riga 2» e «riga 2 meno riga 1», tutte e due con le righe di partenza.
 >
-> | | colonna di $x$ | colonna di $y$ | termine noto |
-> |---|---|---|---|
-> | nuova riga 1: riga 1 meno riga 2 | $1 - 1 = 0$ | $1 - (-1) = 2$ | $5 - 1 = 4$ |
-> | nuova riga 2: riga 2 meno riga 1 | $1 - 1 = 0$ | $-1 - 1 = -2$ | $1 - 5 = -4$ |
+> - Nuova riga 1: $(1 - 1,\ 1 - (-1) \mid 5 - 1)$, cioè $(0, 2 \mid 4)$.
+> - Nuova riga 2: $(1 - 1,\ -1 - 1 \mid 1 - 5)$, cioè $(0, -2 \mid -4)$.
 >
 > $$\left(\begin{array}{cc|c} 0 & 2 & 4 \\ 0 & -2 & -4 \end{array}\right)$$
 > Adesso le due righe dicono la stessa cosa: che $y$ vale 2. Di $x$ non si sa più niente: può valere qualsiasi numero. Sembrano infinite soluzioni. Ma l'indovinello ne aveva **una sola**: un indizio è andato perso.
@@ -13706,10 +16024,6 @@ La nuova riga 2 è $(0, 1 \mid 1)$. La riga 1 non cambia.
 La mossa $R_2 \to R_2 - 5R_1$. Sopra il 5 c'è un 1, e $5 - 5 \cdot 1 = 0$.
 
 Cinque volte la riga 1 fa $(5, 20 \mid 15)$. La riga 2 diventa $(5 - 5,\ 2 - 20 \mid 1 - 15)$, cioè $(0, -18 \mid -14)$.
-:::
-
-::: prova Vero o falso: «moltiplicare una riga per 0 è una mossa di Gauss».
-Falso. La riga diventerebbe $0 = 0$ e un'equazione andrebbe persa. Nella seconda mossa il numero deve essere diverso da zero.
 :::
 
 > [!RICORDA]
@@ -13905,10 +16219,8 @@ Nel passo 1 possono capitare due imprevisti.
 > **Come si legge.**
 >
 > - $C_{ij}$ è il numero nella riga $i$ e nella colonna $j$ della matrice $C$. Quindi $C_{11}$ è il numero in alto a sinistra. $C_{i1}$ è il numero della riga $i$ nella prima colonna.
-> - Dopo ogni mossa la matrice si chiama ancora $C$, anche se i suoi numeri sono cambiati.
 > - $i \ge 2$ si legge «$i$ maggiore o uguale a 2». Sono le righe dalla seconda in giù.
-> - La frazione del passo 2 è «numero da eliminare diviso pivot». Con quella scelta il nuovo numero nella prima colonna è zero:
->   $$C_{i1} - \frac{C_{i1}}{C_{11}} \cdot C_{11} = C_{i1} - C_{i1} = 0.$$
+> - La frazione del passo 2 è «numero da eliminare diviso pivot».
 > - Una **sottomatrice** è un pezzo della matrice: quello che resta dopo aver coperto alcune righe o alcune colonne.
 > - Nel passo 2 la prima riga resta ferma e serve a cambiare tutte le altre. Per questo le righe sotto si possono sistemare tutte nello stesso passaggio.
 
@@ -13954,29 +16266,13 @@ modo: scala
 modi: scala ridotta
 ```
 
-Nell'Esempio 11.7 una colonna è rimasta senza pivot solo all'ultima riga. Può succedere anche a metà del lavoro. Ecco un caso: puoi scriverlo nello strumento così, `1 1 2; 2 2 5; 3 3 1`, e confrontare i passaggi.
-
-> [!ESEMPIO] Una colonna senza pivot
-> $$\begin{pmatrix} 1 & 1 & 2 \\ 2 & 2 & 5 \\ 3 & 3 & 1 \end{pmatrix}$$
-> **Prima colonna.** Il primo pivot è l'1 in alto a sinistra. Sotto ci sono 2 e 3. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - 3R_1$. La riga 1 resta ferma, quindi si possono fare nello stesso passaggio.
->
-> | | colonna 1 | colonna 2 | colonna 3 |
-> |---|---|---|---|
-> | riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $2 - 2 = 0$ | $5 - 4 = 1$ |
-> | riga 3 meno 3 volte la riga 1 | $3 - 3 = 0$ | $3 - 3 = 0$ | $1 - 6 = -5$ |
->
-> $$\begin{pmatrix} 1 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & -5 \end{pmatrix}$$
-> **Seconda colonna.** Ora sei nella riga 2 e nella colonna 2. Lì c'è 0, e sotto c'è un altro 0. In questa colonna non c'è nessun pivot: si passa alla colonna 3, restando nella riga 2.
->
-> **Terza colonna.** Nella riga 2 c'è 1: è il secondo pivot. Sotto c'è $-5$. Quante volte togliere la riga 2? $-5 : 1 = -5$. Togliere $-5$ volte vuol dire sommare 5 volte: la mossa è $R_3 \to R_3 + 5R_2$. L'ultimo numero della riga 3 diventa $-5 + 5 \cdot 1 = 0$.
-> $$\begin{pmatrix} 1 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}$$
-> La matrice è a scalini. I pivot sono due, nelle colonne 1 e 3. La colonna 2 è rimasta senza pivot, e in fondo c'è una riga nulla.
+Una colonna può restare senza pivot anche a metà del lavoro. Prova a scrivere nello strumento la matrice `1 1 2; 2 2 5; 3 3 1`. Dopo le prime due mosse la seconda colonna, sotto la prima riga, è tutta di zeri. L'algoritmo la salta e cerca il pivot nella terza colonna: è il secondo imprevisto. Alla fine i pivot sono due, nelle colonne 1 e 3, e in fondo c'è una riga nulla.
 
 > [!OLTRE] come fare meno conti a mano
 > Il libro di Martelli (§3.1.3) osserva che non serve seguire l'algoritmo alla lettera. Va bene **qualsiasi** sequenza di mosse di Gauss che arrivi a una matrice a scalini. Senza calcolatrice aiutano tre trucchi.
 >
 > 1. **Un 1 in cima.** Se nella prima colonna c'è un 1, oppure un $-1$, porta quella riga in alto con uno scambio. Dividere per 1 non crea frazioni.
-> 2. **Evitare le frazioni.** Il pivot è 2 e sotto c'è 3. La ricetta direbbe di togliere la riga 1 per $\frac 32$ volte. Puoi invece moltiplicare prima la riga 2 per 2, e poi togliere 3 volte la riga 1. In una scrittura sola: $R_2 \to 2R_2 - 3R_1$. Nella prima colonna viene $2 \cdot 3 - 3 \cdot 2 = 0$, senza frazioni. Sono una mossa (II) e una mossa (III), una dopo l'altra. L'esercizio 7 usa questo trucco.
+> 2. **Evitare le frazioni.** Il pivot è 2 e sotto c'è 3. La ricetta direbbe di togliere la riga 1 per $\frac 32$ volte. Puoi invece moltiplicare prima la riga 2 per 2, e poi togliere 3 volte la riga 1. In una scrittura sola: $R_2 \to 2R_2 - 3R_1$. Nella prima colonna viene $2 \cdot 3 - 3 \cdot 2 = 0$, senza frazioni. Sono una mossa (II) e una mossa (III), una dopo l'altra. L'esercizio 6 usa questo trucco.
 > 3. **Rimpicciolire.** Se tutti i numeri di una riga si dividono per lo stesso intero, dividi subito la riga: è una mossa (II). La riga $(2, 4 \mid 6)$ diventa $(1, 2 \mid 3)$, e i conti dopo sono più piccoli.
 
 ::: prova Porta a scalini la matrice $\left(\begin{array}{cc|c} 1 & 2 & 3 \\ 2 & 5 & 8 \end{array}\right)$ e risolvi il sistema.
@@ -13991,10 +16287,6 @@ Controllo nelle equazioni di partenza: $-1 + 2 \cdot 2 = 3$ e $2 \cdot (-1) + 5 
 Lo scambio $R_1 \leftrightarrow R_2$. In alto a sinistra c'è 0, che non può fare da pivot, e sotto c'è 3.
 
 Dopo lo scambio la matrice è $\begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$, che è già a scalini.
-:::
-
-::: prova Il pivot è 4 e sotto c'è 12. Quante volte togli la riga del pivot?
-$12 : 4 = 3$ volte. Infatti $12 - 3 \cdot 4 = 0$.
 :::
 
 > [!RICORDA]
@@ -14226,23 +16518,13 @@ Quanti sono i parametri? Uno per ogni colonna senza pivot. Nell'esempio le incog
 $$\text{numero di parametri} = \text{numero di incognite} - \text{numero di pivot}$$
 
 > [!APPROFONDIMENTO] lo stesso conto con le lettere, come nelle dispense (pp. 54–55)
-> Le dispense fanno lo stesso esempio senza numeri. Prima mostrano la forma della matrice ridotta, con un punto interrogativo al posto di ogni numero che può essere qualsiasi:
-> $$\left(\begin{array}{cccccc|c} 0 & 1 & ? & 0 & 0 & ? & ? \\ 0 & 0 & 0 & 1 & 0 & ? & ? \\ 0 & 0 & 0 & 0 & 1 & ? & ? \end{array}\right)$$
-> I pivot sono nelle colonne 2, 4 e 5. Ognuna di queste colonne contiene un 1 al posto del pivot e 0 in tutte le altre caselle. Poi distinguono due casi.
->
-> **Primo caso: la colonna dei termini noti contiene un pivot.** La matrice è di questo tipo:
-> $$\left(\begin{array}{cccccc|c} 0 & 1 & ? & 0 & 0 & ? & ? \\ 0 & 0 & 0 & 1 & 0 & ? & ? \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 \end{array}\right)$$
-> L'ultima riga è l'equazione $0 = 1$, che non ha soluzioni. Quindi $S = \emptyset$.
->
-> **Secondo caso: l'ultima colonna non contiene pivot.** La matrice è di questo tipo:
+> Le dispense fanno lo stesso esempio senza numeri. Se l'ultima colonna contiene un pivot, una riga è l'equazione $0 = 1$ e quindi $S = \emptyset$. Se non lo contiene, la matrice ridotta è di questo tipo:
 > $$\left(\begin{array}{cccccc|c} 0 & 1 & a_{13} & 0 & 0 & a_{16} & b_1 \\ 0 & 0 & 0 & 1 & 0 & a_{26} & b_2 \\ 0 & 0 & 0 & 0 & 1 & a_{36} & b_3 \end{array}\right)$$
-> Si dà un parametro a ogni incognita la cui colonna non ha pivot: $x_1 = t_1$, $x_3 = t_2$, $x_6 = t_3$. Il sistema diventa
-> $$\begin{cases} x_2 + a_{13}t_2 + a_{16}t_3 = b_1 \\ x_4 + a_{26}t_3 = b_2 \\ x_5 + a_{36}t_3 = b_3 \end{cases}$$
-> Si portano i parametri a destra dell'uguale e si aggiungono le righe dei parametri:
+> Si dà un parametro a ogni incognita la cui colonna non ha pivot: $x_1 = t_1$, $x_3 = t_2$, $x_6 = t_3$. Poi si portano i parametri a destra dell'uguale:
 > $$\begin{cases} x_1 = t_1 \\ x_2 = b_1 - a_{13}t_2 - a_{16}t_3 \\ x_3 = t_2 \\ x_4 = b_2 - a_{26}t_3 \\ x_5 = b_3 - a_{36}t_3 \\ x_6 = t_3 \end{cases}$$
-> Le dispense concludono: il sistema è risolto. I parametri $t_1, t_2, \dots$ sono liberi e possono assumere qualsiasi valore in $\K$. Le variabili $x_1, \dots, x_n$ dipendono da questi parametri liberi come indicato.
+> I parametri sono liberi: possono assumere qualsiasi valore in $\K$.
 >
-> **Come si legge.** È l'esempio con sei incognite, con le lettere al posto dei numeri. Al posto di 2 e 3 ci sono $a_{13}$ e $a_{16}$. Al posto di 5 c'è $a_{26}$. Al posto di 7 c'è $a_{36}$. Al posto di 4, 6 e 8 ci sono $b_1$, $b_2$ e $b_3$. Le lettere dicono che la ricetta vale con qualsiasi numero.
+> **Come si legge.** È l'esempio con sei incognite, con le lettere al posto dei numeri. Per esempio al posto di 2 e 3 ci sono $a_{13}$ e $a_{16}$, e al posto di 4 c'è $b_1$. Le lettere dicono che la ricetta vale con qualsiasi numero.
 
 ### La ricetta per leggere le soluzioni
 
@@ -14254,14 +16536,6 @@ $$\text{numero di parametri} = \text{numero di incognite} - \text{numero di pivo
 > 5. **Scrivi tutte le incognite in ordine**, comprese quelle libere.
 > 6. **Controlla.** Metti 0 al posto di tutti i parametri e prova la soluzione nelle equazioni di partenza.
 
-I tre finali in una tabella sola.
-
-| Che cosa vedi nella matrice a scalini | Che cosa vuol dire | Quante soluzioni |
-|---|---|---|
-| un pivot dopo la barra | un indizio è impossibile | nessuna |
-| nessun pivot dopo la barra, e un pivot in ogni colonna prima della barra | ogni incognita è fissata | una sola |
-| nessun pivot dopo la barra, e qualche colonna prima della barra senza pivot | qualche incognita è libera | infinite, con un parametro per ogni colonna senza pivot |
-
 Un altro esempio con più parametri, preso dal libro.
 
 > [!ESEMPIO] Cinque incognite, tre parametri (dal libro di Martelli, Esempio 3.1.2)
@@ -14269,15 +16543,11 @@ Un altro esempio con più parametri, preso dal libro.
 > $$\begin{cases} x_1 + 3x_2 + 4x_5 = 1 \\ x_3 - 2x_4 = 3 \end{cases} \qquad \left(\begin{array}{ccccc|c} 1 & 3 & 0 & 0 & 4 & 1 \\ 0 & 0 & 1 & -2 & 0 & 3 \end{array}\right)$$
 > I pivot sono nelle colonne 1 e 3. Le colonne 2, 4 e 5 sono senza pivot: le incognite libere sono $x_2$, $x_4$ e $x_5$. I parametri sono $5 - 2 = 3$.
 >
-> Diamo i parametri: $x_2 = t_1$, $x_4 = t_2$, $x_5 = t_3$. Poi li portiamo a destra.
->
-> - **Riga 1.** È $x_1 + 3t_1 + 4t_3 = 1$. A destra i due pezzi con i parametri cambiano segno: $x_1 = 1 - 3t_1 - 4t_3$.
-> - **Riga 2.** È $x_3 - 2t_2 = 3$. A destra il pezzo $-2t_2$ diventa $+2t_2$: $x_3 = 3 + 2t_2$.
->
+> Diamo i parametri: $x_2 = t_1$, $x_4 = t_2$, $x_5 = t_3$. Poi li portiamo a destra. Attenzione ai segni: nella riga 1 i pezzi $3t_1$ e $4t_3$ diventano negativi, nella riga 2 il pezzo $-2t_2$ diventa positivo.
 > $$\begin{cases} x_1 = 1 - 3t_1 - 4t_3 \\ x_2 = t_1 \\ x_3 = 3 + 2t_2 \\ x_4 = t_2 \\ x_5 = t_3 \end{cases}$$
 > Controllo con tutti i parametri uguali a 0. La soluzione è $(1, 0, 3, 0, 0)$. Prima equazione: $1 + 0 + 0 = 1$. Seconda equazione: $3 - 0 = 3$. Tutte e due vere.
 
-Nello strumento qui sotto c'è il sistema dell'esempio con un parametro. L'ultima colonna è quella dei termini noti. Premi «Calcola»: lo strumento fa Gauss–Jordan, dice se ci sono soluzioni e le scrive con i parametri. Chiama le incognite $x_1$, $x_2$, $x_3$ al posto di $x$, $y$, $z$. Poi cambia l'ultimo numero da 5 a 6 e ricalcola. La terza equazione non va più d'accordo con le altre due, e compare la riga impossibile.
+Nello strumento qui sotto c'è il sistema dell'esempio con un parametro. L'ultima colonna è quella dei termini noti. Premi «Calcola»: lo strumento fa Gauss–Jordan, dice se ci sono soluzioni e le scrive con i parametri. Per le incognite usa una lettera sola con i numerini in basso, non tre lettere diverse. Poi cambia l'ultimo numero da 5 a 6 e ricalcola. La terza equazione non va più d'accordo con le altre due, e compare la riga impossibile.
 
 ```widget gauss
 titolo: Risolvi un sistema: l'ultima colonna è quella dei termini noti
@@ -14299,16 +16569,10 @@ modo: sistema
 > $$\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} -2t \\ t \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} + t \begin{pmatrix} -2 \\ 1 \\ 0 \end{pmatrix}.$$
 > Si legge: «parti dal punto $(0, 0, 1)$ e spostati di $t$ volte il vettore $(-2, 1, 0)$». Al variare di $t$ ottieni una **retta** nello spazio.
 >
-> Con più parametri c'è un vettore per ogni parametro. Il libro scrive la forma generale così: $x_0 + t_1 v_1 + \cdots + t_h v_h$. Qui $x_0$ è il punto di partenza, $h$ è il numero dei parametri e $v_1, \dots, v_h$ sono i vettori, uno per parametro.
->
-> Nella lezione L12 i due pezzi avranno un nome. Il punto di partenza è una «soluzione particolare». I vettori risolvono il sistema con tutti i termini noti uguali a zero.
+> Con più parametri c'è un vettore per ogni parametro. Nella lezione L12 i due pezzi avranno un nome. Il punto di partenza è una «soluzione particolare». I vettori risolvono il sistema con tutti i termini noti uguali a zero.
 
 > [!OLTRE] dove trovarlo nel libro
 > Tutta la lezione segue il libro di Martelli, **§3.1 «Algoritmi di risoluzione»** (pp. 79–85 del libro): mosse di Gauss e Proposizione 3.1.1 (pp. 79–80), algoritmo di Gauss (pp. 80–82), algoritmo di Gauss–Jordan (pp. 82–83), risoluzione di un sistema e soluzioni scritte come vettori (pp. 83–85, con l'Esempio 3.1.2). Nel libro le righe si chiamano $C_i$ invece di $R_i$.
-
-::: prova La forma ridotta è $\left(\begin{array}{cc|c} 1 & 0 & 2 \\ 0 & 1 & 5 \end{array}\right)$. Quante soluzioni ha il sistema?
-Una sola. Dopo la barra non ci sono pivot, e tutte e due le colonne prima della barra hanno il loro pivot. La soluzione si legge nell'ultima colonna: $x = 2$ e $y = 5$.
-:::
 
 ::: prova La forma ridotta è $\left(\begin{array}{cc|c} 1 & 3 & 4 \\ 0 & 0 & 0 \end{array}\right)$. Scrivi tutte le soluzioni.
 Il pivot è in colonna 1. La colonna 2, quella di $y$, è senza pivot: $y = t$.
@@ -14316,10 +16580,6 @@ Il pivot è in colonna 1. La colonna 2, quella di $y$, è senza pivot: $y = t$.
 La riga 1 dice $x + 3y = 4$, cioè $x + 3t = 4$. Porta $3t$ a destra: $x = 4 - 3t$.
 
 Le soluzioni sono $x = 4 - 3t$ e $y = t$: infinite, con un parametro. Controllo con $t$ uguale a 0: la soluzione $(4, 0)$ dà $4 + 3 \cdot 0 = 4$.
-:::
-
-::: prova La forma a scalini è $\left(\begin{array}{cc|c} 1 & 0 & 2 \\ 0 & 0 & 3 \end{array}\right)$. Quante soluzioni ha il sistema?
-Nessuna. La riga 2 ha tutti zeri prima della barra e 3 dopo: dice $0 = 3$, che è impossibile.
 :::
 
 ::: prova Un sistema ha 5 incognite. La sua matrice a scalini ha 2 pivot, e nessuno è dopo la barra. Quanti parametri servono?
@@ -14419,9 +16679,7 @@ Ora gli zeri sotto il primo pivot. Sotto l'1 ci sono 2 e 1, quindi le mosse sono
 | riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $0 - (-2) = 2$ | $1 - 0 = 1$ | $4 - 4 = 0$ | $3 - 2 = 1$ |
 | riga 3 meno la riga 1 | $1 - 1 = 0$ | $1 - (-1) = 2$ | $1 - 0 = 1$ | $2 - 2 = 0$ | $2 - 1 = 1$ |
 
-$$\left(\begin{array}{cccc|c} 1 & -1 & 0 & 2 & 1 \\ 0 & 2 & 1 & 0 & 1 \\ 0 & 2 & 1 & 0 & 1 \end{array}\right)$$
-
-La riga 2 e la riga 3 sono uguali. Con la mossa $R_3 \to R_3 - R_2$ la riga 3 diventa nulla.
+La riga 2 e la riga 3 sono diventate uguali. Con la mossa $R_3 \to R_3 - R_2$ la riga 3 diventa nulla.
 
 $$\left(\begin{array}{cccc|c} 1 & -1 & 0 & 2 & 1 \\ 0 & 2 & 1 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0 \end{array}\right)$$
 
@@ -14453,7 +16711,7 @@ D: Quale di queste è una mossa di Gauss sulla matrice completa di un sistema li
 - Sommare $1$ a tutti i numeri della prima riga.
 - Scambiare la prima e l'ultima colonna.
 - Elevare al quadrato tutti i numeri della seconda riga.
-= La domanda chiede di riconoscere una delle tre mosse. Nella prima risposta alla riga 2 togli 3 volte la riga 1: è la terza mossa. Moltiplicare una riga per 0 è vietato: la riga diventerebbe $0 = 0$ e un'equazione andrebbe persa. Sommare 1 a tutti i numeri, oppure elevarli al quadrato, non è nessuna delle tre mosse. Lo scambio di due colonne tenta, perché assomiglia alla prima mossa: ma le mosse si fanno sulle righe.
+= Nella prima risposta alla riga 2 togli 3 volte la riga 1: è la terza mossa. Moltiplicare una riga per 0 è vietato: la riga diventerebbe $0 = 0$ e un'equazione andrebbe persa. Sommare 1 a tutti i numeri, oppure elevarli al quadrato, non è nessuna delle tre mosse. Lo scambio di due colonne tenta, perché assomiglia alla prima mossa: ma le mosse si fanno sulle righe.
 
 D: Quale di queste cinque matrici è a scalini? $M_1 = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \\ 0 & 4 & 5 \end{pmatrix}$, $M_2 = \begin{pmatrix} 2 & 1 & 0 & 3 \\ 0 & 0 & 5 & 1 \\ 0 & 0 & 0 & 0 \end{pmatrix}$, $M_3 = \begin{pmatrix} 1 & 2 \\ 3 & 0 \end{pmatrix}$, $M_4 = \begin{pmatrix} 0 & 1 & 2 \\ 0 & 3 & 4 \\ 0 & 0 & 5 \end{pmatrix}$, $M_5 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}$.
 - La prima.
@@ -14461,7 +16719,7 @@ D: Quale di queste cinque matrici è a scalini? $M_1 = \begin{pmatrix} 1 & 2 & 3
 - La terza.
 - La quarta.
 - La quinta.
-= Una matrice è a scalini se le righe nulle stanno in fondo e ogni pivot sta più a destra di quello della riga sopra. Nella seconda matrice i pivot sono 2, in colonna 1, e 5, in colonna 3, e la riga nulla è in fondo: va bene. Nella prima la riga nulla sta in mezzo. Nella terza il pivot della riga 2 è il 3, in colonna 1 come quello della riga 1. La quarta è quella che tenta, perché sembra una scala: ma i pivot delle prime due righe, 1 e 3, sono tutti e due in colonna 2. Nella quinta il pivot della riga 3 sta a sinistra di quello della riga 2.
+= Servono due cose: righe nulle in fondo, e ogni pivot più a destra di quello della riga sopra. Nella seconda matrice i pivot sono 2, in colonna 1, e 5, in colonna 3, e la riga nulla è in fondo: va bene. Nella prima la riga nulla sta in mezzo. Nella terza il pivot della riga 2 è in colonna 1, come quello della riga 1. La quarta tenta, perché sembra una scala: ma i pivot delle prime due righe, 1 e 3, sono tutti e due in colonna 2. Nella quinta il pivot della riga 3 sta a sinistra di quello della riga 2.
 
 D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 2 & 3 & 10 \\ 4 & 5 & 6 & 11 \\ 7 & 8 & 9 & 12 \end{array}\right)$ ha un numero di soluzioni pari a:
 - Una.
@@ -14469,7 +16727,7 @@ D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 2 & 3
 - Zero.
 - Infinite, che dipendono da 2 parametri.
 - Un numero finito, maggiore di 1.
-= È la domanda 10 dell'appello del 24/01/2024. Chiede di contare le soluzioni, non di trovarle: basta la forma a scalini. Togli 4 volte la riga 1 dalla riga 2: diventa $(0, -3, -6 \mid -29)$. Togli 7 volte la riga 1 dalla riga 3: diventa $(0, -6, -12 \mid -58)$. La riga 3 è il doppio della riga 2, quindi togliendo 2 volte la riga 2 diventa nulla. Restano 2 pivot, nelle colonne 1 e 2, e nessuno dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 2 = 1$. La risposta «Una» tenta, perché le equazioni sono tante quante le incognite: ma la terza equazione non aggiungeva niente alle prime due.
+= È la domanda 10 dell'appello del 24/01/2024. Chiede di contare le soluzioni, quindi basta la forma a scalini. Togli 4 volte la riga 1 dalla riga 2: diventa $(0, -3, -6 \mid -29)$. Togli 7 volte la riga 1 dalla riga 3: diventa $(0, -6, -12 \mid -58)$. La riga 3 è il doppio della riga 2, quindi togliendo 2 volte la riga 2 diventa nulla. Restano 2 pivot, nessuno dopo la barra, e le incognite sono 3: i parametri sono $3 - 2 = 1$. La risposta «Una» tenta, perché le equazioni sono tante quante le incognite: ma la terza non aggiungeva niente alle prime due.
 
 D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 3 & 12 & 6 & 21 \\ 5 & 20 & 10 & 35 \\ 4 & 16 & 8 & 28 \end{array}\right)$ ha un numero di soluzioni pari a:
 - Zero.
@@ -14493,7 +16751,7 @@ D: La forma ridotta della matrice completa di un sistema nelle incognite $x, y, 
 - Solo $x = 3,\ y = 1,\ z = 0$
 - $x = -2t,\ y = t,\ z = t$
 - Il sistema non ha soluzioni.
-= Simile alla domanda 6 dell'appello del 10/07/2024. I pivot sono nelle colonne 1 e 2. La colonna 3, quella di $z$, è senza pivot: $z = t$. La riga 1 dice $x + 2z = 3$, quindi $x = 3 - 2t$. La riga 2 dice $y - z = 1$, quindi $y = 1 + t$. La seconda risposta ha i segni al contrario: quando porti $t$ a destra dell'uguale il segno cambia. La terza risposta è una soluzione vera, quella con $t$ uguale a 0, ma è una sola: la domanda le chiede tutte.
+= Simile alla domanda 6 dell'appello del 10/07/2024. I pivot sono nelle colonne 1 e 2. La colonna 3, quella di $z$, è senza pivot: $z = t$. La riga 1 dice $x + 2z = 3$, quindi $x = 3 - 2t$. La riga 2 dice $y - z = 1$, quindi $y = 1 + t$. La seconda risposta ha i segni al contrario: quando porti $t$ a destra dell'uguale il segno cambia. La terza è una soluzione vera, quella con $t$ uguale a 0, ma è una sola: la domanda le chiede tutte.
 
 D: Riducendo a scalini la matrice completa di un sistema in 3 incognite compare la riga $(0, 0, 0 \mid 5)$. Che cosa puoi concludere?
 + Il sistema non ha soluzioni.
@@ -14501,7 +16759,7 @@ D: Riducendo a scalini la matrice completa di un sistema in 3 incognite compare 
 - Il sistema ha infinite soluzioni.
 - La riga si può cancellare e si continua.
 - L'unica soluzione è $x = y = z = 0$.
-= Rileggi la riga come equazione: $0x + 0y + 0z = 5$. A sinistra viene 0, qualunque numero tu metta al posto delle incognite. Quindi la riga dice $0 = 5$, falsa sempre. Un indizio impossibile rende impossibile tutto il sistema: nessuna soluzione. La risposta «$z = 5$» tenta, ma davanti a $z$ c'è 0, non 1. Si può cancellare solo una riga $(0, 0, 0 \mid 0)$, che dice $0 = 0$.
+= Rileggi la riga come equazione: $0x + 0y + 0z = 5$. A sinistra viene 0, qualunque numero tu metta al posto delle incognite. Quindi la riga dice $0 = 5$, falsa sempre: nessuna soluzione. La risposta «$z = 5$» tenta, ma davanti a $z$ c'è 0, non 1. Si può cancellare solo una riga $(0, 0, 0 \mid 0)$, che dice $0 = 0$.
 
 D: Nella matrice $\left(\begin{array}{cc|c} 1 & 2 & 4 \\ 3 & 1 & 7 \end{array}\right)$ si fa la mossa $R_2 \to R_2 - 3R_1$. Quale diventa la seconda riga?
 + $(0, -5 \mid -5)$
@@ -14509,7 +16767,7 @@ D: Nella matrice $\left(\begin{array}{cc|c} 1 & 2 & 4 \\ 3 & 1 & 7 \end{array}\r
 - $(0, 5 \mid 5)$
 - $(0, -5 \mid 19)$
 - $(2, -1 \mid 3)$
-= Tre volte la riga 1 fa $(3, 6 \mid 12)$. Poi sottrai dalla riga 2, un numero alla volta: $3 - 3 = 0$, poi $1 - 6 = -5$, poi $7 - 12 = -5$. La nuova riga 2 è $(0, -5 \mid -5)$. La mossa vale anche per il numero dopo la barra. Chi lì somma al posto di sottrarre trova 19. Chi sbaglia il segno trova 5. L'ultima risposta è la riga 2 meno la riga 1 una volta sola, non 3 volte.
+= Tre volte la riga 1 fa $(3, 6 \mid 12)$. Poi sottrai dalla riga 2, un numero alla volta: $3 - 3 = 0$, poi $1 - 6 = -5$, poi $7 - 12 = -5$. La mossa vale anche per il numero dopo la barra. Chi lì somma al posto di sottrarre trova 19. Chi sbaglia il segno trova 5. L'ultima risposta è la riga 2 meno la riga 1 una volta sola, non 3 volte.
 
 D: Un sistema di 3 equazioni in 5 incognite, ridotto a scalini, ha 3 pivot e nessuno di questi è nell'ultima colonna. Quante sono le soluzioni?
 + Infinite, che dipendono da 2 parametri.
@@ -14521,7 +16779,7 @@ D: Un sistema di 3 equazioni in 5 incognite, ridotto a scalini, ha 3 pivot e nes
 
 D: Risolvi il sistema a scalini $x - y + 2z = 5$, $3y - z = 1$, $2z = 4$. Quanto vale $x$?
 N: 2
-= Il sistema è a scalini, quindi si risolve dal basso. Terza equazione: $2z = 4$, quindi $z = 2$. Seconda equazione: $3y - 2 = 1$, cioè $3y = 3$, quindi $y = 1$. Prima equazione: $x - 1 + 2 \cdot 2 = 5$, cioè $x + 3 = 5$, quindi $x = 2$. Controllo nella prima equazione: $2 - 1 + 4 = 5$.
+= Il sistema è a scalini, quindi si risolve dal basso. Terza equazione: $2z = 4$, quindi $z = 2$. Seconda equazione: $3y - 2 = 1$, cioè $3y = 3$, quindi $y = 1$. Prima equazione: $x - 1 + 2 \cdot 2 = 5$, cioè $x + 3 = 5$, quindi $x = 2$.
 ```
 
 ## Esercizi
@@ -14564,21 +16822,6 @@ fai la mossa $R_2 \to R_2 - 3R_1$. Poi risolvi il sistema.
 La soluzione è $(2, -1)$.
 
 **Controllo** nelle equazioni di partenza: $2 - 2 \cdot (-1) = 2 + 2 = 4$ e $3 \cdot 2 + (-1) = 5$. Tutte e due vere.
-:::
-
-::: esercizio base Risolvere dal basso
-Risolvi il sistema, che è già a scalini:
-$$\begin{cases} x + y + z = 6 \\ y + 2z = 7 \\ 3z = 9 \end{cases}$$
-::: soluzione
-Si parte dall'ultima equazione, che ha una sola incognita, e si risale.
-
-1. **Terza equazione.** È $3z = 9$. Dividi per 3 i due lati: $z = 3$.
-2. **Seconda equazione.** È $y + 2z = 7$. Sostituisci 3 al posto di $z$: viene $y + 6 = 7$. Togli 6 dai due lati: $y = 1$.
-3. **Prima equazione.** È $x + y + z = 6$. Sostituisci 1 al posto di $y$ e 3 al posto di $z$: viene $x + 4 = 6$. Togli 4 dai due lati: $x = 2$.
-
-La soluzione è $(2, 1, 3)$.
-
-**Controllo**: $2 + 1 + 3 = 6$, poi $1 + 2 \cdot 3 = 7$, poi $3 \cdot 3 = 9$. Tutte vere.
 :::
 
 ::: esercizio base Tre matrici a scalini: quante soluzioni?
@@ -14640,24 +16883,13 @@ $$\begin{cases} x + y + 2z = 9 \\ 2x + 4y - 3z = 1 \\ 3x + 6y - 5z = 0 \end{case
 1. **La matrice completa.** Una riga per equazione, e l'ultima colonna per i termini noti.
    $$\left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 2 & 4 & -3 & 1 \\ 3 & 6 & -5 & 0 \end{array}\right)$$
 2. **Zeri sotto il primo pivot.** Il pivot è l'1 in alto a sinistra. Sotto ci sono 2 e 3. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - 3R_1$. La riga 1 resta ferma.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $4 - 2 = 2$ | $-3 - 4 = -7$ | $1 - 18 = -17$ |
-| riga 3 meno 3 volte la riga 1 | $3 - 3 = 0$ | $6 - 3 = 3$ | $-5 - 6 = -11$ | $0 - 27 = -27$ |
-
-$$\left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 0 & 2 & -7 & -17 \\ 0 & 3 & -11 & -27 \end{array}\right)$$
-
+   - Riga 2 meno 2 volte la riga 1: $(2 - 2,\ 4 - 2,\ -3 - 4 \mid 1 - 18) = (0, 2, -7 \mid -17)$.
+   - Riga 3 meno 3 volte la riga 1: $(3 - 3,\ 6 - 3,\ -5 - 6 \mid 0 - 27) = (0, 3, -11 \mid -27)$.
 3. **Zero sotto il secondo pivot.** Il secondo pivot è il 2 della riga 2. Sotto c'è 3. La ricetta direbbe di togliere la riga 2 per $\frac 32$ volte. Per non avere frazioni uso il trucco: prima raddoppio la riga 3, poi tolgo 3 volte la riga 2. La mossa è $R_3 \to 2R_3 - 3R_2$.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| 2 volte la riga 3 | $0$ | $6$ | $-22$ | $-54$ |
-| 3 volte la riga 2 | $0$ | $6$ | $-21$ | $-51$ |
-| differenza | $0$ | $6 - 6 = 0$ | $-22 + 21 = -1$ | $-54 + 51 = -3$ |
-
-$$\left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 0 & 2 & -7 & -17 \\ 0 & 0 & -1 & -3 \end{array}\right)$$
-
+   - 2 volte la riga 3: $(0, 6, -22 \mid -54)$.
+   - 3 volte la riga 2: $(0, 6, -21 \mid -51)$.
+   - Differenza: $(0,\ 6 - 6,\ -22 + 21 \mid -54 + 51) = (0, 0, -1 \mid -3)$.
+   $$\left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 0 & 2 & -7 & -17 \\ 0 & 0 & -1 & -3 \end{array}\right)$$
 4. **Lettura.** La matrice è a scalini. I pivot sono tre, nelle colonne 1, 2 e 3. Dopo la barra non ce ne sono, e ogni incognita ha il suo: la soluzione è una sola.
 5. **Dal basso, riga 3.** Dice $-z = -3$. Cambia segno ai due lati: $z = 3$.
 6. **Riga 2.** Dice $2y - 7z = -17$. Sostituisci 3 al posto di $z$: viene $2y - 21 = -17$. Somma 21 ai due lati: $2y = 4$, quindi $y = 2$.
@@ -14677,14 +16909,8 @@ $$\left(\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 2 & 4 & 1 & 0 \\ 1 & 2 & 2 & -3 \
 Le incognite sono 3: le chiamo $x$, $y$, $z$.
 
 1. **Fase 1, prima colonna.** Il pivot è l'1 in alto a sinistra. Sotto ci sono 2 e 1. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - R_1$. Attenzione alla colonna 3: togliere un numero negativo vuol dire sommare.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $4 - 4 = 0$ | $1 - (-2) = 3$ | $0 - 6 = -6$ |
-| riga 3 meno la riga 1 | $1 - 1 = 0$ | $2 - 2 = 0$ | $2 - (-1) = 3$ | $-3 - 3 = -6$ |
-
-$$\left(\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 0 & 3 & -6 \\ 0 & 0 & 3 & -6 \end{array}\right)$$
-
+   - Riga 2 meno 2 volte la riga 1: $(2 - 2,\ 4 - 4,\ 1 - (-2) \mid 0 - 6) = (0, 0, 3 \mid -6)$.
+   - Riga 3 meno la riga 1: $(1 - 1,\ 2 - 2,\ 2 - (-1) \mid -3 - 3) = (0, 0, 3 \mid -6)$.
 2. **Fase 1, il resto.** Sotto la prima riga la colonna 2 è tutta di zeri: resta senza pivot. Nella colonna 3 il pivot è il 3 della riga 2. Sotto c'è un altro 3. La mossa $R_3 \to R_3 - R_2$ dà la riga nulla, perché le due righe sono uguali.
    $$\left(\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 0 & 3 & -6 \\ 0 & 0 & 0 & 0 \end{array}\right)$$
 3. **Fase 2, pivot uguale a 1.** Divido la riga 2 per 3, con la mossa $R_2 \to \frac 13 R_2$. Viene $(0, 0, 1 \mid -2)$.
@@ -14705,15 +16931,8 @@ $$\begin{cases} x_1 + x_2 - x_3 + 2x_4 = 1 \\ 2x_1 + 2x_2 + x_3 + x_4 = 5 \end{c
 ::: soluzione
 1. **La matrice completa.** Le incognite sono 4, quindi le colonne prima della barra sono 4.
    $$\left(\begin{array}{cccc|c} 1 & 1 & -1 & 2 & 1 \\ 2 & 2 & 1 & 1 & 5 \end{array}\right)$$
-2. **Zero sotto il primo pivot.** Sotto l'1 c'è 2. La mossa è $R_2 \to R_2 - 2R_1$.
-
-| | col. 1 | col. 2 | col. 3 | col. 4 | termine noto |
-|---|---|---|---|---|---|
-| riga 2 | $2$ | $2$ | $1$ | $1$ | $5$ |
-| 2 volte la riga 1 | $2$ | $2$ | $-2$ | $4$ | $2$ |
-| differenza | $2 - 2 = 0$ | $2 - 2 = 0$ | $1 - (-2) = 3$ | $1 - 4 = -3$ | $5 - 2 = 3$ |
-
-3. **Pivot uguale a 1.** La riga 2 è $(0, 0, 3, -3 \mid 3)$. Il suo pivot è 3, in colonna 3. La divido per 3: viene $(0, 0, 1, -1 \mid 1)$.
+2. **Zero sotto il primo pivot.** Sotto l'1 c'è 2. La mossa è $R_2 \to R_2 - 2R_1$. Il conto: $(2 - 2,\ 2 - 2,\ 1 - (-2),\ 1 - 4 \mid 5 - 2) = (0, 0, 3, -3 \mid 3)$.
+3. **Pivot uguale a 1.** Il pivot della riga 2 è 3, in colonna 3. Divido la riga per 3: viene $(0, 0, 1, -1 \mid 1)$.
 4. **Zero sopra il secondo pivot.** Sopra c'è $-1$. Sommo la riga 2 alla riga 1: mossa $R_1 \to R_1 + R_2$. Terzo numero: $-1 + 1 = 0$. Quarto numero: $2 + (-1) = 1$. Ultimo numero: $1 + 1 = 2$.
    $$\left(\begin{array}{cccc|c} 1 & 1 & 0 & 1 & 2 \\ 0 & 0 & 1 & -1 & 1 \end{array}\right)$$
 5. **Lettura.** I pivot sono nelle colonne 1 e 3. Le colonne 2 e 4 sono senza pivot. Do due parametri: $x_2 = s$ e $x_4 = t$.
@@ -14725,8 +16944,6 @@ $$x_1 = 2 - s - t, \qquad x_2 = s, \qquad x_3 = 1 + t, \qquad x_4 = t, \qquad s,
 Le soluzioni sono infinite. I parametri sono $4 - 2 = 2$.
 
 **Controllo** con i due parametri uguali a 0, cioè con $(2, 0, 1, 0)$. Prima equazione: $2 + 0 - 1 + 0 = 1$. Seconda equazione: $4 + 0 + 1 + 0 = 5$. Tutte e due vere.
-
-**Controllo con i parametri**, nella seconda equazione: $2(2 - s - t) + 2s + (1 + t) + t = 4 - 2s - 2t + 2s + 1 + 2t = 5$. I pezzi con $s$ e con $t$ si cancellano, e resta 5.
 :::
 
 ::: esercizio medio Un sistema impossibile
@@ -14735,14 +16952,8 @@ Mostra che il sistema $\begin{cases} x + y + z = 1 \\ x - y + 2z = 0 \\ 2x + 3z 
 1. **La matrice completa.** Nella terza equazione manca $y$: coefficiente 0.
    $$\left(\begin{array}{ccc|c} 1 & 1 & 1 & 1 \\ 1 & -1 & 2 & 0 \\ 2 & 0 & 3 & 2 \end{array}\right)$$
 2. **Zeri sotto il primo pivot.** Sotto l'1 ci sono 1 e 2. Le mosse sono $R_2 \to R_2 - R_1$ e $R_3 \to R_3 - 2R_1$.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 2 meno la riga 1 | $1 - 1 = 0$ | $-1 - 1 = -2$ | $2 - 1 = 1$ | $0 - 1 = -1$ |
-| riga 3 meno 2 volte la riga 1 | $2 - 2 = 0$ | $0 - 2 = -2$ | $3 - 2 = 1$ | $2 - 2 = 0$ |
-
-$$\left(\begin{array}{ccc|c} 1 & 1 & 1 & 1 \\ 0 & -2 & 1 & -1 \\ 0 & -2 & 1 & 0 \end{array}\right)$$
-
+   - Riga 2 meno la riga 1: $(1 - 1,\ -1 - 1,\ 2 - 1 \mid 0 - 1) = (0, -2, 1 \mid -1)$.
+   - Riga 3 meno 2 volte la riga 1: $(2 - 2,\ 0 - 2,\ 3 - 2 \mid 2 - 2) = (0, -2, 1 \mid 0)$.
 3. **Zero sotto il secondo pivot.** Il secondo pivot è il $-2$ della riga 2. Sotto c'è un altro $-2$. La mossa è $R_3 \to R_3 - R_2$. Prima della barra viene $(0,\ -2 + 2,\ 1 - 1)$, cioè tutti zeri. Dopo la barra viene $0 - (-1) = 1$.
    $$\left(\begin{array}{ccc|c} 1 & 1 & 1 & 1 \\ 0 & -2 & 1 & -1 \\ 0 & 0 & 0 & 1 \end{array}\right)$$
 4. **Lettura.** L'ultima riga ha tutti zeri prima della barra e 1 dopo. Dice $0 = 1$. C'è un pivot nell'ultima colonna: il sistema non ha soluzioni, cioè $S = \emptyset$.
@@ -14755,12 +16966,10 @@ Uno studente risolve $\begin{cases} 2x + y = 4 \\ x + 3y = 7 \end{cases}$ facend
 ::: soluzione
 **Il conto dello studente.** Le righe di partenza sono $(2, 1 \mid 4)$ e $(1, 3 \mid 7)$.
 
-| | colonna 1 | colonna 2 | termine noto |
-|---|---|---|---|
-| riga 1 meno 2 volte la riga 2 | $2 - 2 = 0$ | $1 - 6 = -5$ | $4 - 14 = -10$ |
-| riga 2 meno metà della riga 1 | $1 - 1 = 0$ | $3 - \frac 12 = \frac 52$ | $7 - 2 = 5$ |
+- Riga 1 meno 2 volte la riga 2: $(2 - 2,\ 1 - 6 \mid 4 - 14) = (0, -5 \mid -10)$.
+- Riga 2 meno metà della riga 1: $(1 - 1,\ 3 - \frac 12 \mid 7 - 2) = (0, \frac 52 \mid 5)$.
 
-Le due righe nuove sono $(0, -5 \mid -10)$ e $(0, \frac 52 \mid 5)$. Tutte e due dicono la stessa cosa: che $y$ vale 2. Infatti $-10 : (-5) = 2$ e $5 : \frac 52 = 2$. Di $x$ non resta nessuna informazione. Allo studente sembra che $x$ sia libera e che le soluzioni siano infinite.
+Tutte e due le righe nuove dicono la stessa cosa: che $y$ vale 2. Infatti $-10 : (-5) = 2$ e $5 : \frac 52 = 2$. Di $x$ non resta nessuna informazione. Allo studente sembra che $x$ sia libera e che le soluzioni siano infinite.
 
 **Perché è sbagliato.** Ognuna delle due mosse, da sola, è permessa. Insieme no. Dopo la prima mossa la riga 1 è cambiata, e la seconda mossa doveva usare la riga 1 nuova. Lo studente ha usato quella vecchia. Il risultato non si può più disfare: un'equazione è andata persa.
 
@@ -14768,8 +16977,7 @@ Le due righe nuove sono $(0, -5 \mid -10)$ e $(0, \frac 52 \mid 5)$. Tutte e due
 
 1. Scambio le righe, per avere un 1 in alto a sinistra: mossa $R_1 \leftrightarrow R_2$.
    $$\left(\begin{array}{cc|c} 1 & 3 & 7 \\ 2 & 1 & 4 \end{array}\right)$$
-2. Tolgo 2 volte la riga 1 dalla riga 2: mossa $R_2 \to R_2 - 2R_1$. Primo numero: $2 - 2 = 0$. Secondo numero: $1 - 6 = -5$. Terzo numero: $4 - 14 = -10$.
-   $$\left(\begin{array}{cc|c} 1 & 3 & 7 \\ 0 & -5 & -10 \end{array}\right)$$
+2. Tolgo 2 volte la riga 1 dalla riga 2: mossa $R_2 \to R_2 - 2R_1$. Il conto: $(2 - 2,\ 1 - 6 \mid 4 - 14) = (0, -5 \mid -10)$.
 3. Dal basso. La riga 2 dice $-5y = -10$, quindi $y = 2$. La riga 1 dice $x + 3y = 7$, cioè $x + 6 = 7$, quindi $x = 1$.
 
 La soluzione è una sola: $(1, 2)$.
@@ -14793,7 +17001,7 @@ $$(x_1, x_2, x_3) = (-4t, -t, t), \qquad t \in \R.$$
 
 **Controllo** con $t$ uguale a 1, cioè con $(-4, -1, 1)$: $-4 + 1 + 3 = 0$, poi $-2 + 2 = 0$, poi $-4 + 4 = 0$. Tutte vere.
 
-Ogni soluzione è $t$ volte il vettore $(-4, -1, 1)$. Le soluzioni sono tutti i multipli di un solo vettore: una retta che passa per l'origine. Un sistema con tutti i termini noti uguali a zero si chiama **omogeneo**, ed è il primo argomento della lezione L12.
+Ogni soluzione è $t$ volte il vettore $(-4, -1, 1)$: le soluzioni sono tutti i multipli di un solo vettore, cioè una retta che passa per l'origine. Un sistema con tutti i termini noti uguali a zero si chiama **omogeneo**, ed è il primo argomento della lezione L12.
 :::
 
 ::: esercizio difficile Quando il sistema dipende da un numero
@@ -14831,15 +17039,8 @@ ha un numero di soluzioni pari a: (a) un numero finito, maggiore di 1; (b) zero;
 
 1. **Serve uno scambio.** In alto a sinistra c'è 0, che non può fare da pivot. Scambio le prime due righe: mossa $R_1 \leftrightarrow R_2$.
    $$\left(\begin{array}{ccc|c} 4 & 5 & 6 & 7 \\ 0 & 1 & 2 & 3 \\ 8 & 9 & 10 & 11 \end{array}\right)$$
-2. **Zeri sotto il primo pivot.** Il pivot è 4. Nella riga 2 sotto c'è già 0. Nella riga 3 c'è 8. Quante volte togliere la riga 1? $8 : 4 = 2$. La mossa è $R_3 \to R_3 - 2R_1$.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 3 | $8$ | $9$ | $10$ | $11$ |
-| 2 volte la riga 1 | $8$ | $10$ | $12$ | $14$ |
-| differenza | $8 - 8 = 0$ | $9 - 10 = -1$ | $10 - 12 = -2$ | $11 - 14 = -3$ |
-
-3. **Zero sotto il secondo pivot.** Il secondo pivot è l'1 della riga 2. Sotto c'è $-1$. La riga 3 è $(0, -1, -2 \mid -3)$: è l'opposto della riga 2. Sommandole viene la riga nulla: mossa $R_3 \to R_3 + R_2$.
+2. **Zeri sotto il primo pivot.** Il pivot è 4. Nella riga 2 sotto c'è già 0. Nella riga 3 c'è 8. Quante volte togliere la riga 1? $8 : 4 = 2$. La mossa è $R_3 \to R_3 - 2R_1$. Due volte la riga 1 fa $(8, 10, 12 \mid 14)$. Il conto: $(8 - 8,\ 9 - 10,\ 10 - 12 \mid 11 - 14) = (0, -1, -2 \mid -3)$.
+3. **Zero sotto il secondo pivot.** Il secondo pivot è l'1 della riga 2. La riga 3 è diventata l'opposto della riga 2. Sommandole viene la riga nulla: mossa $R_3 \to R_3 + R_2$.
    $$\left(\begin{array}{ccc|c} 4 & 5 & 6 & 7 \\ 0 & 1 & 2 & 3 \\ 0 & 0 & 0 & 0 \end{array}\right)$$
 4. **Risposta al quiz.** I pivot sono due, nelle colonne 1 e 2. Dopo la barra non ce ne sono. Le incognite sono 3, quindi i parametri sono $3 - 2 = 1$. La risposta giusta è la **(d)**.
 
@@ -14863,13 +17064,9 @@ e scegli la risposta giusta tra: (a) nessuna soluzione; (b) $x = -1 - t,\ y = 1 
 1. **La matrice completa.**
    $$\left(\begin{array}{ccc|c} 1 & 2 & 3 & 1 \\ 2 & 5 & 7 & 3 \\ 1 & 3 & 4 & 2 \end{array}\right)$$
 2. **Zeri sotto il primo pivot.** Sotto l'1 ci sono 2 e 1. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - R_1$.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $5 - 4 = 1$ | $7 - 6 = 1$ | $3 - 2 = 1$ |
-| riga 3 meno la riga 1 | $1 - 1 = 0$ | $3 - 2 = 1$ | $4 - 3 = 1$ | $2 - 1 = 1$ |
-
-3. **Zero sotto il secondo pivot.** Le due righe nuove sono uguali: $(0, 1, 1 \mid 1)$. La mossa $R_3 \to R_3 - R_2$ dà la riga nulla.
+   - Riga 2 meno 2 volte la riga 1: $(2 - 2,\ 5 - 4,\ 7 - 6 \mid 3 - 2) = (0, 1, 1 \mid 1)$.
+   - Riga 3 meno la riga 1: $(1 - 1,\ 3 - 2,\ 4 - 3 \mid 2 - 1) = (0, 1, 1 \mid 1)$.
+3. **Zero sotto il secondo pivot.** Le due righe nuove sono uguali. La mossa $R_3 \to R_3 - R_2$ dà la riga nulla.
 4. **Zero sopra il secondo pivot.** Sopra l'1 della riga 2 c'è 2. La mossa è $R_1 \to R_1 - 2R_2$. Secondo numero: $2 - 2 = 0$. Terzo numero: $3 - 2 = 1$. Ultimo numero: $1 - 2 = -1$.
    $$\left(\begin{array}{ccc|c} 1 & 0 & 1 & -1 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 0 & 0 \end{array}\right)$$
 5. **Lettura.** I pivot sono nelle colonne 1 e 2. La colonna 3 è senza pivot: $z = t$.
@@ -18725,16 +20922,15 @@ descrizione: >-
   endomorfismo, endomorfismi e matrici diagonalizzabili, potenze di matrici e polinomio caratteristico, con quiz nello
   stile dell'esame ed esercizi svolti.
 lede: >-
-  Un endomorfismo può far girare quasi tutti i vettori, ma lungo certe rette si limita ad allungarli, accorciarli o
-  ribaltarli: i vettori di quelle rette sono gli autovettori, e il fattore è l'autovalore. Se gli autovettori bastano
-  per formare una base, la matrice diventa diagonale e anche $A^{100}$ si calcola in una riga. Per trovarli si usa il
-  polinomio caratteristico $p_A(\lambda) = \det(A - \lambda I_n)$.
+  Una matrice trasforma i vettori, e di solito li fa girare. Lungo certe direzioni però si limita ad allungarli o ad
+  accorciarli. Qui impari a riconoscere queste direzioni, a trovarle con un conto e a usarle per rendere i calcoli
+  molto più corti. È un argomento presente in ogni appello d'esame.
 materiale: dispense
 scheda:
   Dispense: lezione 17 · pp. 85–89
   Libro: Martelli, §5.1
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 100–130 minuti
+  Tempo di studio: 3–4 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 17 «Autovalori e autovettori I»; B. Martelli, Geometria e algebra lineare, §5.1
 file_en: L17_eigenvalues_eigenvectors_1.html
@@ -18744,36 +20940,112 @@ genera_html: true
 
 ## In breve
 
-- Un **autovettore** di un endomorfismo $T : V \to V$ è un vettore $v \neq 0$ con $T(v) = \lambda v$ per qualche scalare $\lambda \in \K$, detto **autovalore**. L'autovalore può essere $0$; l'autovettore non può essere il vettore nullo.
-- Geometricamente, $T$ manda la retta $\Span(v)$ in se stessa. Tutti i multipli non nulli di un autovettore sono autovettori con lo stesso autovalore.
-- In coordinate $T(v) = \lambda v$ diventa $Ax = \lambda x$, con $A = [T]^{\mathcal B}_{\mathcal B}$ e $x = [v]_{\mathcal B}$: basta studiare le matrici.
-- Una **rotazione** del piano di angolo $\vartheta \neq 0, \pi$ non ha autovettori reali: ogni vettore non nullo cambia direzione.
-- $T$ è **diagonalizzabile** se $V$ ha una base di autovettori; in quella base la matrice di $T$ è **diagonale**, con gli autovalori sulla diagonale.
-- Una matrice $A$ è diagonalizzabile se $D = M^{-1}AM$ è diagonale per qualche $M$ invertibile: le colonne di $M$ sono autovettori, $D$ ha i corrispondenti autovalori, nello stesso ordine.
-- Con le matrici diagonali prodotti, determinanti e potenze si fanno elemento per elemento, e $A^k = MD^kM^{-1}$.
-- Il **polinomio caratteristico** $p_A(\lambda) = \det(A - \lambda I_n)$ ha grado $n$ ed è lo stesso per matrici simili. Gli autovalori sono esattamente le sue radici; gli autovettori sono le soluzioni non nulle di $(A - \lambda I_n)x = 0$.
+- Una matrice è una macchina che trasforma vettori in vettori. Quasi sempre li fa girare. Un **autovettore** è un vettore, diverso da zero, che la macchina non gira: lo allunga, lo accorcia o lo ribalta, ma lo lascia sulla sua retta.
+- L'**autovalore** è il numero che dice di quanto: 3 vuol dire «tre volte più lungo», $-1$ vuol dire «ribaltato». Può essere anche zero.
+- Una **rotazione** gira tutti i vettori. Per questo non ha autovettori fatti di numeri reali.
+- Una macchina è **diagonalizzabile** quando esiste una base fatta tutta di autovettori. In quella base la sua matrice è **diagonale**: ha numeri solo sulla diagonale e zeri in tutti gli altri posti.
+- Con le matrici diagonali i conti sono corti. Per questo anche la potenza numero 100 di una matrice diagonalizzabile si calcola in poche righe.
+- Per trovare gli autovalori c'è uno strumento, il **polinomio caratteristico**: gli autovalori sono i numeri che lo fanno diventare zero.
+- All'esame serve in ogni appello: riconoscere un autovettore, trovare gli autovalori di una matrice con 2 o 3 righe, scrivere le due matrici della diagonalizzazione.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Autovettori e autovalori (p. 85)
+## Prima di cominciare
 
-Nella lezione L16 hai visto che la riflessione $f(x, y) = (x + y, -y)$ ha nella base canonica la matrice $\begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$, che non mostra che cosa fa, e nella base $\{(1, 0), (-1, 2)\}$ una matrice diagonale: il primo vettore resta fermo, il secondo si ribalta. Questa lezione spiega come trovare, in generale, i vettori «speciali» che rendono diagonale la matrice.
+### Di che cosa parla questa lezione
 
-Come nelle dispense, i vettori di $\K^n$ sono colonne; nel testo li scriviamo in riga, $(1, 2)$, per risparmiare spazio.
+Nelle lezioni L14, L15 e L16 hai conosciuto le applicazioni lineari. Sono macchine: entra un vettore, ne esce un altro. Hai visto anche che la stessa macchina si può scrivere con tabelle di numeri diverse, una per ogni base che scegli. Alcune tabelle sono un groviglio. Altre dicono subito che cosa fa la macchina.
 
-### Un esempio per cominciare
+Questa lezione insegna a trovare la tabella migliore. Per capire come, pensa a una foto sullo schermo del telefono. Allargala solo in orizzontale, fino al doppio. Una freccia disegnata in orizzontale resta orizzontale: diventa lunga il doppio e basta. Una freccia verticale resta com'è. Una freccia in diagonale invece cambia inclinazione: si piega verso l'orizzontale.
 
-Prendi $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$ e guarda che cosa fa $L_A$ ad alcuni vettori:
+Le frecce che non cambiano inclinazione sono quelle speciali. In matematica si chiamano autovettori. Il numero che dice quanto si allungano si chiama autovalore: per la freccia orizzontale è due, per quella verticale è uno.
 
-| $v$ | $Av$ | $Av$ è un multiplo di $v$? |
-|---|---|---|
-| $e_1 = (1, 0)$ | $(3, 0)$ | sì: $Av = 3v$ |
-| $e_2 = (0, 1)$ | $(4, 2)$ | no: la prima componente di $v$ è 0, quella di $Av$ no |
-| $(-4, 1)$ | $(-12 + 4,\ 2) = (-8, 2)$ | sì: $Av = 2v$ |
-| $(1, 1)$ | $(7, 2)$ | no: $7 \neq 2$ |
+Se le direzioni speciali sono abbastanza, puoi usarle come nuovi assi. Vista da quegli assi, la macchina fa una cosa sola: allunga o accorcia lungo ogni asse. La sua tabella si riempie di zeri, e i numeri restano solo sulla diagonale. Non sempre ci si riesce: una rotazione gira tutte le frecce, e non ne lascia nessuna sulla sua retta.
 
-Quasi tutti i vettori cambiano direzione, ma due direzioni no: sulla retta di $e_1$ i vettori vengono allungati di 3, sulla retta di $(-4, 1)$ di 2. Nel disegno le frecce chiare sono i vettori, quelle scure le loro immagini: $e_2$ «gira», gli altri due no.
+L'ultima parte della lezione dà lo strumento per trovare le direzioni speciali con un conto, senza andare a tentativi. La lezione L18 completa il discorso: dice quando le direzioni speciali bastano per fare una base.
+
+Alcuni passaggi della lezione sono dimostrazioni. Servono per capire da dove vengono le regole, ma all'esame non vengono chieste: le trovi in riquadri chiusi, che puoi aprire quando vuoi.
+
+### Che cosa devi già sapere
+
+Questa lezione usa molte cose delle lezioni precedenti. Ognuna viene ricordata nel punto in cui serve. Qui c'è l'elenco, per sapere dove andare a rileggere.
+
+- **Vettori e multipli** (lezione L05). Un vettore è una lista di numeri, come $(3, 2)$: «3 a destra, 2 in su». Il suo doppio è $(6, 4)$.
+- **Matrice per vettore** (lezione L08). Il ripasso è nella prima sezione.
+- **Base** (lezione L07). Un gruppo di vettori con cui si costruiscono tutti gli altri, senza doppioni. Nel piano vanno bene $(1, 0)$ e $(0, 1)$.
+- **Applicazione lineare e matrice associata** (lezioni L14 e L15). Una macchina che trasforma vettori, e la tabella che la descrive in una base.
+- **Matrice inversa e matrici simili** (lezioni L10 e L16). Il ripasso è nella sezione sulla diagonalizzazione.
+- **Determinante** (lezione L09). Il ripasso è nella sezione sul polinomio caratteristico.
+- **Radici di un polinomio di secondo grado** (lezione L04). Il ripasso è nella stessa sezione.
+- **Sistemi omogenei** (lezione L12). Sono i sistemi in cui ogni equazione finisce con «= 0».
+
+### Che cosa saprai fare alla fine
+
+- Controllare con un solo prodotto se un vettore è un autovettore, e dire il suo autovalore.
+- Spiegare perché una rotazione non ha autovettori reali.
+- Scrivere le due matrici della diagonalizzazione a partire dagli autovettori, e controllarle senza calcolare inverse.
+- Calcolare una potenza alta di una matrice, come $A^{100}$.
+- Calcolare il polinomio caratteristico di una matrice con 2 o 3 righe e trovare gli autovalori.
+- Trovare gli autovettori di un autovalore risolvendo un sistema.
+
+## Le direzioni che non girano: autovettori (p. 85)
+
+Una matrice quadrata è una macchina: entra un vettore, ne esce un altro dello stesso tipo. In questa sezione guardiamo che cosa succede alla **direzione** dei vettori quando passano nella macchina.
+
+Prima due avvisi su come sono scritti i vettori.
+
+- Nelle dispense i vettori sono scritti in colonna, con i numeri uno sotto l'altro. In queste pagine, dentro le frasi, li scriviamo in riga per risparmiare spazio: $(1, 2)$ è il vettore con 1 sopra e 2 sotto.
+- Due vettori del piano hanno un nome fisso: $e_1 = (1, 0)$ ed $e_2 = (0, 1)$. Sono «un passo a destra» e «un passo in su». Insieme formano la **base canonica** del piano (lezione L07).
+
+> [!RIPASSO] matrice per vettore
+> Per far passare un vettore in una matrice si lavora **una riga alla volta**. Si moltiplica ogni numero della riga per il numero del vettore nello stesso posto, poi si sommano i risultati. È il conto della spesa della lezione L08: quantità per prezzi, poi si somma.
+>
+> Esempio: la matrice ha le righe $(3, 4)$ e $(0, 2)$, e il vettore è $(5, 1)$.
+>
+> $$\begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 5 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 \cdot 5 + 4 \cdot 1 \\ 0 \cdot 5 + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} 19 \\ 2 \end{pmatrix}$$
+>
+> Prima riga: 3 per 5 fa 15, 4 per 1 fa 4, e la somma è 19. Seconda riga: 0 per 5 fa 0, 2 per 1 fa 2, e la somma è 2. Esce il vettore $(19, 2)$.
+>
+> Se la matrice si chiama $A$ e il vettore si chiama $v$, il risultato si scrive $Av$. Si legge «$A$ per $v$».
+
+### Una macchina alla prova
+
+Prendiamo la matrice del ripasso e chiamiamola $A$:
+
+$$A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$$
+
+Facciamo entrare quattro vettori e guardiamo che cosa esce.
+
+| Entra | Conto | Esce | Esce un multiplo di quello che è entrato? |
+|---|---|---|---|
+| $(1, 0)$ | $(3 \cdot 1 + 4 \cdot 0,\ 0 \cdot 1 + 2 \cdot 0)$ | $(3, 0)$ | sì: è 3 volte $(1, 0)$ |
+| $(0, 1)$ | $(3 \cdot 0 + 4 \cdot 1,\ 0 \cdot 0 + 2 \cdot 1)$ | $(4, 2)$ | no |
+| $(-4, 1)$ | $(3 \cdot (-4) + 4 \cdot 1,\ 0 \cdot (-4) + 2 \cdot 1)$ | $(-8, 2)$ | sì: è 2 volte $(-4, 1)$ |
+| $(1, 1)$ | $(3 \cdot 1 + 4 \cdot 1,\ 0 \cdot 1 + 2 \cdot 1)$ | $(7, 2)$ | no |
+
+L'ultima colonna è quella che conta. Per riempirla serve ricordare che cos'è un multiplo.
+
+> [!RIPASSO] multiplo di un vettore
+> Un **multiplo** di un vettore si ottiene moltiplicando **tutti** i suoi numeri per lo stesso numero. Per esempio 2 volte $(-4, 1)$ è $(-8, 2)$.
+>
+> Sulla mappa a quadretti i multipli di un vettore stanno tutti sulla **stessa retta** che passa per l'origine. Un multiplo positivo punta dalla stessa parte del vettore. Un multiplo negativo punta dalla parte opposta.
+>
+> Per controllare se un vettore è multiplo di un altro, cerca il numero giusto guardando il primo posto. Poi controlla se lo stesso numero funziona anche negli altri posti.
+>
+> - $(7, 2)$ è un multiplo di $(1, 1)$? Nel primo posto servirebbe «per 7», nel secondo «per 2». I due numeri sono diversi, quindi no.
+> - $(4, 2)$ è un multiplo di $(0, 1)$? Un multiplo di $(0, 1)$ ha sempre 0 nel primo posto. Qui c'è 4, quindi no.
+
+Guarda la tabella: si notano due cose.
+
+**Quasi tutti i vettori escono girati.** Entra $(1, 1)$ ed esce $(7, 2)$, che punta in un'altra direzione. Lo stesso succede a $(0, 1)$.
+
+**Due vettori invece restano sulla loro retta.** Entra $(1, 0)$ ed esce il suo triplo. Entra $(-4, 1)$ ed esce il suo doppio. La macchina li ha allungati, ma non li ha girati.
+
+> [!IDEA]
+> Un **autovettore** è un vettore che la macchina non gira: esce un suo multiplo. Il numero che dice «quante volte» è l'**autovalore**.
+
+Guarda la figura. Le frecce chiare sono i vettori che entrano, quelle scure i vettori che escono. Nella figura $u$ è il vettore $(-4, 1)$. La freccia di $e_1$ e quella che esce stanno sulla stessa retta tratteggiata. Lo stesso vale per le due frecce viola. La freccia ambra invece esce dalla sua retta: il vettore $e_2$ viene girato.
 
 ```grafico
 titolo: $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$: $e_1$ e $(-4, 1)$ restano sulla loro retta, $e_2$ no
@@ -18789,6 +21061,44 @@ vettore: 0 1 | ambra | tenue | $e_2$ | e
 vettore: 4 2 | ambra | spesso | $Ae_2$ | e
 ```
 
+### I nomi e i simboli
+
+Servono quattro parole nuove.
+
+- **Autovettore** e **autovalore**. Il pezzo «auto» traduce il tedesco *eigen*, che vuol dire «proprio»: sono i vettori «propri» della macchina, e i suoi numeri «propri».
+- **Scalare**. È un numero normale, come 3 o $-2$. Si chiama così per distinguerlo dai vettori.
+- **Endomorfismo**. È una macchina lineare in cui i vettori che escono sono dello stesso tipo di quelli che entrano: entra un vettore del piano, esce un vettore del piano (lezione L16). Deve essere così, altrimenti non avrebbe senso chiedersi se quello che esce è un multiplo di quello che è entrato.
+
+L'autovalore si indica con la lettera greca $\lambda$, che si legge «lambda». È un numero.
+
+La frase «esce un multiplo di quello che è entrato» si scrive così:
+
+$$Av = \lambda v$$
+
+Si legge «$A$ per $v$ è uguale a lambda per $v$». A sinistra c'è quello che esce dalla macchina quando entra $v$. A destra c'è $v$ moltiplicato per il numero $\lambda$.
+
+Con la matrice di prima e il vettore $(1, 0)$ la riga dice: esce 3 volte $(1, 0)$. Qui $\lambda$ vale 3.
+
+Le dispense usano altri tre simboli.
+
+- $T : V \to V$ è la macchina. Si chiama $T$, prende i vettori da uno spazio $V$ e li restituisce nello stesso spazio. La freccia si legge «da $V$ a $V$». La scrittura $T(v)$ si legge «$T$ di $v$»: è il vettore che esce quando entra $v$.
+- $L_A$ è la macchina «moltiplica per la matrice $A$» (lezione L14). Quindi $L_A(v)$ e $Av$ sono la stessa cosa.
+- $\K$ è un modo breve per dire «i numeri reali oppure i numeri complessi». In questa lezione i numeri sono quasi sempre reali.
+
+Ecco l'esempio delle dispense. La matrice e i vettori sono quelli della tabella di prima, dove trovi tutti i conti.
+
+> [!ESEMPIO] 17.2 · Due autovettori di una matrice $2 \times 2$
+> Prendiamo la macchina $L_A$ che lavora sui vettori del piano, con
+> $$A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}.$$
+>
+> - Da $e_1$ esce $(3, 0)$, cioè 3 volte $e_1$. Quindi $e_1$ è un autovettore di $L_A$ con autovalore 3.
+> - Da $e_2$ esce $(4, 2)$. Un multiplo di $e_2$ ha 0 nel primo posto, e qui c'è 4. Quindi $(4, 2)$ non è un multiplo di $e_2$, qualunque numero si provi: $e_2$ non è un autovettore.
+> - Da $(-4, 1)$ esce il suo doppio:
+>   $$L_A\begin{pmatrix} -4 \\ 1 \end{pmatrix} = \begin{pmatrix} -8 \\ 2 \end{pmatrix} = 2\begin{pmatrix} -4 \\ 1 \end{pmatrix}$$
+>   Quindi $(-4, 1)$ è un autovettore con autovalore 2.
+
+Le dispense scrivono la definizione così.
+
 > [!DEF] 17.1 · Autovettore e autovalore
 > Sia $T : V \to V$ un endomorfismo di uno spazio vettoriale $V$ definito su un campo $\K$. Un **autovettore** di $T$ è un vettore $v \neq 0$ in $V$ per cui
 > $$T(v) = \lambda v$$
@@ -18796,24 +21106,45 @@ vettore: 4 2 | ambra | spesso | $Ae_2$ | e
 >
 > Notiamo che $\lambda$ può essere qualsiasi scalare, anche zero. D'altro canto, l'autovettore $v$ non può essere zero per definizione. In parole: un autovettore è un vettore (diverso da zero) che viene mandato da $T$ in un multiplo di se stesso.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- **$T$ è un endomorfismo**: partenza e arrivo sono lo stesso spazio $V$, altrimenti non avrebbe senso confrontare $T(v)$ con $v$.
-- **$v \neq 0$**: il vettore nullo soddisfa $T(0) = 0 = \lambda \cdot 0$ per **ogni** $\lambda$; se lo ammettessimo, ogni scalare sarebbe un autovalore e la definizione non direbbe niente.
-- **$\lambda = 0$ è permesso**: $T(v) = 0 \cdot v = 0$ vuol dire che $v$ è un vettore non nullo del nucleo. Quindi $0$ è un autovalore esattamente quando $\Ker T \neq \{0\}$.
-- **$\lambda \in \K$**: l'autovalore deve stare nel campo su cui lavori. Vedrai che una rotazione non ha autovalori reali ma ne ha di complessi.
-- **«Relativo a $v$»**: a ogni autovettore corrisponde un solo autovalore, perché da $\lambda v = \mu v$ con $v \neq 0$ segue $\lambda = \mu$.
+- «Un endomorfismo di uno spazio vettoriale $V$ definito su un campo $\K$»: la macchina $T$ lavora dentro un solo spazio, e i numeri che si usano sono reali oppure complessi.
+- $v \neq 0$ si legge «$v$ diverso da zero». Qui lo zero è il **vettore nullo**, quello fatto di soli zeri, come $(0, 0)$.
+- $T(v) = \lambda v$: dalla macchina esce $v$ moltiplicato per il numero $\lambda$.
+- $\lambda \in \K$ si legge «lambda appartiene a $\K$»: vuol dire che $\lambda$ è un numero, reale o complesso. «Per qualche scalare» vuol dire che basta trovarne uno.
+- «Relativo a $v$»: ogni autovettore ha il suo autovalore.
 
-> [!ESEMPIO] 17.2 · Due autovettori di una matrice $2 \times 2$
-> Consideriamo l'endomorfismo $L_A : \R^2 \to \R^2$ con
-> $$A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}.$$
-> Poiché $L_A(e_1) = (3, 0) = 3e_1$, il vettore $e_1$ è autovettore di $L_A$ con autovalore $3$. Invece $L_A(e_2) = (4, 2) \neq \lambda e_2$ per qualsiasi $\lambda$ (un multiplo di $e_2$ ha prima componente 0), quindi $e_2$ non è un autovettore.
+Tutta insieme: un autovettore è un vettore non nullo che la macchina manda in un suo multiplo. L'autovalore è il numero per cui viene moltiplicato.
+
+### Due zeri da non confondere
+
+**Il vettore nullo non è mai un autovettore.** Il motivo è questo. Da una macchina lineare, se entra il vettore nullo esce il vettore nullo. E il vettore nullo è multiplo di sé stesso con qualunque numero: 3 volte zero fa zero, 7 volte zero fa zero. Se lo accettassimo come autovettore, ogni numero sarebbe un autovalore, e la parola non vorrebbe più dire niente.
+
+**L'autovalore invece può essere zero.** Vuol dire che entra un vettore non nullo ed esce il vettore nullo: la macchina lo schiaccia su zero. I vettori che la macchina schiaccia su zero formano il **nucleo** (lezione L14). Quindi gli autovettori con autovalore 0 sono i vettori non nulli del nucleo.
+
+> [!TRAPPOLA] Zero sì, zero no
+> Nella definizione ci sono due zeri diversi. L'autovettore **non** può essere il vettore nullo. L'autovalore **può** essere il numero zero. All'esame una frase come «zero non è mai un autovalore» è sbagliata.
+
+**Un autovettore ha un solo autovalore.** Se da un vettore esce il suo triplo, non può uscire anche il suo doppio. Il triplo e il doppio di un vettore non nullo sono due vettori diversi.
+
+> [!OLTRE] autovalore 0 e autovalore 1
+> Il libro di Martelli (Osservazioni 5.1.5 e 5.1.6) mette in evidenza due autovalori speciali.
 >
-> Notiamo che
-> $$L_A\begin{pmatrix} -4 \\ 1 \end{pmatrix} = \begin{pmatrix} -8 \\ 2 \end{pmatrix} = 2\begin{pmatrix} -4 \\ 1 \end{pmatrix},$$
-> e quindi il vettore $(-4, 1)$ è autovettore con autovalore $2$.
+> - Autovalore 0: il vettore viene schiacciato su zero. Sta nel nucleo.
+> - Autovalore 1: il vettore esce uguale a com'è entrato. Si chiama **punto fisso**.
+>
+> Un esempio con tutti e due. La macchina «ombra sull'asse orizzontale» tiene il primo numero e mette 0 al posto del secondo:
+> $$T(x, y) = (x, 0)$$
+> Il vettore $(3, 0)$ esce uguale: è un autovettore con autovalore 1. Il vettore $(0, 2)$ esce nullo, cioè 0 volte sé stesso: è un autovettore con autovalore 0.
 
-Nello strumento qui sotto trascina il vettore $x$: quando $Ax$ (in ambra) cade sulla stessa retta di $x$ hai trovato un autovettore, e lo strumento lo segnala. Le due rette tratteggiate sono le direzioni degli autovettori. Prova poi la matrice di rotazione di 90° dai pulsanti: le rette tratteggiate spariscono.
+### Cercare gli autovettori con lo strumento
+
+Nello strumento qui sotto trascina il vettore $x$. In ambra vedi il vettore $Ax$ che esce dalla macchina. Quando $Ax$ cade sulla stessa retta di $x$ hai trovato un autovettore, e lo strumento lo segnala. Le due rette tratteggiate sono le direzioni degli autovettori.
+
+Due cose da provare.
+
+1. Porta $x$ su $(1, 0)$ e poi su $(-4, 1)$: sono i due autovettori dell'Esempio 17.2.
+2. Scegli dai pulsanti la matrice di rotazione di 90°: le rette tratteggiate spariscono. Il perché è nella sezione sulle rotazioni.
 
 ```widget matrice
 titolo: Cerca gli autovettori di $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$
@@ -18822,29 +21153,155 @@ x: -2 1
 raggio: 5
 ```
 
-> [!OLTRE] autovalore 0 e autovalore 1
-> Due casi speciali, dal libro di Martelli (Osservazioni 5.1.5 e 5.1.6). Gli autovettori con autovalore $0$ sono i vettori **non nulli del nucleo**: $T(v) = 0$. Gli autovettori con autovalore $1$ sono i **punti fissi** non nulli: $T(v) = v$. Per esempio, per la proiezione $T(x, y) = (x, 0)$ i vettori $(x, 0)$ con $x \neq 0$ hanno autovalore 1 e i vettori $(0, y)$ con $y \neq 0$ hanno autovalore 0.
+::: prova Con la matrice $A$ dell'Esempio 17.2: il vettore $(2, 0)$ è un autovettore? Con quale autovalore?
+Lo faccio passare nella macchina: $A(2, 0) = (3 \cdot 2 + 4 \cdot 0,\ 0 \cdot 2 + 2 \cdot 0) = (6, 0)$.
 
-## In coordinate bastano le matrici (p. 85)
+$(6, 0)$ è 3 volte $(2, 0)$. Quindi sì: è un autovettore con autovalore 3.
+:::
 
-> [!OSSERVAZIONE] Autovettori in coordinate
-> Autovettori e autovalori si studiano agevolmente in coordinate rispetto a una base. Sia $T : V \to V$ un endomorfismo, siano $\mathcal B$ una base di $V$ e $A = [T]^{\mathcal B}_{\mathcal B}$ la matrice associata. Sia $v \in V$ e sia $x = [v]_{\mathcal B} \in \K^n$ il vettore delle sue coordinate. Allora
-> $$T(v) = \lambda v \iff Ax = \lambda x.$$
-> L'equazione $T(v) = \lambda v$ corrisponde in coordinate ad $Ax = \lambda x$: basta capire bene il caso in cui l'endomorfismo è dato da $L_A$.
+::: prova La matrice $B$ ha le righe $(2, 0)$ e $(0, 5)$. Il vettore $(0, 1)$ è un autovettore di $B$? E il vettore $(1, 1)$?
+$B(0, 1) = (2 \cdot 0 + 0 \cdot 1,\ 0 \cdot 0 + 5 \cdot 1) = (0, 5)$. È 5 volte $(0, 1)$: autovettore con autovalore 5.
 
-Il perché, con la lezione L15: le coordinate di $T(v)$ sono $[T(v)]_{\mathcal B} = A[v]_{\mathcal B} = Ax$ (Proposizione 15.9), quelle di $\lambda v$ sono $\lambda x$; e due vettori sono uguali se e solo se hanno le stesse coordinate. Inoltre $v \neq 0$ se e solo se $x \neq 0$. Per questo si parla di **autovalori e autovettori di una matrice** $A$: sono quelli di $L_A$.
+$B(1, 1) = (2 \cdot 1 + 0 \cdot 1,\ 0 \cdot 1 + 5 \cdot 1) = (2, 5)$. Nel primo posto servirebbe «per 2», nel secondo «per 5». Non è un multiplo di $(1, 1)$, quindi non è un autovettore.
+:::
+
+::: prova Il vettore $(0, 0)$ può essere un autovettore?
+No, mai: la definizione chiede un vettore diverso da zero.
+:::
+
+> [!RICORDA]
+> - Un **autovettore** è un vettore non nullo che la macchina manda in un suo multiplo: $Av = \lambda v$.
+> - Il numero $\lambda$ è l'**autovalore**. Può essere zero; l'autovettore no.
+> - Per controllare se un vettore è un autovettore basta un prodotto: calcola $Av$ e guarda se è un multiplo di $v$.
+
+## Con le coordinate bastano le matrici (p. 85)
+
+Non tutte le macchine lavorano su liste di numeri: alcune lavorano su polinomi, altre su matrici. Questa sezione mostra che non è un problema. Con le coordinate ogni macchina diventa una matrice, e gli autovettori si cercano lì.
+
+### Una macchina che lavora sui polinomi
+
+Prendiamo i polinomi di grado al massimo 1. Sono fatti così: un numero, più un numero per $x$. Per esempio $2 + 5x$. Le dispense chiamano $\R_1[x]$ l'insieme di questi polinomi (lezione L05).
+
+La macchina si chiama $T$ e **scambia i due numeri** del polinomio:
+
+$$T(a + bx) = b + ax$$
+
+Per esempio da $2 + 5x$ esce $5 + 2x$.
+
+Anche qui ha senso cercare gli autovettori: i polinomi da cui esce un loro multiplo.
+
+| Entra | Esce | Esce un multiplo di quello che è entrato? |
+|---|---|---|
+| $2 + 5x$ | $5 + 2x$ | no |
+| $1 + x$ | $1 + x$ | sì: è 1 volta $1 + x$ |
+| $1 - x$ | $-1 + x$ | sì: è $-1$ volte $1 - x$ |
+
+Guarda l'ultima riga. I due numeri del polinomio sono 1 e $-1$. Scambiati diventano $-1$ e 1. Il polinomio che esce è quello di partenza con tutti i segni cambiati.
+
+Quindi $1 + x$ è un autovettore con autovalore 1, e $1 - x$ è un autovettore con autovalore $-1$. Qui la parola «vettore» indica un polinomio. L'immagine della freccia sulla mappa non funziona più, ma la regola «esce un multiplo» sì.
+
+### Lo stesso conto con le coordinate
+
+Ricorda dalla lezione L15: un polinomio come $a + bx$ si può scrivere come la lista dei suoi due numeri, $(a, b)$. Sono le sue **coordinate** rispetto alla base fatta dai polinomi $1$ e $x$. Per esempio $2 + 5x$ diventa $(2, 5)$.
+
+Con le coordinate la macchina diventa una matrice. Ricorda come si costruisce: nelle colonne si scrive dove vanno i vettori della base.
+
+1. Il primo vettore della base è il polinomio $1$, cioè $1 + 0x$. Scambiando i numeri esce $0 + 1x$. Le sue coordinate sono $(0, 1)$: è la prima colonna.
+2. Il secondo vettore della base è il polinomio $x$, cioè $0 + 1x$. Scambiando i numeri esce $1 + 0x$. Le sue coordinate sono $(1, 0)$: è la seconda colonna.
+
+La matrice è
+
+$$A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$$
+
+Ora il conto sui polinomi diventa un conto «matrice per vettore».
 
 > [!ESEMPIO] · autovettori tra i polinomi
-> Sia $T : \R_1[x] \to \R_1[x]$, $T(a + bx) = b + ax$ (scambia i due coefficienti). Nella base $\mathcal B = \{1, x\}$: $T(1) = x$ e $T(x) = 1$, quindi $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$.
-> - $A(1, 1) = (1, 1)$: il vettore di coordinate $(1, 1)$, cioè il polinomio $1 + x$, è autovettore con autovalore $1$. Controllo: $T(1 + x) = 1 + x$.
-> - $A(1, -1) = (-1, 1) = -(1, -1)$: il polinomio $1 - x$ è autovettore con autovalore $-1$. Controllo: $T(1 - x) = -1 + x = -(1 - x)$.
+> La macchina è $T(a + bx) = b + ax$, e la sua matrice nella base fatta da $1$ e $x$ è quella appena trovata.
 >
-> Si lavora sulla matrice, poi si traducono le coordinate in polinomi.
+> **Il polinomio $1 + x$** ha coordinate $(1, 1)$.
+> $$\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \cdot 1 + 1 \cdot 1 \\ 1 \cdot 1 + 0 \cdot 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+> Esce lo stesso vettore: è un autovettore con autovalore 1. Tradotto in polinomi: $T(1 + x) = 1 + x$.
+>
+> **Il polinomio $1 - x$** ha coordinate $(1, -1)$.
+> $$\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 \\ -1 \end{pmatrix} = \begin{pmatrix} 0 \cdot 1 + 1 \cdot (-1) \\ 1 \cdot 1 + 0 \cdot (-1) \end{pmatrix} = \begin{pmatrix} -1 \\ 1 \end{pmatrix} = -1 \cdot \begin{pmatrix} 1 \\ -1 \end{pmatrix}$$
+> Esce il vettore con i segni cambiati: è un autovettore con autovalore $-1$. Tradotto in polinomi: $T(1 - x) = -1 + x = -(1 - x)$.
+>
+> Il metodo è sempre questo: si lavora sulla matrice, poi si traducono le coordinate in polinomi.
 
-## Le rotazioni non hanno autovettori (p. 85)
+### Come lo scrivono le dispense
+
+Le dispense riassumono tutto in un'osservazione. Per leggerla servono due scritture della lezione L15.
+
+- $[v]_{\mathcal B}$ si legge «le coordinate di $v$ nella base $\mathcal B$». È la lista di numeri che descrive il vettore. La lettera $\mathcal B$ è una B scritta in corsivo: è il nome della base.
+- $[T]^{\mathcal B}_{\mathcal B}$ si legge «la matrice di $T$ nella base $\mathcal B$». È la tabella che descrive la macchina quando i vettori che entrano e quelli che escono sono scritti con le coordinate di quella base.
+
+> [!OSSERVAZIONE] Autovettori in coordinate
+> Prendiamo un endomorfismo $T : V \to V$ e una base $\mathcal B$ di $V$. Chiamiamo $A$ la matrice di $T$ in quella base, cioè $A = [T]^{\mathcal B}_{\mathcal B}$. Chiamiamo $x$ la lista delle coordinate di un vettore $v$, cioè $x = [v]_{\mathcal B}$. Allora le due uguaglianze qui sotto sono vere insieme oppure false insieme:
+> $$T(v) = \lambda v \qquad\qquad Ax = \lambda x$$
+> Quella di sinistra parla di vettori qualsiasi. Quella di destra parla solo di liste di numeri. Per questo, dicono le dispense, basta capire bene il caso in cui la macchina è del tipo $L_A$.
+
+Il motivo, in due frasi. Le coordinate di quello che esce si calcolano moltiplicando la matrice per le coordinate di quello che entra: è la Proposizione 15.9 della lezione L15. E due vettori sono uguali esattamente quando hanno le stesse coordinate.
+
+Da qui in poi parleremo di **autovalori e autovettori di una matrice**. Vuol dire: quelli della macchina «moltiplica per quella matrice».
+
+::: prova Per la macchina $T(a + bx) = b + ax$: il polinomio $3 + 3x$ è un autovettore? E il polinomio $2 - 2x$?
+Da $3 + 3x$ esce $3 + 3x$: i due numeri sono uguali, e scambiarli non cambia niente. È un autovettore con autovalore 1.
+
+Da $2 - 2x$ esce $-2 + 2x$, cioè $-1$ volte $2 - 2x$. È un autovettore con autovalore $-1$.
+:::
+
+::: prova Quali sono le coordinate del polinomio $4 - 3x$ nella base fatta da $1$ e $x$? Che cosa esce dalla macchina $T$? È un autovettore?
+Le coordinate sono $(4, -3)$. La macchina scambia i due numeri: esce $(-3, 4)$, cioè il polinomio $-3 + 4x$.
+
+Non è un multiplo di $4 - 3x$. Per passare da 4 a $-3$ nel primo posto servirebbe «per $-\frac 34$». Per passare da $-3$ a 4 nel secondo servirebbe «per $-\frac 43$». Quindi $4 - 3x$ non è un autovettore.
+:::
+
+> [!RICORDA]
+> - Con le coordinate ogni endomorfismo diventa una matrice quadrata.
+> - Gli autovettori della macchina corrispondono agli autovettori della matrice, e gli autovalori sono gli stessi.
+> - Per questo si lavora sempre sulle matrici. Alla fine si traducono le coordinate nei vettori di partenza.
+
+## Le rotazioni girano tutto: nessun autovettore (p. 85)
+
+Esistono macchine che non hanno nessun autovettore. L'esempio più chiaro è una **rotazione**: la macchina che fa girare tutto il piano intorno all'origine, di un angolo fisso.
+
+> [!RIPASSO] gli angoli in radianti
+> Nel corso gli angoli si misurano in **radianti** (lezione L03). Il giro intero vale $2\pi$.
+>
+> | Angolo | In gradi | In radianti |
+> |---|---|---|
+> | nessuna rotazione | 0° | $0$ |
+> | un quarto di giro | 90° | $\frac{\pi}{2}$ |
+> | mezzo giro | 180° | $\pi$ |
+>
+> La lettera greca $\vartheta$, che si legge «theta», indica un angolo.
+
+### Un quarto di giro, con i numeri
+
+Prendiamo la rotazione di un quarto di giro in senso antiorario, cioè nel verso opposto a quello delle lancette dell'orologio. Sulla mappa a quadretti la regola è questa: il vettore $(x, y)$ va in $(-y, x)$.
+
+| Entra | Esce | Esce un multiplo di quello che è entrato? |
+|---|---|---|
+| $(1, 0)$ | $(0, 1)$ | no: da «a destra» diventa «in su» |
+| $(0, 1)$ | $(-1, 0)$ | no: da «in su» diventa «a sinistra» |
+| $(2, 1)$ | $(-1, 2)$ | no |
+
+Nessuno dei tre esce sulla sua retta. E non è un caso.
+
+### Perché non può esserci nessun autovettore
+
+I multipli di un vettore stanno tutti sulla sua retta. Un multiplo positivo punta dalla stessa parte del vettore: tra i due c'è un angolo di 0. Un multiplo negativo punta dalla parte opposta: tra i due c'è un angolo di mezzo giro. Non ci sono altri casi.
+
+Una rotazione sposta **ogni** vettore non nullo dello stesso angolo. Se l'angolo non è 0 e non è mezzo giro, il vettore esce dalla sua retta. Quindi quello che esce non è mai un multiplo di quello che è entrato.
 
 > [!ESEMPIO] 17.3 · Una rotazione
-> Sia $L_A : \R^2 \to \R^2$ con $A = \mathrm{Rot}_\vartheta$ una rotazione di angolo $\vartheta \neq 0, \pi$. Ciascun vettore $v \in \R^2$ diverso da zero viene ruotato di un angolo $\vartheta \neq 0, \pi$, e quindi la sua immagine $L_A(v)$ non può essere un multiplo di $v$: i multipli di $v$ stanno sulla retta di $v$, cioè formano con $v$ un angolo di $0$ (multipli positivi) o di $\pi$ (multipli negativi). L'endomorfismo $L_A$ non ha autovettori.
+> Prendiamo la macchina $L_A$ sui vettori del piano, dove $A = \mathrm{Rot}_\vartheta$ è la matrice di una rotazione di angolo $\vartheta \neq 0, \pi$. Questa scrittura vuol dire: l'angolo non è 0 e non è $\pi$.
+>
+> Ogni vettore $v$ del piano diverso da zero viene ruotato di un angolo che non è 0 e non è $\pi$. Quindi il vettore che esce, $L_A(v)$, non sta sulla retta di $v$: non può essere un multiplo di $v$.
+>
+> Conclusione: l'endomorfismo $L_A$ non ha autovettori.
+
+Guarda la figura: il vettore $v$ viene ruotato di 60°. La retta tratteggiata è la retta di $v$, dove stanno tutti i suoi multipli. Il vettore ruotato, in ambra, è fuori da quella retta.
 
 ```grafico
 titolo: Ruotando di $60°$, $v$ esce dalla sua retta: nessun multiplo di $v$ è uguale a $\mathrm{Rot}_{60°}\,v$
@@ -18857,185 +21314,742 @@ arco: 0 0 0.9 0.4636 1.5108 | grigio
 testo: 0.85 0.95 | $60°$
 ```
 
-> [!OLTRE] la matrice di rotazione e un controllo con i conti
-> La matrice della rotazione antioraria di angolo $\vartheta$ è $\mathrm{Rot}_\vartheta = \begin{pmatrix} \cos\vartheta & -\sin\vartheta \\ \sin\vartheta & \cos\vartheta \end{pmatrix}$ (la vedrai nella lezione L22). Per $\vartheta = \frac{\pi}{2}$ è $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ e manda $(x, y)$ in $(-y, x)$. Se fosse $(-y, x) = \lambda (x, y)$, avremmo $-y = \lambda x$ e $x = \lambda y$; sostituendo, $x = \lambda(-\lambda x) = -\lambda^2 x$, cioè $(1 + \lambda^2)x = 0$. Poiché $1 + \lambda^2 > 0$ per ogni $\lambda$ reale, $x = 0$ e poi $y = -\lambda x = 0$: solo il vettore nullo, che non conta. Per $\vartheta = 0$ la rotazione è l'identità, per $\vartheta = \pi$ è $v \mapsto -v$: in questi due casi **ogni** vettore non nullo è un autovettore.
+### I due angoli speciali
 
-## Un esempio in $\R^3$ e i multipli di un autovettore (p. 86)
+Restano i due casi esclusi.
+
+- **Angolo 0.** Non si muove niente: ogni vettore esce uguale a com'è entrato. Ogni vettore non nullo è un autovettore con autovalore 1.
+- **Angolo $\pi$, cioè mezzo giro.** Ogni vettore esce ribaltato: diventa il suo opposto. Ogni vettore non nullo è un autovettore con autovalore $-1$.
+
+> [!OLTRE] la matrice di rotazione
+> La matrice della rotazione antioraria di angolo $\vartheta$ si studia nella lezione L22. È questa:
+> $$\mathrm{Rot}_\vartheta = \begin{pmatrix} \cos\vartheta & -\sin\vartheta \\ \sin\vartheta & \cos\vartheta \end{pmatrix}$$
+> Per il quarto di giro il coseno vale 0 e il seno vale 1. La matrice diventa
+> $$\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$$
+> e manda $(x, y)$ in $(-y, x)$, come nella tabella. Che questa matrice non abbia autovalori reali si può controllare anche con un conto: lo trovi nell'ultima sezione, dopo il polinomio caratteristico.
+
+Tutto questo vale con i numeri reali. Con i numeri complessi le rotazioni hanno autovalori: lo vedi nell'ultima sezione e nell'esercizio 10.
+
+::: prova La rotazione di mezzo giro manda ogni vettore nel suo opposto. Che cosa esce se entra $(2, 3)$? È un autovettore? Con quale autovalore?
+Esce $(-2, -3)$, cioè $-1$ volte $(2, 3)$. Quindi è un autovettore, con autovalore $-1$.
+:::
+
+::: prova La rotazione di un quarto di giro manda $(x, y)$ in $(-y, x)$. Che cosa esce se entra $(3, 1)$? È un multiplo di $(3, 1)$?
+Esce $(-1, 3)$. Per passare da 3 a $-1$ nel primo posto servirebbe «per $-\frac 13$». Per passare da 1 a 3 nel secondo posto servirebbe «per 3». I due numeri sono diversi: non è un multiplo.
+:::
+
+> [!RICORDA]
+> - Una rotazione di angolo diverso da 0 e da $\pi$ gira tutti i vettori: **non ha autovettori reali**.
+> - Con angolo 0 ogni vettore non nullo è un autovettore con autovalore 1. Con angolo $\pi$ ogni vettore non nullo è un autovettore con autovalore $-1$.
+
+## Tutta una retta di autovettori: i multipli (p. 86)
+
+Gli autovettori non arrivano mai da soli: insieme a un autovettore trovi sempre tutta la sua retta. Lo vediamo su una matrice con tre righe e tre colonne.
+
+### Un esempio con tre numeri
+
+Un vettore con tre numeri, come $(0, 1, 1)$, è uno spostamento nello spazio: avanti, di lato, in alto. Il prodotto «matrice per vettore» funziona come prima, una riga alla volta. Solo che ogni riga ha tre numeri.
+
+I tre vettori «un passo lungo un asse» hanno un nome fisso anche qui: $e_1 = (1, 0, 0)$, poi $e_2 = (0, 1, 0)$, poi $e_3 = (0, 0, 1)$.
 
 > [!ESEMPIO] 17.4 · Un autovettore di una matrice $3 \times 3$
-> Consideriamo l'endomorfismo $L_A : \R^3 \to \R^3$ con
+> Prendiamo la macchina $L_A$ che lavora sui vettori dello spazio, con
 > $$A = \begin{pmatrix} 1 & 1 & -1 \\ 2 & 1 & 1 \\ 3 & 0 & 2 \end{pmatrix}.$$
-> Notiamo che $L_A(e_1) = (1, 2, 3)$ (la prima colonna), che non è un multiplo di $e_1$: quindi $e_1$ non è un autovettore. Invece per $v = (0, 1, 1)$ troviamo
-> $$Av = \begin{pmatrix} 0 + 1 - 1 \\ 0 + 1 + 1 \\ 0 + 0 + 2 \end{pmatrix} = \begin{pmatrix} 0 \\ 2 \\ 2 \end{pmatrix} = 2v,$$
-> quindi $v$ è un autovettore con autovalore 2. Analogamente, per $w = (0, 3, 3)$ troviamo $Aw = (0, 6, 6) = 2w$: anche $w$ è un autovettore con autovalore 2. Notiamo che $w = 3v$.
+>
+> **Il vettore $e_1 = (1, 0, 0)$.**
+> $$A e_1 = \begin{pmatrix} 1 \cdot 1 + 1 \cdot 0 + (-1) \cdot 0 \\ 2 \cdot 1 + 1 \cdot 0 + 1 \cdot 0 \\ 3 \cdot 1 + 0 \cdot 0 + 2 \cdot 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$$
+> Esce la prima colonna di $A$. Un multiplo di $e_1$ ha 0 nel secondo e nel terzo posto, e qui ci sono 2 e 3. Quindi $e_1$ non è un autovettore.
+>
+> **Il vettore $v = (0, 1, 1)$.**
+> $$A v = \begin{pmatrix} 1 \cdot 0 + 1 \cdot 1 + (-1) \cdot 1 \\ 2 \cdot 0 + 1 \cdot 1 + 1 \cdot 1 \\ 3 \cdot 0 + 0 \cdot 1 + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 2 \\ 2 \end{pmatrix} = 2\begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}$$
+> Esce 2 volte $v$. Quindi $v$ è un autovettore con autovalore 2.
+>
+> **Il vettore $w = (0, 3, 3)$.** Rifacciamo il conto anche per lui.
+> $$A w = \begin{pmatrix} 1 \cdot 0 + 1 \cdot 3 + (-1) \cdot 3 \\ 2 \cdot 0 + 1 \cdot 3 + 1 \cdot 3 \\ 3 \cdot 0 + 0 \cdot 3 + 2 \cdot 3 \end{pmatrix} = \begin{pmatrix} 0 \\ 6 \\ 6 \end{pmatrix} = 2\begin{pmatrix} 0 \\ 3 \\ 3 \end{pmatrix}$$
+> Esce 2 volte $w$. Anche $w$ è un autovettore con autovalore 2.
+>
+> Notiamo che $w$ è il triplo di $v$, cioè $w = 3v$.
+
+### Perché succede con ogni multiplo
+
+Nell'esempio $w$ è il triplo di $v$, ed è un autovettore con lo stesso autovalore. Non è una coincidenza.
+
+Una macchina lineare rispetta i multipli (lezione L14): se in entrata metti il triplo, in uscita trovi il triplo. Dal vettore $v$ esce il suo doppio. Allora dal triplo di $v$ esce il triplo di quel doppio, cioè 6 volte $v$. E 6 volte $v$ è proprio il doppio del triplo di $v$.
+
+Il ragionamento funziona con qualunque numero al posto di 3, tranne lo zero. Con lo zero otterresti il vettore nullo, che non è un autovettore.
+
+> [!IDEA]
+> Se un vettore è un autovettore, lo sono anche tutti i suoi multipli non nulli, con lo stesso autovalore. Gli autovettori si trovano a rette intere.
+
+Le dispense lo scrivono con una catena di uguaglianze. Usano due simboli in più.
+
+- $\mu$ è la lettera greca **mi**. Come $\lambda$, indica un numero. Qui è il numero per cui si moltiplica il vettore: nell'esempio vale 3.
+- $\Span(v)$ si legge «span di $v$». È l'insieme di tutti i multipli di $v$, cioè la retta di $v$ (lezione L06).
 
 > [!OSSERVAZIONE] I multipli di un autovettore
-> Sia $f : V \to V$ un endomorfismo. Se $v \in V$ è autovettore per $f$ con autovalore $\lambda$, allora qualsiasi multiplo $w = \mu v$ di $v$ con $\mu \neq 0$ è anch'esso autovettore con lo stesso autovalore $\lambda$. Infatti
-> $$f(\mu v) = \mu f(v) = \mu \lambda v = \lambda(\mu v).$$
-> Se $v \in V$ è autovettore, tutti i vettori non nulli della retta $\Span(v)$ sono anche loro autovettori con lo stesso autovalore $\lambda$.
+> Prendiamo un endomorfismo $f : V \to V$ e un suo autovettore $v$, con autovalore $\lambda$. Allora ogni multiplo $w = \mu v$ con $\mu \neq 0$ è anche lui un autovettore, con lo stesso autovalore $\lambda$. Il conto è
+> $$f(\mu v) = \mu f(v) = \mu \lambda v = \lambda (\mu v).$$
+> In altre parole: tutti i vettori non nulli della retta $\Span(v)$ sono autovettori con lo stesso autovalore.
 
-I passaggi della formula: il primo usa la linearità di $f$, il secondo la definizione di autovettore, il terzo solo l'ordine dei fattori. La condizione $\mu \neq 0$ serve perché $0 \cdot v = 0$ non è un autovettore. Per questo, quando un esercizio chiede «un autovettore», la risposta non è unica: vale qualsiasi multiplo non nullo, e conviene scegliere quello con i numeri più semplici.
+La catena ha tre passaggi.
 
-> [!TRAPPOLA] La somma di autovettori non è sempre un autovettore
-> Con $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$: $e_1$ (autovalore 3) e $u = (-4, 1)$ (autovalore 2) sono autovettori, ma $e_1 + u = (-3, 1)$ ha immagine $A(-3, 1) = (-9 + 4,\ 2) = (-5, 2)$, che non è un multiplo di $(-3, 1)$: servirebbe $\frac{-5}{-3} = \frac 21$, falso. Sommare autovettori con autovalori **diversi** fa uscire dalle rette speciali. (Con lo **stesso** autovalore, invece, la somma, se non è nulla, è ancora un autovettore: $T(v + w) = \lambda v + \lambda w = \lambda(v + w)$. Da qui nasce l'autospazio della lezione L18.)
+1. Il primo uguale usa il fatto che la macchina rispetta i multipli: il numero $\mu$ esce fuori.
+2. Il secondo uguale usa che $v$ è un autovettore: al posto di $f(v)$ si scrive $\lambda v$.
+3. Il terzo uguale cambia solo l'ordine dei due numeri che si moltiplicano.
 
-## Endomorfismi e matrici diagonalizzabili (pp. 86–87)
+All'inizio della catena c'è quello che esce quando entra il multiplo $\mu v$. Alla fine c'è lo stesso multiplo, moltiplicato per $\lambda$. Quindi anche lui è un autovettore con autovalore $\lambda$.
 
-Veniamo al vero motivo per cui si introducono autovettori e autovalori.
+### Che cosa cambia negli esercizi
+
+Quando un esercizio chiede «un autovettore», la risposta **non è unica**: va bene qualunque multiplo non nullo. Conviene scegliere quello con i numeri più comodi. Per esempio al posto di $\left(\frac 12, 1\right)$ si prende il suo doppio, $(1, 2)$.
+
+Per lo stesso motivo, nel quiz la risposta giusta può essere un multiplo del vettore che hai trovato tu.
+
+> [!TRAPPOLA] La somma di due autovettori non è sempre un autovettore
+> I multipli restano autovettori. Le somme, in generale, no.
+>
+> Torna alla matrice $A$ dell'Esempio 17.2. I vettori $(1, 0)$ e $(-4, 1)$ sono autovettori, con autovalori 3 e 2. La loro somma è $(-3, 1)$. Facciamola passare nella macchina:
+> $$A\begin{pmatrix} -3 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 \cdot (-3) + 4 \cdot 1 \\ 0 \cdot (-3) + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} -5 \\ 2 \end{pmatrix}$$
+> Nel secondo posto si passa da 1 a 2: servirebbe «per 2». Ma 2 volte $-3$ fa $-6$, non $-5$. Quindi quello che esce non è un multiplo di $(-3, 1)$.
+>
+> Il motivo: i due pezzi vengono allungati in modo diverso, uno di 3 e l'altro di 2, e la somma cambia direzione. Se invece due autovettori hanno lo **stesso** autovalore, la loro somma (quando non è nulla) è ancora un autovettore con quell'autovalore. Da questa idea nasce l'autospazio della lezione L18.
+
+::: prova Dall'Esempio 17.4 sai che $(0, 1, 1)$ è un autovettore con autovalore 2. Senza fare conti: $(0, -2, -2)$ è un autovettore? Con quale autovalore?
+Sì. $(0, -2, -2)$ è $-2$ volte $(0, 1, 1)$, quindi è un multiplo non nullo di un autovettore. L'autovalore resta 2: non diventa $-4$.
+:::
+
+::: prova Hai trovato l'autovettore $\left(\frac 13, \frac 23\right)$. Quale multiplo con numeri interi puoi usare al suo posto?
+Moltiplica per 3: viene $(1, 2)$. È un autovettore con lo stesso autovalore.
+:::
+
+> [!RICORDA]
+> - I multipli non nulli di un autovettore sono autovettori con lo **stesso** autovalore.
+> - Per questo l'autovettore di un autovalore non è uno solo: si sceglie quello con i numeri più comodi.
+> - La somma di autovettori con autovalori diversi in genere non è un autovettore.
+
+## Una base di autovettori: diagonalizzare (pp. 86–87)
+
+Adesso arriva il motivo per cui si cercano gli autovettori: servono a descrivere la macchina con la tabella più corta possibile.
+
+### La stessa macchina, vista dagli autovettori
+
+Ricorda due cose delle lezioni precedenti.
+
+- Una **base** è un gruppo di vettori con cui si costruiscono tutti gli altri, senza doppioni (lezione L07). Nel piano servono due vettori che non stanno sulla stessa retta.
+- La **matrice di una macchina in una base** si costruisce una colonna alla volta (lezione L15). Nella colonna 1 si scrive dove va il primo vettore della base, nella colonna 2 dove va il secondo. Tutto va scritto come ricetta: «tanti del primo vettore, tanti del secondo».
+
+Prendiamo la macchina dell'Esempio 17.2 e i suoi due autovettori. Diamo loro un nome:
+
+$$v_1 = (1, 0) \qquad\qquad v_2 = (-4, 1)$$
+
+Non stanno sulla stessa retta, quindi formano una base del piano. Costruiamo la matrice della macchina in questa base.
+
+1. **Colonna 1: dove va $v_1$.** Dalla macchina esce 3 volte $v_1$. Come ricetta: 3 del primo vettore, 0 del secondo. La colonna è $(3, 0)$.
+2. **Colonna 2: dove va $v_2$.** Dalla macchina esce 2 volte $v_2$. Come ricetta: 0 del primo vettore, 2 del secondo. La colonna è $(0, 2)$.
+
+La matrice della macchina nella base degli autovettori è
+
+$$\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$$
+
+Confrontala con la matrice $A$ di partenza. È la stessa macchina, ma adesso la tabella si legge a colpo d'occhio. Lungo il primo autovettore la macchina allunga di 3, lungo il secondo allunga di 2, e non fa nient'altro.
+
+Una matrice così si chiama **diagonale**. Ha numeri solo sulla **diagonale principale**, quella che va dall'angolo in alto a sinistra all'angolo in basso a destra. In tutti gli altri posti c'è 0.
+
+> [!IDEA]
+> In una base fatta di autovettori la macchina allunga soltanto gli assi. La sua matrice è diagonale, e sulla diagonale ci sono gli autovalori.
+
+Quando una base di autovettori esiste, la macchina si chiama **diagonalizzabile**. Le dispense lo scrivono così.
 
 > [!DEF] 17.5 · Endomorfismo diagonalizzabile
 > Un endomorfismo $T : V \to V$ è **diagonalizzabile** se $V$ ha una base $\mathcal B = \{v_1, \dots, v_n\}$ composta da autovettori per $T$.
 
-Il termine «diagonalizzabile» è dovuto al fatto seguente, che è cruciale.
+**Come si legge.**
+
+- $\mathcal B = \{v_1, \dots, v_n\}$ è una base, cioè un elenco di vettori. Il primo si chiama $v_1$, l'ultimo $v_n$, e $n$ è quanti sono. I puntini stanno per «e avanti così».
+- «Composta da autovettori per $T$» vuol dire che **ogni** vettore dell'elenco è un autovettore della macchina. Gli autovalori possono cambiare da un vettore all'altro.
+
+Nel piano servono due autovettori che non stanno sulla stessa retta. Nello spazio ne servono tre.
+
+Il nome «diagonalizzabile» viene dal fatto seguente, che le dispense chiamano cruciale.
 
 > [!PROP] 17.6
 > Sia $\mathcal B = \{v_1, \dots, v_n\}$ una base qualsiasi di $V$. La matrice associata $A = [T]^{\mathcal B}_{\mathcal B}$ è diagonale se e solo se i vettori $v_1, \dots, v_n$ sono tutti autovettori per $T$.
 
-Il motivo, colonna per colonna:
+**Come si legge.** «Se e solo se» vuol dire che le due cose succedono insieme. Se la base è fatta di autovettori, la matrice in quella base è diagonale: è il conto che abbiamo appena fatto. E al contrario: se la matrice in una base è diagonale, i vettori di quella base sono tutti autovettori.
 
-1. $v_i$ è un autovettore $\iff T(v_i) = \lambda_i v_i$ per qualche $\lambda_i \in \K$.
-2. $T(v_i) = \lambda_i v_i = 0 \cdot v_1 + \dots + \lambda_i v_i + \dots + 0 \cdot v_n$ vuol dire che $[T(v_i)]_{\mathcal B} = \lambda_i e_i$: una colonna con $\lambda_i$ al posto $i$ e zeri altrove.
-3. La colonna $i$ di $A$ è proprio $[T(v_i)]_{\mathcal B}$. Quindi questo capita per ogni $i = 1, \dots, n$ se e solo se $A$ è diagonale, con gli autovalori sulla diagonale principale:
-$$A = \begin{pmatrix} \lambda_1 & 0 & \cdots & 0 \\ 0 & \lambda_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda_n \end{pmatrix}.$$
+Il secondo verso si vede leggendo una colonna. Se la colonna 1 è $(3, 0)$, la ricetta di quello che esce dal primo vettore è «3 del primo, 0 del secondo». Quindi dal primo vettore esce il suo triplo: è un autovettore.
 
-Abbiamo scoperto che un endomorfismo $T$ è diagonalizzabile se e solo se esiste una base $\mathcal B$ tale che $A = [T]^{\mathcal B}_{\mathcal B}$ sia una matrice diagonale. Questo accade precisamente quando $\mathcal B$ è una base di autovettori, e gli elementi sulla diagonale principale di $A$ sono i loro autovalori. In coordinate:
+> [!DIM] della Proposizione 17.6, con una base di $n$ vettori
+> Si guarda una colonna alla volta. Chiamiamo $v_i$ il vettore numero $i$ della base.
+>
+> 1. $v_i$ è un autovettore quando $T(v_i) = \lambda_i v_i$ per qualche numero $\lambda_i$. Il numerino $i$ in basso dice che ogni vettore ha il suo autovalore.
+> 2. Scritta come ricetta nella base, l'uguaglianza diventa $T(v_i) = 0 \cdot v_1 + \dots + \lambda_i v_i + \dots + 0 \cdot v_n$. Quindi le coordinate di $T(v_i)$ sono una colonna con $\lambda_i$ al posto $i$ e 0 negli altri posti. In simboli: $[T(v_i)]_{\mathcal B} = \lambda_i e_i$, dove $e_i$ è la colonna con 1 al posto $i$ e 0 altrove.
+> 3. La colonna $i$ della matrice $A$ contiene proprio le coordinate di $T(v_i)$ (lezione L15).
+> 4. Quindi tutti i vettori della base sono autovettori esattamente quando ogni colonna di $A$ ha un solo numero, quello sulla diagonale. Cioè quando $A$ è diagonale, con gli autovalori sulla diagonale principale:
+>
+> $$A = \begin{pmatrix} \lambda_1 & 0 & \cdots & 0 \\ 0 & \lambda_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda_n \end{pmatrix}.$$
+
+Le dispense riassumono così. Un endomorfismo è diagonalizzabile se e solo se esiste una base in cui la sua matrice è diagonale. Succede proprio quando la base è fatta di autovettori. E i numeri sulla diagonale sono i loro autovalori.
+
+### La stessa idea per le matrici
+
+Finora abbiamo parlato di macchine. Per le matrici c'è una definizione che dice la stessa cosa con un prodotto. Servono tre richiami.
+
+> [!RIPASSO] identità, inversa, matrici simili
+> **Matrice identità.** È la matrice con 1 sulla diagonale e 0 altrove. Si scrive $I$, oppure $I_n$ se ha $n$ righe. Moltiplicare per l'identità non cambia niente, come moltiplicare un numero per 1.
+>
+> **Matrice inversa** (lezione L10). L'inversa di $M$ si scrive $M^{-1}$ e si legge «$M$ alla meno uno». È la matrice che disfa quello che fa $M$: il prodotto $M^{-1}M$ dà l'identità. Esiste solo se il determinante di $M$ non è zero. Una matrice che ha l'inversa si chiama **invertibile**.
+>
+> Per una matrice con 2 righe c'è una ricetta veloce: scambia i due numeri sulla diagonale, cambia segno agli altri due, dividi tutto per il determinante.
+>
+> **Matrici simili** (lezione L16). Due matrici sono simili quando descrivono la stessa macchina in due basi diverse. In formule: $B = M^{-1}AM$, dove $M$ è una matrice invertibile. La matrice $M$ è il traduttore tra le due basi: nelle sue colonne ci sono i vettori della base nuova.
+
+Proviamo con la nostra matrice. Mettiamo i due autovettori **in colonna** in una matrice e chiamiamola $M$:
+
+$$M = \begin{pmatrix} 1 & -4 \\ 0 & 1 \end{pmatrix}$$
+
+Poi calcoliamo $M^{-1}AM$ e guardiamo che cosa viene.
+
+> [!ESEMPIO] · il prodotto $M^{-1}AM$, un passo alla volta
+> **Passo 1: l'inversa di $M$.** Il determinante di $M$ è $1 \cdot 1 - (-4) \cdot 0 = 1$. Scambio i due numeri sulla diagonale: sono 1 e 1, quindi non cambia niente. Cambio segno agli altri due: $-4$ diventa 4, e 0 resta 0. Divido per il determinante, che è 1.
+> $$M^{-1} = \begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix}$$
+>
+> **Passo 2: il prodotto $AM$.** Ogni numero del risultato è una riga di $A$ per una colonna di $M$.
+> $$AM = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 1 & -4 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 3 \cdot 1 + 4 \cdot 0 & 3 \cdot (-4) + 4 \cdot 1 \\ 0 \cdot 1 + 2 \cdot 0 & 0 \cdot (-4) + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} 3 & -8 \\ 0 & 2 \end{pmatrix}$$
+>
+> **Passo 3: si moltiplica a sinistra per $M^{-1}$.**
+> $$M^{-1}(AM) = \begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3 & -8 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 1 \cdot 3 + 4 \cdot 0 & 1 \cdot (-8) + 4 \cdot 2 \\ 0 \cdot 3 + 1 \cdot 0 & 0 \cdot (-8) + 1 \cdot 2 \end{pmatrix} = \begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$$
+>
+> Viene la matrice diagonale con gli autovalori 3 e 2: la stessa trovata prima con le ricette.
+
+Questa matrice diagonale si indica di solito con la lettera $D$. Le dispense danno la definizione per le matrici così.
 
 > [!DEF] 17.7 · Matrice diagonalizzabile
 > Una matrice $A \in M(n, \K)$ è **diagonalizzabile** se è simile a una matrice diagonale $D$. Quindi $A$ è diagonalizzabile $\iff$ esiste una matrice invertibile $M$ tale che
 > $$D = M^{-1}AM$$
 > è diagonale.
 
-Il collegamento con gli endomorfismi è molto stretto:
+**Come si legge.**
+
+- $A \in M(n, \K)$ si legge «$A$ appartiene a $M$ di $n$, $\K$». Vuol dire: $A$ è una matrice quadrata con $n$ righe e $n$ colonne, fatta di numeri reali o complessi.
+- La freccia doppia $\iff$ si legge «se e solo se».
+- La formula al centro dice: c'è un traduttore $M$ per cui il prodotto $M^{-1}AM$ è una matrice diagonale. Quella matrice diagonale si chiama $D$.
+
+A parole: una matrice è diagonalizzabile quando, cambiando base, la si può far diventare diagonale.
+
+Le due definizioni, quella per le macchine e quella per le matrici, dicono la stessa cosa.
 
 > [!PROP] 17.8
 > Sia $\mathcal B$ una base di $V$. Un endomorfismo $T : V \to V$ è diagonalizzabile $\iff$ la matrice associata $A = [T]^{\mathcal B}_{\mathcal B}$ è diagonalizzabile.
 
-La dimostrazione delle dispense, con i passaggi:
+**Come si legge.** Scegli una base qualsiasi e scrivi la matrice della macchina in quella base. La macchina è diagonalizzabile esattamente quando lo è la matrice. Quindi per decidere se una macchina è diagonalizzabile basta lavorare su una sua matrice, in qualunque base.
 
-1. **($\Rightarrow$)** Se $T$ è diagonalizzabile, esiste una base $\mathcal C$ di $V$ (di autovettori) per cui $D = [T]^{\mathcal C}_{\mathcal C}$ è diagonale. Sia $M = [\id]^{\mathcal C}_{\mathcal B}$ la matrice di cambiamento di base da $\mathcal C$ a $\mathcal B$. Per la formula della lezione L16, $[T]^{\mathcal C}_{\mathcal C} = M^{-1}[T]^{\mathcal B}_{\mathcal B}M$, cioè $D = M^{-1}AM$: $A$ è diagonalizzabile.
-2. **($\Leftarrow$)** Se $D = M^{-1}AM$ è diagonale per qualche $M$ invertibile, sia $\mathcal C$ la base di $V$ formata dai vettori le cui coordinate rispetto a $\mathcal B$ sono le colonne di $M$ (sono una base perché $M$ è invertibile). Per costruzione $M = [\id]^{\mathcal C}_{\mathcal B}$, e quindi $[T]^{\mathcal C}_{\mathcal C} = M^{-1}AM = D$ è diagonale: $\mathcal C$ è una base di autovettori.
+Il perché, a parole. Passare da una base a un'altra vuol dire passare da una matrice a una matrice simile (lezione L16). Se tra tutte le basi ce n'è una di autovettori, tra tutte le matrici simili ce n'è una diagonale. E vale anche il contrario.
+
+> [!DIM] della Proposizione 17.8
+> Serve una scrittura della lezione L16: $[\id]^{\mathcal C}_{\mathcal B}$ è la matrice di cambiamento di base, cioè il traduttore che trasforma le coordinate rispetto alla base $\mathcal C$ nelle coordinate rispetto alla base $\mathcal B$.
+>
+> **Primo verso: se $T$ è diagonalizzabile, anche $A$ lo è.**
+>
+> 1. Se $T$ è diagonalizzabile, esiste una base di autovettori. Chiamiamola $\mathcal C$. In quella base la matrice $D = [T]^{\mathcal C}_{\mathcal C}$ è diagonale (Proposizione 17.6).
+> 2. Chiamiamo $M = [\id]^{\mathcal C}_{\mathcal B}$ la matrice di cambiamento di base da $\mathcal C$ a $\mathcal B$.
+> 3. La formula della lezione L16 per cambiare la base di un endomorfismo dice che $[T]^{\mathcal C}_{\mathcal C} = M^{-1}[T]^{\mathcal B}_{\mathcal B}M$. Cioè $D = M^{-1}AM$: la matrice $A$ è diagonalizzabile.
+>
+> **Secondo verso: se $A$ è diagonalizzabile, anche $T$ lo è.**
+>
+> 1. Se $A$ è diagonalizzabile, c'è una matrice invertibile $M$ per cui $D = M^{-1}AM$ è diagonale.
+> 2. Costruiamo una base $\mathcal C$ di $V$: i suoi vettori sono quelli che hanno come coordinate, rispetto a $\mathcal B$, le colonne di $M$. Sono una base perché $M$ è invertibile.
+> 3. Per come è costruita la base, $M = [\id]^{\mathcal C}_{\mathcal B}$. Quindi $[T]^{\mathcal C}_{\mathcal C} = M^{-1}AM = D$ è diagonale.
+> 4. Per la Proposizione 17.6 la base $\mathcal C$ è fatta di autovettori: $T$ è diagonalizzabile.
+
+Ecco i due esempi delle dispense.
 
 > [!ESEMPIO] 17.9 · $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$ è diagonalizzabile
-> L'endomorfismo $L_A : \R^2 \to \R^2$ dell'Esempio 17.2 è diagonalizzabile: $v_1 = (1, 0)$ e $v_2 = (-4, 1)$ sono entrambi autovettori e sono linearmente indipendenti (non sono uno multiplo dell'altro), quindi formano una base di $\R^2$. I loro autovalori sono $3$ e $2$. Prendendo $\mathcal B = \{v_1, v_2\}$ otteniamo
+> La macchina $L_A$ dell'Esempio 17.2 è diagonalizzabile. Il motivo, in tre passi:
+>
+> 1. $v_1 = (1, 0)$ e $v_2 = (-4, 1)$ sono tutti e due autovettori;
+> 2. sono **linearmente indipendenti**, cioè nessuno dei due è multiplo dell'altro (lezione L07);
+> 3. quindi formano una base del piano.
+>
+> I loro autovalori sono 3 e 2. Prendendo la base $\mathcal B = \{v_1, v_2\}$ si ottiene
 > $$[L_A]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}.$$
 
 > [!ESEMPIO] 17.10 · Le rotazioni
-> La rotazione di angolo $\vartheta$ dell'Esempio 17.3 non è diagonalizzabile per $\vartheta \neq 0, \pi$, perché non ha autovettori. Per $\vartheta = 0$ e $\vartheta = \pi$ la rotazione diventa rispettivamente $f(v) = v$ e $f(v) = -v$, e quindi è diagonalizzabile: in questi due casi ogni vettore non nullo è autovettore, e ogni base è una base di autovettori.
-
-> [!METODO] Da una base di autovettori a $M$ e $D$
-> 1. Metti gli autovettori **in colonna** in $M$, nell'ordine che preferisci: $M = [\id]^{\mathcal B}_{\mathcal C}$ con $\mathcal B$ la base di autovettori.
-> 2. Metti gli autovalori sulla diagonale di $D$ **nello stesso ordine**: la colonna $j$ di $M$ ha autovalore $d_{jj}$.
-> 3. Controlla che $M$ sia invertibile ($\det M \neq 0$): servono $n$ autovettori indipendenti.
-> 4. Allora $D = M^{-1}AM$, cioè $A = MDM^{-1}$. **Controllo senza inversa**: $AM = MD$, perché la colonna $j$ di $AM$ è $Av_j$ e la colonna $j$ di $MD$ è $d_{jj}v_j$.
+> La rotazione di angolo $\vartheta$ dell'Esempio 17.3 **non** è diagonalizzabile quando l'angolo non è 0 e non è $\pi$. Non ha nessun autovettore, quindi non può avere una base di autovettori.
 >
-> Nell'Esempio 17.9: $AM = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 1 & -4 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 3 & -8 \\ 0 & 2 \end{pmatrix}$ e $MD = \begin{pmatrix} 1 & -4 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 3 & -8 \\ 0 & 2 \end{pmatrix}$.
+> Per $\vartheta = 0$ la rotazione lascia fermo ogni vettore: $f(v) = v$. Per $\vartheta = \pi$ manda ogni vettore nel suo opposto: $f(v) = -v$. In questi due casi ogni vettore non nullo è un autovettore. Quindi ogni base è una base di autovettori, e la rotazione è diagonalizzabile.
 
-> [!TRAPPOLA] L'ordine di $D$ e le colonne di $M$
-> Se scambi l'ordine delle colonne di $M$ devi scambiare anche gli autovalori in $D$: con $M = \begin{pmatrix} -4 & 1 \\ 1 & 0 \end{pmatrix}$ la matrice giusta è $D = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$. E le colonne di $M$ devono essere autovettori **indipendenti**: $(0, 1, 1)$ e $(0, 3, 3)$ dell'Esempio 17.4 sono due autovettori, ma non possono stare insieme in una base.
+### Costruire le due matrici: il metodo
+
+All'esame ti chiedono spesso di scrivere le due matrici $M$ e $D$. Una volta trovati gli autovettori non c'è nessun conto da fare: bisogna solo metterli al posto giusto.
+
+> [!METODO] Da una base di autovettori alle matrici $M$ e $D$
+> 1. Scrivi gli autovettori **in colonna** dentro $M$, nell'ordine che preferisci.
+> 2. Scrivi gli autovalori sulla diagonale di $D$, **nello stesso ordine**: alla prima colonna di $M$ corrisponde il primo numero di $D$, e avanti così.
+> 3. Controlla che $M$ sia invertibile: il suo determinante non deve essere zero. Vuol dire che gli autovettori scelti sono indipendenti.
+> 4. Allora vale $D = M^{-1}AM$. Per il controllo usa la forma senza inversa: $AM = MD$.
+
+**Perché il controllo funziona.** La forma senza inversa si ottiene moltiplicando a sinistra per $M$ i due lati della formula del passo 4. E si capisce guardando le colonne.
+
+- La colonna 1 di $AM$ è la matrice $A$ per il primo autovettore.
+- La colonna 1 di $MD$ è il primo autovettore moltiplicato per il suo autovalore.
+
+Le due colonne sono uguali proprio perché il vettore è un autovettore. Lo stesso vale per le altre colonne.
+
+> [!ESEMPIO] · il controllo $AM = MD$ sull'Esempio 17.9
+> Il prodotto $AM$ è già stato calcolato sopra:
+> $$AM = \begin{pmatrix} 3 & -8 \\ 0 & 2 \end{pmatrix}$$
+> Calcoliamo $MD$:
+> $$MD = \begin{pmatrix} 1 & -4 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 1 \cdot 3 + (-4) \cdot 0 & 1 \cdot 0 + (-4) \cdot 2 \\ 0 \cdot 3 + 1 \cdot 0 & 0 \cdot 0 + 1 \cdot 2 \end{pmatrix} = \begin{pmatrix} 3 & -8 \\ 0 & 2 \end{pmatrix}$$
+> Le due matrici sono uguali: $M$ e $D$ sono giuste.
+
+> [!TRAPPOLA] L'ordine di $D$ deve seguire le colonne di $M$
+> Se scambi le colonne di $M$, devi scambiare anche i numeri di $D$. Con gli autovettori nell'ordine opposto le matrici giuste sono
+> $$M = \begin{pmatrix} -4 & 1 \\ 1 & 0 \end{pmatrix} \qquad\qquad D = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$$
+> Seconda attenzione: le colonne di $M$ devono essere autovettori **indipendenti**. I vettori $(0, 1, 1)$ e $(0, 3, 3)$ dell'Esempio 17.4 sono due autovettori, ma uno è multiplo dell'altro. Non possono stare insieme in una base.
+
+::: prova Una matrice $2 \times 2$ ha l'autovettore $(1, 1)$ con autovalore 5 e l'autovettore $(1, -2)$ con autovalore 2. Scrivi $M$ e $D$.
+Autovettori in colonna, autovalori sulla diagonale nello stesso ordine:
+
+$$M = \begin{pmatrix} 1 & 1 \\ 1 & -2 \end{pmatrix} \qquad\qquad D = \begin{pmatrix} 5 & 0 \\ 0 & 2 \end{pmatrix}$$
+
+Controllo che $M$ sia invertibile: il determinante è $1 \cdot (-2) - 1 \cdot 1 = -3$, diverso da zero.
+:::
+
+::: prova Nella risposta precedente scambia le due colonne di $M$. Come diventa $D$?
+Adesso la prima colonna è $(1, -2)$, che ha autovalore 2. Quindi il 2 va al primo posto della diagonale.
+
+$$M = \begin{pmatrix} 1 & 1 \\ -2 & 1 \end{pmatrix} \qquad\qquad D = \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}$$
+:::
+
+::: prova La matrice $\begin{pmatrix} 7 & 0 \\ 0 & -1 \end{pmatrix}$ è diagonale? E la matrice $\begin{pmatrix} 0 & 7 \\ -1 & 0 \end{pmatrix}$?
+La prima sì: fuori dalla diagonale principale ci sono solo zeri. La seconda no: i numeri diversi da zero stanno sull'altra diagonale.
+:::
+
+> [!RICORDA]
+> - Una macchina è **diagonalizzabile** quando esiste una base fatta di autovettori. In quella base la sua matrice è diagonale.
+> - Per le matrici: $A$ è diagonalizzabile quando $D = M^{-1}AM$ è diagonale per qualche matrice invertibile $M$.
+> - $M$ ha gli autovettori in colonna, $D$ ha gli autovalori sulla diagonale, **nello stesso ordine**.
+> - Controllo veloce, senza inversa: $AM = MD$.
 
 ## Perché le matrici diagonali sono comode (p. 88)
 
-Le matrici diagonali sono molto più maneggevoli delle altre. Ecco i conti che diventano elemento per elemento.
+Le dispense si chiedono perché preferiamo le matrici diagonali, e rispondono: perché sono molto più maneggevoli. Ci sono quattro conti che con una matrice qualsiasi sono lunghi. Con una matrice diagonale si fanno un numero alla volta.
 
-**Matrice per vettore**: ogni componente viene moltiplicata per il suo elemento diagonale,
-$$\begin{pmatrix} \lambda_1 & 0 & \dots & 0 \\ 0 & \lambda_2 & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & \lambda_n \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = \begin{pmatrix} \lambda_1 x_1 \\ \lambda_2 x_2 \\ \vdots \\ \lambda_n x_n \end{pmatrix}.$$
-Per esempio $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 5 \\ -1 \end{pmatrix} = \begin{pmatrix} 15 \\ -2 \end{pmatrix}$.
+In tutta la sezione usiamo la matrice diagonale dell'Esempio 17.9:
 
-**Determinante**: il prodotto degli elementi sulla diagonale, $\det A = \lambda_1 \cdots \lambda_n$.
+$$D = \begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$$
 
-**Prodotto di due matrici diagonali**: diagonale, con i prodotti elemento per elemento,
+### Primo conto: matrice per vettore
+
+Ogni numero del vettore viene moltiplicato per il numero della diagonale che sta nello stesso posto.
+
+$$\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 5 \\ -1 \end{pmatrix} = \begin{pmatrix} 3 \cdot 5 + 0 \cdot (-1) \\ 0 \cdot 5 + 2 \cdot (-1) \end{pmatrix} = \begin{pmatrix} 15 \\ -2 \end{pmatrix}$$
+
+Gli zeri cancellano tutto il resto. Il primo numero del vettore è diventato 3 volte più grande, il secondo 2 volte.
+
+### Secondo conto: il determinante
+
+Il determinante di una matrice diagonale è il prodotto dei numeri sulla diagonale. Per la nostra matrice è 3 per 2, cioè 6.
+
+Lo puoi controllare con la regola «diagonale meno l'altra diagonale» della lezione L09:
+
+$$3 \cdot 2 - 0 \cdot 0 = 6$$
+
+### Terzo conto: il prodotto di due matrici diagonali
+
+Il prodotto di due matrici diagonali è ancora una matrice diagonale. Sulla diagonale ci sono i prodotti dei numeri che stanno nello stesso posto.
+
+$$\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 5 & 0 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} 3 \cdot 5 + 0 \cdot 0 & 3 \cdot 0 + 0 \cdot 4 \\ 0 \cdot 5 + 2 \cdot 0 & 0 \cdot 0 + 2 \cdot 4 \end{pmatrix} = \begin{pmatrix} 15 & 0 \\ 0 & 8 \end{pmatrix}$$
+
+### Quarto conto: le potenze
+
+> [!RIPASSO] potenza di una matrice
+> La potenza di una matrice funziona come quella di un numero. Il quadrato $A^2$ è la matrice moltiplicata per sé stessa. Il cubo $A^3$ è il prodotto di tre copie della matrice. Il numerino in alto dice quante copie ci sono nel prodotto, e si chiama **esponente**.
+>
+> Pensando alla macchina: $A^3$ vuol dire far passare il vettore nella macchina tre volte di seguito.
+
+Per una matrice diagonale basta usare più volte la regola del terzo conto. Il risultato: **per fare una potenza si eleva ogni numero della diagonale**.
+
+$$\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}^3 = \begin{pmatrix} 3^3 & 0 \\ 0 & 2^3 \end{pmatrix} = \begin{pmatrix} 27 & 0 \\ 0 & 8 \end{pmatrix}$$
+
+Anche la potenza numero 100 si scrive subito: sulla diagonale ci sono $3^{100}$ e $2^{100}$.
+
+### Le stesse regole con le lettere
+
+Le dispense scrivono i quattro conti per una matrice diagonale con $n$ righe. I numeri sulla diagonale si chiamano $\lambda_1, \lambda_2, \dots, \lambda_n$. Il numerino in basso dice in quale posto della diagonale sta il numero. I puntini dentro le matrici vogliono dire «e avanti così».
+
+Matrice per vettore:
+
+$$\begin{pmatrix} \lambda_1 & 0 & \dots & 0 \\ 0 & \lambda_2 & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & \lambda_n \end{pmatrix}\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = \begin{pmatrix} \lambda_1 x_1 \\ \lambda_2 x_2 \\ \vdots \\ \lambda_n x_n \end{pmatrix}$$
+
+Determinante (la scrittura $\det A$ si legge «determinante di $A$»):
+
+$$\det A = \lambda_1 \cdots \lambda_n$$
+
+Prodotto di due matrici diagonali. Gli spazi vuoti sono zeri, e i numeri della seconda matrice si chiamano $\mu_1, \dots, \mu_n$:
+
 $$\begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}\begin{pmatrix} \mu_1 & & \\ & \ddots & \\ & & \mu_n \end{pmatrix} = \begin{pmatrix} \lambda_1\mu_1 & & \\ & \ddots & \\ & & \lambda_n\mu_n \end{pmatrix}$$
-(gli spazi vuoti sono zeri).
 
-**Potenze**: applicando la regola del prodotto $k$ volte,
-$$A = \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix} \Longrightarrow A^k = \begin{pmatrix} \lambda_1^k & & \\ & \ddots & \\ & & \lambda_n^k \end{pmatrix}.$$
-Per esempio $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}^3 = \begin{pmatrix} 27 & 0 \\ 0 & 8 \end{pmatrix}$.
+Potenze, con un esponente $k$ qualsiasi:
+
+$$\begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix}^k = \begin{pmatrix} \lambda_1^k & & \\ & \ddots & \\ & & \lambda_n^k \end{pmatrix}$$
 
 ### Le potenze di una matrice diagonalizzabile
 
-Se $A$ è diagonalizzabile, $A = MDM^{-1}$, e le potenze si calcolano passando per $D$. Con $k = 3$ si vede il meccanismo: le coppie $M^{-1}M$ in mezzo si cancellano,
-$$A^3 = (MDM^{-1})(MDM^{-1})(MDM^{-1}) = MD(M^{-1}M)D(M^{-1}M)DM^{-1} = MD^3M^{-1},$$
-e allo stesso modo $A^k = MD^kM^{-1}$ per ogni $k$.
+E se la matrice non è diagonale, ma è diagonalizzabile? Allora le potenze si calcolano passando per la matrice diagonale $D$. Il trucco sta in due passaggi.
+
+**Primo passaggio: scrivere $A$ con $M$ e $D$.** Sappiamo che $D = M^{-1}AM$. Moltiplichiamo i due lati a sinistra per $M$ e a destra per $M^{-1}$. A destra dell'uguale compaiono due coppie fatte da $M$ e dalla sua inversa: danno l'identità e spariscono. Resta
+
+$$A = MDM^{-1}$$
+
+**Secondo passaggio: moltiplicare $A$ per sé stessa.** Guarda che cosa succede con l'esponente 2:
+
+$$A^2 = (MDM^{-1})(MDM^{-1}) = MD\,(M^{-1}M)\,DM^{-1} = MD^2M^{-1}$$
+
+In mezzo si incontrano $M^{-1}$ e $M$. Il loro prodotto è l'identità, che non cambia niente: la coppia sparisce. Restano due $D$ vicine, cioè $D^2$.
+
+Con l'esponente 3 succede due volte:
+
+$$A^3 = MD\,(M^{-1}M)\,D\,(M^{-1}M)\,DM^{-1} = MD^3M^{-1}$$
+
+Ogni volta che aggiungi un pezzo, in mezzo sparisce una coppia. Quindi per ogni esponente $k$ vale
+
+$$A^k = MD^kM^{-1}$$
+
+> [!IDEA]
+> Per calcolare una potenza di una matrice diagonalizzabile si passa nella base degli autovettori, lì si eleva la matrice diagonale, e si torna indietro. I prodotti di matrici da fare sono solo due, qualunque sia l'esponente.
 
 > [!ESEMPIO] 17.11 · Il calcolo di $A^{100}$
-> Prendiamo $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$ e calcoliamo $A^{100}$. La matrice $A$ non è diagonale, quindi calcolare una sua potenza direttamente richiederebbe 99 prodotti. Sappiamo però che $A$ è diagonalizzabile: dall'Esempio 17.9 deduciamo che $M^{-1}AM = D = \begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$, dove
-> $$M = [\id]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1 & -4 \\ 0 & 1 \end{pmatrix} \Longrightarrow M^{-1} = [\id]^{\mathcal C}_{\mathcal B} = \begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix}.$$
-> Qui $\mathcal B = \{(1, 0), (-4, 1)\}$ e $\mathcal C$ è la base canonica di $\R^2$. Quindi
-> $$\begin{aligned} A^{100} &= (MDM^{-1})^{100} = MD^{100}M^{-1} = \begin{pmatrix} 1 & -4 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3^{100} & 0 \\ 0 & 2^{100} \end{pmatrix}\begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix} \\ &= \begin{pmatrix} 1 & -4 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3^{100} & 4 \cdot 3^{100} \\ 0 & 2^{100} \end{pmatrix} = \begin{pmatrix} 3^{100} & 4\,(3^{100} - 2^{100}) \\ 0 & 2^{100} \end{pmatrix}. \end{aligned}$$
+> Prendiamo $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$ e calcoliamo $A^{100}$. La matrice $A$ non è diagonale: fare il conto direttamente vorrebbe dire 99 prodotti di matrici.
+>
+> **Che cosa sappiamo.** Dall'Esempio 17.9, $A$ è diagonalizzabile: $M^{-1}AM = D$, con
+> $$D = \begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix} \qquad M = \begin{pmatrix} 1 & -4 \\ 0 & 1 \end{pmatrix} \qquad M^{-1} = \begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix}$$
+> Nelle colonne di $M$ ci sono gli autovettori $(1, 0)$ e $(-4, 1)$. Con i simboli della lezione L16: $M = [\id]^{\mathcal B}_{\mathcal C}$ e $M^{-1} = [\id]^{\mathcal C}_{\mathcal B}$, dove $\mathcal B$ è la base degli autovettori e $\mathcal C$ è la base canonica del piano.
+>
+> **Passo 1: la formula.**
+> $$A^{100} = (MDM^{-1})^{100} = MD^{100}M^{-1}$$
+>
+> **Passo 2: la potenza di $D$.** Si eleva ogni numero della diagonale.
+> $$D^{100} = \begin{pmatrix} 3^{100} & 0 \\ 0 & 2^{100} \end{pmatrix}$$
+>
+> **Passo 3: il prodotto $D^{100}M^{-1}$.**
+> $$\begin{pmatrix} 3^{100} & 0 \\ 0 & 2^{100} \end{pmatrix}\begin{pmatrix} 1 & 4 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 3^{100} \cdot 1 + 0 \cdot 0 & 3^{100} \cdot 4 + 0 \cdot 1 \\ 0 \cdot 1 + 2^{100} \cdot 0 & 0 \cdot 4 + 2^{100} \cdot 1 \end{pmatrix} = \begin{pmatrix} 3^{100} & 4 \cdot 3^{100} \\ 0 & 2^{100} \end{pmatrix}$$
+>
+> **Passo 4: si moltiplica a sinistra per $M$.** Scrivo i quattro numeri del risultato uno per riga.
+>
+> - In alto a sinistra: $1 \cdot 3^{100} + (-4) \cdot 0 = 3^{100}$.
+> - In alto a destra: $1 \cdot 4 \cdot 3^{100} + (-4) \cdot 2^{100} = 4 \cdot 3^{100} - 4 \cdot 2^{100}$.
+> - In basso a sinistra: $0 \cdot 3^{100} + 1 \cdot 0 = 0$.
+> - In basso a destra: $0 \cdot 4 \cdot 3^{100} + 1 \cdot 2^{100} = 2^{100}$.
+>
+> **Risultato.** Nel posto in alto a destra si raccoglie il 4.
+> $$A^{100} = \begin{pmatrix} 3^{100} & 4 \cdot (3^{100} - 2^{100}) \\ 0 & 2^{100} \end{pmatrix}$$
+> I numeri $3^{100}$ e $2^{100}$ sono enormi, e si lasciano scritti così.
 
-Un controllo con un esponente piccolo: la stessa formula con $2$ al posto di $100$ dà $\begin{pmatrix} 9 & 4(9 - 4) \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} 9 & 20 \\ 0 & 4 \end{pmatrix}$, e il prodotto diretto è $A^2 = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 9 & 12 + 8 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} 9 & 20 \\ 0 & 4 \end{pmatrix}$.
+**Un controllo con un esponente piccolo.** La stessa formula vale con qualunque esponente al posto di 100. Proviamola con l'esponente 2, dove il conto diretto è corto.
 
-## Il polinomio caratteristico (p. 89)
+Con la formula, sulla diagonale vengono $3^2 = 9$ e $2^2 = 4$. In alto a destra viene 4 per la differenza $9 - 4$, cioè 20.
 
-Negli esempi visti finora gli autovettori erano dati e bastava controllarli. Come si **trovano**? Un'idea in due righe: $Ax = \lambda x$ si riscrive $Ax - \lambda x = 0$, cioè $(A - \lambda I_n)x = 0$. Cerchiamo una soluzione **non nulla** di un sistema omogeneo quadrato, e questa esiste esattamente quando la matrice $A - \lambda I_n$ non è invertibile, cioè quando il suo determinante è zero. Il determinante, scritto con $\lambda$ incognito, è un polinomio in $\lambda$.
+Con il prodotto diretto:
+
+$$A^2 = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 3 \cdot 3 + 4 \cdot 0 & 3 \cdot 4 + 4 \cdot 2 \\ 0 \cdot 3 + 2 \cdot 0 & 0 \cdot 4 + 2 \cdot 2 \end{pmatrix} = \begin{pmatrix} 9 & 20 \\ 0 & 4 \end{pmatrix}$$
+
+I due risultati coincidono.
+
+::: prova Calcola $\begin{pmatrix} 2 & 0 \\ 0 & -1 \end{pmatrix}^5$.
+Si eleva alla quinta ogni numero della diagonale. $2^5 = 32$. E $(-1)^5 = -1$, perché un numero negativo elevato a un esponente dispari resta negativo.
+
+$$\begin{pmatrix} 32 & 0 \\ 0 & -1 \end{pmatrix}$$
+:::
+
+::: prova Quanto vale il determinante di $\begin{pmatrix} 4 & 0 \\ 0 & -2 \end{pmatrix}$?
+È il prodotto dei numeri sulla diagonale: $4 \cdot (-2) = -8$.
+:::
+
+::: prova Nella formula $A^k = MD^kM^{-1}$, quale delle tre matrici va elevata alla $k$?
+Solo $D$, quella diagonale. Le matrici $M$ e $M^{-1}$ restano come sono.
+:::
+
+> [!RICORDA]
+> - Con una matrice diagonale ogni conto si fa un numero alla volta: prodotto per un vettore, determinante, prodotto, potenze.
+> - La potenza di una matrice diagonale si ottiene elevando i numeri sulla diagonale.
+> - Se $A$ è diagonalizzabile, $A = MDM^{-1}$ e quindi $A^k = MD^kM^{-1}$.
+
+## Come si trovano: il polinomio caratteristico (p. 89)
+
+Finora gli autovettori erano già pronti, e bastava controllarli. Adesso impariamo a **trovarli**. Il lavoro si fa in due tempi: prima si trovano gli autovalori, poi per ogni autovalore si trovano i suoi autovettori.
+
+### L'idea, in tre mosse
+
+Cerchiamo un numero $\lambda$ e un vettore $v$ diverso da zero per cui
+
+$$Av = \lambda v$$
+
+**Mossa 1: portare tutto a sinistra.** Togliamo $\lambda v$ da tutti e due i lati:
+
+$$Av - \lambda v = 0$$
+
+**Mossa 2: raccogliere il vettore.** Vorremmo scrivere «$A$ meno $\lambda$, per $v$». Ma $A$ è una matrice e $\lambda$ è un numero: una matrice meno un numero non ha senso. Il rimedio è la matrice identità $I$, che non cambia i vettori. Al posto di $\lambda v$ scriviamo $\lambda I v$, che è lo stesso vettore, e raccogliamo:
+
+$$(A - \lambda I)\,v = 0$$
+
+La matrice $\lambda I$ ha il numero $\lambda$ sulla diagonale e 0 altrove. Quindi $A - \lambda I$ è la matrice $A$ a cui si toglie $\lambda$ **solo sulla diagonale**. Per la nostra solita matrice:
+
+$$A - \lambda I = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix} - \begin{pmatrix} \lambda & 0 \\ 0 & \lambda \end{pmatrix} = \begin{pmatrix} 3 - \lambda & 4 \\ 0 & 2 - \lambda \end{pmatrix}$$
+
+**Mossa 3: usare il determinante.** L'ultima equazione dice che la matrice $A - \lambda I$ manda in zero un vettore che non è zero: lo schiaccia. Ricorda dalle lezioni L09 e L10: una matrice quadrata schiaccia su zero qualche vettore non nullo esattamente quando il suo determinante è zero. Se invece il determinante non è zero, la matrice ha l'inversa, e l'unico vettore che manda in zero è il vettore nullo.
+
+> [!IDEA]
+> Un numero è un autovalore di $A$ esattamente quando, togliendolo sulla diagonale di $A$, si ottiene una matrice con determinante zero.
+
+### Il primo esempio
+
+> [!RIPASSO] il determinante di una matrice con 2 righe
+> Il determinante si calcola con la regola «diagonale meno l'altra diagonale» (lezione L09): il prodotto dei due numeri sulla diagonale principale, meno il prodotto degli altri due.
+> $$\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = a \cdot d - b \cdot c$$
+> Esempio: per la matrice con le righe $(1, 2)$ e $(3, 4)$ il conto è 1 per 4, meno 2 per 3. Viene $-2$.
+
+Applichiamo le tre mosse alla matrice dell'Esempio 17.2. Dovremmo ritrovare gli autovalori 3 e 2.
+
+> [!ESEMPIO] 17.14 · Gli autovalori ritrovati
+> Prendiamo $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$ e calcoliamo il determinante di $A - \lambda I_2$. Il 2 in basso ricorda che la matrice identità ha 2 righe.
+> $$\det(A - \lambda I_2) = \det\begin{pmatrix} 3 - \lambda & 4 \\ 0 & 2 - \lambda \end{pmatrix} = (3 - \lambda)(2 - \lambda) - 4 \cdot 0 = (3 - \lambda)(2 - \lambda)$$
+> Quando vale zero? Un prodotto è zero quando è zero uno dei due pezzi.
+>
+> - Il primo pezzo, $3 - \lambda$, è zero quando $\lambda = 3$.
+> - Il secondo pezzo, $2 - \lambda$, è zero quando $\lambda = 2$.
+>
+> Gli autovalori sono 3 e 2: proprio quelli trovati a mano nell'Esempio 17.2.
+>
+> Le dispense scrivono il risultato così: $p_A(\lambda) = (3 - \lambda)(2 - \lambda)$, e le radici di questo polinomio sono esattamente $\lambda = 2$ e $\lambda = 3$. Le parole «polinomio» e «radici» sono spiegate qui sotto.
+
+### Il nome: polinomio caratteristico
+
+Il determinante di $A - \lambda I$ contiene la lettera $\lambda$. Se sviluppi i prodotti ottieni un'espressione con le potenze di $\lambda$. Nell'esempio:
+
+$$(3 - \lambda)(2 - \lambda) = 6 - 3\lambda - 2\lambda + \lambda^2 = \lambda^2 - 5\lambda + 6$$
+
+Un'espressione così si chiama **polinomio** (lezione L04). Questo in particolare si chiama **polinomio caratteristico** della matrice $A$. Si indica con $p_A(\lambda)$, che si legge «pi con $A$ di lambda».
+
+> [!RIPASSO] radici di un polinomio di secondo grado
+> Una **radice** di un polinomio è un numero che, messo al posto della lettera, fa venire zero (lezione L04).
+>
+> Esempio: nel polinomio $\lambda^2 - 5\lambda + 6$ metti 2 al posto di $\lambda$. Viene $4 - 10 + 6$, cioè 0. Quindi 2 è una radice.
+>
+> Per un polinomio di secondo grado le radici si trovano con una formula. Chiama $a$ il numero davanti a $\lambda^2$, chiama $b$ il numero davanti a $\lambda$, e chiama $c$ il numero da solo. Allora
+> $$\lambda = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+> Il simbolo $\pm$ si legge «più o meno»: il conto si fa una volta con il più e una volta con il meno. Il numero sotto la radice si chiama **discriminante**. Se è negativo, il polinomio non ha radici reali.
+>
+> Nell'esempio $a$ vale 1, poi $b$ vale $-5$, e $c$ vale 6. Il discriminante è $25 - 24$, cioè 1, e la sua radice quadrata è 1. Le due radici sono
+> $$\frac{5 + 1}{2} = 3 \qquad\qquad \frac{5 - 1}{2} = 2$$
+>
+> Se il polinomio è già scritto come prodotto, come $(3 - \lambda)(2 - \lambda)$, la formula non serve: le radici si leggono dai due pezzi.
+
+Le dispense scrivono la definizione così.
 
 > [!DEF] 17.12 · Polinomio caratteristico
 > Sia $A \in M(n, \K)$. Il **polinomio caratteristico** di $A = (a_{ij})$ è definito nel modo seguente:
 > $$p_A(\lambda) = \det(A - \lambda I_n) = \det\begin{pmatrix} a_{11} - \lambda & a_{12} & \dots & a_{1n} \\ a_{21} & a_{22} - \lambda & \dots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \dots & a_{nn} - \lambda \end{pmatrix}.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- **$A - \lambda I_n$** si ottiene togliendo $\lambda$ **solo sulla diagonale**; gli altri elementi restano uguali.
-- **$\lambda$ è una variabile**: il determinante è un'espressione in $\lambda$. Si usa $\lambda$ invece di $x$ perché $x$ indica già i vettori.
-- **Il pedice $A$** in $p_A$ ricorda da quale matrice si parte.
+- $A = (a_{ij})$ è un modo breve per dare un nome ai numeri della matrice. Il numero $a_{ij}$ sta nella riga $i$ e nella colonna $j$. Per esempio $a_{12}$ sta nella riga 1 e nella colonna 2.
+- $I_n$ è la matrice identità con $n$ righe.
+- Nella matrice grande, $\lambda$ è tolto solo ai numeri sulla diagonale: $a_{11}$, poi $a_{22}$, fino ad $a_{nn}$. Tutti gli altri numeri restano come sono.
+- In $p_A(\lambda)$ la piccola $A$ in basso ricorda di quale matrice si parla. La lettera $\lambda$ qui è una **variabile**: un posto vuoto in cui si può mettere un numero. Si usa $\lambda$ e non $x$ perché $x$ indica già i vettori.
+
+A parole: il polinomio caratteristico è il determinante della matrice dopo aver tolto $\lambda$ sulla diagonale.
 
 > [!OSSERVAZIONE] È davvero un polinomio di grado $n$
-> Il prodotto degli elementi sulla diagonale, $(a_{11} - \lambda)\cdots(a_{nn} - \lambda)$, contiene $(-\lambda)^n$; tutti gli altri termini del determinante hanno al massimo $n - 2$ fattori con $\lambda$. Quindi $p_A$ ha grado $n$ e coefficiente direttore $(-1)^n$.
+> Il **grado** di un polinomio è la potenza più alta della variabile. Le dispense osservano che il polinomio caratteristico di una matrice con $n$ righe ha grado $n$. Una matrice con 2 righe dà un polinomio di grado 2, una con 3 righe un polinomio di grado 3.
+>
+> Il motivo: nel determinante compare il prodotto degli $n$ numeri sulla diagonale, e ognuno contiene $\lambda$ una volta. Moltiplicandoli si arriva a $\lambda$ alla potenza $n$. Negli altri pezzi del determinante $\lambda$ compare meno volte. Davanti alla potenza più alta c'è $+1$ se $n$ è pari, e $-1$ se $n$ è dispari.
 
-> [!OLTRE] la formula per le matrici $2 \times 2$
-> Per $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$:
-> $$p_A(\lambda) = (a - \lambda)(d - \lambda) - bc = \lambda^2 - (a + d)\lambda + (ad - bc) = \lambda^2 - \tr(A)\,\lambda + \det A.$$
-> In generale (Martelli, Proposizione 5.1.23) il termine noto di $p_A$ è $p_A(0) = \det A$ e il coefficiente di $\lambda^{n-1}$ è $(-1)^{n-1}\tr A$. Per esempio, per $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$: $p_A(\lambda) = \lambda^2 - 5\lambda - 2$.
+> [!OLTRE] la formula veloce per le matrici con 2 righe
+> Per una matrice con 2 righe il polinomio caratteristico si scrive subito, con la **traccia** e il determinante. La traccia è la somma dei numeri sulla diagonale (lezione L08) e si scrive $\tr(A)$.
+> $$p_A(\lambda) = \lambda^2 - \tr(A)\,\lambda + \det A$$
+> Da dove viene. Chiama $a$ e $b$ i numeri della prima riga, $c$ e $d$ quelli della seconda. Con «diagonale meno l'altra diagonale»:
+> $$p_A(\lambda) = (a - \lambda)(d - \lambda) - bc = \lambda^2 - (a + d)\lambda + (ad - bc)$$
+> La somma $a + d$ è la traccia, e $ad - bc$ è il determinante.
+>
+> Esempio: per la matrice con le righe $(1, 2)$ e $(3, 4)$ la traccia è 5 e il determinante è $-2$. Quindi
+> $$p_A(\lambda) = \lambda^2 - 5\lambda - 2$$
+> Qualcosa di simile vale per una matrice con $n$ righe (Martelli, Proposizione 5.1.23). Il numero senza $\lambda$ del polinomio è il determinante della matrice. Il numero davanti a $\lambda^{n-1}$ è la traccia, con il segno $+$ se $n$ è dispari e $-$ se $n$ è pari.
+
+### Matrici simili, stesso polinomio
+
+Ricorda: due matrici simili descrivono la stessa macchina in due basi. Gli autovalori dicono di quanto la macchina allunga certe direzioni: sono una proprietà della macchina, non della base. Quindi ci aspettiamo che due matrici simili abbiano gli stessi autovalori. Vale una cosa ancora più forte: hanno lo stesso polinomio caratteristico.
+
+Controllo con i numeri. La matrice $A$ dell'Esempio 17.2 e la matrice diagonale $D$ dell'Esempio 17.9 sono simili. Per la prima il polinomio caratteristico è quello dell'Esempio 17.14. Per la seconda il conto è
+
+$$\det\begin{pmatrix} 3 - \lambda & 0 \\ 0 & 2 - \lambda \end{pmatrix} = (3 - \lambda)(2 - \lambda) - 0 \cdot 0 = (3 - \lambda)(2 - \lambda)$$
+
+È lo stesso polinomio.
 
 > [!OSSERVAZIONE] Matrici simili hanno lo stesso polinomio caratteristico
-> Se $A$ e $B$ sono simili, allora $p_A(\lambda) = p_B(\lambda)$. Infatti, se $A = M^{-1}BM$ per qualche $M$ invertibile, usiamo $\lambda I_n = \lambda M^{-1}M = M^{-1}(\lambda I_n)M$ per ottenere
-> $$\begin{aligned} p_A(\lambda) &= \det(A - \lambda I_n) = \det(M^{-1}BM - M^{-1}\lambda I_n M) \\ &= \det\big(M^{-1}(B - \lambda I_n)M\big) = \det(M^{-1})\det(B - \lambda I_n)\det(M) \\ &= \det(B - \lambda I_n) = p_B(\lambda) \end{aligned}$$
-> grazie al Teorema di Binet. Per un endomorfismo $T : V \to V$ di uno spazio vettoriale $V$ definiamo allora il polinomio caratteristico $p_T(\lambda)$ come il polinomio caratteristico $p_A(\lambda)$ della matrice associata $A = [T]^{\mathcal B}_{\mathcal B}$ rispetto a una qualsiasi base $\mathcal B$ di $V$. La definizione non dipende dalla base scelta perché il polinomio caratteristico è invariante per similitudine.
+> Se $A$ e $B$ sono simili, allora $p_A(\lambda) = p_B(\lambda)$.
+>
+> Per questo si può parlare del polinomio caratteristico di un endomorfismo $T : V \to V$. Si indica con $p_T(\lambda)$. È il polinomio caratteristico della matrice associata $A = [T]^{\mathcal B}_{\mathcal B}$, in una base $\mathcal B$ qualsiasi. Il risultato non dipende dalla base scelta: cambiando base si ottiene una matrice simile, e il polinomio resta lo stesso. Le dispense dicono che il polinomio caratteristico è **invariante per similitudine**.
 
-I passaggi della catena: nel secondo si raccoglie $M^{-1}$ a sinistra e $M$ a destra (proprietà distributiva del prodotto di matrici); nel terzo si usa Binet, $\det(XYZ) = \det X \det Y \det Z$; nel quarto $\det(M^{-1})\det M = \det(M^{-1}M) = \det I_n = 1$.
+> [!DIM] perché matrici simili hanno lo stesso polinomio caratteristico
+> Partiamo da $A = M^{-1}BM$, con $M$ invertibile. Serve il Teorema di Binet (lezione L10): il determinante di un prodotto è il prodotto dei determinanti.
+>
+> 1. Riscriviamo $\lambda I_n$ in un modo utile. Siccome $M^{-1}M = I_n$, vale $\lambda I_n = \lambda M^{-1}M = M^{-1}(\lambda I_n)M$.
+> 2. Sostituiamo nella definizione: $p_A(\lambda) = \det(A - \lambda I_n) = \det\big(M^{-1}BM - M^{-1}(\lambda I_n)M\big)$.
+> 3. Raccogliamo $M^{-1}$ a sinistra e $M$ a destra: viene $\det\big(M^{-1}(B - \lambda I_n)M\big)$.
+> 4. Per Binet il determinante si spezza in tre: $\det(M^{-1}) \cdot \det(B - \lambda I_n) \cdot \det(M)$.
+> 5. Il primo e il terzo pezzo, moltiplicati, danno $\det(M^{-1}M) = \det I_n = 1$. Resta $\det(B - \lambda I_n)$, cioè $p_B(\lambda)$.
+
+### Il risultato principale
+
+Le tre mosse dell'inizio valgono per ogni macchina, non solo per l'esempio. Le dispense lo scrivono in una riga.
 
 > [!PROP] 17.13
 > Gli autovalori di $T$ sono precisamente le radici del polinomio caratteristico $p_T(\lambda)$.
 
-La dimostrazione delle dispense è una catena di equivalenze. Scegliamo una base $\mathcal B$ e scriviamo $A = [T]^{\mathcal B}_{\mathcal B}$. Uno scalare $\lambda \in \K$ è autovalore per $T$ se e solo se esiste un $x \in \K^n$ non nullo con $Ax = \lambda x$ (Osservazione in coordinate). Poi:
+**Come si legge.** «Precisamente» vuol dire due cose: tutte le radici sono autovalori, e non ci sono altri autovalori. Quindi per trovare gli autovalori si calcola il polinomio caratteristico e si cercano i numeri che lo fanno diventare zero.
 
-1. $\exists\, x \neq 0$ con $Ax = \lambda x$ $\iff$ $\exists\, x \neq 0$ con $(A - \lambda I_n)x = 0$: si porta $\lambda x = \lambda I_n x$ a sinistra;
-2. $\iff$ $\exists\, x \neq 0$ con $x \in \Ker(A - \lambda I_n)$: è la definizione di nucleo;
-3. $\iff$ $A - \lambda I_n$ non è invertibile: una matrice quadrata è invertibile se e solo se il suo nucleo è $\{0\}$ (lezioni L10 e L14);
-4. $\iff$ $\det(A - \lambda I_n) = 0$ $\iff$ $p_A(\lambda) = 0$: una matrice quadrata è invertibile se e solo se ha determinante diverso da zero (Proposizione 10.8). $\square$
+La dimostrazione delle dispense ripete le tre mosse in ordine.
 
-> [!ESEMPIO] 17.14 · Gli autovalori ritrovati
-> Prendiamo $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$. Troviamo
-> $$p_A(\lambda) = \det(A - \lambda I_2) = \det\begin{pmatrix} 3 - \lambda & 4 \\ 0 & 2 - \lambda \end{pmatrix} = (3 - \lambda)(2 - \lambda).$$
-> Le radici di questo polinomio sono esattamente $\lambda = 2$ e $\lambda = 3$: gli autovalori trovati a mano nell'Esempio 17.2.
+> [!DIM] della Proposizione 17.13
+> Scegliamo una base $\mathcal B$ e chiamiamo $A = [T]^{\mathcal B}_{\mathcal B}$ la matrice di $T$. Per l'osservazione sulle coordinate, un numero $\lambda$ è un autovalore di $T$ quando esiste una lista di numeri $x$, non tutta di zeri, con $Ax = \lambda x$. Le frasi qui sotto dicono tutte la stessa cosa: ognuna è vera esattamente quando è vera quella prima.
+>
+> 1. Esiste $x \neq 0$ con $Ax = \lambda x$.
+> 2. Esiste $x \neq 0$ con $(A - \lambda I_n)x = 0$. Si è portato $\lambda x = \lambda I_n x$ a sinistra.
+> 3. Esiste $x \neq 0$ che sta nel nucleo di $A - \lambda I_n$. È la definizione di nucleo (lezione L14): i vettori mandati in zero.
+> 4. La matrice $A - \lambda I_n$ non è invertibile. Una matrice quadrata è invertibile esattamente quando il suo nucleo contiene solo il vettore nullo (lezioni L10 e L14).
+> 5. $\det(A - \lambda I_n) = 0$. Una matrice quadrata è invertibile esattamente quando il determinante è diverso da zero (Proposizione 10.8).
+> 6. $p_A(\lambda) = 0$, cioè $\lambda$ è una radice del polinomio caratteristico.
+
+### Dagli autovalori agli autovettori
+
+Trovato un autovalore, i suoi autovettori si trovano tornando alla mossa 2. Se l'autovalore è, per esempio, 3, si mette 3 al posto di $\lambda$ e si risolve
+
+$$(A - 3I)\,v = 0$$
+
+È un **sistema omogeneo** (lezione L12): un indovinello in cui ogni indizio finisce con «= 0». Le sue soluzioni diverse da zero sono gli autovettori.
+
+Un avviso che evita molti errori: questo sistema ha **sempre infinite soluzioni**. Il motivo lo conosci già: gli autovettori si trovano a rette intere. Se come unica soluzione ti viene il vettore nullo, il numero che hai usato non è un autovalore. C'è un errore nei conti di prima.
 
 > [!METODO] Autovalori e autovettori di una matrice, passo per passo
-> 1. **Scrivi $A - \lambda I_n$** (togli $\lambda$ sulla diagonale) e calcola $p_A(\lambda) = \det(A - \lambda I_n)$. Per le $3 \times 3$ sviluppa lungo la riga o la colonna con più zeri, e **lascia il polinomio scomposto** quando puoi: $(2 - \lambda)(\dots)$ è più utile di $-\lambda^3 + \dots$
-> 2. **Trova le radici** in $\K$: sono gli autovalori. Controlla con la traccia: se hai trovato tutte le $n$ radici (contate con molteplicità), la loro somma è $\tr A$ e il loro prodotto è $\det A$.
-> 3. **Per ogni autovalore $\lambda_0$** risolvi il sistema omogeneo $(A - \lambda_0 I_n)x = 0$ (con Gauss). Le soluzioni non nulle sono gli autovettori relativi a $\lambda_0$. Il sistema deve avere infinite soluzioni: se ti viene solo $x = 0$, c'è un errore nel calcolo di $\lambda_0$.
-> 4. **Controlla** un autovettore $v$ calcolando $Av$ e confrontandolo con $\lambda_0 v$.
+> 1. **Togli $\lambda$ sulla diagonale** e calcola il determinante: è il polinomio caratteristico. Con 3 righe sviluppa lungo la riga o la colonna con più zeri. Quando puoi, **lascia il polinomio scritto come prodotto**.
+> 2. **Trova le radici**: sono gli autovalori.
+> 3. **Per ogni autovalore**: mettilo al posto di $\lambda$ e risolvi il sistema omogeneo. Le soluzioni non nulle sono gli autovettori di quell'autovalore.
+> 4. **Controlla** ogni autovettore con un prodotto: dalla matrice deve uscire l'autovettore moltiplicato per il suo autovalore.
 
 > [!ESEMPIO] · tutta la ricetta su una matrice $2 \times 2$
-> Sia $A = \begin{pmatrix} -1 & 2 \\ -4 & 5 \end{pmatrix}$ (dal libro di Martelli, Esempio 5.1.29).
+> Prendiamo $A = \begin{pmatrix} -1 & 2 \\ -4 & 5 \end{pmatrix}$. È l'Esempio 5.1.29 del libro di Martelli.
 >
-> **Passo 1.** $p_A(\lambda) = (-1 - \lambda)(5 - \lambda) - 2 \cdot (-4) = \lambda^2 - 4\lambda - 5 + 8 = \lambda^2 - 4\lambda + 3$. Controllo con la formula: $\tr A = 4$, $\det A = -5 + 8 = 3$.
+> **Passo 1: il polinomio caratteristico.** Tolgo $\lambda$ sulla diagonale e calcolo il determinante con «diagonale meno l'altra diagonale».
+> $$p_A(\lambda) = \det\begin{pmatrix} -1 - \lambda & 2 \\ -4 & 5 - \lambda \end{pmatrix} = (-1 - \lambda)(5 - \lambda) - 2 \cdot (-4)$$
+> Sviluppo il primo prodotto, un pezzo alla volta.
 >
-> **Passo 2.** $\lambda^2 - 4\lambda + 3 = (\lambda - 1)(\lambda - 3)$: autovalori $1$ e $3$. Controllo: $1 + 3 = 4 = \tr A$ e $1 \cdot 3 = 3 = \det A$.
+> - $(-1) \cdot 5 = -5$
+> - $(-1) \cdot (-\lambda) = \lambda$
+> - $(-\lambda) \cdot 5 = -5\lambda$
+> - $(-\lambda) \cdot (-\lambda) = \lambda^2$
 >
-> **Passo 3.**
-> - $\lambda = 1$: $A - I_2 = \begin{pmatrix} -2 & 2 \\ -4 & 4 \end{pmatrix}$, cioè $-2x + 2y = 0$ (la seconda equazione è il doppio della prima): $y = x$, autovettori $t(1, 1)$ con $t \neq 0$.
-> - $\lambda = 3$: $A - 3I_2 = \begin{pmatrix} -4 & 2 \\ -4 & 2 \end{pmatrix}$, cioè $-4x + 2y = 0$: $y = 2x$, autovettori $t(1, 2)$ con $t \neq 0$.
+> Il secondo prodotto è $2 \cdot (-4) = -8$. Va tolto, quindi diventa $+8$.
+> $$p_A(\lambda) = \lambda^2 + \lambda - 5\lambda - 5 + 8 = \lambda^2 - 4\lambda + 3$$
+> Controllo con la formula veloce: la traccia è $-1 + 5 = 4$, il determinante è $(-1) \cdot 5 - 2 \cdot (-4) = 3$. Torna.
 >
-> **Passo 4.** $A(1, 1) = (-1 + 2,\ -4 + 5) = (1, 1)$ e $A(1, 2) = (-1 + 4,\ -4 + 10) = (3, 6) = 3(1, 2)$.
+> **Passo 2: le radici.** Uso la formula con $a = 1$, $b = -4$, $c = 3$. Il discriminante è $16 - 12 = 4$, e la sua radice quadrata è 2.
+> $$\lambda = \frac{4 \pm 2}{2}$$
+> Con il più viene 3, con il meno viene 1. Gli autovalori sono 1 e 3.
 >
-> I due autovettori sono indipendenti, quindi $A$ è diagonalizzabile: con $M = \begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}$ e $D = \begin{pmatrix} 1 & 0 \\ 0 & 3 \end{pmatrix}$ vale $D = M^{-1}AM$.
+> **Passo 3: gli autovettori dell'autovalore 1.** Tolgo 1 sulla diagonale.
+> $$A - I = \begin{pmatrix} -2 & 2 \\ -4 & 4 \end{pmatrix}$$
+> Chiamo $(x, y)$ il vettore che cerco. Il sistema ha un'equazione per ogni riga: $-2x + 2y = 0$ e $-4x + 4y = 0$. La seconda è il doppio della prima, quindi non dice niente di nuovo. Dalla prima: $2y = 2x$, cioè $y = x$. Gli autovettori sono i vettori con i due numeri uguali. Scelgo $(1, 1)$.
+>
+> **Passo 3, di nuovo: gli autovettori dell'autovalore 3.** Tolgo 3 sulla diagonale.
+> $$A - 3I = \begin{pmatrix} -4 & 2 \\ -4 & 2 \end{pmatrix}$$
+> Le due righe sono uguali: resta una sola equazione, $-4x + 2y = 0$. Quindi $2y = 4x$, cioè $y = 2x$. Scelgo $x = 1$: l'autovettore è $(1, 2)$.
+>
+> **Passo 4: il controllo.**
+> $$A\begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} -1 \cdot 1 + 2 \cdot 1 \\ -4 \cdot 1 + 5 \cdot 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix} \qquad\qquad A\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} -1 \cdot 1 + 2 \cdot 2 \\ -4 \cdot 1 + 5 \cdot 2 \end{pmatrix} = \begin{pmatrix} 3 \\ 6 \end{pmatrix}$$
+> Dal primo vettore esce 1 volta sé stesso. Dal secondo esce $(3, 6)$, cioè 3 volte sé stesso. Tutto torna.
+>
+> **In più: la diagonalizzazione.** I due autovettori non sono uno multiplo dell'altro, quindi formano una base: la matrice è diagonalizzabile. Con il metodo della sezione sulla diagonalizzazione:
+> $$M = \begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix} \qquad\qquad D = \begin{pmatrix} 1 & 0 \\ 0 & 3 \end{pmatrix}$$
 
-> [!OLTRE] matrici triangolari e rotazioni
-> **Triangolari** (Martelli, Proposizione 5.1.34). Se $A$ è triangolare (tutti zeri sotto, oppure sopra, la diagonale), anche $A - \lambda I_n$ lo è, e il determinante di una triangolare è il prodotto della diagonale: $p_A(\lambda) = (a_{11} - \lambda)\cdots(a_{nn} - \lambda)$. **Gli autovalori sono gli elementi sulla diagonale.** Negli appelli capita spesso (03/07/2026, domanda 3; 07/09/2026, problema 11).
->
-> **Rotazioni.** $p_{\mathrm{Rot}_\vartheta}(\lambda) = \lambda^2 - 2\cos\vartheta\,\lambda + 1$, con discriminante $4\cos^2\vartheta - 4 < 0$ per $\vartheta \neq 0, \pi$: nessuna radice reale, come previsto dall'Esempio 17.3. Su $\C$ invece le radici ci sono: per $\vartheta = \frac{\pi}{2}$, $p(\lambda) = \lambda^2 + 1$ ha radici $\pm i$ (esercizio 6). Per questo, quando si parla di autovalori, bisogna sempre dire su quale campo si lavora.
+### Con tre righe: scegli la riga con più zeri
 
-Lo strumento qui sotto calcola il polinomio caratteristico di una matrice $2 \times 2$ o $3 \times 3$, le sue radici razionali e, per ciascuna, una base delle soluzioni di $(A - \lambda I)x = 0$. È impostato sulla matrice dell'Esempio 17.4: trovi l'autovalore 2 con l'autovettore $(0, 1, 1)$, e un fattore di secondo grado senza radici reali (esercizio 4). Prova poi la matrice $1\ 2\ 0;\ 2\ 1\ 0;\ 1\ 1\ 2$ dell'esercizio 10.
+Con una matrice di 3 righe il metodo è lo stesso. Cambia solo il determinante, che è più lungo da calcolare.
+
+> [!RIPASSO] il determinante di una matrice con 3 righe
+> Un determinante con 3 righe si riduce a determinanti con 2 righe. È lo sviluppo di Laplace della lezione L09.
+>
+> 1. Scegli una riga o una colonna. Conviene quella con più zeri.
+> 2. Per ogni numero della riga scelta, cancella la riga e la colonna in cui sta. Resta una matrice con 2 righe: calcola il suo determinante.
+> 3. Moltiplica quel determinante per il numero e per il segno del suo posto. I segni sono messi a scacchiera:
+>    $$\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix}$$
+> 4. Somma i risultati. Un numero uguale a 0 dà 0: per questo conviene la riga con più zeri.
+>
+> Esempio. Nella matrice qui sotto la prima riga è $(2, 0, 0)$. Conta solo il 2, che sta in un posto con il segno più. Cancellando la prima riga e la prima colonna restano le righe $(3, 1)$ e $(1, 2)$.
+> $$\det\begin{pmatrix} 2 & 0 & 0 \\ 1 & 3 & 1 \\ 4 & 1 & 2 \end{pmatrix} = 2 \cdot \det\begin{pmatrix} 3 & 1 \\ 1 & 2 \end{pmatrix} = 2 \cdot (3 \cdot 2 - 1 \cdot 1) = 10$$
+
+Proviamo il metodo su una domanda vera: la numero 8 dell'appello del 05/02/2026. Il testo, con i vettori scritti in riga: «Trovare l'insieme degli autovalori dell'endomorfismo $T : \R^3 \to \R^3$ dato da $T(x, y, z) = (2x + y - 2z,\ -x + 2z,\ 3z)$».
+
+La scrittura $\R^3$ indica i vettori dello spazio, fatti di tre numeri reali. In pratica la domanda chiede tre cose: scrivere la matrice della macchina, calcolare il polinomio caratteristico, trovare le sue radici.
+
+> [!ESEMPIO] · la domanda 8 del 05/02/2026, passo per passo
+> **Passo 1: la matrice.** Ogni posto del risultato dà una riga. Nella riga vanno i numeri che stanno davanti a $x$, a $y$ e a $z$. Dove una lettera manca va 0.
+> $$A = \begin{pmatrix} 2 & 1 & -2 \\ -1 & 0 & 2 \\ 0 & 0 & 3 \end{pmatrix}$$
+>
+> **Passo 2: tolgo $\lambda$ sulla diagonale.**
+> $$A - \lambda I = \begin{pmatrix} 2 - \lambda & 1 & -2 \\ -1 & -\lambda & 2 \\ 0 & 0 & 3 - \lambda \end{pmatrix}$$
+>
+> **Passo 3: il determinante.** La terza riga ha due zeri: sviluppo lungo quella. Conta solo l'ultimo numero, $3 - \lambda$, che sta in un posto con il segno più. Cancello la terza riga e la terza colonna.
+> $$p_A(\lambda) = (3 - \lambda) \cdot \det\begin{pmatrix} 2 - \lambda & 1 \\ -1 & -\lambda \end{pmatrix}$$
+> Il determinante con 2 righe è $(2 - \lambda)(-\lambda) - 1 \cdot (-1) = -2\lambda + \lambda^2 + 1$. Messo in ordine: $\lambda^2 - 2\lambda + 1$.
+> $$p_A(\lambda) = (3 - \lambda)(\lambda^2 - 2\lambda + 1)$$
+> Non moltiplico i due pezzi: scritto come prodotto, il polinomio è più comodo.
+>
+> **Passo 4: le radici.** Il primo pezzo è zero per $\lambda = 3$. Per il pezzo di secondo grado uso la formula con $a = 1$, $b = -2$, $c = 1$. Il discriminante è $4 - 4 = 0$: c'è una sola radice, $\frac 22 = 1$, che conta due volte. Infatti $\lambda^2 - 2\lambda + 1$ è il quadrato di $\lambda - 1$.
+>
+> **Passo 5: la risposta.** Gli autovalori sono 1 e 3. L'insieme richiesto è $\{1, 3\}$: le graffe racchiudono i numeri trovati, ognuno scritto una volta.
+>
+> **Controllo.** La traccia è $2 + 0 + 3 = 5$. La somma degli autovalori, contando due volte l'1, è $1 + 1 + 3 = 5$.
+
+Un esempio completo con 3 righe, con gli autovettori e le due matrici della diagonalizzazione, è l'esercizio 13.
+
+### Tre scorciatoie utili all'esame
+
+> [!OLTRE] matrici triangolari: gli autovalori si leggono sulla diagonale
+> Una matrice è **triangolare** quando ha tutti zeri sotto la diagonale principale, oppure tutti zeri sopra. La matrice dell'Esempio 17.2 è triangolare: sotto la diagonale c'è solo uno 0.
+>
+> Per una matrice triangolare **gli autovalori sono i numeri sulla diagonale**. Non serve nessun conto.
+>
+> Il motivo (Martelli, Proposizione 5.1.34): togliendo $\lambda$ sulla diagonale la matrice resta triangolare. E il determinante di una matrice triangolare è il prodotto dei numeri sulla diagonale (lezione L09). Quindi il polinomio caratteristico è già scritto come prodotto:
+> $$p_A(\lambda) = (a_{11} - \lambda) \cdots (a_{nn} - \lambda)$$
+> Negli appelli capita spesso: 03/07/2026, domanda 3; 07/09/2026, problema 11.
+
+> [!OLTRE] un controllo veloce: somma e prodotto degli autovalori
+> Quando hai trovato **tutti** gli autovalori di una matrice con $n$ righe, cioè $n$ radici contando due volte una radice doppia, valgono due uguaglianze (Martelli, Proposizione 5.2.15).
+>
+> - La **somma** degli autovalori è la traccia della matrice.
+> - Il **prodotto** degli autovalori è il determinante della matrice.
+>
+> Esempio con la matrice del libro di Martelli vista sopra: gli autovalori sono 1 e 3. La somma è 4, come la traccia. Il prodotto è 3, come il determinante.
+>
+> È un controllo che costa pochi secondi. In un quiz può bastare da solo a scartare le risposte sbagliate.
+
+> [!OLTRE] le rotazioni, con il polinomio caratteristico
+> La matrice di rotazione ha traccia $2\cos\vartheta$. Il suo determinante è $\cos^2\vartheta + \sin^2\vartheta$, che vale sempre 1. Con la formula veloce il polinomio caratteristico è
+> $$p(\lambda) = \lambda^2 - 2\cos\vartheta\,\lambda + 1$$
+> Il discriminante è $4\cos^2\vartheta - 4$. Il coseno sta sempre tra $-1$ e 1, e arriva a quei due valori solo per gli angoli 0 e $\pi$. Per tutti gli altri angoli il discriminante è negativo: nessuna radice reale, come dice l'Esempio 17.3.
+>
+> Con i numeri complessi invece le radici ci sono. Ricorda dalla lezione L02: $i$ è il numero complesso che moltiplicato per sé stesso dà $-1$. Per il quarto di giro il polinomio è $\lambda^2 + 1$, e le sue radici sono $i$ e $-i$ (esercizio 10). Per questo, quando si parla di autovalori, bisogna sempre dire se si lavora con i numeri reali o con i numeri complessi.
+
+### Lo strumento per fare i conti
+
+Lo strumento qui sotto calcola il polinomio caratteristico di una matrice con 2 o 3 righe, le sue radici razionali e, per ognuna, gli autovettori. È impostato sulla matrice dell'Esempio 17.4.
+
+Due cose da provare.
+
+1. Guarda il risultato per la matrice già scritta. Trovi l'autovalore 2 con l'autovettore $(0, 1, 1)$. Resta un pezzo di secondo grado senza radici reali: lo ritrovi nell'esercizio 8.
+2. Scrivi la matrice con le righe $1\ 2\ 0$, poi $2\ 1\ 0$, poi $1\ 1\ 2$. È quella dell'esercizio 13: prova prima a mano, poi controlla qui.
 
 ```widget gauss
 titolo: Polinomio caratteristico e autovettori
@@ -19047,50 +22061,222 @@ modi: autovalori, nucleo, determinante
 > [!OLTRE] dove trovarlo nel libro
 > Nel libro di Martelli: §5.1.1–5.1.2 «Autovettori e autovalori», «Endomorfismi diagonalizzabili» (pp. 151–154), §5.1.3–5.1.4 «Matrici diagonali», «Matrici diagonalizzabili», con l'esempio di $A^{100}$ (pp. 154–156), §5.1.6–5.1.7 «Polinomio caratteristico», «Le radici del polinomio caratteristico» (pp. 157–161, con gli esempi $2 \times 2$ su $\R$ e su $\C$), §5.1.8 «Matrici triangolari» (p. 162). La relazione tra traccia, determinante e autovalori è la Proposizione 5.2.15 (p. 169).
 
+::: prova Scrivi $A - \lambda I$ per la matrice $A$ con le righe $(2, 1)$ e $(1, 2)$. Poi calcola il polinomio caratteristico e gli autovalori.
+Tolgo $\lambda$ sulla diagonale:
+
+$$A - \lambda I = \begin{pmatrix} 2 - \lambda & 1 \\ 1 & 2 - \lambda \end{pmatrix}$$
+
+Il determinante è $(2 - \lambda)(2 - \lambda) - 1 \cdot 1$. Il primo prodotto fa $4 - 4\lambda + \lambda^2$. Tolgo 1 e ottengo $\lambda^2 - 4\lambda + 3$.
+
+Il discriminante è $16 - 12 = 4$, con radice quadrata 2. Le radici sono $\frac{4 + 2}{2} = 3$ e $\frac{4 - 2}{2} = 1$. Gli autovalori sono 1 e 3.
+:::
+
+::: prova Il polinomio caratteristico di una matrice è $(1 - \lambda)(4 - \lambda)$. Quali sono gli autovalori?
+Un prodotto è zero quando è zero uno dei due pezzi: $\lambda = 1$ oppure $\lambda = 4$. Gli autovalori sono 1 e 4.
+:::
+
+::: prova Quali sono gli autovalori della matrice $\begin{pmatrix} 5 & 1 \\ 0 & -2 \end{pmatrix}$? Rispondi senza fare conti.
+La matrice è triangolare: sotto la diagonale c'è 0. Gli autovalori sono i numeri sulla diagonale, cioè 5 e $-2$.
+:::
+
+> [!RICORDA]
+> - Il **polinomio caratteristico** si calcola così: togli $\lambda$ sulla diagonale e fai il determinante. In formule, $p_A(\lambda) = \det(A - \lambda I)$.
+> - Gli **autovalori** sono le radici del polinomio caratteristico.
+> - Gli **autovettori** di un autovalore sono le soluzioni non nulle del sistema omogeneo che si ottiene mettendo quel numero al posto di $\lambda$.
+> - Matrici simili hanno lo stesso polinomio caratteristico. In una matrice triangolare gli autovalori sono i numeri sulla diagonale.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $Av$ | «$A$ per $v$» | il vettore che esce dalla matrice $A$ quando entra il vettore $v$ | $\begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}\begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 3 \\ 0 \end{pmatrix}$ |
+| $\lambda$ | «lambda» | una lettera greca che indica un numero; qui di solito l'autovalore | $\lambda = 3$ |
+| $\mu$ | «mi» | un'altra lettera greca che indica un numero | $\mu = 3$ nel multiplo $3v$ |
+| $Av = \lambda v$ | «$A$ per $v$ è uguale a lambda per $v$» | dalla macchina esce un multiplo del vettore entrato: $v$ è un autovettore | $A(1, 0) = 3 \cdot (1, 0)$ |
+| $v \neq 0$ | «$v$ diverso da zero» | $v$ non è il vettore nullo | $(1, 0) \neq 0$ |
+| $T : V \to V$ | «$T$ da $V$ a $V$» | una macchina che prende i vettori dello spazio $V$ e li restituisce in $V$: un endomorfismo | $T(x, y) = (x, 0)$ |
+| $T(v)$ | «$T$ di $v$» | il vettore che esce dalla macchina $T$ quando entra $v$ | $T(3, 2) = (3, 0)$ |
+| $L_A$ | «elle con $A$» | la macchina «moltiplica per la matrice $A$» | $L_A(v) = Av$ |
+| $\K$ | «cappa» | i numeri reali oppure i numeri complessi | $\K = \R$ |
+| $\in$ | «appartiene a» | sta dentro l'insieme | $\lambda \in \R$ |
+| $e_1$, $e_2$ | «e uno», «e due» | i vettori «un passo lungo un asse» | $e_1 = (1, 0)$ |
+| ${}^t(x, y)$ | «$x$, $y$ trasposto» | il vettore $(x, y)$ scritto in colonna; si trova nei testi d'esame | ${}^t(1, 2)$ |
+| $\R_1[x]$ | «erre uno di $x$» | i polinomi di grado al massimo 1 | $2 + 5x$ |
+| $\mathcal B$ | «bi» | il nome di una base | $\mathcal B = \{v_1, v_2\}$ |
+| $\{v_1, \dots, v_n\}$ | «vu uno, eccetera, vu enne» | un elenco di $n$ vettori | $\{(1, 0), (-4, 1)\}$ |
+| $[v]_{\mathcal B}$ | «le coordinate di $v$ nella base $\mathcal B$» | la lista di numeri che descrive $v$ in quella base | il polinomio $2 + 5x$ ha coordinate $(2, 5)$ |
+| $[T]^{\mathcal B}_{\mathcal B}$ | «la matrice di $T$ nella base $\mathcal B$» | la tabella che descrive la macchina in quella base | $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$ |
+| $[\id]^{\mathcal C}_{\mathcal B}$ | «la matrice di cambiamento di base da $\mathcal C$ a $\mathcal B$» | il traduttore delle coordinate da una base all'altra | la matrice $M$ |
+| $\vartheta$ | «theta» | una lettera greca che indica un angolo | $\vartheta = \frac{\pi}{2}$ |
+| $\pi$ | «pi greco» | come angolo: mezzo giro, cioè 180° | $\vartheta \neq 0, \pi$ |
+| $\mathrm{Rot}_\vartheta$ | «rot di theta» | la matrice della rotazione di angolo $\vartheta$ | $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ per il quarto di giro |
+| $\Span(v)$ | «span di $v$» | tutti i multipli di $v$: la retta di $v$ | $\Span(1, 0)$ è l'asse orizzontale |
+| $M(n, \K)$ | «emme di enne, cappa» | le matrici quadrate con $n$ righe e $n$ colonne | $A \in M(2, \R)$ |
+| $I$, $I_n$ | «i», «i con enne» | la matrice identità: 1 sulla diagonale, 0 altrove | $I_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ |
+| $M^{-1}$ | «$M$ alla meno uno» | la matrice inversa di $M$: disfa quello che fa $M$ | $M^{-1}M = I$ |
+| $D$ | «di» | una matrice diagonale; nella diagonalizzazione ha gli autovalori sulla diagonale | $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$ |
+| $A^k$ | «$A$ alla $k$» | la matrice $A$ moltiplicata per sé stessa $k$ volte | $A^2 = A \cdot A$ |
+| $\det A$ | «determinante di $A$» | il numero che si calcola con «diagonale meno l'altra diagonale» | $\det\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} = -2$ |
+| $\tr(A)$ | «traccia di $A$» | la somma dei numeri sulla diagonale | $\tr\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} = 5$ |
+| $a_{ij}$ | «a con i, j» | il numero che sta nella riga $i$ e nella colonna $j$ | $a_{12}$: riga 1, colonna 2 |
+| $A - \lambda I$ | «$A$ meno lambda $I$» | la matrice $A$ con $\lambda$ tolto sulla diagonale | $\begin{pmatrix} 3 - \lambda & 4 \\ 0 & 2 - \lambda \end{pmatrix}$ |
+| $p_A(\lambda)$ | «pi con $A$ di lambda» | il polinomio caratteristico della matrice $A$ | $(3 - \lambda)(2 - \lambda)$ |
+| $p_T(\lambda)$ | «pi con $T$ di lambda» | il polinomio caratteristico della macchina $T$: quello di una sua matrice | |
+| $\pm$ | «più o meno» | il conto si fa una volta con il più e una volta con il meno | $\frac{4 \pm 2}{2}$ dà 3 e 1 |
+| $\iff$ | «se e solo se» | le due frasi sono vere insieme oppure false insieme | |
+| $\Ker$ | «ker», cioè «nucleo» | i vettori che la macchina manda in zero | |
+| $\id$ | «identità» | la macchina che lascia ogni vettore com'è | $\id(v) = v$ |
+| ${}^tA$ | «$A$ trasposta» | la matrice $A$ con righe e colonne scambiate | |
+| $i$ | «i» | il numero complesso che moltiplicato per sé stesso dà $-1$ | $i \cdot i = -1$ |
+
 ## Verso l'esame
 
-La prova di Algebra lineare e Geometria ha 10 domande a risposta multipla (5 risposte, una giusta) e 2 problemi da 11 punti, corretti solo con almeno 6 risposte giuste; dura 2 ore, senza calcolatrice, e si può portare solo un foglio da 4 facciate scritto a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
+La prova di Algebra lineare e Geometria ha 10 domande a risposta multipla, ognuna con 5 risposte di cui una sola giusta, e 2 problemi da 11 punti. I problemi vengono corretti solo a chi dà almeno 6 risposte giuste. La prova dura 2 ore, senza calcolatrice, e si può portare solo un foglio da 4 facciate scritto a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
-**Che cosa di questa lezione serve all'esame.** Autovalori e autovettori sono presenti in **ogni** appello 2023–2026: quasi sempre in una o due domande del quiz e molto spesso in un problema aperto (che userà anche la lezione L18).
+**Che cosa di questa lezione serve all'esame.** Autovalori e autovettori sono presenti in **ogni** appello dal 2023 al 2026. Quasi sempre in una o due domande del quiz. Molto spesso anche in un problema aperto, che usa pure la lezione L18.
 
 | Tipo di domanda | Dove |
 |---|---|
 | quale di questi vettori è un autovettore? | 03/07/2026 d. 2 |
-| l'insieme degli autovalori di una $3 \times 3$ | 06/09/2024 d. 10; 07/02/2025 d. 8; 05/02/2026 d. 8; 03/07/2026 d. 3 (triangolare) |
-| dato un autovalore, trovare gli altri (anche complessi) | 02/09/2025 d. 4 |
-| la base di autovettori di una $2 \times 2$ | 03/06/2026 d. 6 |
+| l'insieme degli autovalori di una matrice $3 \times 3$ | 06/09/2024 d. 10; 07/02/2025 d. 8; 05/02/2026 d. 8; 03/07/2026 d. 3 (triangolare) |
+| conosci un autovalore: trovare gli altri (anche complessi) | 02/09/2025 d. 4 |
+| la base di autovettori di una matrice $2 \times 2$ | 03/06/2026 d. 6 |
 | che cosa non può succedere se $\lambda$ è un autovalore | 03/06/2025 d. 8 |
 | problema: matrice di $T$ e autovalori | 10/07/2024 problema 11; 07/09/2026 problema 11 |
 
-### Tre domande vere, risolte
+### Come si affrontano le domande
 
-> [!ESAME] Appello del 03/07/2026, domanda 2
-> *Sia $T(x, y) = (2x + y,\ 3y)$. Quale dei vettori $(1, 1)$, $(0, 1)$, $(2, 1)$, $(-1, 1)$ è un autovettore (oppure: $T$ non ha autovettori reali)?*
->
-> Soluzione. Non serve il polinomio caratteristico: si prova. Con $A = \begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}$: $A(1, 1) = (3, 3) = 3(1, 1)$, sì; $A(0, 1) = (1, 3)$, $A(2, 1) = (5, 3)$, $A(-1, 1) = (-1, 3)$, nessuno dei tre è multiplo del vettore di partenza. La risposta è $(1, 1)$, con autovalore 3. «Nessun autovettore reale» è esclusa anche perché $A$ è triangolare con autovalori reali 2 e 3.
+Nelle domande la macchina è data quasi sempre con una formula. Il primo passo è scrivere la sua matrice.
 
-> [!ESAME] Appello del 05/02/2026, domanda 8
-> *Trovare l'insieme degli autovalori di $T(x, y, z) = (2x + y - 2z,\ -x + 2z,\ 3z)$.*
+> [!METODO] Dalla formula della macchina alla matrice
+> 1. Ogni posto del risultato dà una **riga** della matrice.
+> 2. Nella riga scrivi i numeri che stanno davanti a $x$, a $y$ e a $z$, in quest'ordine. Se una lettera manca, scrivi 0.
 >
-> Soluzione. $A = \begin{pmatrix} 2 & 1 & -2 \\ -1 & 0 & 2 \\ 0 & 0 & 3 \end{pmatrix}$. La terza riga di $A - \lambda I_3$ è $(0, 0, 3 - \lambda)$: sviluppando lungo quella riga,
-> $$p_A(\lambda) = (3 - \lambda)\det\begin{pmatrix} 2 - \lambda & 1 \\ -1 & -\lambda \end{pmatrix} = (3 - \lambda)\big(-\lambda(2 - \lambda) + 1\big) = (3 - \lambda)(\lambda^2 - 2\lambda + 1) = (3 - \lambda)(\lambda - 1)^2.$$
-> L'insieme degli autovalori è $\{1, 3\}$. Controllo con la traccia: $1 + 1 + 3 = 5 = 2 + 0 + 3$.
+> Esempio: se il primo posto del risultato è $2x + y$, la prima riga è $(2, 1)$. Se il secondo posto è $3y$, la seconda riga è $(0, 3)$.
 
-> [!ESAME] Appello del 02/09/2025, domanda 4
-> *$T(x, y, z) = (2x + 2y,\ -2x - 2y + 2z,\ 2x)$ ha autovalore $\lambda_1 = 2$. Quali sono gli altri autovalori?* Le risposte erano $\pm(1 + i\sqrt 2)$, $2 \pm i\sqrt 2$, $1 + i\sqrt 2$ e $1 + i\sqrt 3$, $2 + i\sqrt 2$ e $1 - i\sqrt 3$, $-1 \pm i\sqrt 3$.
+> [!METODO] «Quale di questi vettori è un autovettore?»
+> 1. Non calcolare il polinomio caratteristico: **prova le risposte**.
+> 2. Per ogni vettore proposto calcola che cosa esce dalla macchina.
+> 3. La risposta giusta è il vettore da cui esce un suo multiplo.
+
+Per la domanda «trova l'insieme degli autovalori» di una matrice con 3 righe il metodo è quello della sezione sul polinomio caratteristico: togli $\lambda$ sulla diagonale, sviluppa lungo la riga o la colonna con più zeri, tieni fuori il pezzo «numero meno $\lambda$» e trova le radici del resto. Alla fine controlla con la traccia.
+
+### Una domanda vera, letta insieme
+
+**Appello del 03/07/2026, domanda 2.** Il testo: «Sia $T : \R^2 \to \R^2$ l'endomorfismo definito da $T({}^t(x, y)) = {}^t(2x + y,\ 3y)$. Quale dei seguenti vettori è un autovettore di $T$?». Le risposte sono i vettori $(1, 1)$, $(0, 1)$, $(2, 1)$ e $(-1, 1)$, scritti in colonna, più la frase «$T$ non ha autovettori reali».
+
+**Come si legge il testo.** La scrittura $\R^2$ indica i vettori del piano, fatti di due numeri reali. La piccola $t$ in alto a sinistra vuol dire «scritto in colonna» (lezione L08): non cambia i conti. Quindi la macchina prende $(x, y)$ e restituisce $(2x + y,\ 3y)$.
+
+**In pratica chiede:** da quale di questi quattro vettori la macchina fa uscire un multiplo del vettore stesso?
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: provo i quattro vettori.** Metto i due numeri del vettore al posto di $x$ e di $y$.
 >
-> Soluzione veloce. La traccia di $A = \begin{pmatrix} 2 & 2 & 0 \\ -2 & -2 & 2 \\ 2 & 0 & 0 \end{pmatrix}$ è $2 - 2 + 0 = 0$, e la somma dei tre autovalori (su $\C$) è la traccia: $\lambda_2 + \lambda_3 = 0 - 2 = -2$. Solo $-1 \pm i\sqrt 3$ ha somma $-2$. Soluzione completa: sviluppando lungo la terza riga, $p_A(\lambda) = -\lambda^3 + 8 = -(\lambda - 2)(\lambda^2 + 2\lambda + 4)$, e $\lambda^2 + 2\lambda + 4 = 0$ dà $\lambda = -1 \pm i\sqrt 3$.
+> | Entra | Conto | Esce | Esce un multiplo? |
+> |---|---|---|---|
+> | $(1, 1)$ | $(2 \cdot 1 + 1,\ 3 \cdot 1)$ | $(3, 3)$ | sì: 3 volte $(1, 1)$ |
+> | $(0, 1)$ | $(2 \cdot 0 + 1,\ 3 \cdot 1)$ | $(1, 3)$ | no: il primo posto dovrebbe restare 0 |
+> | $(2, 1)$ | $(2 \cdot 2 + 1,\ 3 \cdot 1)$ | $(5, 3)$ | no: servirebbe «per $\frac 52$» e «per 3» |
+> | $(-1, 1)$ | $(2 \cdot (-1) + 1,\ 3 \cdot 1)$ | $(-1, 3)$ | no: servirebbe «per 1» e «per 3» |
+>
+> **Passo 2: la risposta.** È $(1, 1)$, un autovettore con autovalore 3.
+>
+> **Perché l'ultima risposta è sbagliata.** La matrice della macchina ha le righe $(2, 1)$ e $(0, 3)$. È triangolare, quindi i suoi autovalori sono i numeri sulla diagonale: 2 e 3. Sono reali, e ogni autovalore ha i suoi autovettori.
+
+### Altre due domande vere
+
+**Appello del 05/02/2026, domanda 8.** È la domanda sugli autovalori di $T(x, y, z) = (2x + y - 2z,\ -x + 2z,\ 3z)$, risolta passo per passo nella sezione sul polinomio caratteristico. Le cinque risposte erano $\{1, 2, 3\}$, poi $\{-1, \pm 2\}$, poi $\{2, 3\}$, poi $\{1, 3\}$, poi $\{\pm 1, 3\}$. Quella giusta è $\{1, 3\}$, perché il polinomio caratteristico è $(3 - \lambda)(\lambda - 1)^2$.
+
+La risposta che tenta è $\{1, 2, 3\}$: ha tre numeri diversi e sembra più completa. Ma 2 non è una radice. Mettendo 2 al posto di $\lambda$ viene $(3 - 2) \cdot (2 - 1)^2 = 1$, non 0.
+
+**Appello del 02/09/2025, domanda 4.** Il testo: l'endomorfismo $T(x, y, z) = (2x + 2y,\ -2x - 2y + 2z,\ 2x)$ «ha autovalore $\lambda_1 = 2$. Quali sono i suoi altri autovalori?». Ecco le cinque risposte.
+
+| Risposta | I due autovalori proposti |
+|---|---|
+| (a) | $\pm(1 + i\sqrt 2)$ |
+| (b) | $2 \pm i\sqrt 2$ |
+| (c) | $1 + i\sqrt 2$ e $1 + i\sqrt 3$ |
+| (d) | $2 + i\sqrt 2$ e $1 - i\sqrt 3$ |
+| (e) | $-1 \pm i\sqrt 3$ |
+
+**In pratica chiede:** una matrice con 3 righe ha tre autovalori, se si contano anche quelli complessi. Uno te lo danno. Trova gli altri due.
+
+> [!RIPASSO] che cosa serve dei numeri complessi
+> Il numero $i$ è il numero complesso che moltiplicato per sé stesso dà $-1$ (lezione L02). Con lui anche i numeri negativi hanno una radice quadrata: per esempio la radice di $-12$ è $i\sqrt{12}$.
+>
+> Dalla lezione L01: $\sqrt{12} = \sqrt{4 \cdot 3} = 2\sqrt 3$.
+>
+> Una scrittura come $-1 \pm i\sqrt 3$ indica due numeri: uno con il più e uno con il meno. Sommandoli, i pezzi con la $i$ si cancellano: resta $-1 - 1 = -2$.
+
+> [!ESEMPIO] · la soluzione veloce, con la traccia
+> **Passo 1: la matrice.**
+> $$A = \begin{pmatrix} 2 & 2 & 0 \\ -2 & -2 & 2 \\ 2 & 0 & 0 \end{pmatrix}$$
+>
+> **Passo 2: la traccia.** È la somma dei numeri sulla diagonale: $2 - 2 + 0 = 0$.
+>
+> **Passo 3: la regola.** La somma dei tre autovalori è la traccia, cioè 0. Uno dei tre è 2. Quindi gli altri due, sommati, devono dare $-2$.
+>
+> **Passo 4: sommo i due numeri di ogni risposta.**
+>
+> | Risposta | Somma dei due numeri |
+> |---|---|
+> | (a) | $(1 + i\sqrt 2) - (1 + i\sqrt 2) = 0$ |
+> | (b) | $2 + 2 = 4$ |
+> | (c) | $2 + i\sqrt 2 + i\sqrt 3$ |
+> | (d) | $3 + i\sqrt 2 - i\sqrt 3$ |
+> | (e) | $-1 - 1 = -2$ |
+>
+> Solo la risposta (e) dà $-2$.
+
+> [!ESEMPIO] · la soluzione completa, con il polinomio caratteristico
+> **Passo 1: tolgo $\lambda$ sulla diagonale.**
+> $$A - \lambda I = \begin{pmatrix} 2 - \lambda & 2 & 0 \\ -2 & -2 - \lambda & 2 \\ 2 & 0 & -\lambda \end{pmatrix}$$
+>
+> **Passo 2: sviluppo lungo la terza riga**, che è $(2,\ 0,\ -\lambda)$. Lo 0 non conta. Restano due pezzi, tutti e due in posti con il segno più.
+>
+> - Il numero 2. Cancello la terza riga e la prima colonna: restano le righe $(2,\ 0)$ e $(-2 - \lambda,\ 2)$. Il determinante è $2 \cdot 2 - 0 \cdot (-2 - \lambda) = 4$. Il pezzo vale $2 \cdot 4 = 8$.
+> - Il numero $-\lambda$. Cancello la terza riga e la terza colonna: restano le righe $(2 - \lambda,\ 2)$ e $(-2,\ -2 - \lambda)$. Il determinante è $(2 - \lambda)(-2 - \lambda) - 2 \cdot (-2)$. Il primo prodotto fa $-4 - 2\lambda + 2\lambda + \lambda^2$, cioè $\lambda^2 - 4$. Sommando 4 resta $\lambda^2$. Il pezzo vale $-\lambda \cdot \lambda^2 = -\lambda^3$.
+>
+> $$p_A(\lambda) = 8 - \lambda^3$$
+>
+> **Passo 3: uso l'autovalore che conosco.** Con $\lambda = 2$ viene $8 - 8 = 0$: torna. Siccome 2 è una radice, il polinomio si divide per $\lambda - 2$ senza resto (lezione L04). Divido con la regola di Ruffini. Scrivo il polinomio con tutte le potenze: $-\lambda^3 + 0\lambda^2 + 0\lambda + 8$. I suoi numeri sono $-1$, 0, 0 e 8. Il primo si copia. Poi, a ogni passo, si moltiplica per 2 l'ultimo numero trovato e si somma al numero successivo.
+>
+> - Primo numero: $-1$.
+> - Secondo: $0 + 2 \cdot (-1) = -2$.
+> - Terzo: $0 + 2 \cdot (-2) = -4$.
+> - Quarto: $8 + 2 \cdot (-4) = 0$.
+>
+> L'ultimo numero è il resto, ed è 0. Gli altri tre sono i numeri del quoziente: $-\lambda^2 - 2\lambda - 4$.
+> $$p_A(\lambda) = (\lambda - 2)(-\lambda^2 - 2\lambda - 4) = -(\lambda - 2)(\lambda^2 + 2\lambda + 4)$$
+>
+> **Passo 4: le radici del pezzo di secondo grado**, cioè $\lambda^2 + 2\lambda + 4$. Il discriminante è $4 - 16 = -12$. È negativo: nessuna radice reale. Nei numeri complessi la sua radice quadrata è $i\sqrt{12} = 2i\sqrt 3$.
+> $$\lambda = \frac{-2 \pm 2i\sqrt 3}{2} = -1 \pm i\sqrt 3$$
+>
+> **Risposta:** (e), come con la soluzione veloce.
 
 ### Errori da evitare
 
-- Accettare $v = 0$ come autovettore, o scartare $\lambda = 0$ come autovalore.
-- Togliere $\lambda$ anche fuori dalla diagonale: in $A - \lambda I_n$ cambia **solo** la diagonale.
-- Sviluppare tutto il determinante in un polinomio di terzo grado e poi non riuscire a scomporlo: sviluppa lungo la riga o la colonna con più zeri e raccogli subito il fattore $(a - \lambda)$.
-- Dimenticare di controllare: somma degli autovalori = traccia, prodotto = determinante (se hai tutte le radici), e $Av = \lambda v$ su un autovettore.
-- Mettere in $D$ gli autovalori in un ordine diverso da quello delle colonne di $M$.
+- Accettare il vettore nullo come autovettore, oppure scartare lo zero come autovalore.
+- Togliere $\lambda$ anche fuori dalla diagonale. Va tolto **solo** sulla diagonale.
+- Moltiplicare tutto il determinante fino ad avere un polinomio di terzo grado, e poi non riuscire a trovarne le radici. Meglio sviluppare lungo la riga o la colonna con più zeri e tenere fuori il pezzo «numero meno $\lambda$».
+- Leggere gli autovalori sulla diagonale di una matrice che non è triangolare.
+- Dimenticare i controlli: la somma degli autovalori è la traccia, il loro prodotto è il determinante, e da ogni autovettore deve uscire un suo multiplo.
+- Mettere gli autovalori in $D$ in un ordine diverso da quello delle colonne di $M$.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: «$v \neq 0$, $T(v) = \lambda v$»; «$p_A(\lambda) = \det(A - \lambda I)$, $2 \times 2$: $\lambda^2 - \tr A\,\lambda + \det A$»; «autovalori = radici, autovettori = $\Ker(A - \lambda I) \setminus \{0\}$»; «triangolare: autovalori sulla diagonale»; «somma = traccia, prodotto = determinante»; «$D = M^{-1}AM$, $M$ = autovettori in colonna, $A^k = MD^kM^{-1}$».
+> Da questa lezione conviene copiare queste righe.
+>
+> | Che cosa | Da scrivere |
+> |---|---|
+> | autovettore | $v \neq 0$ e $T(v) = \lambda v$ |
+> | polinomio caratteristico | $p_A(\lambda) = \det(A - \lambda I)$ |
+> | matrice con 2 righe | $p_A(\lambda) = \lambda^2 - \tr(A)\,\lambda + \det A$ |
+> | autovalori | le radici del polinomio caratteristico |
+> | autovettori | le soluzioni non nulle di $(A - \lambda I)v = 0$ |
+> | matrice triangolare | gli autovalori sono i numeri sulla diagonale |
+> | controllo | somma degli autovalori = traccia, prodotto = determinante |
+> | diagonalizzazione | $D = M^{-1}AM$, autovettori in colonna in $M$, controllo $AM = MD$ |
+> | potenze | $A^k = MD^kM^{-1}$ |
 
 ## Quiz
 
@@ -19101,7 +22287,7 @@ D: Sia $T : \R^2 \to \R^2$, $T(x, y) = (x + 2y,\ 3y)$. Quale di questi vettori �
 - $(1, 2)$
 - $(2, 1)$
 - $T$ non ha autovettori reali.
-= $T(1, 1) = (3, 3) = 3(1, 1)$. Gli altri: $T(0, 1) = (2, 3)$, $T(1, 2) = (5, 6)$, $T(2, 1) = (4, 3)$, nessuno multiplo del vettore di partenza. La matrice $\begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}$ è triangolare con autovalori reali 1 e 3, quindi l'ultima risposta è falsa. Simile all'appello del 03/07/2026, domanda 2.
+= La domanda chiede: da quale di questi vettori la macchina fa uscire un suo multiplo? Si prova una risposta alla volta, mettendo i due numeri al posto di $x$ e di $y$. Da $(1, 1)$ esce $(1 + 2 \cdot 1,\ 3 \cdot 1) = (3, 3)$, che è 3 volte $(1, 1)$: è un autovettore, con autovalore 3. Da $(0, 1)$ esce $(2, 3)$: il primo posto dovrebbe restare 0, quindi no. Da $(1, 2)$ esce $(5, 6)$: servirebbe «per 5» nel primo posto e «per 3» nel secondo, quindi no. Da $(2, 1)$ esce $(4, 3)$: servirebbe «per 2» e «per 3», quindi no. L'ultima risposta è falsa. La matrice della macchina ha le righe $(1, 2)$ e $(0, 3)$: è triangolare, e i suoi autovalori sono i numeri reali 1 e 3 sulla diagonale. Domanda simile a quella dell'appello del 03/07/2026, domanda 2.
 
 D: L'insieme degli autovalori di $T : \R^3 \to \R^3$, $T(x, y, z) = (2x + z,\ x + 3y - z,\ z)$, è:
 + $\{1, 2, 3\}$
@@ -19109,7 +22295,7 @@ D: L'insieme degli autovalori di $T : \R^3 \to \R^3$, $T(x, y, z) = (2x + z,\ x 
 - $\{0, 1, 3\}$
 - $\{-1, 2, 3\}$
 - $\{\}$ (nessun autovalore reale)
-= $A = \begin{pmatrix} 2 & 0 & 1 \\ 1 & 3 & -1 \\ 0 & 0 & 1 \end{pmatrix}$. Sviluppando $\det(A - \lambda I_3)$ lungo la terza riga $(0, 0, 1 - \lambda)$: $p_A(\lambda) = (1 - \lambda)\big((2 - \lambda)(3 - \lambda) - 0\big)$. Radici $1, 2, 3$; controllo: $1 + 2 + 3 = 6 = \tr A$. Simile agli appelli del 07/02/2025 (domanda 8) e del 05/02/2026 (domanda 8).
+= Si scrive la matrice, si toglie $\lambda$ sulla diagonale e si calcola il determinante. Le righe della matrice sono $(2, 0, 1)$, poi $(1, 3, -1)$, poi $(0, 0, 1)$. Dopo aver tolto $\lambda$, la terza riga è $(0,\ 0,\ 1 - \lambda)$: ha due zeri, quindi si sviluppa lungo quella. Resta un solo pezzo: $1 - \lambda$ per il determinante della matrice con le righe $(2 - \lambda,\ 0)$ e $(1,\ 3 - \lambda)$. Quel determinante è $(2 - \lambda)(3 - \lambda) - 0 \cdot 1$. Quindi il polinomio caratteristico è $(1 - \lambda)(2 - \lambda)(3 - \lambda)$, e le sue radici sono 1, 2 e 3. Controllo: la somma è 6, come la traccia $2 + 3 + 1$. La risposta $\{2, 3\}$ dimentica il pezzo $1 - \lambda$ tenuto fuori. Domanda simile a quelle degli appelli del 07/02/2025 (domanda 8) e del 05/02/2026 (domanda 8).
 
 D: L'endomorfismo $T(x, y, z) = (x,\ y - 2z,\ y + z)$ di $\R^3$ ha autovalore $\lambda_1 = 1$. Quali sono gli altri autovalori (in $\C$)?
 + $1 \pm i\sqrt 2$
@@ -19117,7 +22303,7 @@ D: L'endomorfismo $T(x, y, z) = (x,\ y - 2z,\ y + z)$ di $\R^3$ ha autovalore $\
 - $1 \pm \sqrt 2$
 - $-1 \pm i\sqrt 2$
 - $2 \pm i$
-= Sviluppando lungo la prima riga $(1 - \lambda, 0, 0)$: $p(\lambda) = (1 - \lambda)\big((1 - \lambda)^2 + 2\big)$. Da $(1 - \lambda)^2 = -2$ viene $\lambda = 1 \pm i\sqrt 2$. Controllo con la traccia: $1 + (1 + i\sqrt 2) + (1 - i\sqrt 2) = 3 = 1 + 1 + 1$. Simile all'appello del 02/09/2025, domanda 4.
+= La matrice ha tre autovalori, contando anche quelli complessi: uno è dato, si cercano gli altri due. Le righe della matrice sono $(1, 0, 0)$, poi $(0, 1, -2)$, poi $(0, 1, 1)$. Tolto $\lambda$ sulla diagonale, la prima riga è $(1 - \lambda,\ 0,\ 0)$ e si sviluppa lungo quella. Resta $1 - \lambda$ per il determinante della matrice con le righe $(1 - \lambda,\ -2)$ e $(1,\ 1 - \lambda)$, che vale $(1 - \lambda)^2 + 2$. Il primo pezzo dà l'autovalore 1. Il secondo è zero quando $(1 - \lambda)^2 = -2$. Nei numeri complessi i numeri con quadrato $-2$ sono $i\sqrt 2$ e $-i\sqrt 2$, quindi $\lambda = 1 \pm i\sqrt 2$. Controllo con la traccia: nella somma dei tre autovalori i pezzi con la $i$ si cancellano e resta $1 + 1 + 1 = 3$, proprio la traccia. La risposta $1 \pm \sqrt 2$ dimentica la $i$: darebbe due numeri reali, ma il quadrato di un numero reale non può fare $-2$. Domanda simile a quella dell'appello del 02/09/2025, domanda 4.
 
 D: $T(x, y) = (2x,\ x + 3y)$ ha autovalori 2 e 3. Una base di autovettori è:
 + $\{(1, -1), (0, 1)\}$
@@ -19125,7 +22311,7 @@ D: $T(x, y) = (2x,\ x + 3y)$ ha autovalori 2 e 3. Una base di autovettori è:
 - $\{(1, 1), (0, 1)\}$
 - $\{(1, 0), (0, 1)\}$
 - $\{(1, -1), (2, -2)\}$
-= Per $\lambda = 3$: $T(0, 1) = (0, 3) = 3(0, 1)$. Per $\lambda = 2$: $(A - 2I)x = 0$ con $A - 2I = \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}$ dà $x + y = 0$, cioè $(1, -1)$; controllo $T(1, -1) = (2, -2)$. La seconda risposta sono le colonne di $A$; l'ultima non è una base (vettori proporzionali). Simile all'appello del 03/06/2026, domanda 6.
+= Serve un autovettore per ogni autovalore, e i due vettori non devono stare sulla stessa retta. Si prova ogni vettore proposto nella formula della macchina. Da $(0, 1)$ esce $(0, 3)$, cioè 3 volte $(0, 1)$: è un autovettore con autovalore 3. Da $(1, -1)$ esce $(2,\ 1 - 3) = (2, -2)$, cioè 2 volte $(1, -1)$: è un autovettore con autovalore 2. I due vettori non sono uno multiplo dell'altro, quindi formano una base. Le altre risposte non vanno bene. I vettori $(2, 1)$ e $(0, 3)$ sono le colonne della matrice, e da $(2, 1)$ esce $(4, 5)$, che non è un suo multiplo. Da $(1, 1)$ esce $(2, 4)$ e da $(1, 0)$ esce $(2, 1)$: nessuno dei due è un autovettore. Nell'ultima risposta $(2, -2)$ è il doppio di $(1, -1)$: sono due autovettori sulla stessa retta, e non formano una base. Domanda simile a quella dell'appello del 03/06/2026, domanda 6.
 
 D: Sia $\lambda$ un autovalore dell'endomorfismo $T : \R^n \to \R^n$. Quale di queste affermazioni è **sempre falsa**?
 + $\Ker(T - \lambda\,\id) = \{0\}$
@@ -19133,7 +22319,7 @@ D: Sia $\lambda$ un autovalore dell'endomorfismo $T : \R^n \to \R^n$. Quale di q
 - $T$ è invertibile.
 - $p_T(\lambda) = 0$
 - $T - \lambda\,\id$ non è iniettiva.
-= Se $\lambda$ è un autovalore esiste $v \neq 0$ con $(T - \lambda\,\id)(v) = 0$, quindi il nucleo di $T - \lambda\,\id$ non è mai $\{0\}$. Le ultime due sono sempre vere (Proposizione 17.13). $\lambda = 0$ può capitare (quando $T$ non è invertibile), e $T$ invertibile può capitare (quando $0$ non è autovalore). Simile all'appello del 03/06/2025, domanda 8.
+= La domanda chiede quale frase non può mai essere vera quando $\lambda$ è un autovalore. Due simboli: $\id$ è la macchina identità, che lascia ogni vettore com'è, e $\Ker$ è il nucleo, cioè l'insieme dei vettori mandati in zero. Se $\lambda$ è un autovalore, c'è un vettore non nullo $v$ con $T(v) = \lambda v$. Portando tutto a sinistra, la macchina $T - \lambda\,\id$ manda $v$ in zero. Quindi nel suo nucleo c'è un vettore non nullo: il nucleo non è mai fatto del solo vettore nullo, e la prima frase è sempre falsa. Le ultime due frasi sono sempre vere. Un autovalore è una radice del polinomio caratteristico (Proposizione 17.13). E una macchina che manda in zero un vettore non nullo non è iniettiva, cioè manda due vettori diversi nello stesso vettore (lezione L14). Le altre due frasi possono succedere: l'autovalore può essere 0, e $T$ può essere invertibile quando 0 non è tra i suoi autovalori. Domanda simile a quella dell'appello del 03/06/2025, domanda 8.
 
 D: Il polinomio caratteristico di $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ è:
 + $\lambda^2 - 5\lambda - 2$
@@ -19141,11 +22327,11 @@ D: Il polinomio caratteristico di $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatr
 - $\lambda^2 - 5\lambda + 10$
 - $(1 - \lambda)(4 - \lambda)$
 - $\lambda^2 - 2\lambda - 5$
-= $(1 - \lambda)(4 - \lambda) - 2 \cdot 3 = \lambda^2 - 5\lambda + 4 - 6 = \lambda^2 - 5\lambda - 2$. Con la formula: $\tr A = 5$ e $\det A = -2$. La quarta risposta dimentica il termine $-bc$ (quella formula vale solo per le triangolari).
+= Si toglie $\lambda$ sulla diagonale e si calcola il determinante con «diagonale meno l'altra diagonale»: viene $(1 - \lambda)(4 - \lambda) - 2 \cdot 3$. Il primo prodotto fa $4 - 5\lambda + \lambda^2$. Togliendo 6 resta $\lambda^2 - 5\lambda - 2$. Controllo con la formula veloce: la traccia è $1 + 4 = 5$ e il determinante è $4 - 6 = -2$. La risposta $(1 - \lambda)(4 - \lambda)$ è la trappola: dimentica di togliere il prodotto dell'altra diagonale. Andrebbe bene solo per una matrice triangolare.
 
 D: Sia $A = \begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix}$. Quanto vale l'elemento di posto $(1, 2)$ di $A^{10}$?
 N: 1023
-= Autovettori: $(1, 0)$ con autovalore 1 e $(1, 1)$ con autovalore 2 (infatti $A(1, 1) = (2, 2)$). Con $M = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ e $M^{-1} = \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix}$: $A^n = M\begin{pmatrix} 1 & 0 \\ 0 & 2^n \end{pmatrix}M^{-1} = \begin{pmatrix} 1 & 2^n - 1 \\ 0 & 2^n \end{pmatrix}$. Per $n = 10$: $2^{10} - 1 = 1023$. Controllo con $n = 2$: $A^2 = \begin{pmatrix} 1 & 3 \\ 0 & 4 \end{pmatrix}$.
+= L'elemento di posto $(1, 2)$ è il numero nella riga 1 e nella colonna 2. Per una potenza così alta si usa la formula $A^k = MD^kM^{-1}$. La matrice è triangolare, quindi i suoi autovalori sono 1 e 2. Da $(1, 0)$ esce $(1, 0)$: è un autovettore con autovalore 1. Da $(1, 1)$ esce $(2, 2)$: è un autovettore con autovalore 2. Quindi $M$ ha le colonne $(1, 0)$ e $(1, 1)$, e la sua inversa ha le righe $(1, -1)$ e $(0, 1)$. La matrice $D^{10}$ ha sulla diagonale 1 e $2^{10} = 1024$. Il prodotto $MD^{10}$ ha le righe $(1, 1024)$ e $(0, 1024)$. Moltiplicando per $M^{-1}$, il numero nella riga 1 e nella colonna 2 è $1 \cdot (-1) + 1024 \cdot 1 = 1023$. Controllo della stessa formula con l'esponente 2: darebbe $4 - 1 = 3$, e infatti $A^2$ ha le righe $(1, 3)$ e $(0, 4)$.
 
 D: Se $v$ è un autovettore di $T$ con autovalore $\lambda$, allora il vettore $3v$ è:
 + un autovettore di $T$ con autovalore $\lambda$.
@@ -19153,7 +22339,7 @@ D: Se $v$ è un autovettore di $T$ con autovalore $\lambda$, allora il vettore $
 - un autovettore di $T$ con autovalore $\lambda / 3$.
 - un autovettore solo se $\lambda \neq 0$.
 - non è un autovettore.
-= $T(3v) = 3T(v) = 3\lambda v = \lambda(3v)$ e $3v \neq 0$: stesso autovalore $\lambda$, qualunque sia $\lambda$ (anche $0$). È l'osservazione sui multipli dopo l'Esempio 17.4.
+= È la regola dei multipli: un multiplo non nullo di un autovettore è un autovettore con lo stesso autovalore. Il conto: una macchina lineare rispetta i multipli, quindi $T(3v) = 3T(v) = 3\lambda v = \lambda \cdot (3v)$. Da $3v$ esce $\lambda$ volte $3v$, e $3v$ non è il vettore nullo. La risposta con $3\lambda$ è la trappola: il 3 moltiplica il vettore, non l'autovalore. La regola vale per ogni autovalore, anche per lo zero. È l'osservazione sui multipli che viene dopo l'Esempio 17.4.
 
 D: Quale di queste matrici reali **non** ha autovalori reali?
 + $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$
@@ -19161,7 +22347,7 @@ D: Quale di queste matrici reali **non** ha autovalori reali?
 - $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 0 \\ 0 & -3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$
-= Polinomi caratteristici: $\lambda^2 + 1$ (nessuna radice reale: è la rotazione di $90°$); $\lambda^2 - 1$ (radici $\pm 1$); $(\lambda - 1)^2$; $(2 - \lambda)(-3 - \lambda)$; $\lambda^2 - 2\lambda - 3 = (\lambda - 3)(\lambda + 1)$.
+= Una matrice non ha autovalori reali quando il suo polinomio caratteristico non ha radici reali. Per una matrice con 2 righe il polinomio è $\lambda^2$, meno la traccia per $\lambda$, più il determinante. La prima matrice ha traccia 0 e determinante $0 \cdot 0 - (-1) \cdot 1 = 1$. Il suo polinomio è $\lambda^2 + 1$, che non è mai zero per un numero reale, perché un quadrato non è negativo. È la rotazione di un quarto di giro. La seconda ha traccia 0 e determinante $-1$: il polinomio $\lambda^2 - 1$ ha le radici 1 e $-1$. La terza e la quarta sono triangolari, con gli autovalori sulla diagonale: 1 per la terza, 2 e $-3$ per la quarta. La quinta ha traccia 2 e determinante $1 - 4 = -3$: il polinomio $\lambda^2 - 2\lambda - 3$ ha discriminante $4 + 12 = 16$ e radici 3 e $-1$.
 
 D: Le matrici $A$ e $B$ sono simili e $p_A(\lambda) = \lambda^2 - 3\lambda + 2$. Quale affermazione è vera?
 + $B$ ha autovalori $1$ e $2$.
@@ -19169,110 +22355,302 @@ D: Le matrici $A$ e $B$ sono simili e $p_A(\lambda) = \lambda^2 - 3\lambda + 2$.
 - $A$ e $B$ hanno gli stessi autovettori.
 - $\det B = 3$.
 - $\tr B = 2$.
-= Matrici simili hanno lo stesso polinomio caratteristico, quindi $p_B(\lambda) = \lambda^2 - 3\lambda + 2 = (\lambda - 1)(\lambda - 2)$. Dalla formula $2 \times 2$: $\tr B = 3$ e $\det B = 2$. Gli autovettori in genere cambiano: nell'Esempio 16.10, $e_2$ è autovettore di $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ ma non della matrice simile $\begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$.
+= Matrici simili hanno lo stesso polinomio caratteristico, quindi anche quello di $B$ è $\lambda^2 - 3\lambda + 2$. Il discriminante è $9 - 8 = 1$, e le radici sono $\frac{3 + 1}{2} = 2$ e $\frac{3 - 1}{2} = 1$: gli autovalori di $B$ sono 1 e 2. Dalla formula veloce si leggono anche la traccia, che è 3, e il determinante, che è 2. Le ultime due risposte hanno questi due numeri scambiati. Simili non vuol dire uguali. E gli autovettori di solito cambiano. Nell'Esempio 16.10 il vettore $(0, 1)$ è un autovettore della matrice con le righe $(1, 0)$ e $(0, -1)$. Non lo è della matrice simile con le righe $(1, 1)$ e $(0, -1)$: da lì esce $(1, -1)$.
 ```
 
 ## Esercizi
 
+::: esercizio base Multiplo oppure no?
+Per ogni coppia di vettori di' se il secondo è un multiplo del primo, e di quante volte: (a) $(1, 2)$ e $(3, 6)$; (b) $(2, -1)$ e $(-4, 2)$; (c) $(1, 1)$ e $(2, 3)$; (d) $(0, 1)$ e $(4, 2)$.
+::: soluzione
+Il metodo: cerco il numero giusto guardando il primo posto, poi controllo se funziona anche nel secondo.
+
+(a) **Sì, 3 volte.** Nel primo posto si passa da 1 a 3: serve «per 3». Nel secondo posto $2 \cdot 3 = 6$: funziona.
+
+(b) **Sì, $-2$ volte.** Nel primo posto si passa da 2 a $-4$: serve «per $-2$». Nel secondo posto $(-1) \cdot (-2) = 2$: funziona.
+
+(c) **No.** Nel primo posto serve «per 2». Nel secondo $1 \cdot 2 = 2$, ma lì c'è 3.
+
+(d) **No.** Un multiplo di $(0, 1)$ ha sempre 0 nel primo posto. Qui c'è 4.
+:::
+
+::: esercizio base Un autovettore con un solo prodotto
+La matrice $A$ ha le righe $(2, 1)$ e $(0, 4)$. Per ognuno dei vettori $(1, 0)$, $(1, 2)$ e $(0, 1)$ calcola $Av$ e di' se è un autovettore. Se lo è, scrivi il suo autovalore.
+::: soluzione
+Per ogni vettore faccio il prodotto una riga alla volta, poi guardo se esce un multiplo.
+
+1. Per $(1, 0)$: esce $(2 \cdot 1 + 1 \cdot 0,\ 0 \cdot 1 + 4 \cdot 0) = (2, 0)$. È 2 volte $(1, 0)$. **Autovettore con autovalore 2.**
+2. Per $(1, 2)$: esce $(2 \cdot 1 + 1 \cdot 2,\ 0 \cdot 1 + 4 \cdot 2) = (4, 8)$. È 4 volte $(1, 2)$. **Autovettore con autovalore 4.**
+3. Per $(0, 1)$: esce $(2 \cdot 0 + 1 \cdot 1,\ 0 \cdot 0 + 4 \cdot 1) = (1, 4)$. Un multiplo di $(0, 1)$ ha 0 nel primo posto, e qui c'è 1. **Non è un autovettore.**
+
+Controllo: la matrice è triangolare, quindi i suoi autovalori sono i numeri sulla diagonale, 2 e 4. Sono proprio i due trovati.
+:::
+
+::: esercizio base Dal polinomio caratteristico agli autovalori
+Il polinomio caratteristico di una matrice è: (a) $(5 - \lambda)(1 - \lambda)$; (b) $\lambda^2 - 6\lambda + 8$; (c) $\lambda^2 + 4$. In ogni caso trova gli autovalori reali.
+::: soluzione
+Gli autovalori sono le radici del polinomio, cioè i numeri che lo fanno diventare zero.
+
+(a) Il polinomio è già scritto come prodotto. È zero quando è zero uno dei due pezzi: $\lambda = 5$ oppure $\lambda = 1$. **Autovalori 5 e 1.**
+
+(b) Uso la formula per il secondo grado, con $a = 1$, $b = -6$, $c = 8$.
+
+1. Discriminante: $(-6)^2 - 4 \cdot 1 \cdot 8 = 36 - 32 = 4$. La sua radice quadrata è 2.
+2. Radici: $\frac{6 + 2}{2} = 4$ e $\frac{6 - 2}{2} = 2$.
+
+**Autovalori 4 e 2.** Controllo: $4^2 - 6 \cdot 4 + 8 = 16 - 24 + 8 = 0$.
+
+(c) Qui $a = 1$, $b = 0$, $c = 4$. Il discriminante è $0 - 16 = -16$: è negativo. **Nessun autovalore reale.** Si vede anche senza formula: un quadrato non è mai negativo, quindi $\lambda^2 + 4$ vale almeno 4.
+:::
+
 ::: esercizio base Controllare se un vettore è un autovettore
 Sia $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$. Quali tra $(1, 1)$, $(1, -1)$, $(1, 0)$ sono autovettori di $A$, e con quale autovalore?
 ::: soluzione
-- $A(1, 1) = (2 + 1,\ 1 + 2) = (3, 3) = 3(1, 1)$: autovettore con autovalore $3$.
-- $A(1, -1) = (2 - 1,\ 1 - 2) = (1, -1) = 1 \cdot (1, -1)$: autovettore con autovalore $1$.
-- $A(1, 0) = (2, 1)$: per essere un multiplo di $(1, 0)$ dovrebbe avere seconda componente 0. Non è un autovettore.
+Per ogni vettore calcolo $Av$, una riga alla volta, e guardo se esce un multiplo.
 
-Controllo: $p_A(\lambda) = \lambda^2 - 4\lambda + 3 = (\lambda - 1)(\lambda - 3)$ (traccia 4, determinante 3), radici 1 e 3.
-:::
+1. Per $(1, 1)$: esce $(2 \cdot 1 + 1 \cdot 1,\ 1 \cdot 1 + 2 \cdot 1) = (3, 3)$. È 3 volte $(1, 1)$. **Autovettore con autovalore 3.**
+2. Per $(1, -1)$: esce $(2 \cdot 1 + 1 \cdot (-1),\ 1 \cdot 1 + 2 \cdot (-1)) = (1, -1)$. È 1 volta $(1, -1)$. **Autovettore con autovalore 1.**
+3. Per $(1, 0)$: esce $(2 \cdot 1 + 1 \cdot 0,\ 1 \cdot 1 + 2 \cdot 0) = (2, 1)$. Un multiplo di $(1, 0)$ ha 0 nel secondo posto, e qui c'è 1. **Non è un autovettore.**
 
-::: esercizio base Autovalori, autovettori, $M$ e $D$
-Trova autovalori e autovettori di $A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$ e scrivi $M$ invertibile e $D$ diagonale con $D = M^{-1}AM$.
-::: soluzione
-**Polinomio caratteristico**: $\tr A = 7$, $\det A = 12 - 2 = 10$, quindi $p_A(\lambda) = \lambda^2 - 7\lambda + 10 = (\lambda - 2)(\lambda - 5)$. Autovalori $2$ e $5$ (controllo: $2 + 5 = 7$, $2 \cdot 5 = 10$).
-
-**$\lambda = 2$**: $A - 2I_2 = \begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix}$, equazione $2x + y = 0$, cioè $y = -2x$: autovettore $(1, -2)$. Controllo: $A(1, -2) = (4 - 2,\ 2 - 6) = (2, -4) = 2(1, -2)$.
-
-**$\lambda = 5$**: $A - 5I_2 = \begin{pmatrix} -1 & 1 \\ 2 & -2 \end{pmatrix}$, equazione $-x + y = 0$: autovettore $(1, 1)$. Controllo: $A(1, 1) = (5, 5)$.
-
-$$M = \begin{pmatrix} 1 & 1 \\ -2 & 1 \end{pmatrix}, \qquad D = \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}.$$
-$\det M = 1 + 2 = 3 \neq 0$. Controllo $AM = MD$: $AM = \begin{pmatrix} 2 & 5 \\ -4 & 5 \end{pmatrix}$ e $MD = \begin{pmatrix} 2 & 5 \\ -4 & 5 \end{pmatrix}$.
-:::
-
-::: esercizio medio Una formula per tutte le potenze
-Con la matrice $A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$ dell'esercizio precedente, trova una formula per $A^n$ e controllala per $n = 2$.
-::: soluzione
-$M^{-1} = \frac 13 \begin{pmatrix} 1 & -1 \\ 2 & 1 \end{pmatrix}$ ($\det M = 3$). Allora
-$$A^n = MD^nM^{-1} = \begin{pmatrix} 1 & 1 \\ -2 & 1 \end{pmatrix}\begin{pmatrix} 2^n & 0 \\ 0 & 5^n \end{pmatrix}\frac 13\begin{pmatrix} 1 & -1 \\ 2 & 1 \end{pmatrix} = \frac 13\begin{pmatrix} 2^n & 5^n \\ -2^{n+1} & 5^n \end{pmatrix}\begin{pmatrix} 1 & -1 \\ 2 & 1 \end{pmatrix}$$
-$$= \frac 13\begin{pmatrix} 2^n + 2 \cdot 5^n & -2^n + 5^n \\ -2^{n+1} + 2 \cdot 5^n & 2^{n+1} + 5^n \end{pmatrix}.$$
-Per $n = 2$: $\frac 13\begin{pmatrix} 4 + 50 & -4 + 25 \\ -8 + 50 & 8 + 25 \end{pmatrix} = \frac 13\begin{pmatrix} 54 & 21 \\ 42 & 33 \end{pmatrix} = \begin{pmatrix} 18 & 7 \\ 14 & 11 \end{pmatrix}$. Il prodotto diretto: $A^2 = \begin{pmatrix} 16 + 2 & 4 + 3 \\ 8 + 6 & 2 + 9 \end{pmatrix} = \begin{pmatrix} 18 & 7 \\ 14 & 11 \end{pmatrix}$.
-:::
-
-::: esercizio medio Il polinomio caratteristico dell'Esempio 17.4
-Calcola il polinomio caratteristico di $A = \begin{pmatrix} 1 & 1 & -1 \\ 2 & 1 & 1 \\ 3 & 0 & 2 \end{pmatrix}$. Quali sono gli autovalori reali? E quelli complessi? $A$ è diagonalizzabile su $\R$?
-::: soluzione
-Sviluppo $\det(A - \lambda I_3)$ lungo la seconda colonna $(1,\ 1 - \lambda,\ 0)$, che ha uno zero:
-$$\det\begin{pmatrix} 1 - \lambda & 1 & -1 \\ 2 & 1 - \lambda & 1 \\ 3 & 0 & 2 - \lambda \end{pmatrix} = -1 \cdot \det\begin{pmatrix} 2 & 1 \\ 3 & 2 - \lambda \end{pmatrix} + (1 - \lambda)\det\begin{pmatrix} 1 - \lambda & -1 \\ 3 & 2 - \lambda \end{pmatrix}.$$
-I segni: posto $(1, 2)$ segno $-$, posto $(2, 2)$ segno $+$. I due minori:
-- $\det\begin{pmatrix} 2 & 1 \\ 3 & 2 - \lambda \end{pmatrix} = 4 - 2\lambda - 3 = 1 - 2\lambda$;
-- $\det\begin{pmatrix} 1 - \lambda & -1 \\ 3 & 2 - \lambda \end{pmatrix} = (1 - \lambda)(2 - \lambda) + 3 = \lambda^2 - 3\lambda + 5$.
-
-Quindi
-$$p_A(\lambda) = -(1 - 2\lambda) + (1 - \lambda)(\lambda^2 - 3\lambda + 5) = -1 + 2\lambda + \lambda^2 - 3\lambda + 5 - \lambda^3 + 3\lambda^2 - 5\lambda = -\lambda^3 + 4\lambda^2 - 6\lambda + 4.$$
-Sappiamo dall'Esempio 17.4 che $2$ è un autovalore: infatti $p_A(2) = -8 + 16 - 12 + 4 = 0$. Dividendo per $\lambda - 2$ (Ruffini, lezione L04): $p_A(\lambda) = -(\lambda - 2)(\lambda^2 - 2\lambda + 2)$. Il fattore $\lambda^2 - 2\lambda + 2$ ha discriminante $4 - 8 = -4 < 0$: radici $1 \pm i$.
-
-Autovalori reali: solo $2$. Su $\C$: $2$, $1 + i$, $1 - i$. Controllo: $2 + (1 + i) + (1 - i) = 4 = \tr A$ e $2(1 + i)(1 - i) = 2 \cdot 2 = 4 = \det A$.
-
-Su $\R$ gli autovettori sono solo quelli di autovalore 2, e $(A - 2I_3)x = 0$ ha soluzioni $t(0, 1, 1)$ (una retta): non ci sono tre autovettori indipendenti, quindi $A$ **non** è diagonalizzabile su $\R$.
-:::
-
-::: esercizio medio Un endomorfismo di $\R_1[x]$
-Sia $T : \R_1[x] \to \R_1[x]$, $T(a + bx) = b + ax$. Trova autovalori e autovettori (come polinomi). $T$ è diagonalizzabile? Scrivi la matrice di $T$ in una base di autovettori.
-::: soluzione
-Nella base $\{1, x\}$: $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $p_A(\lambda) = \lambda^2 - 0 \cdot \lambda + (0 - 1) = \lambda^2 - 1 = (\lambda - 1)(\lambda + 1)$.
-
-- $\lambda = 1$: $A - I_2 = \begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}$, $y = x$: coordinate $(1, 1)$, polinomio $1 + x$.
-- $\lambda = -1$: $A + I_2 = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, $y = -x$: coordinate $(1, -1)$, polinomio $1 - x$.
-
-$\{1 + x,\ 1 - x\}$ è una base di autovettori, quindi $T$ è diagonalizzabile e in questa base $[T] = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$. Controllo: $T(1 + x) = 1 + x$, $T(1 - x) = -1 + x = -(1 - x)$.
-:::
-
-::: esercizio medio La rotazione di $90°$ su $\R$ e su $\C$ (oltre le dispense)
-Sia $A = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$. (a) Mostra che $L_A : \R^2 \to \R^2$ non ha autovalori. (b) Considera $L_A : \C^2 \to \C^2$ con la stessa matrice: trova autovalori e autovettori. $A$ è diagonalizzabile su $\C$?
-::: soluzione
-(a) $p_A(\lambda) = \lambda^2 - 0 \cdot \lambda + (0 + 1) = \lambda^2 + 1$, che non ha radici reali ($\lambda^2 \ge 0$). Nessun autovalore reale, quindi nessun autovettore in $\R^2$.
-
-(b) Su $\C$: $\lambda^2 + 1 = 0$ per $\lambda = \pm i$.
-- $\lambda = i$: $A - iI_2 = \begin{pmatrix} -i & -1 \\ 1 & -i \end{pmatrix}$. La seconda equazione è $x - iy = 0$, cioè $x = iy$: autovettore $(i, 1)$. Controllo: $A(i, 1) = (-1, i) = i\,(i, 1)$, perché $i \cdot i = -1$.
-- $\lambda = -i$: $x + iy = 0$, cioè $x = -iy$: autovettore $(-i, 1)$. Controllo: $A(-i, 1) = (-1, -i) = -i\,(-i, 1)$.
-
-I due autovettori sono indipendenti ($\det\begin{pmatrix} i & -i \\ 1 & 1 \end{pmatrix} = i + i = 2i \neq 0$), quindi su $\C$ la matrice è diagonalizzabile con $D = \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix}$. La stessa matrice è diagonalizzabile su $\C$ ma non su $\R$ (Martelli, Esempio 5.1.31): negli appelli con parametro $k \in \C$ questo conta.
+Controllo con il polinomio caratteristico. La traccia è $2 + 2 = 4$ e il determinante è $2 \cdot 2 - 1 \cdot 1 = 3$. Con la formula veloce il polinomio è $\lambda^2 - 4\lambda + 3$. Il discriminante è $16 - 12 = 4$, e le radici sono $\frac{4 + 2}{2} = 3$ e $\frac{4 - 2}{2} = 1$. Sono proprio i due autovalori trovati.
 :::
 
 ::: esercizio base Autovalori di una matrice triangolare
 Trova gli autovalori di $A = \begin{pmatrix} 2 & 5 & -1 \\ 0 & -1 & 7 \\ 0 & 0 & 3 \end{pmatrix}$ spiegando perché non serve sviluppare tutto il determinante. Poi trova un autovettore per l'autovalore $2$.
 ::: soluzione
-$A - \lambda I_3 = \begin{pmatrix} 2 - \lambda & 5 & -1 \\ 0 & -1 - \lambda & 7 \\ 0 & 0 & 3 - \lambda \end{pmatrix}$ è ancora triangolare superiore, e il determinante di una triangolare è il prodotto della diagonale (lezione L09). Quindi $p_A(\lambda) = (2 - \lambda)(-1 - \lambda)(3 - \lambda)$ e gli autovalori sono $2, -1, 3$: gli elementi della diagonale.
+**Gli autovalori.**
 
-Autovettore per $2$: $A - 2I_3 = \begin{pmatrix} 0 & 5 & -1 \\ 0 & -3 & 7 \\ 0 & 0 & 1 \end{pmatrix}$. Dalla terza riga $z = 0$, poi dalla prima $5y = 0$: $y = 0$; $x$ è libera. Autovettore $e_1 = (1, 0, 0)$. Controllo: $Ae_1$ è la prima colonna, $(2, 0, 0) = 2e_1$.
+1. La matrice è triangolare: sotto la diagonale ci sono solo zeri. Togliendo $\lambda$ sulla diagonale resta triangolare:
+   $$A - \lambda I = \begin{pmatrix} 2 - \lambda & 5 & -1 \\ 0 & -1 - \lambda & 7 \\ 0 & 0 & 3 - \lambda \end{pmatrix}$$
+2. Il determinante di una matrice triangolare è il prodotto dei numeri sulla diagonale (lezione L09). Quindi
+   $$p_A(\lambda) = (2 - \lambda)(-1 - \lambda)(3 - \lambda)$$
+3. Il prodotto è zero quando è zero uno dei tre pezzi. Gli autovalori sono $2$, $-1$ e $3$: i numeri sulla diagonale.
+
+**Un autovettore per l'autovalore 2.**
+
+4. Tolgo 2 sulla diagonale:
+   $$A - 2I = \begin{pmatrix} 0 & 5 & -1 \\ 0 & -3 & 7 \\ 0 & 0 & 1 \end{pmatrix}$$
+5. Chiamo $(x, y, z)$ il vettore che cerco. Le tre righe danno tre equazioni: $5y - z = 0$, poi $-3y + 7z = 0$, poi $z = 0$.
+6. La terza dice $z = 0$. Nella prima resta $5y = 0$, quindi $y = 0$. La seconda è rispettata: $-3 \cdot 0 + 7 \cdot 0 = 0$.
+7. La $x$ non compare in nessuna equazione: è libera, la scelgo io. Con $x = 1$ l'autovettore è $(1, 0, 0)$.
+
+Controllo: moltiplicare la matrice per $(1, 0, 0)$ dà la sua prima colonna, $(2, 0, 0)$. È 2 volte $(1, 0, 0)$.
+:::
+
+::: esercizio base Autovalori, autovettori, $M$ e $D$
+Trova autovalori e autovettori di $A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$ e scrivi $M$ invertibile e $D$ diagonale con $D = M^{-1}AM$.
+::: soluzione
+1. **Polinomio caratteristico.** Uso la formula veloce. La traccia è $4 + 3 = 7$. Il determinante è $4 \cdot 3 - 1 \cdot 2 = 10$. Quindi
+   $$p_A(\lambda) = \lambda^2 - 7\lambda + 10$$
+2. **Autovalori.** Il discriminante è $49 - 40 = 9$, con radice quadrata 3. Le radici sono $\frac{7 + 3}{2} = 5$ e $\frac{7 - 3}{2} = 2$. Controllo: la somma è 7 come la traccia, il prodotto è 10 come il determinante.
+3. **Autovettori dell'autovalore 2.** Tolgo 2 sulla diagonale:
+   $$A - 2I = \begin{pmatrix} 2 & 1 \\ 2 & 1 \end{pmatrix}$$
+   Le due righe sono uguali. Resta l'equazione $2x + y = 0$, cioè $y = -2x$. Scelgo $x = 1$: l'autovettore è $(1, -2)$.
+4. **Autovettori dell'autovalore 5.** Tolgo 5 sulla diagonale:
+   $$A - 5I = \begin{pmatrix} -1 & 1 \\ 2 & -2 \end{pmatrix}$$
+   La seconda riga è la prima moltiplicata per $-2$. Resta l'equazione $-x + y = 0$, cioè $y = x$. Scelgo $x = 1$: l'autovettore è $(1, 1)$.
+5. **Le due matrici.** Autovettori in colonna, autovalori nello stesso ordine:
+   $$M = \begin{pmatrix} 1 & 1 \\ -2 & 1 \end{pmatrix} \qquad\qquad D = \begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}$$
+6. **$M$ è invertibile.** Il suo determinante è $1 \cdot 1 - 1 \cdot (-2) = 3$, diverso da zero.
+
+Controllo degli autovettori: da $(1, -2)$ esce $(4 - 2,\ 2 - 6) = (2, -4)$, cioè 2 volte il vettore. Da $(1, 1)$ esce $(4 + 1,\ 2 + 3) = (5, 5)$, cioè 5 volte il vettore.
+
+Controllo delle due matrici con $AM = MD$:
+
+$$AM = \begin{pmatrix} 4 \cdot 1 + 1 \cdot (-2) & 4 \cdot 1 + 1 \cdot 1 \\ 2 \cdot 1 + 3 \cdot (-2) & 2 \cdot 1 + 3 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ -4 & 5 \end{pmatrix}$$
+
+$$MD = \begin{pmatrix} 1 \cdot 2 + 1 \cdot 0 & 1 \cdot 0 + 1 \cdot 5 \\ -2 \cdot 2 + 1 \cdot 0 & -2 \cdot 0 + 1 \cdot 5 \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ -4 & 5 \end{pmatrix}$$
+
+Sono uguali.
+:::
+
+::: esercizio medio Una formula per tutte le potenze
+Con la matrice $A = \begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$ dell'esercizio precedente, trova una formula per $A^n$ e controllala per $n = 2$.
+::: soluzione
+Uso la formula $A^n = MD^nM^{-1}$, con le matrici $M$ e $D$ dell'esercizio 6.
+
+1. **L'inversa di $M$.** Il determinante di $M$ è 3. Scambio i due numeri sulla diagonale: sono 1 e 1, quindi restano uguali. Cambio segno agli altri due: 1 diventa $-1$, e $-2$ diventa 2. Divido per 3.
+   $$M^{-1} = \frac 13\begin{pmatrix} 1 & -1 \\ 2 & 1 \end{pmatrix}$$
+2. **La potenza di $D$.** Elevo i numeri sulla diagonale.
+   $$D^n = \begin{pmatrix} 2^n & 0 \\ 0 & 5^n \end{pmatrix}$$
+3. **Il prodotto $MD^n$.**
+   $$\begin{pmatrix} 1 & 1 \\ -2 & 1 \end{pmatrix}\begin{pmatrix} 2^n & 0 \\ 0 & 5^n \end{pmatrix} = \begin{pmatrix} 1 \cdot 2^n + 1 \cdot 0 & 1 \cdot 0 + 1 \cdot 5^n \\ -2 \cdot 2^n + 1 \cdot 0 & -2 \cdot 0 + 1 \cdot 5^n \end{pmatrix} = \begin{pmatrix} 2^n & 5^n \\ -2^{n+1} & 5^n \end{pmatrix}$$
+   In basso a sinistra ho scritto $-2 \cdot 2^n$ come $-2^{n+1}$: moltiplicare per 2 alza l'esponente di uno.
+4. **Si moltiplica per $M^{-1}$**, tenendo fuori la frazione $\frac 13$. I quattro numeri del prodotto, uno per riga:
+   - in alto a sinistra: $2^n \cdot 1 + 5^n \cdot 2 = 2^n + 2 \cdot 5^n$;
+   - in alto a destra: $2^n \cdot (-1) + 5^n \cdot 1 = -2^n + 5^n$;
+   - in basso a sinistra: $-2^{n+1} \cdot 1 + 5^n \cdot 2 = -2^{n+1} + 2 \cdot 5^n$;
+   - in basso a destra: $-2^{n+1} \cdot (-1) + 5^n \cdot 1 = 2^{n+1} + 5^n$.
+5. **La formula.**
+   $$A^n = \frac 13\begin{pmatrix} 2^n + 2 \cdot 5^n & -2^n + 5^n \\ -2^{n+1} + 2 \cdot 5^n & 2^{n+1} + 5^n \end{pmatrix}$$
+
+**Controllo per $n = 2$.** Servono $2^2 = 4$, poi $2^3 = 8$, poi $5^2 = 25$. La formula dà
+
+$$\frac 13\begin{pmatrix} 4 + 50 & -4 + 25 \\ -8 + 50 & 8 + 25 \end{pmatrix} = \frac 13\begin{pmatrix} 54 & 21 \\ 42 & 33 \end{pmatrix} = \begin{pmatrix} 18 & 7 \\ 14 & 11 \end{pmatrix}$$
+
+Il prodotto diretto dà
+
+$$A^2 = \begin{pmatrix} 4 \cdot 4 + 1 \cdot 2 & 4 \cdot 1 + 1 \cdot 3 \\ 2 \cdot 4 + 3 \cdot 2 & 2 \cdot 1 + 3 \cdot 3 \end{pmatrix} = \begin{pmatrix} 18 & 7 \\ 14 & 11 \end{pmatrix}$$
+
+I due risultati coincidono.
+:::
+
+::: esercizio medio Il polinomio caratteristico dell'Esempio 17.4
+Calcola il polinomio caratteristico di $A = \begin{pmatrix} 1 & 1 & -1 \\ 2 & 1 & 1 \\ 3 & 0 & 2 \end{pmatrix}$. Quali sono gli autovalori reali? E quelli complessi? $A$ è diagonalizzabile su $\R$?
+::: soluzione
+**Il polinomio caratteristico.**
+
+1. Tolgo $\lambda$ sulla diagonale:
+   $$A - \lambda I = \begin{pmatrix} 1 - \lambda & 1 & -1 \\ 2 & 1 - \lambda & 1 \\ 3 & 0 & 2 - \lambda \end{pmatrix}$$
+2. La seconda colonna, $(1,\ 1 - \lambda,\ 0)$, ha uno zero: sviluppo lungo quella. I segni dei suoi tre posti, dalla scacchiera, sono meno, più, meno.
+3. Primo pezzo: il numero 1, con il segno meno. Cancello la prima riga e la seconda colonna. Restano le righe $(2,\ 1)$ e $(3,\ 2 - \lambda)$. Il determinante è $2 \cdot (2 - \lambda) - 1 \cdot 3 = 1 - 2\lambda$. Con il segno meno il pezzo vale $-1 + 2\lambda$.
+4. Secondo pezzo: il numero $1 - \lambda$, con il segno più. Cancello la seconda riga e la seconda colonna. Restano le righe $(1 - \lambda,\ -1)$ e $(3,\ 2 - \lambda)$. Il determinante è $(1 - \lambda)(2 - \lambda) + 3$. Il prodotto fa $2 - 3\lambda + \lambda^2$, quindi il determinante è $\lambda^2 - 3\lambda + 5$.
+5. Moltiplico il secondo pezzo per $1 - \lambda$:
+   $$(1 - \lambda)(\lambda^2 - 3\lambda + 5) = \lambda^2 - 3\lambda + 5 - \lambda^3 + 3\lambda^2 - 5\lambda = -\lambda^3 + 4\lambda^2 - 8\lambda + 5$$
+6. Sommo i due pezzi:
+   $$p_A(\lambda) = -1 + 2\lambda - \lambda^3 + 4\lambda^2 - 8\lambda + 5 = -\lambda^3 + 4\lambda^2 - 6\lambda + 4$$
+
+**Gli autovalori.**
+
+7. Dall'Esempio 17.4 so che 2 è un autovalore. Controllo: $-8 + 16 - 12 + 4 = 0$.
+8. Divido per $\lambda - 2$ con la regola di Ruffini (lezione L04). I numeri del polinomio sono $-1$, 4, $-6$ e 4. Il primo si copia. Poi a ogni passo si moltiplica per 2 l'ultimo numero trovato e si somma al successivo.
+   - Primo numero: $-1$.
+   - Secondo: $4 + 2 \cdot (-1) = 2$.
+   - Terzo: $-6 + 2 \cdot 2 = -2$.
+   - Quarto: $4 + 2 \cdot (-2) = 0$. È il resto.
+
+   Il quoziente è $-\lambda^2 + 2\lambda - 2$. Quindi
+   $$p_A(\lambda) = -(\lambda - 2)(\lambda^2 - 2\lambda + 2)$$
+9. Il pezzo di secondo grado ha discriminante $4 - 8 = -4$: è negativo, quindi non ci sono altre radici reali. Nei numeri complessi la radice quadrata di $-4$ è $2i$, e le radici sono
+   $$\lambda = \frac{2 \pm 2i}{2} = 1 \pm i$$
+
+**Autovalori reali:** solo 2. **Autovalori complessi:** $2$, poi $1 + i$, poi $1 - i$.
+
+Controllo: la somma dei tre è $2 + 1 + 1 = 4$, perché i pezzi con la $i$ si cancellano. La traccia è $1 + 1 + 2 = 4$.
+
+**La matrice è diagonalizzabile con i numeri reali?**
+
+10. Con i numeri reali l'unico autovalore è 2. Cerco i suoi autovettori. Tolgo 2 sulla diagonale:
+    $$A - 2I = \begin{pmatrix} -1 & 1 & -1 \\ 2 & -1 & 1 \\ 3 & 0 & 0 \end{pmatrix}$$
+11. La terza riga dice $3x = 0$, cioè $x = 0$. Con $x = 0$ la prima riga diventa $y - z = 0$, cioè $y = z$. La seconda diventa $-y + z = 0$: dice la stessa cosa.
+12. Gli autovettori sono i multipli di $(0, 1, 1)$: una sola retta.
+
+Per una base dello spazio servono tre autovettori indipendenti. Qui tutti gli autovettori reali stanno su una retta. Quindi la matrice **non** è diagonalizzabile con i numeri reali.
+:::
+
+::: esercizio medio Un endomorfismo di $\R_1[x]$
+Sia $T : \R_1[x] \to \R_1[x]$, $T(a + bx) = b + ax$. Trova autovalori e autovettori (come polinomi). $T$ è diagonalizzabile? Scrivi la matrice di $T$ in una base di autovettori.
+::: soluzione
+1. **La matrice.** Uso la base fatta dai polinomi $1$ e $x$. La macchina scambia i due numeri del polinomio. Da $1 = 1 + 0x$ esce $0 + 1x$, con coordinate $(0, 1)$: prima colonna. Da $x = 0 + 1x$ esce $1 + 0x$, con coordinate $(1, 0)$: seconda colonna.
+   $$A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$$
+2. **Il polinomio caratteristico.** La traccia è 0. Il determinante è $0 \cdot 0 - 1 \cdot 1 = -1$. Con la formula veloce il polinomio è $\lambda^2 - 1$.
+3. **Gli autovalori.** $\lambda^2 - 1 = 0$ vuol dire $\lambda^2 = 1$. I numeri con quadrato 1 sono $1$ e $-1$.
+4. **Autovettori dell'autovalore 1.** Tolgo 1 sulla diagonale. Chiamo $(s, t)$ le coordinate che cerco, per non confonderle con la $x$ dei polinomi.
+   $$A - I = \begin{pmatrix} -1 & 1 \\ 1 & -1 \end{pmatrix}$$
+   La prima riga dice $-s + t = 0$, cioè $t = s$. La seconda dice la stessa cosa. Scelgo le coordinate $(1, 1)$: è il polinomio $1 + x$.
+5. **Autovettori dell'autovalore $-1$.** Togliere $-1$ vuol dire sommare 1 sulla diagonale.
+   $$A + I = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$$
+   Le due righe dicono $s + t = 0$, cioè $t = -s$. Scelgo le coordinate $(1, -1)$: è il polinomio $1 - x$.
+6. **Diagonalizzabile?** I polinomi $1 + x$ e $1 - x$ sono due autovettori, e non sono uno multiplo dell'altro. Lo spazio $\R_1[x]$ ha dimensione 2, quindi formano una base. La macchina è diagonalizzabile.
+7. **La matrice nella base degli autovettori.** È diagonale, con gli autovalori nello stesso ordine dei vettori della base:
+   $$\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$$
+
+Controllo sui polinomi. Da $1 + x$ esce $1 + x$: una volta sé stesso. Da $1 - x$ esce $-1 + x$, cioè $-(1 - x)$: meno una volta sé stesso.
+:::
+
+::: esercizio medio La rotazione di $90°$ su $\R$ e su $\C$ (oltre le dispense)
+Sia $A = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$. (a) Mostra che $L_A : \R^2 \to \R^2$ non ha autovalori. (b) Considera $L_A : \C^2 \to \C^2$ con la stessa matrice: trova autovalori e autovettori. $A$ è diagonalizzabile su $\C$?
+::: soluzione
+Nel testo, $\R^2$ indica i vettori fatti da due numeri reali, e $\C^2$ quelli fatti da due numeri complessi.
+
+**(a) Con i numeri reali.**
+
+1. La traccia è 0. Il determinante è $0 \cdot 0 - (-1) \cdot 1 = 1$. Con la formula veloce il polinomio caratteristico è $\lambda^2 + 1$.
+2. Per un numero reale il quadrato non è mai negativo. Quindi $\lambda^2 + 1$ vale almeno 1, e non è mai zero.
+3. Nessuna radice reale vuol dire nessun autovalore reale, e quindi nessun autovettore fatto di numeri reali.
+
+**(b) Con i numeri complessi.** Ricorda dalla lezione L02: con $i$ si fanno i conti come con una lettera, e ogni volta che compare $i \cdot i$ si scrive $-1$.
+
+4. **Autovalori.** $\lambda^2 + 1 = 0$ vuol dire $\lambda^2 = -1$. I numeri complessi con quadrato $-1$ sono $i$ e $-i$.
+5. **Autovettori dell'autovalore $i$.** Tolgo $i$ sulla diagonale:
+   $$A - iI = \begin{pmatrix} -i & -1 \\ 1 & -i \end{pmatrix}$$
+   La seconda riga dice $x - iy = 0$, cioè $x = iy$. Scelgo $y = 1$: l'autovettore è $(i, 1)$. La prima riga è rispettata: $-i \cdot i - 1 = 1 - 1 = 0$.
+6. **Autovettori dell'autovalore $-i$.** Togliere $-i$ vuol dire sommare $i$ sulla diagonale:
+   $$A + iI = \begin{pmatrix} i & -1 \\ 1 & i \end{pmatrix}$$
+   La seconda riga dice $x + iy = 0$, cioè $x = -iy$. Scelgo $y = 1$: l'autovettore è $(-i, 1)$. La prima riga è rispettata: $i \cdot (-i) - 1 = 1 - 1 = 0$.
+7. **Diagonalizzabile?** Metto i due autovettori in colonna e calcolo il determinante:
+   $$\det\begin{pmatrix} i & -i \\ 1 & 1 \end{pmatrix} = i \cdot 1 - (-i) \cdot 1 = 2i$$
+   Non è zero, quindi i due autovettori sono indipendenti. Con i numeri complessi la matrice è diagonalizzabile, e la matrice diagonale è
+   $$D = \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix}$$
+
+Controllo degli autovettori. Da $(i, 1)$ esce $(0 \cdot i - 1 \cdot 1,\ 1 \cdot i + 0 \cdot 1) = (-1, i)$. E $i$ volte $(i, 1)$ è $(i \cdot i,\ i) = (-1, i)$: uguali. Da $(-i, 1)$ esce $(-1, -i)$. E $-i$ volte $(-i, 1)$ è $(i \cdot i,\ -i) = (-1, -i)$: uguali.
+
+La stessa matrice è diagonalizzabile con i numeri complessi ma non con i numeri reali (Martelli, Esempio 5.1.31). Negli appelli in cui il parametro è un numero complesso questa differenza conta.
 :::
 
 ::: esercizio difficile Autovalore zero, potenze e inversa
 Sia $A \in M(n, \K)$. (a) Dimostra che $0$ è un autovalore di $A$ se e solo se $A$ non è invertibile. (b) Dimostra che se $v$ è autovettore di $A$ con autovalore $\lambda$, allora $v$ è autovettore di $A^2$ con autovalore $\lambda^2$. (c) Se $A$ è invertibile e $Av = \lambda v$ con $v \neq 0$, dimostra che $\lambda \neq 0$ e che $v$ è autovettore di $A^{-1}$ con autovalore $\frac 1\lambda$.
 ::: soluzione
-(a) Per la Proposizione 17.13, $0$ è autovalore $\iff p_A(0) = 0 \iff \det(A - 0 \cdot I_n) = \det A = 0 \iff A$ non è invertibile.
+**(a)** Tre frasi che sono vere insieme oppure false insieme.
 
-(b) $A^2v = A(Av) = A(\lambda v) = \lambda Av = \lambda \cdot \lambda v = \lambda^2 v$, e $v \neq 0$.
+1. Lo 0 è un autovalore esattamente quando è una radice del polinomio caratteristico (Proposizione 17.13).
+2. Mettendo 0 al posto di $\lambda$ nel polinomio caratteristico viene $\det(A - 0 \cdot I) = \det A$. Quindi 0 è una radice esattamente quando $\det A = 0$.
+3. Il determinante è zero esattamente quando la matrice non è invertibile (Proposizione 10.8).
 
-(c) Se fosse $\lambda = 0$, avremmo $Av = 0$ con $v \neq 0$, cioè $\Ker A \neq \{0\}$, impossibile per una matrice invertibile. Moltiplicando $Av = \lambda v$ a sinistra per $A^{-1}$: $v = \lambda A^{-1}v$, quindi $A^{-1}v = \frac 1\lambda v$.
+**(b)** Faccio passare $v$ due volte nella macchina.
 
-Esempio: $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$ ha autovalori $3, 2$; $A^2 = \begin{pmatrix} 9 & 20 \\ 0 & 4 \end{pmatrix}$ ha autovalori $9, 4$, e $A^{-1} = \frac 16\begin{pmatrix} 2 & -4 \\ 0 & 3 \end{pmatrix}$ ha autovalori $\frac 13, \frac 12$.
+1. $A^2 v$ vuol dire $A$ per $Av$.
+2. Al posto di $Av$ scrivo $\lambda v$: ottengo $A(\lambda v)$.
+3. Il numero $\lambda$ esce fuori: ottengo $\lambda \cdot Av$.
+4. Di nuovo al posto di $Av$ scrivo $\lambda v$: ottengo $\lambda \cdot \lambda v = \lambda^2 v$.
+
+Quindi $A^2 v = \lambda^2 v$. Il vettore $v$ non è nullo, quindi è un autovettore di $A^2$ con autovalore $\lambda^2$.
+
+**(c)** Prima mostro che $\lambda$ non è zero, poi trovo l'autovalore dell'inversa.
+
+1. Faccio finta che $\lambda$ sia 0. Allora $Av = 0$. Moltiplico a sinistra per $A^{-1}$: a sinistra resta $v$, a destra resta il vettore nullo. Quindi $v = 0$. Ma $v$ non è nullo: è impossibile. Quindi $\lambda \neq 0$.
+2. Parto da $Av = \lambda v$ e moltiplico i due lati a sinistra per $A^{-1}$. A sinistra $A^{-1}A$ è l'identità, e resta $v$. A destra il numero esce fuori: $\lambda A^{-1}v$.
+3. Ho ottenuto $v = \lambda A^{-1} v$. Divido per $\lambda$, che non è zero:
+   $$A^{-1} v = \frac 1\lambda v$$
+
+Quindi $v$ è un autovettore dell'inversa, con autovalore $\frac 1\lambda$.
+
+**Controllo con i numeri.** La matrice dell'Esempio 17.2 ha autovalori 3 e 2.
+
+- Il suo quadrato ha le righe $(9, 20)$ e $(0, 4)$. È triangolare, con autovalori 9 e 4: i quadrati di 3 e di 2.
+- La sua inversa. Il determinante è $3 \cdot 2 - 4 \cdot 0 = 6$. Scambio i numeri sulla diagonale, cambio segno agli altri due, divido per 6:
+  $$A^{-1} = \frac 16\begin{pmatrix} 2 & -4 \\ 0 & 3 \end{pmatrix}$$
+  È triangolare, con autovalori $\frac 26 = \frac 13$ e $\frac 36 = \frac 12$: gli inversi di 3 e di 2.
 :::
 
 ::: esercizio difficile Una matrice e la sua trasposta
 (a) Dimostra che $A$ e ${}^tA$ hanno lo stesso polinomio caratteristico. (b) Mostra con $A = \begin{pmatrix} 3 & 4 \\ 0 & 2 \end{pmatrix}$ che però non hanno gli stessi autovettori.
 ::: soluzione
-(a) ${}^tA - \lambda I_n = {}^t(A - \lambda I_n)$, perché $I_n$ è simmetrica e la trasposta di una somma è la somma delle trasposte. Una matrice e la sua trasposta hanno lo stesso determinante (lezione L09), quindi $p_{{}^tA}(\lambda) = \det\big({}^t(A - \lambda I_n)\big) = \det(A - \lambda I_n) = p_A(\lambda)$.
+La **trasposta** di una matrice si ottiene scambiando le righe con le colonne (lezione L08). Si scrive ${}^tA$.
 
-(b) ${}^tA = \begin{pmatrix} 3 & 0 \\ 4 & 2 \end{pmatrix}$ ha gli stessi autovalori $3$ e $2$. Ma ${}^tA\,e_1 = (3, 4)$, che non è un multiplo di $e_1$: $e_1$ è autovettore di $A$ e non di ${}^tA$. Gli autovettori di ${}^tA$: per $\lambda = 3$, ${}^tA - 3I_2 = \begin{pmatrix} 0 & 0 \\ 4 & -1 \end{pmatrix}$ dà $y = 4x$, autovettore $(1, 4)$; per $\lambda = 2$, ${}^tA - 2I_2 = \begin{pmatrix} 1 & 0 \\ 4 & 0 \end{pmatrix}$ dà $x = 0$, autovettore $(0, 1)$.
+**(a)**
+
+1. Trasporre una matrice non cambia i numeri sulla diagonale. Quindi fare prima la trasposta e poi togliere $\lambda$ sulla diagonale dà lo stesso risultato che fare prima la sottrazione e poi la trasposta. In formule: ${}^tA - \lambda I$ è la trasposta di $A - \lambda I$.
+2. Una matrice e la sua trasposta hanno lo stesso determinante (lezione L09).
+3. Quindi il determinante di ${}^tA - \lambda I$ è uguale al determinante di $A - \lambda I$. Il primo è il polinomio caratteristico di ${}^tA$, il secondo quello di $A$.
+
+**(b)**
+
+1. Scambio righe e colonne:
+   $${}^tA = \begin{pmatrix} 3 & 0 \\ 4 & 2 \end{pmatrix}$$
+   È triangolare, con autovalori 3 e 2: gli stessi di $A$, come dice il punto (a).
+2. Il vettore $e_1 = (1, 0)$ è un autovettore di $A$ (Esempio 17.2). Lo faccio passare nella trasposta: esce $(3 \cdot 1 + 0 \cdot 0,\ 4 \cdot 1 + 2 \cdot 0) = (3, 4)$. Un multiplo di $e_1$ ha 0 nel secondo posto, e qui c'è 4. Quindi $e_1$ **non** è un autovettore della trasposta.
+
+Per completezza, ecco gli autovettori della trasposta.
+
+3. Autovalore 3. Tolgo 3 sulla diagonale:
+   $${}^tA - 3I = \begin{pmatrix} 0 & 0 \\ 4 & -1 \end{pmatrix}$$
+   Resta l'equazione $4x - y = 0$, cioè $y = 4x$. Con $x = 1$ l'autovettore è $(1, 4)$.
+4. Autovalore 2. Tolgo 2 sulla diagonale:
+   $${}^tA - 2I = \begin{pmatrix} 1 & 0 \\ 4 & 0 \end{pmatrix}$$
+   Le due righe dicono $x = 0$. La $y$ è libera. Con $y = 1$ l'autovettore è $(0, 1)$.
+
+Controllo. Da $(1, 4)$ esce $(3 \cdot 1 + 0 \cdot 4,\ 4 \cdot 1 + 2 \cdot 4) = (3, 12)$, cioè 3 volte il vettore. Da $(0, 1)$ esce $(0, 2)$, cioè 2 volte il vettore.
 :::
 
 ::: esercizio esame Come all'esame: autovalori, autovettori e diagonalizzazione in $\R^3$
@@ -19281,16 +22659,46 @@ Sia $T : \R^3 \to \R^3$, $T(x, y, z) = (x + 2y,\ 2x + y,\ x + y + 2z)$.
 (2) Trova gli autovalori e, per ciascuno, un autovettore.
 (3) Mostra che gli autovettori trovati formano una base di $\R^3$ e scrivi $M$ e $D$ con $D = M^{-1}AM$.
 ::: soluzione
-(1) $A = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 1 & 0 \\ 1 & 1 & 2 \end{pmatrix}$. La terza colonna di $A - \lambda I_3$ è $(0, 0, 2 - \lambda)$: sviluppando lungo di essa,
-$$p_A(\lambda) = (2 - \lambda)\det\begin{pmatrix} 1 - \lambda & 2 \\ 2 & 1 - \lambda \end{pmatrix} = (2 - \lambda)\big((1 - \lambda)^2 - 4\big) = (2 - \lambda)(\lambda - 3)(\lambda + 1),$$
-perché $(1 - \lambda)^2 - 4 = (1 - \lambda - 2)(1 - \lambda + 2) = (-1 - \lambda)(3 - \lambda)$.
+**(1) La matrice e il polinomio caratteristico.**
 
-(2) Autovalori $3, -1, 2$ (controllo: $3 - 1 + 2 = 4 = \tr A$).
-- $\lambda = 3$: $A - 3I_3 = \begin{pmatrix} -2 & 2 & 0 \\ 2 & -2 & 0 \\ 1 & 1 & -1 \end{pmatrix}$: dalla prima riga $y = x$, dalla terza $z = x + y = 2x$. Autovettore $(1, 1, 2)$; controllo $A(1, 1, 2) = (3, 3, 6)$.
-- $\lambda = -1$: $A + I_3 = \begin{pmatrix} 2 & 2 & 0 \\ 2 & 2 & 0 \\ 1 & 1 & 3 \end{pmatrix}$: $y = -x$, poi $x + y + 3z = 0$ dà $z = 0$. Autovettore $(1, -1, 0)$; controllo $A(1, -1, 0) = (-1, 1, 0)$.
-- $\lambda = 2$: $A - 2I_3 = \begin{pmatrix} -1 & 2 & 0 \\ 2 & -1 & 0 \\ 1 & 1 & 0 \end{pmatrix}$: dalle prime due righe $x = 2y$ e $y = 2x$, quindi $x = y = 0$; $z$ è libera. Autovettore $e_3 = (0, 0, 1)$; controllo $Ae_3 = (0, 0, 2)$.
+1. Una riga per ogni posto del risultato. Dove una lettera manca scrivo 0.
+   $$A = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 1 & 0 \\ 1 & 1 & 2 \end{pmatrix}$$
+2. Tolgo $\lambda$ sulla diagonale:
+   $$A - \lambda I = \begin{pmatrix} 1 - \lambda & 2 & 0 \\ 2 & 1 - \lambda & 0 \\ 1 & 1 & 2 - \lambda \end{pmatrix}$$
+3. La terza colonna, $(0,\ 0,\ 2 - \lambda)$, ha due zeri: sviluppo lungo quella. Conta solo l'ultimo numero, in un posto con il segno più. Cancello la terza riga e la terza colonna.
+   $$p_A(\lambda) = (2 - \lambda) \cdot \det\begin{pmatrix} 1 - \lambda & 2 \\ 2 & 1 - \lambda \end{pmatrix} = (2 - \lambda)\big((1 - \lambda)^2 - 4\big)$$
+4. Sviluppo il secondo pezzo: $(1 - \lambda)^2 - 4 = 1 - 2\lambda + \lambda^2 - 4 = \lambda^2 - 2\lambda - 3$.
+   $$p_A(\lambda) = (2 - \lambda)(\lambda^2 - 2\lambda - 3)$$
 
-(3) $M = \begin{pmatrix} 1 & 1 & 0 \\ 1 & -1 & 0 \\ 2 & 0 & 1 \end{pmatrix}$, con $\det M = 1 \cdot (-1 - 0) - 1 \cdot (1 - 0) + 0 = -2 \neq 0$ (sviluppo lungo la prima riga): le colonne sono una base. $D = \begin{pmatrix} 3 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$, nello stesso ordine. Controllo: $AM = \begin{pmatrix} 3 & -1 & 0 \\ 3 & 1 & 0 \\ 6 & 0 & 2 \end{pmatrix} = MD$.
+**(2) Autovalori e autovettori.**
+
+5. Il primo pezzo è zero per $\lambda = 2$. Per il secondo il discriminante è $4 + 12 = 16$, con radice quadrata 4. Le radici sono $\frac{2 + 4}{2} = 3$ e $\frac{2 - 4}{2} = -1$. Gli autovalori sono $3$, $-1$ e $2$. Scritto tutto come prodotto, il polinomio è $(2 - \lambda)(\lambda - 3)(\lambda + 1)$.
+6. Controllo con la traccia: $1 + 1 + 2 = 4$, e $3 - 1 + 2 = 4$.
+7. **Autovalore 3.** Tolgo 3 sulla diagonale:
+   $$A - 3I = \begin{pmatrix} -2 & 2 & 0 \\ 2 & -2 & 0 \\ 1 & 1 & -1 \end{pmatrix}$$
+   La prima riga dice $-2x + 2y = 0$, cioè $y = x$. La seconda dice la stessa cosa. La terza dice $x + y - z = 0$, cioè $z = x + y = 2x$. Con $x = 1$ l'autovettore è $(1, 1, 2)$.
+8. **Autovalore $-1$.** Sommo 1 sulla diagonale:
+   $$A + I = \begin{pmatrix} 2 & 2 & 0 \\ 2 & 2 & 0 \\ 1 & 1 & 3 \end{pmatrix}$$
+   Le prime due righe dicono $2x + 2y = 0$, cioè $y = -x$. Nella terza, $x + y + 3z = 0$, la somma $x + y$ vale 0: resta $3z = 0$, cioè $z = 0$. Con $x = 1$ l'autovettore è $(1, -1, 0)$.
+9. **Autovalore 2.** Tolgo 2 sulla diagonale:
+   $$A - 2I = \begin{pmatrix} -1 & 2 & 0 \\ 2 & -1 & 0 \\ 1 & 1 & 0 \end{pmatrix}$$
+   La prima riga dice $x = 2y$. Lo metto nella seconda, $2x - y = 0$: viene $4y - y = 3y = 0$, quindi $y = 0$ e poi $x = 0$. La terza, $x + y = 0$, è rispettata. La $z$ non compare: è libera. Con $z = 1$ l'autovettore è $(0, 0, 1)$.
+10. Controllo dei tre autovettori, facendoli passare nella macchina:
+    - da $(1, 1, 2)$ esce $(1 + 2,\ 2 + 1,\ 1 + 1 + 4) = (3, 3, 6)$, cioè 3 volte il vettore;
+    - da $(1, -1, 0)$ esce $(1 - 2,\ 2 - 1,\ 1 - 1 + 0) = (-1, 1, 0)$, cioè $-1$ volte il vettore;
+    - da $(0, 0, 1)$ esce $(0, 0, 2)$, cioè 2 volte il vettore.
+
+**(3) La base e le due matrici.**
+
+11. Metto i tre autovettori in colonna, e gli autovalori sulla diagonale nello stesso ordine:
+    $$M = \begin{pmatrix} 1 & 1 & 0 \\ 1 & -1 & 0 \\ 2 & 0 & 1 \end{pmatrix} \qquad\qquad D = \begin{pmatrix} 3 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$$
+12. Calcolo il determinante di $M$ sviluppando lungo la terza colonna, $(0, 0, 1)$. Conta solo l'1, in un posto con il segno più. Cancellando la terza riga e la terza colonna restano le righe $(1, 1)$ e $(1, -1)$:
+    $$\det M = 1 \cdot \big(1 \cdot (-1) - 1 \cdot 1\big) = -2$$
+    Non è zero. Quindi le tre colonne sono indipendenti e formano una base dello spazio. Vale $D = M^{-1}AM$.
+
+Controllo con $AM = MD$. Le colonne di $AM$ sono quello che esce dai tre autovettori: le ho calcolate al passo 10. Le colonne di $MD$ sono i tre autovettori moltiplicati per 3, per $-1$ e per 2. In tutti e due i casi viene
+
+$$\begin{pmatrix} 3 & -1 & 0 \\ 3 & 1 & 0 \\ 6 & 0 & 2 \end{pmatrix}$$
 :::
 
 ::: esercizio esame Come all'esame: $A = PDP^{-1}$ per una matrice triangolare
@@ -19299,100 +22707,126 @@ Sia $A = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 3 & 1 \\ 0 & 0 & -1 \end{pmatrix}$.
 (2) Trova un autovettore per ciascun autovalore.
 (3) Trova una matrice invertibile $P$ e una diagonale $D$ tali che $A = PDP^{-1}$, e controlla il risultato senza calcolare $P^{-1}$.
 ::: soluzione
-(1) $A$ è triangolare: autovalori $1, 3, -1$.
+In questo esercizio la matrice degli autovettori si chiama $P$ invece di $M$. È solo un altro nome: negli appelli si trovano tutti e due.
 
-(2)
-- $\lambda = 1$: $A - I_3 = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & -2 \end{pmatrix}$: $z = 0$, poi $y = 0$, $x$ libera. Autovettore $(1, 0, 0)$.
-- $\lambda = 3$: $A - 3I_3 = \begin{pmatrix} -2 & 2 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & -4 \end{pmatrix}$: $z = 0$, $-2x + 2y = 0$ cioè $y = x$. Autovettore $(1, 1, 0)$.
-- $\lambda = -1$: $A + I_3 = \begin{pmatrix} 2 & 2 & 0 \\ 0 & 4 & 1 \\ 0 & 0 & 0 \end{pmatrix}$: $z = -4y$ e $x = -y$. Con $y = -1$: autovettore $(1, -1, 4)$.
+**(1) Gli autovalori.**
 
-(3) $P = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & -1 \\ 0 & 0 & 4 \end{pmatrix}$ (autovettori in colonna), $D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & -1 \end{pmatrix}$. $P$ è triangolare con $\det P = 1 \cdot 1 \cdot 4 = 4 \neq 0$. $A = PDP^{-1}$ equivale a $AP = PD$: le colonne di $AP$ sono $A(1, 0, 0) = (1, 0, 0)$, $A(1, 1, 0) = (3, 3, 0)$, $A(1, -1, 4) = (1 - 2,\ -3 + 4,\ -4) = (-1, 1, -4)$, e le colonne di $PD$ sono $1 \cdot (1, 0, 0)$, $3 \cdot (1, 1, 0)$, $-1 \cdot (1, -1, 4)$: coincidono.
+1. La matrice è triangolare: sotto la diagonale ci sono solo zeri. Gli autovalori sono i numeri sulla diagonale: $1$, $3$ e $-1$.
+
+**(2) Un autovettore per ogni autovalore.** Chiamo $(x, y, z)$ il vettore che cerco.
+
+2. **Autovalore 1.** Tolgo 1 sulla diagonale:
+   $$A - I = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & -2 \end{pmatrix}$$
+   La prima riga dice $2y = 0$, cioè $y = 0$. La terza dice $-2z = 0$, cioè $z = 0$. La seconda, $2y + z = 0$, è rispettata. La $x$ è libera. Con $x = 1$ l'autovettore è $(1, 0, 0)$.
+3. **Autovalore 3.** Tolgo 3 sulla diagonale:
+   $$A - 3I = \begin{pmatrix} -2 & 2 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & -4 \end{pmatrix}$$
+   La seconda riga dice $z = 0$, e la terza è rispettata. La prima dice $-2x + 2y = 0$, cioè $y = x$. Con $x = 1$ l'autovettore è $(1, 1, 0)$.
+4. **Autovalore $-1$.** Sommo 1 sulla diagonale:
+   $$A + I = \begin{pmatrix} 2 & 2 & 0 \\ 0 & 4 & 1 \\ 0 & 0 & 0 \end{pmatrix}$$
+   La terza riga è tutta di zeri e non dice niente. La seconda dice $4y + z = 0$, cioè $z = -4y$. La prima dice $2x + 2y = 0$, cioè $x = -y$. Scelgo $y = -1$, così $x = 1$ e $z = 4$: l'autovettore è $(1, -1, 4)$.
+
+**(3) Le due matrici e il controllo.**
+
+5. Autovettori in colonna, autovalori nello stesso ordine:
+   $$P = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & -1 \\ 0 & 0 & 4 \end{pmatrix} \qquad\qquad D = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & -1 \end{pmatrix}$$
+6. $P$ è triangolare, quindi il suo determinante è il prodotto della diagonale: $1 \cdot 1 \cdot 4 = 4$. Non è zero: $P$ è invertibile.
+7. Moltiplicando a destra per $P$ i due lati di $A = PDP^{-1}$ si ottiene $AP = PD$. Basta controllare questa uguaglianza, una colonna alla volta.
+
+| Colonna | In $AP$: la matrice per l'autovettore | In $PD$: l'autovettore per l'autovalore |
+|---|---|---|
+| 1 | $(1 + 0 + 0,\ 0,\ 0) = (1, 0, 0)$ | $1 \cdot (1, 0, 0) = (1, 0, 0)$ |
+| 2 | $(1 + 2 + 0,\ 0 + 3 + 0,\ 0) = (3, 3, 0)$ | $3 \cdot (1, 1, 0) = (3, 3, 0)$ |
+| 3 | $(1 - 2 + 0,\ 0 - 3 + 4,\ -4) = (-1, 1, -4)$ | $-1 \cdot (1, -1, 4) = (-1, 1, -4)$ |
+
+Le colonne coincidono: $P$ e $D$ sono giuste.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Che cos'è un autovettore? E un autovalore?
-Un autovettore di $T : V \to V$ è un vettore $v \neq 0$ tale che $T(v) = \lambda v$ per qualche $\lambda \in \K$; lo scalare $\lambda$ è l'autovalore relativo a $v$.
+Un autovettore di una macchina $T$ è un vettore non nullo che la macchina manda in un suo multiplo: $T(v) = \lambda v$. Il numero $\lambda$, che dice per quanto viene moltiplicato il vettore, è l'autovalore.
 :::
 
 ::: domanda Perché il vettore nullo non può essere un autovettore, mentre $0$ può essere un autovalore?
-Perché $T(0) = \lambda \cdot 0$ vale per ogni $\lambda$: ogni scalare sarebbe un autovalore. Invece l'autovalore $0$ ha un significato preciso: i suoi autovettori sono i vettori non nulli del nucleo.
+Dal vettore nullo esce sempre il vettore nullo, che è multiplo di sé stesso con qualunque numero. Se lo accettassimo, ogni numero sarebbe un autovalore. L'autovalore 0 invece ha un significato preciso: i suoi autovettori sono i vettori non nulli che la macchina schiaccia su zero, cioè quelli del nucleo.
 :::
 
 ::: domanda Che cosa succede ai multipli di un autovettore?
-Ogni multiplo $\mu v$ con $\mu \neq 0$ è un autovettore con lo stesso autovalore: $T(\mu v) = \mu T(v) = \lambda(\mu v)$. Tutta la retta $\Span(v)$, tolto lo zero, è fatta di autovettori.
+Ogni multiplo non nullo di un autovettore è ancora un autovettore, con lo stesso autovalore. Il motivo: la macchina rispetta i multipli, quindi $T(\mu v) = \mu T(v) = \lambda \cdot (\mu v)$. Tutta la retta dell'autovettore, tolto lo zero, è fatta di autovettori.
 :::
 
 ::: domanda Perché si possono studiare gli autovettori usando solo le matrici?
-Perché, con $A = [T]^{\mathcal B}_{\mathcal B}$ e $x = [v]_{\mathcal B}$, vale $T(v) = \lambda v \iff Ax = \lambda x$ (le coordinate di $T(v)$ sono $Ax$ e quelle di $\lambda v$ sono $\lambda x$).
+Perché con le coordinate ogni macchina diventa una matrice. Se $A$ è la matrice della macchina in una base e $x$ è la lista delle coordinate di $v$, allora $T(v) = \lambda v$ vale esattamente quando $Ax = \lambda x$.
 :::
 
 ::: domanda Perché una rotazione di angolo $\vartheta \neq 0, \pi$ non ha autovettori reali?
-Perché ogni vettore non nullo viene ruotato di $\vartheta$, e i suoi multipli formano con lui un angolo di $0$ o di $\pi$. Con i conti: $p(\lambda) = \lambda^2 - 2\cos\vartheta\,\lambda + 1$ ha discriminante negativo.
+Perché ogni vettore non nullo viene girato di quell'angolo, ed esce dalla sua retta. I suoi multipli invece stanno tutti sulla sua retta: formano con lui un angolo di 0 oppure di mezzo giro. Con i conti: il polinomio caratteristico ha il discriminante negativo.
 :::
 
-::: domanda Quando un endomorfismo si dice diagonalizzabile? Da dove viene il nome?
-Quando $V$ ha una base di autovettori. Il nome viene dalla Proposizione 17.6: la matrice di $T$ in una base è diagonale se e solo se la base è fatta di autovettori, e allora sulla diagonale ci sono gli autovalori.
+::: domanda Quando un endomorfismo si chiama diagonalizzabile? Da dove viene il nome?
+Quando lo spazio ha una base fatta tutta di suoi autovettori. Il nome viene dalla Proposizione 17.6: la matrice della macchina in una base è diagonale esattamente quando la base è fatta di autovettori. Sulla diagonale ci sono gli autovalori.
 :::
 
 ::: domanda Quando una matrice è diagonalizzabile, e chi sono $M$ e $D$?
-Quando è simile a una diagonale: $D = M^{-1}AM$ con $M$ invertibile. Le colonne di $M$ sono autovettori indipendenti, e $D$ ha sulla diagonale i relativi autovalori, nello stesso ordine.
+Quando è simile a una matrice diagonale: $D = M^{-1}AM$ per qualche matrice invertibile $M$. Le colonne di $M$ sono autovettori indipendenti. La matrice $D$ ha sulla diagonale i loro autovalori, nello stesso ordine.
 :::
 
 ::: domanda Come si calcola $A^k$ se $A$ è diagonalizzabile?
-$A = MDM^{-1}$, quindi $A^k = MD^kM^{-1}$ (le coppie $M^{-1}M$ in mezzo si cancellano), e $D^k$ si ottiene elevando alla $k$ gli elementi della diagonale.
+Si scrive $A = MDM^{-1}$. Moltiplicando $A$ per sé stessa le coppie $M^{-1}M$ in mezzo spariscono, e resta $A^k = MD^kM^{-1}$. La potenza di $D$ si ottiene elevando alla $k$ i numeri sulla diagonale.
 :::
 
 ::: domanda Che cos'è il polinomio caratteristico e che grado ha?
-$p_A(\lambda) = \det(A - \lambda I_n)$: il determinante della matrice con $\lambda$ tolto sulla diagonale. È un polinomio di grado $n$; per una $2 \times 2$ vale $\lambda^2 - \tr A\,\lambda + \det A$.
+È il determinante della matrice dopo aver tolto $\lambda$ sulla diagonale: $p_A(\lambda) = \det(A - \lambda I)$. Per una matrice con $n$ righe ha grado $n$. Per una matrice con 2 righe si scrive subito: $\lambda^2$, meno la traccia per $\lambda$, più il determinante.
 :::
 
 ::: domanda Perché il polinomio caratteristico di un endomorfismo non dipende dalla base?
-Perché matrici simili hanno lo stesso polinomio caratteristico: $\det(M^{-1}BM - \lambda I) = \det\big(M^{-1}(B - \lambda I)M\big) = \det(B - \lambda I)$ per il Teorema di Binet.
+Perché cambiando base si passa a una matrice simile, e due matrici simili hanno lo stesso polinomio caratteristico. Si dimostra con il Teorema di Binet: i determinanti di $M^{-1}$ e di $M$, moltiplicati, danno 1.
 :::
 
 ::: domanda Perché gli autovalori sono le radici del polinomio caratteristico?
-$\lambda$ è autovalore $\iff$ esiste $x \neq 0$ con $(A - \lambda I)x = 0$ $\iff$ $A - \lambda I$ non è invertibile $\iff$ $\det(A - \lambda I) = 0$ (Proposizione 17.13).
+Un numero $\lambda$ è un autovalore quando c'è un vettore non nullo con $(A - \lambda I)v = 0$. Succede esattamente quando la matrice $A - \lambda I$ non è invertibile, cioè quando il suo determinante è zero. E quel determinante è il polinomio caratteristico (Proposizione 17.13).
 :::
 
 ::: domanda Come si trovano gli autovettori una volta noto un autovalore $\lambda_0$?
-Si risolve il sistema omogeneo $(A - \lambda_0 I)x = 0$: le soluzioni non nulle sono gli autovettori. Il sistema ha sempre infinite soluzioni, perché $A - \lambda_0 I$ non è invertibile.
+Si mette $\lambda_0$ al posto di $\lambda$ e si risolve il sistema omogeneo $(A - \lambda_0 I)v = 0$. Le soluzioni non nulle sono gli autovettori. Il sistema ha sempre infinite soluzioni: se viene solo il vettore nullo, c'è un errore nel calcolo dell'autovalore.
 :::
 
 ## Glossario
 
 ```glossario
-Endomorfismo | Applicazione lineare $T : V \to V$, con partenza e arrivo uguali.
-Autovettore | Vettore $v \neq 0$ con $T(v) = \lambda v$ per qualche scalare $\lambda$ (Definizione 17.1).
-Autovalore | Lo scalare $\lambda$ tale che $T(v) = \lambda v$ per qualche autovettore $v$; può essere $0$.
-Retta invariante | Retta $\Span(v)$ mandata da $T$ dentro se stessa; succede esattamente quando $v$ è un autovettore.
-Punto fisso | Vettore con $T(v) = v$; i punti fissi non nulli sono gli autovettori di autovalore 1.
-Endomorfismo diagonalizzabile | $V$ ha una base di autovettori di $T$ (Definizione 17.5).
-Matrice diagonalizzabile | Matrice simile a una diagonale: $D = M^{-1}AM$ (Definizione 17.7).
-Matrice diagonale | Matrice con zeri fuori dalla diagonale principale; prodotti, determinante e potenze si calcolano elemento per elemento.
-$M$ e $D$ | Nella diagonalizzazione, $M$ ha gli autovettori in colonna e $D$ gli autovalori sulla diagonale, nello stesso ordine; $AM = MD$.
-Potenza di una diagonalizzabile | $A^k = MD^kM^{-1}$.
-Polinomio caratteristico | $p_A(\lambda) = \det(A - \lambda I_n)$, polinomio di grado $n$ (Definizione 17.12).
-Invarianza per similitudine | Matrici simili hanno lo stesso polinomio caratteristico; per questo $p_T$ di un endomorfismo è ben definito.
-Formula $2 \times 2$ | $p_A(\lambda) = \lambda^2 - \tr A\,\lambda + \det A$.
-Matrice triangolare | Zeri sotto (o sopra) la diagonale; i suoi autovalori sono gli elementi diagonali.
-Rotazione $\mathrm{Rot}_\vartheta$ | $\begin{pmatrix} \cos\vartheta & -\sin\vartheta \\ \sin\vartheta & \cos\vartheta \end{pmatrix}$; per $\vartheta \neq 0, \pi$ non ha autovalori reali.
-Traccia e autovalori | Se $p_A$ ha tutte le radici in $\K$: somma degli autovalori = $\tr A$, prodotto = $\det A$.
+Endomorfismo | Una macchina lineare in cui i vettori che escono stanno nello stesso spazio di quelli che entrano. Si scrive $T : V \to V$.
+Autovettore | Un vettore non nullo che la macchina manda in un suo multiplo: $T(v) = \lambda v$ (Definizione 17.1). Esempio: $(1, 0)$ per la matrice dell'Esempio 17.2.
+Autovalore | Il numero $\lambda$ per cui viene moltiplicato un autovettore. Dice di quanto la macchina lo allunga. Può essere 0.
+Retta invariante | Una retta che la macchina manda dentro sé stessa. La retta dei multipli di un vettore è invariante esattamente quando quel vettore è un autovettore.
+Punto fisso | Un vettore che esce dalla macchina uguale a com'è entrato. I punti fissi non nulli sono gli autovettori con autovalore 1.
+Endomorfismo diagonalizzabile | Una macchina per cui esiste una base fatta tutta di suoi autovettori (Definizione 17.5).
+Matrice diagonalizzabile | Una matrice simile a una matrice diagonale: $D = M^{-1}AM$ per qualche matrice invertibile $M$ (Definizione 17.7).
+Matrice diagonale | Una matrice con zeri fuori dalla diagonale principale. Prodotti, determinante e potenze si calcolano un numero alla volta.
+$M$ e $D$ | Le due matrici della diagonalizzazione. $M$ ha gli autovettori in colonna, $D$ ha gli autovalori sulla diagonale, nello stesso ordine. Controllo: $AM = MD$.
+Potenza di una diagonalizzabile | Si calcola con $A^k = MD^kM^{-1}$: si eleva solo la matrice diagonale.
+Polinomio caratteristico | Il determinante della matrice dopo aver tolto $\lambda$ sulla diagonale: $p_A(\lambda) = \det(A - \lambda I_n)$. Ha grado $n$ (Definizione 17.12).
+Invarianza per similitudine | Matrici simili hanno lo stesso polinomio caratteristico. Per questo il polinomio caratteristico di un endomorfismo non dipende dalla base.
+Formula $2 \times 2$ | Per una matrice con 2 righe: $p_A(\lambda) = \lambda^2 - \tr A\,\lambda + \det A$.
+Matrice triangolare | Una matrice con tutti zeri sotto la diagonale, oppure tutti zeri sopra. I suoi autovalori sono i numeri sulla diagonale.
+Rotazione $\mathrm{Rot}_\vartheta$ | La macchina che gira il piano di un angolo $\vartheta$. Se l'angolo non è 0 e non è $\pi$, non ha autovalori reali.
+Traccia e autovalori | Quando hai tutti gli autovalori di una matrice: la loro somma è la traccia, il loro prodotto è il determinante.
+Scalare | Un numero normale, come 3 o $-2$. Si chiama così per distinguerlo dai vettori.
+Radice di un polinomio | Un numero che, messo al posto della lettera, fa venire zero. Le radici del polinomio caratteristico sono gli autovalori.
 ```
 
 ## Checklist
 
 ```checklist
-- So dire che cos'è un autovettore e un autovalore, e perché $v \neq 0$ ma $\lambda = 0$ è ammesso.
-- So controllare in un attimo se un vettore dato è un autovettore, calcolando $Av$.
+- So dire che cos'è un autovettore e che cos'è un autovalore, e perché l'autovettore non può essere nullo mentre l'autovalore può essere zero.
+- So controllare se un vettore è un autovettore, calcolando $Av$.
 - So che i multipli non nulli di un autovettore sono autovettori con lo stesso autovalore, e che la somma di autovettori con autovalori diversi in genere non lo è.
 - So spiegare perché una rotazione di angolo $\vartheta \neq 0, \pi$ non ha autovettori reali.
-- So la definizione di endomorfismo e di matrice diagonalizzabile e il legame tra base di autovettori e matrice diagonale.
+- So la definizione di endomorfismo e di matrice diagonalizzabile, e il legame tra base di autovettori e matrice diagonale.
 - So costruire $M$ e $D$ da una base di autovettori e controllare con $AM = MD$.
-- So calcolare $A^k$ con $A^k = MD^kM^{-1}$.
-- So calcolare il polinomio caratteristico di una $2 \times 2$ (con traccia e determinante) e di una $3 \times 3$ (sviluppando lungo la riga o colonna con più zeri).
-- So perché gli autovalori sono le radici di $p_A$ e trovo gli autovettori risolvendo $(A - \lambda I)x = 0$.
-- So riconoscere al volo gli autovalori di una matrice triangolare e controllo i risultati con traccia e determinante.
+- So calcolare $A^k$ con la formula $A^k = MD^kM^{-1}$.
+- So calcolare il polinomio caratteristico di una matrice $2 \times 2$ (con traccia e determinante) e di una $3 \times 3$ (sviluppando lungo la riga o la colonna con più zeri).
+- So perché gli autovalori sono le radici del polinomio caratteristico, e trovo gli autovettori risolvendo $(A - \lambda I)v = 0$.
+- So leggere sulla diagonale gli autovalori di una matrice triangolare, e controllo i risultati con traccia e determinante.
 ```
 
 ## Fonti
@@ -19400,7 +22834,7 @@ Traccia e autovalori | Se $p_A$ ha tutte le radici in $\K$: somma degli autovalo
 - **Dispense 2026 del corso** (Buzano, Radeschi), lezione 17 «Autovalori e autovettori I», pp. 85–89: le sezioni 17.A (definizione ed esempi), 17.B (endomorfismi e matrici diagonalizzabili), 17.C (matrici diagonali) e 17.D (polinomio caratteristico) sono seguite in ordine, con la pagina accanto a ogni titolo; definizioni, proposizioni ed esempi mantengono la loro numerazione (Definizioni 17.1, 17.5, 17.7, 17.12; Proposizioni 17.6, 17.8, 17.13; Esempi 17.2–17.4, 17.9–17.11, 17.14). La lezione 17 delle dispense non ha una sezione di esercizi: quelli qui sono tutti aggiunti.
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §5.1.1–5.1.8 (autovettori, diagonalizzabilità, matrici diagonali e diagonalizzabili, polinomio caratteristico, esempi $2 \times 2$ su $\R$ e $\C$, matrici triangolari) e la Proposizione 5.2.15 (traccia, determinante e autovalori).
 - **Esame**: appelli del 10/07/2024 (problema 11), 06/09/2024 (domanda 10), 07/02/2025 (domanda 8), 03/06/2025 (domanda 8), 02/09/2025 (domanda 4), 05/02/2026 (domanda 8), 03/06/2026 (domanda 6), 03/07/2026 (domande 2 e 3), 07/09/2026 (problema 11). Testi e soluzioni ufficiali sul Moodle 2025/26 ([id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)); le soluzioni riportate qui sono scritte da capo.
-- Le parti **«Oltre le dispense»** (autovalori 0 e 1, la matrice di rotazione, la formula $2 \times 2$, le matrici triangolari, i controlli con traccia e determinante, la rotazione su $\C$, gli esempi e gli esercizi aggiunti) servono a collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu» e gli esercizi sono di questi appunti. Le parti **«Oltre le dispense»** (autovalori 0 e 1, la matrice di rotazione, la formula per le matrici $2 \times 2$, le matrici triangolari, i controlli con traccia e determinante, la rotazione su $\C$) collegano la lezione al resto del corso e all'esame.
 
 
 ---
@@ -20144,7 +23578,7 @@ genera_html: true
 ## In breve
 
 - Un **prodotto scalare** è una regola che prende due vettori e restituisce **un numero solo**. Un vettore è una lista di numeri.
-- Il più usato è quello **euclideo**: moltiplichi i numeri che stanno nello stesso posto e sommi i risultati, come nel conto della spesa. Da $(1, 3)$ e $(-2, 1)$ viene $-2 + 3 = 1$.
+- Il più usato è quello **euclideo**: moltiplichi i numeri che stanno nello stesso posto e sommi i risultati, come nel conto della spesa. Per i vettori $(1, 3)$ e $(-2, 1)$ il risultato è 1.
 - Il segno del risultato dice come sono messi i due vettori: positivo se puntano più o meno dalla stessa parte, zero se sono perpendicolari, negativo se puntano da parti opposte.
 - In generale un prodotto scalare è qualunque regola che rispetta tre richieste: una somma si può spezzare, un numero si può portare fuori, l'ordine dei due vettori non conta.
 - Un prodotto scalare è **definito positivo** se ogni vettore non nullo, moltiplicato per sé stesso, dà un numero positivo. È **degenere** se c'è un vettore non nullo che dà zero con tutti gli altri.
@@ -20283,12 +23717,6 @@ Primo posto: $3 \cdot 2 = 6$. Secondo posto: $1 \cdot 5 = 5$. Somma: $6 + 5 = 11
 Primo posto: $1 \cdot 4 = 4$. Secondo posto: $2 \cdot (-2) = -4$. Somma: $4 - 4 = 0$.
 
 Il prodotto è zero, quindi i due vettori sono perpendicolari.
-:::
-
-::: prova Compri 1 chilo di pane a 3 euro al chilo e 2 litri di latte a 1 euro al litro. Scrivi i due vettori e calcola il totale.
-Quantità: $(1, 2)$. Prezzi: $(3, 1)$.
-
-Totale: $1 \cdot 3 + 2 \cdot 1 = 3 + 2 = 5$ euro.
 :::
 
 > [!RICORDA]
@@ -20440,30 +23868,16 @@ A volte nello stesso discorso ci sono più prodotti scalari diversi, e le parent
 Le dispense scrivono $g : V \times V \to \R$. Si legge «$g$ va da $V$ per $V$ a $\R$»: la macchina $g$ prende una coppia di vettori e restituisce un numero reale. La freccia corta $\to$ vuol dire lo stesso della freccia lunga di prima: «va in».
 
 > [!OLTRE] · il quadrato di una somma, con i vettori
-> Con i numeri il quadrato di una somma si apre così: $(a + b)^2 = a^2 + 2ab + b^2$. Per esempio $(2 + 3)^2 = 25$, e anche $4 + 12 + 9 = 25$.
->
-> Con un prodotto scalare succede la stessa cosa. Al posto del quadrato c'è il prodotto di un vettore con sé stesso.
+> Con i numeri il quadrato di una somma si apre così: $(a + b)^2 = a^2 + 2ab + b^2$. Con un prodotto scalare succede la stessa cosa, se al posto del quadrato metti il prodotto di un vettore con sé stesso.
 > $$\langle v + w, v + w\rangle = \langle v, v\rangle + 2\langle v, w\rangle + \langle w, w\rangle$$
-> Il perché, in tre passi.
->
-> 1. Spezzo la somma nel primo posto, con l'assioma (1):
->    $$\langle v, v + w\rangle + \langle w, v + w\rangle$$
-> 2. Spezzo la somma nel secondo posto di tutti e due i pezzi, con la regola (4):
->    $$\langle v, v\rangle + \langle v, w\rangle + \langle w, v\rangle + \langle w, w\rangle$$
-> 3. Per la simmetria i due pezzi in mezzo sono uguali. Insieme fanno due volte $\langle v, w\rangle$.
->
-> Controllo con il conto della spesa, per $v = (1, 2)$ e $w = (3, 1)$. La somma è $(4, 3)$, che con sé stessa dà $16 + 9 = 25$. A destra: $5 + 2 \cdot 5 + 10 = 25$.
->
-> Questa formula serve nella lezione L20, per la disuguaglianza triangolare.
+> Il motivo: la somma si spezza nel primo posto e poi nel secondo, e vengono quattro pezzi. I due pezzi misti sono uguali per la simmetria. I passaggi sono nella lezione L20, dove la formula serve per la disuguaglianza triangolare.
 
-::: prova Sai che $\langle v, w\rangle = 5$. Quanto valgono $\langle 2v, w\rangle$ e $\langle w, v\rangle$?
+::: prova Sai che $\langle v, w\rangle = 5$ e che $\langle v', w\rangle = -2$. Quanto valgono $\langle 2v, w\rangle$, $\langle w, v\rangle$ e $\langle v + v', w\rangle$?
 $\langle 2v, w\rangle = 2 \cdot 5 = 10$: il numero 2 esce fuori (assioma 2).
 
 $\langle w, v\rangle = 5$: l'ordine non conta (assioma 3).
-:::
 
-::: prova Sai che $\langle v, w\rangle = 5$ e $\langle v', w\rangle = -2$. Quanto vale $\langle v + v', w\rangle$?
-La somma nel primo posto si spezza (assioma 1): $5 + (-2) = 3$.
+$\langle v + v', w\rangle = 5 + (-2) = 3$: la somma nel primo posto si spezza (assioma 1).
 :::
 
 ::: prova Che differenza c'è tra $2 \cdot (1, 3)$ e $\langle (2, 0), (1, 3)\rangle$?
@@ -20575,12 +23989,6 @@ No. Con il vettore nullo al posto di $x$ e di $y$ viene $g(0, 0) = 0 \cdot 0 + 5
 Sì. Ogni pezzo è un numero fisso per un numero di $x$ per un numero di $y$. Scambiando $x$ con $y$ la formula non cambia.
 
 Il valore: $4 \cdot 1 \cdot 3 + 2 \cdot 1 = 12 + 2 = 14$.
-:::
-
-::: prova La formula $g(x, y) = x_1y_2 - x_2y_1$ è simmetrica? Prova con $e_1$ ed $e_2$.
-No. Con $x = e_1 = (1, 0)$ e $y = e_2 = (0, 1)$ viene $1 \cdot 1 - 0 \cdot 0 = 1$.
-
-Con i posti scambiati, $x = e_2$ e $y = e_1$, viene $0 \cdot 0 - 1 \cdot 1 = -1$. I due risultati sono diversi.
 :::
 
 > [!RICORDA]
@@ -20717,12 +24125,6 @@ Tutti i prodotti visti finora, in una tabella.
 | $x_1y_1$ | sì | no | $e_2$ dà zero con tutti |
 | $x_1y_1 - x_2y_2$ | no | no | $e_2$ con sé stesso dà $-1$ |
 
-::: prova Con il conto della spesa, quanto vale $\langle v, v\rangle$ per $v = (1, 2)$? Può venire negativo per qualche vettore?
-$1 \cdot 1 + 2 \cdot 2 = 1 + 4 = 5$.
-
-Non può mai venire negativo, perché è una somma di quadrati.
-:::
-
 ::: prova Il prodotto $g(x, y) = x_2y_2$ su $\R^2$ è degenere? Quale vettore non vede?
 Sì. Usa solo i secondi numeri, quindi non vede il vettore $e_1 = (1, 0)$, che ha il secondo numero uguale a 0: $g(e_1, w) = 0 \cdot w_2 = 0$ per ogni vettore $w$.
 :::
@@ -20786,14 +24188,7 @@ $$\langle p, q\rangle = p(0)q(0) + p(1)q(1) + p(2)q(2)$$
 
 A parole: i valori dei due polinomi in 0 moltiplicati tra loro, più quelli in 1, più quelli in 2.
 
-**È un prodotto scalare.** Scambiando i due polinomi non cambia niente, perché in ogni pezzo si moltiplicano due numeri. Somme e multipli si spezzano, perché il valore di una somma di polinomi è la somma dei valori. Per esempio $x + 1$ in 2 vale 3, cioè $2 + 1$.
-
-> [!DIM] perché una somma si spezza, con le formule
-> Chiamo $t$ uno dei tre punti. Il valore di una somma di polinomi in $t$ è la somma dei valori: $(p + p')(t) = p(t) + p'(t)$. Allora in ognuno dei tre punti vale
-> $$\big(p(t) + p'(t)\big)\,q(t) = p(t)q(t) + p'(t)q(t)$$
-> Sommo sui tre punti $t = 0, 1, 2$. A sinistra viene $\langle p + p', q\rangle$. A destra viene $\langle p, q\rangle + \langle p', q\rangle$. È l'assioma (1).
->
-> Per l'assioma (2) si usa che il valore di un multiplo è il multiplo del valore, $(\lambda p)(t) = \lambda\,p(t)$, e si raccoglie $\lambda$.
+**È un prodotto scalare.** Scambiando i due polinomi non cambia niente, perché in ogni pezzo si moltiplicano due numeri. Somme e multipli si spezzano, perché il valore di una somma di polinomi è la somma dei valori, e il valore di un multiplo è il multiplo del valore. Per esempio $x + 1$ in 2 vale 3, cioè $2 + 1$.
 
 **È definito positivo.** Un polinomio con sé stesso dà la somma dei quadrati dei suoi tre valori.
 
@@ -20861,32 +24256,20 @@ Le dispense dicono anche che questo prodotto **non è degenere**, senza dimostra
 Le dispense riassumono i tre casi in un solo esempio.
 
 > [!ESEMPIO] 19.4 · Tre prodotti scalari su $\R_2[x]$
-> Lo spazio è $\R_2[x]$: i polinomi con i coefficienti reali di grado al massimo 2.
+> Sono i tre prodotti appena visti, tutti sullo spazio $\R_2[x]$ dei polinomi di grado al massimo 2.
 >
-> **Primo prodotto.**
-> $$\langle p, q\rangle = p(0)q(0) + p(1)q(1) + p(2)q(2)$$
-> È **definito positivo**. Per ogni polinomio non nullo $p$ vale
-> $$\langle p, p\rangle = p(0)^2 + p(1)^2 + p(2)^2 > 0$$
-> perché un polinomio non nullo di grado al massimo 2 non può valere zero in tutti e tre i punti 0, 1 e 2.
+> | Il prodotto $\langle p, q\rangle$ | Che cosa è | Il motivo delle dispense |
+> |---|---|---|
+> | $p(0)q(0) + p(1)q(1) + p(2)q(2)$ | definito positivo | un polinomio non nullo non può valere zero nei tre punti 0, 1 e 2 |
+> | $p(0)q(0) + p(1)q(1)$ | degenere | il polinomio $x(1 - x)$ dà zero con ogni polinomio |
+> | $p(0)q(0) + p(1)q(1) - p(2)q(2)$ | non degenere, ma non definito positivo | il polinomio $x - 1$ con sé stesso dà $(-1)^2 - 1^2 = 0$ |
 >
-> **Secondo prodotto.**
-> $$\langle p, q\rangle = p(0)q(0) + p(1)q(1)$$
-> È **degenere**. Il polinomio $p(x) = x(1 - x)$ vale zero in 0 e in 1, quindi $\langle p, q\rangle = 0$ per ogni polinomio $q$ dello spazio.
->
-> **Terzo prodotto.**
-> $$\langle p, q\rangle = p(0)q(0) + p(1)q(1) - p(2)q(2)$$
-> **Non è degenere, ma non è definito positivo.** Per il polinomio $p(x) = x - 1$ viene
-> $$\langle p, p\rangle = (-1)^2 - 1^2 = 0$$
-> Le dispense non scrivono il pezzo di mezzo, $p(1)^2$, perché vale 0.
+> Nell'ultima riga le dispense non scrivono il pezzo di mezzo, perché il polinomio $x - 1$ vale zero in 1.
 
 ::: prova Con il primo prodotto (punti 0, 1 e 2) calcola $\langle 1, x\rangle$. Il polinomio $1$ è quello che vale sempre 1.
 Valori di $1$ nei tre punti: 1, 1, 1. Valori di $x$: 0, 1, 2.
 
 Prodotti punto per punto: $1 \cdot 0 = 0$, poi $1 \cdot 1 = 1$, poi $1 \cdot 2 = 2$. Somma: $0 + 1 + 2 = 3$.
-:::
-
-::: prova Con il primo prodotto calcola $\langle x, x\rangle$.
-Valori di $x$ nei tre punti: 0, 1, 2. I loro quadrati: 0, 1, 4. Somma: $0 + 1 + 4 = 5$.
 :::
 
 ::: prova Con il secondo prodotto (punti 0 e 1) quanto vale $\langle x - x^2,\ 1\rangle$?
@@ -20972,11 +24355,9 @@ Se il vettore non è nullo, almeno uno dei suoi numeri non è zero. Il quadrato 
 > [!DIM] la dimostrazione, dal libro di Martelli (Proposizione 7.1.5)
 > Le dispense non riportano la dimostrazione. Eccola in tre passi.
 >
-> 1. **Somme e multipli si spezzano.** Viene dalle regole del prodotto tra matrici (lezione L08). La trasposta di una somma è la somma delle trasposte, e il prodotto si distribuisce sulla somma.
->    $${}^t(x + x')\,y = ({}^tx + {}^tx')\,y = {}^tx\,y + {}^tx'\,y$$
->    Per i multipli il numero esce fuori: ${}^t(\lambda x)\,y = \lambda\,{}^tx\,y$.
-> 2. **Simmetria.** La somma $x_1y_1 + \dots + x_ny_n$ è uguale alla somma $y_1x_1 + \dots + y_nx_n$, perché nei prodotti tra numeri l'ordine non conta.
-> 3. **Definito positivo.** Il prodotto $\langle x, x\rangle = x_1^2 + \dots + x_n^2$ è una somma di quadrati. Se $x \neq 0$, almeno un numero $x_i$ non è zero. Il suo quadrato è positivo e rende positiva tutta la somma.
+> 1. **Somme e multipli si spezzano.** Viene dalle regole del prodotto tra matrici (lezione L08): ${}^t(x + x')\,y = {}^tx\,y + {}^tx'\,y$ e ${}^t(\lambda x)\,y = \lambda\,{}^tx\,y$.
+> 2. **Simmetria.** In ogni pezzo $x_iy_i$ i due numeri si possono scambiare.
+> 3. **Definito positivo.** Se $x \neq 0$, almeno un numero $x_i$ non è zero. Il suo quadrato è positivo e rende positiva la somma $x_1^2 + \dots + x_n^2$.
 
 ### Prova con lo strumento
 
@@ -21013,10 +24394,6 @@ Per esteso: $x_1y_1 + x_2y_2$.
 Con i numeri: $4 \cdot 2 + 1 \cdot 3 = 8 + 3 = 11$.
 :::
 
-::: prova Quanto vale $\langle x, x\rangle$ per $x = (1, -2, 2)$?
-$1^2 + (-2)^2 + 2^2 = 1 + 4 + 4 = 9$. Il quadrato di un numero negativo è positivo.
-:::
-
 > [!RICORDA]
 > - Il **prodotto scalare euclideo** di $\R^n$: moltiplica i numeri nello stesso posto e somma.
 > - Tre scritture, un solo conto: per esteso, con il simbolo $\sum$, oppure ${}^tx\,y$ (riga per colonna).
@@ -21039,7 +24416,7 @@ Ogni pezzo ha il suo peso: il numero che ha davanti. I quattro pesi si possono m
 | $x_1$ | $2$ | $1$ |
 | $x_2$ | $1$ | $1$ |
 
-Una tabella di numeri è una **matrice** (lezione L08). Quella dei pesi la chiamiamo $S$.
+Una tabella di numeri è una **matrice** (lezione L08). Quella dei pesi la chiamiamo $S$. Ha due righe e due colonne: in breve, è una matrice $2 \times 2$, che si legge «due per due».
 
 $$S = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$$
 
@@ -21107,7 +24484,7 @@ Perché è vero? Somme e multipli si spezzano, perché il prodotto tra matrici r
 
 ### La formula per esteso
 
-Per i conti a mano conviene la formula con tutti i pezzi scritti. Per una matrice simmetrica con due righe e due colonne, fatta con tre numeri qualsiasi $a$, $b$ e $c$, è questa.
+Per i conti a mano conviene la formula con tutti i pezzi scritti. Per una matrice simmetrica $2 \times 2$, fatta con tre numeri qualsiasi $a$, $b$ e $c$, è questa.
 
 $$S = \begin{pmatrix} a & b \\ b & c \end{pmatrix} \qquad\qquad g_S(x, y) = a\,x_1y_1 + b\,x_1y_2 + b\,x_2y_1 + c\,x_2y_2$$
 
@@ -21177,10 +24554,6 @@ $g_S(x, y) = x_1y_1 + 3x_1y_2 + 3x_2y_1 + 2x_2y_2$. Ogni casella è il peso del 
 $g_S(e_2, e_2) = S_{22} = 2$: riga 2, colonna 2.
 
 $g_S(e_1, e_2) = S_{12} = 3$: riga 1, colonna 2.
-:::
-
-::: prova Per la stessa matrice calcola $g_S(x, y)$ con $x = (1, 1)$ e $y = (2, 0)$.
-Uso la formula: $1 \cdot 1 \cdot 2 + 3 \cdot 1 \cdot 0 + 3 \cdot 1 \cdot 2 + 2 \cdot 1 \cdot 0 = 2 + 0 + 6 + 0 = 8$.
 :::
 
 > [!RICORDA]
@@ -21255,8 +24628,8 @@ Guardando la matrice si capisce in fretta se il prodotto è degenere oppure defi
 
 Le dispense non danno questi criteri: vengono dal libro di Martelli. Negli esercizi e nei problemi d'esame fanno risparmiare tempo. Una matrice simmetrica si chiama **definita positiva** quando lo è il suo prodotto scalare.
 
-> [!RIPASSO] il determinante di una matrice con due righe e due colonne
-> Il **determinante** è un numero che si calcola da una matrice quadrata (lezione L09). Si scrive $\det$. Per una matrice con due righe e due colonne: il prodotto dei due numeri sulla diagonale, meno il prodotto degli altri due.
+> [!RIPASSO] il determinante di una matrice $2 \times 2$
+> Il **determinante** è un numero che si calcola da una matrice quadrata (lezione L09). Si scrive $\det$. Per una matrice $2 \times 2$: il prodotto dei due numeri sulla diagonale, meno il prodotto degli altri due.
 > $$\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc \qquad\qquad \det\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix} = 1 \cdot 4 - 2 \cdot 2 = 0$$
 > Il determinante è zero esattamente quando c'è un vettore non nullo che la matrice manda nel vettore nullo (lezione L10).
 
@@ -21303,11 +24676,11 @@ Per esempio, con 5 e 1 sulla diagonale un vettore con sé stesso dà $5x_1^2 + x
 | $1$ e $-3$ | non degenere, ma non definito positivo | nessuno è zero, ma uno è negativo: $e_2$ con sé stesso dà $-3$ |
 | $0$ e $1$ | degenere | c'è uno zero: il prodotto non vede $e_1$ |
 
-### Terza scorciatoia: le matrici con due righe e due colonne
+### Terza scorciatoia: le matrici due per due
 
-Per una matrice simmetrica con due righe e due colonne bastano due numeri: quello in alto a sinistra e il determinante.
+Per una matrice simmetrica $2 \times 2$ bastano due numeri: quello in alto a sinistra e il determinante.
 
-> [!OLTRE] · il criterio per le matrici con due righe e due colonne
+> [!OLTRE] · il criterio per le matrici $2 \times 2$
 > La matrice simmetrica $S = \begin{pmatrix} a & b \\ b & c \end{pmatrix}$ è **definita positiva** esattamente quando valgono tutte e due queste condizioni:
 >
 > - il numero in alto a sinistra è positivo: $a > 0$;
@@ -21319,14 +24692,12 @@ Due esempi.
 - Per la matrice $\begin{pmatrix} 1 & 2 \\ 2 & 3 \end{pmatrix}$: in alto a sinistra c'è 1, positivo. Ma il determinante è $1 \cdot 3 - 2 \cdot 2 = -1$, negativo. Non è definita positiva.
 
 > [!DIM] perché il criterio funziona
-> Un vettore con sé stesso dà $g_S(x, x) = a\,x_1^2 + 2b\,x_1x_2 + c\,x_2^2$. Se $a$ non è zero, questa espressione si riscrive come somma di due pezzi con un quadrato ciascuno. Il trucco si chiama «completare il quadrato».
+> Un vettore con sé stesso dà $a\,x_1^2 + 2b\,x_1x_2 + c\,x_2^2$. Se $a$ non è zero, si riscrive come somma di due pezzi con un quadrato ciascuno. Il trucco si chiama «completare il quadrato».
 > $$a\,x_1^2 + 2b\,x_1x_2 + c\,x_2^2 = a\left(x_1 + \frac ba x_2\right)^2 + \frac{ac - b^2}{a}\,x_2^2$$
 >
-> **Se le due condizioni valgono, il prodotto è definito positivo.** I due pezzi a destra non sono mai negativi. Fanno zero insieme solo quando $x_2 = 0$ e poi $x_1 = 0$, cioè per il vettore nullo.
+> **Se le due condizioni valgono**, i due pezzi a destra non sono mai negativi. Fanno zero insieme solo quando $x_2 = 0$ e poi $x_1 = 0$, cioè per il vettore nullo.
 >
-> **Se il prodotto è definito positivo, le due condizioni valgono.** La prima: $a = g_S(e_1, e_1)$, che è positivo. La seconda: prendo il vettore $x = (-b, a)$, che non è nullo perché $a$ non è zero. Con sé stesso dà
-> $$g_S(x, x) = a\,b^2 - 2ab^2 + c\,a^2 = a\,(ac - b^2)$$
-> Questo numero è positivo e $a$ è positivo, quindi anche $ac - b^2$ è positivo.
+> **Se il prodotto è definito positivo**, allora $a = g_S(e_1, e_1)$ è positivo. Poi prendo il vettore $(-b, a)$, che non è nullo. Con sé stesso dà $ab^2 - 2ab^2 + ca^2 = a\,(ac - b^2)$. Questo numero è positivo e $a$ è positivo, quindi anche $ac - b^2$ è positivo.
 
 ::: prova Il prodotto $g_S$ con $S = \begin{pmatrix} 2 & 3 \\ 3 & 5 \end{pmatrix}$ è definito positivo?
 Sì. In alto a sinistra c'è 2, positivo. Il determinante è $2 \cdot 5 - 3 \cdot 3 = 10 - 9 = 1$, positivo.
@@ -21336,16 +24707,10 @@ Sì. In alto a sinistra c'è 2, positivo. Il determinante è $2 \cdot 5 - 3 \cdo
 Sì. Il determinante è $3 \cdot 12 - 6 \cdot 6 = 36 - 36 = 0$.
 :::
 
-::: prova Una matrice diagonale ha $2$ e $-1$ sulla diagonale. Il suo prodotto è definito positivo? È degenere?
-Non è definito positivo, perché $-1$ è negativo: il vettore $e_2$ con sé stesso dà $-1$.
-
-Non è degenere, perché sulla diagonale non ci sono zeri.
-:::
-
 > [!RICORDA]
 > - Il prodotto $g_S$ è degenere esattamente quando $\det S = 0$.
 > - Matrice diagonale: definita positiva quando i numeri sulla diagonale sono tutti positivi.
-> - Matrice con due righe e due colonne: definita positiva quando il numero in alto a sinistra è positivo e il determinante è positivo.
+> - Matrice $2 \times 2$: definita positiva quando il numero in alto a sinistra è positivo e il determinante è positivo.
 
 ## La matrice associata: la tabella dei prodotti (pp. 98–99)
 
@@ -21418,12 +24783,7 @@ Le dispense lo scrivono così.
 > $$\mathcal B = \left\{ v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, v_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix} \right\}.$$
 > La matrice associata è
 > $$[g]_{\mathcal B} = \begin{pmatrix} g(v_1, v_1) & g(v_1, v_2) \\ g(v_2, v_1) & g(v_2, v_2) \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}.$$
-> I conti sono quelli della tabellina di prima.
->
-> - $g(v_1, v_1) = 1 \cdot 1 + 0 \cdot 0 = 1$.
-> - $g(v_1, v_2) = 1 \cdot 1 + 0 \cdot 1 = 1$.
-> - $g(v_2, v_2) = 1 \cdot 1 + 1 \cdot 1 = 2$.
-> - $g(v_2, v_1)$ è uguale a $g(v_1, v_2)$ per la simmetria: 1.
+> I quattro conti sono quelli della tabellina qui sopra. La casella $g(v_2, v_1)$ è uguale alla casella $g(v_1, v_2)$ per la simmetria.
 >
 > Nella base canonica lo stesso prodotto ha come matrice la matrice identità $I_2$. Stesso prodotto, due basi, due matrici diverse.
 
@@ -21463,17 +24823,12 @@ Le dispense scrivono questa regola con le lettere.
 - Ogni pezzo è fatto così: una quantità di $v$, per una quantità di $w$, per un numero della tabellina. È la tabella a quattro righe di prima, con le lettere al posto dei numeri.
 
 > [!DIM] perché vale, con una base di due vettori
-> Le dispense dicono solo che la formula viene dalla bilinearità. Ecco i passaggi con $n = 2$, cioè con $v = \lambda_1v_1 + \lambda_2v_2$ e $w = \mu_1v_1 + \mu_2v_2$.
+> Le dispense dicono solo che la formula viene dalla bilinearità. Ecco i passaggi con $v = \lambda_1v_1 + \lambda_2v_2$ e $w = \mu_1v_1 + \mu_2v_2$.
 >
 > 1. Spezzo nel primo posto, con gli assiomi (1) e (2). Il vettore $w$ resta fermo.
->    $$g(\lambda_1v_1 + \lambda_2v_2,\ w) = \lambda_1\,g(v_1, w) + \lambda_2\,g(v_2, w)$$
-> 2. Spezzo nel secondo posto, con le regole (4) e (5), dentro ognuno dei due pezzi.
->    $$g(v_1, w) = \mu_1\,g(v_1, v_1) + \mu_2\,g(v_1, v_2)$$
->    $$g(v_2, w) = \mu_1\,g(v_2, v_1) + \mu_2\,g(v_2, v_2)$$
-> 3. Metto insieme.
+>    $$g(v, w) = \lambda_1\,g(v_1, w) + \lambda_2\,g(v_2, w)$$
+> 2. Spezzo $w$ nel secondo posto di ognuno dei due pezzi, con le regole (4) e (5). Vengono quattro pezzi, uno per ogni coppia di indici.
 >    $$g(v, w) = \lambda_1\mu_1\,g(v_1, v_1) + \lambda_1\mu_2\,g(v_1, v_2) + \lambda_2\mu_1\,g(v_2, v_1) + \lambda_2\mu_2\,g(v_2, v_2)$$
->
-> Sono quattro pezzi, uno per ogni coppia di indici.
 
 La stessa regola, scritta con le matrici, è ancora più corta.
 
@@ -21546,10 +24901,6 @@ Secondo con sé stesso: $0 \cdot 0 + 2 \cdot 2 = 4$.
 La matrice è $\begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$.
 :::
 
-::: prova La matrice $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ può essere la matrice associata a un prodotto scalare?
-No, perché non è simmetrica: sopra la diagonale c'è 2, sotto c'è 3. Una matrice associata a un prodotto scalare è sempre simmetrica.
-:::
-
 ::: prova In una base $\{v_1, v_2\}$ la matrice associata a $g$ è $\begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}$. Quanto vale $g(v_1 + v_2,\ v_2)$?
 Spezzo la somma nel primo posto: $g(v_1, v_2) + g(v_2, v_2)$.
 
@@ -21614,11 +24965,9 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 Lo spazio $\R_1[x]$ è quello dei polinomi di grado al massimo 1, cioè dei polinomi $a + bx$. Una sua base ha due polinomi, quindi la matrice associata ha due righe e due colonne.
 
 > [!METODO] La domanda «quanto vale la matrice associata?»
-> 1. Dai un nome ai vettori della base, nell'ordine del testo: $v_1$, $v_2$ e, se c'è, $v_3$.
-> 2. Se i vettori sono polinomi, scrivi la tabella dei loro valori nei punti che compaiono nella formula.
-> 3. Calcola i prodotti della diagonale e quelli sopra la diagonale. Metti i numeri nella formula un pezzo alla volta, nell'ordine in cui è scritta.
-> 4. Scrivi la matrice simmetrica e cerca la risposta uguale.
-> 5. Se hai poco tempo: scarta subito le risposte non simmetriche, poi calcola una casella alla volta e scarta le risposte che non la rispettano.
+> 1. Segui il metodo «Calcolare la matrice associata» della sezione sulla matrice associata: ordine della base, tabella dei valori, prodotti della diagonale e sopra la diagonale.
+> 2. Metti i numeri nella formula un pezzo alla volta, nell'ordine in cui è scritta.
+> 3. Nel quiz scarta subito le risposte non simmetriche. Poi calcola una casella alla volta e scarta le risposte che non la rispettano.
 
 ### Una domanda vera, letta insieme
 
@@ -21728,7 +25077,7 @@ D: Quale di queste formule definisce un prodotto scalare su $\R^2$? (Qui $x = (x
 - $g(x, y) = x_1y_1 + x_2$
 - $g(x, y) = x_1x_2y_1y_2$
 - $g(x, y) = x_1y_1 + x_2y_2 + 1$
-= La domanda chiede quale formula rispetta i tre assiomi. La regola pratica: ogni pezzo deve essere un numero per una $x$ per una $y$, e il numero davanti a $x_1y_2$ deve essere uguale a quello davanti a $x_2y_1$. La prima formula ha tre pezzi della forma giusta e la sua matrice è $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, simmetrica: è un prodotto scalare. La seconda è la più tentatrice, perché ha i pezzi della forma giusta. Ma davanti a $x_1y_2$ c'è $1$ e davanti a $x_2y_1$ c'è $-1$: infatti $g(e_1, e_2) = 1$ e $g(e_2, e_1) = -1$, quindi non è simmetrica. La terza ha il pezzo $x_2$ senza nessuna $y$: con $x = e_2$ e $y$ nullo dà 1 invece di 0. La quarta ha due $x$ e due $y$ nello stesso pezzo: raddoppiando $x$ il risultato si moltiplica per 4, non per 2. La quinta ha un $+1$: con i due vettori nulli dà 1 invece di 0.
+= La domanda chiede quale formula rispetta i tre assiomi. La regola pratica: ogni pezzo deve essere un numero per una $x$ per una $y$, e davanti a $x_1y_2$ e a $x_2y_1$ deve esserci lo stesso numero. La prima formula è a posto: i suoi pesi formano la matrice $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, che è simmetrica. La seconda è la più tentatrice, perché ha i pezzi della forma giusta. Ma non è simmetrica: $g(e_1, e_2) = 1$ e $g(e_2, e_1) = -1$. La terza ha il pezzo $x_2$ senza nessuna $y$: con $x = e_2$ e $y$ nullo dà 1 invece di 0. La quarta ha due $x$ nello stesso pezzo: raddoppiando $x$ il risultato si moltiplica per 4, non per 2. La quinta ha un $+1$: con i due vettori nulli dà 1 invece di 0.
 
 D: Su $\R_1[x]$ sia $g(p, q) = p(1)q(2) + p(2)q(1)$ e sia $\mathcal B = \{x - 1, x - 2\}$. Allora $[g]_{\mathcal B}$ è:
 + $\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}$
@@ -21736,7 +25085,7 @@ D: Su $\R_1[x]$ sia $g(p, q) = p(1)q(2) + p(2)q(1)$ e sia $\mathcal B = \{x - 1,
 - $\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 0 & -2 \\ -2 & 0 \end{pmatrix}$
 - $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra i due polinomi della base. Prima servono i valori nei punti 1 e 2. Il polinomio $x - 1$ vale 0 in 1 e vale 1 in 2. Il polinomio $x - 2$ vale $-1$ in 1 e vale 0 in 2. La formula dice: valore del primo in 1 per valore del secondo in 2, più valore del primo in 2 per valore del secondo in 1. Primo polinomio con sé stesso: $0 \cdot 1 + 1 \cdot 0 = 0$. Primo con secondo: $0 \cdot 0 + 1 \cdot (-1) = -1$. Secondo con sé stesso: $(-1) \cdot 0 + 0 \cdot (-1) = 0$. La matrice ha 0 sulla diagonale e $-1$ fuori. La risposta con $+1$ fuori dalla diagonale è la più tentatrice: è quella di chi perde il segno meno del valore di $x - 2$ in 1. È simile alla domanda 9 dell'appello del 10/07/2024.
+= La domanda chiede la tabellina dei prodotti tra i due polinomi della base. Prima servono i valori nei punti 1 e 2. Il polinomio $x - 1$ vale 0 in 1 e vale 1 in 2. Il polinomio $x - 2$ vale $-1$ in 1 e vale 0 in 2. La formula dice: valore del primo in 1 per valore del secondo in 2, più valore del primo in 2 per valore del secondo in 1. Primo polinomio con sé stesso: $0 \cdot 1 + 1 \cdot 0 = 0$. Primo con secondo: $0 \cdot 0 + 1 \cdot (-1) = -1$. Secondo con sé stesso: $(-1) \cdot 0 + 0 \cdot (-1) = 0$. La risposta con $+1$ fuori dalla diagonale è la più tentatrice: è quella di chi perde il segno meno del valore di $x - 2$ in 1. È simile alla domanda 9 dell'appello del 10/07/2024.
 
 D: Qual è la matrice $S$ tale che $g(x, y) = x_1y_2 + x_2y_1 + 3x_2y_2$ sia uguale a $g_S(x, y) = {}^tx\,S\,y$?
 + $\begin{pmatrix} 0 & 1 \\ 1 & 3 \end{pmatrix}$
@@ -21744,7 +25093,7 @@ D: Qual è la matrice $S$ tale che $g(x, y) = x_1y_2 + x_2y_1 + 3x_2y_2$ sia ugu
 - $\begin{pmatrix} 1 & 1 \\ 1 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 1/2 \\ 1/2 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 3 & 1 \\ 1 & 0 \end{pmatrix}$
-= La domanda chiede la matrice dei pesi della formula. La regola: il numero nella riga $i$ e colonna $j$ è quello davanti a $x_iy_j$. Il pezzo $x_1y_1$ manca, quindi in alto a sinistra c'è 0. Davanti a $x_1y_2$ e davanti a $x_2y_1$ c'è 1, quindi fuori dalla diagonale c'è 1. Davanti a $x_2y_2$ c'è 3, quindi in basso a destra c'è 3. La risposta più tentatrice è quella con $1/2$ fuori dalla diagonale, ma qui non si divide per due: $x_1y_2$ e $x_2y_1$ sono due pezzi diversi. La matrice con 3 in alto a sinistra ha scambiato l'ordine dei posti. Confronta con la domanda 7 dell'appello dell'08/02/2024: lì era data una **forma quadratica**, e in quel caso il numero del pezzo misto va diviso per due (lezione L20).
+= La domanda chiede la matrice dei pesi della formula. La regola: il numero nella riga $i$ e colonna $j$ è quello davanti a $x_iy_j$. Il pezzo $x_1y_1$ manca, quindi in alto a sinistra c'è 0. Davanti a $x_1y_2$ e davanti a $x_2y_1$ c'è 1, quindi fuori dalla diagonale c'è 1. Davanti a $x_2y_2$ c'è 3, quindi in basso a destra c'è 3. La risposta più tentatrice è quella con $1/2$ fuori dalla diagonale, ma qui non si divide per due: $x_1y_2$ e $x_2y_1$ sono due pezzi diversi. Confronta con la domanda 7 dell'appello dell'08/02/2024: lì era data una **forma quadratica**, e in quel caso il numero del pezzo misto va diviso per due (lezione L20).
 
 D: Su $\R_1[x]$ si consideri il prodotto scalare $\langle p, q\rangle = p(0)q(0) + p(1)q(1)$ e la base $\mathcal B = \{x, x + 1\}$. Allora $[\,\langle\ ,\ \rangle\,]_{\mathcal B}$ è:
 + $\begin{pmatrix} 1 & 2 \\ 2 & 5 \end{pmatrix}$
@@ -21752,7 +25101,7 @@ D: Su $\R_1[x]$ si consideri il prodotto scalare $\langle p, q\rangle = p(0)q(0)
 - $\begin{pmatrix} 1 & 1 \\ 1 & 5 \end{pmatrix}$
 - $\begin{pmatrix} 5 & 2 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra i due polinomi della base, nell'ordine dato. Valori nei punti 0 e 1: il polinomio $x$ vale 0 e poi 1, il polinomio $x + 1$ vale 1 e poi 2. Primo polinomio con sé stesso: $0 \cdot 0 + 1 \cdot 1 = 1$. Primo con secondo: $0 \cdot 1 + 1 \cdot 2 = 2$. Secondo con sé stesso: $1 \cdot 1 + 2 \cdot 2 = 5$. La matrice ha 1 e 5 sulla diagonale e 2 fuori. La più tentatrice è la matrice con 5 in alto a sinistra: è quella di chi usa la base nell'ordine inverso. È simile alla domanda 7 dell'appello del 24/01/2024.
+= La domanda chiede la tabellina dei prodotti tra i due polinomi della base, nell'ordine dato. Valori nei punti 0 e 1: il polinomio $x$ vale 0 e poi 1, il polinomio $x + 1$ vale 1 e poi 2. Primo polinomio con sé stesso: $0 \cdot 0 + 1 \cdot 1 = 1$. Primo con secondo: $0 \cdot 1 + 1 \cdot 2 = 2$. Secondo con sé stesso: $1 \cdot 1 + 2 \cdot 2 = 5$. La più tentatrice è la matrice con 5 in alto a sinistra: è quella di chi usa la base nell'ordine inverso. È simile alla domanda 7 dell'appello del 24/01/2024.
 
 D: Su $\R^2$ sia $g(x, y) = x_1y_1 + x_1y_2 + x_2y_1$ e sia $\mathcal B = \{{}^t(1, 0), {}^t(1, -1)\}$. Allora $[g]_{\mathcal B}$ è:
 + $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
@@ -21760,7 +25109,7 @@ D: Su $\R^2$ sia $g(x, y) = x_1y_1 + x_1y_2 + x_2y_1$ e sia $\mathcal B = \{{}^t
 - $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 1 & -1 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra $v_1 = (1, 0)$ e $v_2 = (1, -1)$, con la formula data, che ha tre pezzi. Primo vettore con sé stesso: $1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1$. Primo con secondo, cioè $x = (1, 0)$ e $y = (1, -1)$: $1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$. Secondo con sé stesso: $1 \cdot 1 + 1 \cdot (-1) + (-1) \cdot 1 = -1$. La matrice ha 1 e $-1$ sulla diagonale e 0 fuori. La seconda risposta è la più tentatrice: è la matrice dei pesi della formula, cioè la matrice associata nella base canonica e non nella base data. L'ultima risposta non è simmetrica, quindi non può essere una matrice associata. È simile alla domanda 9 dell'appello del 15/01/2026.
+= La domanda chiede la tabellina dei prodotti tra $v_1 = (1, 0)$ e $v_2 = (1, -1)$, con la formula data, che ha tre pezzi. Primo vettore con sé stesso: $1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1$. Primo con secondo, cioè $x = (1, 0)$ e $y = (1, -1)$: $1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$. Secondo con sé stesso: $1 \cdot 1 + 1 \cdot (-1) + (-1) \cdot 1 = -1$. La seconda risposta è la più tentatrice: è la matrice dei pesi della formula, cioè la matrice associata nella base canonica e non nella base data. L'ultima risposta non è simmetrica, quindi non può essere una matrice associata. È simile alla domanda 9 dell'appello del 15/01/2026.
 
 D: Quale matrice simmetrica definisce un prodotto scalare **degenere** su $\R^2$?
 + $\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$
@@ -21768,7 +25117,7 @@ D: Quale matrice simmetrica definisce un prodotto scalare **degenere** su $\R^2$
 - $\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$
-= La domanda chiede quale prodotto ha un vettore invisibile. La regola: il prodotto $g_S$ è degenere esattamente quando il determinante di $S$ è zero. Per una matrice $2 \times 2$ il determinante è il prodotto dei due numeri sulla diagonale meno il prodotto degli altri due. La prima matrice dà $1 \cdot 4 - 2 \cdot 2 = 0$: è lei. Il suo vettore invisibile è $(2, -1)$, che la matrice manda nel vettore nullo. Le altre quattro hanno determinante $-1$, $1$, $-1$ e $6$, tutti diversi da zero. La più tentatrice è la matrice con gli zeri sulla diagonale: lì $e_1$ con sé stesso dà zero, ma questo non basta per essere degenere.
+= La domanda chiede quale prodotto ha un vettore invisibile. La regola: il prodotto $g_S$ è degenere esattamente quando il determinante di $S$ è zero. Per una matrice $2 \times 2$ il determinante è il prodotto dei due numeri sulla diagonale meno il prodotto degli altri due. La prima matrice dà $1 \cdot 4 - 2 \cdot 2 = 0$: è lei. Il suo vettore invisibile è $(2, -1)$. Le altre quattro hanno determinante $-1$, $1$, $-1$ e $6$, tutti diversi da zero. La più tentatrice è la matrice con gli zeri sulla diagonale: lì $e_1$ con sé stesso dà zero, ma questo non basta per essere degenere.
 
 D: Quale affermazione è vera per ogni prodotto scalare su uno spazio vettoriale reale?
 + Se è definito positivo, allora non è degenere.
@@ -21776,7 +25125,7 @@ D: Quale affermazione è vera per ogni prodotto scalare su uno spazio vettoriale
 - Se $\langle v, v\rangle = 0$ per qualche $v \neq 0$, allora è degenere.
 - Ogni matrice simmetrica $S$ definisce un prodotto scalare definito positivo.
 - Può succedere che $\langle v, 0\rangle \neq 0$.
-= La domanda chiede quale frase vale per tutti i prodotti scalari. La prima è la Proposizione 19.3: un vettore che dà zero con tutti darebbe zero anche con sé stesso, e in un prodotto definito positivo questo non succede. La seconda è la più tentatrice, perché è la prima letta al contrario. Ma il prodotto $x_1y_1 - x_2y_2$ non è degenere e non è definito positivo. Lo stesso prodotto smentisce la terza: il vettore $(1, 1)$ dà zero con sé stesso, eppure il prodotto non è degenere. La quarta è falsa per la matrice diagonale con $-1$ e $-1$ sulla diagonale: ogni vettore non nullo con sé stesso dà un numero negativo. La quinta è falsa perché con il vettore nullo ogni prodotto scalare dà zero.
+= La domanda chiede quale frase vale per tutti i prodotti scalari. La prima è la Proposizione 19.3: un vettore che dà zero con tutti darebbe zero anche con sé stesso, e in un prodotto definito positivo questo non succede. La seconda è la più tentatrice, perché è la prima letta al contrario. Ma il prodotto $x_1y_1 - x_2y_2$ non è degenere e non è definito positivo. Lo stesso prodotto smentisce la terza: il vettore $(1, 1)$ dà zero con sé stesso, eppure il prodotto non è degenere. La quarta è falsa per la matrice diagonale con $-1$ e $-1$ sulla diagonale. La quinta è falsa perché con il vettore nullo ogni prodotto scalare dà zero.
 
 D: Sia $S = \begin{pmatrix} 4 & 1 & -2 \\ 1 & 0 & 5 \\ -2 & 5 & 3 \end{pmatrix}$. Quanto vale $g_S(e_1 + e_2, e_3)$?
 N: 3
@@ -21796,7 +25145,7 @@ D: Su $\R_2[x]$, quale di questi prodotti scalari è **definito positivo**?
 - $\langle p, q\rangle = p(0)q(0) + p(1)q(1) - p(2)q(2)$
 - $\langle p, q\rangle = p(0)q(1) + p(1)q(0)$
 - $\langle p, q\rangle = p(1)q(1)$
-= La domanda chiede in quale prodotto ogni polinomio non nullo, con sé stesso, dà un numero positivo. Nel primo un polinomio con sé stesso dà la somma dei quadrati dei suoi valori in 0, 1 e 2. Fa zero solo se il polinomio ha tre radici diverse, e un polinomio non nullo di grado al massimo 2 ne ha al massimo due (Esempio 19.4). Il secondo è degenere: il polinomio $x - x^2$ vale zero in 0 e in 1, quindi dà zero con tutti. Il terzo è il più tentatore, perché usa gli stessi tre punti: ma il polinomio $x - 1$ con sé stesso dà $1 + 0 - 1 = 0$. Il quarto, per un polinomio con sé stesso, dà $2p(0)p(1)$: per $p = 1 - 2x$ viene $2 \cdot 1 \cdot (-1) = -2$. Il quinto è degenere: il polinomio $x - 1$ vale zero in 1, quindi dà zero con tutti.
+= La domanda chiede in quale prodotto ogni polinomio non nullo, con sé stesso, dà un numero positivo. Nel primo un polinomio con sé stesso dà la somma dei quadrati dei suoi valori in 0, 1 e 2. Fa zero solo se il polinomio ha tre radici diverse, e un polinomio non nullo di grado al massimo 2 ne ha al massimo due (Esempio 19.4). Il secondo è degenere: il polinomio $x - x^2$ vale zero in 0 e in 1. Il terzo è il più tentatore, perché usa gli stessi tre punti: ma il polinomio $x - 1$ con sé stesso dà $1 + 0 - 1 = 0$. Il quarto, per un polinomio con sé stesso, dà $2p(0)p(1)$: per $p = 1 - 2x$ viene $2 \cdot 1 \cdot (-1) = -2$. Il quinto è degenere: il polinomio $x - 1$ vale zero in 1, quindi dà zero con tutti.
 ```
 
 ## Esercizi
@@ -21857,17 +25206,15 @@ Per ciascuna formula su $\R^2$ di' se è un prodotto scalare; se non lo è, indi
 ::: soluzione
 Per ogni formula faccio i due controlli del metodo: la forma dei pezzi e la simmetria.
 
-(a) **Sì.** Ogni pezzo è un numero per una $x$ per una $y$, e non ci sono pezzi misti. La matrice dei pesi è $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$, simmetrica (Proposizione 19.7). I tre assiomi sono controllati uno per uno nella sezione «Questa formula è un prodotto scalare?».
+(a) **Sì.** Ogni pezzo è un numero per una $x$ per una $y$, e non ci sono pezzi misti. La matrice dei pesi è $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$, simmetrica (Proposizione 19.7).
 
-(b) **No**, non è simmetrica. Con $x = e_1$ e $y = e_2$ viene $1 \cdot 1 = 1$. Con i posti scambiati, $x = e_2$ e $y = e_1$, viene $0 \cdot 0 = 0$.
+(b) **No**, non è simmetrica. Con $x = e_1$ e $y = e_2$ viene $1 \cdot 1 = 1$. Con i posti scambiati viene $0 \cdot 0 = 0$.
 
 (c) **No**, non è bilineare. Con i due vettori nulli viene $0 + 0 + 1 = 1$, mentre un prodotto scalare deve dare 0.
 
-(d) **Sì.** Ogni pezzo ha una $x$ e una $y$. Davanti a $x_1y_2$ e davanti a $x_2y_1$ c'è lo stesso numero, $-4$. La matrice dei pesi è $\begin{pmatrix} 1 & -4 \\ -4 & 1 \end{pmatrix}$, simmetrica.
+(d) **Sì.** Ogni pezzo ha una $x$ e una $y$. Davanti a $x_1y_2$ e davanti a $x_2y_1$ c'è lo stesso numero, $-4$. La matrice dei pesi è $\begin{pmatrix} 1 & -4 \\ -4 & 1 \end{pmatrix}$, simmetrica. In più: non è definito positivo, perché il vettore $(1, 1)$ con sé stesso dà $1 - 4 - 4 + 1 = -6$.
 
-In più: questo prodotto non è definito positivo. Il vettore $(1, 1)$ con sé stesso dà $1 - 4 - 4 + 1 = -6$.
-
-(e) **No**, un numero non esce fuori. Con $x = e_1$ e $y = e_1$ viene $1^2 \cdot 1^2 = 1$. Raddoppiando il primo vettore, cioè con $x = (2, 0)$, viene $2^2 \cdot 1^2 = 4$. Doveva venire il doppio, cioè 2.
+(e) **No**, un numero non esce fuori. Con $x = e_1$ e $y = e_1$ viene $1^2 \cdot 1^2 = 1$. Raddoppiando il primo vettore viene $2^2 \cdot 1^2 = 4$. Doveva venire il doppio, cioè 2.
 :::
 
 ::: esercizio base Conti con il prodotto euclideo
@@ -21880,7 +25227,7 @@ In più: questo prodotto non è definito positivo. Il vettore $(1, 1)$ con sé s
 (c) La lettera $k$ sta al posto di un numero che non conosco. Faccio il conto lasciandola scritta.
 
 1. Posto per posto: $1 \cdot 3 + k \cdot 1 + 2 \cdot (-k) = 3 + k - 2k$.
-2. Metto insieme i pezzi con $k$: una volta $k$ meno due volte $k$ fa $-k$. Resta $3 - k$.
+2. Una volta $k$ meno due volte $k$ fa $-k$. Resta $3 - k$.
 3. Il prodotto deve fare zero: $3 - k = 0$, quindi $k = 3$.
 
 Controllo: con $k = 3$ i vettori sono $(1, 3, 2)$ e $(3, 1, -3)$. Il prodotto è $3 + 3 - 6 = 0$.
@@ -21895,14 +25242,13 @@ Controllo: con $k = 3$ i vettori sono $(1, 3, 2)$ e $(3, 1, -3)$. Il prodotto è
 - Riga 2: $-2x_2y_1 + 3x_2y_2 + 4x_2y_3$.
 - Riga 3: $4x_3y_2 - x_3y_3$.
 
-Sommo tutto.
 $$g_S(x, y) = x_1y_1 - 2x_1y_2 - 2x_2y_1 + 3x_2y_2 + 4x_2y_3 + 4x_3y_2 - x_3y_3$$
 
-(b) Il numero davanti a $x_iy_j$ va nella riga $i$ e colonna $j$.
+(b) Il numero davanti a $x_iy_j$ va nella riga $i$ e colonna $j$. Un pezzo che manca vale 0.
 
 - Riga 1: davanti a $x_1y_1$ c'è 1, davanti a $x_1y_2$ c'è 3, davanti a $x_1y_3$ c'è 2.
-- Riga 2: davanti a $x_2y_1$ c'è 3, davanti a $x_2y_2$ c'è $-1$. Il pezzo $x_2y_3$ manca: 0.
-- Riga 3: davanti a $x_3y_1$ c'è 2. I pezzi $x_3y_2$ e $x_3y_3$ mancano: 0 e 0.
+- Riga 2: davanti a $x_2y_1$ c'è 3, davanti a $x_2y_2$ c'è $-1$. Il pezzo $x_2y_3$ manca.
+- Riga 3: davanti a $x_3y_1$ c'è 2. I pezzi $x_3y_2$ e $x_3y_3$ mancano.
 
 $$S = \begin{pmatrix} 1 & 3 & 2 \\ 3 & -1 & 0 \\ 2 & 0 & 0 \end{pmatrix}$$
 
@@ -21920,7 +25266,7 @@ Uso le scorciatoie: prima il determinante, poi il numero in alto a sinistra.
 **La matrice $S_1$: degenere.**
 
 1. Il determinante è $1 \cdot 4 - 2 \cdot 2 = 0$. Quindi il prodotto è degenere.
-2. Cerco il vettore invisibile: un vettore non nullo che la matrice manda nel vettore nullo. La prima riga chiede $x_1 + 2x_2 = 0$. Va bene $v = (2, -1)$.
+2. Il vettore invisibile è un vettore non nullo che la matrice manda nel vettore nullo. La prima riga chiede $x_1 + 2x_2 = 0$: va bene $v = (2, -1)$.
 3. Controllo: la prima riga dà $1 \cdot 2 + 2 \cdot (-1) = 0$, la seconda dà $2 \cdot 2 + 4 \cdot (-1) = 0$.
 
 **La matrice $S_2$: definito positivo.**
@@ -21928,13 +25274,13 @@ Uso le scorciatoie: prima il determinante, poi il numero in alto a sinistra.
 1. In alto a sinistra c'è 1, positivo. Il determinante è $1 \cdot 5 - 2 \cdot 2 = 1$, positivo. Per il criterio delle matrici $2 \times 2$ il prodotto è definito positivo.
 2. Controllo con un altro metodo. Un vettore con sé stesso dà $x_1^2 + 4x_1x_2 + 5x_2^2$. Spezzo $5x_2^2$ in $4x_2^2 + x_2^2$ e riconosco un quadrato:
    $$x_1^2 + 4x_1x_2 + 4x_2^2 + x_2^2 = (x_1 + 2x_2)^2 + x_2^2$$
-   Una somma di due quadrati non è mai negativa. Fa zero solo se $x_2 = 0$ e $x_1 + 2x_2 = 0$, cioè solo per il vettore nullo.
+   È una somma di due quadrati: fa zero solo se $x_2 = 0$ e $x_1 + 2x_2 = 0$, cioè solo per il vettore nullo.
 
 **La matrice $S_3$: non degenere, ma non definito positivo.**
 
 1. Il determinante è $1 \cdot 3 - 2 \cdot 2 = -1$. Non è zero, quindi il prodotto non è degenere.
 2. Il determinante è negativo, quindi per il criterio il prodotto non è definito positivo.
-3. Un vettore che lo mostra è $x = (2, -1)$. Con sé stesso dà $x_1^2 + 4x_1x_2 + 3x_2^2$, cioè $4 - 8 + 3 = -1$: un numero negativo.
+3. Un vettore che lo mostra è $(2, -1)$. Con sé stesso dà $x_1^2 + 4x_1x_2 + 3x_2^2$, cioè $4 - 8 + 3 = -1$: un numero negativo.
 :::
 
 ::: esercizio medio Una base in cui $g_S$ sembra euclideo
@@ -21949,12 +25295,11 @@ La formula del prodotto è $g_S(x, y) = 2x_1y_1 + x_1y_2 + x_2y_1 + x_2y_2$. Ser
 3. **Secondo con sé stesso.** Metto $x = (0, 1)$ e $y = (0, 1)$:
    $$2 \cdot 0 \cdot 0 + 0 \cdot 1 + 1 \cdot 0 + 1 \cdot 1 = 1$$
 
-La matrice associata è la matrice identità.
 $$[g_S]_{\mathcal B} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$$
 
-**Che cosa si osserva.** In questa base il prodotto $g_S$ ha la stessa matrice del prodotto euclideo nella base canonica. Con le coordinate, il prodotto di due vettori diventa il conto della spesa: primo per primo più secondo per secondo.
+**Che cosa si osserva.** La matrice associata è la matrice identità: la stessa del prodotto euclideo nella base canonica. Con le coordinate di questa base, il prodotto $g_S$ diventa il conto della spesa.
 
-Una base così, in cui la matrice associata è l'identità, si chiama **ortonormale**. Nella lezione L21 impari a costruirne una con l'algoritmo di Gram–Schmidt.
+Una base così si chiama **ortonormale**. Nella lezione L21 impari a costruirne una con l'algoritmo di Gram–Schmidt.
 :::
 
 ::: esercizio medio Un prodotto sui polinomi in tre punti simmetrici
@@ -21982,7 +25327,7 @@ Poi i sei prodotti: moltiplico due righe punto per punto e sommo.
 La matrice associata, che chiamo $S$:
 $$S = \begin{pmatrix} 3 & 0 & 2 \\ 0 & 2 & 0 \\ 2 & 0 & 2 \end{pmatrix}$$
 
-(b) Sì. Il ragionamento è quello dell'Esempio 19.4. Un polinomio con sé stesso dà la somma dei quadrati dei suoi tre valori. Fa zero solo se il polinomio vale zero in $-1$, in $0$ e in $1$, cioè se ha tre radici diverse. Un polinomio non nullo di grado al massimo 2 ne ha al massimo due (Teorema 4.6). Quindi solo il polinomio nullo dà zero.
+(b) Sì, con il ragionamento dell'Esempio 19.4. Un polinomio con sé stesso dà la somma dei quadrati dei suoi tre valori. Fa zero solo se il polinomio ha le tre radici $-1$, $0$ e $1$. Un polinomio non nullo di grado al massimo 2 ha al massimo due radici (Teorema 4.6).
 
 (c) È la casella nella riga 2 e colonna 3 della matrice: $\langle x, x^2\rangle = 0$. Per questo prodotto i polinomi $x$ e $x^2$ sono «perpendicolari».
 
@@ -22022,24 +25367,11 @@ Lo spazio $\R_1[x]$ è quello dei polinomi di grado al massimo 1, cioè dei poli
 
 Ogni polinomio non nullo con sé stesso dà un numero positivo: il prodotto è definito positivo.
 
-(b) Tabella dei valori nei punti 0 e 1.
+(b) Nei punti 0 e 1 il polinomio $1$ vale 1 e 1. I polinomi $x$ e $x^2$ valgono tutti e due 0 e poi 1.
 
-| | in 0 | in 1 |
-|---|--:|--:|
-| $1$ | $1$ | $1$ |
-| $x$ | $0$ | $1$ |
-| $x^2$ | $0$ | $1$ |
-
-I sei prodotti.
-
-| Coppia | Conto | Valore |
-|---|---|--:|
-| $\langle 1, 1\rangle$ | $1 \cdot 1 + 1 \cdot 1$ | $2$ |
-| $\langle 1, x\rangle$ | $1 \cdot 0 + 1 \cdot 1$ | $1$ |
-| $\langle 1, x^2\rangle$ | $1 \cdot 0 + 1 \cdot 1$ | $1$ |
-| $\langle x, x\rangle$ | $0 \cdot 0 + 1 \cdot 1$ | $1$ |
-| $\langle x, x^2\rangle$ | $0 \cdot 0 + 1 \cdot 1$ | $1$ |
-| $\langle x^2, x^2\rangle$ | $0 \cdot 0 + 1 \cdot 1$ | $1$ |
+1. Il polinomio $1$ con sé stesso: $1 \cdot 1 + 1 \cdot 1 = 2$.
+2. Il polinomio $1$ con $x$ oppure con $x^2$: $1 \cdot 0 + 1 \cdot 1 = 1$.
+3. Gli altri tre prodotti, cioè $x$ con $x$, $x$ con $x^2$ e $x^2$ con $x^2$: $0 \cdot 0 + 1 \cdot 1 = 1$.
 
 $$S = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}$$
 
@@ -22063,7 +25395,7 @@ Controllo: $x - x^2$ vale 0 in 0 e vale $1 - 1 = 0$ in 1. Quindi con ogni polino
 ::: esercizio difficile Un prodotto scalare sulle matrici
 Su $M(2, \R)$ prendi $g(A, B) = \operatorname{tr}({}^tA\,B)$ (la traccia è la somma degli elementi sulla diagonale). (a) Scrivi $g(A, B)$ in funzione delle entrate. (b) Dimostra che è un prodotto scalare definito positivo. (c) Trova la matrice associata nella base $\{E_{11}, E_{12}, E_{21}, E_{22}\}$ delle matrici con un solo 1. (d) Calcola $g(A, B)$ per $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$, $B = \begin{pmatrix} 3 & 0 \\ 1 & -1 \end{pmatrix}$.
 
-Qui i «vettori» sono matrici con due righe e due colonne. Ogni matrice della base ha un 1 in una casella e 0 nelle altre tre: i due numerini in basso dicono la riga e la colonna dell'1. Le «entrate» sono i numeri dentro la matrice.
+Qui i «vettori» sono matrici con due righe e due colonne, e le «entrate» sono i numeri dentro la matrice. Ogni matrice della base ha un 1 in una casella e 0 nelle altre tre: i due numerini in basso dicono la riga e la colonna dell'1.
 ::: soluzione
 (a) Do un nome alle entrate delle due matrici.
 $$A = \begin{pmatrix} a_1 & a_2 \\ a_3 & a_4 \end{pmatrix} \qquad\qquad B = \begin{pmatrix} b_1 & b_2 \\ b_3 & b_4 \end{pmatrix}$$
@@ -22074,11 +25406,9 @@ $$A = \begin{pmatrix} a_1 & a_2 \\ a_3 & a_4 \end{pmatrix} \qquad\qquad B = \beg
 
 $$g(A, B) = a_1b_1 + a_2b_2 + a_3b_3 + a_4b_4$$
 
-(b) La formula del punto (a) è il conto della spesa: ogni entrata di $A$ per l'entrata di $B$ nello stesso posto, e poi la somma. È il prodotto euclideo di $\R^4$, scritto sulle quattro entrate. Quindi è bilineare, simmetrico e definito positivo (Proposizione 19.6).
+(b) La formula del punto (a) è il conto della spesa: ogni entrata di $A$ per l'entrata di $B$ nello stesso posto, e poi la somma. È il prodotto euclideo di $\R^4$, scritto sulle quattro entrate. Quindi è bilineare, simmetrico e definito positivo (Proposizione 19.6). Una matrice con sé stessa dà $a_1^2 + a_2^2 + a_3^2 + a_4^2$, che è positivo se la matrice non è quella nulla.
 
-In particolare una matrice con sé stessa dà $a_1^2 + a_2^2 + a_3^2 + a_4^2$, che è positivo se la matrice non è quella nulla.
-
-(c) Ogni matrice della base, letta come lista di quattro numeri, ha un 1 e tre 0. Il prodotto di una di loro con sé stessa è $1 \cdot 1 = 1$. Il prodotto di due diverse è 0, perché gli 1 stanno in posti diversi. La matrice associata è la matrice identità con quattro righe e quattro colonne, $I_4$.
+(c) Ogni matrice della base, letta come lista di quattro numeri, ha un 1 e tre 0. Una di loro con sé stessa dà $1 \cdot 1 = 1$. Due diverse danno 0, perché gli 1 stanno in posti diversi. La matrice associata è la matrice identità con quattro righe e quattro colonne, $I_4$.
 
 (d) Entrata per entrata: $1 \cdot 3 + 2 \cdot 0 + 0 \cdot 1 + 1 \cdot (-1) = 3 + 0 + 0 - 1 = 2$.
 :::
@@ -22110,8 +25440,6 @@ Lo stesso risultato senza il determinante. Prendo un polinomio $p$ che dà zero 
 3. Dal passo 1 allora anche $p(0) = 0$.
 4. Il polinomio $p$ ha grado al massimo 1 e due radici, quindi è il polinomio nullo.
 
-Nessun polinomio non nullo è invisibile.
-
 (c) **No, non è definito positivo.** Il polinomio $1$ non è nullo, ma con sé stesso dà $0$: è la casella in basso a destra della matrice.
 
 In più il segno cambia. Il polinomio $x$ con sé stesso dà $2 \cdot 2 - 0 \cdot 0 = 4$, positivo. Il polinomio $x - 2$ vale 0 in 2 e vale $-2$ in 0: con sé stesso dà $0 - 4 = -4$, negativo.
@@ -22127,8 +25455,6 @@ Prendi la matrice $S = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & 3 \end{
 3. Spezzo $2x_2^2$ in $x_2^2 + x_2^2$ e riconosco il quadrato di una somma:
    $$g_S(x, x) = (x_1 + x_2)^2 + x_2^2 + 3x_3^2$$
 4. I tre pezzi non sono mai negativi. Fanno zero tutti insieme solo se $x_3 = 0$, $x_2 = 0$ e $x_1 + x_2 = 0$, cioè solo per il vettore nullo.
-
-Quindi ogni vettore non nullo con sé stesso dà un numero positivo.
 
 (b) Seguo il metodo: calcolo una volta sola le tre colonne $Sv_1$, $Sv_2$, $Sv_3$. Ogni riga di $S$ va moltiplicata per il vettore.
 
@@ -23899,16 +27225,15 @@ descrizione: >-
   isometrie tra spazi con prodotto scalare, matrici ortogonali, classificazione delle isometrie del piano e dello
   spazio, prodotto vettoriale in R3, con quiz nello stile dell'esame ed esercizi svolti.
 lede: >-
-  Quali trasformazioni lineari muovono le figure senza deformarle? Nel piano sono solo rotazioni e riflessioni, e le
-  loro matrici sono le matrici ortogonali, quelle con ${}^tAA = I$. Nello spazio si aggiungono le antirotazioni. In
-  chiusura, il prodotto vettoriale $v \times w$: il modo più rapido per trovare un vettore perpendicolare a due vettori
-  di $\R^3$, che userai in tutte le lezioni sulla geometria dello spazio.
+  I movimenti che spostano le figure senza deformarle: girare e specchiare. Impari a riconoscerli dalla loro tabella
+  di numeri, che si chiama matrice ortogonale. Alla fine arriva il prodotto vettoriale: una ricetta per costruire un
+  vettore perpendicolare a due vettori dati, che userai in tutte le lezioni sulla geometria dello spazio.
 materiale: dispense
 scheda:
   Dispense: lezione 22 · pp. 111–115
   Libro: Martelli, §4.4.8–4.4.9, §7.5, §8.2 e §9.1
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 90–120 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 22 «Lo spazio euclideo I»; B. Martelli, Geometria e algebra
   lineare, §4.4.8–4.4.9, §7.5, §8.2 e §9.1
@@ -23919,29 +27244,230 @@ genera_html: true
 
 ## In breve
 
-- In queste lezioni sullo spazio euclideo $\R^n$ ha sempre il **prodotto scalare euclideo**. Le **isometrie lineari** sono le trasformazioni lineari che non cambiano lunghezze, distanze e angoli; fissano l'origine.
-- La **rotazione** di angolo $\vartheta$ (in senso antiorario) ha matrice $\mathrm{Rot}_\vartheta = \begin{pmatrix} \cos\vartheta & -\sin\vartheta \\ \sin\vartheta & \cos\vartheta \end{pmatrix}$, con determinante $1$.
-- La **riflessione** rispetto alla retta che forma un angolo $\frac\vartheta2$ con l'asse $x$ ha matrice $\mathrm{Rif}_\vartheta = \begin{pmatrix} \cos\vartheta & \sin\vartheta \\ \sin\vartheta & -\cos\vartheta \end{pmatrix}$, con determinante $-1$. Attenzione: la retta ha angolo $\frac\vartheta2$, non $\vartheta$.
-- Un'**isometria** è un isomorfismo che conserva il prodotto scalare. Basta controllarlo sui vettori di una base; con un prodotto definito positivo equivale a conservare le norme, o le distanze.
-- $L_A$ è un'isometria di $\R^n$ se e solo se ${}^tAA = I_n$: $A$ si dice **ortogonale**. Le sue colonne formano una base ortonormale, $A^{-1} = {}^tA$ e $\det A = \pm1$.
-- Le matrici ortogonali $2 \times 2$ sono tutte e sole le $\mathrm{Rot}_\vartheta$ e le $\mathrm{Rif}_\vartheta$: le isometrie del piano sono **rotazioni e riflessioni**. Nello spazio sono **rotazioni e antirotazioni**.
-- Il **prodotto vettoriale** di $v, w \in \R^3$ è $v \times w = (v_2w_3 - v_3w_2,\ v_3w_1 - v_1w_3,\ v_1w_2 - v_2w_1)$: è ortogonale sia a $v$ sia a $w$, ed è nullo se e solo se $v$ e $w$ sono dipendenti.
-- Se $v$ e $w$ sono indipendenti, $v, w, v \times w$ è una base di $\R^3$. All'esame il prodotto vettoriale serve soprattutto per trovare direzioni di rette e vettori normali ai piani (lezioni L23–L24).
+- Un'**isometria** è un movimento rigido: sposta le figure senza deformarle. Lunghezze, distanze e angoli restano quelli di prima.
+- Nel piano, i movimenti rigidi che tengono fermo il punto dove si incrociano gli assi sono di due tipi soltanto: le **rotazioni** (girare) e le **riflessioni** (specchiare rispetto a una retta).
+- Ognuno di questi movimenti si scrive con una tabella di quattro numeri. La tabella di un movimento rigido si chiama **matrice ortogonale**: le sue colonne sono lunghe 1 e perpendicolari tra loro.
+- Un solo numero, il **determinante**, distingue i due tipi: vale $1$ per le rotazioni e $-1$ per le riflessioni.
+- Nello spazio i movimenti rigidi sono le rotazioni intorno a una retta e le **antirotazioni**, cioè una rotazione seguita da uno specchio.
+- Il **prodotto vettoriale** prende due vettori dello spazio e ne costruisce un terzo, perpendicolare a tutti e due.
+- All'esame servono due cose: riconoscere una matrice ortogonale nel quiz e usare il prodotto vettoriale nei problemi su rette e piani.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Trasformazioni che non deformano (p. 111)
+## Prima di cominciare
 
-Prendi un foglio con un disegno e fallo ruotare sul tavolo intorno a un punto fisso, oppure giralo a faccia in giù come in uno specchio: il disegno si sposta, ma nessuna lunghezza e nessun angolo cambia. Queste trasformazioni si chiamano **isometrie** («stessa misura»).
+### Di che cosa parla questa lezione
 
-In queste lezioni le dispense usano sempre il **prodotto scalare euclideo** sullo **spazio euclideo** $\R^n$, e considerano soltanto **isometrie lineari**, cioè isometrie che fissano l'origine: sono applicazioni lineari $L_A(x) = Ax$ (lezione L14), quindi mandano $0$ in $0$. Le traslazioni, che spostano anche l'origine, non sono lineari e restano fuori da queste lezioni.
+Appoggia sul tavolo un foglio con un disegno e fallo girare intorno a una puntina. Il disegno cambia posizione, ma non cambia forma: nessuna linea si allunga e nessun angolo si apre o si chiude. Lo stesso succede se guardi il disegno in uno specchio. Movimenti come questi si chiamano movimenti rigidi. In matematica il loro nome è isometrie.
 
-Un ricordo che servirà di continuo: **le colonne di $A$ sono le immagini dei vettori della base canonica**, $Ae_1 = A^1$ e $Ae_2 = A^2$. Per scrivere la matrice di una trasformazione del piano basta sapere dove vanno $e_1$ ed $e_2$.
+Nelle lezioni L19, L20 e L21 hai imparato a misurare lunghezze, distanze e angoli con il prodotto scalare. Questa lezione fa il passo successivo. Cerca le macchine che trasformano i vettori lasciando uguali tutte queste misure.
 
-## Rotazioni del piano (p. 111)
+La risposta è corta. Nel piano ci sono solo le rotazioni e gli specchi. Tutti e due si riconoscono guardando la tabella di numeri della macchina: le sue colonne devono essere lunghe uno e perpendicolari tra loro.
 
-Ruota il piano di un angolo $\vartheta$ in senso antiorario intorno all'origine. Il vettore $e_1 = (1, 0)$ sta sulla circonferenza di raggio 1 all'angolo 0: dopo la rotazione sta all'angolo $\vartheta$, cioè nel punto $(\cos\vartheta, \sin\vartheta)$. Il vettore $e_2 = (0, 1)$ sta all'angolo $\frac\pi2$ e finisce all'angolo $\vartheta + \frac\pi2$, cioè nel punto $\left(\cos\left(\vartheta + \frac\pi2\right), \sin\left(\vartheta + \frac\pi2\right)\right) = (-\sin\vartheta, \cos\vartheta)$. Queste due immagini sono le colonne della matrice.
+Nell'ultima parte la lezione cambia argomento. Impari il prodotto vettoriale, una ricetta che da due vettori dello spazio ne costruisce un terzo, perpendicolare a tutti e due. È lo strumento più usato nelle lezioni L23 e L24, dove si lavora con rette e piani, e nei problemi d'esame.
+
+Due parti della lezione sono più teoriche delle altre: la definizione generale di isometria e i movimenti rigidi dello spazio. Servono per capire, ma negli appelli dal 2023 al 2026 non sono state chieste. Dove cominciano trovi un avviso.
+
+### Che cosa devi già sapere
+
+Tutte queste cose vengono ricordate con un esempio nel punto in cui servono.
+
+- **Vettori e matrici** (lezioni L05 e L08). Un vettore è una lista di numeri, come $(3, 2)$. Una matrice è una tabella di numeri. Il ripasso della moltiplicazione «matrice per vettore» è nella prima sezione.
+- **Prodotto scalare, lunghezza, perpendicolare** (lezioni L19, L20 e L21). Il ripasso è nella prima sezione.
+- **Angoli in radianti, coseno e seno.** I due ripassi sono nella sezione sulle rotazioni.
+- **Determinante** di una matrice con due righe e due colonne (lezione L09). Il ripasso è nella sezione sulle rotazioni.
+- **Vettori dipendenti, vettori indipendenti, base** (lezione L07). Servono solo nell'ultima sezione, e li ricordiamo lì.
+
+### Che cosa saprai fare alla fine
+
+- Scrivere la matrice di una rotazione o di una riflessione del piano, e usarla per muovere un vettore.
+- Dire se una matrice è ortogonale guardando le sue colonne.
+- Riconoscere se una matrice ortogonale del piano è una rotazione o una riflessione, e trovare l'angolo oppure la retta dello specchio.
+- Scrivere l'inversa di una matrice ortogonale senza fare conti.
+- Calcolare il prodotto vettoriale di due vettori e controllare il risultato.
+- Usare il prodotto vettoriale per trovare un vettore perpendicolare a un piano.
+
+## Movimenti che non deformano (p. 111)
+
+Un movimento rigido sposta una figura senza cambiarne la forma.
+
+Pensa a una squadra da disegno appoggiata sul tavolo. La puoi far scivolare, la puoi far girare, la puoi anche ribaltare sull'altra faccia. In ogni posizione i suoi lati sono lunghi come prima e i suoi angoli sono gli stessi. Se invece fai una fotocopia ingrandita della squadra, i lati si allungano: quello non è un movimento rigido.
+
+In matematica un movimento rigido si chiama **isometria**. La parola viene dal greco e vuol dire «stessa misura».
+
+Le dispense aprono la lezione con due avvisi. Li leggiamo uno alla volta, perché fissano le regole del gioco per tutte le lezioni sulla geometria (questa, la L23 e la L24).
+
+### Primo avviso: si lavora nel piano e nello spazio di tutti i giorni
+
+Le dispense scrivono: «In queste lezioni usiamo sempre il prodotto scalare euclideo sullo spazio euclideo $\R^n$».
+
+La scrittura $\R^n$ si legge «erre enne». È l'insieme di tutte le liste fatte di $n$ numeri reali: la lettera $n$ dice quanti numeri ci sono nella lista. Qui servono due casi.
+
+- $\R^2$ («erre due») contiene le liste di due numeri, come $(3, 2)$. Sono i punti del piano: 3 passi a destra e 2 passi in su.
+- $\R^3$ («erre tre») contiene le liste di tre numeri, come $(3, 2, 5)$. Sono i punti dello spazio: il terzo numero è l'altezza.
+
+Una lista di numeri è un **vettore**. Si disegna come una freccia. La freccia parte dall'**origine**, cioè dal punto dove si incrociano gli assi, e arriva al punto indicato dalla lista. L'origine è il vettore fatto di soli zeri.
+
+«Euclideo» viene da Euclide, il matematico greco della geometria che si studia a scuola. Il **prodotto scalare euclideo** è quello normale, che conosci dalla lezione L19. Con lui si misurano lunghezze e angoli. Lo ricordiamo qui sotto.
+
+> [!RIPASSO] prodotto scalare, lunghezza, perpendicolare (lezioni L19, L20 e L21)
+> Il **prodotto scalare** di due vettori è un numero. Si calcola così: moltiplichi i numeri che stanno nello stesso posto e sommi i risultati. Si scrive con due parentesi a punta.
+> $$\langle (1, 2), (3, -1) \rangle = 1 \cdot 3 + 2 \cdot (-1) = 3 - 2 = 1$$
+> La **lunghezza** di un vettore si chiama anche **norma** e si scrive con due doppie barre. Si calcola con il teorema di Pitagora: fai il quadrato di ogni numero, sommi e poi fai la radice.
+> $$\|(3, 4)\| = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$$
+> La **distanza** tra due vettori è la lunghezza della loro differenza.
+>
+> Due vettori sono **perpendicolari** quando il loro prodotto scalare è zero. Al posto di «perpendicolari» le dispense scrivono quasi sempre **ortogonali**: è la stessa cosa. Un esempio:
+> $$\langle (2, 1), (-1, 2) \rangle = 2 \cdot (-1) + 1 \cdot 2 = -2 + 2 = 0$$
+
+### Secondo avviso: l'origine resta ferma
+
+Le dispense scrivono: «In queste lezioni consideriamo soltanto isometrie lineari, cioè isometrie che fissano l'origine».
+
+«Fissare l'origine» vuol dire che l'origine non si muove. Pensa di nuovo al foglio sul tavolo.
+
+- Se pianti una puntina nell'origine e fai girare il foglio, l'origine resta ferma. Questo movimento va bene.
+- Se fai scivolare tutto il foglio di 3 centimetri verso destra, si sposta anche l'origine. Questo movimento si chiama **traslazione**. È rigido, ma resta fuori da queste lezioni.
+
+Perché «lineari»? Un'**applicazione lineare** è una macchina che trasforma vettori in vettori e rispetta le somme e i multipli (lezione L14). Ogni macchina di questo tipo manda il vettore di soli zeri nel vettore di soli zeri. Quindi tiene ferma l'origine.
+
+### La macchina «moltiplica per una matrice»
+
+Le macchine lineari del piano sono tutte fatte nello stesso modo: prendono un vettore e lo moltiplicano per una matrice (lezione L15).
+
+> [!RIPASSO] matrice per vettore (lezione L08)
+> Una **matrice** è una tabella di numeri. Per moltiplicarla per un vettore si lavora una riga alla volta. Si moltiplicano i numeri della riga per i numeri del vettore, posto per posto, e si somma.
+> $$\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} 3 \\ 2 \end{pmatrix} = \begin{pmatrix} 2 \cdot 3 + 1 \cdot 2 \\ 0 \cdot 3 + 3 \cdot 2 \end{pmatrix} = \begin{pmatrix} 8 \\ 6 \end{pmatrix}$$
+> La prima riga dà $6 + 2 = 8$. La seconda riga dà $0 + 6 = 6$.
+>
+> Accanto a una matrice il vettore si scrive in verticale. In una riga di testo si scrive in orizzontale: $(8, 6)$. È lo stesso vettore.
+
+Chiamiamo $A$ la matrice. La macchina «moltiplica per $A$» nelle dispense si chiama $L_A$, che si legge «elle con $A$». Il vettore che esce dalla macchina si chiama **immagine** del vettore che è entrato. Nel ripasso, l'immagine di $(3, 2)$ è $(8, 6)$.
+
+C'è un fatto che useremo in tutta la lezione. Riguarda i due vettori più comodi del piano:
+
+- il vettore $(1, 0)$, cioè «un passo a destra», che si chiama $e_1$;
+- il vettore $(0, 1)$, cioè «un passo in su», che si chiama $e_2$.
+
+Insieme formano la **base canonica** del piano. Guarda che cosa succede quando entrano nella macchina del ripasso.
+
+$$\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 2 \\ 0 \end{pmatrix} \qquad\qquad \begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 3 \end{pmatrix}$$
+
+Il primo risultato è la prima colonna della matrice. Il secondo risultato è la seconda colonna. Succede con ogni matrice.
+
+> [!IDEA]
+> La prima colonna di una matrice è il posto dove finisce $e_1$. La seconda colonna è il posto dove finisce $e_2$. Quindi per scrivere la matrice di un movimento del piano basta sapere dove vanno questi due vettori.
+
+::: prova Quanto fa la matrice $\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}$ per il vettore $(1, 1)$?
+Prima riga: $2 \cdot 1 + 1 \cdot 1 = 3$. Seconda riga: $0 \cdot 1 + 3 \cdot 1 = 3$. Il risultato è $(3, 3)$.
+:::
+
+::: prova Una macchina manda $e_1$ in $(0, 1)$ ed $e_2$ in $(-1, 0)$. Qual è la sua matrice?
+Le due immagini vanno nelle colonne, scritte in verticale: $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$. La prima colonna è $(0, 1)$, la seconda è $(-1, 0)$.
+:::
+
+::: prova Far scivolare tutto il piano di 2 passi verso destra è un'isometria lineare?
+No. È un movimento rigido, ma l'origine si sposta nel punto $(2, 0)$. È una traslazione, e in queste lezioni non si usa.
+:::
+
+> [!RICORDA]
+> - Un'**isometria** è un movimento rigido: non cambia lunghezze, distanze e angoli.
+> - In queste lezioni le isometrie sono **lineari**: tengono ferma l'origine e sono macchine del tipo «moltiplica per una matrice».
+> - Le colonne della matrice dicono dove vanno $e_1$ ed $e_2$.
+
+## Girare il piano: le rotazioni (p. 111)
+
+Una rotazione fa girare tutto il piano intorno all'origine, come un disco sul piatto del giradischi.
+
+Per dire di quanto si gira serve un angolo. Per scrivere la matrice servono il coseno e il seno di quell'angolo. Prima di cominciare ripassiamo queste due cose.
+
+> [!RIPASSO] gli angoli in radianti
+> A scuola gli angoli si misurano in gradi: un giro completo è 360 gradi. In questo corso si misurano in **radianti**: un giro completo è $2\pi$. Il simbolo $\pi$ è il numero pi greco, circa $3{,}14$.
+>
+> | Quanto giri | Gradi | Radianti |
+> |---|---|---|
+> | un dodicesimo di giro | 30° | $\frac\pi6$ |
+> | un ottavo di giro | 45° | $\frac\pi4$ |
+> | un sesto di giro | 60° | $\frac\pi3$ |
+> | un quarto di giro | 90° | $\frac\pi2$ |
+> | mezzo giro | 180° | $\pi$ |
+> | tre quarti di giro | 270° | $\frac{3\pi}2$ |
+> | un giro intero | 360° | $2\pi$ |
+>
+> Gli angoli si contano in senso **antiorario**, cioè al contrario delle lancette dell'orologio. Un angolo si indica di solito con la lettera greca $\vartheta$, che si legge «theta».
+
+> [!RIPASSO] coseno e seno
+> Disegna il cerchio di raggio 1 con il centro nell'origine. Parti dal punto più a destra, che è $(1, 0)$, e cammina lungo il cerchio in senso antiorario per un angolo $\vartheta$. Il punto in cui arrivi ha due coordinate, e ognuna ha un nome.
+>
+> - La prima coordinata dice quanto sei a destra. Si chiama **coseno** di $\vartheta$ e si scrive $\cos\vartheta$.
+> - La seconda coordinata dice quanto sei in alto. Si chiama **seno** di $\vartheta$ e si scrive $\sin\vartheta$.
+>
+> Quindi il punto del cerchio all'angolo $\vartheta$ è $(\cos\vartheta, \sin\vartheta)$. Per gli angoli più usati i valori sono in questa tabella, da copiare sul foglio dell'esame.
+>
+> | Angolo | $0$ | $\frac\pi6$ | $\frac\pi4$ | $\frac\pi3$ | $\frac\pi2$ | $\pi$ | $\frac{3\pi}2$ |
+> |---|---|---|---|---|---|---|---|
+> | coseno | $1$ | $\frac{\sqrt3}2$ | $\frac{\sqrt2}2$ | $\frac12$ | $0$ | $-1$ | $0$ |
+> | seno | $0$ | $\frac12$ | $\frac{\sqrt2}2$ | $\frac{\sqrt3}2$ | $1$ | $0$ | $-1$ |
+>
+> Una regola vale per ogni angolo:
+> $$\cos^2\vartheta + \sin^2\vartheta = 1$$
+> La scrittura $\cos^2\vartheta$ vuol dire «il coseno di $\vartheta$, elevato al quadrato». La regola è il teorema di Pitagora: il punto sta sul cerchio di raggio 1, quindi la sua distanza dall'origine è 1.
+
+Guarda la figura: il punto con le due coordinate scritte accanto è il punto del cerchio all'angolo di 30 gradi. Il tratto orizzontale è il suo coseno: dice quanto il punto è a destra. Il tratto verticale tratteggiato è il suo seno: dice quanto il punto è in alto.
+
+```grafico
+titolo: Il punto del cerchio di raggio 1 all'angolo $\vartheta$ ha coordinate $(\cos\vartheta, \sin\vartheta)$. Qui $\vartheta = \frac\pi6$
+x: -1.4 1.7
+y: -1.2 1.2
+cerchio: 0 0 1 | grigio
+segmento: 0 0 sqrt(3)/2 1/2 | accento | spesso
+segmento: 0 0 sqrt(3)/2 0 | viola | spesso | $\cos\vartheta$ | s
+segmento: sqrt(3)/2 0 sqrt(3)/2 1/2 | blu | tratteggio | $\sin\vartheta$ | e
+arco: 0 0 0.4 0 pi/6 | ambra | $\vartheta$
+punto: sqrt(3)/2 1/2 | accento | $(\cos\vartheta, \sin\vartheta)$ | ne
+punto: 1 0 | grigio | $(1, 0)$ | se
+```
+
+### Un quarto di giro
+
+Cominciamo dalla rotazione più comoda: un quarto di giro in senso antiorario.
+
+Per scrivere la sua matrice basta vedere dove vanno i due vettori della base canonica.
+
+- Il vettore $e_1 = (1, 0)$ punta a destra. Dopo un quarto di giro punta in su: diventa $(0, 1)$.
+- Il vettore $e_2 = (0, 1)$ punta in su. Dopo un quarto di giro punta a sinistra: diventa $(-1, 0)$.
+
+Le due immagini vanno nelle colonne. La matrice del quarto di giro è questa:
+
+$$\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$$
+
+Proviamo la macchina su un altro vettore, per esempio $(1, 2)$.
+
+$$\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} 0 \cdot 1 + (-1) \cdot 2 \\ 1 \cdot 1 + 0 \cdot 2 \end{pmatrix} = \begin{pmatrix} -2 \\ 1 \end{pmatrix}$$
+
+Il vettore $(1, 2)$ è diventato $(-2, 1)$. Controlliamo con due conti che sia davvero un quarto di giro.
+
+1. **La lunghezza non è cambiata.** Prima era $\sqrt{1^2 + 2^2} = \sqrt 5$. Dopo è $\sqrt{(-2)^2 + 1^2} = \sqrt 5$.
+2. **Tra il vettore di prima e quello di dopo c'è un angolo retto.** Il loro prodotto scalare è $1 \cdot (-2) + 2 \cdot 1 = 0$, quindi sono perpendicolari.
+
+La regola del quarto di giro si ricorda così: **scambia i due numeri, poi cambia segno al primo**. Con le lettere: il vettore $(x, y)$ diventa $(-y, x)$.
+
+### Un angolo qualsiasi
+
+Ora giriamo di un angolo qualsiasi, che chiamiamo $\vartheta$. Il ragionamento è lo stesso: guardiamo dove vanno i due vettori della base canonica.
+
+**Dove va il primo.** Il vettore $e_1$ è il punto del cerchio di raggio 1 da cui si cominciano a contare gli angoli. Girandolo di $\vartheta$ arriva al punto del cerchio all'angolo $\vartheta$. Per il ripasso su coseno e seno, quel punto è
+
+$$(\cos\vartheta,\ \sin\vartheta).$$
+
+**Dove va il secondo.** Il vettore $e_2$ è $e_1$ girato di un quarto di giro. Se giri tutti e due dello stesso angolo, restano a un quarto di giro l'uno dall'altro. Quindi l'immagine del secondo è l'immagine del primo, girata di un quarto di giro. Con la regola di prima (scambia i due numeri, poi cambia segno al primo) viene
+
+$$(-\sin\vartheta,\ \cos\vartheta).$$
+
+Queste due immagini sono le colonne della matrice della rotazione.
+
+Guarda la figura, dove l'angolo è 30 gradi, cioè $\frac\pi6$. I vettori grigi sono $e_1$ ed $e_2$ prima della rotazione. Quelli colorati sono le loro immagini. I due archi segnati con $\vartheta$ sono uguali: tutti e due i vettori hanno girato dello stesso angolo.
 
 ```grafico
 titolo: La rotazione di $\frac\pi6$ manda $e_1$ in $(\cos\frac\pi6, \sin\frac\pi6)$ ed $e_2$ in $(-\sin\frac\pi6, \cos\frac\pi6)$
@@ -23955,38 +27481,101 @@ arco: 0 0 0.45 0 pi/6 | ambra | $\vartheta$
 arco: 0 0 0.45 pi/2 2pi/3 | ambra | $\vartheta$
 ```
 
+Le dispense lo scrivono così.
+
 > [!DEF] 22.1 · Rotazione
 > Una **rotazione** di angolo $\vartheta$ è la trasformazione $L_A : \R^2 \to \R^2$ determinata dalla matrice $A = \mathrm{Rot}_\vartheta$, con
 > $$\mathrm{Rot}_\vartheta = \begin{pmatrix} \cos\vartheta & -\sin\vartheta \\ \sin\vartheta & \cos\vartheta \end{pmatrix}.$$
 
-Esempi da saper scrivere al volo:
+**Come si legge.**
 
-| $\vartheta$ | $\mathrm{Rot}_\vartheta$ | Che cosa fa |
+- $\vartheta$ è l'angolo di cui si gira.
+- $\mathrm{Rot}_\vartheta$ si legge «rot di theta». È il nome della matrice. La piccola $\vartheta$ in basso ricorda di quale angolo si tratta.
+- $L_A : \R^2 \to \R^2$ è la macchina «moltiplica per $A$». La freccia si legge «da … a …»: la macchina prende un vettore del piano e restituisce un vettore del piano. «Trasformazione» è un altro nome per una macchina di questo tipo.
+- Nella matrice, la prima colonna è il posto dove va $e_1$. La seconda colonna è il posto dove va $e_2$. Sono i due vettori trovati sopra.
+- Il segno meno sta in alto a destra. È l'unico punto in cui si sbaglia.
+
+Per scrivere la matrice di una rotazione precisa si prendono coseno e seno dalla tabella e si mettono nei quattro posti. Per un sesto di giro, cioè $\frac\pi3$, il coseno è $\frac12$ e il seno è $\frac{\sqrt3}2$:
+
+$$\mathrm{Rot}_{\pi/3} = \begin{pmatrix} \frac12 & -\frac{\sqrt3}2 \\ \frac{\sqrt3}2 & \frac12 \end{pmatrix}$$
+
+Usiamola per girare il vettore $(2, 0)$.
+
+$$\begin{pmatrix} \frac12 & -\frac{\sqrt3}2 \\ \frac{\sqrt3}2 & \frac12 \end{pmatrix} \begin{pmatrix} 2 \\ 0 \end{pmatrix} = \begin{pmatrix} \frac12 \cdot 2 - \frac{\sqrt3}2 \cdot 0 \\ \frac{\sqrt3}2 \cdot 2 + \frac12 \cdot 0 \end{pmatrix} = \begin{pmatrix} 1 \\ \sqrt3 \end{pmatrix}$$
+
+Il vettore $(2, 0)$ è diventato $(1, \sqrt3)$. La lunghezza è rimasta 2, perché $\sqrt{1^2 + (\sqrt3)^2} = \sqrt{1 + 3} = \sqrt4 = 2$.
+
+Queste quattro rotazioni conviene saperle scrivere senza pensarci. Nella tabella la freccia $\mapsto$ si legge «va in».
+
+| Angolo | Matrice | Che cosa fa |
 |---|---|---|
-| $\frac\pi2$ | $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ | $(x, y) \mapsto (-y, x)$: per esempio $(1, 2) \mapsto (-2, 1)$ |
-| $\pi$ | $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$ | $(x, y) \mapsto (-x, -y)$: il mezzo giro è $-I_2$ |
-| $\frac\pi3$ | $\begin{pmatrix} \frac12 & -\frac{\sqrt3}2 \\ \frac{\sqrt3}2 & \frac12 \end{pmatrix}$ | $(2, 0) \mapsto (1, \sqrt3)$ |
-| $\frac\pi4$ | $\frac{\sqrt2}2\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$ | $(1, 0) \mapsto \left(\frac{\sqrt2}2, \frac{\sqrt2}2\right)$ |
+| $\frac\pi2$ (un quarto di giro) | $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ | $(x, y) \mapsto (-y, x)$: per esempio $(1, 2) \mapsto (-2, 1)$ |
+| $\pi$ (mezzo giro) | $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$ | $(x, y) \mapsto (-x, -y)$: cambia segno a tutti e due i numeri |
+| $\frac\pi3$ (un sesto di giro) | $\begin{pmatrix} \frac12 & -\frac{\sqrt3}2 \\ \frac{\sqrt3}2 & \frac12 \end{pmatrix}$ | $(2, 0) \mapsto (1, \sqrt3)$ |
+| $\frac\pi4$ (un ottavo di giro) | $\frac{\sqrt2}2\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$ | $(1, 0) \mapsto \left(\frac{\sqrt2}2, \frac{\sqrt2}2\right)$ |
+
+Nell'ultima riga il numero davanti alla matrice moltiplica tutti e quattro i numeri dentro.
+
+### La matrice gira davvero tutto il piano
+
+Abbiamo costruito la matrice guardando solo due vettori. Resta una domanda: la macchina gira nello stesso modo anche tutti gli altri vettori? La risposta è sì, e le dispense la scrivono in una proposizione.
 
 > [!PROP] 22.2
 > La trasformazione $L_A$ è effettivamente una rotazione antioraria del piano di angolo $\vartheta$ intorno all'origine.
 
+**Come si legge.** Qui $L_A$ è la macchina «moltiplica per la matrice della rotazione». «Effettivamente» vuol dire «davvero»: la matrice mantiene la promessa del suo nome con ogni vettore del piano, non solo con i due della base canonica.
+
+Il motivo a parole. Ogni vettore del piano è una ricetta fatta con i due vettori della base canonica: tanti passi a destra e tanti passi in su. La macchina è lineare, quindi rispetta le ricette. Se i due ingredienti girano dello stesso angolo, gira dello stesso angolo anche tutto quello che si cucina con loro.
+
+Un controllo con i numeri. Sopra il vettore $(2, 0)$ è diventato $(1, \sqrt3)$, e la lunghezza è rimasta 2. Controlliamo anche l'angolo tra i due. Nella lezione L20 hai visto che il coseno dell'angolo tra due vettori è il loro prodotto scalare diviso per il prodotto delle lunghezze:
+
+$$\frac{2 \cdot 1 + 0 \cdot \sqrt3}{2 \cdot 2} = \frac24 = \frac12$$
+
+L'angolo che ha coseno $\frac12$ è $\frac\pi3$: proprio l'angolo della rotazione.
+
 > [!DIM] della Proposizione 22.2 (dal libro di Martelli)
-> Le dispense non la dimostrano; ecco l'argomento di Martelli (Proposizione 4.4.15). Scrivi un punto in **coordinate polari**: $x = \varrho\cos\varphi$, $y = \varrho\sin\varphi$, dove $\varrho$ è la distanza dall'origine e $\varphi$ l'angolo con l'asse $x$. Allora
-> $$\begin{aligned} \mathrm{Rot}_\vartheta\begin{pmatrix} \varrho\cos\varphi \\ \varrho\sin\varphi \end{pmatrix} &= \begin{pmatrix} \varrho(\cos\vartheta\cos\varphi - \sin\vartheta\sin\varphi) \\ \varrho(\sin\vartheta\cos\varphi + \cos\vartheta\sin\varphi) \end{pmatrix} \\ &= \begin{pmatrix} \varrho\cos(\vartheta + \varphi) \\ \varrho\sin(\vartheta + \varphi) \end{pmatrix}, \end{aligned}$$
-> per le formule di addizione del coseno e del seno. Il punto di coordinate polari $(\varrho, \varphi)$ va nel punto $(\varrho, \varphi + \vartheta)$: stessa distanza dall'origine, angolo aumentato di $\vartheta$. È la rotazione antioraria di angolo $\vartheta$.
+> Le dispense non la dimostrano. Questa è la dimostrazione del libro di Martelli (Proposizione 4.4.15).
+>
+> 1. Ogni punto del piano si può descrivere con due numeri diversi dalle solite coordinate. Il primo è la sua distanza dall'origine, che chiamiamo $\varrho$ («ro»). Il secondo è l'angolo che forma con l'asse $x$, che chiamiamo $\varphi$ («fi»). Si chiamano **coordinate polari**. Le solite coordinate si ricavano così: $x = \varrho\cos\varphi$ e $y = \varrho\sin\varphi$.
+> 2. Moltiplichiamo la matrice della rotazione per questo punto, riga per colonna:
+>    $$\mathrm{Rot}_\vartheta\begin{pmatrix} \varrho\cos\varphi \\ \varrho\sin\varphi \end{pmatrix} = \begin{pmatrix} \varrho(\cos\vartheta\cos\varphi - \sin\vartheta\sin\varphi) \\ \varrho(\sin\vartheta\cos\varphi + \cos\vartheta\sin\varphi) \end{pmatrix}.$$
+> 3. Le due parentesi sono le **formule di addizione** del coseno e del seno, che si studiano a scuola. La prima è $\cos(\vartheta + \varphi)$, la seconda è $\sin(\vartheta + \varphi)$. Quindi il risultato è
+>    $$\begin{pmatrix} \varrho\cos(\vartheta + \varphi) \\ \varrho\sin(\vartheta + \varphi) \end{pmatrix}.$$
+> 4. Questo è il punto a distanza $\varrho$ dall'origine e con angolo $\varphi + \vartheta$. La distanza è quella di prima. L'angolo è aumentato di $\vartheta$. Il punto ha girato di $\vartheta$ in senso antiorario.
 
-Le dispense notano che la matrice $\mathrm{Rot}_\vartheta$ ha sempre determinante
+### Il determinante di una rotazione
 
-$$\begin{aligned} \det\mathrm{Rot}_\vartheta &= \cos\vartheta\cos\vartheta - (-\sin\vartheta)\sin\vartheta \\ &= \cos^2\vartheta + \sin^2\vartheta = 1. \end{aligned}$$
+C'è un numero che tra poco servirà per distinguere le rotazioni dagli specchi: il determinante.
 
-Geometricamente (Martelli, §3.3.10) il valore assoluto del determinante è il fattore per cui si moltiplicano le aree, e il segno dice se l'orientazione si conserva: una rotazione conserva le aree e non «specchia» le figure.
+> [!RIPASSO] il determinante di una matrice con due righe e due colonne (lezione L09)
+> Il **determinante** è un numero che si calcola da una matrice quadrata. Si scrive $\det$. Per una matrice con due righe e due colonne la regola è «diagonale meno l'altra diagonale»:
+> $$\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = a \cdot d - b \cdot c$$
+> Un esempio con i numeri:
+> $$\det\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} = 2 \cdot 3 - 1 \cdot 0 = 6$$
+> Il determinante dice di quanto la matrice ingrandisce le aree. Se ha il segno meno, in più la matrice ribalta le figure, come fa uno specchio.
+
+Le dispense notano che la matrice di una rotazione ha sempre determinante 1. Ecco il conto, con la regola del ripasso:
+
+$$\begin{aligned} \det\mathrm{Rot}_\vartheta &= \cos\vartheta \cdot \cos\vartheta - (-\sin\vartheta) \cdot \sin\vartheta \\ &= \cos^2\vartheta + \sin^2\vartheta = 1. \end{aligned}$$
+
+L'ultimo passaggio è la regola del ripasso su coseno e seno. Il risultato dice due cose. Una rotazione non ingrandisce e non rimpicciolisce le aree. E non ribalta le figure.
 
 > [!OLTRE] Comporre e invertire rotazioni
-> - Ruotare di $\beta$ e poi di $\alpha$ è ruotare di $\alpha + \beta$: $\mathrm{Rot}_\alpha\,\mathrm{Rot}_\beta = \mathrm{Rot}_{\alpha + \beta}$ (moltiplicando le matrici compaiono di nuovo le formule di addizione). È la stessa regola della moltiplicazione dei numeri complessi di modulo 1 (lezione L03): gli angoli si sommano.
-> - L'inversa di $\mathrm{Rot}_\vartheta$ è la rotazione all'indietro, $\mathrm{Rot}_{-\vartheta}$, e coincide con la **trasposta**: ${}^t\mathrm{Rot}_\vartheta = \begin{pmatrix} \cos\vartheta & \sin\vartheta \\ -\sin\vartheta & \cos\vartheta \end{pmatrix} = \mathrm{Rot}_{-\vartheta}$. Vedrai tra poco che è una proprietà di tutte le matrici ortogonali.
+> **Due rotazioni di fila.** Un quarto di giro seguito da un altro quarto di giro fa mezzo giro. Vale sempre: girare di un angolo e poi di un altro è come girare una volta sola, della somma dei due angoli. «Fare una macchina dopo l'altra» con le matrici vuol dire moltiplicarle (lezione L16). Chiamiamo i due angoli $\alpha$ («alfa») e $\beta$ («beta»):
+> $$\mathrm{Rot}_\alpha\,\mathrm{Rot}_\beta = \mathrm{Rot}_{\alpha + \beta}$$
+> È la stessa regola della moltiplicazione dei numeri complessi di lunghezza 1 (lezione L03): gli angoli si sommano.
+>
+> **Tornare indietro.** Per disfare una rotazione si gira dello stesso angolo nel verso opposto. La matrice che disfa si chiama **inversa** (lezione L10). Per una rotazione l'inversa si ottiene scambiando le righe con le colonne, cioè facendo la **trasposta**:
+> $${}^t\mathrm{Rot}_\vartheta = \begin{pmatrix} \cos\vartheta & \sin\vartheta \\ -\sin\vartheta & \cos\vartheta \end{pmatrix} = \mathrm{Rot}_{-\vartheta}$$
+> La piccola $t$ in alto a sinistra è il segno della trasposta. Tra poco vedrai che succede lo stesso per tutte le matrici ortogonali.
 
-Prova con lo strumento: la matrice iniziale è $\begin{pmatrix} 0{,}6 & -0{,}8 \\ 0{,}8 & 0{,}6 \end{pmatrix} = \mathrm{Rot}_\vartheta$ con $\cos\vartheta = \frac35$ e $\sin\vartheta = \frac45$. Sposta il cursore «da I ad A»: la griglia gira senza deformarsi, il quadrato colorato conserva l'area ($\det A = 1$) e lo strumento segnala che non ci sono autovettori reali (lezione L17). Poi premi «rotazione di 90°», «rotazione di 45°» e «riflessione», oppure scrivi la matrice $\begin{pmatrix} 0{,}6 & 0{,}8 \\ 0{,}8 & -0{,}6 \end{pmatrix}$, la riflessione della prossima sezione: il quadrato cambia colore perché l'orientazione si inverte.
+Prova con lo strumento qui sotto. All'inizio c'è la matrice di una rotazione: quella con coseno $0{,}6$ e seno $0{,}8$.
+
+1. Sposta il cursore «da I ad A». La griglia gira senza deformarsi.
+2. Guarda il quadrato colorato. La sua area non cambia, perché il determinante è 1.
+3. Lo strumento avvisa che non ci sono autovettori reali. Un autovettore è una direzione che la macchina non gira (lezione L17), e una rotazione gira tutte le direzioni.
+4. Premi «rotazione di 90°» e poi «rotazione di 45°».
+5. Premi «riflessione». Il quadrato cambia colore: vuol dire che la figura è stata ribaltata. Le riflessioni sono l'argomento della prossima sezione.
 
 ```widget matrice
 titolo: Rotazioni e riflessioni come trasformazioni del piano
@@ -23995,54 +27584,193 @@ x: 2 1
 raggio: 3
 ```
 
-## Riflessioni del piano (p. 111)
+::: prova Ruota il vettore $(2, 5)$ di un quarto di giro in senso antiorario.
+Scambia i due numeri e cambia segno al primo: $(2, 5)$ diventa $(-5, 2)$. Controllo: il prodotto scalare tra prima e dopo è $2 \cdot (-5) + 5 \cdot 2 = 0$, quindi i due vettori sono perpendicolari.
+:::
 
-Tre riflessioni facili da immaginare, con le immagini di $e_1$ ed $e_2$ come colonne:
+::: prova Scrivi la matrice della rotazione di mezzo giro e applicala a $(1, 2)$.
+Per mezzo giro l'angolo è $\pi$: il coseno è $-1$ e il seno è $0$. La matrice è $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$. Applicata a $(1, 2)$ dà $(-1, -2)$: il vettore opposto.
+:::
 
-| Riflessione rispetto a | $e_1 \mapsto$ | $e_2 \mapsto$ | Matrice |
-|---|---|---|---|
-| l'asse $x$ | $(1, 0)$ | $(0, -1)$ | $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ |
-| la bisettrice $y = x$ | $(0, 1)$ | $(1, 0)$ | $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ |
-| l'asse $y$ | $(-1, 0)$ | $(0, 1)$ | $\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$ |
+::: prova Di quale angolo gira la matrice $\begin{pmatrix} \frac{\sqrt3}2 & -\frac12 \\ \frac12 & \frac{\sqrt3}2 \end{pmatrix}$?
+La prima colonna contiene coseno e seno dell'angolo: il coseno è $\frac{\sqrt3}2$ e il seno è $\frac12$. Nella tabella è la colonna di $\frac\pi6$, cioè 30 gradi.
+:::
 
-In generale si fissa un angolo $\vartheta$ e si considera la retta vettoriale $r$ che forma un angolo $\frac\vartheta2$ con l'asse delle $x$. Perché proprio $\frac\vartheta2$? Riflettendo rispetto a $r$, il vettore $e_1$ (angolo 0) va nel vettore simmetrico rispetto a $r$, che ha angolo $2 \cdot \frac\vartheta2 = \vartheta$: la prima colonna è $(\cos\vartheta, \sin\vartheta)$, come nella rotazione. È comodo che l'angolo nella matrice sia $\vartheta$, e la retta allora ha angolo $\frac\vartheta2$.
+> [!RICORDA]
+> - La rotazione di angolo $\vartheta$ ha nella prima colonna $(\cos\vartheta, \sin\vartheta)$ e nella seconda $(-\sin\vartheta, \cos\vartheta)$.
+> - Un quarto di giro: scambia i due numeri e cambia segno al primo.
+> - Il determinante di una rotazione è sempre 1.
+
+## Specchiare il piano: le riflessioni (p. 111)
+
+Una riflessione è uno specchio: ogni punto finisce dall'altra parte di una retta, alla stessa distanza.
+
+La retta dello specchio passa per l'origine, perché l'origine deve restare ferma. I punti che stanno sulla retta non si muovono. Tutti gli altri attraversano lo specchio.
+
+### Lo specchio più comodo: l'asse orizzontale
+
+Metti lo specchio sull'asse $x$, cioè sulla riga orizzontale. Un punto che sta sopra l'asse finisce sotto, alla stessa distanza. Il primo numero del punto, quello che dice quanto è a destra, non cambia. Il secondo numero, quello che dice quanto è in alto, cambia segno.
+
+$$(3, 2) \mapsto (3, -2)$$
+
+Scriviamo la matrice. Come per le rotazioni, guardiamo dove vanno i due vettori della base canonica.
+
+- Il vettore $e_1 = (1, 0)$ sta sull'asse $x$, cioè sullo specchio. Non si muove.
+- Il vettore $e_2 = (0, 1)$ punta in su. Nello specchio punta in giù: diventa $(0, -1)$.
+
+Le due immagini vanno nelle colonne:
+
+$$\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$$
+
+Altri due specchi si trovano con lo stesso ragionamento. Uno è l'asse $y$, cioè la riga verticale. L'altro è la retta $y = x$: è la retta dei punti che hanno i due numeri uguali, come $(1, 1)$ e $(2, 2)$. Sale in diagonale a 45 gradi e si chiama **bisettrice**.
+
+| Specchio | Dove va $e_1$ | Dove va $e_2$ | Matrice | Che cosa fa a un vettore |
+|---|---|---|---|---|
+| l'asse $x$ | $(1, 0)$ | $(0, -1)$ | $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ | cambia segno al secondo numero |
+| la bisettrice $y = x$ | $(0, 1)$ | $(1, 0)$ | $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ | scambia i due numeri |
+| l'asse $y$ | $(-1, 0)$ | $(0, 1)$ | $\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$ | cambia segno al primo numero |
+
+### Uno specchio qualsiasi
+
+Ora lo specchio è una retta qualsiasi che passa per l'origine. Per dire quale retta è, si dà l'angolo che forma con l'asse $x$.
+
+Qui le dispense fanno una scelta che sorprende. L'angolo della retta non lo chiamano $\vartheta$: lo chiamano $\frac\vartheta2$, cioè «la metà di theta». Il motivo si capisce guardando dove va il vettore $e_1$.
+
+**Dove va il primo.** Il vettore $e_1$ sta all'angolo 0. Lo specchio sta all'angolo $\frac\vartheta2$. Lo specchio manda $e_1$ dall'altra parte della retta, alla stessa distanza. Da $e_1$ allo specchio c'è un angolo $\frac\vartheta2$, e dallo specchio all'immagine ce n'è un altro uguale. In tutto l'immagine sta all'angolo $\vartheta$. È il punto del cerchio di raggio 1 a quell'angolo:
+
+$$(\cos\vartheta,\ \sin\vartheta).$$
+
+È la stessa prima colonna della rotazione. Ecco perché conviene chiamare $\frac\vartheta2$ l'angolo dello specchio: così nella matrice compare $\vartheta$ e non il suo doppio.
+
+**Dove va il secondo.** Uno specchio scambia il senso antiorario con quello orario: la tua mano destra, nello specchio, sembra una mano sinistra. Prima dello specchio $e_2$ sta un quarto di giro dopo $e_1$ in senso antiorario. Dopo lo specchio, la sua immagine sta un quarto di giro dopo l'immagine di $e_1$, ma in senso **orario**. Il quarto di giro in senso orario ha questa regola: scambia i due numeri, poi cambia segno al secondo. Applicata alla prima colonna dà
+
+$$(\sin\vartheta,\ -\cos\vartheta).$$
+
+Controlliamo con i tre specchi della tabella.
+
+| Specchio | Angolo dello specchio | Il doppio, $\vartheta$ | Prima colonna | Seconda colonna |
+|---|---|---|---|---|
+| l'asse $x$ | $0$ | $0$ | $(\cos 0, \sin 0) = (1, 0)$ | $(\sin 0, -\cos 0) = (0, -1)$ |
+| la bisettrice | $\frac\pi4$ | $\frac\pi2$ | $(\cos\frac\pi2, \sin\frac\pi2) = (0, 1)$ | $(\sin\frac\pi2, -\cos\frac\pi2) = (1, 0)$ |
+| l'asse $y$ | $\frac\pi2$ | $\pi$ | $(\cos\pi, \sin\pi) = (-1, 0)$ | $(\sin\pi, -\cos\pi) = (0, 1)$ |
+
+Le colonne sono quelle trovate prima. Le dispense lo scrivono così. Nel loro testo $r$ è il nome della retta dello specchio: passa per l'origine e forma un angolo $\frac\vartheta2$ con l'asse $x$.
 
 > [!DEF] 22.3 · Riflessione
 > Una **riflessione** (ortogonale) rispetto alla retta $r$ è la trasformazione $L_A : \R^2 \to \R^2$ determinata dalla matrice $A = \mathrm{Rif}_\vartheta$, con
 > $$\mathrm{Rif}_\vartheta = \begin{pmatrix} \cos\vartheta & \sin\vartheta \\ \sin\vartheta & -\cos\vartheta \end{pmatrix}.$$
 
-Le tre riflessioni della tabella sono $\mathrm{Rif}_0$ (asse $x$, angolo $0$), $\mathrm{Rif}_{\pi/2}$ (bisettrice, angolo $\frac\pi4$) e $\mathrm{Rif}_\pi$ (asse $y$, angolo $\frac\pi2$).
+**Come si legge.**
+
+- $\mathrm{Rif}_\vartheta$ si legge «rif di theta». È il nome della matrice dello specchio.
+- «Ortogonale» vuol dire che ogni punto attraversa lo specchio lungo la direzione perpendicolare alla retta.
+- $L_A : \R^2 \to \R^2$ è, come prima, la macchina «moltiplica per $A$», che va dal piano al piano.
+- Rispetto alla matrice della rotazione cambia solo la seconda colonna: ha i due segni opposti.
+- L'angolo scritto nella matrice è $\vartheta$, ma lo specchio sta all'angolo $\frac\vartheta2$.
+
+Anche qui la matrice è stata costruita guardando due vettori soli. La proposizione che segue assicura che specchia nello stesso modo tutti gli altri.
 
 > [!PROP] 22.4
 > La trasformazione $L_A$ è effettivamente una riflessione del piano rispetto a $r$.
 
+**Come si legge.** Qui $L_A$ è la macchina «moltiplica per la matrice della riflessione». La frase dice che la macchina specchia davvero ogni vettore del piano rispetto alla retta $r$. Il motivo è lo stesso delle rotazioni: la macchina è lineare, e ogni vettore è una ricetta fatta con $e_1$ ed $e_2$.
+
+Un controllo con i numeri, sulla bisettrice. La sua matrice scambia i due numeri di ogni vettore.
+
+- Il vettore $(1, 1)$ sta sulla bisettrice. Scambiando i due numeri resta $(1, 1)$: non si muove.
+- Il vettore $(1, -1)$ è perpendicolare alla bisettrice, perché $1 \cdot 1 + 1 \cdot (-1) = 0$. Scambiando i due numeri diventa $(-1, 1)$: il suo opposto.
+
+È il comportamento di uno specchio: fermo chi sta sulla retta, ribaltato chi sta di traverso.
+
 > [!DIM] della Proposizione 22.4 (dal libro di Martelli)
-> Come per la rotazione (Martelli, Proposizione 4.4.17), in coordinate polari:
-> $$\begin{aligned} \mathrm{Rif}_\vartheta\begin{pmatrix} \varrho\cos\varphi \\ \varrho\sin\varphi \end{pmatrix} &= \begin{pmatrix} \varrho(\cos\vartheta\cos\varphi + \sin\vartheta\sin\varphi) \\ \varrho(\sin\vartheta\cos\varphi - \cos\vartheta\sin\varphi) \end{pmatrix} \\ &= \begin{pmatrix} \varrho\cos(\vartheta - \varphi) \\ \varrho\sin(\vartheta - \varphi) \end{pmatrix}. \end{aligned}$$
-> Il punto con angolo $\varphi$ va nel punto con angolo $\vartheta - \varphi$, alla stessa distanza dall'origine. I due angoli $\varphi$ e $\vartheta - \varphi$ hanno media $\frac\vartheta2$: sono simmetrici rispetto alla retta $r$. In particolare i punti di $r$ ($\varphi = \frac\vartheta2$) restano fermi.
+> Anche questa dimostrazione viene dal libro di Martelli (Proposizione 4.4.17). Usa le coordinate polari, come quella della Proposizione 22.2.
+>
+> 1. Scriviamo un punto con la sua distanza $\varrho$ dall'origine e il suo angolo $\varphi$: $x = \varrho\cos\varphi$ e $y = \varrho\sin\varphi$.
+> 2. Moltiplichiamo la matrice della riflessione per questo punto, riga per colonna:
+>    $$\mathrm{Rif}_\vartheta\begin{pmatrix} \varrho\cos\varphi \\ \varrho\sin\varphi \end{pmatrix} = \begin{pmatrix} \varrho(\cos\vartheta\cos\varphi + \sin\vartheta\sin\varphi) \\ \varrho(\sin\vartheta\cos\varphi - \cos\vartheta\sin\varphi) \end{pmatrix}.$$
+> 3. Le due parentesi sono le formule di sottrazione del coseno e del seno. La prima è $\cos(\vartheta - \varphi)$, la seconda è $\sin(\vartheta - \varphi)$. Il risultato è
+>    $$\begin{pmatrix} \varrho\cos(\vartheta - \varphi) \\ \varrho\sin(\vartheta - \varphi) \end{pmatrix}.$$
+> 4. Il punto con angolo $\varphi$ va nel punto con angolo $\vartheta - \varphi$, alla stessa distanza dall'origine. La media dei due angoli è $\frac\vartheta2$, l'angolo della retta $r$. Quindi i due punti stanno uno da una parte e uno dall'altra di $r$, alla stessa distanza: sono simmetrici rispetto a $r$.
+> 5. I punti di $r$ hanno angolo $\varphi = \frac\vartheta2$. Vanno all'angolo $\vartheta - \frac\vartheta2 = \frac\vartheta2$, cioè restano fermi.
 
-Le dispense notano che la matrice $\mathrm{Rif}_\vartheta$ ha sempre determinante
+### Il determinante di una riflessione
 
-$$\det\mathrm{Rif}_\vartheta = -\cos^2\vartheta - \sin^2\vartheta = -1.$$
+Le dispense notano che la matrice di una riflessione ha sempre determinante $-1$. Il conto, con la regola «diagonale meno l'altra diagonale»:
 
-Il segno meno dice che la riflessione **inverte l'orientazione**: un giro in senso antiorario diventa orario, come la mano destra allo specchio.
+$$\begin{aligned} \det\mathrm{Rif}_\vartheta &= \cos\vartheta \cdot (-\cos\vartheta) - \sin\vartheta \cdot \sin\vartheta \\ &= -\cos^2\vartheta - \sin^2\vartheta = -1. \end{aligned}$$
+
+Il valore 1, senza badare al segno, dice che le aree non cambiano. Il segno meno dice che la figura viene ribaltata: un giro in senso antiorario diventa un giro in senso orario. Con una parola sola: la riflessione **inverte l'orientazione**.
+
+### Lo specchio visto dalla sua retta
+
+C'è un modo di guardare uno specchio in cui la sua matrice diventa cortissima. Invece di descrivere i vettori con «passi a destra e passi in su», li descriviamo con «passi lungo lo specchio e passi di traverso».
+
+Servono due vettori.
+
+- Un vettore che sta sulla retta dello specchio. Lo specchio lo lascia fermo.
+- Un vettore perpendicolare allo specchio. Lo specchio lo manda dall'altra parte: diventa il suo opposto.
+
+Le dispense lo dicono in un'osservazione.
 
 > [!OSSERVAZIONE] La riflessione in una base comoda
-> Sia $s$ la retta ortogonale a $r$, cioè quella che forma un angolo $\frac\vartheta2 + \frac\pi2$ con l'asse $x$, e siano $v_1$ e $v_2$ vettori in direzione delle rette $r$ e $s$, rispettivamente. La riflessione $f$ si rappresenta più agevolmente rispetto alla base $\mathcal B = \{v_1, v_2\}$: poiché $f(v_1) = v_1$ e $f(v_2) = -v_2$, la matrice associata alla riflessione rispetto a $\mathcal B$ è semplicemente
+> Chiamiamo $s$ la retta perpendicolare a $r$: forma con l'asse $x$ un angolo $\frac\vartheta2 + \frac\pi2$. Prendiamo un vettore $v_1$ sulla retta $r$ e un vettore $v_2$ sulla retta $s$, e usiamo la base $\mathcal B = \{v_1, v_2\}$. La riflessione, che qui chiamiamo $f$, lascia fermo il primo vettore e manda il secondo nel suo opposto:
+> $$f(v_1) = v_1, \qquad f(v_2) = -v_2.$$
+> Quindi la matrice associata alla riflessione rispetto alla base $\mathcal B$ è
 > $$\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}.$$
 
-In altre parole $v_1$ è un autovettore di autovalore $1$ e $v_2$ un autovettore di autovalore $-1$ (lezione L17): la riflessione è **diagonalizzabile**, e le due rette di autovettori sono perpendicolari.
+Due parole da ricordare.
+
+- La scrittura $\mathcal B = \{v_1, v_2\}$ si legge «la base B, fatta dai vettori vu uno e vu due».
+- La **matrice associata rispetto a una base** (lezione L15) ha nelle colonne le immagini dei vettori della base, scritte come ricette fatte con la base stessa. La prima colonna $(1, 0)$ dice: «il primo vettore va in 1 volta sé stesso». La seconda colonna $(0, -1)$ dice: «il secondo vettore va in $-1$ volte sé stesso».
+
+Con le parole della lezione L17: il primo vettore è un **autovettore** con autovalore 1, il secondo è un autovettore con autovalore $-1$. Un autovettore è un vettore che la macchina non gira: lo moltiplica soltanto per un numero, che si chiama autovalore. Una macchina con una base fatta di autovettori si chiama **diagonalizzabile**. Ogni riflessione lo è, e le sue due rette di autovettori sono perpendicolari.
+
+### Un esempio completo
+
+L'esempio che segue trova la matrice di uno specchio in tre modi diversi. All'esame ne basta uno: scegli quello con cui ti trovi meglio.
 
 > [!ESEMPIO] La riflessione rispetto alla retta di $(2, 1)$, in tre modi
-> **1. Con l'angolo.** La retta $r = \Span((2, 1))$ forma con l'asse $x$ un angolo $\frac\vartheta2$ con $\tan\frac\vartheta2 = \frac12$. Con le formule di duplicazione, posto $t = \tan\frac\vartheta2 = \frac12$:
-> $$\begin{aligned} \cos\vartheta &= \frac{1 - t^2}{1 + t^2} = \frac{3/4}{5/4} = \frac35, \\ \sin\vartheta &= \frac{2t}{1 + t^2} = \frac{1}{5/4} = \frac45, \end{aligned}$$
-> $$\mathrm{Rif}_\vartheta = \begin{pmatrix} \frac35 & \frac45 \\ \frac45 & -\frac35 \end{pmatrix}.$$
-> Controllo: $\mathrm{Rif}_\vartheta\,(2, 1) = \left(\frac65 + \frac45, \frac85 - \frac35\right) = (2, 1)$ resta ferma, e $(-1, 2)$, perpendicolare a $r$, va in $\left(-\frac35 + \frac85, -\frac45 - \frac65\right) = (1, -2)$, il suo opposto. ✓
+> Lo specchio è la retta che passa per l'origine e per il punto $(2, 1)$. Con il simbolo della lezione L06 si scrive $r = \Span((2, 1))$: sono tutti i multipli del vettore $(2, 1)$. Un vettore perpendicolare allo specchio è $n = (-1, 2)$, perché $2 \cdot (-1) + 1 \cdot 2 = 0$.
 >
-> **2. Con la proiezione** (lezione L21). Con $n = (-1, 2)$ perpendicolare a $r$, riflettere vuol dire togliere **due volte** la componente lungo $n$: $f(v) = v - 2\,\frac{\langle v, n\rangle}{\langle n, n\rangle}\,n$. Allora $f(e_1) = (1, 0) - 2 \cdot \frac{-1}{5}(-1, 2) = \left(\frac35, \frac45\right)$ e $f(e_2) = (0, 1) - 2 \cdot \frac25(-1, 2) = \left(\frac45, -\frac35\right)$: sono le colonne trovate sopra.
+> **1. Con l'angolo.** Nella matrice servono il coseno e il seno di $\vartheta$. Dal disegno però si leggono quelli della **metà**, perché la retta sta all'angolo $\frac\vartheta2$.
 >
-> **3. Con il cambiamento di base** (lezione L16). Nella base $\mathcal B = \{(2, 1), (-1, 2)\}$ la matrice è $D = \operatorname{diag}(1, -1)$. Con $M = [\id]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 2 & -1 \\ 1 & 2 \end{pmatrix}$ e $M^{-1} = \frac15\begin{pmatrix} 2 & 1 \\ -1 & 2 \end{pmatrix}$:
-> $$M\,D\,M^{-1} = \begin{pmatrix} 2 & 1 \\ 1 & -2 \end{pmatrix}\cdot\frac15\begin{pmatrix} 2 & 1 \\ -1 & 2 \end{pmatrix} = \frac15\begin{pmatrix} 3 & 4 \\ 4 & -3 \end{pmatrix}.$$
+> - La lunghezza di $(2, 1)$ è $\sqrt{2^2 + 1^2} = \sqrt5$.
+> - Dividendo il vettore per la sua lunghezza si ottiene il punto della retta che sta sul cerchio di raggio 1. Le sue coordinate sono il coseno e il seno della metà dell'angolo:
+>   $$\cos\tfrac\vartheta2 = \frac2{\sqrt5}, \qquad \sin\tfrac\vartheta2 = \frac1{\sqrt5}.$$
+> - Dalla metà all'angolo intero si passa con le **formule dell'angolo doppio**, che si studiano a scuola. Il coseno del doppio è «coseno al quadrato meno seno al quadrato». Il seno del doppio è «due volte seno per coseno».
+>   $$\cos\vartheta = \frac45 - \frac15 = \frac35, \qquad \sin\vartheta = 2 \cdot \frac1{\sqrt5} \cdot \frac2{\sqrt5} = \frac45.$$
+> - Mettiamo i due numeri nella matrice della Definizione 22.3:
+>   $$\mathrm{Rif}_\vartheta = \begin{pmatrix} \frac35 & \frac45 \\ \frac45 & -\frac35 \end{pmatrix}.$$
+>
+> Controllo. Il vettore $(2, 1)$ sta sullo specchio e deve restare fermo:
+> $$\left(\tfrac35 \cdot 2 + \tfrac45 \cdot 1,\ \ \tfrac45 \cdot 2 - \tfrac35 \cdot 1\right) = \left(\tfrac{10}5,\ \tfrac55\right) = (2, 1).$$
+> Il vettore $(-1, 2)$ è perpendicolare allo specchio e deve diventare il suo opposto:
+> $$\left(\tfrac35 \cdot (-1) + \tfrac45 \cdot 2,\ \ \tfrac45 \cdot (-1) - \tfrac35 \cdot 2\right) = \left(\tfrac55,\ -\tfrac{10}5\right) = (1, -2).$$
+>
+> **2. Con la proiezione** (lezione L21). Guarda un vettore $v$ e la sua ombra sulla direzione di $n$, quella perpendicolare allo specchio. Se togli l'ombra una volta, arrivi sullo specchio. Se la togli **due volte**, arrivi dall'altra parte, alla stessa distanza: è l'immagine nello specchio. L'ombra si calcola con la formula della lezione L21, quindi la riflessione è
+> $$f(v) = v - 2\,\frac{\langle v, n\rangle}{\langle n, n\rangle}\,n.$$
+> Qui $\langle n, n\rangle = (-1)^2 + 2^2 = 5$. Calcoliamo le immagini di $e_1$ ed $e_2$, che sono le colonne della matrice.
+>
+> - Per $e_1 = (1, 0)$ il prodotto scalare con $n$ è $1 \cdot (-1) + 0 \cdot 2 = -1$. Quindi
+>   $$f(e_1) = (1, 0) - 2 \cdot \frac{-1}5 \cdot (-1, 2) = (1, 0) + \frac25\,(-1, 2) = \left(\frac35, \frac45\right).$$
+> - Per $e_2 = (0, 1)$ il prodotto scalare con $n$ è $0 \cdot (-1) + 1 \cdot 2 = 2$. Quindi
+>   $$f(e_2) = (0, 1) - 2 \cdot \frac25 \cdot (-1, 2) = (0, 1) - \frac45\,(-1, 2) = \left(\frac45, -\frac35\right).$$
+>
+> Sono le due colonne trovate con il primo modo.
+>
+> **3. Con il cambiamento di base** (lezione L16). Nella base comoda, fatta da $(2, 1)$ e da $(-1, 2)$, la matrice dello specchio è $D = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$. Per tornare alle coordinate normali serve la matrice $M$ che ha nelle colonne i due vettori della base. Nella lezione L16 si scrive $[\id]^{\mathcal B}_{\mathcal C}$. La matrice cercata è il prodotto $M\,D\,M^{-1}$.
+>
+> - La matrice con i vettori della base nelle colonne è $M = \begin{pmatrix} 2 & -1 \\ 1 & 2 \end{pmatrix}$.
+> - Il suo determinante è $2 \cdot 2 - (-1) \cdot 1 = 5$. L'inversa di una matrice con due righe e due colonne si trova così (lezione L10): scambia i due numeri sulla diagonale, cambia segno agli altri due, dividi tutto per il determinante.
+>   $$M^{-1} = \frac15\begin{pmatrix} 2 & 1 \\ -1 & 2 \end{pmatrix}$$
+> - Primo prodotto. Moltiplicare a destra per $D$ cambia segno alla seconda colonna:
+>   $$M\,D = \begin{pmatrix} 2 & -1 \\ 1 & 2 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & -2 \end{pmatrix}$$
+> - Secondo prodotto, riga per colonna:
+>   $$\begin{pmatrix} 2 & 1 \\ 1 & -2 \end{pmatrix}\cdot\frac15\begin{pmatrix} 2 & 1 \\ -1 & 2 \end{pmatrix} = \frac15\begin{pmatrix} 4 - 1 & 2 + 2 \\ 2 + 2 & 1 - 4 \end{pmatrix} = \frac15\begin{pmatrix} 3 & 4 \\ 4 & -3 \end{pmatrix}.$$
+>
+> È la stessa matrice, trovata per la terza volta.
+
+Guarda la figura. La retta $r$ è lo specchio. Il vettore $v = (1, 2)$ va nel vettore $f(v)$. Il segmento tratteggiato unisce le due punte ed è perpendicolare allo specchio. Il punto segnato a metà del segmento sta sullo specchio. È proprio questo che vuol dire «simmetrico rispetto a una retta».
 
 ```grafico
 titolo: La riflessione rispetto a $r = \Span((2, 1))$ manda $v = (1, 2)$ in $\left(\frac{11}5, -\frac25\right)$
@@ -24055,43 +27783,125 @@ segmento: 1 2 11/5 -2/5 | grigio | tratteggio
 punto: 8/5 4/5 | ambra
 ```
 
-Il punto giallo è il punto medio tra $v$ e $f(v)$: sta sulla retta $r$, e il segmento tratteggiato è perpendicolare a $r$. È la definizione di simmetria rispetto a una retta.
+Il conto della figura, con la matrice dell'esempio:
+
+$$\begin{pmatrix} \frac35 & \frac45 \\ \frac45 & -\frac35 \end{pmatrix}\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \begin{pmatrix} \frac35 + \frac85 \\ \frac45 - \frac65 \end{pmatrix} = \begin{pmatrix} \frac{11}5 \\ -\frac25 \end{pmatrix}$$
 
 > [!TRAPPOLA] L'angolo della retta è la metà
-> $\mathrm{Rif}_\vartheta$ riflette rispetto alla retta di angolo $\frac\vartheta2$, **non** $\vartheta$. Per esempio $\mathrm{Rif}_{\pi/2} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ riflette rispetto alla bisettrice $y = x$ (angolo $\frac\pi4$), non rispetto all'asse $y$. Per non sbagliare, trova la retta come **autospazio dell'autovalore 1**: i vettori con $Av = v$.
+> La matrice $\mathrm{Rif}_\vartheta$ specchia rispetto alla retta di angolo $\frac\vartheta2$, **non** $\vartheta$. Per esempio $\mathrm{Rif}_{\pi/2}$ è la matrice che scambia i due numeri. Il suo specchio è la bisettrice, che sta a 45 gradi, e non l'asse $y$, che sta a 90 gradi.
+>
+> Per non sbagliare c'è un modo sicuro: cerca i vettori che la matrice lascia fermi, cioè quelli con $Av = v$. Sono i vettori dello specchio. Con le parole della lezione L18 è l'autospazio dell'autovalore 1.
 
-## Isometrie tra spazi con prodotto scalare (p. 112)
+::: prova Rifletti il vettore $(3, 2)$ rispetto all'asse $y$.
+Lo specchio sull'asse $y$ cambia segno al primo numero: $(3, 2)$ diventa $(-3, 2)$.
+:::
 
-Rotazioni e riflessioni conservano lunghezze e angoli. Serve una definizione che funzioni per ogni spazio con un prodotto scalare, come i polinomi.
+::: prova Quale specchio è la matrice $\mathrm{Rif}_\pi$?
+Il coseno di $\pi$ è $-1$ e il seno è $0$. La matrice è $\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$. Lo specchio sta alla metà dell'angolo, cioè a $\frac\pi2$: è la retta verticale, l'asse $y$. Controllo: il vettore $(0, 1)$ resta fermo.
+:::
+
+::: prova Lo specchio è la retta di $(2, 1)$. Il punto $(4, 2)$ si muove?
+No. $(4, 2)$ è il doppio di $(2, 1)$, quindi sta sullo specchio. Controllo con la matrice dell'esempio: $\left(\frac{12}5 + \frac85,\ \frac{16}5 - \frac65\right) = \left(\frac{20}5, \frac{10}5\right) = (4, 2)$.
+:::
+
+> [!RICORDA]
+> - La riflessione $\mathrm{Rif}_\vartheta$ ha nella prima colonna $(\cos\vartheta, \sin\vartheta)$ e nella seconda $(\sin\vartheta, -\cos\vartheta)$.
+> - Lo specchio è la retta di angolo $\frac\vartheta2$: la **metà** dell'angolo scritto nella matrice.
+> - I vettori sullo specchio restano fermi. Quelli perpendicolari allo specchio diventano il loro opposto.
+> - Il determinante di una riflessione è sempre $-1$.
+
+## Che cosa vuol dire «non deformare», in generale (p. 112)
+
+Rotazioni e riflessioni non cambiano le lunghezze e gli angoli: lo abbiamo controllato su qualche esempio.
+
+> [!NOTA] Serve per capire, non per l'esame
+> Questa è la sezione più teorica della lezione. Spiega da dove viene la regola pratica della prossima sezione, quella delle colonne lunghe 1 e perpendicolari. Negli appelli dal 2023 al 2026 non c'è nessuna domanda sulla definizione generale di isometria. Se hai poco tempo, leggi l'esempio qui sotto e il riquadro «Da ricordare» in fondo.
+
+Finora «movimento rigido» è stata un'idea presa dalla vita di tutti i giorni. Per lavorarci serve una frase precisa, che si possa controllare con un conto.
+
+L'idea viene dalle lezioni L19 e L20. Lì hai visto che lunghezze, distanze e angoli si calcolano tutti a partire da una cosa sola: il prodotto scalare. Quindi una macchina che non cambia i prodotti scalari non cambia nessuna misura.
+
+> [!IDEA]
+> Un'isometria è una macchina che lascia uguali tutti i prodotti scalari. Il prodotto scalare di due vettori prima della macchina è uguale al prodotto scalare delle loro immagini dopo.
+
+### Un controllo con i numeri
+
+> [!ESEMPIO] Una rotazione conserva il prodotto scalare
+> Prendiamo due vettori, $x = (1, 2)$ e $y = (3, -1)$, e il quarto di giro: scambia i due numeri e cambia segno al primo.
+>
+> 1. Prodotto scalare prima: $\langle x, y\rangle = 1 \cdot 3 + 2 \cdot (-1) = 3 - 2 = 1$.
+> 2. Le immagini: $x$ diventa $(-2, 1)$ e $y$ diventa $(1, 3)$.
+> 3. Prodotto scalare dopo: $\langle (-2, 1), (1, 3)\rangle = (-2) \cdot 1 + 1 \cdot 3 = -2 + 3 = 1$.
+>
+> Il numero è lo stesso: 1 prima, 1 dopo.
+>
+> Ecco invece due macchine che **non** sono isometrie, anche se si possono disfare.
+>
+> - La **dilatazione** $\begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}$ raddoppia il primo numero di ogni vettore. Manda $e_1$, che è lungo 1, in $(2, 0)$, che è lungo 2.
+> - Il **taglio** $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ inclina la griglia. Manda $e_2$, che è lungo 1, in $(1, 1)$, che è lungo $\sqrt{1 + 1} = \sqrt2$.
+
+### Come lo scrivono le dispense
+
+La definizione delle dispense vale in un quadro più largo del piano. Parla di due spazi vettoriali qualsiasi, ognuno con il suo prodotto scalare. Nella lezione L19 hai visto che un prodotto scalare si può mettere anche su spazi che non sono fatti di frecce, come gli spazi di polinomi.
 
 > [!DEF] 22.5 · Isometria
 > Siano $V$ e $W$ due spazi vettoriali dotati ciascuno di un prodotto scalare. Un'**isometria** è un isomorfismo $T : V \to W$ tale che
 > $$\langle v, w\rangle = \langle T(v), T(w)\rangle \qquad \forall\, v, w \in V.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $T$ è un **isomorfismo**: lineare e biunivoca (lezione L16);
-- a sinistra c'è il prodotto scalare di $V$, a destra quello di $W$: possono essere diversi;
-- conservare il prodotto scalare vuol dire conservare **tutto** ciò che se ne ricava: norme, distanze, angoli, ortogonalità.
+- $V$ e $W$ sono i due spazi: quello dei vettori che entrano e quello dei vettori che escono. Nel piano sono tutti e due $\R^2$.
+- $T : V \to W$ è la macchina. Si legge «ti, da $V$ a $W$».
+- Un **isomorfismo** è una macchina lineare che si può disfare (lezione L15): da ogni vettore in uscita si risale a un solo vettore in entrata.
+- A sinistra dell'uguale c'è il prodotto scalare di due vettori prima della macchina, calcolato nel primo spazio. A destra c'è il prodotto scalare delle loro immagini, calcolato nel secondo spazio.
+- $\forall\, v, w \in V$ si legge «per ogni $v$ e $w$ che appartengono a $V$». Il simbolo $\in$ si legge «appartiene a». L'uguaglianza deve valere per tutte le coppie di vettori, non solo per qualcuna.
 
-> [!ESEMPIO] Una rotazione conserva il prodotto scalare
-> Con $x = (1, 2)$, $y = (3, -1)$ e $\mathrm{Rot}_{\pi/2}$: $\mathrm{Rot}_{\pi/2}\,x = (-2, 1)$ e $\mathrm{Rot}_{\pi/2}\,y = (1, 3)$. Prima: $\langle x, y\rangle = 3 - 2 = 1$. Dopo: $\langle (-2, 1), (1, 3)\rangle = -2 + 3 = 1$. ✓
->
-> Due trasformazioni invertibili che **non** sono isometrie: la dilatazione $\begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}$ manda $e_1$ in $(2, 0)$, che ha norma 2; il taglio $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ manda $e_2$ in $(1, 1)$, che ha norma $\sqrt2$.
+Le dispense riassumono: un'isometria è un isomorfismo che *preserva* il prodotto scalare. «Preservare» vuol dire «non cambiare».
 
-In realtà basta controllare la condizione sui vettori di una base fissata $\mathcal B = \{v_1, \dots, v_n\}$ di $V$.
+### Basta controllare i vettori di una base
+
+La definizione chiede di controllare tutte le coppie di vettori, che sono infinite. Per fortuna bastano pochi controlli: quelli sui vettori di una base.
+
+Ricorda dalla lezione L07: una **base** è un gruppo di vettori che fanno da ingredienti. Con loro si costruisce ogni altro vettore, in un modo solo. Nel piano una base ha due vettori, per esempio $e_1$ ed $e_2$.
+
+Proviamo con il quarto di giro. Manda $e_1$ in $(0, 1)$ ed $e_2$ in $(-1, 0)$. Le coppie da controllare sono tre.
+
+| Coppia | Prodotto scalare prima | Prodotto scalare dopo |
+|---|---|---|
+| $e_1$ con $e_1$ | $1 \cdot 1 + 0 \cdot 0 = 1$ | $0 \cdot 0 + 1 \cdot 1 = 1$ |
+| $e_1$ con $e_2$ | $1 \cdot 0 + 0 \cdot 1 = 0$ | $0 \cdot (-1) + 1 \cdot 0 = 0$ |
+| $e_2$ con $e_2$ | $0 \cdot 0 + 1 \cdot 1 = 1$ | $(-1) \cdot (-1) + 0 \cdot 0 = 1$ |
+
+Tre controlli, tutti riusciti. La proposizione che segue dice che non ne servono altri.
+
+Le dispense fissano una base del primo spazio e la chiamano $\mathcal B = \{v_1, \dots, v_n\}$. Vuol dire: un elenco di vettori. Il primo si chiama $v_1$, l'ultimo $v_n$, e $n$ è quanti sono.
 
 > [!PROP] 22.6
 > Un isomorfismo $T$ è un'isometria se e solo se
 > $$\langle v_i, v_j\rangle = \langle T(v_i), T(v_j)\rangle \qquad \forall\, i, j.$$
 
-La spiegazione delle dispense, con i passaggi. La condizione è necessaria, perché è la definizione applicata ai vettori della base. Viceversa, scrivi due vettori qualsiasi come combinazioni $v = \sum_i \lambda_iv_i$ e $w = \sum_j \mu_jv_j$. Per la bilinearità (Proposizione 19.15) e la linearità di $T$:
+**Come si legge.**
 
-$$\begin{aligned} \langle v, w\rangle &= \sum_{i,j} \lambda_i\mu_j\,\langle v_i, v_j\rangle, \\ \langle T(v), T(w)\rangle &= \Big\langle \sum_i \lambda_iT(v_i), \sum_j \mu_jT(v_j)\Big\rangle \\ &= \sum_{i,j} \lambda_i\mu_j\,\langle T(v_i), T(v_j)\rangle. \end{aligned}$$
+- $v_i$ e $v_j$ sono due vettori della base: quello di posto $i$ e quello di posto $j$. Le due lettere stanno per due numeri di posto qualsiasi, anche uguali.
+- $\forall\, i, j$ si legge «per ogni $i$ e $j$»: l'uguaglianza va controllata per ogni coppia di vettori della base.
+- «Se e solo se» vuol dire che le due frasi sono vere insieme oppure false insieme. Se la macchina è un'isometria, i controlli sulla base riescono. E se i controlli sulla base riescono, la macchina è un'isometria.
 
-Se i prodotti tra i vettori della base sono uguali, anche le due somme sono uguali.
+Il motivo a parole. Ogni vettore è una ricetta fatta con i vettori della base. Il prodotto scalare rispetta le ricette: è la proprietà che nella lezione L19 si chiama bilinearità. Anche la macchina le rispetta, perché è lineare. Quindi il prodotto scalare di due vettori qualsiasi si ricava, con gli stessi conti, dai prodotti tra i vettori della base. Se quelli non cambiano, non cambia niente.
 
-Con un prodotto definito positivo ci sono altri due modi equivalenti di dire «isometria».
+> [!DIM] della Proposizione 22.6 (la spiegazione delle dispense, con i passaggi)
+> 1. **Un verso.** Se $T$ è un'isometria, l'uguaglianza vale per tutte le coppie di vettori. Quindi vale anche per i vettori della base.
+> 2. **L'altro verso.** Supponiamo che l'uguaglianza valga per i vettori della base. Prendiamo due vettori qualsiasi e scriviamoli come ricette fatte con la base: $v = \sum_i \lambda_iv_i$ e $w = \sum_j \mu_jv_j$. Il simbolo $\sum$ si legge «somma». I numeri $\lambda_i$ («lambda») e $\mu_j$ («mi») sono le quantità delle due ricette.
+> 3. Il prodotto scalare è bilineare (Proposizione 19.15). Quindi
+>    $$\langle v, w\rangle = \sum_{i,j} \lambda_i\mu_j\,\langle v_i, v_j\rangle.$$
+> 4. La macchina $T$ è lineare. Quindi $T(v) = \sum_i \lambda_iT(v_i)$ e $T(w) = \sum_j \mu_jT(v_j)$. Di nuovo per la bilinearità,
+>    $$\langle T(v), T(w)\rangle = \sum_{i,j} \lambda_i\mu_j\,\langle T(v_i), T(v_j)\rangle.$$
+> 5. Le due somme hanno davanti gli stessi numeri $\lambda_i\mu_j$. Se i prodotti tra i vettori della base sono uguali, sono uguali anche le due somme.
+
+### Tre modi di dire la stessa cosa
+
+Con il prodotto scalare normale ci sono tre frasi che dicono la stessa cosa: «non cambia i prodotti scalari», «non cambia le lunghezze», «non cambia le distanze».
+
+Serve una condizione, che per il prodotto scalare normale vale sempre. Il prodotto scalare deve essere **definito positivo**: ogni vettore diverso da zero ha il prodotto scalare con sé stesso maggiore di zero (lezione L19). È la condizione che dà senso alle lunghezze.
 
 > [!PROP] 22.7
 > Sia $T : V \to W$ un isomorfismo fra spazi dotati di un prodotto scalare definito positivo. I fatti seguenti sono equivalenti:
@@ -24099,66 +27909,245 @@ Con un prodotto definito positivo ci sono altri due modi equivalenti di dire «i
 > 2. $T$ preserva la norma, cioè $\|T(v)\| = \|v\|$ $\forall\, v \in V$,
 > 3. $T$ preserva la distanza, cioè $d(v, w) = d(T(v), T(w))$ $\forall\, v, w \in V$.
 
-> [!DIM] della Proposizione 22.7 (dal libro di Martelli)
-> Le dispense non la dimostrano; ecco gli argomenti di Martelli (Proposizione 8.2.1).
-> - **(1) ⇒ (2).** $\|T(v)\|^2 = \langle T(v), T(v)\rangle = \langle v, v\rangle = \|v\|^2$.
-> - **(2) ⇒ (3).** Per la linearità, $d(T(v), T(w)) = \|T(v) - T(w)\| = \|T(v - w)\| = \|v - w\| = d(v, w)$.
-> - **(3) ⇒ (2).** Siccome $T(0) = 0$: $\|v\| = d(0, v) = d(T(0), T(v)) = d(0, T(v)) = \|T(v)\|$.
-> - **(2) ⇒ (1).** Si ricostruisce il prodotto scalare dalle norme (polarizzazione, lezione L20):
->   $$\begin{aligned} \langle v, w\rangle &= \frac{\|v + w\|^2 - \|v\|^2 - \|w\|^2}{2} \\ &= \frac{\|T(v) + T(w)\|^2 - \|T(v)\|^2 - \|T(w)\|^2}{2} = \langle T(v), T(w)\rangle, \end{aligned}$$
->   dove nel secondo passaggio si usa $\|v + w\| = \|T(v + w)\| = \|T(v) + T(w)\|$.
+**Come si legge.**
 
-**Il linguaggio delle matrici.** Siano $V$ e $V'$ spazi muniti di prodotti scalari $g$ e $g'$ e di basi $\mathcal B$ e $\mathcal B'$, e sia $T : V \to V'$ un isomorfismo. Siano
+- «I fatti seguenti sono equivalenti» vuol dire: se ne vale uno, valgono tutti e tre.
+- La riga 2 dice: la lunghezza dell'immagine è uguale alla lunghezza del vettore di partenza, per ogni vettore.
+- Nella riga 3, $d(v, w)$ si legge «distanza tra $v$ e $w$». È la lunghezza della differenza dei due vettori. La riga dice: la distanza tra due vettori è uguale alla distanza tra le loro immagini.
+
+In pratica la proposizione si usa al contrario. Per mostrare che una macchina **non** è un'isometria basta trovare un solo vettore che cambia lunghezza. È quello che abbiamo fatto con la dilatazione e con il taglio.
+
+> [!DIM] della Proposizione 22.7 (dal libro di Martelli)
+> Le dispense non la dimostrano. Questi sono gli argomenti del libro di Martelli (Proposizione 8.2.1).
+>
+> 1. **Dal fatto 1 al fatto 2.** La norma al quadrato è il prodotto scalare di un vettore con sé stesso. Se $T$ conserva i prodotti scalari,
+>    $$\|T(v)\|^2 = \langle T(v), T(v)\rangle = \langle v, v\rangle = \|v\|^2.$$
+> 2. **Dal fatto 2 al fatto 3.** La distanza è la norma della differenza. La macchina è lineare, quindi $T(v) - T(w) = T(v - w)$. Allora
+>    $$d(T(v), T(w)) = \|T(v) - T(w)\| = \|T(v - w)\| = \|v - w\| = d(v, w).$$
+> 3. **Dal fatto 3 al fatto 2.** La norma di un vettore è la sua distanza dal vettore zero, e $T(0) = 0$. Allora
+>    $$\|v\| = d(0, v) = d(T(0), T(v)) = d(0, T(v)) = \|T(v)\|.$$
+> 4. **Dal fatto 2 al fatto 1.** Il prodotto scalare si ricostruisce dalle norme, con la formula di polarizzazione della lezione L20:
+>    $$\langle v, w\rangle = \frac{\|v + w\|^2 - \|v\|^2 - \|w\|^2}{2}.$$
+>    Se $T$ conserva le norme, i tre pezzi a destra non cambiano quando al posto di $v$ e $w$ si mettono $T(v)$ e $T(w)$. Per il primo pezzo si usa $\|v + w\| = \|T(v + w)\| = \|T(v) + T(w)\|$. Quindi $\langle v, w\rangle = \langle T(v), T(w)\rangle$.
+
+### La stessa condizione scritta con le matrici
+
+L'ultimo passo traduce la definizione in un conto con le matrici. È il passo che porta alla regola pratica della prossima sezione.
+
+Servono due cose delle lezioni passate.
+
+- Un prodotto scalare si descrive con una tabella: la matrice che contiene i prodotti scalari tra i vettori di una base (lezione L19).
+- Una macchina lineare si descrive con la sua matrice, una volta scelte le basi (lezione L15).
+
+Le dispense danno un nome a ogni oggetto. I due spazi si chiamano $V$ e $V'$ («vu primo»). I loro prodotti scalari si chiamano $g$ e $g'$. Le loro basi si chiamano $\mathcal B$ e $\mathcal B'$. La macchina è un isomorfismo $T$ dal primo spazio al secondo. Le tre matrici sono queste:
 
 $$S = [g]_{\mathcal B}, \qquad S' = [g']_{\mathcal B'}, \qquad A = [T]^{\mathcal B}_{\mathcal B'}$$
 
-le matrici associate a tutti gli attori in scena: i due prodotti scalari (lezione L19) e l'applicazione (lezione L15).
+- $S$ è la tabella dei prodotti scalari tra i vettori della prima base.
+- $S'$ è la tabella dei prodotti scalari tra i vettori della seconda base.
+- $A$ è la matrice della macchina. Nelle sue colonne ci sono le immagini dei vettori della prima base, scritte come ricette fatte con la seconda.
 
 > [!PROP] 22.8
 > L'isomorfismo $T$ è un'isometria se e solo se
 > $$S = {}^tA\,S'\,A.$$
 
-La spiegazione: per la Proposizione 22.6 basta controllare i vettori della base. La colonna $A^i$ contiene le coordinate di $T(v_i)$ nella base $\mathcal B'$, cioè $A^i = [T(v_i)]_{\mathcal B'}$. Per il Corollario 19.16 nella base $\mathcal B'$:
+**Come si legge.** La scrittura ${}^tA$ è la trasposta della matrice $A$: la stessa tabella, con le righe scambiate con le colonne (lezione L08). La formula dice di moltiplicare tre matrici in quest'ordine: la trasposta di $A$, poi $S'$, poi $A$. Se il risultato è uguale a $S$, la macchina è un'isometria. Se è diverso, non lo è.
 
-$$({}^tA\,S'\,A)_{ij} = {}^t(A^i)\,S'\,A^j = g'(T(v_i), T(v_j)),$$
+Il motivo a parole. Il prodotto delle tre matrici calcola in un colpo solo tutti i prodotti scalari tra le immagini dei vettori della base. La matrice $S$ contiene tutti i prodotti scalari tra i vettori della base. Dire che le due tabelle sono uguali è ripetere la Proposizione 22.6, con le matrici.
 
-mentre $S_{ij} = g(v_i, v_j)$. Le due matrici sono uguali esattamente quando $g(v_i, v_j) = g'(T(v_i), T(v_j))$ per ogni $i, j$.
+> [!DIM] della Proposizione 22.8 (la spiegazione delle dispense, con i passaggi)
+> 1. Per la Proposizione 22.6 basta controllare i vettori della base.
+> 2. Le dispense chiamano $A^i$ la colonna numero $i$ della matrice $A$. Qui il numerino in alto non è una potenza: è il numero della colonna. Questa colonna contiene le coordinate di $T(v_i)$ nella seconda base: $A^i = [T(v_i)]_{\mathcal B'}$.
+> 3. Il numero di posto $(i, j)$ della matrice ${}^tA\,S'\,A$ si calcola con la colonna $i$ e la colonna $j$ di $A$. Per il Corollario 19.16 è il prodotto scalare delle due immagini:
+>    $$({}^tA\,S'\,A)_{ij} = {}^t(A^i)\,S'\,A^j = g'(T(v_i), T(v_j)).$$
+> 4. Il numero di posto $(i, j)$ della matrice $S$ è $S_{ij} = g(v_i, v_j)$.
+> 5. Due matrici sono uguali quando hanno gli stessi numeri in tutti i posti. Qui succede quando $g(v_i, v_j) = g'(T(v_i), T(v_j))$ per ogni $i$ e $j$. È la condizione della Proposizione 22.6.
 
-## Matrici ortogonali (p. 113)
+::: prova La macchina che raddoppia tutto, cioè $(x, y) \mapsto (2x, 2y)$, è un'isometria?
+No. Manda $e_1 = (1, 0)$, che è lungo 1, in $(2, 0)$, che è lungo 2. Basta un vettore che cambia lunghezza.
+:::
 
-Il caso che ci sta più a cuore è $\R^n$ con il suo prodotto scalare euclideo, e un endomorfismo $L_A : \R^n \to \R^n$ con $A \in M(n)$. Nella Proposizione 22.8 prendi come basi quella canonica: allora $S = S' = I_n$ e $A$ è la matrice di $L_A$, quindi la condizione diventa $I_n = {}^tA\,I_n\,A$.
+::: prova Il mezzo giro manda $(x, y)$ in $(-x, -y)$. Controlla che non cambia il prodotto scalare di $(1, 2)$ e $(3, -1)$.
+Prima: $1 \cdot 3 + 2 \cdot (-1) = 1$. Le immagini sono $(-1, -2)$ e $(-3, 1)$. Dopo: $(-1) \cdot (-3) + (-2) \cdot 1 = 3 - 2 = 1$. Stesso numero.
+:::
+
+> [!RICORDA]
+> - Un'**isometria** è una macchina lineare che si può disfare e che non cambia i prodotti scalari.
+> - Con il prodotto scalare normale è lo stesso che dire: non cambia le lunghezze, oppure non cambia le distanze.
+> - Basta controllare i vettori di una base.
+> - Per dire che una macchina non è un'isometria basta un vettore che cambia lunghezza.
+
+## Le matrici ortogonali (p. 113)
+
+Torniamo al piano e allo spazio di tutti i giorni, con il prodotto scalare normale.
+
+La domanda di questa sezione è pratica. Hai davanti una tabella di numeri: come capisci se è la matrice di un movimento rigido?
+
+### La regola delle colonne
+
+La risposta viene dall'idea usata fin dall'inizio: le colonne della matrice sono le immagini dei vettori della base canonica.
+
+I vettori della base canonica hanno due qualità. Sono lunghi 1. E sono perpendicolari tra loro. Un movimento rigido non cambia le lunghezze e non cambia gli angoli retti. Quindi anche le immagini, cioè le colonne della matrice, devono essere lunghe 1 e perpendicolari tra loro.
+
+Vale anche il contrario. Se le colonne sono lunghe 1 e perpendicolari tra loro, la matrice è un movimento rigido. È quello che dice la Proposizione 22.6: basta controllare i vettori di una base.
+
+> [!IDEA]
+> Una matrice è un movimento rigido esattamente quando le sue colonne sono lunghe 1 e perpendicolari tra loro.
+
+Proviamo con una matrice.
+
+$$A = \begin{pmatrix} \frac35 & -\frac45 \\ \frac45 & \frac35 \end{pmatrix}$$
+
+La prima colonna è $\left(\frac35, \frac45\right)$. La seconda è $\left(-\frac45, \frac35\right)$. I controlli da fare sono tre.
+
+| Controllo | Conto | Risultato |
+|---|---|---|
+| lunghezza della prima colonna | $\sqrt{\frac9{25} + \frac{16}{25}} = \sqrt{\frac{25}{25}}$ | $1$ |
+| lunghezza della seconda colonna | $\sqrt{\frac{16}{25} + \frac9{25}} = \sqrt{\frac{25}{25}}$ | $1$ |
+| prodotto scalare tra le due colonne | $\frac35 \cdot \left(-\frac45\right) + \frac45 \cdot \frac35 = -\frac{12}{25} + \frac{12}{25}$ | $0$ |
+
+I tre controlli riescono: la matrice è un movimento rigido.
+
+### Lo stesso controllo in una formula
+
+Le dispense scrivono i tre controlli in una formula sola. Per leggerla servono due cose della lezione L08.
+
+> [!RIPASSO] la trasposta e la matrice identità (lezione L08)
+> La **trasposta** di una matrice è la stessa tabella con le righe scambiate con le colonne. La prima riga diventa la prima colonna, la seconda riga diventa la seconda colonna. Si scrive con una piccola $t$ in alto a sinistra.
+> $$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \qquad\qquad {}^tA = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix}$$
+> La **matrice identità** ha 1 sulla diagonale e 0 in tutti gli altri posti. Moltiplicare per lei non cambia niente. Si scrive $I_n$, dove $n$ è il numero delle righe, che è uguale al numero delle colonne.
+> $$I_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \qquad\qquad I_3 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
+
+Ora prendiamo la matrice di prima e moltiplichiamo la sua trasposta per lei. Le righe della trasposta sono le colonne della matrice. Quindi, nel prodotto riga per colonna, ogni conto è il prodotto scalare tra due colonne.
+
+$$\begin{pmatrix} \frac35 & \frac45 \\ -\frac45 & \frac35 \end{pmatrix}\begin{pmatrix} \frac35 & -\frac45 \\ \frac45 & \frac35 \end{pmatrix} = \begin{pmatrix} \frac9{25} + \frac{16}{25} & -\frac{12}{25} + \frac{12}{25} \\ -\frac{12}{25} + \frac{12}{25} & \frac{16}{25} + \frac9{25} \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$$
+
+Guarda dove sono finiti i tre controlli.
+
+- In alto a sinistra c'è la prima colonna per sé stessa: è la sua lunghezza al quadrato, e vale 1.
+- In basso a destra c'è la seconda colonna per sé stessa: vale 1.
+- Negli altri due posti c'è la prima colonna per la seconda: vale 0.
+
+Il risultato è la matrice identità. Quindi «colonne lunghe 1 e perpendicolari» e «trasposta per matrice uguale identità» sono la stessa frase.
+
+Le dispense arrivano alla formula partendo dalla Proposizione 22.8. Con il prodotto scalare normale e la base canonica, la tabella dei prodotti scalari è la matrice identità. La condizione di quella proposizione diventa $I_n = {}^tA\,I_n\,A$, e moltiplicare per l'identità non cambia niente.
 
 > [!COROLLARIO] 22.9
 > L'endomorfismo $L_A$ è un'isometria $\iff {}^tA\,A = I_n$.
 
+**Come si legge.** Un **endomorfismo** è una macchina lineare che va da uno spazio allo stesso spazio. Qui è la macchina «moltiplica per $A$», che va da $\R^n$ a $\R^n$. La doppia freccia $\iff$ si legge «esattamente quando». Tutta la frase: la macchina è un'isometria esattamente quando la trasposta di $A$ moltiplicata per $A$ dà la matrice identità.
+
+Le matrici che superano questo controllo hanno un nome.
+
 > [!DEF] 22.10 · Matrice ortogonale
 > Una matrice $A \in M(n)$ a coefficienti reali tale che ${}^tA\,A = I_n$ è detta **ortogonale**.
 
-Che cosa vuol dire ${}^tA\,A = I_n$ in pratica? L'entrata $(i, j)$ di ${}^tA\,A$ è la riga $i$ di ${}^tA$ per la colonna $j$ di $A$, cioè il prodotto scalare tra le colonne $A^i$ e $A^j$. Quindi:
+**Come si legge.**
 
-$${}^tA\,A = I_n \iff \langle A^i, A^j\rangle = \begin{cases} 1 & \text{se } i = j, \\ 0 & \text{se } i \neq j, \end{cases}$$
+- $A \in M(n)$ si legge «$A$ appartiene a emme di enne». Vuol dire: è una matrice quadrata, con $n$ righe e $n$ colonne.
+- «A coefficienti reali» vuol dire che i numeri nella tabella sono numeri reali.
+- La condizione è quella del corollario: trasposta per matrice uguale identità.
 
-cioè ${}^tA\,A = I_n$ esattamente quando **le colonne di $A$ formano una base ortonormale di $\R^n$**.
+Quindi «matrice ortogonale» e «matrice di un movimento rigido» sono la stessa cosa.
 
-> [!OLTRE] Le proprietà delle matrici ortogonali
-> Da ${}^tA\,A = I_n$ seguono (Martelli, §8.2.2):
-> - **l'inversa è la trasposta**: $A^{-1} = {}^tA$, quindi anche $A\,{}^tA = I_n$ (le **righe** sono anch'esse ortonormali);
-> - $\det A = \pm1$: per il Teorema di Binet $1 = \det I_n = \det({}^tA)\det A = (\det A)^2$;
-> - gli eventuali **autovalori reali** sono $\pm1$: se $Av = \lambda v$ con $v \neq 0$, allora $\|v\| = \|Av\| = |\lambda|\,\|v\|$, quindi $|\lambda| = 1$;
-> - il prodotto di due matrici ortogonali è ortogonale: ${}^t(AB)(AB) = {}^tB\,({}^tA\,A)\,B = {}^tB\,B = I_n$.
+Con una matrice grande il discorso non cambia. Il numero che sta nella riga $i$ e nella colonna $j$ del prodotto è il prodotto scalare tra la colonna $i$ e la colonna $j$ della matrice. Le dispense chiamano $A^i$ la colonna numero $i$: il numerino in alto qui non è una potenza. La condizione diventa
+
+$${}^tA\,A = I_n \quad\text{esattamente quando}\quad \langle A^i, A^j\rangle = \begin{cases} 1 & \text{se } i = j, \\ 0 & \text{se } i \neq j. \end{cases}$$
+
+A parole: ogni colonna ha prodotto scalare 1 con sé stessa, cioè è lunga 1. E ha prodotto scalare 0 con ogni altra colonna, cioè è perpendicolare alle altre. Un gruppo di vettori fatto così si chiama **base ortonormale** (lezione L21): «orto» sta per perpendicolari, «normale» sta per lunghi 1.
+
+> [!OLTRE] Quattro proprietà delle matrici ortogonali
+> Dalla condizione ${}^tA\,A = I_n$ si ricavano quattro fatti (Martelli, §8.2.2).
+>
+> **L'inversa è la trasposta.** L'inversa di una matrice è quella che, moltiplicata per lei, dà l'identità (lezione L10). Qui la trasposta fa proprio questo. Quindi
+> $$A^{-1} = {}^tA.$$
+> Per disfare un movimento rigido basta scambiare le righe con le colonne. Vale anche $A\,{}^tA = I_n$: quindi pure le **righe** sono lunghe 1 e perpendicolari tra loro.
+>
+> **Il determinante è 1 oppure $-1$.** Il determinante di un prodotto è il prodotto dei determinanti (Teorema di Binet, lezione L10). La trasposta ha lo stesso determinante della matrice. Quindi
+> $$(\det A)^2 = \det({}^tA) \cdot \det A = \det I_n = 1.$$
+> I soli numeri reali che al quadrato danno 1 sono $1$ e $-1$.
+>
+> **Gli autovalori reali possono essere solo 1 e $-1$.** Supponi che la matrice moltiplichi un vettore $v$ per un numero $\lambda$ («lambda»). La lunghezza del vettore viene moltiplicata per $\lambda$ senza il segno, che si scrive $|\lambda|$. Ma un movimento rigido non cambia le lunghezze:
+> $$\|v\| = \|Av\| = |\lambda| \cdot \|v\|.$$
+> Quindi $|\lambda| = 1$.
+>
+> **Il prodotto di due matrici ortogonali è ortogonale.** Un movimento rigido dopo l'altro dà ancora un movimento rigido. Il conto usa la regola «la trasposta di un prodotto è il prodotto delle trasposte, in ordine inverso»:
+> $${}^t(AB)\,(AB) = {}^tB\,({}^tA\,A)\,B = {}^tB\,B = I_n.$$
 
 > [!ESEMPIO] Ortogonale o no?
-> 1. $\frac15\begin{pmatrix} 3 & -4 \\ 4 & 3 \end{pmatrix}$: colonne $\frac15(3, 4)$ e $\frac15(-4, 3)$, entrambe di norma $\frac{\sqrt{9 + 16}}{5} = 1$, e prodotto $\frac{-12 + 12}{25} = 0$. **Ortogonale** (è $\mathrm{Rot}_\vartheta$ con $\cos\vartheta = \frac35$).
-> 2. $\begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix}$: colonne ortogonali ($1 - 1 = 0$) ma di norma $\sqrt2$. **Non ortogonale**: è $\sqrt2\,\mathrm{Rot}_{-\pi/4}$, una rotazione seguita da un ingrandimento.
-> 3. $\frac13\begin{pmatrix} 1 & 2 & 2 \\ 2 & 1 & -2 \\ 2 & -2 & 1 \end{pmatrix}$: ogni colonna ha norma $\frac{\sqrt{1 + 4 + 4}}{3} = 1$ e i prodotti tra colonne sono $\frac{2 + 2 - 4}{9} = 0$, $\frac{2 - 4 + 2}{9} = 0$, $\frac{4 - 2 - 2}{9} = 0$. **Ortogonale**, con determinante $-1$.
+> **Prima matrice.** $\frac15\begin{pmatrix} 3 & -4 \\ 4 & 3 \end{pmatrix}$. Il numero $\frac15$ davanti moltiplica tutti e quattro i numeri: è la matrice controllata sopra. Le colonne sono lunghe 1 e perpendicolari. **È ortogonale.** È la rotazione con coseno $\frac35$ e seno $\frac45$.
+>
+> **Seconda matrice.** $\begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix}$. Le colonne sono $(1, -1)$ e $(1, 1)$.
+>
+> - Prodotto scalare tra le colonne: $1 \cdot 1 + (-1) \cdot 1 = 0$. Sono perpendicolari.
+> - Lunghezza della prima colonna: $\sqrt{1 + 1} = \sqrt2$. Non è 1.
+>
+> **Non è ortogonale.** Gira il piano di un ottavo di giro in senso orario, ma in più lo ingrandisce: moltiplica tutte le lunghezze per $\sqrt2$.
+>
+> **Terza matrice.** $\frac13\begin{pmatrix} 1 & 2 & 2 \\ 2 & 1 & -2 \\ 2 & -2 & 1 \end{pmatrix}$. Ha tre colonne: $\frac13(1, 2, 2)$, poi $\frac13(2, 1, -2)$, poi $\frac13(2, -2, 1)$. I controlli sono sei: tre lunghezze e tre prodotti scalari.
+>
+> - Lunghezze. In ogni colonna i quadrati dei tre numeri tra parentesi sono 1, 4 e 4, in qualche ordine. Quindi ogni colonna è lunga $\frac13\sqrt{1 + 4 + 4} = \frac13\sqrt9 = 1$.
+> - Prima colonna con seconda: $\frac19\,(2 + 2 - 4) = 0$.
+> - Prima colonna con terza: $\frac19\,(2 - 4 + 2) = 0$.
+> - Seconda colonna con terza: $\frac19\,(4 - 2 - 2) = 0$.
+>
+> **È ortogonale.** Il suo determinante è $-1$.
 
 > [!TRAPPOLA] Due condizioni che non bastano
-> - Colonne **ortogonali** non bastano: servono colonne **ortonormali** (esempio 2 qui sopra). Il nome «matrice ortogonale» inganna.
-> - $\det A = \pm1$ non basta: $\begin{pmatrix} 0 & 2 \\ \frac12 & 0 \end{pmatrix}$ ha determinante $-1$ ma le colonne hanno norme $\frac12$ e $2$. Il determinante $\pm1$ è una conseguenza dell'ortogonalità, non una caratterizzazione.
+> **Colonne perpendicolari non bastano.** Devono essere anche lunghe 1, come mostra la seconda matrice dell'esempio. Il nome «matrice ortogonale» inganna, perché fa pensare solo alla perpendicolarità.
+>
+> **Determinante 1 o $-1$ non basta.** La matrice $\begin{pmatrix} 0 & 2 \\ \frac12 & 0 \end{pmatrix}$ ha determinante $0 \cdot 0 - 2 \cdot \frac12 = -1$. Ma le sue colonne sono lunghe $\frac12$ e $2$, quindi non è ortogonale. Ogni matrice ortogonale ha determinante 1 o $-1$. Il contrario non vale.
 
-## Tutte le isometrie del piano (p. 113)
+::: prova La matrice $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ è ortogonale?
+Sì. Le colonne sono $(0, 1)$ e $(1, 0)$, tutte e due lunghe 1. Il loro prodotto scalare è $0 \cdot 1 + 1 \cdot 0 = 0$.
+:::
 
-Vogliamo classificare completamente le isometrie del piano $\R^2$ con il prodotto scalare euclideo. Per il Corollario 22.9 basta classificare le matrici ortogonali $2 \times 2$, e bastano poche righe per descriverle tutte.
+::: prova La matrice $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$ è ortogonale?
+No. Le colonne sono perpendicolari, ma la seconda è $(0, 2)$, che è lunga 2.
+:::
+
+::: prova Scrivi l'inversa di $\frac15\begin{pmatrix} 3 & -4 \\ 4 & 3 \end{pmatrix}$ senza fare conti.
+La matrice è ortogonale, quindi l'inversa è la trasposta. Scambio le righe con le colonne: $\frac15\begin{pmatrix} 3 & 4 \\ -4 & 3 \end{pmatrix}$.
+:::
+
+> [!RICORDA]
+> - Una matrice è **ortogonale** quando la sua trasposta, moltiplicata per lei, dà l'identità. È la matrice di un movimento rigido.
+> - In pratica: le colonne sono lunghe 1 e perpendicolari tra loro.
+> - L'inversa di una matrice ortogonale è la sua trasposta. Il suo determinante è 1 oppure $-1$.
+> - Colonne solo perpendicolari, o solo il determinante giusto, non bastano.
+
+## Tutti i movimenti rigidi del piano (p. 113)
+
+Rotazioni e riflessioni sono movimenti rigidi del piano: ce ne sono altri?
+
+La risposta è no, e si capisce con un disegno. Per il Corollario 22.9, cercare tutti i movimenti rigidi del piano è lo stesso che cercare tutte le matrici ortogonali con due righe e due colonne. Proviamo a costruirne una, una colonna alla volta.
+
+**La prima colonna.** Deve essere un vettore lungo 1. I vettori lunghi 1 sono i punti del cerchio di raggio 1. Ogni punto di quel cerchio si scrive con il coseno e il seno del suo angolo. Quindi la prima colonna è
+
+$$(\cos\vartheta,\ \sin\vartheta)$$
+
+per un certo angolo $\vartheta$.
+
+**La seconda colonna.** Deve essere perpendicolare alla prima, e lunga 1 anche lei. I vettori perpendicolari alla prima colonna stanno tutti su una retta. Su quella retta i vettori lunghi 1 sono soltanto due, uno l'opposto dell'altro:
+
+$$(-\sin\vartheta,\ \cos\vartheta) \qquad\text{oppure}\qquad (\sin\vartheta,\ -\cos\vartheta).$$
+
+Con il primo viene la matrice della rotazione. Con il secondo viene la matrice della riflessione. Altre scelte non ce ne sono.
+
+Guarda la figura. La prima colonna è il vettore con la scritta «prima colonna», che arriva sul cerchio. La retta tratteggiata è perpendicolare a lui. Su quella retta i vettori lunghi 1 sono due. Quello con la scritta «rotazione» dà una rotazione. Quello opposto, con la scritta «riflessione», dà una riflessione.
+
+```grafico
+titolo: La prima colonna è un punto del cerchio di raggio 1. Per la seconda restano due sole scelte, una opposta all'altra
+x: -1.6 1.6
+y: -1.3 1.3
+cerchio: 0 0 1 | grigio
+retta: -1/2 sqrt(3)/2 1/2 -sqrt(3)/2 | grigio | tratteggio | sottile
+vettore: sqrt(3)/2 1/2 | accento | spesso | "prima colonna" | e
+vettore: -1/2 sqrt(3)/2 | blu | spesso | "rotazione" | no
+vettore: 1/2 -sqrt(3)/2 | ambra | spesso | "riflessione" | se
+```
+
+Le dispense lo scrivono così.
 
 > [!PROP] 22.11
 > Le matrici ortogonali in $M(2)$ sono le seguenti:
@@ -24166,58 +28155,224 @@ Vogliamo classificare completamente le isometrie del piano $\R^2$ con il prodott
 > $$\mathrm{Rif}_\vartheta = \begin{pmatrix} \cos\vartheta & \sin\vartheta \\ \sin\vartheta & -\cos\vartheta \end{pmatrix}$$
 > al variare di $\vartheta \in [0, 2\pi)$.
 
-La dimostrazione delle dispense, con i passaggi:
+**Come si legge.**
 
-1. Le colonne $A^1$ e $A^2$ di una matrice ortogonale $A$ formano una base ortonormale di $\R^2$.
-2. $A^1$ è un vettore unitario: sta sulla circonferenza di raggio 1, quindi si scrive $A^1 = (\cos\vartheta, \sin\vartheta)$ per un unico $\vartheta \in [0, 2\pi)$.
-3. $A^2$ deve essere ortogonale ad $A^1$: per l'Esempio 21.1 sta sulla retta $\Span((-\sin\vartheta, \cos\vartheta))$. Deve anche essere unitario, e su quella retta ci sono solo due vettori di norma 1, che differiscono per il segno: $A^2 = \pm(-\sin\vartheta, \cos\vartheta)$.
-4. Con il segno $+$ si ottiene $\mathrm{Rot}_\vartheta$, con il segno $-$ si ottiene $\mathrm{Rif}_\vartheta$. Viceversa, entrambe le matrici sono ortogonali (lo si verifica come nell'esempio precedente). $\square$
+- $M(2)$ si legge «emme di due»: sono le matrici con due righe e due colonne.
+- «Al variare di $\vartheta \in [0, 2\pi)$» vuol dire: per ogni angolo da 0 a un giro intero. La parentesi quadra dice che lo 0 è compreso. La tonda dice che il giro intero è escluso: riporta al punto di partenza, quindi è un doppione dell'angolo 0.
+- La proposizione dice che l'elenco è completo. Ogni matrice ortogonale del piano è una rotazione oppure una riflessione.
+
+> [!DIM] della Proposizione 22.11 (la dimostrazione delle dispense, con i passaggi)
+> 1. Le colonne $A^1$ e $A^2$ di una matrice ortogonale $A$ formano una base ortonormale del piano: sono lunghe 1 e perpendicolari.
+> 2. $A^1$ è lungo 1, quindi sta sul cerchio di raggio 1. Si scrive $A^1 = (\cos\vartheta, \sin\vartheta)$ per un solo angolo $\vartheta$ tra 0 e un giro intero.
+> 3. $A^2$ è perpendicolare ad $A^1$. Per l'Esempio 21.1 sta sulla retta $\Span((-\sin\vartheta, \cos\vartheta))$.
+> 4. $A^2$ è anche lungo 1. Su quella retta i vettori lunghi 1 sono solo due, e differiscono per il segno: $A^2 = (-\sin\vartheta, \cos\vartheta)$ oppure $A^2 = (\sin\vartheta, -\cos\vartheta)$.
+> 5. Con la prima scelta viene $\mathrm{Rot}_\vartheta$. Con la seconda viene $\mathrm{Rif}_\vartheta$.
+> 6. Viceversa, queste due matrici sono ortogonali. Le colonne sono lunghe 1 perché $\cos^2\vartheta + \sin^2\vartheta = 1$. Sono perpendicolari perché nel prodotto scalare i due pezzi sono $\cos\vartheta\sin\vartheta$ con segni opposti, e si cancellano.
 
 > [!COROLLARIO] 22.12
 > Le isometrie di $\R^2$ sono rotazioni e riflessioni.
 
-Il determinante le distingue: **$\det A = 1$ rotazione, $\det A = -1$ riflessione**.
+**Come si legge.** Un corollario è una conseguenza diretta di quello che si è appena mostrato. Le «isometrie di $\R^2$» sono i movimenti rigidi del piano che tengono ferma l'origine. La frase dice che sono tutti rotazioni o riflessioni: un terzo tipo non esiste.
 
-> [!METODO] Riconoscere un'isometria del piano
-> 1. Controlla che $A$ sia ortogonale: colonne di norma 1 e ortogonali tra loro.
-> 2. Calcola $\det A$.
-> 3. Se $\det A = 1$ è la rotazione $\mathrm{Rot}_\vartheta$: leggi $\cos\vartheta = a_{11}$ e $\sin\vartheta = a_{21}$ dalla prima colonna, e trova $\vartheta \in [0, 2\pi)$.
-> 4. Se $\det A = -1$ è una riflessione: l'asse è l'autospazio dell'autovalore 1, cioè le soluzioni di $(A - I)v = 0$ (oppure la retta di angolo $\frac\vartheta2$, con $\vartheta$ letto dalla prima colonna).
+Per sapere quale dei due tipi hai davanti basta il determinante: **vale 1 per una rotazione e $-1$ per una riflessione**.
+
+> [!METODO] Riconoscere un movimento rigido del piano
+> 1. Controlla che la matrice sia ortogonale: colonne lunghe 1 e perpendicolari tra loro. Se non lo è, fermati: non è un'isometria.
+> 2. Calcola il determinante: diagonale meno l'altra diagonale.
+> 3. Se il determinante è 1, è una **rotazione**. Leggi l'angolo nella prima colonna: il numero in alto è il coseno, quello in basso è il seno. Cerca l'angolo nella tabella.
+> 4. Se il determinante è $-1$, è una **riflessione**. Per trovare lo specchio cerca i vettori che restano fermi: risolvi $Av = v$, cioè $(A - I)v = 0$.
+> 5. In alternativa, per la riflessione: leggi l'angolo nella prima colonna come al passo 3. Lo specchio sta alla metà di quell'angolo.
 
 > [!ESEMPIO] Due matrici da riconoscere
-> - $A = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$: colonne $(0, -1)$ e $(1, 0)$, ortonormali; $\det A = 0 - (1)(-1) = 1$. È una rotazione con $\cos\vartheta = 0$ e $\sin\vartheta = -1$, cioè $\vartheta = \frac{3\pi}2$: un quarto di giro in senso **orario**. Controllo: $A e_1 = (0, -1)$.
-> - $B = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$: $\det B = -1$, riflessione. La prima colonna $(-1, 0)$ dà $\vartheta = \pi$, quindi l'asse ha angolo $\frac\pi2$: è l'asse $y$. Controllo: $B(0, 1) = (0, 1)$.
+> **La matrice $A = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$.**
+>
+> 1. Le colonne sono $(0, -1)$ e $(1, 0)$. Sono lunghe 1. Il loro prodotto scalare è $0 \cdot 1 + (-1) \cdot 0 = 0$. La matrice è ortogonale.
+> 2. Determinante: $0 \cdot 0 - 1 \cdot (-1) = 1$. È una rotazione.
+> 3. Nella prima colonna il coseno è $0$ e il seno è $-1$. Nella tabella è l'angolo $\frac{3\pi}2$: tre quarti di giro in senso antiorario. È lo stesso che un quarto di giro in senso **orario**.
+>
+> Controllo: la matrice manda $e_1$ nella prima colonna, $(0, -1)$. Il vettore che puntava a destra ora punta in giù: un quarto di giro in senso orario.
+>
+> **La matrice $B = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}$.**
+>
+> 1. Le colonne sono $(-1, 0)$ e $(0, 1)$: lunghe 1 e perpendicolari. La matrice è ortogonale.
+> 2. Determinante: $(-1) \cdot 1 - 0 \cdot 0 = -1$. È una riflessione.
+> 3. Nella prima colonna il coseno è $-1$ e il seno è $0$: l'angolo è $\pi$. Lo specchio sta alla metà, cioè a $\frac\pi2$: è l'asse $y$.
+>
+> Controllo: la matrice manda $(0, 1)$, che sta sull'asse $y$, in $(0, 1)$. Resta fermo.
 
 > [!ESAME] L'insieme delle matrici ortogonali non è un sottospazio
-> L'insieme $O(2)$ delle matrici ortogonali $2 \times 2$ non è un sottospazio di $M(2, \R)$: non contiene la matrice nulla, e la somma di due matrici ortogonali in generale non è ortogonale. Per la Proposizione 22.11 è fatto di due «circonferenze» di matrici, $\mathrm{Rot}_\vartheta$ e $\mathrm{Rif}_\vartheta$, parametrizzate dall'angolo $\vartheta$. Un appello ci ha costruito sopra una domanda: la trovi risolta in «Verso l'esame».
+> L'insieme di tutte le matrici ortogonali con due righe e due colonne si scrive $O(2)$, «o di due». Sta dentro lo spazio $M(2, \R)$ di tutte le matrici reali con due righe e due colonne. Ma **non è un sottospazio**. Ricorda dalla lezione L06: un sottospazio contiene lo zero, e sommando due suoi elementi non si esce.
+>
+> - La matrice fatta di soli zeri non è ortogonale: le sue colonne sono lunghe 0, non 1.
+> - La somma di due matrici ortogonali di solito non è ortogonale. Per esempio $I_2 + I_2$ ha le colonne lunghe 2.
+>
+> Per la Proposizione 22.11 questo insieme è fatto di due famiglie di matrici, le rotazioni e le riflessioni. In ognuna la matrice dipende da un angolo. Un appello ci ha costruito sopra una domanda: la trovi risolta in «Verso l'esame».
 
-## Isometrie dello spazio (p. 113)
+::: prova Che movimento è la matrice $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$?
+Le colonne sono $(-1, 0)$ e $(0, -1)$: lunghe 1 e perpendicolari. Il determinante è $(-1) \cdot (-1) - 0 \cdot 0 = 1$: è una rotazione. Nella prima colonna il coseno è $-1$ e il seno è $0$: l'angolo è $\pi$, mezzo giro.
+:::
 
-Con un po' più di lavoro, ma in modo simile, si classificano le isometrie di $\R^3$. Prima i due tipi di trasformazione che compaiono.
+::: prova Una matrice ortogonale del piano ha determinante $-1$. Può essere una rotazione?
+No. Le rotazioni hanno tutte determinante 1. Con determinante $-1$ è una riflessione.
+:::
 
-- La **rotazione** di angolo $\vartheta$ intorno a un asse $r$ (una retta per l'origine) fa girare lo spazio intorno a $r$: i punti di $r$ restano fermi, il piano $r^\perp$ gira come nel piano. Intorno all'asse $z$ la matrice è
-  $$\begin{pmatrix} \cos\vartheta & -\sin\vartheta & 0 \\ \sin\vartheta & \cos\vartheta & 0 \\ 0 & 0 & 1 \end{pmatrix}, \qquad \det = 1.$$
-- Un'**antirotazione** fa la stessa rotazione e poi riflette rispetto al piano $U = r^\perp$ perpendicolare all'asse. Intorno all'asse $z$ il piano $U$ è $\{z = 0\}$, che riflettendo cambia segno alla coordinata $z$:
-  $$\begin{pmatrix} \cos\vartheta & -\sin\vartheta & 0 \\ \sin\vartheta & \cos\vartheta & 0 \\ 0 & 0 & -1 \end{pmatrix}, \qquad \det = -1.$$
+> [!RICORDA]
+> - Le matrici ortogonali del piano sono solo di due tipi: rotazioni e riflessioni.
+> - Determinante 1: rotazione. Determinante $-1$: riflessione.
+> - L'angolo si legge nella prima colonna: coseno in alto, seno in basso.
+> - L'insieme delle matrici ortogonali non è un sottospazio.
+
+## I movimenti rigidi dello spazio (p. 113)
+
+Nello spazio non si gira intorno a un punto: si gira intorno a una retta, come una porta sui cardini o un mappamondo sul suo perno.
+
+> [!NOTA] Serve per capire, non per l'esame
+> Negli appelli dal 2023 al 2026 non ci sono domande sulle isometrie dello spazio. Se hai poco tempo, di questa sezione leggi solo il riquadro «Da ricordare» in fondo.
+
+La retta intorno a cui si gira si chiama **asse** della rotazione. I punti dell'asse restano fermi. Tutti gli altri girano intorno all'asse, ognuno alla sua altezza.
+
+### Girare intorno all'asse verticale
+
+Nello spazio i vettori sono liste di tre numeri, $(x, y, z)$: quanto a destra, quanto in avanti, quanto in alto. La base canonica ha tre vettori:
+
+$$e_1 = (1, 0, 0), \qquad e_2 = (0, 1, 0), \qquad e_3 = (0, 0, 1).$$
+
+Il terzo punta verso l'alto. L'**asse $z$** è la retta verticale che passa per l'origine.
+
+Giriamo lo spazio di un angolo $\vartheta$ intorno all'asse $z$. Il pavimento, cioè il piano dei punti ad altezza zero, gira come girava il piano nelle sezioni precedenti. L'altezza di ogni punto non cambia. La matrice ha tre righe e tre colonne:
+
+$$\begin{pmatrix} \cos\vartheta & -\sin\vartheta & 0 \\ \sin\vartheta & \cos\vartheta & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
+
+Leggila per colonne. Le prime due colonne dicono dove vanno $e_1$ ed $e_2$: girano sul pavimento, come nel piano. La terza colonna dice dove va $e_3$: resta fermo, perché sta sull'asse.
+
+Un esempio con un quarto di giro, dove il coseno è 0 e il seno è 1.
+
+$$\begin{pmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}\begin{pmatrix} 1 \\ 2 \\ 5 \end{pmatrix} = \begin{pmatrix} 0 \cdot 1 - 1 \cdot 2 + 0 \cdot 5 \\ 1 \cdot 1 + 0 \cdot 2 + 0 \cdot 5 \\ 0 \cdot 1 + 0 \cdot 2 + 1 \cdot 5 \end{pmatrix} = \begin{pmatrix} -2 \\ 1 \\ 5 \end{pmatrix}$$
+
+I primi due numeri hanno fatto un quarto di giro: da $(1, 2)$ a $(-2, 1)$. Il terzo numero, l'altezza 5, è rimasto com'era.
+
+### Girare e poi specchiare
+
+C'è un secondo tipo di movimento rigido dello spazio. Si fa in due tempi: prima si gira intorno a un asse, poi si specchia rispetto al piano perpendicolare all'asse. Si chiama **antirotazione**.
+
+Con l'asse $z$, il piano perpendicolare all'asse è il pavimento. Specchiare rispetto al pavimento vuol dire mandare ogni punto sotto il pavimento, alla stessa distanza: l'altezza cambia segno. Nella matrice cambia solo l'ultimo numero:
+
+$$\begin{pmatrix} \cos\vartheta & -\sin\vartheta & 0 \\ \sin\vartheta & \cos\vartheta & 0 \\ 0 & 0 & -1 \end{pmatrix}$$
+
+Con un quarto di giro, il vettore $(1, 2, 5)$ diventa $(-2, 1, -5)$.
+
+Anche qui il determinante distingue i due tipi. Nella terza riga c'è un solo numero diverso da zero, l'ultimo. Con lo sviluppo di Laplace lungo quella riga (lezione L09) il determinante è quel numero, moltiplicato per il determinante della tabella in alto a sinistra. Quella tabella è una rotazione del piano, che ha determinante 1. Quindi la prima matrice ha determinante $1$ e la seconda ha determinante $-1$.
+
+### Che cosa dice il teorema
+
+Le dispense chiamano $r$ la retta dell'asse e $U$ il piano perpendicolare. Scrivono $U = r^\perp$. Il simbolo $r^\perp$ si legge «erre perpendicolare»: è l'insieme di tutti i vettori perpendicolari alla retta (lezione L21). Per una retta dello spazio è un piano. Se la retta è verticale, è il pavimento.
 
 > [!TEOREMA] 22.13
 > Ogni isometria di $\R^3$ è una rotazione o un'antirotazione. Qui, un'antirotazione $T : \R^3 \to \R^3$ è la composizione di una rotazione intorno ad un asse $r$ e di una riflessione rispetto al piano $U = r^\perp$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- anche qui il determinante distingue i due casi: **rotazione se $\det = 1$, antirotazione se $\det = -1$**;
-- casi particolari (Martelli, §8.2.5–8.2.6): la rotazione di angolo $0$ è l'identità, quella di angolo $\pi$ è la riflessione rispetto alla retta $r$; l'antirotazione di angolo $0$ è la riflessione rispetto al piano $U$, quella di angolo $\pi$ è $-I_3$, la riflessione rispetto all'origine.
+- Un'«isometria di $\R^3$» è un movimento rigido dello spazio che tiene ferma l'origine.
+- «Composizione» vuol dire «una macchina dopo l'altra»: prima la rotazione, poi lo specchio.
+- L'asse può essere una retta qualsiasi che passa per l'origine, non solo l'asse $z$.
+- Il teorema dice che l'elenco è completo, come nel piano: un terzo tipo non esiste.
+
+Le dispense non lo dimostrano. Dicono solo che si fa «con un po' più lavoro, ma in modo simile» al caso del piano.
+
+Alcune rotazioni e antirotazioni hanno un aspetto familiare (Martelli, §8.2.5–8.2.6).
+
+| Tipo | Angolo | Che cosa fa |
+|---|---|---|
+| rotazione | $0$ | niente: è l'identità |
+| rotazione | $\pi$ | mezzo giro intorno all'asse: è la riflessione rispetto alla retta $r$ |
+| antirotazione | $0$ | solo lo specchio: è la riflessione rispetto al piano $U$ |
+| antirotazione | $\pi$ | manda ogni vettore nel suo opposto: è la matrice $-I_3$, la riflessione rispetto all'origine |
 
 > [!OLTRE] Riconoscere asse e angolo
-> Martelli (p. 261) dà una ricetta per una matrice ortogonale $A$ di ordine 3, con $\det A = \pm1$:
-> $$\operatorname{tr}A = \det A + 2\cos\vartheta, \quad \text{cioè} \quad \cos\vartheta = \frac{\operatorname{tr}A - \det A}{2}.$$
-> L'asse è l'autospazio dell'autovalore $1$ per una rotazione, di $-1$ per un'antirotazione (se $\vartheta \neq 0, \pi$). Esempio: $A = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$ manda $e_1 \to e_2 \to e_3 \to e_1$. È ortogonale (le colonne sono i vettori della base canonica in un altro ordine), $\det A = 1$, $\operatorname{tr}A = 0$, quindi è una rotazione con $\cos\vartheta = -\frac12$, cioè $\vartheta = \frac{2\pi}3$. L'asse è $\Ker(A - I) = \Span((1, 1, 1))$: infatti $A(1, 1, 1) = (1, 1, 1)$. Tre applicazioni della rotazione riportano ogni vettore al posto di partenza, come deve essere per $3 \cdot \frac{2\pi}{3} = 2\pi$.
+> Il libro di Martelli (p. 261) dà una ricetta per una matrice ortogonale $A$ con tre righe e tre colonne.
 >
-> **Perché il teorema è vero** (idea della dimostrazione di Martelli, Teorema 8.2.13): il polinomio caratteristico di $A$ ha grado 3, quindi ha almeno una radice reale; per quanto visto sopra è $\pm1$, con un autovettore $v$ di norma 1. Il piano $v^\perp$ viene mandato in sé, e lì $A$ agisce come un'isometria del piano: una rotazione o una riflessione. Mettendo insieme i casi si ottengono rotazioni e antirotazioni.
+> 1. Calcola il determinante. Se è 1 è una rotazione, se è $-1$ è un'antirotazione.
+> 2. Calcola la **traccia**, cioè la somma dei tre numeri sulla diagonale. Si scrive $\operatorname{tr}A$.
+> 3. Il coseno dell'angolo viene da questa formula:
+>    $$\cos\vartheta = \frac{\operatorname{tr}A - \det A}{2}$$
+> 4. Trova l'asse. Per una rotazione è fatto dai vettori che restano fermi. Per un'antirotazione è fatto dai vettori che diventano il loro opposto. Questo vale quando l'angolo non è $0$ e non è $\pi$.
+>
+> **Un esempio.** La matrice $A = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$ ha come colonne $e_2$, poi $e_3$, poi $e_1$. Quindi manda $e_1$ in $e_2$, manda $e_2$ in $e_3$ e manda $e_3$ in $e_1$.
+>
+> - È ortogonale: le colonne sono i vettori della base canonica, in un altro ordine.
+> - Il determinante è 1: è una rotazione.
+> - La traccia è $0 + 0 + 0 = 0$. Il coseno dell'angolo è $\frac{0 - 1}2 = -\frac12$. L'angolo è $\frac{2\pi}3$: un terzo di giro.
+> - L'asse. La matrice sposta i tre numeri di un vettore di un posto. Il vettore $(1, 1, 1)$ ha i tre numeri uguali, quindi resta fermo. L'asse è la retta $\Span((1, 1, 1))$.
+>
+> Controllo: tre terzi di giro fanno un giro intero. Infatti, applicando la matrice tre volte, ogni vettore torna al suo posto.
+>
+> **Perché il teorema è vero**, in breve (Martelli, Teorema 8.2.13). Una matrice con tre righe e tre colonne ha sempre almeno un autovalore reale, perché un polinomio di grado 3 ha sempre una radice reale. Per una matrice ortogonale questo autovalore è 1 oppure $-1$. Il suo autovettore dà la direzione dell'asse. Il piano perpendicolare all'asse viene mandato in sé stesso, e lì la matrice si comporta come un movimento rigido del piano: una rotazione o una riflessione. Mettendo insieme i casi escono le rotazioni e le antirotazioni.
 
-## Il prodotto vettoriale (pp. 114–115)
+::: prova Dove va il vettore $(1, 0, 4)$ con un quarto di giro intorno all'asse $z$?
+I primi due numeri fanno un quarto di giro: $(1, 0)$ diventa $(0, 1)$. Il terzo non cambia. Il risultato è $(0, 1, 4)$.
+:::
 
-Nello spazio capita di continuo di cercare un vettore **perpendicolare a due vettori dati**: la direzione normale a un piano, la direzione della retta intersezione di due piani. Si può risolvere un sistema (lezione L21: $W^\perp$), ma c'è una formula diretta.
+::: prova La macchina $(x, y, z) \mapsto (x, y, -z)$ cambia segno solo al terzo numero. È una rotazione o un'antirotazione?
+È lo specchio rispetto al pavimento. La sua matrice ha sulla diagonale $1$, $1$ e $-1$, e zeri altrove: il determinante è $1 \cdot 1 \cdot (-1) = -1$. È un'antirotazione: quella con angolo 0.
+:::
+
+> [!RICORDA]
+> - Nello spazio si gira intorno a una retta, l'**asse**. I punti dell'asse restano fermi.
+> - Un'**antirotazione** è una rotazione seguita dallo specchio rispetto al piano perpendicolare all'asse.
+> - Ogni movimento rigido dello spazio che tiene ferma l'origine è una rotazione (determinante 1) o un'antirotazione (determinante $-1$).
+
+## Il prodotto vettoriale: come si calcola (p. 114)
+
+Nello spazio capita di continuo di cercare un vettore perpendicolare a due vettori dati.
+
+Pensa a un tavolo. Sul piano del tavolo scegli due direzioni: una verso destra e una in avanti. La direzione perpendicolare a tutte e due è quella verticale, che esce dal tavolo. Con i numeri: i vettori $(1, 0, 0)$ e $(0, 1, 0)$ stanno sul piano del tavolo, e il vettore $(0, 0, 1)$, che punta in alto, è perpendicolare a tutti e due.
+
+Nelle lezioni L23 e L24, e nei problemi d'esame, un vettore perpendicolare a due vettori serve per due cose:
+
+- trovare la direzione perpendicolare a un piano, quando del piano conosci due direzioni;
+- trovare la direzione della retta in cui si tagliano due piani.
+
+Quando i due vettori sono messi comodi, come sul tavolo, il vettore perpendicolare si vede a occhio. Di solito non è così. Per esempio: qual è un vettore perpendicolare sia a $(1, 2, 3)$ sia a $(4, 5, 6)$?
+
+Un modo è risolvere un sistema con due equazioni, come nella lezione L21. Ma c'è una ricetta diretta, che dà subito la risposta. Si chiama **prodotto vettoriale**.
+
+### La ricetta, con i numeri
+
+Scrivi i due vettori in colonna, uno accanto all'altro. Viene una tabella con tre righe e due colonne.
+
+$$\begin{pmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{pmatrix}$$
+
+Il risultato è un vettore di tre numeri. Ogni numero si trova **coprendo una riga** della tabella e facendo un conto con i quattro numeri che restano. Il conto è quello del determinante: «diagonale meno l'altra diagonale».
+
+| Numero del risultato | Riga da coprire | Che cosa resta | Conto | Segno | Viene |
+|---|---|---|---|---|---|
+| il primo | la prima | $\begin{pmatrix} 2 & 5 \\ 3 & 6 \end{pmatrix}$ | $2 \cdot 6 - 5 \cdot 3 = -3$ | resta com'è | $-3$ |
+| il secondo | la seconda | $\begin{pmatrix} 1 & 4 \\ 3 & 6 \end{pmatrix}$ | $1 \cdot 6 - 4 \cdot 3 = -6$ | **si cambia** | $6$ |
+| il terzo | la terza | $\begin{pmatrix} 1 & 4 \\ 2 & 5 \end{pmatrix}$ | $1 \cdot 5 - 4 \cdot 2 = -3$ | resta com'è | $-3$ |
+
+Il risultato è il vettore $(-3, 6, -3)$.
+
+Il punto delicato è uno solo: nel secondo numero, dopo il conto, bisogna **cambiare il segno**.
+
+Controlliamo che il risultato sia perpendicolare ai due vettori di partenza. Il prodotto scalare deve fare zero tutte e due le volte.
+
+$$\langle (-3, 6, -3), (1, 2, 3)\rangle = -3 + 12 - 9 = 0$$
+
+$$\langle (-3, 6, -3), (4, 5, 6)\rangle = -12 + 30 - 18 = 0$$
+
+Funziona. Questo controllo va fatto sempre: costa pochi secondi e trova quasi tutti gli errori di conto.
+
+### Il nome, il simbolo, la formula
+
+Il vettore costruito con questa ricetta è il **prodotto vettoriale** dei due vettori. Si scrive con una crocetta: $v \times w$. Si legge «$v$ vettoriale $w$».
+
+Tre avvisi sul simbolo.
+
+- La crocetta qui non è la moltiplicazione tra numeri.
+- Il risultato è un **vettore**. Il prodotto scalare invece dà un numero. Sono due operazioni diverse.
+- Il prodotto vettoriale esiste **solo nello spazio**, cioè per vettori fatti di tre numeri.
+
+Le dispense scrivono la ricetta con le lettere. I tre numeri del primo vettore si chiamano $v_1$, $v_2$, $v_3$: il numerino in basso dice il posto. I tre numeri del secondo vettore si chiamano $w_1$, $w_2$, $w_3$.
 
 > [!DEF] 22.14 · Prodotto vettoriale
 > Consideriamo due vettori $v, w \in \R^3$:
@@ -24225,77 +28380,203 @@ Nello spazio capita di continuo di cercare un vettore **perpendicolare a due vet
 > Il **prodotto vettoriale** fra $v$ e $w$ è il vettore
 > $$v \times w = \begin{pmatrix} v_2w_3 - v_3w_2 \\ v_3w_1 - v_1w_3 \\ v_1w_2 - v_2w_1 \end{pmatrix}.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- a differenza del prodotto scalare, il risultato è un **vettore** di $\R^3$, e il prodotto è definito **solo in $\R^3$**;
-- ogni coordinata è un «determinante $2 \times 2$» fatto con le **altre due** coordinate: la prima usa le coordinate 2 e 3, la seconda le coordinate 3 e 1, la terza le coordinate 1 e 2 (l'ordine ciclico $1 \to 2 \to 3 \to 1$ aiuta a ricordare i segni).
+- $v, w \in \R^3$ si legge «$v$ e $w$ appartengono a erre tre». Vuol dire: sono due vettori dello spazio.
+- Due lettere attaccate si moltiplicano. Per esempio $v_2w_3$ è «il secondo numero di $v$ per il terzo numero di $w$».
+- La prima riga del risultato usa solo i numeri di posto 2 e 3. È il conto che si fa coprendo la prima riga della tabella.
+- La seconda riga usa i posti 3 e 1. La terza riga usa i posti 1 e 2.
+- Per ricordare l'ordine pensa ai posti messi in cerchio: dopo l'1 viene il 2, dopo il 2 viene il 3, dopo il 3 torna l'1. Ogni riga comincia dal posto che viene dopo il suo: la riga 1 comincia con $v_2$, la riga 2 con $v_3$, la riga 3 con $v_1$.
 
-**Con i minori.** Le dispense notano che
+### La stessa ricetta con le parole delle dispense
 
-$$v \times w = \begin{pmatrix} d_1 \\ -d_2 \\ d_3 \end{pmatrix},$$
+Le dispense descrivono così la ricetta «copri una riga». Chiamano $A$ la tabella che ha i due vettori in colonna:
 
-dove $d_i$ è il determinante del minore $2 \times 2$ ottenuto cancellando la $i$-esima riga dalla matrice
+$$A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \\ v_3 & w_3 \end{pmatrix}$$
 
-$$A = \begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \\ v_3 & w_3 \end{pmatrix}.$$
+Cancellando una riga resta una tabella più piccola, con due righe e due colonne. Si chiama **minore**. Le dispense chiamano $d_i$ il determinante del minore che resta cancellando la riga numero $i$. Quindi $d_1$ è il conto fatto coprendo la prima riga, $d_2$ quello fatto coprendo la seconda, $d_3$ quello fatto coprendo la terza. Con questi nomi la ricetta diventa
 
-Attenzione al **segno meno** davanti a $d_2$: $d_2 = v_1w_3 - v_3w_1$, e la seconda coordinata è $-d_2 = v_3w_1 - v_1w_3$.
+$$v \times w = \begin{pmatrix} d_1 \\ -d_2 \\ d_3 \end{pmatrix}.$$
 
-**La regola mnemonica.** Si ottiene il prodotto vettoriale calcolando formalmente il determinante di questa «matrice», sviluppato lungo la terza colonna (sviluppo di Laplace, Teorema 9.6):
+Il segno meno davanti a $d_2$ è il «cambia segno» del secondo numero.
+
+Le dispense danno anche una regola per chi ha in mente lo sviluppo di Laplace della lezione L09. Si scrive una tabella con tre righe e tre colonne. Nelle prime due colonne vanno i due vettori. Nella terza vanno i simboli $e_1$, $e_2$, $e_3$ dei vettori della base canonica dello spazio. Poi si calcola il determinante sviluppando lungo la terza colonna, con i segni più, meno, più:
 
 $$\begin{aligned} v \times w &= \det\begin{pmatrix} v_1 & w_1 & e_1 \\ v_2 & w_2 & e_2 \\ v_3 & w_3 & e_3 \end{pmatrix} \\ &= \det\begin{pmatrix} v_2 & w_2 \\ v_3 & w_3 \end{pmatrix}e_1 - \det\begin{pmatrix} v_1 & w_1 \\ v_3 & w_3 \end{pmatrix}e_2 + \det\begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}e_3. \end{aligned}$$
 
-È solo una regola mnemonica: quella matrice non è una vera matrice, perché $e_1, e_2, e_3$ non sono numeri ma i vettori della base canonica.
+Il numero davanti a $e_1$ è il primo numero del risultato. Quello davanti a $e_2$ è il secondo, quello davanti a $e_3$ è il terzo. Sono di nuovo i tre conti della ricetta, con il segno meno al secondo.
+
+Le dispense avvertono che questa è solo una regola mnemonica, cioè un aiuto per la memoria. Quella tabella non è una vera matrice, perché nella terza colonna non ci sono numeri ma vettori.
 
 > [!ESEMPIO] Calcolare $(1, 2, 3) \times (4, 5, 6)$
-> Con $v = (1, 2, 3)$ e $w = (4, 5, 6)$, coordinata per coordinata:
-> - prima: $v_2w_3 - v_3w_2 = 2 \cdot 6 - 3 \cdot 5 = 12 - 15 = -3$;
-> - seconda: $v_3w_1 - v_1w_3 = 3 \cdot 4 - 1 \cdot 6 = 12 - 6 = 6$;
-> - terza: $v_1w_2 - v_2w_1 = 1 \cdot 5 - 2 \cdot 4 = 5 - 8 = -3$.
+> È il conto fatto sopra, riscritto con la formula della Definizione 22.14. Qui $v = (1, 2, 3)$ e $w = (4, 5, 6)$. Quindi $v_1 = 1$, $v_2 = 2$, $v_3 = 3$ e $w_1 = 4$, $w_2 = 5$, $w_3 = 6$.
 >
-> Quindi $v \times w = (-3, 6, -3)$. Con i minori di $A = \begin{pmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{pmatrix}$: $d_1 = 2 \cdot 6 - 5 \cdot 3 = -3$, $d_2 = 1 \cdot 6 - 4 \cdot 3 = -6$, $d_3 = 1 \cdot 5 - 4 \cdot 2 = -3$, e $(d_1, -d_2, d_3) = (-3, 6, -3)$. ✓
+> - Primo numero: $v_2w_3 - v_3w_2 = 2 \cdot 6 - 3 \cdot 5 = 12 - 15 = -3$.
+> - Secondo numero: $v_3w_1 - v_1w_3 = 3 \cdot 4 - 1 \cdot 6 = 12 - 6 = 6$.
+> - Terzo numero: $v_1w_2 - v_2w_1 = 1 \cdot 5 - 2 \cdot 4 = 5 - 8 = -3$.
 >
-> Controllo di ortogonalità: $\langle (-3, 6, -3), (1, 2, 3)\rangle = -3 + 12 - 9 = 0$ e $\langle (-3, 6, -3), (4, 5, 6)\rangle = -12 + 30 - 18 = 0$. ✓
+> Quindi $v \times w = (-3, 6, -3)$.
+>
+> Con i minori viene lo stesso risultato.
+>
+> - $d_1 = 2 \cdot 6 - 5 \cdot 3 = -3$.
+> - $d_2 = 1 \cdot 6 - 4 \cdot 3 = -6$.
+> - $d_3 = 1 \cdot 5 - 4 \cdot 2 = -3$.
+>
+> Il risultato è $(d_1, -d_2, d_3) = (-3, 6, -3)$.
+>
+> Controllo: il prodotto scalare con $v$ è $-3 + 12 - 9 = 0$. Quello con $w$ è $-12 + 30 - 18 = 0$.
 
 > [!ESEMPIO] La base canonica
-> $e_1 \times e_2 = e_3$, $e_2 \times e_3 = e_1$, $e_3 \times e_1 = e_2$ (Martelli, Esempio 9.1.1). Per esempio $e_1 \times e_2 = (0 \cdot 0 - 0 \cdot 1,\ 0 \cdot 0 - 1 \cdot 0,\ 1 \cdot 1 - 0 \cdot 0) = (0, 0, 1)$. Scambiando l'ordine il segno cambia: $e_2 \times e_1 = -e_3$.
+> I tre vettori della base canonica dello spazio sono legati da tre prodotti vettoriali (Martelli, Esempio 9.1.1):
+> $$e_1 \times e_2 = e_3, \qquad e_2 \times e_3 = e_1, \qquad e_3 \times e_1 = e_2.$$
+> Il primo è il tavolo dell'inizio: da «destra» e «avanti» esce «in alto». Il conto, con $e_1 = (1, 0, 0)$ ed $e_2 = (0, 1, 0)$:
+>
+> - primo numero: $0 \cdot 0 - 0 \cdot 1 = 0$;
+> - secondo numero: $0 \cdot 0 - 1 \cdot 0 = 0$;
+> - terzo numero: $1 \cdot 1 - 0 \cdot 0 = 1$.
+>
+> Il risultato è $(0, 0, 1)$, cioè $e_3$.
+>
+> Se scambi l'ordine dei due vettori, il risultato cambia segno: $e_2 \times e_1 = -e_3$.
+
+::: prova Calcola $(1, 1, 0) \times (0, 1, 1)$ e controlla il risultato.
+La tabella con i due vettori in colonna ha le righe $(1, 0)$, $(1, 1)$ e $(0, 1)$.
+
+Copro la prima riga: $1 \cdot 1 - 1 \cdot 0 = 1$.
+
+Copro la seconda riga: $1 \cdot 1 - 0 \cdot 0 = 1$. Cambio il segno: $-1$.
+
+Copro la terza riga: $1 \cdot 1 - 0 \cdot 1 = 1$.
+
+Il risultato è $(1, -1, 1)$. Controllo: con $(1, 1, 0)$ viene $1 - 1 + 0 = 0$. Con $(0, 1, 1)$ viene $0 - 1 + 1 = 0$.
+:::
+
+::: prova Calcola $(2, 0, 0) \times (0, 3, 0)$.
+La tabella ha le righe $(2, 0)$, $(0, 3)$ e $(0, 0)$.
+
+Copro la prima riga: $0 \cdot 0 - 3 \cdot 0 = 0$.
+
+Copro la seconda riga: $2 \cdot 0 - 0 \cdot 0 = 0$. Cambiando il segno resta $0$.
+
+Copro la terza riga: $2 \cdot 3 - 0 \cdot 0 = 6$.
+
+Il risultato è $(0, 0, 6)$: punta in alto, come nel caso del tavolo.
+:::
+
+> [!RICORDA]
+> - Il **prodotto vettoriale** di due vettori dello spazio è un vettore perpendicolare a tutti e due. Esiste solo per vettori fatti di tre numeri.
+> - La ricetta: metti i due vettori in colonna, copri una riga alla volta e fai «diagonale meno l'altra diagonale». Al secondo numero cambia il segno.
+> - Controlla sempre: il risultato deve avere prodotto scalare zero con tutti e due i vettori.
+
+## Tre garanzie sul prodotto vettoriale (pp. 114–115)
+
+Il prodotto vettoriale ha tre proprietà che lo rendono utile, e le dispense le dimostrano una per una.
+
+### È perpendicolare ai due vettori
+
+Nell'esempio di prima il controllo con il prodotto scalare è riuscito. La prima proposizione dice che riesce sempre.
 
 > [!PROP] 22.15
 > Il vettore $v \times w$ è ortogonale sia a $v$ che a $w$.
 
-La dimostrazione delle dispense è elegante: il prodotto scalare con $v$ si ottiene sostituendo $e_1, e_2, e_3$ con $v_1, v_2, v_3$ nella regola mnemonica.
+**Come si legge.** «Ortogonale» vuol dire perpendicolare. La frase dice due cose: il prodotto scalare di $v \times w$ con $v$ è zero, e anche quello con $w$ è zero. Vale per qualunque coppia di vettori dello spazio.
 
-$$\begin{aligned} \langle v \times w, v\rangle &= \det\begin{pmatrix} v_2 & w_2 \\ v_3 & w_3 \end{pmatrix}v_1 - \det\begin{pmatrix} v_1 & w_1 \\ v_3 & w_3 \end{pmatrix}v_2 \\ &\quad + \det\begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}v_3 \\ &= \det\begin{pmatrix} v_1 & w_1 & v_1 \\ v_2 & w_2 & v_2 \\ v_3 & w_3 & v_3 \end{pmatrix} = 0. \end{aligned}$$
+Il perché in una frase: quel prodotto scalare è il determinante di una tabella con due colonne uguali, e un determinante così vale sempre zero (lezione L10).
 
-- La seconda uguaglianza è lo **sviluppo di Laplace sull'ultima colonna** (i segni $+, -, +$ sono quelli delle caselle $(1, 3)$, $(2, 3)$, $(3, 3)$).
-- Il determinante è nullo perché la matrice ha **due colonne uguali** (la prima e la terza).
-- Allo stesso modo, con $w$ al posto di $v$ nella terza colonna, si trova $\langle v \times w, w\rangle = 0$. $\square$
+> [!DIM] della Proposizione 22.15 (la dimostrazione delle dispense, con i passaggi)
+> 1. Per fare il prodotto scalare con $v$ si moltiplicano i tre numeri di $v \times w$ per $v_1$, $v_2$, $v_3$ e si somma. I tre numeri di $v \times w$ sono i determinanti della regola mnemonica, con i segni più, meno, più:
+>    $$\begin{aligned} \langle v \times w, v\rangle &= \det\begin{pmatrix} v_2 & w_2 \\ v_3 & w_3 \end{pmatrix}v_1 - \det\begin{pmatrix} v_1 & w_1 \\ v_3 & w_3 \end{pmatrix}v_2 \\ &\quad + \det\begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix}v_3. \end{aligned}$$
+> 2. Questa espressione è uno sviluppo di Laplace lungo l'ultima colonna. È il determinante della tabella della regola mnemonica, con $v_1$, $v_2$, $v_3$ al posto di $e_1$, $e_2$, $e_3$:
+>    $$\langle v \times w, v\rangle = \det\begin{pmatrix} v_1 & w_1 & v_1 \\ v_2 & w_2 & v_2 \\ v_3 & w_3 & v_3 \end{pmatrix}.$$
+> 3. Questa matrice ha due colonne uguali: la prima e la terza. Un determinante con due colonne uguali vale zero. Quindi $\langle v \times w, v\rangle = 0$.
+> 4. Per $w$ si rifà lo stesso conto, con $w_1$, $w_2$, $w_3$ nella terza colonna. Questa volta sono uguali la seconda e la terza colonna, e il determinante vale di nuovo zero. Quindi $\langle v \times w, w\rangle = 0$.
+
+### È zero quando i due vettori sono sulla stessa retta
+
+Proviamo la ricetta con due vettori che stanno sulla stessa retta: $(1, 2, 3)$ e il suo doppio $(2, 4, 6)$.
+
+| Riga coperta | Conto | Viene |
+|---|---|---|
+| la prima | $2 \cdot 6 - 4 \cdot 3 = 12 - 12$ | $0$ |
+| la seconda | $1 \cdot 6 - 2 \cdot 3 = 6 - 6$, poi si cambia il segno | $0$ |
+| la terza | $1 \cdot 4 - 2 \cdot 2 = 4 - 4$ | $0$ |
+
+Viene il vettore fatto di soli zeri. Ha senso: due vettori sulla stessa retta non riempiono un piano, quindi non c'è una sola direzione perpendicolare da scegliere.
+
+Ricorda dalla lezione L07. Due vettori sono **dipendenti** quando uno è un multiplo dell'altro, cioè quando stanno sulla stessa retta per l'origine. Se non è così sono **indipendenti**.
 
 > [!PROP] 22.16
 > Il vettore $v \times w$ è nullo $\iff$ $v$ e $w$ sono dipendenti.
 
-La dimostrazione delle dispense è una catena di equivalenze, con la notazione dei minori:
+**Come si legge.** «Nullo» vuol dire «fatto di soli zeri». La doppia freccia $\iff$ si legge «esattamente quando». La frase vale nei due versi. Se i due vettori sono dipendenti, il prodotto vettoriale è zero. E se il prodotto vettoriale è zero, i due vettori sono dipendenti.
 
-$$\begin{aligned} v \times w = 0 &\iff d_1 = d_2 = d_3 = 0 \\ &\iff \rk A \le 1 \\ &\iff v \text{ e } w \text{ sono dipendenti}. \end{aligned}$$
+In pratica è un test veloce: per sapere se due vettori dello spazio sono paralleli, calcola il loro prodotto vettoriale e guarda se viene zero. Nelle domande d'esame sulla distanza tra due rette si controlla così che le due direzioni non siano parallele.
 
-- La prima equivalenza è la definizione con i minori.
-- La terza: $\rk A$ è la dimensione dello spazio generato dalle colonne $v$ e $w$ (lezione L08), e vale $\le 1$ esattamente quando $v$ e $w$ sono dipendenti.
-- La seconda, il passaggio non scritto: se $\rk A \le 1$, le due colonne sono proporzionali (o una è nulla), e in ogni minore $2 \times 2$ lo sono ancora, quindi ogni $d_i = 0$. Se invece $\rk A = 2$, anche il rango per righe è 2 (Proposizione 8.6): ci sono due righe indipendenti, e il minore formato da quelle due righe ha righe indipendenti, quindi determinante non nullo. $\square$
+> [!DIM] della Proposizione 22.16 (la dimostrazione delle dispense, con i passaggi)
+> Le dispense scrivono una catena di tre «esattamente quando». Usano i minori $d_1$, $d_2$, $d_3$ della tabella $A$ che ha i due vettori in colonna.
+>
+> 1. $v \times w$ è nullo esattamente quando $d_1 = d_2 = d_3 = 0$. È la formula $v \times w = (d_1, -d_2, d_3)$.
+> 2. $d_1 = d_2 = d_3 = 0$ esattamente quando il rango di $A$ è al massimo 1. Il **rango**, che si scrive $\rk A$, è il numero di colonne indipendenti (lezione L08). Le dispense non scrivono il motivo, che è questo. Se il rango è al massimo 1, le due colonne sono una multiplo dell'altra, oppure una è fatta di zeri. Lo stesso vale dentro ogni minore, quindi ogni determinante $d_i$ è zero. Se invece il rango è 2, anche tra le righe ce ne sono due indipendenti (Proposizione 8.6). Il minore fatto con quelle due righe ha determinante diverso da zero.
+> 3. Il rango di $A$ è al massimo 1 esattamente quando $v$ e $w$ sono dipendenti. Infatti le colonne di $A$ sono proprio $v$ e $w$.
 
-Esempio: $(1, 2, 3) \times (2, 4, 6) = (12 - 12,\ 6 - 6,\ 4 - 4) = (0, 0, 0)$, perché $(2, 4, 6) = 2(1, 2, 3)$.
+### Con i due vettori forma una base
+
+Torna al tavolo. «Destra», «avanti» e «in alto» sono tre direzioni con cui si raggiunge ogni punto dello spazio. Succede con ogni coppia di vettori indipendenti: insieme al loro prodotto vettoriale formano una base dello spazio.
+
+Ricorda dalla lezione L07: una **base** dello spazio è fatta di tre vettori indipendenti. Vuol dire che nessuno dei tre si ottiene mescolando gli altri due.
 
 > [!COROLLARIO] 22.17
 > Se $v$ e $w$ sono indipendenti, la terna $v, w, v \times w$ è una base di $\R^3$.
 
-Le dispense non riportano la dimostrazione; ecco un modo con quello che sai. Tre vettori in $\R^3$ sono una base se sono indipendenti. Supponi $a\,v + b\,w + c\,(v \times w) = 0$ e fai il prodotto scalare con $v \times w$: per la Proposizione 22.15 i primi due termini danno zero, e resta $c\,\|v \times w\|^2 = 0$. Per la Proposizione 22.16 $v \times w \neq 0$, quindi $c = 0$; allora $a\,v + b\,w = 0$ e, essendo $v, w$ indipendenti, $a = b = 0$. $\square$
+**Come si legge.** Una «terna» è un gruppo di tre cose. La frase dice: se i due vettori non sono uno multiplo dell'altro, allora loro due e il loro prodotto vettoriale formano una base dello spazio.
 
-> [!OLTRE] Altre proprietà utili (le vedrai nella lezione L23)
-> - **Anticommutativo**: $w \times v = -(v \times w)$ (nella definizione si scambiano i ruoli, e ogni coordinata cambia segno); in particolare $v \times v = 0$.
-> - **Bilineare**: $(v + v') \times w = v \times w + v' \times w$ e $(\lambda v) \times w = \lambda(v \times w)$, e lo stesso nel secondo posto.
-> - **Non associativo**: $(e_1 \times e_2) \times e_2 = e_3 \times e_2 = -e_1$, mentre $e_1 \times (e_2 \times e_2) = e_1 \times 0 = 0$.
-> - **Lunghezza e verso**: $\|v \times w\|$ è l'area del parallelogramma di lati $v$ e $w$, e il verso segue la regola della mano destra (pollice $v$, indice $w$, medio $v \times w$).
-> - **Equazione di un piano**: se $W = \Span(v, w)$ con $v, w$ indipendenti, allora $W = \{x \in \R^3 \mid \langle v \times w, x\rangle = 0\}$: le coordinate di $v \times w$ sono i coefficienti dell'equazione cartesiana (Martelli, Esempio 9.1.10). Per esempio $(1, 0, 2) \times (0, 1, 1) = (-2, -1, 1)$, quindi $\Span((1, 0, 2), (0, 1, 1)) = \{-2x - y + z = 0\}$.
+Il perché a parole. I primi due vettori riempiono un piano. Il terzo è perpendicolare a quel piano e non è zero, quindi esce dal piano. Per questo non si può ottenere mescolando i primi due.
 
-Prova con lo strumento: trascina il disegno per girarlo e guarda $u \times v$ (in giallo) perpendicolare al parallelogramma di lati $u$ e $v$. Scambia $u$ e $v$: il prodotto cambia verso. Scrivi $v = 4\ 0\ 0$, parallelo a $u$: il prodotto diventa nullo (Proposizione 22.16).
+> [!DIM] del Corollario 22.17 (le dispense non la riportano)
+> Tre vettori dello spazio formano una base quando sono indipendenti. Vuol dire: l'unica ricetta che dà il vettore zero è quella con tutte le quantità uguali a zero.
+>
+> 1. Supponiamo che una ricetta dia zero: $a\,v + b\,w + c\,(v \times w) = 0$, con tre numeri $a$, $b$, $c$.
+> 2. Facciamo il prodotto scalare di tutti e due i lati con $v \times w$. Per la Proposizione 22.15 i pezzi con $v$ e con $w$ danno zero. Resta $c\,\|v \times w\|^2 = 0$.
+> 3. Per la Proposizione 22.16 il vettore $v \times w$ non è nullo, quindi la sua lunghezza non è zero. Allora $c = 0$.
+> 4. La ricetta diventa $a\,v + b\,w = 0$. I vettori $v$ e $w$ sono indipendenti, quindi $a = 0$ e $b = 0$.
+> 5. Tutte e tre le quantità sono zero. I tre vettori sono indipendenti, quindi formano una base.
+
+### Da che parte punta: la mano destra
+
+Il prodotto vettoriale è perpendicolare ai due vettori. Ma una retta perpendicolare a un piano si può percorrere in due versi: in su oppure in giù. Quale dei due sceglie il prodotto vettoriale?
+
+Lo dice la **regola della mano destra**. Apri la mano destra con il palmo verso l'alto e tieni pollice, indice e medio come tre assi.
+
+1. Punta il pollice lungo il primo vettore.
+2. Punta l'indice lungo il secondo vettore.
+3. Alza il medio, perpendicolare agli altri due: indica il verso del prodotto vettoriale.
+
+Con il tavolo: il pollice va a destra, l'indice in avanti, e il medio punta in alto.
+
+Se scambi i due vettori, il medio punta dalla parte opposta. Per questo, scambiando l'ordine, il risultato cambia segno.
+
+> [!OLTRE] Altre proprietà utili (tornano nella lezione L23)
+> Nella tabella $\lambda$ («lambda») è un numero e $v'$ è un altro vettore dello spazio.
+>
+> | Proprietà | Con i simboli | A parole |
+> |---|---|---|
+> | anticommutativo | $w \times v = -(v \times w)$ | scambiando i due vettori il risultato cambia segno |
+> | un vettore con sé stesso | $v \times v = 0$ | è una conseguenza della riga sopra |
+> | bilineare | $(v + v') \times w = v \times w + v' \times w$ e $(\lambda v) \times w = \lambda\,(v \times w)$ | rispetta somme e multipli; vale anche per il secondo vettore |
+> | non associativo | $(e_1 \times e_2) \times e_2 = -e_1$, mentre $e_1 \times (e_2 \times e_2) = 0$ | le parentesi non si possono spostare |
+> | lunghezza | $\lVert v \times w \rVert$ è un'area | è l'area del parallelogramma che ha per lati i due vettori |
+>
+> **Dà l'equazione di un piano.** Prendi un piano che passa per l'origine ed è fatto da tutte le ricette di due vettori indipendenti. I suoi punti sono quelli perpendicolari al prodotto vettoriale dei due vettori. Quindi i tre numeri del prodotto vettoriale sono i coefficienti dell'equazione del piano (Martelli, Esempio 9.1.10). Un esempio:
+> $$(1, 0, 2) \times (0, 1, 1) = (-2, -1, 1)$$
+> Il piano $\Span((1, 0, 2), (0, 1, 1))$ ha equazione $-2x - y + z = 0$.
+
+Prova con lo strumento qui sotto. I due vettori di partenza lì si chiamano $u$ e $v$.
+
+1. Trascina il disegno per girarlo. Il prodotto vettoriale esce dritto dal parallelogramma che ha per lati i due vettori.
+2. Leggi le righe sotto il disegno: c'è il conto dei tre numeri, e ci sono i due prodotti scalari di controllo, che valgono zero.
+3. Scambia i due vettori: nella casella di $u$ scrivi `1 2 0`, in quella di $v$ scrivi `2 0 0`. Il prodotto vettoriale ora punta dalla parte opposta.
+4. Rimetti `2 0 0` nella casella di $u$ e scrivi `4 0 0` in quella di $v$. I due vettori sono paralleli e il prodotto vettoriale diventa zero, come dice la Proposizione 22.16.
 
 ```widget spazio
 titolo: Il prodotto vettoriale nello spazio
@@ -24307,45 +28588,156 @@ v: 1 2 0
 > [!OLTRE] Dove trovarlo nel libro
 > Martelli: §4.4.8 «Rotazioni nel piano» e §4.4.9 «Riflessioni ortogonali nel piano» (pp. 143–144), §4.4.11 sulle rotazioni intorno all'asse $z$ (p. 145); §7.5 «Isometrie» (pp. 227–229), con il Lemma 7.5.5 e la Proposizione 7.5.8; §8.2 «Isometrie» (pp. 253–261): definizioni equivalenti, matrici ortogonali, riflessioni, isometrie del piano, rotazioni e antirotazioni, isometrie dello spazio; §9.1 «Prodotto vettoriale» (pp. 267–272).
 
+::: prova Senza fare conti: quanto fa $(1, 2, 3) \times (3, 6, 9)$?
+$(3, 6, 9)$ è il triplo di $(1, 2, 3)$, quindi i due vettori sono dipendenti. Per la Proposizione 22.16 il prodotto vettoriale è il vettore $(0, 0, 0)$.
+:::
+
+::: prova Sai che $e_1 \times e_2 = e_3$. Quanto fa $e_2 \times e_1$?
+Scambiando i due vettori il risultato cambia segno: viene $-e_3$, cioè $(0, 0, -1)$.
+:::
+
+::: prova I vettori $(1, 1, 0)$, $(0, 1, 1)$ e $(1, -1, 1)$ formano una base dello spazio?
+Sì. I primi due non sono uno multiplo dell'altro. Il terzo è il loro prodotto vettoriale: lo hai calcolato nel «Prova tu» della sezione precedente. Per il Corollario 22.17 i tre vettori formano una base.
+:::
+
+> [!RICORDA]
+> - Il prodotto vettoriale è sempre perpendicolare ai due vettori di partenza.
+> - È il vettore di soli zeri esattamente quando i due vettori sono uno multiplo dell'altro.
+> - Se i due vettori sono indipendenti, insieme al loro prodotto vettoriale formano una base dello spazio.
+> - Scambiando i due vettori il risultato cambia segno. Il verso si trova con la mano destra.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\R^2$, $\R^3$, $\R^n$ | «erre due», «erre tre», «erre enne» | le liste di 2, di 3, di $n$ numeri reali: il piano, lo spazio, il caso con $n$ numeri | $(3, 2)$ sta in $\R^2$ |
+| $\in$ | «appartiene a» | sta dentro l'insieme | $v \in \R^3$ |
+| $e_1$, $e_2$, $e_3$ | «e uno», «e due», «e tre» | i vettori della base canonica: un passo lungo ogni asse | nel piano $e_2 = (0, 1)$ |
+| $\langle v, w\rangle$ | «prodotto scalare di $v$ e $w$» | il numero che viene moltiplicando posto per posto e sommando | $\langle (1, 2), (3, -1)\rangle = 1$ |
+| $\lVert v \rVert$ | «norma di $v$» | la lunghezza del vettore | $\lVert (3, 4) \rVert = 5$ |
+| $d(v, w)$ | «distanza tra $v$ e $w$» | la lunghezza della differenza dei due vettori | $d((3, 4), (0, 0)) = 5$ |
+| $\vartheta$, $\alpha$, $\beta$, $\varphi$ | «theta», «alfa», «beta», «fi» | lettere greche usate per gli angoli | $\vartheta = \frac\pi2$ |
+| $\varrho$ | «ro» | lettera greca usata per una distanza dall'origine | |
+| $\lambda$, $\mu$ | «lambda», «mi» | lettere greche usate per dei numeri | |
+| $\pi$ | «pi greco» | negli angoli vuol dire mezzo giro | $2\pi$ è un giro intero |
+| $\cos\vartheta$, $\sin\vartheta$ | «coseno di theta», «seno di theta» | le due coordinate del punto del cerchio di raggio 1 all'angolo $\vartheta$ | $\cos\frac\pi2 = 0$, $\sin\frac\pi2 = 1$ |
+| $\cos^2\vartheta$ | «coseno al quadrato di theta» | il coseno moltiplicato per sé stesso | $\cos^2\vartheta + \sin^2\vartheta = 1$ |
+| $L_A$ | «elle con $A$» | la macchina «moltiplica per la matrice $A$» | |
+| $T : V \to W$ | «ti, da $V$ a $W$» | una macchina che prende vettori di $V$ e restituisce vettori di $W$ | $L_A : \R^2 \to \R^2$ |
+| $\mapsto$ | «va in» | dice dove finisce un vettore | $(1, 2) \mapsto (-2, 1)$ |
+| $\mathrm{Rot}_\vartheta$ | «rot di theta» | la matrice della rotazione di angolo $\vartheta$ | $\mathrm{Rot}_{\pi/2} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ |
+| $\mathrm{Rif}_\vartheta$ | «rif di theta» | la matrice della riflessione rispetto alla retta di angolo $\frac\vartheta2$ | $\mathrm{Rif}_{\pi/2} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ |
+| $\det A$ | «determinante di $A$» | per due righe e due colonne: diagonale meno l'altra diagonale | $\det\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} = 6$ |
+| $\pm 1$ | «più o meno uno» | il numero $1$ oppure il numero $-1$ | $\det A = \pm 1$ |
+| ${}^tA$ | «trasposta di $A$» | la stessa tabella con le righe scambiate con le colonne | |
+| $I_n$ | «i con enne» | la matrice identità: 1 sulla diagonale, 0 altrove | $I_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ |
+| $A^{-1}$ | «$A$ alla meno uno», «l'inversa di $A$» | la matrice che disfa quello che fa $A$ | per una matrice ortogonale è ${}^tA$ |
+| $A^i$ | «la colonna $i$ di $A$» | nelle dispense, la colonna numero $i$: non è una potenza | $A^1$ è la prima colonna |
+| $M(n)$, $M(2, \R)$ | «emme di enne», «emme di due, erre» | le matrici quadrate con $n$ righe e $n$ colonne; quelle con due righe e due colonne e numeri reali | |
+| $O(2)$ | «o di due» | l'insieme delle matrici ortogonali con due righe e due colonne | contiene $\mathrm{Rot}_\vartheta$ e $\mathrm{Rif}_\vartheta$ |
+| $\Span(v)$ | «span di $v$» | tutti i multipli del vettore: una retta per l'origine | $\Span((2, 1))$ |
+| $\mathcal B = \{v_1, v_2\}$ | «la base B, fatta da vu uno e vu due» | un gruppo di vettori scelto come base | |
+| $r^\perp$ | «erre perpendicolare» | tutti i vettori perpendicolari alla retta $r$ | se $r$ è l'asse verticale, è il pavimento |
+| $\operatorname{tr}A$ | «traccia di $A$» | la somma dei numeri sulla diagonale | |
+| $\rk A$ | «rango di $A$» | il numero di colonne indipendenti | |
+| $v \times w$ | «$v$ vettoriale $w$» | il prodotto vettoriale: un vettore perpendicolare a $v$ e a $w$ | $(1, 2, 3) \times (4, 5, 6) = (-3, 6, -3)$ |
+| $v_1$, $v_2$, $v_3$ | «vu uno», «vu due», «vu tre» | il primo, il secondo e il terzo numero del vettore $v$ | per $v = (1, 2, 3)$: $v_2 = 2$ |
+| $d_1$, $d_2$, $d_3$ | «di uno», «di due», «di tre» | i conti fatti coprendo la riga 1, la riga 2, la riga 3 | $v \times w = (d_1, -d_2, d_3)$ |
+| $[0, 2\pi)$ | «da zero a due pi greco, escluso» | gli angoli da 0 (compreso) a un giro intero (escluso) | |
+| $\forall$ | «per ogni» | vale qualunque elemento tu scelga | $\forall\, v \in V$ |
+| $\iff$ | «esattamente quando», «se e solo se» | le due frasi sono vere insieme o false insieme | |
+| $\sum$ | «somma» | la somma di tanti pezzi dello stesso tipo | |
+
 ## Verso l'esame
 
-La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipla (5 risposte, una giusta) e 2 problemi da 11 punti, corretti solo con almeno 6 punti nel quiz; dura 2 ore, senza calcolatrice, con solo 4 facciate di appunti scritti a mano. Appelli 2026/27: 22/01 e 05/02/2027, alle 14:00. I dettagli sono nella lezione L01.
+La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipla (5 risposte, una sola giusta) e 2 problemi da 11 punti. I problemi vengono corretti solo a chi fa almeno 6 punti nel quiz. La prova dura 2 ore, senza calcolatrice, e si possono portare solo 4 facciate di appunti scritti a mano. Gli appelli del 2026/27 sono il 22/01/2027 e il 05/02/2027, alle 14:00. I dettagli sono nella lezione L01.
 
 **Che cosa di questa lezione compare negli appelli 2023–2026**
 
-1. **Matrici ortogonali (quiz).** L'appello del 10/07/2024 (domanda 2) chiedeva la dimensione di $O(2)$: la risposta è che non è un sottospazio (vedi il riquadro nella sezione sulle isometrie del piano). Le matrici ortogonali tornano con il teorema spettrale (lezioni L25–L26), dove una matrice simmetrica si diagonalizza con una matrice ortogonale.
-2. **Prodotto vettoriale come strumento (problemi).** Nei problemi sulle rette e i piani di $\R^3$ il prodotto vettoriale dà in un colpo la direzione della retta intersezione di due piani: appelli del 24/01/2024, del 10/07/2024, del 06/09/2024 e del 15/01/2026 (problema 12). Nelle domande sulla distanza tra due rette (08/02/2024, 06/09/2024, 05/02/2026, 03/06/2026, 07/09/2026) serve un vettore perpendicolare alle direzioni delle due rette: di nuovo un prodotto vettoriale. Le formule su rette e piani sono nelle lezioni L23–L24.
-3. Negli appelli 2023–2026 non ci sono domande sulle isometrie di $\R^3$ (rotazioni e antirotazioni).
+1. **Matrici ortogonali, nel quiz.** L'appello del 10/07/2024 (domanda 2) chiedeva la dimensione dell'insieme delle matrici ortogonali con due righe e due colonne. La risposta è che non ha una dimensione, perché non è un sottospazio. La domanda è letta e risolta qui sotto. Le matrici ortogonali tornano con il teorema spettrale (lezioni L25 e L26), dove una matrice simmetrica si diagonalizza con una matrice ortogonale.
+2. **Prodotto vettoriale, nei problemi.** Nei problemi su rette e piani dello spazio il prodotto vettoriale dà subito la direzione della retta in cui si tagliano due piani: appelli del 24/01/2024, del 10/07/2024, del 06/09/2024 e del 15/01/2026 (problema 12). Nelle domande sulla distanza tra due rette (08/02/2024, 06/09/2024, 05/02/2026, 03/06/2026, 07/09/2026) serve un vettore perpendicolare alle direzioni delle due rette: è di nuovo un prodotto vettoriale. Le formule su rette e piani sono nelle lezioni L23 e L24.
+3. **Isometrie dello spazio.** Negli appelli dal 2023 al 2026 non ci sono domande su rotazioni e antirotazioni dello spazio.
 
-**Due domande vere, risolte**
+**I metodi, passo per passo**
+
+> [!METODO] Dire se una matrice è ortogonale
+> 1. Scrivi le colonne della matrice come vettori.
+> 2. Calcola la lunghezza di ogni colonna: deve fare 1.
+> 3. Calcola il prodotto scalare di ogni coppia di colonne diverse: deve fare 0.
+> 4. Se tutti i controlli riescono, la matrice è ortogonale. Allora la sua inversa è la trasposta.
+
+> [!METODO] Calcolare un prodotto vettoriale
+> 1. Scrivi i due vettori in colonna, uno accanto all'altro.
+> 2. Copri la prima riga. Con i quattro numeri rimasti fai «diagonale meno l'altra diagonale»: è il primo numero.
+> 3. Copri la seconda riga, fai lo stesso conto e **cambia il segno**: è il secondo numero.
+> 4. Copri la terza riga e fai lo stesso conto: è il terzo numero.
+> 5. Controlla: il risultato deve dare prodotto scalare zero con tutti e due i vettori.
+
+> [!METODO] Trovare la retta in cui si tagliano due piani
+> 1. Leggi i due vettori perpendicolari ai piani: sono i numeri davanti a $x$, $y$ e $z$ nelle due equazioni.
+> 2. Calcola il loro prodotto vettoriale: è la direzione della retta.
+> 3. Trova un punto della retta. Metti $z = 0$ nelle due equazioni e risolvi il sistema nelle due incognite rimaste. Se il sistema non ha soluzione, riprova mettendo a zero un'altra incognita.
+> 4. Scrivi la retta: il punto trovato, più tutti i multipli della direzione.
+
+**Una domanda vera, letta insieme**
 
 > [!ESEMPIO] Appello del 10/07/2024, domanda 2
-> Sia $V = M(2, \R)$ e $O(2)$ il sottoinsieme delle matrici ortogonali. La dimensione di $O(2)$ è: (a) non ha una dimensione perché non è un sottospazio vettoriale; (b) due; (c) quattro; (d) tre; (e) uno.
+> **Il testo.** «Sia $V = M(2, \R)$ lo spazio delle matrici reali $2 \times 2$ e $O(2)$ il sottoinsieme delle matrici ortogonali. La dimensione di $O(2)$ è: (a) $O(2)$ non ha una dimensione perché non è un sottospazio vettoriale; (b) due; (c) quattro; (d) tre; (e) uno.»
 >
-> **Soluzione.** La dimensione si definisce solo per gli spazi vettoriali. $O(2)$ non è un sottospazio: non contiene la matrice nulla, perché ${}^t0\,0 = 0 \ne I_2$. Quindi la risposta è (a). (Un secondo motivo: $I_2 \in O(2)$ ma $I_2 + I_2 = 2I_2 \notin O(2)$.)
+> **In pratica chiede:** le matrici ortogonali con due righe e due colonne formano un sottospazio? Se sì, quanti vettori ha una sua base?
+>
+> **La soluzione.**
+>
+> 1. La parola «dimensione» ha senso solo per uno spazio vettoriale o per un sottospazio: è il numero di vettori di una base (lezione L07). Quindi prima di contare bisogna chiedersi se l'insieme è un sottospazio.
+> 2. Un sottospazio contiene sempre lo zero (lezione L06). Nello spazio delle matrici lo zero è la matrice fatta di soli zeri.
+> 3. La matrice di soli zeri non è ortogonale. La sua trasposta per lei dà ancora la matrice di soli zeri, e non l'identità. Detto con le colonne: sono lunghe 0, non 1.
+> 4. Quindi l'insieme non contiene lo zero: non è un sottospazio. La risposta giusta è la (a).
+>
+> **Un secondo motivo.** La matrice identità è ortogonale. Ma $I_2 + I_2 = 2I_2$ ha le colonne lunghe 2, quindi non lo è. Sommando due matrici ortogonali si esce dall'insieme.
+>
+> **La risposta che tenta.** La (e), «uno», perché ogni rotazione dipende da un solo numero, l'angolo. Ma «dipende da un numero» non vuol dire «sottospazio di dimensione 1». Le rotazioni non formano una retta che passa per lo zero.
+
+**Un problema vero, risolto con il prodotto vettoriale**
 
 > [!ESEMPIO] Appello del 24/01/2024, problema 12, punto (1)
-> Siano $\pi_1 = \{2x + y - z = 1\}$ e $\pi_2 = \{x + 2y + z = 2\}$. Calcolare la retta $r = \pi_1 \cap \pi_2$ nella forma $r = P + \Span(v)$.
+> **Il testo.** «Siano $\pi_1 = \{2x + y - z = 1\}$ e $\pi_2 = \{x + 2y + z = 2\}$. Calcolare la retta $r = \pi_1 \cap \pi_2$ nella forma $r = P + \Span(v)$.»
 >
-> **Soluzione con il prodotto vettoriale.** La direzione $v$ della retta sta in entrambi i piani «vettoriali» $\{2x + y - z = 0\}$ e $\{x + 2y + z = 0\}$, quindi è ortogonale ai due vettori normali $n_1 = (2, 1, -1)$ e $n_2 = (1, 2, 1)$:
-> $$\begin{aligned} n_1 \times n_2 &= \big(1 \cdot 1 - (-1) \cdot 2,\ (-1) \cdot 1 - 2 \cdot 1,\ 2 \cdot 2 - 1 \cdot 1\big) \\ &= (3, -3, 3), \end{aligned}$$
-> e posso prendere $v = (1, -1, 1)$. Un punto $P$: pongo $z = 0$ e risolvo $2x + y = 1$, $x + 2y = 2$; dalla prima $y = 1 - 2x$, e sostituendo $x + 2 - 4x = 2$, quindi $x = 0$ e $y = 1$. Allora $P = (0, 1, 0)$ e
-> $$r = (0, 1, 0) + \Span((1, -1, 1)).$$
-> Controlli: $P$ sta nei due piani ($0 + 1 - 0 = 1$ e $0 + 2 + 0 = 2$), e $v$ soddisfa le due equazioni omogenee ($2 - 1 - 1 = 0$ e $1 - 2 + 1 = 0$). ✓
+> **In pratica chiede:** ci sono due piani dello spazio, ognuno descritto da un'equazione. Trova la retta fatta dai punti che stanno su tutti e due. Scrivila come «un punto di partenza $P$, più tutti i multipli di una direzione $v$». Qui $\pi_1$ e $\pi_2$ sono i nomi dei due piani: non c'entra il numero pi greco. Il simbolo $\cap$ si legge «intersecato» e indica i punti in comune.
+>
+> **La soluzione.**
+>
+> 1. Leggo i vettori perpendicolari ai due piani dai numeri davanti a $x$, $y$ e $z$: sono $n_1 = (2, 1, -1)$ e $n_2 = (1, 2, 1)$. Il perché è nella lezione L23.
+> 2. La retta sta in tutti e due i piani. Quindi la sua direzione è perpendicolare a tutti e due questi vettori: è il loro prodotto vettoriale. Metto i due vettori in colonna. Le righe della tabella sono $(2, 1)$, $(1, 2)$ e $(-1, 1)$.
+>    - Copro la prima riga: $1 \cdot 1 - 2 \cdot (-1) = 1 + 2 = 3$.
+>    - Copro la seconda riga: $2 \cdot 1 - 1 \cdot (-1) = 2 + 1 = 3$. Cambio il segno: $-3$.
+>    - Copro la terza riga: $2 \cdot 2 - 1 \cdot 1 = 3$.
+>
+>    Quindi $n_1 \times n_2 = (3, -3, 3)$.
+> 3. Una direzione si può accorciare senza cambiare la retta. Divido per 3 e prendo $v = (1, -1, 1)$.
+> 4. Cerco un punto della retta. Metto $z = 0$ e restano due equazioni: $2x + y = 1$ e $x + 2y = 2$. Dalla prima ricavo $y = 1 - 2x$. Sostituisco nella seconda: $x + 2 - 4x = 2$, cioè $-3x = 0$, cioè $x = 0$. Allora $y = 1$. Il punto è $P = (0, 1, 0)$.
+> 5. La retta è
+>    $$r = (0, 1, 0) + \Span((1, -1, 1)).$$
+>
+> **Controlli.** Il punto $P$ sta nei due piani: $0 + 1 - 0 = 1$ e $0 + 2 + 0 = 2$. La direzione $v$ rispetta le due equazioni con lo zero a destra: $2 - 1 - 1 = 0$ e $1 - 2 + 1 = 0$.
 
 **Errori da evitare**
 
-- Leggere l'asse di $\mathrm{Rif}_\vartheta$ all'angolo $\vartheta$ invece che $\frac\vartheta2$.
-- Credere che bastino colonne ortogonali, o $\det A = \pm1$, perché una matrice sia ortogonale.
-- Sbagliare il segno della seconda coordinata del prodotto vettoriale: è $v_3w_1 - v_1w_3$, cioè $-d_2$.
-- Dimenticare che $w \times v = -(v \times w)$: l'ordine conta per il verso, non per la direzione.
-- Non controllare il risultato: $v \times w$ deve dare prodotto scalare zero con $v$ e con $w$.
+- Leggere lo specchio di una riflessione all'angolo scritto nella matrice. Lo specchio sta alla **metà** di quell'angolo.
+- Credere che bastino colonne perpendicolari, oppure il determinante uguale a 1 o a $-1$, perché una matrice sia ortogonale.
+- Sbagliare il segno del secondo numero del prodotto vettoriale. Dopo il conto fatto coprendo la seconda riga si cambia il segno.
+- Dimenticare che scambiando i due vettori il prodotto vettoriale cambia segno. L'ordine conta per il verso, non per la direzione.
+- Non controllare il risultato. Il prodotto vettoriale deve dare prodotto scalare zero con tutti e due i vettori.
 
 > [!ESAME] Sul foglio da 4 facciate
-> - $\mathrm{Rot}_\vartheta = \begin{pmatrix} \cos\vartheta & -\sin\vartheta \\ \sin\vartheta & \cos\vartheta \end{pmatrix}$ ($\det 1$); $\mathrm{Rif}_\vartheta = \begin{pmatrix} \cos\vartheta & \sin\vartheta \\ \sin\vartheta & -\cos\vartheta \end{pmatrix}$ ($\det -1$, asse all'angolo $\frac\vartheta2$).
-> - $L_A$ isometria $\iff {}^tAA = I \iff$ colonne ortonormali; allora $A^{-1} = {}^tA$, $\det A = \pm1$.
-> - Isometrie: nel piano rotazioni ($\det 1$) e riflessioni ($\det -1$); nello spazio rotazioni e antirotazioni, $\cos\vartheta = \frac{\operatorname{tr}A - \det A}2$.
-> - $v \times w = (v_2w_3 - v_3w_2,\ v_3w_1 - v_1w_3,\ v_1w_2 - v_2w_1)$; ortogonale a $v$ e $w$; nullo $\iff$ dipendenti.
+> Le due matrici del piano. La rotazione ha determinante 1. La riflessione ha determinante $-1$, e il suo specchio sta all'angolo $\frac\vartheta2$.
+> $$\mathrm{Rot}_\vartheta = \begin{pmatrix} \cos\vartheta & -\sin\vartheta \\ \sin\vartheta & \cos\vartheta \end{pmatrix} \qquad \mathrm{Rif}_\vartheta = \begin{pmatrix} \cos\vartheta & \sin\vartheta \\ \sin\vartheta & -\cos\vartheta \end{pmatrix}$$
+> La matrice ortogonale: colonne lunghe 1 e perpendicolari. L'inversa è la trasposta, il determinante è 1 oppure $-1$.
+> $${}^tA\,A = I \qquad A^{-1} = {}^tA$$
+> Le isometrie: nel piano rotazioni e riflessioni, nello spazio rotazioni e antirotazioni. Per l'angolo nello spazio:
+> $$\cos\vartheta = \frac{\operatorname{tr}A - \det A}{2}$$
+> Il prodotto vettoriale: è perpendicolare ai due vettori, ed è zero esattamente quando sono uno multiplo dell'altro.
+> $$v \times w = (v_2w_3 - v_3w_2,\ \ v_3w_1 - v_1w_3,\ \ v_1w_2 - v_2w_1)$$
+> In più: la tabella del coseno e del seno degli angoli più usati.
 
 ## Quiz
 
@@ -24356,7 +28748,7 @@ D: Quale di queste matrici è ortogonale?
 - $\begin{pmatrix} 2 & 0 \\ 0 & \frac12 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 2 \\ \frac12 & 0 \end{pmatrix}$
-= Solo la prima ha colonne di norma 1 e ortogonali: $\frac{3^2 + 4^2}{25} = 1$ e $\frac{-12 + 12}{25} = 0$. La seconda ha colonne ortogonali ma di norma $\sqrt2$; la terza e l'ultima hanno determinante $\pm1$ ma colonne di norma $2$ e $\frac12$; la quarta (un taglio) ha la seconda colonna di norma $\sqrt2$. Collegata all'appello del 10/07/2024, domanda 2, sulle matrici ortogonali.
+= La domanda chiede quale matrice ha le colonne lunghe 1 e perpendicolari tra loro. Nella prima le colonne sono $\frac15(3, 4)$ e $\frac15(-4, 3)$. Il quadrato della lunghezza è $\frac{9 + 16}{25} = 1$ per tutte e due, e il prodotto scalare è $\frac{-12 + 12}{25} = 0$. Le altre falliscono sulla lunghezza. La seconda ha le colonne perpendicolari ma lunghe $\sqrt2$: è la risposta che tenta di più. La terza e l'ultima hanno determinante $1$ e $-1$, ma colonne lunghe $2$ e $\frac12$. La quarta, un taglio, ha la seconda colonna lunga $\sqrt2$. È il controllo che serve per domande come la 2 dell'appello del 10/07/2024, sulle matrici ortogonali.
 
 D: Qual è l'immagine di $v = (3, 1)$ tramite la rotazione antioraria di angolo $\frac\pi2$?
 + $(-1, 3)$
@@ -24364,7 +28756,7 @@ D: Qual è l'immagine di $v = (3, 1)$ tramite la rotazione antioraria di angolo 
 - $(-3, 1)$
 - $(1, 3)$
 - $(-3, -1)$
-= $\mathrm{Rot}_{\pi/2} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ manda $(x, y)$ in $(-y, x)$, quindi $(3, 1) \mapsto (-1, 3)$. Controllo: $\langle (3, 1), (-1, 3)\rangle = 0$ e le norme sono uguali. $(1, -3)$ è la rotazione **oraria**.
+= L'angolo $\frac\pi2$ è un quarto di giro. Il quarto di giro in senso antiorario scambia i due numeri e cambia segno al primo: $(x, y)$ diventa $(-y, x)$. Quindi $(3, 1)$ diventa $(-1, 3)$. Controllo: il prodotto scalare tra prima e dopo è $3 \cdot (-1) + 1 \cdot 3 = 0$, e le due lunghezze sono uguali a $\sqrt{10}$. La risposta $(1, -3)$ è la trappola: è il quarto di giro in senso **orario**.
 
 D: La matrice $\mathrm{Rif}_{\pi/2} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ rappresenta la riflessione rispetto a:
 + la retta $y = x$
@@ -24372,7 +28764,7 @@ D: La matrice $\mathrm{Rif}_{\pi/2} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatri
 - l'asse $x$
 - la retta $y = -x$
 - l'origine
-= L'asse di $\mathrm{Rif}_\vartheta$ forma un angolo $\frac\vartheta2 = \frac\pi4$ con l'asse $x$: è la bisettrice $y = x$. Controllo: $(1, 1) \mapsto (1, 1)$ resta fermo, $(1, -1) \mapsto (-1, 1)$ cambia segno. L'asse $y$ è l'errore di chi legge l'angolo $\vartheta$ invece di $\frac\vartheta2$.
+= Lo specchio di una riflessione sta alla metà dell'angolo scritto nella matrice. Qui la metà di $\frac\pi2$ è $\frac\pi4$, cioè 45 gradi: è la bisettrice $y = x$. Controllo: la matrice scambia i due numeri. Quindi $(1, 1)$, che sta sulla bisettrice, resta fermo, e $(1, -1)$ diventa $(-1, 1)$, il suo opposto. L'asse $y$ è l'errore di chi legge l'angolo intero invece della metà.
 
 D: Sia $O(2) \subset M(2, \R)$ l'insieme delle matrici ortogonali $2 \times 2$. Quale affermazione è vera?
 + $O(2)$ non è un sottospazio vettoriale di $M(2, \R)$.
@@ -24380,7 +28772,7 @@ D: Sia $O(2) \subset M(2, \R)$ l'insieme delle matrici ortogonali $2 \times 2$. 
 - $O(2)$ contiene la matrice nulla.
 - La somma di due matrici ortogonali è sempre ortogonale.
 - $O(2)$ contiene solo matrici di rotazione.
-= La matrice nulla non è ortogonale, e $I_2 + I_2 = 2I_2$ non lo è: $O(2)$ non è chiuso rispetto alla somma, quindi non è un sottospazio. Contiene anche le riflessioni (Proposizione 22.11). Simile all'appello del 10/07/2024, domanda 2.
+= Il simbolo $\subset$ si legge «è contenuto in». Un sottospazio deve contenere lo zero, e sommando due suoi elementi non si deve uscire. La matrice nulla, cioè quella di soli zeri, non è ortogonale: le sue colonne sono lunghe 0. E $I_2 + I_2 = 2I_2$ ha le colonne lunghe 2, quindi la somma di due matrici ortogonali può non essere ortogonale. L'insieme non è un sottospazio. Contiene anche le riflessioni, non solo le rotazioni (Proposizione 22.11). È simile alla domanda 2 dell'appello del 10/07/2024.
 
 D: Se $A \in M(3, \R)$ è una matrice ortogonale, allora sicuramente:
 + $\det A = \pm1$
@@ -24388,7 +28780,7 @@ D: Se $A \in M(3, \R)$ è una matrice ortogonale, allora sicuramente:
 - $A$ è simmetrica
 - $A^{-1} = A$
 - $\operatorname{tr}A = 3$
-= Da ${}^tAA = I$ e Binet: $(\det A)^2 = 1$. Il determinante può essere $-1$ (una riflessione, come $\operatorname{diag}(1, 1, -1)$). Una rotazione di $\frac\pi2$ intorno all'asse $z$ è ortogonale ma non simmetrica, non coincide con la sua inversa e ha traccia $1$. Vale invece sempre $A^{-1} = {}^tA$.
+= La scrittura $\pm1$ si legge «più o meno uno»: vuol dire 1 oppure $-1$. Dalla condizione ${}^tA\,A = I$ e dal Teorema di Binet viene $(\det A)^2 = 1$, quindi il determinante è 1 oppure $-1$. Può valere $-1$: succede per lo specchio che cambia segno solo al terzo numero. Per questo «$\det A = 1$» è sbagliata. Le altre tre risposte falliscono con il quarto di giro intorno all'asse $z$. È ortogonale, ma non è simmetrica, non è uguale alla sua inversa e ha traccia 1. Quello che vale sempre è $A^{-1} = {}^tA$: l'inversa è la trasposta, non la matrice stessa.
 
 D: Quanto vale il prodotto vettoriale $(1, 2, 0) \times (0, 1, 3)$?
 + $(6, -3, 1)$
@@ -24396,7 +28788,7 @@ D: Quanto vale il prodotto vettoriale $(1, 2, 0) \times (0, 1, 3)$?
 - $(-6, 3, -1)$
 - $(0, 2, 0)$
 - $(6, -3, -1)$
-= $(2 \cdot 3 - 0 \cdot 1,\ 0 \cdot 0 - 1 \cdot 3,\ 1 \cdot 1 - 2 \cdot 0) = (6, -3, 1)$. Controllo: $\langle (6, -3, 1), (1, 2, 0)\rangle = 6 - 6 = 0$ e $\langle (6, -3, 1), (0, 1, 3)\rangle = -3 + 3 = 0$. $(-6, 3, -1)$ è $(0, 1, 3) \times (1, 2, 0)$; $(0, 2, 0)$ è il prodotto coordinata per coordinata. È il conto che serve per la direzione di una retta intersezione di piani, come nell'appello del 15/01/2026 (problema 12, punto 2).
+= Metto i due vettori in colonna: le righe della tabella sono $(1, 0)$, $(2, 1)$ e $(0, 3)$. Coprendo la prima riga viene $2 \cdot 3 - 1 \cdot 0 = 6$. Coprendo la seconda viene $1 \cdot 3 - 0 \cdot 0 = 3$, e cambiando segno $-3$. Coprendo la terza viene $1 \cdot 1 - 0 \cdot 2 = 1$. Il risultato è $(6, -3, 1)$. Controllo: con $(1, 2, 0)$ viene $6 - 6 + 0 = 0$, con $(0, 1, 3)$ viene $0 - 3 + 3 = 0$. La risposta $(6, 3, 1)$ è di chi dimentica di cambiare segno al secondo numero. La risposta $(-6, 3, -1)$ è il prodotto con i due vettori scambiati. La risposta $(0, 2, 0)$ è il prodotto fatto posto per posto, che non è il prodotto vettoriale. È il conto che serve per la direzione della retta in cui si tagliano due piani, come nell'appello del 15/01/2026 (problema 12, punto 2).
 
 D: Per quale di queste coppie di vettori il prodotto vettoriale è il vettore nullo?
 + $(1, -2, 3)$ e $(-2, 4, -6)$
@@ -24404,7 +28796,7 @@ D: Per quale di queste coppie di vettori il prodotto vettoriale è il vettore nu
 - $(1, 1, 0)$ e $(1, -1, 0)$
 - $(1, 2, 3)$ e $(3, 2, 1)$
 - $(0, 0, 1)$ e $(1, 1, 1)$
-= $v \times w = 0$ esattamente quando $v, w$ sono dipendenti (Proposizione 22.16): $(-2, 4, -6) = -2(1, -2, 3)$. Le altre coppie danno $(0, 0, 1)$, $(0, 0, -2)$, $(-4, 8, -4)$, $(-1, 1, 0)$. Nelle domande sulla distanza tra rette (per esempio appello del 07/09/2026, domanda 7) si controlla così che le direzioni non siano parallele.
+= Il prodotto vettoriale è il vettore di soli zeri esattamente quando i due vettori sono uno multiplo dell'altro (Proposizione 22.16). Succede solo nella prima coppia: $(-2, 4, -6)$ è $-2$ volte $(1, -2, 3)$. Nelle altre coppie nessun vettore è multiplo dell'altro. I loro prodotti vettoriali sono $(0, 0, 1)$, poi $(0, 0, -2)$, poi $(-4, 8, -4)$, poi $(-1, 1, 0)$: nessuno è zero. Nelle domande sulla distanza tra due rette, come la domanda 7 dell'appello del 07/09/2026, si controlla così che le due direzioni non siano parallele.
 
 D: Quale di queste trasformazioni lineari del piano **non** è un'isometria (con il prodotto euclideo)?
 + $(x, y) \mapsto (x + y, y)$
@@ -24412,7 +28804,7 @@ D: Quale di queste trasformazioni lineari del piano **non** è un'isometria (con
 - $(x, y) \mapsto (-x, -y)$
 - $(x, y) \mapsto \left(\frac{x - \sqrt3 y}{2}, \frac{\sqrt3 x + y}{2}\right)$
 - $(x, y) \mapsto (x, -y)$
-= Il taglio $(x, y) \mapsto (x + y, y)$ manda $e_2$ in $(1, 1)$, di norma $\sqrt2 \neq 1$. Le altre sono $\mathrm{Rif}_{\pi/2}$, $\mathrm{Rot}_\pi$, $\mathrm{Rot}_{\pi/3}$ e $\mathrm{Rif}_0$: tutte con matrice ortogonale.
+= Per mostrare che una macchina non è un'isometria basta un vettore che cambia lunghezza. La macchina $(x, y) \mapsto (x + y, y)$ è un taglio: manda $e_2 = (0, 1)$ in $(1, 1)$, che è lungo $\sqrt2$ e non 1. Le altre quattro hanno una matrice ortogonale. Sono lo specchio sulla bisettrice, il mezzo giro, la rotazione di $\frac\pi3$ e lo specchio sull'asse $x$.
 
 D: Un'isometria lineare di $\R^3$ con determinante $-1$ è:
 + un'antirotazione
@@ -24420,34 +28812,117 @@ D: Un'isometria lineare di $\R^3$ con determinante $-1$ è:
 - una traslazione
 - una proiezione ortogonale su un piano
 - una rotazione di angolo $\pi$ intorno a un asse
-= Per il Teorema 22.13 ogni isometria di $\R^3$ è una rotazione ($\det 1$) o un'antirotazione ($\det -1$). Le traslazioni non sono lineari; le proiezioni non sono invertibili; una rotazione, di qualsiasi angolo, ha determinante $1$. Casi particolari di antirotazione sono $-I_3$ (angolo $\pi$) e le riflessioni rispetto a un piano (angolo $0$).
+= Per il Teorema 22.13 ogni isometria dello spazio è una rotazione, con determinante 1, oppure un'antirotazione, con determinante $-1$. Quindi con determinante $-1$ è un'antirotazione. Una rotazione ha determinante 1 con qualunque angolo: per questo sono sbagliate le due risposte con la parola «rotazione». Le traslazioni non sono lineari. Le proiezioni schiacciano lo spazio su un piano e non si possono disfare, quindi non sono isometrie. Due antirotazioni particolari sono la matrice $-I_3$, con angolo $\pi$, e gli specchi rispetto a un piano, con angolo 0.
 
 D: Quanto vale la norma di $(1, 0, 0) \times (0, 3, 4)$?
 N: 5
-= $(1, 0, 0) \times (0, 3, 4) = (0 \cdot 4 - 0 \cdot 3,\ 0 \cdot 0 - 1 \cdot 4,\ 1 \cdot 3 - 0 \cdot 0) = (0, -4, 3)$, di norma $\sqrt{16 + 9} = 5$. Nella lezione L23 vedrai che è l'area del parallelogramma con lati i due vettori (come nell'esercizio 7 del foglio 4 del tutorato).
+= La tabella con i due vettori in colonna ha le righe $(1, 0)$, $(0, 3)$ e $(0, 4)$. Coprendo la prima riga viene $0 \cdot 4 - 3 \cdot 0 = 0$. Coprendo la seconda viene $1 \cdot 4 - 0 \cdot 0 = 4$, e cambiando segno $-4$. Coprendo la terza viene $1 \cdot 3 - 0 \cdot 0 = 3$. Il prodotto vettoriale è $(0, -4, 3)$. La sua norma, cioè la sua lunghezza, è $\sqrt{0 + 16 + 9} = \sqrt{25} = 5$. Nella lezione L23 vedrai che questo numero è l'area del parallelogramma che ha per lati i due vettori, come nell'esercizio 7 del foglio 4 del tutorato.
 ```
 
 ## Esercizi
 
-Le dispense non hanno esercizi per questa lezione: questi sono tutti costruiti per gli appunti; gli ultimi due sono modellati sugli appelli e sul foglio 4 del tutorato.
+Le dispense non hanno esercizi per questa lezione: questi sono tutti costruiti per gli appunti. I primi quattro sono di riscaldamento. Gli ultimi due sono modellati sugli appelli e sul foglio 4 del tutorato.
+
+::: esercizio base Un quarto di giro
+Ruota di un quarto di giro in senso antiorario i vettori $(4, 1)$ e $(0, 3)$.
+::: soluzione
+La regola del quarto di giro in senso antiorario: scambia i due numeri, poi cambia segno al primo.
+
+1. Per $(4, 1)$: scambio e ottengo $(1, 4)$. Cambio segno al primo: $(-1, 4)$.
+2. Per $(0, 3)$: scambio e ottengo $(3, 0)$. Cambio segno al primo: $(-3, 0)$.
+
+Controllo sul primo vettore: il prodotto scalare tra prima e dopo è $4 \cdot (-1) + 1 \cdot 4 = 0$. I due vettori sono perpendicolari, come dopo un quarto di giro.
+:::
+
+::: esercizio base Lo specchio sull'asse orizzontale
+Rifletti rispetto all'asse $x$ i vettori $(2, 5)$ e $(-1, -3)$. Poi di' quale di questi due vettori resta fermo: $(4, 0)$ oppure $(0, 4)$.
+::: soluzione
+Lo specchio sull'asse $x$ lascia com'è il primo numero e cambia segno al secondo.
+
+1. $(2, 5)$ diventa $(2, -5)$.
+2. $(-1, -3)$ diventa $(-1, 3)$.
+3. $(4, 0)$ diventa $(4, 0)$: resta fermo, perché sta sull'asse $x$, cioè sullo specchio.
+4. $(0, 4)$ diventa $(0, -4)$: è perpendicolare allo specchio e va nel suo opposto.
+:::
+
+::: esercizio base Colonne lunghe 1 e perpendicolari
+Di' se è ortogonale ciascuna di queste due matrici: $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ e $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$.
+::: soluzione
+Una matrice è ortogonale quando le sue colonne sono lunghe 1 e perpendicolari tra loro.
+
+**Prima matrice.** Le colonne sono $(0, 1)$ e $(-1, 0)$.
+
+1. Lunghezza della prima: $\sqrt{0 + 1} = 1$.
+2. Lunghezza della seconda: $\sqrt{1 + 0} = 1$.
+3. Prodotto scalare: $0 \cdot (-1) + 1 \cdot 0 = 0$.
+
+È ortogonale. È il quarto di giro.
+
+**Seconda matrice.** Le colonne sono $(1, 0)$ e $(1, 1)$.
+
+1. Lunghezza della prima: 1.
+2. Lunghezza della seconda: $\sqrt{1 + 1} = \sqrt2$. Non è 1.
+
+Non è ortogonale. Fallisce anche il terzo controllo: il prodotto scalare delle colonne è $1 \cdot 1 + 0 \cdot 1 = 1$, non 0.
+:::
+
+::: esercizio base Un prodotto vettoriale con tanti zeri
+Calcola $(1, 0, 0) \times (0, 0, 1)$ e controlla che il risultato è perpendicolare ai due vettori.
+::: soluzione
+Metto i due vettori in colonna. Le righe della tabella sono $(1, 0)$, $(0, 0)$ e $(0, 1)$.
+
+1. Copro la prima riga: $0 \cdot 1 - 0 \cdot 0 = 0$.
+2. Copro la seconda riga: $1 \cdot 1 - 0 \cdot 0 = 1$. Cambio il segno: $-1$.
+3. Copro la terza riga: $1 \cdot 0 - 0 \cdot 0 = 0$.
+
+Il risultato è $(0, -1, 0)$.
+
+Controllo: con $(1, 0, 0)$ viene $0 + 0 + 0 = 0$. Con $(0, 0, 1)$ viene $0 + 0 + 0 = 0$.
+
+Con i nomi della base canonica: $e_1 \times e_3 = -e_2$. Torna con la regola dello scambio, perché $e_3 \times e_1 = e_2$.
+:::
 
 ::: esercizio base Scrivere e usare le rotazioni
 (a) Scrivi $\mathrm{Rot}_{\pi/6}$ e $\mathrm{Rot}_{2\pi/3}$. (b) Ruota $(2, 0)$ di $\frac\pi3$ e $(1, 2)$ di $\frac\pi2$. (c) Verifica che $\mathrm{Rot}_{\pi/6}$ conserva la norma di $(2, 0)$.
 ::: soluzione
-(a) Con $\cos\frac\pi6 = \frac{\sqrt3}2$, $\sin\frac\pi6 = \frac12$, $\cos\frac{2\pi}3 = -\frac12$, $\sin\frac{2\pi}3 = \frac{\sqrt3}2$:
+**(a)** Servono il coseno e il seno dei due angoli.
+
+1. Per $\frac\pi6$ la tabella dà coseno $\frac{\sqrt3}2$ e seno $\frac12$.
+2. L'angolo $\frac{2\pi}3$ è un terzo di giro, cioè 120 gradi. Non è nella tabella, ma si ricava da $\frac\pi3$. Il punto del cerchio a 120 gradi è lo specchio, rispetto all'asse verticale, del punto a 60 gradi. Ha la stessa altezza e sta dalla parte opposta. Quindi il coseno è $-\frac12$ e il seno è $\frac{\sqrt3}2$.
+3. Metto i numeri nei quattro posti: coseno e seno nella prima colonna, meno seno e coseno nella seconda.
+
 $$\mathrm{Rot}_{\pi/6} = \begin{pmatrix} \frac{\sqrt3}2 & -\frac12 \\ \frac12 & \frac{\sqrt3}2 \end{pmatrix}, \qquad \mathrm{Rot}_{2\pi/3} = \begin{pmatrix} -\frac12 & -\frac{\sqrt3}2 \\ \frac{\sqrt3}2 & -\frac12 \end{pmatrix}.$$
 
-(b) $\mathrm{Rot}_{\pi/3}(2, 0) = 2 \cdot$ (prima colonna) $= 2\left(\frac12, \frac{\sqrt3}2\right) = (1, \sqrt3)$. $\mathrm{Rot}_{\pi/2}(1, 2) = (-2, 1)$.
+**(b)** Il vettore $(2, 0)$ è 2 volte $e_1$. La sua immagine è 2 volte l'immagine di $e_1$, cioè 2 volte la prima colonna. Con l'angolo $\frac\pi3$ la prima colonna è $\left(\frac12, \frac{\sqrt3}2\right)$:
 
-(c) $\mathrm{Rot}_{\pi/6}(2, 0) = (\sqrt3, 1)$, di norma $\sqrt{3 + 1} = 2 = \|(2, 0)\|$. ✓
+$$2 \cdot \left(\tfrac12, \tfrac{\sqrt3}2\right) = (1, \sqrt3).$$
+
+Per $(1, 2)$ e il quarto di giro uso la regola: scambio i numeri e cambio segno al primo. Viene $(-2, 1)$.
+
+**(c)** L'immagine di $(2, 0)$ è 2 volte la prima colonna di $\mathrm{Rot}_{\pi/6}$:
+
+$$2 \cdot \left(\tfrac{\sqrt3}2, \tfrac12\right) = (\sqrt3, 1).$$
+
+La sua norma è $\sqrt{3 + 1} = \sqrt4 = 2$. La norma di $(2, 0)$ è 2. Sono uguali.
 :::
 
 ::: esercizio base La riflessione rispetto alla retta $y = -x$
 Trova la matrice della riflessione rispetto alla retta $y = -x$ e verifica il risultato su due vettori.
 ::: soluzione
-La retta $y = -x$ forma con l'asse $x$ un angolo di $-\frac\pi4$ (oppure $\frac{3\pi}4$). Con $\frac\vartheta2 = -\frac\pi4$ si ha $\vartheta = -\frac\pi2$, e $\cos\left(-\frac\pi2\right) = 0$, $\sin\left(-\frac\pi2\right) = -1$:
-$$\mathrm{Rif}_{-\pi/2} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}, \qquad (x, y) \mapsto (-y, -x).$$
-(Con $\vartheta = \frac{3\pi}2 \in [0, 2\pi)$ si ottiene la stessa matrice.) Verifica: $(1, -1)$, che sta sulla retta, va in $(1, -1)$ e resta fermo; $(1, 1)$, perpendicolare alla retta, va in $(-1, -1)$, il suo opposto. ✓
+La retta $y = -x$ è fatta dai punti con i due numeri opposti, come $(1, -1)$. Scende in diagonale: forma con l'asse $x$ un angolo di 45 gradi contato in senso orario. Un angolo contato in senso orario si scrive con il segno meno: $-\frac\pi4$.
+
+1. Lo specchio sta alla metà dell'angolo della matrice: $\frac\vartheta2 = -\frac\pi4$. Quindi $\vartheta = -\frac\pi2$, un quarto di giro in senso orario.
+2. Il punto del cerchio che si raggiunge con un quarto di giro in senso orario è quello più in basso, $(0, -1)$. Quindi il coseno è $0$ e il seno è $-1$.
+3. Metto i numeri nella matrice della Definizione 22.3:
+
+$$\mathrm{Rif}_{-\pi/2} = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}.$$
+
+A parole: la matrice scambia i due numeri e cambia segno a tutti e due. Manda $(x, y)$ in $(-y, -x)$. Contando l'angolo in senso antiorario, cioè con $\vartheta = \frac{3\pi}2$, viene la stessa matrice.
+
+Verifica su due vettori.
+
+- $(1, -1)$ sta sulla retta. Va in $(1, -1)$: resta fermo.
+- $(1, 1)$ è perpendicolare alla retta, perché $1 \cdot 1 + (-1) \cdot 1 = 0$. Va in $(-1, -1)$: il suo opposto.
 :::
 
 ::: esercizio base Matrici ortogonali e inverse
@@ -24455,200 +28930,370 @@ Per ciascuna matrice di' se è ortogonale; se lo è, scrivi l'inversa senza fare
 $$A_1 = \frac15\begin{pmatrix} 3 & -4 \\ 4 & 3 \end{pmatrix}, \quad A_2 = \begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix},$$
 $$A_3 = \frac13\begin{pmatrix} 1 & 2 & 2 \\ 2 & 1 & -2 \\ 2 & -2 & 1 \end{pmatrix}, \quad A_4 = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}.$$
 ::: soluzione
-- $A_1$: ortogonale (colonne unitarie e ortogonali). $A_1^{-1} = {}^tA_1 = \frac15\begin{pmatrix} 3 & 4 \\ -4 & 3 \end{pmatrix}$.
-- $A_2$: **non** ortogonale, le colonne hanno norma $\sqrt2$. (La sua inversa esiste, ma non è la trasposta: è $\frac12\,{}^tA_2$.)
-- $A_3$: ortogonale (conti nell'esempio della sezione sulle matrici ortogonali). $A_3$ è anche simmetrica, quindi $A_3^{-1} = {}^tA_3 = A_3$: applicarla due volte dà l'identità. È la riflessione rispetto al piano $\{-x + y + z = 0\}$: la formula $f(v) = v - 2\,\frac{\langle v, n\rangle}{\langle n, n\rangle}n$ con $n = (-1, 1, 1)$ dà $f(e_1) = (1, 0, 0) - 2 \cdot \frac{-1}{3}(-1, 1, 1) = \left(\frac13, \frac23, \frac23\right)$, la prima colonna.
-- $A_4$: ortogonale, le colonne sono $e_3, e_1, e_2$ (la base canonica in un altro ordine). $A_4^{-1} = {}^tA_4 = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$.
+Per una matrice ortogonale l'inversa è la trasposta: basta scambiare le righe con le colonne.
+
+**$A_1$.** Le colonne sono lunghe 1 e perpendicolari: i conti sono nella sezione sulle matrici ortogonali. È ortogonale. L'inversa è
+
+$$A_1^{-1} = {}^tA_1 = \frac15\begin{pmatrix} 3 & 4 \\ -4 & 3 \end{pmatrix}.$$
+
+**$A_2$.** Le colonne sono $(1, -1)$ e $(1, 1)$, lunghe $\sqrt2$. **Non** è ortogonale. La sua inversa esiste, ma non è la trasposta: è la metà della trasposta.
+
+**$A_3$.** È ortogonale: i sei controlli sono nell'esempio «Ortogonale o no?». In più è simmetrica, cioè uguale alla sua trasposta. Quindi l'inversa è la matrice stessa:
+
+$$A_3^{-1} = {}^tA_3 = A_3.$$
+
+Applicarla due volte riporta ogni vettore al punto di partenza. Si comporta come uno specchio. Infatti è la riflessione rispetto al piano di equazione $-x + y + z = 0$. Lo si controlla con la formula della riflessione, usando il vettore $n = (-1, 1, 1)$ perpendicolare al piano:
+
+$$f(e_1) = (1, 0, 0) - 2 \cdot \frac{-1}3 \cdot (-1, 1, 1) = (1, 0, 0) + \frac23\,(-1, 1, 1) = \left(\frac13, \frac23, \frac23\right).$$
+
+È la prima colonna della matrice.
+
+**$A_4$.** Le colonne sono $e_3$, poi $e_1$, poi $e_2$: i vettori della base canonica, in un altro ordine. Sono lunghi 1 e perpendicolari. È ortogonale. L'inversa è
+
+$$A_4^{-1} = {}^tA_4 = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}.$$
 :::
 
 ::: esercizio medio La riflessione rispetto alla retta di $(1, 2)$
 Trova la matrice della riflessione del piano rispetto alla retta $r = \Span((1, 2))$ in due modi: con $\mathrm{Rif}_\vartheta$ e con il cambiamento di base.
 ::: soluzione
-**Con $\mathrm{Rif}_\vartheta$.** L'angolo $\frac\vartheta2$ della retta ha $t = \tan\frac\vartheta2 = 2$. Allora
-$$\begin{aligned} \cos\vartheta &= \frac{1 - t^2}{1 + t^2} = \frac{1 - 4}{5} = -\frac35, \\ \sin\vartheta &= \frac{2t}{1 + t^2} = \frac45, \end{aligned}$$
-$$\mathrm{Rif}_\vartheta = \begin{pmatrix} -\frac35 & \frac45 \\ \frac45 & \frac35 \end{pmatrix}.$$
+**Primo modo: con la matrice della Definizione 22.3.**
 
-**Con il cambiamento di base.** Nella base $\{(1, 2), (-2, 1)\}$ (un vettore su $r$, uno perpendicolare) la matrice è $\operatorname{diag}(1, -1)$. Con $M = \begin{pmatrix} 1 & -2 \\ 2 & 1 \end{pmatrix}$, $M^{-1} = \frac15\begin{pmatrix} 1 & 2 \\ -2 & 1 \end{pmatrix}$:
-$$\begin{aligned} M\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}M^{-1} &= \begin{pmatrix} 1 & 2 \\ 2 & -1 \end{pmatrix}\cdot\frac15\begin{pmatrix} 1 & 2 \\ -2 & 1 \end{pmatrix} \\ &= \frac15\begin{pmatrix} -3 & 4 \\ 4 & 3 \end{pmatrix}. \end{aligned}$$
-Stesso risultato. Controllo: $(1, 2) \mapsto \left(\frac{-3 + 8}{5}, \frac{4 + 6}{5}\right) = (1, 2)$ e $(-2, 1) \mapsto \left(\frac{6 + 4}{5}, \frac{-8 + 3}{5}\right) = (2, -1)$. ✓
+1. La lunghezza di $(1, 2)$ è $\sqrt{1 + 4} = \sqrt5$.
+2. Divido il vettore per la sua lunghezza. Ottengo il punto della retta che sta sul cerchio di raggio 1. Le sue coordinate sono il coseno e il seno della metà dell'angolo: $\cos\frac\vartheta2 = \frac1{\sqrt5}$ e $\sin\frac\vartheta2 = \frac2{\sqrt5}$.
+3. Passo all'angolo intero con le formule dell'angolo doppio. Il coseno del doppio è «coseno al quadrato meno seno al quadrato»:
+   $$\cos\vartheta = \frac15 - \frac45 = -\frac35.$$
+4. Il seno del doppio è «due volte seno per coseno»:
+   $$\sin\vartheta = 2 \cdot \frac2{\sqrt5} \cdot \frac1{\sqrt5} = \frac45.$$
+5. Metto i due numeri nella matrice:
+   $$\mathrm{Rif}_\vartheta = \begin{pmatrix} -\frac35 & \frac45 \\ \frac45 & \frac35 \end{pmatrix}.$$
+
+**Secondo modo: con il cambiamento di base.**
+
+1. Scelgo la base comoda: $(1, 2)$ sta sullo specchio, e $(-2, 1)$ è perpendicolare, perché $1 \cdot (-2) + 2 \cdot 1 = 0$. In questa base la matrice dello specchio ha sulla diagonale $1$ e $-1$, e zeri altrove. La chiamo $D$.
+2. La matrice con i due vettori nelle colonne è $M = \begin{pmatrix} 1 & -2 \\ 2 & 1 \end{pmatrix}$. Il suo determinante è $1 \cdot 1 - (-2) \cdot 2 = 5$.
+3. L'inversa: scambio i numeri sulla diagonale, cambio segno agli altri due, divido per il determinante.
+   $$M^{-1} = \frac15\begin{pmatrix} 1 & 2 \\ -2 & 1 \end{pmatrix}$$
+4. Primo prodotto. Moltiplicare a destra per $D$ cambia segno alla seconda colonna:
+   $$M\,D = \begin{pmatrix} 1 & 2 \\ 2 & -1 \end{pmatrix}$$
+5. Secondo prodotto, riga per colonna:
+   $$\begin{pmatrix} 1 & 2 \\ 2 & -1 \end{pmatrix}\cdot\frac15\begin{pmatrix} 1 & 2 \\ -2 & 1 \end{pmatrix} = \frac15\begin{pmatrix} 1 - 4 & 2 + 2 \\ 2 + 2 & 4 - 1 \end{pmatrix} = \frac15\begin{pmatrix} -3 & 4 \\ 4 & 3 \end{pmatrix}.$$
+
+È la stessa matrice del primo modo.
+
+**Controllo.** Il vettore $(1, 2)$ deve restare fermo: $\left(\frac{-3 + 8}5, \frac{4 + 6}5\right) = (1, 2)$. Il vettore $(-2, 1)$ deve andare nel suo opposto: $\left(\frac{6 + 4}5, \frac{-8 + 3}5\right) = (2, -1)$.
 :::
 
 ::: esercizio medio Riconoscere rotazioni e riflessioni
 Di' che isometria rappresentano $A = \frac15\begin{pmatrix} 4 & -3 \\ 3 & 4 \end{pmatrix}$ e $B = \frac15\begin{pmatrix} 4 & 3 \\ 3 & -4 \end{pmatrix}$: angolo per la rotazione, asse per la riflessione.
 ::: soluzione
-Entrambe hanno colonne unitarie ($\frac{16 + 9}{25} = 1$) e ortogonali: sono ortogonali.
+Seguo il metodo «Riconoscere un movimento rigido del piano».
 
-- $\det A = \frac{16 + 9}{25} = 1$: **rotazione** con $\cos\vartheta = \frac45$ e $\sin\vartheta = \frac35$, cioè $\vartheta = \arccos\frac45$ (circa 37°, non è un angolo notevole).
-- $\det B = \frac{-16 - 9}{25} = -1$: **riflessione**. L'asse è $\Ker(B - I)$: la prima riga di $B - I$ è $\left(-\frac15, \frac35\right)$, quindi $-x + 3y = 0$, cioè $x = 3y$: l'asse è $\Span((3, 1))$. Controllo: $B(3, 1) = \left(\frac{12 + 3}{5}, \frac{9 - 4}{5}\right) = (3, 1)$. ✓
+**Passo 1: sono ortogonali?** In tutte e due le matrici ogni colonna ha lunghezza al quadrato $\frac{16 + 9}{25} = 1$. Il prodotto scalare delle colonne è $\frac{-12 + 12}{25} = 0$ per $A$ e $\frac{12 - 12}{25} = 0$ per $B$. Sono ortogonali.
+
+**Passo 2: la matrice $A$.**
+
+1. Determinante: $\frac45 \cdot \frac45 - \left(-\frac35\right) \cdot \frac35 = \frac{16}{25} + \frac9{25} = 1$. È una **rotazione**.
+2. Nella prima colonna leggo il coseno, $\frac45$, e il seno, $\frac35$.
+3. Questi valori non sono nella tabella. L'angolo si scrive $\arccos\frac45$, che si legge «l'angolo che ha coseno quattro quinti». Vale circa 37 gradi.
+
+**Passo 3: la matrice $B$.**
+
+1. Determinante: $\frac45 \cdot \left(-\frac45\right) - \frac35 \cdot \frac35 = -\frac{16}{25} - \frac9{25} = -1$. È una **riflessione**.
+2. Cerco lo specchio, cioè i vettori $(x, y)$ che restano fermi. La prima riga della matrice dà la condizione $\frac{4x + 3y}5 = x$.
+3. Moltiplico per 5: $4x + 3y = 5x$. Tolgo $4x$ da tutti e due i lati: $3y = x$.
+4. Scelgo $y = 1$ e ottengo $x = 3$. Lo specchio è la retta $\Span((3, 1))$. La seconda riga dà la stessa condizione.
+
+**Controllo.** La matrice $B$ deve lasciare fermo $(3, 1)$: $\left(\frac{12 + 3}5, \frac{9 - 4}5\right) = (3, 1)$.
 :::
 
 ::: esercizio medio Due riflessioni fanno una rotazione
 (a) Calcola $\mathrm{Rif}_{\pi/2}\,\mathrm{Rif}_0$ e riconosci il risultato. (b) Dimostra che in generale $\mathrm{Rif}_\alpha\,\mathrm{Rif}_\beta = \mathrm{Rot}_{\alpha - \beta}$.
 ::: soluzione
-(a) $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \mathrm{Rot}_{\pi/2}$: riflettere rispetto all'asse $x$ e poi rispetto alla bisettrice è ruotare di un quarto di giro.
+**(a)** La prima matrice è lo specchio sulla bisettrice, la seconda è lo specchio sull'asse $x$. Le moltiplico riga per colonna:
 
-(b) Riga per colonna, le quattro entrate di $\mathrm{Rif}_\alpha\,\mathrm{Rif}_\beta$ sono:
+$$\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix} 0 \cdot 1 + 1 \cdot 0 & 0 \cdot 0 + 1 \cdot (-1) \\ 1 \cdot 1 + 0 \cdot 0 & 1 \cdot 0 + 0 \cdot (-1) \end{pmatrix} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}.$$
 
-- posto $(1, 1)$: $\cos\alpha\cos\beta + \sin\alpha\sin\beta$;
-- posto $(1, 2)$: $\cos\alpha\sin\beta - \sin\alpha\cos\beta$;
-- posto $(2, 1)$: $\sin\alpha\cos\beta - \cos\alpha\sin\beta$;
-- posto $(2, 2)$: $\sin\alpha\sin\beta + \cos\alpha\cos\beta$.
+Il risultato è la matrice del quarto di giro. In un prodotto di matrici agisce per prima quella a destra. Quindi: specchiare sull'asse $x$ e poi sulla bisettrice è come fare un quarto di giro.
 
-Per le formule di sottrazione, $\cos\alpha\cos\beta + \sin\alpha\sin\beta = \cos(\alpha - \beta)$ e $\sin\alpha\cos\beta - \cos\alpha\sin\beta = \sin(\alpha - \beta)$; l'entrata in alto a destra è $-\sin(\alpha - \beta)$. Quindi il prodotto è $\mathrm{Rot}_{\alpha - \beta}$. Anche il determinante torna: $(-1)(-1) = 1$.
+**(b)** Scrivo le due matrici con gli angoli $\alpha$ e $\beta$ e calcolo i quattro posti del prodotto, riga per colonna.
+
+1. In alto a sinistra: $\cos\alpha\cos\beta + \sin\alpha\sin\beta$.
+2. In alto a destra: $\cos\alpha\sin\beta - \sin\alpha\cos\beta$.
+3. In basso a sinistra: $\sin\alpha\cos\beta - \cos\alpha\sin\beta$.
+4. In basso a destra: $\sin\alpha\sin\beta + \cos\alpha\cos\beta$.
+
+Ora servono le formule di sottrazione del coseno e del seno, che si studiano a scuola:
+
+$$\cos(\alpha - \beta) = \cos\alpha\cos\beta + \sin\alpha\sin\beta, \qquad \sin(\alpha - \beta) = \sin\alpha\cos\beta - \cos\alpha\sin\beta.$$
+
+Le uso sui quattro posti.
+
+1. In alto a sinistra e in basso a destra c'è $\cos(\alpha - \beta)$.
+2. In basso a sinistra c'è $\sin(\alpha - \beta)$.
+3. In alto a destra c'è la stessa espressione con i segni scambiati, cioè $-\sin(\alpha - \beta)$.
+
+È la matrice della rotazione di angolo $\alpha - \beta$.
+
+**Controllo.** Anche il determinante torna: per il Teorema di Binet è $(-1) \cdot (-1) = 1$, quello di una rotazione. E nel punto (a), con $\alpha = \frac\pi2$ e $\beta = 0$, la formula dà proprio il quarto di giro.
 :::
 
 ::: esercizio medio Prodotti vettoriali e basi
 (a) Calcola $(2, -1, 1) \times (1, 3, -2)$ e verifica che è ortogonale ai due vettori. (b) Spiega perché $(2, -1, 1)$, $(1, 3, -2)$ e il loro prodotto vettoriale formano una base di $\R^3$.
 ::: soluzione
-(a) Con $v = (2, -1, 1)$ e $w = (1, 3, -2)$:
-- prima: $v_2w_3 - v_3w_2 = (-1)(-2) - 1 \cdot 3 = 2 - 3 = -1$;
-- seconda: $v_3w_1 - v_1w_3 = 1 \cdot 1 - 2 \cdot (-2) = 1 + 4 = 5$;
-- terza: $v_1w_2 - v_2w_1 = 2 \cdot 3 - (-1) \cdot 1 = 6 + 1 = 7$.
+**(a)** Metto i due vettori in colonna. Le righe della tabella sono $(2, 1)$, $(-1, 3)$ e $(1, -2)$.
 
-$v \times w = (-1, 5, 7)$. Controlli: $\langle (-1, 5, 7), v\rangle = -2 - 5 + 7 = 0$ e $\langle (-1, 5, 7), w\rangle = -1 + 15 - 14 = 0$. ✓
+1. Copro la prima riga: $(-1) \cdot (-2) - 3 \cdot 1 = 2 - 3 = -1$.
+2. Copro la seconda riga: $2 \cdot (-2) - 1 \cdot 1 = -4 - 1 = -5$. Cambio il segno: $5$.
+3. Copro la terza riga: $2 \cdot 3 - 1 \cdot (-1) = 6 + 1 = 7$.
 
-(b) $v$ e $w$ non sono proporzionali (il prodotto vettoriale non è nullo, Proposizione 22.16), quindi per il Corollario 22.17 la terna è una base.
+Il prodotto vettoriale è $(-1, 5, 7)$.
+
+Controllo con i prodotti scalari.
+
+- Con $(2, -1, 1)$: $-2 - 5 + 7 = 0$.
+- Con $(1, 3, -2)$: $-1 + 15 - 14 = 0$.
+
+**(b)** Il prodotto vettoriale non è il vettore di soli zeri. Per la Proposizione 22.16 i due vettori sono indipendenti. Allora per il Corollario 22.17 loro due e il loro prodotto vettoriale formano una base dello spazio.
 :::
 
 ::: esercizio medio Il piano generato da due vettori
 Sia $W = \Span((1, 0, 2), (0, 1, 1))$. (a) Trova un vettore ortogonale a $W$ e un'equazione cartesiana di $W$. (b) Il vettore $(1, 1, 3)$ sta in $W$? E $(1, 1, 1)$?
 ::: soluzione
-(a) $(1, 0, 2) \times (0, 1, 1) = (0 \cdot 1 - 2 \cdot 1,\ 2 \cdot 0 - 1 \cdot 1,\ 1 \cdot 1 - 0 \cdot 0) = (-2, -1, 1)$. Un vettore $x$ sta in $W$ se e solo se è ortogonale a questo vettore (lezione L21: $W = (W^\perp)^\perp$ e $W^\perp$ è la retta generata da $(-2, -1, 1)$). Equazione: $-2x - y + z = 0$, oppure $2x + y - z = 0$.
+$W$ è fatto da tutte le ricette dei due vettori: è un piano che passa per l'origine.
 
-(b) $(1, 1, 3)$: $2 + 1 - 3 = 0$, sta in $W$ (è la somma dei due generatori). $(1, 1, 1)$: $2 + 1 - 1 = 2 \neq 0$, non sta in $W$.
+**(a)** Un vettore perpendicolare al piano è perpendicolare a tutti e due i vettori: è il loro prodotto vettoriale. Le righe della tabella sono $(1, 0)$, $(0, 1)$ e $(2, 1)$.
+
+1. Copro la prima riga: $0 \cdot 1 - 1 \cdot 2 = -2$.
+2. Copro la seconda riga: $1 \cdot 1 - 0 \cdot 2 = 1$. Cambio il segno: $-1$.
+3. Copro la terza riga: $1 \cdot 1 - 0 \cdot 0 = 1$.
+
+Il vettore è $(-2, -1, 1)$. Controllo: con $(1, 0, 2)$ viene $-2 + 0 + 2 = 0$, con $(0, 1, 1)$ viene $0 - 1 + 1 = 0$.
+
+Un punto $(x, y, z)$ sta nel piano esattamente quando è perpendicolare a questo vettore (lezione L21). Scrivo «prodotto scalare uguale a zero»:
+
+$$-2x - y + z = 0.$$
+
+Questa è un'equazione cartesiana del piano, cioè la condizione che i suoi punti rispettano. Cambiando tutti i segni si può scrivere anche $2x + y - z = 0$.
+
+**(b)** Metto i numeri nell'equazione $2x + y - z = 0$.
+
+- Per $(1, 1, 3)$: $2 + 1 - 3 = 0$. Sta nel piano. Infatti è la somma dei due vettori di partenza.
+- Per $(1, 1, 1)$: $2 + 1 - 1 = 2$, che non è zero. Non sta nel piano.
 :::
 
 ::: esercizio difficile Proprietà del prodotto vettoriale dalla definizione
 Dimostra, usando solo la Definizione 22.14: (a) $w \times v = -(v \times w)$; (b) $v \times v = 0$; (c) $(\lambda v) \times w = \lambda(v \times w)$. (d) Controlla con $v = (1, 2, 3)$, $w = (4, 5, 6)$ l'identità $\|v \times w\|^2 + \langle v, w\rangle^2 = \|v\|^2\|w\|^2$, che le dispense dimostrano nella lezione L23.
 ::: soluzione
-(a) Scambiando $v$ e $w$ la prima coordinata diventa $w_2v_3 - w_3v_2 = -(v_2w_3 - v_3w_2)$, e lo stesso per le altre due: ogni coordinata cambia segno.
+**(a)** Scambiare i due vettori vuol dire scambiare le lettere $v$ e $w$ nella formula. Guardo i tre numeri uno alla volta.
 
-(b) Con $w = v$ ogni coordinata è del tipo $v_2v_3 - v_3v_2 = 0$. (Oppure: per (a), $v \times v = -(v \times v)$, quindi $v \times v = 0$.)
+1. Il primo numero di $v \times w$ è $v_2w_3 - v_3w_2$. Quello di $w \times v$ è $w_2v_3 - w_3v_2$. Sono gli stessi due prodotti, con i segni scambiati.
+2. Il secondo numero passa da $v_3w_1 - v_1w_3$ a $w_3v_1 - w_1v_3$: di nuovo i segni scambiati.
+3. Il terzo numero passa da $v_1w_2 - v_2w_1$ a $w_1v_2 - w_2v_1$: di nuovo i segni scambiati.
 
-(c) Ogni coordinata di $(\lambda v) \times w$ è, per esempio, $(\lambda v_2)w_3 - (\lambda v_3)w_2 = \lambda(v_2w_3 - v_3w_2)$.
+Tutti e tre i numeri cambiano segno. Quindi $w \times v = -(v \times w)$.
 
-(d) $v \times w = (-3, 6, -3)$, quindi $\|v \times w\|^2 = 9 + 36 + 9 = 54$; $\langle v, w\rangle = 4 + 10 + 18 = 32$, quindi $\langle v, w\rangle^2 = 1024$. A destra: $\|v\|^2 = 14$, $\|w\|^2 = 16 + 25 + 36 = 77$, e $14 \cdot 77 = 1078 = 54 + 1024$. ✓
+**(b)** Metto $v$ al posto di $w$ nella formula.
+
+1. Primo numero: $v_2v_3 - v_3v_2 = 0$.
+2. Secondo numero: $v_3v_1 - v_1v_3 = 0$.
+3. Terzo numero: $v_1v_2 - v_2v_1 = 0$.
+
+Un'altra strada usa il punto (a): $v \times v$ è uguale al suo opposto, e l'unico vettore uguale al suo opposto è quello di soli zeri.
+
+**(c)** Il vettore $\lambda v$ ha i numeri $\lambda v_1$, $\lambda v_2$, $\lambda v_3$. Li metto nella formula e raccolgo $\lambda$.
+
+1. Primo numero: $(\lambda v_2)w_3 - (\lambda v_3)w_2 = \lambda\,(v_2w_3 - v_3w_2)$.
+2. Secondo numero: $(\lambda v_3)w_1 - (\lambda v_1)w_3 = \lambda\,(v_3w_1 - v_1w_3)$.
+3. Terzo numero: $(\lambda v_1)w_2 - (\lambda v_2)w_1 = \lambda\,(v_1w_2 - v_2w_1)$.
+
+Ogni numero è $\lambda$ volte il numero corrispondente di $v \times w$.
+
+**(d)** Calcolo i due lati con i numeri.
+
+1. Dall'esempio della lezione, $v \times w = (-3, 6, -3)$. Il quadrato della sua norma è $9 + 36 + 9 = 54$.
+2. Il prodotto scalare è $1 \cdot 4 + 2 \cdot 5 + 3 \cdot 6 = 4 + 10 + 18 = 32$. Il suo quadrato è $1024$.
+3. Lato sinistro: $54 + 1024 = 1078$.
+4. Il quadrato della norma di $v$ è $1 + 4 + 9 = 14$. Quello di $w$ è $16 + 25 + 36 = 77$.
+5. Lato destro: $14 \cdot 77 = 1078$.
+
+I due lati sono uguali.
 :::
 
 ::: esercizio difficile Un'isometria dello spazio
 Sia $A = \begin{pmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}$. (a) Verifica che $A$ è ortogonale. (b) È una rotazione o un'antirotazione? (c) Trova l'asse e l'angolo.
 ::: soluzione
-(a) Le colonne sono $(0, 1, 0)$, $(-1, 0, 0)$, $(0, 0, -1)$: unitarie e a due a due ortogonali.
+**(a)** Le colonne sono $(0, 1, 0)$, poi $(-1, 0, 0)$, poi $(0, 0, -1)$.
 
-(b) Sviluppo lungo la terza riga: $\det A = (-1) \cdot \det\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = (-1) \cdot 1 = -1$. È un'**antirotazione**.
+1. In ogni colonna c'è un solo numero diverso da zero, ed è $1$ oppure $-1$. Quindi ogni colonna è lunga 1.
+2. I numeri diversi da zero stanno in tre posti diversi. Quindi il prodotto scalare di due colonne diverse è una somma di zeri: fa 0.
 
-(c) $Ae_3 = (0, 0, -1) = -e_3$: l'asse è l'asse $z$, $\Span(e_3)$. Sul piano $\{z = 0\}$ la matrice agisce come $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \mathrm{Rot}_{\pi/2}$. Quindi $A$ è la rotazione di $\frac\pi2$ intorno all'asse $z$ seguita dalla riflessione rispetto al piano $\{z = 0\}$. Con la formula di Martelli: $\cos\vartheta = \frac{\operatorname{tr}A - \det A}{2} = \frac{-1 + 1}{2} = 0$, cioè $\vartheta = \frac\pi2$. ✓
+La matrice è ortogonale.
+
+**(b)** Calcolo il determinante con lo sviluppo di Laplace lungo la terza riga. Lì c'è un solo numero diverso da zero, l'ultimo:
+
+$$\det A = (-1) \cdot \det\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = (-1) \cdot \big(0 \cdot 0 - (-1) \cdot 1\big) = (-1) \cdot 1 = -1.$$
+
+Il determinante è $-1$: è un'**antirotazione**.
+
+**(c)** Cerco l'asse e l'angolo.
+
+1. La terza colonna è l'immagine di $e_3$: è $(0, 0, -1)$, cioè l'opposto di $e_3$. In un'antirotazione i vettori dell'asse vanno nel loro opposto. Quindi l'asse è l'asse $z$, cioè $\Span(e_3)$.
+2. Sul pavimento, cioè sui vettori con il terzo numero uguale a zero, la matrice lavora come la tabella in alto a sinistra. È la matrice del quarto di giro.
+3. Quindi $A$ è il quarto di giro intorno all'asse $z$, seguito dallo specchio rispetto al pavimento. L'angolo è $\frac\pi2$.
+
+**Controllo** con la formula del libro di Martelli. La traccia è $0 + 0 - 1 = -1$. Allora
+
+$$\cos\vartheta = \frac{\operatorname{tr}A - \det A}2 = \frac{-1 - (-1)}2 = 0.$$
+
+L'angolo con coseno 0 è $\frac\pi2$.
 :::
 
 ::: esercizio esame Completare una matrice ortogonale
 Sia $A = \frac15\begin{pmatrix} 3 & a \\ 4 & b \end{pmatrix}$. (1) Trova tutti gli $a, b \in \R$ per cui $A$ è ortogonale. (2) Per ciascuna soluzione di' se $L_A$ è una rotazione o una riflessione (con angolo o asse). (3) Calcola $A^{-1}$.
 ::: soluzione
-(1) La prima colonna $\frac15(3, 4)$ è già unitaria. La seconda, $\frac15(a, b)$, deve essere unitaria, $a^2 + b^2 = 25$, e ortogonale alla prima, $3a + 4b = 0$. Dalla seconda condizione $a = -\frac43 b$; sostituendo, $\frac{16}9 b^2 + b^2 = 25$, cioè $\frac{25}9 b^2 = 25$, quindi $b = \pm3$ e $a = \mp4$. Le soluzioni sono $(a, b) = (-4, 3)$ e $(a, b) = (4, -3)$.
+**(1)** Le colonne sono $\frac15(3, 4)$ e $\frac15(a, b)$. Devono essere lunghe 1 e perpendicolari.
 
-(2) Con $(-4, 3)$: $A = \frac15\begin{pmatrix} 3 & -4 \\ 4 & 3 \end{pmatrix}$, $\det A = \frac{9 + 16}{25} = 1$: rotazione con $\cos\vartheta = \frac35$, $\sin\vartheta = \frac45$. Con $(4, -3)$: $A = \frac15\begin{pmatrix} 3 & 4 \\ 4 & -3 \end{pmatrix}$, $\det A = -1$: riflessione, con asse $\Span((2, 1))$ (è la matrice dell'esempio della sezione sulle riflessioni; controllo: $A(2, 1) = \left(\frac{6 + 4}{5}, \frac{8 - 3}{5}\right) = (2, 1)$).
+1. La prima colonna è già lunga 1: il quadrato della lunghezza è $\frac{9 + 16}{25} = 1$.
+2. La seconda colonna deve essere lunga 1: $\frac{a^2 + b^2}{25} = 1$, cioè $a^2 + b^2 = 25$.
+3. Le due colonne devono essere perpendicolari: $\frac{3a + 4b}{25} = 0$, cioè $3a + 4b = 0$.
+4. Dalla condizione del passo 3 ricavo $a$: prima $3a = -4b$, poi $a = -\frac43 b$.
+5. Sostituisco nella condizione del passo 2. Il quadrato di $-\frac43 b$ è $\frac{16}9 b^2$. Quindi $\frac{16}9 b^2 + b^2 = 25$, cioè $\frac{25}9 b^2 = 25$.
+6. Moltiplico per $\frac9{25}$: $b^2 = 9$. Quindi $b = 3$ oppure $b = -3$.
+7. Con $b = 3$ viene $a = -4$. Con $b = -3$ viene $a = 4$.
 
-(3) Per una matrice ortogonale $A^{-1} = {}^tA$. Rotazione: $A^{-1} = \frac15\begin{pmatrix} 3 & 4 \\ -4 & 3 \end{pmatrix}$ (la rotazione all'indietro). Riflessione: $A$ è simmetrica, quindi $A^{-1} = A$ (riflettere due volte riporta al punto di partenza).
+Le soluzioni sono due: $(a, b) = (-4, 3)$ e $(a, b) = (4, -3)$. Sono una l'opposta dell'altra, come nella figura della sezione sui movimenti rigidi del piano.
+
+**(2)** Guardo il determinante nei due casi.
+
+- Con $(-4, 3)$ la matrice è $\frac15\begin{pmatrix} 3 & -4 \\ 4 & 3 \end{pmatrix}$. Il determinante è $\frac{9 + 16}{25} = 1$: è una **rotazione**. Nella prima colonna leggo il coseno, $\frac35$, e il seno, $\frac45$. L'angolo è $\arccos\frac35$, circa 53 gradi.
+- Con $(4, -3)$ la matrice è $\frac15\begin{pmatrix} 3 & 4 \\ 4 & -3 \end{pmatrix}$. Il determinante è $\frac{-9 - 16}{25} = -1$: è una **riflessione**. È la matrice dell'esempio nella sezione sulle riflessioni: lo specchio è la retta $\Span((2, 1))$. Controllo: $(2, 1)$ va in $\left(\frac{6 + 4}5, \frac{8 - 3}5\right) = (2, 1)$ e resta fermo.
+
+**(3)** Per una matrice ortogonale l'inversa è la trasposta.
+
+- Rotazione: $A^{-1} = \frac15\begin{pmatrix} 3 & 4 \\ -4 & 3 \end{pmatrix}$. È la rotazione dello stesso angolo all'indietro.
+- Riflessione: la matrice è simmetrica, cioè uguale alla sua trasposta. Quindi $A^{-1} = A$. Ha senso: specchiare due volte riporta al punto di partenza.
 :::
 
 ::: esercizio esame Prodotto vettoriale, piano e base
 Siano $v = (2, 1, 0)$ e $w = (1, 0, 1)$. (1) Calcola un vettore ortogonale a $\Span(v, w)$ e un vettore unitario con la stessa direzione. (2) Scrivi un'equazione cartesiana del piano $\Span(v, w)$. (3) Dimostra che $v, w, v \times w$ è una base di $\R^3$ calcolando un determinante. (4) Anticipa la lezione L23: quanto vale l'area del parallelogramma di lati $v$ e $w$?
 ::: soluzione
-(1) $v \times w = (1 \cdot 1 - 0 \cdot 0,\ 0 \cdot 1 - 2 \cdot 1,\ 2 \cdot 0 - 1 \cdot 1) = (1, -2, -1)$. Controllo: $\langle (1, -2, -1), v\rangle = 2 - 2 + 0 = 0$, $\langle (1, -2, -1), w\rangle = 1 + 0 - 1 = 0$. ✓ Norma $\sqrt{1 + 4 + 1} = \sqrt6$, versore $\frac{1}{\sqrt6}(1, -2, -1)$.
+**(1)** Un vettore perpendicolare al piano è il prodotto vettoriale. Le righe della tabella con $v$ e $w$ in colonna sono $(2, 1)$, $(1, 0)$ e $(0, 1)$.
 
-(2) $x - 2y - z = 0$. Controllo: $v$ dà $2 - 2 - 0 = 0$, $w$ dà $1 - 0 - 1 = 0$. ✓
+1. Copro la prima riga: $1 \cdot 1 - 0 \cdot 0 = 1$.
+2. Copro la seconda riga: $2 \cdot 1 - 1 \cdot 0 = 2$. Cambio il segno: $-2$.
+3. Copro la terza riga: $2 \cdot 0 - 1 \cdot 1 = -1$.
 
-(3) Con le colonne $v, w, v \times w$, sviluppo lungo la prima riga:
-$$\begin{aligned} \det\begin{pmatrix} 2 & 1 & 1 \\ 1 & 0 & -2 \\ 0 & 1 & -1 \end{pmatrix} &= 2(0 + 2) - 1(-1 - 0) + 1(1 - 0) \\ &= 4 + 1 + 1 = 6 \neq 0. \end{aligned}$$
-Quindi i tre vettori sono indipendenti: una base. Il valore $6 = \|v \times w\|^2$ non è un caso: sviluppando lungo la terza colonna, il determinante della matrice di colonne $v, w, v \times w$ vale sempre $d_1^2 + d_2^2 + d_3^2 = \|v \times w\|^2 > 0$ (nella lezione L23 è la Proposizione 23.4).
+Quindi $v \times w = (1, -2, -1)$. Controllo: con $v$ viene $2 - 2 + 0 = 0$, con $w$ viene $1 + 0 - 1 = 0$.
 
-(4) $\|v \times w\| = \sqrt6$.
+Un vettore **unitario** è un vettore lungo 1. Per ottenerlo divido il vettore per la sua norma, che è $\sqrt{1 + 4 + 1} = \sqrt6$. Il vettore unitario è $\frac1{\sqrt6}(1, -2, -1)$.
+
+**(2)** I tre numeri del prodotto vettoriale sono i coefficienti dell'equazione del piano:
+
+$$x - 2y - z = 0.$$
+
+Controllo: con $v$ viene $2 - 2 - 0 = 0$, con $w$ viene $1 - 0 - 1 = 0$. I due vettori stanno nel piano.
+
+**(3)** Metto i tre vettori nelle colonne di una matrice e calcolo il determinante con lo sviluppo di Laplace lungo la prima riga. I segni sono più, meno, più.
+
+$$\det\begin{pmatrix} 2 & 1 & 1 \\ 1 & 0 & -2 \\ 0 & 1 & -1 \end{pmatrix} = 2 \cdot (0 + 2) - 1 \cdot (-1 - 0) + 1 \cdot (1 - 0) = 4 + 1 + 1 = 6.$$
+
+Le tre parentesi sono i determinanti delle tabelle che restano cancellando la prima riga e una colonna alla volta. Per esempio la prima è $0 \cdot (-1) - (-2) \cdot 1 = 2$.
+
+Il determinante non è zero, quindi i tre vettori sono indipendenti e formano una base.
+
+Il valore 6 è il quadrato della norma di $v \times w$, e non è un caso. Sviluppando lungo la terza colonna, il determinante della matrice con colonne $v$, $w$, $v \times w$ vale sempre $d_1^2 + d_2^2 + d_3^2$. È la norma al quadrato del prodotto vettoriale. Nella lezione L23 è la Proposizione 23.4.
+
+**(4)** L'area è la norma del prodotto vettoriale: $\sqrt6$.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Che cos'è un'isometria lineare? Perché fissa l'origine?
-Un isomorfismo che conserva il prodotto scalare: $\langle T(v), T(w)\rangle = \langle v, w\rangle$. Essendo lineare, manda $0$ in $0$; per questo le traslazioni non ne fanno parte.
+È una macchina lineare che si può disfare e che non cambia i prodotti scalari: il prodotto scalare di due vettori è uguale a quello delle loro immagini. Una macchina lineare manda il vettore zero nel vettore zero, quindi l'origine resta ferma. Per questo le traslazioni non ne fanno parte.
 :::
 
 ::: domanda Come si ricava la matrice della rotazione di angolo $\vartheta$?
-Le colonne sono le immagini di $e_1$ ed $e_2$: $e_1$ va in $(\cos\vartheta, \sin\vartheta)$ ed $e_2$ va in $(-\sin\vartheta, \cos\vartheta)$. Quindi $\mathrm{Rot}_\vartheta = \begin{pmatrix} \cos\vartheta & -\sin\vartheta \\ \sin\vartheta & \cos\vartheta \end{pmatrix}$, con determinante 1.
+Le colonne sono le immagini dei due vettori della base canonica. Il primo va nel punto del cerchio di raggio 1 all'angolo $\vartheta$, cioè $(\cos\vartheta, \sin\vartheta)$. Il secondo va in $(-\sin\vartheta, \cos\vartheta)$. Il determinante è $\cos^2\vartheta + \sin^2\vartheta = 1$.
 :::
 
 ::: domanda Rispetto a quale retta riflette $\mathrm{Rif}_\vartheta$? Qual è il suo determinante?
-Rispetto alla retta per l'origine che forma un angolo $\frac\vartheta2$ con l'asse $x$. Il determinante è $-\cos^2\vartheta - \sin^2\vartheta = -1$.
+Rispetto alla retta per l'origine che forma con l'asse $x$ un angolo $\frac\vartheta2$: la metà dell'angolo scritto nella matrice. Il determinante è $-\cos^2\vartheta - \sin^2\vartheta = -1$.
 :::
 
-::: domanda Perché una riflessione ha matrice $\operatorname{diag}(1, -1)$ in una base opportuna?
-Se $v_1$ sta sulla retta $r$ e $v_2$ sulla retta perpendicolare, la riflessione lascia fermo $v_1$ e cambia segno a $v_2$: $f(v_1) = v_1$, $f(v_2) = -v_2$.
+::: domanda Perché, in una base scelta bene, la matrice di una riflessione ha sulla diagonale $1$ e $-1$ e zeri altrove?
+Come primo vettore della base si prende un vettore che sta sullo specchio. Come secondo, un vettore perpendicolare allo specchio. La riflessione lascia fermo il primo e manda il secondo nel suo opposto. Le colonne della matrice dicono proprio questo: sono $(1, 0)$ e $(0, -1)$.
 :::
 
 ::: domanda Perché per verificare che un isomorfismo è un'isometria bastano i vettori di una base?
-Perché, per bilinearità e linearità, $\langle v, w\rangle$ e $\langle T(v), T(w)\rangle$ sono le stesse combinazioni dei prodotti $\langle v_i, v_j\rangle$ e $\langle T(v_i), T(v_j)\rangle$.
+Perché ogni vettore è una ricetta fatta con i vettori della base. Il prodotto scalare rispetta le ricette, e anche la macchina le rispetta. Quindi il prodotto scalare di due vettori qualsiasi, prima e dopo la macchina, si calcola con gli stessi conti a partire dai prodotti tra i vettori della base.
 :::
 
 ::: domanda Quali condizioni equivalenti definiscono un'isometria con un prodotto definito positivo?
-Conservare il prodotto scalare, conservare le norme ($\|T(v)\| = \|v\|$), conservare le distanze ($d(T(v), T(w)) = d(v, w)$).
+Sono tre. Non cambiare i prodotti scalari. Non cambiare le norme: l'immagine di un vettore è lunga come il vettore. Non cambiare le distanze: due immagini sono distanti quanto i vettori di partenza.
 :::
 
 ::: domanda Quando $L_A$ è un'isometria di $\R^n$? Che cosa vuol dire sulle colonne di $A$?
-Quando ${}^tAA = I_n$, cioè $A$ è ortogonale. L'entrata $(i, j)$ di ${}^tAA$ è $\langle A^i, A^j\rangle$, quindi le colonne formano una base ortonormale.
+Quando ${}^tA\,A = I_n$, cioè quando la matrice è ortogonale. Il numero di posto $(i, j)$ di quel prodotto è il prodotto scalare tra la colonna $i$ e la colonna $j$. Quindi le colonne sono lunghe 1 e perpendicolari tra loro: formano una base ortonormale.
 :::
 
 ::: domanda Che proprietà hanno le matrici ortogonali?
-$A^{-1} = {}^tA$; $\det A = \pm1$; gli autovalori reali sono $\pm1$; anche le righe sono ortonormali; il prodotto di due matrici ortogonali è ortogonale.
+L'inversa è la trasposta. Il determinante è 1 oppure $-1$. Gli autovalori reali possono essere solo 1 e $-1$. Anche le righe sono lunghe 1 e perpendicolari tra loro. Il prodotto di due matrici ortogonali è ortogonale.
 :::
 
 ::: domanda Perché le matrici ortogonali $2 \times 2$ sono solo rotazioni e riflessioni?
-La prima colonna è unitaria, quindi $(\cos\vartheta, \sin\vartheta)$; la seconda è unitaria e ortogonale alla prima, quindi $\pm(-\sin\vartheta, \cos\vartheta)$. Con il segno $+$ si ha $\mathrm{Rot}_\vartheta$, con il segno $-$ si ha $\mathrm{Rif}_\vartheta$.
+La prima colonna è lunga 1, quindi è un punto del cerchio di raggio 1: $(\cos\vartheta, \sin\vartheta)$. La seconda è lunga 1 e perpendicolare alla prima. Restano solo due scelte: $(-\sin\vartheta, \cos\vartheta)$ oppure $(\sin\vartheta, -\cos\vartheta)$. Con la prima viene la rotazione, con la seconda la riflessione.
 :::
 
 ::: domanda Che cosa sono le isometrie di $\R^3$?
-Rotazioni intorno a un asse ($\det 1$) e antirotazioni ($\det -1$): una rotazione intorno a un asse $r$ composta con la riflessione rispetto al piano $r^\perp$.
+Sono le rotazioni intorno a un asse, che hanno determinante 1, e le antirotazioni, che hanno determinante $-1$. Un'antirotazione è una rotazione intorno a un asse seguita dallo specchio rispetto al piano perpendicolare all'asse.
 :::
 
 ::: domanda Come si calcola il prodotto vettoriale? Come si ricorda il segno?
-$v \times w = (v_2w_3 - v_3w_2,\ v_3w_1 - v_1w_3,\ v_1w_2 - v_2w_1)$, oppure $(d_1, -d_2, d_3)$ con i minori della matrice di colonne $v$ e $w$, oppure con il determinante formale con $e_1, e_2, e_3$ nell'ultima colonna.
+Si mettono i due vettori in colonna. Si copre una riga alla volta e con i numeri rimasti si fa «diagonale meno l'altra diagonale». Al secondo numero si cambia segno. Con i nomi delle dispense: $v \times w = (d_1, -d_2, d_3)$. Un altro aiuto è la regola mnemonica: il determinante della tabella con $e_1$, $e_2$, $e_3$ nella terza colonna.
 :::
 
 ::: domanda Perché $v \times w$ è ortogonale a $v$? Quando è nullo?
-$\langle v \times w, v\rangle$ è il determinante della matrice con colonne $v, w, v$, che ha due colonne uguali, quindi è 0. È nullo esattamente quando $v$ e $w$ sono dipendenti (tutti i minori $2 \times 2$ nulli, rango $\le 1$).
+Il prodotto scalare di $v \times w$ con $v$ è il determinante della tabella con colonne $v$, $w$, $v$. Ha due colonne uguali, quindi vale 0. Il prodotto vettoriale è nullo esattamente quando i due vettori sono dipendenti, cioè uno multiplo dell'altro: in quel caso tutti e tre i minori valgono zero.
 :::
 
 ## Glossario
 
 ```glossario
-Isometria | Isomorfismo $T$ tra spazi con prodotto scalare tale che $\langle T(v), T(w)\rangle = \langle v, w\rangle$ per ogni $v, w$.
-Isometria lineare | Isometria di $\R^n$ del tipo $L_A(x) = Ax$; fissa l'origine.
-Rotazione del piano | $L_A$ con $A = \mathrm{Rot}_\vartheta$: gira il piano di $\vartheta$ in senso antiorario; $\det = 1$.
-$\mathrm{Rot}_\vartheta$ | La matrice con colonne $(\cos\vartheta, \sin\vartheta)$ e $(-\sin\vartheta, \cos\vartheta)$.
-Riflessione del piano | $L_A$ con $A = \mathrm{Rif}_\vartheta$: simmetria rispetto alla retta di angolo $\frac\vartheta2$; $\det = -1$.
-$\mathrm{Rif}_\vartheta$ | La matrice con colonne $(\cos\vartheta, \sin\vartheta)$ e $(\sin\vartheta, -\cos\vartheta)$.
-Matrice ortogonale | Matrice reale quadrata con ${}^tAA = I_n$: colonne ortonormali, $A^{-1} = {}^tA$, $\det A = \pm1$.
-$O(2)$ | L'insieme delle matrici ortogonali $2 \times 2$: le $\mathrm{Rot}_\vartheta$ e le $\mathrm{Rif}_\vartheta$. Non è un sottospazio.
-Orientazione | Il «verso di rotazione» del piano o dello spazio; le trasformazioni con determinante negativo la invertono.
-Rotazione dello spazio | Isometria di $\R^3$ che fissa una retta $r$ (l'asse) e ruota il piano $r^\perp$; $\det = 1$.
-Antirotazione | Composizione di una rotazione intorno a un asse $r$ e della riflessione rispetto al piano $r^\perp$; $\det = -1$.
-Asse | La retta fissata da una rotazione ($\Ker(A - I)$), o quella mandata nel suo opposto da un'antirotazione.
-Traccia | $\operatorname{tr}A$, somma degli elementi sulla diagonale; per le isometrie di $\R^3$, $\cos\vartheta = \frac{\operatorname{tr}A - \det A}{2}$.
-Prodotto vettoriale | $v \times w = (v_2w_3 - v_3w_2,\ v_3w_1 - v_1w_3,\ v_1w_2 - v_2w_1)$, definito solo in $\R^3$.
-Minori $d_i$ | Determinanti $2 \times 2$ della matrice $3 \times 2$ di colonne $v, w$ senza la riga $i$; $v \times w = (d_1, -d_2, d_3)$.
-Regola mnemonica | $v \times w$ come determinante formale con $e_1, e_2, e_3$ nell'ultima colonna, sviluppato con Laplace.
-Anticommutatività | $w \times v = -(v \times w)$; in particolare $v \times v = 0$.
+Isometria | Una macchina lineare che si può disfare e che non cambia i prodotti scalari. Quindi non cambia lunghezze, distanze e angoli: è un movimento rigido.
+Isometria lineare | Un'isometria di $\R^n$ del tipo «moltiplica per una matrice». Tiene ferma l'origine.
+Traslazione | Far scivolare tutto dello stesso spostamento. È un movimento rigido, ma sposta anche l'origine: non è lineare e resta fuori da queste lezioni.
+Rotazione del piano | Gira il piano di un angolo $\vartheta$ in senso antiorario intorno all'origine. La sua matrice è $\mathrm{Rot}_\vartheta$ e ha determinante 1.
+$\mathrm{Rot}_\vartheta$ | La matrice con prima colonna $(\cos\vartheta, \sin\vartheta)$ e seconda colonna $(-\sin\vartheta, \cos\vartheta)$.
+Riflessione del piano | Uno specchio: manda ogni punto dall'altra parte di una retta per l'origine, alla stessa distanza. La sua matrice è $\mathrm{Rif}_\vartheta$ e ha determinante $-1$.
+$\mathrm{Rif}_\vartheta$ | La matrice con prima colonna $(\cos\vartheta, \sin\vartheta)$ e seconda colonna $(\sin\vartheta, -\cos\vartheta)$. Lo specchio sta all'angolo $\frac\vartheta2$.
+Matrice ortogonale | Una matrice quadrata reale con ${}^tA\,A = I_n$. Le sue colonne sono lunghe 1 e perpendicolari tra loro. L'inversa è la trasposta, il determinante è 1 oppure $-1$.
+$O(2)$ | L'insieme delle matrici ortogonali con due righe e due colonne: tutte le rotazioni e tutte le riflessioni. Non è un sottospazio.
+Base ortonormale | Una base fatta di vettori lunghi 1 e perpendicolari tra loro, come le colonne di una matrice ortogonale.
+Orientazione | Il verso in cui si gira, orario o antiorario. Le matrici con determinante negativo la invertono, come fa uno specchio.
+Rotazione dello spazio | Un movimento rigido dello spazio che tiene ferma una retta, l'asse, e fa girare tutto il resto intorno a lei. Ha determinante 1.
+Antirotazione | Una rotazione intorno a un asse seguita dallo specchio rispetto al piano perpendicolare all'asse. Ha determinante $-1$.
+Asse | La retta intorno a cui si gira. In una rotazione i suoi vettori restano fermi. In un'antirotazione diventano il loro opposto.
+Traccia | La somma dei numeri sulla diagonale di una matrice, scritta $\operatorname{tr}A$. Per un'isometria dello spazio vale $\cos\vartheta = \frac{\operatorname{tr}A - \det A}{2}$.
+Prodotto vettoriale | Da due vettori dello spazio ne costruisce un terzo, $v \times w$, perpendicolare a tutti e due. Esiste solo per vettori fatti di tre numeri.
+Minori $d_i$ | I tre conti «diagonale meno l'altra diagonale» fatti sulla tabella con $v$ e $w$ in colonna, coprendo la riga $i$. Vale $v \times w = (d_1, -d_2, d_3)$.
+Regola mnemonica | Un aiuto per ricordare il prodotto vettoriale: il determinante della tabella con $v$ e $w$ nelle prime due colonne e $e_1$, $e_2$, $e_3$ nella terza.
+Anticommutatività | Scambiando i due vettori il prodotto vettoriale cambia segno: $w \times v = -(v \times w)$. Per esempio $e_2 \times e_1 = -e_3$.
+Regola della mano destra | Dice da che parte punta $v \times w$: pollice lungo $v$, indice lungo $w$, e il medio indica il prodotto vettoriale.
 ```
 
 ## Checklist
 
 ```checklist
-- So scrivere $\mathrm{Rot}_\vartheta$ e $\mathrm{Rif}_\vartheta$ e ricavarle dalle immagini di $e_1$ ed $e_2$.
-- So che l'asse di $\mathrm{Rif}_\vartheta$ ha angolo $\frac\vartheta2$ e so trovarlo come autospazio dell'autovalore 1.
-- So scrivere la matrice della riflessione rispetto a una retta data (con l'angolo, con la proiezione o con il cambiamento di base).
-- So la definizione di isometria e perché basta controllarla su una base.
-- So che, con un prodotto definito positivo, isometria vuol dire conservare norme o distanze.
-- So riconoscere una matrice ortogonale (${}^tAA = I$, colonne ortonormali) e usarne le proprietà ($A^{-1} = {}^tA$, $\det = \pm1$).
-- So classificare un'isometria del piano con il determinante e trovare angolo o asse.
-- So che le isometrie di $\R^3$ sono rotazioni e antirotazioni e le distinguo con il determinante.
-- So calcolare $v \times w$ con la formula, con i minori o con la regola mnemonica, e controllare il risultato con l'ortogonalità.
-- So usare il prodotto vettoriale per trovare un vettore normale a un piano o la direzione della retta intersezione di due piani.
+- So scrivere le matrici $\mathrm{Rot}_\vartheta$ e $\mathrm{Rif}_\vartheta$ e ricavarle guardando dove vanno $e_1$ ed $e_2$.
+- So che lo specchio di $\mathrm{Rif}_\vartheta$ sta all'angolo $\frac\vartheta2$ e so trovarlo cercando i vettori che restano fermi.
+- So scrivere la matrice della riflessione rispetto a una retta data, con l'angolo, con la proiezione o con il cambiamento di base.
+- So dire che cos'è un'isometria e perché basta controllarla sui vettori di una base.
+- So che, con il prodotto scalare normale, un'isometria è una macchina che non cambia le lunghezze, oppure le distanze.
+- So riconoscere una matrice ortogonale dalle colonne e usare le sue proprietà: l'inversa è la trasposta, il determinante è 1 oppure $-1$.
+- So riconoscere un movimento rigido del piano con il determinante e trovare l'angolo o lo specchio.
+- So che i movimenti rigidi dello spazio sono rotazioni e antirotazioni, e li distinguo con il determinante.
+- So calcolare $v \times w$ coprendo una riga alla volta, e controllo il risultato con il prodotto scalare.
+- So usare il prodotto vettoriale per trovare un vettore perpendicolare a un piano o la direzione della retta in cui si tagliano due piani.
 ```
 
 ## Fonti
@@ -24656,7 +29301,7 @@ Anticommutatività | $w \times v = -(v \times w)$; in particolare $v \times v = 
 - **Dispense 2026 del corso** (Buzano, Radeschi), lezione 22 «Lo spazio euclideo I», pp. 111–115: sezioni 22.A (isometrie lineari del piano), 22.B (isometrie dello spazio) e 22.C (prodotto vettoriale), seguite in ordine con la loro numerazione (Definizioni 22.1, 22.3, 22.5, 22.10, 22.14; Proposizioni 22.2, 22.4, 22.6, 22.7, 22.8, 22.11, 22.15, 22.16; Corollari 22.9, 22.12, 22.17; Teorema 22.13; l'Osservazione sulla base comoda per le riflessioni). Le dispense non hanno esercizi per questa lezione. Richiami: Proposizione 8.6 (rango per righe), Teorema 9.6 (Laplace), Teorema 10.4 (Binet), lezioni L16, L17, L19–L21.
 - **B. Martelli, *Geometria e algebra lineare***: §4.4.8–4.4.9 e §4.4.11 (dimostrazioni delle Proposizioni 22.2 e 22.4 con le coordinate polari), §7.5 (isometrie), §8.2 (Proposizione 8.2.1, matrici ortogonali, riflessioni, rotazioni e antirotazioni, Teorema 8.2.13 e la formula con la traccia), §9.1 (prodotto vettoriale). Il libro è gratuito: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf).
 - **Appelli d'esame** (Moodle 2025/26): domanda 2 del 10/07/2024; problemi 12 del 24/01/2024, del 10/07/2024, del 06/09/2024 e del 15/01/2026; domande sulla distanza tra rette dell'08/02/2024, del 06/09/2024, del 05/02/2026, del 03/06/2026 e del 07/09/2026. **Foglio 4 del tutorato** (esercizio 7, prodotto vettoriale e area). Le due domande riportate sono risolte in questi appunti.
-- Le parti **«Oltre le dispense»** (composizione e inversa delle rotazioni, proprietà delle matrici ortogonali, asse e angolo delle isometrie di $\R^3$, altre proprietà del prodotto vettoriale, collocazione nel libro), le dimostrazioni prese dal libro di Martelli e tutti gli esercizi sono aggiunte di questi appunti, per collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu» e gli esercizi sono di questi appunti. Le parti **«Oltre le dispense»** (composizione e inversa delle rotazioni, proprietà delle matrici ortogonali, asse e angolo delle isometrie di $\R^3$, altre proprietà del prodotto vettoriale, collocazione nel libro) e le dimostrazioni prese dal libro di Martelli collegano la lezione al resto del corso e all'esame.
 
 
 ---

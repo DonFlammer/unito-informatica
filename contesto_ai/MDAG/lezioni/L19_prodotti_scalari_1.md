@@ -30,7 +30,7 @@ genera_html: true
 ## In breve
 
 - Un **prodotto scalare** è una regola che prende due vettori e restituisce **un numero solo**. Un vettore è una lista di numeri.
-- Il più usato è quello **euclideo**: moltiplichi i numeri che stanno nello stesso posto e sommi i risultati, come nel conto della spesa. Da $(1, 3)$ e $(-2, 1)$ viene $-2 + 3 = 1$.
+- Il più usato è quello **euclideo**: moltiplichi i numeri che stanno nello stesso posto e sommi i risultati, come nel conto della spesa. Per i vettori $(1, 3)$ e $(-2, 1)$ il risultato è 1.
 - Il segno del risultato dice come sono messi i due vettori: positivo se puntano più o meno dalla stessa parte, zero se sono perpendicolari, negativo se puntano da parti opposte.
 - In generale un prodotto scalare è qualunque regola che rispetta tre richieste: una somma si può spezzare, un numero si può portare fuori, l'ordine dei due vettori non conta.
 - Un prodotto scalare è **definito positivo** se ogni vettore non nullo, moltiplicato per sé stesso, dà un numero positivo. È **degenere** se c'è un vettore non nullo che dà zero con tutti gli altri.
@@ -169,12 +169,6 @@ Primo posto: $3 \cdot 2 = 6$. Secondo posto: $1 \cdot 5 = 5$. Somma: $6 + 5 = 11
 Primo posto: $1 \cdot 4 = 4$. Secondo posto: $2 \cdot (-2) = -4$. Somma: $4 - 4 = 0$.
 
 Il prodotto è zero, quindi i due vettori sono perpendicolari.
-:::
-
-::: prova Compri 1 chilo di pane a 3 euro al chilo e 2 litri di latte a 1 euro al litro. Scrivi i due vettori e calcola il totale.
-Quantità: $(1, 2)$. Prezzi: $(3, 1)$.
-
-Totale: $1 \cdot 3 + 2 \cdot 1 = 3 + 2 = 5$ euro.
 :::
 
 > [!RICORDA]
@@ -326,30 +320,16 @@ A volte nello stesso discorso ci sono più prodotti scalari diversi, e le parent
 Le dispense scrivono $g : V \times V \to \R$. Si legge «$g$ va da $V$ per $V$ a $\R$»: la macchina $g$ prende una coppia di vettori e restituisce un numero reale. La freccia corta $\to$ vuol dire lo stesso della freccia lunga di prima: «va in».
 
 > [!OLTRE] · il quadrato di una somma, con i vettori
-> Con i numeri il quadrato di una somma si apre così: $(a + b)^2 = a^2 + 2ab + b^2$. Per esempio $(2 + 3)^2 = 25$, e anche $4 + 12 + 9 = 25$.
->
-> Con un prodotto scalare succede la stessa cosa. Al posto del quadrato c'è il prodotto di un vettore con sé stesso.
+> Con i numeri il quadrato di una somma si apre così: $(a + b)^2 = a^2 + 2ab + b^2$. Con un prodotto scalare succede la stessa cosa, se al posto del quadrato metti il prodotto di un vettore con sé stesso.
 > $$\langle v + w, v + w\rangle = \langle v, v\rangle + 2\langle v, w\rangle + \langle w, w\rangle$$
-> Il perché, in tre passi.
->
-> 1. Spezzo la somma nel primo posto, con l'assioma (1):
->    $$\langle v, v + w\rangle + \langle w, v + w\rangle$$
-> 2. Spezzo la somma nel secondo posto di tutti e due i pezzi, con la regola (4):
->    $$\langle v, v\rangle + \langle v, w\rangle + \langle w, v\rangle + \langle w, w\rangle$$
-> 3. Per la simmetria i due pezzi in mezzo sono uguali. Insieme fanno due volte $\langle v, w\rangle$.
->
-> Controllo con il conto della spesa, per $v = (1, 2)$ e $w = (3, 1)$. La somma è $(4, 3)$, che con sé stessa dà $16 + 9 = 25$. A destra: $5 + 2 \cdot 5 + 10 = 25$.
->
-> Questa formula serve nella lezione L20, per la disuguaglianza triangolare.
+> Il motivo: la somma si spezza nel primo posto e poi nel secondo, e vengono quattro pezzi. I due pezzi misti sono uguali per la simmetria. I passaggi sono nella lezione L20, dove la formula serve per la disuguaglianza triangolare.
 
-::: prova Sai che $\langle v, w\rangle = 5$. Quanto valgono $\langle 2v, w\rangle$ e $\langle w, v\rangle$?
+::: prova Sai che $\langle v, w\rangle = 5$ e che $\langle v', w\rangle = -2$. Quanto valgono $\langle 2v, w\rangle$, $\langle w, v\rangle$ e $\langle v + v', w\rangle$?
 $\langle 2v, w\rangle = 2 \cdot 5 = 10$: il numero 2 esce fuori (assioma 2).
 
 $\langle w, v\rangle = 5$: l'ordine non conta (assioma 3).
-:::
 
-::: prova Sai che $\langle v, w\rangle = 5$ e $\langle v', w\rangle = -2$. Quanto vale $\langle v + v', w\rangle$?
-La somma nel primo posto si spezza (assioma 1): $5 + (-2) = 3$.
+$\langle v + v', w\rangle = 5 + (-2) = 3$: la somma nel primo posto si spezza (assioma 1).
 :::
 
 ::: prova Che differenza c'è tra $2 \cdot (1, 3)$ e $\langle (2, 0), (1, 3)\rangle$?
@@ -461,12 +441,6 @@ No. Con il vettore nullo al posto di $x$ e di $y$ viene $g(0, 0) = 0 \cdot 0 + 5
 Sì. Ogni pezzo è un numero fisso per un numero di $x$ per un numero di $y$. Scambiando $x$ con $y$ la formula non cambia.
 
 Il valore: $4 \cdot 1 \cdot 3 + 2 \cdot 1 = 12 + 2 = 14$.
-:::
-
-::: prova La formula $g(x, y) = x_1y_2 - x_2y_1$ è simmetrica? Prova con $e_1$ ed $e_2$.
-No. Con $x = e_1 = (1, 0)$ e $y = e_2 = (0, 1)$ viene $1 \cdot 1 - 0 \cdot 0 = 1$.
-
-Con i posti scambiati, $x = e_2$ e $y = e_1$, viene $0 \cdot 0 - 1 \cdot 1 = -1$. I due risultati sono diversi.
 :::
 
 > [!RICORDA]
@@ -603,12 +577,6 @@ Tutti i prodotti visti finora, in una tabella.
 | $x_1y_1$ | sì | no | $e_2$ dà zero con tutti |
 | $x_1y_1 - x_2y_2$ | no | no | $e_2$ con sé stesso dà $-1$ |
 
-::: prova Con il conto della spesa, quanto vale $\langle v, v\rangle$ per $v = (1, 2)$? Può venire negativo per qualche vettore?
-$1 \cdot 1 + 2 \cdot 2 = 1 + 4 = 5$.
-
-Non può mai venire negativo, perché è una somma di quadrati.
-:::
-
 ::: prova Il prodotto $g(x, y) = x_2y_2$ su $\R^2$ è degenere? Quale vettore non vede?
 Sì. Usa solo i secondi numeri, quindi non vede il vettore $e_1 = (1, 0)$, che ha il secondo numero uguale a 0: $g(e_1, w) = 0 \cdot w_2 = 0$ per ogni vettore $w$.
 :::
@@ -672,14 +640,7 @@ $$\langle p, q\rangle = p(0)q(0) + p(1)q(1) + p(2)q(2)$$
 
 A parole: i valori dei due polinomi in 0 moltiplicati tra loro, più quelli in 1, più quelli in 2.
 
-**È un prodotto scalare.** Scambiando i due polinomi non cambia niente, perché in ogni pezzo si moltiplicano due numeri. Somme e multipli si spezzano, perché il valore di una somma di polinomi è la somma dei valori. Per esempio $x + 1$ in 2 vale 3, cioè $2 + 1$.
-
-> [!DIM] perché una somma si spezza, con le formule
-> Chiamo $t$ uno dei tre punti. Il valore di una somma di polinomi in $t$ è la somma dei valori: $(p + p')(t) = p(t) + p'(t)$. Allora in ognuno dei tre punti vale
-> $$\big(p(t) + p'(t)\big)\,q(t) = p(t)q(t) + p'(t)q(t)$$
-> Sommo sui tre punti $t = 0, 1, 2$. A sinistra viene $\langle p + p', q\rangle$. A destra viene $\langle p, q\rangle + \langle p', q\rangle$. È l'assioma (1).
->
-> Per l'assioma (2) si usa che il valore di un multiplo è il multiplo del valore, $(\lambda p)(t) = \lambda\,p(t)$, e si raccoglie $\lambda$.
+**È un prodotto scalare.** Scambiando i due polinomi non cambia niente, perché in ogni pezzo si moltiplicano due numeri. Somme e multipli si spezzano, perché il valore di una somma di polinomi è la somma dei valori, e il valore di un multiplo è il multiplo del valore. Per esempio $x + 1$ in 2 vale 3, cioè $2 + 1$.
 
 **È definito positivo.** Un polinomio con sé stesso dà la somma dei quadrati dei suoi tre valori.
 
@@ -747,32 +708,20 @@ Le dispense dicono anche che questo prodotto **non è degenere**, senza dimostra
 Le dispense riassumono i tre casi in un solo esempio.
 
 > [!ESEMPIO] 19.4 · Tre prodotti scalari su $\R_2[x]$
-> Lo spazio è $\R_2[x]$: i polinomi con i coefficienti reali di grado al massimo 2.
+> Sono i tre prodotti appena visti, tutti sullo spazio $\R_2[x]$ dei polinomi di grado al massimo 2.
 >
-> **Primo prodotto.**
-> $$\langle p, q\rangle = p(0)q(0) + p(1)q(1) + p(2)q(2)$$
-> È **definito positivo**. Per ogni polinomio non nullo $p$ vale
-> $$\langle p, p\rangle = p(0)^2 + p(1)^2 + p(2)^2 > 0$$
-> perché un polinomio non nullo di grado al massimo 2 non può valere zero in tutti e tre i punti 0, 1 e 2.
+> | Il prodotto $\langle p, q\rangle$ | Che cosa è | Il motivo delle dispense |
+> |---|---|---|
+> | $p(0)q(0) + p(1)q(1) + p(2)q(2)$ | definito positivo | un polinomio non nullo non può valere zero nei tre punti 0, 1 e 2 |
+> | $p(0)q(0) + p(1)q(1)$ | degenere | il polinomio $x(1 - x)$ dà zero con ogni polinomio |
+> | $p(0)q(0) + p(1)q(1) - p(2)q(2)$ | non degenere, ma non definito positivo | il polinomio $x - 1$ con sé stesso dà $(-1)^2 - 1^2 = 0$ |
 >
-> **Secondo prodotto.**
-> $$\langle p, q\rangle = p(0)q(0) + p(1)q(1)$$
-> È **degenere**. Il polinomio $p(x) = x(1 - x)$ vale zero in 0 e in 1, quindi $\langle p, q\rangle = 0$ per ogni polinomio $q$ dello spazio.
->
-> **Terzo prodotto.**
-> $$\langle p, q\rangle = p(0)q(0) + p(1)q(1) - p(2)q(2)$$
-> **Non è degenere, ma non è definito positivo.** Per il polinomio $p(x) = x - 1$ viene
-> $$\langle p, p\rangle = (-1)^2 - 1^2 = 0$$
-> Le dispense non scrivono il pezzo di mezzo, $p(1)^2$, perché vale 0.
+> Nell'ultima riga le dispense non scrivono il pezzo di mezzo, perché il polinomio $x - 1$ vale zero in 1.
 
 ::: prova Con il primo prodotto (punti 0, 1 e 2) calcola $\langle 1, x\rangle$. Il polinomio $1$ è quello che vale sempre 1.
 Valori di $1$ nei tre punti: 1, 1, 1. Valori di $x$: 0, 1, 2.
 
 Prodotti punto per punto: $1 \cdot 0 = 0$, poi $1 \cdot 1 = 1$, poi $1 \cdot 2 = 2$. Somma: $0 + 1 + 2 = 3$.
-:::
-
-::: prova Con il primo prodotto calcola $\langle x, x\rangle$.
-Valori di $x$ nei tre punti: 0, 1, 2. I loro quadrati: 0, 1, 4. Somma: $0 + 1 + 4 = 5$.
 :::
 
 ::: prova Con il secondo prodotto (punti 0 e 1) quanto vale $\langle x - x^2,\ 1\rangle$?
@@ -858,11 +807,9 @@ Se il vettore non è nullo, almeno uno dei suoi numeri non è zero. Il quadrato 
 > [!DIM] la dimostrazione, dal libro di Martelli (Proposizione 7.1.5)
 > Le dispense non riportano la dimostrazione. Eccola in tre passi.
 >
-> 1. **Somme e multipli si spezzano.** Viene dalle regole del prodotto tra matrici (lezione L08). La trasposta di una somma è la somma delle trasposte, e il prodotto si distribuisce sulla somma.
->    $${}^t(x + x')\,y = ({}^tx + {}^tx')\,y = {}^tx\,y + {}^tx'\,y$$
->    Per i multipli il numero esce fuori: ${}^t(\lambda x)\,y = \lambda\,{}^tx\,y$.
-> 2. **Simmetria.** La somma $x_1y_1 + \dots + x_ny_n$ è uguale alla somma $y_1x_1 + \dots + y_nx_n$, perché nei prodotti tra numeri l'ordine non conta.
-> 3. **Definito positivo.** Il prodotto $\langle x, x\rangle = x_1^2 + \dots + x_n^2$ è una somma di quadrati. Se $x \neq 0$, almeno un numero $x_i$ non è zero. Il suo quadrato è positivo e rende positiva tutta la somma.
+> 1. **Somme e multipli si spezzano.** Viene dalle regole del prodotto tra matrici (lezione L08): ${}^t(x + x')\,y = {}^tx\,y + {}^tx'\,y$ e ${}^t(\lambda x)\,y = \lambda\,{}^tx\,y$.
+> 2. **Simmetria.** In ogni pezzo $x_iy_i$ i due numeri si possono scambiare.
+> 3. **Definito positivo.** Se $x \neq 0$, almeno un numero $x_i$ non è zero. Il suo quadrato è positivo e rende positiva la somma $x_1^2 + \dots + x_n^2$.
 
 ### Prova con lo strumento
 
@@ -899,10 +846,6 @@ Per esteso: $x_1y_1 + x_2y_2$.
 Con i numeri: $4 \cdot 2 + 1 \cdot 3 = 8 + 3 = 11$.
 :::
 
-::: prova Quanto vale $\langle x, x\rangle$ per $x = (1, -2, 2)$?
-$1^2 + (-2)^2 + 2^2 = 1 + 4 + 4 = 9$. Il quadrato di un numero negativo è positivo.
-:::
-
 > [!RICORDA]
 > - Il **prodotto scalare euclideo** di $\R^n$: moltiplica i numeri nello stesso posto e somma.
 > - Tre scritture, un solo conto: per esteso, con il simbolo $\sum$, oppure ${}^tx\,y$ (riga per colonna).
@@ -925,7 +868,7 @@ Ogni pezzo ha il suo peso: il numero che ha davanti. I quattro pesi si possono m
 | $x_1$ | $2$ | $1$ |
 | $x_2$ | $1$ | $1$ |
 
-Una tabella di numeri è una **matrice** (lezione L08). Quella dei pesi la chiamiamo $S$.
+Una tabella di numeri è una **matrice** (lezione L08). Quella dei pesi la chiamiamo $S$. Ha due righe e due colonne: in breve, è una matrice $2 \times 2$, che si legge «due per due».
 
 $$S = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$$
 
@@ -993,7 +936,7 @@ Perché è vero? Somme e multipli si spezzano, perché il prodotto tra matrici r
 
 ### La formula per esteso
 
-Per i conti a mano conviene la formula con tutti i pezzi scritti. Per una matrice simmetrica con due righe e due colonne, fatta con tre numeri qualsiasi $a$, $b$ e $c$, è questa.
+Per i conti a mano conviene la formula con tutti i pezzi scritti. Per una matrice simmetrica $2 \times 2$, fatta con tre numeri qualsiasi $a$, $b$ e $c$, è questa.
 
 $$S = \begin{pmatrix} a & b \\ b & c \end{pmatrix} \qquad\qquad g_S(x, y) = a\,x_1y_1 + b\,x_1y_2 + b\,x_2y_1 + c\,x_2y_2$$
 
@@ -1063,10 +1006,6 @@ $g_S(x, y) = x_1y_1 + 3x_1y_2 + 3x_2y_1 + 2x_2y_2$. Ogni casella è il peso del 
 $g_S(e_2, e_2) = S_{22} = 2$: riga 2, colonna 2.
 
 $g_S(e_1, e_2) = S_{12} = 3$: riga 1, colonna 2.
-:::
-
-::: prova Per la stessa matrice calcola $g_S(x, y)$ con $x = (1, 1)$ e $y = (2, 0)$.
-Uso la formula: $1 \cdot 1 \cdot 2 + 3 \cdot 1 \cdot 0 + 3 \cdot 1 \cdot 2 + 2 \cdot 1 \cdot 0 = 2 + 0 + 6 + 0 = 8$.
 :::
 
 > [!RICORDA]
@@ -1141,8 +1080,8 @@ Guardando la matrice si capisce in fretta se il prodotto è degenere oppure defi
 
 Le dispense non danno questi criteri: vengono dal libro di Martelli. Negli esercizi e nei problemi d'esame fanno risparmiare tempo. Una matrice simmetrica si chiama **definita positiva** quando lo è il suo prodotto scalare.
 
-> [!RIPASSO] il determinante di una matrice con due righe e due colonne
-> Il **determinante** è un numero che si calcola da una matrice quadrata (lezione L09). Si scrive $\det$. Per una matrice con due righe e due colonne: il prodotto dei due numeri sulla diagonale, meno il prodotto degli altri due.
+> [!RIPASSO] il determinante di una matrice $2 \times 2$
+> Il **determinante** è un numero che si calcola da una matrice quadrata (lezione L09). Si scrive $\det$. Per una matrice $2 \times 2$: il prodotto dei due numeri sulla diagonale, meno il prodotto degli altri due.
 > $$\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc \qquad\qquad \det\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix} = 1 \cdot 4 - 2 \cdot 2 = 0$$
 > Il determinante è zero esattamente quando c'è un vettore non nullo che la matrice manda nel vettore nullo (lezione L10).
 
@@ -1189,11 +1128,11 @@ Per esempio, con 5 e 1 sulla diagonale un vettore con sé stesso dà $5x_1^2 + x
 | $1$ e $-3$ | non degenere, ma non definito positivo | nessuno è zero, ma uno è negativo: $e_2$ con sé stesso dà $-3$ |
 | $0$ e $1$ | degenere | c'è uno zero: il prodotto non vede $e_1$ |
 
-### Terza scorciatoia: le matrici con due righe e due colonne
+### Terza scorciatoia: le matrici due per due
 
-Per una matrice simmetrica con due righe e due colonne bastano due numeri: quello in alto a sinistra e il determinante.
+Per una matrice simmetrica $2 \times 2$ bastano due numeri: quello in alto a sinistra e il determinante.
 
-> [!OLTRE] · il criterio per le matrici con due righe e due colonne
+> [!OLTRE] · il criterio per le matrici $2 \times 2$
 > La matrice simmetrica $S = \begin{pmatrix} a & b \\ b & c \end{pmatrix}$ è **definita positiva** esattamente quando valgono tutte e due queste condizioni:
 >
 > - il numero in alto a sinistra è positivo: $a > 0$;
@@ -1205,14 +1144,12 @@ Due esempi.
 - Per la matrice $\begin{pmatrix} 1 & 2 \\ 2 & 3 \end{pmatrix}$: in alto a sinistra c'è 1, positivo. Ma il determinante è $1 \cdot 3 - 2 \cdot 2 = -1$, negativo. Non è definita positiva.
 
 > [!DIM] perché il criterio funziona
-> Un vettore con sé stesso dà $g_S(x, x) = a\,x_1^2 + 2b\,x_1x_2 + c\,x_2^2$. Se $a$ non è zero, questa espressione si riscrive come somma di due pezzi con un quadrato ciascuno. Il trucco si chiama «completare il quadrato».
+> Un vettore con sé stesso dà $a\,x_1^2 + 2b\,x_1x_2 + c\,x_2^2$. Se $a$ non è zero, si riscrive come somma di due pezzi con un quadrato ciascuno. Il trucco si chiama «completare il quadrato».
 > $$a\,x_1^2 + 2b\,x_1x_2 + c\,x_2^2 = a\left(x_1 + \frac ba x_2\right)^2 + \frac{ac - b^2}{a}\,x_2^2$$
 >
-> **Se le due condizioni valgono, il prodotto è definito positivo.** I due pezzi a destra non sono mai negativi. Fanno zero insieme solo quando $x_2 = 0$ e poi $x_1 = 0$, cioè per il vettore nullo.
+> **Se le due condizioni valgono**, i due pezzi a destra non sono mai negativi. Fanno zero insieme solo quando $x_2 = 0$ e poi $x_1 = 0$, cioè per il vettore nullo.
 >
-> **Se il prodotto è definito positivo, le due condizioni valgono.** La prima: $a = g_S(e_1, e_1)$, che è positivo. La seconda: prendo il vettore $x = (-b, a)$, che non è nullo perché $a$ non è zero. Con sé stesso dà
-> $$g_S(x, x) = a\,b^2 - 2ab^2 + c\,a^2 = a\,(ac - b^2)$$
-> Questo numero è positivo e $a$ è positivo, quindi anche $ac - b^2$ è positivo.
+> **Se il prodotto è definito positivo**, allora $a = g_S(e_1, e_1)$ è positivo. Poi prendo il vettore $(-b, a)$, che non è nullo. Con sé stesso dà $ab^2 - 2ab^2 + ca^2 = a\,(ac - b^2)$. Questo numero è positivo e $a$ è positivo, quindi anche $ac - b^2$ è positivo.
 
 ::: prova Il prodotto $g_S$ con $S = \begin{pmatrix} 2 & 3 \\ 3 & 5 \end{pmatrix}$ è definito positivo?
 Sì. In alto a sinistra c'è 2, positivo. Il determinante è $2 \cdot 5 - 3 \cdot 3 = 10 - 9 = 1$, positivo.
@@ -1222,16 +1159,10 @@ Sì. In alto a sinistra c'è 2, positivo. Il determinante è $2 \cdot 5 - 3 \cdo
 Sì. Il determinante è $3 \cdot 12 - 6 \cdot 6 = 36 - 36 = 0$.
 :::
 
-::: prova Una matrice diagonale ha $2$ e $-1$ sulla diagonale. Il suo prodotto è definito positivo? È degenere?
-Non è definito positivo, perché $-1$ è negativo: il vettore $e_2$ con sé stesso dà $-1$.
-
-Non è degenere, perché sulla diagonale non ci sono zeri.
-:::
-
 > [!RICORDA]
 > - Il prodotto $g_S$ è degenere esattamente quando $\det S = 0$.
 > - Matrice diagonale: definita positiva quando i numeri sulla diagonale sono tutti positivi.
-> - Matrice con due righe e due colonne: definita positiva quando il numero in alto a sinistra è positivo e il determinante è positivo.
+> - Matrice $2 \times 2$: definita positiva quando il numero in alto a sinistra è positivo e il determinante è positivo.
 
 ## La matrice associata: la tabella dei prodotti (pp. 98–99)
 
@@ -1304,12 +1235,7 @@ Le dispense lo scrivono così.
 > $$\mathcal B = \left\{ v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, v_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix} \right\}.$$
 > La matrice associata è
 > $$[g]_{\mathcal B} = \begin{pmatrix} g(v_1, v_1) & g(v_1, v_2) \\ g(v_2, v_1) & g(v_2, v_2) \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}.$$
-> I conti sono quelli della tabellina di prima.
->
-> - $g(v_1, v_1) = 1 \cdot 1 + 0 \cdot 0 = 1$.
-> - $g(v_1, v_2) = 1 \cdot 1 + 0 \cdot 1 = 1$.
-> - $g(v_2, v_2) = 1 \cdot 1 + 1 \cdot 1 = 2$.
-> - $g(v_2, v_1)$ è uguale a $g(v_1, v_2)$ per la simmetria: 1.
+> I quattro conti sono quelli della tabellina qui sopra. La casella $g(v_2, v_1)$ è uguale alla casella $g(v_1, v_2)$ per la simmetria.
 >
 > Nella base canonica lo stesso prodotto ha come matrice la matrice identità $I_2$. Stesso prodotto, due basi, due matrici diverse.
 
@@ -1349,17 +1275,12 @@ Le dispense scrivono questa regola con le lettere.
 - Ogni pezzo è fatto così: una quantità di $v$, per una quantità di $w$, per un numero della tabellina. È la tabella a quattro righe di prima, con le lettere al posto dei numeri.
 
 > [!DIM] perché vale, con una base di due vettori
-> Le dispense dicono solo che la formula viene dalla bilinearità. Ecco i passaggi con $n = 2$, cioè con $v = \lambda_1v_1 + \lambda_2v_2$ e $w = \mu_1v_1 + \mu_2v_2$.
+> Le dispense dicono solo che la formula viene dalla bilinearità. Ecco i passaggi con $v = \lambda_1v_1 + \lambda_2v_2$ e $w = \mu_1v_1 + \mu_2v_2$.
 >
 > 1. Spezzo nel primo posto, con gli assiomi (1) e (2). Il vettore $w$ resta fermo.
->    $$g(\lambda_1v_1 + \lambda_2v_2,\ w) = \lambda_1\,g(v_1, w) + \lambda_2\,g(v_2, w)$$
-> 2. Spezzo nel secondo posto, con le regole (4) e (5), dentro ognuno dei due pezzi.
->    $$g(v_1, w) = \mu_1\,g(v_1, v_1) + \mu_2\,g(v_1, v_2)$$
->    $$g(v_2, w) = \mu_1\,g(v_2, v_1) + \mu_2\,g(v_2, v_2)$$
-> 3. Metto insieme.
+>    $$g(v, w) = \lambda_1\,g(v_1, w) + \lambda_2\,g(v_2, w)$$
+> 2. Spezzo $w$ nel secondo posto di ognuno dei due pezzi, con le regole (4) e (5). Vengono quattro pezzi, uno per ogni coppia di indici.
 >    $$g(v, w) = \lambda_1\mu_1\,g(v_1, v_1) + \lambda_1\mu_2\,g(v_1, v_2) + \lambda_2\mu_1\,g(v_2, v_1) + \lambda_2\mu_2\,g(v_2, v_2)$$
->
-> Sono quattro pezzi, uno per ogni coppia di indici.
 
 La stessa regola, scritta con le matrici, è ancora più corta.
 
@@ -1432,10 +1353,6 @@ Secondo con sé stesso: $0 \cdot 0 + 2 \cdot 2 = 4$.
 La matrice è $\begin{pmatrix} 2 & 2 \\ 2 & 4 \end{pmatrix}$.
 :::
 
-::: prova La matrice $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ può essere la matrice associata a un prodotto scalare?
-No, perché non è simmetrica: sopra la diagonale c'è 2, sotto c'è 3. Una matrice associata a un prodotto scalare è sempre simmetrica.
-:::
-
 ::: prova In una base $\{v_1, v_2\}$ la matrice associata a $g$ è $\begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}$. Quanto vale $g(v_1 + v_2,\ v_2)$?
 Spezzo la somma nel primo posto: $g(v_1, v_2) + g(v_2, v_2)$.
 
@@ -1500,11 +1417,9 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 Lo spazio $\R_1[x]$ è quello dei polinomi di grado al massimo 1, cioè dei polinomi $a + bx$. Una sua base ha due polinomi, quindi la matrice associata ha due righe e due colonne.
 
 > [!METODO] La domanda «quanto vale la matrice associata?»
-> 1. Dai un nome ai vettori della base, nell'ordine del testo: $v_1$, $v_2$ e, se c'è, $v_3$.
-> 2. Se i vettori sono polinomi, scrivi la tabella dei loro valori nei punti che compaiono nella formula.
-> 3. Calcola i prodotti della diagonale e quelli sopra la diagonale. Metti i numeri nella formula un pezzo alla volta, nell'ordine in cui è scritta.
-> 4. Scrivi la matrice simmetrica e cerca la risposta uguale.
-> 5. Se hai poco tempo: scarta subito le risposte non simmetriche, poi calcola una casella alla volta e scarta le risposte che non la rispettano.
+> 1. Segui il metodo «Calcolare la matrice associata» della sezione sulla matrice associata: ordine della base, tabella dei valori, prodotti della diagonale e sopra la diagonale.
+> 2. Metti i numeri nella formula un pezzo alla volta, nell'ordine in cui è scritta.
+> 3. Nel quiz scarta subito le risposte non simmetriche. Poi calcola una casella alla volta e scarta le risposte che non la rispettano.
 
 ### Una domanda vera, letta insieme
 
@@ -1614,7 +1529,7 @@ D: Quale di queste formule definisce un prodotto scalare su $\R^2$? (Qui $x = (x
 - $g(x, y) = x_1y_1 + x_2$
 - $g(x, y) = x_1x_2y_1y_2$
 - $g(x, y) = x_1y_1 + x_2y_2 + 1$
-= La domanda chiede quale formula rispetta i tre assiomi. La regola pratica: ogni pezzo deve essere un numero per una $x$ per una $y$, e il numero davanti a $x_1y_2$ deve essere uguale a quello davanti a $x_2y_1$. La prima formula ha tre pezzi della forma giusta e la sua matrice è $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, simmetrica: è un prodotto scalare. La seconda è la più tentatrice, perché ha i pezzi della forma giusta. Ma davanti a $x_1y_2$ c'è $1$ e davanti a $x_2y_1$ c'è $-1$: infatti $g(e_1, e_2) = 1$ e $g(e_2, e_1) = -1$, quindi non è simmetrica. La terza ha il pezzo $x_2$ senza nessuna $y$: con $x = e_2$ e $y$ nullo dà 1 invece di 0. La quarta ha due $x$ e due $y$ nello stesso pezzo: raddoppiando $x$ il risultato si moltiplica per 4, non per 2. La quinta ha un $+1$: con i due vettori nulli dà 1 invece di 0.
+= La domanda chiede quale formula rispetta i tre assiomi. La regola pratica: ogni pezzo deve essere un numero per una $x$ per una $y$, e davanti a $x_1y_2$ e a $x_2y_1$ deve esserci lo stesso numero. La prima formula è a posto: i suoi pesi formano la matrice $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, che è simmetrica. La seconda è la più tentatrice, perché ha i pezzi della forma giusta. Ma non è simmetrica: $g(e_1, e_2) = 1$ e $g(e_2, e_1) = -1$. La terza ha il pezzo $x_2$ senza nessuna $y$: con $x = e_2$ e $y$ nullo dà 1 invece di 0. La quarta ha due $x$ nello stesso pezzo: raddoppiando $x$ il risultato si moltiplica per 4, non per 2. La quinta ha un $+1$: con i due vettori nulli dà 1 invece di 0.
 
 D: Su $\R_1[x]$ sia $g(p, q) = p(1)q(2) + p(2)q(1)$ e sia $\mathcal B = \{x - 1, x - 2\}$. Allora $[g]_{\mathcal B}$ è:
 + $\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}$
@@ -1622,7 +1537,7 @@ D: Su $\R_1[x]$ sia $g(p, q) = p(1)q(2) + p(2)q(1)$ e sia $\mathcal B = \{x - 1,
 - $\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 0 & -2 \\ -2 & 0 \end{pmatrix}$
 - $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra i due polinomi della base. Prima servono i valori nei punti 1 e 2. Il polinomio $x - 1$ vale 0 in 1 e vale 1 in 2. Il polinomio $x - 2$ vale $-1$ in 1 e vale 0 in 2. La formula dice: valore del primo in 1 per valore del secondo in 2, più valore del primo in 2 per valore del secondo in 1. Primo polinomio con sé stesso: $0 \cdot 1 + 1 \cdot 0 = 0$. Primo con secondo: $0 \cdot 0 + 1 \cdot (-1) = -1$. Secondo con sé stesso: $(-1) \cdot 0 + 0 \cdot (-1) = 0$. La matrice ha 0 sulla diagonale e $-1$ fuori. La risposta con $+1$ fuori dalla diagonale è la più tentatrice: è quella di chi perde il segno meno del valore di $x - 2$ in 1. È simile alla domanda 9 dell'appello del 10/07/2024.
+= La domanda chiede la tabellina dei prodotti tra i due polinomi della base. Prima servono i valori nei punti 1 e 2. Il polinomio $x - 1$ vale 0 in 1 e vale 1 in 2. Il polinomio $x - 2$ vale $-1$ in 1 e vale 0 in 2. La formula dice: valore del primo in 1 per valore del secondo in 2, più valore del primo in 2 per valore del secondo in 1. Primo polinomio con sé stesso: $0 \cdot 1 + 1 \cdot 0 = 0$. Primo con secondo: $0 \cdot 0 + 1 \cdot (-1) = -1$. Secondo con sé stesso: $(-1) \cdot 0 + 0 \cdot (-1) = 0$. La risposta con $+1$ fuori dalla diagonale è la più tentatrice: è quella di chi perde il segno meno del valore di $x - 2$ in 1. È simile alla domanda 9 dell'appello del 10/07/2024.
 
 D: Qual è la matrice $S$ tale che $g(x, y) = x_1y_2 + x_2y_1 + 3x_2y_2$ sia uguale a $g_S(x, y) = {}^tx\,S\,y$?
 + $\begin{pmatrix} 0 & 1 \\ 1 & 3 \end{pmatrix}$
@@ -1630,7 +1545,7 @@ D: Qual è la matrice $S$ tale che $g(x, y) = x_1y_2 + x_2y_1 + 3x_2y_2$ sia ugu
 - $\begin{pmatrix} 1 & 1 \\ 1 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 1/2 \\ 1/2 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 3 & 1 \\ 1 & 0 \end{pmatrix}$
-= La domanda chiede la matrice dei pesi della formula. La regola: il numero nella riga $i$ e colonna $j$ è quello davanti a $x_iy_j$. Il pezzo $x_1y_1$ manca, quindi in alto a sinistra c'è 0. Davanti a $x_1y_2$ e davanti a $x_2y_1$ c'è 1, quindi fuori dalla diagonale c'è 1. Davanti a $x_2y_2$ c'è 3, quindi in basso a destra c'è 3. La risposta più tentatrice è quella con $1/2$ fuori dalla diagonale, ma qui non si divide per due: $x_1y_2$ e $x_2y_1$ sono due pezzi diversi. La matrice con 3 in alto a sinistra ha scambiato l'ordine dei posti. Confronta con la domanda 7 dell'appello dell'08/02/2024: lì era data una **forma quadratica**, e in quel caso il numero del pezzo misto va diviso per due (lezione L20).
+= La domanda chiede la matrice dei pesi della formula. La regola: il numero nella riga $i$ e colonna $j$ è quello davanti a $x_iy_j$. Il pezzo $x_1y_1$ manca, quindi in alto a sinistra c'è 0. Davanti a $x_1y_2$ e davanti a $x_2y_1$ c'è 1, quindi fuori dalla diagonale c'è 1. Davanti a $x_2y_2$ c'è 3, quindi in basso a destra c'è 3. La risposta più tentatrice è quella con $1/2$ fuori dalla diagonale, ma qui non si divide per due: $x_1y_2$ e $x_2y_1$ sono due pezzi diversi. Confronta con la domanda 7 dell'appello dell'08/02/2024: lì era data una **forma quadratica**, e in quel caso il numero del pezzo misto va diviso per due (lezione L20).
 
 D: Su $\R_1[x]$ si consideri il prodotto scalare $\langle p, q\rangle = p(0)q(0) + p(1)q(1)$ e la base $\mathcal B = \{x, x + 1\}$. Allora $[\,\langle\ ,\ \rangle\,]_{\mathcal B}$ è:
 + $\begin{pmatrix} 1 & 2 \\ 2 & 5 \end{pmatrix}$
@@ -1638,7 +1553,7 @@ D: Su $\R_1[x]$ si consideri il prodotto scalare $\langle p, q\rangle = p(0)q(0)
 - $\begin{pmatrix} 1 & 1 \\ 1 & 5 \end{pmatrix}$
 - $\begin{pmatrix} 5 & 2 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra i due polinomi della base, nell'ordine dato. Valori nei punti 0 e 1: il polinomio $x$ vale 0 e poi 1, il polinomio $x + 1$ vale 1 e poi 2. Primo polinomio con sé stesso: $0 \cdot 0 + 1 \cdot 1 = 1$. Primo con secondo: $0 \cdot 1 + 1 \cdot 2 = 2$. Secondo con sé stesso: $1 \cdot 1 + 2 \cdot 2 = 5$. La matrice ha 1 e 5 sulla diagonale e 2 fuori. La più tentatrice è la matrice con 5 in alto a sinistra: è quella di chi usa la base nell'ordine inverso. È simile alla domanda 7 dell'appello del 24/01/2024.
+= La domanda chiede la tabellina dei prodotti tra i due polinomi della base, nell'ordine dato. Valori nei punti 0 e 1: il polinomio $x$ vale 0 e poi 1, il polinomio $x + 1$ vale 1 e poi 2. Primo polinomio con sé stesso: $0 \cdot 0 + 1 \cdot 1 = 1$. Primo con secondo: $0 \cdot 1 + 1 \cdot 2 = 2$. Secondo con sé stesso: $1 \cdot 1 + 2 \cdot 2 = 5$. La più tentatrice è la matrice con 5 in alto a sinistra: è quella di chi usa la base nell'ordine inverso. È simile alla domanda 7 dell'appello del 24/01/2024.
 
 D: Su $\R^2$ sia $g(x, y) = x_1y_1 + x_1y_2 + x_2y_1$ e sia $\mathcal B = \{{}^t(1, 0), {}^t(1, -1)\}$. Allora $[g]_{\mathcal B}$ è:
 + $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$
@@ -1646,7 +1561,7 @@ D: Su $\R^2$ sia $g(x, y) = x_1y_1 + x_1y_2 + x_2y_1$ e sia $\mathcal B = \{{}^t
 - $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 1 & -1 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra $v_1 = (1, 0)$ e $v_2 = (1, -1)$, con la formula data, che ha tre pezzi. Primo vettore con sé stesso: $1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1$. Primo con secondo, cioè $x = (1, 0)$ e $y = (1, -1)$: $1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$. Secondo con sé stesso: $1 \cdot 1 + 1 \cdot (-1) + (-1) \cdot 1 = -1$. La matrice ha 1 e $-1$ sulla diagonale e 0 fuori. La seconda risposta è la più tentatrice: è la matrice dei pesi della formula, cioè la matrice associata nella base canonica e non nella base data. L'ultima risposta non è simmetrica, quindi non può essere una matrice associata. È simile alla domanda 9 dell'appello del 15/01/2026.
+= La domanda chiede la tabellina dei prodotti tra $v_1 = (1, 0)$ e $v_2 = (1, -1)$, con la formula data, che ha tre pezzi. Primo vettore con sé stesso: $1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1$. Primo con secondo, cioè $x = (1, 0)$ e $y = (1, -1)$: $1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$. Secondo con sé stesso: $1 \cdot 1 + 1 \cdot (-1) + (-1) \cdot 1 = -1$. La seconda risposta è la più tentatrice: è la matrice dei pesi della formula, cioè la matrice associata nella base canonica e non nella base data. L'ultima risposta non è simmetrica, quindi non può essere una matrice associata. È simile alla domanda 9 dell'appello del 15/01/2026.
 
 D: Quale matrice simmetrica definisce un prodotto scalare **degenere** su $\R^2$?
 + $\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$
@@ -1654,7 +1569,7 @@ D: Quale matrice simmetrica definisce un prodotto scalare **degenere** su $\R^2$
 - $\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$
-= La domanda chiede quale prodotto ha un vettore invisibile. La regola: il prodotto $g_S$ è degenere esattamente quando il determinante di $S$ è zero. Per una matrice $2 \times 2$ il determinante è il prodotto dei due numeri sulla diagonale meno il prodotto degli altri due. La prima matrice dà $1 \cdot 4 - 2 \cdot 2 = 0$: è lei. Il suo vettore invisibile è $(2, -1)$, che la matrice manda nel vettore nullo. Le altre quattro hanno determinante $-1$, $1$, $-1$ e $6$, tutti diversi da zero. La più tentatrice è la matrice con gli zeri sulla diagonale: lì $e_1$ con sé stesso dà zero, ma questo non basta per essere degenere.
+= La domanda chiede quale prodotto ha un vettore invisibile. La regola: il prodotto $g_S$ è degenere esattamente quando il determinante di $S$ è zero. Per una matrice $2 \times 2$ il determinante è il prodotto dei due numeri sulla diagonale meno il prodotto degli altri due. La prima matrice dà $1 \cdot 4 - 2 \cdot 2 = 0$: è lei. Il suo vettore invisibile è $(2, -1)$. Le altre quattro hanno determinante $-1$, $1$, $-1$ e $6$, tutti diversi da zero. La più tentatrice è la matrice con gli zeri sulla diagonale: lì $e_1$ con sé stesso dà zero, ma questo non basta per essere degenere.
 
 D: Quale affermazione è vera per ogni prodotto scalare su uno spazio vettoriale reale?
 + Se è definito positivo, allora non è degenere.
@@ -1662,7 +1577,7 @@ D: Quale affermazione è vera per ogni prodotto scalare su uno spazio vettoriale
 - Se $\langle v, v\rangle = 0$ per qualche $v \neq 0$, allora è degenere.
 - Ogni matrice simmetrica $S$ definisce un prodotto scalare definito positivo.
 - Può succedere che $\langle v, 0\rangle \neq 0$.
-= La domanda chiede quale frase vale per tutti i prodotti scalari. La prima è la Proposizione 19.3: un vettore che dà zero con tutti darebbe zero anche con sé stesso, e in un prodotto definito positivo questo non succede. La seconda è la più tentatrice, perché è la prima letta al contrario. Ma il prodotto $x_1y_1 - x_2y_2$ non è degenere e non è definito positivo. Lo stesso prodotto smentisce la terza: il vettore $(1, 1)$ dà zero con sé stesso, eppure il prodotto non è degenere. La quarta è falsa per la matrice diagonale con $-1$ e $-1$ sulla diagonale: ogni vettore non nullo con sé stesso dà un numero negativo. La quinta è falsa perché con il vettore nullo ogni prodotto scalare dà zero.
+= La domanda chiede quale frase vale per tutti i prodotti scalari. La prima è la Proposizione 19.3: un vettore che dà zero con tutti darebbe zero anche con sé stesso, e in un prodotto definito positivo questo non succede. La seconda è la più tentatrice, perché è la prima letta al contrario. Ma il prodotto $x_1y_1 - x_2y_2$ non è degenere e non è definito positivo. Lo stesso prodotto smentisce la terza: il vettore $(1, 1)$ dà zero con sé stesso, eppure il prodotto non è degenere. La quarta è falsa per la matrice diagonale con $-1$ e $-1$ sulla diagonale. La quinta è falsa perché con il vettore nullo ogni prodotto scalare dà zero.
 
 D: Sia $S = \begin{pmatrix} 4 & 1 & -2 \\ 1 & 0 & 5 \\ -2 & 5 & 3 \end{pmatrix}$. Quanto vale $g_S(e_1 + e_2, e_3)$?
 N: 3
@@ -1682,7 +1597,7 @@ D: Su $\R_2[x]$, quale di questi prodotti scalari è **definito positivo**?
 - $\langle p, q\rangle = p(0)q(0) + p(1)q(1) - p(2)q(2)$
 - $\langle p, q\rangle = p(0)q(1) + p(1)q(0)$
 - $\langle p, q\rangle = p(1)q(1)$
-= La domanda chiede in quale prodotto ogni polinomio non nullo, con sé stesso, dà un numero positivo. Nel primo un polinomio con sé stesso dà la somma dei quadrati dei suoi valori in 0, 1 e 2. Fa zero solo se il polinomio ha tre radici diverse, e un polinomio non nullo di grado al massimo 2 ne ha al massimo due (Esempio 19.4). Il secondo è degenere: il polinomio $x - x^2$ vale zero in 0 e in 1, quindi dà zero con tutti. Il terzo è il più tentatore, perché usa gli stessi tre punti: ma il polinomio $x - 1$ con sé stesso dà $1 + 0 - 1 = 0$. Il quarto, per un polinomio con sé stesso, dà $2p(0)p(1)$: per $p = 1 - 2x$ viene $2 \cdot 1 \cdot (-1) = -2$. Il quinto è degenere: il polinomio $x - 1$ vale zero in 1, quindi dà zero con tutti.
+= La domanda chiede in quale prodotto ogni polinomio non nullo, con sé stesso, dà un numero positivo. Nel primo un polinomio con sé stesso dà la somma dei quadrati dei suoi valori in 0, 1 e 2. Fa zero solo se il polinomio ha tre radici diverse, e un polinomio non nullo di grado al massimo 2 ne ha al massimo due (Esempio 19.4). Il secondo è degenere: il polinomio $x - x^2$ vale zero in 0 e in 1. Il terzo è il più tentatore, perché usa gli stessi tre punti: ma il polinomio $x - 1$ con sé stesso dà $1 + 0 - 1 = 0$. Il quarto, per un polinomio con sé stesso, dà $2p(0)p(1)$: per $p = 1 - 2x$ viene $2 \cdot 1 \cdot (-1) = -2$. Il quinto è degenere: il polinomio $x - 1$ vale zero in 1, quindi dà zero con tutti.
 ```
 
 ## Esercizi
@@ -1743,17 +1658,15 @@ Per ciascuna formula su $\R^2$ di' se è un prodotto scalare; se non lo è, indi
 ::: soluzione
 Per ogni formula faccio i due controlli del metodo: la forma dei pezzi e la simmetria.
 
-(a) **Sì.** Ogni pezzo è un numero per una $x$ per una $y$, e non ci sono pezzi misti. La matrice dei pesi è $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$, simmetrica (Proposizione 19.7). I tre assiomi sono controllati uno per uno nella sezione «Questa formula è un prodotto scalare?».
+(a) **Sì.** Ogni pezzo è un numero per una $x$ per una $y$, e non ci sono pezzi misti. La matrice dei pesi è $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$, simmetrica (Proposizione 19.7).
 
-(b) **No**, non è simmetrica. Con $x = e_1$ e $y = e_2$ viene $1 \cdot 1 = 1$. Con i posti scambiati, $x = e_2$ e $y = e_1$, viene $0 \cdot 0 = 0$.
+(b) **No**, non è simmetrica. Con $x = e_1$ e $y = e_2$ viene $1 \cdot 1 = 1$. Con i posti scambiati viene $0 \cdot 0 = 0$.
 
 (c) **No**, non è bilineare. Con i due vettori nulli viene $0 + 0 + 1 = 1$, mentre un prodotto scalare deve dare 0.
 
-(d) **Sì.** Ogni pezzo ha una $x$ e una $y$. Davanti a $x_1y_2$ e davanti a $x_2y_1$ c'è lo stesso numero, $-4$. La matrice dei pesi è $\begin{pmatrix} 1 & -4 \\ -4 & 1 \end{pmatrix}$, simmetrica.
+(d) **Sì.** Ogni pezzo ha una $x$ e una $y$. Davanti a $x_1y_2$ e davanti a $x_2y_1$ c'è lo stesso numero, $-4$. La matrice dei pesi è $\begin{pmatrix} 1 & -4 \\ -4 & 1 \end{pmatrix}$, simmetrica. In più: non è definito positivo, perché il vettore $(1, 1)$ con sé stesso dà $1 - 4 - 4 + 1 = -6$.
 
-In più: questo prodotto non è definito positivo. Il vettore $(1, 1)$ con sé stesso dà $1 - 4 - 4 + 1 = -6$.
-
-(e) **No**, un numero non esce fuori. Con $x = e_1$ e $y = e_1$ viene $1^2 \cdot 1^2 = 1$. Raddoppiando il primo vettore, cioè con $x = (2, 0)$, viene $2^2 \cdot 1^2 = 4$. Doveva venire il doppio, cioè 2.
+(e) **No**, un numero non esce fuori. Con $x = e_1$ e $y = e_1$ viene $1^2 \cdot 1^2 = 1$. Raddoppiando il primo vettore viene $2^2 \cdot 1^2 = 4$. Doveva venire il doppio, cioè 2.
 :::
 
 ::: esercizio base Conti con il prodotto euclideo
@@ -1766,7 +1679,7 @@ In più: questo prodotto non è definito positivo. Il vettore $(1, 1)$ con sé s
 (c) La lettera $k$ sta al posto di un numero che non conosco. Faccio il conto lasciandola scritta.
 
 1. Posto per posto: $1 \cdot 3 + k \cdot 1 + 2 \cdot (-k) = 3 + k - 2k$.
-2. Metto insieme i pezzi con $k$: una volta $k$ meno due volte $k$ fa $-k$. Resta $3 - k$.
+2. Una volta $k$ meno due volte $k$ fa $-k$. Resta $3 - k$.
 3. Il prodotto deve fare zero: $3 - k = 0$, quindi $k = 3$.
 
 Controllo: con $k = 3$ i vettori sono $(1, 3, 2)$ e $(3, 1, -3)$. Il prodotto è $3 + 3 - 6 = 0$.
@@ -1781,14 +1694,13 @@ Controllo: con $k = 3$ i vettori sono $(1, 3, 2)$ e $(3, 1, -3)$. Il prodotto è
 - Riga 2: $-2x_2y_1 + 3x_2y_2 + 4x_2y_3$.
 - Riga 3: $4x_3y_2 - x_3y_3$.
 
-Sommo tutto.
 $$g_S(x, y) = x_1y_1 - 2x_1y_2 - 2x_2y_1 + 3x_2y_2 + 4x_2y_3 + 4x_3y_2 - x_3y_3$$
 
-(b) Il numero davanti a $x_iy_j$ va nella riga $i$ e colonna $j$.
+(b) Il numero davanti a $x_iy_j$ va nella riga $i$ e colonna $j$. Un pezzo che manca vale 0.
 
 - Riga 1: davanti a $x_1y_1$ c'è 1, davanti a $x_1y_2$ c'è 3, davanti a $x_1y_3$ c'è 2.
-- Riga 2: davanti a $x_2y_1$ c'è 3, davanti a $x_2y_2$ c'è $-1$. Il pezzo $x_2y_3$ manca: 0.
-- Riga 3: davanti a $x_3y_1$ c'è 2. I pezzi $x_3y_2$ e $x_3y_3$ mancano: 0 e 0.
+- Riga 2: davanti a $x_2y_1$ c'è 3, davanti a $x_2y_2$ c'è $-1$. Il pezzo $x_2y_3$ manca.
+- Riga 3: davanti a $x_3y_1$ c'è 2. I pezzi $x_3y_2$ e $x_3y_3$ mancano.
 
 $$S = \begin{pmatrix} 1 & 3 & 2 \\ 3 & -1 & 0 \\ 2 & 0 & 0 \end{pmatrix}$$
 
@@ -1806,7 +1718,7 @@ Uso le scorciatoie: prima il determinante, poi il numero in alto a sinistra.
 **La matrice $S_1$: degenere.**
 
 1. Il determinante è $1 \cdot 4 - 2 \cdot 2 = 0$. Quindi il prodotto è degenere.
-2. Cerco il vettore invisibile: un vettore non nullo che la matrice manda nel vettore nullo. La prima riga chiede $x_1 + 2x_2 = 0$. Va bene $v = (2, -1)$.
+2. Il vettore invisibile è un vettore non nullo che la matrice manda nel vettore nullo. La prima riga chiede $x_1 + 2x_2 = 0$: va bene $v = (2, -1)$.
 3. Controllo: la prima riga dà $1 \cdot 2 + 2 \cdot (-1) = 0$, la seconda dà $2 \cdot 2 + 4 \cdot (-1) = 0$.
 
 **La matrice $S_2$: definito positivo.**
@@ -1814,13 +1726,13 @@ Uso le scorciatoie: prima il determinante, poi il numero in alto a sinistra.
 1. In alto a sinistra c'è 1, positivo. Il determinante è $1 \cdot 5 - 2 \cdot 2 = 1$, positivo. Per il criterio delle matrici $2 \times 2$ il prodotto è definito positivo.
 2. Controllo con un altro metodo. Un vettore con sé stesso dà $x_1^2 + 4x_1x_2 + 5x_2^2$. Spezzo $5x_2^2$ in $4x_2^2 + x_2^2$ e riconosco un quadrato:
    $$x_1^2 + 4x_1x_2 + 4x_2^2 + x_2^2 = (x_1 + 2x_2)^2 + x_2^2$$
-   Una somma di due quadrati non è mai negativa. Fa zero solo se $x_2 = 0$ e $x_1 + 2x_2 = 0$, cioè solo per il vettore nullo.
+   È una somma di due quadrati: fa zero solo se $x_2 = 0$ e $x_1 + 2x_2 = 0$, cioè solo per il vettore nullo.
 
 **La matrice $S_3$: non degenere, ma non definito positivo.**
 
 1. Il determinante è $1 \cdot 3 - 2 \cdot 2 = -1$. Non è zero, quindi il prodotto non è degenere.
 2. Il determinante è negativo, quindi per il criterio il prodotto non è definito positivo.
-3. Un vettore che lo mostra è $x = (2, -1)$. Con sé stesso dà $x_1^2 + 4x_1x_2 + 3x_2^2$, cioè $4 - 8 + 3 = -1$: un numero negativo.
+3. Un vettore che lo mostra è $(2, -1)$. Con sé stesso dà $x_1^2 + 4x_1x_2 + 3x_2^2$, cioè $4 - 8 + 3 = -1$: un numero negativo.
 :::
 
 ::: esercizio medio Una base in cui $g_S$ sembra euclideo
@@ -1835,12 +1747,11 @@ La formula del prodotto è $g_S(x, y) = 2x_1y_1 + x_1y_2 + x_2y_1 + x_2y_2$. Ser
 3. **Secondo con sé stesso.** Metto $x = (0, 1)$ e $y = (0, 1)$:
    $$2 \cdot 0 \cdot 0 + 0 \cdot 1 + 1 \cdot 0 + 1 \cdot 1 = 1$$
 
-La matrice associata è la matrice identità.
 $$[g_S]_{\mathcal B} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$$
 
-**Che cosa si osserva.** In questa base il prodotto $g_S$ ha la stessa matrice del prodotto euclideo nella base canonica. Con le coordinate, il prodotto di due vettori diventa il conto della spesa: primo per primo più secondo per secondo.
+**Che cosa si osserva.** La matrice associata è la matrice identità: la stessa del prodotto euclideo nella base canonica. Con le coordinate di questa base, il prodotto $g_S$ diventa il conto della spesa.
 
-Una base così, in cui la matrice associata è l'identità, si chiama **ortonormale**. Nella lezione L21 impari a costruirne una con l'algoritmo di Gram–Schmidt.
+Una base così si chiama **ortonormale**. Nella lezione L21 impari a costruirne una con l'algoritmo di Gram–Schmidt.
 :::
 
 ::: esercizio medio Un prodotto sui polinomi in tre punti simmetrici
@@ -1868,7 +1779,7 @@ Poi i sei prodotti: moltiplico due righe punto per punto e sommo.
 La matrice associata, che chiamo $S$:
 $$S = \begin{pmatrix} 3 & 0 & 2 \\ 0 & 2 & 0 \\ 2 & 0 & 2 \end{pmatrix}$$
 
-(b) Sì. Il ragionamento è quello dell'Esempio 19.4. Un polinomio con sé stesso dà la somma dei quadrati dei suoi tre valori. Fa zero solo se il polinomio vale zero in $-1$, in $0$ e in $1$, cioè se ha tre radici diverse. Un polinomio non nullo di grado al massimo 2 ne ha al massimo due (Teorema 4.6). Quindi solo il polinomio nullo dà zero.
+(b) Sì, con il ragionamento dell'Esempio 19.4. Un polinomio con sé stesso dà la somma dei quadrati dei suoi tre valori. Fa zero solo se il polinomio ha le tre radici $-1$, $0$ e $1$. Un polinomio non nullo di grado al massimo 2 ha al massimo due radici (Teorema 4.6).
 
 (c) È la casella nella riga 2 e colonna 3 della matrice: $\langle x, x^2\rangle = 0$. Per questo prodotto i polinomi $x$ e $x^2$ sono «perpendicolari».
 
@@ -1908,24 +1819,11 @@ Lo spazio $\R_1[x]$ è quello dei polinomi di grado al massimo 1, cioè dei poli
 
 Ogni polinomio non nullo con sé stesso dà un numero positivo: il prodotto è definito positivo.
 
-(b) Tabella dei valori nei punti 0 e 1.
+(b) Nei punti 0 e 1 il polinomio $1$ vale 1 e 1. I polinomi $x$ e $x^2$ valgono tutti e due 0 e poi 1.
 
-| | in 0 | in 1 |
-|---|--:|--:|
-| $1$ | $1$ | $1$ |
-| $x$ | $0$ | $1$ |
-| $x^2$ | $0$ | $1$ |
-
-I sei prodotti.
-
-| Coppia | Conto | Valore |
-|---|---|--:|
-| $\langle 1, 1\rangle$ | $1 \cdot 1 + 1 \cdot 1$ | $2$ |
-| $\langle 1, x\rangle$ | $1 \cdot 0 + 1 \cdot 1$ | $1$ |
-| $\langle 1, x^2\rangle$ | $1 \cdot 0 + 1 \cdot 1$ | $1$ |
-| $\langle x, x\rangle$ | $0 \cdot 0 + 1 \cdot 1$ | $1$ |
-| $\langle x, x^2\rangle$ | $0 \cdot 0 + 1 \cdot 1$ | $1$ |
-| $\langle x^2, x^2\rangle$ | $0 \cdot 0 + 1 \cdot 1$ | $1$ |
+1. Il polinomio $1$ con sé stesso: $1 \cdot 1 + 1 \cdot 1 = 2$.
+2. Il polinomio $1$ con $x$ oppure con $x^2$: $1 \cdot 0 + 1 \cdot 1 = 1$.
+3. Gli altri tre prodotti, cioè $x$ con $x$, $x$ con $x^2$ e $x^2$ con $x^2$: $0 \cdot 0 + 1 \cdot 1 = 1$.
 
 $$S = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}$$
 
@@ -1949,7 +1847,7 @@ Controllo: $x - x^2$ vale 0 in 0 e vale $1 - 1 = 0$ in 1. Quindi con ogni polino
 ::: esercizio difficile Un prodotto scalare sulle matrici
 Su $M(2, \R)$ prendi $g(A, B) = \operatorname{tr}({}^tA\,B)$ (la traccia è la somma degli elementi sulla diagonale). (a) Scrivi $g(A, B)$ in funzione delle entrate. (b) Dimostra che è un prodotto scalare definito positivo. (c) Trova la matrice associata nella base $\{E_{11}, E_{12}, E_{21}, E_{22}\}$ delle matrici con un solo 1. (d) Calcola $g(A, B)$ per $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$, $B = \begin{pmatrix} 3 & 0 \\ 1 & -1 \end{pmatrix}$.
 
-Qui i «vettori» sono matrici con due righe e due colonne. Ogni matrice della base ha un 1 in una casella e 0 nelle altre tre: i due numerini in basso dicono la riga e la colonna dell'1. Le «entrate» sono i numeri dentro la matrice.
+Qui i «vettori» sono matrici con due righe e due colonne, e le «entrate» sono i numeri dentro la matrice. Ogni matrice della base ha un 1 in una casella e 0 nelle altre tre: i due numerini in basso dicono la riga e la colonna dell'1.
 ::: soluzione
 (a) Do un nome alle entrate delle due matrici.
 $$A = \begin{pmatrix} a_1 & a_2 \\ a_3 & a_4 \end{pmatrix} \qquad\qquad B = \begin{pmatrix} b_1 & b_2 \\ b_3 & b_4 \end{pmatrix}$$
@@ -1960,11 +1858,9 @@ $$A = \begin{pmatrix} a_1 & a_2 \\ a_3 & a_4 \end{pmatrix} \qquad\qquad B = \beg
 
 $$g(A, B) = a_1b_1 + a_2b_2 + a_3b_3 + a_4b_4$$
 
-(b) La formula del punto (a) è il conto della spesa: ogni entrata di $A$ per l'entrata di $B$ nello stesso posto, e poi la somma. È il prodotto euclideo di $\R^4$, scritto sulle quattro entrate. Quindi è bilineare, simmetrico e definito positivo (Proposizione 19.6).
+(b) La formula del punto (a) è il conto della spesa: ogni entrata di $A$ per l'entrata di $B$ nello stesso posto, e poi la somma. È il prodotto euclideo di $\R^4$, scritto sulle quattro entrate. Quindi è bilineare, simmetrico e definito positivo (Proposizione 19.6). Una matrice con sé stessa dà $a_1^2 + a_2^2 + a_3^2 + a_4^2$, che è positivo se la matrice non è quella nulla.
 
-In particolare una matrice con sé stessa dà $a_1^2 + a_2^2 + a_3^2 + a_4^2$, che è positivo se la matrice non è quella nulla.
-
-(c) Ogni matrice della base, letta come lista di quattro numeri, ha un 1 e tre 0. Il prodotto di una di loro con sé stessa è $1 \cdot 1 = 1$. Il prodotto di due diverse è 0, perché gli 1 stanno in posti diversi. La matrice associata è la matrice identità con quattro righe e quattro colonne, $I_4$.
+(c) Ogni matrice della base, letta come lista di quattro numeri, ha un 1 e tre 0. Una di loro con sé stessa dà $1 \cdot 1 = 1$. Due diverse danno 0, perché gli 1 stanno in posti diversi. La matrice associata è la matrice identità con quattro righe e quattro colonne, $I_4$.
 
 (d) Entrata per entrata: $1 \cdot 3 + 2 \cdot 0 + 0 \cdot 1 + 1 \cdot (-1) = 3 + 0 + 0 - 1 = 2$.
 :::
@@ -1996,8 +1892,6 @@ Lo stesso risultato senza il determinante. Prendo un polinomio $p$ che dà zero 
 3. Dal passo 1 allora anche $p(0) = 0$.
 4. Il polinomio $p$ ha grado al massimo 1 e due radici, quindi è il polinomio nullo.
 
-Nessun polinomio non nullo è invisibile.
-
 (c) **No, non è definito positivo.** Il polinomio $1$ non è nullo, ma con sé stesso dà $0$: è la casella in basso a destra della matrice.
 
 In più il segno cambia. Il polinomio $x$ con sé stesso dà $2 \cdot 2 - 0 \cdot 0 = 4$, positivo. Il polinomio $x - 2$ vale 0 in 2 e vale $-2$ in 0: con sé stesso dà $0 - 4 = -4$, negativo.
@@ -2013,8 +1907,6 @@ Prendi la matrice $S = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & 3 \end{
 3. Spezzo $2x_2^2$ in $x_2^2 + x_2^2$ e riconosco il quadrato di una somma:
    $$g_S(x, x) = (x_1 + x_2)^2 + x_2^2 + 3x_3^2$$
 4. I tre pezzi non sono mai negativi. Fanno zero tutti insieme solo se $x_3 = 0$, $x_2 = 0$ e $x_1 + x_2 = 0$, cioè solo per il vettore nullo.
-
-Quindi ogni vettore non nullo con sé stesso dà un numero positivo.
 
 (b) Seguo il metodo: calcolo una volta sola le tre colonne $Sv_1$, $Sv_2$, $Sv_3$. Ogni riga di $S$ va moltiplicata per il vettore.
 

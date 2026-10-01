@@ -201,12 +201,6 @@ No. Prima equazione: $1 + 4 = 5$, vera. Seconda equazione: $1 - 4 = -3$, ma dove
 I coefficienti sono 5, $-1$ e 2. Davanti a $y$ c'è solo il segno meno, quindi il suo coefficiente è $-1$. Il termine noto è 8.
 :::
 
-::: prova Risolvi l'indovinello: la somma di due numeri fa 4 e la loro differenza fa 2.
-Le equazioni sono $x + y = 4$ e $x - y = 2$. Sommale: a sinistra resta $2x$, a destra viene $4 + 2 = 6$. Quindi $2x = 6$ e $x = 3$. Dalla prima equazione: $3 + y = 4$, quindi $y = 1$.
-
-Controllo: $3 + 1 = 4$ e $3 - 1 = 2$.
-:::
-
 > [!RICORDA]
 > - Un **sistema** è un gruppo di equazioni da rispettare tutte insieme. Una **soluzione** è una lista di numeri che le rende vere tutte.
 > - **Lineare** vuol dire: le incognite sono solo moltiplicate per numeri e poi sommate.
@@ -336,15 +330,11 @@ Per dire che la matrice completa è fatta dei coefficienti con accanto i termini
 
 > [!ESEMPIO] Un sistema con tre equazioni e tre incognite
 > $$\begin{cases} x + y + 2z = 9 \\ 2x + 4y - 3z = 1 \\ 3x + 6y - 5z = 0 \end{cases}$$
-> Le incognite sono tre: $x$, $y$ e $z$. Quindi prima della barra servono tre colonne.
->
-> - Prima equazione: davanti a $x$ c'è 1, davanti a $y$ c'è 1, davanti a $z$ c'è 2. A destra c'è 9.
-> - Seconda equazione: davanti a $x$ c'è 2, davanti a $y$ c'è 4, davanti a $z$ c'è $-3$. A destra c'è 1.
-> - Terza equazione: davanti a $x$ c'è 3, davanti a $y$ c'è 6, davanti a $z$ c'è $-5$. A destra c'è 0.
+> Le incognite sono tre: $x$, $y$ e $z$. Quindi prima della barra servono tre colonne. Per esempio nella seconda equazione davanti a $x$ c'è 2, davanti a $y$ c'è 4 e davanti a $z$ c'è $-3$. A destra dell'uguale c'è 1.
 >
 > La matrice completa è
 > $$C = \left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 2 & 4 & -3 & 1 \\ 3 & 6 & -5 & 0 \end{array}\right).$$
-> Ha 3 righe, perché le equazioni sono 3. Ha 4 colonne: 3 per le incognite e 1 per i termini noti. Questo sistema viene risolto per intero nell'esercizio 7.
+> Ha 3 righe, perché le equazioni sono 3. Ha 4 colonne: 3 per le incognite e 1 per i termini noti. Questo sistema viene risolto per intero nell'esercizio 6.
 
 > [!TRAPPOLA] Prima di scrivere la matrice, metti in ordine il sistema
 > La tabella funziona solo se ogni numero sta nella colonna giusta. Le regole sono tre.
@@ -416,8 +406,6 @@ Prima riga: 1 davanti a $x$, 2 davanti a $y$, 7 a destra. Seconda riga: 3 davant
 
 ::: prova Quale sistema corrisponde alla matrice completa $\left(\begin{array}{cc|c} 2 & 0 & 6 \\ 1 & 1 & 5 \end{array}\right)$?
 La prima riga è $2x + 0y = 6$, cioè $2x = 6$. La seconda riga è $x + y = 5$.
-
-Dalla prima equazione $x = 3$. Dalla seconda $3 + y = 5$, quindi $y = 2$. È ancora l'indovinello, con gli indizi scritti in un altro modo.
 :::
 
 ::: prova Una matrice completa ha 2 righe e 4 colonne. Quante sono le equazioni? Quante le incognite?
@@ -558,14 +546,7 @@ Nella terza mossa le due righe devono essere **diverse**. Cambia solo la riga sc
 
 ### Perché le mosse non cambiano le soluzioni
 
-Tutto il metodo si regge su una promessa: dopo una mossa le soluzioni sono **le stesse** di prima. Nessuna in più, nessuna in meno.
-
-Controlliamo sull'indovinello. La soluzione era $(3, 2)$. Dopo la mossa «riga 2 meno riga 1» le righe sono $(1, 1 \mid 5)$ e $(0, -2 \mid -4)$.
-
-- La riga 1 è l'equazione $x + y = 5$. Con 3 e 2 viene $3 + 2 = 5$. Vera.
-- La riga 2 è l'equazione $-2y = -4$. Con $y$ uguale a 2 viene $-2 \cdot 2 = -4$. Vera.
-
-Un controllo su un esempio non basta per fidarsi sempre. Il motivo vero è un altro.
+Tutto il metodo si regge su una promessa: dopo una mossa le soluzioni sono **le stesse** di prima. Nessuna in più, nessuna in meno. Nell'indovinello l'hai visto con la riga moltiplicata per 2: la soluzione la rispettava ancora. Il motivo per cui succede sempre è questo.
 
 > [!IDEA] ogni mossa si può disfare
 > Ogni mossa di Gauss ha una mossa che la annulla e rimette la matrice com'era.
@@ -593,12 +574,9 @@ Le dispense lo scrivono così.
 > 2. **Mossa (II).** La riga $i$ è l'equazione $a_{i1}x_1 + \cdots + a_{in}x_n = b_i$. Dopo la mossa diventa
 >    $$\lambda a_{i1}x_1 + \cdots + \lambda a_{in}x_n = \lambda b_i.$$
 >    Se una lista risolve l'equazione vecchia, moltiplicando i due lati per $\lambda$ risolve la nuova. Se risolve la nuova, moltiplicando i due lati per $\frac 1\lambda$ torna la vecchia. Qui serve $\lambda \neq 0$: altrimenti $\frac 1\lambda$ non esiste. Le altre equazioni non cambiano.
-> 3. **Mossa (III).** Cambia solo la riga $i$. Prima della mossa le equazioni $i$ e $j$ sono
->    $$a_{i1}x_1 + \cdots + a_{in}x_n = b_i, \qquad a_{j1}x_1 + \cdots + a_{jn}x_n = b_j.$$
->    Dopo la mossa sono
->    $$(a_{i1} + \lambda a_{j1})x_1 + \cdots + (a_{in} + \lambda a_{jn})x_n = b_i + \lambda b_j,$$
->    $$a_{j1}x_1 + \cdots + a_{jn}x_n = b_j.$$
->    Se una lista risolve le due vecchie, somma all'equazione $i$ l'equazione $j$ moltiplicata per $\lambda$: ottieni la nuova riga $i$, che quindi è vera. Se una lista risolve le due nuove, togli dalla nuova riga $i$ la riga $j$ moltiplicata per $\lambda$: ritrovi la vecchia riga $i$. Funziona perché la riga $j$ è rimasta intatta. Per questo le due righe devono essere diverse.
+> 3. **Mossa (III).** Cambia solo la riga $i$: la nuova equazione $i$ è la vecchia più $\lambda$ volte l'equazione $j$, cioè
+>    $$(a_{i1} + \lambda a_{j1})x_1 + \cdots + (a_{in} + \lambda a_{jn})x_n = b_i + \lambda b_j.$$
+>    Se una lista risolve le due vecchie, risolve anche la loro somma: quindi risolve la nuova riga $i$. Se una lista risolve le due nuove, togli dalla nuova riga $i$ la riga $j$ moltiplicata per $\lambda$: ritrovi la vecchia riga $i$. Funziona perché la riga $j$ è rimasta intatta. Per questo le due righe devono essere diverse.
 > 4. In tutti e tre i casi le liste che risolvono il sistema sono le stesse prima e dopo la mossa. Quindi $S$ non cambia.
 
 ### L'indovinello risolto solo con le mosse
@@ -619,10 +597,8 @@ Adesso rifacciamo l'indovinello dall'inizio alla fine, senza scrivere nessuna le
 >
 > Parti dalla matrice dell'indovinello. Fai nello stesso momento due mosse: «riga 1 meno riga 2» e «riga 2 meno riga 1», tutte e due con le righe di partenza.
 >
-> | | colonna di $x$ | colonna di $y$ | termine noto |
-> |---|---|---|---|
-> | nuova riga 1: riga 1 meno riga 2 | $1 - 1 = 0$ | $1 - (-1) = 2$ | $5 - 1 = 4$ |
-> | nuova riga 2: riga 2 meno riga 1 | $1 - 1 = 0$ | $-1 - 1 = -2$ | $1 - 5 = -4$ |
+> - Nuova riga 1: $(1 - 1,\ 1 - (-1) \mid 5 - 1)$, cioè $(0, 2 \mid 4)$.
+> - Nuova riga 2: $(1 - 1,\ -1 - 1 \mid 1 - 5)$, cioè $(0, -2 \mid -4)$.
 >
 > $$\left(\begin{array}{cc|c} 0 & 2 & 4 \\ 0 & -2 & -4 \end{array}\right)$$
 > Adesso le due righe dicono la stessa cosa: che $y$ vale 2. Di $x$ non si sa più niente: può valere qualsiasi numero. Sembrano infinite soluzioni. Ma l'indovinello ne aveva **una sola**: un indizio è andato perso.
@@ -644,10 +620,6 @@ La nuova riga 2 è $(0, 1 \mid 1)$. La riga 1 non cambia.
 La mossa $R_2 \to R_2 - 5R_1$. Sopra il 5 c'è un 1, e $5 - 5 \cdot 1 = 0$.
 
 Cinque volte la riga 1 fa $(5, 20 \mid 15)$. La riga 2 diventa $(5 - 5,\ 2 - 20 \mid 1 - 15)$, cioè $(0, -18 \mid -14)$.
-:::
-
-::: prova Vero o falso: «moltiplicare una riga per 0 è una mossa di Gauss».
-Falso. La riga diventerebbe $0 = 0$ e un'equazione andrebbe persa. Nella seconda mossa il numero deve essere diverso da zero.
 :::
 
 > [!RICORDA]
@@ -843,10 +815,8 @@ Nel passo 1 possono capitare due imprevisti.
 > **Come si legge.**
 >
 > - $C_{ij}$ è il numero nella riga $i$ e nella colonna $j$ della matrice $C$. Quindi $C_{11}$ è il numero in alto a sinistra. $C_{i1}$ è il numero della riga $i$ nella prima colonna.
-> - Dopo ogni mossa la matrice si chiama ancora $C$, anche se i suoi numeri sono cambiati.
 > - $i \ge 2$ si legge «$i$ maggiore o uguale a 2». Sono le righe dalla seconda in giù.
-> - La frazione del passo 2 è «numero da eliminare diviso pivot». Con quella scelta il nuovo numero nella prima colonna è zero:
->   $$C_{i1} - \frac{C_{i1}}{C_{11}} \cdot C_{11} = C_{i1} - C_{i1} = 0.$$
+> - La frazione del passo 2 è «numero da eliminare diviso pivot».
 > - Una **sottomatrice** è un pezzo della matrice: quello che resta dopo aver coperto alcune righe o alcune colonne.
 > - Nel passo 2 la prima riga resta ferma e serve a cambiare tutte le altre. Per questo le righe sotto si possono sistemare tutte nello stesso passaggio.
 
@@ -892,29 +862,13 @@ modo: scala
 modi: scala ridotta
 ```
 
-Nell'Esempio 11.7 una colonna è rimasta senza pivot solo all'ultima riga. Può succedere anche a metà del lavoro. Ecco un caso: puoi scriverlo nello strumento così, `1 1 2; 2 2 5; 3 3 1`, e confrontare i passaggi.
-
-> [!ESEMPIO] Una colonna senza pivot
-> $$\begin{pmatrix} 1 & 1 & 2 \\ 2 & 2 & 5 \\ 3 & 3 & 1 \end{pmatrix}$$
-> **Prima colonna.** Il primo pivot è l'1 in alto a sinistra. Sotto ci sono 2 e 3. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - 3R_1$. La riga 1 resta ferma, quindi si possono fare nello stesso passaggio.
->
-> | | colonna 1 | colonna 2 | colonna 3 |
-> |---|---|---|---|
-> | riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $2 - 2 = 0$ | $5 - 4 = 1$ |
-> | riga 3 meno 3 volte la riga 1 | $3 - 3 = 0$ | $3 - 3 = 0$ | $1 - 6 = -5$ |
->
-> $$\begin{pmatrix} 1 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & -5 \end{pmatrix}$$
-> **Seconda colonna.** Ora sei nella riga 2 e nella colonna 2. Lì c'è 0, e sotto c'è un altro 0. In questa colonna non c'è nessun pivot: si passa alla colonna 3, restando nella riga 2.
->
-> **Terza colonna.** Nella riga 2 c'è 1: è il secondo pivot. Sotto c'è $-5$. Quante volte togliere la riga 2? $-5 : 1 = -5$. Togliere $-5$ volte vuol dire sommare 5 volte: la mossa è $R_3 \to R_3 + 5R_2$. L'ultimo numero della riga 3 diventa $-5 + 5 \cdot 1 = 0$.
-> $$\begin{pmatrix} 1 & 1 & 2 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}$$
-> La matrice è a scalini. I pivot sono due, nelle colonne 1 e 3. La colonna 2 è rimasta senza pivot, e in fondo c'è una riga nulla.
+Una colonna può restare senza pivot anche a metà del lavoro. Prova a scrivere nello strumento la matrice `1 1 2; 2 2 5; 3 3 1`. Dopo le prime due mosse la seconda colonna, sotto la prima riga, è tutta di zeri. L'algoritmo la salta e cerca il pivot nella terza colonna: è il secondo imprevisto. Alla fine i pivot sono due, nelle colonne 1 e 3, e in fondo c'è una riga nulla.
 
 > [!OLTRE] come fare meno conti a mano
 > Il libro di Martelli (§3.1.3) osserva che non serve seguire l'algoritmo alla lettera. Va bene **qualsiasi** sequenza di mosse di Gauss che arrivi a una matrice a scalini. Senza calcolatrice aiutano tre trucchi.
 >
 > 1. **Un 1 in cima.** Se nella prima colonna c'è un 1, oppure un $-1$, porta quella riga in alto con uno scambio. Dividere per 1 non crea frazioni.
-> 2. **Evitare le frazioni.** Il pivot è 2 e sotto c'è 3. La ricetta direbbe di togliere la riga 1 per $\frac 32$ volte. Puoi invece moltiplicare prima la riga 2 per 2, e poi togliere 3 volte la riga 1. In una scrittura sola: $R_2 \to 2R_2 - 3R_1$. Nella prima colonna viene $2 \cdot 3 - 3 \cdot 2 = 0$, senza frazioni. Sono una mossa (II) e una mossa (III), una dopo l'altra. L'esercizio 7 usa questo trucco.
+> 2. **Evitare le frazioni.** Il pivot è 2 e sotto c'è 3. La ricetta direbbe di togliere la riga 1 per $\frac 32$ volte. Puoi invece moltiplicare prima la riga 2 per 2, e poi togliere 3 volte la riga 1. In una scrittura sola: $R_2 \to 2R_2 - 3R_1$. Nella prima colonna viene $2 \cdot 3 - 3 \cdot 2 = 0$, senza frazioni. Sono una mossa (II) e una mossa (III), una dopo l'altra. L'esercizio 6 usa questo trucco.
 > 3. **Rimpicciolire.** Se tutti i numeri di una riga si dividono per lo stesso intero, dividi subito la riga: è una mossa (II). La riga $(2, 4 \mid 6)$ diventa $(1, 2 \mid 3)$, e i conti dopo sono più piccoli.
 
 ::: prova Porta a scalini la matrice $\left(\begin{array}{cc|c} 1 & 2 & 3 \\ 2 & 5 & 8 \end{array}\right)$ e risolvi il sistema.
@@ -929,10 +883,6 @@ Controllo nelle equazioni di partenza: $-1 + 2 \cdot 2 = 3$ e $2 \cdot (-1) + 5 
 Lo scambio $R_1 \leftrightarrow R_2$. In alto a sinistra c'è 0, che non può fare da pivot, e sotto c'è 3.
 
 Dopo lo scambio la matrice è $\begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$, che è già a scalini.
-:::
-
-::: prova Il pivot è 4 e sotto c'è 12. Quante volte togli la riga del pivot?
-$12 : 4 = 3$ volte. Infatti $12 - 3 \cdot 4 = 0$.
 :::
 
 > [!RICORDA]
@@ -1164,23 +1114,13 @@ Quanti sono i parametri? Uno per ogni colonna senza pivot. Nell'esempio le incog
 $$\text{numero di parametri} = \text{numero di incognite} - \text{numero di pivot}$$
 
 > [!APPROFONDIMENTO] lo stesso conto con le lettere, come nelle dispense (pp. 54–55)
-> Le dispense fanno lo stesso esempio senza numeri. Prima mostrano la forma della matrice ridotta, con un punto interrogativo al posto di ogni numero che può essere qualsiasi:
-> $$\left(\begin{array}{cccccc|c} 0 & 1 & ? & 0 & 0 & ? & ? \\ 0 & 0 & 0 & 1 & 0 & ? & ? \\ 0 & 0 & 0 & 0 & 1 & ? & ? \end{array}\right)$$
-> I pivot sono nelle colonne 2, 4 e 5. Ognuna di queste colonne contiene un 1 al posto del pivot e 0 in tutte le altre caselle. Poi distinguono due casi.
->
-> **Primo caso: la colonna dei termini noti contiene un pivot.** La matrice è di questo tipo:
-> $$\left(\begin{array}{cccccc|c} 0 & 1 & ? & 0 & 0 & ? & ? \\ 0 & 0 & 0 & 1 & 0 & ? & ? \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 \end{array}\right)$$
-> L'ultima riga è l'equazione $0 = 1$, che non ha soluzioni. Quindi $S = \emptyset$.
->
-> **Secondo caso: l'ultima colonna non contiene pivot.** La matrice è di questo tipo:
+> Le dispense fanno lo stesso esempio senza numeri. Se l'ultima colonna contiene un pivot, una riga è l'equazione $0 = 1$ e quindi $S = \emptyset$. Se non lo contiene, la matrice ridotta è di questo tipo:
 > $$\left(\begin{array}{cccccc|c} 0 & 1 & a_{13} & 0 & 0 & a_{16} & b_1 \\ 0 & 0 & 0 & 1 & 0 & a_{26} & b_2 \\ 0 & 0 & 0 & 0 & 1 & a_{36} & b_3 \end{array}\right)$$
-> Si dà un parametro a ogni incognita la cui colonna non ha pivot: $x_1 = t_1$, $x_3 = t_2$, $x_6 = t_3$. Il sistema diventa
-> $$\begin{cases} x_2 + a_{13}t_2 + a_{16}t_3 = b_1 \\ x_4 + a_{26}t_3 = b_2 \\ x_5 + a_{36}t_3 = b_3 \end{cases}$$
-> Si portano i parametri a destra dell'uguale e si aggiungono le righe dei parametri:
+> Si dà un parametro a ogni incognita la cui colonna non ha pivot: $x_1 = t_1$, $x_3 = t_2$, $x_6 = t_3$. Poi si portano i parametri a destra dell'uguale:
 > $$\begin{cases} x_1 = t_1 \\ x_2 = b_1 - a_{13}t_2 - a_{16}t_3 \\ x_3 = t_2 \\ x_4 = b_2 - a_{26}t_3 \\ x_5 = b_3 - a_{36}t_3 \\ x_6 = t_3 \end{cases}$$
-> Le dispense concludono: il sistema è risolto. I parametri $t_1, t_2, \dots$ sono liberi e possono assumere qualsiasi valore in $\K$. Le variabili $x_1, \dots, x_n$ dipendono da questi parametri liberi come indicato.
+> I parametri sono liberi: possono assumere qualsiasi valore in $\K$.
 >
-> **Come si legge.** È l'esempio con sei incognite, con le lettere al posto dei numeri. Al posto di 2 e 3 ci sono $a_{13}$ e $a_{16}$. Al posto di 5 c'è $a_{26}$. Al posto di 7 c'è $a_{36}$. Al posto di 4, 6 e 8 ci sono $b_1$, $b_2$ e $b_3$. Le lettere dicono che la ricetta vale con qualsiasi numero.
+> **Come si legge.** È l'esempio con sei incognite, con le lettere al posto dei numeri. Per esempio al posto di 2 e 3 ci sono $a_{13}$ e $a_{16}$, e al posto di 4 c'è $b_1$. Le lettere dicono che la ricetta vale con qualsiasi numero.
 
 ### La ricetta per leggere le soluzioni
 
@@ -1192,14 +1132,6 @@ $$\text{numero di parametri} = \text{numero di incognite} - \text{numero di pivo
 > 5. **Scrivi tutte le incognite in ordine**, comprese quelle libere.
 > 6. **Controlla.** Metti 0 al posto di tutti i parametri e prova la soluzione nelle equazioni di partenza.
 
-I tre finali in una tabella sola.
-
-| Che cosa vedi nella matrice a scalini | Che cosa vuol dire | Quante soluzioni |
-|---|---|---|
-| un pivot dopo la barra | un indizio è impossibile | nessuna |
-| nessun pivot dopo la barra, e un pivot in ogni colonna prima della barra | ogni incognita è fissata | una sola |
-| nessun pivot dopo la barra, e qualche colonna prima della barra senza pivot | qualche incognita è libera | infinite, con un parametro per ogni colonna senza pivot |
-
 Un altro esempio con più parametri, preso dal libro.
 
 > [!ESEMPIO] Cinque incognite, tre parametri (dal libro di Martelli, Esempio 3.1.2)
@@ -1207,15 +1139,11 @@ Un altro esempio con più parametri, preso dal libro.
 > $$\begin{cases} x_1 + 3x_2 + 4x_5 = 1 \\ x_3 - 2x_4 = 3 \end{cases} \qquad \left(\begin{array}{ccccc|c} 1 & 3 & 0 & 0 & 4 & 1 \\ 0 & 0 & 1 & -2 & 0 & 3 \end{array}\right)$$
 > I pivot sono nelle colonne 1 e 3. Le colonne 2, 4 e 5 sono senza pivot: le incognite libere sono $x_2$, $x_4$ e $x_5$. I parametri sono $5 - 2 = 3$.
 >
-> Diamo i parametri: $x_2 = t_1$, $x_4 = t_2$, $x_5 = t_3$. Poi li portiamo a destra.
->
-> - **Riga 1.** È $x_1 + 3t_1 + 4t_3 = 1$. A destra i due pezzi con i parametri cambiano segno: $x_1 = 1 - 3t_1 - 4t_3$.
-> - **Riga 2.** È $x_3 - 2t_2 = 3$. A destra il pezzo $-2t_2$ diventa $+2t_2$: $x_3 = 3 + 2t_2$.
->
+> Diamo i parametri: $x_2 = t_1$, $x_4 = t_2$, $x_5 = t_3$. Poi li portiamo a destra. Attenzione ai segni: nella riga 1 i pezzi $3t_1$ e $4t_3$ diventano negativi, nella riga 2 il pezzo $-2t_2$ diventa positivo.
 > $$\begin{cases} x_1 = 1 - 3t_1 - 4t_3 \\ x_2 = t_1 \\ x_3 = 3 + 2t_2 \\ x_4 = t_2 \\ x_5 = t_3 \end{cases}$$
 > Controllo con tutti i parametri uguali a 0. La soluzione è $(1, 0, 3, 0, 0)$. Prima equazione: $1 + 0 + 0 = 1$. Seconda equazione: $3 - 0 = 3$. Tutte e due vere.
 
-Nello strumento qui sotto c'è il sistema dell'esempio con un parametro. L'ultima colonna è quella dei termini noti. Premi «Calcola»: lo strumento fa Gauss–Jordan, dice se ci sono soluzioni e le scrive con i parametri. Chiama le incognite $x_1$, $x_2$, $x_3$ al posto di $x$, $y$, $z$. Poi cambia l'ultimo numero da 5 a 6 e ricalcola. La terza equazione non va più d'accordo con le altre due, e compare la riga impossibile.
+Nello strumento qui sotto c'è il sistema dell'esempio con un parametro. L'ultima colonna è quella dei termini noti. Premi «Calcola»: lo strumento fa Gauss–Jordan, dice se ci sono soluzioni e le scrive con i parametri. Per le incognite usa una lettera sola con i numerini in basso, non tre lettere diverse. Poi cambia l'ultimo numero da 5 a 6 e ricalcola. La terza equazione non va più d'accordo con le altre due, e compare la riga impossibile.
 
 ```widget gauss
 titolo: Risolvi un sistema: l'ultima colonna è quella dei termini noti
@@ -1237,16 +1165,10 @@ modo: sistema
 > $$\begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} -2t \\ t \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} + t \begin{pmatrix} -2 \\ 1 \\ 0 \end{pmatrix}.$$
 > Si legge: «parti dal punto $(0, 0, 1)$ e spostati di $t$ volte il vettore $(-2, 1, 0)$». Al variare di $t$ ottieni una **retta** nello spazio.
 >
-> Con più parametri c'è un vettore per ogni parametro. Il libro scrive la forma generale così: $x_0 + t_1 v_1 + \cdots + t_h v_h$. Qui $x_0$ è il punto di partenza, $h$ è il numero dei parametri e $v_1, \dots, v_h$ sono i vettori, uno per parametro.
->
-> Nella lezione L12 i due pezzi avranno un nome. Il punto di partenza è una «soluzione particolare». I vettori risolvono il sistema con tutti i termini noti uguali a zero.
+> Con più parametri c'è un vettore per ogni parametro. Nella lezione L12 i due pezzi avranno un nome. Il punto di partenza è una «soluzione particolare». I vettori risolvono il sistema con tutti i termini noti uguali a zero.
 
 > [!OLTRE] dove trovarlo nel libro
 > Tutta la lezione segue il libro di Martelli, **§3.1 «Algoritmi di risoluzione»** (pp. 79–85 del libro): mosse di Gauss e Proposizione 3.1.1 (pp. 79–80), algoritmo di Gauss (pp. 80–82), algoritmo di Gauss–Jordan (pp. 82–83), risoluzione di un sistema e soluzioni scritte come vettori (pp. 83–85, con l'Esempio 3.1.2). Nel libro le righe si chiamano $C_i$ invece di $R_i$.
-
-::: prova La forma ridotta è $\left(\begin{array}{cc|c} 1 & 0 & 2 \\ 0 & 1 & 5 \end{array}\right)$. Quante soluzioni ha il sistema?
-Una sola. Dopo la barra non ci sono pivot, e tutte e due le colonne prima della barra hanno il loro pivot. La soluzione si legge nell'ultima colonna: $x = 2$ e $y = 5$.
-:::
 
 ::: prova La forma ridotta è $\left(\begin{array}{cc|c} 1 & 3 & 4 \\ 0 & 0 & 0 \end{array}\right)$. Scrivi tutte le soluzioni.
 Il pivot è in colonna 1. La colonna 2, quella di $y$, è senza pivot: $y = t$.
@@ -1254,10 +1176,6 @@ Il pivot è in colonna 1. La colonna 2, quella di $y$, è senza pivot: $y = t$.
 La riga 1 dice $x + 3y = 4$, cioè $x + 3t = 4$. Porta $3t$ a destra: $x = 4 - 3t$.
 
 Le soluzioni sono $x = 4 - 3t$ e $y = t$: infinite, con un parametro. Controllo con $t$ uguale a 0: la soluzione $(4, 0)$ dà $4 + 3 \cdot 0 = 4$.
-:::
-
-::: prova La forma a scalini è $\left(\begin{array}{cc|c} 1 & 0 & 2 \\ 0 & 0 & 3 \end{array}\right)$. Quante soluzioni ha il sistema?
-Nessuna. La riga 2 ha tutti zeri prima della barra e 3 dopo: dice $0 = 3$, che è impossibile.
 :::
 
 ::: prova Un sistema ha 5 incognite. La sua matrice a scalini ha 2 pivot, e nessuno è dopo la barra. Quanti parametri servono?
@@ -1357,9 +1275,7 @@ Ora gli zeri sotto il primo pivot. Sotto l'1 ci sono 2 e 1, quindi le mosse sono
 | riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $0 - (-2) = 2$ | $1 - 0 = 1$ | $4 - 4 = 0$ | $3 - 2 = 1$ |
 | riga 3 meno la riga 1 | $1 - 1 = 0$ | $1 - (-1) = 2$ | $1 - 0 = 1$ | $2 - 2 = 0$ | $2 - 1 = 1$ |
 
-$$\left(\begin{array}{cccc|c} 1 & -1 & 0 & 2 & 1 \\ 0 & 2 & 1 & 0 & 1 \\ 0 & 2 & 1 & 0 & 1 \end{array}\right)$$
-
-La riga 2 e la riga 3 sono uguali. Con la mossa $R_3 \to R_3 - R_2$ la riga 3 diventa nulla.
+La riga 2 e la riga 3 sono diventate uguali. Con la mossa $R_3 \to R_3 - R_2$ la riga 3 diventa nulla.
 
 $$\left(\begin{array}{cccc|c} 1 & -1 & 0 & 2 & 1 \\ 0 & 2 & 1 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0 \end{array}\right)$$
 
@@ -1391,7 +1307,7 @@ D: Quale di queste è una mossa di Gauss sulla matrice completa di un sistema li
 - Sommare $1$ a tutti i numeri della prima riga.
 - Scambiare la prima e l'ultima colonna.
 - Elevare al quadrato tutti i numeri della seconda riga.
-= La domanda chiede di riconoscere una delle tre mosse. Nella prima risposta alla riga 2 togli 3 volte la riga 1: è la terza mossa. Moltiplicare una riga per 0 è vietato: la riga diventerebbe $0 = 0$ e un'equazione andrebbe persa. Sommare 1 a tutti i numeri, oppure elevarli al quadrato, non è nessuna delle tre mosse. Lo scambio di due colonne tenta, perché assomiglia alla prima mossa: ma le mosse si fanno sulle righe.
+= Nella prima risposta alla riga 2 togli 3 volte la riga 1: è la terza mossa. Moltiplicare una riga per 0 è vietato: la riga diventerebbe $0 = 0$ e un'equazione andrebbe persa. Sommare 1 a tutti i numeri, oppure elevarli al quadrato, non è nessuna delle tre mosse. Lo scambio di due colonne tenta, perché assomiglia alla prima mossa: ma le mosse si fanno sulle righe.
 
 D: Quale di queste cinque matrici è a scalini? $M_1 = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 0 & 0 \\ 0 & 4 & 5 \end{pmatrix}$, $M_2 = \begin{pmatrix} 2 & 1 & 0 & 3 \\ 0 & 0 & 5 & 1 \\ 0 & 0 & 0 & 0 \end{pmatrix}$, $M_3 = \begin{pmatrix} 1 & 2 \\ 3 & 0 \end{pmatrix}$, $M_4 = \begin{pmatrix} 0 & 1 & 2 \\ 0 & 3 & 4 \\ 0 & 0 & 5 \end{pmatrix}$, $M_5 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}$.
 - La prima.
@@ -1399,7 +1315,7 @@ D: Quale di queste cinque matrici è a scalini? $M_1 = \begin{pmatrix} 1 & 2 & 3
 - La terza.
 - La quarta.
 - La quinta.
-= Una matrice è a scalini se le righe nulle stanno in fondo e ogni pivot sta più a destra di quello della riga sopra. Nella seconda matrice i pivot sono 2, in colonna 1, e 5, in colonna 3, e la riga nulla è in fondo: va bene. Nella prima la riga nulla sta in mezzo. Nella terza il pivot della riga 2 è il 3, in colonna 1 come quello della riga 1. La quarta è quella che tenta, perché sembra una scala: ma i pivot delle prime due righe, 1 e 3, sono tutti e due in colonna 2. Nella quinta il pivot della riga 3 sta a sinistra di quello della riga 2.
+= Servono due cose: righe nulle in fondo, e ogni pivot più a destra di quello della riga sopra. Nella seconda matrice i pivot sono 2, in colonna 1, e 5, in colonna 3, e la riga nulla è in fondo: va bene. Nella prima la riga nulla sta in mezzo. Nella terza il pivot della riga 2 è in colonna 1, come quello della riga 1. La quarta tenta, perché sembra una scala: ma i pivot delle prime due righe, 1 e 3, sono tutti e due in colonna 2. Nella quinta il pivot della riga 3 sta a sinistra di quello della riga 2.
 
 D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 2 & 3 & 10 \\ 4 & 5 & 6 & 11 \\ 7 & 8 & 9 & 12 \end{array}\right)$ ha un numero di soluzioni pari a:
 - Una.
@@ -1407,7 +1323,7 @@ D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 2 & 3
 - Zero.
 - Infinite, che dipendono da 2 parametri.
 - Un numero finito, maggiore di 1.
-= È la domanda 10 dell'appello del 24/01/2024. Chiede di contare le soluzioni, non di trovarle: basta la forma a scalini. Togli 4 volte la riga 1 dalla riga 2: diventa $(0, -3, -6 \mid -29)$. Togli 7 volte la riga 1 dalla riga 3: diventa $(0, -6, -12 \mid -58)$. La riga 3 è il doppio della riga 2, quindi togliendo 2 volte la riga 2 diventa nulla. Restano 2 pivot, nelle colonne 1 e 2, e nessuno dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 2 = 1$. La risposta «Una» tenta, perché le equazioni sono tante quante le incognite: ma la terza equazione non aggiungeva niente alle prime due.
+= È la domanda 10 dell'appello del 24/01/2024. Chiede di contare le soluzioni, quindi basta la forma a scalini. Togli 4 volte la riga 1 dalla riga 2: diventa $(0, -3, -6 \mid -29)$. Togli 7 volte la riga 1 dalla riga 3: diventa $(0, -6, -12 \mid -58)$. La riga 3 è il doppio della riga 2, quindi togliendo 2 volte la riga 2 diventa nulla. Restano 2 pivot, nessuno dopo la barra, e le incognite sono 3: i parametri sono $3 - 2 = 1$. La risposta «Una» tenta, perché le equazioni sono tante quante le incognite: ma la terza non aggiungeva niente alle prime due.
 
 D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 3 & 12 & 6 & 21 \\ 5 & 20 & 10 & 35 \\ 4 & 16 & 8 & 28 \end{array}\right)$ ha un numero di soluzioni pari a:
 - Zero.
@@ -1431,7 +1347,7 @@ D: La forma ridotta della matrice completa di un sistema nelle incognite $x, y, 
 - Solo $x = 3,\ y = 1,\ z = 0$
 - $x = -2t,\ y = t,\ z = t$
 - Il sistema non ha soluzioni.
-= Simile alla domanda 6 dell'appello del 10/07/2024. I pivot sono nelle colonne 1 e 2. La colonna 3, quella di $z$, è senza pivot: $z = t$. La riga 1 dice $x + 2z = 3$, quindi $x = 3 - 2t$. La riga 2 dice $y - z = 1$, quindi $y = 1 + t$. La seconda risposta ha i segni al contrario: quando porti $t$ a destra dell'uguale il segno cambia. La terza risposta è una soluzione vera, quella con $t$ uguale a 0, ma è una sola: la domanda le chiede tutte.
+= Simile alla domanda 6 dell'appello del 10/07/2024. I pivot sono nelle colonne 1 e 2. La colonna 3, quella di $z$, è senza pivot: $z = t$. La riga 1 dice $x + 2z = 3$, quindi $x = 3 - 2t$. La riga 2 dice $y - z = 1$, quindi $y = 1 + t$. La seconda risposta ha i segni al contrario: quando porti $t$ a destra dell'uguale il segno cambia. La terza è una soluzione vera, quella con $t$ uguale a 0, ma è una sola: la domanda le chiede tutte.
 
 D: Riducendo a scalini la matrice completa di un sistema in 3 incognite compare la riga $(0, 0, 0 \mid 5)$. Che cosa puoi concludere?
 + Il sistema non ha soluzioni.
@@ -1439,7 +1355,7 @@ D: Riducendo a scalini la matrice completa di un sistema in 3 incognite compare 
 - Il sistema ha infinite soluzioni.
 - La riga si può cancellare e si continua.
 - L'unica soluzione è $x = y = z = 0$.
-= Rileggi la riga come equazione: $0x + 0y + 0z = 5$. A sinistra viene 0, qualunque numero tu metta al posto delle incognite. Quindi la riga dice $0 = 5$, falsa sempre. Un indizio impossibile rende impossibile tutto il sistema: nessuna soluzione. La risposta «$z = 5$» tenta, ma davanti a $z$ c'è 0, non 1. Si può cancellare solo una riga $(0, 0, 0 \mid 0)$, che dice $0 = 0$.
+= Rileggi la riga come equazione: $0x + 0y + 0z = 5$. A sinistra viene 0, qualunque numero tu metta al posto delle incognite. Quindi la riga dice $0 = 5$, falsa sempre: nessuna soluzione. La risposta «$z = 5$» tenta, ma davanti a $z$ c'è 0, non 1. Si può cancellare solo una riga $(0, 0, 0 \mid 0)$, che dice $0 = 0$.
 
 D: Nella matrice $\left(\begin{array}{cc|c} 1 & 2 & 4 \\ 3 & 1 & 7 \end{array}\right)$ si fa la mossa $R_2 \to R_2 - 3R_1$. Quale diventa la seconda riga?
 + $(0, -5 \mid -5)$
@@ -1447,7 +1363,7 @@ D: Nella matrice $\left(\begin{array}{cc|c} 1 & 2 & 4 \\ 3 & 1 & 7 \end{array}\r
 - $(0, 5 \mid 5)$
 - $(0, -5 \mid 19)$
 - $(2, -1 \mid 3)$
-= Tre volte la riga 1 fa $(3, 6 \mid 12)$. Poi sottrai dalla riga 2, un numero alla volta: $3 - 3 = 0$, poi $1 - 6 = -5$, poi $7 - 12 = -5$. La nuova riga 2 è $(0, -5 \mid -5)$. La mossa vale anche per il numero dopo la barra. Chi lì somma al posto di sottrarre trova 19. Chi sbaglia il segno trova 5. L'ultima risposta è la riga 2 meno la riga 1 una volta sola, non 3 volte.
+= Tre volte la riga 1 fa $(3, 6 \mid 12)$. Poi sottrai dalla riga 2, un numero alla volta: $3 - 3 = 0$, poi $1 - 6 = -5$, poi $7 - 12 = -5$. La mossa vale anche per il numero dopo la barra. Chi lì somma al posto di sottrarre trova 19. Chi sbaglia il segno trova 5. L'ultima risposta è la riga 2 meno la riga 1 una volta sola, non 3 volte.
 
 D: Un sistema di 3 equazioni in 5 incognite, ridotto a scalini, ha 3 pivot e nessuno di questi è nell'ultima colonna. Quante sono le soluzioni?
 + Infinite, che dipendono da 2 parametri.
@@ -1459,7 +1375,7 @@ D: Un sistema di 3 equazioni in 5 incognite, ridotto a scalini, ha 3 pivot e nes
 
 D: Risolvi il sistema a scalini $x - y + 2z = 5$, $3y - z = 1$, $2z = 4$. Quanto vale $x$?
 N: 2
-= Il sistema è a scalini, quindi si risolve dal basso. Terza equazione: $2z = 4$, quindi $z = 2$. Seconda equazione: $3y - 2 = 1$, cioè $3y = 3$, quindi $y = 1$. Prima equazione: $x - 1 + 2 \cdot 2 = 5$, cioè $x + 3 = 5$, quindi $x = 2$. Controllo nella prima equazione: $2 - 1 + 4 = 5$.
+= Il sistema è a scalini, quindi si risolve dal basso. Terza equazione: $2z = 4$, quindi $z = 2$. Seconda equazione: $3y - 2 = 1$, cioè $3y = 3$, quindi $y = 1$. Prima equazione: $x - 1 + 2 \cdot 2 = 5$, cioè $x + 3 = 5$, quindi $x = 2$.
 ```
 
 ## Esercizi
@@ -1502,21 +1418,6 @@ fai la mossa $R_2 \to R_2 - 3R_1$. Poi risolvi il sistema.
 La soluzione è $(2, -1)$.
 
 **Controllo** nelle equazioni di partenza: $2 - 2 \cdot (-1) = 2 + 2 = 4$ e $3 \cdot 2 + (-1) = 5$. Tutte e due vere.
-:::
-
-::: esercizio base Risolvere dal basso
-Risolvi il sistema, che è già a scalini:
-$$\begin{cases} x + y + z = 6 \\ y + 2z = 7 \\ 3z = 9 \end{cases}$$
-::: soluzione
-Si parte dall'ultima equazione, che ha una sola incognita, e si risale.
-
-1. **Terza equazione.** È $3z = 9$. Dividi per 3 i due lati: $z = 3$.
-2. **Seconda equazione.** È $y + 2z = 7$. Sostituisci 3 al posto di $z$: viene $y + 6 = 7$. Togli 6 dai due lati: $y = 1$.
-3. **Prima equazione.** È $x + y + z = 6$. Sostituisci 1 al posto di $y$ e 3 al posto di $z$: viene $x + 4 = 6$. Togli 4 dai due lati: $x = 2$.
-
-La soluzione è $(2, 1, 3)$.
-
-**Controllo**: $2 + 1 + 3 = 6$, poi $1 + 2 \cdot 3 = 7$, poi $3 \cdot 3 = 9$. Tutte vere.
 :::
 
 ::: esercizio base Tre matrici a scalini: quante soluzioni?
@@ -1578,24 +1479,13 @@ $$\begin{cases} x + y + 2z = 9 \\ 2x + 4y - 3z = 1 \\ 3x + 6y - 5z = 0 \end{case
 1. **La matrice completa.** Una riga per equazione, e l'ultima colonna per i termini noti.
    $$\left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 2 & 4 & -3 & 1 \\ 3 & 6 & -5 & 0 \end{array}\right)$$
 2. **Zeri sotto il primo pivot.** Il pivot è l'1 in alto a sinistra. Sotto ci sono 2 e 3. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - 3R_1$. La riga 1 resta ferma.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $4 - 2 = 2$ | $-3 - 4 = -7$ | $1 - 18 = -17$ |
-| riga 3 meno 3 volte la riga 1 | $3 - 3 = 0$ | $6 - 3 = 3$ | $-5 - 6 = -11$ | $0 - 27 = -27$ |
-
-$$\left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 0 & 2 & -7 & -17 \\ 0 & 3 & -11 & -27 \end{array}\right)$$
-
+   - Riga 2 meno 2 volte la riga 1: $(2 - 2,\ 4 - 2,\ -3 - 4 \mid 1 - 18) = (0, 2, -7 \mid -17)$.
+   - Riga 3 meno 3 volte la riga 1: $(3 - 3,\ 6 - 3,\ -5 - 6 \mid 0 - 27) = (0, 3, -11 \mid -27)$.
 3. **Zero sotto il secondo pivot.** Il secondo pivot è il 2 della riga 2. Sotto c'è 3. La ricetta direbbe di togliere la riga 2 per $\frac 32$ volte. Per non avere frazioni uso il trucco: prima raddoppio la riga 3, poi tolgo 3 volte la riga 2. La mossa è $R_3 \to 2R_3 - 3R_2$.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| 2 volte la riga 3 | $0$ | $6$ | $-22$ | $-54$ |
-| 3 volte la riga 2 | $0$ | $6$ | $-21$ | $-51$ |
-| differenza | $0$ | $6 - 6 = 0$ | $-22 + 21 = -1$ | $-54 + 51 = -3$ |
-
-$$\left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 0 & 2 & -7 & -17 \\ 0 & 0 & -1 & -3 \end{array}\right)$$
-
+   - 2 volte la riga 3: $(0, 6, -22 \mid -54)$.
+   - 3 volte la riga 2: $(0, 6, -21 \mid -51)$.
+   - Differenza: $(0,\ 6 - 6,\ -22 + 21 \mid -54 + 51) = (0, 0, -1 \mid -3)$.
+   $$\left(\begin{array}{ccc|c} 1 & 1 & 2 & 9 \\ 0 & 2 & -7 & -17 \\ 0 & 0 & -1 & -3 \end{array}\right)$$
 4. **Lettura.** La matrice è a scalini. I pivot sono tre, nelle colonne 1, 2 e 3. Dopo la barra non ce ne sono, e ogni incognita ha il suo: la soluzione è una sola.
 5. **Dal basso, riga 3.** Dice $-z = -3$. Cambia segno ai due lati: $z = 3$.
 6. **Riga 2.** Dice $2y - 7z = -17$. Sostituisci 3 al posto di $z$: viene $2y - 21 = -17$. Somma 21 ai due lati: $2y = 4$, quindi $y = 2$.
@@ -1615,14 +1505,8 @@ $$\left(\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 2 & 4 & 1 & 0 \\ 1 & 2 & 2 & -3 \
 Le incognite sono 3: le chiamo $x$, $y$, $z$.
 
 1. **Fase 1, prima colonna.** Il pivot è l'1 in alto a sinistra. Sotto ci sono 2 e 1. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - R_1$. Attenzione alla colonna 3: togliere un numero negativo vuol dire sommare.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $4 - 4 = 0$ | $1 - (-2) = 3$ | $0 - 6 = -6$ |
-| riga 3 meno la riga 1 | $1 - 1 = 0$ | $2 - 2 = 0$ | $2 - (-1) = 3$ | $-3 - 3 = -6$ |
-
-$$\left(\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 0 & 3 & -6 \\ 0 & 0 & 3 & -6 \end{array}\right)$$
-
+   - Riga 2 meno 2 volte la riga 1: $(2 - 2,\ 4 - 4,\ 1 - (-2) \mid 0 - 6) = (0, 0, 3 \mid -6)$.
+   - Riga 3 meno la riga 1: $(1 - 1,\ 2 - 2,\ 2 - (-1) \mid -3 - 3) = (0, 0, 3 \mid -6)$.
 2. **Fase 1, il resto.** Sotto la prima riga la colonna 2 è tutta di zeri: resta senza pivot. Nella colonna 3 il pivot è il 3 della riga 2. Sotto c'è un altro 3. La mossa $R_3 \to R_3 - R_2$ dà la riga nulla, perché le due righe sono uguali.
    $$\left(\begin{array}{ccc|c} 1 & 2 & -1 & 3 \\ 0 & 0 & 3 & -6 \\ 0 & 0 & 0 & 0 \end{array}\right)$$
 3. **Fase 2, pivot uguale a 1.** Divido la riga 2 per 3, con la mossa $R_2 \to \frac 13 R_2$. Viene $(0, 0, 1 \mid -2)$.
@@ -1643,15 +1527,8 @@ $$\begin{cases} x_1 + x_2 - x_3 + 2x_4 = 1 \\ 2x_1 + 2x_2 + x_3 + x_4 = 5 \end{c
 ::: soluzione
 1. **La matrice completa.** Le incognite sono 4, quindi le colonne prima della barra sono 4.
    $$\left(\begin{array}{cccc|c} 1 & 1 & -1 & 2 & 1 \\ 2 & 2 & 1 & 1 & 5 \end{array}\right)$$
-2. **Zero sotto il primo pivot.** Sotto l'1 c'è 2. La mossa è $R_2 \to R_2 - 2R_1$.
-
-| | col. 1 | col. 2 | col. 3 | col. 4 | termine noto |
-|---|---|---|---|---|---|
-| riga 2 | $2$ | $2$ | $1$ | $1$ | $5$ |
-| 2 volte la riga 1 | $2$ | $2$ | $-2$ | $4$ | $2$ |
-| differenza | $2 - 2 = 0$ | $2 - 2 = 0$ | $1 - (-2) = 3$ | $1 - 4 = -3$ | $5 - 2 = 3$ |
-
-3. **Pivot uguale a 1.** La riga 2 è $(0, 0, 3, -3 \mid 3)$. Il suo pivot è 3, in colonna 3. La divido per 3: viene $(0, 0, 1, -1 \mid 1)$.
+2. **Zero sotto il primo pivot.** Sotto l'1 c'è 2. La mossa è $R_2 \to R_2 - 2R_1$. Il conto: $(2 - 2,\ 2 - 2,\ 1 - (-2),\ 1 - 4 \mid 5 - 2) = (0, 0, 3, -3 \mid 3)$.
+3. **Pivot uguale a 1.** Il pivot della riga 2 è 3, in colonna 3. Divido la riga per 3: viene $(0, 0, 1, -1 \mid 1)$.
 4. **Zero sopra il secondo pivot.** Sopra c'è $-1$. Sommo la riga 2 alla riga 1: mossa $R_1 \to R_1 + R_2$. Terzo numero: $-1 + 1 = 0$. Quarto numero: $2 + (-1) = 1$. Ultimo numero: $1 + 1 = 2$.
    $$\left(\begin{array}{cccc|c} 1 & 1 & 0 & 1 & 2 \\ 0 & 0 & 1 & -1 & 1 \end{array}\right)$$
 5. **Lettura.** I pivot sono nelle colonne 1 e 3. Le colonne 2 e 4 sono senza pivot. Do due parametri: $x_2 = s$ e $x_4 = t$.
@@ -1663,8 +1540,6 @@ $$x_1 = 2 - s - t, \qquad x_2 = s, \qquad x_3 = 1 + t, \qquad x_4 = t, \qquad s,
 Le soluzioni sono infinite. I parametri sono $4 - 2 = 2$.
 
 **Controllo** con i due parametri uguali a 0, cioè con $(2, 0, 1, 0)$. Prima equazione: $2 + 0 - 1 + 0 = 1$. Seconda equazione: $4 + 0 + 1 + 0 = 5$. Tutte e due vere.
-
-**Controllo con i parametri**, nella seconda equazione: $2(2 - s - t) + 2s + (1 + t) + t = 4 - 2s - 2t + 2s + 1 + 2t = 5$. I pezzi con $s$ e con $t$ si cancellano, e resta 5.
 :::
 
 ::: esercizio medio Un sistema impossibile
@@ -1673,14 +1548,8 @@ Mostra che il sistema $\begin{cases} x + y + z = 1 \\ x - y + 2z = 0 \\ 2x + 3z 
 1. **La matrice completa.** Nella terza equazione manca $y$: coefficiente 0.
    $$\left(\begin{array}{ccc|c} 1 & 1 & 1 & 1 \\ 1 & -1 & 2 & 0 \\ 2 & 0 & 3 & 2 \end{array}\right)$$
 2. **Zeri sotto il primo pivot.** Sotto l'1 ci sono 1 e 2. Le mosse sono $R_2 \to R_2 - R_1$ e $R_3 \to R_3 - 2R_1$.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 2 meno la riga 1 | $1 - 1 = 0$ | $-1 - 1 = -2$ | $2 - 1 = 1$ | $0 - 1 = -1$ |
-| riga 3 meno 2 volte la riga 1 | $2 - 2 = 0$ | $0 - 2 = -2$ | $3 - 2 = 1$ | $2 - 2 = 0$ |
-
-$$\left(\begin{array}{ccc|c} 1 & 1 & 1 & 1 \\ 0 & -2 & 1 & -1 \\ 0 & -2 & 1 & 0 \end{array}\right)$$
-
+   - Riga 2 meno la riga 1: $(1 - 1,\ -1 - 1,\ 2 - 1 \mid 0 - 1) = (0, -2, 1 \mid -1)$.
+   - Riga 3 meno 2 volte la riga 1: $(2 - 2,\ 0 - 2,\ 3 - 2 \mid 2 - 2) = (0, -2, 1 \mid 0)$.
 3. **Zero sotto il secondo pivot.** Il secondo pivot è il $-2$ della riga 2. Sotto c'è un altro $-2$. La mossa è $R_3 \to R_3 - R_2$. Prima della barra viene $(0,\ -2 + 2,\ 1 - 1)$, cioè tutti zeri. Dopo la barra viene $0 - (-1) = 1$.
    $$\left(\begin{array}{ccc|c} 1 & 1 & 1 & 1 \\ 0 & -2 & 1 & -1 \\ 0 & 0 & 0 & 1 \end{array}\right)$$
 4. **Lettura.** L'ultima riga ha tutti zeri prima della barra e 1 dopo. Dice $0 = 1$. C'è un pivot nell'ultima colonna: il sistema non ha soluzioni, cioè $S = \emptyset$.
@@ -1693,12 +1562,10 @@ Uno studente risolve $\begin{cases} 2x + y = 4 \\ x + 3y = 7 \end{cases}$ facend
 ::: soluzione
 **Il conto dello studente.** Le righe di partenza sono $(2, 1 \mid 4)$ e $(1, 3 \mid 7)$.
 
-| | colonna 1 | colonna 2 | termine noto |
-|---|---|---|---|
-| riga 1 meno 2 volte la riga 2 | $2 - 2 = 0$ | $1 - 6 = -5$ | $4 - 14 = -10$ |
-| riga 2 meno metà della riga 1 | $1 - 1 = 0$ | $3 - \frac 12 = \frac 52$ | $7 - 2 = 5$ |
+- Riga 1 meno 2 volte la riga 2: $(2 - 2,\ 1 - 6 \mid 4 - 14) = (0, -5 \mid -10)$.
+- Riga 2 meno metà della riga 1: $(1 - 1,\ 3 - \frac 12 \mid 7 - 2) = (0, \frac 52 \mid 5)$.
 
-Le due righe nuove sono $(0, -5 \mid -10)$ e $(0, \frac 52 \mid 5)$. Tutte e due dicono la stessa cosa: che $y$ vale 2. Infatti $-10 : (-5) = 2$ e $5 : \frac 52 = 2$. Di $x$ non resta nessuna informazione. Allo studente sembra che $x$ sia libera e che le soluzioni siano infinite.
+Tutte e due le righe nuove dicono la stessa cosa: che $y$ vale 2. Infatti $-10 : (-5) = 2$ e $5 : \frac 52 = 2$. Di $x$ non resta nessuna informazione. Allo studente sembra che $x$ sia libera e che le soluzioni siano infinite.
 
 **Perché è sbagliato.** Ognuna delle due mosse, da sola, è permessa. Insieme no. Dopo la prima mossa la riga 1 è cambiata, e la seconda mossa doveva usare la riga 1 nuova. Lo studente ha usato quella vecchia. Il risultato non si può più disfare: un'equazione è andata persa.
 
@@ -1706,8 +1573,7 @@ Le due righe nuove sono $(0, -5 \mid -10)$ e $(0, \frac 52 \mid 5)$. Tutte e due
 
 1. Scambio le righe, per avere un 1 in alto a sinistra: mossa $R_1 \leftrightarrow R_2$.
    $$\left(\begin{array}{cc|c} 1 & 3 & 7 \\ 2 & 1 & 4 \end{array}\right)$$
-2. Tolgo 2 volte la riga 1 dalla riga 2: mossa $R_2 \to R_2 - 2R_1$. Primo numero: $2 - 2 = 0$. Secondo numero: $1 - 6 = -5$. Terzo numero: $4 - 14 = -10$.
-   $$\left(\begin{array}{cc|c} 1 & 3 & 7 \\ 0 & -5 & -10 \end{array}\right)$$
+2. Tolgo 2 volte la riga 1 dalla riga 2: mossa $R_2 \to R_2 - 2R_1$. Il conto: $(2 - 2,\ 1 - 6 \mid 4 - 14) = (0, -5 \mid -10)$.
 3. Dal basso. La riga 2 dice $-5y = -10$, quindi $y = 2$. La riga 1 dice $x + 3y = 7$, cioè $x + 6 = 7$, quindi $x = 1$.
 
 La soluzione è una sola: $(1, 2)$.
@@ -1731,7 +1597,7 @@ $$(x_1, x_2, x_3) = (-4t, -t, t), \qquad t \in \R.$$
 
 **Controllo** con $t$ uguale a 1, cioè con $(-4, -1, 1)$: $-4 + 1 + 3 = 0$, poi $-2 + 2 = 0$, poi $-4 + 4 = 0$. Tutte vere.
 
-Ogni soluzione è $t$ volte il vettore $(-4, -1, 1)$. Le soluzioni sono tutti i multipli di un solo vettore: una retta che passa per l'origine. Un sistema con tutti i termini noti uguali a zero si chiama **omogeneo**, ed è il primo argomento della lezione L12.
+Ogni soluzione è $t$ volte il vettore $(-4, -1, 1)$: le soluzioni sono tutti i multipli di un solo vettore, cioè una retta che passa per l'origine. Un sistema con tutti i termini noti uguali a zero si chiama **omogeneo**, ed è il primo argomento della lezione L12.
 :::
 
 ::: esercizio difficile Quando il sistema dipende da un numero
@@ -1769,15 +1635,8 @@ ha un numero di soluzioni pari a: (a) un numero finito, maggiore di 1; (b) zero;
 
 1. **Serve uno scambio.** In alto a sinistra c'è 0, che non può fare da pivot. Scambio le prime due righe: mossa $R_1 \leftrightarrow R_2$.
    $$\left(\begin{array}{ccc|c} 4 & 5 & 6 & 7 \\ 0 & 1 & 2 & 3 \\ 8 & 9 & 10 & 11 \end{array}\right)$$
-2. **Zeri sotto il primo pivot.** Il pivot è 4. Nella riga 2 sotto c'è già 0. Nella riga 3 c'è 8. Quante volte togliere la riga 1? $8 : 4 = 2$. La mossa è $R_3 \to R_3 - 2R_1$.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 3 | $8$ | $9$ | $10$ | $11$ |
-| 2 volte la riga 1 | $8$ | $10$ | $12$ | $14$ |
-| differenza | $8 - 8 = 0$ | $9 - 10 = -1$ | $10 - 12 = -2$ | $11 - 14 = -3$ |
-
-3. **Zero sotto il secondo pivot.** Il secondo pivot è l'1 della riga 2. Sotto c'è $-1$. La riga 3 è $(0, -1, -2 \mid -3)$: è l'opposto della riga 2. Sommandole viene la riga nulla: mossa $R_3 \to R_3 + R_2$.
+2. **Zeri sotto il primo pivot.** Il pivot è 4. Nella riga 2 sotto c'è già 0. Nella riga 3 c'è 8. Quante volte togliere la riga 1? $8 : 4 = 2$. La mossa è $R_3 \to R_3 - 2R_1$. Due volte la riga 1 fa $(8, 10, 12 \mid 14)$. Il conto: $(8 - 8,\ 9 - 10,\ 10 - 12 \mid 11 - 14) = (0, -1, -2 \mid -3)$.
+3. **Zero sotto il secondo pivot.** Il secondo pivot è l'1 della riga 2. La riga 3 è diventata l'opposto della riga 2. Sommandole viene la riga nulla: mossa $R_3 \to R_3 + R_2$.
    $$\left(\begin{array}{ccc|c} 4 & 5 & 6 & 7 \\ 0 & 1 & 2 & 3 \\ 0 & 0 & 0 & 0 \end{array}\right)$$
 4. **Risposta al quiz.** I pivot sono due, nelle colonne 1 e 2. Dopo la barra non ce ne sono. Le incognite sono 3, quindi i parametri sono $3 - 2 = 1$. La risposta giusta è la **(d)**.
 
@@ -1801,13 +1660,9 @@ e scegli la risposta giusta tra: (a) nessuna soluzione; (b) $x = -1 - t,\ y = 1 
 1. **La matrice completa.**
    $$\left(\begin{array}{ccc|c} 1 & 2 & 3 & 1 \\ 2 & 5 & 7 & 3 \\ 1 & 3 & 4 & 2 \end{array}\right)$$
 2. **Zeri sotto il primo pivot.** Sotto l'1 ci sono 2 e 1. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - R_1$.
-
-| | colonna 1 | colonna 2 | colonna 3 | termine noto |
-|---|---|---|---|---|
-| riga 2 meno 2 volte la riga 1 | $2 - 2 = 0$ | $5 - 4 = 1$ | $7 - 6 = 1$ | $3 - 2 = 1$ |
-| riga 3 meno la riga 1 | $1 - 1 = 0$ | $3 - 2 = 1$ | $4 - 3 = 1$ | $2 - 1 = 1$ |
-
-3. **Zero sotto il secondo pivot.** Le due righe nuove sono uguali: $(0, 1, 1 \mid 1)$. La mossa $R_3 \to R_3 - R_2$ dà la riga nulla.
+   - Riga 2 meno 2 volte la riga 1: $(2 - 2,\ 5 - 4,\ 7 - 6 \mid 3 - 2) = (0, 1, 1 \mid 1)$.
+   - Riga 3 meno la riga 1: $(1 - 1,\ 3 - 2,\ 4 - 3 \mid 2 - 1) = (0, 1, 1 \mid 1)$.
+3. **Zero sotto il secondo pivot.** Le due righe nuove sono uguali. La mossa $R_3 \to R_3 - R_2$ dà la riga nulla.
 4. **Zero sopra il secondo pivot.** Sopra l'1 della riga 2 c'è 2. La mossa è $R_1 \to R_1 - 2R_2$. Secondo numero: $2 - 2 = 0$. Terzo numero: $3 - 2 = 1$. Ultimo numero: $1 - 2 = -1$.
    $$\left(\begin{array}{ccc|c} 1 & 0 & 1 & -1 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 0 & 0 \end{array}\right)$$
 5. **Lettura.** I pivot sono nelle colonne 1 e 2. La colonna 3 è senza pivot: $z = t$.

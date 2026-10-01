@@ -89,7 +89,7 @@ Una scrittura così, con un uguale e una lettera da trovare, si chiama **equazio
 
 ### Proviamo con i numeri reali
 
-I **numeri reali** sono tutti i numeri della lezione L01: gli interi, le frazioni, le radici, i numeri con infinite cifre dopo la virgola. Il loro insieme si indica con $\R$, che si legge «erre».
+I **numeri reali** sono tutti i numeri della lezione L01. Il loro insieme si indica con $\R$, che si legge «erre».
 
 Prendiamo qualche numero reale e calcoliamo il suo quadrato.
 
@@ -281,9 +281,9 @@ Un esempio. Ti dicono che $x + yi$ è uguale a $3 - 2i$, dove $x$ e $y$ sono due
 - Le parti reali devono essere uguali: $x = 3$.
 - Le parti immaginarie devono essere uguali: $y = -2$.
 
-Quindi un'uguaglianza tra numeri complessi vale **due** uguaglianze tra numeri reali. È il trucco che risolve molte equazioni: lo userai negli esercizi 8 e 14.
+Quindi un'uguaglianza tra numeri complessi vale **due** uguaglianze tra numeri reali. È il trucco che risolve molte equazioni: lo userai negli esercizi 7 e 13.
 
-Nelle dispense questa regola non è scritta a parte. È contenuta nel modo in cui si scrive un numero complesso, e si vede bene sul foglio: ogni numero è un punto solo.
+Nelle dispense questa regola non è scritta a parte: è contenuta nel modo in cui si scrive un numero complesso.
 
 ::: prova Per ogni numero di' la parte reale e la parte immaginaria: (a) $5 + 3i$; (b) $2 - 7i$; (c) $-4i$; (d) $6$.
 (a) Parte reale $5$, parte immaginaria $3$.
@@ -420,23 +420,14 @@ Si legge da sinistra a destra. Prima ci sono i quattro prodotti. Poi, al posto d
 
 Una scrittura come $ac$ vuol dire «$a$ per $c$»: tra due lettere il puntino non si scrive.
 
-Controlliamo la formula sul prodotto delle dispense. Lì $a = 7$, $b = 1$, $c = 4$ e $d = -1$.
-
-| Pezzo del risultato | Con le lettere | Con i numeri |
-|---|---|---|
-| parte reale | $ac - bd$ | $7 \cdot 4 - 1 \cdot (-1) = 28 + 1 = 29$ |
-| parte immaginaria | $ad + bc$ | $7 \cdot (-1) + 1 \cdot 4 = -7 + 4 = -3$ |
-
-Viene $29 - 3i$, come prima.
-
 Nel prodotto c'è un segno meno che nella somma non c'era. Viene tutto dalla regola della $i$.
 
 > [!TRAPPOLA] Non si moltiplica «pezzo per pezzo»
-> La somma si fa pezzo per pezzo: parte reale con parte reale, parte immaginaria con parte immaginaria. Il prodotto **no**.
+> La somma si fa pezzo per pezzo. Il prodotto **no**.
 >
 > Prendi $(1 + 2i)(3 - i)$. Se moltiplichi solo le parti reali tra loro e le parti immaginarie tra loro, ottieni $3 - 2i$. È sbagliato: mancano i due prodotti «incrociati», primo per secondo e secondo per primo. Il risultato giusto è $5 + 5i$.
 >
-> Secondo errore tipico: dimenticare che $i^2$ vale $-1$ e trattarlo come $+1$. Nello stesso conto verrebbe $1 + 5i$, sbagliato anche questo.
+> Secondo errore tipico: trattare $i^2$ come $+1$. Nello stesso conto verrebbe $1 + 5i$, sbagliato anche questo.
 
 ### Tutti i numeri complessi insieme
 
@@ -450,23 +441,19 @@ Si legge da sinistra a destra: i naturali stanno dentro gli interi, gli interi d
 
 Che cosa ha in più $\C$ rispetto a $\R$? Per esempio la $i$: è un numero complesso, ma non è un numero reale.
 
-Resta una cosa da controllare. Un numero reale è anche un numero complesso, con la parte immaginaria uguale a zero. Se moltiplichi due numeri reali con il metodo nuovo, viene il risultato di sempre? Proviamo con 2 per 3:
-
-$$(2 + 0i) \cdot (3 + 0i) = 6 + 0i + 0i + 0i^2 = 6$$
-
-I tre pezzi con lo zero spariscono e resta 6. I conti tra numeri reali non cambiano. In una parola: $\C$ **estende** $\R$. Aggiunge numeri nuovi senza toccare quelli vecchi.
+I conti tra numeri reali, invece, restano quelli di sempre. Con il metodo nuovo, 2 per 3 fa ancora 6: i pezzi con la $i$ valgono zero e spariscono. In una parola: $\C$ **estende** $\R$. Aggiunge numeri nuovi senza toccare quelli vecchi.
 
 > [!APPROFONDIMENTO] da dove vengono davvero i numeri complessi
-> Nella storia i numeri complessi non sono nati dall'equazione $x^2 = -1$. Sono nati dalle equazioni di **terzo grado**, quelle in cui compare $x^3$, cioè $x \cdot x \cdot x$.
+> Nella storia i numeri complessi sono nati dalle equazioni di **terzo grado**, quelle in cui compare $x^3$, cioè $x \cdot x \cdot x$.
 >
-> Nel Cinquecento Gerolamo Cardano pubblicò una formula per risolvere equazioni come $x^3 = 15x + 4$. Questa equazione ha una soluzione reale che si trova per tentativi: $x = 4$. Controllo: $4^3 = 4 \cdot 4 \cdot 4 = 64$, e anche $15 \cdot 4 + 4 = 60 + 4 = 64$.
+> Nel Cinquecento Gerolamo Cardano pubblicò una formula per risolvere equazioni come $x^3 = 15x + 4$. Questa equazione ha una soluzione reale: $x = 4$. Controllo: $4^3 = 64$, e anche $15 \cdot 4 + 4 = 64$.
 >
-> La formula di Cardano, però, per arrivare a quel 4 chiede di calcolare $\sqrt{-121}$: la radice quadrata di un numero negativo. Tra i numeri reali non esiste.
+> La formula di Cardano, però, per arrivare a quel 4 chiede di calcolare $\sqrt{-121}$: la radice quadrata di un numero negativo, che tra i numeri reali non esiste.
 >
-> Rafael Bombelli ebbe l'idea di andare avanti lo stesso. Trattò $\sqrt{-121}$ come un numero qualsiasi, quello che oggi scriviamo $11i$. Infatti $11i \cdot 11i = 121 \cdot i^2 = -121$. Con questa scrittura la formula di Cardano diventa
+> Rafael Bombelli ebbe l'idea di andare avanti lo stesso. Trattò $\sqrt{-121}$ come un numero qualsiasi, quello che oggi scriviamo $11i$. Con questa scrittura la formula diventa
 > $$x = \sqrt[3]{2 + 11i} + \sqrt[3]{2 - 11i}.$$
-> Il simbolo $\sqrt[3]{\ }$ è la radice cubica: il numero che, elevato alla terza, dà quello scritto sotto. Nell'esercizio 5 controlli che $(2 + i)^3 = 2 + 11i$ e che $(2 - i)^3 = 2 - 11i$. Quindi le due radici cubiche sono $2 + i$ e $2 - i$, e la formula dà
-> $$x = (2 + i) + (2 - i) = 4.$$
+> Il simbolo $\sqrt[3]{\ }$ è la radice cubica: il numero che, elevato alla terza, dà quello scritto sotto. Nell'esercizio 4 controlli che $(2 + i)^3 = 2 + 11i$ e che $(2 - i)^3 = 2 - 11i$. Quindi le due radici cubiche sono $2 + i$ e $2 - i$, e la loro somma è proprio 4.
+>
 > I numeri «immaginari» servivano a trovare un numero reale.
 
 ::: prova Quanto fa $(2 + 3i) + (4 - i)$?
@@ -511,15 +498,9 @@ Calcoliamo le potenze di $i$ una alla volta. Ogni potenza è quella di prima, mo
 | $i^5$ | $i^4 \cdot i = 1 \cdot i$ | $i$ |
 | $i^6$ | $i^5 \cdot i = i \cdot i$ | $-1$ |
 
-Alla quarta potenza si arriva a 1. Moltiplicare per 1 non cambia niente, quindi dalla quinta potenza in poi tutto ricomincia da capo.
+Alla quarta potenza si arriva a 1. Moltiplicare per 1 non cambia niente, quindi dalla quinta potenza in poi tutto ricomincia da capo. I risultati sono sempre gli stessi quattro, nello stesso ordine: $i$, $-1$, $-i$, $1$.
 
-I risultati sono sempre gli stessi quattro, nello stesso ordine. Ecco i primi nove, a partire dall'esponente 0.
-
-| Esponente | $0$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ |
-|---|---|---|---|---|---|---|---|---|---|
-| Potenza di $i$ | $1$ | $i$ | $-1$ | $-i$ | $1$ | $i$ | $-1$ | $-i$ | $1$ |
-
-Sul foglio i quattro risultati sono quattro punti intorno all'origine, tutti a un passo di distanza: a destra, in alto, a sinistra, in basso.
+Sul foglio i quattro risultati sono quattro punti intorno all'origine, tutti a un passo di distanza: in alto, a sinistra, in basso, a destra.
 
 ```grafico
 titolo: Le potenze di $i$ girano su quattro punti: $1$, $i$, $-1$, $-i$. Poi ricominciano
@@ -574,7 +555,7 @@ Tre esempi.
 | $i^{100}$ | $100 = 4 \cdot 25 + 0$ | $0$ | $1$ |
 | $i^{2026}$ | $2026 = 4 \cdot 506 + 2$ | $2$ | $-1$ |
 
-La prima potenza serve nell'esercizio 7.
+La prima potenza serve nell'esercizio 6.
 
 Un aiuto per i numeri grandi: per trovare il resto della divisione per 4 bastano **le ultime due cifre**. Il motivo è che 100 è un multiplo di 4, quindi le centinaia non lasciano resto. Per 2026 guardi solo 26: siccome $26 = 4 \cdot 6 + 2$, il resto è 2.
 
@@ -616,19 +597,14 @@ Nei conti delle sezioni precedenti hai usato le regole di sempre senza pensarci.
 
 Hai raccolto i pezzi nell'ordine più comodo. Hai moltiplicato le parentesi un pezzo alla volta. Chi garantisce che con i numeri complessi queste regole valgano ancora? Le dispense lo mettono nero su bianco in una proposizione.
 
-**Ricorda (lezione L01).** Le regole dei conti sono nove. Eccole, con un esempio tra i numeri reali.
+**Ricorda (lezione L01).** Le regole dei conti sono nove.
 
-| N. | La regola a parole | Un esempio con i numeri reali |
-|---|---|---|
-| 1 | sommare 0 non cambia niente | $0 + 7 = 7$ |
-| 2 | in una somma l'ordine non conta | $2 + 5 = 5 + 2$ |
-| 3 | in una somma di tre numeri puoi cominciare da dove vuoi | $1 + (2 + 3) = (1 + 2) + 3$ |
-| 4 | ogni numero ha un **opposto**: sommati fanno 0 | $7 + (-7) = 0$ |
-| 5 | moltiplicare per 1 non cambia niente | $1 \cdot 7 = 7$ |
-| 6 | in un prodotto l'ordine non conta | $2 \cdot 5 = 5 \cdot 2$ |
-| 7 | in un prodotto di tre numeri puoi cominciare da dove vuoi | $2 \cdot (3 \cdot 4) = (2 \cdot 3) \cdot 4$ |
-| 8 | ogni numero **diverso da 0** ha un **inverso**: moltiplicati fanno 1 | $4 \cdot \frac 14 = 1$ |
-| 9 | moltiplicare una somma è come moltiplicare i due pezzi e poi sommare | $3 \cdot (2 + 5) = 3 \cdot 2 + 3 \cdot 5$ |
+- Lo 0 nella somma e l'1 nel prodotto non cambiano niente: sono le regole 1 e 5.
+- L'ordine non conta, né nella somma né nel prodotto: regole 2 e 6. Per esempio $2 \cdot 5 = 5 \cdot 2$.
+- Con tre numeri puoi cominciare da dove vuoi: regole 3 e 7.
+- Ogni numero ha un **opposto**, e sommati fanno 0: regola 4. Per esempio $7 + (-7) = 0$.
+- Ogni numero diverso da 0 ha un **inverso**, e moltiplicati fanno 1: regola 8. Per esempio $4 \cdot \frac 14 = 1$.
+- Moltiplicare una somma è come moltiplicare i due pezzi e poi sommare: regola 9.
 
 Un insieme di numeri in cui valgono tutte e nove si chiama **campo**.
 
@@ -636,14 +612,7 @@ Un insieme di numeri in cui valgono tutte e nove si chiama **campo**.
 
 Proviamo alcune di queste regole con i numeri complessi.
 
-**Regola 6: nel prodotto l'ordine non conta.** Moltiplichiamo gli stessi due numeri nei due ordini possibili.
-
-| Prodotto | I quattro prodotti | Risultato |
-|---|---|--:|
-| $(1 + i)(2 + 3i)$ | $2 + 3i + 2i + 3i^2$ | $-1 + 5i$ |
-| $(2 + 3i)(1 + i)$ | $2 + 2i + 3i + 3i^2$ | $-1 + 5i$ |
-
-In tutte e due le righe i pezzi sono gli stessi, scritti in un ordine diverso. Il risultato è lo stesso.
+**Regola 6: nel prodotto l'ordine non conta.** Moltiplica $1 + i$ per $2 + 3i$, e poi $2 + 3i$ per $1 + i$. I quattro prodotti sono gli stessi, in un ordine diverso: $2$, $3i$, $2i$ e $3i^2$. Il risultato è $-1 + 5i$ tutte e due le volte.
 
 **Regole 1 e 5: lo zero e l'uno.** Lo zero dei numeri complessi è $0 + 0i$, cioè il solito 0. Sul foglio è l'origine. L'uno è $1 + 0i$, cioè il solito 1.
 
@@ -671,7 +640,7 @@ Nella proposizione qui sotto c'è un cambio di lettere a cui fare attenzione. Fi
 
 - Il simbolo $\forall$, una A rovesciata, si legge «per ogni». Il simbolo $\in$ si legge «appartiene a».
 - La scrittura $\forall a \in \C$ si legge «per ogni $a$ che appartiene a $\C$». Vuol dire: qualunque numero complesso tu metta al posto della lettera.
-- Ogni riga è una delle nove regole della tabella, con le lettere al posto dei numeri. «Elemento neutro» è il numero che non cambia niente. «Commutativa» vuol dire che l'ordine non conta. «Associativa» vuol dire che puoi cominciare da dove vuoi.
+- Ogni riga è una delle nove regole dell'elenco di prima, con le lettere al posto dei numeri. «Elemento neutro» è il numero che non cambia niente. «Commutativa» vuol dire che l'ordine non conta. «Associativa» vuol dire che puoi cominciare da dove vuoi. «Distributiva» è la regola 9.
 - $-a$ è l'opposto di $a$. La scrittura $a^{-1}$, con un piccolo $-1$ in alto, è l'inverso di $a$: si legge «$a$ alla meno uno».
 - $a \neq 0$ si legge «$a$ diverso da zero». Anche tra i numeri complessi lo zero non ha inverso.
 
@@ -688,16 +657,7 @@ Un'abitudine di scrittura, che da qui in poi useremo sempre. Per non riscrivere 
 Per esempio: «prendiamo $z = 3 + 2i$» vuol dire che da lì in poi la lettera $z$ sta al posto di quel numero.
 
 > [!OLTRE] · che cosa ci guadagni
-> Siccome valgono le nove regole, con i numeri complessi funzionano tutti i modi di fare i conti che conosci per i numeri reali. Due esempi, in cui $z$ e $w$ sono due numeri complessi qualsiasi.
->
-> | Regola | Con i simboli |
-> |---|---|
-> | il quadrato di una somma | $(z + w)^2 = z^2 + 2zw + w^2$ |
-> | la somma per la differenza | $(z - w)(z + w) = z^2 - w^2$ |
->
-> Vale anche la **legge di annullamento del prodotto**: se un prodotto fa zero, almeno uno dei due numeri è zero. Il motivo: se $zw = 0$ e $z$ non è zero, moltiplichi tutti e due i lati per l'inverso di $z$. A sinistra resta $w$, a destra resta 0.
->
-> Questa legge serve nella lezione L04, per trovare le radici dei polinomi.
+> Siccome valgono le nove regole, con i numeri complessi funzionano tutti i modi di fare i conti che conosci per i numeri reali. Per esempio la **legge di annullamento del prodotto**: se un prodotto fa zero, almeno uno dei due numeri è zero. Il motivo: se $zw = 0$ e $z$ non è zero, moltiplichi tutti e due i lati per l'inverso di $z$, e resta $w = 0$. Serve nella lezione L04, per trovare le radici dei polinomi.
 
 ### I numeri complessi non si possono mettere in fila
 
@@ -717,30 +677,23 @@ Il motivo, in una riga delle dispense: in un campo ordinato un quadrato è sempr
 > [!DIM] · perché $\C$ non si può ordinare
 > In un campo ordinato come $\R$ i numeri positivi rispettano due regole.
 >
-> - **Regola A.** La somma e il prodotto di due numeri positivi sono positivi.
+> - **Regola A.** Il prodotto di due numeri positivi è positivo.
 > - **Regola B.** Preso un numero diverso da zero, **uno solo** tra lui e il suo opposto è positivo. Per esempio tra $3$ e $-3$ è positivo solo $3$.
 >
-> **Primo fatto: in un campo ordinato il quadrato di un numero diverso da zero è positivo.**
->
-> 1. Se il numero è positivo, il suo quadrato è un prodotto di due numeri positivi. Per la regola A è positivo.
-> 2. Se il numero è negativo, per la regola B il suo opposto è positivo. Il quadrato del numero è uguale al quadrato del suo opposto, perché meno per meno fa più: per esempio $(-3)^2 = 3^2$. Quindi è di nuovo un prodotto di due numeri positivi, ed è positivo.
+> **Primo fatto: in un campo ordinato il quadrato di un numero diverso da zero è positivo.** Se il numero è positivo, lo dice la regola A. Se è negativo, il suo opposto è positivo per la regola B. E un numero e il suo opposto hanno lo stesso quadrato, perché meno per meno fa più: per esempio $(-3)^2 = 3^2$.
 >
 > **Secondo fatto: in $\C$ questo porta a una cosa impossibile.** Si ragiona per assurdo, come nella lezione L01: facciamo finta che $\C$ abbia un ordine con queste due regole.
 >
-> 1. Il numero $1$ è il quadrato di $1$, perché $1 \cdot 1 = 1$. Per il primo fatto, $1$ è positivo.
-> 2. Il numero $-1$ è il quadrato di $i$, perché $i \cdot i = -1$. Per il primo fatto, anche $-1$ è positivo.
+> 1. Il numero $1$ è il quadrato di $1$. Per il primo fatto, $1$ è positivo.
+> 2. Il numero $-1$ è il quadrato di $i$. Per il primo fatto, anche $-1$ è positivo.
 > 3. Ma $1$ e $-1$ sono uno l'opposto dell'altro. Per la regola B non possono essere positivi tutti e due.
 >
 > Siamo arrivati a una cosa impossibile. Quindi un ordine così, in $\C$, non esiste.
 >
-> Una precisazione. I numeri complessi si possono mettere in fila in qualche modo: per esempio guardando prima la parte reale e poi la parte immaginaria. Ma nessuna fila di questo tipo rispetta le regole dei conti. «Non ordinato» vuol dire questo.
+> Una precisazione. I numeri complessi si possono mettere in fila in qualche modo, per esempio guardando prima la parte reale e poi la parte immaginaria. Ma nessuna fila rispetta le regole dei conti: «non ordinato» vuol dire questo.
 
 > [!TRAPPOLA] Niente «maggiore» e «minore» tra numeri complessi
 > Scritture come $3i > 2i$ oppure $1 + i < 2$ **non hanno senso**: non sono né vere né false. Si possono confrontare solo i numeri **reali** legati a un numero complesso: la parte reale, la parte immaginaria, e il modulo che vedrai tra due sezioni.
-
-::: prova Qual è l'opposto di $2 - 5i$?
-Si cambia il segno a tutti e due i pezzi: $-2 + 5i$. Controllo: $(2 - 5i) + (-2 + 5i) = 0 + 0i = 0$.
-:::
 
 ::: prova Vero o falso: $2i > i$?
 Né vero né falso: la scrittura non ha senso. Tra numeri complessi non esistono «maggiore» e «minore».
@@ -839,23 +792,10 @@ Il perché, con i conti. Se un numero è uguale al suo coniugato, le due parti i
 > | il coniugato del coniugato | da $3 - 4i$ si torna a $3 + 4i$ | $\bar{\bar z} = z$ |
 > | il coniugato di una somma o di un prodotto | il controllo è qui sotto | $\overline{z + w} = \bar z + \bar w$ e $\overline{zw} = \bar z\,\bar w$ |
 >
-> Dalle prime due righe si ricavano le due parti di un numero: $\operatorname{Re}(z) = \frac{z + \bar z}2$ e $\operatorname{Im}(z) = \frac{z - \bar z}{2i}$.
->
-> L'ultima riga dice che puoi coniugare prima o dopo aver fatto il conto: il risultato non cambia. Controllo sul prodotto di $1 + 2i$ e $3 - i$.
->
-> - **Prima il prodotto, poi il coniugato.** Il prodotto è $5 + 5i$, calcolato nella tabella dei sei prodotti. Il suo coniugato è $5 - 5i$.
-> - **Prima i coniugati, poi il prodotto.** I coniugati sono $1 - 2i$ e $3 + i$. Il loro prodotto è $3 + i - 6i - 2i^2$, cioè $5 - 5i$.
->
-> Stesso risultato. La dimostrazione con le lettere è nell'esercizio 9.
+> L'ultima riga dice che puoi coniugare prima o dopo aver fatto il conto: il risultato non cambia. Un controllo con i numeri: il prodotto di $1 + 2i$ e $3 - i$ è $5 + 5i$. Il prodotto dei loro coniugati è $5 - 5i$. La dimostrazione con le lettere è nell'esercizio 8.
 
 ::: prova Scrivi parte reale, parte immaginaria e coniugato di $z = -2 + 5i$.
 $\operatorname{Re}(z) = -2$ e $\operatorname{Im}(z) = 5$. Il coniugato cambia il segno davanti alla $i$: $\bar z = -2 - 5i$.
-:::
-
-::: prova Qual è il coniugato di $7i$? E quello di $-3$?
-$7i$ ha parte reale 0 e parte immaginaria 7. Il coniugato è $-7i$.
-
-$-3$ è un numero reale. Il coniugato è ancora $-3$.
 :::
 
 ::: prova Quanto fa $z + \bar z$ quando $z = 4 - 9i$?
@@ -1052,12 +992,7 @@ $$z \cdot z^{-1} = \frac{z \cdot \bar z}{|z|^2} = \frac{|z|^2}{|z|^2} = 1$$
 
 Nel secondo passaggio si usa la formula della sezione precedente: un numero per il suo coniugato dà il quadrato del modulo. Così sopra e sotto c'è lo stesso numero, e la frazione vale 1.
 
-Altri due inversi, con lo stesso metodo.
-
-| Numero | Coniugato | Quadrato del modulo | Inverso |
-|---|---|---|---|
-| $3 + 4i$ | $3 - 4i$ | $9 + 16 = 25$ | $\frac{3 - 4i}{25} = \frac 3{25} - \frac 4{25}i$ |
-| $1 - i$ | $1 + i$ | $1 + 1 = 2$ | $\frac{1 + i}2 = \frac 12 + \frac 12 i$ |
+Un altro inverso, con lo stesso metodo. Il numero $3 + 4i$ ha coniugato $3 - 4i$, e il quadrato del suo modulo è $9 + 16 = 25$. Quindi il suo inverso è $\frac{3 - 4i}{25}$, cioè $\frac 3{25} - \frac 4{25}i$.
 
 ### Dividere due numeri complessi
 
@@ -1079,14 +1014,6 @@ Dividere per un numero vuol dire moltiplicare per il suo inverso. In pratica si 
 > 5. Dividi per 5 tutti e due i pezzi: $\frac{10 - 5i}5 = 2 - i$.
 >
 > **Controllo.** Moltiplica $2 - i$ per $1 + 2i$. I quattro prodotti sono $2$, $4i$, $-i$ e $-2i^2 = +2$. In tutto $4 + 3i$: è il numero che stava sopra.
-
-> [!ESEMPIO] · La divisione $\frac{1 + i}{1 - i}$
-> 1. Il numero sotto è $1 - i$. Il suo coniugato è $1 + i$.
-> 2. Sotto: $(1 - i)(1 + i) = 1^2 + 1^2 = 2$.
-> 3. Sopra: $(1 + i)(1 + i)$. I quattro prodotti sono $1$, $i$, $i$ e $i^2 = -1$. In tutto $2i$.
-> 4. Dividi per 2: $\frac{2i}2 = i$.
->
-> **Controllo.** $i \cdot (1 - i) = i - i^2 = i + 1$: è il numero che stava sopra.
 
 > [!TRAPPOLA] Non si divide «pezzo per pezzo»
 > La frazione $\frac{4 + 3i}{1 + 2i}$ **non** è $\frac 41 + \frac 32 i$. Il risultato giusto, calcolato qui sopra, è $2 - i$. Se moltiplichi il risultato sbagliato per $1 + 2i$ ottieni $1 + \frac{19}2 i$, non $4 + 3i$.
@@ -1119,10 +1046,10 @@ Questa divisione l'abbiamo appena fatta: viene $z = 2 - i$.
 Il coniugato è $1 - i$. Il quadrato del modulo è $1 + 1 = 2$. L'inverso è $\frac{1 - i}2$, cioè $\frac 12 - \frac 12 i$.
 :::
 
-::: prova Scrivi $\frac 2{1 + i}$ con parte reale e parte immaginaria.
-Moltiplica sopra e sotto per $1 - i$. Sopra: $2 \cdot (1 - i) = 2 - 2i$. Sotto: $1 + 1 = 2$. Dividi per 2 tutti e due i pezzi: viene $1 - i$.
+::: prova Calcola $\frac{1 + i}{1 - i}$.
+Il coniugato del numero sotto è $1 + i$. Sotto viene $1 + 1 = 2$. Sopra viene $(1 + i)(1 + i)$: i quattro prodotti sono $1$, $i$, $i$ e $i^2 = -1$, in tutto $2i$. Dividi per 2: il risultato è $i$.
 
-Controllo: $(1 - i)(1 + i) = 2$, che è il numero che stava sopra.
+Controllo: $i \cdot (1 - i) = i - i^2 = 1 + i$, che è il numero che stava sopra.
 :::
 
 ::: prova Risolvi l'equazione $i \cdot z = 3$.
@@ -1243,7 +1170,7 @@ Questa costruzione si chiama **regola del parallelogramma**. È lo stesso modo i
 > $$|z - w| = \sqrt{(a - c)^2 + (b - d)^2}.$$
 > È la formula della distanza tra due punti del piano cartesiano.
 >
-> Da qui viene un fatto che serve nell'esercizio 10. Fissa un punto $c$ e un numero positivo $r$. I punti $z$ che distano $r$ da $c$ formano una **circonferenza**: quella di centro $c$ e raggio $r$. Con i simboli, sono i punti con $|z - c| = r$.
+> Da qui viene un fatto che serve nell'esercizio 9. Fissa un punto $c$ e un numero positivo $r$. I punti $z$ che distano $r$ da $c$ formano una **circonferenza**: quella di centro $c$ e raggio $r$. Con i simboli, sono i punti con $|z - c| = r$.
 
 ### E il prodotto?
 
@@ -1276,7 +1203,7 @@ Lo strumento qui sotto mostra queste operazioni sul piano. Ecco che cosa provare
 
 - Nel modo **z + w** trascina i due punti $z$ e $w$. Il parallelogramma si aggiorna, e sotto il disegno leggi la somma con le sue due parti.
 - Scegli poi il modo **coniugato e inverso di z**. Vedi il coniugato, specchiato rispetto all'asse reale, e l'inverso, scritto $1/z$. La barra obliqua vuol dire «diviso».
-- Trascina $z$ lontano dall'origine e poi vicino. Quando il modulo di $z$ è più grande di 1, l'inverso sta **dentro** il cerchio di raggio 1. Quando è più piccolo di 1, l'inverso sta **fuori**. Il motivo è nell'esercizio 9: il modulo dell'inverso è 1 diviso il modulo del numero.
+- Trascina $z$ lontano dall'origine e poi vicino. Quando il modulo di $z$ è più grande di 1, l'inverso sta **dentro** il cerchio di raggio 1. Quando è più piccolo di 1, l'inverso sta **fuori**. Il motivo è nell'esercizio 8: il modulo dell'inverso è 1 diviso il modulo del numero.
 
 ```widget complessi
 titolo: Somma, coniugato e inverso nel piano complesso
@@ -1286,10 +1213,6 @@ modo: somma
 modi: somma coniugato
 raggio: 6
 ```
-
-::: prova Su quale asse sta il numero $-3i$? In quale punto?
-Ha parte reale 0, quindi sta sull'asse immaginario. È il punto $(0, -3)$: 3 passi in giù dall'origine.
-:::
 
 ::: prova I punti $0$, $2 + i$ e $1 + 3i$ sono tre vertici di un parallelogramma. Qual è il quarto vertice, quello opposto all'origine?
 È la somma. Parti reali: $2 + 1 = 3$. Parti immaginarie: $1 + 3 = 4$. Il quarto vertice è $3 + 4i$.
@@ -1309,7 +1232,7 @@ $i \cdot (1 + i) = i + i^2 = -1 + i$. Il punto stava 1 passo a destra e 1 in su.
 
 Un tipo di esercizio chiede di disegnare tutti i numeri complessi che rispettano una condizione.
 
-Le dispense non spiegano il metodo, ma lo chiedono nel loro esercizio 2.6, che qui è l'esercizio 10. L'idea è sempre la stessa: tradurre la condizione in una frase sul punto, e poi riconoscere la figura.
+Le dispense non spiegano il metodo, ma lo chiedono nel loro esercizio 2.6, che qui è l'esercizio 9. L'idea è sempre la stessa: tradurre la condizione in una frase sul punto, e poi riconoscere la figura.
 
 L'insieme da disegnare è scritto con le parentesi graffe, come nella lezione L01. Per esempio:
 
@@ -1319,13 +1242,13 @@ Si legge: «l'insieme dei numeri complessi $z$ per cui la parte reale di $z$ è 
 
 ### Cinque condizioni, una alla volta
 
-**La parte reale è uguale a 2.** La parte reale dice quanti passi a destra. Quindi i punti che vanno bene stanno tutti 2 passi a destra dell'origine, a qualunque altezza. Formano una **retta verticale**.
+**La parte reale è uguale a 2.** La parte reale dice quanti passi a destra. I punti che vanno bene stanno tutti 2 passi a destra dell'origine, a qualunque altezza. Formano una **retta verticale**.
 
-**La parte immaginaria è maggiore di 1.** La parte immaginaria dice quanti passi in su. Vanno bene i punti che stanno più in alto dell'altezza 1. Formano un **semipiano**, cioè una metà del piano: quella sopra la retta orizzontale di altezza 1. La retta stessa è esclusa, perché lì la parte immaginaria è uguale a 1, non maggiore.
+**La parte immaginaria è maggiore di 1.** Vanno bene i punti che stanno più in alto dell'altezza 1. Formano un **semipiano**, cioè una metà del piano: quella sopra la retta orizzontale di altezza 1. La retta è esclusa, perché lì la parte immaginaria è uguale a 1, non maggiore.
 
 **Il modulo è uguale a 3.** Il modulo è la distanza dall'origine. I punti a distanza 3 dall'origine formano una **circonferenza**: il centro è l'origine, il raggio è 3.
 
-**La distanza dal punto $i$ è al massimo 1.** Con i simboli si scrive $|z - i| \le 1$. Il simbolo $\le$ si legge «minore o uguale». Il modulo di una differenza è la distanza tra i due punti: qui tra il punto $z$ e il punto $i$. Vanno bene i punti sulla circonferenza di centro $i$ e raggio 1, e anche tutti quelli dentro. La figura piena si chiama **disco**.
+**La distanza dal punto $i$ è al massimo 1.** Con i simboli si scrive $|z - i| \le 1$. Il simbolo $\le$ si legge «minore o uguale». Il modulo di una differenza è la distanza tra i due punti. Vanno bene i punti sulla circonferenza di centro $i$ e raggio 1, e anche tutti quelli dentro. La figura piena si chiama **disco**.
 
 **La distanza da 1 è uguale alla distanza da meno 1.** Con i simboli si scrive $|z - 1| = |z + 1|$. Attenzione al secondo modulo: sommare 1 è come sottrarre $-1$, quindi è la distanza dal punto $-1$. I punti che distano ugualmente dai due numeri stanno a metà strada: formano l'**asse immaginario**.
 
@@ -1363,12 +1286,9 @@ L'ultima riga non si indovina a occhio. Controlliamola con i conti.
 2. La seconda è $z + 1 = (x + 1) + yi$. Il quadrato del suo modulo è $(x + 1)^2 + y^2$.
 3. Due moduli sono uguali quando sono uguali i loro quadrati:
    $$(x - 1)^2 + y^2 = (x + 1)^2 + y^2.$$
-4. Svolgi il primo quadrato. È $(x - 1)(x - 1)$: i quattro prodotti sono $x^2$, $-x$, $-x$ e $1$. In tutto $x^2 - 2x + 1$.
-5. Svolgi il secondo quadrato. È $(x + 1)(x + 1)$: i quattro prodotti sono $x^2$, $x$, $x$ e $1$. In tutto $x^2 + 2x + 1$.
-6. L'uguaglianza del passo 3 diventa:
-   $$x^2 - 2x + 1 + y^2 = x^2 + 2x + 1 + y^2.$$
-7. Togli da tutti e due i lati i pezzi uguali: $x^2$, $1$ e $y^2$. Resta $-2x = 2x$.
-8. Togli $2x$ da tutti e due i lati: resta $-4x = 0$. Quindi $x = 0$.
+4. Svolgi i due quadrati. Il primo è $(x - 1)(x - 1)$, cioè $x^2 - 2x + 1$. Il secondo è $(x + 1)(x + 1)$, cioè $x^2 + 2x + 1$.
+5. Togli da tutti e due i lati i pezzi uguali: $x^2$, $1$ e $y^2$. Resta $-2x = 2x$.
+6. Togli $2x$ da tutti e due i lati: resta $-4x = 0$. Quindi $x = 0$.
 
 I punti con $x = 0$ fanno zero passi a destra: sono quelli dell'asse immaginario.
 
@@ -1389,10 +1309,6 @@ segmento: 1 1 3 1 | accento | $2$ | n
 
 ::: prova Che figura formano i numeri complessi con $|z| = 2$?
 Sono i punti a distanza 2 dall'origine: la circonferenza di centro $0$ e raggio 2.
-:::
-
-::: prova Che figura formano i numeri complessi con $\operatorname{Re}(z) = -1$?
-Sono i punti che stanno 1 passo a sinistra dell'origine, a qualunque altezza: una retta verticale.
 :::
 
 ::: prova Che figura formano i numeri complessi con $|z - 3| < 1$?
@@ -1470,15 +1386,7 @@ $$z = \frac{3 + 2i}{1 + i}$$
 
 1. Il numero sotto è $1 + i$. Il suo coniugato è $1 - i$.
 2. Sotto: $(1 + i)(1 - i)$ è il quadrato del modulo, cioè $1^2 + 1^2 = 2$.
-3. Sopra: $(3 + 2i)(1 - i)$. I quattro prodotti sono nella tabella.
-
-   | Quale prodotto | Conto | Risultato |
-   |---|---|--:|
-   | primo per primo | $3 \cdot 1$ | $3$ |
-   | primo per secondo | $3 \cdot (-i)$ | $-3i$ |
-   | secondo per primo | $2i \cdot 1$ | $2i$ |
-   | secondo per secondo | $2i \cdot (-i)$ | $-2i^2 = 2$ |
-
+3. Sopra: $(3 + 2i)(1 - i)$. I quattro prodotti sono $3$, $-3i$, $2i$ e $-2i^2$. L'ultimo vale $+2$.
 4. Raccogli sopra. Pezzi senza la $i$: $3 + 2 = 5$. Pezzi con la $i$: $-3i + 2i = -i$. Sopra c'è $5 - i$.
 5. Quindi $z = \frac{5 - i}2$.
 
@@ -1658,22 +1566,6 @@ Nella seconda riga la parte immaginaria è $-1$: la $i$ da sola vuol dire «1 pe
 Nell'ultima riga il numero è reale, quindi coincide con il suo coniugato.
 :::
 
-::: esercizio base Somme e differenze
-Calcola: (a) $(2 + 3i) + (5 - i)$; (b) $(4 - 2i) - (1 + 3i)$; (c) $(-1 + i) + (1 - i)$.
-::: soluzione
-Si sommano le parti reali tra loro e le parti immaginarie tra loro.
-
-(a) Parti reali: $2 + 5 = 7$. Parti immaginarie: $3 + (-1) = 2$. Risultato: $7 + 2i$.
-
-(b) Il segno meno davanti alla seconda parentesi cambia il segno a tutti e due i suoi pezzi: $-(1 + 3i)$ diventa $-1 - 3i$.
-
-1. Parti reali: $4 - 1 = 3$.
-2. Parti immaginarie: $-2 - 3 = -5$.
-3. Risultato: $3 - 5i$.
-
-(c) Parti reali: $-1 + 1 = 0$. Parti immaginarie: $1 + (-1) = 0$. Risultato: $0$. I due numeri sono uno l'opposto dell'altro.
-:::
-
 ::: esercizio base Potenze di $i$
 Calcola: (a) $i^7$; (b) $i^{10}$; (c) $i^{33}$; (d) $i^{400}$.
 ::: soluzione
@@ -1785,7 +1677,7 @@ La parte reale è $\frac{13}{10}$. La parte immaginaria è $\frac{21}{10}$.
 
 **Secondo numero.**
 
-1. Sopra c'è $(2 + i)^3$, che vale $2 + 11i$: è il conto dell'esercizio 5.
+1. Sopra c'è $(2 + i)^3$, che vale $2 + 11i$: è il conto dell'esercizio 4.
 2. Sotto c'è una potenza di $i$. La divisione è $15 = 4 \cdot 3 + 3$, resto 3. Quindi $i^{15} = i^3 = -i$, e sotto c'è $-5i$.
 3. La frazione è $\frac{2 + 11i}{-5i}$. Sotto c'è un immaginario puro: per farlo diventare reale basta moltiplicare sopra e sotto per $i$.
 4. Sotto: $-5i \cdot i = -5i^2 = 5$.
@@ -1996,17 +1888,9 @@ La risposta è la (a).
 
 **Controllo.** $(3 + i)(1 - i) = 3 - 3i + i - i^2 = 4 - 2i$. È il numero a destra dell'equazione.
 
-**Una strada alternativa per il quiz.** Moltiplica ogni risposta per $3 + i$ e guarda quale dà $4 - 2i$.
+**Una strada alternativa per il quiz.** Moltiplica ogni risposta per $3 + i$ e guarda quale dà $4 - 2i$. La (b) dà $2 + 4i$, la (c) dà $7 - i$, la (d) dà $-4 + 2i$, la (e) dà $40 - 20i$. Solo la (a) funziona.
 
-| Risposta | Moltiplicata per $3 + i$ |
-|---|---|
-| (a) $1 - i$ | $4 - 2i$ |
-| (b) $1 + i$ | $2 + 4i$ |
-| (c) $2 - i$ | $7 - i$ |
-| (d) $-1 + i$ | $-4 + 2i$ |
-| (e) $10 - 10i$ | $40 - 20i$ |
-
-Solo la (a) funziona. La (e) è la trappola per chi dimentica di dividere per 10 al passo 6.
+La (e) è la trappola per chi dimentica di dividere per 10 al passo 6.
 :::
 
 ::: esercizio esame Come all'esame: prima $z$, poi un'espressione
@@ -2187,7 +2071,7 @@ Distanza tra due numeri complessi | Il modulo della differenza, $\lvert z - w \r
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 2 «Numeri complessi I», pp. 6–9: le sezioni 2.A–2.E sono seguite in ordine, con la pagina accanto a ogni titolo; la Definizione 2.1, la Proposizione 2.2 e l'Esempio 2.3 mantengono la loro numerazione; gli esercizi 2.4, 2.5 e 2.6 sono svolti nella sezione «Esercizi» (esercizi 7, 9 e 10); le Figure 1 e 2 sono ridisegnate con i grafici.
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 2 «Numeri complessi I», pp. 6–9: le sezioni 2.A–2.E sono seguite in ordine, con la pagina accanto a ogni titolo; la Definizione 2.1, la Proposizione 2.2 e l'Esempio 2.3 mantengono la loro numerazione; gli esercizi 2.4, 2.5 e 2.6 sono svolti nella sezione «Esercizi» (esercizi 6, 8 e 9); le Figure 1 e 2 sono ridisegnate con i grafici.
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §1.4.1–1.4.3 (pp. 25–27), Esercizio 1.4.3 (p. 30), §1.5.3 sui campi (p. 36).
 - **Appelli d'esame** (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): domande 1 del 08/02/2024, del 03/06/2025 e del 03/06/2026, riportate con soluzioni scritte per questi appunti; la tabella degli altri appelli ne indica solo il tipo. Regole d'esame 2025/26 e date 2026/27 come nella lezione L01.
 - Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu» e gli esercizi sono di questi appunti. Le parti **«Oltre le dispense»** (la storia di Cardano e Bombelli, le potenze di $i$, le regole sul coniugato, la distanza, il metodo per disegnare insiemi, il perché $\C$ non è ordinato, gli esercizi che non vengono dalle dispense) collegano la lezione al resto del corso e all'esame.

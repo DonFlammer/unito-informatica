@@ -108,7 +108,7 @@ Gli enunciati nei riquadri `DEF`, `PROP`, `TEOREMA` seguono le slide o le dispen
 - `glossario`: una riga per termine, `Termine | definizione`.
 - `checklist`: le voci «So …» da spuntare.
 - `grafico`: una figura statica (punti, vettori, rette, poligoni, cerchi), una riga per elemento.
-- `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann). Nel Markdown restano solo i parametri iniziali.
+- `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann, porte logiche con `modo: porte`, `modo: flipflop` o `modo: esadecimale`). Nel Markdown restano solo i parametri iniziali.
 
 
 ---
@@ -2534,6 +2534,756 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 
 ---
 
+<!-- FILE: contesto_ai/FDA/lezioni/01_bit_porte_esadecimale.md -->
+> File: `contesto_ai/FDA/lezioni/01_bit_porte_esadecimale.md`
+
+```yaml
+corso: FDA
+lezione: "01"
+titolo: Bit, porte logiche ed esadecimale
+data: 2026-09-28
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 01 · Libro, parte 1, §1.1
+descrizione: >-
+  Appunti della lezione 01 di Fondamenti dell'Informatica (canale B): i bit e quante cose si possono scrivere con n bit,
+  le operazioni booleane AND, OR, XOR e NOT, le porte logiche, il flip-flop che ricorda un bit e la notazione
+  esadecimale, con uno strumento interattivo, quiz ed esercizi svolti.
+lede: >-
+  Dentro un computer ogni informazione è fatta di due soli simboli, zero e uno. Qui vedi come si combinano con
+  quattro operazioni, come le fanno i circuiti, come un circuito riesce a ricordare e come si scrivono in breve le
+  lunghe file di zeri e uni.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 1 (Brookshear, cap. 1), §1.1
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 1 (J. G. Brookshear, D. Brylow, Computer Science: an overview, cap. 1), §1.1 «Bits
+  and Their Storage» e risposte alle sue domande; programma del canale B 2026/27; lucidi del canale A 2026/27 sulla
+  codifica dei dati; regole d'esame comuni ai tre canali
+file_en: 01_bits_gates_hexadecimal.html
+appunti_html: appunti/FDA/01_bit_porte_esadecimale.html
+genera_html: true
+```
+
+## In breve
+
+- Dentro un computer ogni informazione, numeri, testo, immagini e suoni, è scritta con due soli simboli, 0 e 1. Ognuno di questi simboli si chiama **bit**.
+- Ogni bit in più raddoppia le possibilità: con $n$ bit si scrivono $2^n$ sequenze diverse. Con 8 bit, cioè un **byte**, sono 256.
+- Le **operazioni booleane** combinano i bit. **AND** dà 1 solo se tutti e due gli ingressi valgono 1, **OR** se almeno uno vale 1, **XOR** se i due ingressi sono diversi. **NOT** scambia 0 e 1.
+- Una **porta logica** è un piccolo circuito che esegue una di queste operazioni. Collegando più porte si costruiscono circuiti che fanno conti più complicati.
+- Il **flip-flop** è un circuito che ricorda un bit: la sua uscita resta uguale finché un impulso non la cambia. È un primo mattone della memoria.
+- La **notazione esadecimale** scrive quattro bit con un solo simbolo, da 0 a 9 e da A a F. Per esempio 1011 0101 diventa B5.
+- All'esame, comune ai tre canali, tornano le tabelle delle operazioni e la lettura dei circuiti: vanno sapute a memoria.
+
+> [!CANALI]
+> Libro di testo ed esame sono gli stessi nei canali A, B e C; cambiano docenti e ordine delle lezioni. Nel canale B Stefano Berardi segue il libro, in inglese, senza slide sue: il 28/09 ha pubblicato su Moodle la presentazione del libro digitale di Pearson. I riassunti delle lezioni del canale B stanno sul Moodle del canale, che chiede il login: questi appunti seguono il libro dall'inizio, la sezione 1.1. Nel canale A (Felice Cardone) la prima lezione è stata un'introduzione al corso, e i lucidi «Cenni sulla codifica dei dati» partono proprio dai bit e da quante cose si possono etichettare con $n$ bit. Il canale C (Luca Paolini) è partito con i lucidi «Azzeramento» e «Rappresentazione». Attenzione: il programma del canale B salta alcune sezioni del libro che l'esame comune può chiedere (dettagli nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md)).
+
+## Prima di cominciare
+
+### Di che cosa parla questa lezione
+
+Un computer, dentro, sa fare una cosa sola: distinguere tra due stati, come acceso e spento. Tutto il resto, numeri, lettere, foto, musica, si costruisce mettendo in fila tanti di questi due stati. La lezione parte dal mattone più piccolo: il bit, un simbolo che può valere zero oppure uno.
+
+Poi vedi come si combinano i bit. Bastano quattro operazioni, con nomi inglesi: AND, OR, XOR e NOT. Ognuna prende uno o due bit e ne restituisce uno. Dentro il computer queste operazioni le fanno circuiti minuscoli, le porte logiche, e in questa pagina puoi provarle con un clic.
+
+Collegando le porte nel modo giusto si ottiene un circuito che ricorda: il flip-flop. È il primo passo verso la memoria del computer, l'argomento della sezione successiva del libro.
+
+Alla fine c'è un trucco di scrittura. Le lunghe file di zeri e uni si leggono male, e la notazione esadecimale le accorcia di quattro volte.
+
+Il libro è in inglese, mentre l'esame è in italiano: per ogni parola nuova trovi accanto anche il termine inglese del libro.
+
+### Che cosa devi già sapere
+
+Niente di particolare.
+
+- **Contare e fare le moltiplicazioni** con numeri piccoli.
+- **Leggere una tabella** riga per riga.
+- **Le potenze di 2**, come $2^3 = 2 \cdot 2 \cdot 2 = 8$. Il ripasso è nella prima sezione.
+
+### Che cosa saprai fare alla fine
+
+- Dire quante sequenze diverse si scrivono con un certo numero di bit, e quanti bit servono per distinguere un certo numero di oggetti.
+- Calcolare AND, OR, XOR e NOT di due bit.
+- Leggere un piccolo circuito di porte e dire che cosa esce per ogni combinazione di ingressi.
+- Spiegare come fa un flip-flop a ricordare un bit.
+- Passare da una sequenza di bit alla notazione esadecimale, e ritorno.
+
+## Due simboli per dire tutto: i bit (libro, §1.1)
+
+Un interruttore della luce ha due posizioni, acceso e spento, e nessuna terza. Dentro un computer succede la stessa cosa, miliardi di volte: ogni pezzetto di informazione si trova in uno di due stati. I due stati si scrivono con due simboli, 0 e 1.
+
+Ognuno di questi simboli si chiama **bit**, dall'inglese *binary digit*, cioè «cifra binaria». «Binario» vuol dire «fatto di due».
+
+Un bit da solo dice poco: sì o no, acceso o spento. Il libro insiste su un punto: un bit è soltanto un **simbolo**, e che cosa vuol dire dipende dall'uso. La stessa fila di bit può rappresentare un numero, una lettera, un pezzetto di immagine o di suono. Le prossime sezioni del libro spiegano come.
+
+### Quante cose si dicono con pochi bit
+
+Un bit ha 2 valori. Con due bit le combinazioni sono quattro: 00, 01, 10 e 11.
+
+Con tre bit sono otto. Prendi le quattro combinazioni di prima e mettici davanti uno 0, oppure un 1: 000, 001, 010, 011 e poi 100, 101, 110, 111.
+
+| Bit | Le sequenze | Quante sono |
+|--:|---|--:|
+| 1 | 0, 1 | 2 |
+| 2 | 00, 01, 10, 11 | 4 |
+| 3 | 000, 001, 010, 011, 100, 101, 110, 111 | 8 |
+| 4 | da 0000 a 1111 | 16 |
+| 8 | da 00000000 a 11111111 | 256 |
+
+Ogni bit in più raddoppia il numero delle sequenze. Per ogni sequenza vecchia ce ne sono due nuove: una con uno 0 davanti e una con un 1 davanti.
+
+> [!IDEA]
+> Con $n$ bit si scrivono $2^n$ sequenze diverse.
+
+> [!RIPASSO] le potenze di 2
+> $2^n$ si legge «due alla $n$» e vuol dire 2 moltiplicato per sé stesso $n$ volte. Per convenzione $2^0 = 1$.
+>
+> | $n$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 |
+> |---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+> | $2^n$ | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 1024 |
+
+Una fila di 8 bit si chiama **byte**: ne parla la sezione 1.2 del libro. Un byte può avere $2^8 = 256$ valori diversi.
+
+### Quanti bit servono
+
+Ora la domanda al contrario, che i lucidi del canale A fanno subito: devo dare un'etichetta diversa a un certo numero di oggetti. Quanti bit servono, come minimo?
+
+Prendi 5 oggetti. Con 2 bit le etichette sono 4: non bastano, un oggetto resterebbe senza. Con 3 bit le etichette sono 8: bastano, e ne avanzano 3.
+
+> [!METODO] Quanti bit servono per un certo numero di oggetti
+> 1. Scrivi le potenze di 2: 1, 2, 4, 8, 16, 32, 64, 128, 256, …
+> 2. Cerca la prima potenza che è maggiore o uguale al numero degli oggetti.
+> 3. Il suo esponente è il numero di bit che servono.
+
+> [!ESEMPIO] Due conti con il metodo
+> - **Le 26 lettere dell'alfabeto inglese.** Con 4 bit ci sono 16 etichette: poche. Con 5 bit ce ne sono 32, e $32 \ge 26$. Servono 5 bit.
+> - **I 100 studenti di un'aula.** Con 6 bit ci sono 64 etichette: poche. Con 7 bit ce ne sono 128, e $128 \ge 100$. Servono 7 bit.
+
+> [!NOTA] Lo stesso conto di Matematica Discreta
+> Contare le sequenze di bit è lo stesso conto dei sottoinsiemi nella [lezione D01 di Matematica Discreta](../MDAG/D01_insiemi_induzione.html). Metti in fila gli elementi di un insieme: ogni bit dice se l'elemento corrispondente c'è (1) o no (0).
+
+::: prova (a) Quante sequenze diverse si scrivono con 5 bit? (b) Quanti bit servono per dare un codice diverso a 40 persone?
+(a) Con 5 bit le sequenze sono $2^5 = 32$.
+
+(b) Con 5 bit le etichette sono 32, che non bastano per 40 persone. Con 6 bit sono 64, che bastano. Servono 6 bit.
+:::
+
+> [!RICORDA]
+> - Un bit è un simbolo, 0 oppure 1. Che cosa vuol dire dipende dall'uso.
+> - Con $n$ bit si scrivono $2^n$ sequenze: ogni bit in più raddoppia.
+> - Per distinguere un certo numero di oggetti servono tanti bit quanto l'esponente della prima potenza di 2 che arriva almeno a quel numero.
+
+## Quattro operazioni sui bit (libro, §1.1)
+
+Quattro situazioni di tutti i giorni.
+
+- La porta di casa ha due serrature: si apre solo se giri **tutte e due** le chiavi.
+- L'allarme suona se si apre la porta **oppure** la finestra, e naturalmente anche se si aprono tutte e due.
+- Il menù del pranzo offre il dolce o la frutta: puoi prendere l'uno **o** l'altro, ma **non tutti e due**.
+- La luce del giardino si accende quando **non** è giorno.
+
+Ognuna di queste frasi prende uno o due fatti, veri o falsi, e ne ricava un altro fatto, vero o falso. Il libro propone di leggere i bit proprio così: **1 vuol dire vero, 0 vuol dire falso**. Le operazioni su valori veri e falsi si chiamano **operazioni booleane** (*Boolean operations*), dal nome del matematico George Boole (1815–1864).
+
+### AND: tutti e due
+
+L'operazione **AND** («e») prende due bit e dà 1 solo quando valgono 1 **tutti e due**. È la porta con due serrature.
+
+| A | B | A AND B |
+|:-:|:-:|:-:|
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | **1** |
+
+Nella tabella ci sono tutte le combinazioni possibili dei due ingressi, cioè $2^2 = 4$ righe. Una tabella così si chiama **tabella di verità**.
+
+### OR: almeno uno
+
+L'operazione **OR** («o») dà 1 quando **almeno uno** dei due bit vale 1. È l'allarme: basta una porta o una finestra aperta.
+
+| A | B | A OR B |
+|:-:|:-:|:-:|
+| 0 | 0 | **0** |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 1 |
+
+OR dà 0 in un caso solo: quando tutti e due gli ingressi valgono 0.
+
+### XOR: uno solo
+
+L'operazione **XOR** (*exclusive or*, «o esclusivo») dà 1 quando **uno solo** dei due bit vale 1. È il menù: dolce o frutta, non tutti e due. Un altro modo di dirlo: XOR dà 1 esattamente quando i due bit sono **diversi**.
+
+| A | B | A XOR B |
+|:-:|:-:|:-:|
+| 0 | 0 | 0 |
+| 0 | 1 | **1** |
+| 1 | 0 | **1** |
+| 1 | 1 | 0 |
+
+OR e XOR differiscono solo nell'ultima riga: con tutti e due gli ingressi a 1, OR dà 1 e XOR dà 0.
+
+### NOT: il contrario
+
+L'operazione **NOT** («non») prende **un solo** bit e lo scambia: 0 diventa 1 e 1 diventa 0. È la luce del giardino: accesa quando non è giorno.
+
+| A | NOT A |
+|:-:|:-:|
+| 0 | 1 |
+| 1 | 0 |
+
+### Tutte insieme
+
+| A | B | A AND B | A OR B | A XOR B | NOT A |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 | 0 | 1 |
+| 0 | 1 | 0 | 1 | 1 | 1 |
+| 1 | 0 | 0 | 1 | 1 | 0 |
+| 1 | 1 | 1 | 1 | 0 | 0 |
+
+> [!TRAPPOLA] La «o» dell'italiano
+> In italiano «o» a volte vuol dire OR e a volte XOR. «Sconto per studenti o pensionati»: se sei tutte e due le cose lo sconto ce l'hai lo stesso, quindi è un OR. «Caffè o tè?»: di solito si sceglie una cosa sola, quindi è un XOR. In informatica OR vuol dire sempre «almeno uno, anche tutti e due».
+
+> [!OLTRE] · le operazioni su file di bit
+> Le stesse operazioni si fanno su due file di bit della stessa lunghezza, colonna per colonna. Con 1100 e 1010:
+>
+> | | 1ª colonna | 2ª colonna | 3ª colonna | 4ª colonna |
+> |---|:-:|:-:|:-:|:-:|
+> | prima fila | 1 | 1 | 0 | 0 |
+> | seconda fila | 1 | 0 | 1 | 0 |
+> | AND | 1 | 0 | 0 | 0 |
+> | OR | 1 | 1 | 1 | 0 |
+> | XOR | 0 | 1 | 1 | 0 |
+>
+> Quindi 1100 AND 1010 = 1000, 1100 OR 1010 = 1110 e 1100 XOR 1010 = 0110.
+
+::: prova Calcola: (a) 1 AND 0; (b) 1 OR 0; (c) 1 XOR 1; (d) NOT 0. Poi: (e) per quali ingressi XOR dà 1?
+(a) 0: AND vuole tutti e due gli ingressi a 1, e qui uno vale 0.
+
+(b) 1: almeno un ingresso vale 1.
+
+(c) 0: i due ingressi sono uguali.
+
+(d) 1: NOT scambia 0 e 1.
+
+(e) Per 0 e 1, e per 1 e 0: quando i due ingressi sono diversi.
+:::
+
+> [!RICORDA]
+> - AND: 1 solo se tutti e due gli ingressi valgono 1.
+> - OR: 1 se almeno uno vale 1. XOR: 1 se i due ingressi sono diversi.
+> - NOT: un solo ingresso, e dà il contrario.
+
+## Le porte logiche (libro, §1.1)
+
+Le operazioni della sezione precedente sono idee. Per farle davvero serve un oggetto fisico: un dispositivo con dei fili in entrata e un filo in uscita, che produce il risultato dell'operazione. Si chiama **porta logica**, in inglese *gate*.
+
+Il libro racconta che una porta si può costruire in tanti modi: con ingranaggi, con relè, con dispositivi ottici. Nei computer di oggi le porte sono piccolissimi circuiti elettronici, e lo 0 e l'1 sono due livelli di tensione: tensione bassa per lo 0, tensione alta per l'1.
+
+Ogni porta ha un suo disegno.
+
+- **AND** ha la forma di una D: dritta dietro, rotonda davanti.
+- **OR** ha la forma di uno scudo, con il retro incurvato e la punta davanti.
+- **XOR** è il disegno dell'OR con una curva in più sul retro.
+- **NOT** è un triangolo con un cerchietto sulla punta. Il cerchietto vuol dire «inverti».
+
+Prova le porte nello strumento qui sotto.
+
+```widget porte
+titolo: Le quattro porte logiche: clicca sugli ingressi A e B
+modo: porte
+a: 1
+b: 0
+```
+
+Guarda lo strumento: i fili che valgono 1 si colorano. Con A = 1 e B = 0 si accendono le uscite di OR e di XOR, ma non quella di AND. Ora metti anche B a 1: XOR si spegne e AND si accende. Prova tutte e quattro le combinazioni e confrontale con la tabella della sezione precedente.
+
+### Collegare le porte
+
+L'uscita di una porta può diventare l'ingresso di un'altra. Così si costruiscono circuiti che fanno conti più complicati.
+
+Un esempio con tre ingressi, che chiamiamo A, B e C:
+
+1. A e B entrano in una porta XOR;
+2. l'uscita dell'XOR e l'ingresso C entrano in una porta AND;
+3. l'uscita dell'AND è l'uscita del circuito.
+
+Per sapere che cosa fa il circuito si prova ogni combinazione degli ingressi. Gli ingressi sono 3, quindi le combinazioni sono $2^3 = 8$. Si aggiunge una colonna per la porta XOR, che lavora per prima, e una per l'uscita.
+
+| A | B | C | A XOR B | uscita: (A XOR B) AND C |
+|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 | 0 |
+| 0 | 0 | 1 | 0 | 0 |
+| 0 | 1 | 0 | 1 | 0 |
+| 0 | 1 | 1 | 1 | **1** |
+| 1 | 0 | 0 | 1 | 0 |
+| 1 | 0 | 1 | 1 | **1** |
+| 1 | 1 | 0 | 0 | 0 |
+| 1 | 1 | 1 | 0 | 0 |
+
+L'uscita vale 1 in due righe soltanto. A parole: **uno solo dei primi due ingressi vale 1, e il terzo vale 1**. È la risposta che il libro dà alla domanda 1 del §1.1, su un circuito di questo tipo.
+
+> [!METODO] Leggere un circuito di porte
+> 1. Scrivi tutte le combinazioni degli ingressi: con $n$ ingressi sono $2^n$ righe. Mettile in ordine, come nella tabella qui sopra.
+> 2. Aggiungi una colonna per ogni porta, partendo da quelle attaccate agli ingressi.
+> 3. Riempi una colonna alla volta, con la tabella della porta.
+> 4. L'ultima colonna è l'uscita del circuito. Alla fine descrivila a parole.
+
+Un circuito come questo ha una proprietà importante: la sua uscita dipende **soltanto** dagli ingressi di quel momento. Se gli ingressi cambiano, l'uscita cambia subito di conseguenza. Nella prossima sezione vedi un circuito che si comporta in modo diverso.
+
+::: prova Nel circuito di prima, che cosa esce con A = 1, B = 1 e C = 1? E con A = 0, B = 1 e C = 1?
+Con A = 1, B = 1 e C = 1: l'XOR riceve due ingressi uguali e dà 0. L'AND riceve 0 e 1 e dà 0. Esce 0.
+
+Con A = 0, B = 1 e C = 1: l'XOR riceve due ingressi diversi e dà 1. L'AND riceve 1 e 1 e dà 1. Esce 1.
+:::
+
+> [!RICORDA]
+> - Una porta logica è un circuito che esegue un'operazione booleana: AND, OR, XOR o NOT.
+> - Collegando le porte si costruiscono circuiti. Per capire che cosa fanno, si scrive la tabella con tutte le combinazioni degli ingressi.
+
+## Un circuito che ricorda: il flip-flop (libro, §1.1)
+
+Le porte viste finora non ricordano niente. La loro uscita dipende solo dagli ingressi di quel momento: quando l'ingresso cambia, l'uscita cambia. Per costruire una memoria serve un circuito che tenga un bit anche quando gli ingressi tornano a 0.
+
+Il libro chiama **flip-flop** un circuito con un'uscita che vale 0 oppure 1 e che **resta uguale** finché un **impulso** non la fa cambiare. Un impulso (*pulse*) è un ingresso che passa per un attimo a 1 e poi torna a 0, come quando premi e lasci un pulsante.
+
+### Com'è fatto
+
+Il flip-flop della figura 1.3 del libro ha due ingressi, uno in alto e uno in basso, e tre porte.
+
+1. L'ingresso in alto entra in una porta **OR**.
+2. L'uscita dell'OR entra in una porta **AND**.
+3. L'ingresso in basso passa da una porta **NOT** ed entra nell'AND.
+4. L'uscita dell'AND è l'uscita del flip-flop. Ma **torna anche indietro**, ed entra nell'OR come secondo ingresso.
+
+Il filo che torna indietro è il trucco. Provalo nello strumento.
+
+```widget porte
+titolo: Il flip-flop della figura 1.3: prova gli impulsi
+modo: flipflop
+```
+
+Guarda che cosa succede con gli impulsi.
+
+1. **All'inizio** gli ingressi valgono 0 e l'uscita vale 0.
+2. **Impulso in alto.** L'OR riceve 1 e dà 1. Il NOT riceve 0 dall'ingresso in basso e dà 1. L'AND riceve 1 e 1: l'uscita diventa 1.
+3. **Fine dell'impulso.** L'ingresso in alto torna a 0, ma l'OR riceve ancora l'uscita, che vale 1, e continua a dare 1. Quindi l'uscita **resta 1**: il circuito si ricorda dell'impulso.
+4. **Impulso in basso.** Il NOT riceve 1 e dà 0. L'AND riceve uno 0 e dà 0: l'uscita diventa 0. Ora l'OR riceve 0 dall'ingresso in alto e 0 dall'uscita, e dà 0.
+5. **Fine dell'impulso.** Il NOT torna a dare 1, ma l'OR dà 0, quindi l'AND continua a dare 0. L'uscita **resta 0**.
+
+La stessa storia in una tabella. In ogni riga ci sono i valori dopo che il circuito si è assestato.
+
+| Momento | In alto | In basso | OR | NOT | AND, cioè l'uscita |
+|---|:-:|:-:|:-:|:-:|:-:|
+| all'inizio | 0 | 0 | 0 | 1 | 0 |
+| impulso in alto | 1 | 0 | 1 | 1 | **1** |
+| fine dell'impulso | 0 | 0 | 1 | 1 | **1** |
+| impulso in basso | 0 | 1 | 0 | 0 | **0** |
+| fine dell'impulso | 0 | 0 | 0 | 1 | **0** |
+
+Confronta la seconda e la terza riga: gli ingressi tornano come all'inizio, ma l'uscita no. L'uscita e l'OR si tengono accesi a vicenda, finché l'impulso in basso non spezza il giro.
+
+> [!IDEA]
+> Un impulso in alto mette l'uscita a 1, un impulso in basso la mette a 0. Tra un impulso e l'altro l'uscita resta com'è: il flip-flop **ricorda un bit**.
+
+> [!NOTA] Un altro modo di costruirlo
+> Il libro mostra anche un secondo flip-flop (figura 1.5), con due porte OR e due porte NOT. L'idea è la stessa: un'uscita che torna indietro e si tiene da sola. Lo racconta la domanda 3 del §1.1.
+
+Il flip-flop è uno dei modi di conservare un bit dentro un computer. Come è organizzata la memoria, fatta di tantissimi bit, lo spiega la sezione 1.2 del libro.
+
+::: prova (a) Il flip-flop ha uscita 1 e arriva un impulso in alto. Che cosa succede? (b) Ha uscita 1 e arriva un impulso in basso. Che cosa succede?
+(a) Niente di nuovo. Durante l'impulso l'OR riceve 1 dall'ingresso e 1 dall'uscita, e dà 1; il NOT dà 1; l'AND dà 1. Dopo l'impulso l'uscita resta 1.
+
+(b) Il NOT riceve 1 e dà 0, quindi l'AND dà 0: l'uscita diventa 0, e resta 0 anche dopo l'impulso.
+:::
+
+> [!RICORDA]
+> - Il flip-flop ha un'uscita che resta uguale finché un impulso non la cambia.
+> - Impulso in alto: uscita 1. Impulso in basso: uscita 0.
+> - Il segreto è il filo che riporta l'uscita all'ingresso dell'OR.
+
+## Scrivere i bit in breve: l'esadecimale (libro, §1.1)
+
+Prova a leggere ad alta voce questa fila di bit: 0110101011110010. È facile perdersi: sedici cifre, tutte 0 o 1. Il libro chiama una fila di bit una **stringa** di bit (*string*), e una stringa molto lunga un **flusso** (*stream*).
+
+Il trucco è dividere la fila in gruppi di quattro bit, e scrivere ogni gruppo con un solo simbolo:
+
+$$0110\ \ 1010\ \ 1111\ \ 0010 \quad\longrightarrow\quad 6\ \ \text{A}\ \ \text{F}\ \ 2$$
+
+Quattro bit hanno $2^4 = 16$ combinazioni, quindi servono 16 simboli. Si usano le cifre da 0 a 9 e le lettere da A a F. Questo modo di scrivere si chiama **notazione esadecimale** (*hexadecimal notation*), da «sedici».
+
+| Bit | Cifra | | Bit | Cifra |
+|:-:|:-:|---|:-:|:-:|
+| 0000 | 0 | | 1000 | 8 |
+| 0001 | 1 | | 1001 | 9 |
+| 0010 | 2 | | 1010 | A |
+| 0011 | 3 | | 1011 | B |
+| 0100 | 4 | | 1100 | C |
+| 0101 | 5 | | 1101 | D |
+| 0110 | 6 | | 1110 | E |
+| 0111 | 7 | | 1111 | F |
+
+Per ricordare la tabella c'è un aiuto. Le quattro posizioni del gruppo valgono, da sinistra, 8, 4, 2 e 1. Somma i valori delle posizioni dove c'è un 1. Per esempio 1011 dà $8 + 2 + 1 = 11$. Poi i numeri da 10 a 15 si scrivono con le lettere: A è 10, B è 11, e così via fino a F, che è 15. Quindi 1011 si scrive B. Perché funziona lo vedrai nella sezione 1.5 del libro, sui numeri in base 2.
+
+> [!METODO] Dai bit all'esadecimale, e ritorno
+> **Dai bit all'esadecimale.**
+> 1. Dividi la fila in gruppi di quattro bit, partendo da destra. Se il primo gruppo a sinistra ha meno di quattro bit, aggiungi degli 0 davanti.
+> 2. Scrivi la cifra di ogni gruppo con la tabella.
+> 3. Metti le cifre una dopo l'altra, nello stesso ordine.
+>
+> **Dall'esadecimale ai bit.** Scrivi ogni cifra con i suoi quattro bit, **compresi gli 0 davanti**, e mettili in fila.
+
+> [!ESEMPIO] Due conversioni
+> **10110101 in esadecimale.** I gruppi sono 1011 e 0101. Con la tabella 1011 è B e 0101 è 5. Il risultato è B5.
+>
+> **5FD97 in bit.** Le cifre sono 5, F, D, 9 e 7. Con la tabella diventano 0101, 1111, 1101, 1001 e 0111. In fila: 01011111110110010111, cioè 20 bit.
+
+Nello strumento qui sotto puoi cambiare i bit con un clic e vedere cambiare le cifre.
+
+```widget porte
+titolo: Sedici bit e le loro quattro cifre esadecimali
+modo: esadecimale
+bit: 0110101011110010
+```
+
+> [!TRAPPOLA] Ogni cifra vale quattro bit, anche lo 0
+> La stringa esadecimale 0100 vuol dire 0000 0001 0000 0000: sedici bit, non i tre bit «100». Ogni cifra, zeri compresi, diventa un gruppo intero di quattro bit.
+
+::: prova (a) Scrivi in esadecimale la fila 11100001. (b) Scrivi in bit la stringa esadecimale 3C.
+(a) I gruppi sono 1110 e 0001. Con la tabella sono E e 1. Il risultato è E1.
+
+(b) 3 è 0011 e C è 1100. Il risultato è 00111100.
+:::
+
+> [!RICORDA]
+> - Una cifra esadecimale vale quattro bit: da 0000, cioè 0, a 1111, cioè F.
+> - Per passare all'esadecimale si fanno gruppi di quattro bit partendo da destra. Per tornare ai bit si scrive ogni cifra con quattro bit, zeri compresi.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $0$, $1$ | «zero», «uno» | i due valori di un bit; come valori di verità, falso e vero | 1 AND 1 = 1 |
+| bit | «bit» | una cifra binaria, 0 oppure 1 | 1 |
+| byte | «bàit» | una fila di 8 bit | 01001000 |
+| $2^n$ | «due alla $n$» | quante sequenze diverse si scrivono con $n$ bit | $2^8 = 256$ |
+| AND | «end» | 1 solo se tutti e due gli ingressi valgono 1 | 1 AND 0 = 0 |
+| OR | «or» | 1 se almeno un ingresso vale 1 | 1 OR 0 = 1 |
+| XOR | «ics-or» | 1 se i due ingressi sono diversi | 1 XOR 1 = 0 |
+| NOT | «not» | il contrario dell'ingresso | NOT 0 = 1 |
+| $\land$, $\lor$, $\oplus$, $\lnot$ | «e», «o», «o esclusivo», «non» | le stesse operazioni scritte come in logica (parte 2 del libro) | $1 \land 0 = 0$ |
+| A, B, C, D, E, F | «a», «bi», «ci», «di», «e», «effe» | le cifre esadecimali che valgono da 10 a 15 | B = 1011 |
+| $1011_2$, $\text{B}_{16}$ | «1011 in base due», «B in base sedici» | il numerino in basso dice in che base è scritto il numero (sezione 1.5) | $1011_2 = \text{B}_{16}$ |
+
+## Verso l'esame
+
+L'esame di **Fondamenti dell'Informatica** è uno scritto sulla piattaforma Moodle Esami, con Safe Exam Browser, ed è **unico per i canali A, B e C**. Le regole valgono per gli appelli da gennaio a settembre 2027.
+
+**Com'è fatta la prova**
+
+- **Parte 1: 9 quiz** a risposta chiusa in 45 minuti, da 3 punti l'uno, quindi al massimo 27. Per passare servono **almeno 18 punti**: 17,5 viene arrotondato a 18.
+- **Parte 2, facoltativa: una domanda aperta** in 30 minuti, che vale **da −1 a 6 punti**. Si può fare solo con **almeno 24 punti** nei quiz, contati prima dell'arrotondamento. Una risposta molto sbagliata vale −1: se non sai che cosa scrivere, lasciala vuota.
+- Oltre 30 punti il voto è 30 e lode. Durante la prova non si cambia pagina: Safe Exam Browser blocca la prova.
+
+| Appello 2026/27 | Iscrizioni | Ora |
+|---|---|---|
+| ven 29/01/2027 | 09/01 – 22/01/2027 | 9:00 |
+| gio 18/02/2027 | 29/01 – 11/02/2027 | 9:00 |
+
+Tutti i dettagli sono nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
+
+**Che cosa serve di questa lezione**
+
+1. **Le tabelle delle operazioni.** Nelle simulazioni d'esame del 2023/24 tornano due tipi di quiz. Uno chiede la formula booleana di una tabella di verità; l'altro dà un circuito, combinatorio o sequenziale, e chiede che funzione calcola. Sono le idee di questa lezione, riprese più avanti con le algebre di Boole e i circuiti (capitolo 11 della parte 2 del libro).
+2. **Leggere un circuito.** Il metodo con la tabella di tutte le combinazioni degli ingressi funziona per qualunque circuito di porte.
+3. **I bit e le potenze di 2.** Quante sequenze con $n$ bit e quanti bit servono: sono conti che tornano con la rappresentazione dei numeri.
+4. **L'esadecimale.** Torna con le conversioni tra basi della sezione 1.5.
+
+I quiz sono in italiano e il libro in inglese: impara i nomi in tutte e due le lingue. Il glossario in fondo li mette uno accanto all'altro. Sulla pagina d'esame (Moodle Esami, id 2673) ci sono anche quiz di ripasso divisi per lezione.
+
+> [!ESAME] Cinque minuti a domanda
+> Nella prima parte hai 45 minuti per 9 quiz: 5 minuti a domanda. Le tabelle di AND, OR, XOR e NOT e la tabella dell'esadecimale vanno sapute a memoria, senza doverle ricostruire durante la prova.
+
+**Errori da evitare**
+
+- Confondere OR e XOR nella riga con tutti e due gli ingressi a 1: OR dà 1, XOR dà 0.
+- Dimenticare una combinazione degli ingressi: con 3 ingressi le righe sono 8, non 6.
+- Pensare che il flip-flop torni a 0 da solo quando l'impulso finisce: è proprio quello che non fa.
+- Nell'esadecimale, togliere gli 0 davanti a una cifra: 1 è 0001, non 1.
+
+## Quiz
+
+```quiz
+D: Quante sequenze diverse si possono scrivere con 6 bit?
+- $6$
+- $12$
+- $36$
++ $64$
+- $128$
+= Ogni bit in più raddoppia le sequenze: con 6 bit sono $2^6 = 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 = 64$. La risposta $12$ viene se si fa $6 \cdot 2$ invece di moltiplicare 2 per sé stesso 6 volte. La risposta $36$ è $6 \cdot 6$, un conto che qui non c'entra. La risposta $128$ è il conto per 7 bit.
+
+D: Quanti bit servono, come minimo, per dare un codice diverso a ognuno dei 30 studenti di un laboratorio?
+- $4$
++ $5$
+- $6$
+- $15$
+- $30$
+= Con 4 bit i codici sono $2^4 = 16$, non bastano per 30 studenti. Con 5 bit sono $2^5 = 32$, che bastano. Quindi servono 5 bit. La risposta $6$ funziona, ma non è il minimo. Le risposte $15$ e $30$ dimenticano che ogni bit raddoppia i codici.
+
+D: Per quali valori di A e B l'operazione A XOR B dà 1?
+- Solo per A = 1 e B = 1.
+- Solo per A = 0 e B = 0.
++ Per A = 0 e B = 1, e per A = 1 e B = 0.
+- In tutti i casi tranne A = 0 e B = 0.
+- In tutti i casi tranne A = 1 e B = 1.
+= XOR dà 1 esattamente quando i due ingressi sono diversi, cioè nelle due righe con uno 0 e un 1. La risposta «in tutti i casi tranne A = 0 e B = 0» descrive OR, ed è la più tentatrice: OR dà 1 anche con tutti e due gli ingressi a 1, XOR no. «Solo per A = 1 e B = 1» descrive AND.
+
+D: Con A = 1 e B = 0, quanto vale NOT (A AND B)?
+- $0$
++ $1$
+- Dipende dall'ordine degli ingressi.
+- Non si può calcolare: NOT ha un solo ingresso.
+- $10$
+= Si calcola prima la parentesi: 1 AND 0 = 0, perché AND vuole tutti e due gli ingressi a 1. Poi NOT 0 = 1. NOT ha davvero un solo ingresso, ma qui il suo ingresso è il risultato della parentesi, un bit solo. L'ordine degli ingressi di AND non conta: 1 AND 0 e 0 AND 1 danno tutti e due 0.
+
+D: Nel circuito (A XOR B) AND C, quale combinazione di ingressi dà uscita 1?
+- A = 1, B = 1, C = 1
+- A = 0, B = 0, C = 1
++ A = 1, B = 0, C = 1
+- A = 0, B = 1, C = 0
+- A = 1, B = 0, C = 0
+= L'uscita vale 1 quando l'XOR dà 1, cioè A e B sono diversi, e anche C vale 1. Solo A = 1, B = 0, C = 1 rispetta tutte e due le condizioni. Con A = 1, B = 1, C = 1, la risposta più tentatrice, l'XOR riceve due ingressi uguali e dà 0, quindi esce 0. Con C = 0 l'AND dà sempre 0.
+
+D: Il flip-flop della figura 1.3 ha uscita 1. Arriva un impulso sull'ingresso in alto, che poi torna a 0. Quanto vale l'uscita dopo l'impulso?
+- $0$, perché l'ingresso in alto è tornato a 0.
++ $1$, perché l'uscita torna all'OR e lo tiene a 1.
+- $0$, perché ogni impulso scambia l'uscita.
+- Dipende da quanto è durato l'impulso.
+- Non si può sapere senza conoscere l'ingresso in basso.
+= L'uscita valeva già 1. Durante l'impulso l'OR riceve 1, il NOT dà 1 perché l'ingresso in basso vale 0, e l'AND dà 1. Quando l'impulso finisce, l'OR riceve ancora l'uscita, che vale 1, e l'uscita resta 1. La prima risposta è la più tentatrice: varrebbe per una porta normale, che non ricorda, ma non per un flip-flop. L'ingresso in basso è fermo a 0, come in tutti gli esempi del libro.
+
+D: Come si scrive in notazione esadecimale la fila di bit 11010011?
+- $\text{C}3$
++ $\text{D}3$
+- $\text{D}6$
+- $\text{B}3$
+- $211$
+= I gruppi di quattro bit sono 1101 e 0011. Con la tabella, 1101 è D, perché $8 + 4 + 1 = 13$, e 0011 è 3, perché $2 + 1 = 3$. Il risultato è D3. C è 1100, B è 1011: le risposte con C o B sbagliano il primo gruppo di un bit. La risposta $211$ è il valore del numero in base dieci, che qui non è richiesto.
+
+D: Quale fila di bit rappresenta la stringa esadecimale 7E?
+- $0111\ 1101$
++ $0111\ 1110$
+- $111\ 1110$
+- $1110\ 0111$
+- $0111\ 1111$
+= Ogni cifra diventa quattro bit: 7 è 0111 ed E è 1110. In fila viene 0111 1110. La risposta con soli 7 bit dimentica lo 0 davanti al 7: ogni cifra vale sempre quattro bit. La risposta 1110 0111 scambia l'ordine delle cifre. 1101 è D, non E.
+
+D: Quante cifre esadecimali servono per scrivere una fila di 24 bit?
+N: 6
+= Ogni cifra esadecimale vale quattro bit, quindi servono $24 : 4 = 6$ cifre. Per esempio la stringa E85517 del §1.1 è fatta di 24 bit.
+```
+
+## Esercizi
+
+::: esercizio base Bit e potenze di 2
+(a) Quante sequenze diverse si scrivono con 3 bit? E con 10 bit? (b) Quanti bit servono, come minimo, per dare un codice diverso a 1000 oggetti? E a 2 oggetti?
+::: soluzione
+1. Con 3 bit le sequenze sono $2^3 = 8$.
+2. Con 10 bit sono $2^{10} = 1024$.
+3. Per 1000 oggetti: con 9 bit le etichette sono $2^9 = 512$, poche. Con 10 bit sono 1024, e bastano. Servono 10 bit.
+4. Per 2 oggetti basta 1 bit: uno prende 0, l'altro 1.
+
+Controllo del punto 3: $512 < 1000$ e $1000 \le 1024$.
+:::
+
+::: esercizio base Le tabelle delle operazioni
+Calcola: (a) 0 AND 1; (b) 0 OR 0; (c) 0 XOR 1; (d) NOT 1; (e) (1 OR 0) AND 1; (f) NOT (0 OR 0).
+::: soluzione
+1. (a) 0: AND vuole tutti e due gli ingressi a 1.
+2. (b) 0: nessun ingresso vale 1.
+3. (c) 1: gli ingressi sono diversi.
+4. (d) 0: NOT scambia 1 con 0.
+5. (e) Prima la parentesi: 1 OR 0 = 1. Poi 1 AND 1 = 1.
+6. (f) Prima la parentesi: 0 OR 0 = 0. Poi NOT 0 = 1.
+:::
+
+::: esercizio base Domanda 5 del §1.1: dai bit all'esadecimale
+Scrivi in notazione esadecimale queste file di bit: (a) 0110101011110010; (b) 111010000101010100010111; (c) 01001000.
+::: soluzione
+1. (a) I gruppi sono 0110, 1010, 1111 e 0010. Con la tabella: 6, A, F e 2. Il risultato è 6AF2.
+2. (b) I gruppi sono 1110, 1000, 0101, 0101, 0001 e 0111. Con la tabella: E, 8, 5, 5, 1 e 7. Il risultato è E85517.
+3. (c) I gruppi sono 0100 e 1000. Con la tabella: 4 e 8. Il risultato è 48.
+
+Sono le risposte che dà il libro. Controllo della (c) all'indietro: 4 è 0100 e 8 è 1000, e in fila torna 01001000.
+:::
+
+::: esercizio base Domanda 6 del §1.1: dall'esadecimale ai bit
+Quali file di bit rappresentano queste stringhe esadecimali? (a) 5FD97; (b) 610A; (c) ABCD; (d) 0100.
+::: soluzione
+Ogni cifra diventa quattro bit, zeri compresi.
+
+| Stringa | Le cifre in bit | Fila di bit |
+|---|---|---|
+| 5FD97 | 0101 · 1111 · 1101 · 1001 · 0111 | 01011111110110010111 |
+| 610A | 0110 · 0001 · 0000 · 1010 | 0110000100001010 |
+| ABCD | 1010 · 1011 · 1100 · 1101 | 1010101111001101 |
+| 0100 | 0000 · 0001 · 0000 · 0000 | 0000000100000000 |
+
+Sono le risposte che dà il libro. Nell'ultima riga la stringa ha quattro cifre, quindi i bit sono sedici: è la trappola della sezione sull'esadecimale.
+:::
+
+::: esercizio medio Domanda 1 del §1.1: quando esce 1
+Un circuito ha tre ingressi. I primi due entrano in una porta XOR; l'uscita dell'XOR e il terzo ingresso entrano in una porta AND, che dà l'uscita del circuito. Per quali ingressi l'uscita vale 1?
+::: soluzione
+1. Gli ingressi sono 3, quindi le combinazioni da provare sono $2^3 = 8$.
+2. L'AND dà 1 solo se tutti e due i suoi ingressi valgono 1: serve che l'XOR dia 1 e che il terzo ingresso valga 1.
+3. L'XOR dà 1 quando i primi due ingressi sono diversi: 0 e 1, oppure 1 e 0.
+4. Quindi le combinazioni giuste sono due: (0, 1, 1) e (1, 0, 1).
+
+A parole, come nelle risposte del libro: uno e uno solo dei primi due ingressi deve valere 1, e il terzo deve valere 1. La tabella completa è nella sezione sulle porte logiche.
+:::
+
+::: esercizio medio Un circuito che fa come un OR
+Un circuito fa passare A e B ciascuno da una porta NOT. Le due uscite entrano in una porta AND, e l'uscita dell'AND passa da un'altra porta NOT. Scrivi la tabella del circuito: a quale porta singola equivale?
+::: soluzione
+Il circuito calcola NOT ((NOT A) AND (NOT B)). Una colonna per ogni porta:
+
+| A | B | NOT A | NOT B | (NOT A) AND (NOT B) | uscita |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 1 | 1 | 1 | 0 |
+| 0 | 1 | 1 | 0 | 0 | 1 |
+| 1 | 0 | 0 | 1 | 0 | 1 |
+| 1 | 1 | 0 | 0 | 0 | 1 |
+
+L'ultima colonna è uguale a quella di A OR B: il circuito equivale a una sola porta OR.
+
+Il perché a parole: l'AND centrale dà 1 solo quando A e B valgono tutti e due 0. Il NOT finale capovolge: l'uscita è 0 solo in quel caso, cioè è 1 quando almeno un ingresso vale 1. È una delle leggi di De Morgan, che tornano nella parte 2 del libro.
+:::
+
+::: esercizio medio Un circuito che fa come uno XOR
+Un circuito calcola (A OR B) AND (NOT (A AND B)). Scrivi la tabella: a quale porta singola equivale?
+::: soluzione
+| A | B | A OR B | A AND B | NOT (A AND B) | uscita |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 | 1 | 0 |
+| 0 | 1 | 1 | 0 | 1 | 1 |
+| 1 | 0 | 1 | 0 | 1 | 1 |
+| 1 | 1 | 1 | 1 | 0 | 0 |
+
+L'ultima colonna è uguale a quella di A XOR B: il circuito equivale a una porta XOR.
+
+Il perché a parole: «almeno uno vale 1» e «non tutti e due valgono 1» insieme vogliono dire «esattamente uno vale 1».
+:::
+
+::: esercizio medio Una storia di impulsi
+Il flip-flop della figura 1.3 parte con uscita 0. Arrivano, uno dopo l'altro, questi impulsi: in alto, in alto, in basso, in basso, in alto. Quanto vale l'uscita dopo ogni impulso?
+::: soluzione
+1. Impulso in alto: l'uscita diventa 1.
+2. Impulso in alto: l'uscita era già 1 e resta 1.
+3. Impulso in basso: l'uscita diventa 0.
+4. Impulso in basso: l'uscita era già 0 e resta 0.
+5. Impulso in alto: l'uscita diventa 1.
+
+La sequenza delle uscite è 1, 1, 0, 0, 1. L'uscita dopo un impulso dipende solo da quale ingresso l'ha ricevuto, non da quante volte. Puoi rifare la storia nello strumento del flip-flop.
+:::
+
+::: esercizio difficile Domanda 2 del §1.1: che cosa succede dentro
+Il flip-flop della figura 1.3 ha uscita 1, e l'ingresso in alto è fermo a 0. Arriva un 1 sull'ingresso in basso, che poi torna a 0. Racconta in ordine che cosa succede alle porte.
+::: soluzione
+1. Il NOT riceve 1 e dà 0.
+2. L'AND riceve 0 dal NOT, quindi dà 0, qualunque cosa arrivi dall'OR. L'uscita del flip-flop diventa 0.
+3. L'uscita torna all'OR, che ora riceve 0 dall'ingresso in alto e 0 dall'uscita: anche l'OR dà 0.
+4. Quando l'ingresso in basso torna a 0, il NOT torna a dare 1. Ma l'AND riceve 0 dall'OR, quindi continua a dare 0.
+5. L'uscita resta 0 anche dopo l'impulso.
+
+È lo stesso racconto delle risposte del libro: il punto chiave è il passo 3, in cui l'OR si spegne e non riaccende più l'AND.
+:::
+
+::: esercizio esame Un circuito per l'uguaglianza
+Serve un circuito con due ingressi che dia 1 esattamente quando i due ingressi sono **uguali**. Scegli tra: (a) A AND B; (b) A OR B; (c) NOT (A XOR B); (d) NOT (A OR B); (e) A XOR B. Giustifica la scelta con una tabella.
+::: soluzione
+| A | B | richiesto | A AND B | A OR B | NOT (A XOR B) | NOT (A OR B) | A XOR B |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 1 | 0 | 0 | **1** | 1 | 0 |
+| 0 | 1 | 0 | 0 | 1 | **0** | 0 | 1 |
+| 1 | 0 | 0 | 0 | 1 | **0** | 0 | 1 |
+| 1 | 1 | 1 | 1 | 1 | **1** | 0 | 0 |
+
+1. XOR dà 1 quando gli ingressi sono diversi. Il suo contrario, NOT (A XOR B), dà 1 quando sono uguali: è la colonna richiesta. La risposta è la (c).
+2. A AND B sbaglia la prima riga: due 0 sono uguali, ma AND dà 0.
+3. NOT (A OR B) sbaglia l'ultima riga: due 1 sono uguali, ma dà 0.
+4. A OR B e A XOR B sbagliano più righe.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è un bit? Perché il libro dice che è «solo un simbolo»?
+Un bit è una cifra binaria: 0 oppure 1. È solo un simbolo perché il suo significato dipende dall'uso: la stessa fila di bit può essere un numero, una lettera, un pezzo di immagine o di suono.
+:::
+
+::: domanda Quante sequenze si scrivono con $n$ bit? Quanti bit servono per distinguere 20 oggetti?
+Con $n$ bit si scrivono $2^n$ sequenze, perché ogni bit in più raddoppia. Per 20 oggetti servono 5 bit: 4 bit danno 16 sequenze, troppo poche, e 5 bit ne danno 32.
+:::
+
+::: domanda Che differenza c'è tra OR e XOR?
+Tutte e due danno 1 quando un solo ingresso vale 1, e 0 quando tutti e due valgono 0. Con tutti e due gli ingressi a 1, OR dà 1 e XOR dà 0: XOR vuol dire «uno solo».
+:::
+
+::: domanda Che cos'è una porta logica? Come si capisce che cosa fa un circuito di porte?
+È un circuito che esegue un'operazione booleana: AND, OR, XOR o NOT. Per capire un circuito si scrive una tabella con tutte le combinazioni degli ingressi e una colonna per ogni porta.
+:::
+
+::: domanda Come fa un flip-flop a ricordare un bit?
+La sua uscita torna indietro e diventa un ingresso dell'OR. Dopo un impulso in alto, l'uscita a 1 tiene accesa la porta OR, e l'OR tiene accesa l'uscita. Solo un impulso in basso spezza il giro e porta l'uscita a 0.
+:::
+
+::: domanda Perché si usa la notazione esadecimale? Come si passa dai bit alle cifre?
+Le file di bit lunghe si leggono male. L'esadecimale scrive quattro bit con un solo simbolo, da 0 a F. Si fanno gruppi di quattro bit da destra e si scrive la cifra di ogni gruppo.
+:::
+
+## Glossario
+
+```glossario
+Bit | Una cifra binaria, 0 oppure 1 (in inglese *binary digit*). È il più piccolo pezzo di informazione.
+Byte | Una fila di 8 bit. Può avere 256 valori diversi.
+Operazione booleana | Un'operazione su valori vero e falso, cioè su bit (*Boolean operation*). Dal matematico George Boole.
+AND | Dà 1 solo se tutti e due gli ingressi valgono 1.
+OR | Dà 1 se almeno uno dei due ingressi vale 1.
+XOR | «O esclusivo» (*exclusive or*): dà 1 se i due ingressi sono diversi.
+NOT | Ha un solo ingresso e dà il contrario: 0 diventa 1, 1 diventa 0.
+Tabella di verità | Una tabella con tutte le combinazioni degli ingressi e l'uscita per ognuna (*truth table*).
+Porta logica | Un circuito che esegue un'operazione booleana (in inglese *gate*).
+Circuito combinatorio | Un circuito di porte la cui uscita dipende solo dagli ingressi di quel momento.
+Impulso | Un ingresso che passa per un attimo a 1 e poi torna a 0 (*pulse*).
+Flip-flop | Un circuito la cui uscita resta uguale finché un impulso non la cambia: ricorda un bit.
+Stringa di bit | Una fila di bit (*bit string*); quando è molto lunga il libro la chiama flusso (*stream*).
+Notazione esadecimale | Il modo di scrivere ogni gruppo di quattro bit con un simbolo da 0 a 9 o da A a F (*hexadecimal notation*).
+Cifra esadecimale | Uno dei 16 simboli 0–9 e A–F. A vale 10, F vale 15.
+```
+
+## Checklist
+
+```checklist
+- So quante sequenze si scrivono con $n$ bit e quanti bit servono per un certo numero di oggetti.
+- So a memoria le tabelle di AND, OR, XOR e NOT.
+- So spiegare la differenza tra OR e XOR.
+- So leggere un circuito di porte con la tabella di tutte le combinazioni degli ingressi.
+- So raccontare che cosa succede in un flip-flop con un impulso in alto e con un impulso in basso.
+- So passare dai bit all'esadecimale e dall'esadecimale ai bit, senza perdere gli zeri.
+```
+
+## Fonti
+
+- R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Sezione 1.1 «Bits and Their Storage»: operazioni booleane, porte e flip-flop (figure 1.3 e 1.5), notazione esadecimale; risposte alle domande 1–6 della sezione nell'appendice del libro, pubblicate sul Moodle del canale A.
+- Programma del canale B 2026/27 (Moodle del canale B, consultato il 28/09/2026) e regole d'esame comuni ai tre canali (pagina d'esame su Moodle Esami): [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
+- Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» (F. Cardone, Moodle del canale A, aperto agli ospiti): bit come etichette, $2^n$ sequenze, numero minimo di bit.
+- Calendario delle lezioni del canale B (University Planner): prima lezione lunedì 28/09/2026.
+- Le spiegazioni a parole, gli esempi, i riquadri «Ripasso» e «Prova tu», lo strumento interattivo, i quiz e gli esercizi senza il numero del libro sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/MDAG/corso.md -->
 > File: `contesto_ai/MDAG/corso.md`
 
@@ -2614,7 +3364,7 @@ Riferimento 2025/26 (iscritti): MD 13/01 (340), 03/02 (325), 08/06 (127), 01/07 
 
 ## Programma ufficiale (comune)
 
-**Parte 1 — Matematica Discreta**
+**Parte 1 (modA) — Matematica Discreta**
 - Insiemi: vuoto, sottoinsiemi, unione, intersezione, complementare, insieme delle parti.
 - Relazioni e funzioni: relazioni d'ordine e di equivalenza, partizioni, composizione e inversione, iniettività, suriettività, invertibilità.
 - Combinatoria: principi della somma e del prodotto, disposizioni e combinazioni (anche con ripetizione), binomio e triangolo di Tartaglia, inclusione-esclusione.
@@ -2622,7 +3372,7 @@ Riferimento 2025/26 (iscritti): MD 13/01 (340), 03/02 (325), 08/06 (127), 01/07 
 - Aritmetica modulare: Z e Z_n, divisione, algoritmo di Euclide, identità di Bézout, equazioni diofantee, teorema di Eulero-Fermat.
 - Permutazioni: composizione, potenze e inverse, cicli disgiunti, trasposizioni, parità, sottogruppi.
 
-**Parte 2 — Algebra Lineare e Geometria**
+**Parte 2 (modB) — Algebra Lineare e Geometria**
 - Polinomi, numeri reali e complessi.
 - Spazi vettoriali, indipendenza lineare, basi, dimensione; spazio euclideo.
 - Sistemi lineari: Gauss-Jordan, Rouché-Capelli.
@@ -2655,7 +3405,7 @@ Riferimento 2025/26 (iscritti): MD 13/01 (340), 03/02 (325), 08/06 (127), 01/07 
 <!-- FILE: contesto_ai/MDAG/indice_lezioni.md -->
 > File: `contesto_ai/MDAG/indice_lezioni.md`
 
-# Algebra lineare e Geometria (MDAG, parte 2) — indice delle lezioni
+# Algebra lineare e Geometria (MDAG, parte 2, modB) — indice delle lezioni
 
 Scheda completa del corso (entrambi i moduli, orari dei tre canali, esame): `corso.md`. Le 26 lezioni seguono le dispense 2026 del corso (Buzano, Radeschi), comuni ai canali A, B e C, e sono pronte in anticipo rispetto alle lezioni in aula: il ritmo in aula può essere diverso. Ogni file ha quiz nello stile dell'esame, esercizi svolti, domande di ripasso, glossario e una sezione «Verso l'esame» con le domande degli appelli 2023–2026 sugli stessi argomenti. Gli appunti di Matematica Discreta (MDAG, parte 1) non ci sono ancora.
 
@@ -2701,6 +3451,1184 @@ Scheda completa del corso (entrambi i moduli, orari dei tre canali, esame): `cor
 
 ---
 
+<!-- FILE: contesto_ai/MDAG/lezioni/D01_insiemi_induzione.md -->
+> File: `contesto_ai/MDAG/lezioni/D01_insiemi_induzione.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D01
+titolo: Insiemi e induzione
+data: 2026-09-30
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D01
+descrizione: >-
+  Appunti della lezione D01 di Matematica Discreta (MDAG, parte 1, canali A, B e C): insiemi ed elementi, «per ogni» ed
+  «esiste», insieme vuoto, cardinalità, sottoinsiemi e insieme delle parti, uguaglianza tra insiemi, numeri naturali,
+  principio di induzione e il conto dei sottoinsiemi, con le domande vere degli appelli ed esercizi svolti.
+lede: >-
+  Il linguaggio su cui si regge tutto il corso: gli insiemi, cioè raccolte di oggetti, e il modo di parlarne con
+  precisione. Poi i numeri per contare e un modo nuovo di dimostrare le cose, l'induzione. Alla fine scopri quanti
+  sottoinsiemi ha un insieme, un conto che all'esame torna spesso.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 1, pp. 1–8
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2–3 ore, anche in più volte
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 1 «Insiemi», pp. 1–8 ed esercizi pp. 14–16;
+  diario delle lezioni del canale B 2025/26 (Moodle MDAG1 2025/26); quiz e problemi degli appelli di Matematica
+  Discreta 2023–2026
+file_en: D01_sets_induction.html
+appunti_html: appunti/MDAG/D01_insiemi_induzione.html
+genera_html: true
+```
+
+## In breve
+
+- Un **insieme** è una raccolta di oggetti, che si chiamano i suoi **elementi**. Conta solo chi c'è dentro: l'ordine non importa e ogni elemento si conta una volta sola.
+- Un insieme si descrive in due modi: con l'**elenco** dei suoi elementi tra parentesi graffe, oppure con una **regola** che dice chi entra e chi no.
+- «Per ogni» ed «esiste» servono per parlare di tutti gli elementi o di almeno uno. Per far vedere che una frase con «per ogni» è falsa basta un solo caso contrario, il **controesempio**.
+- L'**insieme vuoto** non contiene niente. La **cardinalità** di un insieme è il numero dei suoi elementi.
+- Un **sottoinsieme** è una parte di un insieme: tutti i suoi elementi stanno anche nell'insieme di partenza. Tutti i sottoinsiemi, messi insieme, formano l'**insieme delle parti**.
+- I **numeri naturali** sono 0, 1, 2, 3 e così via. Il **principio di induzione** dimostra una proprietà per tutti i naturali in due mosse, come una fila di tessere del domino che cadono una dopo l'altra.
+- Un insieme con $n$ elementi ha $2^n$ sottoinsiemi: ogni elemento in più raddoppia il conto.
+- All'esame la prima domanda del quiz riguarda quasi sempre gli insiemi. Il punto delicato è distinguere «è un elemento di» da «è un sottoinsieme di».
+
+> [!CANALI]
+> Matematica Discreta, la parte 1 di MDAG, ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C, quindi questi appunti valgono per tutti e tre. Cambiano i docenti e l'ordine degli argomenti. Nel canale B insegna Andrea Mori, che segue il suo libro *Lezioni di Matematica Discreta*: questi appunti seguono il capitolo 1 del libro (pp. 1–8) e il diario del canale B del 2025/26, dove la prima lezione trattava insiemi, insieme vuoto, numeri naturali e induzione, sottoinsiemi e il conto dei sottoinsiemi. Nei canali A e C insegnano Ignazio Longhi e Lea Terracini: nel 2025/26 anche lì si partiva dagli insiemi, poi venivano funzioni e combinatoria, in un ordine un po' diverso da quello del libro. Sulla pagina Moodle del 2025/26 (MDAG1, [id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti) ci sono appunti scritti a mano e video delle lezioni di A e C. La prima lezione del canale A copriva le stesse idee di base (insiemi, cardinalità, sottoinsiemi, insieme vuoto, uguaglianza) e scriveva $\subseteq$ dove Mori scrive $\subset$.
+
+## Prima di cominciare
+
+### Di che cosa parla questa lezione
+
+Matematica Discreta parla di oggetti che si possono contare uno per uno: numeri interi, parole, elenchi, scelte. Prima di contare, però, bisogna mettersi d'accordo su come si parla delle raccolte di oggetti. È quello che fa questa prima lezione.
+
+La parola chiave è insieme. Pensa a un sacchetto della spesa: dentro ci metti delle cose, e il sacchetto con il suo contenuto è un insieme. Impari a scriverlo, a dire se una cosa ci sta dentro, a prenderne una parte e a contare quante parti diverse si possono prendere.
+
+Poi arrivano i numeri per contare, zero, uno, due e così via, e un modo di ragionare che li usa: l'induzione. Funziona come una fila di tessere del domino. Se cade la prima, e ogni tessera che cade fa cadere quella dopo, alla fine cadono tutte.
+
+Con l'induzione si dimostra un fatto che torna spesso negli esercizi d'esame: il numero delle parti di un insieme raddoppia ogni volta che aggiungi un elemento.
+
+Gli insiemi sono il linguaggio di tutto il resto del corso: relazioni, funzioni, combinatoria, gruppi. Conviene impararli bene adesso. Una sola parte è teorica, quella sulle regole che descrivono i numeri naturali: sta in un riquadro chiuso e all'esame non viene chiesta.
+
+### Che cosa devi già sapere
+
+Quasi niente: le cose che servono le ripassiamo quando compaiono.
+
+- **Contare e fare le quattro operazioni** con i numeri interi, anche negativi.
+- **Le potenze**: $2^3$ vuol dire $2 \cdot 2 \cdot 2 = 8$. Il ripasso è nella sezione sul conto dei sottoinsiemi.
+- **Pari e dispari**: un numero è pari se è il doppio di un intero, come $6 = 2 \cdot 3$. Lo zero è pari, perché $0 = 2 \cdot 0$.
+
+### Che cosa saprai fare alla fine
+
+- Dire se un oggetto è un elemento o un sottoinsieme di un insieme dato, anche quando gli elementi sono a loro volta insiemi: è la domanda 1 del quiz.
+- Scrivere tutti i sottoinsiemi di un insieme piccolo, e contarli senza scriverli.
+- Negare una frase che contiene «per ogni» o «esiste», e trovare un controesempio.
+- Dimostrare per induzione una formula come $1 + 2 + \dots + n = \frac{n(n + 1)}2$.
+- Contare i sottoinsiemi che contengono, o non contengono, certi elementi, come nei problemi d'esame.
+
+## Un insieme è un sacchetto di oggetti (pp. 1–3)
+
+Pensa a un sacchetto della spesa con dentro una mela, una pera e una banana. Il sacchetto, con quello che contiene, è un esempio di **insieme**. Le cose che ci sono dentro si chiamano gli **elementi** dell'insieme.
+
+Per scrivere un insieme si mettono i suoi elementi tra **parentesi graffe**, separati da virgole:
+
+$$\{\text{mela},\ \text{pera},\ \text{banana}\}$$
+
+Si legge «l'insieme che contiene mela, pera e banana».
+
+Di solito un insieme si chiama con una lettera maiuscola, come $A$ o $B$. I suoi elementi si chiamano con lettere minuscole, come $a$ o $x$. Per esempio la riga
+
+$$A = \{1, 2, 3\}$$
+
+vuol dire: chiamo $A$ l'insieme che contiene i numeri 1, 2 e 3.
+
+### Dentro o fuori
+
+Per dire che un oggetto sta in un insieme c'è un simbolo apposta. Assomiglia a una «e», l'iniziale di «elemento».
+
+- $x \in A$ si legge «$x$ appartiene ad $A$», oppure «$x$ è un elemento di $A$».
+- $x \notin A$ si legge «$x$ non appartiene ad $A$». La barra sopra il simbolo vuol dire «non».
+
+Riprendiamo l'insieme $A = \{1, 2, 3\}$.
+
+- Il numero 2 è nella lista, quindi $2 \in A$.
+- Il numero 5 nella lista non c'è, quindi $5 \notin A$.
+
+Il libro di Mori dà la definizione così.
+
+> [!DEF] 1.1 · Insieme
+> Un **insieme** è una collezione ben definita di oggetti distinti, detti gli **elementi** dell'insieme.
+
+**Come si legge.** «Collezione» vuol dire raccolta: il sacchetto. «Ben definita» vuol dire che per ogni oggetto si può decidere, senza dubbi, se sta dentro oppure no. «Distinti» vuol dire diversi tra loro: lo stesso oggetto non si conta due volte.
+
+### Che cosa può stare in un insieme (p. 2)
+
+Il libro aggiunge tre osservazioni.
+
+1. **Dentro può esserci qualunque cosa.** Numeri, ma anche città, persone, parole. Gli elementi non devono nemmeno essere dello stesso tipo: esiste l'insieme che contiene il numero 4, la Mole Antonelliana e il tuo zaino.
+2. **Deve essere chiaro chi c'è dentro.** «Gli attori bravi» non è un insieme, perché sull'essere bravi ognuno ha la sua opinione. «Gli attori che hanno vinto un Oscar» invece è un insieme: basta controllare l'elenco dei premi.
+3. **Un insieme può essere un elemento di un altro insieme.** Un sacchetto chiuso può stare dentro un sacchetto più grande.
+
+### Un sacchetto dentro un sacchetto
+
+La terza osservazione è quella che crea più confusione, quindi vediamola con calma.
+
+Metti i numeri 1 e $-1$ in un sacchetto piccolo: è l'insieme $B = \{1, -1\}$. Poi metti in un sacchetto grande il numero 0 e il sacchetto piccolo, chiuso. Il sacchetto grande è
+
+$$A = \{0, B\} = \{0, \{1, -1\}\}$$
+
+```grafico
+titolo: L'insieme $A = \{0, \{1, -1\}\}$ ha due elementi: lo zero e il sacchetto piccolo $B$
+x: -3 3
+y: -2.1 2.1
+assi: no
+griglia: no
+cerchio: 0 0 1.9 | blu
+cerchio: 0.75 0 0.85 | accento
+punto: -0.95 0 | blu | $0$ | n
+punto: 0.45 0.15 | accento | $1$ | n
+punto: 1.05 -0.2 | accento | $-1$ | s
+testo: -1.25 1.6 | blu | $A$
+testo: 1.35 0.95 | accento | $B$
+```
+
+Guarda la figura: dentro il cerchio grande ci sono **due** oggetti, il punto dello zero e il cerchio piccolo. I numeri 1 e $-1$ stanno nel cerchio piccolo, non direttamente in quello grande. Quindi:
+
+- $1 \in B$: l'1 è nel sacchetto piccolo;
+- $B \in A$: il sacchetto piccolo è nel sacchetto grande;
+- $1 \notin A$: tra i due oggetti del sacchetto grande non c'è l'1.
+
+È la Nota 1.2 del libro. Se un insieme è un elemento di un altro insieme, i suoi elementi **non** diventano per questo elementi di quello più grande.
+
+> [!TRAPPOLA] Le graffe interne contano
+> In $\{0, \{1, -1\}\}$ gli elementi sono due, non tre. Un paio di graffe dentro la lista racchiude **un solo** elemento, che è a sua volta un insieme. All'esame questa trappola compare spesso nella prima domanda del quiz (vedi «Verso l'esame»).
+
+### Due modi per scrivere un insieme (pp. 2–3)
+
+Il primo modo è **l'elenco**: si scrivono tutti gli elementi, uno per uno. Funziona bene quando gli elementi sono pochi.
+
+Il secondo modo è **la regola**: si spiega che cosa deve avere un oggetto per entrare. Per esempio «i numeri pari tra 1 e 10». Con una regola si descrivono anche insiemi enormi o infiniti, che non si potrebbero mai elencare per intero.
+
+Ecco qualche insieme scritto nei due modi.
+
+| Con una regola, a parole | Con l'elenco |
+|---|---|
+| i numeri pari tra 1 e 10 | $\{2, 4, 6, 8, 10\}$ |
+| le vocali | $\{a, e, i, o, u\}$ |
+| i numeri naturali più piccoli di 4 | $\{0, 1, 2, 3\}$ |
+| i numeri pari maggiori di zero | non finisce mai: $\{2, 4, 6, 8, \dots\}$ |
+
+I puntini dell'ultima riga si leggono «e così via»: gli elementi continuano con la stessa regola.
+
+Per scrivere una regola con i simboli il libro usa questa forma (Nota 1.3):
+
+$$X = \{x \in U \mid \mathcal P(x)\}$$
+
+Si legge «$X$ è l'insieme degli $x$ di $U$ tali che $x$ ha la proprietà $\mathcal P$». Vediamola un pezzo alla volta.
+
+- $U$ è l'insieme da cui si pescano gli oggetti, per esempio tutti i numeri naturali. Il libro lo chiama **insieme universale**: è l'ambito del discorso.
+- La sbarra verticale $\mid$ si legge «tali che».
+- $\mathcal P(x)$ è la **proprietà** da controllare: una frase su $x$ che può essere vera o falsa, come «$x$ è pari». La $\mathcal P$ è una P in corsivo elegante.
+
+> [!ESEMPIO] Una regola scritta con i simboli
+> $$\{n \in \N \mid n \text{ è pari}\} = \{0, 2, 4, 6, \dots\}$$
+> Si legge «i numeri naturali $n$ tali che $n$ è pari». Qui l'insieme universale è $\N$, l'insieme dei numeri naturali $0, 1, 2, 3, \dots$ (lo vediamo meglio più avanti). Lo zero è pari, quindi è dentro.
+
+### Ordine e ripetizioni non contano (p. 3)
+
+Un insieme dipende soltanto da chi c'è dentro. Quindi:
+
+- l'ordine non conta: $\{1, 3, 5\}$ e $\{5, 1, 3\}$ sono lo stesso insieme;
+- le ripetizioni non contano: scrivere due volte lo stesso elemento non aggiunge niente. Per esempio $\{0, 0, 1, 2\}$ e $\{0, 1, 2\}$ sono lo stesso insieme.
+
+::: prova Vero o falso? (a) $3 \in \{1, 3, 5\}$; (b) $4 \in \{1, 3, 5\}$; (c) $\{1, 2\}$ e $\{2, 1, 1\}$ sono lo stesso insieme.
+(a) Vero: il 3 è nella lista.
+
+(b) Falso: il 4 nella lista non c'è.
+
+(c) Vero: ordine e ripetizioni non contano, e in tutti e due gli insiemi ci sono soltanto 1 e 2.
+:::
+
+::: prova Quanti elementi ha l'insieme $\{1, \{2, 3\}, 4\}$? Il numero 2 è un suo elemento?
+Gli elementi sono tre: il numero 1, l'insieme $\{2, 3\}$ e il numero 4.
+
+Il 2 non è un elemento: sta dentro il sacchetto piccolo $\{2, 3\}$, non direttamente in quello grande.
+:::
+
+> [!RICORDA]
+> - Un insieme è una raccolta di oggetti, i suoi elementi. Si scrive con le graffe: $\{1, 2, 3\}$.
+> - $x \in A$ vuol dire «$x$ è un elemento di $A$».
+> - Ordine e ripetizioni non contano.
+> - Un insieme può essere un elemento di un altro insieme, ma i suoi elementi non diventano elementi di quello grande.
+
+## Tutti o almeno uno: per ogni ed esiste (pp. 3–4)
+
+Nelle frasi di tutti i giorni usiamo spesso due parole: «tutti» e «qualcuno». «Tutti gli studenti hanno superato l'esame.» «C'è uno studente che ha risolto tutti gli esercizi.» In matematica queste due idee hanno un nome e un simbolo, perché servono di continuo.
+
+- $\forall$ si legge «per ogni». È una A capovolta, da *all*, «tutti» in inglese. Una frase con «per ogni» dice che una proprietà vale per tutti gli elementi di un insieme, nessuno escluso.
+- $\exists$ si legge «esiste». È una E rovesciata, da *exists*. Una frase con «esiste» dice che c'è almeno un elemento con quella proprietà: può essercene uno solo, o anche tanti.
+
+Il libro chiama questi due simboli **quantificatori**. Ecco come si usano.
+
+| Scrittura | Si legge | Un esempio vero |
+|---|---|---|
+| $\forall x \in A,\ \mathcal P(x)$ | «per ogni $x$ in $A$, $x$ ha la proprietà $\mathcal P$» | $\forall n \in \{2, 4, 6\}$, $n$ è pari |
+| $\exists x \in A$ tale che $\mathcal P(x)$ | «esiste un $x$ in $A$ che ha la proprietà $\mathcal P$» | $\exists n \in \{1, 2, 3\}$ tale che $n > 2$: è il 3 |
+
+### Come si dice il contrario
+
+Prendi la frase «tutti i treni di oggi sono arrivati in orario». Quando è falsa? Non serve che tutti i treni siano in ritardo: basta **un** treno in ritardo. Quindi il contrario della frase è «almeno un treno è arrivato in ritardo».
+
+Ora prendi la frase «c'è un negozio aperto». Quando è falsa? Quando non ce n'è nemmeno uno, cioè quando **tutti** i negozi sono chiusi.
+
+> [!IDEA]
+> Quando dici il contrario di una frase, «per ogni» diventa «esiste» ed «esiste» diventa «per ogni». La proprietà, invece, diventa il suo contrario.
+
+È la Nota 1.4 del libro. Il libro scrive «non» con il simbolo $\sim$, che si legge «non»; molti altri testi usano $\neg$. Con i simboli:
+
+| Frase | Il suo contrario |
+|---|---|
+| $\forall x \in A,\ \mathcal P(x)$ | $\exists x \in A$ tale che non vale $\mathcal P(x)$ |
+| $\exists x \in A$ tale che $\mathcal P(x)$ | $\forall x \in A$, non vale $\mathcal P(x)$ |
+
+Un esempio con i numeri. Prendi un insieme di numeri e la frase «ogni numero dell'insieme è maggiore o uguale a zero». Il contrario è «almeno un numero dell'insieme è negativo».
+
+- Con l'insieme $\{3, 0, 7\}$ la frase è vera: nessun numero è negativo.
+- Con l'insieme $\{3, -2, 7\}$ la frase è falsa, perché c'è il numero $-2$.
+
+### Il controesempio
+
+Per dimostrare che una frase con «per ogni» è **vera** bisogna controllare tutti gli elementi. Spesso sono infiniti, e servono ragionamenti come l'induzione, che vedi più avanti. Per dimostrare che è **falsa**, invece, basta un solo elemento per cui la proprietà non vale. Quell'elemento si chiama **controesempio**. Nell'esempio di prima il controesempio è il numero $-2$.
+
+> [!ESEMPIO] Una domanda dell'appello del 06/06/2025 (domanda 2)
+> Il testo: «L'affermazione "$\forall x \in \N, \forall y \in \N, x^2 + x \ge y$" è contraddetta da: (1) $(x, y) = (2, 5)$; (2) $(x, y) = (-4, 10)$; (3) $(x, y) = (1, 3)$; (4) $(x, y) = (0, -1)$; (5) $(x, y) = (3, 12)$.» L'inizio si legge «per ogni $x$ naturale e per ogni $y$ naturale».
+>
+> In pratica chiede: per quale coppia di numeri **naturali** la disuguaglianza è falsa? Quella coppia è un controesempio. Controlliamo le cinque coppie una per una.
+>
+> | Coppia | Due naturali? | Quanto fa $x^2 + x$ | È almeno $y$? |
+> |---|---|---|---|
+> | $(2, 5)$ | sì | $4 + 2 = 6$ | $6 \ge 5$: sì |
+> | $(-4, 10)$ | no: $-4$ non è naturale | | non conta |
+> | $(1, 3)$ | sì | $1 + 1 = 2$ | $2 \ge 3$: **no** |
+> | $(0, -1)$ | no: $-1$ non è naturale | | non conta |
+> | $(3, 12)$ | sì | $9 + 3 = 12$ | $12 \ge 12$: sì |
+>
+> La risposta è la (3). Le coppie (2) e (4) contengono un numero negativo: non sono coppie di naturali, quindi non possono contraddire una frase sui naturali.
+
+::: prova Scrivi il contrario delle frasi: (a) «ogni numero della lista 2, 4, 6 è pari»; (b) «esiste un numero naturale minore di zero». Quale delle due frasi di partenza è vera?
+(a) Il contrario è «almeno un numero della lista 2, 4, 6 è dispari».
+
+(b) Il contrario è «ogni numero naturale è maggiore o uguale a zero».
+
+È vera la frase (a) di partenza: 2, 4 e 6 sono tutti pari. La frase (b) di partenza è falsa, quindi è vero il suo contrario.
+:::
+
+> [!TRAPPOLA] Il contrario di «tutti» non è «nessuno»
+> Il contrario di «tutti gli studenti hanno superato l'esame» **non** è «nessuno studente ha superato l'esame». È «almeno uno studente non l'ha superato». Possono averlo superato in tanti: basta che uno sia stato bocciato.
+
+> [!RICORDA]
+> - $\forall$ si legge «per ogni» e parla di tutti gli elementi; $\exists$ si legge «esiste» e parla di almeno uno.
+> - Per dire il contrario: «per ogni» diventa «esiste», «esiste» diventa «per ogni», e la proprietà diventa il suo contrario.
+> - Per dimostrare che una frase con «per ogni» è falsa basta un controesempio.
+
+## Il sacchetto vuoto e quanti elementi ci sono (p. 4)
+
+Un sacchetto vuoto è pur sempre un sacchetto. Allo stesso modo c'è un insieme che non contiene niente: si chiama **insieme vuoto** e si scrive $\emptyset$, uno zero tagliato da una barra.
+
+L'insieme vuoto si può descrivere con tante regole diverse. Per esempio:
+
+- i numeri naturali più piccoli di zero;
+- i numeri interi che sono pari e dispari allo stesso tempo.
+
+Nessun oggetto rispetta queste regole. Quindi descrivono tutte e due lo stesso insieme, quello senza elementi: di insieme vuoto ce n'è uno solo.
+
+Il libro lo dice così.
+
+> [!DEF] 1.5 · Insieme vuoto
+> Si chiama **insieme vuoto** e si denota $\emptyset$ l'insieme privo di elementi, $\emptyset = \{\ \}$. Esso è caratterizzato dalla proprietà $\forall x,\ x \notin \emptyset$.
+
+**Come si legge.** $\{\ \}$ sono due graffe con niente in mezzo: un sacchetto vuoto. L'ultima formula si legge «per ogni $x$, $x$ non appartiene all'insieme vuoto»: qualunque oggetto tu prenda, nel vuoto non c'è.
+
+### Il vuoto dentro un sacchetto
+
+Non confondere $\emptyset$ con $\{\emptyset\}$.
+
+- $\emptyset$ è il sacchetto vuoto: non contiene niente.
+- $\{\emptyset\}$ è un sacchetto che contiene un sacchetto vuoto. Contiene **una** cosa, quindi non è vuoto.
+
+È la stessa idea del sacchetto dentro il sacchetto: le graffe esterne racchiudono un elemento, che qui è l'insieme vuoto.
+
+### Quanti elementi: la cardinalità
+
+Il numero degli elementi di un insieme si chiama **cardinalità**. Si scrive mettendo l'insieme tra due sbarre verticali: $\lvert A \rvert$ si legge «cardinalità di $A$».
+
+> [!DEF] 1.6 · Cardinalità
+> Si dice **cardinalità** di un insieme $A$, denotata $\lvert A \rvert$, il numero degli elementi di $A$.
+
+**Come si legge.** Se l'insieme ha un numero finito di elementi, per esempio 5, si scrive $\lvert A \rvert = 5$. Se gli elementi sono infiniti si scrive $\lvert A \rvert = \infty$, e il simbolo $\infty$ si legge «infinito». Il libro avverte che questa definizione verrà resa precisa nel capitolo 3, con le funzioni.
+
+Qualche esempio. Nell'ultima colonna c'è la cardinalità.
+
+| Insieme | I suoi elementi | Quanti |
+|---|---|--:|
+| $\{a, b, c\}$ | $a$, $b$, $c$ | $3$ |
+| $\{0, 0, 1\}$ | $0$ e $1$: lo zero ripetuto conta una volta | $2$ |
+| $\emptyset$ | nessuno | $0$ |
+| $\{\emptyset\}$ | il sacchetto vuoto | $1$ |
+| $\{1, \{2, 3\}\}$ | il numero $1$ e l'insieme $\{2, 3\}$ | $2$ |
+| $\N$ | $0, 1, 2, 3, \dots$ | $\infty$ |
+
+::: prova Calcola la cardinalità di (a) $\{0, 1, \{0, 1\}\}$; (b) $\{\emptyset, \{\emptyset\}\}$; (c) l'insieme delle lettere della parola «mamma».
+(a) Gli elementi sono tre: 0, 1 e l'insieme $\{0, 1\}$. La cardinalità è 3.
+
+(b) Gli elementi sono due: il sacchetto vuoto e il sacchetto che contiene il sacchetto vuoto. La cardinalità è 2.
+
+(c) Le lettere sono m e a, perché le ripetizioni non contano. La cardinalità è 2.
+:::
+
+> [!RICORDA]
+> - L'insieme vuoto $\emptyset$ non ha elementi. L'insieme $\{\emptyset\}$ invece ha un elemento.
+> - La cardinalità $\lvert A \rvert$ è il numero degli elementi di $A$, ognuno contato una volta sola.
+
+## Un insieme dentro l'altro: i sottoinsiemi (pp. 4–5)
+
+Torna al sacchetto con mela, pera e banana. Togli la pera: ti resta un sacchetto con mela e banana. Ogni frutto del sacchetto nuovo viene dal sacchetto di partenza. Il sacchetto nuovo è un **sottoinsieme** di quello di partenza.
+
+> [!IDEA]
+> Un insieme è un sottoinsieme di un altro quando **ogni** suo elemento sta anche nell'altro. Nessun elemento resta fuori.
+
+```grafico
+titolo: Il sottoinsieme $B$ sta tutto dentro l'insieme $A$: ogni punto di $B$ è anche un punto di $A$
+x: -3 3
+y: -2.2 2.2
+assi: no
+griglia: no
+cerchio: 0 0 2 | blu
+cerchio: 0.6 -0.2 1 | accento | spesso
+testo: -1.5 1.65 | blu | $A$
+testo: 0.6 1.05 | accento | $B$
+punto: 0.3 -0.5 | accento
+punto: 1 0.15 | accento
+punto: -1.15 0.6 | blu
+punto: -0.85 -1.15 | blu
+```
+
+Il simbolo è $\subset$. La scrittura $B \subset A$ si legge «$B$ è contenuto in $A$», oppure «$B$ è un sottoinsieme di $A$». Se invece almeno un elemento di $B$ sta fuori da $A$, si scrive $B \not\subset A$, che si legge «$B$ non è contenuto in $A$».
+
+> [!DEF] 1.7 · Sottoinsieme
+> Un insieme $B$ è un **sottoinsieme** di $A$, e scriviamo $B \subset A$, se ogni elemento di $B$ è anche un elemento di $A$: $\forall b \in B,\ b \in A$.
+
+**Come si legge.** La formula alla fine si legge «per ogni $b$ in $B$, $b$ appartiene ad $A$». È la stessa frase della definizione, scritta con i simboli.
+
+Proviamo con l'insieme $A = \{1, 2, 3\}$.
+
+| Domanda | Risposta | Perché |
+|---|---|---|
+| $\{1, 3\} \subset A$? | sì | 1 e 3 stanno tutti e due in $A$ |
+| $\{2\} \subset A$? | sì | il 2 sta in $A$ |
+| $\{1, 4\} \subset A$? | no | il 4 non sta in $A$ |
+| $A \subset A$? | sì | ogni elemento di $A$ sta in $A$ |
+| $\emptyset \subset A$? | sì | il vuoto non ha elementi che possano stare fuori |
+
+### Il vuoto e l'insieme intero
+
+Gli ultimi due casi della tabella valgono per qualunque insieme.
+
+- **Ogni insieme è un sottoinsieme di sé stesso**, perché tutti i suoi elementi stanno in lui.
+- **Il vuoto è un sottoinsieme di ogni insieme.** Per dire che il vuoto **non** è contenuto in un insieme servirebbe un controesempio: un elemento del vuoto che sta fuori. Ma il vuoto non ha elementi, quindi un controesempio non c'è.
+
+Il libro chiama il vuoto e l'insieme intero «sottoinsiemi banali». I sottoinsiemi diversi dall'insieme intero si chiamano **sottoinsiemi propri**. Per esempio $\{1, 3\}$ è un sottoinsieme proprio di $\{1, 2, 3\}$.
+
+> [!NOTA] Due modi di scrivere «contenuto»
+> Nel libro di Mori, e nei testi d'esame, $B \subset A$ vuol dire «$B$ è contenuto in $A$, e può anche essere uguale». Altri libri, e gli appunti dei canali A e C, scrivono per questo $\subseteq$, e usano $\subsetneq$ per «contenuto ma non uguale». Quando apri un testo nuovo, controlla quale convenzione usa.
+
+### Elemento o sottoinsieme?
+
+Questa è la distinzione più importante della lezione. Riprendiamo $A = \{1, 2, 3\}$.
+
+| Scrittura | Vera? | Perché |
+|---|---|---|
+| $2 \in A$ | sì | il numero 2 è uno degli elementi |
+| $\{2\} \subset A$ | sì | l'insieme che contiene solo il 2 è una parte di $A$ |
+| $\{2\} \in A$ | no | tra gli elementi di $A$ c'è il numero 2, non l'insieme $\{2\}$ |
+| $2 \subset A$ | no | 2 è un numero, non un insieme: non può essere una parte di $A$ |
+
+A parole: il simbolo $\in$ collega un **oggetto** a un insieme, il simbolo $\subset$ collega **due insiemi**. Nota anche che le prime due righe dicono la stessa cosa: un oggetto sta in un insieme esattamente quando l'insieme che contiene solo lui è un sottoinsieme.
+
+> [!METODO] Elemento o sottoinsieme?
+> 1. Guarda l'oggetto a sinistra del simbolo: è un insieme, cioè ha le graffe o è il nome di un insieme?
+> 2. Se il simbolo è $\in$, cerca l'oggetto, così com'è e con le sue graffe, nella lista degli elementi a destra.
+> 3. Se il simbolo è $\subset$, l'oggetto a sinistra deve essere un insieme. Controlla i suoi elementi uno per uno: devono stare tutti nella lista a destra.
+> 4. Se tra gli elementi a destra ci sono altri insiemi, conta le graffe con calma: ogni paio di graffe interne è **un** elemento.
+
+> [!ESEMPIO] Il metodo su un insieme con un insieme dentro
+> Prendi $X = \{a, \{b, c\}\}$. Ha due elementi: la lettera $a$ e l'insieme $\{b, c\}$.
+>
+> - $\{b, c\} \in X$: vera, è il secondo elemento.
+> - $\{b, c\} \subset X$: falsa. Servirebbe $b \in X$, ma $b$ sta dentro il sacchetto interno.
+> - $\{a\} \subset X$: vera, perché $a \in X$.
+> - $\{\{b, c\}\} \subset X$: vera. È l'insieme che contiene un solo elemento, $\{b, c\}$, e quell'elemento sta in $X$.
+
+### Tutte le parti di un insieme
+
+Ora prendi tutti i sottoinsiemi di un insieme e mettili in un sacchetto nuovo. Quel sacchetto si chiama **insieme delle parti**.
+
+Per esempio i sottoinsiemi di $\{a, b\}$ sono quattro: il vuoto, $\{a\}$, $\{b\}$ e $\{a, b\}$. L'insieme delle parti di $\{a, b\}$ è quindi
+
+$$\{\emptyset, \{a\}, \{b\}, \{a, b\}\}$$
+
+Ha quattro elementi, e ogni suo elemento è a sua volta un insieme.
+
+> [!DEF] 1.8 · Insieme delle parti
+> Se $A$ è un insieme, si dice **insieme delle parti** di $A$, denotato $P(A)$, l'insieme i cui elementi sono i sottoinsiemi di $A$,
+> $$P(A) = \{B \mid B \subset A\}.$$
+
+**Come si legge.** $P(A)$ si legge «parti di $A$». La formula si legge «l'insieme dei $B$ tali che $B$ è contenuto in $A$»: dentro $P(A)$ ci sono tutti i sottoinsiemi di $A$, e nient'altro. Attenzione: questa $P$ è una lettera normale e indica un insieme; la $\mathcal P$ elegante di prima indica una proprietà.
+
+Il libro fa tre esempi (p. 5).
+
+| Insieme | I suoi sottoinsiemi | Quanti |
+|---|---|--:|
+| $\emptyset$ | solo $\emptyset$ | $1$ |
+| $\{\ast\}$, con un solo elemento | $\emptyset$ e $\{\ast\}$ | $2$ |
+| $\{a, b, c\}$ | $\emptyset$, $\{a\}$, $\{b\}$, $\{c\}$, $\{a, b\}$, $\{a, c\}$, $\{b, c\}$, $\{a, b, c\}$ | $8$ |
+
+La prima riga merita due parole. Il vuoto ha un sottoinsieme, sé stesso. Quindi $P(\emptyset) = \{\emptyset\}$: l'insieme delle parti del vuoto ha un elemento, e non è vuoto.
+
+> [!IDEA]
+> Essere un sottoinsieme di $A$ ed essere un elemento di $P(A)$ sono la stessa cosa.
+
+::: prova Prendi $A = \{1, 2\}$. (a) Scrivi $P(A)$. (b) È vero che $1 \in P(A)$? (c) È vero che $\{1\} \in P(A)$?
+(a) $P(A) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}$.
+
+(b) No. Gli elementi di $P(A)$ sono insiemi, e il numero 1 da solo non è tra loro.
+
+(c) Sì. $\{1\}$ è un sottoinsieme di $A$, quindi è un elemento di $P(A)$.
+:::
+
+::: prova Con $X = \{a, \{b, c\}\}$: è vero che $b \in X$? E che $\{b, c\} \in X$?
+$b \in X$ è falso: $b$ sta dentro il sacchetto interno $\{b, c\}$, non direttamente in $X$.
+
+$\{b, c\} \in X$ è vero: è il secondo elemento di $X$.
+:::
+
+> [!RICORDA]
+> - $B \subset A$ vuol dire che ogni elemento di $B$ sta anche in $A$. Il vuoto e l'insieme stesso sono sempre sottoinsiemi.
+> - $\in$ collega un oggetto a un insieme, $\subset$ collega due insiemi.
+> - L'insieme delle parti $P(A)$ ha come elementi tutti i sottoinsiemi di $A$.
+
+## Quando due insiemi sono uguali (p. 5)
+
+Due sacchetti sono uguali quando contengono esattamente le stesse cose. Per controllarlo si fanno due verifiche: tutto quello che c'è nel primo sta anche nel secondo, e tutto quello che c'è nel secondo sta anche nel primo.
+
+> [!ESEMPIO] Due verifiche
+> Prendi $A$ = i numeri naturali il cui quadrato è minore di 10, e $B = \{0, 1, 2, 3\}$.
+>
+> 1. **Da $A$ a $B$.** I quadrati dei naturali sono $0, 1, 4, 9, 16, 25, \dots$ e crescono sempre. Sono minori di 10 soltanto quelli di 0, 1, 2 e 3. Quindi ogni elemento di $A$ sta in $B$: $A \subset B$.
+> 2. **Da $B$ ad $A$.** I quadrati di 0, 1, 2 e 3 sono 0, 1, 4 e 9, tutti minori di 10. Quindi ogni elemento di $B$ sta in $A$: $B \subset A$.
+>
+> Le due verifiche riescono, quindi $A = B$.
+
+Il libro lo scrive come una proposizione.
+
+> [!PROP] 1.9 · Uguaglianza tra insiemi
+> Siano $A$ e $B$ due insiemi. Allora
+> $$A = B \iff A \subset B \text{ e } B \subset A.$$
+
+**Come si legge.** Il simbolo $\iff$ si legge «se e solo se», cioè «esattamente quando». A parole: due insiemi sono uguali esattamente quando ognuno dei due è contenuto nell'altro. Questo modo di dimostrare che due insiemi sono uguali si chiama **doppia inclusione**, e nella prossima lezione servirà spesso.
+
+> [!DIM] perché vale la proposizione 1.9
+> 1. Se $A = B$, i due insiemi hanno gli stessi elementi. Quindi ogni elemento di $A$ sta in $B$, cioè $A \subset B$. E ogni elemento di $B$ sta in $A$, cioè $B \subset A$.
+> 2. Al contrario, supponiamo che valgano $A \subset B$ e $B \subset A$. Se ci fosse un elemento di $A$ fuori da $B$, non varrebbe $A \subset B$. Se ci fosse un elemento di $B$ fuori da $A$, non varrebbe $B \subset A$. Quindi nessun elemento sta in uno solo dei due insiemi: hanno gli stessi elementi, cioè $A = B$.
+
+::: prova (a) $\{1, 2, 3\}$ e $\{3, 1, 2, 2\}$ sono uguali? (b) L'insieme degli interi il cui quadrato è 4 è uguale a $\{2\}$?
+(a) Sì. Ogni elemento del primo (1, 2 e 3) sta nel secondo, e ogni elemento del secondo sta nel primo.
+
+(b) No. Anche $-2$ ha quadrato 4, perché $(-2) \cdot (-2) = 4$. Quindi $-2$ sta nel primo insieme ma non in $\{2\}$: il primo insieme non è contenuto nel secondo.
+:::
+
+> [!RICORDA]
+> - Due insiemi sono uguali quando hanno gli stessi elementi.
+> - Per dimostrarlo si controllano due contenimenti, il primo nel secondo e il secondo nel primo: è la doppia inclusione.
+
+## I numeri per contare e l'induzione (pp. 5–6)
+
+I numeri che si usano per contare sono 0, 1, 2, 3, 4 e così via, senza fine. Si chiamano **numeri naturali**, e il loro insieme si scrive $\N$, una N con una doppia barra:
+
+$$\N = \{0, 1, 2, 3, \dots\}$$
+
+Nel libro di Mori lo zero è un numero naturale. Alcuni libri lo escludono, ma in questo corso c'è.
+
+Ogni naturale ha un **successivo**: il successivo di 0 è 1, quello di 1 è 2, quello di un numero $n$ è $n + 1$. Il libro scrive il successivo di $n$ come $s(n)$, che si legge «esse di $n$».
+
+L'idea che conta è questa: partendo da 0 e andando avanti di uno alla volta si arriva a **ogni** numero naturale. A 5 si arriva in cinque passi: 0, 1, 2, 3, 4, 5. A un milione si arriva in un milione di passi. Nessun naturale resta fuori.
+
+> [!NOTA] Serve per capire, non per l'esame
+> Il libro descrive i naturali con cinque regole, gli **assiomi di Peano**. Sono nel riquadro qui sotto, che puoi saltare: all'esame non vengono chiesti.
+
+> [!APPROFONDIMENTO] gli assiomi di Peano (p. 5)
+> Il libro dice che l'insieme $\N$ dei numeri naturali è caratterizzato da questi cinque assiomi (Peano, 1889):
+>
+> 1. $0 \in \N$;
+> 2. ogni $n \in \N$ ha un successore $s(n) \in \N$;
+> 3. se $m, n \in \N$ e $m \neq n$ allora $s(m) \neq s(n)$;
+> 4. $\forall n \in \N,\ 0 \neq s(n)$;
+> 5. se $U \subset \N$ è tale che $0 \in U$ e $s(n) \in U$, $\forall n \in U$, allora $U = \N$.
+>
+> **Come si legge.** (1) Lo zero è un naturale. (2) Ogni naturale ha un successivo, che è ancora un naturale. (3) Numeri diversi hanno successivi diversi. (4) Lo zero non è il successivo di nessuno: è il primo. (5) Se un insieme di naturali contiene lo zero e, ogni volta che contiene un numero, contiene anche il suo successivo, allora contiene tutti i naturali. La regola 5 si chiama **principio di induzione**. Le regole 2, 3 e 4 insieme dicono che i naturali sono infiniti: $0$, $s(0)$, $s(s(0))$ e così via sono tutti diversi tra loro.
+
+### Il domino
+
+Immagina una fila infinita di tessere del domino, in piedi una dietro l'altra e numerate 0, 1, 2, 3 e così via. Vuoi essere sicuro che cadano tutte. Bastano due cose:
+
+1. **la prima tessera cade**: qualcuno spinge la tessera 0;
+2. **ogni tessera che cade fa cadere la successiva**: le tessere sono abbastanza vicine.
+
+Allora cade la 0, che fa cadere la 1, che fa cadere la 2, e così via. Nessuna resta in piedi.
+
+> [!IDEA]
+> Per dimostrare che una proprietà vale per **tutti** i numeri naturali bastano due controlli: che valga per 0, e che ogni volta che vale per un numero valga anche per il successivo.
+
+Una **proprietà** dei naturali è una frase che parla di un numero $n$ e che, per ogni $n$, è vera o falsa. Il libro la scrive $\mathcal P(n)$. Due esempi:
+
+- «$n + n$ è pari». Per $n = 3$ dice «$3 + 3 = 6$ è pari»: è vera.
+- «$n$ è minore di 10». Per $n = 3$ è vera, per $n = 12$ è falsa.
+
+Il libro enuncia il principio come un teorema, che dice quando si può concludere che una proprietà vale per tutti.
+
+> [!TEOREMA] 1.10 · Dimostrazione per induzione
+> Supponiamo assegnata per ogni $n \in \N$ una certa proprietà $\mathcal P(n)$ e supponiamo che
+>
+> - la proprietà $\mathcal P(0)$ è vera;
+> - $\forall n \in \N$ la verità di $\mathcal P(n)$ implica la verità di $\mathcal P(n + 1)$.
+>
+> Allora la proprietà $\mathcal P(n)$ è vera per ogni $n$.
+
+**Come si legge.** I due punti sono i due controlli del domino.
+
+- Il primo, «$\mathcal P(0)$ è vera», si chiama **passo base**: la prima tessera cade.
+- Il secondo si legge «per ogni $n$ naturale, se $\mathcal P(n)$ è vera allora è vera anche $\mathcal P(n + 1)$». Si chiama **passo induttivo**: ogni tessera fa cadere la successiva. Mentre lo dimostri, la frase «$\mathcal P(n)$ è vera» si chiama **ipotesi induttiva**: la supponi vera e la usi.
+
+> [!DIM] perché il teorema 1.10 viene dal principio di induzione
+> Prendi l'insieme $U$ dei numeri naturali per cui la proprietà è vera. Lo zero sta in $U$, perché $\mathcal P(0)$ è vera. Se un numero $n$ sta in $U$, anche $n + 1$ sta in $U$, per il passo induttivo. Per la regola 5 degli assiomi di Peano, $U$ contiene tutti i naturali: la proprietà è vera per ogni $n$.
+
+### Partire da 1, o da un altro numero
+
+Spesso una formula ha senso solo da 1 in poi, come «la somma dei numeri da 1 a $n$». Allora il passo base si fa con $n = 1$ invece che con $n = 0$, e la conclusione vale per ogni $n$ maggiore o uguale a 1. È la Nota 1.11 del libro.
+
+Si può partire anche da 3 o da 5: la proprietà vale allora da quel numero in poi. Lo vedi negli esercizi 7 e 8.
+
+> [!TRAPPOLA] Il passo base non si salta
+> Prendi la proprietà «$n = n + 1$». È falsa per ogni numero, eppure il passo induttivo funziona: se fosse $n = n + 1$, aggiungendo 1 a tutti e due i lati verrebbe $n + 1 = n + 2$. Quello che manca è il passo base: $0 = 1$ è falso. Senza la prima tessera non cade niente.
+
+::: prova Sai che $\mathcal P(0)$ è vera e che il passo induttivo funziona. Perché è vera $\mathcal P(3)$?
+Dal passo base $\mathcal P(0)$ è vera.
+
+Il passo induttivo con $n = 0$ dà $\mathcal P(1)$. Con $n = 1$ dà $\mathcal P(2)$. Con $n = 2$ dà $\mathcal P(3)$.
+
+Sono tre tessere che cadono una dopo l'altra.
+:::
+
+> [!RICORDA]
+> - I naturali sono $0, 1, 2, 3, \dots$ e il loro insieme si scrive $\N$.
+> - Induzione: passo base (la proprietà vale per il primo numero) e passo induttivo (se vale per $n$, vale per $n + 1$). Allora vale per tutti.
+> - Il passo base non si può saltare.
+
+## Dimostrare per induzione, passo per passo (pp. 6–7)
+
+Vediamo l'induzione al lavoro su una formula famosa: la somma dei numeri da 1 a un numero $n$.
+
+Prima proviamo con numeri piccoli. Nella seconda colonna c'è la somma, nella terza un conto che sembra dare sempre lo stesso risultato.
+
+| $n$ | Somma da 1 a $n$ | $\frac{n(n + 1)}2$ |
+|--:|---|---|
+| 1 | $1$ | $\frac{1 \cdot 2}2 = 1$ |
+| 2 | $1 + 2 = 3$ | $\frac{2 \cdot 3}2 = 3$ |
+| 3 | $1 + 2 + 3 = 6$ | $\frac{3 \cdot 4}2 = 6$ |
+| 4 | $1 + 2 + 3 + 4 = 10$ | $\frac{4 \cdot 5}2 = 10$ |
+| 10 | $1 + 2 + \dots + 10 = 55$ | $\frac{10 \cdot 11}2 = 55$ |
+
+In ogni riga le ultime due colonne coincidono. Sembra che valga sempre questa formula:
+
+$$1 + 2 + 3 + \dots + n = \frac{n(n + 1)}2$$
+
+Si legge «la somma dei numeri da 1 a $n$ è uguale a $n$ per $n$ più uno, diviso due».
+
+Però cinque righe di tabella non bastano: i numeri sono infiniti, e nessuno può controllarli tutti. L'induzione permette di dimostrarlo per tutti in un colpo solo.
+
+> [!ESEMPIO] La somma dei numeri da 1 a $n$
+> La proprietà è la formula qui sopra, e parte da $n = 1$.
+>
+> **Passo base.** Per $n = 1$ a sinistra c'è solo il numero 1. A destra c'è $\frac{1 \cdot 2}2 = 1$. I due lati sono uguali.
+>
+> **Ipotesi induttiva.** Supponiamo che la formula sia vera per un certo numero $n$:
+> $$1 + 2 + \dots + n = \frac{n(n + 1)}2$$
+>
+> **Obiettivo.** Arrivare alla stessa formula con $n + 1$ al posto di $n$, cioè a
+> $$1 + 2 + \dots + n + (n + 1) = \frac{(n + 1)(n + 2)}2$$
+>
+> **Passo induttivo.** Partiamo dal lato sinistro dell'obiettivo, un passo per riga.
+>
+> 1. I primi addendi, da 1 a $n$, per l'ipotesi induttiva fanno $\frac{n(n + 1)}2$. Quindi il lato sinistro è $\frac{n(n + 1)}2 + (n + 1)$.
+> 2. Il primo pezzo è $(n + 1)$ per $\frac n2$, il secondo è $(n + 1)$ per 1. Raccogliamo il fattore comune $n + 1$: viene $(n + 1)\left(\frac n2 + 1\right)$.
+> 3. Dentro la parentesi, $\frac n2 + 1 = \frac n2 + \frac 22 = \frac{n + 2}2$.
+> 4. Quindi il lato sinistro è $\frac{(n + 1)(n + 2)}2$: proprio il lato destro dell'obiettivo.
+>
+> **Conclusione.** Passo base e passo induttivo funzionano. Per il principio di induzione la formula vale per ogni $n \ge 1$.
+
+> [!RIPASSO] raccogliere un fattore comune
+> Se due addendi hanno lo stesso fattore, lo si può «tirare fuori»: $a \cdot b + a \cdot c = a \cdot (b + c)$. Con i numeri: $3 \cdot 4 + 3 \cdot 5 = 12 + 15 = 27$, e anche $3 \cdot (4 + 5) = 3 \cdot 9 = 27$. Nel passo 2 qui sopra il fattore comune è $n + 1$.
+
+### L'esempio del libro: la somma dei quadrati
+
+Il libro fa la stessa cosa con i quadrati. Prima una scrittura che usa per le somme lunghe.
+
+> [!RIPASSO] il simbolo di sommatoria
+> Una somma lunga si scrive con la lettera greca $\Sigma$, «sigma» maiuscola. La scrittura $\sum_{k=1}^{n} F(k)$ si legge «somma per $k$ che va da 1 a $n$ di $F(k)$». Vuol dire $F(1) + F(2) + \dots + F(n)$: al posto di $k$ metti 1, poi 2, e così via fino a $n$, e sommi tutto. Per esempio $\sum_{k=1}^{3} k^2 = 1^2 + 2^2 + 3^2 = 1 + 4 + 9 = 14$.
+
+La formula del libro è
+
+$$\sum_{k=1}^{n} k^2 = 1^2 + 2^2 + \dots + n^2 = \frac{n(n + 1)(2n + 1)}6$$
+
+Prima la controlliamo con i numeri piccoli.
+
+| $n$ | Somma dei quadrati | $\frac{n(n + 1)(2n + 1)}6$ |
+|--:|---|---|
+| 1 | $1$ | $\frac{1 \cdot 2 \cdot 3}6 = 1$ |
+| 2 | $1 + 4 = 5$ | $\frac{2 \cdot 3 \cdot 5}6 = 5$ |
+| 3 | $1 + 4 + 9 = 14$ | $\frac{3 \cdot 4 \cdot 7}6 = 14$ |
+
+> [!ESEMPIO] La somma dei quadrati per induzione (pp. 6–7)
+> **Passo base.** Per $n = 1$: a sinistra $1^2 = 1$, a destra $\frac{1 \cdot 2 \cdot 3}6 = 1$.
+>
+> **Ipotesi induttiva.** La formula vale per $n$: $1^2 + \dots + n^2 = \frac{n(n + 1)(2n + 1)}6$.
+>
+> **Obiettivo.** Con $n + 1$ al posto di $n$ la formula diventa
+> $$1^2 + \dots + (n + 1)^2 = \frac{(n + 1)(n + 2)(2n + 3)}6$$
+> perché $(n + 1) + 1 = n + 2$ e $2(n + 1) + 1 = 2n + 3$.
+>
+> **Passo induttivo.**
+>
+> 1. Per l'ipotesi induttiva il lato sinistro è $\frac{n(n + 1)(2n + 1)}6 + (n + 1)^2$.
+> 2. Raccogliamo $n + 1$, che sta in tutti e due gli addendi: $(n + 1)\left(\frac{n(2n + 1)}6 + (n + 1)\right)$.
+> 3. Nella parentesi mettiamo tutto su 6: $\frac{2n^2 + n}6 + \frac{6n + 6}6 = \frac{2n^2 + 7n + 6}6$.
+> 4. Controlliamo che $(n + 2)(2n + 3) = 2n^2 + 3n + 4n + 6 = 2n^2 + 7n + 6$.
+> 5. Quindi il lato sinistro è $\frac{(n + 1)(n + 2)(2n + 3)}6$, che è l'obiettivo.
+>
+> **Conclusione.** Per il principio di induzione la formula vale per ogni $n \ge 1$.
+
+> [!METODO] Dimostrare una formula per induzione
+> 1. Scrivi la formula e da quale numero parte: 0, 1 o un altro.
+> 2. **Passo base.** Metti il primo numero nei due lati e controlla che vengano uguali.
+> 3. **Ipotesi induttiva.** Scrivi «supponiamo che la formula valga per $n$», con la formula.
+> 4. **Obiettivo.** Riscrivi la formula con $n + 1$ al posto di $n$, e semplifica i conti come $(n + 1) + 1 = n + 2$.
+> 5. **Passo induttivo.** Parti dal lato sinistro dell'obiettivo. Trova il pezzo che compare nell'ipotesi e sostituiscilo. Poi fai i conti fino al lato destro.
+> 6. **Conclusione.** Scrivi «per il principio di induzione la formula vale per ogni $n$», dal numero di partenza in poi.
+
+::: prova Controlla la formula $1 + 3 + 5 + \dots + (2n - 1) = n^2$ per $n = 1, 2, 3, 4$. La dimostrazione completa è l'esercizio 6.
+L'ultimo numero della somma è $2n - 1$: per $n = 4$ è 7.
+
+Per $n = 1$ a sinistra c'è solo 1, e $1^2 = 1$.
+
+Per $n = 2$: $1 + 3 = 4 = 2^2$.
+
+Per $n = 3$: $1 + 3 + 5 = 9 = 3^2$.
+
+Per $n = 4$: $1 + 3 + 5 + 7 = 16 = 4^2$.
+:::
+
+> [!RICORDA]
+> - Prima si controlla la formula con i numeri piccoli, poi la si dimostra per induzione.
+> - Nel passo induttivo si parte dal lato sinistro con $n + 1$, si usa l'ipotesi induttiva e si arriva al lato destro.
+
+## Quanti sottoinsiemi ha un insieme (p. 7)
+
+In pizzeria puoi aggiungere alla margherita tre ingredienti: olive, funghi, basilico. Puoi prenderne quanti vuoi, anche nessuno o tutti e tre. Quante pizze diverse puoi ordinare?
+
+Per ogni ingrediente la scelta è doppia: lo metti o non lo metti. Tre scelte da due possibilità l'una danno $2 \cdot 2 \cdot 2 = 8$ pizze. Ogni pizza è un sottoinsieme dell'insieme degli ingredienti: la margherita semplice è il vuoto, la pizza con tutto è l'insieme intero.
+
+Contiamo i sottoinsiemi di insiemi sempre più grandi.
+
+| Insieme | I suoi sottoinsiemi | Quanti |
+|---|---|--:|
+| $\emptyset$ | $\emptyset$ | $1$ |
+| $\{a\}$ | $\emptyset$, $\{a\}$ | $2$ |
+| $\{a, b\}$ | $\emptyset$, $\{a\}$, $\{b\}$, $\{a, b\}$ | $4$ |
+| $\{a, b, c\}$ | i quattro di prima, più gli stessi con dentro anche $c$ | $8$ |
+
+Ogni volta che si aggiunge un elemento, il numero dei sottoinsiemi raddoppia: 1, 2, 4, 8, 16 e così via. Sono le **potenze di 2**.
+
+> [!RIPASSO] le potenze di 2
+> $2^n$ si legge «due alla $n$» e vuol dire 2 moltiplicato per sé stesso $n$ volte. Per convenzione $2^0 = 1$.
+>
+> | $n$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 10 |
+> |---|--:|--:|--:|--:|--:|--:|--:|--:|
+> | $2^n$ | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 1024 |
+>
+> Passando da $n$ a $n + 1$ si moltiplica per 2: $2^{n + 1} = 2 \cdot 2^n$.
+
+### Perché raddoppia
+
+Prendi i sottoinsiemi di $\{a, b, c\}$ e dividili in due righe. In alto metti quelli **senza** $c$. In basso, sotto ognuno, lo stesso insieme **con** $c$ in più.
+
+| Senza $c$ | $\emptyset$ | $\{a\}$ | $\{b\}$ | $\{a, b\}$ |
+|---|---|---|---|---|
+| **Con $c$** | $\{c\}$ | $\{a, c\}$ | $\{b, c\}$ | $\{a, b, c\}$ |
+
+La riga in alto contiene esattamente i sottoinsiemi di $\{a, b\}$, che sono 4. La riga in basso ne ha altrettanti, perché ognuno nasce da quello sopra aggiungendo $c$. In tutto $4 + 4 = 8$.
+
+> [!IDEA]
+> Un insieme con $n$ elementi ha $2^n$ sottoinsiemi. Con i simboli: se $\lvert A \rvert = n$, allora $\lvert P(A) \rvert = 2^n$.
+
+> [!ESEMPIO] La dimostrazione per induzione del libro (p. 7)
+> La proprietà è «ogni insieme con $n$ elementi ha $2^n$ sottoinsiemi». Parte da $n = 0$.
+>
+> **Passo base.** L'unico insieme con 0 elementi è il vuoto. Il suo unico sottoinsieme è il vuoto stesso: $P(\emptyset) = \{\emptyset\}$ ha 1 elemento, e $2^0 = 1$.
+>
+> **Ipotesi induttiva.** Ogni insieme con $n$ elementi ha $2^n$ sottoinsiemi.
+>
+> **Passo induttivo.** Prendi un insieme con $n + 1$ elementi e chiamali $a_1, a_2, \dots, a_{n+1}$. Il numerino in basso, l'**indice**, dice solo il posto nella lista: $a_1$ è il primo elemento, $a_{n+1}$ l'ultimo.
+>
+> 1. Dividi i sottoinsiemi in due righe: in alto quelli che non contengono l'ultimo elemento, in basso quelli che lo contengono.
+> 2. La riga in alto contiene i sottoinsiemi di $B = \{a_1, \dots, a_n\}$, che ha $n$ elementi. Per l'ipotesi induttiva sono $2^n$.
+> 3. Sotto ogni insieme della riga in alto c'è lo stesso insieme con in più $a_{n+1}$. Quindi la riga in basso ha tanti insiemi quanti quella in alto: altri $2^n$.
+> 4. In tutto sono $2^n + 2^n = 2 \cdot 2^n = 2^{n + 1}$.
+>
+> È la formula con $n + 1$ al posto di $n$. Per il principio di induzione vale per ogni $n$.
+
+> [!OLTRE] · un altro modo di contare: i bit
+> Metti in fila gli elementi, per esempio $a$, $b$, $c$. A ogni sottoinsieme associa una parola di tre cifre, ognuna 0 oppure 1. La prima cifra dice se $a$ c'è (1) o no (0), la seconda fa lo stesso per $b$, la terza per $c$. Per esempio $101$ è $\{a, c\}$ e $000$ è il vuoto. Sottoinsiemi diversi danno parole diverse, e ogni parola dà un sottoinsieme. Le parole di $n$ cifre fatte di 0 e 1 sono $2^n$: è lo stesso conto che si fa con i **bit** nella lezione 01 di Fondamenti dell'Informatica.
+
+### Contare con una condizione: un problema d'esame
+
+Nei problemi d'esame il conto dei sottoinsiemi arriva spesso con una condizione.
+
+> [!ESEMPIO] Un problema dell'appello del 09/06/2023 (problema 1, primo punto)
+> Il testo: «Sia $S = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$, $T = \{0, 1, 3, 4\}$. Quanti sono i sottoinsiemi di $S$ non contenenti il sottoinsieme $T$?» (3 punti).
+>
+> In pratica chiede: quanti sottoinsiemi di $S$ **non** hanno dentro tutti e quattro i numeri 0, 1, 3 e 4?
+>
+> 1. **Tutti i sottoinsiemi.** $S$ ha 10 elementi, quindi ha $2^{10} = 1024$ sottoinsiemi.
+> 2. **Quelli che contengono $T$.** Devono avere dentro 0, 1, 3 e 4. Gli altri sei elementi, cioè 2, 5, 6, 7, 8 e 9, si possono mettere o no a piacere. Sono 6 scelte libere, quindi questi sottoinsiemi sono $2^6 = 64$.
+> 3. **Quelli che non contengono $T$** sono tutti gli altri: $1024 - 64 = 960$.
+>
+> La soluzione ufficiale scrive il risultato come $2^{10} - 2^6$: in alcuni appelli il testo chiede proprio di lasciare indicate le potenze.
+
+::: prova (a) Quanti sottoinsiemi ha $\{1, 2, 3, 4, 5\}$? (b) Quanti di questi contengono il numero 1?
+(a) Gli elementi sono 5, quindi i sottoinsiemi sono $2^5 = 32$.
+
+(b) L'1 deve esserci. Per gli altri quattro elementi la scelta è libera: $2^4 = 16$. È esattamente la metà: è la riga «con» della tabella divisa in due righe.
+:::
+
+> [!RICORDA]
+> - Un insieme con $n$ elementi ha $2^n$ sottoinsiemi: per ogni elemento la scelta è «dentro» o «fuori».
+> - Per contare i sottoinsiemi che contengono certi elementi, si fissano quelli e si sceglie liberamente il resto.
+
+## Gli altri insiemi di numeri (p. 8)
+
+Dai numeri naturali, con le regole degli insiemi, si costruiscono le altre famiglie di numeri che conosci. Il libro le elenca nella Nota 1.12 e le considera note: la loro costruzione non fa parte del corso.
+
+| Simbolo | Si legge | Che cosa contiene | Esempi |
+|---|---|---|---|
+| $\Z$ | «zeta» | gli interi: i naturali e i loro opposti | $-5$, $0$, $7$ |
+| $\Q$ | «cu» | i razionali: le frazioni $\frac ab$ con $a$ e $b$ interi, e $b \neq 0$ | $\frac 12$, $-\frac 34$ |
+| $\R$ | «erre» | i reali: anche i numeri con infinite cifre dopo la virgola | $\sqrt 2$, $\pi$ |
+
+Ogni famiglia contiene la precedente: ogni naturale è un intero, ogni intero è una frazione, ogni frazione è un numero reale. Con i simboli: $\N \subset \Z \subset \Q \subset \R$. Ne parla per esteso la [lezione L01 della parte 2](L01_numeri_reali.html), Algebra lineare e Geometria.
+
+Il libro ricorda anche due scritture per i numeri reali compresi tra due numeri $a$ e $b$, con $a$ minore o uguale a $b$.
+
+- $(a, b)$ è l'**intervallo aperto**: i numeri compresi tra $a$ e $b$, estremi esclusi.
+- $[a, b]$ è l'**intervallo chiuso**: i numeri compresi tra $a$ e $b$, estremi compresi.
+
+::: prova (a) $-3$ sta in $\N$? E in $\Z$? (b) Il numero 2 sta in $(1, 2)$? E in $[1, 2]$?
+(a) $-3$ non è un naturale, perché i naturali non sono mai negativi. È un intero, quindi $-3 \in \Z$.
+
+(b) $2 \notin (1, 2)$, perché nell'intervallo aperto gli estremi sono esclusi. $2 \in [1, 2]$, perché nell'intervallo chiuso gli estremi sono compresi.
+:::
+
+> [!RICORDA]
+> - $\N$ naturali, $\Z$ interi, $\Q$ frazioni, $\R$ reali: ogni famiglia contiene la precedente.
+> - Tonde: estremi esclusi. Quadre: estremi compresi.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\{\ \}$ | «l'insieme che contiene…» | le graffe racchiudono gli elementi | $\{1, 2, 3\}$ |
+| $\in$ | «appartiene a» | è un elemento di | $2 \in \{1, 2, 3\}$ |
+| $\notin$ | «non appartiene a» | non è un elemento di | $5 \notin \{1, 2, 3\}$ |
+| $\dots$ | «e così via» | gli elementi continuano con la stessa regola | $\{0, 2, 4, \dots\}$ |
+| $\mid$ | «tali che» | introduce la regola per entrare nell'insieme | $\{n \in \N \mid n < 3\}$ |
+| $\mathcal P(x)$ | «pi di $x$» | una proprietà di $x$, vera o falsa | «$x$ è pari» |
+| $\forall$ | «per ogni» | per tutti gli elementi, nessuno escluso | $\forall n \in \N,\ n \ge 0$ |
+| $\exists$ | «esiste» | ce n'è almeno uno | $\exists n \in \N$ con $n > 5$ |
+| $\sim$, $\neg$ | «non» | il contrario di una frase | $\sim(x \ge 0)$ vuol dire $x < 0$ |
+| $\emptyset$ | «insieme vuoto» | l'insieme senza elementi | $\lvert \emptyset \rvert = 0$ |
+| $\lvert A \rvert$ | «cardinalità di $A$» | il numero degli elementi di $A$ | $\lvert \{a, b\} \rvert = 2$ |
+| $\infty$ | «infinito» | la cardinalità di un insieme infinito | $\lvert \N \rvert = \infty$ |
+| $\subset$ | «è contenuto in» | è un sottoinsieme (può anche essere uguale) | $\{1\} \subset \{1, 2\}$ |
+| $\not\subset$ | «non è contenuto in» | almeno un elemento sta fuori | $\{1, 4\} \not\subset \{1, 2\}$ |
+| $\subseteq$, $\subsetneq$ | «contenuto o uguale», «contenuto strettamente» | le scritture di altri testi e dei canali A e C | $\{1\} \subsetneq \{1, 2\}$ |
+| $P(A)$ | «parti di $A$» | l'insieme di tutti i sottoinsiemi di $A$ | $P(\{a\}) = \{\emptyset, \{a\}\}$ |
+| $\iff$ | «se e solo se» | esattamente quando | $A = B \iff A \subset B$ e $B \subset A$ |
+| $\N$ | «enne» | i numeri naturali, zero compreso | $0, 1, 2, \dots$ |
+| $s(n)$ | «esse di $n$» | il successivo di $n$ | $s(4) = 5$ |
+| $\mathcal P(n)$ | «pi di $n$» | una proprietà che dipende dal numero $n$ | «$n + n$ è pari» |
+| $\sum_{k=1}^{n}$ | «somma per $k$ da 1 a $n$» | somma dei termini con $k = 1, 2, \dots, n$ | $\sum_{k=1}^{3} k = 6$ |
+| $a_1, \dots, a_n$ | «a uno, …, a enne» | un elenco di $n$ oggetti numerati | $a_1$ è il primo |
+| $2^n$ | «due alla $n$» | 2 moltiplicato per sé stesso $n$ volte | $2^3 = 8$ |
+| $\Z$, $\Q$, $\R$ | «zeta», «cu», «erre» | interi, razionali, reali | $-3 \in \Z$ |
+| $(a, b)$, $[a, b]$ | «intervallo aperto», «intervallo chiuso» | i reali tra $a$ e $b$, estremi esclusi o compresi | $2 \in [1, 2]$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C: la preparano e la correggono insieme i docenti dei tre canali. Al 01/10/2026 le regole del 2026/27 non sono ancora uscite. Quelle del 2025/26 dicono così.
+
+**Com'è fatta la prova**
+
+- **10 domande a risposta multipla**, ognuna con 5 risposte e una sola giusta. Una risposta giusta vale 1 punto; una sbagliata o vuota vale 0.
+- **2 problemi** a risposta aperta, divisi in più domande con il punteggio scritto accanto.
+- **Sbarramento.** Con meno di 6 punti nel quiz la prova non è superata, e i problemi non vengono nemmeno corretti.
+- **Sufficienza:** almeno 18 punti in tutto. **Durata:** 2 ore.
+- **Materiale ammesso:** libro di testo e appunti del corso, e una calcolatrice non programmabile. È diverso dalla prova di Algebra lineare, dove si possono portare solo 4 facciate scritte a mano e niente calcolatrice.
+
+| Appello 2026/27 | Iscrizioni su MyUniTo (appello «M.D.A.G.1») | Ora |
+|---|---|---|
+| mar 19/01/2027 | 30/12/2026 – 12/01/2027 | 14:00 |
+| mer 03/02/2027 | 14/01 – 27/01/2027 | 14:00 |
+
+Le iscrizioni chiudono circa una settimana prima e non si riaprono. Il voto di MDAG è la media delle due prove, Matematica Discreta e Algebra lineare. Dettagli e fonti nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+
+**Che cosa serve di questa lezione**
+
+1. **La domanda 1 del quiz.** In tutti i nove appelli del 2025 e del 2026 di cui ho trovato il quiz, la prima domanda riguarda gli insiemi. A volte basta questa lezione: elementi e sottoinsiemi, come il 13/01/2026 e il 10/09/2026. A volte servono anche unione, intersezione e prodotto cartesiano, che arrivano nella prossima lezione. Quasi sempre le risposte sbagliate giocano sulla differenza tra elemento e sottoinsieme.
+2. **«Per ogni» ed «esiste».** Nell'appello del 06/06/2025 la domanda 2 chiedeva un controesempio. È l'esempio svolto nella sezione sui quantificatori.
+3. **Contare i sottoinsiemi.** Nei problemi torna il conto delle potenze di 2, spesso con una condizione: appelli del 09/06/2023 (problema 1, primo punto) e del 06/06/2025 (problema 1, punto b).
+4. **L'induzione.** Negli appelli di Matematica Discreta dal 2021 al 2026 non ho trovato domande che chiedano di scrivere una dimostrazione per induzione: serve per capire le dimostrazioni del libro. A Fondamenti dell'Informatica, invece, il principio di induzione è tra gli argomenti dei quiz.
+
+**Una domanda vera, letta insieme**
+
+> [!ESEMPIO] Appello del 13/01/2026, domanda 1 (una delle versioni)
+> Il testo: «Sia $A = \{b, e, h, k, m, p, q, s, u, x\}$. Allora: 1. $t \in A$; 2. $h \notin A$; 3. $\{h, s\} \in A$; 4. $\{k, q, u\} \subset A$; 5. $\{e, s, y\} \subset A$.»
+>
+> In pratica chiede: quale delle cinque frasi è vera? $A$ ha dieci elementi, e sono tutti **lettere**, nessuno è un insieme. Vediamo le risposte una per una.
+>
+> 1. $t \in A$: la lettera $t$ non è nella lista. Falsa.
+> 2. $h \notin A$: la lettera $h$ è nella lista, quindi appartiene ad $A$. Falsa.
+> 3. $\{h, s\} \in A$: gli elementi di $A$ sono lettere, e l'insieme $\{h, s\}$ non è tra loro. Falsa. Sarebbe vera la frase $\{h, s\} \subset A$.
+> 4. $\{k, q, u\} \subset A$: le lettere $k$, $q$ e $u$ sono tutte nella lista. **Vera.**
+> 5. $\{e, s, y\} \subset A$: la lettera $y$ non è nella lista. Falsa.
+>
+> La risposta è la 4. La trappola è la 3: le lettere $h$ e $s$ ci sono, ma le graffe e il simbolo di appartenenza chiedono un'altra cosa.
+
+**Errori da evitare**
+
+- Confondere «è un elemento di» con «è un sottoinsieme di». Usa il metodo della sezione sui sottoinsiemi.
+- Contare due volte un elemento ripetuto, oppure contare uno per uno gli elementi chiusi dentro graffe interne.
+- Dimenticare il vuoto e l'insieme intero quando elenchi i sottoinsiemi.
+- Dire il contrario di «tutti» con «nessuno».
+- Nel passo induttivo, usare la formula per $n + 1$ invece di arrivarci.
+
+> [!ESAME] Libro e appunti sono ammessi, ma il tempo è poco
+> Alla prova di Matematica Discreta puoi portare libro e appunti. Le ore però sono solo 2, per 10 domande e 2 problemi: non c'è tempo per cercare le cose. Conviene preparare un foglio di riepilogo. Da questa lezione: il metodo «elemento o sottoinsieme?» e il conto dei sottoinsiemi con una condizione.
+
+## Quiz
+
+```quiz
+D: (Appello del 10/09/2026, domanda 1) Sia $X = \{c, \{f, m\}, p, q, \{x\}\}$. Allora:
+- $q \subset X$
+- $\{c, p\} \in X$
++ $\{f, m\} \in X$
+- $\{x\} \subset X$
+- $\emptyset \in X$
+= Gli elementi di $X$ sono cinque: le lettere $c$, $p$, $q$ e i due insiemi $\{f, m\}$ e $\{x\}$. La frase giusta è $\{f, m\} \in X$, perché l'insieme $\{f, m\}$ è proprio uno dei cinque elementi. $q \subset X$ è sbagliata perché $q$ è una lettera, non un insieme. $\{c, p\} \in X$ è sbagliata perché l'insieme $\{c, p\}$ non è tra gli elementi: sarebbe giusto $\{c, p\} \subset X$. La risposta più tentatrice è $\{x\} \subset X$: per essere vera servirebbe che la lettera $x$ fosse un elemento di $X$, ma in $X$ c'è solo l'insieme $\{x\}$. Infine il vuoto è un sottoinsieme di ogni insieme, ma non è un elemento di $X$.
+
+D: (Appello del 10/09/2026, domanda 1, altra versione) Sia $X = \{a, \{d, p\}, m, y, \{z\}\}$. Allora:
+- $p \in X$
++ $z \notin X$
+- $\{y, z\} \subset X$
+- $\{d, p\} \subset X$
+- $\emptyset \in X$
+= Gli elementi di $X$ sono cinque: $a$, $m$, $y$ e gli insiemi $\{d, p\}$ e $\{z\}$. La lettera $z$ da sola non è tra loro: sta dentro l'insieme $\{z\}$. Quindi $z \notin X$ è vera. $p \in X$ è falsa per lo stesso motivo: $p$ sta dentro $\{d, p\}$. $\{y, z\} \subset X$ è falsa perché $z$ non è un elemento di $X$. $\{d, p\} \subset X$ è la più tentatrice: è falsa perché richiederebbe $d$ e $p$ tra gli elementi; è vera invece $\{d, p\} \in X$. Il vuoto non è un elemento di $X$.
+
+D: (Appello del 18/01/2023, domanda 1) Sia $A = \{a, b, c, d, e, f\}$. Allora:
+- $a \in P(A)$
+- $b \subset A$
+- $(c, f) \subset A$
++ $\{a, b, c\} \in P(A)$
+- $\{c, d, e\} \subset P(A)$
+= Gli elementi di $P(A)$ sono i sottoinsiemi di $A$. $\{a, b, c\}$ è un sottoinsieme di $A$, quindi è un elemento di $P(A)$: è la risposta giusta. $a \in P(A)$ è sbagliata, perché $a$ è un elemento di $A$ e non un suo sottoinsieme. $b \subset A$ è sbagliata perché $b$ non è un insieme. $(c, f)$, con le tonde, è una coppia ordinata (prossima lezione) e non un insieme di elementi di $A$. La più tentatrice è $\{c, d, e\} \subset P(A)$: vorrebbe dire che $c$, $d$ ed $e$ sono elementi di $P(A)$, cioè sottoinsiemi di $A$, e non lo sono. Sarebbe giusto $\{c, d, e\} \in P(A)$.
+
+D: (Appello del 06/06/2025, domanda 2, altra versione) L'affermazione «$\forall x \in \N, \forall y \in \N, x^2 - x \ge y$» è contraddetta da:
+- $(x, y) = (5, 10)$
+- $(x, y) = (-4, 10)$
+- $(x, y) = (2, 2)$
++ $(x, y) = (3, 7)$
+- $(x, y) = (4, -2)$
+= Serve una coppia di numeri naturali per cui la disuguaglianza è falsa. Per $(3, 7)$: $9 - 3 = 6$, e $6 \ge 7$ è falso, quindi è un controesempio. Per $(5, 10)$: $25 - 5 = 20 \ge 10$, vero. Per $(2, 2)$: $4 - 2 = 2 \ge 2$, vero, perché vale anche l'uguale: è la risposta più tentatrice. Le coppie con $-4$ e $-2$ non contano, perché quei numeri non sono naturali.
+
+D: Quanti elementi ha l'insieme delle parti di $\{1, 2, 3, 4\}$?
+- $4$
+- $8$
++ $16$
+- $24$
+- $32$
+= L'insieme delle parti ha come elementi tutti i sottoinsiemi. Un insieme con 4 elementi ha $2^4 = 16$ sottoinsiemi: per ognuno dei 4 elementi la scelta è «dentro» o «fuori», e $2 \cdot 2 \cdot 2 \cdot 2 = 16$. La risposta $4$ conta solo gli elementi. La risposta $8$ è il conto per un insieme con 3 elementi. Tra i 16 ci sono anche il vuoto e l'insieme intero.
+
+D: Qual è il contrario della frase «ogni studente del corso ha superato l'esame»?
+- «Nessuno studente del corso ha superato l'esame.»
++ «Almeno uno studente del corso non ha superato l'esame.»
+- «Almeno uno studente del corso ha superato l'esame.»
+- «Ogni studente del corso è stato bocciato.»
+- «Esattamente uno studente del corso non ha superato l'esame.»
+= Per dire il contrario «per ogni» diventa «esiste», e la proprietà diventa il suo contrario: «esiste uno studente che non ha superato l'esame». La risposta più tentatrice è «nessuno studente ha superato l'esame», ma è troppo forte: per smentire «tutti» basta un bocciato. Anche «esattamente uno» è sbagliata, perché i bocciati possono essere più di uno.
+
+D: Quanti elementi ha l'insieme $\{\emptyset, \{\emptyset\}, \{1, 2\}\}$?
+- $0$
+- $2$
++ $3$
+- $4$
+- $5$
+= Gli elementi si contano guardando le virgole al primo livello di graffe. Sono tre: il vuoto, l'insieme che contiene il vuoto e l'insieme $\{1, 2\}$. Il vuoto è un elemento come gli altri, anche se non contiene niente. La risposta $4$ viene se si contano 1 e 2 separatamente, ma stanno dentro un sacchetto interno e contano come un elemento solo.
+
+D: Sia $A = \{1, 2, 3\}$. Quale di queste frasi è vera?
+- $\emptyset \in A$
++ $\emptyset \subset A$
+- $\{1\} \in A$
+- $1 \subset A$
+- $\{1, 4\} \subset A$
+= Il vuoto è un sottoinsieme di ogni insieme, quindi $\emptyset \subset A$ è vera. Non è però un elemento di $A$: gli elementi sono 1, 2 e 3. $\{1\} \in A$ è sbagliata, perché tra gli elementi c'è il numero 1, non l'insieme $\{1\}$. $1 \subset A$ è sbagliata perché 1 non è un insieme. $\{1, 4\} \subset A$ è sbagliata perché il 4 non sta in $A$.
+
+D: Vuoi dimostrare per induzione che una formula vale per ogni $n \ge 1$. Che cosa devi fare?
+- Controllare la formula per $n = 1, 2, 3$ e $4$.
+- Supporre la formula vera per $n + 1$ e ricavarla per $n$.
++ Controllarla per $n = 1$ e dimostrare che, se vale per $n$, vale anche per $n + 1$.
+- Dimostrare che, se vale per $n$, vale anche per $n + 1$: il passo base non serve.
+- Controllarla per $n = 0$ e per $n = 1$.
+= Servono il passo base, cioè il controllo per il primo numero, qui 1, e il passo induttivo, cioè da $n$ a $n + 1$. Controllare alcuni numeri non basta, perché i numeri sono infiniti. Senza passo base non si conclude niente: la proprietà «$n = n + 1$» passa il passo induttivo ma è sempre falsa. Andare da $n + 1$ a $n$ è la direzione sbagliata.
+
+D: Quanti sottoinsiemi di $\{1, 2, 3, 4, 5, 6\}$ contengono il numero 1?
+- $6$
+- $16$
++ $32$
+- $63$
+- $64$
+= Il numero 1 deve esserci. Per gli altri cinque elementi la scelta è libera, quindi i sottoinsiemi sono $2^5 = 32$. La risposta $64 = 2^6$ conta tutti i sottoinsiemi, anche quelli senza l'1. I sottoinsiemi con l'1 sono esattamente la metà di tutti.
+```
+
+## Esercizi
+
+::: esercizio base Dall'elenco alla regola e ritorno
+Scrivi con l'elenco: (a) $\{n \in \N \mid n < 5\}$; (b) $\{n \in \N \mid n \text{ è dispari e } n < 10\}$. Scrivi con una regola: (c) $\{0, 3, 6, 9, 12\}$.
+::: soluzione
+1. (a) I naturali minori di 5 sono 0, 1, 2, 3 e 4. L'insieme è $\{0, 1, 2, 3, 4\}$. Lo zero c'è, perché nel libro è un naturale.
+2. (b) I numeri dispari minori di 10 sono 1, 3, 5, 7 e 9. L'insieme è $\{1, 3, 5, 7, 9\}$.
+3. (c) Sono i multipli di 3 da 0 a 12. Una regola possibile: $\{n \in \N \mid n \text{ è multiplo di } 3 \text{ e } n \le 12\}$.
+
+Controllo della (c): i multipli di 3 fino a 12 sono $3 \cdot 0$, $3 \cdot 1$, $3 \cdot 2$, $3 \cdot 3$ e $3 \cdot 4$, cioè proprio 0, 3, 6, 9 e 12.
+:::
+
+::: esercizio base Contare gli elementi
+Calcola la cardinalità: (a) $\{x, y, x, z\}$; (b) $\{\{x, y\}, z\}$; (c) $\{\emptyset, 0\}$; (d) $P(\{1, 2, 3\})$.
+::: soluzione
+1. (a) Gli elementi sono $x$, $y$ e $z$: la $x$ ripetuta si conta una volta. La cardinalità è 3.
+2. (b) Gli elementi sono due: l'insieme $\{x, y\}$ e la lettera $z$. La cardinalità è 2.
+3. (c) Gli elementi sono due: il vuoto e il numero zero, che sono oggetti diversi. La cardinalità è 2.
+4. (d) L'insieme ha 3 elementi, quindi i suoi sottoinsiemi sono $2^3 = 8$. La cardinalità è 8.
+:::
+
+::: esercizio base Esercizio 1.1 del libro: vero o falso
+Prendi $A = \{a, b, c\}$. Di' quali di queste affermazioni sono vere e quali false: $b \in A$, $\emptyset \subset A$, $\{\emptyset\} \subset A$, $\{c, d\} \not\subset A$, $\{a, \{c\}\} \subset A$.
+::: soluzione
+| Affermazione | Vera o falsa | Perché |
+|---|---|---|
+| $b \in A$ | vera | la lettera $b$ è nella lista |
+| $\emptyset \subset A$ | vera | il vuoto è un sottoinsieme di ogni insieme |
+| $\{\emptyset\} \subset A$ | falsa | servirebbe che il vuoto fosse un elemento di $A$, ma gli elementi sono le lettere $a$, $b$, $c$ |
+| $\{c, d\} \not\subset A$ | vera | la lettera $d$ non sta in $A$, quindi $\{c, d\}$ non è contenuto in $A$ |
+| $\{a, \{c\}\} \subset A$ | falsa | $a$ sta in $A$, ma l'insieme $\{c\}$ no: in $A$ c'è la lettera $c$, non l'insieme $\{c\}$ |
+
+La terza e la quinta riga sono la stessa trappola: un insieme dentro le graffe è un elemento diverso dai suoi elementi.
+:::
+
+::: esercizio base Esercizio 1.3 del libro: l'insieme delle parti
+Prendi $A = \{a, e, i, o, u\}$. Di' quali di queste affermazioni sono vere e quali false: $\emptyset \in P(A)$, $a \in P(A)$, $\{i, u\} \subset P(A)$, $\{e, o\} \in P(A)$, $\{\{e\}, \{o\}\} \subset P(A)$.
+::: soluzione
+Ricorda: gli elementi di $P(A)$ sono i sottoinsiemi di $A$.
+
+| Affermazione | Vera o falsa | Perché |
+|---|---|---|
+| $\emptyset \in P(A)$ | vera | il vuoto è un sottoinsieme di $A$, quindi un elemento di $P(A)$ |
+| $a \in P(A)$ | falsa | $a$ è una lettera, non un sottoinsieme di $A$ |
+| $\{i, u\} \subset P(A)$ | falsa | servirebbe che $i$ e $u$ fossero elementi di $P(A)$, ma sono lettere |
+| $\{e, o\} \in P(A)$ | vera | $\{e, o\}$ è un sottoinsieme di $A$ |
+| $\{\{e\}, \{o\}\} \subset P(A)$ | vera | i suoi due elementi, $\{e\}$ e $\{o\}$, sono sottoinsiemi di $A$, quindi elementi di $P(A)$ |
+
+Nella terza riga sarebbe vera la frase $\{i, u\} \in P(A)$.
+:::
+
+::: esercizio base Dire il contrario
+Scrivi il contrario di queste frasi, e di' se è vera la frase o il suo contrario: (a) «ogni numero naturale è pari»; (b) «esiste un numero naturale maggiore di 100»; (c) «per ogni numero naturale $n$ esiste un naturale più grande di $n$».
+::: soluzione
+1. (a) Il contrario è «esiste un numero naturale dispari». È vero il contrario: 3 è dispari, ed è il controesempio della frase di partenza.
+2. (b) Il contrario è «ogni numero naturale è minore o uguale a 100». È vera la frase di partenza: per esempio 101 è maggiore di 100.
+3. (c) Ci sono due quantificatori, e cambiano tutti e due: «per ogni» diventa «esiste» ed «esiste» diventa «per ogni». Il contrario è «esiste un numero naturale $n$ per cui ogni naturale è minore o uguale a $n$». È vera la frase di partenza: qualunque $n$ prendi, il numero $n + 1$ è più grande.
+:::
+
+::: esercizio medio Esercizio 1.19 (b) del libro: la somma dei dispari
+Dimostra per induzione che $1 + 3 + 5 + \dots + (2n - 1) = n^2$ per ogni $n \ge 1$.
+::: soluzione
+1. **Passo base**, $n = 1$. A sinistra c'è solo 1. A destra $1^2 = 1$. I due lati sono uguali.
+2. **Ipotesi induttiva.** Supponiamo $1 + 3 + \dots + (2n - 1) = n^2$.
+3. **Obiettivo.** Con $n + 1$ al posto di $n$, l'ultimo numero della somma è $2(n + 1) - 1 = 2n + 1$. Vogliamo arrivare a $1 + 3 + \dots + (2n - 1) + (2n + 1) = (n + 1)^2$.
+4. **Passo induttivo.** Per l'ipotesi, la somma fino a $2n - 1$ vale $n^2$. Quindi il lato sinistro è $n^2 + 2n + 1$.
+5. Il quadrato di $n + 1$ è $(n + 1)(n + 1) = n^2 + n + n + 1 = n^2 + 2n + 1$. È lo stesso numero del passo 4, quindi il lato sinistro è $(n + 1)^2$.
+6. **Conclusione.** Per il principio di induzione la formula vale per ogni $n \ge 1$.
+
+Controllo con $n = 5$: $1 + 3 + 5 + 7 + 9 = 25 = 5^2$.
+:::
+
+::: esercizio medio Esercizio 1.19 (d) del libro: una disuguaglianza
+Dimostra per induzione che $n^2 > 2n + 1$ per ogni $n \ge 3$.
+::: soluzione
+1. **Passo base**, $n = 3$. A sinistra $3^2 = 9$, a destra $2 \cdot 3 + 1 = 7$. Ed è vero che $9 > 7$. Con $n = 2$ invece non funziona: $4 > 5$ è falso. Per questo si parte da 3.
+2. **Ipotesi induttiva.** Supponiamo $n^2 > 2n + 1$, per un certo $n \ge 3$.
+3. **Obiettivo.** $(n + 1)^2 > 2(n + 1) + 1$, cioè $(n + 1)^2 > 2n + 3$.
+4. Il quadrato è $(n + 1)^2 = n^2 + 2n + 1$.
+5. Per l'ipotesi $n^2$ è più grande di $2n + 1$. Quindi $n^2 + 2n + 1$ è più grande di $(2n + 1) + 2n + 1 = 4n + 2$.
+6. Ora confrontiamo $4n + 2$ con l'obiettivo $2n + 3$. La differenza è $(4n + 2) - (2n + 3) = 2n - 1$, che è positiva per ogni $n \ge 1$. Quindi $4n + 2 > 2n + 3$.
+7. Mettendo insieme i passi 5 e 6: $(n + 1)^2 > 4n + 2 > 2n + 3$.
+8. **Conclusione.** Per il principio di induzione la disuguaglianza vale per ogni $n \ge 3$.
+
+Controllo: con $n = 4$, $16 > 9$; con $n = 5$, $25 > 11$.
+:::
+
+::: esercizio difficile Esercizio 1.19 (e) del libro: le potenze di 2 battono i quadrati
+Dimostra per induzione che $2^n > n^2$ per ogni $n \ge 5$.
+::: soluzione
+1. **Passo base**, $n = 5$. A sinistra $2^5 = 32$, a destra $5^2 = 25$. Ed è vero che $32 > 25$. Con $n = 4$ non funziona: $2^4 = 16$ e $4^2 = 16$ sono uguali.
+2. **Ipotesi induttiva.** Supponiamo $2^n > n^2$, per un certo $n \ge 5$.
+3. **Obiettivo.** $2^{n + 1} > (n + 1)^2$.
+4. Raddoppiare una potenza di 2 vuol dire aggiungere 1 all'esponente: $2^{n + 1} = 2 \cdot 2^n$. Per l'ipotesi $2^n$ è più grande di $n^2$, quindi $2 \cdot 2^n$ è più grande di $2n^2$.
+5. Scriviamo $2n^2 = n^2 + n^2$. Per l'esercizio precedente, siccome $n \ge 3$, vale $n^2 > 2n + 1$. Quindi $n^2 + n^2 > n^2 + 2n + 1$.
+6. E $n^2 + 2n + 1 = (n + 1)^2$, come nell'esercizio 6.
+7. Mettendo insieme: $2^{n + 1} > 2n^2 > (n + 1)^2$.
+8. **Conclusione.** Per il principio di induzione la disuguaglianza vale per ogni $n \ge 5$.
+
+Controllo: con $n = 6$, $2^6 = 64 > 36$; con $n = 10$, $2^{10} = 1024 > 100$.
+:::
+
+::: esercizio difficile Esercizio 1.19 (c) del libro: la somma dei cubi
+Dimostra per induzione che $1^3 + 2^3 + \dots + n^3 = \frac{n^2(n + 1)^2}4$ per ogni $n \ge 1$.
+::: soluzione
+1. **Passo base**, $n = 1$. A sinistra $1^3 = 1$. A destra $\frac{1 \cdot 4}4 = 1$.
+2. **Ipotesi induttiva.** Supponiamo $1^3 + \dots + n^3 = \frac{n^2(n + 1)^2}4$.
+3. **Obiettivo.** $1^3 + \dots + (n + 1)^3 = \frac{(n + 1)^2(n + 2)^2}4$.
+4. Per l'ipotesi il lato sinistro è $\frac{n^2(n + 1)^2}4 + (n + 1)^3$.
+5. In tutti e due gli addendi c'è $(n + 1)^2$, perché $(n + 1)^3 = (n + 1)^2 \cdot (n + 1)$. Raccogliendo: $(n + 1)^2\left(\frac{n^2}4 + n + 1\right)$.
+6. Nella parentesi mettiamo tutto su 4: $\frac{n^2}4 + \frac{4n}4 + \frac 44 = \frac{n^2 + 4n + 4}4$.
+7. E $n^2 + 4n + 4 = (n + 2)^2$, perché $(n + 2)(n + 2) = n^2 + 2n + 2n + 4$.
+8. Quindi il lato sinistro è $\frac{(n + 1)^2(n + 2)^2}4$, l'obiettivo.
+9. **Conclusione.** Per il principio di induzione la formula vale per ogni $n \ge 1$.
+
+Controllo con $n = 3$: $1 + 8 + 27 = 36$, e $\frac{9 \cdot 16}4 = 36$.
+:::
+
+::: esercizio esame Sottoinsiemi con una condizione
+Prendi $S = \{1, 2, 3, 4, 5, 6, 7, 8\}$. (a) Quanti sono i sottoinsiemi di $S$? (b) Quanti contengono sia 1 sia 2? (c) Quanti non contengono il sottoinsieme $\{1, 2\}$? (d) Quanti non contengono né 1 né 2?
+::: soluzione
+1. (a) $S$ ha 8 elementi, quindi i sottoinsiemi sono $2^8 = 256$.
+2. (b) 1 e 2 devono esserci. Gli altri sei elementi, da 3 a 8, si scelgono liberamente: $2^6 = 64$.
+3. (c) Sono tutti i sottoinsiemi tranne quelli del punto (b): $256 - 64 = 192$.
+4. (d) Né 1 né 2: si sceglie liberamente solo tra i sei elementi da 3 a 8. Sono $2^6 = 64$.
+
+Controllo: dividiamo i sottoinsiemi secondo che cosa succede a 1 e a 2. Ci sono quattro casi: tutti e due dentro, solo 1, solo 2, nessuno dei due. In ogni caso gli altri sei elementi sono liberi, quindi ogni caso ha 64 sottoinsiemi. In tutto $4 \cdot 64 = 256$, come al punto (a). I sottoinsiemi del punto (c) sono gli ultimi tre casi: $3 \cdot 64 = 192$.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è un insieme? Che cosa vuol dire che deve essere «ben definito»?
+Un insieme è una raccolta di oggetti diversi tra loro, i suoi elementi. «Ben definito» vuol dire che per ogni oggetto si può decidere senza dubbi se sta dentro o no: «gli attori bravi» non è un insieme, «gli attori che hanno vinto un Oscar» sì.
+:::
+
+::: domanda Perché $x \in A$ e $\{x\} \subset A$ dicono la stessa cosa? E perché $\{x\} \in A$ dice un'altra cosa?
+$\{x\} \subset A$ vuol dire che l'unico elemento di $\{x\}$, cioè $x$, sta in $A$: è proprio $x \in A$. Invece $\{x\} \in A$ vuol dire che l'insieme $\{x\}$, intero, è uno degli elementi di $A$. Con $A = \{1, 2\}$ la prima frase è vera per $x = 1$, la seconda è falsa.
+:::
+
+::: domanda Qual è il contrario di una frase con «per ogni»? E di una frase con «esiste»?
+«Per ogni» diventa «esiste» ed «esiste» diventa «per ogni»; la proprietà diventa il suo contrario. Il contrario di «tutti i numeri della lista sono positivi» è «almeno un numero della lista non è positivo».
+:::
+
+::: domanda Che differenza c'è tra $\emptyset$ e $\{\emptyset\}$?
+$\emptyset$ è l'insieme vuoto e ha 0 elementi. $\{\emptyset\}$ è un insieme con un elemento, che è l'insieme vuoto: un sacchetto che contiene un sacchetto vuoto.
+:::
+
+::: domanda Perché il vuoto è un sottoinsieme di ogni insieme?
+Per dire che non lo è servirebbe un elemento del vuoto che sta fuori dall'altro insieme. Il vuoto non ha elementi, quindi un controesempio così non esiste.
+:::
+
+::: domanda Come si dimostra che due insiemi sono uguali?
+Con la doppia inclusione: si fa vedere che ogni elemento del primo sta nel secondo e che ogni elemento del secondo sta nel primo (proposizione 1.9).
+:::
+
+::: domanda Che cosa dice il principio di induzione? Che cosa sono il passo base e il passo induttivo?
+Servono due controlli. Il passo base: la proprietà vale per il primo numero. Il passo induttivo: ogni volta che vale per un numero $n$, vale anche per $n + 1$. Allora la proprietà vale per tutti i numeri da lì in poi. È come una fila di tessere del domino.
+:::
+
+::: domanda Perché un insieme con $n$ elementi ha $2^n$ sottoinsiemi?
+Per ogni elemento la scelta è doppia: dentro o fuori. Le scelte sono $n$, e ognuna raddoppia il conto. Il libro lo dimostra per induzione: aggiungendo un elemento, i sottoinsiemi si dividono in quelli senza e quelli con il nuovo elemento, che sono tanti quanti i primi.
+:::
+
+## Glossario
+
+```glossario
+Insieme | Una raccolta ben definita di oggetti diversi tra loro, i suoi elementi. Esempio: $\{1, 2, 3\}$.
+Elemento | Un oggetto che sta in un insieme. Si scrive $x \in A$, «$x$ appartiene ad $A$».
+Insieme universale | L'insieme da cui si pescano gli oggetti quando si descrive un insieme con una regola, per esempio $\N$.
+Proprietà | Una frase su un oggetto che può essere vera o falsa, come «$n$ è pari».
+Quantificatori | Le parole «per ogni» ed «esiste». I loro simboli, $\forall$ e $\exists$, si leggono proprio così.
+Controesempio | Un elemento per cui una frase con «per ogni» è falsa. Ne basta uno per smentirla.
+Insieme vuoto | L'insieme senza elementi, $\emptyset$. È un sottoinsieme di ogni insieme.
+Cardinalità | Il numero degli elementi di un insieme, $\lvert A \rvert$. Esempio: $\lvert \{a, b\} \rvert = 2$.
+Sottoinsieme | Un insieme i cui elementi stanno tutti in un altro: $B \subset A$. Esempio: $\{1, 3\} \subset \{1, 2, 3\}$.
+Sottoinsieme proprio | Un sottoinsieme diverso dall'insieme intero.
+Insieme delle parti | L'insieme $P(A)$ che ha come elementi tutti i sottoinsiemi di $A$. Se $A$ ha $n$ elementi, $P(A)$ ne ha $2^n$.
+Doppia inclusione | Il modo di dimostrare che due insiemi sono uguali: ognuno è contenuto nell'altro.
+Numeri naturali | I numeri per contare, $0, 1, 2, 3, \dots$; il loro insieme è $\N$.
+Successivo | Il numero che viene subito dopo: il successivo di $n$ è $n + 1$, che il libro scrive $s(n)$.
+Principio di induzione | Se una proprietà vale per 0 e passa da ogni numero al successivo, vale per tutti i naturali.
+Passo base | Il controllo della proprietà sul primo numero.
+Passo induttivo | La dimostrazione che, se la proprietà vale per $n$, vale anche per $n + 1$.
+Ipotesi induttiva | La frase «la proprietà vale per $n$», che nel passo induttivo si suppone vera e si usa.
+```
+
+## Checklist
+
+```checklist
+- So scrivere un insieme con l'elenco e con una regola.
+- So distinguere $x \in A$, $\{x\} \subset A$ e $\{x\} \in A$.
+- So contare gli elementi di un insieme che contiene altri insiemi.
+- So dire il contrario di una frase con «per ogni» o «esiste», e trovare un controesempio.
+- So scrivere tutti i sottoinsiemi di un insieme con 3 elementi.
+- So dimostrare che due insiemi sono uguali con la doppia inclusione.
+- So fare una dimostrazione per induzione: passo base, ipotesi, passo induttivo, conclusione.
+- So contare i sottoinsiemi di un insieme, anche con una condizione come «contiene questi elementi».
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 1 «Insiemi», pp. 1–8 (definizioni 1.1 e 1.5–1.8, note 1.2–1.4, 1.11 e 1.12, proposizione 1.9, teorema 1.10 e i due esempi che lo seguono) ed esercizi 1.1, 1.3 e 1.19 (pp. 14–16). Le definizioni e gli enunciati nei riquadri sono citati dal libro.
+- Diario delle lezioni del canale B 2025/26, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): argomenti della lezione 1. Sulla stessa pagina gli appunti a mano della prima lezione del canale A e le regole d'esame 2025/26.
+- Quiz e problemi degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla stessa pagina: 18/01/2023 (domanda 1), 09/06/2023 (problema 1), 05/02/2024, 14/01/2025, 04/02/2025, 06/06/2025 (domanda 2 e problema 1), 07/07/2025, 13/01/2026 (domanda 1), 03/02/2026, 06/06/2026, 01/07/2026 e 10/09/2026 (domanda 1).
+- Calendario degli appelli 2026/27 e regole d'esame: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu», i quiz senza data e gli esercizi senza il numero del libro sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/MDAG/lezioni/L01_numeri_reali.md -->
 > File: `contesto_ai/MDAG/lezioni/L01_numeri_reali.md`
 
@@ -2711,7 +4639,7 @@ lezione: L01
 titolo: Numeri reali
 data: 2026-09-30
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L01
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L01
 descrizione: >-
   Appunti della lezione L01 di Algebra lineare e Geometria (MDAG, parte 2): insiemi numerici, costruzione dei numeri
   reali, irrazionalità di √2, campi, ordine, notazioni e conti con le radici, con quiz nello stile dell'esame ed
@@ -4237,7 +6165,7 @@ modulo: AG
 lezione: L02
 titolo: Numeri complessi I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L02
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L02
 descrizione: >-
   Appunti della lezione L02 di Algebra lineare e Geometria (MDAG, parte 2): i numeri complessi, somma e prodotto,
   parte reale e parte immaginaria, coniugato, modulo, inverso e divisione, il piano complesso e la regola del
@@ -6305,7 +8233,7 @@ modulo: AG
 lezione: L03
 titolo: Numeri complessi II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L03
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L03
 descrizione: >-
   Appunti della lezione L03 di Algebra lineare e Geometria (MDAG, parte 2): coordinate polari, forma esponenziale,
   modulo e argomento di un numero complesso, prodotto e inverso in forma polare, identità di Eulero, potenze e
@@ -7237,7 +9165,7 @@ modulo: AG
 lezione: L04
 titolo: Polinomi
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L04
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L04
 descrizione: >-
   Appunti della lezione L04 di Algebra lineare e Geometria (MDAG, parte 2): polinomi e grado, divisione con resto
   e regola di Ruffini, radici e molteplicità, quante radici può avere un polinomio, teorema fondamentale
@@ -8037,7 +9965,7 @@ modulo: AG
 lezione: L05
 titolo: Spazi vettoriali I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L05
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L05
 descrizione: >-
   Appunti della lezione L05 di Algebra lineare e Geometria (MDAG, parte 2): lo spazio euclideo, somma di vettori e
   prodotto per scalare, gruppi, campi, definizione di spazio vettoriale ed esempi (polinomi, funzioni, successioni),
@@ -10051,7 +11979,7 @@ modulo: AG
 lezione: L06
 titolo: Spazi vettoriali II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L06
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L06
 descrizione: >-
   Appunti della lezione L06 di Algebra lineare e Geometria (MDAG, parte 2): lo spazio delle matrici, i sottospazi
   vettoriali, le matrici diagonali, triangolari, simmetriche e antisimmetriche, le combinazioni lineari e il
@@ -10875,7 +12803,7 @@ modulo: AG
 lezione: L07
 titolo: Spazi vettoriali III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L07
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L07
 descrizione: >-
   Appunti della lezione L07 di Algebra lineare e Geometria (MDAG, parte 2): dipendenza e indipendenza lineare,
   basi, base canonica di K^n e dei polinomi, dimensione di uno spazio vettoriale e teorema sulle basi, con quiz
@@ -11635,7 +13563,7 @@ modulo: AG
 lezione: L08
 titolo: Matrici I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L08
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L08
 descrizione: >-
   Appunti della lezione L08 di Algebra lineare e Geometria (MDAG, parte 2): trasposta di una matrice, matrici
   simmetriche, rango per righe e per colonne, prodotto riga per colonna e sue proprietà, traccia, con quiz nello
@@ -13825,7 +15753,7 @@ modulo: AG
 lezione: L09
 titolo: Matrici II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L09
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L09
 descrizione: >-
   Appunti della lezione L09 di Algebra lineare e Geometria (MDAG, parte 2): il determinante di una matrice quadrata
   definito con le permutazioni, le formule per le matrici 2×2 e 3×3, matrici triangolari e matrice identità, lo
@@ -14582,7 +16510,7 @@ modulo: AG
 lezione: L10
 titolo: Matrici III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L10
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L10
 descrizione: >-
   Appunti della lezione L10 di Algebra lineare e Geometria (MDAG, parte 2): come cambia il determinante con le mosse
   di Gauss, determinante nullo e righe dipendenti, teorema di Binet, cofattori, matrice inversa e criterio di
@@ -15362,7 +17290,7 @@ modulo: AG
 lezione: L11
 titolo: Sistemi lineari I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L11
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L11
 descrizione: >-
   Appunti della lezione L11 di Algebra lineare e Geometria (MDAG, parte 2): sistemi lineari e matrice completa,
   mosse di Gauss, pivot e matrici a scalini, algoritmi di Gauss e di Gauss–Jordan, come si scrivono tutte le
@@ -17171,7 +19099,7 @@ modulo: AG
 lezione: L12
 titolo: Sistemi lineari II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L12
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L12
 descrizione: >-
   Appunti della lezione L12 di Algebra lineare e Geometria (MDAG, parte 2): sistema omogeneo associato, soluzione
   particolare, sottospazi affini, rango e pivot, teorema di Rouché–Capelli, sistemi quadrati e sistemi con un
@@ -17902,7 +19830,7 @@ modulo: AG
 lezione: L13
 titolo: Sistemi lineari III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L13
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L13
 descrizione: >-
   Appunti della lezione L13 di Algebra lineare e Geometria (MDAG, parte 2): indipendenza lineare, generatori, basi e
   coordinate rispetto a una base studiati con i sistemi lineari, il rango e il determinante, più un codice che
@@ -18597,7 +20525,7 @@ modulo: AG
 lezione: L14
 titolo: Applicazioni lineari I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L14
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L14
 descrizione: >-
   Appunti della lezione L14 di Algebra lineare e Geometria (MDAG, parte 2): applicazioni lineari, esempi e non
   esempi, l'applicazione associata a una matrice, nucleo e immagine, iniettività e suriettività, teorema della
@@ -19358,7 +21286,7 @@ modulo: AG
 lezione: L15
 titolo: Applicazioni lineari II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L15
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L15
 descrizione: >-
   Appunti della lezione L15 di Algebra lineare e Geometria (MDAG, parte 2): isomorfismi, spazi vettoriali isomorfi,
   coordinate e matrice associata a un'applicazione lineare rispetto a due basi, con quiz nello stile dell'esame ed
@@ -20144,7 +22072,7 @@ modulo: AG
 lezione: L16
 titolo: Applicazioni lineari III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L16
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L16
 descrizione: >-
   Appunti della lezione L16 di Algebra lineare e Geometria (MDAG, parte 2): matrice di cambiamento di base,
   composizione di applicazioni lineari e prodotto di matrici, endomorfismi e matrici simili, con quiz nello stile
@@ -20871,7 +22799,7 @@ modulo: AG
 lezione: L17
 titolo: Autovalori e autovettori I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L17
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L17
 descrizione: >-
   Appunti della lezione L17 di Algebra lineare e Geometria (MDAG, parte 2): autovettori e autovalori di un
   endomorfismo, endomorfismi e matrici diagonalizzabili, potenze di matrici e polinomio caratteristico, con quiz nello
@@ -22810,7 +24738,7 @@ modulo: AG
 lezione: L18
 titolo: Autovalori e autovettori II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L18
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L18
 descrizione: >-
   Appunti della lezione L18 di Algebra lineare e Geometria (MDAG, parte 2): indipendenza di autovettori con autovalori
   distinti, autospazi e somma diretta, molteplicità algebrica e geometrica, teorema di diagonalizzabilità e matrici con
@@ -23514,7 +25442,7 @@ modulo: AG
 lezione: L19
 titolo: Prodotti scalari I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L19
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L19
 descrizione: >-
   Appunti della lezione L19 di Algebra lineare e Geometria (MDAG, parte 2): che cos'è un prodotto scalare, prodotti
   degeneri e definiti positivi, il prodotto scalare euclideo, le matrici simmetriche e la matrice associata a un
@@ -25556,7 +27484,7 @@ modulo: AG
 lezione: L20
 titolo: Prodotti scalari II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L20
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L20
 descrizione: >-
   Appunti della lezione L20 di Algebra lineare e Geometria (MDAG, parte 2): come cambia la matrice di un prodotto
   scalare cambiando base, forme quadratiche, norma, disuguaglianza di Cauchy–Schwarz e triangolare, distanze e angoli
@@ -26320,7 +28248,7 @@ modulo: AG
 lezione: L21
 titolo: Prodotti scalari III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L21
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L21
 descrizione: >-
   Appunti della lezione L21 di Algebra lineare e Geometria (MDAG, parte 2): vettori ortogonali, complemento ortogonale,
   proiezione ortogonale su una retta e su un sottospazio, basi ortogonali e ortonormali, algoritmo di Gram–Schmidt,
@@ -27181,7 +29109,7 @@ modulo: AG
 lezione: L22
 titolo: Lo spazio euclideo I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L22
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L22
 descrizione: >-
   Appunti della lezione L22 di Algebra lineare e Geometria (MDAG, parte 2): rotazioni e riflessioni del piano,
   isometrie tra spazi con prodotto scalare, matrici ortogonali, classificazione delle isometrie del piano e dello
@@ -29277,7 +31205,7 @@ modulo: AG
 lezione: L23
 titolo: Lo spazio euclideo II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L23
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L23
 descrizione: >-
   Appunti della lezione L23 di Algebra lineare e Geometria (MDAG, parte 2): proprietà del prodotto vettoriale e area
   del parallelogramma, forma cartesiana e parametrica di rette e piani, sottospazi affini e giacitura, intersezioni,
@@ -30233,7 +32161,7 @@ modulo: AG
 lezione: L24
 titolo: Lo spazio euclideo III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L24
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L24
 descrizione: >-
   Appunti della lezione L24 di Algebra lineare e Geometria (MDAG, parte 2): angoli fra rette, fra retta e piano e fra
   piani, distanze fra punti, fra punto e retta, fra rette sghembe e fra punto e piano, con quiz nello stile dell'esame
@@ -31043,7 +32971,7 @@ modulo: AG
 lezione: L25
 titolo: Teorema spettrale I
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L25
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L25
 descrizione: >-
   Appunti della lezione L25 di Algebra lineare e Geometria (MDAG, parte 2): prodotti hermitiani sugli spazi complessi,
   matrici hermitiane, matrice associata, endomorfismi autoaggiunti e sottospazi invarianti, con quiz nello stile
@@ -31770,7 +33698,7 @@ modulo: AG
 lezione: L26
 titolo: Teorema spettrale II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L26
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L26
 descrizione: >-
   Appunti della lezione L26 di Algebra lineare e Geometria (MDAG, parte 2): il teorema spettrale per gli endomorfismi
   autoaggiunti, la sua dimostrazione, la versione con le matrici simmetriche e ortogonali, il collegamento con la PCA e
@@ -32498,7 +34426,7 @@ Aggiornato al 28/09/2026. Fonti: scheda INF0326 (https://laurea.informatica.unit
 | Esame | **scritto al computer + orale obbligatorio**, uguale per i tre canali |
 | Lingua | italiano; il corso è segnato "English-friendly" (per il corso di laurea: materiale in inglese per preparare l'esame e possibilità di sostenerlo in inglese; https://laurea.informatica.unito.it/do/home.pl/View?doc=International_students.html) |
 | Competenze attese | Programmazione I e Fondamenti dell'Informatica (1° semestre) |
-| Libro | D. A. Patterson, J. L. Hennessy, *Struttura e progetto dei calcolatori – Progettare con RISC-V*, 2ª ed., Zanichelli 2023 |
+| Libro | D. A. Patterson, J. L. Hennessy, *Struttura e progetto dei calcolatori – Progettare con RISC-V*, 2ª ed., Zanichelli 2023, ISBN 978-88-08-19966-9. Sei capitoli (1 il calcolatore: astrazioni e tecnologia; 2 le istruzioni, il linguaggio dei calcolatori; 3 l'aritmetica dei calcolatori; 4 il processore; 5 grande e veloce: la gerarchia delle memorie; 6 processori paralleli) più il manuale di riferimento RISC-V. Quattro appendici sono online, sul sito dell'editore: A «The Basics of Logic Design», B «Mapping Control to Hardware» e D «Survey of Instruction Set Architectures» in inglese, C «La grafica e il calcolo con la GPU» in italiano |
 | Simulatore | **ARES** (https://ares-sim.github.io), nel browser, RISC-V a 32 bit, dal 2025/26; fino al 2024/25 si usava RARS (a 64 bit) |
 
 ## Docenti e Moodle

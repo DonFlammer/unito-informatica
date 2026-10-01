@@ -4,7 +4,7 @@ modulo: AG
 lezione: L15
 titolo: Applicazioni lineari II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L15
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L15
 descrizione: >-
   Appunti della lezione L15 di Algebra lineare e Geometria (MDAG, parte 2): isomorfismi, spazi vettoriali isomorfi,
   coordinate e matrice associata a un'applicazione lineare rispetto a due basi, con quiz nello stile dell'esame ed

@@ -1,4 +1,4 @@
-# Algebra lineare e Geometria (MDAG, parte 2) — indice delle lezioni
+# Algebra lineare e Geometria (MDAG, parte 2, modB) — indice delle lezioni
 
 Scheda completa del corso (entrambi i moduli, orari dei tre canali, esame): `corso.md`. Le 26 lezioni seguono le dispense 2026 del corso (Buzano, Radeschi), comuni ai canali A, B e C, e sono pronte in anticipo rispetto alle lezioni in aula: il ritmo in aula può essere diverso. Ogni file ha quiz nello stile dell'esame, esercizi svolti, domande di ripasso, glossario e una sezione «Verso l'esame» con le domande degli appelli 2023–2026 sugli stessi argomenti. Gli appunti di Matematica Discreta (MDAG, parte 1) non ci sono ancora.
 

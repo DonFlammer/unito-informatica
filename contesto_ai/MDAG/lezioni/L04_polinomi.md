@@ -4,7 +4,7 @@ modulo: AG
 lezione: L04
 titolo: Polinomi
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L04
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L04
 descrizione: >-
   Appunti della lezione L04 di Algebra lineare e Geometria (MDAG, parte 2): polinomi e grado, divisione con resto
   e regola di Ruffini, radici e molteplicità, quante radici può avere un polinomio, teorema fondamentale

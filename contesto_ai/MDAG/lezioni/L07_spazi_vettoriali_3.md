@@ -4,7 +4,7 @@ modulo: AG
 lezione: L07
 titolo: Spazi vettoriali III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L07
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L07
 descrizione: >-
   Appunti della lezione L07 di Algebra lineare e Geometria (MDAG, parte 2): dipendenza e indipendenza lineare,
   basi, base canonica di K^n e dei polinomi, dimensione di uno spazio vettoriale e teorema sulle basi, con quiz

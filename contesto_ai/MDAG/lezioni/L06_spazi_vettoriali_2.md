@@ -4,7 +4,7 @@ modulo: AG
 lezione: L06
 titolo: Spazi vettoriali II
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L06
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L06
 descrizione: >-
   Appunti della lezione L06 di Algebra lineare e Geometria (MDAG, parte 2): lo spazio delle matrici, i sottospazi
   vettoriali, le matrici diagonali, triangolari, simmetriche e antisimmetriche, le combinazioni lineari e il

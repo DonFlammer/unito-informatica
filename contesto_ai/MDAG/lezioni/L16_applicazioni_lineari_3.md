@@ -4,7 +4,7 @@ modulo: AG
 lezione: L16
 titolo: Applicazioni lineari III
 docenti: Reto Buzano e Marco Radeschi
-sopratitolo: Parte 2 · Algebra lineare e Geometria · Canali A, B e C · Lezione L16
+sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L16
 descrizione: >-
   Appunti della lezione L16 di Algebra lineare e Geometria (MDAG, parte 2): matrice di cambiamento di base,
   composizione di applicazioni lineari e prodotto di matrici, endomorfismi e matrici simili, con quiz nello stile

@@ -39,39 +39,6 @@ genera_html: true
 > [!CANALI]
 > Algebra lineare e Geometria usa le **stesse dispense** nei tre canali: Buzano insegna nei canali A e B, Radeschi nei canali B e C. Questi appunti seguono le dispense 2026, quindi valgono allo stesso modo per A, B e C. Cambiano solo i giorni delle lezioni: la pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)) avverte che i cambi d'orario vengono annunciati lì e a lezione. Esame e quiz sono comuni ai tre canali.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Tutto il corso di Algebra lineare fa conti con i numeri. Per questo la prima lezione non parla ancora di vettori o di matrici: parla dei numeri stessi.
-
-Da piccoli si impara a contare: uno, due, tre. Poi si scoprono i numeri sotto zero, come i gradi di temperatura in inverno. Poi le frazioni, come mezza pizza. Infine i numeri con la virgola che non finiscono mai, come pi greco. Ogni volta la famiglia dei numeri diventa più grande.
-
-In questa lezione dai un nome a ognuna di queste famiglie e impari la lettera con cui si indica. Queste lettere compaiono in ogni pagina delle dispense, quindi conviene conoscerle bene da subito.
-
-Poi vedi quali regole seguono le somme e i prodotti. Sono regole che usi già senza pensarci. Qui ricevono un nome, perché nelle prossime lezioni le stesse regole varranno anche per oggetti che non sono numeri.
-
-Alla fine ci sono due cose pratiche: come si leggono i simboli che trovi nelle formule e come si fanno a mano i conti con le radici.
-
-Una parte della lezione è più astratta delle altre: spiega come si «costruiscono» i numeri con infinite cifre. Serve per capire, ma all'esame non viene chiesta. Dove comincia, trovi un avviso.
-
-### Che cosa devi già sapere
-
-Quasi niente. Bastano queste tre cose, e le ultime due le ripassiamo insieme quando servono.
-
-- **Le quattro operazioni** con i numeri interi: più, meno, per, diviso.
-- **Le frazioni**: che cosa vuol dire «un mezzo» o «tre quarti». Il ripasso è nella sezione sulle famiglie dei numeri.
-- **Quadrati e radici**: che cosa vuol dire «3 al quadrato» e «radice di 9». Il ripasso è nella sezione sulla radice di 2.
-
-### Che cosa saprai fare alla fine
-
-- Dire in quale famiglia sta un numero: per esempio che $-4$ è un intero e che $\frac 72$ è una frazione.
-- Leggere ad alta voce una scrittura come $3 \in \N$.
-- Spiegare perché $\sqrt 2$ non è una frazione.
-- Dire perché gli interi non formano un campo e le frazioni sì.
-- Non confondere $\{1, 2\}$, $(1, 2)$ e $[1, 2]$.
-- Semplificare a mano espressioni come $\sqrt{12}$ e $\frac 6{\sqrt 3}$.
-
 ## Gli insiemi: sacchetti con dentro delle cose (p. 2)
 
 Prima di parlare di numeri serve una parola sola: **insieme**.

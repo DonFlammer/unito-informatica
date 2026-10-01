@@ -39,41 +39,6 @@ genera_html: true
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Una matrice è una tabella di numeri, come un listino dei prezzi o il tabellone di un torneo. Nella lezione L06 hai visto le prime due operazioni sulle matrici: sommare due tabelle casella per casella e moltiplicare tutta una tabella per un numero. In questa lezione ne arrivano altre quattro.
-
-La prima è girare la tabella, in modo che le righe diventino colonne. Il risultato si chiama trasposta.
-
-La seconda è un conteggio: quante colonne della tabella dicono davvero qualcosa di nuovo, e quante invece sono copie o miscele delle altre. Questo numero si chiama rango, e torna in quasi tutte le lezioni che seguono.
-
-La terza è la più importante: il prodotto di due matrici. Non si fa casella per casella, come verrebbe da pensare. Si fa come il conto della spesa: moltiplichi ogni quantità per il suo prezzo e poi sommi tutto. Il prodotto ha una sorpresa: l'ordine conta. Se scambi le due matrici, di solito il risultato cambia.
-
-La quarta è la più corta: sommare i numeri che stanno sulla diagonale della tabella. Il risultato si chiama traccia.
-
-A che cosa serve tutto questo? Dalla lezione L11 i sistemi di equazioni si scrivono e si risolvono con le matrici, e il rango dice quante soluzioni hanno. Dalla lezione L14 le matrici diventano macchine che trasformano vettori, e il prodotto è il modo di farle lavorare una dopo l'altra. All'esame, poi, queste quattro operazioni compaiono nel quiz di quasi ogni appello.
-
-### Che cosa devi già sapere
-
-Poche cose, e le ripassiamo tutte nel punto in cui servono.
-
-- **Che cos'è una matrice** e come si sommano due matrici: casella per casella (lezione L06). Il ripasso è nella prima sezione.
-- **Che cos'è un vettore**: una lista ordinata di numeri, come $(3, 2)$. Puoi pensarlo come uno spostamento su una mappa a quadretti: 3 passi a destra e 2 in su (lezione L05).
-- **Combinazioni lineari e Span**: mescolare dei vettori come gli ingredienti di una ricetta (lezione L06). Il ripasso è nella sezione sul rango.
-- **Vettori indipendenti e dimensione** (lezione L07). Anche questi li ripassiamo nella sezione sul rango.
-- **Una somma di prodotti**, come $2 \cdot 4 + 3 \cdot 1$: prima le moltiplicazioni, poi la somma. Il ripasso è nella sezione sul prodotto.
-
-### Che cosa saprai fare alla fine
-
-- Leggere una matrice: dire quante righe e quante colonne ha, e trovare il numero che sta in una certa casella.
-- Scrivere la trasposta di una matrice e dire se una matrice è simmetrica.
-- Trovare il rango di una matrice piccola, cercando le righe o le colonne che sono «doppioni».
-- Dire se un prodotto di due matrici si può fare, di che taglia viene, e calcolarlo.
-- Calcolare la traccia di un prodotto senza fare tutto il prodotto.
-- Rispondere alla domanda d'esame «quale identità vale?».
-
 ## Le matrici: tabelle di numeri (p. 36)
 
 Una matrice è una tabella con dei numeri dentro. Questa sezione ripassa come si legge e come si scrive: è quello che le dispense ricordano all'inizio della lezione, prima delle operazioni nuove.

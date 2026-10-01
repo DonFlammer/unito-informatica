@@ -39,37 +39,6 @@ genera_html: true
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Su una mappa a quadretti puoi dire a qualcuno come muoversi con due soli numeri: tre passi a destra, due passi in su. Una lista di numeri come questa si chiama vettore, e da qui in poi quasi ogni lezione del corso parla di vettori.
-
-Con i vettori si fanno due cose. Si sommano, e vuol dire fare uno spostamento dopo l'altro. Si moltiplicano per un numero, e vuol dire ripetere lo stesso spostamento più volte, oppure farlo al contrario.
-
-Poi arriva l'idea che dà il nome alla lezione. Le stesse due operazioni, con le stesse regole, si possono fare anche con oggetti che non sono liste di numeri, come i polinomi della lezione L04. Ogni posto in cui si può sommare e moltiplicare per un numero con le solite regole, senza mai uscire, si chiama spazio vettoriale. Il vantaggio è questo: una cosa dimostrata usando solo quelle regole vale in un colpo per le liste, per i polinomi e per tutto il resto.
-
-Una parte della lezione è più teorica: per scrivere la definizione in modo preciso le dispense usano due liste di regole, che si chiamano gruppo e campo. Servono per capire, ma all'esame non vengono chieste, e dove cominciano trovi un avviso.
-
-Nella lezione L06 userai tutto questo per riconoscere i sottospazi, una delle domande più frequenti del quiz su questa parte del corso.
-
-### Che cosa devi già sapere
-
-Poche cose, e le ripassiamo quando servono.
-
-- **Il piano cartesiano**: un punto si indica con due numeri, per esempio «2 a destra e 3 in su». Il ripasso è nella prima sezione.
-- **Le nove regole dei conti** della lezione L01: per esempio «in una somma l'ordine non conta», cioè $2 + 5 = 5 + 2$. Le ricordiamo nelle sezioni sui gruppi e sui campi.
-- **I simboli degli insiemi** della lezione L01, come le graffe e il simbolo «appartiene». Li rileggiamo la prima volta che compaiono.
-- **I numeri complessi** (lezione L02) e **i polinomi** (lezione L04). Servono solo in alcuni esempi, e lì trovi un riquadro di ripasso.
-
-### Che cosa saprai fare alla fine
-
-- Sommare due vettori e moltiplicare un vettore per un numero: per esempio calcolare $2 \cdot (1, 2, 0) - 3 \cdot (1, 0, -1)$.
-- Disegnare nel piano la somma di due vettori e i multipli di un vettore.
-- Fare gli stessi conti con vettori di numeri complessi, con polinomi e con funzioni.
-- Dire qual è il vettore zero in ogni esempio, senza confonderlo con il numero zero.
-- Dire se un insieme è uno spazio vettoriale. Se non lo è, trovare l'esempio che lo dimostra.
-
 ## Un vettore è una lista di numeri (pp. 20–21)
 
 Immagina una mappa a quadretti, come un foglio di quaderno. Sei fermo su un incrocio e devi spiegare a un amico dove andare.

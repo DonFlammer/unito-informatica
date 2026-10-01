@@ -40,39 +40,6 @@ genera_html: true
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Appoggia sul tavolo un foglio con un disegno e fallo girare intorno a una puntina. Il disegno cambia posizione, ma non cambia forma: nessuna linea si allunga e nessun angolo si apre o si chiude. Lo stesso succede se guardi il disegno in uno specchio. Movimenti come questi si chiamano movimenti rigidi. In matematica il loro nome è isometrie.
-
-Nelle lezioni L19, L20 e L21 hai imparato a misurare lunghezze, distanze e angoli con il prodotto scalare. Questa lezione fa il passo successivo. Cerca le macchine che trasformano i vettori lasciando uguali tutte queste misure.
-
-La risposta è corta. Nel piano ci sono solo le rotazioni e gli specchi. Tutti e due si riconoscono guardando la tabella di numeri della macchina: le sue colonne devono essere lunghe uno e perpendicolari tra loro.
-
-Nell'ultima parte la lezione cambia argomento. Impari il prodotto vettoriale, una ricetta che da due vettori dello spazio ne costruisce un terzo, perpendicolare a tutti e due. È lo strumento più usato nelle lezioni L23 e L24, dove si lavora con rette e piani, e nei problemi d'esame.
-
-Due parti della lezione sono più teoriche delle altre: la definizione generale di isometria e i movimenti rigidi dello spazio. Servono per capire, ma negli appelli dal 2023 al 2026 non sono state chieste. Dove cominciano trovi un avviso.
-
-### Che cosa devi già sapere
-
-Tutte queste cose vengono ricordate con un esempio nel punto in cui servono.
-
-- **Vettori e matrici** (lezioni L05 e L08). Un vettore è una lista di numeri, come $(3, 2)$. Una matrice è una tabella di numeri. Il ripasso della moltiplicazione «matrice per vettore» è nella prima sezione.
-- **Prodotto scalare, lunghezza, perpendicolare** (lezioni L19, L20 e L21). Il ripasso è nella prima sezione.
-- **Angoli in radianti, coseno e seno.** I due ripassi sono nella sezione sulle rotazioni.
-- **Determinante** di una matrice con due righe e due colonne (lezione L09). Il ripasso è nella sezione sulle rotazioni.
-- **Vettori dipendenti, vettori indipendenti, base** (lezione L07). Servono solo nell'ultima sezione, e li ricordiamo lì.
-
-### Che cosa saprai fare alla fine
-
-- Scrivere la matrice di una rotazione o di una riflessione del piano, e usarla per muovere un vettore.
-- Dire se una matrice è ortogonale guardando le sue colonne.
-- Riconoscere se una matrice ortogonale del piano è una rotazione o una riflessione, e trovare l'angolo oppure la retta dello specchio.
-- Scrivere l'inversa di una matrice ortogonale senza fare conti.
-- Calcolare il prodotto vettoriale di due vettori e controllare il risultato.
-- Usare il prodotto vettoriale per trovare un vettore perpendicolare a un piano.
-
 ## Movimenti che non deformano (p. 111)
 
 Un movimento rigido sposta una figura senza cambiarne la forma.

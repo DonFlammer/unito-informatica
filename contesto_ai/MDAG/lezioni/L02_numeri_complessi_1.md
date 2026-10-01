@@ -39,42 +39,6 @@ genera_html: true
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Prima di cominciare
-
-### Di che cosa parla questa lezione
-
-Nella lezione L01 ogni famiglia di numeri nasceva da una domanda rimasta senza risposta. L'ultima domanda della lista era: quale numero, moltiplicato per sé stesso, dà meno uno? Tra i numeri reali un numero così non c'è.
-
-In questa lezione quel numero si inventa. Gli si dà un nome e una lettera, e si continua a fare i conti con le regole di sempre. I numeri che nascono così si chiamano numeri complessi.
-
-Per tenerli in testa c'è un'immagine. I numeri reali stanno tutti su una riga: la retta dei numeri. I numeri complessi su una riga non ci stanno, e hanno bisogno di un foglio a quadretti. Ogni numero complesso è un punto del foglio. Per dire dov'è servono due indicazioni: quanti passi a destra e quanti passi in su.
-
-Imparerai a sommarli, a moltiplicarli e a dividerli, e a vedere sul foglio che cosa succede. Sono conti brevi, e all'esame tornano in quasi tutti gli appelli, spesso nella prima domanda del quiz.
-
-Nel resto del corso i numeri complessi servono più avanti: per le radici dei polinomi, nella lezione L04, e per gli autovalori di una matrice, nelle lezioni L17 e L18.
-
-Una sola parte è teorica: la dimostrazione che i numeri complessi non si possono mettere in fila dal più piccolo al più grande. È in un riquadro chiuso, e puoi saltarla.
-
-### Che cosa devi già sapere
-
-Poche cose, e quasi tutte le ripassiamo quando servono.
-
-- **I numeri reali** (lezione L01): gli interi, le frazioni, le radici e i numeri con infinite cifre dopo la virgola. Per esempio $-3$, $\frac 12$ e $\sqrt 2$. Il loro insieme si indica con $\R$.
-- **Il quadrato di un numero** (lezione L01): il numero moltiplicato per sé stesso. Per esempio $3^2 = 3 \cdot 3 = 9$.
-- **Le nove regole dei conti** e la parola **campo** (lezione L01). Le ricordiamo nella sezione sulle regole dei conti.
-- **Il foglio a quadretti con due assi**, cioè il piano cartesiano. Il ripasso è nella sezione «Com'è fatto un numero complesso».
-- **Il prodotto di due parentesi**, come $(2 + 3) \cdot (4 + 1)$. Il ripasso è nella sezione sulla somma e sul prodotto.
-- **Il teorema di Pitagora** e le radici quadrate. Il ripasso è nella sezione sul modulo.
-
-### Che cosa saprai fare alla fine
-
-- Dire qual è la parte reale e qual è la parte immaginaria di un numero come $4 - i$.
-- Sommare e moltiplicare due numeri complessi, per esempio $(7 + i) \cdot (4 - i)$.
-- Calcolare una potenza di $i$ con un esponente grande, come $i^{2026}$.
-- Calcolare il coniugato, il modulo e l'inverso di un numero complesso.
-- Dividere due numeri complessi e risolvere un'equazione come $(1 + i)z = 3 + 2i$.
-- Disegnare un numero complesso come punto del piano, e riconoscere una retta o una circonferenza da una condizione scritta con i simboli.
-
 ## Una domanda senza risposta tra i numeri reali (p. 6)
 
 Alla fine della lezione L01 era rimasta una domanda senza risposta.

@@ -100,6 +100,7 @@ Riferimento 2025/26 (iscritti): MD 13/01 (340), 03/02 (325), 08/06 (127), 01/07 
 - **Moodle MDAG2 2026/27**: dispense 2026 del corso (L01–L26, basate su Martelli), fogli di esercizi del tutorato caricati man mano, appunti manoscritti e video.
 - **Moodle 2025/26 (aperti agli ospiti)**: regole d'esame; testi e soluzioni di tutti gli appelli MD e AG fino a settembre 2026; cartella "Quiz 2021/25"; dispense AG complete (L01–L26); videolezioni; fogli di esercizi del tutorato.
 - **Guida TSI** (`Materie/MD`, `Materie/AG`): raccolte di esami con soluzioni (MD dal 2017/18 al 2023/24), formulari (quello di Alessandro Salerno ha anche la classificazione dei problemi d'esame per tipo), appunti. Le regole d'esame 2023/24 lì contenute sono superate.
+- **Rigurgiti di Unicorno** (Valentino Bocchino, febbraio 2026, https://github.com/bocchinovalentino/rigurgiti_di_unicorno, licenza CC BY-NC-SA 4.0): appunti di Matematica Discreta scritti da uno studente seguendo il libro di Mori, in tre PDF (teoria, esercizi svolti, completo) più il sorgente LyX da modificare. Coprono insiemi, funzioni, combinatoria, numeri interi, permutazioni, gruppi e aritmetica modulare. Non sono materiale ufficiale; utili come riepilogo, perché alla prova di MD si possono portare libro e appunti.
 
 ## Consigli e trappole
 

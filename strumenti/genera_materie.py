@@ -154,7 +154,7 @@ def testata(radice, url_en, attiva=""):
     id="barra": la <head> aspetta questo elemento prima del primo disegno (vedi testa_html)."""
     corsi = ' aria-current="page"' if attiva == "corsi" else ""
     return f"""<a class="salta" href="#contenuto">Vai al contenuto</a>
-<div class="sfondo" aria-hidden="true"><canvas class="griglia"></canvas><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
 <script src="{radice}assets/js/rete.js"></script>
 <header class="barra" id="barra">
   <div class="barra-in">

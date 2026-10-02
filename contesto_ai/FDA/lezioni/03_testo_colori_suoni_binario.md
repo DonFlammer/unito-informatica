@@ -1,12 +1,12 @@
 ---
 corso: FDA
-lezione: "02"
+lezione: "03"
 titolo: Testo, colori e suoni in bit; i numeri in base 2
 data: 2026-10-02
 docenti: Stefano Berardi
-sopratitolo: Canale B · Lezione 02 · Libro, parte 1, §1.4–1.5
+sopratitolo: Canale B · Lezione 03 · Venerdì 02/10, ore 11–13 · Libro, parte 1, §1.4–1.5
 descrizione: >-
-  Appunti della lezione 02 di Fondamenti dell'Informatica (canale B): come si scrivono in bit il testo (ASCII,
+  Appunti della lezione 03 di Fondamenti dell'Informatica (canale B): come si scrivono in bit il testo (ASCII,
   Unicode, UTF-8), i numeri, le immagini (pixel e colori RGB) e i suoni (campioni); il sistema binario, le
   conversioni tra base 2 e base 10, le frazioni in binario e l'addizione di interi senza segno, con strumenti
   interattivi, quiz ed esercizi svolti.
@@ -25,7 +25,7 @@ fonte: >-
   riassunto della lezione del 02/10/2026 sul Moodle del canale B; lucidi del canale A 2026/27 sulla codifica dei
   dati; standard Unicode e UTF-8
 file_en: 02_text_colours_sounds_binary.html
-appunti_html: appunti/FDA/02_testo_colori_suoni_binario.html
+appunti_html: appunti/FDA/03_testo_colori_suoni_binario.html
 genera_html: true
 ---
 
@@ -41,7 +41,7 @@ genera_html: true
 - Dopo la virgola le posizioni valgono 1/2, 1/4, 1/8…: 101,101 vale 5 e 5/8.
 
 > [!CANALI]
-> Nel canale B è la lezione di venerdì 02/10, dalle 11 alle 13. Per il docente è la lezione 3, perché la prima è stata un'introduzione: qui è la lezione 02. Stefano Berardi ha fatto le sezioni 1.4 e 1.5 del libro: alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno. Le sezioni 1.2 e 1.3 sono nella [lezione 01](01_bit_porte_esadecimale.html). Nel canale A i lucidi «Cenni sulla codifica dei dati» di Felice Cardone fanno le stesse conversioni con le divisioni per 2, e ricordano che in ASCII la minuscola si ottiene dalla maiuscola aggiungendo 32. Nel canale C le stesse sezioni stanno nei lucidi «Rappresentazione» di Luca Paolini.
+> Nel canale B è la lezione ufficiale **03**, venerdì 02/10/2026 dalle 11 alle 13, con Stefano Berardi: parte 1 del libro, §1.4 «Representing Information as Bit Patterns» e §1.5 «The Binary System». Gli argomenti indicati sono alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno. I bit, le porte logiche, la memoria centrale e le memorie di massa sono negli [appunti precedenti](01_bit_porte_esadecimale.html). Nel canale A i lucidi «Cenni sulla codifica dei dati» di Felice Cardone fanno le stesse conversioni con le divisioni per 2, e ricordano che in ASCII la minuscola si ottiene dalla maiuscola aggiungendo 32. Nel canale C le stesse sezioni stanno nei lucidi «Rappresentazione» di Luca Paolini: i riferimenti tra canali servono per confrontare il materiale, non per attribuire a tutti la stessa data di lezione.
 
 ## Il testo: il codice ASCII (libro, §1.4)
 
@@ -93,7 +93,7 @@ Prova a scrivere in ASCII la parola «perché»: non si può. La é non c'è, e 
 
 Per le altre lingue sono nati codici a 8 bit, con 256 simboli: i primi 128 sono quelli di ASCII, gli altri cambiano da lingua a lingua. Il codice ISO 8859-1, detto Latin-1, per esempio, ha le lettere accentate dell'Europa occidentale. Il libro spiega i due limiti di questa idea: 256 simboli non bastano per lingue come il cinese, e un testo in più lingue non sa quale tabella usare.
 
-La soluzione di oggi è **Unicode**: un'unica tabella con i simboli di tutte le lingue, più simboli matematici, emoji e molto altro. Ogni simbolo ha un numero, detto **punto di codice** (*code point*), che si scrive con «U+» seguito dal numero in esadecimale. I numeri arrivano a 21 bit: c'è posto per più di un milione di simboli. I primi 128 sono quelli di ASCII.
+La soluzione di oggi è **Unicode**: uno standard che assegna numeri ai caratteri delle scritture del mondo, ai simboli matematici, alle emoji e a molti altri caratteri. Un numero assegnato si chiama **punto di codice** (*code point*) e si scrive con «U+» seguito dal numero in esadecimale. Lo spazio dei punti di codice va da U+0000 a U+10FFFF: servono fino a 21 bit, e non tutte le posizioni sono già assegnate a caratteri. I primi 128 corrispondono ad ASCII.
 
 | Simbolo | Punto di codice | In decimale |
 |:-:|:-:|--:|
@@ -111,7 +111,10 @@ Unicode dice soltanto quale numero ha ogni simbolo. Per conservarlo in memoria b
 | da U+0800 a U+FFFF | fino a 16 | 3 | 1110xxxx 10xxxxxx 10xxxxxx |
 | da U+10000 a U+10FFFF | fino a 21 | 4 | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx |
 
-Al posto delle x vanno i bit del punto di codice, in ordine. Il primo byte dice quanti byte ha il simbolo: tanti 1 quanti sono i byte, poi uno 0. I byte che seguono cominciano tutti con 10. Così, leggendo un file, si capisce sempre dove comincia ogni simbolo.
+Al posto delle x vanno i bit del punto di codice, in ordine. Se basta un byte, questo comincia con 0. Se ne servono due, tre o quattro, il primo comincia rispettivamente con 110, 1110 o 11110: gli 1 iniziali indicano quanti byte leggere. I byte che seguono cominciano tutti con 10.
+
+> [!NOTA] Un intervallo riservato
+> La riga dei tre byte esclude U+D800–U+DFFF: sono valori riservati alle coppie surrogate di UTF-16 e non si codificano da soli in UTF-8. I caratteri degli esempi qui sotto sono tutti fuori da quell'intervallo.
 
 I simboli di ASCII occupano un solo byte che comincia con 0: è proprio il byte di ASCII. Quindi un testo in ASCII è già un testo in UTF-8.
 
@@ -128,6 +131,9 @@ I simboli di ASCII occupano un solo byte che comincia con 0: è proprio il byte 
 
 > [!TRAPPOLA] UTF-8 non vuol dire «8 bit per simbolo»
 > L'8 dice che UTF-8 lavora a byte, ma un simbolo può occupare da 1 a 4 byte. Contare i simboli non basta per sapere quanti byte occupa un testo: «perché» ha 6 simboli e occupa 7 byte.
+
+> [!OLTRE] Una lettera visibile può essere più punti di codice
+> La é può essere il carattere U+00E9, che in UTF-8 occupa 2 byte, oppure la e U+0065 seguita dall'accento combinante U+0301, che insieme occupano 3 byte. Sullo schermo le due scritture possono apparire uguali. Nei conti di questa lezione le lettere accentate sono i caratteri precomposti indicati nelle tabelle: per contare i byte si seguono i punti di codice effettivamente presenti.
 
 Un file fatto solo di codici di simboli, uno dopo l'altro, si chiama **file di testo**: sono file di testo i .txt, ma anche i programmi in C e le pagine web. I programmi di videoscrittura, come Word, salvano anche grassetti, caratteri e margini con codici loro: un file .docx non è un file di testo.
 
@@ -188,7 +194,7 @@ Un'immagine fatta così si chiama **mappa di bit** (*bit map*): una griglia di p
 
 ### I colori in RGB
 
-Per i colori il modo più comune è **RGB**: ogni pixel ha tre numeri, quanto rosso (*red*), quanto verde (*green*) e quanto blu (*blue*). Ognuno va da 0 a 255, quindi occupa un byte: in tutto 3 byte per pixel.
+Per i colori il modo più comune è **RGB**: ogni pixel ha tre numeri, quanto rosso (*red*), quanto verde (*green*) e quanto blu (*blue*). Nel modello **RGB a 24 bit** usato qui ogni componente va da 0 a 255 e occupa un byte: in tutto 3 byte per pixel. RGB indica le componenti; la scelta di 8 bit per componente è ciò che dà i 24 bit.
 
 I tre colori si mescolano come tre luci puntate sullo stesso punto. Rosso e verde insieme danno il giallo; tutti e tre al massimo danno il bianco; tutti a zero, cioè luce spenta, danno il nero. Tre valori uguali danno un grigio.
 
@@ -220,7 +226,7 @@ b: 0
 
 ### Quanto pesa un'immagine
 
-Lo schermo di un portatile Full HD ha 1920 × 1080 = 2073600 pixel. A 3 byte per pixel, un'immagine grande come lo schermo occupa 6220800 byte, circa 6 MB. Per questo le immagini si comprimono, per esempio in JPEG: lo racconta la sezione 1.9 del libro.
+Lo schermo di un portatile Full HD ha 1920 × 1080 = 2073600 pixel. A 3 byte per pixel, i dati dei pixel di un'immagine grande come lo schermo occupano 6220800 byte, circa 6,22 MB, con 1 MB = 1000000 byte. Questo conto riguarda i pixel RGB a 24 bit senza compressione: non include intestazioni, metadati o un eventuale canale di trasparenza. La dimensione di un file JPEG o PNG dipende anche da come viene codificato e compresso.
 
 > [!METODO] Quanti byte occupa un'immagine senza compressione
 > Moltiplica la larghezza per l'altezza, in pixel, e il risultato per i byte di ogni pixel: 3 in RGB. Per avere i bit moltiplica ancora per 8.
@@ -244,7 +250,7 @@ Per ingrandire un'immagine vettoriale si ridisegnano le figure più grandi: nien
 
 ## I suoni: campioni (libro, §1.4)
 
-Un suono è una vibrazione dell'aria, un'onda. Quanto è alta l'onda dà il volume; quanto è fitta dà la nota, più grave o più acuta.
+Un suono è una variazione della pressione dell'aria. In un grafico si rappresenta con un'onda: l'ampiezza è legata al volume, mentre, per un tono periodico, il numero di oscillazioni al secondo è legato all'altezza della nota, più grave o più acuta.
 
 Per registrare un suono si misura l'altezza dell'onda a intervalli regolari, tante volte al secondo, e si conservano i numeri. Ogni misura è un **campione** (*sample*), e il procedimento si chiama **campionamento**. Il libro fa l'esempio di un'onda registrata con i campioni 0; 1,5; 2,0; 1,5; 2,0; 3,0; 4,0; 3,0; 0.
 
@@ -253,7 +259,12 @@ Quanti campioni servono?
 - Per una telefonata bastano 8000 campioni al secondo.
 - Un CD musicale ne usa **44 100 al secondo**, ognuno di **16 bit**, e due canali per la musica in stereo, uno per orecchio.
 
-Più campioni al secondo e più bit per campione danno un suono più fedele, ma occupano più spazio. Nello strumento qui sotto vedi un'onda, i campioni presi a intervalli regolari e il suono che si ricostruisce dai campioni.
+Le due scelte fanno cose diverse.
+
+- La **frequenza di campionamento** dice ogni quanto si misura l'onda: 44100 campioni al secondo vuol dire una misura ogni $1/44100$ di secondo, circa 22,7 microsecondi.
+- La **profondità in bit** dice con quanti valori si rappresenta ciascuna misura. Con 16 bit ci sono $2^{16} = 65536$ livelli possibili: il valore misurato viene associato a uno di questi livelli. Questa scelta si chiama **quantizzazione**.
+
+A parità delle altre condizioni, aumentare queste quantità permette una rappresentazione più accurata e occupa più spazio. Nello strumento qui sotto vedi l'onda e i campioni presi a intervalli regolari.
 
 ```widget codifica
 titolo: Campionare un suono: meno campioni, meno fedeltà
@@ -266,7 +277,7 @@ modo: suono
 > [!ESEMPIO] Un'ora di musica su CD (domanda 10 del §1.4)
 > Ogni campione ha 16 bit, cioè 2 byte. In un secondo di stereo ci sono $44100 \cdot 2 \cdot 2 = 176400$ byte. Un'ora ha 3600 secondi: $176400 \cdot 3600 = 635040000$ byte, circa 635 MB. Un CD contiene da 600 a 700 MB: un'ora di musica lo riempie quasi tutto.
 
-Il formato **MIDI** (*Musical Instrument Digital Interface*) fa un'altra cosa: non conserva l'onda, ma le istruzioni per suonarla, cioè quale strumento, quale nota e per quanto tempo. È molto più compatto. Secondo il libro, un clarinetto che suona un re per due secondi occupa 3 byte in MIDI, contro più di due milioni di bit con 44 100 campioni al secondo. Il difetto: il suono vero dipende dallo strumento elettronico che esegue le istruzioni.
+Il formato **MIDI** (*Musical Instrument Digital Interface*) fa un'altra cosa: conserva eventi e istruzioni per suonare, come la scelta dello strumento e l'inizio e la fine delle note. È simile a uno spartito da eseguire, mentre l'audio campionato conserva le misure del suono registrato. Un messaggio MIDI può occupare pochi byte; una sequenza completa contiene anche altri eventi e informazioni sui tempi. Il suono prodotto dipende dallo strumento elettronico che esegue le istruzioni.
 
 ::: prova Quanti byte occupa un minuto di telefonata registrata con 8000 campioni al secondo, 8 bit per campione e un solo canale?
 Ogni campione occupa 8 bit, cioè un byte. In un secondo ci sono 8000 byte, in un minuto $8000 \cdot 60 = 480000$ byte.
@@ -330,6 +341,13 @@ Per il viaggio al contrario il libro dà un algoritmo, nella figura 1.17.
 > [!IDEA]
 > Il resto della divisione per 2 dice se il numero è pari, resto 0, o dispari, resto 1: è proprio l'ultimo bit. Dividere per 2 toglie l'ultimo bit. Così i bit escono da destra a sinistra, e per questo i resti si leggono al contrario.
 
+### Anche zero è un numero rappresentabile
+
+Per zero non servono divisioni: si scrive $0_{10} = 0_2$. Se è richiesto un byte, diventa 00000000. Gli zeri aggiunti a sinistra non cambiano il valore: 1101 e 00001101 valgono entrambi 13. Uno zero aggiunto a destra, invece, sposta tutti i bit in posizioni di valore doppio: 11010 vale 26.
+
+> [!TRAPPOLA] «Quanti bit servono» e «scrivi su 8 bit» sono richieste diverse
+> Il numero 13 richiede almeno 4 bit, 1101. Per scriverlo su 8 bit aggiungi quattro zeri a sinistra. Il numero 256 richiede 9 bit, 100000000: non entra in un byte, perché $2^8 - 1 = 255$.
+
 Con i numeri piccoli c'è anche un'altra strada: togli la potenza di 2 più grande che ci sta, poi ripeti con quello che resta. Per esempio $45 = 32 + 8 + 4 + 1$: ci sono 32, 8, 4 e 1, mancano 16 e 2, quindi 45 si scrive 101101.
 
 ```widget codifica
@@ -379,6 +397,8 @@ Questo si chiama **overflow** (in italiano anche «trabocco»): il risultato non
 
 > [!TRAPPOLA] Il riporto oltre l'ultima colonna
 > Con $n$ bit, se l'ultima colonna a sinistra dà un riporto, la somma vale almeno $2^n$ e non ci sta: c'è overflow. Il risultato scritto con $n$ bit è sbagliato di $2^n$, come 44 invece di 300.
+
+Un riporto **interno** non basta per dire che c'è overflow. Con 4 bit, $0111_2 + 0001_2 = 1000_2$: ci sono riporti tra le colonne, ma $7 + 1 = 8$ rientra tra 0 e 15. Con gli stessi 4 bit, $1111_2 + 0001_2 = 10000_2$: $15 + 1 = 16$ richiede una quinta colonna, quindi c'è overflow. Il criterio qui riguarda gli interi **senza segno**; per gli interi con segno servirà il loro criterio specifico.
 
 ```widget codifica
 titolo: Somma in colonna con 8 bit: clicca sui bit dei due numeri
@@ -750,6 +770,26 @@ Una foto di 800 × 600 pixel in RGB, senza compressione. (a) Quanti byte occupa?
 4. $1440000 : 176400$ fa circa 8,2: una sola foto occupa come poco più di 8 secondi di musica.
 :::
 
+::: esercizio medio Stessi bit, significati diversi
+Il byte 00110101 viene letto prima come un intero senza segno, poi come un carattere ASCII, infine come il valore del rosso di un pixel RGB con verde e blu a zero. Che cosa rappresenta nei tre casi?
+::: soluzione
+1. Come intero senza segno si sommano i pesi: $32 + 16 + 4 + 1 = 53$.
+2. Come codice ASCII, 53 identifica la cifra scritta «5». Il valore numerico 5, su un byte, sarebbe 00000101.
+3. Come componente rossa, il valore è 53 su una scala da 0 a 255: il pixel è $(53, 0, 0)$, un rosso poco luminoso.
+
+La sequenza di bit è sempre la stessa. È la regola di interpretazione a dire se quel 53 è un numero, il codice di una cifra o l'intensità di una componente del colore.
+:::
+
+::: esercizio medio Riporto interno o overflow?
+Su 8 bit senza segno calcola (a) 01111111 + 00000001; (b) 11111111 + 00000001. Scrivi il risultato matematico e quello che resta negli 8 bit, e indica se c'è overflow.
+::: soluzione
+**(a)** 01111111 vale 127. Aggiungendo 1, i sette 1 di destra diventano 0 e il riporto arriva nell'ottava colonna: 10000000, cioè 128. Il risultato sta nell'intervallo 0–255: nessun overflow.
+
+**(b)** 11111111 vale 255. Aggiungendo 1, anche l'ottava colonna genera un riporto: il risultato matematico è 100000000, cioè 256. Negli 8 bit rimane 00000000, cioè 0: c'è overflow.
+
+Il numero di riporti interni non decide l'overflow. Conta se il risultato supera 255 e richiede una nona colonna.
+:::
+
 ## Domande di ripasso
 
 ::: domanda Che cos'è un codice? Perché ASCII non basta per l'italiano?
@@ -818,5 +858,6 @@ Overflow | Quando il risultato di un conto non ci sta nei bit disponibili.
 - R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Sezione 1.4 «Representing Information as Bit Patterns»: testo, ASCII e Unicode (figura 1.11), numeri, immagini, RGB, luminanza e crominanza, immagini vettoriali, suoni, campionamento e MIDI. Sezione 1.5 «The Binary System»: notazione binaria (figure 1.15 e 1.16), l'algoritmo delle divisioni (figure 1.17 e 1.18), l'addizione, le frazioni (figura 1.19). Risposte alle domande delle due sezioni nell'appendice del libro, pubblicate sul Moodle del canale A.
 - Riassunto della lezione del 02/10/2026 sul Moodle del canale B: «Alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno».
 - Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» (F. Cardone, Moodle del canale A, aperto agli ospiti): codice ASCII e passaggio tra maiuscole e minuscole, base 2 con le divisioni, somma in base 2.
-- Lo standard Unicode (unicode.org) per i punti di codice, e la RFC 3629 per lo schema dei byte di UTF-8.
+- D. Tarnoff, *Computer Organization and Design Fundamentals*, copia locale: cap. 2, §§2.3–2.6 (pp. 20–33), e cap. 3, §§3.1, 3.8–3.9 (pp. 43–44 e 67–68), come riscontro per conversioni, campionamento, quantizzazione, riporti e overflow senza segno. Non sostituisce il programma del libro Pearson.
+- [RFC 3629, §3](https://www.rfc-editor.org/rfc/rfc3629.html#section-3), per lo schema dei byte UTF-8 e l'esclusione dei valori surrogati; [Unicode, caratteri e segni combinanti](https://www.unicode.org/faq/char_combmark.html), per il riquadro sulle lettere composte da più punti di codice.
 - Le spiegazioni a parole, gli esempi, i riquadri «Prova tu», gli strumenti interattivi, i quiz e gli esercizi senza il numero del libro sono di questi appunti.

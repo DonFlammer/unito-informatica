@@ -1,27 +1,29 @@
 ---
 corso: FDA
 lezione: "01"
-titolo: Bit, porte logiche ed esadecimale
-data: 2026-09-28
+titolo: Bit, porte logiche, esadecimale e memorie
+data: 2026-10-01
 docenti: Stefano Berardi
-sopratitolo: Canale B · Lezione 01 · Libro, parte 1, §1.1
+sopratitolo: Canale B · Lezione 01 · Libro, parte 1, §1.1–1.3
 descrizione: >-
   Appunti della lezione 01 di Fondamenti dell'Informatica (canale B): i bit e quante cose si possono scrivere con n bit,
-  le operazioni booleane AND, OR, XOR e NOT, le porte logiche, il flip-flop che ricorda un bit e la notazione
-  esadecimale, con uno strumento interattivo, quiz ed esercizi svolti.
+  le operazioni booleane AND, OR, XOR e NOT, le porte logiche, il flip-flop che ricorda un bit, la notazione
+  esadecimale, la memoria centrale (celle, indirizzi, RAM, kilobyte) e le memorie di massa (dischi magnetici e ottici,
+  memorie flash), con strumenti interattivi, quiz ed esercizi svolti.
 lede: >-
   Dentro un computer ogni informazione è fatta di due soli simboli, zero e uno. Qui vedi come si combinano con
-  quattro operazioni, come le fanno i circuiti, come un circuito riesce a ricordare e come si scrivono in breve le
-  lunghe file di zeri e uni.
+  quattro operazioni, come le fanno i circuiti, come un circuito riesce a ricordare, come si scrivono in breve le
+  lunghe file di zeri e uni e dove il computer le conserva: nella memoria centrale e nelle memorie di massa.
 materiale: libro
 scheda:
-  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 1 (Brookshear, cap. 1), §1.1
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 1 (Brookshear, cap. 1), §1.1–1.3
   Docente: Stefano Berardi · canale B · A.A. 2026/27
-  Tempo di studio: 2 ore, anche in più volte
+  Tempo di studio: 3 ore, anche in più volte
 fonte: >-
   Libro di testo del corso, parte 1 (J. G. Brookshear, D. Brylow, Computer Science: an overview, cap. 1), §1.1 «Bits
-  and Their Storage» e risposte alle sue domande; programma del canale B 2026/27; lucidi del canale A 2026/27 sulla
-  codifica dei dati; regole d'esame comuni ai tre canali
+  and Their Storage», §1.2 «Main Memory» e §1.3 «Mass Storage», con le risposte alle loro domande; riassunto della
+  lezione del 01/10/2026 sul Moodle del canale B; lucidi del canale A 2026/27 sulla codifica dei dati; regole d'esame
+  comuni ai tre canali
 file_en: 01_bits_gates_hexadecimal.html
 appunti_html: appunti/FDA/01_bit_porte_esadecimale.html
 genera_html: true
@@ -31,14 +33,15 @@ genera_html: true
 
 - Dentro un computer ogni informazione, numeri, testo, immagini e suoni, è scritta con due soli simboli, 0 e 1. Ognuno di questi simboli si chiama **bit**.
 - Ogni bit in più raddoppia le possibilità: con $n$ bit si scrivono $2^n$ sequenze diverse. Con 8 bit, cioè un **byte**, sono 256.
-- Le **operazioni booleane** combinano i bit. **AND** dà 1 solo se tutti e due gli ingressi valgono 1, **OR** se almeno uno vale 1, **XOR** se i due ingressi sono diversi. **NOT** scambia 0 e 1.
-- Una **porta logica** è un piccolo circuito che esegue una di queste operazioni. Collegando più porte si costruiscono circuiti che fanno conti più complicati.
+- Le **operazioni booleane** combinano i bit: **AND** dà 1 solo se tutti e due gli ingressi valgono 1, **OR** se almeno uno vale 1, **XOR** se sono diversi, **NOT** scambia 0 e 1. Una **porta logica** è il circuito che esegue una di queste operazioni.
 - Il **flip-flop** è un circuito che ricorda un bit: la sua uscita resta uguale finché un impulso non la cambia. È un primo mattone della memoria.
 - La **notazione esadecimale** scrive quattro bit con un solo simbolo, da 0 a 9 e da A a F. Per esempio 1011 0101 diventa B5.
+- La **memoria centrale** è una lunga fila di **celle** di un byte, ognuna con il suo numero, l'**indirizzo**. Si raggiunge qualunque cella nello stesso tempo (RAM). Un **kilobyte** sono 1024 byte.
+- Le **memorie di massa**, cioè dischi magnetici, dischi ottici e memorie flash, conservano i dati anche a computer spento. Sono più grandi ed economiche della memoria centrale, ma più lente.
 - All'esame, comune ai tre canali, tornano le tabelle delle operazioni e la lettura dei circuiti: vanno sapute a memoria.
 
 > [!CANALI]
-> Libro di testo ed esame sono gli stessi nei canali A, B e C; cambiano docenti e ordine delle lezioni. Nel canale B Stefano Berardi segue il libro, in inglese, senza slide sue: il 28/09 ha pubblicato su Moodle la presentazione del libro digitale di Pearson. I riassunti delle lezioni del canale B stanno sul Moodle del canale, che chiede il login: questi appunti seguono il libro dall'inizio, la sezione 1.1. Nel canale A (Felice Cardone) la prima lezione è stata un'introduzione al corso, e i lucidi «Cenni sulla codifica dei dati» partono proprio dai bit e da quante cose si possono etichettare con $n$ bit. Il canale C (Luca Paolini) è partito con i lucidi «Azzeramento» e «Rappresentazione». Attenzione: il programma del canale B salta alcune sezioni del libro che l'esame comune può chiedere (dettagli nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md)).
+> Libro di testo ed esame sono gli stessi nei canali A, B e C; cambiano docenti e ordine delle lezioni. Nel canale B Stefano Berardi segue il libro, in inglese, senza slide sue. La sua prima lezione, lunedì 28/09, è stata un'introduzione al corso: questi appunti partono dalla seconda, giovedì 01/10, che ha fatto la sezione 1.1 del libro (bit, porte, flip-flop, esadecimale), la memoria centrale e le memorie di massa. Per questo qui è la lezione 01. I riassunti delle lezioni stanno sul Moodle del canale B, che chiede il login. Nel canale A (Felice Cardone) i lucidi «Cenni sulla codifica dei dati» partono proprio dai bit e da quante cose si possono etichettare con $n$ bit, e altri lucidi raccontano la struttura della memoria. Il canale C (Luca Paolini) è partito con i lucidi «Azzeramento» e «Rappresentazione». Attenzione: il programma del canale B salta alcune sezioni del libro che l'esame comune può chiedere (dettagli nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md)).
 
 ## Due simboli per dire tutto: i bit (libro, §1.1)
 
@@ -74,7 +77,7 @@ Ogni bit in più raddoppia il numero delle sequenze. Per ogni sequenza vecchia c
 > |---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
 > | $2^n$ | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 1024 |
 
-Una fila di 8 bit si chiama **byte**: ne parla la sezione 1.2 del libro. Un byte può avere $2^8 = 256$ valori diversi.
+Una fila di 8 bit si chiama **byte**: la ritrovi più avanti, nella sezione sulla memoria centrale. Un byte può avere $2^8 = 256$ valori diversi.
 
 ### Quanti bit servono
 
@@ -321,7 +324,7 @@ Confronta la seconda e la terza riga: gli ingressi tornano come all'inizio, ma l
 > [!NOTA] Un altro modo di costruirlo
 > Il libro mostra anche un secondo flip-flop (figura 1.5), con due porte OR e due porte NOT. L'idea è la stessa: un'uscita che torna indietro e si tiene da sola. Lo racconta la domanda 3 del §1.1.
 
-Il flip-flop è uno dei modi di conservare un bit dentro un computer. Come è organizzata la memoria, fatta di tantissimi bit, lo spiega la sezione 1.2 del libro.
+Il flip-flop è uno dei modi di conservare un bit dentro un computer. Come è organizzata la memoria, fatta di tantissimi bit, lo vedi più avanti, nella sezione sulla memoria centrale.
 
 ::: prova (a) Il flip-flop ha uscita 1 e arriva un impulso in alto. Che cosa succede? (b) Ha uscita 1 e arriva un impulso in basso. Che cosa succede?
 (a) Niente di nuovo. Durante l'impulso l'OR riceve 1 dall'ingresso e 1 dall'uscita, e dà 1; il NOT dà 1; l'AND dà 1. Dopo l'impulso l'uscita resta 1.
@@ -355,7 +358,7 @@ Quattro bit hanno $2^4 = 16$ combinazioni, quindi servono 16 simboli. Si usano l
 | 0110 | 6 | | 1110 | E |
 | 0111 | 7 | | 1111 | F |
 
-Per ricordare la tabella c'è un aiuto. Le quattro posizioni del gruppo valgono, da sinistra, 8, 4, 2 e 1. Somma i valori delle posizioni dove c'è un 1. Per esempio 1011 dà $8 + 2 + 1 = 11$. Poi i numeri da 10 a 15 si scrivono con le lettere: A è 10, B è 11, e così via fino a F, che è 15. Quindi 1011 si scrive B. Perché funziona lo vedrai nella sezione 1.5 del libro, sui numeri in base 2.
+Per ricordare la tabella c'è un aiuto. Le quattro posizioni del gruppo valgono, da sinistra, 8, 4, 2 e 1. Somma i valori delle posizioni dove c'è un 1. Per esempio 1011 dà $8 + 2 + 1 = 11$. Poi i numeri da 10 a 15 si scrivono con le lettere: A è 10, B è 11, e così via fino a F, che è 15. Quindi 1011 si scrive B. Perché funziona lo vedi nella [lezione 02](02_testo_colori_suoni_binario.html), sui numeri in base 2 (sezione 1.5 del libro).
 
 > [!METODO] Dai bit all'esadecimale, e ritorno
 > **Dai bit all'esadecimale.**
@@ -391,6 +394,160 @@ bit: 0110101011110010
 > - Una cifra esadecimale vale quattro bit: da 0000, cioè 0, a 1111, cioè F.
 > - Per passare all'esadecimale si fanno gruppi di quattro bit partendo da destra. Per tornare ai bit si scrive ogni cifra con quattro bit, zeri compresi.
 
+## La memoria centrale (libro, §1.2)
+
+Immagina una cassettiera altissima, con i cassetti tutti uguali uno sopra l'altro. Su ogni cassetto c'è un numero: 0, 1, 2, 3, e così via. In ogni cassetto c'è posto per una fila di 8 bit. La memoria centrale di un computer è fatta proprio così.
+
+Per conservare i dati, un computer ha moltissimi circuiti come il flip-flop, ognuno capace di tenere un bit. Tutti insieme formano la **memoria centrale** (*main memory*).
+
+### Celle e byte
+
+I bit della memoria centrale non stanno sparsi: sono raggruppati in **celle** (*cells*). Di solito una cella contiene 8 bit, cioè un **byte**. Un forno a microonde può avere qualche centinaio di celle; un computer di oggi ne ha miliardi.
+
+Dentro una cella i bit stanno in fila. Il libro chiama **estremo alto** (*high-order end*) quello di sinistra ed **estremo basso** (*low-order end*) quello di destra. Il bit all'estremo alto si chiama **bit più significativo** (*most significant bit*), quello all'estremo basso **bit meno significativo** (*least significant bit*).
+
+| Posizione | 1° | 2° | 3° | 4° | 5° | 6° | 7° | 8° |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Una cella | **1** | 0 | 0 | 1 | 0 | 1 | 1 | **0** |
+| Nome | più significativo | | | | | | | meno significativo |
+
+I nomi vengono dai numeri in base 2, che vedi nella [lezione 02](02_testo_colori_suoni_binario.html): il bit più a sinistra è quello che pesa di più.
+
+### Gli indirizzi
+
+Ogni cella ha un numero che la identifica, come il numero civico di una casa: è il suo **indirizzo** (*address*). Gli indirizzi partono da 0 e crescono di uno in uno. Così le celle hanno un ordine, e si può parlare della cella successiva o di quella precedente.
+
+L'ordine serve anche a conservare file di bit più lunghe di un byte: si usano celle vicine. Per esempio sedici bit occupano due celle consecutive.
+
+Con una cella si fanno due cose.
+
+- **Leggerla**: si copia il suo contenuto, che resta com'era.
+- **Scriverci**: si mette nella cella un valore nuovo. Il valore di prima si perde.
+
+> [!ESEMPIO] Scrivere o copiare (domanda 1 del §1.2)
+> La cella 5 contiene il valore 8. Scrivere il valore 5 nella cella 6 vuol dire che la cella 6 contiene 5. Copiare il contenuto della cella 5 nella cella 6 vuol dire che la cella 6 contiene 8. Nei due casi la cella 5 resta com'era.
+
+Prova le due operazioni nello strumento qui sotto. Poi prova a scambiare il contenuto di due celle, come chiede la domanda 2 del §1.2: copiando la cella 2 nella 3 e poi la 3 nella 2 non funziona. Perché? E come si fa?
+
+```widget porte
+titolo: Una piccola memoria di otto celle: scrivi e copia
+modo: memoria
+```
+
+### Ad accesso casuale: la RAM
+
+La memoria centrale si chiama anche **RAM**, dall'inglese *random access memory*, cioè memoria ad accesso casuale. «Casuale» qui vuol dire che si può raggiungere qualunque cella, in qualunque ordine, nello stesso tempo. Su una vecchia cassetta, invece, per ascoltare la quinta canzone bisogna far scorrere il nastro fino a lì.
+
+Molte RAM di oggi tengono i bit come piccolissime cariche elettriche, che si scaricano in fretta. Un circuito le rinfresca molte volte al secondo. Per questo si chiamano **RAM dinamiche** (*dynamic RAM*, DRAM). La RAM ha anche un limite: quando si spegne il computer perde tutto il suo contenuto.
+
+### Quanto è grande una memoria
+
+Le celle si contano con le potenze di 2, perché gli indirizzi sono scritti con i bit: con 10 bit si numerano $2^{10} = 1024$ celle. Per questo le memorie hanno spesso misure come 1024 o 4096 celle.
+
+Il numero 1024 è vicino a 1000, quindi 1024 byte si chiamano un **kilobyte** (KB). Poi si prosegue nello stesso modo: 1024 KB fanno un **megabyte** (MB) e 1024 MB fanno un **gigabyte** (GB).
+
+| Nome | Sigla | Byte | Come potenza di 2 |
+|---|---|--:|:-:|
+| kilobyte | KB | 1 024 | $2^{10}$ |
+| megabyte | MB | 1 048 576 | $2^{20}$ |
+| gigabyte | GB | 1 073 741 824 | $2^{30}$ |
+
+> [!TRAPPOLA] Kilo vuol dire 1000 o 1024?
+> Fuori dall'informatica «kilo» vuol dire esattamente 1000, e anche chi vende dischi conta spesso così: un disco da 1 GB può avere 1 000 000 000 byte. Per togliere il dubbio nel 1998 sono nati i nomi **kibibyte** (KiB), **mebibyte** (MiB) e **gibibyte** (GiB), che vogliono dire sempre 1024 byte, $2^{20}$ byte e $2^{30}$ byte. In queste lezioni, come nel libro, per la memoria KB vuol dire 1024 byte.
+
+> [!ESEMPIO] Quanti bit ci sono in 4 KB (domanda 3 del §1.2)
+> Un kilobyte sono 1024 byte, quindi 4 KB sono $4 \cdot 1024 = 4096$ byte. Ogni byte ha 8 bit: in tutto $4096 \cdot 8 = 32768$ bit.
+
+::: prova (a) Quanti byte ci sono in 2 KB? E quanti bit? (b) Con indirizzi di 12 bit, quante celle si possono numerare?
+(a) 2 KB sono $2 \cdot 1024 = 2048$ byte, cioè $2048 \cdot 8 = 16384$ bit.
+
+(b) Con 12 bit si scrivono $2^{12} = 4096$ indirizzi diversi, da 0 a 4095: si numerano 4096 celle, cioè 4 KB di memoria se ogni cella è un byte.
+:::
+
+> [!RICORDA]
+> - La memoria centrale è una fila di celle di un byte. Ogni cella ha un indirizzo, da 0 in su.
+> - Leggere una cella non la cambia; scriverci sopra cancella il valore di prima.
+> - Nella RAM si raggiunge qualunque cella nello stesso tempo. Quando si spegne il computer, la RAM perde tutto.
+> - 1 KB = 1024 byte, 1 MB = 1024 KB, 1 GB = 1024 MB.
+
+## Le memorie di massa (libro, §1.3)
+
+Quando spegni il computer e lo riaccendi, i tuoi file ci sono ancora. Eppure la memoria centrale, spegnendo, perde tutto. I file stanno da un'altra parte: nelle **memorie di massa** (*mass storage*), dette anche memorie secondarie.
+
+Rispetto alla memoria centrale, le memorie di massa hanno tre vantaggi e un difetto.
+
+- Conservano i dati anche senza corrente.
+- Sono molto più grandi.
+- Costano molto meno per ogni byte, e spesso si possono staccare e portare via.
+- Ma sono più lente. Molte hanno parti che si muovono, come un disco che gira, e un movimento meccanico è lentissimo rispetto ai circuiti elettronici.
+
+Il libro ne presenta tre famiglie: i dischi magnetici, i dischi ottici e le memorie flash.
+
+### I dischi magnetici
+
+Un **disco rigido** (*hard disk*) è fatto di dischi sottili ricoperti di materiale magnetico, che girano velocissimi uno sopra l'altro. Sopra ogni faccia c'è una **testina di lettura e scrittura** (*read/write head*), che scrive i bit magnetizzando piccole zone della superficie e li legge sentendo come sono magnetizzate.
+
+Se la testina sta ferma, il disco che gira le passa sotto lungo un cerchio. Spostando la testina verso il centro o verso il bordo si passa a un cerchio diverso.
+
+- Ogni cerchio si chiama **traccia** (*track*): le tracce sono cerchi con lo stesso centro, uno dentro l'altro.
+- Ogni traccia è divisa in archi chiamati **settori** (*sectors*). Tutti i settori contengono lo stesso numero di bit, per esempio 512 byte o qualche KB.
+- Le testine di tutte le facce si muovono insieme. Le tracce che stanno una sopra l'altra, alla stessa distanza dal centro, formano un **cilindro** (*cylinder*).
+
+Segnare tracce e settori su un disco nuovo vuol dire **formattarlo**.
+
+Per sapere quanto è veloce un disco si guardano quattro misure.
+
+- **Tempo di ricerca** (*seek time*): il tempo che serve per spostare le testine da una traccia a un'altra.
+- **Ritardo di rotazione** o **latenza** (*rotation delay*, *latency time*): il tempo di attesa perché il settore giusto arrivi sotto la testina. In media è mezzo giro del disco.
+- **Tempo di accesso** (*access time*): la somma dei due tempi di prima.
+- **Velocità di trasferimento** (*transfer rate*): quanti bit al secondo si possono leggere o scrivere.
+
+> [!ESEMPIO] Il ritardo di rotazione di un disco
+> Un disco fa 7200 giri al minuto, cioè $7200 : 60 = 120$ giri al secondo. Un giro dura quindi $1/120$ di secondo, circa 8,3 millesimi di secondo. In media si aspetta mezzo giro: circa 4,2 millesimi di secondo. Sembra poco, ma in quel tempo un processore fa milioni di operazioni.
+
+> [!NOTA] I nastri magnetici
+> Esistono anche i nastri magnetici, simili alle vecchie cassette. Per arrivare a un dato bisogna far scorrere il nastro fino a lì, quindi sono lentissimi. Si usano ancora per le copie di sicurezza degli archivi molto grandi.
+
+### I dischi ottici: CD, DVD e Blu-ray
+
+Un **CD** (*compact disk*) è un disco di 12 centimetri con una superficie che riflette la luce, protetta da uno strato di plastica. I bit sono piccole irregolarità della superficie: un laser le illumina e un sensore sente come la luce torna indietro.
+
+A differenza dei dischi magnetici, i dati stanno su una sola traccia **a spirale**. La spirale parte dal centro e arriva al bordo, come il solco di un vecchio disco in vinile, ed è divisa in settori.
+
+- Un CD contiene da 600 a 700 MB.
+- Un **DVD** (*digital versatile disk*) ha le stesse misure, ma più strati semitrasparenti uno sopra l'altro: contiene alcuni GB.
+- Un **Blu-ray** (BD) usa un laser blu-violetto invece che rosso. Il raggio è più sottile e i bit stanno più vicini: contiene più di cinque volte un DVD.
+
+La spirale va benissimo per i dati lunghi letti dall'inizio alla fine, come musica e film. Per saltare a un dato qualunque, invece, è lenta: non ci sono tracce da raggiungere con un solo spostamento.
+
+### Le memorie flash
+
+Le **memorie flash** sono le chiavette USB, le schede SD delle macchine fotografiche e i dischi a stato solido. Non hanno nessuna parte in movimento. I bit si scrivono con segnali elettrici che intrappolano elettroni in minuscole celle di biossido di silicio; lì gli elettroni restano per anni, anche senza corrente.
+
+Senza parti in movimento sono veloci, silenziose e non temono gli urti. Hanno però un limite: ogni volta che una cella si cancella si rovina un poco, e dopo molte riscritture smette di funzionare. Per questo non vanno bene come memoria centrale, che si riscrive di continuo.
+
+Un **disco a stato solido** (*solid-state disk*, SSD) è una memoria flash abbastanza grande da prendere il posto del disco rigido. È più veloce, silenzioso e robusto. Costa però di più per ogni GB, e per questo i dischi magnetici si usano ancora.
+
+| | Dischi magnetici | Dischi ottici | Memorie flash |
+|---|---|---|---|
+| Come si scrive un bit | magnetizzando un punto della superficie | cambiando come la superficie riflette la luce | intrappolando elettroni in piccole celle |
+| Parti in movimento | sì: dischi e testine | sì: disco e laser | no |
+| Come stanno i dati | tracce concentriche, settori, cilindri | una sola traccia a spirale | celle elettroniche |
+| Punti forti | tanto spazio, costo basso per byte | economici e facili da trasportare | veloci, robuste, silenziose |
+| Punti deboli | lenti rispetto alla RAM | lenti a saltare da un dato a un altro | costano di più, si consumano riscrivendole |
+
+::: prova (a) Un disco fa 6000 giri al minuto. Quanto vale in media il ritardo di rotazione? (b) Perché una chiavetta USB non ha tempo di ricerca?
+(a) 6000 giri al minuto sono $6000 : 60 = 100$ giri al secondo: un giro dura $1/100$ di secondo, cioè 10 millesimi. In media si aspetta mezzo giro: 5 millesimi di secondo.
+
+(b) Il tempo di ricerca è il tempo per spostare le testine da una traccia all'altra. Una chiavetta è una memoria flash: non ha testine né parti che si muovono.
+:::
+
+> [!RICORDA]
+> - Le memorie di massa conservano i dati anche a computer spento, sono grandi ed economiche, ma più lente della memoria centrale.
+> - Disco magnetico: tracce concentriche divise in settori; le tracce una sopra l'altra formano un cilindro. Tempo di accesso = tempo di ricerca + ritardo di rotazione.
+> - CD, DVD e Blu-ray: una sola traccia a spirale letta da un laser. Il Blu-ray usa un laser blu-violetto e contiene di più.
+> - Memorie flash e SSD: nessuna parte in movimento, veloci e robuste, ma si consumano riscrivendole.
+
 ## I simboli di questa lezione
 
 | Simbolo | Si legge | Vuol dire | Esempio |
@@ -405,7 +562,11 @@ bit: 0110101011110010
 | NOT | «not» | il contrario dell'ingresso | NOT 0 = 1 |
 | $\land$, $\lor$, $\oplus$, $\lnot$ | «e», «o», «o esclusivo», «non» | le stesse operazioni scritte come in logica (parte 2 del libro) | $1 \land 0 = 0$ |
 | A, B, C, D, E, F | «a», «bi», «ci», «di», «e», «effe» | le cifre esadecimali che valgono da 10 a 15 | B = 1011 |
-| $1011_2$, $\text{B}_{16}$ | «1011 in base due», «B in base sedici» | il numerino in basso dice in che base è scritto il numero (sezione 1.5) | $1011_2 = \text{B}_{16}$ |
+| $1011_2$, $\text{B}_{16}$ | «1011 in base due», «B in base sedici» | il numerino in basso dice in che base è scritto il numero ([lezione 02](02_testo_colori_suoni_binario.html)) | $1011_2 = \text{B}_{16}$ |
+| KB, MB, GB | «kilobyte», «megabyte», «gigabyte» | per la memoria: $2^{10}$, $2^{20}$ e $2^{30}$ byte | 4 KB = 4096 byte |
+| KiB, MiB, GiB | «kibibyte», «mebibyte», «gibibyte» | gli stessi valori, con nomi che non lasciano dubbi | 1 KiB = 1024 byte |
+| RAM | «ram» | la memoria centrale, ad accesso casuale (*random access memory*) | 8 GB di RAM |
+| SSD | «esse-esse-di» | disco a stato solido, fatto di memoria flash | un SSD da 512 GB |
 
 ## Verso l'esame
 
@@ -429,7 +590,8 @@ Tutti i dettagli sono nella [scheda del corso](https://github.com/DonFlammer/uni
 1. **Le tabelle delle operazioni.** Nelle simulazioni d'esame del 2023/24 tornano due tipi di quiz. Uno chiede la formula booleana di una tabella di verità; l'altro dà un circuito, combinatorio o sequenziale, e chiede che funzione calcola. Sono le idee di questa lezione, riprese più avanti con le algebre di Boole e i circuiti (capitolo 11 della parte 2 del libro).
 2. **Leggere un circuito.** Il metodo con la tabella di tutte le combinazioni degli ingressi funziona per qualunque circuito di porte.
 3. **I bit e le potenze di 2.** Quante sequenze con $n$ bit e quanti bit servono: sono conti che tornano con la rappresentazione dei numeri.
-4. **L'esadecimale.** Torna con le conversioni tra basi della sezione 1.5.
+4. **L'esadecimale.** Torna con le conversioni tra basi della [lezione 02](02_testo_colori_suoni_binario.html).
+5. **Memoria centrale e memorie di massa.** Nei quiz delle simulazioni del 2023/24 non compaiono, ma le sezioni 1.2 e 1.3 stanno nella mappa comune del libro. Servono le idee (celle, indirizzi, RAM, tracce, settori, flash) e i conti con le potenze di 2, come i bit di 4 KB.
 
 I quiz sono in italiano e il libro in inglese: impara i nomi in tutte e due le lingue. Il glossario in fondo li mette uno accanto all'altro. Sulla pagina d'esame (Moodle Esami, id 2673) ci sono anche quiz di ripasso divisi per lezione.
 
@@ -442,6 +604,8 @@ I quiz sono in italiano e il libro in inglese: impara i nomi in tutte e due le l
 - Dimenticare una combinazione degli ingressi: con 3 ingressi le righe sono 8, non 6.
 - Pensare che il flip-flop torni a 0 da solo quando l'impulso finisce: è proprio quello che non fa.
 - Nell'esadecimale, togliere gli 0 davanti a una cifra: 1 è 0001, non 1.
+- Dimenticare che un byte ha 8 bit, o che per la memoria un KB ha 1024 byte: 4 KB sono $4 \cdot 1024 \cdot 8 = 32768$ bit.
+- Credere che il tempo di accesso di un disco sia solo il tempo di ricerca: va aggiunto il ritardo di rotazione.
 
 ## Quiz
 
@@ -513,6 +677,38 @@ D: Quale fila di bit rappresenta la stringa esadecimale 7E?
 D: Quante cifre esadecimali servono per scrivere una fila di 24 bit?
 N: 6
 = Ogni cifra esadecimale vale quattro bit, quindi servono $24 : 4 = 6$ cifre. Per esempio la stringa E85517 del §1.1 è fatta di 24 bit.
+
+D: Quanti bit ci sono in una memoria da 2 KB?
+- $2000$
+- $2048$
+- $16000$
++ $16384$
+- $16$
+= 2 KB sono $2 \cdot 1024 = 2048$ byte, e ogni byte ha 8 bit: $2048 \cdot 8 = 16384$. La risposta $2048$ conta i byte, non i bit. La risposta $16000$ usa 1000 al posto di 1024: per la memoria un KB vale 1024 byte.
+
+D: Le celle 2 e 3 contengono due valori diversi. Quale sequenza di passi scambia i loro contenuti?
+- Copia la cella 2 nella 3, poi copia la cella 3 nella 2.
+- Copia la cella 3 nella 2, poi copia la cella 2 nella 3.
++ Copia la cella 2 nella 1, poi la cella 3 nella 2, poi la cella 1 nella 3.
+- Copia la cella 2 nella 1, poi la cella 1 nella 3, poi la cella 3 nella 2.
+- Non si può fare: copiare una cella cancella sempre quella di partenza.
+= Serve una cella di appoggio, qui la 1. Si mette da parte il valore della cella 2, poi si copia la 3 nella 2, infine si porta nella 3 il valore messo da parte. Le prime due risposte perdono un valore al primo passo: alla fine le due celle contengono lo stesso valore. La quarta copia nella 3 il valore della 2 prima di aver salvato quello della 3, che va perso. L'ultima è falsa: copiare legge la cella di partenza senza cambiarla.
+
+D: Un disco magnetico deve leggere un settore che sta su un'altra traccia. Che cosa si somma per avere il tempo di accesso?
++ Il tempo di ricerca e il ritardo di rotazione.
+- Il tempo di ricerca e la velocità di trasferimento.
+- Il ritardo di rotazione e la velocità di trasferimento.
+- Niente: è solo il tempo di ricerca, perché il disco gira sempre.
+- Niente: è solo il ritardo di rotazione, perché le testine non si muovono.
+= Prima le testine si spostano sulla traccia giusta (tempo di ricerca), poi si aspetta che il settore arrivi sotto la testina (ritardo di rotazione): il tempo di accesso è la somma dei due. La velocità di trasferimento è un'altra misura, in bit al secondo: dice quanto in fretta si legge una volta arrivati.
+
+D: Quale memoria non ha parti in movimento ma si consuma dopo molte riscritture?
+- Il disco rigido magnetico.
+- Il CD.
+- Il Blu-ray.
++ La memoria flash, come quella di una chiavetta o di un SSD.
+- Il nastro magnetico.
+= Le memorie flash scrivono i bit intrappolando elettroni in piccole celle, senza dischi né testine. Ogni cancellazione rovina un poco le celle, quindi dopo molte riscritture smettono di funzionare. Dischi rigidi, CD, Blu-ray e nastri hanno tutti parti che si muovono.
 ```
 
 ## Esercizi
@@ -647,6 +843,52 @@ Serve un circuito con due ingressi che dia 1 esattamente quando i due ingressi s
 4. A OR B e A XOR B sbagliano più righe.
 :::
 
+::: esercizio base Domande 1 e 3 del §1.2: scrivere, copiare, contare i bit
+(a) La cella con indirizzo 5 contiene il valore 8. Che differenza c'è tra scrivere il valore 5 nella cella 6 e copiare il contenuto della cella 5 nella cella 6? (b) Quanti bit ci sono in una memoria da 4 KB?
+::: soluzione
+1. (a) Scrivendo il valore 5, la cella 6 contiene 5. Copiando la cella 5, la cella 6 contiene 8, il valore che sta nella cella 5. In tutti e due i casi la cella 5 non cambia, e il valore di prima della cella 6 si perde.
+2. (b) 4 KB sono $4 \cdot 1024 = 4096$ byte.
+3. Ogni byte ha 8 bit: $4096 \cdot 8 = 32768$ bit.
+
+Sono le risposte che dà il libro. Controllo della (b) con le potenze di 2: $4 = 2^2$, $1024 = 2^{10}$ e $8 = 2^3$, quindi i bit sono $2^{2+10+3} = 2^{15} = 32768$.
+:::
+
+::: esercizio medio Domanda 2 del §1.2: scambiare due celle
+Vuoi scambiare i valori delle celle 2 e 3. Che cosa non va in questi due passi? Passo 1: copia la cella 2 nella cella 3. Passo 2: copia la cella 3 nella cella 2. Scrivi una sequenza di passi corretta; puoi usare altre celle.
+::: soluzione
+1. Il passo 1 scrive nella cella 3 il valore della cella 2: il valore che c'era nella 3 si perde.
+2. Il passo 2 copia nella 2 quello che ora c'è nella 3, cioè il valore della 2: la cella 2 non cambia.
+3. Alla fine tutte e due le celle contengono il valore che stava nella 2.
+
+Una sequenza corretta, come nelle risposte del libro, usa la cella 1 per mettere da parte un valore:
+
+1. Copia la cella 2 nella cella 1.
+2. Copia la cella 3 nella cella 2.
+3. Copia la cella 1 nella cella 3.
+
+Puoi provarla nello strumento della memoria: con 2 e 3 diversi, dopo i tre passi sono scambiati.
+:::
+
+::: esercizio medio Domande 1 e 2 del §1.3: dischi più veloci e cilindri
+(a) Che cosa si guadagna facendo girare più in fretta un disco? (b) Un disco ha più facce. Per registrare tanti dati, conviene riempire una faccia intera prima di passare alla successiva, oppure riempire un cilindro intero prima di passare al successivo?
+::: soluzione
+1. (a) Il settore cercato arriva prima sotto la testina, quindi il ritardo di rotazione diminuisce. In più passano più bit sotto la testina ogni secondo: aumenta la velocità di trasferimento.
+2. (b) Muovere le testine è lento, perché è un movimento meccanico: conviene spostarle il meno possibile.
+3. Riempiendo una faccia alla volta, le testine si spostano ogni volta che una traccia è piena: tanti spostamenti quante sono le tracce di tutte le facce.
+4. Riempiendo un cilindro alla volta, quando una traccia è piena si passa alla traccia sopra o sotto. Basta attivare un'altra testina, con un comando elettronico, senza muovere niente. Le testine si spostano solo quando l'intero cilindro è pieno.
+
+Quindi conviene riempire un cilindro alla volta, come dicono le risposte del libro.
+:::
+
+::: esercizio medio Domande 3–6 del §1.3: quale memoria per quale uso
+(a) Perché i dati di un sistema di prenotazioni, che cambiano di continuo, stanno su un disco magnetico e non su un CD o un DVD? (b) Perché lo stesso lettore riesce a leggere CD, DVD e Blu-ray? (c) Che vantaggio hanno le memorie flash sugli altri sistemi? (d) Perché i dischi magnetici si usano ancora?
+::: soluzione
+1. (a) In un sistema di prenotazioni si va a cercare un dato qualunque, in un ordine qualunque. Sulla spirale di un CD o di un DVD saltare da un dato all'altro è lento. In più su questi dischi non si può cambiare un pezzetto di dati qua e là.
+2. (b) I tre dischi hanno la stessa misura e la stessa traccia a spirale. Un lettore con più laser, rosso e blu-violetto, li legge tutti.
+3. (c) Non hanno parti in movimento: rispondono prima e non si consumano per l'attrito.
+4. (d) Sono più veloci e capienti degli altri supporti magnetici, come i nastri. Rispetto ai dischi ottici sono più veloci, più capienti e si riscrivono senza problemi. E costano meno per ogni GB dei dischi a stato solido, anche se la differenza si è ridotta negli ultimi anni.
+:::
+
 ## Domande di ripasso
 
 ::: domanda Che cos'è un bit? Perché il libro dice che è «solo un simbolo»?
@@ -673,6 +915,22 @@ La sua uscita torna indietro e diventa un ingresso dell'OR. Dopo un impulso in a
 Le file di bit lunghe si leggono male. L'esadecimale scrive quattro bit con un solo simbolo, da 0 a F. Si fanno gruppi di quattro bit da destra e si scrive la cifra di ogni gruppo.
 :::
 
+::: domanda Com'è organizzata la memoria centrale? Che cos'è un indirizzo?
+È una fila di celle, di solito di un byte ciascuna. Ogni cella ha un numero, il suo indirizzo, che parte da 0 e cresce di uno in uno: serve a trovare la cella e dà un ordine a tutte le celle.
+:::
+
+::: domanda Perché la memoria centrale si chiama RAM? Che difetto ha?
+RAM vuol dire memoria ad accesso casuale: si raggiunge qualunque cella, in qualunque ordine, nello stesso tempo. Il difetto è che, quando si spegne il computer, perde tutto.
+:::
+
+::: domanda Che cosa sono tracce, settori e cilindri di un disco magnetico?
+Le tracce sono i cerchi, con lo stesso centro, su cui la testina legge e scrive. I settori sono gli archi in cui è divisa ogni traccia. Un cilindro è l'insieme delle tracce che stanno una sopra l'altra, sulle varie facce, alla stessa distanza dal centro.
+:::
+
+::: domanda Perché una memoria flash non va bene come memoria centrale?
+Ogni cancellazione rovina un poco le sue celle, che dopo molte riscritture smettono di funzionare. La memoria centrale si riscrive di continuo, molte volte al secondo.
+:::
+
 ## Glossario
 
 ```glossario
@@ -691,6 +949,20 @@ Flip-flop | Un circuito la cui uscita resta uguale finché un impulso non la cam
 Stringa di bit | Una fila di bit (*bit string*); quando è molto lunga il libro la chiama flusso (*stream*).
 Notazione esadecimale | Il modo di scrivere ogni gruppo di quattro bit con un simbolo da 0 a 9 o da A a F (*hexadecimal notation*).
 Cifra esadecimale | Uno dei 16 simboli 0–9 e A–F. A vale 10, F vale 15.
+Memoria centrale | La memoria in cui il computer tiene i dati su cui sta lavorando (*main memory*): una fila di celle.
+Cella | Un pezzo di memoria di dimensione fissa, di solito un byte (*cell*).
+Indirizzo | Il numero che identifica una cella: parte da 0 e cresce di uno in uno (*address*).
+Bit più significativo | Il bit all'estremo alto della cella, cioè a sinistra (*most significant bit*). Quello a destra è il meno significativo.
+RAM | Memoria ad accesso casuale (*random access memory*): ogni cella si raggiunge nello stesso tempo. La DRAM tiene i bit come cariche elettriche da rinfrescare.
+Kilobyte (KB) | Per la memoria, 1024 byte. Un megabyte (MB) sono 1024 KB, un gigabyte (GB) 1024 MB. Per togliere i dubbi c'è anche il nome kibibyte (KiB).
+Memoria di massa | Una memoria che conserva i dati anche senza corrente, più grande e più lenta della memoria centrale (*mass storage*).
+Traccia | Uno dei cerchi concentrici su cui un disco magnetico registra i dati (*track*).
+Settore | Un arco di una traccia; tutti i settori contengono lo stesso numero di bit (*sector*).
+Cilindro | L'insieme delle tracce che stanno una sopra l'altra sulle facce di un disco (*cylinder*).
+Tempo di accesso | Tempo di ricerca, per portare la testina sulla traccia, più ritardo di rotazione, per aspettare il settore (*access time*).
+Velocità di trasferimento | Quanti bit al secondo si leggono o si scrivono (*transfer rate*).
+Memoria flash | Una memoria senza parti in movimento che tiene i bit intrappolando elettroni; si consuma con le riscritture (*flash memory*).
+SSD | Disco a stato solido: una memoria flash grande, al posto del disco rigido (*solid-state disk*).
 ```
 
 ## Checklist
@@ -702,12 +974,16 @@ Cifra esadecimale | Uno dei 16 simboli 0–9 e A–F. A vale 10, F vale 15.
 - So leggere un circuito di porte con la tabella di tutte le combinazioni degli ingressi.
 - So raccontare che cosa succede in un flip-flop con un impulso in alto e con un impulso in basso.
 - So passare dai bit all'esadecimale e dall'esadecimale ai bit, senza perdere gli zeri.
+- So spiegare celle, indirizzi e RAM, e la differenza tra scrivere in una cella e copiarla.
+- So fare i conti con KB, MB e GB: per esempio quanti bit ci sono in 4 KB.
+- So che cosa sono tracce, settori, cilindri, tempo di ricerca e ritardo di rotazione.
+- So dire pregi e difetti di dischi magnetici, dischi ottici e memorie flash.
 ```
 
 ## Fonti
 
-- R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Sezione 1.1 «Bits and Their Storage»: operazioni booleane, porte e flip-flop (figure 1.3 e 1.5), notazione esadecimale; risposte alle domande 1–6 della sezione nell'appendice del libro, pubblicate sul Moodle del canale A.
-- Programma del canale B 2026/27 (Moodle del canale B, consultato il 28/09/2026) e regole d'esame comuni ai tre canali (pagina d'esame su Moodle Esami): [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
-- Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» (F. Cardone, Moodle del canale A, aperto agli ospiti): bit come etichette, $2^n$ sequenze, numero minimo di bit.
-- Calendario delle lezioni del canale B (University Planner): prima lezione lunedì 28/09/2026.
-- Le spiegazioni a parole, gli esempi, i riquadri «Ripasso» e «Prova tu», lo strumento interattivo, i quiz e gli esercizi senza il numero del libro sono di questi appunti.
+- R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Sezione 1.1 «Bits and Their Storage»: operazioni booleane, porte e flip-flop (figure 1.3 e 1.5), notazione esadecimale. Sezione 1.2 «Main Memory»: celle, estremo alto e basso, indirizzi, RAM e DRAM, kilobyte. Sezione 1.3 «Mass Storage»: dischi magnetici, CD, DVD e Blu-ray, memorie flash e SSD. Risposte alle domande delle tre sezioni nell'appendice del libro, pubblicate sul Moodle del canale A.
+- Riassunti delle lezioni del canale B (Moodle del canale B): lezione 1 del 28/09/2026, introduttiva; lezione 2 del 01/10/2026, «Bits and Their Storage», flip-flop, notazione esadecimale, memoria centrale e memorie di massa. Programma del canale B 2026/27 e regole d'esame comuni ai tre canali (pagina d'esame su Moodle Esami): [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
+- Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» e «Struttura della memoria ed esecuzione dei programmi» (F. Cardone, Moodle del canale A, aperto agli ospiti): bit come etichette, $2^n$ sequenze, numero minimo di bit; celle e indirizzi.
+- Prefissi binari kibi, mebi e gibi: norma IEC 60027-2 (dicembre 1998).
+- Le spiegazioni a parole, gli esempi (come il disco a 7200 giri al minuto), i riquadri «Ripasso» e «Prova tu», gli strumenti interattivi, i quiz e gli esercizi senza il numero del libro sono di questi appunti.

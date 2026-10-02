@@ -108,7 +108,7 @@ Gli enunciati nei riquadri `DEF`, `PROP`, `TEOREMA` seguono le slide o le dispen
 - `glossario`: una riga per termine, `Termine | definizione`.
 - `checklist`: le voci «So …» da spuntare.
 - `grafico`: una figura statica (punti, vettori, rette, poligoni, cerchi), una riga per elemento.
-- `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann, porte logiche con `modo: porte`, `modo: flipflop` o `modo: esadecimale`). Nel Markdown restano solo i parametri iniziali.
+- `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann, porte logiche con `modo: porte`, `modo: flipflop`, `modo: esadecimale` o `modo: memoria`; testo, colori, suoni e numeri in bit con `widget codifica` e `modo: testo`, `colori`, `suono`, `binario`, `divisioni` o `somma`). Nel Markdown restano solo i parametri iniziali.
 
 
 ---
@@ -2508,7 +2508,11 @@ Riferimento 2025/26 (iscritti): 19/01 (309), 13/02 (441), 04/06 (132), 02/07 (10
 6. Settimane 11–13 (28/11–12/12): circuiti sequenziali, macchine a stati finiti, automi, grammatiche, NFA, linguaggi regolari.
 7. Ultima lezione (15/12/2025): esercizi riassuntivi. Nel 2026/27 le lezioni durano fino al 15/01/2027.
 
-Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea con A. Il canale B segue il libro con le omissioni indicate sopra; l'ordine si vedrà dai riassunti delle lezioni su Moodle (il 28/09 è uscita la presentazione del libro di testo).
+Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea con A. Il canale B segue il libro con le omissioni indicate sopra; i riassunti delle lezioni su Moodle B finora:
+
+- lun 28/09: lezione introduttiva, con la presentazione del libro di testo. Negli appunti non ha un numero.
+- gio 01/10: parte 1, §1.1 "Bits and Their Storage" (flip-flop, notazione esadecimale), poi memoria centrale e memorie di massa (§1.2–1.3). Negli appunti è la lezione 01.
+- ven 02/10: parte 1, §1.4 "Representing Information as Bit Patterns" e §1.5 "The Binary System": alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno. Negli appunti è la lezione 02.
 
 ## Materiale
 
@@ -2540,27 +2544,29 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 ```yaml
 corso: FDA
 lezione: "01"
-titolo: Bit, porte logiche ed esadecimale
-data: 2026-09-28
+titolo: Bit, porte logiche, esadecimale e memorie
+data: 2026-10-01
 docenti: Stefano Berardi
-sopratitolo: Canale B · Lezione 01 · Libro, parte 1, §1.1
+sopratitolo: Canale B · Lezione 01 · Libro, parte 1, §1.1–1.3
 descrizione: >-
   Appunti della lezione 01 di Fondamenti dell'Informatica (canale B): i bit e quante cose si possono scrivere con n bit,
-  le operazioni booleane AND, OR, XOR e NOT, le porte logiche, il flip-flop che ricorda un bit e la notazione
-  esadecimale, con uno strumento interattivo, quiz ed esercizi svolti.
+  le operazioni booleane AND, OR, XOR e NOT, le porte logiche, il flip-flop che ricorda un bit, la notazione
+  esadecimale, la memoria centrale (celle, indirizzi, RAM, kilobyte) e le memorie di massa (dischi magnetici e ottici,
+  memorie flash), con strumenti interattivi, quiz ed esercizi svolti.
 lede: >-
   Dentro un computer ogni informazione è fatta di due soli simboli, zero e uno. Qui vedi come si combinano con
-  quattro operazioni, come le fanno i circuiti, come un circuito riesce a ricordare e come si scrivono in breve le
-  lunghe file di zeri e uni.
+  quattro operazioni, come le fanno i circuiti, come un circuito riesce a ricordare, come si scrivono in breve le
+  lunghe file di zeri e uni e dove il computer le conserva: nella memoria centrale e nelle memorie di massa.
 materiale: libro
 scheda:
-  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 1 (Brookshear, cap. 1), §1.1
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 1 (Brookshear, cap. 1), §1.1–1.3
   Docente: Stefano Berardi · canale B · A.A. 2026/27
-  Tempo di studio: 2 ore, anche in più volte
+  Tempo di studio: 3 ore, anche in più volte
 fonte: >-
   Libro di testo del corso, parte 1 (J. G. Brookshear, D. Brylow, Computer Science: an overview, cap. 1), §1.1 «Bits
-  and Their Storage» e risposte alle sue domande; programma del canale B 2026/27; lucidi del canale A 2026/27 sulla
-  codifica dei dati; regole d'esame comuni ai tre canali
+  and Their Storage», §1.2 «Main Memory» e §1.3 «Mass Storage», con le risposte alle loro domande; riassunto della
+  lezione del 01/10/2026 sul Moodle del canale B; lucidi del canale A 2026/27 sulla codifica dei dati; regole d'esame
+  comuni ai tre canali
 file_en: 01_bits_gates_hexadecimal.html
 appunti_html: appunti/FDA/01_bit_porte_esadecimale.html
 genera_html: true
@@ -2570,14 +2576,15 @@ genera_html: true
 
 - Dentro un computer ogni informazione, numeri, testo, immagini e suoni, è scritta con due soli simboli, 0 e 1. Ognuno di questi simboli si chiama **bit**.
 - Ogni bit in più raddoppia le possibilità: con $n$ bit si scrivono $2^n$ sequenze diverse. Con 8 bit, cioè un **byte**, sono 256.
-- Le **operazioni booleane** combinano i bit. **AND** dà 1 solo se tutti e due gli ingressi valgono 1, **OR** se almeno uno vale 1, **XOR** se i due ingressi sono diversi. **NOT** scambia 0 e 1.
-- Una **porta logica** è un piccolo circuito che esegue una di queste operazioni. Collegando più porte si costruiscono circuiti che fanno conti più complicati.
+- Le **operazioni booleane** combinano i bit: **AND** dà 1 solo se tutti e due gli ingressi valgono 1, **OR** se almeno uno vale 1, **XOR** se sono diversi, **NOT** scambia 0 e 1. Una **porta logica** è il circuito che esegue una di queste operazioni.
 - Il **flip-flop** è un circuito che ricorda un bit: la sua uscita resta uguale finché un impulso non la cambia. È un primo mattone della memoria.
 - La **notazione esadecimale** scrive quattro bit con un solo simbolo, da 0 a 9 e da A a F. Per esempio 1011 0101 diventa B5.
+- La **memoria centrale** è una lunga fila di **celle** di un byte, ognuna con il suo numero, l'**indirizzo**. Si raggiunge qualunque cella nello stesso tempo (RAM). Un **kilobyte** sono 1024 byte.
+- Le **memorie di massa**, cioè dischi magnetici, dischi ottici e memorie flash, conservano i dati anche a computer spento. Sono più grandi ed economiche della memoria centrale, ma più lente.
 - All'esame, comune ai tre canali, tornano le tabelle delle operazioni e la lettura dei circuiti: vanno sapute a memoria.
 
 > [!CANALI]
-> Libro di testo ed esame sono gli stessi nei canali A, B e C; cambiano docenti e ordine delle lezioni. Nel canale B Stefano Berardi segue il libro, in inglese, senza slide sue: il 28/09 ha pubblicato su Moodle la presentazione del libro digitale di Pearson. I riassunti delle lezioni del canale B stanno sul Moodle del canale, che chiede il login: questi appunti seguono il libro dall'inizio, la sezione 1.1. Nel canale A (Felice Cardone) la prima lezione è stata un'introduzione al corso, e i lucidi «Cenni sulla codifica dei dati» partono proprio dai bit e da quante cose si possono etichettare con $n$ bit. Il canale C (Luca Paolini) è partito con i lucidi «Azzeramento» e «Rappresentazione». Attenzione: il programma del canale B salta alcune sezioni del libro che l'esame comune può chiedere (dettagli nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md)).
+> Libro di testo ed esame sono gli stessi nei canali A, B e C; cambiano docenti e ordine delle lezioni. Nel canale B Stefano Berardi segue il libro, in inglese, senza slide sue. La sua prima lezione, lunedì 28/09, è stata un'introduzione al corso: questi appunti partono dalla seconda, giovedì 01/10, che ha fatto la sezione 1.1 del libro (bit, porte, flip-flop, esadecimale), la memoria centrale e le memorie di massa. Per questo qui è la lezione 01. I riassunti delle lezioni stanno sul Moodle del canale B, che chiede il login. Nel canale A (Felice Cardone) i lucidi «Cenni sulla codifica dei dati» partono proprio dai bit e da quante cose si possono etichettare con $n$ bit, e altri lucidi raccontano la struttura della memoria. Il canale C (Luca Paolini) è partito con i lucidi «Azzeramento» e «Rappresentazione». Attenzione: il programma del canale B salta alcune sezioni del libro che l'esame comune può chiedere (dettagli nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md)).
 
 ## Due simboli per dire tutto: i bit (libro, §1.1)
 
@@ -2613,7 +2620,7 @@ Ogni bit in più raddoppia il numero delle sequenze. Per ogni sequenza vecchia c
 > |---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
 > | $2^n$ | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 1024 |
 
-Una fila di 8 bit si chiama **byte**: ne parla la sezione 1.2 del libro. Un byte può avere $2^8 = 256$ valori diversi.
+Una fila di 8 bit si chiama **byte**: la ritrovi più avanti, nella sezione sulla memoria centrale. Un byte può avere $2^8 = 256$ valori diversi.
 
 ### Quanti bit servono
 
@@ -2860,7 +2867,7 @@ Confronta la seconda e la terza riga: gli ingressi tornano come all'inizio, ma l
 > [!NOTA] Un altro modo di costruirlo
 > Il libro mostra anche un secondo flip-flop (figura 1.5), con due porte OR e due porte NOT. L'idea è la stessa: un'uscita che torna indietro e si tiene da sola. Lo racconta la domanda 3 del §1.1.
 
-Il flip-flop è uno dei modi di conservare un bit dentro un computer. Come è organizzata la memoria, fatta di tantissimi bit, lo spiega la sezione 1.2 del libro.
+Il flip-flop è uno dei modi di conservare un bit dentro un computer. Come è organizzata la memoria, fatta di tantissimi bit, lo vedi più avanti, nella sezione sulla memoria centrale.
 
 ::: prova (a) Il flip-flop ha uscita 1 e arriva un impulso in alto. Che cosa succede? (b) Ha uscita 1 e arriva un impulso in basso. Che cosa succede?
 (a) Niente di nuovo. Durante l'impulso l'OR riceve 1 dall'ingresso e 1 dall'uscita, e dà 1; il NOT dà 1; l'AND dà 1. Dopo l'impulso l'uscita resta 1.
@@ -2894,7 +2901,7 @@ Quattro bit hanno $2^4 = 16$ combinazioni, quindi servono 16 simboli. Si usano l
 | 0110 | 6 | | 1110 | E |
 | 0111 | 7 | | 1111 | F |
 
-Per ricordare la tabella c'è un aiuto. Le quattro posizioni del gruppo valgono, da sinistra, 8, 4, 2 e 1. Somma i valori delle posizioni dove c'è un 1. Per esempio 1011 dà $8 + 2 + 1 = 11$. Poi i numeri da 10 a 15 si scrivono con le lettere: A è 10, B è 11, e così via fino a F, che è 15. Quindi 1011 si scrive B. Perché funziona lo vedrai nella sezione 1.5 del libro, sui numeri in base 2.
+Per ricordare la tabella c'è un aiuto. Le quattro posizioni del gruppo valgono, da sinistra, 8, 4, 2 e 1. Somma i valori delle posizioni dove c'è un 1. Per esempio 1011 dà $8 + 2 + 1 = 11$. Poi i numeri da 10 a 15 si scrivono con le lettere: A è 10, B è 11, e così via fino a F, che è 15. Quindi 1011 si scrive B. Perché funziona lo vedi nella [lezione 02](02_testo_colori_suoni_binario.html), sui numeri in base 2 (sezione 1.5 del libro).
 
 > [!METODO] Dai bit all'esadecimale, e ritorno
 > **Dai bit all'esadecimale.**
@@ -2930,6 +2937,160 @@ bit: 0110101011110010
 > - Una cifra esadecimale vale quattro bit: da 0000, cioè 0, a 1111, cioè F.
 > - Per passare all'esadecimale si fanno gruppi di quattro bit partendo da destra. Per tornare ai bit si scrive ogni cifra con quattro bit, zeri compresi.
 
+## La memoria centrale (libro, §1.2)
+
+Immagina una cassettiera altissima, con i cassetti tutti uguali uno sopra l'altro. Su ogni cassetto c'è un numero: 0, 1, 2, 3, e così via. In ogni cassetto c'è posto per una fila di 8 bit. La memoria centrale di un computer è fatta proprio così.
+
+Per conservare i dati, un computer ha moltissimi circuiti come il flip-flop, ognuno capace di tenere un bit. Tutti insieme formano la **memoria centrale** (*main memory*).
+
+### Celle e byte
+
+I bit della memoria centrale non stanno sparsi: sono raggruppati in **celle** (*cells*). Di solito una cella contiene 8 bit, cioè un **byte**. Un forno a microonde può avere qualche centinaio di celle; un computer di oggi ne ha miliardi.
+
+Dentro una cella i bit stanno in fila. Il libro chiama **estremo alto** (*high-order end*) quello di sinistra ed **estremo basso** (*low-order end*) quello di destra. Il bit all'estremo alto si chiama **bit più significativo** (*most significant bit*), quello all'estremo basso **bit meno significativo** (*least significant bit*).
+
+| Posizione | 1° | 2° | 3° | 4° | 5° | 6° | 7° | 8° |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Una cella | **1** | 0 | 0 | 1 | 0 | 1 | 1 | **0** |
+| Nome | più significativo | | | | | | | meno significativo |
+
+I nomi vengono dai numeri in base 2, che vedi nella [lezione 02](02_testo_colori_suoni_binario.html): il bit più a sinistra è quello che pesa di più.
+
+### Gli indirizzi
+
+Ogni cella ha un numero che la identifica, come il numero civico di una casa: è il suo **indirizzo** (*address*). Gli indirizzi partono da 0 e crescono di uno in uno. Così le celle hanno un ordine, e si può parlare della cella successiva o di quella precedente.
+
+L'ordine serve anche a conservare file di bit più lunghe di un byte: si usano celle vicine. Per esempio sedici bit occupano due celle consecutive.
+
+Con una cella si fanno due cose.
+
+- **Leggerla**: si copia il suo contenuto, che resta com'era.
+- **Scriverci**: si mette nella cella un valore nuovo. Il valore di prima si perde.
+
+> [!ESEMPIO] Scrivere o copiare (domanda 1 del §1.2)
+> La cella 5 contiene il valore 8. Scrivere il valore 5 nella cella 6 vuol dire che la cella 6 contiene 5. Copiare il contenuto della cella 5 nella cella 6 vuol dire che la cella 6 contiene 8. Nei due casi la cella 5 resta com'era.
+
+Prova le due operazioni nello strumento qui sotto. Poi prova a scambiare il contenuto di due celle, come chiede la domanda 2 del §1.2: copiando la cella 2 nella 3 e poi la 3 nella 2 non funziona. Perché? E come si fa?
+
+```widget porte
+titolo: Una piccola memoria di otto celle: scrivi e copia
+modo: memoria
+```
+
+### Ad accesso casuale: la RAM
+
+La memoria centrale si chiama anche **RAM**, dall'inglese *random access memory*, cioè memoria ad accesso casuale. «Casuale» qui vuol dire che si può raggiungere qualunque cella, in qualunque ordine, nello stesso tempo. Su una vecchia cassetta, invece, per ascoltare la quinta canzone bisogna far scorrere il nastro fino a lì.
+
+Molte RAM di oggi tengono i bit come piccolissime cariche elettriche, che si scaricano in fretta. Un circuito le rinfresca molte volte al secondo. Per questo si chiamano **RAM dinamiche** (*dynamic RAM*, DRAM). La RAM ha anche un limite: quando si spegne il computer perde tutto il suo contenuto.
+
+### Quanto è grande una memoria
+
+Le celle si contano con le potenze di 2, perché gli indirizzi sono scritti con i bit: con 10 bit si numerano $2^{10} = 1024$ celle. Per questo le memorie hanno spesso misure come 1024 o 4096 celle.
+
+Il numero 1024 è vicino a 1000, quindi 1024 byte si chiamano un **kilobyte** (KB). Poi si prosegue nello stesso modo: 1024 KB fanno un **megabyte** (MB) e 1024 MB fanno un **gigabyte** (GB).
+
+| Nome | Sigla | Byte | Come potenza di 2 |
+|---|---|--:|:-:|
+| kilobyte | KB | 1 024 | $2^{10}$ |
+| megabyte | MB | 1 048 576 | $2^{20}$ |
+| gigabyte | GB | 1 073 741 824 | $2^{30}$ |
+
+> [!TRAPPOLA] Kilo vuol dire 1000 o 1024?
+> Fuori dall'informatica «kilo» vuol dire esattamente 1000, e anche chi vende dischi conta spesso così: un disco da 1 GB può avere 1 000 000 000 byte. Per togliere il dubbio nel 1998 sono nati i nomi **kibibyte** (KiB), **mebibyte** (MiB) e **gibibyte** (GiB), che vogliono dire sempre 1024 byte, $2^{20}$ byte e $2^{30}$ byte. In queste lezioni, come nel libro, per la memoria KB vuol dire 1024 byte.
+
+> [!ESEMPIO] Quanti bit ci sono in 4 KB (domanda 3 del §1.2)
+> Un kilobyte sono 1024 byte, quindi 4 KB sono $4 \cdot 1024 = 4096$ byte. Ogni byte ha 8 bit: in tutto $4096 \cdot 8 = 32768$ bit.
+
+::: prova (a) Quanti byte ci sono in 2 KB? E quanti bit? (b) Con indirizzi di 12 bit, quante celle si possono numerare?
+(a) 2 KB sono $2 \cdot 1024 = 2048$ byte, cioè $2048 \cdot 8 = 16384$ bit.
+
+(b) Con 12 bit si scrivono $2^{12} = 4096$ indirizzi diversi, da 0 a 4095: si numerano 4096 celle, cioè 4 KB di memoria se ogni cella è un byte.
+:::
+
+> [!RICORDA]
+> - La memoria centrale è una fila di celle di un byte. Ogni cella ha un indirizzo, da 0 in su.
+> - Leggere una cella non la cambia; scriverci sopra cancella il valore di prima.
+> - Nella RAM si raggiunge qualunque cella nello stesso tempo. Quando si spegne il computer, la RAM perde tutto.
+> - 1 KB = 1024 byte, 1 MB = 1024 KB, 1 GB = 1024 MB.
+
+## Le memorie di massa (libro, §1.3)
+
+Quando spegni il computer e lo riaccendi, i tuoi file ci sono ancora. Eppure la memoria centrale, spegnendo, perde tutto. I file stanno da un'altra parte: nelle **memorie di massa** (*mass storage*), dette anche memorie secondarie.
+
+Rispetto alla memoria centrale, le memorie di massa hanno tre vantaggi e un difetto.
+
+- Conservano i dati anche senza corrente.
+- Sono molto più grandi.
+- Costano molto meno per ogni byte, e spesso si possono staccare e portare via.
+- Ma sono più lente. Molte hanno parti che si muovono, come un disco che gira, e un movimento meccanico è lentissimo rispetto ai circuiti elettronici.
+
+Il libro ne presenta tre famiglie: i dischi magnetici, i dischi ottici e le memorie flash.
+
+### I dischi magnetici
+
+Un **disco rigido** (*hard disk*) è fatto di dischi sottili ricoperti di materiale magnetico, che girano velocissimi uno sopra l'altro. Sopra ogni faccia c'è una **testina di lettura e scrittura** (*read/write head*), che scrive i bit magnetizzando piccole zone della superficie e li legge sentendo come sono magnetizzate.
+
+Se la testina sta ferma, il disco che gira le passa sotto lungo un cerchio. Spostando la testina verso il centro o verso il bordo si passa a un cerchio diverso.
+
+- Ogni cerchio si chiama **traccia** (*track*): le tracce sono cerchi con lo stesso centro, uno dentro l'altro.
+- Ogni traccia è divisa in archi chiamati **settori** (*sectors*). Tutti i settori contengono lo stesso numero di bit, per esempio 512 byte o qualche KB.
+- Le testine di tutte le facce si muovono insieme. Le tracce che stanno una sopra l'altra, alla stessa distanza dal centro, formano un **cilindro** (*cylinder*).
+
+Segnare tracce e settori su un disco nuovo vuol dire **formattarlo**.
+
+Per sapere quanto è veloce un disco si guardano quattro misure.
+
+- **Tempo di ricerca** (*seek time*): il tempo che serve per spostare le testine da una traccia a un'altra.
+- **Ritardo di rotazione** o **latenza** (*rotation delay*, *latency time*): il tempo di attesa perché il settore giusto arrivi sotto la testina. In media è mezzo giro del disco.
+- **Tempo di accesso** (*access time*): la somma dei due tempi di prima.
+- **Velocità di trasferimento** (*transfer rate*): quanti bit al secondo si possono leggere o scrivere.
+
+> [!ESEMPIO] Il ritardo di rotazione di un disco
+> Un disco fa 7200 giri al minuto, cioè $7200 : 60 = 120$ giri al secondo. Un giro dura quindi $1/120$ di secondo, circa 8,3 millesimi di secondo. In media si aspetta mezzo giro: circa 4,2 millesimi di secondo. Sembra poco, ma in quel tempo un processore fa milioni di operazioni.
+
+> [!NOTA] I nastri magnetici
+> Esistono anche i nastri magnetici, simili alle vecchie cassette. Per arrivare a un dato bisogna far scorrere il nastro fino a lì, quindi sono lentissimi. Si usano ancora per le copie di sicurezza degli archivi molto grandi.
+
+### I dischi ottici: CD, DVD e Blu-ray
+
+Un **CD** (*compact disk*) è un disco di 12 centimetri con una superficie che riflette la luce, protetta da uno strato di plastica. I bit sono piccole irregolarità della superficie: un laser le illumina e un sensore sente come la luce torna indietro.
+
+A differenza dei dischi magnetici, i dati stanno su una sola traccia **a spirale**. La spirale parte dal centro e arriva al bordo, come il solco di un vecchio disco in vinile, ed è divisa in settori.
+
+- Un CD contiene da 600 a 700 MB.
+- Un **DVD** (*digital versatile disk*) ha le stesse misure, ma più strati semitrasparenti uno sopra l'altro: contiene alcuni GB.
+- Un **Blu-ray** (BD) usa un laser blu-violetto invece che rosso. Il raggio è più sottile e i bit stanno più vicini: contiene più di cinque volte un DVD.
+
+La spirale va benissimo per i dati lunghi letti dall'inizio alla fine, come musica e film. Per saltare a un dato qualunque, invece, è lenta: non ci sono tracce da raggiungere con un solo spostamento.
+
+### Le memorie flash
+
+Le **memorie flash** sono le chiavette USB, le schede SD delle macchine fotografiche e i dischi a stato solido. Non hanno nessuna parte in movimento. I bit si scrivono con segnali elettrici che intrappolano elettroni in minuscole celle di biossido di silicio; lì gli elettroni restano per anni, anche senza corrente.
+
+Senza parti in movimento sono veloci, silenziose e non temono gli urti. Hanno però un limite: ogni volta che una cella si cancella si rovina un poco, e dopo molte riscritture smette di funzionare. Per questo non vanno bene come memoria centrale, che si riscrive di continuo.
+
+Un **disco a stato solido** (*solid-state disk*, SSD) è una memoria flash abbastanza grande da prendere il posto del disco rigido. È più veloce, silenzioso e robusto. Costa però di più per ogni GB, e per questo i dischi magnetici si usano ancora.
+
+| | Dischi magnetici | Dischi ottici | Memorie flash |
+|---|---|---|---|
+| Come si scrive un bit | magnetizzando un punto della superficie | cambiando come la superficie riflette la luce | intrappolando elettroni in piccole celle |
+| Parti in movimento | sì: dischi e testine | sì: disco e laser | no |
+| Come stanno i dati | tracce concentriche, settori, cilindri | una sola traccia a spirale | celle elettroniche |
+| Punti forti | tanto spazio, costo basso per byte | economici e facili da trasportare | veloci, robuste, silenziose |
+| Punti deboli | lenti rispetto alla RAM | lenti a saltare da un dato a un altro | costano di più, si consumano riscrivendole |
+
+::: prova (a) Un disco fa 6000 giri al minuto. Quanto vale in media il ritardo di rotazione? (b) Perché una chiavetta USB non ha tempo di ricerca?
+(a) 6000 giri al minuto sono $6000 : 60 = 100$ giri al secondo: un giro dura $1/100$ di secondo, cioè 10 millesimi. In media si aspetta mezzo giro: 5 millesimi di secondo.
+
+(b) Il tempo di ricerca è il tempo per spostare le testine da una traccia all'altra. Una chiavetta è una memoria flash: non ha testine né parti che si muovono.
+:::
+
+> [!RICORDA]
+> - Le memorie di massa conservano i dati anche a computer spento, sono grandi ed economiche, ma più lente della memoria centrale.
+> - Disco magnetico: tracce concentriche divise in settori; le tracce una sopra l'altra formano un cilindro. Tempo di accesso = tempo di ricerca + ritardo di rotazione.
+> - CD, DVD e Blu-ray: una sola traccia a spirale letta da un laser. Il Blu-ray usa un laser blu-violetto e contiene di più.
+> - Memorie flash e SSD: nessuna parte in movimento, veloci e robuste, ma si consumano riscrivendole.
+
 ## I simboli di questa lezione
 
 | Simbolo | Si legge | Vuol dire | Esempio |
@@ -2944,7 +3105,11 @@ bit: 0110101011110010
 | NOT | «not» | il contrario dell'ingresso | NOT 0 = 1 |
 | $\land$, $\lor$, $\oplus$, $\lnot$ | «e», «o», «o esclusivo», «non» | le stesse operazioni scritte come in logica (parte 2 del libro) | $1 \land 0 = 0$ |
 | A, B, C, D, E, F | «a», «bi», «ci», «di», «e», «effe» | le cifre esadecimali che valgono da 10 a 15 | B = 1011 |
-| $1011_2$, $\text{B}_{16}$ | «1011 in base due», «B in base sedici» | il numerino in basso dice in che base è scritto il numero (sezione 1.5) | $1011_2 = \text{B}_{16}$ |
+| $1011_2$, $\text{B}_{16}$ | «1011 in base due», «B in base sedici» | il numerino in basso dice in che base è scritto il numero ([lezione 02](02_testo_colori_suoni_binario.html)) | $1011_2 = \text{B}_{16}$ |
+| KB, MB, GB | «kilobyte», «megabyte», «gigabyte» | per la memoria: $2^{10}$, $2^{20}$ e $2^{30}$ byte | 4 KB = 4096 byte |
+| KiB, MiB, GiB | «kibibyte», «mebibyte», «gibibyte» | gli stessi valori, con nomi che non lasciano dubbi | 1 KiB = 1024 byte |
+| RAM | «ram» | la memoria centrale, ad accesso casuale (*random access memory*) | 8 GB di RAM |
+| SSD | «esse-esse-di» | disco a stato solido, fatto di memoria flash | un SSD da 512 GB |
 
 ## Verso l'esame
 
@@ -2968,7 +3133,8 @@ Tutti i dettagli sono nella [scheda del corso](https://github.com/DonFlammer/uni
 1. **Le tabelle delle operazioni.** Nelle simulazioni d'esame del 2023/24 tornano due tipi di quiz. Uno chiede la formula booleana di una tabella di verità; l'altro dà un circuito, combinatorio o sequenziale, e chiede che funzione calcola. Sono le idee di questa lezione, riprese più avanti con le algebre di Boole e i circuiti (capitolo 11 della parte 2 del libro).
 2. **Leggere un circuito.** Il metodo con la tabella di tutte le combinazioni degli ingressi funziona per qualunque circuito di porte.
 3. **I bit e le potenze di 2.** Quante sequenze con $n$ bit e quanti bit servono: sono conti che tornano con la rappresentazione dei numeri.
-4. **L'esadecimale.** Torna con le conversioni tra basi della sezione 1.5.
+4. **L'esadecimale.** Torna con le conversioni tra basi della [lezione 02](02_testo_colori_suoni_binario.html).
+5. **Memoria centrale e memorie di massa.** Nei quiz delle simulazioni del 2023/24 non compaiono, ma le sezioni 1.2 e 1.3 stanno nella mappa comune del libro. Servono le idee (celle, indirizzi, RAM, tracce, settori, flash) e i conti con le potenze di 2, come i bit di 4 KB.
 
 I quiz sono in italiano e il libro in inglese: impara i nomi in tutte e due le lingue. Il glossario in fondo li mette uno accanto all'altro. Sulla pagina d'esame (Moodle Esami, id 2673) ci sono anche quiz di ripasso divisi per lezione.
 
@@ -2981,6 +3147,8 @@ I quiz sono in italiano e il libro in inglese: impara i nomi in tutte e due le l
 - Dimenticare una combinazione degli ingressi: con 3 ingressi le righe sono 8, non 6.
 - Pensare che il flip-flop torni a 0 da solo quando l'impulso finisce: è proprio quello che non fa.
 - Nell'esadecimale, togliere gli 0 davanti a una cifra: 1 è 0001, non 1.
+- Dimenticare che un byte ha 8 bit, o che per la memoria un KB ha 1024 byte: 4 KB sono $4 \cdot 1024 \cdot 8 = 32768$ bit.
+- Credere che il tempo di accesso di un disco sia solo il tempo di ricerca: va aggiunto il ritardo di rotazione.
 
 ## Quiz
 
@@ -3052,6 +3220,38 @@ D: Quale fila di bit rappresenta la stringa esadecimale 7E?
 D: Quante cifre esadecimali servono per scrivere una fila di 24 bit?
 N: 6
 = Ogni cifra esadecimale vale quattro bit, quindi servono $24 : 4 = 6$ cifre. Per esempio la stringa E85517 del §1.1 è fatta di 24 bit.
+
+D: Quanti bit ci sono in una memoria da 2 KB?
+- $2000$
+- $2048$
+- $16000$
++ $16384$
+- $16$
+= 2 KB sono $2 \cdot 1024 = 2048$ byte, e ogni byte ha 8 bit: $2048 \cdot 8 = 16384$. La risposta $2048$ conta i byte, non i bit. La risposta $16000$ usa 1000 al posto di 1024: per la memoria un KB vale 1024 byte.
+
+D: Le celle 2 e 3 contengono due valori diversi. Quale sequenza di passi scambia i loro contenuti?
+- Copia la cella 2 nella 3, poi copia la cella 3 nella 2.
+- Copia la cella 3 nella 2, poi copia la cella 2 nella 3.
++ Copia la cella 2 nella 1, poi la cella 3 nella 2, poi la cella 1 nella 3.
+- Copia la cella 2 nella 1, poi la cella 1 nella 3, poi la cella 3 nella 2.
+- Non si può fare: copiare una cella cancella sempre quella di partenza.
+= Serve una cella di appoggio, qui la 1. Si mette da parte il valore della cella 2, poi si copia la 3 nella 2, infine si porta nella 3 il valore messo da parte. Le prime due risposte perdono un valore al primo passo: alla fine le due celle contengono lo stesso valore. La quarta copia nella 3 il valore della 2 prima di aver salvato quello della 3, che va perso. L'ultima è falsa: copiare legge la cella di partenza senza cambiarla.
+
+D: Un disco magnetico deve leggere un settore che sta su un'altra traccia. Che cosa si somma per avere il tempo di accesso?
++ Il tempo di ricerca e il ritardo di rotazione.
+- Il tempo di ricerca e la velocità di trasferimento.
+- Il ritardo di rotazione e la velocità di trasferimento.
+- Niente: è solo il tempo di ricerca, perché il disco gira sempre.
+- Niente: è solo il ritardo di rotazione, perché le testine non si muovono.
+= Prima le testine si spostano sulla traccia giusta (tempo di ricerca), poi si aspetta che il settore arrivi sotto la testina (ritardo di rotazione): il tempo di accesso è la somma dei due. La velocità di trasferimento è un'altra misura, in bit al secondo: dice quanto in fretta si legge una volta arrivati.
+
+D: Quale memoria non ha parti in movimento ma si consuma dopo molte riscritture?
+- Il disco rigido magnetico.
+- Il CD.
+- Il Blu-ray.
++ La memoria flash, come quella di una chiavetta o di un SSD.
+- Il nastro magnetico.
+= Le memorie flash scrivono i bit intrappolando elettroni in piccole celle, senza dischi né testine. Ogni cancellazione rovina un poco le celle, quindi dopo molte riscritture smettono di funzionare. Dischi rigidi, CD, Blu-ray e nastri hanno tutti parti che si muovono.
 ```
 
 ## Esercizi
@@ -3186,6 +3386,52 @@ Serve un circuito con due ingressi che dia 1 esattamente quando i due ingressi s
 4. A OR B e A XOR B sbagliano più righe.
 :::
 
+::: esercizio base Domande 1 e 3 del §1.2: scrivere, copiare, contare i bit
+(a) La cella con indirizzo 5 contiene il valore 8. Che differenza c'è tra scrivere il valore 5 nella cella 6 e copiare il contenuto della cella 5 nella cella 6? (b) Quanti bit ci sono in una memoria da 4 KB?
+::: soluzione
+1. (a) Scrivendo il valore 5, la cella 6 contiene 5. Copiando la cella 5, la cella 6 contiene 8, il valore che sta nella cella 5. In tutti e due i casi la cella 5 non cambia, e il valore di prima della cella 6 si perde.
+2. (b) 4 KB sono $4 \cdot 1024 = 4096$ byte.
+3. Ogni byte ha 8 bit: $4096 \cdot 8 = 32768$ bit.
+
+Sono le risposte che dà il libro. Controllo della (b) con le potenze di 2: $4 = 2^2$, $1024 = 2^{10}$ e $8 = 2^3$, quindi i bit sono $2^{2+10+3} = 2^{15} = 32768$.
+:::
+
+::: esercizio medio Domanda 2 del §1.2: scambiare due celle
+Vuoi scambiare i valori delle celle 2 e 3. Che cosa non va in questi due passi? Passo 1: copia la cella 2 nella cella 3. Passo 2: copia la cella 3 nella cella 2. Scrivi una sequenza di passi corretta; puoi usare altre celle.
+::: soluzione
+1. Il passo 1 scrive nella cella 3 il valore della cella 2: il valore che c'era nella 3 si perde.
+2. Il passo 2 copia nella 2 quello che ora c'è nella 3, cioè il valore della 2: la cella 2 non cambia.
+3. Alla fine tutte e due le celle contengono il valore che stava nella 2.
+
+Una sequenza corretta, come nelle risposte del libro, usa la cella 1 per mettere da parte un valore:
+
+1. Copia la cella 2 nella cella 1.
+2. Copia la cella 3 nella cella 2.
+3. Copia la cella 1 nella cella 3.
+
+Puoi provarla nello strumento della memoria: con 2 e 3 diversi, dopo i tre passi sono scambiati.
+:::
+
+::: esercizio medio Domande 1 e 2 del §1.3: dischi più veloci e cilindri
+(a) Che cosa si guadagna facendo girare più in fretta un disco? (b) Un disco ha più facce. Per registrare tanti dati, conviene riempire una faccia intera prima di passare alla successiva, oppure riempire un cilindro intero prima di passare al successivo?
+::: soluzione
+1. (a) Il settore cercato arriva prima sotto la testina, quindi il ritardo di rotazione diminuisce. In più passano più bit sotto la testina ogni secondo: aumenta la velocità di trasferimento.
+2. (b) Muovere le testine è lento, perché è un movimento meccanico: conviene spostarle il meno possibile.
+3. Riempiendo una faccia alla volta, le testine si spostano ogni volta che una traccia è piena: tanti spostamenti quante sono le tracce di tutte le facce.
+4. Riempiendo un cilindro alla volta, quando una traccia è piena si passa alla traccia sopra o sotto. Basta attivare un'altra testina, con un comando elettronico, senza muovere niente. Le testine si spostano solo quando l'intero cilindro è pieno.
+
+Quindi conviene riempire un cilindro alla volta, come dicono le risposte del libro.
+:::
+
+::: esercizio medio Domande 3–6 del §1.3: quale memoria per quale uso
+(a) Perché i dati di un sistema di prenotazioni, che cambiano di continuo, stanno su un disco magnetico e non su un CD o un DVD? (b) Perché lo stesso lettore riesce a leggere CD, DVD e Blu-ray? (c) Che vantaggio hanno le memorie flash sugli altri sistemi? (d) Perché i dischi magnetici si usano ancora?
+::: soluzione
+1. (a) In un sistema di prenotazioni si va a cercare un dato qualunque, in un ordine qualunque. Sulla spirale di un CD o di un DVD saltare da un dato all'altro è lento. In più su questi dischi non si può cambiare un pezzetto di dati qua e là.
+2. (b) I tre dischi hanno la stessa misura e la stessa traccia a spirale. Un lettore con più laser, rosso e blu-violetto, li legge tutti.
+3. (c) Non hanno parti in movimento: rispondono prima e non si consumano per l'attrito.
+4. (d) Sono più veloci e capienti degli altri supporti magnetici, come i nastri. Rispetto ai dischi ottici sono più veloci, più capienti e si riscrivono senza problemi. E costano meno per ogni GB dei dischi a stato solido, anche se la differenza si è ridotta negli ultimi anni.
+:::
+
 ## Domande di ripasso
 
 ::: domanda Che cos'è un bit? Perché il libro dice che è «solo un simbolo»?
@@ -3212,6 +3458,22 @@ La sua uscita torna indietro e diventa un ingresso dell'OR. Dopo un impulso in a
 Le file di bit lunghe si leggono male. L'esadecimale scrive quattro bit con un solo simbolo, da 0 a F. Si fanno gruppi di quattro bit da destra e si scrive la cifra di ogni gruppo.
 :::
 
+::: domanda Com'è organizzata la memoria centrale? Che cos'è un indirizzo?
+È una fila di celle, di solito di un byte ciascuna. Ogni cella ha un numero, il suo indirizzo, che parte da 0 e cresce di uno in uno: serve a trovare la cella e dà un ordine a tutte le celle.
+:::
+
+::: domanda Perché la memoria centrale si chiama RAM? Che difetto ha?
+RAM vuol dire memoria ad accesso casuale: si raggiunge qualunque cella, in qualunque ordine, nello stesso tempo. Il difetto è che, quando si spegne il computer, perde tutto.
+:::
+
+::: domanda Che cosa sono tracce, settori e cilindri di un disco magnetico?
+Le tracce sono i cerchi, con lo stesso centro, su cui la testina legge e scrive. I settori sono gli archi in cui è divisa ogni traccia. Un cilindro è l'insieme delle tracce che stanno una sopra l'altra, sulle varie facce, alla stessa distanza dal centro.
+:::
+
+::: domanda Perché una memoria flash non va bene come memoria centrale?
+Ogni cancellazione rovina un poco le sue celle, che dopo molte riscritture smettono di funzionare. La memoria centrale si riscrive di continuo, molte volte al secondo.
+:::
+
 ## Glossario
 
 ```glossario
@@ -3230,6 +3492,20 @@ Flip-flop | Un circuito la cui uscita resta uguale finché un impulso non la cam
 Stringa di bit | Una fila di bit (*bit string*); quando è molto lunga il libro la chiama flusso (*stream*).
 Notazione esadecimale | Il modo di scrivere ogni gruppo di quattro bit con un simbolo da 0 a 9 o da A a F (*hexadecimal notation*).
 Cifra esadecimale | Uno dei 16 simboli 0–9 e A–F. A vale 10, F vale 15.
+Memoria centrale | La memoria in cui il computer tiene i dati su cui sta lavorando (*main memory*): una fila di celle.
+Cella | Un pezzo di memoria di dimensione fissa, di solito un byte (*cell*).
+Indirizzo | Il numero che identifica una cella: parte da 0 e cresce di uno in uno (*address*).
+Bit più significativo | Il bit all'estremo alto della cella, cioè a sinistra (*most significant bit*). Quello a destra è il meno significativo.
+RAM | Memoria ad accesso casuale (*random access memory*): ogni cella si raggiunge nello stesso tempo. La DRAM tiene i bit come cariche elettriche da rinfrescare.
+Kilobyte (KB) | Per la memoria, 1024 byte. Un megabyte (MB) sono 1024 KB, un gigabyte (GB) 1024 MB. Per togliere i dubbi c'è anche il nome kibibyte (KiB).
+Memoria di massa | Una memoria che conserva i dati anche senza corrente, più grande e più lenta della memoria centrale (*mass storage*).
+Traccia | Uno dei cerchi concentrici su cui un disco magnetico registra i dati (*track*).
+Settore | Un arco di una traccia; tutti i settori contengono lo stesso numero di bit (*sector*).
+Cilindro | L'insieme delle tracce che stanno una sopra l'altra sulle facce di un disco (*cylinder*).
+Tempo di accesso | Tempo di ricerca, per portare la testina sulla traccia, più ritardo di rotazione, per aspettare il settore (*access time*).
+Velocità di trasferimento | Quanti bit al secondo si leggono o si scrivono (*transfer rate*).
+Memoria flash | Una memoria senza parti in movimento che tiene i bit intrappolando elettroni; si consuma con le riscritture (*flash memory*).
+SSD | Disco a stato solido: una memoria flash grande, al posto del disco rigido (*solid-state disk*).
 ```
 
 ## Checklist
@@ -3241,15 +3517,848 @@ Cifra esadecimale | Uno dei 16 simboli 0–9 e A–F. A vale 10, F vale 15.
 - So leggere un circuito di porte con la tabella di tutte le combinazioni degli ingressi.
 - So raccontare che cosa succede in un flip-flop con un impulso in alto e con un impulso in basso.
 - So passare dai bit all'esadecimale e dall'esadecimale ai bit, senza perdere gli zeri.
+- So spiegare celle, indirizzi e RAM, e la differenza tra scrivere in una cella e copiarla.
+- So fare i conti con KB, MB e GB: per esempio quanti bit ci sono in 4 KB.
+- So che cosa sono tracce, settori, cilindri, tempo di ricerca e ritardo di rotazione.
+- So dire pregi e difetti di dischi magnetici, dischi ottici e memorie flash.
 ```
 
 ## Fonti
 
-- R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Sezione 1.1 «Bits and Their Storage»: operazioni booleane, porte e flip-flop (figure 1.3 e 1.5), notazione esadecimale; risposte alle domande 1–6 della sezione nell'appendice del libro, pubblicate sul Moodle del canale A.
-- Programma del canale B 2026/27 (Moodle del canale B, consultato il 28/09/2026) e regole d'esame comuni ai tre canali (pagina d'esame su Moodle Esami): [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
-- Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» (F. Cardone, Moodle del canale A, aperto agli ospiti): bit come etichette, $2^n$ sequenze, numero minimo di bit.
-- Calendario delle lezioni del canale B (University Planner): prima lezione lunedì 28/09/2026.
-- Le spiegazioni a parole, gli esempi, i riquadri «Ripasso» e «Prova tu», lo strumento interattivo, i quiz e gli esercizi senza il numero del libro sono di questi appunti.
+- R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Sezione 1.1 «Bits and Their Storage»: operazioni booleane, porte e flip-flop (figure 1.3 e 1.5), notazione esadecimale. Sezione 1.2 «Main Memory»: celle, estremo alto e basso, indirizzi, RAM e DRAM, kilobyte. Sezione 1.3 «Mass Storage»: dischi magnetici, CD, DVD e Blu-ray, memorie flash e SSD. Risposte alle domande delle tre sezioni nell'appendice del libro, pubblicate sul Moodle del canale A.
+- Riassunti delle lezioni del canale B (Moodle del canale B): lezione 1 del 28/09/2026, introduttiva; lezione 2 del 01/10/2026, «Bits and Their Storage», flip-flop, notazione esadecimale, memoria centrale e memorie di massa. Programma del canale B 2026/27 e regole d'esame comuni ai tre canali (pagina d'esame su Moodle Esami): [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
+- Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» e «Struttura della memoria ed esecuzione dei programmi» (F. Cardone, Moodle del canale A, aperto agli ospiti): bit come etichette, $2^n$ sequenze, numero minimo di bit; celle e indirizzi.
+- Prefissi binari kibi, mebi e gibi: norma IEC 60027-2 (dicembre 1998).
+- Le spiegazioni a parole, gli esempi (come il disco a 7200 giri al minuto), i riquadri «Ripasso» e «Prova tu», gli strumenti interattivi, i quiz e gli esercizi senza il numero del libro sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/02_testo_colori_suoni_binario.md -->
+> File: `contesto_ai/FDA/lezioni/02_testo_colori_suoni_binario.md`
+
+```yaml
+corso: FDA
+lezione: "02"
+titolo: Testo, colori e suoni in bit; i numeri in base 2
+data: 2026-10-02
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 02 · Libro, parte 1, §1.4–1.5
+descrizione: >-
+  Appunti della lezione 02 di Fondamenti dell'Informatica (canale B): come si scrivono in bit il testo (ASCII,
+  Unicode, UTF-8), i numeri, le immagini (pixel e colori RGB) e i suoni (campioni); il sistema binario, le
+  conversioni tra base 2 e base 10, le frazioni in binario e l'addizione di interi senza segno, con strumenti
+  interattivi, quiz ed esercizi svolti.
+lede: >-
+  Lettere, colori e suoni diventano numeri, e i numeri diventano file di zeri e uni. Qui vedi come si scrive in bit un
+  testo in qualunque lingua, una foto e una canzone, e come si lavora con i numeri in base 2: conversioni, somme e
+  numeri con la virgola.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 1 (Brookshear, cap. 1), §1.4–1.5
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 3 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 1 (J. G. Brookshear, D. Brylow, Computer Science: an overview, cap. 1), §1.4
+  «Representing Information as Bit Patterns» e §1.5 «The Binary System», con le risposte alle loro domande;
+  riassunto della lezione del 02/10/2026 sul Moodle del canale B; lucidi del canale A 2026/27 sulla codifica dei
+  dati; standard Unicode e UTF-8
+file_en: 02_text_colours_sounds_binary.html
+appunti_html: appunti/FDA/02_testo_colori_suoni_binario.html
+genera_html: true
+```
+
+## In breve
+
+- Ogni simbolo di un testo diventa un numero, scritto in bit. Il codice **ASCII** usa 7 bit, di solito messi in un byte: la A è 65, cioè 01000001.
+- **Unicode** dà un numero a ogni simbolo di ogni lingua, compresi è, € ed emoji. **UTF-8** scrive quei numeri con 1, 2, 3 o 4 byte; per i simboli di ASCII usa lo stesso byte di ASCII.
+- Un'immagine è una griglia di **pixel**. Con il sistema **RGB** ogni pixel ha tre numeri da 0 a 255, per il rosso, il verde e il blu: 3 byte per pixel.
+- Un suono si registra misurando l'onda tante volte al secondo: ogni misura è un **campione**. Un CD ne prende 44 100 al secondo, da 16 bit l'uno.
+- Nel **sistema binario** ogni posizione vale il doppio di quella alla sua destra: 1, 2, 4, 8, 16… Così 1101 vale 8 + 4 + 1 = 13.
+- Per passare dalla base 10 alla base 2 si divide per 2 più volte e si leggono i resti dall'ultimo al primo.
+- In binario si somma in colonna come in base 10, ma 1 + 1 fa 10: scrivo 0 e riporto 1. Con $n$ bit gli interi senza segno vanno da 0 a $2^n - 1$; se la somma non ci sta c'è **overflow**.
+- Dopo la virgola le posizioni valgono 1/2, 1/4, 1/8…: 101,101 vale 5 e 5/8.
+
+> [!CANALI]
+> Nel canale B è la lezione di venerdì 02/10, dalle 11 alle 13. Per il docente è la lezione 3, perché la prima è stata un'introduzione: qui è la lezione 02. Stefano Berardi ha fatto le sezioni 1.4 e 1.5 del libro: alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno. Le sezioni 1.2 e 1.3 sono nella [lezione 01](01_bit_porte_esadecimale.html). Nel canale A i lucidi «Cenni sulla codifica dei dati» di Felice Cardone fanno le stesse conversioni con le divisioni per 2, e ricordano che in ASCII la minuscola si ottiene dalla maiuscola aggiungendo 32. Nel canale C le stesse sezioni stanno nei lucidi «Rappresentazione» di Luca Paolini.
+
+## Il testo: il codice ASCII (libro, §1.4)
+
+Due amici si scrivono messaggi segreti con una regola: A vale 1, B vale 2, C vale 3, e così via. Per scrivere CIAO mandano i numeri 3, 9, 1 e 15. Un computer fa la stessa cosa con i testi: ogni simbolo ha il suo numero, e il numero si scrive in bit.
+
+Una tabella che dà a ogni simbolo una sua fila di bit si chiama **codice**. I simboli sono lettere, cifre e segni di punteggiatura, ma anche comandi come «vai a capo».
+
+Il codice più famoso è l'**ASCII** (*American Standard Code for Information Interchange*, si legge «aschi»). Usa 7 bit per simbolo, quindi ha $2^7 = 128$ simboli: le lettere maiuscole e minuscole dell'alfabeto inglese, le cifre, la punteggiatura, lo spazio e alcuni comandi. Oggi ogni simbolo occupa un byte intero, con uno 0 in più a sinistra.
+
+Ecco la parola «Hello.» in ASCII, come nella figura 1.11 del libro.
+
+| Simbolo | Codice | Byte |
+|:-:|--:|:-:|
+| H | 72 | 01001000 |
+| e | 101 | 01100101 |
+| l | 108 | 01101100 |
+| l | 108 | 01101100 |
+| o | 111 | 01101111 |
+| . | 46 | 00101110 |
+
+La tabella completa sta nelle appendici del libro. Basta ricordare dove cominciano i gruppi più usati.
+
+| Simboli | Codici | In esadecimale | Primo e ultimo byte |
+|---|:-:|:-:|---|
+| spazio | 32 | 20 | 00100000 |
+| cifre da 0 a 9 | da 48 a 57 | da 30 a 39 | da 00110000 a 00111001 |
+| maiuscole da A a Z | da 65 a 90 | da 41 a 5A | da 01000001 a 01011010 |
+| minuscole da a a z | da 97 a 122 | da 61 a 7A | da 01100001 a 01111010 |
+
+Due cose da notare.
+
+- **Maiuscole e minuscole** differiscono di 32: la A è 65, la a è 97. Nei bit cambia un solo bit, il sesto da destra, che vale proprio 32: A è 01000001, a è 01100001. È la domanda 2 del §1.4.
+- **Le cifre** sono simboli come gli altri. Il simbolo «7» ha codice 55, cioè 00110111. Gli ultimi quattro bit, 0111, sono il 7 in binario, ma per il computer il simbolo «7» non è il numero 7: è un disegno da stampare.
+
+::: prova (a) Il codice ASCII di B è 66. Qual è il codice di b? (b) Che simbolo ha il byte 00110011?
+(a) La minuscola vale 32 in più: $66 + 32 = 98$.
+
+(b) 00110011 vale $32 + 16 + 2 + 1 = 51$, cioè $48 + 3$: è il simbolo «3». Come si calcola il valore di un byte lo vedi più avanti, nella sezione sul sistema binario.
+:::
+
+> [!RICORDA]
+> - Un codice dà a ogni simbolo una fila di bit. ASCII usa 7 bit, cioè 128 simboli, e oggi un byte per simbolo.
+> - Maiuscola e minuscola differiscono di 32: cambia un solo bit, il sesto da destra.
+> - Il simbolo «7» non è il numero 7.
+
+## Tutte le lingue: Unicode e UTF-8 (libro, §1.4)
+
+Prova a scrivere in ASCII la parola «perché»: non si può. La é non c'è, e non c'è nemmeno il simbolo dell'euro.
+
+Per le altre lingue sono nati codici a 8 bit, con 256 simboli: i primi 128 sono quelli di ASCII, gli altri cambiano da lingua a lingua. Il codice ISO 8859-1, detto Latin-1, per esempio, ha le lettere accentate dell'Europa occidentale. Il libro spiega i due limiti di questa idea: 256 simboli non bastano per lingue come il cinese, e un testo in più lingue non sa quale tabella usare.
+
+La soluzione di oggi è **Unicode**: un'unica tabella con i simboli di tutte le lingue, più simboli matematici, emoji e molto altro. Ogni simbolo ha un numero, detto **punto di codice** (*code point*), che si scrive con «U+» seguito dal numero in esadecimale. I numeri arrivano a 21 bit: c'è posto per più di un milione di simboli. I primi 128 sono quelli di ASCII.
+
+| Simbolo | Punto di codice | In decimale |
+|:-:|:-:|--:|
+| A | U+0041 | 65 |
+| è | U+00E8 | 232 |
+| € | U+20AC | 8364 |
+| 😀 | U+1F600 | 128512 |
+
+Unicode dice soltanto quale numero ha ogni simbolo. Per conservarlo in memoria bisogna scriverlo in byte, e il modo più usato è **UTF-8**: da 1 a 4 byte per simbolo, secondo quanto è grande il numero.
+
+| Punti di codice | Bit del numero | Byte | Schema dei byte |
+|---|:-:|:-:|---|
+| da U+0000 a U+007F | fino a 7 | 1 | 0xxxxxxx |
+| da U+0080 a U+07FF | fino a 11 | 2 | 110xxxxx 10xxxxxx |
+| da U+0800 a U+FFFF | fino a 16 | 3 | 1110xxxx 10xxxxxx 10xxxxxx |
+| da U+10000 a U+10FFFF | fino a 21 | 4 | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx |
+
+Al posto delle x vanno i bit del punto di codice, in ordine. Il primo byte dice quanti byte ha il simbolo: tanti 1 quanti sono i byte, poi uno 0. I byte che seguono cominciano tutti con 10. Così, leggendo un file, si capisce sempre dove comincia ogni simbolo.
+
+I simboli di ASCII occupano un solo byte che comincia con 0: è proprio il byte di ASCII. Quindi un testo in ASCII è già un testo in UTF-8.
+
+> [!METODO] Da un simbolo ai byte di UTF-8
+> 1. Trova il punto di codice del simbolo e scrivilo in binario.
+> 2. Conta i bit e scegli la riga della tabella: fino a 7 bit un byte, fino a 11 due, fino a 16 tre, fino a 21 quattro.
+> 3. Aggiungi degli 0 a sinistra finché i bit sono tanti quante le x della riga.
+> 4. Metti i bit al posto delle x, da sinistra a destra.
+
+> [!ESEMPIO] La è e l'euro
+> **La è.** Il punto di codice è U+00E8, cioè 232, in binario 11101000: 8 bit, quindi servono due byte, che hanno posto per 11 bit. Con tre 0 davanti: 00011101000. I primi 5 bit vanno nel primo byte, gli altri 6 nel secondo. Il primo byte è 110 seguito da 00011, il secondo è 10 seguito da 101000: 11000011 10101000, cioè C3 A8 in esadecimale.
+>
+> **L'euro.** Il punto di codice è U+20AC, in binario 0010000010101100: 16 bit, quindi tre byte. I bit si dividono in 4, 6 e 6: 0010, 000010 e 101100. I byte sono 1110 seguito da 0010, 10 seguito da 000010, 10 seguito da 101100: E2 82 AC.
+
+> [!TRAPPOLA] UTF-8 non vuol dire «8 bit per simbolo»
+> L'8 dice che UTF-8 lavora a byte, ma un simbolo può occupare da 1 a 4 byte. Contare i simboli non basta per sapere quanti byte occupa un testo: «perché» ha 6 simboli e occupa 7 byte.
+
+Un file fatto solo di codici di simboli, uno dopo l'altro, si chiama **file di testo**: sono file di testo i .txt, ma anche i programmi in C e le pagine web. I programmi di videoscrittura, come Word, salvano anche grassetti, caratteri e margini con codici loro: un file .docx non è un file di testo.
+
+> [!NOTA] Non solo UTF-8
+> Unicode si può scrivere anche in altri modi. UTF-16, per esempio, usa 2 o 4 byte per simbolo, e lo usano dentro di loro Windows e Java. Sul web, invece, quasi tutte le pagine sono in UTF-8.
+
+Scrivi una parola nello strumento qui sotto: per ogni simbolo vedi il punto di codice e i byte di UTF-8, con le parti fisse dello schema separate dai bit del numero.
+
+```widget codifica
+titolo: Un testo in Unicode e UTF-8: scrivi quello che vuoi
+modo: testo
+testo: Ciao, è 5€!
+```
+
+::: prova (a) Quanti byte occupa in UTF-8 la parola «caffè»? (b) Si può scrivere in ASCII?
+(a) c, a, f e f sono simboli di ASCII: un byte ciascuno. La è occupa 2 byte. In tutto $4 + 2 = 6$ byte.
+
+(b) No: la è non è tra i 128 simboli di ASCII.
+:::
+
+> [!RICORDA]
+> - Unicode dà un numero, il punto di codice U+…, a ogni simbolo di ogni lingua. UTF-8 scrive quel numero con 1, 2, 3 o 4 byte.
+> - In UTF-8 i simboli di ASCII occupano un byte, uguale a quello di ASCII.
+> - Il primo byte di un simbolo dice quanti byte ha: 0…, 110…, 1110… oppure 11110…; i byte che seguono cominciano con 10.
+
+## I numeri: meglio in binario (libro, §1.4)
+
+Per scrivere il numero 25 in ASCII servono due simboli, «2» e «5»: due byte, cioè 16 bit. Con gli stessi 16 bit usati come cifre in base 2 si scrive qualunque numero da 0 a 65535. Per questo il libro conclude che i numeri si conservano nel **sistema binario**, che vedi nelle prossime sezioni.
+
+Perché proprio 65535? Con 16 bit si scrivono $2^{16} = 65536$ sequenze, come nella [lezione 01](01_bit_porte_esadecimale.html). La prima vale 0, quindi l'ultima vale 65535.
+
+> [!IDEA]
+> Con $n$ bit si scrivono i numeri interi da 0 a $2^n - 1$. Si chiamano **interi senza segno** (*unsigned integers*): niente numeri negativi e niente virgola. Per quelli servono altri sistemi, nelle sezioni 1.6 e 1.7 del libro.
+
+La domanda 7 del §1.4 fa lo stesso confronto con tre byte: in ASCII si scrivono tre cifre, quindi si arriva a 999; in binario si arriva a $2^{24} - 1 = 16777215$.
+
+::: prova Con un byte, qual è il numero più grande che si scrive in binario? E con una cifra in ASCII?
+In binario $2^8 - 1 = 255$, cioè 11111111. In ASCII un byte contiene una sola cifra: si arriva a 9.
+:::
+
+> [!RICORDA]
+> - Con $n$ bit, in binario, si scrivono gli interi senza segno da 0 a $2^n - 1$.
+> - In ASCII ogni cifra occupa un byte intero: per i numeri è uno spreco.
+
+## Le immagini: pixel e colori (libro, §1.4)
+
+Ingrandisci molto una foto sul telefono: a un certo punto vedi tanti quadratini, ognuno di un colore solo. Sono i **pixel**, da *picture elements*, «elementi dell'immagine».
+
+Un'immagine fatta così si chiama **mappa di bit** (*bit map*): una griglia di pixel, ognuno scritto con dei bit. In un'immagine in bianco e nero basta un bit per pixel, per esempio 1 per nero e 0 per bianco. Ecco una F di cinque righe da cinque pixel.
+
+| Riga | Bit | Disegno |
+|:-:|:-:|:-:|
+| 1 | 11111 | ■■■■■ |
+| 2 | 10000 | ■□□□□ |
+| 3 | 11110 | ■■■■□ |
+| 4 | 10000 | ■□□□□ |
+| 5 | 10000 | ■□□□□ |
+
+### I colori in RGB
+
+Per i colori il modo più comune è **RGB**: ogni pixel ha tre numeri, quanto rosso (*red*), quanto verde (*green*) e quanto blu (*blue*). Ognuno va da 0 a 255, quindi occupa un byte: in tutto 3 byte per pixel.
+
+I tre colori si mescolano come tre luci puntate sullo stesso punto. Rosso e verde insieme danno il giallo; tutti e tre al massimo danno il bianco; tutti a zero, cioè luce spenta, danno il nero. Tre valori uguali danno un grigio.
+
+| Colore | Rosso | Verde | Blu | In esadecimale |
+|---|--:|--:|--:|:-:|
+| nero | 0 | 0 | 0 | #000000 |
+| bianco | 255 | 255 | 255 | #FFFFFF |
+| rosso | 255 | 0 | 0 | #FF0000 |
+| verde | 0 | 255 | 0 | #00FF00 |
+| blu | 0 | 0 | 255 | #0000FF |
+| giallo | 255 | 255 | 0 | #FFFF00 |
+| grigio | 128 | 128 | 128 | #808080 |
+| arancione | 255 | 128 | 0 | #FF8000 |
+
+L'ultima colonna è il modo di scrivere i colori nelle pagine web: un byte per colore, quindi due cifre esadecimali ciascuno, come nella [lezione 01](01_bit_porte_esadecimale.html). Con 3 byte i colori possibili sono $2^{24} = 16777216$, più di sedici milioni.
+
+Prova a mescolare i colori nello strumento.
+
+```widget codifica
+titolo: Rosso, verde e blu: tre byte per un pixel
+modo: colori
+r: 255
+g: 128
+b: 0
+```
+
+> [!NOTA] Luminosità e colore
+> Il libro descrive anche un'altra strada: per ogni pixel si scrivono la luminosità (*luminance*) e due numeri per il colore (*chrominance*). La televisione e il formato JPEG usano un'idea simile, perché l'occhio nota le differenze di luminosità più di quelle di colore.
+
+### Quanto pesa un'immagine
+
+Lo schermo di un portatile Full HD ha 1920 × 1080 = 2073600 pixel. A 3 byte per pixel, un'immagine grande come lo schermo occupa 6220800 byte, circa 6 MB. Per questo le immagini si comprimono, per esempio in JPEG: lo racconta la sezione 1.9 del libro.
+
+> [!METODO] Quanti byte occupa un'immagine senza compressione
+> Moltiplica la larghezza per l'altezza, in pixel, e il risultato per i byte di ogni pixel: 3 in RGB. Per avere i bit moltiplica ancora per 8.
+
+### Immagini vettoriali
+
+Una mappa di bit ha un limite: se la ingrandisci, ingrandisci anche i pixel, e l'immagine diventa a quadretti. Esiste un altro modo: descrivere l'immagine come un insieme di figure, cioè linee, curve e poligoni con le loro coordinate. È un po' come una lista di istruzioni per disegnarla. Si chiama **immagine vettoriale** (*vector*).
+
+Per ingrandire un'immagine vettoriale si ridisegnano le figure più grandi: niente quadretti. Così sono fatti i caratteri che si possono ingrandire a piacere, come TrueType di Microsoft e Apple e PostScript di Adobe, i disegni tecnici e i file .svg. Per le fotografie, invece, la mappa di bit resta più fedele: è la domanda 9 del §1.4.
+
+::: prova (a) Che colore è (255, 255, 0)? E (0, 255, 255)? (b) Quanti byte occupa un'immagine di 100 × 100 pixel in RGB, senza compressione?
+(a) Il primo è giallo: rosso più verde. Il secondo è il ciano, un azzurro chiaro: verde più blu.
+
+(b) I pixel sono $100 \cdot 100 = 10000$, ognuno di 3 byte: $30000$ byte.
+:::
+
+> [!RICORDA]
+> - Un'immagine a mappa di bit è una griglia di pixel. In RGB ogni pixel ha 3 byte, rosso, verde e blu, da 0 a 255: in tutto $2^{24}$ colori.
+> - Byte di un'immagine senza compressione: larghezza × altezza × byte per pixel.
+> - Le immagini vettoriali descrivono figure: si ingrandiscono senza quadretti, ma non vanno bene per le foto.
+
+## I suoni: campioni (libro, §1.4)
+
+Un suono è una vibrazione dell'aria, un'onda. Quanto è alta l'onda dà il volume; quanto è fitta dà la nota, più grave o più acuta.
+
+Per registrare un suono si misura l'altezza dell'onda a intervalli regolari, tante volte al secondo, e si conservano i numeri. Ogni misura è un **campione** (*sample*), e il procedimento si chiama **campionamento**. Il libro fa l'esempio di un'onda registrata con i campioni 0; 1,5; 2,0; 1,5; 2,0; 3,0; 4,0; 3,0; 0.
+
+Quanti campioni servono?
+
+- Per una telefonata bastano 8000 campioni al secondo.
+- Un CD musicale ne usa **44 100 al secondo**, ognuno di **16 bit**, e due canali per la musica in stereo, uno per orecchio.
+
+Più campioni al secondo e più bit per campione danno un suono più fedele, ma occupano più spazio. Nello strumento qui sotto vedi un'onda, i campioni presi a intervalli regolari e il suono che si ricostruisce dai campioni.
+
+```widget codifica
+titolo: Campionare un suono: meno campioni, meno fedeltà
+modo: suono
+```
+
+> [!METODO] Quanti byte occupa un suono
+> Moltiplica i campioni al secondo per i byte di ogni campione, per il numero dei canali (1 se mono, 2 se stereo) e per i secondi.
+
+> [!ESEMPIO] Un'ora di musica su CD (domanda 10 del §1.4)
+> Ogni campione ha 16 bit, cioè 2 byte. In un secondo di stereo ci sono $44100 \cdot 2 \cdot 2 = 176400$ byte. Un'ora ha 3600 secondi: $176400 \cdot 3600 = 635040000$ byte, circa 635 MB. Un CD contiene da 600 a 700 MB: un'ora di musica lo riempie quasi tutto.
+
+Il formato **MIDI** (*Musical Instrument Digital Interface*) fa un'altra cosa: non conserva l'onda, ma le istruzioni per suonarla, cioè quale strumento, quale nota e per quanto tempo. È molto più compatto. Secondo il libro, un clarinetto che suona un re per due secondi occupa 3 byte in MIDI, contro più di due milioni di bit con 44 100 campioni al secondo. Il difetto: il suono vero dipende dallo strumento elettronico che esegue le istruzioni.
+
+::: prova Quanti byte occupa un minuto di telefonata registrata con 8000 campioni al secondo, 8 bit per campione e un solo canale?
+Ogni campione occupa 8 bit, cioè un byte. In un secondo ci sono 8000 byte, in un minuto $8000 \cdot 60 = 480000$ byte.
+:::
+
+> [!RICORDA]
+> - Un suono si registra con dei campioni, cioè misure dell'onda prese a intervalli regolari.
+> - CD: 44 100 campioni al secondo, 16 bit ciascuno, due canali.
+> - Byte di un suono: campioni al secondo × byte per campione × canali × secondi.
+
+## Il sistema binario (libro, §1.5)
+
+Nel numero 375 il 3 vale trecento, il 7 settanta e il 5 cinque: la stessa cifra vale di più quanto più sta a sinistra. In base dieci ogni posizione vale dieci volte quella alla sua destra: unità, decine, centinaia.
+
+Nel **sistema binario**, o **base 2**, le cifre sono solo 0 e 1, e ogni posizione vale **il doppio** di quella alla sua destra, come nella figura 1.15 del libro.
+
+| Posizione, da destra | 8ª | 7ª | 6ª | 5ª | 4ª | 3ª | 2ª | 1ª |
+|---|--:|--:|--:|--:|--:|--:|--:|--:|
+| Valore | 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+
+### Dal binario al decimale
+
+Per sapere quanto vale un numero binario si sommano i valori delle posizioni dove c'è un 1. Per esempio 100101, come nella figura 1.16 del libro:
+
+| Bit | 1 | 0 | 0 | 1 | 0 | 1 |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|
+| Valore della posizione | 32 | 16 | 8 | 4 | 2 | 1 |
+| Conta? | sì | no | no | sì | no | sì |
+
+Il totale è $32 + 4 + 1 = 37$. Si scrive anche $100101_2 = 37_{10}$: il numerino in basso dice la base, così 100101 non si confonde con centomilacentouno.
+
+Ora si capiscono due cose della [lezione 01](01_bit_porte_esadecimale.html). Il bit più a sinistra di una cella si chiama «più significativo» perché è quello che vale di più. E le cifre esadecimali sono i valori dei gruppi di quattro bit, che valgono 8, 4, 2 e 1.
+
+Clicca sui bit nello strumento e guarda come cambia il valore.
+
+```widget codifica
+titolo: Dai bit al numero: clicca sui bit
+modo: binario
+bit: 00100101
+```
+
+### Dal decimale al binario
+
+Per il viaggio al contrario il libro dà un algoritmo, nella figura 1.17.
+
+> [!METODO] Le divisioni per 2
+> 1. Dividi il numero per 2 e scrivi il resto, che è 0 o 1.
+> 2. Finché il quoziente non è 0, dividi il quoziente per 2 e scrivi il resto.
+> 3. Quando il quoziente è 0, leggi i resti dall'ultimo al primo: è il numero in binario.
+
+> [!ESEMPIO] 13 in binario (figura 1.18 del libro)
+> | Divisione | Quoziente | Resto |
+> |---|--:|--:|
+> | 13 : 2 | 6 | 1 |
+> | 6 : 2 | 3 | 0 |
+> | 3 : 2 | 1 | 1 |
+> | 1 : 2 | 0 | 1 |
+>
+> I resti, dall'ultimo al primo: 1101. Controllo: $8 + 4 + 1 = 13$.
+
+> [!IDEA]
+> Il resto della divisione per 2 dice se il numero è pari, resto 0, o dispari, resto 1: è proprio l'ultimo bit. Dividere per 2 toglie l'ultimo bit. Così i bit escono da destra a sinistra, e per questo i resti si leggono al contrario.
+
+Con i numeri piccoli c'è anche un'altra strada: togli la potenza di 2 più grande che ci sta, poi ripeti con quello che resta. Per esempio $45 = 32 + 8 + 4 + 1$: ci sono 32, 8, 4 e 1, mancano 16 e 2, quindi 45 si scrive 101101.
+
+```widget codifica
+titolo: Le divisioni per 2, passo per passo: scegli un numero
+modo: divisioni
+numero: 13
+```
+
+::: prova (a) Quanto vale 101010 in decimale? (b) Scrivi 27 in binario.
+(a) Gli 1 stanno nelle posizioni da 32, 8 e 2: $32 + 8 + 2 = 42$.
+
+(b) 27 : 2 = 13 resto 1; 13 : 2 = 6 resto 1; 6 : 2 = 3 resto 0; 3 : 2 = 1 resto 1; 1 : 2 = 0 resto 1. Dall'ultimo al primo: 11011. Controllo: $16 + 8 + 2 + 1 = 27$.
+:::
+
+> [!RICORDA]
+> - In base 2 le posizioni valgono 1, 2, 4, 8, 16…, da destra. Il valore è la somma delle posizioni con un 1.
+> - Dalla base 10 alla base 2: dividi per 2 finché il quoziente è 0 e leggi i resti dall'ultimo al primo.
+> - Controlla sempre al contrario: riconverti e guarda se torna.
+
+## L'addizione in binario (libro, §1.5)
+
+In base dieci, per fare 58 + 27 in colonna: 8 + 7 fa 15, scrivo 5 e riporto 1; poi 5 + 2 + 1 fa 8. Il risultato è 85. In base 2 si fa nello stesso modo, ma le somme possibili in una colonna sono poche.
+
+| Nella colonna | Fa | Scrivo | Riporto |
+|---|---|:-:|:-:|
+| 0 + 0 | zero | 0 | 0 |
+| 0 + 1 oppure 1 + 0 | uno | 1 | 0 |
+| 1 + 1 | due, cioè 10 | 0 | 1 |
+| 1 + 1 + 1 di riporto | tre, cioè 11 | 1 | 1 |
+
+Ecco l'esempio del libro, 00111010 + 00011011, cioè 58 + 27. Si parte dalla colonna di destra; nella prima riga ci sono i riporti che arrivano da destra.
+
+| | 8ª | 7ª | 6ª | 5ª | 4ª | 3ª | 2ª | 1ª |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| riporti | 0 | 1 | 1 | 1 | 0 | 1 | 0 | |
+| 58 | 0 | 0 | 1 | 1 | 1 | 0 | 1 | 0 |
+| 27 | 0 | 0 | 0 | 1 | 1 | 0 | 1 | 1 |
+| somma, 85 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+
+Controllo: 01010101 vale $64 + 16 + 4 + 1 = 85$, e $58 + 27 = 85$.
+
+### Interi senza segno e overflow
+
+Con 8 bit gli interi senza segno vanno da 0 a 255. Che cosa succede se la somma è più grande? Prova 200 + 100, cioè 11001000 + 01100100: viene 100101100, cioè 300, che ha 9 bit. Con 8 bit il riporto finale a sinistra si perde e resta 00101100, cioè 44.
+
+Questo si chiama **overflow** (in italiano anche «trabocco»): il risultato non ci sta nei bit disponibili. Chi scrive programmi lo incontra davvero: un contatore di 8 bit, dopo 255, ricomincia da 0.
+
+> [!TRAPPOLA] Il riporto oltre l'ultima colonna
+> Con $n$ bit, se l'ultima colonna a sinistra dà un riporto, la somma vale almeno $2^n$ e non ci sta: c'è overflow. Il risultato scritto con $n$ bit è sbagliato di $2^n$, come 44 invece di 300.
+
+```widget codifica
+titolo: Somma in colonna con 8 bit: clicca sui bit dei due numeri
+modo: somma
+a: 00111010
+b: 00011011
+```
+
+::: prova (a) Calcola 1011 + 0110. (b) Con 4 bit il risultato ci sta?
+(a) Da destra: 1 + 0 fa 1; 1 + 1 fa 10, scrivo 0 e riporto 1; 0 + 1 + 1 fa 10, scrivo 0 e riporto 1; 1 + 0 + 1 fa 10, scrivo 0 e riporto 1. Il risultato è 10001, cioè 17: infatti $11 + 6 = 17$.
+
+(b) No. Con 4 bit si arriva a $2^4 - 1 = 15$. Il riporto finale si perde e resta 0001, cioè 1: overflow.
+:::
+
+> [!RICORDA]
+> - 0 + 0 = 0, 0 + 1 = 1, 1 + 1 = 10 (scrivo 0, riporto 1), 1 + 1 + 1 = 11 (scrivo 1, riporto 1).
+> - Con $n$ bit gli interi senza segno vanno da 0 a $2^n - 1$: un riporto oltre l'ultima colonna vuol dire overflow.
+
+## Le frazioni in binario (libro, §1.5)
+
+In base dieci 3,75 vuol dire 3 unità, 7 decimi e 5 centesimi: dopo la virgola le posizioni valgono 1/10, 1/100, 1/1000. In base 2, dopo la virgola, ogni posizione vale **la metà** di quella alla sua sinistra: 1/2, 1/4, 1/8, 1/16.
+
+| Bit | 1 | 0 | 1 | , | 1 | 0 | 1 |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Valore della posizione | 4 | 2 | 1 | | 1/2 | 1/4 | 1/8 |
+
+Quindi 101,101 vale $4 + 1 + 1/2 + 1/8$, cioè 5 e 5/8, o 5,625: è la figura 1.19 del libro.
+
+> [!NOTA] Virgola o punto
+> Il libro, in inglese, scrive 101.101 con il punto, e chiama la virgola *radix point*. Qui scrivo la virgola, come si fa in italiano. È lo stesso numero.
+
+### Da una frazione al binario
+
+Scrivi la frazione come somma di mezzi, quarti, ottavi e così via. Per esempio 2 e 3/4 è $2 + 1/2 + 1/4$, quindi 10,11. E 5/16 è $4/16 + 1/16$, cioè $1/4 + 1/16$: si scrive 0,0101.
+
+> [!METODO] Raddoppiare la parte dopo la virgola
+> Quando il numero è scritto con la virgola, come 0,625:
+> 1. Raddoppia la parte dopo la virgola: $0{,}625 \cdot 2 = 1{,}25$. La parte intera, qui 1, è il primo bit dopo la virgola.
+> 2. Tieni solo la parte dopo la virgola, 0,25, e raddoppia di nuovo: 0,5, quindi il bit è 0.
+> 3. Continua finché resta 0: $0{,}5 \cdot 2 = 1$, bit 1, e non resta niente.
+> 4. I bit, nell'ordine in cui escono: 0,625 si scrive 0,101.
+
+> [!OLTRE] · numeri che in binario non finiscono
+> In base 2 alcune frazioni non finiscono mai, come 1/3 in base dieci. Un decimo diventa 0,000110011001100…, con 0011 che si ripete per sempre. Il computer deve tagliarlo da qualche parte, e nasce un piccolo errore. Per questo in molti linguaggi di programmazione 0.1 + 0.2 dà 0.30000000000000004. Se ne riparla con la virgola mobile, nella sezione 1.7 del libro.
+
+### Sommare con la virgola
+
+Si mettono le virgole una sotto l'altra e si somma come sempre. L'esempio del libro: 10,011 + 100,110, cioè 2 e 3/8 più 4 e 3/4.
+
+| Valore della posizione | 4 | 2 | 1 | , | 1/2 | 1/4 | 1/8 |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| riporti | 0 | 0 | 1 | , | 1 | 0 | |
+| 2 e 3/8 | 0 | 1 | 0 | , | 0 | 1 | 1 |
+| 4 e 3/4 | 1 | 0 | 0 | , | 1 | 1 | 0 |
+| somma | 1 | 1 | 1 | , | 0 | 0 | 1 |
+
+Il risultato è 111,001, cioè $7 + 1/8$: infatti 2 e 3/8 più 4 e 3/4 fa 7 e 1/8.
+
+Nello strumento qui sotto ci sono anche tre bit dopo la virgola.
+
+```widget codifica
+titolo: Bit con la virgola: clicca sui bit
+modo: binario
+bit: 101101
+frazioni: 3
+```
+
+::: prova (a) Quanto vale 11,01? (b) Scrivi 4 e 1/2 in binario.
+(a) $2 + 1 + 1/4$, cioè 3 e 1/4.
+
+(b) 4 è 100 e 1/2 è 0,1: in tutto 100,1.
+:::
+
+> [!RICORDA]
+> - Dopo la virgola le posizioni valgono 1/2, 1/4, 1/8, 1/16…
+> - Da frazione a binario: scrivi la frazione come somma di mezzi, quarti, ottavi; oppure raddoppia la parte dopo la virgola e prendi le parti intere.
+> - Per sommare, metti le virgole in colonna e somma come sempre.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| ASCII | «aschi» | il codice a 7 bit dei simboli dell'inglese | A = 65 = 01000001 |
+| U+00E8 | «u più zero zero e otto» | il punto di codice di un simbolo in Unicode, in esadecimale | U+00E8 è la è |
+| UTF-8 | «u-ti-effe otto» | il modo di scrivere i punti di codice con 1, 2, 3 o 4 byte | la è diventa C3 A8 |
+| (R, G, B) | «erre, gi, bi» | rosso, verde e blu di un pixel, da 0 a 255 | (255, 255, 0) è giallo |
+| #FF8000 | «cancelletto effe effe otto zero zero zero» | un colore RGB in esadecimale, due cifre per colore | arancione |
+| $1101_2$ | «1101 in base due» | il numerino in basso dice la base | $1101_2 = 13_{10}$ |
+| $2^n - 1$ | «due alla n meno uno» | l'intero senza segno più grande con $n$ bit | con 8 bit, 255 |
+| 101,101 | «uno zero uno virgola uno zero uno» | un numero binario con la virgola: dopo la virgola 1/2, 1/4, 1/8 | 5 e 5/8 |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
+
+**Che cosa serve di questa lezione**
+
+1. **Le conversioni tra base 2 e base 10, anche con la virgola.** Nei quiz delle simulazioni del 2023/24 tornano complemento a 2, virgola mobile e notazione in eccesso. Sono le sezioni 1.6 e 1.7 del libro, e si fanno tutte con le conversioni di questa lezione.
+2. **La somma in colonna e l'overflow.** Torna identica con il complemento a 2.
+3. **Testo, immagini e suoni.** Non compaiono nei quiz delle simulazioni del 2023/24, ma la sezione 1.4 sta nella mappa comune del libro. Servono le idee e i conti: i byte di un testo in UTF-8, di un'immagine, di un suono.
+
+> [!ESAME] Conversioni senza pensarci
+> In 45 minuti ci sono 9 quiz: 5 minuti a domanda. Impara a memoria le potenze di 2 fino a $2^{10} = 1024$ e allenati con le conversioni finché vengono da sole. Nei quiz i numeri sono piccoli: con le potenze di 2 si fa spesso prima che con le divisioni.
+
+**Errori da evitare**
+
+- Leggere i resti delle divisioni dal primo all'ultimo: si leggono dall'ultimo al primo.
+- Dimenticare un riporto, soprattutto quando in una colonna ci sono tre 1.
+- Confondere il simbolo «5», cioè 00110101, con il numero 5, cioè 00000101.
+- Contare un byte per simbolo in UTF-8: è, € ed emoji ne usano di più.
+- Nei conti su immagini e suoni, confondere bit e byte, o dimenticare che lo stereo ha due canali.
+- Dare alle posizioni dopo la virgola i valori 1/10 e 1/100: in base 2 valgono 1/2, 1/4, 1/8.
+
+## Quiz
+
+```quiz
+D: Il codice ASCII della lettera M è 77. Qual è il codice della lettera m?
+- $45$
+- $78$
+- $108$
++ $109$
+- $77$
+= In ASCII la minuscola vale 32 in più della maiuscola: $77 + 32 = 109$. Nei bit cambia solo il sesto bit da destra, quello che vale 32. La risposta $45$ toglie 32 invece di aggiungerlo. La risposta $78$ è il codice di N, la lettera dopo. La risposta $77$ dimentica che maiuscole e minuscole hanno codici diversi.
+
+D: Quanti byte occupa in UTF-8 il testo «Perché 5€?», spazio compreso?
+- $10$
+- $11$
+- $12$
++ $13$
+- $20$
+= I simboli sono 10. Otto sono di ASCII e occupano un byte ciascuno: P, e, r, c, h, lo spazio, 5 e il punto di domanda. La é occupa 2 byte e l'euro 3. In tutto $8 + 2 + 3 = 13$. La risposta $10$ conta un byte per simbolo, l'errore più comune. La risposta $20$ conta due byte per simbolo.
+
+D: Quale di queste affermazioni su Unicode e UTF-8 è vera?
+- UTF-8 usa sempre 8 bit per ogni simbolo.
+- Unicode e UTF-8 sono due nomi dello stesso codice.
++ Un testo scritto solo con simboli di ASCII è anche un testo UTF-8 valido, con gli stessi byte.
+- In UTF-8 la è occupa un byte, come nel codice Latin-1.
+- Unicode contiene 256 simboli.
+= In UTF-8 i punti di codice da U+0000 a U+007F, cioè i simboli di ASCII, occupano un byte che comincia con 0: è proprio il byte di ASCII. UTF-8 usa da 1 a 4 byte per simbolo. Unicode è la tabella dei numeri, UTF-8 un modo di scriverli in byte. La è in UTF-8 occupa 2 byte, C3 A8. Unicode ha posto per più di un milione di simboli.
+
+D: Quanti colori diversi si possono scrivere con 3 byte per pixel, in RGB?
+- $256$
+- $768$
+- $65536$
++ $16777216$
+- $16000000$
+= Tre byte sono 24 bit, quindi i colori sono $2^{24} = 16777216$. In un altro modo: 256 valori per il rosso, 256 per il verde e 256 per il blu, e $256 \cdot 256 \cdot 256 = 16777216$. La risposta $768$ fa $256 + 256 + 256$: i valori vanno moltiplicati, perché ogni rosso si può combinare con ogni verde e ogni blu. La risposta $16000000$ è solo un'approssimazione.
+
+D: Un'immagine di 640 × 480 pixel in RGB, senza compressione, quanti byte occupa?
+- $1120$
+- $3360$
+- $307200$
++ $921600$
+- $7372800$
+= I pixel sono $640 \cdot 480 = 307200$, ognuno di 3 byte: $307200 \cdot 3 = 921600$ byte. La risposta $307200$ dimentica i 3 byte per pixel. La risposta $7372800$ conta i bit, non i byte. Le prime due sommano larghezza e altezza invece di moltiplicarle.
+
+D: Dieci secondi di audio mono con 44 100 campioni al secondo e 16 bit per campione: quanti byte?
+- $44100$
+- $441000$
++ $882000$
+- $1764000$
+- $7056000$
+= Ogni campione ha 16 bit, cioè 2 byte. In un secondo ci sono $44100 \cdot 2 = 88200$ byte, in dieci secondi $882000$. La risposta $441000$ conta un byte per campione. La risposta $1764000$ vale per lo stereo, con due canali. La risposta $7056000$ conta i bit.
+
+D: Quanto vale in base 10 il numero binario 110101?
+- $43$
+- $52$
++ $53$
+- $106$
+- $110101$
+= Gli 1 stanno nelle posizioni da 32, 16, 4 e 1: $32 + 16 + 4 + 1 = 53$. La risposta $43$ legge i bit al contrario: 101011 vale 43. La risposta $106$ è 1101010, con uno 0 in più a destra, che raddoppia il valore. La risposta $52$ dimentica l'ultimo 1, quello che vale 1.
+
+D: Come si scrive 44 in binario?
+- $1101$
++ $101100$
+- $100100$
+- $101010$
+- $110100$
+= Con le divisioni: 44 : 2 = 22 resto 0, 22 : 2 = 11 resto 0, 11 : 2 = 5 resto 1, 5 : 2 = 2 resto 1, 2 : 2 = 1 resto 0, 1 : 2 = 0 resto 1. Dall'ultimo al primo: 101100. Controllo: $32 + 8 + 4 = 44$. La risposta $1101$ legge i resti dal primo all'ultimo, 001101, e perde gli zeri davanti: vale 13. Le altre valgono 36, 42 e 52.
+
+D: Con 8 bit, interi senza segno, si calcola 11110000 + 00100000. Che cosa si ottiene?
++ 00010000, con overflow: la somma vale 272 e non ci sta in 8 bit.
+- 00010000, senza overflow.
+- 100010000, senza overflow: 8 bit bastano.
+- 11010000, con overflow.
+- 11111111, perché con 8 bit non si va oltre 255.
+= 11110000 vale 240 e 00100000 vale 32: la somma è 272, cioè 100010000, che ha 9 bit. Con 8 bit il riporto finale a sinistra si perde e resta 00010000, cioè 16: è l'overflow, perché con 8 bit si arriva solo a 255. La terza risposta scrive giusto il numero, ma con 9 bit. Un computer non si ferma a 255: tiene gli 8 bit di destra.
+
+D: Quanto vale il numero binario 10,011?
+- 2 e 11/100
+- 2,11
++ 2 e 3/8
+- 2 e 3/4
+- 3 e 3/8
+= Prima della virgola 10 vale 2. Dopo la virgola le posizioni valgono 1/2, 1/4 e 1/8: ci sono 1/4 e 1/8, cioè $2/8 + 1/8 = 3/8$. In tutto 2 e 3/8. Le prime due risposte leggono le cifre dopo la virgola come in base dieci. La risposta 2 e 3/4 sbaglia i valori delle posizioni, come se fossero 1/2 e 1/4.
+
+D: Quale di questi numeri, scritto in base 2, ha infinite cifre dopo la virgola?
+- $0{,}5$
+- $0{,}25$
+- $0{,}75$
+- $0{,}125$
++ $0{,}1$
+= 0,5 è 1/2, cioè 0,1 in binario; 0,25 è 1/4, cioè 0,01; 0,75 è $1/2 + 1/4$, cioè 0,11; 0,125 è 1/8, cioè 0,001. Un decimo, invece, non è una somma finita di mezzi, quarti, ottavi: in binario è 0,000110011… con 0011 che si ripete per sempre.
+```
+
+## Esercizi
+
+::: esercizio base Domanda 1 del §1.4: un messaggio in ASCII
+Che cosa dice questo messaggio in ASCII, un byte per simbolo? 01000011 01101111 01101101 01110000 01110101 01110100 01100101 01110010 00100000 01010011 01100011 01101001 01100101 01101110 01100011 01100101
+::: soluzione
+Un trucco per le lettere: le maiuscole cominciano con 010 e valgono 64 più il posto della lettera nell'alfabeto; le minuscole cominciano con 011 e valgono 96 più il posto.
+
+1. 01000011 vale 67, cioè $64 + 3$: la terza lettera maiuscola, C.
+2. 01101111 vale 111, cioè $96 + 15$: la quindicesima lettera minuscola, o. Allo stesso modo 01101101 è m, 01110000 è p, 01110101 è u, 01110100 è t, 01100101 è e, 01110010 è r.
+3. 00100000 vale 32: lo spazio.
+4. 01010011 vale 83, cioè $64 + 19$: S. Poi c, i, e, n, c, e.
+
+Il messaggio è «Computer Science», come nelle risposte del libro.
+:::
+
+::: esercizio base Domande 5 e 6 del §1.4: conversioni
+(a) Scrivi in base 10: 0101, 1001, 1011, 0110, 10000, 10010. (b) Scrivi in binario: 6, 13, 11, 18, 27, 4.
+::: soluzione
+(a) Si sommano le posizioni con un 1.
+
+| Binario | Somma | Decimale |
+|---|---|--:|
+| 0101 | 4 + 1 | 5 |
+| 1001 | 8 + 1 | 9 |
+| 1011 | 8 + 2 + 1 | 11 |
+| 0110 | 4 + 2 | 6 |
+| 10000 | 16 | 16 |
+| 10010 | 16 + 2 | 18 |
+
+(b) Con le potenze di 2, o con le divisioni.
+
+| Decimale | Somma di potenze di 2 | Binario |
+|--:|---|---|
+| 6 | 4 + 2 | 110 |
+| 13 | 8 + 4 + 1 | 1101 |
+| 11 | 8 + 2 + 1 | 1011 |
+| 18 | 16 + 2 | 10010 |
+| 27 | 16 + 8 + 2 + 1 | 11011 |
+| 4 | 4 | 100 |
+
+Sono le risposte che dà il libro.
+:::
+
+::: esercizio base Domande 1 e 2 del §1.5: ancora conversioni
+(a) Scrivi in base 10: 101010, 100001, 10111, 0110, 11111. (b) Scrivi in binario: 32, 64, 96, 15, 27.
+::: soluzione
+1. (a) 101010 è $32 + 8 + 2 = 42$; 100001 è $32 + 1 = 33$; 10111 è $16 + 4 + 2 + 1 = 23$; 0110 è $4 + 2 = 6$; 11111 è $16 + 8 + 4 + 2 + 1 = 31$.
+2. (b) 32 è una potenza di 2: 100000. Anche 64: 1000000. Poi $96 = 64 + 32$: 1100000. $15 = 8 + 4 + 2 + 1$: 1111. $27 = 16 + 8 + 2 + 1$: 11011.
+
+Controllo veloce: 11111 vale $32 - 1$, perché è tutto 1 fino alla posizione del 16. In generale $n$ bit tutti a 1 valgono $2^n - 1$.
+:::
+
+::: esercizio medio Domanda 2 del §1.4: maiuscole e minuscole
+In ASCII, che legame c'è tra il codice di una lettera maiuscola e quello della stessa lettera minuscola?
+::: soluzione
+1. A è 01000001, cioè 65; a è 01100001, cioè 97.
+2. I due byte sono uguali tranne il sesto bit da destra, cioè dall'estremo basso: 0 nella maiuscola, 1 nella minuscola.
+3. Quel bit vale 32: la minuscola ha codice 32 in più della maiuscola. Lo stesso vale per tutte le 26 lettere.
+
+È la risposta del libro. I lucidi del canale A dicono la stessa cosa al contrario: per passare da minuscola a maiuscola si toglie 32.
+:::
+
+::: esercizio medio Domanda 3 del §1.4: scrivere in ASCII
+Scrivi in ASCII, un byte per simbolo, la frase «Does 2 + 3 = 5?».
+::: soluzione
+I simboli sono 15, spazi compresi.
+
+| Simbolo | Codice | Byte |
+|:-:|--:|:-:|
+| D | 68 | 01000100 |
+| o | 111 | 01101111 |
+| e | 101 | 01100101 |
+| s | 115 | 01110011 |
+| spazio | 32 | 00100000 |
+| 2 | 50 | 00110010 |
+| spazio | 32 | 00100000 |
+| + | 43 | 00101011 |
+| spazio | 32 | 00100000 |
+| 3 | 51 | 00110011 |
+| spazio | 32 | 00100000 |
+| = | 61 | 00111101 |
+| spazio | 32 | 00100000 |
+| 5 | 53 | 00110101 |
+| ? | 63 | 00111111 |
+
+Le cifre sono simboli: «2» è 00110010, non il numero 2. La domanda del libro ha anche una prima frase, «"Stop!" Cheryl shouted.». Nella risposta dell'appendice, pubblicata sul Moodle del canale A, il penultimo byte è stampato 01110100, che è la t: la d di «shouted» è 01100100.
+:::
+
+::: esercizio medio Domande 7 e 8 del §1.4: tre byte e i numeri con i punti
+(a) Qual è il numero più grande che si scrive con tre byte, una cifra ASCII per byte? E in binario? (b) Nella notazione decimale puntata ogni byte si scrive come numero in base 10, e i numeri si separano con un punto: 00001100 00000101 diventa 12.5. Scrivi così 0000111100001111, 001100110000000010000000 e 0000101010100000.
+::: soluzione
+1. (a) In ASCII tre byte sono tre cifre: il massimo è 999. In binario 24 bit arrivano a $2^{24} - 1 = 16777215$.
+2. (b) Si divide ogni fila in byte e si converte ogni byte.
+3. 00001111 00001111: 15 e 15, cioè 15.15.
+4. 00110011 00000000 10000000: 51, 0 e 128, cioè 51.0.128.
+5. 00001010 10100000: 10 e 160, cioè 10.160.
+
+È la notazione degli indirizzi di rete, come 192.168.1.1: quattro byte, scritti uno per uno in base 10.
+:::
+
+::: esercizio medio Domanda 10 del §1.4: un'ora di musica
+Un'ora di musica stereo si registra con 44 100 campioni al secondo, come nei CD. Quanto spazio occupa, rispetto a un CD?
+::: soluzione
+1. Ogni campione ha 16 bit, cioè 2 byte, e i canali sono 2.
+2. In un secondo: $44100 \cdot 2 \cdot 2 = 176400$ byte.
+3. In un'ora, cioè 3600 secondi: $176400 \cdot 3600 = 635040000$ byte.
+4. Sono circa 635 MB, e un CD contiene da 600 a 700 MB: lo riempie quasi tutto.
+
+È la risposta del libro.
+:::
+
+::: esercizio medio Domande 3 e 4 del §1.5: le frazioni
+(a) Scrivi in base 10: 11,01; 101,111; 10,1; 110,011; 0,101. (b) Scrivi in binario: 4 e 1/2; 2 e 3/4; 1 e 1/8; 5/16; 5 e 5/8.
+::: soluzione
+(a) Dopo la virgola le posizioni valgono 1/2, 1/4, 1/8.
+
+| Binario | Conto | Valore |
+|---|---|---|
+| 11,01 | 3 + 1/4 | 3 e 1/4 |
+| 101,111 | 5 + 1/2 + 1/4 + 1/8 | 5 e 7/8 |
+| 10,1 | 2 + 1/2 | 2 e 1/2 |
+| 110,011 | 6 + 1/4 + 1/8 | 6 e 3/8 |
+| 0,101 | 1/2 + 1/8 | 5/8 |
+
+(b) Si scrive la frazione come somma di mezzi, quarti, ottavi, sedicesimi.
+
+| Numero | Somma | Binario |
+|---|---|---|
+| 4 e 1/2 | 4 + 1/2 | 100,1 |
+| 2 e 3/4 | 2 + 1/2 + 1/4 | 10,11 |
+| 1 e 1/8 | 1 + 1/8 | 1,001 |
+| 5/16 | 1/4 + 1/16 | 0,0101 |
+| 5 e 5/8 | 5 + 1/2 + 1/8 | 101,101 |
+
+Sono le risposte del libro, che scrive i numeri con il punto.
+:::
+
+::: esercizio difficile Domanda 5 del §1.5: addizioni
+Calcola in binario: (a) 11011 + 1100; (b) 1010,001 + 1,101; (c) 11111 + 0001; (d) 111,11 + 00,01.
+::: soluzione
+1. (a) In colonna, da destra: 1 + 0 = 1; 1 + 0 = 1; 0 + 1 = 1; 1 + 1 = 10, scrivo 0 e riporto 1; 1 + 1 di riporto = 10, scrivo 0 e riporto 1, che va in una colonna nuova. Risultato 100111. Controllo: $27 + 12 = 39$, e 100111 vale $32 + 4 + 2 + 1 = 39$.
+2. (b) Con le virgole in colonna: 1010,001 + 0001,101. Dopo la virgola, da destra: 1 + 1 = 10, scrivo 0 e riporto 1; 0 + 0 + 1 = 1; 0 + 1 = 1. Prima della virgola: 0 + 1 = 1; 1 + 0 = 1; 0 + 0 = 0; 1 + 0 = 1. Risultato 1011,110. Controllo: $10{,}125 + 1{,}625 = 11{,}75$.
+3. (c) 11111 + 00001: ogni colonna dà 10 con il riporto, fino a una colonna nuova. Risultato 100000. Controllo: $31 + 1 = 32$.
+4. (d) 111,11 + 000,01: dopo la virgola 1 + 1 = 10, poi 1 + 0 + 1 = 10; prima della virgola altre tre volte 10. Risultato 1000,00. Controllo: $7{,}75 + 0{,}25 = 8$.
+
+Sono le risposte del libro. Nella (c), con 5 bit senza segno, sarebbe overflow: il risultato ha 6 bit.
+:::
+
+::: esercizio difficile UTF-8 al contrario
+Un file contiene questi byte, scritti in esadecimale: 43 69 74 74 C3 A0. Che parola c'è scritta?
+::: soluzione
+1. I primi quattro byte cominciano con 0 in binario, perché sono minori di 80 in esadecimale: sono simboli di ASCII. 43 vale 67, la C; 69 vale 105, la i; 74 vale 116, la t. Quindi «Citt».
+2. C3 in binario è 11000011: comincia con 110, quindi il simbolo occupa due byte. Il byte dopo, A0, è 10100000: comincia con 10, come deve.
+3. Si tolgono le parti fisse 110 e 10: restano 00011 e 100000. Insieme: 00011100000, che vale $128 + 64 + 32 = 224$, cioè E0 in esadecimale.
+4. U+00E0 è la à. La parola è «Città».
+:::
+
+::: esercizio esame Una foto e un suono
+Una foto di 800 × 600 pixel in RGB, senza compressione. (a) Quanti byte occupa? (b) Quanti KB, con 1 KB = 1024 byte? (c) Quanti secondi di audio stereo di qualità CD occupano lo stesso spazio?
+::: soluzione
+1. (a) I pixel sono $800 \cdot 600 = 480000$, ognuno di 3 byte: $1440000$ byte.
+2. (b) $1440000 : 1024 = 1406{,}25$ KB, cioè circa 1,4 MB.
+3. (c) Un secondo di audio stereo da CD occupa $44100 \cdot 2 \cdot 2 = 176400$ byte.
+4. $1440000 : 176400$ fa circa 8,2: una sola foto occupa come poco più di 8 secondi di musica.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è un codice? Perché ASCII non basta per l'italiano?
+Un codice è una tabella che dà a ogni simbolo una fila di bit. ASCII ha solo 128 simboli, pensati per l'inglese: mancano le lettere accentate come è e à, e simboli come l'euro.
+:::
+
+::: domanda Che differenza c'è tra Unicode e UTF-8?
+Unicode è la tabella: dà un numero, il punto di codice, a ogni simbolo di ogni lingua. UTF-8 è un modo di scrivere quei numeri in byte, da 1 a 4 per simbolo, con un byte solo per i simboli di ASCII.
+:::
+
+::: domanda Perché i numeri si scrivono in binario e non in ASCII?
+In ASCII ogni cifra occupa un byte: con 2 byte si arriva a 99. In binario gli stessi 16 bit arrivano a 65535. I conti, poi, si fanno direttamente sui bit.
+:::
+
+::: domanda Com'è fatta un'immagine a mappa di bit? E una vettoriale?
+Una mappa di bit è una griglia di pixel, ognuno scritto con dei bit: in RGB tre byte, per rosso, verde e blu. Un'immagine vettoriale è una descrizione di figure, come linee e curve con le loro coordinate: si ingrandisce senza quadretti.
+:::
+
+::: domanda Come si scrive un suono in bit? Da che cosa dipende quanto spazio occupa?
+Si misura l'onda a intervalli regolari e si conservano le misure, i campioni. Lo spazio dipende da quanti campioni al secondo, da quanti bit ha ogni campione, dal numero dei canali e dalla durata.
+:::
+
+::: domanda Come si passa dalla base 2 alla base 10, e dalla base 10 alla base 2?
+Dalla base 2 alla 10 si sommano i valori delle posizioni con un 1: 1, 2, 4, 8… da destra. Dalla base 10 alla 2 si divide per 2 finché il quoziente è 0 e si leggono i resti dall'ultimo al primo.
+:::
+
+::: domanda Che cos'è l'overflow negli interi senza segno?
+Con $n$ bit si scrivono gli interi da 0 a $2^n - 1$. Se una somma è più grande, l'ultima colonna a sinistra dà un riporto che non ha posto: il risultato non ci sta, ed è overflow.
+:::
+
+## Glossario
+
+```glossario
+Codice | Una tabella che dà a ogni simbolo una fila di bit.
+ASCII | Il codice a 7 bit dei simboli dell'inglese (*American Standard Code for Information Interchange*): 128 simboli, oggi un byte ciascuno.
+Unicode | La tabella che dà un numero a ogni simbolo di ogni lingua, compresi simboli matematici ed emoji.
+Punto di codice | Il numero di un simbolo in Unicode (*code point*), scritto U+ e poi in esadecimale: U+00E8 è la è.
+UTF-8 | Il modo più usato di scrivere i punti di codice in byte: da 1 a 4 byte per simbolo, 1 per i simboli di ASCII.
+File di testo | Un file fatto solo di codici di simboli, uno dopo l'altro (*text file*).
+Pixel | Uno dei quadratini di cui è fatta un'immagine (*picture element*).
+Mappa di bit | Un'immagine scritta come griglia di pixel (*bit map*).
+RGB | Il modo di scrivere un colore con tre numeri da 0 a 255: rosso, verde e blu (*red*, *green*, *blue*).
+Immagine vettoriale | Un'immagine descritta come insieme di figure con le loro coordinate: si ingrandisce senza perdere qualità.
+Campione | Una misura dell'onda di un suono (*sample*). Il campionamento è il procedimento che prende i campioni a intervalli regolari.
+MIDI | Un formato che conserva le istruzioni per suonare la musica, non l'onda (*Musical Instrument Digital Interface*).
+Sistema binario | Il modo di scrivere i numeri in base 2: ogni posizione vale il doppio di quella alla sua destra (*binary system*).
+Virgola binaria | La virgola dei numeri in base 2: dopo di lei le posizioni valgono 1/2, 1/4, 1/8 (*radix point*).
+Riporto | L'1 che passa alla colonna di sinistra quando una colonna fa 2 o 3 (*carry*).
+Intero senza segno | Un numero intero da 0 in su, scritto in binario con un numero fisso di bit (*unsigned integer*).
+Overflow | Quando il risultato di un conto non ci sta nei bit disponibili.
+```
+
+## Checklist
+
+```checklist
+- So scrivere e leggere un testo in ASCII, e so che maiuscola e minuscola differiscono di 32.
+- So la differenza tra Unicode e UTF-8 e so contare i byte di un testo in UTF-8.
+- So scrivere un colore in RGB, anche in esadecimale, e calcolare i byte di un'immagine.
+- So come si registra un suono e calcolare i byte che occupa.
+- So passare dalla base 2 alla base 10 e dalla base 10 alla base 2, anche con la virgola.
+- So sommare in binario e riconoscere l'overflow con $n$ bit.
+```
+
+## Fonti
+
+- R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Sezione 1.4 «Representing Information as Bit Patterns»: testo, ASCII e Unicode (figura 1.11), numeri, immagini, RGB, luminanza e crominanza, immagini vettoriali, suoni, campionamento e MIDI. Sezione 1.5 «The Binary System»: notazione binaria (figure 1.15 e 1.16), l'algoritmo delle divisioni (figure 1.17 e 1.18), l'addizione, le frazioni (figura 1.19). Risposte alle domande delle due sezioni nell'appendice del libro, pubblicate sul Moodle del canale A.
+- Riassunto della lezione del 02/10/2026 sul Moodle del canale B: «Alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno».
+- Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» (F. Cardone, Moodle del canale A, aperto agli ospiti): codice ASCII e passaggio tra maiuscole e minuscole, base 2 con le divisioni, somma in base 2.
+- Lo standard Unicode (unicode.org) per i punti di codice, e la RFC 3629 per lo schema dei byte di UTF-8.
+- Le spiegazioni a parole, gli esempi, i riquadri «Prova tu», gli strumenti interattivi, i quiz e gli esercizi senza il numero del libro sono di questi appunti.
 
 
 ---

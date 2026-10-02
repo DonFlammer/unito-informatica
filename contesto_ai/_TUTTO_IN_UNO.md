@@ -110,6 +110,10 @@ Gli enunciati nei riquadri `DEF`, `PROP`, `TEOREMA` seguono le slide o le dispen
 - `grafico`: una figura statica (punti, vettori, rette, poligoni, cerchi), una riga per elemento.
 - `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann, porte logiche con `modo: porte`, `modo: flipflop`, `modo: esadecimale` o `modo: memoria`; testo, colori, suoni e numeri in bit con `widget codifica` e `modo: testo`, `colori`, `suono`, `binario`, `divisioni` o `somma`). Nel Markdown restano solo i parametri iniziali.
 
+## Riassunti settimanali
+
+Ogni settimana, per ogni corso, un riassunto delle lezioni in `<CORSO>/riassunti/settimana_NN.md` (per MDAG uno per parte: `settimana_NN_MD.md` e `settimana_NN_AG.md`). Il formato è quello delle lezioni, con `tipo: riassunto` e `lezione: S<N>` nell'intestazione: la pagina va in `appunti/<CORSO>/riassunto_settimana_NN….html` e compare nella sezione «Riassunti settimanali» in fondo alla pagina del corso, non tra le lezioni. Contiene «In breve», una sezione per lezione con i punti, le tabelle e i metodi da sapere, «Verso l'esame», «Domande di ripasso» e le «Fonti» con i link alle lezioni complete.
+
 
 ---
 
@@ -2419,6 +2423,197 @@ Errore logico | Il programma gira ma non fa ciò che dovrebbe.
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/riassunti/settimana_01.md -->
+> File: `contesto_ai/PROG1/riassunti/settimana_01.md`
+
+```yaml
+corso: PROG1
+lezione: S1
+tipo: riassunto
+titolo: "Settimana 1: l'algoritmo, la macchina di Von Neumann, il primo programma in C"
+data: 2026-10-02
+docenti: Elvio Amparore
+sopratitolo: Riassunto settimanale · Programmazione I · Canale B · 28/09 – 02/10/2026
+descrizione: >-
+  Riassunto della settimana 1 di Programmazione I (canale B): che cos'è un algoritmo, le sette versioni della
+  moltiplicazione per somme ripetute e il bug del caso n = 0, la macchina di Von Neumann e il ciclo della CPU,
+  dal linguaggio macchina all'assembly e al C, il primo programma, gcc e i tre tipi di errore.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: le idee da sapere, i metodi, le trappole e le domande per
+  controllarti. Per i dettagli e gli esercizi c'è la lezione completa, collegata in ogni sezione.
+materiale: slide
+scheda:
+  Lezioni: "[01A](01A_primo_algoritmo.html) lun 28/09 · [01B](01B_architettura.html) mar 29/09 · [02A](02A_da_assembly_a_c.html) mer 30/09"
+  Tempo di ripasso: 30–40 minuti
+fonte: >-
+  Gli appunti delle lezioni 01A, 01B e 02A di Programmazione I (canale B), scritti sulle slide di E. G. Amparore
+file_en: summary_week_01.html
+appunti_html: appunti/PROG1/riassunto_settimana_01.html
+genera_html: true
+```
+
+## In breve
+
+- Un **algoritmo** è una ricetta precisa: operazioni ordinate, non ambigue ed eseguibili, che danno un risultato e finiscono sempre.
+- La regola d'oro del corso: **prima verificare le condizioni, poi eseguire**. Il caso iniziale ($n = 0$) è «tipica fonte di errori, anche in sede d'esame».
+- Il computer è una **macchina di Von Neumann**: CPU, memoria con programma **e** dati, memoria secondaria, bus. La CPU ripete prelievo, decodifica, esecuzione.
+- La CPU capisce solo il **linguaggio macchina**; l'**assembly** lo scrive con nomi leggibili; il **C** si scrive come un linguaggio vero e lo traduce un **compilatore**.
+- Si compila con `gcc -Wall -Werror`. Un programma che compila non è per forza giusto: va provato, anche sui casi limite.
+
+## 01A · Un primo algoritmo (lun 28/09)
+
+L'informatica studia gli **algoritmi**, non i computer: il computer sta all'informatica come il telescopio all'astronomia (frase attribuita a Dijkstra).
+
+> [!DEF] Algoritmo
+> Un insieme **ordinato** di operazioni **non ambigue** ed **effettivamente eseguibili** che, eseguito, **produce un risultato** e **si arresta in un tempo finito**.
+
+In informatica **tutto è numero**: testo, immagini, istruzioni. La programmazione **imperativa** dice alla macchina, passo per passo, che cosa fare.
+
+**Il problema guida.** Calcolare $m \times n$ (interi, $n \ge 0$) con una macchina che sa solo sommare, assegnare e confrontare. L'idea: sommare $m$ a sé stesso $n$ volte, partendo da 0, l'elemento neutro della somma. Servono due variabili:
+
+- l'**accumulatore** `s`, la somma fatta finora;
+- il **contatore** `i`, quante somme ho fatto.
+
+Wirth: «Programma = Algoritmi + Strutture dati». Nella notazione delle slide `←` vuol dire «assegna» (`s ← s + m`), `=` vuol dire «confronta» (`i = n?`).
+
+| Versione | Che cosa cambia |
+|---|---|
+| V1 | l'idea a parole: «somma m a s esattamente n volte», troppo vaga |
+| V2 | passi elementari, ma il controllo «i = n?» sta **alla fine**: con n = 0 non termina |
+| V3 | **prima il controllo**, poi la somma: giusta anche con n = 0 |
+| V4 | notazione formale: `←`, `=`, `▷` per i commenti, il rientro per ciò che dipende dalla condizione |
+| V5 | salti espliciti («salta alla riga 6») e un'istruzione Fine |
+| V6 | blocchi Inizio/Fine; salto **condizionato** (solo se i = n) e **non condizionato** (sempre) |
+| V7 | blocchi annidati, niente numeri di riga: è la forma del `while` del C |
+
+```text
+Inizio Algoritmo
+    s ← 0,  i ← 0
+    Inizio Ripetizione Condizionata
+    se i = n salta alla Fine Ripetizione Condizionata, altrimenti
+        s ← s + m
+        i ← i + 1
+        salta all'Inizio Ripetizione Condizionata
+    Fine Ripetizione Condizionata
+Fine Algoritmo
+```
+
+> [!TRAPPOLA] Il bug del caso n = 0
+> La V2 prima somma e porta `i` a 1, poi controlla «1 = 0?»: no, ripete. Poi «2 = 0?», e così via: `i` non torna mai a 0 e l'algoritmo **non termina**. Con la V3 il primo controllo è «0 = 0?»: sì, fine, e `s = 0` è il risultato giusto.
+
+> [!RICORDA]
+> - Prova sempre i **casi limite**: $n = 0$, $n = 1$, $m = 0$, valori negativi.
+> - La **traccia** a mano, una riga per passo e una colonna per variabile, è l'abilità che serve negli esercizi sullo stato della memoria.
+> - Dal ciclo si esce solo tramite la condizione: da qui le regole d'esame (una sola `return` nelle funzioni iterative, niente `break`, `continue`, `switch`).
+
+## 01B · Architettura del calcolatore (mar 29/09)
+
+| Tappa | Che cosa porta |
+|---|---|
+| Abaco, Pascalina | aiutano a calcolare (la Pascalina fa il riporto da sola), ma la logica la mette chi li usa |
+| Calcolatori cablati | fanno solo le operazioni costruite nell'hardware, come un frullatore |
+| Babbage, circa 1840 | macchina analitica: schede perforate, salti condizionati, l'idea di programma |
+| Turing, 1936 | la macchina universale: una sola macchina può eseguire qualunque algoritmo |
+| ENIAC, 1943–46 | primo computer elettronico general purpose, decimale, programmato spostando cavi |
+| EDVAC | **programma memorizzato**, **stessa memoria** per istruzioni e dati, numeri in **binario** |
+
+- **Calcolatore programmabile**: la stessa macchina fa compiti diversi cambiando la sequenza di istruzioni, senza toccare l'hardware.
+- Un **bit** vale 0 o 1; con $N$ bit si distinguono $2^N$ informazioni. Un **byte** sono 8 bit, cioè 256 valori. Si scrive b per il bit, B per il byte: 100 Mb/s sono 12,5 MB/s.
+- **Architettura di Von Neumann**: CPU (unità di controllo, ALU, registri), memoria principale (RAM) con programma e dati, memoria secondaria, tutto collegato dal **bus di sistema**.
+- La memoria è una fila di byte, ognuno con un **indirizzo** che parte da 0: con 1024 byte gli indirizzi vanno da 0 a **1023**. I numeri stanno in **parole**, per esempio di 32 bit, cioè 4 byte.
+- Lo **stato** è la fotografia di memoria e registri in un istante. Eseguire un programma vuol dire passare da uno stato al successivo.
+
+> [!METODO] Il ciclo della CPU
+> 1. **Prelievo** (*fetch*): legge l'istruzione all'indirizzo scritto nel **PC** (*program counter*) e la copia nell'**IR** (*instruction register*).
+> 2. **Decodifica**: capisce che cosa chiede l'istruzione.
+> 3. **Esecuzione**: la ALU lavora sui registri, oppure si legge o scrive la memoria.
+> 4. Il PC passa all'istruzione dopo, oppure salta dove dice l'istruzione. Si ricomincia.
+>
+> Stesso programma e stesso stato iniziale danno sempre lo stesso risultato.
+
+## 02A · Dal linguaggio macchina al C (mer 30/09)
+
+- **Linguaggio macchina**: numeri eseguiti direttamente dalla CPU. Ogni architettura ha il suo *instruction set*, quindi non è portabile.
+- **Assembly**: le stesse istruzioni con nomi leggibili, tradotte da un **assembler**. Resta legato alla CPU.
+- La ALU lavora solo sui **registri**: per sommare due celle servono `LOAD` (memoria → registro), `ADD` (registro + registro) e `STORE` (registro → memoria). Un'addizione costa 4 istruzioni.
+- La moltiplicazione della 01A in assembly costa 10 istruzioni, con `CMP` (confronta), `JMPEQ` (salta se uguali), `INC` (aggiunge 1) e `JMP` (salta sempre). È la V6, e il confronto viene **prima** della somma.
+- Dagli anni '50 i **linguaggi di alto livello**, a partire dal FORTRAN: li traduce un **compilatore**, e per un'altra CPU basta ricompilare.
+- Il **C** nasce nel 1972 (Dennis Ritchie, Bell Labs) per riscrivere Unix. È **compilato**, **imperativo**, **strutturato** e **tipizzato**.
+
+```c
+// Un primo programma in C
+#include <stdio.h>
+
+// La funzione "main" e' il punto di ingresso del programma
+int main(void) {
+    printf("Buongiorno dal C.\n");
+}
+```
+
+| Pezzo | Che cosa fa |
+|---|---|
+| `// …` | commento, ignorato dal compilatore |
+| `#include <stdio.h>` | direttiva per il preprocessore: porta la dichiarazione di `printf`. Senza, gcc si ferma con «implicit declaration of function 'printf'» |
+| `int main(void) { … }` | il punto da cui parte il programma; le graffe racchiudono un blocco |
+| `printf("…");` | stampa una stringa; ogni istruzione finisce con `;` |
+| `\n`, `\t`, `\\`, `\"`, `\0` | sequenze di escape: a capo, tabulazione, backslash, doppio apice, carattere nullo |
+
+- **Identificatori**: lettere, cifre e `_`, mai una cifra all'inizio. Maiuscole e minuscole contano (`var` e `Var` sono diversi). Niente parole chiave (`int`, `while`, `return`…) e niente nomi di libreria (`printf`, `main`).
+- **gcc** fa quattro passi: preprocessore, compilatore, assemblatore (file oggetto `.o`) e **linker**, che unisce i file oggetto e le librerie nell'eseguibile.
+- Comando dell'esame: `gcc -Wall -Werror sorgente.c -o eseguibile`, poi `./eseguibile`. Con `-Werror` ogni avviso blocca la compilazione.
+
+> [!TRAPPOLA] «Compila» non vuol dire «funziona»
+> Tre tipi di errore: di **compilazione** (sintassi: il programma non nasce), a **runtime** (per esempio una divisione per zero) e **logici** (il programma gira ma fa la cosa sbagliata). Il compilatore controlla solo la sintassi: un programma va sempre provato.
+
+## Verso l'esame
+
+- **Laboratorio** del canale B, aula Turing, 14–17: turno 2 (matricola pari) il lunedì dal 05/10 con Elisa Marengo; turno 1 (matricola dispari) il martedì dal 06/10 con Valerio Basile. Il Lab01 è su riga di comando e compilatore.
+- L'esame si fa al computer nei laboratori, con un editor semplice, senza IDE né completamento automatico: allenati da subito con un editor di testo e `gcc -Wall -Werror`.
+- Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.
+- Da fare adesso: copia «Buongiorno dal C.», compilalo, poi **rompilo apposta** (togli un `;`, una graffa, una virgoletta) e leggi i messaggi di gcc.
+
+## Domande di ripasso
+
+::: domanda Quali sono le proprietà di un algoritmo?
+Operazioni ordinate, non ambigue ed eseguibili; produce un risultato; termina in un tempo finito.
+:::
+
+::: domanda Perché la V2 della moltiplicazione è sbagliata? Con quale valore lo scopri?
+Controlla «i = n» dopo aver sommato. Con $n = 0$, `i` vale già 1 al primo controllo e non torna mai a 0, quindi il ciclo non finisce.
+:::
+
+::: domanda Che differenza c'è tra `s ← s + m` e `i = n`?
+La prima assegna a `s` il valore `s + m`. La seconda chiede se `i` e `n` sono uguali: la risposta è vero o falso.
+:::
+
+::: domanda Con 1024 byte di memoria, qual è l'ultimo indirizzo?
+1023, perché gli indirizzi partono da 0.
+:::
+
+::: domanda Che cosa contengono il PC e l'IR?
+Il PC contiene l'indirizzo della prossima istruzione, l'IR l'istruzione che si sta eseguendo.
+:::
+
+::: domanda Perché per sommare due celle di memoria servono LOAD e STORE?
+Perché la ALU lavora solo sui registri: si carica dalla memoria in un registro (`LOAD`), si somma (`ADD`), si riscrive in memoria (`STORE`).
+:::
+
+::: domanda Quali sono i quattro passi di gcc?
+Preprocessore, compilatore, assemblatore, linker.
+:::
+
+::: domanda Un programma compila senza errori ma stampa un risultato sbagliato: che tipo di errore è?
+Un errore logico.
+:::
+
+## Fonti
+
+- Le lezioni complete: [01A · Un primo algoritmo](01A_primo_algoritmo.html), [01B · Architettura del calcolatore](01B_architettura.html), [02A · Dal linguaggio macchina al C](02A_da_assembly_a_c.html), con esercizi, quiz e i riferimenti alle slide.
+- Laboratori e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/corso.md -->
 > File: `contesto_ai/FDA/corso.md`
 
@@ -4390,6 +4585,182 @@ Overflow | Quando il risultato di un conto non ci sta nei bit disponibili.
 - Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» (F. Cardone, Moodle del canale A, aperto agli ospiti): codice ASCII e passaggio tra maiuscole e minuscole, base 2 con le divisioni, somma in base 2.
 - Lo standard Unicode (unicode.org) per i punti di codice, e la [RFC 3629](https://www.rfc-editor.org/rfc/rfc3629.html#section-3) per lo schema dei byte di UTF-8.
 - Le spiegazioni a parole, gli esempi, i riquadri «Prova tu», gli strumenti interattivi, i quiz e gli esercizi senza il numero del libro sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/riassunti/settimana_01.md -->
+> File: `contesto_ai/FDA/riassunti/settimana_01.md`
+
+```yaml
+corso: FDA
+lezione: S1
+tipo: riassunto
+titolo: "Settimana 1: bit, porte logiche, memorie; testo, colori e suoni; la base 2"
+data: 2026-10-02
+docenti: Stefano Berardi
+sopratitolo: Riassunto settimanale · Fondamenti dell'Informatica · Canale B · 28/09 – 02/10/2026
+descrizione: >-
+  Riassunto della settimana 1 di Fondamenti dell'Informatica (canale B, libro parte 1, §1.1–1.5): bit e potenze di 2,
+  AND, OR, XOR, NOT, porte logiche e flip-flop, esadecimale, memoria centrale e memorie di massa, ASCII, Unicode e
+  UTF-8, pixel e RGB, campioni audio, conversioni tra base 2 e base 10, somma binaria e overflow, frazioni binarie.
+lede: >-
+  Le lezioni della settimana in poche pagine: le tabelle da sapere a memoria, i metodi di conversione, le trappole
+  dei quiz e le domande per controllarti. Per i dettagli e gli strumenti interattivi c'è la lezione completa.
+materiale: libro
+scheda:
+  Lezioni: "lun 28/09 introduzione · [01](01_bit_porte_esadecimale.html) gio 01/10, §1.1–1.3 · [02](02_testo_colori_suoni_binario.html) ven 02/10, §1.4–1.5"
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni 01 e 02 di Fondamenti dell'Informatica (canale B), scritti sul libro di testo, parte 1,
+  §1.1–1.5
+file_en: summary_week_01.html
+appunti_html: appunti/FDA/riassunto_settimana_01.html
+genera_html: true
+```
+
+## In breve
+
+- Dentro il computer tutto è fatto di **bit**, 0 e 1. Con $n$ bit si scrivono $2^n$ sequenze: ogni bit in più raddoppia.
+- Le **porte logiche** AND, OR, XOR e NOT combinano i bit; il **flip-flop** ricorda un bit.
+- L'**esadecimale** scrive quattro bit con una cifra. La **memoria centrale** è una fila di celle da un byte, ognuna con un indirizzo.
+- Testo, colori e suoni diventano numeri: **ASCII** e **UTF-8**, **RGB**, **campioni**.
+- In **base 2** le posizioni valgono 1, 2, 4, 8…; si converte con le divisioni per 2 e si somma in colonna, attenti all'**overflow**.
+
+Lunedì 28/09 c'è stata la lezione introduttiva, con la presentazione del libro: negli appunti non ha un numero.
+
+## Lezione 01 · Bit, porte, esadecimale e memorie (gio 01/10)
+
+**Bit e potenze di 2.** 1 bit dà 2 sequenze, 2 bit ne danno 4, 3 bit 8, 8 bit (un **byte**) 256.
+
+| $n$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+| $2^n$ | 1 | 2 | 4 | 8 | 16 | 32 | 64 | 128 | 256 | 512 | 1024 |
+
+> [!METODO] Quanti bit servono per un certo numero di oggetti
+> Cerca la prima potenza di 2 che arriva almeno a quel numero: il suo esponente è il numero di bit. Per 26 lettere: $2^5 = 32$ arriva a 26, $2^4 = 16$ no, quindi 5 bit.
+
+**Le quattro operazioni**, da sapere a memoria:
+
+| A | B | A AND B | A OR B | A XOR B | NOT A |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 | 0 | 1 |
+| 0 | 1 | 0 | 1 | 1 | 1 |
+| 1 | 0 | 0 | 1 | 1 | 0 |
+| 1 | 1 | 1 | 1 | 0 | 0 |
+
+AND dà 1 solo se **tutti e due** valgono 1; OR se **almeno uno** vale 1; XOR se sono **diversi**; NOT dà il contrario.
+
+> [!TRAPPOLA] La «o» dell'italiano
+> «Sconto per studenti o pensionati» è un OR: se sei tutte e due le cose lo sconto ce l'hai lo stesso. «Caffè o tè?» di solito è un XOR. In informatica OR vuol dire sempre «almeno uno, anche tutti e due».
+
+- Una **porta logica** è il circuito che esegue una di queste operazioni. Per leggere un circuito: scrivi tutte le $2^n$ combinazioni degli ingressi, aggiungi una colonna per ogni porta, riempi una colonna alla volta; l'ultima è l'uscita.
+- Il **flip-flop**: un impulso sull'ingresso alto mette l'uscita a 1, uno sull'ingresso basso la mette a 0; tra un impulso e l'altro l'uscita resta com'è. Il segreto è il filo che riporta l'uscita all'ingresso dell'OR. È il primo mattone della memoria.
+
+**Esadecimale.** Una cifra vale quattro bit.
+
+| bit | hex | bit | hex | bit | hex | bit | hex |
+|---|:-:|---|:-:|---|:-:|---|:-:|
+| 0000 | 0 | 0100 | 4 | 1000 | 8 | 1100 | C |
+| 0001 | 1 | 0101 | 5 | 1001 | 9 | 1101 | D |
+| 0010 | 2 | 0110 | 6 | 1010 | A | 1110 | E |
+| 0011 | 3 | 0111 | 7 | 1011 | B | 1111 | F |
+
+> [!METODO] Dai bit all'esadecimale, e ritorno
+> Fai gruppi di quattro bit **partendo da destra**, con degli 0 davanti se il primo gruppo è corto, e scrivi una cifra per gruppo: 1011 0101 = B5. Per tornare indietro scrivi ogni cifra con quattro bit, **zeri compresi**: la stringa 0100 in esadecimale vuol dire 0000 0001 0000 0000.
+
+**Memorie.**
+
+- La **memoria centrale** è una fila di celle da un byte, ognuna con un **indirizzo** da 0. Leggere non cambia la cella; scrivere cancella il valore di prima. Nella **RAM** si raggiunge ogni cella nello stesso tempo; a computer spento si svuota.
+- Per la memoria 1 KB = 1024 byte ($2^{10}$), 1 MB = 1024 KB, 1 GB = 1024 MB. Per togliere il dubbio con 1000 esistono KiB, MiB, GiB.
+- In una cella il bit più a sinistra è il **più significativo**, quello a destra il **meno significativo**.
+- Le **memorie di massa** tengono i dati a computer spento: grandi ed economiche, ma lente. Disco magnetico: tracce concentriche divise in settori, le tracce sovrapposte formano un cilindro; tempo di accesso = tempo di ricerca + ritardo di rotazione. CD, DVD e Blu-ray: una traccia a spirale letta da un laser. Flash e SSD: niente parti in movimento, veloci, ma si consumano riscrivendole.
+
+## Lezione 02 · Testo, colori, suoni e base 2 (ven 02/10)
+
+**Testo.**
+
+- **ASCII** usa 7 bit, 128 simboli, e oggi un byte per simbolo. A = 65 = 01000001, a = 97, la cifra «0» = 48. Maiuscola e minuscola differiscono di **32**: cambia un solo bit. Il simbolo «7» non è il numero 7.
+- **Unicode** dà a ogni simbolo di ogni lingua un numero, il **punto di codice**, scritto U+… in esadecimale, fino a 21 bit. **UTF-8** lo scrive con 1, 2, 3 o 4 byte; i simboli di ASCII restano un byte uguale.
+
+| Punto di codice | Bit | Byte | Schema UTF-8 |
+|---|---|:-:|---|
+| U+0000 – U+007F | fino a 7 | 1 | 0xxxxxxx |
+| U+0080 – U+07FF | fino a 11 | 2 | 110xxxxx 10xxxxxx |
+| U+0800 – U+FFFF | fino a 16 | 3 | 1110xxxx 10xxxxxx 10xxxxxx |
+| U+10000 – U+10FFFF | fino a 21 | 4 | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx |
+
+> [!TRAPPOLA] UTF-8 non vuol dire «8 bit per simbolo»
+> «perché» ha 6 simboli e occupa 7 byte: la é ne prende due. Per contare i byte guarda ogni simbolo.
+
+**Immagini e suoni.**
+
+- Un'immagine a **mappa di bit** è una griglia di **pixel**. In **RGB** ogni pixel ha tre numeri da 0 a 255, rosso, verde e blu: 3 byte, $2^{24}$ colori. (0, 0, 0) è il nero, (255, 255, 255) il bianco, tre valori uguali un grigio, rosso più verde il giallo.
+- Byte di un'immagine senza compressione = larghezza × altezza × 3. Full HD, 1920 × 1080: 6 220 800 byte, circa 6 MB.
+- Le immagini **vettoriali** descrivono figure: si ingrandiscono senza quadretti, ma non vanno bene per le foto.
+- Un suono si registra misurando l'onda a intervalli regolari: ogni misura è un **campione**. Due scelte: **quante misure al secondo** e **con quanti bit** ciascuna (con 16 bit ci sono 65 536 livelli; arrotondare al livello più vicino si chiama **quantizzazione**).
+- CD: 44 100 campioni al secondo, 16 bit, stereo. Byte = campioni al secondo × byte per campione × canali × secondi: un secondo occupa 176 400 byte, un'ora circa 635 MB.
+- **MIDI** non salva l'onda ma le istruzioni per suonarla: molto compatto, ma il suono dipende da chi lo esegue.
+
+**Base 2.**
+
+- Le posizioni valgono, da destra, 1, 2, 4, 8, 16, 32…: il valore è la somma delle posizioni con un 1. $1101_2 = 8 + 4 + 1 = 13$.
+- Con $n$ bit gli interi **senza segno** vanno da 0 a $2^n - 1$: con 8 bit da 0 a 255. Gli zeri a sinistra non cambiano il valore; uno zero a destra lo raddoppia.
+
+> [!METODO] Dalla base 10 alla base 2
+> Dividi per 2 e scrivi il resto; continua con il quoziente finché arriva a 0; leggi i resti **dall'ultimo al primo**. Con i numeri piccoli si fa prima togliendo la potenza di 2 più grande che ci sta: $45 = 32 + 8 + 4 + 1$, quindi 101101. Controlla sempre riconvertendo.
+
+> [!TRAPPOLA] «Quanti bit servono» e «scrivilo con 8 bit»
+> 13 richiede 4 bit, 1101; su 8 bit si scrive 00001101. 256 richiede 9 bit, 100000000: in un byte non ci sta.
+
+- **Somma in colonna**: $0 + 0 = 0$, $0 + 1 = 1$, $1 + 1 = 10$ (scrivo 0, riporto 1), $1 + 1 + 1 = 11$ (scrivo 1, riporto 1).
+- **Overflow**: se dall'**ultima colonna** esce un riporto, il risultato non ci sta. Su 8 bit 200 + 100 dà 44 invece di 300. I riporti in mezzo non contano: su 4 bit $0111 + 0001 = 1000$ va bene.
+- **Frazioni**: dopo la virgola le posizioni valgono 1/2, 1/4, 1/8…: $101{,}101_2 = 5 + \frac12 + \frac18 = 5{,}625$. Dalla base 10: raddoppia la parte dopo la virgola e prendi la parte intera, finché resta 0. $0{,}625 \to 1{,}25$ (1) $\to 0{,}5$ (0) $\to 1$ (1): 0,101.
+
+## Verso l'esame
+
+- Esame unico per i tre canali su Moodle Esami: **9 quiz in 45 minuti**, 3 punti l'uno, almeno 18 per passare; poi una domanda aperta facoltativa, da −1 a 6 punti, se nei quiz hai almeno 24.
+- Sono 5 minuti a domanda: le tabelle di AND, OR, XOR e NOT, la tabella esadecimale e le potenze di 2 fino a $2^{10} = 1024$ vanno sapute **a memoria**.
+- Nelle simulazioni del 2023/24 tornano la formula booleana di una tabella di verità e la funzione calcolata da un circuito. Nelle prossime lezioni arrivano il complemento a 2 e la virgola mobile, che usano queste conversioni.
+
+## Domande di ripasso
+
+::: domanda Quanti bit servono per distinguere 100 oggetti?
+7 bit: $2^7 = 128$ arriva a 100, mentre $2^6 = 64$ no.
+:::
+
+::: domanda Quanto fanno 1 XOR 1 e 1 OR 1?
+1 XOR 1 = 0, perché i due bit sono uguali; 1 OR 1 = 1.
+:::
+
+::: domanda Scrivi 1110 0011 in esadecimale, e 3F in bit.
+1110 0011 = E3; 3F = 0011 1111.
+:::
+
+::: domanda Quanti byte occupa «città» in UTF-8?
+6: c, i, t, t occupano un byte ciascuno, la à ne occupa 2.
+:::
+
+::: domanda Quanti byte occupa una foto di 800 × 600 pixel in RGB senza compressione?
+$800 \cdot 600 \cdot 3 = 1\,440\,000$ byte.
+:::
+
+::: domanda Come si scrive 37 in base 2?
+$37 = 32 + 4 + 1$, quindi 100101.
+:::
+
+::: domanda Su 8 bit senza segno, quanto fa 11111111 + 00000001?
+00000000, con overflow: il risultato vero, 256, ha 9 bit.
+:::
+
+::: domanda Quanto vale $10{,}11_2$?
+$2 + \frac12 + \frac14 = 2{,}75$.
+:::
+
+## Fonti
+
+- Le lezioni complete: [01 · Bit, porte logiche, esadecimale e memorie](01_bit_porte_esadecimale.html) e [02 · Testo, colori e suoni in bit; i numeri in base 2](02_testo_colori_suoni_binario.html), con strumenti interattivi, quiz ed esercizi.
+- Regole d'esame e programma dei tre canali: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
 
 
 ---
@@ -36226,6 +36597,314 @@ PCA | Analisi delle componenti principali: diagonalizza la matrice simmetrica de
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §11.3 (teorema spettrale, Corollario 11.3.2, conseguenze) ed Esercizi 11.1–11.2.
 - **Appelli d'esame** (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): testo riportato del 16/01/2025 (domanda 7), del 02/09/2025 (problema 11, punto 3) e del 15/01/2026 (problema 11), con soluzioni scritte per questi appunti; citato per tipo di domanda l'appello del 24/01/2024 (problema 11).
 - Le parti **«Oltre le dispense»** (caso $2 \times 2$ a mano, ortogonalità degli autovettori di autovalori diversi, esempio numerico di PCA, esempi ed esercizi aggiuntivi) sono aggiunte di questi appunti per collegare la lezione al libro e all'esame.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_01_AG.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_01_AG.md`
+
+```yaml
+corso: MDAG
+modulo: AG
+lezione: S1
+tipo: riassunto
+titolo: "Settimana 1: i numeri reali"
+data: 2026-10-01
+docenti: Reto Buzano e Marco Radeschi
+sopratitolo: Riassunto settimanale · Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · 28/09 – 02/10/2026
+descrizione: >-
+  Riassunto della settimana 1 di Algebra lineare e Geometria (MDAG, parte 2): le famiglie dei numeri, i numeri reali e
+  gli irrazionali, perché la radice di 2 non è una frazione, che cos'è un campo, l'ordine, graffe, tonde e quadre, i
+  conti con le radici senza calcolatrice.
+lede: >-
+  La lezione della settimana in poche pagine: le quattro famiglie dei numeri, le nove regole dei conti, le parentesi
+  e le regole delle radici, con le domande per controllarti.
+materiale: dispense
+scheda:
+  Lezioni: "[L01](L01_numeri_reali.html), nel canale B giovedì 01/10"
+  Dispense: Buzano e Radeschi 2026, pp. 2–5
+  Tempo di ripasso: 20–30 minuti
+fonte: >-
+  Gli appunti della lezione L01 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso (R. Buzano,
+  M. Radeschi)
+file_en: summary_week_01_AG.html
+appunti_html: appunti/MDAG/riassunto_settimana_01_AG.html
+genera_html: true
+```
+
+## In breve
+
+- I numeri sono quattro famiglie, una dentro l'altra: $\N \subset \Z \subset \Q \subset \R$.
+- Alcuni numeri reali non sono frazioni: sono **irrazionali**, come $\sqrt 2$. Che non sia una frazione si dimostra **per assurdo**.
+- Un **campo** è un insieme di numeri in cui valgono le nove regole dei conti: $\Q$, $\R$ e $\C$ sì, $\N$ e $\Z$ no.
+- Graffe, tonde e quadre dicono cose diverse.
+- All'esame non c'è la calcolatrice: le radici si semplificano a mano.
+
+## L01 · I numeri reali
+
+| Simbolo | Nome | Che cosa contiene | Esempi |
+|:-:|---|---|---|
+| $\N$ | naturali | i numeri per contare, **zero compreso** | 0, 1, 2, 3… |
+| $\Z$ | interi | i naturali e i loro opposti | −3, 0, 7 |
+| $\Q$ | razionali | le frazioni $\frac ab$ con $b \neq 0$ | $\frac12$, $-\frac34$, 5 |
+| $\R$ | reali | i numeri con infinite cifre dopo la virgola, anche senza ripetizioni | $\sqrt 2$, $\pi$, $e$ |
+
+- Ogni famiglia sta dentro la successiva e ha qualcosa in più: $\N \subsetneq \Z \subsetneq \Q \subsetneq \R$.
+- Una frazione ha tante scritture: $\frac12 = \frac24 = \frac36$. Le frazioni sono i numeri con la virgola che **finiscono o si ripetono**; quelli che non si ripetono mai sono **irrazionali**.
+- Una stranezza: $0{,}999\ldots = 1$, due scritture dello stesso numero.
+- In modo preciso un numero reale è una lista di frazioni che si avvicinano sempre di più tra loro: serve per capire, non per l'esame. $\R$ è **completo**, cioè non ha buchi; $\Q$ invece sì: $\left(1 + \frac1n\right)^n$ sale verso $e \approx 2{,}718$, che non è una frazione.
+
+**Perché $\sqrt 2$ non è una frazione.** $\sqrt 2$ è la diagonale di un quadrato di lato 1, per Pitagora. Si ragiona **per assurdo**:
+
+1. fai finta che $\sqrt 2 = \frac ab$, con la frazione già ridotta ai minimi termini;
+2. allora $a^2 = 2b^2$, quindi $a^2$ è pari e anche $a$ è pari: $a = 2k$;
+3. sostituendo, $4k^2 = 2b^2$, cioè $b^2 = 2k^2$: anche $b$ è pari;
+4. ma allora la frazione si poteva ancora semplificare per 2. Contraddizione: $\sqrt 2$ non è una frazione.
+
+> [!TRAPPOLA] Irrazionale per irrazionale
+> Il prodotto di due irrazionali non è sempre irrazionale: $\sqrt 2 \cdot \sqrt 2 = 2$.
+
+**Le nove regole dei conti.** Per la somma: associativa, commutativa, c'è lo 0, ogni numero ha l'opposto. Per il prodotto: associativa, commutativa, c'è l'1, ogni numero **diverso da 0** ha l'inverso. In più la distributiva, $a(b + c) = ab + ac$.
+
+> [!DEF] Campo
+> Un insieme di numeri con somma e prodotto in cui valgono tutte e nove le regole.
+
+**Come si legge.** In pratica un campo è un insieme in cui fai le quattro operazioni senza uscirne. $\Q$, $\R$ e $\C$ sono campi; $\N$ no, perché manca $-1$; $\Z$ no, perché manca $\frac12$. Lo zero non ha inverso: non si divide per zero.
+
+**L'ordine.** $a > b$ vuol dire che $a - b$ è positivo, cioè che $a$ sta più a destra sulla retta dei numeri. $\N$, $\Z$, $\Q$ e $\R$ sono ordinati; $\C$ no.
+
+| Scrittura | Vuol dire |
+|---|---|
+| $\{1, 2\}$ | l'insieme con i due elementi 1 e 2 |
+| $(1, 2)$ | i reali tra 1 e 2, estremi **esclusi**; oppure il punto o il vettore di coordinate 1 e 2, a seconda del contesto |
+| $[1, 2]$ | i reali tra 1 e 2, estremi **compresi** |
+| $\lambda$, $\mu$, $\vartheta$ | lettere greche: di solito $\lambda$ e $\mu$ sono numeri, $\vartheta$ un angolo |
+| $\forall$, $\exists$, $\Longrightarrow$ | «per ogni», «esiste», «se … allora» |
+
+> [!TRAPPOLA] «Se … allora» non vale al contrario
+> Se $a = 2$ allora $a^2 = 4$; ma da $a^2 = 4$ non segue $a = 2$, perché anche $a = -2$ va bene. Quando una frase vale nei due versi si dice «se e solo se».
+
+> [!METODO] Conti con le radici senza calcolatrice
+> 1. $\sqrt a \cdot \sqrt b = \sqrt{ab}$, e un quadrato esce dalla radice: $\sqrt{12} = \sqrt{4 \cdot 3} = 2\sqrt 3$.
+> 2. Si sommano solo radici uguali: $2\sqrt 3 + 5\sqrt 3 = 7\sqrt 3$, mentre $\sqrt 2 + \sqrt 3$ resta così.
+> 3. Per togliere la radice dal denominatore moltiplica sopra e sotto per quella radice: $\frac1{\sqrt 3} = \frac{\sqrt 3}3$.
+> 4. $\sqrt{a + b}$ **non** è $\sqrt a + \sqrt b$: $\sqrt{9 + 16} = 5$, mentre $3 + 4 = 7$.
+
+## Verso l'esame
+
+- Prova comune ai tre canali: **10 quiz** a 5 risposte; con almeno **6** giuste si correggono i **2 problemi** da 11 punti. Dura 2 ore, **senza calcolatrice**, e si possono portare solo **4 facciate scritte a mano**.
+- Appelli 2026/27: venerdì 22/01/2027 e venerdì 05/02/2027, alle 14:00. Il voto di MDAG è la media con Matematica Discreta.
+- Da questa lezione: riconoscere un campo, usare le parentesi giuste, semplificare le radici. Nell'appello del 07/09/2026 le risposte per una distanza erano $3$, $\frac{\sqrt 3}3$, $3\sqrt 3$, $\sqrt 3$ e $3 + \sqrt 3$: bisogna riconoscere che $\frac1{\sqrt 3}$ e $\frac{\sqrt 3}3$ sono lo stesso numero.
+- Sul foglio da 4 facciate: la tabella delle famiglie, le nove regole, le regole delle radici.
+
+## Domande di ripasso
+
+::: domanda $-4$ sta in $\N$? In $\Z$? In $\Q$?
+Non sta in $\N$; sta in $\Z$ e in $\Q$.
+:::
+
+::: domanda $0{,}333\ldots$ è razionale?
+Sì: è $\frac13$, le cifre si ripetono.
+:::
+
+::: domanda $\Z$ è un campo? Perché?
+No: 2 non ha inverso in $\Z$, perché $\frac12$ non è un intero.
+:::
+
+::: domanda Che differenza c'è tra $(2, 5)$ e $[2, 5]$? Il 5 sta in tutti e due?
+Il primo esclude gli estremi, il secondo li comprende: il 5 sta solo in $[2, 5]$.
+:::
+
+::: domanda Semplifica $\sqrt{50}$ e $\frac6{\sqrt 2}$.
+$\sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt 2$; $\frac6{\sqrt 2} = \frac{6\sqrt 2}2 = 3\sqrt 2$.
+:::
+
+::: domanda $\sqrt 2 \cdot \sqrt 8$ è irrazionale?
+No: $\sqrt 2 \cdot \sqrt 8 = \sqrt{16} = 4$.
+:::
+
+## Fonti
+
+- La lezione completa: [L01 · Numeri reali](L01_numeri_reali.html), con quiz degli appelli ed esercizi svolti. Tutte le 26 lezioni di Algebra lineare e Geometria sono già nel sito.
+- R. Buzano, M. Radeschi, dispense 2026 del corso, pp. 2–5.
+- Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_01_MD.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_01_MD.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: S1
+tipo: riassunto
+titolo: "Settimana 1: insiemi, De Morgan, induzione e partizioni"
+data: 2026-10-02
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Riassunto settimanale · Parte 1 (modA) · Matematica Discreta · Canali A, B e C · 28/09 – 02/10/2026
+descrizione: >-
+  Riassunto della settimana 1 di Matematica Discreta (MDAG, parte 1): insiemi, elementi e sottoinsiemi, per ogni ed
+  esiste, insieme vuoto e cardinalità, insieme delle parti, unione, intersezione, differenza e complementare, leggi di
+  De Morgan, assiomi di Peano e induzione, ricoprimenti, partizioni e insieme quoziente.
+lede: >-
+  Le due lezioni della settimana in poche pagine: le definizioni da sapere, i metodi che servono nella domanda 1 e
+  nella domanda 2 del quiz, le trappole e le domande per controllarti.
+materiale: libro
+scheda:
+  Lezioni: "[D01](D01_insiemi_induzione.html) mer 30/09 · [D02](D02_complementare_induzione_partizioni.html) ven 02/10"
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 1, pp. 1–13
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni D01 e D02 di Matematica Discreta, scritti sul libro di A. Mori, cap. 1
+file_en: summary_week_01_MD.html
+appunti_html: appunti/MDAG/riassunto_settimana_01_MD.html
+genera_html: true
+```
+
+## In breve
+
+- Un **insieme** è un sacchetto di oggetti, i suoi **elementi**: conta solo chi c'è dentro, non l'ordine né le ripetizioni.
+- **Elemento** ($\in$) e **sottoinsieme** ($\subset$) sono due cose diverse: è il trucco di quasi tutte le domande 1 del quiz.
+- Con gli insiemi si fanno **unione**, **intersezione**, **differenza** e **complementare**. Le **leggi di De Morgan** dicono come si comporta il «fuori».
+- I naturali si descrivono con gli **assiomi di Peano**, e da lì viene l'**induzione**. Un insieme con $n$ elementi ha $2^n$ sottoinsiemi.
+- Una **partizione** divide un insieme in parti non vuote che non si toccano: si riconosce con tre controlli.
+
+## D01 · Insiemi e induzione (mer 30/09)
+
+**Insiemi.**
+
+- Si scrive con le graffe: con l'**elenco**, $\{1, 3, 5\}$, o con una **regola**, $\{n \in \N \mid n < 5\} = \{0, 1, 2, 3, 4\}$. La barra si legge «tali che».
+- $\{1, 2\} = \{2, 1\} = \{1, 1, 2\}$: ordine e ripetizioni non contano.
+- Un insieme può stare dentro un altro: $\{0, \{1, -1\}\}$ ha **due** elementi, lo zero e il sacchetto $\{1, -1\}$. Le graffe interne contano.
+- L'**insieme vuoto** $\emptyset$ non ha elementi; $\{\emptyset\}$ invece ne ha uno, il vuoto.
+- La **cardinalità** $\lvert A \rvert$ è il numero degli elementi: $\lvert \{a, b, a\} \rvert = 2$.
+
+**Per ogni ed esiste.** $\forall$ si legge «per ogni», $\exists$ «esiste». Per dire il contrario «per ogni» diventa «esiste» e la proprietà si nega: il contrario di «tutti hanno superato l'esame» è «**almeno uno** non l'ha superato», non «nessuno». Per smontare una frase con «per ogni» basta un **controesempio**.
+
+**Sottoinsiemi.** $B \subset A$ se **ogni** elemento di $B$ sta in $A$. Il vuoto e $A$ stesso sono sempre sottoinsiemi di $A$. Mori scrive $\subset$ anche quando i due insiemi possono essere uguali. Due insiemi sono uguali quando ognuno è contenuto nell'altro: è la **doppia inclusione**. L'**insieme delle parti** $P(A)$ ha come elementi tutti i sottoinsiemi di $A$: $P(\{a, b\}) = \{\emptyset, \{a\}, \{b\}, \{a, b\}\}$.
+
+> [!METODO] Elemento o sottoinsieme?
+> 1. Elenca gli elementi di $A$ guardando solo le virgole al primo livello di graffe.
+> 2. «$x \in A$» è vera se $x$ compare **identico** in quell'elenco.
+> 3. «$X \subset A$» è vera se $X$ è un insieme e **ognuno** dei suoi elementi compare nell'elenco.
+>
+> Con $A = \{1, 2, 3\}$: $\emptyset \subset A$ sì, $\emptyset \in A$ no; $\{1\} \subset A$ sì, $\{1\} \in A$ no; $1 \subset A$ no, perché 1 non è un insieme.
+
+**Naturali e induzione.**
+
+- $\N = \{0, 1, 2, \dots\}$: per Mori **lo zero è un naturale**.
+- **Induzione**, come il domino: **passo base** (la proprietà vale per il primo numero) e **passo induttivo** (se vale per $n$, vale per $n + 1$). Allora vale per tutti. Il passo base non si salta.
+- Esempi: $1 + 2 + \dots + n = \frac{n(n + 1)}2$; quello del libro, $1^2 + 2^2 + \dots + n^2 = \frac{n(n + 1)(2n + 1)}6$.
+- Un insieme con $n$ elementi ha $2^n$ sottoinsiemi: per ogni elemento la scelta è «dentro» o «fuori». Quelli di $\{1, \dots, 6\}$ che contengono 1 sono $2^5 = 32$: fissi l'1 e scegli il resto.
+- Le famiglie di numeri: $\N \subset \Z \subset \Q \subset \R$. Intervalli: $(a, b)$ con gli estremi esclusi, $[a, b]$ compresi.
+
+## D02 · Complementare, De Morgan, induzione e partizioni (ven 02/10)
+
+L'esempio che gira per tutta la lezione: $X$ = le tessere da 1 a 10, $A$ = i pari $= \{2, 4, 6, 8, 10\}$, $B$ = i multipli di 3 $= \{3, 6, 9\}$.
+
+| Operazione | Si legge | Contiene | Con le tessere |
+|---|---|---|---|
+| $A \cap B$ | «$A$ intersecato $B$» | gli elementi in $A$ **e** in $B$ | $\{6\}$ |
+| $A \cup B$ | «$A$ unione $B$» | gli elementi in $A$ **oppure** in $B$, anche in tutti e due | $\{2, 3, 4, 6, 8, 9, 10\}$ |
+| $A \setminus B$ | «$A$ meno $B$» | gli elementi di $A$ che non stanno in $B$ | $\{2, 4, 8, 10\}$ |
+| $B \setminus A$ | «$B$ meno $A$» | l'ordine conta | $\{3, 9\}$ |
+| $C_X(A)$ | «complementare di $A$ in $X$» | gli elementi di $X$ fuori da $A$ | $\{1, 3, 5, 7, 9\}$ |
+
+- Due insiemi sono **disgiunti** se l'intersezione è vuota.
+- L'intersezione è un insieme: se $A \cap B = \{6\}$ allora $6 \in A \cap B$ e $\{6\} \subset A \cap B$; sono sbagliati $6 \subset A \cap B$ e $\{6\} \in A \cap B$.
+- $\lvert A \cup B \rvert = \lvert A \rvert + \lvert B \rvert - \lvert A \cap B \rvert$: $5 + 3 - 1 = 7$, perché gli elementi comuni si contano una volta.
+- Proprietà distributive: $(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$, e la stessa con $\cap$ e $\cup$ scambiati.
+- Il complementare **dipende da $X$**: $\{2, 4\}$ in $\{1, \dots, 5\}$ ha complementare $\{1, 3, 5\}$, nelle dieci tessere $\{1, 3, 5, 6, 7, 8, 9, 10\}$. Il complementare del complementare è l'insieme di partenza.
+
+> [!TEOREMA] Leggi di De Morgan (teorema 1.18)
+> $$C_X(A \cup B) = C_X(A) \cap C_X(B) \qquad C_X(A \cap B) = C_X(A) \cup C_X(B)$$
+
+**Come si legge.** Fuori dall'unione vuol dire fuori da **tutti e due**: con le tessere $\{1, 5, 7\}$. Fuori dall'intersezione vuol dire fuori da **almeno uno**: tutte tranne la 6. Il complementare entra nella parentesi e **scambia** $\cap$ e $\cup$, come nella logica: il contrario di «piove e fa freddo» è «non piove oppure non fa freddo». Le stesse leggi valgono con la differenza: $X \setminus (A \cap B) = (X \setminus A) \cup (X \setminus B)$.
+
+**Assiomi di Peano**, spiegati con quello che va storto quando ne manca uno:
+
+| Regola | Senza questa regola |
+|---|---|
+| 1. lo zero è un naturale | — |
+| 2. ogni naturale ha un successivo $s(n)$ | — |
+| 3. numeri diversi hanno successivi diversi | il **cappio**: da 0 a 5, con il successivo di 5 uguale a 3, si rientra a metà strada |
+| 4. lo zero non è il successivo di nessuno | l'**orologio**: dopo le 11 vengono le 0 |
+| 5. un insieme che contiene 0 e passa sempre al successivo contiene tutti i naturali | i **numeri fantasma**: una seconda fila che da 0 non si raggiunge mai |
+
+La regola 5 è il **principio di induzione**.
+
+> [!METODO] Dimostrare per induzione
+> 1. **Passo base**: controlla il primo numero, 0 oppure 1.
+> 2. **Ipotesi induttiva**: supponi la proprietà vera per $n$.
+> 3. **Passo induttivo**: scrivi la proprietà per $n + 1$, parti dal lato sinistro, usa l'ipotesi e arriva al lato destro.
+> 4. **Conclusione**: vale per tutti i numeri dal primo in poi.
+>
+> Esempi della lezione: $1 + 3 + 5 + \dots + (2n - 1) = n^2$, il quadrato che cresce di una «L»; $2^n \ge n + 1$. Il paradosso dei cavalli tutti dello stesso colore si rompe nel passo da 1 a 2.
+
+**Insieme delle parti, ricoprimenti, partizioni.**
+
+- I sottoinsiemi di $\{1, 2, 3\}$ per grandezza sono $1 + 3 + 3 + 1 = 8 = 2^3$. Aggiungere un elemento raddoppia il conto: quelli senza più quelli con.
+- Gli elementi di $P(A)$ sono insiemi: $\{1\} \in P(A)$ ma $1 \notin P(A)$. $P(\emptyset) = \{\emptyset\}$. Vale $P(A) \cap P(B) = P(A \cap B)$, ma $P(A \cup B)$ in generale è più grande di $P(A) \cup P(B)$.
+- Un **ricoprimento** di $X$ è un gruppo di sottoinsiemi di $X$ la cui unione è tutto $X$; le parti possono sovrapporsi.
+- $n\Z$ sono i multipli di $n$: $2\Z$ i pari, $2\Z + 1$ i dispari, e $\Z = 2\Z \cup (2\Z + 1)$.
+- L'**insieme quoziente** ha come elementi le parti di una partizione; $[x]$ è la parte che contiene $x$. Per pari e dispari: $[0]$ e $[1]$.
+- $\{1, 2, 3\}$ ha **5** partizioni; $\{a, b, c, d\}$ ne ha 15.
+
+> [!METODO] È una partizione? Tre controlli
+> 1. L'unione delle parti è **tutto** l'insieme, e nessuna parte contiene elementi estranei.
+> 2. **Nessuna parte è vuota.**
+> 3. **Nessuna sovrapposizione**, controllata su **ogni coppia** di parti: ogni elemento sta in una parte sola.
+
+## Verso l'esame
+
+- Prova comune ai tre canali: **10 quiz** a 5 risposte e **2 problemi**, in 2 ore. Con meno di 6 nel quiz i problemi non si correggono; la sufficienza è 18. Si possono portare libro, appunti e una calcolatrice non programmabile.
+- Appelli 2026/27: martedì 19/01/2027 e mercoledì 03/02/2027, alle 14:00 (su MyUniTo l'appello si chiama «M.D.A.G.1»).
+- La **domanda 1** riguarda quasi sempre gli insiemi: $\in$ contro $\subset$, unione e intersezione (appelli del 2025 e del 2026). La **domanda 2** a volte chiede una partizione (04/02/2025) o «un ricoprimento ma non una partizione» (07/07/2025).
+- Nei problemi tornano i conteggi con $2^n$ e, più avanti, «almeno uno» contato come «tutti meno nessuno», cioè con il complementare.
+- Negli appelli di Matematica Discreta l'induzione non va scritta; a Fondamenti dell'Informatica il principio di induzione è tra gli argomenti dei quiz.
+
+## Domande di ripasso
+
+::: domanda Quanti elementi ha $\{\emptyset, \{\emptyset\}, \{1, 2\}\}$?
+Tre: il vuoto, l'insieme che contiene il vuoto e l'insieme $\{1, 2\}$.
+:::
+
+::: domanda Con $A = \{a, \{b\}\}$: $b \in A$? $\{b\} \in A$? $\{b\} \subset A$?
+$b \in A$ no: in $A$ c'è $\{b\}$, non $b$. $\{b\} \in A$ sì. $\{b\} \subset A$ no: servirebbe $b$ tra gli elementi di $A$.
+:::
+
+::: domanda Qual è il contrario di «esiste un numero pari maggiore di 10»?
+«Ogni numero pari è minore o uguale a 10». È falsa, quindi la frase di partenza è vera.
+:::
+
+::: domanda Quanti sottoinsiemi di $\{1, 2, 3, 4, 5\}$ contengono 1 e 2?
+$2^3 = 8$: fissati 1 e 2, gli altri tre elementi si scelgono liberamente.
+:::
+
+::: domanda Con $X = \{1, \dots, 8\}$, $A = \{1, 2, 3\}$ e $B = \{3, 4, 5\}$, quanto fa $C_X(A \cap B)$?
+$A \cap B = \{3\}$, quindi $C_X(A \cap B) = \{1, 2, 4, 5, 6, 7, 8\}$.
+:::
+
+::: domanda Le parti $\{1, 2\}$, $\{2, 3\}$, $\{4\}$ sono una partizione di $\{1, 2, 3, 4\}$?
+No: coprono tutto e nessuna è vuota, ma il 2 sta in due parti.
+:::
+
+::: domanda Quale assioma di Peano non vale per un orologio con le ore da 0 a 11?
+Il quarto: lo zero è il successivo di 11.
+:::
+
+::: domanda Nel passo induttivo di $1 + 3 + \dots + (2n - 1) = n^2$, dove devi arrivare?
+A $1 + 3 + \dots + (2n + 1) = (n + 1)^2$.
+:::
+
+## Fonti
+
+- Le lezioni complete: [D01 · Insiemi e induzione](D01_insiemi_induzione.html) e [D02 · Complementare, De Morgan, induzione e partizioni](D02_complementare_induzione_partizioni.html), con quiz degli appelli ed esercizi svolti.
+- A. Mori, *Lezioni di Matematica Discreta*, cap. 1 «Insiemi», pp. 1–13.
+- Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
 
 
 ---

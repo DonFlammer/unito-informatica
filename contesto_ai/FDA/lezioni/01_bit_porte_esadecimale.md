@@ -358,7 +358,7 @@ Quattro bit hanno $2^4 = 16$ combinazioni, quindi servono 16 simboli. Si usano l
 | 0110 | 6 | | 1110 | E |
 | 0111 | 7 | | 1111 | F |
 
-Per ricordare la tabella c'è un aiuto. Le quattro posizioni del gruppo valgono, da sinistra, 8, 4, 2 e 1. Somma i valori delle posizioni dove c'è un 1. Per esempio 1011 dà $8 + 2 + 1 = 11$. Poi i numeri da 10 a 15 si scrivono con le lettere: A è 10, B è 11, e così via fino a F, che è 15. Quindi 1011 si scrive B. Perché funziona lo vedi nella [lezione 03](03_testo_colori_suoni_binario.html), sui numeri in base 2 (sezione 1.5 del libro).
+Per ricordare la tabella c'è un aiuto. Le quattro posizioni del gruppo valgono, da sinistra, 8, 4, 2 e 1. Somma i valori delle posizioni dove c'è un 1. Per esempio 1011 dà $8 + 2 + 1 = 11$. Poi i numeri da 10 a 15 si scrivono con le lettere: A è 10, B è 11, e così via fino a F, che è 15. Quindi 1011 si scrive B. Perché funziona lo vedi nella [lezione 02](02_testo_colori_suoni_binario.html), sui numeri in base 2 (sezione 1.5 del libro).
 
 > [!METODO] Dai bit all'esadecimale, e ritorno
 > **Dai bit all'esadecimale.**
@@ -411,7 +411,7 @@ Dentro una cella i bit stanno in fila. Il libro chiama **estremo alto** (*high-o
 | Una cella | **1** | 0 | 0 | 1 | 0 | 1 | 1 | **0** |
 | Nome | più significativo | | | | | | | meno significativo |
 
-I nomi vengono dai numeri in base 2, che vedi nella [lezione 03](03_testo_colori_suoni_binario.html): il bit più a sinistra è quello che pesa di più.
+I nomi vengono dai numeri in base 2, che vedi nella [lezione 02](02_testo_colori_suoni_binario.html): il bit più a sinistra è quello che pesa di più.
 
 ### Gli indirizzi
 
@@ -562,7 +562,7 @@ Un **disco a stato solido** (*solid-state disk*, SSD) è una memoria flash abbas
 | NOT | «not» | il contrario dell'ingresso | NOT 0 = 1 |
 | $\land$, $\lor$, $\oplus$, $\lnot$ | «e», «o», «o esclusivo», «non» | le stesse operazioni scritte come in logica (parte 2 del libro) | $1 \land 0 = 0$ |
 | A, B, C, D, E, F | «a», «bi», «ci», «di», «e», «effe» | le cifre esadecimali che valgono da 10 a 15 | B = 1011 |
-| $1011_2$, $\text{B}_{16}$ | «1011 in base due», «B in base sedici» | il numerino in basso dice in che base è scritto il numero ([lezione 03](03_testo_colori_suoni_binario.html)) | $1011_2 = \text{B}_{16}$ |
+| $1011_2$, $\text{B}_{16}$ | «1011 in base due», «B in base sedici» | il numerino in basso dice in che base è scritto il numero ([lezione 02](02_testo_colori_suoni_binario.html)) | $1011_2 = \text{B}_{16}$ |
 | KB, MB, GB | «kilobyte», «megabyte», «gigabyte» | per la memoria: $2^{10}$, $2^{20}$ e $2^{30}$ byte | 4 KB = 4096 byte |
 | KiB, MiB, GiB | «kibibyte», «mebibyte», «gibibyte» | gli stessi valori, con nomi che non lasciano dubbi | 1 KiB = 1024 byte |
 | RAM | «ram» | la memoria centrale, ad accesso casuale (*random access memory*) | 8 GB di RAM |
@@ -590,7 +590,7 @@ Tutti i dettagli sono nella [scheda del corso](https://github.com/DonFlammer/uni
 1. **Le tabelle delle operazioni.** Nelle simulazioni d'esame del 2023/24 tornano due tipi di quiz. Uno chiede la formula booleana di una tabella di verità; l'altro dà un circuito, combinatorio o sequenziale, e chiede che funzione calcola. Sono le idee di questa lezione, riprese più avanti con le algebre di Boole e i circuiti (capitolo 11 della parte 2 del libro).
 2. **Leggere un circuito.** Il metodo con la tabella di tutte le combinazioni degli ingressi funziona per qualunque circuito di porte.
 3. **I bit e le potenze di 2.** Quante sequenze con $n$ bit e quanti bit servono: sono conti che tornano con la rappresentazione dei numeri.
-4. **L'esadecimale.** Torna con le conversioni tra basi della [lezione 03](03_testo_colori_suoni_binario.html).
+4. **L'esadecimale.** Torna con le conversioni tra basi della [lezione 02](02_testo_colori_suoni_binario.html).
 5. **Memoria centrale e memorie di massa.** Nei quiz delle simulazioni del 2023/24 non compaiono, ma le sezioni 1.2 e 1.3 stanno nella mappa comune del libro. Servono le idee (celle, indirizzi, RAM, tracce, settori, flash) e i conti con le potenze di 2, come i bit di 4 KB.
 
 I quiz sono in italiano e il libro in inglese: impara i nomi in tutte e due le lingue. Il glossario in fondo li mette uno accanto all'altro. Sulla pagina d'esame (Moodle Esami, id 2673) ci sono anche quiz di ripasso divisi per lezione.

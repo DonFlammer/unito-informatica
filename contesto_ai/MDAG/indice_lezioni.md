@@ -9,7 +9,7 @@ Le lezioni seguono il libro di Andrea Mori e gli argomenti indicati per il canal
 | # | Titolo | Libro (Mori) | File | Argomenti |
 |---|---|---|---|---|
 | D01 | Insiemi e induzione | cap. 1, pp. 1–8 | `lezioni/D01_insiemi_induzione.md` · HTML: `appunti/MDAG/D01_insiemi_induzione.html` | elementi e insiemi, appartenenza e inclusione, quantificatori, cardinalità, prime dimostrazioni per induzione e insieme delle parti |
-| D02 | Complementare, induzione e partizioni | cap. 1, pp. 4–12 | `lezioni/D02_complementare_induzione_partizioni.md` · HTML: `appunti/MDAG/D02_complementare_induzione_partizioni.html` | complementare e De Morgan, naturali e assiomi di Peano, induzione, insieme delle parti e cardinalità, ricoprimenti e partizioni |
+| D02 | Complementare, De Morgan, induzione e partizioni | cap. 1, pp. 5–13 | `lezioni/D02_complementare_induzione_partizioni.md` · HTML: `appunti/MDAG/D02_complementare_induzione_partizioni.html` | intersezione e unione, differenza e complementare, leggi di De Morgan, assiomi di Peano, induzione, insieme delle parti, ricoprimenti, partizioni e insieme quoziente |
 
 ## Algebra lineare e Geometria (parte 2, modB)
 

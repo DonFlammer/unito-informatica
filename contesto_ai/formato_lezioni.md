@@ -53,3 +53,7 @@ Gli enunciati nei riquadri `DEF`, `PROP`, `TEOREMA` seguono le slide o le dispen
 - `checklist`: le voci «So …» da spuntare.
 - `grafico`: una figura statica (punti, vettori, rette, poligoni, cerchi), una riga per elemento.
 - `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann, porte logiche con `modo: porte`, `modo: flipflop`, `modo: esadecimale` o `modo: memoria`; testo, colori, suoni e numeri in bit con `widget codifica` e `modo: testo`, `colori`, `suono`, `binario`, `divisioni` o `somma`). Nel Markdown restano solo i parametri iniziali.
+
+## Riassunti settimanali
+
+Ogni settimana, per ogni corso, un riassunto delle lezioni in `<CORSO>/riassunti/settimana_NN.md` (per MDAG uno per parte: `settimana_NN_MD.md` e `settimana_NN_AG.md`). Il formato è quello delle lezioni, con `tipo: riassunto` e `lezione: S<N>` nell'intestazione: la pagina va in `appunti/<CORSO>/riassunto_settimana_NN….html` e compare nella sezione «Riassunti settimanali» in fondo alla pagina del corso, non tra le lezioni. Contiene «In breve», una sezione per lezione con i punti, le tabelle e i metodi da sapere, «Verso l'esame», «Domande di ripasso» e le «Fonti» con i link alle lezioni complete.

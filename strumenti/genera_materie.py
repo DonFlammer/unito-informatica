@@ -214,14 +214,16 @@ def meta(testo, nome):
     return html.unescape(m.group(1)).strip() if m else ""
 
 
-def lezioni(sigla):
-    """Legge titolo, codice, data e modulo di ogni lezione della materia."""
+def lezioni(sigla, riassunti=False):
+    """Legge titolo, codice, data e modulo di ogni lezione della materia (o dei riassunti settimanali, con riassunti=True)."""
     cartella = APPUNTI / sigla
     trovate = []
     for f in sorted(cartella.glob("*.html")) if cartella.is_dir() else []:
         if f.name == "index.html":
             continue
         testo = f.read_text(encoding="utf-8")
+        if (meta(testo, "tipo") == "riassunto") != riassunti:
+            continue
         titolo = re.search(r"<title>(.*?)</title>", testo, re.S)
         titolo = html.unescape(titolo.group(1)).strip() if titolo else f.stem
         codice = meta(testo, "lezione") or f.stem.split("_")[0]
@@ -249,7 +251,34 @@ def elenco_lezioni(lez):
 VUOTO = '<p class="vuoto">Ancora nessuna lezione: gli appunti arrivano lezione per lezione.</p>'
 
 
-def pagina_materia(m, lez):
+def elenco_riassunti(ries):
+    righe = "\n".join(
+        f'      <li><span class="nodo" aria-hidden="true">{e(r["codice"])}</span><a href="{e(r["file"])}">'
+        f'<span class="tit">{e(r["titolo"])}</span><span class="tenue">{e((PARTI.get(r["modulo"], r["modulo"]) + " · ") if r["modulo"] else "")}Riassunto settimanale</span>'
+        + (f'<time datetime="{e(r["data"])}">{e(data_it(r["data"]))}</time>' if r["data"] else "") + '</a></li>'
+        for r in ries)
+    return f'<ol class="lezioni">\n{righe}\n    </ol>'
+
+
+def sezione_riassunti(m, ries):
+    """In fondo alle lezioni: un riassunto per settimana, per ripassare senza rileggere tutto."""
+    if not ries:
+        return ""
+    if m.get("moduli"):
+        blocchi = [f'<h3 class="modulo-titolo">{e(nome)}</h3>\n    ' + elenco_riassunti([r for r in ries if r["modulo"] == s])
+                   for s, nome in m["moduli"] if any(r["modulo"] == s for r in ries)]
+        corpo = "\n    ".join(blocchi)
+    else:
+        corpo = elenco_riassunti(ries)
+    return f"""
+
+  <section class="sezione" aria-labelledby="h-riassunti">
+    <div class="sez-testa"><h2 id="h-riassunti">Riassunti settimanali</h2><p>Le lezioni di una settimana in poche pagine, per ripassare senza rileggerle per intero.</p></div>
+    {corpo}
+  </section>"""
+
+
+def pagina_materia(m, lez, ries=()):
     url_en = f"{SITO_EN}notes/{SIGLA_EN.get(m['sigla'], m['sigla'])}/"
     sem = f"{m['semestre']}° semestre"
     etichetta = " · ".join(x for x in ["Primo anno", sem, m["insegnamento"], m.get("extra", "")] if x)
@@ -322,7 +351,7 @@ def pagina_materia(m, lez):
   <section class="sezione" aria-labelledby="h-lezioni">
     <div class="sez-testa"><h2 id="h-lezioni">Lezioni</h2></div>
     {corpo}
-  </section>
+  </section>{sezione_riassunti(m, ries)}
 
   <section class="sezione" aria-labelledby="h-link">
     <div class="sez-testa"><h2 id="h-link">Per approfondire</h2><p>Le schede in Markdown del contesto per le AI: docenti, orari e Moodle dei tre canali, esame e materiale.</p></div>
@@ -458,8 +487,9 @@ def main():
         tutte[m["sigla"]] = lez
         cartella = APPUNTI / m["sigla"]
         cartella.mkdir(parents=True, exist_ok=True)
-        (cartella / "index.html").write_text(pagina_materia(m, lez), encoding="utf-8", newline="\n")
-        print(f"appunti/{m['sigla']}/index.html - {len(lez)} lezioni")
+        ries = lezioni(m["sigla"], riassunti=True)
+        (cartella / "index.html").write_text(pagina_materia(m, lez, ries), encoding="utf-8", newline="\n")
+        print(f"appunti/{m['sigla']}/index.html - {len(lez)} lezioni" + (f", {len(ries)} riassunti" if ries else ""))
 
     testo = INDEX.read_text(encoding="utf-8")
     testo = sostituisci(testo, INIZIO, FINE, blocco_index(tutte))

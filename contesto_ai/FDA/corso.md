@@ -84,7 +84,11 @@ Riferimento 2025/26 (iscritti): 19/01 (309), 13/02 (441), 04/06 (132), 02/07 (10
 6. Settimane 11–13 (28/11–12/12): circuiti sequenziali, macchine a stati finiti, automi, grammatiche, NFA, linguaggi regolari.
 7. Ultima lezione (15/12/2025): esercizi riassuntivi. Nel 2026/27 le lezioni durano fino al 15/01/2027.
 
-Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea con A. Il canale B segue il libro con le omissioni indicate sopra; l'ordine si vedrà dai riassunti delle lezioni su Moodle (il 28/09 è uscita la presentazione del libro di testo).
+Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea con A. Il canale B segue il libro con le omissioni indicate sopra; i riassunti delle lezioni su Moodle B finora:
+
+- lun 28/09: lezione introduttiva, con la presentazione del libro di testo. Negli appunti non ha un numero.
+- gio 01/10: parte 1, §1.1 "Bits and Their Storage" (flip-flop, notazione esadecimale), poi memoria centrale e memorie di massa (§1.2–1.3). Negli appunti è la lezione 01.
+- ven 02/10: parte 1, §1.4 "Representing Information as Bit Patterns" e §1.5 "The Binary System": alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno. Negli appunti è la lezione 02.
 
 ## Materiale
 

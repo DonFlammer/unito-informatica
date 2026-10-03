@@ -12,9 +12,9 @@ descrizione: >-
   insieme delle parti e sua cardinalità, ricoprimenti, partizioni e insieme quoziente, con le domande vere degli
   appelli ed esercizi svolti.
 lede: >-
-  Come si combinano due insiemi: quello che hanno in comune, tutto quello che contengono, quello che resta fuori. Poi
-  le due regole che dicono come si comporta il «fuori», le leggi di De Morgan, e il modo giusto di dividere un insieme
-  in gruppi. In mezzo tornano i numeri naturali e l'induzione, questa volta con le regole che li descrivono.
+  Come si combinano due insiemi: quello che hanno in comune, tutto quello che contengono, quello che resta fuori. Come
+  si divide un insieme in gruppi senza perdere niente. Poi i numeri naturali, l'induzione e quanti sottoinsiemi ha un
+  insieme.
 materiale: libro
 scheda:
   Libro: A. Mori, Lezioni di Matematica Discreta, cap. 1, pp. 5–13
@@ -31,38 +31,38 @@ genera_html: true
 
 ## In breve
 
-- L'**intersezione** di due insiemi contiene gli elementi che stanno in tutti e due. L'**unione** contiene gli elementi che stanno in almeno uno dei due.
-- La **differenza** toglie da un insieme gli elementi di un altro. Se togli una parte da un insieme fissato, quello che resta si chiama **complementare** della parte.
-- Le **leggi di De Morgan** dicono come si comporta il «fuori»: stare fuori dall'unione vuol dire stare fuori da tutti e due; stare fuori dall'intersezione vuol dire stare fuori da almeno uno.
-- I **numeri naturali** 0, 1, 2, 3… si descrivono con cinque regole, gli **assiomi di Peano**. L'ultima, il **principio di induzione**, dice che partendo da 0 e andando avanti di uno si arriva a tutti.
+- L'**intersezione** di due insiemi contiene quello che hanno in comune. L'**unione** mette insieme tutto quello che contengono.
+- La **differenza** toglie da un insieme gli elementi di un altro. Quello che resta fuori da una parte, dentro un insieme fissato, si chiama **complementare**.
+- Le **leggi di De Morgan** dicono come si comporta il «fuori»: stare fuori dall'unione vuol dire stare fuori da tutti e due gli insiemi; stare fuori dall'intersezione vuol dire stare fuori da almeno uno.
+- Una **partizione** divide un insieme in gruppi non vuoti, senza sovrapposizioni: ogni elemento sta in un gruppo e in uno solo. Se i gruppi si sovrappongono ma coprono tutto, è solo un **ricoprimento**.
+- I **numeri naturali** 0, 1, 2, 3… si descrivono con cinque regole, gli **assiomi di Peano**. L'ultima è il **principio di induzione**: partendo da 0 e andando avanti di uno si arriva a tutti.
 - Una **dimostrazione per induzione** ha due passi: si controlla il primo caso, poi si fa vedere che ogni caso porta al successivo.
-- L'**insieme delle parti** raccoglie tutti i sottoinsiemi di un insieme. Se l'insieme ha $n$ elementi, i sottoinsiemi sono $2^n$.
-- Un **ricoprimento** è un gruppo di parti che insieme coprono tutto l'insieme. Una **partizione** è un ricoprimento senza parti vuote e senza sovrapposizioni: ogni elemento sta in una parte sola.
-- All'esame la domanda 1 del quiz chiede spesso unione e intersezione, e la domanda 2 a volte chiede di riconoscere una partizione.
+- Un insieme con 3 elementi ha 8 sottoinsiemi, uno con 4 ne ha 16: ogni elemento in più raddoppia il conto.
+- All'esame la domanda 1 del quiz chiede quasi sempre unione e intersezione, e la domanda 2 a volte chiede di riconoscere una partizione.
 
 > [!CANALI]
-> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C, quindi questi appunti valgono per tutti e tre. Nel canale B è la lezione di venerdì 02/10/2026 con Andrea Mori. Gli argomenti scritti sul Moodle del canale B sono: complementare di un sottoinsieme e leggi di De Morgan; l'insieme dei numeri naturali e gli assiomi di Peano; il principio di induzione come metodo di dimostrazione; l'insieme delle parti e la sua cardinalità; ricoprimenti e partizioni. Le leggi di De Morgan parlano di unione e intersezione, che il libro presenta subito prima (pp. 8–10) e che nella [lezione D01](D01_insiemi_induzione.html) non c'erano: le trovi qui all'inizio. Naturali, induzione e insieme delle parti erano già nella D01, che seguiva il libro fino a p. 8. Qui li riprendi con gli assiomi di Peano spiegati per intero, esempi nuovi e il collegamento con le partizioni. Nei canali A e C, con Ignazio Longhi e Lea Terracini, l'ordine degli argomenti può essere diverso.
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di venerdì 02/10/2026 con Andrea Mori, sulle pagine 5–13 del libro. Qui gli argomenti sono in un ordine diverso dal libro: prima tutto quello che riguarda gli insiemi, fino alle partizioni, poi i numeri naturali e l'induzione, e per ultimo il conto dei sottoinsiemi, che con l'induzione si dimostra.
 
 ## Quello che due insiemi hanno in comune (p. 8)
 
-Prendi dieci tessere numerate da 1 a 10. Chiamiamo $X$ l'insieme di tutte le tessere:
+Nella [lezione D01](D01_insiemi_induzione.html) un insieme era un sacchetto di oggetti. Qui gli oggetti sono dieci tessere numerate da 1 a 10. Il sacchetto con tutte le tessere si chiama $X$:
 
 $$X = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}$$
 
-Ora fai due mucchietti. Nel primo metti le tessere con un numero pari, nel secondo quelle con un multiplo di 3:
+Ora riempi due sacchetti più piccoli. Nel primo metti le tessere con un numero pari, nel secondo quelle con un multiplo di 3:
 
 $$A = \{2, 4, 6, 8, 10\} \qquad B = \{3, 6, 9\}$$
 
-Quale tessera dovrebbe stare in tutti e due i mucchietti? Solo la 6: è pari ed è un multiplo di 3. Le tessere che stanno in tutti e due gli insiemi formano un insieme nuovo, l'**intersezione** di $A$ e $B$.
+Quale tessera dovrebbe stare in tutti e due i sacchetti? Solo la 6: è pari ed è un multiplo di 3. Le tessere che stanno in tutti e due gli insiemi formano un insieme nuovo, l'**intersezione** di $A$ e $B$.
 
 > [!IDEA]
 > L'intersezione di due insiemi contiene gli elementi **in comune**: quelli che stanno nel primo **e** nel secondo.
 
-L'intersezione si scrive $A \cap B$. Si legge «$A$ intersecato $B$», oppure «$A$ intersezione $B$». Il simbolo $\cap$ somiglia a una U capovolta. Nel nostro esempio:
+L'intersezione si scrive $A \cap B$ e si legge «$A$ intersecato $B$». Il simbolo $\cap$ somiglia a una U capovolta. Nel nostro esempio:
 
 $$A \cap B = \{6\}$$
 
-Il risultato è un insieme, con le graffe, anche se dentro c'è un solo numero.
+Il risultato è un insieme, con le graffe, anche se dentro c'è un solo numero: è un sacchetto con una tessera.
 
 ```grafico
 titolo: Le tessere da 1 a 10: a sinistra i pari ($A$), a destra i multipli di 3 ($B$); la 6 sta in tutti e due
@@ -90,11 +90,11 @@ testo: 3.2 1.6 | grigio | $7$
 
 Guarda la figura: l'intersezione è la zona dove i due cerchi si sovrappongono. Le tessere 1, 5 e 7 stanno fuori da tutti e due i cerchi: non sono pari e non sono multipli di 3.
 
-Un altro esempio, con le lettere. Prendi $A = \{a, b, f, h, m\}$ e $C = \{c, p, q, s, z\}$. Le lettere di $A$ non compaiono mai in $C$, quindi l'intersezione non contiene niente:
+Un altro esempio, con le lettere. Prendi $A = \{a, b, f, h, m\}$ e $C = \{c, p, q, s, z\}$. Nessuna lettera compare in tutti e due, quindi l'intersezione è il sacchetto vuoto:
 
 $$A \cap C = \emptyset$$
 
-Ricorda dalla lezione D01: $\emptyset$ si legge «insieme vuoto», ed è l'insieme senza elementi. Due insiemi senza elementi in comune si chiamano **disgiunti**.
+Il simbolo $\emptyset$ si legge «insieme vuoto». Due insiemi senza elementi in comune si chiamano **disgiunti**.
 
 Il libro scrive così la definizione.
 
@@ -103,36 +103,46 @@ Il libro scrive così la definizione.
 > $$A \cap B = \{x \text{ tali che } x \in A \text{ e } x \in B\}.$$
 > Diremo che $A$ e $B$ sono **disgiunti** se $A \cap B = \emptyset$.
 
-**Come si legge.** La riga con le graffe dice: «l'intersezione è fatta degli oggetti $x$ che appartengono ad $A$ e appartengono anche a $B$». Il simbolo $\in$ si legge «appartiene a». La seconda frase dice: due insiemi sono disgiunti quando la loro intersezione è vuota, cioè quando non hanno niente in comune.
+**Come si legge.** La riga con le graffe dice: «l'intersezione è fatta degli oggetti $x$ che stanno in $A$ e stanno anche in $B$». Il simbolo $\in$ si legge «appartiene a», cioè «sta nel sacchetto». La seconda frase dice: due insiemi sono disgiunti quando non hanno niente in comune.
 
-> [!ESEMPIO] Gli esempi del libro (p. 8)
-> 1. $A = \{a, b, f, h, m\}$, $B = \{b, f, i, m, p, t\}$, $C = \{c, p, q, s, z\}$. Le lettere comuni ad $A$ e $B$ sono $b$, $f$ e $m$, quindi $A \cap B = \{b, f, m\}$. Tra $B$ e $C$ c'è solo la $p$: $B \cap C = \{p\}$. Tra $A$ e $C$ niente: $A \cap C = \emptyset$, sono disgiunti.
-> 2. $A$ è l'insieme dei naturali pari, $B$ quello dei naturali $n$ con $n^2$ tra 10 e 200. I quadrati tra 10 e 200 sono quelli di 4, 5, …, 14 (perché $3^2 = 9$ è troppo piccolo e $15^2 = 225$ è troppo grande). Di questi, i pari sono 4, 6, 8, 10, 12 e 14: $A \cap B = \{4, 6, 8, 10, 12, 14\}$.
-> 3. Con $X = \{a, b, c, d\}$, $A$ è l'insieme dei sottoinsiemi di $X$ con 2 elementi e $B$ quello dei sottoinsiemi che contengono $c$. Gli elementi in comune sono i sottoinsiemi con 2 elementi che contengono $c$: $A \cap B = \{\{a, c\}, \{b, c\}, \{c, d\}\}$.
+> [!ESEMPIO] Il primo esempio del libro (p. 8)
+> $A = \{a, b, f, h, m\}$, $B = \{b, f, i, m, p, t\}$, $C = \{c, p, q, s, z\}$.
+> 1. Le lettere comuni ad $A$ e $B$ sono $b$, $f$ e $m$: $A \cap B = \{b, f, m\}$.
+> 2. Tra $B$ e $C$ c'è solo la $p$: $B \cap C = \{p\}$.
+> 3. Tra $A$ e $C$ niente: $A \cap C = \emptyset$, sono disgiunti.
 
-Nel terzo esempio gli elementi dell'intersezione sono insiemi, perché sia $A$ sia $B$ sono fatti di sottoinsiemi di $X$. Le graffe interne non si tolgono.
+### Una tessera o un sacchetto?
 
-> [!TRAPPOLA] L'intersezione è un insieme
-> Se $A \cap B = \{6\}$, è giusto scrivere $6 \in A \cap B$ e $\{6\} \subset A \cap B$. È sbagliato scrivere $6 \subset A \cap B$, perché 6 è un numero e non un insieme, ed è sbagliato $\{6\} \in A \cap B$, perché l'insieme $\{6\}$ non è un elemento dell'intersezione. Le risposte sbagliate della domanda 1 del quiz giocano proprio su questo.
+Le domande del quiz giocano quasi sempre su una differenza della lezione D01: un **elemento** è una tessera, un **sottoinsieme** è un sacchetto di tessere.
 
-::: prova Con $A = \{1, 2, 3, 4\}$ e $B = \{3, 4, 5\}$, quanto fa $A \cap B$?
-I numeri che stanno in tutti e due sono 3 e 4. Quindi $A \cap B = \{3, 4\}$.
+- $6 \in A \cap B$ vuol dire «la tessera 6 sta nell'intersezione». Vero.
+- $\{6\} \subset A \cap B$ vuol dire «il sacchetto con la tessera 6 è contenuto nell'intersezione». Vero anche questo. Il simbolo $\subset$ si legge «è contenuto in».
+
+> [!TRAPPOLA] Non mescolare tessere e sacchetti
+> $6 \subset A \cap B$ è sbagliato: 6 è una tessera, non un sacchetto, e non può «essere contenuto». Anche $\{6\} \in A \cap B$ è sbagliato: nell'intersezione ci sono tessere, non sacchetti. Le risposte sbagliate della domanda 1 del quiz sono quasi sempre di questi due tipi.
+
+::: prova Con $A = \{1, 2, 3, 4\}$ e $B = \{3, 4, 5\}$, quanto fa $A \cap B$? È vero che $\{3\} \in A \cap B$?
+I numeri in tutti e due sono 3 e 4: $A \cap B = \{3, 4\}$. La frase è falsa: 3 è un elemento, quindi si scrive $3 \in A \cap B$, oppure $\{3\} \subset A \cap B$.
 :::
 
 ::: prova Gli insiemi $\{a, e, i\}$ e $\{b, c, d\}$ sono disgiunti?
 Sì: nessuna lettera compare in tutti e due, quindi l'intersezione è vuota.
 :::
 
+> [!APPROFONDIMENTO] Gli altri due esempi del libro (p. 8)
+> 1. $A$ è l'insieme dei naturali pari, $B$ quello dei naturali il cui quadrato sta tra 10 e 200. I quadrati tra 10 e 200 sono quelli di 4, 5, …, 14, perché $3^2 = 9$ è troppo piccolo e $15^2 = 225$ è troppo grande. Di questi, i pari sono 4, 6, 8, 10, 12 e 14: $A \cap B = \{4, 6, 8, 10, 12, 14\}$.
+> 2. Con $X = \{a, b, c, d\}$, $A$ è l'insieme dei sottoinsiemi di $X$ con 2 elementi e $B$ quello dei sottoinsiemi che contengono $c$. Qui gli elementi sono sacchetti. In comune ci sono i sacchetti da 2 lettere con dentro la $c$: $A \cap B = \{\{a, c\}, \{b, c\}, \{c, d\}\}$. Le graffe interne non si tolgono.
+
 > [!RICORDA]
 > - L'intersezione $A \cap B$ contiene gli elementi che stanno in $A$ **e** in $B$.
 > - Due insiemi senza elementi in comune si chiamano disgiunti: la loro intersezione è vuota.
-> - L'intersezione è un insieme: si scrive con le graffe anche quando ha un elemento solo.
+> - Tessera o sacchetto: $6 \in A \cap B$, ma $\{6\} \subset A \cap B$.
 
 ## Mettere tutto insieme: l'unione (p. 9)
 
-Torna alle tessere. Ora metti in una scatola tutte le tessere pari e tutte quelle multiple di 3. Che cosa c'è nella scatola? Le tessere 2, 4, 6, 8, 10 e poi 3 e 9. La 6 c'era già: non la metti due volte.
+Torna alle tessere. Ora versa in un sacchetto nuovo tutte le tessere pari e tutte quelle multiple di 3. Che cosa c'è dentro? Le tessere 2, 4, 6, 8, 10 e poi 3 e 9. La 6 c'era già: è una tessera sola, non la metti due volte.
 
-Questo insieme si chiama **unione** di $A$ e $B$: contiene gli elementi che stanno in almeno uno dei due insiemi.
+Questo insieme si chiama **unione** di $A$ e $B$.
 
 > [!IDEA]
 > L'unione di due insiemi contiene tutto quello che sta nel primo **oppure** nel secondo, oppure in tutti e due.
@@ -147,58 +157,55 @@ Conta gli elementi. $A$ ne ha 5 e $B$ ne ha 3, ma l'unione ne ha 7, non 8: la 6 
 > Siano $A$ e $B$ insiemi. Si dice insieme **unione** di $A$ e $B$ l'insieme
 > $$A \cup B = \{x \text{ tali che } x \in A \text{ oppure } x \in B\}.$$
 
-**Come si legge.** «L'unione è fatta degli oggetti $x$ che appartengono ad $A$ oppure a $B$.» In matematica «oppure» non esclude il caso «tutti e due»: un elemento comune ai due insiemi sta nell'unione. È l'«o» di «vuoi zucchero o latte?», a cui si può rispondere «tutti e due».
+**Come si legge.** «L'unione è fatta degli oggetti $x$ che stanno in $A$ oppure in $B$.» In matematica «oppure» non esclude il caso «tutti e due». È l'«o» di «vuoi zucchero o latte?», a cui si può rispondere «tutti e due».
 
 > [!ESEMPIO] Gli esempi del libro (p. 9)
-> 1. $A = \{a, f, g, k, p\}$, $B = \{b, f, m, p, t\}$, $C = \{c, m, p, u\}$. Metti insieme le lettere di $A$ e $B$, senza ripetere $f$ e $p$: $A \cup B = \{a, b, f, g, k, m, p, t\}$. Per $B$ e $C$, senza ripetere $m$ e $p$: $B \cup C = \{b, c, f, m, p, t, u\}$.
-> 2. I naturali pari messi insieme ai naturali dispari danno tutti i naturali, perché ogni naturale è pari oppure dispari: l'unione è $\N$.
+> 1. $A = \{a, f, g, k, p\}$ e $B = \{b, f, m, p, t\}$. Metti insieme le lettere, senza ripetere $f$ e $p$: $A \cup B = \{a, b, f, g, k, m, p, t\}$.
+> 2. I naturali pari messi insieme ai naturali dispari danno tutti i naturali, perché ogni naturale è pari oppure dispari: l'unione è $\N$, l'insieme dei naturali.
 
 > [!OLTRE] · contare gli elementi dell'unione
-> Quando sommi gli elementi di $A$ e quelli di $B$, gli elementi comuni li conti due volte. Per correggere li togli una volta:
+> Quando sommi gli elementi di $A$ e quelli di $B$, gli elementi comuni li conti due volte. Per correggere li togli una volta. Con le tessere: $5 + 3 - 1 = 7$. In simboli:
 > $$\lvert A \cup B \rvert = \lvert A \rvert + \lvert B \rvert - \lvert A \cap B \rvert$$
-> Con le tessere: $5 + 3 - 1 = 7$. Le barre $\lvert \cdot \rvert$ indicano la cardinalità, cioè il numero di elementi (lezione D01). Questa regola tornerà con la combinatoria.
+> Le barre $\lvert \cdot \rvert$ vogliono dire «quanti elementi ha» (lezione D01). Questa regola torna con la combinatoria.
 
 ::: prova Con $A = \{1, 2, 3, 4\}$ e $B = \{3, 4, 5\}$, quanto fa $A \cup B$? Quanti elementi ha?
 Metti insieme i numeri dei due insiemi, senza ripetere 3 e 4: $A \cup B = \{1, 2, 3, 4, 5\}$. Ha 5 elementi: $4 + 3 - 2 = 5$, perché i comuni sono due.
 :::
 
-### Tanti insiemi tutti insieme (p. 9)
+### Tre insiemi o più (p. 9)
 
-Unione e intersezione funzionano anche con più di due insiemi. Con tre insiemi $A$, $B$ e $C$:
+Unione e intersezione funzionano anche con tre insiemi o più. Prendi $A = \{1, 2, 3\}$, $B = \{2, 3, 4\}$ e $C = \{3, 4, 5\}$.
 
-- $A \cap B \cap C$ contiene gli elementi che stanno in tutti e tre;
-- $A \cup B \cup C$ contiene gli elementi che stanno in almeno uno dei tre.
+- L'intersezione $A \cap B \cap C$ contiene quello che sta in tutti e tre: solo il 3. Quindi $A \cap B \cap C = \{3\}$.
+- L'unione $A \cup B \cup C$ contiene quello che sta in almeno uno: $\{1, 2, 3, 4, 5\}$.
 
-Per esempio, con $A = \{1, 2, 3\}$, $B = \{2, 3, 4\}$ e $C = \{3, 4, 5\}$, l'unico numero che sta in tutti e tre è 3, quindi $A \cap B \cap C = \{3\}$. L'unione è $\{1, 2, 3, 4, 5\}$.
+Con tre insiemi conviene fare un pezzo alla volta: prima $A \cap B = \{2, 3\}$, poi di questi tieni quelli che stanno in $C$.
 
-Il libro va oltre e unisce o interseca anche infiniti insiemi. Per farlo dà a ogni insieme un'etichetta, detta **indice**: $A_1$, $A_2$, $A_3$ e così via. L'insieme delle etichette si chiama $I$. La scritta $A_i$ si legge «$A$ con $i$», e vuol dire «l'insieme che ha etichetta $i$».
-
-> [!NOTA] Serve per capire, non per l'esame
-> Unioni e intersezioni di infiniti insiemi servono più avanti nel libro, ma negli appelli 2023–2026 non compaiono. Il riquadro qui sotto si può saltare.
-
-> [!APPROFONDIMENTO] unioni e intersezioni di una famiglia di insiemi (p. 9)
-> Il libro scrive:
-> $$\bigcap_{i \in I} A_i = \{x \text{ tali che } x \in A_i,\ \forall i \in I\} \qquad \bigcup_{i \in I} A_i = \{x \text{ tali che } x \in A_i,\ \exists i \in I\}.$$
-> **Come si legge.** La prima: gli oggetti che stanno in $A_i$ **per ogni** etichetta $i$, cioè in tutti gli insiemi. La seconda: gli oggetti per cui **esiste** un'etichetta $i$ con $x$ in $A_i$, cioè che stanno in almeno uno. Il simbolo $\forall$ si legge «per ogni», $\exists$ si legge «esiste».
+> [!APPROFONDIMENTO] Unioni e intersezioni di infiniti insiemi (p. 9)
+> Negli appelli 2023–2026 non compaiono; servono più avanti nel libro.
 >
-> L'esempio del libro usa gli intervalli: $(a, b)$ sono i numeri reali compresi tra $a$ e $b$, estremi esclusi. Per ogni naturale $n$ da 1 in poi prendi $A_n = \left(-\frac1n, \frac1n\right)$ e $B_n = (-n, n)$. Allora l'intersezione di tutti gli $A_n$ è $\{0\}$: lo zero sta in ciascuno, mentre un numero diverso da zero, per quanto piccolo, prima o poi esce, perché $\frac1n$ diventa più piccolo di lui. L'unione di tutti i $B_n$ è tutta la retta $\R$: ogni numero reale sta in $B_n$ appena $n$ supera la sua distanza da zero.
+> Per unire o intersecare tanti insiemi il libro dà a ognuno un'etichetta, detta **indice**: $A_1$, $A_2$, $A_3$ e così via. $A_i$ si legge «$A$ con $i$» e vuol dire «l'insieme con l'etichetta $i$»; $I$ è l'insieme delle etichette. Il libro scrive
+> $$\bigcap_{i \in I} A_i = \{x \text{ tali che } x \in A_i,\ \forall i \in I\} \qquad \bigcup_{i \in I} A_i = \{x \text{ tali che } x \in A_i,\ \exists i \in I\}.$$
+> **Come si legge.** La prima: gli oggetti che stanno in tutti gli insiemi. La seconda: gli oggetti che stanno in almeno uno. Il simbolo $\forall$ si legge «per ogni», $\exists$ si legge «esiste».
+>
+> L'esempio del libro usa gli intervalli: $(a, b)$ sono i numeri reali compresi tra $a$ e $b$, estremi esclusi. Per ogni naturale $n$ da 1 in poi prendi $A_n = \left(-\frac1n, \frac1n\right)$. L'intersezione di tutti gli $A_n$ è $\{0\}$: lo zero sta in ciascuno, mentre un numero diverso da zero, per quanto piccolo, prima o poi resta fuori, perché $\frac1n$ diventa più piccolo di lui. Con $B_n = (-n, n)$, invece, l'unione è tutta la retta dei reali.
 
 ### Le proprietà distributive (pp. 9–10)
 
-Unione e intersezione si mescolano con una regola che ricorda la moltiplicazione. A scuola $2 \cdot (3 + 4) = 2 \cdot 3 + 2 \cdot 4$: il 2 si «distribuisce» sui due addendi. Con gli insiemi succede una cosa simile.
+Unione e intersezione si mescolano con una regola che ricorda la moltiplicazione. A scuola $2 \cdot (3 + 4) = 2 \cdot 3 + 2 \cdot 4$: il 2 si «distribuisce» sui due numeri della parentesi. Con gli insiemi succede una cosa simile.
 
-Prova con le tessere. Prendi ancora $A$ (i pari) e $B$ (i multipli di 3), e in più $D = \{1, 2, 3, 4\}$, le tessere piccole.
+Prova con le tessere. Prendi ancora $A$ (i pari) e $B$ (i multipli di 3), e in più $D = \{1, 2, 3, 4\}$, le tessere piccole. Fai il conto in due modi.
 
-1. Prima l'unione, poi l'intersezione con $D$. $A \cup B = \{2, 3, 4, 6, 8, 9, 10\}$. Di questi, quelli in $D$ sono 2, 3 e 4. Risultato: $\{2, 3, 4\}$.
-2. Prima le due intersezioni, poi l'unione. $A \cap D = \{2, 4\}$ e $B \cap D = \{3\}$. Messi insieme: $\{2, 3, 4\}$.
+1. Prima metti insieme pari e multipli di 3: $A \cup B = \{2, 3, 4, 6, 8, 9, 10\}$. Poi tieni quelli che stanno in $D$: 2, 3 e 4.
+2. Prima prendi i pari piccoli, $A \cap D = \{2, 4\}$, e i multipli di 3 piccoli, $B \cap D = \{3\}$. Poi mettili insieme: 2, 3 e 4.
 
-Viene lo stesso insieme. Non è un caso: vale sempre.
+Viene lo stesso insieme, $\{2, 3, 4\}$. Non è un caso: vale sempre.
 
 > [!PROP] 1.15 · Proprietà distributive
 > Siano $A$, $B$ e $C$ tre insiemi. Allora valgono le uguaglianze
 > $$(A \cup B) \cap C = (A \cap C) \cup (B \cap C) \qquad (A \cap B) \cup C = (A \cup C) \cap (B \cup C).$$
 
-**Come si legge.** La prima: prendere gli elementi dell'unione che stanno anche in $C$ è come prendere da $A$ quelli che stanno in $C$, da $B$ quelli che stanno in $C$, e mettere tutto insieme. La seconda scambia i ruoli di unione e intersezione, e vale anche lei.
+**Come si legge.** La prima è il conto delle tessere: «metti insieme e poi tieni quelli in $C$» dà lo stesso di «tieni quelli in $C$ da ognuno e poi metti insieme». La seconda scambia i ruoli di unione e intersezione, e vale anche lei.
 
 > [!DIM] perché vale la prima uguaglianza (pp. 9–10)
 > Il libro usa la **doppia inclusione** della lezione D01: due insiemi sono uguali quando ognuno è contenuto nell'altro.
@@ -211,21 +218,21 @@ Viene lo stesso insieme. Non è un caso: vale sempre.
 ::: prova Con $A = \{1, 2\}$, $B = \{2, 3\}$ e $C = \{2, 3, 4\}$, controlla la prima proprietà distributiva.
 A sinistra: $A \cup B = \{1, 2, 3\}$, e di questi stanno in $C$ il 2 e il 3. Risultato $\{2, 3\}$.
 
-A destra: $A \cap C = \{2\}$ e $B \cap C = \{2, 3\}$. L'unione è $\{2, 3\}$.
+A destra: $A \cap C = \{2\}$ e $B \cap C = \{2, 3\}$. Messi insieme danno $\{2, 3\}$.
 
 I due lati sono uguali.
 :::
 
 > [!RICORDA]
-> - L'unione $A \cup B$ contiene gli elementi che stanno in $A$ **oppure** in $B$ (anche in tutti e due). Gli elementi comuni si contano una volta sola.
-> - Unione e intersezione si fanno anche con tre o più insiemi.
+> - L'unione $A \cup B$ contiene gli elementi che stanno in $A$ **oppure** in $B$, anche in tutti e due. Gli elementi comuni si contano una volta sola.
+> - Con tre insiemi si fa un pezzo alla volta.
 > - Proprietà distributive: $(A \cup B) \cap C = (A \cap C) \cup (B \cap C)$, e la stessa con i simboli scambiati.
 
 ## Quello che resta fuori: differenza e complementare (p. 10)
 
-A volte un insieme si descrive meglio dicendo che cosa **non** contiene. Torna alle tessere: togli dal mucchietto dei pari quelli che sono anche multipli di 3. Resta $\{2, 4, 8, 10\}$: è la **differenza** tra $A$ e $B$.
+Torna alle tessere: dal sacchetto dei pari togli quelle che sono anche multiple di 3, cioè la 6. Resta $\{2, 4, 8, 10\}$: è la **differenza** tra $A$ e $B$.
 
-La differenza si scrive $A \setminus B$ e si legge «$A$ meno $B$». Contiene gli elementi di $A$ che non stanno in $B$. Nel nostro esempio:
+La differenza si scrive $A \setminus B$ e si legge «$A$ meno $B$». Contiene gli elementi di $A$ che non stanno in $B$:
 
 $$A \setminus B = \{2, 4, 8, 10\} \qquad B \setminus A = \{3, 9\}$$
 
@@ -235,28 +242,27 @@ L'ordine conta: $A \setminus B$ toglie da $A$, $B \setminus A$ toglie da $B$, e 
 > Siano $A$ e $X$ due insiemi. Si dice **differenza** di $X$ ed $A$ e si denota $X \setminus A$ il sottoinsieme degli elementi di $X$ non in $A$, precisamente
 > $$X \setminus A = \{x \in X \text{ tali che } x \notin A\}.$$
 
-**Come si legge.** «$X$ meno $A$ è fatto degli elementi di $X$ che non appartengono ad $A$.» Il simbolo $\notin$ si legge «non appartiene a». Per fare la differenza non serve che $A$ stia dentro $X$: gli elementi di $A$ che in $X$ non ci sono semplicemente non contano.
+**Come si legge.** «$X$ meno $A$ è fatto degli elementi di $X$ che non stanno in $A$.» Il simbolo $\notin$ si legge «non appartiene a». Non serve che $A$ stia dentro $X$: gli elementi di $A$ che in $X$ non ci sono semplicemente non contano.
 
 ### Il complementare: tutto il resto
 
-Il caso più comune è quello in cui $A$ è una parte di $X$. Allora la differenza è «tutto il resto di $X$»: con le tessere, se $A$ sono le tessere pari, il resto sono le dispari, $\{1, 3, 5, 7, 9\}$. In questo caso la differenza si chiama **complementare** di $A$ in $X$.
+Il caso più comune è quello in cui togli una parte dal sacchetto grande. Dal sacchetto $X$ di tutte le tessere togli i pari: restano i dispari, $\{1, 3, 5, 7, 9\}$. Quello che resta si chiama **complementare** dei pari in $X$.
 
-Il libro scrive il complementare $C_X(A)$, e si legge «complementare di $A$ in $X$». Altri testi scrivono $A^c$ oppure $\overline A$, ma in quel modo si perde l'informazione più importante: qual è l'insieme $X$ di partenza.
+Il libro scrive il complementare $C_X(A)$ e si legge «complementare di $A$ in $X$». Altri testi scrivono $A^c$ oppure $\overline A$, ma in quel modo non si vede l'informazione più importante: da quale sacchetto $X$ hai tolto $A$.
 
 > [!DEF] 1.17 · Complementare
 > Sia $A$ un sottoinsieme dell'insieme $X$. Si dice **complementare** di $A$ in $X$ e si denota $C_X(A)$ il sottoinsieme degli elementi di $X$ non in $A$, precisamente
 > $$C_X(A) = \{x \in X \text{ tali che } x \notin A\}.$$
 
-**Come si legge.** È la stessa regola della differenza, con una condizione in più: $A$ deve essere un sottoinsieme di $X$. Il complementare è «quello che manca ad $A$ per arrivare a $X$».
+**Come si legge.** È la stessa regola della differenza, con una condizione in più: $A$ deve essere una parte di $X$. Il complementare è «quello che manca ad $A$ per arrivare a $X$».
 
 > [!TRAPPOLA] Il complementare dipende da $X$
 > Prendi $A = \{2, 4\}$. Dentro $X = \{1, 2, 3, 4, 5\}$ il complementare è $\{1, 3, 5\}$. Dentro le dieci tessere è $\{1, 3, 5, 6, 7, 8, 9, 10\}$. Lo stesso insieme $A$ ha complementari diversi: per questo la $X$ va sempre scritta.
 
-> [!ESEMPIO] Gli esempi del libro (p. 10)
-> 1. Se $A$ è contenuto in $X$, il complementare di $A$ in $X$ è proprio $X \setminus A$.
-> 2. Il complementare del complementare è l'insieme di partenza: $C_X(C_X(A)) = A$. Con le tessere: il complementare dei pari sono i dispari, e il complementare dei dispari sono di nuovo i pari.
-> 3. I numeri irrazionali, come $\sqrt 2$ e $\pi$, sono i reali che non sono frazioni: sono il complementare $C_\R(\Q)$, cioè $\R \setminus \Q$.
-> 4. Con $A = \{a, b, c\}$ e $B = \{a, b, d\}$, gli insiemi delle parti sono $P(A)$ e $P(B)$ (lezione D01). La differenza $P(B) \setminus P(A)$ contiene i sottoinsiemi di $B$ che non sono sottoinsiemi di $A$, cioè quelli che contengono $d$: $\{a, b, d\}$, $\{a, d\}$, $\{b, d\}$ e $\{d\}$. Qui la scritta $C_{P(B)}(P(A))$ non avrebbe senso, perché $P(A)$ non è contenuto in $P(B)$: $\{c\}$ sta nel primo e non nel secondo.
+Due cose che il libro fa notare (p. 10):
+
+- il complementare del complementare è l'insieme di partenza: il complementare dei pari sono i dispari, e il complementare dei dispari sono di nuovo i pari;
+- i numeri irrazionali, come $\sqrt 2$ e $\pi$, sono i reali che non sono frazioni: sono il complementare delle frazioni dentro i reali.
 
 ::: prova Con $X = \{1, 2, 3, 4, 5, 6\}$ e $A = \{1, 2\}$, quanto fa $C_X(A)$?
 Sono gli elementi di $X$ che non stanno in $A$: $C_X(A) = \{3, 4, 5, 6\}$.
@@ -266,6 +272,9 @@ Sono gli elementi di $X$ che non stanno in $A$: $C_X(A) = \{3, 4, 5, 6\}$.
 Da $A$ togli il 3, l'unico elemento in comune: $A \setminus B = \{1, 2\}$. Da $B$ togli il 3: $B \setminus A = \{4\}$.
 :::
 
+> [!APPROFONDIMENTO] L'ultimo esempio del libro (p. 10)
+> Con $A = \{a, b, c\}$ e $B = \{a, b, d\}$, gli insiemi delle parti sono $P(A)$ e $P(B)$: i sacchetti di tutti i loro sottoinsiemi (lezione D01). La differenza $P(B) \setminus P(A)$ contiene i sottoinsiemi di $B$ che non sono sottoinsiemi di $A$, cioè quelli con la $d$: $\{a, b, d\}$, $\{a, d\}$, $\{b, d\}$ e $\{d\}$. Qui non si può parlare di complementare, perché $P(A)$ non è contenuto in $P(B)$: $\{c\}$ sta nel primo e non nel secondo.
+
 > [!RICORDA]
 > - $A \setminus B$ contiene gli elementi di $A$ che non stanno in $B$. L'ordine conta.
 > - Se $A$ è una parte di $X$, la differenza $X \setminus A$ si chiama complementare di $A$ in $X$ e si scrive $C_X(A)$.
@@ -273,19 +282,19 @@ Da $A$ togli il 3, l'unico elemento in comune: $A \setminus B = \{1, 2\}$. Da $B
 
 ## Fuori da unione e intersezione: De Morgan (p. 11)
 
-Torna un'ultima volta alle tessere e guarda la figura dell'intersezione. Quali tessere stanno **fuori dall'unione**, cioè fuori da tutti e due i cerchi? Quelle che non sono pari e non sono multiple di 3: 1, 5 e 7.
+Comincia dalle frasi di tutti i giorni. Il contrario di «prendo il treno o il pullman» è «non prendo né il treno né il pullman»: devo rinunciare a tutti e due. Il contrario di «oggi piove e fa freddo» è «oggi non piove oppure non fa freddo»: basta che manchi una delle due cose. Con gli insiemi succede lo stesso.
 
-Ora fai il conto in un altro modo. Le tessere non pari sono $\{1, 3, 5, 7, 9\}$. Le tessere non multiple di 3 sono $\{1, 2, 4, 5, 7, 8, 10\}$. Le tessere che stanno in tutti e due questi elenchi sono 1, 5 e 7. Lo stesso risultato.
+Torna alle tessere e alla figura dell'intersezione. Quali tessere stanno **fuori dall'unione**, cioè fuori da tutti e due i cerchi? Quelle che non sono pari e non sono multiple di 3: 1, 5 e 7.
+
+Ora fai il conto in un altro modo. Le tessere non pari sono $\{1, 3, 5, 7, 9\}$. Le tessere non multiple di 3 sono $\{1, 2, 4, 5, 7, 8, 10\}$. Quelle che stanno in tutti e due gli elenchi sono 1, 5 e 7. Lo stesso risultato.
 
 > [!IDEA]
 > Stare fuori dall'unione vuol dire stare fuori dal primo insieme **e** fuori dal secondo. Il complementare dell'unione è l'intersezione dei complementari.
 
-C'è anche la regola gemella. Quali tessere stanno **fuori dall'intersezione**? L'intersezione è $\{6\}$, quindi tutte tranne la 6. E quali tessere sono non pari **oppure** non multiple di 3? Sono quelle a cui manca almeno una delle due proprietà: di nuovo tutte tranne la 6, l'unica che le ha entrambe.
+C'è anche la regola gemella. Quali tessere stanno **fuori dall'intersezione**? L'intersezione è $\{6\}$, quindi tutte tranne la 6. E quali tessere sono non pari **oppure** non multiple di 3? Sono quelle a cui manca almeno una delle due cose: di nuovo tutte tranne la 6, l'unica che le ha tutte e due.
 
 > [!IDEA]
 > Stare fuori dall'intersezione vuol dire stare fuori da almeno uno dei due insiemi. Il complementare dell'intersezione è l'unione dei complementari.
-
-Le stesse regole valgono con le frasi di tutti i giorni. Il contrario di «oggi piove e fa freddo» è «oggi non piove oppure non fa freddo»: basta che manchi una delle due cose. Il contrario di «prendo il treno o il pullman» è «non prendo né il treno né il pullman». Sono le leggi di De Morgan della logica, che ritrovi a Fondamenti dell'Informatica.
 
 Il libro le enuncia così.
 
@@ -297,7 +306,7 @@ Il libro le enuncia così.
 
 - Prima uguaglianza: il complementare dell'intersezione è l'unione dei complementari. Le cose che non stanno in tutti e due sono quelle che mancano ad almeno uno.
 - Seconda uguaglianza: il complementare dell'unione è l'intersezione dei complementari. Le cose che non stanno in nessuno dei due sono quelle che mancano a tutti e due.
-- In tutte e due il complementare «entra» nella parentesi e, entrando, scambia $\cap$ con $\cup$.
+- Un modo per ricordarle: il complementare «entra» nella parentesi e, entrando, scambia $\cap$ con $\cup$.
 
 Ecco i conti con le tessere, messi in fila.
 
@@ -319,7 +328,7 @@ Ecco i conti con le tessere, messi in fila.
 > [!TRAPPOLA] Il complementare non si «distribuisce» e basta
 > Scrivere $C_X(A \cup B) = C_X(A) \cup C_X(B)$, senza scambiare il simbolo, è sbagliato. Con le tessere il lato sinistro è $\{1, 5, 7\}$, mentre il lato destro contiene anche 2, 3, 4, 8, 9 e 10.
 
-Le leggi valgono anche con tre o più insiemi, e il libro le scrive per famiglie qualunque (esercizio 1.10). Esiste anche una versione con la differenza al posto del complementare, che non chiede che $A$ e $B$ stiano dentro $X$: è l'esercizio 1.11, svolto nell'esercizio 7.
+Le leggi valgono anche con tre o più insiemi (esercizio 1.10 del libro). Esiste anche una versione con la differenza al posto del complementare, che non chiede che $A$ e $B$ stiano dentro $X$: è l'esercizio 1.11, svolto nell'esercizio 7.
 
 ::: prova Con $X = \{1, 2, 3, 4, 5, 6, 7, 8\}$, $A = \{1, 2, 3\}$ e $B = \{3, 4, 5\}$, calcola $C_X(A \cup B)$ in due modi.
 Primo modo: $A \cup B = \{1, 2, 3, 4, 5\}$, e il resto di $X$ è $\{6, 7, 8\}$.
@@ -334,11 +343,160 @@ Lo stesso risultato, come dice la seconda legge di De Morgan.
 > - Fuori dall'intersezione = fuori da almeno uno: $C_X(A \cap B) = C_X(A) \cup C_X(B)$.
 > - Il complementare entra nella parentesi e scambia unione e intersezione.
 
+## Coprire tutto: i ricoprimenti (pp. 11–12)
+
+In una classe di venti studenti si formano dei gruppi di studio. Due condizioni sono ragionevoli: ogni gruppo è fatto di studenti della classe, e nessuno studente resta senza gruppo. Se qualcuno sta in due gruppi, va bene lo stesso.
+
+Quando le parti, messe insieme, danno tutto l'insieme, formano un **ricoprimento**.
+
+> [!IDEA]
+> Un ricoprimento di un insieme è un gruppo di sottoinsiemi che, messi insieme, danno l'insieme intero: nessun elemento resta fuori. Le parti possono sovrapporsi.
+
+Prendi $X = \{1, 2, 3, 4, 5\}$ e le parti $\{1, 2, 3\}$ e $\{3, 4, 5\}$. La loro unione è $\{1, 2, 3, 4, 5\}$, cioè tutto $X$: è un ricoprimento. Il 3 sta in tutte e due le parti, e va bene.
+
+Le parti $\{1, 2\}$ e $\{4, 5\}$, invece, lasciano fuori il 3: non sono un ricoprimento.
+
+Il libro chiama **famiglia** un gruppo di sottoinsiemi e la scrive $\mathcal A = \{A_i\}_{i \in I}$. Si legge «la famiglia degli $A_i$» e vuol dire: le parti si chiamano $A_1$, $A_2$ e così via, con un numero ciascuna. Nell'esempio di prima, $A_1 = \{1, 2, 3\}$ e $A_2 = \{3, 4, 5\}$.
+
+> [!DEF] 1.19 · Ricoprimento
+> Sia $X$ un insieme e sia $\mathcal A = \{A_i\}_{i \in I}$ una famiglia di sottoinsiemi di $X$. La famiglia $\mathcal A$ è detta un **ricoprimento** di $X$ se
+> $$\bigcup_{i \in I} A_i = X.$$
+
+**Come si legge.** «Le parti $A_i$ sono sottoinsiemi di $X$. La loro unione è tutto $X$.» Il simbolo grande $\bigcup$ vuol dire «l'unione di tutte le parti».
+
+Gli esempi del libro sono questi.
+
+- Gli interi, divisi in pari e dispari: ogni intero è pari o dispari, quindi è un ricoprimento.
+- I numeri reali, divisi in tre parti: i negativi, i positivi e i numeri tra $-1$ e $1$. Ogni numero reale è negativo, positivo oppure zero, e lo zero sta nella terza parte.
+- I numeri reali, divisi in pezzi di retta lunghi 1: da 0 a 1, da 1 a 2, da 2 a 3, e così via, anche verso i negativi. Ogni numero sta in almeno un pezzo.
+
+> [!NOTA] Due refusi del libro
+> Nell'esempio con i reali, la seconda parte è stampata $\{x \in \R \mid x < 0\}$, uguale alla prima: deve essere $\{x \in \R \mid x > 0\}$, i positivi. Nell'esempio con pari e dispari, le due parti sono scritte come sottoinsiemi di $\N$, i naturali, ma devono essere sottoinsiemi di $\Z$, gli interi: altrimenti i negativi resterebbero scoperti.
+
+### Una scrittura comoda: 2Z e 2Z + 1 (p. 12)
+
+Il libro usa due scritture per gli insiemi di numeri (Nota 1.20). Prendi un insieme di numeri $S$ e un numero $a$:
+
+- $aS$ è l'insieme che ottieni **moltiplicando** per $a$ ogni elemento di $S$;
+- $S + a$ è l'insieme che ottieni **sommando** $a$ a ogni elemento di $S$.
+
+Per esempio $2\Z$ sono gli interi moltiplicati per 2, cioè i pari: $\dots, -4, -2, 0, 2, 4, \dots$ E $2\Z + 1$ sono i pari più 1, cioè i dispari. Il ricoprimento con pari e dispari si scrive allora
+
+$$\Z = (2\Z) \cup (2\Z + 1).$$
+
+In generale $n\Z$ sono i multipli di $n$: $3\Z$ sono i multipli di 3. Questa scrittura compare nella domanda 1 dell'appello del 06/06/2026.
+
+::: prova Le parti $\{a, b\}$, $\{b, c\}$ e $\{d\}$ sono un ricoprimento di $\{a, b, c, d\}$?
+Sì: messe insieme danno $\{a, b, c, d\}$. Che la $b$ stia in due parti non importa.
+:::
+
+::: prova Il numero 15 sta in $3\Z \cap 5\Z$?
+Sì: 15 è un multiplo di 3 e un multiplo di 5, quindi sta in tutti e due.
+:::
+
+> [!RICORDA]
+> - Un ricoprimento di $X$ è un gruppo di sottoinsiemi di $X$ che, messi insieme, danno tutto $X$.
+> - Le parti possono sovrapporsi; nessun elemento deve restare fuori, e nessuna parte può avere elementi che in $X$ non ci sono.
+> - $n\Z$ sono i multipli di $n$: $2\Z$ i pari, $2\Z + 1$ i dispari.
+
+## Dividere senza sovrapporre: le partizioni (pp. 12–13)
+
+Hai un mucchio di calzini da mettere in tre cassetti: bianchi, neri e colorati. Ogni calzino finisce in un cassetto, e in uno solo. E non tieni un cassetto vuoto. Questa divisione è una **partizione**.
+
+> [!IDEA]
+> Una partizione divide un insieme in gruppi non vuoti che non si toccano: ogni elemento sta in un gruppo e in uno solo.
+
+Una partizione è un ricoprimento con due condizioni in più. Per riconoscerla si controllano tre cose, una per volta.
+
+1. **Nessuno resta fuori**: messe insieme, le parti danno tutto l'insieme.
+2. **Nessuna parte è vuota.**
+3. **Nessuna sovrapposizione**: due parti diverse non hanno elementi in comune, cioè sono disgiunte.
+
+Prendi $X = \{1, 2, 3, 4, 5\}$.
+
+| Parti | Copre tutto? | Nessuna vuota? | Nessuna sovrapposizione? | Partizione? |
+|---|---|---|---|---|
+| $\{1, 2\}$, $\{3\}$, $\{4, 5\}$ | sì | sì | sì | **sì** |
+| $\{1, 2, 3\}$, $\{3, 4, 5\}$ | sì | sì | no, il 3 sta in due | no |
+| $\{1, 2\}$, $\{4, 5\}$ | no, manca il 3 | sì | sì | no |
+| $\{1, 2, 3, 4, 5\}$, $\emptyset$ | sì | no | sì | no |
+
+```grafico
+titolo: Una partizione di $X = \{1, 2, 3, 4, 5\}$: tre parti che non si toccano
+x: -3 3
+y: -2 2
+assi: no
+griglia: no
+poligono: -2.8 -1.8 2.8 -1.8 2.8 1.8 -2.8 1.8 | grigio
+cerchio: -1.7 0 0.8 | blu
+cerchio: 0 0 0.6 | ambra
+cerchio: 1.7 0 0.8 | verde
+testo: -2.5 1.45 | grigio | $X$
+testo: -2 0 | blu | $1$
+testo: -1.4 0 | blu | $2$
+testo: 0 0 | ambra | $3$
+testo: 1.4 0 | verde | $4$
+testo: 2 0 | verde | $5$
+```
+
+> [!DEF] 1.21 · Partizione
+> La famiglia $\mathcal A = \{A_i\}_{i \in I}$ è detta una **partizione** di $X$ se:
+>
+> 1. è un ricoprimento di $X$;
+> 2. $\forall i \in I,\ A_i \neq \emptyset$;
+> 3. $\forall i, j \in I$ tali che $i \neq j$ i sottoinsiemi $A_i$ e $A_j$ sono disgiunti, $A_i \cap A_j = \emptyset$.
+
+**Come si legge.** Sono i tre controlli. Il primo: le parti coprono $X$. Il secondo: ogni parte $A_i$ non è vuota ($\forall$ si legge «per ogni», $\neq$ si legge «diverso da»). Il terzo: due parti con numeri diversi non hanno niente in comune.
+
+> [!TRAPPOLA] «Disgiunte a due a due»
+> Il terzo controllo va fatto su **ogni coppia** di parti. Con le parti $\{1, 2\}$, $\{2, 3\}$ e $\{4\}$ non c'è nessun numero comune a tutte e tre, eppure non è una partizione: le prime due hanno in comune il 2.
+
+> [!METODO] È una partizione?
+> 1. Metti insieme le parti e confrontale con l'insieme: se manca un elemento, o se compare un elemento che nell'insieme non c'è, non è una partizione.
+> 2. Cerca una parte vuota. Se c'è, non è una partizione.
+> 3. Scorri gli elementi uno per uno e conta in quante parti compaiono: ognuno deve comparire in una parte sola.
+
+Gli esempi del libro (p. 12), con i ricoprimenti di prima:
+
+- pari e dispari sono una partizione degli interi: nessun intero è pari e dispari insieme;
+- negativi, positivi e numeri tra $-1$ e $1$ non lo sono: $-\frac12$, per esempio, è negativo e sta anche tra $-1$ e $1$;
+- i pezzi di retta lunghi 1 non lo sono: il numero 1 sta sia nel pezzo da 0 a 1 sia in quello da 1 a 2;
+- una parte $A$ di $X$ e il suo complementare sono una partizione di $X$, purché $A$ non sia vuota e non sia tutto $X$: altrimenti una delle due parti sarebbe vuota.
+
+> [!APPROFONDIMENTO] Una partizione delle frazioni (p. 12)
+> Le frazioni si possono dividere secondo il denominatore che hanno quando sono ridotte ai minimi termini, con il denominatore positivo: nella prima parte gli interi, nella seconda le frazioni come $\frac12$ e $-\frac32$, nella terza quelle come $\frac13$ e $\frac23$, e così via. Ogni frazione ha una sola scrittura ridotta, quindi sta in una parte sola: è una partizione di $\Q$, l'insieme delle frazioni.
+
+### L'insieme quoziente (p. 13)
+
+Quando dividi i calzini nei cassetti, a volte ti interessano i cassetti e non i singoli calzini: «quanti tipi di calzini ho?». Il libro chiama **insieme quoziente** l'insieme che ha come elementi le parti di una partizione: l'insieme dei cassetti.
+
+Per la partizione degli interi in pari e dispari l'insieme quoziente ha due elementi: il cassetto dei pari e il cassetto dei dispari. Ogni elemento di un cassetto si chiama **rappresentante** di quel cassetto, e il cassetto si indica con un suo rappresentante tra parentesi quadre: $[0]$ è il cassetto dei pari, $[7]$ quello dei dispari. Anche $[2]$ e $[-4]$ indicano i pari: lo stesso cassetto, nominato con rappresentanti diversi.
+
+> [!DEF] 1.22 · Insieme quoziente
+> Dato un insieme $X$ con una partizione $\mathcal A = \{A_i\}_{i \in I}$ l'insieme $Q = \{A_i\}$ i cui elementi sono i sottoinsiemi costituenti la partizione $\mathcal A$ si dice **insieme quoziente** di $X$ (relativamente alla partizione $\mathcal A$). Dato un elemento $A \in Q$ ogni elemento $x \in X$ tale che $x \in A$ si dice **rappresentante** di $A$ e a volte scriveremo $A = [x]$ oppure $A = \overline x$.
+
+**Come si legge.** L'insieme quoziente è «l'insieme dei cassetti». Un rappresentante di un cassetto è uno qualunque dei suoi elementi. Le scritture $[x]$ e $\overline x$ (si legge «x segnato») vogliono dire «il cassetto in cui sta $x$».
+
+Il quoziente tornerà con le relazioni di equivalenza e con l'aritmetica dell'orologio, dove $[3]$ indicherà tutti i numeri che danno lo stesso resto di 3 in una divisione.
+
+::: prova Le parti $\{a, c\}$, $\{b\}$, $\{c, d\}$ sono una partizione di $\{a, b, c, d\}$?
+No: coprono tutto e nessuna è vuota, ma la $c$ sta in due parti.
+:::
+
+::: prova Quante sono le partizioni di $\{1, 2, 3\}$?
+Cinque. Tutto in una parte: $\{1, 2, 3\}$. Una coppia e un elemento da solo, in tre modi: $\{1, 2\}$ e $\{3\}$; $\{1, 3\}$ e $\{2\}$; $\{2, 3\}$ e $\{1\}$. Tre parti con un elemento ciascuna: $\{1\}$, $\{2\}$, $\{3\}$.
+:::
+
+> [!RICORDA]
+> - Partizione = ricoprimento + nessuna parte vuota + parti disgiunte a due a due. Ogni elemento sta in una parte sola.
+> - Per controllare: le parti coprono tutto? c'è una parte vuota? qualche elemento sta in due parti?
+> - L'insieme quoziente è l'insieme delle parti della partizione, i «cassetti»; $[x]$ è il cassetto che contiene $x$.
+
 ## I numeri naturali e le regole di Peano (pp. 5–6)
 
-Nella lezione D01 hai visto i numeri per contare, 0, 1, 2, 3 e così via, che formano l'insieme $\N$ dei naturali. Hai visto anche l'idea che partendo da 0 e andando avanti di uno alla volta si arriva a tutti. Il libro descrive i naturali con cinque regole, gli **assiomi di Peano**. Un **assioma** è una regola che non si dimostra: si accetta come punto di partenza.
+Ora un argomento diverso. Nella lezione D01 hai visto i numeri per contare, 0, 1, 2, 3 e così via, che formano l'insieme $\N$ dei naturali. Hai visto anche l'idea che partendo da 0 e andando avanti di uno alla volta si arriva a tutti. Il libro descrive i naturali con cinque regole, gli **assiomi di Peano**. Un **assioma** è una regola che non si dimostra: si accetta come punto di partenza.
 
-Il modo migliore per capire perché servono tutte e cinque è guardare che cosa va storto quando ne manca una. Il libro chiama $s(n)$ il **successivo** di $n$, cioè il numero che viene subito dopo: $s(n)$ si legge «esse di $n$», e $s(4) = 5$.
+Il libro chiama $s(n)$ il **successivo** di $n$, cioè il numero che viene subito dopo: $s(n)$ si legge «esse di $n$», e $s(4) = 5$.
 
 Le cinque regole, a parole:
 
@@ -350,19 +508,20 @@ Le cinque regole, a parole:
 
 ### Che cosa va storto senza una regola
 
-**Senza la regola 4: l'orologio.** Prendi le ore di un orologio, da 0 a 11, e come successivo l'ora dopo. Il successivo di 11 è 0: dopo le 11 vengono di nuovo le 0. Le regole 1, 2 e 3 valgono, ma la 4 no, perché lo zero è il successivo di 11. Con questi «numeri» non si può contare oltre 11: si gira in tondo. La regola 4 impedisce di tornare all'inizio.
+Il modo migliore per capire a che cosa serve ogni regola è guardare che cosa succede quando manca.
+
+**Senza la regola 4: l'orologio.** Prendi le ore di un orologio, da 0 a 11, e come successivo l'ora dopo. Il successivo di 11 è 0: dopo le 11 vengono di nuovo le 0. Le regole 1, 2 e 3 valgono, ma la 4 no, perché lo zero è il successivo di 11. Con questi «numeri» non si conta oltre 11: si gira in tondo. La regola 4 impedisce di tornare all'inizio.
 
 **Senza la regola 3: il cappio.** Prendi i numeri da 0 a 5 e dai a ognuno il successivo solito, tranne il 5, che ha come successivo il 3. Si va 0, 1, 2, 3, 4, 5 e poi di nuovo 3, 4, 5, 3… Lo zero non è il successivo di nessuno, quindi la regola 4 vale. Ma 2 e 5 hanno lo stesso successivo, 3: la regola 3 no. La regola 3 impedisce di rientrare a metà strada.
 
-**Senza la regola 5: i numeri fantasma.** Prendi i naturali veri e aggiungi una seconda fila di numeri «fantasma» $0'$, $1'$, $2'$ e così via, ognuno con il successivo nella sua fila: dopo $0'$ viene $1'$. Le regole da 1 a 4 valgono tutte. Ma la fila fantasma non si raggiunge mai partendo da 0. La regola 5 dice proprio che non ci sono altri elementi oltre a quelli che si raggiungono da 0 andando avanti.
+**Senza la regola 5: i numeri fantasma.** Prendi i naturali veri e aggiungi una seconda fila di numeri «fantasma» $0'$, $1'$, $2'$ e così via, ognuno con il successivo nella sua fila: dopo $0'$ viene $1'$. Le regole da 1 a 4 valgono tutte. Ma la fila fantasma non si raggiunge mai partendo da 0. La regola 5 dice proprio che non ci sono altri numeri oltre a quelli che si raggiungono da 0 andando avanti.
 
 > [!IDEA]
 > Le regole 2, 3 e 4 dicono che contando non si torna mai indietro e non ci si ferma: i naturali sono infiniti e tutti diversi. La regola 5 dice che non c'è niente altro: tutti i naturali si raggiungono partendo da 0.
 
-> [!NOTA] Serve per capire, non per l'esame
-> Gli assiomi scritti con i simboli sono nel riquadro qui sotto. Negli appelli di Matematica Discreta non vengono chiesti; servono per capire da dove viene l'induzione.
-
 > [!APPROFONDIMENTO] gli assiomi di Peano come li scrive il libro (p. 5)
+> Negli appelli di Matematica Discreta non vengono chiesti; servono per capire da dove viene l'induzione.
+>
 > L'insieme $\N$ dei numeri naturali è caratterizzato da questi cinque assiomi (Peano, 1889):
 >
 > 1. $0 \in \N$;
@@ -382,12 +541,14 @@ La regola 4: lo zero è il successivo di 2. È un orologio con tre ore.
 :::
 
 > [!RICORDA]
-> - Gli assiomi di Peano sono cinque regole che descrivono i naturali: lo zero, il successivo, niente ritorni, niente cappi, niente numeri fuori dalla fila.
+> - Gli assiomi di Peano sono cinque regole che descrivono i naturali: lo zero, il successivo, niente ritorni allo zero, niente cappi, niente numeri fuori dalla fila.
 > - La regola 5 è il principio di induzione: un insieme che contiene 0 e passa sempre al successivo contiene tutti i naturali.
 
 ## L'induzione come metodo di dimostrazione (pp. 6–7)
 
-La regola 5 di Peano diventa un modo per dimostrare. Vuoi far vedere che una frase sui numeri è vera per tutti i naturali: chiami $U$ l'insieme dei numeri per cui è vera, e controlli le due condizioni della regola. Nella lezione D01 l'hai visto con l'immagine del domino: se cade la prima tessera e ogni tessera fa cadere la successiva, cadono tutte.
+Metti in fila tante tessere del domino, in piedi. Se fai cadere la prima, e ogni tessera, cadendo, fa cadere quella dopo, allora cadono tutte. Non serve guardarle una per una.
+
+L'induzione usa la stessa idea per dimostrare che una frase sui numeri vale per tutti i naturali. È la regola 5 di Peano. Prendi l'insieme dei numeri per cui la frase è vera. Se contiene lo zero, cade la prima tessera. Se passa sempre al successivo, ogni tessera fa cadere quella dopo. Allora contiene tutti i naturali.
 
 > [!METODO] Dimostrare una proprietà per induzione
 > 1. **Passo base.** Controlla la proprietà per il primo numero: di solito 0, oppure 1 se la proprietà ha senso solo da 1 in poi.
@@ -395,7 +556,7 @@ La regola 5 di Peano diventa un modo per dimostrare. Vuoi far vedere che una fra
 > 3. **Passo induttivo.** Scrivi la proprietà per $n + 1$, cioè dove vuoi arrivare. Poi parti dal lato sinistro, usa l'ipotesi induttiva e arriva al lato destro.
 > 4. **Conclusione.** Per il principio di induzione la proprietà vale per tutti i numeri dal primo in poi.
 
-Il libro enuncia il principio come teorema 1.10: se la proprietà vale per 0 e la verità per $n$ porta la verità per $n + 1$, allora vale per ogni $n$. Lo trovi spiegato nella lezione D01. Qui lo usiamo su due esempi nuovi.
+Il libro enuncia il principio come teorema 1.10, già visto nella lezione D01. Qui lo usiamo su due esempi nuovi.
 
 ### Primo esempio: la somma dei numeri dispari
 
@@ -413,7 +574,7 @@ I risultati sono 1, 4, 9, 16, 25: i quadrati. Sembra che la somma dei primi $n$ 
 
 C'è un'immagine che spiega perché. Un quadrato di 3 per 3 puntini ne ha 9. Per farlo diventare un quadrato di 4 per 4 aggiungi una riga in basso e una colonna a destra, a forma di L: sono $3 + 3 + 1 = 7$ puntini, il dispari successivo. Ogni volta che il quadrato cresce di uno, aggiungi un numero dispari.
 
-Il dispari numero $n$ è $2n - 1$: il primo è $2 \cdot 1 - 1 = 1$, il secondo $2 \cdot 2 - 1 = 3$, il quinto $2 \cdot 5 - 1 = 9$. La frase da dimostrare, per ogni $n$ da 1 in poi, è:
+Per scrivere la frase con le lettere serve il dispari numero $n$. Il primo è 1, il secondo 3, il terzo 5: è sempre il doppio della posizione meno 1, cioè $2n - 1$. Per esempio il quinto è $2 \cdot 5 - 1 = 9$. La frase da dimostrare, per ogni $n$ da 1 in poi, è:
 
 $$1 + 3 + 5 + \dots + (2n - 1) = n^2$$
 
@@ -453,15 +614,13 @@ Prima i numeri: per $n = 0$ viene $1 \ge 1$; per $n = 1$, $2 \ge 2$; per $n = 2$
 >
 > **Conclusione.** Per il principio di induzione la frase vale per ogni naturale $n$.
 
-Questa disuguaglianza dice una cosa sugli insiemi: un insieme con $n$ elementi ha $2^n$ sottoinsiemi, e almeno $n + 1$ di questi sono facili da elencare (il vuoto e gli $n$ sottoinsiemi con un elemento solo). È il prossimo argomento.
-
-> [!TRAPPOLA] Ogni anello della catena deve tenere
+> [!TRAPPOLA] Ogni tessera deve far cadere la successiva
 > Il passo induttivo deve funzionare per **ogni** $n$, compreso il primo. Nel riquadro qui sotto c'è una famosa «dimostrazione» sbagliata, in cui il passaggio si rompe in un punto solo.
 
 > [!APPROFONDIMENTO] tutti i cavalli hanno lo stesso colore?
 > La frase: «in ogni gruppo di $n$ cavalli, tutti hanno lo stesso colore». Passo base, $n = 1$: un cavallo solo ha il colore di sé stesso. Passo «induttivo»: prendi $n + 1$ cavalli. Togli il primo: restano $n$ cavalli, tutti dello stesso colore per l'ipotesi. Togli invece l'ultimo: restano altri $n$ cavalli, tutti dello stesso colore. I due gruppi hanno cavalli in comune, quindi il colore è lo stesso per tutti.
 >
-> L'errore: con $n = 1$, cioè passando da 1 a 2 cavalli, i due gruppi sono «il secondo cavallo» e «il primo cavallo», e non hanno nessun cavallo in comune. Il passaggio da 1 a 2 non funziona, e la catena si rompe al primo anello.
+> L'errore: con $n = 1$, cioè passando da 1 a 2 cavalli, i due gruppi sono «il secondo cavallo» e «il primo cavallo», e non hanno nessun cavallo in comune. Il passaggio da 1 a 2 non funziona: la prima tessera cade, ma non fa cadere la seconda.
 
 ::: prova Nel primo esempio, che cosa dice l'ipotesi induttiva con $n = 3$, e a che cosa serve?
 Dice $1 + 3 + 5 = 9$, cioè $3^2$. Serve per il passo verso $n = 4$: $1 + 3 + 5 + 7 = 9 + 7 = 16 = 4^2$.
@@ -472,9 +631,9 @@ Dice $1 + 3 + 5 = 9$, cioè $3^2$. Serve per il passo verso $n = 4$: $1 + 3 + 5 
 > - Nel passo induttivo si parte dal caso $n + 1$ e si usa l'ipotesi sul caso $n$ per arrivare al risultato.
 > - Il passo induttivo deve funzionare per ogni $n$, a partire dal primo.
 
-## Tutti i sottoinsiemi: l'insieme delle parti (pp. 4–7)
+## Quanti sottoinsiemi: l'insieme delle parti (pp. 4–7)
 
-Nella lezione D01 hai visto l'**insieme delle parti**: l'insieme che ha come elementi tutti i sottoinsiemi di un insieme dato. L'insieme delle parti di $A$ si scrive $P(A)$ e si legge «parti di $A$».
+Nella lezione D01 hai visto l'**insieme delle parti**: il sacchetto che contiene tutti i sottoinsiemi di un insieme. L'insieme delle parti di $A$ si scrive $P(A)$ e si legge «parti di $A$». Qui conti quanti elementi ha.
 
 Per $A = \{1, 2, 3\}$ conviene elencare i sottoinsiemi in ordine di grandezza.
 
@@ -485,33 +644,31 @@ Per $A = \{1, 2, 3\}$ conviene elencare i sottoinsiemi in ordine di grandezza.
 | 2 | $\{1, 2\}$, $\{1, 3\}$, $\{2, 3\}$ | 3 |
 | 3 | $\{1, 2, 3\}$ | 1 |
 
-In tutto $1 + 3 + 3 + 1 = 8 = 2^3$. Il vuoto e l'insieme intero ci sono sempre.
+In tutto $1 + 3 + 3 + 1 = 8$. Il vuoto e l'insieme intero ci sono sempre.
 
-### Perché sono $2^n$
+### Perché sono 2 alla n
 
-Per costruire un sottoinsieme di $A$ decidi, elemento per elemento, «dentro» o «fuori». Con tre elementi sono tre scelte da due possibilità ciascuna: $2 \cdot 2 \cdot 2 = 8$.
+Per costruire un sottoinsieme di $\{1, 2, 3\}$ decidi, elemento per elemento, «dentro» o «fuori». L'1 dentro o fuori, il 2 dentro o fuori, il 3 dentro o fuori: tre scelte da due possibilità ciascuna, $2 \cdot 2 \cdot 2 = 8$. Con $n$ elementi le scelte sono $n$, e i sottoinsiemi $2^n$, cioè 2 moltiplicato per sé stesso $n$ volte.
 
 Il libro lo dimostra per induzione (p. 7), con un'idea che conviene ricordare. Aggiungi un elemento nuovo, per esempio 4, all'insieme $\{1, 2, 3\}$. I sottoinsiemi del nuovo insieme sono di due tipi:
 
 - quelli **senza** il 4: sono gli 8 sottoinsiemi di prima;
 - quelli **con** il 4: a ognuno degli 8 di prima aggiungi il 4.
 
-Si formano due righe con lo stesso numero di sottoinsiemi, quindi il totale raddoppia: $2 \cdot 8 = 16 = 2^4$. Un elemento in più, il doppio dei sottoinsiemi.
+Sono due gruppi con lo stesso numero di sottoinsiemi, quindi il totale raddoppia: $2 \cdot 8 = 16$. Un elemento in più, il doppio dei sottoinsiemi. È il passo induttivo: ogni tessera del domino fa cadere la successiva.
 
 > [!TEOREMA] · Cardinalità dell'insieme delle parti (p. 7)
 > Sia $A$ un insieme finito con $\lvert A \rvert = n$. Allora $\lvert P(A) \rvert = 2^n$.
 
-**Come si legge.** «Se $A$ ha $n$ elementi, l'insieme delle parti di $A$ ne ha $2^n$.» Le barre indicano il numero di elementi. Il passo base è l'insieme vuoto: $P(\emptyset) = \{\emptyset\}$ ha un elemento, e $2^0 = 1$. Il passo induttivo è il raddoppio con le due righe.
+**Come si legge.** «Se $A$ ha $n$ elementi, l'insieme delle parti di $A$ ne ha $2^n$.» Le barre vogliono dire «quanti elementi ha». Il passo base è l'insieme vuoto: il suo unico sottoinsieme è il vuoto stesso, quindi $P(\emptyset) = \{\emptyset\}$ ha un elemento, e $2^0 = 1$. Il passo induttivo è il raddoppio con i due gruppi.
 
 ### Elementi di elementi
 
-Gli elementi di $P(A)$ sono insiemi. Questo crea due livelli, e le domande del quiz giocano proprio sui livelli.
+Gli elementi di $P(A)$ sono sacchetti. Questo crea due livelli, e le domande del quiz giocano proprio sui livelli. Con $A = \{1, 2, 3\}$:
 
-- $\{1, 2\} \in P(A)$ è vero: $\{1, 2\}$ è un sottoinsieme di $A$, quindi un elemento di $P(A)$.
-- $1 \in P(A)$ è falso: 1 è un elemento di $A$, non un suo sottoinsieme.
+- $\{1, 2\} \in P(A)$ è vero: il sacchetto $\{1, 2\}$ è un sottoinsieme di $A$, quindi sta nel sacchetto dei sottoinsiemi;
+- $1 \in P(A)$ è falso: 1 è una tessera di $A$, non un sottoinsieme;
 - $\{\{1\}, \{2\}\} \subset P(A)$ è vero: i suoi due elementi, $\{1\}$ e $\{2\}$, sono sottoinsiemi di $A$.
-
-Si può anche fare l'insieme delle parti di un insieme delle parti. $P(\emptyset) = \{\emptyset\}$ ha un elemento, quindi $P(P(\emptyset))$ ne ha $2^1 = 2$: sono $\emptyset$ e $\{\emptyset\}$.
 
 > [!OLTRE] · le parti dell'intersezione
 > I sottoinsiemi comuni ad $A$ e $B$ sono esattamente i sottoinsiemi di $A \cap B$: in simboli $P(A) \cap P(B) = P(A \cap B)$. Con l'unione non va così: è l'esercizio 4.
@@ -527,150 +684,7 @@ $\emptyset \in P(A)$ è vera, perché il vuoto è un sottoinsieme di ogni insiem
 > [!RICORDA]
 > - $P(A)$ ha come elementi tutti i sottoinsiemi di $A$, compresi il vuoto e $A$.
 > - Se $A$ ha $n$ elementi, $P(A)$ ne ha $2^n$: ogni elemento in più raddoppia il conto.
-> - Gli elementi di $P(A)$ sono insiemi: $\{1\} \in P(A)$, ma $1 \notin P(A)$.
-
-## Coprire tutto: i ricoprimenti (pp. 11–12)
-
-In una classe di venti studenti si formano dei gruppi di studio. Due condizioni sono ragionevoli: ogni gruppo è fatto di studenti della classe, e nessuno studente resta senza gruppo. Se qualcuno sta in due gruppi va bene lo stesso.
-
-Un insieme diviso così si chiama **ricoperto**: le parti, messe insieme, danno tutto l'insieme.
-
-> [!IDEA]
-> Un ricoprimento di un insieme è un gruppo di sottoinsiemi la cui unione è l'insieme intero: nessun elemento resta fuori. Le parti possono sovrapporsi.
-
-Prendi $X = \{1, 2, 3, 4, 5\}$ e le parti $\{1, 2, 3\}$ e $\{3, 4, 5\}$. La loro unione è $\{1, 2, 3, 4, 5\}$, cioè tutto $X$: è un ricoprimento. Il 3 sta in tutte e due le parti, e va bene.
-
-Le parti $\{1, 2\}$ e $\{4, 5\}$, invece, non coprono il 3: non sono un ricoprimento.
-
-Il libro chiama **famiglia** un gruppo di sottoinsiemi e la scrive $\mathcal A = \{A_i\}_{i \in I}$: si legge «la famiglia degli $A_i$, con $i$ in $I$». Vuol dire che ogni parte ha un'etichetta $i$, e $I$ è l'insieme delle etichette. Con due parti le etichette sono 1 e 2, e le parti si chiamano $A_1$ e $A_2$.
-
-> [!DEF] 1.19 · Ricoprimento
-> Sia $X$ un insieme e sia $\mathcal A = \{A_i\}_{i \in I}$ una famiglia di sottoinsiemi di $X$. La famiglia $\mathcal A$ è detta un **ricoprimento** di $X$ se
-> $$\bigcup_{i \in I} A_i = X.$$
-
-**Come si legge.** «Le parti $A_i$ sono sottoinsiemi di $X$. La loro unione è tutto $X$.» Il simbolo grande $\bigcup$ con sotto $i \in I$ vuol dire «l'unione di tutte le parti».
-
-> [!ESEMPIO] Gli esempi del libro (pp. 11–12)
-> 1. $X = \R$, i numeri reali, con tre parti: i negativi, i positivi e l'intervallo $(-1, 1)$. Ogni numero reale è negativo, positivo oppure zero, e lo zero sta nell'intervallo: è un ricoprimento.
-> 2. $X = \R$ con le parti $A_n = [n, n + 1]$, una per ogni intero $n$: ogni numero reale sta tra un intero e il successivo. Le parentesi quadre vogliono dire che gli estremi sono compresi.
-> 3. $X = \Z$, gli interi, con due parti: i pari e i dispari. Ogni intero è pari o dispari.
-
-> [!NOTA] Due refusi del libro
-> Nell'esempio 1 la seconda parte è stampata $\{x \in \R \mid x < 0\}$, uguale alla prima: deve essere $\{x \in \R \mid x > 0\}$, i positivi. Nell'esempio 3 i pari e i dispari sono scritti come sottoinsiemi di $\N$, ma devono essere sottoinsiemi di $\Z$, altrimenti i negativi resterebbero scoperti.
-
-### Una scrittura comoda: 2Z e 2Z + 1 (p. 12)
-
-Il libro introduce due scritture per gli insiemi di numeri (Nota 1.20). Se $S$ è un insieme di numeri e $a$ è un numero:
-
-- $aS$ è l'insieme che ottieni **moltiplicando** per $a$ ogni elemento di $S$;
-- $S + a$ è l'insieme che ottieni **sommando** $a$ a ogni elemento di $S$.
-
-Per esempio $2\Z$ sono gli interi moltiplicati per 2, cioè i pari: $\dots, -4, -2, 0, 2, 4, \dots$ E $2\Z + 1$ sono i pari più 1, cioè i dispari. Il ricoprimento dell'esempio 3 si scrive allora
-
-$$\Z = (2\Z) \cup (2\Z + 1).$$
-
-In generale $n\Z$ sono i multipli di $n$: $3\Z$ sono i multipli di 3. Questa scrittura compare nella domanda 1 dell'appello del 06/06/2026.
-
-::: prova Le parti $\{a, b\}$, $\{b, c\}$ e $\{d\}$ sono un ricoprimento di $\{a, b, c, d\}$?
-Sì: l'unione è $\{a, b, c, d\}$. Che la $b$ stia in due parti non importa.
-:::
-
-::: prova Il numero 15 sta in $3\Z \cap 5\Z$?
-Sì: 15 è un multiplo di 3 ($3 \cdot 5$) e un multiplo di 5 ($5 \cdot 3$), quindi sta in tutti e due.
-:::
-
-> [!RICORDA]
-> - Un ricoprimento di $X$ è una famiglia di sottoinsiemi di $X$ la cui unione è tutto $X$.
-> - Le parti possono sovrapporsi; nessun elemento deve restare fuori, e nessuna parte può uscire da $X$.
-> - $n\Z$ sono i multipli di $n$; $2\Z$ i pari, $2\Z + 1$ i dispari.
-
-## Dividere senza sovrapporre: le partizioni (pp. 12–13)
-
-Hai un mucchio di calzini da mettere in tre cassetti: bianchi, neri e colorati. Ogni calzino finisce in un cassetto, e in uno solo. Non usi un cassetto vuoto come categoria. Questa divisione è una **partizione**.
-
-> [!IDEA]
-> Una partizione divide un insieme in gruppi non vuoti che non si toccano: ogni elemento sta in un gruppo e in uno solo.
-
-Una partizione è un ricoprimento con due condizioni in più. Per riconoscerla si controllano tre cose, una per volta.
-
-1. **Nessuno resta fuori**: l'unione delle parti è tutto l'insieme.
-2. **Nessuna parte è vuota.**
-3. **Nessuna sovrapposizione**: due parti diverse non hanno elementi in comune, cioè sono disgiunte.
-
-Prendi $X = \{1, 2, 3, 4, 5\}$.
-
-| Parti | Copre tutto? | Nessuna vuota? | Nessuna sovrapposizione? | Partizione? |
-|---|---|---|---|---|
-| $\{1, 2\}$, $\{3\}$, $\{4, 5\}$ | sì | sì | sì | **sì** |
-| $\{1, 2, 3\}$, $\{3, 4, 5\}$ | sì | sì | no, il 3 sta in due | no |
-| $\{1, 2\}$, $\{4, 5\}$ | no, manca il 3 | sì | sì | no |
-| $\{1, 2, 3, 4, 5\}$, $\emptyset$ | sì | no | sì | no |
-
-> [!DEF] 1.21 · Partizione
-> La famiglia $\mathcal A = \{A_i\}_{i \in I}$ è detta una **partizione** di $X$ se:
->
-> 1. è un ricoprimento di $X$;
-> 2. $\forall i \in I,\ A_i \neq \emptyset$;
-> 3. $\forall i, j \in I$ tali che $i \neq j$ i sottoinsiemi $A_i$ e $A_j$ sono disgiunti, $A_i \cap A_j = \emptyset$.
-
-**Come si legge.** Sono i tre controlli. Il primo: l'unione delle parti è $X$. Il secondo: per ogni etichetta $i$ la parte $A_i$ non è vuota. Il terzo: se le etichette $i$ e $j$ sono diverse, le due parti non hanno niente in comune. Il simbolo $\neq$ si legge «diverso da».
-
-> [!TRAPPOLA] «Disgiunte a due a due»
-> Il terzo controllo va fatto su **ogni coppia** di parti. Con le parti $\{1, 2\}$, $\{2, 3\}$ e $\{4\}$ l'intersezione di tutte e tre insieme è vuota, eppure non è una partizione: le prime due hanno in comune il 2.
-
-> [!METODO] È una partizione?
-> 1. Scrivi l'unione delle parti e confrontala con l'insieme: se manca un elemento, o se compare un elemento che nell'insieme non c'è, non è una partizione.
-> 2. Cerca una parte vuota. Se c'è, non è una partizione.
-> 3. Scorri gli elementi uno per uno e conta in quante parti compaiono: devono comparire in una parte sola.
-
-> [!ESEMPIO] Gli esempi del libro (p. 12)
-> 1. I pari e i dispari sono una partizione di $\Z$: nessun intero è pari e dispari insieme. Il ricoprimento con negativi, positivi e $(-1, 1)$ invece non lo è, perché per esempio $-\frac12$ sta sia nei negativi sia nell'intervallo. Neanche quello con gli intervalli $[n, n + 1]$: il numero 1 sta sia in $[0, 1]$ sia in $[1, 2]$.
-> 2. Se $A$ è un sottoinsieme di $X$ diverso dal vuoto e da $X$, allora $A$ e il suo complementare $C_X(A)$ formano una partizione di $X$. Le due condizioni su $A$ servono perché nessuna delle due parti sia vuota.
-> 3. Le frazioni si possono dividere secondo il denominatore che hanno quando sono ridotte ai minimi termini, con il denominatore positivo: $P_1$ contiene gli interi, $P_2$ le frazioni come $\frac12$ e $-\frac32$, e così via. Ogni frazione ha una sola scrittura ridotta, quindi sta in una parte sola: è una partizione di $\Q$.
-
-```grafico
-titolo: Una partizione di $X = \{1, 2, 3, 4, 5\}$: tre parti che non si toccano
-x: -3 3
-y: -2 2
-assi: no
-griglia: no
-poligono: -2.8 -1.8 2.8 -1.8 2.8 1.8 -2.8 1.8 | grigio
-cerchio: -1.7 0 0.8 | blu
-cerchio: 0 0 0.6 | ambra
-cerchio: 1.7 0 0.8 | verde
-testo: -2.5 1.45 | grigio | $X$
-testo: -2 0 | blu | $1$
-testo: -1.4 0 | blu | $2$
-testo: 0 0 | ambra | $3$
-testo: 1.4 0 | verde | $4$
-testo: 2 0 | verde | $5$
-```
-
-### L'insieme quoziente (p. 13)
-
-Quando dividi i calzini nei cassetti, a volte ti interessano i cassetti e non i singoli calzini: «quanti tipi di calzini ho?». Il libro chiama **insieme quoziente** l'insieme che ha come elementi le parti di una partizione.
-
-Per la partizione di $\Z$ in pari e dispari l'insieme quoziente ha due elementi: l'insieme dei pari e l'insieme dei dispari. Ogni elemento di una parte si chiama **rappresentante** di quella parte, e la parte si indica con il suo rappresentante tra parentesi quadre: $[0]$ è la parte dei pari, $[7]$ quella dei dispari. Anche $[2]$ e $[-4]$ indicano i pari: lo stesso cassetto, rappresentanti diversi.
-
-> [!DEF] 1.22 · Insieme quoziente
-> Dato un insieme $X$ con una partizione $\mathcal A = \{A_i\}_{i \in I}$ l'insieme $Q = \{A_i\}$ i cui elementi sono i sottoinsiemi costituenti la partizione $\mathcal A$ si dice **insieme quoziente** di $X$ (relativamente alla partizione $\mathcal A$). Dato un elemento $A \in Q$ ogni elemento $x \in X$ tale che $x \in A$ si dice **rappresentante** di $A$ e a volte scriveremo $A = [x]$ oppure $A = \overline x$.
-
-**Come si legge.** L'insieme quoziente è «l'insieme dei cassetti». Un rappresentante di un cassetto è uno qualunque dei suoi elementi; le scritture $[x]$ e $\overline x$ (si legge «x segnato») vogliono dire «il cassetto in cui sta $x$». Gli elementi del quoziente sono sottoinsiemi di $X$, quindi il quoziente è un sottoinsieme di $P(X)$.
-
-Il quoziente tornerà con le relazioni di equivalenza e con l'aritmetica dell'orologio, dove $[3]$ indicherà tutti i numeri che danno lo stesso resto di 3 in una divisione.
-
-::: prova Le parti $\{a, c\}$, $\{b\}$, $\{c, d\}$ sono una partizione di $\{a, b, c, d\}$?
-No: coprono tutto e nessuna è vuota, ma la $c$ sta in due parti.
-:::
-
-::: prova Quante sono le partizioni di $\{1, 2, 3\}$?
-Cinque: tutto in una parte, $\{1, 2, 3\}$; tre modi con una coppia e un elemento da solo, $\{1, 2\}$ e $\{3\}$, $\{1, 3\}$ e $\{2\}$, $\{2, 3\}$ e $\{1\}$; e tre parti con un elemento ciascuna, $\{1\}$, $\{2\}$, $\{3\}$.
-:::
-
-> [!RICORDA]
-> - Partizione = ricoprimento + nessuna parte vuota + parti disgiunte a due a due. Ogni elemento sta in una parte sola.
-> - Per controllare: unione uguale all'insieme, cercare parti vuote, contare in quante parti sta ogni elemento.
-> - L'insieme quoziente ha come elementi le parti della partizione; $[x]$ è la parte che contiene $x$.
+> - Gli elementi di $P(A)$ sono sacchetti: $\{1\} \in P(A)$, ma $1 \notin P(A)$.
 
 ## I simboli di questa lezione
 
@@ -684,17 +698,17 @@ Cinque: tutto in una parte, $\{1, 2, 3\}$; tre modi con una coppia e un elemento
 | $A \setminus B$ | «$A$ meno $B$» | gli elementi di $A$ che non stanno in $B$ | $\{1, 2\} \setminus \{2, 3\} = \{1\}$ |
 | $C_X(A)$ | «complementare di $A$ in $X$» | gli elementi di $X$ fuori da $A$ | $C_{\{1, 2, 3\}}(\{1\}) = \{2, 3\}$ |
 | $\lvert A \rvert$ | «cardinalità di $A$» | il numero di elementi di $A$ | $\lvert \{a, b\} \rvert = 2$ |
+| $\{A_i\}_{i \in I}$ | «la famiglia degli $A_i$» | un gruppo di sottoinsiemi, con un numero ciascuno | $A_1 = \{1\}$, $A_2 = \{2, 3\}$ |
 | $\bigcup_{i \in I} A_i$, $\bigcap_{i \in I} A_i$ | «unione», «intersezione degli $A_i$» | unione e intersezione di tutte le parti | $A_1 \cup A_2 \cup A_3$ |
-| $\{A_i\}_{i \in I}$ | «la famiglia degli $A_i$» | un gruppo di sottoinsiemi con etichette | $A_1 = \{1\}$, $A_2 = \{2, 3\}$ |
-| $\N$, $\Z$, $\Q$, $\R$ | «enne», «zeta», «cu», «erre» | naturali, interi, razionali, reali | $-3 \in \Z$ |
+| $\N$, $\Z$, $\Q$, $\R$ | «enne», «zeta», «cu», «erre» | naturali, interi, frazioni, reali | $-3 \in \Z$ |
+| $n\Z$ | «enne zeta» | i multipli interi di $n$ | $6 \in 3\Z$ |
+| $S + a$ | «$S$ più $a$» | ogni elemento di $S$ aumentato di $a$ | $2\Z + 1$ sono i dispari |
+| $[x]$, $\overline x$ | «classe di $x$», «$x$ segnato» | la parte della partizione che contiene $x$ | $[0]$ sono i pari |
 | $s(n)$ | «esse di $n$» | il successivo di $n$ | $s(4) = 5$ |
 | $\ge$ | «maggiore o uguale a» | più grande oppure uguale | $2^3 \ge 4$ |
 | $2^n$ | «due alla $n$» | 2 moltiplicato per sé stesso $n$ volte | $2^4 = 16$ |
 | $P(A)$ | «parti di $A$» | l'insieme di tutti i sottoinsiemi di $A$ | $P(\{a\}) = \{\emptyset, \{a\}\}$ |
-| $n\Z$ | «enne zeta» | i multipli interi di $n$ | $6 \in 3\Z$ |
-| $S + a$ | «$S$ più $a$» | ogni elemento di $S$ aumentato di $a$ | $2\Z + 1$ sono i dispari |
 | $(a, b)$, $[a, b]$ | «intervallo aperto», «intervallo chiuso» | i reali tra $a$ e $b$, estremi esclusi o compresi | $1 \in [0, 1]$ |
-| $[x]$, $\overline x$ | «classe di $x$», «$x$ segnato» | la parte della partizione che contiene $x$ | $[0]$ sono i pari |
 | $\forall$, $\exists$ | «per ogni», «esiste» | per tutti, per almeno uno (nei riquadri del libro) | $\forall n \in \N,\ 2^n \ge n + 1$ |
 | $\neq$ | «diverso da» | non uguale | $0 \neq s(n)$ |
 

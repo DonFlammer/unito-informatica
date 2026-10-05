@@ -468,10 +468,16 @@
   }
 
   const passo = () => (onde.length || veloci ? PASSO_VELOCE : PASSO);
+  // durata di un aggiornamento dello schermo (16,7 ms a 60 Hz, 8,3 a 120 Hz), imparata da due richieste di fila
+  let giro = 1000 / 60, tPrima = 0;
   function fotogramma(t) {
     raf = 0;
     if (spento) return;
-    if (!fermo && !subito && ultimo && t - ultimo < passo() - 6) { raf = requestAnimationFrame(fotogramma); return; }   // troppo presto
+    if (!fermo && !subito && ultimo && t - ultimo < passo() - 6) {   // troppo presto: si aspetta l'aggiornamento dopo
+      tPrima = t; raf = requestAnimationFrame(fotogramma); return;
+    }
+    if (tPrima && t - tPrima > 3 && t - tPrima < 20) giro = 0.8 * giro + 0.2 * (t - tPrima);   // schermi da 50 a 300 Hz
+    tPrima = 0;
     subito = false;
     let dt = 0;
     if (!fermo) { dt = Math.max(0, Math.min(0.1, (t - (ultimo || t)) / 1000)); ultimo = t; }
@@ -479,10 +485,12 @@
     pianifica();
   }
   // il prossimo fotogramma: un timer fino a poco prima, poi la richiesta allo schermo (requestAnimationFrame), così la
-  // pagina non si sveglia a ogni aggiornamento dello schermo (60, 120 o 144 volte al secondo) ma solo quando serve
+  // pagina non si sveglia a ogni aggiornamento dello schermo (60, 120 o 144 volte al secondo) ma solo quando serve.
+  // Il timer scade mezzo aggiornamento prima del momento giusto: con 10 ms fissi, a 120 o 144 Hz la prima richiesta
+  // cadeva un aggiornamento troppo presto e andava a vuoto, una volta per ogni fotogramma disegnato
   function pianifica() {
     if (fermo || spento || raf || timer) return;
-    const manca = ultimo + passo() - performance.now() - 10;
+    const manca = ultimo + passo() - performance.now() - giro / 2;
     if (manca <= 1) raf = requestAnimationFrame(fotogramma);
     else timer = setTimeout(sveglia, manca);
   }

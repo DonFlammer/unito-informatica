@@ -184,7 +184,11 @@ function formula(ctx, i) {
   const f = ctx.formule[i];
   if (f.html) return f.html;
   try {
-    f.html = katex.renderToString(f.tex, { displayMode: f.display, throwOnError: true, strict: 'ignore', output: 'htmlAndMathml', macros: { ...MACRO } });
+    // solo HTML, senza la copia MathML nascosta (dal 06/10/2026): nelle lezioni lunghe la copia era più di un terzo degli
+    // elementi della pagina, e Chrome dopo il caricamento li impagina tutti (anche le sezioni lontane) per leggere il
+    // contenuto della pagina: su L08 un blocco di un secondo. Per i lettori di schermo la formula ha il sorgente TeX
+    f.html = katex.renderToString(f.tex, { displayMode: f.display, throwOnError: true, strict: 'ignore', output: 'html', macros: { ...MACRO } })
+      .replace('<span class="katex">', `<span class="katex" role="math" aria-label="${esc(f.tex.trim())}">`);
   } catch (e) {
     ctx.errore(rigaDi(ctx, f.tex.slice(0, 30)), `formula non valida «${f.tex}»: ${e.message.replace(/^KaTeX parse error: /, '')}`);
     f.html = `<code class="formula-errata">${esc(f.tex)}</code>`;

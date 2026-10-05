@@ -1049,7 +1049,7 @@
 
   /* ---------- avvio ---------- */
   const TIPI = { complessi, vettori, matrice, gauss: gaussWidget, ruffini: ruffiniWidget, spazio };
-  document.querySelectorAll('figure.widget[data-widget]').forEach(fig => {
+  const avvia = fig => {
     const carica = fig.querySelector('.widget-carica');
     try {
       const f = TIPI[fig.dataset.widget];
@@ -1059,5 +1059,15 @@
     } catch (e) {
       if (carica) carica.textContent = t('Strumento non disponibile: ', 'Tool not available: ') + e.message;
     }
-  });
+  };
+  // ogni strumento si prepara quando si avvicina allo schermo, come le tabelle in lezione.js: gli strumenti misurano la
+  // loro larghezza, e prepararli tutti all'apertura obbligava il browser a impaginare subito anche le sezioni lontane
+  // (content-visibility), con la pagina ferma anche per mezzo secondo. Prima di stampare si preparano tutti
+  const figure = [...document.querySelectorAll('figure.widget[data-widget]')], pronti = new Set();
+  const io = 'IntersectionObserver' in window
+    ? new IntersectionObserver(voci => voci.forEach(v => { if (v.isIntersecting) prepara(v.target); }), { rootMargin: '100% 0px' })
+    : null;
+  function prepara(fig) { if (pronti.has(fig)) return; pronti.add(fig); if (io) io.unobserve(fig); avvia(fig); }
+  figure.forEach(fig => (io ? io.observe(fig) : prepara(fig)));
+  window.addEventListener('beforeprint', () => figure.forEach(prepara));
 })();

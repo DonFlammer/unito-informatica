@@ -1,5 +1,5 @@
 // «Il mio avanzamento»: un profilo locale (nome utente + codice segreto) per tenere traccia dei progressi
-// negli appunti e nella guida all'OFA, in italiano e in inglese. Non c'è nessun server: tutto resta nella memoria di questo
+// negli appunti e nella guida all'OFA. Non c'è nessun server: tutto resta nella memoria di questo
 // browser, che i quattro siti condividono perché stanno allo stesso indirizzo (donflammer.github.io). Per cambiare dispositivo
 // si usa il codice di trasferimento. Lo stesso file serve tutti e quattro i siti (lingua da <html lang>).
 (async () => {
@@ -342,8 +342,8 @@
   /* ---------- finestra ---------- */
   const AVVISO = t('<strong>Serve solo a tenere traccia dei tuoi progressi.</strong> Non inserire dati sensibili: niente nome e cognome, email, numero di matricola o password che usi altrove. Scegli un nome utente di fantasia e un codice lungo e unico che ricordi.',
     '<strong>This only keeps track of your progress.</strong> Do not enter sensitive data: no real name, email, student ID or passwords you use elsewhere. Pick a made-up username and a long, unique code that you can remember.');
-  const NOTA = t('Il profilo resta in questo browser (non c\'è nessun server) e vale per tutti i siti: appunti e guida all\'OFA, in italiano e in inglese. Gli archivi e i trasferimenti sono cifrati. La sessione si blocca dopo 30 minuti senza attività. Conserva il codice: senza non si può recuperare il profilo.',
-    'The profile stays in this browser (there is no server) and works on all the sites: the notes and the OFA guide, in Italian and in English. Profile archives and transfers are encrypted. The session locks after 30 minutes without activity. Keep your code: a profile cannot be recovered without it.');
+  const NOTA = t('Il profilo resta in questo browser (non c\'è nessun server) e vale per tutti i siti: appunti e guida all\'OFA. Gli archivi e i trasferimenti sono cifrati. La sessione si blocca dopo 30 minuti senza attività. Conserva il codice: senza non si può recuperare il profilo.',
+    'The profile stays in this browser (there is no server) and works on all the sites: the notes and the OFA guide. Profile archives and transfers are encrypted. The session locks after 30 minutes without activity. Keep your code: a profile cannot be recovered without it.');
   const finestra = document.createElement('dialog');
   finestra.className = 'studio'; finestra.id = 'studio';
   finestra.setAttribute('aria-labelledby', 'studio-titolo');

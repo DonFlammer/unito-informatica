@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 9 «Matrici II»; B. Martelli, Geometria e algebra lineare, §3.3.1–3.3.4, §3.3.10 e §3.4.6
-file_en: L09_matrices_2.html
 appunti_html: appunti/MDAG/L09_matrici_2.html
 genera_html: true
 ---

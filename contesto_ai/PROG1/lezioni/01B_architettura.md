@@ -21,7 +21,6 @@ scheda:
   Tempo di studio: 45–60 minuti
 fonte: >-
   Slide «Storia e principi del calcolo automatico» (01B_architettura), Programmazione I – Teoria, canale B, A.A. 2026/27
-file_en: 01B_computer_architecture.html
 appunti_html: appunti/PROG1/01B_architettura.html
 genera_html: true
 ---

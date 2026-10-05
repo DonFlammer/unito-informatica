@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 110–140 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 26 «Teorema spettrale II»; B. Martelli, Geometria e algebra lineare, §11.3
-file_en: L26_spectral_theorem_2.html
 appunti_html: appunti/MDAG/L26_teorema_spettrale_2.html
 genera_html: true
 ---

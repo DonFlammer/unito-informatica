@@ -2,8 +2,6 @@
 
 **Sito con gli appunti: https://donflammer.github.io/unito-informatica/**
 
-> **Don't speak Italian? Use the English version: [DonFlammer/unito-computer-science](https://github.com/DonFlammer/unito-computer-science)**, where the notes website opens directly in English. It is the full English translation of this repository, made for students who don't speak Italian. It is updated after the Italian version, which prevails if the two differ.
-
 > **⚠️ Leggi le [AVVERTENZE](AVVERTENZE.md).** Le **ricerche** (schede dei corsi, esami, regole, docenti, orari) vengono da fonti pubbliche e da alcune pagine Moodle riservate agli iscritti, consultate da me. Gli **appunti delle lezioni** rielaborano le slide dei docenti, lezione per lezione. Tutto è fatto con cura e con le fonti indicate, ma **può contenere errori**. **Non mi assumo alcuna responsabilità, per niente.** Chiunque può leggere e usare il repository, **a proprio rischio**. Lo aggiorno **lezione per lezione, niente di più**: nessun supporto e nessuna garanzia. Per date, regole e scadenze fanno fede solo le fonti ufficiali (Moodle, sito del corso di laurea, Esse3).
 
 Appunti di studio della Laurea triennale in Informatica (Università di Torino), A.A. 2026/27, primo anno.

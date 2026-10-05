@@ -22,7 +22,6 @@ scheda:
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 22 «Lo spazio euclideo I»; B. Martelli, Geometria e algebra
   lineare, §4.4.8–4.4.9, §7.5, §8.2 e §9.1
-file_en: L22_euclidean_space_1.html
 appunti_html: appunti/MDAG/L22_spazio_euclideo_1.html
 genera_html: true
 ---

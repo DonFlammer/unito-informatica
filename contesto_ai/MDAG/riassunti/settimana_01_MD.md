@@ -21,7 +21,6 @@ scheda:
   Tempo di ripasso: 40 minuti
 fonte: >-
   Gli appunti delle lezioni D01 e D02 di Matematica Discreta, scritti sul libro di A. Mori, cap. 1
-file_en: summary_week_01_MD.html
 appunti_html: appunti/MDAG/riassunto_settimana_01_MD.html
 genera_html: true
 ---

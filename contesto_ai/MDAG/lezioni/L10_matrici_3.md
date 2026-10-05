@@ -21,7 +21,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 10 «Matrici III»; B. Martelli, Geometria e algebra lineare, §3.3.5, §3.3.7, §3.3.9 e §3.4.5–3.4.8
-file_en: L10_matrices_3.html
 appunti_html: appunti/MDAG/L10_matrici_3.html
 genera_html: true
 ---

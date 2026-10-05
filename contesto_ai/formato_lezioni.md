@@ -4,7 +4,7 @@ I file delle lezioni più recenti (`<CORSO>/lezioni/*.md` con `genera_html: true
 
 ## Intestazione YAML
 
-`corso`, `modulo` (per MDAG: `MD` Matematica Discreta, `AG` Algebra lineare e Geometria), `lezione` (codice, per esempio `01B` o `L05`), `titolo`, `data` (solo per le lezioni già svolte), `docenti`, `fonte` (slide o dispense usate), `scheda` (i dati mostrati in cima alla pagina), `materiale` (`slide` o `dispense`), più i campi tecnici per la pagina (`descrizione`, `lede`, `file_en`, `appunti_html`, `genera_html`).
+`corso`, `modulo` (per MDAG: `MD` Matematica Discreta, `AG` Algebra lineare e Geometria), `lezione` (codice, per esempio `01B` o `L05`), `titolo`, `data` (solo per le lezioni già svolte), `docenti`, `fonte` (slide o dispense usate), `scheda` (i dati mostrati in cima alla pagina), `materiale` (`slide` o `dispense`), più i campi tecnici per la pagina (`descrizione`, `lede`, `appunti_html`, `genera_html`).
 
 ## Struttura
 
@@ -52,7 +52,7 @@ Gli enunciati nei riquadri `DEF`, `PROP`, `TEOREMA` seguono le slide o le dispen
 - `glossario`: una riga per termine, `Termine | definizione`.
 - `checklist`: le voci «So …» da spuntare.
 - `grafico`: una figura statica (punti, vettori, rette, poligoni, cerchi), una riga per elemento.
-- `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann, porte logiche con `modo: porte`, `modo: flipflop`, `modo: esadecimale` o `modo: memoria`; testo, colori, suoni e numeri in bit con `widget codifica` e `modo: testo`, `colori`, `suono`, `binario`, `divisioni` o `somma`). Nel Markdown restano solo i parametri iniziali.
+- `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann, porte logiche con `modo: porte`, `modo: flipflop`, `modo: esadecimale` o `modo: memoria`; testo, colori, suoni e numeri in bit con `widget codifica` e `modo: testo`, `colori`, `suono`, `binario`, `divisioni` o `somma`; numeri con il segno e con la virgola, parità e codici con `modo: interi` (chiavi `bit`, `n`: lo stesso byte senza segno, in complemento a 2 e in eccesso), `somma` con `complemento: si` e `n`, `virgola` (formato a 8 bit del libro: chiave `bit` per decodificare o `numero` per codificare), `parita` (chiavi `bit`, `parita: dispari|pari`) e `hamming` (chiave `parola`, codice a 6 bit del libro). Nel Markdown restano solo i parametri iniziali.
 
 ## Riassunti settimanali
 

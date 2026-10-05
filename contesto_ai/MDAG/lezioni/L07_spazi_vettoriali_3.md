@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 7 «Spazi vettoriali III»; B. Martelli, Geometria e algebra lineare, §2.3.1–2.3.7
-file_en: L07_vector_spaces_3.html
 appunti_html: appunti/MDAG/L07_spazi_vettoriali_3.html
 genera_html: true
 ---

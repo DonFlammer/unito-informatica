@@ -24,7 +24,6 @@ fonte: >-
   «Representing Information as Bit Patterns» e §1.5 «The Binary System», con le risposte alle loro domande;
   riassunto della lezione del 02/10/2026 sul Moodle del canale B; lucidi del canale A 2026/27 sulla codifica dei
   dati; standard Unicode e UTF-8
-file_en: 02_text_colours_sounds_binary.html
 appunti_html: appunti/FDA/02_testo_colori_suoni_binario.html
 genera_html: true
 ---

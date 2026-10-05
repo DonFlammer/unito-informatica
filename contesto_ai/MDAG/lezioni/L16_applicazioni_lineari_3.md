@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 16 «Applicazioni lineari III»; B. Martelli, Geometria e algebra lineare, §4.2.4, §4.3 e §4.4
-file_en: L16_linear_maps_3.html
 appunti_html: appunti/MDAG/L16_applicazioni_lineari_3.html
 genera_html: true
 ---

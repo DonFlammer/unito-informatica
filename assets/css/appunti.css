@@ -834,6 +834,22 @@ table.cd-colonne { min-width: 0; }
 .cd-somma { font: 700 1rem var(--mono); width: 2rem; }
 .cd-fuori { width: 1.1rem; }
 .cd-perso { font: 700 1rem var(--mono); color: var(--rose); text-decoration: line-through; }
+/* modi interi, virgola, parita, hamming (lezioni 03 e 04 di Fondamenti) */
+.cd-passi { margin: .3rem 0 .4rem; padding-left: 1.4rem; display: grid; gap: .2rem; }
+.cd-passi li { overflow-wrap: anywhere; }
+.cd-separa { width: 10px; flex: none; align-self: stretch; border-left: 1px dashed var(--line-3); margin-left: 5px; }
+.cd-letture th[scope], .cd-letture tbody th { font: 500 .84rem var(--sans); text-transform: none; letter-spacing: 0; color: var(--text-2); white-space: nowrap; }
+.cd-tabella td.cd-valore { font-weight: 700; font-size: 1rem; }
+.cd-letture th, .cd-letture td { vertical-align: top; }
+.cd-letture td.cd-lista { font-family: var(--sans); }
+.cd-bitfisso { display: inline-block; font: 600 1rem var(--mono); width: 2rem; padding: .35rem 0; text-align: center; color: var(--text-2); }
+.cd-paritabit { border-radius: 7px; border: 1px dashed var(--amber); color: var(--amber); }
+.cd-vuoto { display: inline-block; width: 2rem; }
+.pt-bit.cd-sbagliato { border-color: var(--rose); color: var(--rose); background: var(--rose-soft); }
+.cd-diverso { color: var(--rose); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.cd-uguale { color: var(--text-3); }
+.cd-tabella tr.cd-vicino td { background: var(--accent-soft); }
+@media (max-width: 420px) { .cd-bitfisso, .cd-vuoto { width: 1.5rem; font-size: .95rem; } .cd-separa { width: 6px; margin-left: 3px; } }
 @media (max-width: 640px) { .cd-cursore { grid-template-columns: 3.2rem minmax(5rem, 1fr) 4.6rem; } .cd-campione { width: 100%; height: 3.5rem; } }
 @media (max-width: 420px) {
   .cd-colonne th { font-size: .7rem; padding-right: .3rem; }

@@ -21,7 +21,6 @@ scheda:
   Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 8 «Matrici I»; B. Martelli, Geometria e algebra lineare, §2.3.10, §3.2.3, §3.2.6, §3.4.1–3.4.5 e §4.4.5
-file_en: L08_matrices_1.html
 appunti_html: appunti/MDAG/L08_matrici_1.html
 genera_html: true
 ---

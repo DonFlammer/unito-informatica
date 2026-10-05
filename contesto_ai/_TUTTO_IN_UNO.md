@@ -60,7 +60,7 @@ I file delle lezioni più recenti (`<CORSO>/lezioni/*.md` con `genera_html: true
 
 ## Intestazione YAML
 
-`corso`, `modulo` (per MDAG: `MD` Matematica Discreta, `AG` Algebra lineare e Geometria), `lezione` (codice, per esempio `01B` o `L05`), `titolo`, `data` (solo per le lezioni già svolte), `docenti`, `fonte` (slide o dispense usate), `scheda` (i dati mostrati in cima alla pagina), `materiale` (`slide` o `dispense`), più i campi tecnici per la pagina (`descrizione`, `lede`, `file_en`, `appunti_html`, `genera_html`).
+`corso`, `modulo` (per MDAG: `MD` Matematica Discreta, `AG` Algebra lineare e Geometria), `lezione` (codice, per esempio `01B` o `L05`), `titolo`, `data` (solo per le lezioni già svolte), `docenti`, `fonte` (slide o dispense usate), `scheda` (i dati mostrati in cima alla pagina), `materiale` (`slide` o `dispense`), più i campi tecnici per la pagina (`descrizione`, `lede`, `appunti_html`, `genera_html`).
 
 ## Struttura
 
@@ -108,7 +108,7 @@ Gli enunciati nei riquadri `DEF`, `PROP`, `TEOREMA` seguono le slide o le dispen
 - `glossario`: una riga per termine, `Termine | definizione`.
 - `checklist`: le voci «So …» da spuntare.
 - `grafico`: una figura statica (punti, vettori, rette, poligoni, cerchi), una riga per elemento.
-- `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann, porte logiche con `modo: porte`, `modo: flipflop`, `modo: esadecimale` o `modo: memoria`; testo, colori, suoni e numeri in bit con `widget codifica` e `modo: testo`, `colori`, `suono`, `binario`, `divisioni` o `somma`). Nel Markdown restano solo i parametri iniziali.
+- `widget`: uno strumento interattivo della pagina HTML (piano complesso, vettori, matrici 2×2, calcolatrice di Gauss, Ruffini, spazio in 3D, simulatore della macchina di Von Neumann, porte logiche con `modo: porte`, `modo: flipflop`, `modo: esadecimale` o `modo: memoria`; testo, colori, suoni e numeri in bit con `widget codifica` e `modo: testo`, `colori`, `suono`, `binario`, `divisioni` o `somma`; numeri con il segno e con la virgola, parità e codici con `modo: interi` (chiavi `bit`, `n`: lo stesso byte senza segno, in complemento a 2 e in eccesso), `somma` con `complemento: si` e `n`, `virgola` (formato a 8 bit del libro: chiave `bit` per decodificare o `numero` per codificare), `parita` (chiavi `bit`, `parita: dispari|pari`) e `hamming` (chiave `parola`, codice a 6 bit del libro). Nel Markdown restano solo i parametri iniziali.
 
 ## Riassunti settimanali
 
@@ -132,7 +132,7 @@ Ogni settimana, per ogni corso, un riassunto delle lezioni in `<CORSO>/riassunti
 
 - Invio le **slide lezione per lezione** e voglio **appunti dettagliati "fatti apposta per studiare"**, orientati all'esame.
 - Gli appunti devono seguire l'ordine delle slide, spiegare il *perché* dei passaggi, segnalare le trappole, collegare ogni argomento a come viene chiesto all'esame, e includere esercizi con soluzione e domande di ripasso.
-- Tutto resta **in locale** e nei repository GitHub `DonFlammer/unito-informatica` e `DonFlammer/unito-computer-science` (la traduzione inglese), pubblici e in sola lettura per gli altri: nessuna altra pagina pubblicata online.
+- Tutto resta **in locale** e nel repository GitHub `DonFlammer/unito-informatica`, pubblico e in sola lettura per gli altri: nessuna altra pagina pubblicata online.
 - Voglio file `.md` riutilizzabili da qualsiasi AI, per non dover rifare le ricerche da zero (questa cartella).
 
 ## Stato attuale
@@ -479,6 +479,7 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 | 01A | 28/09/2026 | Un primo algoritmo | `lezioni/01A_primo_algoritmo.md` · HTML: `appunti/PROG1/01A_primo_algoritmo.html` | informatica = studio degli algoritmi (Dijkstra); definizione di algoritmo (ordinato, non ambiguo, effettivamente computabile, produce un risultato, termina); tutto è numero; programmazione imperativa; m × n per somme ripetute da 0; accumulatore `s` e contatore `i`; Wirth "Programma = Algoritmi + Strutture Dati"; 7 versioni dell'algoritmo; bug del caso n = 0 → **prima verificare, poi eseguire**; `←` vs `=`; salti condizionati/non condizionati; blocchi Inizio/Fine e indentazione; diagramma di flusso; basso/alto livello; implementare vs tradurre; prossimo: Von Neumann |
 | 01B | 29/09/2026 | Architettura del calcolatore | `lezioni/01B_architettura.md` · HTML: `appunti/PROG1/01B_architettura.html` | abaco e Pascalina (riporto meccanico); calcolatori cablati vs **programmabili** (operazioni elementari + sequenza codificata con numeri); Babbage (macchina analitica, schede perforate, salti condizionati), Turing 1936 (macchina universale); ENIAC (decimale, cavi) → **EDVAC** (programma memorizzato, memoria unificata, binario); bit, byte, $2^N$; **architettura di Von Neumann** (CPU = unità di controllo + ALU + registri, RAM, memoria secondaria, bus); memoria come fila di byte con **indirizzi** da 0, **parole** da 32 bit; ciclo prelievo–decodifica–esecuzione, **PC** e **IR**; determinismo |
 | 02A | 30/09/2026 | Dal linguaggio macchina al C | `lezioni/02A_da_assembly_a_c.md` · HTML: `appunti/PROG1/02A_da_assembly_a_c.html` | linguaggio macchina vs **assembly** (mnemonici, assembler, non portabili); addizione in assembly (`LOAD`, `ADD`, `STORE`, `@A` = contenuto all'indirizzo A, PC 0-4-8-12); moltiplicazione in assembly (`CMP`, `JMPEQ`, `INC`, `JMP`) = versione V6 della 01A; FORTRAN e linguaggi di alto livello (compilatore, ricompilare = portabilità); storia del C (Thompson, Ritchie, Unix, K&R 1972, C89…C23); C compilato, imperativo, strutturato, tipizzato; radiografia di `Buongiorno dal C.`: commenti, `#include <stdio.h>`, `main`, blocchi, `;`, stringhe, **sequenze di escape**; identificatori e parole chiave; stadi di gcc (preprocessore, compilatore, assemblatore, linker); `gcc -Wall -Werror`; errori di compilazione, a runtime, logici |
+| Lab01 | 05/10/2026 (B2), 06/10 (B1) | Laboratorio 01: introduzione, la prima lezione di laboratorio | `lezioni/Lab01_introduzione.md` · HTML: `appunti/PROG1/Lab01_introduzione.html` | organizzazione del laboratorio (10 lezioni da 3 ore, laboratorio Turing, file cancellati all'uscita); riga di comando: nome, opzioni, argomenti; percorsi assoluti e relativi, `.` e `..`; comandi di Linux/macOS e di Windows; installare gcc; scrivere, compilare con `gcc -Wall -Werror … -o …` ed eseguire; `printf` e `scanf` con `%d`; esame al PC con CodeRunner |
 
 ## Fili conduttori (da ricollegare nelle prossime lezioni)
 
@@ -1129,7 +1130,6 @@ scheda:
   Tempo di studio: 45–60 minuti
 fonte: >-
   Slide «Storia e principi del calcolo automatico» (01B_architettura), Programmazione I – Teoria, canale B, A.A. 2026/27
-file_en: 01B_computer_architecture.html
 appunti_html: appunti/PROG1/01B_architettura.html
 genera_html: true
 ```
@@ -1657,7 +1657,6 @@ scheda:
   Tempo di studio: 90–120 minuti
 fonte: >-
   Slide «Dal linguaggio macchina al C» (02A_da_assembly_a_c), Programmazione I – Teoria, canale B, A.A. 2026/27
-file_en: 02A_from_assembly_to_c.html
 appunti_html: appunti/PROG1/02A_da_assembly_a_c.html
 genera_html: true
 ```
@@ -2423,6 +2422,1571 @@ Errore logico | Il programma gira ma non fa ciò che dovrebbe.
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/lezioni/Lab01_introduzione.md -->
+> File: `contesto_ai/PROG1/lezioni/Lab01_introduzione.md`
+
+```yaml
+corso: PROG1
+lezione: Lab01
+titolo: "Laboratorio 01: la riga di comando, il compilatore gcc e i primi programmi"
+data: 2026-10-05
+docenti: Elisa Marengo (turno B2) e Valerio Basile (turno B1); teoria Elvio Amparore
+sopratitolo: Canale B · Laboratorio 01, la prima lezione di laboratorio · Programmazione I
+descrizione: >-
+  Appunti del primo laboratorio di Programmazione I (canale B, Lab01): come funziona il laboratorio Turing e come si
+  collega all'esame al PC, la riga di comando di Linux, macOS e Windows, percorsi assoluti e relativi, i comandi per
+  file e cartelle, l'installazione di gcc anche su Windows, compilare ed eseguire un programma C, leggere e scrivere
+  dal terminale con printf e scanf, con tutti gli esercizi delle slide svolti e provati.
+lede: >-
+  Il primo laboratorio: si lascia il mouse e si parla al computer scrivendo. Impari a muoverti tra le cartelle con
+  pochi comandi, a installare il compilatore, a trasformare un file di testo in un programma che gira e a fargli
+  leggere un numero dalla tastiera. Sono i gesti che ripeterai in ogni laboratorio e all'esame.
+materiale: slide
+scheda:
+  Slide: Lab01 «Introduzione», laboratorio canale B · 50 pagine
+  Laboratorio: Elisa Marengo (turno B2, lun 05/10) e Valerio Basile (turno B1, mar 06/10) · 14–17 · laboratorio Turing
+  Tempo di studio: 2–3 ore, meglio davanti a un computer
+fonte: >-
+  Slide «Introduzione» (Lezione nº 1 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27
+appunti_html: appunti/PROG1/Lab01_introduzione.html
+genera_html: true
+```
+
+## In breve
+
+- Il laboratorio sono **10 lezioni da 3 ore** al laboratorio Turing. Al PC entri con le credenziali di UniTo. Quando esci, i file sul PC vengono cancellati: salvali prima.
+- La **riga di comando** è una finestra in cui scrivi ordini al computer, uno per riga. Premi Invio, il computer esegue e risponde.
+- Ogni comando ha un **nome**, poi le **opzioni** (come deve lavorare) e gli **argomenti** (su che cosa lavora). Esempio: in `ls -a Documenti` il nome è `ls`, l'opzione è `-a`, l'argomento è `Documenti`.
+- Un **percorso** dice dove sta un file. Quello **assoluto** parte dalla radice del disco. Quello **relativo** parte dalla cartella in cui ti trovi. La cartella in cui sei si scrive `.`, quella che la contiene `..`.
+- I comandi di base sono pochi: cambiare cartella, vedere che cosa c'è, creare, copiare, spostare, cancellare, leggere un file. Linux e macOS usano gli stessi nomi, Windows altri.
+- Il compilatore si chiama **gcc**. Il comando `gcc -Wall -Werror buongiorno.c -o buongiorno` trasforma il file di testo in un programma. Con `-Wall -Werror` basta un avviso per fermare tutto, come all'esame.
+- `printf` scrive sul terminale, `scanf` legge un numero dalla tastiera. Il codice `%d` vuol dire «qui va un numero intero».
+- All'esame si scrive codice C al PC, in un editor semplice, e un sistema di test automatici (CodeRunner) lo compila con `-Wall -Werror` e confronta le stampe con quelle attese.
+
+> [!CANALI]
+> **Canale B.** Il laboratorio comincia questa settimana, al laboratorio Turing, dalle 14 alle 17. Il turno **B2** (matricola pari) è lunedì 05/10 con **Elisa Marengo**; il turno **B1** (matricola dispari) è martedì 06/10 con **Valerio Basile**. Poi un laboratorio a settimana: il turno B2 il lunedì, il turno B1 il martedì (date precise nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md)).
+>
+> **Canale A.** Turno A1 (matricola dispari) giovedì 14–17 con Iacopo Colonnelli, dall'08/10; turno A2 (matricola pari) mercoledì 14–17 con Alessia Antelmi, dal 07/10. Sempre al laboratorio Turing.
+>
+> **Canale C.** Tutti e due i turni con Alessandro Mazzei: turno C1 (matricola dispari) mercoledì 9–12, dal 07/10; turno C2 (matricola pari) martedì 9–12, dal 06/10.
+>
+> Secondo la scheda del corso, i dieci laboratori hanno la stessa sequenza nei tre canali e gli stessi esercizi su CodeRunner. I laboratori del 2025/26 che ho (Lab03 condizioni booleane, Lab04 iterazioni, Lab10 ricorsione) hanno lo stesso modello di queste slide. Quindi questa lezione serve a tutti: controlla solo il giorno del tuo turno su Moodle. Le slide del Lab01 dei canali A e C per il 2026/27 non le ho viste.
+>
+> In questi appunti ho cambiato un po' l'ordine delle slide: tutti gli esercizi (la slide 23 sui comandi e la slide 50 sul C) sono svolti in fondo, nella sezione «Esercizi».
+
+## Come funziona il laboratorio (slide 3–7)
+
+Il corso di Programmazione I ha due parti. La **teoria** è in aula, con Elvio Amparore. Il **laboratorio** è al laboratorio Turing, davanti a un PC: si scrivono programmi e si provano. Il laboratorio vale 30 ore, cioè **10 lezioni da 3 ore**.
+
+Le cose pratiche, dalla slide 3:
+
+- i docenti di laboratorio del canale B sono Valerio Basile e Elisa Marengo;
+- orari e avvisi sono sulla pagina Moodle del corso;
+- per parlare con un docente scrivi un'email o usa il forum di Moodle. Scrivi solo dall'indirizzo di ateneo, quello che finisce con `@edu.unito.it`;
+- durante il laboratorio ci sono anche due **assistenti**, studenti del secondo o del terzo anno: chiedi a loro quando ti blocchi.
+
+### Entrare in un PC del laboratorio Turing (slide 4–5)
+
+Ti siedi, accendi lo schermo con il tasto in basso a destra ed entri con il **login di ateneo**. È lo stesso nome utente e la stessa password che usi per il sito di UniTo e per la posta: il nome utente ha la forma `nome.cognome`.
+
+Puoi scegliere tra **Windows** e **Linux**. In tutti e due trovi già il compilatore C e un editor di testo. Puoi anche portare il tuo portatile, ma allora devi installare tu il compilatore (sezione «Il compilatore C sul tuo computer», più avanti).
+
+> [!TRAPPOLA] La password e la tastiera
+> Il PC può avere una disposizione dei tasti diversa dalla tua: per esempio inglese invece che italiana. Se la password contiene caratteri speciali (`@`, `#`, `!`, lettere accentate), possono trovarsi su tasti diversi. Se il login non va, controlla la lingua della tastiera nella schermata di accesso e chiedi agli assistenti.
+
+Ogni volta che entri, il PC riparte **da zero**: niente modifiche, niente file. E quando esci, **tutti i file che hai scritto vengono cancellati**.
+
+> [!TRAPPOLA] I file si perdono quando esci
+> Prima di uscire, salva i tuoi file altrove: su una chiavetta, sul tuo Google Drive o mandandoli per email. Il PC non si spegne: per uscire si usa **Disconnetti** dal menu Start.
+
+### Le regole del laboratorio (slide 6)
+
+In laboratorio è vietato fare foto, video o registrazioni. Il materiale del corso è protetto dal diritto d'autore: puoi usarlo per studiare, ma non condividerlo sui social o su siti che guadagnano con la pubblicità. Puoi condividere solo il materiale con licenza Creative Commons.
+
+### Perché conviene venire ogni settimana (slide 7)
+
+Il corso parte dalle basi: non serve aver già programmato. Le prime settimane possono sembrarti facili se hai fatto un istituto tecnico. Poi però gli argomenti si sommano uno sull'altro. La slide 7 ha due grafici. Chi segue il laboratorio e fa gli esercizi sale piano piano, sempre alla stessa pendenza. Chi salta le lezioni trova prima una parte piatta, «già visto», poi una salita ripida e arriva all'esame con una preparazione incompleta.
+
+### Che cosa c'entra il laboratorio con l'esame
+
+L'esame di Programmazione I si fa **al PC**, nei laboratori, ed è uguale per i tre canali. Scrivi programmi in C in una pagina web con un **editor semplice**: niente completamento automatico. Un sistema di test automatici, **CodeRunner**, compila il tuo programma, lo esegue con vari dati e confronta quello che stampa con quello che deve stampare. Compilare vuol dire tradurre il testo in C in un programma che il computer sa eseguire ([lezione 02A](02A_da_assembly_a_c.html#h-dal-sorgente-all-eseguibile)). CodeRunner lo fa con le opzioni `-Wall -Werror`, che fermano la traduzione anche per un piccolo avviso: le vedi più avanti in questa lezione.
+
+In laboratorio vedrai lo stesso sistema. Nel 2025/26 le slide del Lab03 («Condizioni booleane») lo presentavano con un esercizio su Moodle che non valeva voto, solo per allenarsi. Le stesse slide dicono tre esiti possibili:
+
+1. errore di compilazione: il programma non compila con `-Wall -Werror`;
+2. il programma compila e gira, ma non passa tutti i test: stampa qualcosa di diverso da quello atteso;
+3. il programma compila, gira e passa tutti i test.
+
+Per questo conviene allenarsi da subito come all'esame: editor semplice, compilazione con `-Wall -Werror`, e stampe scritte esattamente come richiesto.
+
+::: prova Hai scritto un programma in laboratorio e stai per uscire. Che cosa devi fare prima di cliccare su «Disconnetti»?
+Salvare i file altrove (chiavetta, Google Drive, email). Dopo la disconnessione il PC cancella tutto quello che hai scritto.
+:::
+
+> [!RICORDA]
+> - 10 laboratori da 3 ore al laboratorio Turing; entri con le credenziali di UniTo e scegli Windows o Linux.
+> - Quando esci i file vengono cancellati: salvali prima.
+> - All'esame CodeRunner compila con `-Wall -Werror` e controlla le stampe: allenati così da subito.
+
+## La riga di comando: ordini scritti (slide 8–13)
+
+Di solito usi il computer con il mouse: apri una cartella con un doppio clic, trascini un file nel cestino. C'è un altro modo, più vecchio e più preciso: **scrivere** che cosa vuoi. Per esempio, invece di aprire la cartella Documenti con un doppio clic, scrivi `cd Documenti` e premi Invio.
+
+È come una chat con il computer. Tu scrivi un ordine su una riga, premi Invio. Il computer lo esegue e risponde con qualche riga di testo, oppure con un messaggio d'errore se non ha capito. Poi aspetta l'ordine dopo.
+
+Questa finestra si chiama **riga di comando**, in inglese *command line interface*, abbreviato **CLI**. Ha molti altri nomi, e li sentirai tutti: **terminale**, **console**, **shell** (su Linux e macOS), **prompt dei comandi** (su Windows).
+
+In laboratorio la useremo per fare a mano tutti i passi che trasformano un file di testo scritto in C in un programma che gira. Gli ambienti di sviluppo li fanno con un clic, ma nascondono che cosa succede.
+
+### Il prompt
+
+Quando apri il terminale vedi una riga che finisce con un simbolo e un cursore che lampeggia. Quella riga si chiama **prompt**: è il computer che dice «sono pronto, scrivi».
+
+```text
+C:\Users\jon_snow>
+```
+
+È il prompt di Windows. Prima del segno `>` c'è la cartella in cui ti trovi.
+
+```text
+jon_snow@linux:~$
+```
+
+È il prompt di Linux. Prima del segno `$` ci sono il nome dell'utente, il nome del computer e la cartella in cui ti trovi. Il segno `~` (si legge «tilde») vuol dire «la tua cartella personale». Su macOS il prompt è simile e finisce con `%`.
+
+Negli appunti, quando c'è un comando da scrivere, il prompt è già scritto davanti. Tu scrivi solo quello che viene dopo il `>` o il `$`.
+
+### Come è fatto un comando (slide 11)
+
+Ogni comando ha la stessa forma:
+
+```text
+nome_comando  opzioni  argomenti
+```
+
+- il **nome** dice che cosa fare;
+- le **opzioni** cambiano il modo in cui il comando lavora. Su Linux e macOS cominciano con il trattino `-`, su Windows con la barra `/`;
+- gli **argomenti** sono le cose su cui il comando lavora: di solito nomi di file o di cartelle.
+
+Le parti si separano con uno spazio. Ecco gli esempi della slide 11, con le risposte vere del computer.
+
+Su Linux:
+
+```text
+$ date
+Mon Oct  5 17:53:02 CEST 2026
+
+$ uname
+Linux
+
+$ echo "ciao, come stai"
+ciao, come stai
+```
+
+- `date` non ha né opzioni né argomenti: stampa data e ora.
+- `uname` stampa il nome del sistema. Con l'opzione `-a` (*all*, tutto) stampa anche il nome del computer, la versione e il tipo di processore, su una riga lunga.
+- `echo` ripete i suoi argomenti. Serve per stampare un messaggio o il valore di qualcosa.
+
+Su Windows:
+
+```text
+C:\Users\jon_snow>date /t
+Mon 10/05/2026
+
+C:\Users\jon_snow>echo ciao, come stai
+ciao, come stai
+```
+
+- `date /t` stampa la data. Senza l'opzione `/t`, Windows ti chiederebbe anche di scrivere una data nuova.
+- `systeminfo`, l'altro esempio della slide, stampa molte righe di informazioni sul computer.
+
+I messaggi del mio PC sono in inglese. Su un sistema in italiano date e messaggi d'errore escono in italiano, ma il senso è lo stesso.
+
+::: prova Nel comando `ls -a Documenti`, qual è il nome, quale l'opzione e quale l'argomento?
+Il nome è `ls` (elenca i file), l'opzione è `-a` (comincia con il trattino), l'argomento è `Documenti` (la cartella da elencare).
+:::
+
+### Comandi della shell e programmi esterni (slide 12–13)
+
+Alcuni comandi li conosce direttamente la shell: si chiamano comandi **integrati** (*built-in*). Esempio: `cd`, che cambia cartella.
+
+Tutti gli altri sono **programmi esterni**: file che stanno da qualche parte sul disco. Quando scrivi il loro nome, la shell cerca il file, lo carica in memoria e lo esegue con le opzioni e gli argomenti che hai scritto. Esempio: `ls` su Linux è il file `/usr/bin/ls`, cioè il file `ls` nella cartella `bin` dentro la cartella `usr` (come si leggono questi indirizzi lo vedi nella sezione dopo).
+
+Ma dove cerca? Non in tutto il disco: sarebbe troppo lento. Cerca in un elenco di cartelle che si chiama **PATH** (percorso dei comandi). Il PATH è una **variabile d'ambiente**: un'informazione con un nome, che il sistema tiene in memoria e che tutti i programmi possono leggere.
+
+Per vedere il PATH (slide 13) si usa `echo`. Su Linux e macOS il valore di una variabile si chiede con il segno del dollaro davanti al nome:
+
+```text
+$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+```
+
+È il PATH di partenza di Ubuntu. Le cartelle sono separate dai due punti. Su Windows il nome della variabile va tra due segni di percentuale:
+
+```text
+C:\Users\jon_snow>echo %PATH%
+```
+
+Esce una riga molto lunga, diversa da computer a computer. Contiene di sicuro le cartelle di Windows, come `C:\Windows\system32` e `C:\Windows`, separate dal punto e virgola.
+
+> [!TRAPPOLA] «command not found»
+> Se scrivi un nome che la shell non trova, né tra i suoi comandi né nelle cartelle del PATH, ricevi un errore. Per esempio con `cdd` al posto di `cd`.
+>
+> Su Linux: `cdd: command not found`. Ubuntu a volte aggiunge dei suggerimenti: `Command 'cdd' not found, but there are 19 similar ones.`
+>
+> Su Windows: `'cdd' is not recognized as an internal or external command, operable program or batch file.`
+>
+> Di solito è un errore di battitura. Se invece il nome è giusto, il programma non è installato oppure la sua cartella non è nel PATH. È quello che succede a `gcc` su Windows se salti un passo dell'installazione.
+
+::: prova Scrivi `echo ciao` su Linux e su Windows. Che cosa esce? E che cosa esce con `echo $PATH` su Windows?
+`echo ciao` stampa `ciao` su tutti e due. Su Windows `echo $PATH` stampa `$PATH` così com'è: per Windows il dollaro non vuol dire niente. Lì si scrive `echo %PATH%`.
+:::
+
+> [!RICORDA]
+> - La riga di comando è una chat con il computer: scrivi un ordine, premi Invio, leggi la risposta.
+> - Un comando è fatto di nome, opzioni e argomenti, separati da spazi. Opzioni con `-` su Linux e macOS, con `/` su Windows.
+> - I programmi esterni si cercano nelle cartelle del PATH. «command not found» vuol dire: nome sbagliato, oppure programma non trovato nel PATH.
+
+## Dove sta un file: i percorsi (slide 14–18, 21–22)
+
+Per mandare una lettera serve l'indirizzo completo: paese, città, via, numero. Per dire a un comando su quale file lavorare serve la stessa cosa: l'indirizzo del file sul disco. Un errore nell'indirizzo, e il comando lavora sul file sbagliato o non lo trova. Con `rm importante.txt`, che cancella un file, è meglio essere precisi.
+
+### Le cartelle sono un albero
+
+Le cartelle stanno una dentro l'altra. In cima c'è la **cartella radice**: su Linux e macOS si scrive `/`, su Windows è il disco, per esempio `C:\`. Dentro la radice ci sono altre cartelle, dentro ognuna altre ancora, e così via. Disegnato, sembra un albero rovesciato.
+
+L'esempio delle slide, su Windows:
+
+```text
+C:\
+└── Users\
+    ├── jon_snow\
+    │   └── Documenti\
+    │       └── cosedafare.txt
+    └── topolino\
+        └── shared\
+            └── foto\
+                └── pippo.jpg
+```
+
+### Il percorso assoluto (slide 15)
+
+Il **percorso assoluto** di un file è il suo indirizzo completo: tutte le cartelle da attraversare, dalla radice fino al file, nell'ordine. Tra un nome e l'altro c'è un separatore: la barra `/` su Linux e macOS, la barra rovesciata `\` su Windows.
+
+Il file `cosedafare.txt` dell'albero qui sopra ha questi percorsi assoluti:
+
+| Sistema | Percorso assoluto |
+|---|---|
+| Windows | `C:\Users\jon_snow\Documenti\cosedafare.txt` |
+| Linux | `/home/jon_snow/Documenti/cosedafare.txt` |
+
+Su Linux le cartelle personali stanno in `/home`, non in `Users`. Su macOS stanno in `/Users`.
+
+Un percorso assoluto funziona sempre, da qualunque cartella tu dia il comando. Il difetto: è lungo da scrivere.
+
+### La cartella di lavoro e il percorso relativo (slide 16–17)
+
+Il terminale è sempre «dentro» una cartella: si chiama **cartella di lavoro** (*working directory*). È quella scritta nel prompt, prima del `>` o del `$`. Per cambiarla si usa `cd`, da *change directory*:
+
+```text
+C:\Users\jon_snow>cd Documenti
+
+C:\Users\jon_snow\Documenti>
+```
+
+Il prompt è cambiato: ora sei in `Documenti`.
+
+Un **percorso relativo** è un indirizzo che parte dalla cartella di lavoro invece che dalla radice. È come dire a un amico che è già in via Pessinetto: «al numero 12», invece di ripetergli paese e città.
+
+Se la cartella di lavoro è `C:\Users\jon_snow`, questi due comandi cancellano lo stesso file (slide 17):
+
+```text
+C:\Users\jon_snow>del Documenti\cosedafare.txt
+C:\Users\jon_snow>del C:\Users\jon_snow\Documenti\cosedafare.txt
+```
+
+Come capire se un percorso è assoluto o relativo? Guarda come comincia. Se comincia dalla radice (`/` su Linux, `C:\` su Windows) è assoluto. Altrimenti è relativo, e il computer gli mette davanti la cartella di lavoro.
+
+### I due percorsi speciali: punto e due punti (slide 21–22)
+
+Ogni cartella contiene due nomi speciali:
+
+- `.` (un punto) è **la cartella stessa**, cioè la cartella di lavoro;
+- `..` (due punti) è **la cartella che la contiene**, quella un gradino più su nell'albero.
+
+Se la cartella di lavoro è `Documenti`, questi due comandi fanno la stessa cosa (slide 21):
+
+```text
+C:\Users\jon_snow\Documenti>del .\verbale.txt
+C:\Users\jon_snow\Documenti>del verbale.txt
+```
+
+Il `..` serve per risalire. L'esempio della slide 22: sei in `C:\Users\jon_snow\Documenti` e vuoi copiare qui il file `pippo.jpg`, che sta nella cartella `shared\foto` dell'utente `topolino`. Contiamo i passi nell'albero:
+
+1. da `Documenti`, `..` porta a `jon_snow`;
+2. da `jon_snow`, un altro `..` porta a `Users`;
+3. da `Users` si scende in `topolino`, poi in `shared`, poi in `foto`;
+4. lì c'è `pippo.jpg`.
+
+Il comando è:
+
+```text
+C:\Users\jon_snow\Documenti>copy ..\..\topolino\shared\foto\pippo.jpg .
+        1 file(s) copied.
+```
+
+Il `.` finale è la destinazione: «copialo qui». Su Linux lo stesso comando si scrive con `cp` e le barre dritte: `cp ../../topolino/shared/foto/pippo.jpg .`.
+
+### I dischi di Windows (slide 18)
+
+Su Windows ogni disco ha una lettera seguita dai due punti. `C:` è il disco con il sistema e i programmi, come il compilatore e l'editor. `D:` e le altre lettere sono altri dischi, chiavette o cartelle di rete. Al laboratorio Turing c'è solo `C:`.
+
+Per passare a un altro disco si scrive la sua lettera, per esempio `D:`, e si preme Invio. Per andare nella tua cartella Documenti in laboratorio:
+
+```text
+cd C:\Users\nome_utente\Documents
+```
+
+Al posto di `nome_utente` metti il tuo nome utente. Nota che qui la cartella si chiama `Documents`: è il nome vero che Windows usa su disco, anche quando in Esplora file vedi «Documenti».
+
+> [!OLTRE] · `cd` e l'altro disco
+> Su Windows `cd D:\cartella` cambia la cartella di lavoro del disco `D:`, ma ti lascia sul disco in cui eri. Per cambiare insieme disco e cartella si scrive `cd /d D:\cartella`.
+
+> [!TRAPPOLA] Le barre al contrario
+> Linux e macOS vogliono `/`, Windows vuole `\`. Nelle slide 16 e 45 il prompt di Linux è scritto `jon_snow@linux:\home\jon_snow$`, con le barre rovesciate: su un Linux vero è `/home/jon_snow`, e nel prompt la cartella personale si vede come `~`.
+
+::: prova Sei in `/home/jon_snow/Documenti`. Dove arrivi con `cd ..`? E con `cd ../..`?
+Con `cd ..` sali di un gradino: `/home/jon_snow`. Con `cd ../..` sali di due: `/home`.
+:::
+
+::: prova Sei in `C:\Users\jon_snow`. Scrivi il percorso relativo di `C:\Users\jon_snow\Documenti\cosedafare.txt`.
+Si toglie la parte che coincide con la cartella di lavoro: resta `Documenti\cosedafare.txt`.
+:::
+
+> [!RICORDA]
+> - Il percorso assoluto parte dalla radice (`/` oppure `C:\`) e funziona da qualunque cartella.
+> - Il percorso relativo parte dalla cartella di lavoro, quella scritta nel prompt.
+> - `.` è la cartella in cui sei, `..` quella che la contiene. Separatore `/` su Linux e macOS, `\` su Windows.
+
+## I comandi da sapere, uno per uno (slide 19–20)
+
+Con una decina di comandi fai tutto quello che faresti con il mouse in una cartella: guardare, entrare, creare, copiare, spostare, cancellare. Le slide 19 e 20 li elencano per Windows e per Linux. Qui li vedi in azione, con le risposte vere del computer.
+
+Le sessioni Linux vengono da Ubuntu, quelle Windows dal Prompt dei comandi. Ho usato una cartella di prova con l'albero della sezione precedente e un utente di nome `jon_snow`, come nelle slide. Nei prompt di Linux scrivo solo `$` per abbreviare.
+
+### Dove sono? Che cosa c'è qui?
+
+**`pwd`** (Linux e macOS, *print working directory*) stampa la cartella di lavoro. Su Windows lo stesso fa **`cd`** scritto da solo.
+
+```text
+$ pwd
+/home/jon_snow
+```
+
+```text
+C:\Users\jon_snow>cd
+C:\Users\jon_snow
+```
+
+**`ls`** (Linux e macOS, *list*) elenca i file e le cartelle della cartella di lavoro. Con un argomento elenca un'altra cartella. Su Windows si usa **`dir`**.
+
+```text
+$ ls
+Documenti
+$ ls Documenti
+cosedafare.txt  verbale.txt
+```
+
+```text
+C:\Users\jon_snow>dir Documenti
+ Directory of C:\Users\jon_snow\Documenti
+
+10/05/2026  05:52 PM    <DIR>          .
+10/05/2026  05:52 PM    <DIR>          ..
+10/05/2026  05:52 PM                30 cosedafare.txt
+10/05/2026  05:52 PM                 9 verbale.txt
+               2 File(s)             39 bytes
+               2 Dir(s)  442,681,495,552 bytes free
+```
+
+`dir` stampa anche data, ora e grandezza in byte. Le cartelle hanno la scritta `<DIR>`; ci sono anche `.` e `..`. Sopra l'elenco `dir` stampa due righe sul disco (nome e numero di serie), che qui ho tolto. Con l'opzione `/b` stampa solo i nomi.
+
+> [!OLTRE] · i file nascosti
+> Su Linux `ls` non mostra i file il cui nome comincia con un punto. `ls -a` (*all*) mostra tutto, anche `.` e `..`. `ls -l` (*long*) mostra anche grandezza, data e permessi, come `dir`.
+
+### Muoversi: `cd`
+
+**`cd cartella`** entra in una cartella. **`cd ..`** sale di un gradino. Funziona allo stesso modo su Linux, macOS e Windows, con le barre giuste.
+
+```text
+$ cd Documenti
+$ pwd
+/home/jon_snow/Documenti
+$ cd ..
+$ pwd
+/home/jon_snow
+```
+
+`cd` non stampa niente quando va tutto bene: cambia solo il prompt. Su Linux `cd` da solo, o `cd ~`, riporta nella cartella personale. `cd /` porta alla radice.
+
+Errore tipico: una cartella che non c'è, o scritta male.
+
+```text
+$ cd Cartellachenonce
+bash: cd: Cartellachenonce: No such file or directory
+```
+
+```text
+C:\Users\jon_snow\Documenti>cd Cartellachenonce
+The system cannot find the path specified.
+```
+
+> [!TRAPPOLA] Maiuscole e minuscole
+> Su Linux `Documenti` e `documenti` sono due nomi diversi: `cd documenti` dà errore. Windows e macOS di solito non fanno differenza. Abituati a scrivere i nomi esattamente come sono: il C distingue sempre maiuscole e minuscole.
+
+### Creare: `mkdir`, `touch`, `copy NUL`
+
+**`mkdir nome`** (*make directory*) crea una cartella vuota. Si scrive così su tutti e tre i sistemi.
+
+**`touch nome`** (Linux e macOS) crea un file vuoto. Su Windows lo stesso si fa con **`copy NUL nome`**: copia «il niente» in un file nuovo. `NUL` è un file speciale di Windows, sempre vuoto.
+
+```text
+$ mkdir PROVA
+$ cd PROVA
+$ touch importante.txt
+$ ls
+importante.txt
+```
+
+```text
+C:\Users\jon_snow\Documenti\PROVA>copy NUL importante.txt
+        1 file(s) copied.
+```
+
+Errore tipico: la cartella esiste già.
+
+```text
+$ mkdir PROVA
+mkdir: cannot create directory ‘PROVA’: File exists
+```
+
+```text
+C:\Users\jon_snow\Documenti>mkdir PROVA
+A subdirectory or file PROVA already exists.
+```
+
+### Copiare: `cp` e `copy`
+
+**`cp origine destinazione`** (Linux e macOS) copia un file. Su Windows si scrive **`copy origine destinazione`**. L'originale resta dov'è.
+
+```text
+$ cp rilevante.txt copia.txt
+$ ls
+copia.txt  rilevante.txt
+```
+
+Origine e destinazione possono essere percorsi relativi, come qui, o assoluti:
+
+```text
+$ cp /home/jon_snow/Documenti/PROVA/rilevante.txt /home/jon_snow/Documenti/PROVA/copia2.txt
+```
+
+Se la destinazione è una cartella, la copia prende lo stesso nome dell'originale: è il caso di `copy … .` della slide 22.
+
+Errore tipico: il file da copiare non c'è, o il nome è sbagliato.
+
+```text
+$ cp nonce.txt b.txt
+cp: cannot stat 'nonce.txt': No such file or directory
+```
+
+```text
+C:\Users\jon_snow\Documenti>copy nonce.txt b.txt
+The system cannot find the file specified.
+```
+
+### Rinominare e spostare: `mv`, `ren`, `move`
+
+Su Linux e macOS un solo comando fa due lavori: **`mv`** (*move*).
+
+- `mv importante.txt rilevante.txt` cambia il nome del file;
+- `mv PROVA/rilevante.txt .` sposta il file nella cartella di lavoro.
+
+In fondo è la stessa cosa: cambi l'indirizzo del file. Su Windows ci sono due comandi: **`ren`** (*rename*) per cambiare nome, **`move`** per spostare.
+
+```text
+$ mv importante.txt rilevante.txt
+$ ls
+rilevante.txt
+```
+
+```text
+C:\Users\jon_snow\Documenti\PROVA>ren importante.txt rilevante.txt
+
+C:\Users\jon_snow\Documenti>move PROVA\rilevante.txt .
+        1 file(s) moved.
+```
+
+> [!TRAPPOLA] Copiare o spostare sopra un file che esiste
+> Su Linux `cp` e `mv` sovrascrivono senza chiedere: se `b.txt` esiste, il suo contenuto è perso. Su Windows `copy` e `move`, scritti a mano nel Prompt dei comandi, chiedono prima conferma; dentro un file di comandi no. Controlla sempre la destinazione.
+
+### Cancellare: `rm`, `del`, `rmdir`
+
+**`rm file`** (Linux e macOS, *remove*) cancella un file. Su Windows si usa **`del`** (*delete*). Il file **non va nel cestino**: sparisce subito.
+
+```text
+$ rm copia.txt copia2.txt
+$ ls
+rilevante.txt
+```
+
+**`rmdir cartella`** (*remove directory*) cancella una cartella, ma solo se è **vuota**. Si scrive così ovunque.
+
+```text
+$ rmdir PROVA
+rmdir: failed to remove 'PROVA': Directory not empty
+```
+
+```text
+C:\Users\jon_snow\Documenti>rmdir PROVA
+The directory is not empty.
+```
+
+Prima cancelli i file dentro, poi la cartella. `rm` da solo non cancella le cartelle:
+
+```text
+$ rm PROVA
+rm: cannot remove 'PROVA': Is a directory
+```
+
+> [!OLTRE] · cancellare una cartella piena
+> Su Linux `rm -r PROVA` (*recursive*) cancella la cartella con tutto quello che contiene; su Windows lo fa `rmdir /s PROVA`, che chiede conferma. Usali con molta attenzione: non c'è modo di tornare indietro.
+
+### Leggere un file: `cat` e `type`
+
+**`cat file`** (Linux e macOS) stampa il contenuto di un file di testo. Su Windows si usa **`type`**. Sono comodi per controllare al volo un file corto, per esempio un programma C.
+
+```text
+$ cat cosedafare.txt
+comprare il pane
+studiare C
+```
+
+```text
+C:\Users\jon_snow\Documenti>type cosedafare.txt
+comprare il pane
+studiare C
+```
+
+Errore tipico, il file non c'è:
+
+```text
+$ cat nonesiste.txt
+cat: nonesiste.txt: No such file or directory
+```
+
+> [!TRAPPOLA] Nomi con gli spazi
+> Lo spazio separa gli argomenti. Se un file si chiama `file di prova.txt`, il comando `type file di prova.txt` cerca tre file: `file`, `di` e `prova.txt`. Windows risponde tre volte `The system cannot find the file specified.` Si scrive il nome tra virgolette, `type "file di prova.txt"`, oppure si evitano gli spazi nei nomi. Per i tuoi programmi usa nomi come `somma_due_numeri.c`.
+
+### Aprire un file con l'editor
+
+Per scrivere un programma serve un editor di testo. Dalla riga di comando si apre così:
+
+- Windows: `start notepad++ rilevante.txt` apre il file con Notepad++;
+- macOS: `open rilevante.txt` lo apre con il programma predefinito;
+- Linux: `xdg-open rilevante.txt` fa lo stesso.
+
+### La tabella di tutti i comandi
+
+| Che cosa fa | Linux e macOS | Windows |
+|---|---|---|
+| mostra la cartella di lavoro | `pwd` | `cd` |
+| entra nella cartella `dir` | `cd dir` | `cd dir` |
+| sale alla cartella che contiene quella di lavoro | `cd ..` | `cd ..` |
+| elenca la cartella di lavoro | `ls` | `dir` |
+| elenca la cartella `path` | `ls path` | `dir path` |
+| crea la cartella vuota `dirA` | `mkdir dirA` | `mkdir dirA` |
+| cancella la cartella `dirA`, se è vuota | `rmdir dirA` | `rmdir dirA` |
+| copia `fileA` in un nuovo `fileB` | `cp fileA fileB` | `copy fileA fileB` |
+| crea il file vuoto `fileA` | `touch fileA` | `copy NUL fileA` |
+| cambia il nome di `fileA` in `fileB` | `mv fileA fileB` | `ren fileA fileB` |
+| sposta un file in un altro posto | `mv pathToA pathToB` | `move pathToA pathToB` |
+| cancella `fileA` | `rm fileA` | `del fileA` |
+| stampa il contenuto di `fileA` | `cat fileA` | `type fileA` |
+| apre `fileA` con un editor | `open fileA` (macOS), `xdg-open fileA` (Linux) | `start notepad++ fileA` |
+| cambia disco | non serve: c'è un solo albero | `C:`, `D:`, `X:` |
+| stampa il PATH | `echo $PATH` | `echo %PATH%` |
+
+::: prova Sei nella cartella `PROVA`, che contiene solo `rilevante.txt`. Quali comandi Linux servono per tornare su e cancellare `PROVA`?
+`rm rilevante.txt` per svuotarla, poi `cd ..` per uscire, poi `rmdir PROVA`. Su Windows: `del rilevante.txt`, `cd ..`, `rmdir PROVA`.
+:::
+
+::: prova Che differenza c'è tra `cp a.txt b.txt` e `mv a.txt b.txt`?
+Dopo `cp` ci sono due file uguali, `a.txt` e `b.txt`. Dopo `mv` c'è solo `b.txt`: il file è lo stesso, ha cambiato nome.
+:::
+
+> [!RICORDA]
+> - Linux e macOS: `pwd`, `ls`, `cd`, `mkdir`, `touch`, `cp`, `mv`, `rm`, `rmdir`, `cat`.
+> - Windows: `cd`, `dir`, `mkdir`, `copy NUL`, `copy`, `ren`, `move`, `del`, `rmdir`, `type`.
+> - `rm` e `del` non usano il cestino; `rmdir` cancella solo cartelle vuote. Gli errori più comuni sono nomi scritti male e spazi nei nomi.
+
+## Il compilatore C sul tuo computer (slide 25–36)
+
+Un programma in C, per il computer, è solo un file di testo. Il processore non lo sa eseguire: capisce soltanto il linguaggio macchina, fatto di numeri. Serve un traduttore, il **compilatore**. Il viaggio dal testo al linguaggio macchina è spiegato nella [lezione 02A](02A_da_assembly_a_c.html#h-dal-sorgente-all-eseguibile); qui vediamo come installarlo e usarlo.
+
+### Il C in breve (slide 25–27)
+
+La slide 25 riassume le caratteristiche del C. Il nome si pronuncia «si», all'inglese.
+
+- **procedurale e imperativo**: scrivi le istruzioni da eseguire e il loro ordine, divise in funzioni;
+- **strutturato**: usa blocchi, cicli e scelte `if`/`else` invece dei salti dell'assembly;
+- permette la **ricorsione**: una funzione può chiamare sé stessa (la vedrai verso la fine del corso);
+- **tipizzato**: ogni variabile, cioè ogni casella della memoria con un nome, ha un tipo, per esempio «numero intero». Le variabili le vedi nell'ultima sezione;
+- **vicino all'hardware**: lascia lavorare direttamente sulla memoria.
+
+Quattro di queste caratteristiche sono già nella [lezione 02A](02A_da_assembly_a_c.html#h-le-caratteristiche-del-c). Il C è ancora molto usato: nell'indice TIOBE di settembre 2026 è il secondo linguaggio più popolare, dopo Python. Nel sondaggio Stack Overflow 2025 lo usa il 22 % di chi ha risposto (slide 27).
+
+Per cercare come funziona una funzione della libreria, la slide 26 consiglia: [cppreference](https://en.cppreference.com/w/c/header), [Wikibooks](https://en.wikibooks.org/wiki/C_Programming/Standard_library_reference), [Wikipedia](https://en.wikipedia.org/wiki/C_standard_library) e [cplusplus.com](https://cplusplus.com/reference/clibrary/). Sono in inglese.
+
+### Quale compilatore (slide 28)
+
+Di compilatori C ce ne sono molti. Alcuni esistono da decenni e sono tra i programmi più provati al mondo: quasi tutto il software di sistema è scritto in C. Nel corso si usa **gcc**, ma quello che vedrai vale per quasi tutti i compilatori.
+
+### Installarlo (slide 29–33)
+
+**Su Linux** gcc si installa con il gestore dei pacchetti, il programma che scarica e installa il software. Il comando dipende dalla distribuzione:
+
+```text
+sudo apt install build-essential      (Debian, Ubuntu)
+sudo dnf install gcc make             (Fedora)
+```
+
+`sudo` vuol dire «come amministratore»: ti chiede la tua password.
+
+**Su macOS** si installano gli strumenti da riga di comando di Xcode (*Xcode command line tools*), dall'App Store o dal sito di Apple. Un modo comodo è scrivere nel terminale `xcode-select --install`. Su macOS il comando `gcc` in realtà avvia un altro compilatore, clang, che accetta le stesse opzioni.
+
+**Su Windows** si usa **MinGW-w64**, una versione di gcc fatta per Windows. I passi delle slide:
+
+1. scarica l'archivio dalla pagina [github.com/niXman/mingw-builds-binaries/releases](https://github.com/niXman/mingw-builds-binaries/releases). La slide 30 dà il link diretto alla versione 15.2.0, un file `.7z` con nel nome `x86_64`, `win32`, `seh` e `msvcrt`;
+2. l'archivio è un file compresso: estrailo in una cartella tua, per esempio `C:\Users\<Nome Utente>\Documents\mingw64`. Per aprire i `.7z` serve un programma come 7-Zip;
+3. aggiungi al PATH la cartella `bin` che sta dentro: `C:\Users\<Nome Utente>\Documents\mingw64\bin`. È lì che si trova `gcc.exe`.
+
+Il passo 3, nelle slide 31–33:
+
+1. apri le **Impostazioni di sistema**;
+2. vai su **Sistema → Impostazioni avanzate di sistema** e clicca su **Variabili d'ambiente**. Si fa prima come nella figura della slide 31: scrivi «variabili» nella ricerca del menu Start e apri la voce per modificare le variabili d'ambiente del tuo account;
+3. nella sezione **Variabili utente** seleziona **Path** e clicca su **Modifica**;
+4. clicca su **Nuovo** e scrivi il percorso della cartella `bin` di MinGW;
+5. conferma con **OK** in tutte le finestre.
+
+Perché proprio il PATH? Per la sezione «La riga di comando»: quando scrivi `gcc`, il terminale lo cerca solo nelle cartelle del PATH. Se la cartella `bin` non c'è, ricevi «not recognized as an internal or external command».
+
+> [!TRAPPOLA] Il terminale vecchio non vede il PATH nuovo
+> Un terminale legge il PATH quando si apre. Dopo aver cambiato il PATH, chiudi il Prompt dei comandi e aprine uno nuovo.
+
+### Controllare che funzioni (slide 34)
+
+Apri un Prompt dei comandi nuovo e scrivi `where gcc`. Il comando `where` cerca un programma nelle cartelle del PATH e stampa dove l'ha trovato. Se va bene, esce il percorso di `gcc.exe`:
+
+```text
+C:\Users\jon_snow>where gcc
+C:\MinGW\bin\gcc.exe
+```
+
+Il percorso dipende da dove hai estratto l'archivio. Se va male, esce un messaggio. È questo nella slide, su un Windows in italiano:
+
+```text
+C:\Users\jon_snow>where gcc
+INFORMAZIONI: Impossibile trovare i file corrispondenti ai criteri di ricerca indicati.
+```
+
+In inglese il messaggio è `INFO: Could not find files for the given pattern(s).` Allora ricontrolla il passo del PATH.
+
+L'altro controllo è `gcc --version`, con **due trattini** attaccati. Stampa la versione. Sul mio PC:
+
+```text
+C:\Users\jon_snow>gcc --version
+gcc (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r4) 16.1.0
+Copyright (C) 2026 Free Software Foundation, Inc.
+```
+
+La prima riga cambia con la versione installata. Su Linux e macOS il controllo è lo stesso, `gcc --version`; al posto di `where` si usa `which gcc`.
+
+> [!NOTA] Un refuso nella slide 34
+> Nella slide 34 il comando è scritto `gcc –version`, con una lineetta sola. Il comando giusto ha due trattini normali: `gcc --version`. Se copi la lineetta lunga da un PDF, gcc non la riconosce.
+
+### Con che cosa scrivere il codice (slide 35–36)
+
+Il codice si scrive con un **editor di testo semplice**, ma pensato per programmare: colora le parole, numera le righe, non cambia i caratteri. Il Blocco note di Windows non va bene. Su Windows le slide consigliano **Notepad++**; altri editor sono gedit, Sublime Text, Atom.
+
+In laboratorio **non** si usa un ambiente di sviluppo integrato (IDE). Se vuoi usarne uno a casa, spegni gli strumenti che completano il codice da soli, come Copilot: scriverebbero gli esercizi al posto tuo. L'obiettivo è imparare. E all'esame avrai solo un editor semplice in una pagina web.
+
+I file con il codice C hanno l'**estensione** `.c`: sono i file sorgente, cioè le unità di compilazione. I file di intestazione hanno l'estensione `.h`. Dalla [lezione 02A](02A_da_assembly_a_c.html#h-la-radiografia-del-primo-programma) conosci già `stdio.h`.
+
+> [!TRAPPOLA] Il file che si chiama `buongiorno.c.txt`
+> Windows nasconde le estensioni dei file «conosciuti». Così un file salvato come testo può chiamarsi davvero `buongiorno.c.txt`, mentre tu vedi `buongiorno.c`, e gcc non lo trova. Nelle opzioni di Esplora file togli la spunta da «Nascondi le estensioni per i tipi di file conosciuti», come dice la slide 36. Con `dir` vedi sempre il nome vero.
+
+::: prova Hai installato MinGW, ma `gcc --version` risponde «'gcc' is not recognized…». Quali sono le due cause più probabili?
+La cartella `bin` di MinGW non è nel PATH (o hai scritto il percorso sbagliato), oppure stai usando un terminale aperto prima di cambiare il PATH. Chiudilo, aprine uno nuovo e prova con `where gcc`.
+:::
+
+> [!RICORDA]
+> - Linux: `sudo apt install build-essential`; macOS: strumenti da riga di comando di Xcode; Windows: MinGW-w64, con la cartella `bin` nel PATH.
+> - Controllo: `where gcc` (Windows) o `which gcc`, e `gcc --version` con due trattini.
+> - Editor semplice (Notepad++), niente IDE né completamento automatico, estensioni dei file visibili.
+
+## Da buongiorno.c al programma che gira (slide 37–46)
+
+Il primo programma del laboratorio è quasi lo stesso della [lezione 02A](02A_da_assembly_a_c.html#h-la-radiografia-del-primo-programma): stampa un saluto. Lì trovi la spiegazione riga per riga. Qui lo trasformiamo davvero in un programma.
+
+### Scrivere il file (slide 37)
+
+Apri l'editor, scrivi il testo e salvalo con il nome `buongiorno.c`:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Buongiorno!\n");
+    return 0;
+}
+```
+
+In breve: `#include <stdio.h>` porta dentro le dichiarazioni di `printf`; `main` è il punto da cui parte il programma; `printf` stampa il testo tra virgolette, e `\n` va a capo; `return 0;` dice al sistema operativo «tutto bene».
+
+### I quattro stadi, in breve (slide 38–39)
+
+Per diventare un programma, il file passa da quattro programmi uno dopo l'altro: il **preprocessore** (`cpp`), il **compilatore** (`cc`), l'**assemblatore** (`as`) e il **collegatore**, in inglese **linker** (`ld`). Li trovi spiegati nella [lezione 02A](02A_da_assembly_a_c.html#h-dal-sorgente-all-eseguibile). Il comando `gcc` li chiama tutti al posto tuo.
+
+Nel percorso si incontrano tre tipi di file:
+
+| Tipo | Estensione | Che cosa contiene |
+|---|---|---|
+| sorgente | `.c`, `.h` | il programma in C, come testo |
+| oggetto | `.o` (Linux, macOS), `.obj` (Windows) | un pezzo di programma in linguaggio macchina, non ancora eseguibile |
+| eseguibile | nessuna (Linux, macOS), `.exe` (Windows) | il programma finito, che si può avviare |
+
+La figura della slide 39 mostra il caso con tanti sorgenti: ogni file `.c` diventa un file oggetto, poi il linker li unisce tutti in un solo eseguibile.
+
+### Compilare in due passi: `-c` e il collegamento (slide 40–41)
+
+Primo passo: dal sorgente al file oggetto. L'opzione **`-c`** dice a gcc «fermati prima del linker». L'opzione **`-o`** (*output*) sceglie il nome del file prodotto.
+
+```text
+$ gcc -c buongiorno.c -o buongiorno.o
+```
+
+Su Windows, secondo la slide 40, il file oggetto si chiama `buongiorno.obj`. Il nome lo scegli tu con `-o`: gcc di MinGW scrive comunque lo stesso tipo di file.
+
+Secondo passo: dal file oggetto all'eseguibile. È lo stesso comando `gcc`, **senza** `-c`: così gcc chiama il linker.
+
+```text
+$ gcc buongiorno.o -o buongiorno
+```
+
+Su Windows: `gcc buongiorno.obj -o buongiorno.exe`. Con più file oggetto si elencano tutti: `gcc oggetto1.o oggetto2.o -o eseguibile`.
+
+### Tutto in un passo (slide 42)
+
+Con un solo file sorgente si fanno i due passi insieme:
+
+```text
+$ gcc buongiorno.c -o buongiorno
+```
+
+Su Windows: `gcc buongiorno.c -o buongiorno.exe`. È il modo che userai quasi sempre.
+
+### Gli avvisi: `-Wall -Werror` (slide 43–44)
+
+A volte il compilatore trova un pezzo di codice corretto per le regole del C, ma sospetto: per esempio una variabile che non usi mai. Non si ferma, ma stampa un **avviso** (*warning*).
+
+- **`-Wall`** accende gli avvisi più utili (*all warnings*);
+- **`-Werror`** trasforma ogni avviso in errore: con un solo avviso, il programma non viene prodotto.
+
+```text
+$ gcc -Wall -Werror buongiorno.c -o buongiorno
+```
+
+Su Windows: `gcc -Wall -Werror buongiorno.c -o buongiorno.exe`. Se va tutto bene gcc non stampa niente e trovi il file `buongiorno` (o `buongiorno.exe`) nella cartella. Il silenzio è una buona notizia.
+
+Ecco che cosa cambia. Questo programma dichiara una variabile `b` e non la usa mai:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a = 5;
+    int b = 7;
+    printf("a vale %d\n", a);
+    return 0;
+}
+```
+
+Senza opzioni gcc lo compila in silenzio. Con `-Wall -Werror` si ferma:
+
+```text
+err_inutile.c: In function 'main':
+err_inutile.c:5:9: error: unused variable 'b' [-Werror=unused-variable]
+    5 |     int b = 7;
+      |         ^
+cc1.exe: all warnings being treated as errors
+```
+
+Si legge così: nel file `err_inutile.c`, riga 5, colonna 9, la variabile `b` non è usata. Tra parentesi quadre c'è il nome dell'avviso; `-Werror=` vuol dire che `-Werror` l'ha fatto diventare un errore. Per leggere bene questi messaggi guarda anche la [lezione 02A](02A_da_assembly_a_c.html#h-errori-di-compilazione-a-runtime-e-logici).
+
+> [!ESAME] Le opzioni dell'esame
+> La slide 43 lo dice chiaro: in sede d'esame si usa `-Wall -Werror`. Un programma con un solo avviso non compila e non passa nessun test. Compila sempre così, anche a casa.
+
+### Eseguire il programma (slide 45)
+
+Il programma è un file nella cartella di lavoro. Per avviarlo si scrive il suo nome. Su Windows basta il nome:
+
+```text
+C:\Users\jon_snow>buongiorno
+Buongiorno!
+```
+
+Su Linux e macOS serve `./` davanti, cioè «il file che sta qui»:
+
+```text
+$ ./buongiorno
+Buongiorno!
+```
+
+Perché il `./`? Per la sezione «La riga di comando»: un nome senza percorso viene cercato solo nelle cartelle del PATH, e la cartella di lavoro su Linux non c'è. Scrivere `./` dà un percorso relativo, e allora la shell non cerca più.
+
+```text
+$ buongiorno
+buongiorno: command not found
+```
+
+> [!OLTRE] · PowerShell
+> Su Windows c'è anche un altro terminale, PowerShell, quello che si apre di solito nelle versioni recenti. Lì il programma si avvia come su Linux, `.\buongiorno`. Con il nome soltanto risponde `The term 'buongiorno' is not recognized as the name of a cmdlet…`.
+
+### Guardare il linguaggio macchina: il disassemblatore (slide 46)
+
+Un **disassemblatore** fa il viaggio al contrario: prende il programma compilato e mostra le sue istruzioni macchina scritte in assembly. Non torna al C: quello è perso.
+
+| Sistema | Comando |
+|---|---|
+| Linux | `objdump -d eseguibile` |
+| macOS | `otool -tv eseguibile` |
+| Windows | `objdump -d eseguibile.exe` |
+
+Sul mio PC `objdump -d buongiorno.exe` stampa 2808 righe: c'è anche tutto il codice che il linker ha aggiunto per avviare il programma. La funzione `main` comincia così:
+
+```text
+0000000140001760 <main>:
+   140001760:	55                   	push   %rbp
+   140001761:	48 89 e5             	mov    %rsp,%rbp
+   140001764:	48 83 ec 20          	sub    $0x20,%rsp
+   140001768:	e8 da 00 00 00       	call   140001847 <__main>
+   14000176d:	48 8d 05 dc 38 00 00 	lea    0x38dc(%rip),%rax
+   140001774:	48 89 c1             	mov    %rax,%rcx
+   140001777:	e8 ec 1a 00 00       	call   140003268 <puts>
+   14000177c:	b8 00 00 00 00       	mov    $0x0,%eax
+```
+
+A sinistra l'indirizzo in memoria, poi i byte dell'istruzione in esadecimale, poi l'istruzione in assembly. È il linguaggio macchina della [lezione 02A](02A_da_assembly_a_c.html#h-linguaggio-macchina-e-assembly), per un processore vero. Curiosità: gcc ha sostituito `printf` con `puts`, una funzione più veloce che stampa una riga e va a capo. Può farlo perché la stringa, cioè il testo tra virgolette, finiva con `\n` e non aveva niente da riempire.
+
+::: prova Che differenza c'è tra `gcc -c prova.c -o prova.o` e `gcc prova.c -o prova`?
+Il primo si ferma al file oggetto `prova.o`, che non si può eseguire. Il secondo fa anche il collegamento e produce il programma eseguibile `prova`.
+:::
+
+::: prova Hai compilato `ciao.c` su Linux con `gcc -Wall -Werror ciao.c -o ciao`. Come lo avvii?
+Con `./ciao`. Scrivendo solo `ciao` la shell lo cerca nel PATH e risponde `ciao: command not found`.
+:::
+
+> [!RICORDA]
+> - Il comando di ogni giorno: `gcc -Wall -Werror sorgente.c -o eseguibile` (su Windows `eseguibile.exe`). Silenzio vuol dire «compilato».
+> - `-c` si ferma al file oggetto; `-o` sceglie il nome; `-Wall -Werror` ferma tutto anche per un solo avviso, come all'esame.
+> - Si esegue con `./nome` su Linux e macOS, con `nome` nel Prompt dei comandi di Windows.
+
+## Leggere un numero con scanf (slide 48–49)
+
+Finora i programmi parlano soltanto: stampano sempre la stessa frase. Un programma utile deve anche ascoltare. Per esempio: «dimmi un numero e ti scrivo la sua tabellina». Per questo serve leggere dalla tastiera.
+
+### Il programma della slide 48
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int number;
+    printf("Scrivi un numero intero: ");
+
+    // leggi il numero inserito
+    scanf("%d", &number);
+
+    // mostra il numero a video
+    printf("Hai scritto: %d\n", number);
+    return 0;
+}
+```
+
+Lo compili, lo avvii e scrivi 7, poi premi Invio. Sul terminale vedi:
+
+```text
+$ ./scrivi_intero
+Scrivi un numero intero: 7
+Hai scritto: 7
+```
+
+Il primo 7 l'hai scritto tu, il secondo lo stampa il programma. Vediamo le righe nuove, una alla volta.
+
+**`int number;`** prepara una **variabile**: una casella della memoria con un nome, qui `number`, in cui si può mettere un numero. `int` dice il tipo: un numero intero, senza virgola. Le variabili sono l'argomento della teoria di questa settimana: per ora basta l'idea della casella con un nome.
+
+**`printf("Scrivi un numero intero: ");`** stampa la domanda. Nota che non c'è `\n`: il cursore resta sulla stessa riga, e il numero che scrivi compare subito dopo i due punti.
+
+**`scanf("%d", &number);`** aspetta che tu scriva qualcosa e prema Invio. Poi legge un numero intero e lo mette nella casella `number`. Due pezzi nuovi:
+
+- `"%d"` dice che cosa leggere: `%d` vuol dire «un numero intero scritto in base 10» (la `d` sta per *decimale*);
+- `&number` dice **dove** mettere il numero. Il segno `&` (si legge «e commerciale») davanti al nome vuol dire «l'indirizzo della casella `number`». Ricordi la memoria della [lezione 01B](01B_architettura.html), fatta di celle numerate? `scanf` ha bisogno del numero della cella, non di quello che c'è dentro.
+
+**`printf("Hai scritto: %d\n", number);`** stampa il testo, ma al posto di `%d` mette il valore di `number`. Il `%d` è un **segnaposto**: un buco nel testo, riempito dal valore scritto dopo la virgola.
+
+> [!IDEA]
+> `printf` e `scanf` usano lo stesso codice `%d` per «numero intero». `printf` riceve il **valore** da stampare, `number`. `scanf` riceve l'**indirizzo** dove scrivere, `&number`.
+
+### Provare senza scrivere a mano: la pipe
+
+Per provare un programma che legge dalla tastiera puoi scrivere il numero a mano ogni volta. Oppure puoi farglielo arrivare da un altro comando, con la **barra verticale** `|`, che si chiama **pipe** (tubo). Il comando a sinistra stampa, e quello che stampa entra nel programma a destra come se l'avessi scritto tu.
+
+```text
+$ echo 7 | ./scrivi_intero
+Scrivi un numero intero: Hai scritto: 7
+```
+
+`echo 7` stampa 7, la pipe lo passa a `scrivi_intero`, che lo legge con `scanf`. Questa volta il 7 non si vede dopo la domanda: nessuno l'ha scritto sul terminale. Nel Prompt dei comandi di Windows si scrive `echo 7| scrivi_intero`, con lo stesso risultato. È più o meno quello che fa CodeRunner all'esame: dà al tuo programma dei dati già pronti e confronta le stampe.
+
+### La tabellina: slide 49
+
+```c
+#include <stdio.h>
+int main(void) {
+    int n;
+    printf("Scrivi un numero intero: ");
+    scanf("%d", &n);
+
+    // stampa i primi 10 multipli di n
+    for (int i = 1; i <= 10; ++i) {
+        printf("%d * %d = %d \n", n, i, n * i);
+    }
+    return 0;
+}
+```
+
+Le prime righe le conosci: una casella `n`, la domanda, la lettura. Poi c'è una cosa nuova, `for`: è un **ciclo**, cioè un blocco di istruzioni ripetuto più volte. Lo vedrai a teoria tra un paio di settimane; per leggerlo oggi basta questo:
+
+- `int i = 1` crea un contatore `i` che parte da 1;
+- `i <= 10` è la condizione: si ripete finché `i` è al massimo 10;
+- `++i` aumenta `i` di 1 dopo ogni giro;
+- il blocco tra graffe viene eseguito una volta per ogni valore di `i`: 1, 2, 3, fino a 10.
+
+È la stessa idea del contatore della [lezione 01A](01A_primo_algoritmo.html), con il controllo prima di ogni giro.
+
+Dentro il ciclo, `printf` ha **tre** segnaposto e tre valori dopo la virgola, nello stesso ordine: il primo `%d` diventa `n`, il secondo `i`, il terzo `n * i`, cioè `n` per `i`. L'asterisco `*` in C è il segno della moltiplicazione.
+
+Con 7:
+
+```text
+$ echo 7 | ./tabella_moltiplicazioni
+Scrivi un numero intero: 7 * 1 = 7 
+7 * 2 = 14 
+7 * 3 = 21 
+7 * 4 = 28 
+7 * 5 = 35 
+7 * 6 = 42 
+7 * 7 = 49 
+7 * 8 = 56 
+7 * 9 = 63 
+7 * 10 = 70 
+```
+
+La prima riga della tabellina sta dopo la domanda perché, con la pipe, il 7 e l'Invio non si vedono. Scrivendo il numero a mano, `7 * 1 = 7` va sulla riga dopo. Nota anche lo spazio prima del `\n` nella stringa: ogni riga finisce con uno spazio invisibile. A CodeRunner uno spazio in più o in meno basta per non passare un test.
+
+### Gli errori tipici con scanf
+
+**Dimenticare la `&`.** È l'errore più comune. Senza `&`, `scanf` riceve il contenuto della casella invece del suo indirizzo. Con `-Wall -Werror` gcc 16.1 se ne accorge:
+
+```text
+err_e.c:6:13: error: format '%d' expects argument of type 'int *', but argument 2 has type 'int' [-Werror=format=]
+    6 |     scanf("%d", n);
+      |            ~^   ~
+      |             |   |
+      |             |   int
+      |             int *
+err_e.c:6:5: error: 'n' is used uninitialized [-Werror=uninitialized]
+```
+
+Si legge: il `%d` vuole un `int *` (l'indirizzo di un intero, il tipo dei puntatori che vedrai a teoria), ma riceve un `int`. Il secondo errore dice che `n` viene usata quando dentro non c'è ancora niente. **Senza `-Wall`, lo stesso programma compila in silenzio**, e quando lo esegui `scanf` scrive in un punto a caso della memoria: di solito il programma si blocca. È il motivo migliore per usare sempre `-Wall -Werror`.
+
+**Un `%d` senza il suo valore.** Ogni segnaposto vuole un valore dopo la virgola:
+
+```text
+err_formato.c:6:19: error: format '%d' expects a matching 'int' argument [-Werror=format=]
+    6 |     printf("%d e %d\n", x);
+      |                  ~^
+```
+
+**Scrivere lettere invece di un numero.** Se al programma arriva `ciao`, `scanf` non trova un numero e non scrive niente nella casella. La casella contiene quello che c'era prima in memoria: un numero a caso. Con `ciao`, a me ha stampato `Hai scritto: 32758`. Per ora i programmi del corso si provano solo con numeri.
+
+> [!OLTRE] · come sapere se scanf ha letto
+> `scanf` restituisce quanti valori è riuscito a leggere: 1 se ha letto il numero, 0 se ha trovato lettere. Si può controllare con un `if`, che arriverà a teoria tra qualche settimana.
+
+::: prova Che cosa stampa `printf("%d + %d = %d\n", 2, 3, 2 + 3);`?
+Ogni `%d` viene sostituito, in ordine, da un valore: `2 + 3 = 5`, poi si va a capo.
+:::
+
+::: prova Perché in `scanf("%d", &n);` serve la `&`, mentre in `printf("%d", n);` no?
+`scanf` deve scrivere nella casella, quindi le serve il suo indirizzo, `&n`. `printf` deve solo leggere il valore, quindi le basta `n`.
+:::
+
+> [!RICORDA]
+> - `scanf("%d", &n);` legge un intero e lo mette nella variabile `n`: la `&` dà l'indirizzo della casella.
+> - In `printf` ogni `%d` è un segnaposto, riempito in ordine dai valori dopo la virgola.
+> - Per provare un programma che legge: `echo 7 | ./programma`. Senza `&` gcc con `-Wall -Werror` si ferma; senza `-Wall` no.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `>` alla fine del prompt | «maggiore» | Windows aspetta un comando; prima c'è la cartella di lavoro | `C:\Users\jon_snow>` |
+| `$` alla fine del prompt | «dollaro» | la shell di Linux aspetta un comando | `jon_snow@linux:~$` |
+| `~` | «tilde» | la tua cartella personale, su Linux e macOS | `~` è `/home/jon_snow` |
+| `/` | «barra» | separatore nei percorsi di Linux e macOS; da sola è la radice | `/home/jon_snow/Documenti` |
+| `\` | «barra rovesciata», *backslash* | separatore nei percorsi di Windows | `C:\Users\jon_snow` |
+| `C:` | «ci due punti» | un disco di Windows | `C:\Users` |
+| `.` | «punto» | la cartella di lavoro | `copy pippo.jpg .` |
+| `..` | «punto punto» | la cartella che contiene quella di lavoro | `cd ..` |
+| `./` | «punto barra» | «il file che sta qui»: serve per avviare un programma su Linux e macOS | `./buongiorno` |
+| `-a`, `/t` | «trattino a», «barra ti» | un'opzione del comando: con il trattino su Linux, con la barra su Windows | `ls -a`, `date /t` |
+| `$PATH`, `%PATH%` | «dollaro path», «percento path percento» | il valore della variabile PATH | `echo $PATH` |
+| `-Wall -Werror` | «meno doppiavù all, meno doppiavù error» | tutti gli avvisi, e ogni avviso diventa un errore | `gcc -Wall -Werror a.c -o a` |
+| `-c`, `-o` | «meno ci», «meno o» | fermati al file oggetto; dai questo nome al risultato | `gcc -c a.c -o a.o` |
+| `%d` | «percento di» | un numero intero in base 10, in `printf` e `scanf` | `printf("%d", 7)` |
+| `&n` | «e commerciale enne» | l'indirizzo della variabile `n` | `scanf("%d", &n)` |
+| `\n` | «barra rovesciata enne» | vai a capo | `printf("ciao\n")` |
+
+## Verso l'esame
+
+L'esame di Programmazione I si fa al PC, nei laboratori Turing, Dijkstra e Von Neumann, ed è unico per i tre canali. Appelli 2026/27: **lunedì 25/01/2027** e **giovedì 11/02/2027**, alle 9:00. Scrivi codice C in una pagina web con un editor semplice; CodeRunner lo compila con `-Wall -Werror`, lo esegue con vari dati e confronta le stampe. Secondo il riepilogo d'esame 2025/26 del canale C il codice viene anche letto: passare i test serve, ma non basta.
+
+**Che cosa serve di questo laboratorio**
+
+1. **Compilare con `-Wall -Werror` e leggere i messaggi di gcc.** All'esame un programma che non compila non passa nessun test. Riconosci al volo `expected ';'`, `unused variable`, `undeclared`, e gli errori di formato di `printf` e `scanf`.
+2. **Stampe esatte.** CodeRunner confronta il testo carattere per carattere: spazi, a capo, maiuscole. Copia il formato delle `printf` dal testo dell'esercizio.
+3. **Leggere con `scanf`**, con la `&`.
+4. **Scrivere senza aiuti.** Niente IDE, niente completamento automatico, niente Copilot: allenati con Notepad++ o un editor simile.
+5. **Il terminale** all'esame quasi non serve, perché CodeRunner compila per te. Serve per tutto il resto del corso: laboratori, esercizi a casa, e i corsi degli anni dopo.
+
+> [!ESAME] Le regole degli esercizi d'esame
+> Dal riepilogo d'esame 2025/26 e dai laboratori, le regole da rispettare negli esercizi di programmazione sono:
+> - compilazione con `-Wall -Werror`;
+> - nelle funzioni iterative una sola `return`;
+> - vietati `break`, `switch`/`case` e `static`;
+> - nelle funzioni ricorsive vietati i cicli (`for` e `while`).
+>
+> Funzioni, `return`, cicli e ricorsione arriveranno nelle prossime settimane: per ora ricorda solo che queste regole esistono, e non prendere l'abitudine di usare `break` e `switch`.
+
+**Errori da evitare in laboratorio**
+
+- Uscire senza salvare i file: vengono cancellati.
+- Salvare `buongiorno.c.txt` invece di `buongiorno.c`.
+- Compilare senza `-Wall -Werror`, e scoprire gli errori solo all'esame.
+- Dimenticare la `&` in `scanf`.
+- Avviare il programma su Linux senza `./`.
+- Mettere spazi nei nomi dei file.
+
+## Quiz
+
+```quiz
+D: Sei su Linux nella cartella `/home/jon_snow/Documenti`. Quale comando stampa il nome della cartella di lavoro?
++ `pwd`
+- `cd ..`
+- `ls`
+- `dir`
+- `echo $PATH`
+= La domanda chiede di stampare dove ti trovi. Su Linux e macOS lo fa `pwd`, *print working directory*. `cd ..` non stampa niente: ti porta nella cartella sopra. `ls` elenca i file contenuti, non il nome della cartella. `dir` è il comando di Windows per elencare i file. `echo $PATH` stampa le cartelle in cui si cercano i programmi, che è un'altra cosa.
+
+D: La cartella di lavoro è `C:\Users\jon_snow`. Quale comando cancella lo stesso file di `del C:\Users\jon_snow\Documenti\cosedafare.txt`?
+- `del \Documenti\cosedafare.txt`
++ `del Documenti\cosedafare.txt`
+- `del ..\Documenti\cosedafare.txt`
+- `del cosedafare.txt`
+- `del Users\jon_snow\Documenti\cosedafare.txt`
+= Un percorso relativo parte dalla cartella di lavoro: si toglie la parte iniziale uguale, C:\Users\jon_snow, e resta Documenti\cosedafare.txt. Con la barra rovesciata davanti il percorso parte dalla radice del disco e cerca C:\Documenti. Con `..` si sale prima in C:\Users. `del cosedafare.txt` cerca il file in C:\Users\jon_snow, dove non c'è. L'ultimo cerca una cartella Users dentro jon_snow.
+
+D: Sei in `C:\Users\jon_snow\Documenti`. In quale cartella arriva il percorso `..\..`?
+- `C:\Users\jon_snow\Documenti`
+- `C:\Users\jon_snow`
++ `C:\Users`
+- `C:\`
+- `C:\Users\jon_snow\Documenti\..\..`
+= Ogni `..` sale di un gradino nell'albero. Il primo porta da Documenti a jon_snow, il secondo da jon_snow a Users. Con un solo `..` saresti in jon_snow; per arrivare alla radice C:\ ne servono tre. L'ultima risposta è il percorso scritto per intero, non la cartella in cui arriva.
+
+D: Su Linux scrivi `rmdir PROVA`, e `PROVA` contiene un file. Che cosa succede?
+- PROVA viene cancellata con il file dentro.
+- PROVA va nel cestino.
++ Il comando si rifiuta: rmdir cancella solo cartelle vuote.
+- Viene cancellato il file e PROVA resta.
+- La shell risponde command not found.
+= `rmdir` cancella una cartella solo se è vuota. Qui risponde `rmdir: failed to remove 'PROVA': Directory not empty` e non tocca niente. Per cancellare una cartella piena su Linux serve `rm -r`. Il terminale non usa il cestino. `command not found` esce solo se il nome del comando è sbagliato, e `rmdir` esiste.
+
+D: Su Windows hai estratto MinGW e aggiunto al PATH la cartella bin. In un Prompt dei comandi aperto prima, `gcc --version` risponde `'gcc' is not recognized`. Qual è la cosa più probabile?
+- Il codice C ha un errore di sintassi.
+- Bisogna scrivere gcc –version con una lineetta sola.
++ Il terminale è stato aperto prima della modifica e non vede il PATH nuovo.
+- gcc funziona solo su Linux.
+- Manca l'opzione -Wall.
+= Ogni terminale legge il PATH quando si apre: quello aperto prima non sa della cartella nuova. Si chiude e se ne apre un altro. Qui non c'è nessun programma C, quindi niente errori di sintassi. La lineetta sola è un refuso della slide 34: il comando giusto ha due trattini. gcc esiste anche per Windows, è proprio MinGW. `-Wall` riguarda la compilazione, non la ricerca del programma.
+
+D: Che cosa produce `gcc -c somma.c -o somma.o`?
+- Un programma eseguibile di nome somma.o.
++ Un file oggetto in linguaggio macchina, che da solo non si può eseguire.
+- Un file di testo con il codice assembly.
+- Un nuovo file sorgente con gli #include già espansi.
+- Niente: -c serve solo a controllare la sintassi.
+= L'opzione `-c` fa fare a gcc preprocessore, compilatore e assemblatore, e lo ferma prima del linker. Il risultato è un file oggetto: linguaggio macchina, ma non ancora un programma completo. Per l'eseguibile serve il passo di collegamento, `gcc somma.o -o somma`. Il file con l'assembly si chiede con un'altra opzione, `-S`. Il sorgente con gli `#include` espansi lo dà solo il preprocessore, con `-E`.
+
+D: Un programma dichiara `int b = 7;` e non usa mai `b`. Compilato con `gcc -Wall -Werror`, che cosa succede?
+- Compila e stampa un avviso.
+- Compila in silenzio.
++ Non compila: unused variable 'b', trattato come errore.
+- Compila, ma si blocca quando lo esegui.
+- Compila e b viene tolta da sola.
+= Una variabile mai usata non viola le regole del C, quindi senza opzioni gcc compila. `-Wall` accende l'avviso `unused variable` e `-Werror` lo trasforma in errore: il programma non viene prodotto. «Compila con un avviso» succede con `-Wall` senza `-Werror`. Il programma non arriva nemmeno a essere eseguito.
+
+D: Su Linux il programma `ciao` è nella cartella di lavoro. Come lo avvii?
+- `ciao`
+- `run ciao`
++ `./ciao`
+- `.\ciao.exe`
+- `gcc ciao`
+= Un nome senza percorso viene cercato nelle cartelle del PATH, e la cartella di lavoro su Linux non c'è: `ciao` da solo dà `command not found`. `./ciao` è un percorso relativo, «il file ciao che sta qui». `run` non è un comando. La barra rovesciata e `.exe` sono di Windows. `gcc ciao` proverebbe a compilare un file di nome ciao.
+
+D: Che cosa stampa `echo 7 | ./scrivi_intero`, con il programma della slide 48?
+- `Scrivi un numero intero: 7`, poi a capo `Hai scritto: 7`
++ `Scrivi un numero intero: Hai scritto: 7`
+- `Hai scritto: 7`
+- `7`
+- Il programma resta fermo ad aspettare il numero.
+= Il programma stampa la domanda senza andare a capo. Il 7 arriva dalla pipe, non dalla tastiera, quindi non viene scritto sul terminale e `Hai scritto: 7` segue la domanda sulla stessa riga. La prima risposta è quello che vedi scrivendo 7 a mano. La domanda viene stampata comunque, prima della lettura. Il programma non aspetta, perché il numero è già arrivato.
+
+D: Quale riga legge correttamente un intero nella variabile `n`?
+- `scanf("%d", n);`
++ `scanf("%d", &n);`
+- `scanf(&n);`
+- `printf("%d", &n);`
+- `scanf("n");`
+= `scanf` vuole il formato, `"%d"`, e l'indirizzo della casella in cui scrivere, `&n`. Senza `&` gcc con `-Wall -Werror` dà `format '%d' expects argument of type 'int *'`. Senza formato `scanf` non sa che cosa leggere. `printf` stampa, non legge. `"n"` è solo un testo.
+```
+
+## Esercizi
+
+::: esercizio base Slide 23: i comandi in fila, su Windows
+Con la riga di comando di Windows: (1) vai in `C:\Users\nome_utente\Documents`; (2) crea la cartella `PROVA` e dentro un file vuoto `importante.txt`; (3) rinominalo in `rilevante.txt`; (4) fanne una copia, una volta con il percorso assoluto e una con quello relativo; (5) cancella la copia; (6) torna nella cartella che contiene `PROVA`; (7) apri `rilevante.txt` con Notepad++; (8) passa a un altro disco, se c'è; (9) rientra in `PROVA`.
+::: soluzione
+Ho usato `jon_snow` come nome utente: al suo posto metti il tuo. Le risposte sono quelle vere del Prompt dei comandi.
+
+1. Vai nella cartella Documents:
+   ```text
+   C:\>cd C:\Users\jon_snow\Documents
+   ```
+2. Crea la cartella, entraci e crea il file vuoto:
+   ```text
+   C:\Users\jon_snow\Documents>mkdir PROVA
+   C:\Users\jon_snow\Documents>cd PROVA
+   C:\Users\jon_snow\Documents\PROVA>copy NUL importante.txt
+           1 file(s) copied.
+   ```
+3. Cambia il nome:
+   ```text
+   C:\Users\jon_snow\Documents\PROVA>ren importante.txt rilevante.txt
+   ```
+4. Copia con il percorso assoluto, poi con quello relativo:
+   ```text
+   C:\Users\jon_snow\Documents\PROVA>copy C:\Users\jon_snow\Documents\PROVA\rilevante.txt C:\Users\jon_snow\Documents\PROVA\copia.txt
+           1 file(s) copied.
+   C:\Users\jon_snow\Documents\PROVA>copy rilevante.txt copia2.txt
+           1 file(s) copied.
+   ```
+5. Cancella le copie e controlla:
+   ```text
+   C:\Users\jon_snow\Documents\PROVA>del copia.txt
+   C:\Users\jon_snow\Documents\PROVA>del copia2.txt
+   C:\Users\jon_snow\Documents\PROVA>dir /b
+   rilevante.txt
+   ```
+6. Sali di un gradino:
+   ```text
+   C:\Users\jon_snow\Documents\PROVA>cd ..
+   C:\Users\jon_snow\Documents>
+   ```
+7. Apri il file con Notepad++, usando un percorso relativo che passa da `PROVA`:
+   ```text
+   C:\Users\jon_snow\Documents>start notepad++ PROVA\rilevante.txt
+   ```
+8. Se c'è un disco `Z:`, ci passi scrivendo `Z:`; per tornare scrivi `C:`. Al laboratorio Turing c'è solo `C:`.
+9. Rientra in `PROVA`:
+   ```text
+   C:\Users\jon_snow\Documents>cd PROVA
+   C:\Users\jon_snow\Documents\PROVA>
+   ```
+
+Controllo: alla fine `dir /b` dentro `PROVA` deve mostrare solo `rilevante.txt`.
+:::
+
+::: esercizio base Slide 23: gli stessi comandi su Linux o macOS
+Rifai l'esercizio precedente con la shell di Linux o macOS, nella cartella `Documenti` della tua cartella personale (salta il punto 8, che vale solo per Windows).
+::: soluzione
+Le risposte sono quelle vere di Ubuntu. Dove un comando non stampa niente, non c'è riga di risposta.
+
+```text
+$ cd ~/Documenti
+$ mkdir PROVA
+$ cd PROVA
+$ touch importante.txt
+$ mv importante.txt rilevante.txt
+$ cp /home/jon_snow/Documenti/PROVA/rilevante.txt /home/jon_snow/Documenti/PROVA/copia.txt
+$ cp rilevante.txt copia2.txt
+$ ls
+copia.txt  copia2.txt  rilevante.txt
+$ rm copia.txt copia2.txt
+$ ls
+rilevante.txt
+$ cd ..
+$ pwd
+/home/jon_snow/Documenti
+$ xdg-open PROVA/rilevante.txt
+$ cd PROVA
+```
+
+Punto per punto: `cd ~/Documenti` porta nella cartella `Documenti` della tua cartella personale (su macOS usa `open` al posto di `xdg-open`). `touch` crea il file vuoto. `mv` cambia il nome. Le due `cp` usano il percorso assoluto e quello relativo. `rm` cancella le copie. `cd ..` risale. `xdg-open` apre il file con l'editor. Il punto 8 non serve: su Linux e macOS c'è un solo albero, e gli altri dischi compaiono come cartelle.
+:::
+
+::: esercizio base Dove sono finito?
+Su Linux parti da `/home/jon_snow` e dai, uno dopo l'altro, `cd Documenti`, `cd PROVA`, `cd ../..`, `cd Documenti/../Documenti`. Che cosa stampa `pwd` dopo ogni comando? (Supponi che le cartelle esistano.)
+::: soluzione
+1. `cd Documenti`: `/home/jon_snow/Documenti`.
+2. `cd PROVA`: `/home/jon_snow/Documenti/PROVA`.
+3. `cd ../..`: due gradini su, `/home/jon_snow`.
+4. `cd Documenti/../Documenti`: entri in `Documenti`, risali con `..`, rientri in `Documenti`. Risultato: `/home/jon_snow/Documenti`.
+
+Controllo: l'ultimo percorso è un giro inutile, ma è corretto.
+:::
+
+::: esercizio base Slide 50: due righe con due printf
+Scrivi un programma che stampa due righe usando due chiamate a `printf`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Prima riga\n");
+    printf("Seconda riga\n");
+    return 0;
+}
+```
+
+Compilato con `gcc -Wall -Werror due_righe_a.c -o due_righe_a` ed eseguito:
+
+```text
+Prima riga
+Seconda riga
+```
+
+Ogni `printf` finisce con `\n`, così la riga dopo comincia a capo. Senza il primo `\n` uscirebbe `Prima rigaSeconda riga`.
+:::
+
+::: esercizio base Slide 50: due righe con una sola printf
+Scrivi un programma che stampa le stesse due righe con una sola chiamata a `printf`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Prima riga\nSeconda riga\n");
+    return 0;
+}
+```
+
+Uscita, con `gcc -Wall -Werror`:
+
+```text
+Prima riga
+Seconda riga
+```
+
+Il `\n` in mezzo alla stringa va a capo proprio lì. In alternativa, come nella [lezione 02A](02A_da_assembly_a_c.html#h-sintassi-identificatori-e-indentazione), si può spezzare la stringa su due righe del codice: `printf("Prima riga\n" "Seconda riga\n");` è sempre una sola chiamata.
+:::
+
+::: esercizio base Slide 50: chiedi due numeri e stampali
+Scrivi un programma che chiede due numeri interi, uno alla volta, e poi li stampa.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    int b;
+    printf("Scrivi il primo numero: ");
+    scanf("%d", &a);
+    printf("Scrivi il secondo numero: ");
+    scanf("%d", &b);
+    printf("Hai scritto %d e %d\n", a, b);
+    return 0;
+}
+```
+
+Servono due caselle, `a` e `b`, e due `scanf`, ognuna con la sua `&`. Nella `printf` finale i due `%d` vengono riempiti in ordine: il primo con `a`, il secondo con `b`.
+
+Prova con la pipe, compilato con `gcc -Wall -Werror`:
+
+```text
+$ echo 3 4 | ./due_numeri
+Scrivi il primo numero: Scrivi il secondo numero: Hai scritto 3 e 4
+```
+
+`scanf("%d", …)` salta gli spazi e gli a capo prima del numero: per questo i due numeri possono arrivare sulla stessa riga, separati da uno spazio.
+:::
+
+::: esercizio base Slide 50: la somma di due numeri
+Scrivi un programma che legge due interi e stampa la loro somma.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    int b;
+    printf("Scrivi il primo numero: ");
+    scanf("%d", &a);
+    printf("Scrivi il secondo numero: ");
+    scanf("%d", &b);
+    printf("%d + %d = %d\n", a, b, a + b);
+    return 0;
+}
+```
+
+Il terzo valore della `printf` è un'espressione, `a + b`: il C la calcola e stampa il risultato. Prove con `gcc -Wall -Werror`:
+
+```text
+$ printf '3\n4\n' | ./somma
+Scrivi il primo numero: Scrivi il secondo numero: 3 + 4 = 7
+$ echo -5 12 | ./somma
+Scrivi il primo numero: Scrivi il secondo numero: -5 + 12 = 7
+```
+
+Controllo: $3 + 4 = 7$ e $-5 + 12 = 7$. Anche i numeri negativi vanno bene con `%d`.
+:::
+
+::: esercizio base Slide 50: il prodotto di tre numeri
+Dichiara tre variabili intere `x`, `y` e `z`, con valori 5, 8 e 11, e stampa il loro prodotto con `printf`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int x = 5;
+    int y = 8;
+    int z = 11;
+    printf("%d * %d * %d = %d\n", x, y, z, x * y * z);
+    return 0;
+}
+```
+
+`int x = 5;` crea la casella e ci mette subito il valore 5. Una variabile con un valore di partenza si chiama **inizializzata**. Uscita, con `gcc -Wall -Werror`:
+
+```text
+5 * 8 * 11 = 440
+```
+
+Controllo: $5 \cdot 8 = 40$ e $40 \cdot 11 = 440$.
+:::
+
+::: esercizio medio Slide 50: leggere gli errori di compilazione
+Questo programma dovrebbe leggere due numeri e stamparne la somma. Compilalo con `gcc -Wall -Werror`, leggi i messaggi e correggilo.
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a;
+    int b;
+    printf("Scrivi due numeri: ");
+    scanf("%d", &a);
+    scanf("%d", b);
+    printf("La somma e' %d\n", a + b)
+    return 0;
+}
+```
+::: soluzione
+gcc 16.1 risponde così:
+
+```text
+err_tanti.c:8:13: error: format '%d' expects argument of type 'int *', but argument 2 has type 'int' [-Werror=format=]
+err_tanti.c:9:38: error: expected ';' before 'return'
+    9 |     printf("La somma e' %d\n", a + b)
+      |                                      ^
+      |                                      ;
+   10 |     return 0;
+cc1.exe: all warnings being treated as errors
+```
+
+1. Riga 8, colonna 13: il `%d` vuole un indirizzo (`int *`) e riceve un `int`. Manca la `&`: si scrive `scanf("%d", &b);`.
+2. Riga 9, colonna 38: manca il `;` alla fine della `printf`. gcc se ne accorge quando trova `return` e indica pure dove metterlo.
+
+Se correggi solo il `;` e ricompili, compare un terzo errore che prima era nascosto: `'b' is used uninitialized`. Il compilatore non sempre trova tutti gli errori al primo giro: correggi dall'alto e ricompila.
+
+Corretto, il programma compila con `gcc -Wall -Werror`; con `echo 3 4 | ./somma2` stampa `Scrivi due numeri: La somma e' 7`.
+:::
+
+::: esercizio medio Un nome scritto male
+Che cosa dice gcc con `-Wall -Werror` per questo programma? Perché gli errori sono due?
+```c
+#include <stdio.h>
+
+int main(void) {
+    int somma = 0;
+    printf("La somma vale %d\n", soma);
+    return 0;
+}
+```
+::: soluzione
+```text
+err_nondich.c:5:34: error: 'soma' undeclared (first use in this function); did you mean 'somma'?
+err_nondich.c:4:9: error: unused variable 'somma' [-Werror=unused-variable]
+```
+
+C'è un solo sbaglio, `soma` invece di `somma` alla riga 5, ma produce due messaggi. Il primo: `soma` non è mai stata dichiarata, e gcc suggerisce il nome giusto. Il secondo: per colpa del nome sbagliato, la variabile `somma` della riga 4 non viene mai usata, e con `-Werror` anche questo è un errore. Correggendo `soma` spariscono tutti e due.
+:::
+
+::: esercizio medio La graffa dimenticata
+Che cosa dice gcc se togli la `}` finale da `buongiorno.c`?
+::: soluzione
+```text
+err_graffa.c:5:5: error: expected declaration or statement at end of input
+    5 |     return 0;
+      |     ^~~~~~
+```
+
+«Fine dell'input» vuol dire fine del file: gcc è arrivato in fondo mentre il blocco di `main` era ancora aperto. Il messaggio indica l'ultima istruzione, non la graffa che manca. Quando leggi «at end of input», conta le graffe aperte e chiuse.
+:::
+
+::: esercizio medio Tabellina all'esame
+All'esame un esercizio chiede di stampare le righe nella forma `7 x 1 = 7`, una per riga, senza spazi in fondo. Che cosa cambi nel programma della slide 49?
+::: soluzione
+Nella `printf` dentro il ciclo il formato diventa `"%d x %d = %d\n"`: la `x` al posto di `*`, e niente spazio prima di `\n`. Con 7 la prima riga è `7 x 1 = 7`. Il programma della slide stamperebbe `7 * 1 = 7 ` con uno spazio in fondo, e CodeRunner lo considererebbe diverso: test non passato. Ho compilato la versione modificata con `gcc -Wall -Werror` e con `echo 7` la riga 10 è `7 x 10 = 70`.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa succede ai tuoi file quando esci da un PC del laboratorio Turing?
+Vengono cancellati: a ogni accesso il PC riparte da una configurazione pulita. Prima di disconnetterti devi salvarli altrove, per esempio su Google Drive o su una chiavetta.
+:::
+
+::: domanda Da quali parti è fatto un comando, e come si scrivono le opzioni?
+Nome, opzioni e argomenti, separati da spazi. Le opzioni cominciano con il trattino su Linux e macOS (`ls -a`), con la barra su Windows (`date /t`).
+:::
+
+::: domanda Che cos'è il PATH e perché serve per usare gcc?
+È una variabile d'ambiente con l'elenco delle cartelle in cui il terminale cerca i programmi. Se la cartella di gcc non è nel PATH, scrivendo `gcc` ricevi «command not found» o «not recognized». Su Windows va aggiunta a mano la cartella `bin` di MinGW.
+:::
+
+::: domanda Che differenza c'è tra percorso assoluto e relativo?
+L'assoluto parte dalla radice (`/` o `C:\`) ed è l'indirizzo completo, valido da qualunque cartella. Il relativo parte dalla cartella di lavoro ed è più corto.
+:::
+
+::: domanda Che cosa vogliono dire `.` e `..`?
+`.` è la cartella di lavoro, `..` la cartella che la contiene. `cd ..` sale di un gradino; `copy file .` copia nella cartella di lavoro.
+:::
+
+::: domanda Quali sono i comandi per creare, copiare, spostare e cancellare su Linux e su Windows?
+Linux e macOS: `mkdir`, `touch`, `cp`, `mv`, `rm`, `rmdir`. Windows: `mkdir`, `copy NUL`, `copy`, `ren` e `move`, `del`, `rmdir`.
+:::
+
+::: domanda Come installi gcc su Windows, Linux e macOS, e come controlli che funzioni?
+Windows: MinGW-w64, estratto in una cartella, con la sua cartella `bin` nel PATH. Linux: `sudo apt install build-essential` o `sudo dnf install gcc make`. macOS: strumenti da riga di comando di Xcode. Controllo: `where gcc` o `which gcc`, e `gcc --version`.
+:::
+
+::: domanda Che cosa fanno le opzioni `-c`, `-o`, `-Wall` e `-Werror` di gcc?
+`-c` produce solo il file oggetto, senza collegamento. `-o` sceglie il nome del file prodotto. `-Wall` accende gli avvisi principali. `-Werror` trasforma ogni avviso in errore. All'esame si compila con `-Wall -Werror`.
+:::
+
+::: domanda Perché su Linux un programma si avvia con `./nome`?
+Perché un nome da solo viene cercato nelle cartelle del PATH, e la cartella di lavoro non c'è. `./nome` è un percorso relativo che indica il file nella cartella di lavoro.
+:::
+
+::: domanda A che cosa serve un disassemblatore?
+Mostra il linguaggio macchina di un programma compilato, scritto in assembly: `objdump -d` su Linux e Windows, `otool -tv` su macOS. Non ricostruisce il codice C.
+:::
+
+::: domanda Che cosa fa `scanf("%d", &n);` e perché serve la `&`?
+Aspetta che si scriva un numero intero e lo mette nella variabile `n`. `%d` dice che cosa leggere; `&n` è l'indirizzo della casella, che serve a `scanf` per sapere dove scrivere.
+:::
+
+::: domanda Come provi un programma che legge dalla tastiera senza scrivere i numeri ogni volta?
+Con la pipe: `echo 7 | ./programma` su Linux, `echo 7| programma` su Windows. Quello che stampa `echo` entra nel programma come se fosse scritto dalla tastiera.
+:::
+
+## Glossario
+
+```glossario
+Riga di comando (CLI) | Finestra in cui si danno ordini al computer scrivendoli, uno per riga. Si chiama anche terminale, console, shell o prompt dei comandi.
+Shell | Il programma che legge i comandi sulla riga di comando di Linux e macOS, per esempio bash o zsh.
+Prompt | La scritta che precede il cursore e dice che il terminale aspetta un comando, come C:\Users\jon_snow>.
+Opzione | Parte di un comando che cambia il suo modo di lavorare: -a su Linux, /t su Windows.
+Argomento | Il dato su cui lavora un comando, di solito un file o una cartella.
+Comando integrato | Comando eseguito dalla shell stessa, senza avviare un programma, come cd.
+PATH | Variabile d'ambiente con l'elenco delle cartelle in cui si cercano i programmi.
+Variabile d'ambiente | Informazione con un nome che il sistema tiene in memoria per tutti i programmi, come PATH.
+Cartella radice | La cartella in cima all'albero: / su Linux e macOS, il disco come C:\ su Windows.
+Percorso assoluto | Indirizzo completo di un file, dalla radice: /home/jon_snow/Documenti/cosedafare.txt.
+Percorso relativo | Indirizzo che parte dalla cartella di lavoro: Documenti/cosedafare.txt.
+Cartella di lavoro | La cartella in cui si trova il terminale; si cambia con cd.
+MinGW-w64 | Versione di gcc per Windows.
+Editor di testo | Programma per scrivere testo semplice, come Notepad++; il codice C si scrive con un editor.
+IDE | Ambiente di sviluppo integrato: editor, compilatore e strumenti in un solo programma. Non si usa in laboratorio né all'esame.
+File oggetto | File in linguaggio macchina prodotto da gcc -c (.o oppure .obj); non è ancora un programma.
+Eseguibile | Il programma finito, che si avvia: senza estensione su Linux e macOS, .exe su Windows.
+Avviso (warning) | Messaggio del compilatore su codice corretto ma sospetto; con -Werror diventa errore.
+Disassemblatore | Programma che mostra in assembly il linguaggio macchina di un eseguibile, come objdump -d.
+scanf | Funzione che legge dati dalla tastiera; con %d legge un intero e lo mette all'indirizzo dato con &.
+Segnaposto | Codice come %d dentro la stringa di printf, sostituito dal valore scritto dopo la virgola.
+Pipe | La barra verticale tra due comandi: quello che stampa il primo entra nel secondo come se fosse scritto dalla tastiera.
+CodeRunner | Il sistema di Moodle che compila il codice con -Wall -Werror, lo esegue con dati di prova e confronta le stampe.
+```
+
+## Checklist
+
+```checklist
+- So come si entra in un PC del laboratorio Turing e che i file si perdono all'uscita.
+- So riconoscere nome, opzioni e argomenti di un comando.
+- So spiegare che cos'è il PATH e che cosa vuol dire «command not found».
+- So distinguere percorso assoluto e relativo e usare `.` e `..`.
+- So usare pwd, ls, cd, mkdir, touch, cp, mv, rm, rmdir e cat su Linux o macOS.
+- So usare cd, dir, mkdir, copy NUL, copy, ren, move, del, rmdir e type su Windows.
+- So installare gcc sul mio computer e controllarlo con gcc --version.
+- So compilare con gcc -Wall -Werror sorgente.c -o eseguibile ed eseguire il programma.
+- So separare compilazione (-c) e collegamento, e che cosa mostra objdump -d.
+- So leggere un intero con scanf e la & e stamparlo con printf e %d.
+- So provare un programma con echo e la pipe.
+- So leggere i messaggi di gcc: riga, colonna, descrizione e nome dell'avviso.
+```
+
+## Fonti
+
+- **Slide del laboratorio**: «Introduzione», Lezione nº 1, Programmazione I – Laboratorio, canale B, A.A. 2026/27, 50 pagine; il numero di slide è accanto a ogni titolo.
+- **Organizzazione**: slide 3 di questo laboratorio, slide 3 dell'introduzione di teoria del canale B, pagina Moodle del canale B (consultata il 05/10/2026); per i canali A e C le introduzioni 2026/27 e la [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+- **CodeRunner**: slide 7–10 del laboratorio Lab03 «Condizioni booleane» del 2025/26.
+- **Regole d'esame**: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md), dal riepilogo d'esame 2025/26 del canale C e dal Lab01 2025/26 del canale B.
+- **Sessioni del terminale**: ottenute il 05/10/2026 con Ubuntu (shell bash; i messaggi d'errore di `mkdir` sono quelli di GNU coreutils) e con il Prompt dei comandi di Windows 11 in inglese, in una cartella di prova. Le risposte sono vere; ho cambiato solo il nome della cartella dell'utente in `jon_snow`, come nelle slide, e tolto righe che dipendono dal mio computer.
+- **Programmi C**: tutti compilati con gcc 16.1 (MinGW-w64) e `-Wall -Werror`, ed eseguiti; i programmi che leggono dalla tastiera sono stati provati con i dati passati con la pipe. Messaggi d'errore e `objdump -d` sono quelli veri di gcc 16.1 e binutils 2.47.
+- Le spiegazioni a parole, le sessioni del terminale, i riquadri «Prova tu», i quiz, gli esercizi senza numero di slide e le parti «Oltre le slide» sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/PROG1/riassunti/settimana_01.md -->
 > File: `contesto_ai/PROG1/riassunti/settimana_01.md`
 
@@ -2447,7 +4011,6 @@ scheda:
   Tempo di ripasso: 30–40 minuti
 fonte: >-
   Gli appunti delle lezioni 01A, 01B e 02A di Programmazione I (canale B), scritti sulle slide di E. G. Amparore
-file_en: summary_week_01.html
 appunti_html: appunti/PROG1/riassunto_settimana_01.html
 genera_html: true
 ```
@@ -2708,6 +4271,9 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - lun 28/09: lezione introduttiva, con la presentazione del libro di testo. Negli appunti non ha un numero.
 - gio 01/10: parte 1, §1.1 "Bits and Their Storage" (flip-flop, notazione esadecimale), poi memoria centrale e memorie di massa (§1.2–1.3). Negli appunti è la lezione 01.
 - ven 02/10: parte 1, §1.4 "Representing Information as Bit Patterns" e §1.5 "The Binary System": alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno. Negli appunti è la lezione 02.
+- lun 05/10: parte 1, §1.6 "Storing Integers" (interi con il segno in complemento a 2, notazione in eccesso, cambio di segno e addizione in complemento a 2) e §1.7 "Storing Fractions" (virgola mobile); omessa la §1.8 su Python. Negli appunti è la lezione 03.
+- gio 08/10 (prevista): parte 1, §1.9 e §1.10: compressione dei dati (LZW, JPEG, MPEG, GIF), errori di comunicazione, bit e byte di parità, codici a correzione d'errore, distanza di Hamming. Negli appunti è la lezione 04, scritta prima della lezione sul libro.
+- ven 09/10 (prevista): fine della parte 1, esercizi sulle lezioni del docente 01–05, circuiti e rappresentazioni binarie. Negli appunti è la lezione 05, scritta prima della lezione.
 
 ## Materiale
 
@@ -2762,7 +4328,6 @@ fonte: >-
   and Their Storage», §1.2 «Main Memory» e §1.3 «Mass Storage», con le risposte alle loro domande; riassunto della
   lezione del 01/10/2026 sul Moodle del canale B; lucidi del canale A 2026/27 sulla codifica dei dati; regole d'esame
   comuni ai tre canali
-file_en: 01_bits_gates_hexadecimal.html
 appunti_html: appunti/FDA/01_bit_porte_esadecimale.html
 genera_html: true
 ```
@@ -3758,7 +5323,6 @@ fonte: >-
   «Representing Information as Bit Patterns» e §1.5 «The Binary System», con le risposte alle loro domande;
   riassunto della lezione del 02/10/2026 sul Moodle del canale B; lucidi del canale A 2026/27 sulla codifica dei
   dati; standard Unicode e UTF-8
-file_en: 02_text_colours_sounds_binary.html
 appunti_html: appunti/FDA/02_testo_colori_suoni_binario.html
 genera_html: true
 ```
@@ -4750,6 +6314,3737 @@ Overflow | Quando il risultato di un conto non ci sta nei bit disponibili.
 
 ---
 
+<!-- FILE: contesto_ai/FDA/lezioni/03_interi_con_segno_virgola_mobile.md -->
+> File: `contesto_ai/FDA/lezioni/03_interi_con_segno_virgola_mobile.md`
+
+```yaml
+corso: FDA
+lezione: "03"
+titolo: Numeri negativi e numeri in virgola mobile
+data: 2026-10-05
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 03 · Libro, parte 1, §1.6–1.7
+descrizione: >-
+  Appunti della lezione 03 di Fondamenti dell'Informatica (canale B): gli interi con il segno in complemento a 2
+  (lettura, cambio di segno, somme, sottrazioni e overflow), la notazione in eccesso e i numeri con la virgola nel
+  formato a 8 bit del libro (segno, esponente in eccesso 4, mantissa), con l'errore di troncamento; strumenti
+  interattivi, quiz dalle simulazioni d'esame ed esercizi svolti.
+lede: >-
+  Con i bit si scrivono anche i numeri negativi e i numeri con la virgola. Come un contachilometri che torna indietro
+  da zero diventa il modo di scrivere i negativi, come si sommano senza guardare il segno, e come un byte tiene un
+  numero con la virgola, perdendo a volte qualche cifra.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 1 (Brookshear, cap. 1), §1.6–1.7
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 3 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 1 (J. G. Brookshear, D. Brylow, Computer Science: an overview, cap. 1), §1.6
+  «Storing Integers» e §1.7 «Storing Fractions», con le risposte alle loro domande nell'appendice pubblicata sul
+  Moodle del canale A; diario della lezione del 05/10/2026 del canale B; lucidi del canale A 2026/27 sulla codifica
+  dei dati; simulazioni d'esame 2023/24
+appunti_html: appunti/FDA/03_interi_con_segno_virgola_mobile.html
+genera_html: true
+```
+
+## In breve
+
+- Con i bit della lezione 02 si scrivono solo i numeri da 0 in su. Per i **numeri negativi** si usa il **complemento a 2**: è un contachilometri di bit che, tornando indietro da 0000, segna 1111, cioè −1.
+- In complemento a 2 il bit più a sinistra dice il segno: 0 per i positivi e lo zero, 1 per i negativi. Con 4 bit si va da −8 a 7, con 8 bit da −128 a 127.
+- Per **cambiare segno** copi i bit da destra fino al primo 1 compreso e inverti tutti gli altri. Oppure inverti tutti i bit e aggiungi 1.
+- Le **somme** si fanno in colonna come nella lezione 02, e il riporto che esce a sinistra si butta. Sottrarre vuol dire sommare l'opposto. C'è **overflow** quando due numeri con lo stesso segno danno un risultato con il segno opposto.
+- Nella **notazione in eccesso** leggi i bit come un numero senza segno e togli sempre lo stesso numero: con 4 bit togli 8, con 3 bit togli 4.
+- I numeri con la virgola si scrivono in **virgola mobile**. Nel formato del libro il primo bit è il **segno**, i 3 bit dopo sono l'**esponente**, che dice di quanto spostare la virgola, e gli ultimi 4 la **mantissa**, cioè le cifre.
+- Quando le cifre non entrano nei 4 bit della mantissa, le ultime si perdono: è l'**errore di troncamento**. Per questo un decimo non si scrive mai in modo esatto.
+- All'esame tornano tutte e tre: complemento a 2, notazione in eccesso e virgola mobile. Nelle simulazioni del 2023/24 c'è un quiz sul complemento a 2 con 8 bit e uno sul numero 3,625 in virgola mobile.
+
+> [!CANALI]
+> Nel canale B è la lezione di lunedì 05/10, dalle 9 alle 11. Per il docente è la lezione 4, perché la prima è stata un'introduzione: qui è la 03. Il diario del canale B la riassume così: «Interi col segno in complemento in base 2. Excess notation, cambio di segno e addizione in complemento in base 2» (§1.6, *Storing Integers*) e «Floating point notation» (§1.7, *Storing Fractions*). La sezione 1.8, sul linguaggio Python, è stata omessa dal docente: qui non c'è. Nel programma del canale B è esclusa, ma la mappa comune dei tre canali la elenca: se vuoi esserne sicuro, chiedilo al docente. Qui gli argomenti sono nell'ordine del libro: complemento a 2, somme, notazione in eccesso, virgola mobile. Nel canale A il complemento a 2 è nelle ultime pagine dei lucidi «Cenni sulla codifica dei dati» di Felice Cardone (Moodle del canale A, id 3851, aperto agli ospiti). Nel canale C le stesse sezioni sono nei lucidi del docente.
+
+## Il contachilometri all'indietro (libro, §1.6)
+
+Nella [lezione 02](02_testo_colori_suoni_binario.html) hai scritto in bit i numeri da 0 in su. Ma servono anche i numeri negativi: una temperatura di −3 gradi, un conto in rosso di −50 euro, l'ascensore che scende al piano −1. Il computer però ha solo bit. Non c'è un posto dove mettere il segno meno.
+
+### Tornare indietro da zero
+
+Riprendi il contachilometri della lezione 02, quello del motorino con tre cifre. Segna 000. Ora immagina di spingere il motorino all'indietro per un chilometro. Il contachilometri gira al contrario e segna 999. Un altro chilometro all'indietro: 998.
+
+Quindi 999 sta un passo prima di 000: fa la parte di −1. Il 998 fa la parte di −2, e così via. Basta mettersi d'accordo: da 000 a 499 ci sono i numeri soliti, da 500 a 999 i negativi.
+
+Con i bit si fa la stessa cosa. Prendi un contatore di 3 bit fermo su 000.
+
+- Un passo avanti: 001, cioè 1. Poi 010, cioè 2, e 011, cioè 3.
+- Un passo indietro da 000: il contatore gira e segna 111. Quindi 111 è −1.
+- Ancora indietro: 110 è −2, 101 è −3, 100 è −4.
+
+Questo modo di scrivere i numeri con il segno si chiama **complemento a 2** (*two's complement*). È quello che usano i computer per gli interi. Ecco le tabelle con 3 bit e con 4 bit, come nel libro.
+
+| Bit | 011 | 010 | 001 | 000 | 111 | 110 | 101 | 100 |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Valore | 3 | 2 | 1 | 0 | −1 | −2 | −3 | −4 |
+
+| Positivi e zero | Valore | Negativi | Valore |
+|:-:|--:|:-:|--:|
+| 0111 | 7 | 1111 | −1 |
+| 0110 | 6 | 1110 | −2 |
+| 0101 | 5 | 1101 | −3 |
+| 0100 | 4 | 1100 | −4 |
+| 0011 | 3 | 1011 | −5 |
+| 0010 | 2 | 1010 | −6 |
+| 0001 | 1 | 1001 | −7 |
+| 0000 | 0 | 1000 | −8 |
+
+Guarda la tabella con 4 bit. Si notano tre cose.
+
+1. **Il bit a sinistra dice il segno**: 0 per i positivi e per lo zero, 1 per i negativi. Si chiama **bit di segno** (*sign bit*).
+2. I positivi si scrivono come nella lezione 02, con uno 0 davanti: 0101 è 5.
+3. −1 è fatto di soli 1: 111 con 3 bit, 1111 con 4, 11111111 con 8. È il passo prima di zero.
+
+> [!IDEA]
+> Il complemento a 2 è un contachilometri di bit. In avanti da zero ci sono i positivi. All'indietro da zero il contatore gira, e ci sono i negativi: −1 è tutto 1.
+
+::: prova Con 4 bit, che numero è 1110? E come si scrive −3?
+1110 è due passi indietro da 0000: 1111 è −1, 1110 è −2. Quindi vale −2.
+
+−3 è tre passi indietro: 1111, 1110, 1101. Quindi −3 si scrive 1101.
+:::
+
+### Leggere un numero: la moneta con il segno meno
+
+Contare i passi all'indietro va bene vicino a zero. Per gli altri numeri c'è un modo più veloce, con le monete della lezione 02.
+
+In complemento a 2 la moneta più a sinistra vale **con il segno meno**. Con 4 bit le monete sono −8, 4, 2 e 1. Il numero vale, come sempre, la somma delle monete sotto cui c'è un 1.
+
+| Bit | 1 | 0 | 1 | 0 |
+|---|:-:|:-:|:-:|:-:|
+| Moneta | −8 | 4 | 2 | 1 |
+| La dai? | sì | no | sì | no |
+
+Quindi 1010 vale −8 + 2 = −6. Controlla nella tabella: è proprio −6.
+
+Un altro esempio: 0110 ha il bit di segno a 0, quindi la moneta da −8 non c'è. Vale 4 + 2 = 6.
+
+Con 8 bit le monete sono −128, 64, 32, 16, 8, 4, 2 e 1. Prendi 11111010. Le monete positive sono 64, 32, 16, 8 e 2, che fanno 122. Con la moneta da −128: −128 + 122 = −6.
+
+Perché la moneta di sinistra ha il segno meno? Leggi 1111 senza segno, come nella lezione 02: vale 15. Ma nel contachilometri 1111 è −1, cioè 16 in meno. Succede a tutti i negativi con 4 bit: letti senza segno valgono 16 in più del loro valore vero. Dare alla prima moneta −8 invece di 8 toglie proprio 16.
+
+> [!METODO] Leggere un numero in complemento a 2
+> 1. Guarda il bit a sinistra. Se è 0, il numero è positivo o zero: leggilo come nella lezione 02.
+> 2. Se è 1, il numero è negativo. Somma le monete, ma dai a quella di sinistra il segno meno: −8 con 4 bit, −128 con 8 bit.
+> 3. Controllo: letto senza segno, un negativo vale 16 in più con 4 bit, 256 in più con 8 bit.
+
+Il controllo su 1010: senza segno vale 8 + 2 = 10, e 10 − 16 = −6. Torna.
+
+Nello strumento parti da 0000 e premi più volte «−1»: il contatore gira a 1111, poi a 1110, come il contachilometri. Clicca sui bit per vedere come cambia il valore. L'ultima riga, la notazione in eccesso, la vedi più avanti.
+
+```widget codifica
+titolo: Il contachilometri di 4 bit: premi +1 e −1
+modo: interi
+bit: 0000
+n: 4
+```
+
+::: prova Con 8 bit, quanto valgono 10000001 e 01111111?
+10000001: le monete sono −128 e 1, quindi vale −128 + 1 = −127.
+
+01111111: il bit di segno è 0. Ci sono tutte le altre monete: 64 + 32 + 16 + 8 + 4 + 2 + 1 = 127.
+:::
+
+### Fin dove si arriva
+
+Con 4 bit i numeri vanno da −8 a 7. Il più piccolo, 1000, ha solo la moneta da −8. Il più grande, 0111, ha tutte le monete positive: 4 + 2 + 1 = 7.
+
+Non è simmetrico: −8 c'è, 8 no. Le file di 4 bit sono 16. Metà cominciano con 1, e sono gli 8 negativi da −1 a −8. Le altre 8 cominciano con 0, e una di loro è lo zero: ai positivi restano solo i numeri da 1 a 7.
+
+Con un numero di bit qualunque, che chiamiamo $n$, la moneta di segno vale $2^{n-1}$. Si legge «due elevato alla n meno uno»: l'esponente è $n - 1$, un bit in meno di quelli che hai. Con 4 bit è $2^3 = 8$. Quindi:
+
+- il numero più piccolo è $-2^{n-1}$: solo la moneta di segno;
+- il numero più grande è $2^{n-1} - 1$: tutte le monete positive, che fanno la moneta di segno meno 1.
+
+| Bit | Dal più piccolo | Al più grande |
+|--:|--:|--:|
+| 3 | −4 | 3 |
+| 4 | −8 | 7 |
+| 6 | −32 | 31 |
+| 8 | −128 | 127 |
+| 16 | −32768 | 32767 |
+| 32 | −2147483648 | 2147483647 |
+
+I computer di oggi usano 32 o 64 bit per gli interi: con 32 bit si superano già i due miliardi.
+
+> [!TRAPPOLA] «Con 8 bit si arriva a 255»
+> Vale solo senza segno, come nella lezione 02. In complemento a 2 metà delle file servono per i negativi, e con 8 bit si arriva a 127. Lo stesso byte 11111111 vale 255 senza segno e −1 in complemento a 2: decide la regola con cui lo leggi.
+
+::: prova Con 6 bit, qual è il numero più grande e quale il più piccolo?
+La moneta di segno vale $2^5 = 32$. Il più piccolo è 100000, cioè −32. Il più grande è 011111, cioè 16 + 8 + 4 + 2 + 1 = 31. È la domanda 4 del §1.6, con la risposta del libro.
+:::
+
+> [!RICORDA]
+> - Complemento a 2 = contachilometri di bit: all'indietro da 0000 si arriva a 1111, cioè −1.
+> - Bit a sinistra 0: positivo o zero. Bit a sinistra 1: negativo. La moneta di sinistra vale con il segno meno: −8 con 4 bit, −128 con 8.
+> - Con $n$ bit si va da $-2^{n-1}$ a $2^{n-1} - 1$: con 4 bit da −8 a 7, con 8 bit da −128 a 127.
+
+## Cambiare segno a un numero (libro, §1.6)
+
+Sul contachilometri, 2 e −2 stanno alla stessa distanza da zero: due passi avanti e due passi indietro. Cambiare segno vuol dire passare da uno all'altro. Sui bit ci sono due modi per farlo. Il primo è quello del libro.
+
+### Il metodo del libro: copia, poi inverti
+
+**Invertire** un bit vuol dire cambiarlo: 0 diventa 1, e 1 diventa 0.
+
+> [!METODO] Cambiare segno: copia fino al primo 1, poi inverti
+> 1. Parti da destra e copia i bit così come sono, fino al primo 1 compreso.
+> 2. Inverti tutti i bit che restano a sinistra.
+
+> [!ESEMPIO] Da 6 a −6, con 4 bit
+> 6 si scrive 0110.
+> 1. Da destra: lo 0 si copia. Poi viene il primo 1, e si copia anche lui. Hai copiato «10».
+> 2. A sinistra restano «01». Invertiti diventano «10».
+> 3. Il risultato è 1010.
+>
+> Controllo con le monete: 1010 vale −8 + 2 = −6.
+
+Funziona anche al contrario. Parti da −6, cioè 1010: copi «10», inverti «10» e ottieni «01». Il risultato è 0110, cioè 6.
+
+### L'altro modo: inverti tutto e aggiungi 1
+
+Molti libri usano un altro metodo, che dà lo stesso risultato.
+
+> [!METODO] Cambiare segno: inverti e aggiungi 1
+> 1. Inverti tutti i bit.
+> 2. Aggiungi 1, con la somma in colonna della lezione 02.
+
+Ancora da 6 a −6. Inverti 0110 e ottieni 1001. Aggiungi 1: 1001 + 0001 = 1010. È di nuovo −6.
+
+Perché funziona? Somma un numero e il suo invertito: in ogni colonna c'è un 1 e uno 0, e viene sempre 1. Per esempio 0110 + 1001 = 1111. Ma 1111 è −1. Quindi l'invertito di 6 è il numero che, sommato a 6, dà −1: è −7. Sul contachilometri è un passo troppo indietro. Aggiungendo 1 si arriva a −6.
+
+Nello strumento della sezione precedente c'è il pulsante «cambia segno»: provalo su qualche numero.
+
+### Da un numero negativo ai bit
+
+> [!METODO] Scrivere un numero negativo in complemento a 2
+> 1. Scrivi il numero senza il segno meno in base 2, con tutti i bit richiesti: metti zeri a sinistra se servono.
+> 2. Cambia segno, con uno dei due metodi.
+> 3. Controlla con le monete.
+
+> [!ESEMPIO] −17 con 8 bit (domanda 2 del §1.6)
+> 1. 17 = 16 + 1. Con 8 bit: 00010001.
+> 2. Da destra copi il primo 1. Inverti gli altri sette bit, 0001000, che diventano 1110111.
+> 3. Il risultato è 11101111.
+> 4. Controllo: le monete positive sono 64, 32, 8, 4, 2 e 1, che fanno 111. Con la moneta da −128: −128 + 111 = −17.
+
+### Due casi speciali
+
+- **Lo zero.** 0000 non ha nessun 1: si copia tutto, e resta 0000. Lo zero è l'opposto di sé stesso, e ce n'è uno solo.
+- **Il numero più piccolo.** Con 4 bit è 1000, cioè −8. Il primo 1 da destra è quello del segno: si copia tutto e resta 1000. Cambiare segno a −8 non funziona, perché 8 con 4 bit non c'è.
+
+> [!OLTRE] · lo stesso numero con più bit
+> −6 con 4 bit è 1010. Con 8 bit è 11111010: è la risposta del libro alla domanda 2 del §1.6. Per allungare un numero si copia il bit di segno verso sinistra: i positivi si allungano con degli 0, i negativi con degli 1. Sul contachilometri è naturale: con più cifre, −1 resta tutto 1. Attenzione: 00001010 non è −6. Il bit di segno è 0, e vale 10.
+
+> [!OLTRE] · due modi che i computer non usano più
+> Il programma ufficiale del corso nomina anche il **complemento a 1**: per cambiare segno si invertono tutti i bit, senza aggiungere 1. Con 4 bit −6 diventa 1001. C'è poi la notazione **segno e modulo**: il primo bit è il segno, gli altri il valore, e −6 è 1110. Tutti e due hanno due zeri: in complemento a 1 sono 0000 e 1111, in segno e modulo 0000 e 1000. In più le somme in colonna danno risultati sbagliati e vanno corrette. Per questo i computer usano il complemento a 2.
+
+::: prova (a) Con 8 bit, cambia segno a 01010101. (b) Scrivi −1 con 8 bit.
+(a) Da destra copi il primo 1. Inverti gli altri sette bit, 0101010, che diventano 1010101. Il risultato è 10101011. Controllo: 01010101 vale 64 + 16 + 4 + 1 = 85, e 10101011 vale −128 + 32 + 8 + 2 + 1 = −85. È la domanda 3 del §1.6.
+
+(b) 1 con 8 bit è 00000001. Copi l'ultimo 1 e inverti gli altri sette: 11111111. È il numero fatto di soli 1, come deve essere −1.
+:::
+
+> [!RICORDA]
+> - Cambiare segno: copia da destra fino al primo 1 compreso, poi inverti il resto. Oppure: inverti tutto e aggiungi 1.
+> - Un negativo si scrive così: prima il numero senza segno, con tutti i bit, poi si cambia segno.
+> - Lo zero resta zero. Il numero più piccolo, 1000 con 4 bit, non ha l'opposto.
+
+## Sommare e sottrarre con il segno (libro, §1.6)
+
+Il complemento a 2 ha un grande vantaggio: si somma esattamente come nella lezione 02, senza guardare i segni. C'è una sola regola nuova: il riporto che esce dalla colonna più a sinistra si butta via.
+
+Torna al contachilometri. Segna 998, cioè −2. Fai 3 chilometri in avanti: 999, 000, 001. Ora segna 001, cioè 1. E infatti −2 + 3 = 1. In colonna, 998 + 003 fa 1001: quattro cifre. Il contachilometri ne ha tre e mostra 001. L'1 a sinistra si perde, ed è giusto così.
+
+### Tre somme con 4 bit
+
+**3 + 2.** È la somma della lezione 02: 0011 + 0010 = 0101, cioè 5.
+
+**−3 + (−2).** In bit 1101 + 1110. La prima riga della tabella contiene i riporti che arrivano in ogni colonna. La colonna «fuori» è il posto che non c'è.
+
+| | fuori | 4ª | 3ª | 2ª | 1ª |
+|---|:-:|:-:|:-:|:-:|:-:|
+| riporti | | 1 | 0 | 0 | |
+| −3 | | 1 | 1 | 0 | 1 |
+| −2 | | 1 | 1 | 1 | 0 |
+| somma | (1) | 1 | 0 | 1 | 1 |
+
+1. 1 + 0 fa 1: scrivi 1, niente riporto.
+2. 0 + 1 fa 1: scrivi 1, niente riporto.
+3. 1 + 1 fa 10: scrivi 0 e riporti 1.
+4. 1 + 1 più il riporto fa 11: scrivi 1 e riporti 1. Questo riporto esce dai 4 bit e si butta.
+
+Restano 1011. Con le monete: −8 + 2 + 1 = −5. Giusto.
+
+**7 + (−5).** In bit 0111 + 1011.
+
+| | fuori | 4ª | 3ª | 2ª | 1ª |
+|---|:-:|:-:|:-:|:-:|:-:|
+| riporti | | 1 | 1 | 1 | |
+| 7 | | 0 | 1 | 1 | 1 |
+| −5 | | 1 | 0 | 1 | 1 |
+| somma | (1) | 0 | 0 | 1 | 0 |
+
+1. 1 + 1 fa 10: scrivi 0 e riporti 1.
+2. 1 + 1 più il riporto fa 11: scrivi 1 e riporti 1.
+3. 1 + 0 più il riporto fa 10: scrivi 0 e riporti 1.
+4. 0 + 1 più il riporto fa 10: scrivi 0. Il riporto esce e si butta.
+
+Restano 0010, cioè 2. Giusto: 7 − 5 = 2.
+
+Nello strumento clicca sui bit dei due numeri: sotto vedi la somma in colonna e il valore di ogni numero con il segno.
+
+```widget codifica
+titolo: Somma in complemento a 2 con 4 bit: clicca sui bit
+modo: somma
+a: 0111
+b: 1011
+complemento: si
+n: 4
+```
+
+### Sottrarre vuol dire sommare l'opposto
+
+Togliere 5 è come aggiungere −5: 7 − 5 = 7 + (−5). Quindi una sottrazione si fa in due passi: cambi segno al secondo numero e sommi. Il computer non ha bisogno di un circuito per sottrarre: gli bastano quello che cambia segno e quello che somma.
+
+> [!ESEMPIO] 4 − 6 con 4 bit (domanda 7 del §1.6)
+> 1. 4 è 0100. 6 è 0110, e con il cambio di segno diventa 1010.
+> 2. 0100 + 1010: da destra 0 + 0 fa 0, 0 + 1 fa 1, 1 + 0 fa 1, 0 + 1 fa 1. Nessun riporto.
+> 3. Il risultato è 1110. Con le monete: −8 + 4 + 2 = −2. Giusto: 4 − 6 = −2.
+
+::: prova (a) Con 4 bit calcola 1110 + 0011. (b) Calcola 3 − 2 con 4 bit, come una somma.
+(a) È −2 + 3. Da destra: 0 + 1 fa 1. Poi 1 + 1 fa 10: scrivi 0 e riporti 1. Poi 1 + 0 più il riporto fa 10: scrivi 0 e riporti 1. Poi 1 + 0 più il riporto fa 10: scrivi 0, e il riporto esce e si butta. Resta 0001, cioè 1. È la domanda 5 del §1.6.
+
+(b) 3 è 0011. 2 è 0010, e con il cambio di segno diventa 1110. Poi 0011 + 1110: da destra 1 + 0 fa 1; 1 + 1 fa 10, scrivi 0 e riporti 1; 0 + 1 più il riporto fa 10, scrivi 0 e riporti 1; 0 + 1 più il riporto fa 10, scrivi 0 e il riporto si butta. Resta 0001, cioè 1.
+:::
+
+> [!RICORDA]
+> - In complemento a 2 si somma in colonna come senza segno. Il riporto che esce a sinistra si butta.
+> - Per sottrarre, cambia segno al secondo numero e somma.
+
+## Quando il risultato non ci sta: l'overflow (libro, §1.6)
+
+Con 4 bit il numero più grande è 7. Prova a calcolare 5 + 4, cioè 0101 + 0100.
+
+1. 1 + 0 fa 1.
+2. 0 + 0 fa 0.
+3. 1 + 1 fa 10: scrivi 0 e riporti 1.
+4. 0 + 0 più il riporto fa 1.
+
+Il risultato è 1001, che in complemento a 2 vale −8 + 1 = −7. È sbagliato: 5 + 4 fa 9, e 9 con 4 bit non c'è.
+
+Guarda il contachilometri. Parti da 5 e fai 4 passi in avanti: 6, 7, poi 1000, che è −8, poi 1001, che è −7. Hai scavalcato il confine tra il positivo più grande e il negativo più piccolo. Questo è l'**overflow** dei numeri con il segno: il risultato vero non ci sta nei bit che hai.
+
+Lo stesso succede con due negativi. Calcola −6 + (−6), cioè 1010 + 1010. Da destra: 0 + 0 fa 0; 1 + 1 fa 10, scrivi 0 e riporti 1; 0 + 0 più il riporto fa 1; 1 + 1 fa 10, scrivi 0 e il riporto si butta. Resta 0100, cioè 4. Ma −6 − 6 fa −12, che con 4 bit non c'è.
+
+In tutti e due i casi il segno del risultato è sbagliato. Due positivi non possono dare un negativo, e due negativi non possono dare un positivo. È questo il segnale dell'overflow.
+
+> [!METODO] Riconoscere l'overflow in complemento a 2
+> 1. Guarda i bit di segno dei due numeri. Se sono diversi, l'overflow non c'è mai: hai finito.
+> 2. Se sono uguali, fai la somma e guarda il bit di segno del risultato.
+> 3. Se è diverso da quello dei due numeri, c'è overflow.
+
+### Un positivo più un negativo non va mai in overflow
+
+È la domanda 8 del §1.6. Sommando un positivo e un negativo, il risultato sta sempre tra i due numeri. Per esempio 7 + (−8) fa −1, che sta tra −8 e 7. I due numeri ci stanno nei bit che hai, e quindi ci sta anche il risultato.
+
+> [!TRAPPOLA] Il riporto finale non dice niente
+> Nella lezione 02, per i numeri senza segno, l'overflow c'era quando usciva un riporto a sinistra. Con il segno non funziona così. In −3 + (−2) esce un riporto, ma il risultato −5 è giusto. In 5 + 4 non esce nessun riporto, ma c'è overflow. Con il complemento a 2 guarda solo i segni.
+
+Nello strumento della sezione precedente prova 0101 + 0100 e 1010 + 1010: lo strumento segnala l'overflow.
+
+Con 32 bit si arriva oltre i due miliardi e l'overflow capita di rado. Ma capita, e un programma che conta oltre il massimo si ritrova con un numero negativo.
+
+::: prova Con 4 bit: (a) 0101 + 0110; (b) 1010 + 0111. In quale c'è overflow?
+(a) I due numeri sono positivi, 5 e 6. Da destra: 1 + 0 fa 1; 0 + 1 fa 1; 1 + 1 fa 10, scrivi 0 e riporti 1; 0 + 0 più il riporto fa 1. Il risultato è 1011, che è negativo: overflow. Infatti 5 + 6 = 11, e con 4 bit si arriva a 7.
+
+(b) I segni sono diversi, quindi niente overflow. Da destra: 0 + 1 fa 1; 1 + 1 fa 10, scrivi 0 e riporti 1; 0 + 1 più il riporto fa 10, scrivi 0 e riporti 1; 1 + 0 più il riporto fa 10, scrivi 0 e il riporto si butta. Resta 0001, cioè 1. Infatti −6 + 7 = 1. Sono due voci della domanda 6 del §1.6.
+:::
+
+> [!RICORDA]
+> - Overflow in complemento a 2: due numeri con lo stesso segno danno un risultato con il segno opposto.
+> - Un positivo più un negativo non va mai in overflow.
+> - Il riporto che esce a sinistra non c'entra: conta solo il segno.
+
+## La notazione in eccesso (libro, §1.6)
+
+Immagina un palazzo con otto piani sotto terra e sette sopra. I pulsanti dell'ascensore sono numerati da 0 a 15, dal piano più basso in su. Il piano terra è il pulsante 8. Per sapere a che piano sei, togli 8 dal numero del pulsante: il pulsante 11 porta al piano 3, il pulsante 5 al piano −3.
+
+La **notazione in eccesso** (*excess notation*) fa la stessa cosa con i bit. Leggi i bit come un numero senza segno, come nella lezione 02, e poi togli sempre lo stesso numero. Con 4 bit si toglie 8, e si chiama **notazione in eccesso 8** (*excess eight*).
+
+| Bit | Senza segno | In eccesso 8 | | Bit | Senza segno | In eccesso 8 |
+|:-:|--:|--:|---|:-:|--:|--:|
+| 1111 | 15 | 7 | | 0111 | 7 | −1 |
+| 1110 | 14 | 6 | | 0110 | 6 | −2 |
+| 1101 | 13 | 5 | | 0101 | 5 | −3 |
+| 1100 | 12 | 4 | | 0100 | 4 | −4 |
+| 1011 | 11 | 3 | | 0011 | 3 | −5 |
+| 1010 | 10 | 2 | | 0010 | 2 | −6 |
+| 1001 | 9 | 1 | | 0001 | 1 | −7 |
+| 1000 | 8 | 0 | | 0000 | 0 | −8 |
+
+> [!METODO] Leggere e scrivere in eccesso 8
+> - Dai bit al numero: leggi i bit senza segno e togli 8. Per esempio 1110 è 14, e 14 − 8 = 6.
+> - Dal numero ai bit: aggiungi 8 e scrivi il risultato in base 2 con 4 bit. Per esempio −5 + 8 = 3, cioè 0011.
+
+Con 3 bit si toglie 4: è la **notazione in eccesso 4**. I bit vanno da 000, cioè −4, a 111, cioè 3. In generale con $n$ bit si toglie $2^{n-1}$, la stessa moneta di segno del complemento a 2.
+
+| Bit | 111 | 110 | 101 | 100 | 011 | 010 | 001 | 000 |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| In eccesso 4 | 3 | 2 | 1 | 0 | −1 | −2 | −3 | −4 |
+
+Questa tabella ti serve nella virgola mobile, tra poco.
+
+### Il legame con il complemento a 2
+
+Con 4 bit l'eccesso 8 va da −8 a 7, come il complemento a 2. Confronta le due scritture dello stesso numero.
+
+| Numero | Complemento a 2 | Eccesso 8 |
+|--:|:-:|:-:|
+| −6 | 1010 | 0010 |
+| −1 | 1111 | 0111 |
+| 0 | 0000 | 1000 |
+| 5 | 0101 | 1101 |
+
+Cambia solo il bit a sinistra. Quindi per passare da una notazione all'altra basta invertire il primo bit.
+
+> [!TRAPPOLA] In eccesso il bit a sinistra è al contrario
+> In complemento a 2 il bit a sinistra è 1 per i negativi. In eccesso è 1 per i positivi e lo zero, e 0 per i negativi. Prima di leggere un numero, guarda bene quale notazione chiede la domanda.
+
+A che cosa serve questa notazione? In eccesso, il numero più grande ha anche i bit più grandi, letti senza segno: l'ordine dei numeri è l'ordine dei bit. Confrontare due numeri diventa facile, e per questo l'eccesso si usa per l'esponente della virgola mobile.
+
+Nello strumento i bit sono 3: guarda la riga dell'eccesso 4 e premi «+1» e «−1».
+
+```widget codifica
+titolo: Tre letture degli stessi 3 bit
+modo: interi
+bit: 110
+n: 3
+```
+
+::: prova (a) Quanto vale 0010 in eccesso 8? (b) Come si scrive 0 in eccesso 8? (c) Si può scrivere 9 in eccesso 8?
+(a) Senza segno 0010 è 2, e 2 − 8 = −6.
+
+(b) 0 + 8 = 8, cioè 1000.
+
+(c) No. Il numero più grande è 1111, cioè 15 − 8 = 7. È la domanda 11 del §1.6: per lo stesso motivo 6 non si scrive in eccesso 4, che arriva solo a 3.
+:::
+
+> [!RICORDA]
+> - Eccesso 8 con 4 bit: leggi senza segno e togli 8. Eccesso 4 con 3 bit: togli 4.
+> - Per scrivere un numero: aggiungi 8 (o 4) e scrivi in base 2.
+> - Eccesso e complemento a 2 differiscono solo nel bit a sinistra.
+
+## La virgola che si sposta (libro, §1.7)
+
+Sul display di una calcolatrice ci stanno poche cifre. Per scrivere 3500000 bastano due cifre, 35, e un'istruzione: «scrivi 0,35 e sposta la virgola di 7 posti a destra». Per 0,0035 bastano le stesse cifre: «scrivi 0,35 e sposta la virgola di 2 posti a sinistra».
+
+Un numero, quindi, si può scrivere con due cose: le cifre, e di quanti posti spostare la virgola. In fisica si scrive $0{,}35 \cdot 10^7$, che si legge «zero virgola trentacinque per dieci alla settima». Moltiplicare per $10^7$ vuol dire spostare la virgola di 7 posti a destra.
+
+In base 2 vale la stessa idea. Ricorda le monete della lezione 02: spostare la virgola di un posto a destra fa passare ogni moneta a quella successiva, che vale il doppio. Quindi il numero raddoppia. Spostarla a sinistra lo dimezza. Per esempio 0,11 vale 3/4, e 1,1 vale 1 e 1/2, il doppio.
+
+### Perché non la virgola fissa
+
+Nella lezione 02 la virgola stava in un posto fisso: si chiama **virgola fissa**. Prova a mettere in un byte 4 bit prima della virgola e 4 dopo. Il numero più piccolo, oltre lo zero, è 0000,0001, cioè 1/16. Il più grande è 1111,1111, cioè 15 e 15/16. Non ci sta 20, e non ci sta 1/32.
+
+La **virgola mobile** (*floating point*) usa alcuni bit per dire dove va la virgola. Così con pochi bit si scrivono sia numeri grandi sia numeri piccoli.
+
+### Il formato del libro: segno, esponente, mantissa
+
+Il libro usa un formato da un byte, diviso in tre pezzi.
+
+| Bit | 1° | 2°, 3°, 4° | 5°, 6°, 7°, 8° |
+|---|:-:|:-:|:-:|
+| Pezzo | segno | esponente | mantissa |
+| Esempio: 01101011 | 0 | 110 | 1011 |
+
+- Il **segno** è un bit: 0 per i positivi, 1 per i negativi. Qui gli altri bit non cambiano con il segno: −2 e 2 differiscono solo nel primo bit.
+- La **mantissa** (*mantissa*) sono le 4 cifre. La virgola si immagina a sinistra: la mantissa 1011 vuol dire 0,1011.
+- L'**esponente** (*exponent*) sono 3 bit in eccesso 4, cioè un numero da −4 a 3. Dice di quanti posti spostare la virgola: a destra se è positivo, a sinistra se è negativo.
+
+> [!METODO] Dal byte al numero
+> 1. Dividi il byte: 1 bit di segno, 3 di esponente, 4 di mantissa.
+> 2. Scrivi la mantissa con «0,» davanti.
+> 3. Leggi l'esponente in eccesso 4: senza segno, meno 4.
+> 4. Sposta la virgola di tanti posti quanto dice l'esponente: a destra se è positivo, a sinistra se è negativo. Se mancano cifre, aggiungi degli zeri.
+> 5. Leggi il numero con le monete della lezione 02, dopo la virgola 1/2, 1/4, 1/8. Se il segno è 1, mettici il meno.
+
+> [!ESEMPIO] 01101011, l'esempio del libro
+> 1. Segno 0, esponente 110, mantissa 1011.
+> 2. La mantissa è 0,1011.
+> 3. 110 senza segno è 6, e 6 − 4 = 2.
+> 4. Sposti la virgola di 2 posti a destra: 10,11.
+> 5. Prima della virgola 10 vale 2. Dopo la virgola 1/2 + 1/4 = 3/4. Il segno è 0: il numero è 2 e 3/4.
+
+> [!ESEMPIO] 00111100, con l'esponente negativo
+> 1. Segno 0, esponente 011, mantissa 1100.
+> 2. La mantissa è 0,1100.
+> 3. 011 senza segno è 3, e 3 − 4 = −1.
+> 4. Sposti la virgola di un posto a sinistra. Davanti manca una cifra, e aggiungi uno zero: 0,01100.
+> 5. Dopo la virgola ci sono le monete 1/4 e 1/8: 2/8 + 1/8 = 3/8.
+
+Lo stesso numero si scrive anche così: $0{,}1011 \cdot 2^2$, che si legge «zero virgola uno zero uno uno per due alla seconda». Moltiplicare per $2^2$ vuol dire spostare la virgola di 2 posti a destra.
+
+> [!RIPASSO] Le potenze di 2 con l'esponente negativo
+> $2^3 = 8$ vuol dire moltiplicare per 2 tre volte. L'esponente negativo vuol dire dividere: $2^{-1}$ si legge «due alla meno uno» e vale 1/2; $2^{-2} = 1/4$; $2^{-3} = 1/8$. Moltiplicare per $2^{-1}$ sposta la virgola di un posto a sinistra.
+
+Nello strumento clicca sui bit: vedi i tre pezzi, la virgola che si sposta e il valore.
+
+```widget codifica
+titolo: Un byte in virgola mobile: clicca sui bit
+modo: virgola
+bit: 01101011
+```
+
+::: prova Che numeri sono (a) 01011010 e (b) 10101000?
+(a) Segno 0, esponente 101, mantissa 1010. L'esponente è 5 − 4 = 1: la virgola va di un posto a destra, e 0,1010 diventa 1,010. Vale 1 + 1/4, cioè 1 e 1/4.
+
+(b) Segno 1, esponente 010, mantissa 1000. L'esponente è 2 − 4 = −2: la virgola va di due posti a sinistra, e 0,1000 diventa 0,001000. Vale 1/8, con il meno: −1/8.
+:::
+
+> [!RICORDA]
+> - Virgola mobile del libro: 1 bit di segno, 3 bit di esponente in eccesso 4, 4 bit di mantissa.
+> - La mantissa ha la virgola a sinistra. L'esponente dice di quanti posti spostarla: a destra se positivo, a sinistra se negativo.
+> - Per leggere: mantissa con «0,» davanti, sposta la virgola, leggi con le monete, metti il segno.
+
+## Dal numero al byte (libro, §1.7)
+
+Ora il viaggio al contrario: hai un numero e vuoi il suo byte. Si fanno gli stessi passi della lettura, all'indietro.
+
+> [!METODO] Dal numero al byte
+> 1. **Segno**: 0 se il numero è positivo, 1 se è negativo. Da qui in poi lavora senza il segno meno.
+> 2. Scrivi il numero in base 2, come nella lezione 02.
+> 3. Sposta la virgola finché sta subito prima del primo 1, cioè finché il numero comincia con «0,1». Conta i posti. Se l'hai spostata a sinistra, l'esponente è positivo; se a destra, è negativo.
+> 4. **Mantissa**: i primi 4 bit dopo la virgola. Se sono meno di 4, aggiungi degli zeri a destra.
+> 5. **Esponente**: aggiungi 4 e scrivi il risultato con 3 bit.
+> 6. Metti in fila segno, esponente e mantissa.
+
+> [!ESEMPIO] 1 e 1/8
+> 1. È positivo: segno 0.
+> 2. 1 e 1/8 in base 2 è 1,001.
+> 3. Sposti la virgola di un posto a sinistra: 0,1001. L'esponente è 1.
+> 4. La mantissa è 1001.
+> 5. 1 + 4 = 5, cioè 101.
+> 6. Il byte è 0 101 1001, cioè 01011001.
+>
+> Controllo: 0,1001 con la virgola un posto a destra è 1,001, cioè 1 e 1/8.
+
+> [!ESEMPIO] 3/8
+> 1. È positivo: segno 0.
+> 2. 3/8 = 1/4 + 1/8, cioè 0,011.
+> 3. Il primo 1 è nella seconda posizione dopo la virgola. Sposti la virgola di un posto a destra: 0,11. L'esponente è −1.
+> 4. La mantissa è 1100: 11 con due zeri in fondo.
+> 5. −1 + 4 = 3, cioè 011.
+> 6. Il byte è 0 011 1100, cioè 00111100. È il secondo esempio della sezione precedente.
+
+### Perché «subito prima del primo 1»
+
+3/8 si potrebbe scrivere anche in un altro modo. Con l'esponente 0, cioè 100, e la mantissa 0110, il byte è 01000110: vale 0,0110, cioè ancora 3/8. Lo stesso numero avrebbe due byte diversi. In più la mantissa 0110 spreca il primo bit con uno 0, e ha posto solo per tre cifre utili.
+
+Per questo si sceglie sempre la mantissa che comincia con 1. Si chiama **forma normalizzata** (*normalized form*). Così ogni numero ha un solo byte, e tutti e 4 i bit della mantissa portano cifre utili. Lo zero non ha nessun 1: si scrive 00000000.
+
+> [!TRAPPOLA] Le due direzioni dell'esponente
+> Se per arrivare a «0,1…» sposti la virgola a sinistra, il numero era grande e l'esponente è positivo. Se la sposti a destra, il numero era piccolo e l'esponente è negativo. Ricontrolla sempre rileggendo il byte che hai scritto.
+
+::: prova Scrivi nel formato del libro (a) −1 e 1/2 e (b) 5/16.
+(a) Segno 1. 1 e 1/2 è 1,1. La virgola va un posto a sinistra: 0,11, esponente 1. Mantissa 1100. Esponente 1 + 4 = 5, cioè 101. Il byte è 11011100. È la voce (d) della domanda 1 del §1.7, letta al contrario.
+
+(b) Segno 0. 5/16 = 4/16 + 1/16 = 1/4 + 1/16, cioè 0,0101. La virgola va un posto a destra: 0,101, esponente −1. Mantissa 1010. Esponente −1 + 4 = 3, cioè 011. Il byte è 00111010.
+:::
+
+> [!RICORDA]
+> - Per scrivere un numero: segno, base 2, virgola subito prima del primo 1, mantissa di 4 bit, esponente più 4 con 3 bit.
+> - Forma normalizzata: la mantissa comincia sempre con 1.
+> - Virgola spostata a sinistra: esponente positivo. A destra: esponente negativo.
+
+## I bit che si perdono: il troncamento (libro, §1.7)
+
+La mantissa ha 4 bit. Che cosa succede quando le cifre sono di più? Si perdono. L'esempio del libro è 2 e 5/8.
+
+1. È positivo: segno 0.
+2. 2 e 5/8 = 2 + 1/2 + 1/8, cioè 10,101.
+3. Sposti la virgola di due posti a sinistra: 0,10101. L'esponente è 2, cioè 110.
+4. Le cifre sono cinque, 10101, ma la mantissa ne tiene quattro: 1010. L'ultimo 1 si perde.
+5. Il byte è 01101010.
+
+Rileggi il byte: 0,1010 con la virgola due posti a destra è 10,10, cioè 2 e 1/2. È sparito 1/8. Questo è l'**errore di troncamento** (*truncation error*), chiamato anche **errore di arrotondamento** (*round-off error*).
+
+Nello strumento scrivi un numero e guarda quali cifre restano fuori dalla mantissa.
+
+```widget codifica
+titolo: Dal numero al byte: quali cifre si perdono?
+modo: virgola
+numero: 2,625
+```
+
+### Un decimo non si scrive esatto
+
+Nella lezione 02 hai visto che un decimo, in base 2, non finisce mai: 0,000110011001100…, con 0011 che si ripete per sempre. Qualunque mantissa, anche di cento bit, lo taglia da qualche parte.
+
+Nel formato del libro va così.
+
+1. Un decimo è 0,0001100110011…
+2. La virgola va spostata di tre posti a destra: 0,1100110011… L'esponente è −3, cioè −3 + 4 = 1, scritto 001.
+3. La mantissa tiene 1100, e tutto il resto si perde.
+4. Il byte è 00011100.
+
+Rileggi: 0,1100 con la virgola tre posti a sinistra è 0,0001100, cioè 1/16 + 1/32 = 3/32. In base 10 fa 0,09375, invece di 0,1. Ecco perché nei programmi 0.1 + 0.2 non dà esattamente 0.3, come hai visto nella lezione 02.
+
+### L'ordine delle somme conta
+
+Il computer tronca dopo ogni operazione. Allora anche l'ordine dei conti cambia il risultato. L'esempio del libro è 2 e 1/2 + 1/8 + 1/8.
+
+**Da sinistra.** 2 e 1/2 + 1/8 fa 2 e 5/8. È il numero di prima: si tronca a 2 e 1/2. Poi 2 e 1/2 + 1/8 di nuovo: ancora 2 e 5/8, ancora troncato a 2 e 1/2. Il risultato è 2 e 1/2: i due ottavi sono spariti.
+
+**Prima i piccoli.** 1/8 + 1/8 fa 1/4, che si scrive esatto. Poi 2 e 1/2 + 1/4 fa 2 e 3/4, cioè 10,11: le cifre sono 1011, e stanno nella mantissa. Il risultato è 2 e 3/4, quello giusto.
+
+> [!IDEA]
+> Un numero piccolo sommato a uno grande finisce nelle cifre tagliate. Sommati tra loro, i numeri piccoli diventano più grandi e non si perdono. Regola del libro: quando sommi tanti numeri, comincia dai più piccoli.
+
+### Il più grande e il più piccolo
+
+- Il numero più grande è 01111111: esponente 3 e mantissa 1111. 0,1111 con la virgola tre posti a destra è 111,1, cioè 7 e 1/2.
+- Il positivo più piccolo in forma normalizzata è 00001000: esponente −4 e mantissa 1000. 0,1 con la virgola quattro posti a sinistra è 0,00001, cioè 1/32.
+
+È la domanda 4 del §1.7. Il libro aggiunge che molti computer, vicino allo zero, accettano anche mantisse che non cominciano con 1. Allora il positivo più piccolo è 00000001, cioè 1/256.
+
+I numeri positivi in forma normalizzata sono pochi: 8 esponenti per 8 mantisse che cominciano con 1, cioè 64 numeri in tutto. Tutti gli altri si arrotondano.
+
+> [!APPROFONDIMENTO] I computer veri: 32 e 64 bit, lo standard IEEE 754
+> Questa parte non compare nei quiz delle simulazioni. I computer usano la stessa idea con più bit, secondo lo standard **IEEE 754** (del 1985, aggiornato nel 2008 e nel 2019).
+>
+> | Formato | Bit in tutto | Segno | Esponente | Mantissa | Nome in C |
+> |---|--:|--:|--:|--:|---|
+> | precisione singola | 32 | 1 | 8 | 23 | `float` |
+> | precisione doppia | 64 | 1 | 11 | 52 | `double` |
+>
+> Tre differenze dal formato del libro.
+> 1. L'esponente è in eccesso 127 con 8 bit, in eccesso 1023 con 11 bit.
+> 2. La mantissa normalizzata comincia con «1,» e non con «0,1». Quell'1 è sempre lì e non si scrive: si guadagna un bit.
+> 3. Alcune file di bit sono riservate: lo zero, l'infinito e «non è un numero» (*NaN*, *not a number*).
+>
+> Un `float` tiene circa 7 cifre decimali, un `double` circa 16. Ma anche così un decimo non è esatto.
+
+::: prova Scrivi nel formato del libro (a) 4 e 1/2 e (b) 1 e 1/16. C'è troncamento?
+(a) 4 e 1/2 è 100,1. La virgola va tre posti a sinistra: 0,1001, esponente 3, cioè 111. La mantissa è 1001. Il byte è 01111001, senza troncamento.
+
+(b) 1 e 1/16 è 1,0001. La virgola va un posto a sinistra: 0,10001, esponente 1, cioè 101. Le cifre sono cinque: la mantissa tiene 1000 e perde l'ultimo 1. Il byte è 01011000, che vale 1: c'è troncamento, e si perde 1/16.
+:::
+
+> [!RICORDA]
+> - Se le cifre sono più di 4, la mantissa tiene le prime 4 e le altre si perdono: è l'errore di troncamento.
+> - Un decimo in base 2 non finisce mai: in virgola mobile non è mai esatto.
+> - Il computer tronca dopo ogni operazione: quando sommi tanti numeri, comincia dai più piccoli.
+> - Nel formato del libro: il più grande è 7 e 1/2, il positivo normalizzato più piccolo è 1/32.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $n$ | «enne» | il numero di bit che hai | con un byte, $n = 8$ |
+| $2^{n-1}$ | «due elevato alla n meno uno» | la moneta di segno con $n$ bit; in eccesso, il numero da togliere | con 4 bit, 8 |
+| $-2^{n-1}$ | «meno due elevato alla n meno uno» | il numero più piccolo in complemento a 2 con $n$ bit | con 8 bit, −128 |
+| $2^{n-1} - 1$ | «due elevato alla n meno uno, meno uno» | il numero più grande in complemento a 2 con $n$ bit | con 8 bit, 127 |
+| eccesso 8 | «eccesso otto» | leggi i 4 bit senza segno e togli 8 | 1110 vale 6 |
+| 0 110 1011 | «segno, esponente, mantissa» | i tre pezzi di un byte in virgola mobile | vale 2 e 3/4 |
+| $0{,}1011 \cdot 2^2$ | «zero virgola uno zero uno uno per due alla seconda» | sposta la virgola di 2 posti a destra | 10,11 |
+| $2^{-1}$ | «due alla meno uno» | un mezzo: sposta la virgola di un posto a sinistra | $2^{-3} = 1/8$ |
+| $0{,}35 \cdot 10^7$ | «zero virgola trentacinque per dieci alla settima» | sposta la virgola di 7 posti a destra, in base 10 | 3500000 |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti, al computer, con Safe Exam Browser.
+
+**Che cosa serve di questa lezione**
+
+1. **Complemento a 2.** La simulazione d'esame 2 del 2023/24, domanda 8, chiede di convertire in base 10 quattro numeri in complemento a 2 su 8 bit: 11111111, 01010101, 00001111 e 10000001. Sono i primi tre quiz qui sotto.
+2. **Virgola mobile e troncamento.** Nella simulazione 1 (domanda 2) e nella simulazione 2 (domanda 1) c'è lo stesso quiz su 3,625: virgola fissa, virgola mobile nel formato a 8 bit del libro, con l'esponente in eccesso a 3 bit, e troncamento.
+3. **Notazione in eccesso.** Serve dentro la virgola mobile, e la scheda del corso consiglia di allenarsi anche con l'eccesso.
+4. **Somme e overflow.** Sono le domande 5–8 del §1.6, e usano la somma della lezione 02.
+
+> [!ESAME] Velocità
+> 5 minuti a quiz. Le monete con il segno meno (−8, −128) leggono un numero in complemento a 2 in pochi secondi. Impara a memoria la tabella dell'esponente in eccesso 4: 100 è 0, 101 è 1, 110 è 2, 111 è 3, 011 è −1, 010 è −2, 001 è −3, 000 è −4.
+
+### Una domanda vera, letta insieme
+
+> [!ESEMPIO] Simulazione d'esame 1, 2023/24, domanda 2
+> Il testo: «Consideriamo il numero 3,625. Selezionare le corrette risposte relative a: (i) rappresentazione binaria del numero in virgola fissa; (ii) rappresentazione del numero in virgola mobile; e, (iii) troncamento nelle rappresentazioni.» Il formato è quello a 8 bit del libro, con l'esponente in eccesso a 3 bit.
+>
+> In pratica chiede tre cose: 3,625 in base 2 con la virgola; lo stesso numero nel byte del libro; se in uno dei due si perdono cifre.
+>
+> 1. **Virgola fissa.** 3 è 11. Per 0,625 raddoppi: 1,25 dà 1; 0,5 dà 0; 1 dà 1. Quindi 0,625 = 0,101, e 3,625 = 11,101. Controllo: 2 + 1 + 1/2 + 1/8 = 3,625. Qui non si perde niente.
+> 2. **Virgola mobile.** Segno 0. Sposti la virgola di due posti a sinistra: 0,11101. Esponente 2, cioè 2 + 4 = 6, scritto 110. Le cifre sono cinque, 11101: la mantissa tiene 1110. Il byte è 01101110.
+> 3. **Troncamento.** Solo nella virgola mobile: l'ultimo 1 si perde, e 01101110 vale 11,10, cioè 3,5.
+>
+> Le risposte giuste sono quindi «Rappresentazione fissa: 11.101», «Rappresentazione Virgola Mobile: 01101110» e «Troncamento presente solo nella rappresentazione in virgola mobile». Nei quiz di Moodle la virgola si scrive con il punto.
+
+> [!METODO] Le quattro operazioni da saper fare
+> 1. **Leggere in complemento a 2**: monete, con quella di sinistra negativa.
+> 2. **Cambiare segno**: copia fino al primo 1 da destra, inverti il resto.
+> 3. **Overflow**: stesso segno nei due numeri, segno diverso nel risultato.
+> 4. **Virgola mobile**: segno; base 2; virgola subito prima del primo 1; mantissa di 4 bit; esponente più 4.
+
+**Errori da evitare**
+
+- Leggere un numero in complemento a 2 come senza segno: 11111111 non è 255 ma −1.
+- Cambiare segno invertendo soltanto i bit: quello è il complemento a 1, e dà un numero sbagliato di 1.
+- Allungare un negativo con degli zeri a sinistra: 1010 con 8 bit è 11111010, non 00001010.
+- Cercare l'overflow nel riporto finale: con il segno contano solo i segni.
+- Confondere il bit a sinistra dell'eccesso con quello del complemento a 2: sono al contrario.
+- Sbagliare la direzione dell'esponente: virgola spostata a sinistra, esponente positivo.
+- Scrivere l'esponente in base 2 senza aggiungere 4.
+- Arrotondare l'ultima cifra della mantissa invece di troncarla: il formato del libro taglia e basta.
+
+## Quiz
+
+```quiz
+D: Simulazione d'esame 2, 2023/24, domanda 8. Quanto vale in base 10 il numero 11111111, in complemento a 2 su 8 bit?
+- $255$
++ $-1$
+- $-127$
+- $-128$
+- $1$
+= In complemento a 2 la moneta di sinistra vale −128: le altre sette fanno 127, quindi $-128 + 127 = -1$. Sul contachilometri, 11111111 è il passo prima di 00000000. La risposta $255$ legge il byte senza segno. La risposta $-127$ è la lettura in segno e modulo: segno meno e 1111111. La risposta $-128$ è 10000000. La risposta $1$ è il valore dell'opposto, non quello del numero.
+
+D: Simulazione d'esame 2, 2023/24, domanda 8. Quanto vale in base 10 il numero 10000001, in complemento a 2 su 8 bit?
+- $-1$
+- $129$
++ $-127$
+- $-126$
+- $127$
+= Le monete sono −128 e 1: $-128 + 1 = -127$. Controllo con il cambio di segno: copi l'1 a destra e inverti il resto, e viene 01111111, cioè 127; quindi il numero è −127. La risposta $-1$ è la lettura in segno e modulo: segno meno e valore 1. La risposta $129$ legge il byte senza segno. La risposta $127$ dimentica il segno meno. La risposta $-126$ sbaglia il conto di uno.
+
+D: Simulazione d'esame 2, 2023/24, domanda 8. Quanto valgono in base 10 i numeri 01010101 e 00001111, in complemento a 2 su 8 bit?
++ $85$ e $15$
+- $-85$ e $-15$
+- $-43$ e $15$
+- $85$ e $-1$
+- $170$ e $15$
+= Tutti e due hanno il bit di segno a 0: sono positivi e si leggono come nella lezione 02. 01010101 vale $64 + 16 + 4 + 1 = 85$, 00001111 vale $8 + 4 + 2 + 1 = 15$. La risposta con $-85$ e $-15$ li crede negativi, ma il bit a sinistra è 0. La risposta $85$ e $-1$ legge solo gli ultimi 4 bit di 00001111, come se fossero un numero di 4 bit. La risposta $-43$ dimentica lo 0 iniziale e legge 1010101 con 7 bit. La risposta $170$ legge i bit invertiti, 10101010.
+
+D: Con 4 bit in complemento a 2, quale fila di bit è l'opposto di 0110?
+- $1001$
++ $1010$
+- $1110$
+- $0110$
+- $0101$
+= 0110 è 6, e l'opposto è −6. Da destra copi «10» fino al primo 1 compreso, poi inverti «01» in «10»: viene 1010. Controllo: $-8 + 2 = -6$. La risposta $1001$ inverte soltanto i bit: è il complemento a 1 e vale −7. La risposta $1110$ cambia soltanto il primo bit, come in segno e modulo: in complemento a 2 vale −2. La risposta $0110$ non cambia niente. La risposta $0101$ vale 5.
+
+D: Con 8 bit in complemento a 2, quali numeri si possono scrivere?
+- da $0$ a $255$
++ da $-128$ a $127$
+- da $-127$ a $127$
+- da $-127$ a $128$
+- da $-256$ a $255$
+= Con $n$ bit si va da $-2^{n-1}$ a $2^{n-1} - 1$, e con 8 bit $2^7 = 128$: da −128 a 127. È la domanda 4 del §1.6. La risposta da 0 a 255 vale senza segno. Quella da −127 a 127 dimentica 10000000, che è −128: è l'intervallo del complemento a 1 e del segno e modulo, che hanno due zeri. Quella con 128 sbaglia il lato: lo zero toglie un posto ai positivi, non ai negativi. L'ultima conta 512 numeri, ma 8 bit ne danno 256.
+
+D: Con 4 bit in complemento a 2, quale di queste somme va in overflow?
++ $0101 + 0110$
+- $1110 + 0011$
+- $1010 + 0111$
+- $1101 + 1110$
+- $0011 + 0010$
+= L'overflow c'è quando due numeri con lo stesso segno danno un risultato con il segno opposto. $0101 + 0110$ è $5 + 6$: due positivi, e il risultato 1011 è negativo. Infatti 11 con 4 bit non c'è. $1110 + 0011$ e $1010 + 0111$ hanno segni diversi: non vanno mai in overflow. $1101 + 1110$ è $-3 + (-2) = -5$, che ci sta: esce un riporto a sinistra, ma il riporto non conta. $0011 + 0010$ fa 5, che ci sta.
+
+D: Domanda 8 del §1.6 del libro. In complemento a 2 si sommano un numero positivo e uno negativo. Che cosa si può dire dell'overflow?
++ Non c'è mai overflow.
+- C'è overflow ogni volta che esce un riporto dalla colonna di sinistra.
+- C'è overflow quando il numero negativo è il più piccolo che si può scrivere.
+- C'è sempre overflow, perché i segni sono diversi.
+- Dipende dal numero di bit: con 4 bit può esserci, con 8 no.
+= Il risultato di un positivo più un negativo sta sempre tra i due numeri. Per esempio $7 + (-8) = -1$, che sta tra −8 e 7. Se i due numeri ci stanno nei bit, ci sta anche il risultato: è la risposta del libro. Il riporto a sinistra non c'entra: in $7 + (-5)$ esce, e il risultato 2 è giusto. Anche con il negativo più piccolo il risultato ci sta. La risposta sui bit è sbagliata perché il ragionamento vale con qualunque numero di bit.
+
+D: Quanto vale 1110 in notazione in eccesso 8?
+- $14$
+- $-2$
++ $6$
+- $-6$
+- $7$
+= In eccesso 8 si legge senza segno e si toglie 8: 1110 è 14, e $14 - 8 = 6$. È la domanda 9 del §1.6, con la risposta del libro. La risposta $14$ dimentica di togliere 8. La risposta $-2$ legge il numero in complemento a 2. La risposta $-6$ fa la sottrazione al contrario, $8 - 14$. La risposta $7$ è 1111.
+
+D: Come si scrive −5 in notazione in eccesso 8?
++ $0011$
+- $1011$
+- $1101$
+- $0101$
+- $1100$
+= Si aggiunge 8 e si scrive in base 2: $-5 + 8 = 3$, cioè 0011. È la domanda 10 del §1.6. La risposta $1011$ è −5 in complemento a 2: le due notazioni differiscono proprio nel bit a sinistra. La risposta $1101$ è +5 in eccesso 8. La risposta $0101$ è 5 senza segno, che in eccesso vale −3. La risposta $1100$ vale 4.
+
+D: Simulazione d'esame 1, 2023/24, domanda 2. Qual è la rappresentazione in virgola mobile del numero 3,625, nel formato a 8 bit del libro (1 bit di segno, 3 di esponente in eccesso, 4 di mantissa)?
+- $01101101$
++ $01101110$
+- $11101110$
+- $01011101$
+- $00101110$
+= 3,625 è 11,101 in base 2. La virgola va spostata di due posti a sinistra: 0,11101, esponente 2, che in eccesso 4 è $2 + 4 = 6$, cioè 110. La mantissa tiene le prime quattro cifre, 1110, e l'ultimo 1 si perde. Il segno è 0. Il byte è 01101110. La risposta 01101101 ha una mantissa sbagliata: vale 3 e 1/4. La risposta 11101110 ha il segno 1, cioè negativo. La risposta 01011101 sposta la virgola di un posto solo. La risposta 00101110 scrive l'esponente 2 come 010, senza aggiungere 4.
+
+D: Simulazione d'esame 1, 2023/24, domanda 2 (seconda parte). Per il numero 3,625, che cosa si può dire della virgola fissa e del troncamento?
++ In virgola fissa è 11,101; il troncamento c'è solo in virgola mobile.
+- In virgola fissa è 11,101; il troncamento c'è in tutte e due le rappresentazioni.
+- In virgola fissa è 11,111; il troncamento non c'è in nessuna delle due.
+- In virgola fissa è 111,01; il troncamento c'è solo in virgola mobile.
+- In virgola fissa è 11,101; il troncamento non c'è in nessuna delle due.
+= 3 è 11, e 0,625 = 1/2 + 1/8 = 0,101: quindi 3,625 = 11,101, con tutte le cifre. In virgola mobile, invece, le cifre 11101 sono cinque e la mantissa ne tiene quattro: l'ultimo 1 si perde, e il byte 01101110 vale 3,5. Quindi il troncamento c'è solo in virgola mobile. 11,111 vale 3 e 7/8. 111,01 vale 7 e 1/4. Le risposte che dicono «troncamento in tutte e due» o «in nessuna» sbagliano una delle due rappresentazioni.
+
+D: Quanto vale il byte 11011010 nel formato in virgola mobile del libro?
++ $-1\tfrac14$
+- $1\tfrac14$
+- $-\tfrac58$
+- $-2\tfrac12$
+- $-10$
+= Segno 1, quindi negativo. Esponente 101, cioè $5 - 4 = 1$. Mantissa 1010, cioè 0,1010; con la virgola un posto a destra diventa 1,010, cioè 1 e 1/4. Il numero è $-1\tfrac14$. La risposta $1\tfrac14$ dimentica il segno. La risposta $-\tfrac58$ non sposta la virgola: 0,101 vale 5/8. La risposta $-2\tfrac12$ sposta la virgola di due posti. La risposta $-10$ legge la mantissa 1010 come un intero.
+
+D: Qual è il numero più grande che si scrive nel formato in virgola mobile a 8 bit del libro?
+- $7$
++ $7\tfrac12$
+- $15$
+- $127$
+- $\tfrac{15}{16}$
+= Il più grande ha segno 0, l'esponente più grande, 111, cioè 3, e la mantissa 1111. 0,1111 con la virgola tre posti a destra è 111,1, cioè 7 e 1/2: il byte è 01111111. È la domanda 4 del §1.7. La risposta $7$ perde l'ultima cifra dopo la virgola. La risposta $15$ legge la mantissa 1111 come un intero. La risposta $127$ legge tutto il byte come un intero. La risposta $\tfrac{15}{16}$ non sposta la virgola.
+
+D: Nel formato del libro si calcola 2 e 1/2 + 1/8 + 1/8, da sinistra a destra, troncando dopo ogni somma. Che cosa si ottiene?
++ $2\tfrac12$
+- $2\tfrac34$
+- $2\tfrac58$
+- $2\tfrac14$
+- $3$
+= 2 e 1/2 + 1/8 fa 2 e 5/8, cioè 10,101: cinque cifre. La mantissa ne tiene quattro e torna 2 e 1/2. Con il secondo 1/8 succede lo stesso. Il risultato è 2 e 1/2. La risposta $2\tfrac34$ è il risultato giusto, che si ottiene sommando prima i due ottavi: è l'esempio del libro sull'ordine delle somme. La risposta $2\tfrac58$ dimentica che anche il primo risultato si tronca. Le ultime due non vengono in nessun ordine.
+
+D: Quale di questi numeri NON si scrive in modo esatto nel formato in virgola mobile del libro?
+- $2\tfrac34$
+- $\tfrac38$
+- $7\tfrac12$
+- $-\tfrac1{32}$
++ $0{,}1$
+= Un decimo in base 2 è 0,000110011…, con 0011 che si ripete per sempre: nessuna mantissa basta. Nel formato del libro diventa 00011100, che vale 3/32, cioè 0,09375. Gli altri hanno al massimo quattro cifre dopo il primo 1: 2 e 3/4 è 10,11; 3/8 è 0,011; 7 e 1/2 è 111,1; 1/32 è 0,00001, con l'esponente −4, e il segno meno non cambia niente.
+```
+
+## Esercizi
+
+::: esercizio base Domanda 1 del §1.6: dal complemento a 2 alla base 10
+Scrivi in base 10 questi numeri in complemento a 2 con 5 bit: (a) 00011; (b) 01111; (c) 11100; (d) 11010; (e) 00000; (f) 10000.
+::: soluzione
+Con 5 bit le monete sono −16, 8, 4, 2, 1.
+
+| Bit | Monete | Valore |
+|:-:|---|--:|
+| 00011 | 2 + 1 | 3 |
+| 01111 | 8 + 4 + 2 + 1 | 15 |
+| 11100 | −16 + 8 + 4 | −4 |
+| 11010 | −16 + 8 + 2 | −6 |
+| 00000 | nessuna | 0 |
+| 10000 | −16 | −16 |
+
+Sono le risposte del libro. Controllo su (c) con il cambio di segno: copi «100» e inverti «11» in «00»: 00100, cioè 4. Quindi 11100 è −4.
+:::
+
+::: esercizio base Domanda 2 del §1.6: dalla base 10 al complemento a 2
+Scrivi in complemento a 2 con 8 bit: (a) 6; (b) −6; (c) −17; (d) 13; (e) −1; (f) 0.
+::: soluzione
+1. (a) 6 = 4 + 2: 00000110.
+2. (b) Cambi segno a 00000110: copi «10», inverti il resto. Viene 11111010. Controllo: −128 + 122 = −6.
+3. (c) 17 = 16 + 1: 00010001. Copi l'ultimo 1 e inverti il resto: 11101111. Controllo: −128 + 111 = −17.
+4. (d) 13 = 8 + 4 + 1: 00001101.
+5. (e) 1 è 00000001. Copi l'ultimo 1 e inverti il resto: 11111111.
+6. (f) 00000000.
+
+Sono le risposte del libro.
+:::
+
+::: esercizio base Domanda 3 del §1.6: cambiare segno
+Questi numeri sono in complemento a 2 con 8 bit. Scrivi il loro opposto: (a) 00000001; (b) 01010101; (c) 11111100; (d) 11111110; (e) 00000000; (f) 01111111.
+::: soluzione
+Per ognuno: copi da destra fino al primo 1 compreso, poi inverti il resto.
+
+| Numero | Copi | Inverti | Opposto | Valori |
+|:-:|:-:|:-:|:-:|---|
+| 00000001 | 1 | 0000000 → 1111111 | 11111111 | 1 e −1 |
+| 01010101 | 1 | 0101010 → 1010101 | 10101011 | 85 e −85 |
+| 11111100 | 100 | 11111 → 00000 | 00000100 | −4 e 4 |
+| 11111110 | 10 | 111111 → 000000 | 00000010 | −2 e 2 |
+| 00000000 | tutto | niente | 00000000 | 0 e 0 |
+| 01111111 | 1 | 0111111 → 1000000 | 10000001 | 127 e −127 |
+
+Sono le risposte del libro.
+:::
+
+::: esercizio base Domanda 4 del §1.6: il più grande e il più piccolo
+Un computer scrive gli interi in complemento a 2. Qual è il numero più grande e quale il più piccolo, con (a) 4 bit, (b) 6 bit, (c) 8 bit?
+::: soluzione
+Il più piccolo è la sola moneta di segno, con il meno. Il più grande è la somma di tutte le altre monete, cioè la moneta di segno meno 1.
+
+1. (a) 4 bit: la moneta di segno vale 8. Dal più piccolo −8 al più grande 7.
+2. (b) 6 bit: vale 32. Da −32 a 31.
+3. (c) 8 bit: vale 128. Da −128 a 127.
+
+Sono le risposte del libro.
+:::
+
+::: esercizio base Domande 9 e 10 del §1.6: la notazione in eccesso 8
+(a) Senza guardare la tabella, scrivi in base 10 questi numeri in eccesso 8: 1110, 0111, 1000, 0010, 0000, 1001. (b) Scrivi in eccesso 8: 5, −5, 3, 0, 7, −8.
+::: soluzione
+(a) Si legge senza segno e si toglie 8.
+
+| Bit | Senza segno | Meno 8 |
+|:-:|--:|--:|
+| 1110 | 14 | 6 |
+| 0111 | 7 | −1 |
+| 1000 | 8 | 0 |
+| 0010 | 2 | −6 |
+| 0000 | 0 | −8 |
+| 1001 | 9 | 1 |
+
+(b) Si aggiunge 8 e si scrive con 4 bit.
+
+| Numero | Più 8 | Bit |
+|--:|--:|:-:|
+| 5 | 13 | 1101 |
+| −5 | 3 | 0011 |
+| 3 | 11 | 1011 |
+| 0 | 8 | 1000 |
+| 7 | 15 | 1111 |
+| −8 | 0 | 0000 |
+
+Sono le risposte del libro.
+:::
+
+::: esercizio base Domanda 11 del §1.6: che cosa non ci sta
+Si può scrivere 9 in eccesso 8? E 6 in eccesso 4? Perché?
+::: soluzione
+1. In eccesso 8 il numero più grande è 1111, cioè 15 − 8 = 7. Il 9 non ci sta.
+2. Per scrivere 9 serve almeno l'eccesso 16, che usa 5 bit.
+3. In eccesso 4 con 3 bit il più grande è 111, cioè 7 − 4 = 3. Il 6 non ci sta.
+
+È la risposta del libro.
+:::
+
+::: esercizio base Lucidi del canale A: −5 con 6 bit
+Scrivi −5 in complemento a 2 con 6 bit, in due modi: con il cambio di segno e con il metodo dei lucidi di Cardone. Nei lucidi un negativo −K, dove K è il numero senza il segno meno, si scrive come il numero senza segno $2^6 - K$.
+::: soluzione
+1. Con il cambio di segno: 5 con 6 bit è 000101. Copi l'ultimo 1, inverti gli altri cinque bit, 00010, che diventano 11101. Il risultato è 111011.
+2. Con i lucidi: $2^6 = 64$, e $64 - 5 = 59$. In base 2, con le monete: 59 = 32 + 16 + 8 + 2 + 1, cioè 111011.
+3. Controllo con le monete con il segno: −32 + 16 + 8 + 2 + 1 = −5.
+
+È lo stesso numero. Il secondo metodo è il «16 in più» di questa lezione, con 6 bit al posto di 4: un negativo, letto senza segno, vale 64 in più.
+:::
+
+::: esercizio medio Domanda 5 del §1.6: somme in complemento a 2
+Questi numeri sono in complemento a 2 con 4 bit. Fai le somme e controlla in base 10: (a) 0101 + 0010; (b) 0011 + 0001; (c) 0101 + 1010; (d) 1110 + 0011; (e) 1010 + 1110.
+::: soluzione
+1. (a) Nessun riporto: 0111. Controllo: 5 + 2 = 7.
+2. (b) 1 + 1 fa 10, scrivi 0 e riporti 1; poi 1 + 0 più il riporto fa 10, scrivi 0 e riporti 1; poi 0 + 0 più il riporto fa 1. Viene 0100. Controllo: 3 + 1 = 4.
+3. (c) Nessun riporto: in ogni colonna c'è un solo 1. Viene 1111. Controllo: 5 + (−6) = −1.
+4. (d) 0 + 1 fa 1; 1 + 1 fa 10, scrivi 0 e riporti 1; 1 + 0 più il riporto fa 10, scrivi 0 e riporti 1; 1 + 0 più il riporto fa 10, scrivi 0 e il riporto si butta. Viene 0001. Controllo: −2 + 3 = 1.
+5. (e) 0 + 0 fa 0; 1 + 1 fa 10, scrivi 0 e riporti 1; 0 + 1 più il riporto fa 10, scrivi 0 e riporti 1; 1 + 1 più il riporto fa 11, scrivi 1 e il riporto si butta. Viene 1000. Controllo: −6 + (−2) = −8.
+
+Sono le risposte del libro.
+:::
+
+::: esercizio medio Domanda 6 del §1.6: somme con overflow
+Fai le somme con 4 bit in complemento a 2 e di' quali risultati sono sbagliati per l'overflow: (a) 0100 + 0011; (b) 0101 + 0110; (c) 1010 + 1010; (d) 1010 + 0111; (e) 0111 + 0001.
+::: soluzione
+1. (a) 4 + 3: viene 0111, cioè 7. Due positivi, risultato positivo: giusto.
+2. (b) 5 + 6: viene 1011. Due positivi, risultato negativo: overflow.
+3. (c) −6 + (−6): viene 0100. Due negativi, risultato positivo: overflow.
+4. (d) −6 + 7: segni diversi, niente overflow. Viene 0001, cioè 1.
+5. (e) 7 + 1: viene 1000. Due positivi, risultato negativo: overflow. Sul contachilometri, un passo dopo 7 c'è −8.
+
+Sono le risposte del libro.
+:::
+
+::: esercizio medio Domanda 7 del §1.6: sottrarre sommando
+Scrivi i numeri in complemento a 2 con 4 bit, trasforma ogni conto in una somma, come fa un computer, e calcola: (a) 6 − (−1); (b) 3 − 2; (c) 4 − 6; (d) 2 + 4; (e) 1 − 5.
+::: soluzione
+Togliere un numero vuol dire aggiungere il suo opposto.
+
+| Conto | Diventa | In bit | Risultato | Controllo |
+|---|---|---|:-:|---|
+| 6 − (−1) | 6 + 1 | 0110 + 0001 | 0111 | 7 |
+| 3 − 2 | 3 + (−2) | 0011 + 1110 | 0001 | 1 |
+| 4 − 6 | 4 + (−6) | 0100 + 1010 | 1110 | −2 |
+| 2 + 4 | 2 + 4 | 0010 + 0100 | 0110 | 6 |
+| 1 − 5 | 1 + (−5) | 0001 + 1011 | 1100 | −4 |
+
+In (b) il riporto che esce a sinistra si butta. In (e): 1 + 1 fa 10, scrivi 0 e riporti 1; 0 + 1 più il riporto fa 10, scrivi 0 e riporti 1; 0 + 0 più il riporto fa 1; 0 + 1 fa 1. Viene 1100, cioè −8 + 4 = −4.
+
+Sono le risposte del libro.
+:::
+
+::: esercizio medio Domanda 8 del §1.6: positivo più negativo
+In complemento a 2, sommando un numero positivo e uno negativo, può esserci overflow? Spiega perché.
+::: soluzione
+1. L'overflow c'è quando il risultato è troppo grande, o troppo piccolo, per i bit che hai.
+2. Sommando un positivo e un negativo, il risultato sta sempre tra i due numeri. Per esempio 5 + (−7) = −2, che sta tra −7 e 5.
+3. I due numeri ci stanno nei bit, quindi ci sta anche il risultato.
+
+No: non può esserci overflow. È la risposta del libro.
+:::
+
+::: esercizio medio Domanda 1 del §1.7: leggere la virgola mobile
+Leggi questi byte nel formato in virgola mobile del libro: (a) 01001010; (b) 01101101; (c) 00111001; (d) 11011100; (e) 10101011.
+::: soluzione
+| Byte | Segno | Esponente | Mantissa | Virgola spostata | Valore |
+|:-:|:-:|---|:-:|:-:|---|
+| 01001010 | + | 100: 0 | 0,1010 | 0,1010 | 5/8 |
+| 01101101 | + | 110: 2 | 0,1101 | 11,01 | 3 e 1/4 |
+| 00111001 | + | 011: −1 | 0,1001 | 0,01001 | 9/32 |
+| 11011100 | − | 101: 1 | 0,1100 | 1,100 | −1 e 1/2 |
+| 10101011 | − | 010: −2 | 0,1011 | 0,001011 | −11/64 |
+
+Due conti per esteso.
+
+1. (c) 0,01001 ha le monete 1/4 e 1/32: 8/32 + 1/32 = 9/32.
+2. (e) 0,001011 ha le monete 1/8, 1/32 e 1/64: 8/64 + 2/64 + 1/64 = 11/64. Con il segno: −11/64.
+
+Sono le risposte del libro.
+:::
+
+::: esercizio medio Domanda 2 del §1.7: scrivere in virgola mobile
+Scrivi nel formato del libro, e di' dove c'è troncamento: (a) 2 e 3/4; (b) 5 e 1/4; (c) 3/4; (d) −3 e 1/2; (e) −4 e 3/8.
+::: soluzione
+1. (a) 2 e 3/4 = 10,11. Virgola due posti a sinistra: 0,1011, esponente 2, cioè 110. Byte 01101011.
+2. (b) 5 e 1/4 = 101,01. Virgola tre posti a sinistra: 0,10101, esponente 3, cioè 111. Le cifre sono cinque: la mantissa tiene 1010. Byte 01111010, che vale 5: troncamento.
+3. (c) 3/4 = 0,11. La virgola è già prima del primo 1: esponente 0, cioè 100. Mantissa 1100. Byte 01001100.
+4. (d) 3 e 1/2 = 11,1. Virgola due posti a sinistra: 0,111, esponente 2, cioè 110. Mantissa 1110, segno 1. Byte 11101110.
+5. (e) 4 e 3/8 = 100,011. Virgola tre posti a sinistra: 0,100011, esponente 3, cioè 111. La mantissa tiene 1000 e perde 11. Segno 1. Byte 11111000, che vale −4: troncamento.
+
+Sono le risposte del libro.
+:::
+
+::: esercizio medio Domanda 4 del §1.7: il più grande e il più piccolo
+Nel formato del libro, qual è il numero più grande? E il positivo più piccolo?
+::: soluzione
+1. Il più grande: segno 0, esponente 111, cioè 3, mantissa 1111. 0,1111 con la virgola tre posti a destra è 111,1, cioè 7 e 1/2. Il byte è 01111111.
+2. Il positivo più piccolo in forma normalizzata: esponente 000, cioè −4, mantissa 1000. 0,1 con la virgola quattro posti a sinistra è 0,00001, cioè 1/32. Il byte è 00001000.
+3. Il libro aggiunge che molti computer, vicino allo zero, non chiedono la forma normalizzata. Allora il più piccolo è 00000001: 0,0001 con la virgola quattro posti a sinistra, cioè 0,00000001, che vale 1/256.
+:::
+
+::: esercizio medio Un byte, quattro letture
+Il byte 01011100 viene letto (a) come intero senza segno, (b) in complemento a 2, (c) in eccesso 128, (d) nel formato in virgola mobile del libro. Quanto vale nei quattro casi?
+::: soluzione
+1. (a) Le monete sono 64, 16, 8 e 4: 92.
+2. (b) Il bit di segno è 0, quindi è positivo e vale ancora 92.
+3. (c) In eccesso 128 si toglie 128: 92 − 128 = −36. Con 8 bit l'eccesso è 128, cioè la moneta di segno.
+4. (d) Segno 0, esponente 101, cioè 1, mantissa 1100. 0,1100 con la virgola un posto a destra è 1,100: 1 e 1/2.
+
+Gli stessi bit danno quattro numeri diversi: decide la regola con cui li leggi, come nella lezione 02.
+:::
+
+::: esercizio medio Un decimo nel formato del libro
+Scrivi 0,1 nel formato in virgola mobile del libro. Quanto vale il byte che ottieni? Di quanto sbaglia?
+::: soluzione
+1. Con il metodo dei raddoppi della lezione 02: 0,2 dà 0; 0,4 dà 0; 0,8 dà 0; 1,6 dà 1; 1,2 dà 1; 0,4 dà 0; 0,8 dà 0; 1,6 dà 1… Quindi 0,1 = 0,000110011…
+2. Il primo 1 è nella quarta posizione: la virgola va tre posti a destra, 0,110011…, esponente −3. In eccesso 4: −3 + 4 = 1, cioè 001.
+3. La mantissa tiene 1100. Segno 0. Il byte è 00011100.
+4. Lettura: 0,1100 con la virgola tre posti a sinistra è 0,0001100, cioè 1/16 + 1/32 = 3/32 = 0,09375.
+5. L'errore è 0,1 − 0,09375 = 0,00625.
+:::
+
+::: esercizio difficile Domanda 3 del §1.7: quale byte è più grande
+Nel formato del libro, quale tra 01001001 e 00111101 è il numero più grande? Trova un modo veloce per confrontare due byte.
+::: soluzione
+1. 01001001: esponente 100, cioè 0; mantissa 0,1001, che vale 1/2 + 1/16 = 9/16.
+2. 00111101: esponente 011, cioè −1; 0,1101 con la virgola un posto a sinistra è 0,01101, cioè 1/4 + 1/8 + 1/32 = 13/32.
+3. 9/16 = 18/32, che è più di 13/32: il primo è più grande.
+
+Il modo veloce dell'appendice del libro, con i byte in forma normalizzata:
+
+- se i bit di segno sono diversi, è più grande quello con il segno 0;
+- se sono tutti e due 0, guarda gli altri bit da sinistra: al primo bit diverso, è più grande il byte che ha l'1;
+- se sono tutti e due 1, al primo bit diverso è più grande il byte che ha lo 0.
+
+Qui il segno è 0 in tutti e due, e il primo bit diverso è il secondo: 1 nel primo byte. Funziona perché l'esponente è in eccesso: esponente più grande vuol dire bit più grandi. Il libro lo indica proprio come motivo per usare l'eccesso al posto del complemento a 2.
+:::
+
+::: esercizio difficile Una somma in virgola mobile
+Nel formato del libro scrivi 1 e 3/4 e 3/16. Poi calcola la loro somma e scrivila nel formato. Il risultato è esatto?
+::: soluzione
+1. 1 e 3/4 = 1,11. Virgola un posto a sinistra: 0,111, esponente 1, cioè 101. Mantissa 1110. Byte 01011110.
+2. 3/16 = 1/8 + 1/16 = 0,0011. Virgola due posti a destra: 0,11, esponente −2, cioè 010. Mantissa 1100. Byte 00101100.
+3. La somma vera: 1 e 3/4 + 3/16 = 1 e 12/16 + 3/16 = 1 e 15/16, cioè 1,1111.
+4. Virgola un posto a sinistra: 0,11111, esponente 1, cioè 101. Le cifre sono cinque: la mantissa tiene 1111. Byte 01011111.
+5. Lettura: 0,1111 con la virgola un posto a destra è 1,111, cioè 1 e 7/8.
+
+Non è esatto: si perde 1/16. I due numeri si scrivevano esatti, ma la loro somma no.
+:::
+
+::: esercizio esame Leggere, cambiare segno, sommare con 8 bit
+In complemento a 2 con 8 bit: (a) quanto vale 10010110? (b) Scrivi il suo opposto. (c) Calcola 01100100 + 00110010: c'è overflow?
+::: soluzione
+1. (a) Le monete sono −128, 16, 4 e 2: −128 + 22 = −106.
+2. (b) Copi «10» da destra e inverti gli altri sei bit, 100101, che diventano 011010. L'opposto è 01101010. Controllo: 64 + 32 + 8 + 2 = 106.
+3. (c) I due numeri sono 100 e 50, tutti e due positivi.
+4. In colonna, da destra: 0 + 0 fa 0; 0 + 1 fa 1; 1 + 0 fa 1; 0 + 0 fa 0; 0 + 1 fa 1; 1 + 1 fa 10, scrivi 0 e riporti 1; 1 + 0 più il riporto fa 10, scrivi 0 e riporti 1; 0 + 0 più il riporto fa 1. Il risultato è 10010110.
+5. Il risultato ha il bit di segno 1: due positivi danno un negativo, quindi c'è overflow. Infatti 150 supera 127.
+6. Il byte ottenuto è proprio quello della domanda (a): vale −106, cioè 150 − 256.
+:::
+
+::: esercizio esame Simulazione d'esame 1, 2023/24, domanda 2: il numero 3,625
+Scrivi 3,625 in virgola fissa e nel formato in virgola mobile del libro. Di' in quale delle due rappresentazioni c'è troncamento, e quanto vale il byte ottenuto.
+::: soluzione
+1. Parte intera: 3 = 2 + 1, cioè 11.
+2. Parte dopo la virgola, con i raddoppi: 0,625 · 2 = 1,25, cifra 1; 0,25 · 2 = 0,5, cifra 0; 0,5 · 2 = 1, cifra 1. Quindi 0,101.
+3. Virgola fissa: 11,101, senza troncamento.
+4. Virgola mobile: segno 0. Virgola due posti a sinistra: 0,11101, esponente 2, cioè 2 + 4 = 6, scritto 110.
+5. La mantissa tiene 1110 e perde l'ultimo 1. Il byte è 01101110.
+6. Lettura: 0,1110 con la virgola due posti a destra è 11,10, cioè 3,5. Il troncamento c'è solo in virgola mobile, e si perde 1/8.
+
+Le risposte dello studente nella copia svolta a mano della simulazione sono giuste: 11.101, 01101110, troncamento solo in virgola mobile.
+:::
+
+## Domande di ripasso
+
+::: domanda Perché il complemento a 2 si può pensare come un contachilometri?
+Perché con un numero fisso di bit, tornando indietro da 0000, il contatore gira e segna 1111: quella fila fa la parte di −1, e le successive all'indietro di −2, −3 e così via. I positivi stanno in avanti da zero.
+:::
+
+::: domanda Come si legge un numero in complemento a 2?
+Se il bit a sinistra è 0, come un numero senza segno. Se è 1, si sommano le monete dando a quella di sinistra il segno meno: −8 con 4 bit, −128 con 8 bit.
+:::
+
+::: domanda Quali sono i due modi per cambiare segno a un numero?
+Copiare i bit da destra fino al primo 1 compreso e invertire tutti gli altri. Oppure invertire tutti i bit e aggiungere 1. Danno lo stesso risultato.
+:::
+
+::: domanda Come si riconosce l'overflow in una somma in complemento a 2?
+Quando i due numeri hanno lo stesso segno e il risultato ha il segno opposto. Se i segni dei due numeri sono diversi, l'overflow non c'è mai. Il riporto che esce a sinistra non conta.
+:::
+
+::: domanda Che cos'è la notazione in eccesso 8, e che legame ha con il complemento a 2?
+Si leggono i 4 bit senza segno e si toglie 8. Va da −8 a 7, come il complemento a 2 con 4 bit, e le due scritture di un numero differiscono solo nel bit a sinistra.
+:::
+
+::: domanda Com'è fatto il formato in virgola mobile del libro?
+Un byte: 1 bit di segno, 3 bit di esponente in eccesso 4 e 4 bit di mantissa. La mantissa sono le cifre, con la virgola a sinistra; l'esponente dice di quanti posti spostare la virgola, a destra se positivo, a sinistra se negativo.
+:::
+
+::: domanda Che cos'è la forma normalizzata, e perché si usa?
+È la scelta di una mantissa che comincia con 1. Così ogni numero ha un solo byte, e tutti i bit della mantissa portano cifre utili.
+:::
+
+::: domanda Che cos'è l'errore di troncamento? Fai un esempio.
+Quando le cifre del numero sono più dei 4 bit della mantissa, le ultime si perdono. 2 e 5/8 è 10,101: la mantissa tiene 1010 e il byte vale 2 e 1/2. Un decimo non si scrive mai esatto, perché in base 2 ha infinite cifre.
+:::
+
+## Glossario
+
+```glossario
+Complemento a 2 | Il modo di scrivere gli interi con il segno usato dai computer (*two's complement*): con 4 bit 1111 è −1 e 1000 è −8.
+Bit di segno | Il bit più a sinistra (*sign bit*). In complemento a 2 vale 0 per i positivi e lo zero, 1 per i negativi.
+Invertire un bit | Cambiarlo: 0 diventa 1 e 1 diventa 0.
+Cambio di segno | Passare da un numero al suo opposto: copia da destra fino al primo 1, poi inverti il resto.
+Complemento a 1 | Un modo vecchio di scrivere i negativi: si invertono tutti i bit. Ha due zeri.
+Overflow | Quando il risultato non ci sta nei bit. In complemento a 2: due numeri con lo stesso segno danno un risultato con il segno opposto.
+Notazione in eccesso | Si leggono i bit senza segno e si toglie sempre lo stesso numero (*excess notation*): 8 con 4 bit, 4 con 3 bit.
+Virgola fissa | La virgola sta sempre nello stesso posto, come in 11,101 (*fixed point*).
+Virgola mobile | Il numero si scrive con le cifre e con un esponente che dice dove va la virgola (*floating point*).
+Mantissa | Le cifre di un numero in virgola mobile, con la virgola a sinistra (*mantissa*). Nel formato del libro sono 4 bit.
+Esponente | Di quanti posti spostare la virgola (*exponent*). Nel formato del libro sono 3 bit in eccesso 4, da −4 a 3.
+Forma normalizzata | La mantissa comincia con 1 (*normalized form*): ogni numero ha un solo byte.
+Errore di troncamento | Le cifre che non entrano nella mantissa si perdono (*truncation error*, anche *round-off error*): 2 e 5/8 diventa 2 e 1/2.
+IEEE 754 | Lo standard della virgola mobile nei computer veri: 32 bit (`float`) e 64 bit (`double`).
+```
+
+## Checklist
+
+```checklist
+- So leggere un numero in complemento a 2 con le monete, dando il segno meno a quella di sinistra.
+- So scrivere un numero negativo in complemento a 2 con un numero di bit dato.
+- So cambiare segno con «copia fino al primo 1, poi inverti» e con «inverti e aggiungi 1».
+- So dire fin dove si arriva con $n$ bit in complemento a 2.
+- So sommare e sottrarre in complemento a 2 e riconoscere l'overflow dai segni.
+- So leggere e scrivere un numero in eccesso 8 e in eccesso 4.
+- So leggere un byte nel formato in virgola mobile del libro.
+- So scrivere un numero nel formato del libro, in forma normalizzata, e dire se c'è troncamento.
+- So perché un decimo non si scrive esatto e perché l'ordine delle somme conta.
+```
+
+## Fonti
+
+- R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Sezione 1.6 «Storing Integers»: complemento a 2 con le tabelle a 3 e 4 bit, cambio di segno, addizione, overflow, notazione in eccesso 8 e in eccesso 4. Sezione 1.7 «Storing Fractions»: il formato a 8 bit in virgola mobile, la forma normalizzata, l'errore di troncamento, un decimo e l'ordine delle somme. Le risposte alle domande delle due sezioni sono nell'appendice del libro, pubblicata sul Moodle del canale A. I testi delle domande qui sono riassunti con parole mie: quello esatto è nel libro.
+- Diario della lezione del 05/10/2026 sul Moodle del canale B: «Interi col segno in complemento in base 2. Excess notation, cambio di segno e addizione in complemento in base 2. Floating point notation. Omessa la sezione 1.8 sul linguaggio Python.»
+- Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» (F. Cardone, Moodle del canale A, aperto agli ospiti): intervallo del complemento a 2 con $n$ bit, tabella a 4 bit, −5 con 6 bit.
+- Simulazioni d'esame 1 e 2 del 2023/24 (pagina d'esame di Fondamenti su Moodle Esami), nelle copie svolte a mano da uno studente pubblicate nella Guida degli studenti del gruppo TSI (licenza CC BY-SA 4.0): domanda 2 della simulazione 1, domande 1 e 8 della simulazione 2. Le risposte dello studente sono state ricontrollate una per una.
+- Lo standard IEEE 754 per i formati a 32 e 64 bit.
+- Le spiegazioni a parole, gli esempi, i riquadri «Prova tu», gli strumenti interattivi, i quiz e gli esercizi senza il numero del libro sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/04_compressione_errori_comunicazione.md -->
+> File: `contesto_ai/FDA/lezioni/04_compressione_errori_comunicazione.md`
+
+```yaml
+corso: FDA
+lezione: "04"
+titolo: Comprimere i dati ed errori di comunicazione
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 04 · Libro, parte 1, §1.9–1.10
+descrizione: >-
+  Appunti della lezione 04 di Fondamenti dell'Informatica (canale B): compressione senza perdita e con perdita,
+  codifica run-length, codici di Huffman, codifica relativa, codifica a dizionario e LZW, GIF, JPEG, MPEG e MP3;
+  errori di comunicazione, bit e byte di parità, codici che correggono gli errori e distanza di Hamming, con
+  strumenti interattivi, quiz ed esercizi svolti.
+lede: >-
+  Foto, canzoni e video occupano tantissimo spazio, e quando viaggiano qualche bit può arrivare sbagliato.
+  Come si scrivono gli stessi dati con meno bit, quando si può perdere qualcosa senza che nessuno se ne accorga,
+  e come chi riceve un messaggio si accorge di un errore e a volte lo corregge da solo.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 1 (Brookshear, cap. 1), §1.9–1.10
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 3 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 1 (J. G. Brookshear, D. Brylow, Computer Science: an overview, cap. 1), §1.9
+  «Data Compression» e §1.10 «Communication Errors», con le risposte alle loro domande (appendice pubblicata sul
+  Moodle del canale A); diario del canale B 2026/27; simulazione d'esame 1 del 2023/24
+appunti_html: appunti/FDA/04_compressione_errori_comunicazione.html
+genera_html: true
+```
+
+## In breve
+
+- **Comprimere** vuol dire scrivere gli stessi dati con meno bit. Senza compressione una foto grande come lo schermo di un portatile occupa circa 6 milioni di byte.
+- La compressione è **senza perdita** se poi si riottengono esattamente i dati di prima. È **con perdita** se si buttano dettagli che l'occhio o l'orecchio non notano.
+- Quattro idee senza perdita: contare le **ripetizioni**, dare codici corti ai simboli **frequenti** (Huffman), scrivere solo le **differenze**, usare un **dizionario** che cresce mentre leggi (LZW).
+- **GIF** usa al massimo 256 colori ed è adatto ai disegni. **JPEG** è per le foto: conserva bene la luminosità e meno il colore. **MPEG** fa lo stesso per i video, **MP3** per la musica.
+- Quando i bit viaggiano, uno può cambiare. Il **bit di parità** fa in modo che gli 1 siano sempre dispari: se arrivano pari, c'è un errore.
+- La **distanza di Hamming** conta in quanti posti due file di bit sono diverse. Nel codice del libro le lettere distano almeno 3: un errore si corregge, due si vedono.
+- All'esame la distanza di Hamming è già uscita nelle simulazioni; della compressione servono le idee e i piccoli conti delle domande del libro.
+
+> [!CANALI]
+> Nel canale B è la lezione prevista per giovedì 08/10, ore 9–11: quando ho scritto questi appunti non si era ancora svolta, quindi seguono il libro. Per il docente è la lezione 5, perché la prima è stata un'introduzione: qui è la 04. Il diario del canale B la annuncia così: «(Part 1, § 1.10 Communication Errors) Data Compression LZW, JPEG, MPEG, GIF. Communication Errors, parity bit e bytes, error-correcting codes, distanza di Hamming». La compressione è la sezione 1.9 del libro, gli errori di comunicazione sono la 1.10: qui ci sono tutte e due, nell'ordine del libro. La sezione 1.8, sul linguaggio Python, nel canale B è omessa. Nel canale A Felice Cardone usa lo stesso libro: i suoi lucidi «Cenni sulla codifica dei dati» (Moodle del canale A, id 3851, aperto agli ospiti) citano il codice Morse, ma compressione e codici correttori si studiano sul libro, e sullo stesso Moodle ci sono le risposte alle domande del §1.9 e del §1.10. Nel canale C le stesse sezioni sono nei lucidi del docente.
+
+## Perché comprimere (libro, §1.9)
+
+Nella [lezione 02](02_testo_colori_suoni_binario.html) hai fatto due conti. Lo schermo di un portatile Full HD ha 1920 × 1080 pixel, e in RGB ogni pixel occupa 3 byte. Quindi una foto grande come lo schermo occupa 1920 × 1080 × 3 = 6 220 800 byte, circa 6 MB. Un'ora di musica come quella dei CD occupa 635 040 000 byte, circa 635 MB.
+
+Sono numeri enormi. Uno smartphone contiene migliaia di foto, e una pagina web ne mostra decine in pochi secondi. Se ogni foto pesasse 6 MB, la memoria finirebbe subito e le pagine si caricherebbero lentissime.
+
+### L'immagine guida: dettare al telefono
+
+Per tutta la lezione tieni in mente questa scena. Detti un messaggio a un amico, al telefono. Vuoi metterci poco tempo, e la linea a volte gracchia.
+
+Per fare prima, usi dei trucchi senza pensarci:
+
+- invece di «zero, zero, zero, zero, zero, zero, zero, zero» dici «otto zeri»;
+- le parole che usi di continuo le abbrevi;
+- se due frasi sono quasi uguali, dici «come prima, ma con…»;
+- se avete lo stesso libro, dici «pagina 12, parola 5» invece di dettare la parola.
+
+Sono proprio le quattro tecniche del libro. Scrivere gli stessi dati con meno bit si chiama **compressione** (*data compression*). Le prossime quattro sezioni le vedono una per volta.
+
+### Senza perdita e con perdita
+
+Prova a comprimere due cose diverse.
+
+- **Un testo.** Se cambi una sola lettera, «pesca» diventa «pasta». Dopo la compressione il testo deve tornare identico, lettera per lettera.
+- **Una foto.** Se un pixel tra due milioni diventa un pochino più scuro, nessuno se ne accorge. Si può accettare di perdere qualche dettaglio, se in cambio la foto occupa dieci volte meno.
+
+Il libro chiama i due casi così.
+
+> [!DEF] Compressione senza perdita e con perdita (libro, §1.9)
+> Una compressione è **senza perdita** (*lossless*) se dai dati compressi si ricostruiscono esattamente i dati originali. È **con perdita** (*lossy*) se i dati ricostruiti sono solo simili agli originali.
+
+**Come si legge.** Senza perdita: comprimi, decomprimi, e hai di nuovo gli stessi identici bit. Con perdita: decomprimi e hai qualcosa di molto simile, ma non uguale. Per testi, programmi e numeri serve la compressione senza perdita. Per foto, musica e video va bene anche quella con perdita.
+
+::: prova Quali di questi file si possono comprimere con perdita? (a) Il programma in C del laboratorio. (b) La foto delle vacanze. (c) L'estratto conto della banca. (d) Una canzone.
+Con perdita vanno bene solo (b) e (d): una foto un po' meno nitida e una canzone un po' meno fedele si guardano e si ascoltano lo stesso. Il programma e l'estratto conto devono restare identici: un carattere diverso può cambiare tutto.
+:::
+
+> [!RICORDA]
+> - Comprimere vuol dire scrivere gli stessi dati con meno bit.
+> - Senza perdita: si riottengono esattamente i dati di prima. Con perdita: si ottiene qualcosa di molto simile.
+> - Testi, programmi e numeri: solo senza perdita. Foto, suoni e video: anche con perdita.
+
+## Le ripetizioni: la codifica run-length
+
+Torna al telefono. Se il messaggio è 0000000011110000, non detti sedici cifre. Dici «otto zeri, quattro uni, quattro zeri». Hai detto la stessa cosa con molte meno parole.
+
+Un gruppo di simboli uguali uno dopo l'altro si chiama **ripetizione** (*run*). Al posto di ogni ripetizione si scrivono due cose: quale simbolo si ripete e quante volte. Questo modo di comprimere si chiama **codifica run-length** (*run-length encoding*), cioè «codifica della lunghezza delle ripetizioni».
+
+> [!ESEMPIO] L'esempio del libro
+> Una fila di 458 bit è fatta di 253 uni, poi 118 zeri, poi 87 uni. Invece di scrivere i 458 bit, si scrive «253 uni, 118 zeri, 87 uni».
+>
+> Quanti bit servono? Ogni numero è al massimo 255, quindi sta in un byte. Con le monete della [lezione 02](02_testo_colori_suoni_binario.html):
+>
+> | Numero | Monete | In un byte |
+> |--:|---|:-:|
+> | 253 | 128 + 64 + 32 + 16 + 8 + 4 + 1 | 11111101 |
+> | 118 | 64 + 32 + 16 + 4 + 2 | 01110110 |
+> | 87 | 64 + 16 + 4 + 2 + 1 | 01010111 |
+>
+> Tre byte, cioè 24 bit, più l'accordo che la fila comincia con gli uni. Invece di 458 bit.
+
+Dove funziona bene? Dove ci sono lunghe ripetizioni. Pensa alla F della lezione 02, disegnata con i pixel: in un disegno in bianco e nero ci sono lunghe file di pixel bianchi e lunghe file di pixel neri. Anche i fax e le schermate con grandi zone di un colore solo si comprimono bene così.
+
+Dove funziona male? Prendi la fila 01010101. Le ripetizioni sono otto, tutte lunghe 1: «uno zero, un uno, uno zero…». Scritta così diventa più lunga di prima. Quando i dati cambiano di continuo, come nelle foto, la codifica run-length non serve.
+
+La codifica run-length è **senza perdita**: dal numero di ripetizioni si riscrive la fila identica.
+
+::: prova (a) Scrivi con la codifica run-length la fila 0000011111111000. (b) Che fila di bit è «3 uni, 2 zeri, 5 uni»?
+(a) Ci sono cinque 0, otto 1 e tre 0: «5 zeri, 8 uni, 3 zeri». Controllo: 5 + 8 + 3 = 16, e la fila ha 16 bit.
+
+(b) 111 00 11111, cioè 1110011111.
+:::
+
+> [!RICORDA]
+> - Run-length: al posto di una ripetizione si scrivono il simbolo e quante volte si ripete.
+> - Funziona bene con lunghe file uguali, come nei disegni e nei fax; male quando i dati cambiano spesso.
+> - È senza perdita.
+
+## Codici corti per i simboli frequenti: Huffman
+
+Il telegrafo usava il **codice Morse**: ogni lettera è una fila di punti e linee. Guarda quanto sono lunghe:
+
+| Lettera | Morse | Quanto è frequente in inglese |
+|:-:|:-:|---|
+| E | · | la più frequente |
+| T | – | la seconda |
+| A | · – | molto frequente |
+| Q | – – · – | rara |
+
+Chi l'ha inventato ha dato i codici più corti alle lettere più usate. Così i messaggi si trasmettono prima. È la seconda tecnica del libro: la **codifica in base alla frequenza** (*frequency-dependent encoding*). La **frequenza** di un simbolo è quante volte compare.
+
+In ASCII, invece, ogni lettera occupa un byte: la «e» come la «q». Si spreca spazio.
+
+### Un problema: dove finisce una lettera?
+
+Nel Morse la E è «·» e la A è «· –». Se ricevi «· –», è una A oppure una E seguita da una T? Il telegrafista lo capisce perché tra una lettera e l'altra c'è una pausa.
+
+Con i bit non ci sono pause: c'è solo una fila di 0 e di 1. Per leggerla senza dubbi serve una regola.
+
+> [!IDEA]
+> Nessun codice deve essere l'inizio di un altro. Allora, leggendo da sinistra, appena riconosci un codice sai che quella lettera è finita.
+
+Un codice con questa regola si chiama **codice prefisso**: nessun codice è il «prefisso», cioè la parte iniziale, di un altro.
+
+### Un esempio piccolo: BANANA
+
+La parola BANANA ha tre lettere diverse: A tre volte, N due volte, B una volta.
+
+Con un codice in cui tutte le lettere hanno la stessa lunghezza, un bit non basta: dà solo due possibilità, 0 e 1. Servono 2 bit per lettera, per esempio A = 00, B = 01, N = 10. Le lettere sono 6, quindi 6 × 2 = 12 bit.
+
+Ora prova un codice di lunghezza variabile: A = 0, B = 10, N = 11.
+
+- È un codice prefisso? A è 0, e nessun altro codice comincia con 0. B e N cominciano con 1, ma sono diversi al secondo bit. Sì.
+- BANANA diventa 10 0 11 0 11 0, cioè 100110110: 9 bit invece di 12.
+
+Per leggerlo, parti da sinistra:
+
+1. 1 da solo non è un codice; 10 è B.
+2. 0 è A.
+3. 1 da solo no; 11 è N.
+4. Poi 0 è A, 11 è N, 0 è A.
+
+Viene di nuovo BANANA, senza nessuna pausa.
+
+### Come si costruisce: l'albero di Huffman
+
+Come si sceglie il codice migliore? C'è un metodo, inventato da David Huffman nel 1952. I codici che produce si chiamano **codici di Huffman**.
+
+L'idea: si mettono insieme, un passo alla volta, le due lettere più rare. Così le lettere rare finiscono in fondo e hanno codici lunghi, quelle frequenti restano in alto e hanno codici corti.
+
+> [!METODO] L'albero di Huffman
+> 1. Conta quante volte compare ogni simbolo: è il suo **peso**.
+> 2. Prendi i due pesi più piccoli e uniscili in un gruppo. Il peso del gruppo è la somma dei due.
+> 3. Ripeti il passo 2, trattando i gruppi come simboli, finché resta un gruppo solo.
+> 4. A ogni unione, scrivi 0 sul ramo di sinistra e 1 su quello di destra.
+> 5. Il codice di un simbolo è la fila di 0 e 1 che leggi scendendo dalla cima fino a lui.
+
+> [!ESEMPIO] PAPPAGALLO, passo per passo
+> Le lettere sono 10. Pesi: P 3, A 3, L 2, G 1, O 1.
+>
+> | Passo | Unisci | Nuovo peso | Restano |
+> |:-:|---|:-:|---|
+> | 1 | G (1) e O (1) | 2 | P 3, A 3, L 2, GO 2 |
+> | 2 | L (2) e GO (2) | 4 | P 3, A 3, LGO 4 |
+> | 3 | P (3) e A (3) | 6 | LGO 4, PA 6 |
+> | 4 | LGO (4) e PA (6) | 10 | un gruppo solo |
+>
+> Al passo 3 i due pesi più piccoli sono 3 e 3: il 4 di LGO è più grande, quindi aspetta.
+
+Ecco l'albero. In cima c'è il gruppo finale, con peso 10. Ogni unione è una biforcazione, con 0 a sinistra e 1 a destra.
+
+```grafico
+titolo: L'albero di Huffman di PAPPAGALLO
+x: 0 10
+y: -0.6 5.4
+assi: no
+griglia: no
+segmento: 5 4.5 2.5 3.2
+segmento: 5 4.5 7.5 3.2
+segmento: 2.5 3.2 1.2 1.9
+segmento: 2.5 3.2 3.8 1.9
+segmento: 3.8 1.9 2.8 0.6
+segmento: 3.8 1.9 4.8 0.6
+segmento: 7.5 3.2 6.3 1.9
+segmento: 7.5 3.2 8.7 1.9
+punto: 5 4.5 | "10" | n
+punto: 2.5 3.2 | "LGO 4" | no
+punto: 7.5 3.2 | "PA 6" | ne
+punto: 1.2 1.9 | "L 2" | s
+punto: 3.8 1.9 | "GO 2" | ne
+punto: 2.8 0.6 | "G 1" | s
+punto: 4.8 0.6 | "O 1" | s
+punto: 6.3 1.9 | "P 3" | s
+punto: 8.7 1.9 | "A 3" | s
+testo: 3.75 3.85 | "0" | no | accento
+testo: 6.25 3.85 | "1" | ne | accento
+testo: 1.85 2.55 | "0" | no | accento
+testo: 3.15 2.55 | "1" | ne | accento
+testo: 3.2 1.2 | "0" | o | accento
+testo: 4.4 1.2 | "1" | e | accento
+testo: 6.9 2.55 | "0" | no | accento
+testo: 8.1 2.55 | "1" | ne | accento
+```
+
+Per trovare il codice di una lettera, scendi dalla cima e scrivi i numeri dei rami. Per arrivare alla G: a sinistra (0), poi a destra (1), poi a sinistra (0). Quindi G = 010.
+
+| Lettera | Peso | Codice | Bit in tutto |
+|:-:|:-:|:-:|--:|
+| P | 3 | 10 | 3 × 2 = 6 |
+| A | 3 | 11 | 3 × 2 = 6 |
+| L | 2 | 00 | 2 × 2 = 4 |
+| G | 1 | 010 | 1 × 3 = 3 |
+| O | 1 | 011 | 1 × 3 = 3 |
+
+In tutto 6 + 6 + 4 + 3 + 3 = 22 bit. Con un codice a lunghezza fissa servono 3 bit per lettera, perché le lettere diverse sono 5 e con 2 bit le possibilità sono solo 4: in tutto 10 × 3 = 30 bit. In ASCII, un byte per lettera, sarebbero 80 bit.
+
+Il codice è prefisso da solo: ogni lettera sta in fondo a un ramo, e nessuna sta sulla strada per un'altra.
+
+Il libro descrive la tecnica così.
+
+> [!DEF] Codifica in base alla frequenza (libro, §1.9)
+> Nella **codifica in base alla frequenza** (*frequency-dependent encoding*) la lunghezza del codice di un simbolo dipende da quanto spesso il simbolo compare: più è frequente, più il codice è corto. I codici costruiti con il metodo di Huffman si chiamano **codici di Huffman**.
+
+**Come si legge.** Le lettere frequenti hanno codici corti, quelle rare codici lunghi, come nel Morse. In media il messaggio occupa meno bit. È senza perdita: dal codice si riottiene il messaggio identico.
+
+> [!TRAPPOLA] I pesi uguali danno codici diversi, ma lo stesso totale
+> Quando due pesi sono uguali, puoi scegliere quale unire per primo, e cambiano i codici. Il numero totale di bit, però, viene sempre lo stesso. Se il tuo codice non coincide con quello della soluzione, controlla il totale e che sia un codice prefisso.
+
+::: prova (a) Con il codice di PAPPAGALLO, che parola è 10110011? (b) Costruisci un codice di Huffman per CASSA e conta i bit.
+(a) Da sinistra: 10 è P, 11 è A, 00 è L, 11 è A. La parola è PALA.
+
+(b) Pesi: C 1, A 2, S 2. Passo 1: i due più piccoli sono C (1) e uno dei due 2; prendi A, e il gruppo CA pesa 3. Passo 2: S (2) e CA (3), peso 5. Codici: S = 0, C = 10, A = 11. Bit: S 2 × 1, C 1 × 2, A 2 × 2, in tutto 2 + 2 + 4 = 8. Se al passo 1 prendi S invece di A, viene A = 0, C = 10, S = 11: sempre 8 bit. Con 2 bit per lettera sarebbero 10.
+:::
+
+> [!RICORDA]
+> - Codifica in base alla frequenza: codici corti ai simboli frequenti, lunghi a quelli rari.
+> - Serve un codice prefisso: nessun codice è l'inizio di un altro, così si legge senza pause.
+> - Huffman: unisci sempre i due pesi più piccoli; 0 a sinistra, 1 a destra; il codice è la strada dalla cima.
+
+## Solo le differenze: la codifica relativa
+
+Ancora al telefono. Detti le temperature di una settimana: 20, 21, 21, 22, 20, 19, 19. Dopo la prima, puoi dire solo quanto cambia: «20, poi più 1, poi uguale, poi più 1, poi meno 2, poi meno 1, poi uguale».
+
+I numeri da dettare diventano 20, +1, 0, +1, −2, −1, 0. Sono quasi tutti piccoli, e i numeri piccoli si scrivono con pochi bit.
+
+Questa è la terza tecnica: la **codifica relativa** (*relative encoding*), detta anche **differenziale** (*differential encoding*). Si scrive il primo dato per intero; per ogni dato dopo, solo la differenza con quello prima.
+
+Funziona bene quando ogni dato somiglia a quello prima. Il libro fa l'esempio dei video. Un video è una fila di immagini, i **fotogrammi**, 25 o 30 al secondo. Due fotogrammi vicini sono quasi uguali: la persona si è mossa appena, lo sfondo è identico. Invece di conservare ogni fotogramma per intero, si conserva solo che cosa è cambiato.
+
+Anche i campioni di un suono, quelli della lezione 02, cambiano poco da uno all'altro. Per questo la codifica relativa si usa anche per l'audio.
+
+> [!NOTA] I numeri negativi
+> Le differenze possono essere negative, come −2. Come si scrive in bit un numero con il segno meno lo dice la sezione 1.6 del libro, con il complemento a 2: è nella [lezione 03](03_interi_con_segno_virgola_mobile.html).
+
+Se le differenze si scrivono esatte, la codifica relativa è senza perdita. Se si arrotondano per risparmiare ancora, diventa con perdita.
+
+::: prova (a) Scrivi con la codifica relativa 100, 102, 103, 103, 101, 98. (b) Quali numeri erano 50, +3, −1, 0, +2?
+(a) Il primo resta 100. Poi 102 − 100 = +2; 103 − 102 = +1; 103 − 103 = 0; 101 − 103 = −2; 98 − 101 = −3. Viene 100, +2, +1, 0, −2, −3.
+
+(b) Si somma ogni differenza al numero prima: 50; 50 + 3 = 53; 53 − 1 = 52; 52 + 0 = 52; 52 + 2 = 54. I numeri erano 50, 53, 52, 52, 54.
+:::
+
+> [!RICORDA]
+> - Codifica relativa: il primo dato per intero, poi solo le differenze con il dato prima.
+> - Funziona quando ogni dato somiglia al precedente: fotogrammi di un video, campioni di un suono.
+> - Con le differenze esatte è senza perdita.
+
+## Il dizionario che cresce: LZW
+
+L'ultimo trucco del telefono: tu e il tuo amico avete lo stesso vocabolario. Invece di dettare una parola lettera per lettera, dici «pagina 512, parola 7». Lui la cerca e la trova.
+
+Questa è la quarta tecnica, la **codifica a dizionario** (*dictionary encoding*). Il **dizionario** è un elenco numerato di parole, uguale per chi scrive e per chi legge. Al posto di ogni parola si scrive il suo numero nell'elenco.
+
+Il libro fa l'esempio del correttore ortografico di un programma di videoscrittura, che ha già un dizionario. Con 25 000 parole, quanti bit servono per il numero di una parola?
+
+- Con 14 bit i numeri possibili sono $2^{14} = 16384$. Si legge «due alla quattordici» e vuol dire 2 moltiplicato per sé stesso 14 volte, come nella lezione 02. Non bastano.
+- Con 15 bit sono $2^{15} = 32768$: bastano.
+
+Quindi ogni parola costa 15 bit. La parola «computer» in ASCII ne occupa 8 × 8 = 64.
+
+### Il dizionario si costruisce mentre leggi
+
+C'è un problema: un dizionario fisso va bene per le parole di una lingua, ma non per una foto o per un file qualunque. L'idea furba è costruire il dizionario **mentre** si comprime. Chi legge lo ricostruisce identico, negli stessi momenti, quindi non bisogna nemmeno spedirlo.
+
+Questa si chiama **codifica a dizionario adattiva** (*adaptive dictionary encoding*). Il metodo più famoso è **LZW**, dalle iniziali dei suoi inventori: Lempel, Ziv e Welch.
+
+Il libro la spiega con messaggi fatti di tre simboli: la x, la y e lo spazio. Le regole, nella versione del libro:
+
+> [!METODO] LZW come nel libro
+> 1. All'inizio il dizionario contiene solo i simboli singoli: x = 1, y = 2, spazio = 3.
+> 2. Leggi il messaggio una parola alla volta (una parola finisce allo spazio).
+> 3. Se la parola è già nel dizionario, scrivi il suo numero.
+> 4. Se non c'è, scrivi i numeri delle sue lettere, una per una. Poi aggiungi la parola al dizionario, con il primo numero libero.
+> 5. Ogni spazio si scrive 3.
+
+> [!ESEMPIO] Il messaggio del libro: «xyx xyx xyx xyx»
+> | Leggo | Nel dizionario? | Scrivo | Il dizionario diventa |
+> |---|:-:|:-:|---|
+> | xyx | no | 1 2 1 | aggiungo xyx = 4 |
+> | spazio | sì | 3 | |
+> | xyx | sì, è il 4 | 4 | |
+> | spazio | sì | 3 | |
+> | xyx | sì | 4 | |
+> | spazio | sì | 3 | |
+> | xyx | sì | 4 | |
+>
+> Il messaggio compresso è 121343434: nove numeri invece di quindici simboli.
+
+La prima volta la parola xyx costa tre numeri. Da lì in poi ne costa uno solo. Più un messaggio ripete le stesse parole, più si guadagna.
+
+### Chi legge ricostruisce il dizionario
+
+Il tuo amico riceve 121343434 e conosce solo il dizionario iniziale: x = 1, y = 2, spazio = 3. Legge un numero alla volta.
+
+1. 1, 2, 1: scrive x, y, x.
+2. 3: è uno spazio. La parola xyx è finita, ed è nuova: la aggiunge al dizionario come 4, proprio come aveva fatto chi ha compresso.
+3. 4: ora sa che è xyx, e la scrive.
+4. Poi 3, 4, 3, 4: spazio, xyx, spazio, xyx.
+
+Ha riottenuto «xyx xyx xyx xyx», identico. LZW è senza perdita.
+
+::: prova Comprimi con LZW, come nel libro, il messaggio «yxy yxy x yxy», partendo da x = 1, y = 2, spazio = 3.
+1. yxy non c'è: scrivi 2 1 2, poi lo spazio 3. Aggiungi yxy = 4.
+2. yxy ora è il 4: scrivi 4, poi 3.
+3. x c'è già, è l'1: scrivi 1, poi 3. Non si aggiunge niente.
+4. yxy: scrivi 4.
+
+Il risultato è 212343134.
+:::
+
+> [!APPROFONDIMENTO] Il vero LZW lavora sulle sequenze, non sulle parole
+> Il libro presenta LZW con le parole separate dagli spazi, perché è più facile da seguire. Il vero LZW, quello dentro GIF, non cerca gli spazi: legge un simbolo alla volta e cerca la sequenza più lunga che ha già nel dizionario. Scrive il suo numero e aggiunge al dizionario quella sequenza con in più il simbolo che viene dopo.
+>
+> Un esempio con il dizionario iniziale A = 0, B = 1 e il messaggio ABABABA:
+>
+> 1. A c'è, AB no: scrive 0 e aggiunge AB = 2.
+> 2. B c'è, BA no: scrive 1 e aggiunge BA = 3.
+> 3. AB c'è, ABA no: scrive 2 e aggiunge ABA = 4.
+> 4. Resta ABA, che c'è: scrive 4.
+>
+> Il messaggio diventa 0 1 2 4. L'idea è la stessa del libro: il dizionario cresce con il messaggio. Per l'esame basta la versione del libro.
+
+> [!RICORDA]
+> - Codifica a dizionario: al posto di una parola si scrive il suo numero in un elenco comune.
+> - LZW: il dizionario parte dai simboli singoli e cresce mentre si comprime; chi legge lo ricostruisce identico.
+> - Nel libro: parola nuova = numeri delle sue lettere, poi entra nel dizionario; parola già vista = il suo numero; spazio = 3.
+
+## Le immagini: GIF e JPEG
+
+Nella lezione 02 un pixel in **RGB** occupa 3 byte: quanto rosso, quanto verde e quanto blu, ognuno da 0 a 255. I colori possibili sono più di sedici milioni. Le quattro tecniche di prima aiutano, ma per le immagini si fa di più.
+
+### GIF: dipingere con i numeri
+
+Conosci i disegni da colorare con i numeri? Ogni zona ha un numero, e in fondo alla pagina c'è la legenda: 1 = rosso, 2 = giallo, 3 = blu.
+
+**GIF** (*Graphic Interchange Format*) fa così. Sceglie al massimo 256 colori e li mette in una tabella, la **tavolozza** (*palette*). Ogni colore della tavolozza è scritto con i suoi 3 byte RGB. Poi ogni pixel non dice più il suo colore: dice solo il numero del colore nella tavolozza.
+
+Un numero da 0 a 255 sta in un byte. Quindi ogni pixel occupa 1 byte invece di 3: l'immagine pesa circa un terzo.
+
+> [!ESEMPIO] Un disegno di 400 × 300 pixel
+> 1. I pixel sono 400 × 300 = 120 000.
+> 2. In RGB: 120 000 × 3 = 360 000 byte.
+> 3. In GIF, prima di LZW: 120 000 byte per i pixel, più 256 × 3 = 768 byte per la tavolozza. In tutto 120 768 byte.
+
+Poi GIF comprime ancora i numeri dei pixel con LZW, il dizionario che cresce. Un colore della tavolozza può anche essere «trasparente»: lì si vede lo sfondo che c'è dietro.
+
+GIF è **con perdita**, se l'immagine di partenza ha più di 256 colori: i colori che non stanno nella tavolozza vengono sostituiti dal più vicino. Per una foto, che ha migliaia di sfumature, la differenza si vede. Per un disegno o un fumetto, che hanno pochi colori e zone di colore pieno con bordi netti, non si perde quasi niente. È la domanda 3 del §1.9.
+
+### JPEG: l'occhio vede meglio la luce del colore
+
+Guarda una foto in bianco e nero: capisci tutto, anche senza i colori. I dettagli, i bordi, le facce stanno soprattutto nella **luminosità**, cioè quanto è chiaro o scuro ogni punto. Il colore conta, ma l'occhio ne nota i piccoli cambiamenti molto meno.
+
+**JPEG** (dal nome del gruppo che l'ha creato, *Joint Photographic Experts Group*) è il formato delle fotografie, e sfrutta proprio questo. Ha una versione senza perdita, poco usata perché comprime poco. Quella di tutti i giorni è lo **standard di base** (*baseline standard*), che è con perdita. Funziona così:
+
+1. Ogni pixel si scrive con tre numeri diversi da RGB: uno per la luminosità (*luminance*) e due per il colore (*chrominance*). Ne parlava già una nota della lezione 02.
+2. L'immagine si divide in quadratini di 2 × 2 pixel. Per ogni quadratino si tiene la luminosità di tutti e quattro i pixel, ma per il colore solo la **media** dei quattro.
+3. L'immagine si divide in blocchi di 8 × 8 pixel. Ogni blocco si trasforma con un procedimento matematico, e i dettagli più fini, quelli che l'occhio vede meno, si approssimano.
+4. Alla fine si usano le tecniche senza perdita di prima: run-length, codifica relativa, codici a lunghezza variabile.
+
+Il passo 2, contato su un quadratino:
+
+| | Luminosità | Colore | In tutto |
+|---|:-:|:-:|:-:|
+| Prima | 4 pixel × 1 numero = 4 | 4 pixel × 2 numeri = 8 | 12 numeri |
+| Dopo | 4 | 1 media × 2 numeri = 2 | 6 numeri |
+
+Solo questo passo dimezza i numeri, e l'occhio non vede la differenza. Con tutti i passi, di solito una foto in JPEG occupa almeno dieci volte meno che in RGB.
+
+> [!NOTA] TIFF
+> Il libro cita anche **TIFF** (*Tagged Image File Format*). Più che un modo di comprimere è un contenitore: oltre all'immagine conserva altre informazioni, come la data e le impostazioni della fotocamera. Si usa soprattutto per le fotografie, quando la qualità conta più dello spazio.
+
+> [!TRAPPOLA] Né GIF né JPEG sono senza perdita
+> GIF perde colori, il JPEG di base perde dettagli. Se una foto deve restare identica, come le immagini di una sonda spaziale da studiare al pixel, non vanno bene né l'uno né l'altro. È la domanda 4 del §1.9.
+
+::: prova (a) Che formato sceglieresti per il logo di una squadra, con quattro colori pieni? E per la foto di un tramonto? (b) Un'immagine di 100 × 100 pixel in GIF: quanti byte occupano i pixel, prima di LZW?
+(a) Per il logo GIF: pochi colori, zone piene e bordi netti, e con 4 colori non perde niente. Per il tramonto JPEG: migliaia di sfumature, che la tavolozza di GIF non riesce a tenere.
+
+(b) Un byte per pixel: 100 × 100 = 10 000 byte. Più i 768 byte della tavolozza.
+:::
+
+> [!RICORDA]
+> - GIF: tavolozza di al massimo 256 colori, un byte per pixel, poi LZW. Con perdita se i colori erano di più. Ottimo per disegni e fumetti.
+> - JPEG di base: luminosità per ogni pixel, colore solo come media su 2 × 2 pixel, poi blocchi di 8 × 8. Con perdita. Per le foto.
+> - L'idea di JPEG: l'occhio nota la luminosità più del colore.
+
+## Suoni e video: MP3 e MPEG
+
+Sei a un concerto. Esplode un petardo, e per un attimo non senti nient'altro: nemmeno la voce del cantante, che pure c'è. Poi accanto a una cassa che suona un basso fortissimo qualcuno ti parla a voce bassa, con una voce grave: non lo senti.
+
+Sono due limiti veri dell'orecchio, e **MP3**, il formato più famoso per la musica, li sfrutta. Il libro li chiama così:
+
+- **mascheramento temporale** (*temporal masking*): subito dopo un suono forte, per un breve momento, l'orecchio non sente i suoni deboli;
+- **mascheramento in frequenza** (*frequency masking*): un suono forte copre i suoni deboli con una nota vicina alla sua. La **frequenza** di un suono è quello che lo fa più grave o più acuto.
+
+MP3 toglie dalla registrazione i suoni che tanto non sentiresti. È una compressione con perdita, ma la perdita è scelta in modo da non sentirsi. È la domanda 6 del §1.9.
+
+Quanto si guadagna? Un CD, come nella lezione 02, conserva ogni secondo 44 100 campioni da 16 bit, per due canali: 44 100 × 16 × 2 = 1 411 200 bit al secondo. Un MP3 di buona qualità ne usa spesso 128 000. Il conto 1 411 200 : 128 000 fa circa 11: lo stesso brano occupa circa undici volte meno.
+
+### I video: MPEG
+
+Per i video c'è **MPEG** (*Motion Picture Experts Group*). Usa la codifica relativa che hai già visto:
+
+- solo alcuni fotogrammi si conservano per intero, compressi come immagini, in modo simile a JPEG;
+- per i fotogrammi in mezzo si conservano solo le differenze rispetto a quelli vicini.
+
+In una scena in cui una persona parla davanti a un muro, il muro si conserva una volta sola. Di ogni fotogramma dopo cambiano solo la bocca e gli occhi.
+
+> [!ESAME] Le approssimazioni si accumulano
+> La domanda 7 del §1.9 chiede quale fenomeno preoccupante capita quando si scrivono in bit numeri, immagini e suoni. La risposta: si fanno approssimazioni. Con i numeri, ogni calcolo può far crescere l'errore. Con immagini e suoni di solito non è grave, perché si conservano e si riproducono soltanto. Ma se una foto si comprime, si riapre e si ricomprime tante volte, gli errori si sommano: come la fotocopia di una fotocopia di una fotocopia.
+
+::: prova (a) Quale di questi è un esempio di mascheramento in frequenza: (1) dopo un colpo di tamburo non senti un sussurro per un istante; (2) un violino forte copre un violino debole che suona una nota quasi uguale? (b) In un video di una partita, che cosa cambia poco da un fotogramma all'altro?
+(a) Il (2): il suono forte copre quello debole con una nota vicina. Il (1) è mascheramento temporale: dipende dal momento, non dalla nota.
+
+(b) Il campo, gli spalti, le scritte sullo schermo: restano quasi uguali. Cambiano i giocatori e la palla. MPEG conserva per intero solo qualche fotogramma, e per gli altri le differenze.
+:::
+
+> [!RICORDA]
+> - MP3: toglie i suoni che l'orecchio non sente, per il mascheramento temporale e in frequenza. Con perdita.
+> - MPEG: alcuni fotogrammi interi, degli altri solo le differenze (codifica relativa).
+> - Ogni approssimazione è un piccolo errore, e ricomprimendo tante volte gli errori si sommano.
+
+## Accorgersi di un errore: il bit di parità (libro, §1.10)
+
+Torna al telefono. La linea gracchia, e il tuo amico capisce «cinque» invece di «nove». Con i bit succede lo stesso: un graffio su un disco, un disturbo nell'aria o sul cavo, e uno 0 arriva come 1, o un 1 come 0. Il libro chiama questi problemi **errori di comunicazione** (*communication errors*).
+
+Chi riceve non vede il messaggio giusto: vede solo i bit che arrivano. Come fa ad accorgersi che uno è sbagliato?
+
+### L'accordo: gli 1 sono sempre dispari
+
+Tu e il tuo amico vi mettete d'accordo così: ogni gruppo di bit che spedisci deve avere un numero **dispari** di 1. Se un byte ha già un numero dispari di 1, aggiungi uno 0. Se ne ha un numero pari, aggiungi un 1, così diventano dispari.
+
+Il bit in più si chiama **bit di parità** (*parity bit*). Il libro lo mette a sinistra, davanti al byte: ogni byte diventa una fila di 9 bit.
+
+> [!ESEMPIO] Le lettere A e F, come nel libro
+> | Lettera | Byte ASCII | Quanti 1 | Bit di parità | I 9 bit |
+> |:-:|:-:|:-:|:-:|:-:|
+> | A | 01000001 | 2, pari | 1 | 101000001 |
+> | F | 01000110 | 3, dispari | 0 | 001000110 |
+>
+> Controllo: in 101000001 gli 1 sono 3, in 001000110 sono 3. Dispari tutti e due.
+
+All'arrivo il tuo amico conta gli 1 dei 9 bit. Se sono dispari, va tutto bene. Se sono pari, c'è stato un errore, e chiede di rispedire.
+
+Perché funziona? Ogni bit che cambia aggiunge un 1 o ne toglie uno. In tutti e due i casi, un numero dispari diventa pari.
+
+> [!DEF] Parità dispari (libro, §1.10)
+> Nella **parità dispari** (*odd parity*) a ogni fila di bit si aggiunge un bit di parità, scelto in modo che il numero totale di 1, compreso il bit di parità, sia dispari. Nella **parità pari** (*even parity*) il totale deve essere pari. Il libro usa la parità dispari.
+
+**Come si legge.** Prima di spedire conti gli 1 e aggiungi il bit che rende il totale dispari. Chi riceve riconta tutti i bit, compreso quello di parità: un totale pari vuol dire che qualcosa si è rotto per strada. Con la parità pari si fa lo stesso, al contrario.
+
+Un vantaggio della parità dispari: una fila di soli 0 non è mai giusta, perché zero 1 sono un numero pari. Se una linea si guasta e manda solo zeri, chi riceve se ne accorge.
+
+Alcune memorie dei computer usano proprio questo: per ogni byte conservano 9 bit, gli 8 del byte più il bit di parità.
+
+Nello strumento clicca sui bit del byte e scegli la parità: il bit di parità si calcola da solo. Poi prova «Un errore» e «Due errori»: guarda quando l'errore si vede.
+
+```widget codifica
+titolo: Il bit di parità: aggiungilo, poi prova uno o due errori
+modo: parita
+bit: 01000001
+parita: dispari
+```
+
+### Due errori non si vedono
+
+Se cambiano due bit, il primo rende pari il totale e il secondo lo rende di nuovo dispari. Il conto torna, e chi riceve non si accorge di niente.
+
+> [!ESEMPIO] La A con due errori
+> Spedisci 101000001: tre 1, dispari. Per strada cambiano gli ultimi due bit e arriva 101000010. Gli 1 sono ancora tre, dispari: sembra tutto a posto. Ma 01000010 è la B.
+
+Il bit di parità vede un errore, tre errori, cinque errori: un numero dispari. Non vede due, quattro, sei errori. E anche quando vede un errore, non dice quale bit è sbagliato. È la domanda 2 del §1.10.
+
+::: prova Questi gruppi di 9 bit sono stati spediti con parità dispari. In quali c'è sicuramente un errore? (a) 001100001 (b) 110000000 (c) 111111111
+Conta gli 1. (a) Sono tre: dispari, nessun errore visibile. (b) Sono due: pari, quindi c'è un errore. (c) Sono nove: dispari, nessun errore visibile.
+
+«Nessun errore visibile» non vuol dire «nessun errore»: potrebbero essercene due.
+:::
+
+> [!RICORDA]
+> - Parità dispari: si aggiunge un bit perché gli 1 siano dispari. Il libro lo mette a sinistra del byte.
+> - All'arrivo si contano tutti gli 1: se sono pari, c'è un errore.
+> - Vede solo un numero dispari di errori, e non dice dove sono.
+
+## Un byte di controllo per tanti byte
+
+Un bit di parità per ogni byte costa un bit ogni otto: il messaggio cresce di un ottavo. Per messaggi lunghi si usa anche un'altra strada. Si spediscono i byte così come sono, e alla fine si aggiunge un byte in più, che li controlla tutti.
+
+È come quando detti una lista di numeri e alla fine aggiungi: «il totale fa 312». Se il tuo amico somma e non gli torna 312, ha capito male qualcosa.
+
+### Il byte di controllo
+
+Metti i byte uno sotto l'altro. Ogni colonna è una fila di bit, e per ogni colonna calcoli un bit di parità. Gli otto bit di parità, uno per colonna, formano un byte: il **byte di controllo** (*checkbyte*). Qui uso la parità dispari, come per il bit di parità del libro.
+
+> [!ESEMPIO] Il byte di controllo di «Ciao»
+> | | col. 1 | col. 2 | col. 3 | col. 4 | col. 5 | col. 6 | col. 7 | col. 8 |
+> |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+> | C | 0 | 1 | 0 | 0 | 0 | 0 | 1 | 1 |
+> | i | 0 | 1 | 1 | 0 | 1 | 0 | 0 | 1 |
+> | a | 0 | 1 | 1 | 0 | 0 | 0 | 0 | 1 |
+> | o | 0 | 1 | 1 | 0 | 1 | 1 | 1 | 1 |
+> | quanti 1 | 0 | 4 | 3 | 0 | 2 | 1 | 2 | 4 |
+> | byte di controllo | 1 | 1 | 0 | 1 | 1 | 0 | 1 | 1 |
+>
+> Dove gli 1 sono pari si mette 1, dove sono dispari si mette 0. Il byte di controllo è 11011011, e si spedisce dopo la «o».
+
+Chi riceve rifà lo stesso conto colonna per colonna. Se un bit della colonna 5 cambia, la colonna 5 non torna.
+
+### Somme di controllo e CRC
+
+Il libro cita altre due varianti della stessa idea, solo come nome:
+
+- la **somma di controllo** (*checksum*): si sommano i byte del messaggio e si spedisce anche la somma, come il «totale 312» del telefono;
+- il **controllo a ridondanza ciclica** (*cyclic redundancy check*, **CRC**): un conto più complicato, che si accorge di quasi tutti gli errori, anche di tanti bit vicini. Lo usano le reti e i file ZIP.
+
+All'esame basta sapere che esistono e che servono ad accorgersi degli errori.
+
+::: prova Con la parità dispari, qual è il byte di controllo dei due byte 11110000 e 10101010?
+Colonna per colonna gli 1 sono: 2, 1, 2, 1, 1, 0, 1, 0. Dove sono pari metti 1, dove sono dispari metti 0: 1, 0, 1, 0, 0, 1, 0, 1. Il byte di controllo è 10100101.
+
+Controllo sulla prima colonna: due 1 più l'1 del byte di controllo fanno tre, dispari.
+:::
+
+> [!RICORDA]
+> - Byte di controllo: un bit di parità per ogni colonna di un gruppo di byte, spedito alla fine.
+> - Somma di controllo e CRC: altri conti fatti sui dati e spediti con loro, per accorgersi degli errori.
+
+## Correggere un errore: la distanza di Hamming
+
+Il bit di parità ti dice «c'è un errore», ma non dove. Si può fare di meglio: correggerlo senza chiedere di rispedire.
+
+Al telefono si fa così: «nove, ripeto, nove, ripeto, nove». Se senti «nove, cinque, nove», capisci che era nove: due volte su tre.
+
+Con i bit: invece di 0 spedisci 000, invece di 1 spedisci 111. Se arriva 010, la maggioranza dice 0: c'era 000, ed è cambiato un bit solo. Funziona, ma il messaggio è diventato tre volte più lungo. Il libro mostra un modo più furbo, con meno bit in più. Per capirlo serve un modo di misurare quanto due file di bit sono diverse.
+
+### Quanto sono diverse due file di bit
+
+Metti 1011 e 1001 una sotto l'altra e confrontale posto per posto: sono diverse solo nel terzo bit. Il numero di posti in cui sono diverse si chiama **distanza di Hamming**, dal nome di Richard Hamming, che studiò questi codici negli anni Quaranta.
+
+> [!ESEMPIO] Simulazione d'esame 1, 2023/24, domanda 1
+> Il quiz chiede: «Calcolare la distanza di Hamming tra le sequenze di numeri binari elencati». La prima coppia è 01011101 e 00101101.
+>
+> | Posto | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+> |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+> | prima fila | 0 | 1 | 0 | 1 | 1 | 1 | 0 | 1 |
+> | seconda fila | 0 | 0 | 1 | 0 | 1 | 1 | 0 | 1 |
+> | diversi? | | sì | sì | sì | | | | |
+>
+> Sono diverse in tre posti: la distanza di Hamming è 3.
+
+> [!DEF] Distanza di Hamming (libro, §1.10)
+> La **distanza di Hamming** tra due file di bit della stessa lunghezza è il numero di posizioni in cui i loro bit sono diversi.
+
+**Come si legge.** Si scrivono le due file una sotto l'altra e si contano le colonne con due bit diversi. Distanza 0 vuol dire file identiche. Distanza 1 vuol dire che basta cambiare un bit per passare da una all'altra. Le due file devono avere lo stesso numero di bit.
+
+::: prova Calcola la distanza di Hamming tra (a) 01101100 e 01101110; (b) 111000 e 000111.
+(a) Sono uguali tranne il settimo bit: distanza 1. È un'altra coppia della stessa domanda della simulazione.
+
+(b) Sono diverse in tutti e sei i posti: distanza 6.
+:::
+
+### Il codice del libro: lettere lontane tra loro
+
+Per otto lettere, da A a H, bastano 3 bit, perché $2^3 = 2 \cdot 2 \cdot 2 = 8$. Il libro ne usa 6, e sceglie le file in modo che ogni coppia sia lontana. Le file scelte per le lettere si chiamano **parole del codice**. Il codice è nella figura 1.27 del libro.
+
+| Lettera | Parola del codice |
+|:-:|:-:|
+| A | 000000 |
+| B | 001111 |
+| C | 010011 |
+| D | 011100 |
+| E | 100110 |
+| F | 101001 |
+| G | 110101 |
+| H | 111010 |
+
+Prendi due lettere qualsiasi e calcola la distanza: viene sempre 3 o 4, mai meno. Per esempio A e C sono diverse in 3 posti, A e B in 4. Su tutte le 28 coppie, 16 sono a distanza 3 e 12 a distanza 4.
+
+La distanza più piccola tra due parole del codice si chiama **distanza minima** del codice. Qui è 3.
+
+### Come si decodifica
+
+Arriva 010100. Non è nella tabella, quindi c'è stato un errore. Calcola la distanza da ogni lettera:
+
+| Lettera | A | B | C | D | E | F | G | H |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Distanza da 010100 | 2 | 4 | 3 | **1** | 3 | 5 | 2 | 4 |
+
+La più vicina è D, cioè 011100, a distanza 1: è cambiato solo il terzo bit. Si decodifica D.
+
+> [!METODO] Decodificare con il codice del libro
+> 1. Se la fila ricevuta è una parola del codice, leggi la sua lettera.
+> 2. Altrimenti calcola la distanza di Hamming da tutte e otto le parole.
+> 3. Scegli la lettera più vicina. Se ce n'è una sola a distanza 1, l'errore è corretto.
+> 4. Se due o più lettere sono alla stessa distanza minima, sai che c'è un errore ma non puoi correggerlo.
+
+Nello strumento clicca sui bit della fila arrivata: vedi la distanza da ogni lettera, i bit diversi evidenziati e la lettera più vicina.
+
+```widget codifica
+titolo: Il codice del libro: quale lettera è più vicina?
+modo: hamming
+parola: 010100
+```
+
+### Perché un errore si corregge e due si vedono
+
+Immagina ogni parola del codice come una casa. Intorno a ogni casa c'è un giardino: le file a distanza 1 da lei, cioè quelle che ottieni cambiando un bit solo.
+
+- Le case distano almeno 3 l'una dall'altra. Quindi due giardini non si toccano mai: una fila a distanza 1 da A non può essere a distanza 1 anche da C, altrimenti A e C disterebbero al massimo 2.
+- **Un errore**: la fila esce dalla casa e finisce nel suo giardino. Il giardino è di una casa sola, quindi sai da dove viene. L'errore si corregge.
+- **Due errori**: la fila si allontana di 2. Non arriva mai su un'altra casa, che dista almeno 3: quindi non è una parola del codice, e ti accorgi dell'errore. Però può finire nel giardino di un'altra casa, e allora la correzione sbaglia.
+
+> [!ESEMPIO] Due errori portano fuori strada
+> Spedisci A, cioè 000000. Cambiano il primo e il terzo bit: arriva 101000. Non è una parola del codice, quindi l'errore si vede. Ma 101000 dista 1 da F (101001) e 2 da A. Scegliendo la più vicina, leggi F: sbagliato.
+
+Riassumendo: con distanza minima 3 il codice **corregge un errore** e **ne rivela due**. Rivelare vuol dire accorgersene.
+
+Ora si capisce anche il bit di parità. Prendi due gruppi di 9 bit giusti, tutti e due con un numero dispari di 1. Se fossero diversi in un bit solo, uno dei due avrebbe un 1 in più dell'altro, e i loro numeri di 1 non sarebbero dispari tutti e due. Quindi sono diversi in almeno 2 bit: la distanza minima è 2. Rivela un errore, ma non ne corregge nessuno.
+
+> [!APPROFONDIMENTO] La regola generale
+> Chiama $d$ la distanza minima di un codice.
+>
+> - Il codice rivela fino a $d - 1$ errori: con meno di $d$ bit cambiati non si arriva su un'altra parola del codice.
+> - Il codice corregge fino a $k$ errori se $d$ è almeno $2k + 1$: i «giardini» di raggio $k$ non si toccano.
+>
+> | Distanza minima | Rivela fino a | Corregge fino a |
+> |:-:|:-:|:-:|
+> | 1 | 0 | 0 |
+> | 2, il bit di parità | 1 | 0 |
+> | 3, il codice del libro | 2 | 1 |
+> | 4 | 3 | 1 |
+> | 5 | 4 | 2 |
+
+::: prova Con il codice del libro, decodifica (a) 111110 e (b) 011001.
+(a) Le distanze sono: A 5, B 3, C 4, D 2, E 2, F 4, G 3, H 1. La più vicina è H (111010), a distanza 1: si legge H.
+
+(b) Le distanze sono: A 3, B 3, C 2, D 2, E 6, F 2, G 3, H 3. C, D e F sono tutte a distanza 2. Sicuramente c'è un errore, anzi almeno due, ma non si può dire quale lettera era.
+:::
+
+> [!RICORDA]
+> - Distanza di Hamming: in quanti posti due file di bit sono diverse.
+> - Il codice del libro ha 8 lettere da 6 bit con distanza minima 3: si decodifica scegliendo la lettera più vicina.
+> - Distanza minima 3: corregge un errore e ne rivela due. Il bit di parità ha distanza minima 2: rivela un errore e non corregge.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| «5 zeri, 8 uni» | «cinque zeri, otto uni» | una ripetizione nella codifica run-length: il simbolo e quante volte | 0000011111111 |
+| A = 0, B = 10 | «A vale zero, B vale uno zero» | il codice di ogni simbolo, in un codice a lunghezza variabile | BANANA = 100110110 |
+| +2, −1 | «più due, meno uno» | una differenza con il dato prima, nella codifica relativa | 100, 102, 101 diventa 100, +2, −1 |
+| xyx = 4 | «x y x vale quattro» | una voce del dizionario di LZW | xyx xyx diventa 1 2 1 3 4 |
+| $2^{15}$ | «due alla quindici» | 2 moltiplicato per sé stesso 15 volte: i numeri che si scrivono con 15 bit | 32768 |
+| 2 × 2, 8 × 8 | «due per due», «otto per otto» | quadratini di pixel: 2 righe e 2 colonne, 8 righe e 8 colonne | i blocchi di JPEG |
+| 1 01000001 | «bit di parità, poi il byte» | il bit di parità a sinistra del byte, come nel libro | la A con parità dispari |
+| distanza 3 | «distanza di Hamming tre» | due file di bit diverse in 3 posti | 000000 e 010011 |
+| $d$ | «di» | la distanza minima di un codice (solo nell'approfondimento) | nel codice del libro 3 |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti, con Safe Exam Browser.
+
+**Che cosa serve di questa lezione**
+
+1. **La distanza di Hamming.** È il quiz 1 della simulazione d'esame 1 del 2023/24: quattro coppie di file da 8 bit, e per ognuna la distanza. Si fa in pochi secondi, se conti con calma colonna per colonna.
+2. **Parità e codice del libro.** Le domande del §1.10: dove c'è sicuramente un errore, aggiungere il bit di parità dispari, decodificare con il codice da A a H.
+3. **La compressione.** Nei quiz delle simulazioni del 2023/24 non compare, ma il §1.9 è nella mappa comune del libro. Le domande più probabili sono quelle del libro: le quattro tecniche, un messaggio da comprimere con LZW, con perdita o senza, che cosa sfruttano JPEG e MP3.
+
+Nelle simulazioni del 2023/24 tornano anche complemento a 2, virgola mobile e notazione in eccesso: sono le sezioni 1.6 e 1.7, nella lezione 03.
+
+> [!ESAME] Una domanda vera, letta insieme
+> Simulazione d'esame 1, 2023/24, domanda 1: «Calcolare la distanza di Hamming tra le sequenze di numeri binari elencati». Le coppie sono 01011101 e 00101101; 01011100 e 00101100; 01101100 e 01101110; 01111100 e 01111110.
+>
+> In pratica chiede: in quanti posti sono diverse? Scrivi le due file una sotto l'altra e segna le colonne diverse.
+>
+> 1. 01011101 e 00101101: diverse nei posti 2, 3 e 4. Distanza 3.
+> 2. 01011100 e 00101100: di nuovo i posti 2, 3 e 4. Distanza 3.
+> 3. 01101100 e 01101110: solo il posto 7. Distanza 1.
+> 4. 01111100 e 01111110: solo il posto 7. Distanza 1.
+
+> [!METODO] Le domande sulla compressione
+> 1. «Con perdita o senza?» Chiediti: dopo la decompressione ho esattamente i bit di prima? Run-length, Huffman, relativa esatta e LZW: sì. JPEG di base, GIF con molti colori, MP3, MPEG: no.
+> 2. «Comprimi con LZW»: tieni la tabella del dizionario accanto, e aggiungi una parola solo la prima volta che la incontri.
+> 3. «Costruisci il codice di Huffman»: unisci sempre i due pesi più piccoli, poi controlla il totale dei bit.
+
+**Errori da evitare**
+
+- Usare la parità pari quando il libro usa la dispari: leggi bene il testo della domanda.
+- Contare gli 1 senza il bit di parità, quando controlli una fila ricevuta: si contano tutti i 9 bit.
+- Credere che il bit di parità corregga: si accorge soltanto, e solo di un numero dispari di errori.
+- Calcolare la distanza di Hamming tra file di lunghezza diversa: non ha senso.
+- Confondere «corregge» e «rivela»: con distanza minima 3 corregge 1 errore e ne rivela 2.
+- Dire che GIF è senza perdita per le foto: con più di 256 colori li approssima.
+- In LZW, aggiungere al dizionario una parola che c'è già, o dimenticare di scrivere lo spazio.
+
+## Quiz
+
+```quiz
+D: Simulazione d'esame 1, 2023/24, domanda 1. Qual è la distanza di Hamming tra 01011101 e 00101101?
+- $1$
+- $2$
++ $3$
+- $4$
+- $5$
+= La distanza di Hamming conta i posti in cui le due file sono diverse. Messe una sotto l'altra, sono diverse nel secondo, nel terzo e nel quarto bit: distanza 3. La risposta 5 conta gli 1 della prima fila, che non c'entrano. La risposta 4 conta gli 1 della seconda fila. Le risposte 1 e 2 si ottengono saltando qualche colonna.
+
+D: Simulazione d'esame 1, 2023/24, domanda 1. Qual è la distanza di Hamming tra 01101100 e 01101110?
++ $1$
+- $0$
+- $2$
+- $7$
+- $8$
+= Le due file sono uguali in tutti i posti tranne il settimo: distanza 1. La risposta 0 vale solo per file identiche. La risposta 7 confonde la distanza con il posto del bit diverso. La risposta 8 è il numero di bit, non il numero di differenze.
+
+D: Questi gruppi di 9 bit sono stati spediti con la parità dispari del libro. In quale c'è sicuramente un errore?
+- 101000001
+- 001000110
++ 110000000
+- 111000000
+- 100000000
+= Con la parità dispari gli 1, compreso il bit di parità, devono essere dispari. In 110000000 sono due: pari, quindi c'è sicuramente un errore. Le altre hanno tre, tre, tre e un 1: tutti numeri dispari, quindi nessun errore visibile. Non vuol dire che siano giuste: due errori non si vedono.
+
+D: Il codice ASCII di C è 01000011. Che cosa si spedisce con il bit di parità dispari messo a sinistra, come nel libro?
++ 001000011
+- 101000011
+- 010000110
+- 010000111
+- 01000011
+= Il byte ha tre 1, già un numero dispari: il bit di parità è 0, e si mette davanti. Si spedisce 001000011. La risposta 101000011 usa la parità pari, perché porta gli 1 a quattro. Le risposte 010000110 e 010000111 mettono il bit in fondo invece che a sinistra. L'ultima dimentica il bit di parità.
+
+D: Con il codice del libro (A 000000, B 001111, C 010011, D 011100, E 100110, F 101001, G 110101, H 111010) arriva 101011. Come si decodifica?
+- A
+- B
+- E
++ F
+- Non si può decodificare: c'è un errore.
+= Si sceglie la lettera più vicina. 101011 è diversa da F, cioè 101001, solo nel quinto bit: distanza 1. Tutte le altre lettere sono a distanza 2 o più, quindi F è l'unica più vicina e l'errore si corregge. La risposta «non si può decodificare» sarebbe giusta solo se due lettere fossero alla stessa distanza minima. B ed H sono a distanza 2, A a distanza 4.
+
+D: Un codice ha distanza minima 3, come quello del libro. Che cosa può fare?
+- Correggere 2 errori e rivelarne 3.
++ Correggere 1 errore e rivelarne 2.
+- Correggere 3 errori.
+- Rivelare 1 errore, ma non correggerne nessuno.
+- Correggere 1 errore, ma non rivelarne 2.
+= Con un solo bit cambiato la fila resta più vicina alla parola spedita che a ogni altra, perché le parole distano almeno 3: si corregge. Con due bit cambiati non si arriva mai su un'altra parola, quindi ci si accorge dell'errore. Rivelare 1 errore senza correggerlo è il caso della parità, con distanza minima 2. Per correggere 2 errori serve distanza minima almeno 5.
+
+D: Quale di queste compressioni è con perdita?
+- La codifica run-length
+- I codici di Huffman
+- LZW
++ Lo standard di base di JPEG
+- La codifica relativa con le differenze esatte
+= Il JPEG di base conserva il colore solo come media su quadratini di 2 × 2 pixel e approssima i dettagli fini dei blocchi di 8 × 8: dopo la decompressione l'immagine è simile, non identica. Le altre quattro tecniche permettono di riottenere esattamente i dati di partenza.
+
+D: Quale caratteristica dell'occhio sfrutta lo standard di base di JPEG?
+- L'occhio non vede i pixel più piccoli di 8 × 8.
++ L'occhio nota i cambiamenti di luminosità più di quelli di colore.
+- L'occhio vede solo 256 colori.
+- L'occhio non nota i fotogrammi che cambiano poco.
+- L'occhio vede meglio i colori della luminosità.
+= È la domanda 5 del §1.9. JPEG tiene la luminosità di ogni pixel e solo la media del colore, perché l'occhio è più sensibile alla luminosità. L'ultima risposta dice il contrario. I 256 colori sono di GIF, i fotogrammi di MPEG. I blocchi di 8 × 8 sono un passo del procedimento, non un limite dell'occhio.
+
+D: Che cosa sfrutta MP3?
+- Il fatto che l'orecchio non sente i suoni sopra i 128 000 bit al secondo.
++ Il mascheramento temporale e il mascheramento in frequenza.
+- Una tavolozza di 256 suoni.
+- Il fatto che due canzoni vicine sono quasi uguali.
+- Il fatto che il CD usa 16 bit per campione.
+= È la domanda 6 del §1.9. Dopo un suono forte l'orecchio per un attimo non sente quelli deboli (mascheramento temporale), e un suono forte copre quelli deboli con una nota vicina (mascheramento in frequenza). MP3 toglie quei suoni. I bit al secondo misurano il file, non l'orecchio. La tavolozza è un'idea di GIF. Le differenze tra cose vicine sono la codifica relativa di MPEG, che lavora tra fotogrammi, non tra canzoni.
+
+D: Un disegno di 200 × 100 pixel viene salvato in GIF. Quanti byte occupano i pixel, senza contare la tavolozza e prima di LZW?
+- $256$
+- $2500$
++ $20000$
+- $60000$
+- $160000$
+= In GIF ogni pixel è il numero di un colore della tavolozza, da 0 a 255: un byte. I pixel sono 200 × 100 = 20 000, quindi 20 000 byte. La risposta 60 000 usa 3 byte per pixel, come in RGB. La risposta 160 000 conta i bit. La risposta 2500 divide per 8 invece di moltiplicare. La risposta 256 è il numero massimo di colori.
+
+D: Con LZW come nel libro, partendo da x = 1, y = 2, spazio = 3, come si comprime «xx yx xx yx»?
+- 113213113
++ 113213435
+- 113213434
+- 1121345
+- 445566
+= La parola xx è nuova: si scrive 1 1, poi lo spazio 3, e xx diventa la voce 4. Anche yx è nuova: 2 1, poi 3, e yx diventa la voce 5. Poi xx è già la 4, poi 3, poi yx è già la 5. Il risultato è 113213435. La prima risposta non usa il dizionario. La terza scrive 4 anche al posto di yx. Le ultime due saltano gli spazi o le parole nuove.
+
+D: Con un codice di Huffman, quanti bit occupa la parola BANANA?
+- $6$
++ $9$
+- $12$
+- $18$
+- $48$
+= I pesi sono A 3, N 2, B 1. Si uniscono B e N, poi il gruppo con A: viene A = 0, B = 10, N = 11. I bit sono 3 × 1 per le A, 2 × 2 per le N e 1 × 2 per la B: 3 + 4 + 2 = 9. La risposta 12 usa 2 bit per lettera, un codice a lunghezza fissa. La risposta 48 è l'ASCII, un byte per lettera. La risposta 6 darebbe un bit solo a ogni lettera, ma con un bit si distinguono solo due simboli.
+```
+
+## Esercizi
+
+::: esercizio base Domanda 1 del §1.9: le quattro tecniche
+Elenca le quattro tecniche generiche di compressione descritte dal libro.
+::: soluzione
+1. La codifica run-length (*run-length encoding*): le ripetizioni diventano «simbolo e quante volte».
+2. La codifica in base alla frequenza (*frequency-dependent encoding*): codici corti per i simboli frequenti, come i codici di Huffman.
+3. La codifica relativa o differenziale (*relative encoding*): il primo dato e poi le differenze.
+4. La codifica a dizionario (*dictionary encoding*): il numero della parola in un elenco, anche adattiva come LZW.
+
+È la risposta dell'appendice del libro.
+:::
+
+::: esercizio base Domanda 3 del §1.9: GIF e i fumetti
+Perché per le immagini dei fumetti a colori GIF è meglio di JPEG?
+::: soluzione
+1. Un fumetto ha zone di colore pieno con bordi netti, e pochi colori in tutto.
+2. GIF tiene al massimo 256 colori: per un fumetto bastano, e quindi non perde quasi niente.
+3. Le zone di colore pieno danno lunghe ripetizioni dello stesso numero di colore, che LZW comprime molto bene.
+4. JPEG, invece, approssima i dettagli fini: proprio i bordi netti vengono un po' sfocati.
+
+L'appendice risponde: i fumetti hanno blocchi di colore pieno con bordi netti, e i colori sono pochi.
+:::
+
+::: esercizio medio Domanda 4 del §1.9: le foto di una sonda spaziale
+Progetti una sonda che va su altri pianeti e spedisce fotografie. Per risparmiare memoria e tempo di trasmissione, conviene comprimere le foto in GIF o con lo standard di base di JPEG?
+::: soluzione
+1. Le foto di una sonda servono agli scienziati, che le studiano fin nei dettagli.
+2. GIF riduce i colori a 256: in una foto quelli in più vengono approssimati, quindi è con perdita.
+3. Il JPEG di base media il colore e approssima i dettagli fini: anche lui è con perdita.
+4. Quindi no: con tutti e due si perdono dettagli. Serve una compressione senza perdita.
+
+È la risposta dell'appendice: no, perché GIF e JPEG sono tutti e due con perdita.
+:::
+
+::: esercizio base Domande 5 e 6 del §1.9: occhio e orecchio
+(a) Quale caratteristica dell'occhio sfrutta lo standard di base di JPEG? (b) Quale caratteristica dell'orecchio sfrutta MP3?
+::: soluzione
+(a) L'occhio è meno sensibile ai cambiamenti di colore che a quelli di luminosità. Per questo JPEG riduce i bit del colore, con la media su quadratini di 2 × 2 pixel, senza che la differenza si veda.
+
+(b) Il mascheramento temporale e il mascheramento in frequenza. Dopo un suono forte, per un attimo, l'orecchio non sente quelli deboli; e un suono forte copre i suoni deboli con una nota vicina.
+
+Sono le risposte dell'appendice.
+:::
+
+::: esercizio medio Domanda 7 del §1.9: un fenomeno preoccupante
+Quale fenomeno preoccupante capita spesso quando si scrivono in bit numeri, immagini e suoni?
+::: soluzione
+1. Si fanno approssimazioni: un numero con la virgola, un colore, un campione di suono vengono arrotondati per stare nei bit.
+2. Con i numeri l'errore cresce a ogni calcolo, e alla fine il risultato può essere sbagliato.
+3. Con immagini e suoni di solito non è grave: si conservano, si spediscono e si riproducono, senza farci conti sopra.
+4. Ma se un'immagine o un suono si riproduce, si registra e si ricomprime tante volte, le approssimazioni si sommano, e alla fine i dati non valgono più niente.
+
+È il senso della risposta dell'appendice. Delle approssimazioni con i numeri si parla anche nella lezione 03, con la virgola mobile.
+:::
+
+::: esercizio medio Domanda 2 del §1.9: LZW con il dizionario che cresce
+Il dizionario iniziale è x = 1, y = 2, spazio = 3. Comprimi con LZW, come nel libro, il messaggio «xyx yxxxy xyx yxxxy yxxxy».
+::: soluzione
+Il messaggio ha cinque parole, separate da quattro spazi. Si legge una parola alla volta.
+
+| Leggo | Nel dizionario? | Scrivo | Il dizionario diventa |
+|---|:-:|:-:|---|
+| xyx | no | 1 2 1 | aggiungo xyx = 4 |
+| spazio | sì | 3 | |
+| yxxxy | no | 2 1 1 1 2 | aggiungo yxxxy = 5 |
+| spazio | sì | 3 | |
+| xyx | sì, è il 4 | 4 | |
+| spazio | sì | 3 | |
+| yxxxy | sì, è il 5 | 5 | |
+| spazio | sì | 3 | |
+| yxxxy | sì, è il 5 | 5 | |
+
+1. Metto in fila i numeri della colonna «Scrivo»: 1 2 1, 3, 2 1 1 1 2, 3, 4, 3, 5, 3, 5.
+2. Senza spazi: 121321112343535.
+
+Controllo: è proprio la risposta dell'appendice, 121321112343535. Il messaggio aveva 25 simboli, compressi in 15 numeri.
+
+Controllo al contrario, come farebbe chi riceve: 1 2 1 è xyx, poi 3 è uno spazio, e xyx diventa la voce 4. Poi 2 1 1 1 2 è yxxxy, poi 3, e yxxxy diventa la 5. Poi 4 3 5 3 5 è xyx, spazio, yxxxy, spazio, yxxxy. Torna il messaggio di partenza.
+:::
+
+::: esercizio base Una fila da comprimere con le ripetizioni
+Scrivi con la codifica run-length la riga di pixel 1111110000001111111111 (1 nero, 0 bianco). Quanti bit risparmi se scrivi ogni numero con 4 bit, più un bit per dire con che colore comincia la riga?
+::: soluzione
+1. Ci sono sei 1, sei 0 e dieci 1: «6 uni, 6 zeri, 10 uni». Controllo: 6 + 6 + 10 = 22, i pixel della riga.
+2. Con 4 bit si arriva a 15, quindi 6 e 10 ci stanno. Con le monete: 6 = 0110, 10 = 1010.
+3. I bit sono 1 per il colore iniziale più 3 × 4 per i numeri: 1 + 12 = 13.
+4. La riga aveva 22 bit: ne risparmi 22 − 13 = 9.
+:::
+
+::: esercizio medio Huffman per TARTARUGA
+Costruisci un codice di Huffman per la parola TARTARUGA. Quanti bit occupa la parola? E con un codice a lunghezza fissa?
+::: soluzione
+1. Pesi: A 3, T 2, R 2, U 1, G 1. Le lettere sono 9.
+2. Passo 1: i due pesi più piccoli sono U (1) e G (1). Il gruppo UG pesa 2. Restano A 3, T 2, R 2, UG 2.
+3. Passo 2: ci sono tre pesi 2. Ne scelgo due, T e R: il gruppo TR pesa 4. Restano A 3, UG 2, TR 4.
+4. Passo 3: i più piccoli sono UG (2) e A (3). Il gruppo UGA pesa 5. Restano TR 4, UGA 5.
+5. Passo 4: TR (4) e UGA (5), peso 9. Fine.
+6. Con 0 a sinistra e 1 a destra: T = 00, R = 01, U = 100, G = 101, A = 11.
+7. Bit: A 3 × 2 = 6, T 2 × 2 = 4, R 2 × 2 = 4, U 1 × 3 = 3, G 1 × 3 = 3. In tutto 6 + 4 + 4 + 3 + 3 = 20.
+8. Con 5 lettere diverse 2 bit non bastano, perché danno solo 4 possibilità: servono 3 bit, e 9 × 3 = 27.
+
+Controllo: TARTARUGA diventa 00 11 01 00 11 01 100 101 11, cioè 20 bit. Se al passo 2 scegli un'altra coppia tra i pesi 2, i codici cambiano ma il totale resta 20.
+:::
+
+::: esercizio medio LZW al contrario
+Con il dizionario iniziale x = 1, y = 2, spazio = 3 e LZW come nel libro, chi riceve legge 2 1 2 3 4 3 1 3 4. Qual era il messaggio?
+::: soluzione
+1. 2 1 2: y, x, y.
+2. 3: uno spazio. La parola yxy è finita, ed è nuova: entra nel dizionario come 4.
+3. 4: è yxy. Poi 3: spazio.
+4. 1: è x. Poi 3: spazio. La x c'era già, non si aggiunge niente.
+5. 4: yxy.
+
+Il messaggio era «yxy yxy x yxy». Controllo: comprimendolo di nuovo, come nel «Prova tu» della sezione su LZW, viene 212343134.
+:::
+
+::: esercizio base Come la domanda 1 del §1.10: dove c'è un errore
+Questi gruppi di bit sono stati spediti con la parità dispari. In quali c'è sicuramente un errore? (a) 100101101 (b) 100000001 (c) 000000000 (d) 111000000 (e) 011111111
+::: soluzione
+Conta gli 1 di ogni gruppo, bit di parità compreso.
+
+| Gruppo | Quanti 1 | Pari o dispari | Errore? |
+|---|:-:|:-:|:-:|
+| (a) 100101101 | 5 | dispari | non si vede |
+| (b) 100000001 | 2 | pari | sì |
+| (c) 000000000 | 0 | pari | sì |
+| (d) 111000000 | 3 | dispari | non si vede |
+| (e) 011111111 | 8 | pari | sì |
+
+Gli errori sicuri sono in (b), (c) ed (e), come nella risposta dell'appendice.
+:::
+
+::: esercizio base Domande 2 e 3 del §1.10: errori invisibili e parità pari
+(a) Nei gruppi dell'esercizio precedente potrebbero esserci errori di cui non ti accorgi? (b) Come cambiano le risposte se la parità usata è pari invece che dispari?
+::: soluzione
+(a) Sì. Se in un gruppo cambiano due bit, o quattro, o un numero pari qualsiasi, il numero degli 1 torna dispari e il controllo non vede niente. Per esempio (a) e (d) potrebbero avere due errori.
+
+(b) Con la parità pari gli 1 devono essere pari. Gli errori sicuri diventano (a), con 5 uni, e (d), con 3 uni. La risposta alla domanda (a) non cambia: un numero pari di errori resta invisibile anche con la parità pari.
+
+Sono le risposte dell'appendice.
+:::
+
+::: esercizio medio Domanda 4 del §1.10: ASCII con la parità dispari
+Scrivi in ASCII, con la parità dispari e il bit di parità a sinistra, le due frasi (a) «"Stop!" Cheryl shouted.» e (b) «Does 2 + 3 = 5?».
+::: soluzione
+Per ogni simbolo: il byte ASCII, quanti 1 ha, e il bit di parità che rende dispari il totale. Se gli 1 sono pari il bit è 1, se sono dispari è 0.
+
+(a) 23 simboli.
+
+| Simbolo | Byte ASCII | Quanti 1 | Bit di parità | I 9 bit |
+|:-:|:-:|:-:|:-:|:-:|
+| virgolette | 00100010 | 2 | 1 | 100100010 |
+| S | 01010011 | 4 | 1 | 101010011 |
+| t | 01110100 | 4 | 1 | 101110100 |
+| o | 01101111 | 6 | 1 | 101101111 |
+| p | 01110000 | 3 | 0 | 001110000 |
+| ! | 00100001 | 2 | 1 | 100100001 |
+| virgolette | 00100010 | 2 | 1 | 100100010 |
+| spazio | 00100000 | 1 | 0 | 000100000 |
+| C | 01000011 | 3 | 0 | 001000011 |
+| h | 01101000 | 3 | 0 | 001101000 |
+| e | 01100101 | 4 | 1 | 101100101 |
+| r | 01110010 | 4 | 1 | 101110010 |
+| y | 01111001 | 5 | 0 | 001111001 |
+| l | 01101100 | 4 | 1 | 101101100 |
+| spazio | 00100000 | 1 | 0 | 000100000 |
+| s | 01110011 | 5 | 0 | 001110011 |
+| h | 01101000 | 3 | 0 | 001101000 |
+| o | 01101111 | 6 | 1 | 101101111 |
+| u | 01110101 | 5 | 0 | 001110101 |
+| t | 01110100 | 4 | 1 | 101110100 |
+| e | 01100101 | 4 | 1 | 101100101 |
+| d | 01100100 | 3 | 0 | 001100100 |
+| . | 00101110 | 4 | 1 | 100101110 |
+
+(b) 15 simboli.
+
+| Simbolo | Byte ASCII | Quanti 1 | Bit di parità | I 9 bit |
+|:-:|:-:|:-:|:-:|:-:|
+| D | 01000100 | 2 | 1 | 101000100 |
+| o | 01101111 | 6 | 1 | 101101111 |
+| e | 01100101 | 4 | 1 | 101100101 |
+| s | 01110011 | 5 | 0 | 001110011 |
+| spazio | 00100000 | 1 | 0 | 000100000 |
+| 2 | 00110010 | 3 | 0 | 000110010 |
+| spazio | 00100000 | 1 | 0 | 000100000 |
+| + | 00101011 | 4 | 1 | 100101011 |
+| spazio | 00100000 | 1 | 0 | 000100000 |
+| 3 | 00110011 | 4 | 1 | 100110011 |
+| spazio | 00100000 | 1 | 0 | 000100000 |
+| = | 00111101 | 5 | 0 | 000111101 |
+| spazio | 00100000 | 1 | 0 | 000100000 |
+| 5 | 00110101 | 4 | 1 | 100110101 |
+| ? | 00111111 | 6 | 1 | 100111111 |
+
+Controllo: i primi gruppi coincidono con la risposta dell'appendice, 100100010 101010011 101110100 per (a) e 101000100 101101111 101100101 per (b). I byte ASCII sono quelli della domanda 3 del §1.4, nella lezione 02.
+:::
+
+::: esercizio medio Un byte di controllo
+Con la parità dispari, calcola il byte di controllo dei tre byte 01000001, 01000010 e 01000011 (le lettere A, B e C). Poi arriva 01000001 01000110 01000011 con lo stesso byte di controllo: dove si vede l'errore?
+::: soluzione
+1. Colonna per colonna gli 1 sono: colonna 1 nessuno, colonna 2 tre, colonne 3, 4, 5 e 6 nessuno, colonna 7 due, colonna 8 due.
+2. Dove gli 1 sono pari metti 1, dove sono dispari metti 0: 1, 0, 1, 1, 1, 1, 1, 1. Il byte di controllo è 10111111.
+3. Nei byte arrivati il secondo è 01000110 invece di 01000010: è cambiato il sesto bit.
+4. Nella colonna 6 ora c'è un 1, e con il bit del byte di controllo gli 1 della colonna sono 2: pari. La colonna 6 non torna, quindi c'è un errore in quella colonna.
+:::
+
+::: esercizio esame Distanze di Hamming
+Calcola la distanza di Hamming tra (a) 01011100 e 00101100; (b) 01111100 e 01111110; (c) 10101010 e 01010101; (d) 001111 e 011100.
+::: soluzione
+1. (a) Diverse nei posti 2, 3 e 4: distanza 3. È la seconda coppia della simulazione d'esame 1 del 2023/24, domanda 1.
+2. (b) Diverse solo nel posto 7: distanza 1. È la quarta coppia della stessa domanda.
+3. (c) Diverse in tutti gli otto posti: distanza 8.
+4. (d) Diverse nei posti 2, 5 e 6: distanza 3. Sono B e D del codice del libro.
+:::
+
+::: esercizio medio Domanda 5 del §1.10: decodificare parole intere
+La domanda 5 chiede di decodificare tre messaggi scritti con il codice del libro, da A a H; secondo l'appendice si leggono BED, CAB e HEAD. Decodifica questi tre messaggi, che hanno qualche bit sbagliato e danno le stesse parole: (a) 001111 100100 001100; (b) 010001 000000 001011; (c) 011010 110110 100000 011100.
+::: soluzione
+Per ogni gruppo di 6 bit cerco la lettera più vicina.
+
+1. (a) 001111 è proprio B. 100100 dista 1 da E (100110). 001100 dista 1 da D (011100). Si legge BED.
+2. (b) 010001 dista 1 da C (010011). 000000 è proprio A. 001011 dista 1 da B (001111). Si legge CAB.
+3. (c) 011010 dista 1 da H (111010). 110110 dista 1 da E (100110). 100000 dista 1 da A (000000). 011100 è proprio D. Si legge HEAD.
+
+In ogni gruppo con un errore la lettera a distanza 1 è una sola: le altre distano almeno 2, perché le parole del codice distano almeno 3 tra loro.
+:::
+
+::: esercizio difficile Domanda 6 del §1.10: costruire un codice
+Costruisci un codice per le lettere A, B, C e D con file di 5 bit, in cui la distanza di Hamming tra due lettere qualsiasi sia almeno 3.
+::: soluzione
+Si sceglie una fila alla volta, controllando la distanza da quelle già scelte.
+
+1. A = 00000.
+2. B deve avere almeno tre 1, per distare almeno 3 da A: B = 11100.
+3. C: provo 01111. Da A dista 4, da B dista 3 (posti 1, 4 e 5). Va bene.
+4. D: provo 10011. Da A dista 3, da B dista 4, da C dista 3 (posti 1, 2 e 3). Va bene.
+
+Le sei distanze sono 3, 4, 3, 3, 4, 3: la più piccola è 3. Il codice A = 00000, B = 11100, C = 01111, D = 10011 è la soluzione dell'appendice. Ce ne sono anche altre.
+:::
+
+::: esercizio difficile Due errori nel codice del libro
+Spedisci la lettera A con il codice del libro, e per strada cambiano il primo e il terzo bit. (a) Che cosa arriva? (b) Chi riceve si accorge dell'errore? (c) Che lettera legge?
+::: soluzione
+1. (a) A è 000000. Cambiando il primo e il terzo bit arriva 101000.
+2. (b) Sì: 101000 non è una parola del codice. Due errori non trasformano mai una parola in un'altra, perché le parole distano almeno 3.
+3. (c) Le distanze sono: da A 2, da F (101001) 1, dalle altre lettere di più. La più vicina è F, e chi riceve legge F: la correzione sbaglia.
+
+Quindi il codice rivela due errori, ma li corregge solo se l'errore è uno.
+:::
+
+::: esercizio esame Una foto, tre formati
+Un disegno di 800 × 600 pixel. Quanti byte occupa (a) in RGB senza compressione; (b) in GIF, contando i pixel e la tavolozza, prima di LZW; (c) in JPEG, se occupa 20 volte meno che in RGB?
+::: soluzione
+1. (a) I pixel sono 800 × 600 = 480 000. In RGB 3 byte ciascuno: 1 440 000 byte, circa 1,4 MB.
+2. (b) In GIF un byte per pixel: 480 000 byte. La tavolozza ha 256 colori da 3 byte: 768 byte. In tutto 480 768 byte, circa un terzo.
+3. (c) 1 440 000 : 20 = 72 000 byte, circa 72 KB.
+
+Per un disegno conviene comunque GIF: con pochi colori non perde niente, e LZW lo comprime ancora.
+:::
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra compressione senza perdita e con perdita? Fai un esempio per ciascuna.
+Senza perdita: dopo la decompressione si riottengono esattamente i dati di prima, come con Huffman o LZW. Serve per testi e programmi. Con perdita: si ottengono dati solo simili, come con JPEG o MP3. Va bene per foto e musica.
+:::
+
+::: domanda Quali sono le quattro tecniche generiche del libro, e che cosa sfrutta ognuna?
+Run-length: le lunghe ripetizioni. Codifica in base alla frequenza: alcuni simboli compaiono più spesso. Codifica relativa: ogni dato somiglia a quello prima. Codifica a dizionario: le stesse parole tornano più volte.
+:::
+
+::: domanda Che cos'è un codice prefisso, e perché serve?
+È un codice in cui nessun codice è l'inizio di un altro. Serve con i codici di lunghezza variabile: si legge da sinistra, e appena riconosci un codice sai che il simbolo è finito, senza pause tra un simbolo e l'altro.
+:::
+
+::: domanda Come funziona LZW nella versione del libro?
+Il dizionario parte dai simboli singoli. Si legge una parola alla volta: se è nel dizionario si scrive il suo numero, se no si scrivono i numeri delle sue lettere e la parola entra nel dizionario. Chi riceve ricostruisce lo stesso dizionario negli stessi momenti.
+:::
+
+::: domanda Come comprimono GIF e JPEG?
+GIF sceglie al massimo 256 colori, li mette in una tavolozza e scrive per ogni pixel un byte con il numero del colore; poi usa LZW. JPEG tiene la luminosità di ogni pixel e solo la media del colore su 2 × 2 pixel, poi approssima i dettagli fini su blocchi di 8 × 8.
+:::
+
+::: domanda Che cosa sono il mascheramento temporale e quello in frequenza?
+Mascheramento temporale: subito dopo un suono forte l'orecchio per un attimo non sente quelli deboli. Mascheramento in frequenza: un suono forte copre i suoni deboli con una nota vicina. MP3 toglie i suoni coperti.
+:::
+
+::: domanda Come funziona il bit di parità dispari, e che limiti ha?
+Si aggiunge un bit perché il numero totale di 1 sia dispari. Chi riceve conta gli 1: se sono pari c'è un errore. Non dice dove, e non vede un numero pari di errori.
+:::
+
+::: domanda Perché il codice del libro corregge un errore e ne rivela due?
+Le sue parole distano almeno 3. Con un errore la fila ricevuta dista 1 dalla parola spedita e almeno 2 da tutte le altre: la più vicina è quella giusta. Con due errori non si arriva mai su un'altra parola, quindi l'errore si vede; ma la più vicina può essere sbagliata.
+:::
+
+## Glossario
+
+```glossario
+Compressione | Scrivere gli stessi dati con meno bit (*data compression*).
+Senza perdita | Una compressione da cui si riottengono esattamente i dati originali (*lossless*).
+Con perdita | Una compressione da cui si ottengono dati solo simili agli originali (*lossy*), come JPEG e MP3.
+Codifica run-length | Al posto di una ripetizione si scrivono il simbolo e quante volte si ripete (*run-length encoding*).
+Codifica in base alla frequenza | Codici corti per i simboli frequenti e lunghi per quelli rari (*frequency-dependent encoding*).
+Codice di Huffman | Un codice in base alla frequenza costruito unendo ogni volta i due pesi più piccoli.
+Codice prefisso | Un codice in cui nessun codice è l'inizio di un altro: si legge senza pause.
+Codifica relativa | Il primo dato per intero, poi solo le differenze con il dato prima (*relative* o *differential encoding*).
+Codifica a dizionario | Al posto di una parola si scrive il suo numero in un elenco comune (*dictionary encoding*).
+LZW | Codifica a dizionario adattiva: il dizionario cresce mentre si comprime (Lempel, Ziv, Welch).
+GIF | Formato per immagini con una tavolozza di al massimo 256 colori, un byte per pixel, più LZW.
+Tavolozza | La tabella dei colori di un'immagine GIF (*palette*): ogni pixel dice il numero del suo colore.
+JPEG | Formato per foto, con perdita: luminosità per ogni pixel, colore come media, blocchi di 8 × 8 pixel.
+MPEG | Famiglia di formati per i video: alcuni fotogrammi interi, degli altri solo le differenze.
+MP3 | Formato per la musica, con perdita: toglie i suoni nascosti dal mascheramento temporale e in frequenza.
+Bit di parità | Il bit aggiunto perché il numero totale di 1 sia dispari (parità dispari) o pari (parità pari).
+Byte di controllo | Un byte di bit di parità, uno per colonna, spedito dopo un gruppo di byte (*checkbyte*).
+Distanza di Hamming | Il numero di posizioni in cui due file di bit della stessa lunghezza sono diverse.
+Distanza minima | La distanza di Hamming più piccola tra due parole di un codice: nel codice del libro è 3.
+Codice correttore | Un codice le cui parole sono lontane tra loro, così un errore si corregge scegliendo la parola più vicina (*error-correcting code*).
+```
+
+## Checklist
+
+```checklist
+- So dire la differenza tra compressione senza perdita e con perdita, con un esempio per tipo.
+- So comprimere una fila di bit con la codifica run-length e un elenco di numeri con la codifica relativa.
+- So costruire un codice di Huffman con l'albero e contare i bit di una parola.
+- So comprimere e decomprimere un messaggio con LZW come nel libro, con la tabella del dizionario.
+- So spiegare come comprimono GIF, JPEG, MPEG e MP3, e quali sono con perdita.
+- So aggiungere il bit di parità dispari a un byte e dire se un gruppo ricevuto ha sicuramente un errore.
+- So calcolare la distanza di Hamming e decodificare con il codice del libro, da A a H.
+- So spiegare perché un codice con distanza minima 3 corregge un errore e ne rivela due.
+```
+
+## Fonti
+
+- R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Sezione 1.9 «Data Compression»: tecniche generiche (run-length, in base alla frequenza, relativa, a dizionario e LZW), immagini (GIF, JPEG, TIFF), audio e video (MPEG, MP3). Sezione 1.10 «Communication Errors»: bit di parità, byte di controllo, somme di controllo e CRC, codici che correggono gli errori, distanza di Hamming, il codice a 6 bit per le lettere da A a H. Risposte alle domande delle due sezioni nell'appendice del libro, pubblicate sul Moodle del canale A.
+- Diario del canale B 2026/27 (Moodle del canale B): «Lezione 05. Giovedì 08 Ottobre ore 09-11. (Part 1, § 1.10 Communication Errors) Data Compression LZW, JPEG, MPEG, GIF. Communication Errors, parity bit e bytes, error-correcting codes, distanza di Hamming».
+- Simulazione d'esame 1 del 2023/24 (pagina d'esame comune su Moodle Esami), domanda 1 sulla distanza di Hamming, letta nella copia svolta a mano da uno studente pubblicata dalla guida degli studenti TSI (CC BY-SA 4.0); le risposte sono ricontrollate qui.
+- Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» (F. Cardone, Moodle del canale A, aperto agli ospiti): il codice Morse come esempio di codice.
+- Le spiegazioni a parole, gli esempi, i riquadri «Prova tu», gli strumenti interattivi, i quiz e gli esercizi senza il numero del libro sono di questi appunti. Tutti i conti (codici di Huffman, LZW, parità, byte di controllo, distanze e decodifiche con il codice del libro) sono stati ricontrollati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/05_esercizi_circuiti_rappresentazioni.md -->
+> File: `contesto_ai/FDA/lezioni/05_esercizi_circuiti_rappresentazioni.md`
+
+```yaml
+corso: FDA
+lezione: "05"
+titolo: Esercizi sulla parte 1, circuiti e rappresentazioni binarie
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 05 · Libro, parte 1, §1.1–1.7 e §1.9–1.10 (esercizi)
+descrizione: >-
+  Appunti della lezione 05 di Fondamenti dell'Informatica (canale B), la lezione di esercizi che chiude la parte 1 del
+  libro: circuiti e porte logiche, flip-flop, esadecimale, memoria, ASCII e UTF-8, immagini e suoni, conversioni tra
+  base 2 e base 10, somme e overflow, complemento a 2 e notazione in eccesso, virgola mobile a 8 bit, compressione,
+  bit di parità e codice di Hamming. Per ogni argomento il metodo, esercizi svolti dal facile al tipo esame, le domande
+  delle simulazioni d'esame 2023/24 risolte e un quiz finale.
+lede: >-
+  La parte 1 del libro finisce qui. Per ogni argomento trovi il procedimento in poche righe, esercizi svolti passo per
+  passo dal più facile a quello da esame, e tutte le domande delle simulazioni del 2023/24 che riguardano questa parte.
+  In fondo, come gestire i 45 minuti dei quiz e un quiz lungo per allenarti.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 1 (Brookshear, cap. 1), §1.1–1.7 e §1.9–1.10
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 4–5 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 1 (J. G. Brookshear, D. Brylow, Computer Science: an overview, cap. 1), domande delle
+  sezioni 1.1–1.7 e 1.9–1.10 con le risposte dell'appendice pubblicata sul Moodle del canale A; simulazioni d'esame
+  2023/24 della pagina d'esame comune; diario del canale B; lezioni 01–04 di questi appunti
+appunti_html: appunti/FDA/05_esercizi_circuiti_rappresentazioni.html
+genera_html: true
+```
+
+## In breve
+
+- È una lezione di **esercizi**: niente argomenti nuovi. Ripassa tutta la parte 1 del libro, dalle porte logiche agli errori di comunicazione.
+- Ogni sezione comincia con un riquadro **Metodo**: il procedimento in poche righe e il link alla lezione dove è spiegato. Poi vengono esercizi svolti, dal più facile a quello da esame.
+- Ci sono tutte le domande delle **simulazioni d'esame del 2023/24** che riguardano la parte 1, risolte e spiegate: circuiti, flip-flop, complemento a 2, virgola mobile, distanza di Hamming.
+- Il trucco che vale ovunque: **ogni risultato si controlla al contrario**. Riconverti il numero, rileggi il byte, rifai la tabella.
+- L'ultima sezione dice come usare i 45 minuti dei 9 quiz: circa 5 minuti a domanda, i controlli veloci e gli errori più frequenti.
+- All'esame la parte 1 torna soprattutto con conversioni, complemento a 2, virgola mobile, circuiti e distanza di Hamming.
+
+> [!CANALI]
+> Nel canale B è la lezione di venerdì 09/10, dalle 11 alle 13. Per il docente è la lezione 6, perché la prima è stata un'introduzione: qui è la 05. Il diario del canale B la annuncia così: «(Fine Parte 1) Esercizi sulle lezioni 01-05: Circuiti e Rappresentazioni binarie». Le lezioni 01–05 del docente sono la sua introduzione e le lezioni [01](01_bit_porte_esadecimale.html), [02](02_testo_colori_suoni_binario.html), [03](03_interi_con_segno_virgola_mobile.html) e [04](04_compressione_errori_comunicazione.html) di questi appunti. Ho scritto questa pagina prima della lezione: gli esercizi sono le domande del libro, con le risposte dell'appendice, le domande delle simulazioni d'esame e altri miei, non quelli che il docente farà in aula. La sezione 1.8 del libro, su Python, è fuori dal programma del canale B e qui non c'è. Nel canale A gli stessi argomenti sono nei lucidi di Felice Cardone sul Moodle del canale A (id 3851, aperto agli ospiti), dove c'è anche l'appendice con le risposte alle domande del capitolo 1. Nel canale C le stesse sezioni sono nei lucidi del docente.
+
+## Circuiti: porte e tabelle (libro, §1.1)
+
+Un quiz sui circuiti ti mostra un disegno di porte, oppure una tabella di 0 e 1, e ti chiede che cosa calcola. Si risolve sempre allo stesso modo: si provano tutte le combinazioni degli ingressi, una riga alla volta.
+
+> [!METODO] Leggere un circuito (lezione 01)
+> 1. Scrivi tutte le combinazioni degli ingressi, in ordine: con 2 ingressi sono 4 righe, con 3 ingressi sono 8.
+> 2. Aggiungi una colonna per ogni porta, partendo da quelle attaccate agli ingressi.
+> 3. Riempi le colonne con le tabelle delle porte: AND dà 1 solo se tutti e due gli ingressi sono 1; OR se almeno uno è 1; XOR se sono diversi; NOT scambia 0 e 1.
+> 4. L'ultima colonna è l'uscita. Descrivila a parole.
+>
+> Tutto è spiegato nella [lezione 01](01_bit_porte_esadecimale.html).
+
+> [!RIPASSO] Quante righe ha la tabella
+> Ogni ingresso in più raddoppia le righe. $2^3$ si legge «due alla terza» e vuol dire $2 \cdot 2 \cdot 2 = 8$: con 3 ingressi le righe sono 8. Con 4 ingressi sono $2^4 = 16$.
+
+### Come si scrivono le porte nei quiz
+
+Nei quiz le porte non sono sempre scritte con le parole AND, OR e NOT. Spesso si usano i segni dell'algebra di Boole, che il libro riprende nella parte 2. Ecco come leggerli.
+
+| Nel quiz trovi | Si legge | È la porta |
+|---|---|---|
+| A·B, oppure AB, oppure A ∧ B | «A e B» | AND |
+| A + B, oppure A ∨ B | «A o B» | OR |
+| $\overline{A}$, oppure ¬A, oppure A' | «non A» | NOT |
+
+Attenzione al segno +: qui non è la somma. Vuol dire OR, quindi 1 + 1 fa 1. Anche le lettere T e F, o V e F, sono solo un altro modo di scrivere 1 e 0: vero e falso.
+
+Come nei conti di scuola, dove la moltiplicazione si fa prima della somma, qui l'AND si fa prima dell'OR. Quindi A·B + C vuol dire (A AND B) OR C. Il NOT vale solo per la lettera che ha sotto la barra, o subito dopo il segno ¬. Se la barra o il ¬ coprono una parentesi, valgono per tutto quello che c'è dentro.
+
+> [!ESEMPIO] Facile: XOR costruito con AND, OR e NOT
+> Calcola la tabella di $A \cdot \overline{B} + \overline{A} \cdot B$, cioè (A AND NOT B) OR (NOT A AND B).
+>
+> | A | B | A AND NOT B | NOT A AND B | uscita |
+> |:-:|:-:|:-:|:-:|:-:|
+> | 0 | 0 | 0 | 0 | 0 |
+> | 0 | 1 | 0 | 1 | 1 |
+> | 1 | 0 | 1 | 0 | 1 |
+> | 1 | 1 | 0 | 0 | 0 |
+>
+> L'uscita vale 1 quando i due ingressi sono diversi: è proprio la tabella dello XOR. Lo stesso calcolo si può fare con porte diverse.
+
+### Dal circuito alla formula: una domanda vera
+
+> [!ESEMPIO] Tipo esame: Simulazione d'esame 1, 2023/24, domanda 6
+> Il circuito ha tre ingressi A, B e C. C passa da una porta NOT. Una porta AND riceve A e NOT C; un'altra AND riceve NOT C e B. Le due uscite entrano in una porta OR, che dà l'uscita Y. Il quiz chiede quali affermazioni sono corrette:
+>
+> - a. il circuito è combinatorio;
+> - b. «(¬C∨A)∧(¬C∨B)» descrive la funzione calcolata;
+> - c. «¬((C∨¬A)∧(C∨¬B))» descrive la funzione calcolata;
+> - d. il circuito è sequenziale;
+> - e. «(¬C∧A)∨(¬C∧B)» descrive la funzione calcolata.
+>
+> **1. La tabella del circuito.** Y vale 1 se almeno una delle due AND dà 1. Tutte e due hanno bisogno di NOT C = 1, cioè di C = 0. Poi serve A = 1 oppure B = 1.
+>
+> | A | B | C | Y | formula b | formula c | formula e |
+> |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+> | 0 | 0 | 0 | 0 | **1** | 0 | 0 |
+> | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
+> | 0 | 1 | 0 | 1 | 1 | 1 | 1 |
+> | 0 | 1 | 1 | 0 | 0 | 0 | 0 |
+> | 1 | 0 | 0 | 1 | 1 | 1 | 1 |
+> | 1 | 0 | 1 | 0 | 0 | 0 | 0 |
+> | 1 | 1 | 0 | 1 | 1 | 1 | 1 |
+> | 1 | 1 | 1 | 0 | **1** | 0 | 0 |
+>
+> **2. Le formule.** La formula e è il circuito scritto pari pari: (NOT C AND A) OR (NOT C AND B). La formula c sembra diversa, ma riga per riga dà gli stessi valori di Y. Prova una riga, A = 1, B = 0, C = 0: C OR NOT A fa 0 OR 0 = 0; C OR NOT B fa 0 OR 1 = 1; l'AND tra i due fa 0; il NOT davanti alla parentesi dà 1, proprio come Y. La formula b invece sbaglia in due righe: con A, B e C tutti a 0 dà 1, mentre il circuito dà 0.
+>
+> **3. Combinatorio o sequenziale.** Nessun filo torna indietro: l'uscita dipende solo dagli ingressi di quel momento. Il circuito è **combinatorio**, non sequenziale.
+>
+> Le affermazioni corrette sono a, c ed e.
+
+> [!IDEA]
+> Per dire che una formula è **sbagliata** basta una riga in cui dà un valore diverso dal circuito. Per dire che è **giusta** bisogna controllare tutte le righe.
+
+### Dalla tabella alla formula
+
+Il quiz al contrario: ti dà la tabella e ti chiede la formula. C'è un metodo che funziona sempre, con gruppetti di AND uniti da OR.
+
+> [!METODO] Una formula per una tabella
+> 1. Guarda le righe in cui l'uscita vale 1.
+> 2. Per ogni riga scrivi un AND di tutti gli ingressi: l'ingresso così com'è se nella riga vale 1, con il NOT se vale 0. Questo AND vale 1 solo in quella riga.
+> 3. Unisci tutti gli AND con degli OR.
+
+> [!ESEMPIO] Tipo esame: Simulazione d'esame 1, 2023/24, domanda 5
+> Il quiz dà questa tabella, propone tre formule e chiede quali la descrivono. Gli ingressi si chiamano x1, x2 e x3: il numerino fa parte del nome. Nelle formule si scrivono $x_1$, $x_2$, $x_3$.
+>
+> | x1 | x2 | x3 | y |
+> |:-:|:-:|:-:|:-:|
+> | 0 | 0 | 0 | 0 |
+> | 0 | 0 | 1 | 0 |
+> | 0 | 1 | 0 | 1 |
+> | 0 | 1 | 1 | 1 |
+> | 1 | 0 | 0 | 0 |
+> | 1 | 0 | 1 | 1 |
+> | 1 | 1 | 0 | 1 |
+> | 1 | 1 | 1 | 0 |
+>
+> **1. Le righe con y = 1** sono quattro: 010, 011, 101 e 110.
+>
+> **2. Un AND per riga.** La riga 010 dà NOT x1 AND x2 AND NOT x3. Le altre allo stesso modo:
+>
+> $$\overline{x_1}\,x_2\,\overline{x_3} + \overline{x_1}\,x_2\,x_3 + x_1\,\overline{x_2}\,x_3 + x_1\,x_2\,\overline{x_3}$$
+>
+> È la terza formula del quiz: giusta.
+>
+> **3. La prima formula del quiz** è $\overline{x_1}\,x_2 + x_1\,\overline{x_2}\,x_3 + x_1\,x_2\,\overline{x_3}$. Il primo pezzo, NOT x1 AND x2, vale 1 nelle righe 010 e 011, cioè quando x1 = 0 e x2 = 1, qualunque sia x3. Fa il lavoro dei primi due gruppetti insieme. Anche questa formula è giusta.
+>
+> **4. La seconda formula**, nella schermata poco leggibile, ripete due volte lo stesso gruppetto e non ne ha nessuno per la riga 110. In quella riga dà 0 invece di 1: è sbagliata.
+
+::: prova Calcola l'uscita di A·B + $\overline{C}$ nelle righe (a) A = 1, B = 0, C = 0 e (b) A = 0, B = 1, C = 1.
+(a) A AND B fa 0. NOT C fa 1. 0 OR 1 fa 1: l'uscita è 1.
+
+(b) A AND B fa 0. NOT C fa 0. 0 OR 0 fa 0: l'uscita è 0.
+:::
+
+> [!RICORDA]
+> - Un circuito si legge con la tabella di tutte le combinazioni degli ingressi: 8 righe con 3 ingressi.
+> - Nei quiz · è AND, + è OR, la barra o ¬ è NOT. L'AND si fa prima dell'OR.
+> - Per scartare una formula basta una riga sbagliata. Per accettarla servono tutte le righe.
+> - Dalla tabella alla formula: un AND per ogni riga con uscita 1, poi tutti uniti con OR.
+
+## Circuiti che ricordano: il flip-flop (libro, §1.1)
+
+Nei circuiti della sezione precedente nessun filo torna indietro. Quando un'uscita rientra in una porta, il circuito può **ricordare**: la sua uscita dipende anche da quello che è successo prima.
+
+> [!METODO] Seguire un circuito con un filo che torna indietro (lezione 01)
+> 1. Parti dal valore che l'uscita aveva prima.
+> 2. Calcola le porte, a partire da quelle che ricevono gli ingressi.
+> 3. Se l'uscita cambia, ricalcola le porte con il valore nuovo. Continua finché niente cambia più: il circuito si è **stabilizzato**.
+> 4. Se partendo da uscita 0 resta 0, e partendo da 1 resta 1, il circuito **ricorda** il valore di prima.
+>
+> Un **impulso** è un ingresso che passa per un attimo a 1 e poi torna a 0, come un pulsante premuto e lasciato.
+>
+> Un circuito con un filo che torna indietro si chiama **sequenziale**. Uno senza si chiama **combinatorio**. Il flip-flop del libro è nella [lezione 01](01_bit_porte_esadecimale.html).
+
+> [!ESEMPIO] Facile: il flip-flop del libro (figura 1.3)
+> L'ingresso in alto entra in un OR; l'ingresso in basso passa da un NOT; un AND riceve l'OR e il NOT; l'uscita dell'AND torna nell'OR. L'uscita vale 1 e arriva un impulso in basso.
+>
+> 1. Il NOT riceve 1 e dà 0.
+> 2. L'AND riceve uno 0: dà 0. L'uscita diventa 0.
+> 3. Ora l'OR riceve 0 dall'ingresso in alto e 0 dall'uscita: dà 0.
+> 4. Finito l'impulso, il NOT torna a dare 1, ma l'OR dà 0: l'AND resta a 0.
+>
+> L'uscita è 0 e ci resta. È la risposta del libro alla domanda 2 del §1.1, che spiega lo stesso giro.
+
+Prova gli impulsi nello strumento, come nella lezione 01.
+
+```widget porte
+titolo: Il flip-flop del libro: un impulso in alto, uno in basso
+modo: flipflop
+```
+
+### Una porta nuova: NAND
+
+Il quiz che segue usa coppie di porte AND seguite da NOT. Un AND seguito da un NOT si chiama **NAND**, da *not and*. Dà il contrario dell'AND: 0 solo quando tutti e due gli ingressi sono 1.
+
+| A | B | A AND B | A NAND B |
+|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 1 |
+| 0 | 1 | 0 | 1 |
+| 1 | 0 | 0 | 1 |
+| 1 | 1 | 1 | 0 |
+
+Il trucco per i conti veloci: se un ingresso di un NAND è 0, l'uscita è 1, qualunque sia l'altro.
+
+> [!ESEMPIO] Tipo esame: Simulazione d'esame 2, 2023/24, domanda 3
+> Il circuito ha un ingresso in alto e uno in basso, e due NAND. Il NAND in alto riceve l'ingresso in alto e l'uscita del NAND in basso. Il NAND in basso riceve l'ingresso in basso e l'uscita del NAND in alto. L'uscita del NAND in alto è y. Chiamo z l'uscita di quello in basso.
+>
+> **È combinatorio?** No: le uscite tornano indietro, una nell'altra porta. È **sequenziale**.
+>
+> **In alto 1, in basso 0.**
+> 1. Il NAND in basso riceve uno 0: dà z = 1, qualunque sia y.
+> 2. Il NAND in alto riceve 1 e 1: dà y = 0.
+> 3. Controllo: il NAND in basso riceve 0 e 0, e dà ancora 1. Niente cambia. L'uscita si stabilizza su **0**.
+>
+> **In alto 0, in basso 1.**
+> 1. Il NAND in alto riceve uno 0: dà y = 1.
+> 2. Il NAND in basso riceve 1 e 1: dà z = 0.
+> 3. Il NAND in alto riceve 0 e 0, e dà ancora 1. L'uscita si stabilizza su **1**.
+>
+> **In alto 1, in basso 1.** Ora ogni NAND riceve un 1 fisso, quindi dà il contrario dell'altra uscita. Prova i due casi.
+> - Se prima y era 0: z = 1, e il NAND in alto riceve 1 e 1, quindi y resta 0.
+> - Se prima y era 1: z = 0, e il NAND in alto riceve un 0, quindi y resta 1.
+>
+> L'uscita **resta quella di prima**: il circuito ricorda un bit, come il flip-flop del libro.
+>
+> Attenzione: le note a mano che girano con questa simulazione dicono il contrario per i primi due casi. I conti qui sopra danno y = 0 con «alto 1, basso 0» e y = 1 con «alto 0, basso 1». Rifai sempre i conti da solo.
+
+::: prova Nel circuito con i due NAND metti tutti e due gli ingressi a 0. Quanto valgono y e z?
+Il NAND in alto riceve uno 0, quindi y = 1. Anche il NAND in basso riceve uno 0, quindi z = 1. Tutte e due le uscite valgono 1, qualunque fosse il valore di prima.
+:::
+
+> [!RICORDA]
+> - Combinatorio: nessun filo torna indietro, l'uscita dipende solo dagli ingressi. Sequenziale: un'uscita rientra, e il circuito può ricordare.
+> - Per un circuito sequenziale parti dal valore di prima e ricalcola finché niente cambia.
+> - NAND è AND seguito da NOT: un ingresso a 0 basta per dare 1.
+
+## L'esadecimale (libro, §1.1)
+
+Le file lunghe di bit si leggono male. Nei quiz e nei programmi si scrivono in esadecimale: una cifra ogni quattro bit.
+
+> [!METODO] Bit ed esadecimale (lezione 01)
+> - **Dai bit all'esadecimale**: dividi in gruppi di 4 bit partendo da destra, aggiungi zeri a sinistra al primo gruppo se servono, e scrivi la cifra di ogni gruppo.
+> - **Dall'esadecimale ai bit**: ogni cifra diventa 4 bit, zeri compresi.
+> - **La cifra di un gruppo**: somma le monete 8, 4, 2 e 1 dove c'è un 1. Da 10 a 15 si usano le lettere: A = 10, B = 11, C = 12, D = 13, E = 14, F = 15.
+>
+> Spiegazione completa nella [lezione 01](01_bit_porte_esadecimale.html); le monete della base 2 nella [lezione 02](02_testo_colori_suoni_binario.html).
+
+> [!ESEMPIO] Facile: domanda 5 del §1.1
+> Scrivi in esadecimale (a) 0110101011110010, (b) 111010000101010100010111, (c) 01001000.
+>
+> 1. (a) Gruppi 0110, 1010, 1111, 0010: cioè 6, A, F, 2. Risultato 6AF2.
+> 2. (b) Gruppi 1110, 1000, 0101, 0101, 0001, 0111: cioè E, 8, 5, 5, 1, 7. Risultato E85517.
+> 3. (c) Gruppi 0100 e 1000: 48.
+>
+> Sono le risposte del libro.
+
+> [!ESEMPIO] Medio: domanda 6 del §1.1, al contrario
+> Scrivi in bit (a) 5FD97, (b) 610A, (c) ABCD, (d) 0100.
+>
+> 1. (a) 0101 1111 1101 1001 0111.
+> 2. (b) 0110 0001 0000 1010.
+> 3. (c) 1010 1011 1100 1101.
+> 4. (d) 0000 0001 0000 0000: anche gli 0 diventano quattro bit.
+>
+> L'appendice stampa la (c) come «101010 1111001101», con uno spazio nel posto sbagliato: sono gli stessi 16 bit.
+
+### Dall'esadecimale alla base 10
+
+Un byte in esadecimale ha due cifre. Per il suo valore in base 10 hai due strade.
+
+- **Con le monete.** B5 è 1011 0101. Le monete sono 128, 32, 16, 4 e 1: in tutto 181.
+- **Con il 16.** La cifra di sinistra conta i gruppi da 16. Le sue monete, 128, 64, 32 e 16, sono infatti 16 volte le monete 8, 4, 2 e 1. B vale 11, quindi B5 = 11 · 16 + 5 = 176 + 5 = 181.
+
+> [!ESEMPIO] Tipo esame: un colore
+> Un pixel ha il colore #3CA7FF. È il modo di scrivere i colori delle pagine web, visto nella lezione 02: dopo il cancelletto, due cifre esadecimali per il rosso, due per il verde e due per il blu. Quanto valgono i tre colori, da 0 a 255?
+>
+> 1. Rosso 3C: 3 · 16 + 12 = 48 + 12 = 60.
+> 2. Verde A7: 10 · 16 + 7 = 160 + 7 = 167. Controllo con i bit: 1010 0111, monete 128, 32, 4, 2 e 1, in tutto 167.
+> 3. Blu FF: 15 · 16 + 15 = 255, il massimo.
+>
+> Il colore è (60, 167, 255), un azzurro: tanto blu, abbastanza verde, poco rosso.
+
+::: prova (a) Scrivi in esadecimale 11100001. (b) Quanto vale E1 in base 10?
+(a) I gruppi sono 1110 e 0001: E1.
+
+(b) E vale 14: 14 · 16 + 1 = 224 + 1 = 225. Controllo con le monete: 11100001 ha 128, 64, 32 e 1, cioè 225.
+:::
+
+> [!RICORDA]
+> - Una cifra esadecimale vale 4 bit. I gruppi si fanno da destra.
+> - Ogni cifra torna a 4 bit, zeri compresi: 0100 in esadecimale sono 16 bit.
+> - Due cifre esadecimali: la sinistra vale 16 volte di più. B5 = 11 · 16 + 5 = 181.
+
+## Memoria e capacità (libro, §1.2–1.3)
+
+Le domande sulla memoria sono conti con le potenze di 2: quanti byte, quanti bit, quanti indirizzi.
+
+> [!METODO] I conti sulla memoria (lezione 01)
+> 1. 1 KB = 1024 byte, 1 MB = 1024 KB, 1 GB = 1024 MB. Per i bit moltiplica per 8.
+> 2. Con indirizzi di $n$ bit si numerano $2^n$ celle. Al contrario: per un certo numero di celle servono tanti bit quanto l'esponente della prima potenza di 2 che basta.
+> 3. Un disco: il **ritardo di rotazione** è l'attesa perché il settore giusto arrivi sotto la testina. In media è mezzo giro.
+>
+> Tutto è nella [lezione 01](01_bit_porte_esadecimale.html).
+
+> [!RIPASSO] Tre potenze da sapere
+> $2^{10} = 1024$, cioè 1 KB. $2^{16} = 65536$, cioè 64 KB. $2^{20} = 1048576$, cioè 1 MB. Moltiplicare due potenze di 2 vuol dire sommare gli esponenti: $2^{10} \cdot 2^{10} = 2^{20}$.
+
+> [!ESEMPIO] Facile: domanda 3 del §1.2
+> Quanti bit ci sono in una memoria di 4 KB?
+>
+> 1. 4 KB = 4 · 1024 = 4096 byte.
+> 2. 4096 · 8 = 32768 bit.
+>
+> È la risposta del libro.
+
+> [!ESEMPIO] Medio: quanti bit per gli indirizzi
+> Una memoria ha 64 KB, con celle di un byte. Quanti bit servono per scrivere l'indirizzo di una cella?
+>
+> 1. Le celle sono 64 · 1024 = 65536.
+> 2. 65536 è $2^{16}$. Con 16 bit gli indirizzi vanno da 0 a 65535: uno per cella.
+> 3. Con 15 bit si arriverebbe solo a $2^{15} = 32768$ celle: non bastano.
+>
+> Servono 16 bit.
+
+> [!ESEMPIO] Medio: domanda 2 del §1.2, scambiare due celle
+> Per scambiare il contenuto delle celle 2 e 3, una persona copia la cella 2 nella 3 e poi la 3 nella 2. Che cosa succede?
+>
+> 1. La prima copia scrive nella cella 3 il valore della 2: il valore vecchio della 3 si perde.
+> 2. La seconda copia rimette nella 2 lo stesso valore che aveva già.
+> 3. Alla fine tutte e due le celle hanno il valore che era nella 2. È la risposta del libro.
+>
+> Il modo giusto, come nel libro, usa una terza cella come appoggio: copia la 2 nella 1, poi la 3 nella 2, poi la 1 nella 3.
+
+> [!ESEMPIO] Tipo esame: un disco
+> Un disco fa 5400 giri al minuto. Quanto vale in media il ritardo di rotazione?
+>
+> 1. 5400 giri al minuto sono 5400 : 60 = 90 giri al secondo.
+> 2. Un giro dura 1/90 di secondo, circa 11,1 millesimi di secondo.
+> 3. In media si aspetta mezzo giro: circa 5,6 millesimi di secondo.
+
+::: prova (a) Quanti byte sono 3 KB? (b) Con indirizzi di 20 bit, quante celle si numerano?
+(a) 3 · 1024 = 3072 byte.
+
+(b) $2^{20} = 1048576$ celle: con celle di un byte, 1 MB.
+:::
+
+> [!RICORDA]
+> - 1 KB = 1024 byte = $2^{10}$ byte. Per i bit si moltiplica per 8.
+> - Con $n$ bit di indirizzo si numerano $2^n$ celle.
+> - Per scambiare due celle serve una terza cella di appoggio.
+
+## Il testo: ASCII e UTF-8 (libro, §1.4)
+
+Le domande sul testo chiedono di leggere o scrivere lettere in bit, e di contare i byte di un testo.
+
+> [!METODO] Testo in bit (lezione 02)
+> - **ASCII**: maiuscola = 64 più il posto della lettera nell'alfabeto inglese; minuscola = 96 più il posto; cifra = 48 più la cifra; spazio = 32. Un byte per simbolo.
+> - Una maiuscola e la sua minuscola differiscono di 32: un solo bit, quello che vale 32.
+> - **UTF-8**: 1 byte per i simboli di ASCII, 2 per le lettere accentate come è e à, 3 per €, 4 per le emoji.
+>
+> Tutto è nella [lezione 02](02_testo_colori_suoni_binario.html).
+
+> [!ESEMPIO] Facile: leggere un messaggio
+> Che cosa dicono i byte 01000011 01101001 01100001 01101111?
+>
+> 1. 01000011: monete 64, 2 e 1, cioè 67 = 64 + 3. La terza maiuscola: C.
+> 2. 01101001: 64 + 32 + 8 + 1 = 105 = 96 + 9. La nona minuscola: i.
+> 3. 01100001: 97 = 96 + 1: a.
+> 4. 01101111: 64 + 32 + 8 + 4 + 2 + 1 = 111 = 96 + 15: o.
+>
+> Il messaggio è «Ciao». Trucco: i byte delle maiuscole cominciano con 010, quelli delle minuscole con 011.
+
+> [!ESEMPIO] Medio: domanda 7 del §1.4
+> Qual è il numero più grande che si scrive con tre byte, una cifra ASCII per byte? E con gli stessi 24 bit in base 2?
+>
+> 1. In ASCII ogni byte è una cifra: il massimo è 999.
+> 2. In base 2, 24 bit arrivano a $2^{24} - 1 = 16777215$.
+>
+> È la risposta del libro, e il motivo per cui i numeri si conservano in base 2.
+
+> [!ESEMPIO] Tipo esame: contare i byte in UTF-8
+> Quanti byte occupa in UTF-8 il testo «città: 1€», spazio compreso?
+>
+> 1. I simboli sono 9: c, i, t, t, à, due punti, spazio, 1, €.
+> 2. c, i, t, t, i due punti, lo spazio e l'1 sono di ASCII: 7 byte.
+> 3. La à occupa 2 byte, l'euro 3.
+> 4. In tutto 7 + 2 + 3 = 12 byte.
+>
+> La risposta trappola è 9: un byte per simbolo.
+
+::: prova (a) Il codice di H è 72. Qual è quello di h? (b) Quanti byte occupa in UTF-8 «Perché no?»
+(a) La minuscola vale 32 in più: 72 + 32 = 104.
+
+(b) I simboli sono 10. La é occupa 2 byte, gli altri 9 uno ciascuno: 9 + 2 = 11 byte.
+:::
+
+> [!RICORDA]
+> - ASCII: maiuscole da 65, minuscole da 97, cifre da 48, spazio 32. Maiuscola e minuscola differiscono di 32.
+> - UTF-8: 1 byte per ASCII, 2 per le lettere accentate, 3 per €, 4 per le emoji.
+> - Contare i simboli non basta: conta quanti byte occupa ognuno.
+
+## Immagini e suoni (libro, §1.4)
+
+Le domande su immagini e suoni sono moltiplicazioni. L'errore tipico è dimenticare un fattore, o confondere bit e byte.
+
+> [!METODO] Quanto occupano (lezione 02)
+> - **Immagine** senza compressione: larghezza × altezza × byte per pixel. In RGB i byte per pixel sono 3.
+> - **Suono**: campioni al secondo × byte per campione × canali × secondi. Un campione è una misura dell'onda. Mono = 1 canale, stereo = 2.
+> - **Colori possibili** con $b$ bit per pixel: $2^b$.
+>
+> Spiegazione nella [lezione 02](02_testo_colori_suoni_binario.html).
+
+> [!ESEMPIO] Facile: una telefonata
+> Un minuto di telefonata: 8000 campioni al secondo, 8 bit per campione, mono.
+>
+> 1. 8 bit sono 1 byte.
+> 2. In un secondo: 8000 · 1 · 1 = 8000 byte.
+> 3. In un minuto: 8000 · 60 = 480000 byte.
+
+> [!ESEMPIO] Medio: uno schermo
+> Un'immagine di 1024 × 768 pixel in RGB, senza compressione. Quanti byte? Quanti MB, con 1 MB = 1048576 byte?
+>
+> 1. I pixel sono 1024 · 768 = 786432.
+> 2. Ognuno occupa 3 byte: 786432 · 3 = 2359296 byte.
+> 3. In MB: 2359296 : 1048576 = 2,25 MB.
+
+> [!ESEMPIO] Tipo esame: una canzone
+> Una canzone di 3 minuti con la qualità dei CD: 44 100 campioni al secondo, 16 bit per campione, stereo. Quanti byte?
+>
+> 1. 16 bit sono 2 byte. Stereo vuol dire 2 canali.
+> 2. In un secondo: 44100 · 2 · 2 = 176400 byte.
+> 3. 3 minuti sono 180 secondi: 176400 · 180 = 31752000 byte, circa 30 MB.
+>
+> Le risposte trappola: 15876000 (mono, un canale solo) e 254016000 (i bit al posto dei byte).
+
+::: prova (a) Con 2 byte per pixel, quanti colori diversi si scrivono? (b) Quanti byte occupa un'immagine di 640 × 480 pixel in RGB?
+(a) 2 byte sono 16 bit: $2^{16} = 65536$ colori.
+
+(b) 640 · 480 = 307200 pixel, per 3 byte: 921600 byte.
+:::
+
+> [!RICORDA]
+> - Immagine: larghezza × altezza × 3 byte in RGB.
+> - Suono: campioni al secondo × byte per campione × canali × secondi.
+> - Prima di moltiplicare, scrivi i quattro fattori. Lo stereo ha 2 canali; 16 bit sono 2 byte.
+
+## Base 2 e base 10, anche con la virgola (libro, §1.5)
+
+Le conversioni servono in quasi tutti i quiz della parte 1: nel complemento a 2, nella virgola mobile, nell'esadecimale. Devono diventare automatiche.
+
+> [!METODO] Le conversioni (lezione 02)
+> - **Da base 2 a base 10**: ogni bit è una moneta. Da destra valgono 1, 2, 4, 8, 16…; dopo la virgola 1/2, 1/4, 1/8, 1/16. Somma le monete sotto gli 1.
+> - **Da base 10 a base 2**: paga con le monete partendo dalla più grande, oppure dividi per 2 finché il risultato è 0 e leggi i resti dall'ultimo al primo.
+> - **La parte dopo la virgola**: scrivila come somma di mezzi, quarti, ottavi; oppure raddoppiala più volte, e ogni volta la cifra prima della virgola è il bit successivo.
+>
+> Le monete, le divisioni e il raddoppio sono nella [lezione 02](02_testo_colori_suoni_binario.html).
+
+> [!ESEMPIO] Facile: un byte e un numero
+> (a) Quanto vale 10110110? (b) Scrivi 100 in base 2.
+>
+> 1. (a) Le monete sono 128, 32, 16, 4 e 2: 128 + 32 + 16 + 4 + 2 = 182.
+> 2. (b) 64 ci sta, restano 36. 32 ci sta, restano 4. 16 e 8 no. 4 ci sta, resta 0. 2 e 1 no.
+> 3. Monete 64, 32 e 4: 1100100. Controllo: 64 + 32 + 4 = 100.
+
+> [!ESEMPIO] Medio: con la virgola
+> (a) Quanto vale 101,011? (b) Scrivi 6,375 in base 2.
+>
+> 1. (a) Prima della virgola 101 vale 5. Dopo la virgola ci sono le monete 1/4 e 1/8: 2/8 + 1/8 = 3/8. In tutto 5 e 3/8, cioè 5,375.
+> 2. (b) 6 è 110. Per 0,375 raddoppia: 0,75, prima della virgola 0; poi 1,5, prima della virgola 1; tieni 0,5 e raddoppia: 1, prima della virgola 1, e non resta niente.
+> 3. I bit dopo la virgola sono 0, 1, 1: 6,375 = 110,011. Controllo: 4 + 2 + 1/4 + 1/8 = 6 e 3/8 = 6,375.
+
+> [!ESEMPIO] Tipo esame: la virgola fissa di 3,625
+> Le simulazioni d'esame 1 e 2 del 2023/24 chiedono la «rappresentazione binaria del numero in virgola fissa» di 3,625. Virgola fissa vuol dire scritto in base 2 con la virgola al suo posto, come nella lezione 02. Le risposte proposte sono 11.111, 11.101 e 111.01: nei quiz la virgola si scrive con il punto.
+>
+> 1. 3 è 11.
+> 2. 0,625 raddoppiato fa 1,25: primo bit 1. Tieni 0,25: raddoppiato fa 0,5, secondo bit 0. Raddoppiato ancora fa 1: terzo bit 1.
+> 3. Quindi 3,625 = 11,101, scritto nel quiz 11.101.
+> 4. Controllo: 2 + 1 + 1/2 + 1/8 = 3 e 5/8 = 3,625. Nessuna cifra si perde.
+>
+> 11.111 vale 3 e 7/8; 111.01 vale 7 e 1/4. La seconda parte dello stesso quiz, sulla virgola mobile, è più avanti in questa lezione.
+
+::: prova (a) Quanto vale 11,11? (b) Scrivi 0,1 in base 2: finisce?
+(a) 2 + 1 + 1/2 + 1/4 = 3 e 3/4, cioè 3,75.
+
+(b) Raddoppiando: 0,2 dà 0; 0,4 dà 0; 0,8 dà 0; 1,6 dà 1, tieni 0,6; 1,2 dà 1, tieni 0,2; e si ricomincia. 0,1 = 0,000110011…, con 0011 che si ripete: non finisce mai.
+:::
+
+> [!RICORDA]
+> - Base 2 → base 10: somma le monete; dopo la virgola valgono 1/2, 1/4, 1/8.
+> - Base 10 → base 2: monete dalla più grande, oppure divisioni per 2; dopo la virgola, raddoppia.
+> - Controlla sempre riconvertendo il risultato.
+
+## Somme e overflow senza segno (libro, §1.5)
+
+Le somme in base 2 si fanno in colonna come a scuola. Nei quiz si chiede di solito anche se il risultato ci sta nei bit che hai.
+
+> [!METODO] Sommare senza segno (lezione 02)
+> 1. Somma in colonna da destra: 0 + 0 = 0; 0 + 1 = 1; 1 + 1 = 10, scrivi 0 e riporti 1; 1 + 1 + 1 = 11, scrivi 1 e riporti 1.
+> 2. Con $n$ bit gli interi senza segno vanno da 0 a $2^n - 1$: con 8 bit da 0 a 255, con 4 bit da 0 a 15.
+> 3. Se dall'ultima colonna a sinistra esce un riporto, il risultato non ci sta: è **overflow**.
+>
+> Spiegazione nella [lezione 02](02_testo_colori_suoni_binario.html).
+
+> [!ESEMPIO] Facile: 105 + 54 con 8 bit
+> 01101001 + 00110110.
+>
+> | | 8ª | 7ª | 6ª | 5ª | 4ª | 3ª | 2ª | 1ª |
+> |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+> | riporti | 1 | 1 | | | | | | |
+> | 105 | 0 | 1 | 1 | 0 | 1 | 0 | 0 | 1 |
+> | 54 | 0 | 0 | 1 | 1 | 0 | 1 | 1 | 0 |
+> | somma | 1 | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+>
+> Da destra le prime cinque colonne hanno un solo 1 o nessuno: niente riporti. Nella sesta colonna 1 + 1 fa 10: scrivi 0 e riporti 1. Nella settima 1 + 0 più il riporto fa 10: scrivi 0 e riporti 1. Nell'ottava 0 + 0 più il riporto fa 1.
+>
+> Il risultato è 10011111, cioè 128 + 16 + 8 + 4 + 2 + 1 = 159. Infatti 105 + 54 = 159, e 159 sta in 8 bit: niente overflow.
+
+> [!ESEMPIO] Tipo esame: overflow con 8 bit
+> Con 8 bit senza segno si calcola 10010110 + 01101010. Che cosa resta, e c'è overflow?
+>
+> 1. 10010110 vale 128 + 16 + 4 + 2 = 150. 01101010 vale 64 + 32 + 8 + 2 = 106.
+> 2. In colonna, da destra: 0 + 0 = 0; 1 + 1 = 10, scrivi 0 e riporti 1; da lì in poi ogni colonna ha un 1 solo più il riporto, quindi fa 10: scrivi 0 e riporti 1, fino all'ultima colonna.
+> 3. Il risultato vero è 100000000, cioè 256: ha 9 bit.
+> 4. Negli 8 bit resta 00000000. È overflow: 150 + 106 = 256 non ci sta, perché con 8 bit si arriva a 255.
+
+::: prova Con 4 bit senza segno: (a) 0111 + 0001; (b) 1011 + 0110. Quale va in overflow?
+(a) 7 + 1 = 8: 1000. I riporti attraversano tre colonne, ma dall'ultima non esce niente: niente overflow.
+
+(b) 11 + 6 = 17: il risultato vero è 10001, con 5 bit. Nei 4 bit resta 0001: overflow.
+:::
+
+> [!RICORDA]
+> - In colonna: 1 + 1 = 10 e 1 + 1 + 1 = 11.
+> - Senza segno, con $n$ bit, si arriva a $2^n - 1$.
+> - Overflow senza segno: un riporto esce dall'ultima colonna a sinistra. I riporti in mezzo non contano.
+
+## Complemento a 2 ed eccesso (libro, §1.6)
+
+Per i numeri negativi il libro usa due modi: il complemento a 2 per gli interi, e la notazione in eccesso, che serve soprattutto dentro la virgola mobile. Nei quiz le domande sono quasi sempre conversioni e somme.
+
+**Invertire** un bit vuol dire cambiarlo: 0 diventa 1, 1 diventa 0.
+
+> [!METODO] Il complemento a 2 (lezione 03)
+> - **È un contachilometri di bit**: tornando indietro da 0000 si arriva a 1111, che vale −1. Il bit a sinistra è il **bit di segno**: 0 per i positivi e lo zero, 1 per i negativi.
+> - **Leggere**: somma le monete, ma quella di sinistra vale con il segno meno: −8 con 4 bit, −128 con 8 bit. Controllo: letto senza segno, un negativo vale 16 in più con 4 bit, 256 in più con 8.
+> - **Cambiare segno**: copia i bit da destra fino al primo 1 compreso, poi inverti gli altri. Oppure: inverti tutti i bit e aggiungi 1.
+> - **Scrivere un negativo**: scrivi il numero senza il meno, con tutti i bit, poi cambia segno.
+> - **Fin dove si arriva**: con 4 bit da −8 a 7, con 8 bit da −128 a 127.
+>
+> Il perché di tutte queste regole è nella [lezione 03](03_interi_con_segno_virgola_mobile.html).
+
+> [!ESEMPIO] Facile: domanda 1 del §1.6, con 5 bit
+> Quanto valgono in complemento a 2 i numeri 00011, 01111, 11100, 11010, 00000 e 10000?
+>
+> Con 5 bit le monete sono −16, 8, 4, 2 e 1.
+>
+> 1. 00011: 2 + 1 = 3.
+> 2. 01111: 8 + 4 + 2 + 1 = 15.
+> 3. 11100: −16 + 8 + 4 = −4.
+> 4. 11010: −16 + 8 + 2 = −6.
+> 5. 00000: 0.
+> 6. 10000: solo la moneta di segno, −16.
+>
+> Sono le risposte del libro.
+
+> [!ESEMPIO] Tipo esame: Simulazione d'esame 2, 2023/24, domanda 8
+> Il quiz chiede in base 10 quattro numeri in complemento a 2 su 8 bit. Con 8 bit le monete sono −128, 64, 32, 16, 8, 4, 2 e 1.
+>
+> 1. 11111111: −128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = −128 + 127 = −1.
+> 2. 01010101: bit di segno 0, come senza segno: 64 + 16 + 4 + 1 = 85.
+> 3. 00001111: 8 + 4 + 2 + 1 = 15.
+> 4. 10000001: −128 + 1 = −127.
+>
+> Controllo sul primo: senza segno 11111111 vale 255, e 255 − 256 = −1. La trappola è l'ultimo: 10000001 non è −1. Nel complemento a 2 il bit a sinistra non è un segno meno attaccato al resto, è una moneta da −128.
+
+Clicca sui bit dello strumento: vedi lo stesso byte letto senza segno, in complemento a 2 e in eccesso 128. Prova «Cambia segno» su 10000001 e poi su 10000000.
+
+```widget codifica
+titolo: Un byte, tre letture: senza segno, complemento a 2, eccesso 128
+modo: interi
+bit: 10000001
+```
+
+> [!ESEMPIO] Medio: domande 2 e 3 del §1.6
+> (a) Scrivi con 8 bit in complemento a 2: 6, −6, −17, 13, −1, 0. (b) Cambia segno a 00000001, 01010101, 11111100, 11111110, 00000000, 01111111.
+>
+> 1. (a) 6 è 00000110. −6: da 00000110 copi «10» e inverti gli altri sei bit, 000001, che diventano 111110. Risultato 11111010.
+> 2. −17: 17 è 00010001. Copi l'ultimo 1, inverti gli altri sette, 0001000, che diventano 1110111: 11101111.
+> 3. 13 è 00001101. −1 è 11111111. 0 è 00000000.
+> 4. (b) Con «copia fino al primo 1, poi inverti»: 00000001 diventa 11111111; 01010101 diventa 10101011; 11111100 diventa 00000100; 11111110 diventa 00000010; 00000000 resta 00000000; 01111111 diventa 10000001.
+>
+> Sono le risposte del libro. Controllo su 11111100: vale −128 + 64 + 32 + 16 + 8 + 4 = −4, e 00000100 vale 4.
+
+### Somme con il segno e overflow
+
+> [!METODO] Somme in complemento a 2 (lezione 03)
+> 1. Somma in colonna come senza segno. Il riporto che esce a sinistra **si butta**.
+> 2. **Regola del segno**: c'è overflow solo se i due numeri hanno lo stesso bit di segno e il risultato ha il bit di segno opposto.
+> 3. Un positivo più un negativo non va mai in overflow.
+> 4. Per sottrarre, cambia segno al secondo numero e somma.
+
+> [!ESEMPIO] Medio: domande 5 e 6 del §1.6, con 4 bit
+> Con 4 bit le monete sono −8, 4, 2 e 1, e i numeri vanno da −8 a 7.
+>
+> 1. 0101 + 0010 = 0111: 5 + 2 = 7. Segni uguali, risultato positivo: niente overflow.
+> 2. 1010 + 1110: da destra 0 + 0 = 0; 1 + 1 = 10, scrivi 0 e riporti 1; 0 + 1 più il riporto = 10, scrivi 0 e riporti 1; 1 + 1 più il riporto = 11, scrivi 1, e il riporto esce e si butta. Resta 1000: −6 + (−2) = −8. Segni uguali e risultato negativo: niente overflow.
+> 3. 0101 + 0110: 1 + 0 = 1; 0 + 1 = 1; 1 + 1 = 10, scrivi 0 e riporti 1; 0 + 0 più il riporto = 1. Resta 1011, che è negativo. Due positivi danno un negativo: **overflow**. Infatti 5 + 6 = 11, e con 4 bit si arriva a 7.
+> 4. 1010 + 1010: resta 0100, positivo. Due negativi danno un positivo: **overflow**. Infatti −6 − 6 = −12.
+> 5. 0111 + 0001: resta 1000, negativo. **Overflow**: 7 + 1 = 8 non c'è.
+>
+> Sono le risposte del libro: 0111, 1000, 1011 con overflow, 0100 con overflow, 1000 con overflow.
+
+Nello strumento i due numeri hanno 4 bit e sono in complemento a 2. Parti da 0101 + 0110, poi cambia i bit e prova le altre somme dell'esempio.
+
+```widget codifica
+titolo: Somma in complemento a 2 con 4 bit: quando c'è overflow?
+modo: somma
+a: 0101
+b: 0110
+complemento: si
+n: 4
+```
+
+### La notazione in eccesso
+
+> [!METODO] La notazione in eccesso (lezione 03)
+> - **Dai bit al numero**: leggi i bit senza segno e togli sempre lo stesso numero. Con 4 bit togli 8 (eccesso 8), con 3 bit togli 4 (eccesso 4), con 8 bit togli 128 (eccesso 128).
+> - **Dal numero ai bit**: aggiungi lo stesso numero e scrivi il risultato senza segno.
+> - Con 4 bit l'eccesso 8 va da −8 (0000) a 7 (1111). Rispetto al complemento a 2 cambia solo il bit a sinistra.
+
+> [!ESEMPIO] Medio: domande 9, 10 e 11 del §1.6
+> (a) Leggi in eccesso 8: 1110, 0111, 1000, 0010, 0000, 1001. (b) Scrivi in eccesso 8: 5, −5, 3, 0, 7, −8. (c) Si può scrivere 9 in eccesso 8?
+>
+> 1. (a) 14 − 8 = 6; 7 − 8 = −1; 8 − 8 = 0; 2 − 8 = −6; 0 − 8 = −8; 9 − 8 = 1.
+> 2. (b) 5 + 8 = 13, cioè 1101. −5 + 8 = 3, cioè 0011. 3 + 8 = 11, cioè 1011. 0 + 8 = 8, cioè 1000. 7 + 8 = 15, cioè 1111. −8 + 8 = 0, cioè 0000.
+> 3. (c) No: il più grande è 1111, cioè 15 − 8 = 7. Per lo stesso motivo 6 non si scrive in eccesso 4, che arriva a 3.
+>
+> Sono le risposte del libro.
+
+::: prova (a) Con 8 bit scrivi −35 in complemento a 2. (b) Quanto vale 110 in eccesso 4?
+(a) 35 = 32 + 2 + 1, cioè 00100011. Copi «1» da destra e inverti gli altri sette bit, 0010001, che diventano 1101110: il risultato è 11011101. Controllo: −128 + 64 + 16 + 8 + 4 + 1 = −35.
+
+(b) 110 senza segno è 6, e 6 − 4 = 2.
+:::
+
+> [!RICORDA]
+> - Complemento a 2: la moneta di sinistra vale −8 con 4 bit, −128 con 8. Con 8 bit si va da −128 a 127.
+> - Cambiare segno: copia da destra fino al primo 1, inverti il resto.
+> - Overflow con il segno: due numeri con lo stesso segno danno un risultato con il segno opposto. Il riporto finale si butta.
+> - Eccesso: leggi senza segno e togli 8 (4 bit), 4 (3 bit) o 128 (8 bit).
+
+## Virgola mobile a 8 bit (libro, §1.7)
+
+Il quiz sulla virgola mobile c'è in tutte e due le simulazioni del 2023/24. Usa sempre il formato a 8 bit del libro, che va saputo a memoria.
+
+> [!METODO] Il formato del libro (lezione 03)
+> Un byte si divide in tre pezzi: 1 bit di **segno**, 3 bit di **esponente** in eccesso 4, 4 bit di **mantissa**. La mantissa sono le cifre, con la virgola a sinistra: 1011 vuol dire 0,1011. L'esponente dice di quanti posti spostare la virgola: a destra se è positivo, a sinistra se è negativo.
+>
+> **Dal byte al numero.**
+> 1. Dividi il byte: segno, esponente, mantissa.
+> 2. Scrivi la mantissa con «0,» davanti.
+> 3. Leggi l'esponente: senza segno, meno 4.
+> 4. Sposta la virgola. Se mancano cifre, aggiungi degli zeri.
+> 5. Leggi con le monete e metti il segno.
+>
+> **Dal numero al byte.**
+> 1. Segno: 0 se positivo, 1 se negativo.
+> 2. Scrivi il numero in base 2.
+> 3. Sposta la virgola subito prima del primo 1, così il numero comincia con «0,1». Se l'hai spostata a sinistra l'esponente è positivo, se a destra è negativo.
+> 4. Mantissa: i primi 4 bit dopo la virgola. Le cifre in più si perdono: è l'**errore di troncamento**.
+> 5. Esponente: aggiungi 4 e scrivi con 3 bit.
+>
+> Spiegazione completa nella [lezione 03](03_interi_con_segno_virgola_mobile.html).
+
+| Esponente scritto | 000 | 001 | 010 | 011 | 100 | 101 | 110 | 111 |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Vale | −4 | −3 | −2 | −1 | 0 | 1 | 2 | 3 |
+
+> [!ESEMPIO] Facile: domanda 1 del §1.7
+> Leggi (a) 01001010, (b) 01101101, (c) 00111001, (d) 11011100, (e) 10101011.
+>
+> 1. (a) Segno 0, esponente 100 = 0, mantissa 1010. La virgola resta: 0,101 = 1/2 + 1/8 = 5/8.
+> 2. (b) Segno 0, esponente 110 = 2, mantissa 1101. Due posti a destra: 11,01 = 3 e 1/4.
+> 3. (c) Segno 0, esponente 011 = −1, mantissa 1001. Un posto a sinistra: 0,01001 = 1/4 + 1/32 = 9/32.
+> 4. (d) Segno 1, esponente 101 = 1, mantissa 1100. Un posto a destra: 1,1 = 1 e 1/2. Con il segno: −1 e 1/2.
+> 5. (e) Segno 1, esponente 010 = −2, mantissa 1011. Due posti a sinistra: 0,001011 = 1/8 + 1/32 + 1/64 = 11/64. Con il segno: −11/64.
+>
+> Sono le risposte del libro.
+
+> [!ESEMPIO] Medio: domanda 2 del §1.7
+> Scrivi nel formato del libro (a) 2 e 3/4, (b) 5 e 1/4, (c) 3/4, (d) −3 e 1/2, (e) −4 e 3/8.
+>
+> 1. (a) 10,11 → 0,1011, esponente 2 → 110. Mantissa 1011. Byte 01101011.
+> 2. (b) 101,01 → 0,10101, esponente 3 → 111. Le cifre sono cinque: la mantissa tiene 1010 e perde l'ultimo 1. Byte 01111010, con troncamento: vale 5.
+> 3. (c) 0,11: il primo 1 è già subito dopo la virgola, esponente 0 → 100. Mantissa 1100. Byte 01001100.
+> 4. (d) Segno 1. 11,1 → 0,111, esponente 2 → 110. Mantissa 1110. Byte 11101110.
+> 5. (e) Segno 1. 100,011 → 0,100011, esponente 3 → 111. La mantissa tiene 1000 e perde 11. Byte 11111000, con troncamento: vale −4.
+>
+> Sono le risposte del libro, con il troncamento nella (b) e nella (e).
+
+> [!ESEMPIO] Tipo esame: Simulazione d'esame 1, domanda 2, e Simulazione d'esame 2, domanda 1 (2023/24)
+> Il quiz chiede tre cose su 3,625: la virgola fissa, la virgola mobile nel formato a 8 bit del libro, e dove c'è troncamento. Le voci sulla virgola mobile sono 01101101, 01101110 e 11101110.
+>
+> 1. **Virgola fissa**: 3,625 = 11,101, come nella sezione sulle conversioni. Nessuna cifra si perde.
+> 2. **Segno**: il numero è positivo, quindi 0. La voce 11101110 è scartata: comincia con 1.
+> 3. **Esponente**: 11,101 → 0,11101, la virgola va due posti a sinistra. Esponente 2, cioè 2 + 4 = 6 = 110.
+> 4. **Mantissa**: le cifre sono cinque, 11101. La mantissa tiene 1110 e perde l'ultimo 1. La voce 01101101 è scartata: la sua mantissa 1101 non sono le prime quattro cifre.
+> 5. **Byte**: 0 110 1110, cioè 01101110.
+> 6. **Controllo**: 0,1110 con la virgola due posti a destra è 11,10, cioè 3,5. Si è perso 1/8.
+>
+> Le voci giuste: «Rappresentazione fissa: 11.101», «Rappresentazione Virgola Mobile: 01101110», «Troncamento presente solo nella rappresentazione in virgola mobile».
+
+Scrivi un numero nello strumento: vedi i passi della codifica e le cifre che si perdono. Prova 3,625, poi 3,75 e 5 1/4.
+
+```widget codifica
+titolo: Dal numero al byte del libro, con il troncamento
+modo: virgola
+numero: 3,625
+```
+
+> [!ESEMPIO] Difficile: domande 3 e 4 del §1.7
+> (a) Qual è più grande tra 01001001 e 00111101? (b) Qual è il numero più grande del formato? E il positivo più piccolo?
+>
+> 1. (a) 01001001: esponente 100 = 0, mantissa 1001, vale 0,1001 = 9/16. 00111101: esponente 011 = −1, mantissa 1101, vale 0,01101 = 13/32. Siccome 9/16 = 18/32, il più grande è il primo.
+> 2. Il libro dà anche una scorciatoia: se tutti e due i segni sono 0, scorri i bit da sinistra fino al primo posto in cui sono diversi. È più grande quello con l'1 in quel posto. Qui è il secondo bit. Funziona perché l'esponente è in eccesso: esponente più grande vuol dire bit più grandi.
+> 3. (b) Il più grande è 01111111: 0,1111 con la virgola tre posti a destra, 111,1, cioè 7 e 1/2.
+> 4. Il positivo più piccolo con la mantissa che comincia con 1 è 00001000: 0,1 con la virgola quattro posti a sinistra, 0,00001, cioè 1/32. Il libro aggiunge che, se la mantissa può cominciare con 0, il più piccolo è 00000001, cioè 1/256.
+
+> [!ESEMPIO] Difficile: l'ordine delle somme (esempio del libro)
+> Calcola 2 e 1/2 + 1/8 + 1/8 nel formato del libro, che tronca dopo ogni somma.
+>
+> 1. **Da sinistra.** 2 e 1/2 + 1/8 = 2 e 5/8, cioè 10,101: cinque cifre, la mantissa tiene 1010, e resta 2 e 1/2. Poi di nuovo + 1/8: ancora 2 e 1/2. Risultato 2 e 1/2.
+> 2. **Prima i piccoli.** 1/8 + 1/8 = 1/4, esatto. Poi 2 e 1/2 + 1/4 = 2 e 3/4, cioè 10,11: quattro cifre, ci stanno. Risultato 2 e 3/4, quello giusto.
+>
+> Per questo il libro consiglia di sommare prima i numeri piccoli.
+
+::: prova Scrivi nel formato del libro (a) 3,75 e (b) 6,375. C'è troncamento?
+(a) 3,75 = 11,11 → 0,1111, esponente 2 → 110. Mantissa 1111. Byte 01101111, senza troncamento.
+
+(b) 6,375 = 110,011 → 0,110011, esponente 3 → 111. La mantissa tiene 1100 e perde 11. Byte 01111100, che vale 110,0 cioè 6: troncamento, si perde 3/8.
+:::
+
+> [!RICORDA]
+> - Formato del libro: segno | esponente di 3 bit in eccesso 4 | mantissa di 4 bit con la virgola a sinistra.
+> - Esponente: 100 = 0, 101 = 1, 110 = 2, 111 = 3, 011 = −1, 010 = −2, 001 = −3, 000 = −4.
+> - Dal numero al byte: virgola subito prima del primo 1, le prime 4 cifre in mantissa, le altre si perdono.
+> - Controlla sempre rileggendo il byte che hai scritto.
+
+## Compressione (libro, §1.9)
+
+Le domande sulla compressione sono di due tipi: applicare una tecnica a un messaggio corto, oppure dire quale tecnica o quale formato va bene per un certo tipo di dati.
+
+> [!METODO] Le quattro tecniche del libro (lezione 04)
+> - **Run-length**: al posto di una fila di simboli uguali scrivi il simbolo e quante volte si ripete.
+> - **Codici a frequenza** (Huffman): codici corti ai simboli frequenti, lunghi a quelli rari. Nessun codice deve essere l'inizio di un altro.
+> - **Codifica relativa**: il primo dato per intero, poi solo le differenze con il dato prima.
+> - **Dizionario e LZW**, come nel libro: dizionario iniziale x = 1, y = 2, spazio = 3. Una parola nuova si scrive lettera per lettera e poi entra nel dizionario con il primo numero libero; una parola già vista si scrive con il suo numero; ogni spazio è 3.
+> - **Senza perdita** si riottengono i dati identici. **Con perdita** solo dati simili. GIF e JPEG, due formati per le immagini, sono tutti e due con perdita; anche MP3, il formato della musica, è con perdita.
+>
+> Tutto è nella [lezione 04](04_compressione_errori_comunicazione.html).
+
+> [!ESEMPIO] Facile: run-length e codifica relativa
+> (a) Scrivi con la codifica run-length 000000000011111000. (b) Scrivi con la codifica relativa 20, 21, 21, 22, 20.
+>
+> 1. (a) Dieci 0, cinque 1, tre 0: «10 zeri, 5 uni, 3 zeri». Controllo: 10 + 5 + 3 = 18 bit, come la fila.
+> 2. (b) Il primo resta 20. Poi 21 − 20 = +1; 21 − 21 = 0; 22 − 21 = +1; 20 − 22 = −2. Viene 20, +1, 0, +1, −2.
+
+> [!ESEMPIO] Medio: un codice a lunghezza variabile
+> Il messaggio AAAABBC ha 7 lettere. Con 2 bit per lettera occupa 7 · 2 = 14 bit. Con il codice A = 0, B = 10, C = 11, quanto occupa?
+>
+> 1. Le quattro A costano 1 bit ciascuna: 4 bit.
+> 2. Le due B costano 2 bit ciascuna: 4 bit.
+> 3. La C costa 2 bit.
+> 4. In tutto 4 + 4 + 2 = 10 bit, invece di 14.
+>
+> Il codice si legge senza pause: A è 0, e nessun altro codice comincia con 0.
+
+> [!ESEMPIO] Tipo esame: domanda 2 del §1.9, LZW
+> Comprimi con LZW, come nel libro, il messaggio «xyx yxxxy xyx yxxxy yxxxy», partendo da x = 1, y = 2, spazio = 3.
+>
+> | Leggo | Nel dizionario? | Scrivo | Il dizionario diventa |
+> |---|:-:|:-:|---|
+> | xyx | no | 1 2 1 | aggiungo xyx = 4 |
+> | spazio | sì | 3 | |
+> | yxxxy | no | 2 1 1 1 2 | aggiungo yxxxy = 5 |
+> | spazio | sì | 3 | |
+> | xyx | sì, è il 4 | 4 | |
+> | spazio | sì | 3 | |
+> | yxxxy | sì, è il 5 | 5 | |
+> | spazio | sì | 3 | |
+> | yxxxy | sì | 5 | |
+>
+> Il risultato è 121321112343535: è la risposta del libro. I simboli del messaggio erano 25, i numeri sono 15.
+
+> [!ESEMPIO] Medio: quale formato (domande 3, 4 e 5 del §1.9)
+> 1. **Per un cartone animato** va bene GIF: ci sono zone di colore uniforme con bordi netti, e pochi colori. GIF tiene al massimo 256 colori.
+> 2. **GIF e JPEG sono senza perdita?** No, tutti e due perdono qualcosa: GIF riduce i colori a 256, JPEG toglie dettagli.
+> 3. **Su che cosa conta JPEG?** L'occhio vede meglio le differenze di luminosità che quelle di colore: JPEG usa meno bit per il colore.
+>
+> Sono le risposte del libro. La domanda 6 aggiunge che MP3 sfrutta il **mascheramento temporale** e il **mascheramento di frequenza**: i suoni che l'orecchio non sente, coperti da altri, si buttano.
+
+::: prova (a) Che fila di bit è «4 uni, 2 zeri, 3 uni»? (b) Quali numeri erano 50, +3, −1, 0?
+(a) 1111 00 111, cioè 111100111.
+
+(b) Si somma ogni differenza al numero prima: 50; 53; 52; 52.
+:::
+
+> [!RICORDA]
+> - Run-length per le ripetizioni, codici a frequenza per i simboli frequenti, codifica relativa per i dati che cambiano poco, LZW con il dizionario che cresce.
+> - LZW del libro: parola nuova = numeri delle lettere, poi entra nel dizionario; parola vista = il suo numero; spazio = 3.
+> - Testi e programmi solo senza perdita. GIF e JPEG sono con perdita.
+
+## Parità e codice di Hamming (libro, §1.10)
+
+Quando i bit viaggiano, uno può cambiare. Le domande su questa sezione chiedono di aggiungere o controllare un bit di parità, di calcolare la distanza di Hamming e di correggere una parola con il codice del libro.
+
+> [!METODO] Errori di comunicazione (lezione 04)
+> - **Parità dispari**, quella del libro: conta gli 1 del byte. Se sono pari aggiungi un 1, se sono dispari uno 0, così il totale è dispari. Il libro mette il bit di parità **a sinistra**: un byte diventa 9 bit.
+> - **Controllo**: chi riceve conta gli 1. Pari vuol dire errore. Con due errori il totale torna dispari e nessuno se ne accorge.
+> - **Distanza di Hamming**: metti le due file una sotto l'altra e conta le colonne con bit diversi.
+> - **Codice del libro**: 8 lettere da 6 bit, tutte a distanza almeno 3. Se arriva una fila che non è nel codice, scegli la lettera più vicina. Corregge un errore e ne rivela due.
+>
+> Tutto è nella [lezione 04](04_compressione_errori_comunicazione.html).
+
+| Lettera | A | B | C | D | E | F | G | H |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Codice | 000000 | 001111 | 010011 | 011100 | 100110 | 101001 | 110101 | 111010 |
+
+> [!ESEMPIO] Facile: Simulazione d'esame 1, 2023/24, domanda 1
+> «Calcolare la distanza di Hamming tra le sequenze di numeri binari elencati.»
+>
+> 1. 01011101 e 00101101: diverse nei posti 2, 3 e 4. Distanza 3.
+> 2. 01011100 e 00101100: diverse negli stessi posti. Distanza 3.
+> 3. 01101100 e 01101110: diverse solo nel posto 7. Distanza 1.
+> 4. 01111100 e 01111110: diverse solo nel posto 7. Distanza 1.
+>
+> Un modo per non perdere il conto: scrivi sotto le due file una riga con un segno dove i bit sono diversi, poi conta i segni.
+
+> [!ESEMPIO] Medio: domanda 4 del §1.10, la parità dispari
+> Scrivi «Does» in ASCII con la parità dispari, il bit di parità a sinistra.
+>
+> | Simbolo | ASCII | Quanti 1 | Bit di parità | I 9 bit |
+> |:-:|:-:|:-:|:-:|:-:|
+> | D | 01000100 | 2, pari | 1 | 101000100 |
+> | o | 01101111 | 6, pari | 1 | 101101111 |
+> | e | 01100101 | 4, pari | 1 | 101100101 |
+> | s | 01110011 | 5, dispari | 0 | 001110011 |
+>
+> I primi tre sono quelli della risposta del libro. Controllo: ogni fila di 9 bit ha un numero dispari di 1.
+
+Nello strumento c'è la D. Simula un errore e poi due: con due errori il controllo dice «tutto a posto».
+
+```widget codifica
+titolo: Il bit di parità della D, e uno o due errori
+modo: parita
+bit: 01000100
+parita: dispari
+```
+
+> [!ESEMPIO] Tipo esame: domanda 5 del §1.10, decodificare
+> Con il codice del libro decodifica (a) 001111 100100 001100 e (b) 010001 000000 001011.
+>
+> 1. 001111 è nel codice: B.
+> 2. 100100 non c'è. Dista 1 da E (100110): è cambiato il quinto bit. Le altre lettere distano almeno 2. Si legge E.
+> 3. 001100 dista 1 da D (011100). Si legge D. La parola (a) è BED.
+> 4. 010001 dista 1 da C (010011). 000000 è A. 001011 dista 1 da B (001111). La parola (b) è CAB.
+>
+> Sono le risposte del libro.
+
+Scrivi una fila nello strumento e guarda le distanze. Prova 100100, poi 110000: tre lettere alla stessa distanza.
+
+```widget codifica
+titolo: Il codice del libro: la lettera più vicina
+modo: hamming
+parola: 100100
+```
+
+> [!ESEMPIO] Difficile: domanda 6 del §1.10, costruire un codice
+> Trova quattro file di 5 bit per A, B, C e D, a distanza almeno 3 l'una dall'altra.
+>
+> Il libro propone A = 00000, B = 11100, C = 01111, D = 10011. Le coppie sono sei: controllale tutte.
+>
+> | Coppia | Bit diversi | Distanza |
+> |---|---|:-:|
+> | A e B | posti 1, 2, 3 | 3 |
+> | A e C | posti 2, 3, 4, 5 | 4 |
+> | A e D | posti 1, 4, 5 | 3 |
+> | B e C | posti 1, 4, 5 | 3 |
+> | B e D | posti 2, 3, 4, 5 | 4 |
+> | C e D | posti 1, 2, 3 | 3 |
+>
+> La distanza minima è 3: il codice corregge un errore.
+
+::: prova (a) Con la parità dispari, quale di questi 9 bit è sicuramente sbagliato: 100101101 oppure 100000001? (b) Due errori nello stesso byte si vedono con la parità?
+(a) 100101101 ha cinque 1, un numero dispari: va bene. 100000001 ha due 1, un numero pari: c'è un errore.
+
+(b) No. Due bit cambiati cambiano di due il numero degli 1, e il totale resta dispari. È la risposta del libro alla domanda 2 del §1.10.
+:::
+
+> [!RICORDA]
+> - Parità dispari: totale degli 1 dispari, bit di parità a sinistra. Rivela un errore, non due.
+> - Distanza di Hamming: quante colonne hanno bit diversi.
+> - Codice del libro: si legge la lettera più vicina. Distanza minima 3: corregge un errore, ne rivela due.
+
+## Come affrontare i quiz della parte 1
+
+L'esame comincia con 9 quiz in 45 minuti: circa 5 minuti a domanda. Molti quiz hanno più voci da valutare, e ogni voce porta una parte del punteggio. Il tempo basta solo se i metodi di questa lezione vengono senza pensarci.
+
+### Il piano per ogni domanda
+
+1. **Riconosci il tipo**: conversione, complemento a 2, virgola mobile, circuito, Hamming. La tabella qui sotto dice il metodo.
+2. **Scrivi i dati su carta**, uno sotto l'altro: i bit in colonna, le monete sopra. Gli errori nascono quasi sempre da un bit copiato male.
+3. **Fai il conto una volta sola**, con calma, e poi **controlla al contrario**.
+4. **Rispondi a tutte le voci**: un quiz con cinque voci vero o falso dà punti anche se ne sbagli una.
+
+| Tipo di domanda | Metodo | Controllo veloce |
+|---|---|---|
+| base 2 e base 10 | monete, divisioni, raddoppio | riconverti il risultato |
+| esadecimale | gruppi di 4 bit da destra | ogni cifra torna a 4 bit |
+| complemento a 2 | moneta di sinistra negativa | senza segno meno 256 (8 bit) |
+| eccesso | senza segno meno 8, 4 o 128 | il bit a sinistra è 1 per i positivi |
+| somma con il segno | colonna, riporto finale buttato | regola del segno |
+| virgola mobile | segno, esponente più 4, 4 cifre | rileggi il byte che hai scritto |
+| circuito | tabella di tutte le righe | una riga sbagliata basta per scartare |
+| flip-flop | parti dal valore di prima | ricalcola finché niente cambia |
+| distanza di Hamming | colonne diverse | conta due volte, da destra e da sinistra |
+| parità | conta gli 1 | il totale deve essere dispari |
+
+### I trucchi per controllare
+
+- **Una fila di 1** vale la moneta successiva meno 1: 1111 vale 16 − 1 = 15. In complemento a 2, una fila di 1 vale −1.
+- **Pari o dispari**: un numero in base 2 è dispari quando l'ultimo bit è 1, pari quando è 0. Con la virgola vale lo stesso per l'ultima cifra: 0,375 sono 3/8, con il 3 dispari, quindi la cifra da 1/8 deve essere 1.
+- **Il segno in virgola mobile** è il primo bit: scarta subito le risposte con il segno sbagliato.
+- **L'esponente in virgola mobile**: un numero tra 1 e 2 ha esponente 1, cioè 101; tra 2 e 4 ha esponente 2, cioè 110; tra 4 e 8 ha esponente 3, cioè 111. Tra 1/2 e 1 ha esponente 0, cioè 100.
+- **Complemento a 2**: un numero e il suo opposto, sommati, danno tutti 0 con il riporto buttato. 01010101 + 10101011 = 00000000.
+
+### Gli errori più frequenti
+
+- Leggere in complemento a 2 come se fosse senza segno: 11111111 non è 255 ma −1.
+- Credere che 10000001 sia −1: è −127. Il bit di segno vale −128, non è un segno meno attaccato al resto.
+- Cercare l'overflow con il segno nel riporto finale: conta solo la regola del segno.
+- Nella virgola mobile, dimenticare di aggiungere 4 all'esponente, o spostare la virgola nella direzione sbagliata.
+- Arrotondare la mantissa invece di troncarla: il libro taglia e basta.
+- Nei circuiti, dimenticare una riga: con 3 ingressi le righe sono 8.
+- Confondere OR e XOR quando tutti e due gli ingressi sono 1.
+- Contare un byte per simbolo in UTF-8, o dimenticare che lo stereo ha 2 canali.
+- Fidarsi delle soluzioni scritte a mano che girano online: come hai visto con il flip-flop, a volte sono sbagliate.
+
+> [!ESAME] Quanto tempo per tipo
+> Un esadecimale, un byte in complemento a 2 o una distanza di Hamming devono richiedere meno di un minuto. Virgola mobile, tabella di un circuito e flip-flop chiedono 3–5 minuti. Così ti resta tempo per i quiz delle altre parti del libro, che arrivano più avanti.
+
+::: prova Per ognuna di queste domande, quale metodo usi? (a) «Quanto vale 11111010 in complemento a 2?» (b) «Il circuito con un filo che torna indietro è combinatorio?» (c) «Qual è la distanza di Hamming tra 1010 e 0110?»
+(a) Moneta di sinistra negativa: −128 + 64 + 32 + 16 + 8 + 2 = −6.
+
+(b) Un filo che torna indietro vuol dire circuito sequenziale: non è combinatorio.
+
+(c) Le file sono diverse nei posti 1 e 2: distanza 2.
+:::
+
+> [!RICORDA]
+> - 9 quiz in 45 minuti: circa 5 minuti a domanda, meno di uno per le conversioni.
+> - Riconosci il tipo, scrivi i bit in colonna, fai il conto, controlla al contrario.
+> - Rispondi a tutte le voci di ogni quiz.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| A·B, A ∧ B | «A e B» | AND: 1 solo se tutti e due sono 1 | 1·0 = 0 |
+| A + B, A ∨ B | «A o B» | OR: 1 se almeno uno è 1 (non è la somma) | 1 + 1 = 1 |
+| $\overline{A}$, ¬A, A' | «non A» | NOT: il contrario | $\overline{1} = 0$ |
+| NAND | «nand» | AND seguito da NOT: 0 solo se tutti e due sono 1 | 1 NAND 1 = 0 |
+| $x_1$ | «x uno» | il nome di un ingresso: il numerino fa parte del nome | $x_1 = 0$ |
+| $2^n$ | «due alla n» | 2 moltiplicato per sé stesso n volte | $2^{10} = 1024$ |
+| B5 | «bi cinque» | un byte in esadecimale | 181 |
+| KB | «kilobyte» | 1024 byte | 4 KB = 4096 byte |
+| 11,101 | «uno uno virgola uno zero uno» | un numero in base 2 con la virgola; nei quiz 11.101 | 3,625 |
+| −128 | «meno centoventotto» | la moneta di sinistra in complemento a 2 con 8 bit | 10000001 = −127 |
+| eccesso 8 | «eccesso otto» | leggi senza segno e togli 8 | 1110 = 6 |
+| 0 110 1011 | «segno, esponente, mantissa» | un byte in virgola mobile nel formato del libro | 2 e 3/4 |
+| $0{,}1011 \cdot 2^2$ | «zero virgola uno zero uno uno per due alla seconda» | sposta la virgola di 2 posti a destra | 10,11 |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser, da 3 punti l'uno; servono almeno 18 punti.
+
+**Che cosa è uscito nelle simulazioni del 2023/24, per la parte 1**
+
+| Simulazione | Domanda | Argomento | Dove è risolta qui |
+|---|---|---|---|
+| 1 | 1 | distanza di Hamming | parità e codice di Hamming |
+| 1 | 2 | 3,625 in virgola fissa e mobile, troncamento | conversioni e virgola mobile |
+| 1 | 5 | dalla tabella alla formula | circuiti |
+| 1 | 6 | circuito combinatorio e sua formula | circuiti |
+| 2 | 1 | lo stesso quiz su 3,625 | virgola mobile |
+| 2 | 3 | circuito con due NAND che si richiamano | il flip-flop |
+| 2 | 8 | quattro numeri in complemento a 2 su 8 bit | complemento a 2 |
+
+Le altre domande delle due simulazioni riguardano la parte 2 del libro: logica, relazioni, grammatiche, automi, induzione, algebre di Boole. Ci arriviamo nelle prossime lezioni.
+
+**Che cosa non è uscito ma può uscire.** Esadecimale, memoria, testo, immagini, suoni e compressione non compaiono in quelle due simulazioni. Però sono nella mappa comune del libro, e i docenti avvertono che all'esame possono arrivare domande mai chieste prima.
+
+> [!ESAME] Le cinque cose da saper fare a occhi chiusi
+> 1. Convertire tra base 2, base 10 ed esadecimale, anche con la virgola.
+> 2. Leggere e scrivere un numero in complemento a 2, e riconoscere l'overflow.
+> 3. Leggere e scrivere un byte in virgola mobile nel formato del libro, con il troncamento.
+> 4. Fare la tabella di un circuito e capire se è combinatorio o sequenziale.
+> 5. Calcolare la distanza di Hamming e decodificare con il codice del libro.
+
+**Errori da evitare**
+
+- Rispondere senza controllare: ogni metodo di questa lezione ha il suo controllo al contrario.
+- Copiare male un bit dal testo del quiz: rileggi i bit prima di cominciare.
+- Usare 1000 al posto di 1024 nei conti sulla memoria.
+- Prendere per buone le soluzioni scritte a mano delle simulazioni: nella domanda 3 della simulazione 2 le note a margine sono sbagliate.
+
+## Quiz
+
+```quiz
+D: Simulazione d'esame 1, 2023/24, domanda 1. Qual è la distanza di Hamming tra 01011100 e 00101100?
+- $1$
+- $2$
++ $3$
+- $4$
+- $5$
+= Si scrivono le due file una sotto l'altra e si contano le colonne con bit diversi: sono il secondo, il terzo e il quarto posto, quindi la distanza è 3. La risposta 1 conta solo il primo posto diverso. Le risposte 4 e 5 contano anche colonne uguali: dal quinto all'ottavo posto le due file sono identiche, 1100.
+
+D: Simulazioni d'esame 1 e 2, 2023/24. Il numero 3,625 nel formato a 8 bit del libro (segno, 3 bit di esponente in eccesso 4, 4 bit di mantissa). Quale affermazione è giusta?
+- In virgola fissa è 11.111 e in virgola mobile 01101101.
+- In virgola mobile è 11101110, senza troncamento.
++ In virgola fissa è 11.101; in virgola mobile è 01101110, e c'è troncamento solo in virgola mobile.
+- In virgola fissa è 111.01, e c'è troncamento in tutte e due.
+- In virgola mobile è 01101110, senza troncamento.
+= 3,625 = 11,101: in virgola fissa ci sta tutto. Spostando la virgola due posti a sinistra viene 0,11101: esponente 2, cioè 110, e le cifre sono cinque. La mantissa tiene 1110 e perde l'ultimo 1: il byte è 01101110 e vale 3,5, quindi c'è troncamento. 11101110 ha il segno sbagliato. 01101101 non usa le prime quattro cifre. 11.111 vale 3 e 7/8, 111.01 vale 7 e 1/4.
+
+D: Simulazione d'esame 2, 2023/24, domanda 8. Quanto vale 10000001 in complemento a 2 su 8 bit?
+- $-1$
+- $129$
++ $-127$
+- $-128$
+- $1$
+= Con 8 bit la moneta di sinistra vale −128: 10000001 vale −128 + 1 = −127. Controllo: senza segno vale 129, e 129 − 256 = −127. La risposta −1 legge il primo bit come un segno meno attaccato a 0000001: non è il complemento a 2. La risposta 129 è la lettura senza segno. −128 è 10000000.
+
+D: Simulazione d'esame 2, 2023/24, domanda 8. Quale riga dà i valori giusti di 11111111, 01010101 e 00001111 in complemento a 2 su 8 bit?
+- $255$, $85$, $15$
++ $-1$, $85$, $15$
+- $-1$, $-85$, $-15$
+- $-127$, $85$, $15$
+- $-1$, $-43$, $15$
+= 11111111 è fatto di soli 1: in complemento a 2 vale −1, perché −128 + 127 = −1. Gli altri due hanno il bit di segno a 0 e si leggono come senza segno: 64 + 16 + 4 + 1 = 85 e 8 + 4 + 2 + 1 = 15. La prima riga legge tutto senza segno. La terza mette il meno ai positivi. −127 è 10000001.
+
+D: Simulazione d'esame 2, 2023/24, domanda 3. Due NAND si richiamano: quello in alto riceve l'ingresso in alto e l'uscita dell'altro; quello in basso riceve l'ingresso in basso e l'uscita del primo, che è y. Con l'ingresso in alto a 1 e quello in basso a 0, su che valore si stabilizza y?
++ $0$
+- $1$
+- Dipende dal valore di prima.
+- Non si stabilizza mai.
+- Vale 1 per un istante e poi 0, all'infinito.
+= Il NAND in basso riceve uno 0, quindi dà 1 qualunque sia y. Il NAND in alto riceve allora 1 e 1, e dà 0. Ricalcolando, il NAND in basso riceve 0 e 0 e dà ancora 1: niente cambia, y resta 0. Dipende dal valore di prima solo quando tutti e due gli ingressi sono 1. Il valore 1 è quello che si ottiene con gli ingressi scambiati.
+
+D: Nello stesso circuito con due NAND, tutti e due gli ingressi valgono 1. Su che valore si stabilizza y?
+- Sempre $0$.
+- Sempre $1$.
++ Resta il valore che aveva prima: il circuito ricorda un bit.
+- Oscilla tra 0 e 1.
+- Il circuito è combinatorio, quindi la domanda non ha senso.
+= Con un ingresso fisso a 1, ogni NAND dà il contrario dell'altra uscita. Se y era 0, l'altra uscita è 1 e y resta 0; se y era 1, l'altra uscita è 0 e y resta 1. Tutti e due i casi sono stabili: il circuito ricorda il valore di prima. È sequenziale, non combinatorio, perché le uscite tornano indietro.
+
+D: Simulazione d'esame 1, 2023/24, domanda 6. Il circuito calcola (A AND NOT C) OR (NOT C AND B). Quale formula NON descrive il circuito?
+- (¬C∧A)∨(¬C∧B)
++ (¬C∨A)∧(¬C∨B)
+- ¬((C∨¬A)∧(C∨¬B))
+- ¬C∧(A∨B)
+- (A∧¬C)∨(B∧¬C)
+= Basta una riga in cui la formula e il circuito danno valori diversi. Con A = 0, B = 0, C = 0 il circuito dà 0, perché le due AND ricevono uno 0. La formula (¬C∨A)∧(¬C∨B) invece dà 1, perché ¬C vale 1 e rende veri tutti e due gli OR. Le altre quattro danno gli stessi valori del circuito in tutte le 8 righe: sono scritture diverse della stessa funzione.
+
+D: Simulazione d'esame 1, 2023/24, domanda 5. La tabella ha y = 1 solo nelle righe x1x2x3 = 010, 011, 101 e 110. Quale formula è giusta?
+- $\overline{x_1}\,x_2 + x_1\,x_2\,x_3$
+- $x_1\,x_2 + \overline{x_2}\,x_3$
++ $\overline{x_1}\,x_2\,\overline{x_3} + \overline{x_1}\,x_2\,x_3 + x_1\,\overline{x_2}\,x_3 + x_1\,x_2\,\overline{x_3}$
+- $x_1\,x_2\,x_3$
+- $\overline{x_1}\,\overline{x_2}\,\overline{x_3} + x_1\,x_2\,x_3$
+= Il metodo: un AND per ogni riga con y = 1, con il NOT sugli ingressi che valgono 0, poi tutti uniti da OR. La riga 010 dà NOT x1 AND x2 AND NOT x3, e così via: è la terza formula. La prima vale 1 nella riga 111, dove y = 0. La seconda vale 1 nella riga 001, dove y = 0. Le ultime due danno 1 proprio nelle righe in cui y = 0.
+
+D: Domanda 5 del §1.1. Come si scrive in esadecimale 111010000101010100010111?
+- E85171
++ E85517
+- 8E5571
+- E8551
+- 1E85517
+= Gruppi di 4 bit da destra: 1110, 1000, 0101, 0101, 0001, 0111, cioè E, 8, 5, 5, 1, 7. Il risultato è E85517, la risposta del libro. La prima e la terza scambiano l'ordine di alcuni gruppi. La quarta ne perde uno. L'ultima aggiunge una cifra che non c'è: i 24 bit fanno esattamente 6 gruppi.
+
+D: Una memoria ha 64 KB, con celle di un byte. Quanti bit servono per l'indirizzo di una cella?
+- $6$
+- $8$
+- $15$
++ $16$
+- $64$
+= 64 KB sono 64 · 1024 = 65536 celle, cioè $2^{16}$. Con 16 bit gli indirizzi vanno da 0 a 65535, uno per cella. Con 15 bit si arriva solo a 32768 celle. La risposta 6 usa 64 = $2^6$ dimenticando che un KB sono 1024 byte. La risposta 8 conta i bit di una cella, non quelli dell'indirizzo.
+
+D: Quanti byte occupa in UTF-8 il testo «città: 1€», spazio compreso?
+- $9$
+- $10$
+- $11$
++ $12$
+- $18$
+= I simboli sono 9. Sette sono di ASCII e occupano un byte ciascuno: c, i, t, t, i due punti, lo spazio e l'1. La à occupa 2 byte e l'euro 3: in tutto 7 + 2 + 3 = 12. La risposta 9 conta un byte per simbolo. La risposta 11 conta l'euro come 2 byte. La risposta 18 conta 2 byte per simbolo.
+
+D: Una canzone di 3 minuti, qualità CD: 44 100 campioni al secondo, 16 bit per campione, stereo. Quanti byte?
+- $7938000$
+- $15876000$
++ $31752000$
+- $63504000$
+- $254016000$
+= 16 bit sono 2 byte e lo stereo ha 2 canali: in un secondo 44100 · 2 · 2 = 176400 byte. In 180 secondi 176400 · 180 = 31752000. La risposta 15876000 conta un solo canale. La risposta 254016000 conta i bit invece dei byte. La risposta 63504000 conta 4 canali.
+
+D: Come si scrive 6,375 in base 2?
+- $110{,}375$
+- $110{,}11$
++ $110{,}011$
+- $110{,}101$
+- $111{,}011$
+= 6 è 110. Per 0,375 si raddoppia: 0,75 dà 0, 1,5 dà 1, 1 dà 1. Quindi 0,375 = 0,011 e 6,375 = 110,011. Controllo: 4 + 2 + 1/4 + 1/8 = 6,375. La prima copia le cifre decimali. 110,11 vale 6 e 3/4. 110,101 vale 6 e 5/8: ha le cifre dopo la virgola al contrario. 111,011 vale 7 e 3/8.
+
+D: Con 8 bit senza segno si calcola 10010110 + 01101010. Che cosa resta negli 8 bit?
++ 00000000, con overflow.
+- 100000000, senza overflow.
+- 11111111, senza overflow.
+- 00000000, senza overflow.
+- 11111110, con overflow.
+= I due numeri valgono 150 e 106, e la somma è 256, cioè 100000000: 9 bit. Il riporto dell'ultima colonna non ha posto, quindi negli 8 bit resta 00000000. È overflow, perché senza segno con 8 bit si arriva a 255. La seconda risposta scrive giusto il numero, ma con 9 bit. 11111111 è 255, il massimo, ma il computer non si ferma lì.
+
+D: Domanda 9 del §1.6. Quanto vale 0010 in notazione in eccesso 8?
+- $2$
++ $-6$
+- $-2$
+- $6$
+- $10$
+= In eccesso 8 si leggono i bit senza segno e si toglie 8: 0010 è 2, e 2 − 8 = −6. La risposta 2 dimentica di togliere 8. La risposta −2 è la lettura in complemento a 2 di 1110, non di 0010. La risposta 10 aggiunge 8 invece di toglierlo.
+
+D: Domanda 1 del §1.7. Quanto vale il byte 00111001 nel formato a 8 bit del libro?
+- $9/16$
++ $9/32$
+- $9/64$
+- $-9/32$
+- $2$ e $1/4$
+= Segno 0, esponente 011, mantissa 1001. L'esponente in eccesso 4 è 3 − 4 = −1: la virgola va un posto a sinistra, e 0,1001 diventa 0,01001. Le monete sono 1/4 e 1/32: 8/32 + 1/32 = 9/32, la risposta del libro. 9/16 dimentica di spostare la virgola. 9/64 la sposta di due posti. Il segno è 0, quindi il numero è positivo.
+
+D: Domanda 2 del §1.7. Nel formato a 8 bit del libro, quale di questi numeri si scrive con un errore di troncamento?
+- $2$ e $3/4$
+- $3/4$
+- $-3$ e $1/2$
++ $5$ e $1/4$
+- $1$ e $1/8$
+= 5 e 1/4 è 101,01: spostando la virgola davanti al primo 1 viene 0,10101, con cinque cifre. La mantissa ne tiene quattro, 1010, e il byte 01111010 vale 5: si perde 1/4. Gli altri hanno al massimo quattro cifre: 2 e 3/4 è 10,11, 3/4 è 0,11, 3 e 1/2 è 11,1, 1 e 1/8 è 1,001.
+
+D: Domanda 4 del §1.10. Con la parità dispari del libro, bit di parità a sinistra, come si scrive la D, cioè 01000100?
+- $001000100$
++ $101000100$
+- $010001001$
+- $010001000$
+- $01000100$
+= 01000100 ha due 1, un numero pari. Per avere un totale dispari il bit di parità deve essere 1, e il libro lo mette a sinistra: 101000100, la risposta del libro. 001000100 lascia il totale pari. La terza mette il bit di parità a destra, come la quarta che ha anche il bit sbagliato. L'ultima dimentica il bit di parità.
+
+D: Con il codice a 6 bit del libro (A 000000, B 001111, C 010011, D 011100, E 100110, F 101001, G 110101, H 111010) arriva 001011. Come si decodifica?
+- A
++ B
+- C
+- F
+- Non si può decodificare: è a distanza 2 da due lettere.
+= 001011 differisce da B, 001111, solo nel quarto bit: distanza 1. C e F distano 2, A dista 3, le altre di più. Con un solo errore la lettera più vicina è unica, perché le lettere del codice distano tutte almeno 3 tra loro. È un pezzo della domanda 5 del §1.10, che dà CAB.
+
+D: Domanda 2 del §1.9. Con LZW come nel libro, partendo da x = 1, y = 2, spazio = 3, che cosa diventa «xyx yxxxy xyx yxxxy yxxxy»?
+- $121321112121321112$
++ $121321112343535$
+- $1213211123434$
+- $12132111234353$
+- $45453$
+= xyx è nuova: si scrive 121 e diventa la parola 4. Lo spazio è 3. yxxxy è nuova: si scrive 21112 e diventa la parola 5. Poi xyx è 4, spazio 3, yxxxy è 5, spazio 3, yxxxy è 5. In fila: 121 3 21112 3 4 3 5 3 5. La prima non usa il dizionario. La terza e la quarta perdono le ultime parole. L'ultima usa parole che all'inizio il dizionario non ha.
+
+D: Domande 3 e 4 del §1.9. Quale affermazione su GIF e JPEG è giusta?
+- GIF e JPEG sono tutti e due senza perdita.
+- GIF è senza perdita, JPEG con perdita.
++ Tutti e due perdono qualcosa: GIF riduce i colori a 256, JPEG toglie dettagli che l'occhio nota poco.
+- JPEG va meglio di GIF per i cartoni animati con pochi colori.
+- JPEG usa più bit per il colore che per la luminosità.
+= GIF tiene al massimo 256 colori: un'immagine con più colori perde qualcosa. JPEG toglie dettagli, soprattutto di colore, perché l'occhio è più sensibile alla luminosità: usa meno bit per il colore, non di più. Per i cartoni animati, con zone di colore uniforme e pochi colori, il libro consiglia GIF.
+```
+
+## Esercizi
+
+::: esercizio base La tabella di un circuito
+Un circuito calcola A·B + $\overline{C}$, cioè (A AND B) OR (NOT C). Scrivi la sua tabella e di' a parole quando l'uscita vale 1.
+::: soluzione
+1. Gli ingressi sono 3: le righe sono $2^3 = 8$.
+2. Una colonna per A AND B, una per NOT C, una per l'uscita.
+
+| A | B | C | A AND B | NOT C | uscita |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 | 1 | 1 |
+| 0 | 0 | 1 | 0 | 0 | 0 |
+| 0 | 1 | 0 | 0 | 1 | 1 |
+| 0 | 1 | 1 | 0 | 0 | 0 |
+| 1 | 0 | 0 | 0 | 1 | 1 |
+| 1 | 0 | 1 | 0 | 0 | 0 |
+| 1 | 1 | 0 | 1 | 1 | 1 |
+| 1 | 1 | 1 | 1 | 0 | 1 |
+
+3. A parole: l'uscita vale 1 quando C vale 0, oppure quando A e B valgono tutti e due 1.
+
+Controllo: l'uscita è 0 solo nelle righe con C = 1 e A, B non tutti e due a 1. Sono tre righe: 001, 011, 101.
+:::
+
+::: esercizio base Esadecimale e base 10
+(a) Scrivi in esadecimale 10110101 e 11111111. (b) Quanto valgono in base 10? (c) Scrivi in bit la stringa esadecimale 3C.
+::: soluzione
+1. (a) 1011 0101 è B5. 1111 1111 è FF.
+2. (b) B5 = 11 · 16 + 5 = 181. FF = 15 · 16 + 15 = 255.
+3. (c) 3 è 0011 e C è 1100: 00111100.
+
+Controllo su B5 con le monete: 10110101 ha 128, 32, 16, 4 e 1, cioè 181.
+:::
+
+::: esercizio medio Un byte, quattro letture
+Il byte 10110110 viene letto (a) come intero senza segno, (b) in complemento a 2, (c) in eccesso 128, (d) nel formato in virgola mobile del libro. Quanto vale nei quattro casi?
+::: soluzione
+1. (a) Le monete sono 128, 32, 16, 4 e 2: 182.
+2. (b) La moneta di sinistra vale −128: −128 + 32 + 16 + 4 + 2 = −74. Controllo: 182 − 256 = −74.
+3. (c) 182 − 128 = 54.
+4. (d) Segno 1, esponente 011, mantissa 0110. L'esponente è 3 − 4 = −1. La mantissa è 0,0110: spostando la virgola un posto a sinistra viene 0,00110, cioè 1/8 + 1/16 = 3/16. Con il segno: −3/16.
+
+Nella (d) la mantissa comincia con 0: il byte non è nella forma che il libro usa, con la mantissa che comincia con 1. Si legge lo stesso, ma una codifica corretta non lo darebbe mai. Gli stessi bit, quattro regole, quattro numeri diversi.
+:::
+
+::: esercizio medio Domanda 7 del §1.6: sottrarre sommando
+Con 4 bit in complemento a 2 calcola (a) 6 + 1, (b) 3 + (−2), (c) 4 + (−6), (d) 2 + 4, (e) 1 + (−5).
+::: soluzione
+1. (a) 0110 + 0001 = 0111, cioè 7.
+2. (b) −2: 2 è 0010, cambiando segno 1110. 0011 + 1110: da destra 1 + 0 = 1; 1 + 1 = 10, scrivo 0 e riporto 1; 0 + 1 più il riporto = 10, scrivo 0 e riporto 1; 0 + 1 più il riporto = 10, scrivo 0 e il riporto si butta. Resta 0001, cioè 1.
+3. (c) −6 è 1010. 0100 + 1010 = 1110, senza riporti. Vale −8 + 4 + 2 = −2.
+4. (d) 0010 + 0100 = 0110, cioè 6.
+5. (e) −5: 5 è 0101, cambiando segno 1011. 0001 + 1011 = 1100, cioè −8 + 4 = −4.
+
+Sono le risposte del libro. Nessuna va in overflow: nella (a) e nella (d) i risultati 7 e 6 stanno tra −8 e 7, nelle altre i segni sono diversi.
+:::
+
+::: esercizio medio Domanda 8 del §1.6: positivo più negativo
+Sommando un numero positivo e uno negativo in complemento a 2 può esserci overflow? Perché?
+::: soluzione
+1. No.
+2. La somma di un positivo e di un negativo sta sempre tra i due numeri. Per esempio 7 + (−8) = −1, che sta tra −8 e 7.
+3. I due numeri ci stanno nei bit che hai, quindi ci sta anche tutto quello che sta tra loro.
+
+È la risposta del libro. Per questo, con la regola del segno, si controlla l'overflow solo quando i due numeri hanno lo stesso bit di segno.
+:::
+
+::: esercizio difficile Simulazione d'esame 2, domanda 3, rifatta con il flip-flop del libro
+Il flip-flop del libro (figura 1.3) ha un OR, un AND e un NOT, con l'uscita dell'AND che torna nell'OR. (a) L'uscita vale 0 e arriva un impulso in alto: che cosa succede? (b) Che cosa ha in comune con il circuito dei due NAND della simulazione?
+::: soluzione
+1. (a) Durante l'impulso l'OR riceve 1 e dà 1. Il NOT riceve 0 dall'ingresso in basso e dà 1. L'AND riceve 1 e 1: l'uscita diventa 1.
+2. Finito l'impulso, l'ingresso in alto torna a 0. L'OR riceve però l'uscita, che vale 1, e continua a dare 1. L'uscita resta 1.
+3. (b) Tutti e due i circuiti hanno un'uscita che torna indietro, quindi sono sequenziali. Tutti e due hanno una combinazione degli ingressi che lascia l'uscita com'era: 0 e 0 nel flip-flop del libro, 1 e 1 nel circuito dei NAND. Con le altre combinazioni l'uscita va a 1 o a 0. Sono due modi di costruire un circuito che ricorda un bit.
+:::
+
+::: esercizio difficile Domanda 3 del §1.7: confrontare senza decodificare
+Senza calcolare i valori, di' quale è più grande in ognuna di queste coppie di byte nel formato del libro: (a) 01001001 e 00111101; (b) 11011100 e 11001100.
+::: soluzione
+Il metodo del libro: se i segni sono diversi vince il positivo. Se sono tutti e due 0, scorri i bit da sinistra fino al primo posto diverso: vince quello con l'1. Se sono tutti e due 1, vince quello con lo 0.
+
+1. (a) Segni 0 e 0. Il primo posto diverso è il secondo bit: 1 nel primo byte, 0 nel secondo. Vince 01001001.
+2. Controllo: 01001001 vale 0,1001 = 9/16, cioè 18/32. 00111101 vale 0,01101 = 13/32. 18/32 è più grande.
+3. (b) Segni 1 e 1: sono due negativi. Il primo posto diverso è il quarto bit: 1 nel primo byte, 0 nel secondo. Vince quello con lo 0, cioè 11001100.
+4. Controllo: 11011100 vale −1 e 1/2. 11001100 ha esponente 100 = 0 e mantissa 1100: vale −0,11, cioè −3/4. −3/4 è più grande di −1 e 1/2.
+
+Il trucco funziona perché l'esponente è in eccesso: esponenti più grandi hanno bit più grandi.
+:::
+
+::: esercizio esame Simulazione completa sulla virgola mobile
+Il numero −1,125. (a) Scrivilo in base 2 con la virgola fissa. (b) Scrivilo nel formato a 8 bit del libro. (c) C'è troncamento? (d) E con −1,0625?
+::: soluzione
+1. (a) 1,125 = 1 + 1/8: 1,001. Con il segno: −1,001.
+2. (b) Segno 1. 1,001 → 0,1001, la virgola va un posto a sinistra: esponente 1, cioè 1 + 4 = 5 = 101. Le cifre sono quattro, 1001: la mantissa è 1001. Il byte è 11011001.
+3. (c) No: le quattro cifre ci stanno tutte. Controllo: 0,1001 con la virgola un posto a destra è 1,001, cioè 1 e 1/8, con il meno.
+4. (d) 1,0625 = 1 + 1/16 = 1,0001. Spostando la virgola: 0,10001, con cinque cifre. La mantissa tiene 1000 e perde l'ultimo 1. Il byte è 11011000, che vale −1: c'è troncamento, si perde 1/16.
+:::
+
+::: esercizio esame Distanze, parità e codice del libro
+(a) Calcola la distanza di Hamming tra 10110011 e 10011010. (b) Con la parità dispari, bit di parità a sinistra, scrivi i byte 01000001 e 01000110 (le lettere A e F). (c) Con il codice a 6 bit del libro decodifica 110000. Si può correggere?
+::: soluzione
+1. (a) Le file sono diverse nei posti 3, 5 e 8: distanza 3.
+2. (b) 01000001 ha due 1: bit di parità 1, quindi 101000001. 01000110 ha tre 1: bit di parità 0, quindi 001000110. Controllo: tutte e due le file da 9 bit hanno tre 1, un numero dispari.
+3. (c) Le distanze da 110000 sono: A 2, B 6, C 3, D 3, E 3, F 3, G 2, H 2.
+4. A, G e H sono tutte a distanza 2. C'è sicuramente un errore, anzi almeno due, ma non si può dire quale lettera era: non si corregge.
+:::
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra un circuito combinatorio e uno sequenziale?
+In un circuito combinatorio nessun filo torna indietro: l'uscita dipende solo dagli ingressi di quel momento. In un circuito sequenziale un'uscita rientra come ingresso, e il circuito può ricordare: l'uscita dipende anche da quello che è successo prima. Il flip-flop è sequenziale.
+:::
+
+::: domanda Come trovi una formula per una tabella di verità?
+Prendi le righe con uscita 1. Per ognuna scrivi un AND di tutti gli ingressi, con il NOT su quelli che nella riga valgono 0. Poi unisci tutti gli AND con degli OR.
+:::
+
+::: domanda Come si legge un numero in complemento a 2 con 8 bit?
+Si sommano le monete come senza segno, ma quella di sinistra vale −128. Se il primo bit è 0 il numero si legge come senza segno. Controllo: un negativo, letto senza segno, vale 256 in più.
+:::
+
+::: domanda Quando c'è overflow in una somma senza segno? E in complemento a 2?
+Senza segno, quando esce un riporto dall'ultima colonna a sinistra. In complemento a 2 il riporto finale si butta, e c'è overflow quando due numeri con lo stesso segno danno un risultato con il segno opposto.
+:::
+
+::: domanda Com'è fatto il formato in virgola mobile del libro?
+Un byte: 1 bit di segno, 3 bit di esponente in eccesso 4, 4 bit di mantissa con la virgola a sinistra. L'esponente va da −4 a 3 e dice di quanti posti spostare la virgola. Se le cifre sono più di 4, le ultime si perdono: è l'errore di troncamento.
+:::
+
+::: domanda Che cosa sono la compressione con perdita e senza perdita? Fai un esempio per ognuna.
+Senza perdita si riottengono esattamente i dati di prima: run-length, codifica relativa con le differenze esatte, LZW. Con perdita si ottengono dati solo simili: JPEG, MP3, e anche GIF quando riduce i colori a 256.
+:::
+
+::: domanda Perché il codice del libro corregge un errore ma la parità no?
+Nel codice del libro due lettere qualsiasi differiscono in almeno 3 bit. Con un errore la fila arrivata dista 1 da una sola lettera, e si sa quale era. Con la parità due byte giusti differiscono solo in 2 bit: un errore si vede, ma non si sa quale bit è cambiato.
+:::
+
+::: domanda Come si controlla velocemente una conversione in virgola mobile?
+Si rilegge il byte appena scritto: mantissa con «0,» davanti, virgola spostata di tanti posti quanto dice l'esponente, valore con le monete. Se il numero è diverso da quello di partenza, o c'è troncamento oppure c'è un errore.
+:::
+
+## Glossario
+
+```glossario
+Tabella di verità | L'elenco di tutte le combinazioni degli ingressi di un circuito, con l'uscita di ognuna (*truth table*).
+Circuito combinatorio | Un circuito di porte senza fili che tornano indietro: l'uscita dipende solo dagli ingressi di quel momento.
+Circuito sequenziale | Un circuito in cui un'uscita torna come ingresso: può ricordare, come il flip-flop.
+NAND | La porta AND seguita da NOT: dà 0 solo quando tutti e due gli ingressi sono 1.
+Flip-flop | Un circuito che ricorda un bit: la sua uscita resta uguale finché un impulso non la cambia.
+Notazione esadecimale | Il modo di scrivere i bit a gruppi di 4, con le cifre da 0 a 9 e le lettere da A a F (*hexadecimal notation*).
+Kilobyte | 1024 byte, cioè $2^{10}$ byte, quando si parla di memoria (KB).
+Virgola fissa | Un numero in base 2 con la virgola in un posto fisso, come 11,101.
+Overflow | Quando il risultato di un conto non ci sta nei bit disponibili.
+Complemento a 2 | Il modo di scrivere gli interi con il segno: la moneta di sinistra vale con il segno meno (*two's complement*).
+Bit di segno | Il bit più a sinistra: in complemento a 2 vale 1 per i negativi (*sign bit*).
+Notazione in eccesso | Si leggono i bit senza segno e si toglie sempre lo stesso numero: 8 con 4 bit, 4 con 3 bit (*excess notation*).
+Virgola mobile | Un numero scritto con il segno, le cifre (mantissa) e di quanti posti spostare la virgola (esponente) (*floating-point notation*).
+Mantissa | Le cifre di un numero in virgola mobile, con la virgola a sinistra: nel formato del libro 4 bit.
+Errore di troncamento | Le cifre che non entrano nella mantissa e si perdono (*truncation error*, *round-off error*).
+Compressione senza perdita | Una compressione da cui si riottengono esattamente i dati di prima (*lossless*).
+Compressione con perdita | Una compressione che restituisce dati solo simili a quelli di prima (*lossy*), come JPEG e MP3.
+Bit di parità | Il bit aggiunto perché il numero totale di 1 sia dispari (parità dispari) o pari (*parity bit*).
+Distanza di Hamming | Il numero di posti in cui due file di bit della stessa lunghezza sono diverse.
+```
+
+## Checklist
+
+```checklist
+- So fare la tabella di un circuito di porte e scartare una formula sbagliata con una sola riga.
+- So scrivere la formula di una tabella con un AND per ogni riga con uscita 1.
+- So dire se un circuito è combinatorio o sequenziale, e seguire un flip-flop fatto di NAND.
+- So passare tra bit, esadecimale e base 10.
+- So fare i conti sulla memoria: KB, bit, bit degli indirizzi.
+- So contare i byte di un testo in UTF-8, di un'immagine e di un suono.
+- So convertire tra base 2 e base 10, anche con la virgola.
+- So sommare in base 2 e riconoscere l'overflow, senza segno e in complemento a 2.
+- So leggere e scrivere numeri in complemento a 2 e in eccesso.
+- So leggere e scrivere un byte in virgola mobile nel formato del libro, con il troncamento.
+- So applicare run-length, codifica relativa e LZW del libro a un messaggio corto.
+- So aggiungere e controllare un bit di parità, calcolare la distanza di Hamming e decodificare con il codice del libro.
+- So che cosa controllare in ogni tipo di quiz, in 5 minuti a domanda.
+```
+
+## Fonti
+
+- R. Johnsonbaugh, J. G. Brookshear, D. Brylow, *Fondamenti dell'Informatica*, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, *Computer Science: an overview*. Le domande delle sezioni 1.1 «Bits and Their Storage», 1.2 «Main Memory», 1.3 «Mass Storage», 1.4 «Representing Information as Bit Patterns», 1.5 «The Binary System», 1.6 «Storing Integers», 1.7 «Storing Fractions», 1.9 «Data Compression» e 1.10 «Communication Errors», con le risposte dell'appendice del libro, pubblicate sul Moodle del canale A (aperto agli ospiti).
+- Simulazioni d'esame 1 e 2 del 2023/24 della pagina d'esame comune di Fondamenti, nelle schermate svolte a mano da uno studente raccolte nella «Guida degli studenti» del gruppo studentesco TSI (CC BY-SA 4.0). Le risposte di quelle schermate non sono verificate: qui ogni domanda è risolta da capo.
+- Diario del canale B 2026/27 sul Moodle del canale B, per la data e gli argomenti della lezione.
+- Le lezioni [01](01_bit_porte_esadecimale.html), [02](02_testo_colori_suoni_binario.html), [03](03_interi_con_segno_virgola_mobile.html) e [04](04_compressione_errori_comunicazione.html) di questi appunti, per i metodi.
+- Le spiegazioni a parole, i riquadri «Prova tu», gli strumenti interattivi, i quiz e gli esercizi senza il numero di una domanda del libro o di una simulazione sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/riassunti/settimana_01.md -->
 > File: `contesto_ai/FDA/riassunti/settimana_01.md`
 
@@ -4775,7 +10070,6 @@ scheda:
 fonte: >-
   Gli appunti delle lezioni 01 e 02 di Fondamenti dell'Informatica (canale B), scritti sul libro di testo, parte 1,
   §1.1–1.5
-file_en: summary_week_01.html
 appunti_html: appunti/FDA/riassunto_settimana_01.html
 genera_html: true
 ```
@@ -5135,7 +10429,6 @@ fonte: >-
   A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 1 «Insiemi», pp. 1–8 ed esercizi pp. 14–16;
   diario delle lezioni del canale B 2025/26 (Moodle MDAG1 2025/26); quiz e problemi degli appelli di Matematica
   Discreta 2023–2026
-file_en: D01_sets_induction.html
 appunti_html: appunti/MDAG/D01_insiemi_induzione.html
 genera_html: true
 ```
@@ -6285,7 +11578,6 @@ fonte: >-
   A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 1 «Insiemi», pp. 5–13 ed esercizi pp. 14–15;
   argomenti della lezione del 02/10/2026 sul Moodle del canale B; quiz e problemi degli appelli di Matematica
   Discreta 2023–2026
-file_en: D02_complements_induction_partitions.html
 appunti_html: appunti/MDAG/D02_complementare_induzione_partizioni.html
 genera_html: true
 ```
@@ -7373,7 +12665,6 @@ scheda:
   Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 1 «Numeri reali»; B. Martelli, Geometria e algebra lineare, §1.1, §1.5 e complemento 1.II
-file_en: L01_real_numbers.html
 appunti_html: appunti/MDAG/L01_numeri_reali.html
 genera_html: true
 ```
@@ -8866,7 +14157,6 @@ scheda:
   Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 2 «Numeri complessi I»; B. Martelli, Geometria e algebra lineare, §1.4.1–1.4.3 ed Esercizio 1.4.3
-file_en: L02_complex_numbers_1.html
 appunti_html: appunti/MDAG/L02_numeri_complessi_1.html
 genera_html: true
 ```
@@ -10899,7 +16189,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 3 «Numeri complessi II»; B. Martelli, Geometria e algebra lineare, §1.4.4–1.4.6
-file_en: L03_complex_numbers_2.html
 appunti_html: appunti/MDAG/L03_numeri_complessi_2.html
 genera_html: true
 ```
@@ -11832,7 +17121,6 @@ scheda:
   Tempo di studio: 90–120 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 4 «Polinomi»; B. Martelli, Geometria e algebra lineare, §1.3 e §1.4.7–1.4.8
-file_en: L04_polynomials.html
 appunti_html: appunti/MDAG/L04_polinomi.html
 genera_html: true
 ```
@@ -12630,7 +17918,6 @@ scheda:
   Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 5 «Spazi vettoriali I»; B. Martelli, Geometria e algebra lineare, §1.5, §2.1 e §2.2.1–2.2.4
-file_en: L05_vector_spaces_1.html
 appunti_html: appunti/MDAG/L05_spazi_vettoriali_1.html
 genera_html: true
 ```
@@ -14614,7 +19901,6 @@ scheda:
   Tempo di studio: 90–120 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 6 «Spazi vettoriali II»; B. Martelli, Geometria e algebra lineare, §2.2.5–2.2.16
-file_en: L06_vector_spaces_2.html
 appunti_html: appunti/MDAG/L06_spazi_vettoriali_2.html
 genera_html: true
 ```
@@ -15438,7 +20724,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 7 «Spazi vettoriali III»; B. Martelli, Geometria e algebra lineare, §2.3.1–2.3.7
-file_en: L07_vector_spaces_3.html
 appunti_html: appunti/MDAG/L07_spazi_vettoriali_3.html
 genera_html: true
 ```
@@ -16197,7 +21482,6 @@ scheda:
   Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 8 «Matrici I»; B. Martelli, Geometria e algebra lineare, §2.3.10, §3.2.3, §3.2.6, §3.4.1–3.4.5 e §4.4.5
-file_en: L08_matrices_1.html
 appunti_html: appunti/MDAG/L08_matrici_1.html
 genera_html: true
 ```
@@ -18353,7 +23637,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 9 «Matrici II»; B. Martelli, Geometria e algebra lineare, §3.3.1–3.3.4, §3.3.10 e §3.4.6
-file_en: L09_matrices_2.html
 appunti_html: appunti/MDAG/L09_matrici_2.html
 genera_html: true
 ```
@@ -19109,7 +24392,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 10 «Matrici III»; B. Martelli, Geometria e algebra lineare, §3.3.5, §3.3.7, §3.3.9 e §3.4.5–3.4.8
-file_en: L10_matrices_3.html
 appunti_html: appunti/MDAG/L10_matrici_3.html
 genera_html: true
 ```
@@ -19889,7 +25171,6 @@ scheda:
   Tempo di studio: 3–4 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 11 «Sistemi lineari I»; B. Martelli, Geometria e algebra lineare, §3.1
-file_en: L11_linear_systems_1.html
 appunti_html: appunti/MDAG/L11_sistemi_lineari_1.html
 genera_html: true
 ```
@@ -21664,7 +26945,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 12 «Sistemi lineari II»; B. Martelli, Geometria e algebra lineare, §3.2
-file_en: L12_linear_systems_2.html
 appunti_html: appunti/MDAG/L12_sistemi_lineari_2.html
 genera_html: true
 ```
@@ -22395,7 +27675,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 13 «Sistemi lineari III»; B. Martelli, Geometria e algebra lineare, §2.3 e §3.2
-file_en: L13_linear_systems_3.html
 appunti_html: appunti/MDAG/L13_sistemi_lineari_3.html
 genera_html: true
 ```
@@ -23090,7 +28369,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 14 «Applicazioni lineari I»; B. Martelli, Geometria e algebra lineare, §4.1 e §4.2
-file_en: L14_linear_maps_1.html
 appunti_html: appunti/MDAG/L14_applicazioni_lineari_1.html
 genera_html: true
 ```
@@ -23851,7 +29129,6 @@ scheda:
   Tempo di studio: 90–120 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 15 «Applicazioni lineari II»; B. Martelli, Geometria e algebra lineare, §4.2.5, §4.2.7 e §4.3
-file_en: L15_linear_maps_2.html
 appunti_html: appunti/MDAG/L15_applicazioni_lineari_2.html
 genera_html: true
 ```
@@ -24637,7 +29914,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 16 «Applicazioni lineari III»; B. Martelli, Geometria e algebra lineare, §4.2.4, §4.3 e §4.4
-file_en: L16_linear_maps_3.html
 appunti_html: appunti/MDAG/L16_applicazioni_lineari_3.html
 genera_html: true
 ```
@@ -25363,7 +30639,6 @@ scheda:
   Tempo di studio: 3–4 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 17 «Autovalori e autovettori I»; B. Martelli, Geometria e algebra lineare, §5.1
-file_en: L17_eigenvalues_eigenvectors_1.html
 appunti_html: appunti/MDAG/L17_autovalori_autovettori_1.html
 genera_html: true
 ```
@@ -27265,7 +32540,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 18 «Autovalori e autovettori II»; B. Martelli, Geometria e algebra lineare, §5.1 e §5.2
-file_en: L18_eigenvalues_eigenvectors_2.html
 appunti_html: appunti/MDAG/L18_autovalori_autovettori_2.html
 genera_html: true
 ```
@@ -27969,7 +33243,6 @@ scheda:
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 19 «Prodotti scalari I»; B. Martelli, Geometria e algebra
   lineare, §7.1 e §7.2
-file_en: L19_scalar_products_1.html
 appunti_html: appunti/MDAG/L19_prodotti_scalari_1.html
 genera_html: true
 ```
@@ -29979,7 +35252,6 @@ scheda:
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 20 «Prodotti scalari II»; B. Martelli, Geometria e algebra
   lineare, §7.1.5, §7.2.2, §8.1.1–8.1.4
-file_en: L20_scalar_products_2.html
 appunti_html: appunti/MDAG/L20_prodotti_scalari_2.html
 genera_html: true
 ```
@@ -30743,7 +36015,6 @@ scheda:
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 21 «Prodotti scalari III»; B. Martelli, Geometria e algebra
   lineare, §7.1.7, §7.3, §8.1.5–8.1.10
-file_en: L21_scalar_products_3.html
 appunti_html: appunti/MDAG/L21_prodotti_scalari_3.html
 genera_html: true
 ```
@@ -31603,7 +36874,6 @@ scheda:
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 22 «Lo spazio euclideo I»; B. Martelli, Geometria e algebra
   lineare, §4.4.8–4.4.9, §7.5, §8.2 e §9.1
-file_en: L22_euclidean_space_1.html
 appunti_html: appunti/MDAG/L22_spazio_euclideo_1.html
 genera_html: true
 ```
@@ -33666,7 +38936,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 23 «Lo spazio euclideo II»; B. Martelli, Geometria e algebra lineare, §9.1–9.2
-file_en: L23_euclidean_space_2.html
 appunti_html: appunti/MDAG/L23_spazio_euclideo_2.html
 genera_html: true
 ```
@@ -34621,7 +39890,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 24 «Lo spazio euclideo III»; B. Martelli, Geometria e algebra lineare, §8.1 e §9.2
-file_en: L24_euclidean_space_3.html
 appunti_html: appunti/MDAG/L24_spazio_euclideo_3.html
 genera_html: true
 ```
@@ -35432,7 +40700,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 25 «Teorema spettrale I»; B. Martelli, Geometria e algebra lineare, §11.1–11.2
-file_en: L25_spectral_theorem_1.html
 appunti_html: appunti/MDAG/L25_teorema_spettrale_1.html
 genera_html: true
 ```
@@ -36159,7 +41426,6 @@ scheda:
   Tempo di studio: 110–140 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 26 «Teorema spettrale II»; B. Martelli, Geometria e algebra lineare, §11.3
-file_en: L26_spectral_theorem_2.html
 appunti_html: appunti/MDAG/L26_teorema_spettrale_2.html
 genera_html: true
 ```
@@ -36803,7 +42069,6 @@ scheda:
 fonte: >-
   Gli appunti della lezione L01 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso (R. Buzano,
   M. Radeschi)
-file_en: summary_week_01_AG.html
 appunti_html: appunti/MDAG/riassunto_settimana_01_AG.html
 genera_html: true
 ```
@@ -36934,7 +42199,6 @@ scheda:
   Tempo di ripasso: 40 minuti
 fonte: >-
   Gli appunti delle lezioni D01 e D02 di Matematica Discreta, scritti sul libro di A. Mori, cap. 1
-file_en: summary_week_01_MD.html
 appunti_html: appunti/MDAG/riassunto_settimana_01_MD.html
 genera_html: true
 ```

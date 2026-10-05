@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04 · Comprimere i dati ed errori di comunicazione</title>
+<meta name="lezione" content="04">
+<meta name="description" content="Appunti della lezione 04 di Fondamenti dell'Informatica (canale B): compressione senza perdita e con perdita, codifica run-length, codici di Huffman, codifica relativa, codifica a dizionario e LZW, GIF, JPEG, MPEG e MP3; errori di comunicazione, bit e byte di parità, codici che correggono gli errori e distanza di Hamming, con strumenti interattivi, quiz ed esercizi svolti.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/FDA/lezioni/04_compressione_errori_comunicazione.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#perche-comprimere"><span class="n">§1</span><span>Perché comprimere</span></a></li>
+<li><a href="#le-ripetizioni-la-codifica-run-length"><span class="n">§2</span><span>Le ripetizioni: la codifica run-length</span></a></li>
+<li><a href="#codici-corti-per-i-simboli-frequenti-huffman"><span class="n">§3</span><span>Codici corti per i simboli frequenti: Huffman</span></a></li>
+<li><a href="#solo-le-differenze-la-codifica-relativa"><span class="n">§4</span><span>Solo le differenze: la codifica relativa</span></a></li>
+<li><a href="#il-dizionario-che-cresce-lzw"><span class="n">§5</span><span>Il dizionario che cresce: LZW</span></a></li>
+<li><a href="#le-immagini-gif-e-jpeg"><span class="n">§6</span><span>Le immagini: GIF e JPEG</span></a></li>
+<li><a href="#suoni-e-video-mp3-e-mpeg"><span class="n">§7</span><span>Suoni e video: MP3 e MPEG</span></a></li>
+<li><a href="#accorgersi-di-un-errore-il-bit-di-parita"><span class="n">§8</span><span>Accorgersi di un errore: il bit di parità</span></a></li>
+<li><a href="#un-byte-di-controllo-per-tanti-byte"><span class="n">§9</span><span>Un byte di controllo per tanti byte</span></a></li>
+<li><a href="#correggere-un-errore-la-distanza-di-hamming"><span class="n">§10</span><span>Correggere un errore: la distanza di Hamming</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§11</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§12</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§13</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§14</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§15</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§16</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§17</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Fondamenti dell'Informatica</a> › Lezione 04</nav>
+      <p class="eyebrow">Canale B · Lezione 04 · Libro, parte 1, §1.9–1.10</p>
+      <h1>Comprimere i dati ed errori di comunicazione</h1>
+      <p class="lede">Foto, canzoni e video occupano tantissimo spazio, e quando viaggiano qualche bit può arrivare sbagliato. Come si scrivono gli stessi dati con meno bit, quando si può perdere qualcosa senza che nessuno se ne accorga, e come chi riceve un messaggio si accorge di un errore e a volte lo corregge da solo.</p>
+      <dl class="meta"><div><dt>Libro</dt><dd>Johnsonbaugh, Brookshear, Brylow, Fondamenti dell&#39;Informatica, parte 1 (Brookshear, cap. 1), §1.9–1.10</dd></div><div><dt>Docente</dt><dd>Stefano Berardi · canale B · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>3 ore, anche in più volte</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre il libro</li>
+        <li class="l-esempio"><i></i>Esempio svolto</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:730px">
+<h2 id="tldr-title">La lezione in 7 punti</h2>
+<ul>
+<li><strong>Comprimere</strong> vuol dire scrivere gli stessi dati con meno bit. Senza compressione una foto grande come lo schermo di un portatile occupa circa 6 milioni di byte.</li>
+<li>La compressione è <strong>senza perdita</strong> se poi si riottengono esattamente i dati di prima. È <strong>con perdita</strong> se si buttano dettagli che l&#39;occhio o l&#39;orecchio non notano.</li>
+<li>Quattro idee senza perdita: contare le <strong>ripetizioni</strong>, dare codici corti ai simboli <strong>frequenti</strong> (Huffman), scrivere solo le <strong>differenze</strong>, usare un <strong>dizionario</strong> che cresce mentre leggi (LZW).</li>
+<li><strong>GIF</strong> usa al massimo 256 colori ed è adatto ai disegni. <strong>JPEG</strong> è per le foto: conserva bene la luminosità e meno il colore. <strong>MPEG</strong> fa lo stesso per i video, <strong>MP3</strong> per la musica.</li>
+<li>Quando i bit viaggiano, uno può cambiare. Il <strong>bit di parità</strong> fa in modo che gli 1 siano sempre dispari: se arrivano pari, c&#39;è un errore.</li>
+<li>La <strong>distanza di Hamming</strong> conta in quanti posti due file di bit sono diverse. Nel codice del libro le lettere distano almeno 3: un errore si corregge, due si vedono.</li>
+<li>All&#39;esame la distanza di Hamming è già uscita nelle simulazioni; della compressione servono le idee e i piccoli conti delle domande del libro.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p>Nel canale B è la lezione prevista per giovedì 08/10, ore 9–11: quando ho scritto questi appunti non si era ancora svolta, quindi seguono il libro. Per il docente è la lezione 5, perché la prima è stata un&#39;introduzione: qui è la 04. Il diario del canale B la annuncia così: «(Part 1, § 1.10 Communication Errors) Data Compression LZW, JPEG, MPEG, GIF. Communication Errors, parity bit e bytes, error-correcting codes, distanza di Hamming». La compressione è la sezione 1.9 del libro, gli errori di comunicazione sono la 1.10: qui ci sono tutte e due, nell&#39;ordine del libro. La sezione 1.8, sul linguaggio Python, nel canale B è omessa. Nel canale A Felice Cardone usa lo stesso libro: i suoi lucidi «Cenni sulla codifica dei dati» (Moodle del canale A, id 3851, aperto agli ospiti) citano il codice Morse, ma compressione e codici correttori si studiano sul libro, e sullo stesso Moodle ci sono le risposte alle domande del §1.9 e del §1.10. Nel canale C le stesse sezioni sono nei lucidi del docente.</p>
+</div>
+
+
+<section id="perche-comprimere" aria-labelledby="h-perche-comprimere" style="--h:1710px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-perche-comprimere">Perché comprimere</h2><span class="slides">libro, §1.9</span></div>
+<p>Nella <a href="02_testo_colori_suoni_binario.html">lezione 02</a> hai fatto due conti. Lo schermo di un portatile Full HD ha 1920 × 1080 pixel, e in RGB ogni pixel occupa 3 byte. Quindi una foto grande come lo schermo occupa 1920 × 1080 × 3 = 6 220 800 byte, circa 6 MB. Un&#39;ora di musica come quella dei CD occupa 635 040 000 byte, circa 635 MB.</p>
+<p>Sono numeri enormi. Uno smartphone contiene migliaia di foto, e una pagina web ne mostra decine in pochi secondi. Se ogni foto pesasse 6 MB, la memoria finirebbe subito e le pagine si caricherebbero lentissime.</p>
+<h3 id="l-immagine-guida-dettare-al-telefono">L&#39;immagine guida: dettare al telefono</h3>
+<p>Per tutta la lezione tieni in mente questa scena. Detti un messaggio a un amico, al telefono. Vuoi metterci poco tempo, e la linea a volte gracchia.</p>
+<p>Per fare prima, usi dei trucchi senza pensarci:</p>
+<ul>
+<li>invece di «zero, zero, zero, zero, zero, zero, zero, zero» dici «otto zeri»;</li>
+<li>le parole che usi di continuo le abbrevi;</li>
+<li>se due frasi sono quasi uguali, dici «come prima, ma con…»;</li>
+<li>se avete lo stesso libro, dici «pagina 12, parola 5» invece di dettare la parola.</li>
+</ul>
+<p>Sono proprio le quattro tecniche del libro. Scrivere gli stessi dati con meno bit si chiama <strong>compressione</strong> (<em>data compression</em>). Le prossime quattro sezioni le vedono una per volta.</p>
+<h3 id="senza-perdita-e-con-perdita">Senza perdita e con perdita</h3>
+<p>Prova a comprimere due cose diverse.</p>
+<ul>
+<li><strong>Un testo.</strong> Se cambi una sola lettera, «pesca» diventa «pasta». Dopo la compressione il testo deve tornare identico, lettera per lettera.</li>
+<li><strong>Una foto.</strong> Se un pixel tra due milioni diventa un pochino più scuro, nessuno se ne accorge. Si può accettare di perdere qualche dettaglio, se in cambio la foto occupa dieci volte meno.</li>
+</ul>
+<p>Il libro chiama i due casi così.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Compressione senza perdita e con perdita (libro, §1.9)</span></p><p>Una compressione è <strong>senza perdita</strong> (<em>lossless</em>) se dai dati compressi si ricostruiscono esattamente i dati originali. È <strong>con perdita</strong> (<em>lossy</em>) se i dati ricostruiti sono solo simili agli originali.</p>
+</div>
+<p><strong>Come si legge.</strong> Senza perdita: comprimi, decomprimi, e hai di nuovo gli stessi identici bit. Con perdita: decomprimi e hai qualcosa di molto simile, ma non uguale. Per testi, programmi e numeri serve la compressione senza perdita. Per foto, musica e video va bene anche quella con perdita.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quali di questi file si possono comprimere con perdita? (a) Il programma in C del laboratorio. (b) La foto delle vacanze. (c) L&#39;estratto conto della banca. (d) Una canzone.</span></summary><div class="ans"><p>Con perdita vanno bene solo (b) e (d): una foto un po&#39; meno nitida e una canzone un po&#39; meno fedele si guardano e si ascoltano lo stesso. Il programma e l&#39;estratto conto devono restare identici: un carattere diverso può cambiare tutto.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Comprimere vuol dire scrivere gli stessi dati con meno bit.</li>
+<li>Senza perdita: si riottengono esattamente i dati di prima. Con perdita: si ottiene qualcosa di molto simile.</li>
+<li>Testi, programmi e numeri: solo senza perdita. Foto, suoni e video: anche con perdita.</li>
+</ul>
+</div>
+</section>
+
+<section id="le-ripetizioni-la-codifica-run-length" aria-labelledby="h-le-ripetizioni-la-codifica-run-length" style="--h:1460px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-le-ripetizioni-la-codifica-run-length">Le ripetizioni: la codifica run-length</h2></div>
+<p>Torna al telefono. Se il messaggio è 0000000011110000, non detti sedici cifre. Dici «otto zeri, quattro uni, quattro zeri». Hai detto la stessa cosa con molte meno parole.</p>
+<p>Un gruppo di simboli uguali uno dopo l&#39;altro si chiama <strong>ripetizione</strong> (<em>run</em>). Al posto di ogni ripetizione si scrivono due cose: quale simbolo si ripete e quante volte. Questo modo di comprimere si chiama <strong>codifica run-length</strong> (<em>run-length encoding</em>), cioè «codifica della lunghezza delle ripetizioni».</p>
+<div class="box esempio"><p class="box-label"><span>Esempio · L&#39;esempio del libro</span></p><p>Una fila di 458 bit è fatta di 253 uni, poi 118 zeri, poi 87 uni. Invece di scrivere i 458 bit, si scrive «253 uni, 118 zeri, 87 uni».</p>
+<p>Quanti bit servono? Ogni numero è al massimo 255, quindi sta in un byte. Con le monete della <a href="02_testo_colori_suoni_binario.html">lezione 02</a>:</p>
+<div class="table-wrap"><table><thead><tr><th class="num">Numero</th><th>Monete</th><th class="centro">In un byte</th></tr></thead><tbody><tr><td class="num">253</td><td>128 + 64 + 32 + 16 + 8 + 4 + 1</td><td class="centro">11111101</td></tr>
+<tr><td class="num">118</td><td>64 + 32 + 16 + 4 + 2</td><td class="centro">01110110</td></tr>
+<tr><td class="num">87</td><td>64 + 16 + 4 + 2 + 1</td><td class="centro">01010111</td></tr></tbody></table></div>
+<p>Tre byte, cioè 24 bit, più l&#39;accordo che la fila comincia con gli uni. Invece di 458 bit.</p>
+</div>
+<p>Dove funziona bene? Dove ci sono lunghe ripetizioni. Pensa alla F della lezione 02, disegnata con i pixel: in un disegno in bianco e nero ci sono lunghe file di pixel bianchi e lunghe file di pixel neri. Anche i fax e le schermate con grandi zone di un colore solo si comprimono bene così.</p>
+<p>Dove funziona male? Prendi la fila 01010101. Le ripetizioni sono otto, tutte lunghe 1: «uno zero, un uno, uno zero…». Scritta così diventa più lunga di prima. Quando i dati cambiano di continuo, come nelle foto, la codifica run-length non serve.</p>
+<p>La codifica run-length è <strong>senza perdita</strong>: dal numero di ripetizioni si riscrive la fila identica.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>(a) Scrivi con la codifica run-length la fila 0000011111111000. (b) Che fila di bit è «3 uni, 2 zeri, 5 uni»?</span></summary><div class="ans"><p>(a) Ci sono cinque 0, otto 1 e tre 0: «5 zeri, 8 uni, 3 zeri». Controllo: 5 + 8 + 3 = 16, e la fila ha 16 bit.</p>
+<p>(b) 111 00 11111, cioè 1110011111.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Run-length: al posto di una ripetizione si scrivono il simbolo e quante volte si ripete.</li>
+<li>Funziona bene con lunghe file uguali, come nei disegni e nei fax; male quando i dati cambiano spesso.</li>
+<li>È senza perdita.</li>
+</ul>
+</div>
+</section>
+
+<section id="codici-corti-per-i-simboli-frequenti-huffman" aria-labelledby="h-codici-corti-per-i-simboli-frequenti-huffman" style="--h:4150px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-codici-corti-per-i-simboli-frequenti-huffman">Codici corti per i simboli frequenti: Huffman</h2></div>
+<p>Il telegrafo usava il <strong>codice Morse</strong>: ogni lettera è una fila di punti e linee. Guarda quanto sono lunghe:</p>
+<div class="table-wrap"><table><thead><tr><th class="centro">Lettera</th><th class="centro">Morse</th><th>Quanto è frequente in inglese</th></tr></thead><tbody><tr><td class="centro">E</td><td class="centro">·</td><td>la più frequente</td></tr>
+<tr><td class="centro">T</td><td class="centro">–</td><td>la seconda</td></tr>
+<tr><td class="centro">A</td><td class="centro">· –</td><td>molto frequente</td></tr>
+<tr><td class="centro">Q</td><td class="centro">– – · –</td><td>rara</td></tr></tbody></table></div>
+<p>Chi l&#39;ha inventato ha dato i codici più corti alle lettere più usate. Così i messaggi si trasmettono prima. È la seconda tecnica del libro: la <strong>codifica in base alla frequenza</strong> (<em>frequency-dependent encoding</em>). La <strong>frequenza</strong> di un simbolo è quante volte compare.</p>
+<p>In ASCII, invece, ogni lettera occupa un byte: la «e» come la «q». Si spreca spazio.</p>
+<h3 id="un-problema-dove-finisce-una-lettera">Un problema: dove finisce una lettera?</h3>
+<p>Nel Morse la E è «·» e la A è «· –». Se ricevi «· –», è una A oppure una E seguita da una T? Il telegrafista lo capisce perché tra una lettera e l&#39;altra c&#39;è una pausa.</p>
+<p>Con i bit non ci sono pause: c&#39;è solo una fila di 0 e di 1. Per leggerla senza dubbi serve una regola.</p>
+<div class="box idea"><p class="box-label"><span>L'idea</span></p><p>Nessun codice deve essere l&#39;inizio di un altro. Allora, leggendo da sinistra, appena riconosci un codice sai che quella lettera è finita.</p>
+</div>
+<p>Un codice con questa regola si chiama <strong>codice prefisso</strong>: nessun codice è il «prefisso», cioè la parte iniziale, di un altro.</p>
+<h3 id="un-esempio-piccolo-banana">Un esempio piccolo: BANANA</h3>
+<p>La parola BANANA ha tre lettere diverse: A tre volte, N due volte, B una volta.</p>
+<p>Con un codice in cui tutte le lettere hanno la stessa lunghezza, un bit non basta: dà solo due possibilità, 0 e 1. Servono 2 bit per lettera, per esempio A = 00, B = 01, N = 10. Le lettere sono 6, quindi 6 × 2 = 12 bit.</p>
+<p>Ora prova un codice di lunghezza variabile: A = 0, B = 10, N = 11.</p>
+<ul>
+<li>È un codice prefisso? A è 0, e nessun altro codice comincia con 0. B e N cominciano con 1, ma sono diversi al secondo bit. Sì.</li>
+<li>BANANA diventa 10 0 11 0 11 0, cioè 100110110: 9 bit invece di 12.</li>
+</ul>
+<p>Per leggerlo, parti da sinistra:</p>
+<ol>
+<li>1 da solo non è un codice; 10 è B.</li>
+<li>0 è A.</li>
+<li>1 da solo no; 11 è N.</li>
+<li>Poi 0 è A, 11 è N, 0 è A.</li>
+</ol>
+<p>Viene di nuovo BANANA, senza nessuna pausa.</p>
+<h3 id="come-si-costruisce-l-albero-di-huffman">Come si costruisce: l&#39;albero di Huffman</h3>
+<p>Come si sceglie il codice migliore? C&#39;è un metodo, inventato da David Huffman nel 1952. I codici che produce si chiamano <strong>codici di Huffman</strong>.</p>
+<p>L&#39;idea: si mettono insieme, un passo alla volta, le due lettere più rare. Così le lettere rare finiscono in fondo e hanno codici lunghi, quelle frequenti restano in alto e hanno codici corti.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · L&#39;albero di Huffman</span></p><ol>
+<li>Conta quante volte compare ogni simbolo: è il suo <strong>peso</strong>.</li>
+<li>Prendi i due pesi più piccoli e uniscili in un gruppo. Il peso del gruppo è la somma dei due.</li>
+<li>Ripeti il passo 2, trattando i gruppi come simboli, finché resta un gruppo solo.</li>
+<li>A ogni unione, scrivi 0 sul ramo di sinistra e 1 su quello di destra.</li>
+<li>Il codice di un simbolo è la fila di 0 e 1 che leggi scendendo dalla cima fino a lui.</li>
+</ol>
+</div>
+<div class="box esempio"><p class="box-label"><span>Esempio · PAPPAGALLO, passo per passo</span></p><p>Le lettere sono 10. Pesi: P 3, A 3, L 2, G 1, O 1.</p>
+<div class="table-wrap"><table><thead><tr><th class="centro">Passo</th><th>Unisci</th><th class="centro">Nuovo peso</th><th>Restano</th></tr></thead><tbody><tr><td class="centro">1</td><td>G (1) e O (1)</td><td class="centro">2</td><td>P 3, A 3, L 2, GO 2</td></tr>
+<tr><td class="centro">2</td><td>L (2) e GO (2)</td><td class="centro">4</td><td>P 3, A 3, LGO 4</td></tr>
+<tr><td class="centro">3</td><td>P (3) e A (3)</td><td class="centro">6</td><td>LGO 4, PA 6</td></tr>
+<tr><td class="centro">4</td><td>LGO (4) e PA (6)</td><td class="centro">10</td><td>un gruppo solo</td></tr></tbody></table></div>
+<p>Al passo 3 i due pesi più piccoli sono 3 e 3: il 4 di LGO è più grande, quindi aspetta.</p>
+</div>
+<p>Ecco l&#39;albero. In cima c&#39;è il gruppo finale, con peso 10. Ogni unione è una biforcazione, con 0 a sinistra e 1 a destra.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/336"><svg viewBox="0 0 560 336" role="img" aria-label="L'albero di Huffman di PAPPAGALLO" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-linea" d="M280 50.4L140 123.2"/><path class="g-linea" d="M280 50.4L420 123.2"/><path class="g-linea" d="M140 123.2L67.2 196"/><path class="g-linea" d="M140 123.2L212.8 196"/><path class="g-linea" d="M212.8 196L156.8 268.8"/><path class="g-linea" d="M212.8 196L268.8 268.8"/><path class="g-linea" d="M420 123.2L352.8 196"/><path class="g-linea" d="M420 123.2L487.2 196"/><circle class="g-punto" cx="280" cy="50.4" r="4.5"/><circle class="g-punto" cx="140" cy="123.2" r="4.5"/><circle class="g-punto" cx="420" cy="123.2" r="4.5"/><circle class="g-punto" cx="67.2" cy="196" r="4.5"/><circle class="g-punto" cx="212.8" cy="196" r="4.5"/><circle class="g-punto" cx="156.8" cy="268.8" r="4.5"/><circle class="g-punto" cx="268.8" cy="268.8" r="4.5"/><circle class="g-punto" cx="352.8" cy="196" r="4.5"/><circle class="g-punto" cx="487.2" cy="196" r="4.5"/></svg><span class="g-et g-n" style="left:50.00%;top:15.00%">10</span><span class="g-et g-no" style="left:25.00%;top:36.67%">LGO 4</span><span class="g-et g-ne" style="left:75.00%;top:36.67%">PA 6</span><span class="g-et g-s" style="left:12.00%;top:58.33%">L 2</span><span class="g-et g-ne" style="left:38.00%;top:58.33%">GO 2</span><span class="g-et g-s" style="left:28.00%;top:80.00%">G 1</span><span class="g-et g-s" style="left:48.00%;top:80.00%">O 1</span><span class="g-et g-s" style="left:63.00%;top:58.33%">P 3</span><span class="g-et g-s" style="left:87.00%;top:58.33%">A 3</span><span class="g-et g-no g-testo g-accento" style="left:37.50%;top:25.83%">0</span><span class="g-et g-ne g-testo g-accento" style="left:62.50%;top:25.83%">1</span><span class="g-et g-no g-testo g-accento" style="left:18.50%;top:47.50%">0</span><span class="g-et g-ne g-testo g-accento" style="left:31.50%;top:47.50%">1</span><span class="g-et g-o g-testo g-accento" style="left:32.00%;top:70.00%">0</span><span class="g-et g-e g-testo g-accento" style="left:44.00%;top:70.00%">1</span><span class="g-et g-no g-testo g-accento" style="left:69.00%;top:47.50%">0</span><span class="g-et g-ne g-testo g-accento" style="left:81.00%;top:47.50%">1</span></div><figcaption>L&#39;albero di Huffman di PAPPAGALLO</figcaption></figure>
+<p>Per trovare il codice di una lettera, scendi dalla cima e scrivi i numeri dei rami. Per arrivare alla G: a sinistra (0), poi a destra (1), poi a sinistra (0). Quindi G = 010.</p>
+<div class="table-wrap"><table><thead><tr><th class="centro">Lettera</th><th class="centro">Peso</th><th class="centro">Codice</th><th class="num">Bit in tutto</th></tr></thead><tbody><tr><td class="centro">P</td><td class="centro">3</td><td class="centro">10</td><td class="num">3 × 2 = 6</td></tr>
+<tr><td class="centro">A</td><td class="centro">3</td><td class="centro">11</td><td class="num">3 × 2 = 6</td></tr>
+<tr><td class="centro">L</td><td class="centro">2</td><td class="centro">00</td><td class="num">2 × 2 = 4</td></tr>
+<tr><td class="centro">G</td><td class="centro">1</td><td class="centro">010</td><td class="num">1 × 3 = 3</td></tr>
+<tr><td class="centro">O</td><td class="centro">1</td><td class="centro">011</td><td class="num">1 × 3 = 3</td></tr></tbody></table></div>
+<p>In tutto 6 + 6 + 4 + 3 + 3 = 22 bit. Con un codice a lunghezza fissa servono 3 bit per lettera, perché le lettere diverse sono 5 e con 2 bit le possibilità sono solo 4: in tutto 10 × 3 = 30 bit. In ASCII, un byte per lettera, sarebbero 80 bit.</p>
+<p>Il codice è prefisso da solo: ogni lettera sta in fondo a un ramo, e nessuna sta sulla strada per un&#39;altra.</p>
+<p>Il libro descrive la tecnica così.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Codifica in base alla frequenza (libro, §1.9)</span></p><p>Nella <strong>codifica in base alla frequenza</strong> (<em>frequency-dependent encoding</em>) la lunghezza del codice di un simbolo dipende da quanto spesso il simbolo compare: più è frequente, più il codice è corto. I codici costruiti con il metodo di Huffman si chiamano <strong>codici di Huffman</strong>.</p>
+</div>
+<p><strong>Come si legge.</strong> Le lettere frequenti hanno codici corti, quelle rare codici lunghi, come nel Morse. In media il messaggio occupa meno bit. È senza perdita: dal codice si riottiene il messaggio identico.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · I pesi uguali danno codici diversi, ma lo stesso totale</span></p><p>Quando due pesi sono uguali, puoi scegliere quale unire per primo, e cambiano i codici. Il numero totale di bit, però, viene sempre lo stesso. Se il tuo codice non coincide con quello della soluzione, controlla il totale e che sia un codice prefisso.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>(a) Con il codice di PAPPAGALLO, che parola è 10110011? (b) Costruisci un codice di Huffman per CASSA e conta i bit.</span></summary><div class="ans"><p>(a) Da sinistra: 10 è P, 11 è A, 00 è L, 11 è A. La parola è PALA.</p>
+<p>(b) Pesi: C 1, A 2, S 2. Passo 1: i due più piccoli sono C (1) e uno dei due 2; prendi A, e il gruppo CA pesa 3. Passo 2: S (2) e CA (3), peso 5. Codici: S = 0, C = 10, A = 11. Bit: S 2 × 1, C 1 × 2, A 2 × 2, in tutto 2 + 2 + 4 = 8. Se al passo 1 prendi S invece di A, viene A = 0, C = 10, S = 11: sempre 8 bit. Con 2 bit per lettera sarebbero 10.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Codifica in base alla frequenza: codici corti ai simboli frequenti, lunghi a quelli rari.</li>
+<li>Serve un codice prefisso: nessun codice è l&#39;inizio di un altro, così si legge senza pause.</li>
+<li>Huffman: unisci sempre i due pesi più piccoli; 0 a sinistra, 1 a destra; il codice è la strada dalla cima.</li>
+</ul>
+</div>
+</section>
+
+<section id="solo-le-differenze-la-codifica-relativa" aria-labelledby="h-solo-le-differenze-la-codifica-relativa" style="--h:1220px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-solo-le-differenze-la-codifica-relativa">Solo le differenze: la codifica relativa</h2></div>
+<p>Ancora al telefono. Detti le temperature di una settimana: 20, 21, 21, 22, 20, 19, 19. Dopo la prima, puoi dire solo quanto cambia: «20, poi più 1, poi uguale, poi più 1, poi meno 2, poi meno 1, poi uguale».</p>
+<p>I numeri da dettare diventano 20, +1, 0, +1, −2, −1, 0. Sono quasi tutti piccoli, e i numeri piccoli si scrivono con pochi bit.</p>
+<p>Questa è la terza tecnica: la <strong>codifica relativa</strong> (<em>relative encoding</em>), detta anche <strong>differenziale</strong> (<em>differential encoding</em>). Si scrive il primo dato per intero; per ogni dato dopo, solo la differenza con quello prima.</p>
+<p>Funziona bene quando ogni dato somiglia a quello prima. Il libro fa l&#39;esempio dei video. Un video è una fila di immagini, i <strong>fotogrammi</strong>, 25 o 30 al secondo. Due fotogrammi vicini sono quasi uguali: la persona si è mossa appena, lo sfondo è identico. Invece di conservare ogni fotogramma per intero, si conserva solo che cosa è cambiato.</p>
+<p>Anche i campioni di un suono, quelli della lezione 02, cambiano poco da uno all&#39;altro. Per questo la codifica relativa si usa anche per l&#39;audio.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · I numeri negativi</span></p><p>Le differenze possono essere negative, come −2. Come si scrive in bit un numero con il segno meno lo dice la sezione 1.6 del libro, con il complemento a 2: è nella <a href="03_interi_con_segno_virgola_mobile.html">lezione 03</a>.</p>
+</div>
+<p>Se le differenze si scrivono esatte, la codifica relativa è senza perdita. Se si arrotondano per risparmiare ancora, diventa con perdita.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>(a) Scrivi con la codifica relativa 100, 102, 103, 103, 101, 98. (b) Quali numeri erano 50, +3, −1, 0, +2?</span></summary><div class="ans"><p>(a) Il primo resta 100. Poi 102 − 100 = +2; 103 − 102 = +1; 103 − 103 = 0; 101 − 103 = −2; 98 − 101 = −3. Viene 100, +2, +1, 0, −2, −3.</p>
+<p>(b) Si somma ogni differenza al numero prima: 50; 50 + 3 = 53; 53 − 1 = 52; 52 + 0 = 52; 52 + 2 = 54. I numeri erano 50, 53, 52, 52, 54.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Codifica relativa: il primo dato per intero, poi solo le differenze con il dato prima.</li>
+<li>Funziona quando ogni dato somiglia al precedente: fotogrammi di un video, campioni di un suono.</li>
+<li>Con le differenze esatte è senza perdita.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-dizionario-che-cresce-lzw" aria-labelledby="h-il-dizionario-che-cresce-lzw" style="--h:2370px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-il-dizionario-che-cresce-lzw">Il dizionario che cresce: LZW</h2></div>
+<p>L&#39;ultimo trucco del telefono: tu e il tuo amico avete lo stesso vocabolario. Invece di dettare una parola lettera per lettera, dici «pagina 512, parola 7». Lui la cerca e la trova.</p>
+<p>Questa è la quarta tecnica, la <strong>codifica a dizionario</strong> (<em>dictionary encoding</em>). Il <strong>dizionario</strong> è un elenco numerato di parole, uguale per chi scrive e per chi legge. Al posto di ogni parola si scrive il suo numero nell&#39;elenco.</p>
+<p>Il libro fa l&#39;esempio del correttore ortografico di un programma di videoscrittura, che ha già un dizionario. Con 25 000 parole, quanti bit servono per il numero di una parola?</p>
+<ul>
+<li>Con 14 bit i numeri possibili sono <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>14</mn></msup><mo>=</mo><mn>16384</mn></mrow><annotation encoding="application/x-tex">2^{14} = 16384</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">14</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">16384</span></span></span></span>. Si legge «due alla quattordici» e vuol dire 2 moltiplicato per sé stesso 14 volte, come nella lezione 02. Non bastano.</li>
+<li>Con 15 bit sono <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>15</mn></msup><mo>=</mo><mn>32768</mn></mrow><annotation encoding="application/x-tex">2^{15} = 32768</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">15</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">32768</span></span></span></span>: bastano.</li>
+</ul>
+<p>Quindi ogni parola costa 15 bit. La parola «computer» in ASCII ne occupa 8 × 8 = 64.</p>
+<h3 id="il-dizionario-si-costruisce-mentre-leggi">Il dizionario si costruisce mentre leggi</h3>
+<p>C&#39;è un problema: un dizionario fisso va bene per le parole di una lingua, ma non per una foto o per un file qualunque. L&#39;idea furba è costruire il dizionario <strong>mentre</strong> si comprime. Chi legge lo ricostruisce identico, negli stessi momenti, quindi non bisogna nemmeno spedirlo.</p>
+<p>Questa si chiama <strong>codifica a dizionario adattiva</strong> (<em>adaptive dictionary encoding</em>). Il metodo più famoso è <strong>LZW</strong>, dalle iniziali dei suoi inventori: Lempel, Ziv e Welch.</p>
+<p>Il libro la spiega con messaggi fatti di tre simboli: la x, la y e lo spazio. Le regole, nella versione del libro:</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · LZW come nel libro</span></p><ol>
+<li>All&#39;inizio il dizionario contiene solo i simboli singoli: x = 1, y = 2, spazio = 3.</li>
+<li>Leggi il messaggio una parola alla volta (una parola finisce allo spazio).</li>
+<li>Se la parola è già nel dizionario, scrivi il suo numero.</li>
+<li>Se non c&#39;è, scrivi i numeri delle sue lettere, una per una. Poi aggiungi la parola al dizionario, con il primo numero libero.</li>
+<li>Ogni spazio si scrive 3.</li>
+</ol>
+</div>
+<div class="box esempio"><p class="box-label"><span>Esempio · Il messaggio del libro: «xyx xyx xyx xyx»</span></p><div class="table-wrap"><table><thead><tr><th>Leggo</th><th class="centro">Nel dizionario?</th><th class="centro">Scrivo</th><th>Il dizionario diventa</th></tr></thead><tbody><tr><td>xyx</td><td class="centro">no</td><td class="centro">1 2 1</td><td>aggiungo xyx = 4</td></tr>
+<tr><td>spazio</td><td class="centro">sì</td><td class="centro">3</td><td></td></tr>
+<tr><td>xyx</td><td class="centro">sì, è il 4</td><td class="centro">4</td><td></td></tr>
+<tr><td>spazio</td><td class="centro">sì</td><td class="centro">3</td><td></td></tr>
+<tr><td>xyx</td><td class="centro">sì</td><td class="centro">4</td><td></td></tr>
+<tr><td>spazio</td><td class="centro">sì</td><td class="centro">3</td><td></td></tr>
+<tr><td>xyx</td><td class="centro">sì</td><td class="centro">4</td><td></td></tr></tbody></table></div>
+<p>Il messaggio compresso è 121343434: nove numeri invece di quindici simboli.</p>
+</div>
+<p>La prima volta la parola xyx costa tre numeri. Da lì in poi ne costa uno solo. Più un messaggio ripete le stesse parole, più si guadagna.</p>
+<h3 id="chi-legge-ricostruisce-il-dizionario">Chi legge ricostruisce il dizionario</h3>
+<p>Il tuo amico riceve 121343434 e conosce solo il dizionario iniziale: x = 1, y = 2, spazio = 3. Legge un numero alla volta.</p>
+<ol>
+<li>1, 2, 1: scrive x, y, x.</li>
+<li>3: è uno spazio. La parola xyx è finita, ed è nuova: la aggiunge al dizionario come 4, proprio come aveva fatto chi ha compresso.</li>
+<li>4: ora sa che è xyx, e la scrive.</li>
+<li>Poi 3, 4, 3, 4: spazio, xyx, spazio, xyx.</li>
+</ol>
+<p>Ha riottenuto «xyx xyx xyx xyx», identico. LZW è senza perdita.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Comprimi con LZW, come nel libro, il messaggio «yxy yxy x yxy», partendo da x = 1, y = 2, spazio = 3.</span></summary><div class="ans"><ol>
+<li>yxy non c&#39;è: scrivi 2 1 2, poi lo spazio 3. Aggiungi yxy = 4.</li>
+<li>yxy ora è il 4: scrivi 4, poi 3.</li>
+<li>x c&#39;è già, è l&#39;1: scrivi 1, poi 3. Non si aggiunge niente.</li>
+<li>yxy: scrivi 4.</li>
+</ol>
+<p>Il risultato è 212343134.</p>
+</div></details></div></div>
+<details class="dim approfondimento"><summary><span>Approfondimento · Il vero LZW lavora sulle sequenze, non sulle parole</span></summary><div class="dim-corpo"><p>Il libro presenta LZW con le parole separate dagli spazi, perché è più facile da seguire. Il vero LZW, quello dentro GIF, non cerca gli spazi: legge un simbolo alla volta e cerca la sequenza più lunga che ha già nel dizionario. Scrive il suo numero e aggiunge al dizionario quella sequenza con in più il simbolo che viene dopo.</p>
+<p>Un esempio con il dizionario iniziale A = 0, B = 1 e il messaggio ABABABA:</p>
+<ol>
+<li>A c&#39;è, AB no: scrive 0 e aggiunge AB = 2.</li>
+<li>B c&#39;è, BA no: scrive 1 e aggiunge BA = 3.</li>
+<li>AB c&#39;è, ABA no: scrive 2 e aggiunge ABA = 4.</li>
+<li>Resta ABA, che c&#39;è: scrive 4.</li>
+</ol>
+<p>Il messaggio diventa 0 1 2 4. L&#39;idea è la stessa del libro: il dizionario cresce con il messaggio. Per l&#39;esame basta la versione del libro.</p>
+</div></details>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Codifica a dizionario: al posto di una parola si scrive il suo numero in un elenco comune.</li>
+<li>LZW: il dizionario parte dai simboli singoli e cresce mentre si comprime; chi legge lo ricostruisce identico.</li>
+<li>Nel libro: parola nuova = numeri delle sue lettere, poi entra nel dizionario; parola già vista = il suo numero; spazio = 3.</li>
+</ul>
+</div>
+</section>
+
+<section id="le-immagini-gif-e-jpeg" aria-labelledby="h-le-immagini-gif-e-jpeg" style="--h:2780px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-le-immagini-gif-e-jpeg">Le immagini: GIF e JPEG</h2></div>
+<p>Nella lezione 02 un pixel in <strong>RGB</strong> occupa 3 byte: quanto rosso, quanto verde e quanto blu, ognuno da 0 a 255. I colori possibili sono più di sedici milioni. Le quattro tecniche di prima aiutano, ma per le immagini si fa di più.</p>
+<h3 id="gif-dipingere-con-i-numeri">GIF: dipingere con i numeri</h3>
+<p>Conosci i disegni da colorare con i numeri? Ogni zona ha un numero, e in fondo alla pagina c&#39;è la legenda: 1 = rosso, 2 = giallo, 3 = blu.</p>
+<p><strong>GIF</strong> (<em>Graphic Interchange Format</em>) fa così. Sceglie al massimo 256 colori e li mette in una tabella, la <strong>tavolozza</strong> (<em>palette</em>). Ogni colore della tavolozza è scritto con i suoi 3 byte RGB. Poi ogni pixel non dice più il suo colore: dice solo il numero del colore nella tavolozza.</p>
+<p>Un numero da 0 a 255 sta in un byte. Quindi ogni pixel occupa 1 byte invece di 3: l&#39;immagine pesa circa un terzo.</p>
+<div class="box esempio"><p class="box-label"><span>Esempio · Un disegno di 400 × 300 pixel</span></p><ol>
+<li>I pixel sono 400 × 300 = 120 000.</li>
+<li>In RGB: 120 000 × 3 = 360 000 byte.</li>
+<li>In GIF, prima di LZW: 120 000 byte per i pixel, più 256 × 3 = 768 byte per la tavolozza. In tutto 120 768 byte.</li>
+</ol>
+</div>
+<p>Poi GIF comprime ancora i numeri dei pixel con LZW, il dizionario che cresce. Un colore della tavolozza può anche essere «trasparente»: lì si vede lo sfondo che c&#39;è dietro.</p>
+<p>GIF è <strong>con perdita</strong>, se l&#39;immagine di partenza ha più di 256 colori: i colori che non stanno nella tavolozza vengono sostituiti dal più vicino. Per una foto, che ha migliaia di sfumature, la differenza si vede. Per un disegno o un fumetto, che hanno pochi colori e zone di colore pieno con bordi netti, non si perde quasi niente. È la domanda 3 del §1.9.</p>
+<h3 id="jpeg-l-occhio-vede-meglio-la-luce-del-colore">JPEG: l&#39;occhio vede meglio la luce del colore</h3>
+<p>Guarda una foto in bianco e nero: capisci tutto, anche senza i colori. I dettagli, i bordi, le facce stanno soprattutto nella <strong>luminosità</strong>, cioè quanto è chiaro o scuro ogni punto. Il colore conta, ma l&#39;occhio ne nota i piccoli cambiamenti molto meno.</p>
+<p><strong>JPEG</strong> (dal nome del gruppo che l&#39;ha creato, <em>Joint Photographic Experts Group</em>) è il formato delle fotografie, e sfrutta proprio questo. Ha una versione senza perdita, poco usata perché comprime poco. Quella di tutti i giorni è lo <strong>standard di base</strong> (<em>baseline standard</em>), che è con perdita. Funziona così:</p>
+<ol>
+<li>Ogni pixel si scrive con tre numeri diversi da RGB: uno per la luminosità (<em>luminance</em>) e due per il colore (<em>chrominance</em>). Ne parlava già una nota della lezione 02.</li>
+<li>L&#39;immagine si divide in quadratini di 2 × 2 pixel. Per ogni quadratino si tiene la luminosità di tutti e quattro i pixel, ma per il colore solo la <strong>media</strong> dei quattro.</li>
+<li>L&#39;immagine si divide in blocchi di 8 × 8 pixel. Ogni blocco si trasforma con un procedimento matematico, e i dettagli più fini, quelli che l&#39;occhio vede meno, si approssimano.</li>
+<li>Alla fine si usano le tecniche senza perdita di prima: run-length, codifica relativa, codici a lunghezza variabile.</li>
+</ol>
+<p>Il passo 2, contato su un quadratino:</p>
+<div class="table-wrap"><table><thead><tr><th></th><th class="centro">Luminosità</th><th class="centro">Colore</th><th class="centro">In tutto</th></tr></thead><tbody><tr><td>Prima</td><td class="centro">4 pixel × 1 numero = 4</td><td class="centro">4 pixel × 2 numeri = 8</td><td class="centro">12 numeri</td></tr>
+<tr><td>Dopo</td><td class="centro">4</td><td class="centro">1 media × 2 numeri = 2</td><td class="centro">6 numeri</td></tr></tbody></table></div>
+<p>Solo questo passo dimezza i numeri, e l&#39;occhio non vede la differenza. Con tutti i passi, di solito una foto in JPEG occupa almeno dieci volte meno che in RGB.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · TIFF</span></p><p>Il libro cita anche <strong>TIFF</strong> (<em>Tagged Image File Format</em>). Più che un modo di comprimere è un contenitore: oltre all&#39;immagine conserva altre informazioni, come la data e le impostazioni della fotocamera. Si usa soprattutto per le fotografie, quando la qualità conta più dello spazio.</p>
+</div>
+<div class="box trap"><p class="box-label"><span>Trappola · Né GIF né JPEG sono senza perdita</span></p><p>GIF perde colori, il JPEG di base perde dettagli. Se una foto deve restare identica, come le immagini di una sonda spaziale da studiare al pixel, non vanno bene né l&#39;uno né l&#39;altro. È la domanda 4 del §1.9.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>(a) Che formato sceglieresti per il logo di una squadra, con quattro colori pieni? E per la foto di un tramonto? (b) Un&#39;immagine di 100 × 100 pixel in GIF: quanti byte occupano i pixel, prima di LZW?</span></summary><div class="ans"><p>(a) Per il logo GIF: pochi colori, zone piene e bordi netti, e con 4 colori non perde niente. Per il tramonto JPEG: migliaia di sfumature, che la tavolozza di GIF non riesce a tenere.</p>
+<p>(b) Un byte per pixel: 100 × 100 = 10 000 byte. Più i 768 byte della tavolozza.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>GIF: tavolozza di al massimo 256 colori, un byte per pixel, poi LZW. Con perdita se i colori erano di più. Ottimo per disegni e fumetti.</li>
+<li>JPEG di base: luminosità per ogni pixel, colore solo come media su 2 × 2 pixel, poi blocchi di 8 × 8. Con perdita. Per le foto.</li>
+<li>L&#39;idea di JPEG: l&#39;occhio nota la luminosità più del colore.</li>
+</ul>
+</div>
+</section>
+
+<section id="suoni-e-video-mp3-e-mpeg" aria-labelledby="h-suoni-e-video-mp3-e-mpeg" style="--h:1750px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-suoni-e-video-mp3-e-mpeg">Suoni e video: MP3 e MPEG</h2></div>
+<p>Sei a un concerto. Esplode un petardo, e per un attimo non senti nient&#39;altro: nemmeno la voce del cantante, che pure c&#39;è. Poi accanto a una cassa che suona un basso fortissimo qualcuno ti parla a voce bassa, con una voce grave: non lo senti.</p>
+<p>Sono due limiti veri dell&#39;orecchio, e <strong>MP3</strong>, il formato più famoso per la musica, li sfrutta. Il libro li chiama così:</p>
+<ul>
+<li><strong>mascheramento temporale</strong> (<em>temporal masking</em>): subito dopo un suono forte, per un breve momento, l&#39;orecchio non sente i suoni deboli;</li>
+<li><strong>mascheramento in frequenza</strong> (<em>frequency masking</em>): un suono forte copre i suoni deboli con una nota vicina alla sua. La <strong>frequenza</strong> di un suono è quello che lo fa più grave o più acuto.</li>
+</ul>
+<p>MP3 toglie dalla registrazione i suoni che tanto non sentiresti. È una compressione con perdita, ma la perdita è scelta in modo da non sentirsi. È la domanda 6 del §1.9.</p>
+<p>Quanto si guadagna? Un CD, come nella lezione 02, conserva ogni secondo 44 100 campioni da 16 bit, per due canali: 44 100 × 16 × 2 = 1 411 200 bit al secondo. Un MP3 di buona qualità ne usa spesso 128 000. Il conto 1 411 200 : 128 000 fa circa 11: lo stesso brano occupa circa undici volte meno.</p>
+<h3 id="i-video-mpeg">I video: MPEG</h3>
+<p>Per i video c&#39;è <strong>MPEG</strong> (<em>Motion Picture Experts Group</em>). Usa la codifica relativa che hai già visto:</p>
+<ul>
+<li>solo alcuni fotogrammi si conservano per intero, compressi come immagini, in modo simile a JPEG;</li>
+<li>per i fotogrammi in mezzo si conservano solo le differenze rispetto a quelli vicini.</li>
+</ul>
+<p>In una scena in cui una persona parla davanti a un muro, il muro si conserva una volta sola. Di ogni fotogramma dopo cambiano solo la bocca e gli occhi.</p>
+<div class="box exam"><p class="box-label"><span>Conta all'esame · Le approssimazioni si accumulano</span></p><p>La domanda 7 del §1.9 chiede quale fenomeno preoccupante capita quando si scrivono in bit numeri, immagini e suoni. La risposta: si fanno approssimazioni. Con i numeri, ogni calcolo può far crescere l&#39;errore. Con immagini e suoni di solito non è grave, perché si conservano e si riproducono soltanto. Ma se una foto si comprime, si riapre e si ricomprime tante volte, gli errori si sommano: come la fotocopia di una fotocopia di una fotocopia.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>(a) Quale di questi è un esempio di mascheramento in frequenza: (1) dopo un colpo di tamburo non senti un sussurro per un istante; (2) un violino forte copre un violino debole che suona una nota quasi uguale? (b) In un video di una partita, che cosa cambia poco da un fotogramma all&#39;altro?</span></summary><div class="ans"><p>(a) Il (2): il suono forte copre quello debole con una nota vicina. Il (1) è mascheramento temporale: dipende dal momento, non dalla nota.</p>
+<p>(b) Il campo, gli spalti, le scritte sullo schermo: restano quasi uguali. Cambiano i giocatori e la palla. MPEG conserva per intero solo qualche fotogramma, e per gli altri le differenze.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>MP3: toglie i suoni che l&#39;orecchio non sente, per il mascheramento temporale e in frequenza. Con perdita.</li>
+<li>MPEG: alcuni fotogrammi interi, degli altri solo le differenze (codifica relativa).</li>
+<li>Ogni approssimazione è un piccolo errore, e ricomprimendo tante volte gli errori si sommano.</li>
+</ul>
+</div>
+</section>
+
+<section id="accorgersi-di-un-errore-il-bit-di-parita" aria-labelledby="h-accorgersi-di-un-errore-il-bit-di-parita" style="--h:2700px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-accorgersi-di-un-errore-il-bit-di-parita">Accorgersi di un errore: il bit di parità</h2><span class="slides">libro, §1.10</span></div>
+<p>Torna al telefono. La linea gracchia, e il tuo amico capisce «cinque» invece di «nove». Con i bit succede lo stesso: un graffio su un disco, un disturbo nell&#39;aria o sul cavo, e uno 0 arriva come 1, o un 1 come 0. Il libro chiama questi problemi <strong>errori di comunicazione</strong> (<em>communication errors</em>).</p>
+<p>Chi riceve non vede il messaggio giusto: vede solo i bit che arrivano. Come fa ad accorgersi che uno è sbagliato?</p>
+<h3 id="l-accordo-gli-1-sono-sempre-dispari">L&#39;accordo: gli 1 sono sempre dispari</h3>
+<p>Tu e il tuo amico vi mettete d&#39;accordo così: ogni gruppo di bit che spedisci deve avere un numero <strong>dispari</strong> di 1. Se un byte ha già un numero dispari di 1, aggiungi uno 0. Se ne ha un numero pari, aggiungi un 1, così diventano dispari.</p>
+<p>Il bit in più si chiama <strong>bit di parità</strong> (<em>parity bit</em>). Il libro lo mette a sinistra, davanti al byte: ogni byte diventa una fila di 9 bit.</p>
+<div class="box esempio"><p class="box-label"><span>Esempio · Le lettere A e F, come nel libro</span></p><div class="table-wrap"><table><thead><tr><th class="centro">Lettera</th><th class="centro">Byte ASCII</th><th class="centro">Quanti 1</th><th class="centro">Bit di parità</th><th class="centro">I 9 bit</th></tr></thead><tbody><tr><td class="centro">A</td><td class="centro">01000001</td><td class="centro">2, pari</td><td class="centro">1</td><td class="centro">101000001</td></tr>
+<tr><td class="centro">F</td><td class="centro">01000110</td><td class="centro">3, dispari</td><td class="centro">0</td><td class="centro">001000110</td></tr></tbody></table></div>
+<p>Controllo: in 101000001 gli 1 sono 3, in 001000110 sono 3. Dispari tutti e due.</p>
+</div>
+<p>All&#39;arrivo il tuo amico conta gli 1 dei 9 bit. Se sono dispari, va tutto bene. Se sono pari, c&#39;è stato un errore, e chiede di rispedire.</p>
+<p>Perché funziona? Ogni bit che cambia aggiunge un 1 o ne toglie uno. In tutti e due i casi, un numero dispari diventa pari.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Parità dispari (libro, §1.10)</span></p><p>Nella <strong>parità dispari</strong> (<em>odd parity</em>) a ogni fila di bit si aggiunge un bit di parità, scelto in modo che il numero totale di 1, compreso il bit di parità, sia dispari. Nella <strong>parità pari</strong> (<em>even parity</em>) il totale deve essere pari. Il libro usa la parità dispari.</p>
+</div>
+<p><strong>Come si legge.</strong> Prima di spedire conti gli 1 e aggiungi il bit che rende il totale dispari. Chi riceve riconta tutti i bit, compreso quello di parità: un totale pari vuol dire che qualcosa si è rotto per strada. Con la parità pari si fa lo stesso, al contrario.</p>
+<p>Un vantaggio della parità dispari: una fila di soli 0 non è mai giusta, perché zero 1 sono un numero pari. Se una linea si guasta e manda solo zeri, chi riceve se ne accorge.</p>
+<p>Alcune memorie dei computer usano proprio questo: per ogni byte conservano 9 bit, gli 8 del byte più il bit di parità.</p>
+<p>Nello strumento clicca sui bit del byte e scegli la parità: il bit di parità si calcola da solo. Poi prova «Un errore» e «Due errori»: guarda quando l&#39;errore si vede.</p>
+<figure class="widget" id="strumento-1" data-widget="codifica" data-modo="parita" data-bit="01000001" data-parita="dispari"><figcaption class="widget-titolo">Il bit di parità: aggiungilo, poi prova uno o due errori</figcaption><p class="widget-carica">Caricamento dello strumento interattivo…</p></figure>
+<h3 id="due-errori-non-si-vedono">Due errori non si vedono</h3>
+<p>Se cambiano due bit, il primo rende pari il totale e il secondo lo rende di nuovo dispari. Il conto torna, e chi riceve non si accorge di niente.</p>
+<div class="box esempio"><p class="box-label"><span>Esempio · La A con due errori</span></p><p>Spedisci 101000001: tre 1, dispari. Per strada cambiano gli ultimi due bit e arriva 101000010. Gli 1 sono ancora tre, dispari: sembra tutto a posto. Ma 01000010 è la B.</p>
+</div>
+<p>Il bit di parità vede un errore, tre errori, cinque errori: un numero dispari. Non vede due, quattro, sei errori. E anche quando vede un errore, non dice quale bit è sbagliato. È la domanda 2 del §1.10.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Questi gruppi di 9 bit sono stati spediti con parità dispari. In quali c&#39;è sicuramente un errore? (a) 001100001 (b) 110000000 (c) 111111111</span></summary><div class="ans"><p>Conta gli 1. (a) Sono tre: dispari, nessun errore visibile. (b) Sono due: pari, quindi c&#39;è un errore. (c) Sono nove: dispari, nessun errore visibile.</p>
+<p>«Nessun errore visibile» non vuol dire «nessun errore»: potrebbero essercene due.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Parità dispari: si aggiunge un bit perché gli 1 siano dispari. Il libro lo mette a sinistra del byte.</li>
+<li>All&#39;arrivo si contano tutti gli 1: se sono pari, c&#39;è un errore.</li>
+<li>Vede solo un numero dispari di errori, e non dice dove sono.</li>
+</ul>
+</div>
+</section>
+
+<section id="un-byte-di-controllo-per-tanti-byte" aria-labelledby="h-un-byte-di-controllo-per-tanti-byte" style="--h:1500px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-un-byte-di-controllo-per-tanti-byte">Un byte di controllo per tanti byte</h2></div>
+<p>Un bit di parità per ogni byte costa un bit ogni otto: il messaggio cresce di un ottavo. Per messaggi lunghi si usa anche un&#39;altra strada. Si spediscono i byte così come sono, e alla fine si aggiunge un byte in più, che li controlla tutti.</p>
+<p>È come quando detti una lista di numeri e alla fine aggiungi: «il totale fa 312». Se il tuo amico somma e non gli torna 312, ha capito male qualcosa.</p>
+<h3 id="il-byte-di-controllo">Il byte di controllo</h3>
+<p>Metti i byte uno sotto l&#39;altro. Ogni colonna è una fila di bit, e per ogni colonna calcoli un bit di parità. Gli otto bit di parità, uno per colonna, formano un byte: il <strong>byte di controllo</strong> (<em>checkbyte</em>). Qui uso la parità dispari, come per il bit di parità del libro.</p>
+<div class="box esempio"><p class="box-label"><span>Esempio · Il byte di controllo di «Ciao»</span></p><div class="table-wrap"><table><thead><tr><th></th><th class="centro">col. 1</th><th class="centro">col. 2</th><th class="centro">col. 3</th><th class="centro">col. 4</th><th class="centro">col. 5</th><th class="centro">col. 6</th><th class="centro">col. 7</th><th class="centro">col. 8</th></tr></thead><tbody><tr><td>C</td><td class="centro">0</td><td class="centro">1</td><td class="centro">0</td><td class="centro">0</td><td class="centro">0</td><td class="centro">0</td><td class="centro">1</td><td class="centro">1</td></tr>
+<tr><td>i</td><td class="centro">0</td><td class="centro">1</td><td class="centro">1</td><td class="centro">0</td><td class="centro">1</td><td class="centro">0</td><td class="centro">0</td><td class="centro">1</td></tr>
+<tr><td>a</td><td class="centro">0</td><td class="centro">1</td><td class="centro">1</td><td class="centro">0</td><td class="centro">0</td><td class="centro">0</td><td class="centro">0</td><td class="centro">1</td></tr>
+<tr><td>o</td><td class="centro">0</td><td class="centro">1</td><td class="centro">1</td><td class="centro">0</td><td class="centro">1</td><td class="centro">1</td><td class="centro">1</td><td class="centro">1</td></tr>
+<tr><td>quanti 1</td><td class="centro">0</td><td class="centro">4</td><td class="centro">3</td><td class="centro">0</td><td class="centro">2</td><td class="centro">1</td><td class="centro">2</td><td class="centro">4</td></tr>
+<tr><td>byte di controllo</td><td class="centro">1</td><td class="centro">1</td><td class="centro">0</td><td class="centro">1</td><td class="centro">1</td><td class="centro">0</td><td class="centro">1</td><td class="centro">1</td></tr></tbody></table></div>
+<p>Dove gli 1 sono pari si mette 1, dove sono dispari si mette 0. Il byte di controllo è 11011011, e si spedisce dopo la «o».</p>
+</div>
+<p>Chi riceve rifà lo stesso conto colonna per colonna. Se un bit della colonna 5 cambia, la colonna 5 non torna.</p>
+<h3 id="somme-di-controllo-e-crc">Somme di controllo e CRC</h3>
+<p>Il libro cita altre due varianti della stessa idea, solo come nome:</p>
+<ul>
+<li>la <strong>somma di controllo</strong> (<em>checksum</em>): si sommano i byte del messaggio e si spedisce anche la somma, come il «totale 312» del telefono;</li>
+<li>il <strong>controllo a ridondanza ciclica</strong> (<em>cyclic redundancy check</em>, <strong>CRC</strong>): un conto più complicato, che si accorge di quasi tutti gli errori, anche di tanti bit vicini. Lo usano le reti e i file ZIP.</li>
+</ul>
+<p>All&#39;esame basta sapere che esistono e che servono ad accorgersi degli errori.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con la parità dispari, qual è il byte di controllo dei due byte 11110000 e 10101010?</span></summary><div class="ans"><p>Colonna per colonna gli 1 sono: 2, 1, 2, 1, 1, 0, 1, 0. Dove sono pari metti 1, dove sono dispari metti 0: 1, 0, 1, 0, 0, 1, 0, 1. Il byte di controllo è 10100101.</p>
+<p>Controllo sulla prima colonna: due 1 più l&#39;1 del byte di controllo fanno tre, dispari.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Byte di controllo: un bit di parità per ogni colonna di un gruppo di byte, spedito alla fine.</li>
+<li>Somma di controllo e CRC: altri conti fatti sui dati e spediti con loro, per accorgersi degli errori.</li>
+</ul>
+</div>
+</section>
+
+<section id="correggere-un-errore-la-distanza-di-hamming" aria-labelledby="h-correggere-un-errore-la-distanza-di-hamming" style="--h:4180px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-correggere-un-errore-la-distanza-di-hamming">Correggere un errore: la distanza di Hamming</h2></div>
+<p>Il bit di parità ti dice «c&#39;è un errore», ma non dove. Si può fare di meglio: correggerlo senza chiedere di rispedire.</p>
+<p>Al telefono si fa così: «nove, ripeto, nove, ripeto, nove». Se senti «nove, cinque, nove», capisci che era nove: due volte su tre.</p>
+<p>Con i bit: invece di 0 spedisci 000, invece di 1 spedisci 111. Se arriva 010, la maggioranza dice 0: c&#39;era 000, ed è cambiato un bit solo. Funziona, ma il messaggio è diventato tre volte più lungo. Il libro mostra un modo più furbo, con meno bit in più. Per capirlo serve un modo di misurare quanto due file di bit sono diverse.</p>
+<h3 id="quanto-sono-diverse-due-file-di-bit">Quanto sono diverse due file di bit</h3>
+<p>Metti 1011 e 1001 una sotto l&#39;altra e confrontale posto per posto: sono diverse solo nel terzo bit. Il numero di posti in cui sono diverse si chiama <strong>distanza di Hamming</strong>, dal nome di Richard Hamming, che studiò questi codici negli anni Quaranta.</p>
+<div class="box esempio"><p class="box-label"><span>Esempio · Simulazione d&#39;esame 1, 2023/24, domanda 1</span></p><p>Il quiz chiede: «Calcolare la distanza di Hamming tra le sequenze di numeri binari elencati». La prima coppia è 01011101 e 00101101.</p>
+<div class="table-wrap"><table><thead><tr><th>Posto</th><th class="centro">1</th><th class="centro">2</th><th class="centro">3</th><th class="centro">4</th><th class="centro">5</th><th class="centro">6</th><th class="centro">7</th><th class="centro">8</th></tr></thead><tbody><tr><td>prima fila</td><td class="centro">0</td><td class="centro">1</td><td class="centro">0</td><td class="centro">1</td><td class="centro">1</td><td class="centro">1</td><td class="centro">0</td><td class="centro">1</td></tr>
+<tr><td>seconda fila</td><td class="centro">0</td><td class="centro">0</td><td class="centro">1</td><td class="centro">0</td><td class="centro">1</td><td class="centro">1</td><td class="centro">0</td><td class="centro">1</td></tr>
+<tr><td>diversi?</td><td class="centro"></td><td class="centro">sì</td><td class="centro">sì</td><td class="centro">sì</td><td class="centro"></td><td class="centro"></td><td class="centro"></td><td class="centro"></td></tr></tbody></table></div>
+<p>Sono diverse in tre posti: la distanza di Hamming è 3.</p>
+</div>
+<div class="box def"><p class="box-label"><span>Definizione · Distanza di Hamming (libro, §1.10)</span></p><p>La <strong>distanza di Hamming</strong> tra due file di bit della stessa lunghezza è il numero di posizioni in cui i loro bit sono diversi.</p>
+</div>
+<p><strong>Come si legge.</strong> Si scrivono le due file una sotto l&#39;altra e si contano le colonne con due bit diversi. Distanza 0 vuol dire file identiche. Distanza 1 vuol dire che basta cambiare un bit per passare da una all&#39;altra. Le due file devono avere lo stesso numero di bit.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Calcola la distanza di Hamming tra (a) 01101100 e 01101110; (b) 111000 e 000111.</span></summary><div class="ans"><p>(a) Sono uguali tranne il settimo bit: distanza 1. È un&#39;altra coppia della stessa domanda della simulazione.</p>
+<p>(b) Sono diverse in tutti e sei i posti: distanza 6.</p>
+</div></details></div></div>
+<h3 id="il-codice-del-libro-lettere-lontane-tra-loro">Il codice del libro: lettere lontane tra loro</h3>
+<p>Per otto lettere, da A a H, bastano 3 bit, perché <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>3</mn></msup><mo>=</mo><mn>2</mn><mo>⋅</mo><mn>2</mn><mo>⋅</mo><mn>2</mn><mo>=</mo><mn>8</mn></mrow><annotation encoding="application/x-tex">2^3 = 2 \cdot 2 \cdot 2 = 8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span>. Il libro ne usa 6, e sceglie le file in modo che ogni coppia sia lontana. Le file scelte per le lettere si chiamano <strong>parole del codice</strong>. Il codice è nella figura 1.27 del libro.</p>
+<div class="table-wrap"><table><thead><tr><th class="centro">Lettera</th><th class="centro">Parola del codice</th></tr></thead><tbody><tr><td class="centro">A</td><td class="centro">000000</td></tr>
+<tr><td class="centro">B</td><td class="centro">001111</td></tr>
+<tr><td class="centro">C</td><td class="centro">010011</td></tr>
+<tr><td class="centro">D</td><td class="centro">011100</td></tr>
+<tr><td class="centro">E</td><td class="centro">100110</td></tr>
+<tr><td class="centro">F</td><td class="centro">101001</td></tr>
+<tr><td class="centro">G</td><td class="centro">110101</td></tr>
+<tr><td class="centro">H</td><td class="centro">111010</td></tr></tbody></table></div>
+<p>Prendi due lettere qualsiasi e calcola la distanza: viene sempre 3 o 4, mai meno. Per esempio A e C sono diverse in 3 posti, A e B in 4. Su tutte le 28 coppie, 16 sono a distanza 3 e 12 a distanza 4.</p>
+<p>La distanza più piccola tra due parole del codice si chiama <strong>distanza minima</strong> del codice. Qui è 3.</p>
+<h3 id="come-si-decodifica">Come si decodifica</h3>
+<p>Arriva 010100. Non è nella tabella, quindi c&#39;è stato un errore. Calcola la distanza da ogni lettera:</p>
+<div class="table-wrap"><table><thead><tr><th>Lettera</th><th class="centro">A</th><th class="centro">B</th><th class="centro">C</th><th class="centro">D</th><th class="centro">E</th><th class="centro">F</th><th class="centro">G</th><th class="centro">H</th></tr></thead><tbody><tr><td>Distanza da 010100</td><td class="centro">2</td><td class="centro">4</td><td class="centro">3</td><td class="centro"><strong>1</strong></td><td class="centro">3</td><td class="centro">5</td><td class="centro">2</td><td class="centro">4</td></tr></tbody></table></div>
+<p>La più vicina è D, cioè 011100, a distanza 1: è cambiato solo il terzo bit. Si decodifica D.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Decodificare con il codice del libro</span></p><ol>
+<li>Se la fila ricevuta è una parola del codice, leggi la sua lettera.</li>
+<li>Altrimenti calcola la distanza di Hamming da tutte e otto le parole.</li>
+<li>Scegli la lettera più vicina. Se ce n&#39;è una sola a distanza 1, l&#39;errore è corretto.</li>
+<li>Se due o più lettere sono alla stessa distanza minima, sai che c&#39;è un errore ma non puoi correggerlo.</li>
+</ol>
+</div>
+<p>Nello strumento clicca sui bit della fila arrivata: vedi la distanza da ogni lettera, i bit diversi evidenziati e la lettera più vicina.</p>
+<figure class="widget" id="strumento-2" data-widget="codifica" data-modo="hamming" data-parola="010100"><figcaption class="widget-titolo">Il codice del libro: quale lettera è più vicina?</figcaption><p class="widget-carica">Caricamento dello strumento interattivo…</p></figure>
+<h3 id="perche-un-errore-si-corregge-e-due-si-vedono">Perché un errore si corregge e due si vedono</h3>
+<p>Immagina ogni parola del codice come una casa. Intorno a ogni casa c&#39;è un giardino: le file a distanza 1 da lei, cioè quelle che ottieni cambiando un bit solo.</p>
+<ul>
+<li>Le case distano almeno 3 l&#39;una dall&#39;altra. Quindi due giardini non si toccano mai: una fila a distanza 1 da A non può essere a distanza 1 anche da C, altrimenti A e C disterebbero al massimo 2.</li>
+<li><strong>Un errore</strong>: la fila esce dalla casa e finisce nel suo giardino. Il giardino è di una casa sola, quindi sai da dove viene. L&#39;errore si corregge.</li>
+<li><strong>Due errori</strong>: la fila si allontana di 2. Non arriva mai su un&#39;altra casa, che dista almeno 3: quindi non è una parola del codice, e ti accorgi dell&#39;errore. Però può finire nel giardino di un&#39;altra casa, e allora la correzione sbaglia.</li>
+</ul>
+<div class="box esempio"><p class="box-label"><span>Esempio · Due errori portano fuori strada</span></p><p>Spedisci A, cioè 000000. Cambiano il primo e il terzo bit: arriva 101000. Non è una parola del codice, quindi l&#39;errore si vede. Ma 101000 dista 1 da F (101001) e 2 da A. Scegliendo la più vicina, leggi F: sbagliato.</p>
+</div>
+<p>Riassumendo: con distanza minima 3 il codice <strong>corregge un errore</strong> e <strong>ne rivela due</strong>. Rivelare vuol dire accorgersene.</p>
+<p>Ora si capisce anche il bit di parità. Prendi due gruppi di 9 bit giusti, tutti e due con un numero dispari di 1. Se fossero diversi in un bit solo, uno dei due avrebbe un 1 in più dell&#39;altro, e i loro numeri di 1 non sarebbero dispari tutti e due. Quindi sono diversi in almeno 2 bit: la distanza minima è 2. Rivela un errore, ma non ne corregge nessuno.</p>
+<details class="dim approfondimento"><summary><span>Approfondimento · La regola generale</span></summary><div class="dim-corpo"><p>Chiama <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span> la distanza minima di un codice.</p>
+<ul>
+<li>Il codice rivela fino a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">d - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> errori: con meno di <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span> bit cambiati non si arriva su un&#39;altra parola del codice.</li>
+<li>Il codice corregge fino a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> errori se <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span> è almeno <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>k</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2k + 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>: i «giardini» di raggio <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> non si toccano.</li>
+</ul>
+<div class="table-wrap"><table><thead><tr><th class="centro">Distanza minima</th><th class="centro">Rivela fino a</th><th class="centro">Corregge fino a</th></tr></thead><tbody><tr><td class="centro">1</td><td class="centro">0</td><td class="centro">0</td></tr>
+<tr><td class="centro">2, il bit di parità</td><td class="centro">1</td><td class="centro">0</td></tr>
+<tr><td class="centro">3, il codice del libro</td><td class="centro">2</td><td class="centro">1</td></tr>
+<tr><td class="centro">4</td><td class="centro">3</td><td class="centro">1</td></tr>
+<tr><td class="centro">5</td><td class="centro">4</td><td class="centro">2</td></tr></tbody></table></div>
+</div></details>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con il codice del libro, decodifica (a) 111110 e (b) 011001.</span></summary><div class="ans"><p>(a) Le distanze sono: A 5, B 3, C 4, D 2, E 2, F 4, G 3, H 1. La più vicina è H (111010), a distanza 1: si legge H.</p>
+<p>(b) Le distanze sono: A 3, B 3, C 2, D 2, E 6, F 2, G 3, H 3. C, D e F sono tutte a distanza 2. Sicuramente c&#39;è un errore, anzi almeno due, ma non si può dire quale lettera era.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Distanza di Hamming: in quanti posti due file di bit sono diverse.</li>
+<li>Il codice del libro ha 8 lettere da 6 bit con distanza minima 3: si decodifica scegliendo la lettera più vicina.</li>
+<li>Distanza minima 3: corregge un errore e ne rivela due. Il bit di parità ha distanza minima 2: rivela un errore e non corregge.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:920px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td>«5 zeri, 8 uni»</td><td>«cinque zeri, otto uni»</td><td>una ripetizione nella codifica run-length: il simbolo e quante volte</td><td>0000011111111</td></tr>
+<tr><td>A = 0, B = 10</td><td>«A vale zero, B vale uno zero»</td><td>il codice di ogni simbolo, in un codice a lunghezza variabile</td><td>BANANA = 100110110</td></tr>
+<tr><td>+2, −1</td><td>«più due, meno uno»</td><td>una differenza con il dato prima, nella codifica relativa</td><td>100, 102, 101 diventa 100, +2, −1</td></tr>
+<tr><td>xyx = 4</td><td>«x y x vale quattro»</td><td>una voce del dizionario di LZW</td><td>xyx xyx diventa 1 2 1 3 4</td></tr>
+<tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>15</mn></msup></mrow><annotation encoding="application/x-tex">2^{15}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">15</span></span></span></span></span></span></span></span></span></span></span></span></td><td>«due alla quindici»</td><td>2 moltiplicato per sé stesso 15 volte: i numeri che si scrivono con 15 bit</td><td>32768</td></tr>
+<tr><td>2 × 2, 8 × 8</td><td>«due per due», «otto per otto»</td><td>quadratini di pixel: 2 righe e 2 colonne, 8 righe e 8 colonne</td><td>i blocchi di JPEG</td></tr>
+<tr><td>1 01000001</td><td>«bit di parità, poi il byte»</td><td>il bit di parità a sinistra del byte, come nel libro</td><td>la A con parità dispari</td></tr>
+<tr><td>distanza 3</td><td>«distanza di Hamming tre»</td><td>due file di bit diverse in 3 posti</td><td>000000 e 010011</td></tr>
+<tr><td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span></td><td>«di»</td><td>la distanza minima di un codice (solo nell&#39;approfondimento)</td><td>nel codice del libro 3</td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:1690px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>Le regole dell&#39;esame, uguali per i tre canali, sono nella <a href="01_bit_porte_esadecimale.html">lezione 01</a> e nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md" target="_blank" rel="noopener">scheda del corso</a>: 9 quiz in 45 minuti, con Safe Exam Browser.</p>
+<p><strong>Che cosa serve di questa lezione</strong></p>
+<ol>
+<li><strong>La distanza di Hamming.</strong> È il quiz 1 della simulazione d&#39;esame 1 del 2023/24: quattro coppie di file da 8 bit, e per ognuna la distanza. Si fa in pochi secondi, se conti con calma colonna per colonna.</li>
+<li><strong>Parità e codice del libro.</strong> Le domande del §1.10: dove c&#39;è sicuramente un errore, aggiungere il bit di parità dispari, decodificare con il codice da A a H.</li>
+<li><strong>La compressione.</strong> Nei quiz delle simulazioni del 2023/24 non compare, ma il §1.9 è nella mappa comune del libro. Le domande più probabili sono quelle del libro: le quattro tecniche, un messaggio da comprimere con LZW, con perdita o senza, che cosa sfruttano JPEG e MP3.</li>
+</ol>
+<p>Nelle simulazioni del 2023/24 tornano anche complemento a 2, virgola mobile e notazione in eccesso: sono le sezioni 1.6 e 1.7, nella lezione 03.</p>
+<div class="box exam"><p class="box-label"><span>Conta all'esame · Una domanda vera, letta insieme</span></p><p>Simulazione d&#39;esame 1, 2023/24, domanda 1: «Calcolare la distanza di Hamming tra le sequenze di numeri binari elencati». Le coppie sono 01011101 e 00101101; 01011100 e 00101100; 01101100 e 01101110; 01111100 e 01111110.</p>
+<p>In pratica chiede: in quanti posti sono diverse? Scrivi le due file una sotto l&#39;altra e segna le colonne diverse.</p>
+<ol>
+<li>01011101 e 00101101: diverse nei posti 2, 3 e 4. Distanza 3.</li>
+<li>01011100 e 00101100: di nuovo i posti 2, 3 e 4. Distanza 3.</li>
+<li>01101100 e 01101110: solo il posto 7. Distanza 1.</li>
+<li>01111100 e 01111110: solo il posto 7. Distanza 1.</li>
+</ol>
+</div>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Le domande sulla compressione</span></p><ol>
+<li>«Con perdita o senza?» Chiediti: dopo la decompressione ho esattamente i bit di prima? Run-length, Huffman, relativa esatta e LZW: sì. JPEG di base, GIF con molti colori, MP3, MPEG: no.</li>
+<li>«Comprimi con LZW»: tieni la tabella del dizionario accanto, e aggiungi una parola solo la prima volta che la incontri.</li>
+<li>«Costruisci il codice di Huffman»: unisci sempre i due pesi più piccoli, poi controlla il totale dei bit.</li>
+</ol>
+</div>
+<p><strong>Errori da evitare</strong></p>
+<ul>
+<li>Usare la parità pari quando il libro usa la dispari: leggi bene il testo della domanda.</li>
+<li>Contare gli 1 senza il bit di parità, quando controlli una fila ricevuta: si contano tutti i 9 bit.</li>
+<li>Credere che il bit di parità corregga: si accorge soltanto, e solo di un numero dispari di errori.</li>
+<li>Calcolare la distanza di Hamming tra file di lunghezza diversa: non ha senso.</li>
+<li>Confondere «corregge» e «rivela»: con distanza minima 3 corregge 1 errore e ne rivela 2.</li>
+<li>Dire che GIF è senza perdita per le foto: con più di 256 colori li approssima.</li>
+<li>In LZW, aggiungere al dizionario una parola che c&#39;è già, o dimenticare di scrivere lo spazio.</li>
+</ul>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:4050px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Simulazione d&#39;esame 1, 2023/24, domanda 1. Qual è la distanza di Hamming tra 01011101 e 00101101?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn></mrow><annotation encoding="application/x-tex">3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn></mrow><annotation encoding="application/x-tex">5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La distanza di Hamming conta i posti in cui le due file sono diverse. Messe una sotto l&#39;altra, sono diverse nel secondo, nel terzo e nel quarto bit: distanza 3. La risposta 5 conta gli 1 della prima fila, che non c&#39;entrano. La risposta 4 conta gli 1 della seconda fila. Le risposte 1 e 2 si ottengono saltando qualche colonna.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Simulazione d&#39;esame 1, 2023/24, domanda 1. Qual è la distanza di Hamming tra 01101100 e 01101110?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>8</mn></mrow><annotation encoding="application/x-tex">8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>7</mn></mrow><annotation encoding="application/x-tex">7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Le due file sono uguali in tutti i posti tranne il settimo: distanza 1. La risposta 0 vale solo per file identiche. La risposta 7 confonde la distanza con il posto del bit diverso. La risposta 8 è il numero di bit, non il numero di differenze.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Questi gruppi di 9 bit sono stati spediti con la parità dispari del libro. In quale c&#39;è sicuramente un errore?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">110000000</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">001000110</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">100000000</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">111000000</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">101000001</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Con la parità dispari gli 1, compreso il bit di parità, devono essere dispari. In 110000000 sono due: pari, quindi c&#39;è sicuramente un errore. Le altre hanno tre, tre, tre e un 1: tutti numeri dispari, quindi nessun errore visibile. Non vuol dire che siano giuste: due errori non si vedono.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Il codice ASCII di C è 01000011. Che cosa si spedisce con il bit di parità dispari messo a sinistra, come nel libro?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">010000110</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">010000111</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">001000011</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">01000011</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">101000011</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il byte ha tre 1, già un numero dispari: il bit di parità è 0, e si mette davanti. Si spedisce 001000011. La risposta 101000011 usa la parità pari, perché porta gli 1 a quattro. Le risposte 010000110 e 010000111 mettono il bit in fondo invece che a sinistra. L&#39;ultima dimentica il bit di parità.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con il codice del libro (A 000000, B 001111, C 010011, D 011100, E 100110, F 101001, G 110101, H 111010) arriva 101011. Come si decodifica?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non si può decodificare: c&#39;è un errore.</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">B</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">F</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">A</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">E</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Si sceglie la lettera più vicina. 101011 è diversa da F, cioè 101001, solo nel quinto bit: distanza 1. Tutte le altre lettere sono a distanza 2 o più, quindi F è l&#39;unica più vicina e l&#39;errore si corregge. La risposta «non si può decodificare» sarebbe giusta solo se due lettere fossero alla stessa distanza minima. B ed H sono a distanza 2, A a distanza 4.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Un codice ha distanza minima 3, come quello del libro. Che cosa può fare?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Correggere 3 errori.</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Rivelare 1 errore, ma non correggerne nessuno.</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Correggere 1 errore e rivelarne 2.</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Correggere 2 errori e rivelarne 3.</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Correggere 1 errore, ma non rivelarne 2.</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Con un solo bit cambiato la fila resta più vicina alla parola spedita che a ogni altra, perché le parole distano almeno 3: si corregge. Con due bit cambiati non si arriva mai su un&#39;altra parola, quindi ci si accorge dell&#39;errore. Rivelare 1 errore senza correggerlo è il caso della parità, con distanza minima 2. Per correggere 2 errori serve distanza minima almeno 5.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale di queste compressioni è con perdita?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Lo standard di base di JPEG</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">La codifica run-length</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">LZW</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">La codifica relativa con le differenze esatte</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">I codici di Huffman</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il JPEG di base conserva il colore solo come media su quadratini di 2 × 2 pixel e approssima i dettagli fini dei blocchi di 8 × 8: dopo la decompressione l&#39;immagine è simile, non identica. Le altre quattro tecniche permettono di riottenere esattamente i dati di partenza.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale caratteristica dell&#39;occhio sfrutta lo standard di base di JPEG?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">L&#39;occhio vede meglio i colori della luminosità.</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">L&#39;occhio vede solo 256 colori.</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">L&#39;occhio non vede i pixel più piccoli di 8 × 8.</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">L&#39;occhio non nota i fotogrammi che cambiano poco.</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">L&#39;occhio nota i cambiamenti di luminosità più di quelli di colore.</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>È la domanda 5 del §1.9. JPEG tiene la luminosità di ogni pixel e solo la media del colore, perché l&#39;occhio è più sensibile alla luminosità. L&#39;ultima risposta dice il contrario. I 256 colori sono di GIF, i fotogrammi di MPEG. I blocchi di 8 × 8 sono un passo del procedimento, non un limite dell&#39;occhio.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa sfrutta MP3?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Una tavolozza di 256 suoni.</span></label><label class="opz"><input type="radio" name="q1-8" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il mascheramento temporale e il mascheramento in frequenza.</span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il fatto che due canzoni vicine sono quasi uguali.</span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il fatto che l&#39;orecchio non sente i suoni sopra i 128 000 bit al secondo.</span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il fatto che il CD usa 16 bit per campione.</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>È la domanda 6 del §1.9. Dopo un suono forte l&#39;orecchio per un attimo non sente quelli deboli (mascheramento temporale), e un suono forte copre quelli deboli con una nota vicina (mascheramento in frequenza). MP3 toglie quei suoni. I bit al secondo misurano il file, non l&#39;orecchio. La tavolozza è un&#39;idea di GIF. Le differenze tra cose vicine sono la codifica relativa di MPEG, che lavora tra fotogrammi, non tra canzoni.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Un disegno di 200 × 100 pixel viene salvato in GIF. Quanti byte occupano i pixel, senza contare la tavolozza e prima di LZW?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>60000</mn></mrow><annotation encoding="application/x-tex">60000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">60000</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-9" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>20000</mn></mrow><annotation encoding="application/x-tex">20000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20000</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2500</mn></mrow><annotation encoding="application/x-tex">2500</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2500</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>256</mn></mrow><annotation encoding="application/x-tex">256</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">256</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>160000</mn></mrow><annotation encoding="application/x-tex">160000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">160000</span></span></span></span></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>In GIF ogni pixel è il numero di un colore della tavolozza, da 0 a 255: un byte. I pixel sono 200 × 100 = 20 000, quindi 20 000 byte. La risposta 60 000 usa 3 byte per pixel, come in RGB. La risposta 160 000 conta i bit. La risposta 2500 divide per 8 invece di moltiplicare. La risposta 256 è il numero massimo di colori.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con LZW come nel libro, partendo da x = 1, y = 2, spazio = 3, come si comprime «xx yx xx yx»?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-10" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">113213113</span></label><label class="opz"><input type="radio" name="q1-10" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">113213435</span></label><label class="opz"><input type="radio" name="q1-10" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">113213434</span></label><label class="opz"><input type="radio" name="q1-10" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">445566</span></label><label class="opz"><input type="radio" name="q1-10" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">1121345</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La parola xx è nuova: si scrive 1 1, poi lo spazio 3, e xx diventa la voce 4. Anche yx è nuova: 2 1, poi 3, e yx diventa la voce 5. Poi xx è già la 4, poi 3, poi yx è già la 5. Il risultato è 113213435. La prima risposta non usa il dizionario. La terza scrive 4 anche al posto di yx. Le ultime due saltano gli spazi o le parole nuove.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con un codice di Huffman, quanti bit occupa la parola BANANA?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-11" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>12</mn></mrow><annotation encoding="application/x-tex">12</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">12</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-11" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>48</mn></mrow><annotation encoding="application/x-tex">48</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">48</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-11" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>6</mn></mrow><annotation encoding="application/x-tex">6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-11" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>9</mn></mrow><annotation encoding="application/x-tex">9</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span></span></span></span></span></label><label class="opz"><input type="radio" name="q1-11" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>18</mn></mrow><annotation encoding="application/x-tex">18</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">18</span></span></span></span></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>I pesi sono A 3, N 2, B 1. Si uniscono B e N, poi il gruppo con A: viene A = 0, B = 10, N = 11. I bit sono 3 × 1 per le A, 2 × 2 per le N e 1 × 2 per la B: 3 + 4 + 2 = 9. La risposta 12 usa 2 bit per lettera, un codice a lunghezza fissa. La risposta 48 è l&#39;ASCII, un byte per lettera. La risposta 6 darebbe un bit solo a ogni lettera, ma con un bit si distinguono solo due simboli.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:3780px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Domanda 1 del §1.9: le quattro tecniche <span class="lvl">base</span></h3><p>Elenca le quattro tecniche generiche di compressione descritte dal libro.</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>La codifica run-length (<em>run-length encoding</em>): le ripetizioni diventano «simbolo e quante volte».</li>
+<li>La codifica in base alla frequenza (<em>frequency-dependent encoding</em>): codici corti per i simboli frequenti, come i codici di Huffman.</li>
+<li>La codifica relativa o differenziale (<em>relative encoding</em>): il primo dato e poi le differenze.</li>
+<li>La codifica a dizionario (<em>dictionary encoding</em>): il numero della parola in un elenco, anche adattiva come LZW.</li>
+</ol>
+<p>È la risposta dell&#39;appendice del libro.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Domanda 3 del §1.9: GIF e i fumetti <span class="lvl">base</span></h3><p>Perché per le immagini dei fumetti a colori GIF è meglio di JPEG?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>Un fumetto ha zone di colore pieno con bordi netti, e pochi colori in tutto.</li>
+<li>GIF tiene al massimo 256 colori: per un fumetto bastano, e quindi non perde quasi niente.</li>
+<li>Le zone di colore pieno danno lunghe ripetizioni dello stesso numero di colore, che LZW comprime molto bene.</li>
+<li>JPEG, invece, approssima i dettagli fini: proprio i bordi netti vengono un po&#39; sfocati.</li>
+</ol>
+<p>L&#39;appendice risponde: i fumetti hanno blocchi di colore pieno con bordi netti, e i colori sono pochi.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Domanda 4 del §1.9: le foto di una sonda spaziale <span class="lvl">medio</span></h3><p>Progetti una sonda che va su altri pianeti e spedisce fotografie. Per risparmiare memoria e tempo di trasmissione, conviene comprimere le foto in GIF o con lo standard di base di JPEG?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>Le foto di una sonda servono agli scienziati, che le studiano fin nei dettagli.</li>
+<li>GIF riduce i colori a 256: in una foto quelli in più vengono approssimati, quindi è con perdita.</li>
+<li>Il JPEG di base media il colore e approssima i dettagli fini: anche lui è con perdita.</li>
+<li>Quindi no: con tutti e due si perdono dettagli. Serve una compressione senza perdita.</li>
+</ol>
+<p>È la risposta dell&#39;appendice: no, perché GIF e JPEG sono tutti e due con perdita.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Domande 5 e 6 del §1.9: occhio e orecchio <span class="lvl">base</span></h3><p>(a) Quale caratteristica dell&#39;occhio sfrutta lo standard di base di JPEG? (b) Quale caratteristica dell&#39;orecchio sfrutta MP3?</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) L&#39;occhio è meno sensibile ai cambiamenti di colore che a quelli di luminosità. Per questo JPEG riduce i bit del colore, con la media su quadratini di 2 × 2 pixel, senza che la differenza si veda.</p>
+<p>(b) Il mascheramento temporale e il mascheramento in frequenza. Dopo un suono forte, per un attimo, l&#39;orecchio non sente quelli deboli; e un suono forte copre i suoni deboli con una nota vicina.</p>
+<p>Sono le risposte dell&#39;appendice.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Domanda 7 del §1.9: un fenomeno preoccupante <span class="lvl">medio</span></h3><p>Quale fenomeno preoccupante capita spesso quando si scrivono in bit numeri, immagini e suoni?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>Si fanno approssimazioni: un numero con la virgola, un colore, un campione di suono vengono arrotondati per stare nei bit.</li>
+<li>Con i numeri l&#39;errore cresce a ogni calcolo, e alla fine il risultato può essere sbagliato.</li>
+<li>Con immagini e suoni di solito non è grave: si conservano, si spediscono e si riproducono, senza farci conti sopra.</li>
+<li>Ma se un&#39;immagine o un suono si riproduce, si registra e si ricomprime tante volte, le approssimazioni si sommano, e alla fine i dati non valgono più niente.</li>
+</ol>
+<p>È il senso della risposta dell&#39;appendice. Delle approssimazioni con i numeri si parla anche nella lezione 03, con la virgola mobile.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Domanda 2 del §1.9: LZW con il dizionario che cresce <span class="lvl">medio</span></h3><p>Il dizionario iniziale è x = 1, y = 2, spazio = 3. Comprimi con LZW, come nel libro, il messaggio «xyx yxxxy xyx yxxxy yxxxy».</p>
+<details class="sol"><summary>Soluzione</summary><p>Il messaggio ha cinque parole, separate da quattro spazi. Si legge una parola alla volta.</p>
+<div class="table-wrap"><table><thead><tr><th>Leggo</th><th class="centro">Nel dizionario?</th><th class="centro">Scrivo</th><th>Il dizionario diventa</th></tr></thead><tbody><tr><td>xyx</td><td class="centro">no</td><td class="centro">1 2 1</td><td>aggiungo xyx = 4</td></tr>
+<tr><td>spazio</td><td class="centro">sì</td><td class="centro">3</td><td></td></tr>
+<tr><td>yxxxy</td><td class="centro">no</td><td class="centro">2 1 1 1 2</td><td>aggiungo yxxxy = 5</td></tr>
+<tr><td>spazio</td><td class="centro">sì</td><td class="centro">3</td><td></td></tr>
+<tr><td>xyx</td><td class="centro">sì, è il 4</td><td class="centro">4</td><td></td></tr>
+<tr><td>spazio</td><td class="centro">sì</td><td class="centro">3</td><td></td></tr>
+<tr><td>yxxxy</td><td class="centro">sì, è il 5</td><td class="centro">5</td><td></td></tr>
+<tr><td>spazio</td><td class="centro">sì</td><td class="centro">3</td><td></td></tr>
+<tr><td>yxxxy</td><td class="centro">sì, è il 5</td><td class="centro">5</td><td></td></tr></tbody></table></div>
+<ol>
+<li>Metto in fila i numeri della colonna «Scrivo»: 1 2 1, 3, 2 1 1 1 2, 3, 4, 3, 5, 3, 5.</li>
+<li>Senza spazi: 121321112343535.</li>
+</ol>
+<p>Controllo: è proprio la risposta dell&#39;appendice, 121321112343535. Il messaggio aveva 25 simboli, compressi in 15 numeri.</p>
+<p>Controllo al contrario, come farebbe chi riceve: 1 2 1 è xyx, poi 3 è uno spazio, e xyx diventa la voce 4. Poi 2 1 1 1 2 è yxxxy, poi 3, e yxxxy diventa la 5. Poi 4 3 5 3 5 è xyx, spazio, yxxxy, spazio, yxxxy. Torna il messaggio di partenza.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · Una fila da comprimere con le ripetizioni <span class="lvl">base</span></h3><p>Scrivi con la codifica run-length la riga di pixel 1111110000001111111111 (1 nero, 0 bianco). Quanti bit risparmi se scrivi ogni numero con 4 bit, più un bit per dire con che colore comincia la riga?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>Ci sono sei 1, sei 0 e dieci 1: «6 uni, 6 zeri, 10 uni». Controllo: 6 + 6 + 10 = 22, i pixel della riga.</li>
+<li>Con 4 bit si arriva a 15, quindi 6 e 10 ci stanno. Con le monete: 6 = 0110, 10 = 1010.</li>
+<li>I bit sono 1 per il colore iniziale più 3 × 4 per i numeri: 1 + 12 = 13.</li>
+<li>La riga aveva 22 bit: ne risparmi 22 − 13 = 9.</li>
+</ol>
+</details></article>
+<article class="ex" id="esercizio-8"><h3>8 · Huffman per TARTARUGA <span class="lvl">medio</span></h3><p>Costruisci un codice di Huffman per la parola TARTARUGA. Quanti bit occupa la parola? E con un codice a lunghezza fissa?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>Pesi: A 3, T 2, R 2, U 1, G 1. Le lettere sono 9.</li>
+<li>Passo 1: i due pesi più piccoli sono U (1) e G (1). Il gruppo UG pesa 2. Restano A 3, T 2, R 2, UG 2.</li>
+<li>Passo 2: ci sono tre pesi 2. Ne scelgo due, T e R: il gruppo TR pesa 4. Restano A 3, UG 2, TR 4.</li>
+<li>Passo 3: i più piccoli sono UG (2) e A (3). Il gruppo UGA pesa 5. Restano TR 4, UGA 5.</li>
+<li>Passo 4: TR (4) e UGA (5), peso 9. Fine.</li>
+<li>Con 0 a sinistra e 1 a destra: T = 00, R = 01, U = 100, G = 101, A = 11.</li>
+<li>Bit: A 3 × 2 = 6, T 2 × 2 = 4, R 2 × 2 = 4, U 1 × 3 = 3, G 1 × 3 = 3. In tutto 6 + 4 + 4 + 3 + 3 = 20.</li>
+<li>Con 5 lettere diverse 2 bit non bastano, perché danno solo 4 possibilità: servono 3 bit, e 9 × 3 = 27.</li>
+</ol>
+<p>Controllo: TARTARUGA diventa 00 11 01 00 11 01 100 101 11, cioè 20 bit. Se al passo 2 scegli un&#39;altra coppia tra i pesi 2, i codici cambiano ma il totale resta 20.</p>
+</details></article>
+<article class="ex" id="esercizio-9"><h3>9 · LZW al contrario <span class="lvl">medio</span></h3><p>Con il dizionario iniziale x = 1, y = 2, spazio = 3 e LZW come nel libro, chi riceve legge 2 1 2 3 4 3 1 3 4. Qual era il messaggio?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>2 1 2: y, x, y.</li>
+<li>3: uno spazio. La parola yxy è finita, ed è nuova: entra nel dizionario come 4.</li>
+<li>4: è yxy. Poi 3: spazio.</li>
+<li>1: è x. Poi 3: spazio. La x c&#39;era già, non si aggiunge niente.</li>
+<li>4: yxy.</li>
+</ol>
+<p>Il messaggio era «yxy yxy x yxy». Controllo: comprimendolo di nuovo, come nel «Prova tu» della sezione su LZW, viene 212343134.</p>
+</details></article>
+<article class="ex" id="esercizio-10"><h3>10 · Come la domanda 1 del §1.10: dove c&#39;è un errore <span class="lvl">base</span></h3><p>Questi gruppi di bit sono stati spediti con la parità dispari. In quali c&#39;è sicuramente un errore? (a) 100101101 (b) 100000001 (c) 000000000 (d) 111000000 (e) 011111111</p>
+<details class="sol"><summary>Soluzione</summary><p>Conta gli 1 di ogni gruppo, bit di parità compreso.</p>
+<div class="table-wrap"><table><thead><tr><th>Gruppo</th><th class="centro">Quanti 1</th><th class="centro">Pari o dispari</th><th class="centro">Errore?</th></tr></thead><tbody><tr><td>(a) 100101101</td><td class="centro">5</td><td class="centro">dispari</td><td class="centro">non si vede</td></tr>
+<tr><td>(b) 100000001</td><td class="centro">2</td><td class="centro">pari</td><td class="centro">sì</td></tr>
+<tr><td>(c) 000000000</td><td class="centro">0</td><td class="centro">pari</td><td class="centro">sì</td></tr>
+<tr><td>(d) 111000000</td><td class="centro">3</td><td class="centro">dispari</td><td class="centro">non si vede</td></tr>
+<tr><td>(e) 011111111</td><td class="centro">8</td><td class="centro">pari</td><td class="centro">sì</td></tr></tbody></table></div>
+<p>Gli errori sicuri sono in (b), (c) ed (e), come nella risposta dell&#39;appendice.</p>
+</details></article>
+<article class="ex" id="esercizio-11"><h3>11 · Domande 2 e 3 del §1.10: errori invisibili e parità pari <span class="lvl">base</span></h3><p>(a) Nei gruppi dell&#39;esercizio precedente potrebbero esserci errori di cui non ti accorgi? (b) Come cambiano le risposte se la parità usata è pari invece che dispari?</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) Sì. Se in un gruppo cambiano due bit, o quattro, o un numero pari qualsiasi, il numero degli 1 torna dispari e il controllo non vede niente. Per esempio (a) e (d) potrebbero avere due errori.</p>
+<p>(b) Con la parità pari gli 1 devono essere pari. Gli errori sicuri diventano (a), con 5 uni, e (d), con 3 uni. La risposta alla domanda (a) non cambia: un numero pari di errori resta invisibile anche con la parità pari.</p>
+<p>Sono le risposte dell&#39;appendice.</p>
+</details></article>
+<article class="ex" id="esercizio-12"><h3>12 · Domanda 4 del §1.10: ASCII con la parità dispari <span class="lvl">medio</span></h3><p>Scrivi in ASCII, con la parità dispari e il bit di parità a sinistra, le due frasi (a) «&quot;Stop!&quot; Cheryl shouted.» e (b) «Does 2 + 3 = 5?».</p>
+<details class="sol"><summary>Soluzione</summary><p>Per ogni simbolo: il byte ASCII, quanti 1 ha, e il bit di parità che rende dispari il totale. Se gli 1 sono pari il bit è 1, se sono dispari è 0.</p>
+<p>(a) 23 simboli.</p>
+<div class="table-wrap"><table><thead><tr><th class="centro">Simbolo</th><th class="centro">Byte ASCII</th><th class="centro">Quanti 1</th><th class="centro">Bit di parità</th><th class="centro">I 9 bit</th></tr></thead><tbody><tr><td class="centro">virgolette</td><td class="centro">00100010</td><td class="centro">2</td><td class="centro">1</td><td class="centro">100100010</td></tr>
+<tr><td class="centro">S</td><td class="centro">01010011</td><td class="centro">4</td><td class="centro">1</td><td class="centro">101010011</td></tr>
+<tr><td class="centro">t</td><td class="centro">01110100</td><td class="centro">4</td><td class="centro">1</td><td class="centro">101110100</td></tr>
+<tr><td class="centro">o</td><td class="centro">01101111</td><td class="centro">6</td><td class="centro">1</td><td class="centro">101101111</td></tr>
+<tr><td class="centro">p</td><td class="centro">01110000</td><td class="centro">3</td><td class="centro">0</td><td class="centro">001110000</td></tr>
+<tr><td class="centro">!</td><td class="centro">00100001</td><td class="centro">2</td><td class="centro">1</td><td class="centro">100100001</td></tr>
+<tr><td class="centro">virgolette</td><td class="centro">00100010</td><td class="centro">2</td><td class="centro">1</td><td class="centro">100100010</td></tr>
+<tr><td class="centro">spazio</td><td class="centro">00100000</td><td class="centro">1</td><td class="centro">0</td><td class="centro">000100000</td></tr>
+<tr><td class="centro">C</td><td class="centro">01000011</td><td class="centro">3</td><td class="centro">0</td><td class="centro">001000011</td></tr>
+<tr><td class="centro">h</td><td class="centro">01101000</td><td class="centro">3</td><td class="centro">0</td><td class="centro">001101000</td></tr>
+<tr><td class="centro">e</td><td class="centro">01100101</td><td class="centro">4</td><td class="centro">1</td><td class="centro">101100101</td></tr>
+<tr><td class="centro">r</td><td class="centro">01110010</td><td class="centro">4</td><td class="centro">1</td><td class="centro">101110010</td></tr>
+<tr><td class="centro">y</td><td class="centro">01111001</td><td class="centro">5</td><td class="centro">0</td><td class="centro">001111001</td></tr>
+<tr><td class="centro">l</td><td class="centro">01101100</td><td class="centro">4</td><td class="centro">1</td><td class="centro">101101100</td></tr>
+<tr><td class="centro">spazio</td><td class="centro">00100000</td><td class="centro">1</td><td class="centro">0</td><td class="centro">000100000</td></tr>
+<tr><td class="centro">s</td><td class="centro">01110011</td><td class="centro">5</td><td class="centro">0</td><td class="centro">001110011</td></tr>
+<tr><td class="centro">h</td><td class="centro">01101000</td><td class="centro">3</td><td class="centro">0</td><td class="centro">001101000</td></tr>
+<tr><td class="centro">o</td><td class="centro">01101111</td><td class="centro">6</td><td class="centro">1</td><td class="centro">101101111</td></tr>
+<tr><td class="centro">u</td><td class="centro">01110101</td><td class="centro">5</td><td class="centro">0</td><td class="centro">001110101</td></tr>
+<tr><td class="centro">t</td><td class="centro">01110100</td><td class="centro">4</td><td class="centro">1</td><td class="centro">101110100</td></tr>
+<tr><td class="centro">e</td><td class="centro">01100101</td><td class="centro">4</td><td class="centro">1</td><td class="centro">101100101</td></tr>
+<tr><td class="centro">d</td><td class="centro">01100100</td><td class="centro">3</td><td class="centro">0</td><td class="centro">001100100</td></tr>
+<tr><td class="centro">.</td><td class="centro">00101110</td><td class="centro">4</td><td class="centro">1</td><td class="centro">100101110</td></tr></tbody></table></div>
+<p>(b) 15 simboli.</p>
+<div class="table-wrap"><table><thead><tr><th class="centro">Simbolo</th><th class="centro">Byte ASCII</th><th class="centro">Quanti 1</th><th class="centro">Bit di parità</th><th class="centro">I 9 bit</th></tr></thead><tbody><tr><td class="centro">D</td><td class="centro">01000100</td><td class="centro">2</td><td class="centro">1</td><td class="centro">101000100</td></tr>
+<tr><td class="centro">o</td><td class="centro">01101111</td><td class="centro">6</td><td class="centro">1</td><td class="centro">101101111</td></tr>
+<tr><td class="centro">e</td><td class="centro">01100101</td><td class="centro">4</td><td class="centro">1</td><td class="centro">101100101</td></tr>
+<tr><td class="centro">s</td><td class="centro">01110011</td><td class="centro">5</td><td class="centro">0</td><td class="centro">001110011</td></tr>
+<tr><td class="centro">spazio</td><td class="centro">00100000</td><td class="centro">1</td><td class="centro">0</td><td class="centro">000100000</td></tr>
+<tr><td class="centro">2</td><td class="centro">00110010</td><td class="centro">3</td><td class="centro">0</td><td class="centro">000110010</td></tr>
+<tr><td class="centro">spazio</td><td class="centro">00100000</td><td class="centro">1</td><td class="centro">0</td><td class="centro">000100000</td></tr>
+<tr><td class="centro">+</td><td class="centro">00101011</td><td class="centro">4</td><td class="centro">1</td><td class="centro">100101011</td></tr>
+<tr><td class="centro">spazio</td><td class="centro">00100000</td><td class="centro">1</td><td class="centro">0</td><td class="centro">000100000</td></tr>
+<tr><td class="centro">3</td><td class="centro">00110011</td><td class="centro">4</td><td class="centro">1</td><td class="centro">100110011</td></tr>
+<tr><td class="centro">spazio</td><td class="centro">00100000</td><td class="centro">1</td><td class="centro">0</td><td class="centro">000100000</td></tr>
+<tr><td class="centro">=</td><td class="centro">00111101</td><td class="centro">5</td><td class="centro">0</td><td class="centro">000111101</td></tr>
+<tr><td class="centro">spazio</td><td class="centro">00100000</td><td class="centro">1</td><td class="centro">0</td><td class="centro">000100000</td></tr>
+<tr><td class="centro">5</td><td class="centro">00110101</td><td class="centro">4</td><td class="centro">1</td><td class="centro">100110101</td></tr>
+<tr><td class="centro">?</td><td class="centro">00111111</td><td class="centro">6</td><td class="centro">1</td><td class="centro">100111111</td></tr></tbody></table></div>
+<p>Controllo: i primi gruppi coincidono con la risposta dell&#39;appendice, 100100010 101010011 101110100 per (a) e 101000100 101101111 101100101 per (b). I byte ASCII sono quelli della domanda 3 del §1.4, nella lezione 02.</p>
+</details></article>
+<article class="ex" id="esercizio-13"><h3>13 · Un byte di controllo <span class="lvl">medio</span></h3><p>Con la parità dispari, calcola il byte di controllo dei tre byte 01000001, 01000010 e 01000011 (le lettere A, B e C). Poi arriva 01000001 01000110 01000011 con lo stesso byte di controllo: dove si vede l&#39;errore?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>Colonna per colonna gli 1 sono: colonna 1 nessuno, colonna 2 tre, colonne 3, 4, 5 e 6 nessuno, colonna 7 due, colonna 8 due.</li>
+<li>Dove gli 1 sono pari metti 1, dove sono dispari metti 0: 1, 0, 1, 1, 1, 1, 1, 1. Il byte di controllo è 10111111.</li>
+<li>Nei byte arrivati il secondo è 01000110 invece di 01000010: è cambiato il sesto bit.</li>
+<li>Nella colonna 6 ora c&#39;è un 1, e con il bit del byte di controllo gli 1 della colonna sono 2: pari. La colonna 6 non torna, quindi c&#39;è un errore in quella colonna.</li>
+</ol>
+</details></article>
+<article class="ex" id="esercizio-14"><h3>14 · Distanze di Hamming <span class="lvl">tipo esame</span></h3><p>Calcola la distanza di Hamming tra (a) 01011100 e 00101100; (b) 01111100 e 01111110; (c) 10101010 e 01010101; (d) 001111 e 011100.</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>(a) Diverse nei posti 2, 3 e 4: distanza 3. È la seconda coppia della simulazione d&#39;esame 1 del 2023/24, domanda 1.</li>
+<li>(b) Diverse solo nel posto 7: distanza 1. È la quarta coppia della stessa domanda.</li>
+<li>(c) Diverse in tutti gli otto posti: distanza 8.</li>
+<li>(d) Diverse nei posti 2, 5 e 6: distanza 3. Sono B e D del codice del libro.</li>
+</ol>
+</details></article>
+<article class="ex" id="esercizio-15"><h3>15 · Domanda 5 del §1.10: decodificare parole intere <span class="lvl">medio</span></h3><p>La domanda 5 chiede di decodificare tre messaggi scritti con il codice del libro, da A a H; secondo l&#39;appendice si leggono BED, CAB e HEAD. Decodifica questi tre messaggi, che hanno qualche bit sbagliato e danno le stesse parole: (a) 001111 100100 001100; (b) 010001 000000 001011; (c) 011010 110110 100000 011100.</p>
+<details class="sol"><summary>Soluzione</summary><p>Per ogni gruppo di 6 bit cerco la lettera più vicina.</p>
+<ol>
+<li>(a) 001111 è proprio B. 100100 dista 1 da E (100110). 001100 dista 1 da D (011100). Si legge BED.</li>
+<li>(b) 010001 dista 1 da C (010011). 000000 è proprio A. 001011 dista 1 da B (001111). Si legge CAB.</li>
+<li>(c) 011010 dista 1 da H (111010). 110110 dista 1 da E (100110). 100000 dista 1 da A (000000). 011100 è proprio D. Si legge HEAD.</li>
+</ol>
+<p>In ogni gruppo con un errore la lettera a distanza 1 è una sola: le altre distano almeno 2, perché le parole del codice distano almeno 3 tra loro.</p>
+</details></article>
+<article class="ex" id="esercizio-16"><h3>16 · Domanda 6 del §1.10: costruire un codice <span class="lvl">difficile</span></h3><p>Costruisci un codice per le lettere A, B, C e D con file di 5 bit, in cui la distanza di Hamming tra due lettere qualsiasi sia almeno 3.</p>
+<details class="sol"><summary>Soluzione</summary><p>Si sceglie una fila alla volta, controllando la distanza da quelle già scelte.</p>
+<ol>
+<li>A = 00000.</li>
+<li>B deve avere almeno tre 1, per distare almeno 3 da A: B = 11100.</li>
+<li>C: provo 01111. Da A dista 4, da B dista 3 (posti 1, 4 e 5). Va bene.</li>
+<li>D: provo 10011. Da A dista 3, da B dista 4, da C dista 3 (posti 1, 2 e 3). Va bene.</li>
+</ol>
+<p>Le sei distanze sono 3, 4, 3, 3, 4, 3: la più piccola è 3. Il codice A = 00000, B = 11100, C = 01111, D = 10011 è la soluzione dell&#39;appendice. Ce ne sono anche altre.</p>
+</details></article>
+<article class="ex" id="esercizio-17"><h3>17 · Due errori nel codice del libro <span class="lvl">difficile</span></h3><p>Spedisci la lettera A con il codice del libro, e per strada cambiano il primo e il terzo bit. (a) Che cosa arriva? (b) Chi riceve si accorge dell&#39;errore? (c) Che lettera legge?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>(a) A è 000000. Cambiando il primo e il terzo bit arriva 101000.</li>
+<li>(b) Sì: 101000 non è una parola del codice. Due errori non trasformano mai una parola in un&#39;altra, perché le parole distano almeno 3.</li>
+<li>(c) Le distanze sono: da A 2, da F (101001) 1, dalle altre lettere di più. La più vicina è F, e chi riceve legge F: la correzione sbaglia.</li>
+</ol>
+<p>Quindi il codice rivela due errori, ma li corregge solo se l&#39;errore è uno.</p>
+</details></article>
+<article class="ex" id="esercizio-18"><h3>18 · Una foto, tre formati <span class="lvl">tipo esame</span></h3><p>Un disegno di 800 × 600 pixel. Quanti byte occupa (a) in RGB senza compressione; (b) in GIF, contando i pixel e la tavolozza, prima di LZW; (c) in JPEG, se occupa 20 volte meno che in RGB?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>(a) I pixel sono 800 × 600 = 480 000. In RGB 3 byte ciascuno: 1 440 000 byte, circa 1,4 MB.</li>
+<li>(b) In GIF un byte per pixel: 480 000 byte. La tavolozza ha 256 colori da 3 byte: 768 byte. In tutto 480 768 byte, circa un terzo.</li>
+<li>(c) 1 440 000 : 20 = 72 000 byte, circa 72 KB.</li>
+</ol>
+<p>Per un disegno conviene comunque GIF: con pochi colori non perde niente, e LZW lo comprime ancora.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:760px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che differenza c&#39;è tra compressione senza perdita e con perdita? Fai un esempio per ciascuna.</span></summary><div class="ans"><p>Senza perdita: dopo la decompressione si riottengono esattamente i dati di prima, come con Huffman o LZW. Serve per testi e programmi. Con perdita: si ottengono dati solo simili, come con JPEG o MP3. Va bene per foto e musica.</p>
+</div></details>
+<details class="qa"><summary><span>Quali sono le quattro tecniche generiche del libro, e che cosa sfrutta ognuna?</span></summary><div class="ans"><p>Run-length: le lunghe ripetizioni. Codifica in base alla frequenza: alcuni simboli compaiono più spesso. Codifica relativa: ogni dato somiglia a quello prima. Codifica a dizionario: le stesse parole tornano più volte.</p>
+</div></details>
+<details class="qa"><summary><span>Che cos&#39;è un codice prefisso, e perché serve?</span></summary><div class="ans"><p>È un codice in cui nessun codice è l&#39;inizio di un altro. Serve con i codici di lunghezza variabile: si legge da sinistra, e appena riconosci un codice sai che il simbolo è finito, senza pause tra un simbolo e l&#39;altro.</p>
+</div></details>
+<details class="qa"><summary><span>Come funziona LZW nella versione del libro?</span></summary><div class="ans"><p>Il dizionario parte dai simboli singoli. Si legge una parola alla volta: se è nel dizionario si scrive il suo numero, se no si scrivono i numeri delle sue lettere e la parola entra nel dizionario. Chi riceve ricostruisce lo stesso dizionario negli stessi momenti.</p>
+</div></details>
+<details class="qa"><summary><span>Come comprimono GIF e JPEG?</span></summary><div class="ans"><p>GIF sceglie al massimo 256 colori, li mette in una tavolozza e scrive per ogni pixel un byte con il numero del colore; poi usa LZW. JPEG tiene la luminosità di ogni pixel e solo la media del colore su 2 × 2 pixel, poi approssima i dettagli fini su blocchi di 8 × 8.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa sono il mascheramento temporale e quello in frequenza?</span></summary><div class="ans"><p>Mascheramento temporale: subito dopo un suono forte l&#39;orecchio per un attimo non sente quelli deboli. Mascheramento in frequenza: un suono forte copre i suoni deboli con una nota vicina. MP3 toglie i suoni coperti.</p>
+</div></details>
+<details class="qa"><summary><span>Come funziona il bit di parità dispari, e che limiti ha?</span></summary><div class="ans"><p>Si aggiunge un bit perché il numero totale di 1 sia dispari. Chi riceve conta gli 1: se sono pari c&#39;è un errore. Non dice dove, e non vede un numero pari di errori.</p>
+</div></details>
+<details class="qa"><summary><span>Perché il codice del libro corregge un errore e ne rivela due?</span></summary><div class="ans"><p>Le sue parole distano almeno 3. Con un errore la fila ricevuta dista 1 dalla parola spedita e almeno 2 da tutte le altre: la più vicina è quella giusta. Con due errori non si arriva mai su un&#39;altra parola, quindi l&#39;errore si vede; ma la più vicina può essere sbagliata.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:1300px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Compressione</dt><dd>Scrivere gli stessi dati con meno bit (<em>data compression</em>).</dd></div>
+<div><dt>Senza perdita</dt><dd>Una compressione da cui si riottengono esattamente i dati originali (<em>lossless</em>).</dd></div>
+<div><dt>Con perdita</dt><dd>Una compressione da cui si ottengono dati solo simili agli originali (<em>lossy</em>), come JPEG e MP3.</dd></div>
+<div><dt>Codifica run-length</dt><dd>Al posto di una ripetizione si scrivono il simbolo e quante volte si ripete (<em>run-length encoding</em>).</dd></div>
+<div><dt>Codifica in base alla frequenza</dt><dd>Codici corti per i simboli frequenti e lunghi per quelli rari (<em>frequency-dependent encoding</em>).</dd></div>
+<div><dt>Codice di Huffman</dt><dd>Un codice in base alla frequenza costruito unendo ogni volta i due pesi più piccoli.</dd></div>
+<div><dt>Codice prefisso</dt><dd>Un codice in cui nessun codice è l&#39;inizio di un altro: si legge senza pause.</dd></div>
+<div><dt>Codifica relativa</dt><dd>Il primo dato per intero, poi solo le differenze con il dato prima (<em>relative</em> o <em>differential encoding</em>).</dd></div>
+<div><dt>Codifica a dizionario</dt><dd>Al posto di una parola si scrive il suo numero in un elenco comune (<em>dictionary encoding</em>).</dd></div>
+<div><dt>LZW</dt><dd>Codifica a dizionario adattiva: il dizionario cresce mentre si comprime (Lempel, Ziv, Welch).</dd></div>
+<div><dt>GIF</dt><dd>Formato per immagini con una tavolozza di al massimo 256 colori, un byte per pixel, più LZW.</dd></div>
+<div><dt>Tavolozza</dt><dd>La tabella dei colori di un&#39;immagine GIF (<em>palette</em>): ogni pixel dice il numero del suo colore.</dd></div>
+<div><dt>JPEG</dt><dd>Formato per foto, con perdita: luminosità per ogni pixel, colore come media, blocchi di 8 × 8 pixel.</dd></div>
+<div><dt>MPEG</dt><dd>Famiglia di formati per i video: alcuni fotogrammi interi, degli altri solo le differenze.</dd></div>
+<div><dt>MP3</dt><dd>Formato per la musica, con perdita: toglie i suoni nascosti dal mascheramento temporale e in frequenza.</dd></div>
+<div><dt>Bit di parità</dt><dd>Il bit aggiunto perché il numero totale di 1 sia dispari (parità dispari) o pari (parità pari).</dd></div>
+<div><dt>Byte di controllo</dt><dd>Un byte di bit di parità, uno per colonna, spedito dopo un gruppo di byte (<em>checkbyte</em>).</dd></div>
+<div><dt>Distanza di Hamming</dt><dd>Il numero di posizioni in cui due file di bit della stessa lunghezza sono diverse.</dd></div>
+<div><dt>Distanza minima</dt><dd>La distanza di Hamming più piccola tra due parole di un codice: nel codice del libro è 3.</dd></div>
+<div><dt>Codice correttore</dt><dd>Un codice le cui parole sono lontane tra loro, così un errore si corregge scegliendo la parola più vicina (<em>error-correcting code</em>).</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:570px">
+<div class="sec-head"><span class="sec-num">§17</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 8</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="fda-04-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So dire la differenza tra compressione senza perdita e con perdita, con un esempio per tipo.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So comprimere una fila di bit con la codifica run-length e un elenco di numeri con la codifica relativa.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So costruire un codice di Huffman con l&#39;albero e contare i bit di una parola.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So comprimere e decomprimere un messaggio con LZW come nel libro, con la tabella del dizionario.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So spiegare come comprimono GIF, JPEG, MPEG e MP3, e quali sono con perdita.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So aggiungere il bit di parità dispari a un byte e dire se un gruppo ricevuto ha sicuramente un errore.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So calcolare la distanza di Hamming e decodificare con il codice del libro, da A a H.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So spiegare perché un codice con distanza minima 3 corregge un errore e ne rivela due.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>R. Johnsonbaugh, J. G. Brookshear, D. Brylow, <em>Fondamenti dell&#39;Informatica</em>, Pearson 2026 (ISBN 9788891939456), il libro di testo del corso: parte 1, che è il capitolo 1 di J. G. Brookshear, D. Brylow, <em>Computer Science: an overview</em>. Sezione 1.9 «Data Compression»: tecniche generiche (run-length, in base alla frequenza, relativa, a dizionario e LZW), immagini (GIF, JPEG, TIFF), audio e video (MPEG, MP3). Sezione 1.10 «Communication Errors»: bit di parità, byte di controllo, somme di controllo e CRC, codici che correggono gli errori, distanza di Hamming, il codice a 6 bit per le lettere da A a H. Risposte alle domande delle due sezioni nell&#39;appendice del libro, pubblicate sul Moodle del canale A.</li>
+<li>Diario del canale B 2026/27 (Moodle del canale B): «Lezione 05. Giovedì 08 Ottobre ore 09-11. (Part 1, § 1.10 Communication Errors) Data Compression LZW, JPEG, MPEG, GIF. Communication Errors, parity bit e bytes, error-correcting codes, distanza di Hamming».</li>
+<li>Simulazione d&#39;esame 1 del 2023/24 (pagina d&#39;esame comune su Moodle Esami), domanda 1 sulla distanza di Hamming, letta nella copia svolta a mano da uno studente pubblicata dalla guida degli studenti TSI (CC BY-SA 4.0); le risposte sono ricontrollate qui.</li>
+<li>Lucidi del canale A 2026/27, «Cenni sulla codifica dei dati» (F. Cardone, Moodle del canale A, aperto agli ospiti): il codice Morse come esempio di codice.</li>
+<li>Le spiegazioni a parole, gli esempi, i riquadri «Prova tu», gli strumenti interattivi, i quiz e gli esercizi senza il numero del libro sono di questi appunti. Tutti i conti (codici di Huffman, LZW, parità, byte di controllo, distanze e decodifiche con il codice del libro) sono stati ricontrollati con un programma.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dal libro di testo; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dal libro restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+<script src="../../assets/js/codifica.js" defer></script>
+</body>
+</html>

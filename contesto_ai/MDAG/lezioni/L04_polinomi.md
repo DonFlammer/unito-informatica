@@ -23,7 +23,6 @@ scheda:
   Tempo di studio: 90–120 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 4 «Polinomi»; B. Martelli, Geometria e algebra lineare, §1.3 e §1.4.7–1.4.8
-file_en: L04_polynomials.html
 appunti_html: appunti/MDAG/L04_polinomi.html
 genera_html: true
 ---

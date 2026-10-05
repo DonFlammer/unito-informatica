@@ -21,7 +21,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 24 «Lo spazio euclideo III»; B. Martelli, Geometria e algebra lineare, §8.1 e §9.2
-file_en: L24_euclidean_space_3.html
 appunti_html: appunti/MDAG/L24_spazio_euclideo_3.html
 genera_html: true
 ---

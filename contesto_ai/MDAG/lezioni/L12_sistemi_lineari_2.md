@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 12 «Sistemi lineari II»; B. Martelli, Geometria e algebra lineare, §3.2
-file_en: L12_linear_systems_2.html
 appunti_html: appunti/MDAG/L12_sistemi_lineari_2.html
 genera_html: true
 ---

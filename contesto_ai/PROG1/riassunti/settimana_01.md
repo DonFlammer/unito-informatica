@@ -19,7 +19,6 @@ scheda:
   Tempo di ripasso: 30–40 minuti
 fonte: >-
   Gli appunti delle lezioni 01A, 01B e 02A di Programmazione I (canale B), scritti sulle slide di E. G. Amparore
-file_en: summary_week_01.html
 appunti_html: appunti/PROG1/riassunto_settimana_01.html
 genera_html: true
 ---

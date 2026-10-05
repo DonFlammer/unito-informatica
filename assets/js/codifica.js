@@ -4,7 +4,11 @@
 // pixel), «suono» (un'onda, i suoi campioni e il suono ricostruito, più il conto dei byte), «binario» (bit da cambiare con
 // un clic, con il valore di ogni posizione, anche dopo la virgola), «divisioni» (dalla base 10 alla base 2 con le divisioni
 // per 2), «somma» (somma in colonna di due numeri in binario, di solito 8 bit, con i riporti e l'overflow).
-// I modi hanno anche i nomi inglesi (text, colours, sound, binary, divisions, addition) per le pagine del sito in inglese.
+// Per le lezioni 03 e 04: «interi» (lo stesso byte senza segno, in complemento a 2 e in eccesso, con cambia segno, +1 e −1),
+// «somma» con «complemento: si» e «n: 4» (somma con segno e overflow con la regola del segno), «virgola» (il formato a 8 bit
+// del libro: decodifica dai bit e codifica da un numero, con il troncamento), «parita» (bit di parità ed errori simulati),
+// «hamming» (il codice a 6 bit del libro, distanze e simbolo più vicino).
+// I modi hanno anche i nomi inglesi (text, colours, sound, binary, divisions, addition, integers, floating, parity) per le pagine del sito in inglese.
 // Solo nodi creati con il DOM, nessun HTML scritto come testo.
 (() => {
   'use strict';
@@ -358,9 +362,12 @@
   function somma(fig) {
     const pulisci = s => (s || '').replace(/[^01]/g, '');
     const a = pulisci(dato(fig, 'a')) || '00111010', b = pulisci(dato(fig, 'b')) || '00011011';
-    const n = Math.max(4, Math.min(12, Math.max(a.length, b.length)));   // tanti bit quanti ne ha il numero più lungo
+    const scelto = parseInt(dato(fig, 'n') || '', 10);
+    // tanti bit quanti ne ha il numero più lungo, oppure quelli della chiave «n»
+    const n = scelto >= 3 && scelto <= 12 ? scelto : Math.max(4, Math.min(12, Math.max(a.length, b.length)));
     const leggi = s => s.slice(-n).padStart(n, '0').split('').map(Number);
     const A = leggi(a), B = leggi(b);
+    if (si(dato(fig, 'complemento', 'twos'))) { sommaConSegno(fig, n, A, B); return; }   // numeri in complemento a 2
     const aiuto = el('p', { class: 'w-aiuto', text: t(`Clicca sui bit dei due numeri. La somma si fa colonna per colonna, da destra; nella prima riga ci sono i riporti. Con ${n} bit gli interi senza segno vanno da 0 a ${2 ** n - 1}.`,
       `Click the bits of the two numbers. The sum goes column by column, from the right; the first row holds the carries. With ${n} bits, unsigned integers go from 0 to ${2 ** n - 1}.`) });
     const tabella = el('div', { class: 'cd-scorre' });
@@ -405,8 +412,371 @@
     disegna();
   }
 
+  /* ---------- strumenti della lezione 03 e 04: interi con segno, virgola mobile, parità, Hamming ---------- */
+  // I testi di questi modi sono solo in italiano.
+
+  const soloBit = s => (s || '').replace(/[^01]/g, '');
+  const conSegno = v => (v < 0 ? '−' + (-v) : String(v));          // il meno tipografico, come nel testo delle lezioni
+  const valoreBit = v => v.reduce((x, b) => 2 * x + b, 0);
+  const si = s => /^(si|sì|yes|true|1)$/i.test((s || '').trim());
+  // un bit da cliccare, con il peso sopra (vuoto se non serve)
+  function cellaBit(b, peso, etichetta, alClic, dati = {}) {
+    const bt = el('button', { type: 'button', class: 'pt-bit', text: String(b), 'aria-pressed': b ? 'true' : 'false', 'aria-label': etichetta, ...dati });
+    bt.addEventListener('click', alClic);
+    return el('div', { class: 'cd-colonnina' }, el('span', { class: 'cd-peso', text: peso }), bt);
+  }
+  const passiLista = righe => el('ol', { class: 'cd-passi' }, ...righe.map(r => el('li', {}, ...[].concat(r))));
+  function rimettiFuoco(cont, k) { if (k) { const b = cont.querySelector(`[data-k="${k}"]`); if (b) b.focus(); } }
+
+  /* ---------- interi: senza segno, complemento a 2, eccesso ---------- */
+
+  function interi(fig) {
+    const dati = soloBit(dato(fig, 'bit', 'bits')) || '10110110';
+    let n = parseInt(dato(fig, 'n') || '', 10);
+    if (!(n >= 3 && n <= 8)) n = Math.max(3, Math.min(8, dati.length));
+    const st = dati.slice(-n).padStart(n, '0').split('').map(Number);
+    const M = 2 ** n, meta = M / 2;
+    const c2 = u => (u >= meta ? u - M : u);
+    const aiuto = el('p', { class: 'w-aiuto', text: `Clicca sui bit per cambiarli. Gli stessi ${n} bit si leggono in tre modi: senza segno, in complemento a 2 e in eccesso ${meta}.` });
+    const riga = el('div', { class: 'cd-bits' });
+    const bottone = testo => el('button', { type: 'button', class: 'btn', text: testo });
+    const cambia = bottone('Cambia segno'), piu = bottone('+ 1'), meno = bottone('− 1'), zero = bottone('Tutti a 0');
+    const tabella = el('div', { class: 'cd-scorre' });
+    const lettura = el('div', { class: 'w-lettura', 'aria-live': 'polite' });
+    fig.append(aiuto, el('div', { class: 'cd-scorre' }, riga), el('div', { class: 'w-riga' }, cambia, piu, meno, zero), tabella, lettura);
+    const adatta = stringi(tabella);
+    const imposta = v => { for (let i = n - 1; i >= 0; i--) { st[i] = v & 1; v = Math.floor(v / 2); } };
+    let nota = [];
+
+    cambia.addEventListener('click', () => {
+      const u = valoreBit(st), prima = st.join(''), inv = st.map(b => 1 - b).join(''), uInv = M - 1 - u, dopo = (uInv + 1) % M;
+      nota = [el('p', { class: 'w-etichetta', text: 'Cambiare segno in complemento a 2' }), passiLista([
+        `Inverti ogni bit, gli 0 diventano 1 e gli 1 diventano 0: ${prima} diventa ${inv}.`,
+        `Aggiungi 1: ${inv} + 1 = ${bin(dopo, n)}${uInv + 1 === M ? ' (il riporto che esce a sinistra si butta)' : ''}.`])];
+      if (u === meta) nota.push(el('p', { class: 'cd-overflow', text: `Attenzione: ${prima} vale ${conSegno(-meta)}, il numero più negativo con ${n} bit. Il suo opposto, ${meta}, non c'è: con ${n} bit si arriva solo a ${meta - 1}. Cambiando segno si torna allo stesso numero.` }));
+      else if (u === 0) nota.push(el('p', { class: 'w-nota', text: 'Lo 0 resta 0: è l\'opposto di sé stesso.' }));
+      else nota.push(el('p', { class: 'w-nota', text: `Prima ${conSegno(c2(u))}, ora ${conSegno(c2(dopo))}: stesso numero, segno opposto.` }));
+      imposta(dopo); disegna();
+    });
+    piu.addEventListener('click', () => {
+      const v = valoreBit(st) + 1;
+      nota = v === M ? [el('p', { class: 'cd-overflow', text: `Come un contachilometri: dopo ${bin(M - 1, n)} si torna a ${bin(0, n)}. Senza segno è un overflow, ${M - 1} + 1 non ci sta; in complemento a 2 invece è giusto, −1 + 1 = 0.` })]
+        : v === meta ? [el('p', { class: 'cd-overflow', text: `In complemento a 2, dopo ${meta - 1} viene ${conSegno(-meta)}: è un overflow, perché ${meta} con ${n} bit non ci sta. Senza segno invece è giusto: ${meta - 1} + 1 = ${meta}.` })] : [];
+      imposta(v % M); disegna();
+    });
+    meno.addEventListener('click', () => {
+      const v = valoreBit(st) - 1;
+      nota = v < 0 ? [el('p', { class: 'cd-overflow', text: `Come un contachilometri all'indietro: sotto ${bin(0, n)} si torna a ${bin(M - 1, n)}. Senza segno è un overflow, perché lo 0 non ha numeri sotto; in complemento a 2 invece è giusto, 0 − 1 = −1.` })]
+        : v === meta - 1 ? [el('p', { class: 'cd-overflow', text: `In complemento a 2, sotto ${conSegno(-meta)} si torna a ${meta - 1}: è un overflow. Senza segno invece è giusto: ${meta} − 1 = ${meta - 1}.` })] : [];
+      imposta((v + M) % M); disegna();
+    });
+    zero.addEventListener('click', () => { st.fill(0); nota = []; disegna(); });
+
+    function disegna(fuoco = '') {
+      riga.replaceChildren(...st.map((b, i) => cellaBit(b, String(2 ** (n - 1 - i)), `bit che vale ${2 ** (n - 1 - i)}, ora ${b}`,
+        () => { st[i] = 1 - st[i]; nota = []; disegna(`i${i}`); }, { 'data-k': `i${i}` })));
+      const u = valoreBit(st), s = st.join('');
+      const monete = st.map((b, i) => (b ? 2 ** (n - 1 - i) : 0)).filter(Boolean);
+      const somma = monete.length > 1 ? `${monete.join(' + ')} = ${u}` : String(u);
+      // in complemento a 2 la moneta di sinistra vale con il segno meno (lezione 03)
+      const comp = !st[0] ? `bit di segno 0, come senza segno: ${u}`
+        : monete.length > 1 ? `bit di segno 1, moneta −${meta}: ${['−' + meta, ...monete.slice(1)].join(' + ')} = ${conSegno(u - M)}`
+        : `bit di segno 1 e nessun'altra moneta: −${meta}`;
+      const ecc = `${u} − ${meta} = ${conSegno(u - meta)}`;
+      const r = (nome, conto, valore) => el('tr', {}, el('th', { text: nome }), el('td', { class: 'cd-lista cd-largo', text: conto }), el('td', { class: 'cd-dati cd-valore', text: valore }));
+      tabella.replaceChildren(el('table', { class: 'cd-tabella cd-letture' },
+        el('thead', {}, el('tr', {}, el('th', { text: `${s} letto` }), el('th', { class: 'cd-largo', text: 'Conto' }), el('th', { text: 'Vale' }))),
+        el('tbody', {}, r('senza segno', somma, String(u)), r('complemento a 2', comp, conSegno(c2(u))), r(`eccesso ${meta}`, ecc, conSegno(u - meta)))));
+      adatta();
+      lettura.replaceChildren(
+        el('p', { class: 'w-nota', text: `Con ${n} bit: senza segno da 0 a ${M - 1}; in complemento a 2 e in eccesso ${meta} da ${conSegno(-meta)} a ${meta - 1}.` }),
+        ...nota);
+      rimettiFuoco(riga, fuoco);
+    }
+    disegna();
+  }
+
+  /* ---------- somma in complemento a 2 (variante di «somma») ---------- */
+
+  function sommaConSegno(fig, n, A, B) {
+    const meta = 2 ** (n - 1), M = 2 ** n;
+    const c2 = u => (u >= meta ? u - M : u);
+    const aiuto = el('p', { class: 'w-aiuto', text: `Clicca sui bit dei due numeri, scritti in complemento a 2 con ${n} bit: vanno da ${conSegno(-meta)} a ${meta - 1}. La somma si fa in colonna come senza segno; il riporto che esce a sinistra si butta.` });
+    const tabella = el('div', { class: 'cd-scorre' });
+    const lettura = el('div', { class: 'w-lettura', 'aria-live': 'polite' });
+    fig.append(aiuto, tabella, lettura);
+    const adatta = stringi(tabella);
+    function disegna(fuoco = '') {
+      const riporti = Array(n + 1).fill(0), s = Array(n).fill(0);
+      for (let i = n - 1; i >= 0; i--) { const c = A[i] + B[i] + riporti[i + 1]; s[i] = c % 2; riporti[i] = c >> 1; }
+      const fuori = riporti[0];
+      const bottoni = (v, nome) => v.map((b, i) => {
+        const bt = el('button', { type: 'button', class: 'pt-bit', text: String(b), 'aria-pressed': b ? 'true' : 'false', 'data-k': `${nome}${i}`,
+          'aria-label': `${nome === 'a' ? 'primo' : 'secondo'} numero, bit ${i + 1} di ${n}, vale ${b}` });
+        bt.addEventListener('click', () => { v[i] = 1 - v[i]; disegna(`${nome}${i}`); });
+        return el('td', {}, bt);
+      });
+      const va = c2(valoreBit(A)), vb = c2(valoreBit(B)), vs = c2(valoreBit(s)), vero = va + vb;
+      const riga = (nome, extra, celle, classe = '') => el('tr', { class: classe }, el('th', { text: nome }), extra, ...celle);
+      const vuota = () => el('td', { class: 'cd-fuori' });
+      tabella.replaceChildren(el('table', { class: 'cd-tabella cd-colonne' }, el('tbody', {},
+        riga('riporti', el('td', { class: 'cd-fuori cd-riporto', text: fuori ? '1' : '' }), riporti.slice(1).map(r => el('td', { class: 'cd-riporto', text: r ? '1' : '' }))),
+        riga(conSegno(va), vuota(), bottoni(A, 'a')),
+        riga(`+ ${vb < 0 ? '(' + conSegno(vb) + ')' : vb}`, vuota(), bottoni(B, 'b')),
+        riga(`= ${conSegno(vs)}`, el('td', fuori ? { class: 'cd-fuori cd-perso', text: '1', title: 'riporto buttato' } : { class: 'cd-fuori' }),
+          s.map(b => el('td', { class: 'cd-dati cd-somma', text: String(b) })), 'cd-totale'))));
+      adatta();
+      const segno = v => (v < 0 ? 'negativo' : 'positivo o zero');
+      const frasi = [el('p', {}, `${conSegno(va)} + ${vb < 0 ? '(' + conSegno(vb) + ')' : vb} = ${conSegno(vero)}`, ' · ', el('b', { class: 'cd-bit', text: s.join('') }), ` · letto in complemento a 2: ${conSegno(vs)}`)];
+      const overflow = A[0] === B[0] && s[0] !== A[0];
+      if (overflow) frasi.push(el('p', { class: 'cd-overflow', text: `Overflow: i due numeri sono ${A[0] ? 'negativi' : 'positivi'}, ma il risultato comincia con ${s[0]}, cioè è ${segno(vs)}. È la regola del segno: ${conSegno(vero)} con ${n} bit non ci sta.` }));
+      else {
+        frasi.push(el('p', { class: 'w-nota', text: A[0] !== B[0] ? 'Nessun overflow: i due numeri hanno segno diverso, e allora la somma sta sempre tra i due.'
+          : `Nessun overflow: i due numeri e il risultato hanno lo stesso segno, ${segno(vs)}.` }));
+        if (fuori) frasi.push(el('p', { class: 'w-nota', text: 'Il riporto uscito a sinistra si butta: in complemento a 2 non vuol dire overflow.' }));
+      }
+      lettura.replaceChildren(...frasi);
+      rimettiFuoco(tabella, fuoco);
+    }
+    disegna();
+  }
+
+  /* ---------- virgola mobile a 8 bit, come nel libro (§1.7) ---------- */
+
+  // un numero come frazione p/q (q > 0), da «2,625», «2.625», «21/8», «2 5/8», «-0,375»
+  function leggiNumero(s) {
+    const t0 = (s || '').trim().replace(/[−–]/g, '-').replace(/\s+/g, ' ');
+    let m = t0.match(/^([+-]?)(\d{1,4})(?:[.,](\d{1,8}))?$/);
+    if (m) {
+      const q = 10 ** (m[3] || '').length, p = Number(m[2]) * q + Number(m[3] || 0);
+      return [m[1] === '-' ? -p : p, q];
+    }
+    m = t0.match(/^([+-]?)(?:(\d{1,4}) )?(\d{1,6})\/(\d{1,6})$/);
+    if (m && Number(m[4]) > 0) {
+      const q = Number(m[4]), p = Number(m[2] || 0) * q + Number(m[3]);
+      return [m[1] === '-' ? -p : p, q];
+    }
+    return null;
+  }
+  function frazione(p, q) {                       // «2 e 3/4», «−5/8», «3»
+    const segno = p < 0 ? '−' : '';
+    p = Math.abs(p);
+    const g = mcd(p, q) || 1;
+    p /= g; q /= g;
+    const intero = Math.floor(p / q), resto = p % q;
+    if (!resto) return segno + intero;
+    return segno + (intero ? `${intero} e ${resto}/${q}` : `${resto}/${q}`);
+  }
+  const decimale = x => x.toLocaleString('it-IT', { maximumFractionDigits: 8 }).replace('-', '−');
+
+  function virgola(fig) {
+    const iniziale = soloBit(dato(fig, 'bit', 'bits'));
+    const st = (iniziale || '01101011').slice(0, 8).padEnd(8, '0').split('').map(Number);
+    const testoNumero = dato(fig, 'numero', 'number');
+    const ingresso = el('input', { type: 'text', class: 'w-largo', inputmode: 'decimal', spellcheck: 'false', autocomplete: 'off', maxlength: '20',
+      value: testoNumero || '', placeholder: 'per esempio 2,625 o 21/8', 'aria-label': 'numero da scrivere nel formato a 8 bit' });
+    const aiuto = el('p', { class: 'w-aiuto', text: 'Il formato del libro: 1 bit di segno, 3 di esponente in eccesso 4, 4 di mantissa con la virgola subito a sinistra. Scrivi un numero per codificarlo, oppure clicca sui bit per leggerli.' });
+    const riga = el('div', { class: 'cd-bits' });
+    const codifica = el('div', { class: 'w-lettura', 'aria-live': 'polite' });
+    const lettura = el('div', { class: 'w-lettura', 'aria-live': 'polite' });
+    fig.append(el('div', { class: 'w-riga' }, campo('Numero da codificare', ingresso)), aiuto, el('div', { class: 'cd-scorre' }, riga), codifica, lettura);
+    const PESI = ['±', '4', '2', '1', '1/2', '1/4', '1/8', '1/16'];
+    const PARTI = ['segno', 'esponente', 'esponente', 'esponente', 'mantissa', 'mantissa', 'mantissa', 'mantissa'];
+
+    function codificaNumero() {
+      const fr = leggiNumero(ingresso.value);
+      if (!ingresso.value.trim()) { codifica.replaceChildren(); return; }
+      if (!fr) { codifica.replaceChildren(el('p', { class: 'w-errore', text: 'Non capisco il numero: scrivilo come 2,625 oppure 21/8 oppure 2 5/8.' })); return; }
+      let [p, q] = fr;
+      const neg = p < 0; p = Math.abs(p);
+      if (p === 0) {
+        st.fill(0);
+        codifica.replaceChildren(el('p', { class: 'w-nota', text: 'Lo 0 non ha un 1 da mettere subito dopo la virgola, quindi non si può normalizzare: di solito si scrive con tutti i bit a 0, 00000000.' }));
+        disegna(); return;
+      }
+      // cifre in base 2: parte intera e fino a 16 bit dopo la virgola
+      const intero = Math.floor(p / q);
+      let r = p % q, dopo = '';
+      for (let k = 0; k < 16 && r; k++) { r *= 2; if (r >= q) { dopo += '1'; r -= q; } else dopo += '0'; }
+      const infinito = r !== 0;
+      const prima = intero.toString(2);
+      const scritto = prima + (dopo ? ',' + dopo + (infinito ? '…' : '') : '');
+      // esponente: di quanti posti si sposta la virgola per avere 0,1…
+      const cifre = (intero ? prima : '') + dopo;
+      const primoUno = dopo.indexOf('1');
+      const E = intero ? prima.length : primoUno < 0 ? -99 : -primoUno;
+      const significative = intero ? cifre : primoUno < 0 ? '' : dopo.slice(primoUno);
+      const mant = significative.slice(0, 4).padEnd(4, '0');
+      const persi = infinito ? significative.slice(4) : significative.slice(4).replace(/0+$/, '');
+      const tronco = /1/.test(persi) || infinito;
+      const pot = e => ['2', el('sup', { text: conSegno(e) })];       // «2» con l'esponente in alto
+      const mostra = '0,' + (significative.replace(/0+$/, '') || '0') + (infinito ? '…' : '');
+      const passi = [
+        `In base 2: ${neg ? '−' : ''}${frazione(p, q)} = ${neg ? '−' : ''}${scritto}${infinito ? '' : '.'}`,
+        E > 0 ? [`Sposta la virgola di ${E} ${E === 1 ? 'posto' : 'posti'} a sinistra, così subito dopo la virgola c'è il primo 1: ${mostra} × `, ...pot(E), `. L'esponente è ${E}.`]
+          : E === 0 ? "Il primo 1 è già subito dopo la virgola: l'esponente è 0."
+          : E === -99 ? 'Il primo 1 arriva dopo più di 16 cifre: il numero è troppo vicino a 0.'
+          : [`Sposta la virgola di ${-E} ${E === -1 ? 'posto' : 'posti'} a destra, così subito dopo la virgola c'è il primo 1: ${mostra} × `, ...pot(E), `. L'esponente è ${conSegno(E)}.`]];
+      if (E > 3 || E < -4) {
+        const fuori = E > 3 ? [`Con 3 bit in eccesso 4 l'esponente va da −4 a 3: ${E} è troppo grande. Il numero non ci sta: è un overflow. Il massimo è 0,1111 × `, ...pot(3), ' = 7,5.']
+          : ["Con 3 bit in eccesso 4 l'esponente va da −4 a 3: qui è troppo piccolo, e il numero non ci sta. Il più piccolo positivo con la mantissa che comincia con 1 è 0,1000 × ", ...pot(-4), ' = 1/32.'];
+        passi.push(el('span', { class: 'cd-overflow' }, ...fuori));
+        codifica.replaceChildren(el('p', { class: 'w-etichetta', text: 'Codificare' }), passiLista(passi));
+        return;
+      }
+      const eBit = bin(E + 4, 3);
+      passi.push(`Mantissa: le prime 4 cifre dopo la virgola, ${mant}.` + (tronco ? ` Le cifre dopo (${persi.length > 8 ? persi.slice(0, 8) + '…' : persi + (infinito ? '…' : '')}) non ci stanno e si perdono: è un errore di troncamento.` : ''));
+      passi.push(`Esponente in eccesso 4: ${conSegno(E)} + 4 = ${E + 4}, cioè ${eBit}.`);
+      passi.push(`Segno: ${neg ? '1, perché il numero è negativo' : '0, perché il numero è positivo'}.`);
+      const tutti = (neg ? '1' : '0') + eBit + mant;
+      tutti.split('').forEach((c, i) => { st[i] = Number(c); });
+      passi.push(`Insieme: ${neg ? 1 : 0} | ${eBit} | ${mant}, cioè ${tutti}.`);
+      const vale = (neg ? -1 : 1) * parseInt(mant, 2) * 2 ** (E - 4);
+      const voleva = (neg ? -1 : 1) * p / q;
+      const fine = tronco ? el('p', { class: 'cd-overflow', text: `Troncamento: ${tutti} vale ${decimale(vale)} invece di ${decimale(voleva)}: si perde ${decimale(Math.abs(voleva - vale))}.` })
+        : el('p', { class: 'w-nota', text: 'Nessun troncamento: il numero ci sta esatto.' });
+      codifica.replaceChildren(el('p', { class: 'w-etichetta', text: 'Codificare' }), passiLista(passi), fine);
+      disegna();
+    }
+
+    function disegna(fuoco = '') {
+      const celle = [];
+      st.forEach((b, i) => {
+        if (i === 1 || i === 4) celle.push(el('span', { class: 'cd-separa', 'aria-hidden': 'true' }));
+        celle.push(cellaBit(b, PESI[i], `${PARTI[i]}, bit ${i + 1} di 8, ora ${b}`, () => { st[i] = 1 - st[i]; codifica.replaceChildren(); disegna(`v${i}`); }, { 'data-k': `v${i}` }));
+      });
+      riga.replaceChildren(...celle);
+      const s = st[0], e = valoreBit(st.slice(1, 4)), m = st.slice(4).join(''), E = e - 4;
+      const mv = parseInt(m, 2);                              // la mantissa in sedicesimi
+      // la mantissa 0,mmmm spostata di E posti: le cifre in base 2 con la virgola al posto giusto
+      const cifre = m, pos = E;                                 // la virgola va dopo «pos» cifre della mantissa
+      let spostato;
+      if (pos <= 0) spostato = '0,' + '0'.repeat(-pos) + cifre;
+      else if (pos >= 4) spostato = cifre + '0'.repeat(pos - 4);
+      else spostato = cifre.slice(0, pos) + ',' + cifre.slice(pos);
+      spostato = spostato.replace(/^0+(?=\d)/, '').replace(/(,\d*?)0+$/, '$1').replace(/,$/, '');
+      if (spostato.startsWith(',')) spostato = '0' + spostato;
+      const p = (s ? -1 : 1) * mv, q = 2 ** (4 - E);           // valore = ± mv/16 · 2^E = ± mv / 2^(4−E)
+      const valore = p / q;
+      const passi = [
+        `Segno: ${s}, quindi il numero è ${s ? 'negativo' : 'positivo'}.`,
+        `Esponente: ${st.slice(1, 4).join('')} vale ${e}; in eccesso 4 si toglie 4: ${e} − 4 = ${conSegno(E)}.`,
+        `Mantissa: ${m}, con la virgola a sinistra: 0,${m}.`,
+        E === 0 ? `L'esponente è 0: la virgola resta dov'è, ${spostato}.`
+          : E > 0 ? `Sposta la virgola di ${E} ${E === 1 ? 'posto' : 'posti'} a destra: 0,${m} diventa ${spostato}.`
+          : `Sposta la virgola di ${-E} ${E === -1 ? 'posto' : 'posti'} a sinistra: 0,${m} diventa ${spostato}.`,
+        el('span', {}, 'Valore: ', el('b', { text: `${s ? '−' : ''}${spostato} in base 2 = ${frazione(p, q)}` }), mv && !Number.isInteger(valore) ? ` = ${decimale(valore)}.` : '.')];
+      const finale = [el('p', { class: 'w-etichetta', text: `Leggere ${st.join('')}` }), passiLista(passi)];
+      if (mv && !st[4]) finale.push(el('p', { class: 'w-nota', text: 'La mantissa comincia con 0: il numero non è normalizzato. Il libro vuole il primo bit della mantissa a 1.' }));
+      if (!mv) finale.push(el('p', { class: 'w-nota', text: 'Con la mantissa tutta a 0 il numero vale 0.' }));
+      lettura.replaceChildren(...finale);
+      rimettiFuoco(riga, fuoco);
+    }
+    ingresso.addEventListener('input', codificaNumero);
+    disegna();
+    if (testoNumero) codificaNumero();
+  }
+
+  /* ---------- bit di parità ---------- */
+
+  function parita(fig) {
+    const dati = (soloBit(dato(fig, 'bit', 'bits')) || '1010001').slice(0, 12).split('').map(Number);
+    let dispari = !/^(pari|even)$/i.test((dato(fig, 'parita', 'parity') || '').trim());
+    const k = dati.length;
+    let errori = new Set();                                    // posizioni cambiate nel viaggio, 0 = bit di parità
+    const sceltaD = el('button', { type: 'button', class: 'btn', text: 'Parità dispari' });
+    const sceltaP = el('button', { type: 'button', class: 'btn', text: 'Parità pari' });
+    const uno = el('button', { type: 'button', class: 'btn', text: 'Un errore' });
+    const due = el('button', { type: 'button', class: 'btn', text: 'Due errori' });
+    const nessuno = el('button', { type: 'button', class: 'btn', text: 'Nessun errore' });
+    const aiuto = el('p', { class: 'w-aiuto', text: 'Clicca sui bit dei dati. Il bit di parità, a sinistra, si calcola da solo. Nella riga «arrivati» puoi cliccare per sbagliare un bit, come un disturbo sulla linea.' });
+    const tabella = el('div', { class: 'cd-scorre' });
+    const lettura = el('div', { class: 'w-lettura', 'aria-live': 'polite' });
+    fig.append(el('div', { class: 'w-riga pt-ingressi' }, sceltaD, sceltaP), aiuto, tabella, el('div', { class: 'w-riga' }, uno, due, nessuno), lettura);
+    const adatta = stringi(tabella);
+    sceltaD.addEventListener('click', () => { dispari = true; disegna(); });
+    sceltaP.addEventListener('click', () => { dispari = false; disegna(); });
+    uno.addEventListener('click', () => { errori = new Set([Math.min(2, k)]); disegna(); });
+    due.addEventListener('click', () => { errori = new Set([Math.min(2, k), Math.min(k, 5)]); if (errori.size < 2) errori.add(0); disegna(); });
+    nessuno.addEventListener('click', () => { errori = new Set(); disegna(); });
+
+    function disegna(fuoco = '') {
+      sceltaD.setAttribute('aria-pressed', String(dispari)); sceltaP.setAttribute('aria-pressed', String(!dispari));
+      const uni = dati.filter(Boolean).length;
+      const pb = dispari ? (uni % 2 ? 0 : 1) : uni % 2;
+      const inviati = [pb, ...dati];
+      const arrivati = inviati.map((b, i) => (errori.has(i) ? 1 - b : b));
+      const cella = (b, cl) => el('td', {}, el('span', { class: cl, text: String(b) }));
+      const rigaDati = el('tr', {}, el('th', { text: 'dati' }), el('td', {}, el('span', { class: 'cd-vuoto' })), ...dati.map((b, i) => {
+        const bt = el('button', { type: 'button', class: 'pt-bit', text: String(b), 'aria-pressed': b ? 'true' : 'false', 'data-k': `d${i}`, 'aria-label': `bit dei dati ${i + 1} di ${k}, ora ${b}` });
+        bt.addEventListener('click', () => { dati[i] = 1 - dati[i]; errori = new Set(); disegna(`d${i}`); });
+        return el('td', {}, bt);
+      }));
+      const rigaInviati = el('tr', {}, el('th', { text: 'inviati' }), ...inviati.map((b, i) => cella(b, i ? 'cd-bitfisso' : 'cd-bitfisso cd-paritabit')));
+      const rigaArrivati = el('tr', { class: 'cd-totale' }, el('th', { text: 'arrivati' }), ...arrivati.map((b, i) => {
+        const bt = el('button', { type: 'button', class: 'pt-bit' + (errori.has(i) ? ' cd-sbagliato' : ''), text: String(b), 'aria-pressed': errori.has(i) ? 'true' : 'false', 'data-k': `r${i}`,
+          'aria-label': `${i ? `bit arrivato ${i} dei dati` : 'bit di parità arrivato'}, ora ${b}${errori.has(i) ? ', sbagliato' : ''}` });
+        bt.addEventListener('click', () => { if (errori.has(i)) errori.delete(i); else errori.add(i); disegna(`r${i}`); });
+        return el('td', {}, bt);
+      }));
+      tabella.replaceChildren(el('table', { class: 'cd-tabella cd-colonne' }, el('tbody', {}, rigaDati, rigaInviati, rigaArrivati)));
+      adatta();
+      const voglio = dispari ? 'dispari' : 'pari';
+      const arrivatiUni = arrivati.filter(Boolean).length;
+      const va = dispari ? arrivatiUni % 2 === 1 : arrivatiUni % 2 === 0;
+      const frasi = [
+        el('p', {}, `I dati hanno ${uni} ${uni === 1 ? 'uno' : 'uni'}. Con la parità ${voglio} il totale degli 1 deve essere ${voglio}: il bit di parità è `, el('b', { text: String(pb) }),
+          `, e si invia `, el('b', { class: 'cd-bit', text: inviati.join('') }), ` (${uni + pb} ${uni + pb === 1 ? 'uno' : 'uni'}).`),
+        el('p', {}, `Nei bit arrivati ${arrivatiUni === 1 ? "c'è 1 uno" : `ci sono ${arrivatiUni} uni`}: `, el('b', { text: va ? `un numero ${voglio}, il controllo dice «tutto a posto».` : `un numero ${dispari ? 'pari' : 'dispari'}, il controllo dice «c'è un errore».` }))];
+      const ne = errori.size;
+      if (ne === 0) frasi.push(el('p', { class: 'w-nota', text: 'Nessun bit è cambiato nel viaggio.' }));
+      else if (va) frasi.push(el('p', { class: 'cd-overflow', text: `Ma i bit sbagliati sono ${ne}! Con un numero pari di errori gli 1 cambiano di un numero pari: la parità torna giusta e il controllo non se ne accorge.` }));
+      else frasi.push(el('p', { class: 'w-nota', text: `${ne === 1 ? 'Un bit è sbagliato' : `I bit sbagliati sono ${ne}`}: il controllo se ne accorge, ma non sa quale bit è cambiato, quindi non può correggerlo.` }));
+      lettura.replaceChildren(...frasi);
+      rimettiFuoco(tabella, fuoco);
+    }
+    disegna();
+  }
+
+  /* ---------- codice di Hamming a 6 bit del libro ---------- */
+
+  const CODICE = [['A', '000000'], ['B', '001111'], ['C', '010011'], ['D', '011100'], ['E', '100110'], ['F', '101001'], ['G', '110101'], ['H', '111010']];
+  function hamming(fig) {
+    const st = (soloBit(dato(fig, 'parola', 'word')) || '010100').slice(0, 6).padEnd(6, '0').split('').map(Number);
+    const aiuto = el('p', { class: 'w-aiuto', text: 'È arrivata questa parola di 6 bit: clicca sui bit per cambiarla. Per ogni simbolo del codice la tabella conta i bit diversi, cioè la distanza di Hamming; i bit diversi sono evidenziati.' });
+    const riga = el('div', { class: 'cd-bits' });
+    const tabella = el('div', { class: 'cd-scorre' });
+    const lettura = el('div', { class: 'w-lettura', 'aria-live': 'polite' });
+    fig.append(aiuto, el('div', { class: 'cd-scorre' }, riga), tabella, lettura);
+    const adatta = stringi(tabella);
+    function disegna(fuoco = '') {
+      riga.replaceChildren(...st.map((b, i) => cellaBit(b, String(i + 1), `bit ${i + 1} della parola arrivata, ora ${b}`, () => { st[i] = 1 - st[i]; disegna(`h${i}`); }, { 'data-k': `h${i}` })));
+      const parola = st.join('');
+      const dist = CODICE.map(([, c]) => c.split('').filter((x, i) => x !== parola[i]).length);
+      const minimo = Math.min(...dist);
+      const vicini = CODICE.filter((_, j) => dist[j] === minimo).map(([s]) => s);
+      tabella.replaceChildren(el('table', { class: 'cd-tabella cd-distanze' },
+        el('thead', {}, el('tr', {}, el('th', { text: 'Simbolo' }), el('th', { text: 'Codice' }), el('th', { text: 'Bit diversi' }))),
+        el('tbody', {}, ...CODICE.map(([s, c], j) => el('tr', dist[j] === minimo ? { class: 'cd-vicino' } : {},
+          el('td', { class: 'cd-simbolo', text: s }),
+          el('td', { class: 'cd-bit' }, ...c.split('').map((x, i) => el('span', { class: x !== parola[i] ? 'cd-diverso' : 'cd-uguale', text: x }))),
+          el('td', { text: String(dist[j]) }))))));
+      adatta();
+      const frasi = [];
+      if (minimo === 0) frasi.push(el('p', {}, el('b', { text: `${parola} è proprio il codice di ${vicini[0]}` }), ': nessun errore.'));
+      else if (vicini.length === 1) frasi.push(el('p', {}, `${parola} non è nel codice. Il simbolo più vicino è `, el('b', { text: vicini[0] }), `, a distanza ${minimo}.`),
+        el('p', { class: minimo === 1 ? 'w-nota' : 'cd-overflow', text: minimo === 1 ? `Con un solo bit sbagliato la correzione è sicura: nel codice ogni coppia di simboli differisce in almeno 3 bit, quindi nessun altro simbolo è a distanza 1.`
+          : `Attenzione: ${minimo} bit sbagliati sono troppi per essere sicuri. Il codice corregge con certezza un errore solo.` }));
+      else frasi.push(el('p', { class: 'cd-overflow', text: `${parola} è alla stessa distanza, ${minimo}, da ${vicini.join(', ').replace(/, ([^,]*)$/, ' e $1')}: non si sa quale simbolo scegliere. Si scopre l'errore, ma non si può correggere.` }));
+      lettura.replaceChildren(...frasi);
+      rimettiFuoco(riga, fuoco);
+    }
+    disegna();
+  }
+
   const MODI = { testo, text: testo, colori, colours: colori, colors: colori, suono, sound: suono, binario, binary: binario,
-    divisioni, divisions: divisioni, somma, addition: somma };
+    divisioni, divisions: divisioni, somma, addition: somma, interi, integers: interi, virgola, floating: virgola,
+    parita, parity: parita, hamming };
   document.querySelectorAll('figure.widget[data-widget="codifica"]').forEach(fig => {
     const carica = fig.querySelector('.widget-carica');
     if (carica) carica.remove();

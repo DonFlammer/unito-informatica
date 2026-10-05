@@ -10,6 +10,7 @@ Le lezioni seguono il libro di Andrea Mori e gli argomenti indicati per il canal
 |---|---|---|---|---|
 | D01 | Insiemi e induzione | cap. 1, pp. 1–8 | `lezioni/D01_insiemi_induzione.md` · HTML: `appunti/MDAG/D01_insiemi_induzione.html` | elementi e insiemi, appartenenza e inclusione, quantificatori, cardinalità, prime dimostrazioni per induzione e insieme delle parti |
 | D02 | Complementare, De Morgan, induzione e partizioni | cap. 1, pp. 5–13 | `lezioni/D02_complementare_induzione_partizioni.md` · HTML: `appunti/MDAG/D02_complementare_induzione_partizioni.html` | intersezione e unione, differenza e complementare, leggi di De Morgan, assiomi di Peano, induzione, insieme delle parti, ricoprimenti, partizioni e insieme quoziente |
+| D03 | Prodotto cartesiano e relazioni di equivalenza | cap. 1, pp. 13–15; app. A, pp. 153–155 | `lezioni/D03_prodotto_cartesiano_relazioni.md` · HTML: `appunti/MDAG/D03_prodotto_cartesiano_relazioni.html` | coppie ordinate, prodotto cartesiano e numero dei suoi elementi, terne, relazioni, proprietà riflessiva, simmetrica, antisimmetrica e transitiva, relazioni d'ordine, relazioni di equivalenza, congruenza modulo N, classi di equivalenza e partizioni, insieme quoziente. Argomenti ricostruiti dal libro e dal diario 2025/26: il docente non li aveva ancora pubblicati |
 
 ## Algebra lineare e Geometria (parte 2, modB)
 

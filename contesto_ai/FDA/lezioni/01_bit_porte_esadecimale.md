@@ -24,7 +24,6 @@ fonte: >-
   and Their Storage», §1.2 «Main Memory» e §1.3 «Mass Storage», con le risposte alle loro domande; riassunto della
   lezione del 01/10/2026 sul Moodle del canale B; lucidi del canale A 2026/27 sulla codifica dei dati; regole d'esame
   comuni ai tre canali
-file_en: 01_bits_gates_hexadecimal.html
 appunti_html: appunti/FDA/01_bit_porte_esadecimale.html
 genera_html: true
 ---

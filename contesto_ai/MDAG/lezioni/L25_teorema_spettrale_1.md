@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 25 «Teorema spettrale I»; B. Martelli, Geometria e algebra lineare, §11.1–11.2
-file_en: L25_spectral_theorem_1.html
 appunti_html: appunti/MDAG/L25_teorema_spettrale_1.html
 genera_html: true
 ---

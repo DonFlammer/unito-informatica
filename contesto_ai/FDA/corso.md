@@ -89,6 +89,9 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - lun 28/09: lezione introduttiva, con la presentazione del libro di testo. Negli appunti non ha un numero.
 - gio 01/10: parte 1, §1.1 "Bits and Their Storage" (flip-flop, notazione esadecimale), poi memoria centrale e memorie di massa (§1.2–1.3). Negli appunti è la lezione 01.
 - ven 02/10: parte 1, §1.4 "Representing Information as Bit Patterns" e §1.5 "The Binary System": alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno. Negli appunti è la lezione 02.
+- lun 05/10: parte 1, §1.6 "Storing Integers" (interi con il segno in complemento a 2, notazione in eccesso, cambio di segno e addizione in complemento a 2) e §1.7 "Storing Fractions" (virgola mobile); omessa la §1.8 su Python. Negli appunti è la lezione 03.
+- gio 08/10 (prevista): parte 1, §1.9 e §1.10: compressione dei dati (LZW, JPEG, MPEG, GIF), errori di comunicazione, bit e byte di parità, codici a correzione d'errore, distanza di Hamming. Negli appunti è la lezione 04, scritta prima della lezione sul libro.
+- ven 09/10 (prevista): fine della parte 1, esercizi sulle lezioni del docente 01–05, circuiti e rappresentazioni binarie. Negli appunti è la lezione 05, scritta prima della lezione.
 
 ## Materiale
 

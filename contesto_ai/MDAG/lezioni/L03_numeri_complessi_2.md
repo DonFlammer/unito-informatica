@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 3 «Numeri complessi II»; B. Martelli, Geometria e algebra lineare, §1.4.4–1.4.6
-file_en: L03_complex_numbers_2.html
 appunti_html: appunti/MDAG/L03_numeri_complessi_2.html
 genera_html: true
 ---

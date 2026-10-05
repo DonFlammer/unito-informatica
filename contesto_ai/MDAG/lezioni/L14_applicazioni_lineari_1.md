@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 14 «Applicazioni lineari I»; B. Martelli, Geometria e algebra lineare, §4.1 e §4.2
-file_en: L14_linear_maps_1.html
 appunti_html: appunti/MDAG/L14_applicazioni_lineari_1.html
 genera_html: true
 ---

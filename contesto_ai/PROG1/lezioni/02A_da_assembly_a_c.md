@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 90–120 minuti
 fonte: >-
   Slide «Dal linguaggio macchina al C» (02A_da_assembly_a_c), Programmazione I – Teoria, canale B, A.A. 2026/27
-file_en: 02A_from_assembly_to_c.html
 appunti_html: appunti/PROG1/02A_da_assembly_a_c.html
 genera_html: true
 ---

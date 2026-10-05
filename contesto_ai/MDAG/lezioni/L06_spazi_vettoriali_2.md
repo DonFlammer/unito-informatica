@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 90–120 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 6 «Spazi vettoriali II»; B. Martelli, Geometria e algebra lineare, §2.2.5–2.2.16
-file_en: L06_vector_spaces_2.html
 appunti_html: appunti/MDAG/L06_spazi_vettoriali_2.html
 genera_html: true
 ---

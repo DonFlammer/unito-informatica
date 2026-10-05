@@ -20,7 +20,6 @@ scheda:
 fonte: >-
   Gli appunti delle lezioni 01 e 02 di Fondamenti dell'Informatica (canale B), scritti sul libro di testo, parte 1,
   §1.1–1.5
-file_en: summary_week_01.html
 appunti_html: appunti/FDA/riassunto_settimana_01.html
 genera_html: true
 ---

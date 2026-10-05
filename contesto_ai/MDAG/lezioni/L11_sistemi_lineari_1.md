@@ -21,7 +21,6 @@ scheda:
   Tempo di studio: 3–4 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 11 «Sistemi lineari I»; B. Martelli, Geometria e algebra lineare, §3.1
-file_en: L11_linear_systems_1.html
 appunti_html: appunti/MDAG/L11_sistemi_lineari_1.html
 genera_html: true
 ---

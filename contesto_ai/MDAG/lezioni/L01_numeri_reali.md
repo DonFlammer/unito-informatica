@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 1 «Numeri reali»; B. Martelli, Geometria e algebra lineare, §1.1, §1.5 e complemento 1.II
-file_en: L01_real_numbers.html
 appunti_html: appunti/MDAG/L01_numeri_reali.html
 genera_html: true
 ---

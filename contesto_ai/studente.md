@@ -10,7 +10,7 @@
 
 - Invio le **slide lezione per lezione** e voglio **appunti dettagliati "fatti apposta per studiare"**, orientati all'esame.
 - Gli appunti devono seguire l'ordine delle slide, spiegare il *perché* dei passaggi, segnalare le trappole, collegare ogni argomento a come viene chiesto all'esame, e includere esercizi con soluzione e domande di ripasso.
-- Tutto resta **in locale** e nei repository GitHub `DonFlammer/unito-informatica` e `DonFlammer/unito-computer-science` (la traduzione inglese), pubblici e in sola lettura per gli altri: nessuna altra pagina pubblicata online.
+- Tutto resta **in locale** e nel repository GitHub `DonFlammer/unito-informatica`, pubblico e in sola lettura per gli altri: nessuna altra pagina pubblicata online.
 - Voglio file `.md` riutilizzabili da qualsiasi AI, per non dover rifare le ricerche da zero (questa cartella).
 
 ## Stato attuale

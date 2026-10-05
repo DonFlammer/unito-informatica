@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 120–150 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 18 «Autovalori e autovettori II»; B. Martelli, Geometria e algebra lineare, §5.1 e §5.2
-file_en: L18_eigenvalues_eigenvectors_2.html
 appunti_html: appunti/MDAG/L18_autovalori_autovettori_2.html
 genera_html: true
 ---

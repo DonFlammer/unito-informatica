@@ -24,7 +24,8 @@ RADICE = Path(__file__).resolve().parent.parent
 APPUNTI = RADICE / "appunti"
 INDEX = RADICE / "index.html"
 GH = "https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/"
-# versione inglese (repository DonFlammer/unito-computer-science): stesse sigle, tranne INGLESE → ENGLISH
+# versione inglese: non c'è più dal 05/10/2026.
+# Le pagine non hanno più link «English»; le costanti restano solo perché le funzioni le ricevono come argomento.
 SITO_EN = "https://donflammer.github.io/unito-computer-science/"
 SIGLA_EN = {"INGLESE": "ENGLISH"}
 INIZIO = "<!-- MATERIE:INIZIO"
@@ -139,7 +140,6 @@ def testa_html(radice, titolo, descrizione, url_en):
 <title>{e(titolo)}</title>
 <meta name="description" content="{e(descrizione)}">
 <meta name="theme-color" content="#000000">
-<link rel="alternate" hreflang="en" href="{url_en}">
 <link rel="icon" href="{ICONA}">
 <script>
   var t = null; try {{ t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); }} catch (e) {{}} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
@@ -166,7 +166,6 @@ def testata(radice, url_en, attiva=""):
       <a href="{REPO}/tree/main/contesto_ai">Per le AI</a>
       <a href="{OFA}">OFA</a>
       <a href="{REPO}">GitHub</a>
-      <a class="lingua" href="{url_en}" hreflang="en" lang="en">English</a>
       <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
       <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
       <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
@@ -199,7 +198,6 @@ def piede(radice):
         <li><a href="{REPO}">Sorgente su GitHub</a></li>
         <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
         <li><a href="{LICENZA}">Licenza CC BY-NC-SA 4.0</a></li>
-        <li><a href="{SITO_EN}" hreflang="en" lang="en">English version</a></li>
       </ul>
     </div>
     <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>

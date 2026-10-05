@@ -21,7 +21,6 @@ scheda:
   Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 5 «Spazi vettoriali I»; B. Martelli, Geometria e algebra lineare, §1.5, §2.1 e §2.2.1–2.2.4
-file_en: L05_vector_spaces_1.html
 appunti_html: appunti/MDAG/L05_spazi_vettoriali_1.html
 genera_html: true
 ---

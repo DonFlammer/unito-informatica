@@ -672,7 +672,7 @@ function compila(file) {
   const sorgente = readFileSync(file, 'utf8');
   const ctx = nuovoContesto(relative(RADICE, file).replace(/\\/g, '/'), sorgente);
   const { meta, corpo } = leggiIntestazione(sorgente, ctx);
-  for (const k of ['corso', 'lezione', 'titolo', 'descrizione', 'appunti_html', 'file_altro'])
+  for (const k of ['corso', 'lezione', 'titolo', 'descrizione', 'appunti_html', ...(LINGUA === 'it' ? [] : ['file_altro'])])
     if (!meta[k]) ctx.errore(1, `nell'intestazione manca «${Object.entries(L.chiavi).find(([, v]) => v === k)?.[0] || k}»`);
   const corso = String(meta.corso || ''), lezione = String(meta.lezione || '');
   ctx.materiale = { handouts: 'dispense', slides: 'slide', book: 'libro' }[meta.materiale] || meta.materiale || 'slide';
@@ -741,13 +741,16 @@ function compila(file) {
   if (u.has('IDEA') || u.has('METODO')) legenda.push(`<li class="l-idea"><i></i>${T.lIdea}</li>`);
   if (u.has('RICORDA')) legenda.push(`<li class="l-ricorda"><i></i>${T.lRicorda}</li>`);
   if (u.has('RIPASSO')) legenda.push(`<li class="l-ripasso"><i></i>${T.lRipasso}</li>`);
-  // pagina nell'altra lingua: se nella cartella accanto (UniTo-en o UniTo) non c'è ancora, il link porta alla pagina del corso
-  const corsoAltro = LINGUA === 'it' ? (corso === 'INGLESE' ? 'ENGLISH' : corso) : (corso === 'ENGLISH' ? 'INGLESE' : corso);
-  // la cartella dell'altra lingua si può indicare con ALTRA_LINGUA (per esempio quando si compila da una copia della repo)
-  const radiceAltra = process.env.ALTRA_LINGUA || join(RADICE, '..', LINGUA === 'it' ? 'UniTo-en' : 'UniTo');
-  const localeAltro = join(radiceAltra, LINGUA === 'it' ? 'notes' : 'appunti', corsoAltro, String(meta.file_altro || ''));
-  const altro = `${L.altroSito}${corsoAltro}/${existsSync(localeAltro) ? meta.file_altro : ''}`;
-  if (!existsSync(localeAltro)) ctx.avviso(null, `${relative(join(RADICE, '..'), localeAltro).replace(/\\/g, '/')} non c'è ancora: il link all'altra lingua porta alla pagina del corso`);
+  // pagina nell'altra lingua: dal 05/10/2026 la versione inglese non c'è più,
+  // quindi le pagine italiane non hanno più il link «English». Il ramo inglese del compilatore resta solo per i file vecchi.
+  let linkAltro = '';
+  if (LINGUA !== 'it') {
+    const corsoAltro = corso === 'ENGLISH' ? 'INGLESE' : corso;
+    const radiceAltra = process.env.ALTRA_LINGUA || join(RADICE, '..', 'UniTo');
+    const localeAltro = join(radiceAltra, 'appunti', corsoAltro, String(meta.file_altro || ''));
+    const altro = `${L.altroSito}${corsoAltro}/${existsSync(localeAltro) ? meta.file_altro : ''}`;
+    linkAltro = `<link rel="alternate" hreflang="${L.altraLang}" href="${esc(altro)}">\n`;
+  }
   const [m1, m2, m3, m4] = L.marcatori;
   const indice = toc.map(t => `<li><a href="#${t.id}"><span class="n">${t.n}</span><span>${t.titolo}</span></a></li>`).join('\n');
   const rielab = L.rielaborati[ctx.materiale] || L.rielaborati.slide;
@@ -764,8 +767,7 @@ function compila(file) {
 <title>${esc(titoloPagina)}</title>
 <meta name="${LINGUA === 'it' ? 'lezione' : 'lesson'}" content="${esc(lezione)}">
 ${data ? `<meta name="${LINGUA === 'it' ? 'data' : 'date'}" content="${data}">\n` : ''}${modulo ? `<meta name="${LINGUA === 'it' ? 'modulo' : 'module'}" content="${esc(modulo)}">\n` : ''}${riassunto ? `<meta name="${LINGUA === 'it' ? 'tipo' : 'type'}" content="${LINGUA === 'it' ? 'riassunto' : 'summary'}">\n` : ''}<meta name="description" content="${esc(meta.descrizione || '')}">
-<link rel="alternate" hreflang="${L.altraLang}" href="${esc(altro)}">
-<meta name="theme-color" content="#000000">
+${linkAltro}<meta name="theme-color" content="#000000">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
 <script>
   var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');

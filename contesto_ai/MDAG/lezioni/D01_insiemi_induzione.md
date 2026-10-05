@@ -23,7 +23,6 @@ fonte: >-
   A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 1 «Insiemi», pp. 1–8 ed esercizi pp. 14–16;
   diario delle lezioni del canale B 2025/26 (Moodle MDAG1 2025/26); quiz e problemi degli appelli di Matematica
   Discreta 2023–2026
-file_en: D01_sets_induction.html
 appunti_html: appunti/MDAG/D01_insiemi_induzione.html
 genera_html: true
 ---

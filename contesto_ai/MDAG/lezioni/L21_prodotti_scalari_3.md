@@ -23,7 +23,6 @@ scheda:
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 21 «Prodotti scalari III»; B. Martelli, Geometria e algebra
   lineare, §7.1.7, §7.3, §8.1.5–8.1.10
-file_en: L21_scalar_products_3.html
 appunti_html: appunti/MDAG/L21_prodotti_scalari_3.html
 genera_html: true
 ---

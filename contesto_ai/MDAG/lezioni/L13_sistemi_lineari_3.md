@@ -22,7 +22,6 @@ scheda:
   Tempo di studio: 100–130 minuti
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 13 «Sistemi lineari III»; B. Martelli, Geometria e algebra lineare, §2.3 e §3.2
-file_en: L13_linear_systems_3.html
 appunti_html: appunti/MDAG/L13_sistemi_lineari_3.html
 genera_html: true
 ---

@@ -22,7 +22,6 @@ scheda:
 fonte: >-
   Gli appunti della lezione L01 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso (R. Buzano,
   M. Radeschi)
-file_en: summary_week_01_AG.html
 appunti_html: appunti/MDAG/riassunto_settimana_01_AG.html
 genera_html: true
 ---

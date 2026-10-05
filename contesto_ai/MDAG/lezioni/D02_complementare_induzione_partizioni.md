@@ -24,7 +24,6 @@ fonte: >-
   A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 1 «Insiemi», pp. 5–13 ed esercizi pp. 14–15;
   argomenti della lezione del 02/10/2026 sul Moodle del canale B; quiz e problemi degli appelli di Matematica
   Discreta 2023–2026
-file_en: D02_complements_induction_partitions.html
 appunti_html: appunti/MDAG/D02_complementare_induzione_partizioni.html
 genera_html: true
 ---

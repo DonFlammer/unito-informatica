@@ -1,0 +1,1104 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab01 · Laboratorio 01: la riga di comando, il compilatore gcc e i primi programmi</title>
+<meta name="lezione" content="Lab01">
+<meta name="data" content="2026-10-05">
+<meta name="description" content="Appunti del primo laboratorio di Programmazione I (canale B, Lab01): come funziona il laboratorio Turing e come si collega all'esame al PC, la riga di comando di Linux, macOS e Windows, percorsi assoluti e relativi, i comandi per file e cartelle, l'installazione di gcc anche su Windows, compilare ed eseguire un programma C, leggere e scrivere dal terminale con printf e scanf, con tutti gli esercizi delle slide svolti e provati.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/Lab01_introduzione.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#come-funziona-il-laboratorio"><span class="n">§1</span><span>Come funziona il laboratorio</span></a></li>
+<li><a href="#la-riga-di-comando-ordini-scritti"><span class="n">§2</span><span>La riga di comando: ordini scritti</span></a></li>
+<li><a href="#dove-sta-un-file-i-percorsi"><span class="n">§3</span><span>Dove sta un file: i percorsi</span></a></li>
+<li><a href="#i-comandi-da-sapere-uno-per-uno"><span class="n">§4</span><span>I comandi da sapere, uno per uno</span></a></li>
+<li><a href="#il-compilatore-c-sul-tuo-computer"><span class="n">§5</span><span>Il compilatore C sul tuo computer</span></a></li>
+<li><a href="#da-buongiorno-c-al-programma-che-gira"><span class="n">§6</span><span>Da buongiorno.c al programma che gira</span></a></li>
+<li><a href="#leggere-un-numero-con-scanf"><span class="n">§7</span><span>Leggere un numero con scanf</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§8</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§9</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§10</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§11</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§12</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§13</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§14</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione Lab01</nav>
+      <p class="eyebrow">Canale B · Laboratorio 01, la prima lezione di laboratorio · Programmazione I</p>
+      <h1>Laboratorio 01: la riga di comando, il compilatore gcc e i primi programmi</h1>
+      <p class="lede">Il primo laboratorio: si lascia il mouse e si parla al computer scrivendo. Impari a muoverti tra le cartelle con pochi comandi, a installare il compilatore, a trasformare un file di testo in un programma che gira e a fargli leggere un numero dalla tastiera. Sono i gesti che ripeterai in ogni laboratorio e all&#39;esame.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>Lab01 «Introduzione», laboratorio canale B · 50 pagine</dd></div><div><dt>Laboratorio</dt><dd>Elisa Marengo (turno B2, lun 05/10) e Valerio Basile (turno B1, mar 06/10) · 14–17 · laboratorio Turing</dd></div><div><dt>Tempo di studio</dt><dd>2–3 ore, meglio davanti a un computer</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:860px">
+<h2 id="tldr-title">La lezione in 8 punti</h2>
+<ul>
+<li>Il laboratorio sono <strong>10 lezioni da 3 ore</strong> al laboratorio Turing. Al PC entri con le credenziali di UniTo. Quando esci, i file sul PC vengono cancellati: salvali prima.</li>
+<li>La <strong>riga di comando</strong> è una finestra in cui scrivi ordini al computer, uno per riga. Premi Invio, il computer esegue e risponde.</li>
+<li>Ogni comando ha un <strong>nome</strong>, poi le <strong>opzioni</strong> (come deve lavorare) e gli <strong>argomenti</strong> (su che cosa lavora). Esempio: in <code>ls -a Documenti</code> il nome è <code>ls</code>, l&#39;opzione è <code>-a</code>, l&#39;argomento è <code>Documenti</code>.</li>
+<li>Un <strong>percorso</strong> dice dove sta un file. Quello <strong>assoluto</strong> parte dalla radice del disco. Quello <strong>relativo</strong> parte dalla cartella in cui ti trovi. La cartella in cui sei si scrive <code>.</code>, quella che la contiene <code>..</code>.</li>
+<li>I comandi di base sono pochi: cambiare cartella, vedere che cosa c&#39;è, creare, copiare, spostare, cancellare, leggere un file. Linux e macOS usano gli stessi nomi, Windows altri.</li>
+<li>Il compilatore si chiama <strong>gcc</strong>. Il comando <code>gcc -Wall -Werror buongiorno.c -o buongiorno</code> trasforma il file di testo in un programma. Con <code>-Wall -Werror</code> basta un avviso per fermare tutto, come all&#39;esame.</li>
+<li><code>printf</code> scrive sul terminale, <code>scanf</code> legge un numero dalla tastiera. Il codice <code>%d</code> vuol dire «qui va un numero intero».</li>
+<li>All&#39;esame si scrive codice C al PC, in un editor semplice, e un sistema di test automatici (CodeRunner) lo compila con <code>-Wall -Werror</code> e confronta le stampe con quelle attese.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Il laboratorio comincia questa settimana, al laboratorio Turing, dalle 14 alle 17. Il turno <strong>B2</strong> (matricola pari) è lunedì 05/10 con <strong>Elisa Marengo</strong>; il turno <strong>B1</strong> (matricola dispari) è martedì 06/10 con <strong>Valerio Basile</strong>. Poi un laboratorio a settimana: il turno B2 il lunedì, il turno B1 il martedì (date precise nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>).</p>
+<p><strong>Canale A.</strong> Turno A1 (matricola dispari) giovedì 14–17 con Iacopo Colonnelli, dall&#39;08/10; turno A2 (matricola pari) mercoledì 14–17 con Alessia Antelmi, dal 07/10. Sempre al laboratorio Turing.</p>
+<p><strong>Canale C.</strong> Tutti e due i turni con Alessandro Mazzei: turno C1 (matricola dispari) mercoledì 9–12, dal 07/10; turno C2 (matricola pari) martedì 9–12, dal 06/10.</p>
+<p>Secondo la scheda del corso, i dieci laboratori hanno la stessa sequenza nei tre canali e gli stessi esercizi su CodeRunner. I laboratori del 2025/26 che ho (Lab03 condizioni booleane, Lab04 iterazioni, Lab10 ricorsione) hanno lo stesso modello di queste slide. Quindi questa lezione serve a tutti: controlla solo il giorno del tuo turno su Moodle. Le slide del Lab01 dei canali A e C per il 2026/27 non le ho viste.</p>
+<p>In questi appunti ho cambiato un po&#39; l&#39;ordine delle slide: tutti gli esercizi (la slide 23 sui comandi e la slide 50 sul C) sono svolti in fondo, nella sezione «Esercizi».</p>
+</div>
+
+
+<section id="come-funziona-il-laboratorio" aria-labelledby="h-come-funziona-il-laboratorio" style="--h:2730px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-come-funziona-il-laboratorio">Come funziona il laboratorio</h2><span class="slides">slide 3–7</span></div>
+<p>Il corso di Programmazione I ha due parti. La <strong>teoria</strong> è in aula, con Elvio Amparore. Il <strong>laboratorio</strong> è al laboratorio Turing, davanti a un PC: si scrivono programmi e si provano. Il laboratorio vale 30 ore, cioè <strong>10 lezioni da 3 ore</strong>.</p>
+<p>Le cose pratiche, dalla slide 3:</p>
+<ul>
+<li>i docenti di laboratorio del canale B sono Valerio Basile e Elisa Marengo;</li>
+<li>orari e avvisi sono sulla pagina Moodle del corso;</li>
+<li>per parlare con un docente scrivi un&#39;email o usa il forum di Moodle. Scrivi solo dall&#39;indirizzo di ateneo, quello che finisce con <code>@edu.unito.it</code>;</li>
+<li>durante il laboratorio ci sono anche due <strong>assistenti</strong>, studenti del secondo o del terzo anno: chiedi a loro quando ti blocchi.</li>
+</ul>
+<h3 id="entrare-in-un-pc-del-laboratorio-turing-slide-4-">Entrare in un PC del laboratorio Turing (slide 4–5)</h3>
+<p>Ti siedi, accendi lo schermo con il tasto in basso a destra ed entri con il <strong>login di ateneo</strong>. È lo stesso nome utente e la stessa password che usi per il sito di UniTo e per la posta: il nome utente ha la forma <code>nome.cognome</code>.</p>
+<p>Puoi scegliere tra <strong>Windows</strong> e <strong>Linux</strong>. In tutti e due trovi già il compilatore C e un editor di testo. Puoi anche portare il tuo portatile, ma allora devi installare tu il compilatore (sezione «Il compilatore C sul tuo computer», più avanti).</p>
+<div class="box trap"><p class="box-label"><span>Trappola · La password e la tastiera</span></p><p>Il PC può avere una disposizione dei tasti diversa dalla tua: per esempio inglese invece che italiana. Se la password contiene caratteri speciali (<code>@</code>, <code>#</code>, <code>!</code>, lettere accentate), possono trovarsi su tasti diversi. Se il login non va, controlla la lingua della tastiera nella schermata di accesso e chiedi agli assistenti.</p>
+</div>
+<p>Ogni volta che entri, il PC riparte <strong>da zero</strong>: niente modifiche, niente file. E quando esci, <strong>tutti i file che hai scritto vengono cancellati</strong>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · I file si perdono quando esci</span></p><p>Prima di uscire, salva i tuoi file altrove: su una chiavetta, sul tuo Google Drive o mandandoli per email. Il PC non si spegne: per uscire si usa <strong>Disconnetti</strong> dal menu Start.</p>
+</div>
+<h3 id="le-regole-del-laboratorio-slide-6">Le regole del laboratorio (slide 6)</h3>
+<p>In laboratorio è vietato fare foto, video o registrazioni. Il materiale del corso è protetto dal diritto d&#39;autore: puoi usarlo per studiare, ma non condividerlo sui social o su siti che guadagnano con la pubblicità. Puoi condividere solo il materiale con licenza Creative Commons.</p>
+<h3 id="perche-conviene-venire-ogni-settimana-slide-7">Perché conviene venire ogni settimana (slide 7)</h3>
+<p>Il corso parte dalle basi: non serve aver già programmato. Le prime settimane possono sembrarti facili se hai fatto un istituto tecnico. Poi però gli argomenti si sommano uno sull&#39;altro. La slide 7 ha due grafici. Chi segue il laboratorio e fa gli esercizi sale piano piano, sempre alla stessa pendenza. Chi salta le lezioni trova prima una parte piatta, «già visto», poi una salita ripida e arriva all&#39;esame con una preparazione incompleta.</p>
+<h3 id="che-cosa-c-entra-il-laboratorio-con-l-esame">Che cosa c&#39;entra il laboratorio con l&#39;esame</h3>
+<p>L&#39;esame di Programmazione I si fa <strong>al PC</strong>, nei laboratori, ed è uguale per i tre canali. Scrivi programmi in C in una pagina web con un <strong>editor semplice</strong>: niente completamento automatico. Un sistema di test automatici, <strong>CodeRunner</strong>, compila il tuo programma, lo esegue con vari dati e confronta quello che stampa con quello che deve stampare. Compilare vuol dire tradurre il testo in C in un programma che il computer sa eseguire (<a href="02A_da_assembly_a_c.html#h-dal-sorgente-all-eseguibile">lezione 02A</a>). CodeRunner lo fa con le opzioni <code>-Wall -Werror</code>, che fermano la traduzione anche per un piccolo avviso: le vedi più avanti in questa lezione.</p>
+<p>In laboratorio vedrai lo stesso sistema. Nel 2025/26 le slide del Lab03 («Condizioni booleane») lo presentavano con un esercizio su Moodle che non valeva voto, solo per allenarsi. Le stesse slide dicono tre esiti possibili:</p>
+<ol>
+<li>errore di compilazione: il programma non compila con <code>-Wall -Werror</code>;</li>
+<li>il programma compila e gira, ma non passa tutti i test: stampa qualcosa di diverso da quello atteso;</li>
+<li>il programma compila, gira e passa tutti i test.</li>
+</ol>
+<p>Per questo conviene allenarsi da subito come all&#39;esame: editor semplice, compilazione con <code>-Wall -Werror</code>, e stampe scritte esattamente come richiesto.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Hai scritto un programma in laboratorio e stai per uscire. Che cosa devi fare prima di cliccare su «Disconnetti»?</span></summary><div class="ans"><p>Salvare i file altrove (chiavetta, Google Drive, email). Dopo la disconnessione il PC cancella tutto quello che hai scritto.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>10 laboratori da 3 ore al laboratorio Turing; entri con le credenziali di UniTo e scegli Windows o Linux.</li>
+<li>Quando esci i file vengono cancellati: salvali prima.</li>
+<li>All&#39;esame CodeRunner compila con <code>-Wall -Werror</code> e controlla le stampe: allenati così da subito.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-riga-di-comando-ordini-scritti" aria-labelledby="h-la-riga-di-comando-ordini-scritti" style="--h:3700px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-la-riga-di-comando-ordini-scritti">La riga di comando: ordini scritti</h2><span class="slides">slide 8–13</span></div>
+<p>Di solito usi il computer con il mouse: apri una cartella con un doppio clic, trascini un file nel cestino. C&#39;è un altro modo, più vecchio e più preciso: <strong>scrivere</strong> che cosa vuoi. Per esempio, invece di aprire la cartella Documenti con un doppio clic, scrivi <code>cd Documenti</code> e premi Invio.</p>
+<p>È come una chat con il computer. Tu scrivi un ordine su una riga, premi Invio. Il computer lo esegue e risponde con qualche riga di testo, oppure con un messaggio d&#39;errore se non ha capito. Poi aspetta l&#39;ordine dopo.</p>
+<p>Questa finestra si chiama <strong>riga di comando</strong>, in inglese <em>command line interface</em>, abbreviato <strong>CLI</strong>. Ha molti altri nomi, e li sentirai tutti: <strong>terminale</strong>, <strong>console</strong>, <strong>shell</strong> (su Linux e macOS), <strong>prompt dei comandi</strong> (su Windows).</p>
+<p>In laboratorio la useremo per fare a mano tutti i passi che trasformano un file di testo scritto in C in un programma che gira. Gli ambienti di sviluppo li fanno con un clic, ma nascondono che cosa succede.</p>
+<h3 id="il-prompt">Il prompt</h3>
+<p>Quando apri il terminale vedi una riga che finisce con un simbolo e un cursore che lampeggia. Quella riga si chiama <strong>prompt</strong>: è il computer che dice «sono pronto, scrivi».</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;</code></pre>
+<p>È il prompt di Windows. Prima del segno <code>&gt;</code> c&#39;è la cartella in cui ti trovi.</p>
+<pre class="code" data-lingua="text"><code>jon_snow@linux:~$</code></pre>
+<p>È il prompt di Linux. Prima del segno <code>$</code> ci sono il nome dell&#39;utente, il nome del computer e la cartella in cui ti trovi. Il segno <code>~</code> (si legge «tilde») vuol dire «la tua cartella personale». Su macOS il prompt è simile e finisce con <code>%</code>.</p>
+<p>Negli appunti, quando c&#39;è un comando da scrivere, il prompt è già scritto davanti. Tu scrivi solo quello che viene dopo il <code>&gt;</code> o il <code>$</code>.</p>
+<h3 id="come-e-fatto-un-comando-slide-11">Come è fatto un comando (slide 11)</h3>
+<p>Ogni comando ha la stessa forma:</p>
+<pre class="code" data-lingua="text"><code>nome_comando  opzioni  argomenti</code></pre>
+<ul>
+<li>il <strong>nome</strong> dice che cosa fare;</li>
+<li>le <strong>opzioni</strong> cambiano il modo in cui il comando lavora. Su Linux e macOS cominciano con il trattino <code>-</code>, su Windows con la barra <code>/</code>;</li>
+<li>gli <strong>argomenti</strong> sono le cose su cui il comando lavora: di solito nomi di file o di cartelle.</li>
+</ul>
+<p>Le parti si separano con uno spazio. Ecco gli esempi della slide 11, con le risposte vere del computer.</p>
+<p>Su Linux:</p>
+<pre class="code" data-lingua="text"><code>$ date
+Mon Oct  5 17:53:02 CEST 2026
+
+$ uname
+Linux
+
+$ echo &quot;ciao, come stai&quot;
+ciao, come stai</code></pre>
+<ul>
+<li><code>date</code> non ha né opzioni né argomenti: stampa data e ora.</li>
+<li><code>uname</code> stampa il nome del sistema. Con l&#39;opzione <code>-a</code> (<em>all</em>, tutto) stampa anche il nome del computer, la versione e il tipo di processore, su una riga lunga.</li>
+<li><code>echo</code> ripete i suoi argomenti. Serve per stampare un messaggio o il valore di qualcosa.</li>
+</ul>
+<p>Su Windows:</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;date /t
+Mon 10/05/2026
+
+C:\Users\jon_snow&gt;echo ciao, come stai
+ciao, come stai</code></pre>
+<ul>
+<li><code>date /t</code> stampa la data. Senza l&#39;opzione <code>/t</code>, Windows ti chiederebbe anche di scrivere una data nuova.</li>
+<li><code>systeminfo</code>, l&#39;altro esempio della slide, stampa molte righe di informazioni sul computer.</li>
+</ul>
+<p>I messaggi del mio PC sono in inglese. Su un sistema in italiano date e messaggi d&#39;errore escono in italiano, ma il senso è lo stesso.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nel comando <code>ls -a Documenti</code>, qual è il nome, quale l&#39;opzione e quale l&#39;argomento?</span></summary><div class="ans"><p>Il nome è <code>ls</code> (elenca i file), l&#39;opzione è <code>-a</code> (comincia con il trattino), l&#39;argomento è <code>Documenti</code> (la cartella da elencare).</p>
+</div></details></div></div>
+<h3 id="comandi-della-shell-e-programmi-esterni-slide-12">Comandi della shell e programmi esterni (slide 12–13)</h3>
+<p>Alcuni comandi li conosce direttamente la shell: si chiamano comandi <strong>integrati</strong> (<em>built-in</em>). Esempio: <code>cd</code>, che cambia cartella.</p>
+<p>Tutti gli altri sono <strong>programmi esterni</strong>: file che stanno da qualche parte sul disco. Quando scrivi il loro nome, la shell cerca il file, lo carica in memoria e lo esegue con le opzioni e gli argomenti che hai scritto. Esempio: <code>ls</code> su Linux è il file <code>/usr/bin/ls</code>, cioè il file <code>ls</code> nella cartella <code>bin</code> dentro la cartella <code>usr</code> (come si leggono questi indirizzi lo vedi nella sezione dopo).</p>
+<p>Ma dove cerca? Non in tutto il disco: sarebbe troppo lento. Cerca in un elenco di cartelle che si chiama <strong>PATH</strong> (percorso dei comandi). Il PATH è una <strong>variabile d&#39;ambiente</strong>: un&#39;informazione con un nome, che il sistema tiene in memoria e che tutti i programmi possono leggere.</p>
+<p>Per vedere il PATH (slide 13) si usa <code>echo</code>. Su Linux e macOS il valore di una variabile si chiede con il segno del dollaro davanti al nome:</p>
+<pre class="code" data-lingua="text"><code>$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</code></pre>
+<p>È il PATH di partenza di Ubuntu. Le cartelle sono separate dai due punti. Su Windows il nome della variabile va tra due segni di percentuale:</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;echo %PATH%</code></pre>
+<p>Esce una riga molto lunga, diversa da computer a computer. Contiene di sicuro le cartelle di Windows, come <code>C:\Windows\system32</code> e <code>C:\Windows</code>, separate dal punto e virgola.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · «command not found»</span></p><p>Se scrivi un nome che la shell non trova, né tra i suoi comandi né nelle cartelle del PATH, ricevi un errore. Per esempio con <code>cdd</code> al posto di <code>cd</code>.</p>
+<p>Su Linux: <code>cdd: command not found</code>. Ubuntu a volte aggiunge dei suggerimenti: <code>Command 'cdd' not found, but there are 19 similar ones.</code></p>
+<p>Su Windows: <code>'cdd' is not recognized as an internal or external command, operable program or batch file.</code></p>
+<p>Di solito è un errore di battitura. Se invece il nome è giusto, il programma non è installato oppure la sua cartella non è nel PATH. È quello che succede a <code>gcc</code> su Windows se salti un passo dell&#39;installazione.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Scrivi <code>echo ciao</code> su Linux e su Windows. Che cosa esce? E che cosa esce con <code>echo $PATH</code> su Windows?</span></summary><div class="ans"><p><code>echo ciao</code> stampa <code>ciao</code> su tutti e due. Su Windows <code>echo $PATH</code> stampa <code>$PATH</code> così com&#39;è: per Windows il dollaro non vuol dire niente. Lì si scrive <code>echo %PATH%</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>La riga di comando è una chat con il computer: scrivi un ordine, premi Invio, leggi la risposta.</li>
+<li>Un comando è fatto di nome, opzioni e argomenti, separati da spazi. Opzioni con <code>-</code> su Linux e macOS, con <code>/</code> su Windows.</li>
+<li>I programmi esterni si cercano nelle cartelle del PATH. «command not found» vuol dire: nome sbagliato, oppure programma non trovato nel PATH.</li>
+</ul>
+</div>
+</section>
+
+<section id="dove-sta-un-file-i-percorsi" aria-labelledby="h-dove-sta-un-file-i-percorsi" style="--h:3560px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-dove-sta-un-file-i-percorsi">Dove sta un file: i percorsi</h2><span class="slides">slide 14–18, 21–22</span></div>
+<p>Per mandare una lettera serve l&#39;indirizzo completo: paese, città, via, numero. Per dire a un comando su quale file lavorare serve la stessa cosa: l&#39;indirizzo del file sul disco. Un errore nell&#39;indirizzo, e il comando lavora sul file sbagliato o non lo trova. Con <code>rm importante.txt</code>, che cancella un file, è meglio essere precisi.</p>
+<h3 id="le-cartelle-sono-un-albero">Le cartelle sono un albero</h3>
+<p>Le cartelle stanno una dentro l&#39;altra. In cima c&#39;è la <strong>cartella radice</strong>: su Linux e macOS si scrive <code>/</code>, su Windows è il disco, per esempio <code>C:\</code>. Dentro la radice ci sono altre cartelle, dentro ognuna altre ancora, e così via. Disegnato, sembra un albero rovesciato.</p>
+<p>L&#39;esempio delle slide, su Windows:</p>
+<pre class="code" data-lingua="text"><code>C:\
+└── Users\
+    ├── jon_snow\
+    │   └── Documenti\
+    │       └── cosedafare.txt
+    └── topolino\
+        └── shared\
+            └── foto\
+                └── pippo.jpg</code></pre>
+<h3 id="il-percorso-assoluto-slide-15">Il percorso assoluto (slide 15)</h3>
+<p>Il <strong>percorso assoluto</strong> di un file è il suo indirizzo completo: tutte le cartelle da attraversare, dalla radice fino al file, nell&#39;ordine. Tra un nome e l&#39;altro c&#39;è un separatore: la barra <code>/</code> su Linux e macOS, la barra rovesciata <code>\</code> su Windows.</p>
+<p>Il file <code>cosedafare.txt</code> dell&#39;albero qui sopra ha questi percorsi assoluti:</p>
+<div class="table-wrap"><table><thead><tr><th>Sistema</th><th>Percorso assoluto</th></tr></thead><tbody><tr><td>Windows</td><td><code>C:\Users\jon_snow\Documenti\cosedafare.txt</code></td></tr>
+<tr><td>Linux</td><td><code>/home/jon_snow/Documenti/cosedafare.txt</code></td></tr></tbody></table></div>
+<p>Su Linux le cartelle personali stanno in <code>/home</code>, non in <code>Users</code>. Su macOS stanno in <code>/Users</code>.</p>
+<p>Un percorso assoluto funziona sempre, da qualunque cartella tu dia il comando. Il difetto: è lungo da scrivere.</p>
+<h3 id="la-cartella-di-lavoro-e-il-percorso-relativo-sli">La cartella di lavoro e il percorso relativo (slide 16–17)</h3>
+<p>Il terminale è sempre «dentro» una cartella: si chiama <strong>cartella di lavoro</strong> (<em>working directory</em>). È quella scritta nel prompt, prima del <code>&gt;</code> o del <code>$</code>. Per cambiarla si usa <code>cd</code>, da <em>change directory</em>:</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;cd Documenti
+
+C:\Users\jon_snow\Documenti&gt;</code></pre>
+<p>Il prompt è cambiato: ora sei in <code>Documenti</code>.</p>
+<p>Un <strong>percorso relativo</strong> è un indirizzo che parte dalla cartella di lavoro invece che dalla radice. È come dire a un amico che è già in via Pessinetto: «al numero 12», invece di ripetergli paese e città.</p>
+<p>Se la cartella di lavoro è <code>C:\Users\jon_snow</code>, questi due comandi cancellano lo stesso file (slide 17):</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;del Documenti\cosedafare.txt
+C:\Users\jon_snow&gt;del C:\Users\jon_snow\Documenti\cosedafare.txt</code></pre>
+<p>Come capire se un percorso è assoluto o relativo? Guarda come comincia. Se comincia dalla radice (<code>/</code> su Linux, <code>C:\</code> su Windows) è assoluto. Altrimenti è relativo, e il computer gli mette davanti la cartella di lavoro.</p>
+<h3 id="i-due-percorsi-speciali-punto-e-due-punti-slide-">I due percorsi speciali: punto e due punti (slide 21–22)</h3>
+<p>Ogni cartella contiene due nomi speciali:</p>
+<ul>
+<li><code>.</code> (un punto) è <strong>la cartella stessa</strong>, cioè la cartella di lavoro;</li>
+<li><code>..</code> (due punti) è <strong>la cartella che la contiene</strong>, quella un gradino più su nell&#39;albero.</li>
+</ul>
+<p>Se la cartella di lavoro è <code>Documenti</code>, questi due comandi fanno la stessa cosa (slide 21):</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documenti&gt;del .\verbale.txt
+C:\Users\jon_snow\Documenti&gt;del verbale.txt</code></pre>
+<p>Il <code>..</code> serve per risalire. L&#39;esempio della slide 22: sei in <code>C:\Users\jon_snow\Documenti</code> e vuoi copiare qui il file <code>pippo.jpg</code>, che sta nella cartella <code>shared\foto</code> dell&#39;utente <code>topolino</code>. Contiamo i passi nell&#39;albero:</p>
+<ol>
+<li>da <code>Documenti</code>, <code>..</code> porta a <code>jon_snow</code>;</li>
+<li>da <code>jon_snow</code>, un altro <code>..</code> porta a <code>Users</code>;</li>
+<li>da <code>Users</code> si scende in <code>topolino</code>, poi in <code>shared</code>, poi in <code>foto</code>;</li>
+<li>lì c&#39;è <code>pippo.jpg</code>.</li>
+</ol>
+<p>Il comando è:</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documenti&gt;copy ..\..\topolino\shared\foto\pippo.jpg .
+        1 file(s) copied.</code></pre>
+<p>Il <code>.</code> finale è la destinazione: «copialo qui». Su Linux lo stesso comando si scrive con <code>cp</code> e le barre dritte: <code>cp ../../topolino/shared/foto/pippo.jpg .</code>.</p>
+<h3 id="i-dischi-di-windows-slide-18">I dischi di Windows (slide 18)</h3>
+<p>Su Windows ogni disco ha una lettera seguita dai due punti. <code>C:</code> è il disco con il sistema e i programmi, come il compilatore e l&#39;editor. <code>D:</code> e le altre lettere sono altri dischi, chiavette o cartelle di rete. Al laboratorio Turing c&#39;è solo <code>C:</code>.</p>
+<p>Per passare a un altro disco si scrive la sua lettera, per esempio <code>D:</code>, e si preme Invio. Per andare nella tua cartella Documenti in laboratorio:</p>
+<pre class="code" data-lingua="text"><code>cd C:\Users\nome_utente\Documents</code></pre>
+<p>Al posto di <code>nome_utente</code> metti il tuo nome utente. Nota che qui la cartella si chiama <code>Documents</code>: è il nome vero che Windows usa su disco, anche quando in Esplora file vedi «Documenti».</p>
+<div class="box extra"><p class="box-label"><span>Oltre le slide · <code>cd</code> e l&#39;altro disco</span></p><p>Su Windows <code>cd D:\cartella</code> cambia la cartella di lavoro del disco <code>D:</code>, ma ti lascia sul disco in cui eri. Per cambiare insieme disco e cartella si scrive <code>cd /d D:\cartella</code>.</p>
+</div>
+<div class="box trap"><p class="box-label"><span>Trappola · Le barre al contrario</span></p><p>Linux e macOS vogliono <code>/</code>, Windows vuole <code>\</code>. Nelle slide 16 e 45 il prompt di Linux è scritto <code>jon_snow@linux:\home\jon_snow$</code>, con le barre rovesciate: su un Linux vero è <code>/home/jon_snow</code>, e nel prompt la cartella personale si vede come <code>~</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Sei in <code>/home/jon_snow/Documenti</code>. Dove arrivi con <code>cd ..</code>? E con <code>cd ../..</code>?</span></summary><div class="ans"><p>Con <code>cd ..</code> sali di un gradino: <code>/home/jon_snow</code>. Con <code>cd ../..</code> sali di due: <code>/home</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Sei in <code>C:\Users\jon_snow</code>. Scrivi il percorso relativo di <code>C:\Users\jon_snow\Documenti\cosedafare.txt</code>.</span></summary><div class="ans"><p>Si toglie la parte che coincide con la cartella di lavoro: resta <code>Documenti\cosedafare.txt</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Il percorso assoluto parte dalla radice (<code>/</code> oppure <code>C:\</code>) e funziona da qualunque cartella.</li>
+<li>Il percorso relativo parte dalla cartella di lavoro, quella scritta nel prompt.</li>
+<li><code>.</code> è la cartella in cui sei, <code>..</code> quella che la contiene. Separatore <code>/</code> su Linux e macOS, <code>\</code> su Windows.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-comandi-da-sapere-uno-per-uno" aria-labelledby="h-i-comandi-da-sapere-uno-per-uno" style="--h:6390px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-i-comandi-da-sapere-uno-per-uno">I comandi da sapere, uno per uno</h2><span class="slides">slide 19–20</span></div>
+<p>Con una decina di comandi fai tutto quello che faresti con il mouse in una cartella: guardare, entrare, creare, copiare, spostare, cancellare. Le slide 19 e 20 li elencano per Windows e per Linux. Qui li vedi in azione, con le risposte vere del computer.</p>
+<p>Le sessioni Linux vengono da Ubuntu, quelle Windows dal Prompt dei comandi. Ho usato una cartella di prova con l&#39;albero della sezione precedente e un utente di nome <code>jon_snow</code>, come nelle slide. Nei prompt di Linux scrivo solo <code>$</code> per abbreviare.</p>
+<h3 id="dove-sono-che-cosa-c-e-qui">Dove sono? Che cosa c&#39;è qui?</h3>
+<p><strong><code>pwd</code></strong> (Linux e macOS, <em>print working directory</em>) stampa la cartella di lavoro. Su Windows lo stesso fa <strong><code>cd</code></strong> scritto da solo.</p>
+<pre class="code" data-lingua="text"><code>$ pwd
+/home/jon_snow</code></pre>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;cd
+C:\Users\jon_snow</code></pre>
+<p><strong><code>ls</code></strong> (Linux e macOS, <em>list</em>) elenca i file e le cartelle della cartella di lavoro. Con un argomento elenca un&#39;altra cartella. Su Windows si usa <strong><code>dir</code></strong>.</p>
+<pre class="code" data-lingua="text"><code>$ ls
+Documenti
+$ ls Documenti
+cosedafare.txt  verbale.txt</code></pre>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;dir Documenti
+ Directory of C:\Users\jon_snow\Documenti
+
+10/05/2026  05:52 PM    &lt;DIR&gt;          .
+10/05/2026  05:52 PM    &lt;DIR&gt;          ..
+10/05/2026  05:52 PM                30 cosedafare.txt
+10/05/2026  05:52 PM                 9 verbale.txt
+               2 File(s)             39 bytes
+               2 Dir(s)  442,681,495,552 bytes free</code></pre>
+<p><code>dir</code> stampa anche data, ora e grandezza in byte. Le cartelle hanno la scritta <code>&lt;DIR&gt;</code>; ci sono anche <code>.</code> e <code>..</code>. Sopra l&#39;elenco <code>dir</code> stampa due righe sul disco (nome e numero di serie), che qui ho tolto. Con l&#39;opzione <code>/b</code> stampa solo i nomi.</p>
+<div class="box extra"><p class="box-label"><span>Oltre le slide · i file nascosti</span></p><p>Su Linux <code>ls</code> non mostra i file il cui nome comincia con un punto. <code>ls -a</code> (<em>all</em>) mostra tutto, anche <code>.</code> e <code>..</code>. <code>ls -l</code> (<em>long</em>) mostra anche grandezza, data e permessi, come <code>dir</code>.</p>
+</div>
+<h3 id="muoversi-k211">Muoversi: <code>cd</code></h3>
+<p><strong><code>cd cartella</code></strong> entra in una cartella. <strong><code>cd ..</code></strong> sale di un gradino. Funziona allo stesso modo su Linux, macOS e Windows, con le barre giuste.</p>
+<pre class="code" data-lingua="text"><code>$ cd Documenti
+$ pwd
+/home/jon_snow/Documenti
+$ cd ..
+$ pwd
+/home/jon_snow</code></pre>
+<p><code>cd</code> non stampa niente quando va tutto bene: cambia solo il prompt. Su Linux <code>cd</code> da solo, o <code>cd ~</code>, riporta nella cartella personale. <code>cd /</code> porta alla radice.</p>
+<p>Errore tipico: una cartella che non c&#39;è, o scritta male.</p>
+<pre class="code" data-lingua="text"><code>$ cd Cartellachenonce
+bash: cd: Cartellachenonce: No such file or directory</code></pre>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documenti&gt;cd Cartellachenonce
+The system cannot find the path specified.</code></pre>
+<div class="box trap"><p class="box-label"><span>Trappola · Maiuscole e minuscole</span></p><p>Su Linux <code>Documenti</code> e <code>documenti</code> sono due nomi diversi: <code>cd documenti</code> dà errore. Windows e macOS di solito non fanno differenza. Abituati a scrivere i nomi esattamente come sono: il C distingue sempre maiuscole e minuscole.</p>
+</div>
+<h3 id="creare-k218-k219-k220">Creare: <code>mkdir</code>, <code>touch</code>, <code>copy NUL</code></h3>
+<p><strong><code>mkdir nome</code></strong> (<em>make directory</em>) crea una cartella vuota. Si scrive così su tutti e tre i sistemi.</p>
+<p><strong><code>touch nome</code></strong> (Linux e macOS) crea un file vuoto. Su Windows lo stesso si fa con <strong><code>copy NUL nome</code></strong>: copia «il niente» in un file nuovo. <code>NUL</code> è un file speciale di Windows, sempre vuoto.</p>
+<pre class="code" data-lingua="text"><code>$ mkdir PROVA
+$ cd PROVA
+$ touch importante.txt
+$ ls
+importante.txt</code></pre>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documenti\PROVA&gt;copy NUL importante.txt
+        1 file(s) copied.</code></pre>
+<p>Errore tipico: la cartella esiste già.</p>
+<pre class="code" data-lingua="text"><code>$ mkdir PROVA
+mkdir: cannot create directory ‘PROVA’: File exists</code></pre>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documenti&gt;mkdir PROVA
+A subdirectory or file PROVA already exists.</code></pre>
+<h3 id="copiare-k225-e-k226">Copiare: <code>cp</code> e <code>copy</code></h3>
+<p><strong><code>cp origine destinazione</code></strong> (Linux e macOS) copia un file. Su Windows si scrive <strong><code>copy origine destinazione</code></strong>. L&#39;originale resta dov&#39;è.</p>
+<pre class="code" data-lingua="text"><code>$ cp rilevante.txt copia.txt
+$ ls
+copia.txt  rilevante.txt</code></pre>
+<p>Origine e destinazione possono essere percorsi relativi, come qui, o assoluti:</p>
+<pre class="code" data-lingua="text"><code>$ cp /home/jon_snow/Documenti/PROVA/rilevante.txt /home/jon_snow/Documenti/PROVA/copia2.txt</code></pre>
+<p>Se la destinazione è una cartella, la copia prende lo stesso nome dell&#39;originale: è il caso di <code>copy … .</code> della slide 22.</p>
+<p>Errore tipico: il file da copiare non c&#39;è, o il nome è sbagliato.</p>
+<pre class="code" data-lingua="text"><code>$ cp nonce.txt b.txt
+cp: cannot stat 'nonce.txt': No such file or directory</code></pre>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documenti&gt;copy nonce.txt b.txt
+The system cannot find the file specified.</code></pre>
+<h3 id="rinominare-e-spostare-k230-k231-k232">Rinominare e spostare: <code>mv</code>, <code>ren</code>, <code>move</code></h3>
+<p>Su Linux e macOS un solo comando fa due lavori: <strong><code>mv</code></strong> (<em>move</em>).</p>
+<ul>
+<li><code>mv importante.txt rilevante.txt</code> cambia il nome del file;</li>
+<li><code>mv PROVA/rilevante.txt .</code> sposta il file nella cartella di lavoro.</li>
+</ul>
+<p>In fondo è la stessa cosa: cambi l&#39;indirizzo del file. Su Windows ci sono due comandi: <strong><code>ren</code></strong> (<em>rename</em>) per cambiare nome, <strong><code>move</code></strong> per spostare.</p>
+<pre class="code" data-lingua="text"><code>$ mv importante.txt rilevante.txt
+$ ls
+rilevante.txt</code></pre>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documenti\PROVA&gt;ren importante.txt rilevante.txt
+
+C:\Users\jon_snow\Documenti&gt;move PROVA\rilevante.txt .
+        1 file(s) moved.</code></pre>
+<div class="box trap"><p class="box-label"><span>Trappola · Copiare o spostare sopra un file che esiste</span></p><p>Su Linux <code>cp</code> e <code>mv</code> sovrascrivono senza chiedere: se <code>b.txt</code> esiste, il suo contenuto è perso. Su Windows <code>copy</code> e <code>move</code>, scritti a mano nel Prompt dei comandi, chiedono prima conferma; dentro un file di comandi no. Controlla sempre la destinazione.</p>
+</div>
+<h3 id="cancellare-k238-k239-k240">Cancellare: <code>rm</code>, <code>del</code>, <code>rmdir</code></h3>
+<p><strong><code>rm file</code></strong> (Linux e macOS, <em>remove</em>) cancella un file. Su Windows si usa <strong><code>del</code></strong> (<em>delete</em>). Il file <strong>non va nel cestino</strong>: sparisce subito.</p>
+<pre class="code" data-lingua="text"><code>$ rm copia.txt copia2.txt
+$ ls
+rilevante.txt</code></pre>
+<p><strong><code>rmdir cartella</code></strong> (<em>remove directory</em>) cancella una cartella, ma solo se è <strong>vuota</strong>. Si scrive così ovunque.</p>
+<pre class="code" data-lingua="text"><code>$ rmdir PROVA
+rmdir: failed to remove 'PROVA': Directory not empty</code></pre>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documenti&gt;rmdir PROVA
+The directory is not empty.</code></pre>
+<p>Prima cancelli i file dentro, poi la cartella. <code>rm</code> da solo non cancella le cartelle:</p>
+<pre class="code" data-lingua="text"><code>$ rm PROVA
+rm: cannot remove 'PROVA': Is a directory</code></pre>
+<div class="box extra"><p class="box-label"><span>Oltre le slide · cancellare una cartella piena</span></p><p>Su Linux <code>rm -r PROVA</code> (<em>recursive</em>) cancella la cartella con tutto quello che contiene; su Windows lo fa <code>rmdir /s PROVA</code>, che chiede conferma. Usali con molta attenzione: non c&#39;è modo di tornare indietro.</p>
+</div>
+<h3 id="leggere-un-file-k245-e-k246">Leggere un file: <code>cat</code> e <code>type</code></h3>
+<p><strong><code>cat file</code></strong> (Linux e macOS) stampa il contenuto di un file di testo. Su Windows si usa <strong><code>type</code></strong>. Sono comodi per controllare al volo un file corto, per esempio un programma C.</p>
+<pre class="code" data-lingua="text"><code>$ cat cosedafare.txt
+comprare il pane
+studiare C</code></pre>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documenti&gt;type cosedafare.txt
+comprare il pane
+studiare C</code></pre>
+<p>Errore tipico, il file non c&#39;è:</p>
+<pre class="code" data-lingua="text"><code>$ cat nonesiste.txt
+cat: nonesiste.txt: No such file or directory</code></pre>
+<div class="box trap"><p class="box-label"><span>Trappola · Nomi con gli spazi</span></p><p>Lo spazio separa gli argomenti. Se un file si chiama <code>file di prova.txt</code>, il comando <code>type file di prova.txt</code> cerca tre file: <code>file</code>, <code>di</code> e <code>prova.txt</code>. Windows risponde tre volte <code>The system cannot find the file specified.</code> Si scrive il nome tra virgolette, <code>type &quot;file di prova.txt&quot;</code>, oppure si evitano gli spazi nei nomi. Per i tuoi programmi usa nomi come <code>somma_due_numeri.c</code>.</p>
+</div>
+<h3 id="aprire-un-file-con-l-editor">Aprire un file con l&#39;editor</h3>
+<p>Per scrivere un programma serve un editor di testo. Dalla riga di comando si apre così:</p>
+<ul>
+<li>Windows: <code>start notepad++ rilevante.txt</code> apre il file con Notepad++;</li>
+<li>macOS: <code>open rilevante.txt</code> lo apre con il programma predefinito;</li>
+<li>Linux: <code>xdg-open rilevante.txt</code> fa lo stesso.</li>
+</ul>
+<h3 id="la-tabella-di-tutti-i-comandi">La tabella di tutti i comandi</h3>
+<div class="table-wrap"><table><thead><tr><th>Che cosa fa</th><th>Linux e macOS</th><th>Windows</th></tr></thead><tbody><tr><td>mostra la cartella di lavoro</td><td><code>pwd</code></td><td><code>cd</code></td></tr>
+<tr><td>entra nella cartella <code>dir</code></td><td><code>cd dir</code></td><td><code>cd dir</code></td></tr>
+<tr><td>sale alla cartella che contiene quella di lavoro</td><td><code>cd ..</code></td><td><code>cd ..</code></td></tr>
+<tr><td>elenca la cartella di lavoro</td><td><code>ls</code></td><td><code>dir</code></td></tr>
+<tr><td>elenca la cartella <code>path</code></td><td><code>ls path</code></td><td><code>dir path</code></td></tr>
+<tr><td>crea la cartella vuota <code>dirA</code></td><td><code>mkdir dirA</code></td><td><code>mkdir dirA</code></td></tr>
+<tr><td>cancella la cartella <code>dirA</code>, se è vuota</td><td><code>rmdir dirA</code></td><td><code>rmdir dirA</code></td></tr>
+<tr><td>copia <code>fileA</code> in un nuovo <code>fileB</code></td><td><code>cp fileA fileB</code></td><td><code>copy fileA fileB</code></td></tr>
+<tr><td>crea il file vuoto <code>fileA</code></td><td><code>touch fileA</code></td><td><code>copy NUL fileA</code></td></tr>
+<tr><td>cambia il nome di <code>fileA</code> in <code>fileB</code></td><td><code>mv fileA fileB</code></td><td><code>ren fileA fileB</code></td></tr>
+<tr><td>sposta un file in un altro posto</td><td><code>mv pathToA pathToB</code></td><td><code>move pathToA pathToB</code></td></tr>
+<tr><td>cancella <code>fileA</code></td><td><code>rm fileA</code></td><td><code>del fileA</code></td></tr>
+<tr><td>stampa il contenuto di <code>fileA</code></td><td><code>cat fileA</code></td><td><code>type fileA</code></td></tr>
+<tr><td>apre <code>fileA</code> con un editor</td><td><code>open fileA</code> (macOS), <code>xdg-open fileA</code> (Linux)</td><td><code>start notepad++ fileA</code></td></tr>
+<tr><td>cambia disco</td><td>non serve: c&#39;è un solo albero</td><td><code>C:</code>, <code>D:</code>, <code>X:</code></td></tr>
+<tr><td>stampa il PATH</td><td><code>echo $PATH</code></td><td><code>echo %PATH%</code></td></tr></tbody></table></div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Sei nella cartella <code>PROVA</code>, che contiene solo <code>rilevante.txt</code>. Quali comandi Linux servono per tornare su e cancellare <code>PROVA</code>?</span></summary><div class="ans"><p><code>rm rilevante.txt</code> per svuotarla, poi <code>cd ..</code> per uscire, poi <code>rmdir PROVA</code>. Su Windows: <code>del rilevante.txt</code>, <code>cd ..</code>, <code>rmdir PROVA</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra <code>cp a.txt b.txt</code> e <code>mv a.txt b.txt</code>?</span></summary><div class="ans"><p>Dopo <code>cp</code> ci sono due file uguali, <code>a.txt</code> e <code>b.txt</code>. Dopo <code>mv</code> c&#39;è solo <code>b.txt</code>: il file è lo stesso, ha cambiato nome.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Linux e macOS: <code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>touch</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>rmdir</code>, <code>cat</code>.</li>
+<li>Windows: <code>cd</code>, <code>dir</code>, <code>mkdir</code>, <code>copy NUL</code>, <code>copy</code>, <code>ren</code>, <code>move</code>, <code>del</code>, <code>rmdir</code>, <code>type</code>.</li>
+<li><code>rm</code> e <code>del</code> non usano il cestino; <code>rmdir</code> cancella solo cartelle vuote. Gli errori più comuni sono nomi scritti male e spazi nei nomi.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-compilatore-c-sul-tuo-computer" aria-labelledby="h-il-compilatore-c-sul-tuo-computer" style="--h:4200px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-il-compilatore-c-sul-tuo-computer">Il compilatore C sul tuo computer</h2><span class="slides">slide 25–36</span></div>
+<p>Un programma in C, per il computer, è solo un file di testo. Il processore non lo sa eseguire: capisce soltanto il linguaggio macchina, fatto di numeri. Serve un traduttore, il <strong>compilatore</strong>. Il viaggio dal testo al linguaggio macchina è spiegato nella <a href="02A_da_assembly_a_c.html#h-dal-sorgente-all-eseguibile">lezione 02A</a>; qui vediamo come installarlo e usarlo.</p>
+<h3 id="il-c-in-breve-slide-25-27">Il C in breve (slide 25–27)</h3>
+<p>La slide 25 riassume le caratteristiche del C. Il nome si pronuncia «si», all&#39;inglese.</p>
+<ul>
+<li><strong>procedurale e imperativo</strong>: scrivi le istruzioni da eseguire e il loro ordine, divise in funzioni;</li>
+<li><strong>strutturato</strong>: usa blocchi, cicli e scelte <code>if</code>/<code>else</code> invece dei salti dell&#39;assembly;</li>
+<li>permette la <strong>ricorsione</strong>: una funzione può chiamare sé stessa (la vedrai verso la fine del corso);</li>
+<li><strong>tipizzato</strong>: ogni variabile, cioè ogni casella della memoria con un nome, ha un tipo, per esempio «numero intero». Le variabili le vedi nell&#39;ultima sezione;</li>
+<li><strong>vicino all&#39;hardware</strong>: lascia lavorare direttamente sulla memoria.</li>
+</ul>
+<p>Quattro di queste caratteristiche sono già nella <a href="02A_da_assembly_a_c.html#h-le-caratteristiche-del-c">lezione 02A</a>. Il C è ancora molto usato: nell&#39;indice TIOBE di settembre 2026 è il secondo linguaggio più popolare, dopo Python. Nel sondaggio Stack Overflow 2025 lo usa il 22 % di chi ha risposto (slide 27).</p>
+<p>Per cercare come funziona una funzione della libreria, la slide 26 consiglia: <a href="https://en.cppreference.com/w/c/header" target="_blank" rel="noopener">cppreference</a>, <a href="https://en.wikibooks.org/wiki/C_Programming/Standard_library_reference" target="_blank" rel="noopener">Wikibooks</a>, <a href="https://en.wikipedia.org/wiki/C_standard_library" target="_blank" rel="noopener">Wikipedia</a> e <a href="https://cplusplus.com/reference/clibrary/" target="_blank" rel="noopener">cplusplus.com</a>. Sono in inglese.</p>
+<h3 id="quale-compilatore-slide-28">Quale compilatore (slide 28)</h3>
+<p>Di compilatori C ce ne sono molti. Alcuni esistono da decenni e sono tra i programmi più provati al mondo: quasi tutto il software di sistema è scritto in C. Nel corso si usa <strong>gcc</strong>, ma quello che vedrai vale per quasi tutti i compilatori.</p>
+<h3 id="installarlo-slide-29-33">Installarlo (slide 29–33)</h3>
+<p><strong>Su Linux</strong> gcc si installa con il gestore dei pacchetti, il programma che scarica e installa il software. Il comando dipende dalla distribuzione:</p>
+<pre class="code" data-lingua="text"><code>sudo apt install build-essential      (Debian, Ubuntu)
+sudo dnf install gcc make             (Fedora)</code></pre>
+<p><code>sudo</code> vuol dire «come amministratore»: ti chiede la tua password.</p>
+<p><strong>Su macOS</strong> si installano gli strumenti da riga di comando di Xcode (<em>Xcode command line tools</em>), dall&#39;App Store o dal sito di Apple. Un modo comodo è scrivere nel terminale <code>xcode-select --install</code>. Su macOS il comando <code>gcc</code> in realtà avvia un altro compilatore, clang, che accetta le stesse opzioni.</p>
+<p><strong>Su Windows</strong> si usa <strong>MinGW-w64</strong>, una versione di gcc fatta per Windows. I passi delle slide:</p>
+<ol>
+<li>scarica l&#39;archivio dalla pagina <a href="https://github.com/niXman/mingw-builds-binaries/releases" target="_blank" rel="noopener">github.com/niXman/mingw-builds-binaries/releases</a>. La slide 30 dà il link diretto alla versione 15.2.0, un file <code>.7z</code> con nel nome <code>x86_64</code>, <code>win32</code>, <code>seh</code> e <code>msvcrt</code>;</li>
+<li>l&#39;archivio è un file compresso: estrailo in una cartella tua, per esempio <code>C:\Users\&lt;Nome Utente&gt;\Documents\mingw64</code>. Per aprire i <code>.7z</code> serve un programma come 7-Zip;</li>
+<li>aggiungi al PATH la cartella <code>bin</code> che sta dentro: <code>C:\Users\&lt;Nome Utente&gt;\Documents\mingw64\bin</code>. È lì che si trova <code>gcc.exe</code>.</li>
+</ol>
+<p>Il passo 3, nelle slide 31–33:</p>
+<ol>
+<li>apri le <strong>Impostazioni di sistema</strong>;</li>
+<li>vai su <strong>Sistema → Impostazioni avanzate di sistema</strong> e clicca su <strong>Variabili d&#39;ambiente</strong>. Si fa prima come nella figura della slide 31: scrivi «variabili» nella ricerca del menu Start e apri la voce per modificare le variabili d&#39;ambiente del tuo account;</li>
+<li>nella sezione <strong>Variabili utente</strong> seleziona <strong>Path</strong> e clicca su <strong>Modifica</strong>;</li>
+<li>clicca su <strong>Nuovo</strong> e scrivi il percorso della cartella <code>bin</code> di MinGW;</li>
+<li>conferma con <strong>OK</strong> in tutte le finestre.</li>
+</ol>
+<p>Perché proprio il PATH? Per la sezione «La riga di comando»: quando scrivi <code>gcc</code>, il terminale lo cerca solo nelle cartelle del PATH. Se la cartella <code>bin</code> non c&#39;è, ricevi «not recognized as an internal or external command».</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Il terminale vecchio non vede il PATH nuovo</span></p><p>Un terminale legge il PATH quando si apre. Dopo aver cambiato il PATH, chiudi il Prompt dei comandi e aprine uno nuovo.</p>
+</div>
+<h3 id="controllare-che-funzioni-slide-34">Controllare che funzioni (slide 34)</h3>
+<p>Apri un Prompt dei comandi nuovo e scrivi <code>where gcc</code>. Il comando <code>where</code> cerca un programma nelle cartelle del PATH e stampa dove l&#39;ha trovato. Se va bene, esce il percorso di <code>gcc.exe</code>:</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;where gcc
+C:\MinGW\bin\gcc.exe</code></pre>
+<p>Il percorso dipende da dove hai estratto l&#39;archivio. Se va male, esce un messaggio. È questo nella slide, su un Windows in italiano:</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;where gcc
+INFORMAZIONI: Impossibile trovare i file corrispondenti ai criteri di ricerca indicati.</code></pre>
+<p>In inglese il messaggio è <code>INFO: Could not find files for the given pattern(s).</code> Allora ricontrolla il passo del PATH.</p>
+<p>L&#39;altro controllo è <code>gcc --version</code>, con <strong>due trattini</strong> attaccati. Stampa la versione. Sul mio PC:</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;gcc --version
+gcc (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r4) 16.1.0
+Copyright (C) 2026 Free Software Foundation, Inc.</code></pre>
+<p>La prima riga cambia con la versione installata. Su Linux e macOS il controllo è lo stesso, <code>gcc --version</code>; al posto di <code>where</code> si usa <code>which gcc</code>.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Un refuso nella slide 34</span></p><p>Nella slide 34 il comando è scritto <code>gcc –version</code>, con una lineetta sola. Il comando giusto ha due trattini normali: <code>gcc --version</code>. Se copi la lineetta lunga da un PDF, gcc non la riconosce.</p>
+</div>
+<h3 id="con-che-cosa-scrivere-il-codice-slide-35-36">Con che cosa scrivere il codice (slide 35–36)</h3>
+<p>Il codice si scrive con un <strong>editor di testo semplice</strong>, ma pensato per programmare: colora le parole, numera le righe, non cambia i caratteri. Il Blocco note di Windows non va bene. Su Windows le slide consigliano <strong>Notepad++</strong>; altri editor sono gedit, Sublime Text, Atom.</p>
+<p>In laboratorio <strong>non</strong> si usa un ambiente di sviluppo integrato (IDE). Se vuoi usarne uno a casa, spegni gli strumenti che completano il codice da soli, come Copilot: scriverebbero gli esercizi al posto tuo. L&#39;obiettivo è imparare. E all&#39;esame avrai solo un editor semplice in una pagina web.</p>
+<p>I file con il codice C hanno l&#39;<strong>estensione</strong> <code>.c</code>: sono i file sorgente, cioè le unità di compilazione. I file di intestazione hanno l&#39;estensione <code>.h</code>. Dalla <a href="02A_da_assembly_a_c.html#h-la-radiografia-del-primo-programma">lezione 02A</a> conosci già <code>stdio.h</code>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Il file che si chiama <code>buongiorno.c.txt</code></span></p><p>Windows nasconde le estensioni dei file «conosciuti». Così un file salvato come testo può chiamarsi davvero <code>buongiorno.c.txt</code>, mentre tu vedi <code>buongiorno.c</code>, e gcc non lo trova. Nelle opzioni di Esplora file togli la spunta da «Nascondi le estensioni per i tipi di file conosciuti», come dice la slide 36. Con <code>dir</code> vedi sempre il nome vero.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Hai installato MinGW, ma <code>gcc --version</code> risponde «&#39;gcc&#39; is not recognized…». Quali sono le due cause più probabili?</span></summary><div class="ans"><p>La cartella <code>bin</code> di MinGW non è nel PATH (o hai scritto il percorso sbagliato), oppure stai usando un terminale aperto prima di cambiare il PATH. Chiudilo, aprine uno nuovo e prova con <code>where gcc</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Linux: <code>sudo apt install build-essential</code>; macOS: strumenti da riga di comando di Xcode; Windows: MinGW-w64, con la cartella <code>bin</code> nel PATH.</li>
+<li>Controllo: <code>where gcc</code> (Windows) o <code>which gcc</code>, e <code>gcc --version</code> con due trattini.</li>
+<li>Editor semplice (Notepad++), niente IDE né completamento automatico, estensioni dei file visibili.</li>
+</ul>
+</div>
+</section>
+
+<section id="da-buongiorno-c-al-programma-che-gira" aria-labelledby="h-da-buongiorno-c-al-programma-che-gira" style="--h:4620px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-da-buongiorno-c-al-programma-che-gira">Da buongiorno.c al programma che gira</h2><span class="slides">slide 37–46</span></div>
+<p>Il primo programma del laboratorio è quasi lo stesso della <a href="02A_da_assembly_a_c.html#h-la-radiografia-del-primo-programma">lezione 02A</a>: stampa un saluto. Lì trovi la spiegazione riga per riga. Qui lo trasformiamo davvero in un programma.</p>
+<h3 id="scrivere-il-file-slide-37">Scrivere il file (slide 37)</h3>
+<p>Apri l&#39;editor, scrivi il testo e salvalo con il nome <code>buongiorno.c</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    printf(<span class="str">&quot;Buongiorno!\n&quot;</span>);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>In breve: <code>#include &lt;stdio.h&gt;</code> porta dentro le dichiarazioni di <code>printf</code>; <code>main</code> è il punto da cui parte il programma; <code>printf</code> stampa il testo tra virgolette, e <code>\n</code> va a capo; <code>return 0;</code> dice al sistema operativo «tutto bene».</p>
+<h3 id="i-quattro-stadi-in-breve-slide-38-39">I quattro stadi, in breve (slide 38–39)</h3>
+<p>Per diventare un programma, il file passa da quattro programmi uno dopo l&#39;altro: il <strong>preprocessore</strong> (<code>cpp</code>), il <strong>compilatore</strong> (<code>cc</code>), l&#39;<strong>assemblatore</strong> (<code>as</code>) e il <strong>collegatore</strong>, in inglese <strong>linker</strong> (<code>ld</code>). Li trovi spiegati nella <a href="02A_da_assembly_a_c.html#h-dal-sorgente-all-eseguibile">lezione 02A</a>. Il comando <code>gcc</code> li chiama tutti al posto tuo.</p>
+<p>Nel percorso si incontrano tre tipi di file:</p>
+<div class="table-wrap"><table><thead><tr><th>Tipo</th><th>Estensione</th><th>Che cosa contiene</th></tr></thead><tbody><tr><td>sorgente</td><td><code>.c</code>, <code>.h</code></td><td>il programma in C, come testo</td></tr>
+<tr><td>oggetto</td><td><code>.o</code> (Linux, macOS), <code>.obj</code> (Windows)</td><td>un pezzo di programma in linguaggio macchina, non ancora eseguibile</td></tr>
+<tr><td>eseguibile</td><td>nessuna (Linux, macOS), <code>.exe</code> (Windows)</td><td>il programma finito, che si può avviare</td></tr></tbody></table></div>
+<p>La figura della slide 39 mostra il caso con tanti sorgenti: ogni file <code>.c</code> diventa un file oggetto, poi il linker li unisce tutti in un solo eseguibile.</p>
+<h3 id="compilare-in-due-passi-k378-e-il-collegamento-sl">Compilare in due passi: <code>-c</code> e il collegamento (slide 40–41)</h3>
+<p>Primo passo: dal sorgente al file oggetto. L&#39;opzione <strong><code>-c</code></strong> dice a gcc «fermati prima del linker». L&#39;opzione <strong><code>-o</code></strong> (<em>output</em>) sceglie il nome del file prodotto.</p>
+<pre class="code" data-lingua="text"><code>$ gcc -c buongiorno.c -o buongiorno.o</code></pre>
+<p>Su Windows, secondo la slide 40, il file oggetto si chiama <code>buongiorno.obj</code>. Il nome lo scegli tu con <code>-o</code>: gcc di MinGW scrive comunque lo stesso tipo di file.</p>
+<p>Secondo passo: dal file oggetto all&#39;eseguibile. È lo stesso comando <code>gcc</code>, <strong>senza</strong> <code>-c</code>: così gcc chiama il linker.</p>
+<pre class="code" data-lingua="text"><code>$ gcc buongiorno.o -o buongiorno</code></pre>
+<p>Su Windows: <code>gcc buongiorno.obj -o buongiorno.exe</code>. Con più file oggetto si elencano tutti: <code>gcc oggetto1.o oggetto2.o -o eseguibile</code>.</p>
+<h3 id="tutto-in-un-passo-slide-42">Tutto in un passo (slide 42)</h3>
+<p>Con un solo file sorgente si fanno i due passi insieme:</p>
+<pre class="code" data-lingua="text"><code>$ gcc buongiorno.c -o buongiorno</code></pre>
+<p>Su Windows: <code>gcc buongiorno.c -o buongiorno.exe</code>. È il modo che userai quasi sempre.</p>
+<h3 id="gli-avvisi-k388-slide-43-44">Gli avvisi: <code>-Wall -Werror</code> (slide 43–44)</h3>
+<p>A volte il compilatore trova un pezzo di codice corretto per le regole del C, ma sospetto: per esempio una variabile che non usi mai. Non si ferma, ma stampa un <strong>avviso</strong> (<em>warning</em>).</p>
+<ul>
+<li><strong><code>-Wall</code></strong> accende gli avvisi più utili (<em>all warnings</em>);</li>
+<li><strong><code>-Werror</code></strong> trasforma ogni avviso in errore: con un solo avviso, il programma non viene prodotto.</li>
+</ul>
+<pre class="code" data-lingua="text"><code>$ gcc -Wall -Werror buongiorno.c -o buongiorno</code></pre>
+<p>Su Windows: <code>gcc -Wall -Werror buongiorno.c -o buongiorno.exe</code>. Se va tutto bene gcc non stampa niente e trovi il file <code>buongiorno</code> (o <code>buongiorno.exe</code>) nella cartella. Il silenzio è una buona notizia.</p>
+<p>Ecco che cosa cambia. Questo programma dichiara una variabile <code>b</code> e non la usa mai:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a = 5;
+    <span class="kw">int</span> b = 7;
+    printf(<span class="str">&quot;a vale %d\n&quot;</span>, a);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Senza opzioni gcc lo compila in silenzio. Con <code>-Wall -Werror</code> si ferma:</p>
+<pre class="code" data-lingua="text"><code>err_inutile.c: In function 'main':
+err_inutile.c:5:9: error: unused variable 'b' [-Werror=unused-variable]
+    5 |     int b = 7;
+      |         ^
+cc1.exe: all warnings being treated as errors</code></pre>
+<p>Si legge così: nel file <code>err_inutile.c</code>, riga 5, colonna 9, la variabile <code>b</code> non è usata. Tra parentesi quadre c&#39;è il nome dell&#39;avviso; <code>-Werror=</code> vuol dire che <code>-Werror</code> l&#39;ha fatto diventare un errore. Per leggere bene questi messaggi guarda anche la <a href="02A_da_assembly_a_c.html#h-errori-di-compilazione-a-runtime-e-logici">lezione 02A</a>.</p>
+<div class="box exam"><p class="box-label"><span>Conta all'esame · Le opzioni dell&#39;esame</span></p><p>La slide 43 lo dice chiaro: in sede d&#39;esame si usa <code>-Wall -Werror</code>. Un programma con un solo avviso non compila e non passa nessun test. Compila sempre così, anche a casa.</p>
+</div>
+<h3 id="eseguire-il-programma-slide-45">Eseguire il programma (slide 45)</h3>
+<p>Il programma è un file nella cartella di lavoro. Per avviarlo si scrive il suo nome. Su Windows basta il nome:</p>
+<pre class="code" data-lingua="text"><code>C:\Users\jon_snow&gt;buongiorno
+Buongiorno!</code></pre>
+<p>Su Linux e macOS serve <code>./</code> davanti, cioè «il file che sta qui»:</p>
+<pre class="code" data-lingua="text"><code>$ ./buongiorno
+Buongiorno!</code></pre>
+<p>Perché il <code>./</code>? Per la sezione «La riga di comando»: un nome senza percorso viene cercato solo nelle cartelle del PATH, e la cartella di lavoro su Linux non c&#39;è. Scrivere <code>./</code> dà un percorso relativo, e allora la shell non cerca più.</p>
+<pre class="code" data-lingua="text"><code>$ buongiorno
+buongiorno: command not found</code></pre>
+<div class="box extra"><p class="box-label"><span>Oltre le slide · PowerShell</span></p><p>Su Windows c&#39;è anche un altro terminale, PowerShell, quello che si apre di solito nelle versioni recenti. Lì il programma si avvia come su Linux, <code>.\buongiorno</code>. Con il nome soltanto risponde <code>The term 'buongiorno' is not recognized as the name of a cmdlet…</code>.</p>
+</div>
+<h3 id="guardare-il-linguaggio-macchina-il-disassemblato">Guardare il linguaggio macchina: il disassemblatore (slide 46)</h3>
+<p>Un <strong>disassemblatore</strong> fa il viaggio al contrario: prende il programma compilato e mostra le sue istruzioni macchina scritte in assembly. Non torna al C: quello è perso.</p>
+<div class="table-wrap"><table><thead><tr><th>Sistema</th><th>Comando</th></tr></thead><tbody><tr><td>Linux</td><td><code>objdump -d eseguibile</code></td></tr>
+<tr><td>macOS</td><td><code>otool -tv eseguibile</code></td></tr>
+<tr><td>Windows</td><td><code>objdump -d eseguibile.exe</code></td></tr></tbody></table></div>
+<p>Sul mio PC <code>objdump -d buongiorno.exe</code> stampa 2808 righe: c&#39;è anche tutto il codice che il linker ha aggiunto per avviare il programma. La funzione <code>main</code> comincia così:</p>
+<pre class="code" data-lingua="text"><code>0000000140001760 &lt;main&gt;:
+   140001760:	55                   	push   %rbp
+   140001761:	48 89 e5             	mov    %rsp,%rbp
+   140001764:	48 83 ec 20          	sub    $0x20,%rsp
+   140001768:	e8 da 00 00 00       	call   140001847 &lt;__main&gt;
+   14000176d:	48 8d 05 dc 38 00 00 	lea    0x38dc(%rip),%rax
+   140001774:	48 89 c1             	mov    %rax,%rcx
+   140001777:	e8 ec 1a 00 00       	call   140003268 &lt;puts&gt;
+   14000177c:	b8 00 00 00 00       	mov    $0x0,%eax</code></pre>
+<p>A sinistra l&#39;indirizzo in memoria, poi i byte dell&#39;istruzione in esadecimale, poi l&#39;istruzione in assembly. È il linguaggio macchina della <a href="02A_da_assembly_a_c.html#h-linguaggio-macchina-e-assembly">lezione 02A</a>, per un processore vero. Curiosità: gcc ha sostituito <code>printf</code> con <code>puts</code>, una funzione più veloce che stampa una riga e va a capo. Può farlo perché la stringa, cioè il testo tra virgolette, finiva con <code>\n</code> e non aveva niente da riempire.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che differenza c&#39;è tra <code>gcc -c prova.c -o prova.o</code> e <code>gcc prova.c -o prova</code>?</span></summary><div class="ans"><p>Il primo si ferma al file oggetto <code>prova.o</code>, che non si può eseguire. Il secondo fa anche il collegamento e produce il programma eseguibile <code>prova</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Hai compilato <code>ciao.c</code> su Linux con <code>gcc -Wall -Werror ciao.c -o ciao</code>. Come lo avvii?</span></summary><div class="ans"><p>Con <code>./ciao</code>. Scrivendo solo <code>ciao</code> la shell lo cerca nel PATH e risponde <code>ciao: command not found</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Il comando di ogni giorno: <code>gcc -Wall -Werror sorgente.c -o eseguibile</code> (su Windows <code>eseguibile.exe</code>). Silenzio vuol dire «compilato».</li>
+<li><code>-c</code> si ferma al file oggetto; <code>-o</code> sceglie il nome; <code>-Wall -Werror</code> ferma tutto anche per un solo avviso, come all&#39;esame.</li>
+<li>Si esegue con <code>./nome</code> su Linux e macOS, con <code>nome</code> nel Prompt dei comandi di Windows.</li>
+</ul>
+</div>
+</section>
+
+<section id="leggere-un-numero-con-scanf" aria-labelledby="h-leggere-un-numero-con-scanf" style="--h:4200px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-leggere-un-numero-con-scanf">Leggere un numero con scanf</h2><span class="slides">slide 48–49</span></div>
+<p>Finora i programmi parlano soltanto: stampano sempre la stessa frase. Un programma utile deve anche ascoltare. Per esempio: «dimmi un numero e ti scrivo la sua tabellina». Per questo serve leggere dalla tastiera.</p>
+<h3 id="il-programma-della-slide-48">Il programma della slide 48</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> number;
+    printf(<span class="str">&quot;Scrivi un numero intero: &quot;</span>);
+
+    <span class="cm">// leggi il numero inserito</span>
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;number);
+
+    <span class="cm">// mostra il numero a video</span>
+    printf(<span class="str">&quot;Hai scritto: %d\n&quot;</span>, number);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Lo compili, lo avvii e scrivi 7, poi premi Invio. Sul terminale vedi:</p>
+<pre class="code" data-lingua="text"><code>$ ./scrivi_intero
+Scrivi un numero intero: 7
+Hai scritto: 7</code></pre>
+<p>Il primo 7 l&#39;hai scritto tu, il secondo lo stampa il programma. Vediamo le righe nuove, una alla volta.</p>
+<p><strong><code>int number;</code></strong> prepara una <strong>variabile</strong>: una casella della memoria con un nome, qui <code>number</code>, in cui si può mettere un numero. <code>int</code> dice il tipo: un numero intero, senza virgola. Le variabili sono l&#39;argomento della teoria di questa settimana: per ora basta l&#39;idea della casella con un nome.</p>
+<p><strong><code>printf(&quot;Scrivi un numero intero: &quot;);</code></strong> stampa la domanda. Nota che non c&#39;è <code>\n</code>: il cursore resta sulla stessa riga, e il numero che scrivi compare subito dopo i due punti.</p>
+<p><strong><code>scanf(&quot;%d&quot;, &amp;number);</code></strong> aspetta che tu scriva qualcosa e prema Invio. Poi legge un numero intero e lo mette nella casella <code>number</code>. Due pezzi nuovi:</p>
+<ul>
+<li><code>&quot;%d&quot;</code> dice che cosa leggere: <code>%d</code> vuol dire «un numero intero scritto in base 10» (la <code>d</code> sta per <em>decimale</em>);</li>
+<li><code>&amp;number</code> dice <strong>dove</strong> mettere il numero. Il segno <code>&amp;</code> (si legge «e commerciale») davanti al nome vuol dire «l&#39;indirizzo della casella <code>number</code>». Ricordi la memoria della <a href="01B_architettura.html">lezione 01B</a>, fatta di celle numerate? <code>scanf</code> ha bisogno del numero della cella, non di quello che c&#39;è dentro.</li>
+</ul>
+<p><strong><code>printf(&quot;Hai scritto: %d\n&quot;, number);</code></strong> stampa il testo, ma al posto di <code>%d</code> mette il valore di <code>number</code>. Il <code>%d</code> è un <strong>segnaposto</strong>: un buco nel testo, riempito dal valore scritto dopo la virgola.</p>
+<div class="box idea"><p class="box-label"><span>L'idea</span></p><p><code>printf</code> e <code>scanf</code> usano lo stesso codice <code>%d</code> per «numero intero». <code>printf</code> riceve il <strong>valore</strong> da stampare, <code>number</code>. <code>scanf</code> riceve l&#39;<strong>indirizzo</strong> dove scrivere, <code>&amp;number</code>.</p>
+</div>
+<h3 id="provare-senza-scrivere-a-mano-la-pipe">Provare senza scrivere a mano: la pipe</h3>
+<p>Per provare un programma che legge dalla tastiera puoi scrivere il numero a mano ogni volta. Oppure puoi farglielo arrivare da un altro comando, con la <strong>barra verticale</strong> <code>|</code>, che si chiama <strong>pipe</strong> (tubo). Il comando a sinistra stampa, e quello che stampa entra nel programma a destra come se l&#39;avessi scritto tu.</p>
+<pre class="code" data-lingua="text"><code>$ echo 7 | ./scrivi_intero
+Scrivi un numero intero: Hai scritto: 7</code></pre>
+<p><code>echo 7</code> stampa 7, la pipe lo passa a <code>scrivi_intero</code>, che lo legge con <code>scanf</code>. Questa volta il 7 non si vede dopo la domanda: nessuno l&#39;ha scritto sul terminale. Nel Prompt dei comandi di Windows si scrive <code>echo 7| scrivi_intero</code>, con lo stesso risultato. È più o meno quello che fa CodeRunner all&#39;esame: dà al tuo programma dei dati già pronti e confronta le stampe.</p>
+<h3 id="la-tabellina-slide-49">La tabellina: slide 49</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n;
+    printf(<span class="str">&quot;Scrivi un numero intero: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="cm">// stampa i primi 10 multipli di n</span>
+    <span class="kw">for</span> (<span class="kw">int</span> i = 1; i &lt;= 10; ++i) {
+        printf(<span class="str">&quot;%d * %d = %d \n&quot;</span>, n, i, n * i);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Le prime righe le conosci: una casella <code>n</code>, la domanda, la lettura. Poi c&#39;è una cosa nuova, <code>for</code>: è un <strong>ciclo</strong>, cioè un blocco di istruzioni ripetuto più volte. Lo vedrai a teoria tra un paio di settimane; per leggerlo oggi basta questo:</p>
+<ul>
+<li><code>int i = 1</code> crea un contatore <code>i</code> che parte da 1;</li>
+<li><code>i &lt;= 10</code> è la condizione: si ripete finché <code>i</code> è al massimo 10;</li>
+<li><code>++i</code> aumenta <code>i</code> di 1 dopo ogni giro;</li>
+<li>il blocco tra graffe viene eseguito una volta per ogni valore di <code>i</code>: 1, 2, 3, fino a 10.</li>
+</ul>
+<p>È la stessa idea del contatore della <a href="01A_primo_algoritmo.html">lezione 01A</a>, con il controllo prima di ogni giro.</p>
+<p>Dentro il ciclo, <code>printf</code> ha <strong>tre</strong> segnaposto e tre valori dopo la virgola, nello stesso ordine: il primo <code>%d</code> diventa <code>n</code>, il secondo <code>i</code>, il terzo <code>n * i</code>, cioè <code>n</code> per <code>i</code>. L&#39;asterisco <code>*</code> in C è il segno della moltiplicazione.</p>
+<p>Con 7:</p>
+<pre class="code" data-lingua="text"><code>$ echo 7 | ./tabella_moltiplicazioni
+Scrivi un numero intero: 7 * 1 = 7 
+7 * 2 = 14 
+7 * 3 = 21 
+7 * 4 = 28 
+7 * 5 = 35 
+7 * 6 = 42 
+7 * 7 = 49 
+7 * 8 = 56 
+7 * 9 = 63 
+7 * 10 = 70 </code></pre>
+<p>La prima riga della tabellina sta dopo la domanda perché, con la pipe, il 7 e l&#39;Invio non si vedono. Scrivendo il numero a mano, <code>7 * 1 = 7</code> va sulla riga dopo. Nota anche lo spazio prima del <code>\n</code> nella stringa: ogni riga finisce con uno spazio invisibile. A CodeRunner uno spazio in più o in meno basta per non passare un test.</p>
+<h3 id="gli-errori-tipici-con-scanf">Gli errori tipici con scanf</h3>
+<p><strong>Dimenticare la <code>&amp;</code>.</strong> È l&#39;errore più comune. Senza <code>&amp;</code>, <code>scanf</code> riceve il contenuto della casella invece del suo indirizzo. Con <code>-Wall -Werror</code> gcc 16.1 se ne accorge:</p>
+<pre class="code" data-lingua="text"><code>err_e.c:6:13: error: format '%d' expects argument of type 'int *', but argument 2 has type 'int' [-Werror=format=]
+    6 |     scanf(&quot;%d&quot;, n);
+      |            ~^   ~
+      |             |   |
+      |             |   int
+      |             int *
+err_e.c:6:5: error: 'n' is used uninitialized [-Werror=uninitialized]</code></pre>
+<p>Si legge: il <code>%d</code> vuole un <code>int *</code> (l&#39;indirizzo di un intero, il tipo dei puntatori che vedrai a teoria), ma riceve un <code>int</code>. Il secondo errore dice che <code>n</code> viene usata quando dentro non c&#39;è ancora niente. <strong>Senza <code>-Wall</code>, lo stesso programma compila in silenzio</strong>, e quando lo esegui <code>scanf</code> scrive in un punto a caso della memoria: di solito il programma si blocca. È il motivo migliore per usare sempre <code>-Wall -Werror</code>.</p>
+<p><strong>Un <code>%d</code> senza il suo valore.</strong> Ogni segnaposto vuole un valore dopo la virgola:</p>
+<pre class="code" data-lingua="text"><code>err_formato.c:6:19: error: format '%d' expects a matching 'int' argument [-Werror=format=]
+    6 |     printf(&quot;%d e %d\n&quot;, x);
+      |                  ~^</code></pre>
+<p><strong>Scrivere lettere invece di un numero.</strong> Se al programma arriva <code>ciao</code>, <code>scanf</code> non trova un numero e non scrive niente nella casella. La casella contiene quello che c&#39;era prima in memoria: un numero a caso. Con <code>ciao</code>, a me ha stampato <code>Hai scritto: 32758</code>. Per ora i programmi del corso si provano solo con numeri.</p>
+<div class="box extra"><p class="box-label"><span>Oltre le slide · come sapere se scanf ha letto</span></p><p><code>scanf</code> restituisce quanti valori è riuscito a leggere: 1 se ha letto il numero, 0 se ha trovato lettere. Si può controllare con un <code>if</code>, che arriverà a teoria tra qualche settimana.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa <code>printf(&quot;%d + %d = %d\n&quot;, 2, 3, 2 + 3);</code>?</span></summary><div class="ans"><p>Ogni <code>%d</code> viene sostituito, in ordine, da un valore: <code>2 + 3 = 5</code>, poi si va a capo.</p>
+</div></details>
+<details class="qa"><summary><span>Perché in <code>scanf(&quot;%d&quot;, &amp;n);</code> serve la <code>&amp;</code>, mentre in <code>printf(&quot;%d&quot;, n);</code> no?</span></summary><div class="ans"><p><code>scanf</code> deve scrivere nella casella, quindi le serve il suo indirizzo, <code>&amp;n</code>. <code>printf</code> deve solo leggere il valore, quindi le basta <code>n</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>scanf(&quot;%d&quot;, &amp;n);</code> legge un intero e lo mette nella variabile <code>n</code>: la <code>&amp;</code> dà l&#39;indirizzo della casella.</li>
+<li>In <code>printf</code> ogni <code>%d</code> è un segnaposto, riempito in ordine dai valori dopo la virgola.</li>
+<li>Per provare un programma che legge: <code>echo 7 | ./programma</code>. Senza <code>&amp;</code> gcc con <code>-Wall -Werror</code> si ferma; senza <code>-Wall</code> no.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:1290px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>&gt;</code> alla fine del prompt</td><td>«maggiore»</td><td>Windows aspetta un comando; prima c&#39;è la cartella di lavoro</td><td><code>C:\Users\jon_snow&gt;</code></td></tr>
+<tr><td><code>$</code> alla fine del prompt</td><td>«dollaro»</td><td>la shell di Linux aspetta un comando</td><td><code>jon_snow@linux:~$</code></td></tr>
+<tr><td><code>~</code></td><td>«tilde»</td><td>la tua cartella personale, su Linux e macOS</td><td><code>~</code> è <code>/home/jon_snow</code></td></tr>
+<tr><td><code>/</code></td><td>«barra»</td><td>separatore nei percorsi di Linux e macOS; da sola è la radice</td><td><code>/home/jon_snow/Documenti</code></td></tr>
+<tr><td><code>\</code></td><td>«barra rovesciata», <em>backslash</em></td><td>separatore nei percorsi di Windows</td><td><code>C:\Users\jon_snow</code></td></tr>
+<tr><td><code>C:</code></td><td>«ci due punti»</td><td>un disco di Windows</td><td><code>C:\Users</code></td></tr>
+<tr><td><code>.</code></td><td>«punto»</td><td>la cartella di lavoro</td><td><code>copy pippo.jpg .</code></td></tr>
+<tr><td><code>..</code></td><td>«punto punto»</td><td>la cartella che contiene quella di lavoro</td><td><code>cd ..</code></td></tr>
+<tr><td><code>./</code></td><td>«punto barra»</td><td>«il file che sta qui»: serve per avviare un programma su Linux e macOS</td><td><code>./buongiorno</code></td></tr>
+<tr><td><code>-a</code>, <code>/t</code></td><td>«trattino a», «barra ti»</td><td>un&#39;opzione del comando: con il trattino su Linux, con la barra su Windows</td><td><code>ls -a</code>, <code>date /t</code></td></tr>
+<tr><td><code>$PATH</code>, <code>%PATH%</code></td><td>«dollaro path», «percento path percento»</td><td>il valore della variabile PATH</td><td><code>echo $PATH</code></td></tr>
+<tr><td><code>-Wall -Werror</code></td><td>«meno doppiavù all, meno doppiavù error»</td><td>tutti gli avvisi, e ogni avviso diventa un errore</td><td><code>gcc -Wall -Werror a.c -o a</code></td></tr>
+<tr><td><code>-c</code>, <code>-o</code></td><td>«meno ci», «meno o»</td><td>fermati al file oggetto; dai questo nome al risultato</td><td><code>gcc -c a.c -o a.o</code></td></tr>
+<tr><td><code>%d</code></td><td>«percento di»</td><td>un numero intero in base 10, in <code>printf</code> e <code>scanf</code></td><td><code>printf(&quot;%d&quot;, 7)</code></td></tr>
+<tr><td><code>&amp;n</code></td><td>«e commerciale enne»</td><td>l&#39;indirizzo della variabile <code>n</code></td><td><code>scanf(&quot;%d&quot;, &amp;n)</code></td></tr>
+<tr><td><code>\n</code></td><td>«barra rovesciata enne»</td><td>vai a capo</td><td><code>printf(&quot;ciao\n&quot;)</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:1270px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>L&#39;esame di Programmazione I si fa al PC, nei laboratori Turing, Dijkstra e Von Neumann, ed è unico per i tre canali. Appelli 2026/27: <strong>lunedì 25/01/2027</strong> e <strong>giovedì 11/02/2027</strong>, alle 9:00. Scrivi codice C in una pagina web con un editor semplice; CodeRunner lo compila con <code>-Wall -Werror</code>, lo esegue con vari dati e confronta le stampe. Secondo il riepilogo d&#39;esame 2025/26 del canale C il codice viene anche letto: passare i test serve, ma non basta.</p>
+<p><strong>Che cosa serve di questo laboratorio</strong></p>
+<ol>
+<li><strong>Compilare con <code>-Wall -Werror</code> e leggere i messaggi di gcc.</strong> All&#39;esame un programma che non compila non passa nessun test. Riconosci al volo <code>expected ';'</code>, <code>unused variable</code>, <code>undeclared</code>, e gli errori di formato di <code>printf</code> e <code>scanf</code>.</li>
+<li><strong>Stampe esatte.</strong> CodeRunner confronta il testo carattere per carattere: spazi, a capo, maiuscole. Copia il formato delle <code>printf</code> dal testo dell&#39;esercizio.</li>
+<li><strong>Leggere con <code>scanf</code></strong>, con la <code>&amp;</code>.</li>
+<li><strong>Scrivere senza aiuti.</strong> Niente IDE, niente completamento automatico, niente Copilot: allenati con Notepad++ o un editor simile.</li>
+<li><strong>Il terminale</strong> all&#39;esame quasi non serve, perché CodeRunner compila per te. Serve per tutto il resto del corso: laboratori, esercizi a casa, e i corsi degli anni dopo.</li>
+</ol>
+<div class="box exam"><p class="box-label"><span>Conta all'esame · Le regole degli esercizi d&#39;esame</span></p><p>Dal riepilogo d&#39;esame 2025/26 e dai laboratori, le regole da rispettare negli esercizi di programmazione sono:</p>
+<ul>
+<li>compilazione con <code>-Wall -Werror</code>;</li>
+<li>nelle funzioni iterative una sola <code>return</code>;</li>
+<li>vietati <code>break</code>, <code>switch</code>/<code>case</code> e <code>static</code>;</li>
+<li>nelle funzioni ricorsive vietati i cicli (<code>for</code> e <code>while</code>).</li>
+</ul>
+<p>Funzioni, <code>return</code>, cicli e ricorsione arriveranno nelle prossime settimane: per ora ricorda solo che queste regole esistono, e non prendere l&#39;abitudine di usare <code>break</code> e <code>switch</code>.</p>
+</div>
+<p><strong>Errori da evitare in laboratorio</strong></p>
+<ul>
+<li>Uscire senza salvare i file: vengono cancellati.</li>
+<li>Salvare <code>buongiorno.c.txt</code> invece di <code>buongiorno.c</code>.</li>
+<li>Compilare senza <code>-Wall -Werror</code>, e scoprire gli errori solo all&#39;esame.</li>
+<li>Dimenticare la <code>&amp;</code> in <code>scanf</code>.</li>
+<li>Avviare il programma su Linux senza <code>./</code>.</li>
+<li>Mettere spazi nei nomi dei file.</li>
+</ul>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:3740px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Sei su Linux nella cartella <code>/home/jon_snow/Documenti</code>. Quale comando stampa il nome della cartella di lavoro?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>dir</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>pwd</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>ls</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>cd ..</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>echo $PATH</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La domanda chiede di stampare dove ti trovi. Su Linux e macOS lo fa <code>pwd</code>, <em>print working directory</em>. <code>cd ..</code> non stampa niente: ti porta nella cartella sopra. <code>ls</code> elenca i file contenuti, non il nome della cartella. <code>dir</code> è il comando di Windows per elencare i file. <code>echo $PATH</code> stampa le cartelle in cui si cercano i programmi, che è un&#39;altra cosa.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">La cartella di lavoro è <code>C:\Users\jon_snow</code>. Quale comando cancella lo stesso file di <code>del C:\Users\jon_snow\Documenti\cosedafare.txt</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>del Documenti\cosedafare.txt</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>del ..\Documenti\cosedafare.txt</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>del cosedafare.txt</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>del Users\jon_snow\Documenti\cosedafare.txt</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>del \Documenti\cosedafare.txt</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Un percorso relativo parte dalla cartella di lavoro: si toglie la parte iniziale uguale, C:\Users\jon_snow, e resta Documenti\cosedafare.txt. Con la barra rovesciata davanti il percorso parte dalla radice del disco e cerca C:\Documenti. Con <code>..</code> si sale prima in C:\Users. <code>del cosedafare.txt</code> cerca il file in C:\Users\jon_snow, dove non c&#39;è. L&#39;ultimo cerca una cartella Users dentro jon_snow.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sei in <code>C:\Users\jon_snow\Documenti</code>. In quale cartella arriva il percorso <code>..\..</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>C:\Users\jon_snow\Documenti</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>C:\Users\jon_snow\Documenti\..\..</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>C:\</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>C:\Users\jon_snow</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>C:\Users</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Ogni <code>..</code> sale di un gradino nell&#39;albero. Il primo porta da Documenti a jon_snow, il secondo da jon_snow a Users. Con un solo <code>..</code> saresti in jon_snow; per arrivare alla radice C:\ ne servono tre. L&#39;ultima risposta è il percorso scritto per intero, non la cartella in cui arriva.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Su Linux scrivi <code>rmdir PROVA</code>, e <code>PROVA</code> contiene un file. Che cosa succede?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">La shell risponde command not found.</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Viene cancellato il file e PROVA resta.</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">PROVA va nel cestino.</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">PROVA viene cancellata con il file dentro.</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il comando si rifiuta: rmdir cancella solo cartelle vuote.</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>rmdir</code> cancella una cartella solo se è vuota. Qui risponde <code>rmdir: failed to remove 'PROVA': Directory not empty</code> e non tocca niente. Per cancellare una cartella piena su Linux serve <code>rm -r</code>. Il terminale non usa il cestino. <code>command not found</code> esce solo se il nome del comando è sbagliato, e <code>rmdir</code> esiste.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Su Windows hai estratto MinGW e aggiunto al PATH la cartella bin. In un Prompt dei comandi aperto prima, <code>gcc --version</code> risponde <code>'gcc' is not recognized</code>. Qual è la cosa più probabile?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il codice C ha un errore di sintassi.</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">gcc funziona solo su Linux.</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Bisogna scrivere gcc –version con una lineetta sola.</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Manca l&#39;opzione -Wall.</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il terminale è stato aperto prima della modifica e non vede il PATH nuovo.</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Ogni terminale legge il PATH quando si apre: quello aperto prima non sa della cartella nuova. Si chiude e se ne apre un altro. Qui non c&#39;è nessun programma C, quindi niente errori di sintassi. La lineetta sola è un refuso della slide 34: il comando giusto ha due trattini. gcc esiste anche per Windows, è proprio MinGW. <code>-Wall</code> riguarda la compilazione, non la ricerca del programma.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa produce <code>gcc -c somma.c -o somma.o</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Un nuovo file sorgente con gli #include già espansi.</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Un file di testo con il codice assembly.</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Niente: -c serve solo a controllare la sintassi.</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Un programma eseguibile di nome somma.o.</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Un file oggetto in linguaggio macchina, che da solo non si può eseguire.</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>L&#39;opzione <code>-c</code> fa fare a gcc preprocessore, compilatore e assemblatore, e lo ferma prima del linker. Il risultato è un file oggetto: linguaggio macchina, ma non ancora un programma completo. Per l&#39;eseguibile serve il passo di collegamento, <code>gcc somma.o -o somma</code>. Il file con l&#39;assembly si chiede con un&#39;altra opzione, <code>-S</code>. Il sorgente con gli <code>#include</code> espansi lo dà solo il preprocessore, con <code>-E</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Un programma dichiara <code>int b = 7;</code> e non usa mai <code>b</code>. Compilato con <code>gcc -Wall -Werror</code>, che cosa succede?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Compila in silenzio.</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Compila, ma si blocca quando lo esegui.</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Compila e b viene tolta da sola.</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non compila: unused variable &#39;b&#39;, trattato come errore.</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Compila e stampa un avviso.</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Una variabile mai usata non viola le regole del C, quindi senza opzioni gcc compila. <code>-Wall</code> accende l&#39;avviso <code>unused variable</code> e <code>-Werror</code> lo trasforma in errore: il programma non viene prodotto. «Compila con un avviso» succede con <code>-Wall</code> senza <code>-Werror</code>. Il programma non arriva nemmeno a essere eseguito.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Su Linux il programma <code>ciao</code> è nella cartella di lavoro. Come lo avvii?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>run ciao</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>ciao</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>.\ciao.exe</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>gcc ciao</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>./ciao</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Un nome senza percorso viene cercato nelle cartelle del PATH, e la cartella di lavoro su Linux non c&#39;è: <code>ciao</code> da solo dà <code>command not found</code>. <code>./ciao</code> è un percorso relativo, «il file ciao che sta qui». <code>run</code> non è un comando. La barra rovesciata e <code>.exe</code> sono di Windows. <code>gcc ciao</code> proverebbe a compilare un file di nome ciao.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>echo 7 | ./scrivi_intero</code>, con il programma della slide 48?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il programma resta fermo ad aspettare il numero.</span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>7</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>Scrivi un numero intero: 7</code>, poi a capo <code>Hai scritto: 7</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>Scrivi un numero intero: Hai scritto: 7</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>Hai scritto: 7</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il programma stampa la domanda senza andare a capo. Il 7 arriva dalla pipe, non dalla tastiera, quindi non viene scritto sul terminale e <code>Hai scritto: 7</code> segue la domanda sulla stessa riga. La prima risposta è quello che vedi scrivendo 7 a mano. La domanda viene stampata comunque, prima della lettura. Il programma non aspetta, perché il numero è già arrivato.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale riga legge correttamente un intero nella variabile <code>n</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-9" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%d&quot;, &amp;n);</code></span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&amp;n);</code></span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;%d&quot;, &amp;n);</code></span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%d&quot;, n);</code></span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;n&quot;);</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>scanf</code> vuole il formato, <code>&quot;%d&quot;</code>, e l&#39;indirizzo della casella in cui scrivere, <code>&amp;n</code>. Senza <code>&amp;</code> gcc con <code>-Wall -Werror</code> dà <code>format '%d' expects argument of type 'int *'</code>. Senza formato <code>scanf</code> non sa che cosa leggere. <code>printf</code> stampa, non legge. <code>&quot;n&quot;</code> è solo un testo.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:2610px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Slide 23: i comandi in fila, su Windows <span class="lvl">base</span></h3><p>Con la riga di comando di Windows: (1) vai in <code>C:\Users\nome_utente\Documents</code>; (2) crea la cartella <code>PROVA</code> e dentro un file vuoto <code>importante.txt</code>; (3) rinominalo in <code>rilevante.txt</code>; (4) fanne una copia, una volta con il percorso assoluto e una con quello relativo; (5) cancella la copia; (6) torna nella cartella che contiene <code>PROVA</code>; (7) apri <code>rilevante.txt</code> con Notepad++; (8) passa a un altro disco, se c&#39;è; (9) rientra in <code>PROVA</code>.</p>
+<details class="sol"><summary>Soluzione</summary><p>Ho usato <code>jon_snow</code> come nome utente: al suo posto metti il tuo. Le risposte sono quelle vere del Prompt dei comandi.</p>
+<ol>
+<li>Vai nella cartella Documents:<pre class="code" data-lingua="text"><code>C:\&gt;cd C:\Users\jon_snow\Documents</code></pre>
+</li>
+<li>Crea la cartella, entraci e crea il file vuoto:<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documents&gt;mkdir PROVA
+C:\Users\jon_snow\Documents&gt;cd PROVA
+C:\Users\jon_snow\Documents\PROVA&gt;copy NUL importante.txt
+        1 file(s) copied.</code></pre>
+</li>
+<li>Cambia il nome:<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documents\PROVA&gt;ren importante.txt rilevante.txt</code></pre>
+</li>
+<li>Copia con il percorso assoluto, poi con quello relativo:<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documents\PROVA&gt;copy C:\Users\jon_snow\Documents\PROVA\rilevante.txt C:\Users\jon_snow\Documents\PROVA\copia.txt
+        1 file(s) copied.
+C:\Users\jon_snow\Documents\PROVA&gt;copy rilevante.txt copia2.txt
+        1 file(s) copied.</code></pre>
+</li>
+<li>Cancella le copie e controlla:<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documents\PROVA&gt;del copia.txt
+C:\Users\jon_snow\Documents\PROVA&gt;del copia2.txt
+C:\Users\jon_snow\Documents\PROVA&gt;dir /b
+rilevante.txt</code></pre>
+</li>
+<li>Sali di un gradino:<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documents\PROVA&gt;cd ..
+C:\Users\jon_snow\Documents&gt;</code></pre>
+</li>
+<li>Apri il file con Notepad++, usando un percorso relativo che passa da <code>PROVA</code>:<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documents&gt;start notepad++ PROVA\rilevante.txt</code></pre>
+</li>
+<li>Se c&#39;è un disco <code>Z:</code>, ci passi scrivendo <code>Z:</code>; per tornare scrivi <code>C:</code>. Al laboratorio Turing c&#39;è solo <code>C:</code>.</li>
+<li>Rientra in <code>PROVA</code>:<pre class="code" data-lingua="text"><code>C:\Users\jon_snow\Documents&gt;cd PROVA
+C:\Users\jon_snow\Documents\PROVA&gt;</code></pre>
+</li>
+</ol>
+<p>Controllo: alla fine <code>dir /b</code> dentro <code>PROVA</code> deve mostrare solo <code>rilevante.txt</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Slide 23: gli stessi comandi su Linux o macOS <span class="lvl">base</span></h3><p>Rifai l&#39;esercizio precedente con la shell di Linux o macOS, nella cartella <code>Documenti</code> della tua cartella personale (salta il punto 8, che vale solo per Windows).</p>
+<details class="sol"><summary>Soluzione</summary><p>Le risposte sono quelle vere di Ubuntu. Dove un comando non stampa niente, non c&#39;è riga di risposta.</p>
+<pre class="code" data-lingua="text"><code>$ cd ~/Documenti
+$ mkdir PROVA
+$ cd PROVA
+$ touch importante.txt
+$ mv importante.txt rilevante.txt
+$ cp /home/jon_snow/Documenti/PROVA/rilevante.txt /home/jon_snow/Documenti/PROVA/copia.txt
+$ cp rilevante.txt copia2.txt
+$ ls
+copia.txt  copia2.txt  rilevante.txt
+$ rm copia.txt copia2.txt
+$ ls
+rilevante.txt
+$ cd ..
+$ pwd
+/home/jon_snow/Documenti
+$ xdg-open PROVA/rilevante.txt
+$ cd PROVA</code></pre>
+<p>Punto per punto: <code>cd ~/Documenti</code> porta nella cartella <code>Documenti</code> della tua cartella personale (su macOS usa <code>open</code> al posto di <code>xdg-open</code>). <code>touch</code> crea il file vuoto. <code>mv</code> cambia il nome. Le due <code>cp</code> usano il percorso assoluto e quello relativo. <code>rm</code> cancella le copie. <code>cd ..</code> risale. <code>xdg-open</code> apre il file con l&#39;editor. Il punto 8 non serve: su Linux e macOS c&#39;è un solo albero, e gli altri dischi compaiono come cartelle.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Dove sono finito? <span class="lvl">base</span></h3><p>Su Linux parti da <code>/home/jon_snow</code> e dai, uno dopo l&#39;altro, <code>cd Documenti</code>, <code>cd PROVA</code>, <code>cd ../..</code>, <code>cd Documenti/../Documenti</code>. Che cosa stampa <code>pwd</code> dopo ogni comando? (Supponi che le cartelle esistano.)</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li><code>cd Documenti</code>: <code>/home/jon_snow/Documenti</code>.</li>
+<li><code>cd PROVA</code>: <code>/home/jon_snow/Documenti/PROVA</code>.</li>
+<li><code>cd ../..</code>: due gradini su, <code>/home/jon_snow</code>.</li>
+<li><code>cd Documenti/../Documenti</code>: entri in <code>Documenti</code>, risali con <code>..</code>, rientri in <code>Documenti</code>. Risultato: <code>/home/jon_snow/Documenti</code>.</li>
+</ol>
+<p>Controllo: l&#39;ultimo percorso è un giro inutile, ma è corretto.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Slide 50: due righe con due printf <span class="lvl">base</span></h3><p>Scrivi un programma che stampa due righe usando due chiamate a <code>printf</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    printf(<span class="str">&quot;Prima riga\n&quot;</span>);
+    printf(<span class="str">&quot;Seconda riga\n&quot;</span>);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Compilato con <code>gcc -Wall -Werror due_righe_a.c -o due_righe_a</code> ed eseguito:</p>
+<pre class="code" data-lingua="text"><code>Prima riga
+Seconda riga</code></pre>
+<p>Ogni <code>printf</code> finisce con <code>\n</code>, così la riga dopo comincia a capo. Senza il primo <code>\n</code> uscirebbe <code>Prima rigaSeconda riga</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Slide 50: due righe con una sola printf <span class="lvl">base</span></h3><p>Scrivi un programma che stampa le stesse due righe con una sola chiamata a <code>printf</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    printf(<span class="str">&quot;Prima riga\nSeconda riga\n&quot;</span>);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Uscita, con <code>gcc -Wall -Werror</code>:</p>
+<pre class="code" data-lingua="text"><code>Prima riga
+Seconda riga</code></pre>
+<p>Il <code>\n</code> in mezzo alla stringa va a capo proprio lì. In alternativa, come nella <a href="02A_da_assembly_a_c.html#h-sintassi-identificatori-e-indentazione">lezione 02A</a>, si può spezzare la stringa su due righe del codice: <code>printf(&quot;Prima riga\n&quot; &quot;Seconda riga\n&quot;);</code> è sempre una sola chiamata.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Slide 50: chiedi due numeri e stampali <span class="lvl">base</span></h3><p>Scrivi un programma che chiede due numeri interi, uno alla volta, e poi li stampa.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a;
+    <span class="kw">int</span> b;
+    printf(<span class="str">&quot;Scrivi il primo numero: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;a);
+    printf(<span class="str">&quot;Scrivi il secondo numero: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;b);
+    printf(<span class="str">&quot;Hai scritto %d e %d\n&quot;</span>, a, b);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Servono due caselle, <code>a</code> e <code>b</code>, e due <code>scanf</code>, ognuna con la sua <code>&amp;</code>. Nella <code>printf</code> finale i due <code>%d</code> vengono riempiti in ordine: il primo con <code>a</code>, il secondo con <code>b</code>.</p>
+<p>Prova con la pipe, compilato con <code>gcc -Wall -Werror</code>:</p>
+<pre class="code" data-lingua="text"><code>$ echo 3 4 | ./due_numeri
+Scrivi il primo numero: Scrivi il secondo numero: Hai scritto 3 e 4</code></pre>
+<p><code>scanf(&quot;%d&quot;, …)</code> salta gli spazi e gli a capo prima del numero: per questo i due numeri possono arrivare sulla stessa riga, separati da uno spazio.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · Slide 50: la somma di due numeri <span class="lvl">base</span></h3><p>Scrivi un programma che legge due interi e stampa la loro somma.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a;
+    <span class="kw">int</span> b;
+    printf(<span class="str">&quot;Scrivi il primo numero: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;a);
+    printf(<span class="str">&quot;Scrivi il secondo numero: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;b);
+    printf(<span class="str">&quot;%d + %d = %d\n&quot;</span>, a, b, a + b);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Il terzo valore della <code>printf</code> è un&#39;espressione, <code>a + b</code>: il C la calcola e stampa il risultato. Prove con <code>gcc -Wall -Werror</code>:</p>
+<pre class="code" data-lingua="text"><code>$ printf '3\n4\n' | ./somma
+Scrivi il primo numero: Scrivi il secondo numero: 3 + 4 = 7
+$ echo -5 12 | ./somma
+Scrivi il primo numero: Scrivi il secondo numero: -5 + 12 = 7</code></pre>
+<p>Controllo: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mo>+</mo><mn>4</mn><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">3 + 4 = 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span> e <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>5</mn><mo>+</mo><mn>12</mn><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">-5 + 12 = 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">12</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span>. Anche i numeri negativi vanno bene con <code>%d</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-8"><h3>8 · Slide 50: il prodotto di tre numeri <span class="lvl">base</span></h3><p>Dichiara tre variabili intere <code>x</code>, <code>y</code> e <code>z</code>, con valori 5, 8 e 11, e stampa il loro prodotto con <code>printf</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 5;
+    <span class="kw">int</span> y = 8;
+    <span class="kw">int</span> z = 11;
+    printf(<span class="str">&quot;%d * %d * %d = %d\n&quot;</span>, x, y, z, x * y * z);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p><code>int x = 5;</code> crea la casella e ci mette subito il valore 5. Una variabile con un valore di partenza si chiama <strong>inizializzata</strong>. Uscita, con <code>gcc -Wall -Werror</code>:</p>
+<pre class="code" data-lingua="text"><code>5 * 8 * 11 = 440</code></pre>
+<p>Controllo: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mo>⋅</mo><mn>8</mn><mo>=</mo><mn>40</mn></mrow><annotation encoding="application/x-tex">5 \cdot 8 = 40</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">40</span></span></span></span> e <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn><mo>⋅</mo><mn>11</mn><mo>=</mo><mn>440</mn></mrow><annotation encoding="application/x-tex">40 \cdot 11 = 440</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">40</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">11</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">440</span></span></span></span>.</p>
+</details></article>
+<article class="ex" id="esercizio-9"><h3>9 · Slide 50: leggere gli errori di compilazione <span class="lvl">medio</span></h3><p>Questo programma dovrebbe leggere due numeri e stamparne la somma. Compilalo con <code>gcc -Wall -Werror</code>, leggi i messaggi e correggilo.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a;
+    <span class="kw">int</span> b;
+    printf(<span class="str">&quot;Scrivi due numeri: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;a);
+    scanf(<span class="str">&quot;%d&quot;</span>, b);
+    printf(<span class="str">&quot;La somma e' %d\n&quot;</span>, a + b)
+    <span class="kw">return</span> 0;
+}</code></pre>
+<details class="sol"><summary>Soluzione</summary><p>gcc 16.1 risponde così:</p>
+<pre class="code" data-lingua="text"><code>err_tanti.c:8:13: error: format '%d' expects argument of type 'int *', but argument 2 has type 'int' [-Werror=format=]
+err_tanti.c:9:38: error: expected ';' before 'return'
+    9 |     printf(&quot;La somma e' %d\n&quot;, a + b)
+      |                                      ^
+      |                                      ;
+   10 |     return 0;
+cc1.exe: all warnings being treated as errors</code></pre>
+<ol>
+<li>Riga 8, colonna 13: il <code>%d</code> vuole un indirizzo (<code>int *</code>) e riceve un <code>int</code>. Manca la <code>&amp;</code>: si scrive <code>scanf(&quot;%d&quot;, &amp;b);</code>.</li>
+<li>Riga 9, colonna 38: manca il <code>;</code> alla fine della <code>printf</code>. gcc se ne accorge quando trova <code>return</code> e indica pure dove metterlo.</li>
+</ol>
+<p>Se correggi solo il <code>;</code> e ricompili, compare un terzo errore che prima era nascosto: <code>'b' is used uninitialized</code>. Il compilatore non sempre trova tutti gli errori al primo giro: correggi dall&#39;alto e ricompila.</p>
+<p>Corretto, il programma compila con <code>gcc -Wall -Werror</code>; con <code>echo 3 4 | ./somma2</code> stampa <code>Scrivi due numeri: La somma e' 7</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-10"><h3>10 · Un nome scritto male <span class="lvl">medio</span></h3><p>Che cosa dice gcc con <code>-Wall -Werror</code> per questo programma? Perché gli errori sono due?</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> somma = 0;
+    printf(<span class="str">&quot;La somma vale %d\n&quot;</span>, soma);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="text"><code>err_nondich.c:5:34: error: 'soma' undeclared (first use in this function); did you mean 'somma'?
+err_nondich.c:4:9: error: unused variable 'somma' [-Werror=unused-variable]</code></pre>
+<p>C&#39;è un solo sbaglio, <code>soma</code> invece di <code>somma</code> alla riga 5, ma produce due messaggi. Il primo: <code>soma</code> non è mai stata dichiarata, e gcc suggerisce il nome giusto. Il secondo: per colpa del nome sbagliato, la variabile <code>somma</code> della riga 4 non viene mai usata, e con <code>-Werror</code> anche questo è un errore. Correggendo <code>soma</code> spariscono tutti e due.</p>
+</details></article>
+<article class="ex" id="esercizio-11"><h3>11 · La graffa dimenticata <span class="lvl">medio</span></h3><p>Che cosa dice gcc se togli la <code>}</code> finale da <code>buongiorno.c</code>?</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="text"><code>err_graffa.c:5:5: error: expected declaration or statement at end of input
+    5 |     return 0;
+      |     ^~~~~~</code></pre>
+<p>«Fine dell&#39;input» vuol dire fine del file: gcc è arrivato in fondo mentre il blocco di <code>main</code> era ancora aperto. Il messaggio indica l&#39;ultima istruzione, non la graffa che manca. Quando leggi «at end of input», conta le graffe aperte e chiuse.</p>
+</details></article>
+<article class="ex" id="esercizio-12"><h3>12 · Tabellina all&#39;esame <span class="lvl">medio</span></h3><p>All&#39;esame un esercizio chiede di stampare le righe nella forma <code>7 x 1 = 7</code>, una per riga, senza spazi in fondo. Che cosa cambi nel programma della slide 49?</p>
+<details class="sol"><summary>Soluzione</summary><p>Nella <code>printf</code> dentro il ciclo il formato diventa <code>&quot;%d x %d = %d\n&quot;</code>: la <code>x</code> al posto di <code>*</code>, e niente spazio prima di <code>\n</code>. Con 7 la prima riga è <code>7 x 1 = 7</code>. Il programma della slide stamperebbe <code>7 * 1 = 7</code> con uno spazio in fondo, e CodeRunner lo considererebbe diverso: test non passato. Ho compilato la versione modificata con <code>gcc -Wall -Werror</code> e con <code>echo 7</code> la riga 10 è <code>7 x 10 = 70</code>.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:1060px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che cosa succede ai tuoi file quando esci da un PC del laboratorio Turing?</span></summary><div class="ans"><p>Vengono cancellati: a ogni accesso il PC riparte da una configurazione pulita. Prima di disconnetterti devi salvarli altrove, per esempio su Google Drive o su una chiavetta.</p>
+</div></details>
+<details class="qa"><summary><span>Da quali parti è fatto un comando, e come si scrivono le opzioni?</span></summary><div class="ans"><p>Nome, opzioni e argomenti, separati da spazi. Le opzioni cominciano con il trattino su Linux e macOS (<code>ls -a</code>), con la barra su Windows (<code>date /t</code>).</p>
+</div></details>
+<details class="qa"><summary><span>Che cos&#39;è il PATH e perché serve per usare gcc?</span></summary><div class="ans"><p>È una variabile d&#39;ambiente con l&#39;elenco delle cartelle in cui il terminale cerca i programmi. Se la cartella di gcc non è nel PATH, scrivendo <code>gcc</code> ricevi «command not found» o «not recognized». Su Windows va aggiunta a mano la cartella <code>bin</code> di MinGW.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra percorso assoluto e relativo?</span></summary><div class="ans"><p>L&#39;assoluto parte dalla radice (<code>/</code> o <code>C:\</code>) ed è l&#39;indirizzo completo, valido da qualunque cartella. Il relativo parte dalla cartella di lavoro ed è più corto.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa vogliono dire <code>.</code> e <code>..</code>?</span></summary><div class="ans"><p><code>.</code> è la cartella di lavoro, <code>..</code> la cartella che la contiene. <code>cd ..</code> sale di un gradino; <code>copy file .</code> copia nella cartella di lavoro.</p>
+</div></details>
+<details class="qa"><summary><span>Quali sono i comandi per creare, copiare, spostare e cancellare su Linux e su Windows?</span></summary><div class="ans"><p>Linux e macOS: <code>mkdir</code>, <code>touch</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>rmdir</code>. Windows: <code>mkdir</code>, <code>copy NUL</code>, <code>copy</code>, <code>ren</code> e <code>move</code>, <code>del</code>, <code>rmdir</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Come installi gcc su Windows, Linux e macOS, e come controlli che funzioni?</span></summary><div class="ans"><p>Windows: MinGW-w64, estratto in una cartella, con la sua cartella <code>bin</code> nel PATH. Linux: <code>sudo apt install build-essential</code> o <code>sudo dnf install gcc make</code>. macOS: strumenti da riga di comando di Xcode. Controllo: <code>where gcc</code> o <code>which gcc</code>, e <code>gcc --version</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa fanno le opzioni <code>-c</code>, <code>-o</code>, <code>-Wall</code> e <code>-Werror</code> di gcc?</span></summary><div class="ans"><p><code>-c</code> produce solo il file oggetto, senza collegamento. <code>-o</code> sceglie il nome del file prodotto. <code>-Wall</code> accende gli avvisi principali. <code>-Werror</code> trasforma ogni avviso in errore. All&#39;esame si compila con <code>-Wall -Werror</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Perché su Linux un programma si avvia con <code>./nome</code>?</span></summary><div class="ans"><p>Perché un nome da solo viene cercato nelle cartelle del PATH, e la cartella di lavoro non c&#39;è. <code>./nome</code> è un percorso relativo che indica il file nella cartella di lavoro.</p>
+</div></details>
+<details class="qa"><summary><span>A che cosa serve un disassemblatore?</span></summary><div class="ans"><p>Mostra il linguaggio macchina di un programma compilato, scritto in assembly: <code>objdump -d</code> su Linux e Windows, <code>otool -tv</code> su macOS. Non ricostruisce il codice C.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa fa <code>scanf(&quot;%d&quot;, &amp;n);</code> e perché serve la <code>&amp;</code>?</span></summary><div class="ans"><p>Aspetta che si scriva un numero intero e lo mette nella variabile <code>n</code>. <code>%d</code> dice che cosa leggere; <code>&amp;n</code> è l&#39;indirizzo della casella, che serve a <code>scanf</code> per sapere dove scrivere.</p>
+</div></details>
+<details class="qa"><summary><span>Come provi un programma che legge dalla tastiera senza scrivere i numeri ogni volta?</span></summary><div class="ans"><p>Con la pipe: <code>echo 7 | ./programma</code> su Linux, <code>echo 7| programma</code> su Windows. Quello che stampa <code>echo</code> entra nel programma come se fosse scritto dalla tastiera.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:1420px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Riga di comando (CLI)</dt><dd>Finestra in cui si danno ordini al computer scrivendoli, uno per riga. Si chiama anche terminale, console, shell o prompt dei comandi.</dd></div>
+<div><dt>Shell</dt><dd>Il programma che legge i comandi sulla riga di comando di Linux e macOS, per esempio bash o zsh.</dd></div>
+<div><dt>Prompt</dt><dd>La scritta che precede il cursore e dice che il terminale aspetta un comando, come C:\Users\jon_snow&gt;.</dd></div>
+<div><dt>Opzione</dt><dd>Parte di un comando che cambia il suo modo di lavorare: -a su Linux, /t su Windows.</dd></div>
+<div><dt>Argomento</dt><dd>Il dato su cui lavora un comando, di solito un file o una cartella.</dd></div>
+<div><dt>Comando integrato</dt><dd>Comando eseguito dalla shell stessa, senza avviare un programma, come cd.</dd></div>
+<div><dt>PATH</dt><dd>Variabile d&#39;ambiente con l&#39;elenco delle cartelle in cui si cercano i programmi.</dd></div>
+<div><dt>Variabile d&#39;ambiente</dt><dd>Informazione con un nome che il sistema tiene in memoria per tutti i programmi, come PATH.</dd></div>
+<div><dt>Cartella radice</dt><dd>La cartella in cima all&#39;albero: / su Linux e macOS, il disco come C:\ su Windows.</dd></div>
+<div><dt>Percorso assoluto</dt><dd>Indirizzo completo di un file, dalla radice: /home/jon_snow/Documenti/cosedafare.txt.</dd></div>
+<div><dt>Percorso relativo</dt><dd>Indirizzo che parte dalla cartella di lavoro: Documenti/cosedafare.txt.</dd></div>
+<div><dt>Cartella di lavoro</dt><dd>La cartella in cui si trova il terminale; si cambia con cd.</dd></div>
+<div><dt>MinGW-w64</dt><dd>Versione di gcc per Windows.</dd></div>
+<div><dt>Editor di testo</dt><dd>Programma per scrivere testo semplice, come Notepad++; il codice C si scrive con un editor.</dd></div>
+<div><dt>IDE</dt><dd>Ambiente di sviluppo integrato: editor, compilatore e strumenti in un solo programma. Non si usa in laboratorio né all&#39;esame.</dd></div>
+<div><dt>File oggetto</dt><dd>File in linguaggio macchina prodotto da gcc -c (.o oppure .obj); non è ancora un programma.</dd></div>
+<div><dt>Eseguibile</dt><dd>Il programma finito, che si avvia: senza estensione su Linux e macOS, .exe su Windows.</dd></div>
+<div><dt>Avviso (warning)</dt><dd>Messaggio del compilatore su codice corretto ma sospetto; con -Werror diventa errore.</dd></div>
+<div><dt>Disassemblatore</dt><dd>Programma che mostra in assembly il linguaggio macchina di un eseguibile, come objdump -d.</dd></div>
+<div><dt>scanf</dt><dd>Funzione che legge dati dalla tastiera; con %d legge un intero e lo mette all&#39;indirizzo dato con &amp;.</dd></div>
+<div><dt>Segnaposto</dt><dd>Codice come %d dentro la stringa di printf, sostituito dal valore scritto dopo la virgola.</dd></div>
+<div><dt>Pipe</dt><dd>La barra verticale tra due comandi: quello che stampa il primo entra nel secondo come se fosse scritto dalla tastiera.</dd></div>
+<div><dt>CodeRunner</dt><dd>Il sistema di Moodle che compila il codice con -Wall -Werror, lo esegue con dati di prova e confronta le stampe.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:640px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 12</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-Lab01-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So come si entra in un PC del laboratorio Turing e che i file si perdono all&#39;uscita.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So riconoscere nome, opzioni e argomenti di un comando.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So spiegare che cos&#39;è il PATH e che cosa vuol dire «command not found».</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So distinguere percorso assoluto e relativo e usare <code>.</code> e <code>..</code>.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So usare pwd, ls, cd, mkdir, touch, cp, mv, rm, rmdir e cat su Linux o macOS.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So usare cd, dir, mkdir, copy NUL, copy, ren, move, del, rmdir e type su Windows.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So installare gcc sul mio computer e controllarlo con gcc --version.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So compilare con gcc -Wall -Werror sorgente.c -o eseguibile ed eseguire il programma.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So separare compilazione (-c) e collegamento, e che cosa mostra objdump -d.</span></label></li>
+<li><label><input type="checkbox" id="chk-10"><span>So leggere un intero con scanf e la &amp; e stamparlo con printf e %d.</span></label></li>
+<li><label><input type="checkbox" id="chk-11"><span>So provare un programma con echo e la pipe.</span></label></li>
+<li><label><input type="checkbox" id="chk-12"><span>So leggere i messaggi di gcc: riga, colonna, descrizione e nome dell&#39;avviso.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li><strong>Slide del laboratorio</strong>: «Introduzione», Lezione nº 1, Programmazione I – Laboratorio, canale B, A.A. 2026/27, 50 pagine; il numero di slide è accanto a ogni titolo.</li>
+<li><strong>Organizzazione</strong>: slide 3 di questo laboratorio, slide 3 dell&#39;introduzione di teoria del canale B, pagina Moodle del canale B (consultata il 05/10/2026); per i canali A e C le introduzioni 2026/27 e la <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+<li><strong>CodeRunner</strong>: slide 7–10 del laboratorio Lab03 «Condizioni booleane» del 2025/26.</li>
+<li><strong>Regole d&#39;esame</strong>: <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>, dal riepilogo d&#39;esame 2025/26 del canale C e dal Lab01 2025/26 del canale B.</li>
+<li><strong>Sessioni del terminale</strong>: ottenute il 05/10/2026 con Ubuntu (shell bash; i messaggi d&#39;errore di <code>mkdir</code> sono quelli di GNU coreutils) e con il Prompt dei comandi di Windows 11 in inglese, in una cartella di prova. Le risposte sono vere; ho cambiato solo il nome della cartella dell&#39;utente in <code>jon_snow</code>, come nelle slide, e tolto righe che dipendono dal mio computer.</li>
+<li><strong>Programmi C</strong>: tutti compilati con gcc 16.1 (MinGW-w64) e <code>-Wall -Werror</code>, ed eseguiti; i programmi che leggono dalla tastiera sono stati provati con i dati passati con la pipe. Messaggi d&#39;errore e <code>objdump -d</code> sono quelli veri di gcc 16.1 e binutils 2.47.</li>
+<li>Le spiegazioni a parole, le sessioni del terminale, i riquadri «Prova tu», i quiz, gli esercizi senza numero di slide e le parti «Oltre le slide» sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg=' 'sha256-Si9fa8ZbhickfDZRrtqwUod4ro16wR4jhg/YMg5PXGM='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg=' 'sha256-Gmt2QGsxI/xULBtmGwWtmS5FtvvAZTw0ZHOzvRUr51w='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <script src="../../assets/js/memoria.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1026,11 +1026,17 @@ return esiste;                    <span class="cm">// una sola return</span></co
     const heads = $$('th', t.tHead).map(th => th.textContent.trim());
     $$('tbody tr', t).forEach(tr => Array.from(tr.children).forEach((c, i) => { if (heads[i]) c.dataset.label = heads[i]; }));
   });
-  const fitTables = () => tableWraps.forEach(w => {
+  const fitTable = w => {
     const t = w.querySelector('table');
     t.classList.remove('stacked');
     if (w.scrollWidth > w.clientWidth + 1) t.classList.add('stacked');
-  });
+  };
+  // ogni tabella si controlla quando si avvicina allo schermo, come nelle altre lezioni (lezione.js): misurarle tutte
+  // mentre la pagina si apre obbligava il browser a impaginarla per intero prima del primo fotogramma
+  const tableIo = 'IntersectionObserver' in window
+    ? new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) { tableIo.unobserve(e.target); fitTable(e.target); } }), { rootMargin: '50% 0px' })
+    : null;
+  const fitTables = () => tableWraps.forEach(w => { if (tableIo) { tableIo.unobserve(w); tableIo.observe(w); } else fitTable(w); });
   fitTables();
   let fitTimer = null;
   window.addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitTables, 150); });
@@ -1059,7 +1065,7 @@ return esiste;                    <span class="cm">// una sola return</span></co
     steps: $('#sim-steps'), status: $('#sim-status'), tbody: $('#sim-trace tbody'),
     traceBox: $('#sim-trace-box'), play: $('#sim-play'), fcOk: $('#fc-ok'), fcBug: $('#fc-bug')
   };
-  let ver = 'ok', M = 4, N = 3, st = null, timer = null;
+  let ver = 'ok', M = 4, N = 3, st = null, timer = null, inFondo = false;
   const show = v => (v === null ? '—' : String(v));
 
   function renderCode() {
@@ -1106,7 +1112,9 @@ return esiste;                    <span class="cm">// una sola return</span></co
       tr.appendChild(td);
     });
     el.tbody.appendChild(tr);
-    el.traceBox.scrollTop = el.traceBox.scrollHeight;
+    // in fondo alla tabella al prossimo fotogramma, una volta sola: leggere subito l'altezza obbligava il browser a
+    // impaginare la pagina intera mentre si apriva (un terzo di secondo)
+    if (!inFondo) { inFondo = true; requestAnimationFrame(() => { inFondo = false; el.traceBox.scrollTop = el.traceBox.scrollHeight; }); }
   }
   function stop() {
     if (timer) { clearInterval(timer); timer = null; }

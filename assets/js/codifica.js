@@ -777,9 +777,19 @@
   const MODI = { testo, text: testo, colori, colours: colori, colors: colori, suono, sound: suono, binario, binary: binario,
     divisioni, divisions: divisioni, somma, addition: somma, interi, integers: interi, virgola, floating: virgola,
     parita, parity: parita, hamming };
-  document.querySelectorAll('figure.widget[data-widget="codifica"]').forEach(fig => {
+  const avvia = fig => {
     const carica = fig.querySelector('.widget-carica');
     if (carica) carica.remove();
     (MODI[fig.dataset.modo || fig.dataset.mode] || binario)(fig);
-  });
+  };
+  // ogni strumento si prepara quando si avvicina allo schermo, come le tabelle in lezione.js: le tabelle degli strumenti
+  // misurano se entrano nel riquadro, e prepararli tutti all'apertura obbligava il browser a impaginare subito anche le
+  // sezioni lontane (content-visibility). Prima di stampare si preparano tutti
+  const figure = [...document.querySelectorAll('figure.widget[data-widget="codifica"]')], pronti = new Set();
+  const io = 'IntersectionObserver' in window
+    ? new IntersectionObserver(voci => voci.forEach(v => { if (v.isIntersecting) prepara(v.target); }), { rootMargin: '100% 0px' })
+    : null;
+  function prepara(fig) { if (pronti.has(fig)) return; pronti.add(fig); if (io) io.unobserve(fig); avvia(fig); }
+  figure.forEach(fig => (io ? io.observe(fig) : prepara(fig)));
+  window.addEventListener('beforeprint', () => figure.forEach(prepara));
 })();

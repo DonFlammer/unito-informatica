@@ -188,7 +188,7 @@ Un sottospazio è a sua volta uno spazio vettoriale, con le stesse operazioni de
 1. le operazioni non fanno uscire da $W$, per i controlli 2 e 3;
 2. le regole di calcolo della lezione L05 valgono per tutti i vettori di $V$, quindi anche per quelli di $W$;
 3. lo zero sta in $W$, per il controllo 1;
-4. l'opposto di un vettore $v$ di $W$ sta in $W$: l'opposto è $(-1)v$ (lezione L05, esercizio 8), che sta in $W$ per il controllo 3.
+4. l'opposto di un vettore $v$ di $W$ sta in $W$: l'opposto è $(-1)v$ (lezione L05, esercizio 11 (b)), che sta in $W$ per il controllo 3.
 
 ### La stanza vuota e la casa intera (p. 27)
 

@@ -22972,7 +22972,7 @@ Un sottospazio è a sua volta uno spazio vettoriale, con le stesse operazioni de
 1. le operazioni non fanno uscire da $W$, per i controlli 2 e 3;
 2. le regole di calcolo della lezione L05 valgono per tutti i vettori di $V$, quindi anche per quelli di $W$;
 3. lo zero sta in $W$, per il controllo 1;
-4. l'opposto di un vettore $v$ di $W$ sta in $W$: l'opposto è $(-1)v$ (lezione L05, esercizio 8), che sta in $W$ per il controllo 3.
+4. l'opposto di un vettore $v$ di $W$ sta in $W$: l'opposto è $(-1)v$ (lezione L05, esercizio 11 (b)), che sta in $W$ per il controllo 3.
 
 ### La stanza vuota e la casa intera (p. 27)
 
@@ -23864,16 +23864,15 @@ descrizione: >-
   basi, base canonica di K^n e dei polinomi, dimensione di uno spazio vettoriale e teorema sulle basi, con quiz
   nello stile dell'esame ed esercizi svolti.
 lede: >-
-  Quando dei vettori sono «di troppo»? L'indipendenza lineare lo dice con una sola equazione. Da lì nascono le basi,
-  che generano tutto lo spazio senza sprechi, e la dimensione: il numero di vettori di una base, lo stesso per
-  tutte le basi. Alla fine sai perché $\dim \K^n = n$, $\dim \K_n[x] = n + 1$ e $\dim M(m, n, \K) = mn$, e come
-  si risponde alle domande d'esame su basi e dimensioni.
+  Quando un vettore è di troppo? Quando si ottiene mescolando gli altri, come un ingrediente doppione. Da qui nascono
+  le basi, gli ingredienti giusti per fare tutto senza sprechi, e la dimensione: quanti numeri servono per dire dove
+  sei. Basi e dimensioni sono tra le domande più frequenti del quiz.
 materiale: dispense
 scheda:
   Dispense: lezione 7 · pp. 31–35
   Libro: Martelli, §2.3.1–2.3.7
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 120–150 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 7 «Spazi vettoriali III»; B. Martelli, Geometria e algebra lineare, §2.3.1–2.3.7
 appunti_html: appunti/MDAG/L07_spazi_vettoriali_3.html
@@ -23882,29 +23881,29 @@ genera_html: true
 
 ## In breve
 
-- Dei vettori $v_1, \dots, v_k$ sono **linearmente dipendenti** se una loro combinazione con coefficienti **non tutti nulli** dà il vettore nullo. Sono **linearmente indipendenti** se l'unica combinazione che dà $0$ è quella con tutti i coefficienti uguali a zero.
-- Dipendenti vuol dire che **uno di loro è combinazione lineare degli altri** (Proposizione 7.2): c'è un vettore «di troppo».
-- Un vettore da solo è dipendente solo se è il vettore nullo; due vettori sono dipendenti solo se sono **multipli**. Con tre o più vettori guardarli a coppie non basta (Esempio 7.4).
-- Un sottoinsieme di vettori indipendenti è ancora formato da vettori indipendenti (Proposizione 7.6).
-- Una **base** di $V$ è una sequenza di vettori **indipendenti** che **generano** $V$. Esempi: la **base canonica** $e_1, \dots, e_n$ di $\K^n$ e la base $1, x, \dots, x^n$ di $\K_n[x]$.
-- Tutte le basi di uno spazio hanno lo **stesso numero** di vettori (Teorema 7.10): questo numero è la **dimensione** $\dim V$.
-- $\dim \K^n = n$, $\dim \K_n[x] = n + 1$, $\dim M(m, n, \K) = mn$; lo spazio $\K[x]$ di tutti i polinomi ha dimensione infinita.
-- Se $\dim V = n$, per decidere se $n$ vettori sono una base basta controllare **una** delle due condizioni: indipendenza **oppure** generazione (Teorema 7.12).
-- All'esame escono domande su dimensioni (matrici triangolari o simmetriche, sottospazi di polinomi), su «generatori e/o indipendenti», su quale insieme è una base: per esempio gli appelli del 24/01/2024, 16/01/2025, 15/01/2026 e 07/09/2026.
+- Dei vettori sono **linearmente dipendenti** quando uno di loro è di troppo: si ottiene mescolando gli altri, come un ingrediente doppione. Sono **linearmente indipendenti** quando nessuno è di troppo.
+- Il controllo: se l'unica ricetta che dà il vettore zero è quella con tutte le dosi uguali a zero, i vettori sono indipendenti.
+- Un vettore da solo è dipendente solo se è lo zero. Due vettori sono dipendenti solo se uno è multiplo dell'altro. Con tre o più vettori guardarli a coppie non basta.
+- Una **base** è una lista di vettori indipendenti con cui si cucina tutto lo spazio. Ogni vettore ha una sola ricetta con gli ingredienti di una base.
+- Tutte le basi di uno spazio hanno lo stesso numero di vettori: questo numero è la **dimensione**. Il piano ha dimensione 2, lo spazio 3, i polinomi di grado al massimo 2 hanno dimensione 3.
+- Se hai tanti vettori quanta è la dimensione, per sapere se sono una base basta controllare una cosa sola: che siano indipendenti.
+- All'esame escono domande su dimensioni, su «generatori e/o indipendenti» e su quale insieme è una base: per esempio negli appelli del 24/01/2024, 16/01/2025, 15/01/2026 e 07/09/2026.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Dimensione: da dove si parte (p. 31)
+## Che cosa vuol dire «dimensione» (p. 31)
 
-Dalla scuola sai che un punto ha dimensione $0$, una retta dimensione $1$, un piano dimensione $2$. In questa lezione la parola «dimensione» diventa una definizione precisa, che vale per ogni spazio vettoriale e per ogni suo sottospazio: anche per $M(2, 3, \R)$ o per $\R_3[x]$, che non si possono disegnare.
+Dalla scuola sai che un punto ha dimensione 0, una retta dimensione 1, un piano dimensione 2, lo spazio dimensione 3. Su una retta basta un numero per dire dove sei; su un piano ne servono due; nello spazio tre.
 
-L'idea è contare **quanti vettori servono** per generare lo spazio, senza sprechi. Guarda questi due casi in $\R^2$ (lezione L06):
+In questa lezione la parola «dimensione» diventa una definizione precisa, che vale per ogni spazio vettoriale: anche per le matrici $2 \times 3$ o per i polinomi, che non si possono disegnare.
 
-- $\Span\big((1, 2), (2, 4)\big)$ è una **retta**: il secondo vettore è il doppio del primo e non aggiunge niente. Uno dei due è «di troppo».
-- $\Span\big((1, 2), (2, 1)\big)$ è **tutto il piano**: servono entrambi, nessuno è di troppo.
+L'idea è contare **quanti vettori servono** per cucinare tutto lo spazio, senza sprechi. Ricorda dalla lezione L06: lo Span di alcuni vettori è tutto quello che si ottiene con le loro ricette. Guarda questi due casi nel piano:
 
-Per contare bene bisogna prima riconoscere i vettori di troppo. È il compito della dipendenza lineare.
+- Lo Span di $(1, 2)$ e $(2, 4)$ è una **retta**: il secondo vettore è il doppio del primo e non aggiunge niente. Uno dei due è di troppo.
+- Lo Span di $(1, 2)$ e $(2, 1)$ è **tutto il piano**: servono tutti e due, nessuno è di troppo.
+
+Guarda la figura: $(1, 2)$ e $(2, 4)$ stanno sulla stessa retta tratteggiata, $(2, 1)$ punta in un'altra direzione.
 
 ```grafico
 titolo: $(1, 2)$ e $(2, 4)$ stanno sulla stessa retta per l'origine (dipendenti); $(1, 2)$ e $(2, 1)$ no (indipendenti)
@@ -23916,9 +23915,31 @@ vettore: 1 2 | accento | spesso | $(1, 2)$ | o
 vettore: 2 1 | ambra | spesso | $(2, 1)$ | se
 ```
 
-## Dipendenza e indipendenza lineare (pp. 31–33)
+Per contare bene bisogna prima saper riconoscere i vettori di troppo. È il compito della prossima sezione.
 
-Se $(2, 4) = 2 \cdot (1, 2)$, allora $2 \cdot (1, 2) - (2, 4) = (0, 0)$: una combinazione dei due vettori, con coefficienti $2$ e $-1$, dà il vettore nullo. Ogni volta che un vettore è «di troppo» succede questo, e la definizione parte proprio da qui.
+::: prova Lo Span di $(1, 0)$ e $(3, 0)$ è una retta o tutto il piano?
+Una retta, l'asse orizzontale: $(3, 0)$ è il triplo di $(1, 0)$ e non aggiunge niente.
+:::
+
+> [!RICORDA]
+> - La dimensione conta quanti vettori servono per ottenere tutto lo spazio, senza vettori di troppo.
+> - Un vettore che è multiplo di un altro non aggiunge niente allo Span.
+
+## Ingredienti doppioni: la dipendenza lineare (pp. 31–33)
+
+In cucina hai tre ingredienti: farina, zucchero e un preparato già pronto fatto da 2 parti di farina e 1 di zucchero. Il preparato è un doppione: lo puoi rifare mescolando gli altri due. Toglierlo non cambia quello che puoi cucinare.
+
+Con i vettori succede lo stesso. Prendi $(1, 2)$ e $(2, 4)$. Il secondo è il doppio del primo: $(2, 4) = 2 \cdot (1, 2)$. Porto tutto da una parte:
+
+$$2 \cdot (1, 2) - 1 \cdot (2, 4) = (2 - 2,\ 4 - 4) = (0, 0).$$
+
+Una ricetta con dosi 2 e $-1$, cioè con dosi **non tutte zero**, dà il vettore zero. È il segnale che c'è un doppione.
+
+La ricetta con **tutte** le dosi uguali a zero dà sempre il vettore zero, con qualsiasi vettore: $0 \cdot (1, 2) + 0 \cdot (2, 4) = (0, 0)$. Non dice niente. La domanda interessante è se c'è un'**altra** ricetta che dà zero.
+
+### Il nome e la definizione
+
+Le dispense lo scrivono così.
 
 > [!DEF] 7.1 · Vettori linearmente dipendenti e indipendenti
 > Sia $V$ uno spazio vettoriale su $\K$ e siano $v_1, \dots, v_k \in V$ alcuni vettori. Diciamo che questi vettori sono **linearmente dipendenti** se esistono dei coefficienti $\lambda_1, \dots, \lambda_k \in \K$, **non tutti nulli**, tali che
@@ -23927,57 +23948,77 @@ Se $(2, 4) = 2 \cdot (1, 2)$, allora $2 \cdot (1, 2) - (2, 4) = (0, 0)$: una com
 > $$\lambda_1 v_1 + \dots + \lambda_k v_k = 0 \implies \lambda_1 = \dots = \lambda_k = 0.$$
 > In altre parole, l'unica combinazione lineare dei $v_1, \dots, v_k$ che può dare il vettore nullo è quella banale, in cui tutti i coefficienti $\lambda_1, \dots, \lambda_k$ sono nulli.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- La combinazione con **tutti** i coefficienti uguali a $0$ dà sempre il vettore nullo, per qualsiasi vettori: $0v_1 + \dots + 0v_k = 0$. Le dispense la chiamano combinazione **banale**. La domanda interessante è se ce ne sono **altre**.
-- **Non tutti nulli** vuol dire: almeno un coefficiente diverso da $0$. Gli altri possono anche essere $0$.
-- **Dipendenti**: esiste una combinazione **non banale** che dà $0$. Per dimostrarlo basta **esibirla**: $2 \cdot (1, 2) - (2, 4) = 0$.
-- **Indipendenti**: l'implicazione $\lambda_1 v_1 + \dots + \lambda_k v_k = 0 \Rightarrow$ tutti i $\lambda_i = 0$. Per dimostrarlo si parte da una combinazione nulla con coefficienti incogniti e si **deduce** che sono tutti zero: di solito si risolve un sistema lineare.
-- Dipendenza e indipendenza sono proprietà **dell'intera lista** di vettori, non dei singoli vettori.
+- $v_1, \dots, v_k$ sono gli ingredienti; $\lambda_1, \dots, \lambda_k$ sono le dosi, cioè i coefficienti (lezione L06). $\K$ sono i numeri usati, reali o complessi.
+- **Non tutti nulli** vuol dire: almeno una dose diversa da zero. Le altre possono anche essere zero.
+- **Dipendenti**: c'è una ricetta con almeno una dose diversa da zero che dà il vettore zero.
+- **Indipendenti**: l'unica ricetta che dà zero è quella con tutte le dosi zero. Le dispense la chiamano combinazione «banale».
+- La freccia $\implies$ si legge «allora»: «se la ricetta dà zero, allora tutte le dosi sono zero».
+- Dipendenza e indipendenza riguardano **tutta la lista** di vettori insieme, non un vettore da solo.
 
-> [!ESEMPIO] · la verifica con le incognite, in $\R^2$
-> **$(1, 2)$ e $(2, 1)$ sono indipendenti.** Suppongo $a(1, 2) + b(2, 1) = (0, 0)$, cioè $(a + 2b,\ 2a + b) = (0, 0)$:
+### Come si controlla
+
+**Per dire «dipendenti»** basta mostrare una ricetta con dosi non tutte zero che dà zero. Per esempio $2 \cdot (1, 2) - (2, 4) = (0, 0)$.
+
+**Per dire «indipendenti»** si parte da una ricetta con le dosi sconosciute, la si mette uguale a zero e si dimostra che le dosi devono essere tutte zero. Di solito si risolve un sistema.
+
+> [!ESEMPIO] · la verifica con le incognite, nel piano
+> **$(1, 2)$ e $(2, 1)$ sono indipendenti.** Chiamo $a$ e $b$ le dosi e chiedo $a(1, 2) + b(2, 1) = (0, 0)$, cioè $(a + 2b,\ 2a + b) = (0, 0)$:
 > $$\begin{cases} a + 2b = 0 \\ 2a + b = 0 \end{cases}$$
-> Dalla prima $a = -2b$; sostituendo nella seconda, $-4b + b = -3b = 0$, quindi $b = 0$ e poi $a = 0$. L'unica combinazione nulla è quella banale: indipendenti.
+> 1. Dalla prima: $a = -2b$.
+> 2. Sostituisco nella seconda: $2 \cdot (-2b) + b = -4b + b = -3b = 0$, quindi $b = 0$.
+> 3. Allora $a = -2 \cdot 0 = 0$.
 >
-> **$(1, 2)$ e $(2, 4)$ sono dipendenti.** Lo stesso sistema diventa $a + 2b = 0$ e $2a + 4b = 0$: la seconda equazione è il doppio della prima, e ogni coppia con $a = -2b$ funziona. Per esempio $b = -1$, $a = 2$: $2(1, 2) - (2, 4) = (0, 0)$, con coefficienti non nulli.
+> L'unica ricetta che dà zero ha tutte le dosi zero: indipendenti.
+>
+> **$(1, 2)$ e $(2, 4)$ sono dipendenti.** Lo stesso sistema diventa $a + 2b = 0$ e $2a + 4b = 0$. La seconda equazione è il doppio della prima, e va bene ogni coppia con $a = -2b$. Per esempio $b = -1$ e $a = 2$: $2(1, 2) - (2, 4) = (0, 0)$, con dosi diverse da zero.
 
-### Un vettore di troppo (p. 31)
+::: prova I vettori $(1, 0)$ e $(0, 1)$ sono indipendenti?
+Sì. $a(1, 0) + b(0, 1) = (a, b)$, e questo è $(0, 0)$ solo se $a = 0$ e $b = 0$.
+:::
 
-Se $v_1, \dots, v_k$ sono dipendenti, uno di loro si può esprimere in funzione degli altri. Per ipotesi esiste almeno un coefficiente $\lambda_i \neq 0$. Isolo il termine $\lambda_i v_i$, divido tutto per $\lambda_i$ (si può, perché $\lambda_i \neq 0$ e siamo in un campo) e sposto gli altri addendi:
+### Il doppione si ricostruisce dagli altri (p. 31)
+
+Se dei vettori sono dipendenti, uno di loro si ricostruisce dagli altri. Ecco perché, con l'esempio di prima: da $2 \cdot (1, 2) - (2, 4) = 0$ sposto $(2, 4)$ dall'altra parte e ottengo $(2, 4) = 2 \cdot (1, 2)$.
+
+In generale si fa così. C'è almeno una dose diversa da zero, diciamo quella del vettore $v_i$, cioè $\lambda_i$. Lascio $\lambda_i v_i$ da una parte, sposto tutto il resto dall'altra e divido per $\lambda_i$ (si può, perché non è zero):
 
 $$v_i = -\frac{\lambda_1}{\lambda_i} v_1 - \dots - \frac{\lambda_k}{\lambda_i} v_k,$$
 
-dove a destra **non** compare $v_i$. Quindi $v_i$ è una combinazione lineare degli altri.
+dove a destra **non** compare $v_i$. Quindi $v_i$ è una ricetta con gli altri vettori: è il doppione.
+
+Vale anche al contrario. Se un vettore è una ricetta con gli altri, per esempio $v_1 = 3v_2 + v_3$, porto tutto da una parte: $v_1 - 3v_2 - v_3 = 0$. È una ricetta che dà zero con la dose di $v_1$ uguale a 1, non zero: i vettori sono dipendenti.
+
+Le dispense lo scrivono così.
 
 > [!PROP] 7.2
 > I vettori $v_1, \dots, v_k$ sono dipendenti $\iff$ uno di loro è esprimibile come combinazione lineare degli altri.
 
-Il verso $\Rightarrow$ è il conto qui sopra. Il verso $\Leftarrow$, che le dispense lasciano sottinteso: se $v_i = \mu_1 v_1 + \dots + \mu_k v_k$ (senza il termine con $v_i$), portando tutto a sinistra si ottiene
-
-$$\mu_1 v_1 + \dots + (-1) v_i + \dots + \mu_k v_k = 0,$$
-
-una combinazione nulla in cui il coefficiente di $v_i$ è $-1 \neq 0$: i vettori sono dipendenti.
+**Come si legge.** Il simbolo $\iff$ si legge «se e solo se»: le due cose vanno sempre insieme. Dipendenti vuol dire: c'è un doppione, un vettore che si ottiene mescolando gli altri.
 
 > [!IDEA] · che cosa vuol dire «dipendenti»
-> Dei vettori sono dipendenti quando **uno è di troppo**: si può ricostruire dagli altri, e toglierlo non cambia lo Span. Sono indipendenti quando **ciascuno porta una direzione nuova**, che gli altri non sanno produrre.
+> Dei vettori sono dipendenti quando **uno è di troppo**: si può ricostruire dagli altri, e toglierlo non cambia lo Span. Sono indipendenti quando **ognuno porta una direzione nuova**, che gli altri non sanno produrre.
 
 ### Uno e due vettori (pp. 31–32)
 
-I casi $k = 1$ e $k = 2$ si capiscono subito dalla Proposizione 7.2.
+Con pochi vettori la Proposizione 7.2 si legge subito.
 
-- **Un vettore $v_1$ è dipendente $\iff v_1 = 0$.** Se $v_1 = 0$, allora $1 \cdot v_1 = 0$ con coefficiente $1 \neq 0$. Se $v_1 \neq 0$ e $\lambda v_1 = 0$, allora $\lambda = 0$ (lezione L05, esercizio 8).
-- **Due vettori $v_1, v_2$ sono dipendenti $\iff$ sono multipli**, cioè esiste $k \in \K$ con $v_1 = kv_2$ oppure $v_2 = kv_1$. È la Proposizione 7.2 con due vettori: «uno è combinazione dell'altro» vuol dire «uno è un multiplo dell'altro».
+- **Un vettore da solo è dipendente solo se è lo zero.** Lo zero lo è: $1 \cdot 0 = 0$, con la dose 1. Un vettore diverso da zero no: se $\lambda v = 0$ con $v$ diverso da zero, allora $\lambda = 0$ (lezione L05, esercizio 11 (c)).
+- **Due vettori sono dipendenti solo se uno è multiplo dell'altro.** «Uno è una ricetta con l'altro» vuol dire proprio «uno è un multiplo dell'altro».
 
 > [!ESEMPIO] 7.3 · Due vettori di $\R^2$
 > I vettori $v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ e $v_2 = \begin{pmatrix} -2 \\ -2 \end{pmatrix}$ di $\R^2$ sono dipendenti; $w_1 = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$ e $w_2 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$ sono indipendenti perché non sono multipli.
 
-Il perché, con i numeri: $v_2 = -2v_1$, quindi $2v_1 + v_2 = 0$. Invece $w_2 = kw_1$ richiederebbe $2 = k$ (prima coordinata) e $1 = 2k$ (seconda), cioè $k = 2$ e $k = \frac 12$ insieme: impossibile. E per lo stesso motivo nemmeno $w_1$ è un multiplo di $w_2$.
+Il perché, con i numeri:
 
-> [!TRAPPOLA] Il vettore nullo rende tutto dipendente
-> Se nella lista c'è il vettore nullo, i vettori sono **sempre** dipendenti: $1 \cdot 0 + 0 \cdot v_2 + \dots + 0 \cdot v_k = 0$ è una combinazione nulla con un coefficiente uguale a $1$.
+1. $v_2 = -2v_1$, quindi $2v_1 + v_2 = 0$: dipendenti.
+2. Perché $w_2$ sia un multiplo di $w_1$ servirebbe un numero $k$ con $2 = k \cdot 1$ (prima coordinata) e $1 = k \cdot 2$ (seconda). La prima dà $k = 2$, la seconda $k = \frac 12$: impossibile. Per lo stesso motivo nemmeno $w_1$ è un multiplo di $w_2$.
 
-Nello strumento qui sotto $u = (1, 2)$ e $v = (2, 1)$ sono indipendenti: con le combinazioni $\lambda u + \mu v$ si raggiunge ogni punto del piano. Trascina $v$ in $(2, 4)$ oppure in $(-1, -2)$: diventa un multiplo di $u$, lo strumento lo segnala e le combinazioni restano sulla retta rossa.
+> [!TRAPPOLA] Lo zero rende tutto dipendente
+> Se nella lista c'è il vettore zero, i vettori sono **sempre** dipendenti. Basta dare dose 1 allo zero e dose 0 a tutti gli altri: la ricetta dà zero, e una dose non è zero.
+
+Nello strumento qui sotto $u = (1, 2)$ e $v = (2, 1)$ sono indipendenti: con le ricette $\lambda u + \mu v$ si raggiunge ogni punto del piano. Trascina $v$ in $(2, 4)$ oppure in $(-1, -2)$: diventa un multiplo di $u$, lo strumento lo segnala e le ricette restano sulla retta rossa.
 
 ```widget vettori
 titolo: Due vettori del piano: indipendenti o multipli?
@@ -23989,9 +24030,13 @@ lambda: 1
 mu: 1
 ```
 
+::: prova $(3, -6)$ e $(-1, 2)$ sono dipendenti o indipendenti?
+Dipendenti: $(3, -6) = -3 \cdot (-1, 2)$, uno è multiplo dell'altro.
+:::
+
 ### Tre o più vettori (p. 32)
 
-Con tre o più vettori le cose si complicano: guardarli due alla volta non basta.
+Con tre o più vettori guardarli due alla volta non basta. Le dispense lo mostrano con un esempio.
 
 > [!ESEMPIO] 7.4 · Tre vettori dipendenti, ma a coppie indipendenti
 > I vettori
@@ -24002,40 +24047,53 @@ Il conto, coordinata per coordinata:
 
 $$v_1 - v_2 - v_3 = \begin{pmatrix} 1 - 0 - 1 \\ 1 - 1 - 0 \\ 0 - 1 - (-1) \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}.$$
 
-Come si **trova** una relazione così, invece di indovinarla? Si cerca $a v_1 + b v_2 + c v_3 = 0$ con $a, b, c$ incognite:
+Come si **trova** una ricetta così, invece di indovinarla? Si chiamano $a$, $b$, $c$ le dosi e si chiede $a v_1 + b v_2 + c v_3 = 0$, coordinata per coordinata:
 
 $$\begin{cases} a + c = 0 \\ a + b = 0 \\ b - c = 0 \end{cases}$$
 
-Dalla prima $c = -a$, dalla seconda $b = -a$; la terza diventa $-a - (-a) = 0$, sempre vera. Quindi $a$ è libero: con $a = 1$ si ottiene $b = -1$, $c = -1$, cioè proprio $v_1 - v_2 - v_3 = 0$. Un'incognita libera vuol dire infinite soluzioni, quindi anche soluzioni non nulle: i vettori sono dipendenti. Geometricamente i tre vettori stanno in uno **stesso piano per l'origine**, il piano $x - y + z = 0$ (controlla: $1 - 1 + 0 = 0$, $0 - 1 + 1 = 0$, $1 - 0 - 1 = 0$).
+1. Dalla prima: $c = -a$.
+2. Dalla seconda: $b = -a$.
+3. La terza diventa $-a - (-a) = 0$: è sempre vera, qualunque sia $a$.
+
+Quindi $a$ si può scegliere come si vuole. Con $a = 1$ vengono $b = -1$ e $c = -1$: proprio $v_1 - v_2 - v_3 = 0$. Una dose libera vuol dire infinite ricette che danno zero, anche con dosi diverse da zero: i vettori sono dipendenti.
+
+Nel disegno i tre vettori stanno in uno **stesso piano per l'origine**, il piano $x - y + z = 0$. Controllo: $1 - 1 + 0 = 0$, $0 - 1 + 1 = 0$, $1 - 0 - 1 = 0$.
 
 > [!ESEMPIO] 7.5 · La base canonica di $\R^3$ è indipendente
 > I vettori
 > $$e_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \qquad e_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \qquad e_3 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$$
 > sono indipendenti. Se una combinazione lineare produce il vettore nullo, $\lambda_1 e_1 + \lambda_2 e_2 + \lambda_3 e_3 = 0$, riscrivendo entrambi i membri come vettori si trova
 > $$\lambda_1 \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + \lambda_2 \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + \lambda_3 \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} \lambda_1 \\ \lambda_2 \\ \lambda_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}.$$
-> Da questo si deduce $\lambda_1 = \lambda_2 = \lambda_3 = 0$: l'unica combinazione lineare di $e_1, e_2, e_3$ che dà il vettore nullo è quella banale, quindi i tre vettori sono indipendenti.
+> Da questo si deduce $\lambda_1 = \lambda_2 = \lambda_3 = 0$: l'unica combinazione lineare di $e_1, e_2, e_3$ che dà il vettore nullo è quella «banale», quindi i tre vettori sono indipendenti.
 
-### Sottoinsiemi di vettori indipendenti (pp. 32–33)
+Qui il conto è immediato perché ogni vettore ha un 1 in un posto dove gli altri hanno 0: la ricetta mette ogni dose in una coordinata diversa.
+
+### Una parte di una lista indipendente (pp. 32–33)
+
+Se nessun ingrediente di una lista è un doppione, nessuno lo è nemmeno in una parte della lista. Le dispense lo scrivono così.
 
 > [!PROP] 7.6
 > Se $v_1, \dots, v_k$ sono indipendenti, allora qualsiasi sottoinsieme di $\{v_1, \dots, v_k\}$ è anch'esso formato da vettori indipendenti.
 
-La spiegazione delle dispense, con i passaggi. Supponi per assurdo che alcuni di loro, per comodità i primi $h$, siano dipendenti: esiste una combinazione non banale nulla $\lambda_1 v_1 + \dots + \lambda_h v_h = 0$. Aggiungendo gli altri vettori con coefficiente zero,
+**Come si legge.** Togliendo vettori da una lista indipendente si ottiene ancora una lista indipendente.
 
-$$\lambda_1 v_1 + \dots + \lambda_h v_h + 0 v_{h+1} + \dots + 0 v_k = 0,$$
+Il motivo, a parole: una ricetta che dà zero con una parte dei vettori diventa una ricetta con tutti i vettori, dando dose zero a quelli tolti. Se la prima avesse una dose diversa da zero, l'avrebbe anche la seconda.
 
-si ottiene una combinazione nulla di **tutti** i vettori, ancora non banale (i $\lambda_1, \dots, \lambda_h$ non erano tutti nulli). Questo contraddice l'indipendenza di $v_1, \dots, v_k$.
+> [!DIM] della Proposizione 7.6
+> La spiegazione delle dispense, con i passaggi. Supponi per assurdo che alcuni di loro, per comodità i primi $h$, siano dipendenti: esiste una ricetta $\lambda_1 v_1 + \dots + \lambda_h v_h = 0$ con dosi non tutte zero. Aggiungo gli altri vettori con dose zero:
+> $$\lambda_1 v_1 + \dots + \lambda_h v_h + 0 v_{h+1} + \dots + 0 v_k = 0.$$
+> È una ricetta con **tutti** i vettori che dà zero, e ha ancora una dose diversa da zero. Questo contraddice l'indipendenza di $v_1, \dots, v_k$.
 
-In particolare, se $v_1, \dots, v_k$ sono indipendenti, allora:
+Due conseguenze. Se dei vettori sono indipendenti, allora:
 
-- i vettori $v_i$ sono **tutti diversi da zero** (sottoinsiemi di un solo vettore);
-- i vettori $v_i$ sono **a coppie non multipli** (sottoinsiemi di due vettori).
+- sono **tutti diversi da zero** (guardando un vettore alla volta);
+- **a due a due non sono multipli** (guardando due vettori alla volta).
 
-> [!TRAPPOLA] Condizioni necessarie, non sufficienti
-> L'Esempio 7.4 mostra che per $k \ge 3$ queste due condizioni **non bastano**: $v_1, v_2, v_3$ sono non nulli e a coppie non multipli, eppure sono dipendenti. Con tre o più vettori bisogna impostare la combinazione nulla e risolvere il sistema.
+> [!TRAPPOLA] Necessarie, ma non bastano
+> L'Esempio 7.4 mostra che con tre o più vettori queste due condizioni **non bastano**: $v_1, v_2, v_3$ sono diversi da zero e a coppie non multipli, eppure sono dipendenti. Con tre o più vettori bisogna scrivere la ricetta con le dosi sconosciute e risolvere il sistema.
 
 > [!OLTRE] · quanti vettori indipendenti ci sono in una lista: il metodo di Gauss
-> Per liste lunghe il sistema diventa pesante. Nella lezione L13 le dispense usano il **metodo di Gauss** (lezione L11) e il **rango** (lezione L08): si scrivono i vettori come righe di una matrice e si fanno mosse del tipo $R_2 \to R_2 - R_1$. Ogni mossa sostituisce un vettore con la sua differenza con un multiplo di un altro, e lo Span non cambia. Alla fine le righe non nulle sono indipendenti, e il loro numero, il rango, dice quanti vettori indipendenti c'erano. Nello strumento la matrice ha per righe i tre vettori dell'Esempio 7.4: esce una riga di zeri e $\rk = 2$. Prova poi le righe `1 1 2`, `-1 1 -1`, `0 1 1` (i vettori $v_1, v_2, v_4$ dell'Esercizio 7.15): $\rk = 3$, indipendenti.
+> Per liste lunghe il sistema diventa pesante. Nella lezione L13 le dispense usano il **metodo di Gauss** (lezione L11) e il **rango** (lezione L08): si scrivono i vettori come righe di una matrice e si fanno mosse come «la riga 2 diventa la riga 2 meno la riga 1». Ogni mossa sostituisce un vettore con la sua differenza con un multiplo di un altro, e lo Span non cambia. Alla fine le righe diverse da zero sono indipendenti, e il loro numero, il rango, dice quanti vettori indipendenti c'erano. Nello strumento la matrice ha per righe i tre vettori dell'Esempio 7.4: esce una riga di zeri e il rango è 2. Prova poi le righe `1 1 2`, `-1 1 -1`, `0 1 1` (i vettori $v_1, v_2, v_4$ dell'Esercizio 7.15): il rango è 3, indipendenti.
 
 ```widget gauss
 titolo: Quanti vettori indipendenti? Un vettore per riga
@@ -24044,31 +24102,54 @@ modo: rango
 modi: rango
 ```
 
-## Basi (pp. 33–34)
+::: prova I vettori $(1, 2, 3)$, $(0, 0, 0)$ e $(4, 5, 6)$ sono indipendenti?
+No: c'è il vettore zero, quindi sono dipendenti. Una ricetta che dà zero: $0 \cdot (1, 2, 3) + 1 \cdot (0, 0, 0) + 0 \cdot (4, 5, 6)$.
+:::
 
-Nel piano ogni vettore si scrive con due numeri, per esempio $(5, 3) = 5(1, 0) + 3(0, 1)$. I due vettori $(1, 0)$ e $(0, 1)$ bastano per costruire tutto il piano, e nessuno dei due è di troppo. Una lista così si chiama base. Le dispense la presentano come una delle definizioni più importanti del corso.
+> [!RICORDA]
+> - Dipendenti: una ricetta con dosi non tutte zero dà il vettore zero; cioè un vettore è un doppione degli altri.
+> - Indipendenti: l'unica ricetta che dà zero ha tutte le dosi zero.
+> - Uno da solo è dipendente solo se è zero; due sono dipendenti solo se multipli; con tre o più si risolve il sistema.
+
+## Gli ingredienti giusti: le basi (pp. 33–34)
+
+Nel piano ogni vettore si scrive con due numeri. Per esempio
+
+$$(5, 3) = 5 \cdot (1, 0) + 3 \cdot (0, 1).$$
+
+I due vettori $(1, 0)$ e $(0, 1)$ bastano per cucinare tutto il piano, e nessuno dei due è di troppo. Una lista di ingredienti così si chiama **base**: abbastanza per fare tutto, e nessuno sprecato. Le dispense la presentano come una delle definizioni più importanti del corso.
 
 > [!DEF] 7.7 · Base
 > Sia $V$ uno spazio vettoriale. Una sequenza $v_1, \dots, v_n \in V$ di vettori è una **base** se sono soddisfatte entrambe queste condizioni:
 > 1. i vettori $v_1, \dots, v_n$ sono indipendenti;
 > 2. i vettori $v_1, \dots, v_n$ generano $V$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- **Generano $V$** vuol dire $V = \Span(v_1, \dots, v_n)$: qualsiasi vettore di $V$ è esprimibile come combinazione lineare dei $v_1, \dots, v_n$. Nessun vettore resta fuori.
-- **Indipendenti**: nessuno dei $v_i$ è di troppo.
-- Servono **entrambe** le condizioni. Pochi vettori possono essere indipendenti senza generare; tanti vettori possono generare senza essere indipendenti.
+- **Generano $V$** vuol dire che lo Span dei vettori è tutto $V$: ogni vettore di $V$ si ottiene con una ricetta. Nessun vettore resta fuori.
+- **Indipendenti**: nessuno dei vettori è di troppo.
+- Servono **tutte e due** le condizioni. Pochi vettori possono essere indipendenti senza generare tutto; tanti vettori possono generare tutto senza essere indipendenti.
 - È una **sequenza**: conta anche l'ordine, che diventerà importante con le coordinate (lezione L13).
 
-| Vettori di $\R^2$ | indipendenti? | generano $\R^2$? | base? |
+Una tabella con cinque liste di vettori del piano:
+
+| Vettori del piano | indipendenti? | generano il piano? | base? |
 |---|---|---|---|
-| $(1, 0)$ | sì | no: solo l'asse $x$ | no |
+| $(1, 0)$ | sì | no: solo l'asse orizzontale | no |
 | $(1, 0),\ (0, 1),\ (1, 1)$ | no: $(1, 1) = (1, 0) + (0, 1)$ | sì | no |
 | $(1, 0),\ (0, 1)$ | sì | sì | **sì** |
 | $(1, 2),\ (2, 1)$ | sì | sì: $(a, b) = \frac{2b - a}3 (1, 2) + \frac{2a - b}3 (2, 1)$ | **sì** |
 | $(1, 2),\ (2, 4)$ | no: multipli | no: solo la retta $y = 2x$ | no |
 
-Nella penultima riga c'è un'altra base di $\R^2$: le basi di uno spazio sono infinite.
+Nella quarta riga c'è un'altra base del piano: le basi di uno spazio sono infinite.
+
+::: prova I vettori $(1, 0)$, $(0, 1)$ e $(2, 3)$ sono una base del piano? Perché?
+No. Generano il piano, ma non sono indipendenti: $(2, 3) = 2 \cdot (1, 0) + 3 \cdot (0, 1)$ è un doppione.
+:::
+
+### La base canonica
+
+La base più comoda di $\K^n$ è fatta di vettori con un solo 1 e tutti gli altri numeri zero. Le dispense la chiamano base canonica.
 
 > [!ESEMPIO] 7.8 · La base canonica di $\K^n$
 > Gli elementi
@@ -24082,11 +24163,13 @@ Nella penultima riga c'è un'altra base di $\R^2$: le basi di uno spazio sono in
 > **Generano $\K^n$.** Un generico vettore $x \in \K^n$ si scrive come combinazione lineare di $e_1, \dots, e_n$:
 > $$x = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = x_1 \begin{pmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix} + x_2 \begin{pmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{pmatrix} + \dots + x_n \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{pmatrix} = x_1 e_1 + x_2 e_2 + \dots + x_n e_n.$$
 
-Il vettore $e_i$ ha un $1$ al posto $i$ e zeri altrove. Per esempio in $\R^3$:
+Il vettore $e_i$ ha un 1 al posto numero $i$ e zeri altrove. Per esempio, con tre coordinate:
 
-$$\begin{pmatrix} 5 \\ -2 \\ 7 \end{pmatrix} = 5e_1 - 2e_2 + 7e_3:$$
+$$\begin{pmatrix} 5 \\ -2 \\ 7 \end{pmatrix} = 5e_1 - 2e_2 + 7e_3.$$
 
-i coefficienti rispetto alla base canonica sono proprio le coordinate del vettore.
+Le dosi rispetto alla base canonica sono proprio le coordinate del vettore.
+
+Lo stesso vale per i polinomi: la base più comoda è fatta dalle potenze della lettera.
 
 > [!ESEMPIO] 7.9 · La base canonica dei polinomi
 > Nello spazio $\K_n[x]$ dei polinomi di grado minore o uguale a $n$, gli elementi $1, x, x^2, \dots, x^n$ formano una base, detta **base canonica**.
@@ -24095,53 +24178,66 @@ i coefficienti rispetto alla base canonica sono proprio le coordinate del vettor
 >
 > **Generano $\K_n[x]$**: ciascun polinomio di grado minore o uguale a $n$ si scrive come $p(x) = a_n x^n + \dots + a_1 x + a_0$, e questa scrittura è già una combinazione lineare dei vettori $1, x, \dots, x^n$, con coefficienti $a_0, a_1, \dots, a_n$.
 
-Perché vale l'indipendenza? A destra dell'uguale c'è il **polinomio nullo**, quello con tutti i coefficienti uguali a $0$. Due polinomi sono uguali quando hanno gli stessi coefficienti, quindi $\lambda_0 + \lambda_1 x + \dots + \lambda_n x^n$ è il polinomio nullo solo se ogni $\lambda_i$ è $0$. (Visto come funzione, un polinomio non nullo di grado $\le n$ ha al massimo $n$ radici, lezione L04: non può valere $0$ in tutti i punti.)
+Perché vale l'indipendenza? A destra dell'uguale c'è il **polinomio zero**, quello con tutti i coefficienti uguali a 0. Due polinomi sono uguali quando hanno gli stessi coefficienti, quindi $\lambda_0 + \lambda_1 x + \dots + \lambda_n x^n$ è il polinomio zero solo se ogni dose è zero. Un esempio: $3 + 0x - 2x^2$ non è il polinomio zero, perché ha dei coefficienti diversi da zero.
 
-> [!TRAPPOLA] $\K_n[x]$ ha $n + 1$ vettori di base, non $n$
-> La base canonica di $\K_2[x]$ è $1, x, x^2$: **tre** polinomi, perché c'è anche la costante $1$. Per $\K_n[x]$ i vettori sono $1, x, \dots, x^n$: $n + 1$ in tutto.
+> [!TRAPPOLA] I polinomi di grado al massimo $n$ hanno $n + 1$ vettori di base, non $n$
+> La base canonica dei polinomi di grado al massimo 2 è $1, x, x^2$: **tre** polinomi, perché c'è anche il numero 1. Per il grado al massimo $n$ i vettori sono $1, x, \dots, x^n$: $n + 1$ in tutto.
 
 > [!OLTRE] · a che cosa serve una base: le coordinate
-> Il libro di Martelli (Proposizione 2.3.11) mostra che, fissata una base $v_1, \dots, v_n$, **ogni vettore si scrive in un solo modo** come $\lambda_1 v_1 + \dots + \lambda_n v_n$. Se ci fossero due scritture, $\sum \lambda_i v_i = \sum \mu_i v_i$, sottraendo si otterrebbe $\sum (\lambda_i - \mu_i) v_i = 0$, e per l'indipendenza $\lambda_i = \mu_i$ per ogni $i$. I numeri $\lambda_1, \dots, \lambda_n$ si chiamano **coordinate** del vettore rispetto alla base. Per esempio, rispetto alla base $(1, 1), (-1, 1)$ di $\R^2$, il vettore $(2, 0) = 1 \cdot (1, 1) - 1 \cdot (-1, 1)$ ha coordinate $1, -1$. Le coordinate si studiano nella lezione L13.
+> Il libro di Martelli (Proposizione 2.3.11) mostra che, fissata una base, **ogni vettore si scrive in un solo modo** come ricetta con i suoi vettori. Se ci fossero due ricette diverse per lo stesso vettore, sottraendole si otterrebbe una ricetta che dà zero con dosi non tutte zero, contro l'indipendenza. Le dosi di quella ricetta si chiamano **coordinate** del vettore rispetto alla base. Per esempio, rispetto alla base $(1, 1), (-1, 1)$ del piano, il vettore $(2, 0) = 1 \cdot (1, 1) - 1 \cdot (-1, 1)$ ha coordinate $1$ e $-1$. Le coordinate si studiano nella lezione L13.
 
-## Dimensione (pp. 34–35)
+> [!RICORDA]
+> - Una base è una lista di vettori indipendenti che generano tutto lo spazio.
+> - La base canonica di $\K^n$ è $e_1, \dots, e_n$; quella dei polinomi di grado al massimo $n$ è $1, x, \dots, x^n$, con $n + 1$ vettori.
 
-Una retta per l'origine in $\R^2$ ha basi con un vettore: $(1, 2)$, oppure $(2, 4)$, oppure $(-1, -2)$. Il piano $\R^2$ ha basi con due vettori: $(1, 0), (0, 1)$, oppure $(1, 2), (2, 1)$. Ogni spazio ha infinite basi, ma sembra che il **numero** di vettori sia sempre lo stesso. È così, ed è il teorema fondamentale della lezione.
+## Contare i vettori di una base: la dimensione (pp. 34–35)
+
+Una retta per l'origine del piano ha basi fatte da un vettore: $(1, 2)$, oppure $(2, 4)$, oppure $(-1, -2)$. Il piano ha basi fatte da due vettori: $(1, 0), (0, 1)$, oppure $(1, 2), (2, 1)$. Ogni spazio ha infinite basi, ma il **numero** di vettori sembra sempre lo stesso.
+
+È così, ed è il teorema principale della lezione. Le dispense lo scrivono così.
 
 > [!TEOREMA] 7.10
 > Se uno spazio vettoriale $V$ ha una base formata da $n$ vettori, allora ogni base di $V$ contiene $n$ vettori.
 
-Questo teorema permette di definire in modo rigoroso un concetto intuitivo.
+**Come si legge.** Tutte le basi di uno stesso spazio hanno lo stesso numero di vettori. Cambiano gli ingredienti, non quanti ne servono.
+
+Questo teorema permette di dare un nome preciso a un'idea che conosci da sempre.
 
 > [!DEF] 7.11 · Dimensione
 > Se uno spazio vettoriale $V$ ha una base $v_1, \dots, v_n$, diciamo che $V$ ha **dimensione** $n$. Se $V$ non ammette una base finita, diciamo che ha dimensione $\infty$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- La dimensione si indica con $\dim V$.
-- La definizione è **ben posta** grazie al Teorema 7.10: $V$ ha tante basi, ma hanno tutte lo stesso numero $n$ di elementi, quindi il numero $n$ non dipende dalla base scelta. Senza il teorema, due persone potrebbero trovare due «dimensioni» diverse per lo stesso spazio.
+- La dimensione è il numero di vettori di una base. Si scrive $\dim V$, «dimensione di V».
+- Grazie al Teorema 7.10 non importa quale base si sceglie: tutte danno lo stesso numero. Senza il teorema, due persone potrebbero trovare due «dimensioni» diverse per lo stesso spazio.
 - Per calcolare una dimensione basta trovare **una** base e contarne i vettori.
-- Lo spazio $\{0\}$ contiene solo il vettore nullo, che da solo è dipendente: non ha basi con almeno un vettore. Per convenzione la sua base è la lista vuota e $\dim\{0\} = 0$ (il libro di Martelli: $V$ ha dimensione $0$ se e solo se $V = \{0\}$). Così un punto ha dimensione $0$, come a scuola.
+- $\infty$ si legge «infinito»: è la dimensione degli spazi che nessuna lista finita riesce a generare.
+- Lo spazio fatto solo dallo zero non ha basi con almeno un vettore, perché lo zero da solo è dipendente. Per convenzione la sua base è la lista vuota e la sua dimensione è 0. Così un punto ha dimensione 0, come a scuola.
 
 Con le basi già trovate:
 
 | Spazio | una base | dimensione |
 |---|---|---:|
 | $\K^n$ | $e_1, \dots, e_n$ (Esempio 7.8) | $n$ |
-| $\K_n[x]$, polinomi di grado $\le n$ | $1, x, \dots, x^n$ (Esempio 7.9) | $n + 1$ |
-| $M(m, n, \K)$ | le matrici $e_{ij}$ (Esercizio 7.13) | $mn$ |
+| $\K_n[x]$, polinomi di grado al massimo $n$ | $1, x, \dots, x^n$ (Esempio 7.9) | $n + 1$ |
+| $M(m, n, \K)$, matrici $m \times n$ | le matrici $e_{ij}$ (Esercizio 7.13) | $mn$ |
 | $\K[x]$, tutti i polinomi | nessuna base finita | $\infty$ |
-| $\{0\}$ | la lista vuota | $0$ |
+| solo lo zero | la lista vuota | $0$ |
 
-**Perché $\K[x]$ ha dimensione infinita.** Le dispense lo ricordano come conseguenza della definizione; il motivo è questo. Prendi una qualsiasi lista finita di polinomi $p_1, \dots, p_k$ e chiama $N$ il più grande dei loro gradi. Ogni combinazione lineare dei $p_i$ ha grado al massimo $N$, quindi $x^{N+1}$ non è una loro combinazione. Nessuna lista finita genera $\K[x]$: non esiste una base finita.
+**Perché tutti i polinomi insieme hanno dimensione infinita.** Prendi una lista finita di polinomi qualsiasi e chiama $N$ il grado più alto tra loro. Ogni ricetta con quei polinomi ha grado al massimo $N$, quindi il polinomio $x^{N+1}$ non si ottiene. Nessuna lista finita genera tutti i polinomi: non c'è una base finita.
 
 > [!ESEMPIO] · la dimensione di alcuni sottospazi
-> - La retta $y = 2x$ di $\R^2$ è $\Span((1, 2))$, e $(1, 2) \neq 0$ è indipendente: una base con un vettore, **dimensione 1**.
-> - Il piano $z = x + y$ di $\R^3$ è $\Span((1, 0, 1), (0, 1, 1))$ (Esercizio 6.10); i due vettori non sono multipli, quindi sono indipendenti: **dimensione 2**.
-> - Le matrici $\begin{pmatrix} a & b \\ b & a \end{pmatrix}$ dell'Esercizio 6.9 sono $\Span(I, J)$ con $I$ e $J$ non multiple: **dimensione 2**.
-> - Le matrici diagonali $D(3)$: ogni matrice diagonale è $a e_{11} + b e_{22} + c e_{33}$, e le tre matrici sono indipendenti (ognuna ha un $1$ dove le altre hanno $0$): **dimensione 3**.
+> - La retta $y = 2x$ del piano è lo Span di $(1, 2)$, e un vettore diverso da zero è indipendente: una base con un vettore, **dimensione 1**.
+> - Il piano $z = x + y$ dello spazio è lo Span di $(1, 0, 1)$ e $(0, 1, 1)$ (Esercizio 6.10). I due vettori non sono multipli, quindi sono indipendenti: **dimensione 2**.
+> - Le matrici $\begin{pmatrix} a & b \\ b & a \end{pmatrix}$ dell'Esercizio 6.9 sono lo Span di $I$ e $J$, che non sono multiple: **dimensione 2**.
+> - Le matrici diagonali $3 \times 3$: ogni matrice diagonale è $a e_{11} + b e_{22} + c e_{33}$, e le tre matrici sono indipendenti, perché ognuna ha un 1 dove le altre hanno 0: **dimensione 3**.
 
-> [!OLTRE] · perché tutte le basi hanno lo stesso numero di vettori
-> Le dispense enunciano il Teorema 7.10 senza dimostrazione. Il libro di Martelli (§2.3.4) lo deduce da un **lemma di scambio**: se $v_1, \dots, v_n$ generano $V$ e $w_1, \dots, w_n$ sono indipendenti, allora anche $w_1, \dots, w_n$ generano $V$. L'idea è sostituire i $v$ con i $w$ uno alla volta, senza mai perdere la proprietà di generare. La dimostrazione completa è nel riquadro qui sotto.
+::: prova Quanti vettori ha una base di $\R^4$? E una base dei polinomi di grado al massimo 3? E una base delle matrici $2 \times 3$?
+$\R^4$: 4 vettori. Polinomi di grado al massimo 3: $1, x, x^2, x^3$, cioè 4. Matrici $2 \times 3$: $2 \cdot 3 = 6$.
+:::
+
+> [!APPROFONDIMENTO] perché tutte le basi hanno lo stesso numero di vettori
+> Le dispense enunciano il Teorema 7.10 senza dimostrazione. Il libro di Martelli (§2.3.4) lo deduce da un **lemma di scambio**: se $n$ vettori generano lo spazio e altri $n$ vettori sono indipendenti, anche questi ultimi generano lo spazio. L'idea è sostituire i primi con i secondi uno alla volta, senza mai perdere la proprietà di generare. La dimostrazione completa è nel riquadro qui sotto.
 
 > [!DIM] del Teorema 7.10, dal libro di Martelli
 > **Lemma.** Se $v_1, \dots, v_n$ generano $V$ e $w_1, \dots, w_n \in V$ sono indipendenti, allora anche $w_1, \dots, w_n$ generano $V$.
@@ -24152,32 +24248,45 @@ Con le basi già trovate:
 >
 > *Dimostrazione del teorema.* Per assurdo, siano $v_1, \dots, v_n$ e $w_1, \dots, w_m$ due basi di $V$ con $n < m$. I $v_i$ generano $V$ e $w_1, \dots, w_n$ sono indipendenti (sottoinsieme di vettori indipendenti). Per il lemma, $w_1, \dots, w_n$ generano $V$, quindi $w_{n+1}$ è una loro combinazione lineare: allora $w_1, \dots, w_m$ sono dipendenti (Proposizione 7.2). Assurdo.
 
-### Basta una condizione su due (p. 35)
+> [!RICORDA]
+> - Tutte le basi di uno spazio hanno lo stesso numero di vettori: è la dimensione.
+> - $\K^n$ ha dimensione $n$; i polinomi di grado al massimo $n$ hanno dimensione $n + 1$; le matrici $m \times n$ hanno dimensione $mn$.
 
-Per dimostrare che dei vettori sono una base bisognerebbe controllare due cose: che siano indipendenti e che generino. Il prossimo teorema dice che, se il **numero** di vettori è quello giusto, ne basta una.
+## Con il numero giusto basta un controllo (p. 35)
+
+Per dimostrare che dei vettori sono una base bisognerebbe fare due controlli: che siano indipendenti e che generino. Ma se il **numero** di vettori è proprio la dimensione, ne basta uno.
+
+Un esempio nel piano. $(1, 2)$ e $(2, 1)$ non sono multipli, quindi sono indipendenti. Sono due vettori, e il piano ha dimensione 2. Allora sono già una base, senza controllare che generino.
+
+Le dispense lo scrivono così.
 
 > [!TEOREMA] 7.12
 > Se $\dim V = n$ e $\{v_1, \dots, v_n\}$ è un insieme di $n$ vettori, allora $v_1, \dots, v_n$ formano una base di $V$ se e solo se vale **una** delle due condizioni della definizione di base (mentre l'altra condizione vale poi automaticamente).
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- L'ipotesi chiave è che i vettori siano **esattamente $n = \dim V$**.
-- In pratica si controlla quasi sempre l'**indipendenza**, che è un sistema con il termine noto zero.
-- Esempio: in $\R^3$ tre vettori indipendenti sono sempre una base; tre vettori che generano $\R^3$ sono sempre indipendenti.
+- La condizione chiave è che i vettori siano **esattamente tanti quanta è la dimensione**.
+- In quel caso: se sono indipendenti, generano; se generano, sono indipendenti.
+- In pratica si controlla quasi sempre l'**indipendenza**, che è un sistema con lo zero a destra.
+- Nello spazio a tre coordinate: tre vettori indipendenti sono sempre una base; tre vettori che generano tutto sono sempre indipendenti.
 
-> [!ESEMPIO] · una base di $\R^2$ in una riga
-> $(1, 2)$ e $(2, 1)$ non sono multipli, quindi sono indipendenti (Esempio 7.3). Sono $2 = \dim \R^2$ vettori: per il Teorema 7.12 sono una base di $\R^2$, senza bisogno di controllare che generino.
+> [!ESEMPIO] · una base del piano in una riga
+> $(1, 2)$ e $(2, 1)$ non sono multipli, quindi sono indipendenti (Esempio 7.3). Sono 2 vettori e il piano ha dimensione 2: per il Teorema 7.12 sono una base, senza controllare che generino.
 
 > [!TRAPPOLA] Il teorema vale solo con il numero giusto di vettori
-> Due vettori indipendenti di $\R^3$ **non** sono una base: sono $2 \neq 3$ vettori. Quattro vettori di $\R^3$ che generano **non** sono una base: sono troppi, e sono per forza dipendenti (riquadro qui sotto).
+> Due vettori indipendenti dello spazio a tre coordinate **non** sono una base: sono 2, non 3. Quattro vettori che generano lo spazio a tre coordinate **non** sono una base: sono troppi, e per forza c'è un doppione (riquadro qui sotto).
+
+::: prova In $\R^3$, i vettori $(1, 0, 0)$, $(1, 1, 0)$ e $(1, 1, 1)$ sono indipendenti. Sono una base?
+Sì: sono 3 vettori indipendenti e $\R^3$ ha dimensione 3. Per il Teorema 7.12 generano anche tutto lo spazio.
+:::
 
 > [!OLTRE] · le conseguenze da usare nei quiz
-> Dal libro di Martelli (Proposizioni 2.3.23 e 2.3.25 e gli algoritmi dei §2.3.5–2.3.6), in uno spazio $V$ con $\dim V = n$:
-> - **più di $n$ vettori sono sempre dipendenti**: se fossero indipendenti, i primi $n$ sarebbero una base (Teorema 7.12) e gli altri sarebbero loro combinazioni;
-> - **meno di $n$ vettori non generano mai $V$**: da una lista di generatori si possono togliere uno alla volta i vettori di troppo (Proposizione 7.2) fino a restare con vettori indipendenti, cioè con una base, che dovrebbe avere meno di $n$ vettori;
-> - **$\dim \Span(v_1, \dots, v_k) \le k$**, ed è uguale al massimo numero di vettori indipendenti tra $v_1, \dots, v_k$ (è l'osservazione che la lezione L08 usa per il rango);
-> - **ogni sottospazio $U \subset V$ ha $\dim U \le \dim V$**, e $\dim U = \dim V$ solo se $U = V$;
-> - **vettori indipendenti si completano a una base**: finché non generano, si aggiunge un vettore fuori dal loro Span, e la lista resta indipendente (esercizio 11).
+> Dal libro di Martelli (Proposizioni 2.3.23 e 2.3.25 e gli algoritmi dei §2.3.5–2.3.6), in uno spazio di dimensione $n$:
+> - **più di $n$ vettori sono sempre dipendenti**: se fossero indipendenti, i primi $n$ sarebbero una base (Teorema 7.12) e gli altri sarebbero loro ricette;
+> - **meno di $n$ vettori non generano mai tutto**: da una lista che genera si possono togliere uno alla volta i doppioni (Proposizione 7.2) fino a restare con una base, che avrebbe meno di $n$ vettori;
+> - **lo Span di $k$ vettori ha dimensione al massimo $k$**, uguale al numero massimo di vettori indipendenti tra loro (è l'osservazione che la lezione L08 usa per il rango);
+> - **ogni sottospazio ha dimensione al massimo $n$**, e ha dimensione $n$ solo se è tutto lo spazio;
+> - **vettori indipendenti si completano a una base**: finché non generano tutto, si aggiunge un vettore fuori dal loro Span, e la lista resta indipendente (esercizio 12).
 
 > [!DIM] del Teorema 7.12, dal libro di Martelli
 > Siano $v_1, \dots, v_n$ vettori di $V$ con $\dim V = n$.
@@ -24187,9 +24296,31 @@ Pezzo per pezzo:
 > [!OLTRE] · dove trovarlo nel libro
 > Nel libro di Martelli: dipendenza e indipendenza nel **§2.3.1** (pp. 60–62, con la Proposizione 2.3.4 = Proposizione 7.6); basi e basi canoniche di $\K^n$, $\K_n[x]$ e $M(m, n, \K)$ nel **§2.3.2** (pp. 62–64); coordinate nel **§2.3.3** (pp. 64–65); dimensione, lemma di scambio e dimensione infinita di $\K[x]$ nel **§2.3.4** (pp. 65–67); algoritmi di completamento e di estrazione e Proposizione 2.3.23 (= Teorema 7.12) nei **§2.3.5–2.3.6** (pp. 67–69); dimensione dei sottospazi nel **§2.3.7** (pp. 69–70).
 
+> [!RICORDA]
+> - Con tanti vettori quanta è la dimensione: indipendenti vuol dire base, e generare vuol dire base.
+> - Più vettori della dimensione: sempre dipendenti. Meno: non generano mai tutto.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $v_1, \dots, v_k$ | «v uno, …, v kappa» | un elenco di $k$ vettori | $(1, 2), (2, 1)$ |
+| $\lambda_1, \dots, \lambda_k$ | «lambda uno, …» | le dosi di una ricetta | $2(1, 2) - (2, 4)$ ha dosi $2$ e $-1$ |
+| $\implies$ | «allora» | se vale la prima cosa, vale la seconda | |
+| $\iff$ | «se e solo se» | le due cose vanno sempre insieme | |
+| $\Span(\ldots)$ | «span di …» | tutte le ricette con quei vettori (lezione L06) | $\Span((1, 2))$ |
+| $e_1, \dots, e_n$ | «e uno, …, e enne» | la base canonica: un 1 e tutti zeri | $e_2 = (0, 1, 0)$ |
+| $e_{ij}$ | «e i j» | la matrice con 1 nella riga $i$ e colonna $j$, zeri altrove | $e_{12} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ |
+| $\dim V$ | «dimensione di V» | il numero di vettori di una base | $\dim \R^3 = 3$ |
+| $\infty$ | «infinito» | nessuna lista finita genera lo spazio | $\dim \K[x] = \infty$ |
+| $\K_n[x]$ | «kappa enne di ics» | i polinomi di grado al massimo $n$ | $\dim \K_2[x] = 3$ |
+| $M(m, n, \K)$ | «emme di emme enne» | le matrici $m \times n$ | $\dim M(2, 3) = 6$ |
+| $D(n)$, $T^s(n)$, $S(n)$, $A(n)$ | | diagonali, triangolari superiori, simmetriche, antisimmetriche (lezione L06) | $\dim S(3) = 6$ |
+| $\sum$ | «somma» | somma di tanti pezzi dello stesso tipo | $\sum_{i, j} a_{ij} e_{ij}$ |
+
 ## Verso l'esame
 
-La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipla con 5 risposte (servono almeno 6 punti per far correggere i 2 problemi da 11 punti), dura 2 ore, senza calcolatrice e con solo 4 facciate scritte a mano; gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
+La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipla con 5 risposte, e 2 problemi da 11 punti. I problemi si correggono solo con almeno 6 punti nel quiz. Dura 2 ore, senza calcolatrice e con solo 4 facciate scritte a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
 **Che cosa di questa lezione serve all'esame**
 
@@ -24202,52 +24333,78 @@ Questa lezione è tra le più presenti nei quiz. Le domande tipiche, con gli app
 | «sono generatori e/o linearmente indipendenti?» | 06/09/2024, domanda 2; 16/01/2025, domanda 2 |
 | quale insieme è una base, o completa una base | 10/06/2024, domanda 3; 07/09/2026, domanda 2 |
 
-Nei problemi da 11 punti le basi servono sempre: «trovare una base di $\Ker$ e la sua dimensione» (02/09/2025, problema 11), basi di autovettori, basi ortonormali. Li vedrai dalla lezione L14 in poi.
+Nei problemi da 11 punti le basi servono sempre: «trovare una base del nucleo e la sua dimensione» (02/09/2025, problema 11), basi di autovettori, basi ortonormali. Li vedrai dalla lezione L14 in poi.
 
-> [!ESAME] Appello del 16/01/2025, domanda 2
-> **Testo.** I polinomi $1$, $x$, $x^2$ e $1 + 2x + x^2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti? (a) Sono linearmente indipendenti, ma non generatori. (b) Non sono né linearmente indipendenti né generatori. (c) La domanda è mal posta: i polinomi non sono vettori. (d) Sono generatori, ma non linearmente indipendenti. (e) Sono sia generatori che linearmente indipendenti.
+### Una domanda vera, letta insieme
+
+**Appello del 16/01/2025, domanda 2.** Il testo: «I polinomi $1$, $x$, $x^2$ e $1 + 2x + x^2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti? (a) Sono linearmente indipendenti, ma non generatori. (b) Non sono né linearmente indipendenti né generatori. (c) La domanda è mal posta: i polinomi non sono vettori. (d) Sono generatori, ma non linearmente indipendenti. (e) Sono sia generatori che linearmente indipendenti».
+
+**In pratica chiede:** con questi quattro polinomi si cucinano tutti i polinomi di grado al massimo 2? E c'è un doppione?
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: conto.** Sono 4 polinomi. I polinomi di grado al massimo 2 hanno dimensione 3. Più vettori della dimensione: per forza c'è un doppione. Quindi **non** sono indipendenti.
 >
-> **Soluzione.** (d). I primi tre sono la base canonica di $\R_2[x]$ (Esempio 7.9), quindi già generano: aggiungendo un vettore generano ancora. Ma sono $4$ vettori in uno spazio di dimensione $3$, quindi sono dipendenti; esplicitamente $1 + 2x + x^2 = 1 \cdot 1 + 2 \cdot x + 1 \cdot x^2$. La (c) è falsa: i polinomi sono vettori dello spazio vettoriale $\R_2[x]$ (lezione L05).
+> **Passo 2: trovo il doppione.** $1 + 2x + x^2 = 1 \cdot 1 + 2 \cdot x + 1 \cdot x^2$: è una ricetta con gli altri tre.
+>
+> **Passo 3: generano?** I primi tre, $1$, $x$, $x^2$, sono la base canonica (Esempio 7.9): da soli già cucinano tutto. Aggiungendo un polinomio si cucina ancora tutto. Quindi **generano**.
+>
+> **La risposta** è la (d).
+>
+> **Perché la (c) è sbagliata.** I polinomi sono vettori dello spazio vettoriale dei polinomi (lezione L05): si sommano e si moltiplicano per un numero. Le risposte «la domanda è mal posta» sono quasi sempre trappole.
+
+### Altre due domande vere
 
 > [!ESAME] Appello del 07/09/2026, domanda 2
-> **Testo.** Siano $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $B = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$, $C = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, $D = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$, $E = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, $F = \begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}$. Quale insieme forma una base di $M(2, \R)$? (a) $\{A, B, F\}$; (b) $\{A, C, D, E\}$; (c) $\{A, B, E, F\}$; (d) $\{B, C, D, E, F\}$; (e) $\{B, C, F\}$.
+> **Testo.** Siano date le matrici
+> $$A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},\ B = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix},\ C = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix},\ D = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix},\ E = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix},\ F = \begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}.$$
+> Quale insieme forma una base di $M(2, \R)$? (a) $\{A, B, F\}$; (b) $\{A, C, D, E\}$; (c) $\{A, B, E, F\}$; (d) $\{B, C, D, E, F\}$; (e) $\{B, C, F\}$.
 >
-> **Soluzione.** (c). Poiché $\dim M(2, \R) = 4$, una base ha esattamente $4$ elementi: restano solo (b) e (c), e per il Teorema 7.12 basta controllare l'indipendenza. In (b) $C + D = A$: dipendenti. In (c) impongo $x_1 A + x_2 B + x_3 E + x_4 F = 0$:
-> $$\begin{pmatrix} x_2 + x_3 + x_4 & x_1 + x_3 + x_4 \\ x_1 + x_3 & x_3 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}.$$
-> Dalla casella in basso a destra $x_3 = 0$; poi $x_1 = 0$ (in basso a sinistra), $x_4 = 0$ (in alto a destra), $x_2 = 0$ (in alto a sinistra). Solo la combinazione banale: è una base.
+> **Soluzione.** È la (c).
+> 1. **Conto.** Le matrici $2 \times 2$ hanno dimensione 4: una base ha esattamente 4 elementi. Restano solo (b) e (c).
+> 2. **(b).** $C + D = A$: c'è un doppione, quindi non è una base.
+> 3. **(c).** Per il Teorema 7.12 basta controllare l'indipendenza. Chiedo $x_1 A + x_2 B + x_3 E + x_4 F = 0$:
+>    $$\begin{pmatrix} x_2 + x_3 + x_4 & x_1 + x_3 + x_4 \\ x_1 + x_3 & x_3 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}.$$
+>    La casella in basso a destra dà $x_3 = 0$. Poi quella in basso a sinistra dà $x_1 = 0$, quella in alto a destra $x_4 = 0$, quella in alto a sinistra $x_2 = 0$. Tutte le dosi sono zero: è una base.
 
 > [!ESAME] Appello del 15/01/2026, domanda 4
 > **Testo.** La dimensione dello spazio $S(3)$ delle matrici $3 \times 3$ simmetriche è: (a) nove; (b) zero; (c) tre; (d) sei; (e) $S(3)$ non ha una dimensione perché non è uno spazio vettoriale.
 >
-> **Soluzione.** (d). Una matrice simmetrica $3 \times 3$ è determinata dai $6$ coefficienti sulla diagonale e sopra di essa:
+> **Soluzione.** È la (d). Una matrice simmetrica $3 \times 3$ è decisa dai 6 numeri sulla diagonale e sopra di essa: quelli sotto sono copie allo specchio.
 > $$\begin{pmatrix} a & b & c \\ b & d & e \\ c & e & f \end{pmatrix} = a e_{11} + d e_{22} + f e_{33} + b(e_{12} + e_{21}) + c(e_{13} + e_{31}) + e(e_{23} + e_{32}).$$
-> Le sei matrici a destra generano $S(3)$ e sono indipendenti: se la combinazione è la matrice nulla, ogni coefficiente compare da solo in qualche casella, quindi è zero. La (e) è falsa per la Proposizione 6.5. Con lo stesso ragionamento $\dim T^s(3) = 6$ (appello del 24/01/2024, domanda 5) e $\dim A(3) = 3$.
+> Le sei matrici a destra generano $S(3)$ e sono indipendenti: se la ricetta dà la matrice nulla, ogni dose compare da sola in qualche casella, quindi è zero. La (e) è falsa per la Proposizione 6.5. Con lo stesso ragionamento le triangolari superiori $3 \times 3$ hanno dimensione 6 (appello del 24/01/2024, domanda 5) e le antisimmetriche $3 \times 3$ hanno dimensione 3.
+
+### I metodi
 
 > [!METODO] · «Sono generatori e/o indipendenti?»
-> Sono $k$ vettori in uno spazio $V$ di dimensione $n$.
-> 1. **Conta.** Se $k > n$ sono sicuramente dipendenti; se $k < n$ sicuramente non generano $V$.
-> 2. **Trova i vettori di troppo.** Imposta $\lambda_1 v_1 + \dots + \lambda_k v_k = 0$ e risolvi, oppure cerca un vettore che sia combinazione degli altri. Togliendo i vettori di troppo ottieni $r$ vettori indipendenti, e $r = \dim \Span(v_1, \dots, v_k)$.
-> 3. **Concludi.** Sono indipendenti se e solo se $r = k$; generano $V$ se e solo se $r = n$; sono una base se e solo se $r = k = n$.
+> Hai $k$ vettori in uno spazio di dimensione $n$.
+> 1. **Conta.** Se $k$ è più grande di $n$, sono sicuramente dipendenti. Se è più piccolo, sicuramente non generano tutto.
+> 2. **Trova i doppioni.** Scrivi la ricetta con le dosi sconosciute uguale a zero e risolvi, oppure cerca un vettore che sia ricetta degli altri. Togliendo i doppioni restano $r$ vettori indipendenti, e $r$ è la dimensione dello Span.
+> 3. **Concludi.** Sono indipendenti quando $r = k$; generano tutto quando $r = n$; sono una base quando $r = k = n$.
 >
 > Le risposte del tipo «la domanda è mal posta» (i vettori sono troppi, i polinomi non sono vettori) sono trappole: la domanda ha sempre senso.
 
 > [!METODO] · la dimensione di un sottospazio
-> 1. Scrivi l'elemento generico del sottospazio usando le condizioni per eliminare le variabili dipendenti: restano alcuni **parametri liberi**.
-> 2. Raccogli i parametri: l'elemento generico diventa una combinazione lineare, con un vettore per ogni parametro. Il sottospazio è lo Span di quei vettori.
-> 3. Controlla che siano indipendenti (di solito lo sono: ogni parametro compare da solo in qualche coordinata).
-> 4. La dimensione è il numero di vettori, cioè il numero di parametri liberi.
+> 1. Scrivi l'elemento generico del sottospazio, usando le condizioni per eliminare le lettere che dipendono dalle altre: restano alcune **lettere libere**.
+> 2. Raccogli le lettere libere: l'elemento generico diventa una ricetta, con un vettore per ogni lettera. Il sottospazio è lo Span di quei vettori.
+> 3. Controlla che siano indipendenti (di solito lo sono: ogni lettera compare da sola in qualche posto).
+> 4. La dimensione è il numero di vettori, cioè il numero di lettere libere.
 >
-> Esempio: $W = \{p \in \R_3[x] \mid p(2) = 0\}$. Per la lezione L04, $p(2) = 0$ vuol dire $p(x) = (x - 2)(a + bx + cx^2)$, quindi $W = \Span\big(x - 2,\ x(x - 2),\ x^2(x - 2)\big)$. I tre polinomi hanno gradi diversi, $1$, $2$ e $3$, quindi sono indipendenti (esercizio 5): $\dim W = 3$. È il tipo di domanda degli appelli del 10/07/2025 (domanda 2, con $p(6) = 0$) e del 03/07/2026 (domanda 1, con $p(2) = p(-2) = 0$, dove la dimensione è $2$).
+> Esempio: i polinomi di grado al massimo 3 che fanno zero in 2. Per la lezione L04, fare zero in 2 vuol dire $p(x) = (x - 2)(a + bx + cx^2)$, quindi il sottospazio è lo Span di $x - 2$, $x(x - 2)$ e $x^2(x - 2)$. I tre polinomi hanno gradi diversi, 1, 2 e 3, quindi sono indipendenti (esercizio 9): la dimensione è 3. È il tipo di domanda degli appelli del 10/07/2025 (domanda 2, con $p(6) = 0$) e del 03/07/2026 (domanda 1, con $p(2) = p(-2) = 0$, dove la dimensione è 2).
 
 > [!TRAPPOLA] Gli errori più comuni
-> - Dire che $\dim \K_n[x] = n$: è $n + 1$, per via della costante.
+> - Dire che i polinomi di grado al massimo $n$ hanno dimensione $n$: è $n + 1$, per via del numero 1.
 > - Dire che vettori a coppie non multipli sono indipendenti: vale solo per due vettori (Esempio 7.4).
 > - Usare il Teorema 7.12 con un numero sbagliato di vettori.
 > - Confondere «generano» con «sono una base»: una base deve anche essere indipendente.
 > - Scegliere «non è uno spazio vettoriale» per $S(3)$, $T^s(3)$ o uno Span: sono sempre sottospazi. Quella risposta è giusta solo per insiemi che non contengono lo zero, come $O(2)$ nell'appello del 10/07/2024 (domanda 2).
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: la definizione di indipendenza come implicazione; la Proposizione 7.2; i casi con uno e due vettori; la definizione di base; la tabella delle dimensioni ($\K^n$, $\K_n[x]$, $M(m, n)$, e poi $D(n) = n$, $T^s(n) = S(n) = \frac{n(n+1)}2$, $A(n) = \frac{n(n-1)}2$); il Teorema 7.12; la regola del conteggio (più di $n$ vettori sono dipendenti, meno di $n$ non generano).
+> Da questa lezione:
+> - la definizione di indipendenza («se la ricetta dà zero, tutte le dosi sono zero») e la Proposizione 7.2;
+> - i casi con uno e due vettori, e la definizione di base;
+> - la tabella delle dimensioni: $\K^n$, $\K_n[x]$, $M(m, n)$;
+> - le matrici speciali: $D(n) = n$, $T^s(n) = S(n) = \frac{n(n+1)}2$, $A(n) = \frac{n(n-1)}2$;
+> - il Teorema 7.12 e la regola del conteggio (più di $n$ vettori sono dipendenti, meno di $n$ non generano).
 
 ## Quiz
 
@@ -24258,7 +24415,7 @@ D: I vettori $(1, 0, 1)$, $(0, 1, 1)$, $(1, 1, 2)$, $(0, 0, 1)$ di $\R^3$ sono g
 - La domanda è mal posta: i vettori sono 4 e non 3.
 + Sono generatori, ma non linearmente indipendenti.
 - Sono sia generatori che linearmente indipendenti.
-= Quattro vettori in $\R^3$ sono sempre dipendenti; infatti $(1, 1, 2) = (1, 0, 1) + (0, 1, 1)$. Generano: $(1, 0, 1)$, $(0, 1, 1)$ e $(0, 0, 1)$ sono indipendenti (da $a(1, 0, 1) + b(0, 1, 1) + c(0, 0, 1) = 0$ viene $a = 0$, $b = 0$ e poi $c = 0$), quindi per il Teorema 7.12 sono già una base di $\R^3$. Simile all'appello del 06/09/2024, domanda 2.
+= Si conta per primo: 4 vettori in uno spazio di dimensione 3 sono sempre dipendenti, e infatti $(1, 1, 2) = (1, 0, 1) + (0, 1, 1)$ è un doppione. Poi si guarda se generano: $(1, 0, 1)$, $(0, 1, 1)$ e $(0, 0, 1)$ sono indipendenti (dalla ricetta $a(1, 0, 1) + b(0, 1, 1) + c(0, 0, 1) = 0$ viene $a = 0$, $b = 0$ e poi $c = 0$), quindi per il Teorema 7.12 sono già una base, e generano. La risposta più insidiosa è «mal posta»: avere più vettori della dimensione è permesso, vuol dire solo che c'è un doppione. Simile all'appello del 06/09/2024, domanda 2.
 
 D: I polinomi $1 + x$, $1 - x$ e $2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti?
 - Sono linearmente indipendenti, ma non generatori.
@@ -24266,7 +24423,7 @@ D: I polinomi $1 + x$, $1 - x$ e $2$ di $\R_2[x]$ sono generatori e/o linearment
 - Sono generatori, ma non linearmente indipendenti.
 - Sono sia generatori che linearmente indipendenti, cioè una base.
 - La domanda è mal posta: $2$ è un numero, non un polinomio.
-= $(1 + x) + (1 - x) = 2$, quindi sono dipendenti. Tutte le loro combinazioni hanno grado $\le 1$, quindi $x^2$ non si ottiene: non generano $\R_2[x]$. Lo Span è $\R_1[x]$, di dimensione $2$. E $2$ è un polinomio di grado $0$. Simile all'appello del 16/01/2025, domanda 2.
+= Si cerca un doppione: $(1 + x) + (1 - x) = 2$, quindi sono dipendenti. Poi si guarda se generano: ogni ricetta con questi polinomi ha grado al massimo 1, quindi $x^2$ non si ottiene. Non generano. Lo Span è fatto dai polinomi di grado al massimo 1, di dimensione 2. La risposta più insidiosa è «una base»: sono 3 polinomi, quanti la dimensione, ma il Teorema 7.12 vale solo se una delle due condizioni è vera, e qui non lo è nessuna. E il numero 2 è un polinomio di grado 0. Simile all'appello del 16/01/2025, domanda 2.
 
 D: Qual è la dimensione di $\Span\big((1, 1, 0),\ (0, 1, 1),\ (1, 2, 1)\big)$?
 - $0$
@@ -24274,7 +24431,7 @@ D: Qual è la dimensione di $\Span\big((1, 1, 0),\ (0, 1, 1),\ (1, 2, 1)\big)$?
 + $2$
 - $3$
 - $4$
-= $(1, 2, 1) = (1, 1, 0) + (0, 1, 1)$, quindi il terzo vettore è di troppo. I primi due non sono multipli, quindi sono indipendenti: sono una base dello Span, che ha dimensione $2$ (un piano). Simile all'appello del 02/09/2025, domanda 10.
+= Si cercano i doppioni: $(1, 2, 1) = (1, 1, 0) + (0, 1, 1)$, quindi il terzo vettore è di troppo. I primi due non sono multipli, quindi sono indipendenti: sono una base dello Span, che ha dimensione 2 (un piano). La risposta più insidiosa è 3, che conta i vettori senza controllare i doppioni. Simile all'appello del 02/09/2025, domanda 10.
 
 D: Qual è la dimensione dello spazio $A(3)$ delle matrici $3 \times 3$ antisimmetriche?
 - Nove.
@@ -24282,7 +24439,7 @@ D: Qual è la dimensione dello spazio $A(3)$ delle matrici $3 \times 3$ antisimm
 + Tre.
 - Zero.
 - $A(3)$ non ha una dimensione perché non è uno spazio vettoriale.
-= Una matrice antisimmetrica $3 \times 3$ ha diagonale nulla ed è determinata da $a_{12}$, $a_{13}$, $a_{23}$: è $a F_1 + b F_2 + c F_3$ con tre matrici indipendenti (lezione L06, esercizio 9). $A(3)$ è un sottospazio per la Proposizione 6.5. Simile agli appelli del 24/01/2024 (domanda 5) e del 15/01/2026 (domanda 4), su $T^s(3)$ e $S(3)$, entrambe di dimensione $6$.
+= Una matrice antisimmetrica $3 \times 3$ ha la diagonale di zeri, e sotto la diagonale ci sono gli opposti dei numeri sopra. Quindi è decisa dai 3 numeri sopra la diagonale: è una ricetta con tre matrici indipendenti (lezione L06, esercizio 12). La risposta più insidiosa è sei, la dimensione delle simmetriche, che hanno anche la diagonale libera. $A(3)$ è un sottospazio per la Proposizione 6.5, quindi ha una dimensione. Simile agli appelli del 24/01/2024 (domanda 5) e del 15/01/2026 (domanda 4), su $T^s(3)$ e $S(3)$, tutte e due di dimensione 6.
 
 D: Siano $v_1, \dots, v_5$ cinque vettori di $\R^3$ e sia $X = \Span(v_1, \dots, v_5)$. Quale affermazione è sempre vera?
 - $\dim X = 5$
@@ -24290,7 +24447,7 @@ D: Siano $v_1, \dots, v_5$ cinque vettori di $\R^3$ e sia $X = \Span(v_1, \dots,
 - $X = \R^3$
 - $v_1, \dots, v_5$ sono linearmente indipendenti.
 - $\dim X$ non è ben definita, perché $X$ non è necessariamente un sottospazio.
-= $X$ è un sottospazio di $\R^3$ (Proposizione 6.7), e un sottospazio di $\R^3$ ha dimensione al massimo $3$: una sua base è fatta di vettori indipendenti di $\R^3$, che sono al massimo $3$. Cinque vettori in $\R^3$ sono sempre dipendenti, quindi $\dim X = 5$ è impossibile; e $X = \R^3$ non è garantito (per esempio se sono tutti multipli di uno stesso vettore). Simile all'appello del 15/01/2026, domanda 3, dove con tre vettori la risposta giusta era $\dim X \le 3$.
+= $X$ è uno Span, quindi un sottospazio dello spazio a tre coordinate (Proposizione 6.7), e un sottospazio ha dimensione al massimo quella dello spazio: 3. Cinque vettori in uno spazio di dimensione 3 sono sempre dipendenti, quindi la dimensione 5 è impossibile e non sono indipendenti. La risposta più insidiosa è «$X$ è tutto lo spazio»: non è garantito, per esempio se i cinque vettori sono tutti multipli di uno stesso vettore lo Span è una retta. Simile all'appello del 15/01/2026, domanda 3, dove con tre vettori la risposta giusta era $\dim X \le 3$.
 
 D: Siano $A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$, $B = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$, $C = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $D = \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$, $E = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$. Quale insieme è una base di $M(2, \R)$?
 + $\{A, B, C, D\}$
@@ -24298,7 +24455,7 @@ D: Siano $A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$, $B = \begin{pmatrix
 - $\{A, C, D, E\}$
 - $\{A, B, C, D, E\}$
 - $\{B, D, E\}$
-= Una base di $M(2, \R)$ ha $4$ elementi: tre o cinque non vanno. $aA + bB + cC + dD = \begin{pmatrix} a + b & c + d \\ c - d & a - b \end{pmatrix} = 0$ dà $a + b = a - b = 0$ e $c + d = c - d = 0$, quindi tutti zero: $\{A, B, C, D\}$ è una base (Teorema 7.12). In $\{A, C, D, E\}$ invece $E = A + C$. Simile all'appello del 07/09/2026, domanda 2.
+= Si conta per primo: le matrici $2 \times 2$ hanno dimensione 4, quindi una base ha 4 elementi, e le liste da tre o da cinque sono escluse. Per $\{A, B, C, D\}$ si controlla l'indipendenza: $aA + bB + cC + dD = \begin{pmatrix} a + b & c + d \\ c - d & a - b \end{pmatrix}$ è zero solo se $a + b = a - b = 0$ e $c + d = c - d = 0$, cioè tutte le dosi zero. Per il Teorema 7.12 è una base. La risposta più insidiosa è $\{A, C, D, E\}$, che ha 4 elementi: ma $E = A + C$ è un doppione. Simile all'appello del 07/09/2026, domanda 2.
 
 D: Quale polinomio $s(x)$ si può aggiungere a $1 + x$ e $x + x^2$ per ottenere una base di $\R_2[x]$?
 + $s(x) = 1$
@@ -24306,7 +24463,7 @@ D: Quale polinomio $s(x)$ si può aggiungere a $1 + x$ e $x + x^2$ per ottenere 
 - $s(x) = 1 - x^2$
 - $s(x) = x^3$
 - $s(x) = 0$
-= Con $s = 1$: da $a(1 + x) + b(x + x^2) + c = (a + c) + (a + b)x + bx^2 = 0$ viene $b = 0$, poi $a = 0$, poi $c = 0$; tre vettori indipendenti in uno spazio di dimensione $3$ sono una base. Gli altri: $1 + 2x + x^2 = (1 + x) + (x + x^2)$ e $1 - x^2 = (1 + x) - (x + x^2)$ sono dipendenti dai primi due; $x^3 \notin \R_2[x]$; il polinomio nullo rende la lista dipendente. Simile all'appello del 10/06/2024, domanda 3.
+= Servono 3 polinomi indipendenti, perché la dimensione è 3. Con $s = 1$: la ricetta $a(1 + x) + b(x + x^2) + c = (a + c) + (a + b)x + bx^2$ è zero solo se $b = 0$, poi $a = 0$, poi $c = 0$; tre polinomi indipendenti sono una base. Le altre: $1 + 2x + x^2 = (1 + x) + (x + x^2)$ e $1 - x^2 = (1 + x) - (x + x^2)$ sono doppioni dei primi due; $x^3$ ha grado 3 e non sta nemmeno nello spazio; il polinomio zero rende sempre la lista dipendente. La risposta più insidiosa è $1 + 2x + x^2$, che sembra nuovo ma è la somma degli altri due. Simile all'appello del 10/06/2024, domanda 3.
 
 D: In $\R^3$, tre vettori linearmente indipendenti:
 + sono sempre una base di $\R^3$.
@@ -24314,11 +24471,11 @@ D: In $\R^3$, tre vettori linearmente indipendenti:
 - sono una base solo se sono $e_1, e_2, e_3$.
 - generano sempre un piano.
 - sono una base solo se nessuno ha coordinate nulle.
-= È il Teorema 7.12: sono $3 = \dim \R^3$ vettori indipendenti, quindi generano e sono una base. Le basi di $\R^3$ sono infinite, e i vettori possono avere coordinate nulle (come $e_1, e_2, e_3$ stessi).
+= È il Teorema 7.12: sono 3 vettori indipendenti in uno spazio di dimensione 3, quindi generano e sono una base. La risposta più insidiosa è «possono non generare»: con il numero giusto di vettori, l'indipendenza basta. Le basi dello spazio sono infinite, non solo la canonica, e i vettori possono avere coordinate nulle, come $e_1, e_2, e_3$ stessi.
 
 D: Qual è la dimensione del sottospazio $W = \{p(x) \in \R_3[x] \mid p(2) = 0\}$?
 N: 3
-= $p(2) = 0$ vuol dire $p(x) = (x - 2)(a + bx + cx^2)$, quindi $W = \Span\big(x - 2,\ x(x - 2),\ x^2(x - 2)\big)$, tre polinomi di gradi diversi e quindi indipendenti: $\dim W = 3$. Simile all'appello del 10/07/2025, domanda 2 (con $p(6) = 0$).
+= Fare zero in 2 vuol dire che $x - 2$ divide il polinomio (lezione L04): $p(x) = (x - 2)(a + bx + cx^2)$, con tre lettere libere. Quindi $W$ è lo Span di $x - 2$, $x(x - 2)$ e $x^2(x - 2)$: tre polinomi di gradi diversi, quindi indipendenti. La dimensione è 3, cioè 4 (quella dello spazio) meno 1 condizione. Simile all'appello del 10/07/2025, domanda 2 (con $p(6) = 0$).
 
 D: Per quali valori di $k \in \R$ i vettori $(1, k)$ e $(k, 4)$ di $\R^2$ sono linearmente dipendenti?
 - Solo per $k = 2$.
@@ -24326,56 +24483,55 @@ D: Per quali valori di $k \in \R$ i vettori $(1, k)$ e $(k, 4)$ di $\R^2$ sono l
 - Solo per $k = 4$.
 - Per nessun valore di $k$.
 - Per ogni valore di $k$.
-= Due vettori sono dipendenti se e solo se sono multipli. $(k, 4) = t(1, k)$ richiede $t = k$ e $4 = tk = k^2$, cioè $k = \pm 2$ (e $(1, k)$ non è mai nullo, quindi basta questo caso). Con $k = 2$: $(2, 4) = 2(1, 2)$; con $k = -2$: $(-2, 4) = -2(1, -2)$.
+= Due vettori sono dipendenti esattamente quando uno è multiplo dell'altro. Perché $(k, 4)$ sia $t$ volte $(1, k)$ servono $t = k$ (prima coordinata) e $4 = tk = k^2$ (seconda), cioè $k = 2$ oppure $k = -2$. Il vettore $(1, k)$ non è mai zero, quindi basta questo caso. Controllo: con $k = 2$, $(2, 4) = 2(1, 2)$; con $k = -2$, $(-2, 4) = -2(1, -2)$. La risposta più insidiosa è «solo per $k = 2$», che dimentica la radice negativa di 4.
 ```
 
 ## Esercizi
 
-::: esercizio medio Esercizio 7.13 delle dispense: la base canonica delle matrici
-Per ogni $1 \le i \le m$ e $1 \le j \le n$ indichiamo con $e_{ij}$ la matrice $m \times n$ che ha tutti zeri, tranne un $1$ nella casella di riga $i$ e colonna $j$. Per esempio, per le matrici $2 \times 2$:
-$$e_{11} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \quad e_{12} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \quad e_{21} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}, \quad e_{22} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}.$$
-Dimostra che le matrici $e_{ij}$, con $1 \le i \le m$ e $1 \le j \le n$, formano una base di $M(m, n, \K)$. In particolare $\dim M(m, n, \K) = mn$.
+::: esercizio base Riscaldamento: multipli o no
+I vettori $(2, -4)$ e $(-1, 2)$ sono dipendenti? E $(2, 4)$ e $(1, 3)$?
 ::: soluzione
-È la stessa dimostrazione della base canonica di $\K^n$ (Esempio 7.8), con due indici invece di uno.
+1. $(2, -4) = -2 \cdot (-1, 2)$: uno è multiplo dell'altro, quindi sono **dipendenti**. Una ricetta che dà zero: $(2, -4) + 2 \cdot (-1, 2) = (0, 0)$.
+2. Perché $(2, 4)$ sia $k$ volte $(1, 3)$ servirebbero $k = 2$ (prima coordinata) e $4 = 3k$ (seconda), cioè $k = \frac 43$. Impossibile: sono **indipendenti**.
+:::
 
-**Generano.** Ogni matrice si scrive come combinazione delle $e_{ij}$, con i suoi coefficienti:
-$$A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix} = \sum_{i, j} a_{ij} e_{ij},$$
-perché $a_{ij} e_{ij}$ è la matrice con $a_{ij}$ nella casella $(i, j)$ e zeri altrove, e sommando tutte queste matrici si riempiono tutte le caselle. Per esempio
-$$\begin{pmatrix} 3 & -1 \\ 0 & 5 \end{pmatrix} = 3e_{11} - e_{12} + 0e_{21} + 5e_{22}.$$
+::: esercizio base Riscaldamento: c'è lo zero
+La lista $(1, 1)$, $(0, 0)$ è indipendente? Scrivi una ricetta che lo dimostra.
+::: soluzione
+No: c'è il vettore zero. La ricetta $0 \cdot (1, 1) + 5 \cdot (0, 0) = (0, 0)$ dà zero con una dose, 5, diversa da zero. Quindi i vettori sono dipendenti.
+:::
 
-**Sono indipendenti.** Se $\sum_{i, j} \lambda_{ij} e_{ij} = 0$, esplicitando le matrici
-$$\begin{pmatrix} \lambda_{11} & \cdots & \lambda_{1n} \\ \vdots & & \vdots \\ \lambda_{m1} & \cdots & \lambda_{mn} \end{pmatrix} = \begin{pmatrix} 0 & \cdots & 0 \\ \vdots & & \vdots \\ 0 & \cdots & 0 \end{pmatrix},$$
-quindi $\lambda_{ij} = 0$ per ogni $i, j$.
+::: esercizio base Riscaldamento: quanti vettori in una base
+Quanti vettori ha una base di: (a) $\R^4$; (b) i polinomi di grado al massimo 3; (c) le matrici $2 \times 3$; (d) le matrici $3 \times 3$?
+::: soluzione
+1. (a) $\R^4$ ha dimensione 4: 4 vettori.
+2. (b) Base canonica $1, x, x^2, x^3$: 4 polinomi.
+3. (c) Una matrice $e_{ij}$ per casella: $2 \cdot 3 = 6$.
+4. (d) $3 \cdot 3 = 9$.
+:::
 
-**Dimensione.** Le matrici $e_{ij}$ sono una per ogni casella: $m$ righe per $n$ colonne, cioè $mn$ matrici. Quindi $\dim M(m, n, \K) = mn$; per esempio $\dim M(2, 3) = 6$ e $\dim M(3) = 9$.
+::: esercizio base Riscaldamento: la base canonica
+Scrivi $(4, -3)$ e $(0, 7, -1)$ come ricette con la base canonica.
+::: soluzione
+1. $(4, -3) = 4e_1 - 3e_2$, con $e_1 = (1, 0)$ ed $e_2 = (0, 1)$.
+2. $(0, 7, -1) = 0e_1 + 7e_2 - e_3$, con $e_1, e_2, e_3$ della base canonica a tre coordinate.
+
+Le dosi sono le coordinate del vettore.
 :::
 
 ::: esercizio base Esercizio 7.14 delle dispense: una base di $\R^2$
 Dimostra che i vettori $\begin{pmatrix} -1 \\ 1 \end{pmatrix}$ e $\begin{pmatrix} 2 \\ 1 \end{pmatrix}$ formano una base di $\R^2$.
 ::: soluzione
-**Con il Teorema 7.12.** Sono due vettori e $\dim \R^2 = 2$, quindi basta l'indipendenza. Due vettori sono dipendenti solo se sono multipli: $(2, 1) = k(-1, 1)$ richiederebbe $k = -2$ (prima coordinata) e $k = 1$ (seconda), impossibile. Quindi sono indipendenti, e sono una base.
+**Con il Teorema 7.12.** Sono due vettori e il piano ha dimensione 2, quindi basta l'indipendenza. Due vettori sono dipendenti solo se sono multipli: $(2, 1) = k(-1, 1)$ chiederebbe $k = -2$ (prima coordinata) e $k = 1$ (seconda), impossibile. Quindi sono indipendenti, e sono una base.
 
-**Direttamente, controllando anche che generino.** Cerco $t, u$ con $t(-1, 1) + u(2, 1) = (x, y)$ per un vettore qualsiasi $(x, y)$:
+**Direttamente, controllando anche che generino.** Cerco le dosi $t$ e $u$ con $t(-1, 1) + u(2, 1) = (x, y)$, per un vettore qualsiasi $(x, y)$:
 $$\begin{cases} -t + 2u = x \\ t + u = y \end{cases}$$
-Sommando le due equazioni: $3u = x + y$, quindi $u = \frac{x + y}3$. Dalla seconda: $t = y - u = \frac{-x + 2y}3$. La soluzione esiste sempre, quindi i vettori generano $\R^2$; ed è unica (per $(x, y) = (0, 0)$ dà $t = u = 0$), quindi sono indipendenti.
+1. Sommo le due equazioni: $3u = x + y$, quindi $u = \frac{x + y}3$.
+2. Dalla seconda: $t = y - u = \frac{-x + 2y}3$.
 
-Controllo con $(x, y) = (1, 2)$: $u = 1$, $t = 1$, e infatti $(-1, 1) + (2, 1) = (1, 2)$.
-:::
+Le dosi ci sono sempre, quindi i vettori generano il piano. E sono di un solo tipo: per $(x, y) = (0, 0)$ vengono $t = u = 0$, quindi sono indipendenti.
 
-::: esercizio medio Esercizio 7.15 delle dispense: dipendenti e indipendenti in $\R^3$
-Considera i vettori di $\R^3$
-$$v_1 = \begin{pmatrix} 1 \\ 1 \\ 2 \end{pmatrix}, \quad v_2 = \begin{pmatrix} -1 \\ 1 \\ -1 \end{pmatrix}, \quad v_3 = \begin{pmatrix} 1 \\ 5 \\ 4 \end{pmatrix}, \quad v_4 = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}.$$
-Mostra che $v_1, v_2, v_3$ sono dipendenti e $v_1, v_2, v_4$ indipendenti.
-::: soluzione
-**$v_1, v_2, v_3$ sono dipendenti.** Provo a scrivere $v_3$ come combinazione di $v_1$ e $v_2$ (Proposizione 7.2): cerco $a, b$ con $a v_1 + b v_2 = v_3$, cioè
-$$\begin{cases} a - b = 1 \\ a + b = 5 \\ 2a - b = 4 \end{cases}$$
-Sommando le prime due: $2a = 6$, quindi $a = 3$ e $b = 2$. La terza: $2 \cdot 3 - 2 = 4$. Vera. Quindi $v_3 = 3v_1 + 2v_2$, cioè $3v_1 + 2v_2 - v_3 = 0$: una combinazione nulla con coefficienti non nulli.
-
-Controllo: $3(1, 1, 2) + 2(-1, 1, -1) = (3 - 2,\ 3 + 2,\ 6 - 2) = (1, 5, 4) = v_3$.
-
-**$v_1, v_2, v_4$ sono indipendenti.** Suppongo $a v_1 + b v_2 + c v_4 = 0$:
-$$\begin{cases} a - b = 0 \\ a + b + c = 0 \\ 2a - b + c = 0 \end{cases}$$
-Dalla prima $b = a$. Sostituendo: la seconda dà $2a + c = 0$, la terza $a + c = 0$. Sottraendo queste due: $a = 0$; quindi $c = 0$ e $b = 0$. Solo la combinazione banale: indipendenti. Essendo tre vettori indipendenti in $\R^3$, sono anche una base di $\R^3$ (Teorema 7.12).
+Controllo con $(x, y) = (1, 2)$: $u = 1$ e $t = 1$, e infatti $(-1, 1) + (2, 1) = (1, 2)$.
 :::
 
 ::: esercizio base Dipendenti o indipendenti?
@@ -24388,13 +24544,62 @@ Per ciascuna lista di' se i vettori sono dipendenti o indipendenti. Se sono dipe
 ::: soluzione
 (a) **Dipendenti**: $(3, -6) = -3 \cdot (-1, 2)$, quindi $(3, -6) + 3(-1, 2) = (0, 0)$.
 
-(b) **Indipendenti**: sono due vettori non multipli. Da $(2, 0, 1) = k(1, 0, 2)$ servirebbero $k = 2$ e $1 = 2k$, cioè $k = \frac 12$: impossibile.
+(b) **Indipendenti**: sono due vettori non multipli. Perché $(2, 0, 1)$ sia $k$ volte $(1, 0, 2)$ servirebbero $k = 2$ e $1 = 2k$, cioè $k = \frac 12$: impossibile.
 
-(c) **Dipendenti**: sono tre vettori in $\R^2$, che ha dimensione $2$. Una relazione (dal libro di Martelli, Esempio 2.3.2): $-2(1, 2) + 4(1, 1) - (2, 0) = (-2 + 4 - 2,\ -4 + 4 - 0) = (0, 0)$.
+(c) **Dipendenti**: sono tre vettori nel piano, che ha dimensione 2. Una ricetta che dà zero (dal libro di Martelli, Esempio 2.3.2): $-2(1, 2) + 4(1, 1) - (2, 0) = (-2 + 4 - 2,\ -4 + 4 - 0) = (0, 0)$.
 
-(d) **Dipendenti**: c'è il vettore nullo, e $0 \cdot (1, 2, 3) + 1 \cdot (0, 0, 0) + 0 \cdot (4, 5, 6) = 0$.
+(d) **Dipendenti**: c'è il vettore zero, e $0 \cdot (1, 2, 3) + 1 \cdot (0, 0, 0) + 0 \cdot (4, 5, 6) = 0$.
 
-(e) **Indipendenti.** Da $a(1, 2, 3) + b(0, 1, 5) + c(0, 0, 2) = 0$: la prima coordinata dà $a = 0$; la seconda $2a + b = 0$, quindi $b = 0$; la terza $3a + 5b + 2c = 0$, quindi $c = 0$. La forma «a scalini» (ogni vettore ha zeri dove il precedente comincia) rende le equazioni risolubili una alla volta.
+(e) **Indipendenti.** Chiedo $a(1, 2, 3) + b(0, 1, 5) + c(0, 0, 2) = 0$.
+1. Prima coordinata: $a = 0$.
+2. Seconda: $2a + b = 0$, quindi $b = 0$.
+3. Terza: $3a + 5b + 2c = 0$, quindi $c = 0$.
+
+La forma «a scalini» (ogni vettore ha degli zeri dove il precedente comincia) fa risolvere le equazioni una alla volta.
+:::
+
+::: esercizio medio Esercizio 7.13 delle dispense: la base canonica delle matrici
+Per ogni $1 \le i \le m$ e $1 \le j \le n$ indichiamo con $e_{ij}$ la matrice $m \times n$ che ha tutti zeri, tranne un $1$ nella casella di riga $i$ e colonna $j$. Per esempio, per le matrici $2 \times 2$:
+$$e_{11} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}, \quad e_{12} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \quad e_{21} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}, \quad e_{22} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}.$$
+Dimostra che le matrici $e_{ij}$, con $1 \le i \le m$ e $1 \le j \le n$, formano una base di $M(m, n, \K)$. In particolare $\dim M(m, n, \K) = mn$.
+::: soluzione
+È la stessa dimostrazione della base canonica di $\K^n$ (Esempio 7.8), con due numerini invece di uno.
+
+**Generano.** Ogni matrice è una ricetta con le $e_{ij}$, con dosi uguali ai suoi numeri. Un esempio:
+$$\begin{pmatrix} 3 & -1 \\ 0 & 5 \end{pmatrix} = 3e_{11} - e_{12} + 0e_{21} + 5e_{22}.$$
+In generale $a_{ij} e_{ij}$ è la matrice con il numero $a_{ij}$ nella casella $(i, j)$ e zeri altrove; sommando tutte queste matrici si riempiono tutte le caselle:
+$$A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix} = \sum_{i, j} a_{ij} e_{ij}.$$
+Il simbolo $\sum$ si legge «somma»: qui vuol dire «la somma dei pezzi $a_{ij} e_{ij}$, per tutte le righe $i$ e tutte le colonne $j$».
+
+**Sono indipendenti.** Se la ricetta $\sum_{i, j} \lambda_{ij} e_{ij}$ dà la matrice nulla, scrivendola per esteso
+$$\begin{pmatrix} \lambda_{11} & \cdots & \lambda_{1n} \\ \vdots & & \vdots \\ \lambda_{m1} & \cdots & \lambda_{mn} \end{pmatrix} = \begin{pmatrix} 0 & \cdots & 0 \\ \vdots & & \vdots \\ 0 & \cdots & 0 \end{pmatrix},$$
+quindi ogni dose $\lambda_{ij}$ è zero.
+
+**Dimensione.** C'è una matrice $e_{ij}$ per ogni casella: $m$ righe per $n$ colonne, cioè $mn$ matrici. Quindi $\dim M(m, n, \K) = mn$; per esempio $\dim M(2, 3) = 6$ e $\dim M(3) = 9$.
+:::
+
+::: esercizio medio Esercizio 7.15 delle dispense: dipendenti e indipendenti in $\R^3$
+Considera i vettori di $\R^3$
+$$v_1 = \begin{pmatrix} 1 \\ 1 \\ 2 \end{pmatrix}, \quad v_2 = \begin{pmatrix} -1 \\ 1 \\ -1 \end{pmatrix}, \quad v_3 = \begin{pmatrix} 1 \\ 5 \\ 4 \end{pmatrix}, \quad v_4 = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}.$$
+Mostra che $v_1, v_2, v_3$ sono dipendenti e $v_1, v_2, v_4$ indipendenti.
+::: soluzione
+**$v_1, v_2, v_3$ sono dipendenti.** Provo a scrivere $v_3$ come ricetta con $v_1$ e $v_2$ (Proposizione 7.2): cerco $a$ e $b$ con $a v_1 + b v_2 = v_3$, cioè
+$$\begin{cases} a - b = 1 \\ a + b = 5 \\ 2a - b = 4 \end{cases}$$
+1. Sommo le prime due: $2a = 6$, quindi $a = 3$.
+2. Dalla seconda: $b = 5 - 3 = 2$.
+3. Controllo la terza: $2 \cdot 3 - 2 = 4$. Vera.
+
+Quindi $v_3 = 3v_1 + 2v_2$, cioè $3v_1 + 2v_2 - v_3 = 0$: una ricetta che dà zero con dosi diverse da zero.
+
+Controllo: $3(1, 1, 2) + 2(-1, 1, -1) = (3 - 2,\ 3 + 2,\ 6 - 2) = (1, 5, 4) = v_3$.
+
+**$v_1, v_2, v_4$ sono indipendenti.** Chiedo $a v_1 + b v_2 + c v_4 = 0$:
+$$\begin{cases} a - b = 0 \\ a + b + c = 0 \\ 2a - b + c = 0 \end{cases}$$
+1. Dalla prima: $b = a$.
+2. Sostituisco: la seconda diventa $2a + c = 0$, la terza $a + c = 0$.
+3. Tolgo la terza dalla seconda: $a = 0$. Quindi $c = 0$ e $b = 0$.
+
+Solo la ricetta con tutte le dosi zero: indipendenti. Sono tre vettori indipendenti nello spazio a tre coordinate, quindi sono anche una base (Teorema 7.12).
 :::
 
 ::: esercizio medio Polinomi indipendenti e basi di $\R_3[x]$
@@ -24402,67 +24607,35 @@ Per ciascuna lista di' se i vettori sono dipendenti o indipendenti. Se sono dipe
 (b) I polinomi $f = x^3 + x$, $g = x^2 - 1$, $h = x^3 + x^2 + x - 1$ sono indipendenti?
 (c) I polinomi $f = x^3 + x$, $g = x^2 - 1$, $k = x^3 - x$ sono indipendenti? Sono una base di $\R_3[x]$? Se no, completali a una base.
 ::: soluzione
-(a) Siano $p_1, \dots, p_k$ non nulli con gradi $d_1 < d_2 < \dots < d_k$, e sia $\lambda_1 p_1 + \dots + \lambda_k p_k = 0$. Il termine $x^{d_k}$ compare solo in $p_k$, con un coefficiente $c \neq 0$: nella combinazione il coefficiente di $x^{d_k}$ è $\lambda_k c$, che deve essere $0$, quindi $\lambda_k = 0$. Ora resta una combinazione nulla di $p_1, \dots, p_{k-1}$, e si ripete: $\lambda_{k-1} = 0$, e così via fino a $\lambda_1 = 0$.
+(a) Ordino i polinomi dal grado più basso al più alto. Prendo una ricetta che dà il polinomio zero.
+1. La potenza più alta compare solo nell'ultimo polinomio. Nella ricetta, il numero davanti a quella potenza è la dose dell'ultimo polinomio per un numero diverso da zero. Deve essere zero, quindi la dose dell'ultimo polinomio è zero.
+2. Resta una ricetta con gli altri polinomi che dà zero, e si ripete: anche la dose del penultimo è zero.
+3. Si continua fino al primo: tutte le dosi sono zero.
 
 (b) **No**: $h = f + g$, perché $(x^3 + x) + (x^2 - 1) = x^3 + x^2 + x - 1$. Quindi $f + g - h = 0$.
 
-(c) Da $a f + b g + c k = 0$:
+(c) Chiedo $a f + b g + c k = 0$:
 $$a(x^3 + x) + b(x^2 - 1) + c(x^3 - x) = (a + c)x^3 + bx^2 + (a - c)x - b = 0.$$
-Tutti i coefficienti devono essere zero: $b = 0$, $a + c = 0$, $a - c = 0$, quindi $a = c = 0$. Sono **indipendenti**. Non sono una base di $\R_3[x]$: sono $3$ vettori e $\dim \R_3[x] = 4$, quindi non generano (per esempio, ogni loro combinazione ha il termine noto uguale a $-b$ e il coefficiente di $x^2$ uguale a $b$: il polinomio $1$ non si ottiene).
+Tutti i numeri davanti alle potenze devono essere zero: $b = 0$, $a + c = 0$, $a - c = 0$, quindi $a = c = 0$. Sono **indipendenti**.
 
-Completamento: aggiungo il polinomio $1$. Da $af + bg + ck + d \cdot 1 = 0$:
+Non sono una base: sono 3 polinomi e lo spazio ha dimensione 4, quindi non generano. Per esempio ogni ricetta ha il termine noto uguale a $-b$ e il numero davanti a $x^2$ uguale a $b$: il polinomio 1, con termine noto 1 e niente $x^2$, non si ottiene.
+
+Completamento: aggiungo il polinomio 1. Chiedo $af + bg + ck + d \cdot 1 = 0$:
 $$(a + c)x^3 + bx^2 + (a - c)x + (d - b) = 0,$$
-quindi $b = 0$, $a = c = 0$ e $d = b = 0$. Quattro vettori indipendenti in uno spazio di dimensione $4$: per il Teorema 7.12, $f, g, k, 1$ sono una base di $\R_3[x]$.
-:::
-
-::: esercizio esame Come all'esame: basi e dimensioni degli spazi di matrici
-Trova una base e la dimensione di ciascuno dei sottospazi $D(3)$, $T^s(3)$, $S(3)$ e $A(3)$ di $M(3)$. Poi di' quanto valgono in generale $\dim D(n)$, $\dim T^s(n)$, $\dim S(n)$ e $\dim A(n)$.
-::: soluzione
-Uso le matrici $e_{ij}$ dell'Esercizio 7.13. In ogni caso scrivo la matrice generica, la riscrivo come combinazione e controllo l'indipendenza: ogni coefficiente libero compare da solo in una casella in cui le altre matrici hanno $0$, quindi una combinazione nulla ha tutti i coefficienti nulli.
-
-- **$D(3)$**: $\begin{pmatrix} a & 0 & 0 \\ 0 & b & 0 \\ 0 & 0 & c \end{pmatrix} = a e_{11} + b e_{22} + c e_{33}$. Base $e_{11}, e_{22}, e_{33}$: **dimensione 3**.
-- **$T^s(3)$**: $\begin{pmatrix} a & b & c \\ 0 & d & e \\ 0 & 0 & f \end{pmatrix} = a e_{11} + b e_{12} + c e_{13} + d e_{22} + e\, e_{23} + f e_{33}$. Base $e_{11}, e_{12}, e_{13}, e_{22}, e_{23}, e_{33}$: **dimensione 6**. È la risposta dell'appello del 24/01/2024, domanda 5.
-- **$S(3)$**: base $e_{11}, e_{22}, e_{33}, e_{12} + e_{21}, e_{13} + e_{31}, e_{23} + e_{32}$ (riquadro sull'appello del 15/01/2026): **dimensione 6**.
-- **$A(3)$**: $\begin{pmatrix} 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \end{pmatrix} = a(e_{12} - e_{21}) + b(e_{13} - e_{31}) + c(e_{23} - e_{32})$. Base di tre matrici: **dimensione 3**.
-
-Controllo: $\dim S(3) + \dim A(3) = 6 + 3 = 9 = \dim M(3)$.
-
-**In generale**, per matrici $n \times n$:
-- $\dim D(n) = n$: i coefficienti liberi sono quelli della diagonale;
-- $\dim T^s(n) = \dim T^i(n) = \dim S(n) = \frac{n(n + 1)}2$: diagonale ($n$ caselle) più il triangolo sopra ($\frac{n(n - 1)}2$ caselle), cioè $n + \frac{n(n - 1)}2 = \frac{n(n + 1)}2$;
-- $\dim A(n) = \frac{n(n - 1)}2$: solo il triangolo sopra la diagonale, perché la diagonale è nulla.
-
-Con $n = 3$: $3$, $6$, $6$, $3$, come sopra.
-:::
-
-::: esercizio esame Come all'esame: la dimensione di sottospazi di polinomi
-Calcola una base e la dimensione di:
-(a) $W_1 = \{p(x) \in \R_3[x] \mid p(1) = 0\}$;
-(b) $W_2 = \{p(x) \in \R_3[x] \mid p(2) = 0 \text{ e } p(-2) = 0\}$;
-(c) $W_3 = \{p(x) \in \R_2[x] \mid p(0) = p(1)\}$.
-::: soluzione
-(a) Per la lezione L04, $p(1) = 0$ vuol dire che $x - 1$ divide $p$: $p(x) = (x - 1)(a + bx + cx^2)$ con $a, b, c$ qualsiasi. Quindi
-$$W_1 = \Span\big(x - 1,\ x(x - 1),\ x^2(x - 1)\big) = \Span\big(x - 1,\ x^2 - x,\ x^3 - x^2\big).$$
-I tre polinomi hanno gradi $1$, $2$, $3$, quindi sono indipendenti (esercizio 5 (a)): **$\dim W_1 = 3$**. (È il sottospazio dell'appello del 24/01/2024, domanda 1, nella lezione L06.)
-
-(b) $p(2) = 0$ e $p(-2) = 0$ vogliono dire che $x - 2$ e $x + 2$ dividono $p$, quindi $p(x) = (x^2 - 4)(a + bx)$ con $a, b$ qualsiasi:
-$$W_2 = \Span\big(x^2 - 4,\ x^3 - 4x\big),$$
-due polinomi di gradi diversi, indipendenti: **$\dim W_2 = 2$**. È la risposta dell'appello del 03/07/2026, domanda 1.
-
-(c) Scrivo $p(x) = ax^2 + bx + c$: $p(0) = c$ e $p(1) = a + b + c$. La condizione $p(0) = p(1)$ diventa $a + b = 0$, cioè $b = -a$. Quindi
-$$p(x) = ax^2 - ax + c = a(x^2 - x) + c \cdot 1, \qquad W_3 = \Span(x^2 - x,\ 1).$$
-Due polinomi di gradi diversi, indipendenti: **$\dim W_3 = 2$**.
-
-In tutti e tre i casi la dimensione è $\dim V$ meno il numero di condizioni indipendenti: $4 - 1 = 3$, $4 - 2 = 2$, $3 - 1 = 2$. È un'anticipazione del teorema della dimensione (lezione L14).
+quindi $b = 0$, $a = c = 0$ e $d = b = 0$. Quattro polinomi indipendenti in uno spazio di dimensione 4: per il Teorema 7.12, $f, g, k, 1$ sono una base.
 :::
 
 ::: esercizio medio Una base con un parametro
 Per quali $k \in \R$ i vettori $u_1 = (1, 1, 0)$, $u_2 = (0, 1, 1)$, $u_3 = (1, 0, k)$ sono una base di $\R^3$?
 ::: soluzione
-Sono tre vettori in $\R^3$: per il Teorema 7.12 basta capire quando sono indipendenti. Da $a u_1 + b u_2 + c u_3 = 0$:
+Sono tre vettori nello spazio a tre coordinate: per il Teorema 7.12 basta capire quando sono indipendenti. Chiedo $a u_1 + b u_2 + c u_3 = 0$:
 $$\begin{cases} a + c = 0 \\ a + b = 0 \\ b + kc = 0 \end{cases}$$
-Dalla prima $a = -c$, dalla seconda $b = -a = c$. La terza diventa $c + kc = (1 + k)c = 0$.
-- Se $k \neq -1$, allora $c = 0$, e quindi $a = b = 0$: indipendenti, **base**.
+1. Dalla prima: $a = -c$.
+2. Dalla seconda: $b = -a = c$.
+3. La terza diventa $c + kc = (1 + k)c = 0$.
+
+Due casi:
+- Se $k$ non è $-1$, il numero $1 + k$ non è zero, quindi $c = 0$, e poi $a = b = 0$: indipendenti, **base**.
 - Se $k = -1$, qualsiasi $c$ va bene: per esempio $c = 1$, $a = -1$, $b = 1$ dà $-u_1 + u_2 + u_3 = 0$. Dipendenti, **non** è una base.
 
 Con $k = -1$ si ritrovano i vettori dell'Esempio 7.4 (con $u_3 = v_3$). Nella lezione L13 lo stesso risultato si ottiene con il determinante: la matrice dei tre vettori ha determinante $1 + k$.
@@ -24472,11 +24645,76 @@ Con $k = -1$ si ritrovano i vettori dell'Esempio 7.4 (con $u_3 = v_3$). Nella le
 (a) Completa $w_1 = (1, 1, 0)$, $w_2 = (-1, 0, 1)$ a una base di $\R^3$.
 (b) Siano $v_1 = (1, 0, 1)$, $v_2 = (0, 1, 1)$, $v_3 = (1, 1, 2)$, $v_4 = (1, -1, 0)$. Estrai da $v_1, v_2, v_3, v_4$ una base di $U = \Span(v_1, v_2, v_3, v_4)$ e trova $\dim U$.
 ::: soluzione
-(a) Basta aggiungere un vettore che non stia nel piano $\Span(w_1, w_2)$ (esercizio 11). Provo $e_1 = (1, 0, 0)$ (è la scelta del libro di Martelli, Esempio 2.3.21). Da $a w_1 + b w_2 + c e_1 = 0$:
+(a) Basta aggiungere un vettore che non stia nel piano generato da $w_1$ e $w_2$ (esercizio 12). Provo $e_1 = (1, 0, 0)$, la scelta del libro di Martelli (Esempio 2.3.21). Chiedo $a w_1 + b w_2 + c e_1 = 0$:
 $$\begin{cases} a - b + c = 0 \\ a = 0 \\ b = 0 \end{cases}$$
-quindi $a = b = 0$ e poi $c = 0$. Tre vettori indipendenti in $\R^3$: $w_1, w_2, e_1$ è una base.
+quindi $a = b = 0$ e poi $c = 0$. Tre vettori indipendenti nello spazio a tre coordinate: $w_1, w_2, e_1$ è una base.
 
-(b) Cerco i vettori di troppo. $v_3 = v_1 + v_2$, perché $(1, 0, 1) + (0, 1, 1) = (1, 1, 2)$; $v_4 = v_1 - v_2$, perché $(1, 0, 1) - (0, 1, 1) = (1, -1, 0)$. Tolgo $v_3$ e $v_4$: lo Span non cambia (Proposizione 7.2), e restano $v_1, v_2$, non multipli, quindi indipendenti. Una base di $U$ è $v_1, v_2$ e **$\dim U = 2$**: $U$ è il piano $z = x + y$ dell'Esercizio 6.10.
+(b) Cerco i doppioni.
+1. $v_3 = v_1 + v_2$, perché $(1, 0, 1) + (0, 1, 1) = (1, 1, 2)$.
+2. $v_4 = v_1 - v_2$, perché $(1, 0, 1) - (0, 1, 1) = (1, -1, 0)$.
+3. Tolgo $v_3$ e $v_4$: lo Span non cambia (Proposizione 7.2). Restano $v_1$ e $v_2$, che non sono multipli, quindi sono indipendenti.
+
+Una base di $U$ è $v_1, v_2$, e **$\dim U = 2$**: $U$ è il piano $z = x + y$ dell'Esercizio 6.10.
+:::
+
+::: esercizio difficile Aggiungere un vettore fuori dallo Span
+Siano $v_1, \dots, v_k$ vettori indipendenti di $V$ e sia $v_{k+1} \in V$. Dimostra che
+$$v_1, \dots, v_{k+1} \text{ sono indipendenti} \iff v_{k+1} \notin \Span(v_1, \dots, v_k).$$
+Deduci che, in uno spazio di dimensione $n$, ogni lista di vettori indipendenti si può completare a una base.
+::: soluzione
+Il simbolo $\notin$ si legge «non appartiene a».
+
+**Primo verso: se sono indipendenti, il nuovo vettore sta fuori dallo Span.** Se invece stesse dentro, cioè $v_{k+1} = \lambda_1 v_1 + \dots + \lambda_k v_k$, allora $\lambda_1 v_1 + \dots + \lambda_k v_k - v_{k+1} = 0$ sarebbe una ricetta che dà zero con la dose $-1$: i vettori sarebbero dipendenti.
+
+**Secondo verso: se il nuovo vettore sta fuori dallo Span, sono indipendenti.** Prendo una ricetta $\lambda_1 v_1 + \dots + \lambda_k v_k + \lambda_{k+1} v_{k+1} = 0$.
+- Se la dose $\lambda_{k+1}$ non fosse zero, dividendo per lei ricaverei $v_{k+1}$ come ricetta con $v_1, \dots, v_k$: contro l'ipotesi che stia fuori dallo Span.
+- Quindi $\lambda_{k+1} = 0$, e resta $\lambda_1 v_1 + \dots + \lambda_k v_k = 0$. I primi $k$ vettori sono indipendenti, quindi anche $\lambda_1 = \dots = \lambda_k = 0$.
+
+**Completamento.** Lo spazio ha dimensione $n$ e i vettori indipendenti sono $k$, meno di $n$. Allora non generano tutto (meno di $n$ vettori non generano), quindi c'è un vettore $v_{k+1}$ fuori dal loro Span. Per quanto appena dimostrato, $v_1, \dots, v_{k+1}$ sono ancora indipendenti. Si ripete finché i vettori sono $n$: a quel punto sono $n$ vettori indipendenti, cioè una base per il Teorema 7.12. È l'algoritmo di completamento del libro di Martelli (§2.3.5).
+:::
+
+::: esercizio esame Come all'esame: basi e dimensioni degli spazi di matrici
+Trova una base e la dimensione di ciascuno dei sottospazi $D(3)$, $T^s(3)$, $S(3)$ e $A(3)$ di $M(3)$. Poi di' quanto valgono in generale $\dim D(n)$, $\dim T^s(n)$, $\dim S(n)$ e $\dim A(n)$.
+::: soluzione
+Uso le matrici $e_{ij}$ dell'Esercizio 7.13. In ogni caso scrivo la matrice generica, la riscrivo come ricetta e controllo l'indipendenza: ogni lettera libera compare da sola in una casella in cui le altre matrici hanno 0, quindi una ricetta che dà la matrice nulla ha tutte le dosi zero.
+
+- **$D(3)$**: $\begin{pmatrix} a & 0 & 0 \\ 0 & b & 0 \\ 0 & 0 & c \end{pmatrix} = a e_{11} + b e_{22} + c e_{33}$. Base $e_{11}, e_{22}, e_{33}$: **dimensione 3**.
+- **$T^s(3)$**: $\begin{pmatrix} a & b & c \\ 0 & d & e \\ 0 & 0 & f \end{pmatrix} = a e_{11} + b e_{12} + c e_{13} + d e_{22} + e\, e_{23} + f e_{33}$. Base $e_{11}, e_{12}, e_{13}, e_{22}, e_{23}, e_{33}$: **dimensione 6**. È la risposta dell'appello del 24/01/2024, domanda 5.
+- **$S(3)$**: base $e_{11}, e_{22}, e_{33}, e_{12} + e_{21}, e_{13} + e_{31}, e_{23} + e_{32}$ (riquadro sull'appello del 15/01/2026): **dimensione 6**.
+- **$A(3)$**: $\begin{pmatrix} 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \end{pmatrix} = a(e_{12} - e_{21}) + b(e_{13} - e_{31}) + c(e_{23} - e_{32})$. Base di tre matrici: **dimensione 3**.
+
+Controllo: $\dim S(3) + \dim A(3) = 6 + 3 = 9 = \dim M(3)$.
+
+**In generale**, per matrici $n \times n$:
+- $\dim D(n) = n$: le lettere libere sono quelle della diagonale;
+- $\dim T^s(n) = \dim T^i(n) = \dim S(n) = \frac{n(n + 1)}2$: la diagonale ($n$ caselle) più il triangolo sopra ($\frac{n(n - 1)}2$ caselle), cioè $n + \frac{n(n - 1)}2 = \frac{n(n + 1)}2$;
+- $\dim A(n) = \frac{n(n - 1)}2$: solo il triangolo sopra la diagonale, perché la diagonale è fatta di zeri.
+
+Con $n = 3$: 3, 6, 6, 3, come sopra.
+:::
+
+::: esercizio esame Come all'esame: la dimensione di sottospazi di polinomi
+Calcola una base e la dimensione di:
+(a) $W_1 = \{p(x) \in \R_3[x] \mid p(1) = 0\}$;
+(b) $W_2 = \{p(x) \in \R_3[x] \mid p(2) = 0 \text{ e } p(-2) = 0\}$;
+(c) $W_3 = \{p(x) \in \R_2[x] \mid p(0) = p(1)\}$.
+::: soluzione
+(a) Per la lezione L04, fare zero in 1 vuol dire che $x - 1$ divide il polinomio: $p(x) = (x - 1)(a + bx + cx^2)$, con $a$, $b$, $c$ qualsiasi. Quindi $W_1$ è lo Span di
+$$x - 1, \qquad x(x - 1) = x^2 - x, \qquad x^2(x - 1) = x^3 - x^2.$$
+I tre polinomi hanno gradi 1, 2, 3, quindi sono indipendenti (esercizio 9 (a)): **$\dim W_1 = 3$**. È il sottospazio dell'appello del 24/01/2024, domanda 1, nella lezione L06.
+
+(b) Fare zero in 2 e in $-2$ vuol dire che $x - 2$ e $x + 2$ dividono il polinomio, quindi $p(x) = (x^2 - 4)(a + bx)$ con $a$ e $b$ qualsiasi:
+$$W_2 = \Span\big(x^2 - 4,\ x^3 - 4x\big).$$
+Due polinomi di gradi diversi, indipendenti: **$\dim W_2 = 2$**. È la risposta dell'appello del 03/07/2026, domanda 1.
+
+(c) Scrivo $p(x) = ax^2 + bx + c$.
+1. $p(0) = c$ e $p(1) = a + b + c$.
+2. La condizione $p(0) = p(1)$ diventa $a + b = 0$, cioè $b = -a$.
+3. Quindi $p(x) = ax^2 - ax + c = a(x^2 - x) + c \cdot 1$.
+
+$W_3$ è lo Span di $x^2 - x$ e 1. Due polinomi di gradi diversi, indipendenti: **$\dim W_3 = 2$**.
+
+In tutti e tre i casi la dimensione è quella dello spazio meno il numero di condizioni indipendenti: $4 - 1 = 3$, $4 - 2 = 2$, $3 - 1 = 2$. È un'anticipazione del teorema della dimensione (lezione L14).
 :::
 
 ::: esercizio esame Come all'esame: generatori, indipendenti, base?
@@ -24485,125 +24723,117 @@ Per ciascuna lista stabilisci se i vettori sono linearmente indipendenti, se gen
 (b) $(1, 0, 2)$, $(0, 1, -1)$, $(2, 1, 3)$ in $\R^3$.
 (c) $(1, 1, 0, 0)$, $(0, 1, 1, 0)$, $(0, 0, 1, 1)$ in $\R^4$.
 ::: soluzione
-(a) Tre vettori in $\R^2$: **dipendenti**. Generano: $(1, -1)$ e $(2, 1)$ non sono multipli, quindi sono già una base di $\R^2$, e aggiungendo $(0, 3)$ si genera ancora. **Generatori, non base.** Una relazione: $(0, 3) = a(1, -1) + b(2, 1)$ dà $a + 2b = 0$ e $-a + b = 3$; sommando, $3b = 3$, quindi $b = 1$, $a = -2$: $(0, 3) = -2(1, -1) + (2, 1)$.
+(a) Tre vettori nel piano: **dipendenti**. Generano: $(1, -1)$ e $(2, 1)$ non sono multipli, quindi sono già una base del piano, e aggiungendo $(0, 3)$ si genera ancora. **Generatori, non base.** Il doppione: cerco $a$ e $b$ con $a(1, -1) + b(2, 1) = (0, 3)$, cioè $a + 2b = 0$ e $-a + b = 3$. Sommando, $3b = 3$, quindi $b = 1$ e $a = -2$: $(0, 3) = -2(1, -1) + (2, 1)$.
 
-(b) $2(1, 0, 2) + (0, 1, -1) = (2, 1, 3)$: il terzo è combinazione dei primi due, **dipendenti**. I primi due non sono multipli, quindi lo Span ha dimensione $2$: è un piano, **non generano** $\R^3$. **Non è una base.**
+(b) $2(1, 0, 2) + (0, 1, -1) = (2, 1, 3)$: il terzo è un doppione dei primi due, **dipendenti**. I primi due non sono multipli, quindi lo Span ha dimensione 2: è un piano, **non generano** lo spazio. **Non è una base.**
 
-(c) Da $a(1, 1, 0, 0) + b(0, 1, 1, 0) + c(0, 0, 1, 1) = 0$: la prima coordinata dà $a = 0$, la seconda $a + b = 0$, quindi $b = 0$; la quarta dà $c = 0$. **Indipendenti.** Ma sono $3$ vettori e $\dim \R^4 = 4$: **non generano**, e **non sono una base**. Per esempio $e_4 = (0, 0, 0, 1)$ non è una loro combinazione: servirebbero $a = 0$ (prima coordinata), poi $b = 0$ (seconda), poi $c = 0$ (terza), ma la quarta coordinata sarebbe $c = 0 \neq 1$.
-:::
+(c) Chiedo $a(1, 1, 0, 0) + b(0, 1, 1, 0) + c(0, 0, 1, 1) = 0$.
+1. Prima coordinata: $a = 0$.
+2. Seconda: $a + b = 0$, quindi $b = 0$.
+3. Quarta: $c = 0$.
 
-::: esercizio difficile Aggiungere un vettore fuori dallo Span
-Siano $v_1, \dots, v_k$ vettori indipendenti di $V$ e sia $v_{k+1} \in V$. Dimostra che
-$$v_1, \dots, v_{k+1} \text{ sono indipendenti} \iff v_{k+1} \notin \Span(v_1, \dots, v_k).$$
-Deduci che, in uno spazio di dimensione $n$, ogni lista di vettori indipendenti si può completare a una base.
-::: soluzione
-($\Rightarrow$) Se fosse $v_{k+1} \in \Span(v_1, \dots, v_k)$, cioè $v_{k+1} = \lambda_1 v_1 + \dots + \lambda_k v_k$, allora $\lambda_1 v_1 + \dots + \lambda_k v_k - v_{k+1} = 0$ sarebbe una combinazione nulla con il coefficiente $-1$: i vettori sarebbero dipendenti.
-
-($\Leftarrow$) Suppongo $\lambda_1 v_1 + \dots + \lambda_k v_k + \lambda_{k+1} v_{k+1} = 0$.
-- Se $\lambda_{k+1} \neq 0$, divido per $\lambda_{k+1}$ e ricavo $v_{k+1}$ come combinazione di $v_1, \dots, v_k$: contro l'ipotesi $v_{k+1} \notin \Span$.
-- Quindi $\lambda_{k+1} = 0$, e resta $\lambda_1 v_1 + \dots + \lambda_k v_k = 0$: per l'indipendenza dei primi $k$ vettori, anche $\lambda_1 = \dots = \lambda_k = 0$.
-
-**Completamento.** Sia $\dim V = n$ e siano $v_1, \dots, v_k$ indipendenti con $k < n$. Non generano $V$ (meno di $n$ vettori non generano), quindi esiste $v_{k+1} \notin \Span(v_1, \dots, v_k)$; per quanto appena dimostrato, $v_1, \dots, v_{k+1}$ sono ancora indipendenti. Si ripete finché i vettori sono $n$: a quel punto sono $n$ vettori indipendenti, cioè una base per il Teorema 7.12. È l'algoritmo di completamento del libro di Martelli (§2.3.5).
+**Indipendenti.** Ma sono 3 vettori e lo spazio ha dimensione 4: **non generano**, e **non sono una base**. Per esempio $e_4 = (0, 0, 0, 1)$ non si ottiene: servirebbero $a = 0$ (prima coordinata), poi $b = 0$ (seconda), poi $c = 0$ (terza), ma allora la quarta coordinata sarebbe 0, non 1.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Quando dei vettori sono linearmente dipendenti? E indipendenti?
-Dipendenti: esiste una combinazione $\lambda_1 v_1 + \dots + \lambda_k v_k = 0$ con coefficienti non tutti nulli. Indipendenti: $\lambda_1 v_1 + \dots + \lambda_k v_k = 0$ implica $\lambda_1 = \dots = \lambda_k = 0$, cioè l'unica combinazione nulla è quella con tutti i coefficienti zero.
+Dipendenti: c'è una ricetta con dosi non tutte zero che dà il vettore zero. Indipendenti: l'unica ricetta che dà zero è quella con tutte le dosi zero.
 :::
 
-::: domanda Che cosa dice la Proposizione 7.2, e come si dimostra?
-Dei vettori sono dipendenti se e solo se uno di loro è combinazione lineare degli altri. Se $\lambda_i \neq 0$ in una combinazione nulla, si divide per $\lambda_i$ e si isola $v_i$; viceversa, se $v_i$ è combinazione degli altri, portando tutto a sinistra si ottiene una combinazione nulla con coefficiente $-1$ davanti a $v_i$.
+::: domanda Che cosa dice la Proposizione 7.2, e perché è vera?
+Dei vettori sono dipendenti esattamente quando uno di loro è una ricetta con gli altri, cioè un doppione. Se una ricetta che dà zero ha una dose diversa da zero, si divide per quella dose e si ricava quel vettore dagli altri. Al contrario, se un vettore è una ricetta con gli altri, portando tutto da una parte si ottiene una ricetta che dà zero con la dose $-1$.
 :::
 
 ::: domanda Quando un solo vettore è dipendente? E due vettori?
-Un vettore è dipendente se e solo se è il vettore nullo. Due vettori sono dipendenti se e solo se sono multipli uno dell'altro.
+Un vettore da solo è dipendente solo se è il vettore zero. Due vettori sono dipendenti solo se uno è multiplo dell'altro.
 :::
 
-::: domanda Tre vettori non nulli e a coppie non multipli sono per forza indipendenti?
-No. L'Esempio 7.4: $(1, 1, 0)$, $(0, 1, 1)$, $(1, 0, -1)$ sono non nulli e a coppie non multipli, ma $v_1 - v_2 - v_3 = 0$. Le due condizioni sono necessarie ma non sufficienti per $k \ge 3$.
+::: domanda Tre vettori diversi da zero e a coppie non multipli sono per forza indipendenti?
+No. Nell'Esempio 7.4, $(1, 1, 0)$, $(0, 1, 1)$ e $(1, 0, -1)$ sono diversi da zero e a coppie non multipli, ma $v_1 - v_2 - v_3 = 0$. Con tre o più vettori bisogna risolvere il sistema.
 :::
 
-::: domanda Perché una lista che contiene il vettore nullo è sempre dipendente?
-Perché $1 \cdot 0$ più tutti gli altri vettori moltiplicati per $0$ dà il vettore nullo, ed è una combinazione con un coefficiente diverso da zero.
+::: domanda Perché una lista che contiene il vettore zero è sempre dipendente?
+Perché dando dose 1 al vettore zero e dose 0 a tutti gli altri si ottiene zero, con una dose diversa da zero.
 :::
 
-::: domanda Che cos'è una base? Fai un esempio in $\R^2$ diverso dalla base canonica.
-Una sequenza di vettori indipendenti che generano lo spazio. In $\R^2$ anche $(1, 2), (2, 1)$ è una base: sono due vettori non multipli, quindi indipendenti, e per il Teorema 7.12 generano.
+::: domanda Che cos'è una base? Fai un esempio nel piano diverso dalla base canonica.
+Una lista di vettori indipendenti che generano tutto lo spazio. Nel piano anche $(1, 2), (2, 1)$ è una base: sono due vettori non multipli, quindi indipendenti, e per il Teorema 7.12 generano.
 :::
 
-::: domanda Qual è la base canonica di $\K^n$? E di $\K_n[x]$?
-In $\K^n$: $e_1, \dots, e_n$, dove $e_i$ ha $1$ al posto $i$ e $0$ altrove. In $\K_n[x]$: $1, x, x^2, \dots, x^n$, che sono $n + 1$ polinomi.
+::: domanda Qual è la base canonica di $\K^n$? E dei polinomi di grado al massimo $n$?
+In $\K^n$: $e_1, \dots, e_n$, dove $e_i$ ha un 1 al posto $i$ e zeri altrove. Nei polinomi di grado al massimo $n$: $1, x, x^2, \dots, x^n$, che sono $n + 1$ polinomi.
 :::
 
 ::: domanda Che cosa dice il Teorema 7.10, e perché serve?
-Se $V$ ha una base di $n$ vettori, ogni base di $V$ ha $n$ vettori. Serve perché la dimensione, definita come numero di vettori di una base, non dipenda dalla base scelta.
+Tutte le basi di uno stesso spazio hanno lo stesso numero di vettori. Serve perché la dimensione, cioè il numero di vettori di una base, non dipenda dalla base scelta.
 :::
 
-::: domanda Quali sono le dimensioni di $\K^n$, $\K_n[x]$, $M(m, n, \K)$ e $\K[x]$?
-$n$, $n + 1$, $mn$ e infinita. $\K[x]$ non ha basi finite, perché ogni lista finita di polinomi genera solo polinomi fino a un certo grado.
+::: domanda Quali sono le dimensioni di $\K^n$, dei polinomi di grado al massimo $n$, delle matrici $m \times n$ e di tutti i polinomi?
+$n$, $n + 1$, $mn$ e infinita. Tutti i polinomi insieme non hanno basi finite, perché ogni lista finita di polinomi genera solo polinomi fino a un certo grado.
 :::
 
 ::: domanda Che cosa dice il Teorema 7.12? Fai un esempio.
-Se $\dim V = n$ e si hanno esattamente $n$ vettori, sono una base appena sono indipendenti oppure appena generano: l'altra condizione segue. Esempio: $(-1, 1)$ e $(2, 1)$ non sono multipli, quindi sono indipendenti, e sono una base di $\R^2$.
+Se i vettori sono tanti quanta è la dimensione, sono una base appena sono indipendenti, oppure appena generano: l'altra condizione arriva da sola. Esempio: $(-1, 1)$ e $(2, 1)$ non sono multipli, quindi sono indipendenti, e sono una base del piano.
 :::
 
-::: domanda Quattro vettori di $\R^3$ possono essere indipendenti? Due vettori di $\R^3$ possono generare $\R^3$?
-No in entrambi i casi. In uno spazio di dimensione $n$ più di $n$ vettori sono sempre dipendenti e meno di $n$ vettori non generano mai.
+::: domanda Quattro vettori dello spazio a tre coordinate possono essere indipendenti? Due vettori possono generarlo?
+No in tutti e due i casi. In uno spazio di dimensione $n$, più di $n$ vettori sono sempre dipendenti e meno di $n$ vettori non generano mai tutto.
 :::
 
 ::: domanda Come si calcola la dimensione di un sottospazio definito da condizioni?
-Si scrive l'elemento generico con i parametri liberi, lo si riscrive come combinazione lineare con un vettore per parametro, si controlla che quei vettori siano indipendenti e si contano. Per esempio $\{p \in \R_3[x] \mid p(2) = 0\}$ ha dimensione $3$.
+Si scrive l'elemento generico con le lettere libere, lo si riscrive come ricetta con un vettore per lettera, si controlla che quei vettori siano indipendenti e si contano. Per esempio i polinomi di grado al massimo 3 che fanno zero in 2 hanno dimensione 3.
 :::
 
 ::: domanda Quanto valgono $\dim S(3)$, $\dim T^s(3)$ e $\dim A(3)$?
-$6$, $6$ e $3$. In generale $\dim S(n) = \dim T^s(n) = \frac{n(n + 1)}2$ e $\dim A(n) = \frac{n(n - 1)}2$.
+6, 6 e 3. In generale le simmetriche e le triangolari superiori $n \times n$ hanno dimensione $\frac{n(n + 1)}2$, le antisimmetriche $\frac{n(n - 1)}2$.
 :::
 
 ## Glossario
 
 ```glossario
-Combinazione banale | La combinazione lineare con tutti i coefficienti uguali a $0$; dà sempre il vettore nullo.
-Linearmente dipendenti | Vettori per cui esiste una combinazione con coefficienti non tutti nulli uguale a $0$; equivale a dire che uno è combinazione degli altri.
-Linearmente indipendenti | Vettori per cui l'unica combinazione uguale a $0$ è quella banale.
-Vettori multipli | $v_1 = kv_2$ oppure $v_2 = kv_1$ per qualche scalare $k$: per due vettori equivale a essere dipendenti.
-Generatori | Vettori $v_1, \dots, v_n$ tali che $V = \Span(v_1, \dots, v_n)$: ogni vettore di $V$ è una loro combinazione.
-Base | Sequenza di vettori indipendenti che generano $V$.
-Base canonica di $\K^n$ | $e_1, \dots, e_n$, con $e_i$ che ha $1$ al posto $i$ e $0$ altrove.
-Base canonica di $\K_n[x]$ | I polinomi $1, x, x^2, \dots, x^n$.
-Matrici $e_{ij}$ | La matrice con $1$ nella casella $(i, j)$ e $0$ altrove; formano la base canonica di $M(m, n, \K)$.
-Dimensione | Il numero di vettori di una base di $V$, indicato con $\dim V$; è $\infty$ se non esistono basi finite.
-Definizione ben posta | Una definizione che non dipende dalle scelte fatte: per la dimensione lo garantisce il Teorema 7.10.
-Dimensione infinita | Proprietà di uno spazio senza basi finite, come $\K[x]$.
-Coordinate rispetto a una base | Gli unici coefficienti $\lambda_1, \dots, \lambda_n$ con $v = \lambda_1 v_1 + \dots + \lambda_n v_n$ (lezione L13).
-Lemma di scambio | Se $n$ vettori generano $V$, allora $n$ vettori indipendenti di $V$ generano anch'essi $V$: la chiave del Teorema 7.10.
-Completamento a una base | Aggiungere a vettori indipendenti vettori fuori dal loro Span fino ad avere $\dim V$ vettori.
-Estrazione di una base | Togliere da una lista di generatori i vettori che sono combinazione degli altri, fino a restare con vettori indipendenti.
-Rango (anticipo) | Il numero massimo di vettori indipendenti tra le righe, o le colonne, di una matrice (lezione L08).
+Combinazione banale | La ricetta con tutte le dosi uguali a zero. Dà sempre il vettore zero, con qualsiasi vettori.
+Linearmente dipendenti | Vettori con un doppione: una ricetta con dosi non tutte zero dà il vettore zero. Per esempio $(1, 2)$ e $(2, 4)$.
+Linearmente indipendenti | Vettori senza doppioni: l'unica ricetta che dà zero ha tutte le dosi zero. Per esempio $(1, 2)$ e $(2, 1)$.
+Vettori multipli | Due vettori uno uguale all'altro moltiplicato per un numero. Per due vettori, essere multipli vuol dire essere dipendenti.
+Generatori | Vettori con cui si ottiene tutto lo spazio: ogni vettore è una loro ricetta.
+Base | Una lista di vettori indipendenti che generano tutto lo spazio: gli ingredienti giusti, nessuno sprecato.
+Base canonica di $\K^n$ | I vettori $e_1, \dots, e_n$, ciascuno con un 1 in un posto e zeri altrove.
+Base canonica di $\K_n[x]$ | I polinomi $1, x, x^2, \dots, x^n$: sono $n + 1$.
+Matrici $e_{ij}$ | La matrice con un 1 nella riga $i$ e colonna $j$, e zeri altrove. Formano la base canonica delle matrici.
+Dimensione | Il numero di vettori di una base. Si scrive $\dim V$; è infinita se nessuna lista finita genera lo spazio.
+Definizione ben posta | Una definizione che non dipende dalle scelte fatte. Per la dimensione lo garantisce il Teorema 7.10.
+Dimensione infinita | Quella di uno spazio che nessuna lista finita genera, come tutti i polinomi insieme.
+Coordinate rispetto a una base | Le dosi dell'unica ricetta che dà un vettore con gli ingredienti di una base (lezione L13).
+Lemma di scambio | Se $n$ vettori generano lo spazio, altri $n$ vettori indipendenti lo generano anche loro. È la chiave del Teorema 7.10.
+Completamento a una base | Aggiungere a vettori indipendenti vettori fuori dal loro Span, finché sono tanti quanta è la dimensione.
+Estrazione di una base | Togliere da una lista che genera i doppioni, finché restano vettori indipendenti.
+Rango (anticipo) | Il numero massimo di righe, o colonne, indipendenti di una matrice (lezione L08).
 ```
 
 ## Checklist
 
 ```checklist
-- So scrivere la definizione di vettori linearmente indipendenti come implicazione e spiegarla a parole.
-- So dimostrare che dei vettori sono indipendenti impostando e risolvendo il sistema dei coefficienti.
-- So dimostrare che dei vettori sono dipendenti esibendo una combinazione non banale uguale a zero.
-- So enunciare e dimostrare la Proposizione 7.2 e so riconoscere i casi con uno e due vettori.
+- So dire a parole e con la formula quando dei vettori sono indipendenti.
+- So dimostrare che dei vettori sono indipendenti scrivendo la ricetta con le dosi sconosciute e risolvendo il sistema.
+- So dimostrare che dei vettori sono dipendenti mostrando una ricetta con dosi non tutte zero che dà zero.
+- So spiegare la Proposizione 7.2 e riconoscere i casi con uno e due vettori.
 - So spiegare con l'Esempio 7.4 perché con tre vettori non basta guardarli a coppie.
-- So definire una base e verificare che $e_1, \dots, e_n$ e $1, x, \dots, x^n$ sono basi.
-- So le dimensioni di $\K^n$, $\K_n[x]$, $M(m, n, \K)$ e $\K[x]$, senza sbagliare il $+1$ dei polinomi.
-- So usare il Teorema 7.12 per dimostrare che $n$ vettori sono una base controllando solo l'indipendenza.
-- So rispondere a «generatori e/o indipendenti?» contando i vettori e cercando quelli di troppo.
-- So calcolare base e dimensione di sottospazi di matrici ($D(n)$, $T^s(n)$, $S(n)$, $A(n)$) e di polinomi definiti da condizioni.
-- So completare dei vettori indipendenti a una base ed estrarre una base da una lista di generatori.
+- So dire che cos'è una base e perché $e_1, \dots, e_n$ e $1, x, \dots, x^n$ sono basi.
+- So le dimensioni di $\K^n$, dei polinomi di grado al massimo $n$, delle matrici e di tutti i polinomi, senza sbagliare il $+1$ dei polinomi.
+- So usare il Teorema 7.12 per dimostrare che dei vettori sono una base controllando solo l'indipendenza.
+- So rispondere a «generatori e/o indipendenti?» contando i vettori e cercando i doppioni.
+- So calcolare base e dimensione di sottospazi di matrici e di polinomi definiti da condizioni.
+- So completare dei vettori indipendenti a una base ed estrarre una base da una lista che genera.
 ```
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 7 «Spazi vettoriali III», pp. 31–35: le sezioni 7.A–7.D sono seguite in ordine, con la pagina indicata accanto a ogni titolo; definizioni, proposizioni, teoremi, esempi ed esercizi mantengono la loro numerazione (Definizioni 7.1, 7.7 e 7.11, Proposizioni 7.2 e 7.6, Esempi 7.3–7.5, 7.8 e 7.9, Teoremi 7.10 e 7.12, Esercizi 7.13–7.15).
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 7 «Spazi vettoriali III», pp. 31–35: le sezioni 7.A–7.D sono seguite in ordine, con la pagina indicata accanto a ogni titolo; definizioni, proposizioni, teoremi, esempi ed esercizi mantengono la loro numerazione (Definizioni 7.1, 7.7 e 7.11, Proposizioni 7.2 e 7.6, Esempi 7.3–7.5, 7.8 e 7.9, Teoremi 7.10 e 7.12, Esercizi 7.13–7.15, svolti come esercizi 7, 5 e 8).
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §2.3.1–2.3.7 (indipendenza lineare ed Esempio 2.3.2, basi canoniche, coordinate e Proposizione 2.3.11, lemma di scambio e dimostrazione del Teorema 2.3.16, dimensione infinita di $\K[x]$, algoritmi di completamento e di estrazione ed Esempio 2.3.21, Proposizioni 2.3.20, 2.3.23 e 2.3.25).
-- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domande 1 e 5), 10/06/2024 (domanda 3), 10/07/2024 (domanda 2), 06/09/2024 (domanda 2), 16/01/2025 (domanda 2), 10/07/2025 (domanda 2), 02/09/2025 (domanda 10 e problema 11), 15/01/2026 (domande 3 e 4), 03/07/2026 (domanda 1), 07/09/2026 (domanda 2). Le domande del 16/01/2025 (2), del 15/01/2026 (4) e del 07/09/2026 (2) sono riportate con soluzioni scritte per questi appunti. Foglio di esercizi 2 del tutorato 2025 (Buzano, Radeschi), esercizi 1, 3 e 4, come modello di alcuni esercizi.
-- Le parti **«Oltre le dispense»** (il metodo di Gauss per contare i vettori indipendenti, le coordinate, la dimostrazione dei Teoremi 7.10 e 7.12, le conseguenze per i quiz, i metodi per l'esame e gli esercizi 4–11) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domande 1 e 5), 10/06/2024 (domanda 3), 10/07/2024 (domanda 2), 06/09/2024 (domanda 2), 16/01/2025 (domanda 2), 10/07/2025 (domanda 2), 02/09/2025 (domanda 10 e problema 11), 15/01/2026 (domande 3 e 4), 03/07/2026 (domanda 1), 07/09/2026 (domanda 2). Le domande del 16/01/2025 (2), del 07/09/2026 (2) e del 15/01/2026 (4) sono riportate con soluzioni scritte per questi appunti. Foglio di esercizi 2 del tutorato 2025 (Buzano, Radeschi), esercizi 1, 3 e 4, come modello di alcuni esercizi.
+- Le parti **«Oltre le dispense»** (il metodo di Gauss per contare i vettori indipendenti, le coordinate, la dimostrazione dei Teoremi 7.10 e 7.12, le conseguenze per i quiz, i metodi per l'esame e gli esercizi che non vengono dalle dispense) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---
@@ -26777,16 +27007,15 @@ descrizione: >-
   definito con le permutazioni, le formule per le matrici 2×2 e 3×3, matrici triangolari e matrice identità, lo
   sviluppo di Laplace e le prime proprietà del determinante, con quiz nello stile dell'esame ed esercizi svolti.
 lede: >-
-  Il determinante è un numero che si calcola da una matrice quadrata e che dice moltissimo su di essa. Qui impari a
-  calcolarlo in tutti i modi che servono: la definizione con le permutazioni, le formule per $2 \times 2$ e
-  $3 \times 3$, il caso facile delle matrici triangolari, lo sviluppo di Laplace lungo la riga o la colonna più
-  comoda, e che cosa succede moltiplicando una riga per un numero.
+  Il determinante è un numero che si calcola da una tabella quadrata e dice di quanto la matrice ingrandisce le aree.
+  Qui impari a calcolarlo in tutti i modi che servono all'esame: la formula per le tabelle piccole, il caso facile
+  delle triangolari e il metodo di Laplace, che riduce una tabella grande a tabelle più piccole.
 materiale: dispense
 scheda:
   Dispense: lezione 9 · pp. 41–45
   Libro: Martelli, §3.3.1–3.3.4 e §3.3.10
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 100–130 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 9 «Matrici II»; B. Martelli, Geometria e algebra lineare, §3.3.1–3.3.4, §3.3.10 e §3.4.6
 appunti_html: appunti/MDAG/L09_matrici_2.html
@@ -26795,23 +27024,24 @@ genera_html: true
 
 ## In breve
 
-- Il **determinante** $\det A$ è un numero associato a ogni matrice **quadrata**. Per le matrici non quadrate non esiste.
-- Per le $2 \times 2$: $\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc$. In valore assoluto è l'area del parallelogramma che ha per lati le colonne.
-- La definizione generale è una somma su tutte le $n!$ **permutazioni** $\sigma$ di $\{1, \dots, n\}$: ogni addendo è un prodotto $a_{1\sigma(1)} \cdots a_{n\sigma(n)}$ che prende un numero da ogni riga e da ogni colonna, con il segno $\sgn(\sigma) = \pm 1$.
-- Per le $3 \times 3$ gli addendi sono sei, tre col più e tre col meno (si ricordano con la regola di Sarrus).
-- Per una matrice **triangolare** il determinante è il prodotto dei numeri sulla diagonale; in particolare $\det I_n = 1$. Inoltre $\det({}^tA) = \det A$.
-- **Sviluppo di Laplace**: $\det A = \sum_j (-1)^{i+j} a_{ij} \det C_{ij}$ lungo una riga $i$ qualsiasi, e lo stesso lungo una colonna. I segni $(-1)^{i+j}$ vanno **a scacchiera**; conviene la riga o la colonna con più zeri.
-- Una riga (o colonna) di zeri dà $\det A = 0$; moltiplicare una riga per $c$ moltiplica il determinante per $c$; quindi $\det(cA) = c^n \det A$.
-- All'esame: «il determinante di $A$ è…» con matrici $4 \times 4$ o $5 \times 5$ piene di zeri, con $\pi$ ed $e$ da raccogliere, oppure il tranello della matrice non quadrata.
+- Il **determinante** è un numero che si calcola da una matrice **quadrata**, con tante righe quante colonne. Le matrici non quadrate non hanno determinante.
+- Per le matrici $2 \times 2$ è «diagonale meno l'altra diagonale». Senza segno è l'area del parallelogramma che ha per lati le due colonne.
+- Per le matrici più grandi la definizione delle dispense somma tanti prodotti con un segno. È la parte teorica: all'esame non si usa direttamente.
+- Per una matrice **triangolare** il determinante è il prodotto dei numeri sulla diagonale.
+- Lo **sviluppo di Laplace** riduce un determinante grande a determinanti più piccoli. Conviene scegliere la riga o la colonna con più zeri, e i segni vanno a scacchiera.
+- Una riga di zeri dà determinante zero. Moltiplicare una riga per un numero moltiplica il determinante per quel numero.
+- All'esame: «il determinante di questa matrice è…», con matrici grandi piene di zeri, con $\pi$ ed $e$ da tirare fuori, oppure con il tranello della matrice non quadrata.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Il determinante di una matrice quadrata (pp. 41–42)
+## Un numero che misura un'area (pp. 41–42)
 
-### Il caso $2 \times 2$: un numero che misura un'area
+Prendi la matrice
 
-Prendi la matrice $A = \begin{pmatrix} 3 & 1 \\ 1 & 2 \end{pmatrix}$ e disegna le sue colonne $A^1 = {}^t(3, 1)$ e $A^2 = {}^t(1, 2)$ come frecce nel piano. Insieme formano un parallelogramma. Quanto è grande?
+$$A = \begin{pmatrix} 3 & 1 \\ 1 & 2 \end{pmatrix}.$$
+
+Le sue due colonne sono le frecce $(3, 1)$ e $(1, 2)$. Disegnale nel piano partendo dall'origine: insieme formano un parallelogramma. Quanto è grande?
 
 ```grafico
 titolo: Il parallelogramma con lati ${}^t(3, 1)$ e ${}^t(1, 2)$ ha area $3 \cdot 2 - 1 \cdot 1 = 5$
@@ -26822,28 +27052,80 @@ vettore: 3 1 | accento | spesso | $A^1$ | se
 vettore: 1 2 | blu | spesso | $A^2$ | no
 ```
 
-Il parallelogramma sta dentro il rettangolo $[0, 4] \times [0, 3]$, di area $12$. Togliendo i pezzi che avanzano (due triangoli di area $\frac{3 \cdot 1}2$, due di area $\frac{1 \cdot 2}2$ e due quadratini $1 \times 1$) resta $12 - 3 - 2 - 2 = 5$. Lo stesso numero si ottiene in un colpo con la formula
+Guarda la figura. Il parallelogramma sta dentro il rettangolo largo 4 e alto 3, che ha area 12. Tolgo i pezzi che avanzano:
 
-$$\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc, \qquad \det \begin{pmatrix} 3 & 1 \\ 1 & 2 \end{pmatrix} = 3 \cdot 2 - 1 \cdot 1 = 5.$$
+1. due triangoli con lati 3 e 1, ciascuno di area $\frac{3 \cdot 1}2 = 1{,}5$: in tutto 3;
+2. due triangoli con lati 1 e 2, ciascuno di area $\frac{1 \cdot 2}2 = 1$: in tutto 2;
+3. due quadratini di lato 1: in tutto 2.
 
-Questo numero è il **determinante**. Per le matrici più grandi la formula si complica, e per scriverla servono le permutazioni.
+Resta $12 - 3 - 2 - 2 = 5$.
+
+Lo stesso numero si ottiene in un colpo: moltiplico i due numeri sulla diagonale principale, $3 \cdot 2 = 6$, e tolgo il prodotto dei due numeri sull'altra diagonale, $1 \cdot 1 = 1$. Viene $6 - 1 = 5$.
+
+Questo numero si chiama **determinante** della matrice, e si scrive $\det A$. Per una matrice $2 \times 2$ qualsiasi:
+
+$$\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc.$$
+
+A parole: **diagonale principale meno l'altra diagonale**.
+
+> [!IDEA]
+> Una matrice quadrata trasforma le figure del piano. Il determinante dice di quanto le ingrandisce: le aree vengono moltiplicate per il determinante, senza segno. Se il determinante è zero, la figura viene schiacciata su una linea.
+
+### Il segno
+
+Scambia le due colonne: $\begin{pmatrix} 1 & 3 \\ 2 & 1 \end{pmatrix}$. Il parallelogramma è lo stesso, ma il determinante diventa $1 \cdot 1 - 3 \cdot 2 = 1 - 6 = -5$. Stessa area, segno opposto. Il segno dice in che **ordine** girano le due colonne: in senso antiorario o orario.
+
+E se le due colonne sono parallele, come $(1, 2)$ e $(2, 4)$? Il parallelogramma si schiaccia su un segmento e non ha area: $\det \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix} = 1 \cdot 4 - 2 \cdot 2 = 0$.
+
+::: prova Quanto vale il determinante di $\begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$?
+Diagonale principale: $4 \cdot 3 = 12$. Altra diagonale: $1 \cdot 2 = 2$. Determinante: $12 - 2 = 10$.
+:::
+
+> [!TRAPPOLA] Il segno di $ad - bc$
+> Si toglie il prodotto dell'**altra** diagonale, con i suoi segni. Per esempio $\det \begin{pmatrix} 1 & 2 \\ -1 & 4 \end{pmatrix} = 1 \cdot 4 - 2 \cdot (-1) = 4 + 2 = 6$, non $4 - 2 = 2$. Metti sempre le parentesi attorno ai numeri negativi.
 
 > [!OLTRE] · il determinante misura aree e volumi
-> Martelli (§3.3.10) mostra che per una matrice $2 \times 2$ reale $|\det A|$ è l'area del parallelogramma che ha per lati le due colonne, e per una $3 \times 3$ è il volume del parallelepipedo che ha per spigoli le tre colonne. Il **segno** dice come sono orientate le colonne: se scambi le due colonne ottieni $\det \begin{pmatrix} 1 & 3 \\ 2 & 1 \end{pmatrix} = 1 - 6 = -5$, stessa area ma segno opposto. Se le colonne sono parallele, il parallelogramma si schiaccia su un segmento e il determinante vale $0$. Ne riparliamo alla fine della lezione, con uno strumento interattivo.
+> Martelli (§3.3.10) mostra che per una matrice $2 \times 2$ reale il determinante senza segno è l'area del parallelogramma che ha per lati le due colonne. Per una $3 \times 3$ è il volume della «scatola storta» (il parallelepipedo) che ha per spigoli le tre colonne. Ne riparliamo alla fine della lezione, con uno strumento interattivo.
 
-### Permutazioni e segno
+> [!RICORDA]
+> - Il determinante esiste solo per le matrici quadrate.
+> - Per le $2 \times 2$: diagonale principale meno l'altra diagonale, $ad - bc$.
+> - Senza segno è un'area; il segno dice l'ordine delle colonne; zero vuol dire figura schiacciata.
 
-Una **permutazione** di $\{1, \dots, n\}$ è un modo di rimettere in fila i numeri da 1 a $n$, ciascuno una e una sola volta. Le dispense scrivono una permutazione $\sigma$ elencando i suoi valori tra parentesi quadre:
+## La definizione delle dispense (pp. 41–42)
 
-$$\sigma = [\sigma(1)\ \sigma(2)\ \cdots\ \sigma(n)].$$
+Per le matrici più grandi la formula si allunga. Le dispense la scrivono con le **permutazioni**, cioè i modi di rimettere in fila dei numeri.
 
-Per esempio $\sigma = [2\ 3\ 1]$ è la permutazione con $\sigma(1) = 2$, $\sigma(2) = 3$, $\sigma(3) = 1$. L'insieme di tutte le permutazioni di $\{1, \dots, n\}$ si chiama $S_n$ e ha $n! = 1 \cdot 2 \cdots n$ elementi (le vedrai in dettaglio nella parte di Matematica Discreta del corso): $S_2$ ne ha $2! = 2$, $S_3$ ne ha $3! = 6$, $S_4$ ne ha $4! = 24$.
+> [!NOTA] Serve per capire, non per l'esame
+> In questa sezione c'è la definizione generale del determinante. All'esame non si usa mai direttamente: si usano la formula delle $2 \times 2$, la regola di Sarrus per le $3 \times 3$ e lo sviluppo di Laplace. Leggila per sapere da dove vengono quelle regole; se vuoi, passa subito alla sezione sulle matrici triangolari.
 
-- Una **trasposizione** è una permutazione che scambia due elementi e lascia fermi tutti gli altri, come $[2\ 1\ 3]$ (scambia 1 e 2) o $[3\ 2\ 1]$ (scambia 1 e 3).
-- Ogni permutazione si ottiene da $[1\ 2\ \cdots\ n]$ con una sequenza di scambi. Se ne servono $k$, il **segno** è $\sgn(\sigma) = (-1)^k$: $+1$ se gli scambi sono in numero pari, $-1$ se sono dispari. Si può arrivare alla stessa permutazione con sequenze diverse, ma il numero di scambi ha sempre la stessa parità (lo dimostra la Matematica Discreta), quindi il segno è ben definito.
-- $\sgn(\mathrm{id}) = +1$ (zero scambi) e ogni trasposizione ha segno $-1$.
+### Rimettere in fila dei numeri
 
-Le sei permutazioni di $S_3$, con il numero di scambi (di due posti della lista) che le producono da $[1\ 2\ 3]$:
+Una **permutazione** dei numeri da 1 a $n$ è un modo di rimetterli in fila, ognuno una volta sola. Per esempio con 1, 2, 3 si possono fare sei file:
+
+$$[1\ 2\ 3], \quad [1\ 3\ 2], \quad [2\ 1\ 3], \quad [2\ 3\ 1], \quad [3\ 1\ 2], \quad [3\ 2\ 1].$$
+
+Le dispense chiamano una permutazione con la lettera greca $\sigma$, «sigma», e scrivono tra parentesi quadre la nuova fila. Per esempio in $\sigma = [2\ 3\ 1]$ al primo posto c'è il 2, al secondo il 3, al terzo l'1. Si scrive $\sigma(1) = 2$, $\sigma(2) = 3$, $\sigma(3) = 1$.
+
+Quante sono le permutazioni di $n$ numeri? Per il primo posto ci sono $n$ scelte, per il secondo $n - 1$, e così via: in tutto $n \cdot (n - 1) \cdots 2 \cdot 1$. Questo numero si scrive $n!$ e si legge «$n$ fattoriale».
+
+| $n$ | $n!$ | quante permutazioni |
+|---|---|--:|
+| 2 | $2 \cdot 1$ | 2 |
+| 3 | $3 \cdot 2 \cdot 1$ | 6 |
+| 4 | $4 \cdot 3 \cdot 2 \cdot 1$ | 24 |
+| 5 | $5 \cdot 4 \cdot 3 \cdot 2 \cdot 1$ | 120 |
+
+L'insieme di tutte le permutazioni di $n$ numeri si chiama $S_n$. Le vedrai meglio nella parte di Matematica Discreta del corso.
+
+### Il segno di una permutazione
+
+Ogni fila si ottiene da quella in ordine, $[1\ 2\ \cdots\ n]$, scambiando due numeri alla volta. Uno scambio di due numeri soli si chiama **trasposizione**.
+
+- Se servono un numero **pari** di scambi, la permutazione ha segno $+1$.
+- Se servono un numero **dispari** di scambi, ha segno $-1$.
+
+Il segno si scrive $\sgn(\sigma)$, «segno di sigma». La fila già in ordine si chiama identità, $\mathrm{id}$, e ha segno $+1$: zero scambi.
 
 | $\sigma$ | Come si ottiene da $[1\ 2\ 3]$ | Scambi | $\sgn(\sigma)$ |
 |---|---|--:|--:|
@@ -26854,66 +27136,81 @@ Le sei permutazioni di $S_3$, con il numero di scambi (di due posti della lista)
 | $[2\ 3\ 1]$ | $[1\ 2\ 3] \to [2\ 1\ 3] \to [2\ 3\ 1]$ | 2 | $+1$ |
 | $[3\ 1\ 2]$ | $[1\ 2\ 3] \to [1\ 3\ 2] \to [3\ 1\ 2]$ | 2 | $+1$ |
 
-> [!OLTRE] · il segno contando le inversioni
-> Un modo veloce per trovare il segno: conta le **inversioni**, cioè le coppie di numeri in cui un numero più grande sta prima di uno più piccolo. Se sono in numero pari il segno è $+1$, se dispari è $-1$. In $[3\ 1\ 2]$ le inversioni sono $(3, 1)$ e $(3, 2)$: due, segno $+1$. In $[2\ 1\ 4\ 3]$ sono $(2, 1)$ e $(4, 3)$: segno $+1$. In $[3\ 2\ 1]$ sono $(3, 2)$, $(3, 1)$, $(2, 1)$: tre, segno $-1$.
+Alla stessa fila si può arrivare con scambi diversi, ma il loro numero è sempre pari o sempre dispari (lo dimostra la Matematica Discreta). Quindi il segno non dipende da come si fanno gli scambi.
 
-### La definizione
+> [!APPROFONDIMENTO] il segno contando le inversioni
+> Un modo veloce per trovare il segno: conta le **inversioni**, cioè le coppie in cui un numero più grande sta prima di uno più piccolo. Se sono in numero pari il segno è $+1$, se dispari è $-1$. In $[3\ 1\ 2]$ le inversioni sono $(3, 1)$ e $(3, 2)$: due, segno $+1$. In $[2\ 1\ 4\ 3]$ sono $(2, 1)$ e $(4, 3)$: segno $+1$. In $[3\ 2\ 1]$ sono $(3, 2)$, $(3, 1)$, $(2, 1)$: tre, segno $-1$.
+
+### La formula
+
+Ecco come le dispense definiscono il determinante.
 
 > [!DEF] 9.1 · Determinante
 > Sia $A$ una matrice quadrata $n \times n$. Il **determinante** di $A$ è il numero
 > $$\det A = \sum_{\sigma \in S_n} \sgn(\sigma)\, a_{1\sigma(1)} \cdots a_{n\sigma(n)}.$$
 > Qui $S_n$ indica l'insieme delle $n!$ permutazioni di $\{1, \dots, n\}$: questa è una sommatoria su $n!$ elementi. Il termine $\sgn(\sigma) = \pm 1$ indica il segno della permutazione $\sigma$ ed è $1$ oppure $-1$ a seconda di $\sigma$. Se $\sigma$ è un prodotto di $k$ trasposizioni (permutazioni che scambiano due elementi e lasciano tutti gli altri elementi), allora $\sgn(\sigma) = (-1)^k$. La permutazione $\sigma$ si indica con il simbolo $[\sigma(1) \cdots \sigma(n)]$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- **Solo matrici quadrate.** La definizione usa lo stesso $n$ per le righe e per le colonne: una matrice $2 \times 3$ non ha determinante.
-- **Un addendo per ogni permutazione.** Per ogni $\sigma \in S_n$ si moltiplicano $n$ numeri: $a_{1\sigma(1)}$ dalla riga 1, $a_{2\sigma(2)}$ dalla riga 2, e così via. Le colonne $\sigma(1), \dots, \sigma(n)$ sono tutte diverse, perché $\sigma$ è una permutazione. Quindi **ogni addendo prende esattamente un numero da ogni riga e uno da ogni colonna**, come $n$ torri su una scacchiera che non si possono mangiare (l'immagine è di Martelli).
-- **Il segno.** Ogni prodotto va sommato col segno di $\sigma$: più se $\sigma$ si ottiene con un numero pari di scambi, meno se dispari.
-- **Quanti addendi.** $n!$: 2 per $n = 2$, 6 per $n = 3$, 24 per $n = 4$, 120 per $n = 5$. Per questo per $n \ge 4$ la definizione non si usa mai direttamente: servono metodi migliori, come lo sviluppo di Laplace.
+- $\sum$ si legge «somma»: si sommano tanti pezzi, uno per ogni permutazione $\sigma$ di $S_n$.
+- Ogni pezzo è un prodotto di $n$ numeri della matrice. Dalla riga 1 si prende il numero nella colonna $\sigma(1)$, dalla riga 2 quello nella colonna $\sigma(2)$, e così via.
+- Siccome $\sigma$ è una permutazione, le colonne sono tutte diverse. Quindi **ogni prodotto prende esattamente un numero da ogni riga e uno da ogni colonna**, come $n$ torri su una scacchiera che non si possono mangiare (l'immagine è di Martelli).
+- Ogni prodotto va sommato con il segno della sua permutazione.
+- **Solo matrici quadrate**: la formula usa lo stesso $n$ per righe e colonne.
+- **Quanti pezzi**: $n!$. Già per $n = 4$ sono 24, per $n = 5$ sono 120. Per questo con le matrici grandi si usa lo sviluppo di Laplace.
 
-### I casi $n = 1$, $2$, $3$
+### I casi piccoli
 
-Le dispense esaminano i primi tre casi.
+**Matrici $1 \times 1$.** La matrice è un numero solo, e c'è una sola permutazione, $[1]$, con segno $+1$. Il determinante è il numero stesso: $\det(a_{11}) = a_{11}$.
 
-**$n = 1$.** La matrice è un numero, $A = (a_{11})$. $S_1$ contiene solo $\mathrm{id} = [1]$, di segno positivo:
-
-$$\det A = a_{11}.$$
-
-**$n = 2$.** $S_2$ contiene $\mathrm{id} = [1\ 2]$ (segno $+1$) e la trasposizione $[2\ 1]$ (segno $-1$). I due addendi sono $a_{11}a_{22}$ e $a_{12}a_{21}$:
+**Matrici $2 \times 2$.** Le permutazioni sono $[1\ 2]$, con segno $+1$, e $[2\ 1]$, con segno $-1$. I due prodotti sono $a_{11}a_{22}$ e $a_{12}a_{21}$:
 
 $$\det \begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{pmatrix} = a_{11}a_{22} - a_{12}a_{21}.$$
 
-In parole: diagonale principale meno l'altra diagonale.
+È la formula «diagonale meno l'altra diagonale» della prima sezione.
 
-**$n = 3$.** Le sei permutazioni della tabella danno sei addendi. Le tre trasposizioni hanno segno $-1$, le altre tre $+1$:
+**Matrici $3 \times 3$.** Le sei permutazioni della tabella danno sei prodotti. Le tre con uno scambio hanno segno meno, le altre tre più:
 
 $$\det A = a_{11}a_{22}a_{33} - a_{11}a_{23}a_{32} - a_{13}a_{22}a_{31} - a_{12}a_{21}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}.$$
 
-Controlla un addendo con la tabella: $[2\ 3\ 1]$ ha $\sigma(1) = 2$, $\sigma(2) = 3$, $\sigma(3) = 1$, quindi dà $+a_{12}a_{23}a_{31}$.
+Controlla un prodotto con la tabella: $[2\ 3\ 1]$ ha $\sigma(1) = 2$, $\sigma(2) = 3$, $\sigma(3) = 1$, quindi dà $+a_{12}a_{23}a_{31}$.
 
-> [!OLTRE] · la regola di Sarrus, solo per le $3 \times 3$
-> Per ricordare la formula: ricopia le prime due colonne a destra della matrice. Le tre diagonali che **scendono** verso destra danno gli addendi col più, le tre che **salgono** quelli col meno:
+> [!METODO] La regola di Sarrus, solo per le $3 \times 3$
+> Per ricordare i sei prodotti:
+> 1. ricopia le prime due colonne a destra della matrice;
+> 2. le tre diagonali che **scendono** verso destra danno i prodotti con il più;
+> 3. le tre che **salgono** verso destra danno quelli con il meno.
 > $$\begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{pmatrix}\!\begin{matrix} a_{11} & a_{12} \\ a_{21} & a_{22} \\ a_{31} & a_{32} \end{matrix} \qquad \begin{aligned} &+\ a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} \\ &-\ a_{13}a_{22}a_{31} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}$$
-> Attenzione: **funziona solo per $n = 3$**. Per una $4 \times 4$ le «diagonali» sarebbero 8, mentre gli addendi veri sono $4! = 24$.
+> Attenzione: **funziona solo per le $3 \times 3$**. Per una $4 \times 4$ le «diagonali» sarebbero 8, mentre i prodotti veri sono 24.
 
 > [!ESEMPIO] 9.2 · Tre determinanti
 > Il determinante delle matrici
 > $$(3), \qquad \begin{pmatrix} 1 & 2 \\ -1 & 4 \end{pmatrix}, \qquad \begin{pmatrix} 1 & 2 & 1 \\ 2 & 1 & 2 \\ -1 & 0 & 1 \end{pmatrix}$$
-> è rispettivamente $3$, $\ 4 - (-2) = 6$, $\ -6$. Vediamo i conti.
-> - $1 \times 1$: $\det(3) = 3$.
+> è $3$ per la prima, $\ 4 - (-2) = 6$ per la seconda e $\ -6$ per la terza. Vediamo i conti.
+> - $1 \times 1$: il determinante è il numero stesso, 3.
 > - $2 \times 2$: $1 \cdot 4 - 2 \cdot (-1) = 4 - (-2) = 6$.
-> - $3 \times 3$, con la formula (addendo per addendo, nell'ordine della formula):
->   $$\underbrace{1 \cdot 1 \cdot 1}_{a_{11}a_{22}a_{33}} - \underbrace{1 \cdot 2 \cdot 0}_{a_{11}a_{23}a_{32}} - \underbrace{1 \cdot 1 \cdot (-1)}_{a_{13}a_{22}a_{31}} - \underbrace{2 \cdot 2 \cdot 1}_{a_{12}a_{21}a_{33}} + \underbrace{2 \cdot 2 \cdot (-1)}_{a_{12}a_{23}a_{31}} + \underbrace{1 \cdot 2 \cdot 0}_{a_{13}a_{21}a_{32}}$$
->   $$= 1 - 0 + 1 - 4 - 4 + 0 = -6.$$
+> - $3 \times 3$, con Sarrus. Le diagonali che scendono: $1 \cdot 1 \cdot 1 + 2 \cdot 2 \cdot (-1) + 1 \cdot 2 \cdot 0 = 1 - 4 + 0 = -3$. Le diagonali che salgono: $1 \cdot 1 \cdot (-1) + 1 \cdot 2 \cdot 0 + 2 \cdot 2 \cdot 1 = -1 + 0 + 4 = 3$. Determinante: $-3 - 3 = -6$.
 >
-> Con Sarrus: le diagonali che scendono danno $1 \cdot 1 \cdot 1 + 2 \cdot 2 \cdot (-1) + 1 \cdot 2 \cdot 0 = -3$, quelle che salgono $1 \cdot 1 \cdot (-1) + 1 \cdot 2 \cdot 0 + 2 \cdot 2 \cdot 1 = 3$, e $-3 - 3 = -6$. Le dispense sommano gli stessi sei addendi in un altro ordine: $1 - 0 - 4 + (-4) + 0 - (-1) = -6$.
+> Con la formula dei sei prodotti, nell'ordine della formula:
+> $$\underbrace{1 \cdot 1 \cdot 1}_{a_{11}a_{22}a_{33}} - \underbrace{1 \cdot 2 \cdot 0}_{a_{11}a_{23}a_{32}} - \underbrace{1 \cdot 1 \cdot (-1)}_{a_{13}a_{22}a_{31}} - \underbrace{2 \cdot 2 \cdot 1}_{a_{12}a_{21}a_{33}} + \underbrace{2 \cdot 2 \cdot (-1)}_{a_{12}a_{23}a_{31}} + \underbrace{1 \cdot 2 \cdot 0}_{a_{13}a_{21}a_{32}} = 1 - 0 + 1 - 4 - 4 + 0 = -6.$$
 
-> [!TRAPPOLA] Il segno di $ad - bc$
-> Nella $2 \times 2$ si sottrae il prodotto dell'**altra** diagonale, con i suoi segni: $\det \begin{pmatrix} 1 & 2 \\ -1 & 4 \end{pmatrix} = 4 - (2)(-1) = 4 + 2 = 6$, non $4 - 2 = 2$. Metti sempre le parentesi attorno ai numeri negativi.
+::: prova Quanti prodotti ha la formula del determinante per una matrice $4 \times 4$?
+Uno per ogni permutazione di 4 numeri: $4! = 4 \cdot 3 \cdot 2 \cdot 1 = 24$.
+:::
 
-## Matrici triangolari, identità e trasposta (pp. 42–43)
+> [!RICORDA]
+> - La definizione somma un prodotto per ogni permutazione, con il suo segno: ogni prodotto prende un numero da ogni riga e da ogni colonna.
+> - Per le $3 \times 3$ i prodotti sono sei, e si ricordano con la regola di Sarrus, che vale solo per le $3 \times 3$.
 
-Per le matrici triangolari il determinante si legge sulla diagonale.
+## Le matrici triangolari (pp. 42–43)
+
+Prendi una matrice con tutti zeri sotto la diagonale:
+
+$$\begin{pmatrix} 2 & 5 & -1 \\ 0 & 3 & 4 \\ 0 & 0 & -1 \end{pmatrix}.$$
+
+Calcolo il determinante con Sarrus. Le diagonali che scendono danno $2 \cdot 3 \cdot (-1) + 5 \cdot 4 \cdot 0 + (-1) \cdot 0 \cdot 0 = -6$. Quelle che salgono contengono tutte uno zero: danno 0. Il determinante è $-6$, cioè proprio $2 \cdot 3 \cdot (-1)$, il prodotto dei numeri sulla diagonale.
+
+Succede sempre. Le dispense lo scrivono così.
 
 > [!PROP] 9.3 · Determinante di una matrice triangolare
 > Sia $A \in M(n)$ una matrice **triangolare superiore**
@@ -26921,75 +27218,122 @@ Per le matrici triangolari il determinante si legge sulla diagonale.
 > Vale
 > $$\det A = a_{11}a_{22} \cdots a_{nn}.$$
 
-La spiegazione delle dispense: nella formula del determinante, per una matrice triangolare superiore tutti i prodotti sono nulli tranne quello della permutazione identità. Ecco perché, passo per passo.
+**Come si legge.** Per una matrice triangolare superiore (zeri sotto la diagonale, lezione L06) il determinante è il prodotto dei numeri sulla diagonale. I numeri sopra la diagonale non contano affatto.
 
-1. Sotto la diagonale ci sono solo zeri: $a_{ij} = 0$ quando $i > j$.
-2. Un addendo $a_{1\sigma(1)} \cdots a_{n\sigma(n)}$ può essere diverso da zero solo se nessun fattore sta sotto la diagonale, cioè se $\sigma(i) \ge i$ per ogni riga $i$.
-3. Nell'ultima riga: $\sigma(n) \ge n$, quindi $\sigma(n) = n$. Nella penultima: $\sigma(n - 1) \ge n - 1$ e $\sigma(n - 1) \neq n$ (la colonna $n$ è già usata), quindi $\sigma(n - 1) = n - 1$. Risalendo così, $\sigma(i) = i$ per ogni $i$: $\sigma = \mathrm{id}$.
-4. Resta solo l'addendo dell'identità, che ha segno $+1$: $\det A = a_{11}a_{22} \cdots a_{nn}$.
+Il motivo, a parole: nella formula delle permutazioni ogni prodotto prende un numero da ogni riga e da ogni colonna. Se si vuole evitare gli zeri sotto la diagonale, l'unico modo è prendere proprio i numeri sulla diagonale. Tutti gli altri prodotti contengono uno zero.
 
-Lo stesso risultato vale per le matrici **triangolari inferiori** (zeri sopra la diagonale), con lo stesso ragionamento partendo dalla prima riga. E vale per le **diagonali**, che sono triangolari in entrambi i sensi.
+> [!DIM] della Proposizione 9.3
+> La spiegazione delle dispense, passo per passo.
+> 1. Sotto la diagonale ci sono solo zeri: $a_{ij} = 0$ quando $i > j$.
+> 2. Un prodotto $a_{1\sigma(1)} \cdots a_{n\sigma(n)}$ può essere diverso da zero solo se nessun fattore sta sotto la diagonale, cioè se $\sigma(i) \ge i$ per ogni riga $i$.
+> 3. Nell'ultima riga: $\sigma(n) \ge n$, quindi $\sigma(n) = n$. Nella penultima: $\sigma(n - 1) \ge n - 1$ e $\sigma(n - 1)$ non può essere $n$ (la colonna $n$ è già usata), quindi $\sigma(n - 1) = n - 1$. Risalendo così, $\sigma(i) = i$ per ogni $i$: $\sigma$ è l'identità.
+> 4. Resta solo il prodotto dell'identità, che ha segno $+1$: $\det A = a_{11}a_{22} \cdots a_{nn}$.
+
+Lo stesso vale per le matrici **triangolari inferiori** (zeri sopra la diagonale), con lo stesso ragionamento partendo dalla prima riga. E vale per le **diagonali**, che sono triangolari in tutti e due i sensi.
 
 > [!ESEMPIO] · Tre determinanti senza fatica
 > $$\det \begin{pmatrix} 2 & 5 & -1 \\ 0 & 3 & 4 \\ 0 & 0 & -1 \end{pmatrix} = 2 \cdot 3 \cdot (-1) = -6, \qquad \det \begin{pmatrix} 1 & 0 & 0 \\ 7 & 2 & 0 \\ -3 & 5 & 4 \end{pmatrix} = 1 \cdot 2 \cdot 4 = 8,$$
 > $$\det \begin{pmatrix} 5 & 9 & \pi \\ 0 & 0 & \sqrt 2 \\ 0 & 0 & 7 \end{pmatrix} = 5 \cdot 0 \cdot 7 = 0.$$
-> I numeri sopra la diagonale non contano affatto, e basta uno zero sulla diagonale per avere determinante nullo.
+> I numeri sopra la diagonale non contano, e basta uno zero sulla diagonale per avere determinante zero.
 
-Le dispense introducono qui una matrice che avrà un ruolo fondamentale in tutto il corso.
+### La matrice identità
+
+Le dispense introducono qui una matrice che avrà un ruolo centrale in tutto il corso.
 
 > [!DEF] 9.4 · Matrice identità
 > La **matrice identità** di taglia $n \times n$ è la matrice
 > $$I_n = \begin{pmatrix} 1 & 0 & \cdots & 0 \\ 0 & 1 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & 1 \end{pmatrix}$$
 > i cui coefficienti sono 1 sulla diagonale principale e 0 altrove.
 
-$I_n$ è diagonale, quindi per la Proposizione 9.3
+**Come si legge.** $I_n$, «i con enne», è la matrice quadrata con 1 sulla diagonale e 0 dappertutto altrove. Per esempio $I_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$.
+
+È diagonale, quindi per la Proposizione 9.3
 
 $$\det(I_n) = 1 \cdot 1 \cdots 1 = 1.$$
 
-Nel prodotto di matrici fa la parte del numero 1: $I_nA = AI_n = A$ (lo abbiamo anticipato nella lezione L08), ed è il punto di partenza per le matrici inverse della lezione L10.
+Nel prodotto tra matrici fa la parte del numero 1: $I_nA = AI_n = A$ (lo hai visto nella lezione L08). Nel disegno non cambia niente: ogni figura resta com'è, e infatti le aree vengono moltiplicate per 1. È il punto di partenza per le matrici inverse della lezione L10.
 
-Un'altra proprietà che, dicono le dispense, segue direttamente dalla definizione:
+::: prova Quanto vale il determinante di $\begin{pmatrix} 2 & 0 & 0 \\ 5 & 3 & 0 \\ 1 & 7 & -1 \end{pmatrix}$?
+È triangolare inferiore: zeri sopra la diagonale. Il determinante è il prodotto della diagonale, $2 \cdot 3 \cdot (-1) = -6$.
+:::
+
+### La trasposta ha lo stesso determinante
+
+Prendi $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ e la sua trasposta, con righe e colonne scambiate (lezione L08): ${}^tA = \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix}$. I determinanti sono $4 - 6 = -2$ e $4 - 6 = -2$: uguali.
+
+Le dispense dicono che succede sempre, e che segue direttamente dalla definizione.
 
 > [!PROP] 9.5
 > Vale $\det({}^tA) = \det A$.
 
-Per una $2 \times 2$ basta un conto: ${}^tA = \begin{pmatrix} a_{11} & a_{21} \\ a_{12} & a_{22} \end{pmatrix}$ ha determinante $a_{11}a_{22} - a_{21}a_{12}$, lo stesso di $A$. Per la matrice $3 \times 3$ dell'Esempio 9.2, la trasposta $\begin{pmatrix} 1 & 2 & -1 \\ 2 & 1 & 0 \\ 1 & 2 & 1 \end{pmatrix}$ ha di nuovo determinante $-6$ (prova con Sarrus).
+**Come si legge.** Scambiare righe e colonne non cambia il determinante.
+
+Per la matrice $3 \times 3$ dell'Esempio 9.2, la trasposta $\begin{pmatrix} 1 & 2 & -1 \\ 2 & 1 & 0 \\ 1 & 2 & 1 \end{pmatrix}$ ha di nuovo determinante $-6$: prova con Sarrus.
 
 > [!DIM] della Proposizione 9.5
-> Trasponendo, la casella $(i, j)$ va in $(j, i)$. Un addendo di $\det({}^tA)$ è $({}^tA)_{1\sigma(1)} \cdots ({}^tA)_{n\sigma(n)} = a_{\sigma(1)1} \cdots a_{\sigma(n)n}$: prende ancora un numero da ogni riga e da ogni colonna di $A$. Riordinando i fattori per riga, è l'addendo di $\det A$ della permutazione inversa $\sigma^{-1}$, quella che «disfa» $\sigma$. E $\sigma^{-1}$ ha lo stesso segno di $\sigma$: se $\sigma$ si ottiene con $k$ scambi, $\sigma^{-1}$ si ottiene con gli stessi $k$ scambi fatti in ordine inverso. Quindi $\det({}^tA)$ e $\det A$ sono somme degli stessi addendi con gli stessi segni (Martelli, Proposizione 3.3.2).
+> Trasponendo, la casella $(i, j)$ va in $(j, i)$. Un prodotto di $\det({}^tA)$ è $({}^tA)_{1\sigma(1)} \cdots ({}^tA)_{n\sigma(n)} = a_{\sigma(1)1} \cdots a_{\sigma(n)n}$: prende ancora un numero da ogni riga e da ogni colonna di $A$. Riordinando i fattori per riga, è il prodotto di $\det A$ della permutazione inversa $\sigma^{-1}$, quella che «disfa» $\sigma$. E $\sigma^{-1}$ ha lo stesso segno di $\sigma$: se $\sigma$ si ottiene con $k$ scambi, $\sigma^{-1}$ si ottiene con gli stessi $k$ scambi fatti in ordine inverso. Quindi $\det({}^tA)$ e $\det A$ sono somme degli stessi prodotti con gli stessi segni (Martelli, Proposizione 3.3.2).
 
-La conseguenza pratica: **tutto ciò che vale per le righe vale anche per le colonne**, perché le righe di $A$ sono le colonne di ${}^tA$ e il determinante è lo stesso.
+La conseguenza pratica: **tutto quello che vale per le righe vale anche per le colonne**, perché le righe di $A$ sono le colonne di ${}^tA$ e il determinante è lo stesso.
 
-## Lo sviluppo di Laplace (pp. 43–44)
+> [!RICORDA]
+> - Triangolare (superiore, inferiore o diagonale): il determinante è il prodotto della diagonale.
+> - La matrice identità ha determinante 1.
+> - La trasposta ha lo stesso determinante: le regole sulle righe valgono anche per le colonne.
 
-La definizione con le permutazioni è scomoda già per $n = 4$ (24 addendi). Lo **sviluppo di Laplace** riduce un determinante $n \times n$ a determinanti $(n - 1) \times (n - 1)$, e così via fino ai $2 \times 2$.
+## Ridurre il problema: lo sviluppo di Laplace (pp. 43–44)
 
-Sia $A$ una matrice $n \times n$ con $n \ge 2$. Indichiamo con $C_{ij}$ la sottomatrice $(n - 1) \times (n - 1)$ ottenuta da $A$ **rimuovendo la riga $i$ e la colonna $j$**. Per esempio, con
+Con le matrici grandi la formula delle permutazioni ha troppi prodotti: 24 per una $4 \times 4$, 120 per una $5 \times 5$. Lo **sviluppo di Laplace** riduce un determinante grande a determinanti più piccoli di un passo: una $4 \times 4$ diventa qualche $3 \times 3$, una $3 \times 3$ diventa qualche $2 \times 2$. E se nella matrice ci sono molti zeri, molti pezzi spariscono.
 
-$$A = \begin{pmatrix} 1 & -1 & 0 \\ 2 & -1 & 5 \\ 1 & 1 & -1 \end{pmatrix}: \quad C_{11} = \begin{pmatrix} -1 & 5 \\ 1 & -1 \end{pmatrix}, \quad C_{12} = \begin{pmatrix} 2 & 5 \\ 1 & -1 \end{pmatrix}, \quad C_{23} = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}.$$
+### Le sottomatrici
 
-Per $C_{12}$ si cancellano la riga 1 e la colonna 2: restano $2, 5$ dalla seconda riga e $1, -1$ dalla terza.
+Per prima cosa serve un'operazione: cancellare una riga e una colonna. Da una matrice quadrata, togliendo la riga $i$ e la colonna $j$, resta una matrice più piccola di un passo. Le dispense la chiamano $C_{ij}$.
+
+Un esempio con
+
+$$A = \begin{pmatrix} 1 & -1 & 0 \\ 2 & -1 & 5 \\ 1 & 1 & -1 \end{pmatrix}.$$
+
+- $C_{11}$: tolgo la riga 1 e la colonna 1. Resta $\begin{pmatrix} -1 & 5 \\ 1 & -1 \end{pmatrix}$.
+- $C_{12}$: tolgo la riga 1 e la colonna 2. Dalla seconda riga restano 2 e 5, dalla terza 1 e $-1$: $\begin{pmatrix} 2 & 5 \\ 1 & -1 \end{pmatrix}$.
+- $C_{23}$: tolgo la riga 2 e la colonna 3. Resta $\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$.
+
+### I segni a scacchiera
+
+Ogni casella riceve un segno, più o meno, disposti come le caselle bianche e nere di una scacchiera, con il più in alto a sinistra:
+
+$$\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix} \qquad \begin{pmatrix} + & - & + & - \\ - & + & - & + \\ + & - & + & - \\ - & + & - & + \end{pmatrix}$$
+
+Il segno della casella nella riga $i$ e nella colonna $j$ è $(-1)^{i+j}$: più se $i + j$ è pari, meno se è dispari. Per esempio la casella $(2, 3)$ ha $2 + 3 = 5$, dispari: segno meno.
+
+### Il metodo
+
+Ecco lo sviluppo lungo la prima riga della matrice $A$, passo per passo.
+
+1. Scelgo la prima riga: i numeri sono 1, $-1$, 0. I segni della prima riga della scacchiera sono $+, -, +$.
+2. Per ogni numero della riga: prendo il suo segno, il numero, e il determinante della sottomatrice che resta cancellando la sua riga e la sua colonna.
+3. Sommo tutto:
+   $$\det A = +1 \cdot \det C_{11} - (-1) \cdot \det C_{12} + 0 \cdot \det C_{13}.$$
+4. Il terzo pezzo è moltiplicato per 0: **non serve calcolarlo**.
+
+Le dispense scrivono il metodo così.
 
 > [!TEOREMA] 9.6 · Sviluppo di Laplace
 > Per ogni $i$ fissato vale l'uguaglianza
 > $$\det A = \sum_{j=1}^n (-1)^{i+j} a_{ij} \det C_{ij}.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- Si sceglie **una riga**, la $i$-esima, qualsiasi: il risultato non dipende dalla scelta.
-- Per ogni numero $a_{ij}$ di quella riga si cancellano la sua riga e la sua colonna, si calcola il determinante $\det C_{ij}$ di ciò che resta e lo si moltiplica per $a_{ij}$.
-- Ogni prodotto riceve il segno $(-1)^{i+j}$: $+$ se $i + j$ è pari, $-$ se è dispari.
-- Si somma tutto. Se $a_{ij} = 0$ il suo addendo sparisce: **non serve calcolare $\det C_{ij}$**.
+- Si sceglie **una riga** qualsiasi, la riga numero $i$. Il risultato non dipende dalla scelta.
+- $\sum_{j=1}^n$ si legge «somma per $j$ da 1 a $n$»: si fa un pezzo per ogni numero $a_{ij}$ di quella riga, colonna per colonna.
+- Ogni pezzo è: il segno della scacchiera $(-1)^{i+j}$, per il numero $a_{ij}$, per il determinante della sottomatrice $C_{ij}$.
+- Se un numero è zero, il suo pezzo sparisce.
 
-Grazie a $\det({}^tA) = \det A$ lo stesso vale per le colonne.
+Siccome la trasposta ha lo stesso determinante, lo stesso vale per le colonne.
 
 > [!COROLLARIO] 9.7 · Sviluppo lungo una colonna
 > Per ogni $j$ fissato vale l'uguaglianza
 > $$\det A = \sum_{i=1}^n (-1)^{i+j} a_{ij} \det C_{ij}.$$
 
-I segni $(-1)^{i+j}$ si dispongono **come su una scacchiera**, con il $+$ in alto a sinistra:
-
-$$\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix} \qquad \begin{pmatrix} + & - & + & - \\ - & + & - & + \\ + & - & + & - \\ - & + & - & + \end{pmatrix}$$
+**Come si legge.** Stessa cosa, ma scegliendo una **colonna**: si fa un pezzo per ogni numero di quella colonna, riga per riga.
 
 > [!ESEMPIO] 9.8 · Sviluppo lungo la prima riga
 > Per calcolare il determinante seguente, sviluppiamo lungo la prima riga (cioè prendiamo $i = 1$):
@@ -27001,42 +27345,48 @@ $$\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix} \qquad \begi
 >
 > Totale: $1 \cdot (-4) - (-1) \cdot (-7) + 0 = -4 - 7 + 0 = -11$.
 
-Verifichiamo che il risultato non dipende dalla riga o dalla colonna scelta: sviluppiamo la stessa matrice lungo la **prima colonna** ($j = 1$), con i segni $+, -, +$:
+Controllo che il risultato non dipende dalla scelta: sviluppo la stessa matrice lungo la **prima colonna**, con i segni $+, -, +$.
 
 $$1 \cdot \det \begin{pmatrix} -1 & 5 \\ 1 & -1 \end{pmatrix} - 2 \cdot \det \begin{pmatrix} -1 & 0 \\ 1 & -1 \end{pmatrix} + 1 \cdot \det \begin{pmatrix} -1 & 0 \\ -1 & 5 \end{pmatrix}$$
 
 $$= 1 \cdot (-4) - 2 \cdot 1 + 1 \cdot (-5) = -11.$$
 
-Stesso risultato, ma con tre determinanti $2 \times 2$ invece di due. Per questo le dispense osservano che conviene sviluppare lungo una riga (o colonna) che contiene degli zeri.
+Stesso risultato, ma con tre determinanti $2 \times 2$ invece di due. Per questo le dispense consigliano di sviluppare lungo una riga o una colonna con degli zeri.
 
 > [!ESEMPIO] 9.9 · Sviluppo lungo una colonna quasi vuota
 > Sviluppando la matrice seguente sulla seconda colonna otteniamo:
 > $$\det \begin{pmatrix} 1 & 0 & 1 \\ 2 & 0 & 1 \\ \pi & 3 & \sqrt 7 \end{pmatrix} = (-1) \cdot 3 \cdot \det \begin{pmatrix} 1 & 1 \\ 2 & 1 \end{pmatrix} = 3.$$
 > Nella seconda colonna l'unico numero diverso da zero è $a_{32} = 3$, in posizione $(3, 2)$: segno $(-1)^{3+2} = -1$. Cancellando la riga 3 e la colonna 2 resta $C_{32} = \begin{pmatrix} 1 & 1 \\ 2 & 1 \end{pmatrix}$, con determinante $1 - 2 = -1$. Quindi $(-1) \cdot 3 \cdot (-1) = 3$. I numeri $\pi$ e $\sqrt 7$, che sembravano complicare tutto, non entrano nel conto.
 >
-> Nello sviluppo si deve sempre fare attenzione al segno $(-1)^{i+j}$ associato alla casella $ij$, che varia come su di una scacchiera.
+> Nello sviluppo bisogna sempre stare attenti al segno $(-1)^{i+j}$ della casella, che cambia come su una scacchiera.
+
+::: prova Che segno ha la casella $(3, 4)$ nella scacchiera? E la casella $(4, 4)$?
+$(3, 4)$: $3 + 4 = 7$, dispari, segno meno. $(4, 4)$: $4 + 4 = 8$, pari, segno più.
+:::
 
 > [!DIM] · perché lo sviluppo di Laplace funziona (caso $3 \times 3$)
-> Prendi la formula per $n = 3$ e raccogli i sei addendi secondo il numero della prima riga che contengono:
+> Prendi la formula dei sei prodotti e raccogli i pezzi secondo il numero della prima riga che contengono:
 > $$\det A = a_{11}(a_{22}a_{33} - a_{23}a_{32}) - a_{12}(a_{21}a_{33} - a_{23}a_{31}) + a_{13}(a_{21}a_{32} - a_{22}a_{31}).$$
-> Le tre parentesi sono esattamente $\det C_{11}$, $\det C_{12}$ e $\det C_{13}$, e i segni sono $+, -, +$. È lo sviluppo lungo la prima riga. In generale (Martelli, Teorema 3.3.5) gli addendi che contengono $a_{ij}$ sono, a parte il fattore $a_{ij}$, proprio gli addendi di $\det C_{ij}$, con un segno in più $(-1)^{i+j}$.
+> Le tre parentesi sono esattamente $\det C_{11}$, $\det C_{12}$ e $\det C_{13}$, e i segni sono $+, -, +$. È lo sviluppo lungo la prima riga. In generale (Martelli, Teorema 3.3.5) i prodotti che contengono $a_{ij}$ sono, a parte il fattore $a_{ij}$, proprio i prodotti di $\det C_{ij}$, con un segno in più $(-1)^{i+j}$.
 
 > [!METODO] Calcolare un determinante con Laplace
 > 1. Controlla che la matrice sia **quadrata**; se non lo è, il determinante non esiste.
-> 2. Se è triangolare, moltiplica la diagonale (Proposizione 9.3) e hai finito.
+> 2. Se è triangolare, moltiplica la diagonale e hai finito.
 > 3. Scegli la riga o la colonna con **più zeri**.
-> 4. Per ogni numero non nullo di quella riga: segno della scacchiera, numero, determinante della sottomatrice che resta cancellando la sua riga e la sua colonna.
-> 5. Ripeti sulle sottomatrici finché arrivi a $2 \times 2$ (o a matrici triangolari).
+> 4. Per ogni numero diverso da zero di quella riga: segno della scacchiera, numero, determinante della sottomatrice che resta cancellando la sua riga e la sua colonna.
+> 5. Ripeti sulle sottomatrici finché arrivi a $2 \times 2$, oppure a matrici triangolari.
 > 6. Controllo: sviluppa lungo un'altra riga o colonna, oppure, per una $3 \times 3$, usa Sarrus.
 
 > [!ESEMPIO] · Una $4 \times 4$ con una colonna quasi vuota
 > $$M = \begin{pmatrix} 2 & 0 & 1 & 3 \\ 1 & 0 & 0 & 2 \\ 0 & 1 & 4 & -1 \\ 3 & 0 & 2 & 1 \end{pmatrix}$$
-> La seconda colonna ha un solo numero non nullo, $m_{32} = 1$, con segno $(-1)^{3+2} = -1$. Cancellando la riga 3 e la colonna 2:
-> $$\det M = -1 \cdot \det \begin{pmatrix} 2 & 1 & 3 \\ 1 & 0 & 2 \\ 3 & 2 & 1 \end{pmatrix}.$$
-> Sviluppo la $3 \times 3$ lungo la seconda riga, che ha uno zero (segni $-, +, -$):
-> $$\det \begin{pmatrix} 2 & 1 & 3 \\ 1 & 0 & 2 \\ 3 & 2 & 1 \end{pmatrix} = -1 \cdot \det \begin{pmatrix} 1 & 3 \\ 2 & 1 \end{pmatrix} + 0 - 2 \cdot \det \begin{pmatrix} 2 & 1 \\ 3 & 2 \end{pmatrix}$$
-> $$= -1 \cdot (1 - 6) - 2 \cdot (4 - 3) = 5 - 2 = 3.$$
-> Quindi $\det M = -3$. Invece di 24 addendi, tre determinanti $2 \times 2$.
+> 1. La seconda colonna ha un solo numero diverso da zero: l'1 nella riga 3. La casella $(3, 2)$ ha segno meno.
+> 2. Cancello la riga 3 e la colonna 2:
+>    $$\det M = -1 \cdot \det \begin{pmatrix} 2 & 1 & 3 \\ 1 & 0 & 2 \\ 3 & 2 & 1 \end{pmatrix}.$$
+> 3. Sviluppo la $3 \times 3$ lungo la seconda riga, che ha uno zero (segni $-, +, -$):
+>    $$-1 \cdot \det \begin{pmatrix} 1 & 3 \\ 2 & 1 \end{pmatrix} + 0 - 2 \cdot \det \begin{pmatrix} 2 & 1 \\ 3 & 2 \end{pmatrix} = -1 \cdot (1 - 6) - 2 \cdot (4 - 3) = 5 - 2 = 3.$$
+> 4. Quindi $\det M = -1 \cdot 3 = -3$.
+>
+> Invece di 24 prodotti, tre determinanti $2 \times 2$.
 
 Nello strumento qui sotto puoi controllare i tuoi determinanti: scrivi la matrice e premi «Calcola». Lo strumento non usa Laplace ma le **mosse di Gauss**, che trasformano la matrice in una triangolare cambiando il determinante in modo controllato: è il metodo della prossima lezione, L10. Prova la matrice dell'Esempio 9.8 (già inserita) e poi la $M$ qui sopra (`2 0 1 3; 1 0 0 2; 0 1 4 -1; 3 0 2 1`).
 
@@ -27047,27 +27397,52 @@ modo: determinante
 modi: determinante
 ```
 
-## Proprietà del determinante (p. 44)
+> [!RICORDA]
+> - Laplace: si sceglie una riga o una colonna; per ogni suo numero, segno della scacchiera per numero per determinante della sottomatrice.
+> - I numeri zero fanno sparire il loro pezzo: si sceglie la riga o la colonna con più zeri.
+> - I segni sono a scacchiera, con il più in alto a sinistra.
 
-Tre proprietà seguono subito dallo sviluppo di Laplace.
+## Tre regole che fanno risparmiare conti (p. 44)
+
+Dallo sviluppo di Laplace vengono subito tre regole. Servono a calcolare i determinanti senza fare tutti i conti.
+
+### Una riga di zeri
+
+Se in una riga ci sono solo zeri, sviluppo lungo quella riga: ogni pezzo è «zero per qualcosa». Il determinante è zero. Per esempio
+
+$$\det \begin{pmatrix} 4 & 7 & 1 \\ 0 & 0 & 0 \\ 2 & 9 & 5 \end{pmatrix} = 0$$
+
+senza fare conti. Le dispense lo scrivono così.
 
 > [!PROP] 9.10 · Riga o colonna nulla
 > Se gli elementi di una riga (o colonna) di $A$ sono tutti nulli, allora $\det(A) = 0$.
 
-È una conseguenza diretta dello sviluppo di Laplace: basta calcolare il determinante sviluppando secondo la riga (o colonna) tutta nulla. Ogni addendo è «$0$ per qualcosa». Per esempio $\det \begin{pmatrix} 4 & 7 & 1 \\ 0 & 0 & 0 \\ 2 & 9 & 5 \end{pmatrix} = 0$ senza fare conti.
+**Come si legge.** Una riga o una colonna tutta di zeri rende il determinante zero.
+
+### Una riga moltiplicata per un numero
+
+Prendi $\det \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} = 4 - 6 = -2$. Moltiplico la prima riga per 5:
+
+$$\det \begin{pmatrix} 5 & 10 \\ 3 & 4 \end{pmatrix} = 20 - 30 = -10 = 5 \cdot (-2).$$
+
+Il determinante è stato moltiplicato per 5. Le dispense lo scrivono così.
 
 > [!PROP] 9.11 · Moltiplicare una riga per un numero
 > Se la matrice $A'$ si ottiene dalla matrice $A$ moltiplicando tutti gli elementi di una riga (o colonna) per il numero $c$, allora $\det(A') = c \cdot \det(A)$.
 
-Il perché: sviluppa $\det A'$ lungo la riga moltiplicata. Le sottomatrici $C_{ij}$ **non contengono** quella riga, quindi sono le stesse di $A$; cambiano solo i numeri $c\,a_{ij}$ davanti. Ogni addendo è moltiplicato per $c$, e quindi anche la somma.
+**Come si legge.** $A'$, «a primo», è la matrice nuova. Se una sola riga, o una sola colonna, viene moltiplicata per un numero, il determinante viene moltiplicato per lo stesso numero.
 
-Con i numeri: $\det \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} = 4 - 6 = -2$; moltiplicando la prima riga per 5, $\det \begin{pmatrix} 5 & 10 \\ 3 & 4 \end{pmatrix} = 20 - 30 = -10 = 5 \cdot (-2)$.
+Il perché: sviluppo il determinante lungo la riga moltiplicata. Le sottomatrici non contengono quella riga, quindi sono le stesse di prima; cambiano solo i numeri davanti, tutti moltiplicati per $c$. Ogni pezzo è moltiplicato per $c$, e quindi anche la somma.
 
-Letta al contrario, la proposizione permette di **portare fuori** un fattore comune a una riga o a una colonna:
+Letta al contrario, la regola permette di **tirare fuori** un numero che compare in tutta una riga o in tutta una colonna:
 
 $$\det \begin{pmatrix} 6 & 9 \\ 2 & 5 \end{pmatrix} = 3 \det \begin{pmatrix} 2 & 3 \\ 2 & 5 \end{pmatrix} = 3 \cdot (10 - 6) = 12.$$
 
-Controllo diretto: $6 \cdot 5 - 9 \cdot 2 = 30 - 18 = 12$ ✓. È il trucco decisivo quando nella matrice compaiono $\pi$, $e$, $\sqrt 2$ o $i$ (Esercizio 9.14 e «Verso l'esame»).
+Controllo diretto: $6 \cdot 5 - 9 \cdot 2 = 30 - 18 = 12$. È il trucco decisivo quando nella matrice compaiono $\pi$, $e$, $\sqrt 2$ o $i$ (Esercizio 9.14 e «Verso l'esame»).
+
+### Tutta la matrice moltiplicata per un numero
+
+La matrice $3A$ ha **tutte** le righe moltiplicate per 3. Per la regola di prima, il 3 esce una volta per ogni riga. Le dispense lo scrivono così.
 
 > [!COROLLARIO] 9.12 · Il determinante di $cA$
 > Dalla proposizione otteniamo subito
@@ -27075,28 +27450,39 @@ Controllo diretto: $6 \cdot 5 - 9 \cdot 2 = 30 - 18 = 12$ ✓. È il trucco deci
 > e in particolare
 > $$\det(-A) = (-1)^n \cdot \det(A).$$
 
-Il perché: $cA$ ha **tutte le $n$ righe** moltiplicate per $c$. Applicando la Proposizione 9.11 una riga alla volta, il fattore $c$ esce $n$ volte. Con $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$:
+**Come si legge.** Moltiplicando tutta la matrice $n \times n$ per $c$, il determinante viene moltiplicato per $c$ elevato alla $n$: $c$ esce $n$ volte, una per riga. Con $c = -1$: per $n$ pari il segno non cambia, per $n$ dispari cambia.
+
+Un esempio con $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, che ha determinante $-2$:
 
 $$\det(3A) = \det \begin{pmatrix} 3 & 6 \\ 9 & 12 \end{pmatrix} = 36 - 54 = -18 = 3^2 \cdot (-2).$$
 
-E per $n$ pari $\det(-A) = \det A$, per $n$ dispari $\det(-A) = -\det A$.
+::: prova Una matrice $3 \times 3$ ha determinante 4. Quanto vale il determinante del suo doppio?
+$2^3 \cdot 4 = 8 \cdot 4 = 32$: il 2 esce tre volte, una per riga.
+:::
 
-> [!TRAPPOLA] $\det(cA)$ non è $c \det A$, e $\det(A + B)$ non è $\det A + \det B$
-> - Se $A$ è $3 \times 3$ con $\det A = 5$, allora $\det(2A) = 2^3 \cdot 5 = 40$, non $10$.
-> - Il determinante **non** è additivo (Martelli, Osservazione 3.4.9): con $A = I_2$ e $B = -I_2$ si ha $\det(A + B) = \det \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix} = 0$, mentre $\det A + \det B = 1 + 1 = 2$.
-> - La Proposizione 9.11 riguarda **una** riga: moltiplicare due righe per $c$ moltiplica il determinante per $c^2$.
+> [!TRAPPOLA] Il doppio di $A$ non raddoppia il determinante, e la somma non si spezza
+> - Se $A$ è $3 \times 3$ con determinante 5, il determinante di $2A$ è $2^3 \cdot 5 = 40$, non 10.
+> - Il determinante **non** si spezza sulle somme (Martelli, Osservazione 3.4.9). Con $A = I_2$ e $B = -I_2$: $A + B$ è la matrice nulla, con determinante 0; invece $\det A + \det B = 1 + 1 = 2$.
+> - La Proposizione 9.11 parla di **una** riga: moltiplicare due righe per $c$ moltiplica il determinante per $c^2$.
+
+> [!RICORDA]
+> - Una riga o colonna di zeri: determinante zero.
+> - Una riga per $c$: determinante per $c$. Si può tirare fuori un numero comune a una riga o a una colonna.
+> - Tutta la matrice $n \times n$ per $c$: determinante per $c^n$.
 
 ## Il significato geometrico (oltre le dispense)
 
+Nella prima sezione il determinante era un'area. Ecco il quadro completo, dal libro di Martelli.
+
 > [!OLTRE] · area, orientazione e volume
 > Per una matrice reale $2 \times 2$ con colonne $v_1 = {}^t(a, c)$ e $v_2 = {}^t(b, d)$ (Martelli, §3.3.10):
-> - $|\det A| = |ad - bc|$ è l'**area** del parallelogramma con lati $v_1$ e $v_2$;
-> - il **segno** dice l'orientazione: $\det A > 0$ se, girando da $v_1$ verso $v_2$ per l'angolo più piccolo, si va in senso antiorario (come da $e_1$ a $e_2$), $\det A < 0$ se si va in senso orario;
-> - $\det A = 0$ esattamente quando $v_1$ e $v_2$ sono paralleli: il parallelogramma è schiacciato.
+> - il determinante senza segno, $|ad - bc|$, è l'**area** del parallelogramma con lati $v_1$ e $v_2$;
+> - il **segno** dice l'orientazione: positivo se, girando da $v_1$ verso $v_2$ per l'angolo più piccolo, si va in senso antiorario (come da $e_1$ a $e_2$), negativo se si va in senso orario;
+> - il determinante è zero esattamente quando $v_1$ e $v_2$ sono paralleli: il parallelogramma è schiacciato.
 >
-> Per una $3 \times 3$, $|\det A|$ è il **volume** del parallelepipedo che ha per spigoli le tre colonne (lo ritroverai col prodotto vettoriale, lezione L22). Per esempio $\det \begin{pmatrix} 3 & -1 & 0 \\ 1 & 3 & 0 \\ 0 & 0 & 4 \end{pmatrix} = 4 \cdot (9 + 1) = 40$: un parallelepipedo di base un quadrato di area 10 e altezza 4.
+> Per una $3 \times 3$, il determinante senza segno è il **volume** della scatola storta che ha per spigoli le tre colonne (lo ritroverai con il prodotto vettoriale, lezione L22). Per esempio $\det \begin{pmatrix} 3 & -1 & 0 \\ 1 & 3 & 0 \\ 0 & 0 & 4 \end{pmatrix} = 4 \cdot (9 + 1) = 40$: una scatola con la base di area 10 e l'altezza 4.
 
-Nello strumento qui sotto la matrice $A$ trasforma il quadrato di lati $e_1$ ed $e_2$ nel parallelogramma colorato, che ha per lati le colonne $Ae_1$ e $Ae_2$. Cambia i quattro numeri e guarda come cambiano l'area e il colore: verde se $\det A > 0$, rosa se $\det A < 0$, giallo se $\det A = 0$. Prova i pulsanti: «taglio» ($\det = 1$: la forma cambia, l'area no), «riflessione» ($\det = -1$: stessa area, orientazione invertita), «proiezione» ($\det = 0$: il quadrato si schiaccia su un segmento). Le righe sugli autovalori riguardano la lezione L17: per ora ignorale.
+Nello strumento qui sotto la matrice $A$ trasforma il quadrato di lati $e_1$ ed $e_2$ nel parallelogramma colorato, che ha per lati le colonne $Ae_1$ e $Ae_2$. Cambia i quattro numeri e guarda come cambiano l'area e il colore: verde se il determinante è positivo, rosa se è negativo, giallo se è zero. Prova i pulsanti: «taglio» (determinante 1: la forma cambia, l'area no), «riflessione» (determinante $-1$: stessa area, orientazione girata), «proiezione» (determinante 0: il quadrato si schiaccia su un segmento). Le righe sugli autovalori riguardano la lezione L17: per ora ignorale.
 
 ```widget matrice
 titolo: Il determinante come area con il segno
@@ -27105,14 +27491,41 @@ x: 1 1
 raggio: 5
 ```
 
+::: prova Usa il determinante per trovare l'area del parallelogramma con lati $(2, 0)$ e $(1, 3)$.
+Metto i due vettori come colonne: $\det \begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix} = 6 - 0 = 6$. L'area è 6: base 2, altezza 3.
+:::
+
 > [!OLTRE] · dove trovarlo nel libro
-> Nel libro di Martelli il determinante è nel §3.3 (pp. 93–103): la definizione e i casi $n = 1, 2, 3$ nel §3.3.1 (pp. 93–95, con la rappresentazione con le «colorazioni» e la Proposizione 3.3.2 su $\det({}^tA)$), le matrici triangolari nel §3.3.2 (Proposizione 3.3.3), la matrice identità nel §3.3.3 (Definizione 3.3.4), lo sviluppo di Laplace nel §3.3.4 (pp. 96–97, Teorema 3.3.5), il significato geometrico nel §3.3.10 (pp. 101–103). Le permutazioni e il loro segno sono nel §1.2.5; il determinante di $\lambda A$ è l'Esercizio 3.10.
+> Nel libro di Martelli il determinante è nel §3.3 (pp. 93–103). La definizione e i casi $n = 1, 2, 3$ sono nel §3.3.1 (pp. 93–95), con le «colorazioni» e la Proposizione 3.3.2 sulla trasposta. Poi: le matrici triangolari nel §3.3.2 (Proposizione 3.3.3), la matrice identità nel §3.3.3 (Definizione 3.3.4), lo sviluppo di Laplace nel §3.3.4 (pp. 96–97, Teorema 3.3.5), il significato geometrico nel §3.3.10 (pp. 101–103). Le permutazioni e il loro segno sono nel §1.2.5; il determinante di $\lambda A$ è l'Esercizio 3.10.
+
+> [!RICORDA]
+> - Senza segno, il determinante di una $2 \times 2$ è un'area; di una $3 \times 3$ è un volume.
+> - Il segno dice l'orientazione; zero vuol dire che la figura è schiacciata.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\det A$ | «determinante di A» | il numero della matrice quadrata $A$ | $\det \begin{pmatrix} 3 & 1 \\ 1 & 2 \end{pmatrix} = 5$ |
+| $a_{ij}$ | «a i j» | il numero nella riga $i$ e nella colonna $j$ (lezione L06) | $a_{12} = 1$ |
+| $n!$ | «enne fattoriale» | $n \cdot (n - 1) \cdots 2 \cdot 1$ | $4! = 24$ |
+| $\sigma$ | «sigma» | una permutazione: un modo di rimettere in fila i numeri | $[2\ 3\ 1]$ |
+| $\sigma(i)$ | «sigma di i» | il numero al posto $i$ nella nuova fila | in $[2\ 3\ 1]$, $\sigma(1) = 2$ |
+| $S_n$ | «esse enne» | tutte le permutazioni di $n$ numeri | $S_3$ ne ha 6 |
+| $\sgn(\sigma)$ | «segno di sigma» | $+1$ con scambi pari, $-1$ con scambi dispari | $\sgn([2\ 1\ 3]) = -1$ |
+| $\mathrm{id}$ | «identità» | la fila già in ordine | $[1\ 2\ 3]$ |
+| $\sum$ | «somma» | somma di tanti pezzi dello stesso tipo | $\sum_{j=1}^3$: tre pezzi |
+| $I_n$ | «i con enne» | la matrice identità: 1 sulla diagonale, 0 altrove | $\det I_n = 1$ |
+| ${}^tA$ | «a trasposta» | righe e colonne scambiate | $\det({}^tA) = \det A$ |
+| $C_{ij}$ | «ci i j» | la sottomatrice senza la riga $i$ e la colonna $j$ | |
+| $(-1)^{i+j}$ | «meno uno alla i più j» | il segno della scacchiera | casella $(2, 3)$: meno |
+| $\lvert x \rvert$ | «valore assoluto di x» | il numero senza segno | $\lvert -5 \rvert = 5$ |
 
 ## Verso l'esame
 
-La prova scritta di Algebra lineare e Geometria ha 10 quiz a 5 risposte (servono almeno 6 risposte giuste perché vengano corretti i 2 problemi da 11 punti), dura 2 ore, senza calcolatrice e con solo 4 facciate di appunti scritti a mano; gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. I dettagli sono nella lezione L01.
+La prova scritta di Algebra lineare e Geometria ha 10 quiz a 5 risposte e 2 problemi da 11 punti. I problemi si correggono solo con almeno 6 risposte giuste. Dura 2 ore, senza calcolatrice e con solo 4 facciate di appunti scritti a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. I dettagli sono nella lezione L01.
 
-Il determinante compare in quasi ogni appello, in tre forme (e serve comunque per gli autovalori, dalla lezione L17):
+Il determinante compare in quasi ogni appello, in tre forme. E serve comunque per gli autovalori, dalla lezione L17.
 
 | Tipo di domanda | Appelli (numero della domanda) | Lezione |
 |---|---|---|
@@ -27120,46 +27533,70 @@ Il determinante compare in quasi ogni appello, in tre forme (e serve comunque pe
 | determinante di un prodotto o di una potenza: $\det(AB)$, $\det(A^3)$, $\det(A\,{}^tA)$ | 06/09/2024 (4), 16/01/2025 (3), 07/02/2025 (5), 03/06/2025 (9), 05/02/2026 (5), 03/07/2026 (6) | L10 (teorema di Binet) |
 | problema: «per quali $k$ la matrice è invertibile?» | 24/01/2024, 06/09/2024, 07/02/2025, 15/01/2026, 05/02/2026, 03/07/2026 (problema 11) | L10 |
 
-Tre domande vere del primo tipo, con la soluzione svolta.
+### Una domanda vera, letta insieme
+
+**Appello del 02/09/2025, domanda 3.** Il testo: «Calcolare il determinante di $A = \begin{pmatrix} 1 & 2 & 0 & 0 & 0 \\ 0 & 1 & 3 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 2 \\ 1 & 0 & 0 & 0 & 1 \end{pmatrix}$: (a) 12; (b) 13; (c) 0; (d) 11; (e) 1».
+
+**In pratica chiede:** il determinante di una tabella $5 \times 5$, senza calcolatrice. Con la formula sarebbero 120 prodotti: serve Laplace, lungo la riga o la colonna con più zeri.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: è quadrata?** 5 righe e 5 colonne: sì.
+>
+> **Passo 2: scelgo la colonna.** La prima colonna ha solo due numeri diversi da zero: l'1 nella riga 1 e l'1 nella riga 5. Sviluppo lungo la prima colonna.
+>
+> **Passo 3: i segni.** La casella $(1, 1)$ ha segno più. La casella $(5, 1)$ ha $5 + 1 = 6$, pari: segno più.
+>
+> **Passo 4: la prima sottomatrice.** Tolgo la riga 1 e la colonna 1:
+> $$C_{11} = \begin{pmatrix} 1 & 3 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 1 \end{pmatrix}.$$
+> È triangolare superiore: il determinante è il prodotto della diagonale, $1 \cdot 1 \cdot 1 \cdot 1 = 1$.
+>
+> **Passo 5: la seconda sottomatrice.** Tolgo la riga 5 e la colonna 1:
+> $$C_{51} = \begin{pmatrix} 2 & 0 & 0 & 0 \\ 1 & 3 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 2 \end{pmatrix}.$$
+> È triangolare inferiore: $2 \cdot 3 \cdot 1 \cdot 2 = 12$.
+>
+> **Passo 6: sommo.** $\det A = +1 \cdot 1 + 1 \cdot 12 = 13$. Risposta **(b)**.
+>
+> **Perché la (a) è sbagliata.** 12 è il risultato di chi dimentica il primo pezzo, quello della casella $(1, 1)$.
+
+### Altre due domande vere
 
 > [!ESAME] Appello del 10/07/2025, domanda 4
 > Sia $A = \begin{pmatrix} 1 & -1 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 2 & -1 & 0 \end{pmatrix}$. Qual è il determinante di $A$? (a) $1$; (b) $0$; (c) $\det(A)$ non è definito; (d) $2$; (e) $-1$.
 >
-> **Soluzione.** Conta righe e colonne prima di tutto: 3 righe e 4 colonne. La matrice non è quadrata, quindi il determinante **non esiste**: risposta **(c)**. Chi sviluppa senza guardare trova numeri che sembrano plausibili (la parte $3 \times 3$ a sinistra, sviluppata lungo la sua terza colonna, ha determinante $-1 \cdot (1 \cdot 1 - 0) = -1$, che è tra le risposte): il tranello è tutto lì.
-
-> [!ESAME] Appello del 02/09/2025, domanda 3
-> Calcolare il determinante di $A = \begin{pmatrix} 1 & 2 & 0 & 0 & 0 \\ 0 & 1 & 3 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 2 \\ 1 & 0 & 0 & 0 & 1 \end{pmatrix}$: (a) $12$; (b) $13$; (c) $0$; (d) $11$; (e) $1$.
->
-> **Soluzione.** La prima colonna ha due numeri non nulli: $a_{11} = 1$ (segno $+$) e $a_{51} = 1$ (segno $(-1)^{5+1} = +1$). Sviluppo lungo la prima colonna:
-> - cancellando riga 1 e colonna 1 resta $C_{11} = \begin{pmatrix} 1 & 3 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 2 \\ 0 & 0 & 0 & 1 \end{pmatrix}$, triangolare superiore: $\det C_{11} = 1$;
-> - cancellando riga 5 e colonna 1 resta $C_{51} = \begin{pmatrix} 2 & 0 & 0 & 0 \\ 1 & 3 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 1 & 2 \end{pmatrix}$, triangolare inferiore: $\det C_{51} = 2 \cdot 3 \cdot 1 \cdot 2 = 12$.
->
-> $\det A = 1 \cdot 1 + 1 \cdot 12 = 13$: risposta **(b)**. Il distrattore $12$ è quello di chi dimentica il primo addendo.
+> **Soluzione.** Prima di tutto conta righe e colonne: 3 righe e 4 colonne. La matrice non è quadrata, quindi il determinante **non esiste**: risposta **(c)**. Chi sviluppa senza guardare trova numeri che sembrano plausibili: la parte $3 \times 3$ a sinistra, sviluppata lungo la sua terza colonna, ha determinante $-1 \cdot (1 \cdot 1 - 0) = -1$, che è tra le risposte. Il tranello è tutto lì.
 
 > [!ESAME] Appello del 03/06/2026, domanda 2
 > Il determinante di $\begin{pmatrix} 1 & e & 1 & 1 \\ \pi & 2\pi e & 3\pi & \pi \\ 1 & e & 2 & 0 \\ 0 & e & 0 & 3 \end{pmatrix}$ è uguale a: (a) $1$; (b) $0$; (c) $\pi e$; (d) $\pi + e$; (e) $6 + 2\pi e$.
 >
-> **Soluzione.** La seconda riga ha il fattore comune $\pi$ e la seconda colonna il fattore comune $e$: li porto fuori con la Proposizione 9.11 (per righe e per colonne):
-> $$\det = \pi e \cdot \det \begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & 2 & 3 & 1 \\ 1 & 1 & 2 & 0 \\ 0 & 1 & 0 & 3 \end{pmatrix}.$$
-> Sviluppo lungo la quarta riga, $(0, 1, 0, 3)$: restano $a_{42} = 1$ (segno $(-1)^{4+2} = +$) e $a_{44} = 3$ (segno $+$).
-> - $C_{42} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 3 & 1 \\ 1 & 2 & 0 \end{pmatrix}$: lungo la terza colonna, $1 \cdot (2 - 3) - 1 \cdot (2 - 1) + 0 = -1 - 1 = -2$;
-> - $C_{44} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \\ 1 & 1 & 2 \end{pmatrix}$: con Sarrus, $(4 + 3 + 1) - (2 + 3 + 2) = 8 - 7 = 1$.
+> **Soluzione.**
+> 1. **Tiro fuori i numeri comuni.** Tutta la seconda riga contiene $\pi$, tutta la seconda colonna contiene $e$. Li tiro fuori con la Proposizione 9.11, per righe e per colonne:
+>    $$\det = \pi e \cdot \det \begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & 2 & 3 & 1 \\ 1 & 1 & 2 & 0 \\ 0 & 1 & 0 & 3 \end{pmatrix}.$$
+> 2. **Laplace lungo la quarta riga**, $(0, 1, 0, 3)$. Restano due pezzi: la casella $(4, 2)$, con segno più, e la casella $(4, 4)$, con segno più.
+> 3. **La prima sottomatrice**, senza riga 4 e colonna 2: $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 3 & 1 \\ 1 & 2 & 0 \end{pmatrix}$. Lungo la terza colonna: $1 \cdot (2 - 3) - 1 \cdot (2 - 1) + 0 = -1 - 1 = -2$.
+> 4. **La seconda sottomatrice**, senza riga 4 e colonna 4: $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 3 \\ 1 & 1 & 2 \end{pmatrix}$. Con Sarrus: $(4 + 3 + 1) - (2 + 3 + 2) = 8 - 7 = 1$.
+> 5. **Sommo.** Il determinante tra parentesi è $1 \cdot (-2) + 3 \cdot 1 = 1$, quindi il totale è $\pi e$: risposta **(c)**.
+
+Negli altri due appelli del primo tipo (10/07/2024 e 10/06/2024) le matrici avevano righe dipendenti e il determinante era 0: con gli strumenti della lezione L10 si vede quasi senza conti.
+
+> [!METODO] Il determinante all'esame, in ordine
+> 1. È quadrata? Se no, il determinante non esiste.
+> 2. È triangolare? Prodotto della diagonale.
+> 3. C'è una riga o una colonna di zeri? Determinante zero.
+> 4. Ci sono numeri comuni da tirare fuori ($\pi$, $e$, radici, numeri grandi)?
+> 5. Laplace lungo la riga o la colonna con più zeri.
+> 6. Per una $3 \times 3$ finale, Sarrus.
 >
-> Il determinante tra parentesi è $1 \cdot (-2) + 3 \cdot 1 = 1$, quindi il totale è $\pi e$: risposta **(c)**.
+> Senza calcolatrice conviene sempre rimpicciolire i numeri prima di moltiplicare.
 
-Negli altri due appelli del primo tipo (10/07/2024 e 10/06/2024) le matrici avevano righe dipendenti e il determinante era $0$: con gli strumenti della lezione L10 si vede quasi senza conti.
+**Errori da evitare.**
 
-**Il metodo, in ordine.** (1) È quadrata? (2) È triangolare? (3) C'è una riga o colonna nulla? (4) Ci sono fattori comuni da portare fuori ($\pi$, $e$, radici, numeri grandi)? (5) Laplace lungo la riga o colonna con più zeri. (6) Per una $3 \times 3$ finale, Sarrus. Senza calcolatrice conviene sempre ridurre i numeri prima di moltiplicare.
-
-Errori da evitare:
-
-- dimenticare il segno della scacchiera, soprattutto nelle posizioni «dispari» come $(1, 2)$, $(2, 3)$, $(5, 4)$;
-- usare Sarrus su una $4 \times 4$;
-- scrivere $\det(2A) = 2\det A$: per una $n \times n$ è $2^n \det A$;
-- rispondere con un numero quando la matrice non è quadrata.
+- Dimenticare il segno della scacchiera, soprattutto nelle caselle «dispari» come $(1, 2)$, $(2, 3)$, $(5, 4)$.
+- Usare Sarrus su una $4 \times 4$.
+- Scrivere che il determinante di $2A$ è il doppio di quello di $A$: per una $n \times n$ è $2^n$ volte.
+- Rispondere con un numero quando la matrice non è quadrata.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: $\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc$; la regola di Sarrus per le $3 \times 3$ (con il disegno); lo sviluppo di Laplace con la scacchiera dei segni; triangolare $\Rightarrow$ prodotto della diagonale; $\det({}^tA) = \det A$; riga nulla $\Rightarrow 0$; una riga per $c$ $\Rightarrow$ determinante per $c$; $\det(cA) = c^n \det A$.
+> Da questa lezione: $\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc$; la regola di Sarrus per le $3 \times 3$, con il disegno; lo sviluppo di Laplace con la scacchiera dei segni; triangolare: prodotto della diagonale; la trasposta ha lo stesso determinante; riga nulla: zero; una riga per $c$: determinante per $c$; $\det(cA) = c^n \det A$.
 
 ## Quiz
 
@@ -27170,7 +27607,7 @@ D: Sia $A = \begin{pmatrix} 2 & 0 & 1 \\ -1 & 3 & 0 \end{pmatrix}$. Qual è il d
 - $6$
 - $-6$
 - $1$
-= $A$ ha 2 righe e 3 colonne: non è quadrata, e il determinante esiste solo per le matrici quadrate (Definizione 9.1). Simile all'appello del 10/07/2025, domanda 4.
+= La prima cosa da controllare è se la matrice è quadrata: $A$ ha 2 righe e 3 colonne, quindi non lo è. Il determinante esiste solo per le matrici quadrate (Definizione 9.1), quindi non è definito. La risposta più insidiosa è 6: è il determinante del pezzo $2 \times 2$ a sinistra, $2 \cdot 3 - 0 \cdot (-1)$, che però non è la matrice data. Simile all'appello del 10/07/2025, domanda 4.
 
 D: Il determinante di $A = \begin{pmatrix} 1 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 \\ 0 & 0 & 1 & 1 \\ 3 & 0 & 0 & 1 \end{pmatrix}$ è:
 + $-5$
@@ -27178,7 +27615,7 @@ D: Il determinante di $A = \begin{pmatrix} 1 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 \\ 0 &
 - $1$
 - $0$
 - $5$
-= Lungo la prima colonna: $a_{11} = 1$ con segno $+$ e sottomatrice $C_{11}$ triangolare superiore con diagonale $1, 1, 1$, quindi $1$; poi $a_{41} = 3$ con segno $(-1)^{4+1} = -1$ e $C_{41} = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}$, triangolare inferiore con determinante $2$. Totale $1 - 3 \cdot 2 = -5$. Chi dimentica il segno trova $7$. Simile all'appello del 02/09/2025, domanda 3.
+= Si sviluppa lungo la prima colonna, che ha due numeri diversi da zero. Il primo è l'1 nella casella $(1, 1)$, segno più: la sottomatrice senza riga 1 e colonna 1 è triangolare superiore con diagonale 1, 1, 1, quindi determinante 1. Il secondo è il 3 nella casella $(4, 1)$, con $4 + 1 = 5$ dispari, segno meno: la sottomatrice $\begin{pmatrix} 1 & 0 & 0 \\ 1 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}$ è triangolare inferiore con determinante 2. Totale $1 - 3 \cdot 2 = -5$. La risposta più insidiosa è 7, di chi dimentica il segno meno della casella $(4, 1)$. Simile all'appello del 02/09/2025, domanda 3.
 
 D: Il determinante di $\begin{pmatrix} 1 & \pi & 2 \\ e & 2\pi e & e \\ 0 & \pi & 3 \end{pmatrix}$ è uguale a:
 + $4\pi e$
@@ -27186,7 +27623,7 @@ D: Il determinante di $\begin{pmatrix} 1 & \pi & 2 \\ e & 2\pi e & e \\ 0 & \pi 
 - $\pi e$
 - $4$
 - $\pi + e$
-= Porto fuori $e$ dalla seconda riga e $\pi$ dalla seconda colonna: $\pi e \det \begin{pmatrix} 1 & 1 & 2 \\ 1 & 2 & 1 \\ 0 & 1 & 3 \end{pmatrix}$. Lungo la prima colonna: $1 \cdot (6 - 1) - 1 \cdot (3 - 2) + 0 = 5 - 1 = 4$. Totale $4\pi e$. Simile all'appello del 03/06/2026, domanda 2.
+= Si tirano fuori i numeri comuni: $e$ da tutta la seconda riga e $\pi$ da tutta la seconda colonna. Resta $\pi e \cdot \det \begin{pmatrix} 1 & 1 & 2 \\ 1 & 2 & 1 \\ 0 & 1 & 3 \end{pmatrix}$. Lungo la prima colonna: $1 \cdot (6 - 1) - 1 \cdot (3 - 2) + 0 = 5 - 1 = 4$. Il totale è $4\pi e$. La risposta più insidiosa è 4: è il determinante giusto della matrice piccola, ma dimentica i due numeri tirati fuori. Simile all'appello del 03/06/2026, domanda 2.
 
 D: Sia $A$ una matrice $3 \times 3$ con $\det A = 5$. Quanto vale $\det(2A)$?
 + $40$
@@ -27194,7 +27631,7 @@ D: Sia $A$ una matrice $3 \times 3$ con $\det A = 5$. Quanto vale $\det(2A)$?
 - $25$
 - $8$
 - $30$
-= $2A$ ha tutte e tre le righe moltiplicate per 2, quindi (Corollario 9.12) $\det(2A) = 2^3 \det A = 8 \cdot 5 = 40$. $10 = 2 \cdot 5$ è l'errore di chi moltiplica una riga sola.
+= Nella matrice $2A$ tutte e tre le righe sono moltiplicate per 2, e ogni riga moltiplicata per 2 raddoppia il determinante (Proposizione 9.11). Quindi il 2 esce tre volte: $2^3 \cdot 5 = 8 \cdot 5 = 40$ (Corollario 9.12). La risposta più insidiosa è 10: è l'errore di chi moltiplica una riga sola.
 
 D: Sia $A$ una matrice $4 \times 4$ con $\det A = 3$. Quanto vale $\det(-A)$?
 + $3$
@@ -27202,7 +27639,7 @@ D: Sia $A$ una matrice $4 \times 4$ con $\det A = 3$. Quanto vale $\det(-A)$?
 - $81$
 - $-81$
 - $-12$
-= $\det(-A) = (-1)^4 \det A = \det A = 3$: con $n$ pari il segno non cambia (Corollario 9.12).
+= Nella matrice $-A$ tutte e quattro le righe sono moltiplicate per $-1$, quindi il $-1$ esce quattro volte: $(-1)^4 \cdot 3 = 1 \cdot 3 = 3$ (Corollario 9.12). Con un numero pari di righe il segno non cambia. La risposta più insidiosa è $-3$, di chi cambia il segno una volta sola.
 
 D: Quanti addendi ha la formula del determinante (Definizione 9.1) per una matrice $5 \times 5$?
 + $120$
@@ -27210,7 +27647,7 @@ D: Quanti addendi ha la formula del determinante (Definizione 9.1) per una matri
 - $5$
 - $10$
 - $60$
-= Un addendo per ogni permutazione di $\{1, 2, 3, 4, 5\}$: sono $5! = 1 \cdot 2 \cdot 3 \cdot 4 \cdot 5 = 120$. Per questo si usa Laplace.
+= La formula ha un prodotto per ogni permutazione dei numeri da 1 a 5: sono $5! = 1 \cdot 2 \cdot 3 \cdot 4 \cdot 5 = 120$. La risposta più insidiosa è 25, il numero di caselle della matrice, che non c'entra. Proprio perché sono tanti, per le matrici grandi si usa Laplace.
 
 D: Siano $A = \begin{pmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 3 \\ 0 & 0 & 1 \end{pmatrix}$. Quanto valgono $\det(AB)$ e $\tr(AB)$?
 + $\det(AB) = 1$, $\tr(AB) = 8$.
@@ -27218,7 +27655,7 @@ D: Siano $A = \begin{pmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}$
 - $\det(AB) = 2$, $\tr(AB) = 8$.
 - $\det(AB) = 0$, $\tr(AB) = 8$.
 - $\det(AB) = 3$, $\tr(AB) = 3$.
-= Riga per colonna, $AB = \begin{pmatrix} 1 & 1 & 0 \\ 2 & 3 & 3 \\ 0 & 1 & 4 \end{pmatrix}$: traccia $1 + 3 + 4 = 8$ (non $\tr A \cdot \tr B = 9$). Lungo la prima riga: $\det(AB) = 1 \cdot (12 - 3) - 1 \cdot (8 - 0) = 1$. Con la lezione L10 si fa prima: $\det(AB) = \det A \det B = 1 \cdot 1$, perché sono triangolari con diagonale di 1. Simile all'appello del 16/01/2025, domanda 3.
+= Il prodotto riga per colonna (lezione L08) è $AB = \begin{pmatrix} 1 & 1 & 0 \\ 2 & 3 & 3 \\ 0 & 1 & 4 \end{pmatrix}$. La traccia è la somma della diagonale, $1 + 3 + 4 = 8$. Il determinante, lungo la prima riga, è $1 \cdot (12 - 3) - 1 \cdot (8 - 0) = 9 - 8 = 1$. La risposta più insidiosa ha traccia 9: è il prodotto delle due tracce, $3 \cdot 3$, ma la traccia di un prodotto non funziona così. Con la lezione L10 si fa prima: il determinante del prodotto è il prodotto dei determinanti, $1 \cdot 1$, perché $A$ e $B$ sono triangolari con diagonale di 1. Simile all'appello del 16/01/2025, domanda 3.
 
 D: Il determinante di $\begin{pmatrix} 2 & 3 & 4 \\ 5 & 6 & 7 \\ 8 & 9 & 10 \end{pmatrix}$ è:
 + $0$
@@ -27226,7 +27663,7 @@ D: Il determinante di $\begin{pmatrix} 2 & 3 & 4 \\ 5 & 6 & 7 \\ 8 & 9 & 10 \end
 - $1$
 - $-3$
 - $10!$
-= Con Sarrus: diagonali che scendono $2 \cdot 6 \cdot 10 + 3 \cdot 7 \cdot 8 + 4 \cdot 5 \cdot 9 = 120 + 168 + 180 = 468$, diagonali che salgono $4 \cdot 6 \cdot 8 + 2 \cdot 7 \cdot 9 + 3 \cdot 5 \cdot 10 = 192 + 126 + 150 = 468$; differenza $0$. La terza riga è $2 \cdot (5, 6, 7) - (2, 3, 4)$: nella lezione L10 vedrai che allora il determinante è sempre $0$. Simile all'appello del 10/07/2024, domanda 4.
+= Con Sarrus: le diagonali che scendono danno $2 \cdot 6 \cdot 10 + 3 \cdot 7 \cdot 8 + 4 \cdot 5 \cdot 9 = 120 + 168 + 180 = 468$, quelle che salgono $4 \cdot 6 \cdot 8 + 2 \cdot 7 \cdot 9 + 3 \cdot 5 \cdot 10 = 192 + 126 + 150 = 468$. La differenza è 0. Il motivo profondo: la terza riga è $2 \cdot (5, 6, 7) - (2, 3, 4)$, una ricetta con le altre due, e nella lezione L10 vedrai che allora il determinante è sempre zero. La risposta «non è definito» è sbagliata: la matrice è quadrata. Simile all'appello del 10/07/2024, domanda 4.
 
 D: Quale di queste affermazioni è **falsa** per matrici quadrate reali?
 + $\det(A + B) = \det A + \det B$ per ogni $A, B \in M(2)$.
@@ -27234,14 +27671,129 @@ D: Quale di queste affermazioni è **falsa** per matrici quadrate reali?
 - $\det(I_n) = 1$.
 - Se una colonna di $A$ è nulla, allora $\det A = 0$.
 - $\det(-A) = \det A$ per ogni $A \in M(2)$.
-= Con $A = I_2$ e $B = -I_2$: $\det(A + B) = \det(0) = 0$, ma $\det A + \det B = 2$. Le altre sono le Proposizioni 9.5, 9.10, la Definizione 9.4 con la Proposizione 9.3, e il Corollario 9.12 con $n = 2$.
+= Basta un esempio: con $A = I_2$ e $B = -I_2$ la somma è la matrice nulla, con determinante 0, mentre $\det A + \det B = 1 + 1 = 2$. Quindi il determinante non si spezza sulle somme. Le altre sono vere: la trasposta ha lo stesso determinante (Proposizione 9.5), l'identità ha determinante 1 (Definizione 9.4 con la Proposizione 9.3), una colonna di zeri dà zero (Proposizione 9.10). La più insidiosa è l'ultima, che sembra falsa: ma per le $2 \times 2$ il $-1$ esce due volte, e $(-1)^2 = 1$ (Corollario 9.12).
 
 D: Calcola il determinante di $\begin{pmatrix} 3 & 1 & 0 \\ 0 & 2 & 5 \\ 1 & 0 & 4 \end{pmatrix}$.
 N: 29
-= Lungo la prima riga: $3 \cdot (2 \cdot 4 - 5 \cdot 0) - 1 \cdot (0 \cdot 4 - 5 \cdot 1) + 0 = 3 \cdot 8 - 1 \cdot (-5) = 24 + 5 = 29$.
+= Lungo la prima riga, con i segni $+, -, +$ e lo zero in fondo: $3 \cdot (2 \cdot 4 - 5 \cdot 0) - 1 \cdot (0 \cdot 4 - 5 \cdot 1) + 0 = 3 \cdot 8 - 1 \cdot (-5) = 24 + 5 = 29$. Attenzione al segno meno davanti al secondo pezzo: moltiplicato per $-5$ diventa più.
 ```
 
 ## Esercizi
+
+::: esercizio base Riscaldamento: una $2 \times 2$
+Calcola $\det \begin{pmatrix} 5 & 2 \\ 3 & 4 \end{pmatrix}$ e $\det \begin{pmatrix} -1 & 3 \\ 2 & -6 \end{pmatrix}$.
+::: soluzione
+1. Diagonale principale $5 \cdot 4 = 20$, altra diagonale $2 \cdot 3 = 6$: il determinante è $20 - 6 = 14$.
+2. Diagonale principale $(-1) \cdot (-6) = 6$, altra diagonale $3 \cdot 2 = 6$: il determinante è $6 - 6 = 0$. Le due colonne $(-1, 2)$ e $(3, -6)$ sono una il $-3$ volte dell'altra: il parallelogramma è schiacciato.
+:::
+
+::: esercizio base Riscaldamento: una triangolare
+Calcola il determinante di $\begin{pmatrix} 3 & 7 & -2 & 5 \\ 0 & -1 & 4 & 1 \\ 0 & 0 & 2 & 9 \\ 0 & 0 & 0 & 1 \end{pmatrix}$.
+::: soluzione
+1. Sotto la diagonale ci sono solo zeri: è triangolare superiore.
+2. Il determinante è il prodotto della diagonale: $3 \cdot (-1) \cdot 2 \cdot 1 = -6$.
+:::
+
+::: esercizio base Riscaldamento: esiste?
+Quali di queste matrici hanno un determinante? $\begin{pmatrix} 1 & 2 \end{pmatrix}$, $\begin{pmatrix} 7 \end{pmatrix}$, $\begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 2 & 2 \end{pmatrix}$, $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$.
+::: soluzione
+1. $\begin{pmatrix} 1 & 2 \end{pmatrix}$ è $1 \times 2$: non quadrata, niente determinante.
+2. $\begin{pmatrix} 7 \end{pmatrix}$ è $1 \times 1$: il determinante è 7.
+3. La terza è $3 \times 2$: non quadrata, niente determinante.
+4. L'ultima è $2 \times 2$: il determinante è $4 - 6 = -2$.
+:::
+
+::: esercizio base Riscaldamento: i segni della scacchiera
+In una matrice $4 \times 4$, che segno hanno le caselle $(1, 1)$, $(1, 2)$, $(2, 3)$, $(4, 1)$ e $(4, 4)$?
+::: soluzione
+Il segno è più quando la somma di riga e colonna è pari, meno quando è dispari.
+1. $(1, 1)$: $1 + 1 = 2$, più.
+2. $(1, 2)$: $1 + 2 = 3$, meno.
+3. $(2, 3)$: $2 + 3 = 5$, meno.
+4. $(4, 1)$: $4 + 1 = 5$, meno.
+5. $(4, 4)$: $4 + 4 = 8$, più.
+:::
+
+::: esercizio base Quattro determinanti $2 \times 2$
+Calcola: (a) $\det \begin{pmatrix} 3 & 1 \\ 4 & 2 \end{pmatrix}$; (b) $\det \begin{pmatrix} 2 & -3 \\ 4 & -6 \end{pmatrix}$; (c) $\det \begin{pmatrix} \cos t & -\sin t \\ \sin t & \cos t \end{pmatrix}$; (d) $\det \begin{pmatrix} 1 + i & 2 \\ 1 & 1 - i \end{pmatrix}$.
+::: soluzione
+(a) $3 \cdot 2 - 1 \cdot 4 = 6 - 4 = 2$.
+
+(b) $2 \cdot (-6) - (-3) \cdot 4 = -12 + 12 = 0$. Le colonne $(2, 4)$ e $(-3, -6)$ sono una multipla dell'altra ($-\frac 32$ volte la prima): il parallelogramma è schiacciato.
+
+(c) $\cos t \cdot \cos t - (-\sin t) \cdot \sin t = \cos^2 t + \sin^2 t = 1$ per ogni angolo $t$ (lezione L03). Questa matrice gira il piano dell'angolo $t$, e girare non cambia le aree (lezione L22).
+
+(d) $(1 + i)(1 - i) - 2 \cdot 1 = (1 - i^2) - 2 = (1 + 1) - 2 = 0$.
+:::
+
+::: esercizio base Una $3 \times 3$ in due modi
+Calcola $\det A$ per $A = \begin{pmatrix} 2 & 0 & 1 \\ 1 & 3 & -1 \\ 0 & 1 & 4 \end{pmatrix}$ (a) con la formula dei sei addendi e (b) con Laplace lungo la prima riga.
+::: soluzione
+(a) Prodotto per prodotto, nell'ordine della formula:
+1. $a_{11}a_{22}a_{33} = 2 \cdot 3 \cdot 4 = 24$;
+2. $-a_{11}a_{23}a_{32} = -2 \cdot (-1) \cdot 1 = 2$;
+3. $-a_{13}a_{22}a_{31} = -1 \cdot 3 \cdot 0 = 0$;
+4. $-a_{12}a_{21}a_{33} = -0 \cdot 1 \cdot 4 = 0$;
+5. $+a_{12}a_{23}a_{31} = 0 \cdot (-1) \cdot 0 = 0$;
+6. $+a_{13}a_{21}a_{32} = 1 \cdot 1 \cdot 1 = 1$.
+
+Totale $24 + 2 + 1 = 27$.
+
+(b) Lungo la prima riga, segni $+, -, +$, e il secondo numero è 0:
+$$\det A = 2 \det \begin{pmatrix} 3 & -1 \\ 1 & 4 \end{pmatrix} - 0 + 1 \cdot \det \begin{pmatrix} 1 & 3 \\ 0 & 1 \end{pmatrix} = 2 \cdot (12 + 1) + 1 \cdot (1 - 0) = 26 + 1 = 27.$$
+Stesso risultato: Laplace è solo un modo ordinato di raccogliere gli stessi sei prodotti.
+:::
+
+::: esercizio medio Permutazioni e addendi
+(a) Trova il segno delle permutazioni $[2\ 1\ 4\ 3]$, $[4\ 3\ 2\ 1]$ e $[2\ 3\ 4\ 1]$ di $S_4$. (b) Scrivi, con il suo segno, l'addendo della formula del determinante $4 \times 4$ che corrisponde a $[2\ 3\ 4\ 1]$. (c) Nella formula del determinante $4 \times 4$ può comparire il prodotto $a_{11}a_{21}a_{33}a_{44}$?
+::: soluzione
+(a) Con gli scambi di posto:
+- $[2\ 1\ 4\ 3]$: da $[1\ 2\ 3\ 4]$ scambio i primi due posti e gli ultimi due. 2 scambi, segno $+1$.
+- $[4\ 3\ 2\ 1]$: scambio il primo con il quarto posto, $[4\ 2\ 3\ 1]$, poi il secondo con il terzo, $[4\ 3\ 2\ 1]$. 2 scambi, segno $+1$.
+- $[2\ 3\ 4\ 1]$: $[1\ 2\ 3\ 4] \to [2\ 1\ 3\ 4] \to [2\ 3\ 1\ 4] \to [2\ 3\ 4\ 1]$. 3 scambi, segno $-1$. Controllo con le inversioni: $(2, 1)$, $(3, 1)$, $(4, 1)$, tre, segno $-1$.
+
+(b) $\sigma(1) = 2$, $\sigma(2) = 3$, $\sigma(3) = 4$, $\sigma(4) = 1$: il prodotto è $-a_{12}a_{23}a_{34}a_{41}$.
+
+(c) No: $a_{11}$ e $a_{21}$ stanno tutti e due nella **colonna 1**. Ogni prodotto della formula prende un solo numero da ogni colonna.
+:::
+
+::: esercizio medio Una $4 \times 4$ con Laplace
+Calcola $\det \begin{pmatrix} 1 & 2 & 0 & 3 \\ 0 & 1 & 0 & 0 \\ 4 & 1 & 2 & 1 \\ 1 & 0 & 0 & 2 \end{pmatrix}$.
+::: soluzione
+1. La seconda riga ha un solo numero diverso da zero: l'1 nella casella $(2, 2)$, segno più.
+2. Cancello la riga 2 e la colonna 2:
+   $$\det = 1 \cdot \det \begin{pmatrix} 1 & 0 & 3 \\ 4 & 2 & 1 \\ 1 & 0 & 2 \end{pmatrix}.$$
+3. Nella nuova matrice la seconda colonna ha un solo numero diverso da zero: il 2 nella casella $(2, 2)$, segno più.
+   $$\det \begin{pmatrix} 1 & 0 & 3 \\ 4 & 2 & 1 \\ 1 & 0 & 2 \end{pmatrix} = 2 \det \begin{pmatrix} 1 & 3 \\ 1 & 2 \end{pmatrix} = 2 \cdot (2 - 3) = -2.$$
+
+Il determinante cercato è $-2$: due sviluppi furbi e un solo determinante $2 \times 2$.
+:::
+
+::: esercizio medio Proprietà senza conti
+Sia $A$ una matrice $3 \times 3$ con $\det A = 5$. Calcola: (a) $\det({}^tA)$; (b) $\det(2A)$; (c) $\det(-A)$; (d) il determinante della matrice ottenuta da $A$ moltiplicando la seconda riga per 3; (e) il determinante della matrice ottenuta da $A$ sostituendo la prima colonna con una colonna di zeri.
+::: soluzione
+(a) La trasposta ha lo stesso determinante: 5 (Proposizione 9.5).
+
+(b) Tutte e tre le righe per 2: $2^3 \cdot 5 = 40$ (Corollario 9.12).
+
+(c) Tutte e tre le righe per $-1$: $(-1)^3 \cdot 5 = -5$.
+
+(d) Una sola riga per 3: $3 \cdot 5 = 15$ (Proposizione 9.11).
+
+(e) Una colonna di zeri: 0 (Proposizione 9.10), qualunque fosse $A$.
+:::
+
+::: esercizio medio L'area di un triangolo (oltre le dispense)
+Usa il determinante per calcolare l'area del triangolo di vertici $P = (1, 1)$, $Q = (4, 2)$, $R = (2, 5)$.
+::: soluzione
+1. Il triangolo è metà del parallelogramma costruito sui lati che partono da $P$.
+2. I due lati: $Q - P = (4 - 1,\ 2 - 1) = (3, 1)$ e $R - P = (2 - 1,\ 5 - 1) = (1, 4)$.
+3. L'area del parallelogramma è il determinante senza segno della matrice con questi vettori come colonne:
+   $$\det \begin{pmatrix} 3 & 1 \\ 1 & 4 \end{pmatrix} = 12 - 1 = 11.$$
+4. L'area del triangolo è la metà: $\frac{11}2 = 5{,}5$.
+
+Il segno positivo dice anche che percorrendo $P$, $Q$, $R$ si gira in senso antiorario.
+:::
 
 ::: esercizio difficile Esercizio 9.13 delle dispense: una $4 \times 4$ complessa
 Calcoliamo il determinante della matrice
@@ -27249,7 +27801,7 @@ $$A = \begin{pmatrix} 2 + i & 0 & -5 & 0 \\ 3 - i & 1 & 2i & 0 \\ 4 + 4i & -2 & 
 ::: soluzione
 Le regole sono le stesse con i numeri complessi: cambiano solo i conti (lezioni L02 e L03).
 
-**Passo 1: la colonna migliore.** La quarta colonna ha un solo numero non nullo, $a_{44} = i$, con segno $(-1)^{4+4} = +1$. Sviluppo lungo la quarta colonna (Corollario 9.7):
+**Passo 1: la colonna migliore.** La quarta colonna ha un solo numero diverso da zero: $i$, nella casella $(4, 4)$, segno più. Sviluppo lungo la quarta colonna (Corollario 9.7):
 $$\det A = i \cdot \det C_{44}, \qquad C_{44} = \begin{pmatrix} 2 + i & 0 & -5 \\ 3 - i & 1 & 2i \\ 4 + 4i & -2 & -1 \end{pmatrix}.$$
 I numeri $-\frac 12$, $i$, $1 - i$ dell'ultima riga non servono più.
 
@@ -27261,7 +27813,7 @@ $$\det C_{44} = (2 + i) \det \begin{pmatrix} 1 & 2i \\ -2 & -1 \end{pmatrix} - 0
 - $\det \begin{pmatrix} 3 - i & 1 \\ 4 + 4i & -2 \end{pmatrix} = (3 - i)(-2) - 1 \cdot (4 + 4i) = -6 + 2i - 4 - 4i = -10 - 2i$.
 
 **Passo 4: i prodotti.**
-- $(2 + i)(-1 + 4i) = -2 + 8i - i + 4i^2 = -2 + 7i - 4 = -6 + 7i$ (ricorda $i^2 = -1$);
+- $(2 + i)(-1 + 4i) = -2 + 8i - i + 4i^2 = -2 + 7i - 4 = -6 + 7i$, perché $i^2 = -1$;
 - $(-5)(-10 - 2i) = 50 + 10i$.
 
 Quindi $\det C_{44} = (-6 + 7i) + (50 + 10i) = 44 + 17i$.
@@ -27273,223 +27825,152 @@ Quindi $\det C_{44} = (-6 + 7i) + (50 + 10i) = 44 + 17i$.
 Calcoliamo il determinante della matrice
 $$B = \begin{pmatrix} 5i & 4\sqrt 2 & 0 & \sqrt 2 \\ 5i & 8\sqrt 2 & 0 & -\sqrt 2 \\ -5i & -4\sqrt 2 & -1 & 2\sqrt 2 \\ -10i & 4\sqrt 2 & 1 & \sqrt 2 \end{pmatrix}.$$
 ::: soluzione
-**Passo 1: portare fuori i fattori comuni** (Proposizione 9.11, per colonne). La prima colonna è $5i \cdot {}^t(1, 1, -1, -2)$, la seconda è $4\sqrt 2 \cdot {}^t(1, 2, -1, 1)$, la quarta è $\sqrt 2 \cdot {}^t(1, -1, 2, 1)$. Quindi
-$$\det B = 5i \cdot 4\sqrt 2 \cdot \sqrt 2 \cdot \det M = 40i \det M, \qquad M = \begin{pmatrix} 1 & 1 & 0 & 1 \\ 1 & 2 & 0 & -1 \\ -1 & -1 & -1 & 2 \\ -2 & 1 & 1 & 1 \end{pmatrix}$$
-(perché $\sqrt 2 \cdot \sqrt 2 = 2$ e $5 \cdot 4 \cdot 2 = 40$).
+**Passo 1: tiro fuori i numeri comuni** (Proposizione 9.11, per colonne). La prima colonna è $5i$ per $(1, 1, -1, -2)$, la seconda è $4\sqrt 2$ per $(1, 2, -1, 1)$, la quarta è $\sqrt 2$ per $(1, -1, 2, 1)$. Quindi
+$$\det B = 5i \cdot 4\sqrt 2 \cdot \sqrt 2 \cdot \det M = 40i \det M, \qquad M = \begin{pmatrix} 1 & 1 & 0 & 1 \\ 1 & 2 & 0 & -1 \\ -1 & -1 & -1 & 2 \\ -2 & 1 & 1 & 1 \end{pmatrix},$$
+perché $\sqrt 2 \cdot \sqrt 2 = 2$ e $5 \cdot 4 \cdot 2 = 40$.
 
-**Passo 2: Laplace lungo la terza colonna** di $M$, che ha due zeri. Restano $m_{33} = -1$ (segno $(-1)^{3+3} = +$) e $m_{43} = 1$ (segno $(-1)^{4+3} = -$):
+**Passo 2: Laplace lungo la terza colonna** di $M$, che ha due zeri. Restano il $-1$ nella casella $(3, 3)$, segno più, e l'1 nella casella $(4, 3)$, segno meno:
 $$\det M = +(-1) \det C_{33} - 1 \cdot \det C_{43}.$$
 
 **Passo 3: le due $3 \times 3$.**
-- $C_{33}$ (senza riga 3 e colonna 3) $= \begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & -1 \\ -2 & 1 & 1 \end{pmatrix}$. Lungo la prima riga: $1 \cdot (2 + 1) - 1 \cdot (1 - 2) + 1 \cdot (1 + 4) = 3 + 1 + 5 = 9$.
-- $C_{43}$ (senza riga 4 e colonna 3) $= \begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & -1 \\ -1 & -1 & 2 \end{pmatrix}$. Lungo la prima riga: $1 \cdot (4 - 1) - 1 \cdot (2 - 1) + 1 \cdot (-1 + 2) = 3 - 1 + 1 = 3$.
+- $C_{33}$, senza riga 3 e colonna 3, è $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & -1 \\ -2 & 1 & 1 \end{pmatrix}$. Lungo la prima riga: $1 \cdot (2 + 1) - 1 \cdot (1 - 2) + 1 \cdot (1 + 4) = 3 + 1 + 5 = 9$.
+- $C_{43}$, senza riga 4 e colonna 3, è $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & -1 \\ -1 & -1 & 2 \end{pmatrix}$. Lungo la prima riga: $1 \cdot (4 - 1) - 1 \cdot (2 - 1) + 1 \cdot (-1 + 2) = 3 - 1 + 1 = 3$.
 
 Quindi $\det M = -9 - 3 = -12$.
 
 **Passo 4.** $\det B = 40i \cdot (-12) = -480i$.
 
-Senza il passo 1 i conti si fanno lo stesso, ma con prodotti come $5i \cdot 8\sqrt 2 \cdot \sqrt 2$ a ogni riga: portare fuori i fattori comuni è il modo per non sbagliare.
-:::
-
-::: esercizio base Quattro determinanti $2 \times 2$
-Calcola: (a) $\det \begin{pmatrix} 3 & 1 \\ 4 & 2 \end{pmatrix}$; (b) $\det \begin{pmatrix} 2 & -3 \\ 4 & -6 \end{pmatrix}$; (c) $\det \begin{pmatrix} \cos t & -\sin t \\ \sin t & \cos t \end{pmatrix}$; (d) $\det \begin{pmatrix} 1 + i & 2 \\ 1 & 1 - i \end{pmatrix}$.
-::: soluzione
-(a) $3 \cdot 2 - 1 \cdot 4 = 6 - 4 = 2$.
-
-(b) $2 \cdot (-6) - (-3) \cdot 4 = -12 + 12 = 0$. Le colonne ${}^t(2, 4)$ e ${}^t(-3, -6)$ sono multiple ($-\frac 32$ volte la prima): il parallelogramma è schiacciato.
-
-(c) $\cos t \cdot \cos t - (-\sin t) \cdot \sin t = \cos^2 t + \sin^2 t = 1$ per ogni $t$: questa matrice ruota il piano dell'angolo $t$, e le rotazioni non cambiano le aree (lezione L22).
-
-(d) $(1 + i)(1 - i) - 2 \cdot 1 = (1 - i^2) - 2 = (1 + 1) - 2 = 0$.
-:::
-
-::: esercizio base Una $3 \times 3$ in due modi
-Calcola $\det A$ per $A = \begin{pmatrix} 2 & 0 & 1 \\ 1 & 3 & -1 \\ 0 & 1 & 4 \end{pmatrix}$ (a) con la formula dei sei addendi e (b) con Laplace lungo la prima riga.
-::: soluzione
-(a) Addendo per addendo, nell'ordine della formula:
-- $a_{11}a_{22}a_{33} = 2 \cdot 3 \cdot 4 = 24$;
-- $-a_{11}a_{23}a_{32} = -2 \cdot (-1) \cdot 1 = 2$;
-- $-a_{13}a_{22}a_{31} = -1 \cdot 3 \cdot 0 = 0$;
-- $-a_{12}a_{21}a_{33} = -0 \cdot 1 \cdot 4 = 0$;
-- $+a_{12}a_{23}a_{31} = 0 \cdot (-1) \cdot 0 = 0$;
-- $+a_{13}a_{21}a_{32} = 1 \cdot 1 \cdot 1 = 1$.
-
-Totale $24 + 2 + 1 = 27$.
-
-(b) Lungo la prima riga, segni $+, -, +$, e $a_{12} = 0$:
-$$\det A = 2 \det \begin{pmatrix} 3 & -1 \\ 1 & 4 \end{pmatrix} - 0 + 1 \cdot \det \begin{pmatrix} 1 & 3 \\ 0 & 1 \end{pmatrix}$$
-
-$$= 2 \cdot (12 + 1) + 1 \cdot (1 - 0) = 26 + 1 = 27.$$
-Stesso risultato: Laplace è solo un modo ordinato di raccogliere gli stessi sei addendi.
-:::
-
-::: esercizio medio Permutazioni e addendi
-(a) Trova il segno delle permutazioni $[2\ 1\ 4\ 3]$, $[4\ 3\ 2\ 1]$ e $[2\ 3\ 4\ 1]$ di $S_4$. (b) Scrivi, con il suo segno, l'addendo della formula del determinante $4 \times 4$ che corrisponde a $[2\ 3\ 4\ 1]$. (c) Nella formula del determinante $4 \times 4$ può comparire il prodotto $a_{11}a_{21}a_{33}a_{44}$?
-::: soluzione
-(a) Con gli scambi di posti:
-- $[2\ 1\ 4\ 3]$: da $[1\ 2\ 3\ 4]$ scambio i primi due posti e gli ultimi due: 2 scambi, segno $+1$.
-- $[4\ 3\ 2\ 1]$: scambio il primo con il quarto posto ($[4\ 2\ 3\ 1]$) e il secondo con il terzo ($[4\ 3\ 2\ 1]$): 2 scambi, segno $+1$.
-- $[2\ 3\ 4\ 1]$: $[1\ 2\ 3\ 4] \to [2\ 1\ 3\ 4] \to [2\ 3\ 1\ 4] \to [2\ 3\ 4\ 1]$: 3 scambi, segno $-1$. Con le inversioni: $(2, 1)$, $(3, 1)$, $(4, 1)$, tre, segno $-1$ ✓.
-
-(b) $\sigma(1) = 2$, $\sigma(2) = 3$, $\sigma(3) = 4$, $\sigma(4) = 1$: l'addendo è $-a_{12}a_{23}a_{34}a_{41}$.
-
-(c) No: $a_{11}$ e $a_{21}$ stanno entrambi nella **colonna 1**. Ogni addendo prende un solo numero da ogni colonna.
-:::
-
-::: esercizio medio Una $4 \times 4$ con Laplace
-Calcola $\det \begin{pmatrix} 1 & 2 & 0 & 3 \\ 0 & 1 & 0 & 0 \\ 4 & 1 & 2 & 1 \\ 1 & 0 & 0 & 2 \end{pmatrix}$.
-::: soluzione
-La seconda riga ha un solo numero non nullo, $a_{22} = 1$, con segno $(-1)^{2+2} = +$. Cancellando riga 2 e colonna 2:
-$$\det = 1 \cdot \det \begin{pmatrix} 1 & 0 & 3 \\ 4 & 2 & 1 \\ 1 & 0 & 2 \end{pmatrix}.$$
-Nella nuova matrice la seconda colonna ha un solo numero non nullo, $2$ in posizione $(2, 2)$, segno $+$:
-$$\det \begin{pmatrix} 1 & 0 & 3 \\ 4 & 2 & 1 \\ 1 & 0 & 2 \end{pmatrix} = 2 \det \begin{pmatrix} 1 & 3 \\ 1 & 2 \end{pmatrix} = 2 \cdot (2 - 3) = -2.$$
-Il determinante cercato è $-2$. Due sviluppi furbi e un solo determinante $2 \times 2$.
-:::
-
-::: esercizio medio Proprietà senza conti
-Sia $A$ una matrice $3 \times 3$ con $\det A = 5$. Calcola: (a) $\det({}^tA)$; (b) $\det(2A)$; (c) $\det(-A)$; (d) il determinante della matrice ottenuta da $A$ moltiplicando la seconda riga per 3; (e) il determinante della matrice ottenuta da $A$ sostituendo la prima colonna con una colonna di zeri.
-::: soluzione
-(a) $\det({}^tA) = \det A = 5$ (Proposizione 9.5).
-
-(b) $\det(2A) = 2^3 \cdot 5 = 40$ (Corollario 9.12, $n = 3$).
-
-(c) $\det(-A) = (-1)^3 \cdot 5 = -5$.
-
-(d) Una sola riga moltiplicata per 3: $3 \cdot 5 = 15$ (Proposizione 9.11).
-
-(e) $0$, perché una colonna è nulla (Proposizione 9.10), qualunque fosse $A$.
+Senza il passo 1 i conti si fanno lo stesso, ma con prodotti come $5i \cdot 8\sqrt 2 \cdot \sqrt 2$ a ogni riga: tirare fuori i numeri comuni è il modo per non sbagliare.
 :::
 
 ::: esercizio difficile Le antisimmetriche di ordine dispari
 (a) Dimostra che ogni matrice reale antisimmetrica $A$ di taglia $n \times n$ con $n$ dispari ha $\det A = 0$ (Martelli, Esercizio 3.11). (b) Controlla con $N = \begin{pmatrix} 0 & 2 & -1 \\ -2 & 0 & 3 \\ 1 & -3 & 0 \end{pmatrix}$. (c) Mostra che per $n = 2$ non è vero.
 ::: soluzione
+Ricorda dalla lezione L06: una matrice è antisimmetrica quando la sua trasposta è il suo opposto, ${}^tA = -A$.
+
 (a) Tre uguaglianze:
-1. $\det({}^tA) = \det A$ (Proposizione 9.5);
-2. $A$ è antisimmetrica, cioè ${}^tA = -A$, quindi $\det({}^tA) = \det(-A)$;
-3. $\det(-A) = (-1)^n \det A = -\det A$, perché $n$ è dispari (Corollario 9.12).
+1. la trasposta ha lo stesso determinante: $\det({}^tA) = \det A$ (Proposizione 9.5);
+2. siccome ${}^tA = -A$, vale $\det({}^tA) = \det(-A)$;
+3. con $n$ dispari, $\det(-A) = (-1)^n \det A = -\det A$ (Corollario 9.12).
 
 Mettendole insieme: $\det A = -\det A$, cioè $2\det A = 0$, quindi $\det A = 0$.
 
-(b) Con Sarrus: le diagonali che scendono danno $0 \cdot 0 \cdot 0 + 2 \cdot 3 \cdot 1 + (-1) \cdot (-2) \cdot (-3) = 0 + 6 - 6 = 0$; quelle che salgono $(-1) \cdot 0 \cdot 1 + 0 \cdot 3 \cdot (-3) + 2 \cdot (-2) \cdot 0 = 0$. Differenza $0$ ✓.
+(b) Con Sarrus. Le diagonali che scendono: $0 \cdot 0 \cdot 0 + 2 \cdot 3 \cdot 1 + (-1) \cdot (-2) \cdot (-3) = 0 + 6 - 6 = 0$. Quelle che salgono: $(-1) \cdot 0 \cdot 1 + 0 \cdot 3 \cdot (-3) + 2 \cdot (-2) \cdot 0 = 0$. Differenza 0.
 
-(c) $\det \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} = 0 - (1)(-1) = 1 \neq 0$: con $n$ pari $(-1)^n = 1$ e il ragionamento non dice niente.
+(c) $\det \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} = 0 - 1 \cdot (-1) = 1$, non zero: con $n$ pari, $(-1)^n = 1$ e il ragionamento non dice niente.
 :::
 
 ::: esercizio esame Il determinante di una $5 \times 5$
 Calcolare il determinante di $A = \begin{pmatrix} 2 & 1 & 0 & 0 & 0 \\ 0 & 1 & 1 & 0 & 0 \\ 0 & 0 & 1 & 2 & 0 \\ 0 & 0 & 0 & 1 & 1 \\ 1 & 0 & 0 & 0 & 3 \end{pmatrix}$. Risposte possibili: (a) $6$; (b) $8$; (c) $0$; (d) $4$; (e) $12$.
 ::: soluzione
-Nella prima colonna i numeri non nulli sono $a_{11} = 2$ (segno $+$) e $a_{51} = 1$ (segno $(-1)^{5+1} = +$).
+Nella prima colonna i numeri diversi da zero sono il 2 nella casella $(1, 1)$, segno più, e l'1 nella casella $(5, 1)$, con $5 + 1 = 6$ pari, segno più.
 
-- Cancellando riga 1 e colonna 1: $C_{11} = \begin{pmatrix} 1 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 3 \end{pmatrix}$, triangolare superiore, $\det C_{11} = 1 \cdot 1 \cdot 1 \cdot 3 = 3$.
-- Cancellando riga 5 e colonna 1: $C_{51} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 \\ 0 & 0 & 1 & 1 \end{pmatrix}$, triangolare inferiore, $\det C_{51} = 1 \cdot 1 \cdot 2 \cdot 1 = 2$.
+1. Tolgo la riga 1 e la colonna 1: $C_{11} = \begin{pmatrix} 1 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 3 \end{pmatrix}$, triangolare superiore, determinante $1 \cdot 1 \cdot 1 \cdot 3 = 3$.
+2. Tolgo la riga 5 e la colonna 1: $C_{51} = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 1 & 1 & 0 & 0 \\ 0 & 1 & 2 & 0 \\ 0 & 0 & 1 & 1 \end{pmatrix}$, triangolare inferiore, determinante $1 \cdot 1 \cdot 2 \cdot 1 = 2$.
+3. Sommo: $\det A = 2 \cdot 3 + 1 \cdot 2 = 6 + 2 = 8$.
 
-$\det A = 2 \cdot 3 + 1 \cdot 2 = 6 + 2 = 8$: risposta **(b)**. Il distrattore $6$ è di chi dimentica il secondo addendo, $4$ di chi lo sottrae.
+Risposta **(b)**. Il 6 è di chi dimentica il secondo pezzo, il 4 di chi lo sottrae.
 :::
 
 ::: esercizio esame Per quali $k$ il determinante è nullo?
 Sia $A = \begin{pmatrix} k & 1 & 0 \\ 1 & k & 1 \\ 0 & 1 & k \end{pmatrix}$ con $k \in \R$. Calcola $\det A$ in funzione di $k$ e trova i valori di $k$ per cui $\det A = 0$.
 ::: soluzione
-Lungo la prima riga (segni $+, -, +$, e $a_{13} = 0$):
-$$\det A = k \det \begin{pmatrix} k & 1 \\ 1 & k \end{pmatrix} - 1 \cdot \det \begin{pmatrix} 1 & 1 \\ 0 & k \end{pmatrix} + 0$$
+1. Sviluppo lungo la prima riga (segni $+, -, +$, e l'ultimo numero è 0):
+   $$\det A = k \det \begin{pmatrix} k & 1 \\ 1 & k \end{pmatrix} - 1 \cdot \det \begin{pmatrix} 1 & 1 \\ 0 & k \end{pmatrix} + 0.$$
+2. I due determinanti: $k \cdot k - 1 \cdot 1 = k^2 - 1$ e $1 \cdot k - 1 \cdot 0 = k$.
+3. Quindi $\det A = k(k^2 - 1) - k = k^3 - k - k = k^3 - 2k$.
+4. Raccolgo $k$: $\det A = k(k^2 - 2)$.
+5. Il prodotto fa zero quando $k = 0$ oppure $k^2 = 2$, cioè $k = \sqrt 2$ o $k = -\sqrt 2$.
 
-$$= k(k^2 - 1) - (k - 0) = k^3 - k - k = k^3 - 2k.$$
-Raccogliendo: $\det A = k(k^2 - 2)$, che si annulla per $k = 0$ oppure $k^2 = 2$, cioè $k = \sqrt 2$ o $k = -\sqrt 2$.
+Controllo con $k = 0$: la matrice $\begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}$ ha la prima e la terza riga uguali, e con Sarrus il determinante è $0 + 0 + 0 - (0 + 0 + 0) = 0$.
 
-Controllo con $k = 0$: $A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 0 \end{pmatrix}$ ha la prima e la terza riga uguali, e con Sarrus il determinante è $0 + 0 + 0 - (0 + 0 + 0) = 0$ ✓. Nella lezione L10 scoprirai che questi sono esattamente i $k$ per cui $A$ **non è invertibile**: è la prima domanda di molti problemi d'esame.
+Nella lezione L10 scoprirai che questi sono esattamente i valori di $k$ per cui $A$ **non è invertibile**: è la prima domanda di molti problemi d'esame.
 :::
 
 ::: esercizio esame Raccogliere $\pi$ ed $e$
 Calcola il determinante di $\begin{pmatrix} 2 & \pi & 1 \\ 4 & 3\pi & 0 \\ e & 2\pi e & e \end{pmatrix}$. Risposte possibili: (a) $7\pi e$; (b) $0$; (c) $\pi e$; (d) $7$; (e) $6\pi + e$.
 ::: soluzione
-La terza riga ha il fattore comune $e$: $(e, 2\pi e, e) = e \cdot (1, 2\pi, 1)$. Poi la seconda colonna diventa $(\pi, 3\pi, 2\pi) = \pi \cdot (1, 3, 2)$. Portando fuori i due fattori (Proposizione 9.11):
-$$\det = \pi e \det \begin{pmatrix} 2 & 1 & 1 \\ 4 & 3 & 0 \\ 1 & 2 & 1 \end{pmatrix}.$$
-Lungo la terza colonna (segni $+, -, +$, e $0$ al centro):
-$$\det \begin{pmatrix} 2 & 1 & 1 \\ 4 & 3 & 0 \\ 1 & 2 & 1 \end{pmatrix} = 1 \cdot \det \begin{pmatrix} 4 & 3 \\ 1 & 2 \end{pmatrix} - 0 + 1 \cdot \det \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix}$$
+1. La terza riga ha il numero comune $e$: $(e, 2\pi e, e)$ è $e$ per $(1, 2\pi, 1)$. Lo tiro fuori.
+2. Ora la seconda colonna è $(\pi, 3\pi, 2\pi)$, cioè $\pi$ per $(1, 3, 2)$. Tiro fuori anche $\pi$ (Proposizione 9.11):
+   $$\det = \pi e \det \begin{pmatrix} 2 & 1 & 1 \\ 4 & 3 & 0 \\ 1 & 2 & 1 \end{pmatrix}.$$
+3. Sviluppo lungo la terza colonna (segni $+, -, +$, e lo zero al centro):
+   $$\det \begin{pmatrix} 2 & 1 & 1 \\ 4 & 3 & 0 \\ 1 & 2 & 1 \end{pmatrix} = 1 \cdot \det \begin{pmatrix} 4 & 3 \\ 1 & 2 \end{pmatrix} - 0 + 1 \cdot \det \begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix} = (8 - 3) + (6 - 4) = 5 + 2 = 7.$$
 
-$$= (8 - 3) + (6 - 4) = 5 + 2 = 7.$$
 Il determinante è $7\pi e$: risposta **(a)**.
-:::
-
-::: esercizio medio L'area di un triangolo (oltre le dispense)
-Usa il determinante per calcolare l'area del triangolo di vertici $P = (1, 1)$, $Q = (4, 2)$, $R = (2, 5)$.
-::: soluzione
-Il triangolo è metà del parallelogramma costruito sui lati $Q - P = (3, 1)$ e $R - P = (1, 4)$. L'area del parallelogramma è il valore assoluto del determinante della matrice che ha questi vettori come colonne:
-$$\det \begin{pmatrix} 3 & 1 \\ 1 & 4 \end{pmatrix} = 12 - 1 = 11.$$
-Area del triangolo: $\frac{11}2 = 5{,}5$. Il segno positivo dice anche che percorrendo $P \to Q \to R$ si gira in senso antiorario.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Per quali matrici esiste il determinante?
-Solo per le matrici quadrate $n \times n$. Una matrice $3 \times 4$ non ha determinante.
+Solo per le matrici quadrate, con tante righe quante colonne. Una matrice $3 \times 4$ non ha determinante.
 :::
 
 ::: domanda Qual è la formula del determinante $2 \times 2$ e che cosa misura?
-$\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc$. In valore assoluto è l'area del parallelogramma che ha per lati le colonne; il segno dice l'orientazione.
+Diagonale principale meno l'altra diagonale: $ad - bc$. Senza segno è l'area del parallelogramma che ha per lati le due colonne; il segno dice in che ordine girano le colonne.
 :::
 
 ::: domanda Che cos'è il segno di una permutazione?
-Se la permutazione si ottiene da $[1\ 2\ \cdots\ n]$ con $k$ scambi, il segno è $(-1)^k$: $+1$ se $k$ è pari, $-1$ se è dispari. Ogni trasposizione ha segno $-1$, l'identità $+1$.
+Si conta quanti scambi di due numeri servono per arrivare alla permutazione partendo dalla fila in ordine. Se sono pari il segno è $+1$, se sono dispari è $-1$. Uno scambio solo ha segno $-1$, la fila in ordine $+1$.
 :::
 
 ::: domanda Come si legge la Definizione 9.1 del determinante?
-È la somma, su tutte le $n!$ permutazioni $\sigma$, del prodotto $a_{1\sigma(1)} \cdots a_{n\sigma(n)}$ con il segno di $\sigma$. Ogni prodotto prende un numero da ogni riga e da ogni colonna.
+È la somma di un prodotto per ogni permutazione, con il segno della permutazione. Ogni prodotto prende un numero da ogni riga e uno da ogni colonna, come torri su una scacchiera che non si mangiano.
 :::
 
-::: domanda Quanti addendi ha la formula per $n = 3$ e quali segni hanno?
-Sei: tre col più ($a_{11}a_{22}a_{33}$, $a_{12}a_{23}a_{31}$, $a_{13}a_{21}a_{32}$) e tre col meno ($a_{11}a_{23}a_{32}$, $a_{13}a_{22}a_{31}$, $a_{12}a_{21}a_{33}$), quelli delle tre trasposizioni.
+::: domanda Quanti addendi ha la formula per una $3 \times 3$ e quali segni hanno?
+Sei: tre con il più ($a_{11}a_{22}a_{33}$, $a_{12}a_{23}a_{31}$, $a_{13}a_{21}a_{32}$) e tre con il meno ($a_{11}a_{23}a_{32}$, $a_{13}a_{22}a_{31}$, $a_{12}a_{21}a_{33}$). La regola di Sarrus li fa ricordare.
 :::
 
 ::: domanda Quanto vale il determinante di una matrice triangolare, e perché?
-Il prodotto degli elementi della diagonale principale: nella formula tutti gli addendi contengono almeno uno zero, tranne quello della permutazione identità.
+Il prodotto dei numeri sulla diagonale. Nella formula tutti gli altri prodotti contengono almeno uno zero: l'unico modo di evitare gli zeri è prendere proprio la diagonale.
 :::
 
-::: domanda Quanto vale $\det I_n$?
-$1$: $I_n$ è diagonale con tutti 1 sulla diagonale.
+::: domanda Quanto vale il determinante della matrice identità?
+1: è diagonale con tutti 1 sulla diagonale.
 :::
 
 ::: domanda Che cosa dice la Proposizione 9.5 e a che cosa serve?
-$\det({}^tA) = \det A$. Serve a trasferire alle colonne tutto ciò che vale per le righe, per esempio lo sviluppo di Laplace lungo una colonna.
+La trasposta ha lo stesso determinante. Serve a usare sulle colonne tutte le regole che valgono per le righe, per esempio lo sviluppo di Laplace lungo una colonna.
 :::
 
-::: domanda Enuncia lo sviluppo di Laplace lungo la riga $i$.
-$\det A = \sum_{j=1}^n (-1)^{i+j} a_{ij} \det C_{ij}$, dove $C_{ij}$ è la sottomatrice ottenuta cancellando la riga $i$ e la colonna $j$.
+::: domanda Come funziona lo sviluppo di Laplace lungo una riga?
+Per ogni numero della riga: segno della scacchiera, per il numero, per il determinante della sottomatrice che resta togliendo la sua riga e la sua colonna. Poi si somma tutto.
 :::
 
-::: domanda Come si ricordano i segni $(-1)^{i+j}$?
-Come una scacchiera, con il $+$ in alto a sinistra: $+$ quando $i + j$ è pari, $-$ quando è dispari.
+::: domanda Come si ricordano i segni della scacchiera?
+Come le caselle di una scacchiera, con il più in alto a sinistra: più quando riga più colonna è pari, meno quando è dispari.
 :::
 
 ::: domanda Quale riga o colonna conviene scegliere per Laplace?
-Quella con più zeri: gli addendi con $a_{ij} = 0$ spariscono e non serve calcolare i loro $\det C_{ij}$.
+Quella con più zeri: i pezzi con un numero zero spariscono, e non serve calcolare le loro sottomatrici.
 :::
 
-::: domanda Che cosa succede al determinante se si moltiplica una riga per $c$? E se si moltiplica tutta la matrice?
-Una riga per $c$: il determinante è moltiplicato per $c$ (Proposizione 9.11). Tutta la matrice $n \times n$: per $c^n$, perché le righe moltiplicate sono $n$ (Corollario 9.12).
+::: domanda Che cosa succede al determinante se si moltiplica una riga per un numero? E se si moltiplica tutta la matrice?
+Una riga per $c$: il determinante viene moltiplicato per $c$. Tutta la matrice $n \times n$ per $c$: il determinante viene moltiplicato per $c^n$, perché le righe moltiplicate sono $n$.
 :::
 
-::: domanda Perché una matrice con una riga nulla ha determinante zero?
-Sviluppando lungo quella riga ogni addendo contiene un fattore $0$ (Proposizione 9.10).
+::: domanda Perché una matrice con una riga di zeri ha determinante zero?
+Sviluppando lungo quella riga, ogni pezzo contiene un fattore zero.
 :::
 
 ## Glossario
 
 ```glossario
-Determinante $\det A$ | Numero associato a una matrice quadrata: $\sum_{\sigma \in S_n} \sgn(\sigma) a_{1\sigma(1)} \cdots a_{n\sigma(n)}$.
-Permutazione | Riordinamento di $\{1, \dots, n\}$; si scrive $[\sigma(1) \cdots \sigma(n)]$.
-$S_n$ | L'insieme delle $n!$ permutazioni di $\{1, \dots, n\}$.
-Trasposizione | Permutazione che scambia due elementi e lascia fermi gli altri; ha segno $-1$.
-Segno $\sgn(\sigma)$ | $(-1)^k$, dove $k$ è il numero di scambi con cui si ottiene $\sigma$.
-Inversione | Coppia di numeri in cui il più grande precede il più piccolo; la parità delle inversioni dà il segno.
-Regola di Sarrus | Schema per le sole $3 \times 3$: diagonali che scendono col più, diagonali che salgono col meno.
-Matrice triangolare | Matrice quadrata con zeri sotto (superiore) o sopra (inferiore) la diagonale; il determinante è il prodotto della diagonale.
-Matrice identità $I_n$ | 1 sulla diagonale e 0 altrove; $\det I_n = 1$.
-Sottomatrice $C_{ij}$ | La matrice $(n - 1) \times (n - 1)$ ottenuta cancellando la riga $i$ e la colonna $j$.
-Sviluppo di Laplace | $\det A = \sum_j (-1)^{i+j} a_{ij} \det C_{ij}$ lungo una riga, o la formula analoga lungo una colonna.
-Scacchiera dei segni | La disposizione dei segni $(-1)^{i+j}$, con $+$ in alto a sinistra e segni alternati.
-Riga nulla | Se una riga o colonna è tutta di zeri, il determinante è $0$.
-Riga moltiplicata per $c$ | Moltiplicare una riga (o colonna) per $c$ moltiplica il determinante per $c$; quindi $\det(cA) = c^n \det A$.
-Area con segno | Per le $2 \times 2$ reali, $\det A$ è l'area del parallelogramma delle colonne, con il segno dell'orientazione.
+Determinante $\det A$ | Il numero di una matrice quadrata. Per le $2 \times 2$ è $ad - bc$; senza segno dice di quanto la matrice ingrandisce le aree.
+Permutazione | Un modo di rimettere in fila i numeri da 1 a $n$, ognuno una volta sola. Si scrive come $[2\ 3\ 1]$.
+$S_n$ | L'insieme delle permutazioni di $n$ numeri. Ne contiene $n!$, per esempio 6 per $n = 3$.
+Trasposizione | Uno scambio di due soli numeri, con tutti gli altri fermi. Ha segno $-1$.
+Segno $\sgn(\sigma)$ | $+1$ se la permutazione si ottiene con un numero pari di scambi, $-1$ se dispari.
+Inversione | Una coppia in cui un numero più grande sta prima di uno più piccolo. Contarle dà il segno.
+Regola di Sarrus | Un trucco solo per le $3 \times 3$: ricopiate le prime due colonne, le diagonali che scendono vanno col più, quelle che salgono col meno.
+Matrice triangolare | Una matrice quadrata con zeri sotto o sopra la diagonale. Il determinante è il prodotto della diagonale.
+Matrice identità $I_n$ | La matrice quadrata con 1 sulla diagonale e 0 altrove. Ha determinante 1.
+Sottomatrice $C_{ij}$ | La matrice che resta togliendo la riga $i$ e la colonna $j$: un passo più piccola.
+Sviluppo di Laplace | Riduce un determinante a determinanti più piccoli, lungo una riga o una colonna: segno, numero, determinante della sottomatrice.
+Scacchiera dei segni | I segni più e meno delle caselle, alternati come su una scacchiera, con il più in alto a sinistra.
+Riga nulla | Se una riga o colonna è tutta di zeri, il determinante è zero.
+Riga moltiplicata per $c$ | Moltiplicare una riga o colonna per $c$ moltiplica il determinante per $c$; tutta la matrice $n \times n$ lo moltiplica per $c^n$.
+Area con segno | Per le $2 \times 2$ reali il determinante è l'area del parallelogramma delle colonne, con il segno dell'orientazione.
 ```
 
 ## Checklist
@@ -27498,22 +27979,23 @@ Area con segno | Per le $2 \times 2$ reali, $\det A$ è l'area del parallelogram
 - So dire per quali matrici esiste il determinante e riconosco il tranello della matrice non quadrata.
 - So calcolare un determinante $2 \times 2$ e spiegare che cosa misura.
 - So trovare il segno di una permutazione e leggere la Definizione 9.1.
-- So scrivere i sei addendi del determinante $3 \times 3$ e usare la regola di Sarrus.
-- So calcolare il determinante di una matrice triangolare e so che $\det I_n = 1$.
-- So che $\det({}^tA) = \det A$ e perché permette di lavorare anche sulle colonne.
+- So scrivere i sei prodotti del determinante $3 \times 3$ e usare la regola di Sarrus.
+- So calcolare il determinante di una matrice triangolare e so che l'identità ha determinante 1.
+- So che la trasposta ha lo stesso determinante e perché questo permette di lavorare sulle colonne.
 - So sviluppare un determinante con Laplace lungo qualsiasi riga o colonna, con i segni della scacchiera.
-- So scegliere la riga o colonna più comoda e ridurre una $4 \times 4$ o $5 \times 5$ a pochi conti.
-- So portare fuori un fattore comune da una riga o da una colonna.
-- So usare $\det(cA) = c^n \det A$ ed evitare $\det(A + B) = \det A + \det B$.
+- So scegliere la riga o la colonna più comoda e ridurre una $4 \times 4$ o una $5 \times 5$ a pochi conti.
+- So tirare fuori un numero comune da una riga o da una colonna.
+- So usare $\det(cA) = c^n \det A$ e so che il determinante non si spezza sulle somme.
 - So calcolare determinanti con numeri complessi, radici, $\pi$ ed $e$ senza calcolatrice.
 ```
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 9 «Matrici II», pp. 41–45: le sezioni 9.A (determinante, matrici triangolari, identità), 9.B (sviluppo di Laplace), 9.C (proprietà) e 9.D (esercizi) sono seguite in ordine, con la pagina accanto a ogni titolo; definizioni, proposizioni ed esempi mantengono la loro numerazione (Definizioni 9.1 e 9.4, Proposizioni 9.3, 9.5, 9.10, 9.11, Teorema 9.6, Corollari 9.7 e 9.12, Esempi 9.2, 9.8, 9.9, Esercizi 9.13 e 9.14).
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 9 «Matrici II», pp. 41–45: le sezioni 9.A (determinante, matrici triangolari, identità), 9.B (sviluppo di Laplace), 9.C (proprietà) e 9.D (esercizi) sono seguite in ordine, con la pagina accanto a ogni titolo; la sezione sull'area è anticipata all'inizio per dare un'idea del determinante prima della definizione. Definizioni, proposizioni ed esempi mantengono la loro numerazione (Definizioni 9.1 e 9.4, Proposizioni 9.3, 9.5, 9.10, 9.11, Teorema 9.6, Corollari 9.7 e 9.12, Esempi 9.2, 9.8, 9.9, Esercizi 9.13 e 9.14, svolti come esercizi 11 e 12).
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §3.3.1–3.3.4 (definizione, colorazioni, Proposizione 3.3.2, matrici triangolari, identità, Teorema 3.3.5), §3.3.10 (basi positive e negative, area e volume), §3.4.6 (Osservazione 3.4.9 sul determinante della somma), Esercizi 3.10 e 3.11.
-- **Esame**: testi degli appelli di Algebra lineare dal 24/01/2024 al 07/09/2026 (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)); riportate con soluzione propria le domande 4 del 10/07/2025, 3 del 02/09/2025 e 2 del 03/06/2026; le altre sono citate per numero.
+- **Esame**: testi degli appelli di Algebra lineare dal 24/01/2024 al 07/09/2026 (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)); riportate con soluzione propria le domande 3 del 02/09/2025, 4 del 10/07/2025 e 2 del 03/06/2026; le altre sono citate per numero.
 - Le parti **«Oltre le dispense»** (significato geometrico, regola di Sarrus, segno con le inversioni, dimostrazioni di 9.5 e dell'idea di Laplace, esercizi senza numero) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---
@@ -27533,15 +28015,15 @@ descrizione: >-
   di Gauss, determinante nullo e righe dipendenti, teorema di Binet, cofattori, matrice inversa e criterio di
   invertibilità, con quiz nello stile dell'esame ed esercizi svolti.
 lede: >-
-  Come si calcola in fretta un determinante grande (con le mosse di Gauss), quando vale zero, perché
-  $\det(AB) = \det A \cdot \det B$, e come si trova l'inversa di una matrice con i cofattori. Alla fine sai
-  rispondere alla domanda che apre molti problemi d'esame: per quali valori del parametro la matrice è invertibile?
+  Come si calcola in fretta un determinante grande, quando vale zero, quanto vale il determinante di un prodotto e
+  come si disfa quello che fa una matrice, trovando la sua inversa. Alla fine sai rispondere alla domanda che apre
+  molti problemi d'esame: per quali valori del parametro la matrice è invertibile?
 materiale: dispense
 scheda:
   Dispense: lezione 10 · pp. 46–49
   Libro: Martelli, §3.3.5, §3.3.7, §3.4.5–3.4.7
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 100–130 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 10 «Matrici III»; B. Martelli, Geometria e algebra lineare, §3.3.5, §3.3.7, §3.3.9 e §3.4.5–3.4.8
 appunti_html: appunti/MDAG/L10_matrici_3.html
@@ -27550,21 +28032,24 @@ genera_html: true
 
 ## In breve
 
-- Tre **mosse di Gauss** sulle righe e il loro effetto sul determinante: scambiare due righe **cambia il segno**; moltiplicare una riga per $\lambda$ **moltiplica** il determinante per $\lambda$; aggiungere a una riga un multiplo di un'altra **non lo cambia**. Lo stesso vale per le colonne.
-- Il metodo pratico per i determinanti grandi: con le mosse si rende la matrice triangolare, poi si moltiplica la diagonale, tenendo conto degli scambi.
-- $\det A = 0$ **se e solo se** una riga (o una colonna) è combinazione lineare delle altre. Due righe uguali o proporzionali danno subito $\det A = 0$.
-- **Teorema di Binet**: $\det(AB) = \det A \cdot \det B$ per matrici quadrate dello stesso ordine. Quindi $\det(A^k) = (\det A)^k$ e $\det(AB) = \det(BA)$.
-- $A$ è **invertibile** se esiste $A^{-1}$ con $AA^{-1} = A^{-1}A = I_n$. Allora $\det(A^{-1}) = \frac 1{\det A}$.
-- I **cofattori** sono $\mathrm{cof}_{ij} = (-1)^{i+j} \det C_{ij}$, e vale $A \cdot {}^t(\mathrm{cof}(A)) = \det(A) \cdot I_n$.
-- Una matrice quadrata è invertibile **se e solo se** $\det A \neq 0$, e allora $A^{-1} = \frac 1{\det A}\, {}^t(\mathrm{cof}(A))$. Per le $2 \times 2$: scambia la diagonale, cambia segno all'altra, dividi per $ad - bc$.
-- All'esame: «per quali $k$ la matrice è invertibile?» nei problemi, $\det(A^3)$ con Binet e i tranelli sulle mosse di Gauss nei quiz.
+- Ci sono tre **mosse sulle righe**, le mosse di Gauss. Scambiare due righe cambia il segno del determinante. Moltiplicare una riga per un numero moltiplica il determinante per quel numero. Aggiungere a una riga un multiplo di un'altra non lo cambia.
+- Il metodo pratico per i determinanti grandi: con le mosse si rende la matrice triangolare, poi si moltiplica la diagonale, cambiando segno per ogni scambio.
+- Il determinante è zero esattamente quando una riga è un doppione delle altre, cioè si ottiene mescolandole. Due righe uguali o proporzionali danno subito zero.
+- **Teorema di Binet**: il determinante di un prodotto di matrici è il prodotto dei determinanti. Per esempio il determinante del cubo di una matrice è il cubo del determinante.
+- Una matrice è **invertibile** quando un'altra matrice disfa quello che fa lei. Succede esattamente quando il determinante non è zero.
+- L'inversa si calcola con i **cofattori**. Per le $2 \times 2$: scambia la diagonale, cambia segno agli altri due numeri, dividi per il determinante.
+- All'esame: «per quali valori di $k$ la matrice è invertibile?» nei problemi; il determinante delle potenze con Binet e i tranelli sulle mosse di Gauss nei quiz.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Le mosse di Gauss e il determinante (p. 46)
+## Tre mosse sulle righe (p. 46)
 
-Prendi $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, che ha $\det A = 4 - 6 = -2$, e modifica le sue righe in tre modi diversi:
+Prendi la matrice
+
+$$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix},$$
+
+che ha determinante $1 \cdot 4 - 2 \cdot 3 = 4 - 6 = -2$ (lezione L09). Ora cambio le sue righe in tre modi diversi e ricalcolo il determinante ogni volta.
 
 | Mossa | Nuova matrice | Determinante | Rispetto a $-2$ |
 |---|---|---|---|
@@ -27572,7 +28057,9 @@ Prendi $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, che ha $\det A = 4 - 
 | moltiplico la prima riga per 5 | $\begin{pmatrix} 5 & 10 \\ 3 & 4 \end{pmatrix}$ | $20 - 30 = -10$ | moltiplicato per 5 |
 | tolgo 3 volte la prima riga dalla seconda | $\begin{pmatrix} 1 & 2 \\ 0 & -2 \end{pmatrix}$ | $-2 - 0 = -2$ | uguale |
 
-La terza mossa è la più preziosa: ha creato uno zero **senza cambiare** il determinante, e la matrice è diventata triangolare. Questo è il contenuto della prima proposizione della lezione.
+La terza mossa è la più preziosa. Ha creato uno zero **senza cambiare** il determinante, e la matrice è diventata triangolare: adesso il determinante si legge sulla diagonale, $1 \cdot (-2) = -2$.
+
+Succede sempre così. Le dispense lo scrivono in questo modo.
 
 > [!PROP] 10.1 · Il determinante e le mosse sulle righe
 > Sia $A$ una matrice $n \times n$.
@@ -27582,19 +28069,23 @@ La terza mossa è la più preziosa: ha creato uno zero **senza cambiare** il det
 >
 > Le identiche regole valgono anche per le colonne (invece delle righe).
 
-Il processo di ottenere $A'$ da $A$ in uno dei tre modi sopra si chiama una **mossa di Gauss**. Nella lezione L11 le mosse diventeranno lo strumento per risolvere i sistemi lineari, con questa notazione (dove $R_i$ è la riga $i$-esima):
+**Come si legge.**
+
+- $A'$, «a primo», è la matrice dopo la mossa. $\lambda$, «lambda», è un numero qualsiasi.
+- Scambio: il determinante cambia segno.
+- Una riga per un numero: il determinante viene moltiplicato per lo stesso numero. È la Proposizione 9.11 della lezione L09.
+- Una riga più un multiplo di un'altra: il determinante non cambia. La riga che cambia è una sola; quella usata per il multiplo resta com'è.
+- Le stesse regole valgono per le colonne, perché la trasposta ha lo stesso determinante (Proposizione 9.5).
+
+Queste tre operazioni si chiamano **mosse di Gauss**. Nella lezione L11 diventeranno lo strumento per risolvere i sistemi di equazioni. Si scrivono con la lettera $R$, da «riga»: $R_2$ è la seconda riga.
 
 | Tipo | Mossa | Si scrive | Effetto sul determinante |
 |---|---|---|---|
-| (I) | scambiare due righe | $R_i \leftrightarrow R_j$ | cambia segno |
-| (II) | moltiplicare una riga per $\lambda \neq 0$ | $R_i \to \lambda R_i$ | moltiplicato per $\lambda$ |
-| (III) | aggiungere a una riga un multiplo di un'altra | $R_i \to R_i + \lambda R_j$ ($j \neq i$) | invariato |
+| (I) | scambiare due righe | $R_1 \leftrightarrow R_2$ | cambia segno |
+| (II) | moltiplicare una riga per un numero diverso da zero | $R_2 \to 5R_2$ | moltiplicato per quel numero |
+| (III) | aggiungere a una riga un multiplo di un'altra | $R_2 \to R_2 - 3R_1$ | invariato |
 
-Pezzo per pezzo:
-
-- Il punto (2) è la Proposizione 9.11 della lezione precedente, e vale per ogni $\lambda$. Come **mossa di Gauss** però si usa solo con $\lambda \neq 0$ (lezione L11): moltiplicare una riga per $0$ cancellerebbe informazione.
-- Nel punto (3) la riga che **cambia** è $R_i$, e la si modifica sommando un multiplo di un'**altra** riga $R_j$, che resta com'è.
-- «Le identiche regole valgono anche per le colonne»: scambiare due colonne cambia il segno, e così via. Il motivo è $\det({}^tA) = \det A$ (Proposizione 9.5): le colonne di $A$ sono le righe di ${}^tA$.
+La freccia $\to$ si legge «diventa»: $R_2 \to R_2 - 3R_1$ vuol dire «la seconda riga diventa la seconda riga meno 3 volte la prima». Come mossa di Gauss la (II) si usa solo con numeri diversi da zero: moltiplicare una riga per zero cancellerebbe informazione.
 
 > [!DIM] della Proposizione 10.1
 > Le dispense danno una spiegazione in tre righe; eccola con tutti i passaggi.
@@ -27611,6 +28102,14 @@ Pezzo per pezzo:
 >
 > **Colonne:** basta applicare tutto a ${}^tA$, perché $\det({}^tA) = \det A$.
 
+::: prova Una matrice $3 \times 3$ ha determinante 7. Scambio la prima e la seconda riga. Quanto vale il nuovo determinante? E se poi tolgo dalla terza riga il doppio della prima?
+Dopo lo scambio: $-7$. Togliere un multiplo di un'altra riga non cambia niente: resta $-7$.
+:::
+
+### Il metodo di Gauss per i determinanti
+
+Ecco l'esempio delle dispense: un determinante calcolato con due mosse.
+
 > [!ESEMPIO] 10.2 · Un determinante nullo con due mosse
 > Sia
 > $$A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}.$$
@@ -27620,29 +28119,35 @@ Pezzo per pezzo:
 > $$A'' = \begin{pmatrix} 1 & 2 & 3 \\ 3 & 3 & 3 \\ 0 & 0 & 0 \end{pmatrix},$$
 > con $\det(A'') = \det(A') = \det(A)$. Visto che $A''$ ha una riga con solo entrate $0$, $\det(A'') = 0$ (Proposizione 9.10), e allora anche la matrice $A$ ha determinante $0$.
 
-### Il metodo di Gauss per i determinanti
+L'idea generale: con le mosse del terzo tipo si creano zeri sotto la diagonale, finché la matrice è triangolare. Il determinante non cambia, e alla fine si legge sulla diagonale.
 
 > [!METODO] Triangolarizzare e moltiplicare la diagonale
-> 1. Con mosse del tipo (III), $R_i \to R_i + \lambda R_j$, crea zeri **sotto** la diagonale, una colonna alla volta: nella prima colonna usa la prima riga, nella seconda la seconda, e così via. Il determinante non cambia.
-> 2. Se sulla diagonale, dove ti serve un numero non nullo, c'è uno $0$, **scambia** quella riga con una più in basso (tipo (I)) e **cambia il segno**. Se sotto quello $0$ ci sono solo zeri, puoi fermarti: la matrice triangolare finale avrà uno $0$ sulla diagonale, quindi il determinante è $0$.
-> 3. Se usi una mossa (II) per comodità (per esempio per dividere una riga per 2), **ricorda il fattore**: $\det A' = \lambda \det A$, quindi $\det A = \frac 1\lambda \det A'$.
-> 4. Quando la matrice è triangolare, il determinante è il prodotto della diagonale (Proposizione 9.3), con il segno $(-1)^{\text{numero di scambi}}$.
-> 5. Se a metà strada compare una riga nulla, il determinante è $0$ e puoi fermarti.
+> 1. Con mosse del tipo (III) crea zeri **sotto** la diagonale, una colonna alla volta: nella prima colonna usa la prima riga, nella seconda la seconda, e così via. Il determinante non cambia.
+> 2. Se sulla diagonale, dove ti serve un numero diverso da zero, c'è uno 0, **scambia** quella riga con una più in basso (tipo (I)) e **cambia il segno**. Se sotto quello 0 ci sono solo zeri, puoi fermarti: la matrice triangolare finale avrà uno 0 sulla diagonale, quindi il determinante è 0.
+> 3. Se usi una mossa (II) per comodità, per esempio per dividere una riga per 2, **ricorda il numero**: alla fine dovrai fare il conto al contrario.
+> 4. Quando la matrice è triangolare, il determinante è il prodotto della diagonale (Proposizione 9.3), con un segno meno per ogni scambio.
+> 5. Se a metà strada compare una riga di zeri, il determinante è 0 e puoi fermarti.
 >
 > Si può anche mescolare con Laplace: dopo aver creato zeri in una colonna, sviluppa lungo quella colonna.
 
 > [!ESEMPIO] · Una $3 \times 3$ che richiede uno scambio
 > $$B = \begin{pmatrix} 0 & 2 & 1 \\ 1 & 1 & 1 \\ 2 & 4 & 5 \end{pmatrix}$$
-> Al posto $(1, 1)$ c'è uno $0$: scambio le prime due righe (il determinante cambia segno), poi creo gli zeri.
-> $$B \xrightarrow{R_1 \leftrightarrow R_2} \begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 1 \\ 2 & 4 & 5 \end{pmatrix} \xrightarrow{R_3 \to R_3 - 2R_1} \begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 1 \\ 0 & 2 & 3 \end{pmatrix} \xrightarrow{R_3 \to R_3 - R_2} \begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 1 \\ 0 & 0 & 2 \end{pmatrix}$$
-> La matrice finale è triangolare con diagonale $1, 2, 2$: determinante $4$. C'è stato **uno** scambio, quindi $\det B = -4$. Controllo con Sarrus: $(0 + 4 + 4) - (2 + 0 + 10) = 8 - 12 = -4$ ✓.
+> 1. Nella casella in alto a sinistra c'è uno 0: scambio le prime due righe. Il determinante cambia segno.
+>    $$\begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 1 \\ 2 & 4 & 5 \end{pmatrix}$$
+> 2. Tolgo dalla terza riga il doppio della prima ($R_3 \to R_3 - 2R_1$):
+>    $$\begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 1 \\ 0 & 2 & 3 \end{pmatrix}$$
+> 3. Tolgo dalla terza riga la seconda ($R_3 \to R_3 - R_2$):
+>    $$\begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 1 \\ 0 & 0 & 2 \end{pmatrix}$$
+> 4. Triangolare con diagonale 1, 2, 2: prodotto 4. C'è stato **uno** scambio, quindi il determinante di $B$ è $-4$.
+>
+> Controllo con Sarrus: $(0 + 4 + 4) - (2 + 0 + 10) = 8 - 12 = -4$.
 
 > [!ESEMPIO] · Una $4 \times 4$ con sole mosse del terzo tipo
 > $$C = \begin{pmatrix} 1 & 1 & 1 & 1 \\ 1 & 2 & 2 & 2 \\ 1 & 2 & 3 & 3 \\ 1 & 2 & 3 & 4 \end{pmatrix} \xrightarrow{\substack{R_2 \to R_2 - R_1 \\ R_3 \to R_3 - R_1 \\ R_4 \to R_4 - R_1}} \begin{pmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \\ 0 & 1 & 2 & 2 \\ 0 & 1 & 2 & 3 \end{pmatrix}$$
 > $$\xrightarrow{\substack{R_3 \to R_3 - R_2 \\ R_4 \to R_4 - R_2}} \begin{pmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 1 & 2 \end{pmatrix} \xrightarrow{R_4 \to R_4 - R_3} \begin{pmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 1 \end{pmatrix}$$
-> Nessuno scambio, diagonale di 1: $\det C = 1$. Con la definizione sarebbero stati 24 addendi.
+> Nessuno scambio, diagonale di 1: il determinante è 1. Con la definizione sarebbero stati 24 prodotti.
 
-Nello strumento qui sotto c'è la matrice dell'Esempio 10.2. Premi «Calcola»: lo strumento usa mosse diverse da quelle delle dispense ($R_2 \to R_2 - 4R_1$ e $R_3 \to R_3 - 7R_1$, poi $R_3 \to R_3 - 2R_2$), ma il determinante è lo stesso, $0$. Prova poi le matrici $B$ e $C$ di questa sezione (`0 2 1; 1 1 1; 2 4 5` e `1 1 1 1; 1 2 2 2; 1 2 3 3; 1 2 3 4`): nel caso di $B$ lo strumento segnala lo scambio di righe e il cambio di segno.
+Nello strumento qui sotto c'è la matrice dell'Esempio 10.2. Premi «Calcola»: lo strumento usa mosse diverse da quelle delle dispense ($R_2 \to R_2 - 4R_1$ e $R_3 \to R_3 - 7R_1$, poi $R_3 \to R_3 - 2R_2$), ma il determinante è lo stesso, 0. Prova poi le matrici $B$ e $C$ di questa sezione (`0 2 1; 1 1 1; 2 4 5` e `1 1 1 1; 1 2 2 2; 1 2 3 3; 1 2 3 4`): nel caso di $B$ lo strumento segnala lo scambio di righe e il cambio di segno.
 
 ```widget gauss
 titolo: Il determinante con le mosse di Gauss
@@ -27652,56 +28157,93 @@ modi: determinante
 ```
 
 > [!TRAPPOLA] La mossa «$R_2 \to 2R_2 - R_1$» non è innocua
-> Questa mossa ne contiene due: prima $R_2 \to 2R_2$ (tipo (II), determinante per 2), poi $R_2 \to R_2 - R_1$ (tipo (III), nessun effetto). Il determinante risulta **moltiplicato per 2**. Chi la usa per evitare le frazioni deve ricordarsene e dividere alla fine. Allo stesso modo, una matrice «ridotta a scalini» con mosse qualsiasi **non** ha lo stesso determinante della matrice di partenza: è un tranello classico dei quiz («Verso l'esame»).
+> Questa mossa ne contiene due: prima la seconda riga per 2 (tipo (II), determinante per 2), poi meno la prima riga (tipo (III), nessun effetto). Il determinante risulta **moltiplicato per 2**. Chi la usa per evitare le frazioni deve ricordarsene e dividere alla fine. Allo stesso modo, una matrice «ridotta a scalini» con mosse qualsiasi **non** ha lo stesso determinante della matrice di partenza: è un tranello classico dei quiz («Verso l'esame»).
 
-## Determinante nullo e righe dipendenti (p. 47)
+::: prova Calcola con le mosse il determinante di $\begin{pmatrix} 2 & 4 \\ 3 & 1 \end{pmatrix}$.
+Tolgo dalla seconda riga $\frac 32$ volte la prima: la seconda riga diventa $(3 - 3,\ 1 - 6) = (0, -5)$. Triangolare con diagonale 2 e $-5$: determinante $-10$. Controllo: $2 \cdot 1 - 4 \cdot 3 = -10$.
+:::
 
-Nell'Esempio 10.2 il determinante è venuto $0$ perché la terza riga «dipendeva» dalle altre due: $(7, 8, 9) = 2 \cdot (4, 5, 6) - (1, 2, 3)$. Non è un caso.
+> [!RICORDA]
+> - Scambio di due righe: il determinante cambia segno. Una riga per un numero: determinante per quel numero. Una riga più un multiplo di un'altra: determinante uguale.
+> - Metodo: si rende la matrice triangolare con le mosse e si moltiplica la diagonale, con un segno meno per ogni scambio.
+
+## Determinante zero: una riga di troppo (p. 47)
+
+Nell'Esempio 10.2 il determinante è venuto zero. Guarda le righe: la terza si ottiene dalle altre due,
+
+$$(7, 8, 9) = 2 \cdot (4, 5, 6) - (1, 2, 3).$$
+
+Con le parole della lezione L07: la terza riga è un **doppione**, una ricetta con le altre due. Non è un caso. Le dispense lo scrivono così.
 
 > [!PROP] 10.3 · Determinante nullo
 > $\det(A) = 0$ se e solo se una riga (o una colonna) di $A$ è combinazione lineare delle altre.
 
-Le dispense dimostrano una delle due direzioni: se una riga è combinazione delle altre, il determinante è zero. Supponiamo per esempio che la prima riga sia combinazione lineare delle altre, cioè che esistano numeri $c_2, \dots, c_n$ con
+**Come si legge.** Il determinante è zero esattamente quando una riga è un doppione delle altre, cioè si ottiene mescolandole. Lo stesso con le colonne. «Se e solo se» vuol dire che vale in tutti e due i sensi.
 
-$$A_1 = c_2A_2 + \dots + c_nA_n.$$
+Nel disegno della lezione L09: se una colonna è un doppione, il parallelogramma, o la scatola, si schiaccia. L'area, o il volume, è zero.
 
-1. Sia $A'$ la matrice che si ottiene da $A$ sostituendo la prima riga con la **riga nulla**. Per la Proposizione 9.10, $\det(A') = 0$.
-2. Ora applichiamo ad $A'$, una dopo l'altra, mosse del terzo tipo: sommiamo alla prima riga prima $c_2A_2$, poi $c_3A_3$, e così via fino a $c_nA_n$. Il determinante non cambia mai.
+Le dispense spiegano un senso: se una riga è un doppione, il determinante è zero. L'idea: con mosse del terzo tipo, che non cambiano il determinante, si toglie il doppione e resta una riga di zeri. Ecco i passaggi, quando il doppione è la prima riga.
+
+Supponiamo che esistano numeri $c_2, \dots, c_n$ con
+
+$$A_1 = c_2A_2 + \dots + c_nA_n,$$
+
+dove $A_1, \dots, A_n$ sono le righe di $A$.
+
+1. Sia $A'$ la matrice che si ottiene da $A$ sostituendo la prima riga con la **riga di zeri**. Per la Proposizione 9.10, $\det(A') = 0$.
+2. Ora applico ad $A'$, una dopo l'altra, mosse del terzo tipo: sommo alla prima riga prima $c_2A_2$, poi $c_3A_3$, e così via fino a $c_nA_n$. Il determinante non cambia mai.
 3. Alla fine la prima riga è $0 + c_2A_2 + \dots + c_nA_n = A_1$: la matrice finale è esattamente $A$.
 4. Quindi $\det(A) = \det(A') = 0$.
 
-La proposizione afferma che vale anche l'altra direzione: se $\det A = 0$, allora qualche riga è combinazione lineare delle altre. Le dispense non la dimostrano.
+Le dispense non dimostrano l'altro senso: se il determinante è zero, allora qualche riga è un doppione.
 
 > [!NOTA] Quale «Proprietà 1»?
 > Nelle dispense, a p. 47, il passaggio 1 è giustificato con «per la Proprietà 1»: si tratta della prima proprietà della sezione 9.C, cioè della Proposizione 9.10 (una riga nulla dà determinante nullo), non del punto (1) della Proposizione 10.1 (lo scambio di due righe).
 
 > [!OLTRE] · l'altra direzione, e il collegamento con il rango
-> Martelli (Proposizione 3.3.12) dimostra che per $A \in M(n, \K)$
-> $$\det A \neq 0 \iff \rk A = n,$$
-> con le mosse di Gauss: le mosse non cambiano il rango e cambiano il determinante solo per fattori non nulli, e per una matrice a scalini $n \times n$ le due condizioni dicono entrambe «tutti i numeri sulla diagonale sono diversi da zero». Da qui segue l'altra direzione della Proposizione 10.3: se $\det A = 0$, allora $\rk A < n$; il rango per righe è lo stesso (Proposizione 8.6), quindi le $n$ righe sono linearmente dipendenti, e una di loro è combinazione lineare delle altre (Proposizione 7.2). Un'altra conseguenza (Martelli, Proposizione 3.3.15): **$n$ vettori di $\K^n$ formano una base se e solo se la matrice che li ha come colonne ha determinante diverso da zero.**
+> Martelli (Proposizione 3.3.12) dimostra che per una matrice quadrata $n \times n$ il determinante è diverso da zero esattamente quando il rango è $n$ (lezione L08). Usa le mosse di Gauss: le mosse non cambiano il rango e cambiano il determinante solo per numeri diversi da zero. Per una matrice a scalini le due condizioni dicono la stessa cosa: tutti i numeri sulla diagonale sono diversi da zero. Da qui segue l'altro senso della Proposizione 10.3. Se il determinante è zero, il rango è minore di $n$; il rango per righe è lo stesso (Proposizione 8.6), quindi le righe sono dipendenti, e una di loro è un doppione (Proposizione 7.2). Un'altra conseguenza (Martelli, Proposizione 3.3.15): **$n$ vettori di $\K^n$ formano una base esattamente quando la matrice che li ha come colonne ha determinante diverso da zero.**
 
 > [!ESEMPIO] · Determinanti nulli a colpo d'occhio
 > $$\det \begin{pmatrix} 1 & 5 & 1 \\ 2 & 7 & 2 \\ 3 & 0 & 3 \end{pmatrix} = 0, \qquad \det \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 5 & 1 & 9 \end{pmatrix} = 0, \qquad \det \begin{pmatrix} 1 & 2 & 3 & 4 \\ 5 & 6 & 7 & 8 \\ 9 & 10 & 11 & 12 \\ 13 & 14 & 15 & 16 \end{pmatrix} = 0.$$
-> Nella prima la prima e la terza **colonna** sono uguali; nella seconda la seconda riga è il doppio della prima; nella terza ogni riga supera la precedente di $(4, 4, 4, 4)$, quindi $R_2 - R_1 = R_3 - R_2$, cioè $R_3 = 2R_2 - R_1$: una riga è combinazione delle altre.
+> - Nella prima la prima e la terza **colonna** sono uguali.
+> - Nella seconda la seconda riga è il doppio della prima.
+> - Nella terza ogni riga supera la precedente di $(4, 4, 4, 4)$. Quindi $R_2 - R_1 = R_3 - R_2$, cioè $R_3 = 2R_2 - R_1$: la terza riga è un doppione.
 
-## Il teorema di Binet (p. 47)
+::: prova Il determinante di $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 1 & 3 & 7 \end{pmatrix}$ è zero? Cerca un doppione.
+Sì: la terza riga è la somma delle prime due, $(1 + 0,\ 2 + 1,\ 3 + 4) = (1, 3, 7)$. È un doppione, quindi il determinante è zero.
+:::
 
-Con $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ ($\det A = -2$) e $B = \begin{pmatrix} 2 & 0 \\ 1 & 3 \end{pmatrix}$ ($\det B = 6$):
+> [!RICORDA]
+> - Determinante zero esattamente quando una riga, o una colonna, è un doppione delle altre.
+> - Righe uguali, proporzionali o somme di altre righe: determinante zero senza conti.
 
-$$AB = \begin{pmatrix} 1 \cdot 2 + 2 \cdot 1 & 0 + 2 \cdot 3 \\ 3 \cdot 2 + 4 \cdot 1 & 0 + 4 \cdot 3 \end{pmatrix} = \begin{pmatrix} 4 & 6 \\ 10 & 12 \end{pmatrix}, \qquad \det(AB) = 48 - 60 = -12 = (-2) \cdot 6.$$
+## Il determinante di un prodotto: il teorema di Binet (p. 47)
 
-Il determinante del prodotto è il prodotto dei determinanti. Le dispense lo includono senza dimostrazione.
+Ricorda l'idea della lezione L09: una matrice ingrandisce le aree, e il determinante dice di quanto. Se prima applico una matrice che moltiplica le aree per 6, e poi una che le moltiplica per $-2$, in tutto le aree vengono moltiplicate per $6 \cdot (-2) = -12$.
+
+Lo controllo con i numeri. Prendo
+
+$$A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}, \qquad B = \begin{pmatrix} 2 & 0 \\ 1 & 3 \end{pmatrix},$$
+
+con determinanti $-2$ e $6$. Il prodotto riga per colonna (lezione L08):
+
+$$AB = \begin{pmatrix} 1 \cdot 2 + 2 \cdot 1 & 0 + 2 \cdot 3 \\ 3 \cdot 2 + 4 \cdot 1 & 0 + 4 \cdot 3 \end{pmatrix} = \begin{pmatrix} 4 & 6 \\ 10 & 12 \end{pmatrix}.$$
+
+Il suo determinante è $4 \cdot 12 - 6 \cdot 10 = 48 - 60 = -12$, proprio $(-2) \cdot 6$.
+
+Il determinante del prodotto è il prodotto dei determinanti. Le dispense lo scrivono così, senza dimostrazione.
 
 > [!TEOREMA] 10.4 · Teorema di Binet
 > Se $A$ e $B$ sono matrici quadrate dello stesso ordine, allora
 > $$\det(A \cdot B) = \det(A) \cdot \det(B).$$
 
-Pezzo per pezzo, e con tre conseguenze da sapere:
+**Come si legge.**
 
-- Servono matrici **quadrate dello stesso ordine**, così $AB$ esiste ed è quadrata.
-- **$\det(AB) = \det(BA)$**, anche se in generale $AB \neq BA$: entrambi valgono $\det A \cdot \det B$, e tra numeri il prodotto è commutativo.
-- **Potenze:** $\det(A^2) = \det(A \cdot A) = (\det A)^2$ e in generale $\det(A^k) = (\det A)^k$. Per calcolare $\det(A^3)$ **non** si calcola $A^3$.
-- Attenzione alle somme: il teorema parla solo di prodotti, e in generale $\det(A + B) \neq \det A + \det B$ (lezione L09).
+- Servono matrici **quadrate della stessa taglia**: così il prodotto esiste ed è quadrato.
+- Il determinante del prodotto si calcola **senza fare il prodotto**: basta moltiplicare i due determinanti.
+- **L'ordine non conta**: $\det(AB) = \det(BA)$, anche se di solito le matrici $AB$ e $BA$ sono diverse. Tutti e due valgono $\det A \cdot \det B$, e tra numeri l'ordine del prodotto non conta.
+- **Potenze**: $A^2 = A \cdot A$, quindi $\det(A^2) = (\det A)^2$. In generale il determinante di $A^k$ è $(\det A)^k$. Per calcolare il determinante di $A^3$ **non** si calcola $A^3$.
+- Il teorema parla solo di prodotti. Con le somme non funziona (lezione L09).
 
 > [!DIM] · il teorema di Binet per le $2 \times 2$
 > Siano $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ e $B = \begin{pmatrix} e & f \\ g & h \end{pmatrix}$. Allora $AB = \begin{pmatrix} ae + bg & af + bh \\ ce + dg & cf + dh \end{pmatrix}$ e
@@ -27711,119 +28253,180 @@ Pezzo per pezzo, e con tre conseguenze da sapere:
 > $$= (ad - bc)(eh - fg) = \det A \cdot \det B.$$
 > La dimostrazione generale (Martelli, Teorema 3.4.7) usa la definizione con le permutazioni e il fatto che una matrice con due righe uguali ha determinante nullo.
 
-### Matrici invertibili
+::: prova Una matrice $3 \times 3$ ha determinante 2. Quanto vale il determinante del suo cubo?
+Per Binet: $2^3 = 8$. Non serve calcolare il cubo della matrice.
+:::
 
-Il numero $\frac 12$ è l'inverso di $2$ perché $2 \cdot \frac 12 = 1$. Per le matrici il ruolo di $1$ lo fa $I_n$.
+> [!RICORDA]
+> - Binet: il determinante di un prodotto è il prodotto dei determinanti.
+> - Il determinante di $A^k$ è $(\det A)^k$, e $\det(AB) = \det(BA)$.
+
+## Disfare una matrice: l'inversa (p. 47)
+
+Con i numeri, quasi ogni moltiplicazione si può disfare. Moltiplicare per 2 si disfa moltiplicando per $\frac 12$, perché $2 \cdot \frac 12 = 1$. Il numero $\frac 12$ è l'**inverso** di 2. Il numero 0 invece non ha inverso: $0$ per qualsiasi numero fa 0, mai 1.
+
+Con le matrici succede lo stesso. Il ruolo del numero 1 lo fa la matrice identità $I_n$ (lezione L09), che non cambia niente. Una matrice che disfa $A$ è una matrice $B$ con $AB = I_n$ e $BA = I_n$.
 
 > [!OLTRE] · che cosa vuol dire «invertibile»
-> Le dispense usano la parola da qui in poi; la definizione è quella di Martelli (§3.4.5). Una matrice quadrata $A \in M(n)$ è **invertibile** se esiste una matrice $B \in M(n)$ tale che
+> Le dispense usano la parola da qui in poi; la definizione è quella di Martelli (§3.4.5). Una matrice quadrata $A \in M(n)$ è **invertibile** se esiste una matrice $B \in M(n)$ con
 > $$AB = BA = I_n.$$
-> Una tale $B$ è **unica** e si chiama **inversa** di $A$, $A^{-1}$. Unica perché, se $B$ e $B'$ vanno bene entrambe, $B = BI_n = B(AB') = (BA)B' = I_nB' = B'$.
+> Una matrice così è **unica** e si chiama **inversa** di $A$. Si scrive $A^{-1}$, «a alla meno uno». Unica perché, se $B$ e $B'$ vanno bene tutte e due, $B = BI_n = B(AB') = (BA)B' = I_nB' = B'$.
 
 > [!ESEMPIO] · Un'inversa e una matrice senza inversa
 > $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ ha inversa $A^{-1} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$ (Martelli, §3.4.7). Controllo:
 > $$\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix} = \begin{pmatrix} 2 - 1 & -2 + 2 \\ 1 - 1 & -1 + 2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix},$$
 > e allo stesso modo $A^{-1}A = I_2$.
 >
-> $N = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ invece **non** è invertibile, anche se non è nulla: per ogni $B$, il prodotto $NB$ ha la seconda riga nulla (è $0$ volte la prima riga di $B$ più $0$ volte la seconda), quindi non può essere $I_2$.
+> $N = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ invece **non** è invertibile, anche se non è la matrice nulla. Per ogni matrice $B$, il prodotto $NB$ ha la seconda riga di zeri: è 0 volte la prima riga di $B$ più 0 volte la seconda. Quindi non può essere l'identità.
+
+Nel disegno, $N$ schiaccia tutto il piano sull'asse orizzontale: due punti con la stessa prima coordinata finiscono nello stesso posto. Una volta schiacciati, non si può più tornare indietro.
+
+Binet dice subito quanto vale il determinante dell'inversa.
 
 > [!COROLLARIO] 10.5 · Determinante dell'inversa
 > Sia $A$ una matrice quadrata invertibile. Allora
 > $$\det(A^{-1}) = \frac 1{\det(A)}.$$
 
-La spiegazione delle dispense: dal teorema di Binet e da $AA^{-1} = I_n$,
+**Come si legge.** Il determinante dell'inversa è l'inverso del determinante. Se $A$ moltiplica le aree per 3, la sua inversa le divide per 3.
+
+La spiegazione delle dispense. Da $AA^{-1} = I_n$ e da Binet:
 
 $$1 = \det(I_n) = \det(AA^{-1}) = \det(A) \det(A^{-1}),$$
 
-da cui la formula. In particolare una matrice invertibile ha $\det A \neq 0$: se fosse $\det A = 0$, il prodotto $\det(A)\det(A^{-1})$ varrebbe $0$ e non $1$.
+e da qui la formula. In particolare una matrice invertibile ha determinante **diverso da zero**: se fosse zero, il prodotto $\det(A) \det(A^{-1})$ varrebbe 0 e non 1.
 
 > [!TRAPPOLA] Binet vale solo per matrici quadrate
-> Se $A$ è $3 \times 2$, la scrittura $\det(A\,{}^tA) = \det A \cdot \det({}^tA)$ non ha senso: $\det A$ non esiste. Il prodotto $A\,{}^tA$ invece è $3 \times 3$ e ha un determinante. Per esempio con $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$ si trova $\det(A\,{}^tA) = 0$ (le sue colonne sono combinazioni delle due colonne di $A$, quindi il rango è al più 2), mentre ${}^tA\,A = \begin{pmatrix} 2 & 2 \\ 2 & 5 \end{pmatrix}$ ha determinante $6$.
+> Se $A$ è $3 \times 2$, scrivere $\det(A\,{}^tA) = \det A \cdot \det({}^tA)$ non ha senso: $A$ non è quadrata, e il suo determinante non esiste. Il prodotto $A\,{}^tA$ invece è $3 \times 3$ e ha un determinante. Per esempio con $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$ si trova $\det(A\,{}^tA) = 0$: le sue colonne sono ricette con le due colonne di $A$, quindi il rango è al massimo 2. Invece ${}^tA\,A = \begin{pmatrix} 2 & 2 \\ 2 & 5 \end{pmatrix}$ ha determinante $6$.
 
-## I cofattori di una matrice (pp. 47–48)
+::: prova Una matrice ha determinante 4. Quanto vale il determinante della sua inversa?
+$\frac 14$: l'inverso del determinante.
+:::
 
-Nello sviluppo di Laplace ogni numero $a_{ij}$ è moltiplicato per $(-1)^{i+j} \det C_{ij}$: segno della scacchiera e determinante della sottomatrice. Questo numero ha un nome.
+> [!RICORDA]
+> - L'inversa $A^{-1}$ disfa quello che fa $A$: $AA^{-1} = A^{-1}A = I_n$.
+> - Il determinante dell'inversa è $\frac 1{\det A}$; una matrice invertibile ha determinante diverso da zero.
+
+## I cofattori (pp. 47–48)
+
+Per costruire l'inversa servono dei numeri che conosci già dallo sviluppo di Laplace (lezione L09). Lì ogni numero della riga scelta veniva moltiplicato per due cose: il segno della scacchiera e il determinante della sottomatrice. Il prodotto di queste due cose ha un nome: **cofattore**.
+
+Un esempio con $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$. Le sottomatrici sono numeri singoli: togliendo la riga 1 e la colonna 1 resta il 4, e così via. Con i segni della scacchiera:
+
+$$\mathrm{cof}_{11} = +4, \quad \mathrm{cof}_{12} = -3, \quad \mathrm{cof}_{21} = -2, \quad \mathrm{cof}_{22} = +1.$$
+
+Messi nelle loro caselle formano la **matrice dei cofattori**:
+
+$$\mathrm{cof}(A) = \begin{pmatrix} 4 & -3 \\ -2 & 1 \end{pmatrix}.$$
+
+Le dispense scrivono la definizione così.
 
 > [!DEF] 10.6 · Cofattori
 > Consideriamo una matrice quadrata $A$. I suoi **cofattori** $\mathrm{cof}_{ij} := (-1)^{i+j} \det(C_{ij})$ formano una matrice quadrata di ordine $n$
 > $$\mathrm{cof}(A) = (\mathrm{cof}_{ij})$$
 > detta **matrice dei cofattori** di $A$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $C_{ij}$ è la sottomatrice ottenuta cancellando la riga $i$ e la colonna $j$ (lezione L09).
-- Il cofattore $\mathrm{cof}_{ij}$ è un **numero**: il determinante di $C_{ij}$ con il segno della scacchiera.
-- La matrice dei cofattori ha la stessa taglia di $A$: al posto $(i, j)$ c'è $\mathrm{cof}_{ij}$.
+- $C_{ij}$ è la sottomatrice che resta togliendo la riga $i$ e la colonna $j$ (lezione L09).
+- Il cofattore $\mathrm{cof}_{ij}$ è un **numero**: il determinante di $C_{ij}$, con il segno della scacchiera $(-1)^{i+j}$.
+- Il simbolo $:=$ si legge «è definito come».
+- La matrice dei cofattori ha la stessa taglia di $A$: nella casella $(i, j)$ c'è il cofattore $\mathrm{cof}_{ij}$.
 
-> [!ESEMPIO] · I cofattori di una $2 \times 2$
-> Con $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ le sottomatrici sono numeri: cancellando riga 1 e colonna 1 resta $4$, e così via.
-> $$\mathrm{cof}_{11} = +4, \quad \mathrm{cof}_{12} = -3, \quad \mathrm{cof}_{21} = -2, \quad \mathrm{cof}_{22} = +1, \qquad \mathrm{cof}(A) = \begin{pmatrix} 4 & -3 \\ -2 & 1 \end{pmatrix}.$$
+Con i cofattori lo sviluppo di Laplace lungo una riga $i$ diventa più corto: numeri della riga per i cofattori **della stessa riga**.
 
-Con i cofattori lo sviluppo di Laplace lungo la riga $i$ si riscrive in modo compatto:
+$$\det A = a_{i1}\,\mathrm{cof}_{i1} + a_{i2}\,\mathrm{cof}_{i2} + \dots + a_{in}\,\mathrm{cof}_{in} = \sum_{j=1}^n a_{ij}\, \mathrm{cof}_{ij}.$$
 
-$$\det A = \sum_{j=1}^n a_{ij}\, \mathrm{cof}_{ij} \qquad \forall i \in \{1, \dots, n\}.$$
+E se invece si usano i cofattori di **un'altra** riga? Viene sempre zero. Per ogni coppia di righe diverse $i$ e $k$:
 
-Numeri della riga $i$ per cofattori **della stessa riga**. E se invece si usano i cofattori di **un'altra** riga? Dalla dimostrazione del punto (3) della Proposizione 10.1 sappiamo che la somma dei prodotti degli elementi di una riga (o colonna) qualsiasi per i cofattori di un'altra riga (o di un'altra colonna) è $0$:
+$$\sum_{j=1}^n a_{ij}\, \mathrm{cof}_{kj} = 0.$$
 
-$$0 = \sum_{j=1}^n a_{ij}\, \mathrm{cof}_{kj} \qquad \forall i, k \in \{1, \dots, n\},\ i \neq k.$$
-
-Il motivo: questa somma è lo sviluppo lungo la riga $k$ della matrice che ha la riga $i$ al posto della riga $k$. Quella matrice ha due righe uguali, quindi determinante nullo.
+Il motivo: questa somma è lo sviluppo lungo la riga $k$ di una matrice che ha la riga $i$ al posto della riga $k$. Quella matrice ha due righe uguali, quindi determinante zero. È lo stesso conto della dimostrazione della Proposizione 10.1, punto (3).
 
 > [!ESEMPIO] · Cofattori giusti e cofattori «sbagliati»
 > $$A = \begin{pmatrix} 2 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 3 & 1 \end{pmatrix}, \qquad \mathrm{cof}(A) = \begin{pmatrix} 1 & -1 & 3 \\ 3 & 2 & -6 \\ -1 & 1 & 2 \end{pmatrix}.$$
 > Per esempio $\mathrm{cof}_{12} = -\det \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = -1$ e $\mathrm{cof}_{23} = -\det \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix} = -6$.
-> - Riga 1 per i cofattori della riga 1: $2 \cdot 1 + 0 \cdot (-1) + 1 \cdot 3 = 5 = \det A$.
+> - Riga 1 per i cofattori della riga 1: $2 \cdot 1 + 0 \cdot (-1) + 1 \cdot 3 = 5$, il determinante.
 > - Riga 1 per i cofattori della riga 2: $2 \cdot 3 + 0 \cdot 2 + 1 \cdot (-6) = 0$.
 > - Riga 3 per i cofattori della riga 3: $0 \cdot (-1) + 3 \cdot 1 + 1 \cdot 2 = 5$ di nuovo.
 
-Mettendo insieme le due formule si ottiene un'identità tra matrici.
+### Le due regole insieme
+
+Le due regole, «stessa riga dà il determinante» e «riga diversa dà zero», si possono scrivere in una volta con un prodotto di matrici. Le dispense lo fanno così.
 
 > [!PROP] 10.7
 > $$A \cdot {}^t(\mathrm{cof}(A)) = \det(A) \cdot I_n = {}^t(\mathrm{cof}(A)) \cdot A.$$
 
-Dimostrazione (delle dispense), passo per passo.
+**Come si legge.** Si prende la matrice dei cofattori e la si traspone, cioè si scambiano righe e colonne. Moltiplicata per $A$, dà una matrice con il determinante di $A$ su tutta la diagonale e zeri altrove.
 
-1. Sia $K = A \cdot {}^t(\mathrm{cof}(A))$. La sua entrata $(i, j)$ è la riga $i$ di $A$ per la colonna $j$ di ${}^t(\mathrm{cof}(A))$, che è la **riga** $j$ di $\mathrm{cof}(A)$:
-   $$k_{ij} = \sum_\ell a_{i\ell}\, \mathrm{cof}_{j\ell}.$$
-2. Se $i = j$, questo è lo sviluppo di Laplace di $\det(A)$ lungo la riga $i$: $k_{ii} = \det A$.
-3. Se $i \neq j$, è il determinante della matrice ottenuta sostituendo la riga $j$ con la riga $i$: è nullo, perché quella matrice ha due righe uguali.
-4. Dunque $K$ ha $\det A$ sulla diagonale e $0$ altrove: $K = \det(A) I_n$. In modo analogo, con le colonne, si dimostra ${}^t(\mathrm{cof}(A))A = \det(A) I_n$. $\square$
+Con la matrice dell'esempio:
 
-Con la matrice dell'esempio: $A \cdot {}^t(\mathrm{cof}(A)) = \begin{pmatrix} 5 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 5 \end{pmatrix} = 5I_3$.
+$$A \cdot {}^t(\mathrm{cof}(A)) = \begin{pmatrix} 5 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 5 \end{pmatrix} = 5I_3.$$
 
-## L'inversa di una matrice (p. 48)
+> [!DIM] della Proposizione 10.7
+> La dimostrazione delle dispense, passo per passo.
+> 1. Sia $K = A \cdot {}^t(\mathrm{cof}(A))$. Il suo numero nella casella $(i, j)$ è la riga $i$ di $A$ per la colonna $j$ di ${}^t(\mathrm{cof}(A))$, che è la **riga** $j$ di $\mathrm{cof}(A)$:
+>    $$k_{ij} = \sum_\ell a_{i\ell}\, \mathrm{cof}_{j\ell}.$$
+> 2. Se $i = j$, questo è lo sviluppo di Laplace di $\det(A)$ lungo la riga $i$: $k_{ii} = \det A$.
+> 3. Se $i$ e $j$ sono diversi, è il determinante della matrice ottenuta sostituendo la riga $j$ con la riga $i$: è nullo, perché quella matrice ha due righe uguali.
+> 4. Quindi $K$ ha $\det A$ sulla diagonale e 0 altrove: $K = \det(A) I_n$. Allo stesso modo, con le colonne, si dimostra ${}^t(\mathrm{cof}(A))A = \det(A) I_n$.
 
-Se $\det A \neq 0$, basta dividere la Proposizione 10.7 per $\det A$ e si ottiene una matrice che moltiplicata per $A$ dà $I_n$: l'inversa.
+::: prova Qual è la matrice dei cofattori di $\begin{pmatrix} 5 & 2 \\ 1 & 3 \end{pmatrix}$?
+Togliendo riga e colonna resta un numero; poi il segno della scacchiera: $\mathrm{cof}_{11} = 3$, $\mathrm{cof}_{12} = -1$, $\mathrm{cof}_{21} = -2$, $\mathrm{cof}_{22} = 5$. La matrice è $\begin{pmatrix} 3 & -1 \\ -2 & 5 \end{pmatrix}$.
+:::
+
+> [!RICORDA]
+> - Il cofattore $\mathrm{cof}_{ij}$ è il determinante della sottomatrice senza riga $i$ e colonna $j$, con il segno della scacchiera.
+> - Riga per i cofattori della stessa riga: il determinante. Riga per i cofattori di un'altra riga: zero.
+
+## La formula dell'inversa (p. 48)
+
+Ormai manca un solo passo per avere l'inversa. Nella sezione di prima, la trasposta dei cofattori moltiplicata per $A$ dava il determinante sulla diagonale. Se il determinante non è zero, basta dividere tutto per lui: viene l'identità. Quindi la trasposta dei cofattori, divisa per il determinante, è l'inversa. Le dispense lo scrivono così.
 
 > [!PROP] 10.8 · Invertibilità e formula dell'inversa
 > Sia $A$ una matrice quadrata di ordine $n \ge 2$. La matrice $A$ è invertibile se e solo se $\det(A) \neq 0$. Se $A$ è invertibile, allora
 > $$A^{-1} = \frac 1{\det(A)} \cdot {}^t(\mathrm{cof}(A)).$$
 
-Dimostrazione (delle dispense), nei due versi.
+**Come si legge.**
 
-- **Se $A$ è invertibile, allora $\det A \neq 0$.** Esiste una matrice $B$ tale che $A \cdot B = I_n$. Per il teorema di Binet $\det(A \cdot B) = \det(A) \cdot \det(B)$; d'altra parte $\det(I_n) = 1$. Ne deduciamo $\det(A) \cdot \det(B) = 1$, quindi $\det(A) \neq 0$.
-- **Se $\det A \neq 0$, allora $A$ è invertibile.** Definiamo $B := \frac 1{\det(A)} \cdot {}^t(\mathrm{cof}(A))$. Per la Proposizione 10.7, $A \cdot {}^t(\mathrm{cof}(A)) = \det(A) \cdot I_n = {}^t(\mathrm{cof}(A)) \cdot A$. Dato che $\det(A) \neq 0$ possiamo moltiplicare per $\frac 1{\det(A)}$, ottenendo $A \cdot B = I_n = B \cdot A$. Quindi $A$ è invertibile e la sua inversa è $B$. $\square$
+- Una matrice quadrata ha l'inversa **esattamente** quando il suo determinante non è zero.
+- In quel caso l'inversa si costruisce così: matrice dei cofattori, trasposta, divisa per il determinante.
+- È come con i numeri: tutti hanno l'inverso, tranne lo zero.
 
-L'ipotesi $n \ge 2$ serve solo perché i cofattori richiedono di cancellare una riga e una colonna. Per $n = 1$ tutto è più semplice: $(a)$ è invertibile se e solo se $a \neq 0$, e $(a)^{-1} = \left(\frac 1a\right)$.
+La dimostrazione delle dispense, nei due sensi.
+
+- **Se $A$ è invertibile, il determinante non è zero.** C'è una matrice $B$ con $AB = I_n$. Per Binet $\det(A) \cdot \det(B) = \det(I_n) = 1$. Un prodotto che fa 1 non può avere un fattore zero.
+- **Se il determinante non è zero, $A$ è invertibile.** Chiamo $B$ la trasposta dei cofattori divisa per $\det A$. Per la Proposizione 10.7, $A \cdot {}^t(\mathrm{cof}(A)) = \det(A) \cdot I_n$, e lo stesso nell'altro ordine. Divido per $\det A$, che non è zero: $AB = I_n = BA$. Quindi $B$ è l'inversa.
+
+L'ipotesi $n \ge 2$ serve solo perché i cofattori richiedono di togliere una riga e una colonna. Per le matrici $1 \times 1$ tutto è più facile: la matrice $(a)$ è invertibile quando $a$ non è zero, e l'inversa è $\left(\frac 1a\right)$.
+
+### Le $2 \times 2$
+
+Per le matrici $2 \times 2$ la formula diventa una regola da ricordare a memoria.
 
 > [!ESEMPIO] · La formula per le $2 \times 2$
 > Per $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ i cofattori sono $\mathrm{cof}_{11} = d$, $\mathrm{cof}_{12} = -c$, $\mathrm{cof}_{21} = -b$, $\mathrm{cof}_{22} = a$. Trasponendo e dividendo per il determinante:
-> $$A^{-1} = \frac 1{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix} \qquad (ad - bc \neq 0).$$
+> $$A^{-1} = \frac 1{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}, \qquad \text{se } ad - bc \neq 0.$$
 > In parole: **scambia i due numeri della diagonale, cambia segno agli altri due, dividi per il determinante**. Per esempio
 > $$\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}^{-1} = \frac 1{6 - 5} \begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix} = \begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}.$$
-> Controllo: $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix} \begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix} = \begin{pmatrix} 6 - 5 & -3 + 3 \\ 10 - 10 & -5 + 6 \end{pmatrix} = I_2$ ✓.
+> Controllo: $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix} \begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix} = \begin{pmatrix} 6 - 5 & -3 + 3 \\ 10 - 10 & -5 + 6 \end{pmatrix} = I_2$.
+
+::: prova Trova l'inversa di $\begin{pmatrix} 2 & 1 \\ 3 & 2 \end{pmatrix}$.
+Determinante $4 - 3 = 1$. Scambio la diagonale e cambio segno agli altri due: $\begin{pmatrix} 2 & -1 \\ -3 & 2 \end{pmatrix}$, diviso per 1. Controllo: $\begin{pmatrix} 2 & 1 \\ 3 & 2 \end{pmatrix}\begin{pmatrix} 2 & -1 \\ -3 & 2 \end{pmatrix} = \begin{pmatrix} 4 - 3 & -2 + 2 \\ 6 - 6 & -3 + 4 \end{pmatrix} = I_2$.
+:::
+
+### Le $3 \times 3$
 
 > [!METODO] L'inversa di una $3 \times 3$ con i cofattori
-> 1. Calcola $\det A$. Se è $0$, la matrice **non è invertibile**: fermati.
-> 2. Calcola i nove determinanti $2 \times 2$ $\det C_{ij}$ (cancella riga $i$ e colonna $j$).
-> 3. Metti i segni della scacchiera: ottieni $\mathrm{cof}(A)$.
-> 4. **Trasponi**: ${}^t(\mathrm{cof}(A))$.
-> 5. Dividi tutto per $\det A$.
-> 6. Controlla almeno una riga di $A \cdot A^{-1}$: deve venire la riga corrispondente di $I_3$.
+> 1. Calcola il determinante. Se è 0, la matrice **non è invertibile**: fermati.
+> 2. Calcola i nove determinanti $2 \times 2$ delle sottomatrici: togli la riga $i$ e la colonna $j$.
+> 3. Metti i segni della scacchiera: ottieni la matrice dei cofattori.
+> 4. **Trasponi**: scambia righe e colonne.
+> 5. Dividi tutto per il determinante.
+> 6. Controlla almeno una riga di $A \cdot A^{-1}$: deve venire la riga corrispondente dell'identità.
 
 > [!ESEMPIO] · Un'inversa $3 \times 3$ passo per passo
 > $$A = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix}$$
-> **1.** Lungo la prima riga: $\det A = 1 \cdot (1 - 0) - 2 \cdot (0 - 1) + 0 = 1 + 2 = 3 \neq 0$: $A$ è invertibile.
+> **1.** Lungo la prima riga: $\det A = 1 \cdot (1 - 0) - 2 \cdot (0 - 1) + 0 = 1 + 2 = 3$. Non è zero: $A$ è invertibile.
 >
 > **2–3.** I nove cofattori (determinante della sottomatrice, poi segno):
 >
@@ -27833,9 +28436,9 @@ L'ipotesi $n \ge 2$ serve solo perché i cofattori richiedono di cancellare una 
 > | riga 2 | $-\det \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix} = -2$ | $+\det \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix} = 1$ | $-\det \begin{pmatrix} 1 & 2 \\ 1 & 0 \end{pmatrix} = 2$ |
 > | riga 3 | $+\det \begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix} = 2$ | $-\det \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = -1$ | $+\det \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} = 1$ |
 >
-> **4–5.** $\mathrm{cof}(A) = \begin{pmatrix} 1 & 1 & -1 \\ -2 & 1 & 2 \\ 2 & -1 & 1 \end{pmatrix}$, quindi
+> **4–5.** $\mathrm{cof}(A) = \begin{pmatrix} 1 & 1 & -1 \\ -2 & 1 & 2 \\ 2 & -1 & 1 \end{pmatrix}$; trasposta e divisa per 3:
 > $$A^{-1} = \frac 13 \begin{pmatrix} 1 & -2 & 2 \\ 1 & 1 & -1 \\ -1 & 2 & 1 \end{pmatrix}.$$
-> **6.** Riga 1 di $A$, $(1, 2, 0)$, per le colonne di ${}^t(\mathrm{cof}(A))$: $1 + 2 = 3$, $\ -2 + 2 = 0$, $\ 2 - 2 = 0$; diviso per 3 dà $(1, 0, 0)$ ✓.
+> **6.** Riga 1 di $A$, cioè $(1, 2, 0)$, per le colonne della trasposta dei cofattori: $1 + 2 = 3$, poi $-2 + 2 = 0$, poi $2 - 2 = 0$. Diviso per 3 dà $(1, 0, 0)$, la prima riga dell'identità.
 
 Nello strumento qui sotto c'è la matrice dell'Esercizio 10.10. Lo strumento calcola l'inversa con un altro metodo, le mosse di Gauss sulla matrice affiancata $(A \mid I_3)$ (Martelli, §3.4.7; lo capirai del tutto con i sistemi lineari, lezioni L11–L13). Il risultato è lo stesso che si trova con i cofattori, perché l'inversa è unica: confrontalo con la soluzione dell'esercizio. Prova anche una matrice con determinante nullo, come `1 2 3; 4 5 6; 7 8 9`.
 
@@ -27847,17 +28450,17 @@ modi: inversa
 ```
 
 > [!TRAPPOLA] Quattro errori sull'inversa
-> - **Dimenticare di trasporre** la matrice dei cofattori: per le matrici non simmetriche il risultato è sbagliato (nel quiz di questa lezione la matrice dei cofattori non trasposta è una delle risposte sbagliate).
-> - Dimenticare i segni della scacchiera, o dividere per $\det A$ solo alcune caselle.
+> - **Dimenticare di trasporre** la matrice dei cofattori: per le matrici non simmetriche il risultato è sbagliato. Nel quiz di questa lezione la matrice dei cofattori non trasposta è una delle risposte sbagliate.
+> - Dimenticare i segni della scacchiera, o dividere per il determinante solo alcune caselle.
 > - Invertire casella per casella: l'inversa di $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}$ **non** è $\begin{pmatrix} 1/3 & 1 \\ 1/5 & 1/2 \end{pmatrix}$.
-> - Pensare che $(A + B)^{-1} = A^{-1} + B^{-1}$, o che $(AB)^{-1} = A^{-1}B^{-1}$: l'ordine giusto è $(AB)^{-1} = B^{-1}A^{-1}$ (esercizio 8).
+> - Pensare che l'inversa di una somma sia la somma delle inverse, o che $(AB)^{-1} = A^{-1}B^{-1}$. L'ordine giusto è $(AB)^{-1} = B^{-1}A^{-1}$ (esercizio 16): per disfare «prima $B$, poi $A$» si disfa prima $A$ e poi $B$, come quando ti togli le scarpe e poi le calze.
 
 > [!OLTRE] · tante facce della stessa proprietà
-> Per una matrice quadrata $A \in M(n, \K)$ sono equivalenti:
+> Per una matrice quadrata $A \in M(n, \K)$ queste frasi dicono tutte la stessa cosa:
 > - $A$ è invertibile;
-> - $\det A \neq 0$ (Proposizione 10.8);
-> - nessuna riga (o colonna) è combinazione lineare delle altre (Proposizione 10.3);
-> - $\rk A = n$ (Martelli, Proposizione 3.3.12);
+> - il determinante di $A$ non è zero (Proposizione 10.8);
+> - nessuna riga, e nessuna colonna, è un doppione delle altre (Proposizione 10.3);
+> - il rango di $A$ è $n$ (Martelli, Proposizione 3.3.12);
 > - le colonne di $A$ formano una base di $\K^n$ (Martelli, Proposizione 3.3.15);
 > - per ogni $b \in \K^n$ il sistema $Ax = b$ ha una e una sola soluzione, $x = A^{-1}b$ (Martelli, §3.4.8; lezioni L11–L13).
 >
@@ -27866,11 +28469,33 @@ modi: inversa
 > [!OLTRE] · dove trovarlo nel libro
 > Nel libro di Martelli: il determinante e le mosse di Gauss nel §3.3.5 (pp. 97–98, Proposizione 3.3.7); determinante e rango massimo nel §3.3.7 (pp. 99–100, Proposizione 3.3.12); basi e determinante nel §3.3.9 (p. 101, Proposizione 3.3.15); matrici invertibili nel §3.4.5 (pp. 106–107, Proposizione 3.4.5); il teorema di Binet e il determinante dell'inversa nel §3.4.6 (pp. 107–108, Teorema 3.4.7 e Corollario 3.4.8); l'inversa con le mosse di Gauss e con i cofattori nel §3.4.7 (pp. 108–110, Proposizioni 3.4.10–3.4.12, Esempio 3.4.13); i sistemi con matrice invertibile e la regola di Cramer nel §3.4.8 (p. 110).
 
+> [!RICORDA]
+> - Una matrice quadrata è invertibile esattamente quando il determinante non è zero.
+> - L'inversa è la trasposta dei cofattori divisa per il determinante. Per le $2 \times 2$: scambia la diagonale, cambia segno agli altri due, dividi per $ad - bc$.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $R_2$ | «erre due» | la seconda riga della matrice | |
+| $R_1 \leftrightarrow R_2$ | «scambio la riga 1 e la riga 2» | mossa di tipo (I) | |
+| $R_2 \to R_2 - 3R_1$ | «la riga 2 diventa la riga 2 meno 3 volte la riga 1» | mossa di tipo (III) | |
+| $A'$ | «a primo» | la matrice dopo una mossa | |
+| $\det(AB)$ | «determinante di a b» | il determinante del prodotto | $\det(AB) = \det A \cdot \det B$ |
+| $A^k$ | «a alla kappa» | $A$ moltiplicata per sé stessa $k$ volte | $A^2 = A \cdot A$ |
+| $I_n$ | «i con enne» | la matrice identità | $I_2 = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ |
+| $A^{-1}$ | «a alla meno uno», «inversa di a» | la matrice che disfa $A$ | $AA^{-1} = I_n$ |
+| $\mathrm{cof}_{ij}$ | «cofattore i j» | segno della scacchiera per il determinante della sottomatrice | |
+| $\mathrm{cof}(A)$ | «matrice dei cofattori di a» | tutti i cofattori, ognuno nella sua casella | |
+| ${}^t(\mathrm{cof}(A))$ | «trasposta dei cofattori» | righe e colonne scambiate | |
+| $:=$ | «è definito come» | si dà un nome a una cosa | |
+| $\rk A$ | «rango di a» | quante righe indipendenti ha $A$ (lezione L08) | |
+
 ## Verso l'esame
 
-La prova scritta di Algebra lineare e Geometria ha 10 quiz a 5 risposte (servono almeno 6 risposte giuste perché vengano corretti i 2 problemi da 11 punti), dura 2 ore, senza calcolatrice e con solo 4 facciate di appunti scritti a mano; gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. I dettagli sono nella lezione L01.
+La prova scritta di Algebra lineare e Geometria ha 10 quiz a 5 risposte e 2 problemi da 11 punti. I problemi si correggono solo con almeno 6 risposte giuste. Dura 2 ore, senza calcolatrice e con solo 4 facciate di appunti scritti a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. I dettagli sono nella lezione L01.
 
-Questa lezione è tra le più «pagate» all'esame:
+Questa lezione è tra le più presenti all'esame:
 
 | Tipo di domanda | Appelli (numero) | Che cosa serve |
 |---|---|---|
@@ -27878,51 +28503,80 @@ Questa lezione è tra le più «pagate» all'esame:
 | determinante e traccia di un prodotto | 16/01/2025 (3) | Binet, matrici triangolari |
 | determinante di $A\,{}^tA$ con $A$ non quadrata | 03/06/2025 (9) | Binet non si applica; rango |
 | matrice «ridotta a scalini», che cosa si può dedurre | 06/09/2024 (7) | Proposizione 10.1 |
-| problema: «per quali $k$ la matrice è invertibile?» o «calcolare il determinante» | 24/01/2024, 06/09/2024, 07/02/2025, 15/01/2026, 05/02/2026, 03/07/2026 (problema 11, punto 1) | $\det A \neq 0$ con parametro |
+| problema: «per quali $k$ la matrice è invertibile?» o «calcolare il determinante» | 24/01/2024, 06/09/2024, 07/02/2025, 15/01/2026, 05/02/2026, 03/07/2026 (problema 11, punto 1) | determinante con un parametro |
 | problema: la matrice dell'applicazione inversa | 10/07/2024 (problema 11, punto 2) | inversa con i cofattori |
 
-Tre domande vere, con la soluzione svolta.
+### Una domanda vera, letta insieme
+
+**Appello del 15/01/2026, problema 11, punto (1).** Il testo: «Si consideri la matrice $A = \begin{pmatrix} 1 & k^2 & 0 \\ k & k + 1 & k \\ 0 & k & 1 \end{pmatrix}$ in $M(3, \R)$, dove $k$ è un parametro reale. Determinare per quali valori di $k$ la matrice $A$ è invertibile».
+
+**In pratica chiede:** la matrice contiene una lettera, $k$. Per quali numeri messi al posto di $k$ il determinante non è zero?
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: che cosa calcolare.** Per la Proposizione 10.8, $A$ è invertibile esattamente quando il determinante non è zero. Calcolo il determinante, con $k$ dentro.
+>
+> **Passo 2: Laplace lungo la prima riga**, che ha uno zero in fondo (segni $+, -, +$):
+> $$\det A = 1 \cdot \det \begin{pmatrix} k + 1 & k \\ k & 1 \end{pmatrix} - k^2 \cdot \det \begin{pmatrix} k & k \\ 0 & 1 \end{pmatrix} + 0.$$
+>
+> **Passo 3: i due determinanti $2 \times 2$.** Il primo è $(k + 1) \cdot 1 - k \cdot k = k + 1 - k^2$. Il secondo è $k \cdot 1 - k \cdot 0 = k$.
+>
+> **Passo 4: metto insieme.** $\det A = (k + 1 - k^2) - k^2 \cdot k = -k^3 - k^2 + k + 1$.
+>
+> **Passo 5: scompongo.** Raccolgo a coppie: $-k^2(k + 1) + (k + 1) = (k + 1)(1 - k^2)$. E $1 - k^2 = (1 - k)(1 + k)$. Quindi
+> $$\det A = (k + 1)(1 - k)(1 + k) = -(k - 1)(k + 1)^2.$$
+>
+> **Passo 6: quando fa zero?** Un prodotto fa zero quando uno dei fattori fa zero: $k = 1$ oppure $k = -1$.
+>
+> **La risposta:** $A$ è invertibile per tutti i valori di $k$ **tranne** $k = 1$ e $k = -1$.
+>
+> **Controllo con $k = 1$.** La matrice diventa $\begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{pmatrix}$, e la seconda riga è la somma delle altre due: un doppione, quindi determinante zero.
+
+### Altre due domande vere
 
 > [!ESAME] Appello del 06/09/2024, domanda 7
-> Sia $A$ una matrice quadrata che, ridotta a scalini tramite l'algoritmo di Gauss, diventa $\begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 3 \\ 0 & 0 & 1 \end{pmatrix}$. Quale delle seguenti **non** è necessariamente verificata? (a) $\det A = 2$; (b) $\dim \Ker A = 0$; (c) $A$ è invertibile; (d) per ogni $b \in \R^3$ il sistema $Ax = b$ ammette un'unica soluzione; (e) $\mathrm{rank}(A) = 3$.
+> **Testo.** «Sia $A$ una matrice quadrata che, ridotta a scalini tramite l'algoritmo di Gauss, diventa $\begin{pmatrix} 1 & 1 & 1 \\ 0 & 2 & 3 \\ 0 & 0 & 1 \end{pmatrix}$. Quale delle seguenti **non** è necessariamente verificata? (a) $\det A = 2$; (b) $\dim \Ker A = 0$; (c) $A$ è invertibile; (d) per ogni $b \in \R^3$ il sistema $Ax = b$ ammette un'unica soluzione; (e) $\mathrm{rank}(A) = 3$».
 >
-> **Soluzione.** La matrice a scalini ha determinante $1 \cdot 2 \cdot 1 = 2$. Ma l'algoritmo di Gauss può usare scambi (che cambiano il segno) e moltiplicazioni di righe per $\lambda \neq 0$ (che moltiplicano il determinante per $\lambda$): se si sono usati $s$ scambi e moltiplicazioni per $\lambda_1, \dots, \lambda_t$, allora $2 = (-1)^s \lambda_1 \cdots \lambda_t \det A$, cioè $\det A = \frac{\pm 2}{\lambda_1 \cdots \lambda_t}$. Non è necessariamente $2$: risposta **(a)**. Quello che resta vero è che $\det A \neq 0$, perché ogni mossa moltiplica il determinante per un numero diverso da zero. Quindi $A$ è invertibile (c), ha rango 3 (e), e le affermazioni (b) e (d), che vedrai nelle lezioni L11–L16, sono conseguenze dell'invertibilità.
+> **Soluzione.** È la (a).
+> 1. La matrice a scalini ha determinante $1 \cdot 2 \cdot 1 = 2$.
+> 2. Ma l'algoritmo di Gauss può usare scambi, che cambiano il segno, e righe moltiplicate per un numero, che moltiplicano il determinante. Quindi il determinante di $A$ può essere diverso da 2.
+> 3. Quello che resta vero: ogni mossa moltiplica il determinante per un numero **diverso da zero**. Quindi il determinante di $A$ non è zero.
+> 4. Allora $A$ è invertibile (c) e ha rango 3 (e). Le affermazioni (b) e (d), che vedrai nelle lezioni L11–L16, sono conseguenze dell'invertibilità.
 
 > [!ESAME] Appello del 03/07/2026, domanda 6
 > Sia $A \in M(3, \R)$ la matrice $A = \begin{pmatrix} 1 & 0 & 2 \\ 3 & -1 & 1 \\ 2 & 0 & 5 \end{pmatrix}$. Il determinante di $A^3$ è: (a) $-8$; (b) $-1$; (c) $0$; (d) $1$; (e) $8$.
 >
-> **Soluzione.** Non si calcola $A^3$. Per Binet $\det(A^3) = (\det A)^3$. La seconda colonna ha un solo numero non nullo, $-1$ in posizione $(2, 2)$, con segno $+$: sviluppando lungo la seconda colonna,
-> $$\det A = -1 \cdot \det \begin{pmatrix} 1 & 2 \\ 2 & 5 \end{pmatrix} = -(5 - 4) = -1.$$
-> Quindi $\det(A^3) = (-1)^3 = -1$: risposta **(b)**. Le risposte $\pm 8$ sono per chi confonde con $\det(2A)$ o sbaglia il segno.
-
-> [!ESAME] Appello del 15/01/2026, problema 11, punto (1)
-> Si consideri la matrice $A = \begin{pmatrix} 1 & k^2 & 0 \\ k & k + 1 & k \\ 0 & k & 1 \end{pmatrix}$ in $M(3, \R)$, dove $k$ è un parametro reale. Determinare per quali valori di $k$ la matrice $A$ è invertibile.
+> **Soluzione.** È la (b).
+> 1. Non si calcola $A^3$: per Binet il suo determinante è il cubo del determinante di $A$.
+> 2. La seconda colonna ha un solo numero diverso da zero: il $-1$ nella casella $(2, 2)$, segno più. Sviluppo lungo la seconda colonna:
+>    $$\det A = -1 \cdot \det \begin{pmatrix} 1 & 2 \\ 2 & 5 \end{pmatrix} = -(5 - 4) = -1.$$
+> 3. Il cubo: $(-1)^3 = -1$.
 >
-> **Soluzione.** $A$ è invertibile se e solo se $\det A \neq 0$ (Proposizione 10.8). Sviluppo lungo la prima riga, dove $a_{13} = 0$:
-> $$\det A = 1 \cdot \det \begin{pmatrix} k + 1 & k \\ k & 1 \end{pmatrix} - k^2 \det \begin{pmatrix} k & k \\ 0 & 1 \end{pmatrix}$$
-> $$= (k + 1 - k^2) - k^2 \cdot k = -k^3 - k^2 + k + 1.$$
-> Raccolgo per scomporre: $-k^3 - k^2 + k + 1 = -k^2(k + 1) + (k + 1) = (k + 1)(1 - k^2) = (k + 1)(1 - k)(1 + k)$, cioè
-> $$\det A = -(k - 1)(k + 1)^2.$$
-> Si annulla solo per $k = 1$ e $k = -1$. **$A$ è invertibile se e solo se $k \neq 1$ e $k \neq -1$.** Controllo con $k = 1$: $A = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{pmatrix}$ e la seconda riga è la somma delle altre due, quindi il determinante è $0$ ✓.
+> Le risposte $\pm 8$ sono per chi confonde con il determinante di $2A$ o sbaglia il segno.
 
-**Il metodo per «per quali $k$ è invertibile».**
+> [!METODO] «Per quali $k$ la matrice è invertibile?»
+> 1. Scrivi il determinante con $k$ dentro: Laplace lungo la riga o la colonna con più zeri, oppure prima qualche mossa del terzo tipo per creare zeri (non cambia il determinante).
+> 2. **Scomponi** il polinomio in $k$: raccogli i fattori comuni, prova i valori facili ($k = 0$, $1$, $-1$, $2$, $-2$) e dividi con Ruffini (lezione L04).
+> 3. Rispondi così: «$A$ è invertibile per tutti i $k$ tranne…». I valori esclusi sono quelli che poi, nel resto del problema, vanno studiati a parte.
 
-1. Scrivi $\det A$ in funzione di $k$: Laplace lungo la riga o colonna con più zeri, oppure prima qualche mossa del terzo tipo per creare zeri (non cambia il determinante).
-2. **Scomponi** il polinomio in $k$: raccogli fattori comuni, cerca radici semplici ($k = 0, \pm 1, \pm 2$) e dividi con Ruffini (lezione L04).
-3. Scrivi la risposta nella forma «$A$ è invertibile se e solo se $k \neq \dots$». I valori esclusi sono quelli che poi, nel resto del problema, vanno studiati a parte (rango, soluzioni, autovalori).
+> [!METODO] Il determinante di potenze, inverse e multipli
+> Calcola solo il determinante di $A$, poi combina le regole:
+> - potenze: $\det(A^k) = (\det A)^k$;
+> - inversa: $\det(A^{-1}) = \frac 1{\det A}$;
+> - multiplo di una $n \times n$: $\det(cA) = c^n \det A$ (lezione L09);
+> - trasposta: $\det({}^tA) = \det A$.
+>
+> Per esempio, se $A$ è $3 \times 3$ con determinante 4: $\det(2A^{-1}) = 2^3 \cdot \frac 14 = 2$.
 
-**Il metodo per $\det(A^n)$, $\det(2A^{-1})$ e simili.** Calcola solo $\det A$ e poi combina: $\det(A^n) = (\det A)^n$, $\det(A^{-1}) = \frac 1{\det A}$, $\det(cA) = c^n \det A$ (lezione L09), $\det({}^tA) = \det A$. Per esempio, se $A$ è $3 \times 3$ con $\det A = 4$: $\det(2A^{-1}) = 2^3 \cdot \frac 14 = 2$.
+**Errori da evitare.**
 
-Errori da evitare:
-
-- scrivere $\det(A^3) = 3\det A$;
-- credere che la matrice a scalini abbia lo stesso determinante della matrice di partenza;
-- applicare Binet a matrici non quadrate;
-- dimenticare la trasposizione nella formula dell'inversa, o i segni dei cofattori;
-- dichiarare «invertibile per ogni $k$» senza aver scomposto il determinante.
+- Scrivere che il determinante di $A^3$ è 3 volte quello di $A$: è il cubo.
+- Credere che la matrice a scalini abbia lo stesso determinante della matrice di partenza.
+- Usare Binet con matrici non quadrate.
+- Dimenticare la trasposizione nella formula dell'inversa, o i segni dei cofattori.
+- Rispondere «invertibile per ogni $k$» senza aver scomposto il determinante.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: la tabella delle tre mosse e del loro effetto sul determinante; due righe proporzionali $\Rightarrow \det = 0$; Binet $\det(AB) = \det A \det B$, $\det(A^n) = (\det A)^n$, $\det(A^{-1}) = 1/\det A$; $\mathrm{cof}_{ij} = (-1)^{i+j}\det C_{ij}$; $A^{-1} = \frac 1{\det A}\,{}^t(\mathrm{cof}(A))$; la formula dell'inversa $2 \times 2$; «invertibile $\iff \det \neq 0 \iff \rk = n$».
+> Da questa lezione: la tabella delle tre mosse e del loro effetto sul determinante; due righe proporzionali: determinante zero; Binet $\det(AB) = \det A \det B$, $\det(A^k) = (\det A)^k$, $\det(A^{-1}) = 1/\det A$; $\mathrm{cof}_{ij} = (-1)^{i+j}\det C_{ij}$; $A^{-1} = \frac 1{\det A}\,{}^t(\mathrm{cof}(A))$; la formula dell'inversa $2 \times 2$; «invertibile, determinante diverso da zero e rango $n$ sono la stessa cosa».
 
 ## Quiz
 
@@ -27933,7 +28587,7 @@ D: Sia $A$ una matrice quadrata che, ridotta a scalini con l'algoritmo di Gauss,
 - $A$ è invertibile.
 - $\rk A = 3$.
 - Le righe di $A$ sono linearmente indipendenti.
-= Le mosse di tipo (I) e (II) cambiano il determinante (segno, fattore $\lambda \neq 0$), quindi $\det A$ può essere diverso da $2 \cdot 1 \cdot 3 = 6$. Ma ogni mossa moltiplica il determinante per un numero non nullo: $\det A \neq 0$, quindi $A$ è invertibile, ha rango 3 e righe indipendenti. Simile all'appello del 06/09/2024, domanda 7.
+= Gli scambi di righe cambiano il segno del determinante, e le righe moltiplicate per un numero lo moltiplicano: quindi il determinante di $A$ può essere diverso da $2 \cdot 1 \cdot 3 = 6$. Ogni mossa però moltiplica il determinante per un numero diverso da zero, e la matrice a scalini ha determinante 6, non zero. Quindi il determinante di $A$ non è zero, e le altre quattro affermazioni sono vere: $A$ è invertibile, ha rango 3 e righe indipendenti. Simile all'appello del 06/09/2024, domanda 7.
 
 D: Sia $A = \begin{pmatrix} 1 & 0 & 2 \\ 2 & -2 & 1 \\ 1 & 0 & 3 \end{pmatrix}$. Il determinante di $A^3$ è:
 + $-8$
@@ -27941,7 +28595,7 @@ D: Sia $A = \begin{pmatrix} 1 & 0 & 2 \\ 2 & -2 & 1 \\ 1 & 0 & 3 \end{pmatrix}$.
 - $-6$
 - $-2$
 - $64$
-= Lungo la seconda colonna: $\det A = (-2) \cdot (+1) \cdot \det \begin{pmatrix} 1 & 2 \\ 1 & 3 \end{pmatrix} = -2 \cdot 1 = -2$. Per Binet $\det(A^3) = (-2)^3 = -8$. $-6 = 3\det A$ è l'errore classico. Simile agli appelli del 03/07/2026 (domanda 6), del 05/02/2026 (domanda 5) e del 07/02/2025 (domanda 5).
+= Si sviluppa lungo la seconda colonna, che ha solo il $-2$ nella casella $(2, 2)$, segno più: $\det A = -2 \cdot \det \begin{pmatrix} 1 & 2 \\ 1 & 3 \end{pmatrix} = -2 \cdot 1 = -2$. Per Binet il determinante del cubo è $(-2)^3 = -8$. La risposta più insidiosa è $-6$: è 3 volte il determinante, l'errore di chi moltiplica invece di elevare al cubo. $-2$ dimentica la potenza, $8$ sbaglia il segno. Simile agli appelli del 03/07/2026 (domanda 6), del 05/02/2026 (domanda 5) e del 07/02/2025 (domanda 5).
 
 D: Siano $A = \begin{pmatrix} 2 & 5 & -1 \\ 0 & 1 & 3 \\ 0 & 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 0 & 0 \\ 4 & 3 & 0 \\ 7 & -2 & 1 \end{pmatrix}$. Quanto vale $\det(AB)$?
 + $6$
@@ -27949,7 +28603,7 @@ D: Siano $A = \begin{pmatrix} 2 & 5 & -1 \\ 0 & 1 & 3 \\ 0 & 0 & 1 \end{pmatrix}
 - $1$
 - $36$
 - $0$
-= $A$ è triangolare superiore con diagonale $2, 1, 1$: $\det A = 2$. $B$ è triangolare inferiore con diagonale $1, 3, 1$: $\det B = 3$. Per Binet $\det(AB) = 2 \cdot 3 = 6$, senza calcolare il prodotto. $5$ è la somma dei determinanti. Simile all'appello del 16/01/2025, domanda 3.
+= $A$ è triangolare superiore con diagonale 2, 1, 1: determinante 2. $B$ è triangolare inferiore con diagonale 1, 3, 1: determinante 3. Per Binet il determinante del prodotto è $2 \cdot 3 = 6$, senza calcolare il prodotto. La risposta più insidiosa è 5, la somma dei due determinanti invece del prodotto. Simile all'appello del 16/01/2025, domanda 3.
 
 D: Sia $A$ una matrice $3 \times 3$ con $\det A = 4$. Quanto vale $\det(2A^{-1})$?
 + $2$
@@ -27957,7 +28611,7 @@ D: Sia $A$ una matrice $3 \times 3$ con $\det A = 4$. Quanto vale $\det(2A^{-1})
 - $8$
 - $\frac 18$
 - $32$
-= $\det(2A^{-1}) = 2^3 \det(A^{-1}) = 8 \cdot \frac 14 = 2$ (Corollario 9.12 e Corollario 10.5). $\frac 12 = 2 \cdot \frac 14$ dimentica che il fattore 2 moltiplica tutte e tre le righe.
+= Il determinante dell'inversa è $\frac 14$ (Corollario 10.5). Moltiplicare tutta la matrice $3 \times 3$ per 2 moltiplica il determinante per $2^3 = 8$ (Corollario 9.12). In tutto $8 \cdot \frac 14 = 2$. La risposta più insidiosa è $\frac 12$, cioè $2 \cdot \frac 14$: dimentica che il 2 moltiplica tutte e tre le righe. $32 = 8 \cdot 4$ dimentica l'inversa.
 
 D: L'inversa di $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}$ è:
 + $\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}$
@@ -27965,7 +28619,7 @@ D: L'inversa di $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}$ è:
 - $\begin{pmatrix} -2 & 1 \\ 5 & -3 \end{pmatrix}$
 - $\begin{pmatrix} 1/3 & 1 \\ 1/5 & 1/2 \end{pmatrix}$
 - $\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$
-= Il determinante è $6 - 5 = 1$. Si scambiano i numeri della diagonale, si cambia segno agli altri due e si divide per 1. Tra le risposte sbagliate: $\begin{pmatrix} 2 & -5 \\ -1 & 3 \end{pmatrix}$ è la matrice dei cofattori non trasposta, quella con $\frac 13$ e $\frac 15$ inverte casella per casella, $\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$ non scambia la diagonale. Controllo: $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix} = I_2$.
+= Il determinante è $6 - 5 = 1$. Si scambiano i numeri della diagonale, si cambia segno agli altri due e si divide per 1. Le risposte sbagliate: $\begin{pmatrix} 2 & -5 \\ -1 & 3 \end{pmatrix}$ è la matrice dei cofattori non trasposta, la più insidiosa; quella con $\frac 13$ e $\frac 15$ inverte casella per casella; $\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$ non scambia la diagonale; $\begin{pmatrix} -2 & 1 \\ 5 & -3 \end{pmatrix}$ ha tutti i segni girati. Controllo: $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix} = I_2$.
 
 D: Per quali $k \in \R$ la matrice $A = \begin{pmatrix} 1 & 0 & k \\ 0 & k & 1 \\ k & 1 & 0 \end{pmatrix}$ è invertibile?
 + Per ogni $k \neq -1$.
@@ -27973,7 +28627,7 @@ D: Per quali $k \in \R$ la matrice $A = \begin{pmatrix} 1 & 0 & k \\ 0 & k & 1 \
 - Per ogni $k \neq 0$ e $k \neq \pm 1$.
 - Per nessun $k$.
 - Per ogni $k \in \R$.
-= Lungo la prima riga: $\det A = 1 \cdot (0 - 1) - 0 + k \cdot (0 - k^2) = -1 - k^3 = -(k + 1)(k^2 - k + 1)$. Il fattore $k^2 - k + 1$ non ha radici reali (discriminante $1 - 4 < 0$), quindi $\det A = 0$ solo per $k = -1$. Simile ai problemi 11 degli appelli del 07/02/2025 e del 03/07/2026.
+= Lungo la prima riga: $\det A = 1 \cdot (0 - 1) - 0 + k \cdot (0 - k^2) = -1 - k^3$. Si scompone come $-(k + 1)(k^2 - k + 1)$, e il secondo fattore non fa mai zero tra i reali (il discriminante è $1 - 4$, negativo). Quindi il determinante fa zero solo per $k = -1$. La risposta più insidiosa è «per ogni $k$ diverso da 1»: chi sbaglia un segno trova $1 - k^3$ e quindi $k = 1$. Con $k = 0$ la matrice è invertibile, determinante $-1$. Simile ai problemi 11 degli appelli del 07/02/2025 e del 03/07/2026.
 
 D: Sia $A$ una matrice $3 \times 3$ con $\det A = 5$. Si scambiano la prima e la terza riga, poi si fa $R_2 \to R_2 - 4R_1$, poi $R_3 \to 2R_3$. Quanto vale il determinante della matrice ottenuta?
 + $-10$
@@ -27981,7 +28635,7 @@ D: Sia $A$ una matrice $3 \times 3$ con $\det A = 5$. Si scambiano la prima e la
 - $-5$
 - $5$
 - $-40$
-= Scambio: $-5$. Mossa del terzo tipo: resta $-5$. Terza riga per 2: $-10$ (Proposizione 10.1).
+= Si segue l'effetto di ogni mossa (Proposizione 10.1). Lo scambio cambia il segno: $-5$. Togliere un multiplo di un'altra riga non cambia niente: resta $-5$. La terza riga per 2 raddoppia: $-10$. La risposta più insidiosa è $-40$: è di chi pensa che anche $R_2 \to R_2 - 4R_1$ moltiplichi per 4. 10 dimentica lo scambio.
 
 D: Quale di queste affermazioni vale per tutte le matrici $A, B \in M(n)$?
 + $\det(AB) = \det(BA)$.
@@ -27989,7 +28643,7 @@ D: Quale di queste affermazioni vale per tutte le matrici $A, B \in M(n)$?
 - $\det(A + B) = \det A + \det B$.
 - $\det(2A) = 2\det A$.
 - Se $A$ e $B$ sono invertibili, $(AB)^{-1} = A^{-1}B^{-1}$.
-= Per Binet $\det(AB) = \det A \det B = \det B \det A = \det(BA)$, anche se $AB \neq BA$. Il determinante non è additivo, $\det(2A) = 2^n\det A$, e l'inversa di un prodotto è $B^{-1}A^{-1}$.
+= Per Binet $\det(AB) = \det A \cdot \det B = \det B \cdot \det A = \det(BA)$, anche se le due matrici $AB$ e $BA$ sono di solito diverse. Per questo la risposta più insidiosa è $AB = BA$: vale per i determinanti, non per le matrici. Le altre sono false: il determinante non si spezza sulle somme, $\det(2A) = 2^n \det A$, e l'inversa di un prodotto è $B^{-1}A^{-1}$, con l'ordine rovesciato.
 
 D: Data $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$, il determinante di $A \cdot {}^tA$ è:
 + $0$
@@ -27997,39 +28651,90 @@ D: Data $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$, il determin
 - Non si può calcolare, poiché $A$ non è quadrata.
 - $36$
 - $1$
-= $A\,{}^tA$ è $3 \times 3$, quindi il determinante esiste. Le sue colonne sono combinazioni lineari delle due colonne di $A$ (ogni colonna di $A\,{}^tA$ è $A$ per un vettore), quindi il suo rango è al più 2 e le colonne sono dipendenti: $\det = 0$ (Proposizione 10.3). $6$ è $\det({}^tA\,A)$, il prodotto nell'altro ordine. Simile all'appello del 03/06/2025, domanda 9.
+= Il prodotto $A\,{}^tA$ è $3 \times 3$, quindi il suo determinante esiste, anche se $A$ non è quadrata: per questo «non si può calcolare» è la risposta più insidiosa. Ogni colonna di $A\,{}^tA$ è $A$ per un vettore, cioè una ricetta con le due colonne di $A$. Quindi tre colonne vivono in un piano: sono dipendenti, e il determinante è 0 (Proposizione 10.3). Il 6 è il determinante di ${}^tA\,A$, il prodotto nell'altro ordine, che è $2 \times 2$. Simile all'appello del 03/06/2025, domanda 9.
 
 D: Sia $A = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix}$. Quanto vale l'elemento di posto $(1, 3)$ di $A^{-1}$? Scrivi una frazione.
 N: 1/3
-= $\det A = 2 \cdot 1 - 1 \cdot (0 - 1) + 0 = 3$. Per la Proposizione 10.8, $(A^{-1})_{13} = \frac{\mathrm{cof}_{31}}{\det A}$: attenzione agli indici scambiati dalla trasposizione. $\mathrm{cof}_{31} = +\det \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix} = 1$, quindi $(A^{-1})_{13} = \frac 13$. Chi usa $\mathrm{cof}_{13} = -1$ trova $-\frac 13$, che è invece l'elemento $(3, 1)$.
+= Il determinante, lungo la prima riga, è $2 \cdot 1 - 1 \cdot (0 - 1) + 0 = 3$. Nella formula dell'inversa c'è la trasposta dei cofattori: nella casella $(1, 3)$ dell'inversa va il cofattore $\mathrm{cof}_{31}$, con gli indici scambiati. $\mathrm{cof}_{31} = +\det \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix} = 1$, quindi la risposta è $\frac 13$. Chi dimentica la trasposizione usa $\mathrm{cof}_{13} = -1$ e trova $-\frac 13$, che è invece il numero nella casella $(3, 1)$.
 ```
 
 ## Esercizi
+
+::: esercizio base Riscaldamento: tre mosse su una $2 \times 2$
+La matrice $\begin{pmatrix} 2 & 1 \\ 4 & 3 \end{pmatrix}$ ha determinante 2. Senza fare il conto, quanto vale il determinante dopo ciascuna mossa? (a) Scambio le due righe. (b) Moltiplico la prima riga per 3. (c) Tolgo dalla seconda riga il doppio della prima. Poi controlla la (c) con il conto.
+::: soluzione
+1. (a) Scambio: cambia segno, $-2$.
+2. (b) Una riga per 3: $3 \cdot 2 = 6$.
+3. (c) Una riga meno un multiplo di un'altra: resta 2.
+
+Controllo della (c): la seconda riga diventa $(4 - 4,\ 3 - 2) = (0, 1)$. La matrice $\begin{pmatrix} 2 & 1 \\ 0 & 1 \end{pmatrix}$ è triangolare, con determinante $2 \cdot 1 = 2$.
+:::
+
+::: esercizio base Riscaldamento: l'inversa di una $2 \times 2$
+Trova l'inversa di $\begin{pmatrix} 4 & 3 \\ 1 & 1 \end{pmatrix}$ e controlla il risultato.
+::: soluzione
+1. Determinante: $4 \cdot 1 - 3 \cdot 1 = 1$. Non è zero: c'è l'inversa.
+2. Scambio la diagonale (4 e 1) e cambio segno agli altri due: $\begin{pmatrix} 1 & -3 \\ -1 & 4 \end{pmatrix}$.
+3. Divido per il determinante, 1: resta uguale.
+
+Controllo: $\begin{pmatrix} 4 & 3 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & -3 \\ -1 & 4 \end{pmatrix} = \begin{pmatrix} 4 - 3 & -12 + 12 \\ 1 - 1 & -3 + 4 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$.
+:::
+
+::: esercizio base Riscaldamento: Binet
+Due matrici $3 \times 3$ hanno determinanti $\det A = 3$ e $\det B = -2$. Calcola il determinante di $AB$, di $A^2$ e di $A^{-1}$.
+::: soluzione
+1. $\det(AB) = 3 \cdot (-2) = -6$.
+2. $\det(A^2) = 3^2 = 9$.
+3. $\det(A^{-1}) = \frac 13$.
+:::
+
+::: esercizio base Riscaldamento: invertibile o no?
+Quali di queste matrici sono invertibili? $\begin{pmatrix} 2 & 4 \\ 1 & 2 \end{pmatrix}$, $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$.
+::: soluzione
+1. $2 \cdot 2 - 4 \cdot 1 = 0$: **non** invertibile. Infatti la prima riga è il doppio della seconda.
+2. $4 - 6 = -2$: invertibile.
+3. $0 - 1 = -1$: invertibile. Questa matrice scambia le due coordinate, e scambiandole di nuovo si torna indietro: è l'inversa di sé stessa.
+:::
+
+::: esercizio base Determinanti con le mosse di Gauss
+Calcola con le mosse di Gauss: (a) $\det \begin{pmatrix} 0 & 2 & 1 \\ 1 & 1 & 1 \\ 2 & 4 & 5 \end{pmatrix}$; (b) $\det \begin{pmatrix} 1 & 2 & 1 & 0 \\ 2 & 5 & 3 & 1 \\ 1 & 2 & 2 & 1 \\ 0 & 1 & 1 & 3 \end{pmatrix}$.
+::: soluzione
+(a) È la matrice $B$ della sezione sul metodo. Uno scambio $R_1 \leftrightarrow R_2$, poi $R_3 \to R_3 - 2R_1$ e $R_3 \to R_3 - R_2$ portano a una triangolare con diagonale 1, 2, 2. Determinante: $-(1 \cdot 2 \cdot 2) = -4$, con il meno per lo scambio.
+
+(b) Solo mosse del terzo tipo, che non cambiano il determinante:
+$$\xrightarrow{\substack{R_2 \to R_2 - 2R_1 \\ R_3 \to R_3 - R_1}} \begin{pmatrix} 1 & 2 & 1 & 0 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 0 & 1 & 1 & 3 \end{pmatrix} \xrightarrow{R_4 \to R_4 - R_2} \begin{pmatrix} 1 & 2 & 1 & 0 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 2 \end{pmatrix}.$$
+Triangolare con diagonale 1, 1, 1, 2: il determinante è 2.
+:::
+
+::: esercizio base Determinanti nulli senza conti
+Spiega perché queste matrici hanno determinante nullo, senza calcolarlo:
+$$A = \begin{pmatrix} 3 & 1 & 4 \\ 1 & 5 & 9 \\ 3 & 1 & 4 \end{pmatrix}, \quad B = \begin{pmatrix} 2 & -6 & 1 \\ 1 & -3 & 7 \\ 0 & 0 & 2 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 0 & 1 \\ 2 & 1 & 3 \\ 3 & 1 & 4 \end{pmatrix}.$$
+::: soluzione
+- $A$: la prima e la terza riga sono uguali. La prima è un doppione della terza, quindi il determinante è zero (Proposizione 10.3). Oppure: $R_3 \to R_3 - R_1$ crea una riga di zeri senza cambiare il determinante.
+- $B$: la seconda colonna è $-3$ volte la prima, perché $(-6, -3, 0) = -3 \cdot (2, 1, 0)$. Una colonna doppione: determinante zero.
+- $C$: la terza riga è la somma delle prime due, $(1 + 2,\ 0 + 1,\ 1 + 3) = (3, 1, 4)$. Quindi il determinante è zero. Qui anche la terza colonna è la somma delle prime due. In generale, se le righe di una matrice quadrata sono dipendenti lo sono anche le colonne, perché rango per righe e rango per colonne coincidono (Proposizione 8.6). La ricetta tra le colonne però può avere dosi diverse.
+:::
 
 ::: esercizio medio Esercizio 10.9 delle dispense: un'inversa con parametro
 Determinare per quali valori del parametro $k \in \R$ la matrice $A = \begin{pmatrix} k - 5 & 3 \\ -2 & k \end{pmatrix}$ è invertibile. Per ogni $k$ per cui la matrice risulta invertibile, trovare la matrice inversa.
 ::: soluzione
 **Determinante.** $\det A = (k - 5) \cdot k - 3 \cdot (-2) = k^2 - 5k + 6$. È un polinomio di secondo grado con radici $k = \frac{5 \pm \sqrt{25 - 24}}2 = \frac{5 \pm 1}2$, cioè $k = 3$ e $k = 2$:
 $$\det A = (k - 2)(k - 3).$$
-**Invertibilità.** Per la Proposizione 10.8, $A$ è invertibile se e solo se $\det A \neq 0$, cioè **per $k \neq 2$ e $k \neq 3$**.
+**Invertibilità.** Per la Proposizione 10.8, $A$ è invertibile quando il determinante non è zero: **per tutti i $k$ tranne 2 e 3**.
 
-**Inversa.** Con la formula delle $2 \times 2$ (scambio la diagonale, cambio segno agli altri due, divido per il determinante):
+**Inversa.** Con la regola delle $2 \times 2$: scambio la diagonale, cambio segno agli altri due, divido per il determinante.
 $$A^{-1} = \frac 1{(k - 2)(k - 3)} \begin{pmatrix} k & -3 \\ 2 & k - 5 \end{pmatrix}.$$
 **Controllo:**
-$$\begin{pmatrix} k - 5 & 3 \\ -2 & k \end{pmatrix} \begin{pmatrix} k & -3 \\ 2 & k - 5 \end{pmatrix} = \begin{pmatrix} k^2 - 5k + 6 & -3(k - 5) + 3(k - 5) \\ -2k + 2k & 6 + k^2 - 5k \end{pmatrix}$$
-
-$$= (k^2 - 5k + 6)\, I_2,$$
-e dividendo per $(k - 2)(k - 3) = k^2 - 5k + 6$ si ottiene $I_2$ ✓. Per esempio con $k = 0$: $A = \begin{pmatrix} -5 & 3 \\ -2 & 0 \end{pmatrix}$ e $A^{-1} = \frac 16 \begin{pmatrix} 0 & -3 \\ 2 & -5 \end{pmatrix}$.
+$$\begin{pmatrix} k - 5 & 3 \\ -2 & k \end{pmatrix} \begin{pmatrix} k & -3 \\ 2 & k - 5 \end{pmatrix} = \begin{pmatrix} k^2 - 5k + 6 & -3(k - 5) + 3(k - 5) \\ -2k + 2k & 6 + k^2 - 5k \end{pmatrix} = (k^2 - 5k + 6)\, I_2,$$
+e dividendo per $(k - 2)(k - 3) = k^2 - 5k + 6$ si ottiene l'identità. Per esempio con $k = 0$: $A = \begin{pmatrix} -5 & 3 \\ -2 & 0 \end{pmatrix}$ e $A^{-1} = \frac 16 \begin{pmatrix} 0 & -3 \\ 2 & -5 \end{pmatrix}$.
 :::
 
 ::: esercizio medio Esercizio 10.10 delle dispense: una $3 \times 3$ intera
 Dimostrare che la matrice $B = \begin{pmatrix} 2 & -1 & 0 \\ -2 & 1 & 1 \\ 1 & -1 & 3 \end{pmatrix}$ è invertibile e calcolarne l'inversa.
 ::: soluzione
-**Invertibilità.** Lungo la prima riga (segni $+, -, +$, e $b_{13} = 0$):
-$$\det B = 2 \det \begin{pmatrix} 1 & 1 \\ -1 & 3 \end{pmatrix} - (-1) \det \begin{pmatrix} -2 & 1 \\ 1 & 3 \end{pmatrix} + 0$$
-
-$$= 2 \cdot (3 + 1) + (-6 - 1) = 8 - 7 = 1.$$
-$\det B = 1 \neq 0$: $B$ è invertibile, e $B^{-1} = {}^t(\mathrm{cof}(B))$ (si divide per 1).
+**Invertibilità.** Lungo la prima riga (segni $+, -, +$, e l'ultimo numero è 0):
+$$\det B = 2 \det \begin{pmatrix} 1 & 1 \\ -1 & 3 \end{pmatrix} - (-1) \det \begin{pmatrix} -2 & 1 \\ 1 & 3 \end{pmatrix} + 0 = 2 \cdot (3 + 1) + (-6 - 1) = 8 - 7 = 1.$$
+Il determinante è 1, non zero: $B$ è invertibile, e l'inversa è la trasposta dei cofattori (si divide per 1).
 
 **I nove cofattori.**
 
@@ -28039,49 +28744,30 @@ $\det B = 1 \neq 0$: $B$ è invertibile, e $B^{-1} = {}^t(\mathrm{cof}(B))$ (si 
 | riga 2 | $-\det \begin{pmatrix} -1 & 0 \\ -1 & 3 \end{pmatrix} = 3$ | $+\det \begin{pmatrix} 2 & 0 \\ 1 & 3 \end{pmatrix} = 6$ | $-\det \begin{pmatrix} 2 & -1 \\ 1 & -1 \end{pmatrix} = 1$ |
 | riga 3 | $+\det \begin{pmatrix} -1 & 0 \\ 1 & 1 \end{pmatrix} = -1$ | $-\det \begin{pmatrix} 2 & 0 \\ -2 & 1 \end{pmatrix} = -2$ | $+\det \begin{pmatrix} 2 & -1 \\ -2 & 1 \end{pmatrix} = 0$ |
 
-Per esempio $\mathrm{cof}_{12}$: cancello riga 1 e colonna 2, resta $\begin{pmatrix} -2 & 1 \\ 1 & 3 \end{pmatrix}$ con determinante $-6 - 1 = -7$; il segno in posizione $(1, 2)$ è $-$, quindi $\mathrm{cof}_{12} = 7$.
+Per esempio $\mathrm{cof}_{12}$: tolgo la riga 1 e la colonna 2, resta $\begin{pmatrix} -2 & 1 \\ 1 & 3 \end{pmatrix}$ con determinante $-6 - 1 = -7$. Il segno della casella $(1, 2)$ è meno, quindi $\mathrm{cof}_{12} = 7$.
 
 **Trasposta.**
-$$\mathrm{cof}(B) = \begin{pmatrix} 4 & 7 & 1 \\ 3 & 6 & 1 \\ -1 & -2 & 0 \end{pmatrix} \quad\Longrightarrow\quad B^{-1} = {}^t(\mathrm{cof}(B)) = \begin{pmatrix} 4 & 3 & -1 \\ 7 & 6 & -2 \\ 1 & 1 & 0 \end{pmatrix}.$$
+$$\mathrm{cof}(B) = \begin{pmatrix} 4 & 7 & 1 \\ 3 & 6 & 1 \\ -1 & -2 & 0 \end{pmatrix}, \qquad \text{quindi} \qquad B^{-1} = {}^t(\mathrm{cof}(B)) = \begin{pmatrix} 4 & 3 & -1 \\ 7 & 6 & -2 \\ 1 & 1 & 0 \end{pmatrix}.$$
 
-**Controllo** di $BB^{-1}$ riga per riga:
-- riga $(2, -1, 0)$: $8 - 7 = 1$, $\ 6 - 6 = 0$, $\ -2 + 2 = 0$;
-- riga $(-2, 1, 1)$: $-8 + 7 + 1 = 0$, $\ -6 + 6 + 1 = 1$, $\ 2 - 2 + 0 = 0$;
-- riga $(1, -1, 3)$: $4 - 7 + 3 = 0$, $\ 3 - 6 + 3 = 0$, $\ -1 + 2 + 0 = 1$.
+**Controllo** di $BB^{-1}$, riga per riga:
+- riga $(2, -1, 0)$: $8 - 7 = 1$, poi $6 - 6 = 0$, poi $-2 + 2 = 0$;
+- riga $(-2, 1, 1)$: $-8 + 7 + 1 = 0$, poi $-6 + 6 + 1 = 1$, poi $2 - 2 + 0 = 0$;
+- riga $(1, -1, 3)$: $4 - 7 + 3 = 0$, poi $3 - 6 + 3 = 0$, poi $-1 + 2 + 0 = 1$.
 
-Viene $I_3$ ✓. Poiché $\det B = 1$, l'inversa ha tutti i numeri interi.
+Viene l'identità. Siccome il determinante è 1, l'inversa ha tutti numeri interi.
 :::
 
 ::: esercizio medio Esercizio 10.11 delle dispense: un'inversa complessa
 Si calcoli l'inversa della matrice $C = \begin{pmatrix} 2 - i & 0 \\ 3 & 2 + i \end{pmatrix}$.
 ::: soluzione
-**Determinante.** $C$ è triangolare inferiore: $\det C = (2 - i)(2 + i) = 4 - i^2 = 4 + 1 = 5 \neq 0$. Quindi $C$ è invertibile (la Proposizione 10.8 vale su qualsiasi campo, anche su $\C$).
+**Determinante.** $C$ è triangolare inferiore: $\det C = (2 - i)(2 + i) = 4 - i^2 = 4 + 1 = 5$. Non è zero, quindi $C$ è invertibile. La Proposizione 10.8 vale anche con i numeri complessi.
 
-**Inversa** con la formula delle $2 \times 2$ ($a = 2 - i$, $b = 0$, $c = 3$, $d = 2 + i$):
+**Inversa** con la regola delle $2 \times 2$ ($a = 2 - i$, $b = 0$, $c = 3$, $d = 2 + i$):
 $$C^{-1} = \frac 15 \begin{pmatrix} 2 + i & 0 \\ -3 & 2 - i \end{pmatrix} = \begin{pmatrix} \frac 25 + \frac 15 i & 0 \\ -\frac 35 & \frac 25 - \frac 15 i \end{pmatrix}.$$
 
 **Controllo:**
 $$\begin{pmatrix} 2 - i & 0 \\ 3 & 2 + i \end{pmatrix} \begin{pmatrix} 2 + i & 0 \\ -3 & 2 - i \end{pmatrix} = \begin{pmatrix} (2 - i)(2 + i) & 0 \\ 3(2 + i) - 3(2 + i) & (2 + i)(2 - i) \end{pmatrix} = \begin{pmatrix} 5 & 0 \\ 0 & 5 \end{pmatrix},$$
-e diviso per 5 dà $I_2$ ✓. Nota che l'inversa di una triangolare inferiore è ancora triangolare inferiore, con gli inversi sulla diagonale: $\frac 1{2 - i} = \frac{2 + i}5$.
-:::
-
-::: esercizio base Determinanti con le mosse di Gauss
-Calcola con le mosse di Gauss: (a) $\det \begin{pmatrix} 0 & 2 & 1 \\ 1 & 1 & 1 \\ 2 & 4 & 5 \end{pmatrix}$; (b) $\det \begin{pmatrix} 1 & 2 & 1 & 0 \\ 2 & 5 & 3 & 1 \\ 1 & 2 & 2 & 1 \\ 0 & 1 & 1 & 3 \end{pmatrix}$.
-::: soluzione
-(a) È la matrice $B$ della sezione sul metodo: uno scambio $R_1 \leftrightarrow R_2$, poi $R_3 \to R_3 - 2R_1$ e $R_3 \to R_3 - R_2$ portano a una triangolare con diagonale $1, 2, 2$. Determinante $-(1 \cdot 2 \cdot 2) = -4$.
-
-(b) Solo mosse del terzo tipo, che non cambiano il determinante:
-$$\xrightarrow{\substack{R_2 \to R_2 - 2R_1 \\ R_3 \to R_3 - R_1}} \begin{pmatrix} 1 & 2 & 1 & 0 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 0 & 1 & 1 & 3 \end{pmatrix} \xrightarrow{R_4 \to R_4 - R_2} \begin{pmatrix} 1 & 2 & 1 & 0 \\ 0 & 1 & 1 & 1 \\ 0 & 0 & 1 & 1 \\ 0 & 0 & 0 & 2 \end{pmatrix}.$$
-Triangolare con diagonale $1, 1, 1, 2$: il determinante è $2$.
-:::
-
-::: esercizio base Determinanti nulli senza conti
-Spiega perché queste matrici hanno determinante nullo, senza calcolarlo:
-$$A = \begin{pmatrix} 3 & 1 & 4 \\ 1 & 5 & 9 \\ 3 & 1 & 4 \end{pmatrix}, \quad B = \begin{pmatrix} 2 & -6 & 1 \\ 1 & -3 & 7 \\ 0 & 0 & 2 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 0 & 1 \\ 2 & 1 & 3 \\ 3 & 1 & 4 \end{pmatrix}.$$
-::: soluzione
-- $A$: la prima e la terza riga sono uguali. La prima è combinazione delle altre ($A_1 = 0 \cdot A_2 + 1 \cdot A_3$), quindi $\det A = 0$ (Proposizione 10.3). Oppure: $R_3 \to R_3 - R_1$ crea una riga nulla senza cambiare il determinante.
-- $B$: la seconda colonna è $-3$ volte la prima, ${}^t(-6, -3, 0) = -3 \cdot {}^t(2, 1, 0)$. Una colonna combinazione delle altre: $\det B = 0$.
-- $C$: la terza riga è la somma delle prime due, $(1 + 2, 0 + 1, 1 + 3) = (3, 1, 4)$. Quindi $\det C = 0$. Qui anche la terza colonna è la somma delle prime due. In generale, se le righe di una matrice quadrata sono dipendenti lo sono anche le colonne, perché rango per righe e rango per colonne coincidono (Proposizione 8.6), anche se la relazione tra le colonne può avere coefficienti diversi.
+e diviso per 5 dà l'identità. Nota che l'inversa di una triangolare inferiore è ancora triangolare inferiore, con gli inversi sulla diagonale: $\frac 1{2 - i} = \frac{2 + i}5$.
 :::
 
 ::: esercizio medio Binet e le sue conseguenze
@@ -28093,52 +28779,29 @@ Siano $A, B \in M(3, \R)$ con $\det A = 2$ e $\det B = -3$. Calcola: (a) $\det(A
 
 (c) $\det(A^{-1}) = \frac 12$ (Corollario 10.5).
 
-(d) $\det({}^tA) = 2$ e $\det(B^{-1}) = -\frac 13$, quindi $\det({}^tA\,B^{-1}) = 2 \cdot \left(-\frac 13\right) = -\frac 23$.
+(d) La trasposta ha determinante 2, e $\det(B^{-1}) = -\frac 13$. Quindi $\det({}^tA\,B^{-1}) = 2 \cdot \left(-\frac 13\right) = -\frac 23$.
 
-(e) $3AB$ è $3 \times 3$: $\det(3AB) = 3^3 \det(AB) = 27 \cdot (-6) = -162$.
+(e) $3AB$ è $3 \times 3$, quindi il 3 esce tre volte: $3^3 \det(AB) = 27 \cdot (-6) = -162$.
 
 (f) $\det(B^4) = (-3)^4 = 81$.
-:::
-
-::: esercizio difficile Matrici con $A^2 = A$ e con $A^2 = 0$
-(a) Dimostra che se $A^2 = 0$ allora $A$ non è invertibile, e trova un esempio $2 \times 2$ con $A \neq 0$. (b) Dimostra che se $A^2 = A$ allora $\det A$ vale $0$ oppure $1$. (c) Dimostra che se $A^2 = A$ e $A$ è invertibile, allora $A = I_n$.
-::: soluzione
-(a) Per Binet $(\det A)^2 = \det(A^2) = \det(0) = 0$, quindi $\det A = 0$ e $A$ non è invertibile (Proposizione 10.8). Esempio: $A = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, con $A^2 = \begin{pmatrix} 0 \cdot 0 + 1 \cdot 0 & 0 \cdot 1 + 1 \cdot 0 \\ 0 & 0 \end{pmatrix} = 0$.
-
-(b) $(\det A)^2 = \det(A^2) = \det A$, cioè $\det A(\det A - 1) = 0$: $\det A = 0$ oppure $\det A = 1$.
-
-(c) Moltiplico $A^2 = A$ a sinistra per $A^{-1}$: $A^{-1}(AA) = A^{-1}A$. A sinistra, per l'associatività, $(A^{-1}A)A = I_nA = A$; a destra $I_n$. Quindi $A = I_n$. Esempio di $A^2 = A$ non invertibile: $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$, che ha determinante $0$.
-:::
-
-::: esercizio difficile L'inversa di un prodotto e della trasposta
-Siano $A, B \in M(n)$ invertibili. Dimostra che (a) $AB$ è invertibile e $(AB)^{-1} = B^{-1}A^{-1}$; (b) ${}^tA$ è invertibile e $({}^tA)^{-1} = {}^t(A^{-1})$ (Martelli, Esercizio 3.9).
-::: soluzione
-(a) Basta verificare che $B^{-1}A^{-1}$ funziona da inversa, dai due lati (Martelli, Proposizione 3.4.5):
-$$(AB)(B^{-1}A^{-1}) = A(BB^{-1})A^{-1} = AI_nA^{-1} = AA^{-1} = I_n,$$
-$$(B^{-1}A^{-1})(AB) = B^{-1}(A^{-1}A)B = B^{-1}B = I_n.$$
-Si usa solo l'associatività. Con i determinanti si vede anche che $\det(AB) = \det A \det B \neq 0$.
-
-(b) Uso ${}^t(XY) = {}^tY\,{}^tX$ (Esercizio 8.14):
-$${}^tA\ {}^t(A^{-1}) = {}^t(A^{-1}A) = {}^tI_n = I_n, \qquad {}^t(A^{-1})\ {}^tA = {}^t(AA^{-1}) = {}^tI_n = I_n.$$
-Quindi ${}^t(A^{-1})$ è l'inversa di ${}^tA$.
 :::
 
 ::: esercizio medio La Proposizione 10.7 su un esempio
 Sia $A = \begin{pmatrix} 2 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 3 & 1 \end{pmatrix}$. (a) Calcola $\mathrm{cof}(A)$. (b) Verifica che $A \cdot {}^t(\mathrm{cof}(A)) = \det(A) I_3$. (c) Scrivi $A^{-1}$.
 ::: soluzione
-(a) Cofattore per cofattore (cancello riga $i$ e colonna $j$, poi segno della scacchiera):
-- riga 1: $+\det \begin{pmatrix} 1 & 0 \\ 3 & 1 \end{pmatrix} = 1$, $\ -\det \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = -1$, $\ +\det \begin{pmatrix} 1 & 1 \\ 0 & 3 \end{pmatrix} = 3$;
-- riga 2: $-\det \begin{pmatrix} 0 & 1 \\ 3 & 1 \end{pmatrix} = -(0 - 3) = 3$, $\ +\det \begin{pmatrix} 2 & 1 \\ 0 & 1 \end{pmatrix} = 2$, $\ -\det \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix} = -6$;
-- riga 3: $+\det \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = -1$, $\ -\det \begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix} = -(0 - 1) = 1$, $\ +\det \begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix} = 2$.
+(a) Cofattore per cofattore: tolgo la riga $i$ e la colonna $j$, poi il segno della scacchiera.
+- riga 1: $+\det \begin{pmatrix} 1 & 0 \\ 3 & 1 \end{pmatrix} = 1$, poi $-\det \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = -1$, poi $+\det \begin{pmatrix} 1 & 1 \\ 0 & 3 \end{pmatrix} = 3$;
+- riga 2: $-\det \begin{pmatrix} 0 & 1 \\ 3 & 1 \end{pmatrix} = -(0 - 3) = 3$, poi $+\det \begin{pmatrix} 2 & 1 \\ 0 & 1 \end{pmatrix} = 2$, poi $-\det \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix} = -6$;
+- riga 3: $+\det \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = -1$, poi $-\det \begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix} = -(0 - 1) = 1$, poi $+\det \begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix} = 2$.
 
 $$\mathrm{cof}(A) = \begin{pmatrix} 1 & -1 & 3 \\ 3 & 2 & -6 \\ -1 & 1 & 2 \end{pmatrix}, \qquad {}^t(\mathrm{cof}(A)) = \begin{pmatrix} 1 & 3 & -1 \\ -1 & 2 & 1 \\ 3 & -6 & 2 \end{pmatrix}.$$
 
-(b) $\det A = 2 \cdot 1 - 0 + 1 \cdot 3 = 5$ (prima riga per i suoi cofattori). Il prodotto, riga per colonna:
-- riga $(2, 0, 1)$: $2 + 3 = 5$, $\ 6 - 6 = 0$, $\ -2 + 2 = 0$;
-- riga $(1, 1, 0)$: $1 - 1 = 0$, $\ 3 + 2 = 5$, $\ -1 + 1 = 0$;
-- riga $(0, 3, 1)$: $-3 + 3 = 0$, $\ 6 - 6 = 0$, $\ 3 + 2 = 5$.
+(b) Il determinante è $2 \cdot 1 - 0 + 1 \cdot 3 = 5$: prima riga per i suoi cofattori. Il prodotto, riga per colonna:
+- riga $(2, 0, 1)$: $2 + 3 = 5$, poi $6 - 6 = 0$, poi $-2 + 2 = 0$;
+- riga $(1, 1, 0)$: $1 - 1 = 0$, poi $3 + 2 = 5$, poi $-1 + 1 = 0$;
+- riga $(0, 3, 1)$: $-3 + 3 = 0$, poi $6 - 6 = 0$, poi $3 + 2 = 5$.
 
-$A \cdot {}^t(\mathrm{cof}(A)) = 5I_3$ ✓: sulla diagonale gli sviluppi di Laplace, fuori diagonale le somme con i cofattori «di un'altra riga», che fanno $0$.
+Viene $5I_3$. Sulla diagonale ci sono gli sviluppi di Laplace; fuori dalla diagonale le somme con i cofattori «di un'altra riga», che fanno zero.
 
 (c) $A^{-1} = \frac 15 \begin{pmatrix} 1 & 3 & -1 \\ -1 & 2 & 1 \\ 3 & -6 & 2 \end{pmatrix}$.
 :::
@@ -28146,24 +28809,24 @@ $A \cdot {}^t(\mathrm{cof}(A)) = 5I_3$ ✓: sulla diagonale gli sviluppi di Lapl
 ::: esercizio esame Invertibilità con parametro e inversa
 Si consideri la matrice $A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 2 & 2 \\ k & 0 & 3 \end{pmatrix}$, con $k \in \R$ (Foglio di esercizi 1 del tutorato 2025, esercizio 9). (1) Determinare per quali $k$ la matrice è invertibile. (2) Per tali valori calcolare $A^{-1}$. (3) Verificare $AA^{-1} = I_3$ per $k = 0$.
 ::: soluzione
-(1) Lungo la prima colonna (segni $+, -, +$, e $a_{21} = 0$):
+(1) Lungo la prima colonna (segni $+, -, +$, e il numero centrale è 0):
 $$\det A = 1 \cdot \det \begin{pmatrix} 2 & 2 \\ 0 & 3 \end{pmatrix} - 0 + k \det \begin{pmatrix} 1 & 0 \\ 2 & 2 \end{pmatrix} = 6 + 2k = 2(k + 3).$$
-$A$ è invertibile se e solo se $k \neq -3$.
+$A$ è invertibile per tutti i $k$ tranne $k = -3$.
 
 (2) I cofattori:
-- riga 1: $+\det \begin{pmatrix} 2 & 2 \\ 0 & 3 \end{pmatrix} = 6$, $\ -\det \begin{pmatrix} 0 & 2 \\ k & 3 \end{pmatrix} = -(0 - 2k) = 2k$, $\ +\det \begin{pmatrix} 0 & 2 \\ k & 0 \end{pmatrix} = -2k$;
-- riga 2: $-\det \begin{pmatrix} 1 & 0 \\ 0 & 3 \end{pmatrix} = -3$, $\ +\det \begin{pmatrix} 1 & 0 \\ k & 3 \end{pmatrix} = 3$, $\ -\det \begin{pmatrix} 1 & 1 \\ k & 0 \end{pmatrix} = -(0 - k) = k$;
-- riga 3: $+\det \begin{pmatrix} 1 & 0 \\ 2 & 2 \end{pmatrix} = 2$, $\ -\det \begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix} = -2$, $\ +\det \begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix} = 2$.
+- riga 1: $+\det \begin{pmatrix} 2 & 2 \\ 0 & 3 \end{pmatrix} = 6$, poi $-\det \begin{pmatrix} 0 & 2 \\ k & 3 \end{pmatrix} = -(0 - 2k) = 2k$, poi $+\det \begin{pmatrix} 0 & 2 \\ k & 0 \end{pmatrix} = -2k$;
+- riga 2: $-\det \begin{pmatrix} 1 & 0 \\ 0 & 3 \end{pmatrix} = -3$, poi $+\det \begin{pmatrix} 1 & 0 \\ k & 3 \end{pmatrix} = 3$, poi $-\det \begin{pmatrix} 1 & 1 \\ k & 0 \end{pmatrix} = -(0 - k) = k$;
+- riga 3: $+\det \begin{pmatrix} 1 & 0 \\ 2 & 2 \end{pmatrix} = 2$, poi $-\det \begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix} = -2$, poi $+\det \begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix} = 2$.
 
 Trasponendo e dividendo per $2(k + 3)$:
 $$A^{-1} = \frac 1{2(k + 3)} \begin{pmatrix} 6 & -3 & 2 \\ 2k & 3 & -2 \\ -2k & k & 2 \end{pmatrix}, \qquad k \neq -3.$$
 
-(3) Con $k = 0$: $A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 2 & 2 \\ 0 & 0 & 3 \end{pmatrix}$ e $A^{-1} = \frac 16 \begin{pmatrix} 6 & -3 & 2 \\ 0 & 3 & -2 \\ 0 & 0 & 2 \end{pmatrix}$. Prodotto $A \cdot \begin{pmatrix} 6 & -3 & 2 \\ 0 & 3 & -2 \\ 0 & 0 & 2 \end{pmatrix}$:
-- riga $(1, 1, 0)$: $6$, $\ -3 + 3 = 0$, $\ 2 - 2 = 0$;
-- riga $(0, 2, 2)$: $0$, $\ 6$, $\ -4 + 4 = 0$;
+(3) Con $k = 0$: $A = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 2 & 2 \\ 0 & 0 & 3 \end{pmatrix}$ e $A^{-1} = \frac 16 \begin{pmatrix} 6 & -3 & 2 \\ 0 & 3 & -2 \\ 0 & 0 & 2 \end{pmatrix}$. Il prodotto $A \cdot \begin{pmatrix} 6 & -3 & 2 \\ 0 & 3 & -2 \\ 0 & 0 & 2 \end{pmatrix}$, riga per riga:
+- riga $(1, 1, 0)$: $6$, poi $-3 + 3 = 0$, poi $2 - 2 = 0$;
+- riga $(0, 2, 2)$: $0$, poi $6$, poi $-4 + 4 = 0$;
 - riga $(0, 0, 3)$: $0$, $0$, $6$.
 
-È $6I_3$, e diviso per 6 dà $I_3$ ✓.
+È $6I_3$, e diviso per 6 dà l'identità.
 :::
 
 ::: esercizio esame Per quali $k$ è invertibile? E l'inversa per $k = 1$
@@ -28171,105 +28834,134 @@ Sia $A = \begin{pmatrix} 1 & k & 0 \\ k & 1 & k \\ 0 & k & 1 \end{pmatrix}$ con 
 ::: soluzione
 (1) Lungo la prima riga:
 $$\det A = 1 \cdot \det \begin{pmatrix} 1 & k \\ k & 1 \end{pmatrix} - k \det \begin{pmatrix} k & k \\ 0 & 1 \end{pmatrix} + 0 = (1 - k^2) - k \cdot k = 1 - 2k^2.$$
-Si annulla per $k^2 = \frac 12$, cioè $k = \pm \frac 1{\sqrt 2} = \pm \frac{\sqrt 2}2$. **$A$ è invertibile se e solo se $k \neq \frac{\sqrt 2}2$ e $k \neq -\frac{\sqrt 2}2$.**
+Fa zero quando $k^2 = \frac 12$, cioè $k = \frac{\sqrt 2}2$ oppure $k = -\frac{\sqrt 2}2$. **$A$ è invertibile per tutti i $k$ tranne questi due.**
 
-(2) Con $k = 1$: $A = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & 1 \end{pmatrix}$ e $\det A = 1 - 2 = -1$. I cofattori:
-- riga 1: $+(1 - 1) = 0$, $\ -(1 - 0) = -1$, $\ +(1 - 0) = 1$;
-- riga 2: $-(1 - 0) = -1$, $\ +(1 - 0) = 1$, $\ -(1 - 0) = -1$;
-- riga 3: $+(1 - 0) = 1$, $\ -(1 - 0) = -1$, $\ +(1 - 1) = 0$.
+(2) Con $k = 1$: $A = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 1 & 1 \\ 0 & 1 & 1 \end{pmatrix}$ e il determinante è $1 - 2 = -1$. I cofattori:
+- riga 1: $+(1 - 1) = 0$, poi $-(1 - 0) = -1$, poi $+(1 - 0) = 1$;
+- riga 2: $-(1 - 0) = -1$, poi $+(1 - 0) = 1$, poi $-(1 - 0) = -1$;
+- riga 3: $+(1 - 0) = 1$, poi $-(1 - 0) = -1$, poi $+(1 - 1) = 0$.
 
-$\mathrm{cof}(A) = \begin{pmatrix} 0 & -1 & 1 \\ -1 & 1 & -1 \\ 1 & -1 & 0 \end{pmatrix}$ è simmetrica (come $A$), quindi trasporre non cambia niente. Dividendo per $-1$:
+La matrice dei cofattori $\begin{pmatrix} 0 & -1 & 1 \\ -1 & 1 & -1 \\ 1 & -1 & 0 \end{pmatrix}$ è simmetrica, come $A$, quindi trasporre non cambia niente. Divido per $-1$:
 $$A^{-1} = \begin{pmatrix} 0 & 1 & -1 \\ 1 & -1 & 1 \\ -1 & 1 & 0 \end{pmatrix}.$$
-Controllo della prima riga di $AA^{-1}$: $(1, 1, 0)$ per le colonne dà $0 + 1 = 1$, $\ 1 - 1 = 0$, $\ -1 + 1 = 0$ ✓.
+Controllo della prima riga di $AA^{-1}$: $(1, 1, 0)$ per le colonne dà $0 + 1 = 1$, poi $1 - 1 = 0$, poi $-1 + 1 = 0$.
 :::
 
 ::: esercizio esame La matrice di una trasformazione e la sua inversa
 Sia $A = \begin{pmatrix} 1 & 0 & 1 \\ 2 & 1 & 0 \\ 0 & 1 & 1 \end{pmatrix}$, la matrice che manda il vettore ${}^t(x, y, z)$ in ${}^t(x + z,\ 2x + y,\ y + z)$. (1) Stabilire se $A$ è invertibile. (2) Calcolare $A^{-1}$. (3) Trovare il vettore ${}^t(x, y, z)$ che viene mandato in ${}^t(1, 1, 1)$.
 ::: soluzione
-(1) Lungo la prima riga: $\det A = 1 \cdot (1 - 0) - 0 + 1 \cdot (2 - 0) = 3 \neq 0$: invertibile.
+(1) Lungo la prima riga: $\det A = 1 \cdot (1 - 0) - 0 + 1 \cdot (2 - 0) = 3$. Non è zero: invertibile.
 
 (2) I cofattori:
-- riga 1: $+\det \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix} = 1$, $\ -\det \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix} = -2$, $\ +\det \begin{pmatrix} 2 & 1 \\ 0 & 1 \end{pmatrix} = 2$;
-- riga 2: $-\det \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} = 1$, $\ +\det \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = 1$, $\ -\det \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = -1$;
-- riga 3: $+\det \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = -1$, $\ -\det \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix} = 2$, $\ +\det \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix} = 1$.
+- riga 1: $+\det \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix} = 1$, poi $-\det \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix} = -2$, poi $+\det \begin{pmatrix} 2 & 1 \\ 0 & 1 \end{pmatrix} = 2$;
+- riga 2: $-\det \begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} = 1$, poi $+\det \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = 1$, poi $-\det \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = -1$;
+- riga 3: $+\det \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = -1$, poi $-\det \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix} = 2$, poi $+\det \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix} = 1$.
 
 $$\mathrm{cof}(A) = \begin{pmatrix} 1 & -2 & 2 \\ 1 & 1 & -1 \\ -1 & 2 & 1 \end{pmatrix}, \qquad A^{-1} = \frac 13 \begin{pmatrix} 1 & 1 & -1 \\ -2 & 1 & 2 \\ 2 & -1 & 1 \end{pmatrix}.$$
-Controllo della prima riga di $AA^{-1}$ (senza il fattore $\frac 13$): $(1, 0, 1)$ per le colonne dà $1 + 2 = 3$, $\ 1 - 1 = 0$, $\ -1 + 1 = 0$ ✓.
+Controllo della prima riga di $AA^{-1}$, senza il $\frac 13$: $(1, 0, 1)$ per le colonne dà $1 + 2 = 3$, poi $1 - 1 = 0$, poi $-1 + 1 = 0$.
 
-(3) Cerco $v$ con $Av = {}^t(1, 1, 1)$: moltiplicando a sinistra per $A^{-1}$, $v = A^{-1}\,{}^t(1, 1, 1) = \frac 13\,{}^t(1 + 1 - 1,\ -2 + 1 + 2,\ 2 - 1 + 1) = {}^t\left(\frac 13, \frac 13, \frac 23\right)$. Verifica: $x + z = \frac 13 + \frac 23 = 1$, $2x + y = \frac 23 + \frac 13 = 1$, $y + z = \frac 13 + \frac 23 = 1$ ✓. Nelle lezioni L14–L16 questa matrice sarà la matrice associata a un'applicazione lineare, e $A^{-1}$ quella dell'applicazione inversa, come nel problema 11 dell'appello del 10/07/2024.
+(3) Cerco $v$ con $Av = {}^t(1, 1, 1)$. Moltiplico a sinistra per l'inversa, che disfa $A$:
+$$v = A^{-1}\,{}^t(1, 1, 1) = \frac 13\,{}^t(1 + 1 - 1,\ -2 + 1 + 2,\ 2 - 1 + 1) = {}^t\left(\frac 13, \frac 13, \frac 23\right).$$
+Verifica: $x + z = \frac 13 + \frac 23 = 1$, $2x + y = \frac 23 + \frac 13 = 1$, $y + z = \frac 13 + \frac 23 = 1$. Nelle lezioni L14–L16 questa matrice sarà la matrice di un'applicazione lineare, e $A^{-1}$ quella dell'applicazione inversa, come nel problema 11 dell'appello del 10/07/2024.
+:::
+
+::: esercizio difficile Matrici con $A^2 = A$ e con $A^2 = 0$
+(a) Dimostra che se $A^2 = 0$ allora $A$ non è invertibile, e trova un esempio $2 \times 2$ con $A \neq 0$. (b) Dimostra che se $A^2 = A$ allora $\det A$ vale $0$ oppure $1$. (c) Dimostra che se $A^2 = A$ e $A$ è invertibile, allora $A = I_n$.
+::: soluzione
+(a) Per Binet $(\det A)^2 = \det(A^2) = \det(0) = 0$, quindi il determinante di $A$ è zero e $A$ non è invertibile (Proposizione 10.8). Un esempio: $A = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, con $A^2 = \begin{pmatrix} 0 \cdot 0 + 1 \cdot 0 & 0 \cdot 1 + 1 \cdot 0 \\ 0 & 0 \end{pmatrix} = 0$.
+
+(b) Per Binet $(\det A)^2 = \det(A^2) = \det A$. Porto tutto da una parte: $\det A \cdot (\det A - 1) = 0$. Un prodotto fa zero quando uno dei fattori fa zero: il determinante è 0 oppure 1.
+
+(c) Moltiplico $A^2 = A$ a sinistra per l'inversa: $A^{-1}(AA) = A^{-1}A$.
+1. A sinistra, raggruppando diversamente: $(A^{-1}A)A = I_nA = A$.
+2. A destra: $A^{-1}A = I_n$.
+
+Quindi $A = I_n$. Un esempio di $A^2 = A$ non invertibile: $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$, che ha determinante 0.
+:::
+
+::: esercizio difficile L'inversa di un prodotto e della trasposta
+Siano $A, B \in M(n)$ invertibili. Dimostra che (a) $AB$ è invertibile e $(AB)^{-1} = B^{-1}A^{-1}$; (b) ${}^tA$ è invertibile e $({}^tA)^{-1} = {}^t(A^{-1})$ (Martelli, Esercizio 3.9).
+::: soluzione
+(a) Basta controllare che $B^{-1}A^{-1}$ funziona da inversa, da tutti e due i lati (Martelli, Proposizione 3.4.5):
+$$(AB)(B^{-1}A^{-1}) = A(BB^{-1})A^{-1} = AI_nA^{-1} = AA^{-1} = I_n,$$
+$$(B^{-1}A^{-1})(AB) = B^{-1}(A^{-1}A)B = B^{-1}B = I_n.$$
+Si usa solo il fatto che le parentesi si possono spostare. Con i determinanti si vede anche che $\det(AB) = \det A \det B$ non è zero.
+
+(b) Uso la regola della trasposta di un prodotto, ${}^t(XY) = {}^tY\,{}^tX$ (Esercizio 8.14):
+$${}^tA\ {}^t(A^{-1}) = {}^t(A^{-1}A) = {}^tI_n = I_n, \qquad {}^t(A^{-1})\ {}^tA = {}^t(AA^{-1}) = {}^tI_n = I_n.$$
+Quindi ${}^t(A^{-1})$ è l'inversa di ${}^tA$.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Come cambia il determinante con le tre mosse di Gauss?
-Scambiare due righe lo cambia di segno; moltiplicare una riga per $\lambda$ lo moltiplica per $\lambda$; aggiungere a una riga un multiplo di un'altra non lo cambia. Le stesse regole valgono per le colonne.
+Scambiare due righe lo cambia di segno. Moltiplicare una riga per un numero lo moltiplica per quel numero. Aggiungere a una riga un multiplo di un'altra non lo cambia. Le stesse regole valgono per le colonne.
 :::
 
 ::: domanda Perché una matrice con due righe uguali ha determinante nullo?
-Scambiando le due righe uguali la matrice non cambia, ma il determinante cambia segno: $\det A = -\det A$, quindi $\det A = 0$.
+Scambiando le due righe uguali la matrice resta la stessa, ma il determinante cambia segno. Un numero uguale al suo opposto è zero.
 :::
 
 ::: domanda Come si calcola un determinante con il metodo di Gauss?
-Si rende la matrice triangolare con mosse del terzo tipo (e scambi se serve), si moltiplica la diagonale e si cambia segno per ogni scambio; se si sono usate mosse del secondo tipo si divide per i loro fattori.
+Si rende la matrice triangolare con mosse del terzo tipo, e scambi se serve. Poi si moltiplica la diagonale e si cambia segno per ogni scambio. Se si sono usate righe moltiplicate per un numero, alla fine si divide per quel numero.
 :::
 
 ::: domanda Che cosa dice la Proposizione 10.3?
-$\det A = 0$ se e solo se una riga (o una colonna) di $A$ è combinazione lineare delle altre.
+Il determinante è zero esattamente quando una riga, o una colonna, è un doppione delle altre, cioè si ottiene mescolandole.
 :::
 
 ::: domanda Enuncia il teorema di Binet e due sue conseguenze.
-Se $A$ e $B$ sono quadrate dello stesso ordine, $\det(AB) = \det A \cdot \det B$. Conseguenze: $\det(A^k) = (\det A)^k$ e $\det(AB) = \det(BA)$; inoltre $\det(A^{-1}) = \frac 1{\det A}$.
+Per matrici quadrate della stessa taglia, il determinante del prodotto è il prodotto dei determinanti. Conseguenze: il determinante di $A^k$ è $(\det A)^k$, e $\det(AB) = \det(BA)$. Inoltre il determinante dell'inversa è $\frac 1{\det A}$.
 :::
 
 ::: domanda Che cosa vuol dire che una matrice è invertibile?
-Che è quadrata ed esiste $B$ con $AB = BA = I_n$; questa $B$ è unica e si scrive $A^{-1}$.
+Che è quadrata e c'è un'altra matrice che la disfa: moltiplicate tra loro, in tutti e due gli ordini, danno l'identità. Questa matrice è unica e si scrive $A^{-1}$.
 :::
 
 ::: domanda Perché una matrice invertibile ha determinante diverso da zero?
-Da $AA^{-1} = I_n$ e Binet: $\det A \cdot \det(A^{-1}) = \det I_n = 1$, e un prodotto che vale 1 non può avere un fattore nullo.
+Da $AA^{-1} = I_n$ e Binet viene $\det A \cdot \det(A^{-1}) = 1$, e un prodotto che fa 1 non può avere un fattore zero.
 :::
 
 ::: domanda Che cos'è il cofattore $\mathrm{cof}_{ij}$?
-Il numero $(-1)^{i+j}\det C_{ij}$, dove $C_{ij}$ è la sottomatrice ottenuta cancellando la riga $i$ e la colonna $j$. Con i cofattori lo sviluppo di Laplace diventa $\det A = \sum_j a_{ij}\,\mathrm{cof}_{ij}$.
+Il determinante della sottomatrice senza la riga $i$ e la colonna $j$, con il segno della scacchiera. Con i cofattori lo sviluppo di Laplace diventa: numeri della riga per i cofattori della stessa riga.
 :::
 
-::: domanda Quanto vale $\sum_j a_{ij}\,\mathrm{cof}_{kj}$ con $i \neq k$, e perché?
-Vale $0$: è lo sviluppo lungo la riga $k$ della matrice con la riga $i$ al posto della riga $k$, che ha due righe uguali.
+::: domanda Quanto fa una riga moltiplicata per i cofattori di un'altra riga, e perché?
+Zero. È lo sviluppo di una matrice con due righe uguali, che ha determinante zero.
 :::
 
 ::: domanda Che cosa dice la Proposizione 10.7?
-$A \cdot {}^t(\mathrm{cof}(A)) = \det(A) I_n = {}^t(\mathrm{cof}(A)) \cdot A$.
+La matrice $A$ per la trasposta dei suoi cofattori dà il determinante di $A$ sulla diagonale e zeri altrove, cioè $\det(A) I_n$. Lo stesso nell'altro ordine.
 :::
 
 ::: domanda Quando una matrice quadrata è invertibile, e qual è la formula dell'inversa?
-Se e solo se $\det A \neq 0$; allora $A^{-1} = \frac 1{\det A}\,{}^t(\mathrm{cof}(A))$ (Proposizione 10.8, per $n \ge 2$).
+Esattamente quando il determinante non è zero. L'inversa è la trasposta della matrice dei cofattori, divisa per il determinante.
 :::
 
 ::: domanda Qual è l'inversa di una $2 \times 2$?
-$\begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = \frac 1{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$, se $ad - bc \neq 0$.
+Si scambiano i due numeri della diagonale, si cambia segno agli altri due e si divide per $ad - bc$, se non è zero: $\frac 1{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$.
 :::
 
 ::: domanda Come si risponde a «per quali $k$ la matrice è invertibile»?
-Si calcola $\det A$ in funzione di $k$, lo si scompone in fattori, si trovano i $k$ che lo annullano e si risponde «invertibile se e solo se $k$ è diverso da quei valori».
+Si calcola il determinante con $k$ dentro, lo si scompone in fattori, si trovano i $k$ che lo fanno zero e si risponde: «invertibile per tutti i $k$ tranne quei valori».
 :::
 
 ## Glossario
 
 ```glossario
-Mossa di Gauss | Una delle tre operazioni sulle righe: scambio ($R_i \leftrightarrow R_j$), moltiplicazione per $\lambda$ ($R_i \to \lambda R_i$), somma di un multiplo di un'altra riga ($R_i \to R_i + \lambda R_j$).
-Effetto sul determinante | Scambio: cambia segno; riga per $\lambda$: determinante per $\lambda$; somma di un multiplo: invariato.
-Metodo di Gauss per il determinante | Rendere la matrice triangolare con le mosse e moltiplicare la diagonale, tenendo conto di scambi e fattori.
-Righe dipendenti | Righe tra cui una è combinazione lineare delle altre; succede se e solo se $\det A = 0$.
-Teorema di Binet | $\det(AB) = \det A \cdot \det B$ per matrici quadrate dello stesso ordine.
-Matrice invertibile | Matrice quadrata $A$ per cui esiste $B$ con $AB = BA = I_n$.
-Matrice inversa $A^{-1}$ | L'unica $B$ con $AB = BA = I_n$; $\det(A^{-1}) = 1/\det A$.
-Cofattore $\mathrm{cof}_{ij}$ | $(-1)^{i+j}\det C_{ij}$: il coefficiente di $a_{ij}$ nello sviluppo di Laplace.
-Matrice dei cofattori $\mathrm{cof}(A)$ | La matrice che ha $\mathrm{cof}_{ij}$ al posto $(i, j)$.
-Proposizione 10.7 | $A\,{}^t(\mathrm{cof}(A)) = \det(A)I_n = {}^t(\mathrm{cof}(A))\,A$.
-Criterio di invertibilità | $A$ quadrata è invertibile se e solo se $\det A \neq 0$.
-Formula dell'inversa | $A^{-1} = \frac 1{\det A}\,{}^t(\mathrm{cof}(A))$; per le $2 \times 2$, $\frac 1{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$.
+Mossa di Gauss | Una delle tre operazioni sulle righe: scambiare due righe, moltiplicare una riga per un numero diverso da zero, aggiungere a una riga un multiplo di un'altra.
+Effetto sul determinante | Scambio: cambia segno. Riga per un numero: determinante per quel numero. Riga più un multiplo di un'altra: invariato.
+Metodo di Gauss per il determinante | Rendere la matrice triangolare con le mosse e moltiplicare la diagonale, contando gli scambi.
+Righe dipendenti | Righe tra cui una è un doppione delle altre. Succede esattamente quando il determinante è zero.
+Teorema di Binet | Il determinante di un prodotto di matrici quadrate è il prodotto dei determinanti.
+Matrice invertibile | Una matrice quadrata che ha un'inversa: un'altra matrice che la disfa.
+Matrice inversa $A^{-1}$ | L'unica matrice con $AA^{-1} = A^{-1}A = I_n$. Il suo determinante è $1/\det A$.
+Cofattore $\mathrm{cof}_{ij}$ | Il determinante della sottomatrice senza riga $i$ e colonna $j$, con il segno della scacchiera.
+Matrice dei cofattori $\mathrm{cof}(A)$ | La matrice che ha nella casella $(i, j)$ il cofattore $\mathrm{cof}_{ij}$.
+Proposizione 10.7 | $A$ per la trasposta dei suoi cofattori dà $\det(A) I_n$, in tutti e due gli ordini.
+Criterio di invertibilità | Una matrice quadrata è invertibile esattamente quando il determinante non è zero.
+Formula dell'inversa | La trasposta dei cofattori divisa per il determinante; per le $2 \times 2$, $\frac 1{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$.
 Inversa di un prodotto | $(AB)^{-1} = B^{-1}A^{-1}$, con l'ordine rovesciato.
-Rango massimo | Per $A \in M(n)$: $\rk A = n$ se e solo se $\det A \neq 0$.
+Rango massimo | Una matrice quadrata $n \times n$ ha rango $n$ esattamente quando il determinante non è zero.
 ```
 
 ## Checklist
@@ -28277,22 +28969,23 @@ Rango massimo | Per $A \in M(n)$: $\rk A = n$ se e solo se $\det A \neq 0$.
 ```checklist
 - So come cambia il determinante con ciascuna delle tre mosse di Gauss, per righe e per colonne.
 - So calcolare un determinante $3 \times 3$ o $4 \times 4$ rendendo la matrice triangolare, contando gli scambi.
-- Riconosco a colpo d'occhio righe o colonne uguali, proporzionali o somme di altre, e so che allora $\det A = 0$.
-- So enunciare il teorema di Binet e usarlo per $\det(A^k)$, $\det(AB)$, $\det(BA)$.
-- So che cosa vuol dire invertibile e che $\det(A^{-1}) = 1/\det A$.
-- So calcolare la matrice dei cofattori e verificare $A\,{}^t(\mathrm{cof}(A)) = \det(A)I_n$.
+- Riconosco a colpo d'occhio righe o colonne uguali, proporzionali o somme di altre, e so che allora il determinante è zero.
+- So enunciare il teorema di Binet e usarlo per il determinante di potenze e prodotti.
+- So che cosa vuol dire invertibile e che il determinante dell'inversa è $1/\det A$.
+- So calcolare la matrice dei cofattori e verificare la Proposizione 10.7 su un esempio.
 - So invertire una $2 \times 2$ a memoria e una $3 \times 3$ con i cofattori, con il controllo finale.
 - So dire per quali valori di un parametro una matrice è invertibile, scomponendo il determinante.
 - So evitare i tranelli: matrice a scalini, Binet con matrici non quadrate, trasposizione dimenticata.
-- So combinare $\det(cA) = c^n \det A$, Binet e l'inversa in un'unica formula, come $\det(2A^{-1})$.
+- So combinare multipli, potenze e inverse in un'unica formula, come per $\det(2A^{-1})$.
 ```
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 10 «Matrici III», pp. 46–49: le sezioni 10.A (altre proprietà del determinante), 10.B (cofattori), 10.C (l'inversa di una matrice) e 10.D (esercizi) sono seguite in ordine, con la pagina accanto a ogni titolo; proposizioni, teoremi, esempi ed esercizi mantengono la loro numerazione (Proposizioni 10.1, 10.3, 10.7, 10.8, Teorema 10.4, Corollario 10.5, Definizione 10.6, Esempio 10.2, Esercizi 10.9, 10.10, 10.11). Per i richiami: lezione 9 (Proposizioni 9.3, 9.5, 9.10, 9.11, Corollario 9.12) e lezione 11 (notazione delle mosse di Gauss, Definizione 11.2).
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 10 «Matrici III», pp. 46–49: le sezioni 10.A (altre proprietà del determinante), 10.B (cofattori), 10.C (l'inversa di una matrice) e 10.D (esercizi) sono seguite in ordine, con la pagina accanto a ogni titolo; proposizioni, teoremi, esempi ed esercizi mantengono la loro numerazione (Proposizioni 10.1, 10.3, 10.7, 10.8, Teorema 10.4, Corollario 10.5, Definizione 10.6, Esempio 10.2, Esercizi 10.9, 10.10, 10.11, svolti come esercizi 7, 8 e 9). Per i richiami: lezione 9 (Proposizioni 9.3, 9.5, 9.10, 9.11, Corollario 9.12) e lezione 11 (notazione delle mosse di Gauss, Definizione 11.2).
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §3.3.5 (Proposizione 3.3.7), §3.3.7 (Proposizione 3.3.12), §3.3.9 (Proposizione 3.3.15), §3.4.5 (matrici invertibili, Proposizione 3.4.5), §3.4.6 (Teorema 3.4.7, Corollario 3.4.8), §3.4.7 (Proposizioni 3.4.10–3.4.12, Esempio 3.4.13), §3.4.8, Esercizio 3.9.
-- **Esame**: testi degli appelli di Algebra lineare dal 24/01/2024 al 07/09/2026 (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)); riportate con soluzione propria le domande 7 del 06/09/2024 e 6 del 03/07/2026 e il problema 11 (punto 1) del 15/01/2026; le altre sono citate per numero. Foglio di esercizi 1 del tutorato (27/10/2025), esercizio 9.
+- **Esame**: testi degli appelli di Algebra lineare dal 24/01/2024 al 07/09/2026 (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)); riportati con soluzione propria il problema 11 (punto 1) del 15/01/2026 e le domande 7 del 06/09/2024 e 6 del 03/07/2026; le altre sono citate per numero. Foglio di esercizi 1 del tutorato (27/10/2025), esercizio 9.
 - Le parti **«Oltre le dispense»** (definizione di matrice invertibile e unicità dell'inversa, collegamento con il rango, verifica di Binet per le $2 \times 2$, metodi per l'esame, esercizi senza numero) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---

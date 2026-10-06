@@ -41671,16 +41671,15 @@ descrizione: >-
   proiezione ortogonale su una retta e su un sottospazio, basi ortogonali e ortonormali, algoritmo di Gram–Schmidt,
   decomposizione ortogonale e minimi quadrati, con quiz nello stile dell'esame ed esercizi svolti.
 lede: >-
-  L'ortogonalità è lo strumento più usato del corso. In questa lezione impari a trovare tutti i vettori ortogonali a un
-  sottospazio ($W^\perp$), a proiettare un vettore su una retta e su un piano, a costruire basi ortogonali con
-  l'algoritmo di Gram–Schmidt e a risolvere «al meglio» un sistema che non ha soluzioni, con le equazioni normali
-  ${}^tAAx = {}^tAb$. È il cuore del secondo problema di molti appelli.
+  Perpendicolare, ombra e raddrizzare: tre idee che reggono tutta la lezione. Come si trovano tutte le direzioni
+  perpendicolari a un piano, come si proietta un vettore su una retta o su un piano, come si raddrizza una base con
+  l'algoritmo di Gram–Schmidt. Alla fine, come si risolve «al meglio» un sistema che non ha soluzioni.
 materiale: dispense
 scheda:
   Dispense: lezione 21 · pp. 105–110
   Libro: Martelli, §7.3 e §8.1.5–8.1.10
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 120–150 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 21 «Prodotti scalari III»; B. Martelli, Geometria e algebra
   lineare, §7.1.7, §7.3, §8.1.5–8.1.10
@@ -41690,40 +41689,41 @@ genera_html: true
 
 ## In breve
 
-- In tutta la lezione il prodotto scalare è **definito positivo**. Due vettori sono **ortogonali** se $\langle v, w\rangle = 0$; se sono non nulli, vuol dire che formano un angolo retto. Il vettore nullo è ortogonale a tutti.
-- Il **complemento ortogonale** di un sottospazio $W$ è $W^\perp = \{v \mid \langle v, w\rangle = 0 \ \forall w \in W\}$: è sempre un sottospazio. Si calcola imponendo l'ortogonalità ai **generatori** di $W$: è un sistema lineare omogeneo.
-- La **proiezione ortogonale** di $v$ sulla retta $\Span(w)$ è $p_w(v) = \frac{\langle v, w\rangle}{\langle w, w\rangle}\,w$; il numero $\frac{\langle v, w\rangle}{\langle w, w\rangle}$ si chiama **coefficiente di Fourier**. Il resto $v - p_w(v)$ è ortogonale a $w$.
-- In una **base ortogonale** le coordinate si calcolano senza sistemi: $v = \sum_i \frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}\,v_i$.
-- L'algoritmo di **Gram–Schmidt** trasforma vettori indipendenti in vettori ortogonali: a ogni $v_i$ si tolgono le proiezioni sui vettori già costruiti. Dividendo per le norme si ottiene una base **ortonormale**.
-- **Decomposizione ortogonale**: $V = W \oplus W^\perp$, quindi ogni $v$ si scrive in un solo modo come $v = w + z$ con $w \in W$, $z \in W^\perp$, e $\dim W + \dim W^\perp = \dim V$.
-- Il pezzo $w = p_W(v)$ è la **proiezione ortogonale** su $W$: con una base ortonormale $p_W(v) = \sum_i \langle v, w_i\rangle w_i$. È il punto di $W$ **più vicino** a $v$.
-- **Minimi quadrati**: se $Ax = b$ non ha soluzioni, si cerca $x_0$ che rende $\|Ax_0 - b\|$ minima. Sono le soluzioni delle **equazioni normali** ${}^tA\,A\,x_0 = {}^tA\,b$; così si trova la retta di regressione.
-- All'esame: «base ortonormale di un piano, poi proiezione di un vettore» è il problema 12 di molti appelli, con il prodotto euclideo o con un $g_S$.
+- In tutta la lezione il prodotto scalare è **definito positivo**. Due vettori sono **ortogonali**, cioè perpendicolari, quando il loro prodotto scalare è zero. Il vettore nullo è ortogonale a tutti.
+- Il **complemento ortogonale** di un sottospazio raccoglie tutti i vettori perpendicolari a ogni suo vettore. È sempre un sottospazio, e si calcola con un sistema: basta essere perpendicolari ai generatori.
+- La **proiezione ortogonale** di un vettore su una retta è la sua **ombra** sulla retta, con il sole a picco. Quello che resta del vettore è perpendicolare alla retta.
+- In una **base ortogonale**, fatta di vettori perpendicolari tra loro, le coordinate si calcolano senza sistemi: ognuna è un rapporto tra due prodotti scalari.
+- L'algoritmo di **Gram–Schmidt** **raddrizza** una base: a ogni vettore toglie le parti che pendono verso quelli già sistemati. Dividendo per le lunghezze si ottiene una base **ortonormale**.
+- Ogni vettore si spezza in modo unico in un pezzo dentro un sottospazio e un pezzo perpendicolare. Il primo pezzo è la proiezione: il punto del sottospazio **più vicino** al vettore.
+- **Minimi quadrati**: se un sistema non ha soluzioni, si cerca la scelta che sbaglia il meno possibile. Si trova con un sistema più piccolo, le **equazioni normali**; così si trova la retta che passa più vicina a dei punti.
+- All'esame: «base ortonormale di un piano, poi proiezione di un vettore» è il problema 12 di molti appelli.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Vettori ortogonali (p. 105)
+## Vettori perpendicolari (p. 105)
 
-Nella lezione L20 hai visto che l'angolo tra due vettori non nulli è retto esattamente quando il prodotto scalare è zero. Questa condizione è così importante che ha un nome, e la si usa anche quando uno dei vettori è nullo.
+Nella lezione L20 hai visto che l'angolo tra due vettori non nulli è retto esattamente quando il prodotto scalare è zero. Per esempio $(1, 2)$ e $(-2, 1)$: $1 \cdot (-2) + 2 \cdot 1 = 0$, e nel disegno formano un angolo retto. Questa condizione è così importante che ha un nome, e la si usa anche quando uno dei vettori è nullo.
 
 > [!DEF] Vettori ortogonali (p. 105)
 > Sia $V$ munito di un prodotto scalare definito positivo. Due vettori $v, w \in V$ sono **ortogonali** se
 > $$\langle v, w\rangle = 0.$$
 > Se entrambi sono non nulli, questo equivale a dire che formano un angolo retto.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- «ortogonale» è il nome tecnico di «perpendicolare»;
-- il vettore nullo è ortogonale a **tutti** i vettori, perché $\langle 0, w\rangle = 0$ sempre (lezione L19);
-- l'ortogonalità **dipende dal prodotto scalare**: due vettori ortogonali per un prodotto possono non esserlo per un altro.
+- «Ortogonale» è il nome tecnico di «perpendicolare».
+- Il vettore nullo è ortogonale a **tutti** i vettori, perché il suo prodotto scalare con qualsiasi vettore è zero (lezione L19).
+- L'ortogonalità **dipende dal prodotto scalare**: due vettori perpendicolari per un prodotto possono non esserlo per un altro.
+
+Ecco i vettori perpendicolari a un vettore dato del piano, come nelle dispense.
 
 > [!ESEMPIO] 21.1 · I vettori ortogonali a un vettore del piano
 > Nel prodotto scalare euclideo di $\R^2$, i vettori $(x, y)$ ortogonali a $(a, b) \neq 0$ soddisfano $ax + by = 0$ e formano quindi la retta
 > $$\Span\begin{pmatrix} -b \\ a \end{pmatrix}.$$
 > Per esempio, i vettori ortogonali a $(2, 1)$ sono quelli con $2x + y = 0$, cioè la retta $\Span((-1, 2))$. Controllo: $\langle (-1, 2), (2, 1)\rangle = -2 + 2 = 0$.
 
-Perché proprio quella retta? L'equazione $ax + by = 0$ è un sistema omogeneo con una sola equazione non nulla in due incognite: le soluzioni formano uno spazio di dimensione $2 - 1 = 1$, una retta. Il vettore $(-b, a)$ è soluzione ($a(-b) + ba = 0$) e non è nullo, quindi genera la retta. La regola pratica: **scambia le coordinate e cambia un segno**.
+Perché proprio quella retta? L'equazione $ax + by = 0$ è un sistema con una sola equazione e due incognite: le soluzioni formano una retta. Il vettore $(-b, a)$ è una soluzione, perché $a(-b) + ba = 0$, e non è nullo, quindi genera la retta. La regola pratica: **scambia le coordinate e cambia un segno**.
 
 ```grafico
 titolo: I vettori ortogonali a $(2, 1)$ formano la retta $\Span((-1, 2))$
@@ -41738,89 +41738,111 @@ vettore: -1 2 | blu | spesso | $(-1, 2)$ | no
 > Rispetto al prodotto scalare euclideo di $\R^n$, i vettori $e_i$ ed $e_j$ della base canonica sono ortogonali per $i \neq j$: $\langle e_i, e_j\rangle$ è la somma dei prodotti delle coordinate, e $e_i$, $e_j$ non hanno mai un 1 nello stesso posto.
 
 > [!ESEMPIO] Con un altro prodotto scalare
-> Con $S = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ i vettori $e_1$ ed $e_2$ **non** sono ortogonali: $g_S(e_1, e_2) = S_{12} = 1$. I vettori $g_S$-ortogonali a $e_1$ sono quelli con $g_S(e_1, y) = 2y_1 + y_2 = 0$ (la prima riga di $S$ per $y$), cioè la retta $\Span((1, -2))$. Per il prodotto euclideo, invece, sarebbero la retta $\Span((0, 1))$.
+> Con $S = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ i vettori $e_1$ ed $e_2$ **non** sono ortogonali: $g_S(e_1, e_2) = S_{12} = 1$. I vettori perpendicolari a $e_1$ per questo prodotto sono quelli con $2y_1 + y_2 = 0$ (la prima riga di $S$ per $y$), cioè la retta di $(1, -2)$. Con il prodotto di tutti i giorni, invece, sarebbe la retta di $(0, 1)$.
 
-> [!OLTRE] Vettori ortogonali non nulli sono indipendenti
-> Se $v_1, \dots, v_k$ sono non nulli e a due a due ortogonali, allora sono linearmente indipendenti (Martelli, Proposizione 8.1.25). Parti da una combinazione nulla $\lambda_1v_1 + \dots + \lambda_kv_k = 0$ e fai il prodotto scalare con $v_i$:
+> [!OLTRE] Vettori perpendicolari non nulli sono indipendenti
+> Se $v_1, \dots, v_k$ sono non nulli e perpendicolari a due a due, sono indipendenti (Martelli, Proposizione 8.1.25). Parti da una ricetta che dà zero, $\lambda_1v_1 + \dots + \lambda_kv_k = 0$, e fai il prodotto scalare con $v_i$:
 > $$0 = \langle 0, v_i\rangle = \lambda_1\langle v_1, v_i\rangle + \dots + \lambda_k\langle v_k, v_i\rangle = \lambda_i\langle v_i, v_i\rangle,$$
-> perché tutti gli altri prodotti sono zero. Siccome $v_i \neq 0$, $\langle v_i, v_i\rangle > 0$ e quindi $\lambda_i = 0$, per ogni $i$. In particolare $n$ vettori non nulli a due a due ortogonali in uno spazio di dimensione $n$ formano sempre una base.
+> perché tutti gli altri prodotti sono zero. Siccome $v_i$ non è zero, $\langle v_i, v_i\rangle$ è positivo, e quindi $\lambda_i = 0$. In particolare $n$ vettori non nulli e perpendicolari a due a due, in uno spazio di dimensione $n$, formano sempre una base.
 
-## Il complemento ortogonale (p. 105)
+::: prova Un vettore perpendicolare a $(3, 5)$ nel piano?
+Scambio le coordinate e cambio un segno: $(-5, 3)$. Controllo: $3 \cdot (-5) + 5 \cdot 3 = 0$.
+:::
 
-Ora non un vettore solo, ma un intero sottospazio: quali vettori sono ortogonali a **tutti** i vettori di $W$?
+> [!RICORDA]
+> - Ortogonali vuol dire prodotto scalare zero: perpendicolari.
+> - Nel piano, i vettori perpendicolari a $(a, b)$ sono i multipli di $(-b, a)$.
+
+## Tutte le direzioni perpendicolari (p. 105)
+
+Ora non un vettore solo, ma un intero sottospazio. Prendi il pavimento di una stanza: le direzioni perpendicolari a **tutto** il pavimento sono quelle verticali, una retta. Prendi invece un filo teso: le direzioni perpendicolari al filo formano un piano. Le dispense danno un nome a questo insieme.
 
 > [!DEF] 21.3 · Complemento ortogonale
 > Sia $W \subset V$ un sottospazio. Il **complemento ortogonale** di $W$ è
 > $$W^\perp = \{v \in V \mid \langle v, w\rangle = 0 \text{ per ogni } w \in W\}.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- il simbolo $W^\perp$ si legge «$W$ ortogonale» o «$W$ perp»;
-- un vettore sta in $W^\perp$ se è ortogonale a **ogni** vettore di $W$, non solo a qualcuno;
-- casi estremi: $\{0\}^\perp = V$ (tutti sono ortogonali al vettore nullo) e $V^\perp = \{0\}$ (un vettore ortogonale a tutto $V$ è ortogonale a sé stesso, quindi è nullo perché il prodotto è definito positivo).
+- $W^\perp$ si legge «vu doppio ortogonale» o «vu doppio perp».
+- Un vettore sta in $W^\perp$ se è perpendicolare a **ogni** vettore di $W$, non solo a qualcuno.
+- Casi estremi: il complemento del solo zero è tutto lo spazio, perché tutti sono perpendicolari allo zero. Il complemento di tutto lo spazio è solo lo zero: un vettore perpendicolare a tutto è perpendicolare anche a sé stesso, e allora è nullo.
+
+Il complemento è sempre un sottospazio. Le dispense lo scrivono così.
 
 > [!PROP] 21.4
 > $W^\perp$ è un sottospazio vettoriale di $V$.
 
-La dimostrazione controlla le tre condizioni di sottospazio (lezione L06):
+**Come si legge.** Tutte le direzioni perpendicolari a $W$, messe insieme, formano una retta, un piano o comunque un sottospazio.
 
-1. $0 \in W^\perp$, perché $\langle 0, w\rangle = 0$ per ogni $w$;
-2. se $v, v' \in W^\perp$, per ogni $w \in W$ si ha $\langle v + v', w\rangle = \langle v, w\rangle + \langle v', w\rangle = 0 + 0 = 0$, quindi $v + v' \in W^\perp$;
-3. se $v \in W^\perp$ e $\lambda \in \R$, per ogni $w \in W$ si ha $\langle \lambda v, w\rangle = \lambda\langle v, w\rangle = \lambda \cdot 0 = 0$, quindi $\lambda v \in W^\perp$. $\square$
+Il perché, con le tre condizioni di sottospazio (lezione L06):
 
-Per esempio l'appello del 05/02/2026 (domanda 2) chiedeva quale di cinque insiemi non fosse un sottospazio di $\R_2[x]$, e tra gli insiemi c'era $\R_1[x]^\perp$: è un sottospazio per la Proposizione 21.4, quindi non era la risposta.
+1. lo zero sta in $W^\perp$, perché è perpendicolare a tutto;
+2. se due vettori sono perpendicolari a tutto $W$, anche la loro somma lo è: $\langle v + v', w\rangle = \langle v, w\rangle + \langle v', w\rangle = 0 + 0 = 0$;
+3. se $v$ è perpendicolare a ogni $w$, anche un suo multiplo lo è: $\langle \lambda v, w\rangle = \lambda \cdot 0 = 0$.
 
-**Come si calcola in pratica.** La definizione chiede di controllare **infiniti** vettori $w$. Bastano i generatori.
+Per esempio l'appello del 05/02/2026 (domanda 2) chiedeva quale di cinque insiemi non fosse un sottospazio dei polinomi di grado al massimo 2. Tra gli insiemi c'era il complemento ortogonale dei polinomi di grado al massimo 1: per la Proposizione 21.4 è un sottospazio, quindi non era la risposta.
+
+**Come si calcola in pratica.** La definizione chiede di controllare **infiniti** vettori. Ma bastano i generatori.
 
 > [!OLTRE] Bastano i generatori
 > Se $W = \Span(w_1, \dots, w_k)$, allora (Martelli, Proposizione 7.3.3)
 > $$W^\perp = \{v \in V \mid \langle v, w_1\rangle = 0, \ \dots, \ \langle v, w_k\rangle = 0\}.$$
-> Infatti ogni $w \in W$ si scrive $w = \lambda_1w_1 + \dots + \lambda_kw_k$, e se $v$ è ortogonale ai generatori allora $\langle v, w\rangle = \lambda_1\langle v, w_1\rangle + \dots + \lambda_k\langle v, w_k\rangle = 0$. Con un prodotto $g_S$ su $\R^n$ le condizioni diventano il sistema lineare omogeneo ${}^tw_i\,S\,x = 0$ per $i = 1, \dots, k$; con il prodotto euclideo, semplicemente $\langle w_i, x\rangle = 0$.
+> Infatti ogni vettore di $W$ è una ricetta dei generatori, $w = \lambda_1w_1 + \dots + \lambda_kw_k$. Se $v$ è perpendicolare ai generatori, allora $\langle v, w\rangle = \lambda_1 \cdot 0 + \dots + \lambda_k \cdot 0 = 0$. Con un prodotto $g_S$ le condizioni diventano il sistema ${}^tw_i\,S\,x = 0$, una equazione per generatore; con il prodotto di tutti i giorni, semplicemente $\langle w_i, x\rangle = 0$.
 
 > [!METODO] Calcolare $W^\perp$
-> 1. Trova dei generatori $w_1, \dots, w_k$ di $W$ (se $W$ è dato con equazioni, prima trova una base).
-> 2. Scrivi una equazione per ogni generatore: $\langle x, w_i\rangle = 0$. Con $g_S$ la riga dei coefficienti è ${}^tw_i\,S = {}^t(Sw_i)$.
-> 3. Risolvi il sistema omogeneo (lezioni L11–L13) e scrivi una base delle soluzioni.
-> 4. Controllo: $\dim W^\perp = \dim V - \dim W$ (Teorema 21.8, più avanti).
+> 1. Trova dei generatori di $W$. Se $W$ è dato con equazioni, prima trova una base.
+> 2. Scrivi una equazione per ogni generatore: il prodotto scalare di $x$ con quel generatore è zero. Con $g_S$ la riga dei numeri per il generatore $w_i$ è ${}^t(Sw_i)$.
+> 3. Risolvi il sistema (lezioni L11–L13) e scrivi una base delle soluzioni.
+> 4. Controllo: nella sezione sulla decomposizione vedrai che le dimensioni di $W$ e di $W^\perp$ sommano alla dimensione dello spazio.
 
-> [!ESEMPIO] Tre complementi in $\R^3$ (prodotto euclideo)
-> 1. **Una retta.** $W = \Span((1, 2, 3))$. Una sola equazione: $x + 2y + 3z = 0$. $W^\perp$ è il **piano** con questa equazione; una base: $y$ e $z$ sono libere, quindi $(-2, 1, 0)$ (con $y = 1, z = 0$) e $(-3, 0, 1)$ (con $y = 0, z = 1$).
-> 2. **Un piano dato con generatori.** $W = \Span((1, 1, 0), (0, 1, 1))$. Due equazioni: $x + y = 0$ e $y + z = 0$. Quindi $x = -y$, $z = -y$: $W^\perp = \Span((1, -1, 1))$, una **retta**. Controllo: $1 - 1 + 0 = 0$ e $0 - 1 + 1 = 0$.
-> 3. **Un piano dato con un'equazione.** $W = \{x + y + z = 0\}$: l'equazione stessa dice che ogni vettore di $W$ è ortogonale a $(1, 1, 1)$, quindi $\Span((1, 1, 1)) \subset W^\perp$. Per la formula delle dimensioni $\dim W^\perp = 3 - 2 = 1$, quindi $W^\perp = \Span((1, 1, 1))$. In generale il complemento del piano $\{ax + by + cz = 0\}$ è la retta generata da $(a, b, c)$.
+> [!ESEMPIO] Tre complementi nello spazio (prodotto di tutti i giorni)
+> 1. **Una retta.** $W = \Span((1, 2, 3))$. Una sola equazione: $x + 2y + 3z = 0$. Il complemento è il **piano** con questa equazione. Una base: $y$ e $z$ sono libere, quindi $(-2, 1, 0)$, con $y = 1$ e $z = 0$, e $(-3, 0, 1)$, con $y = 0$ e $z = 1$.
+> 2. **Un piano dato con generatori.** $W = \Span((1, 1, 0), (0, 1, 1))$. Due equazioni: $x + y = 0$ e $y + z = 0$. Quindi $x = -y$ e $z = -y$: il complemento è la **retta** di $(1, -1, 1)$. Controllo: $1 - 1 + 0 = 0$ e $0 - 1 + 1 = 0$.
+> 3. **Un piano dato con un'equazione.** $W = \{x + y + z = 0\}$. Una base del piano è $(1, -1, 0)$ e $(0, 1, -1)$. Le due equazioni sono $x - y = 0$ e $y - z = 0$, quindi $x = y = z$: il complemento è la retta di $(1, 1, 1)$. In generale il complemento del piano $\{ax + by + cz = 0\}$ è la retta di $(a, b, c)$: l'equazione stessa dice che ogni vettore del piano è perpendicolare a $(a, b, c)$.
 
 > [!ESEMPIO] Un complemento tra i polinomi
-> Su $\R_2[x]$ con $\langle p, q\rangle = p(0)q(0) + p(1)q(1) + p(2)q(2)$ (lezione L19), cerchiamo $\R_1[x]^\perp = \Span(1, x)^\perp$. Con la matrice $\begin{pmatrix} 3 & 3 & 5 \\ 3 & 5 & 9 \\ 5 & 9 & 17 \end{pmatrix}$ della lezione L19 e $p = a + bx + cx^2$:
+> Sui polinomi di grado al massimo 2 prendi il prodotto $\langle p, q\rangle = p(0)q(0) + p(1)q(1) + p(2)q(2)$ (lezione L19). Cerchiamo i polinomi perpendicolari a $1$ e a $x$. Con la matrice $\begin{pmatrix} 3 & 3 & 5 \\ 3 & 5 & 9 \\ 5 & 9 & 17 \end{pmatrix}$ della lezione L19 e $p = a + bx + cx^2$:
 > $$\begin{aligned} \langle p, 1\rangle &= 3a + 3b + 5c = 0, \\ \langle p, x\rangle &= 3a + 5b + 9c = 0. \end{aligned}$$
-> Sottraendo: $2b + 4c = 0$, cioè $b = -2c$; poi $3a - 6c + 5c = 0$, cioè $a = \frac c3$. Con $c = 3$: $p = 1 - 6x + 3x^2$, e $\R_1[x]^\perp = \Span(1 - 6x + 3x^2)$. Controllo con i valori in $0, 1, 2$, che sono $1, -2, 1$: $\langle p, 1\rangle = 1 - 2 + 1 = 0$ e $\langle p, x\rangle = 0 - 2 + 2 = 0$.
+> Togliendo la prima dalla seconda: $2b + 4c = 0$, cioè $b = -2c$. Poi $3a - 6c + 5c = 0$, cioè $a = \frac c3$. Con $c = 3$: $p = 1 - 6x + 3x^2$, e il complemento è la retta di questo polinomio. Controllo con i valori in $0, 1, 2$, che sono $1, -2, 1$: $\langle p, 1\rangle = 1 - 2 + 1 = 0$ e $\langle p, x\rangle = 0 - 2 + 2 = 0$.
 
-## Proiezione ortogonale su una retta (pp. 105–106)
+::: prova Qual è il complemento ortogonale della retta di $(1, 0, 1)$ nello spazio?
+Il piano $x + z = 0$. Una base: $(0, 1, 0)$ e $(-1, 0, 1)$.
+:::
 
-Immagina una retta $U$ per l'origine e un vettore $v$ fuori dalla retta. Se il sole è a picco, perpendicolare alla retta, l'ombra di $v$ su $U$ è un vettore di $U$: la **proiezione ortogonale** di $v$. Quello che resta, $v$ meno la sua ombra, è perpendicolare alla retta.
+> [!RICORDA]
+> - $W^\perp$ raccoglie i vettori perpendicolari a tutto $W$; è sempre un sottospazio.
+> - Si calcola con una equazione per ogni generatore di $W$.
 
-Sia $w \neq 0$ e sia $U = \Span(w)$. Per $v \in V$ cerchiamo un vettore $p_w(v) \in U$ tale che
+## L'ombra su una retta (pp. 105–106)
+
+Immagina una retta per l'origine e un vettore fuori dalla retta. Se il sole è a picco, perpendicolare alla retta, l'ombra del vettore cade sulla retta: è la **proiezione ortogonale** del vettore. Quello che resta, il vettore meno la sua ombra, è perpendicolare alla retta.
+
+Con i nomi delle dispense: sia $w$ un vettore non nullo e $U$ la sua retta. Per un vettore $v$ cerchiamo un vettore $p_w(v)$ della retta per cui
 
 $$v - p_w(v) \in U^\perp.$$
 
-Questo vettore è la **proiezione ortogonale** di $v$ sulla retta $U$.
+Questo vettore è la **proiezione ortogonale** di $v$ sulla retta. Le dispense danno la formula.
 
 > [!PROP] 21.5
 > Vale
 > $$p_w(v) = \frac{\langle v, w\rangle}{\langle w, w\rangle}\,w = \frac{\langle v, w\rangle}{\|w\|^2}\,w.$$
 
+**Come si legge.** L'ombra è un multiplo del vettore che genera la retta. Il numero davanti è un rapporto: sopra il prodotto scalare tra i due vettori, sotto la lunghezza al quadrato del vettore della retta.
+
 La dimostrazione delle dispense, passo per passo:
 
-1. $p_w(v)$ sta nella retta $U = \Span(w)$, quindi è un multiplo di $w$: $p_w(v) = kw$ per un numero $k$ da trovare;
-2. la condizione $v - kw \in U^\perp$ vuol dire che $v - kw$ è ortogonale a $w$ (basta il generatore della retta):
+1. l'ombra sta sulla retta, quindi è un multiplo di $w$: la chiamo $kw$, con $k$ da trovare;
+2. il resto $v - kw$ deve essere perpendicolare a $w$:
    $$0 = \langle v - kw, w\rangle = \langle v, w\rangle - k\langle w, w\rangle;$$
-3. siccome $w \neq 0$, $\langle w, w\rangle > 0$ e si può dividere: $k = \frac{\langle v, w\rangle}{\langle w, w\rangle}$. $\square$
+3. siccome $w$ non è zero, $\langle w, w\rangle$ è positivo e si può dividere: $k = \frac{\langle v, w\rangle}{\langle w, w\rangle}$.
 
-> [!ESEMPIO] Proiettare $v = (1, 3)$ sulla retta di $w = (4, 2)$
-> 1. $\langle v, w\rangle = 4 + 6 = 10$ e $\langle w, w\rangle = 16 + 4 = 20$;
-> 2. coefficiente $\frac{10}{20} = \frac12$, quindi $p_w(v) = \frac12(4, 2) = (2, 1)$;
-> 3. il resto è $v - p_w(v) = (1, 3) - (2, 1) = (-1, 2)$;
-> 4. controllo: $\langle (-1, 2), (4, 2)\rangle = -4 + 4 = 0$. ✓
+> [!ESEMPIO] L'ombra di $v = (1, 3)$ sulla retta di $w = (4, 2)$
+> 1. $\langle v, w\rangle = 4 + 6 = 10$ e $\langle w, w\rangle = 16 + 4 = 20$.
+> 2. Il numero davanti è $\frac{10}{20} = \frac12$, quindi l'ombra è $\frac12(4, 2) = (2, 1)$.
+> 3. Il resto è $(1, 3) - (2, 1) = (-1, 2)$.
+> 4. Controllo: $\langle (-1, 2), (4, 2)\rangle = -4 + 4 = 0$.
 >
-> Con $w' = (2, 1)$ al posto di $w$ (stessa retta) il coefficiente diventa $\frac{\langle v, w'\rangle}{\langle w', w'\rangle} = \frac55 = 1$, ma la proiezione è la stessa: $1 \cdot (2, 1) = (2, 1)$. **La proiezione dipende dalla retta, non dal vettore scelto per generarla.**
+> Con $(2, 1)$ al posto di $w$, che genera la stessa retta, il numero davanti diventa $\frac55 = 1$, ma l'ombra è la stessa: $1 \cdot (2, 1) = (2, 1)$. **L'ombra dipende dalla retta, non dal vettore scelto per generarla.**
 
 ```grafico
 titolo: $v = (1, 3)$ si scompone in $p_w(v) = (2, 1)$, sulla retta di $w$, più $(-1, 2)$, ortogonale alla retta
@@ -41833,27 +41855,25 @@ vettore: 2 1 | ambra | spesso | $p_w(v)$ | se
 segmento: 2 1 1 3 | viola | tratteggio | $v - p_w(v)$ | e
 ```
 
-> [!ESEMPIO] Una proiezione in $\R^3$
-> $v = (1, 2, 3)$ sulla retta di $w = (1, 1, 1)$: $\langle v, w\rangle = 6$, $\langle w, w\rangle = 3$, quindi $p_w(v) = 2(1, 1, 1) = (2, 2, 2)$. Il resto $(1, 2, 3) - (2, 2, 2) = (-1, 0, 1)$ è ortogonale a $w$: $-1 + 0 + 1 = 0$.
+> [!ESEMPIO] Un'ombra nello spazio
+> $v = (1, 2, 3)$ sulla retta di $w = (1, 1, 1)$: $\langle v, w\rangle = 6$ e $\langle w, w\rangle = 3$, quindi l'ombra è $2(1, 1, 1) = (2, 2, 2)$. Il resto $(1, 2, 3) - (2, 2, 2) = (-1, 0, 1)$ è perpendicolare a $w$: $-1 + 0 + 1 = 0$.
 
-**Ogni vettore si spezza in due pezzi ortogonali.** Dalla costruzione:
+**Ogni vettore si spezza in due pezzi perpendicolari.** Dalla costruzione:
 
 $$v = p_w(v) + \big(v - p_w(v)\big),$$
 
-con il primo termine in $U$ e il secondo in $U^\perp$. Inoltre $U \cap U^\perp = \{0\}$: un vettore che sta in entrambi è ortogonale a sé stesso, quindi è nullo. Allora la somma è **diretta** (Definizione 18.4: la scrittura come somma è unica) e
+con il primo pezzo sulla retta e il secondo perpendicolare. Un vettore che sta sia sulla retta sia nel suo complemento è perpendicolare a sé stesso, quindi è zero. Allora la scomposizione è unica: la somma è **diretta** (Definizione 18.4), e lo spazio è la retta più il suo complemento, $V = U \oplus U^\perp$.
 
-$$V = U \oplus U^\perp.$$
-
-Il numero $\frac{\langle v, w\rangle}{\langle w, w\rangle}$ si chiama **coefficiente di Fourier** di $v$ rispetto a $w$.
+Il numero davanti all'ombra si chiama **coefficiente di Fourier** di $v$ rispetto a $w$.
 
 > [!TRAPPOLA] Due errori frequenti
-> - Dividere per $\|w\|$ invece che per $\|w\|^2 = \langle w, w\rangle$. Con $v = (3, 1)$ e $w = (1, 1)$ la proiezione giusta è $\frac42(1, 1) = (2, 2)$; dividendo per $\|w\| = \sqrt2$ si otterrebbe $(2\sqrt2, 2\sqrt2)$, che non ha nemmeno il resto ortogonale.
+> - Dividere per la lunghezza di $w$ invece che per la lunghezza al quadrato. Con $v = (3, 1)$ e $w = (1, 1)$ l'ombra giusta è $\frac42(1, 1) = (2, 2)$. Dividendo per $\sqrt2$ si otterrebbe $(2\sqrt2, 2\sqrt2)$, e il resto non sarebbe nemmeno perpendicolare.
 > - Scambiare i ruoli: $p_w(v)$ proietta $v$ **sulla retta di $w$**. Proiettare $w$ sulla retta di $v$ dà un altro vettore.
 
-> [!OLTRE] La lunghezza della proiezione
-> $\|p_w(v)\| = \frac{|\langle v, w\rangle|}{\|w\|^2}\,\|w\| = \frac{|\langle v, w\rangle|}{\|w\|}$ (Martelli, Esercizio 8.1.15). Se $w$ è unitario, $p_w(v) = \langle v, w\rangle\,w$ e la lunghezza della proiezione è $|\langle v, w\rangle|$: è l'interpretazione del prodotto scalare come «ombra» che si vede in fisica.
+> [!OLTRE] La lunghezza dell'ombra
+> L'ombra è lunga $\frac{|\langle v, w\rangle|}{\|w\|}$ (Martelli, Esercizio 8.1.15). Se $w$ è lungo 1, l'ombra è $\langle v, w\rangle\,w$ e la sua lunghezza è il prodotto scalare senza segno: è l'interpretazione del prodotto scalare come «ombra» che si vede in fisica.
 
-Prova con lo strumento: la freccia gialla è la proiezione di $v$ sulla retta di $u$, e il segmento viola è il resto. Trascina $v$: il segmento viola resta sempre perpendicolare alla retta. Quando $v$ è perpendicolare a $u$ la proiezione diventa il vettore nullo.
+Prova con lo strumento: la freccia gialla è l'ombra di $v$ sulla retta di $u$, e il segmento viola è il resto. Trascina $v$: il segmento viola resta sempre perpendicolare alla retta. Quando $v$ è perpendicolare a $u$ l'ombra diventa il vettore nullo.
 
 ```widget vettori
 titolo: Proiezione ortogonale di v sulla retta di u
@@ -41864,52 +41884,73 @@ modi: scalare
 raggio: 5
 ```
 
-## Coordinate in una base ortogonale (p. 106)
+::: prova Qual è l'ombra di $(3, 4)$ sulla retta dell'asse orizzontale, cioè di $(1, 0)$?
+Il numero davanti è $\frac{3}{1} = 3$: l'ombra è $(3, 0)$, e il resto $(0, 4)$ è verticale.
+:::
 
-Una base $\{v_1, \dots, v_n\}$ si dice **ortogonale** se i suoi vettori sono a due a due ortogonali ($\langle v_i, v_j\rangle = 0$ per $i \ne j$), e **ortonormale** se in più ogni vettore ha norma 1. La base canonica di $\R^n$ è ortonormale per il prodotto euclideo (Esempio 21.2). Con una base ortogonale le coordinate si calcolano **senza risolvere sistemi**.
+> [!RICORDA]
+> - Ombra di $v$ sulla retta di $w$: $\frac{\langle v, w\rangle}{\langle w, w\rangle}\,w$. Si divide per la lunghezza **al quadrato**.
+> - Il resto è sempre perpendicolare alla retta: è il controllo da fare.
+
+## Coordinate in una base di vettori perpendicolari (p. 106)
+
+Una base si chiama **ortogonale** se i suoi vettori sono perpendicolari a due a due, e **ortonormale** se in più ogni vettore è lungo 1. La base canonica è ortonormale per il prodotto di tutti i giorni (Esempio 21.2). Con una base ortogonale le coordinate si calcolano **senza risolvere sistemi**: ogni vettore è la somma delle sue ombre. Le dispense lo scrivono così.
 
 > [!PROP] 21.6
 > Sia $\mathcal B = \{v_1, \dots, v_n\}$ una base ortogonale di $V$. Per ogni $v \in V$,
 > $$v = \sum_{i=1}^n p_{v_i}(v) = \sum_{i=1}^n \frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}\,v_i.$$
 
-In parole: ogni vettore è la **somma delle sue proiezioni** sui vettori di una base ortogonale, e le coordinate sono i coefficienti di Fourier. La dimostrazione:
+**Come si legge.** In una base ortogonale, ogni vettore è la somma delle sue ombre sui vettori della base. Le coordinate sono i coefficienti di Fourier.
 
-1. siccome $\mathcal B$ è una base, $v = \lambda_1v_1 + \dots + \lambda_nv_n$ per certi numeri $\lambda_1, \dots, \lambda_n$;
-2. fai il prodotto scalare di entrambi i membri con $v_i$: a destra tutti i termini $\lambda_j\langle v_j, v_i\rangle$ con $j \ne i$ sono zero, per l'ortogonalità, e resta $\langle v, v_i\rangle = \lambda_i\langle v_i, v_i\rangle$;
-3. quindi $\lambda_i = \frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}$. $\square$
+La dimostrazione:
 
-Se la base è **ortonormale**, $\langle v_i, v_i\rangle = 1$ e la formula diventa ancora più corta: $v = \sum_i \langle v, v_i\rangle\,v_i$.
+1. siccome è una base, $v = \lambda_1v_1 + \dots + \lambda_nv_n$ per certi numeri;
+2. fai il prodotto scalare dei due lati con $v_i$: a destra tutti i pezzi con gli altri vettori della base sono zero, per la perpendicolarità, e resta $\langle v, v_i\rangle = \lambda_i\langle v_i, v_i\rangle$;
+3. quindi $\lambda_i = \frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}$.
+
+Se la base è **ortonormale**, ogni $\langle v_i, v_i\rangle$ vale 1 e la formula si accorcia: la coordinata $i$ è $\langle v, v_i\rangle$.
 
 > [!ESEMPIO] Coordinate senza sistema
-> In $\R^2$ la base $v_1 = (2, 1)$, $v_2 = (-1, 2)$ è ortogonale ($-2 + 2 = 0$). Per $v = (2, 3)$:
+> Nel piano la base $v_1 = (2, 1)$, $v_2 = (-1, 2)$ è ortogonale: $-2 + 2 = 0$. Per $v = (2, 3)$:
 > $$\frac{\langle v, v_1\rangle}{\langle v_1, v_1\rangle} = \frac{4 + 3}{5} = \frac75, \qquad \frac{\langle v, v_2\rangle}{\langle v_2, v_2\rangle} = \frac{-2 + 6}{5} = \frac45.$$
-> Controllo: $\frac75(2, 1) + \frac45(-1, 2) = \left(\frac{14 - 4}{5}, \frac{7 + 8}{5}\right) = (2, 3)$. ✓ (È l'Esempio 8.1.19 di Martelli.)
+> Controllo: $\frac75(2, 1) + \frac45(-1, 2) = \left(\frac{14 - 4}{5}, \frac{7 + 8}{5}\right) = (2, 3)$. È l'Esempio 8.1.19 di Martelli.
 >
-> In $\R^3$, con la base ortogonale $(1, 1, 0)$, $(1, -1, 0)$, $(0, 0, 1)$ e $v = (3, 1, 2)$: i coefficienti sono $\frac{3 + 1}{2} = 2$, $\frac{3 - 1}{2} = 1$, $\frac{2}{1} = 2$, e infatti $2(1, 1, 0) + (1, -1, 0) + 2(0, 0, 1) = (3, 1, 2)$.
+> Nello spazio, con la base ortogonale $(1, 1, 0)$, $(1, -1, 0)$, $(0, 0, 1)$ e $v = (3, 1, 2)$: i numeri sono $\frac{3 + 1}{2} = 2$, $\frac{3 - 1}{2} = 1$ e $\frac{2}{1} = 2$. Infatti $2(1, 1, 0) + (1, -1, 0) + 2(0, 0, 1) = (3, 1, 2)$.
 
 > [!IDEA] Perché le basi ortogonali fanno risparmiare lavoro
-> Con una base qualsiasi, per trovare le coordinate di $v$ devi risolvere un sistema $n \times n$. Con una base ortogonale ogni coordinata è **un rapporto di due prodotti scalari**, calcolato da solo. È il motivo per cui si fa tanta fatica a costruire basi ortogonali: è quello che fa Gram–Schmidt.
+> Con una base qualsiasi, per trovare le coordinate bisogna risolvere un sistema. Con una base ortogonale ogni coordinata è **un rapporto di due prodotti scalari**, calcolato da solo. È il motivo per cui si fa tanta fatica a costruire basi ortogonali: è quello che fa Gram–Schmidt.
 
-## L'algoritmo di Gram–Schmidt (p. 107)
+::: prova Coordinate di $(5, 1)$ nella base ortogonale $(1, 1), (1, -1)$?
+$\frac{5 + 1}{2} = 3$ e $\frac{5 - 1}{2} = 2$. Controllo: $3(1, 1) + 2(1, -1) = (5, 1)$.
+:::
 
-Le basi ortogonali sono comode: come se ne costruisce una? L'algoritmo di **Gram–Schmidt** prende vettori linearmente indipendenti $v_1, \dots, v_k$ e li trasforma in vettori ortogonali $w_1, \dots, w_k$ ponendo
+> [!RICORDA]
+> - In una base ortogonale ogni coordinata è $\frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}$; in una ortonormale è $\langle v, v_i\rangle$.
+
+## Raddrizzare una base: Gram–Schmidt (p. 107)
+
+Le basi ortogonali sono comode: come se ne costruisce una? L'idea è **raddrizzare** una base qualsiasi, un vettore alla volta. Il primo resta com'è. Al secondo togli la sua ombra sul primo: quello che resta è perpendicolare al primo. Al terzo togli le sue ombre sui primi due già sistemati, e così via.
+
+Le dispense scrivono l'algoritmo di **Gram–Schmidt** così. Partendo da vettori indipendenti $v_1, \dots, v_k$, si pone
 
 $$w_1 = v_1$$
 
-e, per $i \ge 2$,
+e, dal secondo in poi,
 
 $$w_i = v_i - \sum_{j=1}^{i-1} p_{w_j}(v_i) = v_i - \sum_{j=1}^{i-1} \frac{\langle v_i, w_j\rangle}{\langle w_j, w_j\rangle}\,w_j.$$
 
-Ad ogni passo si tolgono quindi a $v_i$ le sue componenti nelle direzioni già costruite. Scritto per esteso per tre vettori:
+A ogni passo si tolgono a $v_i$ le sue ombre nelle direzioni già costruite. Scritto per esteso per tre vettori:
 
 $$\begin{aligned} w_1 &= v_1, \\ w_2 &= v_2 - \frac{\langle v_2, w_1\rangle}{\langle w_1, w_1\rangle}\,w_1, \\ w_3 &= v_3 - \frac{\langle v_3, w_1\rangle}{\langle w_1, w_1\rangle}\,w_1 - \frac{\langle v_3, w_2\rangle}{\langle w_2, w_2\rangle}\,w_2. \end{aligned}$$
 
-**Perché funziona.** $w_2$ è $v_2$ meno la sua proiezione sulla retta di $w_1$: per la Proposizione 21.5 il resto è ortogonale a $w_1$. Allo stesso modo, togliendo a $v_3$ le proiezioni su $w_1$ e su $w_2$ (che sono già ortogonali tra loro), il resto è ortogonale a entrambi. Inoltre ogni $w_i$ è $v_i$ più una combinazione dei vettori precedenti, quindi $\Span(w_1, \dots, w_i) = \Span(v_1, \dots, v_i)$, e $w_i \ne 0$ perché i $v_i$ sono indipendenti.
+**Perché funziona.** Il secondo vettore è $v_2$ meno la sua ombra sulla retta di $w_1$: per la Proposizione 21.5 il resto è perpendicolare a $w_1$. Allo stesso modo, al terzo vettore si tolgono le ombre sui primi due, che sono già perpendicolari tra loro: il resto è perpendicolare a tutti e due. Inoltre ogni $w_i$ è $v_i$ più una ricetta dei vettori precedenti: quindi i nuovi vettori generano gli stessi spazi dei vecchi. E nessun $w_i$ è zero, perché i $v_i$ sono indipendenti.
 
 > [!ESEMPIO] Gram–Schmidt nel piano
-> $v_1 = (3, 1)$, $v_2 = (2, 2)$. Allora $w_1 = (3, 1)$ e
+> $v_1 = (3, 1)$, $v_2 = (2, 2)$. Il primo resta: $w_1 = (3, 1)$. Al secondo tolgo l'ombra sul primo:
 > $$\begin{aligned} w_2 &= (2, 2) - \frac{\langle (2, 2), (3, 1)\rangle}{\langle (3, 1), (3, 1)\rangle}(3, 1) = (2, 2) - \frac{8}{10}(3, 1) \\ &= \left(2 - \frac{12}5, 2 - \frac45\right) = \left(-\frac25, \frac65\right). \end{aligned}$$
-> Controllo: $\langle w_2, w_1\rangle = -\frac65 + \frac65 = 0$. ✓ Moltiplicando per 5 si può usare $(-2, 6)$, o dividendo per 2, $(-1, 3)$: resta ortogonale a $w_1$.
+> Controllo: $\langle w_2, w_1\rangle = -\frac65 + \frac65 = 0$. Moltiplicando per 5 si può usare $(-2, 6)$, o dividendo ancora per 2, $(-1, 3)$: resta perpendicolare a $w_1$.
+
+Ecco l'esempio delle dispense, nello spazio.
 
 > [!ESEMPIO] 21.7 · Gram–Schmidt in $\R^3$
 > Ortogonalizziamo
@@ -41920,38 +41961,38 @@ $$\begin{aligned} w_1 &= v_1, \\ w_2 &= v_2 - \frac{\langle v_2, w_1\rangle}{\la
 > $$w_3 = v_3 - \frac{\langle v_3, w_1\rangle}{\langle w_1, w_1\rangle}\,w_1 - \frac{\langle v_3, w_2\rangle}{\langle w_2, w_2\rangle}\,w_2 = \begin{pmatrix} \frac23 \\ -\frac23 \\ \frac23 \end{pmatrix}.$$
 > I vettori $w_1, w_2, w_3$ sono ortogonali.
 
-I conti che le dispense non scrivono:
+> [!ESEMPIO] · i conti dell'Esempio 21.7
+> I conti che le dispense non scrivono:
+>
+> 1. $\langle v_2, w_1\rangle = 0 + 1 + 0 = 1$ e $\langle w_1, w_1\rangle = 2$, quindi $w_2 = (0, 1, 1) - \frac12(1, 1, 0) = \left(-\frac12, \frac12, 1\right)$;
+> 2. $\langle v_3, w_1\rangle = 1 + 0 + 0 = 1$, quindi il primo numero da togliere è $\frac12$;
+> 3. $\langle v_3, w_2\rangle = -\frac12 + 0 + 1 = \frac12$ e $\langle w_2, w_2\rangle = \frac14 + \frac14 + 1 = \frac32$, quindi il secondo è $\frac{1/2}{3/2} = \frac13$;
+> 4. $w_3 = (1, 0, 1) - \frac12(1, 1, 0) - \frac13\left(-\frac12, \frac12, 1\right)$, coordinata per coordinata:
+>    $$1 - \frac12 + \frac16 = \frac23, \quad 0 - \frac12 - \frac16 = -\frac23, \quad 1 - 0 - \frac13 = \frac23;$$
+> 5. controlli: $\langle w_1, w_2\rangle = -\frac12 + \frac12 + 0 = 0$, $\langle w_1, w_3\rangle = \frac23 - \frac23 + 0 = 0$, $\langle w_2, w_3\rangle = -\frac13 - \frac13 + \frac23 = 0$.
 
-1. $\langle v_2, w_1\rangle = 0 + 1 + 0 = 1$ e $\langle w_1, w_1\rangle = 2$, quindi $w_2 = (0, 1, 1) - \frac12(1, 1, 0) = \left(-\frac12, \frac12, 1\right)$;
-2. $\langle v_3, w_1\rangle = 1 + 0 + 0 = 1$, quindi il primo coefficiente è $\frac12$;
-3. $\langle v_3, w_2\rangle = -\frac12 + 0 + 1 = \frac12$ e $\langle w_2, w_2\rangle = \frac14 + \frac14 + 1 = \frac32$, quindi il secondo coefficiente è $\frac{1/2}{3/2} = \frac13$;
-4. $w_3 = (1, 0, 1) - \frac12(1, 1, 0) - \frac13\left(-\frac12, \frac12, 1\right)$, coordinata per coordinata:
-   $$1 - \frac12 + \frac16 = \frac23, \quad 0 - \frac12 - \frac16 = -\frac23, \quad 1 - 0 - \frac13 = \frac23;$$
-5. controlli: $\langle w_1, w_2\rangle = -\frac12 + \frac12 + 0 = 0$, $\langle w_1, w_3\rangle = \frac23 - \frac23 + 0 = 0$, $\langle w_2, w_3\rangle = -\frac13 - \frac13 + \frac23 = 0$. ✓
-
-**Da ortogonale a ortonormale.** Per ottenere una base **ortonormale** basta dividere ciascun vettore per la sua norma (lezione L20): $\|w_1\| = \sqrt2$, $\|w_2\| = \sqrt{\frac32} = \frac{\sqrt6}2$, $\|w_3\| = \sqrt{\frac{4}{3}} = \frac{2}{\sqrt3}$, quindi
+**Da ortogonale a ortonormale.** Per avere vettori lunghi 1 basta dividere ciascuno per la sua lunghezza (lezione L20). Conviene prima togliere le frazioni: $w_2 = \frac12(-1, 1, 2)$, e $(-1, 1, 2)$ è lungo $\sqrt6$; $w_3 = \frac23(1, -1, 1)$, e $(1, -1, 1)$ è lungo $\sqrt3$. La base ortonormale è
 
 $$\frac{1}{\sqrt2}\begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \qquad \frac{1}{\sqrt6}\begin{pmatrix} -1 \\ 1 \\ 2 \end{pmatrix}, \qquad \frac{1}{\sqrt3}\begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix}.$$
 
-Nel secondo e nel terzo vettore conviene prima togliere le frazioni: $w_2 = \frac12(-1, 1, 2)$ e $\|(-1, 1, 2)\| = \sqrt6$; $w_3 = \frac23(1, -1, 1)$ e $\|(1, -1, 1)\| = \sqrt3$.
-
 > [!OLTRE] Riscalare durante l'algoritmo
-> La proiezione su una retta non cambia se si sostituisce il generatore con un suo multiplo non nullo (lo hai visto nella sezione sulla proiezione). Quindi durante Gram–Schmidt puoi **moltiplicare ogni $w_i$ per un numero comodo** prima di andare avanti (Martelli, §8.1.8). Nell'Esempio 21.7, con $w_2' = 2w_2 = (-1, 1, 2)$: $\langle v_3, w_2'\rangle = -1 + 0 + 2 = 1$, $\langle w_2', w_2'\rangle = 6$, e
+> L'ombra su una retta non cambia se si sostituisce il vettore che la genera con un suo multiplo. Quindi durante Gram–Schmidt puoi **moltiplicare ogni $w_i$ per un numero comodo** prima di andare avanti (Martelli, §8.1.8). Nell'Esempio 21.7, con $w_2' = 2w_2 = (-1, 1, 2)$: $\langle v_3, w_2'\rangle = -1 + 0 + 2 = 1$ e $\langle w_2', w_2'\rangle = 6$, quindi
 > $$w_3 = (1, 0, 1) - \frac12(1, 1, 0) - \frac16(-1, 1, 2) = \left(\frac23, -\frac23, \frac23\right),$$
 > lo stesso risultato con meno frazioni.
 
-> [!TRAPPOLA] Si proietta sui $w$ nuovi, non sui $v$ vecchi
-> Nel calcolo di $w_3$ i coefficienti usano $w_1$ e $w_2$, già ortogonali tra loro. Se per sbaglio si proietta su $v_2$ invece che su $w_2$:
+> [!TRAPPOLA] Si proietta sui vettori nuovi, non su quelli vecchi
+> Nel calcolo di $w_3$ si tolgono le ombre su $w_1$ e $w_2$, già perpendicolari tra loro. Se per sbaglio si usa $v_2$ invece di $w_2$:
 > $$(1, 0, 1) - \frac12(1, 1, 0) - \frac12(0, 1, 1) = \left(\frac12, -1, \frac12\right),$$
-> e questo vettore **non** è ortogonale a $w_2$: $\left\langle \left(\frac12, -1, \frac12\right), \left(-\frac12, \frac12, 1\right)\right\rangle = -\frac14 - \frac12 + \frac12 = -\frac14 \ne 0$.
+> e questo vettore **non** è perpendicolare a $w_2$: $\left\langle \left(\frac12, -1, \frac12\right), \left(-\frac12, \frac12, 1\right)\right\rangle = -\frac14 - \frac12 + \frac12 = -\frac14$.
 
-**Con un prodotto non euclideo.** L'algoritmo è identico: cambiano solo i prodotti scalari, che si calcolano con $S$. Con $S = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ e $v_1 = e_1$, $v_2 = e_2$: $w_1 = e_1$, $g_S(e_2, e_1) = S_{21} = 1$, $g_S(e_1, e_1) = S_{11} = 2$, quindi
+> [!ESEMPIO] · Gram–Schmidt con un prodotto diverso
+> **Con un prodotto diverso.** L'algoritmo è identico: cambiano solo i prodotti scalari, che si calcolano con $S$. Con $S = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ e la base canonica: il primo vettore è $e_1$, il suo prodotto con $e_2$ è $S_{21} = 1$ e con sé stesso $S_{11} = 2$. Quindi
+>
+> $$w_2 = e_2 - \frac12 e_1 = \left(-\frac12, 1\right).$$
+>
+> Controllo: $g_S(e_1, w_2) = 2 \cdot \left(-\frac12\right) + 1 \cdot 1 = 0$. Per la base ortonormale: $e_1$ è lungo $\sqrt2$, e il prodotto di $w_2$ con sé stesso vale $2 \cdot \frac14 + 2 \cdot \left(-\frac12\right) \cdot 1 + 1 = \frac12$. La base $\left\{\left(\frac{\sqrt2}2, 0\right), \left(-\frac{\sqrt2}2, \sqrt2\right)\right\}$ è ortonormale **per questo prodotto**, non per quello di tutti i giorni.
 
-$$w_2 = e_2 - \frac12 e_1 = \left(-\frac12, 1\right).$$
-
-Controllo: $g_S(e_1, w_2) = 2 \cdot \left(-\frac12\right) + 1 \cdot 1 = 0$. ✓ Per normalizzare: $\|w_1\|_S = \sqrt2$ e $g_S(w_2, w_2) = 2 \cdot \frac14 + 2 \cdot \left(-\frac12\right) \cdot 1 + 1 = \frac12$, quindi la base $\left\{\frac{e_1}{\sqrt2},\ \sqrt2\,w_2\right\} = \left\{\left(\frac{\sqrt2}2, 0\right), \left(-\frac{\sqrt2}2, \sqrt2\right)\right\}$ è ortonormale **per $g_S$** (non per il prodotto euclideo).
-
-Prova la calcolatrice: ogni riga è un vettore, e il prodotto è quello euclideo. Con i vettori dell'Esempio 21.7 scrive i passaggi $u_2 = v_2 - \frac12 u_1$ e così via (lo strumento chiama $u_i$ i vettori che qui sono $w_i$), e alla fine la base ortonormale. Prova anche a scrivere tre vettori dipendenti: il terzo diventa nullo e viene scartato.
+Prova la calcolatrice: ogni riga è un vettore, e il prodotto è quello di tutti i giorni. Con i vettori dell'Esempio 21.7 scrive i passaggi uno per uno, e alla fine la base ortonormale; lo strumento chiama $u_i$ i vettori che qui sono $w_i$. Prova anche a scrivere tre vettori dipendenti: il terzo diventa nullo e viene scartato.
 
 ```widget gauss
 titolo: Gram–Schmidt passo per passo (righe = vettori)
@@ -41962,14 +42003,22 @@ modi: gram-schmidt
 
 > [!METODO] Gram–Schmidt all'esame
 > 1. $w_1 = v_1$. Calcola e scrivi $\langle w_1, w_1\rangle$: servirà di nuovo.
-> 2. $w_2 = v_2 - \frac{\langle v_2, w_1\rangle}{\langle w_1, w_1\rangle}\,w_1$. **Controlla** $\langle w_2, w_1\rangle = 0$ prima di andare avanti; se ci sono frazioni, riscala $w_2$.
-> 3. $w_3 = v_3 - \frac{\langle v_3, w_1\rangle}{\langle w_1, w_1\rangle}\,w_1 - \frac{\langle v_3, w_2\rangle}{\langle w_2, w_2\rangle}\,w_2$; controlla l'ortogonalità con $w_1$ e con $w_2$.
-> 4. Se serve una base **ortonormale**, dividi ogni vettore per la sua norma solo alla fine.
-> 5. Con un $g_S$: ogni prodotto è ${}^tu\,S\,w$; calcola una volta i vettori $Sw_j$ e riusali.
+> 2. $w_2 = v_2$ meno la sua ombra su $w_1$. **Controlla** che sia perpendicolare a $w_1$ prima di andare avanti; se ci sono frazioni, riscala.
+> 3. $w_3 = v_3$ meno le sue ombre su $w_1$ e su $w_2$. Controlla la perpendicolarità con tutti e due.
+> 4. Se serve una base **ortonormale**, dividi ogni vettore per la sua lunghezza solo alla fine.
+> 5. Con un $g_S$: ogni prodotto è ${}^tu\,S\,w$. Calcola una volta i vettori $Sw_j$ e riusali.
 
-## Decomposizione ortogonale e proiezione su un sottospazio (pp. 107–108)
+::: prova Raddrizza $v_1 = (1, 0)$ e $v_2 = (1, 1)$.
+$w_1 = (1, 0)$. L'ombra di $v_2$ su $w_1$ è $\frac11(1, 0) = (1, 0)$, quindi $w_2 = (1, 1) - (1, 0) = (0, 1)$.
+:::
 
-Con Gram–Schmidt la proiezione passa da una retta a un sottospazio qualsiasi. Da qui $V$ ha **dimensione finita** e $W \subset V$ è un sottospazio.
+> [!RICORDA]
+> - Gram–Schmidt: il primo vettore resta, a ogni altro si tolgono le ombre sui vettori **nuovi** già costruiti.
+> - Controlla la perpendicolarità a ogni passo; riscala per evitare frazioni.
+
+## Il pezzo dentro e il pezzo perpendicolare (pp. 107–108)
+
+Con Gram–Schmidt l'ombra passa da una retta a un sottospazio qualsiasi. Pensa a un vettore nella stanza e al pavimento: il vettore si spezza nella sua ombra sul pavimento e in un pezzo verticale. Da qui lo spazio ha **dimensione finita**. Le dispense lo scrivono così.
 
 > [!TEOREMA] 21.8 · Decomposizione ortogonale
 > Vale
@@ -41979,127 +42028,134 @@ Con Gram–Schmidt la proiezione passa da una retta a un sottospazio qualsiasi. 
 > In particolare,
 > $$\dim W + \dim W^\perp = \dim V.$$
 
+**Come si legge.** Ogni vettore si spezza in un solo modo in un pezzo dentro $W$ e un pezzo perpendicolare a $W$. E le dimensioni di $W$ e del suo complemento sommano alla dimensione dello spazio: nello spazio, un piano ha per complemento una retta, $2 + 1 = 3$.
+
 La spiegazione delle dispense, con i passaggi aggiunti:
 
-1. **Una base ortonormale di $W$.** Parti da una base qualsiasi di $W$, applica Gram–Schmidt e dividi per le norme: ottieni una base ortonormale $w_1, \dots, w_k$ di $W$ (se $W = \{0\}$ non c'è niente da fare: $W^\perp = V$).
-2. **Il candidato.** Poni
+1. **Una base ortonormale di $W$.** Parti da una base qualsiasi di $W$, raddrizzala con Gram–Schmidt e dividi per le lunghezze: ottieni $w_1, \dots, w_k$. Se $W$ è solo lo zero non c'è niente da fare.
+2. **Il candidato.** Prendi
    $$p_W(v) = \sum_{i=1}^k \langle v, w_i\rangle\,w_i.$$
-   È una combinazione dei $w_i$, quindi $p_W(v) \in W$.
-3. **Il resto è ortogonale a $W$.** Per ogni $j$, siccome $\langle w_i, w_j\rangle$ vale 1 per $i = j$ e 0 altrimenti,
+   È una ricetta dei $w_i$, quindi sta in $W$.
+3. **Il resto è perpendicolare a $W$.** Due vettori diversi della base hanno prodotto zero, e ognuno con sé stesso dà 1. Quindi, per ogni $j$,
    $$\begin{aligned} \langle v - p_W(v), w_j\rangle &= \langle v, w_j\rangle - \sum_{i=1}^k \langle v, w_i\rangle\langle w_i, w_j\rangle \\ &= \langle v, w_j\rangle - \langle v, w_j\rangle = 0. \end{aligned}$$
-   Essendo ortogonale a tutti i generatori $w_j$, $v - p_W(v)$ è ortogonale a tutto $W$: $v - p_W(v) \in W^\perp$.
-4. **Esistenza.** $v = p_W(v) + \big(v - p_W(v)\big)$ con il primo pezzo in $W$ e il secondo in $W^\perp$: quindi $V = W + W^\perp$.
-5. **Unicità.** $W \cap W^\perp = \{0\}$, perché un vettore nell'intersezione è ortogonale a sé stesso, quindi nullo. La somma è diretta (Definizione 18.4) e la decomposizione è unica.
-6. **Dimensioni.** Unendo una base di $W$ e una di $W^\perp$ si ottiene una base di $V$ (generano per il punto 4, sono indipendenti perché la somma è diretta): quindi $\dim W + \dim W^\perp = \dim V$. $\square$
+   Il resto è perpendicolare a tutti i generatori, quindi a tutto $W$.
+4. **C'è sempre una scomposizione.** $v = p_W(v) + \big(v - p_W(v)\big)$, con il primo pezzo in $W$ e il secondo nel complemento.
+5. **È unica.** Un vettore che sta sia in $W$ sia nel complemento è perpendicolare a sé stesso, quindi è zero. La somma è diretta (Definizione 18.4).
+6. **Le dimensioni.** Una base di $W$ e una del complemento, messe insieme, sono una base dello spazio: generano per il punto 4, e sono indipendenti perché la somma è diretta.
 
-Il vettore $p_W(v)$ è la **proiezione ortogonale** di $v$ su $W$ e, per una base ortonormale $w_1, \dots, w_k$ di $W$,
+Il pezzo in $W$ è la **proiezione ortogonale** del vettore sul sottospazio: la sua ombra. Con una base ortonormale $w_1, \dots, w_k$ di $W$:
 
 $$p_W(v) = \sum_{i=1}^k \langle v, w_i\rangle\,w_i.$$
 
 > [!OSSERVAZIONE] La stessa formula con una base soltanto ortogonale
-> Se $w_1, \dots, w_k$ è una base **ortogonale** di $W$ (non normalizzata), sostituendo $\frac{w_i}{\|w_i\|}$ nella formula si ottiene
+> Se $w_1, \dots, w_k$ è una base **ortogonale** di $W$, non normalizzata, sostituendo $\frac{w_i}{\|w_i\|}$ nella formula si ottiene
 > $$p_W(v) = \sum_{i=1}^k \frac{\langle v, w_i\rangle}{\langle w_i, w_i\rangle}\,w_i = \sum_{i=1}^k p_{w_i}(v),$$
-> la somma delle proiezioni sulle rette dei $w_i$ (Martelli, Proposizione 8.1.28). È la formula più comoda all'esame: evita le radici quadrate. **Attenzione**: vale solo se la base di $W$ è ortogonale; con una base qualsiasi prima si applica Gram–Schmidt.
+> la somma delle ombre sulle rette dei $w_i$ (Martelli, Proposizione 8.1.28). È la formula più comoda all'esame: evita le radici quadrate. **Attenzione**: vale solo se la base di $W$ è ortogonale; con una base qualsiasi prima si applica Gram–Schmidt.
 
-> [!ESEMPIO] Proiettare $v = (1, 2, 3)$ sul piano $W = \{x + y + z = 0\}$
-> **Con una base ortogonale.** Due vettori di $W$ ortogonali tra loro: $a = (1, -1, 0)$ e $b = (1, 1, -2)$ (entrambi hanno somma delle coordinate 0, e $\langle a, b\rangle = 1 - 1 + 0 = 0$). Allora
+> [!ESEMPIO] L'ombra di $v = (1, 2, 3)$ sul piano $W = \{x + y + z = 0\}$
+> **Con una base ortogonale.** Due vettori del piano perpendicolari tra loro: $a = (1, -1, 0)$ e $b = (1, 1, -2)$. Tutti e due hanno somma delle coordinate zero, e $\langle a, b\rangle = 1 - 1 + 0 = 0$. Allora
 > $$\begin{aligned} p_W(v) &= \frac{\langle v, a\rangle}{\langle a, a\rangle}\,a + \frac{\langle v, b\rangle}{\langle b, b\rangle}\,b \\ &= \frac{-1}{2}(1, -1, 0) + \frac{-3}{6}(1, 1, -2) = (-1, 0, 1). \end{aligned}$$
-> Il resto è $v - p_W(v) = (2, 2, 2)$, multiplo di $(1, 1, 1)$: sta in $W^\perp$. ✓
+> Il resto è $v - p_W(v) = (2, 2, 2)$, multiplo di $(1, 1, 1)$: è perpendicolare al piano.
 >
-> **Con la scorciatoia.** $W^\perp = \Span((1, 1, 1))$ è una retta, e $v = p_W(v) + p_{W^\perp}(v)$. Quindi
+> **Con la scorciatoia.** Il complemento del piano è la retta di $(1, 1, 1)$, e il vettore è la sua ombra sul piano più la sua ombra sulla retta. Quindi
 > $$p_W(v) = v - p_{(1, 1, 1)}(v) = (1, 2, 3) - \frac63(1, 1, 1) = (-1, 0, 1).$$
-> Stesso risultato con un conto solo. Quando $W$ è un piano di $\R^3$ conviene quasi sempre proiettare sulla retta $W^\perp$ e sottrarre.
+> Stesso risultato con un conto solo. Quando $W$ è un piano dello spazio conviene quasi sempre proiettare sulla retta perpendicolare e togliere.
 
-La proiezione ha una proprietà di minimo che spiega il suo nome geometrico: è il punto di $W$ **più vicino** a $v$.
+### L'ombra è il punto più vicino
+
+La proiezione ha una proprietà che spiega il suo nome: è il punto di $W$ **più vicino** a $v$. Le dispense lo scrivono così.
 
 > [!PROP] 21.9
 > Per ogni $w \in W$ vale
 > $$\|v - p_W(v)\| \le \|v - w\|,$$
 > con uguaglianza se e solo se $w = p_W(v)$.
 
-La spiegazione:
+**Come si legge.** Tra tutti i punti di $W$, quello più vicino a $v$ è la sua ombra. Ogni altro punto è più lontano.
+
+Il perché:
 
 1. scrivi $v - w = \big(v - p_W(v)\big) + \big(p_W(v) - w\big)$;
-2. il primo pezzo sta in $W^\perp$ (Teorema 21.8), il secondo in $W$ (differenza di due vettori di $W$): quindi sono **ortogonali**;
-3. per due vettori ortogonali vale il **teorema di Pitagora**, $\|a + b\|^2 = \|a\|^2 + \|b\|^2$ (è lo sviluppo del quadrato della lezione L20 con $\langle a, b\rangle = 0$):
+2. il primo pezzo è perpendicolare a $W$ (Teorema 21.8), il secondo sta in $W$: quindi sono **perpendicolari**;
+3. per due vettori perpendicolari vale il **teorema di Pitagora**: la lunghezza al quadrato della somma è la somma delle lunghezze al quadrato (è lo sviluppo del quadrato della lezione L20, con prodotto scalare zero):
    $$\|v - w\|^2 = \|v - p_W(v)\|^2 + \|p_W(v) - w\|^2;$$
-4. il secondo addendo è $\ge 0$, quindi $\|v - w\|^2 \ge \|v - p_W(v)\|^2$; è uguale solo se $\|p_W(v) - w\| = 0$, cioè $w = p_W(v)$. $\square$
+4. il secondo pezzo non è mai negativo, quindi $\|v - w\|^2$ è almeno $\|v - p_W(v)\|^2$. È uguale solo se $w$ è proprio l'ombra.
 
-Nell'esempio del piano: $\|v - p_W(v)\| = \|(2, 2, 2)\| = 2\sqrt3 = \sqrt{12}$ è la **distanza** di $v$ dal piano. Qualsiasi altro punto di $W$ è più lontano: $w = 0$ dà $\|v\| = \sqrt{14}$, e infatti $14 = 12 + \|p_W(v)\|^2 = 12 + 2$; $w = (1, -1, 0)$ dà $\|(0, 3, 3)\| = \sqrt{18}$.
+Nell'esempio del piano: $\|v - p_W(v)\| = \|(2, 2, 2)\| = \sqrt{12}$ è la **distanza** di $v$ dal piano. Qualsiasi altro punto del piano è più lontano: l'origine dista $\sqrt{14}$, e infatti $14 = 12 + 2$; il punto $(1, -1, 0)$ dista $\|(0, 3, 3)\| = \sqrt{18}$.
 
-> [!METODO] Proiezione su un sottospazio $W$
-> 1. Trova una base di $W$ (se $W$ è dato con equazioni, risolvile).
-> 2. Rendila ortogonale con Gram–Schmidt.
-> 3. Somma le proiezioni: $p_W(v) = \sum_i \frac{\langle v, w_i\rangle}{\langle w_i, w_i\rangle}\,w_i$.
-> 4. **Controlla** che $v - p_W(v)$ sia ortogonale ai generatori di $W$.
-> 5. Se $W^\perp$ è più piccolo di $W$ (per esempio $W$ piano in $\R^3$), calcola $p_{W^\perp}(v)$ e poi $p_W(v) = v - p_{W^\perp}(v)$.
-> 6. La distanza di $v$ da $W$ è $\|v - p_W(v)\|$.
+> [!METODO] Ombra su un sottospazio $W$
+> 1. Trova una base di $W$. Se $W$ è dato con equazioni, risolvile.
+> 2. Raddrizzala con Gram–Schmidt.
+> 3. Somma le ombre: $p_W(v) = \sum_i \frac{\langle v, w_i\rangle}{\langle w_i, w_i\rangle}\,w_i$.
+> 4. **Controlla** che $v - p_W(v)$ sia perpendicolare ai generatori di $W$.
+> 5. Se il complemento è più piccolo di $W$, per esempio un piano nello spazio, calcola l'ombra sul complemento e toglila da $v$.
+> 6. La distanza di $v$ da $W$ è la lunghezza di $v - p_W(v)$.
 
-## Minimi quadrati (pp. 109–110)
+::: prova Qual è l'ombra di $(1, 2, 3)$ sul piano orizzontale $z = 0$?
+Il complemento è l'asse verticale: l'ombra su di lui è $(0, 0, 3)$. Togliendola: $(1, 2, 0)$. La distanza dal piano è 3.
+:::
 
-Tre punti sperimentali, $(0, 1)$, $(1, 2)$, $(2, 2)$: esiste una retta $y = a + bt$ che passa per tutti e tre? Servirebbe
+> [!RICORDA]
+> - Ogni vettore si spezza in un solo modo: pezzo in $W$ più pezzo perpendicolare a $W$. Le dimensioni di $W$ e del complemento sommano a quella dello spazio.
+> - L'ombra su un sottospazio si calcola con una sua base **ortogonale**, ed è il suo punto più vicino al vettore.
+
+## Sbagliare il meno possibile: i minimi quadrati (pp. 109–110)
+
+Un esperimento dà tre punti misurati. Sono $(0, 1)$, $(1, 2)$ e $(2, 2)$: c'è una retta $y = a + bt$ che passa per tutti e tre? Servirebbe
 
 $$\begin{cases} a + 0b = 1 \\ a + 1b = 2 \\ a + 2b = 2 \end{cases}$$
 
-Le prime due danno $a = 1$ e $b = 1$, ma allora la terza darebbe $a + 2b = 3 \neq 2$: il sistema **non ha soluzioni**. Nella realtà succede sempre, perché le misure hanno errori. Allora si cerca la retta che passa «il più vicino possibile» ai punti.
+Le prime due danno $a = 1$ e $b = 1$, ma allora la terza darebbe $a + 2b = 3$, non 2: il sistema **non ha soluzioni**. Nella realtà succede sempre, perché le misure hanno errori. Allora si cerca la retta che passa «il più vicino possibile» ai punti.
 
-In generale: consideriamo un sistema lineare $Ax = b$, con $A \in M(m, n, \R)$ e $b \in \R^m$. Se il sistema non ha soluzioni, possiamo cercare $x$ in modo che $Ax$ sia il più vicino possibile a $b$.
+In generale prendiamo un sistema $Ax = b$ che non ha soluzioni. Si cerca allora la scelta delle incognite che porta più vicino ai dati. Le dispense lo scrivono così.
 
 > [!DEF] 21.10 · Soluzione ai minimi quadrati
 > Una **soluzione ai minimi quadrati** di $Ax = b$ è un vettore $x_0 \in \R^n$ tale che
 > $$\|Ax_0 - b\| \le \|Ax - b\| \qquad \forall\, x \in \R^n.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $Ax - b$ è il vettore degli **errori** (o residui): quanto sbaglia ogni equazione con la scelta $x$;
-- $x_0$ rende la lunghezza (euclidea) di questo vettore la più piccola possibile;
-- minimizzare $\|Ax - b\|$ è come minimizzare $\|Ax - b\|^2$, cioè la **somma dei quadrati** degli errori: da qui il nome;
-- se il sistema ha soluzioni, le soluzioni ai minimi quadrati sono proprio quelle (errore zero).
+- $Ax - b$ è il vettore degli **errori**: quanto sbaglia ogni equazione con la scelta $x$.
+- $x_0$ è la scelta che rende il vettore degli errori il più corto possibile.
+- Rendere minima la lunghezza è come rendere minima la lunghezza al quadrato, cioè la **somma dei quadrati** degli errori: da qui il nome.
+- Se il sistema ha soluzioni, le soluzioni ai minimi quadrati sono proprio quelle, con errore zero.
 
-**Il collegamento con la proiezione.** Poniamo
+**Il collegamento con l'ombra.** Al variare delle incognite, i risultati $Ax$ sono tutte le ricette delle colonne di $A$. Formano un sottospazio, che chiamo $W$: l'immagine della macchina della matrice (lezione L14). Cercare il risultato più vicino ai dati vuol dire cercare il punto di $W$ più vicino ai dati. Per la Proposizione 21.9 è la loro ombra su $W$. Quindi la scelta migliore è quella per cui l'errore è perpendicolare a $W$.
 
-$$W = \Imm L_A = \Span(A^1, \dots, A^n),$$
-
-lo spazio generato dalle colonne $A^1, \dots, A^n$ di $A$ (lezione L14): i vettori $Ax$, al variare di $x$, sono **esattamente** i vettori di $W$. Cercare $Ax$ il più vicino possibile a $b$ vuol dire cercare il punto di $W$ più vicino a $b$, che per la Proposizione 21.9 è la proiezione $p_W(b)$. Quindi $x_0$ è una soluzione ai minimi quadrati precisamente quando
-
-$$Ax_0 = p_W(b), \quad \text{cioè quando} \quad b - Ax_0 \in W^\perp.$$
-
-(La seconda forma viene dall'unicità della decomposizione $b = p_W(b) + (b - p_W(b))$ del Teorema 21.8: $Ax_0$ sta in $W$, e se $b - Ax_0$ sta in $W^\perp$ allora $Ax_0$ è per forza $p_W(b)$.)
-
-**Come si riconosce un vettore di $W^\perp$.** Per ogni $y \in \R^m$:
-
-$$y \in W^\perp \iff \langle y, Ax\rangle = 0 \ \ \forall x \iff {}^tA\,y = 0.$$
-
-Il primo $\iff$ è la definizione ($W$ è fatto dei vettori $Ax$). Per il secondo: $\langle y, Ax\rangle = {}^ty\,A\,x = {}^t({}^tA\,y)\,x = \langle {}^tA\,y, x\rangle$, e un vettore di $\R^n$ ortogonale a **tutti** gli $x$ è nullo (basta prendere $x = {}^tA\,y$). Applicando questo a $y = b - Ax_0$: ${}^tA(b - Ax_0) = 0$, cioè ${}^tA\,A\,x_0 = {}^tA\,b$.
+**Come si riconosce un vettore perpendicolare a $W$.** Basta che sia perpendicolare a tutte le colonne di $A$, che generano $W$. Moltiplicare un vettore per la trasposta di $A$ dà proprio i suoi prodotti scalari con le colonne, uno per riga. Quindi un vettore è perpendicolare a $W$ esattamente quando la trasposta di $A$ lo manda in zero. Con l'errore $y = b - Ax_0$: ${}^tA(b - Ax_0) = 0$, cioè ${}^tA\,A\,x_0 = {}^tA\,b$. Le dispense lo scrivono così.
 
 > [!TEOREMA] 21.11 · Equazioni normali
 > Un vettore $x_0 \in \R^n$ è una soluzione ai minimi quadrati di $Ax = b$ se e solo se
 > $${}^tA\,A\,x_0 = {}^tA\,b.$$
 > Queste sono dette **equazioni normali**.
 
+**Come si legge.** Per trovare la scelta che sbaglia meno, si moltiplicano i due lati del sistema per la trasposta di $A$, e si risolve il nuovo sistema.
+
 Tre osservazioni delle dispense, con il perché:
 
-- **Le equazioni normali hanno sempre almeno una soluzione**, perché $p_W(b) \in W = \Imm L_A$: esiste $x_0$ con $Ax_0 = p_W(b)$.
-- **Se le colonne di $A$ sono linearmente indipendenti, la soluzione è unica**: in questo caso ${}^tAA$ è invertibile e
+- **Le equazioni normali hanno sempre almeno una soluzione**, perché l'ombra di $b$ sta in $W$: c'è sempre un $x_0$ con $Ax_0$ uguale all'ombra.
+- **Se le colonne di $A$ sono indipendenti, la soluzione è unica**: allora ${}^tAA$ è invertibile e
   $$x_0 = ({}^tA\,A)^{-1}\,{}^tA\,b.$$
-  Il motivo dell'invertibilità (le dispense non lo scrivono): se ${}^tAAx = 0$, allora $0 = {}^tx\,{}^tAAx = \|Ax\|^2$, quindi $Ax = 0$, e con colonne indipendenti questo obbliga $x = 0$. Una matrice quadrata con nucleo nullo è invertibile.
-- ${}^tAA$ è una matrice $n \times n$ **simmetrica** (${}^t({}^tAA) = {}^tA\,A$), piccola anche quando i dati sono tanti: con $m = 1000$ punti e una retta ($n = 2$) si risolve un sistema $2 \times 2$.
+  Il motivo, che le dispense non scrivono: se ${}^tAAx = 0$, allora $0 = {}^tx\,{}^tAAx = \|Ax\|^2$. Quindi $Ax = 0$, e con colonne indipendenti questo obbliga $x$ a essere zero. Una matrice quadrata con nucleo fatto solo dallo zero è invertibile.
+- ${}^tAA$ è una matrice quadrata **simmetrica**, con tante righe quante incognite. È piccola anche quando i dati sono tanti: con 1000 punti e una retta si risolve un sistema $2 \times 2$.
+
+Ecco l'esempio dei tre punti, come nelle dispense.
 
 > [!ESEMPIO] 21.12 · La retta dei minimi quadrati
-> Vogliamo trovare la retta $y = a + bt$ che approssima al meglio, nel senso dei minimi quadrati, i punti $(0, 1)$, $(1, 2)$, $(2, 2)$. Cerchiamo quindi $a, b$ tali che
+> Vogliamo trovare la retta $y = a + bt$ che approssima al meglio, nel senso dei minimi quadrati, i punti $(0, 1)$, $(1, 2)$, $(2, 2)$. Cerchiamo quindi $a, b$ per cui
 > $$\begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \end{pmatrix}\begin{pmatrix} a \\ b \end{pmatrix} \approx \begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix}.$$
 > Le equazioni normali sono
 > $$\begin{pmatrix} 3 & 3 \\ 3 & 5 \end{pmatrix}\begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 5 \\ 6 \end{pmatrix},$$
 > da cui $a = \frac76$, $b = \frac12$. La retta cercata è
 > $$y = \frac76 + \frac12 t.$$
 
-Attenzione ai nomi: in questo esempio la lettera $b$ indica sia la pendenza della retta sia (nel teorema) il vettore dei dati $(1, 2, 2)$. I conti, uno per uno:
-
-1. **La matrice e i dati.** Ogni punto $(t, y)$ dà un'equazione $a + bt = y$: la riga di $A$ è $(1, t)$ e il dato è $y$.
-2. **${}^tAA$.** Le colonne di $A$ sono $A^1 = (1, 1, 1)$ e $A^2 = (0, 1, 2)$; le entrate di ${}^tAA$ sono i loro prodotti scalari: $\langle A^1, A^1\rangle = 3$, $\langle A^1, A^2\rangle = 0 + 1 + 2 = 3$, $\langle A^2, A^2\rangle = 0 + 1 + 4 = 5$.
-3. **${}^tA\,b$.** $\langle A^1, b\rangle = 1 + 2 + 2 = 5$ e $\langle A^2, b\rangle = 0 + 2 + 4 = 6$.
-4. **Il sistema $2 \times 2$.** $3a + 3b = 5$ e $3a + 5b = 6$. Sottraendo: $2b = 1$, cioè $b = \frac12$; poi $3a = 5 - \frac32 = \frac72$, cioè $a = \frac76$.
-5. **Controllo.** Sulla retta i valori sono $\frac76$, $\frac76 + \frac12 = \frac53$, $\frac76 + 1 = \frac{13}6$. Gli errori $b - Ax_0 = \left(1 - \frac76,\ 2 - \frac53,\ 2 - \frac{13}6\right) = \left(-\frac16, \frac13, -\frac16\right)$ sono ortogonali alle colonne: $-\frac16 + \frac13 - \frac16 = 0$ e $0 + \frac13 - \frac13 = 0$. ✓ La somma dei quadrati degli errori è $\frac1{36} + \frac4{36} + \frac1{36} = \frac16$: nessuna retta fa meglio.
+> [!ESEMPIO] · i conti dell'Esempio 21.12
+> Attenzione ai nomi: qui la lettera $b$ indica sia la pendenza della retta sia, nel teorema, la colonna dei dati $(1, 2, 2)$. I conti, uno per uno:
+>
+> 1. **La matrice e i dati.** Ogni punto $(t, y)$ dà un'equazione $a + bt = y$: la riga di $A$ è $(1, t)$ e il dato è $y$.
+> 2. **${}^tAA$.** Le colonne di $A$ sono $(1, 1, 1)$ e $(0, 1, 2)$. I numeri di ${}^tAA$ sono i loro prodotti scalari: $3$, poi $0 + 1 + 2 = 3$, poi $0 + 1 + 4 = 5$.
+> 3. **${}^tA\,b$.** I prodotti delle colonne con i dati: $1 + 2 + 2 = 5$ e $0 + 2 + 4 = 6$.
+> 4. **Il sistema $2 \times 2$.** $3a + 3b = 5$ e $3a + 5b = 6$. Togliendo la prima dalla seconda: $2b = 1$, cioè $b = \frac12$. Poi $3a = 5 - \frac32 = \frac72$, cioè $a = \frac76$.
+> 5. **Controllo.** Sulla retta i valori sono $\frac76$, $\frac76 + \frac12 = \frac53$ e $\frac76 + 1 = \frac{13}6$. Gli errori sono $1 - \frac76 = -\frac16$, $2 - \frac53 = \frac13$ e $2 - \frac{13}6 = -\frac16$. Sono perpendicolari alle colonne: $-\frac16 + \frac13 - \frac16 = 0$ e $0 + \frac13 - \frac13 = 0$. La somma dei quadrati degli errori è $\frac1{36} + \frac4{36} + \frac1{36} = \frac16$: nessuna retta fa meglio.
 
 ```grafico
 titolo: La retta $y = \frac76 + \frac12 t$ e gli errori (verticali) rispetto ai tre punti
@@ -42116,72 +42172,105 @@ segmento: 2 2 2 13/6 | rosa | spesso
 ```
 
 > [!NOTA] Collegamento con l'informatica: regressione lineare
-> Come osservano le dispense, l'esempio precedente è precisamente una **regressione lineare** con una variabile. I dati osservati vengono raccolti in un vettore $b$, mentre la matrice $A$ contiene le caratteristiche usate per fare la previsione. Il modello produce il vettore $Ax$, e i parametri $x$ vengono scelti minimizzando $\|Ax - b\|^2$. Con più variabili esplicative si aggiungono semplicemente altre colonne alla matrice $A$. I minimi quadrati sono uno dei primi esempi in cui proiezioni ortogonali e sistemi lineari diventano un metodo per **apprendere un modello dai dati**.
+> Come osservano le dispense, l'esempio precedente è proprio una **regressione lineare** con una variabile. I dati osservati vengono raccolti in un vettore $b$, mentre la matrice $A$ contiene le caratteristiche usate per fare la previsione. Il modello produce il vettore $Ax$, e i parametri $x$ vengono scelti rendendo minima la somma dei quadrati degli errori. Con più variabili si aggiungono altre colonne alla matrice $A$. I minimi quadrati sono uno dei primi esempi in cui ombre e sistemi lineari diventano un metodo per **imparare un modello dai dati**.
 
 > [!METODO] Minimi quadrati passo per passo
-> 1. Scrivi il sistema come $Ax = b$ (per una retta $y = a + bt$: righe $(1, t_i)$, dati $y_i$).
-> 2. Calcola ${}^tA\,A$ (prodotti scalari tra le colonne) e ${}^tA\,b$ (prodotti scalari tra le colonne e $b$).
+> 1. Scrivi il sistema come $Ax = b$. Per una retta $y = a + bt$: righe $(1, t_i)$, dati $y_i$.
+> 2. Calcola ${}^tA\,A$, i prodotti scalari tra le colonne, e ${}^tA\,b$, i prodotti tra le colonne e i dati.
 > 3. Risolvi il sistema quadrato ${}^tA\,A\,x_0 = {}^tA\,b$.
-> 4. Controlla che l'errore $b - Ax_0$ sia ortogonale a tutte le colonne di $A$.
+> 4. Controlla che l'errore $b - Ax_0$ sia perpendicolare a tutte le colonne di $A$.
 
 > [!OLTRE] Dove trovarlo nel libro
-> Martelli: §7.1.7 «Vettori ortogonali» (pp. 205–206); §7.3 «Sottospazio ortogonale» (pp. 213–218), con il Teorema 7.3.12 sulle dimensioni; capitolo 8, §8.1.5 «Proiezione ortogonale» (pp. 244–245), §8.1.6 «Coefficienti di Fourier» (pp. 245–247), §8.1.7 «Ortogonalizzazione di Gram–Schmidt» (pp. 247–249), §8.1.8 «Riscalamento» (pp. 249–250), §8.1.9 «Ortogonalità» (p. 250) e §8.1.10 «Proiezioni su sottospazi» (pp. 251–253). I minimi quadrati non sono trattati nel libro: per quella sezione fanno fede le dispense.
+> Martelli: §7.1.7 «Vettori ortogonali» (pp. 205–206); §7.3 «Sottospazio ortogonale» (pp. 213–218), con il Teorema 7.3.12 sulle dimensioni; capitolo 8, §8.1.5 «Proiezione ortogonale» (pp. 244–245), §8.1.6 «Coefficienti di Fourier» (pp. 245–247), §8.1.7 «Ortogonalizzazione di Gram–Schmidt» (pp. 247–249), §8.1.8 «Riscalamento» (pp. 249–250), §8.1.9 «Ortogonalità» (p. 250) e §8.1.10 «Proiezioni su sottospazi» (pp. 251–253). I minimi quadrati non sono nel libro: per quella sezione fanno fede le dispense.
+
+::: prova Il sistema $x = 1$, $x = 3$ non ha soluzioni. Qual è la soluzione ai minimi quadrati?
+$A = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ e $b = (1, 3)$: ${}^tAA = 2$ e ${}^tAb = 4$, quindi $x_0 = 2$, la media. Gli errori sono $-1$ e $1$.
+:::
+
+> [!RICORDA]
+> - La soluzione ai minimi quadrati rende minima la somma dei quadrati degli errori.
+> - Si trova risolvendo le equazioni normali ${}^tA\,A\,x_0 = {}^tA\,b$; l'errore finale è perpendicolare alle colonne di $A$.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\langle v, w\rangle = 0$ | «prodotto scalare zero» | $v$ e $w$ sono ortogonali, cioè perpendicolari | $\langle (1, 2), (-2, 1)\rangle = 0$ |
+| $W^\perp$ | «vu doppio perp» | il complemento ortogonale: i vettori perpendicolari a tutto $W$ | il complemento di un piano dello spazio è una retta |
+| $p_w(v)$ | «proiezione di vu su vu doppio» | l'ombra di $v$ sulla retta di $w$ | $p_{(1, 1)}(3, 1) = (2, 2)$ |
+| $p_W(v)$ | «proiezione di vu su vu doppio maiuscolo» | l'ombra di $v$ sul sottospazio $W$ | |
+| $\frac{\langle v, w\rangle}{\langle w, w\rangle}$ | «coefficiente di Fourier» | il numero davanti a $w$ nell'ombra | |
+| $V = W \oplus W^\perp$ | «somma diretta» | ogni vettore si spezza in un solo modo | |
+| ${}^tA\,A\,x_0 = {}^tA\,b$ | «equazioni normali» | il sistema dei minimi quadrati | |
 
 ## Verso l'esame
 
-La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipla (5 risposte, una giusta) e 2 problemi da 11 punti, corretti solo con almeno 6 punti nel quiz; dura 2 ore, senza calcolatrice, con solo 4 facciate di appunti scritti a mano. Appelli 2026/27: 22/01 e 05/02/2027, alle 14:00. I dettagli sono nella lezione L01.
+La prova di Algebra lineare e Geometria ha 10 domande a risposta multipla, con 5 risposte e una sola giusta. Ci sono poi 2 problemi da 11 punti, corretti solo con almeno 6 risposte giuste. Dura 2 ore, senza calcolatrice, e si può portare solo un foglio da 4 facciate scritto a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
 **Che cosa di questa lezione compare negli appelli 2023–2026**
 
 Questa lezione è la base del **problema 12** di molti appelli: in 7 dei 15 appelli 2023–2026 il problema 12 riguarda prodotti scalari, Gram–Schmidt e proiezioni, e in altri due chiede anche una proiezione su un piano. Lo schema tipico:
 
-1. **base ortonormale (o ortogonale) di un piano** $V = \Span(v_1, v_2) \subset \R^3$ con Gram–Schmidt: appelli del 10/06/2024, del 03/06/2026 e del 07/09/2026 (prodotto euclideo); del 16/01/2025 e del 03/07/2026 (con un $g_S$);
-2. **proiezione ortogonale** di un vettore su quel piano: stessi appelli tranne quello del 03/07/2026 (che al posto della proiezione chiede il complemento ortogonale), più il 24/01/2024 (proiezione su $\pi_3 = \Span(e_1, e_2 + e_3)$), il 05/02/2026 (con $g_S$) e il 15/01/2026 (punto 4);
-3. **complemento ortogonale**: appello del 07/02/2025 (di $\Span(x, x^2)$ in $\R_2[x]$) e del 03/07/2026 (di un piano rispetto a $g_S$);
-4. il punto successivo (intersezione di una retta con il piano e angolo di incidenza) è materia delle lezioni L23–L24.
+1. **base ortonormale (o ortogonale) di un piano** generato da due vettori dello spazio, con Gram–Schmidt: appelli del 10/06/2024, del 03/06/2026 e del 07/09/2026 con il prodotto di tutti i giorni; del 16/01/2025 e del 03/07/2026 con un $g_S$;
+2. **ombra** di un vettore su quel piano: stessi appelli tranne quello del 03/07/2026, che chiede invece il complemento ortogonale; in più il 24/01/2024, il 05/02/2026 (con $g_S$) e il 15/01/2026 (punto 4);
+3. **complemento ortogonale**: appelli del 07/02/2025 (tra i polinomi) e del 03/07/2026 (di un piano con un $g_S$);
+4. il punto successivo, l'intersezione di una retta con il piano e l'angolo, è materia delle lezioni L23–L24.
 
-Nel quiz: l'appello del 05/02/2026 (domanda 2) usa il fatto che $W^\perp$ è sempre un sottospazio. Negli appelli 2023–2026 non ci sono domande sui minimi quadrati, che le dispense 2026 trattano nella sezione 21.E: vanno comunque studiati.
+Nel quiz: l'appello del 05/02/2026 (domanda 2) usa il fatto che il complemento ortogonale è sempre un sottospazio. Negli appelli 2023–2026 non ci sono domande sui minimi quadrati, che le dispense 2026 trattano nella sezione 21.E: vanno comunque studiati.
 
-**Tre domande vere, risolte**
+### Una domanda vera, letta insieme
 
-> [!ESEMPIO] Appello del 03/06/2026, problema 12, punti (1) e (2)
-> Siano $v_1 = (1, 1, 0)$ e $v_2 = (0, 1, 1)$. (1) Calcolare una base ortonormale di $V = \Span(v_1, v_2)$. (2) Determinare la proiezione ortogonale di $w = (2, 1, 2)$ su $V$.
+**Appello del 03/06/2026, problema 12, punti (1) e (2).** Il testo: «Siano $v_1 = (1, 1, 0)$ e $v_2 = (0, 1, 1)$. (1) Calcolare una base ortonormale di $V = \Span(v_1, v_2)$. (2) Determinare la proiezione ortogonale di $w = (2, 1, 2)$ su $V$».
+
+**In pratica chiede:** raddrizza la base del piano, poi trova l'ombra di $w$ sul piano.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: il primo vettore resta.** $w_1 = v_1 = (1, 1, 0)$, con $\langle w_1, w_1\rangle = 2$.
 >
-> **Soluzione.** (1) Gram–Schmidt: $w_1 = v_1$; $\langle v_2, w_1\rangle = 1$, $\langle w_1, w_1\rangle = 2$, quindi $w_2 = (0, 1, 1) - \frac12(1, 1, 0) = \left(-\frac12, \frac12, 1\right)$, che riscalo in $w_2' = (-1, 1, 2)$. Controllo: $\langle w_1, w_2'\rangle = -1 + 1 + 0 = 0$. Normalizzando: $\left\{\frac{1}{\sqrt2}(1, 1, 0),\ \frac{1}{\sqrt6}(-1, 1, 2)\right\}$.
+> **Passo 2: raddrizzo il secondo.** $\langle v_2, w_1\rangle = 0 + 1 + 0 = 1$, quindi
+> $$w_2 = (0, 1, 1) - \frac12(1, 1, 0) = \left(-\frac12, \frac12, 1\right).$$
+> Riscalo per togliere le frazioni: $w_2' = (-1, 1, 2)$. Controllo: $\langle w_1, w_2'\rangle = -1 + 1 + 0 = 0$.
 >
-> (2) Con la base ortogonale $w_1, w_2'$:
-> $$\begin{aligned} p_V(w) &= \frac{\langle w, w_1\rangle}{2}\,w_1 + \frac{\langle w, w_2'\rangle}{6}\,w_2' \\ &= \frac32(1, 1, 0) + \frac36(-1, 1, 2) = (1, 2, 1). \end{aligned}$$
-> Controllo: $w - p_V(w) = (1, -1, 1)$ è ortogonale a $v_1$ ($1 - 1 = 0$) e a $v_2$ ($-1 + 1 = 0$). ✓
+> **Passo 3: lunghezze 1.** $w_1$ è lungo $\sqrt2$ e $w_2'$ è lungo $\sqrt{1 + 1 + 4} = \sqrt6$. La base ortonormale è $\left\{\frac{1}{\sqrt2}(1, 1, 0),\ \frac{1}{\sqrt6}(-1, 1, 2)\right\}$.
+>
+> **Passo 4: l'ombra, con la base ortogonale (senza radici).** $\langle w, w_1\rangle = 2 + 1 + 0 = 3$ e $\langle w, w_2'\rangle = -2 + 1 + 4 = 3$:
+> $$p_V(w) = \frac32(1, 1, 0) + \frac36(-1, 1, 2) = \left(\frac32 - \frac12,\ \frac32 + \frac12,\ 0 + 1\right) = (1, 2, 1).$$
+>
+> **Passo 5: controllo.** Il resto $w - p_V(w) = (1, -1, 1)$ è perpendicolare a $v_1$, perché $1 - 1 = 0$, e a $v_2$, perché $-1 + 1 = 0$.
 
-> [!ESEMPIO] Appello del 16/01/2025, problema 12, punti (2) e (3)
-> Sia $g_S$ il prodotto scalare di $\R^3$ con $S = \operatorname{diag}(1, 2, 3)$, e siano $v_1 = (1, 1, 0)$, $v_2 = (1, 0, 1)$, $v_3 = (0, 1, 1)$. (2) Applicare Gram–Schmidt per trovare una base ortogonale di $\Span(v_1, v_2)$ rispetto a $g_S$. (3) Calcolare la proiezione ortogonale di $v_3$ su $\Span(v_1, v_2)$ rispetto a $g_S$.
+### Altre due domande vere
+
+> [!ESAME] Appello del 16/01/2025, problema 12, punti (2) e (3)
+> *Sia $g_S$ il prodotto scalare di $\R^3$ con $S = \operatorname{diag}(1, 2, 3)$. Siano*
+> $$v_1 = (1, 1, 0), \quad v_2 = (1, 0, 1), \quad v_3 = (0, 1, 1).$$
+> *(2) Applicare Gram–Schmidt per trovare una base ortogonale di $\Span(v_1, v_2)$ rispetto a $g_S$. (3) Calcolare la proiezione ortogonale di $v_3$ su $\Span(v_1, v_2)$ rispetto a $g_S$.*
 >
 > **Soluzione.** Con $S$ diagonale, $g_S(x, y) = x_1y_1 + 2x_2y_2 + 3x_3y_3$.
-> (2) $w_1 = v_1$, $g_S(w_1, w_1) = 1 + 2 = 3$, $g_S(v_2, w_1) = 1 + 0 + 0 = 1$, quindi $w_2 = (1, 0, 1) - \frac13(1, 1, 0) = \left(\frac23, -\frac13, 1\right)$; riscalo: $w_2' = (2, -1, 3)$. Controllo: $g_S(w_1, w_2') = 2 - 2 + 0 = 0$. ✓
+> (2) $w_1 = v_1$, con $g_S(w_1, w_1) = 1 + 2 = 3$ e $g_S(v_2, w_1) = 1 + 0 + 0 = 1$. Quindi $w_2 = (1, 0, 1) - \frac13(1, 1, 0) = \left(\frac23, -\frac13, 1\right)$; riscalo: $w_2' = (2, -1, 3)$. Controllo: $g_S(w_1, w_2') = 2 - 2 + 0 = 0$.
 >
 > (3) $g_S(v_3, w_1) = 0 + 2 + 0 = 2$; $g_S(v_3, w_2') = 0 - 2 + 9 = 7$; $g_S(w_2', w_2') = 4 + 2 + 27 = 33$. Quindi
 > $$\begin{aligned} p(v_3) &= \frac23(1, 1, 0) + \frac{7}{33}(2, -1, 3) \\ &= \left(\frac{22 + 14}{33}, \frac{22 - 7}{33}, \frac{21}{33}\right) = \left(\frac{12}{11}, \frac{5}{11}, \frac{7}{11}\right). \end{aligned}$$
-> Controllo: $v_3 - p(v_3) = \left(-\frac{12}{11}, \frac{6}{11}, \frac{4}{11}\right)$ e $g_S$ con $v_1$ dà $-\frac{12}{11} + \frac{12}{11} = 0$, con $v_2$ dà $-\frac{12}{11} + \frac{12}{11} = 0$. ✓ L'errore da non fare: usare il prodotto euclideo in uno dei conti.
+> Controllo: il resto è $\left(-\frac{12}{11}, \frac{6}{11}, \frac{4}{11}\right)$. Il suo prodotto $g_S$ con $v_1$ è $-\frac{12}{11} + \frac{12}{11} = 0$. Con $v_2$ è $-\frac{12}{11} + \frac{12}{11} = 0$. L'errore da non fare: usare il prodotto di tutti i giorni in uno dei conti.
 
-> [!ESEMPIO] Appello del 07/02/2025, problema 12, punto (3)
-> Con il prodotto $g$ su $\R_2[x]$ della lezione L19, di matrice $\begin{pmatrix} 6 & 1 & 3 \\ 1 & 2 & 0 \\ 3 & 0 & 2 \end{pmatrix}$ nella base $\{1, x, x^2\}$, trovare una base del complemento ortogonale di $\Span(x, x^2)$.
+> [!ESAME] Appello del 07/02/2025, problema 12, punto (3)
+> *Con il prodotto $g$ sui polinomi di grado al massimo 2 della lezione L19, di matrice $\begin{pmatrix} 6 & 1 & 3 \\ 1 & 2 & 0 \\ 3 & 0 & 2 \end{pmatrix}$ nella base $\{1, x, x^2\}$, trovare una base del complemento ortogonale di $\Span(x, x^2)$.*
 >
-> **Soluzione.** Per $p = a + bx + cx^2$: $g(p, x)$ è la seconda coordinata di $S(a, b, c)$, cioè $a + 2b$; $g(p, x^2)$ è la terza, cioè $3a + 2c$. Il sistema $a + 2b = 0$, $3a + 2c = 0$ dà $b = -\frac a2$, $c = -\frac{3a}2$; con $a = 2$: $p = 2 - x - 3x^2$. Quindi il complemento è $\Span(2 - x - 3x^2)$, di dimensione $3 - 2 = 1$ come previsto dal Teorema 21.8. Controllo: $S(2, -1, -3) = (12 - 1 - 9,\ 2 - 2 + 0,\ 6 + 0 - 6) = (2, 0, 0)$, con seconda e terza coordinata nulle. ✓ (Nei punti precedenti il problema chiedeva la matrice, lezione L19, e l'angolo tra $x$ e $x^2$, lezione L20: $g(x, x^2) = 0$, quindi è $\frac\pi2$.)
+> **Soluzione.** Per $p = a + bx + cx^2$: $g(p, x)$ è la seconda coordinata di $S(a, b, c)$, cioè $a + 2b$; $g(p, x^2)$ è la terza, cioè $3a + 2c$. Il sistema $a + 2b = 0$, $3a + 2c = 0$ dà $b = -\frac a2$ e $c = -\frac{3a}2$. Con $a = 2$: $p = 2 - x - 3x^2$. Il complemento è la retta di questo polinomio, di dimensione $3 - 2 = 1$ come prevede il Teorema 21.8. Controllo: $S(2, -1, -3) = (12 - 1 - 9,\ 2 - 2 + 0,\ 6 + 0 - 6) = (2, 0, 0)$, con seconda e terza coordinata zero. Nei punti precedenti il problema chiedeva la matrice (lezione L19) e l'angolo tra $x$ e $x^2$ (lezione L20): $g(x, x^2) = 0$, quindi è retto.
 
-**Errori da evitare**
+**Errori da evitare.**
 
-- Proiettare su una base **non ortogonale** del piano sommando le proiezioni sui singoli vettori: il risultato è sbagliato. Prima Gram–Schmidt.
-- In Gram–Schmidt, proiettare sui $v$ invece che sui $w$ (vedi la trappola).
-- Dimenticare di **controllare** l'ortogonalità: è un conto di pochi secondi e salva molti punti.
-- Con un $g_S$, calcolare un prodotto con il prodotto euclideo.
-- Confondere $p_W(v)$ (sta in $W$) con $v - p_W(v)$ (sta in $W^\perp$).
+- Proiettare su una base **non ortogonale** del piano sommando le ombre sui singoli vettori: il risultato è sbagliato. Prima Gram–Schmidt.
+- In Gram–Schmidt, togliere le ombre sui vettori vecchi invece che su quelli nuovi.
+- Dimenticare di **controllare** la perpendicolarità: è un conto di pochi secondi e salva molti punti.
+- Con un $g_S$, calcolare un prodotto con quello di tutti i giorni.
+- Confondere l'ombra, che sta in $W$, con il resto, che è perpendicolare a $W$.
 
 > [!ESAME] Sul foglio da 4 facciate
-> - $p_w(v) = \frac{\langle v, w\rangle}{\langle w, w\rangle}\,w$; $v - p_w(v) \perp w$.
+> - $p_w(v) = \frac{\langle v, w\rangle}{\langle w, w\rangle}\,w$; il resto $v - p_w(v)$ è perpendicolare a $w$.
 > - Base ortogonale: $v = \sum \frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}v_i$; ortonormale: $v = \sum \langle v, v_i\rangle v_i$.
 > - Gram–Schmidt per tre vettori (le tre righe della formula), con il consiglio di riscalare.
 > - $V = W \oplus W^\perp$, $\dim W^\perp = \dim V - \dim W$; $p_W(v) = \sum_i \frac{\langle v, w_i\rangle}{\langle w_i, w_i\rangle}w_i$ con $w_i$ **ortogonali**; $p_W(v) = v - p_{W^\perp}(v)$; distanza $= \|v - p_W(v)\|$.
-> - Minimi quadrati: ${}^tAAx_0 = {}^tAb$; errore ortogonale alle colonne.
+> - Minimi quadrati: ${}^tAAx_0 = {}^tAb$; errore perpendicolare alle colonne.
 
 ## Quiz
 
@@ -42192,7 +42281,7 @@ D: Rispetto al prodotto scalare euclideo, il complemento ortogonale di $W = \Spa
 - l'insieme $\{x + 2y - z = 1\}$
 - la retta $\Span({}^t(-2, 1, 0))$
 - $\{0\}$
-= $v = (x, y, z)$ sta in $W^\perp$ se e solo se è ortogonale al generatore: $x + 2y - z = 0$. È un piano (dimensione $3 - 1 = 2$). La retta $\Span((-2, 1, 0))$ è contenuta nel piano ma non è tutto $W^\perp$; l'insieme con $= 1$ non contiene lo zero, quindi non è un sottospazio. Simile al punto sul complemento ortogonale dei problemi del 07/02/2025 e del 03/07/2026.
+= Un vettore sta nel complemento esattamente quando è perpendicolare al generatore: $x + 2y - z = 0$, un piano. La risposta più insidiosa è la retta di $(-2, 1, 0)$: sta dentro il piano, ma è solo una parte del complemento. L'insieme con «= 1» non contiene lo zero, quindi non è un sottospazio. Simile al punto sul complemento ortogonale dei problemi del 07/02/2025 e del 03/07/2026.
 
 D: Qual è la proiezione ortogonale (prodotto euclideo) di $v = {}^t(3, 1)$ sulla retta $\Span({}^t(1, 1))$?
 + ${}^t(2, 2)$
@@ -42200,7 +42289,7 @@ D: Qual è la proiezione ortogonale (prodotto euclideo) di $v = {}^t(3, 1)$ sull
 - ${}^t(1, -1)$
 - ${}^t(2\sqrt2, 2\sqrt2)$
 - ${}^t(1, 1)$
-= $\frac{\langle v, w\rangle}{\langle w, w\rangle}w = \frac42(1, 1) = (2, 2)$. $(1, -1)$ è il resto $v - p_w(v)$; $(2\sqrt2, 2\sqrt2)$ viene dividendo per $\|w\|$ invece che per $\|w\|^2$; $(4, 4)$ dimentica di dividere. Simile al punto (2) dei problemi 12 del 03/06/2026 e del 07/09/2026.
+= Il numero davanti è $\frac{3 + 1}{1 + 1} = 2$, quindi l'ombra è $(2, 2)$. La risposta più insidiosa è $(2\sqrt2, 2\sqrt2)$, che divide per la lunghezza invece che per la lunghezza al quadrato. $(1, -1)$ è il resto, non l'ombra; $(4, 4)$ dimentica di dividere. Simile al punto (2) dei problemi 12 del 03/06/2026 e del 07/09/2026.
 
 D: La base $\{{}^t(1, 1), {}^t(1, -1)\}$ di $\R^2$ è ortogonale. Quali sono le coordinate di $v = {}^t(5, 1)$ in questa base?
 + $(3, 2)$
@@ -42208,7 +42297,7 @@ D: La base $\{{}^t(1, 1), {}^t(1, -1)\}$ di $\R^2$ è ortogonale. Quali sono le 
 - $(5, 1)$
 - $(2, 3)$
 - $(3, -2)$
-= Coefficienti di Fourier: $\frac{5 + 1}{2} = 3$ e $\frac{5 - 1}{2} = 2$. Controllo: $3(1, 1) + 2(1, -1) = (5, 1)$. $(6, 4)$ dimentica di dividere per $\langle v_i, v_i\rangle = 2$.
+= Coefficienti di Fourier: $\frac{5 + 1}{2} = 3$ e $\frac{5 - 1}{2} = 2$. Controllo: $3(1, 1) + 2(1, -1) = (5, 1)$. La risposta più insidiosa è $(6, 4)$, che dimentica di dividere per 2, il prodotto di ogni vettore della base con sé stesso. $(5, 1)$ sono le coordinate nella base canonica.
 
 D: Applicando Gram–Schmidt (prodotto euclideo) a $v_1 = {}^t(1, 1, 0)$ e $v_2 = {}^t(1, 0, 1)$, il vettore $w_2$ è:
 + ${}^t\left(\frac12, -\frac12, 1\right)$
@@ -42216,11 +42305,11 @@ D: Applicando Gram–Schmidt (prodotto euclideo) a $v_1 = {}^t(1, 1, 0)$ e $v_2 
 - ${}^t(1, 0, 1)$
 - ${}^t\left(\frac12, \frac12, 1\right)$
 - ${}^t\left(-\frac12, \frac12, 1\right)$
-= $w_2 = v_2 - \frac{\langle v_2, v_1\rangle}{\langle v_1, v_1\rangle}v_1 = (1, 0, 1) - \frac12(1, 1, 0) = \left(\frac12, -\frac12, 1\right)$. $(0, -1, 1)$ toglie tutto $v_1$ invece di metà; $\left(-\frac12, \frac12, 1\right)$ è ortogonale a $v_1$ ma non sta in $\Span(v_1, v_2)$. Simile al punto (1) dei problemi 12 del 07/09/2026 e del 03/06/2026.
+= Si toglie a $v_2$ la sua ombra su $v_1$: $(1, 0, 1) - \frac12(1, 1, 0) = \left(\frac12, -\frac12, 1\right)$. La risposta più insidiosa è l'ultima: è perpendicolare a $v_1$, ma non sta nel piano di $v_1$ e $v_2$. $(0, -1, 1)$ toglie tutto $v_1$ invece di metà. Simile al punto (1) dei problemi 12 del 07/09/2026 e del 03/06/2026.
 
 D: Sia $W$ un sottospazio di dimensione 2 di $\R^5$, con il prodotto scalare euclideo. Qual è la dimensione di $W^\perp$?
 N: 3
-= Per il Teorema 21.8, $\dim W + \dim W^\perp = \dim \R^5 = 5$, quindi $\dim W^\perp = 3$.
+= Per il Teorema 21.8 le dimensioni di $W$ e del suo complemento sommano a 5, quindi il complemento ha dimensione 3.
 
 D: Sia $V$ di dimensione finita con un prodotto scalare definito positivo e sia $W \subset V$ un sottospazio. Quale affermazione è sempre vera?
 + $V = W \oplus W^\perp$
@@ -42228,7 +42317,7 @@ D: Sia $V$ di dimensione finita con un prodotto scalare definito positivo e sia 
 - $W^\perp$ è l'insieme dei vettori di $V$ che non stanno in $W$
 - $\dim W^\perp = \dim W$
 - $W^\perp$ è un sottospazio solo se $W$ è una retta
-= È il Teorema 21.8. $W \cap W^\perp = \{0\}$ (non $W$, salvo $W = \{0\}$); il complemento insiemistico $V \setminus W$ non contiene lo zero e non è un sottospazio; le dimensioni si sommano a $\dim V$, non sono uguali in generale; $W^\perp$ è sempre un sottospazio (Proposizione 21.4).
+= È il Teorema 21.8. La risposta più insidiosa è la terza: «tutto quello che non sta in $W$» non contiene lo zero e non è un sottospazio, mentre il complemento ortogonale è fatto dei vettori perpendicolari. L'intersezione è solo lo zero; le dimensioni sommano alla dimensione dello spazio, non sono uguali; il complemento è sempre un sottospazio (Proposizione 21.4).
 
 D: Il vettore $x_0$ è una soluzione ai minimi quadrati del sistema $Ax = b$ se e solo se:
 + ${}^tA\,A\,x_0 = {}^tA\,b$
@@ -42236,7 +42325,7 @@ D: Il vettore $x_0$ è una soluzione ai minimi quadrati del sistema $Ax = b$ se 
 - ${}^tA\,x_0 = b$
 - $A\,{}^tA\,x_0 = b$
 - $x_0 = A^{-1}b$
-= Sono le equazioni normali (Teorema 21.11). $Ax_0 = b$ di solito non ha soluzioni (è il motivo per cui si usano i minimi quadrati); $A$ in genere non è quadrata, quindi $A^{-1}$ non ha senso; le altre due non hanno nemmeno le dimensioni giuste in generale.
+= Sono le equazioni normali (Teorema 21.11). La risposta più insidiosa è $Ax_0 = b$: di solito non ha soluzioni, ed è proprio il motivo per cui si usano i minimi quadrati. $A$ in genere non è quadrata, quindi $A^{-1}$ non ha senso; le altre due non hanno nemmeno le taglie giuste.
 
 D: Quale dei seguenti insiemi **non** è un sottospazio di $\R_2[x]$ (con un prodotto scalare definito positivo fissato)?
 + $\{x^2 + tx \mid t \in \R\}$
@@ -42244,11 +42333,11 @@ D: Quale dei seguenti insiemi **non** è un sottospazio di $\R_2[x]$ (con un pro
 - $\Span(1 + x, x^2)$
 - $\{p(x) \in \R_2[x] \mid p(1) = p(2)\}$
 - $\{p(x) \in \R_2[x] \mid p(0) = 0\}$
-= $\{x^2 + tx\}$ non contiene il polinomio nullo (il coefficiente di $x^2$ è sempre 1). Il complemento ortogonale è sempre un sottospazio (Proposizione 21.4), uno span pure, e gli ultimi due sono definiti da equazioni lineari omogenee nei coefficienti. Simile all'appello del 05/02/2026, domanda 2.
+= $\{x^2 + tx\}$ non contiene il polinomio nullo: il numero davanti a $x^2$ è sempre 1. La risposta più insidiosa è il complemento ortogonale, che sembra strano ma è sempre un sottospazio (Proposizione 21.4). Uno Span lo è sempre, e gli ultimi due sono dati da equazioni lineari senza termine noto. Simile all'appello del 05/02/2026, domanda 2.
 
 D: Rispetto al prodotto scalare euclideo, quanto vale la distanza del vettore $v = {}^t(3, 0, 0)$ dal piano $W = \{x + 2y + 2z = 0\}$?
 N: 1
-= $W^\perp = \Span(n)$ con $n = (1, 2, 2)$, $\|n\| = 3$. La distanza è $\|v - p_W(v)\| = \|p_n(v)\| = \frac{|\langle v, n\rangle|}{\|n\|} = \frac{3}{3} = 1$. Idea simile alla distanza punto-piano dell'appello del 16/01/2025 (domanda 4), che però riguarda un piano affine (lezione L24).
+= Il complemento del piano è la retta di $n = (1, 2, 2)$, lungo 3. La distanza è la lunghezza dell'ombra di $v$ su $n$: $\frac{|\langle v, n\rangle|}{\|n\|} = \frac33 = 1$. Idea simile alla distanza punto-piano dell'appello del 16/01/2025 (domanda 4), che però riguarda un piano che non passa per l'origine (lezione L24).
 
 D: Se $\{v_1, \dots, v_n\}$ è una base **ortonormale** di $V$, la coordinata $i$-esima di un vettore $v$ in questa base è:
 + $\langle v, v_i\rangle$
@@ -42256,262 +42345,292 @@ D: Se $\{v_1, \dots, v_n\}$ è una base **ortonormale** di $V$, la coordinata $i
 - $\langle v_i, v_i\rangle$
 - $\langle v, v\rangle$
 - $\langle v, v_1\rangle + \dots + \langle v, v_n\rangle$
-= Per la Proposizione 21.6 la coordinata è $\frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}$, e in una base ortonormale $\langle v_i, v_i\rangle = 1$. Le altre risposte non possono essere coordinate: $\|v\|$, $\langle v, v\rangle$ e la somma non dipendono da $i$, e $\langle v_i, v_i\rangle$ vale sempre 1.
+= Per la Proposizione 21.6 la coordinata è $\frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}$, e in una base ortonormale il denominatore vale 1. La risposta più insidiosa è l'ultima, che somma tutti i coefficienti invece di prenderne uno. Le altre non dipendono da $i$, oppure valgono sempre 1.
 ```
 
 ## Esercizi
 
-::: esercizio medio Esercizio 21.13 delle dispense
-Trovare la soluzione ai minimi quadrati del sistema
-$$\begin{cases} x = 1, \\ y = 1, \\ x + y = 3. \end{cases}$$
-Scrivere il sistema nella forma $Ax = b$, risolvere le equazioni normali e verificare che il vettore errore $b - Ax_0$ sia ortogonale alle colonne di $A$.
+::: esercizio base Riscaldamento: perpendicolari o no?
+Con il prodotto di tutti i giorni: (a) $(1, 2)$ e $(4, -2)$; (b) $(1, 1, 1)$ e $(1, -2, 1)$; (c) $(2, 1)$ e $(1, 1)$.
 ::: soluzione
-**Il sistema non ha soluzioni.** Le prime due equazioni danno $x = y = 1$, ma allora $x + y = 2 \neq 3$.
+1. (a) $4 - 4 = 0$: perpendicolari.
+2. (b) $1 - 2 + 1 = 0$: perpendicolari.
+3. (c) $2 + 1 = 3$: non perpendicolari.
+:::
 
-**Forma $Ax = b$.** Una riga per equazione, una colonna per incognita:
-$$A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 1 & 1 \end{pmatrix}, \qquad \begin{pmatrix} x \\ y \end{pmatrix}, \qquad b = \begin{pmatrix} 1 \\ 1 \\ 3 \end{pmatrix}.$$
+::: esercizio base Riscaldamento: l'ombra sugli assi
+Trova l'ombra di $(3, 4)$ sulla retta di $(1, 0)$ e sulla retta di $(0, 1)$. Che cosa ottieni sommandole?
+::: soluzione
+1. Sulla retta di $(1, 0)$: $\frac{3}{1}(1, 0) = (3, 0)$.
+2. Sulla retta di $(0, 1)$: $\frac{4}{1}(0, 1) = (0, 4)$.
+3. La somma è $(3, 4)$: la base canonica è ortogonale, e ogni vettore è la somma delle sue ombre (Proposizione 21.6).
+:::
 
-**Equazioni normali.** Colonne $A^1 = (1, 0, 1)$ e $A^2 = (0, 1, 1)$:
-$${}^tA\,A = \begin{pmatrix} \langle A^1, A^1\rangle & \langle A^1, A^2\rangle \\ \langle A^2, A^1\rangle & \langle A^2, A^2\rangle \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix},$$
-$${}^tA\,b = \begin{pmatrix} 1 + 0 + 3 \\ 0 + 1 + 3 \end{pmatrix} = \begin{pmatrix} 4 \\ 4 \end{pmatrix}.$$
-Il sistema è $2x + y = 4$, $x + 2y = 4$. Sottraendo: $x - y = 0$, quindi $x = y$ e $3x = 4$:
-$$x_0 = \begin{pmatrix} \frac43 \\ \frac43 \end{pmatrix}.$$
-Le colonne di $A$ sono indipendenti, quindi questa è l'unica soluzione ai minimi quadrati.
+::: esercizio base Riscaldamento: complemento di una retta del piano
+Qual è il complemento ortogonale della retta di $(3, 5)$ nel piano?
+::: soluzione
+Scambio le coordinate e cambio un segno: è la retta di $(-5, 3)$. Controllo: $-15 + 15 = 0$.
+:::
 
-**Vettore errore.** $Ax_0 = \left(\frac43, \frac43, \frac83\right)$ e
-$$b - Ax_0 = \left(1 - \frac43,\ 1 - \frac43,\ 3 - \frac83\right) = \left(-\frac13, -\frac13, \frac13\right).$$
-**Verifica.** Con $A^1$: $-\frac13 + 0 + \frac13 = 0$. Con $A^2$: $0 - \frac13 + \frac13 = 0$. ✓ L'errore è ortogonale alle colonne, come dice il Teorema 21.11. La somma dei quadrati degli errori è $\frac19 + \frac19 + \frac19 = \frac13$.
+::: esercizio base Riscaldamento: da ortogonale a ortonormale
+La base $(1, 1)$, $(1, -1)$ è ortogonale. Rendila ortonormale.
+::: soluzione
+1. Tutti e due i vettori sono lunghi $\sqrt2$.
+2. Dividendo: $\frac{1}{\sqrt2}(1, 1)$ e $\frac{1}{\sqrt2}(1, -1)$.
 :::
 
 ::: esercizio base Complementi ortogonali
 Con il prodotto euclideo, trova una base di $W^\perp$ per: (a) $W = \Span((3, -1)) \subset \R^2$; (b) $W = \Span((1, 0, 2)) \subset \R^3$; (c) $W = \Span((1, 1, 1), (1, 0, -1)) \subset \R^3$.
 ::: soluzione
-(a) Scambio le coordinate e cambio un segno: $W^\perp = \Span((1, 3))$. Controllo: $3 - 3 = 0$.
+(a) Scambio le coordinate e cambio un segno: la retta di $(1, 3)$. Controllo: $3 - 3 = 0$.
 
-(b) Equazione $x + 2z = 0$, cioè $x = -2z$ con $y, z$ liberi. Base: $(0, 1, 0)$ (con $y = 1$, $z = 0$) e $(-2, 0, 1)$ (con $y = 0$, $z = 1$). $\dim W^\perp = 2$.
+(b) Equazione $x + 2z = 0$, cioè $x = -2z$, con $y$ e $z$ libere. Base: $(0, 1, 0)$, con $y = 1$ e $z = 0$, e $(-2, 0, 1)$, con $y = 0$ e $z = 1$. Il complemento ha dimensione 2.
 
-(c) Due equazioni: $x + y + z = 0$ e $x - z = 0$. Dalla seconda $x = z$; dalla prima $y = -2z$. $W^\perp = \Span((1, -2, 1))$. Controllo: $1 - 2 + 1 = 0$ e $1 + 0 - 1 = 0$. ✓
+(c) Due equazioni: $x + y + z = 0$ e $x - z = 0$. Dalla seconda $x = z$; dalla prima $y = -2z$. Il complemento è la retta di $(1, -2, 1)$. Controllo: $1 - 2 + 1 = 0$ e $1 + 0 - 1 = 0$.
 :::
 
 ::: esercizio base Proiezioni su una retta
-(a) Proietta $v = (4, 2)$ sulla retta di $w = (1, 1)$ e scrivi $v$ come somma di un vettore della retta e di uno ortogonale. (b) Proietta $v = (1, 0, 2)$ sulla retta di $w = (2, 1, 2)$.
+(a) Proietta $v = (4, 2)$ sulla retta di $w = (1, 1)$ e scrivi $v$ come somma di un vettore della retta e di uno perpendicolare. (b) Proietta $v = (1, 0, 2)$ sulla retta di $w = (2, 1, 2)$.
 ::: soluzione
-(a) $\frac{\langle v, w\rangle}{\langle w, w\rangle} = \frac{6}{2} = 3$, quindi $p_w(v) = (3, 3)$. Il resto è $(4, 2) - (3, 3) = (1, -1)$, ortogonale a $(1, 1)$. Quindi $(4, 2) = (3, 3) + (1, -1)$.
+(a) Il numero davanti è $\frac{6}{2} = 3$, quindi l'ombra è $(3, 3)$. Il resto è $(4, 2) - (3, 3) = (1, -1)$, perpendicolare a $(1, 1)$. Quindi $(4, 2) = (3, 3) + (1, -1)$.
 
-(b) $\langle v, w\rangle = 2 + 0 + 4 = 6$, $\langle w, w\rangle = 4 + 1 + 4 = 9$: $p_w(v) = \frac69(2, 1, 2) = \left(\frac43, \frac23, \frac43\right)$. Controllo: il resto $\left(-\frac13, -\frac23, \frac23\right)$ dà con $w$: $-\frac23 - \frac23 + \frac43 = 0$. ✓
+(b) $\langle v, w\rangle = 2 + 0 + 4 = 6$ e $\langle w, w\rangle = 4 + 1 + 4 = 9$: l'ombra è $\frac69(2, 1, 2) = \left(\frac43, \frac23, \frac43\right)$. Controllo: il resto $\left(-\frac13, -\frac23, \frac23\right)$ per $w$ dà $-\frac23 - \frac23 + \frac43 = 0$.
 :::
 
 ::: esercizio base Coordinate in una base ortogonale di $\R^3$
 Verifica che $v_1 = (1, 1, 1)$, $v_2 = (1, -1, 0)$, $v_3 = (1, 1, -2)$ formano una base ortogonale e trova le coordinate di $v = (2, 0, 4)$ senza risolvere sistemi.
 ::: soluzione
-**Ortogonalità.** $\langle v_1, v_2\rangle = 1 - 1 + 0 = 0$; $\langle v_1, v_3\rangle = 1 + 1 - 2 = 0$; $\langle v_2, v_3\rangle = 1 - 1 + 0 = 0$. Tre vettori non nulli e ortogonali in $\R^3$ sono indipendenti, quindi sono una base.
+**Perpendicolarità.** $\langle v_1, v_2\rangle = 1 - 1 + 0 = 0$; $\langle v_1, v_3\rangle = 1 + 1 - 2 = 0$; $\langle v_2, v_3\rangle = 1 - 1 + 0 = 0$. Tre vettori non nulli e perpendicolari nello spazio sono indipendenti, quindi sono una base.
 
 **Coordinate.**
 - $\frac{\langle v, v_1\rangle}{\langle v_1, v_1\rangle} = \frac{2 + 0 + 4}{3} = 2$;
 - $\frac{\langle v, v_2\rangle}{\langle v_2, v_2\rangle} = \frac{2 - 0 + 0}{2} = 1$;
 - $\frac{\langle v, v_3\rangle}{\langle v_3, v_3\rangle} = \frac{2 + 0 - 8}{6} = -1$.
 
-Controllo: $2(1, 1, 1) + (1, -1, 0) - (1, 1, -2) = (2 + 1 - 1,\ 2 - 1 - 1,\ 2 + 0 + 2) = (2, 0, 4)$. ✓
+Controllo: $2(1, 1, 1) + (1, -1, 0) - (1, 1, -2) = (2 + 1 - 1,\ 2 - 1 - 1,\ 2 + 0 + 2) = (2, 0, 4)$.
+:::
+
+::: esercizio medio Esercizio 21.13 delle dispense
+Trovare la soluzione ai minimi quadrati del sistema
+$$\begin{cases} x = 1, \\ y = 1, \\ x + y = 3. \end{cases}$$
+Scrivere il sistema nella forma $Ax = b$, risolvere le equazioni normali e verificare che il vettore errore $b - Ax_0$ sia ortogonale alle colonne di $A$.
+::: soluzione
+**Il sistema non ha soluzioni.** Le prime due equazioni danno $x = y = 1$, ma allora $x + y = 2$, non 3.
+
+**Forma $Ax = b$.** Una riga per equazione, una colonna per incognita:
+$$A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 1 & 1 \end{pmatrix}, \qquad \begin{pmatrix} x \\ y \end{pmatrix}, \qquad b = \begin{pmatrix} 1 \\ 1 \\ 3 \end{pmatrix}.$$
+
+**Equazioni normali.** Le colonne sono $A^1 = (1, 0, 1)$ e $A^2 = (0, 1, 1)$:
+$${}^tA\,A = \begin{pmatrix} \langle A^1, A^1\rangle & \langle A^1, A^2\rangle \\ \langle A^2, A^1\rangle & \langle A^2, A^2\rangle \end{pmatrix} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix},$$
+$${}^tA\,b = \begin{pmatrix} 1 + 0 + 3 \\ 0 + 1 + 3 \end{pmatrix} = \begin{pmatrix} 4 \\ 4 \end{pmatrix}.$$
+Il sistema è $2x + y = 4$, $x + 2y = 4$. Togliendo la seconda dalla prima: $x - y = 0$, quindi $x = y$ e $3x = 4$:
+$$x_0 = \begin{pmatrix} \frac43 \\ \frac43 \end{pmatrix}.$$
+Le colonne di $A$ sono indipendenti, quindi questa è l'unica soluzione ai minimi quadrati.
+
+**Vettore errore.** $Ax_0 = \left(\frac43, \frac43, \frac83\right)$ e
+$$b - Ax_0 = \left(1 - \frac43,\ 1 - \frac43,\ 3 - \frac83\right) = \left(-\frac13, -\frac13, \frac13\right).$$
+**Verifica.** Con $A^1$: $-\frac13 + 0 + \frac13 = 0$. Con $A^2$: $0 - \frac13 + \frac13 = 0$. L'errore è perpendicolare alle colonne, come dice il Teorema 21.11. La somma dei quadrati degli errori è $\frac19 + \frac19 + \frac19 = \frac13$.
 :::
 
 ::: esercizio medio Gram–Schmidt e coordinate
 (a) Mostra che $v_1 = (1, -1, 0)$, $v_2 = (2, 0, 1)$, $v_3 = (0, -1, 1)$ formano una base di $\R^3$ e ortogonalizzala con Gram–Schmidt. (b) Calcola le coordinate di $2e_1 - 5e_2 + e_3$ nella base ortogonale trovata.
 ::: soluzione
-(a) **Base.** $\det\begin{pmatrix} 1 & 2 & 0 \\ -1 & 0 & -1 \\ 0 & 1 & 1 \end{pmatrix} = 1 \cdot (0 + 1) - 2 \cdot (-1 - 0) + 0 = 1 + 2 = 3 \neq 0$ (sviluppo lungo la prima riga; le colonne sono i tre vettori).
+(a) **Base.** Con i tre vettori in colonna, il determinante lungo la prima riga è $1 \cdot (0 + 1) - 2 \cdot (-1 - 0) + 0 = 3$, non zero.
 
 **Gram–Schmidt.**
-- $w_1 = (1, -1, 0)$, $\langle w_1, w_1\rangle = 2$.
+- $w_1 = (1, -1, 0)$, con $\langle w_1, w_1\rangle = 2$.
 - $\langle v_2, w_1\rangle = 2$, quindi $w_2 = (2, 0, 1) - \frac22(1, -1, 0) = (1, 1, 1)$, con $\langle w_2, w_2\rangle = 3$. Controllo: $\langle w_1, w_2\rangle = 1 - 1 + 0 = 0$.
 - $\langle v_3, w_1\rangle = 0 + 1 + 0 = 1$ e $\langle v_3, w_2\rangle = 0 - 1 + 1 = 0$, quindi
   $$w_3 = (0, -1, 1) - \frac12(1, -1, 0) - 0 \cdot w_2 = \left(-\frac12, -\frac12, 1\right),$$
-  che riscalo in $w_3' = (-1, -1, 2)$, con $\langle w_3', w_3'\rangle = 6$. Controllo: $\langle w_3', w_1\rangle = -1 + 1 = 0$, $\langle w_3', w_2\rangle = -1 - 1 + 2 = 0$. ✓
+  che riscalo in $w_3' = (-1, -1, 2)$, con $\langle w_3', w_3'\rangle = 6$. Controllo: $\langle w_3', w_1\rangle = -1 + 1 = 0$ e $\langle w_3', w_2\rangle = -1 - 1 + 2 = 0$.
 
 (b) $v = (2, -5, 1)$. Coefficienti di Fourier:
 $$\begin{aligned} \frac{\langle v, w_1\rangle}{2} &= \frac{2 + 5}{2} = \frac72, \\ \frac{\langle v, w_2\rangle}{3} &= \frac{2 - 5 + 1}{3} = -\frac23, \\ \frac{\langle v, w_3'\rangle}{6} &= \frac{-2 + 5 + 2}{6} = \frac56. \end{aligned}$$
-Controllo della prima coordinata: $\frac72 - \frac23 - \frac56 = \frac{21 - 4 - 5}{6} = 2$. ✓ (Le altre due tornano allo stesso modo: $-\frac72 - \frac23 - \frac56 = -5$ e $0 - \frac23 + \frac53 = 1$.)
+Controllo della prima coordinata: $\frac72 - \frac23 - \frac56 = \frac{21 - 4 - 5}{6} = 2$. Le altre due tornano allo stesso modo: $-\frac72 - \frac23 - \frac56 = -5$ e $0 - \frac23 + \frac53 = 1$.
 :::
 
 ::: esercizio medio Proiezione su un piano e distanza
 Sia $W = \{x - y + 2z = 0\} \subset \R^3$ (prodotto euclideo) e $v = (1, 2, 3)$. Calcola $p_W(v)$ e la distanza di $v$ da $W$.
 ::: soluzione
-Uso la scorciatoia: $W^\perp = \Span(n)$ con $n = (1, -1, 2)$, $\langle n, n\rangle = 6$.
+Uso la scorciatoia: il complemento è la retta di $n = (1, -1, 2)$, con $\langle n, n\rangle = 6$.
 
-1. $\langle v, n\rangle = 1 - 2 + 6 = 5$, quindi $p_{W^\perp}(v) = \frac56(1, -1, 2)$.
-2. $p_W(v) = v - p_{W^\perp}(v) = \left(1 - \frac56,\ 2 + \frac56,\ 3 - \frac{10}6\right) = \left(\frac16, \frac{17}6, \frac43\right)$.
-3. Controllo che stia in $W$: $\frac16 - \frac{17}6 + \frac83 = \frac{1 - 17 + 16}{6} = 0$. ✓
-4. Distanza: $\|v - p_W(v)\| = \|p_{W^\perp}(v)\| = \frac56\sqrt6 = \frac{5}{\sqrt6} = \frac{5\sqrt6}{6}$.
+1. $\langle v, n\rangle = 1 - 2 + 6 = 5$, quindi l'ombra sulla retta è $\frac56(1, -1, 2)$.
+2. L'ombra sul piano è $v$ meno questa: $\left(1 - \frac56,\ 2 + \frac56,\ 3 - \frac{10}6\right) = \left(\frac16, \frac{17}6, \frac43\right)$.
+3. Controllo che stia nel piano: $\frac16 - \frac{17}6 + \frac83 = \frac{1 - 17 + 16}{6} = 0$.
+4. Distanza: la lunghezza dell'ombra sulla retta, $\frac56\sqrt6 = \frac{5}{\sqrt6} = \frac{5\sqrt6}{6}$.
 :::
 
 ::: esercizio medio Gram–Schmidt con un prodotto non euclideo
 Sia $S = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 3 \end{pmatrix}$ (definita positiva). Applica Gram–Schmidt alla base canonica $e_1, e_2, e_3$ rispetto a $g_S$ e trova una base ortonormale per $g_S$.
 ::: soluzione
-Ricorda: $g_S(e_i, e_j) = S_{ij}$ e $g_S(e_i, y) = (Sy)_i$.
+Ricorda: $g_S(e_i, e_j) = S_{ij}$, e $g_S(e_i, y)$ è la coordinata $i$ di $Sy$.
 
-- $w_1 = e_1$, $g_S(w_1, w_1) = S_{11} = 1$.
-- $g_S(e_2, w_1) = S_{21} = 1$, quindi $w_2 = e_2 - 1 \cdot e_1 = (-1, 1, 0)$. Calcolo $Sw_2 = (-1 + 1,\ -1 + 2,\ 0 + 1) = (0, 1, 1)$, quindi $g_S(w_2, w_2) = {}^tw_2\,(Sw_2) = 0 + 1 + 0 = 1$. Controllo: $g_S(w_1, w_2) = (Sw_2)_1 = 0$. ✓
-- $g_S(e_3, w_1) = S_{31} = 0$ e $g_S(e_3, w_2) = (Sw_2)_3 = 1$, quindi $w_3 = e_3 - 0 \cdot w_1 - \frac11 w_2 = (0, 0, 1) - (-1, 1, 0) = (1, -1, 1)$.
-- $Sw_3 = (1 - 1,\ 1 - 2 + 1,\ -1 + 3) = (0, 0, 2)$: controlli $g_S(w_1, w_3) = 0$, $g_S(w_2, w_3) = {}^tw_2\,(Sw_3) = 0$ ✓, e $g_S(w_3, w_3) = {}^tw_3\,(0, 0, 2) = 2$.
+- $w_1 = e_1$, con $g_S(w_1, w_1) = S_{11} = 1$.
+- $g_S(e_2, w_1) = S_{21} = 1$, quindi $w_2 = e_2 - e_1 = (-1, 1, 0)$. Calcolo $Sw_2 = (-1 + 1,\ -1 + 2,\ 0 + 1) = (0, 1, 1)$, quindi $g_S(w_2, w_2) = {}^tw_2\,(Sw_2) = 0 + 1 + 0 = 1$. Controllo: $g_S(w_1, w_2)$ è la prima coordinata di $Sw_2$, cioè 0.
+- $g_S(e_3, w_1) = S_{31} = 0$ e $g_S(e_3, w_2)$ è la terza coordinata di $Sw_2$, cioè 1. Quindi $w_3 = e_3 - 0 \cdot w_1 - w_2 = (0, 0, 1) - (-1, 1, 0) = (1, -1, 1)$.
+- $Sw_3 = (1 - 1,\ 1 - 2 + 1,\ -1 + 3) = (0, 0, 2)$. Controlli: $g_S(w_1, w_3) = 0$ e $g_S(w_2, w_3) = {}^tw_2\,(Sw_3) = 0$. Inoltre $g_S(w_3, w_3) = {}^tw_3\,(0, 0, 2) = 2$.
 
-Base ortonormale per $g_S$: $\left\{(1, 0, 0),\ (-1, 1, 0),\ \frac{1}{\sqrt2}(1, -1, 1)\right\}$. Nota: per il prodotto **euclideo** questi vettori non sono nemmeno ortogonali ($\langle e_1, w_2\rangle = -1$).
-:::
-
-::: esercizio difficile Una retta per quattro punti
-Trova la retta $y = a + bt$ dei minimi quadrati per i punti $(0, 0)$, $(1, 1)$, $(2, 1)$, $(3, 3)$, e calcola gli errori.
-::: soluzione
-$A$ ha righe $(1, t_i)$ e i dati sono $b = (0, 1, 1, 3)$:
-$$A = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{pmatrix}.$$
-Le entrate di ${}^tA\,A$ e di ${}^tA\,b$ sono prodotti scalari tra le colonne $A^1 = (1, 1, 1, 1)$, $A^2 = (0, 1, 2, 3)$ e il vettore $b$:
-$${}^tA\,A = \begin{pmatrix} 4 & 0 + 1 + 2 + 3 \\ 0 + 1 + 2 + 3 & 0 + 1 + 4 + 9 \end{pmatrix} = \begin{pmatrix} 4 & 6 \\ 6 & 14 \end{pmatrix},$$
-$${}^tA\,b = \begin{pmatrix} 0 + 1 + 1 + 3 \\ 0 + 1 + 2 + 9 \end{pmatrix} = \begin{pmatrix} 5 \\ 12 \end{pmatrix}.$$
-Sistema: $4a + 6b = 5$ e $6a + 14b = 12$. Moltiplico la prima per 3 e la seconda per 2: $12a + 18b = 15$ e $12a + 28b = 24$; sottraendo, $10b = 9$, cioè $b = \frac9{10}$; poi $4a = 5 - \frac{54}{10} = -\frac4{10}$, cioè $a = -\frac1{10}$.
-
-Retta: $y = -\frac1{10} + \frac9{10}t$. Valori sulla retta: $-\frac1{10}, \frac8{10}, \frac{17}{10}, \frac{26}{10}$. Errori $b - Ax_0 = \left(\frac1{10}, \frac2{10}, -\frac7{10}, \frac4{10}\right)$. Controllo: somma $\frac{1 + 2 - 7 + 4}{10} = 0$ (ortogonale alla prima colonna) e $\frac{0 + 2 - 14 + 12}{10} = 0$ (ortogonale alla seconda). ✓
-:::
-
-::: esercizio difficile Ortogonalità e dimensioni
-(a) Dimostra che vettori non nulli a due a due ortogonali sono linearmente indipendenti. (b) Deduci che se $w \ne 0$ in $V$ di dimensione $n$, allora $\dim \Span(w)^\perp = n - 1$, senza usare il Teorema 21.8. Suggerimento: guarda l'applicazione lineare $f(v) = \langle v, w\rangle$.
-::: soluzione
-(a) Da $\lambda_1v_1 + \dots + \lambda_kv_k = 0$, facendo il prodotto scalare con $v_i$ restano solo $\lambda_i\langle v_i, v_i\rangle = 0$ (gli altri termini sono nulli per l'ortogonalità). Siccome $v_i \ne 0$, $\langle v_i, v_i\rangle > 0$, quindi $\lambda_i = 0$ per ogni $i$.
-
-(b) $f : V \to \R$, $f(v) = \langle v, w\rangle$, è lineare (linearità del prodotto nel primo posto) e il suo nucleo è esattamente $\Span(w)^\perp$ (basta l'ortogonalità al generatore). L'immagine non è $\{0\}$ perché $f(w) = \|w\|^2 > 0$, quindi è tutto $\R$ e ha dimensione 1. Per il teorema della dimensione (Teorema 14.12): $\dim \Ker f = n - 1$.
-:::
-
-::: esercizio difficile Un complemento tra i polinomi
-Su $\R_2[x]$ sia $\langle p, q\rangle = p(-1)q(-1) + p(0)q(0) + p(1)q(1)$. Trova $\R_1[x]^\perp$ e verifica il risultato con i valori.
-::: soluzione
-La matrice nella base $\{1, x, x^2\}$ è $\begin{pmatrix} 3 & 0 & 2 \\ 0 & 2 & 0 \\ 2 & 0 & 2 \end{pmatrix}$ (lezione L19, esercizio 6). Per $p = a + bx + cx^2$, ortogonale a $1$ e a $x$:
-$$\langle p, 1\rangle = 3a + 2c = 0, \qquad \langle p, x\rangle = 2b = 0.$$
-Quindi $b = 0$ e $a = -\frac{2c}3$; con $c = 3$: $p = 3x^2 - 2$. $\R_1[x]^\perp = \Span(3x^2 - 2)$, di dimensione $3 - 2 = 1$.
-
-Verifica: $3x^2 - 2$ vale $1, -2, 1$ in $-1, 0, 1$. Allora $\langle p, 1\rangle = 1 - 2 + 1 = 0$ e $\langle p, x\rangle = -1 + 0 + 1 = 0$. ✓
+Base ortonormale per $g_S$: $\left\{(1, 0, 0),\ (-1, 1, 0),\ \frac{1}{\sqrt2}(1, -1, 1)\right\}$. Per il prodotto di tutti i giorni questi vettori non sono nemmeno perpendicolari: $\langle e_1, w_2\rangle = -1$.
 :::
 
 ::: esercizio esame Base ortonormale di un piano, proiezione e distanza
 Siano $v_1 = (1, 0, 1)$ e $v_2 = (2, 1, 0)$ in $\R^3$ con il prodotto euclideo, e $V = \Span(v_1, v_2)$. (1) Calcola una base ortonormale di $V$. (2) Calcola la proiezione ortogonale di $w = (2, 3, 2)$ su $V$. (3) Calcola la distanza di $w$ da $V$ e un'equazione cartesiana di $V$.
 ::: soluzione
-(1) $w_1 = v_1$, $\langle w_1, w_1\rangle = 2$; $\langle v_2, w_1\rangle = 2$, quindi $w_2 = (2, 1, 0) - (1, 0, 1) = (1, 1, -1)$, con $\langle w_2, w_2\rangle = 3$. Controllo: $\langle w_1, w_2\rangle = 1 + 0 - 1 = 0$. Base ortonormale: $\left\{\frac{1}{\sqrt2}(1, 0, 1),\ \frac{1}{\sqrt3}(1, 1, -1)\right\}$.
+(1) $w_1 = v_1$, con $\langle w_1, w_1\rangle = 2$. $\langle v_2, w_1\rangle = 2$, quindi $w_2 = (2, 1, 0) - (1, 0, 1) = (1, 1, -1)$, con $\langle w_2, w_2\rangle = 3$. Controllo: $\langle w_1, w_2\rangle = 1 + 0 - 1 = 0$. Base ortonormale: $\left\{\frac{1}{\sqrt2}(1, 0, 1),\ \frac{1}{\sqrt3}(1, 1, -1)\right\}$.
 
 (2) $\langle w, w_1\rangle = 2 + 0 + 2 = 4$ e $\langle w, w_2\rangle = 2 + 3 - 2 = 3$:
 $$\begin{aligned} p_V(w) &= \frac42(1, 0, 1) + \frac33(1, 1, -1) \\ &= (2, 0, 2) + (1, 1, -1) = (3, 1, 1). \end{aligned}$$
 
-(3) $w - p_V(w) = (-1, 2, 1)$. Controllo: ortogonale a $v_1$ ($-1 + 0 + 1 = 0$) e a $v_2$ ($-2 + 2 + 0 = 0$). ✓ La distanza è $\|(-1, 2, 1)\| = \sqrt6$. Siccome $(-1, 2, 1)$ genera $V^\perp$, un'equazione di $V$ è $-x + 2y + z = 0$ (controllo: $v_1$ dà $-1 + 0 + 1 = 0$, $v_2$ dà $-2 + 2 + 0 = 0$).
+(3) $w - p_V(w) = (-1, 2, 1)$. Controllo: è perpendicolare a $v_1$ ($-1 + 0 + 1 = 0$) e a $v_2$ ($-2 + 2 + 0 = 0$). La distanza è $\|(-1, 2, 1)\| = \sqrt6$. Siccome $(-1, 2, 1)$ genera il complemento del piano, un'equazione del piano è $-x + 2y + z = 0$. Controllo: $v_1$ dà $-1 + 0 + 1 = 0$, $v_2$ dà $-2 + 2 + 0 = 0$.
 :::
 
 ::: esercizio esame Ortonormalizzazione, complemento e proiezione con $g_S$
 Su $\R^3$ sia $g_S$ con $S = \begin{pmatrix} 2 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}$ (definita positiva), e siano $u = (1, 1, 0)$, $v = (0, 1, 1)$, $W = \Span(u, v)$. (1) Trova una base ortonormale di $W$ rispetto a $g_S$. (2) Trova una base del complemento ortogonale di $W$ rispetto a $g_S$. (3) Calcola la proiezione $g_S$-ortogonale di $e_1$ su $W$.
 ::: soluzione
-Prima i vettori $Su = (2, 1, 1)$ e $Sv = (1, 1, 1)$. Allora $g_S(u, u) = {}^tu\,(Su) = 3$, $g_S(u, v) = {}^tu\,(Sv) = 2$, $g_S(v, v) = {}^tv\,(Sv) = 2$.
+Prima i vettori $Su = (2, 1, 1)$ e $Sv = (1, 1, 1)$. Allora $g_S(u, u) = {}^tu\,(Su) = 3$, $g_S(u, v) = {}^tu\,(Sv) = 2$ e $g_S(v, v) = {}^tv\,(Sv) = 2$.
 
-(1) $w_1 = u$; $w_2 = v - \frac23 u = \left(-\frac23, \frac13, 1\right)$, riscalato $w_2' = (-2, 1, 3)$. Poi $Sw_2' = (-4 + 3,\ 1,\ -2 + 3) = (-1, 1, 1)$: controllo $g_S(u, w_2') = {}^tu\,(Sw_2') = -1 + 1 + 0 = 0$ ✓, e $g_S(w_2', w_2') = 2 + 1 + 3 = 6$. Base ortonormale: $\left\{\frac{1}{\sqrt3}(1, 1, 0),\ \frac{1}{\sqrt6}(-2, 1, 3)\right\}$.
+(1) $w_1 = u$; $w_2 = v - \frac23 u = \left(-\frac23, \frac13, 1\right)$, riscalato in $w_2' = (-2, 1, 3)$. Poi $Sw_2' = (-4 + 3,\ 1,\ -2 + 3) = (-1, 1, 1)$. Controllo: $g_S(u, w_2') = {}^tu\,(Sw_2') = -1 + 1 + 0 = 0$. Inoltre $g_S(w_2', w_2') = 2 + 1 + 3 = 6$. Base ortonormale: $\left\{\frac{1}{\sqrt3}(1, 1, 0),\ \frac{1}{\sqrt6}(-2, 1, 3)\right\}$.
 
-(2) $x \in W^\perp$ se $g_S(u, x) = {}^t(Su)\,x = 0$ e $g_S(v, x) = {}^t(Sv)\,x = 0$:
+(2) Un vettore $x$ sta nel complemento se è perpendicolare per $g_S$ a $u$ e a $v$, cioè ${}^t(Su)\,x = 0$ e ${}^t(Sv)\,x = 0$:
 $$2x_1 + x_2 + x_3 = 0, \qquad x_1 + x_2 + x_3 = 0.$$
-Sottraendo, $x_1 = 0$, poi $x_3 = -x_2$: $W^\perp = \Span((0, 1, -1))$, di dimensione $3 - 2 = 1$. ✓
+Togliendo, $x_1 = 0$, poi $x_3 = -x_2$: il complemento è la retta di $(0, 1, -1)$, di dimensione $3 - 2 = 1$.
 
-(3) $g_S(e_1, u) = (Su)_1 = 2$ e $g_S(e_1, w_2') = (Sw_2')_1 = -1$, quindi
+(3) $g_S(e_1, u)$ è la prima coordinata di $Su$, cioè 2; $g_S(e_1, w_2')$ è la prima coordinata di $Sw_2'$, cioè $-1$. Quindi
 $$\begin{aligned} p_W(e_1) &= \frac23(1, 1, 0) - \frac16(-2, 1, 3) \\ &= \left(\frac23 + \frac13,\ \frac23 - \frac16,\ -\frac12\right) = \left(1, \frac12, -\frac12\right). \end{aligned}$$
-Controllo: $e_1 - p_W(e_1) = \left(0, -\frac12, \frac12\right) = -\frac12(0, 1, -1)$ sta in $W^\perp$. ✓
+Controllo: $e_1 - p_W(e_1) = \left(0, -\frac12, \frac12\right) = -\frac12(0, 1, -1)$ sta nel complemento.
+:::
+
+::: esercizio difficile Una retta per quattro punti
+Trova la retta $y = a + bt$ dei minimi quadrati per i punti $(0, 0)$, $(1, 1)$, $(2, 1)$, $(3, 3)$, e calcola gli errori.
+::: soluzione
+$A$ ha righe $(1, t_i)$ e i dati sono $(0, 1, 1, 3)$:
+$$A = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{pmatrix}.$$
+I numeri di ${}^tA\,A$ e di ${}^tA\,b$ sono prodotti scalari tra le colonne $(1, 1, 1, 1)$ e $(0, 1, 2, 3)$ e i dati:
+$${}^tA\,A = \begin{pmatrix} 4 & 0 + 1 + 2 + 3 \\ 0 + 1 + 2 + 3 & 0 + 1 + 4 + 9 \end{pmatrix} = \begin{pmatrix} 4 & 6 \\ 6 & 14 \end{pmatrix},$$
+$${}^tA\,b = \begin{pmatrix} 0 + 1 + 1 + 3 \\ 0 + 1 + 2 + 9 \end{pmatrix} = \begin{pmatrix} 5 \\ 12 \end{pmatrix}.$$
+Il sistema: $4a + 6b = 5$ e $6a + 14b = 12$. Moltiplico la prima per 3 e la seconda per 2: $12a + 18b = 15$ e $12a + 28b = 24$. Togliendo, $10b = 9$, cioè $b = \frac9{10}$. Poi $4a = 5 - \frac{54}{10} = -\frac4{10}$, cioè $a = -\frac1{10}$.
+
+La retta è $y = -\frac1{10} + \frac9{10}t$. I valori sulla retta sono $-\frac1{10}, \frac8{10}, \frac{17}{10}, \frac{26}{10}$, e gli errori $\frac1{10}, \frac2{10}, -\frac7{10}, \frac4{10}$. Controllo: la loro somma è $\frac{1 + 2 - 7 + 4}{10} = 0$, quindi sono perpendicolari alla prima colonna; con la seconda, $\frac{0 + 2 - 14 + 12}{10} = 0$.
+:::
+
+::: esercizio difficile Ortogonalità e dimensioni
+(a) Dimostra che vettori non nulli a due a due ortogonali sono linearmente indipendenti. (b) Deduci che se $w \ne 0$ in $V$ di dimensione $n$, allora $\dim \Span(w)^\perp = n - 1$, senza usare il Teorema 21.8. Suggerimento: guarda l'applicazione lineare $f(v) = \langle v, w\rangle$.
+::: soluzione
+(a) Da una ricetta che dà zero, $\lambda_1v_1 + \dots + \lambda_kv_k = 0$, si fa il prodotto scalare con $v_i$: resta solo $\lambda_i\langle v_i, v_i\rangle = 0$, perché gli altri pezzi sono zero. Siccome $v_i$ non è zero, $\langle v_i, v_i\rangle$ è positivo, quindi $\lambda_i = 0$ per ogni $i$.
+
+(b) La macchina $f(v) = \langle v, w\rangle$ va dallo spazio ai numeri ed è lineare, perché il prodotto scalare lo è nel primo posto. Il suo nucleo è proprio il complemento della retta di $w$: basta la perpendicolarità al generatore. L'immagine non è solo lo zero, perché $f(w) = \|w\|^2$ è positivo: è tutta la retta dei numeri, di dimensione 1. Per il teorema della dimensione (Teorema 14.12) il nucleo ha dimensione $n - 1$.
+:::
+
+::: esercizio difficile Un complemento tra i polinomi
+Su $\R_2[x]$ sia $\langle p, q\rangle = p(-1)q(-1) + p(0)q(0) + p(1)q(1)$. Trova $\R_1[x]^\perp$ e verifica il risultato con i valori.
+::: soluzione
+La matrice nella base $\{1, x, x^2\}$ è $\begin{pmatrix} 3 & 0 & 2 \\ 0 & 2 & 0 \\ 2 & 0 & 2 \end{pmatrix}$ (lezione L19, esercizio 6). Per $p = a + bx + cx^2$, perpendicolare a $1$ e a $x$:
+$$\langle p, 1\rangle = 3a + 2c = 0, \qquad \langle p, x\rangle = 2b = 0.$$
+Quindi $b = 0$ e $a = -\frac{2c}3$. Con $c = 3$: $p = 3x^2 - 2$. Il complemento è la retta di questo polinomio, di dimensione $3 - 2 = 1$.
+
+Verifica: $3x^2 - 2$ vale $1, -2, 1$ in $-1, 0, 1$. Allora $\langle p, 1\rangle = 1 - 2 + 1 = 0$ e $\langle p, x\rangle = -1 + 0 + 1 = 0$.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Quando due vettori sono ortogonali? Il vettore nullo è ortogonale a qualcosa?
-Quando $\langle v, w\rangle = 0$; se sono non nulli vuol dire che formano un angolo retto. Il vettore nullo è ortogonale a tutti, perché $\langle 0, w\rangle = 0$.
+Quando il loro prodotto scalare è zero; se non sono nulli, formano un angolo retto. Il vettore nullo è ortogonale a tutti, perché il suo prodotto con qualsiasi vettore è zero.
 :::
 
-::: domanda Quali vettori di $\R^2$ sono ortogonali a $(a, b) \ne 0$?
-Quelli con $ax + by = 0$: la retta $\Span((-b, a))$. Si scambiano le coordinate e si cambia un segno.
+::: domanda Quali vettori del piano sono perpendicolari a $(a, b)$, diverso da zero?
+Quelli con $ax + by = 0$: la retta di $(-b, a)$. Si scambiano le coordinate e si cambia un segno.
 :::
 
 ::: domanda Che cos'è $W^\perp$ e perché è un sottospazio?
-L'insieme dei vettori ortogonali a tutti i vettori di $W$. Contiene lo zero, ed è chiuso rispetto a somma e prodotto per scalare perché il prodotto scalare è lineare nel primo posto.
+L'insieme dei vettori perpendicolari a tutti i vettori di $W$. Contiene lo zero, e somme e multipli di vettori perpendicolari restano perpendicolari, perché il prodotto scalare è lineare nel primo posto.
 :::
 
 ::: domanda Come si calcola $W^\perp$ in pratica?
-Si impone l'ortogonalità ai soli generatori di $W$: si ottiene un sistema lineare omogeneo, con una equazione per generatore. Con un $g_S$ la riga dei coefficienti per il generatore $w_i$ è ${}^t(Sw_i)$.
+Si chiede la perpendicolarità ai soli generatori di $W$: si ottiene un sistema lineare senza termini noti, con una equazione per generatore. Con un $g_S$ la riga dei numeri per il generatore $w_i$ è ${}^t(Sw_i)$.
 :::
 
-::: domanda Qual è la formula della proiezione di $v$ sulla retta di $w$? Da dove viene?
-$p_w(v) = \frac{\langle v, w\rangle}{\langle w, w\rangle}w$. Si cerca $kw$ con $v - kw$ ortogonale a $w$: $\langle v, w\rangle - k\langle w, w\rangle = 0$.
+::: domanda Qual è la formula dell'ombra di $v$ sulla retta di $w$? Da dove viene?
+$p_w(v) = \frac{\langle v, w\rangle}{\langle w, w\rangle}w$. Si cerca un multiplo $kw$ con $v - kw$ perpendicolare a $w$: $\langle v, w\rangle - k\langle w, w\rangle = 0$.
 :::
 
 ::: domanda Che cos'è il coefficiente di Fourier e a che cosa serve?
-È il numero $\frac{\langle v, w\rangle}{\langle w, w\rangle}$. In una base ortogonale $\{v_i\}$ i coefficienti di Fourier di $v$ rispetto ai $v_i$ sono proprio le coordinate di $v$, senza risolvere sistemi.
+È il numero $\frac{\langle v, w\rangle}{\langle w, w\rangle}$, quello davanti a $w$ nell'ombra. In una base ortogonale i coefficienti di Fourier di un vettore sono proprio le sue coordinate, senza risolvere sistemi.
 :::
 
 ::: domanda Come funziona l'algoritmo di Gram–Schmidt?
-$w_1 = v_1$; poi ogni $w_i$ è $v_i$ meno le sue proiezioni sui $w_1, \dots, w_{i-1}$ già costruiti. I $w_i$ sono ortogonali e generano gli stessi spazi dei $v_i$; dividendo per le norme si ottiene una base ortonormale.
+Il primo vettore resta. A ogni vettore successivo si tolgono le sue ombre sui vettori nuovi già costruiti. I vettori ottenuti sono perpendicolari e generano gli stessi spazi; dividendo per le lunghezze si ottiene una base ortonormale.
 :::
 
 ::: domanda Perché nel calcolo di $w_3$ si proietta su $w_2$ e non su $v_2$?
-Perché la formula «somma delle proiezioni» funziona solo su vettori già ortogonali tra loro. Proiettando su $v_2$, che non è ortogonale a $w_1$, il risultato in generale non è ortogonale a $w_2$.
+Perché la formula «somma delle ombre» funziona solo su vettori già perpendicolari tra loro. Proiettando su $v_2$, che non è perpendicolare a $w_1$, il risultato di solito non è perpendicolare a $w_2$.
 :::
 
 ::: domanda Che cosa dice il teorema di decomposizione ortogonale?
-Se $V$ ha dimensione finita e il prodotto è definito positivo, $V = W \oplus W^\perp$: ogni $v$ si scrive in un solo modo come $w + z$ con $w \in W$ e $z \in W^\perp$, e $\dim W + \dim W^\perp = \dim V$.
+In dimensione finita, con un prodotto definito positivo, ogni vettore si scrive in un solo modo come un pezzo in $W$ più un pezzo perpendicolare a $W$. E le dimensioni di $W$ e del suo complemento sommano alla dimensione dello spazio.
 :::
 
-::: domanda Come si calcola la proiezione su un piano di $\R^3$? Ci sono scorciatoie?
-Con una base ortogonale $w_1, w_2$ del piano: $p_W(v) = \sum \frac{\langle v, w_i\rangle}{\langle w_i, w_i\rangle}w_i$. Scorciatoia: se $n$ genera $W^\perp$, $p_W(v) = v - \frac{\langle v, n\rangle}{\langle n, n\rangle}n$.
+::: domanda Come si calcola l'ombra su un piano dello spazio? Ci sono scorciatoie?
+Con una base ortogonale del piano si sommano le ombre sui due vettori. Scorciatoia: se $n$ genera il complemento del piano, l'ombra sul piano è $v$ meno l'ombra di $v$ sulla retta di $n$.
 :::
 
-::: domanda Perché la proiezione è il punto di $W$ più vicino a $v$?
-Per ogni $w \in W$, $v - w = (v - p_W(v)) + (p_W(v) - w)$ con i due pezzi ortogonali; per Pitagora $\|v - w\|^2 = \|v - p_W(v)\|^2 + \|p_W(v) - w\|^2 \ge \|v - p_W(v)\|^2$.
+::: domanda Perché l'ombra è il punto di $W$ più vicino a $v$?
+Per ogni $w$ di $W$, il vettore $v - w$ è la somma di un pezzo perpendicolare a $W$ e di un pezzo in $W$. Per Pitagora la sua lunghezza al quadrato è la somma delle due lunghezze al quadrato, quindi è almeno quella di $v - p_W(v)$.
 :::
 
 ::: domanda Che cosa sono le equazioni normali e perché funzionano?
-${}^tAAx_0 = {}^tAb$. $x_0$ minimizza $\|Ax - b\|$ quando $Ax_0$ è la proiezione di $b$ su $\Imm L_A$, cioè quando $b - Ax_0$ è ortogonale alle colonne di $A$, cioè ${}^tA(b - Ax_0) = 0$.
+${}^tAAx_0 = {}^tAb$. La scelta migliore è quella per cui $Ax_0$ è l'ombra di $b$ sullo spazio delle colonne di $A$. Allora l'errore è perpendicolare a tutte le colonne, cioè ${}^tA(b - Ax_0) = 0$.
 :::
 
 ::: domanda Quando la soluzione ai minimi quadrati è unica?
-Quando le colonne di $A$ sono linearmente indipendenti: allora ${}^tAA$ è invertibile e $x_0 = ({}^tAA)^{-1}\,{}^tA\,b$.
+Quando le colonne di $A$ sono indipendenti: allora ${}^tAA$ è invertibile e $x_0 = ({}^tAA)^{-1}\,{}^tA\,b$.
 :::
 
 ## Glossario
 
 ```glossario
-Vettori ortogonali | $v$ e $w$ con $\langle v, w\rangle = 0$; se non nulli, formano un angolo retto.
-Complemento ortogonale $W^\perp$ | $\{v \in V \mid \langle v, w\rangle = 0 \ \forall w \in W\}$; è sempre un sottospazio.
-Proiezione ortogonale su una retta | $p_w(v) = \frac{\langle v, w\rangle}{\langle w, w\rangle}w$: il vettore della retta $\Span(w)$ con $v - p_w(v)$ ortogonale a $w$.
+Vettori ortogonali | Vettori con prodotto scalare zero; se non nulli, formano un angolo retto.
+Complemento ortogonale $W^\perp$ | L'insieme dei vettori perpendicolari a ogni vettore di $W$; è sempre un sottospazio.
+Proiezione ortogonale su una retta | L'ombra $p_w(v) = \frac{\langle v, w\rangle}{\langle w, w\rangle}w$: il vettore della retta di $w$ con il resto perpendicolare a $w$.
 Coefficiente di Fourier | Il numero $\frac{\langle v, w\rangle}{\langle w, w\rangle}$.
-Base ortogonale | Base i cui vettori sono a due a due ortogonali.
-Base ortonormale | Base ortogonale di vettori di norma 1; le coordinate di $v$ sono $\langle v, v_i\rangle$.
-Normalizzare | Dividere un vettore non nullo per la sua norma.
-Algoritmo di Gram–Schmidt | Trasforma vettori indipendenti $v_1, \dots, v_k$ in vettori ortogonali $w_1, \dots, w_k$ con gli stessi span: $w_i = v_i - \sum_{j < i} p_{w_j}(v_i)$.
-Riscalare | Sostituire un vettore con un suo multiplo non nullo; non cambia le proiezioni e aiuta a evitare frazioni.
-Somma diretta $\oplus$ | $V = U \oplus W$: ogni vettore si scrive in un solo modo come somma di un vettore di $U$ e uno di $W$.
-Decomposizione ortogonale | $V = W \oplus W^\perp$ (Teorema 21.8), con $\dim W + \dim W^\perp = \dim V$.
-Proiezione ortogonale su un sottospazio | $p_W(v)$, la parte in $W$ della decomposizione $v = w + z$; con base ortonormale $p_W(v) = \sum \langle v, w_i\rangle w_i$.
-Teorema di Pitagora | Se $\langle a, b\rangle = 0$, allora $\lVert a + b \rVert^2 = \lVert a \rVert^2 + \lVert b \rVert^2$.
-Distanza di un vettore da un sottospazio | $\lVert v - p_W(v) \rVert$, la minima distanza tra $v$ e i vettori di $W$.
-Soluzione ai minimi quadrati | $x_0$ che rende minimo $\lVert Ax - b \rVert$ (Definizione 21.10).
+Base ortogonale | Una base di vettori perpendicolari a due a due.
+Base ortonormale | Una base ortogonale di vettori lunghi 1; le coordinate di $v$ sono $\langle v, v_i\rangle$.
+Normalizzare | Dividere un vettore non nullo per la sua lunghezza.
+Algoritmo di Gram–Schmidt | Raddrizza vettori indipendenti: a ognuno si tolgono le ombre sui vettori nuovi già costruiti. I nuovi vettori sono perpendicolari e generano gli stessi spazi.
+Riscalare | Sostituire un vettore con un suo multiplo non nullo; non cambia le ombre e aiuta a evitare frazioni.
+Somma diretta $\oplus$ | Ogni vettore si scrive in un solo modo come somma di un pezzo per ciascun sottospazio.
+Decomposizione ortogonale | Lo spazio è $W \oplus W^\perp$ (Teorema 21.8), e le dimensioni sommano a quella dello spazio.
+Proiezione ortogonale su un sottospazio | L'ombra $p_W(v)$, il pezzo in $W$ della scomposizione; con base ortonormale $\sum \langle v, w_i\rangle w_i$.
+Teorema di Pitagora | Se due vettori sono perpendicolari, la lunghezza al quadrato della somma è la somma delle lunghezze al quadrato.
+Distanza di un vettore da un sottospazio | La lunghezza di $v - p_W(v)$: la minima distanza tra $v$ e i vettori di $W$.
+Soluzione ai minimi quadrati | La scelta $x_0$ che rende minima la lunghezza di $Ax - b$ (Definizione 21.10).
 Equazioni normali | ${}^tAAx_0 = {}^tAb$; le loro soluzioni sono le soluzioni ai minimi quadrati.
-Regressione lineare | Scelta dei parametri di un modello lineare minimizzando la somma dei quadrati degli errori.
-Residuo (errore) | Il vettore $b - Ax$; nella soluzione ai minimi quadrati è ortogonale alle colonne di $A$.
+Regressione lineare | La scelta dei parametri di un modello lineare che rende minima la somma dei quadrati degli errori.
+Residuo (errore) | Il vettore $b - Ax$; nella soluzione ai minimi quadrati è perpendicolare alle colonne di $A$.
 ```
 
 ## Checklist
 
 ```checklist
-- So decidere se due vettori sono ortogonali, anche con un prodotto $g_S$ diverso da quello euclideo.
+- So decidere se due vettori sono perpendicolari, anche con un prodotto $g_S$ diverso da quello di tutti i giorni.
 - So calcolare $W^\perp$ risolvendo il sistema dato dai generatori di $W$, e controllarne la dimensione.
-- So dimostrare che $W^\perp$ è un sottospazio.
-- So calcolare la proiezione ortogonale di un vettore su una retta e ricavare la formula.
+- So spiegare perché $W^\perp$ è un sottospazio.
+- So calcolare l'ombra di un vettore su una retta e ricavare la formula.
 - So calcolare le coordinate di un vettore in una base ortogonale con i coefficienti di Fourier.
-- So applicare Gram–Schmidt a due o tre vettori, controllando l'ortogonalità a ogni passo e riscalando.
+- So applicare Gram–Schmidt a due o tre vettori, controllando la perpendicolarità a ogni passo e riscalando.
 - So trasformare una base ortogonale in una ortonormale.
-- So enunciare e spiegare il teorema di decomposizione ortogonale e la formula delle dimensioni.
-- So proiettare un vettore su un piano di $\R^3$, anche con la scorciatoia della normale, e calcolarne la distanza dal piano.
-- So spiegare perché la proiezione è il punto più vicino (Pitagora).
+- So enunciare e spiegare il teorema di decomposizione ortogonale e la regola delle dimensioni.
+- So proiettare un vettore su un piano dello spazio, anche con la scorciatoia della retta perpendicolare, e calcolarne la distanza dal piano.
+- So spiegare perché l'ombra è il punto più vicino, con Pitagora.
 - So scrivere e risolvere le equazioni normali, e trovare la retta dei minimi quadrati per alcuni punti.
 ```
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 21 «Prodotti scalari III», pp. 105–110: sezioni 21.A (vettori ortogonali e complemento), 21.B (proiezione ortogonale), 21.C (Gram–Schmidt), 21.D (decomposizione ortogonale), 21.E (minimi quadrati, con il riquadro sulla regressione lineare) e 21.F (Esercizio 21.13, risolto qui come primo esercizio). Numerazione delle dispense: Esempi 21.1, 21.2, 21.7, 21.12; Definizioni 21.3, 21.10; Proposizioni 21.4, 21.5, 21.6, 21.9; Teoremi 21.8, 21.11. Richiami: Definizione 18.4 (somma diretta), Teorema 14.12 (teorema della dimensione), lezioni L19 e L20.
-- **B. Martelli, *Geometria e algebra lineare***: §7.1.7, §7.3 (sottospazio ortogonale, Proposizioni 7.3.3 e 7.3.7, Teorema 7.3.12), §8.1.5–8.1.10 (proiezioni, coefficienti di Fourier, Gram–Schmidt, riscalamento, Proposizioni 8.1.25 e 8.1.28, Esempio 8.1.19). Il libro è gratuito: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). L'esercizio 5 riprende l'Esercizio 8.2 del libro.
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 21 «Prodotti scalari III», pp. 105–110: sezioni 21.A (vettori ortogonali e complemento), 21.B (proiezione ortogonale), 21.C (Gram–Schmidt), 21.D (decomposizione ortogonale), 21.E (minimi quadrati, con il riquadro sulla regressione lineare) e 21.F (l'Esercizio 21.13, svolto come esercizio 8). Numerazione delle dispense: Esempi 21.1, 21.2, 21.7, 21.12; Definizioni 21.3, 21.10; Proposizioni 21.4, 21.5, 21.6, 21.9; Teoremi 21.8, 21.11. Richiami: Definizione 18.4 (somma diretta), Teorema 14.12 (teorema della dimensione), lezioni L19 e L20.
+- **B. Martelli, *Geometria e algebra lineare***: §7.1.7, §7.3 (sottospazio ortogonale, Proposizioni 7.3.3 e 7.3.7, Teorema 7.3.12), §8.1.5–8.1.10 (proiezioni, coefficienti di Fourier, Gram–Schmidt, riscalamento, Proposizioni 8.1.25 e 8.1.28, Esempio 8.1.19). Il libro è gratuito: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). L'esercizio 9 riprende l'Esercizio 8.2 del libro.
 - **Appelli d'esame** (Moodle 2025/26): problemi 12 del 24/01/2024, 10/06/2024, 16/01/2025, 07/02/2025, 15/01/2026, 05/02/2026, 03/06/2026, 03/07/2026, 07/09/2026; domanda 2 del 05/02/2026. Le tre domande riportate sono risolte in questi appunti.
-- Le parti **«Oltre le dispense»** (indipendenza dei vettori ortogonali, generatori e complemento, lunghezza della proiezione, riscalamento, collocazione nel libro) e gli esercizi dopo il primo sono aggiunte di questi appunti, per collegare la lezione al resto del corso e all'esame.
+- Le parti **«Oltre le dispense»** (indipendenza dei vettori perpendicolari, generatori e complemento, lunghezza dell'ombra, riscalamento, collocazione nel libro) e gli esercizi aggiunti servono a collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---
@@ -44593,16 +44712,15 @@ descrizione: >-
   del parallelogramma, forma cartesiana e parametrica di rette e piani, sottospazi affini e giacitura, intersezioni,
   con quiz nello stile dell'esame ed esercizi svolti.
 lede: >-
-  Il prodotto vettoriale $v \times w$ ha una lunghezza che misura un'area e un verso che si trova con la mano destra.
-  Poi si passa alla geometria di rette e piani in $\R^3$: come si scrivono (equazioni oppure parametri), come si passa
-  da una scrittura all'altra, che cos'è un sottospazio affine $x + W$ e come si calcolano le intersezioni. Sono i conti
-  che tornano in quasi tutti i problemi d'esame di geometria.
+  Il prodotto vettoriale misura un'area e punta nel verso della mano destra. Poi rette e piani nello spazio: si
+  descrivono con una prova («chi ci sta dentro») oppure con una ricetta («come sono fatti i punti»), anche quando non
+  passano per l'origine. Alla fine, come si trova dove si incontrano: è il conto di quasi tutti i problemi di geometria.
 materiale: dispense
 scheda:
   Dispense: lezione 23 · pp. 116–121
   Libro: Martelli, §9.1 e §9.2
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 120–150 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 23 «Lo spazio euclideo II»; B. Martelli, Geometria e algebra lineare, §9.1–9.2
 appunti_html: appunti/MDAG/L23_spazio_euclideo_2.html
@@ -44611,37 +44729,37 @@ genera_html: true
 
 ## In breve
 
-- Il **prodotto vettoriale** $v \times w$ di due vettori di $\R^3$ (lezione L22) è ortogonale a $v$ e a $w$, e la sua **lunghezza** è l'**area del parallelogramma** con lati $v$ e $w$: $\lVert v \times w \rVert = \lVert v \rVert \lVert w \rVert \sin\vartheta$.
-- Tutto discende dall'**identità di Lagrange** $\lVert v \times w \rVert^2 + \langle v, w \rangle^2 = \lVert v \rVert^2 \lVert w \rVert^2$.
-- Il **verso** di $v \times w$ si trova con la **regola della mano destra**: se $v$ e $w$ sono indipendenti, $v, w, v \times w$ è una **base positiva** di $\R^3$ (determinante positivo).
-- Il prodotto vettoriale è **bilineare** e **anticommutativo** ($v \times w = -\,w \times v$), ma **non è associativo**: le parentesi contano.
-- Un sottospazio si descrive in **forma cartesiana** (equazioni: dicono *chi ci sta dentro*) oppure in **forma parametrica** (generatori: dicono *come sono fatti* i suoi punti).
-- Un **sottospazio affine** è un sottospazio vettoriale traslato, $S = x + W$: $W$ è la **giacitura**, $x$ un punto qualsiasi di $S$. Le soluzioni di $Ax = b$, se ci sono, formano un sottospazio affine di dimensione $n - \rk A$.
-- In $\R^3$ un piano ha **una** equazione $ax + by + cz = d$. Da $P_0 + t v_1 + s v_2$ la si ottiene così: $(a, b, c) = v_1 \times v_2$, e $d$ si trova imponendo il passaggio per $P_0$.
-- Per **intersecare** si risolvono equazioni: si uniscono le equazioni (cartesiana con cartesiana), si sostituisce il punto generico (cartesiana con parametrica), si eguagliano i punti generici (parametrica con parametrica). Se $\operatorname{giac}(S) + \operatorname{giac}(S') = \R^n$, l'intersezione non è vuota.
+- Il **prodotto vettoriale** di due vettori dello spazio (lezione L22) è perpendicolare a tutti e due, e la sua **lunghezza** è l'**area del parallelogramma** che hanno per lati.
+- Tutto viene da una sola uguaglianza, l'**identità di Lagrange**, che lega il prodotto vettoriale, il prodotto scalare e le lunghezze.
+- Il **verso** del prodotto vettoriale si trova con la **regola della mano destra**.
+- Il prodotto vettoriale cambia segno se scambi i fattori e si comporta bene con somme e multipli, ma **le parentesi contano**: non è associativo.
+- Un sottospazio si descrive con una **prova** (le equazioni, **forma cartesiana**: dicono chi ci sta dentro) oppure con una **ricetta** (i generatori, **forma parametrica**: dicono come sono fatti i punti).
+- Una retta o un piano che non passa per l'origine è un **sottospazio affine**: un sottospazio vettoriale spostato. Il sottospazio di partenza si chiama **giacitura**.
+- Nello spazio un piano ha **una** equazione. Dalla ricetta la si ottiene con il prodotto vettoriale dei due vettori della ricetta.
+- Per **intersecare** si fanno tre tipi di conti: si mettono insieme le prove, si mette la ricetta dentro la prova, oppure si uguagliano due ricette.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
 ## Da dove ripartiamo: il prodotto vettoriale (pp. 114–116)
 
-Nella lezione L22 hai incontrato un'operazione che esiste **solo in $\R^3$**: prende **due vettori** e restituisce **un vettore** (il prodotto scalare, invece, restituisce un numero). In questi appunti, per risparmiare spazio, i vettori che le dispense scrivono in colonna li scriviamo spesso in riga: $(1, 2, 2)$ vuol dire il vettore colonna ${}^t(1, 2, 2)$.
+Nella lezione L22 hai incontrato un'operazione che esiste **solo nello spazio a tre dimensioni**: prende due vettori e restituisce un vettore, mentre il prodotto scalare restituisce un numero. In questi appunti, per risparmiare spazio, i vettori che le dispense scrivono in colonna li scriviamo spesso in riga: $(1, 2, 2)$ vuol dire la colonna ${}^t(1, 2, 2)$. Ecco la definizione, come nelle dispense.
 
 > [!DEF] 22.14 · Prodotto vettoriale (richiamo dalla lezione L22)
 > Dati due vettori $v = (v_1, v_2, v_3)$ e $w = (w_1, w_2, w_3)$ di $\R^3$, il **prodotto vettoriale** fra $v$ e $w$ è il vettore
 > $$v \times w = \begin{pmatrix} v_2 w_3 - v_3 w_2 \\ v_3 w_1 - v_1 w_3 \\ v_1 w_2 - v_2 w_1 \end{pmatrix}.$$
 > In altre parole $v \times w = (d_1, -d_2, d_3)$, dove $d_i$ è il determinante del minore $2 \times 2$ che si ottiene cancellando la riga $i$-esima dalla matrice $\begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \\ v_3 & w_3 \end{pmatrix}$.
 
-La regola mnemonica delle dispense è un «determinante» fatto con una colonna di vettori (non è una vera matrice, perché $e_1, e_2, e_3$ non sono numeri):
-
-$$\begin{aligned} v \times w &= \det\begin{pmatrix} v_1 & w_1 & e_1 \\ v_2 & w_2 & e_2 \\ v_3 & w_3 & e_3 \end{pmatrix} \\ &= \det\begin{pmatrix} v_2 & w_2 \\ v_3 & w_3 \end{pmatrix} e_1 - \det\begin{pmatrix} v_1 & w_1 \\ v_3 & w_3 \end{pmatrix} e_2 + \det\begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix} e_3. \end{aligned}$$
-
-In pratica si fa così:
+**Come si legge.** $v \times w$ si legge «vu vettore vu doppio». In pratica si fa così:
 
 1. scrivi $v$ e $w$ **uno accanto all'altro**, come due colonne;
 2. prima componente: copri la **prima riga** e calcola il determinante $2 \times 2$ che resta;
 3. seconda componente: copri la **seconda riga**, calcola il determinante e **cambia segno**;
 4. terza componente: copri la **terza riga** e calcola il determinante.
+
+Le dispense ricordano anche una regola per la memoria: un «determinante» con una colonna fatta dei vettori della base. Non è una vera matrice, perché $e_1, e_2, e_3$ non sono numeri:
+
+$$\begin{aligned} v \times w &= \det\begin{pmatrix} v_1 & w_1 & e_1 \\ v_2 & w_2 & e_2 \\ v_3 & w_3 & e_3 \end{pmatrix} \\ &= \det\begin{pmatrix} v_2 & w_2 \\ v_3 & w_3 \end{pmatrix} e_1 - \det\begin{pmatrix} v_1 & w_1 \\ v_3 & w_3 \end{pmatrix} e_2 + \det\begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \end{pmatrix} e_3. \end{aligned}$$
 
 > [!ESEMPIO] $v = (1, 2, 2)$ e $w = (0, 3, 4)$
 > Le due colonne affiancate danno le righe $(1, 0)$, $(2, 3)$, $(2, 4)$.
@@ -44649,22 +44767,30 @@ In pratica si fa così:
 > - Copro la seconda riga: $\det\begin{pmatrix} 1 & 0 \\ 2 & 4 \end{pmatrix} = 1 \cdot 4 - 0 \cdot 2 = 4$, e cambio segno: $-4$.
 > - Copro la terza riga: $\det\begin{pmatrix} 1 & 0 \\ 2 & 3 \end{pmatrix} = 1 \cdot 3 - 0 \cdot 2 = 3$.
 >
-> Quindi $v \times w = (2, -4, 3)$. Controllo che sia ortogonale a entrambi:
+> Quindi $v \times w = (2, -4, 3)$. Controllo che sia perpendicolare a tutti e due:
 > $$\langle v \times w, v \rangle = 2 \cdot 1 + (-4) \cdot 2 + 3 \cdot 2 = 2 - 8 + 6 = 0,$$
 > $$\langle v \times w, w \rangle = 2 \cdot 0 + (-4) \cdot 3 + 3 \cdot 4 = 0 - 12 + 12 = 0.$$
 
-Dalla lezione L22 ti servono anche tre fatti:
+Dalla lezione L22 servono anche tre fatti:
 
-- $v \times w$ è **ortogonale** sia a $v$ sia a $w$ (Proposizione 22.15): il controllo appena fatto;
-- $v \times w = 0$ **se e solo se** $v$ e $w$ sono **dipendenti**, cioè uno è multiplo dell'altro (Proposizione 22.16);
-- se $v$ e $w$ sono indipendenti, $v, w, v \times w$ è una **base** di $\R^3$ (Corollario 22.17).
+- il prodotto vettoriale è **perpendicolare** a tutti e due i fattori (Proposizione 22.15): è il controllo appena fatto;
+- è **zero esattamente quando** i due vettori sono **dipendenti**, cioè uno è multiplo dell'altro (Proposizione 22.16);
+- se i due vettori sono indipendenti, loro due e il loro prodotto vettoriale formano una **base** dello spazio (Corollario 22.17).
 
 > [!TRAPPOLA] Il segno della componente centrale
-> L'errore più frequente è dimenticare il **meno** davanti al secondo determinante. Controllo rapido che salva sempre: il risultato deve dare **zero** nel prodotto scalare con $v$ e con $w$. Se non dà zero, c'è un errore di conto.
+> L'errore più frequente è dimenticare il **meno** davanti al secondo determinante. Il controllo che salva sempre: il risultato deve dare **zero** nel prodotto scalare con tutti e due i fattori. Se non dà zero, c'è un errore di conto.
 
-## La lunghezza di $v \times w$ e l'area del parallelogramma (pp. 116–117)
+::: prova Quanto fa $(1, 0, 0) \times (0, 0, 1)$?
+Righe affiancate $(1, 0)$, $(0, 0)$, $(0, 1)$. Prima: $0 \cdot 1 - 0 \cdot 0 = 0$. Seconda: $1 \cdot 1 - 0 \cdot 0 = 1$, cambiato di segno $-1$. Terza: $1 \cdot 0 - 0 \cdot 0 = 0$. Risultato $(0, -1, 0)$.
+:::
 
-Partiamo da un caso che si disegna sul foglio. Prendi $v = (3, 0, 0)$ e $w = (1, 2, 0)$: stanno tutti e due nel piano $z = 0$. Il parallelogramma con lati $v$ e $w$ ha **base** $3$ e **altezza** $2$, quindi **area** $3 \cdot 2 = 6$.
+> [!RICORDA]
+> - Prodotto vettoriale: copri una riga alla volta, con il **meno** al centro.
+> - Controllo: il risultato è perpendicolare a tutti e due i fattori.
+
+## La lunghezza è un'area (pp. 116–117)
+
+Parti da un caso che si disegna sul foglio. Prendi $v = (3, 0, 0)$ e $w = (1, 2, 0)$: stanno tutti e due sul pavimento, il piano $z = 0$. Il parallelogramma con lati $v$ e $w$ ha **base** 3 e **altezza** 2, quindi **area** 6.
 
 ```grafico
 titolo: Il parallelogramma con lati $v = (3, 0)$ e $w = (1, 2)$ nel piano $z = 0$: base $3$, altezza $h = 2$, area $6$
@@ -44682,24 +44808,22 @@ Ora calcola il prodotto vettoriale. Le righe affiancate sono $(3, 1)$, $(0, 2)$,
 
 $$v \times w = \begin{pmatrix} 0 \cdot 0 - 0 \cdot 2 \\ 0 \cdot 1 - 3 \cdot 0 \\ 3 \cdot 2 - 0 \cdot 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 6 \end{pmatrix}.$$
 
-Il vettore punta verso l'alto (è ortogonale al piano $z = 0$, dove stanno $v$ e $w$) e ha **lunghezza 6**: proprio l'area. Non è un caso, ed è quello che dimostra questa sezione.
+Il vettore punta in verticale, perpendicolare al pavimento dove stanno $v$ e $w$, ed è **lungo 6**: proprio l'area. Non è un caso, ed è quello che dimostra questa sezione.
 
 ### L'identità di Lagrange
+
+Tutto parte da un'uguaglianza tra tre numeri. Le dispense la scrivono così.
 
 > [!PROP] 23.1
 > Per ogni $v, w \in \R^3$ vale l'equazione
 > $$\lVert v \times w \rVert^2 + \langle v, w \rangle^2 = \lVert v \rVert^2 \lVert w \rVert^2.$$
 
-Pezzo per pezzo:
-
-- $\lVert v \rVert = \sqrt{v_1^2 + v_2^2 + v_3^2}$ è la **norma** (lunghezza) di $v$ nel prodotto scalare euclideo (lezione L20), e $\lVert v \rVert^2 = v_1^2 + v_2^2 + v_3^2$;
-- $\langle v, w \rangle = v_1 w_1 + v_2 w_2 + v_3 w_3$ è il **prodotto scalare** euclideo;
-- l'uguaglianza lega le tre quantità: se conosci due di esse, trovi la terza.
+**Come si legge.** La lunghezza al quadrato del prodotto vettoriale, più il quadrato del prodotto scalare, fa il prodotto delle lunghezze al quadrato. Se conosci due di queste tre cose, trovi la terza. Qui lunghezze e prodotto scalare sono quelli di tutti i giorni (lezione L20).
 
 > [!ESEMPIO] Controllo con $v = (1, 2, 2)$ e $w = (0, 3, 4)$
-> - $v \times w = (2, -4, 3)$, quindi $\lVert v \times w \rVert^2 = 4 + 16 + 9 = 29$;
-> - $\langle v, w \rangle = 0 + 6 + 8 = 14$, quindi $\langle v, w \rangle^2 = 196$;
-> - $\lVert v \rVert^2 = 1 + 4 + 4 = 9$ e $\lVert w \rVert^2 = 0 + 9 + 16 = 25$, quindi $\lVert v \rVert^2 \lVert w \rVert^2 = 225$.
+> - $v \times w = (2, -4, 3)$, quindi la sua lunghezza al quadrato è $4 + 16 + 9 = 29$;
+> - $\langle v, w \rangle = 0 + 6 + 8 = 14$, quindi il suo quadrato è 196;
+> - le lunghezze al quadrato di $v$ e $w$ sono $1 + 4 + 4 = 9$ e $0 + 9 + 16 = 25$, con prodotto 225.
 >
 > E infatti $29 + 196 = 225$.
 
@@ -44708,46 +44832,50 @@ Pezzo per pezzo:
 >
 > 1. A sinistra, sviluppando i tre quadrati di $\lVert v \times w \rVert^2 = (v_2 w_3 - v_3 w_2)^2 + (v_1 w_3 - v_3 w_1)^2 + (v_1 w_2 - v_2 w_1)^2$ si ottengono sei quadrati e tre doppi prodotti:
 > $$\begin{aligned} &v_2^2 w_3^2 + v_3^2 w_2^2 + v_1^2 w_3^2 + v_3^2 w_1^2 + v_1^2 w_2^2 + v_2^2 w_1^2 \\ &\quad - 2\,(v_2 w_2 v_3 w_3 + v_1 w_1 v_3 w_3 + v_1 w_1 v_2 w_2). \end{aligned}$$
-> 2. Il prodotto $(v_1^2 + v_2^2 + v_3^2)(w_1^2 + w_2^2 + w_3^2)$ contiene **tutti i nove** termini $v_i^2 w_j^2$.
-> 3. Il quadrato $(v_1 w_1 + v_2 w_2 + v_3 w_3)^2$ contiene i tre termini con indici uguali, $v_1^2 w_1^2 + v_2^2 w_2^2 + v_3^2 w_3^2$, più gli stessi tre doppi prodotti del punto 1 (con il segno $+$).
-> 4. Sottraendo, $(v_1^2 + v_2^2 + v_3^2)(w_1^2 + w_2^2 + w_3^2) - (v_1 w_1 + v_2 w_2 + v_3 w_3)^2$ lascia i sei termini $v_i^2 w_j^2$ con $i \neq j$ meno i tre doppi prodotti: è esattamente l'espressione del punto 1.
-> 5. Quindi $\lVert v \times w \rVert^2 = \lVert v \rVert^2 \lVert w \rVert^2 - \langle v, w \rangle^2$, che è l'enunciato. $\square$
+> 2. Il prodotto $(v_1^2 + v_2^2 + v_3^2)(w_1^2 + w_2^2 + w_3^2)$ contiene **tutti i nove** pezzi $v_i^2 w_j^2$.
+> 3. Il quadrato $(v_1 w_1 + v_2 w_2 + v_3 w_3)^2$ contiene i tre pezzi con indici uguali, $v_1^2 w_1^2 + v_2^2 w_2^2 + v_3^2 w_3^2$, più gli stessi tre doppi prodotti del punto 1, con il segno più.
+> 4. Togliendo il terzo dal secondo restano i sei pezzi $v_i^2 w_j^2$ con indici diversi, meno i tre doppi prodotti: è esattamente l'espressione del punto 1.
+> 5. Quindi $\lVert v \times w \rVert^2 = \lVert v \rVert^2 \lVert w \rVert^2 - \langle v, w \rangle^2$, che è l'enunciato.
 
 ### Dall'identità all'area
 
-Supponiamo ora che $v$ e $w$ siano **indipendenti**. Allora stanno in un piano $\pi = \Span(v, w)$, e dentro quel piano c'è il parallelogramma $P$ con lati $v$ e $w$ (la Figura 8 delle dispense lo disegna con $v \times w$ che esce dal piano).
+Prendi ora due vettori **indipendenti**. Stanno in un piano, e dentro quel piano c'è il parallelogramma con lati $v$ e $w$: la Figura 8 delle dispense lo disegna con il prodotto vettoriale che esce dal piano. L'area si calcola come base per altezza. Le dispense lo scrivono così.
 
 > [!PROP] 23.2
 > L'area di $P$ è $\operatorname{Area}(P) = \lVert v \rVert \lVert w \rVert \sin\vartheta$.
 
-Qui $\vartheta$ è l'angolo fra $v$ e $w$ (come nel corollario che segue). Perché vale: prendi $v$ come **base**, lunga $\lVert v \rVert$. L'altezza è la distanza del vertice $w$ dalla retta di $v$: nel triangolo rettangolo con ipotenusa $w$ e angolo $\vartheta$ il cateto opposto a $\vartheta$ misura $\lVert w \rVert \sin\vartheta$ (è la definizione di seno che conosci dalle superiori; il libro di Martelli usa lo stesso argomento). Base per altezza: $\lVert v \rVert \cdot \lVert w \rVert \sin\vartheta$. Nella figura sopra: $3 \cdot \sqrt 5 \cdot \frac{2}{\sqrt 5} = 6$.
+**Come si legge.** $P$ è il parallelogramma e $\vartheta$ l'angolo fra $v$ e $w$. Prendi $v$ come base, lunga $\lVert v \rVert$. L'altezza è la distanza della punta di $w$ dalla retta di $v$. Nel triangolo rettangolo con ipotenusa $w$ e angolo $\vartheta$, il cateto opposto all'angolo misura $\lVert w \rVert \sin\vartheta$: è la definizione di seno delle superiori, e il libro di Martelli usa lo stesso argomento. Base per altezza dà la formula. Nel disegno sopra: $3 \cdot \sqrt 5 \cdot \frac{2}{\sqrt 5} = 6$.
+
+Mettendo insieme le due cose, le dispense ricavano il risultato della sezione.
 
 > [!COROLLARIO] 23.3
 > Il modulo del prodotto vettoriale è
 > $$\lVert v \times w \rVert = \lVert v \rVert \lVert w \rVert \sin\vartheta = \operatorname{Area}(P),$$
 > dove $\vartheta$ è l'angolo formato da $v$ e $w$ e $P$ è il parallelogramma con lati $v$ e $w$.
 
-La spiegazione delle dispense, un passaggio alla volta:
+**Come si legge.** La lunghezza del prodotto vettoriale è l'area del parallelogramma. «Modulo» qui vuol dire lunghezza.
+
+Il perché, un passaggio alla volta:
 
 1. dalla definizione di angolo (lezione L20), $\langle v, w \rangle = \lVert v \rVert \lVert w \rVert \cos\vartheta$;
-2. sostituisco nella Proposizione 23.1: $\lVert v \times w \rVert^2 = \lVert v \rVert^2 \lVert w \rVert^2 - \lVert v \rVert^2 \lVert w \rVert^2 \cos^2\vartheta = \lVert v \rVert^2 \lVert w \rVert^2 (1 - \cos^2\vartheta)$;
-3. siccome $\sin^2\vartheta + \cos^2\vartheta = 1$, ottengo $\lVert v \times w \rVert^2 = \lVert v \rVert^2 \lVert w \rVert^2 \sin^2\vartheta$;
-4. estraggo la radice. Qui serve che $\sin\vartheta \ge 0$, e infatti l'angolo fra due vettori sta sempre in $[0, \pi]$, dove il seno non è mai negativo. Quindi $\lVert v \times w \rVert = \lVert v \rVert \lVert w \rVert \sin\vartheta$, che per la Proposizione 23.2 è l'area.
+2. lo metto nell'identità di Lagrange: $\lVert v \times w \rVert^2 = \lVert v \rVert^2 \lVert w \rVert^2 (1 - \cos^2\vartheta)$;
+3. siccome $\sin^2\vartheta + \cos^2\vartheta = 1$, viene $\lVert v \times w \rVert^2 = \lVert v \rVert^2 \lVert w \rVert^2 \sin^2\vartheta$;
+4. prendo la radice. Serve che il seno non sia negativo, e infatti l'angolo fra due vettori sta sempre tra 0 e $\pi$, dove il seno non è mai negativo.
 
 > [!ESEMPIO] L'area con i due metodi
 > Con $v = (1, 2, 2)$ e $w = (0, 3, 4)$:
-> - **con il prodotto vettoriale**: $\operatorname{Area}(P) = \lVert (2, -4, 3) \rVert = \sqrt{29}$;
-> - **con l'angolo**: $\cos\vartheta = \frac{14}{3 \cdot 5} = \frac{14}{15}$, quindi $\sin\vartheta = \sqrt{1 - \frac{196}{225}} = \frac{\sqrt{29}}{15}$ e $\operatorname{Area}(P) = 3 \cdot 5 \cdot \frac{\sqrt{29}}{15} = \sqrt{29}$.
+> - **con il prodotto vettoriale**: l'area è la lunghezza di $(2, -4, 3)$, cioè $\sqrt{29}$;
+> - **con l'angolo**: $\cos\vartheta = \frac{14}{3 \cdot 5} = \frac{14}{15}$, quindi $\sin\vartheta = \sqrt{1 - \frac{196}{225}} = \frac{\sqrt{29}}{15}$, e l'area è $3 \cdot 5 \cdot \frac{\sqrt{29}}{15} = \sqrt{29}$.
 >
 > Stesso risultato; il primo metodo non richiede nessun angolo.
 
 > [!ESEMPIO] L'area di un triangolo nello spazio
-> Il triangolo con vertici $A = (1, 0, 0)$, $B = (0, 2, 0)$, $C = (0, 0, 3)$ è **metà** del parallelogramma con lati $\overrightarrow{AB}$ e $\overrightarrow{AC}$ (la diagonale $BC$ lo taglia in due triangoli uguali).
+> Il triangolo con vertici $A = (1, 0, 0)$, $B = (0, 2, 0)$, $C = (0, 0, 3)$ è **metà** del parallelogramma con lati $\overrightarrow{AB}$ e $\overrightarrow{AC}$: la diagonale $BC$ lo taglia in due triangoli uguali.
 > - $\overrightarrow{AB} = B - A = (-1, 2, 0)$ e $\overrightarrow{AC} = C - A = (-1, 0, 3)$;
-> - righe affiancate $(-1, -1)$, $(2, 0)$, $(0, 3)$: $\overrightarrow{AB} \times \overrightarrow{AC} = (2 \cdot 3 - 0 \cdot 0,\ -((-1) \cdot 3 - (-1) \cdot 0),\ (-1) \cdot 0 - (-1) \cdot 2) = (6, 3, 2)$;
-> - $\lVert (6, 3, 2) \rVert = \sqrt{36 + 9 + 4} = \sqrt{49} = 7$.
+> - righe affiancate $(-1, -1)$, $(2, 0)$, $(0, 3)$: il prodotto vettoriale è $(2 \cdot 3 - 0 \cdot 0,\ -((-1) \cdot 3 - (-1) \cdot 0),\ (-1) \cdot 0 - (-1) \cdot 2) = (6, 3, 2)$;
+> - la sua lunghezza è $\sqrt{36 + 9 + 4} = \sqrt{49} = 7$.
 >
-> Area del triangolo: $\frac 72$.
+> L'area del triangolo è $\frac 72$.
 
 ```widget spazio
 titolo: Prodotto vettoriale e area del parallelogramma
@@ -44756,25 +44884,35 @@ u: 1 2 2
 v: 0 3 4
 ```
 
-Trascina il disegno per girarlo: il parallelogramma giallo ha area $\lVert u \times v \rVert = \sqrt{29} \approx 5{,}385$. Prova poi $v = (2, 4, 4)$, che è il doppio di $u$: il parallelogramma si schiaccia su un segmento e il prodotto vettoriale diventa nullo (Proposizione 22.16). Infine scambia $u$ e $v$: il vettore $u \times v$ si capovolge (lo vedrai nella prossima sezione).
+Trascina il disegno per girarlo: il parallelogramma giallo ha area $\sqrt{29}$, circa 5,385. Prova poi $v = (2, 4, 4)$, che è il doppio di $u$: il parallelogramma si schiaccia su un segmento e il prodotto vettoriale diventa nullo (Proposizione 22.16). Infine scambia $u$ e $v$: il prodotto vettoriale si capovolge, come vedrai nella prossima sezione.
 
-## Il verso di $v \times w$: la regola della mano destra (p. 117)
+::: prova Qual è l'area del parallelogramma con lati $(2, 0, 0)$ e $(0, 3, 0)$?
+Il prodotto vettoriale è $(0, 0, 6)$, lungo 6. È un rettangolo 2 per 3.
+:::
 
-Se $v$ e $w$ sono **dipendenti**, $v \times w = 0$ e non c'è altro da dire. Se sono **indipendenti**, sappiamo già due cose:
+> [!RICORDA]
+> - Lunghezza del prodotto vettoriale = area del parallelogramma; metà = area del triangolo.
+> - Viene dall'identità di Lagrange.
 
-- la **direzione**: $v \times w$ è ortogonale al piano che contiene $v$ e $w$;
+## Il verso: la regola della mano destra (p. 117)
+
+Se i due vettori sono dipendenti, il prodotto vettoriale è zero e non c'è altro da dire. Se sono indipendenti, sappiamo già due cose:
+
+- la **direzione**: il prodotto vettoriale è perpendicolare al piano che contiene i due vettori;
 - la **lunghezza**: è l'area del parallelogramma.
 
-Queste due informazioni lasciano **due** candidati, opposti tra loro (uno «sopra» il piano, uno «sotto»). Per scegliere il verso giusto si usa la **regola della mano destra** (Figura 9 delle dispense): con la mano **destra**, metti il **pollice** lungo $v$ e l'**indice** lungo $w$; il **medio**, piegato ad angolo retto rispetto al palmo, indica il verso di $v \times w$. Nel primo esempio della sezione precedente $v$ puntava verso destra, $w$ in alto a destra e $v \times w = (0, 0, 6)$ esce dal foglio verso di te.
+Restano **due** candidati, opposti: uno «sopra» il piano e uno «sotto». Per scegliere si usa la **regola della mano destra** (Figura 9 delle dispense). Con la mano **destra**, metti il **pollice** lungo il primo vettore e l'**indice** lungo il secondo: il **medio**, piegato ad angolo retto rispetto al palmo, indica il verso del prodotto. Nel primo esempio della sezione precedente $v$ puntava a destra, $w$ in alto a destra, e il prodotto $(0, 0, 6)$ esce dal foglio verso di te.
+
+In formule la regola diventa un determinante. Le dispense lo scrivono così.
 
 > [!PROP] 23.4
 > Se $v$ e $w$ sono indipendenti, la terna $v, w, v \times w$ è una **base positiva** di $\R^3$, cioè la matrice che ha come colonne $v, w, v \times w$ ha determinante positivo.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- una **base positiva** (o *orientata positivamente*) è una base $u_1, u_2, u_3$ per cui $\det(u_1 \mid u_2 \mid u_3) > 0$: la scrittura $(u_1 \mid u_2 \mid u_3)$ indica la matrice con quelle colonne;
-- l'esempio tipico è la base canonica: $\det(e_1 \mid e_2 \mid e_3) = \det I_3 = 1 > 0$, e infatti $e_1 \times e_2 = e_3$;
-- la regola della mano destra è la traduzione «fisica» di questo determinante positivo.
+- Una **base positiva** è una base i cui tre vettori, messi in colonna, danno una matrice con determinante positivo. La scrittura $(u_1 \mid u_2 \mid u_3)$ indica la matrice con quelle colonne.
+- L'esempio tipico è la base canonica: la sua matrice è l'identità, con determinante 1, e infatti $e_1 \times e_2 = e_3$.
+- La regola della mano destra è la traduzione «fisica» di questo determinante positivo.
 
 > [!DIM] della Proposizione 23.4 (dal libro di Martelli)
 > Le dispense non riportano la dimostrazione; quella del libro (Proposizione 9.1.7) è breve.
@@ -44782,32 +44920,40 @@ Pezzo per pezzo:
 > 1. Scrivo $v \times w = (d_1, -d_2, d_3)$ come nella Definizione 22.14, dove $d_i$ è il minore di $\begin{pmatrix} v_1 & w_1 \\ v_2 & w_2 \\ v_3 & w_3 \end{pmatrix}$ senza la riga $i$.
 > 2. Sviluppo $\det(v \mid w \mid v \times w)$ con Laplace sulla **terza colonna**. Il cofattore di posto $(i, 3)$ è $(-1)^{i+3} d_i$, cioè $+d_1$, $-d_2$, $+d_3$.
 > 3. Quindi $\det(v \mid w \mid v \times w) = d_1 \cdot d_1 + (-d_2) \cdot (-d_2) + d_3 \cdot d_3 = d_1^2 + d_2^2 + d_3^2 = \lVert v \times w \rVert^2$.
-> 4. Se $v$ e $w$ sono indipendenti, $v \times w \neq 0$ (Proposizione 22.16), quindi la somma dei quadrati è **strettamente** positiva. $\square$
+> 4. Se $v$ e $w$ sono indipendenti, il prodotto vettoriale non è zero (Proposizione 22.16), quindi la somma dei quadrati è **strettamente** positiva.
 
 > [!ESEMPIO] Il determinante della terna
 > Con $v = (1, 2, 2)$, $w = (0, 3, 4)$ e $v \times w = (2, -4, 3)$, sviluppando sulla terza colonna:
-> $$\begin{aligned} \det\begin{pmatrix} 1 & 0 & 2 \\ 2 & 3 & -4 \\ 2 & 4 & 3 \end{pmatrix} &= 2 \cdot (8 - 6) - (-4) \cdot (4 - 0) + 3 \cdot (3 - 0) \\ &= 4 + 16 + 9 = 29 > 0, \end{aligned}$$
-> e $29 = \lVert v \times w \rVert^2$, come dice la dimostrazione.
+> $$\begin{aligned} \det\begin{pmatrix} 1 & 0 & 2 \\ 2 & 3 & -4 \\ 2 & 4 & 3 \end{pmatrix} &= 2 \cdot (8 - 6) - (-4) \cdot (4 - 0) + 3 \cdot (3 - 0) \\ &= 4 + 16 + 9 = 29, \end{aligned}$$
+> positivo, e uguale alla lunghezza al quadrato del prodotto vettoriale, come dice la dimostrazione.
 
-> [!IDEA] Una definizione geometrica
-> A questo punto il prodotto vettoriale di due vettori **indipendenti** si può descrivere senza coordinate: è l'**unico** vettore ortogonale a entrambi, lungo quanto l'area del parallelogramma con lati $v$ e $w$, e orientato positivamente rispetto a $v$ e $w$. Direzione, lunghezza e verso: tre informazioni, un solo vettore.
+> [!IDEA] Una definizione con le figure
+> A questo punto il prodotto vettoriale di due vettori indipendenti si descrive senza coordinate: è l'**unico** vettore perpendicolare a tutti e due, lungo quanto l'area del loro parallelogramma, e con il verso della mano destra. Direzione, lunghezza e verso: tre informazioni, un solo vettore.
+
+::: prova Che verso ha $e_2 \times e_1$?
+È l'opposto di $e_1 \times e_2 = e_3$: vale $-e_3$, punta verso il basso.
+:::
+
+> [!RICORDA]
+> - Verso del prodotto vettoriale: pollice sul primo, indice sul secondo, il medio dà il verso.
+> - In formule: i due vettori e il loro prodotto, in colonna, danno un determinante positivo.
 
 ## Le regole di calcolo (p. 117)
 
 Dalla definizione seguono due regole, che le dispense elencano subito dopo la Proposizione 23.4.
 
-**1. Anticommutatività.** Per ogni $v, w \in \R^3$:
+**1. Scambiare i fattori cambia il segno.** Per ogni coppia di vettori:
 
 $$v \times w = -\,w \times v.$$
 
-Il motivo: scambiando $v$ e $w$, in ogni componente i due prodotti si scambiano di posto. Per esempio la prima componente diventa $w_2 v_3 - w_3 v_2 = -(v_2 w_3 - v_3 w_2)$. Con i numeri di prima: $w \times v = (-2, 4, -3)$. Conseguenza: $v \times v = -\,v \times v$, quindi $2\,(v \times v) = 0$ e $v \times v = 0$.
+Il motivo: scambiando i due vettori, in ogni componente i due prodotti si scambiano di posto. Per esempio la prima componente diventa $w_2 v_3 - w_3 v_2 = -(v_2 w_3 - v_3 w_2)$. Con i numeri di prima: $w \times v = (-2, 4, -3)$. Una conseguenza: un vettore per sé stesso dà l'opposto di sé stesso, quindi dà zero.
 
-**2. Bilinearità.** Il prodotto $\times \colon \R^3 \times \R^3 \to \R^3$ è lineare in ciascuno dei due posti, come il prodotto scalare:
+**2. Somme e multipli escono fuori.** Il prodotto vettoriale si comporta come il prodotto scalare, in ciascuno dei due posti:
 
 $$(v + v') \times w = v \times w + v' \times w, \qquad (\lambda v) \times w = \lambda\,(v \times w),$$
 $$v \times (w + w') = v \times w + v \times w', \qquad v \times (\lambda w) = \lambda\,(v \times w).$$
 
-Il motivo: ogni componente è una somma di termini del tipo «una coordinata di $v$ per una coordinata di $w$», e un'espressione così è lineare in $v$ quando $w$ è fisso (e viceversa). Per esempio $(2v) \times w$ con $v = (1, 2, 2)$, $w = (0, 3, 4)$: $(2, 4, 4) \times (0, 3, 4) = (16 - 12,\ 0 - 8,\ 6 - 0) = (4, -8, 6) = 2\,(2, -4, 3)$.
+Il motivo: ogni componente è una somma di pezzi del tipo «una coordinata del primo per una coordinata del secondo». Un'espressione così rispetta somme e multipli in ciascun vettore, se l'altro resta fisso. Per esempio $(2, 4, 4) \times (0, 3, 4) = (16 - 12,\ 0 - 8,\ 6 - 0) = (4, -8, 6)$, che è il doppio di $(2, -4, 3)$.
 
 **I prodotti dei vettori della base canonica**, da tenere a mente:
 
@@ -44817,9 +44963,9 @@ Il motivo: ogni componente è una somma di termini del tipo «una coordinata di 
 | $e_2$ | $-e_3$ | $0$ | $e_1$ |
 | $e_3$ | $e_2$ | $-e_1$ | $0$ |
 
-(Si legge «riga $\times$ colonna»: $e_1 \times e_2 = e_3$.) Il ciclo $e_1 \to e_2 \to e_3 \to e_1$ dà segno $+$, il verso opposto dà segno $-$.
+Si legge «riga per colonna»: $e_1 \times e_2 = e_3$. Girando in avanti nel ciclo $e_1, e_2, e_3, e_1$ il segno è più; all'indietro è meno.
 
-**3. Niente proprietà associativa.** Qui c'è la differenza fondamentale con i prodotti di numeri o di matrici. L'esempio delle dispense:
+**3. Le parentesi contano.** Qui c'è la differenza più grande con i prodotti di numeri o di matrici. L'esempio delle dispense:
 
 $$(e_1 \times e_2) \times e_2 = e_3 \times e_2 = -\,e_2 \times e_3 = -e_1, \qquad e_1 \times (e_2 \times e_2) = e_1 \times 0 = 0.$$
 
@@ -44828,13 +44974,21 @@ Stessi tre vettori, parentesi diverse, risultati diversi.
 > [!TRAPPOLA] Tre errori da non fare
 > - Scrivere $u \times v \times w$ **senza parentesi**: non ha un significato unico.
 > - Scambiare i fattori senza cambiare segno: $w \times v$ è l'**opposto** di $v \times w$.
-> - Pensare che $v \times w = 0$ voglia dire $v = 0$ oppure $w = 0$: basta che siano **paralleli**, per esempio $(1, 2, 3) \times (2, 4, 6) = 0$.
+> - Pensare che un prodotto vettoriale zero voglia dire un fattore zero: basta che siano **paralleli**, per esempio $(1, 2, 3) \times (2, 4, 6) = 0$.
 
-## Forma cartesiana e forma parametrica (p. 118)
+::: prova Se $v \times w = (1, 0, 2)$, quanto fa $(3v) \times (2w)$?
+I numeri escono fuori: $6\,(v \times w) = (6, 0, 12)$.
+:::
 
-Il pavimento di una stanza, con l'origine in un angolo, è il piano $z = 0$. Lo puoi descrivere in due modi:
+> [!RICORDA]
+> - Scambiare i fattori cambia il segno; un vettore per sé stesso dà zero.
+> - Somme e multipli escono fuori; le parentesi invece contano.
 
-- con una **prova**: «un punto sta sul pavimento se la sua quota $z$ è zero»;
+## Una prova o una ricetta (p. 118)
+
+Pensa al pavimento di una stanza, con l'origine in un angolo. È il piano $z = 0$, e lo puoi descrivere in due modi:
+
+- con una **prova**: «un punto sta sul pavimento se la sua altezza $z$ è zero»;
 - con una **ricetta**: «i punti del pavimento sono tutti quelli del tipo $(t, s, 0)$, con $t$ e $s$ numeri qualsiasi».
 
 La prima è un'**equazione**, la seconda usa dei **parametri**. Le dispense danno un nome alle due scritture.
@@ -44842,62 +44996,73 @@ La prima è un'**equazione**, la seconda usa dei **parametri**. Le dispense dann
 > [!DEF] Forma cartesiana e forma parametrica (p. 118)
 > Un sottospazio vettoriale di $\R^n$ descritto come **luogo di zeri di un sistema di equazioni lineari omogenee** è detto in **forma cartesiana**. Un sottospazio vettoriale di $\R^n$ descritto come **sottospazio generato da alcuni vettori** è detto in **forma parametrica**. Qualsiasi sottospazio vettoriale di $\R^n$ può essere descritto in entrambi i modi.
 
-L'esempio delle dispense è proprio il pavimento: il piano $W = \{z = 0\}$ di $\R^3$ in forma cartesiana ha l'equazione $z = 0$; in forma parametrica è generato da $e_1$ ed $e_2$:
+**Come si legge.**
+
+- **Forma cartesiana**: le equazioni, cioè la prova. Descrive il sottospazio dicendo chi ci sta dentro.
+- **Forma parametrica**: i generatori, cioè la ricetta. Descrive il sottospazio dicendo come sono fatti i suoi punti, al variare dei **parametri**.
+- Ogni sottospazio si può scrivere in tutti e due i modi.
+
+L'esempio delle dispense è proprio il pavimento. In forma cartesiana ha l'equazione $z = 0$; in forma parametrica è generato da $e_1$ ed $e_2$:
 
 $$W = \Span(e_1, e_2) = \left\{ t \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + s \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} \ \middle|\ s, t \in \R \right\} = \left\{ \begin{pmatrix} t \\ s \\ 0 \end{pmatrix} \ \middle|\ s, t \in \R \right\}.$$
 
-- La forma parametrica è **esplicita**: dice come sono fatti i punti, al variare dei **parametri** ($t$ e $s$).
-- La forma cartesiana è **implicita**: descrive $W$ come insieme delle soluzioni di un'equazione (o di un sistema).
-
-Spesso è più comoda la parametrica, proprio perché esplicita, ma dipende da che cosa devi fare:
+Spesso è più comoda la ricetta, ma dipende da che cosa devi fare:
 
 | Che cosa devi fare | Forma più comoda | Perché |
 |---|---|---|
-| Decidere se $(2, 5, 0)$ sta in $W$ | cartesiana | sostituisci: $z = 0$, sì |
-| Scrivere tre punti di $W$ | parametrica | scegli tre coppie $(t, s)$ |
-| Trovare la dimensione | parametrica | conti i generatori indipendenti |
+| Decidere se $(2, 5, 0)$ sta nel pavimento | la prova | sostituisci: $z = 0$, sì |
+| Scrivere tre punti del pavimento | la ricetta | scegli tre coppie $(t, s)$ |
+| Trovare la dimensione | la ricetta | conti i generatori indipendenti |
 | Intersecare con un altro sottospazio | dipende | lo vedi nella sezione sulle intersezioni |
 
 > [!ESEMPIO] Due passaggi tra le forme, per sottospazi vettoriali
-> **Da parametrica a cartesiana.** La retta $L = \Span((1, 2, 3))$ ha i punti $(x, y, z) = (t, 2t, 3t)$. Dalla prima coordinata $t = x$; sostituendo nelle altre, $y = 2x$ e $z = 3x$. Quindi
+> **Dalla ricetta alla prova.** La retta $L = \Span((1, 2, 3))$ ha i punti $(x, y, z) = (t, 2t, 3t)$. Dalla prima coordinata $t = x$; sostituendo nelle altre, $y = 2x$ e $z = 3x$. Quindi
 > $$L = \{2x - y = 0,\ 3x - z = 0\}.$$
 > Controllo con il generatore: $2 \cdot 1 - 2 = 0$ e $3 \cdot 1 - 3 = 0$.
 >
-> **Da cartesiana a parametrica.** Il piano $\{x + y + z = 0\}$: ricavo $x = -y - z$ e lascio libere $y = s$, $z = t$. I punti sono $(-s - t, s, t) = s(-1, 1, 0) + t(-1, 0, 1)$, quindi il piano è $\Span((-1, 1, 0), (-1, 0, 1))$.
+> **Dalla prova alla ricetta.** Il piano $\{x + y + z = 0\}$: ricavo $x = -y - z$ e lascio libere $y = s$, $z = t$. I punti sono $(-s - t, s, t) = s(-1, 1, 0) + t(-1, 0, 1)$, quindi il piano è $\Span((-1, 1, 0), (-1, 0, 1))$.
 
-## Sottospazi affini (pp. 118–119)
+::: prova Scrivi la ricetta del piano $z = x$.
+Lascio libere $x = s$ e $y = t$, poi $z = s$: i punti sono $(s, t, s) = s(1, 0, 1) + t(0, 1, 0)$.
+:::
 
-Nel piano $\R^2$ la retta $y = x - 1$ **non passa per l'origine**: $(0, 0)$ non soddisfa l'equazione. Quindi non è un sottospazio vettoriale (che contiene sempre lo zero). Però è la retta $y = x$, che è un sottospazio vettoriale, **spostata** di un passo verso destra: ogni suo punto è $(1, 0)$ più un vettore di $\Span((1, 1))$. Le rette e i piani che non passano per l'origine sono di questo tipo.
+> [!RICORDA]
+> - Forma cartesiana = prova (equazioni); forma parametrica = ricetta (punto e generatori).
+> - Dalla prova alla ricetta: risolvi il sistema. Dalla ricetta alla prova: elimina i parametri.
+
+## Rette e piani spostati: i sottospazi affini (pp. 118–119)
+
+Prendi una retta del piano che **non passa per l'origine**. Per esempio la retta $y = x - 1$: il punto $(0, 0)$ non soddisfa l'equazione. Quindi non è un sottospazio vettoriale, che contiene sempre lo zero. Però è la retta $y = x$ **spostata** di un passo verso destra: ogni suo punto è $(1, 0)$ più un multiplo di $(1, 1)$. Tutte le rette e i piani che non passano per l'origine sono fatti così. Le dispense li chiamano con un nome già visto nella lezione L12.
 
 > [!DEF] 12.5 · Sottospazio affine (richiamo dalla lezione L12)
 > Sia $V$ uno spazio vettoriale. Un **sottospazio affine** di $V$ è un sottoinsieme del tipo
 > $$S = \{x + v \mid v \in W\} =: x + W,$$
 > dove $x$ è un punto fissato di $V$ e $W \subseteq V$ è un sottospazio vettoriale.
 
-Le dispense ricordano da dove vengono: le soluzioni $S$ di un sistema di equazioni lineari formano **l'insieme vuoto oppure un sottospazio affine** di $\R^n$. Infatti, se $S \neq \emptyset$,
+**Come si legge.** Un sottospazio affine è un sottospazio vettoriale $W$ **spostato** in modo da passare per il punto $x$. La scrittura $x + W$ si legge «ics più vu doppio».
 
-$$S = \{x + v \mid v \in S_0\},$$
+Le dispense ricordano da dove vengono: le soluzioni di un sistema lineare sono **niente, oppure un sottospazio affine**. Se c'è almeno una soluzione $x$, tutte le soluzioni sono $x$ più le soluzioni del **sistema omogeneo associato**. È il sistema con le stesse equazioni e i termini noti uguali a zero, e le sue soluzioni formano un sottospazio vettoriale. È quello che hai fatto nella lezione L12: «una soluzione particolare più le soluzioni dell'omogeneo».
 
-dove $x$ è una soluzione **qualsiasi** e $S_0$ è l'insieme delle soluzioni del **sistema omogeneo associato** (stesse equazioni con i termini noti uguali a $0$), che è sempre un sottospazio vettoriale. È quello che hai fatto nella lezione L12: «soluzione particolare più soluzioni dell'omogeneo».
+### Quando due scritture danno lo stesso insieme
 
-### Quando due scritture danno lo stesso sottospazio
-
-Lo stesso sottospazio affine si può scrivere in molti modi, perché come punto di partenza va bene **qualsiasi** suo punto.
+Lo stesso sottospazio affine si può scrivere in molti modi, perché come punto di partenza va bene **qualsiasi** suo punto. Le dispense dicono quando due scritture coincidono.
 
 > [!PROP] 23.5
 > Gli spazi affini $x + W$ e $x' + W'$ coincidono se e solo se $W = W'$ e $x - x' \in W$.
 
-Pezzo per pezzo:
+**Come si legge.** Due scritture danno lo stesso insieme esattamente quando valgono due cose:
 
-- $W = W'$: le due scritture devono avere **la stessa direzione** (lo stesso sottospazio vettoriale, anche se scritto con generatori diversi);
-- $x - x' \in W$: il vettore che va da un punto di partenza all'altro deve essere **una direzione ammessa**, cioè i due punti di partenza stanno sullo stesso sottospazio affine.
+- **la stessa direzione**: lo stesso sottospazio vettoriale, anche se scritto con generatori diversi;
+- **i punti di partenza sullo stesso insieme**: il vettore che va da un punto di partenza all'altro è una direzione ammessa.
 
 > [!DIM] della Proposizione 23.5 (oltre le dispense)
 > Le dispense non la dimostrano; ecco una dimostrazione breve.
 >
-> ($\Leftarrow$) Supponiamo $W = W'$ e $x - x' \in W$. Un punto di $x + W$ è $x + w$ con $w \in W$, e si riscrive $x + w = x' + \big((x - x') + w\big)$. Il vettore tra parentesi è somma di due vettori di $W$, quindi sta in $W = W'$: il punto sta in $x' + W'$. Scambiando i ruoli (anche $x' - x = -(x - x')$ sta in $W$) si ottiene l'altra inclusione.
+> **Se le due condizioni valgono, gli insiemi coincidono.** Un punto di $x + W$ è $x + w$ con $w$ in $W$, e si riscrive $x + w = x' + \big((x - x') + w\big)$. Il vettore tra parentesi è somma di due vettori di $W$, quindi sta in $W = W'$: il punto sta in $x' + W'$. Scambiando i ruoli si ottiene il contrario.
 >
-> ($\Rightarrow$) Supponiamo $x + W = x' + W'$ e chiamiamo $S$ questo insieme. Le **differenze** $p - q$ fra due punti di $S$ sono esattamente i vettori di $W$: se $p = x + w_1$ e $q = x + w_2$, allora $p - q = w_1 - w_2 \in W$; e ogni $w \in W$ è la differenza $(x + w) - x$. Lo stesso ragionamento, partendo da $x'$, dice che le differenze sono esattamente i vettori di $W'$. Quindi $W = W'$. Infine $x = x + 0 \in S = x' + W'$, cioè $x - x' \in W' = W$. $\square$
+> **Se gli insiemi coincidono, le due condizioni valgono.** Chiama $S$ l'insieme. Le **differenze** fra due punti di $S$ sono esattamente i vettori di $W$: se $p = x + w_1$ e $q = x + w_2$, allora $p - q = w_1 - w_2$ sta in $W$, e ogni $w$ di $W$ è la differenza $(x + w) - x$. Lo stesso ragionamento, partendo da $x'$, dice che le differenze sono esattamente i vettori di $W'$. Quindi $W = W'$. Infine $x$ sta in $S = x' + W'$, cioè $x - x'$ sta in $W' = W$.
+
+Ecco l'esempio delle dispense.
 
 > [!ESEMPIO] 23.6
 > Se $W = \Span\begin{pmatrix} 1 \\ 1 \end{pmatrix}$ in $\R^2$, le due rette affini
@@ -44905,13 +45070,13 @@ Pezzo per pezzo:
 > $$r_2 = \begin{pmatrix} 0 \\ -1 \end{pmatrix} + W = \left\{ \begin{pmatrix} u \\ u - 1 \end{pmatrix} \ \middle|\ u \in \R \right\}$$
 > sono in realtà la stessa retta, di equazione $y = x - 1$.
 
-Controlliamolo in tre modi:
+Controllo in tre modi:
 
-1. **con la Proposizione 23.5**: la giacitura è la stessa, e $(1, 0) - (0, -1) = (1, 1) \in W$;
-2. **con l'equazione**: in $r_1$ il punto generico $(t + 1, t)$ ha $y = t = (t + 1) - 1 = x - 1$; in $r_2$ il punto $(u, u - 1)$ ha $y = u - 1 = x - 1$;
+1. **con la Proposizione 23.5**: la direzione è la stessa, e $(1, 0) - (0, -1) = (1, 1)$ sta in $W$;
+2. **con l'equazione**: in $r_1$ il punto $(t + 1, t)$ ha $y = t = (t + 1) - 1 = x - 1$; in $r_2$ il punto $(u, u - 1)$ ha $y = u - 1 = x - 1$;
 3. **con i parametri**: il punto di $r_1$ con parametro $t$ è quello di $r_2$ con parametro $u = t + 1$.
 
-Invece $(0, 0) + W$, cioè la retta $y = x$, è **diversa**: $(1, 0) - (0, 0) = (1, 0)$ non è un multiplo di $(1, 1)$. È una retta **parallela** a $r_1$.
+Invece la retta $y = x$, cioè $(0, 0) + W$, è **diversa**: $(1, 0) - (0, 0) = (1, 0)$ non è un multiplo di $(1, 1)$. È una retta **parallela** a $r_1$.
 
 ```grafico
 titolo: La retta $y = x - 1$ è la retta $W$ spostata: si può partire da $(1, 0)$ oppure da $(0, -1)$
@@ -44924,36 +45089,37 @@ punto: 0 -1 | ambra | $(0, -1)$ | no
 vettore: 1 0 2 1 | viola | $(1, 1)$ | no
 ```
 
-### Giacitura e dimensione
+### La giacitura e la dimensione
+
+Il sottospazio vettoriale da cui si parte ha un nome. Le dispense lo scrivono così.
 
 > [!DEF] 23.7
 > Nella descrizione di uno spazio affine $S$ come $x + W$, lo spazio vettoriale $W$ è determinato da $S$ ed è detto la **giacitura** di $S$, indicata con $\operatorname{giac}(S)$. Il punto $x$ invece è un **qualsiasi** punto di $S$. La **dimensione** di $S$ è la dimensione della giacitura $W$.
 
-La Proposizione 23.5 spiega perché la definizione ha senso: il punto $x$ si può cambiare, la giacitura no. La giacitura è l'insieme dei vettori $\overrightarrow{PQ} = Q - P$ con $P, Q \in S$: le **direzioni** in cui ci si può muovere restando dentro $S$.
+**Come si legge.** La giacitura sono le **direzioni** in cui ci si può muovere restando dentro l'insieme: le differenze tra due suoi punti. Il punto di partenza si può cambiare, la giacitura no (Proposizione 23.5). Una retta spostata ha dimensione 1, un piano spostato dimensione 2.
 
 Anche i sottospazi affini hanno le due forme.
 
-- **Forma parametrica** (esplicita):
+- **Ricetta**, cioè forma parametrica:
 $$S = x + \Span(v_1, \dots, v_k) = \{x + t_1 v_1 + \dots + t_k v_k \mid t_1, \dots, t_k \in \R\},$$
-dove $v_1, \dots, v_k$ formano una **base** della giacitura. In questo caso $\dim S = k$: un parametro per ogni vettore della base.
-- **Forma cartesiana** (implicita): $S = \{x \in \R^n \mid Ax = b\}$, con $A \in M(m, n)$ e $b \in \R^m$. Per il **teorema di Rouché–Capelli** (Teorema 12.6):
-$$S \neq \emptyset \iff \rk A = \rk(A \mid b), \qquad \text{e in questo caso } \dim S = n - \rk A.$$
+dove $v_1, \dots, v_k$ sono una **base** della giacitura. Allora la dimensione è $k$: un parametro per ogni vettore della base.
+- **Prova**, cioè forma cartesiana: le soluzioni di un sistema $Ax = b$. Per il **teorema di Rouché–Capelli** (Teorema 12.6) l'insieme non è vuoto esattamente quando $A$ e la matrice completa hanno lo stesso rango. In quel caso la dimensione è il numero delle incognite meno il rango di $A$.
 
 > [!ESEMPIO] Contare le dimensioni con Rouché–Capelli
-> **Un sistema che dà una retta.** $S = \{x + y + z = 3,\ x - y = 1\}$ in $\R^3$. Le righe $(1, 1, 1)$ e $(1, -1, 0)$ di $A$ non sono proporzionali, quindi $\rk A = 2 = \rk(A \mid b)$ e $\dim S = 3 - 2 = 1$: una retta. Per scriverla: dalla seconda equazione $x = 1 + y$; nella prima $1 + y + y + z = 3$, cioè $z = 2 - 2y$. Con $y = t$:
+> **Un sistema che dà una retta.** $S = \{x + y + z = 3,\ x - y = 1\}$ nello spazio. Le righe $(1, 1, 1)$ e $(1, -1, 0)$ non sono proporzionali, quindi tutte e due le matrici hanno rango 2 e la dimensione è $3 - 2 = 1$: una retta. Per scriverla: dalla seconda equazione $x = 1 + y$; nella prima $1 + y + y + z = 3$, cioè $z = 2 - 2y$. Con $y = t$:
 > $$S = \{(1 + t,\ t,\ 2 - 2t)\} = (1, 0, 2) + \Span((1, 1, -2)).$$
 >
-> **Un sistema senza soluzioni.** $\{x + y + z = 1,\ x + y + z = 2\}$: sottraendo le equazioni si ottiene $0 = 1$. Qui $\rk A = 1$ ma $\rk(A \mid b) = 2$, e $S = \emptyset$. Geometricamente: due piani **paralleli** distinti.
+> **Un sistema senza soluzioni.** $\{x + y + z = 1,\ x + y + z = 2\}$: togliendo le equazioni viene $0 = 1$. Qui $A$ ha rango 1 ma la matrice completa ha rango 2, e l'insieme è vuoto. Nel disegno: due piani **paralleli** diversi.
 
 > [!NOTA] Collegamento con l'informatica: classificatori lineari (p. 119)
-> Le dispense collegano questa lezione al *machine learning*. Un **iperpiano** affine di $\R^n$ (un sottospazio affine di dimensione $n - 1$: una retta in $\R^2$, un piano in $\R^3$) si può scrivere come
+> Le dispense collegano questa lezione al *machine learning*. Un **iperpiano** dello spazio a $n$ dimensioni è un sottospazio affine di dimensione $n - 1$: una retta nel piano, un piano nello spazio. Si può scrivere come
 > $${}^t w\, x + b = 0,$$
-> con $w \in \R^n$ non nullo e $b \in \R$. L'iperpiano divide lo spazio in due **semispazi**: quello dove ${}^t w\, x + b$ è positivo e quello dove è negativo. Un semplice **classificatore lineare** assegna a un vettore di dati $x$ una delle due classi guardando il **segno** di ${}^t w\, x + b$. Il vettore $w$ è **ortogonale** all'iperpiano di separazione. La stessa geometria sta alla base del percettrone e delle macchine a vettori di supporto nella loro forma lineare.
+> con $w$ vettore non nullo e $b$ numero. L'iperpiano divide lo spazio in due **metà**: quella dove ${}^t w\, x + b$ è positivo e quella dove è negativo. Un semplice **classificatore lineare** sceglie la classe di un vettore di dati guardando il **segno** di ${}^t w\, x + b$. Il vettore $w$ è **perpendicolare** all'iperpiano di separazione. La stessa geometria sta alla base del percettrone e delle macchine a vettori di supporto nella loro forma lineare.
 
-> [!ESEMPIO] Un classificatore in $\R^2$
+> [!ESEMPIO] Un classificatore nel piano
 > Con $w = (1, 1)$ e $b = -3$ l'iperpiano è la retta $x + y - 3 = 0$. Classifichiamo tre punti calcolando $x + y - 3$:
-> - $(1, 1)$: $1 + 1 - 3 = -1 < 0$, classe «negativa»;
-> - $(3, 2)$: $3 + 2 - 3 = 2 > 0$, classe «positiva»;
+> - $(1, 1)$: $1 + 1 - 3 = -1$, negativo: classe «negativa»;
+> - $(3, 2)$: $3 + 2 - 3 = 2$, positivo: classe «positiva»;
 > - $(1, 2)$: $1 + 2 - 3 = 0$, sta proprio sulla retta di separazione.
 
 ```grafico
@@ -44967,69 +45133,79 @@ punto: 1 2 | grigio | $(1, 2)$ | so
 vettore: 1.5 1.5 2.3 2.3 | viola | spesso | $w$ | e
 ```
 
+::: prova La retta $(0, 1) + \Span((1, 1))$ è la stessa di $(2, 3) + \Span((1, 1))$?
+Sì: stessa direzione, e $(2, 3) - (0, 1) = (2, 2)$ è un multiplo di $(1, 1)$.
+:::
+
+> [!RICORDA]
+> - Sottospazio affine = sottospazio vettoriale spostato, $x + W$. La giacitura $W$ sono le direzioni; il punto $x$ si può cambiare.
+> - Due scritture coincidono esattamente con la stessa giacitura e i punti di partenza che differiscono per una direzione ammessa.
+
 ## Rette e piani nello spazio (pp. 119–120)
 
-I sottospazi affini di $\R^3$ sono di quattro tipi. Il numero di equazioni indipendenti necessarie è $3 - \dim S$ (Rouché–Capelli con $n = 3$).
+Nello spazio i sottospazi affini sono di quattro tipi. Per Rouché–Capelli, il numero di equazioni indipendenti che servono è 3 meno la dimensione.
 
-| Dimensione | Che cos'è | Forma parametrica | Forma cartesiana |
+| Dimensione | Che cos'è | Ricetta | Prova |
 |---|---|---|---|
 | 0 | un punto | $P_0$ | 3 equazioni indipendenti |
 | 1 | una retta | $P_0 + t v$ | 2 equazioni indipendenti |
 | 2 | un piano | $P_0 + t v_1 + s v_2$ | 1 equazione |
-| 3 | tutto $\R^3$ | $P_0 + t e_1 + s e_2 + u e_3$ | nessuna equazione |
+| 3 | tutto lo spazio | $P_0 + t e_1 + s e_2 + u e_3$ | nessuna equazione |
 
-- Un **piano** affine $\pi$ in $\R^3$ è descritto da **un'equazione** $\pi = \{ax + by + cz = d\}$ (con $(a, b, c) \neq 0$), oppure da un punto e due vettori indipendenti che generano la giacitura: $\pi = \{P_0 + t v_1 + s v_2 \mid t, s \in \R\}$.
-- Una **retta** affine $r$ in $\R^3$ è descritta da **due** equazioni di quel tipo, oppure, più agevolmente, in forma parametrica: $r = \{P_0 + t v \mid t \in \R\}$, con $v \neq 0$ (il **vettore direzione**).
+- Un **piano** si descrive con **un'equazione** $ax + by + cz = d$, con $(a, b, c)$ non nullo, oppure con un punto e due vettori indipendenti che generano la giacitura.
+- Una **retta** si descrive con **due** equazioni di quel tipo, oppure, più comodamente, con la ricetta $P_0 + t v$, con $v$ non nullo: il **vettore direzione**.
 
 > [!TRAPPOLA] Una sola equazione non basta per una retta nello spazio
-> In $\R^2$ la retta $x + 2y = 3$ ha un'equazione sola. In $\R^3$ la stessa equazione $x + 2y = 3$ descrive un **piano** (la $z$ è libera): per una retta nello spazio servono **due** equazioni indipendenti.
+> Nel piano la retta $x + 2y = 3$ ha un'equazione sola. Nello spazio la stessa equazione $x + 2y = 3$ descrive un **piano**, perché la $z$ è libera: per una retta nello spazio servono **due** equazioni indipendenti.
 
-> [!IDEA] Il vettore dei coefficienti è ortogonale al piano
+> [!IDEA] Il vettore dei numeri davanti è perpendicolare al piano
 > Prendi due punti $P$ e $Q$ del piano $\{ax + by + cz = d\}$ e chiama $n = (a, b, c)$. Allora $\langle n, P \rangle = d$ e $\langle n, Q \rangle = d$, quindi
 > $$\langle n, Q - P \rangle = d - d = 0.$$
-> Ogni vettore della giacitura è ortogonale a $n$: per questo $n$ si chiama **vettore normale** del piano. La giacitura è proprio il piano vettoriale $\{ax + by + cz = 0\}$, formato dai vettori ortogonali a $n$. Questo fatto tornerà di continuo nella lezione L24 (angoli e distanze).
+> Ogni direzione del piano è perpendicolare a $n$: per questo $n$ si chiama **vettore normale** del piano. La giacitura è il piano $\{ax + by + cz = 0\}$, fatto dei vettori perpendicolari a $n$. Questo fatto tornerà di continuo nella lezione L24, con angoli e distanze.
 
-### Da cartesiana a parametrica
+### Dalla prova alla ricetta
 
-Si risolve il sistema $Ax = b$, per esempio con l'algoritmo di Gauss–Jordan (lezione L11): le variabili libere diventano i parametri.
+Si risolve il sistema, per esempio con Gauss (lezione L11): le variabili libere diventano i parametri.
 
-> [!ESEMPIO] Un piano e una retta, da cartesiana a parametrica
+> [!ESEMPIO] Un piano e una retta, dalla prova alla ricetta
 > **Il piano $x + 2y - z = 8$.** Ricavo $z = x + 2y - 8$ e lascio libere $x = s$, $y = t$:
 > $$(s,\ t,\ s + 2t - 8) = (0, 0, -8) + s(1, 0, 1) + t(0, 1, 2).$$
-> Controllo: $(0, 0, -8)$ soddisfa $0 + 0 - (-8) = 8$; i due vettori soddisfano l'equazione **omogenea**: $1 + 0 - 1 = 0$ e $0 + 2 - 2 = 0$.
+> Controllo: $(0, 0, -8)$ soddisfa $0 + 0 - (-8) = 8$; i due vettori soddisfano l'equazione con zero a destra: $1 + 0 - 1 = 0$ e $0 + 2 - 2 = 0$.
 >
 > **La retta $\{x + y + z = 3,\ x - y = 1\}$** l'abbiamo già risolta sopra: $(1, 0, 2) + \Span((1, 1, -2))$.
 
-### Da parametrica a cartesiana: il trucco del prodotto vettoriale
+### Dalla ricetta alla prova: il trucco del prodotto vettoriale
 
-A volte serve il contrario. Per i **piani di $\R^3$** c'è un metodo rapido. Sia $\pi = \{P_0 + t v_1 + u v_2\}$ con $v_1, v_2$ indipendenti:
+A volte serve il contrario. Per i **piani dello spazio** c'è un metodo rapido. Prendi il piano $P_0 + t v_1 + u v_2$, con $v_1, v_2$ indipendenti:
 
-1. calcola $v_1 \times v_2$: avrà tre coefficienti $a, b, c$;
-2. il piano è $\pi = \{ax + by + cz = d\}$ per un certo $d \in \R$;
-3. trovi $d$ imponendo che $P_0 \in \pi$, cioè sostituendo le coordinate di $P_0$.
+1. calcola $v_1 \times v_2$: avrà tre numeri $a, b, c$;
+2. il piano è $ax + by + cz = d$, per un certo numero $d$;
+3. trovi $d$ imponendo che $P_0$ stia sul piano, cioè sostituendo le sue coordinate.
 
-Perché funziona: $n = v_1 \times v_2$ è ortogonale a $v_1$ e $v_2$ (Proposizione 22.15). Per ogni punto $P = P_0 + t v_1 + u v_2$ del piano
+Perché funziona: $n = v_1 \times v_2$ è perpendicolare a $v_1$ e a $v_2$ (Proposizione 22.15). Per ogni punto $P = P_0 + t v_1 + u v_2$ del piano
 $$\langle n, P \rangle = \langle n, P_0 \rangle + t \langle n, v_1 \rangle + u \langle n, v_2 \rangle = \langle n, P_0 \rangle,$$
-quindi tutti i punti del piano soddisfano $ax + by + cz = d$ con $d = \langle n, P_0 \rangle$. Ed $n \neq 0$ perché $v_1, v_2$ sono indipendenti (Proposizione 22.16).
+quindi tutti i punti del piano soddisfano la stessa equazione, con $d = \langle n, P_0 \rangle$. E $n$ non è zero, perché $v_1$ e $v_2$ sono indipendenti (Proposizione 22.16).
+
+Ecco l'esempio delle dispense.
 
 > [!ESEMPIO] 23.8
-> Consideriamo
+> Prendiamo
 > $$\pi = \left\{ \begin{pmatrix} 1 \\ 2 \\ -3 \end{pmatrix} + t \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + s \begin{pmatrix} 2 \\ -1 \\ 0 \end{pmatrix} \right\}.$$
 > Troviamo
 > $$\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} \times \begin{pmatrix} 2 \\ -1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \\ -1 \end{pmatrix}.$$
-> Quindi $\pi = \{x + 2y - z = d\}$ per qualche $d \in \R$, che determiniamo imponendo
-> $$\begin{pmatrix} 1 \\ 2 \\ -3 \end{pmatrix} \in \pi \ \Rightarrow\ 1 + 4 + 3 = d,$$
+> Quindi $\pi = \{x + 2y - z = d\}$ per qualche $d \in \R$, che determiniamo imponendo che il punto $(1, 2, -3)$ stia in $\pi$:
+> $$1 + 4 + 3 = d,$$
 > e quindi $d = 8$. Abbiamo trovato un'equazione cartesiana per il piano: $\pi = \{x + 2y - z = 8\}$.
 
-I conti del prodotto vettoriale, riga per riga (righe affiancate $(1, 2)$, $(0, -1)$, $(1, 0)$):
+I conti del prodotto vettoriale, riga per riga, con le righe affiancate $(1, 2)$, $(0, -1)$, $(1, 0)$:
 
 - prima componente, copro la prima riga: $0 \cdot 0 - (-1) \cdot 1 = 1$;
 - seconda, copro la seconda riga: $1 \cdot 0 - 2 \cdot 1 = -2$, e cambio segno: $2$;
 - terza, copro la terza riga: $1 \cdot (-1) - 2 \cdot 0 = -1$.
 
-Controllo finale con un altro punto del piano, per esempio $t = s = 1$: $P = (1 + 1 + 2,\ 2 + 0 - 1,\ -3 + 1 + 0) = (4, 1, -2)$, e $4 + 2 \cdot 1 - (-2) = 8$.
+Controllo finale con un altro punto del piano, per esempio con $t = s = 1$: $P = (1 + 1 + 2,\ 2 + 0 - 1,\ -3 + 1 + 0) = (4, 1, -2)$, e $4 + 2 \cdot 1 - (-2) = 8$.
 
-Nota una cosa: nell'esempio precedente la stessa equazione $x + 2y - z = 8$ ci aveva dato un'**altra** forma parametrica, $(0, 0, -8) + s(1, 0, 1) + t(0, 1, 2)$. Nessuna contraddizione, per la Proposizione 23.5: le giaciture coincidono, perché $(2, -1, 0) = 2\,(1, 0, 1) - (0, 1, 2)$, e la differenza dei punti di partenza $(1, 2, -3) - (0, 0, -8) = (1, 2, 5) = (1, 0, 1) + 2\,(0, 1, 2)$ sta nella giacitura.
+Nota una cosa: nell'esempio precedente, con la stessa equazione, avevamo trovato un'**altra** ricetta, $(0, 0, -8) + s(1, 0, 1) + t(0, 1, 2)$. Nessuna contraddizione, per la Proposizione 23.5. Le giaciture coincidono, perché $(2, -1, 0) = 2\,(1, 0, 1) - (0, 1, 2)$. E la differenza dei punti di partenza, $(1, 2, -3) - (0, 0, -8) = (1, 2, 5) = (1, 0, 1) + 2\,(0, 1, 2)$, sta nella giacitura.
 
 ```widget spazio
 titolo: Il piano dell'Esempio 23.8 con il suo vettore normale
@@ -45038,66 +45214,77 @@ piano: 1 2 -1 = 8
 punto: 4 1 -2
 ```
 
-Il piano viola è $x + 2y - z = 8$ e la freccia $n$ è il vettore normale $(1, 2, -1)$. Il punto $P = (4, 1, -2)$ sta sul piano: lo strumento dice che la sua distanza dal piano è $0$. Prova a cambiare $d$ (per esempio $x + 2y - z = 0$): il piano si sposta **parallelamente a sé stesso**, perché la giacitura non cambia. La distanza di un punto da un piano la studierai nella lezione L24.
+Il piano viola è $x + 2y - z = 8$ e la freccia $n$ è il vettore normale $(1, 2, -1)$. Il punto $P = (4, 1, -2)$ sta sul piano: lo strumento dice che la sua distanza dal piano è 0. Prova a cambiare $d$, per esempio con $x + 2y - z = 0$: il piano si sposta **parallelo a sé stesso**, perché la giacitura non cambia. La distanza di un punto da un piano la studierai nella lezione L24.
 
-> [!OLTRE] Rette da parametrica a cartesiana, e il piano per tre punti
-> **Una retta.** Per $r = (1, 2, 3) + t(2, 1, -1)$ si **elimina il parametro**: $x = 1 + 2t$, $y = 2 + t$, $z = 3 - t$. Dalla seconda $t = y - 2$; sostituendo, $x = 1 + 2(y - 2)$, cioè $x - 2y = -3$, e $z = 3 - (y - 2)$, cioè $y + z = 5$. Quindi $r = \{x - 2y = -3,\ y + z = 5\}$. Controllo con $t = 1$, punto $(3, 3, 2)$: $3 - 6 = -3$ e $3 + 2 = 5$.
+> [!OLTRE] Rette dalla ricetta alla prova, e il piano per tre punti
+> **Una retta.** Per $r = (1, 2, 3) + t(2, 1, -1)$ si **elimina il parametro**: $x = 1 + 2t$, $y = 2 + t$, $z = 3 - t$. Dalla seconda $t = y - 2$. Sostituendo: $x = 1 + 2(y - 2)$, cioè $x - 2y = -3$, e $z = 3 - (y - 2)$, cioè $y + z = 5$. Quindi $r = \{x - 2y = -3,\ y + z = 5\}$. Controllo con $t = 1$, punto $(3, 3, 2)$: $3 - 6 = -3$ e $3 + 2 = 5$.
 >
-> **Un piano per tre punti non allineati** $P_0, P_1, P_2$: è $P_0 + t\,\overrightarrow{P_0P_1} + s\,\overrightarrow{P_0P_2}$, e poi si usa il prodotto vettoriale come sopra (Martelli, Proposizione 9.2.12). Con $A, B, C$ dell'esempio del triangolo: $\overrightarrow{AB} \times \overrightarrow{AC} = (6, 3, 2)$ e $d = 6 \cdot 1 = 6$, quindi il piano è $6x + 3y + 2z = 6$.
+> **Un piano per tre punti non allineati** $P_0, P_1, P_2$: è $P_0 + t\,\overrightarrow{P_0P_1} + s\,\overrightarrow{P_0P_2}$, e poi si usa il prodotto vettoriale come sopra (Martelli, Proposizione 9.2.12). Con $A, B, C$ dell'esempio del triangolo: il prodotto vettoriale è $(6, 3, 2)$ e $d = 6 \cdot 1 = 6$, quindi il piano è $6x + 3y + 2z = 6$.
 
-## Intersezioni (pp. 120–121)
+::: prova Qual è l'equazione del piano $(1, 1, 1) + s(1, 0, 0) + t(0, 1, 0)$?
+$(1, 0, 0) \times (0, 1, 0) = (0, 0, 1)$, quindi l'equazione è $z = d$; con il punto $(1, 1, 1)$, $d = 1$. Il piano è $z = 1$.
+:::
 
-Due sottospazi **vettoriali** si incontrano sempre, almeno nell'origine. Due sottospazi **affini** no: i piani $x + y + z = 1$ e $x + y + z = 2$ non hanno punti in comune, perché nessun punto può avere $x + y + z$ uguale a $1$ e a $2$ nello stesso momento.
+> [!RICORDA]
+> - Nello spazio: un piano ha una equazione, una retta due.
+> - Il vettore dei numeri davanti alle incognite è perpendicolare al piano.
+> - Dalla ricetta di un piano alla prova: prodotto vettoriale dei due vettori, poi $d$ con il punto.
+
+## Dove si incontrano: le intersezioni (pp. 120–121)
+
+Due sottospazi **vettoriali** si incontrano sempre, almeno nell'origine. Due sottospazi **affini** no: i piani $x + y + z = 1$ e $x + y + z = 2$ non hanno punti in comune, perché nessun punto può avere $x + y + z$ uguale a 1 e a 2 nello stesso momento. Le dispense danno un nome a quelli che si incontrano.
 
 > [!DEF] Sottospazi incidenti (p. 120)
 > Due sottospazi affini $S, S' \subseteq \R^n$ sono **incidenti** se $S \cap S' \neq \emptyset$.
 
-Se sono incidenti, prendi un punto $x \in S \cap S'$ e scrivi entrambi a partire da lì: $S = x + W$ e $S' = x + W'$ (si può, per la Definizione 23.7). Un punto $y$ sta in entrambi esattamente quando $y - x \in W$ e $y - x \in W'$, cioè $y - x \in W \cap W'$. Quindi
+**Come si legge.** Incidenti vuol dire che hanno almeno un punto in comune. $S \cap S'$ si legge «esse intersecato esse primo».
+
+Se si incontrano, prendi un punto $x$ comune e scrivi tutti e due a partire da lì: $S = x + W$ e $S' = x + W'$, come permette la Definizione 23.7. Un punto $y$ sta in tutti e due esattamente quando $y - x$ sta sia in $W$ sia in $W'$. Quindi
 
 $$S \cap S' = x + (W \cap W').$$
 
 In particolare **l'intersezione, se non è vuota, è sempre un sottospazio affine**, con giacitura $W \cap W'$.
 
-### Tre casi, tre metodi
+### Tre casi, tre conti
 
-Come si calcola l'intersezione dipende dalla forma in cui sono dati $S$ e $S'$. L'Esempio 23.9 delle dispense mostra i tre casi; li svolgiamo fino in fondo.
+Il conto dipende da come sono scritti i due insiemi. L'Esempio 23.9 delle dispense mostra i tre casi; li svolgiamo fino in fondo.
 
 > [!ESEMPIO] 23.9 · Primo caso: tutte e due in forma cartesiana
 > Se $S$ e $S'$ sono descritti in forma cartesiana, la loro intersezione $S \cap S'$ è descritta in forma cartesiana **unendo le equazioni**. Per esempio, se $S = \{x + y = 1\}$ e $S' = \{x - y + z = 3\}$ sono due piani in $\R^3$, la loro intersezione è l'insieme delle soluzioni di
 > $$\begin{cases} x + y = 1 \\ x - y + z = 3. \end{cases}$$
 
-Le dispense si fermano al sistema; risolviamolo. Dalla prima $x = 1 - y$. Sostituisco nella seconda: $1 - y - y + z = 3$, cioè $z = 2 + 2y$. Con $y = t$:
+Due prove: un punto sta in tutti e due se le supera entrambe. Le dispense si fermano al sistema; risolviamolo. Dalla prima $x = 1 - y$. Sostituisco nella seconda: $1 - y - y + z = 3$, cioè $z = 2 + 2y$. Con $y = t$:
 
 $$S \cap S' = \{(1 - t,\ t,\ 2 + 2t)\} = (1, 0, 2) + \Span((-1, 1, 2)).$$
 
-È una **retta**. Controllo: $(1, 0, 2)$ soddisfa $1 + 0 = 1$ e $1 - 0 + 2 = 3$. Il vettore $(-1, 1, 2)$ soddisfa le equazioni omogenee: $-1 + 1 = 0$ e $-1 - 1 + 2 = 0$.
+È una **retta**. Controllo: $(1, 0, 2)$ soddisfa $1 + 0 = 1$ e $1 - 0 + 2 = 3$. La direzione $(-1, 1, 2)$ soddisfa le equazioni con zero a destra: $-1 + 1 = 0$ e $-1 - 1 + 2 = 0$.
 
 > [!ESEMPIO] 23.9 · Secondo caso: una cartesiana e una parametrica
-> Se $S$ è descritto in forma cartesiana e $S'$ in forma parametrica, per trovare $S \cap S'$ basta **sostituire il punto generico** di $S'$ nelle equazioni di $S$ e trovare i parametri che le soddisfano. Per esempio, se $S = \{x + y - z = 2\}$ è un piano in $\R^3$ e
+> Se $S$ è descritto in forma cartesiana e $S'$ in forma parametrica, basta **sostituire il punto generico** di $S'$ nelle equazioni di $S$. Si trovano i parametri che le soddisfano, e da loro $S \cap S'$. Per esempio, se $S = \{x + y - z = 2\}$ è un piano in $\R^3$ e
 > $$S' = \left\{ \begin{pmatrix} 1 \\ -1 \\ 1 \end{pmatrix} + t \begin{pmatrix} 1 \\ 2 \\ -3 \end{pmatrix} \right\} = \left\{ \begin{pmatrix} 1 + t \\ -1 + 2t \\ 1 - 3t \end{pmatrix} \right\}$$
 > è una retta, si sostituisce $x = 1 + t$, $y = -1 + 2t$, $z = 1 - 3t$ nell'equazione di $S$:
-> $$(1 + t) + (-1 + 2t) - (1 - 3t) = 2 \iff -1 + 6t = 2 \iff t = \tfrac 12,$$
-> e l'intersezione è il punto
+> $$(1 + t) + (-1 + 2t) - (1 - 3t) = 2,$$
+> cioè $-1 + 6t = 2$ e $t = \tfrac 12$. L'intersezione è il punto
 > $$S \cap S' = \left\{ \begin{pmatrix} 3/2 \\ 0 \\ -1/2 \end{pmatrix} \right\}.$$
 
-Il punto viene da $t = \frac 12$: $\left(1 + \frac 12,\ -1 + 1,\ 1 - \frac 32\right) = \left(\frac 32, 0, -\frac 12\right)$. Controllo nel piano: $\frac 32 + 0 + \frac 12 = 2$. Attenzione al segno: $-(1 - 3t) = -1 + 3t$.
+Una ricetta e una prova: si mettono i punti della ricetta dentro la prova, e si guarda quali la superano. Il punto viene da $t = \frac 12$: $\left(1 + \frac 12,\ -1 + 1,\ 1 - \frac 32\right) = \left(\frac 32, 0, -\frac 12\right)$. Controllo nel piano: $\frac 32 + 0 + \frac 12 = 2$. Attenzione al segno: $-(1 - 3t) = -1 + 3t$.
 
 > [!ESEMPIO] 23.9 · Terzo caso: tutte e due in forma parametrica
 > Se $S$ e $S'$ sono entrambi in forma parametrica, si **eguaglia il punto generico** di $S$ con quello di $S'$ e si trova quali parametri risolvono il sistema. Le dispense avvertono che può essere più laborioso.
 
-Un esempio nostro. Siano $r = (1, 0, 1) + t(1, 1, 0)$ e $r' = (0, 3, -1) + s(1, -1, 1)$. Eguagliando le coordinate:
+Due ricette: si cerca un punto che esca da tutte e due. Un esempio nostro: $r = (1, 0, 1) + t(1, 1, 0)$ e $r' = (0, 3, -1) + s(1, -1, 1)$. Uguagliando le coordinate:
 
 $$\begin{cases} 1 + t = s \\ t = 3 - s \\ 1 = -1 + s. \end{cases}$$
 
-Dalla terza $s = 2$; dalla prima $t = s - 1 = 1$; la seconda va **controllata**: $t = 1$ e $3 - s = 1$, torna. Le rette si incontrano nel punto $r(1) = (2, 1, 1)$, e infatti anche $r'(2) = (0 + 2,\ 3 - 2,\ -1 + 2) = (2, 1, 1)$.
+Dalla terza $s = 2$; dalla prima $t = s - 1 = 1$; la seconda va **controllata**: $t = 1$ e $3 - s = 1$, torna. Le rette si incontrano nel punto $(2, 1, 1)$, che si ottiene sia con $t = 1$ sulla prima sia con $s = 2$ sulla seconda.
 
 > [!METODO] Come si interseca
-> 1. **Cartesiana con cartesiana**: metti tutte le equazioni in un unico sistema e risolvilo con Gauss; la soluzione in forma parametrica è l'intersezione.
-> 2. **Cartesiana con parametrica**: sostituisci il punto generico (con i parametri) nelle equazioni; trovi i parametri e li rimetti nel punto generico.
-> 3. **Parametrica con parametrica**: eguaglia i punti generici, con **nomi diversi** per i parametri ($t$ e $s$, mai $t$ e $t$); risolvi e **controlla tutte le equazioni**. Se una equazione non torna, l'intersezione è vuota.
+> 1. **Due prove**: metti tutte le equazioni in un unico sistema e risolvilo con Gauss; la soluzione, scritta come ricetta, è l'intersezione.
+> 2. **Una prova e una ricetta**: metti il punto generico della ricetta dentro le equazioni; trovi i parametri e li rimetti nel punto generico.
+> 3. **Due ricette**: uguaglia i punti generici, con **nomi diversi** per i parametri ($t$ e $s$, mai $t$ e $t$). Risolvi e **controlla tutte le equazioni**: se una non torna, l'intersezione è vuota.
 > 4. In ogni caso, alla fine **sostituisci** il punto trovato nelle due descrizioni: è il controllo più economico che esista.
 
-Con la calcolatrice qui sotto puoi rifare il primo caso: la matrice completa del sistema dell'Esempio 23.9 ha righe $(1, 1, 0 \mid 1)$ e $(1, -1, 1 \mid 3)$. Lo strumento riduce con Gauss–Jordan e scrive le soluzioni con un parametro.
+Con la calcolatrice qui sotto puoi rifare il primo caso: la matrice completa del sistema ha righe $(1, 1, 0 \mid 1)$ e $(1, -1, 1 \mid 3)$. Lo strumento riduce con Gauss e scrive le soluzioni con un parametro.
 
 ```widget gauss
 titolo: L'intersezione dei due piani dell'Esempio 23.9
@@ -45107,35 +45294,35 @@ modo: sistema
 
 Lo strumento sceglie come parametro la terza incognita e trova $(2, -1, 0) + t\left(-\frac 12, \frac 12, 1\right)$. Sembra un risultato diverso dal nostro, ma è la **stessa retta**, per la Proposizione 23.5: la direzione è metà di $(-1, 1, 2)$, e $(2, -1, 0) - (1, 0, 2) = (1, -1, -2)$ sta nella giacitura.
 
-### Quando l'intersezione è sicuramente non vuota
+### Quando si incontrano di sicuro
 
-L'ultima proposizione della lezione dà una condizione sulle **giaciture** che garantisce l'incontro.
+L'ultima proposizione della lezione dà una condizione sulle giaciture che garantisce l'incontro. Le dispense la scrivono così.
 
 > [!PROP] 23.10
 > Se $\operatorname{giac}(S) + \operatorname{giac}(S') = \R^n$, allora i sottospazi $S$ e $S'$ sono incidenti.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $\operatorname{giac}(S) + \operatorname{giac}(S')$ è la **somma** dei due sottospazi vettoriali (lezione L07): tutti i vettori $w + w'$ con $w \in \operatorname{giac}(S)$ e $w' \in \operatorname{giac}(S')$;
-- l'ipotesi dice che, muovendosi prima lungo $S$ e poi lungo $S'$, si raggiunge **qualsiasi** vettore di $\R^n$;
-- la tesi: $S \cap S' \neq \emptyset$. Non dice **dove** si incontrano: per quello bisogna fare i conti.
+- La somma delle giaciture (lezione L07) raccoglie tutti i vettori ottenuti muovendosi prima in una direzione del primo insieme e poi in una del secondo.
+- L'ipotesi dice che, combinando le due mosse, si raggiunge **qualsiasi** punto dello spazio.
+- La conclusione: i due insiemi si incontrano. Non dice **dove**: per quello bisogna fare i conti.
 
 > [!DIM] della Proposizione 23.10 (dal libro di Martelli)
-> 1. Scrivo $S = \{P + t_1 v_1 + \dots + t_k v_k\}$ e $S' = \{Q + u_1 w_1 + \dots + u_h w_h\}$, con $v_i$ base di $\operatorname{giac}(S)$ e $w_j$ base di $\operatorname{giac}(S')$.
-> 2. I due sottospazi sono incidenti se e solo se il sistema $P + t_1 v_1 + \dots + t_k v_k = Q + u_1 w_1 + \dots + u_h w_h$ nelle incognite $t_i, u_j$ ha una soluzione.
-> 3. Per ipotesi $v_1, \dots, v_k, w_1, \dots, w_h$ generano $\R^n$. Quindi il vettore $Q - P$ è una loro combinazione lineare: $Q - P = a_1 v_1 + \dots + a_k v_k + b_1 w_1 + \dots + b_h w_h$.
-> 4. Allora $t_i = a_i$ e $u_j = -b_j$ risolvono il sistema: $P + \sum a_i v_i = Q - \sum b_j w_j$. $\square$
+> 1. Scrivo $S = \{P + t_1 v_1 + \dots + t_k v_k\}$ e $S' = \{Q + u_1 w_1 + \dots + u_h w_h\}$, con i $v_i$ base della giacitura di $S$ e i $w_j$ base della giacitura di $S'$.
+> 2. I due insiemi si incontrano esattamente quando il sistema $P + t_1 v_1 + \dots + t_k v_k = Q + u_1 w_1 + \dots + u_h w_h$, nelle incognite $t_i, u_j$, ha una soluzione.
+> 3. Per ipotesi i vettori $v_1, \dots, v_k, w_1, \dots, w_h$ generano tutto lo spazio. Quindi $Q - P$ è una loro ricetta: $Q - P = a_1 v_1 + \dots + a_k v_k + b_1 w_1 + \dots + b_h w_h$.
+> 4. Allora $t_i = a_i$ e $u_j = -b_j$ risolvono il sistema: $P + \sum a_i v_i = Q - \sum b_j w_j$.
 
-> [!ESEMPIO] Due applicazioni in $\R^3$
-> **Due piani con vettori normali non paralleli**, per esempio $x + y + z = 1$ e $x - y = 5$. Le giaciture sono due piani vettoriali **diversi**, quindi la loro somma contiene strettamente un piano: ha dimensione $3$ ed è tutto $\R^3$. Per la Proposizione 23.10 i piani si incontrano (in una retta).
+> [!ESEMPIO] Due applicazioni nello spazio
+> **Due piani con vettori normali non paralleli**, per esempio $x + y + z = 1$ e $x - y = 5$. Le giaciture sono due piani diversi per l'origine, quindi la loro somma è più grande di un piano: è tutto lo spazio. Per la Proposizione 23.10 i piani si incontrano, in una retta.
 >
-> **Una retta e un piano**, con la direzione della retta fuori dalla giacitura del piano: $r = \{t(1, 1, 1)\}$ e $\pi = \{x + y + z = 7\}$. Il vettore $(1, 1, 1)$ non sta nella giacitura $\{x + y + z = 0\}$, perché $1 + 1 + 1 = 3 \neq 0$. Allora la giacitura del piano (dimensione 2) e la direzione della retta insieme generano $\R^3$, e c'è un punto comune. Sostituendo: $3t = 7$, $t = \frac 73$, punto $\left(\frac 73, \frac 73, \frac 73\right)$.
+> **Una retta e un piano**, con la direzione della retta fuori dalla giacitura del piano: $r = \{t(1, 1, 1)\}$ e $\pi = \{x + y + z = 7\}$. Il vettore $(1, 1, 1)$ non sta nella giacitura $\{x + y + z = 0\}$, perché $1 + 1 + 1 = 3$. Allora la giacitura del piano e la direzione della retta insieme generano tutto lo spazio, e c'è un punto comune. Sostituendo: $3t = 7$, $t = \frac 73$, punto $\left(\frac 73, \frac 73, \frac 73\right)$.
 
-> [!TRAPPOLA] Il viceversa è falso
-> Se la somma delle giaciture **non** è $\R^n$, la proposizione non dice nulla: l'intersezione può esserci oppure no. Due rette di $\R^3$ hanno giaciture di dimensione $1$, la cui somma ha dimensione al massimo $2$: la proposizione non si applica mai. Eppure l'asse $x$ e l'asse $y$ si incontrano (nell'origine), mentre la retta $\{t(1, -1, 0)\}$ e il piano $x + y + z = 7$ no: sostituendo si ottiene $0 = 7$.
+> [!TRAPPOLA] Il contrario è falso
+> Se la somma delle giaciture **non** è tutto lo spazio, la proposizione non dice niente: l'incontro può esserci oppure no. Due rette dello spazio hanno giaciture di dimensione 1, che sommano al massimo a un piano: la proposizione non si applica mai. Eppure l'asse $x$ e l'asse $y$ si incontrano nell'origine, mentre la retta $\{t(1, -1, 0)\}$ e il piano $x + y + z = 7$ no: sostituendo viene $0 = 7$.
 
-> [!OLTRE] Le posizioni reciproche in $\R^3$
-> Mettendo insieme giaciture e intersezioni si ottiene questa tabella (Martelli, §9.2.5 e §9.2.7). Due sottospazi affini sono **paralleli** se la giacitura di uno è contenuta in quella dell'altro; due rette che non sono né incidenti né parallele si dicono **sghembe**.
+> [!OLTRE] Le posizioni reciproche nello spazio
+> Mettendo insieme giaciture e intersezioni si ottiene questa tabella (Martelli, §9.2.5 e §9.2.7). Due sottospazi affini sono **paralleli** se la giacitura di uno è contenuta in quella dell'altro; due rette che non sono né incidenti né parallele si chiamano **sghembe**.
 >
 > | Coppia | Giaciture | Intersezione |
 > |---|---|---|
@@ -45146,46 +45333,82 @@ Pezzo per pezzo:
 > | due rette | direzioni proporzionali | vuota (parallele distinte) oppure la stessa retta |
 > | due rette | direzioni non proporzionali | un punto (incidenti) oppure vuota (**sghembe**) |
 >
-> Le rette sghembe esistono solo dallo spazio in su: nel piano due rette non parallele si incontrano sempre (in $\R^2$ le due giaciture diverse sommano a $\R^2$, e vale la Proposizione 23.10).
+> Le rette sghembe esistono solo dallo spazio in su: nel piano due rette non parallele si incontrano sempre, perché due giaciture diverse sommano a tutto il piano, e vale la Proposizione 23.10.
 
 > [!OLTRE] Dove trovarlo nel libro
 > Nel libro di Martelli: prodotto vettoriale e sue proprietà nel §9.1 (pp. 267–272: identità di Lagrange Prop. 9.1.4, area Prop. 9.1.5 e Cor. 9.1.6, base positiva Prop. 9.1.7, prodotto triplo Esercizio 9.1.8, volume del parallelepipedo Prop. 9.1.9); forma parametrica e cartesiana nel §9.2.1 (pp. 272–274, con l'Esempio 9.2.3 che è il nostro 23.8); intersezioni nel §9.2.3 (pp. 275–276, Esempio 9.2.6 e Proposizione 9.2.7); sottospazio generato da punti, parallelismo e posizioni reciproche nei §9.2.4, §9.2.5 e §9.2.7 (pp. 277–283).
 
+::: prova Dove si incontrano la retta $t(1, 1, 1)$ e il piano $z = 1$?
+Sostituisco il punto generico $(t, t, t)$: $t = 1$. Il punto è $(1, 1, 1)$.
+:::
+
+> [!RICORDA]
+> - Due prove: unisci le equazioni. Prova e ricetta: metti la ricetta nella prova. Due ricette: uguaglia, con parametri di nomi diversi.
+> - Se le giaciture sommano a tutto lo spazio, l'incontro c'è di sicuro; il contrario non vale.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $v \times w$ | «vu vettore vu doppio» | il prodotto vettoriale | $e_1 \times e_2 = e_3$ |
+| $\lVert v \times w \rVert$ | «norma di vu vettore vu doppio» | l'area del parallelogramma con lati $v$ e $w$ | |
+| $\sin\vartheta$ | «seno di theta» | il seno dell'angolo tra i due vettori | |
+| $(u_1 \mid u_2 \mid u_3)$ | «matrice con colonne u uno, u due, u tre» | la matrice con quei vettori in colonna | |
+| $x + W$ | «ics più vu doppio» | il sottospazio $W$ spostato per il punto $x$ | $(1, 0) + \Span((1, 1))$ |
+| $\operatorname{giac}(S)$ | «giacitura di esse» | le direzioni del sottospazio affine | |
+| $\overrightarrow{PQ}$ | «vettore pi qu» | $Q - P$, il vettore da $P$ a $Q$ | |
+| $S \cap S'$ | «esse intersecato esse primo» | i punti comuni | |
+| $n = (a, b, c)$ | «vettore normale» | i numeri davanti alle incognite, perpendicolare al piano | per $x + 2y - z = 8$, $n = (1, 2, -1)$ |
+
 ## Verso l'esame
 
-La prova scritta di Algebra lineare e Geometria ha **10 quiz** a 5 risposte (una sola giusta) e **2 problemi da 11 punti**, corretti solo con **almeno 6 quiz giusti**; dura **2 ore**, **senza calcolatrice**, e si può portare solo un foglio di **4 facciate scritte a mano**. Gli appelli 2026/27 sono il **22/01/2027** e il **05/02/2027** alle 14:00. Tutti i dettagli nella lezione L01.
+La prova di Algebra lineare e Geometria ha 10 domande a risposta multipla, con 5 risposte e una sola giusta. Ci sono poi 2 problemi da 11 punti, corretti solo con almeno 6 risposte giuste. Dura 2 ore, senza calcolatrice, e si può portare solo un foglio da 4 facciate scritto a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
 **Che cosa di questa lezione compare negli appelli 2023–2026.** Le intersezioni sono tra gli argomenti più frequenti in assoluto:
 
-- **quiz sull'intersezione retta–piano**: appello del 07/02/2025 (domanda 10) e del 03/07/2026 (domanda 8); le risposte proposte sono sempre del tipo «un punto $P = \dots$», «tutta la retta», «tutto il piano», «vuota»;
-- **quiz sull'intersezione di due rette in forma parametrica**: appelli del 03/06/2025 e del 10/07/2025 (domanda 10 in entrambi);
-- **problemi aperti**: scrivere la retta $r = \pi_1 \cap \pi_2$ nella forma $P + \Span(v)$ (24/01/2024, 10/07/2024, 06/09/2024, 15/01/2026), dimostrare che una retta e un piano sono incidenti (24/01/2024, 10/07/2024), trovare l'intersezione di tre piani (06/09/2024, 15/01/2026), piani o rette che dipendono da un parametro $k$ (03/06/2025, 02/09/2025).
+- **quiz sull'intersezione tra una retta e un piano**: appelli del 07/02/2025 (domanda 10) e del 03/07/2026 (domanda 8). Le risposte proposte sono sempre del tipo «un punto», «tutta la retta», «tutto il piano», «vuota»;
+- **quiz sull'intersezione di due rette date con la ricetta**: appelli del 03/06/2025 e del 10/07/2025, domanda 10 in tutti e due;
+- **problemi aperti**: scrivere la retta in cui si incontrano due piani come «punto più Span» (24/01/2024, 10/07/2024, 06/09/2024, 15/01/2026); dimostrare che una retta e un piano si incontrano (24/01/2024, 10/07/2024); trovare l'intersezione di tre piani (06/09/2024, 15/01/2026); piani o rette che dipendono da un parametro (03/06/2025, 02/09/2025).
 
-Un quiz vero, come esempio (appello del 07/02/2025, domanda 10): *l'intersezione della retta $r = {}^t(2, -2, 0) + s\,{}^t(1, -2, 1)$ con il piano $\pi = \{2x - 2y + z = 1\}$ è: (a) tutto il piano; (b) $P = {}^t(-1, -1, 1)$; (c) $P = {}^t(1, 0, -1)$; (d) non hanno un'intersezione; (e) tutta la retta.*
+### Una domanda vera, letta insieme
 
-Svolgimento: il punto generico di $r$ è $(2 + s,\ -2 - 2s,\ s)$. Sostituisco: $2(2 + s) - 2(-2 - 2s) + s = 4 + 2s + 4 + 4s + s = 8 + 7s$. L'equazione $8 + 7s = 1$ dà $s = -1$ e il punto $(1, 0, -1)$: risposta (c). Controllo: $2 - 0 - 1 = 1$. Il trucco da quiz: si possono anche **sostituire le risposte** (b) e (c) nell'equazione del piano e nella retta, ed escludere (a) e (e) guardando il prodotto scalare fra direzione e normale, $\langle (1, -2, 1), (2, -2, 1) \rangle = 2 + 4 + 1 = 7 \neq 0$: la retta non è parallela al piano, quindi l'intersezione è **un punto**.
+**Appello del 07/02/2025, domanda 10.** Il testo: «L'intersezione della retta $r = {}^t(2, -2, 0) + s\,{}^t(1, -2, 1)$ con il piano $\pi = \{2x - 2y + z = 1\}$ è: (a) tutto il piano; (b) $P = {}^t(-1, -1, 1)$; (c) $P = {}^t(1, 0, -1)$; (d) non hanno un'intersezione; (e) tutta la retta».
 
-> [!METODO] La retta intersezione di due piani, nella forma $P + \Span(v)$
-> 1. Metti le due equazioni in un sistema e riducilo con Gauss (o ricava una variabile e sostituisci).
+**In pratica chiede:** una ricetta e una prova. Quali punti della retta superano la prova del piano?
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: il punto generico della retta.** $(2 + s,\ -2 - 2s,\ s)$.
+>
+> **Passo 2: dentro l'equazione del piano.**
+> $$2(2 + s) - 2(-2 - 2s) + s = 4 + 2s + 4 + 4s + s = 8 + 7s.$$
+>
+> **Passo 3: il parametro.** $8 + 7s = 1$ dà $s = -1$.
+>
+> **Passo 4: il punto.** Con $s = -1$: $(2 - 1,\ -2 + 2,\ -1) = (1, 0, -1)$. È la risposta (c). Controllo: $2 \cdot 1 - 0 - 1 = 1$.
+>
+> **Il trucco da quiz.** Il prodotto scalare tra la direzione $(1, -2, 1)$ e la normale $(2, -2, 1)$ è $2 + 4 + 1 = 7$, non zero: la retta non è parallela al piano, quindi l'incontro è **un punto**. Questo esclude subito (a), (d) e (e). Poi basta sostituire (b) e (c) nell'equazione del piano: (b) dà $-2 + 2 + 1 = 1$, ma $(-1, -1, 1)$ non sta sulla retta, perché la terza coordinata direbbe $s = 1$ e la prima $s = -3$.
+
+> [!METODO] La retta in cui si incontrano due piani, come «punto più Span»
+> 1. Metti le due equazioni in un sistema e riducilo con Gauss, oppure ricava una variabile e sostituisci.
 > 2. Scegli come parametro la variabile libera e scrivi il punto generico.
-> 3. Separa la parte costante ($P$) da quella con il parametro ($t\,v$).
-> 4. Controllo veloce: $v$ deve essere proporzionale a $n_1 \times n_2$, il prodotto vettoriale dei due vettori normali (è ortogonale a entrambi, quindi sta in tutte e due le giaciture); $P$ deve soddisfare le due equazioni.
+> 3. Separa la parte senza parametro, il punto, da quella con il parametro, la direzione.
+> 4. Controllo veloce: la direzione deve essere proporzionale al prodotto vettoriale dei due vettori normali, che è perpendicolare a tutti e due e quindi sta in tutte e due le giaciture. Il punto deve soddisfare le due equazioni.
 
-> [!METODO] Dimostrare che una retta e un piano sono incidenti
-> Due strade, entrambe accettate:
-> - **con la Proposizione 23.10**: se la direzione $v$ della retta non sta nella giacitura del piano (per un piano $ax + by + cz = d$: $\langle v, (a, b, c) \rangle \neq 0$; per un piano dato con due generatori $v_1, v_2$: $\det(v_1 \mid v_2 \mid v) \neq 0$), allora le giaciture sommano a $\R^3$ e c'è intersezione;
-> - **con il conto**: sostituisci il punto generico della retta nell'equazione del piano e trova il parametro. Se esiste, sono incidenti, e hai anche il punto.
+> [!METODO] Dimostrare che una retta e un piano si incontrano
+> Due strade, tutte e due accettate:
+> - **con la Proposizione 23.10**: se la direzione della retta non sta nella giacitura del piano, le giaciture sommano a tutto lo spazio e c'è un incontro. Per un piano con equazione: il prodotto scalare tra direzione e normale non è zero. Per un piano dato con due generatori: il determinante dei due generatori e della direzione non è zero;
+> - **con il conto**: metti il punto generico della retta nell'equazione del piano e trova il parametro. Se esiste, si incontrano, e hai anche il punto.
 
 **Errori da evitare.**
 
 - Usare lo **stesso nome** per i parametri di due rette diverse: il sistema diventa sbagliato.
 - Nell'intersezione di due rette, non controllare la **terza** equazione: due equazioni su tre possono tornare anche se le rette sono sghembe.
-- Scambiare il **vettore normale** di un piano con un vettore **del** piano: $(a, b, c)$ è ortogonale al piano, non ci sta dentro.
-- Scrivere una retta di $\R^3$ con una sola equazione.
-- Il segno $-$ della seconda componente del prodotto vettoriale.
+- Scambiare il **vettore normale** di un piano con un vettore **del** piano: $(a, b, c)$ è perpendicolare al piano, non ci sta dentro.
+- Scrivere una retta dello spazio con una sola equazione.
+- Il segno meno della seconda componente del prodotto vettoriale.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: la formula di $v \times w$ con lo schema «copri la riga, il segno meno al centro»; $\lVert v \times w \rVert = \text{area del parallelogramma}$ e $\frac 12 \lVert \overrightarrow{AB} \times \overrightarrow{AC} \rVert = \text{area del triangolo } ABC$; la tabella dei tipi di sottospazi di $\R^3$ (quante equazioni, quanti parametri); il metodo $n = v_1 \times v_2$, $d = \langle n, P_0 \rangle$; i tre metodi per le intersezioni; la Proposizione 23.10.
+> Da questa lezione: la formula di $v \times w$ con lo schema «copri la riga, il segno meno al centro»; lunghezza del prodotto vettoriale = area del parallelogramma, e metà per il triangolo; la tabella dei tipi di sottospazi dello spazio (quante equazioni, quanti parametri); il metodo $n = v_1 \times v_2$, $d = \langle n, P_0 \rangle$; i tre conti per le intersezioni; la Proposizione 23.10.
 
 ## Quiz
 
@@ -45196,7 +45419,7 @@ D: Quanto vale il prodotto vettoriale $(1, 0, 1) \times (2, -1, 0)$?
 - $(1, -2, -1)$
 - $(2, 0, 0)$
 - $(-1, 2, 1)$
-= Righe affiancate $(1, 2)$, $(0, -1)$, $(1, 0)$. Prima componente $0 \cdot 0 - 1 \cdot (-1) = 1$; seconda $-(1 \cdot 0 - 1 \cdot 2) = 2$; terza $1 \cdot (-1) - 0 \cdot 2 = -1$. È il conto dell'Esempio 23.8. $(-1, -2, 1)$ è $(2, -1, 0) \times (1, 0, 1)$, con i fattori scambiati; $(1, -2, -1)$ dimentica il segno meno al centro; $(2, 0, 0)$ moltiplica le coordinate una per una.
+= Righe affiancate $(1, 2)$, $(0, -1)$, $(1, 0)$. Prima componente $0 \cdot 0 - 1 \cdot (-1) = 1$; seconda $-(1 \cdot 0 - 1 \cdot 2) = 2$; terza $1 \cdot (-1) - 0 \cdot 2 = -1$. È il conto dell'Esempio 23.8. La risposta più insidiosa è $(1, -2, -1)$, che dimentica il segno meno al centro. $(-1, -2, 1)$ è il prodotto con i fattori scambiati; $(2, 0, 0)$ moltiplica le coordinate una per una.
 
 D: Qual è l'area del parallelogramma con lati $v = (1, 1, 0)$ e $w = (0, 1, 1)$?
 + $\sqrt 3$
@@ -45204,7 +45427,7 @@ D: Qual è l'area del parallelogramma con lati $v = (1, 1, 0)$ e $w = (0, 1, 1)$
 - $3$
 - $1$
 - $\sqrt 2$
-= $v \times w = (1 \cdot 1 - 0 \cdot 1,\ -(1 \cdot 1 - 0 \cdot 0),\ 1 \cdot 1 - 1 \cdot 0) = (1, -1, 1)$, di norma $\sqrt{1 + 1 + 1} = \sqrt 3$. Per il Corollario 23.3 è l'area. $\frac{\sqrt 3}{2}$ sarebbe l'area del triangolo con lati $v$ e $w$; $3$ è il quadrato della norma.
+= Il prodotto vettoriale è $(1 \cdot 1 - 0 \cdot 1,\ -(1 \cdot 1 - 0 \cdot 0),\ 1 \cdot 1 - 1 \cdot 0) = (1, -1, 1)$, lungo $\sqrt 3$: per il Corollario 23.3 è l'area. La risposta più insidiosa è $\frac{\sqrt 3}{2}$, che è l'area del triangolo con quei due lati, non del parallelogramma. 3 è la lunghezza al quadrato, senza la radice.
 
 D: Quale di queste affermazioni sul prodotto vettoriale in $\R^3$ è **falsa**?
 + $(u \times v) \times w = u \times (v \times w)$ per ogni $u, v, w$
@@ -45212,7 +45435,7 @@ D: Quale di queste affermazioni sul prodotto vettoriale in $\R^3$ è **falsa**?
 - $v \times v = 0$ per ogni $v$
 - $v \times w$ è ortogonale sia a $v$ sia a $w$
 - $(2v) \times w = 2\,(v \times w)$ per ogni $v, w$
-= Il prodotto vettoriale non è associativo: $(e_1 \times e_2) \times e_2 = e_3 \times e_2 = -e_1$, mentre $e_1 \times (e_2 \times e_2) = e_1 \times 0 = 0$. Le altre sono l'anticommutatività, la sua conseguenza $v \times v = 0$, la Proposizione 22.15 e la bilinearità.
+= Le parentesi contano: $(e_1 \times e_2) \times e_2 = e_3 \times e_2 = -e_1$, mentre $e_1 \times (e_2 \times e_2) = e_1 \times 0 = 0$. La risposta vera più insidiosa da riconoscere è $v \times v = 0$: sembra strana, ma viene dal cambio di segno quando si scambiano i fattori. Le altre sono il cambio di segno stesso, la Proposizione 22.15 e la regola dei multipli.
 
 D: I piani $\pi_1 = \{x + y + z = 3\}$ e $\pi_2 = \{x - y = 1\}$ si intersecano nella retta:
 + $(1, 0, 2) + \Span((1, 1, -2))$
@@ -45220,7 +45443,7 @@ D: I piani $\pi_1 = \{x + y + z = 3\}$ e $\pi_2 = \{x - y = 1\}$ si intersecano 
 - $(0, 0, 3) + \Span((1, 1, -2))$
 - $(1, 0, 2) + \Span((1, -1, 0))$
 - $(2, 1, 1) + \Span((1, 1, -2))$
-= Dalla seconda equazione $x = 1 + y$; nella prima $1 + 2y + z = 3$, cioè $z = 2 - 2y$. Con $y = t$: $(1 + t, t, 2 - 2t)$. Controllo: $(1, 1, 1) \times (1, -1, 0) = (1, 1, -2)$. Le direzioni $(1, 1, 1)$ e $(1, -1, 0)$ sono i vettori normali, che sono ortogonali ai piani; $(0, 0, 3)$ non sta su $\pi_2$; $(2, 1, 1)$ non sta su $\pi_1$. Simile agli appelli del 24/01/2024 e del 10/07/2024 (problema 12, punto 1).
+= Dalla seconda equazione $x = 1 + y$; nella prima $1 + 2y + z = 3$, cioè $z = 2 - 2y$. Con $y = t$: $(1 + t, t, 2 - 2t)$. Controllo: $(1, 1, 1) \times (1, -1, 0) = (1, 1, -2)$. La risposta più insidiosa è la seconda: il punto è giusto, ma $(1, 1, 1)$ è il vettore normale del primo piano, che è perpendicolare al piano invece di starci dentro. $(0, 0, 3)$ non sta sul secondo piano; $(2, 1, 1)$ non sta sul primo. Simile agli appelli del 24/01/2024 e del 10/07/2024 (problema 12, punto 1).
 
 D: Il piano $\pi = \{s\,e_1 + t\,(e_2 + e_3) \mid s, t \in \R\}$ in forma cartesiana è:
 + $\{y - z = 0\}$
@@ -45228,11 +45451,11 @@ D: Il piano $\pi = \{s\,e_1 + t\,(e_2 + e_3) \mid s, t \in \R\}$ in forma cartes
 - $\{y + z = 0\}$
 - $\{x + y + z = 0\}$
 - $\{x - y + z = 0\}$
-= Il piano passa per l'origine ed è generato da $(1, 0, 0)$ e $(0, 1, 1)$. Il vettore normale è $(1, 0, 0) \times (0, 1, 1) = (0 \cdot 1 - 0 \cdot 1,\ -(1 \cdot 1 - 0 \cdot 0),\ 1 \cdot 1 - 0 \cdot 0) = (0, -1, 1)$, quindi $-y + z = 0$, cioè $y = z$. Controllo: $e_1$ e $e_2 + e_3$ hanno $y = z$. Simile all'appello del 24/01/2024 (problema 12), dove il piano $\pi_3$ era dato proprio così.
+= Il piano passa per l'origine ed è generato da $(1, 0, 0)$ e $(0, 1, 1)$. Il vettore normale è $(1, 0, 0) \times (0, 1, 1) = (0, -1, 1)$, quindi $-y + z = 0$, cioè $y = z$. Controllo: $e_1$ ed $e_2 + e_3$ hanno $y = z$. La risposta più insidiosa è $\{y + z = 0\}$, di chi sbaglia il segno al centro del prodotto vettoriale. Simile all'appello del 24/01/2024 (problema 12), dove il piano era dato proprio così.
 
 D: Il piano $(0, 1, 1) + t(1, 0, 0) + s(0, 1, 2)$ ha un'equazione della forma $2y - z = d$. Quanto vale $d$?
 N: 1
-= Il vettore normale è $(1, 0, 0) \times (0, 1, 2) = (0, -2, 1)$, cioè l'equazione è $-2y + z = \text{cost}$, equivalente a $2y - z = d$. Sostituendo il punto $(0, 1, 1)$: $d = 2 \cdot 1 - 1 = 1$.
+= Il vettore normale è $(1, 0, 0) \times (0, 1, 2) = (0, -2, 1)$, cioè l'equazione è $-2y + z = \text{costante}$, che equivale a $2y - z = d$. Sostituendo il punto $(0, 1, 1)$: $d = 2 \cdot 1 - 1 = 1$.
 
 D: Quale di queste rette di $\R^2$ **coincide** con $r = (1, 2) + \Span((2, 1))$?
 + $(5, 4) + \Span((-4, -2))$
@@ -45240,7 +45463,7 @@ D: Quale di queste rette di $\R^2$ **coincide** con $r = (1, 2) + \Span((2, 1))$
 - $(1, 2) + \Span((1, 2))$
 - $(0, 0) + \Span((2, 1))$
 - $(3, 2) + \Span((2, 1))$
-= Proposizione 23.5: serve la stessa giacitura e che la differenza dei punti stia nella giacitura. $\Span((-4, -2)) = \Span((2, 1))$ e $(5, 4) - (1, 2) = (4, 2) = 2\,(2, 1)$: stessa retta. Per le altre: $(2, 1) - (1, 2) = (1, -1)$, $(0, 0) - (1, 2)$ e $(3, 2) - (1, 2) = (2, 0)$ non sono multipli di $(2, 1)$ (rette parallele distinte); $(1, 2) + \Span((1, 2))$ ha un'altra giacitura.
+= Per la Proposizione 23.5 servono la stessa giacitura e la differenza dei punti nella giacitura. $(-4, -2)$ è un multiplo di $(2, 1)$, e $(5, 4) - (1, 2) = (4, 2) = 2\,(2, 1)$: stessa retta. La risposta più insidiosa è $(1, 2) + \Span((1, 2))$, che parte dallo stesso punto ma va in un'altra direzione. Le altre hanno la direzione giusta ma partono fuori dalla retta: sono parallele distinte.
 
 D: L'intersezione della retta $r = (1, 1, 0) + t\,(1, 0, 2)$ con il piano $\pi = \{x + y + z = 5\}$ è:
 + il punto $(2, 1, 2)$
@@ -45248,7 +45471,7 @@ D: L'intersezione della retta $r = (1, 1, 0) + t\,(1, 0, 2)$ con il piano $\pi =
 - il punto $(1, 1, 0)$
 - tutta la retta $r$
 - vuota
-= Sostituisco $(1 + t, 1, 2t)$: $1 + t + 1 + 2t = 5$, cioè $3t = 3$ e $t = 1$. Il punto è $(2, 1, 2)$; controllo $2 + 1 + 2 = 5$. La direzione $(1, 0, 2)$ ha prodotto scalare $3 \neq 0$ con la normale $(1, 1, 1)$: la retta non è parallela al piano, quindi non può essere né vuota né tutta la retta. Simile agli appelli del 07/02/2025 (domanda 10) e del 03/07/2026 (domanda 8).
+= Sostituisco $(1 + t, 1, 2t)$: $1 + t + 1 + 2t = 5$, cioè $3t = 3$ e $t = 1$. Il punto è $(2, 1, 2)$; controllo: $2 + 1 + 2 = 5$. La risposta più insidiosa è $(3, 1, 4)$: sta sulla retta, con $t = 2$, ma dà $8$, non 5. Il prodotto scalare tra direzione e normale è 3, non zero: l'incontro non può essere né vuoto né tutta la retta. Simile agli appelli del 07/02/2025 (domanda 10) e del 03/07/2026 (domanda 8).
 
 D: L'intersezione delle rette $r = (1, 0, 1) + t\,(1, 1, 0)$ e $r' = (0, 3, -1) + s\,(1, -1, 1)$ è:
 + il punto $(2, 1, 1)$
@@ -45256,7 +45479,7 @@ D: L'intersezione delle rette $r = (1, 0, 1) + t\,(1, 1, 0)$ e $r' = (0, 3, -1) 
 - il punto $(0, 3, -1)$
 - il punto $(3, 2, 1)$
 - vuota: le rette sono sghembe
-= Eguagliando: $1 + t = s$, $t = 3 - s$, $1 = -1 + s$. Dalla terza $s = 2$, dalla prima $t = 1$, e la seconda torna ($1 = 3 - 2$). Il punto è $(2, 1, 1)$. $(1, 0, 1)$ sta solo su $r$, $(0, 3, -1)$ solo su $r'$, $(3, 2, 1)$ è su $r$ ma non su $r'$. Simile agli appelli del 03/06/2025 e del 10/07/2025 (domanda 10).
+= Uguagliando: $1 + t = s$, $t = 3 - s$, $1 = -1 + s$. Dalla terza $s = 2$, dalla prima $t = 1$, e la seconda torna. Il punto è $(2, 1, 1)$. La risposta più insidiosa è $(3, 2, 1)$: sta sulla prima retta, con $t = 2$, ma non sulla seconda. Gli altri due punti sono i punti di partenza, ognuno su una retta sola. Simile agli appelli del 03/06/2025 e del 10/07/2025 (domanda 10).
 
 D: Quale coppia di sottospazi affini di $\R^3$ ha **sicuramente** intersezione non vuota?
 + Due piani i cui vettori normali non sono proporzionali.
@@ -45264,10 +45487,47 @@ D: Quale coppia di sottospazi affini di $\R^3$ ha **sicuramente** intersezione n
 - I piani $\{x + y + z = 1\}$ e $\{x + y + z = 2\}$.
 - Una retta e un piano, quando la direzione della retta sta nella giacitura del piano.
 - Una retta e un punto.
-= Due piani con normali non proporzionali hanno giaciture diverse, che sommano a $\R^3$: per la Proposizione 23.10 sono incidenti. Due rette possono essere sghembe; i due piani con lo stesso $x + y + z$ sono paralleli e disgiunti; una retta parallela a un piano può non toccarlo; un punto può stare fuori da una retta. È l'argomento usato per «dimostrare che $r$ e $\pi_3$ sono incidenti» negli appelli del 24/01/2024 e del 10/07/2024.
+= Due piani con normali non proporzionali hanno giaciture diverse, che sommano a tutto lo spazio: per la Proposizione 23.10 si incontrano. La risposta più insidiosa è «due rette con direzioni non proporzionali»: nel piano si incontrerebbero sempre, ma nello spazio possono essere sghembe. I due piani con lo stesso $x + y + z$ sono paralleli; una retta parallela a un piano può non toccarlo; un punto può stare fuori dalla retta. È l'argomento usato per «dimostrare che la retta e il piano sono incidenti» negli appelli del 24/01/2024 e del 10/07/2024.
 ```
 
 ## Esercizi
+
+::: esercizio base Riscaldamento: un prodotto vettoriale
+Calcola $(1, 1, 0) \times (0, 0, 1)$ e controlla che sia perpendicolare a tutti e due i fattori.
+::: soluzione
+Righe affiancate $(1, 0)$, $(1, 0)$, $(0, 1)$.
+1. Prima componente: $1 \cdot 1 - 0 \cdot 0 = 1$.
+2. Seconda: $1 \cdot 1 - 0 \cdot 0 = 1$, cambiato di segno: $-1$.
+3. Terza: $1 \cdot 0 - 1 \cdot 0 = 0$.
+
+Il risultato è $(1, -1, 0)$. Controllo: con $(1, 1, 0)$ dà $1 - 1 = 0$, con $(0, 0, 1)$ dà 0.
+:::
+
+::: esercizio base Riscaldamento: il punto sta sul piano?
+Il piano è $2x - y + z = 5$. Ci stanno $(2, 0, 1)$ e $(1, 1, 1)$?
+::: soluzione
+1. $(2, 0, 1)$: $4 - 0 + 1 = 5$. Sì.
+2. $(1, 1, 1)$: $2 - 1 + 1 = 2$, non 5. No.
+:::
+
+::: esercizio base Riscaldamento: tre punti di una retta
+Scrivi tre punti della retta $(1, 0, 2) + t(1, 1, -2)$.
+::: soluzione
+1. Con $t = 0$: $(1, 0, 2)$.
+2. Con $t = 1$: $(2, 1, 0)$.
+3. Con $t = -1$: $(0, -1, 4)$.
+:::
+
+::: esercizio base Riscaldamento: quante equazioni?
+Quante equazioni indipendenti servono, nello spazio, per un punto, una retta e un piano? E nel piano per una retta?
+::: soluzione
+Nello spazio servono 3 meno la dimensione.
+1. Un punto: 3 equazioni.
+2. Una retta: 2 equazioni.
+3. Un piano: 1 equazione.
+
+Nel piano servono 2 meno la dimensione: una retta ha 1 equazione.
+:::
 
 ::: esercizio base Prodotto vettoriale e identità di Lagrange
 Siano $v = (2, 1, -1)$ e $w = (1, 0, 3)$. (a) Calcola $v \times w$ e verifica che è ortogonale a $v$ e a $w$. (b) Verifica l'identità di Lagrange. (c) Quanto vale l'area del parallelogramma con lati $v$ e $w$? (d) Verifica che $\det(v \mid w \mid v \times w) > 0$.
@@ -45277,50 +45537,34 @@ Siano $v = (2, 1, -1)$ e $w = (1, 0, 3)$. (a) Calcola $v \times w$ e verifica ch
 - seconda, copro la seconda riga: $2 \cdot 3 - 1 \cdot (-1) = 7$, cambio segno: $-7$;
 - terza, copro la terza riga: $2 \cdot 0 - 1 \cdot 1 = -1$.
 
-Quindi $v \times w = (3, -7, -1)$. Controlli: $\langle v \times w, v \rangle = 6 - 7 + 1 = 0$ e $\langle v \times w, w \rangle = 3 + 0 - 3 = 0$.
+Quindi $v \times w = (3, -7, -1)$. Controlli: con $v$ dà $6 - 7 + 1 = 0$, con $w$ dà $3 + 0 - 3 = 0$.
 
-(b) $\lVert v \times w \rVert^2 = 9 + 49 + 1 = 59$; $\langle v, w \rangle = 2 + 0 - 3 = -1$, al quadrato $1$; $\lVert v \rVert^2 = 4 + 1 + 1 = 6$ e $\lVert w \rVert^2 = 1 + 0 + 9 = 10$. Infatti $59 + 1 = 60 = 6 \cdot 10$.
+(b) La lunghezza al quadrato del prodotto vettoriale è $9 + 49 + 1 = 59$. Il prodotto scalare è $2 + 0 - 3 = -1$, con quadrato 1. Le lunghezze al quadrato di $v$ e $w$ sono $4 + 1 + 1 = 6$ e $1 + 0 + 9 = 10$. Infatti $59 + 1 = 60 = 6 \cdot 10$.
 
-(c) Area $= \lVert v \times w \rVert = \sqrt{59}$.
+(c) L'area è $\sqrt{59}$.
 
-(d) Per la dimostrazione della Proposizione 23.4 il determinante vale $\lVert v \times w \rVert^2 = 59 > 0$. Controllo diretto, sviluppando sulla terza colonna di $\begin{pmatrix} 2 & 1 & 3 \\ 1 & 0 & -7 \\ -1 & 3 & -1 \end{pmatrix}$:
+(d) Per la dimostrazione della Proposizione 23.4 il determinante vale $59$, positivo. Controllo diretto, sviluppando sulla terza colonna di $\begin{pmatrix} 2 & 1 & 3 \\ 1 & 0 & -7 \\ -1 & 3 & -1 \end{pmatrix}$:
 $$3 \cdot (1 \cdot 3 - 0 \cdot (-1)) - (-7) \cdot (2 \cdot 3 - 1 \cdot (-1)) + (-1) \cdot (2 \cdot 0 - 1 \cdot 1) = 9 + 49 + 1 = 59.$$
 :::
 
 ::: esercizio base Il triangolo e il suo piano
 Siano $A = (1, 0, 0)$, $B = (0, 2, 0)$, $C = (0, 0, 3)$. (a) Calcola l'area del triangolo $ABC$. (b) Scrivi l'equazione cartesiana del piano che contiene i tre punti (è il punto 1 dell'esercizio 6 del foglio 4 del tutorato 2025).
 ::: soluzione
-(a) $\overrightarrow{AB} = (-1, 2, 0)$, $\overrightarrow{AC} = (-1, 0, 3)$. Righe affiancate $(-1, -1)$, $(2, 0)$, $(0, 3)$:
+(a) $\overrightarrow{AB} = (-1, 2, 0)$ e $\overrightarrow{AC} = (-1, 0, 3)$. Righe affiancate $(-1, -1)$, $(2, 0)$, $(0, 3)$:
 $$\begin{aligned} \overrightarrow{AB} \times \overrightarrow{AC} &= \big(2 \cdot 3 - 0 \cdot 0,\ -((-1) \cdot 3 - (-1) \cdot 0),\ (-1) \cdot 0 - (-1) \cdot 2\big) \\ &= (6, 3, 2). \end{aligned}$$
-La norma è $\sqrt{36 + 9 + 4} = 7$: il parallelogramma ha area $7$ e il triangolo, che ne è la metà, ha area $\frac 72$.
+È lungo $\sqrt{36 + 9 + 4} = 7$: il parallelogramma ha area 7 e il triangolo, che ne è la metà, ha area $\frac 72$.
 
-(b) Il piano è $A + t\,\overrightarrow{AB} + s\,\overrightarrow{AC}$ e il suo vettore normale è $(6, 3, 2)$. Quindi $6x + 3y + 2z = d$ con $d = 6 \cdot 1 + 0 + 0 = 6$:
+(b) Il piano è $A + t\,\overrightarrow{AB} + s\,\overrightarrow{AC}$, con vettore normale $(6, 3, 2)$. Quindi $6x + 3y + 2z = d$, con $d = 6 \cdot 1 + 0 + 0 = 6$:
 $$\pi = \{6x + 3y + 2z = 6\}.$$
-Controllo: $B$ dà $3 \cdot 2 = 6$, $C$ dà $2 \cdot 3 = 6$. Dividendo per 6 si ottiene la forma $x + \frac y2 + \frac z3 = 1$: i denominatori sono i punti in cui il piano taglia gli assi.
-:::
-
-::: esercizio medio Conti senza coordinate
-Sai soltanto che $v \times w = (1, 2, 3)$. Calcola (a) $w \times v$; (b) $(2v + w) \times (v - 3w)$; (c) $\langle v \times w, v \rangle$; (d) $(v + w) \times (v + w)$.
-::: soluzione
-Usa solo anticommutatività, bilinearità e $u \times u = 0$.
-
-(a) $w \times v = -\,v \times w = (-1, -2, -3)$.
-
-(b) Sviluppo come un prodotto di binomi, **mantenendo l'ordine** dei fattori:
-$$(2v + w) \times (v - 3w) = 2\,v \times v - 6\,v \times w + w \times v - 3\,w \times w.$$
-Ora $v \times v = w \times w = 0$ e $w \times v = -\,v \times w$, quindi il risultato è $-6\,(v \times w) - (v \times w) = -7\,(v \times w) = (-7, -14, -21)$.
-
-(c) $0$: il prodotto vettoriale è ortogonale a $v$ (Proposizione 22.15).
-
-(d) $0$: è il prodotto vettoriale di un vettore con sé stesso.
+Controllo: $B$ dà $3 \cdot 2 = 6$, $C$ dà $2 \cdot 3 = 6$. Dividendo per 6 si ottiene $x + \frac y2 + \frac z3 = 1$: i denominatori sono i punti in cui il piano taglia gli assi.
 :::
 
 ::: esercizio base Da parametrica a cartesiana
 Scrivi l'equazione cartesiana del piano $\pi = (2, 0, 1) + s\,(1, 2, 0) + t\,(0, 1, 1)$.
 ::: soluzione
-Vettore normale: righe affiancate $(1, 0)$, $(2, 1)$, $(0, 1)$, quindi
+Il vettore normale, con le righe affiancate $(1, 0)$, $(2, 1)$, $(0, 1)$:
 $$(1, 2, 0) \times (0, 1, 1) = (2 \cdot 1 - 0 \cdot 1,\ -(1 \cdot 1 - 0 \cdot 0),\ 1 \cdot 1 - 2 \cdot 0) = (2, -1, 1).$$
-Il piano è $2x - y + z = d$, e imponendo il passaggio per $(2, 0, 1)$: $d = 4 - 0 + 1 = 5$. Risultato: $\pi = \{2x - y + z = 5\}$.
+Il piano è $2x - y + z = d$; con il punto $(2, 0, 1)$: $d = 4 - 0 + 1 = 5$. Risultato: $\pi = \{2x - y + z = 5\}$.
 
 Controllo con $s = t = 1$: il punto $(3, 3, 2)$ dà $6 - 3 + 2 = 5$.
 :::
@@ -45330,9 +45574,25 @@ Scrivi in forma parametrica la retta $r = \{x - y + z = 1,\ 2x + y - z = 2\}$ e 
 ::: soluzione
 Sommando le due equazioni: $3x = 3$, cioè $x = 1$. Nella prima: $1 - y + z = 1$, cioè $z = y$. Con $y = t$:
 $$r = \{(1, t, t)\} = (1, 0, 0) + \Span((0, 1, 1)).$$
-Controllo: $(1, -1, 1) \times (2, 1, -1)$ con righe affiancate $(1, 2)$, $(-1, 1)$, $(1, -1)$ dà
+Controllo: $(1, -1, 1) \times (2, 1, -1)$, con le righe affiancate $(1, 2)$, $(-1, 1)$, $(1, -1)$, dà
 $$\big((-1)(-1) - 1 \cdot 1,\ -(1 \cdot (-1) - 2 \cdot 1),\ 1 \cdot 1 - 2 \cdot (-1)\big) = (0, 3, 3),$$
-che è proporzionale a $(0, 1, 1)$. Il punto $(1, 0, 0)$ soddisfa $1 = 1$ e $2 = 2$.
+proporzionale a $(0, 1, 1)$. Il punto $(1, 0, 0)$ soddisfa $1 = 1$ e $2 = 2$.
+:::
+
+::: esercizio medio Conti senza coordinate
+Sai soltanto che $v \times w = (1, 2, 3)$. Calcola (a) $w \times v$; (b) $(2v + w) \times (v - 3w)$; (c) $\langle v \times w, v \rangle$; (d) $(v + w) \times (v + w)$.
+::: soluzione
+Servono solo le regole: scambio = cambio di segno, somme e multipli escono fuori, un vettore per sé stesso dà zero.
+
+(a) $w \times v = -\,v \times w = (-1, -2, -3)$.
+
+(b) Sviluppo come un prodotto di binomi, **mantenendo l'ordine** dei fattori:
+$$(2v + w) \times (v - 3w) = 2\,v \times v - 6\,v \times w + w \times v - 3\,w \times w.$$
+Ora $v \times v$ e $w \times w$ sono zero, e $w \times v = -\,v \times w$. Il risultato è $-7\,(v \times w) = (-7, -14, -21)$.
+
+(c) 0: il prodotto vettoriale è perpendicolare a $v$ (Proposizione 22.15).
+
+(d) 0: è il prodotto vettoriale di un vettore con sé stesso.
 :::
 
 ::: esercizio medio È la stessa retta?
@@ -45341,17 +45601,17 @@ Siano $r_1 = (1, 0, 2) + \Span((1, -1, 1))$, $r_2 = (3, -2, 4) + \Span((-2, 2, -
 Uso la Proposizione 23.5.
 
 - $r_1$ e $r_2$: le giaciture coincidono, perché $(-2, 2, -2) = -2\,(1, -1, 1)$. La differenza dei punti è $(3, -2, 4) - (1, 0, 2) = (2, -2, 2) = 2\,(1, -1, 1)$, che sta nella giacitura. Quindi $r_1 = r_2$.
-- $r_1$ e $r_3$: stessa giacitura, ma $(1, 1, 1) - (1, 0, 2) = (0, 1, -1)$ non è multiplo di $(1, -1, 1)$ (la prima coordinata costringerebbe il multiplo a essere $0$). Quindi $r_3 \neq r_1$: sono rette **parallele distinte**.
+- $r_1$ e $r_3$: stessa giacitura, ma $(1, 1, 1) - (1, 0, 2) = (0, 1, -1)$ non è un multiplo di $(1, -1, 1)$: la prima coordinata obbligherebbe il multiplo a essere zero. Quindi sono rette **parallele distinte**.
 :::
 
 ::: esercizio medio Tre coppie di rette
 Per ogni coppia decidi se le rette si incontrano; in caso affermativo trova il punto. (a) $r = (1, 2, 0) + t\,(1, 0, 1)$ e $r' = (0, 1, 1) + s\,(2, 1, 0)$. (b) L'asse $x$, cioè $r = t\,(1, 0, 0)$, e $r' = (0, 1, 0) + s\,(0, 0, 1)$. (c) $r = t\,(1, 1, 1)$ e $r' = (1, 0, 0) + s\,(2, 2, 2)$.
 ::: soluzione
-(a) Eguaglio: $1 + t = 2s$, $2 = 1 + s$, $t = 1$. Dalla seconda $s = 1$, dalla terza $t = 1$; la prima dà $2 = 2$, torna. Punto comune: $(2, 2, 1)$.
+(a) Uguaglio: $1 + t = 2s$, $2 = 1 + s$, $t = 1$. Dalla seconda $s = 1$, dalla terza $t = 1$; la prima dà $2 = 2$, torna. Il punto comune è $(2, 2, 1)$.
 
-(b) Eguaglio: $t = 0$, $0 = 1$, $0 = s$. La seconda equazione è impossibile: nessun punto comune. Le direzioni $(1, 0, 0)$ e $(0, 0, 1)$ non sono proporzionali, quindi le rette non sono parallele: sono **sghembe**.
+(b) Uguaglio: $t = 0$, $0 = 1$, $0 = s$. La seconda equazione è impossibile: nessun punto comune. Le direzioni $(1, 0, 0)$ e $(0, 0, 1)$ non sono proporzionali, quindi le rette non sono parallele: sono **sghembe**.
 
-(c) Le direzioni sono proporzionali: $(2, 2, 2) = 2\,(1, 1, 1)$. Il punto $(1, 0, 0)$ sta su $r$? Servirebbe $t = 1$ dalla prima coordinata e $t = 0$ dalla seconda: no. Quindi le rette sono **parallele distinte** e non si incontrano.
+(c) Le direzioni sono proporzionali: $(2, 2, 2) = 2\,(1, 1, 1)$. Il punto $(1, 0, 0)$ sta sulla prima retta? Servirebbe $t = 1$ dalla prima coordinata e $t = 0$ dalla seconda: no. Quindi le rette sono **parallele distinte** e non si incontrano.
 :::
 
 ::: esercizio medio Due piani che non si incontrano
@@ -45359,56 +45619,42 @@ Calcola l'intersezione dei piani $\pi_1 = \{x + 2y - z = 1\}$ e $\pi_2 = \{-2x -
 ::: soluzione
 Matrice completa e una mossa di Gauss:
 $$\left(\begin{array}{ccc|c} 1 & 2 & -1 & 1 \\ -2 & -4 & 2 & 3 \end{array}\right) \xrightarrow{R_2 \to R_2 + 2R_1} \left(\begin{array}{ccc|c} 1 & 2 & -1 & 1 \\ 0 & 0 & 0 & 5 \end{array}\right).$$
-La seconda riga dice $0 = 5$: $\rk A = 1$ ma $\rk(A \mid b) = 2$, quindi l'intersezione è **vuota**.
+La seconda riga dice $0 = 5$: $A$ ha rango 1 ma la matrice completa ha rango 2, quindi l'intersezione è **vuota**.
 
-Geometricamente: i vettori normali $(1, 2, -1)$ e $(-2, -4, 2)$ sono proporzionali, quindi i piani hanno la stessa giacitura (sono paralleli). Dividendo la seconda equazione per $-2$ si ottiene $x + 2y - z = -\frac 32$, che è incompatibile con $x + 2y - z = 1$.
+Con le figure: i vettori normali $(1, 2, -1)$ e $(-2, -4, 2)$ sono proporzionali, quindi i piani hanno la stessa giacitura, cioè sono paralleli. Dividendo la seconda equazione per $-2$ viene $x + 2y - z = -\frac 32$, che non può valere insieme a $x + 2y - z = 1$.
 
-Con $-2$ al posto di $3$ la seconda equazione diventa $-2\,(x + 2y - z) = -2$, cioè $x + 2y - z = 1$: è **lo stesso piano**, e l'intersezione è tutto $\pi_1$.
+Con $-2$ al posto di 3 la seconda equazione diventa $-2\,(x + 2y - z) = -2$, cioè $x + 2y - z = 1$: è **lo stesso piano**, e l'intersezione è tutto il primo piano.
 :::
 
 ::: esercizio medio Un piano che dipende da un parametro
 Per ogni $k \in \R$ sia $\pi_k = \{x + ky + z = 1\}$ e sia $r = \{t\,(1, 1, -1) \mid t \in \R\}$. Per quali $k$ la retta $r$ interseca $\pi_k$? In quel caso, in quale punto?
 ::: soluzione
-Sostituisco il punto generico $(t, t, -t)$: $t + kt - t = 1$, cioè $kt = 1$.
+Metto il punto generico $(t, t, -t)$ nell'equazione: $t + kt - t = 1$, cioè $kt = 1$.
 
-- Se $k \neq 0$: $t = \frac 1k$ e il punto è $\left(\frac 1k, \frac 1k, -\frac 1k\right)$. Controllo: $\frac 1k + k \cdot \frac 1k - \frac 1k = 1$.
-- Se $k = 0$: l'equazione diventa $0 = 1$, impossibile. La retta non tocca il piano $\pi_0 = \{x + z = 1\}$.
+- Se $k$ non è zero: $t = \frac 1k$ e il punto è $\left(\frac 1k, \frac 1k, -\frac 1k\right)$. Controllo: $\frac 1k + k \cdot \frac 1k - \frac 1k = 1$.
+- Se $k = 0$: l'equazione diventa $0 = 1$, impossibile. La retta non tocca il piano $\{x + z = 1\}$.
 
-Lettura con le giaciture: il prodotto scalare fra la direzione $(1, 1, -1)$ e la normale $(1, k, 1)$ vale $1 + k - 1 = k$. Per $k \neq 0$ la direzione è fuori dalla giacitura e la Proposizione 23.10 garantisce l'incontro; per $k = 0$ la retta è parallela al piano e, siccome l'origine (che sta su $r$) non soddisfa $x + z = 1$, non lo tocca.
-:::
-
-::: esercizio difficile Il prodotto triplo
-(a) Dimostra che per ogni $u, v, w \in \R^3$ vale $\langle u \times v, w \rangle = \det(u \mid v \mid w)$ (Martelli, Esercizio 9.1.8). (b) Deduci che $u, v, w$ sono linearmente dipendenti se e solo se $\langle u \times v, w \rangle = 0$. (c) Stabilisci se i punti $A = (1, 0, 0)$, $B = (0, 1, 0)$, $C = (0, 0, 1)$, $D = (1, 1, -1)$ stanno su uno stesso piano.
-::: soluzione
-(a) Scrivo $u \times v = (d_1, -d_2, d_3)$, con $d_i$ il minore di $(u \mid v)$ senza la riga $i$. Allora
-$$\langle u \times v, w \rangle = d_1 w_1 - d_2 w_2 + d_3 w_3.$$
-Questo è esattamente lo sviluppo di Laplace di $\det(u \mid v \mid w)$ sulla **terza colonna**: il cofattore di posto $(i, 3)$ è $(-1)^{i+3} d_i$, cioè $+d_1$, $-d_2$, $+d_3$. È lo stesso argomento della dimostrazione della Proposizione 22.15, dove al posto di $w$ c'era $v$.
-
-(b) Tre vettori di $\R^3$ sono dipendenti se e solo se il determinante della matrice che li ha come colonne è zero (lezioni L09–L10). Per (a) quel determinante è $\langle u \times v, w \rangle$.
-
-(c) I quattro punti sono complanari se e solo se $\overrightarrow{AB}$, $\overrightarrow{AC}$, $\overrightarrow{AD}$ sono dipendenti. $\overrightarrow{AB} = (-1, 1, 0)$, $\overrightarrow{AC} = (-1, 0, 1)$, $\overrightarrow{AD} = (0, 1, -1)$. Sviluppo sulla prima riga:
-$$\det\begin{pmatrix} -1 & -1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & -1 \end{pmatrix} = -1 \cdot (0 \cdot (-1) - 1 \cdot 1) - (-1) \cdot (1 \cdot (-1) - 1 \cdot 0) + 0 = 1 - 1 = 0.$$
-Sono complanari: infatti tutti e quattro soddisfano $x + y + z = 1$ (per $D$: $1 + 1 - 1 = 1$).
+Lettura con le giaciture: il prodotto scalare tra la direzione $(1, 1, -1)$ e la normale $(1, k, 1)$ vale $1 + k - 1 = k$. Se $k$ non è zero la direzione è fuori dalla giacitura, e la Proposizione 23.10 garantisce l'incontro. Se $k = 0$ la retta è parallela al piano; siccome l'origine, che sta sulla retta, non soddisfa $x + z = 1$, non lo tocca.
 :::
 
 ::: esercizio esame Tre piani (appello del 15/01/2026, problema 12)
 Siano $\pi_1 = \{x + y + z = 2\}$, $\pi_2 = \{x - y - 2z = 1\}$ e $\pi_3 = \{x + y - z = 0\}$ tre piani in $\R^3$. (1) Trovare il punto $P = \pi_1 \cap \pi_2 \cap \pi_3$. (2) Trovare un vettore $v \in \R^3$ tale che $\pi_1 \cap \pi_2 = P + \Span(v)$. (3) Trovare due vettori $w_1$ e $w_2$ ortogonali tali che $\pi_3 = \Span(w_1, w_2)$. (4) Trovare la proiezione ortogonale di $v$ sul piano $\pi_3$.
 ::: soluzione
-(1) Sottraggo la terza equazione dalla prima: $(x + y + z) - (x + y - z) = 2 - 0$, cioè $2z = 2$ e $z = 1$. Allora la prima dà $x + y = 1$ e la seconda $x - y = 1 + 2z = 3$. Sommando: $2x = 4$, $x = 2$, e quindi $y = -1$. $P = (2, -1, 1)$. Controllo: $2 - 1 + 1 = 2$, $2 + 1 - 2 = 1$, $2 - 1 - 1 = 0$.
+(1) Tolgo la terza equazione dalla prima: $(x + y + z) - (x + y - z) = 2 - 0$, cioè $2z = 2$ e $z = 1$. Allora la prima dà $x + y = 1$ e la seconda $x - y = 1 + 2z = 3$. Sommando: $2x = 4$, $x = 2$, e quindi $y = -1$. $P = (2, -1, 1)$. Controllo: $2 - 1 + 1 = 2$, $2 + 1 - 2 = 1$, $2 - 1 - 1 = 0$.
 
-(2) $\pi_1 \cap \pi_2$ è una retta (i vettori normali $(1, 1, 1)$ e $(1, -1, -2)$ non sono proporzionali) che passa per $P$. La sua direzione è ortogonale a entrambi i vettori normali, quindi posso prendere il loro prodotto vettoriale (righe affiancate $(1, 1)$, $(1, -1)$, $(1, -2)$):
+(2) I primi due piani si incontrano in una retta, perché i vettori normali $(1, 1, 1)$ e $(1, -1, -2)$ non sono proporzionali, e la retta passa per $P$. La sua direzione è perpendicolare a tutti e due i vettori normali: prendo il loro prodotto vettoriale, con le righe affiancate $(1, 1)$, $(1, -1)$, $(1, -2)$:
 $$v = \big(1 \cdot (-2) - 1 \cdot (-1),\ -(1 \cdot (-2) - 1 \cdot 1),\ 1 \cdot (-1) - 1 \cdot 1\big) = (-1, 3, -2).$$
-Controllo: $-1 + 3 - 2 = 0$ e $-1 - 3 + 4 = 0$. Quindi $\pi_1 \cap \pi_2 = (2, -1, 1) + \Span((-1, 3, -2))$.
+Controllo: $-1 + 3 - 2 = 0$ e $-1 - 3 + 4 = 0$. Quindi la retta è $(2, -1, 1) + \Span((-1, 3, -2))$.
 
-(3) $\pi_3$ passa per l'origine, quindi è un sottospazio vettoriale. Scelgo un vettore che soddisfa $x + y - z = 0$, per esempio $w_1 = (1, -1, 0)$. Per il secondo mi serve un vettore di $\pi_3$ (ortogonale alla normale $n_3 = (1, 1, -1)$) e ortogonale a $w_1$: il prodotto vettoriale $n_3 \times w_1$ fa proprio questo. Righe affiancate $(1, 1)$, $(1, -1)$, $(-1, 0)$:
+(3) Il terzo piano passa per l'origine, quindi è un sottospazio vettoriale. Scelgo un vettore che soddisfa $x + y - z = 0$, per esempio $w_1 = (1, -1, 0)$. Per il secondo serve un vettore del piano, cioè perpendicolare alla normale $n_3 = (1, 1, -1)$, e perpendicolare a $w_1$: il prodotto vettoriale $n_3 \times w_1$ fa proprio questo. Con le righe affiancate $(1, 1)$, $(1, -1)$, $(-1, 0)$:
 $$\begin{aligned} n_3 \times w_1 &= \big(1 \cdot 0 - (-1)(-1),\ -(1 \cdot 0 - 1 \cdot (-1)),\ 1 \cdot (-1) - 1 \cdot 1\big) \\ &= (-1, -1, -2). \end{aligned}$$
-Prendo $w_2 = (1, 1, 2)$. Controlli: $1 + 1 - 2 = 0$ (sta in $\pi_3$) e $\langle w_1, w_2 \rangle = 1 - 1 + 0 = 0$.
+Prendo $w_2 = (1, 1, 2)$. Controlli: $1 + 1 - 2 = 0$, quindi sta nel piano, e $\langle w_1, w_2 \rangle = 1 - 1 + 0 = 0$.
 
-(4) Con la base ortogonale $w_1, w_2$ la proiezione è (lezione L21)
+(4) Con la base ortogonale $w_1, w_2$ l'ombra è (lezione L21)
 $$p_{\pi_3}(v) = \frac{\langle v, w_1 \rangle}{\langle w_1, w_1 \rangle} w_1 + \frac{\langle v, w_2 \rangle}{\langle w_2, w_2 \rangle} w_2.$$
 $\langle v, w_1 \rangle = -1 - 3 + 0 = -4$ e $\langle w_1, w_1 \rangle = 2$; $\langle v, w_2 \rangle = -1 + 3 - 4 = -2$ e $\langle w_2, w_2 \rangle = 6$. Quindi
 $$p_{\pi_3}(v) = -2\,(1, -1, 0) - \tfrac 13\,(1, 1, 2) = \left(-\tfrac 73,\ \tfrac 53,\ -\tfrac 23\right).$$
-Controllo: $v - p_{\pi_3}(v) = \left(\frac 43, \frac 43, -\frac 43\right) = \frac 43\,(1, 1, -1)$ è proporzionale alla normale di $\pi_3$, come deve essere.
+Controllo: $v - p_{\pi_3}(v) = \left(\frac 43, \frac 43, -\frac 43\right) = \frac 43\,(1, 1, -1)$ è proporzionale alla normale del terzo piano, come deve essere.
 :::
 
 ::: esercizio esame Una retta, due piani e un punto d'incontro
@@ -45416,111 +45662,125 @@ Siano $\pi_1 = \{x + y - z = 2\}$ e $\pi_2 = \{x - y + 2z = 1\}$. (1) Scrivi la 
 ::: soluzione
 (1) Sommo le equazioni: $2x + z = 3$, quindi $z = 3 - 2x$. Dalla prima $y = 2 - x + z = 2 - x + 3 - 2x = 5 - 3x$. Con $x = t$:
 $$r = \{(t,\ 5 - 3t,\ 3 - 2t)\} = (0, 5, 3) + \Span((1, -3, -2)).$$
-Controlli: $(0, 5, 3)$ dà $0 + 5 - 3 = 2$ e $0 - 5 + 6 = 1$; inoltre $(1, 1, -1) \times (1, -1, 2) = (1 \cdot 2 - (-1)(-1),\ -(1 \cdot 2 - (-1) \cdot 1),\ 1 \cdot (-1) - 1 \cdot 1) = (1, -3, -2)$.
+Controlli: $(0, 5, 3)$ dà $0 + 5 - 3 = 2$ e $0 - 5 + 6 = 1$. Inoltre $(1, 1, -1) \times (1, -1, 2) = (1 \cdot 2 - (-1)(-1),\ -(1 \cdot 2 - (-1) \cdot 1),\ 1 \cdot (-1) - 1 \cdot 1) = (1, -3, -2)$.
 
-(2) Il prodotto scalare fra la direzione $(1, -3, -2)$ e la normale $(1, 1, 1)$ di $\pi_3$ vale $1 - 3 - 2 = -4 \neq 0$: la direzione non sta nella giacitura di $\pi_3$, quindi $\operatorname{giac}(r) + \operatorname{giac}(\pi_3) = \R^3$ e, per la Proposizione 23.10, $r$ e $\pi_3$ sono incidenti.
+(2) Il prodotto scalare tra la direzione $(1, -3, -2)$ e la normale $(1, 1, 1)$ del terzo piano vale $1 - 3 - 2 = -4$, non zero: la direzione non sta nella giacitura del piano. Quindi le due giaciture sommano a tutto lo spazio e, per la Proposizione 23.10, la retta e il piano si incontrano.
 
-(3) Sostituisco il punto generico: $t + (5 - 3t) + (3 - 2t) = 0$, cioè $8 - 4t = 0$ e $t = 2$. Il punto è $Q = (2, -1, -1)$. Controllo: $2 - 1 - 1 = 0$, e $Q$ sta anche su $\pi_1$ ($2 - 1 + 1 = 2$) e su $\pi_2$ ($2 + 1 - 2 = 1$).
+(3) Metto il punto generico nell'equazione: $t + (5 - 3t) + (3 - 2t) = 0$, cioè $8 - 4t = 0$ e $t = 2$. Il punto è $Q = (2, -1, -1)$. Controllo: $2 - 1 - 1 = 0$, e $Q$ sta anche sui primi due piani ($2 - 1 + 1 = 2$ e $2 + 1 - 2 = 1$).
 
-(4) Il piano contiene l'origine $O$, il punto $P = (0, 5, 3)$ e la direzione $v = (1, -3, -2)$: è $O + s\,\overrightarrow{OP} + t\,v$. Vettore normale (righe affiancate $(1, 0)$, $(-3, 5)$, $(-2, 3)$):
+(4) Il piano contiene l'origine $O$, il punto $P = (0, 5, 3)$ e la direzione $v = (1, -3, -2)$: è $O + s\,\overrightarrow{OP} + t\,v$. Il vettore normale, con le righe affiancate $(1, 0)$, $(-3, 5)$, $(-2, 3)$:
 $$\begin{aligned} v \times \overrightarrow{OP} &= \big((-3) \cdot 3 - (-2) \cdot 5,\ -(1 \cdot 3 - (-2) \cdot 0),\ 1 \cdot 5 - (-3) \cdot 0\big) \\ &= (1, -3, 5). \end{aligned}$$
 Passa per l'origine, quindi $d = 0$: il piano è $x - 3y + 5z = 0$. Controllo: $P$ dà $-15 + 15 = 0$ e $Q$ dà $2 + 3 - 5 = 0$.
+:::
+
+::: esercizio difficile Il prodotto triplo
+(a) Dimostra che per ogni $u, v, w \in \R^3$ vale $\langle u \times v, w \rangle = \det(u \mid v \mid w)$ (Martelli, Esercizio 9.1.8). (b) Deduci che $u, v, w$ sono linearmente dipendenti se e solo se $\langle u \times v, w \rangle = 0$. (c) Stabilisci se i punti $A = (1, 0, 0)$, $B = (0, 1, 0)$, $C = (0, 0, 1)$, $D = (1, 1, -1)$ stanno su uno stesso piano.
+::: soluzione
+(a) Scrivo $u \times v = (d_1, -d_2, d_3)$, con $d_i$ il minore di $(u \mid v)$ senza la riga $i$. Allora
+$$\langle u \times v, w \rangle = d_1 w_1 - d_2 w_2 + d_3 w_3.$$
+È esattamente lo sviluppo di Laplace di $\det(u \mid v \mid w)$ sulla **terza colonna**: il cofattore di posto $(i, 3)$ è $(-1)^{i+3} d_i$, cioè $+d_1$, $-d_2$, $+d_3$. È lo stesso argomento della dimostrazione della Proposizione 22.15, dove al posto di $w$ c'era $v$.
+
+(b) Tre vettori dello spazio sono dipendenti esattamente quando il determinante della matrice che li ha in colonna è zero (lezioni L09–L10). Per (a) quel determinante è $\langle u \times v, w \rangle$.
+
+(c) I quattro punti stanno su un piano esattamente quando $\overrightarrow{AB}$, $\overrightarrow{AC}$, $\overrightarrow{AD}$ sono dipendenti. $\overrightarrow{AB} = (-1, 1, 0)$, $\overrightarrow{AC} = (-1, 0, 1)$, $\overrightarrow{AD} = (0, 1, -1)$. Sviluppo sulla prima riga:
+$$\det\begin{pmatrix} -1 & -1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & -1 \end{pmatrix} = -1 \cdot (0 \cdot (-1) - 1 \cdot 1) - (-1) \cdot (1 \cdot (-1) - 1 \cdot 0) + 0 = 1 - 1 = 0.$$
+Stanno su un piano: infatti tutti e quattro soddisfano $x + y + z = 1$ (per $D$: $1 + 1 - 1 = 1$).
 :::
 
 ## Domande di ripasso
 
 ::: domanda Che cosa dice l'identità di Lagrange?
-$\lVert v \times w \rVert^2 + \langle v, w \rangle^2 = \lVert v \rVert^2 \lVert w \rVert^2$ per ogni $v, w \in \R^3$ (Proposizione 23.1). Si dimostra sviluppando i quadrati.
+La lunghezza al quadrato del prodotto vettoriale più il quadrato del prodotto scalare fa il prodotto delle lunghezze al quadrato (Proposizione 23.1). Si dimostra sviluppando i quadrati.
 :::
 
 ::: domanda Perché la lunghezza di $v \times w$ è l'area del parallelogramma con lati $v$ e $w$?
-Perché, sostituendo $\langle v, w \rangle = \lVert v \rVert \lVert w \rVert \cos\vartheta$ nell'identità di Lagrange, si ottiene $\lVert v \times w \rVert^2 = \lVert v \rVert^2 \lVert w \rVert^2 \sin^2\vartheta$; con $\sin\vartheta \ge 0$ (perché $\vartheta \in [0, \pi]$) resta $\lVert v \rVert \lVert w \rVert \sin\vartheta$, che è base per altezza.
+Mettendo $\langle v, w \rangle = \lVert v \rVert \lVert w \rVert \cos\vartheta$ nell'identità di Lagrange viene $\lVert v \times w \rVert^2 = \lVert v \rVert^2 \lVert w \rVert^2 \sin^2\vartheta$. Il seno non è negativo, perché l'angolo sta tra 0 e $\pi$; quindi resta $\lVert v \rVert \lVert w \rVert \sin\vartheta$, che è base per altezza.
 :::
 
 ::: domanda Come si sceglie il verso di $v \times w$? Che cos'è una base positiva?
-Con la regola della mano destra: pollice su $v$, indice su $w$, il medio indica $v \times w$. In formule: se $v, w$ sono indipendenti, $\det(v \mid w \mid v \times w) > 0$, cioè $v, w, v \times w$ è una base positiva (Proposizione 23.4). Il determinante vale proprio $\lVert v \times w \rVert^2$.
+Con la regola della mano destra: pollice sul primo vettore, indice sul secondo, il medio dà il verso. In formule: se i due vettori sono indipendenti, i due vettori e il loro prodotto, in colonna, danno un determinante positivo (Proposizione 23.4). Quel determinante vale proprio la lunghezza al quadrato del prodotto vettoriale.
 :::
 
 ::: domanda Il prodotto vettoriale è commutativo? Associativo? Bilineare?
-Non è commutativo ma anticommutativo: $v \times w = -\,w \times v$. Non è associativo: $(e_1 \times e_2) \times e_2 = -e_1$ ma $e_1 \times (e_2 \times e_2) = 0$. È bilineare: lineare in ciascuno dei due fattori.
+Scambiando i fattori cambia segno: $v \times w = -\,w \times v$. Le parentesi contano: $(e_1 \times e_2) \times e_2 = -e_1$, ma $e_1 \times (e_2 \times e_2) = 0$. Somme e multipli escono fuori in ciascuno dei due fattori.
 :::
 
 ::: domanda Che differenza c'è tra forma cartesiana e forma parametrica?
-La cartesiana (implicita) descrive il sottospazio con equazioni: serve a decidere se un punto ci sta. La parametrica (esplicita) lo descrive con un punto e dei generatori, al variare di parametri: serve a produrre i punti e a leggere la dimensione.
+La cartesiana è una prova: le equazioni dicono chi ci sta dentro, e servono a controllare se un punto ci sta. La parametrica è una ricetta: un punto e dei generatori, al variare dei parametri, e serve a produrre i punti e a leggere la dimensione.
 :::
 
 ::: domanda Che cos'è un sottospazio affine? E la sua giacitura?
-Un sottoinsieme del tipo $x + W = \{x + v \mid v \in W\}$, con $W$ sottospazio vettoriale. $W$ è la giacitura, determinata dal sottospazio (sono le differenze di due suoi punti); $x$ è un suo punto qualsiasi. La dimensione è $\dim W$.
+Un sottospazio vettoriale spostato: $x + W$, cioè tutti i punti $x + v$ con $v$ in $W$. $W$ è la giacitura, fatta delle differenze tra due punti dell'insieme; $x$ è un suo punto qualsiasi. La dimensione è quella di $W$.
 :::
 
 ::: domanda Quando $x + W$ e $x' + W'$ sono lo stesso sottospazio affine?
-Se e solo se $W = W'$ e $x - x' \in W$ (Proposizione 23.5).
+Esattamente quando $W = W'$ e $x - x'$ sta in $W$ (Proposizione 23.5).
 :::
 
 ::: domanda Quanto vale la dimensione delle soluzioni di $Ax = b$?
-Se $\rk A = \rk(A \mid b)$, le soluzioni formano un sottospazio affine di dimensione $n - \rk A$, dove $n$ è il numero di incognite; se $\rk A < \rk(A \mid b)$ non ci sono soluzioni (Rouché–Capelli).
+Se $A$ e la matrice completa hanno lo stesso rango, le soluzioni formano un sottospazio affine di dimensione «numero delle incognite meno rango di $A$». Se la matrice completa ha rango più grande, non ci sono soluzioni (Rouché–Capelli).
 :::
 
-::: domanda Come si passa dalla forma parametrica alla cartesiana di un piano di $\R^3$, e perché funziona?
-Si calcola $(a, b, c) = v_1 \times v_2$ e si trova $d$ sostituendo $P_0$ in $ax + by + cz = d$. Funziona perché $v_1 \times v_2$ è ortogonale a $v_1$ e $v_2$, quindi $\langle v_1 \times v_2, P \rangle$ è lo stesso numero per tutti i punti $P = P_0 + t v_1 + s v_2$.
+::: domanda Come si passa dalla forma parametrica alla cartesiana di un piano dello spazio, e perché funziona?
+Si calcola il prodotto vettoriale dei due vettori della ricetta, che dà i numeri $a, b, c$, e si trova $d$ mettendo il punto della ricetta in $ax + by + cz = d$. Funziona perché il prodotto vettoriale è perpendicolare ai due vettori: il suo prodotto scalare con ogni punto del piano è sempre lo stesso numero.
 :::
 
-::: domanda Quante equazioni servono per una retta di $\R^3$? E per un piano?
+::: domanda Quante equazioni servono per una retta dello spazio? E per un piano?
 Una retta ha dimensione 1: servono $3 - 1 = 2$ equazioni indipendenti. Un piano ha dimensione 2: basta $3 - 2 = 1$ equazione.
 :::
 
 ::: domanda Come si calcola un'intersezione nei tre casi?
-Cartesiana con cartesiana: si uniscono le equazioni. Cartesiana con parametrica: si sostituisce il punto generico nelle equazioni. Parametrica con parametrica: si eguagliano i punti generici (con parametri di nomi diversi) e si risolve il sistema, controllando tutte le equazioni.
+Due prove: si uniscono le equazioni. Una prova e una ricetta: si mette il punto generico della ricetta nelle equazioni. Due ricette: si uguagliano i punti generici, con parametri di nomi diversi, e si risolve il sistema controllando tutte le equazioni.
 :::
 
 ::: domanda Perché l'intersezione di due sottospazi affini, se non è vuota, è un sottospazio affine?
-Se $x \in S \cap S'$, si scrive $S = x + W$ e $S' = x + W'$; allora $S \cap S' = x + (W \cap W')$, e $W \cap W'$ è un sottospazio vettoriale.
+Se $x$ è un punto comune, si scrivono tutti e due a partire da $x$: $x + W$ e $x + W'$. Allora l'intersezione è $x + (W \cap W')$, e $W \cap W'$ è un sottospazio vettoriale.
 :::
 
-::: domanda Che cosa dice la Proposizione 23.10? Vale il viceversa?
-Se $\operatorname{giac}(S) + \operatorname{giac}(S') = \R^n$, allora $S$ e $S'$ si incontrano. Il viceversa è falso: due rette di $\R^3$ possono incontrarsi anche se le loro giaciture sommano soltanto a un piano (per esempio gli assi $x$ e $y$).
+::: domanda Che cosa dice la Proposizione 23.10? Vale il contrario?
+Se le due giaciture sommano a tutto lo spazio, i due insiemi si incontrano. Il contrario è falso: due rette dello spazio possono incontrarsi anche se le loro giaciture sommano solo a un piano, come l'asse $x$ e l'asse $y$.
 :::
 
 ::: domanda Che cosa sono due rette sghembe?
-Due rette dello spazio che non si incontrano e non sono parallele (direzioni non proporzionali). Nel piano non esistono.
+Due rette dello spazio che non si incontrano e non sono parallele, cioè con direzioni non proporzionali. Nel piano non esistono.
 :::
 
 ## Glossario
 
 ```glossario
-Prodotto vettoriale | Il vettore $v \times w = (v_2 w_3 - v_3 w_2,\ v_3 w_1 - v_1 w_3,\ v_1 w_2 - v_2 w_1)$, definito solo in $\R^3$.
+Prodotto vettoriale | Il vettore $v \times w = (v_2 w_3 - v_3 w_2,\ v_3 w_1 - v_1 w_3,\ v_1 w_2 - v_2 w_1)$, definito solo nello spazio a tre dimensioni.
 Identità di Lagrange | $\lVert v \times w \rVert^2 + \langle v, w \rangle^2 = \lVert v \rVert^2 \lVert w \rVert^2$ (Proposizione 23.1).
-Parallelogramma con lati $v$ e $w$ | La figura con vertici $0$, $v$, $v + w$, $w$; la sua area è $\lVert v \times w \rVert = \lVert v \rVert \lVert w \rVert \sin\vartheta$.
-Base positiva | Base $u_1, u_2, u_3$ di $\R^3$ con $\det(u_1 \mid u_2 \mid u_3) > 0$; per esempio $v, w, v \times w$ con $v, w$ indipendenti.
-Regola della mano destra | Pollice su $v$, indice su $w$: il medio indica il verso di $v \times w$.
-Anticommutatività | $v \times w = -\,w \times v$; in particolare $v \times v = 0$.
-Bilinearità | Linearità in ciascuno dei due fattori: $(v + v') \times w = v \times w + v' \times w$, $(\lambda v) \times w = \lambda\,(v \times w)$, e lo stesso a destra.
-Forma cartesiana | Descrizione di un sottospazio come insieme delle soluzioni di un sistema di equazioni lineari (implicita).
-Forma parametrica | Descrizione di un sottospazio con un punto e dei generatori, al variare di parametri (esplicita).
-Sottospazio affine | Un insieme $x + W = \{x + v \mid v \in W\}$ con $W$ sottospazio vettoriale: un sottospazio vettoriale traslato.
-Giacitura | Il sottospazio vettoriale $W = \operatorname{giac}(S)$ di un sottospazio affine $S = x + W$: l'insieme delle differenze di due punti di $S$.
-Dimensione di un sottospazio affine | La dimensione della giacitura; per $\{Ax = b\}$ non vuoto vale $n - \rk A$.
-Vettore normale | Per il piano $ax + by + cz = d$, il vettore $(a, b, c)$, ortogonale a tutti i vettori della giacitura.
-Iperpiano | Sottospazio affine di dimensione $n - 1$ in $\R^n$, del tipo ${}^t w\, x + b = 0$ con $w \neq 0$.
-Classificatore lineare | Regola che assegna a un vettore di dati $x$ una classe secondo il segno di ${}^t w\, x + b$.
-Sottospazi incidenti | Due sottospazi affini con intersezione non vuota.
-Sottospazi paralleli | Due sottospazi affini in cui la giacitura di uno è contenuta in quella dell'altro (Martelli, §9.2.5).
+Parallelogramma con lati $v$ e $w$ | La figura con vertici $0$, $v$, $v + w$, $w$; la sua area è la lunghezza di $v \times w$.
+Base positiva | Una base di tre vettori che, in colonna, danno un determinante positivo; per esempio $v, w, v \times w$ con $v, w$ indipendenti.
+Regola della mano destra | Pollice sul primo vettore, indice sul secondo: il medio indica il verso del prodotto vettoriale.
+Anticommutatività | Scambiare i fattori cambia il segno: $v \times w = -\,w \times v$; in particolare $v \times v = 0$.
+Bilinearità | Somme e multipli escono fuori, in ciascuno dei due fattori.
+Forma cartesiana | La descrizione di un sottospazio con equazioni: una prova che dice chi ci sta dentro.
+Forma parametrica | La descrizione di un sottospazio con un punto e dei generatori: una ricetta che produce i punti.
+Sottospazio affine | Un sottospazio vettoriale spostato, $x + W$: tutti i punti $x + v$ con $v$ in $W$.
+Giacitura | Il sottospazio vettoriale $W$ di un sottospazio affine $x + W$: le direzioni in cui ci si muove restando dentro.
+Dimensione di un sottospazio affine | La dimensione della giacitura; per le soluzioni di $Ax = b$, numero delle incognite meno rango di $A$.
+Vettore normale | Per il piano $ax + by + cz = d$, il vettore $(a, b, c)$, perpendicolare a tutte le direzioni del piano.
+Iperpiano | Un sottospazio affine di dimensione $n - 1$, del tipo ${}^t w\, x + b = 0$ con $w$ non nullo.
+Classificatore lineare | Una regola che sceglie la classe di un vettore di dati secondo il segno di ${}^t w\, x + b$.
+Sottospazi incidenti | Due sottospazi affini con almeno un punto in comune.
+Sottospazi paralleli | Due sottospazi affini in cui la giacitura di uno sta dentro quella dell'altro (Martelli, §9.2.5).
 Rette sghembe | Due rette dello spazio né incidenti né parallele.
 ```
 
 ## Checklist
 
 ```checklist
-- So calcolare $v \times w$ con lo schema «copri la riga» senza sbagliare il segno della componente centrale, e so controllare il risultato con i prodotti scalari.
-- So enunciare l'identità di Lagrange e usarla per trovare $\lVert v \times w \rVert$ da norme e prodotto scalare.
+- So calcolare $v \times w$ con lo schema «copri la riga» senza sbagliare il segno al centro, e controllo il risultato con i prodotti scalari.
+- So enunciare l'identità di Lagrange e usarla per trovare la lunghezza del prodotto vettoriale.
 - So calcolare l'area di un parallelogramma e di un triangolo nello spazio con il prodotto vettoriale.
-- So spiegare la regola della mano destra e che cosa vuol dire che $v, w, v \times w$ è una base positiva.
-- So usare anticommutatività e bilinearità, e so che il prodotto vettoriale non è associativo.
-- So passare dalla forma cartesiana alla parametrica (Gauss) e dalla parametrica alla cartesiana (prodotto vettoriale per i piani, eliminazione del parametro per le rette).
-- So riconoscere quando due scritture $x + W$ e $x' + W'$ descrivono lo stesso sottospazio affine.
-- So calcolare la dimensione di un sottospazio affine con Rouché–Capelli e so quante equazioni servono per rette e piani di $\R^3$.
-- So intersecare due sottospazi nei tre casi (cartesiana e cartesiana, cartesiana e parametrica, parametrica e parametrica) e controllo sempre il risultato.
-- So usare la Proposizione 23.10 per dimostrare che una retta e un piano sono incidenti, e so che il viceversa è falso.
+- So spiegare la regola della mano destra e che cosa vuol dire base positiva.
+- So usare le regole di calcolo del prodotto vettoriale, e so che le parentesi contano.
+- So passare dalla prova alla ricetta (Gauss) e dalla ricetta alla prova (prodotto vettoriale per i piani, eliminazione del parametro per le rette).
+- So riconoscere quando due scritture $x + W$ e $x' + W'$ descrivono lo stesso insieme.
+- So calcolare la dimensione di un sottospazio affine con Rouché–Capelli e so quante equazioni servono per rette e piani dello spazio.
+- So intersecare due sottospazi nei tre casi e controllo sempre il risultato.
+- So usare la Proposizione 23.10 per dimostrare che una retta e un piano si incontrano, e so che il contrario è falso.
 ```
 
 ## Fonti
@@ -45528,7 +45788,8 @@ Rette sghembe | Due rette dello spazio né incidenti né parallele.
 - **Dispense 2026 del corso** (Buzano, Radeschi), lezione 23 «Lo spazio euclideo II», pp. 116–121: sezioni 23.A (altre proprietà del prodotto vettoriale), 23.B (forma cartesiana e parametrica), 23.C (spazi affini) e 23.D (intersezioni), seguite in ordine con la numerazione originale (Proposizioni 23.1, 23.2, 23.4, 23.5, 23.10, Corollario 23.3, Definizione 23.7, Esempi 23.6, 23.8, 23.9). Il richiamo iniziale viene dalla lezione 22 (Definizione 22.14, Proposizioni 22.15 e 22.16, Corollario 22.17, pp. 114–115) e dalla lezione 12 (Definizione 12.5, Teorema 12.6). Questa lezione delle dispense non ha una sezione di esercizi.
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §9.1 (prodotto vettoriale; da lì vengono le dimostrazioni delle Proposizioni 23.2 e 23.4 e l'Esercizio 9.1.8 sul prodotto triplo) e §9.2 (sottospazi affini, intersezioni con la dimostrazione della Proposizione 9.2.7 = 23.10, posizioni reciproche).
 - **Appelli d'esame** (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): testo riportato del 07/02/2025 (domanda 10) e del 15/01/2026 (problema 12), con soluzioni scritte per questi appunti; citati per tipo di domanda gli appelli del 24/01/2024, 10/07/2024, 06/09/2024, 03/06/2025, 10/07/2025, 02/09/2025 e 03/07/2026. Foglio 4 del tutorato 2025 (esercizio 6).
-- Le parti **«Oltre le dispense»** (dimostrazione della Proposizione 23.5, rette da parametrica a cartesiana, piano per tre punti, posizioni reciproche, esempi ed esercizi aggiuntivi) sono aggiunte di questi appunti per collegare la lezione al libro e all'esame.
+- Le parti **«Oltre le dispense»** (dimostrazione della Proposizione 23.5, rette dalla ricetta alla prova, piano per tre punti, posizioni reciproche, esempi ed esercizi aggiuntivi) servono a collegare la lezione al libro e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---

@@ -18274,16 +18274,15 @@ descrizione: >-
   modulo e argomento di un numero complesso, prodotto e inverso in forma polare, identità di Eulero, potenze e
   radici n-esime, con un ripasso di seno e coseno, quiz nello stile dell'esame ed esercizi svolti.
 lede: >-
-  Un numero complesso diverso da zero si può descrivere con la sua distanza dall'origine e con un angolo:
-  $z = re^{i\vartheta}$. In questa forma il prodotto diventa semplice (i moduli si moltiplicano, gli angoli si
-  sommano), e bastano poche righe per calcolare potenze come $(1 + i)^{10}$ e tutte le soluzioni di $z^n = z_0$. In nove
-  appelli su quindici la domanda sui numeri complessi era proprio su questi argomenti.
+  Un altro modo di dire dove sta un numero complesso: invece di «quanto a destra e quanto in su», una distanza e una
+  direzione. Scritti così, i prodotti diventano giri e allungamenti, e le potenze alte e le radici si calcolano in
+  poche righe, senza calcolatrice. È l'argomento della domanda sui numeri complessi in quasi due appelli su tre.
 materiale: dispense
 scheda:
   Dispense: lezione 3 · pp. 10–14
   Libro: Martelli, §1.4.4–1.4.6 (pp. 27–31)
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 120–150 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 3 «Numeri complessi II»; B. Martelli, Geometria e algebra lineare, §1.4.4–1.4.6
 appunti_html: appunti/MDAG/L03_numeri_complessi_2.html
@@ -18292,41 +18291,70 @@ genera_html: true
 
 ## In breve
 
-- Un punto $(x, y) \neq (0, 0)$ del piano si può descrivere con le **coordinate polari** $(r, \vartheta)$: $r$ è la distanza dall'origine, $\vartheta$ l'angolo con l'asse reale. Si passa dall'una all'altra descrizione con $x = r\cos\vartheta$ e $y = r\sin\vartheta$.
-- Un numero complesso $z \neq 0$ si scrive $z = r(\cos\vartheta + i\sin\vartheta) = re^{i\vartheta}$, dove $e^{i\vartheta}$ è **un simbolo** per $\cos\vartheta + i\sin\vartheta$. Il numero $r = |z|$ è il **modulo**, l'angolo $\vartheta$ è l'**argomento** (o fase).
-- Vale $e^{i(\vartheta + \varphi)} = e^{i\vartheta}e^{i\varphi}$ (Proposizione 3.2). Quindi nel **prodotto** di due numeri complessi **i moduli si moltiplicano e gli argomenti si sommano**.
-- L'inverso di $re^{i\vartheta}$ è $r^{-1}e^{-i\vartheta}$; il coniugato è $re^{-i\vartheta}$, cioè il simmetrico rispetto all'asse reale.
-- Due forme polari $r_0e^{i\vartheta_0}$ e $r_1e^{i\vartheta_1}$ danno lo stesso numero se e solo se $r_0 = r_1$ e gli angoli differiscono per un multiplo di $2\pi$.
-- I numeri $e^{i\vartheta}$ formano la **circonferenza unitaria**; in particolare $e^{i\pi} = -1$ (identità di Eulero) ed $e^{2\pi i} = 1$.
-- **Potenze**: $\left(re^{i\vartheta}\right)^n = r^ne^{in\vartheta}$. **Radici**: se $z_0 = r_0e^{i\vartheta_0} \neq 0$, l'equazione $z^n = z_0$ ha esattamente $n$ soluzioni, di modulo $\sqrt[n]{r_0}$ e argomenti $\frac{\vartheta_0}n + \frac{2k\pi}n$ per $k = 0, 1, \dots, n - 1$: i vertici di un poligono regolare con $n$ lati.
-- All'esame: potenze alte, prodotti in forma polare e radici $n$-esime sono stati la domanda sui complessi in 9 appelli su 15 dal 2024 al 2026.
+- Un punto del piano si può indicare in due modi: «3 passi a destra e 4 in su», oppure «guarda in quella direzione e fai 5 passi». Il secondo modo usa una **distanza** e un **angolo**: sono le **coordinate polari**.
+- Un numero complesso scritto con distanza e angolo è in **forma polare**. La distanza si chiama **modulo**, l'angolo si chiama **argomento**.
+- Le dispense usano un'abbreviazione: $e^{i\vartheta}$ vuol dire «il punto sul cerchio di raggio 1 all'angolo $\vartheta$».
+- Per **moltiplicare** due numeri complessi in forma polare: le distanze si moltiplicano, gli angoli si sommano. Moltiplicare per $i$ vuol dire girare di un quarto di giro.
+- Una **potenza** è un prodotto ripetuto: la distanza si eleva, l'angolo si moltiplica. Le **radici** $n$-esime di un numero sono sempre $n$ punti, messi in cerchio a distanze uguali.
+- All'esame: potenze alte, prodotti in forma polare e radici sono stati la domanda sui complessi in 9 appelli su 15 dal 2024 al 2026.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
 ## Ripasso: angoli, seno e coseno (oltre le dispense)
 
-Le dispense usano seno, coseno e angoli in radianti senza richiamarli. Qui trovi tutto quello che serve, e niente di più.
+Le dispense usano angoli, seno e coseno senza spiegarli: li danno per noti dalla scuola. Qui c'è tutto quello che serve per questa lezione, e niente di più. Se li ricordi bene, salta alla sezione dopo.
 
 ### Gli angoli in radianti
 
-In matematica un angolo si misura in **radianti**: la misura di un angolo è la **lunghezza dell'arco** che l'angolo taglia sulla circonferenza di raggio $1$ centrata nel vertice. Il giro completo è lungo quanto tutta la circonferenza, $2\pi \cdot 1 = 2\pi$. Quindi $360° = 2\pi$, $180° = \pi$ e in generale
+Immagina una pista circolare con il raggio lungo 1 metro. Parti da un punto e cammini lungo la pista. Quanta strada fai in un giro completo?
 
-$$\vartheta_{\text{radianti}} = \vartheta_{\text{gradi}} \cdot \frac{\pi}{180}.$$
+La lunghezza di una circonferenza è $2\pi$ volte il raggio. Qui il raggio è 1, quindi un giro completo è lungo $2\pi$ metri, circa 6,28.
+
+> [!RIPASSO] il numero $\pi$
+> $\pi$ si legge «pi greco». È il numero che dice quante volte il diametro di un cerchio ci sta nella sua circonferenza: circa $3{,}14$. Una circonferenza di raggio $r$ è lunga $2\pi r$.
+
+L'idea dei **radianti** è misurare un angolo con la **strada fatta sulla pista**:
+
+- un giro intero è lungo $2\pi$, quindi l'angolo giro misura $2\pi$;
+- mezzo giro è lungo la metà, $\pi$, quindi l'angolo piatto misura $\pi$;
+- un quarto di giro, cioè l'angolo retto, misura $\frac\pi2$.
+
+I gradi e i radianti sono due unità di misura per la stessa cosa, come i chilometri e le miglia. La regola per passare dagli uni agli altri: $180°$ corrisponde a $\pi$. Quindi un grado vale $\frac{\pi}{180}$, e per passare da gradi a radianti si moltiplica per $\frac{\pi}{180}$.
+
+Un esempio: $60°$.
+
+1. $60 \cdot \frac{\pi}{180} = \frac{60\pi}{180}$.
+2. Semplifico dividendo sopra e sotto per 60: $\frac{60\pi}{180} = \frac{\pi}{3}$.
+
+Quindi $60°$ è $\frac\pi3$ radianti. Ecco la tabella degli angoli che servono:
 
 | Gradi | $0°$ | $30°$ | $45°$ | $60°$ | $90°$ | $120°$ | $135°$ | $150°$ | $180°$ | $270°$ | $360°$ |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | Radianti | $0$ | $\frac\pi6$ | $\frac\pi4$ | $\frac\pi3$ | $\frac\pi2$ | $\frac{2\pi}3$ | $\frac{3\pi}4$ | $\frac{5\pi}6$ | $\pi$ | $\frac{3\pi}2$ | $2\pi$ |
 
-Gli angoli si misurano a partire dal semiasse reale positivo, in **senso antiorario**. Un angolo negativo gira in senso orario: $-\frac\pi2$ porta nello stesso punto di $\frac{3\pi}2$.
+Gli angoli si misurano partendo dalla semiretta orizzontale verso destra e girando in **senso antiorario**, cioè al contrario delle lancette dell'orologio. Un angolo negativo gira nel senso delle lancette. Per esempio $-\frac\pi2$ è un quarto di giro verso il basso: porta nello stesso punto di $\frac{3\pi}2$, tre quarti di giro verso l'alto.
 
-### Seno e coseno sulla circonferenza unitaria
+Per gli angoli si usa spesso una lettera greca: $\vartheta$, che si legge «teta». A volte anche $\varphi$, «fi», e $\alpha$, «alfa».
 
-La **circonferenza unitaria** è la circonferenza di centro l'origine e raggio $1$. Parti dal punto $(1, 0)$ e percorri la circonferenza in senso antiorario per un angolo $\vartheta$: il punto in cui arrivi ha coordinate
+::: prova Quanto vale in radianti l'angolo di $45°$? E l'angolo di $270°$?
+$45 \cdot \frac{\pi}{180} = \frac{45\pi}{180} = \frac\pi4$, dividendo sopra e sotto per 45.
 
-$$(\cos\vartheta,\ \sin\vartheta).$$
+$270 \cdot \frac{\pi}{180} = \frac{270\pi}{180} = \frac{3\pi}2$, dividendo sopra e sotto per 90. Sono tre quarti di giro.
+:::
 
-Questa è la definizione di coseno (l'ascissa) e seno (l'ordinata). Tutte le regole che seguono si leggono sul disegno.
+### Seno e coseno sul cerchio
+
+Torna sulla pista. Mettila su un foglio a quadretti, con il centro nell'origine degli assi. La pista è la **circonferenza unitaria**: il cerchio con centro nell'origine e raggio 1.
+
+Parti dal punto $(1, 0)$, quello più a destra, e cammina in senso antiorario per un angolo $\vartheta$. Ti fermi in un punto della pista. Quel punto ha due coordinate:
+
+- la prima (quanto sei a destra) si chiama **coseno** di $\vartheta$, e si scrive $\cos\vartheta$;
+- la seconda (quanto sei in alto) si chiama **seno** di $\vartheta$, e si scrive $\sin\vartheta$.
+
+$$\text{il punto all'angolo } \vartheta \text{ è } (\cos\vartheta,\ \sin\vartheta).$$
+
+Questa è la definizione di seno e coseno, e tutte le regole che seguono si leggono sul disegno. Nella figura l'angolo è $\frac\pi3$: il punto è a destra di $\frac 12$ e in alto di $\frac{\sqrt 3}2$.
 
 ```grafico
 titolo: Sulla circonferenza unitaria il punto di angolo $\vartheta$ è $(\cos\vartheta, \sin\vartheta)$; qui $\vartheta = \frac\pi3$, $\cos\vartheta = \frac 12$, $\sin\vartheta = \frac{\sqrt 3}2$
@@ -18348,40 +18376,85 @@ testo: 0.5 -0.1 | $\frac 12$
 testo: -0.14 0.866 | $\frac{\sqrt 3}2$
 ```
 
+I valori da sapere sono questi. All'esame non c'è la calcolatrice, quindi conviene metterli sul foglio delle 4 facciate.
+
 | $\vartheta$ | $0$ | $\frac\pi6$ | $\frac\pi4$ | $\frac\pi3$ | $\frac\pi2$ | $\pi$ | $\frac{3\pi}2$ |
 |---|---|---|---|---|---|---|---|
 | $\cos\vartheta$ | $1$ | $\frac{\sqrt 3}2$ | $\frac{\sqrt 2}2$ | $\frac 12$ | $0$ | $-1$ | $0$ |
 | $\sin\vartheta$ | $0$ | $\frac 12$ | $\frac{\sqrt 2}2$ | $\frac{\sqrt 3}2$ | $1$ | $0$ | $-1$ |
 
-Un modo per ricordare la tabella: da $0$ a $\frac\pi2$ il seno vale $\frac{\sqrt 0}2, \frac{\sqrt 1}2, \frac{\sqrt 2}2, \frac{\sqrt 3}2, \frac{\sqrt 4}2$, e il coseno fa lo stesso al contrario.
+Un modo per ricordare la tabella: da $0$ a $\frac\pi2$ il seno vale $\frac{\sqrt 0}2, \frac{\sqrt 1}2, \frac{\sqrt 2}2, \frac{\sqrt 3}2, \frac{\sqrt 4}2$. Il coseno fa lo stesso al contrario.
 
-Negli altri quadranti i valori sono gli stessi, **cambiano i segni**: nel secondo quadrante (angoli tra $\frac\pi2$ e $\pi$) il coseno è negativo e il seno positivo; nel terzo sono negativi tutti e due; nel quarto il coseno è positivo e il seno negativo. Per esempio:
+### Gli altri tre quarti del cerchio
 
-- $\frac{2\pi}3 = \pi - \frac\pi3$ sta nel secondo quadrante: $\cos\frac{2\pi}3 = -\frac 12$ e $\sin\frac{2\pi}3 = \frac{\sqrt 3}2$;
-- $\frac{5\pi}4 = \pi + \frac\pi4$ sta nel terzo quadrante: $\cos\frac{5\pi}4 = \sin\frac{5\pi}4 = -\frac{\sqrt 2}2$;
-- $\frac{5\pi}3 = 2\pi - \frac\pi3$ sta nel quarto quadrante: $\cos\frac{5\pi}3 = \frac 12$ e $\sin\frac{5\pi}3 = -\frac{\sqrt 3}2$.
+Il cerchio si divide in quattro parti uguali, i **quadranti**. Negli altri tre quadranti i numeri sono gli stessi della tabella; **cambiano solo i segni**. Basta guardare dove sta il punto:
+
+| Quadrante | Angoli | Il punto è… | Coseno | Seno |
+|---|---|---|---|---|
+| primo | da $0$ a $\frac\pi2$ | in alto a destra | $+$ | $+$ |
+| secondo | da $\frac\pi2$ a $\pi$ | in alto a sinistra | $-$ | $+$ |
+| terzo | da $\pi$ a $\frac{3\pi}2$ | in basso a sinistra | $-$ | $-$ |
+| quarto | da $\frac{3\pi}2$ a $2\pi$ | in basso a destra | $+$ | $-$ |
+
+Tre esempi:
+
+- $\frac{2\pi}3$ è $\pi - \frac\pi3$: mezzo giro meno un sesto di giro. Sta nel secondo quadrante. Quindi $\cos\frac{2\pi}3 = -\frac 12$ e $\sin\frac{2\pi}3 = \frac{\sqrt 3}2$.
+- $\frac{5\pi}4$ è $\pi + \frac\pi4$. Sta nel terzo quadrante. Quindi $\cos\frac{5\pi}4 = -\frac{\sqrt 2}2$ e anche $\sin\frac{5\pi}4 = -\frac{\sqrt 2}2$.
+- $\frac{5\pi}3$ è $2\pi - \frac\pi3$: un giro meno un sesto di giro. Sta nel quarto quadrante. Quindi $\cos\frac{5\pi}3 = \frac 12$ e $\sin\frac{5\pi}3 = -\frac{\sqrt 3}2$.
 
 ### Le regole che servono
 
-| Regola | Perché | Esempio |
-|---|---|---|
-| $\cos^2\vartheta + \sin^2\vartheta = 1$ | il punto sta a distanza $1$ dall'origine (Pitagora) | $\left(\frac 12\right)^2 + \left(\frac{\sqrt 3}2\right)^2 = 1$ |
-| $\cos(-\vartheta) = \cos\vartheta$, $\sin(-\vartheta) = -\sin\vartheta$ | $-\vartheta$ è il simmetrico rispetto all'asse $x$ | $\sin\left(-\frac\pi6\right) = -\frac 12$ |
-| $\cos(\vartheta + 2\pi) = \cos\vartheta$, $\sin(\vartheta + 2\pi) = \sin\vartheta$ | un giro completo riporta nello stesso punto | $\cos\frac{7\pi}3 = \cos\frac\pi3 = \frac 12$ |
-| $\cos(\vartheta + \pi) = -\cos\vartheta$, $\sin(\vartheta + \pi) = -\sin\vartheta$ | mezzo giro porta nel punto opposto | $\cos\frac{4\pi}3 = -\frac 12$ |
+Le prime quattro si leggono sul disegno.
 
-E le **formule di addizione**, che servono per la Proposizione 3.2:
+| Regola | Perché è vera | Esempio |
+|---|---|---|
+| $\cos^2\vartheta + \sin^2\vartheta = 1$ | il punto è a distanza 1 dall'origine (Pitagora) | $\left(\frac 12\right)^2 + \left(\frac{\sqrt 3}2\right)^2 = \frac 14 + \frac 34 = 1$ |
+| $\cos(-\vartheta) = \cos\vartheta$, $\sin(-\vartheta) = -\sin\vartheta$ | girare all'indietro dà il punto riflesso rispetto all'asse orizzontale | $\sin\left(-\frac\pi6\right) = -\frac 12$ |
+| $\cos(\vartheta + 2\pi) = \cos\vartheta$, $\sin(\vartheta + 2\pi) = \sin\vartheta$ | un giro in più riporta nello stesso punto | $\cos\frac{7\pi}3 = \cos\frac\pi3 = \frac 12$ |
+| $\cos(\vartheta + \pi) = -\cos\vartheta$, $\sin(\vartheta + \pi) = -\sin\vartheta$ | mezzo giro in più porta nel punto opposto | $\cos\frac{4\pi}3 = -\frac 12$ |
+
+La scrittura $\cos^2\vartheta$ vuol dire $(\cos\vartheta)^2$, cioè il coseno moltiplicato per sé stesso.
+
+Le ultime due sono le **formule di addizione**. Non si leggono sul disegno e vanno ricordate: servono solo per capire da dove viene la regola del prodotto, più avanti.
 
 $$\cos(\alpha + \beta) = \cos\alpha\cos\beta - \sin\alpha\sin\beta,$$
 
 $$\sin(\alpha + \beta) = \sin\alpha\cos\beta + \cos\alpha\sin\beta.$$
 
-## Coordinate polari (pp. 10–11)
+::: prova Quanto valgono $\cos\frac{3\pi}4$ e $\sin\frac{3\pi}4$?
+$\frac{3\pi}4 = \pi - \frac\pi4$: tre quarti di mezzo giro, nel secondo quadrante. Lì il coseno è negativo e il seno positivo. Quindi $\cos\frac{3\pi}4 = -\frac{\sqrt 2}2$ e $\sin\frac{3\pi}4 = \frac{\sqrt 2}2$.
+:::
 
-Nella lezione L02 hai individuato un punto del piano con le sue **coordinate cartesiane** $(x, y)$: quanto ti sposti in orizzontale e quanto in verticale. C'è un altro modo, come quando si indica una direzione: «cammina per $2$ chilometri in direzione nord-est». Come ricordano le dispense (Figura 3), un punto $(x, y)$ **diverso dall'origine** si può individuare con
+> [!RICORDA]
+> - Un giro intero è $2\pi$ radianti, mezzo giro è $\pi$, un quarto di giro è $\frac\pi2$.
+> - Il punto della circonferenza di raggio 1 all'angolo $\vartheta$ è $(\cos\vartheta, \sin\vartheta)$.
+> - Negli altri quadranti i valori della tabella restano gli stessi; cambiano i segni.
 
-- la **lunghezza** $r$ del vettore che va dall'origine al punto;
-- l'**angolo** $\vartheta$ che il vettore forma con l'asse reale.
+## Due modi per dire dove sta un punto (pp. 10–11)
+
+Sei in una piazza e devi spiegare a un amico dove trovarti. Puoi dirlo in due modi:
+
+- «da dove sei, fai 3 passi verso est e 4 verso nord»;
+- «guarda in quella direzione e fai 5 passi dritto».
+
+Il primo modo sono le **coordinate cartesiane** della lezione L02: quanto ti sposti in orizzontale, quanto in verticale. Il secondo usa una **direzione** e una **distanza**.
+
+Perché proprio 5 passi? Gli spostamenti di 3 e di 4 sono i due lati di un triangolo rettangolo, e la strada dritta è il terzo lato. Per Pitagora la sua lunghezza è $\sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$.
+
+### Il nome e i simboli
+
+Il secondo modo si chiama **coordinate polari**. Un punto diverso dall'origine si descrive con due numeri:
+
+- $r$, la **distanza** dall'origine: quanto è lunga la freccia che va dall'origine al punto;
+- $\vartheta$, l'**angolo** tra quella freccia e la semiretta orizzontale verso destra, misurato in senso antiorario.
+
+Un esempio con un angolo della tabella. Il punto $(1, \sqrt 3)$ sta 1 a destra e $\sqrt 3$ (circa 1,73) in su.
+
+1. La distanza, con Pitagora: $r = \sqrt{1^2 + (\sqrt 3)^2} = \sqrt{1 + 3} = \sqrt 4 = 2$.
+2. Per l'angolo divido le due coordinate per la distanza. Ottengo il punto sulla circonferenza di raggio 1 nella stessa direzione: $\left(\frac 12, \frac{\sqrt 3}2\right)$.
+3. Nella tabella, $\frac 12$ e $\frac{\sqrt 3}2$ sono il coseno e il seno di $\frac\pi3$. Quindi $\vartheta = \frac\pi3$.
+
+Le coordinate polari del punto sono $(r, \vartheta) = \left(2, \frac\pi3\right)$: «guarda a $60°$ e fai 2 passi».
 
 ```grafico
 titolo: Coordinate polari del punto $1 + i\sqrt 3$: distanza $r = 2$ dall'origine e angolo $\vartheta = \frac\pi3$ con l'asse reale
@@ -18398,60 +18471,109 @@ testo: 1 -0.2 | $x = 1$
 testo: -0.45 1.732 | $y = \sqrt 3$
 ```
 
+Guarda la figura: la freccia lunga 2 e l'arco dell'angolo. Le scritte sugli assi, $\operatorname{Re}$ e $\operatorname{Im}$, ricordano che l'asse orizzontale è quello dei numeri reali e l'asse verticale quello dei numeri immaginari (lezione L02).
+
+### Andare e tornare
+
+Dalle coordinate polari si torna a quelle cartesiane così. Il punto sulla circonferenza di raggio 1 all'angolo $\vartheta$ è $(\cos\vartheta, \sin\vartheta)$. Il nostro punto è nella stessa direzione ma $r$ volte più lontano. Quindi basta moltiplicare tutte e due le coordinate per $r$:
+
+$$x = r\cos\vartheta, \qquad y = r\sin\vartheta.$$
+
+Con il punto di prima: $x = 2 \cdot \cos\frac\pi3 = 2 \cdot \frac 12 = 1$ e $y = 2 \cdot \sin\frac\pi3 = 2 \cdot \frac{\sqrt 3}2 = \sqrt 3$. Torna $(1, \sqrt 3)$.
+
+Le dispense lo scrivono così.
+
 > [!DEF] 3.1 · Coordinate polari
 > Un punto $(x, y)$ del piano diverso dall'origine si può identificare con la lunghezza $r$ del vettore corrispondente e l'angolo $\vartheta$ formato dal vettore con l'asse reale. Le **coordinate polari** del punto sono la coppia $(r, \vartheta)$. Per passare dalle coordinate polari alle coordinate cartesiane $(x, y)$ basta usare le formule
 > $$x = r\cos\vartheta, \qquad y = r\sin\vartheta.$$
 > Viceversa,
 > $$r = \sqrt{x^2 + y^2}, \qquad \cos\vartheta = \frac{x}{\sqrt{x^2 + y^2}}, \qquad \sin\vartheta = \frac{y}{\sqrt{x^2 + y^2}}.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $r$ è una **distanza**, quindi è sempre un numero reale **positivo** ($r > 0$, perché il punto non è l'origine).
-- $\vartheta$ si misura in radianti, dal semiasse reale positivo, in senso antiorario.
-- $x = r\cos\vartheta$ e $y = r\sin\vartheta$: il punto di angolo $\vartheta$ sulla circonferenza unitaria è $(\cos\vartheta, \sin\vartheta)$; allontanandosi dall'origine $r$ volte tanto si ottiene $(r\cos\vartheta, r\sin\vartheta)$.
-- Per tornare indietro: $r$ si trova con Pitagora; poi $\cos\vartheta = \frac xr$ e $\sin\vartheta = \frac yr$. Servono **entrambe** le equazioni per individuare l'angolo, come vedi nella trappola qui sotto.
-- L'origine è esclusa: per il punto $(0, 0)$ vale $r = 0$, e l'angolo non ha senso.
-- L'angolo non è unico: $\vartheta$ e $\vartheta + 2\pi$ (o $\vartheta - 2\pi$, o $\vartheta + 4\pi$…) indicano la stessa direzione. Ci torniamo nella sezione sulle forme polari uguali.
+- «Diverso dall'origine»: per il punto $(0, 0)$ la distanza è 0, e l'angolo non ha senso. Per questo l'origine è esclusa.
+- «Il vettore corrispondente» è la freccia dall'origine al punto. $r$ è la sua lunghezza, quindi è sempre un numero **positivo**.
+- La prima coppia di formule va dalle polari alle cartesiane: è il conto che hai appena fatto.
+- La seconda va al contrario. $r$ si trova con Pitagora. Poi coseno e seno sono le coordinate divise per $r$: è il passo 2 dell'esempio.
+- L'angolo non è uno solo. $\vartheta$ e $\vartheta + 2\pi$ indicano la stessa direzione, perché un giro in più riporta nello stesso posto. Ci torniamo più avanti.
+
+### Due esempi per ogni verso
 
 > [!ESEMPIO] · Da polari a cartesiane
-> - $(r, \vartheta) = \left(2, \frac\pi6\right)$: $x = 2\cos\frac\pi6 = 2 \cdot \frac{\sqrt 3}2 = \sqrt 3$ e $y = 2\sin\frac\pi6 = 2 \cdot \frac 12 = 1$. Il punto è $(\sqrt 3, 1)$.
-> - $(r, \vartheta) = \left(4, \frac{3\pi}4\right)$: $x = 4 \cdot \left(-\frac{\sqrt 2}2\right) = -2\sqrt 2$ e $y = 4 \cdot \frac{\sqrt 2}2 = 2\sqrt 2$.
-> - $(r, \vartheta) = (3, \pi)$: $x = 3 \cdot (-1) = -3$ e $y = 3 \cdot 0 = 0$. Il punto $(-3, 0)$ sta sul semiasse reale negativo.
+> - $(r, \vartheta) = \left(2, \frac\pi6\right)$. Dalla tabella $\cos\frac\pi6 = \frac{\sqrt 3}2$ e $\sin\frac\pi6 = \frac 12$. Quindi $x = 2 \cdot \frac{\sqrt 3}2 = \sqrt 3$ e $y = 2 \cdot \frac 12 = 1$. Il punto è $(\sqrt 3, 1)$.
+> - $(r, \vartheta) = \left(4, \frac{3\pi}4\right)$. L'angolo è nel secondo quadrante: $\cos\frac{3\pi}4 = -\frac{\sqrt 2}2$ e $\sin\frac{3\pi}4 = \frac{\sqrt 2}2$. Quindi $x = 4 \cdot \left(-\frac{\sqrt 2}2\right) = -2\sqrt 2$ e $y = 4 \cdot \frac{\sqrt 2}2 = 2\sqrt 2$.
+> - $(r, \vartheta) = (3, \pi)$. Mezzo giro: $\cos\pi = -1$ e $\sin\pi = 0$. Quindi $x = 3 \cdot (-1) = -3$ e $y = 3 \cdot 0 = 0$. Il punto $(-3, 0)$ sta sulla semiretta orizzontale verso sinistra.
 
 > [!ESEMPIO] · Da cartesiane a polari
-> - $(1, 1)$: $r = \sqrt{1 + 1} = \sqrt 2$; $\cos\vartheta = \frac 1{\sqrt 2} = \frac{\sqrt 2}2$ e $\sin\vartheta = \frac{\sqrt 2}2$, quindi $\vartheta = \frac\pi4$.
-> - $(-\sqrt 3, 1)$: $r = \sqrt{3 + 1} = 2$; $\cos\vartheta = -\frac{\sqrt 3}2$ e $\sin\vartheta = \frac 12$. Coseno negativo e seno positivo: secondo quadrante. L'angolo del primo quadrante con coseno $\frac{\sqrt 3}2$ e seno $\frac 12$ è $\frac\pi6$; il suo simmetrico nel secondo quadrante è $\pi - \frac\pi6 = \frac{5\pi}6$.
-> - $(0, -2)$: $r = 2$; $\cos\vartheta = 0$ e $\sin\vartheta = -1$, quindi $\vartheta = \frac{3\pi}2$ (oppure, equivalentemente, $-\frac\pi2$).
-> - $(1, -\sqrt 3)$: $r = 2$; $\cos\vartheta = \frac 12$ e $\sin\vartheta = -\frac{\sqrt 3}2$, quarto quadrante, $\vartheta = -\frac\pi3$ (oppure $\frac{5\pi}3$).
+> - $(1, 1)$. La distanza: $r = \sqrt{1 + 1} = \sqrt 2$. Coseno e seno: $\frac 1{\sqrt 2} = \frac{\sqrt 2}2$ tutti e due. Nella tabella è l'angolo $\frac\pi4$.
+> - $(-\sqrt 3, 1)$. La distanza: $r = \sqrt{3 + 1} = 2$. Coseno $-\frac{\sqrt 3}2$, seno $\frac 12$. Coseno negativo e seno positivo: il punto è in alto a sinistra, nel secondo quadrante. Senza segni, i valori $\frac{\sqrt 3}2$ e $\frac 12$ sono quelli di $\frac\pi6$. Nel secondo quadrante l'angolo diventa $\pi - \frac\pi6 = \frac{5\pi}6$.
+> - $(0, -2)$. La distanza è 2. Coseno 0, seno $-1$: il punto è dritto verso il basso, a tre quarti di giro. L'angolo è $\frac{3\pi}2$, oppure $-\frac\pi2$ girando all'indietro.
+> - $(1, -\sqrt 3)$. La distanza è $\sqrt{1 + 3} = 2$. Coseno $\frac 12$, seno $-\frac{\sqrt 3}2$: quarto quadrante. L'angolo è $-\frac\pi3$, oppure $\frac{5\pi}3$.
 
-> [!METODO] Trovare le coordinate polari di $(x, y)$
-> 1. Calcola $r = \sqrt{x^2 + y^2}$.
-> 2. Calcola $\cos\vartheta = \frac xr$ e $\sin\vartheta = \frac yr$.
-> 3. Guarda i **segni** di coseno e seno per capire il quadrante.
-> 4. Trova nella tabella l'angolo del primo quadrante con gli stessi valori, senza segni, e portalo nel quadrante giusto: $\pi - \alpha$ nel secondo, $\pi + \alpha$ nel terzo, $-\alpha$ (cioè $2\pi - \alpha$) nel quarto.
-> 5. Controllo: $r\cos\vartheta$ e $r\sin\vartheta$ devono ridare $x$ e $y$.
+> [!METODO] Trovare le coordinate polari di un punto
+> 1. Calcola la distanza: radice della somma dei quadrati delle due coordinate.
+> 2. Dividi le due coordinate per la distanza: ottieni il coseno e il seno dell'angolo.
+> 3. Guarda i **segni** di coseno e seno: ti dicono il quadrante.
+> 4. Cerca nella tabella l'angolo del primo quadrante con gli stessi valori senza segno. Chiamalo $\alpha$. Portalo nel quadrante giusto: $\pi - \alpha$ nel secondo, $\pi + \alpha$ nel terzo, $-\alpha$ nel quarto.
+> 5. Controllo: distanza per coseno e distanza per seno devono ridare le coordinate di partenza.
 
-> [!TRAPPOLA] Un'equazione sola non basta per l'angolo
-> I punti $(1, 1)$ e $(-1, -1)$ hanno lo stesso rapporto $\frac yx = 1$, ma angoli diversi: $\frac\pi4$ e $\frac{5\pi}4$. Chi usa solo $\tan\vartheta = \frac yx$ (o l'arcotangente della calcolatrice, che comunque all'esame non c'è) sbaglia quadrante. Allo stesso modo $(1, \sqrt 3)$ e $(1, -\sqrt 3)$ hanno lo stesso coseno $\frac 12$ ma angoli $\frac\pi3$ e $-\frac\pi3$. Guarda sempre coseno **e** seno, oppure il disegno.
+::: prova Trova le coordinate polari del punto $(0, 3)$ e del punto $(-2, 0)$.
+$(0, 3)$: distanza 3. È dritto verso l'alto, a un quarto di giro: $\vartheta = \frac\pi2$. Coordinate polari $\left(3, \frac\pi2\right)$.
 
-## La forma polare di un numero complesso (pp. 10–11)
+$(-2, 0)$: distanza 2. È dritto verso sinistra, a mezzo giro: $\vartheta = \pi$. Coordinate polari $(2, \pi)$.
+:::
 
-Tornando ai numeri complessi: se $z = x + yi$ corrisponde al punto $(x, y)$ con coordinate polari $(r, \vartheta)$, allora
+> [!TRAPPOLA] Il coseno da solo non basta per l'angolo
+> I punti $(1, \sqrt 3)$ e $(1, -\sqrt 3)$ hanno lo stesso coseno, $\frac 12$. Ma il primo è in alto, all'angolo $\frac\pi3$, e il secondo in basso, all'angolo $-\frac\pi3$. Anche il rapporto $\frac yx$ inganna: $(1, 1)$ e $(-1, -1)$ danno tutti e due 1, ma gli angoli sono $\frac\pi4$ e $\frac{5\pi}4$. Chi usa solo la tangente $\tan\vartheta = \frac yx$, o l'arcotangente della calcolatrice (che all'esame comunque non c'è), sbaglia quadrante. Guarda sempre coseno **e** seno, oppure fai il disegno.
+
+> [!RICORDA]
+> - Le coordinate polari di un punto sono la distanza $r$ dall'origine e l'angolo $\vartheta$.
+> - Dalle polari alle cartesiane: $x = r\cos\vartheta$ e $y = r\sin\vartheta$.
+> - Per l'angolo guarda insieme il segno del coseno e quello del seno.
+
+## Un numero complesso con distanza e angolo (pp. 10–11)
+
+Nella lezione L02 ogni numero complesso era un punto del piano a quadretti: la parte reale diceva quanto andare a destra, la parte immaginaria quanto andare in su. Adesso quel punto lo sappiamo dire anche con una distanza e un angolo. Che cosa diventa il numero?
+
+Prendi $1 + i\sqrt 3$: è il punto $(1, \sqrt 3)$ della sezione di prima, a distanza 2 e all'angolo $\frac\pi3$. Al posto di 1 e di $\sqrt 3$ scrivo $2\cos\frac\pi3$ e $2\sin\frac\pi3$:
+
+$$1 + i\sqrt 3 = 2\cos\frac\pi3 + i \cdot 2\sin\frac\pi3 = 2\left(\cos\frac\pi3 + i\sin\frac\pi3\right).$$
+
+Nell'ultimo passo ho raccolto il 2. Fuori dalla parentesi c'è la distanza; dentro c'è il punto del cerchio di raggio 1 nella direzione giusta.
+
+Con un numero qualsiasi $z = x + yi$, a distanza $r$ e all'angolo $\vartheta$, il conto è lo stesso:
 
 $$z = x + yi = r\cos\vartheta + (r\sin\vartheta)i = r(\cos\vartheta + i\sin\vartheta).$$
 
-Le dispense notano subito che
+Questa scrittura si chiama **forma trigonometrica** di $z$. Negli appelli compare spesso così, per esempio $z = 2\cos\frac\pi4 + 2i\sin\frac\pi4$.
 
-$$|z| = \sqrt{x^2 + y^2} = r:$$
+Le dispense notano subito una cosa: la distanza $r$ è il **modulo** di $z$ della lezione L02, quello che si scrive $|z|$ e si legge «modulo di zeta».
 
-il **modulo** di $z$ è la lunghezza del vettore che descrive $z$. La scrittura $r(\cos\vartheta + i\sin\vartheta)$ si chiama anche **forma trigonometrica** di $z$: negli appelli compare spesso così, per esempio $z = 2\cos\frac\pi4 + 2i\sin\frac\pi4$.
+$$|z| = \sqrt{x^2 + y^2} = r.$$
 
-**Il coniugato.** Il coniugato $\bar z = x - yi$ è il punto ottenuto cambiando il segno della coordinata immaginaria: geometricamente è il **riflesso** di $z$ rispetto all'asse reale. In coordinate polari questo corrisponde a cambiare $\vartheta$ in $-\vartheta$ lasciando fisso $r$ (Figura 4 delle dispense, a sinistra). Infatti, con le regole del ripasso,
+### Il coniugato
+
+Ricorda dalla lezione L02: il **coniugato** di $z = x + yi$ è $\bar z = x - yi$, e si legge «zeta segnato». Nel disegno è il punto riflesso nello specchio dell'asse orizzontale.
+
+Con distanza e angolo: lo specchio non cambia la distanza, ma l'angolo cambia segno. Se $z$ è all'angolo $\vartheta$, il riflesso è all'angolo $-\vartheta$. Il conto conferma, con le regole del ripasso ($\cos(-\vartheta) = \cos\vartheta$ e $\sin(-\vartheta) = -\sin\vartheta$):
+
 $$r\bigl(\cos(-\vartheta) + i\sin(-\vartheta)\bigr) = r(\cos\vartheta - i\sin\vartheta) = x - yi.$$
 
-### L'esponenziale complessa
+### L'abbreviazione $e^{i\vartheta}$
 
-Le dispense introducono una notazione comoda:
+Scrivere ogni volta $\cos\vartheta + i\sin\vartheta$ è lungo. Le dispense usano un'abbreviazione:
+
+$$e^{i\vartheta} = \cos\vartheta + i\sin\vartheta.$$
+
+Si legge «e alla i teta». Per questo corso è **solo un simbolo**: un modo breve di scrivere «il punto della circonferenza di raggio 1 all'angolo $\vartheta$». Non c'è da calcolare nessuna potenza.
+
+Con l'abbreviazione, ogni numero complesso diverso da zero si scrive con la sua distanza e il suo angolo:
+
+$$z = re^{i\vartheta}.$$
+
+Per esempio $1 + i\sqrt 3 = 2e^{i\pi/3}$. La scrittura $e^{i\pi/3}$ è lo stesso di $e^{i\frac\pi3}$: la barra dentro l'esponente è una frazione.
+
+Le dispense lo scrivono così.
 
 > [!DEF] Forma polare, modulo e argomento (pp. 10–11)
 > Si scrive
@@ -18460,22 +18582,27 @@ Le dispense introducono una notazione comoda:
 > $$z = re^{i\vartheta}.$$
 > Il numero $r = |z|$ è il **modulo** di $z$ e l'angolo $\vartheta$ è detto **argomento** (o **fase**) di $z$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $e^{i\vartheta}$ è, per il corso, **un simbolo**: vuol dire esattamente $\cos\vartheta + i\sin\vartheta$, niente di più. Le dispense la chiamano «misteriosa esponenziale complessa».
-- $e^{i\vartheta}$ ha modulo $1$: $\left|e^{i\vartheta}\right| = \sqrt{\cos^2\vartheta + \sin^2\vartheta} = 1$. Moltiplicarlo per $r$ allunga il vettore fino alla lunghezza $r$.
-- La scrittura vale solo per $z \neq 0$: lo zero ha modulo $0$ e nessun argomento.
-- Nella forma polare **$r$ deve essere positivo**. Una scrittura come $-2e^{i\pi/4}$ indica un numero complesso, ma non è una forma polare (vedi la trappola più sotto).
+- La prima riga è l'abbreviazione: $e^{i\vartheta}$ vuol dire esattamente $\cos\vartheta + i\sin\vartheta$, niente di più. Le dispense la chiamano «misteriosa esponenziale complessa».
+- $z \neq 0$ si legge «zeta diverso da zero». Lo zero ha distanza 0 e nessun angolo, quindi non si scrive così.
+- $z = re^{i\vartheta}$ si chiama **forma polare** di $z$.
+- Il **modulo** è la distanza dall'origine. L'**argomento**, o **fase**, è l'angolo.
 
-> [!OLTRE] · perché proprio la lettera $e$
-> Le dispense spiegano che il motivo profondo è nelle rappresentazioni di $e^x$, $\sin x$ e $\cos x$ come **serie di potenze**, che vedrai in Analisi:
+Due cose da tenere a mente:
+
+- $e^{i\vartheta}$ ha sempre modulo 1, perché è un punto della circonferenza di raggio 1. Moltiplicarlo per $r$ allunga la freccia fino a lunghezza $r$.
+- Nella forma polare $r$ deve essere **positivo**. Una scrittura come $-2e^{i\pi/4}$ indica un numero complesso, ma non è una forma polare: lo vediamo nella trappola qui sotto.
+
+> [!APPROFONDIMENTO] perché proprio la lettera $e$
+> Le dispense spiegano che il motivo vero sta nelle rappresentazioni di $e^x$, $\sin x$ e $\cos x$ come **serie di potenze**, che vedrai in Analisi:
 > $$e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots$$
 > $$\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots \qquad \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots$$
-> Sostituendo $x = i\vartheta$ nella prima serie e usando $i^2 = -1$, $i^3 = -i$, $i^4 = 1$, i termini pari danno la serie del coseno e quelli dispari $i$ volte la serie del seno: $e^{i\vartheta} = \cos\vartheta + i\sin\vartheta$. Per il corso basta la definizione come simbolo; il nome è azzeccato perché $e^{i\vartheta}$ ha le proprietà dell'esponenziale (Proposizione 3.2).
+> Metti $i\vartheta$ al posto di $x$ nella prima serie e usa $i^2 = -1$, $i^3 = -i$, $i^4 = 1$. I termini di posto pari danno la serie del coseno. Quelli di posto dispari danno $i$ volte la serie del seno. Quindi $e^{i\vartheta} = \cos\vartheta + i\sin\vartheta$. Per il corso basta l'abbreviazione. Il nome è azzeccato perché $e^{i\vartheta}$ si comporta come una potenza: è la Proposizione 3.2, nella prossima sezione.
 
-Ecco i numeri che conviene riconoscere a colpo d'occhio:
+### I numeri da riconoscere a colpo d'occhio
 
-| $z$ | $\lvert z \rvert$ | argomento | forma polare |
+| Numero | Modulo | Argomento | Forma polare |
 |---|--:|---|---|
 | $1$ | $1$ | $0$ | $e^{0} = e^{i \cdot 0}$ |
 | $i$ | $1$ | $\frac\pi2$ | $e^{i\pi/2}$ |
@@ -18490,51 +18617,93 @@ Ecco i numeri che conviene riconoscere a colpo d'occhio:
 | $-2$ | $2$ | $\pi$ | $2e^{i\pi}$ |
 | $3i$ | $3$ | $\frac\pi2$ | $3e^{i\pi/2}$ |
 
-Il trucco per i numeri come $\frac{\sqrt 3}2 - \frac 12 i$: il modulo è $1$ e le due parti sono coseno e seno di un angolo notevole ($\cos\vartheta = \frac{\sqrt 3}2$, $\sin\vartheta = -\frac 12$, quindi $\vartheta = -\frac\pi6$). Se invece il modulo non è $1$, lo raccogli: $\sqrt 3 + i = 2\left(\frac{\sqrt 3}2 + \frac 12 i\right) = 2e^{i\pi/6}$.
+Un trucco. Se il modulo è 1, le due parti del numero sono già il coseno e il seno. Per esempio $\frac{\sqrt 3}2 - \frac 12 i$: coseno $\frac{\sqrt 3}2$ e seno $-\frac 12$, quarto quadrante, angolo $-\frac\pi6$. Se il modulo non è 1, prima lo raccogli:
+
+$$\sqrt 3 + i = 2\left(\frac{\sqrt 3}2 + \frac 12 i\right) = 2e^{i\pi/6}.$$
 
 > [!ESEMPIO] · Dalla forma polare alla forma $a + bi$
-> $2e^{2\pi i/3} = 2\left(\cos\frac{2\pi}3 + i\sin\frac{2\pi}3\right) = 2\left(-\frac 12 + \frac{\sqrt 3}2 i\right) = -1 + i\sqrt 3$.
+> $2e^{2\pi i/3}$: l'angolo $\frac{2\pi}3$ è nel secondo quadrante, con coseno $-\frac 12$ e seno $\frac{\sqrt 3}2$. Quindi
+> $$2e^{2\pi i/3} = 2\left(-\frac 12 + \frac{\sqrt 3}2 i\right) = -1 + i\sqrt 3.$$
 >
-> $\sqrt 2\,e^{-3\pi i/4} = \sqrt 2\left(-\frac{\sqrt 2}2 - \frac{\sqrt 2}2 i\right) = -1 - i$.
+> $\sqrt 2\,e^{-3\pi i/4}$: l'angolo $-\frac{3\pi}4$ porta nel terzo quadrante, con coseno e seno uguali a $-\frac{\sqrt 2}2$. Quindi
+> $$\sqrt 2\,e^{-3\pi i/4} = \sqrt 2\left(-\frac{\sqrt 2}2 - \frac{\sqrt 2}2 i\right) = -1 - i.$$
+> Qui $\sqrt 2 \cdot \frac{\sqrt 2}2 = \frac 22 = 1$.
+
+::: prova Scrivi $-5$ e $2i$ in forma polare. Poi scrivi $4e^{i\pi}$ nella forma $a + bi$.
+$-5$ è a distanza 5, dritto verso sinistra: $5e^{i\pi}$.
+
+$2i$ è a distanza 2, dritto verso l'alto: $2e^{i\pi/2}$.
+
+$4e^{i\pi} = 4(\cos\pi + i\sin\pi) = 4 \cdot (-1 + 0i) = -4$.
+:::
 
 > [!TRAPPOLA] Il modulo non può essere negativo
-> $-6e^{3\pi i/4}$ è un numero complesso, ma **non** è scritto in forma polare: il fattore davanti deve essere il modulo, che è positivo. Siccome $-1 = e^{i\pi}$, si sistema così: $-6e^{3\pi i/4} = 6e^{i\pi}e^{3\pi i/4} = 6e^{7\pi i/4}$. L'appello del 16/01/2025 (domanda 1) chiedeva un prodotto «in coordinate polari» e tra le risposte c'erano sia $6e^{7\pi i/4}$ sia $-6e^{3\pi i/4}$: solo la prima è una forma polare.
+> $-6e^{3\pi i/4}$ è un numero complesso, ma **non** è scritto in forma polare: il numero davanti deve essere il modulo, che è positivo. Si sistema portando il segno meno dentro l'angolo. Il numero $-1$ è mezzo giro, cioè $-1 = e^{i\pi}$, e gli angoli si sommano (prossima sezione):
+> $$-6e^{3\pi i/4} = 6e^{i\pi}e^{3\pi i/4} = 6e^{7\pi i/4}.$$
+> L'appello del 16/01/2025 (domanda 1) chiedeva un prodotto «in coordinate polari», e tra le risposte c'erano sia $6e^{7\pi i/4}$ sia $-6e^{3\pi i/4}$: solo la prima è una forma polare.
 
-## Il prodotto in forma polare (p. 11)
+> [!RICORDA]
+> - Forma polare: $z = re^{i\vartheta}$, con $r$ positivo (il modulo) e $\vartheta$ l'angolo (l'argomento).
+> - $e^{i\vartheta}$ è un'abbreviazione di $\cos\vartheta + i\sin\vartheta$, un punto del cerchio di raggio 1.
+> - Il coniugato ha lo stesso modulo e l'angolo cambiato di segno.
 
-La scrittura $e^{i\vartheta}$ è comoda perché si comporta come un esponenziale.
+## Moltiplicare vuol dire girare e allungare (p. 11)
+
+Nella lezione L02 hai visto che una moltiplicazione può far girare un punto attorno all'origine. Moltiplicare per $i$ fa fare un quarto di giro: il numero 1 diventa $i$, cioè passa da destra a in alto; poi $i$ diventa $-1$, da in alto a sinistra. Moltiplicare per 2, invece, raddoppia la distanza senza girare niente.
+
+Che cosa succede con un numero qualsiasi? Prova con $(1 + i) \cdot (1 + i)$.
+
+1. In forma $a + bi$, come nella lezione L02: $(1 + i)(1 + i) = 1 + i + i + i^2 = 1 + 2i - 1 = 2i$.
+2. Ora guardo distanze e angoli. $1 + i$ è a distanza $\sqrt 2$ e all'angolo $\frac\pi4$. Il risultato $2i$ è a distanza 2 e all'angolo $\frac\pi2$.
+3. Le distanze: $\sqrt 2 \cdot \sqrt 2 = 2$. Si sono **moltiplicate**.
+4. Gli angoli: $\frac\pi4 + \frac\pi4 = \frac\pi2$. Si sono **sommati**.
+
+Non è un caso. Vale sempre, ed è la regola più importante di questa lezione.
+
+> [!IDEA] · la regola del prodotto
+> Quando moltiplichi due numeri complessi, **le distanze si moltiplicano e gli angoli si sommano**. Moltiplicare per un numero $w$ vuol dire: girare dell'angolo di $w$ e allungare quanto il modulo di $w$.
+
+### Perché è vera
+
+Tutto viene da una proprietà dell'abbreviazione $e^{i\vartheta}$. Le dispense la scrivono così.
 
 > [!PROP] 3.2
 > Vale la relazione
 > $$e^{i(\vartheta + \varphi)} = e^{i\vartheta} \cdot e^{i\varphi}.$$
 
-Le dispense dicono che la relazione segue dalle formule di addizione per seno e coseno, sostituendo $e^{i\alpha} = \cos\alpha + i\sin\alpha$. Ecco il conto completo.
+**Come si legge.** A sinistra c'è il punto del cerchio all'angolo $\vartheta + \varphi$, cioè la somma dei due angoli. A destra c'è il prodotto dei punti agli angoli $\vartheta$ e $\varphi$. La proposizione dice che sono lo stesso numero: moltiplicare due punti del cerchio di raggio 1 vuol dire sommare i loro angoli. È la stessa regola delle potenze, come $2^3 \cdot 2^4 = 2^{3 + 4}$: per questo l'abbreviazione usa la lettera $e$ con l'esponente.
 
-1. Scriviamo il prodotto a destra con la definizione: $e^{i\vartheta} \cdot e^{i\varphi} = (\cos\vartheta + i\sin\vartheta)(\cos\varphi + i\sin\varphi)$.
-2. Svolgiamo il prodotto come nella lezione L02, con $i^2 = -1$:
-   $$= (\cos\vartheta\cos\varphi - \sin\vartheta\sin\varphi) + i(\sin\vartheta\cos\varphi + \cos\vartheta\sin\varphi).$$
-3. Riconosciamo le formule di addizione: la parte reale è $\cos(\vartheta + \varphi)$, la parte immaginaria è $\sin(\vartheta + \varphi)$.
-4. Quindi il prodotto vale $\cos(\vartheta + \varphi) + i\sin(\vartheta + \varphi) = e^{i(\vartheta + \varphi)}$. $\square$
+Un controllo con i numeri, con due quarti di giro: $e^{i\pi/2} \cdot e^{i\pi/2} = i \cdot i = -1$, e $e^{i(\pi/2 + \pi/2)} = e^{i\pi} = -1$. Torna.
 
-La conseguenza è la regola più importante della lezione. Se
+> [!DIM] della Proposizione 3.2
+> Le dispense dicono che la relazione segue dalle formule di addizione del ripasso. Il conto completo:
+> 1. Scrivo il prodotto a destra con la definizione: $e^{i\vartheta} \cdot e^{i\varphi} = (\cos\vartheta + i\sin\vartheta)(\cos\varphi + i\sin\varphi)$.
+> 2. Moltiplico ogni pezzo della prima parentesi per ogni pezzo della seconda, come nella lezione L02, e uso $i^2 = -1$:
+>    $$= (\cos\vartheta\cos\varphi - \sin\vartheta\sin\varphi) + i(\sin\vartheta\cos\varphi + \cos\vartheta\sin\varphi).$$
+> 3. La prima parentesi è la formula di addizione del coseno: vale $\cos(\vartheta + \varphi)$. La seconda è quella del seno: vale $\sin(\vartheta + \varphi)$.
+> 4. Quindi il prodotto è $\cos(\vartheta + \varphi) + i\sin(\vartheta + \varphi)$, che per definizione è $e^{i(\vartheta + \varphi)}$. $\square$
 
-$$z_1 = r_1e^{i\vartheta_1}, \qquad z_2 = r_2e^{i\vartheta_2},$$
+Ora i numeri con distanza qualsiasi. Prendi due numeri in forma polare:
 
-allora, riordinando i fattori e usando la Proposizione 3.2,
+$$z_1 = r_1e^{i\vartheta_1}, \qquad z_2 = r_2e^{i\vartheta_2}.$$
 
-$$z_1z_2 = r_1r_2\,e^{i(\vartheta_1 + \vartheta_2)}.$$
+I numerini in basso servono solo a distinguerli: $r_1$ è la distanza del primo, $r_2$ quella del secondo, e così gli angoli. Nel prodotto metto vicini i due numeri reali e i due pezzi $e^{i\ldots}$, poi uso la Proposizione 3.2:
 
-> [!IDEA] · la regola del prodotto
-> Quando si fa il prodotto di due numeri complessi, **i moduli si moltiplicano e gli argomenti si sommano**. Geometricamente, moltiplicare per $z_2$ vuol dire **ruotare** di un angolo $\vartheta_2$ e **dilatare** di un fattore $r_2$. Per esempio moltiplicare per $i = e^{i\pi/2}$ ruota di un angolo retto, come avevi visto nella lezione L02, e moltiplicare per $2$ raddoppia la distanza dall'origine senza ruotare.
+$$z_1z_2 = r_1r_2\,e^{i\vartheta_1}e^{i\vartheta_2} = r_1r_2\,e^{i(\vartheta_1 + \vartheta_2)}.$$
+
+Distanze moltiplicate, angoli sommati.
 
 > [!ESEMPIO] · $(1 + i)(\sqrt 3 + i)$ in due modi
-> **In forma polare.** $1 + i = \sqrt 2\,e^{i\pi/4}$ e $\sqrt 3 + i = 2e^{i\pi/6}$. Quindi
-> $$(1 + i)(\sqrt 3 + i) = \sqrt 2 \cdot 2\,e^{i(\pi/4 + \pi/6)} = 2\sqrt 2\,e^{5\pi i/12}.$$
-> Il modulo è $2\sqrt 2$ e l'argomento $\frac\pi4 + \frac\pi6 = \frac{3\pi + 2\pi}{12} = \frac{5\pi}{12}$, cioè $75°$.
+> **Con la forma polare.** Dalla tabella: $1 + i = \sqrt 2\,e^{i\pi/4}$ e $\sqrt 3 + i = 2e^{i\pi/6}$.
+> 1. Le distanze: $\sqrt 2 \cdot 2 = 2\sqrt 2$.
+> 2. Gli angoli: $\frac\pi4 + \frac\pi6$. Il denominatore comune è 12: $\frac{3\pi}{12} + \frac{2\pi}{12} = \frac{5\pi}{12}$, cioè $75°$.
+> 3. Il prodotto: $(1 + i)(\sqrt 3 + i) = 2\sqrt 2\,e^{5\pi i/12}$.
 >
-> **In forma cartesiana.** $(1 + i)(\sqrt 3 + i) = \sqrt 3 + i + i\sqrt 3 + i^2 = (\sqrt 3 - 1) + (\sqrt 3 + 1)i$.
+> **Con la forma $a + bi$.** $(1 + i)(\sqrt 3 + i) = \sqrt 3 + i + i\sqrt 3 + i^2 = (\sqrt 3 - 1) + (\sqrt 3 + 1)i$.
 >
-> I due risultati sono lo stesso numero. Confrontandoli si ottiene anche, gratis, $\cos\frac{5\pi}{12} = \frac{\sqrt 3 - 1}{2\sqrt 2} = \frac{\sqrt 6 - \sqrt 2}4$: la forma polare e quella cartesiana si controllano a vicenda.
+> I due risultati sono lo stesso numero. Confrontandoli si ottiene gratis un valore che non sta nella tabella: $\cos\frac{5\pi}{12} = \frac{\sqrt 3 - 1}{2\sqrt 2} = \frac{\sqrt 6 - \sqrt 2}4$. La forma polare e quella $a + bi$ si controllano a vicenda.
+
+Guarda la figura: l'arco giallo del prodotto è lungo quanto i due archi degli altri numeri messi uno dopo l'altro.
 
 ```grafico
 titolo: Il prodotto $(1 + i)(\sqrt 3 + i)$: gli angoli $\frac\pi4$ e $\frac\pi6$ si sommano in $\frac{5\pi}{12}$, i moduli $\sqrt 2$ e $2$ si moltiplicano in $2\sqrt 2$
@@ -18549,7 +18718,7 @@ vettore: sqrt(3) 1 | blu | $\sqrt 3 + i$ | e
 vettore: 0.732 2.732 | ambra | spesso | $2\sqrt 2\,e^{5\pi i/12}$ | ne
 ```
 
-Prova con lo strumento: in modalità **z · w** trascina $z$ e $w$ e guarda gli archi; l'arco del prodotto è sempre la somma dei due archi, e sotto leggi che il modulo del prodotto è il prodotto dei moduli. Poi scegli **potenze zⁿ**: vedi i punti $z, z^2, z^3, \dots$ girare attorno all'origine, ogni volta dello stesso angolo.
+Prova con lo strumento. Nella modalità **z · w** trascina $z$ e $w$ e guarda gli archi: l'arco del prodotto è sempre la somma dei due archi, e sotto leggi che il modulo del prodotto è il prodotto dei moduli. Poi scegli **potenze zⁿ**: vedi i punti $z, z^2, z^3, \dots$ girare attorno all'origine, ogni volta dello stesso angolo.
 
 ```widget complessi
 titolo: Prodotto e potenze in forma polare
@@ -18561,18 +18730,35 @@ n: 3
 raggio: 4
 ```
 
+::: prova Calcola $3e^{i\pi/6} \cdot 2e^{i\pi/3}$ e scrivi il risultato nella forma $a + bi$.
+Distanze: $3 \cdot 2 = 6$. Angoli: $\frac\pi6 + \frac\pi3 = \frac\pi6 + \frac{2\pi}6 = \frac{3\pi}6 = \frac\pi2$. Il prodotto è $6e^{i\pi/2} = 6i$.
+:::
+
 ### L'inverso e il quoziente
 
-Le dispense notano in particolare che, se $z = re^{i\vartheta} \neq 0$, il suo inverso è
+L'**inverso** di $z$, che si scrive $z^{-1}$, è il numero che moltiplicato per $z$ dà 1 (lezione L02). In forma polare si trova a occhio. Il numero 1 ha distanza 1 e angolo 0. Quindi l'inverso deve:
+
+- avere una distanza che, moltiplicata per $r$, dia 1: cioè $\frac 1r$, che si scrive anche $r^{-1}$;
+- avere un angolo che, sommato a $\vartheta$, dia 0: cioè $-\vartheta$.
+
+Le dispense lo notano così: se $z = re^{i\vartheta}$ non è zero, il suo inverso è
 
 $$z^{-1} = r^{-1}e^{-i\vartheta}.$$
 
-Verifica con la regola del prodotto: $z \cdot z^{-1} = r \cdot r^{-1}\,e^{i(\vartheta - \vartheta)} = 1 \cdot e^{0} = \cos 0 + i\sin 0 = 1$. L'inverso ha argomento $-\vartheta$, opposto a quello di $z$, e modulo $|z^{-1}| = r^{-1}$, inverso rispetto a $|z| = r$ (Figura 4 delle dispense, a destra): se $z$ sta fuori dalla circonferenza unitaria, $z^{-1}$ sta dentro, e viceversa.
+Controllo con la regola del prodotto: $z \cdot z^{-1} = r \cdot r^{-1}\,e^{i(\vartheta - \vartheta)} = 1 \cdot e^{0} = \cos 0 + i\sin 0 = 1$.
 
-Unendo le due regole si ottiene il **quoziente**: $\frac{z_1}{z_2} = z_1 \cdot z_2^{-1} = \frac{r_1}{r_2}\,e^{i(\vartheta_1 - \vartheta_2)}$. I moduli si dividono, gli argomenti si sottraggono.
+Nel disegno: l'inverso è dalla parte opposta rispetto all'asse orizzontale, come il coniugato. Ma la distanza si inverte. Se $z$ sta fuori dal cerchio di raggio 1, il suo inverso sta dentro, e il contrario (Figura 4 delle dispense, a destra).
+
+Il **quoziente** $\frac{z_1}{z_2}$ è $z_1$ per l'inverso di $z_2$. Quindi le distanze si dividono e gli angoli si sottraggono:
+
+$$\frac{z_1}{z_2} = \frac{r_1}{r_2}\,e^{i(\vartheta_1 - \vartheta_2)}.$$
 
 > [!ESEMPIO] · Lo stesso inverso della lezione L02
-> $1 + i = \sqrt 2\,e^{i\pi/4}$, quindi $(1 + i)^{-1} = \frac 1{\sqrt 2}e^{-i\pi/4} = \frac 1{\sqrt 2}\left(\frac{\sqrt 2}2 - \frac{\sqrt 2}2 i\right) = \frac 12 - \frac 12 i$. È lo stesso risultato della formula $z^{-1} = \frac{\bar z}{|z|^2} = \frac{1 - i}2$.
+> $1 + i = \sqrt 2\,e^{i\pi/4}$. L'inverso ha distanza $\frac 1{\sqrt 2}$ e angolo $-\frac\pi4$:
+> $$(1 + i)^{-1} = \frac 1{\sqrt 2}e^{-i\pi/4} = \frac 1{\sqrt 2}\left(\frac{\sqrt 2}2 - \frac{\sqrt 2}2 i\right) = \frac 12 - \frac 12 i.$$
+> È lo stesso risultato della formula della lezione L02, $z^{-1} = \frac{\bar z}{|z|^2} = \frac{1 - i}2$.
+
+Nella figura qui sotto ci sono $z = 2e^{i\pi/3}$, il suo coniugato e il suo inverso. Il coniugato è il riflesso allo specchio, alla stessa distanza 2. L'inverso ha lo stesso angolo del coniugato, ma distanza $\frac 12$: sta dentro il cerchio di raggio 1.
 
 ```grafico
 titolo: La Figura 4 delle dispense con $z = 2e^{i\pi/3}$: il coniugato $\bar z = 2e^{-i\pi/3}$ è il riflesso di $z$; l'inverso $z^{-1} = \frac 12 e^{-i\pi/3}$ ha l'angolo opposto e sta dentro la circonferenza unitaria
@@ -18589,59 +18775,105 @@ vettore: 1/4 -sqrt(3)/4 | ambra | spesso | $z^{-1}$ | e
 testo: 1.18 0.12 | grigio | $1$
 ```
 
-## Quando due forme polari danno lo stesso numero (p. 11)
+::: prova Se $z = 4e^{i\pi/2}$, quanto valgono $z^{-1}$ e $\bar z$ in forma polare?
+$z^{-1} = \frac 14 e^{-i\pi/2}$: distanza inversa, angolo opposto.
 
-Un angolo e lo stesso angolo più un giro completo indicano la stessa direzione. Per questo le dispense notano:
+$\bar z = 4e^{-i\pi/2}$: stessa distanza, angolo opposto. In forma $a + bi$: $z = 4i$, $\bar z = -4i$ e $z^{-1} = -\frac 14 i$.
+:::
+
+> [!RICORDA]
+> - Prodotto: distanze moltiplicate, angoli sommati. Moltiplicare per $w$ vuol dire girare e allungare.
+> - Inverso: distanza $\frac 1r$, angolo $-\vartheta$.
+> - Quoziente: distanze divise, angoli sottratti.
+
+## Quando due angoli indicano lo stesso punto (p. 11)
+
+Un orologio segna le 3. Dopo un giro completo della lancetta segna ancora le 3: la lancetta è nello stesso posto. Con gli angoli succede lo stesso. L'angolo $\frac\pi2$ e l'angolo $\frac\pi2 + 2\pi = \frac{5\pi}2$ indicano la stessa direzione: il secondo ha solo fatto un giro in più.
+
+Per questo lo stesso numero complesso ha tante forme polari diverse:
+
+$$e^{i\pi/2} = e^{5\pi i/2} = e^{-3\pi i/2} = i.$$
+
+- $\frac{5\pi}2$ è $\frac\pi2$ più un giro;
+- $-\frac{3\pi}2$ è $\frac\pi2$ meno un giro.
+
+Un altro esempio: $2e^{7\pi i/4} = 2e^{-\pi i/4} = \sqrt 2 - i\sqrt 2$, perché $\frac{7\pi}4 - 2\pi = \frac{7\pi}4 - \frac{8\pi}4 = -\frac\pi4$.
+
+Le dispense lo scrivono così.
 
 > [!PROP] · Uguaglianza di due forme polari (p. 11)
 > Due numeri complessi non nulli espressi in forma polare $r_0e^{i\vartheta_0}$ e $r_1e^{i\vartheta_1}$ sono lo stesso numero complesso se e solo se valgono entrambi i fatti seguenti:
 > - $r_0 = r_1$;
 > - $\vartheta_1 = \vartheta_0 + 2k\pi$ per qualche $k \in \Z$.
 
-In parole: stessa distanza dall'origine, e angoli che differiscono per un numero intero di giri. Per esempio
+**Come si legge.**
 
-$$e^{i\pi/2} = e^{5\pi i/2} = e^{-3\pi i/2} = i, \qquad 2e^{7\pi i/4} = 2e^{-\pi i/4} = \sqrt 2 - i\sqrt 2.$$
+- «Non nulli» vuol dire «diversi da zero».
+- «Se e solo se» vuol dire che le due cose vanno sempre insieme: se i numeri sono uguali, valgono i due fatti; se valgono i due fatti, i numeri sono uguali.
+- Il primo fatto: le due distanze sono uguali.
+- Il secondo fatto: gli angoli differiscono di $2k\pi$. Qui $k$ è un numero intero qualsiasi, positivo, negativo o zero: la scrittura $k \in \Z$ si legge «$k$ appartiene a zeta», cioè «$k$ è un intero». Quindi $2k\pi$ vuol dire «un numero intero di giri», in avanti o all'indietro.
 
-Questo fatto ha due usi: **ridurre** gli angoli grandi che escono dalle potenze, e **risolvere** le equazioni $z^n = z_0$ nella sezione sulle radici.
+Questo fatto ha due usi. Il primo è **accorciare** gli angoli grandi che escono dalle potenze. Il secondo è **risolvere** le equazioni come $z^3 = -8$, nella sezione sulle radici.
 
-> [!METODO] Ridurre un angolo
-> Per semplificare $e^{i\alpha}$ con $\alpha$ grande, togli (o aggiungi) a $\alpha$ multipli di $2\pi$ finché arrivi in un intervallo comodo, $[0, 2\pi)$ oppure $(-\pi, \pi]$.
+> [!METODO] Accorciare un angolo
+> Quando l'angolo è grande, togli (o aggiungi) giri interi, cioè multipli di $2\pi$. Fermati quando l'angolo sta dentro un giro solo: tra 0 e un giro, oppure tra mezzo giro all'indietro e mezzo giro in avanti.
 >
-> Con $\alpha = \frac{p}{q}\pi$ il conto si fa sugli interi: un giro, $2\pi$, vale $\frac{2q}{q}\pi$; quindi si divide $p$ per $2q$ e si tiene il **resto**. Esempio: $\alpha = \frac{2025}4\pi$. Un giro vale $\frac 84\pi$, e $2025 = 8 \cdot 253 + 1$; quindi $\frac{2025}4\pi = 253 \cdot 2\pi + \frac\pi4$ ed $e^{2025\pi i/4} = e^{i\pi/4}$.
+> Con un angolo scritto come frazione di $\pi$ il conto si fa con i numeri interi. Esempio: $\alpha = \frac{2025}4\pi$.
+> 1. Un giro, $2\pi$, scritto in quarti è $\frac 84\pi$.
+> 2. Divido 2025 per 8 con il resto: $2025 = 8 \cdot 253 + 1$.
+> 3. Quindi $\frac{2025}4\pi = 253 \cdot \frac 84\pi + \frac 14\pi$: sono 253 giri interi più $\frac\pi4$.
+> 4. I giri interi non contano: $e^{2025\pi i/4} = e^{i\pi/4}$.
 
-> [!OLTRE] · l'argomento principale
-> Le dispense non fissano un intervallo per l'argomento: $\frac{7\pi}4$ e $-\frac\pi4$ vanno bene tutti e due. Molti libri chiamano **argomento principale** quello in $(-\pi, \pi]$ (altri usano $[0, 2\pi)$). Nel quiz le risposte usano entrambe le convenzioni: se una risposta non ti torna, prova ad aggiungere o togliere $2\pi$.
+::: prova Accorcia l'angolo di $e^{17\pi i/3}$.
+Un giro in terzi è $\frac 63\pi$. Divido 17 per 6: $17 = 6 \cdot 2 + 5$. Quindi $\frac{17}3\pi$ è 2 giri più $\frac{5\pi}3$, e $e^{17\pi i/3} = e^{5\pi i/3}$. Con un giro in meno ancora diventa $e^{-i\pi/3}$.
+:::
 
-## La circonferenza unitaria e l'identità di Eulero (p. 12)
+> [!APPROFONDIMENTO] l'argomento principale
+> Le dispense non fissano un intervallo per l'argomento: $\frac{7\pi}4$ e $-\frac\pi4$ vanno bene tutti e due. Molti libri chiamano **argomento principale** quello compreso tra $-\pi$ (escluso) e $\pi$ (incluso); altri usano quello tra $0$ (incluso) e $2\pi$ (escluso). Nel quiz le risposte usano tutte e due le abitudini: se una risposta non ti torna, prova ad aggiungere o a togliere $2\pi$.
 
-Siccome $\left|e^{i\vartheta}\right| = 1$, i numeri complessi $e^{i\vartheta}$, al variare di $\vartheta$, sono **precisamente i punti della circonferenza unitaria**: il punto di angolo $\vartheta$ è $e^{i\vartheta}$. In particolare:
+> [!RICORDA]
+> - Stessa distanza e angoli che differiscono di giri interi: stesso numero.
+> - Per accorciare un angolo togli multipli di $2\pi$; con le frazioni di $\pi$ basta il resto di una divisione.
 
-- per $\vartheta = \frac\pi2$: $e^{i\pi/2} = \cos\frac\pi2 + i\sin\frac\pi2 = i$;
-- per $\vartheta = \pi$: $e^{i\pi} = \cos\pi + i\sin\pi = -1$. È la celebre **identità di Eulero**, spesso scritta $e^{i\pi} + 1 = 0$;
-- per $\vartheta = 2\pi$: $e^{2\pi i} = \cos 2\pi + i\sin 2\pi = 1$.
+## Il giro completo e l'identità di Eulero (p. 12)
 
-Queste tre uguaglianze servono di continuo: $-1 = e^{i\pi}$ è il modo per portare un segno meno dentro l'angolo, e $e^{2k\pi i} = 1$ per ogni $k \in \Z$ è il motivo per cui gli angoli si possono ridurre.
+Torna sulla pista circolare del ripasso, quella con il raggio lungo 1. Ogni abbreviazione $e^{i\vartheta}$ è un punto della pista, e ogni punto della pista è uno di questi numeri: basta prendere il suo angolo.
 
-## Le potenze (p. 12)
+Tre posti sulla pista sono da sapere a memoria, perché tornano in quasi tutti gli esercizi:
 
-Applicando la regola del prodotto $n$ volte allo stesso numero $z = re^{i\vartheta}$, i moduli si moltiplicano $n$ volte e gli angoli si sommano $n$ volte:
+- un quarto di giro, $\vartheta = \frac\pi2$: $e^{i\pi/2} = \cos\frac\pi2 + i\sin\frac\pi2 = 0 + i \cdot 1 = i$;
+- mezzo giro, $\vartheta = \pi$: $e^{i\pi} = \cos\pi + i\sin\pi = -1 + 0 = -1$;
+- un giro intero, $\vartheta = 2\pi$: $e^{2\pi i} = \cos 2\pi + i\sin 2\pi = 1 + 0 = 1$.
 
-$$z^n = \underbrace{re^{i\vartheta} \cdots re^{i\vartheta}}_{n \text{ volte}} = r^ne^{in\vartheta}.$$
+La seconda è la famosa **identità di Eulero**, spesso scritta $e^{i\pi} + 1 = 0$: mette insieme in una sola riga i numeri $e$, $i$, $\pi$, 1 e 0.
 
-È la formula che le dispense usano all'inizio della sezione 3.B. Il modulo va elevato alla $n$, l'angolo va moltiplicato per $n$.
+A che cosa servono negli esercizi:
 
-> [!OLTRE] · il nome
-> In forma trigonometrica la formula si scrive $\bigl(r(\cos\vartheta + i\sin\vartheta)\bigr)^n = r^n(\cos n\vartheta + i\sin n\vartheta)$ ed è nota come **formula di De Moivre**.
+- la seconda dice che un segno meno è mezzo giro. Serve per portare il meno dentro l'angolo, come nella trappola sul modulo negativo;
+- la terza dice che un giro intero non cambia niente, e nemmeno due, tre o cento giri. È il motivo per cui dagli angoli si possono togliere i giri interi.
 
-> [!ESEMPIO] · $(1 + i)^8$ e $(1 + i)^{10}$
-> $1 + i = \sqrt 2\,e^{i\pi/4}$, quindi
-> $$(1 + i)^8 = (\sqrt 2)^8e^{8\pi i/4} = 16\,e^{2\pi i} = 16.$$
-> Controllo in forma cartesiana: $(1 + i)^2 = 2i$, quindi $(1 + i)^8 = (2i)^4 = 16i^4 = 16$.
->
-> Allo stesso modo $(1 + i)^{10} = (\sqrt 2)^{10}e^{10\pi i/4} = 32\,e^{5\pi i/2}$. Riduco l'angolo: $\frac{5\pi}2 = 2\pi + \frac\pi2$, quindi $(1 + i)^{10} = 32\,e^{i\pi/2} = 32i$.
+::: prova Quanto vale $e^{3\pi i}$?
+$3\pi$ è un giro intero più mezzo giro: $3\pi = 2\pi + \pi$. Il giro intero non conta, quindi $e^{3\pi i} = e^{i\pi} = -1$.
+:::
 
-> [!ESEMPIO] · $(\sqrt 3 + i)^6$
-> $\sqrt 3 + i = 2e^{i\pi/6}$, quindi $(\sqrt 3 + i)^6 = 2^6e^{6\pi i/6} = 64\,e^{i\pi} = -64$. Un numero complesso con parte immaginaria non nulla, elevato alla sesta, dà un numero reale negativo: in forma cartesiana ci vorrebbero cinque moltiplicazioni.
+> [!RICORDA]
+> - I numeri $e^{i\vartheta}$ sono i punti della circonferenza di raggio 1.
+> - $e^{i\pi/2} = i$, $e^{i\pi} = -1$ (identità di Eulero), $e^{2\pi i} = 1$.
+
+## Le potenze: girare più volte (p. 12)
+
+Una potenza è un prodotto ripetuto: $z^3 = z \cdot z \cdot z$. Con la regola del prodotto, ogni volta che moltiplichi per $z$ la distanza si moltiplica per $r$ e l'angolo cresce di $\vartheta$.
+
+Prova con $z = 1 + i$, a distanza $\sqrt 2$ e all'angolo $\frac\pi4$:
+
+| Potenza | Distanza | Angolo | Il numero |
+|---|---|---|---|
+| $z$ | $\sqrt 2$ | $\frac\pi4$ | $1 + i$ |
+| $z^2$ | $\sqrt 2 \cdot \sqrt 2 = 2$ | $\frac\pi4 + \frac\pi4 = \frac\pi2$ | $2i$ |
+| $z^3$ | $2 \cdot \sqrt 2 = 2\sqrt 2$ | $\frac\pi2 + \frac\pi4 = \frac{3\pi}4$ | $-2 + 2i$ |
+| $z^4$ | $2\sqrt 2 \cdot \sqrt 2 = 4$ | $\frac{3\pi}4 + \frac\pi4 = \pi$ | $-4$ |
+
+Guarda la figura: a ogni passo il punto gira di un ottavo di giro e si allontana.
 
 ```grafico
 titolo: Le potenze di $z = 1 + i$: ogni volta il modulo si moltiplica per $\sqrt 2$ e l'angolo cresce di $\frac\pi4$
@@ -18657,51 +18889,125 @@ vettore: -2 2 | viola | $z^3 = -2 + 2i$ | no
 vettore: -4 0 | ambra | $z^4 = -4$ | no
 ```
 
+Moltiplicare $n$ volte la distanza per sé stessa vuol dire elevarla alla $n$. Sommare $n$ volte lo stesso angolo vuol dire moltiplicarlo per $n$. La formula, che le dispense usano all'inizio della sezione 3.B:
+
+$$z^n = \underbrace{re^{i\vartheta} \cdots re^{i\vartheta}}_{n \text{ volte}} = r^ne^{in\vartheta}.$$
+
+A parole: **la distanza si eleva alla $n$, l'angolo si moltiplica per $n$**.
+
+> [!APPROFONDIMENTO] il nome della formula
+> Nella forma trigonometrica la formula si scrive $\bigl(r(\cos\vartheta + i\sin\vartheta)\bigr)^n = r^n(\cos n\vartheta + i\sin n\vartheta)$ ed è nota come **formula di De Moivre**.
+
+> [!ESEMPIO] · $(1 + i)^8$ e $(1 + i)^{10}$
+> $1 + i = \sqrt 2\,e^{i\pi/4}$.
+>
+> **La potenza ottava.**
+> 1. Distanza: $(\sqrt 2)^8 = \left((\sqrt 2)^2\right)^4 = 2^4 = 16$.
+> 2. Angolo: $8 \cdot \frac\pi4 = 2\pi$, un giro intero.
+> 3. Quindi $(1 + i)^8 = 16\,e^{2\pi i} = 16 \cdot 1 = 16$.
+>
+> Controllo con la forma $a + bi$: $(1 + i)^2 = 2i$, quindi $(1 + i)^8 = (2i)^4 = 16i^4 = 16$.
+>
+> **La potenza decima.**
+> 1. Distanza: $(\sqrt 2)^{10} = 2^5 = 32$.
+> 2. Angolo: $10 \cdot \frac\pi4 = \frac{10\pi}4 = \frac{5\pi}2$.
+> 3. Accorcio: $\frac{5\pi}2 = 2\pi + \frac\pi2$, quindi l'angolo è $\frac\pi2$.
+> 4. Quindi $(1 + i)^{10} = 32\,e^{i\pi/2} = 32i$.
+
+> [!ESEMPIO] · $(\sqrt 3 + i)^6$
+> $\sqrt 3 + i = 2e^{i\pi/6}$.
+> 1. Distanza: $2^6 = 64$.
+> 2. Angolo: $6 \cdot \frac\pi6 = \pi$.
+> 3. Quindi $(\sqrt 3 + i)^6 = 64\,e^{i\pi} = -64$.
+>
+> Un numero con parte immaginaria diversa da zero, elevato alla sesta, dà un numero reale negativo. Con la forma $a + bi$ ci sarebbero volute cinque moltiplicazioni.
+
+::: prova Calcola $(2i)^3$ in forma polare.
+$2i = 2e^{i\pi/2}$. Distanza $2^3 = 8$, angolo $3 \cdot \frac\pi2 = \frac{3\pi}2$. Quindi $(2i)^3 = 8e^{3\pi i/2} = 8 \cdot (-i) = -8i$. Controllo: $(2i)^3 = 8i^3 = 8 \cdot (-i) = -8i$.
+:::
+
 > [!METODO] Una potenza alta senza calcolatrice
-> 1. Scrivi $z$ in forma polare $re^{i\vartheta}$ (negli appelli il modulo è quasi sempre $1$, $\sqrt 2$ o $2$ e l'angolo è notevole).
-> 2. Applica $z^n = r^ne^{in\vartheta}$.
-> 3. Riduci l'angolo $n\vartheta$ togliendo multipli di $2\pi$.
+> 1. Scrivi il numero in forma polare. Negli appelli il modulo è quasi sempre 1, $\sqrt 2$ o 2, e l'angolo è uno della tabella.
+> 2. Eleva la distanza alla $n$ e moltiplica l'angolo per $n$.
+> 3. Accorcia l'angolo togliendo giri interi.
 > 4. Torna alla forma $a + bi$ con la tabella di seno e coseno, e confronta con le risposte.
 >
-> In alternativa, per esponenti piccoli: calcola $z^2$ o $z^3$ in forma cartesiana finché ottieni un numero reale o immaginario puro, poi continua con le potenze di quello. Per esempio $(1 + i)^2 = 2i$, e da lì $(1 + i)^{10} = (2i)^5 = 32i^5 = 32i$.
+> Per esponenti piccoli c'è un'alternativa: calcola $z^2$ o $z^3$ nella forma $a + bi$ finché ottieni un numero reale o immaginario puro, poi continua con le potenze di quello. Per esempio $(1 + i)^2 = 2i$, e da lì $(1 + i)^{10} = (2i)^5 = 32i^5 = 32i$.
 
-## Le radici n-esime (pp. 12–13)
+> [!RICORDA]
+> - $z^n = r^ne^{in\vartheta}$: distanza alla $n$, angolo per $n$.
+> - Dopo aver moltiplicato l'angolo, accorcialo togliendo giri interi.
 
-Adesso il problema inverso: dato un numero complesso $z_0 \neq 0$, trovare **tutti** i $z$ con
+## Le radici: n punti in cerchio (pp. 12–13)
 
-$$z^n = z_0.$$
+Adesso il problema al contrario. Le potenze partono da un numero e lo elevano. Le radici partono dal risultato e cercano da dove si è partiti.
 
-Le soluzioni si chiamano **radici $n$-esime** di $z_0$. Tra i reali l'equazione $z^2 = -4$ non ha soluzioni e $z^3 = 8$ ne ha una sola ($z = 2$); tra i complessi, come vedrai, ce ne sono sempre esattamente $n$.
+Tra i numeri reali le cose sono disordinate. Quali numeri, moltiplicati per sé stessi, danno 4? Due: 2 e il suo opposto. Quali numeri, elevati al cubo, danno 8? Uno solo, il 2. E quali numeri al quadrato danno $-4$? Nessuno, perché un quadrato non è mai negativo. Tra i numeri complessi tutto diventa regolare: un numero diverso da zero ha sempre esattamente 2 radici quadrate, 3 radici cubiche, 4 radici quarte, e così via.
 
-### Il ragionamento delle dispense, passo per passo
+In generale si cerca un numero $z$ che elevato alla $n$ dia un numero fissato, che le dispense chiamano $z_0$. Il numerino 0 serve solo a distinguerlo dall'incognita. Le soluzioni si chiamano **radici $n$-esime** di quel numero, e sono sempre $n$.
 
-1. Scriviamo il numero dato in forma polare, $z_0 = r_0e^{i\vartheta_0}$, e l'incognita anche: $z = re^{i\vartheta}$, con $r > 0$ e $\vartheta$ da trovare.
+### Un esempio con i numeri: $z^3 = -8$
+
+Cerchiamo i numeri che elevati al cubo danno $-8$.
+
+1. **Il numero dato, con distanza e angolo.** Il numero $-8$ è dritto verso sinistra, a distanza 8. Quindi ha distanza 8 e angolo $\pi$.
+2. **L'incognita, con distanza e angolo.** Non conosco né la distanza né l'angolo del numero che cerco. Li chiamo $r$ e $\vartheta$.
+3. **Elevo al cubo.** Per la regola delle potenze, il cubo ha distanza $r^3$ e angolo tre volte $\vartheta$.
+4. **Le distanze devono essere uguali.** Il cubo deve avere distanza 8. Il numero positivo che al cubo dà 8 è 2: quindi la distanza cercata è 2.
+5. **Gli angoli devono indicare la stessa direzione.** Tre volte l'angolo cercato deve essere mezzo giro, oppure mezzo giro più un giro, oppure mezzo giro più due giri. I giri in più non cambiano la direzione.
+6. **Divido per 3.** L'angolo cercato può essere un terzo di mezzo giro, cioè $\frac\pi3$. Oppure un terzo di un giro e mezzo, cioè $\pi$. Oppure un terzo di due giri e mezzo, cioè $\frac{5\pi}3$.
+7. **Con un giro in più non viene niente di nuovo.** Mezzo giro più tre giri, diviso 3, fa $\frac{7\pi}3$: è un giro più $\frac\pi3$, cioè lo stesso punto della prima soluzione.
+
+Le soluzioni sono tre: distanza 2, angoli $\frac\pi3$, $\pi$ e $\frac{5\pi}3$. Sono tre punti su un cerchio di raggio 2, separati da un terzo di giro ciascuno: i vertici di un triangolo equilatero.
+
+### Il ragionamento in generale
+
+Le dispense fanno lo stesso conto con $z^n = z_0$ al posto di $z^3 = -8$. I passi sono gli stessi.
+
+1. Scrivo con distanza e angolo sia il numero dato sia l'incognita. Il numero dato è $z_0 = r_0e^{i\vartheta_0}$; l'incognita è $z = re^{i\vartheta}$, con distanza e angolo da trovare.
 2. Per la formula delle potenze l'equazione diventa
-   $$z^n = r^ne^{in\vartheta} = r_0e^{i\vartheta_0}.$$
-3. Due forme polari sono uguali se e solo se i moduli sono uguali e gli angoli differiscono per un multiplo di $2\pi$. Quindi l'equazione vale esattamente quando:
-   - $r^n = r_0$, cioè $r = \sqrt[n]{r_0}$ (la solita radice reale positiva: $r_0 > 0$ e anche $r > 0$);
-   - $n\vartheta = \vartheta_0 + 2k\pi$ per qualche $k \in \Z$.
-4. Dividendo la seconda condizione per $n$:
-   $$\vartheta = \frac{\vartheta_0}n + \frac{2k\pi}n \quad \text{per qualche } k \in \Z.$$
-5. Per $k = 0, 1, \dots, n - 1$ si ottengono gli argomenti
-   $$\frac{\vartheta_0}n, \quad \frac{\vartheta_0}n + \frac{2\pi}n, \quad \dots, \quad \frac{\vartheta_0}n + \frac{2(n - 1)\pi}n.$$
-6. Questi $n$ angoli stanno tutti in un intervallo più corto di un giro, da $\frac{\vartheta_0}n$ a meno di $\frac{\vartheta_0}n + 2\pi$: quindi danno $n$ punti **diversi**. Gli altri valori di $k$ non danno niente di nuovo: $k = n$ dà l'angolo $\frac{\vartheta_0}n + 2\pi$, cioè lo stesso punto di $k = 0$; $k = n + 1$ lo stesso di $k = 1$, e così via.
+   $$r^ne^{in\vartheta} = r_0e^{i\vartheta_0}.$$
+3. Due forme polari sono uguali esattamente quando le distanze sono uguali e gli angoli differiscono di giri interi. Quindi servono due cose.
+   - **Le distanze.** La distanza cercata, elevata alla $n$, deve dare la distanza del numero dato. Quindi è la sua radice $n$-esima, che si scrive $\sqrt[n]{r_0}$: il numero positivo che elevato alla $n$ dà $r_0$, la solita radice della scuola.
+   - **Gli angoli.** L'angolo cercato, moltiplicato per $n$, deve dare l'angolo del numero dato più un certo numero di giri: $n\vartheta = \vartheta_0 + 2k\pi$, con $k$ intero.
+4. Divido per $n$:
+   $$\vartheta = \frac{\vartheta_0}n + \frac{2k\pi}n.$$
+5. Il primo angolo, con $k$ uguale a zero, è l'angolo del numero dato diviso per $n$. Ogni volta che $k$ cresce di 1, l'angolo cresce di un $n$-esimo di giro. Facendo crescere $k$ da 0 fino a $n - 1$ vengono $n$ angoli.
+6. Questi $n$ angoli coprono meno di un giro, quindi danno $n$ punti **diversi**. Il valore successivo di $k$ riporta al primo punto, perché aggiunge un giro intero; quello dopo riporta al secondo, e così via.
+
+Le dispense lo scrivono così.
 
 > [!PROP] · Le radici $n$-esime (pp. 12–13)
 > Sia $z_0 = r_0e^{i\vartheta_0}$ un numero complesso diverso da zero. L'equazione $z^n = z_0$ ha precisamente $n$ soluzioni distinte:
 > $$z_k = \sqrt[n]{r_0}\;e^{i\left(\frac{\vartheta_0}n + \frac{2k\pi}n\right)}, \qquad k = 0, 1, \dots, n - 1.$$
 > Hanno tutte lo stesso modulo $\sqrt[n]{r_0}$ e argomenti separati da un passo costante $\frac{2\pi}n$. Geometricamente, formano i vertici di un **poligono regolare** centrato nell'origine con $n$ lati e raggio $\sqrt[n]{r_0}$.
 
+**Come si legge.**
+
+- «Precisamente $n$ soluzioni distinte»: esattamente $n$, tutte diverse tra loro.
+- $z_k$ è la soluzione numero $k$. Il numerino $k$ parte da 0 e arriva a $n - 1$: in tutto sono $n$.
+- Tutte le soluzioni stanno alla stessa distanza dall'origine.
+- La prima ha l'angolo del numero dato diviso per $n$. Da una alla successiva l'angolo cresce sempre di un $n$-esimo di giro.
+- Un **poligono regolare** ha tutti i lati uguali: triangolo equilatero, quadrato, pentagono regolare… Le soluzioni ne sono i vertici, su un cerchio centrato nell'origine.
+
+::: prova Quante soluzioni ha $z^5 = 32$? A che distanza dall'origine stanno?
+Cinque soluzioni. La distanza è $\sqrt[5]{32} = 2$, perché $2^5 = 32$. Sono i vertici di un pentagono regolare su un cerchio di raggio 2, e uno di loro è il numero reale 2.
+:::
+
+### Due esempi delle dispense
+
 > [!ESEMPIO] 3.3 · Le radici $n$-esime dell'unità
 > L'equazione $z^n = 1$ ha come soluzioni i numeri complessi
 > $$z = e^{i\frac{2k\pi}n}, \qquad k = 0, 1, \dots, n - 1.$$
 > Queste $n$ soluzioni sono i vertici di un poligono regolare di raggio $1$ con $n$ lati, avente $1$ come vertice. Sono le **radici $n$-esime dell'unità**.
 >
-> Il conto: $1 = 1 \cdot e^{i \cdot 0}$, quindi $r_0 = 1$, $\vartheta_0 = 0$, e le radici hanno modulo $\sqrt[n]1 = 1$ e argomenti $\frac{2k\pi}n$.
-> - $n = 2$: $e^{0} = 1$ ed $e^{i\pi} = -1$.
-> - $n = 3$: $1$, $e^{2\pi i/3} = -\frac 12 + \frac{\sqrt 3}2 i$, $e^{4\pi i/3} = -\frac 12 - \frac{\sqrt 3}2 i$: un triangolo equilatero.
-> - $n = 4$: $1$, $i$, $-1$, $-i$: un quadrato.
-> - $n = 6$: gli angoli sono multipli di $\frac\pi3$, e le radici sono $\pm 1$, $\pm\frac 12 \pm \frac{\sqrt 3}2 i$: un esagono (Figura 5 delle dispense, a sinistra).
+> **Da dove viene.** $1 = 1 \cdot e^{i \cdot 0}$: la distanza è 1 e l'angolo è 0. Quindi le radici hanno distanza $\sqrt[n]1 = 1$ e angoli $0 + \frac{2k\pi}n$. «Unità» è un altro nome del numero 1.
+> - $n = 2$: gli angoli sono $0$ e $\pi$. Le radici sono $e^{0} = 1$ ed $e^{i\pi} = -1$.
+> - $n = 3$: gli angoli sono $0$, $\frac{2\pi}3$, $\frac{4\pi}3$. Le radici sono $1$, $e^{2\pi i/3} = -\frac 12 + \frac{\sqrt 3}2 i$, $e^{4\pi i/3} = -\frac 12 - \frac{\sqrt 3}2 i$: un triangolo equilatero.
+> - $n = 4$: gli angoli sono i quarti di giro. Le radici sono $1$, $i$, $-1$, $-i$: un quadrato.
+> - $n = 6$: gli angoli sono i multipli di $\frac\pi3$. Le radici sono $\pm 1$ e $\pm\frac 12 \pm \frac{\sqrt 3}2 i$: un esagono (Figura 5 delle dispense, a sinistra).
+
+Nella figura le sei radici seste di 1. Il simbolo $\pm$ si legge «più o meno»: la scrittura $\pm\frac 12 \pm \frac{\sqrt 3}2 i$ riassume i quattro numeri con tutte le scelte dei segni.
 
 ```grafico
 titolo: La Figura 5 (sinistra): le radici seste di $1$ sono i vertici di un esagono regolare con un vertice in $1$
@@ -18724,9 +19030,11 @@ punto: 1/2 -sqrt(3)/2 | ambra | $\frac 12 - \frac{\sqrt 3}2 i$ | se
 > $$z_2 = 2e^{i\pi} = -2,$$
 > $$z_3 = 2e^{5\pi i/3} = 2\left(\cos\frac{5\pi}3 + i\sin\frac{5\pi}3\right) = 1 - \sqrt 3 i.$$
 >
-> **Da dove vengono gli angoli.** $-8$ è un reale negativo: sta sul semiasse reale negativo, quindi $-8 = 8e^{i\pi}$, con $r_0 = 8$ e $\vartheta_0 = \pi$. Il primo angolo è $\frac\pi3$; poi si aggiunge due volte il passo $\frac{2\pi}3$: $\frac\pi3 + \frac{2\pi}3 = \pi$ e $\pi + \frac{2\pi}3 = \frac{5\pi}3$.
+> **Da dove vengono gli angoli.** È l'esempio che hai già fatto all'inizio della sezione. $-8$ è un reale negativo, quindi $-8 = 8e^{i\pi}$. Il primo angolo è $\frac\pi3$, un terzo di $\pi$. Poi si aggiunge due volte il passo $\frac{2\pi}3$: $\frac\pi3 + \frac{2\pi}3 = \pi$, e $\pi + \frac{2\pi}3 = \frac{5\pi}3$.
 >
-> **Controllo** su $z_1$: $(1 + i\sqrt 3)^2 = 1 + 2i\sqrt 3 - 3 = -2 + 2i\sqrt 3$, e poi $(-2 + 2i\sqrt 3)(1 + i\sqrt 3) = -2 - 2i\sqrt 3 + 2i\sqrt 3 + 2i^2 \cdot 3 = -2 - 6 = -8$.
+> **Controllo** su $z_1$, nella forma $a + bi$:
+> 1. $(1 + i\sqrt 3)^2 = 1 + 2i\sqrt 3 + (i\sqrt 3)^2 = 1 + 2i\sqrt 3 - 3 = -2 + 2i\sqrt 3$.
+> 2. $(-2 + 2i\sqrt 3)(1 + i\sqrt 3) = -2 - 2i\sqrt 3 + 2i\sqrt 3 + 2i^2 \cdot 3 = -2 - 6 = -8$.
 
 ```grafico
 titolo: La Figura 5 (destra): le soluzioni di $z^3 = -8$ sono i vertici di un triangolo equilatero di raggio $\sqrt[3]8 = 2$
@@ -18740,7 +19048,7 @@ punto: -2 0 | ambra | $z_2 = -2$ | no
 punto: 1 -sqrt(3) | ambra | $z_3 = 1 - \sqrt 3 i$ | se
 ```
 
-Nello strumento qui sotto trovi lo stesso esempio. Cambia $n$ per vedere triangoli, quadrati, pentagoni; cambia $z$ (per esempio $1$, $i$ o $-4$) e guarda come il poligono ruota e cambia raggio.
+Nello strumento qui sotto c'è lo stesso esempio. Cambia $n$ per vedere triangoli, quadrati, pentagoni. Poi cambia $z$, per esempio con $1$, $i$ o $-4$, e guarda come il poligono gira e cambia raggio.
 
 ```widget complessi
 titolo: Radici $n$-esime: sempre $n$, sui vertici di un poligono regolare
@@ -18751,26 +19059,56 @@ n: 3
 raggio: 3
 ```
 
-> [!METODO] Trovare le radici $n$-esime di $z_0$
-> 1. Scrivi $z_0 = r_0e^{i\vartheta_0}$. Attenzione ai numeri reali: un reale positivo ha argomento $0$, un reale negativo ha argomento $\pi$.
-> 2. Il modulo di tutte le radici è $\sqrt[n]{r_0}$.
-> 3. Il primo argomento è $\frac{\vartheta_0}n$; gli altri si ottengono aggiungendo $\frac{2\pi}n$, fino ad averne $n$.
-> 4. Se gli angoli sono notevoli, passa alla forma $a + bi$.
-> 5. Disegna: i punti devono formare un poligono regolare con $n$ lati.
+> [!METODO] Trovare le radici $n$-esime di un numero
+> 1. Scrivi il numero in forma polare. Attenzione ai numeri reali: un reale positivo ha angolo 0, un reale negativo ha angolo $\pi$.
+> 2. Tutte le radici hanno la stessa distanza: la radice $n$-esima della distanza del numero.
+> 3. Il primo angolo è l'angolo del numero diviso per $n$. Gli altri si ottengono aggiungendo $\frac{2\pi}n$, fino ad averne $n$.
+> 4. Se gli angoli sono nella tabella, passa alla forma $a + bi$.
+> 5. Fai il disegno: i punti devono formare un poligono regolare con $n$ lati.
 
-### Il caso $n = 2$: le radici quadrate
+### Le radici quadrate
 
-Per $n = 2$ il passo è $\frac{2\pi}2 = \pi$: le due radici quadrate di $z_0$ sono **opposte**, $w$ e $-w$. Tre esempi che ritroverai nella lezione L04, dentro la formula delle equazioni di secondo grado:
+Con $n = 2$ il passo è $\frac{2\pi}2 = \pi$, mezzo giro. Quindi le due radici quadrate di un numero sono **opposte**: se una è $w$, l'altra è $-w$. Tre esempi, che ritroverai nella lezione L04 dentro la formula delle equazioni di secondo grado:
 
-- $z^2 = -4$: $-4 = 4e^{i\pi}$, radici $2e^{i\pi/2} = 2i$ e $2e^{3\pi i/2} = -2i$. In generale le radici quadrate di un reale negativo $-a$ sono $\pm i\sqrt a$.
-- $z^2 = 2i$: $2i = 2e^{i\pi/2}$, radici $\sqrt 2\,e^{i\pi/4} = 1 + i$ e $\sqrt 2\,e^{5\pi i/4} = -1 - i$. Sono le stesse trovate con le coordinate nell'esercizio 7 della lezione L02.
-- $z^2 = -3 + 4i$: qui l'angolo non è notevole, e conviene il metodo della lezione L02 ($z = x + yi$, poi $x^2 - y^2 = -3$ e $2xy = 4$): le radici sono $\pm(1 + 2i)$.
+- **Le radici quadrate di $-4$.** Il numero $-4$ è a distanza 4, dritto verso sinistra. Le radici hanno distanza 2. Il primo angolo è metà di mezzo giro, cioè un quarto di giro; il secondo è mezzo giro più in là. Le radici sono $2i$ e $-2i$. In generale le radici quadrate di un numero reale negativo sono $i$ per la radice del suo opposto, con il più e con il meno.
+- **Le radici quadrate di $2i$.** Il numero $2i$ è a distanza 2, dritto verso l'alto. Le radici hanno distanza $\sqrt 2$ e angoli $\frac\pi4$ e $\frac{5\pi}4$: sono $1 + i$ e $-1 - i$. Sono le stesse trovate con le coordinate nell'esercizio 7 della lezione L02.
+- **Le radici quadrate di $-3 + 4i$.** Qui l'angolo non è nella tabella, e conviene il metodo della lezione L02: si scrive l'incognita come $x + yi$ e si risolvono le due equazioni sulle parti reale e immaginaria. Le radici sono $1 + 2i$ e il suo opposto.
+
+::: prova Quali sono le radici quadrate di $-9$?
+$-9 = 9e^{i\pi}$. Distanza $\sqrt 9 = 3$, angoli $\frac\pi2$ e $\frac{3\pi}2$. Le radici sono $3i$ e $-3i$. Controllo: $(3i)^2 = 9i^2 = -9$.
+:::
 
 > [!TRAPPOLA] Il simbolo $\sqrt{\ }$ tra i complessi
-> Tra i reali positivi $\sqrt a$ indica **la** radice positiva. Tra i complessi non c'è una radice «positiva»: ci sono due radici quadrate opposte, e scrivere $\sqrt{z_0}$ è ambiguo. Per questo le regole di L01 come $\sqrt a\sqrt b = \sqrt{ab}$ non valgono più: $\sqrt{-1}\cdot\sqrt{-1}$ «dovrebbe» essere $\sqrt{(-1)(-1)} = \sqrt 1 = 1$, ma con $\sqrt{-1} = i$ viene $i \cdot i = -1$. Nella lezione L04 le dispense scrivono $\pm\sqrt\Delta$ proprio per indicare **le due** radici quadrate di $\Delta$.
+> Tra i reali positivi $\sqrt a$ indica **la** radice positiva. Tra i complessi non c'è una radice «positiva»: ci sono due radici quadrate opposte, e scrivere $\sqrt{z_0}$ non dice quale. Per questo le regole della lezione L01 come $\sqrt a\sqrt b = \sqrt{ab}$ qui non valgono più. Esempio: $\sqrt{-1}\cdot\sqrt{-1}$ «dovrebbe» essere $\sqrt{(-1)(-1)} = \sqrt 1 = 1$, ma con $\sqrt{-1} = i$ viene $i \cdot i = -1$. Nella lezione L04 le dispense scrivono $\pm\sqrt\Delta$ proprio per indicare **le due** radici quadrate di un numero.
 
 > [!OLTRE] · dove trovarlo nel libro
-> Nel libro di Martelli la lezione corrisponde al §1.4, parti 1.4.4 «Coordinate polari» (pp. 27–29, con la dimostrazione della Proposizione 1.4.2, che è la 3.2 delle dispense), 1.4.5 «Proprietà dei numeri complessi» (p. 30, Esercizio 1.4.3) e 1.4.6 «Radici $n$-esime di un numero complesso» (pp. 30–31, con gli Esempi 1.4.4 e 1.4.5, cioè 3.3 e 3.4 delle dispense, e l'Esercizio 1.4.6, che è il 3.5). Alla fine del capitolo 1 (p. 37) gli Esercizi 1.13 e 1.14 sono svolti qui come esercizi 9 e 10.
+> Nel libro di Martelli la lezione corrisponde al §1.4, parti 1.4.4 «Coordinate polari» (pp. 27–29, con la dimostrazione della Proposizione 1.4.2, che è la 3.2 delle dispense), 1.4.5 «Proprietà dei numeri complessi» (p. 30, Esercizio 1.4.3) e 1.4.6 «Radici $n$-esime di un numero complesso» (pp. 30–31, con gli Esempi 1.4.4 e 1.4.5, cioè 3.3 e 3.4 delle dispense, e l'Esercizio 1.4.6, che è il 3.5). Alla fine del capitolo 1 (p. 37) gli Esercizi 1.13 e 1.14 sono svolti qui come esercizi 13 e 14.
+
+> [!RICORDA]
+> - $z^n = z_0$ ha sempre esattamente $n$ soluzioni, se $z_0$ non è zero.
+> - Distanza: la radice $n$-esima della distanza di $z_0$. Primo angolo: l'angolo di $z_0$ diviso per $n$. Poi passi di $\frac{2\pi}n$.
+> - Le soluzioni sono i vertici di un poligono regolare con $n$ lati.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\pi$ | «pi greco» | circa 3,14; in radianti, mezzo giro | $180° = \pi$ |
+| $\vartheta$, $\varphi$, $\alpha$ | «teta», «fi», «alfa» | lettere greche usate per gli angoli | $\vartheta = \frac\pi3$ |
+| $\cos\vartheta$, $\sin\vartheta$ | «coseno di teta», «seno di teta» | le due coordinate del punto all'angolo $\vartheta$ sul cerchio di raggio 1 | $\cos\frac\pi3 = \frac 12$ |
+| $\cos^2\vartheta$ | «coseno quadro di teta» | il coseno moltiplicato per sé stesso | $\cos^2\frac\pi4 = \frac 12$ |
+| $(r, \vartheta)$ | «erre, teta» | coordinate polari: distanza e angolo | $(1, \sqrt 3)$ ha $(2, \frac\pi3)$ |
+| $\lvert z \rvert$ | «modulo di zeta» | la distanza di $z$ dall'origine | $\lvert 1 + i \rvert = \sqrt 2$ |
+| $\bar z$ | «zeta segnato» | il coniugato: il riflesso rispetto all'asse orizzontale | $\overline{1 + i} = 1 - i$ |
+| $e^{i\vartheta}$ | «e alla i teta» | abbreviazione di $\cos\vartheta + i\sin\vartheta$ | $e^{i\pi/2} = i$ |
+| $re^{i\vartheta}$ | «erre e alla i teta» | forma polare: distanza $r$, angolo $\vartheta$ | $1 + i = \sqrt 2\,e^{i\pi/4}$ |
+| $z^{-1}$ | «zeta alla meno uno» | l'inverso: moltiplicato per $z$ dà 1 | $(2e^{i\pi/3})^{-1} = \frac 12 e^{-i\pi/3}$ |
+| $z_1, z_2$, $r_1, r_2$ | «zeta uno», «erre uno»… | i numerini distinguono oggetti dello stesso tipo | $z_1 = 2e^{i\pi/3}$ |
+| $k \in \Z$ | «$k$ appartiene a zeta» | $k$ è un numero intero | $k = -1, 0, 1, \dots$ |
+| $2k\pi$ | «due kappa pi greco» | un numero intero di giri | $2 \cdot 3\pi = 6\pi$ |
+| $\sqrt[n]{a}$ | «radice $n$-esima di $a$» | il numero positivo che elevato alla $n$ dà $a$ | $\sqrt[3]8 = 2$ |
+| $\pm$ | «più o meno» | due numeri, uno con il più e uno con il meno | $\pm 2i$ è $2i$ e $-2i$ |
+| $\operatorname{Re}$, $\operatorname{Im}$ | «parte reale», «parte immaginaria» | nei grafici, i nomi dei due assi | |
 
 ## Verso l'esame
 
@@ -18785,38 +19123,72 @@ Per $n = 2$ il passo è $\frac{2\pi}2 = \pi$: le due radici quadrate di $z_0$ so
 | prodotto da scrivere in forma polare | 16/01/2025 (1) |
 | radici: quale numero è (o non è) soluzione di $z^n = z_0$, o che cosa vale un'espressione con una radice quadrata | 10/06/2024 (1), 02/09/2025 (2), 05/02/2026 (1) |
 
-Ecco tre di queste domande, con la soluzione.
+### Una domanda vera, letta insieme
+
+**Appello del 15/01/2026, domanda 5.** Il testo: «Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, allora $z^9$ è uguale a: (a) $1$; (b) $\frac 12 - \frac{\sqrt 3}2 i$; (c) $-\frac{9\sqrt 3}2 + \frac 92 i$; (d) $i$; (e) $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$».
+
+**In pratica chiede:** prendi questo numero, moltiplicalo per sé stesso nove volte. Che cosa viene? Nove moltiplicazioni nella forma $a + bi$ sono troppe: si passa alla forma polare.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: la distanza.** $|z| = \sqrt{\left(\frac{\sqrt 3}2\right)^2 + \left(\frac 12\right)^2} = \sqrt{\frac 34 + \frac 14} = \sqrt 1 = 1$. Il numero sta sul cerchio di raggio 1.
+>
+> **Passo 2: l'angolo.** Siccome la distanza è 1, coseno e seno sono le due parti: coseno $\frac{\sqrt 3}2$ e seno $-\frac 12$. Coseno positivo, seno negativo: quarto quadrante. Senza segni sono i valori di $\frac\pi6$, quindi l'angolo è $-\frac\pi6$. Allora $z = e^{-i\pi/6}$.
+>
+> **Passo 3: la potenza.** Distanza $1^9 = 1$. Angolo $9 \cdot \left(-\frac\pi6\right) = -\frac{9\pi}6 = -\frac{3\pi}2$. Quindi $z^9 = e^{-3\pi i/2}$.
+>
+> **Passo 4: accorcio.** Aggiungo un giro: $-\frac{3\pi}2 + 2\pi = -\frac{3\pi}2 + \frac{4\pi}2 = \frac\pi2$. Quindi $z^9 = e^{i\pi/2} = i$.
+>
+> **La risposta** è la (d).
+>
+> **Perché le risposte (c) ed (e) sono sbagliate.** Vengono da conti fatti sulle due parti separatamente: la (c) moltiplica per 9 ciascuna parte, la (e) eleva alla nona ciascuna parte (e cambia i segni). Per i numeri complessi questi conti non hanno senso: già $(1 + i)^2 = 2i$ non è $1^2 + i^2 = 0$.
+
+### Altre due domande vere
 
 > [!ESEMPIO] · Appello del 16/01/2025, domanda 1
 > Dato $z = 2\cos\frac\pi4 + 2i\sin\frac\pi4$, allora $-3iz$ in coordinate polari è uguale a: (a) $-6i\cos\frac\pi4 - 6i\sin\frac\pi4$; (b) $-6e^{3\pi i/4}$; (c) $-6i\cos\frac\pi4 + 6i\sin\frac\pi4$; (d) $6e^{7\pi i/4}$; (e) $0$.
 >
-> **Soluzione.** $z = 2e^{i\pi/4}$. Il numero $-3i$ sta sul semiasse immaginario negativo: modulo $3$, argomento $\frac{3\pi}2$, cioè $-3i = 3e^{3\pi i/2}$. Moduli moltiplicati, argomenti sommati:
-> $$-3iz = 6\,e^{i(\pi/4 + 3\pi/2)} = 6\,e^{7\pi i/4}.$$
-> Risposta (d). La (b) indica lo stesso numero ($-6e^{3\pi i/4} = 6e^{i\pi}e^{3\pi i/4} = 6e^{7\pi i/4}$) ma non è in coordinate polari, perché il fattore davanti è negativo. La (a) vale $-6\sqrt 2\,i$ e la (c) vale $0$: sono numeri diversi dal risultato $6e^{7\pi i/4} = 3\sqrt 2 - 3\sqrt 2\,i$.
-
-> [!ESEMPIO] · Appello del 15/01/2026, domanda 5
-> Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, allora $z^9$ è uguale a: (a) $1$; (b) $\frac 12 - \frac{\sqrt 3}2 i$; (c) $-\frac{9\sqrt 3}2 + \frac 92 i$; (d) $i$; (e) $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$.
+> **In pratica chiede:** moltiplica $z$ per $-3i$ e scrivi il risultato con distanza e angolo.
 >
-> **Soluzione.** $|z| = \sqrt{\frac 34 + \frac 14} = 1$; $\cos\vartheta = \frac{\sqrt 3}2$ e $\sin\vartheta = -\frac 12$, quarto quadrante: $\vartheta = -\frac\pi6$. Quindi
-> $$z^9 = e^{-9\pi i/6} = e^{-3\pi i/2}.$$
-> Aggiungo un giro: $-\frac{3\pi}2 + 2\pi = \frac\pi2$, quindi $z^9 = e^{i\pi/2} = i$. Risposta (d). Le risposte (c) ed (e) vengono da conti fatti sulle due parti separatamente (moltiplicate per $9$, oppure elevate alla nona, e poi con i segni cambiati), che per i numeri complessi non hanno senso.
+> **Soluzione.**
+> 1. $z$ è già in forma trigonometrica: distanza 2, angolo $\frac\pi4$. Quindi $z = 2e^{i\pi/4}$.
+> 2. Il numero $-3i$ è dritto verso il basso, a distanza 3: angolo $\frac{3\pi}2$. Quindi $-3i = 3e^{3\pi i/2}$.
+> 3. Distanze moltiplicate: $2 \cdot 3 = 6$. Angoli sommati: $\frac\pi4 + \frac{3\pi}2 = \frac\pi4 + \frac{6\pi}4 = \frac{7\pi}4$.
+> 4. Quindi $-3iz = 6\,e^{7\pi i/4}$: risposta (d).
+>
+> La (b) indica lo stesso numero, perché $-6e^{3\pi i/4} = 6e^{i\pi}e^{3\pi i/4} = 6e^{7\pi i/4}$. Ma non è in coordinate polari: il numero davanti è negativo. La (a) vale $-6\sqrt 2\,i$ e la (c) vale $0$: sono numeri diversi dal risultato, che è $3\sqrt 2 - 3\sqrt 2\,i$.
 
 > [!ESEMPIO] · Appello del 02/09/2025, domanda 2
 > Quale dei seguenti è una radice terza di $z = 8e^{3\pi i/5}$? (a) $4e^{\pi i/5}$; (b) $2e^{\pi i/5 + 2\pi i/3}$; (c) $8e^{\pi i/3 + 2\pi ik}$; (d) $2e^{3\pi i/5}$; (e) $2e^{3\pi i/5 + \pi i/3}$.
 >
-> **Soluzione.** Modulo delle radici: $\sqrt[3]8 = 2$ (quindi (a) e (c) sono escluse). Argomenti: $\frac{3\pi/5}3 + \frac{2k\pi}3 = \frac\pi5 + \frac{2k\pi}3$ per $k = 0, 1, 2$. Con $k = 1$ si ottiene $2e^{\pi i/5 + 2\pi i/3}$: risposta (b). Controllo diretto: $\left(2e^{i(\pi/5 + 2\pi/3)}\right)^3 = 8e^{i(3\pi/5 + 2\pi)} = 8e^{3\pi i/5}$. La (d) ha l'angolo non diviso per $3$: il suo cubo è $8e^{9\pi i/5}$; la (e) ha cubo $8e^{9\pi i/5 + \pi i} = 8e^{4\pi i/5}$.
+> **In pratica chiede:** quale di questi numeri, elevato al cubo, dà $8e^{3\pi i/5}$?
+>
+> **Soluzione.**
+> 1. La distanza delle radici è $\sqrt[3]8 = 2$. Quindi la (a) e la (c) sono subito escluse: hanno distanza 4 e 8.
+> 2. Gli angoli delle radici: $\frac{3\pi/5}3 + \frac{2k\pi}3 = \frac\pi5 + \frac{2k\pi}3$, per $k = 0, 1, 2$.
+> 3. Con $k = 1$ viene $2e^{\pi i/5 + 2\pi i/3}$: risposta (b).
+>
+> **Controllo.** Elevo la (b) al cubo: distanza $2^3 = 8$, angolo $3 \cdot \left(\frac\pi5 + \frac{2\pi}3\right) = \frac{3\pi}5 + 2\pi$. Tolgo il giro: $8e^{3\pi i/5}$. Torna. La (d) ha l'angolo non diviso per 3: il suo cubo è $8e^{9\pi i/5}$. La (e) ha cubo $8e^{9\pi i/5 + \pi i} = 8e^{4\pi i/5}$.
+
+### I metodi
 
 > [!METODO] Le domande sui complessi in forma polare
-> 1. Porta **tutto** in forma polare: $z$, e anche i fattori come $-3i$, $-1$, $2i$.
-> 2. Applica le regole: prodotto (moduli per, angoli più), inverso (modulo inverso, angolo opposto), potenza ($r^n$, $n\vartheta$), radici ($\sqrt[n]{r_0}$, $\frac{\vartheta_0 + 2k\pi}n$).
-> 3. Riduci gli angoli togliendo multipli di $2\pi$.
-> 4. Scarta subito le risposte con il modulo sbagliato: è il controllo più veloce.
-> 5. Per «quale è una radice», eleva la risposta candidata alla $n$: deve tornare $z_0$.
+> 1. Porta **tutto** in forma polare: il numero $z$, e anche gli altri pezzi come $-3i$, $-1$, $2i$.
+> 2. Applica le regole: prodotto (distanze per, angoli più), inverso (distanza inversa, angolo opposto), potenza (distanza alla $n$, angolo per $n$), radici (radice $n$-esima della distanza, angoli $\frac{\vartheta_0 + 2k\pi}n$).
+> 3. Accorcia gli angoli togliendo giri interi.
+> 4. Scarta subito le risposte con la distanza sbagliata: è il controllo più veloce.
+> 5. Per «quale è una radice», eleva la risposta candidata alla $n$: deve tornare il numero dato.
 
-**Errori da evitare.** Scrivere il modulo negativo in una forma polare; elevare alla $n$ il modulo ma non moltiplicare l'angolo (o viceversa); prendere $\vartheta_0$ invece di $\frac{\vartheta_0}n$ come primo angolo delle radici; dimenticare che un reale negativo ha argomento $\pi$; sbagliare quadrante guardando solo il coseno; trovare una radice sola invece di $n$.
+**Errori da evitare.**
+
+- Scrivere un numero negativo davanti all'esponenziale in una forma polare.
+- Elevare alla $n$ la distanza ma dimenticare di moltiplicare l'angolo, o il contrario.
+- Prendere l'angolo del numero dato, e non quell'angolo diviso per $n$, come primo angolo delle radici.
+- Dimenticare che un reale negativo ha angolo $\pi$.
+- Sbagliare quadrante guardando solo il coseno.
+- Trovare una radice sola invece di $n$.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: la tabella di seno e coseno negli angoli notevoli; $x = r\cos\vartheta$, $y = r\sin\vartheta$; $e^{i\vartheta} = \cos\vartheta + i\sin\vartheta$; $e^{i\pi} = -1$, $e^{i\pi/2} = i$; prodotto, inverso e potenza in forma polare; la formula delle radici $z_k = \sqrt[n]{r_0}\,e^{i(\vartheta_0 + 2k\pi)/n}$; il metodo per ridurre un angolo.
+> Da questa lezione: la tabella di seno e coseno negli angoli notevoli; $x = r\cos\vartheta$, $y = r\sin\vartheta$; $e^{i\vartheta} = \cos\vartheta + i\sin\vartheta$; $e^{i\pi} = -1$, $e^{i\pi/2} = i$; prodotto, inverso e potenza in forma polare; la formula delle radici $z_k = \sqrt[n]{r_0}\,e^{i(\vartheta_0 + 2k\pi)/n}$; il metodo per accorciare un angolo.
 
 ## Quiz
 
@@ -18827,7 +19199,7 @@ D: Dato $z = 1 + i$, allora $z^{10}$ è uguale a:
 - $32$
 - $1024\,i$
 - $10 + 10i$
-= $1 + i = \sqrt 2\,e^{i\pi/4}$, quindi $z^{10} = (\sqrt 2)^{10}e^{10\pi i/4} = 32\,e^{5\pi i/2} = 32\,e^{i\pi/2} = 32i$ (si toglie un giro, $2\pi$). Verifica: $(1 + i)^2 = 2i$ e $(2i)^5 = 32i^5 = 32i$. $1024 = 2^{10}$ viene elevando alla decima il modulo $2$ invece di $\sqrt 2$. Simile agli appelli del 10/07/2024 e del 24/01/2024.
+= La domanda chiede una potenza alta, quindi conviene la forma polare. $1 + i$ ha distanza $\sqrt 2$ e angolo $\frac\pi4$. Alla decima la distanza diventa $(\sqrt 2)^{10} = 2^5 = 32$ e l'angolo diventa $10 \cdot \frac\pi4 = \frac{5\pi}2$; togliendo un giro resta $\frac\pi2$, cioè la direzione di $i$. Il risultato è $32i$. Controllo veloce: $(1 + i)^2 = 2i$ e $(2i)^5 = 32i^5 = 32i$. La risposta più insidiosa è $1024\,i$: $1024 = 2^{10}$ viene elevando alla decima 2 invece di $\sqrt 2$, cioè sbagliando la distanza di $1 + i$. Simile agli appelli del 10/07/2024 e del 24/01/2024.
 
 D: Dato $z = 2\cos\frac{\pi}{12} + 2i\sin\frac{\pi}{12}$, allora $z^6$ è uguale a:
 + $64i$
@@ -18835,7 +19207,7 @@ D: Dato $z = 2\cos\frac{\pi}{12} + 2i\sin\frac{\pi}{12}$, allora $z^6$ è uguale
 - $64$
 - $-64$
 - $12i$
-= $z = 2e^{i\pi/12}$, quindi $z^6 = 2^6e^{6\pi i/12} = 64\,e^{i\pi/2} = 64i$. $2i$ dimentica di elevare il modulo; $12i$ moltiplica il modulo per $6$ invece di elevarlo. Simile all'appello del 06/09/2024, domanda 1.
+= Il numero è già in forma trigonometrica: distanza 2, angolo $\frac\pi{12}$, quindi $z = 2e^{i\pi/12}$. Alla sesta la distanza diventa $2^6 = 64$ e l'angolo $6 \cdot \frac\pi{12} = \frac\pi2$, la direzione di $i$: il risultato è $64i$. La risposta $2i$ ha l'angolo giusto ma dimentica di elevare la distanza; $12i$ moltiplica la distanza per 6 invece di elevarla alla sesta; $64$ dimentica di moltiplicare l'angolo. Simile all'appello del 06/09/2024, domanda 1.
 
 D: Dato $z = 3e^{i\pi/3}$, il numero $-2iz$ scritto in forma polare $re^{i\vartheta}$ con $r > 0$ e $0 \le \vartheta < 2\pi$ è:
 + $6e^{11\pi i/6}$
@@ -18843,7 +19215,7 @@ D: Dato $z = 3e^{i\pi/3}$, il numero $-2iz$ scritto in forma polare $re^{i\varth
 - $6e^{5\pi i/6}$
 - $5e^{11\pi i/6}$
 - $6e^{4\pi i/3}$
-= $-2i = 2e^{3\pi i/2}$, quindi $-2iz = 6\,e^{i(\pi/3 + 3\pi/2)} = 6\,e^{11\pi i/6}$. $-6e^{5\pi i/6}$ è lo stesso numero ma non è una forma polare ($r$ negativo); $6e^{5\pi i/6}$ viene prendendo $-2i = 2e^{i\pi/2}$ (angolo sbagliato); $5$ somma i moduli invece di moltiplicarli; $6e^{4\pi i/3}$ usa l'angolo $\pi$ per $-i$. Simile all'appello del 16/01/2025, domanda 1.
+= Si tratta di un prodotto, quindi distanze per e angoli più. Il numero $-2i$ è dritto verso il basso a distanza 2, cioè $2e^{3\pi i/2}$. Distanza del prodotto $2 \cdot 3 = 6$; angolo $\frac\pi3 + \frac{3\pi}2 = \frac{2\pi}6 + \frac{9\pi}6 = \frac{11\pi}6$. Il risultato è $6e^{11\pi i/6}$. La risposta più insidiosa è $-6e^{5\pi i/6}$: indica lo stesso numero, ma ha un numero negativo davanti, quindi non è una forma polare. $6e^{5\pi i/6}$ viene prendendo l'angolo di $-2i$ come $\frac\pi2$, che è l'angolo di $2i$; $5$ somma le distanze invece di moltiplicarle; $6e^{4\pi i/3}$ usa l'angolo $\pi$ per $-i$. Simile all'appello del 16/01/2025, domanda 1.
 
 D: Quale dei seguenti numeri è una radice terza di $8i$?
 + $-2i$
@@ -18851,7 +19223,7 @@ D: Quale dei seguenti numeri è una radice terza di $8i$?
 - $2e^{i\pi/3}$
 - $8e^{i\pi/6}$
 - $\frac 83\,i$
-= $8i = 8e^{i\pi/2}$: le radici terze hanno modulo $2$ e argomenti $\frac\pi6 + \frac{2k\pi}3$, cioè $\frac\pi6$, $\frac{5\pi}6$, $\frac{3\pi}2$. L'ultima è $2e^{3\pi i/2} = -2i$. Verifica: $(-2i)^3 = -8i^3 = 8i$. Invece $(2i)^3 = -8i$, $\left(2e^{i\pi/3}\right)^3 = 8e^{i\pi} = -8$; $8e^{i\pi/6}$ e $\frac 83 i$ hanno il modulo sbagliato. Simile all'appello del 02/09/2025, domanda 2.
+= Una radice terza di $8i$ è un numero che elevato al cubo dà $8i$. In forma polare $8i = 8e^{i\pi/2}$: le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi6$, $\frac\pi6 + \frac{2\pi}3 = \frac{5\pi}6$ e $\frac{5\pi}6 + \frac{2\pi}3 = \frac{3\pi}2$. L'ultima è $2e^{3\pi i/2} = -2i$. Controllo: $(-2i)^3 = -8i^3 = -8 \cdot (-i) = 8i$. La risposta più insidiosa è $2i$, che sembra «la radice di $8i$», ma $(2i)^3 = 8i^3 = -8i$: il segno è sbagliato. $\left(2e^{i\pi/3}\right)^3 = 8e^{i\pi} = -8$; $8e^{i\pi/6}$ e $\frac 83 i$ hanno la distanza sbagliata. Simile all'appello del 02/09/2025, domanda 2.
 
 D: Quale dei seguenti numeri **non** è soluzione di $z^6 = 1$?
 + $e^{i\pi/6}$
@@ -18859,7 +19231,7 @@ D: Quale dei seguenti numeri **non** è soluzione di $z^6 = 1$?
 - $-1$
 - $e^{i\pi/3}$
 - $e^{2\pi i/3}$
-= Le soluzioni sono le radici seste dell'unità $e^{2k\pi i/6} = e^{k\pi i/3}$: ci sono $1$ ($k = 0$), $e^{i\pi/3}$ ($k = 1$), $e^{2\pi i/3}$ ($k = 2$), $-1 = e^{i\pi}$ ($k = 3$). Invece $\left(e^{i\pi/6}\right)^6 = e^{i\pi} = -1 \neq 1$. Simile all'appello del 05/02/2026, domanda 1.
+= Le soluzioni di $z^6 = 1$ sono le radici seste dell'unità: distanza 1 e angoli multipli di un sesto di giro, cioè di $\frac{2\pi}6 = \frac\pi3$. Sono $1$ (angolo 0), $e^{i\pi/3}$, $e^{2\pi i/3}$, $-1 = e^{i\pi}$ e altre due. L'angolo $\frac\pi6$ non è un multiplo di $\frac\pi3$: infatti $\left(e^{i\pi/6}\right)^6 = e^{i\pi} = -1$, non 1. Le altre quattro risposte sono tutte soluzioni, e la più insidiosa è $-1$: elevato a una potenza pari dà proprio 1. Simile all'appello del 05/02/2026, domanda 1.
 
 D: Dato $z = \frac{\sqrt 2}2(1 + i)$, allora $z^{2027}$ è uguale a:
 + $\frac{\sqrt 2}2(-1 + i)$
@@ -18867,7 +19239,7 @@ D: Dato $z = \frac{\sqrt 2}2(1 + i)$, allora $z^{2027}$ è uguale a:
 - $2027(1 + i)$
 - $-1$
 - $i$
-= $z = e^{i\pi/4}$ (modulo $1$). $z^{2027} = e^{2027\pi i/4}$; un giro vale $\frac 84\pi$ e $2027 = 8 \cdot 253 + 3$, quindi $z^{2027} = e^{3\pi i/4} = -\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$. La risposta $2027(1 + i)$ moltiplica invece di elevare. Simile all'appello del 07/02/2025, domanda 1.
+= Il numero $\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$ ha distanza 1 e angolo $\frac\pi4$, quindi $z = e^{i\pi/4}$. La potenza ha distanza 1 e angolo $\frac{2027\pi}4$. Un giro in quarti è $\frac{8\pi}4$, e $2027 = 8 \cdot 253 + 3$: restano $\frac{3\pi}4$. Quindi $z^{2027} = e^{3\pi i/4} = -\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$. La risposta $\frac{\sqrt 2}2(1 + i)$ è quella di chi divide 2027 per 8 e sbaglia il resto, trovando 1; $2027(1 + i)$ moltiplica invece di elevare. Simile all'appello del 07/02/2025, domanda 1.
 
 D: Se $z = 3e^{2\pi i/5}$, il coniugato $\bar z$ è:
 + $3e^{8\pi i/5}$
@@ -18875,7 +19247,7 @@ D: Se $z = 3e^{2\pi i/5}$, il coniugato $\bar z$ è:
 - $3e^{3\pi i/5}$
 - $\frac 13e^{-2\pi i/5}$
 - $3e^{-8\pi i/5}$
-= Il coniugato ha lo stesso modulo e l'argomento opposto: $\bar z = 3e^{-2\pi i/5} = 3e^{8\pi i/5}$ (aggiungendo $2\pi$). $-3e^{2\pi i/5}$ è $-z$; $3e^{3\pi i/5}$ è il simmetrico rispetto all'asse immaginario; $\frac 13e^{-2\pi i/5}$ è l'inverso $z^{-1}$; $3e^{-8\pi i/5} = 3e^{2\pi i/5}$ è $z$ stesso.
+= Il coniugato è il riflesso rispetto all'asse orizzontale: stessa distanza, angolo cambiato di segno. Quindi $\bar z = 3e^{-2\pi i/5}$, e aggiungendo un giro $-\frac{2\pi}5 + \frac{10\pi}5 = \frac{8\pi}5$. La risposta più insidiosa è $3e^{-8\pi i/5}$, che ha un segno meno come il coniugato; ma $-\frac{8\pi}5 + 2\pi = \frac{2\pi}5$, quindi è $z$ stesso. $-3e^{2\pi i/5}$ è $-z$; $3e^{3\pi i/5}$ è il riflesso rispetto all'asse verticale; $\frac 13e^{-2\pi i/5}$ è l'inverso.
 
 D: Se $z = 2e^{i\pi/3}$, l'inverso $z^{-1}$ è:
 + $\frac 14 - \frac{\sqrt 3}4 i$
@@ -18883,11 +19255,11 @@ D: Se $z = 2e^{i\pi/3}$, l'inverso $z^{-1}$ è:
 - $1 - \sqrt 3 i$
 - $\frac 12 - \frac{\sqrt 3}2 i$
 - $-\frac 14 + \frac{\sqrt 3}4 i$
-= $z^{-1} = \frac 12e^{-i\pi/3} = \frac 12\left(\frac 12 - \frac{\sqrt 3}2 i\right) = \frac 14 - \frac{\sqrt 3}4 i$. $1 - \sqrt 3 i = \bar z$ (modulo non invertito); $\frac 12 - \frac{\sqrt 3}2 i = e^{-i\pi/3}$ dimentica il modulo.
+= L'inverso ha distanza inversa e angolo opposto: $z^{-1} = \frac 12e^{-i\pi/3}$. L'angolo $-\frac\pi3$ ha coseno $\frac 12$ e seno $-\frac{\sqrt 3}2$, quindi $z^{-1} = \frac 12\left(\frac 12 - \frac{\sqrt 3}2 i\right) = \frac 14 - \frac{\sqrt 3}4 i$. La risposta $1 - \sqrt 3 i$ è il coniugato: ha l'angolo giusto, ma la distanza non è stata invertita. $\frac 12 - \frac{\sqrt 3}2 i$ è $e^{-i\pi/3}$: dimentica del tutto la distanza. $\frac 14 + \frac{\sqrt 3}4 i$ ha invertito la distanza ma non l'angolo.
 
 D: Quanto vale la parte reale di $(1 + i\sqrt 3)^5$? Scrivi un numero.
 N: 16
-= $1 + i\sqrt 3 = 2e^{i\pi/3}$, quindi $(1 + i\sqrt 3)^5 = 32\,e^{5\pi i/3} = 32\left(\frac 12 - \frac{\sqrt 3}2 i\right) = 16 - 16\sqrt 3\,i$. La parte reale è $16$.
+= Il numero $1 + i\sqrt 3$ ha distanza 2 e angolo $\frac\pi3$. Alla quinta la distanza diventa $2^5 = 32$ e l'angolo $\frac{5\pi}3$, nel quarto quadrante, con coseno $\frac 12$ e seno $-\frac{\sqrt 3}2$. Quindi $(1 + i\sqrt 3)^5 = 32\left(\frac 12 - \frac{\sqrt 3}2 i\right) = 16 - 16\sqrt 3\,i$, e la parte reale è 16.
 
 D: Le quattro soluzioni di $z^4 = -16$, nel piano complesso, sono:
 + i vertici di un quadrato centrato nell'origine con un vertice in $\sqrt 2 + \sqrt 2\,i$
@@ -18895,67 +19267,66 @@ D: Le quattro soluzioni di $z^4 = -16$, nel piano complesso, sono:
 - i vertici di un quadrato centrato nell'origine con un vertice in $4$
 - i vertici di un triangolo equilatero centrato nell'origine
 - due numeri reali e due numeri complessi coniugati
-= $-16 = 16e^{i\pi}$: le radici hanno modulo $\sqrt[4]{16} = 2$ e argomenti $\frac\pi4 + \frac{k\pi}2$, cioè $\frac\pi4, \frac{3\pi}4, \frac{5\pi}4, \frac{7\pi}4$: sono $\pm\sqrt 2 \pm \sqrt 2\,i$. Il quadrato con vertici $\pm 2, \pm 2i$ è quello delle soluzioni di $z^4 = 16$; quello con vertici $\pm 4, \pm 4i$ viene prendendo $\sqrt{16} = 4$ al posto di $\sqrt[4]{16} = 2$; le soluzioni sono quattro, non tre. Nessuna soluzione è reale: $x^4 \ge 0$ per ogni $x$ reale.
+= Il numero $-16$ è $16e^{i\pi}$. Le radici quarte hanno distanza $\sqrt[4]{16} = 2$ e angoli $\frac\pi4$, poi passi di un quarto di giro: $\frac{3\pi}4$, $\frac{5\pi}4$, $\frac{7\pi}4$. Il primo è $2e^{i\pi/4} = \sqrt 2 + \sqrt 2\,i$, e i quattro punti sono $\pm\sqrt 2 \pm \sqrt 2\,i$. La risposta più insidiosa è il quadrato con un vertice in 2: è quello delle soluzioni di $z^4 = 16$, che hanno angolo iniziale 0 invece di $\frac\pi4$. Il quadrato con un vertice in 4 viene prendendo $\sqrt{16} = 4$ invece della radice quarta. Le soluzioni sono quattro, non tre; e nessuna è reale, perché un numero reale alla quarta non è mai negativo.
 ```
 
 ## Esercizi
+
+::: esercizio base Riscaldamento: gradi e radianti
+Scrivi in radianti gli angoli di $90°$, $120°$ e $300°$.
+::: soluzione
+Per passare da gradi a radianti si moltiplica per $\frac\pi{180}$ e si semplifica.
+1. $90 \cdot \frac\pi{180} = \frac{90\pi}{180} = \frac\pi2$, dividendo sopra e sotto per 90.
+2. $120 \cdot \frac\pi{180} = \frac{120\pi}{180} = \frac{2\pi}3$, dividendo sopra e sotto per 60.
+3. $300 \cdot \frac\pi{180} = \frac{300\pi}{180} = \frac{5\pi}3$, dividendo sopra e sotto per 60.
+
+Controllo: $300°$ è un giro meno $60°$, e infatti $\frac{5\pi}3 = 2\pi - \frac\pi3$.
+:::
+
+::: esercizio base Riscaldamento: leggere una forma polare
+Il numero $z = 3e^{i\pi/4}$: qual è il suo modulo? Qual è il suo argomento? Sta dentro o fuori dalla circonferenza di raggio 1?
+::: soluzione
+1. Il numero davanti è il modulo: $|z| = 3$.
+2. L'angolo nell'esponente è l'argomento: $\frac\pi4$, cioè $45°$.
+3. La distanza dall'origine è 3, più grande di 1: il numero sta **fuori** dalla circonferenza di raggio 1.
+
+In forma $a + bi$: $3\left(\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i\right) = \frac{3\sqrt 2}2 + \frac{3\sqrt 2}2 i$.
+:::
+
+::: esercizio base Riscaldamento: un prodotto in forma polare
+Calcola $2e^{i\pi/6} \cdot 5e^{5\pi i/6}$ e scrivi il risultato nella forma $a + bi$.
+::: soluzione
+1. Distanze moltiplicate: $2 \cdot 5 = 10$.
+2. Angoli sommati: $\frac\pi6 + \frac{5\pi}6 = \frac{6\pi}6 = \pi$.
+3. Il prodotto è $10e^{i\pi} = 10 \cdot (-1) = -10$.
+:::
+
+::: esercizio base Riscaldamento: quante radici
+Quante soluzioni ha l'equazione $z^4 = 1$? Scrivile tutte nella forma $a + bi$ e di' che figura formano.
+::: soluzione
+1. Sono 4, perché l'esponente è 4.
+2. Il numero 1 ha distanza 1 e angolo 0. Le radici hanno distanza $\sqrt[4]1 = 1$ e angoli $0$, $\frac{2\pi}4 = \frac\pi2$, $\pi$, $\frac{3\pi}2$: quarti di giro.
+3. Sono $1$, $i$, $-1$, $-i$.
+4. Formano un quadrato con i vertici sugli assi.
+
+Controllo: $i^4 = (i^2)^2 = (-1)^2 = 1$.
+:::
 
 ::: esercizio base Conversioni
 (a) Scrivi in forma polare: $-\sqrt 3 + i$, $-4$, $3i$, $-1 - i$. (b) Scrivi nella forma $a + bi$: $4e^{2\pi i/3}$, $\sqrt 2\,e^{-3\pi i/4}$, $5e^{i\pi}$.
 ::: soluzione
 (a)
-- $-\sqrt 3 + i$: $r = \sqrt{3 + 1} = 2$; $\cos\vartheta = -\frac{\sqrt 3}2$, $\sin\vartheta = \frac 12$, secondo quadrante: $\vartheta = \pi - \frac\pi6 = \frac{5\pi}6$. Quindi $2e^{5\pi i/6}$.
-- $-4$: reale negativo, $r = 4$, $\vartheta = \pi$: $4e^{i\pi}$.
-- $3i$: sul semiasse immaginario positivo, $r = 3$, $\vartheta = \frac\pi2$: $3e^{i\pi/2}$.
-- $-1 - i$: $r = \sqrt 2$; $\cos\vartheta = \sin\vartheta = -\frac{\sqrt 2}2$, terzo quadrante: $\vartheta = \pi + \frac\pi4 = \frac{5\pi}4$. Quindi $\sqrt 2\,e^{5\pi i/4}$.
+1. $-\sqrt 3 + i$: la distanza è $\sqrt{3 + 1} = 2$. Coseno $-\frac{\sqrt 3}2$ e seno $\frac 12$: secondo quadrante. Senza segni sono i valori di $\frac\pi6$, quindi l'angolo è $\pi - \frac\pi6 = \frac{5\pi}6$. Risultato: $2e^{5\pi i/6}$.
+2. $-4$: reale negativo, distanza 4, angolo $\pi$. Risultato: $4e^{i\pi}$.
+3. $3i$: dritto verso l'alto, distanza 3, angolo $\frac\pi2$. Risultato: $3e^{i\pi/2}$.
+4. $-1 - i$: distanza $\sqrt{1 + 1} = \sqrt 2$. Coseno e seno uguali a $-\frac{\sqrt 2}2$: terzo quadrante. L'angolo è $\pi + \frac\pi4 = \frac{5\pi}4$. Risultato: $\sqrt 2\,e^{5\pi i/4}$.
 
 (b)
-- $4e^{2\pi i/3} = 4\left(-\frac 12 + \frac{\sqrt 3}2 i\right) = -2 + 2\sqrt 3\,i$.
-- $\sqrt 2\,e^{-3\pi i/4} = \sqrt 2\left(-\frac{\sqrt 2}2 - \frac{\sqrt 2}2 i\right) = -1 - i$.
-- $5e^{i\pi} = 5 \cdot (-1) = -5$.
-:::
+1. $4e^{2\pi i/3} = 4\left(-\frac 12 + \frac{\sqrt 3}2 i\right) = -2 + 2\sqrt 3\,i$.
+2. $\sqrt 2\,e^{-3\pi i/4} = \sqrt 2\left(-\frac{\sqrt 2}2 - \frac{\sqrt 2}2 i\right) = -1 - i$.
+3. $5e^{i\pi} = 5 \cdot (-1) = -5$.
 
-::: esercizio medio Esercizio 3.5 delle dispense: $z^4 = i$
-Calcola le soluzioni dell'equazione $z^4 = i$ e disegnale nel piano complesso.
-::: soluzione
-1. $i = 1 \cdot e^{i\pi/2}$: $r_0 = 1$, $\vartheta_0 = \frac\pi2$.
-2. Modulo delle radici: $\sqrt[4]1 = 1$. Stanno tutte sulla circonferenza unitaria.
-3. Argomenti: $\frac{\pi/2}4 + \frac{2k\pi}4 = \frac\pi8 + \frac{k\pi}2$ per $k = 0, 1, 2, 3$:
-   $$\frac\pi8, \qquad \frac{5\pi}8, \qquad \frac{9\pi}8, \qquad \frac{13\pi}8.$$
-4. Le soluzioni sono $z_k = e^{i(\pi/8 + k\pi/2)}$: in gradi, gli angoli $22{,}5°$, $112{,}5°$, $202{,}5°$ e $292{,}5°$. Formano un quadrato inscritto nella circonferenza unitaria.
-
-Controllo: $z_0^4 = e^{4\pi i/8} = e^{i\pi/2} = i$. Nota che passare da una radice alla successiva vuol dire ruotare di $\frac\pi2$, cioè moltiplicare per $i$: le quattro radici sono $w$, $iw$, $-w$, $-iw$ con $w = z_0$.
-
-```grafico
-titolo: Le quattro soluzioni di $z^4 = i$: un quadrato sulla circonferenza unitaria, con un vertice ad angolo $\frac\pi8$
-x: -1.6 1.6
-y: -1.3 1.3
-nomi: $\operatorname{Re}$ $\operatorname{Im}$
-cerchio: 0 0 1 | grigio | sottile
-poligono: 0.9239 0.3827 -0.3827 0.9239 -0.9239 -0.3827 0.3827 -0.9239 | ambra | tratteggio
-punto: 0 1 | rosa | $i$ | ne
-punto: 0.9239 0.3827 | ambra | $z_0$ | e
-punto: -0.3827 0.9239 | ambra | $z_1$ | no
-punto: -0.9239 -0.3827 | ambra | $z_2$ | o
-punto: 0.3827 -0.9239 | ambra | $z_3$ | se
-arco: 0 0 0.35 0 pi/8 | accento
-```
-
-> [!OLTRE] · la forma $a + bi$
-> Gli angoli $\frac\pi8$ non sono nella tabella, ma con la formula di bisezione $\cos^2\alpha = \frac{1 + \cos 2\alpha}2$ si trova $\cos\frac\pi8 = \frac{\sqrt{2 + \sqrt 2}}2 \approx 0{,}924$ e $\sin\frac\pi8 = \frac{\sqrt{2 - \sqrt 2}}2 \approx 0{,}383$. Quindi $z_0 = \frac{\sqrt{2 + \sqrt 2}}2 + \frac{\sqrt{2 - \sqrt 2}}2 i$, e le altre radici si ottengono moltiplicando per $i$, $-1$, $-i$. L'esercizio non lo chiede: la forma polare è già una risposta completa.
-:::
-
-::: esercizio medio Esercizio 3.6 delle dispense: coordinate polari
-Determina coordinate polari per i seguenti numeri complessi:
-$$\sin(2), \qquad \cos(2) + i\sin(2), \qquad \cos(2) - i\sin(2), \qquad \frac{1 + i}2, \qquad 1 - i\sqrt 3.$$
-::: soluzione
-Qui «$2$» è un angolo di $2$ radianti, circa $114{,}6°$: sta nel secondo quadrante, dove il seno è positivo e il coseno negativo.
-
-- **$\sin(2)$** è un numero **reale**, circa $0{,}909$, e positivo. Un reale positivo sta sul semiasse reale positivo: $r = \sin 2$ e $\vartheta = 0$. Quindi $\sin 2 = (\sin 2)\,e^{i \cdot 0}$. (Se fosse stato negativo, l'argomento sarebbe stato $\pi$ e il modulo $-\sin 2$.)
-- **$\cos(2) + i\sin(2)$** è per definizione $e^{2i}$: $r = 1$, $\vartheta = 2$. Nessun conto: la forma è già quella polare.
-- **$\cos(2) - i\sin(2)$**: siccome $\cos(-2) = \cos 2$ e $\sin(-2) = -\sin 2$, è $\cos(-2) + i\sin(-2) = e^{-2i}$. Quindi $r = 1$, $\vartheta = -2$ (oppure $2\pi - 2$). È il coniugato del numero precedente.
-- **$\frac{1 + i}2$**: $r = \sqrt{\frac 14 + \frac 14} = \frac{\sqrt 2}2$; $\cos\vartheta = \frac{1/2}{\sqrt 2/2} = \frac 1{\sqrt 2} = \frac{\sqrt 2}2$ e anche $\sin\vartheta = \frac{\sqrt 2}2$, quindi $\vartheta = \frac\pi4$. In breve $\frac{1 + i}2 = \frac{\sqrt 2}2\,e^{i\pi/4}$.
-- **$1 - i\sqrt 3$**: $r = \sqrt{1 + 3} = 2$; $\cos\vartheta = \frac 12$, $\sin\vartheta = -\frac{\sqrt 3}2$, quarto quadrante: $\vartheta = -\frac\pi3$ (oppure $\frac{5\pi}3$). Quindi $1 - i\sqrt 3 = 2e^{-i\pi/3}$.
+Controllo sul primo della (a): $2\cos\frac{5\pi}6 = 2 \cdot \left(-\frac{\sqrt 3}2\right) = -\sqrt 3$ e $2\sin\frac{5\pi}6 = 2 \cdot \frac 12 = 1$. Torna $-\sqrt 3 + i$.
 :::
 
 ::: esercizio base Esercizio 3.7 delle dispense: tre insiemi in coordinate polari
@@ -18964,11 +19335,11 @@ Disegna nel piano complesso i seguenti sottoinsiemi:
 2. $B = \{z = re^{i\vartheta} \in \C \text{ tali che } \vartheta = (2k + 1)\pi,\ k \in \Z\}$;
 3. $C = \{z = re^{i\vartheta} \in \C \text{ tali che } r = 1 \text{ e } 0 \le \vartheta \le \pi\}$.
 ::: soluzione
-In tutti e tre gli insiemi $z$ è scritto in forma polare, quindi $z \neq 0$ e $r > 0$.
+In tutti e tre gli insiemi $z$ è scritto in forma polare. Quindi $z$ non è zero e la distanza $r$ è positiva.
 
-1. **$A$**: i numeri $re^{i\pi/2} = ri$ con $r > 0$, cioè il **semiasse immaginario positivo**, origine esclusa.
-2. **$B$**: gli angoli $(2k + 1)\pi$ sono i multipli **dispari** di $\pi$: $\pi, 3\pi, -\pi, \dots$ Differiscono tutti da $\pi$ per un multiplo di $2\pi$, quindi indicano tutti la direzione di $-1$: $B$ è il **semiasse reale negativo**, origine esclusa, cioè i numeri reali negativi.
-3. **$C$**: modulo $1$ vuol dire circonferenza unitaria; l'angolo da $0$ a $\pi$ (estremi compresi) ne seleziona la **metà superiore**, da $1$ a $-1$, con i due estremi $1$ e $-1$ inclusi.
+1. **$A$** contiene i numeri all'angolo $\frac\pi2$, a qualsiasi distanza: $re^{i\pi/2} = ri$ con $r$ positivo. È la **semiretta verticale verso l'alto**, senza l'origine.
+2. **$B$**: gli angoli $(2k + 1)\pi$ sono i multipli **dispari** di $\pi$: $\pi$, $3\pi$, $-\pi$, e così via. Differiscono tutti da $\pi$ per giri interi, quindi indicano tutti la direzione di $-1$. $B$ è la **semiretta orizzontale verso sinistra**, senza l'origine: i numeri reali negativi.
+3. **$C$**: distanza 1 vuol dire circonferenza di raggio 1. L'angolo da $0$ a $\pi$, estremi compresi, ne prende la **metà superiore**, da $1$ a $-1$, con i due estremi.
 
 ```grafico
 titolo: $A$ (semiasse immaginario positivo), $B$ (semiasse reale negativo), $C$ (semicirconferenza superiore); l'origine non appartiene ad $A$ né a $B$
@@ -18990,55 +19361,118 @@ testo: 0.85 0.85 | viola | $C$
 ::: esercizio base Esercizio 3.8 delle dispense: $(1 - i)^3$ in due modi
 Calcola $(1 - i)^3$ usando le coordinate polari, e verifica il risultato con le coordinate cartesiane.
 ::: soluzione
-**In coordinate polari.** $|1 - i| = \sqrt 2$; $\cos\vartheta = \frac{\sqrt 2}2$ e $\sin\vartheta = -\frac{\sqrt 2}2$, quindi $\vartheta = -\frac\pi4$ e $1 - i = \sqrt 2\,e^{-i\pi/4}$. Allora
-$$(1 - i)^3 = (\sqrt 2)^3e^{-3\pi i/4} = 2\sqrt 2\left(\cos\frac{3\pi}4 - i\sin\frac{3\pi}4\right),$$
-e siccome $\cos\frac{3\pi}4 = -\frac{\sqrt 2}2$ e $\sin\frac{3\pi}4 = \frac{\sqrt 2}2$,
-$$(1 - i)^3 = 2\sqrt 2\left(-\frac{\sqrt 2}2 - \frac{\sqrt 2}2 i\right) = -2 - 2i.$$
-Qui $(\sqrt 2)^3 = \sqrt 2 \cdot \sqrt 2 \cdot \sqrt 2 = 2\sqrt 2$, e $2\sqrt 2 \cdot \frac{\sqrt 2}2 = \frac{2 \cdot 2}2 = 2$.
+**Con le coordinate polari.**
+1. La distanza di $1 - i$ è $\sqrt{1 + 1} = \sqrt 2$. Coseno $\frac{\sqrt 2}2$ e seno $-\frac{\sqrt 2}2$: quarto quadrante, angolo $-\frac\pi4$. Quindi $1 - i = \sqrt 2\,e^{-i\pi/4}$.
+2. Al cubo: distanza $(\sqrt 2)^3 = \sqrt 2 \cdot \sqrt 2 \cdot \sqrt 2 = 2\sqrt 2$, angolo $3 \cdot \left(-\frac\pi4\right) = -\frac{3\pi}4$.
+3. L'angolo $-\frac{3\pi}4$ è nel terzo quadrante: coseno $-\frac{\sqrt 2}2$ e seno $-\frac{\sqrt 2}2$.
+4. Quindi
+   $$(1 - i)^3 = 2\sqrt 2\left(-\frac{\sqrt 2}2 - \frac{\sqrt 2}2 i\right) = -2 - 2i,$$
+   perché $2\sqrt 2 \cdot \frac{\sqrt 2}2 = \frac{2 \cdot 2}2 = 2$.
 
-**In coordinate cartesiane.** $(1 - i)^2 = 1 - 2i + i^2 = -2i$, e poi $(1 - i)^3 = (-2i)(1 - i) = -2i + 2i^2 = -2 - 2i$. I due metodi danno lo stesso risultato.
+**Con le coordinate cartesiane.**
+1. $(1 - i)^2 = 1 - 2i + i^2 = 1 - 2i - 1 = -2i$.
+2. $(1 - i)^3 = (-2i)(1 - i) = -2i + 2i^2 = -2i - 2 = -2 - 2i$.
+
+I due metodi danno lo stesso risultato.
+:::
+
+::: esercizio medio Esercizio 3.5 delle dispense: $z^4 = i$
+Calcola le soluzioni dell'equazione $z^4 = i$ e disegnale nel piano complesso.
+::: soluzione
+1. Il numero $i$ ha distanza 1 e angolo $\frac\pi2$: $i = 1 \cdot e^{i\pi/2}$.
+2. Le radici hanno distanza $\sqrt[4]1 = 1$: stanno tutte sulla circonferenza di raggio 1.
+3. Il primo angolo è $\frac\pi2$ diviso 4, cioè $\frac\pi8$. Il passo è $\frac{2\pi}4 = \frac\pi2$. Gli angoli sono
+   $$\frac\pi8, \qquad \frac\pi8 + \frac{4\pi}8 = \frac{5\pi}8, \qquad \frac{9\pi}8, \qquad \frac{13\pi}8.$$
+4. Le soluzioni sono $z_k = e^{i(\pi/8 + k\pi/2)}$ per $k = 0, 1, 2, 3$. In gradi gli angoli sono $22{,}5°$, $112{,}5°$, $202{,}5°$ e $292{,}5°$. Formano un quadrato sulla circonferenza di raggio 1.
+
+Controllo: $z_0^4 = e^{4\pi i/8} = e^{i\pi/2} = i$.
+
+Nota: passare da una radice alla successiva vuol dire girare di un quarto di giro, cioè moltiplicare per $i$. Quindi le quattro radici sono $w$, $iw$, $-w$, $-iw$, con $w = z_0$.
+
+```grafico
+titolo: Le quattro soluzioni di $z^4 = i$: un quadrato sulla circonferenza unitaria, con un vertice ad angolo $\frac\pi8$
+x: -1.6 1.6
+y: -1.3 1.3
+nomi: $\operatorname{Re}$ $\operatorname{Im}$
+cerchio: 0 0 1 | grigio | sottile
+poligono: 0.9239 0.3827 -0.3827 0.9239 -0.9239 -0.3827 0.3827 -0.9239 | ambra | tratteggio
+punto: 0 1 | rosa | $i$ | ne
+punto: 0.9239 0.3827 | ambra | $z_0$ | e
+punto: -0.3827 0.9239 | ambra | $z_1$ | no
+punto: -0.9239 -0.3827 | ambra | $z_2$ | o
+punto: 0.3827 -0.9239 | ambra | $z_3$ | se
+arco: 0 0 0.35 0 pi/8 | accento
+```
+
+> [!APPROFONDIMENTO] la forma $a + bi$
+> L'angolo $\frac\pi8$ non è nella tabella. Con la formula $\cos^2\alpha = \frac{1 + \cos 2\alpha}2$ si trova $\cos\frac\pi8 = \frac{\sqrt{2 + \sqrt 2}}2 \approx 0{,}924$ e $\sin\frac\pi8 = \frac{\sqrt{2 - \sqrt 2}}2 \approx 0{,}383$. Quindi $z_0 = \frac{\sqrt{2 + \sqrt 2}}2 + \frac{\sqrt{2 - \sqrt 2}}2 i$, e le altre radici si ottengono moltiplicando per $i$, $-1$, $-i$. L'esercizio non lo chiede: la forma polare è già una risposta completa.
+:::
+
+::: esercizio medio Esercizio 3.6 delle dispense: coordinate polari
+Determina coordinate polari per i seguenti numeri complessi:
+$$\sin(2), \qquad \cos(2) + i\sin(2), \qquad \cos(2) - i\sin(2), \qquad \frac{1 + i}2, \qquad 1 - i\sqrt 3.$$
+::: soluzione
+Qui «2» è un angolo di 2 radianti, circa $114{,}6°$. Sta nel secondo quadrante, dove il seno è positivo e il coseno negativo.
+
+1. **$\sin(2)$** è un numero **reale**, circa $0{,}909$, ed è positivo. Un reale positivo sta sulla semiretta orizzontale verso destra: distanza $\sin 2$, angolo 0. Quindi $\sin 2 = (\sin 2)\,e^{i \cdot 0}$. Se fosse stato negativo, l'angolo sarebbe stato $\pi$ e la distanza $-\sin 2$.
+2. **$\cos(2) + i\sin(2)$** è per definizione $e^{2i}$: distanza 1, angolo 2. Nessun conto da fare.
+3. **$\cos(2) - i\sin(2)$**: siccome $\cos(-2) = \cos 2$ e $\sin(-2) = -\sin 2$, il numero è $\cos(-2) + i\sin(-2) = e^{-2i}$. Distanza 1, angolo $-2$ (oppure $2\pi - 2$). È il coniugato del numero precedente.
+4. **$\frac{1 + i}2$** è $\frac 12 + \frac 12 i$. Distanza: $\sqrt{\frac 14 + \frac 14} = \sqrt{\frac 12} = \frac{\sqrt 2}2$. Coseno: $\frac 12$ diviso $\frac{\sqrt 2}2$, cioè $\frac 1{\sqrt 2} = \frac{\sqrt 2}2$; il seno è uguale. L'angolo è $\frac\pi4$. Quindi $\frac{1 + i}2 = \frac{\sqrt 2}2\,e^{i\pi/4}$.
+5. **$1 - i\sqrt 3$**: distanza $\sqrt{1 + 3} = 2$. Coseno $\frac 12$ e seno $-\frac{\sqrt 3}2$: quarto quadrante, angolo $-\frac\pi3$ (oppure $\frac{5\pi}3$). Quindi $1 - i\sqrt 3 = 2e^{-i\pi/3}$.
 :::
 
 ::: esercizio medio Prodotto e quoziente in forma polare
 Siano $z = 2e^{i\pi/3}$ e $w = 4e^{3\pi i/4}$. Calcola in forma polare $zw$, $\frac zw$, $w^{-1}$ e $\bar z\,w$.
 ::: soluzione
-- $zw = 2 \cdot 4\,e^{i(\pi/3 + 3\pi/4)} = 8e^{13\pi i/12}$, perché $\frac\pi3 + \frac{3\pi}4 = \frac{4\pi + 9\pi}{12} = \frac{13\pi}{12}$.
-- $\frac zw = \frac 24\,e^{i(\pi/3 - 3\pi/4)} = \frac 12\,e^{-5\pi i/12}$, perché $\frac{4\pi - 9\pi}{12} = -\frac{5\pi}{12}$. Aggiungendo un giro: $\frac 12\,e^{19\pi i/12}$.
-- $w^{-1} = \frac 14\,e^{-3\pi i/4} = \frac 14\,e^{5\pi i/4}$.
-- $\bar z = 2e^{-i\pi/3}$, quindi $\bar z\,w = 8\,e^{i(-\pi/3 + 3\pi/4)} = 8e^{5\pi i/12}$, perché $\frac{-4\pi + 9\pi}{12} = \frac{5\pi}{12}$.
+Per sommare $\frac\pi3$ e $\frac{3\pi}4$ serve il denominatore comune 12: $\frac\pi3 = \frac{4\pi}{12}$ e $\frac{3\pi}4 = \frac{9\pi}{12}$.
+
+1. $zw$: distanze $2 \cdot 4 = 8$, angoli $\frac{4\pi}{12} + \frac{9\pi}{12} = \frac{13\pi}{12}$. Risultato: $8e^{13\pi i/12}$.
+2. $\frac zw$: distanze $\frac 24 = \frac 12$, angoli $\frac{4\pi}{12} - \frac{9\pi}{12} = -\frac{5\pi}{12}$. Risultato: $\frac 12\,e^{-5\pi i/12}$, oppure $\frac 12\,e^{19\pi i/12}$ aggiungendo un giro.
+3. $w^{-1}$: distanza $\frac 14$, angolo $-\frac{3\pi}4$. Risultato: $\frac 14\,e^{-3\pi i/4} = \frac 14\,e^{5\pi i/4}$.
+4. $\bar z = 2e^{-i\pi/3}$. Quindi $\bar z\,w$ ha distanza $2 \cdot 4 = 8$ e angolo $-\frac{4\pi}{12} + \frac{9\pi}{12} = \frac{5\pi}{12}$. Risultato: $8e^{5\pi i/12}$.
+
+Controllo sul primo: $z \cdot w$ deve avere distanza uguale al prodotto delle distanze, 8, ed è così.
 :::
 
 ::: esercizio medio Dal foglio 1 del tutorato: $z^{10}\bar z$
 Scrivi $z = \frac 12(-\sqrt 3 + i)$ in coordinate polari e calcola $z^{10}\bar z$ nella forma $a + bi$.
 ::: soluzione
-1. $z = -\frac{\sqrt 3}2 + \frac 12 i$: $|z| = \sqrt{\frac 34 + \frac 14} = 1$; $\cos\vartheta = -\frac{\sqrt 3}2$, $\sin\vartheta = \frac 12$, secondo quadrante: $\vartheta = \frac{5\pi}6$. Quindi $z = e^{5\pi i/6}$.
-2. $z^{10} = e^{50\pi i/6}$ e $\bar z = e^{-5\pi i/6}$, quindi $z^{10}\bar z = e^{(50 - 5)\pi i/6} = e^{45\pi i/6} = e^{15\pi i/2}$.
-3. Riduco: un giro vale $\frac 42\pi$ e $15 = 4 \cdot 3 + 3$, quindi $\frac{15\pi}2 = 3 \cdot 2\pi + \frac{3\pi}2$.
+1. $z = -\frac{\sqrt 3}2 + \frac 12 i$. Distanza: $\sqrt{\frac 34 + \frac 14} = 1$. Coseno $-\frac{\sqrt 3}2$, seno $\frac 12$: secondo quadrante, angolo $\frac{5\pi}6$. Quindi $z = e^{5\pi i/6}$.
+2. $z^{10} = e^{50\pi i/6}$ e $\bar z = e^{-5\pi i/6}$. Nel prodotto gli angoli si sommano: $z^{10}\bar z = e^{(50 - 5)\pi i/6} = e^{45\pi i/6} = e^{15\pi i/2}$.
+3. Accorcio: un giro in mezzi è $\frac 42\pi$, e $15 = 4 \cdot 3 + 3$. Quindi $\frac{15\pi}2$ è 3 giri più $\frac{3\pi}2$.
 4. $z^{10}\bar z = e^{3\pi i/2} = -i$.
 
-Una scorciatoia: siccome $|z| = 1$, $\bar z = z^{-1}$ (esercizio 8 della lezione L02), quindi $z^{10}\bar z = z^9 = e^{45\pi i/6}$, lo stesso conto.
+Una scorciatoia: siccome la distanza di $z$ è 1, il coniugato è anche l'inverso (esercizio 8 della lezione L02). Quindi $z^{10}\bar z = z^{10}z^{-1} = z^9 = e^{45\pi i/6}$, lo stesso conto.
 :::
 
 ::: esercizio medio Dal foglio 1 del tutorato: tre calcoli di radici
 Calcola: (a) le radici quarte di $-i$; (b) le radici terze di $8$; (c) le radici quinte di $\frac 12(-\sqrt 3 + i)$.
 ::: soluzione
-(a) $-i = e^{3\pi i/2}$. Modulo delle radici $1$; argomenti $\frac{3\pi}8 + \frac{k\pi}2$: $\frac{3\pi}8$, $\frac{7\pi}8$, $\frac{11\pi}8$, $\frac{15\pi}8$. Le radici sono $e^{3\pi i/8}$, $e^{7\pi i/8}$, $e^{11\pi i/8}$, $e^{15\pi i/8}$.
+(a) $-i$ è dritto verso il basso: distanza 1, angolo $\frac{3\pi}2$. Le radici quarte hanno distanza 1. Il primo angolo è $\frac{3\pi}2$ diviso 4, cioè $\frac{3\pi}8$; il passo è $\frac\pi2 = \frac{4\pi}8$. Gli angoli sono $\frac{3\pi}8$, $\frac{7\pi}8$, $\frac{11\pi}8$, $\frac{15\pi}8$. Le radici sono $e^{3\pi i/8}$, $e^{7\pi i/8}$, $e^{11\pi i/8}$, $e^{15\pi i/8}$.
 
-(b) $8 = 8e^{i \cdot 0}$. Modulo $\sqrt[3]8 = 2$; argomenti $0$, $\frac{2\pi}3$, $\frac{4\pi}3$. Le radici sono
+(b) $8$ è un reale positivo: distanza 8, angolo 0. Le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $0$, $\frac{2\pi}3$, $\frac{4\pi}3$. Sono
 $$2, \qquad 2e^{2\pi i/3} = -1 + i\sqrt 3, \qquad 2e^{4\pi i/3} = -1 - i\sqrt 3.$$
-Tra i reali c'era solo $2$; le altre due sono complesse coniugate.
+Tra i numeri reali c'era solo 2; le altre due sono complesse e coniugate tra loro.
 
-(c) Dall'esercizio precedente $\frac 12(-\sqrt 3 + i) = e^{5\pi i/6}$. Modulo $1$; argomenti $\frac{5\pi/6}5 + \frac{2k\pi}5 = \frac\pi6 + \frac{2k\pi}5$. In trentesimi di $\pi$: $\frac\pi6 = \frac{5\pi}{30}$ e il passo è $\frac{2\pi}5 = \frac{12\pi}{30}$. Gli argomenti sono
-$$\frac{5\pi}{30} = \frac\pi6, \qquad \frac{17\pi}{30}, \qquad \frac{29\pi}{30}, \qquad \frac{41\pi}{30}, \qquad \frac{53\pi}{30},$$
-e le radici sono $e^{i\pi/6} = \frac{\sqrt 3}2 + \frac 12 i$ e le altre quattro $e^{17\pi i/30}$, $e^{29\pi i/30}$, $e^{41\pi i/30}$, $e^{53\pi i/30}$, vertici di un pentagono regolare.
+(c) Dall'esercizio precedente $\frac 12(-\sqrt 3 + i) = e^{5\pi i/6}$. Le radici quinte hanno distanza 1. Il primo angolo è $\frac{5\pi}6$ diviso 5, cioè $\frac\pi6$; il passo è $\frac{2\pi}5$. Per sommarli uso i trentesimi: $\frac\pi6 = \frac{5\pi}{30}$ e $\frac{2\pi}5 = \frac{12\pi}{30}$. Gli angoli sono
+$$\frac{5\pi}{30} = \frac\pi6, \qquad \frac{17\pi}{30}, \qquad \frac{29\pi}{30}, \qquad \frac{41\pi}{30}, \qquad \frac{53\pi}{30}.$$
+Le radici sono $e^{i\pi/6} = \frac{\sqrt 3}2 + \frac 12 i$ e le altre quattro $e^{17\pi i/30}$, $e^{29\pi i/30}$, $e^{41\pi i/30}$, $e^{53\pi i/30}$: i vertici di un pentagono regolare.
+
+Controllo sulla (b): $(-1 + i\sqrt 3)^3$ ha distanza $2^3 = 8$ e angolo $3 \cdot \frac{2\pi}3 = 2\pi$, quindi vale 8.
 :::
 
 ::: esercizio medio Dal libro di Martelli (Esercizio 1.13): $z^4 = -16$
 Determina tutte le soluzioni di $z^4 = -16$ e disegnale.
 ::: soluzione
-$-16 = 16e^{i\pi}$. Modulo delle soluzioni: $\sqrt[4]{16} = 2$. Argomenti: $\frac\pi4 + \frac{k\pi}2$, cioè $\frac\pi4$, $\frac{3\pi}4$, $\frac{5\pi}4$, $\frac{7\pi}4$. In forma $a + bi$, con $2\cos\frac\pi4 = 2 \cdot \frac{\sqrt 2}2 = \sqrt 2$:
-$$\sqrt 2 + \sqrt 2\,i, \qquad -\sqrt 2 + \sqrt 2\,i, \qquad -\sqrt 2 - \sqrt 2\,i, \qquad \sqrt 2 - \sqrt 2\,i.$$
-Sono i vertici di un quadrato di raggio $2$, ruotato di $45°$ rispetto agli assi. Controllo: $(\sqrt 2 + \sqrt 2\,i)^2 = 2 + 4i + 2i^2 = 4i$, e $(4i)^2 = -16$.
+1. $-16$ è un reale negativo: $-16 = 16e^{i\pi}$.
+2. La distanza delle soluzioni è $\sqrt[4]{16} = 2$, perché $2^4 = 16$.
+3. Il primo angolo è $\frac\pi4$; il passo è $\frac\pi2$. Gli angoli sono $\frac\pi4$, $\frac{3\pi}4$, $\frac{5\pi}4$, $\frac{7\pi}4$.
+4. Nella forma $a + bi$, con $2\cos\frac\pi4 = 2 \cdot \frac{\sqrt 2}2 = \sqrt 2$:
+   $$\sqrt 2 + \sqrt 2\,i, \qquad -\sqrt 2 + \sqrt 2\,i, \qquad -\sqrt 2 - \sqrt 2\,i, \qquad \sqrt 2 - \sqrt 2\,i.$$
+
+Sono i vertici di un quadrato con il centro nell'origine, su un cerchio di raggio 2, girato di $45°$ rispetto agli assi.
+
+Controllo: $(\sqrt 2 + \sqrt 2\,i)^2 = 2 + 4i + 2i^2 = 2 + 4i - 2 = 4i$, e $(4i)^2 = 16i^2 = -16$.
 
 ```grafico
 titolo: Le soluzioni di $z^4 = -16$: un quadrato di raggio $2$ con i vertici sulle bisettrici
@@ -19057,135 +19491,144 @@ punto: sqrt(2) -sqrt(2) | ambra | $\sqrt 2 - \sqrt 2 i$ | se
 ::: esercizio difficile Dal libro di Martelli (Esercizio 1.14): $z^4 = \bar z^3$
 Determina tutti i numeri complessi $z$ tali che $z^4 = \bar z^3$.
 ::: soluzione
-**Il caso $z = 0$.** $0^4 = 0 = \bar 0^3$: lo zero è una soluzione.
+**Il caso $z = 0$.** $0^4 = 0$ e anche il coniugato di 0, al cubo, è 0. Quindi lo zero è una soluzione.
 
-**Il caso $z \neq 0$.** Scrivo $z = re^{i\vartheta}$ con $r > 0$. Allora $\bar z = re^{-i\vartheta}$ e
+**Il caso $z$ diverso da zero.** Scrivo $z = re^{i\vartheta}$ con $r$ positivo. Il coniugato ha la stessa distanza e l'angolo opposto: $\bar z = re^{-i\vartheta}$. Allora
 $$z^4 = r^4e^{4i\vartheta}, \qquad \bar z^3 = r^3e^{-3i\vartheta}.$$
-Due forme polari sono uguali se e solo se:
-1. i moduli sono uguali: $r^4 = r^3$, cioè (dividendo per $r^3 > 0$) $r = 1$;
-2. gli angoli differiscono per un multiplo di $2\pi$: $4\vartheta = -3\vartheta + 2k\pi$, cioè $7\vartheta = 2k\pi$, cioè $\vartheta = \frac{2k\pi}7$.
+Due forme polari sono uguali esattamente quando:
+1. le distanze sono uguali: $r^4 = r^3$. Divido per $r^3$, che non è zero: $r = 1$;
+2. gli angoli differiscono di giri interi: $4\vartheta = -3\vartheta + 2k\pi$. Porto $-3\vartheta$ a sinistra: $7\vartheta = 2k\pi$, cioè $\vartheta = \frac{2k\pi}7$.
 
-Per $k = 0, 1, \dots, 6$ si ottengono sette punti diversi; gli altri $k$ ripetono gli stessi. Le soluzioni non nulle sono quindi le **radici settime dell'unità** $e^{2k\pi i/7}$, vertici di un ettagono regolare inscritto nella circonferenza unitaria.
+Per $k = 0, 1, \dots, 6$ vengono sette punti diversi; gli altri valori di $k$ ripetono gli stessi. Le soluzioni diverse da zero sono quindi le **radici settime dell'unità** $e^{2k\pi i/7}$: i vertici di un ettagono regolare sulla circonferenza di raggio 1.
 
-**In totale 8 soluzioni**: $0$ e le sette radici settime di $1$. Controllo su una di esse, $z = e^{2\pi i/7}$: $z^4 = e^{8\pi i/7}$ e $\bar z^3 = e^{-6\pi i/7}$; gli angoli differiscono di $\frac{8\pi}7 + \frac{6\pi}7 = 2\pi$, quindi sono lo stesso numero.
+**In totale le soluzioni sono 8**: lo zero e le sette radici settime di 1.
+
+Controllo su una di esse, $z = e^{2\pi i/7}$: $z^4 = e^{8\pi i/7}$ e $\bar z^3 = e^{-6\pi i/7}$. Gli angoli differiscono di $\frac{8\pi}7 + \frac{6\pi}7 = \frac{14\pi}7 = 2\pi$, un giro intero: sono lo stesso numero.
 :::
 
 ::: esercizio esame Come all'esame: una potenza molto alta
 Dato $z = -\frac 12 + \frac{\sqrt 3}2 i$, allora $z^{2026}$ è uguale a: (a) $z$; (b) $1$; (c) $-1$; (d) $\bar z$; (e) $2026\,z$.
 ::: soluzione
-1. **Forma polare.** $|z| = \sqrt{\frac 14 + \frac 34} = 1$; $\cos\vartheta = -\frac 12$, $\sin\vartheta = \frac{\sqrt 3}2$, secondo quadrante: $\vartheta = \frac{2\pi}3$. Quindi $z = e^{2\pi i/3}$.
+1. **Forma polare.** Distanza: $\sqrt{\frac 14 + \frac 34} = 1$. Coseno $-\frac 12$ e seno $\frac{\sqrt 3}2$: secondo quadrante, angolo $\frac{2\pi}3$. Quindi $z = e^{2\pi i/3}$.
 2. **Potenza.** $z^{2026} = e^{2026 \cdot 2\pi i/3} = e^{4052\pi i/3}$.
-3. **Riduzione.** Un giro vale $\frac 63\pi$; $4052 = 6 \cdot 675 + 2$, quindi $\frac{4052\pi}3 = 675 \cdot 2\pi + \frac{2\pi}3$.
+3. **Accorcio.** Un giro in terzi è $\frac 63\pi$. Divido: $4052 = 6 \cdot 675 + 2$. Quindi $\frac{4052\pi}3$ è 675 giri più $\frac{2\pi}3$.
 4. $z^{2026} = e^{2\pi i/3} = z$: risposta (a).
 
-Scorciatoia: $z$ è una radice terza dell'unità ($z^3 = e^{2\pi i} = 1$), quindi conta solo il resto di $2026$ diviso $3$: $2026 = 3 \cdot 675 + 1$, e $z^{2026} = (z^3)^{675} \cdot z = z$. La risposta (e) è l'errore di chi moltiplica invece di elevare.
+Scorciatoia: $z$ è una radice terza dell'unità, perché $z^3 = e^{2\pi i} = 1$. Quindi conta solo il resto di 2026 diviso 3: $2026 = 3 \cdot 675 + 1$, e $z^{2026} = (z^3)^{675} \cdot z = 1 \cdot z = z$. La risposta (e) è l'errore di chi moltiplica invece di elevare.
 :::
 
 ::: esercizio esame Come all'esame: quale è una radice
 Quale dei seguenti numeri è una radice quarta di $-4$? (a) $1 + i$; (b) $\sqrt 2$; (c) $2i$; (d) $\sqrt 2\,i$; (e) $1 + 2i$.
 ::: soluzione
-**Con la formula.** $-4 = 4e^{i\pi}$: le radici quarte hanno modulo $\sqrt[4]4 = \sqrt 2$ e argomenti $\frac\pi4 + \frac{k\pi}2$. Per $k = 0$: $\sqrt 2\,e^{i\pi/4} = \sqrt 2\left(\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i\right) = 1 + i$. Risposta (a); le altre radici sono $-1 + i$, $-1 - i$, $1 - i$.
+**Con la formula.**
+1. $-4 = 4e^{i\pi}$.
+2. Le radici quarte hanno distanza $\sqrt[4]4 = \sqrt 2$, perché $(\sqrt 2)^4 = 4$.
+3. Gli angoli sono $\frac\pi4$, poi passi di $\frac\pi2$.
+4. Con il primo angolo: $\sqrt 2\,e^{i\pi/4} = \sqrt 2\left(\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i\right) = 1 + i$. Risposta (a). Le altre radici sono $-1 + i$, $-1 - i$, $1 - i$.
 
-**Scartando le risposte.** $|2i| = 2$ e $|1 + 2i| = \sqrt 5$ hanno il modulo sbagliato (deve essere $\sqrt 2$). $\sqrt 2$ e $\sqrt 2\,i$ hanno il modulo giusto ma argomenti $0$ e $\frac\pi2$, che non sono della forma $\frac\pi4 + \frac{k\pi}2$: infatti $(\sqrt 2)^4 = 4$ e $(\sqrt 2\,i)^4 = 4i^4 = 4$, non $-4$. Controllo della (a): $(1 + i)^2 = 2i$ e $(2i)^2 = -4$.
+**Scartando le risposte.** $|2i| = 2$ e $|1 + 2i| = \sqrt 5$ hanno la distanza sbagliata: deve essere $\sqrt 2$. $\sqrt 2$ e $\sqrt 2\,i$ hanno la distanza giusta ma angoli $0$ e $\frac\pi2$, che non sono nella lista: infatti $(\sqrt 2)^4 = 4$ e $(\sqrt 2\,i)^4 = 4i^4 = 4$, non $-4$.
+
+Controllo della (a): $(1 + i)^2 = 2i$ e $(2i)^2 = 4i^2 = -4$.
 :::
 
 ## Domande di ripasso
 
-::: domanda Che cosa sono le coordinate polari di un punto $(x, y) \neq (0, 0)$? Come si passa da quelle cartesiane e viceversa?
-La coppia $(r, \vartheta)$: $r$ è la distanza dall'origine, $\vartheta$ l'angolo con il semiasse reale positivo. Da polari a cartesiane: $x = r\cos\vartheta$, $y = r\sin\vartheta$. Viceversa: $r = \sqrt{x^2 + y^2}$, $\cos\vartheta = \frac xr$, $\sin\vartheta = \frac yr$ (Definizione 3.1).
+::: domanda Che cosa sono le coordinate polari di un punto diverso dall'origine? Come si passa da quelle cartesiane e viceversa?
+Sono la distanza $r$ del punto dall'origine e l'angolo $\vartheta$ con la semiretta orizzontale verso destra. Da polari a cartesiane: $x = r\cos\vartheta$, $y = r\sin\vartheta$. Al contrario: $r$ con Pitagora, poi coseno e seno sono le coordinate divise per $r$ (Definizione 3.1).
 :::
 
 ::: domanda Perché per trovare l'angolo servono sia il coseno sia il seno?
-Perché un valore del coseno (o della tangente) corrisponde a due angoli diversi: $(1, \sqrt 3)$ e $(1, -\sqrt 3)$ hanno lo stesso coseno $\frac 12$, ma angoli $\frac\pi3$ e $-\frac\pi3$. I segni di coseno e seno insieme individuano il quadrante.
+Perché lo stesso coseno va bene per due angoli: $(1, \sqrt 3)$ e $(1, -\sqrt 3)$ hanno tutti e due coseno $\frac 12$, ma uno è in alto e l'altro in basso. I segni di coseno e seno insieme dicono il quadrante.
 :::
 
-::: domanda Che cosa vuol dire $e^{i\vartheta}$ e che cosa sono modulo e argomento di $z = re^{i\vartheta}$?
-$e^{i\vartheta}$ è un simbolo per $\cos\vartheta + i\sin\vartheta$, un punto della circonferenza unitaria. In $z = re^{i\vartheta}$ il numero $r = |z| > 0$ è il modulo e l'angolo $\vartheta$ è l'argomento (o fase).
+::: domanda Che cosa vuol dire $e^{i\vartheta}$, e che cosa sono modulo e argomento di $z = re^{i\vartheta}$?
+$e^{i\vartheta}$ è un'abbreviazione di $\cos\vartheta + i\sin\vartheta$: il punto della circonferenza di raggio 1 all'angolo $\vartheta$. In $z = re^{i\vartheta}$ il numero positivo $r$ è il modulo, cioè la distanza dall'origine, e $\vartheta$ è l'argomento, cioè l'angolo.
 :::
 
 ::: domanda Che cosa dice la Proposizione 3.2 e perché è vera?
-$e^{i(\vartheta + \varphi)} = e^{i\vartheta}e^{i\varphi}$. Svolgendo il prodotto $(\cos\vartheta + i\sin\vartheta)(\cos\varphi + i\sin\varphi)$ si trovano come parte reale e parte immaginaria le formule di addizione di $\cos(\vartheta + \varphi)$ e $\sin(\vartheta + \varphi)$.
+Dice che $e^{i(\vartheta + \varphi)} = e^{i\vartheta}e^{i\varphi}$: moltiplicare due punti del cerchio vuol dire sommare gli angoli. Si dimostra svolgendo il prodotto $(\cos\vartheta + i\sin\vartheta)(\cos\varphi + i\sin\varphi)$: le due parti che escono sono le formule di addizione del coseno e del seno.
 :::
 
-::: domanda Come si moltiplicano due numeri complessi in forma polare? Che cosa vuol dire geometricamente?
-$r_1e^{i\vartheta_1} \cdot r_2e^{i\vartheta_2} = r_1r_2e^{i(\vartheta_1 + \vartheta_2)}$: i moduli si moltiplicano, gli argomenti si sommano. Moltiplicare per $r_2e^{i\vartheta_2}$ ruota di $\vartheta_2$ e dilata di un fattore $r_2$.
+::: domanda Come si moltiplicano due numeri complessi in forma polare? Che cosa vuol dire nel disegno?
+Le distanze si moltiplicano e gli angoli si sommano. Nel disegno, moltiplicare per un numero vuol dire girare del suo angolo e allungare quanto la sua distanza.
 :::
 
 ::: domanda Quali sono l'inverso e il coniugato di $z = re^{i\vartheta}$?
-$z^{-1} = r^{-1}e^{-i\vartheta}$ (modulo inverso, angolo opposto) e $\bar z = re^{-i\vartheta}$ (stesso modulo, angolo opposto: riflessione rispetto all'asse reale).
+L'inverso è $\frac 1r e^{-i\vartheta}$: distanza inversa, angolo opposto. Il coniugato è $re^{-i\vartheta}$: stessa distanza, angolo opposto. Nel disegno il coniugato è il riflesso rispetto all'asse orizzontale.
 :::
 
-::: domanda Quando due forme polari rappresentano lo stesso numero?
-$r_0e^{i\vartheta_0} = r_1e^{i\vartheta_1}$ se e solo se $r_0 = r_1$ e $\vartheta_1 = \vartheta_0 + 2k\pi$ per qualche $k \in \Z$.
+::: domanda Quando due forme polari indicano lo stesso numero?
+Quando hanno la stessa distanza e gli angoli differiscono di un numero intero di giri, cioè di $2k\pi$ con $k$ intero.
 :::
 
-::: domanda Che cos'è l'identità di Eulero? Quanto valgono $e^{i\pi/2}$ e $e^{2\pi i}$?
-$e^{i\pi} = -1$, cioè $\cos\pi + i\sin\pi$. Inoltre $e^{i\pi/2} = i$ ed $e^{2\pi i} = 1$.
+::: domanda Che cos'è l'identità di Eulero? Quanto valgono $e^{i\pi/2}$ ed $e^{2\pi i}$?
+È $e^{i\pi} = -1$: mezzo giro porta da 1 a $-1$. Inoltre $e^{i\pi/2} = i$ (un quarto di giro) ed $e^{2\pi i} = 1$ (un giro intero).
 :::
 
-::: domanda Come si calcola $z^n$ in forma polare? Fai un esempio.
-$\left(re^{i\vartheta}\right)^n = r^ne^{in\vartheta}$. Per esempio $(1 + i)^8 = (\sqrt 2)^8e^{2\pi i} = 16$.
+::: domanda Come si calcola una potenza in forma polare? Fai un esempio.
+La distanza si eleva alla $n$ e l'angolo si moltiplica per $n$. Per esempio $1 + i = \sqrt 2\,e^{i\pi/4}$, quindi $(1 + i)^8$ ha distanza $(\sqrt 2)^8 = 16$ e angolo $2\pi$: vale 16.
 :::
 
-::: domanda Quante soluzioni ha $z^n = z_0$ con $z_0 \neq 0$, e come si trovano?
-Esattamente $n$. Se $z_0 = r_0e^{i\vartheta_0}$, sono $\sqrt[n]{r_0}\,e^{i(\vartheta_0/n + 2k\pi/n)}$ per $k = 0, \dots, n - 1$.
+::: domanda Quante soluzioni ha $z^n = z_0$ con $z_0$ diverso da zero, e come si trovano?
+Esattamente $n$. Hanno tutte distanza $\sqrt[n]{r_0}$. Il primo angolo è $\frac{\vartheta_0}n$, e gli altri si ottengono aggiungendo $\frac{2\pi}n$ fino ad averne $n$.
 :::
 
 ::: domanda Che figura formano le radici $n$-esime di un numero complesso?
-I vertici di un poligono regolare con $n$ lati, centrato nell'origine, di raggio $\sqrt[n]{r_0}$. Per le radici dell'unità uno dei vertici è $1$.
+I vertici di un poligono regolare con $n$ lati, centrato nell'origine, su un cerchio di raggio $\sqrt[n]{r_0}$. Per le radici di 1 uno dei vertici è 1.
 :::
 
 ::: domanda Quali sono le radici terze di $-8$? Perché il primo angolo è $\frac\pi3$?
-$1 + \sqrt 3 i$, $-2$, $1 - \sqrt 3 i$ (Esempio 3.4). Perché $-8 = 8e^{i\pi}$ e il primo angolo è $\frac\pi3$, un terzo dell'argomento $\pi$; poi si aggiunge due volte $\frac{2\pi}3$.
+Sono $1 + \sqrt 3 i$, $-2$ e $1 - \sqrt 3 i$ (Esempio 3.4). Il primo angolo è $\frac\pi3$ perché $-8 = 8e^{i\pi}$ e si divide l'angolo $\pi$ per 3; poi si aggiunge due volte $\frac{2\pi}3$.
 :::
 
 ::: domanda Perché $-6e^{3\pi i/4}$ non è una forma polare? Come si corregge?
-Perché il modulo deve essere positivo. Con $-1 = e^{i\pi}$: $-6e^{3\pi i/4} = 6e^{7\pi i/4}$.
+Perché il numero davanti deve essere la distanza, che è positiva. Si porta il segno meno dentro l'angolo con $-1 = e^{i\pi}$: $-6e^{3\pi i/4} = 6e^{i\pi}e^{3\pi i/4} = 6e^{7\pi i/4}$.
 :::
 
 ## Glossario
 
 ```glossario
-Radiante | Unità di misura degli angoli: l'angolo misura quanto l'arco che taglia sulla circonferenza di raggio $1$. Un giro vale $2\pi$.
-Circonferenza unitaria | La circonferenza di centro $0$ e raggio $1$; i suoi punti sono $(\cos\vartheta, \sin\vartheta)$, cioè i numeri $e^{i\vartheta}$.
-Coordinate polari | La coppia $(r, \vartheta)$ che individua un punto diverso dall'origine: distanza dall'origine e angolo con il semiasse reale positivo (Definizione 3.1).
-Forma trigonometrica | La scrittura $z = r(\cos\vartheta + i\sin\vartheta)$.
-Esponenziale complessa $e^{i\vartheta}$ | Simbolo per $\cos\vartheta + i\sin\vartheta$; soddisfa $e^{i(\vartheta + \varphi)} = e^{i\vartheta}e^{i\varphi}$.
-Forma polare | La scrittura $z = re^{i\vartheta}$ con $r > 0$, per $z \neq 0$.
-Modulo | $r = \lvert z \rvert$, la lunghezza del vettore che descrive $z$.
-Argomento (fase) | L'angolo $\vartheta$ di $z = re^{i\vartheta}$; è determinato a meno di multipli di $2\pi$.
-Argomento principale | L'argomento scelto in un intervallo fissato, di solito $(-\pi, \pi]$ oppure $[0, 2\pi)$.
-Formule di addizione | $\cos(\alpha + \beta) = \cos\alpha\cos\beta - \sin\alpha\sin\beta$ e $\sin(\alpha + \beta) = \sin\alpha\cos\beta + \cos\alpha\sin\beta$.
-Regola del prodotto | Nel prodotto di due numeri complessi i moduli si moltiplicano e gli argomenti si sommano.
-Identità di Eulero | $e^{i\pi} = -1$.
-Formula di De Moivre | $\left(re^{i\vartheta}\right)^n = r^ne^{in\vartheta}$.
-Radici $n$-esime | Le $n$ soluzioni di $z^n = z_0$ ($z_0 \neq 0$): $\sqrt[n]{r_0}\,e^{i(\vartheta_0 + 2k\pi)/n}$, $k = 0, \dots, n - 1$.
-Radici $n$-esime dell'unità | Le soluzioni di $z^n = 1$: $e^{2k\pi i/n}$, vertici di un poligono regolare con un vertice in $1$.
-Poligono regolare | Poligono con tutti i lati e tutti gli angoli uguali; le radici $n$-esime ne sono i vertici.
+Radiante | Unità di misura degli angoli: l'angolo misura la strada fatta sulla circonferenza di raggio 1. Un giro vale $2\pi$, mezzo giro $\pi$.
+Circonferenza unitaria | Il cerchio con centro nell'origine e raggio 1. Il suo punto all'angolo $\vartheta$ è $(\cos\vartheta, \sin\vartheta)$, cioè il numero $e^{i\vartheta}$.
+Coordinate polari | Distanza dall'origine e angolo: due numeri che dicono dove sta un punto diverso dall'origine. Per esempio $(1, \sqrt 3)$ ha coordinate polari $(2, \frac\pi3)$.
+Forma trigonometrica | La scrittura $z = r(\cos\vartheta + i\sin\vartheta)$, con la distanza fuori dalla parentesi.
+Esponenziale complessa $e^{i\vartheta}$ | Abbreviazione di $\cos\vartheta + i\sin\vartheta$. Si comporta come una potenza: nel prodotto gli angoli si sommano.
+Forma polare | La scrittura $z = re^{i\vartheta}$, con $r$ positivo. Vale per i numeri diversi da zero.
+Modulo | La distanza del numero dall'origine. Si scrive $\lvert z \rvert$; per esempio $\lvert 1 + i \rvert = \sqrt 2$.
+Argomento (fase) | L'angolo del numero in forma polare. Si può cambiare di giri interi senza cambiare il numero.
+Argomento principale | L'argomento scelto in un intervallo fissato, di solito tra $-\pi$ e $\pi$ oppure tra 0 e $2\pi$.
+Formule di addizione | Le regole per il coseno e il seno di una somma di angoli. Servono a dimostrare la regola del prodotto.
+Regola del prodotto | Nel prodotto di due numeri complessi le distanze si moltiplicano e gli angoli si sommano.
+Identità di Eulero | $e^{i\pi} = -1$: mezzo giro porta da 1 a $-1$.
+Formula di De Moivre | La formula delle potenze: $\left(re^{i\vartheta}\right)^n = r^ne^{in\vartheta}$.
+Radici $n$-esime | Gli $n$ numeri che elevati alla $n$ danno un numero dato diverso da zero. Hanno tutti la stessa distanza e angoli a passi di $\frac{2\pi}n$.
+Radici $n$-esime dell'unità | Le soluzioni di $z^n = 1$: $e^{2k\pi i/n}$. Per $n = 4$ sono $1$, $i$, $-1$, $-i$.
+Poligono regolare | Un poligono con tutti i lati e tutti gli angoli uguali, come il triangolo equilatero o il quadrato. Le radici $n$-esime ne sono i vertici.
 ```
 
 ## Checklist
 
 ```checklist
-- So convertire gradi e radianti e so la tabella di seno e coseno negli angoli notevoli, con i segni nei quattro quadranti.
-- So passare dalle coordinate cartesiane a quelle polari e viceversa, scegliendo l'angolo con coseno e seno insieme.
-- So scrivere un numero complesso in forma trigonometrica e in forma polare $re^{i\vartheta}$, con $r > 0$.
-- So dimostrare la Proposizione 3.2 con le formule di addizione.
+- So passare da gradi a radianti e so la tabella di seno e coseno negli angoli notevoli, con i segni nei quattro quadranti.
+- So passare dalle coordinate cartesiane a quelle polari e al contrario, scegliendo l'angolo con coseno e seno insieme.
+- So scrivere un numero complesso in forma trigonometrica e in forma polare, con il modulo positivo.
+- So spiegare la Proposizione 3.2 e da dove viene la regola del prodotto.
 - So moltiplicare, invertire e dividere in forma polare, e so che cosa succede nel disegno.
-- So riconoscere quando due forme polari indicano lo stesso numero e so ridurre un angolo grande.
-- So che $e^{i\pi} = -1$, $e^{i\pi/2} = i$, $e^{2\pi i} = 1$ e so usarli per portare un segno meno dentro l'angolo.
+- So riconoscere quando due forme polari indicano lo stesso numero e so accorciare un angolo grande.
+- So che $e^{i\pi} = -1$, $e^{i\pi/2} = i$, $e^{2\pi i} = 1$, e so usarli per portare un segno meno dentro l'angolo.
 - So calcolare potenze alte come $(1 + i)^{10}$ senza calcolatrice.
-- So trovare tutte le $n$ radici $n$-esime di un numero complesso e disegnarle come poligono regolare.
-- So risolvere le domande d'esame su potenze e radici scartando per prime le risposte con il modulo sbagliato.
+- So trovare tutte le $n$ radici $n$-esime di un numero complesso e disegnarle come un poligono regolare.
+- So risolvere le domande d'esame su potenze e radici, scartando prima le risposte con la distanza sbagliata.
 ```
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 3 «Numeri complessi II», pp. 10–14: le sezioni 3.A–3.C sono seguite in ordine, con la pagina accanto a ogni titolo; la Definizione 3.1, la Proposizione 3.2 e gli Esempi 3.3 e 3.4 mantengono la loro numerazione; gli esercizi 3.5, 3.6, 3.7 e 3.8 sono svolti nella sezione «Esercizi» (esercizi 2, 3, 4 e 5); le Figure 3, 4 e 5 sono ridisegnate con i grafici.
-- **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §1.4.4–1.4.6 (pp. 27–31) ed Esercizi 1.13 e 1.14 (p. 37).
-- **Foglio di esercizi 1 del tutorato** (Buzano, Radeschi, 27/10/2025, Moodle 2025/26): esercizi 2 e 3, svolti come esercizi 7 e 8.
-- **Appelli d'esame** (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): domanda 1 del 16/01/2025, domanda 5 del 15/01/2026 e domanda 2 del 02/09/2025, riportate con soluzioni scritte per questi appunti; la tabella degli altri appelli ne indica solo il tipo. Regole d'esame 2025/26 e date 2026/27 come nella lezione L01.
-- Le parti **«Oltre le dispense»** (il ripasso di trigonometria, le serie di potenze, l'argomento principale, il metodo per ridurre gli angoli, la formula di De Moivre, la trappola sulle radici quadrate, gli esercizi che non vengono dalle dispense) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 3 «Numeri complessi II», pp. 10–14: le sezioni 3.A–3.C sono seguite in ordine, con la pagina accanto a ogni titolo; la Definizione 3.1, la Proposizione 3.2 e gli Esempi 3.3 e 3.4 mantengono la loro numerazione; gli esercizi 3.5, 3.6, 3.7 e 3.8 sono svolti nella sezione «Esercizi» (esercizi 8, 9, 6 e 7); le Figure 3, 4 e 5 sono ridisegnate con i grafici.
+- **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §1.4.4–1.4.6 (pp. 27–31) ed Esercizi 1.13 e 1.14 (p. 37), svolti come esercizi 13 e 14.
+- **Foglio di esercizi 1 del tutorato** (Buzano, Radeschi, 27/10/2025, Moodle 2025/26): esercizi 2 e 3, svolti come esercizi 11 e 12.
+- **Appelli d'esame** (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): domanda 5 del 15/01/2026, domanda 1 del 16/01/2025 e domanda 2 del 02/09/2025, riportate con soluzioni scritte per questi appunti; la tabella degli altri appelli ne indica solo il tipo. Regole d'esame 2025/26 e date 2026/27 come nella lezione L01.
+- Le parti **«Oltre le dispense»** (il ripasso di trigonometria, le serie di potenze, l'argomento principale, il metodo per accorciare gli angoli, la formula di De Moivre, la trappola sulle radici quadrate, gli esercizi che non vengono dalle dispense) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---
@@ -19206,16 +19649,15 @@ descrizione: >-
   dell'algebra, equazioni di secondo grado nei complessi e polinomi a coefficienti reali, con quiz nello stile
   dell'esame ed esercizi svolti.
 lede: >-
-  I polinomi come $x^3 - 2x + 5$ si sommano, si moltiplicano e si dividono con resto, proprio come i numeri interi.
-  Le loro radici corrispondono ai fattori $x - a$ e si contano con la molteplicità: un polinomio di grado $n$ ne ha
-  al più $n$, e nei complessi esattamente $n$ (teorema fondamentale dell'algebra). Servono in tutto il corso:
-  autovalori, determinanti con un parametro e spazi di polinomi $\R_k[x]$ partono da qui.
+  Un polinomio è una macchina che prende un numero e ne restituisce un altro. Qui impari a dividere i polinomi con il
+  resto, come i numeri alle elementari, e a trovare i numeri che fanno uscire zero: le radici. Servono in tutto il
+  corso, dagli autovalori ai determinanti con un parametro.
 materiale: dispense
 scheda:
   Dispense: lezione 4 · pp. 15–19
   Libro: Martelli, §1.3 (pp. 21–25) e §1.4.7–1.4.8 (pp. 31–33)
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 90–120 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 4 «Polinomi»; B. Martelli, Geometria e algebra lineare, §1.3 e §1.4.7–1.4.8
 appunti_html: appunti/MDAG/L04_polinomi.html
@@ -19224,25 +19666,45 @@ genera_html: true
 
 ## In breve
 
-- Un **polinomio** in una variabile, scritto in forma normale, è $p(x) = a_nx^n + \dots + a_1x + a_0$ con $a_n \neq 0$; il numero $n$ è il suo **grado**. $\R[x]$ e $\C[x]$ sono i polinomi a coefficienti reali e complessi, $\R_k[x]$ quelli reali di grado al più $k$.
-- Come tra gli interi, si può **dividere con resto**: dati $p(x)$ e $d(x) \neq 0$ esistono e sono unici $q(x)$ e $r(x)$ con $p(x) = q(x)d(x) + r(x)$ e grado di $r$ minore del grado di $d$. Se $r = 0$ si dice che $d(x)$ **divide** $p(x)$.
-- Un numero $a$ è una **radice** di $p(x)$ se $p(a) = 0$. Proposizione 4.2: $a$ è radice se e solo se $(x - a)$ divide $p(x)$. In più il resto della divisione per $x - a$ è proprio $p(a)$.
-- La **molteplicità** di una radice $a$ è il massimo $k$ per cui $(x - a)^k$ divide $p(x)$: in $(x - 1)^3(x + 1)$ la radice $1$ ha molteplicità $3$.
-- Teorema 4.6: un polinomio di grado $n \ge 1$ ha **al più $n$ radici**, contate con molteplicità. Tra i reali possono essere meno: $x^2 + 1$ non ne ha.
-- **Teorema fondamentale dell'algebra** (4.8): un polinomio a coefficienti complessi di grado $n$ ha **esattamente $n$ radici** complesse, contate con molteplicità.
-- La formula $x_\pm = \frac{-b \pm \sqrt\Delta}{2a}$ funziona anche in $\C$, con $\pm\sqrt\Delta$ le due radici quadrate complesse di $\Delta$.
-- Proposizione 4.11: se i coefficienti sono **reali** e $z$ è una radice, anche $\bar z$ lo è. All'esame: «quale di questi numeri è una radice di $p(z)$?» è stata la domanda sui complessi in tre appelli.
+- Un **polinomio** è un'espressione come $x^2 - 3$, fatta di numeri e di potenze di una lettera, messi insieme con più, meno e per. Funziona come una macchina: metti un numero al posto della lettera ed esce un numero. Il **grado** è l'esponente più alto.
+- I polinomi si **dividono con il resto**, come i numeri alle elementari: 17 diviso 5 fa 3 con il resto di 2. Se il resto è zero, il divisore **divide** il polinomio.
+- Una **radice** è un numero che, messo nella macchina, fa uscire zero. Il numero $a$ è una radice esattamente quando il polinomio si divide per $x - a$ senza resto.
+- La **molteplicità** di una radice dice quante volte il fattore $x - a$ «ci sta» nel polinomio.
+- Un polinomio ha al massimo tante radici quanto è il suo grado. Tra i numeri complessi ne ha **esattamente** tante quanto il grado, contate con la molteplicità: è il **teorema fondamentale dell'algebra**.
+- Se i numeri del polinomio sono reali, le radici complesse vengono a coppie: una e il suo coniugato.
+- All'esame: «quale di questi numeri è una radice?» è stata la domanda sui complessi in tre appelli, e le radici dei polinomi servono in quasi ogni problema sugli autovalori.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Monomi e polinomi (p. 15)
+## Che cos'è un polinomio (p. 15)
 
-Le dispense descrivono i polinomi come funzioni particolarmente semplici, ottenute combinando numeri e variabili con le sole operazioni $+$, $-$ e $\cdot$. Niente divisioni per una variabile, niente radici di variabili, niente esponenti negativi: $x^2 + 3$ è un polinomio, $\frac 1x$ e $\sqrt x$ no.
+Prendi questa regola: «prendi un numero, moltiplicalo per sé stesso e togli 3». Si scrive così:
 
-### Monomi
+$$x^2 - 3.$$
 
-Un **monomio** è un'espressione con una **parte numerica**, il **coefficiente**, e una **parte letterale**, fatta di variabili elevate a esponenti naturali. Il **grado** di un monomio è la somma degli esponenti delle variabili.
+La lettera $x$ è un posto vuoto in cui mettere un numero. Proviamo con qualche numero:
+
+| Metto | Conto | Esce |
+|---|---|---|
+| $2$ | $2^2 - 3 = 4 - 3$ | $1$ |
+| $0$ | $0^2 - 3 = 0 - 3$ | $-3$ |
+| $-2$ | $(-2)^2 - 3 = 4 - 3$ | $1$ |
+
+Un'espressione così è un **polinomio**: una macchina che prende un numero e ne restituisce un altro.
+
+Le dispense descrivono i polinomi come le funzioni più semplici che ci siano. Si costruiscono con numeri e lettere usando solo tre operazioni: più, meno e per. Niente divisioni per una lettera, niente radici di una lettera, niente esponenti negativi. Per esempio $x^2 + 3$ è un polinomio; $\frac 1x$ e $\sqrt x$ no.
+
+### I mattoni: i monomi
+
+Un polinomio è fatto di pezzi messi in somma. Ogni pezzo si chiama **monomio**: un numero moltiplicato per delle lettere, con esponenti interi positivi o zero.
+
+In un monomio ci sono due parti:
+
+- il **coefficiente**, cioè il numero davanti;
+- la **parte letterale**, cioè le lettere con i loro esponenti.
+
+Il **grado** di un monomio è la somma degli esponenti delle sue lettere. Una lettera senza esponente scritto ha esponente 1.
 
 | Monomio | Coefficiente | Parte letterale | Grado |
 |---|---|---|--:|
@@ -19251,16 +19713,26 @@ Un **monomio** è un'espressione con una **parte numerica**, il **coefficiente**
 | $\sqrt 5\,x^3$ | $\sqrt 5$ | $x^3$ | $3$ |
 | $7$ | $7$ | nessuna | $0$ |
 
-Sono i tre esempi delle dispense, più l'ultima riga: un monomio di grado zero è semplicemente un numero.
+Sono i tre esempi delle dispense, più l'ultima riga: un monomio senza lettere è solo un numero, e ha grado zero.
 
 ### Polinomi e forma normale
 
-Un **polinomio** è una somma di monomi, per esempio $7 + 3x^2 - \sqrt 2\,y^3$ (qui le variabili sono due, $x$ e $y$). Lo stesso polinomio si può scrivere in molti modi; per confrontarli si usa una scrittura standard.
+Un **polinomio** è una somma di monomi, per esempio $7 + 3x^2 - \sqrt 2\,y^3$. Qui le lettere sono due, $x$ e $y$.
+
+Lo stesso polinomio si può scrivere in tanti modi. Per esempio $3x^2 + 2x - x^2 + 5 - 2x$ è lo stesso di $2x^2 + 5$: basta mettere insieme i pezzi simili.
+
+1. I pezzi con $x^2$: $3x^2 - x^2 = 2x^2$.
+2. I pezzi con $x$: $2x - 2x = 0$, e spariscono.
+3. Il numero da solo: $5$.
+
+Resta $2x^2 + 5$. Questa scrittura ordinata, senza pezzi doppi e senza pezzi con coefficiente zero, si chiama **forma normale**. Le dispense lo scrivono così.
 
 > [!DEF] Forma normale e grado (p. 15)
 > Un polinomio è **ridotto in forma normale** se è scritto come somma di monomi con parti letterali differenti e coefficienti non nulli, oppure è il polinomio $0$. Per ridurlo in forma normale è sufficiente raccogliere i monomi con la stessa parte letterale e quindi eliminare quelli con coefficiente nullo.
 >
 > Il **grado** di un polinomio scritto in forma normale è il massimo grado dei suoi monomi.
+
+**Come si legge.** Un polinomio è in forma normale quando ogni parte letterale compare una volta sola e nessun coefficiente è zero. Per arrivarci si mettono insieme i pezzi con le stesse lettere e si cancellano quelli che si annullano. Il grado del polinomio è il grado più alto tra i suoi pezzi.
 
 > [!ESEMPIO] · Ridurre e poi leggere il grado
 > $3x^2 + 2x - x^2 + 5 - 2x$: si raccolgono i monomi simili, $(3 - 1)x^2 + (2 - 2)x + 5 = 2x^2 + 0x + 5$, e si elimina quello con coefficiente nullo. Forma normale: $2x^2 + 5$, grado $2$.
@@ -19268,125 +19740,194 @@ Un **polinomio** è una somma di monomi, per esempio $7 + 3x^2 - \sqrt 2\,y^3$ (
 > $7 + 3x^2 - \sqrt 2\,y^3$ è già in forma normale: i monomi hanno gradi $0$, $2$ e $3$, quindi il polinomio ha grado $3$.
 
 > [!TRAPPOLA] Il grado si legge dopo aver ridotto
-> $(x + 1)^2 - x^2$ sembra di secondo grado, ma svolgendo si ottiene $x^2 + 2x + 1 - x^2 = 2x + 1$: il grado è $1$. Prima si riduce in forma normale, poi si guarda il grado.
+> $(x + 1)^2 - x^2$ sembra di secondo grado. Ma svolgendo il quadrato viene $x^2 + 2x + 1 - x^2 = 2x + 1$: il grado è 1. Prima si riduce in forma normale, poi si guarda il grado.
 
-### Polinomi in una variabile
+::: prova Qual è il grado di $x^4 + 2x - x^4 + 3$?
+I due pezzi $x^4$ e $-x^4$ si cancellano. Resta $2x + 3$, che ha grado 1.
+:::
 
-Nel corso interessano soprattutto i polinomi con una sola variabile $x$, indicati con $p(x)$ o semplicemente con $p$. Ordinando i monomi dal grado più alto al più basso si ottiene la scrittura
+> [!RICORDA]
+> - Un polinomio è una somma di monomi: numeri per potenze di lettere.
+> - Il grado è l'esponente più alto, letto dopo aver messo insieme i pezzi simili.
 
-$$p(x) = a_nx^n + \dots + a_1x + a_0, \qquad a_n \neq 0,$$
+## I polinomi con una sola lettera (p. 15)
 
-dove $n$ è il grado di $p(x)$. I numeri $a_n, \dots, a_1, a_0$ sono i **coefficienti**; $a_0$ si chiama **termine noto**. Due esempi delle dispense:
+Nel corso servono quasi sempre i polinomi con una lettera sola. La lettera è di solito la $x$, e il polinomio si indica con $p(x)$, che si legge «pi di ics», o solo con $p$.
 
-- $x^3 - 2x + 5$ ha grado $3$, con $a_3 = 1$, $a_2 = 0$ (manca il termine in $x^2$), $a_1 = -2$, $a_0 = 5$;
-- $4x^2 - 7$ ha grado $2$, con $a_2 = 4$, $a_1 = 0$, $a_0 = -7$.
+Si scrivono in ordine, dal pezzo con l'esponente più alto a quello più basso. Per esempio:
 
-Un polinomio di grado zero è semplicemente un numero $a_0 \neq 0$.
+$$x^3 - 2x + 5.$$
+
+Qui ci sono le potenze 3, 1 e 0 di $x$. La potenza 2 manca: è come se ci fosse $0 \cdot x^2$.
+
+### I coefficienti con i numerini
+
+Per parlare di un polinomio qualsiasi le dispense chiamano i suoi numeri con una lettera e un numerino in basso. Il numerino dice a quale potenza appartiene il numero:
+
+- $a_3$, «a tre», è il numero davanti a $x^3$;
+- $a_2$ è il numero davanti a $x^2$;
+- $a_1$ è il numero davanti a $x$;
+- $a_0$ è il numero da solo, senza $x$. Si chiama **termine noto**.
+
+Per $x^3 - 2x + 5$: $a_3 = 1$, $a_2 = 0$ (manca il pezzo con $x^2$), $a_1 = -2$, $a_0 = 5$. Per $4x^2 - 7$: $a_2 = 4$, $a_1 = 0$, $a_0 = -7$. Sono i due esempi delle dispense.
+
+Un polinomio qualsiasi di grado $n$ si scrive allora così:
+
+$$p(x) = a_nx^n + \dots + a_1x + a_0, \qquad a_n \neq 0.$$
+
+I tre puntini vogliono dire «e tutti i pezzi in mezzo, con le potenze da $n - 1$ fino a 2». La condizione $a_n \neq 0$, «$a_n$ diverso da zero», dice che il pezzo più alto c'è davvero: altrimenti il grado non sarebbe $n$. Un polinomio di grado zero è solo un numero diverso da zero.
+
+### Gli insiemi di polinomi
+
+Le dispense danno un nome agli insiemi di polinomi che useremo.
 
 > [!DEF] Gli insiemi di polinomi (p. 15)
 > $\R[x]$ è l'insieme dei polinomi con coefficienti in $\R$ in cui compare una sola variabile $x$, e $\C[x]$ l'insieme dei polinomi con coefficienti in $\C$ in cui compare una sola variabile $x$. Con $\R_k[x]$ si indicano i polinomi in $\R[x]$ che hanno grado $\le k$ (analogamente $\C_k[x]$).
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $\R[x] \subset \C[x]$, perché i numeri reali sono complessi. Per esempio $x^2 + 1$ sta in tutti e due, mentre $ix + 1$ sta in $\C[x]$ ma non in $\R[x]$.
-- $\R_k[x]$ contiene **tutti** i polinomi reali di grado al più $k$, anche quelli di grado più basso e il polinomio nullo. Per esempio $\R_2[x] = \{ax^2 + bx + c \mid a, b, c \in \R\}$ contiene $x^2 - 3$, $5x$, $7$ e $0$ (con $a = 0$ il grado scende), ma non $x^3$.
-- Dalla lezione L05 in poi $\R_k[x]$ sarà uno degli esempi principali di **spazio vettoriale**: negli appelli compaiono spesso domande su insiemi come $\{p(x) \in \R_3[x] \mid p(6) = 0\}$.
+- $\R$ sono i numeri reali e $\C$ i numeri complessi (lezioni L01 e L02).
+- $\R[x]$, «erre di ics», sono i polinomi in $x$ i cui numeri sono reali. $\C[x]$ sono quelli i cui numeri possono essere complessi.
+- $\R_k[x]$, «erre kappa di ics», sono i polinomi reali di grado al massimo $k$. Il simbolo $\le$ si legge «minore o uguale».
+
+Tre cose da notare:
+
+- Ogni polinomio di $\R[x]$ sta anche in $\C[x]$, perché i numeri reali sono anche complessi. Per esempio $x^2 + 1$ sta in tutti e due. Invece $ix + 1$ sta in $\C[x]$ ma non in $\R[x]$.
+- $\R_2[x]$ contiene **tutti** i polinomi reali di grado 2 o meno: $x^2 - 3$, ma anche $5x$, il numero 7 e il polinomio 0. Non contiene $x^3$.
+- Dalla lezione L05 in poi $\R_k[x]$ sarà uno degli esempi principali di **spazio vettoriale**. Negli appelli compaiono spesso domande su insiemi come «i polinomi di $\R_3[x]$ che valgono zero in 6».
+
+::: prova Quali di questi polinomi stanno in $\R_2[x]$? (a) $3x - 1$; (b) $x^3$; (c) $2ix^2$; (d) $5$.
+(a) Sì: grado 1, numeri reali. (b) No: grado 3. (c) No: il numero $2i$ non è reale. (d) Sì: grado zero, numero reale.
+:::
 
 > [!OLTRE] · il polinomio nullo e il grado dei prodotti
 > Il polinomio $0$ non ha monomi, quindi il suo grado non è definito (alcuni libri gli danno grado $-\infty$). Per due polinomi non nulli valgono due regole utili:
 > - $\deg(pq) = \deg p + \deg q$: i termini di grado più alto si moltiplicano, $a_nx^n \cdot b_mx^m = a_nb_m\,x^{n + m}$, e $a_nb_m \neq 0$. Per esempio $(x^2 + 1)(x^3 - x)$ ha grado $5$.
-> - $\deg(p + q) \le$ il più grande tra $\deg p$ e $\deg q$, e può essere più piccolo se i termini più alti si cancellano, come nella trappola sopra.
+> - $\deg(p + q) \le$ il più grande tra $\deg p$ e $\deg q$, e può essere più piccolo se i termini più alti si cancellano, come nella trappola della sezione precedente.
 >
-> Martelli chiama anche **monico** un polinomio con $a_n = 1$.
+> Qui $\deg$ è l'abbreviazione di «grado» (dall'inglese *degree*). Martelli chiama anche **monico** un polinomio con $a_n = 1$.
 
-## La divisione con resto (pp. 15–16)
+> [!RICORDA]
+> - $p(x) = a_nx^n + \dots + a_1x + a_0$: il numerino dice a quale potenza appartiene il numero; $a_0$ è il termine noto.
+> - $\R[x]$ e $\C[x]$: polinomi con numeri reali o complessi. $\R_k[x]$: polinomi reali di grado al massimo $k$.
 
-I polinomi assomigliano ai numeri interi: si possono sommare, moltiplicare, e si possono fare le **divisioni con resto**. Tra gli interi, dividendo $44$ per $6$ si trova quoziente $7$ e resto $2$:
+## Dividere con il resto, come alle elementari (pp. 15–16)
 
-$$44 = 7 \cdot 6 + 2,$$
+Alle elementari hai imparato la divisione con il resto. Hai 44 caramelle e 6 sacchetti: in ogni sacchetto ne metti 7 e ne avanzano 2.
 
-e il resto $2$ è più piccolo del divisore $6$. Per i polinomi «più piccolo» vuol dire «di grado minore».
+$$44 = 7 \cdot 6 + 2.$$
+
+Il 7 è il **quoziente**, il 2 è il **resto**. E il resto è più piccolo del divisore 6: se ne avanzassero 6 o più, potresti mettere un'altra caramella in ogni sacchetto.
+
+I polinomi si dividono nello stesso modo. Al posto di «più piccolo» si usa «di grado più basso». Le dispense lo scrivono così.
 
 > [!PROP] · Divisione con resto (p. 16)
 > Dati due polinomi $p(x)$ (il **dividendo**) e $d(x) \neq 0$ (il **divisore**), esistono sempre, e sono unici, due polinomi $q(x)$ (il **quoziente**) e $r(x)$ (il **resto**) per cui
 > $$p(x) = q(x)d(x) + r(x),$$
 > con la proprietà che il resto $r(x)$ abbia grado strettamente minore del divisore $d(x)$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $d(x) \neq 0$: come tra i numeri, non si divide per zero.
-- La condizione sul grado è ciò che rende **unici** quoziente e resto. Senza di essa si potrebbero scrivere infinite uguaglianze del tipo $p = qd + r$ (nel quiz ne trovi un esempio).
-- Il resto può essere il polinomio $0$: è il caso importante, quello della divisibilità.
+- $p(x)$ è il polinomio da dividere, $d(x)$ quello per cui si divide. Il divisore non può essere il polinomio zero, come tra i numeri non si divide per zero.
+- Il quoziente e il resto ci sono sempre, e sono di un solo tipo: «esistono e sono unici».
+- La formula è la stessa di $44 = 7 \cdot 6 + 2$.
+- «Strettamente minore» vuol dire minore e non uguale. È questa condizione che rende quoziente e resto unici: senza, si potrebbero scrivere tante uguaglianze diverse dello stesso tipo (nel quiz ne trovi un esempio).
+- Il resto può essere il polinomio zero. È il caso più importante: quello in cui la divisione «viene esatta».
 
-Le dispense dicono che le divisioni si fanno con carta e penna con la stessa procedura usata per i numeri interi. Eccola, passo per passo.
+### Come si fa la divisione in colonna
 
-> [!METODO] La divisione in colonna
-> 1. Scrivi dividendo e divisore in ordine di grado decrescente; nel dividendo metti $0$ al posto dei gradi che mancano.
-> 2. Dividi il termine di grado più alto del dividendo per il termine di grado più alto del divisore: è il primo termine del quoziente.
-> 3. Moltiplica il divisore per questo termine e **sottrai** il risultato dal dividendo: il termine più alto si cancella.
-> 4. Ripeti i passi 2 e 3 con il polinomio ottenuto, finché il suo grado diventa **minore** del grado del divisore. Quello che resta è il resto.
-> 5. Controllo: $q(x)d(x) + r(x)$ deve ridare $p(x)$.
+Le dispense dicono che la divisione si fa con carta e penna, con la stessa procedura dei numeri. Ecco l'esempio delle dispense, passo per passo.
 
 > [!ESEMPIO] · L'esempio delle dispense: $x^3 + 1$ diviso $x^2 - 1$
-> 1. $x^3 : x^2 = x$: il quoziente comincia con $x$.
-> 2. $x \cdot (x^2 - 1) = x^3 - x$, e $(x^3 + 1) - (x^3 - x) = x + 1$.
-> 3. $x + 1$ ha grado $1$, minore del grado $2$ del divisore: ci si ferma.
+> 1. Divido il pezzo più alto del dividendo per il pezzo più alto del divisore: $x^3$ diviso $x^2$ fa $x$. Il quoziente comincia con $x$.
+> 2. Moltiplico il divisore per $x$: $x \cdot (x^2 - 1) = x^3 - x$.
+> 3. Tolgo questo risultato dal dividendo: $(x^3 + 1) - (x^3 - x) = x + 1$. Il pezzo $x^3$ si è cancellato.
+> 4. Quello che resta, $x + 1$, ha grado 1, più basso del grado 2 del divisore. Mi fermo.
 >
 > Quoziente $q(x) = x$, resto $r(x) = x + 1$:
 > $$x^3 + 1 = x\left(x^2 - 1\right) + (x + 1).$$
 > Controllo: $x^3 - x + x + 1 = x^3 + 1$.
 
+> [!METODO] La divisione in colonna
+> 1. Scrivi dividendo e divisore dal grado più alto al più basso. Nel dividendo metti $0$ al posto dei gradi che mancano.
+> 2. Dividi il pezzo più alto del dividendo per il pezzo più alto del divisore: è il primo pezzo del quoziente.
+> 3. Moltiplica il divisore per questo pezzo e **togli** il risultato dal dividendo: il pezzo più alto si cancella.
+> 4. Ripeti i passi 2 e 3 con quello che è rimasto, finché il suo grado diventa **più basso** del grado del divisore. Quello che resta è il resto.
+> 5. Controllo: quoziente per divisore, più il resto, deve ridare il dividendo.
+
 > [!ESEMPIO] · Una divisione in due passi: $2x^3 + 3x^2 - x + 5$ diviso $x^2 - x + 1$
-> 1. $2x^3 : x^2 = 2x$. Poi $2x(x^2 - x + 1) = 2x^3 - 2x^2 + 2x$, e sottraendo:
+> 1. Pezzi più alti: $2x^3$ diviso $x^2$ fa $2x$. Moltiplico: $2x(x^2 - x + 1) = 2x^3 - 2x^2 + 2x$. Tolgo:
 >    $$(2x^3 + 3x^2 - x + 5) - (2x^3 - 2x^2 + 2x) = 5x^2 - 3x + 5.$$
-> 2. Il grado è ancora $2$, quindi si continua: $5x^2 : x^2 = 5$. Poi $5(x^2 - x + 1) = 5x^2 - 5x + 5$, e sottraendo:
+> 2. Il grado è ancora 2, uguale a quello del divisore: si continua. $5x^2$ diviso $x^2$ fa $5$. Moltiplico: $5(x^2 - x + 1) = 5x^2 - 5x + 5$. Tolgo:
 >    $$(5x^2 - 3x + 5) - (5x^2 - 5x + 5) = 2x.$$
-> 3. $2x$ ha grado $1 < 2$: fine.
+> 3. $2x$ ha grado 1, più basso di 2: fine.
 >
 > Quoziente $q(x) = 2x + 5$, resto $r(x) = 2x$. Controllo: $(2x + 5)(x^2 - x + 1) + 2x = 2x^3 - 2x^2 + 2x + 5x^2 - 5x + 5 + 2x = 2x^3 + 3x^2 - x + 5$.
 
-### Quando un polinomio ne divide un altro
+::: prova Dividi $x^2 + 3x + 5$ per $x + 1$.
+$x^2$ diviso $x$ fa $x$. Moltiplico: $x(x + 1) = x^2 + x$. Tolgo: $(x^2 + 3x + 5) - (x^2 + x) = 2x + 5$. Il grado è 1, come il divisore: continuo. $2x$ diviso $x$ fa 2. Moltiplico: $2(x + 1) = 2x + 2$. Tolgo: $(2x + 5) - (2x + 2) = 3$. Quoziente $x + 2$, resto 3. Controllo: $(x + 2)(x + 1) + 3 = x^2 + 3x + 2 + 3 = x^2 + 3x + 5$.
+:::
 
-Tra gli interi, $7$ divide $14$ ma non $15$: la divisione di $14$ per $7$ ha resto nullo, quella di $15$ per $7$ no. Per i polinomi si usa la stessa parola.
+### Quando la divisione viene esatta
+
+Tra i numeri, 7 divide 14 ma non 15: 14 diviso 7 ha resto zero, 15 diviso 7 no. Per i polinomi si usa la stessa parola. Le dispense la scrivono così.
 
 > [!DEF] Divisibilità (p. 16)
 > Se la divisione tra due polinomi $p(x)$ e $d(x)$ ha resto nullo, allora $p(x) = q(x)d(x)$ per qualche quoziente $q(x)$, e si dice che $d(x)$ **divide** $p(x)$. Si usa la barra verticale $\mid$ come sinonimo di «divide»:
 > $$9 \mid 18, \qquad (x + 1) \mid \left(x^3 + 1\right).$$
 
-Verifichiamo il secondo esempio con la divisione in colonna di $x^3 + 0x^2 + 0x + 1$ per $x + 1$:
+**Come si legge.** «$d(x)$ divide $p(x)$» vuol dire che la divisione viene esatta: $p(x)$ è $d(x)$ moltiplicato per qualcosa. La barretta verticale si legge «divide»: $9 \mid 18$ si legge «nove divide diciotto».
 
-1. $x^3 : x = x^2$; $x^2(x + 1) = x^3 + x^2$; sottraendo resta $-x^2 + 0x + 1$.
-2. $-x^2 : x = -x$; $-x(x + 1) = -x^2 - x$; sottraendo resta $x + 1$.
-3. $x : x = 1$; $1 \cdot (x + 1) = x + 1$; sottraendo resta $0$.
+Controlliamo il secondo esempio con la divisione in colonna di $x^3 + 0x^2 + 0x + 1$ per $x + 1$. Gli zeri servono a tenere il posto dei gradi che mancano.
 
-Il resto è nullo, e il quoziente è $x^2 - x + 1$: infatti, come notano le dispense, $\left(x^3 + 1\right) = \left(x^2 - x + 1\right)(x + 1)$.
+1. $x^3$ diviso $x$ fa $x^2$. Moltiplico: $x^2(x + 1) = x^3 + x^2$. Tolgo: resta $-x^2 + 0x + 1$.
+2. $-x^2$ diviso $x$ fa $-x$. Moltiplico: $-x(x + 1) = -x^2 - x$. Tolgo: resta $x + 1$.
+3. $x$ diviso $x$ fa 1. Moltiplico: $1 \cdot (x + 1) = x + 1$. Tolgo: resta 0.
 
-> [!TRAPPOLA] Gli zeri e la condizione di arresto
-> Se nel dividendo mancano dei gradi, come in $x^3 + 1$, bisogna scrivere gli zeri ($x^3 + 0x^2 + 0x + 1$), altrimenti si sottraggono termini di grado diverso. E ci si ferma quando il grado di ciò che resta è **minore** di quello del divisore, non quando «resta un numero»: dividendo per $x^2 - x + 1$, il resto $2x$ va benissimo.
+Il resto è zero e il quoziente è $x^2 - x + 1$. Infatti, come notano le dispense, $\left(x^3 + 1\right) = \left(x^2 - x + 1\right)(x + 1)$.
+
+> [!TRAPPOLA] Gli zeri e quando fermarsi
+> Se nel dividendo mancano dei gradi, come in $x^3 + 1$, bisogna scrivere gli zeri: $x^3 + 0x^2 + 0x + 1$. Altrimenti si tolgono pezzi di grado diverso. E ci si ferma quando il grado di quello che resta è **più basso** di quello del divisore, non quando «resta un numero»: dividendo per $x^2 - x + 1$, il resto $2x$ va benissimo.
+
+> [!RICORDA]
+> - Dividendo uguale quoziente per divisore più resto, con il resto di grado più basso del divisore.
+> - Se il resto è zero, il divisore divide il polinomio: si scrive con la barretta $\mid$.
 
 ## La regola di Ruffini (oltre le dispense)
 
-Quando il divisore è della forma $x - a$ (grado $1$), la divisione in colonna si può scrivere in una tabella che contiene solo i coefficienti: è la **regola di Ruffini**. È il modo più veloce per usare la Proposizione 4.2 della prossima sezione.
+Spesso si divide per un polinomio molto corto: la lettera meno un numero, come $x - 2$. In questo caso la divisione in colonna si può scrivere in una tabella con i soli numeri. È la **regola di Ruffini**: è il modo più veloce, e la userai di continuo nella sezione sulle radici.
 
-> [!METODO] Dividere $p(x)$ per $x - a$ con Ruffini
-> 1. Scrivi in fila i coefficienti di $p(x)$, dal grado più alto al termine noto, con gli **zeri** per i gradi che mancano. Scrivi $a$ a sinistra. Attenzione al segno: per dividere per $x + 2$ si usa $a = -2$.
-> 2. Abbassa il primo coefficiente nell'ultima riga.
-> 3. Moltiplica per $a$ l'ultimo numero scritto in basso, scrivi il prodotto nella colonna successiva (riga di mezzo) e somma: il risultato va in basso.
-> 4. Ripeti fino all'ultima colonna. L'ultimo numero in basso è il **resto**; gli altri sono i coefficienti del **quoziente**, che ha grado uno in meno.
+Un esempio: dividere $2x^3 - 3x^2 + 4x - 5$ per $x - 2$.
 
 > [!ESEMPIO] · $2x^3 - 3x^2 + 4x - 5$ diviso $x - 2$
-> Coefficienti $2, -3, 4, -5$ e $a = 2$:
+> Nella prima riga scrivo i coefficienti $2, -3, 4, -5$. A sinistra scrivo il numero 2, quello di $x - 2$.
 >
 > | | $2$ | $-3$ | $4$ | $-5$ |
 > |---|--:|--:|--:|--:|
 > | $a = 2$ | | $4$ | $2$ | $12$ |
 > | | $2$ | $1$ | $6$ | $7$ |
 >
-> Colonna per colonna: si abbassa il $2$; $2 \cdot 2 = 4$ e $-3 + 4 = 1$; $1 \cdot 2 = 2$ e $4 + 2 = 6$; $6 \cdot 2 = 12$ e $-5 + 12 = 7$. Quindi quoziente $q(x) = 2x^2 + x + 6$ e resto $7$:
+> Colonna per colonna:
+> 1. Abbasso il primo numero, 2.
+> 2. Moltiplico $2 \cdot 2 = 4$, lo scrivo sotto il $-3$ e sommo: $-3 + 4 = 1$.
+> 3. Moltiplico $1 \cdot 2 = 2$, lo scrivo sotto il 4 e sommo: $4 + 2 = 6$.
+> 4. Moltiplico $6 \cdot 2 = 12$, lo scrivo sotto il $-5$ e sommo: $-5 + 12 = 7$.
+>
+> L'ultimo numero in basso, 7, è il resto. Gli altri, $2, 1, 6$, sono i coefficienti del quoziente, che ha un grado in meno: $q(x) = 2x^2 + x + 6$.
 > $$2x^3 - 3x^2 + 4x - 5 = (2x^2 + x + 6)(x - 2) + 7.$$
-> Nota: $p(2) = 16 - 12 + 8 - 5 = 7$, proprio il resto. Non è un caso: lo spiega la prossima sezione.
+> Nota: se metto 2 nel polinomio viene $16 - 12 + 8 - 5 = 7$, proprio il resto. Non è un caso: lo spiega la prossima sezione.
 
-Con lo strumento qui sotto puoi ripetere la divisione con altri polinomi e altri valori di $a$ (i coefficienti si scrivono dal grado più alto, separati da spazi). Il pulsante **Scomponi con le radici razionali** prova tutti i candidati $\pm\frac{\text{divisori del termine noto}}{\text{divisori del primo coefficiente}}$ e scompone il polinomio: provalo con `1 -6 11 -6` e con `1 -1 -3 5 -2`.
+> [!METODO] Dividere un polinomio per $x - a$ con Ruffini
+> 1. Scrivi in fila i coefficienti, dal grado più alto al termine noto, con gli **zeri** per i gradi che mancano. Scrivi $a$ a sinistra. Attenzione al segno: per dividere per $x + 2$ si usa $a = -2$, perché $x + 2 = x - (-2)$.
+> 2. Abbassa il primo coefficiente nell'ultima riga.
+> 3. Moltiplica per $a$ l'ultimo numero scritto in basso, scrivi il prodotto nella colonna dopo, nella riga di mezzo, e somma: il risultato va in basso.
+> 4. Ripeti fino all'ultima colonna. L'ultimo numero in basso è il **resto**. Gli altri sono i coefficienti del **quoziente**, che ha un grado in meno.
+
+::: prova Dividi $x^2 + 3x + 5$ per $x + 1$ con Ruffini, e confronta con il «Prova tu» della sezione di prima.
+Qui $a = -1$. Coefficienti $1, 3, 5$. Abbasso 1. $1 \cdot (-1) = -1$, e $3 - 1 = 2$. $2 \cdot (-1) = -2$, e $5 - 2 = 3$. In basso $1, 2$ e resto 3: quoziente $x + 2$, resto 3. Lo stesso risultato della divisione in colonna.
+:::
+
+Con lo strumento qui sotto puoi rifare la divisione con altri polinomi e altri valori di $a$. I coefficienti si scrivono dal grado più alto, separati da spazi. Il pulsante **Scomponi con le radici razionali** prova tutti i candidati $\pm\frac{\text{divisori del termine noto}}{\text{divisori del primo coefficiente}}$ e scompone il polinomio: provalo con `1 -6 11 -6` e con `1 -1 -3 5 -2`.
 
 ```widget ruffini
 titolo: Divisione per $x - a$ con la tabella di Ruffini
@@ -19394,69 +19935,128 @@ coefficienti: 2 -3 4 -5
 a: 2
 ```
 
-## Radici di un polinomio (p. 16)
+> [!RICORDA]
+> - Ruffini divide per $x - a$ con i soli coefficienti: abbassa, moltiplica per $a$, somma.
+> - L'ultimo numero è il resto; gli altri sono il quoziente, di un grado in meno.
 
-Se $p(x)$ è un polinomio e $a$ è un numero, $p(a)$ è il numero che si ottiene **sostituendo** $a$ al posto di $x$. Per esempio, se $p(x) = x^2 - 3$, allora $p(-2) = (-2)^2 - 3 = 4 - 3 = 1$, $p(0) = -3$ e $p(\sqrt 3) = 3 - 3 = 0$.
+## Le radici: i numeri che fanno uscire zero (p. 16)
+
+Torna alla macchina dell'inizio, quella che eleva al quadrato e toglie 3. Con il polinomio $x^2 - 3$: mettendo 2 esce 1, mettendo 0 esce $-3$. C'è un numero che fa uscire zero? Sì: $\sqrt 3$, perché $(\sqrt 3)^2 - 3 = 3 - 3 = 0$. E anche $-\sqrt 3$.
+
+Mettere un numero $a$ al posto di $x$ si scrive $p(a)$, «pi di a». Per esempio, con $p(x) = x^2 - 3$:
+
+- $p(-2) = (-2)^2 - 3 = 4 - 3 = 1$;
+- $p(0) = 0 - 3 = -3$;
+- $p(\sqrt 3) = 3 - 3 = 0$.
+
+I numeri che fanno uscire zero sono speciali, e hanno un nome. Le dispense lo scrivono così.
 
 > [!DEF] 4.1
 > Un numero $a$ è **radice** di un polinomio $p(x)$ se $p(a) = 0$.
 
-In altre parole, le radici di $p(x)$ sono le **soluzioni dell'equazione** $p(x) = 0$. Qualche esempio:
+**Come si legge.** Una radice è un numero che, messo al posto di $x$, fa venire zero. In altre parole, le radici sono le **soluzioni dell'equazione** $p(x) = 0$.
 
-- $-1$ è radice di $p(x) = x^3 + 1$, perché $p(-1) = (-1)^3 + 1 = 0$ (esempio delle dispense); invece $2$ non lo è, perché $p(2) = 9$;
-- $\sqrt 3$ e $-\sqrt 3$ sono radici di $x^2 - 3$;
-- $i$ è radice di $x^2 + 1$, perché $i^2 + 1 = -1 + 1 = 0$: le radici possono essere numeri complessi, e per verificarle servono i conti delle lezioni L02 e L03.
+Tre esempi:
 
-Le dispense ricordano che trovare le radici di un polinomio è uno dei problemi più classici dell'algebra. Il criterio che segue collega le radici alla divisione.
+- $-1$ è radice di $p(x) = x^3 + 1$, perché $(-1)^3 + 1 = -1 + 1 = 0$. È l'esempio delle dispense. Invece 2 non lo è, perché $2^3 + 1 = 9$.
+- $\sqrt 3$ e $-\sqrt 3$ sono radici di $x^2 - 3$.
+- $i$ è radice di $x^2 + 1$, perché $i^2 + 1 = -1 + 1 = 0$. Le radici possono essere numeri complessi, e per controllarle servono i conti delle lezioni L02 e L03.
 
-## Radici e fattori: la Proposizione 4.2 (pp. 16–17)
+Le dispense ricordano che trovare le radici di un polinomio è uno dei problemi più antichi dell'algebra. La prossima sezione collega le radici alla divisione.
+
+::: prova Il numero 3 è radice di $x^2 - 2x - 3$? E il numero 1?
+$3^2 - 2 \cdot 3 - 3 = 9 - 6 - 3 = 0$: sì, 3 è radice.
+
+$1^2 - 2 \cdot 1 - 3 = 1 - 2 - 3 = -4$: no, 1 non è radice.
+:::
+
+> [!RICORDA]
+> - $p(a)$ è il numero che esce mettendo $a$ al posto di $x$.
+> - $a$ è una radice quando $p(a) = 0$.
+
+## Una radice è un fattore che ci sta (pp. 16–17)
+
+Alcuni polinomi si possono scrivere come prodotto di pezzi più piccoli. Per esempio $x^2 - 5x + 6$ si scrive così: $(x - 2)(x - 3)$. Controllo: $x^2 - 3x - 2x + 6 = x^2 - 5x + 6$.
+
+Le sue radici sono 2 e 3. Infatti, se metto 2, il primo fattore diventa $2 - 2 = 0$, e qualsiasi cosa moltiplicata per zero fa zero. Con 3 si annulla il secondo fattore.
+
+Quindi ogni fattore $x - a$ produce una radice $a$. Vale anche al contrario: ogni radice $a$ produce un fattore $x - a$. Le dispense lo scrivono così.
 
 > [!PROP] 4.2
 > Il numero $a$ è radice di $p(x)$ se e solo se $(x - a) \mid p(x)$.
 
-**Dimostrazione** (dalle dispense, con ogni passaggio spiegato).
+**Come si legge.** «Se e solo se» vuol dire che le due cose vanno sempre insieme. $a$ è radice esattamente quando la divisione di $p(x)$ per $x - a$ viene esatta, senza resto.
 
-1. Dividiamo $p(x)$ per $(x - a)$: per la divisione con resto, $p(x) = q(x)(x - a) + r(x)$, con $q(x)$ quoziente e $r(x)$ resto.
-2. Il grado di $r(x)$ è strettamente minore di quello di $x - a$, che è $1$. Quindi $r(x)$ ha grado zero (oppure è il polinomio nullo): è una **costante**, che scriviamo $r_0$. Allora
-   $$p(x) = q(x)(x - a) + r_0.$$
-3. Sostituiamo $a$ al posto di $x$: il fattore $a - a$ si annulla, e resta
-   $$p(a) = q(a)(a - a) + r_0 = 0 + r_0 = r_0.$$
-4. Quindi $a$ è radice di $p(x)$ (cioè $p(a) = 0$) se e solo se $r_0 = 0$.
-5. D'altra parte $r_0 = 0$ se e solo se la divisione per $x - a$ ha resto nullo, cioè se e solo se $(x - a)$ divide $p(x)$. $\square$
+### Il resto è il valore
+
+Nell'esempio di Ruffini il resto della divisione per $x - 2$ era 7, e anche $p(2)$ era 7. È sempre così, ed è il cuore della dimostrazione. Il motivo, a parole:
+
+1. Divido $p(x)$ per $x - a$. Il divisore ha grado 1, quindi il resto ha grado zero: è un numero solo, che chiamo $r_0$.
+2. La divisione dice $p(x) = q(x)(x - a) + r_0$.
+3. Metto $a$ al posto di $x$. Il fattore $a - a$ fa zero, quindi tutto il primo pezzo sparisce. Resta $p(a) = r_0$.
 
 > [!IDEA] · il resto è il valore
-> Il passo 3 dice qualcosa in più dell'enunciato: **il resto della divisione di $p(x)$ per $x - a$ è $p(a)$**. È quello che hai visto con Ruffini: dividendo per $x - 2$ il resto era $7 = p(2)$. Quindi per sapere se $a$ è radice basta calcolare $p(a)$; e per sapere il resto della divisione per $x - a$ non serve fare la divisione.
+> **Il resto della divisione di $p(x)$ per $x - a$ è $p(a)$.** Quindi, per sapere se $a$ è radice, basta calcolare $p(a)$. E per sapere il resto della divisione per $x - a$ non serve fare la divisione.
 
-> [!METODO] Scomporre un polinomio partendo da una radice
-> 1. Cerca una radice $a$ provando numeri semplici: $0$, $\pm 1$, $\pm 2$, … Se i coefficienti sono interi, una radice intera divide il termine noto (vedi il riquadro qui sotto).
-> 2. Dividi per $x - a$ con Ruffini: $p(x) = (x - a)q(x)$, con $q(x)$ di grado uno in meno.
-> 3. Ripeti con $q(x)$. Quando arrivi al secondo grado usa la formula con $\Delta$.
+> [!DIM] della Proposizione 4.2
+> Dalle dispense, con ogni passaggio spiegato.
+> 1. Dividiamo $p(x)$ per $(x - a)$: per la divisione con resto, $p(x) = q(x)(x - a) + r(x)$, con $q(x)$ quoziente e $r(x)$ resto.
+> 2. Il grado di $r(x)$ è più basso di quello di $x - a$, che è 1. Quindi $r(x)$ ha grado zero, oppure è il polinomio nullo: è un numero, che scriviamo $r_0$. Allora
+>    $$p(x) = q(x)(x - a) + r_0.$$
+> 3. Mettiamo $a$ al posto di $x$: il fattore $a - a$ si annulla, e resta
+>    $$p(a) = q(a)(a - a) + r_0 = 0 + r_0 = r_0.$$
+> 4. Quindi $a$ è radice di $p(x)$, cioè $p(a) = 0$, esattamente quando $r_0 = 0$.
+> 5. E $r_0 = 0$ vuol dire che la divisione per $x - a$ ha resto nullo, cioè che $(x - a)$ divide $p(x)$. $\square$
+
+### Scomporre un polinomio
+
+La Proposizione 4.2 dà un modo per scomporre un polinomio in fattori: trovata una radice, si divide.
 
 > [!ESEMPIO] · $x^3 - 6x^2 + 11x - 6$
-> 1. Provo $x = 1$: $1 - 6 + 11 - 6 = 0$. Quindi $1$ è radice e $(x - 1)$ divide il polinomio.
-> 2. Ruffini con $a = 1$ sui coefficienti $1, -6, 11, -6$: si abbassa $1$; $1 - 6 = -5$; $-5 + 11 = 6$; $6 - 6 = 0$. Quoziente $x^2 - 5x + 6$, resto $0$.
-> 3. $x^2 - 5x + 6 = (x - 2)(x - 3)$: due numeri con somma $5$ e prodotto $6$.
+> 1. Provo $x = 1$: $1 - 6 + 11 - 6 = 0$. Quindi 1 è radice e $(x - 1)$ divide il polinomio.
+> 2. Ruffini con $a = 1$ sui coefficienti $1, -6, 11, -6$: abbasso 1; $1 \cdot 1 = 1$ e $-6 + 1 = -5$; $-5 \cdot 1 = -5$ e $11 - 5 = 6$; $6 \cdot 1 = 6$ e $-6 + 6 = 0$. Quoziente $x^2 - 5x + 6$, resto 0.
+> 3. $x^2 - 5x + 6 = (x - 2)(x - 3)$: cerco due numeri che sommati danno 5 e moltiplicati danno 6.
 >
-> Quindi $x^3 - 6x^2 + 11x - 6 = (x - 1)(x - 2)(x - 3)$, con radici $1$, $2$, $3$.
+> Quindi $x^3 - 6x^2 + 11x - 6 = (x - 1)(x - 2)(x - 3)$, con radici 1, 2 e 3.
+
+> [!METODO] Scomporre un polinomio partendo da una radice
+> 1. Cerca una radice provando numeri piccoli: $0$, $1$, $-1$, $2$, $-2$… Se i coefficienti sono interi, una radice intera divide il termine noto (vedi il riquadro qui sotto).
+> 2. Dividi per $x - a$ con Ruffini: il polinomio diventa $(x - a)$ per un quoziente di un grado in meno.
+> 3. Ripeti con il quoziente. Quando arrivi al secondo grado, usa la formula con il $\Delta$ (più avanti in questa lezione).
+
+::: prova Il resto della divisione di $x^3 + 2x - 1$ per $x - 1$ è…?
+Non serve dividere: il resto è il valore in 1. $1 + 2 - 1 = 2$. Il resto è 2.
+:::
 
 > [!OLTRE] · le radici razionali
-> Se $p(x)$ ha coefficienti **interi** e $\frac uv$ è una radice razionale ridotta ai minimi termini, allora $u$ divide il termine noto $a_0$ e $v$ divide il primo coefficiente $a_n$. In particolare, se $a_n = 1$, ogni radice razionale è un **intero che divide $a_0$**. Per $x^3 - 6x^2 + 11x - 6$ i candidati erano solo $\pm 1, \pm 2, \pm 3, \pm 6$. Il motivo: da $p\left(\frac uv\right) = 0$, moltiplicando per $v^n$, si ottiene $a_nu^n + a_{n-1}u^{n-1}v + \dots + a_0v^n = 0$; tutti i termini tranne l'ultimo sono multipli di $u$, quindi anche $a_0v^n$ lo è, e siccome $u$ e $v$ non hanno fattori comuni, $u$ divide $a_0$. Allo stesso modo $v$ divide $a_n$.
+> Prendi un polinomio con coefficienti **interi** e una sua radice che sia una frazione $\frac uv$, ridotta ai minimi termini. Allora $u$ divide il termine noto $a_0$, e $v$ divide il primo coefficiente $a_n$. In particolare, se $a_n = 1$, ogni radice razionale è un **intero che divide $a_0$**. Per $x^3 - 6x^2 + 11x - 6$ i candidati erano solo $\pm 1, \pm 2, \pm 3, \pm 6$. Il motivo: da $p\left(\frac uv\right) = 0$, moltiplicando per $v^n$, si ottiene $a_nu^n + a_{n-1}u^{n-1}v + \dots + a_0v^n = 0$. Tutti i termini tranne l'ultimo sono multipli di $u$, quindi anche $a_0v^n$ lo è. Siccome $u$ e $v$ non hanno fattori comuni, $u$ divide $a_0$. Allo stesso modo $v$ divide $a_n$.
 
-## Molteplicità (p. 17)
+> [!RICORDA]
+> - $a$ è radice esattamente quando $x - a$ divide il polinomio.
+> - Il resto della divisione per $x - a$ è $p(a)$.
+> - Per scomporre: trova una radice, dividi con Ruffini, ripeti.
 
-Una radice può comparire «più volte». In $(x - 2)^2 = (x - 2)(x - 2)$ il fattore $x - 2$ c'è due volte.
+## Quante volte ci sta: la molteplicità (p. 17)
+
+Un fattore può comparire più di una volta. Prendi $(x - 2)^2 = (x - 2)(x - 2)$: il fattore $x - 2$ ci sta due volte. La radice è sempre la stessa, il 2, ma conta «doppio».
+
+Le dispense lo scrivono così.
 
 > [!DEF] 4.3
 > La **molteplicità** di una radice $a$ di un polinomio $p(x)$ è il massimo numero $k$ tale che $(x - a)^k$ divide $p(x)$.
 
-Informalmente, dicono le dispense, la molteplicità di $a$ misura «quante volte» $a$ è radice di $p(x)$. Una radice di molteplicità $1$ si dice **semplice**, di molteplicità $2$ **doppia**, di molteplicità $3$ **tripla**.
+**Come si legge.** Si prova a dividere per $x - a$, poi per $(x - a)^2$, poi per $(x - a)^3$… La molteplicità è l'ultimo esponente per cui la divisione viene ancora esatta. Le dispense dicono: la molteplicità misura «quante volte» $a$ è radice.
+
+Una radice di molteplicità 1 si chiama **semplice**, di molteplicità 2 **doppia**, di molteplicità 3 **tripla**.
 
 > [!ESEMPIO] 4.4 · Molteplicità $1$ e $2$
 > Il polinomio $x^3 - 1$ ha la radice $1$ con molteplicità $1$, perché
 > $$x^3 - 1 = (x - 1)\left(x^2 + x + 1\right)$$
 > e $(x - 1)$ non divide $x^2 + x + 1$, semplicemente perché $1$ non è radice di $x^2 + x + 1$: infatti $1 + 1 + 1 = 3 \neq 0$.
 >
-> Analogamente il polinomio $x^3 - 2x^2 + x = x\left(x^2 - 2x + 1\right) = (x - 1)^2x$ ha la radice $1$ con molteplicità $2$ e la radice $0$ con molteplicità $1$.
+> Allo stesso modo il polinomio $x^3 - 2x^2 + x = x\left(x^2 - 2x + 1\right) = (x - 1)^2x$ ha la radice $1$ con molteplicità $2$ e la radice $0$ con molteplicità $1$.
+
+Nel secondo polinomio il pezzo $x^2 - 2x + 1$ è il quadrato $(x - 1)^2$: è il prodotto notevole «quadrato di una differenza».
 
 > [!ESEMPIO] 4.5 · Nel prodotto le molteplicità si sommano
 > I polinomi $q_1(x) = x^2 - 2x + 1$ e $q_2(x) = x^2 - 1$ si scrivono
@@ -19467,21 +20067,27 @@ Informalmente, dicono le dispense, la molteplicità di $a$ misura «quante volte
 
 Quando il polinomio non è già scomposto, la molteplicità si trova dividendo più volte.
 
-> [!METODO] Calcolare la molteplicità di una radice $a$
-> Dividi $p(x)$ per $x - a$ (con Ruffini). Se il quoziente ha ancora $a$ come radice, dividi di nuovo. Continua finché $a$ non è più radice del quoziente: il numero di divisioni fatte è la molteplicità.
+> [!METODO] Calcolare la molteplicità di una radice
+> Dividi il polinomio per $x - a$, con Ruffini. Se il quoziente ha ancora $a$ come radice, dividi di nuovo. Continua finché $a$ non è più radice del quoziente: il numero di divisioni fatte è la molteplicità.
 
 > [!ESEMPIO] · $p(x) = x^4 - x^3 - 3x^2 + 5x - 2$ e la radice $1$
-> $p(1) = 1 - 1 - 3 + 5 - 2 = 0$, quindi $1$ è radice.
-> 1. Ruffini con $a = 1$ su $1, -1, -3, 5, -2$: in basso $1, 0, -3, 2$ e resto $0$. Quoziente $x^3 - 3x + 2$.
-> 2. $1 - 3 + 2 = 0$: $1$ è ancora radice. Ruffini su $1, 0, -3, 2$: in basso $1, 1, -2$ e resto $0$. Quoziente $x^2 + x - 2$.
-> 3. $1 + 1 - 2 = 0$: ancora radice. Ruffini su $1, 1, -2$: in basso $1, 2$ e resto $0$. Quoziente $x + 2$.
-> 4. $1 + 2 = 3 \neq 0$: $1$ non è radice di $x + 2$. Stop.
+> $p(1) = 1 - 1 - 3 + 5 - 2 = 0$, quindi 1 è radice.
+> 1. Ruffini con $a = 1$ su $1, -1, -3, 5, -2$: in basso $1, 0, -3, 2$ e resto 0. Quoziente $x^3 - 3x + 2$.
+> 2. Nel quoziente metto 1: $1 - 3 + 2 = 0$. È ancora radice. Ruffini su $1, 0, -3, 2$: in basso $1, 1, -2$ e resto 0. Quoziente $x^2 + x - 2$.
+> 3. Metto 1: $1 + 1 - 2 = 0$. Ancora radice. Ruffini su $1, 1, -2$: in basso $1, 2$ e resto 0. Quoziente $x + 2$.
+> 4. Metto 1: $1 + 2 = 3$, non zero. Mi fermo.
 >
-> Tre divisioni: la radice $1$ ha molteplicità $3$, e $p(x) = (x - 1)^3(x + 2)$.
+> Tre divisioni: la radice 1 ha molteplicità 3, e $p(x) = (x - 1)^3(x + 2)$.
+
+::: prova Qual è la molteplicità della radice 0 in $x^3 + x^2$?
+$x^3 + x^2 = x^2(x + 1)$. Il fattore $x$, cioè $x - 0$, ci sta due volte. La radice 0 è doppia. L'altra radice, $-1$, è semplice.
+:::
 
 ### Che cosa si vede nel grafico (oltre le dispense)
 
-Per un polinomio reale, le radici reali sono i punti in cui il grafico di $y = p(x)$ tocca l'asse $x$. La molteplicità si vede dalla forma: in una radice di molteplicità **dispari** il grafico **attraversa** l'asse, in una radice di molteplicità **pari** lo **tocca** e torna indietro, perché il fattore $(x - a)^2$ non cambia segno.
+Per un polinomio reale, le radici reali sono i punti in cui il grafico tocca l'asse orizzontale. La molteplicità si vede dalla forma. In una radice di molteplicità **dispari** il grafico **attraversa** l'asse. In una radice di molteplicità **pari** lo **tocca** e torna indietro, perché un fattore al quadrato non cambia mai segno.
+
+Guarda la figura: a sinistra, in $-2$, la curva passa da sotto a sopra l'asse; a destra, in 1, scende fino all'asse e risale.
 
 ```grafico
 titolo: $y = (x - 1)^2(x + 2) = x^3 - 3x + 2$: in $-2$ (radice semplice) il grafico attraversa l'asse, in $1$ (radice doppia) lo tocca soltanto
@@ -19515,24 +20121,43 @@ punto: -2 0 | rosa
 punto: 1 0 | ambra
 ```
 
-## Quante radici: il Teorema 4.6 (p. 18)
+> [!RICORDA]
+> - La molteplicità dice quante volte il fattore $x - a$ ci sta nel polinomio.
+> - Si calcola dividendo per $x - a$ finché $a$ smette di essere radice.
+> - Nel prodotto di due polinomi le molteplicità si sommano.
+
+## Quante radici al massimo (p. 18)
+
+Un polinomio di secondo grado può avere due radici: per esempio $x^2 - 5x + 6$ ha 2 e 3. Ne può avere tre? No. Ogni radice porta un fattore di grado 1, e i gradi dei fattori si sommano: tre fattori darebbero già grado 3.
+
+Le dispense lo scrivono così.
 
 > [!TEOREMA] 4.6
 > Un polinomio $p(x)$ di grado $n \ge 1$ ha al più $n$ radici, contate con molteplicità.
 
-«Contate con molteplicità» vuol dire che si somma, per ogni radice, la sua molteplicità: $(x - 1)^3(x + 1)$ ha due radici diverse, ma contate con molteplicità sono $3 + 1 = 4$, quante il grado. Il teorema dice che questa somma non supera mai il grado.
+**Come si legge.**
 
-La dimostrazione usa l'**induzione** sul grado $n$, che vedrai in dettaglio in Matematica Discreta: si dimostra la tesi per $n = 1$ (**base**), poi si mostra che, se vale per il grado $n - 1$, allora vale anche per il grado $n$ (**passo induttivo**). Così vale per $n = 1$, quindi per $n = 2$, quindi per $n = 3$, e così via.
+- $n \ge 1$ si legge «$n$ maggiore o uguale a 1»: il teorema parla dei polinomi che non sono solo un numero.
+- «Al più $n$» vuol dire «$n$ o meno».
+- «Contate con molteplicità» vuol dire che ogni radice si conta tante volte quanta è la sua molteplicità. Per esempio $(x - 1)^3(x + 1)$ ha due radici diverse, ma contate con molteplicità sono $3 + 1 = 4$, quante il grado.
+
+Il teorema dice che questo conteggio non supera mai il grado. Può essere più piccolo: $x^2 + 1$ ha grado 2 ma nessuna radice reale.
 
 > [!DIM] del Teorema 4.6
-> **Base, $n = 1$.** Il polinomio è $p(x) = a_1x + a_0$ con $a_1 \neq 0$, e $p(x) = 0$ vuol dire $x = -\frac{a_0}{a_1}$: c'è una sola radice, di molteplicità $1$. La tesi è soddisfatta.
+> La dimostrazione usa l'**induzione** sul grado, che vedrai in dettaglio in Matematica Discreta: si dimostra la tesi per il grado 1 (**base**), poi si mostra che, se vale per il grado $n - 1$, vale anche per il grado $n$ (**passo induttivo**). Così vale per 1, quindi per 2, quindi per 3, e così via.
+>
+> **Base, $n = 1$.** Il polinomio è $p(x) = a_1x + a_0$ con $a_1 \neq 0$, e $p(x) = 0$ vuol dire $x = -\frac{a_0}{a_1}$: c'è una sola radice, di molteplicità 1. La tesi è vera.
 >
 > **Passo induttivo.** Supponiamo la tesi vera per i polinomi di grado $n - 1$ e prendiamo $p(x)$ di grado $n$.
-> 1. Se $p(x)$ non ha radici, non c'è niente da dimostrare: $0 \le n$.
+> 1. Se $p(x)$ non ha radici, non c'è niente da dimostrare: zero radici sono meno di $n$.
 > 2. Se ha almeno una radice $a$, per la Proposizione 4.2 possiamo scrivere $p(x) = (x - a)q(x)$, e $q(x)$ ha grado $n - 1$ (i gradi dei fattori si sommano).
 > 3. Per l'ipotesi induttiva $q(x)$ ha al più $n - 1$ radici contate con molteplicità.
-> 4. Le radici di $p(x)$, contate con molteplicità, sono esattamente quelle di $q(x)$ più $a$. Infatti per $b \neq a$ vale $p(b) = (b - a)q(b)$ con $b - a \neq 0$, quindi $p(b) = 0$ se e solo se $q(b) = 0$; e la molteplicità di $a$ in $p$ è quella in $q$ più uno, come nell'Esempio 4.5.
+> 4. Le radici di $p(x)$, contate con molteplicità, sono esattamente quelle di $q(x)$ più $a$. Infatti per $b \neq a$ vale $p(b) = (b - a)q(b)$ con $b - a \neq 0$, quindi $p(b) = 0$ esattamente quando $q(b) = 0$; e la molteplicità di $a$ in $p$ è quella in $q$ più uno, come nell'Esempio 4.5.
 > 5. Quindi $p(x)$ ha al più $(n - 1) + 1 = n$ radici, contate con molteplicità. $\square$
+
+### I polinomi di primo e di secondo grado
+
+Le dispense fanno vedere il teorema sui casi che conosci dalla scuola.
 
 > [!ESEMPIO] 4.7 · I polinomi di primo e di secondo grado
 > Un polinomio di grado $1$ è sempre del tipo $p(x) = ax + b$ con $a \neq 0$, e ha sempre una sola radice $x = -\frac ba$.
@@ -19544,6 +20169,13 @@ La dimostrazione usa l'**induzione** sul grado $n$, che vedrai in dettaglio in M
 >
 > In particolare, ci sono polinomi che non hanno radici reali.
 
+> [!RIPASSO] la formula del secondo grado
+> Per $ax^2 + bx + c$ si calcola prima il **discriminante** $\Delta = b^2 - 4ac$. La lettera greca $\Delta$ si legge «delta». Poi le radici sono
+> $$x_\pm = \frac{-b \pm \sqrt\Delta}{2a}.$$
+> Il simbolo $\pm$ si legge «più o meno»: la formula dà due numeri, uno con il più e uno con il meno. $x_\pm$ è il nome di tutti e due: $x_+$ quello con il più, $x_-$ quello con il meno.
+>
+> Esempio: $x^2 - 5x + 6$. Qui $a = 1$, $b = -5$, $c = 6$. $\Delta = 25 - 24 = 1$, e $\sqrt 1 = 1$. Le radici sono $\frac{5 + 1}2 = 3$ e $\frac{5 - 1}2 = 2$.
+
 Tre esempi, uno per caso:
 
 | Polinomio | $\Delta = b^2 - 4ac$ | Radici reali | Scomposizione |
@@ -19552,43 +20184,69 @@ Tre esempi, uno per caso:
 | $x^2 - 4x + 4$ | $16 - 16 = 0$ | $\frac 42 = 2$, doppia | $(x - 2)^2$ |
 | $x^2 + x + 1$ | $1 - 4 = -3 < 0$ | nessuna | non si scompone in $\R$ |
 
-> [!OLTRE] · da dove viene la formula
+::: prova Quante radici reali ha $x^2 - 6x + 9$? Con che molteplicità?
+$\Delta = 36 - 36 = 0$: una sola radice, $\frac 62 = 3$, con molteplicità 2. Infatti $x^2 - 6x + 9 = (x - 3)^2$.
+:::
+
+> [!APPROFONDIMENTO] da dove viene la formula
 > Si «completa il quadrato». Per $a \neq 0$:
 > $$ax^2 + bx + c = a\left(x + \frac b{2a}\right)^2 - \frac{\Delta}{4a}.$$
-> (Per controllarlo, svolgi il quadrato: $a\left(x^2 + \frac bax + \frac{b^2}{4a^2}\right) - \frac{b^2 - 4ac}{4a} = ax^2 + bx + c$.) Quindi $p(x) = 0$ equivale a $\left(x + \frac b{2a}\right)^2 = \frac\Delta{4a^2}$. Se $\Delta > 0$ si prende la radice quadrata dei due lati, con i due segni; se $\Delta = 0$ resta $x = -\frac b{2a}$; se $\Delta < 0$ un quadrato reale dovrebbe essere negativo, impossibile. È la dimostrazione della Proposizione 1.3.8 del libro di Martelli.
+> Per controllarlo, svolgi il quadrato: $a\left(x^2 + \frac bax + \frac{b^2}{4a^2}\right) - \frac{b^2 - 4ac}{4a} = ax^2 + bx + c$. Quindi $p(x) = 0$ equivale a $\left(x + \frac b{2a}\right)^2 = \frac\Delta{4a^2}$. Se $\Delta > 0$ si prende la radice quadrata dei due lati, con i due segni. Se $\Delta = 0$ resta $x = -\frac b{2a}$. Se $\Delta < 0$ un quadrato reale dovrebbe essere negativo, impossibile. È la dimostrazione della Proposizione 1.3.8 del libro di Martelli.
 
-## Il teorema fondamentale dell'algebra (p. 18)
+> [!RICORDA]
+> - Un polinomio di grado $n$ ha al massimo $n$ radici, contate con la molteplicità.
+> - Per il secondo grado decide il $\Delta$: positivo due radici, zero una doppia, negativo nessuna reale.
 
-Le dispense arrivano così «al vero motivo per cui abbiamo introdotto i numeri complessi in questo corso».
+## Nei complessi le radici ci sono tutte (p. 18)
+
+Tra i numeri reali alcuni polinomi non hanno radici. Per esempio $x^2 + 1$: un quadrato più 1 non fa mai zero. Ma tra i numeri complessi sì: $i$ e $-i$. Il numero $i$ era stato inventato proprio per questo (lezione L02).
+
+E i polinomi di grado più alto? Le dispense arrivano qui «al vero motivo per cui abbiamo introdotto i numeri complessi in questo corso»: tra i complessi le radici ci sono **sempre tutte**.
 
 > [!TEOREMA] 4.8 · Teorema fondamentale dell'algebra
 > Un polinomio $p(x)$ a coefficienti complessi di grado $n$ ha esattamente $n$ radici, contate con molteplicità.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- Il Teorema 4.6 diceva «**al più** $n$». Nei complessi la disuguaglianza diventa un'**uguaglianza**: le radici ci sono sempre tutte.
-- Vale anche per i polinomi a coefficienti reali, che sono particolari polinomi a coefficienti complessi: $x^2 + 1$ non ha radici reali, ma ha le due radici complesse $i$ e $-i$.
-- Le dispense non lo dimostrano: le dimostrazioni più accessibili usano strumenti di analisi lontani dal corso.
+- «A coefficienti complessi» vuol dire che i numeri del polinomio possono essere complessi. Vale anche per i polinomi con numeri reali, perché i reali sono anche complessi.
+- Il Teorema 4.6 diceva «**al più** $n$». Tra i complessi diventa «**esattamente** $n$»: le radici non mancano mai.
+- Le dispense non lo dimostrano: le dimostrazioni più accessibili usano strumenti di Analisi lontani da questo corso.
+
+Un esempio: $x^4 - 1$ ha grado 4. Tra i reali ha solo le radici 1 e $-1$. Tra i complessi ne ha quattro: 1, $-1$, $i$, $-i$. Sono le radici quarte dell'unità della lezione L03.
+
+::: prova Quante radici complesse ha $x^5 - x$, contate con la molteplicità?
+Il grado è 5, quindi esattamente 5. Infatti $x^5 - x = x(x^4 - 1)$: le radici sono 0, 1, $-1$, $i$, $-i$.
+:::
 
 > [!OLTRE] · un'altra forma dello stesso teorema
-> Nel libro di Martelli il teorema fondamentale (Teorema 1.4.7) dice che **ogni polinomio non costante a coefficienti complessi ha almeno una radice**; da qui si ricava la versione delle dispense (Corollario 1.4.8) con la stessa induzione del Teorema 4.6: trovata una radice $z_1$, si scrive $p(x) = (x - z_1)q(x)$ e si ripete su $q(x)$. Il risultato finale si scrive anche come **scomposizione in fattori di primo grado** (Corollario 1.4.10):
+> Nel libro di Martelli il teorema fondamentale (Teorema 1.4.7) dice che **ogni polinomio non costante a coefficienti complessi ha almeno una radice**. Da qui si ricava la versione delle dispense (Corollario 1.4.8) con la stessa induzione del Teorema 4.6: trovata una radice $z_1$, si scrive $p(x) = (x - z_1)q(x)$ e si ripete su $q(x)$. Il risultato finale si scrive anche come **scomposizione in fattori di primo grado** (Corollario 1.4.10):
 > $$p(x) = a_n(x - z_1)(x - z_2)\cdots(x - z_n),$$
 > dove $z_1, \dots, z_n$ sono le radici ripetute secondo la molteplicità. Per esempio $x^4 - 1 = (x - 1)(x + 1)(x - i)(x + i)$.
 
-## Equazioni di secondo grado in C (p. 19)
+> [!RICORDA]
+> - Tra i numeri complessi un polinomio di grado $n$ ha esattamente $n$ radici, contate con la molteplicità.
+> - È il motivo per cui il corso usa i numeri complessi.
+
+## Le equazioni di secondo grado nei complessi (p. 19)
+
+Ci sono equazioni di secondo grado senza soluzioni reali. Prendi $x^2 + 2x + 5$: il discriminante è $4 - 20 = -16$, negativo, quindi tra i reali niente radici. Ma tra i complessi $-16$ ha due radici quadrate, $4i$ e $-4i$ (lezione L03). Quindi la formula funziona lo stesso:
+
+$$x_\pm = \frac{-2 \pm 4i}2 = -1 \pm 2i.$$
+
+Le radici sono $-1 + 2i$ e $-1 - 2i$. Le dispense lo dicono in generale.
 
 > [!ESEMPIO] 4.9 · La solita formula, nei complessi
 > Per un polinomio di secondo grado $p(x) = ax^2 + bx + c$ le due radici complesse si trovano usando la solita formula
 > $$x_\pm = \frac{-b \pm \sqrt\Delta}{2a}.$$
 > Questa volta, $\pm\sqrt\Delta$ indica le **due radici quadrate complesse** di $\Delta$, che esistono sempre, come visto nella lezione L03.
 
-Qui $a$, $b$, $c$ possono essere complessi, e allora anche $\Delta$ può essere un numero complesso: la distinzione «$\Delta > 0$, $\Delta = 0$, $\Delta < 0$» ha senso solo se $\Delta$ è reale.
+Qui $a$, $b$ e $c$ possono essere anche complessi, e allora anche $\Delta$ può essere un numero complesso. La distinzione tra $\Delta$ positivo, zero o negativo ha senso solo se $\Delta$ è reale.
 
-> [!METODO] Un'equazione di secondo grado in $\C$
+> [!METODO] Un'equazione di secondo grado nei complessi
 > 1. Leggi $a$, $b$, $c$ e calcola $\Delta = b^2 - 4ac$.
-> 2. Trova le due radici quadrate $\pm w$ di $\Delta$: se $\Delta$ è un reale negativo, $\pm w = \pm i\sqrt{|\Delta|}$; se $\Delta$ è complesso, usa la forma polare o il metodo $w = u + vi$ (lezioni L02 e L03).
-> 3. Le radici sono $x_\pm = \frac{-b \pm w}{2a}$.
-> 4. Controlla sostituendo, oppure con somma e prodotto: $x_+ + x_- = -\frac ba$ e $x_+x_- = \frac ca$.
+> 2. Trova le due radici quadrate di $\Delta$, che chiamo $w$ e $-w$. Se $\Delta$ è un reale negativo, sono $i$ per la radice del suo opposto, con il più e con il meno. Se $\Delta$ è complesso, usa la forma polare o il metodo con $u + vi$ (lezioni L02 e L03).
+> 3. Le radici sono $\frac{-b + w}{2a}$ e $\frac{-b - w}{2a}$.
+> 4. Controlla mettendole nel polinomio, oppure con somma e prodotto: la somma delle radici è $-\frac ba$ e il prodotto è $\frac ca$.
 
 > [!ESEMPIO] 4.10 · Due esempi delle dispense
 > **$x^2 + 1$.** $a = 1$, $b = 0$, $c = 1$, quindi $\Delta = -4$, le cui radici quadrate sono $\pm 2i$. Le radici sono $x_\pm = \frac{\pm 2i}2 = \pm i$.
@@ -19596,44 +20254,91 @@ Qui $a$, $b$, $c$ possono essere complessi, e allora anche $\Delta$ può essere 
 > **$x^2 + (1 - i)x - i$.** Qui $a = 1$, $b = 1 - i$, $c = -i$, e
 > $$\Delta = (1 - i)^2 - 4 \cdot 1 \cdot (-i) = (1 - 2i + i^2) + 4i = -2i + 4i = 2i.$$
 > Le radici quadrate di $2i$ sono $\pm(1 + i)$ (lezione L03: $2i = 2e^{i\pi/2}$ e $\sqrt 2\,e^{i\pi/4} = 1 + i$). Quindi
-> $$x_\pm = \frac{-1 + i \pm \sqrt{2i}}{2} = \frac{-1 + i \pm (1 + i)}{2} \implies x_+ = \frac{2i}2 = i, \quad x_- = \frac{-2}2 = -1.$$
+> $$x_\pm = \frac{-1 + i \pm \sqrt{2i}}{2} = \frac{-1 + i \pm (1 + i)}{2},$$
+> quindi $x_+ = \frac{2i}2 = i$ e $x_- = \frac{-2}2 = -1$.
 > Controllo: $i^2 + (1 - i)i - i = -1 + i + 1 - i = 0$ e $(-1)^2 + (1 - i)(-1) - i = 1 - 1 + i - i = 0$.
+
+Nel secondo esempio ci sono due passaggi da guardare con calma:
+
+1. $-b$ è il contrario di $1 - i$, cioè $-1 + i$.
+2. Dalla formula si ricavano le due radici: una con il più e una con il meno.
 
 Altri due esempi con lo stesso metodo:
 
-- $x^2 + 2x + 5$: $\Delta = 4 - 20 = -16$, radici quadrate $\pm 4i$, quindi $x_\pm = \frac{-2 \pm 4i}2 = -1 \pm 2i$. Controllo con il prodotto: $(-1 + 2i)(-1 - 2i) = 1 + 4 = 5 = \frac ca$.
-- $x^2 - 2ix - 2$: $\Delta = (-2i)^2 - 4 \cdot (-2) = -4 + 8 = 4$, radici quadrate $\pm 2$, quindi $x_\pm = \frac{2i \pm 2}2 = \pm 1 + i$. Qui le radici $1 + i$ e $-1 + i$ **non** sono coniugate: i coefficienti non sono reali (vedi la prossima sezione).
+- $x^2 + 2x + 5$: è l'esempio all'inizio della sezione. Controllo con il prodotto: $(-1 + 2i)(-1 - 2i) = 1 + 4 = 5$, che è proprio $\frac ca$.
+- $x^2 - 2ix - 2$: $\Delta = (-2i)^2 - 4 \cdot (-2) = -4 + 8 = 4$, con radici quadrate 2 e $-2$. Quindi $x_\pm = \frac{2i \pm 2}2$: le radici sono $1 + i$ e $-1 + i$. Queste due radici **non** sono coniugate, perché i numeri del polinomio non sono tutti reali (vedi la prossima sezione).
 
-## Polinomi a coefficienti reali (p. 19)
+::: prova Trova le radici complesse di $x^2 + 9$.
+$\Delta = 0 - 36 = -36$, con radici quadrate $6i$ e $-6i$. Le radici sono $\frac{\pm 6i}2 = \pm 3i$. Controllo: $(3i)^2 + 9 = -9 + 9 = 0$.
+:::
 
-Un polinomio di grado $n$ ha esattamente $n$ radici complesse contate con molteplicità. Se i suoi coefficienti sono **reali**, si può dire qualcosa di più.
+> [!RICORDA]
+> - La formula del secondo grado vale anche tra i complessi: al posto della radice di $\Delta$ si usano le sue due radici quadrate complesse.
+> - Con $\Delta$ reale negativo le radici quadrate sono $i$ per la radice dell'opposto, con il più e con il meno.
+
+## Coefficienti reali: radici a coppie (p. 19)
+
+Nella sezione di prima le radici venivano spesso a coppie. Per esempio quelle di $x^2 + 2x + 5$ sono $-1 + 2i$ e $-1 - 2i$. Una è il coniugato dell'altra: stessa parte reale, parte immaginaria con il segno cambiato. Anche $x^2 + 1$ aveva le radici $i$ e $-i$, coniugate.
+
+Non è un caso. Quando i numeri del polinomio sono tutti reali, le radici complesse vengono sempre a coppie. Le dispense lo scrivono così.
 
 > [!PROP] 4.11
 > Sia $p(x)$ un polinomio a coefficienti reali. Se $z$ è una radice complessa di $p(x)$, allora $\bar z$ è anch'essa radice di $p(x)$.
 
-**Dimostrazione** (dalle dispense, con le regole usate).
+**Come si legge.** Se i numeri del polinomio sono reali e $z$ è una radice, allora anche il coniugato $\bar z$, «zeta segnato», è una radice. Nel disegno del piano complesso le radici sono simmetriche rispetto all'asse orizzontale.
 
-1. Il polinomio è $p(x) = a_nx^n + \dots + a_1x + a_0$, e per ipotesi i coefficienti $a_n, \dots, a_0$ sono tutti reali.
-2. Se $z$ è radice, allora $p(z) = a_nz^n + \dots + a_1z + a_0 = 0$.
-3. Applichiamo il coniugio a entrambi i membri. Il coniugato di una somma è la somma dei coniugati e il coniugato di un prodotto è il prodotto dei coniugati (esercizio 2.5, lezione L02); in particolare $\overline{z^k} = \bar z^k$. Quindi
-   $$\overline{a_n}\,\bar z^n + \dots + \overline{a_1}\,\bar z + \overline{a_0} = \bar 0 = 0.$$
-4. Siccome i coefficienti sono reali, il coniugato di $a_i$ è sempre $a_i$ (lezione L02: $z \in \R \iff z = \bar z$). Quindi
-   $$a_n\bar z^n + \dots + a_1\bar z + a_0 = 0,$$
-   cioè $p(\bar z) = 0$: anche $\bar z$ è radice di $p(x)$. $\square$
+Il motivo, a parole: coniugare non cambia i numeri reali, e il coniugato di una somma o di un prodotto è la somma o il prodotto dei coniugati. Quindi coniugare $p(z) = 0$ dà $p(\bar z) = 0$.
+
+> [!DIM] della Proposizione 4.11
+> Dalle dispense, con le regole usate.
+> 1. Il polinomio è $p(x) = a_nx^n + \dots + a_1x + a_0$, e per ipotesi i coefficienti $a_n, \dots, a_0$ sono tutti reali.
+> 2. Se $z$ è radice, allora $p(z) = a_nz^n + \dots + a_1z + a_0 = 0$.
+> 3. Applichiamo il coniugio a entrambi i membri. Il coniugato di una somma è la somma dei coniugati e il coniugato di un prodotto è il prodotto dei coniugati (esercizio 2.5, lezione L02); in particolare il coniugato di $z^k$ è $\bar z^k$. Quindi
+>    $$\overline{a_n}\,\bar z^n + \dots + \overline{a_1}\,\bar z + \overline{a_0} = \bar 0 = 0.$$
+> 4. Siccome i coefficienti sono reali, il coniugato di ogni $a_i$ è $a_i$ stesso (lezione L02: un numero è reale esattamente quando è uguale al suo coniugato). Quindi
+>    $$a_n\bar z^n + \dots + a_1\bar z + a_0 = 0,$$
+>    cioè $p(\bar z) = 0$: anche $\bar z$ è radice di $p(x)$. $\square$
 
 > [!ESEMPIO] · $x^3 - 1$ e le radici terze dell'unità
-> $x^3 - 1 = (x - 1)(x^2 + x + 1)$ (Esempio 4.4). Il fattore $x^2 + x + 1$ ha $\Delta = -3$, radici quadrate $\pm i\sqrt 3$, quindi radici $\frac{-1 \pm i\sqrt 3}2$. Le tre radici di $x^3 - 1$ sono $1$ e la coppia coniugata $-\frac 12 \pm \frac{\sqrt 3}2 i$: sono le tre radici terze dell'unità della lezione L03, e il triangolo che formano è simmetrico rispetto all'asse reale.
+> $x^3 - 1 = (x - 1)(x^2 + x + 1)$ (Esempio 4.4). Il fattore $x^2 + x + 1$ ha $\Delta = 1 - 4 = -3$, con radici quadrate $\pm i\sqrt 3$, quindi le sue radici sono $\frac{-1 \pm i\sqrt 3}2$. Le tre radici di $x^3 - 1$ sono 1 e la coppia coniugata $-\frac 12 \pm \frac{\sqrt 3}2 i$. Sono le tre radici terze dell'unità della lezione L03, e il triangolo che formano è simmetrico rispetto all'asse orizzontale.
+
+::: prova Un polinomio con numeri reali ha la radice $2 - 3i$. Quale altra radice ha di sicuro?
+Il coniugato: $2 + 3i$.
+:::
 
 > [!TRAPPOLA] Serve che i coefficienti siano reali
 > Nell'Esempio 4.10 il polinomio $x^2 + (1 - i)x - i$ ha la radice $i$, ma $-i$ **non** è radice: le radici sono $i$ e $-1$. La Proposizione 4.11 non si applica, perché il coefficiente $1 - i$ non è reale. Allo stesso modo, nel problema 11 dell'appello del 03/06/2026 un polinomio caratteristico a coefficienti complessi aveva la radice $i$ doppia e la radice $-i$ semplice.
 
 > [!OLTRE] · tre conseguenze
-> - Le radici **non reali** di un polinomio a coefficienti reali vengono a **coppie** $z, \bar z$ (con la stessa molteplicità, anche se la Proposizione 4.11 da sola non lo dice). Quindi sono in numero pari.
+> - Le radici **non reali** di un polinomio a coefficienti reali vengono a **coppie**, una e il suo coniugato. Le due hanno anche la stessa molteplicità, anche se la Proposizione 4.11 da sola non lo dice. Quindi sono in numero pari.
 > - Un polinomio a coefficienti reali di **grado dispari** ha sempre almeno una radice **reale**: le $n$ radici complesse sono in numero dispari, e quelle non reali in numero pari (Proposizione 1.4.13 del libro di Martelli).
 > - Per $z = u + vi$ con $v \neq 0$: $(x - z)(x - \bar z) = x^2 - 2ux + (u^2 + v^2)$, un polinomio **reale** di secondo grado con $\Delta = -4v^2 < 0$. Per questo ogni polinomio reale si scompone in fattori reali di primo grado e di secondo grado con $\Delta < 0$ (Corollario 1.4.12). Per esempio $x^3 - 1 = (x - 1)(x^2 + x + 1)$ e $x^4 - 1 = (x - 1)(x + 1)(x^2 + 1)$.
 
 > [!OLTRE] · dove trovarlo nel libro
-> Nel libro di Martelli questa lezione corrisponde al §1.3 «Polinomi» (pp. 21–25: definizione, divisione con resto, radici, Proposizione 1.3.2 = 4.2, molteplicità, Teorema 1.3.7 = 4.6, formula del secondo grado con dimostrazione) e alle parti 1.4.7 «Teorema fondamentale dell'algebra» e 1.4.8 «Polinomi a coefficienti reali» del §1.4 (pp. 31–33). Gli esempi sono gli stessi delle dispense (in Martelli la prima divisione tra interi è $26 = 2 \cdot 11 + 4$). L'Esercizio 1.12 (p. 37) collega la molteplicità alla derivata, che vedrai in Analisi.
+> Nel libro di Martelli questa lezione corrisponde al §1.3 «Polinomi» (pp. 21–25). Lì ci sono la definizione, la divisione con resto e le radici, con la Proposizione 1.3.2 (la 4.2 delle dispense). Seguono la molteplicità, il Teorema 1.3.7 (il 4.6) e la formula del secondo grado con la dimostrazione. Poi ci sono le parti 1.4.7 «Teorema fondamentale dell'algebra» e 1.4.8 «Polinomi a coefficienti reali» del §1.4 (pp. 31–33). Gli esempi sono gli stessi delle dispense (in Martelli la prima divisione tra interi è $26 = 2 \cdot 11 + 4$). L'Esercizio 1.12 (p. 37) collega la molteplicità alla derivata, che vedrai in Analisi.
+
+> [!RICORDA]
+> - Se i numeri del polinomio sono reali, le radici non reali vengono a coppie: una e il suo coniugato.
+> - Se i numeri non sono tutti reali, la regola non vale.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $p(x)$ | «pi di ics» | un polinomio nella lettera $x$ | $p(x) = x^2 - 3$ |
+| $p(a)$ | «pi di a» | il numero che esce mettendo $a$ al posto di $x$ | $p(2) = 1$ |
+| $a_n, \dots, a_1, a_0$ | «a enne, …, a uno, a zero» | i coefficienti; il numerino dice la potenza | in $x^3 - 2x + 5$, $a_1 = -2$ |
+| $\deg p$ | «grado di pi» | il grado del polinomio | $\deg(x^3 + 1) = 3$ |
+| $\R[x]$, $\C[x]$ | «erre di ics», «ci di ics» | polinomi con numeri reali, complessi | $ix + 1 \in \C[x]$ |
+| $\R_k[x]$ | «erre kappa di ics» | polinomi reali di grado al massimo $k$ | $5x \in \R_2[x]$ |
+| $\le$, $\ge$ | «minore o uguale», «maggiore o uguale» | confronti che ammettono l'uguale | $2 \le 2$ |
+| $d(x) \mid p(x)$ | «di divide pi» | la divisione viene esatta | $(x + 1) \mid (x^3 + 1)$ |
+| $q(x)$, $r(x)$ | «quoziente», «resto» | i risultati della divisione | $x^3 + 1 = x(x^2 - 1) + (x + 1)$ |
+| $(x - a)^k$ | «ics meno a alla kappa» | il fattore $x - a$ ripetuto $k$ volte | $(x - 1)^3$ |
+| $\Delta$ | «delta» | il discriminante $b^2 - 4ac$ | per $x^2 + 1$, $\Delta = -4$ |
+| $x_\pm$ | «ics più o meno» | le due radici della formula | $x_\pm = -1 \pm 2i$ |
+| $\pm$ | «più o meno» | due numeri, uno con il più e uno con il meno | $\pm 2i$ |
+| $\bar z$ | «zeta segnato» | il coniugato | $\overline{1 + 2i} = 1 - 2i$ |
 
 ## Verso l'esame
 
@@ -19648,34 +20353,57 @@ Un polinomio di grado $n$ ha esattamente $n$ radici complesse contate con moltep
 | un determinante che dipende da un parametro $k$ è un polinomio in $k$: si trova una radice e si divide | 15/01/2026 (problema 11: una radice doppia) | L09, L10 |
 | spazi di polinomi: $\{p \in \R_3[x] \mid p(a) = 0\}$ è fatto dai polinomi $(x - a)q(x)$ (Proposizione 4.2) | 24/01/2024 (domanda 1), 10/07/2025 (domanda 2), 03/07/2026 (domanda 1) | L05–L07 |
 
-Ecco le tre domande del primo tipo, con la soluzione.
+### Una domanda vera, letta insieme
+
+**Appello del 07/09/2026, domanda 1.** Il testo: «Quale dei seguenti è una radice del polinomio $p(z) = z^4 + 5z^2 + 4$? (a) $z = -3 + i$; (b) $z = 1 - i$; (c) $z = -1$; (d) $z = -2i$; (e) il polinomio non ha radici».
+
+**In pratica chiede:** quale di questi numeri, messo al posto di $z$, fa uscire zero?
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: guardo le potenze.** Ci sono solo $z^4$, $z^2$ e un numero: potenze pari. Allora conviene un trucco: chiamo $t$ il quadrato $z^2$. Siccome $z^4 = (z^2)^2 = t^2$, il polinomio diventa $t^2 + 5t + 4$.
+>
+> **Passo 2: risolvo il secondo grado.** Cerco due numeri che sommati danno 5 e moltiplicati danno 4: sono 1 e 4. Quindi $t^2 + 5t + 4 = (t + 1)(t + 4)$, con radici $t = -1$ e $t = -4$.
+>
+> **Passo 3: torno a $z$.** $z^2 = -1$ dà $z = i$ oppure $z = -i$. $z^2 = -4$ dà $z = 2i$ oppure $z = -2i$.
+>
+> **Passo 4: la risposta.** Tra le risposte c'è $-2i$: è la (d).
+>
+> **Controllo diretto.** $(-2i)^2 = 4i^2 = -4$, e $(-2i)^4 = (-4)^2 = 16$. Quindi $p(-2i) = 16 + 5 \cdot (-4) + 4 = 16 - 20 + 4 = 0$.
+>
+> **Perché la (e) è sbagliata.** È la risposta che tenta chi vede che il polinomio, per $z$ reale, è sempre positivo. Ma il teorema fondamentale dice che tra i complessi le radici ci sono sempre: qui sono quattro.
+
+### Altre due domande vere
 
 > [!ESEMPIO] · Appello del 10/07/2025, domanda 1
 > Quale dei seguenti è una radice di $p(z) = z^4 + 7z^2 + 12$? (a) $z = -2i$; (b) $z = -2$; (c) il polinomio non ha radici; (d) $z = 3 + 4i$; (e) $z = 4$.
 >
-> **Soluzione.** Compaiono solo potenze pari: pongo $w = z^2$ e ottengo $w^2 + 7w + 12 = (w + 3)(w + 4)$, con radici $w = -3$ e $w = -4$. Quindi $z^2 = -3$ oppure $z^2 = -4$, cioè $z = \pm i\sqrt 3$ oppure $z = \pm 2i$. Risposta (a). La (c) è falsa per il teorema fondamentale (le radici sono quattro); (b) ed (e) sono reali, e per $z$ reale $z^4 + 7z^2 + 12 \ge 12 > 0$.
+> **Soluzione.** Compaiono solo potenze pari: con $w = z^2$ il polinomio diventa $w^2 + 7w + 12 = (w + 3)(w + 4)$, con radici $w = -3$ e $w = -4$. Quindi $z^2 = -3$ oppure $z^2 = -4$, cioè $z = \pm i\sqrt 3$ oppure $z = \pm 2i$. Risposta (a). La (c) è falsa per il teorema fondamentale (le radici sono quattro). La (b) e la (e) sono reali, e per $z$ reale il polinomio vale almeno 12, perché $z^4$ e $z^2$ non sono mai negativi.
 
 > [!ESEMPIO] · Appello del 03/07/2026, domanda 7
 > Quale dei seguenti è una radice del polinomio $p(z) = z^3 + 2z^2 + z + 2$? (a) $z = 0$; (b) $z = i$; (c) $z = 1 + i$; (d) $z = 1$; (e) $z^3 + 2z^2 + z + 2 = 0$.
 >
-> **Soluzione.** Raccoglimento parziale: $p(z) = z^2(z + 2) + (z + 2) = (z^2 + 1)(z + 2)$. Le radici sono $-2$, $i$, $-i$: risposta (b). Senza scomporre, basta sostituire: $p(i) = i^3 + 2i^2 + i + 2 = -i - 2 + i + 2 = 0$, mentre $p(0) = 2$ e $p(1) = 6$. La (e) non è un numero ma l'equazione stessa.
+> **Soluzione.** Raccolgo a coppie: $z^3 + 2z^2 = z^2(z + 2)$ e $z + 2 = 1 \cdot (z + 2)$. Quindi $p(z) = z^2(z + 2) + (z + 2) = (z^2 + 1)(z + 2)$. Le radici sono $-2$, $i$, $-i$: risposta (b). Senza scomporre basta provare: $p(i) = i^3 + 2i^2 + i + 2 = -i - 2 + i + 2 = 0$, mentre $p(0) = 2$ e $p(1) = 6$. La (e) non è un numero: è l'equazione stessa.
 
-> [!ESEMPIO] · Appello del 07/09/2026, domanda 1
-> Quale dei seguenti è una radice del polinomio $p(z) = z^4 + 5z^2 + 4$? (a) $z = -3 + i$; (b) $z = 1 - i$; (c) $z = -1$; (d) $z = -2i$; (e) il polinomio non ha radici.
->
-> **Soluzione.** Con $t = z^2$: $t^2 + 5t + 4 = (t + 1)(t + 4)$, radici $t = -1$ e $t = -4$. Quindi $z^2 = -1$ o $z^2 = -4$: $z = \pm i$ e $z = \pm 2i$. Risposta (d). Verifica diretta: $(-2i)^2 = -4$ e $(-2i)^4 = 16$, quindi $p(-2i) = 16 - 20 + 4 = 0$.
+### I metodi
 
 > [!METODO] Trovare le radici di un polinomio di grado 3 o 4 senza calcolatrice
-> 1. **Nel quiz, sostituisci le risposte**: con $p(i)$, $p(2i)$, $p(-1)$… si trova la risposta giusta in pochi conti.
-> 2. **Potenze solo pari** ($z^4$, $z^2$, termine noto): poni $t = z^2$, risolvi di secondo grado, poi $z = \pm\sqrt t$ (con $t$ negativo, $\pm i\sqrt{|t|}$).
-> 3. **Raccoglimento parziale**: $z^3 + 2z^2 + z + 2 = z^2(z + 2) + 1 \cdot (z + 2)$.
+> 1. **Nel quiz, prova le risposte**: con $p(i)$, $p(2i)$, $p(-1)$… si trova la risposta giusta in pochi conti.
+> 2. **Solo potenze pari** ($z^4$, $z^2$, numero): chiama $t$ il quadrato $z^2$, risolvi il secondo grado, poi trova le due radici quadrate di ogni $t$. Se $t$ è negativo, sono $i$ per la radice dell'opposto, con il più e con il meno.
+> 3. **Raccogli a coppie**: $z^3 + 2z^2 + z + 2 = z^2(z + 2) + 1 \cdot (z + 2)$.
 > 4. **Prova le radici intere** tra i divisori del termine noto, poi dividi con Ruffini.
-> 5. **Resta un secondo grado**: formula con $\Delta$; se i coefficienti sono reali e $\Delta < 0$, le due radici sono coniugate.
+> 5. **Resta un secondo grado**: formula con il $\Delta$. Se i numeri sono reali e $\Delta$ è negativo, le due radici sono coniugate.
 
-**Errori da evitare.** Dimenticare gli zeri nella tabella di Ruffini; sbagliare il segno di $a$ (per $x + 2$ si usa $a = -2$); fermare la divisione troppo presto o troppo tardi; confondere il numero di radici distinte con il numero di radici contate con molteplicità; applicare la Proposizione 4.11 a polinomi con coefficienti complessi; nelle biquadratiche, dimenticare le due radici opposte di ogni $t$.
+**Errori da evitare.**
+
+- Dimenticare gli zeri nella tabella di Ruffini.
+- Sbagliare il segno di $a$: per dividere per $x + 2$ si usa $a = -2$.
+- Fermare la divisione troppo presto o troppo tardi.
+- Confondere il numero di radici diverse con il numero di radici contate con la molteplicità.
+- Applicare la Proposizione 4.11 a polinomi con numeri complessi.
+- Con il trucco del quadrato, dimenticare che ogni $t$ dà due radici opposte.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: lo schema della divisione in colonna e di Ruffini; «$a$ è radice $\iff (x - a) \mid p(x)$, e il resto della divisione per $x - a$ è $p(a)$»; molteplicità e metodo delle divisioni ripetute; $\Delta$ e la formula del secondo grado con $\pm\sqrt\Delta$ complesse; «coefficienti reali $\Rightarrow$ radici non reali a coppie coniugate»; le sostituzioni $t = z^2$ e il raccoglimento parziale.
+> Da questa lezione: lo schema della divisione in colonna e di Ruffini; «$a$ è radice esattamente quando $(x - a)$ divide $p(x)$, e il resto della divisione per $x - a$ è $p(a)$»; molteplicità e metodo delle divisioni ripetute; il $\Delta$ e la formula del secondo grado con le due radici quadrate complesse; «coefficienti reali: radici non reali a coppie coniugate»; il trucco $t = z^2$ e il raccoglimento a coppie.
 
 ## Quiz
 
@@ -19686,7 +20414,7 @@ D: Quale dei seguenti è una radice di $p(z) = z^4 + 10z^2 + 9$?
 - $z = -1$
 - $z = 1 + i$
 - Il polinomio non ha radici.
-= Con $t = z^2$: $t^2 + 10t + 9 = (t + 1)(t + 9)$, quindi $z^2 = -1$ o $z^2 = -9$, cioè $z = \pm i$ o $z = \pm 3i$. Verifica: $(3i)^2 = -9$, $(3i)^4 = 81$, e $81 - 90 + 9 = 0$. Per $z$ reale $p(z) \ge 9$; $p(1 + i) = 5 + 20i$. Per il teorema fondamentale le radici ci sono sempre. Simile agli appelli del 07/09/2026 e del 10/07/2025, domanda 1.
+= Ci sono solo potenze pari, quindi conviene chiamare $t$ il quadrato $z^2$: il polinomio diventa $t^2 + 10t + 9 = (t + 1)(t + 9)$, con radici $t = -1$ e $t = -9$. Tornando a $z$: $z^2 = -1$ dà $\pm i$, e $z^2 = -9$ dà $\pm 3i$. Controllo: $(3i)^2 = -9$ e $(3i)^4 = 81$, quindi $81 - 90 + 9 = 0$. La risposta più insidiosa è «non ha radici»: per $z$ reale il polinomio vale almeno 9, ma tra i complessi il teorema fondamentale garantisce quattro radici. $p(1 + i) = 5 + 20i$, non zero. Simile agli appelli del 07/09/2026 e del 10/07/2025, domanda 1.
 
 D: Quale dei seguenti è una radice di $p(z) = z^3 - 2z^2 + 4z - 8$?
 + $z = -2i$
@@ -19694,11 +20422,11 @@ D: Quale dei seguenti è una radice di $p(z) = z^3 - 2z^2 + 4z - 8$?
 - $z = 2 + 2i$
 - $z = 4$
 - $z = 1 - i$
-= Raccoglimento parziale: $p(z) = z^2(z - 2) + 4(z - 2) = (z^2 + 4)(z - 2)$, radici $2$ e $\pm 2i$. Verifica: $(-2i)^3 = 8i$ e $(-2i)^2 = -4$, quindi $p(-2i) = 8i + 8 - 8i - 8 = 0$. Invece $p(-2) = -32$, $p(4) = 40$, $p(2 + 2i) = -16 + 8i$, $p(1 - i) = -6 - 2i$. Simile all'appello del 03/07/2026, domanda 7.
+= Si raccoglie a coppie: $z^3 - 2z^2 = z^2(z - 2)$ e $4z - 8 = 4(z - 2)$, quindi $p(z) = (z^2 + 4)(z - 2)$. Le radici sono 2 e quelle di $z^2 = -4$, cioè $\pm 2i$. Controllo: $(-2i)^3 = 8i$ e $(-2i)^2 = -4$, quindi $p(-2i) = 8i + 8 - 8i - 8 = 0$. La risposta più insidiosa è $-2$, che sembra l'opposto della radice reale 2; ma $p(-2) = -8 - 8 - 8 - 8 = -32$. Gli altri valori: $p(4) = 40$, $p(2 + 2i) = -16 + 8i$, $p(1 - i) = -6 - 2i$. Simile all'appello del 03/07/2026, domanda 7.
 
 D: Qual è il resto della divisione di $x^4 - 3x^2 + 2x - 1$ per $x + 1$? Scrivi un numero.
 N: -5
-= Il resto della divisione per $x - a$ è $p(a)$; qui $x + 1 = x - (-1)$, quindi $a = -1$ e il resto è $p(-1) = 1 - 3 - 2 - 1 = -5$. Con Ruffini sui coefficienti $1, 0, -3, 2, -1$ e $a = -1$ si ottiene in basso $1, -1, -2, 4$ e resto $-5$.
+= Il resto della divisione per $x - a$ è il valore del polinomio in $a$. Qui il divisore è $x + 1$, cioè $x - (-1)$: quindi $a = -1$, e il resto è $p(-1) = 1 - 3 - 2 - 1 = -5$. Con Ruffini sui coefficienti $1, 0, -3, 2, -1$ e $a = -1$ si ottiene in basso $1, -1, -2, 4$ e resto $-5$: stesso risultato. L'errore tipico è usare $a = 1$, che dà $p(1) = -1$.
 
 D: Qual è la molteplicità della radice $1$ nel polinomio $x^4 - x^3 - 3x^2 + 5x - 2$?
 - $1$
@@ -19706,7 +20434,7 @@ D: Qual è la molteplicità della radice $1$ nel polinomio $x^4 - x^3 - 3x^2 + 5
 + $3$
 - $4$
 - $0$
-= Dividendo più volte per $x - 1$ con Ruffini si ottengono i quozienti $x^3 - 3x + 2$, poi $x^2 + x - 2$, poi $x + 2$, che in $1$ vale $3 \neq 0$. Tre divisioni: $x^4 - x^3 - 3x^2 + 5x - 2 = (x - 1)^3(x + 2)$. Riconoscere una radice multipla serviva anche nel problema 11 dell'appello del 15/01/2026, dove un determinante con parametro aveva una radice doppia.
+= La molteplicità si trova dividendo per $x - 1$ finché 1 resta radice. Con Ruffini i quozienti sono $x^3 - 3x + 2$, poi $x^2 + x - 2$, poi $x + 2$; quest'ultimo in 1 vale 3, non zero, quindi ci si ferma. Tre divisioni: il polinomio è $(x - 1)^3(x + 2)$. La risposta 4 viene da chi pensa che una radice abbia sempre molteplicità uguale al grado; la risposta 1 da chi si ferma alla prima divisione. Riconoscere una radice multipla serviva anche nel problema 11 dell'appello del 15/01/2026, dove un determinante con parametro aveva una radice doppia.
 
 D: Quoziente e resto della divisione di $x^3 + 2x^2 - x + 3$ per $x^2 + 1$ sono:
 + $q(x) = x + 2$ e $r(x) = -2x + 1$
@@ -19714,7 +20442,7 @@ D: Quoziente e resto della divisione di $x^3 + 2x^2 - x + 3$ per $x^2 + 1$ sono:
 - $q(x) = x + 2$ e $r(x) = -2x + 5$
 - $q(x) = x$ e $r(x) = 2x^2 - 2x + 3$
 - $q(x) = x + 2$ e $r(x) = -2x - 1$
-= $x^3 : x^2 = x$, e $(x^3 + 2x^2 - x + 3) - x(x^2 + 1) = 2x^2 - 2x + 3$; poi $2x^2 : x^2 = 2$, e $(2x^2 - 2x + 3) - 2(x^2 + 1) = -2x + 1$, di grado $1 < 2$. Attenzione alla quarta risposta: $x \cdot (x^2 + 1) + (2x^2 - 2x + 3)$ ridà davvero il dividendo, ma il «resto» ha grado $2$, non minore del divisore, quindi la divisione non è finita.
+= Primo passo: $x^3$ diviso $x^2$ fa $x$; togliendo $x(x^2 + 1) = x^3 + x$ resta $2x^2 - 2x + 3$. Secondo passo: $2x^2$ diviso $x^2$ fa 2; togliendo $2(x^2 + 1) = 2x^2 + 2$ resta $-2x + 1$, di grado 1, più basso di 2: fine. La risposta più insidiosa è la quarta: $x \cdot (x^2 + 1) + (2x^2 - 2x + 3)$ ridà davvero il dividendo, ma quel «resto» ha grado 2, uguale al divisore, quindi la divisione non è finita. Le altre hanno sbagliato un segno nelle sottrazioni.
 
 D: Un polinomio a coefficienti **reali** di grado $4$ ha le radici $1 + i$ e $2i$. Quali sono le altre due radici?
 + $1 - i$ e $-2i$
@@ -19722,7 +20450,7 @@ D: Un polinomio a coefficienti **reali** di grado $4$ ha le radici $1 + i$ e $2i
 - $-1 + i$ e $2$
 - $1 - i$ e $2$
 - Non si può dire nulla senza conoscere i coefficienti.
-= Per la Proposizione 4.11 anche i coniugati $\overline{1 + i} = 1 - i$ e $\overline{2i} = -2i$ sono radici. Sono quattro radici distinte, e per il teorema fondamentale un polinomio di grado $4$ non ne ha altre. Il polinomio monico è $(x^2 - 2x + 2)(x^2 + 4) = x^4 - 2x^3 + 6x^2 - 8x + 8$.
+= I numeri del polinomio sono reali, quindi per la Proposizione 4.11 anche i coniugati sono radici: il coniugato di $1 + i$ è $1 - i$, quello di $2i$ è $-2i$. Sono quattro radici diverse, e un polinomio di grado 4 non ne ha altre. La risposta più insidiosa è $-1 - i$ e $-2i$: $-1 - i$ è l'opposto di $1 + i$, non il coniugato (il coniugato cambia segno solo alla parte immaginaria). Il polinomio monico è $(x^2 - 2x + 2)(x^2 + 4) = x^4 - 2x^3 + 6x^2 - 8x + 8$.
 
 D: In quale di questi polinomi il numero $2$ è radice con molteplicità **esattamente** $2$?
 + $(x - 2)^2(x + 2)$
@@ -19730,7 +20458,7 @@ D: In quale di questi polinomi il numero $2$ è radice con molteplicità **esatt
 - $(x - 2)^3$
 - $x^2 + 4$
 - $x^2(x - 2)$
-= $(x^2 - 4)(x + 2) = (x - 2)(x + 2)^2$: lì $2$ è semplice (è $-2$ ad essere doppia). In $(x - 2)^3$ la molteplicità è $3$, in $x^2(x - 2)$ è $1$; $x^2 + 4$ in $2$ vale $8$, quindi $2$ non è nemmeno radice.
+= La molteplicità di 2 è l'esponente del fattore $x - 2$ quando il polinomio è scomposto. Nella prima risposta è 2. La risposta più insidiosa è $(x^2 - 4)(x + 2)$: scomponendo $x^2 - 4 = (x - 2)(x + 2)$ diventa $(x - 2)(x + 2)^2$, quindi è $-2$ ad essere doppia, mentre 2 è semplice. In $(x - 2)^3$ la molteplicità è 3, in $x^2(x - 2)$ è 1. $x^2 + 4$ in 2 vale 8, quindi 2 non è nemmeno radice.
 
 D: Quale di questi polinomi appartiene a $\R_2[x]$?
 + $(x + 1)^2 - x^2$
@@ -19738,7 +20466,7 @@ D: Quale di questi polinomi appartiene a $\R_2[x]$?
 - $ix + 1$
 - $(x - 1)(x^2 + 1)$
 - $\frac 1x + x$
-= $(x + 1)^2 - x^2 = 2x + 1$ ha grado $1 \le 2$ e coefficienti reali. $x^3 - 1$ e $(x - 1)(x^2 + 1)$ hanno grado $3$; $ix + 1$ ha un coefficiente non reale (sta in $\C_1[x]$); $\frac 1x + x$ non è un polinomio. Lo spazio $\R_2[x]$ compare in molte domande sui sottospazi, per esempio negli appelli del 08/02/2024 e del 05/02/2026 (domanda 2).
+= $\R_2[x]$ sono i polinomi con numeri reali e grado al massimo 2. La prima risposta sembra di grado 2, ma svolgendo diventa $2x + 1$, di grado 1: va bene. $x^3 - 1$ e $(x - 1)(x^2 + 1)$ hanno grado 3. $ix + 1$ ha un numero non reale, quindi sta in $\C_1[x]$ ma non in $\R_2[x]$. $\frac 1x + x$ non è nemmeno un polinomio, perché divide per la lettera. Lo spazio $\R_2[x]$ compare in molte domande sui sottospazi, per esempio negli appelli del 08/02/2024 e del 05/02/2026 (domanda 2).
 
 D: Le radici complesse di $z^2 - 2z + 5$ sono:
 + $1 \pm 2i$
@@ -19746,7 +20474,7 @@ D: Le radici complesse di $z^2 - 2z + 5$ sono:
 - $1 \pm 4i$
 - $2 \pm 4i$
 - non ci sono: $\Delta < 0$
-= $\Delta = 4 - 20 = -16$, con radici quadrate $\pm 4i$; quindi $z_\pm = \frac{2 \pm 4i}2 = 1 \pm 2i$. $\Delta < 0$ vuol dire solo che non ci sono radici **reali**; le radici complesse sono coniugate perché i coefficienti sono reali. Simile all'appello del 02/09/2025 (domanda 4), dove due autovalori erano le radici complesse coniugate di $t^2 + 2t + 4$.
+= Con la formula: $\Delta = 4 - 20 = -16$, con radici quadrate $\pm 4i$, quindi $z_\pm = \frac{2 \pm 4i}2 = 1 \pm 2i$. La risposta più insidiosa è «non ci sono»: un $\Delta$ negativo vuol dire solo che non ci sono radici **reali**, mentre tra i complessi ci sono sempre. $-1 \pm 2i$ dimentica il segno meno davanti a $b$; $2 \pm 4i$ dimentica di dividere per 2. Simile all'appello del 02/09/2025 (domanda 4), dove due autovalori erano le radici complesse coniugate di $t^2 + 2t + 4$.
 
 D: Il polinomio $x^2 - (1 + i)x + i$ ha la radice $i$. Quale affermazione è vera?
 + L'altra radice è $1$, e $-i$ non è radice.
@@ -19754,7 +20482,7 @@ D: Il polinomio $x^2 - (1 + i)x + i$ ha la radice $i$. Quale affermazione è ver
 - $i$ è una radice doppia.
 - Ha tre radici, contate con molteplicità.
 - Non ha altre radici oltre a $i$.
-= Dividendo per $x - i$ (oppure notando che somma e prodotto delle radici sono $1 + i$ e $i$) si trova $x^2 - (1 + i)x + i = (x - i)(x - 1)$. La Proposizione 4.11 non si applica, perché i coefficienti non sono tutti reali: infatti in $-i$ il polinomio vale $-2 + 2i \neq 0$. Il grado è $2$, quindi le radici contate con molteplicità sono esattamente due. Anche nel problema 11 dell'appello del 03/06/2026 un polinomio a coefficienti complessi aveva $i$ e $-i$ come radici con molteplicità diverse.
+= Il prodotto delle due radici è il termine noto diviso il primo coefficiente, cioè $i$. Una radice è $i$, quindi l'altra è 1; infatti $(x - i)(x - 1) = x^2 - (1 + i)x + i$. La risposta più insidiosa è la seconda: la Proposizione 4.11 vale solo con numeri reali, e qui il coefficiente $1 + i$ non lo è. Infatti in $-i$ il polinomio vale $-2 + 2i$, non zero. Il grado è 2, quindi le radici contate con molteplicità sono esattamente due, non tre e non una. Anche nel problema 11 dell'appello del 03/06/2026 un polinomio a coefficienti complessi aveva $i$ e $-i$ come radici con molteplicità diverse.
 ```
 
 ## Esercizi
@@ -19762,41 +20490,90 @@ D: Il polinomio $x^2 - (1 + i)x + i$ ha la radice $i$. Quale affermazione è ver
 > [!NOTA] Gli esercizi di questa lezione
 > Le dispense non hanno una sezione di esercizi per la lezione 4: gli esercizi qui sotto sono stati scritti per questi appunti, gli ultimi due sul modello degli appelli.
 
+::: esercizio base Riscaldamento: mettere un numero nella macchina
+Con $p(x) = x^2 - 3x + 1$, calcola $p(0)$, $p(2)$ e $p(-1)$.
+::: soluzione
+1. $p(0) = 0 - 0 + 1 = 1$.
+2. $p(2) = 4 - 6 + 1 = -1$.
+3. $p(-1) = (-1)^2 - 3 \cdot (-1) + 1 = 1 + 3 + 1 = 5$.
+
+Attenzione al terzo: $-3 \cdot (-1) = +3$.
+:::
+
+::: esercizio base Riscaldamento: leggere un polinomio
+Nel polinomio $5x^3 - 2x + x^4 - 1$ trova il grado, il termine noto e il coefficiente di $x^2$.
+::: soluzione
+1. Lo riordino dal grado più alto: $x^4 + 5x^3 + 0x^2 - 2x - 1$.
+2. Il grado è 4.
+3. Il termine noto è $-1$.
+4. Il pezzo con $x^2$ manca: il suo coefficiente è 0.
+:::
+
+::: esercizio base Riscaldamento: due radici, due fattori
+Controlla che 3 e $-1$ sono radici di $x^2 - 2x - 3$ e scrivi il polinomio come prodotto di due fattori.
+::: soluzione
+1. Con 3: $9 - 6 - 3 = 0$. È radice.
+2. Con $-1$: $1 + 2 - 3 = 0$. È radice.
+3. Per la Proposizione 4.2 i fattori sono $x - 3$ e $x - (-1) = x + 1$: quindi $x^2 - 2x - 3 = (x - 3)(x + 1)$.
+
+Controllo: $(x - 3)(x + 1) = x^2 + x - 3x - 3 = x^2 - 2x - 3$.
+:::
+
+::: esercizio base Riscaldamento: un delta negativo
+Trova le radici complesse di $x^2 + 4x + 5$.
+::: soluzione
+1. $a = 1$, $b = 4$, $c = 5$. $\Delta = 16 - 20 = -4$.
+2. Le radici quadrate di $-4$ sono $2i$ e $-2i$.
+3. $x_\pm = \frac{-4 \pm 2i}2 = -2 \pm i$.
+
+Controllo con la somma: $(-2 + i) + (-2 - i) = -4$, che è $-\frac ba$. Le due radici sono coniugate, come deve essere con numeri reali.
+:::
+
 ::: esercizio base Forma normale, grado e insiemi di polinomi
 Riduci in forma normale e trova il grado: (a) $(x + 1)^2 - (x - 1)^2$; (b) $(x^2 + 1)(x - 1) - x^3$; (c) $3x^2y - 2x^2y + xy - x^2y$. Poi di' se i polinomi (a) e (b) appartengono a $\R_1[x]$, a $\R_2[x]$, a $\C_2[x]$.
 ::: soluzione
-(a) $(x^2 + 2x + 1) - (x^2 - 2x + 1) = 4x$: grado $1$.
+(a) Svolgo i due quadrati: $(x^2 + 2x + 1) - (x^2 - 2x + 1)$. I pezzi $x^2$ e i numeri 1 si cancellano; restano $2x + 2x = 4x$. Grado 1.
 
-(b) $(x^2 + 1)(x - 1) = x^3 - x^2 + x - 1$, quindi il polinomio è $-x^2 + x - 1$: grado $2$.
+(b) Prima il prodotto: $(x^2 + 1)(x - 1) = x^3 - x^2 + x - 1$. Poi tolgo $x^3$: resta $-x^2 + x - 1$. Grado 2.
 
-(c) I tre monomi con parte letterale $x^2y$ hanno coefficienti $3 - 2 - 1 = 0$ e spariscono: resta $xy$, di grado $1 + 1 = 2$.
+(c) I tre pezzi con $x^2y$ hanno coefficienti $3 - 2 - 1 = 0$ e spariscono. Resta $xy$, di grado $1 + 1 = 2$.
 
-Appartenenza: (a) ha grado $1$, quindi sta in $\R_1[x]$, in $\R_2[x]$ e in $\C_2[x]$. (b) ha grado $2$: sta in $\R_2[x]$ e in $\C_2[x]$, ma non in $\R_1[x]$. (Ogni $\R_k[x]$ sta dentro $\C_k[x]$ e dentro $\R_{k+1}[x]$.)
+Appartenenza:
+- (a) ha grado 1: sta in $\R_1[x]$, in $\R_2[x]$ e in $\C_2[x]$.
+- (b) ha grado 2: sta in $\R_2[x]$ e in $\C_2[x]$, ma non in $\R_1[x]$.
+
+Ogni $\R_k[x]$ sta dentro $\C_k[x]$ e dentro $\R_{k+1}[x]$.
 :::
 
 ::: esercizio base Una divisione in colonna
 Dividi $x^4 - 1$ per $x^2 + x + 1$ e controlla il risultato.
 ::: soluzione
-Dividendo con gli zeri: $x^4 + 0x^3 + 0x^2 + 0x - 1$.
+Scrivo il dividendo con gli zeri: $x^4 + 0x^3 + 0x^2 + 0x - 1$.
 
-1. $x^4 : x^2 = x^2$. $x^2(x^2 + x + 1) = x^4 + x^3 + x^2$; sottraendo resta $-x^3 - x^2 + 0x - 1$.
-2. $-x^3 : x^2 = -x$. $-x(x^2 + x + 1) = -x^3 - x^2 - x$; sottraendo resta $x - 1$.
-3. $x - 1$ ha grado $1 < 2$: stop.
+1. $x^4$ diviso $x^2$ fa $x^2$. Moltiplico: $x^2(x^2 + x + 1) = x^4 + x^3 + x^2$. Tolgo: resta $-x^3 - x^2 + 0x - 1$.
+2. $-x^3$ diviso $x^2$ fa $-x$. Moltiplico: $-x(x^2 + x + 1) = -x^3 - x^2 - x$. Tolgo: resta $x - 1$.
+3. $x - 1$ ha grado 1, più basso di 2: mi fermo.
 
-Quoziente $q(x) = x^2 - x$, resto $r(x) = x - 1$. Controllo: $(x^2 - x)(x^2 + x + 1) = x^4 + x^3 + x^2 - x^3 - x^2 - x = x^4 - x$, e $x^4 - x + (x - 1) = x^4 - 1$.
+Quoziente $q(x) = x^2 - x$, resto $r(x) = x - 1$.
+
+Controllo: $(x^2 - x)(x^2 + x + 1) = x^4 + x^3 + x^2 - x^3 - x^2 - x = x^4 - x$, e $x^4 - x + (x - 1) = x^4 - 1$.
 :::
 
 ::: esercizio base Ruffini e scomposizione completa
 Verifica che $2$ è radice di $p(x) = x^4 - 5x^2 + 4$, dividi per $x - 2$ con Ruffini e scomponi $p(x)$ in fattori di primo grado.
 ::: soluzione
-$p(2) = 16 - 20 + 4 = 0$. Ruffini sui coefficienti $1, 0, -5, 0, 4$ (attenzione ai due zeri) con $a = 2$:
+1. $p(2) = 16 - 20 + 4 = 0$: 2 è radice.
+2. Ruffini sui coefficienti $1, 0, -5, 0, 4$ (attenzione ai due zeri) con $a = 2$:
 
 | | $1$ | $0$ | $-5$ | $0$ | $4$ |
 |---|--:|--:|--:|--:|--:|
 | $a = 2$ | | $2$ | $4$ | $-2$ | $-4$ |
 | | $1$ | $2$ | $-1$ | $-2$ | $0$ |
 
-Quoziente $x^3 + 2x^2 - x - 2$, resto $0$. Raccoglimento parziale: $x^2(x + 2) - (x + 2) = (x + 2)(x^2 - 1) = (x + 2)(x - 1)(x + 1)$. Quindi
+3. Quoziente $x^3 + 2x^2 - x - 2$, resto 0.
+4. Raccolgo a coppie: $x^2(x + 2) - (x + 2) = (x + 2)(x^2 - 1) = (x + 2)(x - 1)(x + 1)$.
+
+Quindi
 $$x^4 - 5x^2 + 4 = (x - 2)(x + 2)(x - 1)(x + 1).$$
 Si poteva anche partire da $t = x^2$: $t^2 - 5t + 4 = (t - 1)(t - 4)$, e poi $x^2 - 1$ e $x^2 - 4$ si scompongono come differenze di quadrati.
 :::
@@ -19804,19 +20581,23 @@ Si poteva anche partire da $t = x^2$: $t^2 - 5t + 4 = (t - 1)(t - 4)$, e poi $x^
 ::: esercizio medio Radici e molteplicità
 Trova tutte le radici di $p(x) = x^3 - 3x + 2$ con la loro molteplicità.
 ::: soluzione
-Candidati interi: i divisori di $2$, cioè $\pm 1, \pm 2$. $p(1) = 1 - 3 + 2 = 0$: radice. Ruffini su $1, 0, -3, 2$ con $a = 1$: in basso $1, 1, -2$ e resto $0$, quoziente $x^2 + x - 2$. Questo vale $0$ in $1$ ($1 + 1 - 2 = 0$): Ruffini di nuovo, in basso $1, 2$ e resto $0$, quoziente $x + 2$, che in $1$ vale $3 \neq 0$.
+1. I candidati interi sono i divisori di 2: $1, -1, 2, -2$.
+2. $p(1) = 1 - 3 + 2 = 0$: 1 è radice.
+3. Ruffini su $1, 0, -3, 2$ con $a = 1$: in basso $1, 1, -2$ e resto 0. Quoziente $x^2 + x - 2$.
+4. Il quoziente in 1 vale $1 + 1 - 2 = 0$: 1 è ancora radice. Ruffini di nuovo: in basso $1, 2$ e resto 0. Quoziente $x + 2$.
+5. $x + 2$ in 1 vale 3, non zero: mi fermo.
 
-Quindi $p(x) = (x - 1)^2(x + 2)$: la radice $1$ ha molteplicità $2$ e la radice $-2$ ha molteplicità $1$. Contate con molteplicità sono $2 + 1 = 3$ radici, quante il grado. È il polinomio del grafico nella sezione sulla molteplicità.
+Quindi $p(x) = (x - 1)^2(x + 2)$. La radice 1 ha molteplicità 2, la radice $-2$ ha molteplicità 1. Contate con molteplicità sono $2 + 1 = 3$ radici, quante il grado. È il polinomio del grafico nella sezione sulla molteplicità.
 :::
 
 ::: esercizio medio Imporre una radice doppia
 Trova i numeri reali $a$ e $b$ per cui $(x - 1)^2$ divide $x^3 + ax + b$.
 ::: soluzione
-$(x - 1)^2$ divide il polinomio se e solo se $1$ è radice con molteplicità almeno $2$: il polinomio si divide per $x - 1$ e il quoziente ha ancora la radice $1$.
+$(x - 1)^2$ divide il polinomio esattamente quando 1 è radice con molteplicità almeno 2: il polinomio si divide per $x - 1$ e anche il quoziente ha la radice 1.
 
-1. Ruffini su $1, 0, a, b$ con $1$: in basso $1$, $1$, $1 + a$ e resto $1 + a + b$. Il resto deve essere $0$: $a + b = -1$.
-2. Il quoziente è $x^2 + x + (1 + a)$, e deve valere $0$ in $1$: $1 + 1 + 1 + a = 0$, cioè $a = -3$.
-3. Allora $b = -1 - a = 2$.
+1. Ruffini su $1, 0, a, b$ con 1: in basso $1$, $1$, $1 + a$ e resto $1 + a + b$. Il resto deve essere zero: $a + b = -1$.
+2. Il quoziente è $x^2 + x + (1 + a)$, e deve fare zero in 1: $1 + 1 + 1 + a = 0$, cioè $a = -3$.
+3. Allora $b = -1 - a = -1 + 3 = 2$.
 
 Il polinomio è $x^3 - 3x + 2 = (x - 1)^2(x + 2)$, quello dell'esercizio precedente.
 :::
@@ -19824,21 +20605,24 @@ Il polinomio è $x^3 - 3x + 2 = (x - 1)^2(x + 2)$, quello dell'esercizio precede
 ::: esercizio medio Un'equazione di secondo grado con coefficienti complessi
 Trova le radici di $z^2 + (2 - i)z - 2i$.
 ::: soluzione
-$a = 1$, $b = 2 - i$, $c = -2i$.
+Qui $a = 1$, $b = 2 - i$, $c = -2i$.
 1. $\Delta = (2 - i)^2 - 4(-2i) = (4 - 4i + i^2) + 8i = 3 - 4i + 8i = 3 + 4i$.
-2. Radici quadrate di $3 + 4i$: cerco $w = u + vi$ con $w^2 = u^2 - v^2 + 2uvi = 3 + 4i$, cioè $u^2 - v^2 = 3$ e $uv = 2$. Con $u = 2$, $v = 1$ funziona: $(2 + i)^2 = 4 + 4i - 1 = 3 + 4i$. Quindi $\pm w = \pm(2 + i)$.
-3. $z_\pm = \frac{-(2 - i) \pm (2 + i)}2$: con il più, $\frac{-2 + i + 2 + i}2 = i$; con il meno, $\frac{-2 + i - 2 - i}2 = -2$.
+2. Le radici quadrate di $3 + 4i$: cerco $w = u + vi$ con $w^2 = u^2 - v^2 + 2uvi = 3 + 4i$, cioè $u^2 - v^2 = 3$ e $uv = 2$. Con $u = 2$ e $v = 1$ funziona: $(2 + i)^2 = 4 + 4i - 1 = 3 + 4i$. Quindi le radici quadrate sono $2 + i$ e $-(2 + i)$.
+3. Con il più: $\frac{-(2 - i) + (2 + i)}2 = \frac{-2 + i + 2 + i}2 = \frac{2i}2 = i$.
+4. Con il meno: $\frac{-(2 - i) - (2 + i)}2 = \frac{-2 + i - 2 - i}2 = \frac{-4}2 = -2$.
 
-Le radici sono $i$ e $-2$: infatti $(z - i)(z + 2) = z^2 + 2z - iz - 2i = z^2 + (2 - i)z - 2i$. Anche qui $-i$ non è radice: i coefficienti non sono reali.
+Le radici sono $i$ e $-2$. Controllo: $(z - i)(z + 2) = z^2 + 2z - iz - 2i = z^2 + (2 - i)z - 2i$. Anche qui $-i$ non è radice: i numeri del polinomio non sono reali.
 :::
 
 ::: esercizio medio Una biquadratica, scomposta in R e in C
 Trova le radici di $z^4 + 3z^2 - 4$ e scomponi il polinomio in fattori a coefficienti reali e poi in fattori di primo grado a coefficienti complessi.
 ::: soluzione
-Con $t = z^2$: $t^2 + 3t - 4 = (t + 4)(t - 1)$, radici $t = -4$ e $t = 1$. Quindi $z^2 = 1$ (cioè $z = \pm 1$) oppure $z^2 = -4$ (cioè $z = \pm 2i$).
+1. Con $t = z^2$: $t^2 + 3t - 4 = (t + 4)(t - 1)$, radici $t = -4$ e $t = 1$.
+2. $z^2 = 1$ dà $z = 1$ e $z = -1$. $z^2 = -4$ dà $z = 2i$ e $z = -2i$.
 
-- In $\R$: $z^4 + 3z^2 - 4 = (z^2 - 1)(z^2 + 4) = (z - 1)(z + 1)(z^2 + 4)$, dove $z^2 + 4$ ha $\Delta = -16 < 0$ e non si scompone ulteriormente in $\R$.
-- In $\C$: $(z - 1)(z + 1)(z - 2i)(z + 2i)$.
+Le scomposizioni:
+- Con numeri reali: $z^4 + 3z^2 - 4 = (z^2 - 1)(z^2 + 4) = (z - 1)(z + 1)(z^2 + 4)$. Il fattore $z^2 + 4$ ha $\Delta = -16$, negativo, e tra i reali non si scompone ancora.
+- Con numeri complessi: $(z - 1)(z + 1)(z - 2i)(z + 2i)$.
 
 Quattro radici, come il grado; le due non reali sono coniugate, come vuole la Proposizione 4.11.
 :::
@@ -19846,40 +20630,56 @@ Quattro radici, come il grado; le due non reali sono coniugate, come vuole la Pr
 ::: esercizio difficile Tutte le radici, conoscendone una
 Sapendo che $i$ è radice di $p(x) = x^4 - 2x^3 + 6x^2 - 2x + 5$, trova tutte le radici.
 ::: soluzione
-1. I coefficienti sono reali, quindi per la Proposizione 4.11 anche $-i$ è radice. Allora $(x - i)(x + i) = x^2 + 1$ divide $p(x)$.
-2. Divido per $x^2 + 1$: $x^4 : x^2 = x^2$, e $p(x) - x^2(x^2 + 1) = -2x^3 + 5x^2 - 2x + 5$; poi $-2x^3 : x^2 = -2x$, e resta $5x^2 + 5$; poi $5x^2 : x^2 = 5$, e resta $0$. Quoziente $x^2 - 2x + 5$.
+1. I numeri del polinomio sono reali, quindi per la Proposizione 4.11 anche $-i$ è radice. Allora $(x - i)(x + i) = x^2 + 1$ divide $p(x)$.
+2. Divido per $x^2 + 1$ in colonna.
+   - $x^4$ diviso $x^2$ fa $x^2$; tolgo $x^2(x^2 + 1) = x^4 + x^2$: resta $-2x^3 + 5x^2 - 2x + 5$.
+   - $-2x^3$ diviso $x^2$ fa $-2x$; tolgo $-2x(x^2 + 1) = -2x^3 - 2x$: resta $5x^2 + 5$.
+   - $5x^2$ diviso $x^2$ fa 5; tolgo $5(x^2 + 1)$: resta 0.
+
+   Quoziente $x^2 - 2x + 5$.
 3. $x^2 - 2x + 5$: $\Delta = 4 - 20 = -16$, radici $\frac{2 \pm 4i}2 = 1 \pm 2i$.
 
 Le radici sono $i$, $-i$, $1 + 2i$, $1 - 2i$, e $p(x) = (x^2 + 1)(x^2 - 2x + 5)$.
+
+Controllo: $(x^2 + 1)(x^2 - 2x + 5) = x^4 - 2x^3 + 5x^2 + x^2 - 2x + 5 = x^4 - 2x^3 + 6x^2 - 2x + 5$.
 :::
 
 ::: esercizio difficile Costruire un polinomio dalle radici
 Trova il polinomio **monico** a coefficienti reali di grado $3$ che ha le radici $2$ e $1 + i$. È unico?
 ::: soluzione
-Coefficienti reali, quindi anche $1 - i$ è radice. Un polinomio di grado $3$ ha esattamente tre radici contate con molteplicità (teorema fondamentale), quindi sono $2$, $1 + i$, $1 - i$, e il polinomio monico è
-$$(x - 2)(x - 1 - i)(x - 1 + i) = (x - 2)(x^2 - 2x + 2) = x^3 - 4x^2 + 6x - 4.$$
-Qui $(x - 1 - i)(x - 1 + i) = (x - 1)^2 - i^2 = (x - 1)^2 + 1 = x^2 - 2x + 2$, come per ogni coppia coniugata. È unico: le tre radici sono obbligate, e un polinomio monico è determinato dalle sue radici (è il prodotto dei fattori $x - z_k$).
+1. I numeri devono essere reali, quindi anche il coniugato $1 - i$ è radice.
+2. Un polinomio di grado 3 ha esattamente tre radici contate con molteplicità (teorema fondamentale): sono 2, $1 + i$, $1 - i$.
+3. «Monico» vuol dire che il numero davanti al grado più alto è 1. Il polinomio è il prodotto dei fattori:
+   $$(x - 2)(x - 1 - i)(x - 1 + i).$$
+4. I due fattori complessi: $(x - 1 - i)(x - 1 + i) = (x - 1)^2 - i^2 = (x - 1)^2 + 1 = x^2 - 2x + 2$. Qui ho usato il prodotto notevole «somma per differenza», con $x - 1$ al posto della prima lettera.
+5. Il prodotto finale: $(x - 2)(x^2 - 2x + 2) = x^3 - 2x^2 + 2x - 2x^2 + 4x - 4 = x^3 - 4x^2 + 6x - 4$.
+
+È unico: le tre radici sono obbligate, e un polinomio monico è il prodotto dei fattori $x$ meno radice.
 :::
 
 ::: esercizio difficile Un resto senza fare la divisione
 Trova il resto della divisione di $p(x) = x^{100} + 1$ per $x^2 - 1$.
 ::: soluzione
-Il divisore ha grado $2$, quindi il resto ha grado al più $1$: $r(x) = ax + b$, e
-$$x^{100} + 1 = q(x)(x^2 - 1) + ax + b.$$
-Sostituisco le radici del divisore, dove $x^2 - 1$ si annulla:
-- $x = 1$: $1 + 1 = 0 + a + b$, cioè $a + b = 2$;
-- $x = -1$: $(-1)^{100} + 1 = 2 = -a + b$.
+1. Il divisore ha grado 2, quindi il resto ha grado al massimo 1: lo scrivo $r(x) = ax + b$, con $a$ e $b$ da trovare.
+2. La divisione dice
+   $$x^{100} + 1 = q(x)(x^2 - 1) + ax + b.$$
+3. Metto al posto di $x$ i numeri che annullano il divisore, così il pezzo con $q(x)$ sparisce.
+   - Con $x = 1$: $1 + 1 = 0 + a + b$, cioè $a + b = 2$.
+   - Con $x = -1$: $(-1)^{100} + 1 = 2$, e a destra $-a + b$. Quindi $-a + b = 2$.
+4. Sommo le due uguaglianze: $2b = 4$, quindi $b = 2$. Poi $a = 2 - b = 0$.
 
-Sommando, $2b = 4$, quindi $b = 2$ e $a = 0$. Il resto è la costante $r(x) = 2$. È la stessa idea della dimostrazione della Proposizione 4.2: si sostituisce un valore che annulla il divisore.
+Il resto è il numero $r(x) = 2$. È la stessa idea della dimostrazione della Proposizione 4.2: si mette un valore che annulla il divisore.
 :::
 
 ::: esercizio esame Come all'esame: un determinante con parametro
 In un problema d'esame il determinante di una matrice che dipende da un parametro reale $k$ vale $-k^3 + 3k + 2$. Per quali valori di $k$ il determinante è diverso da zero? Quale valore di $k$ è radice doppia?
 ::: soluzione
-1. **Cerco una radice** tra i divisori del termine noto $2$: $\pm 1, \pm 2$. Con $k = 2$: $-8 + 6 + 2 = 0$. Quindi $(k - 2)$ divide il polinomio.
-2. **Ruffini** sui coefficienti $-1, 0, 3, 2$ con $a = 2$: si abbassa $-1$; $-1 \cdot 2 = -2$ e $0 - 2 = -2$; $-2 \cdot 2 = -4$ e $3 - 4 = -1$; $-1 \cdot 2 = -2$ e $2 - 2 = 0$. Quoziente $-k^2 - 2k - 1 = -(k + 1)^2$.
+1. **Cerco una radice** tra i divisori del termine noto 2: $1, -1, 2, -2$. Con $k = 2$: $-8 + 6 + 2 = 0$. Quindi $(k - 2)$ divide il polinomio.
+2. **Ruffini** sui coefficienti $-1, 0, 3, 2$ con $a = 2$: abbasso $-1$; $-1 \cdot 2 = -2$ e $0 - 2 = -2$; $-2 \cdot 2 = -4$ e $3 - 4 = -1$; $-1 \cdot 2 = -2$ e $2 - 2 = 0$. Quoziente $-k^2 - 2k - 1 = -(k + 1)^2$.
 3. **Scomposizione**: $-k^3 + 3k + 2 = -(k - 2)(k + 1)^2$.
-4. **Conclusione**: il determinante si annulla solo per $k = 2$ e $k = -1$, ed è diverso da zero per ogni $k \neq 2, -1$. La radice $-1$ è doppia.
+4. **Conclusione**: il determinante fa zero solo per $k = 2$ e $k = -1$, ed è diverso da zero per tutti gli altri valori di $k$. La radice $-1$ è doppia.
+
+Controllo con $k = -1$: $-(-1)^3 + 3 \cdot (-1) + 2 = 1 - 3 + 2 = 0$.
 
 È lo schema del problema 11 dell'appello del 15/01/2026, dove il determinante era un altro polinomio di terzo grado in $k$ con una radice doppia: si trova una radice a occhio, si divide, si scompone il secondo grado.
 :::
@@ -19887,104 +20687,112 @@ In un problema d'esame il determinante di una matrice che dipende da un parametr
 ::: esercizio esame Come all'esame: quale è una radice
 Quale dei seguenti è una radice di $p(z) = z^4 - 2z^2 - 8$? (a) $z = i\sqrt 2$; (b) $z = 2i$; (c) $z = \sqrt 2$; (d) $z = 1 + i$; (e) il polinomio non ha radici.
 ::: soluzione
-**Scomponendo.** Con $t = z^2$: $t^2 - 2t - 8 = (t - 4)(t + 2)$, quindi $z^2 = 4$ oppure $z^2 = -2$: le radici sono $\pm 2$ e $\pm i\sqrt 2$. Risposta (a).
+**Scomponendo.** Con $t = z^2$: $t^2 - 2t - 8 = (t - 4)(t + 2)$. Quindi $z^2 = 4$ oppure $z^2 = -2$: le radici sono $2$, $-2$, $i\sqrt 2$ e $-i\sqrt 2$. Risposta (a).
 
-**Sostituendo le risposte.** (a) $(i\sqrt 2)^2 = -2$ e $(i\sqrt 2)^4 = 4$: $p = 4 + 4 - 8 = 0$. (b) $(2i)^2 = -4$ e $(2i)^4 = 16$: $p = 16 + 8 - 8 = 16$. (c) $p(\sqrt 2) = 4 - 4 - 8 = -8$. (d) $(1 + i)^2 = 2i$ e $(1 + i)^4 = -4$: $p = -4 - 4i - 8 = -12 - 4i$. (e) è falsa per il teorema fondamentale. Anche qui la risposta è la (a).
+**Provando le risposte.**
+- (a) $(i\sqrt 2)^2 = -2$ e $(i\sqrt 2)^4 = 4$: $4 + 4 - 8 = 0$.
+- (b) $(2i)^2 = -4$ e $(2i)^4 = 16$: $16 + 8 - 8 = 16$.
+- (c) $(\sqrt 2)^2 = 2$ e $(\sqrt 2)^4 = 4$: $4 - 4 - 8 = -8$.
+- (d) $(1 + i)^2 = 2i$ e $(1 + i)^4 = (2i)^2 = -4$: $-4 - 4i - 8 = -12 - 4i$.
+- (e) è falsa per il teorema fondamentale.
+
+Anche così la risposta è la (a).
 :::
 
 ## Domande di ripasso
 
 ::: domanda Che cos'è il grado di un polinomio? Perché bisogna prima ridurlo in forma normale?
-È il massimo grado dei suoi monomi, una volta scritto in forma normale (monomi con parti letterali diverse e coefficienti non nulli). Prima bisogna ridurre perché dei termini possono cancellarsi: $(x + 1)^2 - x^2 = 2x + 1$ ha grado $1$.
+È l'esponente più alto tra i suoi pezzi, quando il polinomio è in forma normale: ogni parte letterale una volta sola e nessun coefficiente zero. Prima bisogna ridurlo perché dei pezzi possono cancellarsi: $(x + 1)^2 - x^2 = 2x + 1$ ha grado 1.
 :::
 
 ::: domanda Che cosa sono $\R[x]$, $\C[x]$ e $\R_k[x]$?
-I polinomi in una variabile $x$ a coefficienti reali, a coefficienti complessi, e a coefficienti reali di grado $\le k$. $\R_2[x]$ contiene anche le costanti e il polinomio nullo.
+I polinomi nella lettera $x$ con numeri reali, con numeri complessi, e con numeri reali e grado al massimo $k$. $\R_2[x]$ contiene anche i numeri da soli e il polinomio zero.
 :::
 
 ::: domanda Che cosa dice la divisione con resto tra polinomi?
-Dati $p(x)$ e $d(x) \neq 0$, esistono e sono unici $q(x)$ e $r(x)$ con $p(x) = q(x)d(x) + r(x)$ e grado di $r$ strettamente minore del grado di $d$.
+Che dividendo per un polinomio diverso da zero ci sono sempre un quoziente e un resto, e sono di un solo tipo: dividendo uguale quoziente per divisore più resto, con il resto di grado più basso del divisore. È come $44 = 7 \cdot 6 + 2$.
 :::
 
 ::: domanda Quando un polinomio $d(x)$ divide $p(x)$? Fai un esempio.
-Quando la divisione di $p(x)$ per $d(x)$ ha resto nullo, cioè $p(x) = q(x)d(x)$. Per esempio $(x + 1) \mid (x^3 + 1)$, perché $x^3 + 1 = (x^2 - x + 1)(x + 1)$.
+Quando la divisione viene esatta, con resto zero: $p(x)$ è $d(x)$ per un altro polinomio. Per esempio $x + 1$ divide $x^3 + 1$, perché $x^3 + 1 = (x^2 - x + 1)(x + 1)$.
 :::
 
 ::: domanda Che cos'è una radice di un polinomio?
-Un numero $a$ tale che $p(a) = 0$, cioè una soluzione dell'equazione $p(x) = 0$ (Definizione 4.1). Può essere reale o complessa.
+Un numero che, messo al posto di $x$, fa uscire zero: una soluzione dell'equazione $p(x) = 0$ (Definizione 4.1). Può essere reale o complessa.
 :::
 
-::: domanda Che cosa dice la Proposizione 4.2 e come si dimostra?
-$a$ è radice di $p(x)$ se e solo se $(x - a) \mid p(x)$. Si divide: $p(x) = q(x)(x - a) + r_0$ con $r_0$ costante (il resto ha grado minore di $1$); sostituendo $x = a$ si ottiene $p(a) = r_0$. Quindi $p(a) = 0$ se e solo se il resto è nullo.
+::: domanda Che cosa dice la Proposizione 4.2 e perché è vera?
+Dice che $a$ è radice esattamente quando $x - a$ divide il polinomio. Il motivo: dividendo per $x - a$ il resto è un numero solo, e mettendo $a$ al posto di $x$ si vede che quel resto è proprio $p(a)$. Quindi $p(a)$ è zero esattamente quando il resto è zero.
 :::
 
 ::: domanda Quanto vale il resto della divisione di $p(x)$ per $x - a$?
-Vale $p(a)$: è il passo centrale della dimostrazione della Proposizione 4.2. Per esempio il resto di $2x^3 - 3x^2 + 4x - 5$ diviso $x - 2$ è $p(2) = 7$.
+Vale $p(a)$. Per esempio il resto di $2x^3 - 3x^2 + 4x - 5$ diviso $x - 2$ è $p(2) = 16 - 12 + 8 - 5 = 7$.
 :::
 
 ::: domanda Che cos'è la molteplicità di una radice e come si calcola?
-È il massimo $k$ per cui $(x - a)^k$ divide $p(x)$ (Definizione 4.3). Si calcola dividendo per $x - a$ più volte, finché $a$ non è più radice del quoziente.
+È il numero di volte in cui il fattore $x - a$ ci sta nel polinomio (Definizione 4.3). Si calcola dividendo per $x - a$ più volte, finché $a$ non è più radice del quoziente.
 :::
 
 ::: domanda Quante radici può avere un polinomio di grado $n \ge 1$? E nei complessi?
-Al più $n$, contate con molteplicità (Teorema 4.6). Nei complessi esattamente $n$, contate con molteplicità (Teorema 4.8, teorema fondamentale dell'algebra).
+Al massimo $n$, contate con la molteplicità (Teorema 4.6). Tra i complessi esattamente $n$ (Teorema 4.8, teorema fondamentale dell'algebra).
 :::
 
-::: domanda Come si risolve $ax^2 + bx + c = 0$ nei complessi?
-Con la formula $x_\pm = \frac{-b \pm \sqrt\Delta}{2a}$, $\Delta = b^2 - 4ac$, dove $\pm\sqrt\Delta$ sono le due radici quadrate complesse di $\Delta$ (Esempio 4.9). Per esempio le radici di $x^2 + 2x + 5$ sono $-1 \pm 2i$.
+::: domanda Come si risolve un'equazione di secondo grado nei complessi?
+Con la solita formula: meno $b$, più o meno la radice di $\Delta$, tutto diviso $2a$. Al posto della radice di $\Delta$ si usano le sue due radici quadrate complesse (Esempio 4.9). Per esempio le radici di $x^2 + 2x + 5$ sono $-1 \pm 2i$.
 :::
 
 ::: domanda Che cosa dice la Proposizione 4.11? Perché servono coefficienti reali?
-Se $p(x)$ ha coefficienti reali e $p(z) = 0$, anche $p(\bar z) = 0$. Nella dimostrazione si coniuga $p(z) = 0$ e si usa $\bar a_i = a_i$, che vale solo per coefficienti reali: $x^2 + (1 - i)x - i$ ha la radice $i$ ma non $-i$.
+Se i numeri del polinomio sono reali e $z$ è una radice, anche il coniugato di $z$ lo è. Nella dimostrazione si coniuga tutta l'uguaglianza $p(z) = 0$ e si usa che i coefficienti non cambiano coniugandoli: questo vale solo se sono reali. Per esempio $x^2 + (1 - i)x - i$ ha la radice $i$ ma non $-i$.
 :::
 
 ::: domanda Perché un polinomio reale di grado dispari ha almeno una radice reale?
-Perché ha $n$ radici complesse (numero dispari) e quelle non reali vengono a coppie coniugate (numero pari): almeno una deve essere reale.
+Perché ha in tutto un numero dispari di radici complesse, e quelle non reali vengono a coppie, quindi sono in numero pari. Almeno una deve restare fuori dalle coppie: è reale.
 :::
 
 ## Glossario
 
 ```glossario
-Monomio | Prodotto di un coefficiente numerico per una parte letterale, come $-2xy$; il grado è la somma degli esponenti.
-Polinomio | Somma di monomi, come $7 + 3x^2 - \sqrt 2\,y^3$.
-Forma normale | Scrittura di un polinomio come somma di monomi con parti letterali diverse e coefficienti non nulli (oppure il polinomio $0$).
-Grado | Il massimo grado dei monomi di un polinomio in forma normale.
-Termine noto | Il coefficiente $a_0$, il monomio di grado zero.
-Polinomio monico | Polinomio con coefficiente del termine di grado più alto uguale a $1$.
-$\R[x]$, $\C[x]$ | Polinomi in una variabile a coefficienti reali, complessi.
-$\R_k[x]$ | Polinomi reali di grado al più $k$ (compreso il polinomio nullo).
-Divisione con resto | $p(x) = q(x)d(x) + r(x)$ con $\deg r < \deg d$: $q$ quoziente, $r$ resto.
-Divisibilità | $d(x) \mid p(x)$: la divisione ha resto nullo, cioè $p(x) = q(x)d(x)$.
-Regola di Ruffini | Schema con i soli coefficienti per dividere per $x - a$; l'ultimo numero è il resto, uguale a $p(a)$.
-Radice | Un numero $a$ con $p(a) = 0$ (Definizione 4.1).
-Molteplicità | Il massimo $k$ per cui $(x - a)^k$ divide $p(x)$ (Definizione 4.3); radice semplice, doppia, tripla.
-Discriminante | $\Delta = b^2 - 4ac$ per $ax^2 + bx + c$; nei reali decide quante radici ci sono.
-Teorema fondamentale dell'algebra | Ogni polinomio a coefficienti complessi di grado $n$ ha esattamente $n$ radici complesse, contate con molteplicità (Teorema 4.8).
-Radici coniugate | Se i coefficienti sono reali e $z$ è radice, anche $\bar z$ lo è (Proposizione 4.11).
-Equazione biquadratica | Equazione con sole potenze pari, come $z^4 + 5z^2 + 4 = 0$: si risolve con $t = z^2$.
+Monomio | Un numero moltiplicato per delle lettere con esponenti interi, come $-2xy$. Il grado è la somma degli esponenti.
+Polinomio | Una somma di monomi, come $x^2 - 3$. Funziona come una macchina: metti un numero al posto della lettera ed esce un numero.
+Forma normale | La scrittura di un polinomio con ogni parte letterale una volta sola e nessun coefficiente zero, oppure il polinomio 0.
+Grado | L'esponente più alto di un polinomio in forma normale. $x^3 - 2x + 5$ ha grado 3.
+Termine noto | Il numero da solo, senza lettera: in $x^2 - 3$ è $-3$.
+Polinomio monico | Un polinomio in cui il numero davanti alla potenza più alta è 1, come $x^2 + 3x$.
+$\R[x]$, $\C[x]$ | I polinomi nella lettera $x$ con numeri reali, oppure complessi.
+$\R_k[x]$ | I polinomi reali di grado al massimo $k$, compresi i numeri da soli e il polinomio zero.
+Divisione con resto | Dividendo uguale quoziente per divisore più resto, con il resto di grado più basso del divisore.
+Divisibilità | Un polinomio ne divide un altro quando la divisione viene esatta, con resto zero. Si scrive con la barretta $\mid$.
+Regola di Ruffini | Una tabella con i soli coefficienti per dividere per $x - a$. L'ultimo numero è il resto, uguale a $p(a)$.
+Radice | Un numero che, messo al posto di $x$, fa uscire zero (Definizione 4.1).
+Molteplicità | Quante volte il fattore $x - a$ ci sta nel polinomio (Definizione 4.3). Una radice può essere semplice, doppia, tripla.
+Discriminante | Il numero $\Delta = b^2 - 4ac$ di un polinomio di secondo grado. Tra i reali decide quante radici ci sono.
+Teorema fondamentale dell'algebra | Tra i numeri complessi un polinomio di grado $n$ ha esattamente $n$ radici, contate con la molteplicità (Teorema 4.8).
+Radici coniugate | Se i numeri del polinomio sono reali e $z$ è radice, anche il coniugato di $z$ lo è (Proposizione 4.11).
+Equazione biquadratica | Un'equazione con solo potenze pari, come $z^4 + 5z^2 + 4 = 0$. Si risolve chiamando $t$ il quadrato $z^2$.
 ```
 
 ## Checklist
 
 ```checklist
 - So ridurre un polinomio in forma normale, leggerne il grado e dire se sta in $\R_k[x]$ o in $\C_k[x]$.
-- So eseguire la divisione in colonna tra polinomi, con gli zeri al posto giusto, e controllarla.
+- So fare la divisione in colonna tra polinomi, con gli zeri al posto giusto, e controllarla.
 - So usare la regola di Ruffini, anche per dividere per $x + a$.
-- So enunciare e dimostrare la Proposizione 4.2, e so che il resto della divisione per $x - a$ è $p(a)$.
+- So spiegare la Proposizione 4.2 e so che il resto della divisione per $x - a$ è $p(a)$.
 - So scomporre un polinomio trovando una radice tra i divisori del termine noto e dividendo.
 - So calcolare la molteplicità di una radice con divisioni ripetute.
-- So enunciare il Teorema 4.6 e il teorema fondamentale dell'algebra, e spiegare la differenza tra «al più $n$» ed «esattamente $n$».
-- So risolvere un'equazione di secondo grado in $\C$, anche con $\Delta$ complesso.
-- So usare la Proposizione 4.11 e so che vale solo con coefficienti reali.
-- So rispondere alle domande «quale è una radice» sostituendo o con la sostituzione $t = z^2$.
+- So dire la differenza tra «al massimo $n$ radici» ed «esattamente $n$ radici» e quando vale ciascuna.
+- So risolvere un'equazione di secondo grado nei complessi, anche con $\Delta$ complesso.
+- So usare la Proposizione 4.11 e so che vale solo con numeri reali.
+- So rispondere alle domande «quale è una radice» provando le risposte o con il trucco $t = z^2$.
 ```
 
 ## Fonti
 
 - **Dispense 2026 del corso** (Buzano, Radeschi), lezione 4 «Polinomi», pp. 15–19: le sezioni 4.A–4.E sono seguite in ordine, con la pagina accanto a ogni titolo; le Definizioni 4.1 e 4.3, le Proposizioni 4.2 e 4.11, i Teoremi 4.6 e 4.8 e gli Esempi 4.4, 4.5, 4.7, 4.9 e 4.10 mantengono la loro numerazione. Le dispense non hanno esercizi per questa lezione.
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §1.3 (pp. 21–25, con la Proposizione 1.3.8 sulla formula del secondo grado) e §1.4.7–1.4.8 (pp. 31–33: Teorema 1.4.7, Corollari 1.4.8, 1.4.10 e 1.4.12, Proposizione 1.4.13).
-- **Appelli d'esame** (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): domanda 1 del 10/07/2025, domanda 7 del 03/07/2026 e domanda 1 del 07/09/2026, riportate con soluzioni scritte per questi appunti; la tabella degli altri usi dei polinomi negli appelli ne indica solo il tipo. Regole d'esame 2025/26 e date 2026/27 come nella lezione L01.
+- **Appelli d'esame** (Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): domanda 1 del 07/09/2026, domanda 1 del 10/07/2025 e domanda 7 del 03/07/2026, riportate con soluzioni scritte per questi appunti; la tabella degli altri usi dei polinomi negli appelli ne indica solo il tipo. Regole d'esame 2025/26 e date 2026/27 come nella lezione L01.
 - Le parti **«Oltre le dispense»** (la regola di Ruffini, il grado dei prodotti, le radici razionali, il grafico e la molteplicità, la dimostrazione della formula del secondo grado, le conseguenze della Proposizione 4.11, tutti gli esercizi) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---
@@ -21986,16 +22794,15 @@ descrizione: >-
   vettoriali, le matrici diagonali, triangolari, simmetriche e antisimmetriche, le combinazioni lineari e il
   sottospazio generato (Span), con quiz nello stile dell'esame ed esercizi svolti.
 lede: >-
-  Dentro uno spazio vettoriale ce ne sono altri più piccoli: i sottospazi. Qui impari a riconoscerli con tre
-  controlli, conosci lo spazio delle matrici $M(m, n, \K)$ e i suoi sottospazi più importanti (matrici diagonali,
-  triangolari, simmetriche, antisimmetriche) e scopri il modo principale per costruire sottospazi: prendere tutte le
-  combinazioni lineari di alcuni vettori, cioè il loro $\Span$.
+  Dentro uno spazio vettoriale ci sono spazi più piccoli, come stanze dentro una casa: i sottospazi. Qui impari a
+  riconoscerli con tre controlli, a fare i conti con le tabelle di numeri chiamate matrici e a costruire sottospazi
+  mescolando alcuni vettori come gli ingredienti di una ricetta. La domanda «è un sottospazio?» esce quasi a ogni appello.
 materiale: dispense
 scheda:
   Dispense: lezione 6 · pp. 26–30
   Libro: Martelli, §2.2.5–2.2.16
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 90–120 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 6 «Spazi vettoriali II»; B. Martelli, Geometria e algebra lineare, §2.2.5–2.2.16
 appunti_html: appunti/MDAG/L06_spazi_vettoriali_2.html
@@ -22004,73 +22811,132 @@ genera_html: true
 
 ## In breve
 
-- Una **matrice** $m \times n$ è una tabella di numeri con $m$ righe e $n$ colonne. Le matrici $m \times n$, con somma e prodotto per scalare fatti casella per casella, formano lo spazio vettoriale $M(m, n, \K)$; in particolare $M(m, 1, \K) = \K^m$.
-- Un **sottospazio** di $V$ è un sottoinsieme $W$ che contiene lo $0$ ed è **chiuso** rispetto alla somma e al prodotto per scalare. Con le operazioni di $V$, è a sua volta uno spazio vettoriale.
-- Ogni spazio $V$ ha il sottospazio banale $\{0\}$ e il sottospazio totale $V$; ogni altro sottospazio sta in mezzo: $\{0\} \subset W \subset V$.
-- Esempi: $\K_k[x] \subset \K[x]$; nel piano, le rette **per l'origine**; tra le matrici quadrate, le diagonali $D(n)$, le triangolari superiori $T^s(n)$ e inferiori $T^i(n)$, le simmetriche $S(n)$ e le antisimmetriche $A(n)$ (Proposizione 6.5).
-- Per dire che un insieme **non** è un sottospazio basta un controesempio. Il più rapido: **non contiene lo zero**, come una retta che non passa per l'origine.
-- Una **combinazione lineare** di $v_1, \dots, v_k$ è un vettore del tipo $\lambda_1 v_1 + \dots + \lambda_k v_k$, con $\lambda_1, \dots, \lambda_k$ scalari qualsiasi.
-- Lo **Span** di $v_1, \dots, v_k$ è l'insieme di tutte le loro combinazioni lineari, ed è sempre un sottospazio (Proposizione 6.7). Per esempio $\Span(v)$, con $v \neq 0$, è la retta per l'origine con la direzione di $v$.
-- Per capire se un vettore $u$ sta in $\Span(v_1, \dots, v_k)$ si cercano dei coefficienti con $\lambda_1 v_1 + \dots + \lambda_k v_k = u$: è un sistema lineare.
+- Una **matrice** è una tabella di numeri con un certo numero di righe e di colonne. Le matrici con la stessa forma si sommano casella per casella e si moltiplicano per un numero casella per casella: formano uno spazio vettoriale.
+- Un **sottospazio** è una parte di uno spazio vettoriale da cui non si esce: contiene lo zero, e sommando o moltiplicando per un numero i suoi vettori si resta dentro.
+- Nel piano, una retta che passa per l'origine è un sottospazio; una retta che non ci passa no.
+- Tra le matrici quadrate ci sono cinque sottospazi da conoscere: le **diagonali**, le **triangolari superiori**, le **triangolari inferiori**, le **simmetriche** e le **antisimmetriche**.
+- Per dire che un insieme **non** è un sottospazio basta un esempio che non funziona. Il controllo più veloce: manca lo zero.
+- Una **combinazione lineare** è una ricetta: alcuni vettori, ciascuno moltiplicato per un numero, poi sommati. Lo **Span** di alcuni vettori è tutto quello che si ottiene con tutte le ricette possibili, ed è sempre un sottospazio.
 - All'esame «quale di questi insiemi è (o non è) un sottospazio?» esce quasi a ogni appello: 08/02/2024, 03/06/2025, 05/02/2026, 07/09/2026.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Lo spazio delle matrici (p. 26)
+## Tabelle di numeri: le matrici (p. 26)
 
-Nella lezione L05 i vettori di $\K^n$ erano colonne di numeri. Ora si mettono più colonne una accanto all'altra e si ottiene una **tabella**: una matrice. Per esempio
+Un negozio vende tre prodotti in due giorni. Le vendite si scrivono in una tabella: una riga per giorno, una colonna per prodotto.
 
-$$A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}$$
+| | pane | latte | uova |
+|---|--:|--:|--:|
+| lunedì | 1 | 2 | 3 |
+| martedì | 4 | 5 | 6 |
 
-ha $2$ righe e $3$ colonne. Le matrici sono l'«altro esempio fondamentale» di spazio vettoriale con cui le dispense aprono la lezione, e da qui in poi compariranno ovunque.
+In matematica una tabella così, senza le scritte, si chiama **matrice**, e si scrive tra parentesi tonde:
+
+$$A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix}.$$
+
+Questa matrice ha 2 righe e 3 colonne. Nella lezione L05 i vettori di $\K^n$ erano liste di numeri scritte in colonna. Una matrice è fatta di più colonne messe una accanto all'altra. Ricorda: $\K$ è il modo delle dispense per dire «i numeri reali $\R$, oppure i numeri complessi $\C$».
+
+Le matrici sono l'altro grande esempio di spazio vettoriale con cui le dispense aprono la lezione, e da qui in poi saranno dappertutto.
+
+### Come si legge una matrice
+
+Per indicare un numero preciso della tabella basta dire in quale riga e in quale colonna sta. Nella matrice $A$:
+
+- il numero nella riga 1 e nella colonna 2 è 2. Si scrive $a_{12} = 2$, e si legge «a uno due»;
+- il numero nella riga 2 e nella colonna 1 è 4. Si scrive $a_{21} = 4$.
+
+La regola è sempre la stessa: **prima la riga, poi la colonna**. La lettera è la minuscola del nome della matrice.
+
+Le dispense lo scrivono così.
 
 > [!DEF] 6.1 · Matrice
 > Sia come sempre $\K$ un campo fissato. Una **matrice** con $m$ **righe** e $n$ **colonne** a coefficienti in $\K$ è una tabella rettangolare del tipo
 > $$A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix}$$
 > in cui tutti gli $mn$ coefficienti $a_{ij}$ appartengono a $\K$. Diciamo brevemente che $A$ è una **matrice $m \times n$**. Le sue righe sono indicate con $A_1, \dots, A_m$ e le sue colonne con $A^1, \dots, A^n$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- **$m \times n$** si legge «$m$ per $n$»: prima il numero di righe, poi quello di colonne. La matrice $A$ qui sopra è $2 \times 3$.
-- **$a_{ij}$** è il coefficiente nella riga $i$ e nella colonna $j$: **prima la riga, poi la colonna**. Nella matrice $A$ sopra, $a_{12} = 2$ (riga 1, colonna 2) e $a_{21} = 4$ (riga 2, colonna 1).
-- In tutto ci sono $m \cdot n$ coefficienti: $A$ ne ha $2 \cdot 3 = 6$.
-- **$A_i$**, con l'indice **in basso**, è la riga $i$; **$A^j$**, con l'indice **in alto**, è la colonna $j$. Nella matrice $A$ sopra: $A_2 = (4, 5, 6)$ e $A^3 = \begin{pmatrix} 3 \\ 6 \end{pmatrix}$.
+- $m$ è il numero di righe, $n$ quello di colonne. I puntini orizzontali, verticali e in diagonale vogliono dire «e così via in quella direzione».
+- **$m \times n$** si legge «$m$ per $n$»: prima le righe, poi le colonne. La matrice $A$ del negozio è $2 \times 3$.
+- **$a_{ij}$** è il numero nella riga $i$ e nella colonna $j$. In tutto ci sono $m \cdot n$ numeri: $A$ ne ha $2 \cdot 3 = 6$.
+- **$A_i$**, con il numerino **in basso**, è la riga numero $i$. **$A^j$**, con il numerino **in alto**, è la colonna numero $j$. Nella matrice $A$: la seconda riga è $A_2 = (4, 5, 6)$, la terza colonna è $A^3 = \begin{pmatrix} 3 \\ 6 \end{pmatrix}$.
 
 > [!TRAPPOLA] $A^1$ non è una potenza
-> Nelle dispense $A^1, \dots, A^n$ sono le **colonne** di $A$: l'indice in alto è solo un'etichetta. $A^2$ è la seconda colonna, non $A$ per $A$.
+> Nelle dispense $A^1, \dots, A^n$ sono le **colonne** di $A$: il numerino in alto è solo un'etichetta. $A^2$ è la seconda colonna, non $A$ per $A$.
 
 > [!ESEMPIO] · le matrici delle dispense
-> Due matrici a coefficienti in $\R$:
+> Due matrici con numeri reali:
 > $$B = \begin{pmatrix} 1 & \sqrt 2 \\ 0 & -5 \\ 7 & \pi \end{pmatrix}, \qquad C = \begin{pmatrix} 5 & 0 & \sqrt 3 \end{pmatrix}.$$
 > $B$ è $3 \times 2$: $b_{12} = \sqrt 2$, $b_{32} = \pi$, la riga $B_2 = (0, -5)$, la colonna $B^1 = {}^t(1, 0, 7)$. $C$ è $1 \times 3$: una sola riga.
 
-### Somma e prodotto per scalare
+Nell'esempio la scrittura ${}^t(1, 0, 7)$ vuol dire «la lista $(1, 0, 7)$ scritta in colonna»: la piccola $t$ in alto a sinistra sta per «trasposta» (lezione L08).
 
-Due matrici $A = (a_{ij})$ e $B = (b_{ij})$ della **stessa taglia** si sommano componente per componente; anche il prodotto per scalare è definito componente per componente:
+::: prova Nella matrice $\begin{pmatrix} 3 & -1 \\ 0 & 5 \end{pmatrix}$ quanto valgono $a_{12}$ e $a_{21}$? Qual è la seconda colonna?
+$a_{12}$ è nella riga 1 e nella colonna 2: vale $-1$. $a_{21}$ è nella riga 2 e nella colonna 1: vale 0. La seconda colonna è $\begin{pmatrix} -1 \\ 5 \end{pmatrix}$.
+:::
 
-$$(A + B)_{ij} = a_{ij} + b_{ij}, \qquad (\lambda A)_{ij} = \lambda a_{ij}.$$
+### Somma e moltiplicazione per un numero
 
-In parole: la casella $(i, j)$ della somma è la somma delle caselle $(i, j)$, e $\lambda A$ moltiplica ogni casella per $\lambda$.
+Il negozio ha due negozi uguali. Le vendite totali si ottengono sommando le due tabelle **casella per casella**: il pane di lunedì del primo negozio più il pane di lunedì del secondo, e così via. Se le vendite raddoppiano, si moltiplica **ogni casella** per 2.
 
 > [!ESEMPIO] · somma e multiplo di matrici
 > $$\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix} + \begin{pmatrix} 0 & -1 & 2 \\ 1 & 1 & -3 \end{pmatrix} = \begin{pmatrix} 1 + 0 & 2 - 1 & 3 + 2 \\ 4 + 1 & 5 + 1 & 6 - 3 \end{pmatrix} = \begin{pmatrix} 1 & 1 & 5 \\ 5 & 6 & 3 \end{pmatrix},$$
 > $$2\begin{pmatrix} 1 & -1 \\ 0 & 3 \end{pmatrix} = \begin{pmatrix} 2 & -2 \\ 0 & 6 \end{pmatrix}.$$
 
-L'insieme di tutte le matrici $m \times n$ a coefficienti in $\K$, con queste operazioni, si indica con $M(m, n, \K)$, oppure $M(m, n)$ quando il campo è sottinteso. Le dispense osservano che $M(m, n, \K)$ è uno spazio vettoriale. Il motivo è quello della lezione L05: le operazioni si fanno casella per casella, quindi ogni assioma si riduce a una proprietà del campo, una casella alla volta. In pratica una matrice $m \times n$ si comporta come un vettore di $\K^{mn}$ scritto su più righe. Il vettore nullo è la **matrice nulla**, con tutti i coefficienti $0$; l'opposto di $A$ è $-A$, con tutti i coefficienti cambiati di segno.
+Con le lettere, per due matrici $A$ e $B$ della **stessa forma**:
 
-Infine, una matrice $m \times 1$ ha una sola colonna: è un vettore colonna. Quindi
+$$(A + B)_{ij} = a_{ij} + b_{ij}, \qquad (\lambda A)_{ij} = \lambda a_{ij}.$$
+
+A parole: la casella nella riga $i$ e colonna $j$ della somma è la somma delle due caselle nello stesso posto. E $\lambda A$, «lambda per A», moltiplica ogni casella per il numero $\lambda$. La lettera greca $\lambda$, «lambda», si usa spesso per un numero.
+
+### Le matrici formano uno spazio vettoriale
+
+Tutte le matrici con $m$ righe e $n$ colonne, con queste due operazioni, formano un insieme che si chiama $M(m, n, \K)$, o $M(m, n)$ quando il tipo di numeri è sottinteso. Le dispense osservano che è uno spazio vettoriale.
+
+Il motivo è quello della lezione L05: le operazioni si fanno casella per casella, quindi ogni regola di calcolo si controlla una casella alla volta, dove è una regola dei numeri. In pratica una matrice $2 \times 3$ si comporta come una lista di 6 numeri scritta su due righe.
+
+- Il vettore zero è la **matrice nulla**, con tutti i numeri uguali a 0.
+- L'opposto di $A$ è $-A$, con tutti i numeri cambiati di segno.
+
+Una matrice con una sola colonna è un vettore colonna. Quindi le matrici $m \times 1$ sono proprio i vettori di $\K^m$:
 
 $$M(m, 1, \K) = \K^m.$$
 
-> [!TRAPPOLA] Solo matrici della stessa taglia
-> $\begin{pmatrix} 1 & 2 \end{pmatrix} + \begin{pmatrix} 1 \\ 2 \end{pmatrix}$ non ha senso: la prima è $1 \times 2$, la seconda $2 \times 1$. Il prodotto **tra** matrici esiste, ma è un'altra operazione, che non fa parte della struttura di spazio vettoriale: arriva nella lezione L08.
+> [!TRAPPOLA] Solo matrici della stessa forma
+> $\begin{pmatrix} 1 & 2 \end{pmatrix} + \begin{pmatrix} 1 \\ 2 \end{pmatrix}$ non ha senso: la prima è $1 \times 2$, la seconda $2 \times 1$, e le caselle non si corrispondono. Esiste anche un prodotto **tra** matrici, ma è un'altra operazione, che non fa parte della struttura di spazio vettoriale: arriva nella lezione L08.
 
-## Sottospazi vettoriali (pp. 26–27)
+::: prova Calcola $\begin{pmatrix} 1 & 0 \\ 2 & -1 \end{pmatrix} + 3\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix}$.
+Prima il multiplo: $3\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 3 \\ 3 & 3 \end{pmatrix}$. Poi la somma casella per casella: $\begin{pmatrix} 1 + 0 & 0 + 3 \\ 2 + 3 & -1 + 3 \end{pmatrix} = \begin{pmatrix} 1 & 3 \\ 5 & 2 \end{pmatrix}$.
+:::
 
-Guarda nel piano $\R^2$ la retta $r$ di equazione $y = 2x$. Contiene l'origine. Se prendi due suoi punti, per esempio $(1, 2)$ e $(-3, -6)$, la loro somma $(-2, -4)$ sta ancora su $r$. Se moltiplichi un suo punto per un numero, per esempio $5 \cdot (1, 2) = (5, 10)$, resti su $r$. Con la somma e il prodotto per scalare **non si esce mai** da $r$: $r$ è un piccolo spazio vettoriale dentro $\R^2$.
+> [!RICORDA]
+> - Una matrice $m \times n$ è una tabella con $m$ righe e $n$ colonne; $a_{ij}$ è il numero nella riga $i$ e nella colonna $j$.
+> - Si sommano e si moltiplicano per un numero casella per casella, solo con la stessa forma.
+> - Le matrici $m \times n$ formano lo spazio vettoriale $M(m, n, \K)$.
 
-La retta $s$ di equazione $y = 2x + 1$, parallela alla prima, invece non funziona. Non passa per l'origine, perché $0 \neq 2 \cdot 0 + 1$. E la somma esce: $(0, 1)$ e $(1, 3)$ stanno su $s$, ma $(0, 1) + (1, 3) = (1, 4)$ no, perché $2 \cdot 1 + 1 = 3 \neq 4$.
+## Stanze da cui non si esce: i sottospazi (pp. 26–27)
+
+Immagina lo spazio vettoriale come una casa. Dentro ci sono delle stanze speciali: in una stanza così, se prendi due vettori e li sommi, resti nella stanza; se prendi un vettore e lo moltiplichi per un numero, resti nella stanza. Una stanza così si chiama **sottospazio**.
+
+### Una retta che funziona
+
+Guarda nel piano la retta dei punti con la seconda coordinata doppia della prima: la retta di equazione $y = 2x$. Ci stanno $(1, 2)$, $(-3, -6)$, $(0, 0)$.
+
+1. Passa per l'origine, il punto $(0, 0)$.
+2. Sommo due suoi punti: $(1, 2) + (-3, -6) = (-2, -4)$. Anche qui la seconda coordinata è il doppio della prima: resto sulla retta.
+3. Moltiplico un suo punto per un numero: $5 \cdot (1, 2) = (5, 10)$. Resto sulla retta.
+
+Con somme e moltiplicazioni per un numero non si esce mai dalla retta. È una stanza.
+
+### Una retta che non funziona
+
+Ora la retta parallela, spostata in su di 1: la retta di equazione $y = 2x + 1$.
+
+1. Non passa per l'origine: con $x = 0$ dovrebbe essere $y = 1$, non 0.
+2. La somma esce. I punti $(0, 1)$ e $(1, 3)$ stanno sulla retta, ma la loro somma $(1, 4)$ no: con $x = 1$ la retta ha $y = 3$, non 4.
+
+Guarda la figura: i due punti rosa sono sulla retta tratteggiata, ma la loro somma, il punto giallo, cade fuori.
 
 ```grafico
 titolo: La retta $y = 2x$ passa per l'origine ed è un sottospazio; la retta $y = 2x + 1$ no: la somma di due suoi punti esce
@@ -22084,7 +22950,9 @@ punto: 1 3 | rosa | $(1, 3)$ | o
 punto: 1 4 | ambra | $(1, 4)$ | no
 ```
 
-Le dispense definiscono con precisione quando uno spazio vettoriale «ne contiene un altro».
+### I tre controlli
+
+Le dispense mettono in fila i tre controlli che hai appena fatto.
 
 > [!DEF] 6.2 · Sottospazio vettoriale
 > Sia $V$ uno spazio vettoriale su un campo $\K$. Un **sottospazio vettoriale** di $V$ è un sottoinsieme $W \subset V$ che soddisfa i seguenti tre assiomi:
@@ -22092,57 +22960,80 @@ Le dispense definiscono con precisione quando uno spazio vettoriale «ne contien
 > 2. se $v, v' \in W$, allora anche $v + v' \in W$;
 > 3. se $v \in W$ e $\lambda \in \K$, allora $\lambda v \in W$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- $W \subset V$: si parte da uno spazio vettoriale $V$ già noto e si prende una parte dei suoi vettori.
-- **Assioma 1**: il vettore nullo **di $V$** deve stare in $W$. È il primo controllo, e il più rapido.
-- **Assioma 2**: la somma di due vettori di $W$ non esce da $W$. Si dice che $W$ è **chiuso rispetto alla somma**.
-- **Assioma 3**: ogni multiplo di un vettore di $W$, con **qualsiasi** scalare (anche negativo o zero), resta in $W$. Si dice che $W$ è **chiuso rispetto al prodotto per scalare**.
+- $V$ è la casa: uno spazio vettoriale che conosci già. $W$ è la stanza: una parte dei vettori di $V$. Il simbolo $W \subset V$ si legge «$W$ è contenuto in $V$».
+- **Controllo 1**: lo zero di $V$ sta in $W$. Il simbolo $\in$ si legge «appartiene a». È il controllo più veloce.
+- **Controllo 2**: se $v$ e $v'$ («v primo», un altro vettore) stanno in $W$, anche la loro somma sta in $W$. In questo caso $W$ si chiama **chiuso rispetto alla somma**.
+- **Controllo 3**: se $v$ sta in $W$ e $\lambda$ è un numero **qualsiasi** (anche negativo o zero), anche $\lambda v$ sta in $W$. In questo caso $W$ si chiama **chiuso rispetto alla moltiplicazione per un numero**.
 
-Con le operazioni «ereditate» da $V$, ogni sottospazio $W$ è esso stesso uno spazio vettoriale. Il perché, con i dettagli che le dispense lasciano sottintesi:
+Un sottospazio è a sua volta uno spazio vettoriale, con le stesse operazioni della casa. Il motivo, con i dettagli che le dispense lasciano sottintesi:
 
-1. le operazioni restano in $W$, per gli assiomi 2 e 3;
-2. gli assiomi 2–5 della Definizione 5.4, e le proprietà associativa e commutativa, valgono per tutti i vettori di $V$, quindi anche per quelli di $W$;
-3. il vettore nullo sta in $W$ per l'assioma 1;
-4. l'opposto di $v \in W$ sta in $W$: è $-v = (-1)v$ (lezione L05, esercizio 8), che è in $W$ per l'assioma 3.
+1. le operazioni non fanno uscire da $W$, per i controlli 2 e 3;
+2. le regole di calcolo della lezione L05 valgono per tutti i vettori di $V$, quindi anche per quelli di $W$;
+3. lo zero sta in $W$, per il controllo 1;
+4. l'opposto di un vettore $v$ di $W$ sta in $W$: l'opposto è $(-1)v$ (lezione L05, esercizio 8), che sta in $W$ per il controllo 3.
 
-### Il sottospazio banale e quello totale (p. 27)
+### La stanza vuota e la casa intera (p. 27)
 
 Ogni spazio vettoriale $V$ ha sempre due sottospazi:
 
-- il **sottospazio banale** $\{0\}$, formato dalla sola origine: $0 + 0 = 0$ e $\lambda 0 = 0$, quindi non si esce;
-- il **sottospazio totale** $V$, formato da tutti i vettori.
+- il sottospazio fatto solo dallo zero, che si scrive $\{0\}$. Le dispense lo chiamano «**sottospazio banale**». Funziona: $0 + 0 = 0$ e $\lambda \cdot 0 = 0$, quindi non si esce;
+- il **sottospazio totale**, cioè tutto $V$.
 
 Ogni altro sottospazio sta in mezzo:
 
 $$\{0\} \subset W \subset V.$$
 
-Un esempio già incontrato è $\K_k[x] \subset \K[x]$, formato dai polinomi di grado $\le k$ (Esercizio 5.7): contiene il polinomio nullo, e somme e multipli di polinomi di grado $\le k$ hanno ancora grado $\le k$.
+Un esempio già incontrato: i polinomi di grado al massimo $k$, $\K_k[x]$, dentro tutti i polinomi $\K[x]$ (Esercizio 5.7). Contengono il polinomio zero, e sommando o moltiplicando polinomi di grado al massimo $k$ il grado non cresce.
 
 > [!ESEMPIO] · la retta $y = 2x$, con le lettere
-> Sia $W = \{(x, y) \in \R^2 \mid y = 2x\}$. Controlliamo i tre assiomi con vettori generici.
+> Prendiamo l'insieme $W = \{(x, y) \in \R^2 \mid y = 2x\}$: le graffe dicono «l'insieme dei punti $(x, y)$ del piano», la barretta si legge «per cui». Controlliamo i tre assiomi con punti qualsiasi, non solo con i numeri.
 > 1. $(0, 0) \in W$, perché $0 = 2 \cdot 0$.
 > 2. Se $(x, y)$ e $(x', y')$ stanno in $W$, cioè $y = 2x$ e $y' = 2x'$, la somma $(x + x', y + y')$ soddisfa $y + y' = 2x + 2x' = 2(x + x')$: sta in $W$.
 > 3. Se $(x, y) \in W$ e $\lambda \in \R$, allora $\lambda y = \lambda \cdot 2x = 2(\lambda x)$: anche $(\lambda x, \lambda y)$ sta in $W$.
 >
-> Quindi $W$ è un sottospazio di $\R^2$.
+> Quindi $W$ è un sottospazio del piano.
 
-> [!ESEMPIO] · tre insiemi che non sono sottospazi di $\R^2$
-> - **$\{(x, y) \mid y = 2x + 1\}$**: non contiene $(0, 0)$. Fallisce l'assioma 1.
-> - **Il primo quadrante $\{(x, y) \mid x \ge 0,\ y \ge 0\}$**: contiene l'origine ed è chiuso rispetto alla somma, ma $(-1) \cdot (1, 1) = (-1, -1)$ esce. Fallisce l'assioma 3.
-> - **L'unione dei due assi $\{(x, y) \mid xy = 0\}$**: contiene l'origine ed è chiusa rispetto ai multipli, ma $(1, 0) + (0, 1) = (1, 1)$ esce, perché $1 \cdot 1 \neq 0$. Fallisce l'assioma 2.
+> [!ESEMPIO] · tre insiemi che non sono sottospazi del piano
+> - **La retta $y = 2x + 1$**: non contiene l'origine. Fallisce il controllo 1.
+> - **Il primo quadrante**, cioè i punti con le due coordinate positive o zero: contiene l'origine, e la somma di due suoi punti ci resta. Ma $(-1) \cdot (1, 1) = (-1, -1)$ esce. Fallisce il controllo 3.
+> - **I due assi messi insieme**, cioè i punti con $xy = 0$: contiene l'origine, e i multipli di un punto di un asse restano su quell'asse. Ma $(1, 0) + (0, 1) = (1, 1)$ esce, perché $1 \cdot 1$ non è 0. Fallisce il controllo 2.
 
-> [!TRAPPOLA] Un solo assioma non basta
-> Il primo quadrante è chiuso rispetto alla somma ma non ai multipli; l'unione degli assi è chiusa rispetto ai multipli ma non alla somma. Vanno controllati **tutti e tre** gli assiomi. Per dire di sì servono tutti e tre; per dire di no ne basta uno che fallisce, con un esempio concreto.
+> [!TRAPPOLA] Un solo controllo non basta
+> Il primo quadrante supera il controllo della somma ma non quello dei multipli. I due assi superano quello dei multipli ma non quello della somma. Per dire **sì** servono tutti e tre i controlli. Per dire **no** ne basta uno che fallisce, con un esempio concreto.
+
+::: prova L'insieme dei punti del piano con $x + y = 3$ è un sottospazio? E quello con $x = 3y$?
+$x + y = 3$: no. L'origine dà $0 + 0 = 0$, non 3: manca lo zero.
+
+$x = 3y$: sì. È una retta per l'origine. L'origine c'è; sommando due punti con $x = 3y$ e $x' = 3y'$ viene $x + x' = 3(y + y')$; moltiplicando per $\lambda$ viene $\lambda x = 3(\lambda y)$.
+:::
 
 > [!OLTRE] · i sottospazi più comuni, dal libro di Martelli
-> - **Sistemi lineari omogenei** (Proposizione 2.2.2). Le soluzioni di un sistema di equazioni lineari **con termine noto zero**, come $\{x + 2y - z = 0,\ x - y = 0\}$ in $\R^3$, formano un sottospazio. Il motivo: se $a_1 x_1 + \dots + a_n x_n = 0$ vale per $x$ e per $y$, vale anche per $x + y$ e per $\lambda x$, perché $a_1(x_1 + y_1) + \dots = 0 + 0 = 0$ e $a_1 (\lambda x_1) + \dots = \lambda \cdot 0 = 0$. Con un termine noto diverso da zero invece l'origine non è una soluzione (Osservazione 2.2.3).
-> - **Polinomi che si annullano in un punto** (Proposizione 2.2.5). Fissato $a \in \K$, i polinomi con $p(a) = 0$ formano un sottospazio di $\K[x]$: $(p + q)(a) = 0 + 0 = 0$ e $(\lambda p)(a) = \lambda \cdot 0 = 0$. Quelli con $p(a) = 1$ no, perché non contengono il polinomio nullo (Osservazione 2.2.6).
-> - **Intersezione** (Proposizione 2.2.11). Se $U$ e $W$ sono sottospazi, anche $U \cap W$ lo è. L'**unione** invece in generale no: l'unione dei due assi di $\R^2$ vista sopra è l'esempio del libro (Esempio 2.2.14, e l'esercizio 12).
+> - **Sistemi lineari omogenei** (Proposizione 2.2.2). Le soluzioni di un sistema di equazioni lineari **con termine noto zero**, come $\{x + 2y - z = 0,\ x - y = 0\}$ in $\R^3$, formano un sottospazio. Il motivo: prendi un'equazione $a_1 x_1 + \dots + a_n x_n = 0$ che vale per due soluzioni $x$ e $y$. Vale anche per la somma, perché $a_1(x_1 + y_1) + \dots = 0 + 0 = 0$. E vale per i multipli, perché $a_1 (\lambda x_1) + \dots = \lambda \cdot 0 = 0$. Con un termine noto diverso da zero l'origine non è una soluzione (Osservazione 2.2.3).
+> - **Polinomi che si annullano in un punto** (Proposizione 2.2.5). Fissato un numero $a$, i polinomi con $p(a) = 0$ formano un sottospazio di $\K[x]$: $(p + q)(a) = 0 + 0 = 0$ e $(\lambda p)(a) = \lambda \cdot 0 = 0$. Quelli con $p(a) = 1$ no, perché non contengono il polinomio nullo (Osservazione 2.2.6).
+> - **Intersezione** (Proposizione 2.2.11). Se $U$ e $W$ sono sottospazi, anche la loro parte comune $U \cap W$ lo è. L'**unione** invece in generale no: i due assi del piano sono l'esempio del libro (Esempio 2.2.14, e l'esercizio 13).
 
-## Matrici diagonali, triangolari, simmetriche e antisimmetriche (pp. 27–28)
+> [!RICORDA]
+> - Un sottospazio contiene lo zero, ed è chiuso rispetto alla somma e alla moltiplicazione per un numero.
+> - Per dire sì servono tutti e tre i controlli; per dire no basta un esempio che non funziona.
+> - Nel piano, le rette per l'origine sono sottospazi; quelle che non ci passano no.
 
-Dentro lo spazio delle matrici ci sono molti sottospazi: si ottengono imponendo condizioni sui coefficienti. I più importanti riguardano le matrici **quadrate**.
+## Matrici con una forma speciale (pp. 27–28)
+
+Dentro lo spazio delle matrici ci sono tante stanze. Si ottengono chiedendo che certe caselle siano zero, o che certe caselle siano uguali. Le più importanti riguardano le matrici **quadrate**, quelle con tante righe quante colonne.
+
+### La diagonale principale
+
+In una matrice quadrata le caselle con lo stesso numero di riga e di colonna, $a_{11}, a_{22}, a_{33}, \dots$, formano la **diagonale principale**: la linea che scende da in alto a sinistra a in basso a destra.
+
+$$\begin{pmatrix} \mathbf{1} & 2 & 3 \\ 4 & \mathbf{5} & 6 \\ 7 & 8 & \mathbf{9} \end{pmatrix}$$
+
+Qui la diagonale principale è fatta da 1, 5 e 9. Le caselle con riga maggiore della colonna stanno **sotto** la diagonale (4, 7, 8); quelle con riga minore della colonna stanno **sopra** (2, 3, 6).
+
+### Le cinque classi
+
+Le dispense danno un nome a cinque forme speciali.
 
 > [!DEF] 6.3 · Matrici quadrate, diagonali, triangolari, simmetriche e antisimmetriche
 > Una matrice $n \times n$ è detta **quadrata**. Una matrice $A$ quadrata $n \times n$ è:
@@ -22153,19 +23044,20 @@ Dentro lo spazio delle matrici ci sono molti sottospazi: si ottengono imponendo 
 > - **simmetrica** se $a_{ij} = a_{ji},\ \forall i, j$;
 > - **antisimmetrica** se $a_{ij} = -a_{ji},\ \forall i, j$.
 
-Pezzo per pezzo:
+**Come si legge.** Il simbolo $\forall$ si legge «per ogni», e $\neq$ si legge «diverso da».
 
-- Gli elementi $a_{11}, a_{22}, \dots, a_{nn}$, quelli con i due indici uguali, formano la **diagonale principale**: la linea che scende da in alto a sinistra a in basso a destra.
-- **Diagonale**: tutto ciò che sta fuori dalla diagonale principale è zero. Sulla diagonale può esserci qualsiasi numero, anche $0$.
-- **Triangolare superiore**: $i > j$ vuol dire «indice di riga maggiore di quello di colonna», cioè le caselle **sotto** la diagonale. Quelle devono essere zero; i numeri stanno sopra e sulla diagonale.
-- **Triangolare inferiore**: al contrario, sono zero le caselle **sopra** la diagonale ($i < j$).
-- **Simmetrica**: la casella $(i, j)$ è uguale alla casella $(j, i)$. La matrice è **speculare** rispetto alla diagonale principale.
-- **Antisimmetrica**: la casella $(i, j)$ è l'opposto della casella $(j, i)$. Con $i = j$ la condizione dice $a_{ii} = -a_{ii}$, cioè $2a_{ii} = 0$, e dividendo per $2$ si ottiene $a_{ii} = 0$: sulla diagonale di una matrice antisimmetrica ci sono **solo zeri**. Le dispense lo osservano alla fine dell'Esempio 6.4 (p. 28).
+- **Diagonale**: tutte le caselle fuori dalla diagonale principale sono zero. Sulla diagonale può esserci qualsiasi numero, anche 0.
+- **Triangolare superiore**: «riga maggiore della colonna» sono le caselle **sotto** la diagonale. Quelle devono essere zero; i numeri stanno sulla diagonale e sopra, a forma di triangolo.
+- **Triangolare inferiore**: al contrario, sono zero le caselle **sopra** la diagonale.
+- **Simmetrica**: la casella nella riga $i$ e colonna $j$ è uguale a quella nella riga $j$ e colonna $i$. La matrice è come riflessa in uno specchio messo sulla diagonale principale.
+- **Antisimmetrica**: le caselle allo specchio sono una l'opposto dell'altra.
+
+Nelle antisimmetriche c'è un fatto in più. Sulla diagonale la casella e la sua immagine allo specchio sono la stessa casella. Quindi deve essere uguale al suo opposto: $a_{ii} = -a_{ii}$, cioè $2a_{ii} = 0$, e dividendo per 2 viene $a_{ii} = 0$. Sulla diagonale di una matrice antisimmetrica ci sono **solo zeri**. Le dispense lo osservano alla fine dell'Esempio 6.4 (p. 28).
 
 > [!NOTA] Una precisazione sul campo
-> Il passaggio da $2a_{ii} = 0$ ad $a_{ii} = 0$ divide per $2$, e si può fare nei campi del corso, $\Q$, $\R$ e $\C$. Nel campo $\{0, 1\}$ dell'Esercizio 5.9, dove $2 = 1 + 1 = 0$, invece no: lì $a = -a$ per ogni $a$, e una matrice antisimmetrica può avere la diagonale non nulla. Il libro di Martelli lo segnala in una nota al §2.2.14; le dispense sottintendono che il campo sia $\Q$, $\R$ o $\C$.
+> Il passaggio da $2a_{ii} = 0$ ad $a_{ii} = 0$ divide per 2, e si può fare con i numeri del corso: razionali, reali, complessi. Nel campo con i soli due numeri 0 e 1 dell'Esercizio 5.9, dove $1 + 1 = 0$, invece no: lì ogni numero è uguale al suo opposto, e una matrice antisimmetrica può avere la diagonale non nulla. Il libro di Martelli lo segnala in una nota al §2.2.14; le dispense sottintendono che si lavori con numeri razionali, reali o complessi.
 
-La forma generale di ciascuna classe, per le matrici $3 \times 3$ (le lettere sono numeri qualsiasi):
+La forma di ciascuna classe per le matrici $3 \times 3$. Le lettere sono numeri qualsiasi.
 
 | diagonale | triangolare superiore | triangolare inferiore | simmetrica | antisimmetrica |
 |---|---|---|---|---|
@@ -22178,86 +23070,116 @@ La forma generale di ciascuna classe, per le matrici $3 \times 3$ (le lettere so
 > $$\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$$
 > è diagonale, triangolare superiore, triangolare inferiore e simmetrica. La matrice nulla appartiene a tutte e cinque le classi.
 
-Controlliamo l'esempio casella per casella, per le matrici $2 \times 2$, dove le caselle fuori dalla diagonale sono solo $a_{12}$ (sopra) e $a_{21}$ (sotto):
+Controlliamo l'esempio casella per casella. Nelle matrici $2 \times 2$ le caselle fuori dalla diagonale sono solo due: $a_{12}$, sopra, e $a_{21}$, sotto.
 
 | Matrice | $a_{12}$ | $a_{21}$ | classe |
 |---|---:|---:|---|
 | $\begin{pmatrix} 2 & 0 \\ 0 & -1 \end{pmatrix}$ | $0$ | $0$ | diagonale (e anche triangolare e simmetrica) |
 | $\begin{pmatrix} 1 & 9 \\ 0 & \sqrt 2 \end{pmatrix}$ | $9$ | $0$ | triangolare superiore: è zero la casella sotto |
 | $\begin{pmatrix} -1 & 0 \\ 7 & 2 \end{pmatrix}$ | $0$ | $7$ | triangolare inferiore: è zero la casella sopra |
-| $\begin{pmatrix} -1 & 2 \\ 2 & 4 \end{pmatrix}$ | $2$ | $2$ | simmetrica: $a_{12} = a_{21}$ |
-| $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$ | $1$ | $-1$ | antisimmetrica: $a_{12} = -a_{21}$ e diagonale nulla |
+| $\begin{pmatrix} -1 & 2 \\ 2 & 4 \end{pmatrix}$ | $2$ | $2$ | simmetrica: le due caselle sono uguali |
+| $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$ | $1$ | $-1$ | antisimmetrica: caselle opposte e diagonale nulla |
 
-La prima matrice è anche triangolare (superiore e inferiore) e simmetrica: la prima riga della tabella lo ricorda. Nell'elenco delle dispense ogni matrice è l'esempio della sua classe, ma non è detto che appartenga soltanto a quella.
+La prima matrice è anche triangolare, sia superiore sia inferiore, e simmetrica. Nell'elenco delle dispense ogni matrice è l'esempio della sua classe, ma può appartenere anche ad altre.
 
-### Cinque sottospazi di $M(n)$ (p. 28)
+::: prova A quali classi appartiene $\begin{pmatrix} 4 & 0 \\ 3 & 4 \end{pmatrix}$?
+La casella sopra la diagonale è 0: è triangolare inferiore, quindi anche triangolare. Non è diagonale (sotto c'è un 3), non è simmetrica ($0$ e $3$ sono diversi), non è antisimmetrica (la diagonale non è nulla).
+:::
 
-Lo spazio delle matrici quadrate $n \times n$ si indica con $M(n, \K)$, o più semplicemente $M(n)$. Le dispense indicano con
+### Le cinque classi sono sottospazi (p. 28)
 
-$$D(n), \qquad T^s(n), \qquad T^i(n), \qquad S(n), \qquad A(n)$$
+Le matrici quadrate $n \times n$ formano lo spazio $M(n, \K)$, o più brevemente $M(n)$. Le dispense danno un nome alle cinque classi:
 
-i sottoinsiemi formati, rispettivamente, dalle matrici diagonali, triangolari superiori, triangolari inferiori, simmetriche e antisimmetriche.
+- $D(n)$: le matrici diagonali;
+- $T^s(n)$: le triangolari superiori;
+- $T^i(n)$: le triangolari inferiori;
+- $S(n)$: le simmetriche;
+- $A(n)$: le antisimmetriche.
+
+Prima un esempio con i numeri. Sommo due matrici simmetriche e moltiplico un'antisimmetrica per un numero:
+
+> [!ESEMPIO] · la somma di due simmetriche è simmetrica
+> $$\begin{pmatrix} 1 & 2 \\ 2 & 3 \end{pmatrix} + \begin{pmatrix} 0 & -1 \\ -1 & 5 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 8 \end{pmatrix}, \qquad -3\begin{pmatrix} 0 & 4 \\ -4 & 0 \end{pmatrix} = \begin{pmatrix} 0 & -12 \\ 12 & 0 \end{pmatrix}.$$
+> La prima somma è ancora uguale allo specchio; il multiplo dell'antisimmetrica è ancora antisimmetrico.
+
+Le dispense dicono che succede sempre.
 
 > [!PROP] 6.5
 > I sottoinsiemi $D(n)$, $T^s(n)$, $T^i(n)$, $S(n)$, $A(n)$ sono tutti sottospazi vettoriali di $M(n)$.
 
-La spiegazione delle dispense: per ciascuno dei cinque sottoinsiemi basta verificare che la matrice nulla gli appartiene e che somma e prodotto per scalare preservano la proprietà che lo definisce. Eccola per esteso.
+**Come si legge.** Ognuna delle cinque classi è una stanza dentro lo spazio delle matrici quadrate: la matrice nulla ci sta, e sommando o moltiplicando per un numero matrici della classe si resta nella classe.
+
+La spiegazione delle dispense: per ciascuna classe la matrice nulla ne fa parte, e la somma e la moltiplicazione per un numero conservano la proprietà che la definisce. Eccola per esteso.
 
 **Le matrici simmetriche $S(n)$.**
-1. La matrice nulla è simmetrica: $0 = 0$ in ogni casella.
+1. La matrice nulla è simmetrica: in ogni casella c'è 0, uguale al suo specchio.
 2. Se $A$ e $B$ sono simmetriche, cioè $a_{ij} = a_{ji}$ e $b_{ij} = b_{ji}$, allora
    $$(A + B)_{ij} = a_{ij} + b_{ij} = a_{ji} + b_{ji} = (A + B)_{ji}.$$
-3. Se $A$ è simmetrica e $\lambda \in \K$, allora $(\lambda A)_{ij} = \lambda a_{ij} = \lambda a_{ji} = (\lambda A)_{ji}$.
+3. Se $A$ è simmetrica e $\lambda$ è un numero, allora $(\lambda A)_{ij} = \lambda a_{ij} = \lambda a_{ji} = (\lambda A)_{ji}$.
 
-**Le matrici antisimmetriche $A(n)$.** Stessi passaggi con il segno meno: $(A + B)_{ij} = a_{ij} + b_{ij} = -a_{ji} - b_{ji} = -(A + B)_{ji}$ e $(\lambda A)_{ij} = \lambda a_{ij} = -\lambda a_{ji} = -(\lambda A)_{ji}$.
+**Le matrici antisimmetriche $A(n)$.** Gli stessi passaggi con il segno meno: $(A + B)_{ij} = a_{ij} + b_{ij} = -a_{ji} - b_{ji} = -(A + B)_{ji}$ e $(\lambda A)_{ij} = \lambda a_{ij} = -\lambda a_{ji} = -(\lambda A)_{ji}$.
 
-**Le triangolari superiori $T^s(n)$.** Se $i > j$, allora $a_{ij} = 0$ e $b_{ij} = 0$, quindi $(A + B)_{ij} = 0 + 0 = 0$ e $(\lambda A)_{ij} = \lambda \cdot 0 = 0$: gli zeri sotto la diagonale restano zeri. Lo stesso per $T^i(n)$, con $i < j$, e per $D(n)$, con $i \neq j$.
-
-> [!ESEMPIO] · la somma di due simmetriche è simmetrica
-> $$\begin{pmatrix} 1 & 2 \\ 2 & 3 \end{pmatrix} + \begin{pmatrix} 0 & -1 \\ -1 & 5 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 8 \end{pmatrix}, \qquad -3\begin{pmatrix} 0 & 4 \\ -4 & 0 \end{pmatrix} = \begin{pmatrix} 0 & -12 \\ 12 & 0 \end{pmatrix}.$$
-> La prima somma è ancora speculare rispetto alla diagonale; il multiplo di un'antisimmetrica è ancora antisimmetrico.
+**Le triangolari superiori $T^s(n)$.** Sotto la diagonale le caselle di $A$ e di $B$ sono zero. Quindi anche quelle della somma, $0 + 0 = 0$, e quelle del multiplo, $\lambda \cdot 0 = 0$: gli zeri sotto la diagonale restano zeri. Lo stesso per $T^i(n)$, con gli zeri sopra, e per $D(n)$, con gli zeri fuori dalla diagonale.
 
 > [!NOTA] La trasposta, in anticipo
-> Nella spiegazione della Proposizione 6.5 le dispense scrivono ${}^t(A + B) = A + B$ e ${}^t(\lambda A) = \lambda A$. Il simbolo ${}^tA$ è la **trasposta** di $A$, che si ottiene scambiando righe e colonne: $({}^tA)_{ij} = a_{ji}$. La definisce la lezione L08. Con questa notazione, $A$ è simmetrica se e solo se ${}^tA = A$, e antisimmetrica se e solo se ${}^tA = -A$.
+> Nella spiegazione della Proposizione 6.5 le dispense scrivono ${}^t(A + B) = A + B$ e ${}^t(\lambda A) = \lambda A$. Il simbolo ${}^tA$ è la **trasposta** di $A$, che si ottiene scambiando righe e colonne: $({}^tA)_{ij} = a_{ji}$. La definisce la lezione L08. Con questa scrittura, $A$ è simmetrica esattamente quando ${}^tA = A$, e antisimmetrica esattamente quando ${}^tA = -A$.
 
 > [!TRAPPOLA] «Triangolari» non è un sottospazio
-> La Proposizione 6.5 parla di triangolari **superiori** e di triangolari **inferiori**, separatamente. L'insieme di tutte le matrici triangolari (superiori oppure inferiori) non è un sottospazio:
-> $$\begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix},$$
-> somma di una triangolare superiore e di una inferiore, non è triangolare. È di nuovo il problema dell'unione di due sottospazi.
+> La Proposizione 6.5 parla delle triangolari **superiori** e delle triangolari **inferiori**, separatamente. L'insieme di tutte le matrici triangolari, superiori oppure inferiori, non è un sottospazio:
+> $$\begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}.$$
+> È la somma di una triangolare superiore e di una inferiore, e non è triangolare. È di nuovo il problema dei due assi messi insieme.
+
+::: prova La somma di due matrici diagonali è diagonale? Fai un esempio.
+Sì. $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} -1 & 0 \\ 0 & 4 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 7 \end{pmatrix}$: fuori dalla diagonale, $0 + 0$ resta 0.
+:::
 
 > [!OLTRE] · relazioni tra le cinque classi
-> Il libro di Martelli (Esempio 2.2.13) nota che $D(n) = T^s(n) \cap T^i(n)$: una matrice è diagonale esattamente quando è triangolare sia superiore sia inferiore. E $S(n) \cap A(n) = \{0\}$: se $a_{ij} = a_{ji}$ e $a_{ij} = -a_{ji}$, allora $a_{ij} = -a_{ij}$, quindi $2a_{ij} = 0$ e $a_{ij} = 0$ (dividendo per $2$, come nella nota sopra: nel campo $\{0, 1\}$, dove $1 + 1 = 0$, simmetrico e antisimmetrico sono invece la stessa cosa).
+> Il libro di Martelli (Esempio 2.2.13) nota che $D(n) = T^s(n) \cap T^i(n)$: una matrice è diagonale esattamente quando è triangolare sia superiore sia inferiore. E $S(n) \cap A(n) = \{0\}$: se $a_{ij} = a_{ji}$ e $a_{ij} = -a_{ji}$, allora $a_{ij} = -a_{ij}$, quindi $2a_{ij} = 0$ e $a_{ij} = 0$ (dividendo per 2, come nella nota sopra: nel campo con i soli numeri 0 e 1, dove $1 + 1 = 0$, simmetrico e antisimmetrico sono invece la stessa cosa).
 
-## Combinazioni lineari (p. 28)
+> [!RICORDA]
+> - Diagonale: zeri fuori dalla diagonale. Triangolare superiore: zeri sotto. Triangolare inferiore: zeri sopra.
+> - Simmetrica: uguale allo specchio sulla diagonale. Antisimmetrica: opposta allo specchio, con la diagonale di zeri.
+> - Le cinque classi sono sottospazi; «triangolari» tutte insieme no.
 
-Con la somma e il prodotto per scalare si possono costruire nuovi vettori a partire da alcuni vettori dati: si moltiplica ciascuno per un numero e si sommano i risultati.
+## Ricette con i vettori: combinazioni lineari (p. 28)
+
+In cucina una ricetta dice quanto prendere di ogni ingrediente: «2 parti di farina e 3 parti di zucchero». Con i vettori si fa lo stesso: si prendono alcuni vettori, si moltiplica ciascuno per un numero, e si sommano i risultati.
+
+Un esempio nello spazio a tre coordinate. Gli ingredienti sono $(1, 0, 1)$ e $(0, 1, 1)$; la ricetta è «2 volte il primo, meno 1 volta il secondo»:
+
+$$2\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} - \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 - 0 \\ 0 - 1 \\ 2 - 1 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}.$$
+
+Il risultato si chiama **combinazione lineare** dei due vettori. Le dispense lo scrivono così.
 
 > [!DEF] Combinazione lineare (p. 28)
 > Sia $V$ uno spazio vettoriale e siano $v_1, \dots, v_k \in V$. Una **combinazione lineare** dei vettori $v_1, \dots, v_k$ è un vettore del tipo
 > $$v = \lambda_1 v_1 + \dots + \lambda_k v_k,$$
 > dove $\lambda_1, \dots, \lambda_k \in \K$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- I numeri $\lambda_1, \dots, \lambda_k$ si chiamano **coefficienti** della combinazione. Sono scalari qualsiasi: positivi, negativi, frazioni, anche zero.
-- «Lineare» vuol dire che si usano **solo** le due operazioni dello spazio vettoriale: nessun prodotto tra vettori, nessun quadrato.
-- Con tutti i coefficienti uguali a $0$ si ottiene sempre il vettore nullo; con $\lambda_i = 1$ e gli altri $0$ si ottiene $v_i$ stesso.
+- $v_1, \dots, v_k$ è un elenco di vettori: gli ingredienti. Il primo si chiama $v_1$, l'ultimo $v_k$, e $k$ è quanti sono.
+- $\lambda_1, \dots, \lambda_k$ sono numeri, uno per ingrediente: le dosi della ricetta. Si chiamano **coefficienti** della combinazione. Possono essere positivi, negativi, frazioni, anche zero.
+- «Lineare» vuol dire che si usano **solo** le due operazioni dello spazio vettoriale: somma e moltiplicazione per un numero. Niente prodotti tra vettori, niente quadrati.
+- Con tutte le dosi uguali a 0 viene il vettore zero. Con la dose di $v_1$ uguale a 1 e le altre 0 viene $v_1$ stesso.
 
 > [!ESEMPIO] · combinazioni in tre spazi diversi
-> - In $\R^3$: $2\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} - \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 - 0 \\ 0 - 1 \\ 2 - 1 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}$.
+> - Nello spazio: $2\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} - \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}$, il conto di prima.
 > - Tra i polinomi: $3(x^2 + 1) - 2(x - 1) = 3x^2 + 3 - 2x + 2 = 3x^2 - 2x + 5$.
 > - Tra le matrici: $a\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + b\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} a & b \\ b & a \end{pmatrix}$, che è la forma delle matrici dell'Esercizio 6.9.
 
-L'esempio delle dispense è in $\R^3$, con
+### Tutte le ricette di due vettori
+
+L'esempio delle dispense è nello spazio a tre coordinate, con due ingredienti:
 
 $$v_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \qquad v_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \qquad \lambda_1 v_1 + \lambda_2 v_2 = \begin{pmatrix} \lambda_1 \\ \lambda_2 \\ 0 \end{pmatrix}.$$
 
-Al variare di $\lambda_1$ e $\lambda_2$ si ottiene **precisamente** il piano $z = 0$. «Precisamente» vuol dire due cose:
+Cambiando le dosi si ottiene **esattamente** il piano «pavimento», quello con la terza coordinata zero. «Esattamente» vuol dire due cose:
 
-1. ogni combinazione ha la terza coordinata uguale a $0$, quindi sta nel piano $z = 0$;
-2. viceversa, ogni punto $(a, b, 0)$ del piano si ottiene, con $\lambda_1 = a$ e $\lambda_2 = b$.
+1. ogni ricetta ha la terza coordinata uguale a 0, quindi sta nel pavimento;
+2. al contrario, ogni punto del pavimento $(a, b, 0)$ si ottiene con una ricetta: dose $a$ del primo, dose $b$ del secondo.
 
-Nello strumento qui sotto $u$ e $v$ sono due vettori del piano e il punto giallo è la combinazione $\lambda u + \mu v$. Muovi i cursori $\lambda$ e $\mu$: con $u = (1, 2)$ e $v = (3, 1)$ il punto raggiunge qualsiasi posizione del piano. Poi trascina $v$ sulla retta di $u$, per esempio in $(2, 4)$: da quel momento le combinazioni restano sulla retta rossa, qualunque siano $\lambda$ e $\mu$.
+Nello strumento qui sotto $u$ e $v$ sono due vettori del piano e il punto giallo è la ricetta $\lambda u + \mu v$ ($\mu$ si legge «mi»). Muovi i cursori: con $u = (1, 2)$ e $v = (3, 1)$ il punto raggiunge qualsiasi posizione del piano. Poi trascina $v$ sulla retta di $u$, per esempio in $(2, 4)$: da quel momento le ricette restano sulla retta rossa, qualunque siano le dosi.
 
 ```widget vettori
 titolo: Le combinazioni lineari $\lambda u + \mu v$
@@ -22269,78 +23191,108 @@ lambda: 2
 mu: -1
 ```
 
-## Il sottospazio generato: Span (pp. 28–29)
+::: prova Quanto fa la combinazione $2(1, 0) + 3(0, 1)$? E $1 \cdot (1, 1) - 1 \cdot (0, 1)$?
+$2(1, 0) + 3(0, 1) = (2, 0) + (0, 3) = (2, 3)$.
 
-L'esempio del piano $z = 0$ suggerisce di guardare **tutte insieme** le combinazioni lineari di alcuni vettori.
+$(1, 1) - (0, 1) = (1, 0)$.
+:::
+
+> [!RICORDA]
+> - Una combinazione lineare è una ricetta: ogni vettore moltiplicato per una dose, poi tutto sommato.
+> - Le dosi sono numeri qualsiasi e si chiamano coefficienti.
+
+## Tutto quello che si può cucinare: lo Span (pp. 28–29)
+
+Nella sezione di prima, con due ingredienti si poteva cucinare tutto il pavimento, e niente fuori. Conviene dare un nome all'insieme di **tutte** le ricette possibili con certi ingredienti. Le dispense lo scrivono così.
 
 > [!DEF] 6.6 · Sottospazio generato
 > Sia $V$ uno spazio vettoriale e $v_1, \dots, v_k \in V$ dei vettori arbitrari. Il **sottospazio generato** da $v_1, \dots, v_k$ è il sottoinsieme di $V$ formato da tutte le loro combinazioni lineari e viene indicato con $\Span(v_1, \dots, v_k)$. In simboli:
 > $$\Span(v_1, \dots, v_k) = \{\lambda_1 v_1 + \dots + \lambda_k v_k \mid \lambda_1, \dots, \lambda_k \in \K\}.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- *Span* è una parola inglese: *to span* vuol dire, in questo contesto, «generare», «ricoprire».
-- È un **insieme**, e di solito infinito: contiene una combinazione per ogni scelta dei coefficienti.
-- Contiene i vettori di partenza (per $v_1$: $\lambda_1 = 1$ e gli altri coefficienti $0$) e il vettore nullo (tutti i coefficienti $0$).
-- La barretta $\mid$ si legge «al variare di»: $\lambda_1, \dots, \lambda_k$ prendono tutti i valori possibili in $\K$.
-- Si dice anche che $v_1, \dots, v_k$ **generano** $\Span(v_1, \dots, v_k)$, e che ne sono dei **generatori**.
+- *Span* è una parola inglese, «span» o «spen»: in questo senso vuol dire «generare», «coprire». È tutto quello che si può cucinare con quegli ingredienti.
+- È un **insieme**, e di solito infinito: c'è un risultato per ogni scelta delle dosi.
+- Contiene gli ingredienti stessi (dose 1 per uno, 0 per gli altri) e il vettore zero (tutte le dosi 0).
+- La barretta $\mid$ qui si legge «al variare di»: le dosi prendono tutti i valori possibili.
+- I vettori $v_1, \dots, v_k$ si chiamano **generatori** dello Span: si usa anche dire che lo **generano**.
 
-Il nome «sottospazio generato» anticipa un fatto da dimostrare: lo Span è davvero un sottospazio.
+Il nome «sottospazio generato» anticipa un fatto da controllare: lo Span è davvero un sottospazio.
 
 > [!PROP] 6.7
 > Il sottoinsieme $\Span(v_1, \dots, v_k)$ è un sottospazio vettoriale di $V$.
 
-Dimostrazione (dalle dispense, con le giustificazioni). Chiamiamo $W = \Span(v_1, \dots, v_k)$ e controlliamo i tre assiomi della Definizione 6.2.
+**Come si legge.** Tutto quello che si può cucinare con certi ingredienti forma sempre una stanza: sommando due piatti o moltiplicando un piatto per un numero si ottiene un altro piatto della stessa cucina.
 
-1. **$0 \in W$.** Con $\lambda_1 = \dots = \lambda_k = 0$ si ottiene $0v_1 + \dots + 0v_k = 0 + \dots + 0 = 0$, per la Proposizione 5.5. Quindi $0$ è una combinazione lineare dei $v_i$: sta in $W$.
-2. **Chiuso rispetto alla somma.** Se $v, w \in W$, per definizione si scrivono come combinazioni:
-   $$v = \lambda_1 v_1 + \dots + \lambda_k v_k, \qquad w = \mu_1 v_1 + \dots + \mu_k v_k.$$
-   Sommando e raccogliendo ogni $v_i$ (proprietà associativa e commutativa della somma e assioma 3):
-   $$v + w = (\lambda_1 + \mu_1)v_1 + \dots + (\lambda_k + \mu_k)v_k,$$
-   che è ancora una combinazione lineare dei $v_i$, con coefficienti $\lambda_i + \mu_i$. Quindi $v + w \in W$.
-3. **Chiuso rispetto al prodotto per scalare.** Se $v \in W$ e $\lambda \in \K$, per gli assiomi 2 e 4:
-   $$\lambda v = \lambda(\lambda_1 v_1 + \dots + \lambda_k v_k) = (\lambda\lambda_1)v_1 + \dots + (\lambda\lambda_k)v_k \in W. \qquad \square$$
+Il motivo, a parole: sommare due ricette dà ancora una ricetta, con le dosi sommate; moltiplicare una ricetta per un numero dà ancora una ricetta, con tutte le dosi moltiplicate.
+
+> [!DIM] della Proposizione 6.7
+> Dalle dispense, con le giustificazioni. Chiamiamo $W$ lo Span e controlliamo i tre assiomi della Definizione 6.2.
+> 1. **Lo zero.** Con tutte le dosi uguali a 0 si ottiene $0v_1 + \dots + 0v_k = 0 + \dots + 0 = 0$, per la Proposizione 5.5. Quindi lo zero è una ricetta: sta in $W$.
+> 2. **La somma.** Se $v$ e $w$ stanno in $W$, sono due ricette:
+>    $$v = \lambda_1 v_1 + \dots + \lambda_k v_k, \qquad w = \mu_1 v_1 + \dots + \mu_k v_k.$$
+>    Sommo e metto insieme i pezzi con lo stesso ingrediente (proprietà associativa e commutativa della somma e assioma 3):
+>    $$v + w = (\lambda_1 + \mu_1)v_1 + \dots + (\lambda_k + \mu_k)v_k.$$
+>    È ancora una ricetta, con le dosi sommate. Quindi $v + w$ sta in $W$.
+> 3. **I multipli.** Se $v$ sta in $W$ e $\lambda$ è un numero, per gli assiomi 2 e 4:
+>    $$\lambda v = \lambda(\lambda_1 v_1 + \dots + \lambda_k v_k) = (\lambda\lambda_1)v_1 + \dots + (\lambda\lambda_k)v_k.$$
+>    È una ricetta con tutte le dosi moltiplicate per $\lambda$: sta in $W$. $\square$
+
+### Lo Span di un solo vettore
+
+Con un solo ingrediente le ricette sono solo i suoi multipli. Le dispense fanno l'esempio nel piano.
 
 > [!ESEMPIO] 6.8 · Lo Span di un solo vettore
 > Se $v$ è un singolo vettore, allora $\Span(v) = \{\lambda v \mid \lambda \in \K\}$: sono tutti i multipli di $v$. Per esempio, in $\R^2$,
 > $$\Span\begin{pmatrix} 1 \\ 2 \end{pmatrix} = \left\{ \begin{pmatrix} t \\ 2t \end{pmatrix} \;\middle|\; t \in \R \right\},$$
 > che è la retta $y = 2x$.
 
-Perché proprio la retta $y = 2x$? Un punto $(x, y)$ sta nello Span se esiste $t$ con $x = t$ e $y = 2t$. La prima equazione dice $t = x$; sostituendo nella seconda, $y = 2x$. Viceversa, se $y = 2x$, basta prendere $t = x$. È la retta dei multipli di $(1, 2)$ disegnata nella lezione L05.
+Perché proprio la retta $y = 2x$? I multipli di $(1, 2)$ sono $(1, 2)$, $(2, 4)$, $(-1, -2)$, $(0{,}5;\ 1)$… In tutti la seconda coordinata è il doppio della prima. E al contrario, un punto con la seconda coordinata doppia della prima, come $(3, 6)$, è il multiplo $3 \cdot (1, 2)$. È la retta dei multipli di $(1, 2)$ disegnata nella lezione L05.
 
-Che forma può avere uno Span nel piano e nello spazio? Una tabella per orientarsi (il perché preciso arriva con la dimensione, nella lezione L07):
+Che forma può avere uno Span nel piano e nello spazio? Una tabella per orientarsi; il perché preciso arriva con la dimensione, nella lezione L07.
 
-| Generatori | Span in $\R^2$ | Span in $\R^3$ |
+| Ingredienti | Span nel piano | Span nello spazio |
 |---|---|---|
-| solo il vettore nullo | $\{0\}$ | $\{0\}$ |
-| un vettore $v \neq 0$ | la retta per l'origine con la direzione di $v$ | la retta per l'origine con la direzione di $v$ |
-| due vettori non multipli uno dell'altro | tutto $\R^2$ | il piano per l'origine che li contiene |
-| due vettori multipli uno dell'altro (non entrambi nulli) | una retta | una retta |
+| solo il vettore zero | solo lo zero | solo lo zero |
+| un vettore diverso da zero | la retta per l'origine nella sua direzione | la retta per l'origine nella sua direzione |
+| due vettori che non sono uno multiplo dell'altro | tutto il piano | il piano per l'origine che li contiene |
+| due vettori uno multiplo dell'altro (non tutti e due zero) | una retta | una retta |
 
-> [!TRAPPOLA] $\Span(v_1, v_2)$ non è $\{v_1, v_2\}$
-> $\{v_1, v_2\}$ è un insieme con **due** elementi; $\Span(v_1, v_2)$ contiene **tutte** le combinazioni, infinite se i vettori non sono nulli. E generatori diversi possono dare lo stesso Span: $\Span\big((1, 2)\big) = \Span\big((2, 4)\big) = \Span\big((-1, -2)\big)$, sempre la retta $y = 2x$.
+> [!TRAPPOLA] Lo Span di due vettori non è l'insieme dei due vettori
+> L'insieme $\{v_1, v_2\}$ ha **due** elementi. $\Span(v_1, v_2)$ contiene **tutte** le ricette: infinite, se i vettori non sono zero. E ingredienti diversi possono dare lo stesso Span: $\Span\big((1, 2)\big) = \Span\big((2, 4)\big) = \Span\big((-1, -2)\big)$, sempre la retta $y = 2x$.
+
+::: prova Il vettore $(4, 6)$ sta in $\Span\big((2, 3)\big)$? E il vettore $(4, 5)$?
+$(4, 6) = 2 \cdot (2, 3)$: sì, è un multiplo.
+
+Per $(4, 5)$ servirebbe una dose $t$ con $2t = 4$ e $3t = 5$. La prima dà $t = 2$, ma allora $3t = 6$, non 5: no.
+:::
 
 > [!OLTRE] · lo Span è il più piccolo sottospazio che contiene i vettori
-> Se un sottospazio $U$ contiene $v_1, \dots, v_k$, contiene anche tutti i loro multipli (assioma 3) e tutte le somme di multipli (assioma 2): quindi $\Span(v_1, \dots, v_k) \subset U$. Conseguenza pratica, utilissima nei quiz: **per mostrare che $\Span(v_1, \dots, v_k) \subset U$ basta controllare che ogni $v_i$ stia in $U$**. Per mostrare l'uguaglianza serve anche il contrario: ogni vettore di $U$ è una combinazione dei $v_i$.
+> Se un sottospazio $U$ contiene $v_1, \dots, v_k$, contiene anche tutti i loro multipli (assioma 3) e tutte le somme di multipli (assioma 2): quindi tutto $\Span(v_1, \dots, v_k)$ sta dentro $U$. Conseguenza pratica, utilissima nei quiz: **per mostrare che uno Span sta dentro un sottospazio basta controllare che ci stiano gli ingredienti**. Per mostrare che sono uguali serve anche il contrario: ogni vettore del sottospazio è una ricetta con quegli ingredienti.
 
 ### Un vettore sta nello Span? (pp. 29–30)
 
-È la domanda dell'Esercizio 6.10, e una delle più frequenti di tutto il corso.
-
-> [!METODO] · $u \in \Span(v_1, \dots, v_k)$?
-> 1. Scrivi l'incognita: cerchi dei coefficienti $\lambda_1, \dots, \lambda_k$ con $\lambda_1 v_1 + \dots + \lambda_k v_k = u$.
-> 2. Calcola la combinazione e uguaglia coordinata per coordinata (o coefficiente per coefficiente, per i polinomi): ottieni un **sistema lineare** nelle incognite $\lambda_i$.
-> 3. Risolvi il sistema. Per ora con sostituzioni; dalla lezione L11 con il metodo di Gauss.
-> 4. Se il sistema ha una soluzione, $u$ sta nello Span, e i $\lambda_i$ trovati lo dimostrano: sostituiscili e controlla. Se il sistema porta a una contraddizione, come $3 = 4$, $u$ non sta nello Span.
+È la domanda dell'Esercizio 6.10, e una delle più frequenti di tutto il corso: si può cucinare questo piatto con questi ingredienti? Si cercano le dosi.
 
 > [!ESEMPIO] · un polinomio nello Span di altri due
-> Il polinomio $x^2 + 2x + 3$ sta in $\Span(x^2 + 1,\ x + 1)$? Cerchiamo $a, b$ con
+> Il polinomio $x^2 + 2x + 3$ sta in $\Span(x^2 + 1,\ x + 1)$? Cerchiamo due dosi $a$ e $b$ con
 > $$a(x^2 + 1) + b(x + 1) = ax^2 + bx + (a + b) = x^2 + 2x + 3.$$
-> Uguagliando i coefficienti: $a = 1$ (di $x^2$), $b = 2$ (di $x$), $a + b = 3$ (termine noto). Le prime due danno $a = 1$ e $b = 2$, e la terza è soddisfatta: $1 + 2 = 3$. Quindi sì: $x^2 + 2x + 3 = (x^2 + 1) + 2(x + 1)$.
+> Due polinomi sono uguali quando hanno gli stessi numeri davanti a ogni potenza. Quindi:
+> 1. davanti a $x^2$: $a = 1$;
+> 2. davanti a $x$: $b = 2$;
+> 3. il termine noto: $a + b = 3$.
 >
-> Con $x^2 + 2x + 4$ invece la terza equazione diventerebbe $1 + 2 = 4$, falsa: quel polinomio **non** sta nello Span.
+> Le prime due danno $a = 1$ e $b = 2$, e la terza è vera: $1 + 2 = 3$. Quindi sì: $x^2 + 2x + 3 = (x^2 + 1) + 2(x + 1)$.
+>
+> Con $x^2 + 2x + 4$ invece la terza condizione diventerebbe $1 + 2 = 4$, falsa: quel polinomio **non** sta nello Span.
 
-Per i sistemi più grandi lo strumento qui sotto fa i passaggi di Gauss al posto tuo (il metodo si impara nella lezione L11). Scrivi nelle colonne i vettori $v_1, \dots, v_k$ e, nell'ultima colonna, il vettore $u$ da provare. La matrice già inserita è quella dell'Esercizio 6.10 con $u = (1, 2, 3)$: lo strumento trova una sola soluzione, $x_1 = 1$ e $x_2 = 2$ (chiama $x_1, x_2$ quelli che qui sono $\lambda_1, \lambda_2$). Poi cambia l'ultimo numero da $3$ a $4$, cioè prova $w = (1, 2, 4)$, e premi «Calcola»: nessuna soluzione.
+> [!METODO] · «Il vettore sta nello Span?»
+> 1. Chiama con delle lettere le dosi che cerchi, una per ingrediente.
+> 2. Scrivi la ricetta con le lettere e mettila uguale al vettore dato, coordinata per coordinata (o potenza per potenza, per i polinomi): ottieni un **sistema lineare** nelle dosi.
+> 3. Risolvi il sistema. Per ora con le sostituzioni; dalla lezione L11 con il metodo di Gauss.
+> 4. Se trovi le dosi, il vettore sta nello Span: rimettile nella ricetta e controlla. Se arrivi a una cosa impossibile, come $3 = 4$, il vettore non sta nello Span.
+
+Per i sistemi più grandi lo strumento qui sotto fa i passaggi di Gauss al posto tuo (il metodo si impara nella lezione L11). Scrivi nelle colonne gli ingredienti e, nell'ultima colonna, il vettore da provare. La matrice già inserita è quella dell'Esercizio 6.10 con il vettore $(1, 2, 3)$: lo strumento trova una sola soluzione, $x_1 = 1$ e $x_2 = 2$ (sono le due dosi). Poi cambia l'ultimo numero da 3 a 4, cioè prova il vettore $(1, 2, 4)$, e premi «Calcola»: nessuna soluzione.
 
 ```widget gauss
 titolo: Il vettore dell'ultima colonna sta nello Span delle altre colonne?
@@ -22353,60 +23305,109 @@ modi: sistema
 > Il libro di Martelli (§2.2.11) dà un nome ai due modi di descrivere un sottospazio di $\K^n$. In **forma parametrica** lo si descrive come Span di alcuni vettori: $\Span((1, 0, 1), (0, 1, 1)) = \{(s, t, s + t) \mid s, t \in \R\}$. In **forma cartesiana** lo si descrive con equazioni lineari omogenee: lo stesso insieme è il piano $z = x + y$. Nell'Esercizio 6.10 si passa dalla prima alla seconda. I due modi torneranno per rette e piani nelle lezioni L22–L24.
 
 > [!OLTRE] · dove trovarlo nel libro
-> Nel libro di Martelli: le matrici e lo spazio $M(m, n, \K)$ nel **§2.2.5** (pp. 49–50); sottospazi, sottospazio banale e totale nei **§2.2.6–2.2.7** (pp. 50–51); sistemi omogenei nel **§2.2.8** (pp. 51–52); combinazioni lineari e Span nei **§2.2.9–2.2.10** (pp. 52–54, Proposizione 2.2.4 = Proposizione 6.7); forma cartesiana e parametrica e polinomi con restrizioni nei **§2.2.11–2.2.12** (pp. 54–55); matrici diagonali, triangolari, simmetriche e antisimmetriche nel **§2.2.14** (pp. 56–57, Proposizione 2.2.10 = Proposizione 6.5); intersezione e unione nei **§2.2.15–2.2.16** (pp. 57–58).
+> Nel libro di Martelli: le matrici e lo spazio $M(m, n, \K)$ nel **§2.2.5** (pp. 49–50); sottospazi, sottospazio «banale» e totale nei **§2.2.6–2.2.7** (pp. 50–51); sistemi omogenei nel **§2.2.8** (pp. 51–52); combinazioni lineari e Span nei **§2.2.9–2.2.10** (pp. 52–54, Proposizione 2.2.4 = Proposizione 6.7); forma cartesiana e parametrica e polinomi con restrizioni nei **§2.2.11–2.2.12** (pp. 54–55); matrici diagonali, triangolari, simmetriche e antisimmetriche nel **§2.2.14** (pp. 56–57, Proposizione 2.2.10 = Proposizione 6.5); intersezione e unione nei **§2.2.15–2.2.16** (pp. 57–58).
+
+> [!RICORDA]
+> - Lo Span di alcuni vettori è l'insieme di tutte le loro combinazioni lineari: tutto quello che si può cucinare.
+> - Lo Span è sempre un sottospazio. Lo Span di un vettore diverso da zero è la retta dei suoi multipli.
+> - Per sapere se un vettore sta nello Span si cercano le dosi: è un sistema lineare.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\K$ | «kappa» | i numeri usati: reali $\R$ oppure complessi $\C$ | $\K = \R$ |
+| $m \times n$ | «emme per enne» | la forma di una matrice: $m$ righe, $n$ colonne | $\begin{pmatrix} 1 & 2 & 3 \end{pmatrix}$ è $1 \times 3$ |
+| $a_{ij}$ | «a i j» | il numero nella riga $i$ e nella colonna $j$ | in $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$, $a_{21} = 3$ |
+| $A_i$, $A^j$ | «a con i in basso», «a con j in alto» | la riga $i$ e la colonna $j$ | $A_1 = (1, 2)$ |
+| $M(m, n, \K)$, $M(n)$ | «emme di emme enne» | lo spazio delle matrici $m \times n$; delle quadrate $n \times n$ | $M(2)$ |
+| $D(n)$, $T^s(n)$, $T^i(n)$ | «di», «ti esse», «ti i» | diagonali, triangolari superiori, triangolari inferiori | $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix} \in D(2)$ |
+| $S(n)$, $A(n)$ | «esse», «a» | simmetriche, antisimmetriche | $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \in A(2)$ |
+| ${}^tA$ | «a trasposta» | righe e colonne scambiate (lezione L08) | ${}^t\begin{pmatrix} 1 & 2 \end{pmatrix} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$ |
+| $W \subset V$ | «W contenuto in V» | $W$ è una parte di $V$ | $\{0\} \subset V$ |
+| $v \in W$ | «v appartiene a W» | $v$ è uno dei vettori di $W$ | $(1, 2) \in \Span((1, 2))$ |
+| $\{0\}$ | «l'insieme con solo lo zero» | il sottospazio banale | |
+| $\forall$ | «per ogni» | vale per tutti i valori | $a_{ij} = 0\ \forall i \neq j$ |
+| $\lambda$, $\mu$ | «lambda», «mi» | numeri, di solito le dosi di una ricetta | $\lambda u + \mu v$ |
+| $v_1, \dots, v_k$ | «v uno, …, v kappa» | un elenco di $k$ vettori | |
+| $\Span(v_1, \dots, v_k)$ | «span di v uno, …, v kappa» | tutte le combinazioni lineari dei vettori | $\Span((1, 2))$ è la retta $y = 2x$ |
+| $\{\ldots \mid \ldots\}$ | «l'insieme di … per cui …» | un insieme descritto con una condizione | $\{(x, y) \mid y = 2x\}$ |
 
 ## Verso l'esame
 
-La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipla con 5 risposte (servono almeno 6 punti per far correggere i 2 problemi da 11 punti), dura 2 ore, senza calcolatrice e con solo 4 facciate scritte a mano; gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
+La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipla con 5 risposte, e 2 problemi da 11 punti. I problemi si correggono solo con almeno 6 punti nel quiz. Dura 2 ore, senza calcolatrice e con solo 4 facciate scritte a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
 **Che cosa di questa lezione serve all'esame**
 
-1. **«È un sottospazio?»** È la domanda più frequente di questa parte del corso: appelli dell'08/02/2024 (domanda 2), del 10/07/2024 (domanda 2, l'insieme $O(2)$ delle matrici ortogonali, che non contiene la matrice nulla), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 6). Due esempi, con la soluzione.
+1. **«È un sottospazio?»** È la domanda più frequente di questa parte del corso. È uscita negli appelli dell'08/02/2024 (domanda 2), del 03/06/2025 (domanda 2), del 05/02/2026 (domanda 2) e del 07/09/2026 (domanda 6). Nell'appello del 10/07/2024 (domanda 2) riguardava l'insieme $O(2)$ delle matrici ortogonali, che non contiene la matrice nulla.
+2. **«Questo sottospazio è lo Span di…».** Un'altra domanda ricorrente chiede quale Span è uguale a un sottospazio di polinomi (24/01/2024, domanda 1; 15/01/2026, domanda 7).
+3. **Le matrici speciali.** Nelle domande sulla dimensione compaiono $T^s(3)$ (24/01/2024, domanda 5) e $S(3)$ (15/01/2026, domanda 4): la dimensione si calcola nella lezione L07, ma che siano sottospazi è la Proposizione 6.5. L'appello dell'08/02/2024 (domanda 6) chiede per quali matrici $A + {}^tA = 0$: sono le antisimmetriche.
+4. **Lo Span nei problemi.** Nei problemi da 11 punti lo Span serve per scrivere rette e piani: «calcolare la retta $r = \pi_1 \cap \pi_2$ in forma $r = P + \Span(v)$» (24/01/2024, problema 12). Lo vedrai nelle lezioni L22–L24.
 
-> [!ESAME] Appello dell'08/02/2024, domanda 2
-> **Testo.** Quale dei seguenti insiemi **non** è un sottospazio di $\R_2[x]$? (a) $\{p(x) \in \R_2[x] \mid p(0) = 0\}$; (b) $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$; (c) $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 0\}$; (d) $\{(1 + t)x^2 + tx \mid t \in \R\}$; (e) $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$.
+### Una domanda vera, letta insieme
+
+**Appello dell'08/02/2024, domanda 2.** Il testo: «Quale dei seguenti insiemi **non** è un sottospazio di $\R_2[x]$? (a) $\{p(x) \in \R_2[x] \mid p(0) = 0\}$; (b) $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$; (c) $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 0\}$; (d) $\{(1 + t)x^2 + tx \mid t \in \R\}$; (e) $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$».
+
+**In pratica chiede:** tra cinque gruppi di polinomi di grado al massimo 2, quale non è una stanza? Si parte dal controllo più veloce: c'è il polinomio zero?
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: (a) ed (e).** Sono i polinomi che fanno zero in certi numeri. Il polinomio zero fa zero dappertutto, quindi c'è. E sommando o moltiplicando polinomi che fanno zero in un numero, si ottiene ancora zero in quel numero. Sono sottospazi.
 >
-> **Soluzione.** È la (d). Per avere il polinomio nullo servirebbero $1 + t = 0$ e $t = 0$ insieme, cioè $t = -1$ e $t = 0$: impossibile. Quindi il polinomio nullo non c'è. Le altre sono sottospazi: (a) ed (e) sono polinomi che si annullano in certi punti; (b) si riscrive $t(x^2 - x) + s(x^2 - 1)$, quindi è $\Span(x^2 - x,\ x^2 - 1)$; (c) è definito da equazioni lineari omogenee nei coefficienti ($a - 2c = 0$, $b = 0$).
+> **Passo 2: (b).** Metto insieme i pezzi con $t$ e quelli con $s$: $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$. Sono tutte le ricette con gli ingredienti $x^2 - x$ e $x^2 - 1$: è uno Span, quindi è un sottospazio.
+>
+> **Passo 3: (c).** Le condizioni $a = 2c$ e $b = 0$ sono equazioni senza termine noto. Il polinomio zero ($a = b = c = 0$) le rispetta; somme e multipli anche. Sottospazio.
+>
+> **Passo 4: (d).** Per avere il polinomio zero servirebbe che il numero davanti a $x^2$ sia 0, cioè $1 + t = 0$, e che il numero davanti a $x$ sia 0, cioè $t = 0$. Ma $t$ non può essere insieme $-1$ e 0. Il polinomio zero manca.
+>
+> **La risposta** è la (d).
+
+### Altre due domande vere
 
 > [!ESAME] Appello del 03/06/2025, domanda 2
 > **Testo.** Quale dei seguenti insiemi di punti $(x, y, z) \in \R^3$ è un sottospazio vettoriale di $\R^3$? (a) $x^2 - 2x + 1 = 0$; (b) $x + 2yz + 3z = 7$; (c) $-x + 7y + z = 5$; (d) $x + \frac y2 - 5\pi z = 0$; (e) $x + 3iy + 5z = 0$.
 >
-> **Soluzione.** È la (d): un'equazione lineare omogenea a coefficienti reali. Le altre: in (a) l'equazione è $(x - 1)^2 = 0$, cioè $x = 1$, e l'origine non la soddisfa; (b) e (c) hanno termine noto diverso da zero, quindi l'origine non c'è (in (b) c'è anche il prodotto $yz$). La (e) ha un coefficiente non reale e la soluzione ufficiale la scarta perché «non è definita sui numeri reali». A rigore, per un vettore reale l'equazione chiede che si annullino separatamente la parte reale e quella immaginaria, $x + 5z = 0$ e $3y = 0$, e l'insieme risultante è una retta per l'origine; ma l'intenzione della domanda è chiara, e la risposta attesa è la (d).
-
-2. **«$U = \Span(\dots)$».** Un'altra domanda ricorrente chiede quale Span è uguale a un sottospazio di polinomi (24/01/2024, domanda 1; 15/01/2026, domanda 7).
+> **In pratica chiede:** quale di queste equazioni descrive una stanza dello spazio?
+>
+> **Soluzione.** È la (d): un'equazione con le lettere solo alla prima potenza, numeri reali e niente termine noto. Le altre:
+> - in (a) l'equazione è $(x - 1)^2 = 0$, cioè $x = 1$, e l'origine non la rispetta;
+> - (b) e (c) hanno un termine noto diverso da zero, quindi l'origine non c'è (in (b) c'è anche il prodotto $yz$);
+> - la (e) ha un numero non reale, e la soluzione ufficiale la scarta perché «non è definita sui numeri reali». A rigore, per un punto con coordinate reali l'equazione chiede che si annullino separatamente la parte reale e quella immaginaria: $x + 5z = 0$ e $3y = 0$. L'insieme che ne esce è una retta per l'origine. Ma l'intenzione della domanda è chiara, e la risposta attesa è la (d).
 
 > [!ESAME] Appello del 24/01/2024, domanda 1
-> **Testo.** Siano $a(x) = x - 1$, $b(x) = x + 2$, $c(x) = 2x^2 - 2$, $d(x) = x^2 - x$, $e(x) = 2x^3 + 1$, $f(x) = x^3 - x^2$ in $\R_3[x]$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale: (a) $U = \Span(a, c)$; (b) $U = \Span(a, c, f)$; (c) $U = \Span(c, d, e, f)$; (d) $U = \Span(b, e, f)$; (e) $U = \Span(a, c, d)$.
+> **Testo.** Siano dati in $\R_3[x]$ i polinomi
+> $$a(x) = x - 1, \quad b(x) = x + 2, \quad c(x) = 2x^2 - 2, \quad d(x) = x^2 - x, \quad e(x) = 2x^3 + 1, \quad f(x) = x^3 - x^2,$$
+> e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale: (a) $U = \Span(a, c)$; (b) $U = \Span(a, c, f)$; (c) $U = \Span(c, d, e, f)$; (d) $U = \Span(b, e, f)$; (e) $U = \Span(a, c, d)$.
+>
+> **In pratica chiede:** $U$ sono i polinomi di grado al massimo 3 che fanno zero in 1. Con quali ingredienti si cucina esattamente $U$?
 >
 > **Soluzione.** È la (b), e la si può dimostrare con gli strumenti di questa lezione.
-> - Scarta (c) e (d): $e(1) = 3 \neq 0$ e $b(1) = 3 \neq 0$, quindi $e, b \notin U$ e quegli Span escono da $U$.
-> - Scarta (a) ed (e): i loro generatori hanno grado $\le 2$, quindi ogni loro combinazione ha grado $\le 2$; ma $U$ contiene $x^3 - 1$, di grado $3$.
-> - Conferma (b). Da un lato $a(1) = c(1) = f(1) = 0$, quindi $\Span(a, c, f) \subset U$ (riquadro sullo Span più piccolo). Dall'altro, se $p(1) = 0$ allora $p(x) = (x - 1)q(x)$ con $q$ di grado $\le 2$ (lezione L04), quindi $p$ è una combinazione di $x - 1$, $x(x - 1) = x^2 - x$ e $x^2(x - 1) = x^3 - x^2$. E questi tre sono combinazioni di $a$, $c$, $f$: $x - 1 = a$, $x^2 - x = \frac 12 c - a$, $x^3 - x^2 = f$. Quindi $U \subset \Span(a, c, f)$.
+> - Scarto (c) e (d): $e(1) = 3$ e $b(1) = 3$, non zero. Quindi $e$ e $b$ non stanno in $U$, e quegli Span escono da $U$.
+> - Scarto (a) ed (e): i loro ingredienti hanno grado al massimo 2, quindi ogni ricetta ha grado al massimo 2. Ma $U$ contiene $x^3 - 1$, di grado 3.
+> - Confermo (b). Da un lato $a(1) = c(1) = f(1) = 0$, quindi lo Span di $a$, $c$, $f$ sta dentro $U$ (riquadro sullo Span più piccolo). Dall'altro, se $p(1) = 0$ allora $p(x) = (x - 1)q(x)$ con $q$ di grado al massimo 2 (lezione L04). Quindi $p$ è una ricetta con $x - 1$, $x(x - 1) = x^2 - x$ e $x^2(x - 1) = x^3 - x^2$. E questi tre si cucinano con $a$, $c$, $f$: $x - 1 = a$, $x^2 - x = \frac 12 c - a$, $x^3 - x^2 = f$.
 
-3. **Le matrici speciali.** Nelle domande sulla dimensione compaiono $T^s(3)$ (24/01/2024, domanda 5) e $S(3)$ (15/01/2026, domanda 4): la dimensione si calcola nella lezione L07, ma che siano sottospazi è la Proposizione 6.5. L'appello dell'08/02/2024 (domanda 6) chiede per quali matrici $A + {}^tA = 0$: sono le antisimmetriche.
-4. **Lo Span nei problemi.** Nei problemi da 11 punti lo Span serve per scrivere rette e piani: «calcolare la retta $r = \pi_1 \cap \pi_2$ in forma $r = P + \Span(v)$» (24/01/2024, problema 12). Lo vedrai nelle lezioni L22–L24.
+### I segnali da riconoscere
 
 > [!METODO] · «È un sottospazio?»: i segnali da riconoscere
 > | Se l'insieme è descritto da… | allora… |
 > |---|---|
-> | equazioni lineari **omogenee** nelle coordinate o nei coefficienti ($x - 2y = 0$, $a = 2c$, $p(1) = 0$, $p(1) = p(2)$) | è un sottospazio |
+> | equazioni lineari **senza termine noto** nelle coordinate o nei coefficienti ($x - 2y = 0$, $a = 2c$, $p(1) = 0$, $p(1) = p(2)$) | è un sottospazio |
 > | un'equazione con termine noto diverso da zero ($x + y = 1$, $p(0) = 1$, $a_{11} = 1$) | non contiene lo zero: **no** |
 > | disuguaglianze ($x \ge 0$, $b > 0$) | quasi sempre no: prova a moltiplicare per $-1$ |
-> | prodotti o potenze delle incognite ($xy = 0$, $x = y^2$) | quasi sempre no: prova una somma o un multiplo |
-> | un parametro con un pezzo fisso, come $\{(1 + t)x^2 + tx\}$ | quasi sempre no: con nessun $t$ si ottiene lo zero |
+> | prodotti o potenze delle lettere ($xy = 0$, $x = y^2$) | quasi sempre no: prova una somma o un multiplo |
+> | una lettera con un pezzo fisso, come $\{(1 + t)x^2 + tx\}$ | quasi sempre no: con nessun valore della lettera si ottiene lo zero |
 > | uno Span, o «tutte le combinazioni di…» | sì, sempre (Proposizione 6.7) |
 >
-> Per rispondere **no** scrivi un controesempio concreto; per rispondere **sì**, riscrivi l'insieme come Span oppure controlla i tre assiomi con vettori generici.
+> Per rispondere **no** scrivi un esempio concreto che non funziona. Per rispondere **sì**, riscrivi l'insieme come Span oppure fai i tre controlli con vettori qualsiasi.
 
 > [!TRAPPOLA] Gli errori più comuni
 > - Controllare solo lo zero: il primo quadrante contiene lo zero ma non è un sottospazio.
-> - Dimenticare gli scalari negativi nel controllo dell'assioma 3.
-> - Pensare che «triangolari» (superiori oppure inferiori) sia un sottospazio: lo sono $T^s(n)$ e $T^i(n)$ separatamente.
-> - Confondere $\Span(v_1, v_2)$ con l'insieme $\{v_1, v_2\}$.
-> - Nel controllo «$u \in \Span$?» fermarsi alle prime equazioni senza verificare anche l'ultima.
+> - Dimenticare i numeri negativi nel controllo dei multipli.
+> - Pensare che «triangolari» (superiori oppure inferiori) sia un sottospazio: lo sono le superiori e le inferiori separatamente.
+> - Confondere lo Span di due vettori con l'insieme dei due vettori.
+> - Nel controllo «sta nello Span?» fermarsi alle prime condizioni senza controllare anche l'ultima.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: i tre assiomi di sottospazio; la tabella dei segnali «sì / no»; le forme generali $3 \times 3$ delle cinque classi di matrici; la definizione di $\Span$ e il metodo «$u \in \Span$?».
+> Da questa lezione: i tre assiomi di sottospazio; la tabella dei segnali «sì / no»; le forme $3 \times 3$ delle cinque classi di matrici; la definizione di Span e il metodo «il vettore sta nello Span?».
 
 ## Quiz
 
@@ -22417,7 +23418,7 @@ D: Quale di questi insiemi **non** è un sottospazio di $\R_2[x]$?
 - $\Span(x,\ x^2 + 1)$
 + $\{x^2 + t \mid t \in \R\}$
 - $\{ax^2 + bx + c \mid a = b = c\}$
-= Nessun polinomio della forma $x^2 + t$ è nullo, perché il coefficiente di $x^2$ è sempre $1$: manca lo zero. Gli altri sono sottospazi: $p(2) = 0$ e $p(0) - p(1) = 0$ sono condizioni lineari omogenee, uno Span lo è sempre, e $\{a = b = c\}$ è $\Span(x^2 + x + 1)$. Simile agli appelli dell'08/02/2024 e del 05/02/2026 (domanda 2).
+= La domanda cerca l'insieme che non è una stanza, e il controllo più veloce è lo zero. Nei polinomi $x^2 + t$ il numero davanti a $x^2$ è sempre 1, quindi nessuno di loro è il polinomio zero: è la risposta. Gli altri sono sottospazi: «$p(2) = 0$» e «$p(0) = p(1)$» sono condizioni senza termine noto, uno Span è sempre un sottospazio, e i polinomi con $a = b = c$ sono i multipli di $x^2 + x + 1$, cioè uno Span. La risposta più insidiosa è $\{p(0) = p(1)\}$, che sembra strana; ma riscritta diventa $p(0) - p(1) = 0$, senza termine noto. Simile agli appelli dell'08/02/2024 e del 05/02/2026 (domanda 2).
 
 D: Quale di questi insiemi è un sottospazio vettoriale di $\R^3$?
 + $\{(x, y, z) \mid x - 2y + 3z = 0\}$
@@ -22425,7 +23426,7 @@ D: Quale di questi insiemi è un sottospazio vettoriale di $\R^3$?
 - $\{(x, y, z) \mid xyz = 0\}$
 - $\{(x, y, z) \mid x \ge 0\}$
 - $\{(x, y, z) \mid x = y^2\}$
-= È un'equazione lineare omogenea: se due vettori la soddisfano, la soddisfano anche la somma e i multipli. Controesempi per gli altri: l'origine non soddisfa $x + y + z = 1$; $(1, 1, 0) + (0, 0, 1) = (1, 1, 1)$ ha $xyz = 1$; $(-1)(1, 0, 0)$ ha $x < 0$; $(1, 1, 0)$ soddisfa $x = y^2$ ma $2 \cdot (1, 1, 0) = (2, 2, 0)$ no, perché $2 \neq 4$. Simile all'appello del 03/06/2025, domanda 2.
+= La prima è un'equazione con le lettere alla prima potenza e senza termine noto: se due punti la rispettano, la rispettano anche la somma e i multipli. Per le altre basta un esempio che non funziona: l'origine non rispetta $x + y + z = 1$; $(1, 1, 0)$ e $(0, 0, 1)$ hanno prodotto delle coordinate zero, ma la loro somma $(1, 1, 1)$ no; $(1, 0, 0)$ ha $x \ge 0$, ma moltiplicato per $-1$ no. La risposta più insidiosa è $x = y^2$, che contiene l'origine: però $(1, 1, 0)$ la rispetta e il suo doppio $(2, 2, 0)$ no, perché $2$ non è $4$. Simile all'appello del 03/06/2025, domanda 2.
 
 D: La matrice $\begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix}$ è:
 + antisimmetrica, e di nessuna delle altre quattro classi
@@ -22433,7 +23434,7 @@ D: La matrice $\begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix}$ è:
 - triangolare superiore
 - diagonale
 - sia simmetrica sia antisimmetrica
-= $a_{12} = 2 = -a_{21}$ e la diagonale è nulla: è antisimmetrica. Non è simmetrica ($2 \neq -2$), né triangolare (entrambe le caselle fuori dalla diagonale sono diverse da zero), né diagonale. Solo la matrice nulla è insieme simmetrica e antisimmetrica.
+= Si guardano le due caselle fuori dalla diagonale: sopra c'è 2, sotto c'è $-2$, una l'opposto dell'altra, e la diagonale è fatta di zeri. Quindi è antisimmetrica. Non è simmetrica, perché 2 e $-2$ sono diversi; non è triangolare, perché le caselle sopra e sotto sono tutte e due diverse da zero; quindi non è nemmeno diagonale. La risposta più insidiosa è «sia simmetrica sia antisimmetrica»: l'unica matrice che è tutte e due le cose è la matrice nulla.
 
 D: Quale di questi vettori appartiene a $\Span\big((1, 0, 1),\ (0, 1, 1)\big)$?
 + $(1, 1, 2)$
@@ -22441,7 +23442,7 @@ D: Quale di questi vettori appartiene a $\Span\big((1, 0, 1),\ (0, 1, 1)\big)$?
 - $(2, 1, 1)$
 - $(0, 0, 1)$
 - $(1, -1, 1)$
-= Le combinazioni sono $a(1, 0, 1) + b(0, 1, 1) = (a, b, a + b)$: la terza coordinata è la somma delle prime due. Solo $(1, 1, 2)$ lo soddisfa, con $a = b = 1$. Negli altri la terza coordinata dovrebbe essere $2$, $3$, $0$ e $0$.
+= Una ricetta con dosi $a$ e $b$ dà $a(1, 0, 1) + b(0, 1, 1) = (a, b, a + b)$: la terza coordinata è sempre la somma delle prime due. Si controllano le risposte: solo $(1, 1, 2)$ lo rispetta, con $a = b = 1$. Negli altri la terza coordinata dovrebbe essere $2$, $3$, $0$ e $0$. La risposta più insidiosa è $(1, 1, 1)$, che somiglia ai due ingredienti; ma sommati danno $(1, 1, 2)$.
 
 D: In $\R^2$, che cos'è $\Span\big((1, 2)\big)$?
 + La retta $y = 2x$.
@@ -22449,7 +23450,7 @@ D: In $\R^2$, che cos'è $\Span\big((1, 2)\big)$?
 - La retta $y = x + 2$.
 - Tutto il piano $\R^2$.
 - L'insieme $\{(1, 2)\}$, con un solo elemento.
-= $\Span((1, 2)) = \{(t, 2t) \mid t \in \R\}$ (Esempio 6.8): i punti con $y = 2x$. La retta $x = 2y$ non contiene $(1, 2)$; $y = x + 2$ non passa per l'origine, quindi non è nemmeno un sottospazio; un solo vettore non nullo genera una retta, non il piano.
+= Lo Span di un solo vettore sono tutti i suoi multipli $(t, 2t)$ (Esempio 6.8): i punti con la seconda coordinata doppia della prima, cioè la retta $y = 2x$. La retta $x = 2y$ non contiene nemmeno $(1, 2)$. $y = x + 2$ non passa per l'origine, quindi non è un sottospazio. Un solo vettore diverso da zero dà una retta, non tutto il piano. La risposta più insidiosa è l'insieme con il solo $(1, 2)$: confonde lo Span con l'insieme degli ingredienti.
 
 D: L'insieme delle matrici $A \in M(2, \R)$ con $a_{11} = 1$ è:
 - un sottospazio, perché è definito da un'equazione lineare
@@ -22457,11 +23458,11 @@ D: L'insieme delle matrici $A \in M(2, \R)$ con $a_{11} = 1$ è:
 + non un sottospazio: per esempio non contiene la matrice nulla
 - un sottospazio, perché è chiuso rispetto al prodotto per scalare
 - uguale a tutto $M(2, \R)$
-= La matrice nulla ha $a_{11} = 0 \neq 1$. L'equazione $a_{11} = 1$ è lineare ma non omogenea; contenere l'identità non basta; e non è nemmeno chiuso rispetto ai multipli, perché $2A$ ha $a_{11} = 2$. Simile all'appello del 10/07/2024, domanda 2 ($O(2)$ non è un sottospazio perché non contiene la matrice nulla).
+= Si fa il controllo dello zero: la matrice nulla ha la prima casella uguale a 0, non a 1, quindi non c'è. La risposta più insidiosa è la prima: l'equazione $a_{11} = 1$ è lineare, ma ha un termine noto diverso da zero, e allora lo zero manca. Contenere l'identità non basta; e l'insieme non è nemmeno chiuso rispetto ai multipli, perché $2A$ ha la prima casella uguale a 2. Simile all'appello del 10/07/2024, domanda 2 ($O(2)$ non è un sottospazio perché non contiene la matrice nulla).
 
 D: Per quale valore di $k$ il vettore $(1, k, 3)$ appartiene a $\Span\big((1, 0, 1),\ (0, 1, 1)\big)$?
 N: 2
-= Si cerca $(a, b, a + b) = (1, k, 3)$: quindi $a = 1$, $b = k$ e $1 + k = 3$, cioè $k = 2$. Controllo: $(1, 0, 1) + 2(0, 1, 1) = (1, 2, 3)$.
+= Una ricetta con dosi $a$ e $b$ dà $(a, b, a + b)$. Deve essere uguale a $(1, k, 3)$: la prima coordinata dà $a = 1$, la seconda $b = k$, la terza $a + b = 3$. Quindi $1 + k = 3$, cioè $k = 2$. Controllo: $(1, 0, 1) + 2(0, 1, 1) = (1, 2, 3)$.
 
 D: Sia $U = \{p(x) \in \R_2[x] \mid p(1) = 0\}$. Quale uguaglianza è vera?
 + $U = \Span(x - 1,\ x^2 - 1)$
@@ -22469,7 +23470,7 @@ D: Sia $U = \{p(x) \in \R_2[x] \mid p(1) = 0\}$. Quale uguaglianza è vera?
 - $U = \Span(x + 1,\ x^2 - 1)$
 - $U = \Span(x^2 - 1,\ x^2 - x,\ x^2 + x)$
 - $U = \Span(1,\ x,\ x^2)$
-= $x - 1$ e $x^2 - 1$ si annullano in $1$, quindi il loro Span sta in $U$. Viceversa, se $p(1) = 0$ allora $p(x) = (x - 1)(ax + b) = a(x^2 - x) + b(x - 1) = a(x^2 - 1) + (b - a)(x - 1)$. Le altre: $\Span(x - 1)$ non contiene $x^2 - 1$; $x + 1$ e $x^2 + x$ valgono $2$ in $1$, quindi non stanno in $U$; $\Span(1, x, x^2)$ è tutto $\R_2[x]$. Simile agli appelli del 24/01/2024 (domanda 1) e del 15/01/2026 (domanda 7).
+= $U$ sono i polinomi di grado al massimo 2 che fanno zero in 1. Gli ingredienti $x - 1$ e $x^2 - 1$ fanno zero in 1, quindi tutte le loro ricette stanno in $U$. Al contrario, se $p(1) = 0$ allora $p(x) = (x - 1)(ax + b) = a(x^2 - x) + b(x - 1) = a(x^2 - 1) + (b - a)(x - 1)$: è una ricetta con i due ingredienti. Le altre risposte: $\Span(x - 1)$ non contiene $x^2 - 1$; $x + 1$ e $x^2 + x$ valgono 2 in 1, quindi escono da $U$; $\Span(1, x, x^2)$ è tutto $\R_2[x]$. La risposta più insidiosa è $\Span(x - 1)$, che contiene polinomi giusti ma non tutti. Simile agli appelli del 24/01/2024 (domanda 1) e del 15/01/2026 (domanda 7).
 
 D: Quale affermazione è vera?
 + Ogni sottospazio di $V$ contiene il vettore nullo di $V$.
@@ -22477,7 +23478,7 @@ D: Quale affermazione è vera?
 - $\Span(v)$ contiene solo il vettore $v$.
 - $\{0\}$ non è un sottospazio, perché ha un solo elemento.
 - In $\R^2$ una retta che non passa per l'origine può essere un sottospazio.
-= È l'assioma 1 della Definizione 6.2. L'unione dei due assi di $\R^2$ non è un sottospazio; $\Span(v)$ contiene tutti i multipli di $v$; $\{0\}$ è il sottospazio banale; una retta che non passa per l'origine non contiene lo zero.
+= È il primo dei tre controlli della Definizione 6.2: ogni stanza contiene lo zero. Le altre sono false: i due assi del piano messi insieme non sono un sottospazio; lo Span di un vettore contiene tutti i suoi multipli; l'insieme con il solo zero è un sottospazio, quello più piccolo; una retta che non passa per l'origine non contiene lo zero. La risposta più insidiosa è quella sull'unione, perché l'intersezione di due sottospazi invece è sempre un sottospazio.
 
 D: L'insieme delle matrici $A \in M(2, \R)$ tali che $A + {}^tA = 0$ (dove ${}^tA$ è la trasposta, $({}^tA)_{ij} = a_{ji}$) è:
 + lo spazio $A(2)$ delle matrici antisimmetriche
@@ -22485,10 +23486,88 @@ D: L'insieme delle matrici $A \in M(2, \R)$ tali che $A + {}^tA = 0$ (dove ${}^t
 - lo spazio $D(2)$ delle matrici diagonali
 - l'insieme che contiene solo la matrice nulla
 - l'insieme vuoto
-= $A + {}^tA = 0$ vuol dire $a_{ij} + a_{ji} = 0$ per ogni $i, j$, cioè $a_{ij} = -a_{ji}$: è la definizione di matrice antisimmetrica. Per esempio $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$ soddisfa la condizione e non è nulla. Simile all'appello dell'08/02/2024, domanda 6.
+= La condizione dice che ogni casella sommata alla sua immagine allo specchio fa zero: $a_{ij} + a_{ji} = 0$, cioè $a_{ij} = -a_{ji}$. È la definizione di matrice antisimmetrica. La risposta più insidiosa è «solo la matrice nulla»: ma $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$ rispetta la condizione e non è nulla. Le simmetriche invece rispettano $A - {}^tA = 0$. Simile all'appello dell'08/02/2024, domanda 6.
 ```
 
 ## Esercizi
+
+::: esercizio base Riscaldamento: leggere una matrice
+Nella matrice $\begin{pmatrix} 5 & -2 & 0 \\ 1 & 4 & 7 \end{pmatrix}$ trova la forma, $a_{13}$, $a_{22}$, la prima riga e la terza colonna.
+::: soluzione
+1. Ha 2 righe e 3 colonne: è $2 \times 3$.
+2. $a_{13}$ è nella riga 1 e nella colonna 3: vale 0.
+3. $a_{22}$ è nella riga 2 e nella colonna 2: vale 4.
+4. La prima riga è $(5, -2, 0)$.
+5. La terza colonna è $\begin{pmatrix} 0 \\ 7 \end{pmatrix}$.
+:::
+
+::: esercizio base Riscaldamento: somma e doppio
+Calcola $A + B$ e $2A$ con $A = \begin{pmatrix} 1 & 3 \\ 0 & -2 \end{pmatrix}$ e $B = \begin{pmatrix} 4 & -1 \\ 2 & 2 \end{pmatrix}$.
+::: soluzione
+1. Somma casella per casella: $A + B = \begin{pmatrix} 1 + 4 & 3 - 1 \\ 0 + 2 & -2 + 2 \end{pmatrix} = \begin{pmatrix} 5 & 2 \\ 2 & 0 \end{pmatrix}$.
+2. Doppio casella per casella: $2A = \begin{pmatrix} 2 & 6 \\ 0 & -4 \end{pmatrix}$.
+:::
+
+::: esercizio base Riscaldamento: c'è lo zero?
+Quali di questi insiemi del piano contengono l'origine? Quali possono essere sottospazi? (a) $x - 5y = 0$; (b) $x - 5y = 2$; (c) $y = 0$; (d) $x = 1$.
+::: soluzione
+1. (a) $0 - 0 = 0$: l'origine c'è. È una retta per l'origine: sottospazio.
+2. (b) $0 - 0 = 0$, non 2: l'origine manca. Non è un sottospazio.
+3. (c) l'origine ha $y = 0$: c'è. È l'asse orizzontale: sottospazio.
+4. (d) l'origine ha $x = 0$, non 1: manca. Non è un sottospazio.
+:::
+
+::: esercizio base Riscaldamento: una ricetta
+Calcola $3(1, 2) - 2(0, 1)$. Poi di' se $(3, 4)$ sta in $\Span\big((1, 2),\ (0, 1)\big)$.
+::: soluzione
+1. $3(1, 2) - 2(0, 1) = (3, 6) - (0, 2) = (3, 4)$.
+2. Il conto appena fatto è una ricetta con quegli ingredienti che dà $(3, 4)$, con dosi 3 e $-2$. Quindi sì, $(3, 4)$ sta nello Span.
+:::
+
+::: esercizio base Conti con le matrici
+Siano $A = \begin{pmatrix} 2 & -1 & 0 \\ 1 & 3 & 4 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 1 & -2 \\ 0 & -1 & 5 \end{pmatrix}$.
+(a) Di che taglia sono? Quanto valgono $a_{13}$, $a_{21}$, la riga $A_2$ e la colonna $A^2$?
+(b) Calcola $A + B$ e $3A - 2B$.
+(c) Trova la matrice $X$ tale che $A + X = B$.
+::: soluzione
+(a) Sono tutte e due $2 \times 3$. $a_{13} = 0$ (riga 1, colonna 3), $a_{21} = 1$ (riga 2, colonna 1), $A_2 = (1, 3, 4)$, $A^2 = {}^t(-1, 3)$, cioè $-1$ e $3$ in colonna.
+
+(b) Casella per casella:
+$$A + B = \begin{pmatrix} 3 & 0 & -2 \\ 1 & 2 & 9 \end{pmatrix}, \qquad 3A - 2B = \begin{pmatrix} 6 - 2 & -3 - 2 & 0 + 4 \\ 3 - 0 & 9 + 2 & 12 - 10 \end{pmatrix} = \begin{pmatrix} 4 & -5 & 4 \\ 3 & 11 & 2 \end{pmatrix}.$$
+
+(c) Tolgo $A$ da tutte e due le parti: $X = B - A = \begin{pmatrix} -1 & 2 & -2 \\ -1 & -4 & 1 \end{pmatrix}$.
+
+Controllo: $A + X = \begin{pmatrix} 2 - 1 & -1 + 2 & 0 - 2 \\ 1 - 1 & 3 - 4 & 4 + 1 \end{pmatrix} = B$.
+:::
+
+::: esercizio base Riconoscere le classi di matrici
+Per ciascuna matrice di' a quali delle cinque classi della Definizione 6.3 appartiene:
+$$M_1 = \begin{pmatrix} 3 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}, \quad M_2 = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 6 \\ 3 & 6 & 0 \end{pmatrix}, \quad M_3 = \begin{pmatrix} 0 & 1 & -2 \\ -1 & 0 & 3 \\ 2 & -3 & 0 \end{pmatrix}, \quad M_4 = \begin{pmatrix} 1 & 0 & 0 \\ 4 & 2 & 0 \\ 5 & 6 & 3 \end{pmatrix}, \quad M_5 = \begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix}.$$
+::: soluzione
+1. $M_1$: fuori dalla diagonale solo zeri, quindi è **diagonale**. Allora è anche **triangolare superiore**, **triangolare inferiore** e **simmetrica**. Non è antisimmetrica, perché la diagonale non è fatta di zeri.
+2. $M_2$: le caselle allo specchio sono uguali (2 e 2, 3 e 3, 6 e 6): **simmetrica**, e basta, perché ci sono numeri sia sopra sia sotto la diagonale.
+3. $M_3$: diagonale di zeri, e le caselle allo specchio sono opposte (1 e $-1$, $-2$ e 2, 3 e $-3$): **antisimmetrica**, e basta.
+4. $M_4$: sopra la diagonale solo zeri: **triangolare inferiore** (quindi triangolare), e basta.
+5. $M_5$: le caselle fuori dalla diagonale sono opposte (1 e $-1$), ma la diagonale non è nulla, quindi non è antisimmetrica; non è simmetrica perché 1 e $-1$ sono diversi; non è triangolare. Non appartiene a **nessuna** delle cinque classi.
+:::
+
+::: esercizio base Span nel piano
+(a) Descrivi $\Span((2, -1))$ con un'equazione.
+(b) Descrivi $\Span((1, 2), (2, 4))$.
+(c) Dimostra che $\Span((1, 0), (1, 1)) = \R^2$, trovando esplicitamente i coefficienti per un vettore qualsiasi $(a, b)$.
+::: soluzione
+(a) I multipli di $(2, -1)$ sono $(2t, -t)$. Da $y = -t$ viene $t = -y$, e allora $x = 2t = -2y$. È la retta $x + 2y = 0$.
+
+(b) $(2, 4) = 2 \cdot (1, 2)$, quindi ogni ricetta $\lambda(1, 2) + \mu(2, 4) = (\lambda + 2\mu)(1, 2)$ è un multiplo di $(1, 2)$. Lo Span è la retta $y = 2x$, come lo Span di $(1, 2)$ da solo: il secondo vettore non aggiunge niente.
+
+(c) Cerco le dosi $\lambda$ e $\mu$ con $\lambda(1, 0) + \mu(1, 1) = (\lambda + \mu, \mu) = (a, b)$.
+1. Dalla seconda coordinata: $\mu = b$.
+2. Dalla prima: $\lambda + b = a$, quindi $\lambda = a - b$.
+
+Quindi
+$$(a, b) = (a - b)(1, 0) + b(1, 1)$$
+per ogni $a$ e $b$: ogni vettore del piano è una ricetta, e lo Span è tutto il piano. Controllo con $(3, 5)$: $-2 \cdot (1, 0) + 5 \cdot (1, 1) = (-2 + 5, 5) = (3, 5)$.
+:::
 
 ::: esercizio medio Esercizio 6.9 delle dispense: le matrici del tipo $\begin{pmatrix} a & b \\ b & a \end{pmatrix}$
 Consideriamo il sottoinsieme $W \subset M(2, \R)$ formato dalle matrici del tipo
@@ -22496,16 +23575,16 @@ $$\begin{pmatrix} a & b \\ b & a \end{pmatrix}, \qquad a, b \in \R.$$
 Dimostra che $W$ è un sottospazio vettoriale di $M(2, \R)$ e verifica che
 $$W = \Span\left(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\right).$$
 ::: soluzione
-**$W$ è un sottospazio.** Controllo i tre assiomi della Definizione 6.2.
+**$W$ è un sottospazio.** Faccio i tre controlli della Definizione 6.2.
 1. La matrice nulla sta in $W$: è il caso $a = b = 0$.
-2. Somma: $\begin{pmatrix} a & b \\ b & a \end{pmatrix} + \begin{pmatrix} a' & b' \\ b' & a' \end{pmatrix} = \begin{pmatrix} a + a' & b + b' \\ b + b' & a + a' \end{pmatrix}$, che ha ancora la stessa forma, con $a + a'$ e $b + b'$ al posto di $a$ e $b$.
-3. Multipli: $\lambda \begin{pmatrix} a & b \\ b & a \end{pmatrix} = \begin{pmatrix} \lambda a & \lambda b \\ \lambda b & \lambda a \end{pmatrix}$, stessa forma con $\lambda a$ e $\lambda b$.
+2. La somma: $\begin{pmatrix} a & b \\ b & a \end{pmatrix} + \begin{pmatrix} a' & b' \\ b' & a' \end{pmatrix} = \begin{pmatrix} a + a' & b + b' \\ b + b' & a + a' \end{pmatrix}$. Ha ancora la stessa forma, con $a + a'$ e $b + b'$ al posto di $a$ e $b$.
+3. I multipli: $\lambda \begin{pmatrix} a & b \\ b & a \end{pmatrix} = \begin{pmatrix} \lambda a & \lambda b \\ \lambda b & \lambda a \end{pmatrix}$, stessa forma con $\lambda a$ e $\lambda b$.
 
-**$W$ è lo Span delle due matrici.** Chiamo $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ e $J = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. Per ogni $a, b$:
+**$W$ è lo Span delle due matrici.** Chiamo $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ e $J = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. Per ogni $a$ e $b$:
 $$aI + bJ = \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} + \begin{pmatrix} 0 & b \\ b & 0 \end{pmatrix} = \begin{pmatrix} a & b \\ b & a \end{pmatrix}.$$
-Letta da sinistra a destra, dice che ogni combinazione di $I$ e $J$ sta in $W$; letta da destra a sinistra, che ogni elemento di $W$ è una combinazione di $I$ e $J$. Quindi $W = \Span(I, J)$.
+Letta da sinistra a destra, l'uguaglianza dice che ogni ricetta con $I$ e $J$ sta in $W$. Letta da destra a sinistra, dice che ogni matrice di $W$ è una ricetta con $I$ e $J$. Quindi $W = \Span(I, J)$.
 
-Nota: con questa seconda parte il primo punto diventa automatico, perché ogni Span è un sottospazio (Proposizione 6.7). È il modo più rapido per dimostrare che un insieme è un sottospazio: riscriverlo come Span.
+Nota: con questa seconda parte il primo punto diventa automatico, perché ogni Span è un sottospazio (Proposizione 6.7). È il modo più veloce per dimostrare che un insieme è un sottospazio: riscriverlo come Span.
 :::
 
 ::: esercizio medio Esercizio 6.10 delle dispense: uno Span in $\R^3$
@@ -22515,38 +23594,17 @@ Descrivi esplicitamente $\Span(v_1, v_2)$ e determina quali dei vettori
 $$u = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}, \qquad w = \begin{pmatrix} 1 \\ 2 \\ 4 \end{pmatrix}$$
 appartengono a questo sottospazio.
 ::: soluzione
-**Descrizione esplicita.** Una combinazione generica è
-$$a v_1 + b v_2 = \begin{pmatrix} a \\ 0 \\ a \end{pmatrix} + \begin{pmatrix} 0 \\ b \\ b \end{pmatrix} = \begin{pmatrix} a \\ b \\ a + b \end{pmatrix}, \qquad a, b \in \R.$$
-Quindi $\Span(v_1, v_2) = \{(a, b, a + b) \mid a, b \in \R\}$: i vettori in cui la terza coordinata è la somma delle prime due. In forma cartesiana è il **piano** $z = x + y$, cioè $x + y - z = 0$, che passa per l'origine. Infatti un punto $(x, y, z)$ è del tipo $(a, b, a + b)$ esattamente quando $z = x + y$: basta prendere $a = x$ e $b = y$.
+**Descrizione.** Una ricetta qualsiasi, con dosi $a$ e $b$, è
+$$a v_1 + b v_2 = \begin{pmatrix} a \\ 0 \\ a \end{pmatrix} + \begin{pmatrix} 0 \\ b \\ b \end{pmatrix} = \begin{pmatrix} a \\ b \\ a + b \end{pmatrix}.$$
+Quindi lo Span è fatto dai vettori in cui la terza coordinata è la somma delle prime due. Con un'equazione è il **piano** $z = x + y$, cioè $x + y - z = 0$, che passa per l'origine. Infatti un punto $(x, y, z)$ ha la forma $(a, b, a + b)$ esattamente quando $z = x + y$: basta prendere $a = x$ e $b = y$.
 
-**Il vettore $u$.** Cerco $a, b$ con $(a, b, a + b) = (1, 2, 3)$: dalle prime due coordinate $a = 1$ e $b = 2$; la terza richiede $a + b = 3$, e $1 + 2 = 3$. Sì: $u = v_1 + 2v_2 \in \Span(v_1, v_2)$. Controllo: $(1, 0, 1) + 2(0, 1, 1) = (1, 2, 3)$.
+**Il vettore $u$.** Cerco le dosi con $(a, b, a + b) = (1, 2, 3)$.
+1. Dalle prime due coordinate: $a = 1$ e $b = 2$.
+2. La terza chiede $a + b = 3$, e infatti $1 + 2 = 3$.
 
-**Il vettore $w$.** Di nuovo $a = 1$ e $b = 2$, ma la terza coordinata richiede $a + b = 4$, mentre $1 + 2 = 3$. Contraddizione: $w \notin \Span(v_1, v_2)$. Con l'equazione del piano: $1 + 2 - 4 = -1 \neq 0$.
-:::
+Sì: $u = v_1 + 2v_2$ sta nello Span. Controllo: $(1, 0, 1) + 2(0, 1, 1) = (1, 2, 3)$.
 
-::: esercizio base Conti con le matrici
-Siano $A = \begin{pmatrix} 2 & -1 & 0 \\ 1 & 3 & 4 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 1 & -2 \\ 0 & -1 & 5 \end{pmatrix}$.
-(a) Di che taglia sono? Quanto valgono $a_{13}$, $a_{21}$, la riga $A_2$ e la colonna $A^2$?
-(b) Calcola $A + B$ e $3A - 2B$.
-(c) Trova la matrice $X$ tale che $A + X = B$.
-::: soluzione
-(a) Sono entrambe $2 \times 3$. $a_{13} = 0$ (riga 1, colonna 3), $a_{21} = 1$ (riga 2, colonna 1), $A_2 = (1, 3, 4)$, $A^2 = {}^t(-1, 3)$.
-
-(b) Casella per casella:
-$$A + B = \begin{pmatrix} 3 & 0 & -2 \\ 1 & 2 & 9 \end{pmatrix}, \qquad 3A - 2B = \begin{pmatrix} 6 - 2 & -3 - 2 & 0 + 4 \\ 3 - 0 & 9 + 2 & 12 - 10 \end{pmatrix} = \begin{pmatrix} 4 & -5 & 4 \\ 3 & 11 & 2 \end{pmatrix}.$$
-
-(c) Sommando $-A$ a entrambi i membri, $X = B - A = \begin{pmatrix} -1 & 2 & -2 \\ -1 & -4 & 1 \end{pmatrix}$. Controllo: $A + X = B$.
-:::
-
-::: esercizio base Riconoscere le classi di matrici
-Per ciascuna matrice di' a quali delle cinque classi della Definizione 6.3 appartiene:
-$$M_1 = \begin{pmatrix} 3 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}, \quad M_2 = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 6 \\ 3 & 6 & 0 \end{pmatrix}, \quad M_3 = \begin{pmatrix} 0 & 1 & -2 \\ -1 & 0 & 3 \\ 2 & -3 & 0 \end{pmatrix}, \quad M_4 = \begin{pmatrix} 1 & 0 & 0 \\ 4 & 2 & 0 \\ 5 & 6 & 3 \end{pmatrix}, \quad M_5 = \begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix}.$$
-::: soluzione
-- $M_1$: fuori dalla diagonale solo zeri, quindi è **diagonale**; di conseguenza è anche **triangolare superiore**, **triangolare inferiore** e **simmetrica**. Non è antisimmetrica, perché la diagonale non è nulla.
-- $M_2$: $a_{12} = a_{21} = 2$, $a_{13} = a_{31} = 3$, $a_{23} = a_{32} = 6$: **simmetrica**, e basta (ci sono numeri sia sopra sia sotto la diagonale).
-- $M_3$: diagonale nulla e $a_{12} = 1 = -a_{21}$, $a_{13} = -2 = -a_{31}$, $a_{23} = 3 = -a_{32}$: **antisimmetrica**, e basta.
-- $M_4$: sopra la diagonale solo zeri: **triangolare inferiore** (quindi triangolare), e basta.
-- $M_5$: $a_{12} = 1 = -a_{21}$, ma la diagonale non è nulla, quindi non è antisimmetrica; non è simmetrica perché $1 \neq -1$; non è triangolare. Non appartiene a **nessuna** delle cinque classi.
+**Il vettore $w$.** Di nuovo $a = 1$ e $b = 2$, ma la terza coordinata chiede $a + b = 4$, mentre $1 + 2 = 3$. Impossibile: $w$ non sta nello Span. Con l'equazione del piano: $1 + 2 - 4 = -1$, non zero.
 :::
 
 ::: esercizio medio Sottospazi di $\R^3$
@@ -22557,15 +23615,59 @@ Di' quali dei seguenti sottoinsiemi di $\R^3$ sono sottospazi. Se sì, dimostral
 (d) $W_4 = \{(x, y, z) \mid x^2 = y^2\}$
 (e) $W_5 = \{(t, t^2, 0) \mid t \in \R\}$
 ::: soluzione
-(a) **Sì.** $(0, 0, 0)$ soddisfa l'equazione. Se $x + 2y - z = 0$ e $x' + 2y' - z' = 0$, sommando si ottiene $(x + x') + 2(y + y') - (z + z') = 0$; moltiplicando per $\lambda$, $\lambda x + 2\lambda y - \lambda z = 0$. È un piano per l'origine.
+(a) **Sì.** L'origine rispetta l'equazione. Se $x + 2y - z = 0$ e $x' + 2y' - z' = 0$, sommando viene $(x + x') + 2(y + y') - (z + z') = 0$; moltiplicando per $\lambda$ viene $\lambda x + 2\lambda y - \lambda z = 0$. È un piano per l'origine.
 
-(b) **Sì.** Si riscrive $W_2 = \{(t, t, t) \mid t \in \R\} = \Span((1, 1, 1))$, che è un sottospazio per la Proposizione 6.7: la retta per l'origine con la direzione di $(1, 1, 1)$.
+(b) **Sì.** I punti con le tre coordinate uguali sono $(t, t, t)$, cioè i multipli di $(1, 1, 1)$. È lo Span di $(1, 1, 1)$, quindi un sottospazio per la Proposizione 6.7: la retta per l'origine nella direzione di $(1, 1, 1)$.
 
-(c) **No.** L'origine non c'è: $0 + 0 + 0 = 0 \neq 1$.
+(c) **No.** L'origine non c'è: $0 + 0 + 0 = 0$, non 1.
 
-(d) **No.** Contiene l'origine ed è chiuso rispetto ai multipli, ma non alla somma: $(1, 1, 0)$ e $(1, -1, 0)$ stanno in $W_4$ (in entrambi $x^2 = y^2 = 1$), la loro somma $(2, 0, 0)$ no, perché $4 \neq 0$. $W_4$ è l'unione dei due piani $x = y$ e $x = -y$.
+(d) **No.** L'origine c'è e i multipli restano dentro, ma la somma esce. $(1, 1, 0)$ e $(1, -1, 0)$ stanno in $W_4$, perché in tutti e due $x^2 = y^2 = 1$. La loro somma $(2, 0, 0)$ no, perché $4$ non è $0$. In realtà $W_4$ è fatto da due piani messi insieme, $x = y$ e $x = -y$.
 
-(e) **No.** $(1, 1, 0) \in W_5$ (con $t = 1$), ma $2 \cdot (1, 1, 0) = (2, 2, 0)$ no: per avere prima coordinata $2$ serve $t = 2$, e allora la seconda sarebbe $4$.
+(e) **No.** $(1, 1, 0)$ sta in $W_5$, con $t = 1$. Ma il suo doppio $(2, 2, 0)$ no: per avere la prima coordinata 2 serve $t = 2$, e allora la seconda sarebbe 4.
+:::
+
+::: esercizio medio Uno Span con un parametro
+Per quali valori di $k \in \R$ il vettore $u_k = (1, 2, k)$ appartiene a $\Span\big((1, 1, 0),\ (0, 1, 1)\big)$? Per quei valori scrivi $u_k$ come combinazione lineare.
+::: soluzione
+Cerco le dosi $a$ e $b$ con $a(1, 1, 0) + b(0, 1, 1) = (a,\ a + b,\ b) = (1, 2, k)$. Coordinata per coordinata:
+1. prima coordinata: $a = 1$;
+2. seconda: $a + b = 2$, quindi $b = 1$;
+3. terza: $b = k$, quindi $k = 1$.
+
+Il vettore sta nello Span **solo per $k = 1$**, e in quel caso
+$$(1, 2, 1) = (1, 1, 0) + (0, 1, 1).$$
+Per gli altri valori di $k$ la terza condizione contraddice le prime due. Con un'equazione: lo Span è fatto dai vettori $(a, a + b, b)$, cioè il piano $y = x + z$, e $u_k$ ci sta quando $2 = 1 + k$.
+:::
+
+::: esercizio medio Le matrici antisimmetriche $3 \times 3$ come Span
+Dimostra che $A(3)$, le matrici antisimmetriche $3 \times 3$, è lo Span di tre matrici, e trovale. Controlla con la tua descrizione che la somma di due matrici antisimmetriche è antisimmetrica.
+::: soluzione
+Una matrice antisimmetrica $3 \times 3$ ha la diagonale di zeri, e sotto la diagonale ci sono gli opposti dei numeri sopra. Quindi basta conoscere i tre numeri sopra la diagonale: chiamo $a = a_{12}$, $b = a_{13}$, $c = a_{23}$.
+$$\begin{pmatrix} 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \end{pmatrix} = a\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} + b\begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ -1 & 0 & 0 \end{pmatrix} + c\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0 \end{pmatrix}.$$
+Chiamo $F_1$, $F_2$, $F_3$ le tre matrici a destra. Ogni matrice antisimmetrica è una loro ricetta, e ogni loro ricetta è antisimmetrica: $A(3) = \Span(F_1, F_2, F_3)$. Per la Proposizione 6.7 è un sottospazio.
+
+La somma: con i numeri $a, b, c$ e $a', b', c'$ si ottiene la matrice con $a + a'$, $b + b'$, $c + c'$ sopra la diagonale e i loro opposti sotto. Ha ancora la forma antisimmetrica. Nella lezione L07 vedrai che $F_1$, $F_2$, $F_3$ sono una base, quindi lo spazio ha dimensione 3 (è l'Esercizio 1 del Foglio 2 del tutorato 2025).
+:::
+
+::: esercizio difficile Intersezione e unione di sottospazi
+Siano $U$ e $W$ sottospazi di uno spazio vettoriale $V$.
+(a) Dimostra che $U \cap W$ è un sottospazio.
+(b) Mostra con un esempio in $\R^2$ che $U \cup W$ può non essere un sottospazio.
+(c) Dimostra che $U \cup W$ è un sottospazio se e solo se $U \subset W$ oppure $W \subset U$.
+::: soluzione
+Il simbolo $U \cap W$ è l'**intersezione**, la parte comune: i vettori che stanno sia in $U$ sia in $W$. Il simbolo $U \cup W$ è l'**unione**: i vettori che stanno in almeno uno dei due.
+
+(a) Lo zero sta in $U$ e in $W$, quindi nella parte comune. Se $v$ e $v'$ stanno nella parte comune, la loro somma sta in $U$ (perché $U$ è un sottospazio) e sta in $W$ (perché lo è $W$): quindi sta nella parte comune. Lo stesso per i multipli $\lambda v$.
+
+(b) $U$ è l'asse orizzontale, lo Span di $(1, 0)$; $W$ è l'asse verticale, lo Span di $(0, 1)$. La somma $(1, 0) + (0, 1) = (1, 1)$ non sta su nessuno dei due assi.
+
+(c) Se $U$ è contenuto in $W$, l'unione è $W$, che è un sottospazio; lo stesso se $W$ è contenuto in $U$.
+
+Al contrario, supponiamo che l'unione sia un sottospazio ma che nessuno dei due contenga l'altro. Allora c'è un vettore $u$ di $U$ che non sta in $W$, e un vettore $w$ di $W$ che non sta in $U$. La somma $u + w$ sta nell'unione, quindi sta in $U$ oppure in $W$.
+- Se $u + w$ sta in $U$, allora $w = (u + w) - u$ sta in $U$, perché $U$ è chiuso rispetto a somme e multipli: impossibile.
+- Se $u + w$ sta in $W$, allora $u = (u + w) - w$ sta in $W$: impossibile.
+
+Quindi uno dei due contiene l'altro. È l'Esercizio 2.2.15 del libro di Martelli.
 :::
 
 ::: esercizio esame Come all'esame: sottospazi di $\R_2[x]$
@@ -22577,57 +23679,25 @@ Per ciascun sottoinsieme di $\R_2[x]$ stabilisci se è un sottospazio. Per quell
 (e) $\{(1 + t)x^2 + tx \mid t \in \R\}$
 (f) $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$
 ::: soluzione
-(a) **Sì.** Il polinomio nullo si annulla in $1$; se $p(1) = q(1) = 0$ allora $(p + q)(1) = 0$ e $(\lambda p)(1) = 0$. Per scriverlo come Span: $p(x) = ax^2 + bx + c$ ha $p(1) = a + b + c = 0$, cioè $c = -a - b$, quindi
-$$p(x) = ax^2 + bx - a - b = a(x^2 - 1) + b(x - 1).$$
+(a) **Sì.** Il polinomio zero fa zero in 1. Se $p(1) = q(1) = 0$, allora anche la somma e i multipli fanno zero in 1. Per scriverlo come Span:
+1. un polinomio $ax^2 + bx + c$ fa zero in 1 quando $a + b + c = 0$, cioè $c = -a - b$;
+2. allora $ax^2 + bx - a - b = a(x^2 - 1) + b(x - 1)$.
+
 L'insieme è $\Span(x^2 - 1,\ x - 1)$.
 
-(b) **No**: il polinomio nullo ha $p(0) = 0 \neq 1$.
+(b) **No**: il polinomio zero vale 0 in 0, non 1.
 
 (c) **Sì**: i polinomi sono $ax^2 + a = a(x^2 + 1)$, quindi l'insieme è $\Span(x^2 + 1)$.
 
-(d) **No**: $x$ ha $b = 1 > 0$, ma $(-1) \cdot x = -x$ ha $b = -1$. (E manca anche il polinomio nullo, che ha $b = 0$.)
+(d) **No**: $x$ ha $b = 1$, positivo, ma $(-1) \cdot x = -x$ ha $b = -1$. (E manca anche il polinomio zero, che ha $b = 0$.)
 
-(e) **No**: per il polinomio nullo servirebbero $1 + t = 0$ e $t = 0$ insieme, impossibile.
+(e) **No**: per il polinomio zero servirebbero $1 + t = 0$ e $t = 0$ insieme, impossibile.
 
 (f) **Sì**: raccogliendo $t$ e $s$,
 $$(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1),$$
 quindi l'insieme è $\Span(x^2 - x,\ x^2 - 1)$.
 
-Nella lezione L07 calcolerai la dimensione di ciascuno: $2$, $1$ e $2$.
-:::
-
-::: esercizio base Span nel piano
-(a) Descrivi $\Span((2, -1))$ con un'equazione.
-(b) Descrivi $\Span((1, 2), (2, 4))$.
-(c) Dimostra che $\Span((1, 0), (1, 1)) = \R^2$, trovando esplicitamente i coefficienti per un vettore qualsiasi $(a, b)$.
-::: soluzione
-(a) $\Span((2, -1)) = \{(2t, -t) \mid t \in \R\}$. Da $x = 2t$ e $y = -t$ si ricava $t = -y$ e $x = -2y$: è la retta $x + 2y = 0$.
-
-(b) $(2, 4) = 2 \cdot (1, 2)$, quindi ogni combinazione $\lambda(1, 2) + \mu(2, 4) = (\lambda + 2\mu)(1, 2)$ è un multiplo di $(1, 2)$. Lo Span è la retta $y = 2x$, come $\Span((1, 2))$: il secondo vettore non aggiunge niente.
-
-(c) Cerco $\lambda, \mu$ con $\lambda(1, 0) + \mu(1, 1) = (\lambda + \mu, \mu) = (a, b)$. Dalla seconda coordinata $\mu = b$; dalla prima $\lambda = a - b$. Quindi
-$$(a, b) = (a - b)(1, 0) + b(1, 1)$$
-per ogni $a, b$: ogni vettore del piano è una combinazione, e lo Span è tutto $\R^2$. Controllo con $(3, 5)$: $-2 \cdot (1, 0) + 5 \cdot (1, 1) = (3, 5)$.
-:::
-
-::: esercizio medio Uno Span con un parametro
-Per quali valori di $k \in \R$ il vettore $u_k = (1, 2, k)$ appartiene a $\Span\big((1, 1, 0),\ (0, 1, 1)\big)$? Per quei valori scrivi $u_k$ come combinazione lineare.
-::: soluzione
-Cerco $a, b$ con $a(1, 1, 0) + b(0, 1, 1) = (a,\ a + b,\ b) = (1, 2, k)$. Coordinata per coordinata:
-$$a = 1, \qquad a + b = 2, \qquad b = k.$$
-Dalle prime due, $a = 1$ e $b = 1$. La terza allora richiede $k = 1$. Quindi $u_k$ sta nello Span **solo per $k = 1$**, e in quel caso
-$$(1, 2, 1) = (1, 1, 0) + (0, 1, 1).$$
-Per $k \neq 1$ la terza equazione contraddice le prime due. In forma cartesiana lo Span è $\{(a, a + b, b)\}$, cioè il piano $y = x + z$: $u_k$ ci sta quando $2 = 1 + k$.
-:::
-
-::: esercizio medio Le matrici antisimmetriche $3 \times 3$ come Span
-Dimostra che $A(3)$, le matrici antisimmetriche $3 \times 3$, è lo Span di tre matrici, e trovale. Controlla con la tua descrizione che la somma di due matrici antisimmetriche è antisimmetrica.
-::: soluzione
-Una matrice antisimmetrica $3 \times 3$ ha la diagonale nulla, e le caselle sotto la diagonale sono gli opposti di quelle sopra. Quindi è determinata da $a = a_{12}$, $b = a_{13}$, $c = a_{23}$:
-$$\begin{pmatrix} 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \end{pmatrix} = a\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} + b\begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ -1 & 0 & 0 \end{pmatrix} + c\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0 \end{pmatrix}.$$
-Chiamando $F_1, F_2, F_3$ le tre matrici a destra, ogni matrice antisimmetrica è una loro combinazione e ogni loro combinazione è antisimmetrica: $A(3) = \Span(F_1, F_2, F_3)$. Per la Proposizione 6.7 è un sottospazio.
-
-Somma: con $a, b, c$ e $a', b', c'$ si ottiene la matrice con $a + a'$, $b + b'$, $c + c'$ nelle stesse posizioni e i loro opposti sotto la diagonale, che ha ancora la forma antisimmetrica. Nella lezione L07 vedrai che $F_1, F_2, F_3$ sono una base, quindi $\dim A(3) = 3$ (è l'Esercizio 1 del Foglio 2 del tutorato 2025).
+Nella lezione L07 calcolerai la dimensione di ciascuno: 2, 1 e 2.
 :::
 
 ::: esercizio esame Come all'esame: un sottospazio di $\R_3[x]$
@@ -22636,21 +23706,24 @@ Sia $U = \{p(x) \in \R_3[x] \mid p(1) = p(-1)\}$.
 (2) Dimostra che $U = \Span(1,\ x^2,\ x^3 - x)$.
 (3) Quali tra $x^2 - 1$, $x^3 + x$, $x^3 - x + 5$ e $x$ stanno in $U$?
 ::: soluzione
-(1) Il polinomio nullo vale $0$ in $1$ e in $-1$, quindi sta in $U$. Se $p(1) = p(-1)$ e $q(1) = q(-1)$, allora $(p + q)(1) = p(1) + q(1) = p(-1) + q(-1) = (p + q)(-1)$ e $(\lambda p)(1) = \lambda p(1) = \lambda p(-1) = (\lambda p)(-1)$. I tre assiomi valgono.
+(1) Il polinomio zero vale 0 in 1 e in $-1$: sta in $U$. Se $p(1) = p(-1)$ e $q(1) = q(-1)$, allora $(p + q)(1) = p(1) + q(1) = p(-1) + q(-1) = (p + q)(-1)$, e $(\lambda p)(1) = \lambda p(1) = \lambda p(-1) = (\lambda p)(-1)$. I tre controlli sono superati.
 
-(2) Scrivo $p(x) = ax^3 + bx^2 + cx + d$. Allora
-$$p(1) = a + b + c + d, \qquad p(-1) = -a + b - c + d.$$
-La condizione $p(1) = p(-1)$ diventa $a + c = -a - c$, cioè $2a + 2c = 0$, cioè $c = -a$. Quindi i polinomi di $U$ sono
-$$ax^3 + bx^2 - ax + d = a(x^3 - x) + b\,x^2 + d \cdot 1,$$
-con $a, b, d$ qualsiasi: esattamente le combinazioni di $x^3 - x$, $x^2$ e $1$. Quindi $U = \Span(1, x^2, x^3 - x)$.
+(2) Scrivo $p(x) = ax^3 + bx^2 + cx + d$.
+1. $p(1) = a + b + c + d$ e $p(-1) = -a + b - c + d$.
+2. La condizione $p(1) = p(-1)$ diventa $a + c = -a - c$, cioè $2a + 2c = 0$, cioè $c = -a$.
+3. Quindi i polinomi di $U$ sono
+   $$ax^3 + bx^2 - ax + d = a(x^3 - x) + b\,x^2 + d \cdot 1,$$
+   con $a$, $b$, $d$ qualsiasi: esattamente le ricette con $x^3 - x$, $x^2$ e 1.
 
-(3) Basta controllare la condizione $c = -a$ (coefficiente di $x$ uguale all'opposto di quello di $x^3$), oppure calcolare $p(1)$ e $p(-1)$.
+Quindi $U = \Span(1, x^2, x^3 - x)$.
+
+(3) Basta controllare la condizione $c = -a$ (il numero davanti a $x$ è l'opposto di quello davanti a $x^3$), oppure calcolare $p(1)$ e $p(-1)$.
 - $x^2 - 1$: $a = 0$, $c = 0$. **Sta in $U$** ($p(1) = p(-1) = 0$).
-- $x^3 + x$: $a = 1$, $c = 1 \neq -1$. **Non sta in $U$** ($p(1) = 2$, $p(-1) = -2$).
+- $x^3 + x$: $a = 1$, $c = 1$, che non è $-1$. **Non sta in $U$** ($p(1) = 2$, $p(-1) = -2$).
 - $x^3 - x + 5$: $a = 1$, $c = -1$. **Sta in $U$** ($p(1) = p(-1) = 5$).
-- $x$: $a = 0$, $c = 1 \neq 0$. **Non sta in $U$** ($p(1) = 1$, $p(-1) = -1$).
+- $x$: $a = 0$, $c = 1$, che non è 0. **Non sta in $U$** ($p(1) = 1$, $p(-1) = -1$).
 
-Il quiz dell'appello del 15/01/2026 (domanda 7) chiede proprio quale Span è uguale a questo $U$: tra le risposte c'è $\Span(x^3 - x,\ x^2 - 1,\ x^2 + 1)$, che coincide con $\Span(1, x^2, x^3 - x)$ perché $1 = \frac 12\big((x^2 + 1) - (x^2 - 1)\big)$ e $x^2 = \frac 12\big((x^2 + 1) + (x^2 - 1)\big)$.
+Il quiz dell'appello del 15/01/2026 (domanda 7) chiede proprio quale Span è uguale a questo $U$. Tra le risposte c'è $\Span(x^3 - x,\ x^2 - 1,\ x^2 + 1)$, che è lo stesso di $\Span(1, x^2, x^3 - x)$, perché $1 = \frac 12\big((x^2 + 1) - (x^2 - 1)\big)$ e $x^2 = \frac 12\big((x^2 + 1) + (x^2 - 1)\big)$.
 :::
 
 ::: esercizio esame Come all'esame: sottoinsiemi di $M(2, \R)$
@@ -22660,136 +23733,118 @@ Per ciascun sottoinsieme di $M(2, \R)$ stabilisci se è un sottospazio; se lo è
 (c) $W_3 = \{A \mid a_{12} = 2a_{21}\}$
 (d) $W_4 = \{A \mid A \text{ è simmetrica e } a_{11} = 1\}$
 ::: soluzione
-(a) **Sì.** La condizione è lineare omogenea nei coefficienti. Da $a_{22} = -a_{11}$:
+(a) **Sì.** La condizione è un'equazione lineare senza termine noto. Da $a_{22} = -a_{11}$:
 $$\begin{pmatrix} a & b \\ c & -a \end{pmatrix} = a\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} + b\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} + c\begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix},$$
 quindi $W_1$ è lo Span di queste tre matrici.
 
-(b) **No.** $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ e $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ stanno in $W_2$ (il prodotto $a_{11}a_{22}$ vale $0$), ma la loro somma è l'identità, con $a_{11}a_{22} = 1$.
+(b) **No.** $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ e $\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$ stanno in $W_2$, perché il prodotto dei due numeri sulla diagonale fa 0. Ma la loro somma è la matrice con 1 e 1 sulla diagonale, e $1 \cdot 1 = 1$.
 
-(c) **Sì.** Condizione lineare omogenea; posto $a_{21} = t$, $a_{12} = 2t$:
+(c) **Sì.** Equazione lineare senza termine noto. Chiamo $t$ il numero $a_{21}$; allora $a_{12} = 2t$:
 $$\begin{pmatrix} a & 2t \\ t & d \end{pmatrix} = a\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} + t\begin{pmatrix} 0 & 2 \\ 1 & 0 \end{pmatrix} + d\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}.$$
 
-(d) **No.** La matrice nulla ha $a_{11} = 0 \neq 1$.
-:::
-
-::: esercizio difficile Intersezione e unione di sottospazi
-Siano $U$ e $W$ sottospazi di uno spazio vettoriale $V$.
-(a) Dimostra che $U \cap W$ è un sottospazio.
-(b) Mostra con un esempio in $\R^2$ che $U \cup W$ può non essere un sottospazio.
-(c) Dimostra che $U \cup W$ è un sottospazio se e solo se $U \subset W$ oppure $W \subset U$.
-::: soluzione
-(a) $0 \in U$ e $0 \in W$, quindi $0 \in U \cap W$. Se $v, v' \in U \cap W$, allora $v + v' \in U$ (perché $U$ è un sottospazio) e $v + v' \in W$ (perché lo è $W$): quindi $v + v' \in U \cap W$. Lo stesso per $\lambda v$.
-
-(b) $U = \Span((1, 0))$ (l'asse $x$) e $W = \Span((0, 1))$ (l'asse $y$): $(1, 0) + (0, 1) = (1, 1)$ non sta su nessuno dei due assi.
-
-(c) Se $U \subset W$, allora $U \cup W = W$, che è un sottospazio; lo stesso se $W \subset U$.
-
-Viceversa, supponi che $U \cup W$ sia un sottospazio ma che nessuno dei due contenga l'altro: esistono allora $u \in U$ con $u \notin W$ e $w \in W$ con $w \notin U$. La somma $u + w$ sta in $U \cup W$, quindi sta in $U$ oppure in $W$.
-- Se $u + w \in U$, allora $w = (u + w) - u \in U$, perché $U$ è chiuso rispetto a somme e multipli: contraddizione.
-- Se $u + w \in W$, allora $u = (u + w) - w \in W$: contraddizione.
-
-Quindi uno dei due contiene l'altro. È l'Esercizio 2.2.15 del libro di Martelli.
+(d) **No.** La matrice nulla ha la prima casella uguale a 0, non a 1.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Che cos'è una matrice $m \times n$, e che cosa indicano $a_{ij}$, $A_i$ e $A^j$?
-È una tabella di $mn$ numeri di $\K$ con $m$ righe e $n$ colonne. $a_{ij}$ è il coefficiente in riga $i$ e colonna $j$; $A_i$ è la riga $i$; $A^j$ è la colonna $j$ (l'indice in alto non è una potenza).
+È una tabella di $m \cdot n$ numeri con $m$ righe e $n$ colonne. $a_{ij}$ è il numero nella riga $i$ e nella colonna $j$; $A_i$ è la riga $i$; $A^j$ è la colonna $j$ (il numerino in alto non è una potenza).
 :::
 
-::: domanda Perché $M(m, n, \K)$ è uno spazio vettoriale, e chi è il suo vettore nullo?
-Perché somma e prodotto per scalare si fanno casella per casella, e ogni assioma si riduce alla stessa proprietà nel campo, una casella alla volta. Il vettore nullo è la matrice nulla.
+::: domanda Perché le matrici $m \times n$ formano uno spazio vettoriale, e chi è il suo vettore zero?
+Perché somma e moltiplicazione per un numero si fanno casella per casella, e ogni regola di calcolo si riduce alla stessa regola per i numeri, una casella alla volta. Il vettore zero è la matrice nulla.
 :::
 
-::: domanda Quali sono i tre assiomi di sottospazio?
-$W \subset V$ è un sottospazio se (1) $0 \in W$; (2) $v, v' \in W \Rightarrow v + v' \in W$; (3) $v \in W$, $\lambda \in \K \Rightarrow \lambda v \in W$.
+::: domanda Quali sono i tre controlli di sottospazio?
+Un insieme $W$ dentro $V$ è un sottospazio se: (1) contiene lo zero; (2) la somma di due suoi vettori sta ancora in $W$; (3) ogni multiplo di un suo vettore, con un numero qualsiasi, sta ancora in $W$.
 :::
 
 ::: domanda Perché un sottospazio è a sua volta uno spazio vettoriale?
-Le operazioni restano in $W$ (assiomi 2 e 3); le proprietà di calcolo valgono in tutto $V$, quindi anche in $W$; lo zero sta in $W$ (assioma 1); l'opposto di $v$ è $(-1)v$, che sta in $W$ per l'assioma 3.
+Le operazioni non fanno uscire da $W$ (controlli 2 e 3); le regole di calcolo valgono in tutto $V$, quindi anche in $W$; lo zero sta in $W$ (controllo 1); l'opposto di un vettore è il suo multiplo per $-1$, che sta in $W$ per il controllo 3.
 :::
 
-::: domanda Quali sono i sottospazi di $V$ sempre presenti?
-Il sottospazio banale $\{0\}$ e il sottospazio totale $V$; ogni sottospazio $W$ soddisfa $\{0\} \subset W \subset V$.
+::: domanda Quali sottospazi ci sono sempre in uno spazio vettoriale $V$?
+Il sottospazio fatto solo dallo zero, che le dispense chiamano «banale», e il sottospazio totale, cioè $V$ stesso. Ogni altro sottospazio sta in mezzo ai due.
 :::
 
-::: domanda Perché la retta $y = 2x + 1$ non è un sottospazio di $\R^2$, mentre $y = 2x$ sì?
-$y = 2x + 1$ non passa per l'origine (e la somma di due suoi punti esce dalla retta). $y = 2x$ contiene l'origine ed è chiusa rispetto a somme e multipli: è $\Span((1, 2))$.
+::: domanda Perché la retta $y = 2x + 1$ non è un sottospazio del piano, mentre $y = 2x$ sì?
+$y = 2x + 1$ non passa per l'origine, e la somma di due suoi punti esce dalla retta. $y = 2x$ contiene l'origine ed è chiusa rispetto a somme e multipli: è lo Span di $(1, 2)$.
 :::
 
-::: domanda Definisci matrice diagonale, triangolare superiore, simmetrica e antisimmetrica.
-Diagonale: $a_{ij} = 0$ per $i \neq j$. Triangolare superiore: $a_{ij} = 0$ per $i > j$ (zeri sotto la diagonale). Simmetrica: $a_{ij} = a_{ji}$. Antisimmetrica: $a_{ij} = -a_{ji}$, e quindi diagonale nulla.
+::: domanda Che cosa sono una matrice diagonale, triangolare superiore, simmetrica e antisimmetrica?
+Diagonale: zeri fuori dalla diagonale principale. Triangolare superiore: zeri sotto la diagonale. Simmetrica: ogni casella è uguale alla sua immagine allo specchio sulla diagonale. Antisimmetrica: ogni casella è l'opposto della sua immagine allo specchio, e quindi la diagonale è fatta di zeri.
 :::
 
 ::: domanda Perché sulla diagonale di una matrice antisimmetrica ci sono solo zeri?
-Con $i = j$ la condizione $a_{ij} = -a_{ji}$ diventa $a_{ii} = -a_{ii}$, cioè $2a_{ii} = 0$, e dividendo per $2$ (lo si può fare in $\Q$, $\R$ e $\C$) si ottiene $a_{ii} = 0$.
+Una casella della diagonale è l'immagine allo specchio di sé stessa, quindi deve essere uguale al suo opposto: $a_{ii} = -a_{ii}$, cioè $2a_{ii} = 0$. Dividendo per 2, che con i numeri razionali, reali e complessi si può fare, viene $a_{ii} = 0$.
 :::
 
 ::: domanda Le matrici triangolari (superiori oppure inferiori) formano un sottospazio?
-No: la somma di una triangolare superiore e di una inferiore può non essere triangolare, per esempio $\begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}$. Sono sottospazi $T^s(n)$ e $T^i(n)$ separatamente.
+No: la somma di una triangolare superiore e di una inferiore può non essere triangolare, per esempio $\begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ 1 & 1 \end{pmatrix}$. Sono sottospazi le superiori e le inferiori, separatamente.
 :::
 
-::: domanda Che cos'è una combinazione lineare? Che cos'è $\Span(v_1, \dots, v_k)$?
-Una combinazione lineare è un vettore $\lambda_1 v_1 + \dots + \lambda_k v_k$ con scalari $\lambda_i$ qualsiasi. $\Span(v_1, \dots, v_k)$ è l'insieme di **tutte** queste combinazioni, al variare dei coefficienti.
+::: domanda Che cos'è una combinazione lineare? Che cos'è lo Span di alcuni vettori?
+Una combinazione lineare è una ricetta: ogni vettore moltiplicato per un numero, poi tutto sommato. Lo Span è l'insieme di **tutte** le ricette possibili con quei vettori, cambiando le dosi in tutti i modi.
 :::
 
-::: domanda Ripeti la dimostrazione che lo Span è un sottospazio.
-Con tutti i coefficienti nulli si ottiene $0$. La somma di due combinazioni è la combinazione con coefficienti $\lambda_i + \mu_i$. Un multiplo di una combinazione è la combinazione con coefficienti $\lambda\lambda_i$.
+::: domanda Perché lo Span è un sottospazio?
+Con tutte le dosi uguali a zero viene lo zero. La somma di due ricette è la ricetta con le dosi sommate. Il multiplo di una ricetta è la ricetta con tutte le dosi moltiplicate.
 :::
 
-::: domanda Come si decide se un vettore $u$ sta in $\Span(v_1, \dots, v_k)$?
-Si cercano $\lambda_1, \dots, \lambda_k$ con $\lambda_1 v_1 + \dots + \lambda_k v_k = u$: uguagliando le coordinate si ottiene un sistema lineare. Se ha soluzione $u$ sta nello Span, altrimenti no.
+::: domanda Come si decide se un vettore sta nello Span di altri vettori?
+Si cercano le dosi: si scrive la ricetta con delle lettere, la si mette uguale al vettore coordinata per coordinata e si risolve il sistema. Se ha soluzione il vettore sta nello Span, altrimenti no.
 :::
 
 ::: domanda Come si dimostra in fretta che un insieme è un sottospazio?
-Riscrivendolo come Span di alcuni vettori: ogni Span è un sottospazio per la Proposizione 6.7. Per esempio $\{(t + s)x^2 - tx - s\} = \Span(x^2 - x, x^2 - 1)$.
+Riscrivendolo come Span di alcuni vettori: ogni Span è un sottospazio per la Proposizione 6.7. Per esempio i polinomi $(t + s)x^2 - tx - s$ sono le ricette con $x^2 - x$ e $x^2 - 1$.
 :::
 
 ## Glossario
 
 ```glossario
-Matrice $m \times n$ | Tabella di $mn$ elementi di $\K$ con $m$ righe e $n$ colonne; $a_{ij}$ è il coefficiente in riga $i$ e colonna $j$.
-Righe e colonne $A_i$, $A^j$ | $A_i$ è la riga $i$ di $A$, $A^j$ la colonna $j$; l'indice in alto non è una potenza.
-$M(m, n, \K)$ | Lo spazio vettoriale delle matrici $m \times n$ a coefficienti in $\K$; $M(m, 1, \K) = \K^m$.
-Matrice quadrata, $M(n)$ | Matrice $n \times n$; $M(n) = M(n, n, \K)$.
-Diagonale principale | Gli elementi $a_{11}, a_{22}, \dots, a_{nn}$.
-Matrice diagonale | Quadrata con $a_{ij} = 0$ per $i \neq j$; spazio $D(n)$.
-Triangolare superiore / inferiore | Quadrata con zeri sotto la diagonale ($a_{ij} = 0$ per $i > j$, spazio $T^s(n)$) o sopra ($i < j$, spazio $T^i(n)$).
-Matrice simmetrica | $a_{ij} = a_{ji}$ per ogni $i, j$; spazio $S(n)$. Equivale a ${}^tA = A$.
-Matrice antisimmetrica | $a_{ij} = -a_{ji}$ per ogni $i, j$, quindi diagonale nulla; spazio $A(n)$. Equivale a ${}^tA = -A$.
-Sottospazio vettoriale | Sottoinsieme $W \subset V$ con $0 \in W$, chiuso rispetto alla somma e al prodotto per scalare.
-Chiuso rispetto a un'operazione | Applicando l'operazione a elementi dell'insieme si resta nell'insieme.
-Sottospazio banale e totale | $\{0\}$ e $V$ stesso: ogni sottospazio sta tra i due.
-Combinazione lineare | Un vettore $\lambda_1 v_1 + \dots + \lambda_k v_k$, con coefficienti $\lambda_i \in \K$.
-Coefficienti | Gli scalari $\lambda_1, \dots, \lambda_k$ di una combinazione lineare.
-Span, sottospazio generato | $\Span(v_1, \dots, v_k)$: l'insieme di tutte le combinazioni lineari dei $v_i$; è un sottospazio.
-Generatori | Vettori $v_1, \dots, v_k$ tali che $W = \Span(v_1, \dots, v_k)$.
-Trasposta ${}^tA$ | La matrice con righe e colonne scambiate, $({}^tA)_{ij} = a_{ji}$ (lezione L08).
-Forma parametrica e cartesiana | Un sottospazio di $\K^n$ descritto come Span oppure con equazioni lineari omogenee.
+Matrice $m \times n$ | Una tabella di numeri con $m$ righe e $n$ colonne. Il numero nella riga $i$ e nella colonna $j$ si scrive $a_{ij}$.
+Righe e colonne $A_i$, $A^j$ | $A_i$ è la riga $i$ di $A$, $A^j$ la colonna $j$. Il numerino in alto non è una potenza.
+$M(m, n, \K)$ | Lo spazio vettoriale delle matrici $m \times n$. Le matrici con una sola colonna sono i vettori di $\K^m$.
+Matrice quadrata, $M(n)$ | Una matrice con tante righe quante colonne. $M(n)$ è lo spazio delle matrici $n \times n$.
+Diagonale principale | Le caselle con lo stesso numero di riga e di colonna: da in alto a sinistra a in basso a destra.
+Matrice diagonale | Una matrice quadrata con zeri fuori dalla diagonale principale. Formano lo spazio $D(n)$.
+Triangolare superiore / inferiore | Una matrice quadrata con zeri sotto la diagonale (superiore, spazio $T^s(n)$) o sopra (inferiore, spazio $T^i(n)$).
+Matrice simmetrica | Ogni casella è uguale alla sua immagine allo specchio sulla diagonale. Formano lo spazio $S(n)$.
+Matrice antisimmetrica | Ogni casella è l'opposto della sua immagine allo specchio, e la diagonale è fatta di zeri. Formano lo spazio $A(n)$.
+Sottospazio vettoriale | Una parte di uno spazio vettoriale che contiene lo zero ed è chiusa rispetto alla somma e alla moltiplicazione per un numero.
+Chiuso rispetto a un'operazione | Facendo l'operazione con elementi dell'insieme si resta nell'insieme.
+Sottospazio banale e totale | Quello fatto solo dallo zero, e lo spazio intero. Ogni sottospazio sta in mezzo.
+Combinazione lineare | Una ricetta con dei vettori: ciascuno moltiplicato per un numero, poi tutto sommato. Per esempio $2(1, 0) + 3(0, 1)$.
+Coefficienti | Le dosi di una combinazione lineare: i numeri che moltiplicano i vettori.
+Span, sottospazio generato | Tutte le combinazioni lineari di alcuni vettori: tutto quello che si può cucinare con quegli ingredienti. È sempre un sottospazio.
+Generatori | Gli ingredienti di uno Span: i vettori con cui si ottiene tutto il sottospazio.
+Trasposta ${}^tA$ | La matrice con righe e colonne scambiate (lezione L08). $A$ è simmetrica quando è uguale alla sua trasposta.
+Forma parametrica e cartesiana | Due modi di descrivere un sottospazio: come Span di alcuni vettori, oppure con equazioni lineari senza termine noto.
 ```
 
 ## Checklist
 
 ```checklist
-- So leggere una matrice: taglia, coefficiente $a_{ij}$, righe $A_i$ e colonne $A^j$.
-- So sommare matrici della stessa taglia e moltiplicarle per uno scalare.
-- So enunciare i tre assiomi di sottospazio e spiegare perché un sottospazio è uno spazio vettoriale.
-- So dimostrare che un insieme è un sottospazio controllando i tre assiomi con vettori generici.
-- So trovare un controesempio quando un insieme non è un sottospazio (manca lo zero, la somma esce, un multiplo esce).
-- So riconoscere le matrici diagonali, triangolari, simmetriche e antisimmetriche e scriverne la forma generale $3 \times 3$.
-- So dimostrare che $S(n)$ e $A(n)$ sono sottospazi, e perché «triangolari» non lo è.
+- So leggere una matrice: forma, numero $a_{ij}$, righe $A_i$ e colonne $A^j$.
+- So sommare matrici della stessa forma e moltiplicarle per un numero.
+- So dire i tre controlli di sottospazio e perché un sottospazio è uno spazio vettoriale.
+- So dimostrare che un insieme è un sottospazio con i tre controlli fatti su vettori qualsiasi.
+- So trovare un esempio che non funziona quando un insieme non è un sottospazio (manca lo zero, la somma esce, un multiplo esce).
+- So riconoscere le matrici diagonali, triangolari, simmetriche e antisimmetriche e scriverne la forma $3 \times 3$.
+- So spiegare perché le simmetriche e le antisimmetriche sono sottospazi, e perché «triangolari» tutte insieme no.
 - So calcolare una combinazione lineare di vettori, polinomi e matrici.
-- So dire che cos'è $\Span(v_1, \dots, v_k)$ e dimostrare che è un sottospazio.
-- So decidere se un vettore sta in uno Span impostando e risolvendo il sistema dei coefficienti.
+- So dire che cos'è lo Span di alcuni vettori e perché è un sottospazio.
+- So decidere se un vettore sta in uno Span cercando le dosi con un sistema.
 - So riscrivere un sottospazio definito da condizioni come Span di pochi vettori.
 ```
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 6 «Spazi vettoriali II», pp. 26–30: lo spazio delle matrici e le sezioni 6.A–6.D seguite in ordine, con la pagina indicata accanto a ogni titolo; definizioni, proposizioni, esempi ed esercizi mantengono la loro numerazione (Definizioni 6.1, 6.2, 6.3 e 6.6, Esempi 6.4 e 6.8, Proposizioni 6.5 e 6.7, Esercizi 6.9 e 6.10).
-- **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §2.2.5–2.2.16 (matrici, sottospazi, sistemi omogenei, combinazioni lineari e Span, forma parametrica e cartesiana, polinomi con restrizioni, matrici speciali, intersezione e unione di sottospazi, Esercizio 2.2.15).
-- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domande 1 e 5, problema 12), 08/02/2024 (domande 2 e 6), 10/07/2024 (domanda 2), 03/06/2025 (domanda 2), 15/01/2026 (domande 4 e 7), 05/02/2026 (domanda 2), 07/09/2026 (domanda 6). Le domande del 24/01/2024 (1), dell'08/02/2024 (2) e del 03/06/2025 (2) sono riportate con soluzioni scritte per questi appunti. Foglio di esercizi 2 del tutorato 2025 (Buzano, Radeschi), esercizi 1 e 2, come modello di due esercizi.
-- Le parti **«Oltre le dispense»** (sistemi omogenei, polinomi che si annullano in un punto, intersezione e unione, relazioni tra le classi di matrici, lo Span come più piccolo sottospazio, forma parametrica e cartesiana, il metodo per l'esame e gli esercizi 3–12) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 6 «Spazi vettoriali II», pp. 26–30: lo spazio delle matrici e le sezioni 6.A–6.D seguite in ordine, con la pagina indicata accanto a ogni titolo; definizioni, proposizioni, esempi ed esercizi mantengono la loro numerazione (Definizioni 6.1, 6.2, 6.3 e 6.6, Esempi 6.4 e 6.8, Proposizioni 6.5 e 6.7, Esercizi 6.9 e 6.10, svolti come esercizi 8 e 9).
+- **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §2.2.5–2.2.16 (matrici, sottospazi, sistemi omogenei, combinazioni lineari e Span, forma parametrica e cartesiana, polinomi con restrizioni, matrici speciali, intersezione e unione di sottospazi, Esercizio 2.2.15, svolto come esercizio 13).
+- **Appelli citati** (testi e soluzioni sul Moodle 2025/26, [id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)): 24/01/2024 (domande 1 e 5, problema 12), 08/02/2024 (domande 2 e 6), 10/07/2024 (domanda 2), 03/06/2025 (domanda 2), 15/01/2026 (domande 4 e 7), 05/02/2026 (domanda 2), 07/09/2026 (domanda 6). Le domande dell'08/02/2024 (2), del 03/06/2025 (2) e del 24/01/2024 (1) sono riportate con soluzioni scritte per questi appunti. Foglio di esercizi 2 del tutorato 2025 (Buzano, Radeschi), esercizi 1 e 2, come modello di due esercizi.
+- Le parti **«Oltre le dispense»** (sistemi omogenei, polinomi che si annullano in un punto, intersezione e unione, relazioni tra le classi di matrici, lo Span come più piccolo sottospazio, forma parametrica e cartesiana, il metodo per l'esame e gli esercizi che non vengono dalle dispense) sono aggiunte di questi appunti per collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---

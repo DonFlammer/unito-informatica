@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>02B · Memoria e variabili, assegnamento ed espressioni</title>
+<meta name="lezione" content="02B">
+<meta name="data" content="2026-10-06">
+<meta name="description" content="Appunti della lezione 02B di Programmazione I (canale B): i tipi del C e perché sono finiti, le variabili con nome, tipo, indirizzo e valore, dimensioni e sizeof, identificatori, visibilità e durata, il primo modello della memoria con area codice, area dati, stack, frame pointer e stack pointer, l'assegnamento, le espressioni intere con precedenza, divisione intera e modulo, printf con gli specificatori, gli assegnamenti composti e gli operatori ++ e --.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/02B_assegnamento_memory_model.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#dai-bit-ai-tipi"><span class="n">§1</span><span>Dai bit ai tipi</span></a></li>
+<li><a href="#le-variabili"><span class="n">§2</span><span>Le variabili</span></a></li>
+<li><a href="#i-tipi-del-c"><span class="n">§3</span><span>I tipi del C</span></a></li>
+<li><a href="#dichiarare-una-variabile"><span class="n">§4</span><span>Dichiarare una variabile</span></a></li>
+<li><a href="#stampare-i-valori-con-printf"><span class="n">§5</span><span>Stampare i valori con printf</span></a></li>
+<li><a href="#quanto-spazio-occupa-un-tipo-sizeof"><span class="n">§6</span><span>Quanto spazio occupa un tipo: sizeof</span></a></li>
+<li><a href="#i-nomi-delle-variabili"><span class="n">§7</span><span>I nomi delle variabili</span></a></li>
+<li><a href="#dove-e-per-quanto-vive-una-variabile"><span class="n">§8</span><span>Dove e per quanto vive una variabile</span></a></li>
+<li><a href="#il-modello-della-memoria"><span class="n">§9</span><span>Il modello della memoria</span></a></li>
+<li><a href="#l-assegnamento"><span class="n">§10</span><span>L&#39;assegnamento</span></a></li>
+<li><a href="#le-espressioni-con-gli-interi"><span class="n">§11</span><span>Le espressioni con gli interi</span></a></li>
+<li><a href="#un-programma-seguito-nella-memoria"><span class="n">§12</span><span>Un programma seguito nella memoria</span></a></li>
+<li><a href="#tutti-i-modi-di-dare-un-valore"><span class="n">§13</span><span>Tutti i modi di dare un valore</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§14</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§15</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§16</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§17</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§18</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§19</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§20</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 02B</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 02B</p>
+      <h1>Memoria e variabili, assegnamento ed espressioni</h1>
+      <p class="lede">Che cosa c&#39;è dietro int x = 10? Un nome, un tipo, una casella di memoria e un valore. Qui impari a disegnare la memoria di un programma C riga per riga, come negli esercizi d&#39;esame sullo stato della memoria, e a fare i primi conti con gli interi, sapendo dove il C ti sorprende: numeri troppo grandi, virgole che spariscono.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>02B_assegnamento_memory_model («Memoria e Variabili») · 41 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>90–120 minuti, meglio con gcc a portata di mano</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:860px">
+<h2 id="tldr-title">La lezione in 8 punti</h2>
+<ul>
+<li>Un <strong>tipo</strong> dice come leggere i bit in memoria: quanti byte occupano, quali valori sono ammessi, quali operazioni si possono fare. Senza tipi ci sarebbero solo sequenze di 0 e 1.</li>
+<li>Una <strong>variabile</strong> ha quattro cose: un <strong>nome</strong> (<code>contatore</code>), un <strong>tipo</strong> (<code>int</code>), un <strong>indirizzo</strong> (dove sta in memoria) e un <strong>valore</strong> (che cosa contiene adesso). L&#39;indirizzo lo sceglie il sistema, non tu.</li>
+<li>I tipi numerici del C sono <strong>finiti</strong>: <code>int</code> contiene solo gli interi da circa −2,1 miliardi a +2,1 miliardi, <code>float</code> approssima i reali con un numero limitato di cifre.</li>
+<li>Con la <strong>dichiarazione</strong> <code>int x;</code> si riserva lo spazio per <code>x</code> in una zona della memoria chiamata <strong>stack</strong> (pila). Il valore iniziale è <strong>indeterminato</strong>: negli schemi si scrive «?».</li>
+<li>Nel <strong>modello della memoria</strong> ci sono un&#39;area codice e un&#39;area dati. <strong>PC</strong> indica l&#39;istruzione da eseguire, <strong>FP</strong> l&#39;inizio delle variabili di <code>main</code>, <strong>SP</strong> la prossima casella libera. Lo stack si disegna in alto e cresce verso il basso.</li>
+<li>L&#39;<strong>assegnamento</strong> <code>variabile = espressione;</code> calcola prima il valore a destra, poi lo copia nella casella a sinistra.</li>
+<li>Sugli interi: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> (divisione <strong>intera</strong>: <code>13 / 3</code> fa 4) e <code>%</code> (resto: <code>13 % 3</code> fa 1). <code>*</code>, <code>/</code>, <code>%</code> vengono prima di <code>+</code> e <code>-</code>, da sinistra a destra. <code>printf</code> usa gli <strong>specificatori</strong>: <code>%d</code> per <code>int</code>, <code>%f</code> per <code>float</code>, <code>%zu</code> per <code>size_t</code>.</li>
+<li>Scorciatoie: <code>x += 3</code> vuol dire <code>x = x + 3</code> (e così <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>); <code>x++</code> aumenta <code>x</code> di 1, <code>x--</code> lo diminuisce di 1.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale A (Fiandrotti).</strong> Il deck 2025/26 «Assegnazione, memory model, scambio» (55 slide) ha gli stessi contenuti di questa lezione e in più lo <strong>scambio di due variabili</strong> (<code>swap</code>), che nel canale B 2025/26 era una lezione a parte, la settimana dopo. Il deck 2026/27 del canale A per questa settimana non l&#39;ho ancora visto.</p>
+<p><strong>Canale C (Mazzei).</strong> Tipi, variabili, assegnamento, modello della memoria con FP e SP e scambio sono nella lezione 02 «Introduzione al C» (70 slide), insieme a <code>main</code>, <code>printf</code> e gcc.</p>
+<p><strong>Canale B 2025/26.</strong> La lezione «Memoria e Variabili, operatore di assegnamento» (39 slide) era quasi uguale a questa.</p>
+<p>L&#39;esame è unico per i tre canali, e gli esercizi sullo <strong>stato della memoria</strong> partono proprio da questo modello.</p>
+</div>
+
+
+<section id="dai-bit-ai-tipi" aria-labelledby="h-dai-bit-ai-tipi" style="--h:1220px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-dai-bit-ai-tipi">Dai bit ai tipi</h2><span class="slides">slide 2–3</span></div>
+<p>In memoria ci sono solo bit. Prendi questi 8 bit:</p>
+<pre class="code" data-lingua="text"><code>0100 0001</code></pre>
+<p>Che cosa sono? Dipende da come li leggi:</p>
+<ul>
+<li>come <strong>numero intero</strong> sono 65 (64 + 1, ricordi la base 2 della lezione 02 di Fondamenti);</li>
+<li>come <strong>carattere</strong> sono la lettera <code>A</code>, perché nel codice ASCII la <code>A</code> ha il numero 65;</li>
+<li>come pezzo di un numero più lungo non vogliono dire niente da soli.</li>
+</ul>
+<p>I bit da soli non bastano: serve una regola per leggerli. Questa regola è il <strong>tipo</strong>. Le slide lo dicono così: un tipo è un ponte tra i bit e il senso che vogliamo dare ai dati.</p>
+<p>Un tipo del C stabilisce sei cose (slide 3):</p>
+<div class="table-wrap"><table><thead><tr><th>Che cosa</th><th>Esempio</th></tr></thead><tbody><tr><td><strong>nome</strong>, usato nel codice</td><td><code>int</code>, <code>float</code>, <code>struct Persona</code></td></tr>
+<tr><td><strong>dimensione</strong> in memoria</td><td><code>int</code> di solito 4 byte, <code>double</code> 8 byte</td></tr>
+<tr><td><strong>dominio</strong>: i valori ammessi</td><td><code>int</code>: gli interi in un certo intervallo</td></tr>
+<tr><td><strong>operazioni</strong> consentite</td><td>somma tra interi, radice quadrata sui reali</td></tr>
+<tr><td><strong>rappresentazione</strong> dei bit</td><td>complemento a 2 per gli interi, IEEE 754 per i reali</td></tr>
+<tr><td><strong>compatibilità</strong> con altri tipi</td><td>regole di conversione automatiche e con il <em>cast</em></td></tr></tbody></table></div>
+<p>La rappresentazione dei bit (complemento a 2, IEEE 754) la studi in Fondamenti dell&#39;Informatica (lezione 03) e in Architettura degli Elaboratori. Qui ti basta sapere che esiste.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Gli stessi 8 bit <code>0011 0000</code> letti come intero valgono 48. Che cosa sono letti come carattere ASCII?</span></summary><div class="ans"><p>Il carattere <code>0</code> (la cifra zero): nella tabella ASCII le cifre partono dal codice 48. È un esempio di come lo stesso contenuto cambi senso cambiando il tipo.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p>Un tipo dice come leggere i bit: quanti byte, quali valori, quali operazioni, come sono codificati, come si convertono in altri tipi.</p>
+</div>
+</section>
+
+<section id="le-variabili" aria-labelledby="h-le-variabili" style="--h:1700px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-le-variabili">Le variabili</h2><span class="slides">slide 4–6</span></div>
+<p>Nella macchina di Von Neumann della lezione 02A le istruzioni lavoravano sugli <strong>indirizzi</strong>: <code>LOAD, R0, @400</code>. Programmare così vuol dire ricordarsi a memoria che all&#39;indirizzo 400 c&#39;è il prezzo e al 404 la quantità. I linguaggi di alto livello danno un <strong>nome</strong> a quelle caselle: invece di «la casella 400» scrivi <code>prezzo</code>. Questo nome con il suo tipo è una <strong>variabile</strong>.</p>
+<p>Pensa a un cassetto di una cassettiera:</p>
+<ul>
+<li>sull&#39;etichetta c&#39;è scritto il <strong>nome</strong>;</li>
+<li>la forma del cassetto dice che cosa ci può stare: è il <strong>tipo</strong>;</li>
+<li>la posizione del cassetto nella cassettiera è l&#39;<strong>indirizzo</strong>;</li>
+<li>quello che c&#39;è dentro adesso è il <strong>valore</strong>, e può cambiare.</li>
+</ul>
+<div class="box def"><p class="box-label"><span>Definizione · Variabile (slide 4–5)</span></p><p>Una variabile associa un <strong>nome</strong> e un <strong>tipo</strong> a una porzione di memoria che contiene un <strong>valore</strong>. È definita da: nome, tipo, indirizzo (la posizione in memoria) e valore (il contenuto attuale, che può cambiare durante l&#39;esecuzione).</p>
+</div>
+<p><strong>Come si legge.</strong> Una variabile è una casella di memoria a cui dai un nome. Il tipo dice quanti byte occupa e come leggerli. Il valore è quello che c&#39;è dentro in questo momento.</p>
+<p>L&#39;esempio della slide 5:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> contatore = 1;
+<span class="kw">float</span> media = 60.54;</code></pre>
+<div class="table-wrap"><table><thead><tr><th></th><th><code>contatore</code></th><th><code>media</code></th></tr></thead><tbody><tr><td>nome</td><td><code>contatore</code></td><td><code>media</code></td></tr>
+<tr><td>tipo</td><td><code>int</code></td><td><code>float</code></td></tr>
+<tr><td>indirizzo (esempio)</td><td><code>0x904A</code></td><td><code>0x367F</code></td></tr>
+<tr><td>valore</td><td>1</td><td>60.54</td></tr></tbody></table></div>
+<p>Gli indirizzi si scrivono di solito in <strong>esadecimale</strong>, con il prefisso <code>0x</code> (lezione 01 di Fondamenti). Quelli della tabella sono inventati: l&#39;indirizzo vero lo decidono il compilatore e il sistema quando il programma parte, e cambia da un&#39;esecuzione all&#39;altra. Il programmatore non lo sceglie: sceglie il <strong>tipo</strong>, cioè quali valori può contenere la variabile, come sono codificati, quali operazioni si possono fare e come interagisce con altri tipi (slide 6).</p>
+<div class="box neutro"><p class="box-label"><span>Nota · «Solo in parte automatica»</span></p><p>La slide 6 avverte che in C la gestione della memoria è solo <strong>parzialmente</strong> automatica. Le variabili di questa lezione nascono e spariscono da sole. Più avanti nel corso vedrai la memoria che chiedi e restituisci tu, con <code>malloc</code> e <code>free</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quali delle quattro proprietà di una variabile possono cambiare mentre il programma gira?</span></summary><div class="ans"><p>Solo il valore. Nome, tipo e indirizzo restano gli stessi per tutta la vita della variabile.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p>Variabile = nome + tipo + indirizzo + valore. Tu scegli nome e tipo; l&#39;indirizzo lo sceglie il sistema; il valore cambia con gli assegnamenti.</p>
+</div>
+</section>
+
+<section id="i-tipi-del-c" aria-labelledby="h-i-tipi-del-c" style="--h:1670px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-i-tipi-del-c">I tipi del C</h2><span class="slides">slide 7–9, 12</span></div>
+<p>La slide 7 mostra la famiglia completa dei tipi del C:</p>
+<ul>
+<li><strong>tipi primitivi</strong> (già pronti nel linguaggio): interi, naturali (senza segno), reali;</li>
+<li><strong>tipi derivati</strong>, costruiti da altri: puntatori, array, <code>struct</code>, <code>union</code>, <code>enum</code>, funzioni;</li>
+<li><strong><code>void</code></strong>, il tipo «vuoto»;</li>
+<li><strong><code>typedef</code></strong>, per dare un nome nuovo a un tipo;</li>
+<li><strong>qualificatori</strong> come <code>const</code>, che si aggiungono a un tipo.</li>
+</ul>
+<p>Per ora ne bastano pochi (slide 8):</p>
+<div class="table-wrap"><table><thead><tr><th>Tipo</th><th>Per che cosa</th><th>Nota</th></tr></thead><tbody><tr><td><code>int</code></td><td>numeri interi (<span class="katex" role="math" aria-label="\Z"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">Z</span></span></span></span>)</td><td>ci sono anche <code>short</code>, <code>long</code>, <code>long long</code></td></tr>
+<tr><td><code>unsigned int</code></td><td>numeri naturali (<span class="katex" role="math" aria-label="\N"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">N</span></span></span></span>), senza segno</td><td></td></tr>
+<tr><td><code>float</code></td><td>numeri con la virgola (<span class="katex" role="math" aria-label="\R"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span>)</td><td>c&#39;è anche <code>double</code>, più preciso</td></tr>
+<tr><td><code>char</code></td><td>caratteri</td><td>occupa 1 byte (8 bit)</td></tr>
+<tr><td><code>size_t</code></td><td>dimensioni, numeri di elementi</td><td>intero senza segno, da <code>&lt;stddef.h&gt;</code></td></tr>
+<tr><td><code>bool</code></td><td>vero o falso (<code>true</code>/<code>false</code>, cioè 1/0)</td><td>da <code>&lt;stdbool.h&gt;</code></td></tr></tbody></table></div>
+<p>La slide 12 li raggruppa per uso: numeri <strong>naturali</strong> (le versioni <code>unsigned</code>), <strong>interi</strong> (<code>short</code>, <code>int</code>, <code>long</code>, <code>long long</code>), <strong>reali</strong> (<code>float</code>, <code>double</code>), <strong>dimensioni</strong> (<code>size_t</code>, <code>ptrdiff_t</code>), <strong>caratteri e byte</strong> (<code>char</code>, <code>unsigned char</code>), <strong>logico</strong> (<code>bool</code>).</p>
+<h3 id="i-numeri-del-c-sono-finiti-slide-9">I numeri del C sono finiti (slide 9)</h3>
+<p>Gli insiemi della matematica <span class="katex" role="math" aria-label="\N"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">N</span></span></span></span>, <span class="katex" role="math" aria-label="\Z"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">Z</span></span></span></span> e <span class="katex" role="math" aria-label="\R"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span> sono <strong>infiniti</strong>. Una variabile occupa un numero fisso di byte, quindi un tipo può contenere solo un numero <strong>finito</strong> di valori.</p>
+<p>Un <code>int</code> occupa di solito 4 byte, cioè 32 bit: le combinazioni possibili sono <span class="katex" role="math" aria-label="2^{32}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">32</span></span></span></span></span></span></span></span></span></span></span></span>, circa 4,3 miliardi. Metà vanno ai negativi e metà allo zero e ai positivi:</p>
+<div class="formula"><span class="katex-display"><span class="katex" role="math" aria-label="-2\,147\,483\,648 \le \text{int} \le 2\,147\,483\,647, \qquad \text{cioè da } -2^{31} \text{ a } 2^{31} - 1."><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">147</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">483</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">648</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8038em;vertical-align:-0.136em;"></span><span class="mord text"><span class="mord">int</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">147</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">483</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">647</span><span class="mpunct">,</span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord text"><span class="mord">cio</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">e</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˋ</span></span></span></span></span></span></span><span class="mord"> da </span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mord text"><span class="mord"> a </span></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1.</span></span></span></span></span></div>
+<p>Un <code>unsigned int</code> usa gli stessi 32 bit solo per lo zero e i positivi: da 0 a <span class="katex" role="math" aria-label="2^{32} - 1 = 4\,294\,967\,295"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">32</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">294</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">967</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">295</span></span></span></span>.</p>
+<p>Per i reali il limite è un altro: <code>float</code> e <code>double</code> hanno un numero limitato di cifre, quindi molti numeri vengono <strong>approssimati</strong>. La lezione 03 di Fondamenti mostra come funziona la virgola mobile.</p>
+<div class="box idea"><p class="box-label"><span>L'idea · Un contachilometri</span></p><p>Un contachilometri a 6 cifre arriva a 999 999 e poi torna a 000 000. Un <code>int</code> fa qualcosa di simile quando supera il valore massimo: è l&#39;<strong>overflow</strong>, che vedi nella sezione sull&#39;assegnamento.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanti valori diversi può contenere un tipo da 1 byte? E da 2 byte?</span></summary><div class="ans"><p>1 byte = 8 bit: <span class="katex" role="math" aria-label="2^8 = 256"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">256</span></span></span></span> valori. 2 byte = 16 bit: <span class="katex" role="math" aria-label="2^{16} = 65\,536"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">16</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">65</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">536</span></span></span></span> valori.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p>I tipi del C sono modelli <strong>finiti</strong> dei numeri della matematica: gli interi hanno un minimo e un massimo, i reali hanno una precisione limitata.</p>
+</div>
+</section>
+
+<section id="dichiarare-una-variabile" aria-labelledby="h-dichiarare-una-variabile" style="--h:680px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-dichiarare-una-variabile">Dichiarare una variabile</h2><span class="slides">slide 10</span></div>
+<p>Prima di usare una casella bisogna chiederla, dicendo il nome e il tipo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> x;</code></pre>
+<p>Questa riga è una <strong>dichiarazione</strong>: dice al compilatore che esiste una variabile di nome <code>x</code> e di tipo <code>int</code>. Quando il programma arriva a questa riga, riserva lo spazio per un <code>int</code> (4 byte) in una zona della memoria chiamata <strong>pila</strong> o <strong>stack</strong>. Da quel momento puoi usare la casella con il nome <code>x</code>.</p>
+<p>Il nome <code>x</code> esiste solo nel sorgente C. Nell&#39;assembly della lezione 02A non ci sono nomi: il compilatore trasforma ogni nome in un <strong>indirizzo</strong>. Per questo le slide dicono che l&#39;identificatore è <strong>simbolico</strong>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Dopo <code>int voti;</code> il programma sa già quanti byte occupa <code>voti</code>? Sa già che valore contiene?</span></summary><div class="ans"><p>Sa quanti byte occupa: il tipo <code>int</code> lo dice (di solito 4). Non sa che valore contiene: nessuno ce l&#39;ha ancora scritto.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p>Ogni variabile va dichiarata con tipo e nome prima di usarla. La dichiarazione riserva lo spazio sullo stack.</p>
+</div>
+</section>
+
+<section id="stampare-i-valori-con-printf" aria-labelledby="h-stampare-i-valori-con-printf" style="--h:1630px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-stampare-i-valori-con-printf">Stampare i valori con printf</h2><span class="slides">slide 11, 37–38</span></div>
+<p>La prima cosa che si fa con una variabile è guardarne il valore.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> x = 10;          <span class="cm">// variabile intera</span>
+<span class="kw">float</span> y = 3.14f;     <span class="cm">// variabile reale (in virgola mobile)</span>
+printf(<span class="str">&quot;La variabile x vale: %d\n&quot;</span>, x);   <span class="cm">// %d → int</span>
+printf(<span class="str">&quot;La variabile y vale: %f\n&quot;</span>, y);   <span class="cm">// %f → float</span></code></pre>
+<p>Stampa:</p>
+<pre class="code" data-lingua="text"><code>La variabile x vale: 10
+La variabile y vale: 3.140000</code></pre>
+<p><code>printf</code> riceve prima una <strong>stringa di formato</strong>, poi i valori da stampare, separati da virgole. Dentro la stringa:</p>
+<ul>
+<li>il testo normale viene stampato così com&#39;è;</li>
+<li>ogni <strong>specificatore di formato</strong> (<code>%d</code>, <code>%f</code>, …) è un posto da riempire: il primo specificatore prende il primo valore dopo la stringa, il secondo il secondo, e così via.</li>
+</ul>
+<pre class="code" data-lingua="c"><code>printf(<span class="str">&quot;x vale %d, y vale %d\n&quot;</span>, x, y);</code></pre>
+<p>Il primo <code>%d</code> stampa <code>x</code>, il secondo <code>%d</code> stampa <code>y</code> (slide 37).</p>
+<p><code>%f</code> stampa sei cifre dopo la virgola: per questo 3.14 diventa <code>3.140000</code>. La <code>f</code> in fondo a <code>3.14f</code> dice che la costante è un <code>float</code>; senza, <code>3.14</code> sarebbe un <code>double</code>.</p>
+<h3 id="larghezza-e-zeri-slide-38">Larghezza e zeri (slide 38)</h3>
+<div class="table-wrap"><table><thead><tr><th>Istruzione</th><th>Stampa (con <code>x = 7</code>)</th><th>Che cosa fa</th></tr></thead><tbody><tr><td><code>printf(&quot;x vale %d\n&quot;, x);</code></td><td><code>x vale 7</code></td><td>quante cifre servono</td></tr>
+<tr><td><code>printf(&quot;x vale %6d\n&quot;, x);</code></td><td><code>x vale      7</code></td><td>almeno 6 posizioni, spazi a sinistra</td></tr>
+<tr><td><code>printf(&quot;x vale %06d\n&quot;, x);</code></td><td><code>x vale 000007</code></td><td>almeno 6 posizioni, zeri a sinistra</td></tr></tbody></table></div>
+<p>Risultati provati con gcc 16.1. Tutti i formati sono nel manuale della libreria GNU C (link nella slide 38 e nelle fonti).</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Lo specificatore deve corrispondere al tipo</span></p><p><code>printf(&quot;%f&quot;, x)</code> con <code>x</code> di tipo <code>int</code> è un errore: <code>printf</code> legge i bit dell&#39;intero come se fossero un reale e stampa un numero senza senso. Con <code>-Wall -Werror</code> gcc lo blocca:</p>
+<pre class="code" data-lingua="text"><code>error: format '%f' expects argument of type 'double', but argument 2 has type 'int' [-Werror=format=]</code></pre>
+<p>(<code>printf</code> riceve i <code>float</code> già convertiti in <code>double</code>: per questo il messaggio parla di <code>double</code>.)</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa <code>printf(&quot;%d + %d = %d\n&quot;, 2, 3, 2 + 3);</code>?</span></summary><div class="ans"><p><code>2 + 3 = 5</code>. Tre specificatori, tre valori nell&#39;ordine; il terzo è il risultato dell&#39;espressione <code>2 + 3</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p><code>printf(&quot;testo con %d&quot;, valore)</code>: uno specificatore per ogni valore, nello stesso ordine, e del tipo giusto (<code>%d</code> int, <code>%f</code> float, <code>%zu</code> size_t, <code>%c</code> char).</p>
+</div>
+</section>
+
+<section id="quanto-spazio-occupa-un-tipo-sizeof" aria-labelledby="h-quanto-spazio-occupa-un-tipo-sizeof" style="--h:1800px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-quanto-spazio-occupa-un-tipo-sizeof">Quanto spazio occupa un tipo: sizeof</h2><span class="slides">slide 13–15</span></div>
+<p>Il C non fissa la dimensione esatta dei tipi, perché deve funzionare su macchine molto diverse, dai microcontrollori ai server. Fissa solo un <strong>ordine</strong>:</p>
+<div class="formula"><span class="katex-display"><span class="katex" role="math" aria-label="\texttt{sizeof(char)} \le \texttt{sizeof(short)} \le \texttt{sizeof(int)} \le \texttt{sizeof(long)} \le \texttt{sizeof(long long)}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord text"><span class="mord texttt">sizeof(char)</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord text"><span class="mord texttt">sizeof(short)</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord text"><span class="mord texttt">sizeof(int)</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9167em;vertical-align:-0.2222em;"></span><span class="mord text"><span class="mord texttt">sizeof(long)</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9167em;vertical-align:-0.2222em;"></span><span class="mord text"><span class="mord texttt">sizeof(long long)</span></span></span></span></span></span></div>
+<div class="formula"><span class="katex-display"><span class="katex" role="math" aria-label="\texttt{sizeof(float)} \le \texttt{sizeof(double)}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord text"><span class="mord texttt">sizeof(float)</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord text"><span class="mord texttt">sizeof(double)</span></span></span></span></span></span></div>
+<p><code>sizeof</code> è un <strong>operatore</strong> che dice quanti byte occupa un tipo o una variabile. Il risultato ha tipo <code>size_t</code>, e si stampa con <code>%zu</code>:</p>
+<pre class="code" data-lingua="c"><code>printf(<span class="str">&quot;int occupa %zu byte\n&quot;</span>, <span class="kw">sizeof</span>(<span class="kw">int</span>));</code></pre>
+<p>Le slide 14–15 danno una tabella di riferimento per le macchine a 32 e 64 bit, con intervalli e specificatori. Le righe principali:</p>
+<div class="table-wrap"><table><thead><tr><th>Tipo</th><th class="num">Byte (tipico)</th><th>Intervallo</th><th>Specificatore</th></tr></thead><tbody><tr><td><code>char</code></td><td class="num">1</td><td>da −128 a 127</td><td><code>%c</code> (come carattere)</td></tr>
+<tr><td><code>short</code></td><td class="num">2</td><td>da <span class="katex" role="math" aria-label="-2^{15}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">15</span></span></span></span></span></span></span></span></span></span></span></span> a <span class="katex" role="math" aria-label="2^{15} - 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">15</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td><td><code>%hd</code></td></tr>
+<tr><td><code>int</code></td><td class="num">4</td><td>da <span class="katex" role="math" aria-label="-2^{31}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span></span></span></span> a <span class="katex" role="math" aria-label="2^{31} - 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td><td><code>%d</code></td></tr>
+<tr><td><code>long</code></td><td class="num">4 o 8</td><td>dipende dalla macchina</td><td><code>%ld</code></td></tr>
+<tr><td><code>long long</code></td><td class="num">8</td><td>da <span class="katex" role="math" aria-label="-2^{63}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">63</span></span></span></span></span></span></span></span></span></span></span></span> a <span class="katex" role="math" aria-label="2^{63} - 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">63</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td><td><code>%lld</code></td></tr>
+<tr><td><code>unsigned int</code></td><td class="num">4</td><td>da 0 a <span class="katex" role="math" aria-label="2^{32} - 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">32</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></td><td><code>%u</code></td></tr>
+<tr><td><code>size_t</code></td><td class="num">4 (32 bit) o 8 (64 bit)</td><td>da 0 in su</td><td><code>%zu</code></td></tr>
+<tr><td><code>float</code></td><td class="num">4</td><td>circa da <span class="katex" role="math" aria-label="10^{-38}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">38</span></span></span></span></span></span></span></span></span></span></span></span> a <span class="katex" role="math" aria-label="10^{38}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">38</span></span></span></span></span></span></span></span></span></span></span></span></td><td><code>%f</code></td></tr>
+<tr><td><code>double</code></td><td class="num">8</td><td>circa da <span class="katex" role="math" aria-label="10^{-308}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">308</span></span></span></span></span></span></span></span></span></span></span></span> a <span class="katex" role="math" aria-label="10^{308}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">308</span></span></span></span></span></span></span></span></span></span></span></span></td><td><code>%lf</code> (in <code>scanf</code>)</td></tr></tbody></table></div>
+<p>La slide 15 dice esplicitamente: <strong>non serve impararle a memoria</strong>. Servono gli specificatori più usati (<code>%d</code>, <code>%u</code>, <code>%f</code>, <code>%c</code>, <code>%zu</code>) e l&#39;idea che ogni tipo ha un intervallo.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Su Windows <code>long</code> è da 4 byte</span></p><p>La tabella delle slide dà <code>long</code> da 8 byte sulle macchine a 64 bit. È vero su Linux e macOS, ma non su Windows: sul mio PC (Windows 11 a 64 bit, gcc 16.1) <code>sizeof(long)</code> vale <strong>4</strong>. È proprio il motivo per cui il C fissa solo l&#39;ordine tra i tipi e non le dimensioni. Sullo stesso PC: <code>char</code> 1, <code>short</code> 2, <code>int</code> 4, <code>long long</code> 8, <code>float</code> 4, <code>double</code> 8, <code>bool</code> 1, <code>size_t</code> 8.</p>
+</div>
+<div class="box neutro"><p class="box-label"><span>Nota · Due refusi nella tabella</span></p><p>Nella slide 14 lo specificatore di <code>ptrdiff_t</code> è scritto <code>%t</code>: quello vero è <code>%td</code>. Nella slide 15 compare «unsigned signed int», che non è un tipo del C: il nome è <code>unsigned int</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa <code>printf(&quot;%zu\n&quot;, sizeof(char));</code> su qualunque macchina?</span></summary><div class="ans"><p><code>1</code>. Lo standard del C fissa <code>sizeof(char)</code> uguale a 1: il <code>char</code> è l&#39;unità con cui si misurano gli altri tipi.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p><code>sizeof(tipo)</code> dà i byte, di tipo <code>size_t</code>, stampati con <code>%zu</code>. Il C garantisce solo l&#39;ordine <code>char</code> ≤ <code>short</code> ≤ <code>int</code> ≤ <code>long</code> ≤ <code>long long</code>: le dimensioni vere dipendono dalla macchina.</p>
+</div>
+</section>
+
+<section id="i-nomi-delle-variabili" aria-labelledby="h-i-nomi-delle-variabili" style="--h:1050px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-i-nomi-delle-variabili">I nomi delle variabili</h2><span class="slides">slide 16–17</span></div>
+<p>Le regole per gli <strong>identificatori</strong> (lezione 02A):</p>
+<ul>
+<li>possono contenere lettere, cifre e trattino basso <code>_</code>;</li>
+<li>devono cominciare con una lettera o con <code>_</code> (di solito una lettera minuscola);</li>
+<li>niente spazi né simboli speciali;</li>
+<li>devono essere <strong>unici</strong> nel loro ambito: due variabili nello stesso blocco non possono avere lo stesso nome.</li>
+</ul>
+<p>Esempio della slide 16: <code>int laMiaPrimaVariabile;</code>.</p>
+<p>Oltre alle regole ci sono le <strong>convenzioni</strong> del corso (slide 17):</p>
+<ul>
+<li>tutto minuscolo, oppure <strong>camelCase</strong> per i nomi di più parole: <code>sommaTot</code>, <code>media7giorni</code>, <code>elementoTrovato</code> (la prima parola minuscola, le altre con l&#39;iniziale maiuscola);</li>
+<li>nomi che dicono il <strong>ruolo</strong> del dato: <code>somma</code>, <code>media</code>, <code>massimoTrovato</code>;</li>
+<li>nomi corti come <code>s</code>, <code>m</code>, <code>flag</code> solo quando il senso è chiaro dal contesto;</li>
+<li>mai nomi senza senso come <code>pippo</code> o <code>nonSoCheNomeDare</code>.</li>
+</ul>
+<p>Il nome non è un dettaglio: un buon nome rende il codice leggibile, riduce gli errori e aiuta a ragionare. All&#39;esame il codice viene anche letto da un docente.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Un nome che comincia con una cifra</span></p><p><code>int 2x = 3;</code> non compila. gcc 16.1:</p>
+<pre class="code" data-lingua="text"><code>error: invalid suffix 'x' on integer constant</code></pre>
+<p>Il compilatore legge <code>2</code> come un numero e <code>x</code> come un «suffisso» sbagliato del numero.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quali di questi nomi sono validi? <code>media7giorni</code>, <code>7giorni</code>, <code>somma_tot</code>, <code>somma tot</code>.</span></summary><div class="ans"><p>Validi: <code>media7giorni</code> (la cifra non è all&#39;inizio) e <code>somma_tot</code>. Non validi: <code>7giorni</code> (comincia con una cifra) e <code>somma tot</code> (contiene uno spazio).</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p>Lettere, cifre e <code>_</code>, senza cominciare con una cifra. Nomi che dicono il ruolo, in camelCase: <code>sommaTot</code>, <code>elementoTrovato</code>.</p>
+</div>
+</section>
+
+<section id="dove-e-per-quanto-vive-una-variabile" aria-labelledby="h-dove-e-per-quanto-vive-una-variabile" style="--h:1080px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-dove-e-per-quanto-vive-una-variabile">Dove e per quanto vive una variabile</h2><span class="slides">slide 18</span></div>
+<p>Una variabile ha due proprietà in più, legate a <strong>dove</strong> e <strong>quando</strong> esiste.</p>
+<p>La <strong>visibilità</strong> (<em>scope</em>) dice in quale parte del codice puoi usare il nome:</p>
+<ul>
+<li><strong>locale</strong> (o automatica, il caso normale): dichiarata dentro una funzione o un blocco <code>{ … }</code>, si usa solo lì dentro;</li>
+<li><strong>globale</strong>: dichiarata fuori da tutte le funzioni, si vede in tutto il file (e in altri file, se dichiarata <code>extern</code>);</li>
+<li><strong>statica</strong>: con <code>static</code>, conserva il valore tra una chiamata e l&#39;altra ma resta visibile solo nel suo blocco.</li>
+</ul>
+<p>La <strong>durata</strong> (<em>lifetime</em>) dice per quanto tempo la variabile occupa memoria:</p>
+<ul>
+<li>le variabili <strong>locali</strong> stanno sullo <strong>stack</strong> e spariscono quando finisce il blocco;</li>
+<li>le variabili <strong>globali</strong> e <strong>statiche</strong> esistono per tutto il programma;</li>
+<li>le variabili <strong>dinamiche</strong> stanno in un&#39;altra zona, lo <strong>heap</strong>: le crei tu con <code>malloc()</code> e restano finché non le liberi (più avanti nel corso).</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Una variabile dichiarata dentro le graffe di <code>main</code> è locale o globale? Dove sta in memoria?</span></summary><div class="ans"><p>È locale: si vede solo dentro <code>main</code>. Sta sullo stack e sparisce quando <code>main</code> finisce.</p>
+</div></details></div></div>
+<p>Per capire il C bisogna sapere come la memoria viene presa e restituita. Il corso usa per questo un <strong>modello della memoria</strong>, che vedi nella prossima sezione.</p>
+<div class="box exam"><p class="box-label"><span>Conta all'esame · Niente <code>static</code> e niente globali</span></p><p>Nelle regole d&#39;esame (scheda del corso) <code>static</code> è <strong>vietato</strong> negli esercizi di programmazione. Anche le variabili globali non servono: usa solo variabili locali e parametri.</p>
+</div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p>Locali: visibili nel loro blocco, vivono sullo stack finché il blocco dura. Globali e statiche: vivono per tutto il programma. Dinamiche: nello heap, finché non le liberi.</p>
+</div>
+</section>
+
+<section id="il-modello-della-memoria" aria-labelledby="h-il-modello-della-memoria" style="--h:2530px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-il-modello-della-memoria">Il modello della memoria</h2><span class="slides">slide 19–26</span></div>
+<p>Negli esercizi d&#39;esame sullo <strong>stato della memoria</strong> si disegna la memoria di un programma riga per riga. Il modello è questo.</p>
+<h3 id="area-codice-e-area-dati-slide-19-21">Area codice e area dati (slide 19–21)</h3>
+<p>Quando lanci un programma, il sistema lo <strong>carica</strong> dal disco in memoria centrale e gli riserva una zona divisa in due:</p>
+<ul>
+<li>l&#39;<strong>area codice</strong>, con le istruzioni del programma: ha una dimensione <strong>fissa</strong>;</li>
+<li>l&#39;<strong>area dati</strong>, con le variabili: può crescere, ma fino a un massimo.</li>
+</ul>
+<p>Le variabili vengono messe nell&#39;area dati <strong>una dopo l&#39;altra, nell&#39;ordine in cui sono dichiarate</strong>. Nel disegno ogni riga è una parola di 32 bit (4 byte).</p>
+<h3 id="tre-indirizzi-speciali-slide-22">Tre indirizzi speciali (slide 22)</h3>
+<p>Tre registri della CPU tengono il segno di dove si è arrivati:</p>
+<div class="table-wrap"><table><thead><tr><th>Nome</th><th>Sigla</th><th>Che cosa indica</th></tr></thead><tbody><tr><td>program counter</td><td>PC</td><td>l&#39;istruzione da eseguire, nell&#39;area codice (all&#39;inizio: la prima istruzione di <code>main</code>)</td></tr>
+<tr><td>frame pointer</td><td>FP</td><td>l&#39;indirizzo da cui cominciano le variabili di <code>main</code></td></tr>
+<tr><td>stack pointer</td><td>SP</td><td>l&#39;indirizzo in cui verrà messa la prossima variabile</td></tr></tbody></table></div>
+<p>All&#39;inizio, prima di qualunque dichiarazione, FP e SP coincidono.</p>
+<h3 id="lo-stack-cresce-verso-il-basso-slide-23-24">Lo stack cresce verso il basso (slide 23–24)</h3>
+<p>La parte dell&#39;area dati che contiene le variabili si chiama <strong>stack</strong> (pila). Nel modello si disegna in <strong>alto</strong> e cresce verso gli indirizzi <strong>più bassi</strong>: ogni nuova variabile va sotto la precedente.</p>
+<p>È come una pila di piatti appesa al soffitto: ogni piatto nuovo si aggiunge sotto. Quando dichiari <code>int x;</code>, SP scende di 4 byte (la dimensione di un <code>int</code>) e la casella tra il vecchio e il nuovo SP diventa <code>x</code>.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Una convenzione di disegno</span></p><p>La direzione in cui cresce lo stack dipende dal processore e dal sistema operativo. Nel corso si usa sempre questa: stack in alto, crescita verso il basso (slide 23).</p>
+</div>
+<p>Se le variabili sono troppe e lo spazio dello stack finisce, il programma si interrompe con un errore a runtime di tipo <strong>stack overflow</strong> (slide 24).</p>
+<h3 id="il-valore-iniziale-e-slide-25">Il valore iniziale è «?» (slide 25)</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x;
+}</code></pre>
+<p>Dopo <code>int x;</code> lo spazio è riservato, ma nessuno ci ha scritto: dentro c&#39;è quello che era rimasto in quei byte da prima. Il valore è <strong>indeterminato</strong>, e negli schemi si scrive <strong>«?»</strong>.</p>
+<p>Ho provato a stamparlo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x;
+    printf(<span class="str">&quot;x vale %d\n&quot;</span>, x);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Senza <code>-Werror</code> gcc avvisa (<code>warning: 'x' is used uninitialized</code>) e il programma stampa un numero a caso, sul mio PC <code>x vale 32758</code>. Con <code>-Wall -Werror</code> non compila:</p>
+<pre class="code" data-lingua="text"><code>error: 'x' is used uninitialized [-Werror=uninitialized]</code></pre>
+<div class="box trap"><p class="box-label"><span>Trappola · «?» non vuol dire 0</span></p><p>Una variabile locale non inizializzata <strong>non</strong> vale 0: vale quello che capita. Negli esercizi sullo stato della memoria, una casella mai assegnata si scrive «?», e un calcolo che la usa dà «?».</p>
+</div>
+<h3 id="piu-variabili-slide-26">Più variabili (slide 26)</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x;
+    <span class="kw">int</span> y;
+    <span class="kw">int</span> z;
+}</code></pre>
+<p>Tre <code>int</code> da 4 byte: 12 byte, nell&#39;ordine di dichiarazione. Lo stato dopo l&#39;ultima dichiarazione:</p>
+<div class="table-wrap"><table><thead><tr><th>Indirizzo</th><th>Contenuto</th><th>Nome</th></tr></thead><tbody><tr><td>FP − 4</td><td>?</td><td><code>x</code></td></tr>
+<tr><td>FP − 8</td><td>?</td><td><code>y</code></td></tr>
+<tr><td>FP − 12</td><td>?</td><td><code>z</code> ← SP</td></tr></tbody></table></div>
+<p>(In alto gli indirizzi più grandi: la riga di <code>x</code> è la prima sotto FP, e SP è sceso di 12 byte.)</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Dopo <code>int a; int b;</code> di quanti byte è sceso SP rispetto a FP? E in che riga sta <code>b</code>?</span></summary><div class="ans"><p>Di 8 byte (due <code>int</code> da 4). <code>b</code> sta sotto <code>a</code>, all&#39;indirizzo FP − 8, perché è stata dichiarata dopo.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p>Area codice fissa, area dati con lo stack in alto che cresce verso il basso. PC = istruzione corrente, FP = inizio delle variabili di <code>main</code>, SP = prossima casella libera. Variabili in ordine di dichiarazione, valore iniziale «?».</p>
+</div>
+</section>
+
+<section id="l-assegnamento" aria-labelledby="h-l-assegnamento" style="--h:2100px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-l-assegnamento">L&#39;assegnamento</h2><span class="slides">slide 27–29</span></div>
+<p>Una casella con «?» non serve a molto. Per metterci un valore si usa l&#39;operatore <code>=</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> x;
+x = 10;</code></pre>
+<p>Oppure tutto in una riga, dichiarazione e primo valore insieme: è una <strong>definizione con inizializzazione</strong>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> x = 10;</code></pre>
+<h3 id="come-funziona-slide-29">Come funziona (slide 29)</h3>
+<p>La forma generale è:</p>
+<pre class="code" data-lingua="c"><code>variabile = espressione;</code></pre>
+<p>Si esegue in tre passi:</p>
+<ol>
+<li>si <strong>calcola</strong> l&#39;espressione a destra (in gergo: viene <strong>valutata</strong>);</li>
+<li>il calcolo produce un <strong>valore</strong>;</li>
+<li>il valore viene <strong>copiato</strong> nella casella della variabile a sinistra; quello che c&#39;era prima va perso.</li>
+</ol>
+<p>I due lati hanno nomi tecnici:</p>
+<ul>
+<li>il lato sinistro è l&#39;<strong>lvalue</strong> (da <em>left value</em>): deve indicare una casella di memoria, cioè una variabile;</li>
+<li>il lato destro è l&#39;<strong>rvalue</strong> (<em>right value</em>): un valore o un&#39;espressione da calcolare.</li>
+</ul>
+<p>Per questo <code>x = x + 1</code> ha senso in C: prima si calcola <code>x + 1</code> con il valore vecchio, poi il risultato va in <code>x</code>. Non è un&#39;equazione, è un ordine: «metti in <code>x</code> il valore di <code>x + 1</code>». E per questo <code>10 = x</code> non compila: 10 non è una casella.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · <code>=</code> non è il confronto</span></p><p>In C <code>=</code> <strong>assegna</strong>. Per chiedere «sono uguali?» si usa <code>==</code>, che vedrai con le condizioni. Nello pseudocodice della lezione 01A l&#39;assegnamento si scriveva con la freccia <code>←</code>.</p>
+</div>
+<h3 id="quando-il-valore-non-ci-sta-slide-28">Quando il valore non ci sta (slide 28)</h3>
+<p>L&#39;assegnamento deve rispettare il <strong>tipo</strong>. Tre casi:</p>
+<div class="table-wrap"><table><thead><tr><th>Istruzione</th><th>Che cosa succede</th><th>Stampa</th></tr></thead><tbody><tr><td><code>int x = -8;</code></td><td>normale</td><td><code>x vale -8</code></td></tr>
+<tr><td><code>int x = 2147483649;</code></td><td>il numero supera il massimo di <code>int</code> (<span class="katex" role="math" aria-label="2^{31} - 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>): <strong>overflow</strong></td><td><code>x vale -2147483647</code></td></tr>
+<tr><td><code>int x = 8.89;</code></td><td>un <code>int</code> non ha la virgola: la parte decimale viene <strong>tagliata</strong></td><td><code>x vale 8</code></td></tr></tbody></table></div>
+<p>Ho compilato gli ultimi due con gcc 16.1 e <code>-Wall -Werror</code>: <strong>compilano tutti e due senza nessun avviso</strong>, e stampano esattamente quello che dicono le slide. Il compilatore non ti protegge: le slide parlano di overflow «non rilevabili dal compilatore».</p>
+<ul>
+<li>Nel primo caso il numero 2 147 483 649 è <span class="katex" role="math" aria-label="2^{31} + 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>: per entrare in 32 bit «gira» come il contachilometri e diventa <span class="katex" role="math" aria-label="-2^{31} + 1 = -2\,147\,483\,647"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">147</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">483</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">647</span></span></span></span>.</li>
+<li>Nel secondo <code>8.89</code> diventa 8: la virgola viene <strong>troncata</strong>, non arrotondata (anche 8.99 diventerebbe 8).</li>
+</ul>
+<div class="box neutro"><p class="box-label"><span>Nota · Gli spazi nel numero</span></p><p>La slide 28 scrive <code>int x = 2 147 483 649;</code> con gli spazi per leggerlo meglio. In C un numero non può contenere spazi: nel codice va scritto <code>2147483649</code>.</p>
+</div>
+<div class="box extra"><p class="box-label"><span>Oltre le slide · Un avviso che -Wall non dà</span></p><p>gcc può avvisare della virgola persa con l&#39;opzione <code>-Wconversion</code>, che non fa parte di <code>-Wall</code>: <code>warning: conversion from 'double' to 'int' changes value from '8.89…' to '8'</code>. All&#39;esame si usa solo <code>-Wall -Werror</code>, quindi conta saperlo tu.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Dopo <code>int a = 5; a = a * 2 + 1;</code> quanto vale <code>a</code>?</span></summary><div class="ans"><ol start="11">
+<li>Si calcola prima la destra con il valore vecchio: <span class="katex" role="math" aria-label="5 \cdot 2 + 1 = 11"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">11</span></span></span></span>, poi 11 va in <code>a</code>.</li>
+</ol>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p><code>variabile = espressione;</code>: prima si calcola la destra, poi il valore si copia a sinistra. Il valore deve stare nel tipo: un intero troppo grande «gira» (overflow), un reale messo in un <code>int</code> perde la parte decimale. gcc non lo segnala.</p>
+</div>
+</section>
+
+<section id="le-espressioni-con-gli-interi" aria-labelledby="h-le-espressioni-con-gli-interi" style="--h:1830px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-le-espressioni-con-gli-interi">Le espressioni con gli interi</h2><span class="slides">slide 30–32</span></div>
+<p>Per ora solo espressioni con variabili <strong>intere</strong>. Gli operatori:</p>
+<div class="table-wrap"><table><thead><tr><th>Operatore</th><th>Che cosa fa</th><th>Esempio</th><th>Risultato</th></tr></thead><tbody><tr><td><code>+</code></td><td>somma</td><td><code>7 + 2</code></td><td>9</td></tr>
+<tr><td><code>-</code></td><td>sottrazione</td><td><code>7 - 2</code></td><td>5</td></tr>
+<tr><td><code>*</code></td><td>moltiplicazione</td><td><code>7 * 2</code></td><td>14</td></tr>
+<tr><td><code>/</code></td><td>divisione <strong>intera</strong></td><td><code>7 / 2</code></td><td>3</td></tr>
+<tr><td><code>%</code></td><td><strong>resto</strong> della divisione (modulo)</td><td><code>7 % 2</code></td><td>1</td></tr>
+<tr><td><code>( )</code></td><td>raggruppa</td><td><code>(7 + 2) * 2</code></td><td>18</td></tr></tbody></table></div>
+<p>Esempi della slide 30:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> incasso = biglietti * prezzoBiglietto;
+<span class="kw">int</span> utile = incasso - costoSala;</code></pre>
+<h3 id="divisione-intera-e-resto-slide-32">Divisione intera e resto (slide 32)</h3>
+<p>Dividere 13 caramelle in 3 sacchetti uguali: in ogni sacchetto ne vanno 4 e ne avanza 1.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> a = 13, b = 3;
+<span class="kw">int</span> quot = a / b;    <span class="cm">// 4</span>
+<span class="kw">int</span> r = a % b;       <span class="cm">// 1, perche' 13 = 3*4 + 1</span></code></pre>
+<ul>
+<li><code>/</code> tra due interi dà solo la <strong>parte intera</strong> del quoziente. La parte decimale viene <strong>scartata</strong>, non arrotondata: <code>7 / 2</code> fa 3, non 3,5 e non 4.</li>
+<li><code>%</code> dà il <strong>resto</strong>: quello che avanza.</li>
+</ul>
+<p>Il resto serve molto per la <strong>parità</strong>: se <code>n % 2</code> vale 0 il numero è pari, se vale 1 è dispari (per <code>n</code> positivo o zero).</p>
+<div class="box extra"><p class="box-label"><span>Oltre le slide · Con i numeri negativi</span></p><p>Il C tronca verso lo zero: <code>-13 / 3</code> fa <strong>−4</strong> (non −5) e <code>-13 % 3</code> fa <strong>−1</strong>. Vale sempre <code>(a / b) * b + a % b == a</code>. Per questo il controllo di parità di un negativo dispari dà −1, non 1: meglio scrivere <code>n % 2 != 0</code> per «dispari». Risultati provati con gcc 16.1.</p>
+</div>
+<div class="box trap"><p class="box-label"><span>Trappola · Divisione per zero</span></p><p><code>x / 0</code> e <code>x % 0</code> tra interi compilano, ma all&#39;esecuzione il programma si interrompe (lezione 02A, errori a runtime).</p>
+</div>
+<h3 id="chi-viene-prima-slide-31">Chi viene prima (slide 31)</h3>
+<p>Quando un&#39;espressione ha più operatori, contano le <strong>precedenze</strong>:</p>
+<ol>
+<li>le <strong>parentesi</strong> <code>( )</code> prima di tutto, anche annidate;</li>
+<li>poi <code>*</code>, <code>/</code>, <code>%</code>;</li>
+<li>poi <code>+</code> e <code>-</code>;</li>
+<li>a parità di livello, <strong>da sinistra a destra</strong>;</li>
+<li>l&#39;assegnamento <code>=</code> per ultimo.</li>
+</ol>
+<div class="table-wrap"><table><thead><tr><th>Espressione</th><th>Come si calcola</th><th>Risultato</th></tr></thead><tbody><tr><td><code>2 + 3 * 4</code></td><td>prima <code>3 * 4</code></td><td>14</td></tr>
+<tr><td><code>(2 + 3) * 4</code></td><td>prima la parentesi</td><td>20</td></tr>
+<tr><td><code>20 / 4 * 2</code></td><td>da sinistra: <code>20 / 4</code> = 5, poi <code>5 * 2</code></td><td>10</td></tr>
+<tr><td><code>7 / 2 * 2</code></td><td><code>7 / 2</code> = 3, poi <code>3 * 2</code></td><td>6</td></tr></tbody></table></div>
+<p>Risultati provati. L&#39;ultima riga mostra che con gli interi <code>7 / 2 * 2</code> <strong>non</strong> torna 7: la divisione ha già perso il resto.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto vale <code>10 - 4 % 3 * 2</code>?</span></summary><div class="ans"><ol start="8">
+<li>Prima <code>%</code> e <code>*</code> da sinistra: <code>4 % 3</code> = 1, poi <code>1 * 2</code> = 2. Poi la sottrazione: <code>10 - 2</code> = 8.</li>
+</ol>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p>Tra interi <code>/</code> taglia la parte decimale e <code>%</code> dà il resto. Ordine: parentesi, poi <code>* / %</code>, poi <code>+ -</code>, da sinistra a destra, e <code>=</code> alla fine.</p>
+</div>
+</section>
+
+<section id="un-programma-seguito-nella-memoria" aria-labelledby="h-un-programma-seguito-nella-memoria" style="--h:1340px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-un-programma-seguito-nella-memoria">Un programma seguito nella memoria</h2><span class="slides">slide 33–36</span></div>
+<p>Il programma «treVariabili» delle slide, eseguito riga per riga:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x;
+    <span class="kw">int</span> y;
+    <span class="kw">int</span> z;
+    x = 5;
+    y = 2;
+    z = x + y;
+    printf(<span class="str">&quot;Le var x, y  e z valgono %d, %d, %d\n&quot;</span>, x, y, z);
+}</code></pre>
+<div class="table-wrap"><table><thead><tr><th>Dopo la riga</th><th><code>x</code> (FP − 4)</th><th><code>y</code> (FP − 8)</th><th><code>z</code> (FP − 12)</th><th>Che cosa è successo</th></tr></thead><tbody><tr><td><code>int x; int y; int z;</code></td><td>?</td><td>?</td><td>?</td><td>12 byte riservati, SP è sceso a FP − 12</td></tr>
+<tr><td><code>x = 5;</code></td><td><strong>5</strong></td><td>?</td><td>?</td><td>assegnamento di un numero</td></tr>
+<tr><td><code>y = 2;</code></td><td>5</td><td><strong>2</strong></td><td>?</td><td></td></tr>
+<tr><td><code>z = x + y;</code></td><td>5</td><td>2</td><td><strong>7</strong></td><td>si leggono <code>x</code> e <code>y</code>, si somma, si scrive in <code>z</code></td></tr>
+<tr><td><code>printf(…)</code></td><td>5</td><td>2</td><td>7</td><td>stampa <code>Le var x, y  e z valgono 5, 2, 7</code></td></tr></tbody></table></div>
+<p>Nella slide 35 la riga <code>z = x + y;</code> è affiancata dalle istruzioni assembly che fa davvero la macchina, come nella lezione 02A:</p>
+<pre class="code" data-lingua="text"><code>LOAD,  R0, @x      ; copia x in un registro
+LOAD,  R1, @y      ; copia y in un altro registro
+ADD,   R0, R1      ; somma nei registri
+STORE, R0, @z      ; scrive il risultato nella casella di z</code></pre>
+<p>Una riga di C diventa quattro istruzioni macchina. Il nome <code>x</code> è diventato l&#39;indirizzo <code>@x</code>.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Disegnare lo stato della memoria</span></p><ol>
+<li>Una riga per ogni variabile, nell&#39;ordine di dichiarazione, sotto FP.</li>
+<li>Al momento della dichiarazione scrivi «?».</li>
+<li>A ogni assegnamento: calcola la destra con i valori <strong>attuali</strong>, poi sostituisci il valore della variabile a sinistra.</li>
+<li>Le altre caselle non cambiano.</li>
+<li>Se un calcolo usa una casella «?», il risultato è «?».</li>
+</ol>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Disegna lo stato dopo <code>int a = 4; int b; b = a % 3; a = a + b;</code>.</span></summary><div class="ans"><p><code>a</code> = 4, <code>b</code> = ?; poi <code>b</code> = <code>4 % 3</code> = 1; poi <code>a</code> = <code>4 + 1</code> = 5. Stato finale: <code>a</code> = 5, <code>b</code> = 1.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p>Lo stato della memoria cambia solo con gli assegnamenti, una casella alla volta. Una riga di C come <code>z = x + y;</code> corrisponde a più istruzioni macchina: LOAD, LOAD, ADD, STORE.</p>
+</div>
+</section>
+
+<section id="tutti-i-modi-di-dare-un-valore" aria-labelledby="h-tutti-i-modi-di-dare-un-valore" style="--h:1350px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-tutti-i-modi-di-dare-un-valore">Tutti i modi di dare un valore</h2><span class="slides">slide 39–41</span></div>
+<p>La slide 39 riassume i quattro modi di mettere un valore in una variabile:</p>
+<div class="table-wrap"><table><thead><tr><th>Modo</th><th>Codice</th><th>Nota</th></tr></thead><tbody><tr><td>inizializzazione nella dichiarazione</td><td><code>int x = 10;</code></td><td>valore dato subito</td></tr>
+<tr><td>assegnamento dopo</td><td><code>int x;</code> poi <code>x = 10;</code></td><td>in mezzo <code>x</code> vale «?»</td></tr>
+<tr><td>da tastiera</td><td><code>int n;</code> poi <code>scanf(&quot;%d&quot;, &amp;n);</code></td><td>serve la <code>&amp;</code> (Lab01)</td></tr>
+<tr><td>assegnamento multiplo</td><td><code>a = b = c = 0;</code></td><td>si legge da destra: <code>c = 0</code>, poi <code>b = c</code>, poi <code>a = b</code></td></tr></tbody></table></div>
+<p>L&#39;assegnamento multiplo funziona perché un assegnamento è anche un&#39;<strong>espressione</strong> che vale il valore assegnato: <code>c = 0</code> vale 0, e quel valore va in <code>b</code>, e così via.</p>
+<h3 id="assegnamenti-composti-slide-40">Assegnamenti composti (slide 40)</h3>
+<p>Capita spesso di aggiornare una variabile partendo dal suo valore: <code>somma = somma + voto</code>. Il C ha una scorciatoia:</p>
+<div class="table-wrap"><table><thead><tr><th>Operatore</th><th>Vuol dire</th><th>Esempio</th><th>Risultato</th></tr></thead><tbody><tr><td><code>x += y</code></td><td><code>x = x + y</code></td><td><code>x = 5; x += 3;</code></td><td>8</td></tr>
+<tr><td><code>x -= y</code></td><td><code>x = x - y</code></td><td><code>x = 5; x -= 2;</code></td><td>3</td></tr>
+<tr><td><code>x *= y</code></td><td><code>x = x * y</code></td><td><code>x = 5; x *= 4;</code></td><td>20</td></tr>
+<tr><td><code>x /= y</code></td><td><code>x = x / y</code></td><td><code>x = 20; x /= 5;</code></td><td>4</td></tr>
+<tr><td><code>x %= y</code></td><td><code>x = x % y</code></td><td><code>x = 20; x %= 6;</code></td><td>2</td></tr></tbody></table></div>
+<p>Risultati provati.</p>
+<h3 id="piu-uno-e-meno-uno-slide-41">Più uno e meno uno (slide 41)</h3>
+<pre class="code" data-lingua="c"><code>x++;    <span class="cm">// come x = x + 1</span>
+x--;    <span class="cm">// come x = x - 1</span></code></pre>
+<p>Servono ogni volta che si conta: i contatori dei cicli, che arriveranno presto. Le slide li usano solo come <strong>istruzioni a sé</strong>, su una riga da soli. Dentro un&#39;espressione più grande (<code>y = x++ * 2</code>) hanno un comportamento più sottile, che il corso non tratta: non usarli così.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int n = 10;</code> che cosa vale <code>n</code> dopo <code>n -= 3; n *= 2; n++;</code>?</span></summary><div class="ans"><ol start="15">
+<li><code>10 - 3</code> = 7, poi <code>7 * 2</code> = 14, poi <code>14 + 1</code> = 15.</li>
+</ol>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><p><code>x op= y</code> vuol dire <code>x = x op y</code>. <code>x++</code> e <code>x--</code> aggiungono o tolgono 1: usali da soli, su una riga.</p>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:1090px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>=</code></td><td>«uguale», «prende»</td><td>assegnamento: copia il valore di destra nella variabile di sinistra</td><td><code>x = 10;</code></td></tr>
+<tr><td><code>+ - * / %</code></td><td>più, meno, per, diviso, modulo</td><td>operazioni sugli interi; <code>/</code> intera, <code>%</code> resto</td><td><code>13 / 3</code> = 4, <code>13 % 3</code> = 1</td></tr>
+<tr><td><code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code></td><td>«più uguale», …</td><td>aggiorna la variabile con un&#39;operazione</td><td><code>x += 3</code></td></tr>
+<tr><td><code>++</code>, <code>--</code></td><td>«più più», «meno meno»</td><td>aumenta o diminuisce di 1</td><td><code>x++</code></td></tr>
+<tr><td><code>%d</code></td><td>«percento di»</td><td>in <code>printf</code>: un <code>int</code></td><td><code>printf(&quot;%d&quot;, x)</code></td></tr>
+<tr><td><code>%f</code></td><td>«percento effe»</td><td>in <code>printf</code>: un <code>float</code> o <code>double</code></td><td><code>printf(&quot;%f&quot;, y)</code></td></tr>
+<tr><td><code>%zu</code></td><td>«percento zeta u»</td><td>un <code>size_t</code>, per esempio un <code>sizeof</code></td><td><code>printf(&quot;%zu&quot;, sizeof(int))</code></td></tr>
+<tr><td><code>%6d</code>, <code>%06d</code></td><td></td><td>almeno 6 posizioni, con spazi o con zeri</td><td><code>000007</code></td></tr>
+<tr><td><code>sizeof</code></td><td>«size of»</td><td>byte occupati da un tipo o da una variabile</td><td><code>sizeof(int)</code> = 4</td></tr>
+<tr><td><code>0x</code></td><td>«zero ics»</td><td>numero in esadecimale, usato per gli indirizzi</td><td><code>0x904A</code></td></tr>
+<tr><td><code>3.14f</code></td><td></td><td>costante <code>float</code> (senza <code>f</code> è <code>double</code>)</td><td><code>float y = 3.14f;</code></td></tr>
+<tr><td>PC, FP, SP</td><td>program counter, frame pointer, stack pointer</td><td>istruzione corrente, inizio delle variabili, prossima casella libera</td><td></td></tr>
+<tr><td>?</td><td>«indeterminato»</td><td>casella riservata ma mai assegnata</td><td><code>int x;</code></td></tr>
+<tr><td><span class="katex" role="math" aria-label="\Z"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">Z</span></span></span></span>, <span class="katex" role="math" aria-label="\N"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">N</span></span></span></span>, <span class="katex" role="math" aria-label="\R"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span></td><td>interi, naturali, reali</td><td>gli insiemi della matematica che i tipi approssimano</td><td><code>int</code> ≈ <span class="katex" role="math" aria-label="\Z"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">Z</span></span></span></span></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:920px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>L&#39;esame di Programmazione I è al PC, unico per i tre canali: appelli <strong>lunedì 25/01/2027</strong> e <strong>giovedì 11/02/2027</strong>. Questa lezione entra in due tipi di esercizio.</p>
+<p><strong>Esercizi sullo stato della memoria.</strong> Nel 2025/26 erano uno dei due esercizi di teoria del canale C (scheda del corso). Si chiede il valore delle variabili dopo una sequenza di istruzioni, che cosa viene stampato, quali caselle sono ancora «?». Il metodo è quello della sezione «Un programma seguito nella memoria»: una colonna per variabile, una riga per istruzione. Più avanti nel corso lo stesso schema si allarga alle chiamate di funzione, con un frame per ogni chiamata.</p>
+<p><strong>Esercizi di programmazione.</strong> Ogni programma usa variabili, assegnamenti, <code>printf</code>. Gli errori che costano:</p>
+<ol>
+<li><strong>specificatore sbagliato</strong> in <code>printf</code> (<code>%f</code> per un <code>int</code>): con <code>-Wall -Werror</code> il programma non compila;</li>
+<li><strong>variabile usata prima di darle un valore</strong>: non compila con <code>-Werror</code>, e se compilasse darebbe valori a caso;</li>
+<li><strong>divisione intera</strong> dove serviva quella con la virgola (<code>7 / 2</code> fa 3);</li>
+<li><strong>overflow</strong> con numeri grandi: il compilatore non avvisa;</li>
+<li><strong>stampe diverse</strong> da quelle richieste: CodeRunner confronta il testo carattere per carattere, spazi compresi.</li>
+</ol>
+<div class="box exam"><p class="box-label"><span>Conta all'esame · Nomi e leggibilità</span></p><p>Le soluzioni vengono anche lette (riepilogo d&#39;esame 2025/26 del canale C). Nomi chiari in camelCase, una variabile per ogni ruolo, niente <code>static</code> (vietato) né variabili globali.</p>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2060px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Quale tra queste NON è una delle quattro cose che definiscono una variabile, secondo la slide 5?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">L&#39;indirizzo</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il valore</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il nome</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il tipo</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il numero di volte che viene usata</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Una variabile è definita da nome, tipo, indirizzo e valore. Quante volte la usi nel programma non fa parte della variabile.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Dopo queste righe, quanto vale <code>r</code>? <code>int a = 17, b = 5; int r = a % b;</code></div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="2" data-toll="1e-9"><span class="q-giusto" hidden>2</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>17 = 5 · 3 + 2: il quoziente intero è 3, il resto 2.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>printf(&quot;%d\n&quot;, 7 / 2 * 2);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">7</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">6</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">7.0</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Le operazioni <code>/</code> e <code>*</code> hanno la stessa precedenza e si fanno da sinistra: <code>7 / 2</code> è la divisione intera e fa 3, poi <code>3 * 2</code> fa 6. Il 7 si otterrebbe solo con la divisione con la virgola, che tra interi non c&#39;è.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Dopo <code>int x;</code> (variabile locale, senza altre istruzioni), che cosa contiene <code>x</code> nel modello della memoria?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il suo indirizzo</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Niente: la memoria per <code>x</code> viene riservata solo al primo assegnamento</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">1</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Un valore indeterminato, che si scrive «?»</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La dichiarazione riserva lo spazio sullo stack, ma non scrive niente: dentro resta quello che c&#39;era. Non è 0, e la memoria è già riservata.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Nel modello della memoria del corso, dopo <code>int a; int b; int c;</code> in <code>main</code>, di quanti byte è sceso lo stack pointer rispetto al frame pointer (int da 4 byte)?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="12" data-toll="1e-9"><span class="q-giusto" hidden>12</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Tre variabili da 4 byte, una sotto l&#39;altra: SP scende di 12 byte.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa questo programma (compilato senza <code>-Werror</code>)? <code>int x = 8.89; printf(&quot;x vale %d\n&quot;, x);</code></div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x vale 9</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x vale 8.89</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non compila</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x vale 8.890000</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x vale 8</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Un <code>int</code> non ha la virgola: la parte decimale viene tagliata, non arrotondata. Il programma compila anche con <code>-Wall -Werror</code>, senza nessun avviso.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale istruzione stampa <code>x vale 000042</code> con <code>int x = 42;</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;x vale %d000\n&quot;, x);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;x vale 0000%d\n&quot;, x);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;x vale %6d\n&quot;, x);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;x vale %06d\n&quot;, x);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;x vale %f\n&quot;, x);</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>%06d</code> usa almeno 6 posizioni e riempie a sinistra con zeri. <code>%6d</code> riempie con spazi. <code>0000%d</code> funziona solo per numeri di 2 cifre. <code>%f</code> con un <code>int</code> non compila con <code>-Wall -Werror</code>.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Con <code>int n = 4;</code> quanto vale <code>n</code> dopo <code>n += 2; n *= 3; n--;</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="17" data-toll="1e-9"><span class="q-giusto" hidden>17</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>4 + 2</code> = 6, poi <code>6 * 3</code> = 18, poi <code>18 - 1</code> = 17.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale di questi identificatori NON è valido in C?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>sommaTot</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>_tmp</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>risultati2</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>2risultati</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>media_voti</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Un identificatore non può cominciare con una cifra. Gli altri sono validi; <code>_tmp</code> comincia con il trattino basso, ammesso.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Su quale di queste affermazioni sulle dimensioni dei tipi il C dà una garanzia?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>sizeof(int)</code> vale 4</span></label><label class="opz"><input type="radio" name="q1-9" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>sizeof(int) &lt;= sizeof(long)</code></span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>sizeof(long)</code> vale 8 sulle macchine a 64 bit</span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>sizeof(char)</code> vale 2</span></label><label class="opz"><input type="radio" name="q1-9" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>sizeof(float) == sizeof(double)</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il C garantisce solo l&#39;ordine <code>char</code> ≤ <code>short</code> ≤ <code>int</code> ≤ <code>long</code> ≤ <code>long long</code> (e <code>sizeof(char)</code> uguale a 1). Che <code>int</code> sia di 4 byte è tipico ma non garantito, e su Windows a 64 bit <code>long</code> è di 4 byte, non 8.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1780px">
+<div class="sec-head"><span class="sec-num">§17</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Stato della memoria <span class="lvl">base</span></h3><p>Disegna lo stato della memoria (valori di tutte le variabili) dopo ogni riga, e scrivi che cosa viene stampato.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a = 3;
+    <span class="kw">int</span> b;
+    <span class="kw">int</span> c = a * 4;
+    b = c - a;
+    a = a + b;
+    printf(<span class="str">&quot;%d %d %d\n&quot;</span>, a, b, c);
+}</code></pre>
+<details class="sol"><summary>Soluzione</summary><div class="table-wrap"><table><thead><tr><th>Dopo</th><th><code>a</code></th><th><code>b</code></th><th><code>c</code></th></tr></thead><tbody><tr><td><code>int a = 3;</code></td><td>3</td><td></td><td></td></tr>
+<tr><td><code>int b;</code></td><td>3</td><td>?</td><td></td></tr>
+<tr><td><code>int c = a * 4;</code></td><td>3</td><td>?</td><td>12</td></tr>
+<tr><td><code>b = c - a;</code></td><td>3</td><td>9</td><td>12</td></tr>
+<tr><td><code>a = a + b;</code></td><td>12</td><td>9</td><td>12</td></tr></tbody></table></div>
+<p>Stampa <code>12 9 12</code>. Nella riga <code>a = a + b</code> si usa il valore vecchio di <code>a</code> (3): <span class="katex" role="math" aria-label="3 + 9 = 12"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">12</span></span></span></span>. Verificato con gcc.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Precedenze <span class="lvl">base</span></h3><p>Calcola a mano, poi controlla con un programma: (a) <code>5 + 12 / 4 * 2</code>; (b) <code>(5 + 12) / 4 * 2</code>; (c) <code>5 + 12 / (4 * 2)</code>; (d) <code>17 % 5 * 3 - 1</code>.</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) <code>12 / 4</code> = 3, <code>3 * 2</code> = 6, <code>5 + 6</code> = <strong>11</strong>.
+(b) <code>17 / 4</code> = 4 (intera), <code>4 * 2</code> = <strong>8</strong>.
+(c) <code>4 * 2</code> = 8, <code>12 / 8</code> = 1, <code>5 + 1</code> = <strong>6</strong>.
+(d) <code>17 % 5</code> = 2, <code>2 * 3</code> = 6, <code>6 - 1</code> = <strong>5</strong>.
+Verificati con gcc 16.1.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Ore e minuti <span class="lvl">base</span></h3><p>Scrivi un programma che, dato <code>int minuti = 135;</code>, stampa <code>135 minuti = 2 ore e 15 minuti</code> usando <code>/</code> e <code>%</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> minuti = 135;
+    <span class="kw">int</span> ore = minuti / 60;
+    <span class="kw">int</span> resto = minuti % 60;
+    printf(<span class="str">&quot;%d minuti = %d ore e %d minuti\n&quot;</span>, minuti, ore, resto);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa <code>135 minuti = 2 ore e 15 minuti</code> (compilato con <code>-Wall -Werror</code>). <code>135 / 60</code> = 2, <code>135 % 60</code> = 15.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Le cifre di un numero <span class="lvl">medio</span></h3><p>Con <code>int n = 4827;</code> stampa separatamente le unità, le decine, le centinaia e le migliaia, usando solo <code>/</code> e <code>%</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n = 4827;
+    <span class="kw">int</span> unita = n % 10;
+    <span class="kw">int</span> decine = n / 10 % 10;
+    <span class="kw">int</span> centinaia = n / 100 % 10;
+    <span class="kw">int</span> migliaia = n / 1000;
+    printf(<span class="str">&quot;%d %d %d %d\n&quot;</span>, migliaia, centinaia, decine, unita);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa <code>4 8 2 7</code>. <code>n / 10</code> toglie l&#39;ultima cifra (482), <code>% 10</code> prende quella che ora è l&#39;ultima (2). È lo stesso trucco della conversione in base 2 di Fondamenti, con 10 al posto di 2.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Trova gli errori <span class="lvl">medio</span></h3><p>Il programma seguente con <code>gcc -Wall -Werror</code> non compila. Trova i problemi.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> totale;
+    <span class="kw">float</span> media = 7.5f;
+    <span class="kw">int</span> 1voto = 28;
+    totale = totale + 28;
+    printf(<span class="str">&quot;totale %f, media %f\n&quot;</span>, totale, media);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li><code>int 1voto</code> comincia con una cifra: <code>invalid suffix 'voto' on integer constant</code>. Si chiama per esempio <code>voto1</code>.</li>
+<li><code>totale = totale + 28;</code> usa <code>totale</code> mai inizializzato: <code>'totale' is used uninitialized</code>. Va scritto <code>int totale = 0;</code>.</li>
+<li>Nel <code>printf</code> <code>totale</code> è un <code>int</code> stampato con <code>%f</code>: <code>format '%f' expects argument of type 'double', but argument 2 has type 'int'</code>. Va <code>%d</code>.</li>
+</ol>
+<p>gcc 16.1 al primo tentativo segnala gli errori 1 e 3. L&#39;errore 2 compare solo dopo aver corretto il nome: finché la riga di <code>1voto</code> non compila, gcc non arriva a controllare i valori delle variabili. Per questo si ricompila dopo ogni correzione.</p>
+<p>Versione corretta:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> totale = 0;
+    <span class="kw">float</span> media = 7.5f;
+    <span class="kw">int</span> voto1 = 28;
+    totale = totale + voto1;
+    printf(<span class="str">&quot;totale %d, media %f\n&quot;</span>, totale, media);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa <code>totale 28, media 7.500000</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Media che non torna <span class="lvl">medio</span></h3><p>Con <code>int a = 7, b = 8;</code> il programma calcola <code>int media = (a + b) / 2;</code> e stampa 7. Perché non 7,5? Come si ottiene 7,5?</p>
+<details class="sol"><summary>Soluzione</summary><p><code>(a + b) / 2</code> è una divisione tra interi: <span class="katex" role="math" aria-label="15 / 2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">15/2</span></span></span></span> fa 7, il resto si perde. E anche mettendo il risultato in un <code>float</code> (<code>float media = (a + b) / 2;</code>) si ottiene 7.000000, perché la divisione è già stata fatta tra interi. Per avere 7,5 uno dei due operandi deve essere reale: <code>float media = (a + b) / 2.0f;</code> stampa <code>7.500000</code>. Le conversioni tra tipi le vedrai nel laboratorio 02.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · Lo scambio di due variabili <span class="lvl">difficile</span></h3><p>Con <code>int x = 3, y = 8;</code> scrivi le istruzioni che scambiano i valori: alla fine <code>x</code> deve valere 8 e <code>y</code> 3. Perché <code>x = y; y = x;</code> non funziona?</p>
+<details class="sol"><summary>Soluzione</summary><p><code>x = y;</code> mette 8 in <code>x</code> e il 3 si perde; poi <code>y = x;</code> copia 8 in <code>y</code>. Alla fine valgono tutti e due 8. Serve una terza variabile che conservi il valore:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> x = 3, y = 8;
+<span class="kw">int</span> tmp = x;    <span class="cm">// tmp = 3</span>
+x = y;          <span class="cm">// x = 8</span>
+y = tmp;        <span class="cm">// y = 3</span></code></pre>
+<div class="table-wrap"><table><thead><tr><th>Dopo</th><th><code>x</code></th><th><code>y</code></th><th><code>tmp</code></th></tr></thead><tbody><tr><td>inizio</td><td>3</td><td>8</td><td></td></tr>
+<tr><td><code>int tmp = x;</code></td><td>3</td><td>8</td><td>3</td></tr>
+<tr><td><code>x = y;</code></td><td>8</td><td>8</td><td>3</td></tr>
+<tr><td><code>y = tmp;</code></td><td>8</td><td>3</td><td>3</td></tr></tbody></table></div>
+<p>Lo scambio è l&#39;argomento della prossima lezione nel canale B 2025/26 e nel deck del canale A.</p>
+</details></article>
+<article class="ex" id="esercizio-8"><h3>8 · Che cosa stampa <span class="lvl">tipo esame</span></h3><p>Senza compilare, scrivi l&#39;output esatto.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a = 10, b = 4, c;
+    c = a / b;
+    a %= b;
+    b *= c;
+    c = a + b * 2;
+    printf(<span class="str">&quot;a=%d b=%03d c=%4d\n&quot;</span>, a, b, c);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<details class="sol"><summary>Soluzione</summary><ul>
+<li><code>c = 10 / 4</code> = 2.</li>
+<li><code>a %= b</code>: <code>a = 10 % 4</code> = 2.</li>
+<li><code>b *= c</code>: <code>b = 4 * 2</code> = 8.</li>
+<li><code>c = a + b * 2</code> = <code>2 + 16</code> = 18.</li>
+</ul>
+<p>Stampa <code>a=2 b=008 c=  18</code>: <code>%03d</code> su 3 posizioni con zeri, <code>%4d</code> su 4 posizioni con due spazi davanti a 18. Verificato con gcc 16.1.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:1010px">
+<div class="sec-head"><span class="sec-num">§18</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che cos&#39;è un tipo e quali cose stabilisce?</span></summary><div class="ans"><p>Una regola che dà significato ai bit in memoria. Stabilisce nome, dimensione in byte, valori ammessi, operazioni possibili, rappresentazione interna e regole di conversione verso altri tipi.</p>
+</div></details>
+<details class="qa"><summary><span>Quali sono le quattro proprietà di una variabile? Quale sceglie il programmatore?</span></summary><div class="ans"><p>Nome, tipo, indirizzo e valore. Il programmatore sceglie nome e tipo; l&#39;indirizzo lo decidono compilatore e sistema; il valore cambia durante l&#39;esecuzione.</p>
+</div></details>
+<details class="qa"><summary><span>Perché un <code>int</code> non può contenere qualunque intero?</span></summary><div class="ans"><p>Perché occupa un numero fisso di byte (di solito 4, cioè 32 bit): può rappresentare solo <span class="katex" role="math" aria-label="2^{32}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">32</span></span></span></span></span></span></span></span></span></span></span></span> valori, da <span class="katex" role="math" aria-label="-2^{31}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span></span></span></span> a <span class="katex" role="math" aria-label="2^{31} - 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">31</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>. I tipi del C sono modelli finiti degli insiemi infiniti della matematica.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa garantisce il C sulle dimensioni dei tipi?</span></summary><div class="ans"><p>Solo l&#39;ordine: char ≤ short ≤ int ≤ long ≤ long long, e float ≤ double; più sizeof(char) uguale a 1. Le dimensioni vere dipendono dalla macchina (su Windows a 64 bit long è di 4 byte).</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa succede in memoria quando si dichiara <code>int x;</code>?</span></summary><div class="ans"><p>Viene riservato lo spazio per un int (4 byte) sullo stack: lo stack pointer scende di 4. Il contenuto resta indeterminato («?») finché non si assegna un valore.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa indicano PC, FP e SP nel modello della memoria?</span></summary><div class="ans"><p>PC: l&#39;istruzione da eseguire nell&#39;area codice. FP: l&#39;indirizzo da cui partono le variabili di main. SP: dove verrà messa la prossima variabile. All&#39;inizio FP e SP coincidono.</p>
+</div></details>
+<details class="qa"><summary><span>Come si esegue un assegnamento <code>variabile = espressione;</code>?</span></summary><div class="ans"><p>Si valuta l&#39;espressione a destra, si ottiene un valore e lo si copia nella casella della variabile a sinistra (lvalue), cancellando il valore precedente.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa fanno <code>/</code> e <code>%</code> tra interi?</span></summary><div class="ans"><p><code>/</code> dà il quoziente intero, scartando la parte decimale (13 / 3 = 4); <code>%</code> dà il resto (13 % 3 = 1).</p>
+</div></details>
+<details class="qa"><summary><span>Qual è l&#39;ordine di valutazione in <code>a + b * c - d / e</code>?</span></summary><div class="ans"><p>Prima <code>b * c</code> e <code>d / e</code> (precedenza più alta, da sinistra), poi la somma e la sottrazione da sinistra a destra: <code>(a + (b * c)) - (d / e)</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa vogliono dire <code>%d</code>, <code>%f</code>, <code>%zu</code>, <code>%6d</code> e <code>%06d</code>?</span></summary><div class="ans"><p>Intero; reale; size_t (per esempio il risultato di sizeof); intero su almeno 6 posizioni con spazi a sinistra; intero su almeno 6 posizioni con zeri a sinistra.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra visibilità e durata di una variabile?</span></summary><div class="ans"><p>La visibilità (scope) dice dove si può usare il nome; la durata (lifetime) dice per quanto tempo la variabile occupa memoria. Una locale è visibile nel suo blocco e vive sullo stack finché il blocco dura; una globale si vede in tutto il file e vive per tutto il programma.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa fanno <code>x *= 3</code> e <code>x--</code>?</span></summary><div class="ans"><p><code>x *= 3</code> equivale a <code>x = x * 3</code>; <code>x--</code> equivale a <code>x = x - 1</code>.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:1280px">
+<div class="sec-head"><span class="sec-num">§19</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Tipo</dt><dd>Regola che dà significato ai bit: dimensione, valori ammessi, operazioni, rappresentazione, conversioni.</dd></div>
+<div><dt>Variabile</dt><dd>Nome e tipo associati a una porzione di memoria che contiene un valore.</dd></div>
+<div><dt>Indirizzo</dt><dd>Posizione in memoria di una variabile; lo decide il sistema, spesso scritto in esadecimale (0x…).</dd></div>
+<div><dt>Dichiarazione</dt><dd>Riga che introduce una variabile con tipo e nome, per esempio <code>int x;</code>.</dd></div>
+<div><dt>Inizializzazione</dt><dd>Primo valore dato a una variabile nella dichiarazione: <code>int x = 10;</code>.</dd></div>
+<div><dt>Assegnamento</dt><dd><code>variabile = espressione;</code>: calcola la destra e copia il valore nella variabile.</dd></div>
+<div><dt>lvalue / rvalue</dt><dd>Lato sinistro (una casella di memoria) e lato destro (un valore da calcolare) di un assegnamento.</dd></div>
+<div><dt>Overflow</dt><dd>Valore che non sta nel tipo: un int oltre il massimo «gira» verso i negativi.</dd></div>
+<div><dt>Stack (pila)</dt><dd>Zona dell&#39;area dati dove stanno le variabili locali; nel modello del corso cresce verso il basso.</dd></div>
+<div><dt>Heap</dt><dd>Zona della memoria per le variabili dinamiche, create con malloc e liberate a mano.</dd></div>
+<div><dt>Program counter (PC)</dt><dd>Registro con l&#39;indirizzo dell&#39;istruzione da eseguire.</dd></div>
+<div><dt>Frame pointer (FP)</dt><dd>Indirizzo da cui partono le variabili della funzione in esecuzione (per ora main).</dd></div>
+<div><dt>Stack pointer (SP)</dt><dd>Indirizzo in cui verrà messa la prossima variabile.</dd></div>
+<div><dt>Stack overflow</dt><dd>Errore a runtime: lo spazio dello stack è finito.</dd></div>
+<div><dt>Valore indeterminato («?»)</dt><dd>Contenuto di una variabile locale dichiarata e mai assegnata.</dd></div>
+<div><dt>sizeof</dt><dd>Operatore che dà i byte occupati da un tipo o da una variabile; il risultato è un size_t.</dd></div>
+<div><dt>size_t</dt><dd>Tipo intero senza segno per dimensioni e conteggi, da stddef.h; si stampa con %zu.</dd></div>
+<div><dt>Specificatore di formato</dt><dd>Codice come %d o %f in printf che indica dove e come stampare un valore.</dd></div>
+<div><dt>Divisione intera</dt><dd><code>/</code> tra interi: tiene solo la parte intera del quoziente.</dd></div>
+<div><dt>Modulo</dt><dd><code>%</code>: il resto della divisione intera.</dd></div>
+<div><dt>Precedenza</dt><dd>Regola che dice quale operatore si calcola prima.</dd></div>
+<div><dt>camelCase</dt><dd>Convenzione per i nomi composti: sommaTot, elementoTrovato.</dd></div>
+<div><dt>Visibilità (scope)</dt><dd>Parte del codice in cui si può usare un nome.</dd></div>
+<div><dt>Durata (lifetime)</dt><dd>Tempo in cui una variabile occupa memoria.</dd></div>
+<div><dt>Assegnamento composto</dt><dd><code>x += y</code> e simili: aggiorna una variabile con un&#39;operazione.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:750px">
+<div class="sec-head"><span class="sec-num">§20</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 14</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-02B-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So dire che cos&#39;è un tipo e quali sei cose stabilisce.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So elencare nome, tipo, indirizzo e valore di una variabile e chi li sceglie.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So spiegare perché int, unsigned int e float sono finiti e qual è l&#39;intervallo di un int a 32 bit.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So usare sizeof e stamparlo con %zu, e so che il C garantisce solo l&#39;ordine tra le dimensioni.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So scegliere un nome valido e leggibile in camelCase.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So distinguere visibilità e durata, e variabili locali, globali, statiche e dinamiche.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So disegnare area codice, area dati, PC, FP e SP e mettere le variabili sullo stack in ordine di dichiarazione.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So che una variabile locale non inizializzata vale «?» e che gcc con -Werror non compila se la uso.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So eseguire un assegnamento: prima la destra, poi la copia a sinistra.</span></label></li>
+<li><label><input type="checkbox" id="chk-10"><span>So prevedere overflow e troncamento negli assegnamenti, anche se gcc non avvisa.</span></label></li>
+<li><label><input type="checkbox" id="chk-11"><span>So calcolare espressioni intere con /, % e le precedenze.</span></label></li>
+<li><label><input type="checkbox" id="chk-12"><span>So usare printf con %d, %f, %6d, %06d.</span></label></li>
+<li><label><input type="checkbox" id="chk-13"><span>So usare +=, -=, *=, /=, %=, ++ e --.</span></label></li>
+<li><label><input type="checkbox" id="chk-14"><span>So seguire un programma riga per riga scrivendo lo stato della memoria.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li><strong>Slide della lezione</strong>: «Memoria e Variabili. Modello della memoria per il linguaggio C, dalle variabili alle espressioni» (02B_assegnamento_memory_model), Programmazione I – Teoria, canale B, A.A. 2026/27, 41 pagine; il numero di slide è accanto a ogni titolo.</li>
+<li><strong>Canali A e C e canale B 2025/26</strong>: deck «Assegnazione, memory model, scambio» (canale A 2025/26), lezione 02 «Introduzione al C» (canale C 2026/27), «Memoria e Variabili, operatore di assegnamento» (canale B 2025/26), dalle pagine Moodle aperte agli ospiti.</li>
+<li><strong>Formati di printf</strong>: <a href="https://www.gnu.org/software/libc/manual/html_node/Formatted-Output.html" target="_blank" rel="noopener">manuale della libreria GNU C, Formatted Output</a> (citato nella slide 38).</li>
+<li><strong>Prove</strong>: tutti i programmi e i risultati (dimensioni con sizeof, overflow, troncamento, valore non inizializzato, messaggi d&#39;errore) ottenuti con gcc 16.1 (MinGW-w64, Windows 11 a 64 bit) e <code>-Wall -Werror -std=c11</code>.</li>
+<li><strong>Esame</strong>: <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a> (regole d&#39;esame, esercizi sullo stato della memoria).</li>
+<li>I riquadri <strong>«Oltre le slide»</strong> (divisione con i negativi, <code>-Wconversion</code>), il riquadro su <code>long</code> in Windows, i «Prova tu» e gli esercizi sono aggiunte di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

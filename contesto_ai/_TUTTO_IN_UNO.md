@@ -34208,16 +34208,15 @@ descrizione: >-
   coordinate e matrice associata a un'applicazione lineare rispetto a due basi, con quiz nello stile dell'esame ed
   esercizi svolti.
 lede: >-
-  Quando due spazi vettoriali sono «lo stesso spazio con nomi diversi» (gli isomorfismi), e come si trasforma
-  qualsiasi applicazione lineare $f : V \to W$ in una matrice $[f]^{\mathcal B}_{\mathcal C}$ scegliendo una base in
-  partenza e una in arrivo. Da qui in poi ogni conto su polinomi, matrici o vettori astratti diventa un conto con le
-  matrici: è lo strumento che serve per i cambi di base (L16) e per gli autovalori (L17–L18).
+  Quando due spazi sono lo stesso spazio con nomi diversi, come un polinomio di grado 2 e la lista dei suoi tre
+  numeri. Poi come si scrive qualsiasi macchina lineare con una tabella di numeri, scegliendo una base in partenza e
+  una in arrivo. Da qui in poi ogni conto su polinomi o matrici diventa un conto con le tabelle.
 materiale: dispense
 scheda:
   Dispense: lezione 15 · pp. 74–78
   Libro: Martelli, §4.2.5, §4.2.7 e §4.3
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 90–120 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 15 «Applicazioni lineari II»; B. Martelli, Geometria e algebra lineare, §4.2.5, §4.2.7 e §4.3
 appunti_html: appunti/MDAG/L15_applicazioni_lineari_2.html
@@ -34226,85 +34225,105 @@ genera_html: true
 
 ## In breve
 
-- Un **isomorfismo** è un'applicazione lineare **biettiva** (iniettiva e suriettiva). La sua inversa $f^{-1}$ è ancora lineare.
-- Le dimensioni dicono già molto: se $f : V \to W$ è iniettiva allora $\dim V \le \dim W$; se è suriettiva allora $\dim V \ge \dim W$; se è un isomorfismo allora $\dim V = \dim W$.
-- Vale anche il viceversa dell'ultimo punto: due spazi di dimensione finita sono **isomorfi** se e solo se hanno la **stessa dimensione**. Ogni spazio di dimensione $n$ su $\K$ è isomorfo a $\K^n$: l'isomorfismo manda ogni vettore nelle sue **coordinate** $[v]_{\mathcal B}$ e dipende dalla base scelta.
-- Fissate una base $\mathcal B = \{v_1, \dots, v_n\}$ di $V$ e una base $\mathcal C = \{w_1, \dots, w_m\}$ di $W$, ogni $f : V \to W$ lineare ha una **matrice associata** $[f]^{\mathcal B}_{\mathcal C}$, di taglia $m \times n$: la **colonna $j$** contiene le coordinate di $f(v_j)$ rispetto a $\mathcal C$.
-- Regola della notazione: la base **di partenza** sta **in alto**, quella **di arrivo** sta **in basso**.
-- Per $L_A : \K^n \to \K^m$ con le basi canoniche la matrice associata è proprio $A$.
-- La formula chiave è $[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C} \cdot [v]_{\mathcal B}$: in coordinate, **ogni** applicazione lineare diventa una moltiplicazione matrice per vettore.
-- La matrice dipende dalle basi: la stessa $f$ ha matrici diverse in basi diverse. Con la stessa base in partenza e in arrivo, l'identità ha sempre matrice $I_n$.
-- Le applicazioni lineari $V \to W$ formano uno spazio vettoriale, e $f \mapsto [f]^{\mathcal A}_{\mathcal B}$ è un isomorfismo con $M(m, n, \K)$.
+- Un **isomorfismo** è una macchina lineare che fa da **dizionario perfetto** tra due spazi: a ogni vettore di partenza corrisponde uno e un solo vettore di arrivo, e viceversa. La macchina che torna indietro è ancora lineare.
+- Le dimensioni dicono già molto. Una macchina lineare che non perde niente non può arrivare in uno spazio più piccolo; una che produce tutto non può partire da uno spazio più piccolo.
+- Due spazi sono **isomorfi**, cioè lo stesso spazio con nomi diversi, esattamente quando hanno la **stessa dimensione**. Per esempio i polinomi di grado al massimo 2 e le liste di 3 numeri.
+- Scelta una base in partenza e una in arrivo, ogni macchina lineare si scrive con una **matrice associata**: nella colonna $j$ ci sono le coordinate di dove va il vettore $j$ della base di partenza.
+- Nella scrittura $[f]^{\mathcal B}_{\mathcal C}$ la base di partenza sta **in alto**, quella di arrivo **in basso**.
+- Con la matrice associata ogni macchina diventa un prodotto: le coordinate dell'uscita sono la matrice per le coordinate dell'entrata.
+- La stessa macchina ha matrici diverse in basi diverse. L'identità, con la stessa base in partenza e in arrivo, ha sempre la matrice identità.
+- All'esame la matrice associata è una delle domande più frequenti del quiz.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## Isomorfismi: lo stesso spazio con nomi diversi (p. 74)
+## Lo stesso spazio con nomi diversi: gli isomorfismi (p. 74)
 
-Nella lezione L14 hai visto che cos'è un'applicazione lineare, il nucleo $\Ker f$, l'immagine $\Imm f$ e il teorema della dimensione. Qui ci chiediamo: quando due spazi vettoriali diversi si comportano **esattamente allo stesso modo**?
+Nella lezione L14 hai visto le macchine lineari, con il loro nucleo (quello che si perde) e la loro immagine (quello che esce). Qui la domanda è: quando due spazi diversi si comportano **esattamente allo stesso modo**?
 
-Una convenzione di scrittura, come nelle dispense: i vettori di $\K^n$ sono **colonne**; nel testo, per risparmiare spazio, li scriviamo spesso in riga, come $(1, 2)$. Negli appelli trovi anche la scrittura ${}^t(1, 2)$, cioè «la trasposta della riga $(1, 2)$», che è di nuovo la colonna.
+Una convenzione di scrittura, come nelle dispense: i vettori di $\K^n$ sono **colonne**. Nel testo, per risparmiare spazio, li scriviamo spesso in riga, come $(1, 2)$. Negli appelli trovi anche la scrittura ${}^t(1, 2)$, «la trasposta della riga $(1, 2)$», che è di nuovo la colonna.
 
-### Un esempio per cominciare: polinomi e terne di numeri
+### Un dizionario tra polinomi e liste di numeri
 
-Prendi lo spazio $\R_2[x]$ dei polinomi di grado al massimo 2. Un polinomio $a + bx + cx^2$ è individuato dai suoi tre coefficienti, quindi possiamo abbinarlo alla terna $(a, b, c) \in \R^3$. Guarda che cosa succede ai conti:
+Prendi i polinomi di grado al massimo 2, come $1 + 2x + 3x^2$. Ognuno è deciso dai suoi tre numeri, quindi lo posso abbinare alla lista $(1, 2, 3)$. Guarda che cosa succede ai conti:
 
-| In $\R_2[x]$ | In $\R^3$ |
+| Con i polinomi | Con le liste di numeri |
 |---|---|
 | $p = 1 + 2x + 3x^2$ | $(1, 2, 3)$ |
 | $q = -1 + x^2$ | $(-1, 0, 1)$ |
 | $p + q = 2x + 4x^2$ | $(1, 2, 3) + (-1, 0, 1) = (0, 2, 4)$ |
 | $2q = -2 + 2x^2$ | $2 \cdot (-1, 0, 1) = (-2, 0, 2)$ |
 
-Sommare polinomi e poi prendere i coefficienti dà lo stesso risultato che prendere i coefficienti e poi sommare le terne. Lo stesso per i multipli. In più l'abbinamento è **biunivoco**: a ogni polinomio corrisponde una sola terna e a ogni terna un solo polinomio. Dal punto di vista dell'algebra lineare, $\R_2[x]$ e $\R^3$ sono **lo stesso spazio con nomi diversi**. Il nome tecnico è *isomorfi* (dal greco: «della stessa forma»).
+Sommare i polinomi e poi prendere i numeri dà lo stesso risultato che prendere i numeri e poi sommare le liste. Lo stesso per i multipli.
 
-### La definizione
+E il dizionario è **perfetto**: a ogni polinomio corrisponde una sola lista, e a ogni lista un solo polinomio. Per l'algebra lineare i polinomi di grado al massimo 2 e le liste di tre numeri sono **lo stesso spazio con nomi diversi**. Il nome tecnico è *isomorfi*, dal greco «della stessa forma».
 
-Ricorda tre parole sulle funzioni (le vedi in dettaglio in Matematica Discreta). Una funzione $f : V \to W$ è:
+### Le parole che servono
 
-- **iniettiva** se vettori diversi hanno immagini diverse; per un'applicazione lineare questo equivale a $\Ker f = \{0\}$ (Proposizione 14.11);
-- **suriettiva** se ogni $w \in W$ è immagine di qualche $v \in V$, cioè $\Imm f = W$;
-- **biettiva** se è sia iniettiva sia suriettiva. In questo caso ogni $w \in W$ è immagine di **uno e un solo** $v$, e si può definire la funzione **inversa** $f^{-1} : W \to V$ che fa il percorso al contrario: $f^{-1}(f(v)) = v$ e $f(f^{-1}(w)) = w$.
+Ricorda tre parole sulle funzioni, che vedi meglio in Matematica Discreta. Una funzione $f : V \to W$ è:
+
+- **iniettiva** se entrate diverse danno sempre uscite diverse. Per una macchina lineare vuol dire che il nucleo contiene solo lo zero (Proposizione 14.11);
+- **suriettiva** se ogni vettore di $W$ esce da qualche entrata, cioè l'immagine è tutto $W$;
+- **biettiva** se è tutte e due le cose. Allora ogni vettore di $W$ esce da **una e una sola** entrata, e c'è una macchina che fa il percorso al contrario: l'**inversa** $f^{-1}$, «effe alla meno uno».
+
+Le dispense chiamano isomorfismo una macchina lineare di questo tipo.
 
 > [!DEF] 15.1 · Isomorfismo e spazi isomorfi
 > Un'applicazione lineare $f : V \to W$ è un **isomorfismo** se è biettiva. (Ricordiamo che una funzione $f$ è biettiva se e solo se è contemporaneamente iniettiva e suriettiva.)
 >
 > Diciamo che due spazi vettoriali $V$ e $W$ sullo stesso campo $\K$ sono **isomorfi** se esiste un isomorfismo $f : V \to W$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- «applicazione lineare» viene prima di tutto: una funzione biettiva ma non lineare **non** è un isomorfismo di spazi vettoriali.
-- «biettiva» si controlla in due metà: $\Ker f = \{0\}$ (iniettiva) e $\Imm f = W$ (suriettiva).
-- «sullo stesso campo»: si confrontano spazi con gli stessi scalari, per esempio due spazi reali.
-- «isomorfi» è una proprietà della **coppia** di spazi: basta che esista **un** isomorfismo fra loro, anche se molte altre applicazioni lineari fra gli stessi spazi non lo sono.
+- Un isomorfismo è prima di tutto una macchina **lineare**. Una funzione biettiva ma non lineare non è un isomorfismo.
+- «Biettiva» si controlla in due metà: il nucleo è solo lo zero (iniettiva) e l'immagine è tutto lo spazio di arrivo (suriettiva).
+- «Sullo stesso campo»: si confrontano spazi con gli stessi numeri, per esempio due spazi reali.
+- Due spazi sono isomorfi quando esiste **almeno un** dizionario perfetto tra loro, anche se tante altre macchine tra gli stessi spazi non lo sono.
 
-> [!ESEMPIO] · tre applicazioni, una sola è un isomorfismo
-> **(a)** $f = L_A : \R^2 \to \R^2$ con $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$, cioè $f(x, y) = (2x + y,\ x + y)$.
-> Nucleo: $2x + y = 0$ e $x + y = 0$; sottraendo le due equazioni resta $x = 0$, e poi $y = 0$. Quindi $\Ker f = \{0\}$ e $f$ è iniettiva. Per il teorema della dimensione $\dim \Imm f = 2 - 0 = 2$, quindi $\Imm f = \R^2$ e $f$ è suriettiva. È un **isomorfismo**.
+> [!ESEMPIO] · tre macchine, un solo isomorfismo
+> **(a)** $f(x, y) = (2x + y,\ x + y)$, dal piano al piano. È la macchina della matrice $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$.
+> - Nucleo: $2x + y = 0$ e $x + y = 0$. Togliendo la seconda dalla prima resta $x = 0$, e poi $y = 0$. Il nucleo è solo lo zero: iniettiva.
+> - Per il teorema della dimensione l'immagine ha dimensione $2 - 0 = 2$: è tutto il piano, quindi suriettiva.
 >
-> **(b)** La derivata $D : \R_2[x] \to \R_2[x]$, $D(p) = p'$. Poiché $D(5) = 0$, il polinomio costante $5$ sta nel nucleo: $\Ker D \neq \{0\}$, quindi $D$ **non** è iniettiva e non è un isomorfismo. (Non è nemmeno suriettiva: la derivata di un polinomio di grado al massimo 2 ha grado al massimo 1, quindi $x^2 \notin \Imm D$.)
+> È un **isomorfismo**.
 >
-> **(c)** $g : \R^2 \to \R^3$, $g(x, y) = (x, y, 0)$. È iniettiva (se $(x, y, 0) = (0, 0, 0)$ allora $x = y = 0$) ma non suriettiva: $(0, 0, 1)$ non è immagine di niente. **Non** è un isomorfismo.
+> **(b)** La derivata $D$, dai polinomi di grado al massimo 2 a sé stessi. La derivata del polinomio costante 5 è 0, quindi 5 sta nel nucleo: $D$ **non** è iniettiva e non è un isomorfismo. Non è nemmeno suriettiva: la derivata ha grado al massimo 1, quindi $x^2$ non esce mai.
+>
+> **(c)** $g(x, y) = (x, y, 0)$, dal piano allo spazio. È iniettiva: se $(x, y, 0) = (0, 0, 0)$ allora $x = y = 0$. Ma non è suriettiva: $(0, 0, 1)$ non esce mai. **Non** è un isomorfismo.
 
-### L'inversa di un isomorfismo è lineare
+::: prova La macchina $f(x, y) = (x + y,\ x + y)$ è un isomorfismo?
+No: $f(1, -1) = (0, 0)$, quindi $(1, -1)$ sta nel nucleo e la macchina non è iniettiva.
+:::
+
+### La macchina che torna indietro è lineare
+
+Ecco l'inversa dell'esempio (a). Per trovare $f^{-1}(a, b)$ cerco l'entrata $(x, y)$ con $f(x, y) = (a, b)$:
+
+$$\begin{cases} 2x + y = a \\ x + y = b \end{cases}$$
+
+Togliendo la seconda dalla prima: $x = a - b$. Poi $y = b - x = -a + 2b$. Quindi
+
+$$f^{-1}(a, b) = (a - b,\ -a + 2b),$$
+
+che è di nuovo lineare: è la macchina della matrice inversa $A^{-1} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$ (lezione L10). Controllo: $f(3, 1) = (7, 4)$ e $f^{-1}(7, 4) = (7 - 4,\ -7 + 8) = (3, 1)$.
+
+Succede sempre. Le dispense lo scrivono così.
 
 > [!PROP] 15.2
 > Se una funzione lineare $f : V \to W$ è biettiva, l'inversa $f^{-1} : W \to V$ è anch'essa lineare.
 
-Vediamolo sull'esempio (a). Per trovare $f^{-1}(a, b)$ cerchiamo $(x, y)$ con $f(x, y) = (a, b)$:
-
-$$\begin{cases} 2x + y = a \\ x + y = b \end{cases} \quad\Longrightarrow\quad x = a - b, \qquad y = b - x = -a + 2b.$$
-
-Quindi $f^{-1}(a, b) = (a - b,\ -a + 2b)$, che è di nuovo lineare: è $L_{A^{-1}}$ con $A^{-1} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$. Controllo: $f(3, 1) = (7, 4)$ e $f^{-1}(7, 4) = (7 - 4,\ -7 + 8) = (3, 1)$.
+**Come si legge.** Se un dizionario perfetto rispetta somme e multipli in un verso, li rispetta anche nell'altro.
 
 > [!DIM] della Proposizione 15.2 (dal libro di Martelli, §4.2.5; le dispense non la riportano)
-> Siano $w, w' \in W$ e $\lambda \in \K$. Chiamiamo $v = f^{-1}(w)$ e $v' = f^{-1}(w')$, cioè $f(v) = w$ e $f(v') = w'$.
-> 1. **Somma.** Per la linearità di $f$: $f(v + v') = f(v) + f(v') = w + w'$. Quindi $v + v'$ è *il* vettore che $f$ manda in $w + w'$, cioè $f^{-1}(w + w') = v + v' = f^{-1}(w) + f^{-1}(w')$.
+> Siano $w, w'$ due vettori di $W$ e $\lambda$ un numero. Chiamo $v = f^{-1}(w)$ e $v' = f^{-1}(w')$, cioè $f(v) = w$ e $f(v') = w'$.
+> 1. **Somma.** Per la linearità di $f$: $f(v + v') = f(v) + f(v') = w + w'$. Quindi $v + v'$ è *il* vettore che $f$ manda in $w + w'$: $f^{-1}(w + w') = v + v' = f^{-1}(w) + f^{-1}(w')$.
 > 2. **Multipli.** $f(\lambda v) = \lambda f(v) = \lambda w$, quindi $f^{-1}(\lambda w) = \lambda v = \lambda f^{-1}(w)$.
 >
-> In ogni passo si usa che $f$ è biettiva: il vettore che va in $w + w'$ (o in $\lambda w$) è **unico**, quindi è proprio quello trovato.
+> In ogni passo si usa che $f$ è biettiva: il vettore che va in $w + w'$, o in $\lambda w$, è **unico**, quindi è proprio quello trovato.
 
 ### Che cosa dicono le dimensioni
+
+Una macchina dal piano allo spazio non può produrre tutto lo spazio: l'immagine ha dimensione al massimo 2. Una macchina dallo spazio al piano deve perdere qualcosa: il nucleo ha dimensione almeno $3 - 2 = 1$. Le dispense lo scrivono così.
 
 > [!PROP] 15.3
 > Sia $f : V \to W$ un'applicazione lineare.
@@ -34312,65 +34331,84 @@ Quindi $f^{-1}(a, b) = (a - b,\ -a + 2b)$, che è di nuovo lineare: è $L_{A^{-1
 > 2. Se $f$ è suriettiva, allora $\dim V \ge \dim W$. (Infatti $\dim V \ge \dim \Imm f = \dim W$.)
 > 3. Se $f$ è un isomorfismo, allora $\dim V = \dim W$. (Dai due punti precedenti.)
 
-Le giustificazioni tra parentesi usano il **teorema della dimensione** della lezione L14, $\dim V = \dim \Ker f + \dim \Imm f$:
+**Come si legge.** Le spiegazioni tra parentesi usano il **teorema della dimensione** della lezione L14: quello che entra è uguale a quello che si perde più quello che esce, $\dim V = \dim \Ker f + \dim \Imm f$.
 
-1. se $f$ è iniettiva, $\Ker f = \{0\}$, quindi $\dim V = 0 + \dim \Imm f$; e $\Imm f$ è un sottospazio di $W$, quindi $\dim \Imm f \le \dim W$;
-2. se $f$ è suriettiva, $\Imm f = W$, quindi $\dim V = \dim \Ker f + \dim W \ge \dim W$;
-3. un isomorfismo è sia iniettivo sia suriettivo, quindi valgono entrambe le disuguaglianze.
+1. Se $f$ è iniettiva, non si perde niente: il nucleo ha dimensione 0, quindi $\dim V$ è la dimensione dell'immagine. E l'immagine sta dentro $W$, quindi non è più grande di $W$.
+2. Se $f$ è suriettiva, l'immagine è tutto $W$, quindi $\dim V = \dim \Ker f + \dim W$, che è almeno $\dim W$.
+3. Un isomorfismo è tutte e due le cose, quindi valgono tutte e due le disuguaglianze.
 
-In pratica, **guardando solo le dimensioni** si possono escludere molte cose:
+In pratica, **guardando solo le dimensioni** si escludono molte cose:
 
 | Dimensioni | Può essere iniettiva? | Può essere suriettiva? | Può essere un isomorfismo? |
 |---|---|---|---|
-| $\dim V < \dim W$ (per esempio $\R^2 \to \R^3$) | sì | **mai** | **mai** |
-| $\dim V > \dim W$ (per esempio $\R^4 \to \R^2$) | **mai** | sì | **mai** |
-| $\dim V = \dim W$ | sì | sì | sì |
+| partenza più piccola (per esempio dal piano allo spazio) | sì | **mai** | **mai** |
+| partenza più grande (per esempio da 4 a 2 dimensioni) | **mai** | sì | **mai** |
+| stessa dimensione | sì | sì | sì |
 
 > [!TRAPPOLA] Le dimensioni escludono, non garantiscono
-> $\dim V \le \dim W$ **non** basta per dire che $f$ è iniettiva: l'applicazione nulla $\R^2 \to \R^3$, $f(v) = 0$, ha $\dim V = 2 \le 3$ ma nucleo uguale a tutto $\R^2$. La Proposizione 15.3 dice solo che cosa succede **se** $f$ è iniettiva (o suriettiva). Per dimostrare che una $f$ precisa è iniettiva bisogna calcolare il nucleo.
+> Partire da uno spazio più piccolo **non** basta per essere iniettiva. La macchina nulla dal piano allo spazio, che manda tutto in zero, ha partenza più piccola ma nucleo uguale a tutto il piano. La Proposizione 15.3 dice solo che cosa succede **se** $f$ è iniettiva, o suriettiva. Per dimostrare che una macchina precisa è iniettiva bisogna calcolare il nucleo.
+
+::: prova Una macchina lineare va da uno spazio di dimensione 5 a uno di dimensione 3. Può essere iniettiva? Può essere suriettiva?
+Iniettiva no: il nucleo ha dimensione almeno $5 - 3 = 2$. Suriettiva sì, può esserlo.
+:::
 
 ### Stessa dimensione, spazi isomorfi
 
-Vale anche il viceversa dell'ultimo punto:
+Vale anche il contrario dell'ultimo punto. Le dispense lo scrivono così.
 
 > [!PROP] 15.4
 > Siano $V$ e $W$ due spazi vettoriali di dimensione finita. Allora
 > $$V \text{ e } W \text{ sono isomorfi} \iff \dim V = \dim W.$$
 > In particolare, tutti gli spazi vettoriali su $\K$ di dimensione $n$ sono isomorfi a $\K^n$.
 
-Le dispense precisano quale isomorfismo usare: la mappa $V \to \K^n$ che manda ogni vettore $v \in V$ nelle sue **coordinate** rispetto a una base di $V$ (le hai viste nella lezione L13, Definizione 13.5). Questo isomorfismo **dipende dalla scelta della base**.
+**Come si legge.** Due spazi sono lo stesso spazio con nomi diversi esattamente quando hanno la stessa dimensione. In particolare ogni spazio di dimensione $n$ è, a parte i nomi, lo spazio delle liste di $n$ numeri.
+
+Le dispense dicono anche quale dizionario usare: quello che manda ogni vettore nelle sue **coordinate** rispetto a una base (lezione L13, Definizione 13.5). Questo dizionario **dipende dalla base** scelta.
 
 > [!ESEMPIO] · lo stesso polinomio, due coordinate diverse
-> In $\R_2[x]$ prendi la base canonica $\mathcal B = \{1, x, x^2\}$ e la base $\mathcal B' = \{1,\ x - 1,\ (x - 1)^2\}$. Il polinomio $x^2$ ha coordinate $(0, 0, 1)$ rispetto a $\mathcal B$. Rispetto a $\mathcal B'$ cerchiamo $a, b, c$ con
+> Tra i polinomi di grado al massimo 2 prendi la base canonica $\mathcal B = \{1, x, x^2\}$ e la base $\mathcal B' = \{1,\ x - 1,\ (x - 1)^2\}$. Il polinomio $x^2$ ha coordinate $(0, 0, 1)$ rispetto a $\mathcal B$. Rispetto a $\mathcal B'$ cerco $a$, $b$, $c$ con
 > $$x^2 = a \cdot 1 + b\,(x - 1) + c\,(x - 1)^2 = (a - b + c) + (b - 2c)\,x + c\,x^2.$$
-> Confrontando i coefficienti: $c = 1$, poi $b - 2c = 0$ dà $b = 2$, poi $a - b + c = 0$ dà $a = 1$. Quindi le coordinate sono $(1, 2, 1)$. Controllo: $1 + 2(x - 1) + (x - 1)^2 = 1 + 2x - 2 + x^2 - 2x + 1 = x^2$.
+> Confronto i numeri davanti alle potenze:
+> 1. davanti a $x^2$: $c = 1$;
+> 2. davanti a $x$: $b - 2c = 0$, quindi $b = 2$;
+> 3. termine noto: $a - b + c = 0$, quindi $a = 1$.
 >
-> Le due basi danno due isomorfismi diversi $\R_2[x] \to \R^3$: il primo manda $x^2$ in $(0, 0, 1)$, il secondo in $(1, 2, 1)$.
+> Le coordinate sono $(1, 2, 1)$. Controllo: $1 + 2(x - 1) + (x - 1)^2 = 1 + 2x - 2 + x^2 - 2x + 1 = x^2$.
+>
+> Le due basi danno due dizionari diversi: il primo traduce $x^2$ in $(0, 0, 1)$, il secondo in $(1, 2, 1)$.
 
-Qualche coppia di spazi isomorfi che incontrerai spesso:
+Alcune coppie di spazi isomorfi che incontrerai spesso:
 
 | Spazio | Dimensione | È isomorfo a |
 |---|--:|---|
 | $\R_n[x]$ (polinomi di grado al massimo $n$) | $n + 1$ | $\R^{n+1}$ |
 | $M(m, n, \R)$ (matrici $m \times n$) | $mn$ | $\R^{mn}$ |
 | $M(2, \R)$ | 4 | $\R^4$, e anche $\R_3[x]$ |
-| $\C$ visto come spazio vettoriale **su $\R$** | 2 | $\R^2$ (il piano complesso della lezione L02) |
+| $\C$ visto come spazio **sui reali** | 2 | $\R^2$ (il piano dei numeri complessi, lezione L02) |
 | il piano $\{(x, y, z) \in \R^3 \mid x + y + z = 0\}$ | 2 | $\R^2$ |
 
-> [!OLTRE] come si costruisce l'isomorfismo, e una scorciatoia utile
-> **Perché vale $\Leftarrow$** (Martelli, Proposizione 4.2.30). Se $\dim V = \dim W = n$, scegli una base $v_1, \dots, v_n$ di $V$ e una base $w_1, \dots, w_n$ di $W$, e definisci $f$ imponendo $f(v_i) = w_i$ ed estendendo per linearità, $f(\lambda_1 v_1 + \dots + \lambda_n v_n) = \lambda_1 w_1 + \dots + \lambda_n w_n$ (Martelli, Proposizione 4.1.18). L'immagine contiene tutti i $w_i$, quindi $\Imm f = W$; per il teorema della dimensione $\dim \Ker f = n - n = 0$. Dunque $f$ è biettiva.
+> [!OLTRE] come si costruisce il dizionario, e una scorciatoia utile
+> **Perché stessa dimensione basta** (Martelli, Proposizione 4.2.30). Supponi che $V$ e $W$ abbiano tutti e due dimensione $n$. Scegli una base di $V$, $v_1, \dots, v_n$, e una base di $W$, $w_1, \dots, w_n$. Definisci la macchina mandando $v_i$ in $w_i$ e ogni ricetta nella ricetta con le stesse dosi: $f(\lambda_1 v_1 + \dots + \lambda_n v_n) = \lambda_1 w_1 + \dots + \lambda_n w_n$ (Martelli, Proposizione 4.1.18). L'immagine contiene tutti i $w_i$, quindi è tutto $W$; per il teorema della dimensione il nucleo ha dimensione $n - n = 0$. Quindi $f$ è biettiva.
 >
-> **La scorciatoia** (Martelli, Proposizione 4.2.24). Se $\dim V = \dim W$, per un'applicazione lineare $f : V \to W$ le tre cose «iniettiva», «suriettiva», «isomorfismo» sono **equivalenti**: basta controllarne una. Infatti $\dim \Ker f = 0 \iff \dim \Imm f = n \iff \Imm f = W$. Per una matrice quadrata $A$ questo si riassume così: $L_A$ è un isomorfismo $\iff \det A \neq 0 \iff \rk A = n$.
+> **La scorciatoia** (Martelli, Proposizione 4.2.24). Se partenza e arrivo hanno la stessa dimensione, per una macchina lineare «iniettiva», «suriettiva» e «isomorfismo» vogliono dire la stessa cosa: basta controllarne una (esercizio 15). Per la macchina di una matrice quadrata: è un isomorfismo esattamente quando il determinante non è zero, cioè quando il rango è $n$.
+
+> [!RICORDA]
+> - Un isomorfismo è una macchina lineare biettiva: un dizionario perfetto. La sua inversa è lineare.
+> - Due spazi sono isomorfi esattamente quando hanno la stessa dimensione.
+> - Partenza più piccola: mai suriettiva. Partenza più grande: mai iniettiva.
 
 ## Coordinate di un vettore (p. 74)
 
-Tutto il resto della lezione usa le coordinate, quindi rivediamole con calma. Se $\mathcal B = \{v_1, \dots, v_n\}$ è una base di $V$, ogni $v \in V$ si scrive **in un solo modo** (Proposizione 13.4) come
-$$v = \lambda_1 v_1 + \dots + \lambda_n v_n.$$
-La colonna dei coefficienti si chiama **vettore delle coordinate** di $v$ rispetto a $\mathcal B$ e si indica con
-$$[v]_{\mathcal B} = \begin{pmatrix} \lambda_1 \\ \vdots \\ \lambda_n \end{pmatrix} \in \K^n.$$
+Tutto il resto della lezione usa le coordinate, quindi rivediamole con calma. Con una base $\mathcal B = \{v_1, \dots, v_n\}$, ogni vettore $v$ ha **una sola** ricetta (Proposizione 13.4):
 
-> [!ESEMPIO] · coordinate in una base non canonica di $\R^2$
-> Sia $\mathcal B = \{v_1, v_2\}$ con $v_1 = (1, 1)$ e $v_2 = (1, -1)$, e sia $v = (3, 1)$. Cerchiamo $\lambda_1, \lambda_2$ con $\lambda_1 (1, 1) + \lambda_2 (1, -1) = (3, 1)$:
+$$v = \lambda_1 v_1 + \dots + \lambda_n v_n.$$
+
+Le dosi, scritte in colonna, sono il **vettore delle coordinate** di $v$ rispetto a $\mathcal B$:
+
+$$[v]_{\mathcal B} = \begin{pmatrix} \lambda_1 \\ \vdots \\ \lambda_n \end{pmatrix}.$$
+
+> [!ESEMPIO] · coordinate in una base non canonica del piano
+> Sia $\mathcal B = \{v_1, v_2\}$ con $v_1 = (1, 1)$ e $v_2 = (1, -1)$, e sia $v = (3, 1)$. Cerco le dosi con $\lambda_1 (1, 1) + \lambda_2 (1, -1) = (3, 1)$:
 > $$\begin{cases} \lambda_1 + \lambda_2 = 3 \\ \lambda_1 - \lambda_2 = 1 \end{cases}$$
 > Sommando le equazioni: $2\lambda_1 = 4$, cioè $\lambda_1 = 2$; poi $\lambda_2 = 3 - 2 = 1$. Quindi $[v]_{\mathcal B} = (2, 1)$: per arrivare in $v$ si fanno due passi lungo $v_1$ e uno lungo $v_2$.
 
@@ -34386,15 +34424,32 @@ vettore: 3 1 | ambra | spesso | $v = 2v_1 + v_2$ | se
 ```
 
 > [!TRAPPOLA] L'ordine dei vettori della base conta
-> Una base, per le coordinate, è una lista **ordinata**. Con $\mathcal B' = \{v_2, v_1\}$ (stessi vettori, ordine scambiato) lo stesso $v$ ha coordinate $(1, 2)$. Per questo, anche se si scrive con le graffe, $\mathcal B = \{v_1, \dots, v_n\}$ va letta come una lista in quell'ordine.
+> Per le coordinate una base è una lista **in ordine**. Con $\mathcal B' = \{v_2, v_1\}$, stessi vettori in ordine scambiato, lo stesso $v$ ha coordinate $(1, 2)$. Per questo, anche se si scrive con le graffe, $\mathcal B = \{v_1, \dots, v_n\}$ va letta come una lista in quell'ordine.
 
-## La matrice associata a un'applicazione lineare (pp. 74–75)
+::: prova Quali sono le coordinate di $(5, 1)$ nella base $(1, 1), (1, -1)$?
+$\lambda_1 + \lambda_2 = 5$ e $\lambda_1 - \lambda_2 = 1$. Sommando: $\lambda_1 = 3$, poi $\lambda_2 = 2$. Coordinate $(3, 2)$; controllo: $3(1, 1) + 2(1, -1) = (5, 1)$.
+:::
 
-### L'idea
+> [!RICORDA]
+> - Le coordinate rispetto a una base sono le dosi della ricetta, scritte in colonna, nell'ordine della base.
+> - Si trovano risolvendo un sistema.
 
-Nella lezione L14 hai visto che un'applicazione lineare rispetta le combinazioni lineari:
+## La macchina scritta con i numeri (pp. 74–75)
+
+Nella lezione L14 hai visto che una macchina lineare rispetta le ricette:
+
 $$f(\lambda_1 v_1 + \dots + \lambda_n v_n) = \lambda_1 f(v_1) + \dots + \lambda_n f(v_n).$$
-Quindi, se conosci le **immagini dei vettori di una base**, $f(v_1), \dots, f(v_n)$, conosci $f$ dappertutto. Ogni $f(v_j)$ è un vettore di $W$: lo memorizziamo con le sue $m$ coordinate rispetto a una base $\mathcal C$ di $W$. Otteniamo $n$ colonne di $m$ numeri: una **matrice $m \times n$**. Questa è la matrice associata.
+
+Quindi, se sai dove vanno i vettori di una base, sai dove va **tutto**. Ogni uscita $f(v_j)$ è un vettore dello spazio di arrivo, e la scrivo con le sue coordinate rispetto a una base di arrivo. Ottengo una colonna di numeri per ogni vettore della base di partenza: una tabella. Questa tabella è la matrice associata.
+
+Un esempio piccolo. La macchina $f(x, y) = (x + 2y,\ 3y)$, con le basi canoniche:
+
+1. $f(1, 0) = (1, 0)$: è la prima colonna;
+2. $f(0, 1) = (2, 3)$: è la seconda colonna.
+
+La matrice è $\begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix}$: nelle colonne c'è scritto dove vanno i vettori della base.
+
+Le dispense scrivono la definizione così.
 
 > [!DEF] 15.5 · Matrice associata
 > Sia $f : V \to W$ un'applicazione lineare fra spazi vettoriali definiti su $\K$. Siano inoltre
@@ -34405,35 +34460,43 @@ Quindi, se conosci le **immagini dei vettori di una base**, $f(v_1), \dots, f(v_
 > $$A = (a_{ij})$$
 > che raggruppa questi coefficienti, e la indichiamo con il simbolo $A = [f]^{\mathcal B}_{\mathcal C}$.
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- **Taglia $m \times n$**: tante **righe** quanta è la dimensione dello spazio **di arrivo** ($m = \dim W$), tante **colonne** quanta è la dimensione dello spazio **di partenza** ($n = \dim V$).
-- **L'elemento $a_{ij}$** è la $i$-esima coordinata di $f(v_j)$: l'indice $j$ dice *quale vettore della base di partenza* stai trasformando, l'indice $i$ dice *quale coordinata* dell'immagine stai leggendo.
-- **La notazione** $[f]^{\mathcal B}_{\mathcal C}$ ricorda che la matrice dipende da tre cose: $f$, $\mathcal B$ e $\mathcal C$. Come dicono le dispense, «la base in partenza» $\mathcal B$ sta **in alto**, «la base in arrivo» $\mathcal C$ sta **in basso**.
+- **Taglia**: tante **righe** quanta è la dimensione dello spazio **di arrivo**, tante **colonne** quanta è la dimensione dello spazio **di partenza**.
+- **Il numero $a_{ij}$** è la coordinata numero $i$ dell'uscita $f(v_j)$. L'indice $j$ dice quale vettore della base di partenza entra; l'indice $i$ dice quale coordinata dell'uscita stai leggendo.
+- **La scrittura** $[f]^{\mathcal B}_{\mathcal C}$ ricorda che la matrice dipende da tre cose: la macchina e le due basi. La base di partenza $\mathcal B$ sta **in alto**, quella di arrivo $\mathcal C$ **in basso**.
 - **La colonna $j$**, che le dispense chiamano $A^j$, contiene le coordinate di $f(v_j)$ rispetto a $\mathcal C$:
 $$A^j = \begin{pmatrix} a_{1j} \\ \vdots \\ a_{mj} \end{pmatrix} = [f(v_j)]_{\mathcal C}.$$
 
-> [!TRAPPOLA] I coefficienti vanno in colonna, non in riga
-> Nella definizione la prima equazione, $f(v_1) = a_{11} w_1 + \dots + a_{m1} w_m$, riempie la **prima colonna**. Se scrivi le coordinate di $f(v_1)$ nella prima **riga** ottieni la trasposta, che è sbagliata. Negli appelli la trasposta compare quasi sempre tra le risposte sbagliate.
+> [!TRAPPOLA] Le coordinate vanno in colonna, non in riga
+> Nella definizione la prima equazione, quella di $f(v_1)$, riempie la **prima colonna**. Se scrivi le coordinate di $f(v_1)$ nella prima **riga** ottieni la trasposta, che è sbagliata. Negli appelli la trasposta compare quasi sempre tra le risposte sbagliate.
 
 > [!METODO] La matrice associata in tre passi
-> 1. Calcola le immagini $f(v_1), \dots, f(v_n)$ dei vettori della base **di partenza**, nell'ordine dato.
-> 2. Scrivi ogni $f(v_j)$ in coordinate rispetto alla base **di arrivo** $\mathcal C$. Se $\mathcal C$ è la base canonica di $\K^m$ le coordinate sono le componenti stesse; altrimenti risolvi il sistema $f(v_j) = x_1 w_1 + \dots + x_m w_m$.
-> 3. Metti $[f(v_j)]_{\mathcal C}$ nella colonna $j$.
+> 1. Calcola le uscite $f(v_1), \dots, f(v_n)$ dei vettori della base **di partenza**, nell'ordine dato.
+> 2. Scrivi ogni uscita con le coordinate rispetto alla base **di arrivo** $\mathcal C$. Se $\mathcal C$ è la base canonica, le coordinate sono i numeri stessi del vettore; altrimenti risolvi un sistema.
+> 3. Metti le coordinate di $f(v_j)$ nella colonna $j$.
 >
-> Controllo veloce: la matrice deve avere $\dim W$ righe e $\dim V$ colonne.
+> Controllo veloce: la matrice deve avere tante righe quanta è la dimensione di arrivo e tante colonne quanta è quella di partenza.
+
+::: prova Qual è la matrice di $f(x, y) = (3x - y,\ x + 2y)$ con le basi canoniche?
+$f(1, 0) = (3, 1)$ è la prima colonna, $f(0, 1) = (-1, 2)$ la seconda: $\begin{pmatrix} 3 & -1 \\ 1 & 2 \end{pmatrix}$.
+:::
 
 ### Il caso delle basi canoniche
+
+Con le basi canoniche la matrice di una macchina data da una matrice è la matrice stessa. Le dispense lo scrivono così.
 
 > [!ESEMPIO] 15.6 · La matrice di $L_A$
 > La matrice associata a $L_A$ rispetto alle basi canoniche di $\K^n$ e $\K^m$ è proprio $A$. Infatti, per costruzione, $f(e_j) = a_{1j} e_1 + \dots + a_{mj} e_m$.
 
-Con i numeri: sia $A = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 3 \end{pmatrix}$, quindi $L_A : \R^3 \to \R^2$. Allora $L_A(e_1) = A e_1$ è la prima colonna di $A$, cioè $(1, 0) = 1 \cdot e_1 + 0 \cdot e_2$; le sue coordinate rispetto alla base canonica sono $(1, 0)$, e finiscono nella prima colonna. Lo stesso per $e_2$ e $e_3$: si ritrova $A$. È il motivo per cui, con le basi canoniche, la matrice associata di $f(x, y, z) = (x + 2y,\ y + 3z)$ si legge dai coefficienti: prima riga $1, 2, 0$, seconda riga $0, 1, 3$.
+Con i numeri: $A = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 3 \end{pmatrix}$ dà la macchina $L_A$ dallo spazio al piano. $L_A(e_1) = Ae_1$ è la prima colonna di $A$, cioè $(1, 0)$; nella base canonica le sue coordinate sono $(1, 0)$, e finiscono nella prima colonna. Lo stesso per $e_2$ ed $e_3$: si ritrova $A$. Per questo, con le basi canoniche, la matrice di $f(x, y, z) = (x + 2y,\ y + 3z)$ si legge dai numeri davanti alle lettere: prima riga $1, 2, 0$, seconda riga $0, 1, 3$.
 
 ### Un esempio con i polinomi
 
+Ecco l'esempio delle dispense: una macchina che prende un polinomio e restituisce due numeri.
+
 > [!ESEMPIO] 15.7 · Valori di un polinomio in $2$ e in $-2$
-> Consideriamo l'applicazione lineare
+> Prendiamo l'applicazione lineare
 > $$f : \R_2[x] \longrightarrow \R^2, \qquad f(p) = \begin{pmatrix} p(2) \\ p(-2) \end{pmatrix}$$
 > che assegna a ogni polinomio i suoi valori in $2$ e in $-2$. Scriviamo la matrice associata a $f$ nelle basi canoniche $\mathcal B = \{1, x, x^2\}$ di $\R_2[x]$ e $\mathcal C = \{e_1, e_2\}$ di $\R^2$.
 >
@@ -34448,22 +34511,24 @@ Con i numeri: sia $A = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & 3 \end{pmatrix}$, qu
 > $$[f]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1 & 2 & 4 \\ 1 & -2 & 4 \end{pmatrix}.$$
 > È $2 \times 3$: $\dim \R^2 = 2$ righe, $\dim \R_2[x] = 3$ colonne.
 
-### Stessa applicazione, altra base in arrivo
+### Stessa macchina, altra base in arrivo
+
+Ora la stessa macchina, ma con un'altra base in arrivo. Cambia solo il passo 2.
 
 > [!ESEMPIO] 15.8 · Cambiamo la base di arrivo
 > Prendiamo l'applicazione lineare $f$ e la base $\mathcal B$ come nell'esempio precedente, ma in arrivo prendiamo la base
 > $$\mathcal C' = \left\{ \begin{pmatrix} 1 \\ -1 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \end{pmatrix} \right\}$$
 > invece della base canonica $\mathcal C$. Le immagini sono le stesse di prima; cambia il passo 2: bisogna calcolare le coordinate di ciascuna immagine rispetto a $\mathcal C'$, cioè trovare $a, b$ con $a (1, -1) + b (0, 1) = (a,\ -a + b)$ uguale all'immagine.
-> - $f(1) = (1, 1)$: prima componente $a = 1$; seconda $-1 + b = 1$, quindi $b = 2$. Dunque $(1, 1) = 1 \cdot (1, -1) + 2 \cdot (0, 1)$.
-> - $f(x) = (2, -2)$: $a = 2$; $-2 + b = -2$, quindi $b = 0$. Dunque $(2, -2) = 2 \cdot (1, -1) + 0 \cdot (0, 1)$.
-> - $f(x^2) = (4, 4)$: $a = 4$; $-4 + b = 4$, quindi $b = 8$. Dunque $(4, 4) = 4 \cdot (1, -1) + 8 \cdot (0, 1)$.
+> - $f(1) = (1, 1)$: prima componente $a = 1$; seconda $-1 + b = 1$, quindi $b = 2$. Quindi $(1, 1) = 1 \cdot (1, -1) + 2 \cdot (0, 1)$.
+> - $f(x) = (2, -2)$: $a = 2$; $-2 + b = -2$, quindi $b = 0$. Quindi $(2, -2) = 2 \cdot (1, -1) + 0 \cdot (0, 1)$.
+> - $f(x^2) = (4, 4)$: $a = 4$; $-4 + b = 4$, quindi $b = 8$. Quindi $(4, 4) = 4 \cdot (1, -1) + 8 \cdot (0, 1)$.
 >
 > La matrice associata diventa quindi
 > $$[f]^{\mathcal B}_{\mathcal C'} = \begin{pmatrix} 1 & 2 & 4 \\ 2 & 0 & 8 \end{pmatrix}.$$
 
-La stessa $f$ ha due matrici diverse: **la matrice associata dipende dalle basi**. Nella lezione L16 vedrai la formula che passa da una all'altra con un prodotto di matrici. Nell'esercizio 6 trovi una terza base di arrivo che rende la matrice più semplice.
+La stessa macchina ha due matrici diverse: **la matrice associata dipende dalle basi**. È come descrivere la stessa cosa in due lingue diverse. Nella lezione L16 vedrai la formula che passa da una all'altra con un prodotto di matrici. Nell'esercizio 9 trovi una terza base di arrivo che rende la matrice più semplice.
 
-Per risolvere i sistemi del passo 2 puoi usare lo strumento qui sotto. È già impostato sul sistema dell'esercizio 15.13 (esercizio 1): le prime tre colonne sono i vettori $w_1 = (1, 1, 0)$, $w_2 = (0, 1, 1)$, $w_3 = (1, 0, 1)$ della base di arrivo, l'ultima è il vettore $f(v_1) = (0, 2, 1)$ di cui cerchi le coordinate. La soluzione $(x_1, x_2, x_3)$ è la colonna $[f(v_1)]_{\mathcal C}$. Prova poi a cambiare l'ultima colonna in $(2, 2, -1)$ per ottenere la seconda colonna della matrice.
+Per risolvere i sistemi del passo 2 puoi usare lo strumento qui sotto. È già impostato sul sistema dell'Esercizio 15.13 delle dispense (esercizio 12): le prime tre colonne sono i vettori $w_1 = (1, 1, 0)$, $w_2 = (0, 1, 1)$, $w_3 = (1, 0, 1)$ della base di arrivo, l'ultima è il vettore $f(v_1) = (0, 2, 1)$ di cui cerchi le coordinate. La soluzione $(x_1, x_2, x_3)$ è la colonna $[f(v_1)]_{\mathcal C}$. Prova poi a cambiare l'ultima colonna in $(2, 2, -1)$ per ottenere la seconda colonna della matrice.
 
 ```widget gauss
 titolo: Coordinate rispetto alla base di arrivo = soluzione di un sistema
@@ -34472,28 +34537,35 @@ modo: sistema
 modi: sistema, nucleo
 ```
 
-## Calcolare le immagini con la matrice (pp. 76–77)
+> [!RICORDA]
+> - Nella colonna $j$ della matrice associata ci sono le coordinate, rispetto alla base di arrivo, di dove va il vettore $j$ della base di partenza.
+> - Righe = dimensione di arrivo, colonne = dimensione di partenza. Partenza in alto, arrivo in basso.
+> - La matrice cambia se cambiano le basi.
 
-Dalla matrice associata possiamo calcolare l'immagine di qualsiasi vettore. Sia $f : V \to W$ un'applicazione lineare e siano $\mathcal B = \{v_1, \dots, v_n\}$ e $\mathcal C = \{w_1, \dots, w_m\}$ basi di $V$ e $W$.
+## Far lavorare la macchina con la matrice (pp. 76–77)
+
+Con la matrice associata si calcola l'uscita di qualsiasi vettore: basta un prodotto riga per colonna (lezione L08). Le dispense lo scrivono così.
 
 > [!PROP] 15.9
 > Per ogni $v \in V$ troviamo
 > $$[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C} \cdot [v]_{\mathcal B}.$$
 
-In parole: per trovare le coordinate di $f(v)$ rispetto a $\mathcal C$ basta **moltiplicare la matrice associata per le coordinate di $v$** rispetto a $\mathcal B$. La dimostrazione delle dispense, con i passaggi spiegati:
+**Come si legge.** Per trovare le coordinate dell'uscita rispetto alla base di arrivo, si moltiplica la matrice associata per le coordinate dell'entrata rispetto alla base di partenza.
 
-1. Scriviamo $v$ nella base $\mathcal B$: $v = \lambda_1 v_1 + \dots + \lambda_n v_n$, quindi $[v]_{\mathcal B} = (\lambda_1, \dots, \lambda_n)$.
-2. Per la linearità di $f$: $f(v) = \lambda_1 f(v_1) + \dots + \lambda_n f(v_n)$.
-3. Anche il passaggio alle coordinate è lineare (è l'isomorfismo della Proposizione 15.4), quindi
+Il perché, con i passaggi delle dispense:
+
+1. Scrivo $v$ nella base $\mathcal B$: $v = \lambda_1 v_1 + \dots + \lambda_n v_n$, quindi $[v]_{\mathcal B} = (\lambda_1, \dots, \lambda_n)$.
+2. La macchina rispetta le ricette: $f(v) = \lambda_1 f(v_1) + \dots + \lambda_n f(v_n)$.
+3. Anche il passaggio alle coordinate rispetta le ricette: è il dizionario della Proposizione 15.4. Quindi
 $$[f(v)]_{\mathcal C} = \lambda_1 [f(v_1)]_{\mathcal C} + \dots + \lambda_n [f(v_n)]_{\mathcal C}.$$
-4. Ma $[f(v_j)]_{\mathcal C}$ è la colonna $j$ della matrice associata $A = (a_{ij})$. E una combinazione delle colonne con coefficienti $\lambda_1, \dots, \lambda_n$ è proprio il prodotto riga per colonna $A \cdot (\lambda_1, \dots, \lambda_n)$: la componente $i$ della combinazione è $a_{i1}\lambda_1 + \dots + a_{in}\lambda_n$, cioè esattamente la riga $i$ del prodotto. Quindi il risultato è $[f]^{\mathcal B}_{\mathcal C} \cdot [v]_{\mathcal B}$. $\square$
+4. Ma $[f(v_j)]_{\mathcal C}$ è la colonna $j$ della matrice associata. E una ricetta con le colonne, con dosi $\lambda_1, \dots, \lambda_n$, è proprio il prodotto della matrice per la colonna delle dosi: la riga $i$ del prodotto è $a_{i1}\lambda_1 + \dots + a_{in}\lambda_n$.
 
 > [!OSSERVAZIONE] Ogni applicazione lineare, in coordinate, è una $L_A$
 > Se scriviamo $x = [v]_{\mathcal B}$, $A = [f]^{\mathcal B}_{\mathcal C}$ e $y = [f(v)]_{\mathcal C}$, allora
 > $$y = Ax = L_A(x).$$
 > Questo vuol dire che, dopo aver scelto due basi per $V$ e $W$, qualsiasi applicazione lineare $V \to W$ può essere interpretata in coordinate come un'applicazione del tipo $L_A : \K^n \to \K^m$. È sufficiente sostituire i vettori $v$ e $f(v)$ con le loro coordinate $x$ e $y$, e usare la matrice associata $A$.
 
-Lo schema qui sotto riassume l'osservazione: si arriva da $v$ alle coordinate di $f(v)$ per due strade, e il risultato è lo stesso. In alto si lavora con i vettori veri (polinomi, matrici, …), in basso solo con colonne di numeri.
+Lo schema qui sotto riassume l'osservazione: da $v$ alle coordinate di $f(v)$ ci sono due strade, e il risultato è lo stesso. In alto si lavora con i vettori veri (polinomi, matrici, …), in basso solo con colonne di numeri.
 
 ```grafico
 titolo: Due strade, stesso risultato: prima $f$ poi le coordinate, oppure prima le coordinate poi $A$
@@ -34528,55 +34600,75 @@ testo: 6.9 2.2 | "coordinate"
 > [!ESEMPIO] · lo stesso conto con la base $\mathcal C'$
 > Con la matrice dell'Esempio 15.8:
 > $$[f(p)]_{\mathcal C'} = \begin{pmatrix} 1 & 2 & 4 \\ 2 & 0 & 8 \end{pmatrix} \begin{pmatrix} 1 \\ 5 \\ 3 \end{pmatrix} = \begin{pmatrix} 1 + 10 + 12 \\ 2 + 0 + 24 \end{pmatrix} = \begin{pmatrix} 23 \\ 26 \end{pmatrix}.$$
-> Attenzione: $(23, 26)$ **non** è $f(p)$, sono le sue coordinate rispetto a $\mathcal C'$. Per tornare al vettore si fa la combinazione: $23 \cdot (1, -1) + 26 \cdot (0, 1) = (23,\ -23 + 26) = (23, 3)$. Stesso risultato di prima, come deve essere.
+> Attenzione: $(23, 26)$ **non** è $f(p)$, sono le sue coordinate rispetto a $\mathcal C'$. Per tornare al vettore si rifà la ricetta: $23 \cdot (1, -1) + 26 \cdot (0, 1) = (23,\ -23 + 26) = (23, 3)$. Stesso risultato di prima, come deve essere.
 
 > [!TRAPPOLA] Coordinate o vettore?
-> Il prodotto $[f]^{\mathcal B}_{\mathcal C} \cdot [v]_{\mathcal B}$ dà le **coordinate** di $f(v)$ rispetto a $\mathcal C$. Coincidono con $f(v)$ solo se $\mathcal C$ è la base canonica di $\K^m$. E prima di moltiplicare bisogna mettere $v$ **in coordinate** rispetto a $\mathcal B$: per un polinomio, i coefficienti nell'ordine della base (per $\{1, x, x^2\}$: termine noto, poi $x$, poi $x^2$).
+> Il prodotto della matrice per le coordinate dà le **coordinate** dell'uscita rispetto a $\mathcal C$. Coincidono con l'uscita solo se $\mathcal C$ è la base canonica. E prima di moltiplicare bisogna mettere l'entrata **in coordinate** rispetto a $\mathcal B$: per un polinomio, i numeri nell'ordine della base (per $\{1, x, x^2\}$: termine noto, poi $x$, poi $x^2$).
 
-## La matrice dell'identità (p. 77)
+::: prova Con la matrice $\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$ e le basi canoniche, dove va $(3, 1)$?
+$\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 + 2 \\ 0 + 1 \end{pmatrix} = \begin{pmatrix} 5 \\ 1 \end{pmatrix}$.
+:::
 
-Un caso particolare, utile nel futuro:
+> [!RICORDA]
+> - Coordinate dell'uscita = matrice associata per coordinate dell'entrata.
+> - Se la base di arrivo non è quella canonica, alla fine si rifà la ricetta per avere il vettore vero.
+
+## La macchina che non fa niente (p. 77)
+
+La macchina identità lascia ogni vettore com'è. Con la stessa base in partenza e in arrivo, ogni vettore della base va in sé stesso. Le dispense lo scrivono così.
 
 > [!PROP] 15.11
 > Sia $\mathcal B$ una qualsiasi base di uno spazio $V$ di dimensione $n$. Troviamo
 > $$[\id]^{\mathcal B}_{\mathcal B} = I_n.$$
 
-Il motivo: $\id(v_j) = v_j = 0 \cdot v_1 + \dots + 1 \cdot v_j + \dots + 0 \cdot v_n$, quindi la colonna $j$ è il vettore $e_j$, con un 1 al posto $j$ e zeri altrove. Tutte le colonne insieme formano la matrice identità.
+**Come si legge.** L'identità, con la stessa base in partenza e in arrivo, ha come matrice la matrice identità: 1 sulla diagonale e 0 altrove.
 
-> [!TRAPPOLA] Con due basi diverse l'identità non ha matrice $I_n$
+Il motivo: $\id(v_j) = v_j = 0 \cdot v_1 + \dots + 1 \cdot v_j + \dots + 0 \cdot v_n$. Quindi nella colonna $j$ c'è un 1 al posto $j$ e zeri altrove. Tutte le colonne insieme formano la matrice identità.
+
+> [!TRAPPOLA] Con due basi diverse l'identità non ha la matrice identità
 > La Proposizione 15.11 chiede la **stessa** base in partenza e in arrivo. Con $\mathcal B = \{(1, 1), (1, -1)\}$ in partenza e la base canonica $\mathcal C$ in arrivo, le colonne sono $[\id(v_1)]_{\mathcal C} = (1, 1)$ e $[\id(v_2)]_{\mathcal C} = (1, -1)$:
 > $$[\id]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \neq I_2.$$
-> Questa è una **matrice di cambiamento di base**, il tema della lezione L16.
+> Questa è una **matrice di cambiamento di base**, il tema della lezione L16: la stessa cosa detta in due lingue.
 
-## Lo spazio delle applicazioni lineari (pp. 77–78)
+::: prova Qual è la matrice dell'identità dei polinomi di grado al massimo 2, con la base $\{1, x, x^2\}$ in partenza e in arrivo?
+La matrice identità $3 \times 3$: ogni polinomio della base va in sé stesso.
+:::
 
-Le applicazioni lineari si possono sommare e moltiplicare per uno scalare, «punto per punto». Se $V, W$ sono spazi vettoriali e $f, g : V \to W$ due applicazioni lineari, per $\lambda \in \K$ si definisce
+> [!RICORDA]
+> - Con la stessa base in partenza e in arrivo, l'identità ha la matrice identità.
+> - Con due basi diverse no: è una matrice di cambiamento di base.
+
+## Sommare macchine (pp. 77–78)
+
+Due macchine lineari con la stessa partenza e lo stesso arrivo si possono sommare: l'uscita della somma è la somma delle uscite. Con $f$ e $g$ e un numero $\lambda$:
+
 $$(f + g)(v) = f(v) + g(v), \qquad (\lambda f)(v) = \lambda f(v).$$
-Con queste due operazioni l'insieme di tutte le applicazioni lineari tra $V$ e $W$ diventa uno spazio vettoriale: lo zero è l'applicazione nulla, e le proprietà di somma e prodotto si ereditano da quelle di $W$.
 
-> [!ESEMPIO] · sommare applicazioni = sommare matrici
-> Siano $f, g : \R^2 \to \R^2$ con $f(x, y) = (x + y,\ 0)$ e $g(x, y) = (x,\ y)$. Allora
+Con queste due operazioni tutte le macchine lineari tra $V$ e $W$ formano uno spazio vettoriale. Lo zero è la macchina nulla, e le regole della somma vengono da quelle di $W$.
+
+> [!ESEMPIO] · sommare macchine = sommare matrici
+> Siano $f(x, y) = (x + y,\ 0)$ e $g(x, y) = (x,\ y)$, dal piano al piano. Allora
 > $$(f + g)(x, y) = (x + y + x,\ 0 + y) = (2x + y,\ y), \qquad (3f)(x, y) = (3x + 3y,\ 0).$$
 > Con le basi canoniche: $[f] = \begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}$, $[g] = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ e
 > $$[f + g] = \begin{pmatrix} 2 & 1 \\ 0 & 1 \end{pmatrix} = [f] + [g], \qquad [3f] = \begin{pmatrix} 3 & 3 \\ 0 & 0 \end{pmatrix} = 3\,[f].$$
+
+Succede sempre. Le dispense lo scrivono così.
 
 > [!TEOREMA] 15.12
 > Siano $V, W$ due spazi vettoriali di dimensione finita con basi $\mathcal A = \{v_1, \dots, v_n\}$, $\mathcal B = \{w_1, \dots, w_m\}$, rispettivamente. Allora l'insieme delle applicazioni lineari $f : V \to W$ è uno spazio vettoriale, e la mappa
 > $$f \longmapsto [f]^{\mathcal A}_{\mathcal B}$$
 > dall'insieme delle applicazioni lineari $f : V \to W$ a $M(m, n, \K)$ è un isomorfismo.
 
-Pezzo per pezzo (attenzione: qui le basi si chiamano $\mathcal A$ e $\mathcal B$, con $\mathcal B$ base di $W$):
+**Come si legge.** Attenzione: qui le basi si chiamano $\mathcal A$ e $\mathcal B$, con $\mathcal B$ base dello spazio di arrivo. Una volta scelte le basi, **macchine lineari e matrici sono la stessa cosa**: ogni macchina ha una sola matrice, e ogni matrice della taglia giusta è la matrice di una sola macchina.
 
-- **È lineare**: la colonna $j$ di $[f + g]$ è $[f(v_j) + g(v_j)]_{\mathcal B} = [f(v_j)]_{\mathcal B} + [g(v_j)]_{\mathcal B}$, quindi $[f + g] = [f] + [g]$; allo stesso modo $[\lambda f] = \lambda [f]$. È quello che hai visto nell'esempio.
-- **È iniettiva**: se $[f] = 0$, tutte le immagini $f(v_j)$ sono nulle, e allora $f$ è l'applicazione nulla.
-- **È suriettiva**: ogni matrice $A = (a_{ij})$ è la matrice di qualche $f$. Basta definire $f$ sulla base, $f(v_j) = a_{1j} w_1 + \dots + a_{mj} w_m$, ed estendere per linearità.
+- **Rispetta le somme**: la colonna $j$ di $[f + g]$ è $[f(v_j) + g(v_j)]_{\mathcal B} = [f(v_j)]_{\mathcal B} + [g(v_j)]_{\mathcal B}$. Quindi $[f + g] = [f] + [g]$, e allo stesso modo $[\lambda f] = \lambda [f]$. È quello che hai visto nell'esempio.
+- **È iniettiva**: se la matrice è tutta di zeri, tutte le uscite $f(v_j)$ sono zero, e allora $f$ è la macchina nulla.
+- **È suriettiva**: ogni matrice è la matrice di qualche macchina. Basta decidere dove vanno i vettori della base, $f(v_j) = a_{1j} w_1 + \dots + a_{mj} w_m$, e mandare ogni ricetta nella ricetta con le stesse dosi.
 
-In pratica: **una volta scelte le basi, applicazioni lineari e matrici sono la stessa cosa**. Tutto ciò che si dimostra per le matrici vale per le applicazioni lineari, e viceversa.
+> [!APPROFONDIMENTO] Hom e la sua dimensione
+> Nel libro di Martelli (§4.3.4) l'insieme delle macchine lineari da $V$ a $W$ si chiama $\mathrm{Hom}(V, W)$, da «omomorfismo», un altro nome per applicazione lineare. Siccome è isomorfo allo spazio delle matrici $m \times n$, ha dimensione $mn$ (Corollario 4.3.12). Per esempio le macchine lineari dallo spazio al piano formano uno spazio di dimensione $2 \cdot 3 = 6$.
 
-> [!OLTRE] Hom e la sua dimensione
-> Nel libro di Martelli (§4.3.4) l'insieme delle applicazioni lineari $V \to W$ si chiama $\mathrm{Hom}(V, W)$, da «omomorfismo», sinonimo di applicazione lineare. Poiché è isomorfo a $M(m, n, \K)$, ha dimensione $mn$ (Corollario 4.3.12). Per esempio le applicazioni lineari $\R^3 \to \R^2$ formano uno spazio di dimensione $2 \cdot 3 = 6$.
-
-Un modo per vedere la matrice associata in azione è lo strumento qui sotto: una matrice $2 \times 2$ come trasformazione del piano. Con $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$, l'isomorfismo dell'esempio (a), le colonne sono le immagini di $e_1$ ed $e_2$ e il quadrato unitario diventa un parallelogramma di area $|\det A| = 1$. Prova poi a scrivere $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$: il piano si schiaccia su una retta, il nucleo non è più $\{0\}$ e $L_A$ non è un isomorfismo.
+Un modo per vedere la matrice associata in azione è lo strumento qui sotto: una matrice $2 \times 2$ come trasformazione del piano. Con $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$, l'isomorfismo dell'esempio (a), le colonne sono le uscite di $e_1$ ed $e_2$, e il quadrato di lato 1 diventa un parallelogramma di area $|\det A| = 1$. Prova poi a scrivere $A = \begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$: il piano si schiaccia su una retta, il nucleo non è più solo lo zero e la macchina non è un isomorfismo.
 
 ```widget matrice
 titolo: Una matrice $2 \times 2$ come applicazione lineare del piano
@@ -34588,48 +34680,88 @@ raggio: 4
 > [!OLTRE] dove trovarlo nel libro
 > Nel libro di Martelli: §4.2.5 «Isomorfismi» (pp. 127–128, con la dimostrazione della Proposizione 15.2 e la scorciatoia della Proposizione 4.2.24), §4.2.7 «Spazi vettoriali isomorfi» (p. 129), §4.3 «Matrice associata» fino a §4.3.4 «Hom» (pp. 130–135). Gli Esempi 4.3.2 e 4.3.3 del libro sono gli Esempi 15.7–15.8 e l'Esercizio 15.13 delle dispense.
 
+::: prova Due macchine dal piano al piano hanno matrici $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$ e $\begin{pmatrix} 0 & 3 \\ 1 & 1 \end{pmatrix}$. Qual è la matrice della loro somma?
+La somma delle matrici, casella per casella: $\begin{pmatrix} 1 & 3 \\ 3 & 2 \end{pmatrix}$.
+:::
+
+> [!RICORDA]
+> - Le macchine lineari si sommano e si moltiplicano per un numero, come le loro matrici.
+> - Scelte le basi, macchine lineari e matrici sono la stessa cosa.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $f : V \to W$ | «effe da vu a vu doppio» | la macchina $f$ parte da $V$ e arriva in $W$ | |
+| $f^{-1}$ | «effe alla meno uno» | la macchina inversa, che torna indietro | $f^{-1}(7, 4) = (3, 1)$ |
+| $\Ker f$, $\Imm f$ | «nucleo», «immagine» | quello che si perde, quello che esce (lezione L14) | |
+| $\cong$ | «è isomorfo a» | stesso spazio con nomi diversi | $\R_2[x] \cong \R^3$ |
+| $[v]_{\mathcal B}$ | «coordinate di v nella base B» | le dosi della ricetta, in colonna | |
+| $[f]^{\mathcal B}_{\mathcal C}$ | «matrice di f, da B a C» | la macchina scritta con i numeri; partenza in alto, arrivo in basso | |
+| $A^j$ | «a alla j» | la colonna $j$ della matrice | |
+| $L_A$ | «elle a» | la macchina che moltiplica per la matrice $A$ | $L_A(x) = Ax$ |
+| $\id$ | «identità» | la macchina che lascia tutto com'è | $[\id]^{\mathcal B}_{\mathcal B} = I_n$ |
+| $\mathrm{Hom}(V, W)$ | «hom di vu, vu doppio» | tutte le macchine lineari da $V$ a $W$ | dimensione $mn$ |
+
 ## Verso l'esame
 
-La prova di Algebra lineare e Geometria ha 10 domande a risposta multipla (5 risposte, una giusta) e 2 problemi da 11 punti, corretti solo con almeno 6 risposte giuste; dura 2 ore, senza calcolatrice, e si può portare solo un foglio da 4 facciate scritto a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
+La prova di Algebra lineare e Geometria ha 10 domande a risposta multipla, con 5 risposte e una sola giusta. Ci sono poi 2 problemi da 11 punti, corretti solo con almeno 6 risposte giuste. Dura 2 ore, senza calcolatrice, e si può portare solo un foglio da 4 facciate scritto a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
 **Che cosa di questa lezione serve all'esame**
 
-1. **La matrice associata** è una delle domande più frequenti del quiz. Negli appelli 2023–2026 compare così: matrice di $T : \R^2 \to \R^2$ rispetto a una base non canonica (appello del 24/01/2024, domanda 3, e del 15/01/2026, domanda 8); coordinate $[T(v_1)]_{\mathcal B}$ di un'immagine (05/02/2026, domanda 6); matrice di una composizione (16/01/2025, domanda 5, che vedrai nella lezione L16). Il foglio 3 del tutorato (esercizi 4 e 5) allena proprio questo.
+1. **La matrice associata** è una delle domande più frequenti del quiz. Negli appelli 2023–2026 compare così: la matrice di una macchina dal piano al piano rispetto a una base non canonica (appelli del 24/01/2024, domanda 3, e del 15/01/2026, domanda 8); le coordinate dell'uscita di un vettore (05/02/2026, domanda 6); la matrice di due macchine una dopo l'altra (16/01/2025, domanda 5, che vedrai nella lezione L16). Il foglio 3 del tutorato, esercizi 4 e 5, allena proprio questo.
 2. **Gli argomenti di dimensione** della Proposizione 15.3 danno la risposta in una riga: appello del 02/09/2025, domanda 5.
-3. **Nei problemi aperti** si chiede spesso di scrivere la matrice di $T$ nella base canonica e di dire se $T$ è biettiva (appello del 10/07/2024, problema 11), oppure di calcolare nucleo e immagine a partire dalla matrice.
-4. **Tutta la parte sugli autovalori** (lezioni L17–L18) usa la matrice associata: per un endomorfismo di $\R_2[x]$ si lavora con la sua matrice $3 \times 3$.
+3. **Nei problemi aperti** si chiede spesso di scrivere la matrice di una macchina nella base canonica e di dire se è biettiva (appello del 10/07/2024, problema 11). Oppure si chiede di calcolare nucleo e immagine a partire dalla matrice.
+4. **Tutta la parte sugli autovalori** (lezioni L17–L18) usa la matrice associata: per una macchina sui polinomi di grado al massimo 2 si lavora con la sua matrice $3 \times 3$.
 
-### Tre domande vere, risolte
+### Una domanda vera, letta insieme
 
-> [!ESAME] Appello del 15/01/2026, domanda 8
-> *La matrice associata a $T : \R^2 \to \R^2$, $T(x, y) = (2x, 3y)$, rispetto alla base $\mathcal B = \{(0, 1), (1, 2)\}$ è …* (si intende $[T]^{\mathcal B}_{\mathcal B}$, stessa base in partenza e in arrivo).
+**Appello del 15/01/2026, domanda 8.** Il testo: «La matrice associata a $T : \R^2 \to \R^2$, $T(x, y) = (2x, 3y)$, rispetto alla base $\mathcal B = \{(0, 1), (1, 2)\}$ è…». Si intende la stessa base in partenza e in arrivo.
+
+**In pratica chiede:** la macchina raddoppia la prima coordinata e triplica la seconda. Scritta con la base $(0, 1), (1, 2)$ invece che con quella canonica, che tabella diventa?
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: dove vanno i vettori della base.**
+> - $T(0, 1) = (2 \cdot 0,\ 3 \cdot 1) = (0, 3)$;
+> - $T(1, 2) = (2 \cdot 1,\ 3 \cdot 2) = (2, 6)$.
 >
-> Soluzione. Passo 1: $T(0, 1) = (0, 3)$ e $T(1, 2) = (2, 6)$. Passo 2, coordinate rispetto a $\mathcal B$: $a (0, 1) + b (1, 2) = (b,\ a + 2b)$.
-> - $(0, 3)$: $b = 0$, $a = 3$, quindi $[T(v_1)]_{\mathcal B} = (3, 0)$;
-> - $(2, 6)$: $b = 2$, $a + 4 = 6$ cioè $a = 2$, quindi $[T(v_2)]_{\mathcal B} = (2, 2)$.
+> **Passo 2: le coordinate delle uscite rispetto alla stessa base.** Una ricetta con la base è $a(0, 1) + b(1, 2) = (b,\ a + 2b)$.
+> - Per $(0, 3)$: la prima coordinata dice $b = 0$, la seconda $a = 3$. Coordinate $(3, 0)$.
+> - Per $(2, 6)$: $b = 2$, poi $a + 4 = 6$, quindi $a = 2$. Coordinate $(2, 2)$.
 >
-> Passo 3: $[T]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 3 & 2 \\ 0 & 2 \end{pmatrix}$. Tra le risposte c'erano anche $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$ (la matrice nella base canonica) e $\begin{pmatrix} 0 & 1 \\ 1 & 2 \end{pmatrix}$ (i vettori della base): sono le due trappole classiche.
+> **Passo 3: le colonne.**
+> $$[T]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 3 & 2 \\ 0 & 2 \end{pmatrix}.$$
+>
+> **Controllo** sulla seconda colonna: $2 \cdot (0, 1) + 2 \cdot (1, 2) = (2, 6)$.
+>
+> **Le due trappole classiche** tra le risposte: $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$ è la matrice nella base canonica; $\begin{pmatrix} 0 & 1 \\ 1 & 2 \end{pmatrix}$ ha i vettori della base, non le loro uscite.
+
+### Altre due domande vere
 
 > [!ESAME] Appello del 05/02/2026, domanda 6
 > *Data $T(x, y) = (3x,\ x + 2y)$ e la base $\mathcal B = \{v_1 = (0, 1),\ v_2 = (1, 1)\}$, il vettore di coordinate $[T(v_1)]_{\mathcal B}$ è …*
 >
-> Soluzione. $T(v_1) = T(0, 1) = (0, 2)$. Cerchiamo $a, b$ con $a (0, 1) + b (1, 1) = (b,\ a + b) = (0, 2)$: $b = 0$ e $a = 2$. Quindi $[T(v_1)]_{\mathcal B} = (2, 0)$. La risposta sbagliata più attraente era $(0, 2)$, cioè $T(v_1)$ stesso: ma la domanda chiede le **coordinate**.
+> **Soluzione.**
+> 1. $T(v_1) = T(0, 1) = (0, 2)$.
+> 2. Cerco $a$ e $b$ con $a(0, 1) + b(1, 1) = (b,\ a + b) = (0, 2)$: $b = 0$ e $a = 2$.
+>
+> Quindi $[T(v_1)]_{\mathcal B} = (2, 0)$. La risposta sbagliata più attraente era $(0, 2)$, cioè $T(v_1)$ stesso: ma la domanda chiede le **coordinate**.
 
 > [!ESAME] Appello del 02/09/2025, domanda 5
 > *Sia $f : V \to W$ lineare con $\dim V = 4$ e $\dim W = 2$. Quale è necessariamente vera?*
 >
-> Soluzione. Per il teorema della dimensione $\dim \Ker f = 4 - \dim \Imm f \ge 4 - 2 = 2$, quindi il nucleo non è mai $\{0\}$: **$f$ non può essere iniettiva** (è il punto 1 della Proposizione 15.3 letto al contrario). Le altre risposte («deve essere suriettiva», «non può essere suriettiva», «deve essere iniettiva», «è un isomorfismo») sono false: l'applicazione nulla non è suriettiva, mentre $(x_1, x_2, x_3, x_4) \mapsto (x_1, x_2)$ lo è.
+> **Soluzione.** Per il teorema della dimensione il nucleo ha dimensione $4 - \dim \Imm f$, e l'immagine ha dimensione al massimo 2. Quindi il nucleo ha dimensione almeno 2, e non è mai solo lo zero: **$f$ non può essere iniettiva**. È il punto 1 della Proposizione 15.3 letto al contrario. Le altre risposte («deve essere suriettiva», «non può essere suriettiva», «deve essere iniettiva», «è un isomorfismo») sono false: la macchina nulla non è suriettiva, mentre $(x_1, x_2, x_3, x_4) \mapsto (x_1, x_2)$ lo è.
 
-### Errori da evitare
+**Errori da evitare.**
 
-- Scrivere le immagini **in riga** invece che in colonna (si ottiene la trasposta).
-- Mettere nella colonna $f(v_j)$ invece delle sue **coordinate** rispetto alla base di arrivo.
-- Confondere la taglia: $[f]^{\mathcal B}_{\mathcal C}$ ha $\dim W$ righe e $\dim V$ colonne.
-- Cambiare l'ordine dei vettori della base: l'ordine delle colonne segue l'ordine di $\mathcal B$, l'ordine delle righe segue quello di $\mathcal C$.
-- Per i polinomi, dimenticare che le coordinate rispetto a $\{1, x, x^2\}$ sono i coefficienti **dal termine noto in su**.
+- Scrivere le uscite **in riga** invece che in colonna: si ottiene la trasposta.
+- Mettere nella colonna l'uscita $f(v_j)$ invece delle sue **coordinate** rispetto alla base di arrivo.
+- Sbagliare la taglia: la matrice ha tante righe quanta è la dimensione di arrivo e tante colonne quanta è quella di partenza.
+- Cambiare l'ordine della base: l'ordine delle colonne segue la base di partenza, quello delle righe la base di arrivo.
+- Per i polinomi, dimenticare che le coordinate rispetto a $\{1, x, x^2\}$ sono i numeri **dal termine noto in su**.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione bastano tre righe: «colonna $j$ di $[f]^{\mathcal B}_{\mathcal C}$ = $[f(v_j)]_{\mathcal C}$ (partenza in alto, arrivo in basso)»; «$[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C} [v]_{\mathcal B}$»; «$f$ iniettiva $\Rightarrow \dim V \le \dim W$, suriettiva $\Rightarrow \dim V \ge \dim W$, isomorfi $\iff$ stessa dimensione».
+> Da questa lezione bastano tre righe: «colonna $j$ di $[f]^{\mathcal B}_{\mathcal C}$ = $[f(v_j)]_{\mathcal C}$, partenza in alto, arrivo in basso»; «$[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C} [v]_{\mathcal B}$»; «iniettiva: partenza non più grande dell'arrivo; suriettiva: partenza non più piccola; isomorfi esattamente con la stessa dimensione».
 
 ## Quiz
 
@@ -34640,7 +34772,7 @@ D: Sia $f : \R^2 \to \R^3$ un'applicazione lineare. Quale affermazione è necess
 - $f$ non può essere iniettiva.
 - $f$ è un isomorfismo.
 - $f$ deve essere suriettiva.
-= $\dim \Imm f \le \dim \R^2 = 2 < 3$, quindi $\Imm f \neq \R^3$: $f$ non è mai suriettiva (Proposizione 15.3, punto 2). Può essere iniettiva ($(x, y) \mapsto (x, y, 0)$) ma non deve esserlo (l'applicazione nulla). Simile all'appello del 02/09/2025, domanda 5.
+= L'immagine ha dimensione al massimo 2, quella del piano di partenza, mentre lo spazio di arrivo ha dimensione 3: l'immagine non è mai tutto lo spazio, quindi $f$ non è mai suriettiva (Proposizione 15.3, punto 2). La risposta più insidiosa è «deve essere iniettiva»: può esserlo, come $(x, y) \mapsto (x, y, 0)$, ma non deve, come la macchina nulla. Simile all'appello del 02/09/2025, domanda 5.
 
 D: Quale coppia di spazi vettoriali reali è formata da spazi isomorfi?
 + $\R_2[x]$ e $\R^3$
@@ -34648,7 +34780,7 @@ D: Quale coppia di spazi vettoriali reali è formata da spazi isomorfi?
 - $M(2, \R)$ e $\R^3$
 - $\R^2$ e $\R^3$
 - $M(2, 3, \R)$ e $\R^5$
-= Due spazi di dimensione finita sono isomorfi se e solo se hanno la stessa dimensione (Proposizione 15.4). $\dim \R_2[x] = 3 = \dim \R^3$. Nelle altre coppie le dimensioni sono $3$ e $2$, $4$ e $3$, $2$ e $3$, $6$ e $5$.
+= Due spazi sono isomorfi esattamente quando hanno la stessa dimensione (Proposizione 15.4). I polinomi di grado al massimo 2 hanno dimensione 3, come $\R^3$. La risposta più insidiosa è $\R_2[x]$ e $\R^2$: chi conta 2 per i polinomi di grado 2 dimentica il termine noto. Nelle altre coppie le dimensioni sono 4 e 3, 2 e 3, 6 e 5.
 
 D: La matrice associata a $f : \R^3 \to \R^2$, $f(x, y, z) = (x - z,\ 2y + z)$, rispetto alle basi canoniche è:
 + $\begin{pmatrix} 1 & 0 & -1 \\ 0 & 2 & 1 \end{pmatrix}$
@@ -34656,7 +34788,7 @@ D: La matrice associata a $f : \R^3 \to \R^2$, $f(x, y, z) = (x - z,\ 2y + z)$, 
 - $\begin{pmatrix} 1 & -1 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & -1 \end{pmatrix}$
-= Le colonne sono $f(e_1) = (1, 0)$, $f(e_2) = (0, 2)$, $f(e_3) = (-1, 1)$. La matrice è $2 \times 3$ (arrivo $\R^2$, partenza $\R^3$) e si legge dai coefficienti riga per riga. La seconda risposta è la trasposta.
+= Le colonne sono le uscite della base canonica: $f(e_1) = (1, 0)$, $f(e_2) = (0, 2)$, $f(e_3) = (-1, 1)$. La matrice è $2 \times 3$, perché si arriva nel piano partendo dallo spazio, e si legge dai numeri davanti alle lettere riga per riga. La risposta più insidiosa è la seconda, la trasposta, con le uscite messe in riga. La quarta sbaglia il segno di $-z$.
 
 D: La matrice della derivata $D : \R_2[x] \to \R_1[x]$, $D(p) = p'$, rispetto alle basi $\{1, x, x^2\}$ e $\{1, x\}$ è:
 + $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$
@@ -34664,7 +34796,7 @@ D: La matrice della derivata $D : \R_2[x] \to \R_1[x]$, $D(p) = p'$, rispetto al
 - $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
-= $D(1) = 0 \to (0, 0)$, $D(x) = 1 \to (1, 0)$, $D(x^2) = 2x \to (0, 2)$: sono le tre colonne. La taglia è $2 \times 3$ perché $\dim \R_1[x] = 2$ e $\dim \R_2[x] = 3$; la seconda risposta è la trasposta, la terza ha la taglia di un endomorfismo di $\R_2[x]$.
+= $D(1) = 0$ ha coordinate $(0, 0)$, $D(x) = 1$ ha coordinate $(1, 0)$, $D(x^2) = 2x$ ha coordinate $(0, 2)$: sono le tre colonne. La taglia è $2 \times 3$, perché l'arrivo ha dimensione 2 e la partenza 3. La seconda risposta è la trasposta; la terza, la più insidiosa, ha la taglia di una macchina che arriva nei polinomi di grado al massimo 2, non 1.
 
 D: Sia $T : \R^2 \to \R^2$, $T(x, y) = (x + y,\ 2x)$, e sia $\mathcal B = \{v_1 = (1, 0),\ v_2 = (1, 1)\}$. Il vettore di coordinate $[T(v_1)]_{\mathcal B}$ è:
 + $(-1, 2)$
@@ -34672,7 +34804,7 @@ D: Sia $T : \R^2 \to \R^2$, $T(x, y) = (x + y,\ 2x)$, e sia $\mathcal B = \{v_1 
 - $(2, -1)$
 - $(1, 0)$
 - $(2, 2)$
-= $T(v_1) = (1, 2)$. Coordinate: $a (1, 0) + b (1, 1) = (a + b,\ b) = (1, 2)$ dà $b = 2$ e $a = -1$. La risposta $(1, 2)$ è $T(v_1)$ stesso, non le sue coordinate. Simile all'appello del 05/02/2026, domanda 6.
+= $T(v_1) = (1, 2)$. Le coordinate: $a(1, 0) + b(1, 1) = (a + b,\ b) = (1, 2)$ dà $b = 2$ e $a = -1$. La risposta più insidiosa è $(1, 2)$: è $T(v_1)$ stesso, non le sue coordinate. $(2, -1)$ ha le coordinate in ordine scambiato. Simile all'appello del 05/02/2026, domanda 6.
 
 D: Sia $T(x, y) = (y, x)$ e sia $\mathcal B = \{(1, 2), (0, 1)\}$. La matrice $[T]^{\mathcal B}_{\mathcal B}$ è:
 + $\begin{pmatrix} 2 & 1 \\ -3 & -2 \end{pmatrix}$
@@ -34680,7 +34812,7 @@ D: Sia $T(x, y) = (y, x)$ e sia $\mathcal B = \{(1, 2), (0, 1)\}$. La matrice $[
 - $\begin{pmatrix} 2 & -3 \\ 1 & -2 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix}$
-= $T(1, 2) = (2, 1) = 2 (1, 2) - 3 (0, 1)$ e $T(0, 1) = (1, 0) = 1 (1, 2) - 2 (0, 1)$: le colonne sono $(2, -3)$ e $(1, -2)$. La seconda risposta è la matrice nella base canonica, la terza la trasposta, la quinta mette le immagini senza passare alle coordinate. Simile agli appelli del 24/01/2024 (domanda 3) e del 15/01/2026 (domanda 8).
+= $T(1, 2) = (2, 1) = 2(1, 2) - 3(0, 1)$ e $T(0, 1) = (1, 0) = 1(1, 2) - 2(0, 1)$: le colonne sono $(2, -3)$ e $(1, -2)$. La risposta più insidiosa è la seconda, la matrice nella base canonica. La terza è la trasposta; la quinta mette le uscite senza passare alle coordinate; la quarta ha i vettori della base. Simile agli appelli del 24/01/2024 (domanda 3) e del 15/01/2026 (domanda 8).
 
 D: Sia $f(p) = (p(2), p(-2))$ con matrice $\begin{pmatrix} 1 & 2 & 4 \\ 1 & -2 & 4 \end{pmatrix}$ rispetto a $\{1, x, x^2\}$ e alla base canonica. Quanto vale $f(1 - x + x^2)$?
 + $(3, 7)$
@@ -34688,7 +34820,7 @@ D: Sia $f(p) = (p(2), p(-2))$ con matrice $\begin{pmatrix} 1 & 2 & 4 \\ 1 & -2 &
 - $(7, 3)$
 - $(1, 7)$
 - $(4, 4)$
-= $[p]_{\mathcal B} = (1, -1, 1)$, e il prodotto dà $(1 - 2 + 4,\ 1 + 2 + 4) = (3, 7)$. Controllo diretto: $p(2) = 1 - 2 + 4 = 3$ e $p(-2) = 1 + 2 + 4 = 7$.
+= Le coordinate del polinomio nella base $\{1, x, x^2\}$ sono $(1, -1, 1)$, e il prodotto dà $(1 - 2 + 4,\ 1 + 2 + 4) = (3, 7)$. Controllo diretto: $p(2) = 1 - 2 + 4 = 3$ e $p(-2) = 1 + 2 + 4 = 7$. La risposta più insidiosa è $(7, 3)$, con i due valori scambiati.
 
 D: I polinomi $(x + 1)^2$, $x + 1$, $1$ formano una base di $\R_2[x]$. Le coordinate di $q(x) = (x - 1)^2$ in questa base sono:
 + $(1, -4, 4)$
@@ -34696,7 +34828,7 @@ D: I polinomi $(x + 1)^2$, $x + 1$, $1$ formano una base di $\R_2[x]$. Le coordi
 - $(1, 4, 4)$
 - $(4, -4, 1)$
 - $(1, 0, 0)$
-= Scriviamo $x - 1 = (x + 1) - 2$. Allora $(x - 1)^2 = (x + 1)^2 - 4(x + 1) + 4 \cdot 1$. Controllo: $x^2 + 2x + 1 - 4x - 4 + 4 = x^2 - 2x + 1$. La risposta $(1, -2, 1)$ sono le coordinate nella base $\{x^2, x, 1\}$. Simile all'appello del 06/09/2024, domanda 9.
+= Si scrive $x - 1 = (x + 1) - 2$. Allora $(x - 1)^2 = (x + 1)^2 - 4(x + 1) + 4 \cdot 1$. Controllo: $x^2 + 2x + 1 - 4x - 4 + 4 = x^2 - 2x + 1$. La risposta più insidiosa è $(1, -2, 1)$: sono le coordinate nella base $\{x^2, x, 1\}$, non in quella data. $(4, -4, 1)$ ha l'ordine al contrario. Simile all'appello del 06/09/2024, domanda 9.
 
 D: La matrice associata all'inversa di $f = L_A : \R^2 \to \R^2$, con $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$, rispetto alla base canonica è:
 + $\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$
@@ -34704,40 +34836,48 @@ D: La matrice associata all'inversa di $f = L_A : \R^2 \to \R^2$, con $A = \begi
 - $\begin{pmatrix} 2 & -1 \\ -1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1/2 & 1 \\ 1 & 1 \end{pmatrix}$
 - $f$ non è invertibile.
-= $\det A = 2 - 1 = 1 \neq 0$, quindi $f$ è un isomorfismo e $f^{-1} = L_{A^{-1}}$ con $A^{-1} = \frac{1}{1}\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$. Controllo: $A A^{-1} = I_2$. Simile all'appello del 10/07/2024, problema 11, punto 2.
+= Il determinante è $2 - 1 = 1$, non zero: $f$ è un isomorfismo, e la sua inversa è la macchina della matrice inversa. Con la regola delle $2 \times 2$ (lezione L10): scambio la diagonale, cambio segno agli altri due, divido per 1. Viene $\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$; controllo: $A A^{-1} = I_2$. La risposta più insidiosa è la terza, che cambia i segni ma non scambia la diagonale. La quarta inverte casella per casella. Simile all'appello del 10/07/2024, problema 11, punto 2.
 
 D: Qual è la dimensione dello spazio vettoriale di tutte le applicazioni lineari $\R^3 \to \R^2$?
 N: 6
-= Per il Teorema 15.12 questo spazio è isomorfo a $M(2, 3, \R)$, le matrici $2 \times 3$, che ha dimensione $2 \cdot 3 = 6$.
+= Per il Teorema 15.12, scelte le basi, le macchine lineari dallo spazio al piano sono la stessa cosa delle matrici $2 \times 3$. Lo spazio delle matrici $2 \times 3$ ha dimensione $2 \cdot 3 = 6$.
 ```
 
 ## Esercizi
 
-::: esercizio medio Esercizio 15.13 delle dispense: una matrice con basi non canoniche su $\C$
-Consideriamo l'applicazione lineare
-$$f : \C^2 \longrightarrow \C^3, \qquad f\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x - y \\ 2x \\ y \end{pmatrix}.$$
-Trovare la matrice associata a $f$ rispetto alle basi $v_1 = (1, 1)$, $v_2 = (1, -1)$ in partenza e $w_1 = (1, 1, 0)$, $w_2 = (0, 1, 1)$, $w_3 = (1, 0, 1)$ in arrivo.
+::: esercizio base Riscaldamento: stessa dimensione?
+Quali coppie di spazi sono isomorfe? (a) $\R^3$ e i polinomi di grado al massimo 2; (b) $\R^4$ e le matrici $2 \times 2$; (c) il piano e lo spazio; (d) i polinomi di grado al massimo 3 e le matrici $2 \times 2$.
 ::: soluzione
-Il campo è $\C$, ma tutti i numeri in gioco sono reali: i conti sono quelli di sempre.
+Si confrontano le dimensioni.
+1. (a) 3 e 3: isomorfi.
+2. (b) 4 e 4: isomorfi.
+3. (c) 2 e 3: non isomorfi.
+4. (d) 4 e 4: isomorfi.
+:::
 
-**Passo 1**, le immagini:
-$$f(v_1) = f(1, 1) = (1 - 1,\ 2,\ 1) = (0, 2, 1), \qquad f(v_2) = f(1, -1) = (1 + 1,\ 2,\ -1) = (2, 2, -1).$$
+::: esercizio base Riscaldamento: la matrice nelle basi canoniche
+Scrivi la matrice di $f(x, y) = (2x + y,\ x - 3y,\ 4y)$ con le basi canoniche.
+::: soluzione
+1. $f(1, 0) = (2, 1, 0)$: prima colonna.
+2. $f(0, 1) = (1, -3, 4)$: seconda colonna.
 
-**Passo 2**, coordinate rispetto a $w_1, w_2, w_3$. Scriviamo $a w_1 + b w_2 + c w_3 = (a + c,\ a + b,\ b + c)$.
+La matrice è $\begin{pmatrix} 2 & 1 \\ 1 & -3 \\ 0 & 4 \end{pmatrix}$: 3 righe, perché si arriva nello spazio, e 2 colonne, perché si parte dal piano.
+:::
 
-Per $f(v_1) = (0, 2, 1)$:
-$$\begin{cases} a + c = 0 \\ a + b = 2 \\ b + c = 1 \end{cases}$$
-Dalla prima $c = -a$; la terza diventa $b - a = 1$. Sommandola alla seconda: $2b = 3$, quindi $b = \frac 32$; poi $a = 2 - \frac 32 = \frac 12$ e $c = -\frac 12$. Quindi $[f(v_1)]_{\mathcal C} = \left(\frac 12, \frac 32, -\frac 12\right)$.
+::: esercizio base Riscaldamento: righe e colonne
+Quante righe e quante colonne ha la matrice associata di una macchina lineare (a) da $\R^4$ a $\R^2$; (b) dai polinomi di grado al massimo 2 a quelli di grado al massimo 3; (c) dalle matrici $2 \times 2$ a $\R$?
+::: soluzione
+Righe = dimensione di arrivo, colonne = dimensione di partenza.
+1. (a) 2 righe e 4 colonne.
+2. (b) 4 righe e 3 colonne.
+3. (c) 1 riga e 4 colonne.
+:::
 
-Per $f(v_2) = (2, 2, -1)$:
-$$\begin{cases} a + c = 2 \\ a + b = 2 \\ b + c = -1 \end{cases}$$
-Sottraendo la seconda dalla prima: $c - b = 0$, cioè $b = c$. La terza dà $2c = -1$, quindi $b = c = -\frac 12$ e $a = 2 - c = \frac 52$. Quindi $[f(v_2)]_{\mathcal C} = \left(\frac 52, -\frac 12, -\frac 12\right)$.
-
-**Passo 3**, le colonne:
-$$[f]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1/2 & 5/2 \\ 3/2 & -1/2 \\ -1/2 & -1/2 \end{pmatrix} = \frac 12 \begin{pmatrix} 1 & 5 \\ 3 & -1 \\ -1 & -1 \end{pmatrix}.$$
-È il risultato indicato nelle dispense. Controllo sulla prima colonna: $\frac 12 (1, 1, 0) + \frac 32 (0, 1, 1) - \frac 12 (1, 0, 1) = \left(\frac 12 - \frac 12,\ \frac 12 + \frac 32,\ \frac 32 - \frac 12\right) = (0, 2, 1)$.
-
-Nella lezione L16 ritroverai lo stesso risultato con la formula del cambiamento di base.
+::: esercizio base Riscaldamento: dalla matrice all'uscita
+Una macchina ha matrice $\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$ con le basi canoniche. Dove va $(3, 1)$? E $(0, 2)$?
+::: soluzione
+1. $\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 3 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 + 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 5 \\ 1 \end{pmatrix}$.
+2. $\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 0 \\ 2 \end{pmatrix} = \begin{pmatrix} 0 + 4 \\ 2 \end{pmatrix} = \begin{pmatrix} 4 \\ 2 \end{pmatrix}$.
 :::
 
 ::: esercizio base Isomorfismo oppure no?
@@ -34747,34 +34887,38 @@ Per ciascuna applicazione lineare di' se è un isomorfismo, motivando:
 (c) $h : \R_2[x] \to \R^3$, $h(p) = (p(0), p(1), p(2))$;
 (d) $k : M(2, \R) \to M(2, \R)$, $k(A) = A - {}^tA$.
 ::: soluzione
-(a) **Sì.** Nucleo: $x + y = 0$ e $x - y = 0$; sommando $2x = 0$, quindi $x = 0$ e $y = 0$. $\Ker f = \{0\}$, quindi $f$ è iniettiva; poiché partenza e arrivo hanno la stessa dimensione 2, per il teorema della dimensione $\dim \Imm f = 2$ e $f$ è anche suriettiva. (In alternativa: $\det \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = -2 \neq 0$.)
+(a) **Sì.** Nucleo: $x + y = 0$ e $x - y = 0$; sommando, $2x = 0$, quindi $x = 0$ e $y = 0$. Il nucleo è solo lo zero: iniettiva. Partenza e arrivo hanno la stessa dimensione 2, quindi per il teorema della dimensione l'immagine ha dimensione 2: suriettiva. Oppure: $\det \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = -2$, non zero.
 
-(b) **No.** $\dim \R^3 = 3 \neq 2 = \dim \R^2$: per la Proposizione 15.3 un isomorfismo richiede dimensioni uguali. Concretamente $g(0, 0, 1) = (0, 0)$, quindi $g$ non è iniettiva.
+(b) **No.** La partenza ha dimensione 3 e l'arrivo 2: per la Proposizione 15.3 un isomorfismo vuole dimensioni uguali. Con i numeri: $g(0, 0, 1) = (0, 0)$, quindi $g$ non è iniettiva.
 
-(c) **Sì.** Con la base $\{1, x, x^2\}$ in partenza e quella canonica in arrivo: $h(1) = (1, 1, 1)$, $h(x) = (0, 1, 2)$, $h(x^2) = (0, 1, 4)$, quindi
-$$[h] = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix}, \qquad \det [h] = 1 \cdot (1 \cdot 4 - 1 \cdot 2) = 2 \neq 0$$
-(sviluppo lungo la prima riga). Il rango è 3, quindi $\Ker h = \{0\}$ e $\Imm h = \R^3$. In parole: un polinomio di grado al massimo 2 è determinato dai suoi valori in tre punti.
+(c) **Sì.** Con la base $\{1, x, x^2\}$ in partenza e quella canonica in arrivo: $h(1) = (1, 1, 1)$, $h(x) = (0, 1, 2)$, $h(x^2) = (0, 1, 4)$. Quindi
+$$[h] = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix}, \qquad \det [h] = 1 \cdot (1 \cdot 4 - 1 \cdot 2) = 2,$$
+sviluppando lungo la prima riga. Il determinante non è zero: il rango è 3, il nucleo è solo lo zero e l'immagine è tutto lo spazio. A parole: un polinomio di grado al massimo 2 è deciso dai suoi valori in tre punti.
 
-(d) **No.** Se $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$, allora $k(A) = \begin{pmatrix} 0 & b - c \\ c - b & 0 \end{pmatrix}$. Tutte le matrici simmetriche ($b = c$) finiscono in 0, per esempio $k(I_2) = 0$. Il nucleo non è $\{0\}$ (ha dimensione 3), quindi $k$ non è iniettiva.
+(d) **No.** Se $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$, allora $k(A) = \begin{pmatrix} 0 & b - c \\ c - b & 0 \end{pmatrix}$. Tutte le matrici simmetriche ($b = c$) vanno in zero, per esempio $k(I_2) = 0$. Il nucleo non è solo lo zero (ha dimensione 3), quindi $k$ non è iniettiva.
 :::
 
 ::: esercizio base Coordinate in basi non canoniche
 (a) Trova le coordinate di $v = (5, 1)$ rispetto a $\mathcal B = \{(1, 1), (1, -1)\}$.
 (b) Trova le coordinate di $p(x) = 2x^2 - x + 3$ rispetto a $\{1, x, x^2\}$ e rispetto a $\mathcal B' = \{1,\ x - 1,\ (x - 1)^2\}$.
 ::: soluzione
-(a) $\lambda_1 (1, 1) + \lambda_2 (1, -1) = (5, 1)$ dà $\lambda_1 + \lambda_2 = 5$ e $\lambda_1 - \lambda_2 = 1$. Sommando: $2\lambda_1 = 6$, $\lambda_1 = 3$; poi $\lambda_2 = 2$. Quindi $[v]_{\mathcal B} = (3, 2)$. Controllo: $3(1, 1) + 2(1, -1) = (5, 1)$.
+(a) $\lambda_1 (1, 1) + \lambda_2 (1, -1) = (5, 1)$ dà $\lambda_1 + \lambda_2 = 5$ e $\lambda_1 - \lambda_2 = 1$. Sommando: $2\lambda_1 = 6$, quindi $\lambda_1 = 3$; poi $\lambda_2 = 2$. Coordinate $(3, 2)$. Controllo: $3(1, 1) + 2(1, -1) = (5, 1)$.
 
-(b) Rispetto a $\{1, x, x^2\}$ bastano i coefficienti dal termine noto in su: $(3, -1, 2)$.
+(b) Rispetto a $\{1, x, x^2\}$ bastano i numeri dal termine noto in su: $(3, -1, 2)$.
 
-Rispetto a $\mathcal B'$ cerchiamo $a, b, c$ con
+Rispetto a $\mathcal B'$ cerco $a$, $b$, $c$ con
 $$a + b(x - 1) + c(x - 1)^2 = (a - b + c) + (b - 2c)\,x + c\,x^2 = 3 - x + 2x^2.$$
-Confrontando: $c = 2$; $b - 2c = -1$ dà $b = 3$; $a - b + c = 3$ dà $a = 3 + 3 - 2 = 4$. Quindi $[p]_{\mathcal B'} = (4, 3, 2)$. Controllo: $4 + 3(x - 1) + 2(x^2 - 2x + 1) = 4 + 3x - 3 + 2x^2 - 4x + 2 = 2x^2 - x + 3$.
+1. Davanti a $x^2$: $c = 2$.
+2. Davanti a $x$: $b - 2c = -1$, quindi $b = 3$.
+3. Termine noto: $a - b + c = 3$, quindi $a = 3 + 3 - 2 = 4$.
+
+Coordinate $(4, 3, 2)$. Controllo: $4 + 3(x - 1) + 2(x^2 - 2x + 1) = 4 + 3x - 3 + 2x^2 - 4x + 2 = 2x^2 - x + 3$.
 :::
 
 ::: esercizio base Matrice nelle basi canoniche e immagine di un vettore
 Sia $f : \R^3 \to \R^2$, $f(x, y, z) = (x + 2y,\ y - z)$. Scrivi la matrice associata rispetto alle basi canoniche e usala per calcolare $f(1, 1, 1)$ e $f(2, -1, 3)$.
 ::: soluzione
-Colonne: $f(e_1) = (1, 0)$, $f(e_2) = (2, 1)$, $f(e_3) = (0, -1)$, quindi
+Le colonne sono le uscite della base canonica: $f(e_1) = (1, 0)$, $f(e_2) = (2, 1)$, $f(e_3) = (0, -1)$. Quindi
 $$[f] = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & -1 \end{pmatrix}.$$
 Con le basi canoniche coordinate e vettori coincidono:
 $$[f]\begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 + 2 + 0 \\ 0 + 1 - 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 0 \end{pmatrix}, \qquad [f]\begin{pmatrix} 2 \\ -1 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 - 2 + 0 \\ 0 - 1 - 3 \end{pmatrix} = \begin{pmatrix} 0 \\ -4 \end{pmatrix}.$$
@@ -34784,39 +34928,39 @@ Controllo diretto: $f(2, -1, 3) = (2 - 2,\ -1 - 3) = (0, -4)$.
 ::: esercizio medio La matrice della derivata
 Sia $D : \R_3[x] \to \R_2[x]$, $D(p) = p'$. Scrivi $[D]$ rispetto alle basi $\{1, x, x^2, x^3\}$ e $\{1, x, x^2\}$, e usala per calcolare la derivata di $q(x) = 1 + 2x - x^2 + 4x^3$. Quanto valgono $\dim \Ker D$ e $\dim \Imm D$?
 ::: soluzione
-Immagini della base di partenza: $D(1) = 0$, $D(x) = 1$, $D(x^2) = 2x$, $D(x^3) = 3x^2$. Coordinate rispetto a $\{1, x, x^2\}$: $(0, 0, 0)$, $(1, 0, 0)$, $(0, 2, 0)$, $(0, 0, 3)$. Quindi
+Le uscite della base di partenza: $D(1) = 0$, $D(x) = 1$, $D(x^2) = 2x$, $D(x^3) = 3x^2$. Le loro coordinate rispetto a $\{1, x, x^2\}$: $(0, 0, 0)$, $(1, 0, 0)$, $(0, 2, 0)$, $(0, 0, 3)$. Quindi
 $$[D] = \begin{pmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & 2 & 0 \\ 0 & 0 & 0 & 3 \end{pmatrix}.$$
-$[q] = (1, 2, -1, 4)$, e
+Le coordinate di $q$ sono $(1, 2, -1, 4)$, e
 $$[D]\begin{pmatrix} 1 \\ 2 \\ -1 \\ 4 \end{pmatrix} = \begin{pmatrix} 2 \\ -2 \\ 12 \end{pmatrix},$$
 cioè $q'(x) = 2 - 2x + 12x^2$. Controllo diretto: la derivata di $1 + 2x - x^2 + 4x^3$ è $2 - 2x + 12x^2$.
 
-La matrice ha rango 3 (tre pivot), quindi $\dim \Imm D = 3$: $D$ è suriettiva. Per il teorema della dimensione $\dim \Ker D = 4 - 3 = 1$: il nucleo sono i polinomi costanti.
+La matrice ha rango 3, con tre pivot, quindi l'immagine ha dimensione 3: $D$ è suriettiva. Per il teorema della dimensione il nucleo ha dimensione $4 - 3 = 1$: sono i polinomi costanti.
 :::
 
 ::: esercizio medio Una base di arrivo che semplifica la matrice
 Riprendi $f : \R_2[x] \to \R^2$, $f(p) = (p(2), p(-2))$, con $\mathcal B = \{1, x, x^2\}$ in partenza. (a) Calcola $[f]^{\mathcal B}_{\mathcal C''}$ con $\mathcal C'' = \{(1, 1), (1, -1)\}$ in arrivo. (b) Usala per ritrovare $f(3x^2 + 5x + 1) = (23, 3)$.
 ::: soluzione
-(a) Le immagini sono $f(1) = (1, 1)$, $f(x) = (2, -2)$, $f(x^2) = (4, 4)$. Rispetto a $\mathcal C''$:
+(a) Le uscite sono $f(1) = (1, 1)$, $f(x) = (2, -2)$, $f(x^2) = (4, 4)$. Rispetto a $\mathcal C''$:
 - $(1, 1) = 1 \cdot (1, 1) + 0 \cdot (1, -1)$, coordinate $(1, 0)$;
 - $(2, -2) = 0 \cdot (1, 1) + 2 \cdot (1, -1)$, coordinate $(0, 2)$;
 - $(4, 4) = 4 \cdot (1, 1) + 0 \cdot (1, -1)$, coordinate $(4, 0)$.
 
 $$[f]^{\mathcal B}_{\mathcal C''} = \begin{pmatrix} 1 & 0 & 4 \\ 0 & 2 & 0 \end{pmatrix}.$$
-Ci sono molti zeri: la prima riga «vede» solo la parte pari del polinomio ($1$ e $x^2$), la seconda solo la parte dispari ($x$).
+Ci sono molti zeri: la prima riga vede solo le potenze pari del polinomio ($1$ e $x^2$), la seconda solo quella dispari ($x$).
 
-(b) $[p]_{\mathcal B} = (1, 5, 3)$ e
+(b) Le coordinate del polinomio sono $(1, 5, 3)$, e
 $$\begin{pmatrix} 1 & 0 & 4 \\ 0 & 2 & 0 \end{pmatrix}\begin{pmatrix} 1 \\ 5 \\ 3 \end{pmatrix} = \begin{pmatrix} 13 \\ 10 \end{pmatrix}.$$
-Sono le coordinate rispetto a $\mathcal C''$: $13 (1, 1) + 10 (1, -1) = (23, 3)$.
+Sono le coordinate rispetto a $\mathcal C''$. Rifaccio la ricetta: $13 (1, 1) + 10 (1, -1) = (23, 3)$.
 :::
 
 ::: esercizio medio Un isomorfismo costruito con una base
 In $\R_1[x]$ considera la base $\mathcal B = \{1 + x,\ 1 - x\}$. Scrivi esplicitamente l'isomorfismo $\Phi : \R_1[x] \to \R^2$ che manda $p$ in $[p]_{\mathcal B}$, e la sua inversa. Quanto vale $\Phi(3 + x)$?
 ::: soluzione
-Sia $p = a + bx$. Cerchiamo $\alpha, \beta$ con $\alpha(1 + x) + \beta(1 - x) = (\alpha + \beta) + (\alpha - \beta)x = a + bx$:
-$$\begin{cases} \alpha + \beta = a \\ \alpha - \beta = b \end{cases} \quad\Longrightarrow\quad \alpha = \frac{a + b}{2}, \qquad \beta = \frac{a - b}{2}.$$
-Quindi
+Sia $p = a + bx$. Cerco $\alpha$ e $\beta$ con $\alpha(1 + x) + \beta(1 - x) = (\alpha + \beta) + (\alpha - \beta)x = a + bx$:
+$$\begin{cases} \alpha + \beta = a \\ \alpha - \beta = b \end{cases}$$
+Sommando: $\alpha = \frac{a + b}{2}$. Togliendo: $\beta = \frac{a - b}{2}$. Quindi
 $$\Phi(a + bx) = \left(\frac{a + b}{2},\ \frac{a - b}{2}\right), \qquad \Phi^{-1}(\alpha, \beta) = \alpha(1 + x) + \beta(1 - x) = (\alpha + \beta) + (\alpha - \beta)x.$$
-Entrambe sono lineari (come prevede la Proposizione 15.2). Per $p = 3 + x$: $\Phi(3 + x) = (2, 1)$. Controllo: $2(1 + x) + 1(1 - x) = 3 + x$.
+Tutte e due sono lineari, come prevede la Proposizione 15.2. Per $p = 3 + x$: $\Phi(3 + x) = (2, 1)$. Controllo: $2(1 + x) + 1 \cdot (1 - x) = 3 + x$.
 :::
 
 ::: esercizio medio Una matrice da $M(2, \R)$ a $\R_2[x]$ (foglio 3 del tutorato, esercizio 4)
@@ -34824,26 +34968,49 @@ Calcola la matrice associata a $T : M(2, \R) \to \R_2[x]$,
 $$T\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ax^2 + (b + c)x + d,$$
 dalla base $\mathcal A = \left\{ \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}, \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}, \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \right\}$ alla base $\mathcal B = \{1, x, x^2\}$. Che cosa puoi dire di $\Ker T$ e di $\Imm T$?
 ::: soluzione
-La matrice sarà $3 \times 4$ ($\dim \R_2[x] = 3$, $\dim M(2, \R) = 4$). Chiamiamo $A_1, \dots, A_4$ le matrici della base.
+La matrice sarà $3 \times 4$: l'arrivo ha dimensione 3 e la partenza 4. Chiamo $A_1, \dots, A_4$ le matrici della base.
 - $T(A_1)$: $a = 1$, $b = c = 0$, $d = -1$, quindi $T(A_1) = x^2 - 1$, coordinate $(-1, 0, 1)$ (termine noto, $x$, $x^2$).
 - $T(A_2)$: $a = 0$, $b = c = 1$, $d = 0$, quindi $T(A_2) = 2x$, coordinate $(0, 2, 0)$.
 - $T(A_3)$: $a = 0$, $b = 1$, $c = -1$, $d = 0$, quindi $T(A_3) = 0$, coordinate $(0, 0, 0)$.
 - $T(A_4)$: $a = 1$, $b = c = 0$, $d = 1$, quindi $T(A_4) = x^2 + 1$, coordinate $(1, 0, 1)$.
 
 $$[T]^{\mathcal A}_{\mathcal B} = \begin{pmatrix} -1 & 0 & 0 & 1 \\ 0 & 2 & 0 & 0 \\ 1 & 0 & 0 & 1 \end{pmatrix}.$$
-Le colonne 1, 2 e 4 sono indipendenti (la 1 e la 4 hanno somma $(0, 0, 2)$ e differenza $(2, 0, 0)$, la 2 è $(0, 2, 0)$), quindi il rango è 3: $T$ è suriettiva, $\Imm T = \R_2[x]$. Per il teorema della dimensione $\dim \Ker T = 4 - 3 = 1$, e la colonna nulla dice che $A_3 \in \Ker T$: $\Ker T = \Span(A_3)$, le matrici antisimmetriche.
+Le colonne 1, 2 e 4 sono indipendenti: la 1 e la 4 hanno somma $(0, 0, 2)$ e differenza $(2, 0, 0)$, e la 2 è $(0, 2, 0)$. Quindi il rango è 3: $T$ è suriettiva, l'immagine è tutto lo spazio dei polinomi di grado al massimo 2. Per il teorema della dimensione il nucleo ha dimensione $4 - 3 = 1$, e la colonna di zeri dice che $A_3$ sta nel nucleo: il nucleo è lo Span di $A_3$, le matrici antisimmetriche.
 :::
 
-::: esercizio difficile Iniettiva se e solo se suriettiva
-Sia $f : V \to W$ lineare con $\dim V = \dim W = n$. Dimostra che $f$ è iniettiva se e solo se è suriettiva. Poi mostra con un esempio che l'ipotesi $\dim V = \dim W$ non si può togliere.
+::: esercizio medio Esercizio 15.13 delle dispense: una matrice con basi non canoniche su $\C$
+Consideriamo l'applicazione lineare
+$$f : \C^2 \longrightarrow \C^3, \qquad f\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x - y \\ 2x \\ y \end{pmatrix}.$$
+Trovare la matrice associata a $f$ rispetto alle basi $v_1 = (1, 1)$, $v_2 = (1, -1)$ in partenza e $w_1 = (1, 1, 0)$, $w_2 = (0, 1, 1)$, $w_3 = (1, 0, 1)$ in arrivo.
 ::: soluzione
-Per il teorema della dimensione, $n = \dim \Ker f + \dim \Imm f$.
+I numeri sono complessi, ma tutti quelli in gioco sono reali: i conti sono quelli di sempre.
 
-($\Rightarrow$) Se $f$ è iniettiva, $\Ker f = \{0\}$, quindi $\dim \Imm f = n = \dim W$. Un sottospazio di $W$ con la stessa dimensione di $W$ è tutto $W$: una sua base è formata da $n$ vettori indipendenti di $W$, che per il Teorema 7.12 sono una base di $W$. Quindi $\Imm f = W$: $f$ è suriettiva.
+**Passo 1**, le uscite:
+$$f(v_1) = f(1, 1) = (1 - 1,\ 2,\ 1) = (0, 2, 1), \qquad f(v_2) = f(1, -1) = (1 + 1,\ 2,\ -1) = (2, 2, -1).$$
 
-($\Leftarrow$) Se $f$ è suriettiva, $\dim \Imm f = \dim W = n$, quindi $\dim \Ker f = n - n = 0$, cioè $\Ker f = \{0\}$: $f$ è iniettiva.
+**Passo 2**, coordinate rispetto a $w_1, w_2, w_3$. Una ricetta con la base di arrivo è $a w_1 + b w_2 + c w_3 = (a + c,\ a + b,\ b + c)$.
 
-Senza l'ipotesi: $g : \R^2 \to \R^3$, $g(x, y) = (x, y, 0)$ è iniettiva ma non suriettiva; $h : \R^3 \to \R^2$, $h(x, y, z) = (x, y)$ è suriettiva ma non iniettiva.
+Per $f(v_1) = (0, 2, 1)$:
+$$\begin{cases} a + c = 0 \\ a + b = 2 \\ b + c = 1 \end{cases}$$
+1. Dalla prima, $c = -a$; la terza diventa $b - a = 1$.
+2. Sommandola alla seconda: $2b = 3$, quindi $b = \frac 32$.
+3. Poi $a = 2 - \frac 32 = \frac 12$ e $c = -\frac 12$.
+
+Coordinate $\left(\frac 12, \frac 32, -\frac 12\right)$.
+
+Per $f(v_2) = (2, 2, -1)$:
+$$\begin{cases} a + c = 2 \\ a + b = 2 \\ b + c = -1 \end{cases}$$
+1. Togliendo la seconda dalla prima: $c - b = 0$, cioè $b = c$.
+2. La terza dà $2c = -1$, quindi $b = c = -\frac 12$.
+3. Poi $a = 2 - c = \frac 52$.
+
+Coordinate $\left(\frac 52, -\frac 12, -\frac 12\right)$.
+
+**Passo 3**, le colonne:
+$$[f]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1/2 & 5/2 \\ 3/2 & -1/2 \\ -1/2 & -1/2 \end{pmatrix} = \frac 12 \begin{pmatrix} 1 & 5 \\ 3 & -1 \\ -1 & -1 \end{pmatrix}.$$
+È il risultato indicato nelle dispense. Controllo sulla prima colonna: $\frac 12 (1, 1, 0) + \frac 32 (0, 1, 1) - \frac 12 (1, 0, 1) = \left(\frac 12 - \frac 12,\ \frac 12 + \frac 32,\ \frac 32 - \frac 12\right) = (0, 2, 1)$.
+
+Nella lezione L16 ritroverai lo stesso risultato con la formula del cambiamento di base.
 :::
 
 ::: esercizio esame Come all'esame: una base che rende la matrice semplice
@@ -34852,16 +35019,24 @@ Sia $f : \R_2[x] \to \R^2$, $f(p) = (p(1),\ p'(1))$.
 (2) Trova $\Ker f$ e $\Imm f$; $f$ è iniettiva? È suriettiva?
 (3) Scrivi la matrice di $f$ rispetto a $\mathcal B' = \{1,\ x - 1,\ (x - 1)^2\}$ in partenza e $\mathcal C$ in arrivo.
 ::: soluzione
-(1) $f(1) = (1, 0)$ (la derivata di una costante è 0); $f(x) = (1, 1)$; $f(x^2) = (1, 2)$ perché $(x^2)' = 2x$ vale 2 in 1. Quindi
+(1) Le uscite:
+- $f(1) = (1, 0)$: il polinomio costante vale 1 in 1, e la sua derivata è 0;
+- $f(x) = (1, 1)$;
+- $f(x^2) = (1, 2)$, perché la derivata $2x$ vale 2 in 1.
+
 $$[f]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \end{pmatrix}.$$
 
-(2) La matrice è già a scalini con due pivot: rango 2. Quindi $\dim \Imm f = 2$ e $\Imm f = \R^2$: **$f$ è suriettiva**. Per il teorema della dimensione $\dim \Ker f = 3 - 2 = 1$: **non è iniettiva**. Il nucleo: $a + b + c = 0$ e $b + 2c = 0$ (dove $p = a + bx + cx^2$). Ponendo $c = t$: $b = -2t$, $a = -b - c = t$. Quindi $p = t(1 - 2x + x^2) = t(x - 1)^2$ e
-$$\Ker f = \Span\big((x - 1)^2\big).$$
-Controllo: $(x - 1)^2$ vale 0 in 1, e la sua derivata $2(x - 1)$ vale 0 in 1.
+(2) La matrice è già a scalini con due pivot: rango 2. L'immagine ha dimensione 2 ed è tutto il piano: **$f$ è suriettiva**. Per il teorema della dimensione il nucleo ha dimensione $3 - 2 = 1$: **non è iniettiva**.
 
-(3) $f(1) = (1, 0)$; $f(x - 1) = (0, 1)$ perché $x - 1$ vale 0 in 1 e ha derivata 1; $f((x - 1)^2) = (0, 0)$ per il punto (2). Quindi
+Il nucleo, con $p = a + bx + cx^2$: $a + b + c = 0$ e $b + 2c = 0$. Con $c = t$: $b = -2t$ e $a = -b - c = t$. Quindi $p = t(1 - 2x + x^2) = t(x - 1)^2$, e il nucleo è lo Span di $(x - 1)^2$. Controllo: $(x - 1)^2$ vale 0 in 1, e la sua derivata $2(x - 1)$ vale 0 in 1.
+
+(3) Le uscite della nuova base:
+- $f(1) = (1, 0)$;
+- $f(x - 1) = (0, 1)$: $x - 1$ vale 0 in 1 e ha derivata 1;
+- $f((x - 1)^2) = (0, 0)$, per il punto (2).
+
 $$[f]^{\mathcal B'}_{\mathcal C} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}.$$
-Con la base «centrata in 1» la matrice è quasi l'identità: leggi subito che $f$ è suriettiva e che il terzo vettore della base genera il nucleo.
+Con la base «centrata in 1» la matrice è quasi l'identità: si legge subito che $f$ è suriettiva e che il terzo vettore della base genera il nucleo.
 :::
 
 ::: esercizio esame Come all'esame: basi non canoniche in partenza e in arrivo
@@ -34870,110 +35045,123 @@ Sia $T : \R^3 \to \R^2$, $T(a, b, c) = (a + b,\ b - c)$, e siano $\mathcal B = \
 (2) Calcola $[v]_{\mathcal B}$ per $v = (2, 3, 4)$.
 (3) Usa la Proposizione 15.9 per calcolare $T(v)$, e controlla il risultato con la definizione.
 ::: soluzione
-(1) Le immagini: $T(1, 0, 0) = (1, 0)$, $T(1, 1, 0) = (2, 1)$, $T(1, 1, 1) = (2, 0)$. Coordinate rispetto a $\mathcal C$: $\alpha (1, 1) + \beta (0, 1) = (\alpha,\ \alpha + \beta)$, quindi $\alpha$ è la prima componente e $\beta$ = seconda componente $- \alpha$.
+(1) Le uscite: $T(1, 0, 0) = (1, 0)$, $T(1, 1, 0) = (2, 1)$, $T(1, 1, 1) = (2, 0)$. Una ricetta con la base di arrivo è $\alpha (1, 1) + \beta (0, 1) = (\alpha,\ \alpha + \beta)$: quindi $\alpha$ è la prima coordinata del vettore, e $\beta$ è la seconda meno $\alpha$.
 - $(1, 0)$: $\alpha = 1$, $\beta = -1$;
 - $(2, 1)$: $\alpha = 2$, $\beta = -1$;
 - $(2, 0)$: $\alpha = 2$, $\beta = -2$.
 
 $$[T]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1 & 2 & 2 \\ -1 & -1 & -2 \end{pmatrix}.$$
 
-(2) $x (1, 0, 0) + y (1, 1, 0) + z (1, 1, 1) = (x + y + z,\ y + z,\ z) = (2, 3, 4)$: dall'ultima $z = 4$, poi $y = 3 - 4 = -1$, poi $x = 2 - (-1) - 4 = -1$. Quindi $[v]_{\mathcal B} = (-1, -1, 4)$.
+(2) $x (1, 0, 0) + y (1, 1, 0) + z (1, 1, 1) = (x + y + z,\ y + z,\ z) = (2, 3, 4)$. Dall'ultima $z = 4$, poi $y = 3 - 4 = -1$, poi $x = 2 - (-1) - 4 = -1$. Quindi $[v]_{\mathcal B} = (-1, -1, 4)$.
 
 (3) $$[T(v)]_{\mathcal C} = \begin{pmatrix} 1 & 2 & 2 \\ -1 & -1 & -2 \end{pmatrix}\begin{pmatrix} -1 \\ -1 \\ 4 \end{pmatrix} = \begin{pmatrix} -1 - 2 + 8 \\ 1 + 1 - 8 \end{pmatrix} = \begin{pmatrix} 5 \\ -6 \end{pmatrix}.$$
-Sono coordinate rispetto a $\mathcal C$: $T(v) = 5 (1, 1) - 6 (0, 1) = (5, -1)$. Controllo con la definizione: $T(2, 3, 4) = (2 + 3,\ 3 - 4) = (5, -1)$.
+Sono coordinate rispetto a $\mathcal C$; rifaccio la ricetta: $T(v) = 5 (1, 1) - 6 (0, 1) = (5, -1)$. Controllo con la definizione: $T(2, 3, 4) = (2 + 3,\ 3 - 4) = (5, -1)$.
+:::
+
+::: esercizio difficile Iniettiva se e solo se suriettiva
+Sia $f : V \to W$ lineare con $\dim V = \dim W = n$. Dimostra che $f$ è iniettiva se e solo se è suriettiva. Poi mostra con un esempio che l'ipotesi $\dim V = \dim W$ non si può togliere.
+::: soluzione
+Per il teorema della dimensione, $n = \dim \Ker f + \dim \Imm f$.
+
+**Se $f$ è iniettiva, è suriettiva.** Il nucleo è solo lo zero, quindi l'immagine ha dimensione $n$, come $W$. Un sottospazio di $W$ con la stessa dimensione di $W$ è tutto $W$: una sua base è fatta di $n$ vettori indipendenti di $W$, che per il Teorema 7.12 sono una base di $W$. Quindi l'immagine è tutto $W$.
+
+**Se $f$ è suriettiva, è iniettiva.** L'immagine è tutto $W$, quindi ha dimensione $n$. Allora il nucleo ha dimensione $n - n = 0$: è solo lo zero.
+
+Senza l'ipotesi non funziona: $g(x, y) = (x, y, 0)$, dal piano allo spazio, è iniettiva ma non suriettiva; $h(x, y, z) = (x, y)$, dallo spazio al piano, è suriettiva ma non iniettiva.
 :::
 
 ## Domande di ripasso
 
-::: domanda Che cos'è un isomorfismo? Quando due spazi si dicono isomorfi?
-Un'applicazione lineare biettiva, cioè iniettiva ($\Ker f = \{0\}$) e suriettiva ($\Imm f = W$). Due spazi sullo stesso campo sono isomorfi se esiste almeno un isomorfismo fra loro.
+::: domanda Che cos'è un isomorfismo? Quando due spazi sono isomorfi?
+Una macchina lineare biettiva: iniettiva, cioè con nucleo fatto solo dallo zero, e suriettiva, cioè con immagine uguale a tutto l'arrivo. Due spazi sullo stesso campo sono isomorfi se esiste almeno un isomorfismo fra loro: sono lo stesso spazio con nomi diversi.
 :::
 
 ::: domanda L'inversa di un isomorfismo è lineare? Perché?
-Sì (Proposizione 15.2). Se $f(v) = w$ e $f(v') = w'$, allora $f(v + v') = w + w'$ e $f(\lambda v) = \lambda w$; poiché $f$ è biettiva, questo dice che $f^{-1}(w + w') = v + v'$ e $f^{-1}(\lambda w) = \lambda v$.
+Sì (Proposizione 15.2). Se $f(v) = w$ e $f(v') = w'$, allora $f(v + v') = w + w'$ e $f(\lambda v) = \lambda w$. Siccome $f$ è biettiva, il vettore che va in $w + w'$ è unico, quindi $f^{-1}(w + w') = v + v'$; lo stesso per i multipli.
 :::
 
-::: domanda Che cosa si deduce sulle dimensioni se $f : V \to W$ è iniettiva? E se è suriettiva?
-Iniettiva: $\dim V = \dim \Imm f \le \dim W$. Suriettiva: $\dim V \ge \dim \Imm f = \dim W$. Isomorfismo: $\dim V = \dim W$. Tutto viene dal teorema della dimensione.
+::: domanda Che cosa si deduce sulle dimensioni se una macchina è iniettiva? E se è suriettiva?
+Iniettiva: la partenza non è più grande dell'arrivo. Suriettiva: la partenza non è più piccola dell'arrivo. Isomorfismo: stessa dimensione. Tutto viene dal teorema della dimensione.
 :::
 
 ::: domanda Quando due spazi vettoriali di dimensione finita sono isomorfi?
-Se e solo se hanno la stessa dimensione (Proposizione 15.4). In particolare ogni spazio di dimensione $n$ su $\K$ è isomorfo a $\K^n$.
+Esattamente quando hanno la stessa dimensione (Proposizione 15.4). In particolare ogni spazio di dimensione $n$ è isomorfo allo spazio delle liste di $n$ numeri.
 :::
 
-::: domanda Quale isomorfismo $V \to \K^n$ indicano le dispense, e da che cosa dipende?
-La mappa che manda ogni vettore nelle sue coordinate rispetto a una base di $V$. Dipende dalla base: con basi diverse lo stesso vettore ha coordinate diverse (per esempio $x^2$ è $(0, 0, 1)$ in $\{1, x, x^2\}$ e $(1, 2, 1)$ in $\{1, x - 1, (x - 1)^2\}$).
+::: domanda Quale dizionario con le liste di numeri indicano le dispense, e da che cosa dipende?
+Quello che manda ogni vettore nelle sue coordinate rispetto a una base. Dipende dalla base: per esempio $x^2$ è $(0, 0, 1)$ nella base $\{1, x, x^2\}$ e $(1, 2, 1)$ nella base $\{1, x - 1, (x - 1)^2\}$.
 :::
 
 ::: domanda Come è fatta la matrice associata $[f]^{\mathcal B}_{\mathcal C}$?
-È una matrice $m \times n$ con $m = \dim W$ e $n = \dim V$; la colonna $j$ contiene le coordinate di $f(v_j)$ rispetto a $\mathcal C$. La base di partenza sta in alto, quella di arrivo in basso.
+Ha tante righe quanta è la dimensione di arrivo e tante colonne quanta è quella di partenza. Nella colonna $j$ ci sono le coordinate, rispetto alla base di arrivo, di dove va il vettore $j$ della base di partenza. La base di partenza sta in alto, quella di arrivo in basso.
 :::
 
 ::: domanda Qual è la matrice associata a $L_A$ rispetto alle basi canoniche?
-È $A$ stessa (Esempio 15.6): $L_A(e_j)$ è la colonna $j$ di $A$, e le sue coordinate rispetto alla base canonica sono le sue componenti.
+È $A$ stessa (Esempio 15.6): $L_A(e_j)$ è la colonna $j$ di $A$, e le sue coordinate nella base canonica sono i suoi numeri.
 :::
 
-::: domanda Come si calcola $f(v)$ usando la matrice associata?
-Si scrive $v$ in coordinate, $[v]_{\mathcal B}$; si moltiplica: $[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C}[v]_{\mathcal B}$; infine, se $\mathcal C$ non è la base canonica, si ricostruisce $f(v)$ come combinazione dei vettori di $\mathcal C$ con quei coefficienti.
+::: domanda Come si calcola l'uscita di un vettore usando la matrice associata?
+Si scrive l'entrata in coordinate rispetto alla base di partenza; si moltiplica la matrice per quelle coordinate; se la base di arrivo non è quella canonica, si rifà la ricetta con i vettori di arrivo e le dosi trovate.
 :::
 
-::: domanda Perché la stessa applicazione ha matrici diverse?
-Perché la matrice registra le coordinate delle immagini, e le coordinate dipendono dalle basi scelte in partenza e in arrivo (Esempi 15.7 e 15.8).
+::: domanda Perché la stessa macchina ha matrici diverse?
+Perché la matrice registra le coordinate delle uscite, e le coordinate dipendono dalle basi scelte in partenza e in arrivo (Esempi 15.7 e 15.8). È la stessa macchina descritta in lingue diverse.
 :::
 
-::: domanda Quanto vale $[\id]^{\mathcal B}_{\mathcal B}$? E $[\id]^{\mathcal B}_{\mathcal C}$ con $\mathcal B \neq \mathcal C$?
-$[\id]^{\mathcal B}_{\mathcal B} = I_n$ per ogni base $\mathcal B$ (Proposizione 15.11). Con due basi diverse in genere non è $I_n$: le sue colonne sono le coordinate dei vettori di $\mathcal B$ rispetto a $\mathcal C$ (è la matrice di cambiamento di base della lezione L16).
+::: domanda Quanto vale $[\id]^{\mathcal B}_{\mathcal B}$? E con due basi diverse?
+Con la stessa base in partenza e in arrivo è la matrice identità (Proposizione 15.11). Con due basi diverse di solito no: le sue colonne sono le coordinate dei vettori della prima base rispetto alla seconda. È la matrice di cambiamento di base della lezione L16.
 :::
 
-::: domanda Come si sommano due applicazioni lineari, e che cosa succede alle matrici?
-$(f + g)(v) = f(v) + g(v)$ e $(\lambda f)(v) = \lambda f(v)$. Fissate le basi, $[f + g] = [f] + [g]$ e $[\lambda f] = \lambda [f]$.
+::: domanda Come si sommano due macchine lineari, e che cosa succede alle matrici?
+L'uscita della somma è la somma delle uscite, e l'uscita di $\lambda f$ è $\lambda$ volte l'uscita di $f$. Scelte le basi, la matrice della somma è la somma delle matrici, e quella di $\lambda f$ è $\lambda$ volte la matrice di $f$.
 :::
 
 ::: domanda Che cosa dice il Teorema 15.12?
-Che le applicazioni lineari $V \to W$ formano uno spazio vettoriale e che, fissate le basi, $f \mapsto [f]^{\mathcal A}_{\mathcal B}$ è un isomorfismo con $M(m, n, \K)$: ogni matrice $m \times n$ è la matrice di una e una sola applicazione lineare.
+Che le macchine lineari da $V$ a $W$ formano uno spazio vettoriale e che, scelte le basi, passare alla matrice associata è un isomorfismo con le matrici $m \times n$: ogni matrice è la matrice di una e una sola macchina lineare.
 :::
 
 ## Glossario
 
 ```glossario
-Iniettiva | Vettori diversi hanno immagini diverse; per un'applicazione lineare equivale a $\Ker f = \{0\}$.
-Suriettiva | Ogni vettore dello spazio di arrivo è immagine di qualcosa: $\Imm f = W$.
-Biettiva | Iniettiva e suriettiva; allora esiste l'inversa $f^{-1}$.
-Isomorfismo | Applicazione lineare biettiva (Definizione 15.1); la sua inversa è lineare.
-Spazi isomorfi | Spazi sullo stesso campo tra cui esiste un isomorfismo; in dimensione finita, spazi con la stessa dimensione.
-Coordinate $[v]_{\mathcal B}$ | La colonna dei coefficienti che scrivono $v$ come combinazione dei vettori della base $\mathcal B$, nell'ordine della base.
+Iniettiva | Entrate diverse danno uscite diverse; per una macchina lineare, il nucleo è solo lo zero.
+Suriettiva | Ogni vettore dello spazio di arrivo esce da qualche entrata: l'immagine è tutto l'arrivo.
+Biettiva | Iniettiva e suriettiva; allora c'è la macchina inversa $f^{-1}$.
+Isomorfismo | Una macchina lineare biettiva (Definizione 15.1): un dizionario perfetto. La sua inversa è lineare.
+Spazi isomorfi | Spazi sullo stesso campo tra cui c'è un isomorfismo; in dimensione finita, spazi con la stessa dimensione.
+Coordinate $[v]_{\mathcal B}$ | Le dosi della ricetta che dà $v$ con la base $\mathcal B$, in colonna e nell'ordine della base.
 Base ordinata | Una base usata come lista: l'ordine dei vettori decide l'ordine delle coordinate e delle colonne.
-Matrice associata $[f]^{\mathcal B}_{\mathcal C}$ | Matrice $m \times n$ la cui colonna $j$ è $[f(v_j)]_{\mathcal C}$ (Definizione 15.5).
-Base di partenza / di arrivo | La base del dominio (in alto nella notazione) e quella del codominio (in basso).
-$L_A$ | L'applicazione $x \mapsto Ax$; la sua matrice nelle basi canoniche è $A$.
-Formula delle coordinate | $[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C}\,[v]_{\mathcal B}$ (Proposizione 15.9).
-Matrice dell'identità | $[\id]^{\mathcal B}_{\mathcal B} = I_n$ per ogni base $\mathcal B$ (Proposizione 15.11).
-Somma di applicazioni | $(f + g)(v) = f(v) + g(v)$; la matrice della somma è la somma delle matrici.
-$\mathrm{Hom}(V, W)$ | Nome del libro di Martelli per lo spazio delle applicazioni lineari $V \to W$; ha dimensione $\dim V \cdot \dim W$.
-Teorema della dimensione | $\dim V = \dim \Ker f + \dim \Imm f$ (lezione L14): è la base di tutte le proprietà sulle dimensioni.
+Matrice associata $[f]^{\mathcal B}_{\mathcal C}$ | La macchina scritta con i numeri: la colonna $j$ è $[f(v_j)]_{\mathcal C}$ (Definizione 15.5).
+Base di partenza / di arrivo | La base dello spazio da cui si parte (in alto nella scrittura) e quella dello spazio in cui si arriva (in basso).
+$L_A$ | La macchina che moltiplica per la matrice $A$; la sua matrice nelle basi canoniche è $A$.
+Formula delle coordinate | Coordinate dell'uscita = matrice associata per coordinate dell'entrata (Proposizione 15.9).
+Matrice dell'identità | Con la stessa base in partenza e in arrivo è la matrice identità (Proposizione 15.11).
+Somma di applicazioni | L'uscita della somma è la somma delle uscite; la matrice della somma è la somma delle matrici.
+$\mathrm{Hom}(V, W)$ | Il nome del libro di Martelli per lo spazio delle macchine lineari da $V$ a $W$; ha dimensione $\dim V \cdot \dim W$.
+Teorema della dimensione | Quello che entra = quello che si perde + quello che esce (lezione L14): da qui vengono tutte le regole sulle dimensioni.
 ```
 
 ## Checklist
 
 ```checklist
-- So dire che cos'è un isomorfismo e controllare se una data applicazione lo è (nucleo, immagine o determinante).
+- So dire che cos'è un isomorfismo e controllare se una macchina lo è, con il nucleo, l'immagine o il determinante.
 - So spiegare perché l'inversa di un isomorfismo è lineare.
 - So usare le dimensioni per escludere iniettività, suriettività o isomorfismo (Proposizione 15.3).
-- So che due spazi di dimensione finita sono isomorfi se e solo se hanno la stessa dimensione, e so fare esempi ($\R_2[x] \cong \R^3$, $M(2, \R) \cong \R^4$).
+- So che due spazi sono isomorfi esattamente quando hanno la stessa dimensione, e so fare esempi.
 - So calcolare le coordinate di un vettore o di un polinomio rispetto a una base non canonica, risolvendo un sistema.
-- So scrivere la matrice associata $[f]^{\mathcal B}_{\mathcal C}$ in tre passi, con le coordinate in colonna e la taglia giusta.
-- So usare $[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C}[v]_{\mathcal B}$ e ricostruire $f(v)$ dalle sue coordinate.
-- So che la matrice associata dipende dalle basi e che $[\id]^{\mathcal B}_{\mathcal B} = I_n$.
-- So sommare applicazioni lineari e so che, fissate le basi, applicazioni lineari e matrici $m \times n$ si corrispondono una a una.
-- Riconosco al volo le trappole del quiz: trasposta, immagini al posto delle coordinate, ordine della base.
+- So scrivere la matrice associata in tre passi, con le coordinate in colonna e la taglia giusta.
+- So usare la formula «coordinate dell'uscita = matrice per coordinate dell'entrata» e ricostruire il vettore vero.
+- So che la matrice associata dipende dalle basi e che l'identità, con la stessa base, ha la matrice identità.
+- So sommare macchine lineari e so che, scelte le basi, macchine e matrici si corrispondono una a una.
+- Riconosco al volo le trappole del quiz: trasposta, uscite al posto delle coordinate, ordine della base.
 ```
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 15 «Applicazioni lineari II», pp. 74–78: le sezioni 15.A (isomorfismi) e 15.B (matrice associata) sono seguite in ordine, con la pagina accanto a ogni titolo; definizioni, proposizioni ed esempi mantengono la loro numerazione (Definizioni 15.1 e 15.5, Proposizioni 15.2–15.4, 15.9, 15.11, Esempi 15.6–15.8 e 15.10, Teorema 15.12); l'Esercizio 15.13 della sezione 15.C è svolto negli esercizi.
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 15 «Applicazioni lineari II», pp. 74–78: le sezioni 15.A (isomorfismi) e 15.B (matrice associata) sono seguite in ordine, con la pagina accanto a ogni titolo; definizioni, proposizioni ed esempi mantengono la loro numerazione (Definizioni 15.1 e 15.5, Proposizioni 15.2–15.4, 15.9, 15.11, Esempi 15.6–15.8 e 15.10, Teorema 15.12); l'Esercizio 15.13 della sezione 15.C è svolto come esercizio 12.
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §4.2.5 e §4.2.7 (isomorfismi, con la dimostrazione della Proposizione 15.2 e la Proposizione 4.2.24), §4.3.1–4.3.4 (matrice associata, proprietà, Hom).
 - **Esame**: appelli del 24/01/2024 (domanda 3), 10/07/2024 (problema 11), 06/09/2024 (domanda 9), 16/01/2025 (domanda 5), 02/09/2025 (domanda 5), 15/01/2026 (domanda 8), 05/02/2026 (domanda 6); foglio 3 del tutorato 2025/26 (esercizi 4 e 5). Testi e soluzioni ufficiali sul Moodle 2025/26 ([id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)); le soluzioni riportate qui sono scritte da capo.
 - Le parti **«Oltre le dispense»** (la dimostrazione della Proposizione 15.2, la costruzione dell'isomorfismo, la scorciatoia per dimensioni uguali, Hom, gli esempi e gli esercizi aggiunti) servono a collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---
@@ -34993,16 +35181,15 @@ descrizione: >-
   composizione di applicazioni lineari e prodotto di matrici, endomorfismi e matrici simili, con quiz nello stile
   dell'esame ed esercizi svolti.
 lede: >-
-  Come si passa dalle coordinate in una base alle coordinate in un'altra con la matrice $[\id]^{\mathcal B}_{\mathcal C}$,
-  perché comporre due applicazioni lineari vuol dire moltiplicare le loro matrici, e come cambia la matrice di un
-  endomorfismo quando cambi base: $[f]^{\mathcal B}_{\mathcal B} = M^{-1}[f]^{\mathcal C}_{\mathcal C}M$. Le matrici
-  legate da questa formula si chiamano simili, e sono il punto di partenza degli autovalori.
+  Lo stesso vettore si può dire in lingue diverse, come una lunghezza in metri o in piedi: la matrice di
+  cambiamento di base fa da traduttore. Poi perché mettere due macchine una dopo l'altra vuol dire moltiplicare le
+  loro matrici, e quando due matrici descrivono la stessa macchina in due lingue: le matrici simili.
 materiale: dispense
 scheda:
   Dispense: lezione 16 · pp. 79–84
   Libro: Martelli, §4.2.4, §4.3.3, §4.3.5 e §4.4
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
-  Tempo di studio: 100–130 minuti
+  Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
   Dispense 2026 del corso (Buzano, Radeschi), lezione 16 «Applicazioni lineari III»; B. Martelli, Geometria e algebra lineare, §4.2.4, §4.3 e §4.4
 appunti_html: appunti/MDAG/L16_applicazioni_lineari_3.html
@@ -35011,59 +35198,70 @@ genera_html: true
 
 ## In breve
 
-- La **matrice di cambiamento di base** da $\mathcal B$ a $\mathcal C$ è $[\id]^{\mathcal B}_{\mathcal C}$: la sua colonna $j$ contiene le coordinate del $j$-esimo vettore di $\mathcal B$ rispetto a $\mathcal C$. La sua inversa $[\id]^{\mathcal C}_{\mathcal B}$ fa il percorso contrario.
-- Converte le coordinate: $[v]_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}\,[v]_{\mathcal B}$. Se $\mathcal C$ è la base canonica di $\K^n$, basta mettere in colonna i vettori di $\mathcal B$.
-- La **composizione** di applicazioni lineari è lineare, e in coordinate diventa il **prodotto** delle matrici: $L_A \circ L_B = L_{AB}$ e $[g \circ f]^{\mathcal B}_{\mathcal D} = [g]^{\mathcal C}_{\mathcal D}\,[f]^{\mathcal B}_{\mathcal C}$ (la base in mezzo si «cancella»).
-- $f$ è un isomorfismo se e solo se la sua matrice è invertibile, e allora $[f^{-1}]^{\mathcal C}_{\mathcal B} = \big([f]^{\mathcal B}_{\mathcal C}\big)^{-1}$.
-- Per cambiare le basi di un'applicazione si moltiplica a sinistra e a destra per matrici di cambiamento di base: $[f]^{\mathcal B_2}_{\mathcal C_2} = [\id_W]^{\mathcal C_1}_{\mathcal C_2}\,[f]^{\mathcal B_1}_{\mathcal C_1}\,[\id_V]^{\mathcal B_2}_{\mathcal B_1}$.
-- Un **endomorfismo** è un'applicazione lineare $f : V \to V$; si usa la stessa base in partenza e in arrivo. Con $M = [\id]^{\mathcal B}_{\mathcal C}$ vale $[f]^{\mathcal B}_{\mathcal B} = M^{-1}[f]^{\mathcal C}_{\mathcal C}M$.
-- Due matrici quadrate sono **simili** se $A = M^{-1}BM$ con $M$ invertibile: descrivono lo stesso endomorfismo in basi diverse. La similitudine è una relazione di equivalenza.
-- Matrici simili hanno lo stesso **rango** e lo stesso **determinante** (e, come vedrai nella lezione L17, lo stesso polinomio caratteristico). Non basta però avere rango e determinante uguali per essere simili.
+- Le coordinate di un vettore dipendono dalla base, come una misura dipende dall'unità. La **matrice di cambiamento di base** è il traduttore: prende le coordinate in una base e restituisce quelle nell'altra.
+- Se la base di arrivo è quella canonica, il traduttore si scrive subito: i vettori della base di partenza **in colonna**. Per tradurre nel verso opposto si usa la matrice inversa.
+- Mettere due macchine lineari **una dopo l'altra** dà ancora una macchina lineare, e la sua matrice è il **prodotto** delle due matrici. La macchina che agisce per prima sta **a destra**.
+- Una macchina è un isomorfismo esattamente quando la sua matrice è invertibile; la matrice della macchina inversa è la matrice inversa.
+- Un **endomorfismo** è una macchina che parte e arriva nello stesso spazio. Cambiando base, la sua matrice cambia secondo la formula $M^{-1}AM$.
+- Due matrici sono **simili** quando descrivono la stessa macchina in due basi diverse. Hanno lo stesso rango, lo stesso determinante e la stessa traccia, ma questo non basta per dire che sono simili.
+- All'esame: matrici di cambiamento di base, matrici di una composizione e matrici in una base data sono tra le domande più frequenti.
 
 > [!CANALI]
 > Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
 
-## La matrice di cambiamento di base (pp. 79–80)
+## Il traduttore tra due basi (pp. 79–80)
 
-Nella lezione L15 hai visto la matrice associata $[f]^{\mathcal B}_{\mathcal C}$: la colonna $j$ contiene le coordinate di $f(v_j)$ rispetto alla base di arrivo. Adesso prendiamo come $f$ l'applicazione più semplice di tutte, l'identità $\id(v) = v$, ma con **due basi diverse**. Il risultato è uno strumento per tradurre le coordinate da una base all'altra.
+Una stanza è lunga 3 metri, cioè circa 9,84 piedi. La lunghezza è la stessa; cambiano i numeri, perché cambia l'unità di misura. Con i vettori succede lo stesso: un vettore resta lo stesso, ma le sue **coordinate** cambiano se cambia la base (lezione L15).
 
 Come nelle dispense, i vettori di $\K^n$ sono colonne; nel testo li scriviamo in riga, $(1, 2)$, per risparmiare spazio.
 
 ### Un esempio per cominciare
 
-In $\R^2$ prendi la base $\mathcal B = \{v_1, v_2\}$ con $v_1 = (1, 1)$ e $v_2 = (1, -1)$, e la base canonica $\mathcal C = \{e_1, e_2\}$. Un vettore $v$ ha coordinate $[v]_{\mathcal B} = (2, 1)$. Chi è $v$? Per definizione di coordinate
-$$v = 2v_1 + 1v_2 = 2(1, 1) + (1, -1) = (3, 1).$$
+Nel piano prendi due basi. La prima, che chiamo $\mathcal B$, è fatta dai vettori $(1, 1)$ e $(1, -1)$. La seconda è la base canonica, che chiamo $\mathcal C$. Un vettore ha coordinate $(2, 1)$ nella prima base: si arriva con due passi lungo $(1, 1)$ e un passo lungo $(1, -1)$. Che vettore è? Basta rifare la ricetta:
+
+$$v = 2 \cdot (1, 1) + 1 \cdot (1, -1) = (3, 1).$$
+
+Nella base canonica le coordinate sono i numeri stessi del vettore: $(3, 1)$.
+
 Lo stesso conto si scrive come un prodotto, mettendo **in colonna** i vettori di $\mathcal B$:
-$$\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 + 1 \\ 2 - 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \end{pmatrix} = [v]_{\mathcal C}.$$
-La matrice con le colonne $v_1, v_2$ trasforma le coordinate rispetto a $\mathcal B$ nelle coordinate rispetto a $\mathcal C$. È proprio $[\id]^{\mathcal B}_{\mathcal C}$: la colonna $j$ è $[\id(v_j)]_{\mathcal C} = [v_j]_{\mathcal C}$.
+
+$$\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 2 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 + 1 \\ 2 - 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 1 \end{pmatrix}.$$
+
+La matrice che ha in colonna i due vettori della prima base traduce le coordinate da quella base alla base canonica. È la matrice della macchina **identità**, quella che lascia ogni vettore com'è, scritta con $\mathcal B$ in partenza e $\mathcal C$ in arrivo: la colonna $j$ è $[\id(v_j)]_{\mathcal C} = [v_j]_{\mathcal C}$. Le dispense le danno un nome.
 
 > [!DEF] 16.1 · Matrice di cambiamento di base
 > Sia $V$ uno spazio vettoriale e $\mathcal B = \{v_1, \dots, v_n\}$ e $\mathcal C = \{w_1, \dots, w_n\}$ due basi di $V$. La **matrice di cambiamento di base da $\mathcal B$ a $\mathcal C$** è la matrice
 > $$A = [\id]^{\mathcal B}_{\mathcal C}.$$
 
-Pezzo per pezzo:
+**Come si legge.**
 
-- È la matrice associata all'identità $\id : V \to V$, con $\mathcal B$ in partenza (in alto) e $\mathcal C$ in arrivo (in basso). È quadrata $n \times n$.
-- **La colonna $j$** di $A$ contiene le coordinate di $v_j$ rispetto a $\mathcal C$: $A^j = [v_j]_{\mathcal C}$.
-- **L'inversa** $A^{-1} = [\id]^{\mathcal C}_{\mathcal B}$ è la matrice di cambiamento di base da $\mathcal C$ a $\mathcal B$: ha nelle colonne le coordinate dei vettori di $\mathcal C$ rispetto a $\mathcal B$. (Che sia davvero l'inversa lo dimostra il Corollario 16.7 più avanti: l'identità è un isomorfismo e la sua inversa è ancora l'identità.)
+- È la matrice della macchina identità, con $\mathcal B$ in partenza (in alto) e $\mathcal C$ in arrivo (in basso). È quadrata $n \times n$.
+- **Ogni colonna** contiene le coordinate di un vettore della base di partenza, scritte nella base di arrivo: $A^j = [v_j]_{\mathcal C}$.
+- **L'inversa** è il traduttore nel verso opposto: $A^{-1} = [\id]^{\mathcal C}_{\mathcal B}$. Che sia proprio l'inversa lo dimostra il Corollario 16.7, più avanti.
 
-Dalla Proposizione 15.9 della lezione L15, $[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C}[v]_{\mathcal B}$, applicata a $f = \id$, si ricava:
+Dalla Proposizione 15.9 della lezione L15, con la macchina identità, viene subito la regola per tradurre.
 
 > [!PROP] 16.2
 > Per ogni $v \in V$ vale
 > $$[v]_{\mathcal C} = A \cdot [v]_{\mathcal B}.$$
 
+**Come si legge.** Le coordinate nella base $\mathcal C$ sono il traduttore per le coordinate nella base $\mathcal B$.
+
 > [!NOTA] Un rimando da correggere
 > Nelle dispense, a p. 79, la Proposizione 16.2 è introdotta con «Dalla Proposizione 15.10 ricaviamo». Il risultato usato è la **Proposizione 15.9** ($[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C}[v]_{\mathcal B}$); il numero 15.10 è un esempio.
 
-> [!TRAPPOLA] In quale direzione va la matrice?
-> $[\id]^{\mathcal B}_{\mathcal C}$ **prende** coordinate rispetto a $\mathcal B$ (in alto) e **restituisce** coordinate rispetto a $\mathcal C$ (in basso), e nelle colonne ha i vettori **di $\mathcal B$** scritti nella base $\mathcal C$. L'errore tipico è usare la matrice con i vettori di $\mathcal B$ in colonna per passare da coordinate canoniche a coordinate rispetto a $\mathcal B$: per quello serve l'**inversa**.
+> [!TRAPPOLA] In quale verso traduce la matrice?
+> $[\id]^{\mathcal B}_{\mathcal C}$ **prende** coordinate rispetto a $\mathcal B$ (in alto) e **restituisce** coordinate rispetto a $\mathcal C$ (in basso). Nelle colonne ha i vettori **di $\mathcal B$** scritti nella base $\mathcal C$. L'errore tipico è usare la matrice con i vettori di $\mathcal B$ in colonna per passare dalle coordinate canoniche a quelle rispetto a $\mathcal B$: per quello serve l'**inversa**.
 >
-> Nell'esempio: da $[v]_{\mathcal C} = (3, 1)$ si torna a $[v]_{\mathcal B}$ con $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}^{-1} = \frac 12 \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$, e infatti $\frac 12 (3 + 1,\ 3 - 1) = (2, 1)$.
+> Nell'esempio, per tornare indietro si usa l'inversa $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}^{-1} = \frac 12 \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$, e infatti $\frac 12 (3 + 1,\ 3 - 1) = (2, 1)$: sono di nuovo le coordinate nella prima base.
 
 > [!METODO] La matrice di cambiamento di base, due casi
-> 1. **$\mathcal C$ è la base canonica di $\K^n$.** Le coordinate di un vettore rispetto alla base canonica sono le sue componenti, quindi $[\id]^{\mathcal B}_{\mathcal C}$ si scrive subito: **i vettori di $\mathcal B$ in colonna**, nell'ordine. Se serve la direzione opposta, $[\id]^{\mathcal C}_{\mathcal B}$, si calcola l'inversa.
-> 2. **Nessuna delle due è canonica.** O si risolvono $n$ sistemi (uno per ogni vettore di $\mathcal B$, come nella Soluzione 1 qui sotto), oppure si passa dalla base canonica $\mathcal E$: $[\id]^{\mathcal B}_{\mathcal C} = [\id]^{\mathcal E}_{\mathcal C}\,[\id]^{\mathcal B}_{\mathcal E} = \big([\id]^{\mathcal C}_{\mathcal E}\big)^{-1}[\id]^{\mathcal B}_{\mathcal E}$ (è la regola della composizione che vedi nella prossima sezione).
+> 1. **La base di arrivo è quella canonica.** Le coordinate di un vettore nella base canonica sono i suoi numeri, quindi il traduttore si scrive subito: **i vettori della base di partenza in colonna**, nell'ordine. Per il verso opposto si calcola l'inversa.
+> 2. **Nessuna delle due basi è canonica.** Si risolve un sistema per ogni vettore della base di partenza, come nella Soluzione 1 qui sotto. Oppure si passa dalla base canonica $\mathcal E$: $[\id]^{\mathcal B}_{\mathcal C} = [\id]^{\mathcal E}_{\mathcal C}\,[\id]^{\mathcal B}_{\mathcal E} = \big([\id]^{\mathcal C}_{\mathcal E}\big)^{-1}[\id]^{\mathcal B}_{\mathcal E}$. È la regola delle macchine una dopo l'altra, che vedi nella prossima sezione.
+
+::: prova Nella base $\{(2, 1), (1, 1)\}$ un vettore ha coordinate $(1, 3)$. Chi è il vettore?
+Il traduttore verso la base canonica ha i due vettori in colonna: $\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 + 3 \\ 1 + 3 \end{pmatrix} = \begin{pmatrix} 5 \\ 4 \end{pmatrix}$.
+:::
 
 ### Un esempio svolto in due modi
 
@@ -35078,19 +35276,19 @@ Le dispense chiamano questo esempio «Esercizio 16.3» e lo risolvono nel testo,
 > $$\begin{cases} e_1 = a_{11} w_1 + a_{21} w_2 + a_{31} w_3 \\ e_2 = a_{12} w_1 + a_{22} w_2 + a_{32} w_3 \\ e_3 = a_{13} w_1 + a_{23} w_2 + a_{33} w_3. \end{cases}$$
 > La prima equazione, componente per componente, diventa
 > $$\begin{cases} a_{11} = 1 \\ 2a_{11} + 2a_{21} + a_{31} = 0 \\ 3a_{11} + a_{21} + a_{31} = 0 \end{cases}$$
-> Con $a_{11} = 1$: $2a_{21} + a_{31} = -2$ e $a_{21} + a_{31} = -3$. Sottraendo, $a_{21} = 1$, e poi $a_{31} = -3 - 1 = -4$. In modo simile:
+> Con $a_{11} = 1$: $2a_{21} + a_{31} = -2$ e $a_{21} + a_{31} = -3$. Sottraendo, $a_{21} = 1$, e poi $a_{31} = -3 - 1 = -4$. Allo stesso modo:
 > - per $e_2$: $a_{12} = 0$, $2a_{22} + a_{32} = 1$, $a_{22} + a_{32} = 0$, quindi $a_{22} = 1$ e $a_{32} = -1$;
 > - per $e_3$: $a_{13} = 0$, $2a_{23} + a_{33} = 0$, $a_{23} + a_{33} = 1$, quindi $a_{23} = -1$ e $a_{33} = 2$.
 >
 > Mettendo le soluzioni in colonna:
 > $$A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & -1 \\ -4 & -1 & 2 \end{pmatrix}.$$
 >
-> **Soluzione 2.** Calcoliamo prima $A^{-1} = [\id]^{\mathcal B}_{\mathcal A}$. La sua colonna $j$ è $[w_j]_{\mathcal A}$, e poiché $\mathcal A$ è la base canonica $[w_j]_{\mathcal A} = w_j$. Quindi
+> **Soluzione 2.** Calcoliamo prima $A^{-1} = [\id]^{\mathcal B}_{\mathcal A}$. La sua colonna $j$ è $[w_j]_{\mathcal A}$, e siccome $\mathcal A$ è la base canonica $[w_j]_{\mathcal A} = w_j$. Quindi
 > $$A^{-1} = \begin{pmatrix} 1 & 0 & 0 \\ 2 & 2 & 1 \\ 3 & 1 & 1 \end{pmatrix}, \qquad A = \begin{pmatrix} 1 & 0 & 0 \\ 2 & 2 & 1 \\ 3 & 1 & 1 \end{pmatrix}^{-1} = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & -1 \\ -4 & -1 & 2 \end{pmatrix}.$$
 
-L'inversa della Soluzione 2 si calcola con i cofattori (lezione L10). Il determinante, sviluppando lungo la prima riga, è $1 \cdot (2 \cdot 1 - 1 \cdot 1) = 1$. La matrice dei cofattori trasposta, divisa per $\det = 1$, dà proprio $A$. Controllo sulla prima colonna: $1 \cdot w_1 + 1 \cdot w_2 - 4 \cdot w_3 = (1 + 0 - 0,\ 2 + 2 - 4,\ 3 + 1 - 4) = (1, 0, 0) = e_1$.
+L'inversa della Soluzione 2 si calcola con i cofattori (lezione L10). Il determinante, lungo la prima riga, è $1 \cdot (2 \cdot 1 - 1 \cdot 1) = 1$. La trasposta dei cofattori, divisa per 1, dà proprio $A$. Controllo sulla prima colonna: $1 \cdot w_1 + 1 \cdot w_2 - 4 \cdot w_3 = (1 + 0 - 0,\ 2 + 2 - 4,\ 3 + 1 - 4) = (1, 0, 0) = e_1$.
 
-Nello strumento qui sotto la matrice è già $A^{-1}$ (i vettori di $\mathcal B$ in colonna, cioè scritti per righe come $1\ 0\ 0;\ 2\ 2\ 1;\ 3\ 1\ 1$). Premi il pulsante e guarda le mosse di Gauss–Jordan che trasformano $(A^{-1} \mid I)$ in $(I \mid A)$.
+Nello strumento qui sotto la matrice è già $A^{-1}$: i vettori di $\mathcal B$ in colonna, cioè scritti per righe come $1\ 0\ 0;\ 2\ 2\ 1;\ 3\ 1\ 1$. Premi il pulsante e guarda le mosse di Gauss che trasformano $(A^{-1} \mid I)$ in $(I \mid A)$.
 
 ```widget gauss
 titolo: L'inversa di $[\id]^{\mathcal B}_{\mathcal A}$ è $[\id]^{\mathcal A}_{\mathcal B}$
@@ -35099,28 +35297,36 @@ modo: inversa
 modi: inversa, determinante
 ```
 
-## Composizione di applicazioni lineari (pp. 80–81)
+> [!RICORDA]
+> - La matrice di cambiamento di base traduce le coordinate da una base all'altra. Nelle colonne ha i vettori della base di partenza, scritti nella base di arrivo.
+> - Verso la base canonica: i vettori in colonna. Nel verso opposto: l'inversa.
 
-Oltre alle operazioni di somma e prodotto per scalare (lezione L15), le applicazioni lineari si possono **comporre**: prima si applica $f$, poi $g$.
+## Due macchine una dopo l'altra (pp. 80–81)
+
+Oltre a sommarle (lezione L15), le macchine lineari si possono mettere **in fila**: prima agisce $f$, poi sull'uscita agisce $g$. La nuova macchina si chiama **composizione** e si scrive $g \circ f$, che si legge «g dopo f».
 
 > [!ESEMPIO] · comporre e moltiplicare
-> Siano $f, g : \R^2 \to \R^2$ con $f(x, y) = (x + y,\ y)$ e $g(u, v) = (2u,\ u - v)$. Allora
+> Siano $f(x, y) = (x + y,\ y)$ e $g(u, v) = (2u,\ u - v)$, dal piano al piano. Allora
 > $$(g \circ f)(x, y) = g(x + y,\ y) = \big(2(x + y),\ (x + y) - y\big) = (2x + 2y,\ x).$$
-> Le matrici nelle basi canoniche sono $[f] = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, $[g] = \begin{pmatrix} 2 & 0 \\ 1 & -1 \end{pmatrix}$, e il prodotto
+> Le matrici nelle basi canoniche sono $[f] = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ e $[g] = \begin{pmatrix} 2 & 0 \\ 1 & -1 \end{pmatrix}$, e il prodotto
 > $$[g]\,[f] = \begin{pmatrix} 2 & 0 \\ 1 & -1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 2 \cdot 1 + 0 \cdot 0 & 2 \cdot 1 + 0 \cdot 1 \\ 1 \cdot 1 - 1 \cdot 0 & 1 \cdot 1 - 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 2 \\ 1 & 0 \end{pmatrix}$$
 > è proprio la matrice di $g \circ f$. Controllo su un vettore: $f(3, 5) = (8, 5)$ e $g(8, 5) = (16, 3)$; con la matrice, $(2 \cdot 3 + 2 \cdot 5,\ 3) = (16, 3)$.
+
+Per prima cosa, la nuova macchina è ancora lineare. Le dispense lo scrivono così.
 
 > [!PROP] 16.4
 > Se $f : V \to W$ e $g : W \to Z$ sono funzioni lineari, anche la composizione
 > $$g \circ f : V \to Z$$
 > lo è.
 
+**Come si legge.** Due macchine che rispettano somme e multipli, messe in fila, danno una macchina che rispetta somme e multipli.
+
 > [!DIM] della Proposizione 16.4 (le dispense non la riportano)
-> Per $v, v' \in V$ e $\lambda \in \K$:
+> Per $v, v'$ in $V$ e un numero $\lambda$:
 > $$(g \circ f)(v + v') = g\big(f(v) + f(v')\big) = g(f(v)) + g(f(v')), \qquad (g \circ f)(\lambda v) = g\big(\lambda f(v)\big) = \lambda\, g(f(v)).$$
 > Nel primo passaggio di ciascuna catena si usa la linearità di $f$, nel secondo quella di $g$.
 
-Per le applicazioni di tipo $L_A$ la composizione corrisponde precisamente al prodotto fra matrici:
+Per le macchine date da una matrice, la composizione è proprio il prodotto delle matrici. Le dispense lo scrivono così.
 
 > [!PROP] 16.5
 > Siano $A \in M(k, m, \K)$ e $B \in M(m, n, \K)$. Consideriamo
@@ -35128,28 +35334,32 @@ Per le applicazioni di tipo $L_A$ la composizione corrisponde precisamente al pr
 > Vale la relazione
 > $$L_A \circ L_B = L_{AB}.$$
 
-La spiegazione delle dispense: per ogni $x \in \K^n$,
-$$L_A(L_B(x)) = A(Bx) = (AB)x = L_{AB}(x),$$
-dove il passaggio centrale è l'**associatività** del prodotto fra matrici (lezione L08). Le taglie tornano: $B$ è $m \times n$ e manda $\K^n$ in $\K^m$, poi $A$ è $k \times m$ e manda $\K^m$ in $\K^k$; il prodotto $AB$ è $k \times n$.
+**Come si legge.** Moltiplicare prima per una matrice e poi per un'altra è come moltiplicare una volta sola per il loro prodotto. Il motivo, per ogni colonna $x$:
 
-Lo stesso vale con basi qualsiasi:
+$$L_A(L_B(x)) = A(Bx) = (AB)x = L_{AB}(x).$$
+
+Il passaggio in mezzo è la regola delle parentesi del prodotto di matrici (lezione L08). Anche le taglie tornano. Per esempio, se $B$ è $3 \times 2$ trasforma coppie di numeri in terne. Se poi $A$ è $4 \times 3$, trasforma le terne in liste di 4 numeri. Il prodotto $AB$ è $4 \times 2$: va direttamente dalle coppie alle liste di 4 numeri.
+
+Lo stesso vale con basi qualsiasi. Le dispense lo scrivono così.
 
 > [!PROP] 16.6
 > Siano $f : U \to V$ e $g : V \to W$ due applicazioni lineari. Siano $\mathcal B$, $\mathcal C$ e $\mathcal D$ basi di $U$, $V$ e $W$. Troviamo
 > $$[g \circ f]^{\mathcal B}_{\mathcal D} = [g]^{\mathcal C}_{\mathcal D}\,[f]^{\mathcal B}_{\mathcal C}.$$
 
+**Come si legge.** La matrice delle due macchine in fila è il prodotto delle due matrici, con quella della prima macchina a destra. La base $\mathcal C$ dello spazio di mezzo compare in tutte e due le matrici e «sparisce» nel risultato.
+
 La dimostrazione delle dispense, con i passaggi:
 
-1. Sia $\mathcal B = \{v_1, \dots, v_n\}$. Per definizione di matrice associata, la colonna $i$ di $[g \circ f]^{\mathcal B}_{\mathcal D}$ è $[g(f(v_i))]_{\mathcal D}$.
-2. Per la Proposizione 15.9 applicata a $g$ e al vettore $f(v_i)$: $[g(f(v_i))]_{\mathcal D} = [g]^{\mathcal C}_{\mathcal D}\,[f(v_i)]_{\mathcal C}$.
-3. D'altra parte $[f(v_i)]_{\mathcal C}$ è la colonna $i$ di $[f]^{\mathcal B}_{\mathcal C}$. E la colonna $i$ di un prodotto $XY$ è $X$ per la colonna $i$ di $Y$.
-4. Quindi le due matrici hanno le stesse colonne, cioè sono uguali. $\square$
+1. Sia $\mathcal B = \{v_1, \dots, v_n\}$. Nella colonna $i$ della matrice di $g \circ f$ ci sono le coordinate di $g(f(v_i))$.
+2. Per la Proposizione 15.9, con la macchina $g$ e il vettore $f(v_i)$: $[g(f(v_i))]_{\mathcal D} = [g]^{\mathcal C}_{\mathcal D}\,[f(v_i)]_{\mathcal C}$.
+3. Ma le coordinate di $f(v_i)$ sono proprio la colonna $i$ della matrice di $f$. E una colonna di un prodotto di due matrici è la prima matrice per la colonna corrispondente della seconda.
+4. Quindi le due matrici hanno le stesse colonne: sono uguali.
 
 > [!TRAPPOLA] L'ordine: si legge da destra a sinistra
-> $g \circ f$ vuol dire «prima $f$, poi $g$», e nel prodotto la matrice di $f$ sta **a destra**: $[g][f]$. Il prodotto di matrici non è commutativo, quindi $[f][g]$ è in genere un'altra matrice (o non si può nemmeno calcolare, se le taglie non tornano). Un aiuto per la memoria: nella formula le basi si incastrano come tessere del domino, $[g]^{\mathcal C}_{\mathcal D}[f]^{\mathcal B}_{\mathcal C}$, e la base $\mathcal C$ «in mezzo» deve essere la stessa sopra e sotto.
+> «g dopo f» vuol dire che agisce prima $f$, e nel prodotto la sua matrice sta **a destra**: $[g][f]$. Il prodotto di matrici non rispetta lo scambio, quindi $[f][g]$ di solito è un'altra matrice, o non si può nemmeno calcolare se le taglie non tornano. Un aiuto: nella formula le basi si incastrano come tessere del domino, $[g]^{\mathcal C}_{\mathcal D}[f]^{\mathcal B}_{\mathcal C}$, e la base $\mathcal C$ in mezzo deve essere la stessa sopra e sotto.
 
 > [!ESEMPIO] · composizione con i polinomi
-> Siano $f : \R^2 \to \R_2[x]$, $f(u, v) = u x^2 + v$, e $g : \R_2[x] \to \R^2$, $g(p) = (p(1),\ p(2))$. Con le basi canoniche $\mathcal E$ di $\R^2$ e $\mathcal B = \{1, x, x^2\}$ di $\R_2[x]$:
+> Siano $f : \R^2 \to \R_2[x]$, $f(u, v) = u x^2 + v$, e $g : \R_2[x] \to \R^2$, $g(p) = (p(1),\ p(2))$. Con le basi canoniche $\mathcal E$ di $\R^2$ e $\mathcal B = \{1, x, x^2\}$ dei polinomi:
 > - $f(e_1) = x^2$ e $f(e_2) = 1$, con coordinate $(0, 0, 1)$ e $(1, 0, 0)$, quindi $[f]^{\mathcal E}_{\mathcal B} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \\ 1 & 0 \end{pmatrix}$;
 > - $g(1) = (1, 1)$, $g(x) = (1, 2)$, $g(x^2) = (1, 4)$, quindi $[g]^{\mathcal B}_{\mathcal E} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix}$.
 >
@@ -35157,77 +35367,100 @@ La dimostrazione delle dispense, con i passaggi:
 > $$[g \circ f]^{\mathcal E}_{\mathcal E} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 0 & 0 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix}.$$
 > Controllo diretto: $(g \circ f)(u, v) = g(ux^2 + v) = (u + v,\ 4u + v)$, che ha proprio questa matrice.
 
+::: prova Siano $f(x, y) = (2x, y)$ e $g(x, y) = (y, x)$. Qual è la matrice di $g \circ f$?
+$[g][f] = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 2 & 0 \end{pmatrix}$. Controllo: $g(f(x, y)) = g(2x, y) = (y, 2x)$.
+:::
+
 ### Isomorfismi e matrici invertibili
+
+Una macchina ha un'inversa, cioè si può disfare, esattamente quando la sua matrice si può invertire. Le dispense lo scrivono così.
 
 > [!COROLLARIO] 16.7
 > La funzione $f$ è un isomorfismo se e solo se la matrice associata $[f]^{\mathcal B}_{\mathcal C}$ è invertibile, e in questo caso la sua inversa è
 > $$\big[f^{-1}\big]^{\mathcal C}_{\mathcal B}.$$
 
-La dimostrazione delle dispense, spiegata:
+**Come si legge.** Per sapere se una macchina è un isomorfismo, basta guardare la sua matrice: deve essere quadrata con determinante diverso da zero. E la matrice della macchina inversa è la matrice inversa.
 
-1. **($\Rightarrow$)** Se $f$ è un isomorfismo esiste $f^{-1} : W \to V$, e $f^{-1} \circ f = \id_V$, $f \circ f^{-1} = \id_W$. Per la Proposizione 16.6 e la Proposizione 15.11 ($[\id]^{\mathcal B}_{\mathcal B} = I_n$):
-$$[f^{-1}]^{\mathcal C}_{\mathcal B}\,[f]^{\mathcal B}_{\mathcal C} = [f^{-1} \circ f]^{\mathcal B}_{\mathcal B} = I_n \qquad\text{e}\qquad [f]^{\mathcal B}_{\mathcal C}\,[f^{-1}]^{\mathcal C}_{\mathcal B} = [f \circ f^{-1}]^{\mathcal C}_{\mathcal C} = I_n,$$
-quindi $[f^{-1}]^{\mathcal C}_{\mathcal B}$ è l'inversa di $[f]^{\mathcal B}_{\mathcal C}$.
-2. **($\Leftarrow$)** Se $A = [f]^{\mathcal B}_{\mathcal C}$ è invertibile, per il teorema della lezione 15 sulle matrici associate (Teorema 15.12: ogni matrice è la matrice di un'applicazione lineare) esiste $g : W \to V$ lineare con $[g]^{\mathcal C}_{\mathcal B} = A^{-1}$. Allora $[g \circ f]^{\mathcal B}_{\mathcal B} = A^{-1}A = I_n = [\id_V]^{\mathcal B}_{\mathcal B}$, e poiché la matrice determina l'applicazione, $g \circ f = \id_V$; allo stesso modo $f \circ g = \id_W$. Quindi $g = f^{-1}$ e $f$ è un isomorfismo.
-
-In pratica, per decidere se $f$ è un isomorfismo basta scegliere due basi qualsiasi e controllare che la matrice sia quadrata con determinante diverso da zero.
+> [!DIM] del Corollario 16.7
+> La dimostrazione delle dispense, spiegata.
+> 1. **Se $f$ è un isomorfismo, la matrice è invertibile.** C'è la macchina inversa $f^{-1}$, con $f^{-1} \circ f = \id_V$ e $f \circ f^{-1} = \id_W$. Per la Proposizione 16.6 e la Proposizione 15.11 ($[\id]^{\mathcal B}_{\mathcal B} = I_n$):
+> $$[f^{-1}]^{\mathcal C}_{\mathcal B}\,[f]^{\mathcal B}_{\mathcal C} = [f^{-1} \circ f]^{\mathcal B}_{\mathcal B} = I_n \qquad\text{e}\qquad [f]^{\mathcal B}_{\mathcal C}\,[f^{-1}]^{\mathcal C}_{\mathcal B} = [f \circ f^{-1}]^{\mathcal C}_{\mathcal C} = I_n,$$
+> quindi $[f^{-1}]^{\mathcal C}_{\mathcal B}$ è l'inversa di $[f]^{\mathcal B}_{\mathcal C}$.
+> 2. **Se la matrice è invertibile, $f$ è un isomorfismo.** Sia $A = [f]^{\mathcal B}_{\mathcal C}$. Per il Teorema 15.12 ogni matrice è la matrice di una macchina lineare: c'è $g$ con $[g]^{\mathcal C}_{\mathcal B} = A^{-1}$. Allora $[g \circ f]^{\mathcal B}_{\mathcal B} = A^{-1}A = I_n = [\id_V]^{\mathcal B}_{\mathcal B}$, e siccome la matrice decide la macchina, $g \circ f = \id_V$. Allo stesso modo $f \circ g = \id_W$. Quindi $g$ è l'inversa di $f$.
 
 > [!ESEMPIO] · un isomorfismo tra polinomi e coppie di numeri
-> Sia $f : \R_1[x] \to \R^2$, $f(p) = (p(0),\ p(1))$. Con $\mathcal B = \{1, x\}$ e la base canonica: $f(1) = (1, 1)$ e $f(x) = (0, 1)$, quindi
-> $$[f] = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}, \qquad \det [f] = 1 \neq 0.$$
-> $f$ è un isomorfismo, e $[f^{-1}] = [f]^{-1} = \begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix}$ (per una $2 \times 2$: si scambiano gli elementi della diagonale, si cambia segno agli altri due, si divide per il determinante). Quindi $f^{-1}(a, b)$ ha coordinate $(a,\ b - a)$:
+> Sia $f(p) = (p(0),\ p(1))$, dai polinomi di grado al massimo 1 al piano. Con la base $\{1, x\}$ e la base canonica: $f(1) = (1, 1)$ e $f(x) = (0, 1)$, quindi
+> $$[f] = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}, \qquad \det [f] = 1.$$
+> Il determinante non è zero: $f$ è un isomorfismo. La matrice dell'inversa è la matrice inversa: con la regola delle $2 \times 2$ (lezione L10), $[f^{-1}] = \begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix}$. Quindi $f^{-1}(a, b)$ ha coordinate $(a,\ b - a)$:
 > $$f^{-1}(a, b) = a + (b - a)x.$$
-> È il polinomio di grado al massimo 1 che vale $a$ in $0$ e $b$ in $1$: controllo, $p(0) = a$ e $p(1) = a + b - a = b$.
+> È il polinomio di grado al massimo 1 che vale $a$ in 0 e $b$ in 1. Controllo: $p(0) = a$ e $p(1) = a + b - a = b$.
 
-### Cambiare le basi di un'applicazione
+### Cambiare le basi di una macchina
+
+Con la regola delle macchine in fila si può cambiare base a qualsiasi macchina: la si scrive come «traduci, applica, traduci di nuovo». Le dispense lo scrivono così.
 
 > [!COROLLARIO] 16.8
 > Sia $f : V \to W$ un'applicazione lineare. Siano $\mathcal B_1, \mathcal B_2$ due basi di $V$ e $\mathcal C_1, \mathcal C_2$ due basi di $W$. Applicando la Proposizione 16.6 troviamo
 > $$[f]^{\mathcal B_2}_{\mathcal C_2} = [\id_W]^{\mathcal C_1}_{\mathcal C_2} \cdot [f]^{\mathcal B_1}_{\mathcal C_1} \cdot [\id_V]^{\mathcal B_2}_{\mathcal B_1}.$$
 
-Questo corollario ci dice che per passare da $[f]^{\mathcal B_1}_{\mathcal C_1}$ a $[f]^{\mathcal B_2}_{\mathcal C_2}$ basta moltiplicare a sinistra e a destra per matrici di cambiamento di base. Il perché: $f = \id_W \circ f \circ \id_V$, e si applica due volte la Proposizione 16.6 scegliendo le basi come tessere del domino. Si legge da destra a sinistra:
+**Come si legge.** Per passare dalla matrice in certe basi alla matrice in altre basi, si moltiplica a sinistra e a destra per due traduttori. Il motivo: $f = \id_W \circ f \circ \id_V$, e le basi si incastrano come nel domino. Si legge da destra a sinistra:
 
-1. $[\id_V]^{\mathcal B_2}_{\mathcal B_1}$ traduce le coordinate in partenza da $\mathcal B_2$ a $\mathcal B_1$;
-2. $[f]^{\mathcal B_1}_{\mathcal C_1}$ applica $f$ nelle basi che conosci già;
-3. $[\id_W]^{\mathcal C_1}_{\mathcal C_2}$ traduce il risultato da $\mathcal C_1$ a $\mathcal C_2$.
+1. il traduttore a destra porta le coordinate di partenza dalla base nuova a quella che conosci;
+2. $[f]^{\mathcal B_1}_{\mathcal C_1}$ applica la macchina nelle basi che conosci già;
+3. il traduttore a sinistra porta il risultato nella nuova base di arrivo.
 
 > [!ESEMPIO] · l'Esempio 15.8 rifatto con il Corollario 16.8
-> Nella lezione L15 la stessa $f : \R_2[x] \to \R^2$, $f(p) = (p(2), p(-2))$, aveva matrice $\begin{pmatrix} 1 & 2 & 4 \\ 1 & -2 & 4 \end{pmatrix}$ con la base canonica $\mathcal C$ in arrivo, e la base $\mathcal C' = \{(1, -1), (0, 1)\}$ richiedeva tre sistemi. Con il corollario (in partenza la base non cambia, quindi il fattore a destra è $I_3$):
-> - $[\id]^{\mathcal C'}_{\mathcal C} = \begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix}$ (i vettori di $\mathcal C'$ in colonna), quindi $[\id]^{\mathcal C}_{\mathcal C'} = \begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix}^{-1} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$;
+> Nella lezione L15 la macchina $f(p) = (p(2), p(-2))$, dai polinomi di grado al massimo 2 al piano, aveva matrice $\begin{pmatrix} 1 & 2 & 4 \\ 1 & -2 & 4 \end{pmatrix}$ con la base canonica $\mathcal C$ in arrivo. La base $\mathcal C' = \{(1, -1), (0, 1)\}$ in arrivo richiedeva tre sistemi. Con il corollario la base di partenza non cambia, quindi il traduttore a destra è l'identità:
+> - $[\id]^{\mathcal C'}_{\mathcal C} = \begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix}$, con i vettori di $\mathcal C'$ in colonna; quindi $[\id]^{\mathcal C}_{\mathcal C'} = \begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix}^{-1} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$;
 > - $$[f]^{\mathcal B}_{\mathcal C'} = [\id]^{\mathcal C}_{\mathcal C'}\,[f]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 & 4 \\ 1 & -2 & 4 \end{pmatrix} = \begin{pmatrix} 1 & 2 & 4 \\ 2 & 0 & 8 \end{pmatrix}.$$
 >
-> È la matrice dell'Esempio 15.8. (Lo stesso conto è l'Esempio 4.3.14 del libro di Martelli.)
+> È la matrice dell'Esempio 15.8. Lo stesso conto è l'Esempio 4.3.14 del libro di Martelli.
 
-## Endomorfismi e matrici simili (pp. 81–83)
+> [!RICORDA]
+> - Due macchine in fila: la matrice è il prodotto, con la prima macchina a destra.
+> - Una macchina è un isomorfismo esattamente quando la sua matrice è invertibile.
+> - Per cambiare base: traduttore a sinistra, matrice, traduttore a destra.
+
+## La stessa macchina in due lingue: le matrici simili (pp. 81–83)
+
+Molte macchine partono e arrivano nello stesso spazio: girare il piano, derivare i polinomi, trasporre le matrici quadrate. Le dispense danno loro un nome.
 
 > [!DEF] 16.9 · Endomorfismo
 > Sia $V$ uno spazio vettoriale. Un **endomorfismo** è un'applicazione lineare
 > $$f : V \to V.$$
 
-Esempi che conosci già: ogni $L_A$ con $A$ quadrata $n \times n$ è un endomorfismo di $\K^n$; la derivata è un endomorfismo di $\R_n[x]$; la trasposizione $A \mapsto {}^tA$ è un endomorfismo di $M(n, \K)$; la moltiplicazione per uno scalare fisso, $v \mapsto \lambda v$, è un endomorfismo di qualsiasi $V$.
+**Come si legge.** Un endomorfismo è una macchina lineare che parte e arriva nello **stesso** spazio. Esempi che conosci già: la macchina di una matrice quadrata; la derivata, dai polinomi di grado al massimo $n$ a sé stessi; la trasposta, dalle matrici quadrate a sé stesse; la moltiplicazione per un numero fisso, $v \mapsto \lambda v$.
 
-Per un endomorfismo è naturale usare **la stessa base** in partenza e in arrivo. Se fissiamo una base $\mathcal B$ per $V$, ogni endomorfismo $f$ è rappresentato da una matrice quadrata $[f]^{\mathcal B}_{\mathcal B}$, e la composizione corrisponde al prodotto (Proposizione 16.6 con $\mathcal B = \mathcal C = \mathcal D$):
+Per un endomorfismo è naturale usare **la stessa base** in partenza e in arrivo. Con una base $\mathcal B$, ogni endomorfismo ha una matrice quadrata $[f]^{\mathcal B}_{\mathcal B}$, e due endomorfismi in fila hanno come matrice il prodotto (Proposizione 16.6 con tre basi uguali):
+
 $$[f \circ g]^{\mathcal B}_{\mathcal B} = [f]^{\mathcal B}_{\mathcal B}\,[g]^{\mathcal B}_{\mathcal B}.$$
 
 ### Come cambia la matrice di un endomorfismo
 
-Se $\mathcal B$ e $\mathcal C$ sono due basi di $V$ e
-$$M = [\id]^{\mathcal B}_{\mathcal C},$$
-allora
+Siano $\mathcal B$ e $\mathcal C$ due basi dello stesso spazio, e sia
+
+$$M = [\id]^{\mathcal B}_{\mathcal C}$$
+
+il traduttore da $\mathcal B$ a $\mathcal C$. Allora
+
 $$[f]^{\mathcal B}_{\mathcal B} = M^{-1}\,[f]^{\mathcal C}_{\mathcal C}\,M.$$
 
 Da dove viene: è il Corollario 16.8 con $\mathcal B_1 = \mathcal C_1 = \mathcal C$ e $\mathcal B_2 = \mathcal C_2 = \mathcal B$:
-$$[f]^{\mathcal B}_{\mathcal B} = [\id]^{\mathcal C}_{\mathcal B}\,[f]^{\mathcal C}_{\mathcal C}\,[\id]^{\mathcal B}_{\mathcal C} = M^{-1}\,[f]^{\mathcal C}_{\mathcal C}\,M,$$
-perché $[\id]^{\mathcal C}_{\mathcal B}$ è l'inversa di $M = [\id]^{\mathcal B}_{\mathcal C}$. Quindi le matrici che rappresentano lo stesso endomorfismo rispetto a basi diverse sono legate da una relazione del tipo $A = M^{-1}BM$.
 
-> [!METODO] Cambio di base per un endomorfismo di $\K^n$, in quattro passi
-> 1. $A = [f]^{\mathcal C}_{\mathcal C}$ nella base canonica $\mathcal C$: si legge dai coefficienti.
+$$[f]^{\mathcal B}_{\mathcal B} = [\id]^{\mathcal C}_{\mathcal B}\,[f]^{\mathcal C}_{\mathcal C}\,[\id]^{\mathcal B}_{\mathcal C} = M^{-1}\,[f]^{\mathcal C}_{\mathcal C}\,M,$$
+
+perché il traduttore nel verso opposto è l'inverso di $M$. A parole, leggendo da destra: traduci dalla base nuova a quella vecchia, applica la macchina nella base vecchia, traduci il risultato nella base nuova.
+
+> [!METODO] Cambio di base per un endomorfismo, in quattro passi
+> 1. $A = [f]^{\mathcal C}_{\mathcal C}$ nella base canonica $\mathcal C$: si legge dai numeri davanti alle lettere.
 > 2. $M = [\id]^{\mathcal B}_{\mathcal C}$: i vettori della nuova base $\mathcal B$ **in colonna**.
-> 3. $M^{-1}$ (per una $2 \times 2$: $\begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$; per una $3 \times 3$ con i cofattori o con Gauss–Jordan).
-> 4. $[f]^{\mathcal B}_{\mathcal B} = M^{-1}AM$. **Controllo** senza inversa: deve valere $M \cdot [f]^{\mathcal B}_{\mathcal B} = A \cdot M$, oppure la colonna $j$ deve dare le coordinate di $f(v_j)$ rispetto a $\mathcal B$.
+> 3. L'inversa $M^{-1}$: per una $2 \times 2$ scambia la diagonale, cambia segno agli altri due e dividi per il determinante; per una $3 \times 3$ usa i cofattori o Gauss.
+> 4. $[f]^{\mathcal B}_{\mathcal B} = M^{-1}AM$. **Controllo** senza inversa: la colonna $j$ deve dare le coordinate di $f(v_j)$ nella nuova base. Oppure moltiplica: $M$ per il risultato deve essere uguale ad $A$ per $M$.
+
+Ecco l'esempio delle dispense: una base in cui la matrice della macchina si legge a colpo d'occhio.
 
 > [!ESEMPIO] 16.10 · Una base in cui la matrice diventa diagonale
-> Consideriamo $f : \R^2 \to \R^2$ dato da
+> Prendiamo $f : \R^2 \to \R^2$ dato da
 > $$f\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} x + y \\ -y \end{pmatrix}.$$
 > Rispetto alla base canonica $\mathcal C = \{e_1, e_2\}$ troviamo
 > $$[f]^{\mathcal C}_{\mathcal C} = \begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}.$$
@@ -35247,7 +35480,7 @@ perché $[\id]^{\mathcal C}_{\mathcal B}$ è l'inversa di $M = [\id]^{\mathcal B
 > [!NOTA] Un simbolo mancante
 > Nelle dispense, a p. 82, l'ultima formula dell'Esempio 16.10 comincia con «${}^{\mathcal B}_{\mathcal B} = M^{-1}[f]^{\mathcal C}_{\mathcal C}M$»: manca il $[f]$ davanti, va letto $[f]^{\mathcal B}_{\mathcal B} = M^{-1}[f]^{\mathcal C}_{\mathcal C}M$.
 
-Geometricamente $f$ è una **riflessione** (nel libro di Martelli è l'Esempio 4.4.2): lascia ferma la retta $\Span(1, 0)$ e ribalta la retta $\Span(-1, 2)$. Nella base canonica la matrice non lo mostra; nella base $\mathcal B$, fatta di vettori «speciali» per $f$, la matrice è diagonale e si legge tutto. È esattamente l'idea degli **autovettori** della lezione L17.
+Nel disegno $f$ è uno **specchio** obliquo (nel libro di Martelli è l'Esempio 4.4.2): lascia ferma la retta di $(1, 0)$ e ribalta la retta di $(-1, 2)$. Nella base canonica la matrice non lo mostra. Nella base $\mathcal B$, fatta di vettori speciali per $f$, la matrice è diagonale e si legge tutto. È proprio l'idea degli **autovettori** della lezione L17.
 
 ```grafico
 titolo: $f(x, y) = (x + y, -y)$ fissa $v_1$ e ribalta $v_2$: nella base $\{v_1, v_2\}$ la matrice è diagonale
@@ -35260,7 +35493,7 @@ vettore: -1 2 | viola | spesso | $v_2$ | o
 vettore: 1 -2 | rosa | spesso | $f(v_2) = -v_2$ | e
 ```
 
-Nello strumento qui sotto la matrice è $[f]^{\mathcal C}_{\mathcal C}$ dell'Esempio 16.10. Le due rette tratteggiate che compaiono sono quelle su cui $f$ agisce senza girare i vettori: sono proprio $\Span(1, 0)$ e $\Span(-1, 2)$, generate dai vettori della base $\mathcal B$. Trascina il vettore $x$ su una di queste rette e guarda $Ax$.
+Nello strumento qui sotto la matrice è quella dell'Esempio 16.10 nella base canonica. Le due rette tratteggiate che compaiono sono quelle su cui $f$ agisce senza girare i vettori: sono proprio le rette dei due vettori della nuova base, $(1, 0)$ e $(-1, 2)$. Trascina il vettore $x$ su una di queste rette e guarda $Ax$.
 
 ```widget matrice
 titolo: La riflessione dell'Esempio 16.10
@@ -35269,31 +35502,40 @@ x: -1 2
 raggio: 3
 ```
 
-### Matrici simili
+### Il nome: matrici simili
+
+Le due matrici dell'Esempio 16.10 descrivono la stessa macchina, in due lingue. Le dispense danno un nome a questa parentela.
 
 > [!DEF] 16.11 · Matrici simili
 > Sia $M(n)$ l'insieme delle matrici quadrate $n \times n$. Diciamo che due matrici $A, B \in M(n)$ sono **simili** (o **coniugate**) se esiste una matrice invertibile $M \in M(n)$ tale che
 > $$A = M^{-1}BM.$$
 > Se $A$ e $B$ sono simili scriviamo $A \sim B$.
 
-L'interpretazione è che matrici simili descrivono **lo stesso endomorfismo in basi diverse**. Pezzo per pezzo:
+**Come si legge.**
 
-- $M$ deve essere **invertibile**: è una matrice di cambiamento di base, e le sue colonne formano una base.
-- Se $A = M^{-1}BM$, allora $B$ è la matrice nella base «vecchia», $A$ quella nella base le cui coordinate (rispetto alla vecchia) sono le colonne di $M$.
-- Nell'Esempio 16.10: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \sim \begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$, con $M = \begin{pmatrix} 1 & -1 \\ 0 & 2 \end{pmatrix}$.
+- Due matrici simili descrivono **la stessa macchina in due basi diverse**.
+- $M$ deve essere **invertibile**: è un traduttore, e le sue colonne formano una base.
+- Nella formula $A = M^{-1}BM$, la matrice $B$ descrive la macchina nella base «vecchia». La matrice $A$ la descrive nella base nuova, quella che ha i vettori nelle colonne di $M$.
+- Il simbolo $\sim$ si legge «è simile a». Nell'Esempio 16.10: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \sim \begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$, con $M = \begin{pmatrix} 1 & -1 \\ 0 & 2 \end{pmatrix}$.
+
+Le dispense osservano che essere simili è una parentela «ben fatta».
 
 > [!PROP] 16.12
 > La similitudine è una relazione di equivalenza in $M(n)$.
 
-L'insieme $M(n)$ delle matrici quadrate è quindi partizionato in sottoinsiemi disgiunti formati da matrici simili fra loro: ogni «famiglia» raccoglie tutte le matrici dello stesso endomorfismo, al variare della base.
+**Come si legge.** Ci sono tre regole. Ogni matrice è simile a sé stessa. Se una matrice è simile a una seconda, anche la seconda è simile alla prima. Se la prima è simile alla seconda e la seconda a una terza, la prima è simile alla terza. Quindi le matrici quadrate si dividono in famiglie separate: ogni famiglia raccoglie tutte le matrici della stessa macchina, al variare della base (lezione D03 di Matematica Discreta).
 
 > [!DIM] della Proposizione 16.12 (dal libro di Martelli, Proposizione 4.4.5)
-> Bisogna controllare le tre proprietà di una relazione di equivalenza (Matematica Discreta).
-> 1. **Riflessiva**, $A \sim A$: con $M = I_n$ si ha $A = I_n^{-1} A I_n$.
-> 2. **Simmetrica**, $A \sim B \Rightarrow B \sim A$: da $A = M^{-1}BM$, moltiplicando a sinistra per $M$ e a destra per $M^{-1}$, si ottiene $B = MAM^{-1}$. Posto $N = M^{-1}$ (invertibile), $B = N^{-1}AN$.
-> 3. **Transitiva**, $A \sim B$ e $B \sim C \Rightarrow A \sim C$: se $A = M^{-1}BM$ e $B = N^{-1}CN$, allora
+> Bisogna controllare le tre proprietà di una relazione di equivalenza.
+> 1. **Riflessiva**, ogni $A$ è simile a sé stessa: con $M = I_n$ viene $A = I_n^{-1} A I_n$.
+> 2. **Simmetrica**, se $A$ è simile a $B$ allora $B$ è simile ad $A$: da $A = M^{-1}BM$, moltiplicando a sinistra per $M$ e a destra per $M^{-1}$, viene $B = MAM^{-1}$. Con $N = M^{-1}$, che è invertibile, $B = N^{-1}AN$.
+> 3. **Transitiva**, se $A$ è simile a $B$ e $B$ a $C$ allora $A$ è simile a $C$: da $A = M^{-1}BM$ e $B = N^{-1}CN$ viene
 > $$A = M^{-1}N^{-1}CNM = (NM)^{-1}\,C\,(NM),$$
 > perché $(NM)^{-1} = M^{-1}N^{-1}$. E $NM$ è invertibile, prodotto di invertibili.
+
+### Che cosa hanno in comune le matrici simili
+
+Se due matrici descrivono la stessa macchina, le proprietà della macchina devono vedersi in tutte e due. Per esempio di quanto la macchina ingrandisce le aree, cioè il determinante. Le dispense lo scrivono così.
 
 > [!PROP] 16.13
 > Se $A \sim B$ allora
@@ -35301,72 +35543,118 @@ L'insieme $M(n)$ delle matrici quadrate è quindi partizionato in sottoinsiemi d
 > In particolare
 > $$A \text{ è invertibile} \iff B \text{ è invertibile}.$$
 
-La spiegazione delle dispense, con i passaggi. Se $A = M^{-1}BM$:
+**Come si legge.** Matrici simili hanno lo stesso rango e lo stesso determinante. Quindi sono tutte e due invertibili o tutte e due no.
 
-1. **Determinante.** Per il Teorema di Binet (lezione L10) e il Corollario 10.5, $\det(M^{-1}) = \frac{1}{\det M}$:
+Il perché, con i passaggi delle dispense. Sia $A = M^{-1}BM$.
+
+1. **Determinante.** Per il teorema di Binet (lezione L10) e il Corollario 10.5, il determinante di $M^{-1}$ è $\frac{1}{\det M}$:
 $$\det A = \det(M^{-1})\,\det B\,\det M = \frac{1}{\det M}\,\det B\,\det M = \det B.$$
-2. **Rango.** La moltiplicazione a sinistra o a destra per una matrice invertibile non cambia il rango, quindi $\rk(A) = \rk(M^{-1}BM) = \rk(B)$.
-3. **Invertibilità.** Una matrice quadrata è invertibile se e solo se ha determinante diverso da zero (Proposizione 10.8); i due determinanti sono uguali.
+2. **Rango.** Moltiplicare a sinistra o a destra per una matrice invertibile non cambia il rango, quindi $\rk(A) = \rk(M^{-1}BM) = \rk(B)$.
+3. **Invertibilità.** Una matrice quadrata è invertibile esattamente quando ha determinante diverso da zero (Proposizione 10.8), e i due determinanti sono uguali.
 
 > [!ESEMPIO] · simili oppure no?
 > - $\begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}$ e $\begin{pmatrix} -1 & 2 \\ 1 & 1 \end{pmatrix}$ **non** sono simili: i determinanti sono $1 - 2 = -1$ e $-1 - 2 = -3$.
-> - $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ e $\begin{pmatrix} 4 & 3 \\ 2 & 1 \end{pmatrix}$ **sono** simili: con $M = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$ (che scambia l'ordine dei due vettori della base, e ha $M^{-1} = M$) si trova $M^{-1}\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}M = \begin{pmatrix} 4 & 3 \\ 2 & 1 \end{pmatrix}$ (esercizio 6).
+> - $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ e $\begin{pmatrix} 4 & 3 \\ 2 & 1 \end{pmatrix}$ **sono** simili. Con $M = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, che scambia l'ordine dei due vettori della base e ha $M^{-1} = M$, viene $M^{-1}\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}M = \begin{pmatrix} 4 & 3 \\ 2 & 1 \end{pmatrix}$ (esercizio 10).
 
 > [!TRAPPOLA] Stesso rango e stesso determinante non bastano
-> La Proposizione 16.13 va in una sola direzione. Controesempio: $I_2$ e $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ hanno entrambe rango 2 e determinante 1, ma **non** sono simili. Infatti $I_2$ è simile solo a se stessa: $M^{-1}I_2M = M^{-1}M = I_2$ per ogni $M$ invertibile. Lo stesso vale per ogni $\lambda I_n$.
+> La Proposizione 16.13 va in un verso solo. Un controesempio: $I_2$ e $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ hanno tutte e due rango 2 e determinante 1, ma **non** sono simili. Infatti $I_2$ è simile solo a sé stessa: $M^{-1}I_2M = M^{-1}M = I_2$ per ogni $M$ invertibile. La macchina identità lascia tutto com'è, in qualsiasi lingua. Lo stesso vale per ogni multiplo $\lambda I_n$.
 
 > [!OLTRE] anche la traccia non cambia
-> Anche la **traccia** (somma degli elementi sulla diagonale, lezione L08) è la stessa per matrici simili. Usando $\tr(XY) = \tr(YX)$ (Proposizione 8.13) con $X = M^{-1}$ e $Y = BM$:
+> Anche la **traccia**, la somma dei numeri sulla diagonale (lezione L08), è la stessa per matrici simili. Si usa la regola $\tr(XY) = \tr(YX)$ della Proposizione 8.13, con $X = M^{-1}$ e $Y = BM$:
 > $$\tr(M^{-1}BM) = \tr(BMM^{-1}) = \tr(B).$$
-> Nel quiz è un modo veloce per escludere risposte: due matrici con tracce diverse non sono simili. Nella lezione L17 vedrai l'invariante più potente, il polinomio caratteristico.
+> Nel quiz è un modo veloce per escludere risposte: due matrici con tracce diverse non sono simili. Nella lezione L17 vedrai il controllo più potente, il polinomio caratteristico.
 
 > [!OLTRE] dove trovarlo nel libro
 > Nel libro di Martelli: §4.2.4 «Composizione di applicazioni lineari» (pp. 126–127), §4.3.3 (pp. 132–134: composizione e Corollario 4.3.10, che è il nostro 16.7), §4.3.5 «Matrice di cambiamento di base» (pp. 135–137, con gli Esempi 4.3.14 e 4.3.15 che rifanno gli esempi della lezione L15), §4.4.1–4.4.3 «Endomorfismi» e «Similitudine fra matrici» (pp. 137–140), §4.4.5 sulla traccia (p. 141).
 
+::: prova Le matrici $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$ e $\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}$ sono simili?
+No: i determinanti sono 2 e 4, diversi.
+:::
+
+> [!RICORDA]
+> - Un endomorfismo parte e arriva nello stesso spazio; cambiando base la sua matrice diventa $M^{-1}AM$.
+> - Matrici simili = stessa macchina in due basi. Hanno stesso rango, determinante e traccia, ma queste uguaglianze non bastano per essere simili.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\id$ | «identità» | la macchina che lascia tutto com'è | |
+| $[\id]^{\mathcal B}_{\mathcal C}$ | «matrice di cambiamento di base da B a C» | il traduttore delle coordinate | vettori di $\mathcal B$ in colonna, se $\mathcal C$ è canonica |
+| $g \circ f$ | «g dopo f» | prima agisce $f$, poi $g$ | |
+| $L_A$ | «elle a» | la macchina che moltiplica per $A$ | $L_A \circ L_B = L_{AB}$ |
+| $f^{-1}$ | «effe alla meno uno» | la macchina inversa | |
+| $M^{-1}AM$ | «emme alla meno uno, a, emme» | la matrice della stessa macchina nella base nuova | |
+| $\sim$ | «è simile a» | stessa macchina in due basi | $A \sim B$ |
+| $\tr$ | «traccia» | somma dei numeri sulla diagonale | $\tr \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} = 5$ |
+| $\rk$ | «rango» | quante colonne dicono qualcosa di nuovo | |
+
 ## Verso l'esame
 
-La prova di Algebra lineare e Geometria ha 10 domande a risposta multipla (5 risposte, una giusta) e 2 problemi da 11 punti, corretti solo con almeno 6 risposte giuste; dura 2 ore, senza calcolatrice, e si può portare solo un foglio da 4 facciate scritto a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
+La prova di Algebra lineare e Geometria ha 10 domande a risposta multipla, con 5 risposte e una sola giusta. Ci sono poi 2 problemi da 11 punti, corretti solo con almeno 6 risposte giuste. Dura 2 ore, senza calcolatrice, e si può portare solo un foglio da 4 facciate scritto a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
 **Che cosa di questa lezione serve all'esame.** I cambi di base e le matrici associate sono tra gli esercizi più ricorrenti di Algebra lineare. Negli appelli 2023–2026:
 
 | Tipo di domanda | Dove |
 |---|---|
-| matrice di cambiamento di base in $\R^2$, $\R^3$ o $\R_1[x]$ | 10/06/2024 d. 8; 06/09/2024 d. 5; 10/07/2025 d. 6 (basi canoniche permutate); 02/09/2025 d. 8 (tre basi) |
-| matrice di una composizione, o formula della composizione | 08/02/2024 d. 5; 16/01/2025 d. 5; 15/01/2026 d. 10 (nucleo di $S \circ T$); 03/07/2026 d. 5 ($T \circ S = 0$) |
+| matrice di cambiamento di base nel piano, nello spazio o tra polinomi | 10/06/2024 d. 8; 06/09/2024 d. 5; 10/07/2025 d. 6 (basi canoniche permutate); 02/09/2025 d. 8 (tre basi) |
+| matrice di due macchine in fila, o formula della composizione | 08/02/2024 d. 5; 16/01/2025 d. 5; 15/01/2026 d. 10 (nucleo di $S \circ T$); 03/07/2026 d. 5 ($T \circ S = 0$) |
 | matrice $[T]^{\mathcal B}_{\mathcal B}$ in una base data, o $A$ ricavata da $[L_A]^{\mathcal B}_{\mathcal B}$ | 24/01/2024 d. 3; 03/06/2025 d. 5; 15/01/2026 d. 8 |
-| problema aperto: matrici di cambiamento di base, $[T]^{\mathcal A}_{\mathcal A}$ e $[T]^{\mathcal B}_{\mathcal B}$ | 07/09/2026 problema 11; matrice di $T^{-1}$: 10/07/2024 problema 11 |
+| problema aperto: matrici di cambiamento di base, $[T]^{\mathcal A}_{\mathcal A}$ e $[T]^{\mathcal B}_{\mathcal B}$ | 07/09/2026 problema 11; matrice della macchina inversa: 10/07/2024 problema 11 |
 
-### Tre domande vere, risolte
+### Una domanda vera, letta insieme
 
-> [!ESAME] Appello del 24/01/2024, domanda 3 (anche foglio 3 del tutorato, esercizio 5)
-> *La matrice associata a $T(x, y) = (2x + y,\ x + 2y)$ rispetto alla base $\mathcal B = \{(0, 1), (1, 2)\}$ è …*
+**Appello del 24/01/2024, domanda 3** (anche foglio 3 del tutorato, esercizio 5). Il testo: «La matrice associata a $T(x, y) = (2x + y,\ x + 2y)$ rispetto alla base $\mathcal B = \{(0, 1), (1, 2)\}$ è…».
+
+**In pratica chiede:** la stessa macchina, scritta nella lingua della base $(0, 1), (1, 2)$ invece che in quella canonica.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: la matrice nella base canonica.** Dai numeri davanti alle lettere: $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$.
 >
-> Soluzione con la formula. $A = [T]^{\mathcal C}_{\mathcal C} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$, $M = [\id]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 0 & 1 \\ 1 & 2 \end{pmatrix}$, $\det M = -1$, $M^{-1} = \begin{pmatrix} -2 & 1 \\ 1 & 0 \end{pmatrix}$. Poi
+> **Passo 2: il traduttore.** I vettori della base in colonna: $M = \begin{pmatrix} 0 & 1 \\ 1 & 2 \end{pmatrix}$, con determinante $0 - 1 = -1$.
+>
+> **Passo 3: l'inversa.** Scambio la diagonale, cambio segno agli altri due, divido per $-1$: $M^{-1} = \begin{pmatrix} -2 & 1 \\ 1 & 0 \end{pmatrix}$.
+>
+> **Passo 4: il prodotto, un pezzo alla volta.**
 > $$AM = \begin{pmatrix} 1 & 4 \\ 2 & 5 \end{pmatrix}, \qquad M^{-1}(AM) = \begin{pmatrix} -2 + 2 & -8 + 5 \\ 1 & 4 \end{pmatrix} = \begin{pmatrix} 0 & -3 \\ 1 & 4 \end{pmatrix}.$$
-> Controllo diretto: $T(0, 1) = (1, 2) = 0 \cdot (0, 1) + 1 \cdot (1, 2)$, prima colonna $(0, 1)$. Tra le risposte c'era anche la trasposta $\begin{pmatrix} 0 & 1 \\ -3 & 4 \end{pmatrix}$.
+>
+> **Passo 5: controllo senza inversa.** $T(0, 1) = (1, 2)$, che è il secondo vettore della base: coordinate $(0, 1)$, la prima colonna. $T(1, 2) = (4, 5) = -3 \cdot (0, 1) + 4 \cdot (1, 2)$: coordinate $(-3, 4)$, la seconda colonna.
+>
+> **La risposta** è $\begin{pmatrix} 0 & -3 \\ 1 & 4 \end{pmatrix}$. Tra le risposte c'era anche la trasposta $\begin{pmatrix} 0 & 1 \\ -3 & 4 \end{pmatrix}$: le coordinate vanno in colonna.
+
+### Altre due domande vere
 
 > [!ESAME] Appello del 16/01/2025, domanda 5
 > *Siano $f : \R^2 \to \R_2[x]$, $f(u, v) = ux^2 + vx$, e $g : \R_2[x] \to \R^2$, $g(p) = (p(1) + p(2),\ p(1) - p(-1))$. La matrice di $g \circ f$ rispetto alle basi canoniche è …*
 >
-> Soluzione. La via più corta è calcolare $g \circ f$ sui vettori della base: $g(f(e_1)) = g(x^2) = (1 + 4,\ 1 - 1) = (5, 0)$ e $g(f(e_2)) = g(x) = (1 + 2,\ 1 - (-1)) = (3, 2)$. Quindi la matrice è $\begin{pmatrix} 5 & 3 \\ 0 & 2 \end{pmatrix}$. Con il prodotto: $[g] = \begin{pmatrix} 2 & 3 & 5 \\ 0 & 2 & 0 \end{pmatrix}$ (colonne $g(1), g(x), g(x^2)$), $[f] = \begin{pmatrix} 0 & 0 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$, e $[g][f] = \begin{pmatrix} 5 & 3 \\ 0 & 2 \end{pmatrix}$. Una delle risposte sbagliate conteneva le lettere $u$ e $v$: una matrice associata contiene solo numeri.
+> **Soluzione.** La via più corta è far lavorare le due macchine in fila sui vettori della base.
+> 1. $g(f(e_1)) = g(x^2) = (1 + 4,\ 1 - 1) = (5, 0)$.
+> 2. $g(f(e_2)) = g(x) = (1 + 2,\ 1 - (-1)) = (3, 2)$.
+>
+> Quindi la matrice è $\begin{pmatrix} 5 & 3 \\ 0 & 2 \end{pmatrix}$. Con il prodotto: $[g] = \begin{pmatrix} 2 & 3 & 5 \\ 0 & 2 & 0 \end{pmatrix}$ (colonne $g(1), g(x), g(x^2)$), $[f] = \begin{pmatrix} 0 & 0 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$, e $[g][f] = \begin{pmatrix} 5 & 3 \\ 0 & 2 \end{pmatrix}$. Una delle risposte sbagliate conteneva le lettere $u$ e $v$: una matrice associata contiene solo numeri.
 
 > [!ESAME] Appello del 07/09/2026, problema 11 (punti 1–3)
-> *$\mathcal A$ base canonica di $\R^3$, $\mathcal B = \{v_1, v_2, v_3\}$ con $v_1 = (1, 1, 0)$, $v_2 = (1, 0, 1)$, $v_3 = (1, 1, 1)$, e $T(a, b, c) = (2a + c,\ a + b,\ -a + b + 3c)$. (1) Determinare $[\id]^{\mathcal B}_{\mathcal A}$ e $[\id]^{\mathcal A}_{\mathcal B}$. (2) Trovare $[T]^{\mathcal A}_{\mathcal A}$. (3) Trovare $[T]^{\mathcal B}_{\mathcal B}$.*
+> *$\mathcal A$ base canonica di $\R^3$; $\mathcal B = \{v_1, v_2, v_3\}$ con*
+> $$v_1 = (1, 1, 0), \quad v_2 = (1, 0, 1), \quad v_3 = (1, 1, 1);$$
+> *$T(a, b, c) = (2a + c,\ a + b,\ -a + b + 3c)$. (1) Determinare $[\id]^{\mathcal B}_{\mathcal A}$ e $[\id]^{\mathcal A}_{\mathcal B}$. (2) Trovare $[T]^{\mathcal A}_{\mathcal A}$. (3) Trovare $[T]^{\mathcal B}_{\mathcal B}$.*
 >
-> Soluzione. (1) $M = [\id]^{\mathcal B}_{\mathcal A} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix}$ (i $v_j$ in colonna), $\det M = -1$, e $[\id]^{\mathcal A}_{\mathcal B} = M^{-1} = \begin{pmatrix} 1 & 0 & -1 \\ 1 & -1 & 0 \\ -1 & 1 & 1 \end{pmatrix}$ (controllo: $MM^{-1} = I_3$).
-> (2) Dai coefficienti: $[T]^{\mathcal A}_{\mathcal A} = \begin{pmatrix} 2 & 0 & 1 \\ 1 & 1 & 0 \\ -1 & 1 & 3 \end{pmatrix}$.
-> (3) $[T]^{\mathcal B}_{\mathcal B} = M^{-1}[T]^{\mathcal A}_{\mathcal A}M = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 2 \end{pmatrix}$. Controllo senza inverse: $T(v_1) = (2, 2, 0) = 2v_1$; $T(v_2) = (3, 1, 2) = v_1 + 2v_2$; $T(v_3) = (3, 2, 3) = v_2 + 2v_3$; le coordinate sono proprio le colonne. Il punto (4), gli autovalori, si risolve con la lezione L17: la matrice $[T]^{\mathcal B}_{\mathcal B}$ è triangolare, con 2 sulla diagonale.
+> **Soluzione.**
+> 1. $M = [\id]^{\mathcal B}_{\mathcal A} = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix}$, con i $v_j$ in colonna. Il determinante è $-1$, e $[\id]^{\mathcal A}_{\mathcal B} = M^{-1} = \begin{pmatrix} 1 & 0 & -1 \\ 1 & -1 & 0 \\ -1 & 1 & 1 \end{pmatrix}$. Controllo: $MM^{-1} = I_3$.
+> 2. Dai numeri davanti alle lettere: $[T]^{\mathcal A}_{\mathcal A} = \begin{pmatrix} 2 & 0 & 1 \\ 1 & 1 & 0 \\ -1 & 1 & 3 \end{pmatrix}$.
+> 3. $[T]^{\mathcal B}_{\mathcal B} = M^{-1}[T]^{\mathcal A}_{\mathcal A}M = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 2 & 1 \\ 0 & 0 & 2 \end{pmatrix}$. Controllo senza inverse: $T(v_1) = (2, 2, 0) = 2v_1$; $T(v_2) = (3, 1, 2) = v_1 + 2v_2$; $T(v_3) = (3, 2, 3) = v_2 + 2v_3$. Le coordinate sono proprio le colonne.
+>
+> Il punto (4), gli autovalori, si risolve con la lezione L17: la matrice nella base $\mathcal B$ è triangolare, con 2 sulla diagonale.
 
-### Errori da evitare
+**Errori da evitare.**
 
-- Confondere $[\id]^{\mathcal B}_{\mathcal C}$ con la sua inversa: i vettori di $\mathcal B$ in colonna portano da coordinate $\mathcal B$ a coordinate canoniche, non il contrario.
-- Scrivere $MAM^{-1}$ al posto di $M^{-1}AM$ (o viceversa). Con $M = [\id]^{\mathcal B}_{\mathcal C}$ (nuova base in colonna) la formula giusta per la matrice nella nuova base è $M^{-1}[f]^{\mathcal C}_{\mathcal C}M$. Nel dubbio, controlla una colonna calcolando $f(v_1)$.
-- Invertire l'ordine nella composizione: $[g \circ f] = [g][f]$.
+- Confondere il traduttore con il suo inverso: i vettori di $\mathcal B$ in colonna portano dalle coordinate in $\mathcal B$ a quelle canoniche, non il contrario.
+- Scrivere $MAM^{-1}$ al posto di $M^{-1}AM$, o il contrario. Con $M$ che ha in colonna la base nuova, la matrice nella base nuova è $M^{-1}AM$. Nel dubbio, controlla una colonna calcolando $f(v_1)$.
+- Invertire l'ordine nella composizione: la matrice di $g \circ f$ è $[g][f]$.
 - Dimenticare che l'ordine dei vettori di una base cambia l'ordine delle righe e delle colonne.
-- Pensare che rango e determinante uguali bastino per la similitudine.
+- Pensare che rango e determinante uguali bastino per essere simili.
 
 > [!ESAME] Il foglio da 4 facciate
-> Da questa lezione: «colonne di $[\id]^{\mathcal B}_{\mathcal C}$ = vettori di $\mathcal B$ in coordinate $\mathcal C$; $[v]_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[v]_{\mathcal B}$»; «$[g \circ f] = [g][f]$, basi come nel domino»; «$[f]^{\mathcal B}_{\mathcal B} = M^{-1}[f]^{\mathcal C}_{\mathcal C}M$ con $M = [\id]^{\mathcal B}_{\mathcal C}$»; l'inversa $2 \times 2$; «simili $\Rightarrow$ stesso rango, determinante, traccia».
+> Da questa lezione: «colonne di $[\id]^{\mathcal B}_{\mathcal C}$ = vettori di $\mathcal B$ in coordinate $\mathcal C$; $[v]_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[v]_{\mathcal B}$»; «$[g \circ f] = [g][f]$, basi come nel domino»; «$[f]^{\mathcal B}_{\mathcal B} = M^{-1}[f]^{\mathcal C}_{\mathcal C}M$ con $M = [\id]^{\mathcal B}_{\mathcal C}$»; l'inversa $2 \times 2$; «matrici simili: stesso rango, determinante e traccia».
 
 ## Quiz
 
@@ -35377,7 +35665,7 @@ D: In $\R_1[x]$, la matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal
 - $\begin{pmatrix} 1/3 & 1/3 \\ 1/2 & -1/2 \end{pmatrix}$
 - $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$
 - $\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$
-= Colonne: le coordinate dei vettori di $\mathcal B$ rispetto a $\mathcal C$. $3x = a(x + 1) + b(x - 1)$ dà $a + b = 3$ e $a - b = 0$, cioè $a = b = \frac 32$. $2 = a(x + 1) + b(x - 1)$ dà $a + b = 0$ e $a - b = 2$, cioè $a = 1$, $b = -1$. La seconda risposta è la trasposta, la terza è l'inversa $[\id]^{\mathcal C}_{\mathcal B}$. Simile all'appello del 10/06/2024, domanda 8.
+= Nelle colonne vanno le coordinate dei vettori di $\mathcal B$ rispetto a $\mathcal C$. Per $3x = a(x + 1) + b(x - 1)$ servono $a + b = 3$ e $a - b = 0$, cioè $a = b = \frac 32$. Per $2 = a(x + 1) + b(x - 1)$ servono $a + b = 0$ e $a - b = 2$, cioè $a = 1$ e $b = -1$. La risposta più insidiosa è la seconda, la trasposta, con le coordinate in riga. La terza è il traduttore nel verso opposto, $[\id]^{\mathcal C}_{\mathcal B}$. Simile all'appello del 10/06/2024, domanda 8.
 
 D: La matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal C}$ da $\mathcal B = \{e_3, e_1, e_2\}$ a $\mathcal C = \{e_1, e_2, e_3\}$ in $\R^3$ è:
 + $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}$
@@ -35385,7 +35673,7 @@ D: La matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal C}$ da $\math
 - $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}$
 - Il problema non è ben definito.
-= Colonna $j$ = coordinate del $j$-esimo vettore di $\mathcal B$ rispetto a $\mathcal C$: $[e_3]_{\mathcal C} = (0, 0, 1)$, $[e_1]_{\mathcal C} = (1, 0, 0)$, $[e_2]_{\mathcal C} = (0, 1, 0)$. La seconda risposta è la trasposta, cioè $[\id]^{\mathcal C}_{\mathcal B}$. Simile all'appello del 10/07/2025, domanda 6.
+= La colonna $j$ contiene le coordinate del vettore $j$ di $\mathcal B$ nella base canonica: $e_3$ dà $(0, 0, 1)$, $e_1$ dà $(1, 0, 0)$, $e_2$ dà $(0, 1, 0)$. La risposta più insidiosa è la seconda, la trasposta, che è il traduttore nel verso opposto. L'identità sarebbe giusta solo con le due basi nello stesso ordine. Simile all'appello del 10/07/2025, domanda 6.
 
 D: Siano $\mathcal A, \mathcal B, \mathcal C$ tre basi di $\R^2$ con $[\id]^{\mathcal A}_{\mathcal B} = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ e $[\id]^{\mathcal C}_{\mathcal B} = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$. Allora $[\id]^{\mathcal A}_{\mathcal C}$ è:
 + $\begin{pmatrix} 1 & 1 \\ -2 & -1 \end{pmatrix}$
@@ -35393,7 +35681,7 @@ D: Siano $\mathcal A, \mathcal B, \mathcal C$ tre basi di $\R^2$ con $[\id]^{\ma
 - $\begin{pmatrix} -1 & 1 \\ -2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} -1 & -1 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
-= $[\id]^{\mathcal A}_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[\id]^{\mathcal A}_{\mathcal B}$ (le basi si incastrano) e $[\id]^{\mathcal B}_{\mathcal C} = \big([\id]^{\mathcal C}_{\mathcal B}\big)^{-1} = \begin{pmatrix} 1 & 0 \\ -2 & 1 \end{pmatrix}$. Il prodotto è $\begin{pmatrix} 1 & 1 \\ -2 & -1 \end{pmatrix}$. Le altre risposte vengono da prodotti nell'ordine sbagliato o senza inversa. Simile all'appello del 02/09/2025, domanda 8.
+= Le basi si incastrano come nel domino: $[\id]^{\mathcal A}_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[\id]^{\mathcal A}_{\mathcal B}$. Il primo fattore è il traduttore inverso di quello dato: $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}^{-1} = \begin{pmatrix} 1 & 0 \\ -2 & 1 \end{pmatrix}$. Il prodotto è $\begin{pmatrix} 1 & 1 \\ -2 & -1 \end{pmatrix}$. La risposta più insidiosa è la seconda: è il prodotto delle due matrici date, senza invertire. Le altre vengono da prodotti nell'ordine sbagliato. Simile all'appello del 02/09/2025, domanda 8.
 
 D: Siano $f : \R^2 \to \R_2[x]$, $f(u, v) = ux^2 + v$, e $g : \R_2[x] \to \R^2$, $g(p) = (p(1),\ p(2))$. La matrice di $g \circ f$ rispetto alla base canonica di $\R^2$ è:
 + $\begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix}$
@@ -35401,7 +35689,7 @@ D: Siano $f : \R^2 \to \R_2[x]$, $f(u, v) = ux^2 + v$, e $g : \R_2[x] \to \R^2$,
 - $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix}$
 - $\begin{pmatrix} u & 1 \\ v & 4 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 5 & 2 \end{pmatrix}$
-= $(g \circ f)(e_1) = g(x^2) = (1, 4)$ e $(g \circ f)(e_2) = g(1) = (1, 1)$: sono le colonne. In una matrice associata non compaiono le variabili $u, v$; la terza risposta è la sola $[g]$, che è $2 \times 3$. Simile all'appello del 16/01/2025, domanda 5.
+= Le due macchine in fila sui vettori della base: $(g \circ f)(e_1) = g(x^2) = (1, 4)$ e $(g \circ f)(e_2) = g(1) = (1, 1)$. Sono le due colonne. La risposta più insidiosa è la seconda, la trasposta. In una matrice associata non compaiono le lettere $u$ e $v$; la terza risposta è la sola matrice di $g$, che è $2 \times 3$. Simile all'appello del 16/01/2025, domanda 5.
 
 D: Sia $\mathcal B = \{(1, 1), (0, 1)\}$ e sia $A \in M(2, \R)$ tale che $[L_A]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$. Allora $A$ è:
 + $\begin{pmatrix} -1 & 2 \\ -2 & 3 \end{pmatrix}$
@@ -35409,7 +35697,7 @@ D: Sia $\mathcal B = \{(1, 1), (0, 1)\}$ e sia $A \in M(2, \R)$ tale che $[L_A]^
 - $\begin{pmatrix} 3 & 2 \\ -2 & -1 \end{pmatrix}$
 - $\begin{pmatrix} -1 & -2 \\ 2 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 1 & 3 \end{pmatrix}$
-= Con $M = [\id]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$ vale $[L_A]^{\mathcal B}_{\mathcal B} = M^{-1}AM$, quindi $A = M\,[L_A]^{\mathcal B}_{\mathcal B}\,M^{-1} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} -1 & 2 \\ -2 & 3 \end{pmatrix}$. Controllo: $A(1, 1) = (1, 1)$, con coordinate $(1, 0)$ rispetto a $\mathcal B$: è la prima colonna data. La terza risposta usa la formula al contrario, $M^{-1}\,[L_A]^{\mathcal B}_{\mathcal B}\,M$. Simile all'appello del 03/06/2025, domanda 5.
+= Il traduttore ha i vettori di $\mathcal B$ in colonna, $M = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$, e vale $[L_A]^{\mathcal B}_{\mathcal B} = M^{-1}AM$. Per ricavare $A$ si gira la formula: $A = M\,[L_A]^{\mathcal B}_{\mathcal B}\,M^{-1} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} -1 & 2 \\ -2 & 3 \end{pmatrix}$. Controllo: $A(1, 1) = (1, 1)$, con coordinate $(1, 0)$ nella base $\mathcal B$, la prima colonna data. La risposta più insidiosa è la terza, che usa la formula al contrario, $M^{-1}\,[L_A]^{\mathcal B}_{\mathcal B}\,M$. Simile all'appello del 03/06/2025, domanda 5.
 
 D: Se $A, B \in M(2, \R)$ sono simili, quale affermazione è necessariamente vera?
 + $\det A = \det B$
@@ -35417,7 +35705,7 @@ D: Se $A, B \in M(2, \R)$ sono simili, quale affermazione è necessariamente ver
 - $AB = BA$
 - $A$ e $B$ hanno la stessa prima riga.
 - $\rk(A) = \rk(B) + 1$
-= Proposizione 16.13: matrici simili hanno lo stesso determinante e lo stesso rango (quindi l'ultima risposta è sempre falsa). Le altre tre non sono necessarie: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ e $\begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$ sono simili (Esempio 16.10) ma sono diverse, non commutano e hanno prima riga diversa.
+= Per la Proposizione 16.13 matrici simili hanno lo stesso determinante e lo stesso rango; quindi l'ultima risposta è sempre falsa. Le altre tre non sono obbligatorie: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ e $\begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$ sono simili (Esempio 16.10), ma sono diverse, non si scambiano nel prodotto e hanno prima riga diversa. La più insidiosa è $A = B$: simili vuol dire stessa macchina, non stessa matrice.
 
 D: Quale di queste matrici è simile alla matrice identità $I_2$?
 + $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
@@ -35425,7 +35713,7 @@ D: Quale di queste matrici è simile alla matrice identità $I_2$?
 - $\begin{pmatrix} 2 & 0 \\ 0 & 1/2 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
 - $\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$
-= $M^{-1}I_2M = I_2$ per ogni $M$ invertibile: $I_2$ è simile solo a se stessa. Le altre quattro hanno tutte rango 2 e determinante $\pm 1$ (tre di loro proprio 1, come $I_2$), ma non sono $I_2$: avere lo stesso determinante non basta per essere simili.
+= Per ogni $M$ invertibile, $M^{-1}I_2M = I_2$: l'identità è simile solo a sé stessa. La macchina che lascia tutto com'è resta così in qualsiasi base. Le altre quattro hanno tutte rango 2 e determinante $1$ o $-1$; la più insidiosa è $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, che ha anche la stessa traccia e lo stesso determinante: ma queste uguaglianze non bastano.
 
 D: Siano $f, g : \R^3 \to \R^3$ lineari con $g \circ f = 0$ (l'applicazione nulla) e $f \neq 0$. Quale affermazione è sempre vera?
 + $\Imm f \subseteq \Ker g$
@@ -35433,7 +35721,7 @@ D: Siano $f, g : \R^3 \to \R^3$ lineari con $g \circ f = 0$ (l'applicazione null
 - $g$ è un isomorfismo.
 - $\Imm g \subseteq \Ker f$
 - $f$ è suriettiva.
-= Per ogni $v$, $g(f(v)) = 0$: ogni vettore dell'immagine di $f$ sta nel nucleo di $g$. Se fosse $\Ker g = \{0\}$ (o $g$ isomorfismo) allora $f(v) = 0$ per ogni $v$, contro $f \neq 0$. Con $f(x, y, z) = (0, x, 0)$ e $g(x, y, z) = (x, 0, 0)$ si ha $g \circ f = 0$ ma $f(g(e_1)) = e_2 \neq 0$, quindi $\Imm g \not\subseteq \Ker f$; e questa $f$ non è suriettiva. Simile all'appello del 03/07/2026, domanda 5.
+= Per ogni $v$, $g(f(v)) = 0$: ogni uscita di $f$ viene schiacciata da $g$, cioè sta nel nucleo di $g$. Se il nucleo di $g$ fosse solo lo zero, o se $g$ fosse un isomorfismo, allora tutte le uscite di $f$ sarebbero zero, contro $f \neq 0$. La risposta più insidiosa è quella con i ruoli scambiati: con $f(x, y, z) = (0, x, 0)$ e $g(x, y, z) = (x, 0, 0)$ viene $g \circ f = 0$, ma $f(g(e_1)) = e_2$, non zero. E questa $f$ non è suriettiva. Simile all'appello del 03/07/2026, domanda 5.
 
 D: Siano $T : \R^2 \to \R^3$, $T(x, y) = (x,\ x + y,\ y)$, e $S : \R^3 \to \R^2$, $S(a, b, c) = (a - b,\ b + c)$. La composizione $S \circ T$ è:
 + $(x, y) \mapsto (-y,\ x + 2y)$
@@ -35441,7 +35729,7 @@ D: Siano $T : \R^2 \to \R^3$, $T(x, y) = (x,\ x + y,\ y)$, e $S : \R^3 \to \R^2$
 - $(x, y) \mapsto (x - y,\ 2y)$
 - $(x, y, z) \mapsto (x - y,\ x + z,\ y + z)$
 - Non è ben definita.
-= $S(T(x, y)) = S(x,\ x + y,\ y) = \big(x - (x + y),\ (x + y) + y\big) = (-y,\ x + 2y)$. È un'applicazione $\R^2 \to \R^2$, quindi le risposte con tre variabili sono sbagliate già per il dominio. Simile all'appello del 08/02/2024, domanda 5.
+= Prima agisce $T$, poi $S$: $S(T(x, y)) = S(x,\ x + y,\ y) = \big(x - (x + y),\ (x + y) + y\big) = (-y,\ x + 2y)$. È una macchina dal piano al piano, quindi le risposte con tre lettere in entrata sono sbagliate già per la partenza. La più insidiosa è la seconda, che è $S$ da sola. Simile all'appello dell'08/02/2024, domanda 5.
 
 D: Sia $T(x, y) = (4x - 2y,\ x + y)$ e sia $\mathcal B = \{(1, 1), (2, 1)\}$. La matrice $[T]^{\mathcal B}_{\mathcal B}$ è:
 + $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$
@@ -35449,10 +35737,69 @@ D: Sia $T(x, y) = (4x - 2y,\ x + y)$ e sia $\mathcal B = \{(1, 1), (2, 1)\}$. La
 - $\begin{pmatrix} 4 & -2 \\ 1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 6 \\ 2 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}$
-= $T(1, 1) = (2, 2) = 2 \cdot (1, 1)$ e $T(2, 1) = (6, 3) = 3 \cdot (2, 1)$: le coordinate sono $(2, 0)$ e $(0, 3)$. L'ordine sulla diagonale segue l'ordine della base, quindi $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$ è sbagliata; la quarta mette le immagini senza passare alle coordinate.
+= $T(1, 1) = (2, 2) = 2 \cdot (1, 1)$ e $T(2, 1) = (6, 3) = 3 \cdot (2, 1)$: le coordinate sono $(2, 0)$ e $(0, 3)$. La risposta più insidiosa è $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$: i numeri giusti, ma l'ordine sulla diagonale segue l'ordine della base. La quarta mette le uscite senza passare alle coordinate; la terza è la matrice nella base canonica.
 ```
 
 ## Esercizi
+
+::: esercizio base Riscaldamento: la base in colonna
+Nella base $\mathcal B = \{(2, 1), (1, 1)\}$ del piano scrivi il traduttore $[\id]^{\mathcal B}_{\mathcal C}$ verso la base canonica $\mathcal C$. Poi trova il vettore che ha coordinate $(1, 3)$ nella base $\mathcal B$.
+::: soluzione
+1. La base di arrivo è canonica: i vettori di $\mathcal B$ in colonna, $[\id]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$.
+2. $\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 \\ 3 \end{pmatrix} = \begin{pmatrix} 2 + 3 \\ 1 + 3 \end{pmatrix} = \begin{pmatrix} 5 \\ 4 \end{pmatrix}$.
+
+Controllo con la ricetta: $1 \cdot (2, 1) + 3 \cdot (1, 1) = (5, 4)$.
+:::
+
+::: esercizio base Riscaldamento: due macchine in fila
+Siano $f(x, y) = (2x, y)$ e $g(x, y) = (y, x)$. Scrivi le loro matrici nella base canonica e la matrice di $g \circ f$. Controlla con la formula.
+::: soluzione
+1. $[f] = \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}$ e $[g] = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$.
+2. $[g \circ f] = [g][f] = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & 1 \\ 2 & 0 \end{pmatrix}$.
+3. Controllo: $g(f(x, y)) = g(2x, y) = (y, 2x)$, che ha proprio questa matrice.
+:::
+
+::: esercizio base Riscaldamento: l'ordine conta
+Con le macchine dell'esercizio precedente, calcola la matrice di $f \circ g$. È uguale a quella di $g \circ f$?
+::: soluzione
+1. $[f \circ g] = [f][g] = \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 2 \\ 1 & 0 \end{pmatrix}$.
+2. Controllo: $f(g(x, y)) = f(y, x) = (2y, x)$.
+
+È diversa da $\begin{pmatrix} 0 & 1 \\ 2 & 0 \end{pmatrix}$: mettere le macchine in fila in un altro ordine dà un'altra macchina.
+:::
+
+::: esercizio base Riscaldamento: simili o no?
+(a) $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$ e $\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}$ sono simili? (b) E $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$ e $\begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}$?
+::: soluzione
+1. (a) No: i determinanti sono 2 e 4.
+2. (b) Sì. È la stessa macchina con i due vettori della base in ordine scambiato. Con $M = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, che è l'inversa di sé stessa: $M^{-1}\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}M = \begin{pmatrix} 0 & 2 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}$.
+:::
+
+::: esercizio base Cambiamento di base in $\R^3$ (foglio 3 del tutorato, esercizio 1)
+Siano $v_1 = (1, 0, 2)$, $v_2 = (2, 0, 1)$, $v_3 = (0, 1, 1)$. Verifica che $\mathcal B = \{v_1, v_2, v_3\}$ è una base di $\R^3$ e trova la matrice di cambiamento di base da $\mathcal B$ alla base canonica $\mathcal E$ e viceversa.
+::: soluzione
+Il traduttore verso la base canonica ha i vettori in colonna: $M = [\id]^{\mathcal B}_{\mathcal E} = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 0 & 1 \\ 2 & 1 & 1 \end{pmatrix}$. Sviluppo lungo la seconda riga, che ha un solo numero diverso da zero (casella $(2, 3)$, segno meno):
+$$\det M = -1 \cdot \det\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix} = -(1 - 4) = 3.$$
+Il determinante non è zero: i tre vettori sono indipendenti e, siccome sono tre nello spazio, formano una base (Teorema 7.12).
+
+Il traduttore nel verso opposto, $[\id]^{\mathcal E}_{\mathcal B}$, è l'inversa, con i cofattori o con Gauss:
+$$M^{-1} = \frac 13 \begin{pmatrix} -1 & -2 & 2 \\ 2 & 1 & -1 \\ 0 & 3 & 0 \end{pmatrix}.$$
+Controllo su una colonna: la prima colonna di $M^{-1}$ deve dare le coordinate di $e_1$: $-\frac 13 v_1 + \frac 23 v_2 + 0 v_3 = \left(-\frac 13 + \frac 43,\ 0,\ -\frac 23 + \frac 23\right) = (1, 0, 0)$.
+:::
+
+::: esercizio base Composizioni nei due ordini
+Siano $f : \R^2 \to \R^3$, $f(x, y) = (x,\ x + y,\ 2y)$, e $g : \R^3 \to \R^2$, $g(a, b, c) = (a + c,\ b - c)$. Calcola le matrici di $g \circ f$ e di $f \circ g$ nelle basi canoniche, e controlla il risultato con le formule.
+::: soluzione
+$[f] = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 0 & 2 \end{pmatrix}$ è $3 \times 2$, $[g] = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & -1 \end{pmatrix}$ è $2 \times 3$.
+
+$$[g \circ f] = [g][f] = \begin{pmatrix} 1 + 0 + 0 & 0 + 0 + 2 \\ 0 + 1 + 0 & 0 + 1 - 2 \end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 1 & -1 \end{pmatrix}.$$
+Controllo: $g(f(x, y)) = g(x,\ x + y,\ 2y) = (x + 2y,\ x + y - 2y) = (x + 2y,\ x - y)$.
+
+$$[f \circ g] = [f][g] = \begin{pmatrix} 1 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 2 & -2 \end{pmatrix}.$$
+Controllo: $f(g(a, b, c)) = f(a + c,\ b - c) = (a + c,\ a + b,\ 2b - 2c)$.
+
+Nota che $f \circ g$ passa per il piano, quindi la sua immagine ha dimensione al massimo 2. Infatti il determinante di $[f \circ g]$ è $1 \cdot (-2 - 0) - 0 + 1 \cdot (2 - 0) = 0$, e il rango è 2.
+:::
 
 ::: esercizio medio Esercizio 16.14 delle dispense: un endomorfismo che diventa diagonale
 Consideriamo l'endomorfismo $f : \R^2 \to \R^2$ definito da $f(x, y) = (2x + y,\ x + 2y)$. Siano $\mathcal C = \{e_1, e_2\}$ la base canonica e $\mathcal B = \{v_1, v_2\}$ con $v_1 = (1, 1)$, $v_2 = (1, -1)$.
@@ -35461,76 +35808,50 @@ Consideriamo l'endomorfismo $f : \R^2 \to \R^2$ definito da $f(x, y) = (2x + y,\
 (3) Calcolare $[f]^{\mathcal B}_{\mathcal B}$ usando la formula di cambiamento di base.
 (4) Verificare il risultato calcolando direttamente $f(v_1)$ e $f(v_2)$.
 ::: soluzione
-(1) Dai coefficienti: $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$ (colonne $f(e_1) = (2, 1)$ e $f(e_2) = (1, 2)$).
+(1) Dai numeri davanti alle lettere: $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$, con colonne $f(e_1) = (2, 1)$ e $f(e_2) = (1, 2)$.
 
-(2) $\mathcal C$ è la base canonica, quindi basta mettere in colonna i vettori di $\mathcal B$: $M = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$.
+(2) La base di arrivo è canonica: i vettori di $\mathcal B$ in colonna, $M = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$.
 
-(3) $\det M = -1 - 1 = -2$, quindi
+(3) Il determinante di $M$ è $-1 - 1 = -2$, quindi
 $$M^{-1} = \frac{1}{-2}\begin{pmatrix} -1 & -1 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & -1/2 \end{pmatrix}.$$
 Poi, un prodotto alla volta:
-$$M^{-1}A = \begin{pmatrix} 1/2 & 1/2 \\ 1/2 & -1/2 \end{pmatrix}\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix} = \begin{pmatrix} 3/2 & 3/2 \\ 1/2 & -1/2 \end{pmatrix}, \qquad (M^{-1}A)M = \begin{pmatrix} 3/2 & 3/2 \\ 1/2 & -1/2 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}.$$
+$$M^{-1}A = \begin{pmatrix} 3/2 & 3/2 \\ 1/2 & -1/2 \end{pmatrix}, \qquad (M^{-1}A)M = \begin{pmatrix} 3/2 & 3/2 \\ 1/2 & -1/2 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}.$$
 Quindi $[f]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}$.
 
-(4) $f(v_1) = f(1, 1) = (3, 3) = 3v_1 + 0v_2$ e $f(v_2) = f(1, -1) = (1, -1) = 0v_1 + 1v_2$. Le coordinate $(3, 0)$ e $(0, 1)$ sono le colonne trovate. Nella base $\mathcal B$, $f$ allunga di 3 la direzione $(1, 1)$ e lascia ferma la direzione $(1, -1)$.
-:::
-
-::: esercizio base Cambiamento di base in $\R^3$ (foglio 3 del tutorato, esercizio 1)
-Siano $v_1 = (1, 0, 2)$, $v_2 = (2, 0, 1)$, $v_3 = (0, 1, 1)$. Verifica che $\mathcal B = \{v_1, v_2, v_3\}$ è una base di $\R^3$ e trova la matrice di cambiamento di base da $\mathcal B$ alla base canonica $\mathcal E$ e viceversa.
-::: soluzione
-$M = [\id]^{\mathcal B}_{\mathcal E} = \begin{pmatrix} 1 & 2 & 0 \\ 0 & 0 & 1 \\ 2 & 1 & 1 \end{pmatrix}$ (i vettori in colonna). Sviluppando lungo la seconda riga, che ha un solo elemento non nullo (posto $(2, 3)$, segno $(-1)^{2+3} = -1$):
-$$\det M = -1 \cdot \det\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix} = -(1 - 4) = 3 \neq 0,$$
-quindi i tre vettori sono indipendenti e, essendo tre in $\R^3$, formano una base (Teorema 7.12).
-
-L'inversa, $[\id]^{\mathcal E}_{\mathcal B}$, con i cofattori (o con Gauss–Jordan):
-$$M^{-1} = \frac 13 \begin{pmatrix} -1 & -2 & 2 \\ 2 & 1 & -1 \\ 0 & 3 & 0 \end{pmatrix}.$$
-Controllo su una colonna: la prima colonna di $M^{-1}$ deve dare le coordinate di $e_1$: $-\frac 13 v_1 + \frac 23 v_2 + 0 v_3 = \left(-\frac 13 + \frac 43,\ 0,\ -\frac 23 + \frac 23\right) = (1, 0, 0)$.
+(4) $f(v_1) = f(1, 1) = (3, 3) = 3v_1 + 0v_2$ e $f(v_2) = f(1, -1) = (1, -1) = 0v_1 + 1v_2$. Le coordinate $(3, 0)$ e $(0, 1)$ sono le colonne trovate. Nella base $\mathcal B$ la macchina allunga di 3 la direzione $(1, 1)$ e lascia ferma la direzione $(1, -1)$.
 :::
 
 ::: esercizio medio Polinomi centrati in 1 (foglio 3 del tutorato, esercizio 2)
 In $\R_3[x]$ calcola la matrice del cambio di base da $\mathcal B = \{1,\ x - 1,\ (x - 1)^2,\ (x - 1)^3\}$ alla base canonica $\mathcal C = \{1, x, x^2, x^3\}$, e viceversa.
 ::: soluzione
-**Da $\mathcal B$ a $\mathcal C$**: sviluppo ogni polinomio di $\mathcal B$ e leggo i coefficienti (termine noto, $x$, $x^2$, $x^3$):
-- $1 \to (1, 0, 0, 0)$;
-- $x - 1 \to (-1, 1, 0, 0)$;
-- $(x - 1)^2 = 1 - 2x + x^2 \to (1, -2, 1, 0)$;
-- $(x - 1)^3 = -1 + 3x - 3x^2 + x^3 \to (-1, 3, -3, 1)$.
+**Da $\mathcal B$ a $\mathcal C$**: sviluppo ogni polinomio di $\mathcal B$ e leggo i numeri (termine noto, $x$, $x^2$, $x^3$):
+- $1$ dà $(1, 0, 0, 0)$;
+- $x - 1$ dà $(-1, 1, 0, 0)$;
+- $(x - 1)^2 = 1 - 2x + x^2$ dà $(1, -2, 1, 0)$;
+- $(x - 1)^3 = -1 + 3x - 3x^2 + x^3$ dà $(-1, 3, -3, 1)$.
 
 $$[\id]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 1 & -1 & 1 & -1 \\ 0 & 1 & -2 & 3 \\ 0 & 0 & 1 & -3 \\ 0 & 0 & 0 & 1 \end{pmatrix}.$$
 
-**Da $\mathcal C$ a $\mathcal B$**: invece di invertire, scrivo $x = (x - 1) + 1$ e sviluppo le potenze con il binomio:
-- $1 = 1 \to (1, 0, 0, 0)$;
-- $x = 1 + (x - 1) \to (1, 1, 0, 0)$;
-- $x^2 = \big(1 + (x - 1)\big)^2 = 1 + 2(x - 1) + (x - 1)^2 \to (1, 2, 1, 0)$;
-- $x^3 = 1 + 3(x - 1) + 3(x - 1)^2 + (x - 1)^3 \to (1, 3, 3, 1)$.
+**Da $\mathcal C$ a $\mathcal B$**: invece di invertire, scrivo $x = (x - 1) + 1$ e sviluppo le potenze:
+- $1$ dà $(1, 0, 0, 0)$;
+- $x = 1 + (x - 1)$ dà $(1, 1, 0, 0)$;
+- $x^2 = \big(1 + (x - 1)\big)^2 = 1 + 2(x - 1) + (x - 1)^2$ dà $(1, 2, 1, 0)$;
+- $x^3 = 1 + 3(x - 1) + 3(x - 1)^2 + (x - 1)^3$ dà $(1, 3, 3, 1)$.
 
 $$[\id]^{\mathcal C}_{\mathcal B} = \begin{pmatrix} 1 & 1 & 1 & 1 \\ 0 & 1 & 2 & 3 \\ 0 & 0 & 1 & 3 \\ 0 & 0 & 0 & 1 \end{pmatrix}.$$
-Nelle colonne compaiono i coefficienti binomiali (il triangolo di Tartaglia). Controllo: il prodotto delle due matrici è $I_4$.
-:::
-
-::: esercizio base Composizioni nei due ordini
-Siano $f : \R^2 \to \R^3$, $f(x, y) = (x,\ x + y,\ 2y)$, e $g : \R^3 \to \R^2$, $g(a, b, c) = (a + c,\ b - c)$. Calcola le matrici di $g \circ f$ e di $f \circ g$ nelle basi canoniche, e controlla il risultato con le formule.
-::: soluzione
-$[f] = \begin{pmatrix} 1 & 0 \\ 1 & 1 \\ 0 & 2 \end{pmatrix}$ ($3 \times 2$), $[g] = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & -1 \end{pmatrix}$ ($2 \times 3$).
-
-$$[g \circ f] = [g][f] = \begin{pmatrix} 1 + 0 + 0 & 0 + 0 + 2 \\ 0 + 1 + 0 & 0 + 1 - 2 \end{pmatrix} = \begin{pmatrix} 1 & 2 \\ 1 & -1 \end{pmatrix}.$$
-Controllo: $g(f(x, y)) = g(x,\ x + y,\ 2y) = (x + 2y,\ x + y - 2y) = (x + 2y,\ x - y)$.
-
-$$[f \circ g] = [f][g] = \begin{pmatrix} 1 & 0 & 1 \\ 1 & 1 & 0 \\ 0 & 2 & -2 \end{pmatrix}.$$
-Controllo: $f(g(a, b, c)) = f(a + c,\ b - c) = (a + c,\ a + b,\ 2b - 2c)$.
-
-Osserva che $f \circ g : \R^3 \to \R^3$ passa per $\R^2$, quindi la sua immagine ha dimensione al massimo 2: infatti $\det [f \circ g] = 1 \cdot (-2 - 0) - 0 + 1 \cdot (2 - 0) = 0$ e il rango è 2.
+Nelle colonne compaiono i numeri del triangolo di Tartaglia. Controllo: il prodotto delle due matrici è $I_4$.
 :::
 
 ::: esercizio medio Un isomorfismo e la sua inversa con le matrici
 Sia $f : \R_2[x] \to \R^3$, $f(p) = (p(-1),\ p(0),\ p(1))$. (a) Scrivi $[f]$ rispetto a $\{1, x, x^2\}$ e alla base canonica e mostra che $f$ è un isomorfismo. (b) Usa il Corollario 16.7 per scrivere $f^{-1}(a, b, c)$. (c) Qual è il polinomio di grado al massimo 2 che vale $1$ in $-1$, $0$ in $0$ e $3$ in $1$?
 ::: soluzione
-(a) $f(1) = (1, 1, 1)$, $f(x) = (-1, 0, 1)$, $f(x^2) = (1, 0, 1)$:
+(a) Le uscite: $f(1) = (1, 1, 1)$, $f(x) = (-1, 0, 1)$, $f(x^2) = (1, 0, 1)$.
 $$[f] = \begin{pmatrix} 1 & -1 & 1 \\ 1 & 0 & 0 \\ 1 & 1 & 1 \end{pmatrix}.$$
-Sviluppando lungo la seconda riga (un solo elemento non nullo, posto $(2, 1)$, segno $-1$): $\det [f] = -1 \cdot \det\begin{pmatrix} -1 & 1 \\ 1 & 1 \end{pmatrix} = -(-1 - 1) = 2 \neq 0$. Quindi $[f]$ è invertibile e $f$ è un isomorfismo.
+Sviluppo lungo la seconda riga, con un solo numero diverso da zero (casella $(2, 1)$, segno meno): $\det [f] = -1 \cdot \det\begin{pmatrix} -1 & 1 \\ 1 & 1 \end{pmatrix} = -(-1 - 1) = 2$. Non è zero: la matrice è invertibile e $f$ è un isomorfismo.
 
-(b) $[f^{-1}] = [f]^{-1} = \frac 12 \begin{pmatrix} 0 & 2 & 0 \\ -1 & 0 & 1 \\ 1 & -2 & 1 \end{pmatrix}$ (controllo: $[f]\,[f]^{-1} = I_3$). Le coordinate di $f^{-1}(a, b, c)$ sono $\left(b,\ \frac{c - a}{2},\ \frac{a - 2b + c}{2}\right)$, quindi
+(b) $[f^{-1}] = [f]^{-1} = \frac 12 \begin{pmatrix} 0 & 2 & 0 \\ -1 & 0 & 1 \\ 1 & -2 & 1 \end{pmatrix}$; controllo: $[f]\,[f]^{-1} = I_3$. Le coordinate di $f^{-1}(a, b, c)$ sono $\left(b,\ \frac{c - a}{2},\ \frac{a - 2b + c}{2}\right)$, quindi
 $$f^{-1}(a, b, c) = b + \frac{c - a}{2}\,x + \frac{a - 2b + c}{2}\,x^2.$$
-Controllo: in $0$ vale $b$; in $1$ vale $b + \frac{c - a}{2} + \frac{a - 2b + c}{2} = b + \frac{2c - 2b}{2} = c$; in $-1$ vale $b - \frac{c - a}{2} + \frac{a - 2b + c}{2} = b + \frac{2a - 2b}{2} = a$.
+Controllo: in 0 vale $b$; in 1 vale $b + \frac{c - a}{2} + \frac{a - 2b + c}{2} = b + \frac{2c - 2b}{2} = c$; in $-1$ vale $b - \frac{c - a}{2} + \frac{a - 2b + c}{2} = b + \frac{2a - 2b}{2} = a$.
 
 (c) $a = 1$, $b = 0$, $c = 3$: $p = 0 + \frac{3 - 1}{2}x + \frac{1 - 0 + 3}{2}x^2 = x + 2x^2$. Controllo: $p(-1) = -1 + 2 = 1$, $p(0) = 0$, $p(1) = 3$.
 :::
@@ -35538,37 +35859,27 @@ Controllo: in $0$ vale $b$; in $1$ vale $b + \frac{c - a}{2} + \frac{a - 2b + c}
 ::: esercizio medio Simili oppure no
 (a) Mostra che $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ e $B = \begin{pmatrix} 4 & 3 \\ 2 & 1 \end{pmatrix}$ sono simili, trovando $M$. (b) Mostra che $A$ e $C = \begin{pmatrix} 1 & 2 \\ 3 & 5 \end{pmatrix}$ non sono simili. (c) $A$ e $D = \begin{pmatrix} 4 & 2 \\ 3 & 1 \end{pmatrix}$ possono essere simili?
 ::: soluzione
-(a) Pensa ad $A$ come $[L_A]$ nella base $\{e_1, e_2\}$ e prova la base in ordine inverso, $\{e_2, e_1\}$: $M = [\id]^{\{e_2, e_1\}}_{\{e_1, e_2\}} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, con $M^{-1} = M$ (scambiare due volte non cambia niente). Allora
+(a) Pensa ad $A$ come alla matrice di $L_A$ nella base $\{e_1, e_2\}$, e prova la base in ordine inverso, $\{e_2, e_1\}$. Il traduttore è $M = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, e $M^{-1} = M$: scambiare due volte non cambia niente. Allora
 $$M^{-1}AM = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 3 & 4 \\ 1 & 2 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 4 & 3 \\ 2 & 1 \end{pmatrix} = B.$$
 Moltiplicare a sinistra per $M$ scambia le righe, a destra scambia le colonne.
 
 (b) $\det A = 4 - 6 = -2$ e $\det C = 5 - 6 = -1$: determinanti diversi, quindi non simili (Proposizione 16.13).
 
-(c) Qui gli invarianti visti finora non aiutano: $\det D = 4 - 6 = -2 = \det A$, il rango è 2 per entrambe e anche la traccia è la stessa ($\tr A = 1 + 4 = 5$, $\tr D = 4 + 1 = 5$). Quindi possono essere simili, ma queste uguaglianze da sole non lo dimostrano. Nella lezione L17 vedrai che hanno lo stesso polinomio caratteristico $\lambda^2 - 5\lambda - 2$, con due radici reali distinte; nella lezione L18, che per questo sono entrambe simili alla stessa matrice diagonale, e quindi (per la transitività) simili fra loro.
+(c) Qui i controlli visti finora non aiutano: $\det D = 4 - 6 = -2 = \det A$, il rango è 2 per tutte e due, e anche la traccia è la stessa ($1 + 4 = 5$ e $4 + 1 = 5$). Quindi possono essere simili, ma queste uguaglianze da sole non lo dimostrano. Nella lezione L17 vedrai che hanno lo stesso polinomio caratteristico, $\lambda^2 - 5\lambda - 2$, con due radici reali diverse. Nella lezione L18 vedrai che per questo sono tutte e due simili alla stessa matrice diagonale, e quindi, per la proprietà transitiva, simili fra loro.
 :::
 
 ::: esercizio medio Una matrice con basi diverse in partenza e in arrivo (foglio 3 del tutorato, esercizio 3)
 Sia $T : \R^3 \to \R^3$, $T(x_1, x_2, x_3) = (3x_1 + x_2,\ x_1 + x_3,\ x_2 - x_3)$. Siano $\mathcal A$ la base canonica, $\mathcal B = \{(1, -1, 1), (0, 3, 1), (0, 2, 1)\}$ e $\mathcal C = \{(1, 2, 3), (0, 2, 1), (0, 1, 1)\}$. Trova $[T]^{\mathcal A}_{\mathcal A}$ e $[T]^{\mathcal B}_{\mathcal C}$.
 ::: soluzione
-$[T]^{\mathcal A}_{\mathcal A} = \begin{pmatrix} 3 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & -1 \end{pmatrix}$ dai coefficienti.
+Dai numeri davanti alle lettere: $[T]^{\mathcal A}_{\mathcal A} = \begin{pmatrix} 3 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & -1 \end{pmatrix}$.
 
-Per il Corollario 16.8: $[T]^{\mathcal B}_{\mathcal C} = [\id]^{\mathcal A}_{\mathcal C}\,[T]^{\mathcal A}_{\mathcal A}\,[\id]^{\mathcal B}_{\mathcal A}$. La base $\mathcal C$ è quella dell'Esercizio 16.3, quindi $[\id]^{\mathcal A}_{\mathcal C} = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & -1 \\ -4 & -1 & 2 \end{pmatrix}$ è già calcolata. Invece di moltiplicare tre matrici, conviene calcolare le immagini dei vettori di $\mathcal B$ e poi le loro coordinate rispetto a $\mathcal C$ con quella matrice:
-- $T(1, -1, 1) = (3 - 1,\ 1 + 1,\ -1 - 1) = (2, 2, -2)$, coordinate $[\id]^{\mathcal A}_{\mathcal C}(2, 2, -2) = (2,\ 2 + 2 + 2,\ -8 - 2 - 4) = (2, 6, -14)$;
-- $T(0, 3, 1) = (3, 1, 2)$, coordinate $(3,\ 3 + 1 - 2,\ -12 - 1 + 4) = (3, 2, -9)$;
-- $T(0, 2, 1) = (2, 1, 1)$, coordinate $(2,\ 2 + 1 - 1,\ -8 - 1 + 2) = (2, 2, -7)$.
+Per il Corollario 16.8: $[T]^{\mathcal B}_{\mathcal C} = [\id]^{\mathcal A}_{\mathcal C}\,[T]^{\mathcal A}_{\mathcal A}\,[\id]^{\mathcal B}_{\mathcal A}$. La base $\mathcal C$ è quella dell'Esercizio 16.3, quindi il traduttore $[\id]^{\mathcal A}_{\mathcal C} = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & -1 \\ -4 & -1 & 2 \end{pmatrix}$ è già pronto. Invece di moltiplicare tre matrici, conviene calcolare le uscite dei vettori di $\mathcal B$ e poi tradurle nella base $\mathcal C$:
+- $T(1, -1, 1) = (3 - 1,\ 1 + 1,\ -1 - 1) = (2, 2, -2)$, tradotto: $(2,\ 2 + 2 + 2,\ -8 - 2 - 4) = (2, 6, -14)$;
+- $T(0, 3, 1) = (3, 1, 2)$, tradotto: $(3,\ 3 + 1 - 2,\ -12 - 1 + 4) = (3, 2, -9)$;
+- $T(0, 2, 1) = (2, 1, 1)$, tradotto: $(2,\ 2 + 1 - 1,\ -8 - 1 + 2) = (2, 2, -7)$.
 
 $$[T]^{\mathcal B}_{\mathcal C} = \begin{pmatrix} 2 & 3 & 2 \\ 6 & 2 & 2 \\ -14 & -9 & -7 \end{pmatrix}.$$
 Controllo sulla prima colonna: $2(1, 2, 3) + 6(0, 2, 1) - 14(0, 1, 1) = (2,\ 4 + 12 - 14,\ 6 + 6 - 14) = (2, 2, -2)$.
-:::
-
-::: esercizio difficile Similitudine: equivalenza e traccia
-(a) Dimostra la Proposizione 16.12 (la similitudine è una relazione di equivalenza). (b) Dimostra che matrici simili hanno la stessa traccia. (c) Trova due matrici $2 \times 2$ con la stessa traccia e lo stesso determinante che non sono simili.
-::: soluzione
-(a) Riflessiva con $M = I_n$; simmetrica: da $A = M^{-1}BM$ segue $B = MAM^{-1} = (M^{-1})^{-1}A(M^{-1})$; transitiva: da $A = M^{-1}BM$ e $B = N^{-1}CN$ segue $A = (NM)^{-1}C(NM)$. I dettagli sono nel riquadro della dimostrazione, nella sezione sulle matrici simili.
-
-(b) Con $\tr(XY) = \tr(YX)$ (Proposizione 8.13), $X = M^{-1}$ e $Y = BM$: $\tr(M^{-1}BM) = \tr(BMM^{-1}) = \tr B$.
-
-(c) $I_2$ e $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$: traccia 2 e determinante 1 per entrambe, ma $I_2$ è simile solo a se stessa.
 :::
 
 ::: esercizio esame Come all'esame: due basi e un endomorfismo di $\R^3$
@@ -35578,20 +35889,20 @@ Sia $\mathcal A$ la base canonica di $\R^3$ e sia $\mathcal B = \{v_1, v_2, v_3\
 (3) Calcola $[T]^{\mathcal B}_{\mathcal B}$ con la formula del cambiamento di base.
 (4) Controlla il risultato calcolando $T(v_1)$, $T(v_2)$, $T(v_3)$, e verifica che $\det [T]^{\mathcal A}_{\mathcal A} = \det [T]^{\mathcal B}_{\mathcal B}$.
 ::: soluzione
-(1) $M = [\id]^{\mathcal B}_{\mathcal A} = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}$. Determinante lungo la prima riga: $1 \cdot (1 - 1) - 0 + 1 \cdot (0 - 1) = -1$. L'inversa (cofattori, divisi per $-1$):
+(1) $M = [\id]^{\mathcal B}_{\mathcal A} = \begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 1 \end{pmatrix}$. Determinante lungo la prima riga: $1 \cdot (1 - 1) - 0 + 1 \cdot (0 - 1) = -1$. L'inversa, con i cofattori divisi per $-1$:
 $$[\id]^{\mathcal A}_{\mathcal B} = M^{-1} = \begin{pmatrix} 0 & -1 & 1 \\ -1 & 0 & 1 \\ 1 & 1 & -1 \end{pmatrix}.$$
 Controllo: la prima riga di $M$ per le colonne di $M^{-1}$ dà $(0 + 0 + 1,\ -1 + 0 + 1,\ 1 + 0 - 1) = (1, 0, 0)$, e così via.
 
 (2) $A = [T]^{\mathcal A}_{\mathcal A} = \begin{pmatrix} 2 & 2 & -1 \\ 1 & 3 & -1 \\ 0 & 2 & 1 \end{pmatrix}$.
 
-(3) Prima $AM$: colonna per colonna, $A v_1 = (2 - 1,\ 1 - 1,\ 0 + 1) = (1, 0, 1)$, $A v_2 = (2 - 1,\ 3 - 1,\ 2 + 1) = (1, 2, 3)$, $A v_3 = (2 + 2 - 1,\ 1 + 3 - 1,\ 2 + 1) = (3, 3, 3)$. Poi $M^{-1}$ per ciascuna colonna:
+(3) Prima $AM$, colonna per colonna: $Av_1 = (2 - 1,\ 1 - 1,\ 0 + 1) = (1, 0, 1)$, $Av_2 = (2 - 1,\ 3 - 1,\ 2 + 1) = (1, 2, 3)$, $Av_3 = (2 + 2 - 1,\ 1 + 3 - 1,\ 2 + 1) = (3, 3, 3)$. Poi $M^{-1}$ per ciascuna colonna:
 - $M^{-1}(1, 0, 1) = (0 + 0 + 1,\ -1 + 0 + 1,\ 1 + 0 - 1) = (1, 0, 0)$;
 - $M^{-1}(1, 2, 3) = (0 - 2 + 3,\ -1 + 0 + 3,\ 1 + 2 - 3) = (1, 2, 0)$;
 - $M^{-1}(3, 3, 3) = (0 - 3 + 3,\ -3 + 0 + 3,\ 3 + 3 - 3) = (0, 0, 3)$.
 
 $$[T]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{pmatrix}.$$
 
-(4) $T(v_1) = (1, 0, 1) = v_1$; $T(v_2) = (1, 2, 3) = v_1 + 2v_2$ (infatti $(1, 0, 1) + (0, 2, 2) = (1, 2, 3)$); $T(v_3) = (3, 3, 3) = 3v_3$. Le coordinate $(1, 0, 0)$, $(1, 2, 0)$, $(0, 0, 3)$ sono le colonne trovate. Determinanti: $\det [T]^{\mathcal B}_{\mathcal B} = 1 \cdot 2 \cdot 3 = 6$ (matrice triangolare) e $\det A = 2(3 + 2) - 2(1 - 0) + (-1)(2 - 0) = 10 - 2 - 2 = 6$. Uguali, come vuole la Proposizione 16.13.
+(4) $T(v_1) = (1, 0, 1) = v_1$; $T(v_2) = (1, 2, 3) = v_1 + 2v_2$, infatti $(1, 0, 1) + (0, 2, 2) = (1, 2, 3)$; $T(v_3) = (3, 3, 3) = 3v_3$. Le coordinate $(1, 0, 0)$, $(1, 2, 0)$, $(0, 0, 3)$ sono le colonne trovate. Determinanti: quello di $[T]^{\mathcal B}_{\mathcal B}$ è $1 \cdot 2 \cdot 3 = 6$ (triangolare), e $\det A = 2(3 + 2) - 2(1 - 0) + (-1)(2 - 0) = 10 - 2 - 2 = 6$. Uguali, come vuole la Proposizione 16.13.
 :::
 
 ::: esercizio esame Come all'esame: la traslazione dei polinomi
@@ -35600,52 +35911,62 @@ Sia $f : \R_2[x] \to \R_2[x]$, $f(p)(x) = p(x + 1)$ (per esempio $f(x^2) = (x + 
 (2) Mostra che $f$ è un isomorfismo e scrivi la matrice di $f^{-1}$; quanto vale $f^{-1}(x^2)$?
 (3) Scrivi la matrice di $f \circ f$ e spiega il risultato.
 ::: soluzione
-(1) Linearità: $f(p + q)(x) = (p + q)(x + 1) = p(x + 1) + q(x + 1)$ e $f(\lambda p)(x) = \lambda p(x + 1)$. Immagini della base: $f(1) = 1$, $f(x) = x + 1$, $f(x^2) = x^2 + 2x + 1$, con coordinate $(1, 0, 0)$, $(1, 1, 0)$, $(1, 2, 1)$:
+(1) Linearità: $f(p + q)(x) = (p + q)(x + 1) = p(x + 1) + q(x + 1)$ e $f(\lambda p)(x) = \lambda p(x + 1)$. Le uscite della base: $f(1) = 1$, $f(x) = x + 1$, $f(x^2) = x^2 + 2x + 1$, con coordinate $(1, 0, 0)$, $(1, 1, 0)$, $(1, 2, 1)$:
 $$[f]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{pmatrix}.$$
 
-(2) La matrice è triangolare con determinante $1 \cdot 1 \cdot 1 = 1 \neq 0$, quindi $f$ è un isomorfismo (Corollario 16.7). L'inversa è la traslazione all'indietro $p(x) \mapsto p(x - 1)$: $1 \mapsto 1$, $x \mapsto x - 1$, $x^2 \mapsto x^2 - 2x + 1$, quindi
+(2) La matrice è triangolare con determinante $1 \cdot 1 \cdot 1 = 1$: non è zero, quindi $f$ è un isomorfismo (Corollario 16.7). L'inversa è lo spostamento all'indietro, $p(x) \mapsto p(x - 1)$: $1$ va in $1$, $x$ va in $x - 1$, $x^2$ va in $x^2 - 2x + 1$. Quindi
 $$[f^{-1}]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 1 & -1 & 1 \\ 0 & 1 & -2 \\ 0 & 0 & 1 \end{pmatrix},$$
-e si controlla che il prodotto con $[f]$ è $I_3$. Allora $[f^{-1}(x^2)] = [f^{-1}](0, 0, 1) = (1, -2, 1)$, cioè $f^{-1}(x^2) = 1 - 2x + x^2 = (x - 1)^2$.
+e il prodotto con $[f]$ è $I_3$. Allora le coordinate di $f^{-1}(x^2)$ sono $[f^{-1}](0, 0, 1) = (1, -2, 1)$, cioè $f^{-1}(x^2) = 1 - 2x + x^2 = (x - 1)^2$.
 
-(3) $[f \circ f] = [f]^2 = \begin{pmatrix} 1 & 2 & 4 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{pmatrix}$. Traslare due volte di 1 è traslare di 2: $f(f(p))(x) = p(x + 2)$, e infatti $(x + 2)^2 = 4 + 4x + x^2$ ha coordinate $(4, 4, 1)$, la terza colonna.
+(3) $[f \circ f] = [f]^2 = \begin{pmatrix} 1 & 2 & 4 \\ 0 & 1 & 4 \\ 0 & 0 & 1 \end{pmatrix}$. Spostare due volte di 1 è spostare di 2: $f(f(p))(x) = p(x + 2)$. Infatti $(x + 2)^2 = 4 + 4x + x^2$ ha coordinate $(4, 4, 1)$, la terza colonna.
+:::
+
+::: esercizio difficile Similitudine: equivalenza e traccia
+(a) Dimostra la Proposizione 16.12 (la similitudine è una relazione di equivalenza). (b) Dimostra che matrici simili hanno la stessa traccia. (c) Trova due matrici $2 \times 2$ con la stessa traccia e lo stesso determinante che non sono simili.
+::: soluzione
+(a) Riflessiva con $M = I_n$. Simmetrica: da $A = M^{-1}BM$ viene $B = MAM^{-1}$, cioè $B = N^{-1}AN$ con $N = M^{-1}$. Transitiva: da $A = M^{-1}BM$ e $B = N^{-1}CN$ viene $A = (NM)^{-1}C(NM)$. I dettagli sono nel riquadro della dimostrazione, nella sezione sulle matrici simili.
+
+(b) Con la regola $\tr(XY) = \tr(YX)$ (Proposizione 8.13), $X = M^{-1}$ e $Y = BM$: $\tr(M^{-1}BM) = \tr(BMM^{-1}) = \tr B$.
+
+(c) $I_2$ e $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$: traccia 2 e determinante 1 per tutte e due, ma $I_2$ è simile solo a sé stessa.
 :::
 
 ## Domande di ripasso
 
 ::: domanda Che cos'è la matrice di cambiamento di base da $\mathcal B$ a $\mathcal C$, e com'è fatta?
-È $[\id]^{\mathcal B}_{\mathcal C}$, la matrice dell'identità con $\mathcal B$ in partenza e $\mathcal C$ in arrivo. La colonna $j$ contiene le coordinate del $j$-esimo vettore di $\mathcal B$ rispetto a $\mathcal C$.
+È $[\id]^{\mathcal B}_{\mathcal C}$, la matrice della macchina identità con $\mathcal B$ in partenza e $\mathcal C$ in arrivo: il traduttore. La colonna $j$ contiene le coordinate del vettore $j$ di $\mathcal B$ rispetto a $\mathcal C$.
 :::
 
 ::: domanda A che cosa serve? Scrivi la formula.
-A tradurre le coordinate: $[v]_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[v]_{\mathcal B}$ (Proposizione 16.2). Per la direzione opposta si usa l'inversa, $[\id]^{\mathcal C}_{\mathcal B}$.
+A tradurre le coordinate: $[v]_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[v]_{\mathcal B}$ (Proposizione 16.2). Per il verso opposto si usa l'inversa, $[\id]^{\mathcal C}_{\mathcal B}$.
 :::
 
-::: domanda Come si scrive in fretta $[\id]^{\mathcal B}_{\mathcal C}$ se $\mathcal C$ è la base canonica di $\K^n$?
-Mettendo in colonna i vettori di $\mathcal B$, nell'ordine: le coordinate rispetto alla base canonica sono le componenti.
+::: domanda Come si scrive in fretta il traduttore se la base di arrivo è quella canonica?
+Mettendo in colonna i vettori della base di partenza, nell'ordine: nella base canonica le coordinate sono i numeri del vettore.
 :::
 
-::: domanda Perché la composizione di applicazioni lineari è lineare?
+::: domanda Perché la composizione di macchine lineari è lineare?
 Perché $(g \circ f)(v + v') = g(f(v) + f(v')) = g(f(v)) + g(f(v'))$ e $(g \circ f)(\lambda v) = g(\lambda f(v)) = \lambda g(f(v))$: si usa prima la linearità di $f$, poi quella di $g$.
 :::
 
 ::: domanda Qual è la matrice di una composizione?
-$[g \circ f]^{\mathcal B}_{\mathcal D} = [g]^{\mathcal C}_{\mathcal D}[f]^{\mathcal B}_{\mathcal C}$ (Proposizione 16.6): la matrice di $f$, che agisce per prima, sta a destra; la base $\mathcal C$ dello spazio in mezzo è la stessa nei due fattori. Per le $L_A$: $L_A \circ L_B = L_{AB}$.
+Il prodotto delle due matrici, con la macchina che agisce per prima a destra: $[g \circ f]^{\mathcal B}_{\mathcal D} = [g]^{\mathcal C}_{\mathcal D}[f]^{\mathcal B}_{\mathcal C}$ (Proposizione 16.6). La base dello spazio in mezzo è la stessa nei due fattori. Per le macchine delle matrici: $L_A \circ L_B = L_{AB}$.
 :::
 
 ::: domanda Come si riconosce un isomorfismo dalla matrice, e qual è la matrice dell'inversa?
-$f$ è un isomorfismo se e solo se $[f]^{\mathcal B}_{\mathcal C}$ è invertibile (quadrata con determinante non nullo), e allora $[f^{-1}]^{\mathcal C}_{\mathcal B} = \big([f]^{\mathcal B}_{\mathcal C}\big)^{-1}$ (Corollario 16.7).
+È un isomorfismo esattamente quando la sua matrice è invertibile: quadrata, con determinante diverso da zero. La matrice della macchina inversa è la matrice inversa (Corollario 16.7).
 :::
 
-::: domanda Come si passa da $[f]^{\mathcal B_1}_{\mathcal C_1}$ a $[f]^{\mathcal B_2}_{\mathcal C_2}$?
-Moltiplicando a sinistra e a destra per matrici di cambiamento di base: $[f]^{\mathcal B_2}_{\mathcal C_2} = [\id_W]^{\mathcal C_1}_{\mathcal C_2}[f]^{\mathcal B_1}_{\mathcal C_1}[\id_V]^{\mathcal B_2}_{\mathcal B_1}$ (Corollario 16.8).
+::: domanda Come si passa dalla matrice in certe basi alla matrice in altre basi?
+Moltiplicando a sinistra e a destra per due traduttori: $[f]^{\mathcal B_2}_{\mathcal C_2} = [\id_W]^{\mathcal C_1}_{\mathcal C_2}[f]^{\mathcal B_1}_{\mathcal C_1}[\id_V]^{\mathcal B_2}_{\mathcal B_1}$ (Corollario 16.8).
 :::
 
 ::: domanda Che cos'è un endomorfismo? Come cambia la sua matrice con la base?
-Un'applicazione lineare $f : V \to V$. Con la stessa base in partenza e in arrivo, se $M = [\id]^{\mathcal B}_{\mathcal C}$ allora $[f]^{\mathcal B}_{\mathcal B} = M^{-1}[f]^{\mathcal C}_{\mathcal C}M$.
+Una macchina lineare che parte e arriva nello stesso spazio. Con la stessa base in partenza e in arrivo, se $M = [\id]^{\mathcal B}_{\mathcal C}$ allora $[f]^{\mathcal B}_{\mathcal B} = M^{-1}[f]^{\mathcal C}_{\mathcal C}M$.
 :::
 
-::: domanda Quando due matrici si dicono simili, e che cosa significa?
-$A \sim B$ se $A = M^{-1}BM$ per qualche $M$ invertibile. Significa che $A$ e $B$ rappresentano lo stesso endomorfismo in due basi diverse.
+::: domanda Quando due matrici sono simili, e che cosa significa?
+Quando $A = M^{-1}BM$ per qualche $M$ invertibile. Significa che $A$ e $B$ descrivono la stessa macchina in due basi diverse.
 :::
 
 ::: domanda Perché la similitudine è una relazione di equivalenza?
@@ -35653,53 +35974,54 @@ Riflessiva con $M = I_n$; simmetrica perché $A = M^{-1}BM$ dà $B = MAM^{-1}$; 
 :::
 
 ::: domanda Che cosa hanno in comune due matrici simili?
-Rango e determinante (Proposizione 16.13), quindi sono entrambe invertibili o entrambe non invertibili. Anche la traccia, e dalla lezione L17 il polinomio caratteristico.
+Rango e determinante (Proposizione 16.13), quindi sono tutte e due invertibili o tutte e due no. Anche la traccia, e dalla lezione L17 il polinomio caratteristico.
 :::
 
 ::: domanda Due matrici con lo stesso determinante e lo stesso rango sono simili?
-Non necessariamente: $I_2$ e $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ hanno rango 2 e determinante 1, ma $I_2$ è simile solo a se stessa.
+Non per forza: $I_2$ e $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ hanno rango 2 e determinante 1, ma $I_2$ è simile solo a sé stessa.
 :::
 
 ## Glossario
 
 ```glossario
-Matrice di cambiamento di base | $[\id]^{\mathcal B}_{\mathcal C}$: la colonna $j$ è $[v_j]_{\mathcal C}$; trasforma coordinate rispetto a $\mathcal B$ in coordinate rispetto a $\mathcal C$ (Definizione 16.1).
-Cambiamento di base inverso | $[\id]^{\mathcal C}_{\mathcal B} = \big([\id]^{\mathcal B}_{\mathcal C}\big)^{-1}$.
-Composizione | $g \circ f$: prima $f$, poi $g$; è lineare se lo sono $f$ e $g$ (Proposizione 16.4).
-Matrice della composizione | $[g \circ f]^{\mathcal B}_{\mathcal D} = [g]^{\mathcal C}_{\mathcal D}[f]^{\mathcal B}_{\mathcal C}$; per le $L_A$, $L_A \circ L_B = L_{AB}$.
-Associatività | $A(BC) = (AB)C$: è il motivo per cui $L_A(L_B(x)) = L_{AB}(x)$.
-Isomorfismo e matrice invertibile | $f$ è un isomorfismo se e solo se $[f]^{\mathcal B}_{\mathcal C}$ è invertibile; allora $[f^{-1}]^{\mathcal C}_{\mathcal B} = [f]^{-1}$ (Corollario 16.7).
-Formula del cambiamento di base | $[f]^{\mathcal B_2}_{\mathcal C_2} = [\id_W]^{\mathcal C_1}_{\mathcal C_2}[f]^{\mathcal B_1}_{\mathcal C_1}[\id_V]^{\mathcal B_2}_{\mathcal B_1}$ (Corollario 16.8).
-Endomorfismo | Applicazione lineare da uno spazio in se stesso, $f : V \to V$ (Definizione 16.9).
+Matrice di cambiamento di base | $[\id]^{\mathcal B}_{\mathcal C}$: il traduttore delle coordinate da $\mathcal B$ a $\mathcal C$; la colonna $j$ è $[v_j]_{\mathcal C}$ (Definizione 16.1).
+Cambiamento di base inverso | $[\id]^{\mathcal C}_{\mathcal B}$, l'inversa del traduttore: traduce nel verso opposto.
+Composizione | $g \circ f$: prima agisce $f$, poi $g$; è lineare se lo sono $f$ e $g$ (Proposizione 16.4).
+Matrice della composizione | Il prodotto delle matrici, con la prima macchina a destra: $[g \circ f] = [g][f]$; per le $L_A$, $L_A \circ L_B = L_{AB}$.
+Associatività | La regola delle parentesi $A(BC) = (AB)C$: è il motivo per cui $L_A(L_B(x)) = L_{AB}(x)$.
+Isomorfismo e matrice invertibile | Una macchina è un isomorfismo esattamente quando la sua matrice è invertibile; la matrice dell'inversa è la matrice inversa (Corollario 16.7).
+Formula del cambiamento di base | Traduttore a sinistra, matrice, traduttore a destra (Corollario 16.8).
+Endomorfismo | Una macchina lineare che parte e arriva nello stesso spazio (Definizione 16.9).
 Matrice di un endomorfismo | $[f]^{\mathcal B}_{\mathcal B}$, con la stessa base in partenza e in arrivo.
-Matrici simili (coniugate) | $A \sim B$ se $A = M^{-1}BM$ con $M$ invertibile (Definizione 16.11).
-Relazione di equivalenza | Relazione riflessiva, simmetrica e transitiva; la similitudine lo è (Proposizione 16.12).
-Invarianti per similitudine | Quantità uguali per matrici simili: rango, determinante, traccia (e il polinomio caratteristico, lezione L17).
-Teorema di Binet | $\det(AB) = \det A \det B$ (lezione L10); dà $\det(M^{-1}BM) = \det B$.
-Inversa di una $2 \times 2$ | $\begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$ se $ad - bc \neq 0$.
+Matrici simili (coniugate) | $A = M^{-1}BM$ con $M$ invertibile: la stessa macchina in due basi (Definizione 16.11).
+Relazione di equivalenza | Una parentela riflessiva, simmetrica e transitiva; la similitudine lo è (Proposizione 16.12).
+Invarianti per similitudine | Numeri uguali per matrici simili: rango, determinante, traccia (e il polinomio caratteristico, lezione L17).
+Teorema di Binet | Il determinante di un prodotto è il prodotto dei determinanti (lezione L10); da qui $\det(M^{-1}BM) = \det B$.
+Inversa di una $2 \times 2$ | Scambia la diagonale, cambia segno agli altri due, dividi per $ad - bc$, se non è zero.
 ```
 
 ## Checklist
 
 ```checklist
-- So scrivere la matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal C}$ e so in quale direzione trasforma le coordinate.
-- So scrivere in un attimo $[\id]^{\mathcal B}_{\mathcal E}$ quando $\mathcal E$ è la base canonica, e so ottenere $[\id]^{\mathcal E}_{\mathcal B}$ con l'inversa.
+- So scrivere la matrice di cambiamento di base e so in quale verso traduce le coordinate.
+- So scrivere in un attimo il traduttore verso la base canonica, e ottenere quello nel verso opposto con l'inversa.
 - So passare da una base non canonica a un'altra, risolvendo sistemi oppure passando dalla base canonica.
-- So spiegare perché la composizione di applicazioni lineari è lineare e perché $L_A \circ L_B = L_{AB}$.
-- So calcolare la matrice di una composizione con $[g \circ f] = [g][f]$, nell'ordine giusto e con le taglie giuste.
+- So spiegare perché due macchine lineari in fila danno una macchina lineare e perché $L_A \circ L_B = L_{AB}$.
+- So calcolare la matrice di una composizione nell'ordine giusto e con le taglie giuste.
 - So riconoscere un isomorfismo dalla matrice e scrivere la matrice dell'inversa.
-- So usare la formula $[f]^{\mathcal B_2}_{\mathcal C_2} = [\id]^{\mathcal C_1}_{\mathcal C_2}[f]^{\mathcal B_1}_{\mathcal C_1}[\id]^{\mathcal B_2}_{\mathcal B_1}$.
-- So calcolare $[f]^{\mathcal B}_{\mathcal B} = M^{-1}[f]^{\mathcal C}_{\mathcal C}M$ per un endomorfismo e controllare il risultato con $f(v_j)$.
+- So usare la formula «traduttore, matrice, traduttore» per cambiare le basi di una macchina.
+- So calcolare $M^{-1}AM$ per un endomorfismo e controllare il risultato con le uscite dei vettori della base.
 - So la definizione di matrici simili e perché la similitudine è una relazione di equivalenza.
-- So che matrici simili hanno stesso rango, determinante e traccia, e che il viceversa è falso.
+- So che matrici simili hanno stesso rango, determinante e traccia, e che il contrario è falso.
 ```
 
 ## Fonti
 
-- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 16 «Applicazioni lineari III», pp. 79–84: le sezioni 16.A (matrice di cambiamento di base), 16.B (composizione), 16.C (endomorfismi e similitudine) sono seguite in ordine, con la pagina accanto a ogni titolo; definizioni, proposizioni ed esempi mantengono la loro numerazione (Definizioni 16.1, 16.9, 16.11; Proposizioni 16.2, 16.4–16.6, 16.12, 16.13; Corollari 16.7 e 16.8; Esempio 16.10); l'Esercizio 16.3, risolto nel testo delle dispense, è riportato come esempio, e l'Esercizio 16.14 della sezione 16.D è svolto negli esercizi.
+- **Dispense 2026 del corso** (Buzano, Radeschi), lezione 16 «Applicazioni lineari III», pp. 79–84: le sezioni 16.A (matrice di cambiamento di base), 16.B (composizione), 16.C (endomorfismi e similitudine) sono seguite in ordine, con la pagina accanto a ogni titolo; definizioni, proposizioni ed esempi mantengono la loro numerazione (Definizioni 16.1, 16.9, 16.11; Proposizioni 16.2, 16.4–16.6, 16.12, 16.13; Corollari 16.7 e 16.8; Esempio 16.10); l'Esercizio 16.3, risolto nel testo delle dispense, è riportato come esempio, e l'Esercizio 16.14 della sezione 16.D è svolto come esercizio 7.
 - **B. Martelli, *Geometria e algebra lineare***, testo di riferimento del corso, gratuito online: [people.dm.unipi.it/martelli](https://people.dm.unipi.it/martelli/Alg%20Lin.pdf). Qui: §4.2.4 (composizione), §4.3.3 e §4.3.5 (proprietà della matrice associata, cambiamento di base, Esempi 4.3.14–4.3.15), §4.4.1–4.4.3 (endomorfismi e similitudine, con la dimostrazione della Proposizione 16.12 e l'Esempio 4.4.2 della riflessione), §4.4.5 (traccia).
 - **Esame**: appelli del 24/01/2024 (domanda 3), 08/02/2024 (domanda 5), 10/06/2024 (domanda 8), 10/07/2024 (problema 11), 06/09/2024 (domanda 5), 16/01/2025 (domanda 5), 03/06/2025 (domanda 5), 10/07/2025 (domanda 6), 02/09/2025 (domanda 8), 15/01/2026 (domande 8 e 10), 03/07/2026 (domanda 5), 07/09/2026 (problema 11); foglio 3 del tutorato 2025/26 (esercizi 1, 2, 3 e 5). Testi e soluzioni ufficiali sul Moodle 2025/26 ([id 3503](https://informatica.i-learn.unito.it/course/view.php?id=3503)); le soluzioni riportate qui sono scritte da capo.
 - Le parti **«Oltre le dispense»** (la dimostrazione della Proposizione 16.4, quella della 16.12 dal libro, la traccia come invariante, gli esempi e gli esercizi aggiunti) servono a collegare la lezione al resto del corso e all'esame.
+- Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Prova tu» e gli esercizi di riscaldamento sono di questi appunti.
 
 
 ---

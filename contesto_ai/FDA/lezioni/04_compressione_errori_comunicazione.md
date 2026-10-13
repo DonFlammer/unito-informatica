@@ -1,6 +1,7 @@
 ---
 corso: FDA
 lezione: "04"
+data: 2026-10-08
 titolo: Comprimere i dati ed errori di comunicazione
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 04 · Libro, parte 1, §1.9–1.10
@@ -37,7 +38,7 @@ genera_html: true
 - All'esame la distanza di Hamming è già uscita nelle simulazioni; della compressione servono le idee e i piccoli conti delle domande del libro.
 
 > [!CANALI]
-> Nel canale B è la lezione prevista per giovedì 08/10, ore 9–11: quando ho scritto questi appunti non si era ancora svolta, quindi seguono il libro. Per il docente è la lezione 5, perché la prima è stata un'introduzione: qui è la 04. Il diario del canale B la annuncia così: «(Part 1, § 1.10 Communication Errors) Data Compression LZW, JPEG, MPEG, GIF. Communication Errors, parity bit e bytes, error-correcting codes, distanza di Hamming». La compressione è la sezione 1.9 del libro, gli errori di comunicazione sono la 1.10: qui ci sono tutte e due, nell'ordine del libro. La sezione 1.8, sul linguaggio Python, nel canale B è omessa. Nel canale A Felice Cardone usa lo stesso libro: i suoi lucidi «Cenni sulla codifica dei dati» (Moodle del canale A, id 3851, aperto agli ospiti) citano il codice Morse, ma compressione e codici correttori si studiano sul libro, e sullo stesso Moodle ci sono le risposte alle domande del §1.9 e del §1.10. Nel canale C le stesse sezioni sono nei lucidi del docente.
+> Nel canale B è la lezione di giovedì 08/10, ore 9–11. Ho scritto questi appunti prima della lezione, sul libro. Per il docente è la lezione 5, perché la prima è stata un'introduzione: qui è la 04. Il diario del canale B la annuncia così: «(Part 1, § 1.10 Communication Errors) Data Compression LZW, JPEG, MPEG, GIF. Communication Errors, parity bit e bytes, error-correcting codes, distanza di Hamming». La compressione è la sezione 1.9 del libro, gli errori di comunicazione sono la 1.10: qui ci sono tutte e due, nell'ordine del libro. La sezione 1.8, sul linguaggio Python, nel canale B è omessa. Nel canale A Felice Cardone usa lo stesso libro: i suoi lucidi «Cenni sulla codifica dei dati» (Moodle del canale A, id 3851, aperto agli ospiti) citano il codice Morse, ma compressione e codici correttori si studiano sul libro, e sullo stesso Moodle ci sono le risposte alle domande del §1.9 e del §1.10. Nel canale C le stesse sezioni sono nei lucidi del docente.
 
 ## Perché comprimere (libro, §1.9)
 

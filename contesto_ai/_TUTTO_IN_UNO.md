@@ -8409,8 +8409,8 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - gio 01/10: parte 1, §1.1 "Bits and Their Storage" (flip-flop, notazione esadecimale), poi memoria centrale e memorie di massa (§1.2–1.3). Negli appunti è la lezione 01.
 - ven 02/10: parte 1, §1.4 "Representing Information as Bit Patterns" e §1.5 "The Binary System": alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno. Negli appunti è la lezione 02.
 - lun 05/10: parte 1, §1.6 "Storing Integers" (interi con il segno in complemento a 2, notazione in eccesso, cambio di segno e addizione in complemento a 2) e §1.7 "Storing Fractions" (virgola mobile); omessa la §1.8 su Python. Negli appunti è la lezione 03.
-- gio 08/10 (prevista): parte 1, §1.9 e §1.10: compressione dei dati (LZW, JPEG, MPEG, GIF), errori di comunicazione, bit e byte di parità, codici a correzione d'errore, distanza di Hamming. Negli appunti è la lezione 04, scritta prima della lezione sul libro.
-- ven 09/10 (prevista): fine della parte 1, esercizi sulle lezioni del docente 01–05, circuiti e rappresentazioni binarie. Negli appunti è la lezione 05, scritta prima della lezione.
+- gio 08/10: parte 1, §1.9 e §1.10: compressione dei dati (LZW, JPEG, MPEG, GIF), errori di comunicazione, bit e byte di parità, codici a correzione d'errore, distanza di Hamming. Negli appunti è la lezione 04, scritta sul libro.
+- ven 09/10: fine della parte 1, esercizi sulle lezioni del docente 01–05, circuiti e rappresentazioni binarie. Negli appunti è la lezione 05.
 - lun 12/10: inizio della parte 2 del libro (Johnsonbaugh), §1.2 «Logica proposizionale»: proposizioni, connettivi, tavole di verità. Posposto il §1.1 sugli insiemi. Negli appunti è la lezione 06.
 - gio 15/10 (prevista): §1.3, proposizioni condizionali ed equivalenza logica. Negli appunti è la lezione 07, scritta prima della lezione.
 - ven 16/10 (prevista): §1.4, regole di inferenza per le proposizioni, ed esercizi. Negli appunti è la lezione 08, scritta prima della lezione.
@@ -11622,6 +11622,7 @@ IEEE 754 | Lo standard della virgola mobile nei computer veri: 32 bit (`float`) 
 ```yaml
 corso: FDA
 lezione: "04"
+data: 2026-10-08
 titolo: Comprimere i dati ed errori di comunicazione
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 04 · Libro, parte 1, §1.9–1.10
@@ -11658,7 +11659,7 @@ genera_html: true
 - All'esame la distanza di Hamming è già uscita nelle simulazioni; della compressione servono le idee e i piccoli conti delle domande del libro.
 
 > [!CANALI]
-> Nel canale B è la lezione prevista per giovedì 08/10, ore 9–11: quando ho scritto questi appunti non si era ancora svolta, quindi seguono il libro. Per il docente è la lezione 5, perché la prima è stata un'introduzione: qui è la 04. Il diario del canale B la annuncia così: «(Part 1, § 1.10 Communication Errors) Data Compression LZW, JPEG, MPEG, GIF. Communication Errors, parity bit e bytes, error-correcting codes, distanza di Hamming». La compressione è la sezione 1.9 del libro, gli errori di comunicazione sono la 1.10: qui ci sono tutte e due, nell'ordine del libro. La sezione 1.8, sul linguaggio Python, nel canale B è omessa. Nel canale A Felice Cardone usa lo stesso libro: i suoi lucidi «Cenni sulla codifica dei dati» (Moodle del canale A, id 3851, aperto agli ospiti) citano il codice Morse, ma compressione e codici correttori si studiano sul libro, e sullo stesso Moodle ci sono le risposte alle domande del §1.9 e del §1.10. Nel canale C le stesse sezioni sono nei lucidi del docente.
+> Nel canale B è la lezione di giovedì 08/10, ore 9–11. Ho scritto questi appunti prima della lezione, sul libro. Per il docente è la lezione 5, perché la prima è stata un'introduzione: qui è la 04. Il diario del canale B la annuncia così: «(Part 1, § 1.10 Communication Errors) Data Compression LZW, JPEG, MPEG, GIF. Communication Errors, parity bit e bytes, error-correcting codes, distanza di Hamming». La compressione è la sezione 1.9 del libro, gli errori di comunicazione sono la 1.10: qui ci sono tutte e due, nell'ordine del libro. La sezione 1.8, sul linguaggio Python, nel canale B è omessa. Nel canale A Felice Cardone usa lo stesso libro: i suoi lucidi «Cenni sulla codifica dei dati» (Moodle del canale A, id 3851, aperto agli ospiti) citano il codice Morse, ma compressione e codici correttori si studiano sul libro, e sullo stesso Moodle ci sono le risposte alle domande del §1.9 e del §1.10. Nel canale C le stesse sezioni sono nei lucidi del docente.
 
 ## Perché comprimere (libro, §1.9)
 
@@ -12805,6 +12806,7 @@ Codice correttore | Un codice le cui parole sono lontane tra loro, così un erro
 ```yaml
 corso: FDA
 lezione: "05"
+data: 2026-10-09
 titolo: Esercizi sulla parte 1, circuiti e rappresentazioni binarie
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 05 · Libro, parte 1, §1.1–1.7 e §1.9–1.10 (esercizi)

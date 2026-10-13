@@ -1,6 +1,7 @@
 ---
 corso: FDA
 lezione: "05"
+data: 2026-10-09
 titolo: Esercizi sulla parte 1, circuiti e rappresentazioni binarie
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 05 · Libro, parte 1, §1.1–1.7 e §1.9–1.10 (esercizi)

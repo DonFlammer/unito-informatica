@@ -90,8 +90,8 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - gio 01/10: parte 1, §1.1 "Bits and Their Storage" (flip-flop, notazione esadecimale), poi memoria centrale e memorie di massa (§1.2–1.3). Negli appunti è la lezione 01.
 - ven 02/10: parte 1, §1.4 "Representing Information as Bit Patterns" e §1.5 "The Binary System": alfabeti ASCII e UTF-8, colori e suoni, conversioni tra binario e decimale, frazioni binarie, addizione di interi senza segno. Negli appunti è la lezione 02.
 - lun 05/10: parte 1, §1.6 "Storing Integers" (interi con il segno in complemento a 2, notazione in eccesso, cambio di segno e addizione in complemento a 2) e §1.7 "Storing Fractions" (virgola mobile); omessa la §1.8 su Python. Negli appunti è la lezione 03.
-- gio 08/10 (prevista): parte 1, §1.9 e §1.10: compressione dei dati (LZW, JPEG, MPEG, GIF), errori di comunicazione, bit e byte di parità, codici a correzione d'errore, distanza di Hamming. Negli appunti è la lezione 04, scritta prima della lezione sul libro.
-- ven 09/10 (prevista): fine della parte 1, esercizi sulle lezioni del docente 01–05, circuiti e rappresentazioni binarie. Negli appunti è la lezione 05, scritta prima della lezione.
+- gio 08/10: parte 1, §1.9 e §1.10: compressione dei dati (LZW, JPEG, MPEG, GIF), errori di comunicazione, bit e byte di parità, codici a correzione d'errore, distanza di Hamming. Negli appunti è la lezione 04, scritta sul libro.
+- ven 09/10: fine della parte 1, esercizi sulle lezioni del docente 01–05, circuiti e rappresentazioni binarie. Negli appunti è la lezione 05.
 - lun 12/10: inizio della parte 2 del libro (Johnsonbaugh), §1.2 «Logica proposizionale»: proposizioni, connettivi, tavole di verità. Posposto il §1.1 sugli insiemi. Negli appunti è la lezione 06.
 - gio 15/10 (prevista): §1.3, proposizioni condizionali ed equivalenza logica. Negli appunti è la lezione 07, scritta prima della lezione.
 - ven 16/10 (prevista): §1.4, regole di inferenza per le proposizioni, ed esercizi. Negli appunti è la lezione 08, scritta prima della lezione.

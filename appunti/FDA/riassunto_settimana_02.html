@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S2 · Settimana 2: numeri con il segno e con la virgola, compressione, errori, esercizi sulla parte 1</title>
+<meta name="lezione" content="S2">
+<meta name="data" content="2026-10-09">
+<meta name="tipo" content="riassunto">
+<meta name="description" content="Riassunto della settimana 2 di Fondamenti dell'Informatica (canale B, libro parte 1, §1.6–1.7 e §1.9–1.10): complemento a 2, cambio di segno, somme e overflow, notazione in eccesso, virgola mobile a 8 bit e troncamento, compressione con e senza perdita, run-length, Huffman, codifica relativa, LZW, GIF, JPEG, MP3, MPEG, bit di parità, distanza di Hamming, e il piano per i quiz della parte 1.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/FDA/riassunti/settimana_02.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#03-numeri-negativi-e-virgola-mobile-lun-05-10"><span class="n">§1</span><span>03 · Numeri negativi e virgola mobile (lun 05/10)</span></a></li>
+<li><a href="#04-compressione-ed-errori-gio-08-10"><span class="n">§2</span><span>04 · Compressione ed errori (gio 08/10)</span></a></li>
+<li><a href="#05-esercizi-sulla-parte-1-ven-09-10"><span class="n">§3</span><span>05 · Esercizi sulla parte 1 (ven 09/10)</span></a></li>
+<li><a href="#esame"><span class="n">§4</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#domande"><span class="n">§5</span><span>Domande di ripasso</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Fondamenti dell'Informatica</a> › Riassunto settimanale</nav>
+      <p class="eyebrow">Riassunto settimanale · Fondamenti dell&#39;Informatica · Canale B · 05/10 – 09/10/2026</p>
+      <h1>Settimana 2: numeri con il segno e con la virgola, compressione, errori, esercizi sulla parte 1</h1>
+      <p class="lede">Le tre lezioni della settimana in poche pagine: i metodi di conversione da sapere a memoria, le idee della compressione, i codici che scoprono gli errori, e come affrontare i quiz della parte 1, che finisce qui.</p>
+      <dl class="meta"><div><dt>Lezioni</dt><dd><a href="03_interi_con_segno_virgola_mobile.html">03</a> lun 05/10, §1.6–1.7 · <a href="04_compressione_errori_comunicazione.html">04</a> gio 08/10, §1.9–1.10 · <a href="05_esercizi_circuiti_rappresentazioni.html">05</a> ven 09/10, esercizi</dd></div><div><dt>Tempo di ripasso</dt><dd>40–50 minuti</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre il libro</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:540px">
+<h2 id="tldr-title">La settimana in 6 punti</h2>
+<ul>
+<li>I numeri <strong>negativi</strong> si scrivono in <strong>complemento a 2</strong>: la moneta più a sinistra vale con il segno meno, −128 con 8 bit. Con 8 bit si va da −128 a 127.</li>
+<li>Nella <strong>notazione in eccesso</strong> si legge il numero senza segno e si toglie sempre lo stesso valore: 8 con 4 bit, 4 con 3 bit.</li>
+<li>Nel formato del libro un numero con la virgola sta in un byte: <strong>segno</strong>, <strong>esponente</strong> di 3 bit in eccesso 4, <strong>mantissa</strong> di 4 bit. Le cifre che non ci stanno si perdono: è il <strong>troncamento</strong>.</li>
+<li><strong>Comprimere</strong> vuol dire scrivere gli stessi dati con meno bit, senza perdita o con perdita.</li>
+<li>Il <strong>bit di parità</strong> scopre un errore; con la <strong>distanza di Hamming</strong> il codice del libro ne corregge uno.</li>
+<li>La parte 1 del libro finisce qui. All&#39;esame tornano conversioni, complemento a 2, virgola mobile, circuiti e Hamming: 9 quiz in 45 minuti.</li>
+</ul>
+</section>
+
+<section id="03-numeri-negativi-e-virgola-mobile-lun-05-10" aria-labelledby="h-03-numeri-negativi-e-virgola-mobile-lun-05-10" style="--h:1240px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-03-numeri-negativi-e-virgola-mobile-lun-05-10">03 · Numeri negativi e virgola mobile (lun 05/10)</h2></div>
+<p>Il complemento a 2 è un contachilometri di bit: andando indietro da 0000 si arriva a 1111, che vale −1.</p>
+<div class="table-wrap"><table><thead><tr><th>Che cosa fare</th><th>Come</th></tr></thead><tbody><tr><td>leggere un byte in complemento a 2</td><td>la moneta di sinistra vale −128, le altre come sempre: 11111010 = −128 + 64 + 32 + 16 + 8 + 2 = −6</td></tr>
+<tr><td>cambiare segno</td><td>copia da destra fino al primo 1 compreso, poi inverti tutti gli altri bit</td></tr>
+<tr><td>sommare</td><td>in colonna, come senza segno; il riporto che esce a sinistra si butta</td></tr>
+<tr><td>sottrarre</td><td>cambia segno al secondo numero, poi somma</td></tr>
+<tr><td>riconoscere l&#39;overflow</td><td>due numeri con lo stesso segno danno un risultato con il segno opposto</td></tr>
+<tr><td>leggere in eccesso 8</td><td>leggi senza segno e togli 8: 1110 = 14 − 8 = 6</td></tr></tbody></table></div>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Dal numero al byte in virgola mobile</span></p><ol>
+<li>Il segno: 0 se positivo, 1 se negativo.</li>
+<li>Scrivi il numero in base 2 e sposta la virgola subito prima del primo 1: quante posizioni hai spostato è l&#39;esponente, positivo se sei andato a sinistra.</li>
+<li>Le prime 4 cifre dopo la virgola sono la mantissa; le altre si perdono.</li>
+<li>L&#39;esponente più 4, scritto con 3 bit.</li>
+</ol>
+<p>3,625 è 11,101 in base 2: virgola spostata di 2, quindi esponente 2 + 4 = 6, cioè 110; mantissa 1110, perché l&#39;ultimo 1 si perde. Il byte è <strong>0 110 1110</strong>, che vale 3,5: è il quiz delle simulazioni 2023/24.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto vale 10000001 in complemento a 2? E 0110 in eccesso 8?</span></summary><div class="ans"><p>10000001 vale −128 + 1 = −127. 0110 vale 6 − 8 = −2.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Il bit di sinistra dice il segno, ma vale −128: 10000001 non è −1.</li>
+<li>Un decimo in base 2 non finisce mai: in virgola mobile non è mai esatto.</li>
+</ul>
+</div>
+</section>
+
+<section id="04-compressione-ed-errori-gio-08-10" aria-labelledby="h-04-compressione-ed-errori-gio-08-10" style="--h:1220px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-04-compressione-ed-errori-gio-08-10">04 · Compressione ed errori (gio 08/10)</h2></div>
+<p><strong>Senza perdita</strong> si riottengono esattamente i dati di prima: serve per testi, programmi e numeri. <strong>Con perdita</strong> si ottiene qualcosa di molto simile: va bene per foto, suoni e video.</p>
+<div class="table-wrap"><table><thead><tr><th>Metodo</th><th>L&#39;idea</th><th>Perdita</th></tr></thead><tbody><tr><td>run-length</td><td>al posto di una ripetizione, il simbolo e quante volte si ripete</td><td>no</td></tr>
+<tr><td>Huffman</td><td>codici corti ai simboli frequenti; nessun codice è l&#39;inizio di un altro</td><td>no</td></tr>
+<tr><td>codifica relativa</td><td>il primo dato intero, poi solo le differenze</td><td>no</td></tr>
+<tr><td>LZW</td><td>un dizionario che cresce mentre si legge</td><td>no</td></tr>
+<tr><td>GIF</td><td>al massimo 256 colori, poi LZW</td><td>sì, se i colori erano di più</td></tr>
+<tr><td>JPEG</td><td>luminosità per ogni pixel, colore come media su 2 × 2 pixel</td><td>sì</td></tr>
+<tr><td>MP3</td><td>toglie i suoni che l&#39;orecchio non sente</td><td>sì</td></tr>
+<tr><td>MPEG</td><td>alcuni fotogrammi interi, degli altri le differenze</td><td>sì</td></tr></tbody></table></div>
+<p>I bit che viaggiano possono cambiare. Con la <strong>parità dispari</strong> si aggiunge un bit, a sinistra, perché gli 1 siano dispari: 01101001 ha quattro 1, quindi diventa <strong>1</strong>01101001. Se all&#39;arrivo gli 1 sono pari, c&#39;è un errore.</p>
+<p>La <strong>distanza di Hamming</strong> è il numero di posti in cui due file di bit sono diverse: 1010 e 0110 distano 2. Il codice del libro ha lettere di 6 bit a distanza almeno 3: una parola con un errore resta più vicina alla lettera giusta.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Due errori in un byte con il bit di parità: si scoprono?</span></summary><div class="ans"><p>No. Due bit cambiati lasciano gli 1 dispari, e il controllo non vede niente. La parità scopre solo un numero dispari di errori.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Distanza minima 3: corregge un errore e ne rivela due. Distanza minima 2, come la parità: ne rivela uno e non corregge.</li>
+<li>Huffman: si uniscono sempre i due pesi più piccoli.</li>
+</ul>
+</div>
+</section>
+
+<section id="05-esercizi-sulla-parte-1-ven-09-10" aria-labelledby="h-05-esercizi-sulla-parte-1-ven-09-10" style="--h:1160px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-05-esercizi-sulla-parte-1-ven-09-10">05 · Esercizi sulla parte 1 (ven 09/10)</h2></div>
+<p>Una lezione senza argomenti nuovi, per ripassare tutta la parte 1 con i metodi e le domande delle simulazioni del 2023/24.</p>
+<div class="table-wrap"><table><thead><tr><th>Tipo di domanda</th><th>Metodo</th><th>Controllo</th></tr></thead><tbody><tr><td>circuito</td><td>tabella di tutte le righe: 8 con 3 ingressi</td><td>una riga sbagliata basta per scartare una formula</td></tr>
+<tr><td>esadecimale</td><td>gruppi di 4 bit da destra</td><td>ogni cifra torna a 4 bit</td></tr>
+<tr><td>base 2 e base 10</td><td>monete, divisioni per 2, raddoppio dopo la virgola</td><td>riconverti il risultato</td></tr>
+<tr><td>complemento a 2</td><td>moneta di sinistra negativa</td><td>senza segno meno 256</td></tr>
+<tr><td>virgola mobile</td><td>segno, esponente più 4, 4 cifre</td><td>rileggi il byte</td></tr>
+<tr><td>testo, immagini, suono</td><td>byte per simbolo, larghezza × altezza × 3, campioni × byte × canali × secondi</td><td>scrivi i fattori prima di moltiplicare</td></tr>
+<tr><td>Hamming</td><td>conta le colonne diverse</td><td>conta due volte</td></tr></tbody></table></div>
+<div class="box trap"><p class="box-label"><span>Trappola · Gli errori più frequenti nei quiz</span></p><p>Leggere un byte in complemento a 2 come se fosse senza segno; cercare l&#39;overflow nel riporto finale invece che nel segno; arrotondare la mantissa invece di troncarla; dimenticare una riga nella tabella di un circuito; contare un byte per simbolo in UTF-8.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto vale B5 in base 10? E quante righe ha la tabella di un circuito con 4 ingressi?</span></summary><div class="ans"><p>B5 = 11 · 16 + 5 = 181. Con 4 ingressi le righe sono <span class="katex" role="math" aria-label="2^4 = 16"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">16</span></span></span></span>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>9 quiz in 45 minuti: circa 5 minuti a domanda, meno di uno per le conversioni.</li>
+<li>Ogni risultato si controlla al contrario.</li>
+</ul>
+</div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:380px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<ul>
+<li><strong>Parte 1 finita.</strong> Dal 12/10 comincia la parte 2 del libro, la logica: <a href="06_proposizioni_connettivi_tavole.html">lezione 06</a>.</li>
+<li>Nelle simulazioni del 2023/24 la parte 1 compare con: distanza di Hamming, 3,625 in virgola mobile, complemento a 2 su 8 bit, circuiti e flip-flop.</li>
+<li>Appelli 2026/27: venerdì 29/01/2027 e giovedì 18/02/2027, alle 9:00, con Safe Exam Browser. Servono almeno 18 punti; da 24 in su si può fare anche la domanda aperta.</li>
+<li>Da fare adesso: rifai tutti gli esercizi della lezione 05 senza guardare la soluzione, cronometrandoti.</li>
+</ul>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:670px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Con 8 bit in complemento a 2, qual è il numero più piccolo e quale il più grande?</span></summary><div class="ans"><p>−128, cioè 10000000, e 127, cioè 01111111.</p>
+</div></details>
+<details class="qa"><summary><span>Quando c&#39;è overflow in una somma in complemento a 2?</span></summary><div class="ans"><p>Quando due numeri con lo stesso segno danno un risultato con il segno opposto. Un positivo più un negativo non va mai in overflow.</p>
+</div></details>
+<details class="qa"><summary><span>Come si legge un numero in eccesso 4 con 3 bit?</span></summary><div class="ans"><p>Si legge senza segno e si toglie 4: 110 vale 6 − 4 = 2.</p>
+</div></details>
+<details class="qa"><summary><span>Che cos&#39;è l&#39;errore di troncamento?</span></summary><div class="ans"><p>La perdita delle cifre che non entrano nei 4 bit della mantissa: per esempio 3,625 diventa 3,5.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra compressione con e senza perdita?</span></summary><div class="ans"><p>Senza perdita si riottengono esattamente i dati di prima; con perdita si ottiene qualcosa di molto simile, buttando dettagli che non si notano.</p>
+</div></details>
+<details class="qa"><summary><span>Perché JPEG conserva bene la luminosità e meno il colore?</span></summary><div class="ans"><p>Perché l&#39;occhio nota le differenze di luminosità più di quelle di colore: si risparmia dove l&#39;occhio non se ne accorge.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa vuol dire che un codice ha distanza minima 3?</span></summary><div class="ans"><p>Che due parole del codice differiscono sempre in almeno 3 posti: un errore si corregge scegliendo la parola più vicina, due errori si scoprono.</p>
+</div></details></div>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Le lezioni complete: <a href="03_interi_con_segno_virgola_mobile.html">03 · Numeri negativi e numeri in virgola mobile</a>, <a href="04_compressione_errori_comunicazione.html">04 · Comprimere i dati ed errori di comunicazione</a>, <a href="05_esercizi_circuiti_rappresentazioni.html">05 · Esercizi sulla parte 1</a>, con gli strumenti interattivi, i quiz e i riferimenti al libro.</li>
+<li>Regole d&#39;esame e appelli: <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dal libro di testo; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dal libro restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

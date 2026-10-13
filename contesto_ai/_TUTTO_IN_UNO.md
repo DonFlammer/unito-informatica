@@ -8135,6 +8135,185 @@ Un errore logico.
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/riassunti/settimana_02.md -->
+> File: `contesto_ai/PROG1/riassunti/settimana_02.md`
+
+```yaml
+corso: PROG1
+lezione: S2
+tipo: riassunto
+titolo: "Settimana 2: il laboratorio, le variabili in memoria, gli indirizzi e i puntatori"
+data: 2026-10-07
+docenti: Elvio Amparore
+sopratitolo: Riassunto settimanale · Programmazione I · Canale B · 05/10 – 09/10/2026
+descrizione: >-
+  Riassunto della settimana 2 di Programmazione I (canale B): il primo laboratorio con la riga di comando, i percorsi
+  e gcc; tipi, variabili, il modello della memoria con FP e SP, l'assegnamento e le espressioni intere; indirizzi e
+  operatore &, scanf e il suo valore di ritorno, i puntatori, l'operatore *, l'aliasing e NULL.
+lede: >-
+  Il laboratorio e le due lezioni della settimana in poche pagine: i comandi da sapere, il modello della memoria che
+  serve negli esercizi d'esame, la differenza tra valore e indirizzo, e le domande per controllarti.
+materiale: slide
+scheda:
+  Lezioni: "[Lab01](Lab01_introduzione.html) lun 05/10 (B2) e mar 06/10 (B1) · [02B](02B_assegnamento_memory_model.html) mar 06/10 · [02C](02C_referenziamento_scanf_puntatori.html) mer 07/10"
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti del Laboratorio 01 e delle lezioni 02B e 02C di Programmazione I (canale B), scritti sulle slide del
+  laboratorio e di E. G. Amparore
+appunti_html: appunti/PROG1/riassunto_settimana_02.html
+genera_html: true
+```
+
+## In breve
+
+- Al **laboratorio** si lavora dalla **riga di comando**: si scrive un ordine, si preme Invio, si legge la risposta. Un comando ha nome, opzioni e argomenti.
+- Si compila con `gcc -Wall -Werror sorgente.c -o programma` e si esegue con `./programma`. Con `-Werror` basta un avviso per fermare tutto, come all'esame.
+- Una **variabile** ha nome, tipo, indirizzo e valore. Dichiarata e non assegnata, contiene un valore **indeterminato**, «?».
+- Nel **modello della memoria** le variabili di `main` stanno sullo **stack**, in ordine di dichiarazione, tra **FP** e **SP**. L'assegnamento calcola la destra e copia il valore a sinistra.
+- Tra interi `/` taglia la parte dopo la virgola e `%` dà il resto. `*`, `/`, `%` vengono prima di `+` e `-`.
+- `&x` è l'**indirizzo** di `x`. `scanf("%d", &x)` scrive all'indirizzo di `x` e restituisce quanti valori ha letto.
+- Un **puntatore** `int* p = &x;` contiene un indirizzo; `*p` è la variabile puntata. Mai `*p` con `p` non inizializzato o `NULL`.
+
+## Lab01 · Riga di comando e gcc (lun 05/10, mar 06/10)
+
+Il laboratorio sono 10 incontri da 3 ore al laboratorio Turing, dalle 14 alle 17: turno B2 (matricola pari) il lunedì con Elisa Marengo, turno B1 (matricola dispari) il martedì con Valerio Basile. Quando esci dal PC del laboratorio i file vengono cancellati: salvali prima.
+
+- Un **percorso assoluto** parte dalla radice, `/` su Linux e `C:\` su Windows. Un **percorso relativo** parte dalla cartella in cui sei. `.` è la cartella attuale, `..` quella che la contiene.
+- `command not found` vuol dire che il nome è sbagliato, o che il programma non è in una cartella del PATH.
+
+| Che cosa fare | Linux e macOS | Windows |
+|---|---|---|
+| dove sono | `pwd` | `cd` |
+| che cosa c'è | `ls` | `dir` |
+| cambiare cartella | `cd nome` | `cd nome` |
+| creare una cartella | `mkdir nome` | `mkdir nome` |
+| copiare, spostare | `cp`, `mv` | `copy`, `move` |
+| cancellare | `rm` | `del` |
+| leggere un file | `cat` | `type` |
+
+> [!METODO] Dal file al programma
+> 1. Scrivi il sorgente con un editor semplice, senza completamento automatico, come all'esame.
+> 2. `gcc -Wall -Werror buongiorno.c -o buongiorno`: se gcc non scrive niente, il programma è compilato.
+> 3. `./buongiorno` su Linux e macOS, `buongiorno` su Windows.
+> 4. Per provare un programma che legge un numero senza scriverlo a mano: `echo 7 | ./programma`.
+
+::: prova Sei nella cartella `/home/anna/prog1`. Dove ti porta `cd ..`? E che percorso assoluto ha il file `lab01/buongiorno.c`?
+`cd ..` porta a `/home/anna`, la cartella che contiene `prog1`. Il file è `/home/anna/prog1/lab01/buongiorno.c`.
+:::
+
+> [!RICORDA]
+> - `rm` e `del` non usano il cestino.
+> - All'esame CodeRunner compila con `-Wall -Werror` e confronta le stampe carattere per carattere.
+
+## 02B · Memoria, assegnamento, espressioni (mar 06/10)
+
+Un **tipo** dice come leggere i bit: quanti byte, quali valori, quali operazioni. I tipi del C sono **finiti**: un `int` va da circa −2,1 a +2,1 miliardi, un `float` ha circa 7 cifre giuste.
+
+| Tipo | Byte di solito | Specificatore in `printf` |
+|---|:-:|---|
+| `char` | 1 | `%c` |
+| `int` | 4 | `%d` |
+| `long` | 8 su Linux, 4 su Windows | `%ld` |
+| `float` | 4 | `%f` |
+| `double` | 8 | `%f` |
+| `size_t` | 8 | `%zu` |
+
+> [!METODO] Lo stato della memoria
+> 1. Una riga per variabile, nell'ordine di dichiarazione: la prima sotto FP, ognuna 4 byte più in basso per gli `int`. SP indica la prossima casella libera.
+> 2. Una variabile dichiarata e non assegnata contiene «?».
+> 3. A ogni assegnamento si calcola la destra con i valori **di quel momento**, poi si scrive il risultato nella casella a sinistra, cancellando il valore di prima.
+
+- Tra interi: `13 / 3` fa 4, `13 % 3` fa 1. Ordine: parentesi, poi `*`, `/`, `%`, poi `+`, `-`, da sinistra a destra, e l'assegnamento per ultimo.
+- `x += 3` vuol dire `x = x + 3`; `x++` aggiunge 1.
+- Un `int` troppo grande **gira** (overflow), un reale messo in un `int` perde la parte dopo la virgola: gcc non avvisa.
+
+::: prova Dopo `int a = 4; int b; b = a * 3 % 5; a = a + b;` quanto valgono `a` e `b`?
+`a * 3` fa 12, `12 % 5` fa 2: `b` vale 2. Poi `a` = 4 + 2 = 6.
+:::
+
+> [!RICORDA]
+> - Variabile = nome + tipo + indirizzo + valore.
+> - `printf`: uno specificatore per ogni valore, nell'ordine e del tipo giusto.
+
+## 02C · Indirizzi, scanf e puntatori (mer 07/10)
+
+Ogni variabile ha un **valore**, che cosa c'è dentro, e un **indirizzo**, dove sta: come una casa ha un inquilino e un numero civico.
+
+- `&x` è l'indirizzo di `x`; si stampa con `%p`, e cambia da un'esecuzione all'altra.
+- `scanf("%d", &x);` riceve l'indirizzo perché deve sapere **dove** scrivere. Restituisce quanti valori ha letto: con `12.9` legge 12 e si ferma al punto; con `ciao` restituisce 0 e non tocca `x`.
+
+| Scrittura | Che cos'è | Con `int x = 5; int* p = &x;` |
+|---|---|---|
+| `x` | il valore | 5 |
+| `&x` | l'indirizzo di `x` | per esempio `0x03FC` |
+| `p` | un puntatore: contiene un indirizzo | lo stesso indirizzo di `x` |
+| `*p` | la variabile all'indirizzo contenuto in `p` | è `x`: vale 5 |
+| `*p = 8;` | scrive nella variabile puntata | ora `x` vale 8 |
+
+- Due puntatori con lo stesso indirizzo sono **alias**: scrivere con uno cambia la variabile per tutti.
+- Un puntatore non inizializzato contiene «?»; `NULL` vuol dire «non punta a niente». Su tutti e due **non** si usa `*`.
+- Ogni puntatore occupa 8 byte su 64 bit, qualunque sia il tipo puntato. `&` e `*` si annullano: `*&x` è `x`.
+
+> [!TRAPPOLA] I tipi dei puntatori
+> `int*` e `float*` non si mescolano: con gcc 16.1 mettere `&x` di un `int` in un `float*` è un **errore**, anche senza opzioni. Nelle slide è ancora un avviso.
+
+::: prova Dopo `int a = 1, b = 2; int* p = &a; int* q = &b; *p = *q; q = p; *q = 7;` quanto valgono `a` e `b`?
+`*p = *q` copia 2 in `a`. `q = p` fa puntare `q` ad `a`. `*q = 7` scrive 7 in `a`. Alla fine `a` vale 7 e `b` vale 2.
+:::
+
+> [!RICORDA]
+> - `scanf` vuole l'indirizzo, `printf` il valore.
+> - `*p` si usa solo se `p` contiene l'indirizzo di una variabile vera.
+
+## Verso l'esame
+
+- **Stato della memoria**: è il tipo di esercizio che parte da queste lezioni. Una riga per variabile, i valori aggiornati a ogni assegnamento, gli indirizzi nelle caselle dei puntatori.
+- **CodeRunner** confronta le stampe: niente indirizzi stampati, niente specificatori sbagliati, niente variabili inutilizzate con `-Werror`.
+- Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.
+- Da fare adesso: rifai gli esercizi del Lab01 dalla riga di comando, e disegna lo stato della memoria del programma con i puntatori della 02C.
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra un percorso assoluto e uno relativo?
+Il percorso assoluto parte dalla radice del disco e funziona da qualunque cartella. Quello relativo parte dalla cartella in cui ti trovi.
+:::
+
+::: domanda Che cosa fanno le opzioni `-Wall` e `-Werror` di gcc?
+`-Wall` mostra gli avvisi, `-Werror` li trasforma in errori: basta un avviso perché il programma non venga compilato.
+:::
+
+::: domanda Quali sono le quattro cose che ha una variabile?
+Nome, tipo, indirizzo e valore.
+:::
+
+::: domanda Quanto valgono `17 / 5` e `17 % 5` in C?
+3 e 2.
+:::
+
+::: domanda Perché in `scanf` serve la `&`?
+Perché `scanf` deve sapere dove scrivere il valore letto: le serve l'indirizzo della variabile, non il suo valore.
+:::
+
+::: domanda Che cosa restituisce `scanf`?
+Il numero di valori letti con successo. Se il primo valore non va bene, restituisce 0.
+:::
+
+::: domanda Con `int x = 3; int* p = &x; *p = *p + 1;` quanto vale `x`?
+4: `*p` è `x`, quindi l'assegnamento aggiunge 1 a `x`.
+:::
+
+::: domanda Perché non si può usare `*p` se `p` vale `NULL`?
+Perché `NULL` non è l'indirizzo di nessuna variabile: non c'è niente da leggere o da scrivere.
+:::
+
+## Fonti
+
+- Le lezioni complete: [Lab01 · La riga di comando, gcc e i primi programmi](Lab01_introduzione.html), [02B · Memoria e variabili, assegnamento ed espressioni](02B_assegnamento_memory_model.html), [02C · Indirizzi, scanf e puntatori](02C_referenziamento_scanf_puntatori.html), con esercizi, quiz e i riferimenti alle slide.
+- Laboratori e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/corso.md -->
 > File: `contesto_ai/FDA/corso.md`
 
@@ -16297,6 +16476,171 @@ $2 + \frac12 + \frac14 = 2{,}75$.
 
 - Le lezioni complete: [01 · Bit, porte logiche, esadecimale e memorie](01_bit_porte_esadecimale.html) e [02 · Testo, colori e suoni in bit; i numeri in base 2](02_testo_colori_suoni_binario.html), con strumenti interattivi, quiz ed esercizi.
 - Regole d'esame e programma dei tre canali: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/riassunti/settimana_02.md -->
+> File: `contesto_ai/FDA/riassunti/settimana_02.md`
+
+```yaml
+corso: FDA
+lezione: S2
+tipo: riassunto
+titolo: "Settimana 2: numeri con il segno e con la virgola, compressione, errori, esercizi sulla parte 1"
+data: 2026-10-09
+docenti: Stefano Berardi
+sopratitolo: Riassunto settimanale · Fondamenti dell'Informatica · Canale B · 05/10 – 09/10/2026
+descrizione: >-
+  Riassunto della settimana 2 di Fondamenti dell'Informatica (canale B, libro parte 1, §1.6–1.7 e §1.9–1.10):
+  complemento a 2, cambio di segno, somme e overflow, notazione in eccesso, virgola mobile a 8 bit e troncamento,
+  compressione con e senza perdita, run-length, Huffman, codifica relativa, LZW, GIF, JPEG, MP3, MPEG, bit di parità,
+  distanza di Hamming, e il piano per i quiz della parte 1.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: i metodi di conversione da sapere a memoria, le idee della
+  compressione, i codici che scoprono gli errori, e come affrontare i quiz della parte 1, che finisce qui.
+materiale: libro
+scheda:
+  Lezioni: "[03](03_interi_con_segno_virgola_mobile.html) lun 05/10, §1.6–1.7 · [04](04_compressione_errori_comunicazione.html) gio 08/10, §1.9–1.10 · [05](05_esercizi_circuiti_rappresentazioni.html) ven 09/10, esercizi"
+  Tempo di ripasso: 40–50 minuti
+fonte: >-
+  Gli appunti delle lezioni 03, 04 e 05 di Fondamenti dell'Informatica (canale B), scritti sul libro di testo, parte 1,
+  §1.6–1.7 e §1.9–1.10
+appunti_html: appunti/FDA/riassunto_settimana_02.html
+genera_html: true
+```
+
+## In breve
+
+- I numeri **negativi** si scrivono in **complemento a 2**: la moneta più a sinistra vale con il segno meno, −128 con 8 bit. Con 8 bit si va da −128 a 127.
+- Nella **notazione in eccesso** si legge il numero senza segno e si toglie sempre lo stesso valore: 8 con 4 bit, 4 con 3 bit.
+- Nel formato del libro un numero con la virgola sta in un byte: **segno**, **esponente** di 3 bit in eccesso 4, **mantissa** di 4 bit. Le cifre che non ci stanno si perdono: è il **troncamento**.
+- **Comprimere** vuol dire scrivere gli stessi dati con meno bit, senza perdita o con perdita.
+- Il **bit di parità** scopre un errore; con la **distanza di Hamming** il codice del libro ne corregge uno.
+- La parte 1 del libro finisce qui. All'esame tornano conversioni, complemento a 2, virgola mobile, circuiti e Hamming: 9 quiz in 45 minuti.
+
+## 03 · Numeri negativi e virgola mobile (lun 05/10)
+
+Il complemento a 2 è un contachilometri di bit: andando indietro da 0000 si arriva a 1111, che vale −1.
+
+| Che cosa fare | Come |
+|---|---|
+| leggere un byte in complemento a 2 | la moneta di sinistra vale −128, le altre come sempre: 11111010 = −128 + 64 + 32 + 16 + 8 + 2 = −6 |
+| cambiare segno | copia da destra fino al primo 1 compreso, poi inverti tutti gli altri bit |
+| sommare | in colonna, come senza segno; il riporto che esce a sinistra si butta |
+| sottrarre | cambia segno al secondo numero, poi somma |
+| riconoscere l'overflow | due numeri con lo stesso segno danno un risultato con il segno opposto |
+| leggere in eccesso 8 | leggi senza segno e togli 8: 1110 = 14 − 8 = 6 |
+
+> [!METODO] Dal numero al byte in virgola mobile
+> 1. Il segno: 0 se positivo, 1 se negativo.
+> 2. Scrivi il numero in base 2 e sposta la virgola subito prima del primo 1: quante posizioni hai spostato è l'esponente, positivo se sei andato a sinistra.
+> 3. Le prime 4 cifre dopo la virgola sono la mantissa; le altre si perdono.
+> 4. L'esponente più 4, scritto con 3 bit.
+>
+> 3,625 è 11,101 in base 2: virgola spostata di 2, quindi esponente 2 + 4 = 6, cioè 110; mantissa 1110, perché l'ultimo 1 si perde. Il byte è **0 110 1110**, che vale 3,5: è il quiz delle simulazioni 2023/24.
+
+::: prova Quanto vale 10000001 in complemento a 2? E 0110 in eccesso 8?
+10000001 vale −128 + 1 = −127. 0110 vale 6 − 8 = −2.
+:::
+
+> [!RICORDA]
+> - Il bit di sinistra dice il segno, ma vale −128: 10000001 non è −1.
+> - Un decimo in base 2 non finisce mai: in virgola mobile non è mai esatto.
+
+## 04 · Compressione ed errori (gio 08/10)
+
+**Senza perdita** si riottengono esattamente i dati di prima: serve per testi, programmi e numeri. **Con perdita** si ottiene qualcosa di molto simile: va bene per foto, suoni e video.
+
+| Metodo | L'idea | Perdita |
+|---|---|---|
+| run-length | al posto di una ripetizione, il simbolo e quante volte si ripete | no |
+| Huffman | codici corti ai simboli frequenti; nessun codice è l'inizio di un altro | no |
+| codifica relativa | il primo dato intero, poi solo le differenze | no |
+| LZW | un dizionario che cresce mentre si legge | no |
+| GIF | al massimo 256 colori, poi LZW | sì, se i colori erano di più |
+| JPEG | luminosità per ogni pixel, colore come media su 2 × 2 pixel | sì |
+| MP3 | toglie i suoni che l'orecchio non sente | sì |
+| MPEG | alcuni fotogrammi interi, degli altri le differenze | sì |
+
+I bit che viaggiano possono cambiare. Con la **parità dispari** si aggiunge un bit, a sinistra, perché gli 1 siano dispari: 01101001 ha quattro 1, quindi diventa **1**01101001. Se all'arrivo gli 1 sono pari, c'è un errore.
+
+La **distanza di Hamming** è il numero di posti in cui due file di bit sono diverse: 1010 e 0110 distano 2. Il codice del libro ha lettere di 6 bit a distanza almeno 3: una parola con un errore resta più vicina alla lettera giusta.
+
+::: prova Due errori in un byte con il bit di parità: si scoprono?
+No. Due bit cambiati lasciano gli 1 dispari, e il controllo non vede niente. La parità scopre solo un numero dispari di errori.
+:::
+
+> [!RICORDA]
+> - Distanza minima 3: corregge un errore e ne rivela due. Distanza minima 2, come la parità: ne rivela uno e non corregge.
+> - Huffman: si uniscono sempre i due pesi più piccoli.
+
+## 05 · Esercizi sulla parte 1 (ven 09/10)
+
+Una lezione senza argomenti nuovi, per ripassare tutta la parte 1 con i metodi e le domande delle simulazioni del 2023/24.
+
+| Tipo di domanda | Metodo | Controllo |
+|---|---|---|
+| circuito | tabella di tutte le righe: 8 con 3 ingressi | una riga sbagliata basta per scartare una formula |
+| esadecimale | gruppi di 4 bit da destra | ogni cifra torna a 4 bit |
+| base 2 e base 10 | monete, divisioni per 2, raddoppio dopo la virgola | riconverti il risultato |
+| complemento a 2 | moneta di sinistra negativa | senza segno meno 256 |
+| virgola mobile | segno, esponente più 4, 4 cifre | rileggi il byte |
+| testo, immagini, suono | byte per simbolo, larghezza × altezza × 3, campioni × byte × canali × secondi | scrivi i fattori prima di moltiplicare |
+| Hamming | conta le colonne diverse | conta due volte |
+
+> [!TRAPPOLA] Gli errori più frequenti nei quiz
+> Leggere un byte in complemento a 2 come se fosse senza segno; cercare l'overflow nel riporto finale invece che nel segno; arrotondare la mantissa invece di troncarla; dimenticare una riga nella tabella di un circuito; contare un byte per simbolo in UTF-8.
+
+::: prova Quanto vale B5 in base 10? E quante righe ha la tabella di un circuito con 4 ingressi?
+B5 = 11 · 16 + 5 = 181. Con 4 ingressi le righe sono $2^4 = 16$.
+:::
+
+> [!RICORDA]
+> - 9 quiz in 45 minuti: circa 5 minuti a domanda, meno di uno per le conversioni.
+> - Ogni risultato si controlla al contrario.
+
+## Verso l'esame
+
+- **Parte 1 finita.** Dal 12/10 comincia la parte 2 del libro, la logica: [lezione 06](06_proposizioni_connettivi_tavole.html).
+- Nelle simulazioni del 2023/24 la parte 1 compare con: distanza di Hamming, 3,625 in virgola mobile, complemento a 2 su 8 bit, circuiti e flip-flop.
+- Appelli 2026/27: venerdì 29/01/2027 e giovedì 18/02/2027, alle 9:00, con Safe Exam Browser. Servono almeno 18 punti; da 24 in su si può fare anche la domanda aperta.
+- Da fare adesso: rifai tutti gli esercizi della lezione 05 senza guardare la soluzione, cronometrandoti.
+
+## Domande di ripasso
+
+::: domanda Con 8 bit in complemento a 2, qual è il numero più piccolo e quale il più grande?
+−128, cioè 10000000, e 127, cioè 01111111.
+:::
+
+::: domanda Quando c'è overflow in una somma in complemento a 2?
+Quando due numeri con lo stesso segno danno un risultato con il segno opposto. Un positivo più un negativo non va mai in overflow.
+:::
+
+::: domanda Come si legge un numero in eccesso 4 con 3 bit?
+Si legge senza segno e si toglie 4: 110 vale 6 − 4 = 2.
+:::
+
+::: domanda Che cos'è l'errore di troncamento?
+La perdita delle cifre che non entrano nei 4 bit della mantissa: per esempio 3,625 diventa 3,5.
+:::
+
+::: domanda Che differenza c'è tra compressione con e senza perdita?
+Senza perdita si riottengono esattamente i dati di prima; con perdita si ottiene qualcosa di molto simile, buttando dettagli che non si notano.
+:::
+
+::: domanda Perché JPEG conserva bene la luminosità e meno il colore?
+Perché l'occhio nota le differenze di luminosità più di quelle di colore: si risparmia dove l'occhio non se ne accorge.
+:::
+
+::: domanda Che cosa vuol dire che un codice ha distanza minima 3?
+Che due parole del codice differiscono sempre in almeno 3 posti: un errore si corregge scegliendo la parola più vicina, due errori si scoprono.
+:::
+
+## Fonti
+
+- Le lezioni complete: [03 · Numeri negativi e numeri in virgola mobile](03_interi_con_segno_virgola_mobile.html), [04 · Comprimere i dati ed errori di comunicazione](04_compressione_errori_comunicazione.html), [05 · Esercizi sulla parte 1](05_esercizi_circuiti_rappresentazioni.html), con gli strumenti interattivi, i quiz e i riferimenti al libro.
+- Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
 
 
 ---
@@ -56387,6 +56731,339 @@ A $1 + 3 + \dots + (2n + 1) = (n + 1)^2$.
 
 - Le lezioni complete: [D01 · Insiemi e induzione](D01_insiemi_induzione.html) e [D02 · Complementare, De Morgan, induzione e partizioni](D02_complementare_induzione_partizioni.html), con quiz degli appelli ed esercizi svolti.
 - A. Mori, *Lezioni di Matematica Discreta*, cap. 1 «Insiemi», pp. 1–13.
+- Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_02_AG.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_02_AG.md`
+
+```yaml
+corso: MDAG
+modulo: AG
+lezione: S2
+tipo: riassunto
+titolo: "Settimana 2: numeri complessi e polinomi"
+data: 2026-10-08
+docenti: Reto Buzano e Marco Radeschi
+sopratitolo: Riassunto settimanale · Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · 05/10 – 09/10/2026
+descrizione: >-
+  Riassunto della settimana 2 di Algebra lineare e Geometria (MDAG, parte 2): l'unità immaginaria, i numeri complessi e
+  il piano complesso, somma, prodotto, coniugato, modulo e divisione; coordinate polari, forma polare, prodotti,
+  potenze e radici n-esime; polinomi, divisione con il resto e Ruffini, radici e molteplicità, teorema fondamentale
+  dell'algebra.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: come si fanno i conti con i numeri complessi, quando conviene la
+  forma polare, come si trovano le radici di un polinomio, e le domande per controllarti.
+materiale: dispense
+scheda:
+  Lezioni: "[L02](L02_numeri_complessi_1.html) mar 06/10 · [L03](L03_numeri_complessi_2.html) mer 07/10 · [L04](L04_polinomi.html) gio 08/10, nel canale B"
+  Dispense: Buzano e Radeschi 2026, pp. 6–19
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni L02, L03 e L04 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso
+  (R. Buzano, M. Radeschi)
+appunti_html: appunti/MDAG/riassunto_settimana_02_AG.html
+genera_html: true
+```
+
+## In breve
+
+- Nessun numero reale al quadrato dà meno uno. Si aggiunge allora l'**unità immaginaria** $i$, con $i^2 = -1$.
+- Un **numero complesso** è un punto del piano: $3 + 2i$ sta 3 passi a destra e 2 in su.
+- Il **coniugato** cambia il segno davanti alla $i$; il **modulo** è la distanza dal centro. Per dividere si moltiplica sopra e sotto per il coniugato del numero sotto.
+- In **forma polare** un numero è una distanza e un angolo. Nei prodotti le distanze si moltiplicano e gli angoli si sommano.
+- Le **radici** $n$-esime di un numero diverso da zero sono sempre $n$, in cerchio.
+- Un **polinomio** di grado $n$ ha esattamente $n$ radici complesse, contate con la molteplicità: è il **teorema fondamentale dell'algebra**.
+
+## L02 · Numeri complessi I (mar 06/10)
+
+Un numero complesso è un punto di un foglio a quadretti, descritto da due numeri reali. Si scrive per esempio $3 + 2i$. Il primo è la **parte reale**, il secondo la **parte immaginaria**, senza la $i$. Sul foglio a quadretti è il punto 3 passi a destra e 2 in su.
+
+| Operazione | Come si fa | Esempio |
+|---|---|---|
+| somma | parte reale con parte reale, immaginaria con immaginaria | $(1 + 2i) + (3 - i) = 4 + i$ |
+| prodotto | quattro prodotti, poi $-1$ al posto di $i^2$ | $(3 + 2i)(1 - i) = 5 - i$ |
+| coniugato | cambia il segno davanti alla $i$ | il coniugato di $3 + 2i$ è $3 - 2i$ |
+| modulo | Pitagora: la radice di $a^2 + b^2$ | $\lvert 3 + 4i \rvert = 5$ |
+| potenze di $i$ | si ripetono ogni 4: $i$, $-1$, $-i$, $1$ | $i^7 = -i$, perché 7 diviso 4 dà resto 3 |
+
+> [!METODO] Dividere due numeri complessi
+> 1. Scrivi la divisione come frazione.
+> 2. Moltiplica sopra e sotto per il **coniugato del numero sotto**: sotto resta un numero reale, il quadrato del modulo.
+> 3. Separa la parte reale e la parte immaginaria.
+> 4. Controlla moltiplicando.
+>
+> Per $(1 + i)z = 3 + 2i$: $z = \frac{3 + 2i}{1 + i} = \frac{(3 + 2i)(1 - i)}{2} = \frac{5 - i}{2}$. È il tipo della prima domanda del quiz in tre appelli.
+
+- I numeri complessi formano un **campo**, ma **non sono ordinati**: non ha senso chiedere quale sia il maggiore.
+- Nel piano: «parte reale uguale a 2» è una retta verticale; «distanza da $c$ uguale a $r$» è una circonferenza.
+
+::: prova Quanto vale $(2 + i)(2 - i)$? E il modulo di $2 + i$?
+$(2 + i)(2 - i) = 4 - i^2 = 5$. Il modulo è la radice di 5: un numero per il suo coniugato dà il quadrato del modulo.
+:::
+
+> [!RICORDA]
+> - Il prodotto non si fa pezzo per pezzo: servono quattro prodotti.
+> - Per dividere, il coniugato del numero sotto.
+
+## L03 · Numeri complessi II (mer 07/10)
+
+Un punto del piano si può dire in due modi: «3 passi a destra e 4 in su», oppure «guarda in quella direzione e fai 5 passi». Il secondo usa una **distanza** e un **angolo**: sono le **coordinate polari**.
+
+- Forma polare: $z = re^{i\vartheta}$. La distanza è il modulo, l'angolo si chiama **argomento**. La scrittura con la $e$ è un'abbreviazione: vuol dire il punto del cerchio di raggio 1 a quell'angolo, cioè $\cos\vartheta + i\sin\vartheta$.
+- Gli angoli si misurano in radianti: un giro intero è $2\pi$. Angoli che differiscono di giri interi danno lo stesso punto.
+
+| Operazione | In forma polare |
+|---|---|
+| prodotto | distanze moltiplicate, angoli sommati |
+| quoziente | distanze divise, angoli sottratti |
+| potenza $z^n$ | distanza alla $n$, angolo per $n$ |
+| moltiplicare per $i$ | un quarto di giro in senso antiorario |
+
+> [!METODO] Le radici n-esime
+> Cercare le radici $n$-esime di un numero diverso da zero vuol dire risolvere $z^n = z_0$. Le soluzioni sono sempre **esattamente $n$**.
+> 1. La distanza è la radice $n$-esima della distanza di $z_0$.
+> 2. Il primo angolo è l'angolo di $z_0$ diviso per $n$.
+> 3. Gli altri si ottengono aggiungendo ogni volta un $n$-esimo di giro.
+>
+> Le soluzioni sono i vertici di un poligono regolare. Per $z^3 = 8$ sono i vertici di un triangolo sul cerchio di raggio 2: il primo è 2, gli altri sono $-1 + \sqrt3\, i$ e $-1 - \sqrt3\, i$.
+
+::: prova Quanto vale $(1 + i)^8$?
+$1 + i$ ha distanza $\sqrt2$ e angolo $\frac\pi4$. All'ottava: distanza $(\sqrt2)^8 = 16$, angolo $8 \cdot \frac\pi4 = 2\pi$, cioè un giro intero. Il risultato è 16.
+:::
+
+> [!RICORDA]
+> - Prodotti e potenze: in forma polare. Somme: in forma cartesiana.
+> - Le radici $n$-esime sono $n$ punti in cerchio, a distanze uguali.
+
+## L04 · Polinomi (gio 08/10)
+
+Un **polinomio** funziona come una macchina: metti un numero al posto della lettera ed esce un numero. Il **grado** è l'esponente più alto.
+
+- I polinomi si **dividono con il resto**, come i numeri: dividendo uguale quoziente per divisore più resto. Per dividere per $x - a$ c'è **Ruffini**: abbassa, moltiplica per $a$, somma.
+- Una **radice** è un numero che fa uscire zero. **Un numero $a$ è radice esattamente quando $x - a$ divide il polinomio**: il resto di quella divisione è proprio il valore del polinomio in $a$.
+- La **molteplicità** dice quante volte $x - a$ ci sta: in $(x - 1)^2(x + 2)$ la radice 1 è doppia.
+
+> [!METODO] Scomporre un polinomio
+> 1. Cerca una radice tra i divisori del termine noto: per $x^3 - 6x^2 + 11x - 6$ prova 1, 2, 3, 6 e i loro opposti.
+> 2. Con 1 il polinomio vale 0: dividi per $x - 1$ con Ruffini e ottieni $x^2 - 5x + 6$.
+> 3. Ripeti, oppure usa la formula del secondo grado: $x^2 - 5x + 6 = (x - 2)(x - 3)$.
+>
+> Il risultato: $(x - 1)(x - 2)(x - 3)$.
+
+- Un polinomio di grado $n$ ha **al massimo** $n$ radici reali. Tra i complessi ne ha **esattamente** $n$, contate con la molteplicità.
+- Se i numeri del polinomio sono reali, le radici non reali vengono a **coppie coniugate**: le radici di $x^2 + 1$ sono $i$ e il suo coniugato.
+- Per il secondo grado decide il $\Delta$: positivo due radici reali, zero una doppia, negativo due complesse coniugate.
+
+::: prova È vero che 2 è una radice di $x^3 - 6x^2 + 11x - 6$? Quanto vale il resto della divisione per $x - 2$?
+Sì: $8 - 24 + 22 - 6 = 0$. Il resto della divisione per $x - 2$ è il valore in 2, cioè 0.
+:::
+
+> [!RICORDA]
+> - Radice $a$ vuol dire che $x - a$ divide il polinomio.
+> - Coefficienti reali: le radici complesse vengono a coppie coniugate.
+
+## Verso l'esame
+
+- La **domanda sui complessi** del quiz, dal 2024 al 2026: trovare $z$ da un'uguaglianza (divisione), potenze alte e radici (forma polare), «quale di questi numeri è una radice?» (polinomi).
+- Le radici dei polinomi tornano nei problemi sugli **autovalori**, nelle lezioni L17 e L18.
+- Senza calcolatrice: a lezione e all'esame i conti con le radici e gli angoli si fanno a mano. Servono i seni e i coseni degli angoli notevoli: 30, 45, 60 e 90 gradi.
+- Appelli 2026/27: venerdì 22/01/2027 e venerdì 05/02/2027, alle 14:00, con 4 facciate di appunti scritti a mano.
+
+## Domande di ripasso
+
+::: domanda Quanto vale $i^2$? E $i^{10}$?
+$i^2 = -1$. $i^{10}$: 10 diviso 4 dà resto 2, quindi $i^{10} = i^2 = -1$.
+:::
+
+::: domanda Che cosa sono il coniugato e il modulo di $a + bi$?
+Il coniugato è $a - bi$, il riflesso rispetto all'asse orizzontale. Il modulo è la distanza dal centro, la radice di $a^2 + b^2$.
+:::
+
+::: domanda Come si divide per un numero complesso?
+Si moltiplicano sopra e sotto per il coniugato del numero sotto: sotto resta un numero reale.
+:::
+
+::: domanda Come si moltiplicano due numeri in forma polare?
+Le distanze si moltiplicano e gli angoli si sommano.
+:::
+
+::: domanda Quante soluzioni ha $z^5 = 1$ tra i numeri complessi? Come sono messe?
+Cinque: sono i vertici di un pentagono regolare sul cerchio di raggio 1, il primo in 1.
+:::
+
+::: domanda Quando un numero $a$ è radice di un polinomio?
+Quando il polinomio vale 0 in $a$, cioè quando $x - a$ lo divide senza resto.
+:::
+
+::: domanda Che cosa dice il teorema fondamentale dell'algebra?
+Che un polinomio di grado $n$ ha esattamente $n$ radici tra i numeri complessi, contate con la molteplicità.
+:::
+
+## Fonti
+
+- Le lezioni complete: [L02 · Numeri complessi I](L02_numeri_complessi_1.html), [L03 · Numeri complessi II](L03_numeri_complessi_2.html), [L04 · Polinomi](L04_polinomi.html), con le domande vere degli appelli, gli strumenti interattivi e gli esercizi.
+- Dispense 2026 del corso, R. Buzano e M. Radeschi, pp. 6–19.
+- Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_02_MD.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_02_MD.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: S2
+tipo: riassunto
+titolo: "Settimana 2: prodotto cartesiano, relazioni di equivalenza, funzioni"
+data: 2026-10-09
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Riassunto settimanale · Parte 1 (modA) · Matematica Discreta · Canali A, B e C · 05/10 – 09/10/2026
+descrizione: >-
+  Riassunto della settimana 2 di Matematica Discreta (MDAG, parte 1): coppie ordinate e prodotto cartesiano, relazioni
+  e le loro quattro proprietà, relazioni d'ordine e di equivalenza, congruenza modulo N, classi e partizioni; funzioni
+  come insiemi di coppie, immagine e controimmagine, funzioni iniettive, suriettive e biettive.
+lede: >-
+  Le due lezioni della settimana in poche pagine: le definizioni da sapere, le tabelle dei pallini per riconoscere
+  relazioni e funzioni, i metodi per la domanda 2 e la domanda 3 del quiz, e le domande per controllarti.
+materiale: libro
+scheda:
+  Lezioni: "[D03](D03_prodotto_cartesiano_relazioni.html) lun 05/10 · [D04](D04_funzioni_immagini_controimmagini.html) ven 09/10"
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 1, pp. 13–15; app. A, pp. 153–155; cap. 2, pp. 17–23
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni D03 e D04 di Matematica Discreta, scritti sul libro di A. Mori
+appunti_html: appunti/MDAG/riassunto_settimana_02_MD.html
+genera_html: true
+```
+
+## In breve
+
+- Una **coppia ordinata** ha un primo e un secondo pezzo: l'ordine conta. Il **prodotto cartesiano** di due insiemi contiene tutte le coppie con il primo pezzo nel primo insieme e il secondo nel secondo.
+- Una **relazione** in un insieme è un sacchetto di coppie: dice chi è legato a chi.
+- Le quattro **proprietà**: riflessiva, simmetrica, antisimmetrica, transitiva. Un'**equivalenza** è riflessiva, simmetrica e transitiva; un **ordine** è riflessivo, antisimmetrico e transitivo.
+- Ogni equivalenza divide l'insieme in **classi**, che formano una partizione.
+- Una **funzione** fa corrispondere a ogni elemento del dominio uno e un solo elemento del codominio. Sulla tabella dei pallini: un pallino in ogni colonna.
+- **Iniettiva**: ogni riga ha al massimo un pallino. **Suriettiva**: ogni riga ne ha almeno uno. **Biettiva**: esattamente uno.
+- All'esame la **domanda 2** del quiz è quasi sempre sul prodotto cartesiano, la **domanda 3** sulle funzioni.
+
+## D03 · Prodotto cartesiano e relazioni (lun 05/10)
+
+**Coppie e prodotto cartesiano.**
+
+- Scambiare i due pezzi di una coppia dà un'altra coppia, se i pezzi sono diversi: la casella B3 della battaglia navale non è 3B. Tonde per le coppie, graffe per gli insiemi.
+- Per scrivere il prodotto si fissa un elemento del primo insieme e lo si accoppia con tutti quelli del secondo, poi si passa al successivo. Il numero di coppie è il prodotto dei due numeri di elementi: 3 per 4 fa 12.
+- In generale $A \times B \neq B \times A$. Se uno dei due insiemi è vuoto, il prodotto è vuoto.
+
+> [!METODO] La domanda 2 del quiz
+> 1. Un **elemento** del prodotto cartesiano è una coppia, con ogni pezzo nel suo insieme.
+> 2. Un **sottoinsieme** di $A \times B$ è un sacchetto di coppie così, oppure il vuoto.
+> 3. Controlla ogni coppia pezzo per pezzo, e nell'ordine giusto.
+>
+> Nell'appello del 03/02/2026 gli insiemi erano $P = \{1, 3, 4, 7, 8\}$ e $Q = \{2, 3, 5, 6, 9\}$. La risposta giusta era il sacchetto con la coppia $(6, 7)$: **non** è un sottoinsieme di $P \times Q$, perché 6 non sta in $P$.
+
+**Relazioni.** Una relazione in un insieme è un sacchetto di coppie di suoi elementi, cioè un sottoinsieme del prodotto dell'insieme con sé stesso. Si scrive $a \, R \, b$ quando $a$ è legato a $b$, e si disegna con una tabella di pallini.
+
+| Proprietà | A parole | Sulla tabella |
+|---|---|---|
+| riflessiva | ognuno è legato a sé stesso | tutta la diagonale piena |
+| simmetrica | se $a$ è legato a $b$, anche $b$ è legato ad $a$ | la tabella è uguale allo specchio |
+| antisimmetrica | due elementi diversi non sono legati nei due sensi | fuori dalla diagonale nessun pallino ha lo specchio |
+| transitiva | da $a$ a $b$ e da $b$ a $c$, allora da $a$ a $c$ | le catene si chiudono |
+
+> [!TRAPPOLA] Antisimmetrica non vuol dire «non simmetrica»
+> L'uguaglianza è simmetrica **e** antisimmetrica. Una relazione può anche non essere né l'una né l'altra.
+
+**Equivalenze e classi.**
+
+- Un'equivalenza vuol dire «essere dello stesso tipo»: stesso mese di nascita, stessa parità, stesso resto.
+- **Congruenza modulo $N$**: due interi sono equivalenti quando la loro differenza è un multiplo di $N$. Con $N = 3$ le classi sono tre: i multipli di 3, quelli con resto 1, quelli con resto 2.
+- La **classe** $[x]$ contiene gli elementi equivalenti a $x$; se $x \sim y$ allora $[x] = [y]$. Le classi formano una **partizione**, e ogni partizione dà un'equivalenza, «stare nello stesso cassetto».
+
+::: prova Con $A = \{1, 2\}$ e $B = \{a, b, c\}$, quanti elementi ha $A \times B$? La coppia $(a, 1)$ ci sta?
+6 elementi. $(a, 1)$ non ci sta: il primo pezzo deve essere in $A$. Sta in $B \times A$.
+:::
+
+> [!RICORDA]
+> - Equivalenza: riflessiva, simmetrica, transitiva. Ordine: riflessivo, antisimmetrico, transitivo.
+> - Le classi di un'equivalenza sono i cassetti di una partizione.
+
+## D04 · Funzioni, immagini, controimmagini (ven 09/10)
+
+Una **funzione** è come la mensa: **ogni** studente sceglie **un solo** piatto. Si scrive $f \colon A \to B$. In modo preciso è il suo grafico, un sottoinsieme di $A \times B$ in cui ogni elemento di $A$ compare come primo pezzo di una sola coppia.
+
+- **Dominio** $A$, **codominio** $B$. Due funzioni sono uguali se hanno stesso dominio, stesso codominio e stesso grafico.
+- Funzioni da riconoscere: identità, costanti, proiezioni, successioni, funzione quoziente.
+- L'**immagine** $\operatorname{Im}(f)$ sono i valori raggiunti davvero; il codominio è quello che **potrebbe** raggiungere.
+- La **controimmagine** $f^{-1}(b)$ è l'insieme di chi finisce in $b$: le soluzioni di $f(a) = b$. Può essere vuota. Non vuol dire «uno diviso $f$».
+
+| Proprietà | Sulle righe della tabella | Con le controimmagini |
+|---|---|---|
+| iniettiva | al massimo un pallino per riga | ogni $f^{-1}(b)$ ha al massimo un elemento |
+| suriettiva | almeno un pallino per riga | ogni $f^{-1}(b)$ è non vuota |
+| biettiva | esattamente un pallino per riga | ogni $f^{-1}(b)$ ha esattamente un elemento |
+
+> [!METODO] Smentire o dimostrare
+> - **Non iniettiva**: basta trovare due elementi diversi con lo stesso valore, come $1$ e $-1$ quando c'è un quadrato.
+> - **Non suriettiva**: basta un elemento del codominio che non arriva mai.
+> - **Iniettiva**: da $f(a_1) = f(a_2)$ fai i conti fino ad $a_1 = a_2$.
+> - **Suriettiva**: prendi un $b$ qualsiasi e trova chi ci arriva.
+
+Due esempi da ricordare. «Due n più uno» sugli interi è iniettiva ma non suriettiva: dà solo i dispari. Il quadrato sui reali non è né l'una né l'altra, ma diventa biettivo sui reali positivi.
+
+::: prova Con $f \colon \Z \to \Z$, $f(n) = n^2 - 1$, quanto valgono $f^{-1}(8)$ e $f^{-1}(12)$?
+$f^{-1}(8) = \{3, -3\}$, perché $n^2 = 9$. $f^{-1}(12) = \emptyset$, perché 13 non è un quadrato.
+:::
+
+> [!RICORDA]
+> - Funzione: un pallino in ogni colonna. Le righe dicono iniettiva, suriettiva, biettiva.
+> - Tra insiemi finiti: dal più grande al più piccolo non c'è mai una funzione iniettiva.
+
+## Verso l'esame
+
+- **Domanda 2 del quiz**: elementi e sottoinsiemi del prodotto cartesiano, coppia per coppia.
+- **Domanda 3 del quiz**: sulle funzioni. Nel 2025 chiedeva immagini, controimmagini, iniettività; dal 2025 in poi quasi sempre una **composizione**, l'argomento della [lezione D05](../MDAG/D05_composizione_funzioni_inverse.html) del 12/10.
+- Le classi di equivalenza tornano con le **classi di resto**, e la buona definizione con i problemi sui gruppi.
+- Appelli 2026/27: martedì 19/01/2027 e mercoledì 03/02/2027, alle 14:00, con libro e appunti.
+
+## Domande di ripasso
+
+::: domanda Quanti elementi ha $A \times B$ se $A$ ha 3 elementi e $B$ ne ha 4?
+12: si moltiplica il numero degli elementi.
+:::
+
+::: domanda Quali proprietà ha una relazione di equivalenza? E una relazione d'ordine?
+L'equivalenza è riflessiva, simmetrica e transitiva. L'ordine è riflessivo, antisimmetrico e transitivo.
+:::
+
+::: domanda Quali sono le classi della congruenza modulo 3 sugli interi?
+$[0]$, i multipli di 3; $[1]$, quelli che danno resto 1; $[2]$, quelli che danno resto 2.
+:::
+
+::: domanda Come si riconosce una funzione sulla tabella dei pallini?
+Ogni colonna, cioè ogni elemento del dominio, ha esattamente un pallino.
+:::
+
+::: domanda Che differenza c'è tra codominio e immagine?
+Il codominio è l'insieme d'arrivo dichiarato; l'immagine è l'insieme dei valori raggiunti davvero.
+:::
+
+::: domanda Come si dimostra che una funzione non è iniettiva?
+Trovando due elementi diversi con lo stesso valore.
+:::
+
+::: domanda $f(n) = 2n + 1$ da $\Z$ a $\Z$ è suriettiva?
+No: i valori sono tutti dispari, e 0 non viene mai raggiunto.
+:::
+
+## Fonti
+
+- Le lezioni complete: [D03 · Prodotto cartesiano e relazioni di equivalenza](D03_prodotto_cartesiano_relazioni.html), [D04 · Funzioni, immagini e controimmagini](D04_funzioni_immagini_controimmagini.html), con le domande vere degli appelli, i quiz e gli esercizi.
+- A. Mori, *Lezioni di Matematica Discreta*: cap. 1, pp. 13–15; appendice A, pp. 153–155; cap. 2, pp. 17–23.
 - Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
 
 

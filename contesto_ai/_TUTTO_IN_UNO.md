@@ -482,6 +482,9 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 | Lab01 | 05/10/2026 (B2), 06/10 (B1) | Laboratorio 01: introduzione, la prima lezione di laboratorio | `lezioni/Lab01_introduzione.md` · HTML: `appunti/PROG1/Lab01_introduzione.html` | organizzazione del laboratorio (10 lezioni da 3 ore, laboratorio Turing, file cancellati all'uscita); riga di comando: nome, opzioni, argomenti; percorsi assoluti e relativi, `.` e `..`; comandi di Linux/macOS e di Windows; installare gcc; scrivere, compilare con `gcc -Wall -Werror … -o …` ed eseguire; `printf` e `scanf` con `%d`; esame al PC con CodeRunner |
 | 02B | 06/10/2026 | Memoria e variabili, assegnamento ed espressioni | `lezioni/02B_assegnamento_memory_model.md` · HTML: `appunti/PROG1/02B_assegnamento_memory_model.html` | tipo = come leggere i bit (nome, dimensione, dominio, operazioni, rappresentazione, conversioni); variabile = nome + tipo + indirizzo + valore; tipi primitivi (`int`, `unsigned`, `float`, `double`, `char`, `size_t`, `bool`), finiti ($-2^{31}$…$2^{31}-1$); `sizeof` e `%zu`, solo l'ordine tra le dimensioni è garantito (`long` da 4 byte su Windows); identificatori e camelCase; visibilità e durata (locali sullo stack, globali/statiche, dinamiche nello heap); **modello della memoria**: area codice e dati, PC, FP, SP, stack che cresce verso il basso, valore iniziale «?»; assegnamento (valuta la destra, copia a sinistra; lvalue/rvalue); overflow e troncamento non segnalati da gcc; `+ - * / %`, divisione intera, precedenze; `printf` con `%d`, `%f`, `%6d`, `%06d`; `+=` … `%=`, `++`, `--` |
 | 02C | 07/10/2026 | Indirizzi, scanf e puntatori | `lezioni/02C_referenziamento_scanf_puntatori.md` · HTML: `appunti/PROG1/02C_referenziamento_scanf_puntatori.html` | valore e indirizzo, operatore `&` (referenziamento), `%p` (formato diverso tra Linux e Windows, indirizzi simbolici `0x03FC`); `scanf` con `&`, più valori con una `scanf`, valore di ritorno, input sbagliato (`1234.56`, `A`), variabili non lette restano «?»; puntatori `T*`, se `x` è `int` allora `&x` è `int*`, il puntatore ha un suo indirizzo, `scanf` con un puntatore; errori: variabile non dichiarata, `int*` da `float*` (errore in gcc 16.1), `&5`; dereferenziamento `*p` in lettura e scrittura; aliasing; puntatori non inizializzati e `NULL`; `sizeof` di un puntatore (8 byte a 64 bit); `&*p` e `*&p`; i quattro usi di `*` |
+| Lab02 | 12/10/2026 (B2), 13/10 (B1) | Laboratorio 02: operatori e tipi | `lezioni/Lab02_operatori_tipi.md` · HTML: `appunti/PROG1/Lab02_operatori_tipi.html` | codice di partenza provato (aritmetica.c, circonferenza.c, dim_tipi.c, errori.c, media.c, scambio.c); divisione intera e reale, `%` con i negativi (taglio verso lo zero), overflow di `INT_MAX` (comportamento indefinito), precedenze e $ax^3 + 7$, `const`, gli 8 errori di errori.c, media con `/ 3.0`, `floor`/`ceil`/`round`, 8.136 × 1000 = 8135, tabella dei tipi (`long` 4 byte su Windows), puntatori tutti di 8 byte, cppreference offline, mercato.c, scambio4.c |
+| 03A | 13/10/2026 | Scambiare due variabili | `lezioni/03A_scambio_variabili.md` · HTML: `appunti/PROG1/03A_scambio_variabili.html` | le tazze di tè; `x = y; y = x;` non scambia (l'assegnamento cancella); variabile d'appoggio `temp`, tre passi in ordine; l'ordine sbagliato perde il valore; rotazione di 3 e 4 variabili con una sola variabile d'appoggio; tabella «una riga per istruzione» |
+| 03B | 13/10/2026 | Numeri reali, float e double, conversioni | `lezioni/03B_floats.md` · HTML: `appunti/PROG1/03B_floats.html` | `float` (4 byte, ~7 cifre) e `double` (8 byte, ~15–16 cifre), IEEE 754; `%f`, `%e`, `%g`, `%.3f` (arrotonda); `%lf` in `scanf`; niente `%` tra reali; `math.h` e `-lm`; conversioni implicite e tabella delle perdite; promozione di tipo operatore per operatore; `float z = 5 / 2;` vale 2.0; cast `(float)y` sull'operando, non sul risultato |
 
 ## Fili conduttori (da ricollegare nelle prossime lezioni)
 
@@ -4482,6 +4485,1136 @@ lvalue | Qualcosa che ha un posto in memoria e può stare a sinistra di `=`; `&`
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/lezioni/03A_scambio_variabili.md -->
+> File: `contesto_ai/PROG1/lezioni/03A_scambio_variabili.md`
+
+```yaml
+corso: PROG1
+lezione: 03A
+titolo: Scambiare due variabili
+data: 2026-10-13
+docenti: Elvio Amparore
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 03A
+descrizione: >-
+  Appunti della lezione 03A di Programmazione I (canale B): scambiare il contenuto di due variabili, perché lo scambio
+  ovvio x = y; y = x; non funziona, lo scambio con la variabile d'appoggio passo per passo nel modello della memoria,
+  l'ordine delle istruzioni, la rotazione di tre e quattro variabili, con programmi provati, quiz ed esercizi.
+lede: >-
+  Due tazze, una di tè verde e una di tè nero: come le scambi senza mescolarle? Serve una terza tazza vuota, e i
+  travasi vanno fatti nell'ordine giusto. Con le variabili è lo stesso, ed è un'operazione che ritroverai in tutti gli
+  algoritmi di ordinamento.
+materiale: slide
+scheda:
+  Slide: 03A_scambio_variabili («Scambiare variabili. Uso delle variabili temporanee») · 16 pagine
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 45–60 minuti
+fonte: >-
+  Slide «Scambiare variabili. Uso delle variabili temporanee» (03A_scambio variabili), Programmazione I – Teoria,
+  canale B, A.A. 2026/27
+appunti_html: appunti/PROG1/03A_scambio_variabili.html
+genera_html: true
+```
+
+## In breve
+
+- **Scambiare** due variabili vuol dire che, alla fine, ognuna contiene il valore che aveva l'altra. È un'operazione che serve in molti algoritmi, per esempio per ordinare un elenco.
+- Lo scambio «ovvio», `x = y;` seguito da `y = x;`, **non funziona**: il primo assegnamento cancella il vecchio valore di `x`, e alla fine le due variabili valgono uguale.
+- Serve una **variabile d'appoggio**, dello stesso tipo, che conservi per un momento uno dei due valori. Si chiama di solito `temp` o `aux`.
+- Lo scambio corretto ha tre passi, in quest'ordine: `temp = x;`, poi `x = y;`, poi `y = temp;`.
+- L'**ordine** conta: con gli stessi tre assegnamenti in un altro ordine il valore di `x` si perde di nuovo.
+- È come scambiare due tazze di tè senza mescolarle: serve una tazza vuota, e i travasi vanno fatti nell'ordine giusto.
+
+> [!CANALI]
+> **Canale B.** È la prima parte della lezione di martedì 13/10, dalle 11 alle 13, insieme alla [03B](03B_floats.html) sui numeri reali. Riprende il modello della memoria della [02B](02B_assegnamento_memory_model.html): l'assegnamento copia un valore e cancella quello di prima.
+>
+> **Canali A e C.** Le slide 2026/27 dei canali A e C per questa lezione non le ho viste. Lo scambio con la variabile d'appoggio è un argomento comune, e l'esame è unico per i tre canali.
+>
+> **Laboratorio.** Nel [Laboratorio 02](Lab02_operatori_tipi.html) c'è il programma `scambio.c` e l'esercizio `scambio4.c`, che scambia quattro variabili in giro.
+
+## Due tazze da scambiare (slide 2–4)
+
+Hai due tazze: una contiene tè verde, l'altra tè nero. Vuoi **scambiarne il contenuto**: alla fine il tè verde deve stare nella tazza che era del nero, e viceversa. Però non puoi versare l'uno nell'altro: i due tè si mescolerebbero.
+
+La prima idea delle slide usa **due** tazze vuote in più. Versi il verde nella prima tazza vuota, il nero nella seconda, poi rimetti ognuno al suo nuovo posto. Funziona, ma usa il doppio dello spazio.
+
+Si può fare di meglio, con **una sola** tazza vuota:
+
+1. versi il tè verde nella tazza vuota;
+2. versi il tè nero nella tazza che era del verde, ora libera;
+3. versi il tè verde dalla tazza d'appoggio nella tazza che era del nero, ora libera.
+
+> [!IDEA]
+> Per scambiare due contenuti senza mescolarli serve un posto libero dove mettere da parte uno dei due. Poi i passaggi vanno fatti in un ordine preciso: si libera una tazza prima di riempirla.
+
+Le slide insistono su questo: la soluzione con una tazza sola funziona ed è efficiente, **ma i travasi devono avvenire nell'ordine giusto**. Se al passo 1 versassi il nero nella tazza del verde, mescoleresti tutto.
+
+::: prova Nella soluzione con una tazza d'appoggio, quante tazze sono piene dopo il passo 1? E dopo il passo 2?
+Dopo il passo 1 sono piene la tazza del nero e la tazza d'appoggio: quella del verde è libera. Dopo il passo 2 sono piene la tazza del verde, che ora contiene il nero, e la tazza d'appoggio: è libera quella che era del nero.
+:::
+
+> [!RICORDA]
+> - Per scambiare senza mescolare serve un posto in più, vuoto.
+> - L'ordine dei travasi conta: prima si libera una tazza, poi la si riempie.
+
+## Lo scambio che non funziona (slide 5–10)
+
+Con le variabili il problema è lo stesso. Le tazze sono le caselle della memoria, e il tè è il valore. Ma c'è una differenza importante con l'acqua: l'**assegnamento** della [lezione 02B](02B_assegnamento_memory_model.html) non versa, **copia** e **cancella**. Con `x = y;` il valore di `y` viene copiato in `x`, e quello che c'era prima in `x` è perso.
+
+Il primo modo che viene in mente, e che le slide chiamano «naïve», è questo:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int x = 5;
+    int y = 2;
+    x = y;      // assegno il contenuto di y a x
+    y = x;      // assegno il contenuto di x a y
+    printf("Le var x, y valgono %d, %d\n", x, y);
+}
+```
+
+Ci si aspetta `2, 5`. Invece il programma stampa:
+
+```
+Le var x, y valgono 2, 2
+```
+
+### Passo per passo
+
+Le slide seguono le caselle di `x` e `y` dopo ogni istruzione, nel modello della memoria della lezione 02B. Ecco la stessa cosa come tabella: una colonna per variabile, una riga per istruzione.
+
+| Dopo l'istruzione | `x` | `y` | Che cosa è successo |
+|---|:-:|:-:|---|
+| `int x = 5;` | 5 | | |
+| `int y = 2;` | 5 | 2 | |
+| `x = y;` | **2** | 2 | il 2 di `y` è copiato in `x`: il **5 è perso** |
+| `y = x;` | 2 | **2** | il 2 di `x` è copiato in `y`, che vale già 2 |
+
+Il problema è la terza riga. Dopo `x = y;` il valore 5 non c'è più da nessuna parte. La quarta istruzione non può rimetterlo in `y`: sovrascrive `y` con sé stessa.
+
+> [!TRAPPOLA] Il compilatore non ti avvisa
+> `x = y; y = x;` compila senza errori e senza avvisi, anche con `-Wall -Werror`: per il C sono due assegnamenti corretti. Lo sbaglio è nella logica, non nella sintassi. Lo trovi solo seguendo i valori, come nella tabella.
+
+::: prova Con `int a = 7; int b = 3;` che cosa valgono `a` e `b` dopo `b = a; a = b;`?
+Tutte e due 7. `b = a;` copia 7 in `b` e perde il 3. Poi `a = b;` copia 7 in `a`, che valeva già 7.
+:::
+
+> [!RICORDA]
+> - L'assegnamento copia e cancella: dopo `x = y;` il vecchio valore di `x` non esiste più.
+> - `x = y; y = x;` lascia le due variabili uguali, con il valore di `y`.
+
+## Lo scambio con la variabile d'appoggio (slide 11–16)
+
+Per scambiare correttamente serve una **terza variabile**, dello stesso tipo, che conservi per un momento il valore che sta per essere cancellato. È la tazza vuota. Le slide chiamano questo metodo **scambio con variabile temporanea**, o con **variabile d'appoggio**.
+
+I tre passi sono quelli delle tazze:
+
+1. salvo il valore di `x` nella variabile d'appoggio;
+2. copio il valore di `y` in `x`;
+3. copio il valore della variabile d'appoggio in `y`.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int x = 5;
+    int y = 2;
+    int temp;
+    temp = x;   // [1] salvo x
+    x = y;      // [2] copio y in x
+    y = temp;   // [3] copio il vecchio x in y
+    printf("Le var x, y valgono %d, %d\n", x, y);
+}
+```
+
+Stampa:
+
+```
+Le var x, y valgono 2, 5
+```
+
+### Passo per passo
+
+| Dopo l'istruzione | `x` | `y` | `temp` | Che cosa è successo |
+|---|:-:|:-:|:-:|---|
+| `int x = 5;` | 5 | | | |
+| `int y = 2;` | 5 | 2 | | |
+| `int temp;` | 5 | 2 | ? | `temp` esiste ma non ha ancora un valore |
+| `temp = x;` | 5 | 2 | **5** | il 5 è al sicuro in `temp` |
+| `x = y;` | **2** | 2 | 5 | il 5 in `x` è perso, ma c'è una copia |
+| `y = temp;` | 2 | **5** | 5 | lo scambio è fatto |
+
+Il «?» è il valore indeterminato della lezione 02B: una variabile dichiarata e non ancora assegnata contiene bit a caso. Qui non è un problema, perché `temp` viene scritta prima di essere letta. Alla fine `temp` contiene ancora 5: non serve più, e non dà fastidio.
+
+> [!NOTA] I nomi delle variabili d'appoggio
+> Le slide elencano i nomi più usati: `temp`, `aux`, `prevX`, `savedX`, `backup`. Il nome dice a chi legge che la variabile serve solo a tenere un valore per poco. Si può anche dichiarare e assegnare in una riga sola: `int temp = x;`, come nel programma `scambio.c` del laboratorio.
+
+### L'ordine conta
+
+Con gli stessi tre assegnamenti in un altro ordine, lo scambio fallisce. Prova a mettere prima `x = y;`:
+
+```c
+int x = 5;
+int y = 2;
+int temp;
+x = y;      // il 5 è perso subito
+temp = x;   // temp riceve il 2
+y = temp;   // y riceve il 2
+```
+
+Il programma stampa `2, 2`, come lo scambio sbagliato. La variabile d'appoggio c'è, ma arriva tardi: quando salvi `x`, il 5 è già stato cancellato. È la tazza vuota usata dopo aver già mescolato i tè.
+
+> [!METODO] Scrivere uno scambio senza sbagliare
+> 1. Scegli quale variabile salvare per prima, per esempio `x`.
+> 2. Primo assegnamento: `temp = x;`. Ora `x` si può sovrascrivere.
+> 3. Secondo: `x = y;`. Ora `y` si può sovrascrivere.
+> 4. Terzo: `y = temp;`.
+>
+> Ogni riga comincia con la variabile che la riga prima ha appena «liberato». È la catena `temp ← x ← y ← temp`.
+
+::: prova Scambia `a` e `b` usando `aux`, salvando per prima `b`. Scrivi le tre righe.
+`aux = b;` poi `b = a;` poi `a = aux;`. La catena è `aux ← b ← a ← aux`: ogni riga riempie la variabile liberata dalla riga prima.
+:::
+
+> [!RICORDA]
+> - Tre passi: `temp = x;`, `x = y;`, `y = temp;`.
+> - La variabile d'appoggio è dello stesso tipo delle altre due.
+> - Se salvi `x` dopo averlo sovrascritto, lo scambio fallisce.
+
+## Scambiare più di due variabili
+
+Lo stesso metodo funziona con più variabili. Pensa a una **rotazione**: ogni variabile prende il valore della successiva, e l'ultima prende quello della prima. Basta ancora **una sola** variabile d'appoggio.
+
+Con tre variabili `a`, `b`, `c`, che valgono 1, 2, 3, la rotazione vuole `a` = 2, `b` = 3, `c` = 1:
+
+```c
+int temp = a;   // salvo a, che sarà sovrascritta per prima
+a = b;
+b = c;
+c = temp;
+```
+
+| Dopo l'istruzione | `a` | `b` | `c` | `temp` |
+|---|:-:|:-:|:-:|:-:|
+| inizio | 1 | 2 | 3 | |
+| `int temp = a;` | 1 | 2 | 3 | 1 |
+| `a = b;` | 2 | 2 | 3 | 1 |
+| `b = c;` | 2 | 3 | 3 | 1 |
+| `c = temp;` | 2 | 3 | 1 | 1 |
+
+Ogni riga riempie la variabile che la riga prima ha liberato. È la stessa catena dello scambio, solo più lunga. L'esercizio `scambio4.c` del [Laboratorio 02](Lab02_operatori_tipi.html) chiede proprio questo, con quattro variabili.
+
+> [!OLTRE] Scambiare senza variabile d'appoggio
+> Con gli interi c'è un trucco: `x = x + y; y = x - y; x = x - y;`. Con 5 e 2: `x` diventa 7, poi `y` = 7 − 2 = 5, poi `x` = 7 − 5 = 2. Funziona, ma è più difficile da leggere, e se `x + y` supera il massimo di un `int` va in overflow (lezione 02B). Non funziona con i `float`, che perdono cifre. Con la variabile d'appoggio non c'è nessun rischio: è il modo da usare sempre, anche all'esame.
+
+::: prova Con `int p = 10, q = 20, r = 30;` scrivi le righe che portano a `p` = 30, `q` = 10, `r` = 20.
+È la rotazione al contrario: ognuno prende il valore della variabile prima. `int temp = r;` poi `r = q;` poi `q = p;` poi `p = temp;`.
+:::
+
+> [!RICORDA]
+> - Per ruotare $n$ variabili basta una variabile d'appoggio.
+> - Si salva per prima la variabile che verrà sovrascritta per prima.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `x = y;` | «x prende y» | copia il valore di `y` in `x`; il vecchio `x` è perso | |
+| `temp`, `aux` | «temp», «aux» | nomi tipici della variabile d'appoggio | `int temp = x;` |
+| ? | «indeterminato» | negli schemi: variabile senza un valore assegnato | `int temp;` |
+| swap | «suop» | il nome inglese dello scambio | |
+
+## Verso l'esame
+
+L'esame di Programmazione I è al PC, unico per i tre canali: appelli **lunedì 25/01/2027** e **giovedì 11/02/2027**. Lo scambio tornerà almeno in tre modi.
+
+1. **Esercizi sullo stato della memoria.** Si chiede il valore delle variabili dopo una sequenza di assegnamenti. Lo scambio sbagliato e quello con l'ordine sbagliato sono trappole perfette: la tabella «una riga per istruzione» li smaschera.
+2. **Ordinare un array.** Gli algoritmi di ordinamento, come il *bubble sort* citato nelle slide, scambiano due elementi a ogni passo. Lo scambio è sempre quello con la variabile d'appoggio.
+3. **Una funzione che scambia.** Con i puntatori della [lezione 02C](02C_referenziamento_scanf_puntatori.html) si scriverà una funzione che scambia due variabili del chiamante: dentro ci sono gli stessi tre passi, con `*pA` e `*pB` al posto di `x` e `y`.
+
+> [!METODO] Le domande sugli scambi
+> 1. Fai la tabella: una colonna per variabile, una riga per istruzione.
+> 2. A ogni assegnamento, **cancella** il valore vecchio della variabile a sinistra e scrivi quello nuovo.
+> 3. Controlla alla fine: i valori di partenza ci sono ancora tutti? Se un valore è sparito, lo scambio è sbagliato.
+
+**Errori da evitare**
+
+- Scrivere `x = y; y = x;`.
+- Salvare nella variabile d'appoggio dopo aver già sovrascritto.
+- Usare una variabile d'appoggio di un tipo diverso: con `int temp` e due `double` la parte dopo la virgola si perde (lezione 03B).
+- Dimenticare che `temp` non serve più dopo lo scambio: non va stampata, non è un risultato.
+
+## Quiz
+
+```quiz
+D: Con `int x = 4, y = 9;` che cosa valgono `x` e `y` dopo `x = y; y = x;`?
++ `x` = 9, `y` = 9
+- `x` = 9, `y` = 4
+- `x` = 4, `y` = 4
+- `x` = 4, `y` = 9
+- Il programma non compila
+= `x = y;` copia 9 in `x` e perde il 4. `y = x;` copia 9 in `y`. La risposta più insidiosa è `x` = 9, `y` = 4: è lo scambio che si voleva, ma il 4 non esiste più quando serve. Il codice compila senza avvisi.
+
+D: Quale sequenza scambia correttamente `x` e `y`?
++ `temp = x; x = y; y = temp;`
+- `x = y; temp = x; y = temp;`
+- `temp = x; y = x; x = temp;`
+- `x = y; y = x;`
+- `temp = y; x = y; y = temp;`
+= Si salva `x`, poi si sovrascrive `x`, poi si mette il vecchio `x` in `y`. La risposta più insidiosa è `x = y; temp = x; y = temp;`: ha gli stessi tre pezzi, ma salva `x` quando il suo valore è già perso. L'ultima salva `y` e poi sovrascrive `x` senza averlo salvato.
+
+D: Con `int a = 1, b = 2;` che cosa stampa `int t = a; a = b; b = t; printf("%d %d", a, b);`?
++ `2 1`
+- `1 2`
+- `2 2`
+- `1 1`
+- `2 1 1`
+= È lo scambio corretto: alla fine `a` vale 2 e `b` vale 1. La risposta più insidiosa è `2 1 1`: `t` vale ancora 1, ma `printf` stampa solo `a` e `b`.
+
+D: Per scambiare due variabili `double`, di che tipo deve essere la variabile d'appoggio?
++ `double`
+- `int`
+- `float`
+- un tipo qualsiasi
+- non serve una variabile d'appoggio con i `double`
+= La variabile d'appoggio deve contenere esattamente il valore salvato, quindi deve avere lo stesso tipo. La risposta più insidiosa è `float`: è un tipo reale, ma ha meno cifre e il valore salvato verrebbe approssimato. Con `int` si perderebbe tutta la parte dopo la virgola.
+
+D: Con `int a = 1, b = 2, c = 3;` quanto vale `c` dopo `int t = a; a = b; b = c; c = t;`?
+N: 1
+= È la rotazione: `a` prende 2, `b` prende 3, `c` prende il vecchio valore di `a`, che era 1 ed era salvato in `t`.
+
+D: Quanti assegnamenti servono, al minimo, per scambiare due variabili con la variabile d'appoggio, contando anche quello in `temp`?
++ 3
+- 2
+- 4
+- 1
+- 6
+= Salvare, sovrascrivere la prima, sovrascrivere la seconda. La risposta più insidiosa è 2: con due soli assegnamenti un valore si perde sempre, come in `x = y; y = x;`.
+
+D: Perché `x = y; y = x;` compila senza avvisi anche con `-Wall -Werror`?
++ Sono due assegnamenti corretti: l'errore è nella logica, non nella sintassi
+- Perché `-Wall` non controlla gli assegnamenti
+- Perché gcc corregge da solo lo scambio
+- Perché gli `int` non danno mai avvisi
+- In realtà gcc dà un avviso
+= Per il compilatore sono due istruzioni valide: non sa che cosa volevi fare. La risposta più insidiosa è «gcc corregge da solo»: il compilatore traduce quello che hai scritto, senza indovinare le intenzioni.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: segui i valori
+Con `int x = 8; int y = 3; int z = 0;` che cosa valgono le tre variabili dopo `z = x; x = y; y = z;`? E dopo `z = x; y = x; x = z;`, ripartendo dagli stessi valori?
+::: soluzione
+1. Prima sequenza: `z` = 8, poi `x` = 3, poi `y` = 8. Alla fine `x` = 3, `y` = 8, `z` = 8: è uno scambio corretto, con `z` come variabile d'appoggio.
+2. Seconda sequenza: `z` = 8, poi `y` = 8, poi `x` = 8. Alla fine valgono tutte 8: il 3 di `y` è stato perso al secondo passo.
+:::
+
+::: esercizio base Riscaldamento: il programma scambio.c del laboratorio
+Il programma `scambio.c` del Laboratorio 02 scambia `x = 5` e `y = 8` e stampa i valori prima e dopo. Scrivilo tu, compila con `-Wall -Werror` e controlla le due righe stampate.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int x = 5;
+    int y = 8;
+    printf("x: %d, y: %d\n", x, y);
+
+    // scambio x con y usando una variabile intermedia
+    int temp = x;
+    x = y;
+    y = temp;
+
+    printf("x: %d, y: %d\n", x, y);
+}
+```
+Stampa:
+```
+x: 5, y: 8
+x: 8, y: 5
+```
+:::
+
+::: esercizio base Riscaldamento: due double
+Scrivi lo scambio di `double a = 1.5;` e `double b = -4.25;` e stampa i valori con `%f`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    double a = 1.5;
+    double b = -4.25;
+    double tmp = a;
+    a = b;
+    b = tmp;
+    printf("a = %f, b = %f\n", a, b);
+}
+```
+Stampa `a = -4.250000, b = 1.500000`. La variabile d'appoggio è `double`, come le altre due.
+:::
+
+::: esercizio medio Rotazione di tre variabili
+Con `int a = 1, b = 2, c = 3;` scrivi le istruzioni che portano a `a` = 2, `b` = 3, `c` = 1, usando una sola variabile d'appoggio. Poi fai la tabella dei valori.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a = 1;
+    int b = 2;
+    int c = 3;
+    int tmp = a;
+    a = b;
+    b = c;
+    c = tmp;
+    printf("a = %d, b = %d, c = %d\n", a, b, c);
+}
+```
+Stampa `a = 2, b = 3, c = 1`. La tabella è quella della sezione «Scambiare più di due variabili».
+:::
+
+::: esercizio medio Trova l'errore
+Uno studente vuole scambiare `x` e `y` e scrive `int temp = y; y = x; x = y;`. Che cosa ottiene con `x = 5`, `y = 2`? Correggi cambiando una sola riga.
+::: soluzione
+`temp` = 2, poi `y` = 5, poi `x` = 5: tutte e due valgono 5, e il 2 è rimasto in `temp` senza essere usato. L'ultima riga deve prendere il valore salvato: `x = temp;`. Con la correzione la catena è `temp ← y ← x ← temp`.
+:::
+
+::: esercizio esame Stato della memoria
+Scrivi il valore di ogni variabile dopo ogni istruzione, partendo da `int a = 4; int b = 7; int c = 1; int t;`: (1) `t = a;` (2) `a = c;` (3) `c = b;` (4) `b = t;` (5) `t = c;`. Alla fine, che cosa è successo ai valori di partenza?
+::: soluzione
+| Dopo | `a` | `b` | `c` | `t` |
+|---|:-:|:-:|:-:|:-:|
+| dichiarazioni | 4 | 7 | 1 | ? |
+| `t = a;` | 4 | 7 | 1 | 4 |
+| `a = c;` | 1 | 7 | 1 | 4 |
+| `c = b;` | 1 | 7 | 7 | 4 |
+| `b = t;` | 1 | 4 | 7 | 4 |
+| `t = c;` | 1 | 4 | 7 | 7 |
+
+I tre valori 4, 7, 1 ci sono ancora tutti: è una rotazione, `a` ha preso il valore di `c`, `c` quello di `b`, `b` quello di `a`. L'ultima istruzione cambia solo `t`, che non conta.
+:::
+
+::: esercizio esame scambio4.c del Laboratorio 02
+Scrivi un programma che prende quattro variabili intere `v1`, `v2`, `v3`, `v4`, con valori a scelta, e le scambia così: `v1` prende il valore di `v2`, `v2` quello di `v3`, `v3` quello di `v4`, `v4` quello di `v1`. Stampa i valori prima e dopo.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int v1 = 10;
+    int v2 = 20;
+    int v3 = 30;
+    int v4 = 40;
+    printf("prima: v1 = %d, v2 = %d, v3 = %d, v4 = %d\n", v1, v2, v3, v4);
+
+    int temp = v1;   // salvo v1, che verra' sovrascritto per primo
+    v1 = v2;
+    v2 = v3;
+    v3 = v4;
+    v4 = temp;
+
+    printf("dopo:  v1 = %d, v2 = %d, v3 = %d, v4 = %d\n", v1, v2, v3, v4);
+}
+```
+Stampa:
+```
+prima: v1 = 10, v2 = 20, v3 = 30, v4 = 40
+dopo:  v1 = 20, v2 = 30, v3 = 40, v4 = 10
+```
+Provato con gcc 16.1 e `-Wall -Werror`. Una sola variabile d'appoggio basta per qualunque rotazione.
+:::
+
+## Domande di ripasso
+
+::: domanda Perché `x = y; y = x;` non scambia le due variabili?
+Perché l'assegnamento cancella il valore di prima: dopo `x = y;` il vecchio valore di `x` non c'è più, e `y = x;` copia in `y` il valore che aveva già.
+:::
+
+::: domanda Quali sono i tre passi dello scambio con la variabile d'appoggio?
+`temp = x;` per salvare `x`; `x = y;` per mettere `y` in `x`; `y = temp;` per mettere il vecchio `x` in `y`.
+:::
+
+::: domanda Perché l'ordine dei tre passi conta?
+Perché si può sovrascrivere una variabile solo dopo averne salvato il valore. Se si scrive prima `x = y;`, il valore di `x` è perso prima di essere salvato.
+:::
+
+::: domanda Di che tipo deve essere la variabile d'appoggio?
+Dello stesso tipo delle variabili da scambiare, altrimenti il valore salvato può essere cambiato o approssimato.
+:::
+
+::: domanda Quante variabili d'appoggio servono per ruotare quattro variabili?
+Una sola: si salva la prima che verrà sovrascritta, e ogni assegnamento riempie la variabile liberata da quello prima.
+:::
+
+## Glossario
+
+```glossario
+Scambio (swap) | Operazione che mette in ciascuna di due variabili il valore che aveva l'altra.
+Variabile d'appoggio | Variabile in più, dello stesso tipo, che conserva per poco un valore che sta per essere sovrascritto; detta anche variabile temporanea.
+Sovrascrivere | Assegnare un nuovo valore a una variabile: il valore di prima è perso.
+Rotazione | Scambio a catena tra più variabili: ognuna prende il valore della successiva, l'ultima quello della prima.
+Valore indeterminato | Contenuto di una variabile dichiarata e non ancora assegnata; negli schemi «?».
+```
+
+## Checklist
+
+```checklist
+- So spiegare perché `x = y; y = x;` non scambia due variabili.
+- So scrivere lo scambio con la variabile d'appoggio, nell'ordine giusto.
+- So seguire uno scambio con la tabella «una riga per istruzione».
+- So scegliere il tipo giusto per la variabile d'appoggio.
+- So ruotare tre o quattro variabili con una sola variabile d'appoggio.
+```
+
+## Fonti
+
+- Slide «Scambiare variabili. Uso delle variabili temporanee» (03A_scambio variabili), Programmazione I – Teoria, canale B, A.A. 2026/27, Elvio Amparore: le tazze di tè (slide 2–4), lo scambio sbagliato passo per passo (slide 5–10), lo scambio con la variabile d'appoggio passo per passo (slide 11–16).
+- Laboratorio 02 «Operatori e Tipi», canale B: il programma `scambio.c` e l'esercizio `scambio4.c` (slide 18).
+- I programmi di questi appunti sono stati compilati con gcc 16.1 e `-Wall -Werror` ed eseguiti; le stampe riportate sono quelle vere. La rotazione di tre variabili, il trucco con le somme, le tabelle passo per passo, i quiz e gli esercizi senza indicazione sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/lezioni/03B_floats.md -->
+> File: `contesto_ai/PROG1/lezioni/03B_floats.md`
+
+```yaml
+corso: PROG1
+lezione: 03B
+titolo: Numeri reali in C, float e double, conversioni di tipo
+data: 2026-10-13
+docenti: Elvio Amparore
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 03B
+descrizione: >-
+  Appunti della lezione 03B di Programmazione I (canale B): i tipi float e double, precisione e intervallo, la stampa
+  con %f, %e e %g e la lettura dei double con %lf, le operazioni sui reali e la libreria math.h, le conversioni di tipo
+  implicite e le loro conseguenze, la promozione di tipo, la divisione tra interi che perde la parte frazionaria, il
+  cast esplicito, con tutti i programmi delle slide provati, quiz ed esercizi.
+lede: >-
+  I numeri con la virgola in C si chiamano float e double. Qui vedi come si stampano e si leggono, quante cifre
+  tengono davvero, e soprattutto che cosa succede quando mescoli interi e reali nella stessa espressione: è lì che
+  5 diviso 2 diventa 2 invece di 2,5.
+materiale: slide
+scheda:
+  Slide: 03B_floats («Numeri reali in C. Float, double, precisione, conversione») · 25 pagine
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 90 minuti, meglio con gcc a portata di mano
+fonte: >-
+  Slide «Numeri reali in C. Float, double, precisione, conversione» (03B_floats), Programmazione I – Teoria, canale B,
+  A.A. 2026/27
+appunti_html: appunti/PROG1/03B_floats.html
+genera_html: true
+```
+
+## In breve
+
+- I numeri con la virgola in C sono di due tipi: **`float`**, di solito 4 byte e circa 7 cifre giuste, e **`double`**, di solito 8 byte e circa 15–16 cifre giuste.
+- Si stampano con **`%f`** (notazione normale, 6 cifre dopo la virgola), **`%e`** (notazione scientifica) e **`%g`** (la più corta delle due). `%.3f` tiene 3 cifre dopo la virgola.
+- Con `scanf`, un `double` si legge con **`%lf`**, non con `%f`.
+- Sui reali ci sono `+`, `-`, `*`, `/`, ma **non** il resto `%`. Radici, potenze e altre funzioni sono nella libreria **`math.h`**.
+- Quando un'espressione mescola tipi diversi, il C li **converte** da solo: il tipo «più piccolo» diventa quello «più grande». Un intero con un reale dà un reale.
+- Ma **tra due interi** la divisione resta intera: in `float z = 5 / 2;` la divisione fa 2, e solo dopo il 2 diventa 2.000000.
+- Mettere un reale in un `int` **taglia** la parte dopo la virgola, senza avvisi.
+- Il **cast** `(float)y` converte un valore quando lo decidi tu: `x / (float)y` fa la divisione con la virgola.
+
+> [!CANALI]
+> **Canale B.** È la seconda parte della lezione di martedì 13/10, dalle 11 alle 13, dopo la [03A](03A_scambio_variabili.html) sullo scambio di variabili. Riprende la tabella dei tipi della [02B](02B_assegnamento_memory_model.html).
+>
+> **Fondamenti dell'Informatica.** Le slide rimandano a Fondamenti per la codifica dei reali, lo standard **IEEE 754**. L'idea è nella [lezione 03 di Fondamenti](../FDA/03_interi_con_segno_virgola_mobile.html): segno, esponente e mantissa, con un formato da 8 bit invece di 32 o 64.
+>
+> **Canali A e C.** Le slide 2026/27 dei canali A e C per questa lezione non le ho viste. L'esame è unico, e le conversioni di tipo sono una fonte di errori in tutti gli esercizi con le medie.
+>
+> **Laboratorio.** Il [Laboratorio 02](Lab02_operatori_tipi.html) fa provare tutto questo con `aritmetica.c`, `media.c` e `circonferenza.c`.
+
+## I numeri con la virgola: float e double (slide 2–3)
+
+Per contare le persone in aula bastano gli interi. Ma per la media dei voti, il prezzo al chilo dei pomodori o la velocità di un'auto servono i numeri con la virgola: una parte intera e una parte frazionaria. In C si chiamano **numeri reali** e hanno due tipi principali.
+
+| Tipo | Dimensione tipica | Cifre giuste, circa | Intervallo, circa | Quando usarlo |
+|---|---|---|---|---|
+| `float` | 32 bit, 4 byte | 7 cifre decimali | da $10^{-38}$ a $10^{38}$ | per risparmiare memoria, o per calcoli poco delicati |
+| `double` | 64 bit, 8 byte | 15–16 cifre decimali | da $10^{-308}$ a $10^{308}$ | calcoli scientifici, quando serve precisione |
+
+Il nome `double` viene da «doppia precisione»: usa il doppio dei bit di `float`. In memoria funzionano come la virgola mobile della lezione 03 di Fondamenti: un bit di segno, un esponente che dice dove sta la virgola, e una mantissa con le cifre. Lo standard che lo descrive si chiama **IEEE 754**.
+
+### Le cifre giuste sono poche
+
+«Circa 7 cifre» vuol dire proprio questo: dopo la settima cifra il numero è approssimato. Ho provato sul mio PC tre stampe con tante cifre:
+
+```c
+float f = 0.1f;
+double d = 0.1;
+printf("%.20f\n%.20f\n", f, d);
+```
+
+```
+0.10000000149011611938
+0.10000000000000000555
+```
+
+Un decimo non si scrive esattamente in base 2, come un terzo non si scrive esattamente in base 10. Il `float` sbaglia dall'ottava cifra, il `double` dalla diciottesima. Per la stessa ragione `0.1 + 0.2` in `double` vale `0.30000000000000004`.
+
+> [!TRAPPOLA] I reali non si confrontano con ==
+> Siccome quasi tutti i reali sono approssimati, due calcoli che «dovrebbero» dare lo stesso numero spesso differiscono nell'ultima cifra. Confrontare due `double` con `==` è quasi sempre un errore. Lo vedrai con le condizioni: si controlla che la differenza sia molto piccola.
+
+### Le operazioni
+
+Sui reali ci sono le quattro operazioni: `+`, `-`, `*`, `/`. La divisione `/` tra due reali è quella vera, con la virgola: `5.0 / 2.0` fa `2.5`.
+
+Il resto **`%` non c'è**: con due `double` gcc si ferma con `error: invalid operands to binary % (have 'double' and 'double')`. Le slide avvisano che esiste una funzione di libreria, `fmod`, ma nel corso non si usa.
+
+::: prova Quale tipo usi per: (a) il numero di studenti in aula; (b) la temperatura in gradi; (c) un risultato di fisica con 12 cifre giuste?
+(a) `int`: è un numero intero. (b) `float` o `double`: ha la virgola; basta anche `float`. (c) `double`: il `float` ha solo circa 7 cifre giuste.
+:::
+
+> [!RICORDA]
+> - `float`: 4 byte, circa 7 cifre. `double`: 8 byte, circa 15–16 cifre.
+> - I reali sono quasi sempre approssimati: niente `==` tra reali.
+> - Niente `%` tra reali.
+
+## Stampare e leggere i reali (slide 4–5)
+
+Con `printf` un reale si può stampare in tre modi. Con `double z = 2.5;`:
+
+| Specificatore | Che cosa stampa | Esempio | Quando usarlo |
+|---|---|---|---|
+| `%f` | notazione con la virgola fissa, 6 cifre dopo la virgola | `2.500000` | la scrittura «naturale» di un numero |
+| `%e` | notazione scientifica | `2.500000e+00` | numeri molto grandi o molto piccoli |
+| `%g` | la più corta tra `%f` e `%e`, senza zeri inutili | `2.5` | una stampa compatta |
+
+`e+00` vuol dire «per 10 alla 0». Così `1.5e+03` è $1{,}5 \cdot 10^3 = 1500$.
+
+### Quante cifre dopo la virgola
+
+Tra il `%` e la lettera si può scrivere un punto e un numero: è quante cifre stampare dopo la virgola.
+
+```c
+printf("z vale %f\n", z);      // z vale 2.500000
+printf("z vale %.3f\n", z);    // z vale 2.500
+printf("z vale %.3e\n", z);    // z vale 2.500e+00
+```
+
+Le slide dicono «troncata al terzo decimale». In realtà `printf` **arrotonda** all'ultima cifra stampata: `printf("%.2f", 1.0 / 3)` stampa `0.33`, e `printf("%.2f", 2.0 / 3)` stampa `0.67`.
+
+Un'altra cosa da sapere: `printf` usa `%f` sia per i `float` sia per i `double`. Quando passi un `float` a `printf`, il C lo trasforma da solo in `double`. Per questo i messaggi di errore di gcc su `%f` parlano sempre di `double`.
+
+### Leggere un double
+
+Con `scanf` le cose cambiano. `scanf` non riceve un valore ma un **indirizzo** (lezione 02C), e deve sapere quanti byte scrivere: 4 per un `float`, 8 per un `double`. Per questo:
+
+- un `float` si legge con `%f`;
+- un `double` si legge con **`%lf`** (o `%le`, `%lg`).
+
+```c
+double x;
+float y;
+int letti = scanf("%lf %f", &x, &y);
+```
+
+Con l'input `3.25 1.5` il programma legge tutti e due i valori: `letti` vale 2.
+
+> [!TRAPPOLA] %f con un double in scanf
+> `double x; scanf("%f", &x);` con `-Wall -Werror` non compila: `error: format '%f' expects argument of type 'float *', but argument 2 has type 'double *'`. Senza le opzioni compila, ma scrive solo 4 degli 8 byte di `x` e il valore letto è sbagliato. In `printf` invece `%f` va bene per tutti e due.
+
+::: prova Che cosa stampano `printf("%.1f", 3.14159)` e `printf("%g", 0.5)`? E come leggi un `double` chiamato `peso`?
+`3.1` e `0.5`. Il `double` si legge con `scanf("%lf", &peso);`.
+:::
+
+> [!RICORDA]
+> - `printf`: `%f`, `%e`, `%g` per `float` e `double`; `%.3f` dà 3 cifre dopo la virgola.
+> - `scanf`: `%f` per `float`, `%lf` per `double`.
+
+## Calcoli con i reali e math.h (slide 6–10)
+
+Il primo programma delle slide divide due `float`:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    float x = 5, y = 2, z;
+    z = x / y;
+    printf("La var x vale %f\n", x);
+    printf("La var y vale %f\n", y);
+    printf("La var z vale %f\n", z);
+}
+```
+
+```
+La var x vale 5.000000
+La var y vale 2.000000
+La var z vale 2.500000
+```
+
+`float x = 5` mette nel `float` il numero 5, che diventa 5.0. La divisione tra due `float` è con la virgola: 2.5.
+
+Le slide 7 e 8 rifanno lo stesso programma con i `double`, e poi con `x` e `y` di tipo `float` e `z` di tipo `double`. Il risultato stampato è sempre 2.500000; cambia solo lo spazio in memoria: 4 byte per ogni `float`, 8 per ogni `double`.
+
+### La libreria math.h
+
+Gli operatori del C fanno solo le operazioni di base. Per radici, potenze, logaritmi e trigonometria c'è la libreria **`math.h`**, da includere con `#include <math.h>`. Le funzioni più usate:
+
+| Funzione | Che cosa calcola | Esempio |
+|---|---|---|
+| `sqrt(x)` | la radice quadrata | `sqrt(9.0)` vale 3.0 |
+| `pow(x, y)` | $x$ elevato alla $y$ | `pow(9.0, 2)` vale 81.0 |
+| `sin(x)`, `cos(x)` | seno e coseno, con l'angolo in radianti | `cos(0.0)` vale 1.0 |
+| `floor(x)`, `ceil(x)`, `round(x)` | arrotonda per difetto, per eccesso, al più vicino | `round(2.5)` vale 3.0 |
+
+```c
+#include <stdio.h>
+#include <math.h>
+
+int main(void) {
+    float num = 9.0, radice, quadrato;
+    quadrato = pow(num, 2);
+    radice = sqrt(num);
+    printf("Il quadrato di %.0f e' %.2f\n", num, quadrato);
+    printf("La radice di %.0f e' %.2f\n", num, radice);
+}
+```
+
+```
+Il quadrato di 9 e' 81.00
+La radice di 9 e' 3.00
+```
+
+> [!NOTA] -lm su Linux
+> Su Linux le funzioni di `math.h` stanno in una libreria a parte, e va aggiunta quando si compila: `gcc programma.c -lm`. La `m` sta per *math*. Su Windows con gcc, sul mio PC, non serve, ma aggiungerla non fa danni. Al laboratorio Turing, che usa Linux, mettila. Tutto il riferimento della libreria è su [cppreference](https://en.cppreference.com/w/c/header/math.html).
+
+::: prova Scrivi l'espressione C per la diagonale di un rettangolo con lati `a` e `b`, cioè la radice di $a^2 + b^2$.
+`sqrt(a * a + b * b)`, oppure `sqrt(pow(a, 2) + pow(b, 2))`. Serve `#include <math.h>`.
+:::
+
+> [!RICORDA]
+> - Divisione tra due reali: con la virgola.
+> - `math.h` per `sqrt`, `pow`, `floor`, `ceil`, `round` e le altre; su Linux si compila con `-lm`.
+
+## Mescolare i tipi: le conversioni (slide 11–14)
+
+In un'espressione puoi mettere insieme un `int`, un `float` e un `char`. Ma i tre tipi sono scritti in memoria in modi diversi: per fare il conto, il C deve prima portarli tutti allo stesso formato. Questo passaggio si chiama **conversione di tipo**, e ce ne sono di due modi:
+
+- **conversione implicita**: la fa il compilatore da solo, senza che tu scriva niente;
+- **conversione esplicita**, o **cast**: la chiedi tu, scrivendo il tipo tra parentesi.
+
+Tutte e due possono **perdere informazione**: cifre, o l'intera parte dopo la virgola.
+
+> [!IDEA]
+> È come versare un liquido da un contenitore all'altro. Da un bicchiere in una caraffa non perdi niente. Dalla caraffa al bicchiere, quello che non ci sta va perso.
+
+### Le conversioni dell'assegnamento
+
+L'assegnamento è il caso più comune: il valore a destra viene convertito nel tipo della variabile a sinistra. La tabella delle slide, con i valori che ho ottenuto sul mio PC:
+
+| Conversione | Si perde qualcosa? | Esempio | Risultato |
+|---|---|---|---|
+| `int` → `float` | no, tranne con interi molto grandi | `int x = 5; float y = x;` | `y` vale 5.0 |
+| `float` → `int` | sì, la parte dopo la virgola | `float x = 3.7; int y = x;` | `y` vale 3 |
+| `int` → `double` | no | `int x = 42; double y = x;` | `y` vale 42.0 |
+| `double` → `int` | sì, la parte dopo la virgola; comportamento indefinito se il numero non ci sta | `double x = 9.9; int y = x;` | `y` vale 9 |
+| `double` → `float` | sì, cifre di precisione | `double a = 3.14159; float b = a;` | `b` circa 3.14159, meno preciso |
+| `char` → `int` | no: il codice ASCII | `char c = 'A'; int x = c;` | `x` vale 65 |
+| `int` → `int*` | non si può | `int x = 5; int *p = x;` | errore di compilazione |
+
+Tre osservazioni.
+
+1. **La parte dopo la virgola viene tagliata, non arrotondata.** 9.9 diventa 9, non 10. Con i negativi il taglio va verso lo zero: −2.7 diventa −2.
+2. **Gli interi molto grandi** non stanno in un `float`, che ha solo 24 bit di mantissa. 16 777 217 messo in un `float` diventa 16 777 216.
+3. **Un `double` fuori dall'intervallo degli `int`**, come 3 miliardi, non si può convertire: il comportamento è indefinito. Sul mio PC `(int)3e9` dà −2 147 483 648, ma non è garantito.
+
+L'ultima riga della tabella è un errore vero: con gcc 16.1, anche senza opzioni, `int *p = x;` dà `error: initialization of 'int *' from 'int' makes pointer from integer without a cast`. Un numero e un indirizzo non sono la stessa cosa (lezione 02C).
+
+> [!TRAPPOLA] Il compilatore non avvisa
+> Le conversioni con perdita di dati della tabella **non** danno errori né avvisi, nemmeno con `-Wall -Werror`. `int y = 3.7;` compila e mette 3 in `y`, in silenzio. gcc ha un'opzione che avvisa, `-Wconversion`, ma non fa parte di `-Wall` (lezione 02B).
+
+::: prova Quanto valgono `a`, `b` e `c` dopo `int a = 7.99; int b = -7.99; char ch = 'C'; int c = ch;`?
+`a` vale 7 e `b` vale −7: la parte dopo la virgola è tagliata verso lo zero. `c` vale 67, il codice ASCII di `C` (65 è `A`).
+:::
+
+> [!RICORDA]
+> - Da un tipo più piccolo a uno più grande non si perde niente; al contrario sì.
+> - Reale in un `int`: la parte dopo la virgola sparisce, in silenzio.
+
+## La promozione di tipo (slide 15–16)
+
+Quando un operatore come `+` o `/` riceve due valori di tipo diverso, il compilatore li porta allo stesso tipo **prima** di fare il conto. Per non perdere informazione sceglie sempre il tipo **più ampio**. Questo si chiama **promozione di tipo**.
+
+- I tipi interi piccoli salgono: `char` → `short` → `int` → `long`.
+- I reali salgono: `float` → `double`.
+- Un intero con un reale diventa un **reale**.
+
+Esempi delle slide:
+
+- `char + int`: il `char` diventa `int`, il risultato è `int`. Così `'A' + 2` vale 67, e `'a' - 'A'` vale 32.
+- `int + double`: l'`int` diventa `double`, il risultato è `double`. Così `3 + 0.5` vale 3.5.
+
+> [!METODO] Leggere il tipo di un'espressione
+> 1. Parti dalle operazioni più interne, rispettando le precedenze della lezione 02B.
+> 2. Per ogni operatore guarda i tipi dei due valori. Se sono interi tutti e due, il risultato è intero, e la divisione è intera. Se almeno uno è reale, il risultato è reale.
+> 3. Solo alla fine, nell'assegnamento, il risultato si converte nel tipo della variabile.
+
+Il passo 2 è il punto chiave: la promozione guarda **un operatore alla volta**, non tutta l'espressione. Lo mostra la prossima sezione.
+
+::: prova Di che tipo è, e quanto vale, ciascuna espressione? (a) `7 / 2`; (b) `7 / 2.0`; (c) `7.0 / 2`; (d) `'B' - 'A'`.
+(a) `int`, 3: divisione intera. (b) `double`, 3.5. (c) `double`, 3.5. (d) `int`, 1.
+:::
+
+> [!RICORDA]
+> - Due tipi diversi: si sale al più ampio. Intero con reale: reale.
+> - La promozione si decide operatore per operatore.
+
+## La divisione che inganna (slide 17–22)
+
+Ecco il caso più traditore della lezione. Il risultato va in un `float`, eppure la divisione perde la virgola.
+
+```c
+int main(void) {
+    int x = 5, y = 2;
+    float z = x / y;
+    printf("La var x vale %d\n", x);
+    printf("La var y vale %d\n", y);
+    printf("La var z vale %f\n", z);
+}
+```
+
+```
+La var x vale 5
+La var y vale 2
+La var z vale 2.000000
+```
+
+Perché 2.000000 e non 2.500000? Segui il metodo: l'operatore `/` riceve due `int`, quindi fa la **divisione intera**, che dà 2. Solo **dopo**, nell'assegnamento, il 2 viene convertito in `float` e diventa 2.000000. Il fatto che `z` sia un `float` arriva troppo tardi: la parte frazionaria è già persa.
+
+> [!IDEA]
+> Il tipo della variabile a sinistra non cambia il modo in cui si calcola la destra. Prima si calcola la destra, con i suoi tipi; poi il risultato si converte.
+
+### Il caso opposto
+
+Le slide 20–22 fanno il contrario: due `float` e il risultato in un `int`.
+
+```c
+float x = 5, y = 2;
+int z = x / y;
+```
+
+Qui la divisione è tra due reali e dà 2.5, giusto. Ma poi l'assegnamento mette 2.5 in un `int`: la parte dopo la virgola sparisce e `z` vale 2. Il risultato è lo stesso del caso di prima, ma la perdita avviene in un momento diverso: nell'assegnamento, non nella divisione.
+
+| Programma | Divisione | Risultato della divisione | Assegnamento | `z` |
+|---|---|---|---|---|
+| `int x, y; float z = x / y;` | tra interi | 2 | `int` → `float` | 2.000000 |
+| `float x, y; int z = x / y;` | tra reali | 2.5 | `float` → `int` | 2 |
+| `float x, y; float z = x / y;` | tra reali | 2.5 | nessuna conversione | 2.500000 |
+
+::: prova Con `int a = 7, b = 2;` quanto vale `double r = a / b * 2.0;`? E `double s = a * 2.0 / b;`?
+`r` vale 6.0: prima `a / b` tra interi fa 3, poi `3 * 2.0` fa 6.0. `s` vale 7.0: prima `a * 2.0` fa 14.0, un reale, e poi `14.0 / 2` fa 7.0. Stessi numeri, ordine diverso, risultato diverso.
+:::
+
+> [!RICORDA]
+> - `float z = 5 / 2;` dà 2.0: la divisione tra interi taglia prima dell'assegnamento.
+> - `int z = 5.0 / 2.0;` dà 2: l'assegnamento taglia dopo la divisione.
+
+## Il cast: convertire a comando (slide 23–25)
+
+Per avere 2.5 da due `int` bisogna fare in modo che la divisione veda **almeno un reale**. Si fa con il **cast esplicito**: il nome del tipo tra parentesi, davanti al valore da convertire.
+
+```c
+int x = 5, y = 2;
+float z = x / (float)y;   // y convertito in float: risultato 2.5
+```
+
+`(float)y` vale 2.0, un `float`. Ora la divisione è tra un `int` e un `float`: per la promozione l'`int` sale a `float`, e il risultato è 2.5.
+
+> [!DEF] Cast (slide 23 e 25)
+> Il **cast** `(tipo)espressione` converte il valore dell'espressione nel tipo scritto tra parentesi. Agisce solo sull'espressione **immediatamente alla sua destra**, e cambia il tipo del valore solo durante quel calcolo: non cambia il tipo delle variabili.
+
+**Come si legge.** `(float)y` si legge «y convertito in float». Dopo il calcolo `y` è ancora un `int` che vale 2: il cast ha creato un valore nuovo, non ha cambiato `y`.
+
+### Dove si mette il cast
+
+La posizione delle parentesi decide tutto. Con `int x = 5, y = 2;`, ho provato tre versioni:
+
+| Espressione | Che cosa succede | Valore |
+|---|---|---|
+| `x / (float)y` | `y` diventa 2.0, divisione con la virgola | 2.5 |
+| `(float)x / y` | `x` diventa 5.0, divisione con la virgola | 2.5 |
+| `(float)(x / y)` | prima `x / y` tra interi fa 2, poi 2 diventa 2.0 | 2.0 |
+
+Nel terzo caso il cast arriva troppo tardi: la parte dopo la virgola è persa dentro la parentesi. È lo stesso errore della sezione prima, scritto con il cast.
+
+> [!NOTA] Un dettaglio nella slide 24
+> Nella slide 24 il codice stampa `x` e `y` con `%d`, ma il terminale disegnato mostra `5.000000` e `2.000000`. Con il codice della slide l'uscita vera è `La var x vale 5` e `La var y vale 2`, e poi `La var z vale 2.500000`. È solo una svista del disegno: il punto della slide, il 2.5, è giusto.
+
+> [!TRAPPOLA] Il cast di un intero già diviso
+> `(double)(somma / n)` sembra calcolare una media con la virgola, ma la divisione dentro la parentesi è tra interi. Il cast va su uno dei due valori **prima** della divisione: `(double)somma / n`.
+
+::: prova Con `int somma = 17, n = 4;` scrivi un'espressione che calcoli la media 4.25 con un cast, e una che sembri giusta ma dia 4.0.
+Giusta: `(double)somma / n`, oppure `somma / (double)n`. Sbagliata: `(double)(somma / n)`, che divide tra interi e dà 4, poi lo converte in 4.0.
+:::
+
+> [!RICORDA]
+> - `(tipo)espressione` converte solo l'espressione subito a destra.
+> - Il cast non cambia il tipo delle variabili.
+> - Per una divisione con la virgola tra interi, il cast va **su un operando**, non sul risultato.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `float` | «float» | reale, 4 byte, circa 7 cifre | `float t = 21.5f;` |
+| `double` | «dabol» | reale, 8 byte, circa 15–16 cifre | `double pi = 3.14159265;` |
+| `%f` | «percento effe» | in `printf`: reale con 6 cifre dopo la virgola | `2.500000` |
+| `%.2f` | «percento punto due effe» | reale con 2 cifre dopo la virgola | `2.50` |
+| `%e` | «percento e» | notazione scientifica | `2.500000e+00` |
+| `%g` | «percento gi» | la scrittura più corta | `2.5` |
+| `%lf` | «percento elle effe» | in `scanf`: un `double` | `scanf("%lf", &x);` |
+| `(float)y` | «y convertito in float» | cast esplicito | `x / (float)y` |
+| `math.h` | «math punto acca» | libreria delle funzioni matematiche | `sqrt(2.0)` |
+| `-lm` | «meno elle emme» | opzione di gcc per la libreria matematica su Linux | `gcc p.c -lm` |
+
+## Verso l'esame
+
+L'esame di Programmazione I è al PC, unico per i tre canali: appelli **lunedì 25/01/2027** e **giovedì 11/02/2027**. CodeRunner confronta le stampe del tuo programma con quelle attese, carattere per carattere: un 2.000000 al posto di 2.500000 è un test fallito.
+
+**Gli errori che costano**
+
+1. **La media tra interi.** Sommare interi e dividere per il numero di elementi dà una divisione intera. Serve un cast su un operando, o una costante reale come `3.0`.
+2. **`%lf` dimenticato in `scanf`** con un `double`: con `-Wall -Werror` non compila.
+3. **Lo specificatore sbagliato in `printf`**: `%d` con un `double`, o `%f` con un `int`, non compila con `-Wall -Werror`.
+4. **Il numero di cifre**: se il testo chiede due cifre dopo la virgola, serve `%.2f`; con `%f` ne escono sei e il test fallisce.
+5. **I reali confrontati con `==`**: con le condizioni, nelle prossime lezioni.
+
+> [!METODO] Prima di dividere
+> 1. Guarda i tipi dei due operandi del `/`.
+> 2. Se sono tutti e due interi e vuoi la virgola, metti un cast su **uno** dei due, oppure usa una costante con la virgola.
+> 3. Controlla con un esempio a mano: 5 diviso 2 deve dare 2.5.
+
+> [!ESAME] La media di tre numeri
+> Il programma `media.c` del [Laboratorio 02](Lab02_operatori_tipi.html) è proprio questo esercizio: con i voti 1, 2, 5, la media intera dà 2, la media con il cast sul risultato dà 2.000000, quella giusta dà 2.666667. È un modello di errore che negli esercizi d'esame si ripete in ogni calcolo di media.
+
+## Quiz
+
+```quiz
+D: Con `int x = 5, y = 2;` quanto vale `float z = x / y;`?
++ 2.0
+- 2.5
+- 3.0
+- 2.25
+- non compila
+= `/` tra due `int` è la divisione intera: dà 2. Solo dopo il 2 diventa il `float` 2.0. La risposta più insidiosa è 2.5: il tipo di `z` non cambia il calcolo a destra. Nessun arrotondamento porta a 3.
+
+D: Con `float x = 5, y = 2;` quanto vale `int z = x / y;`?
++ 2
+- 2.5
+- 3
+- 2.0, perché resta un float
+- non compila
+= La divisione tra `float` dà 2.5; l'assegnamento a un `int` taglia la parte dopo la virgola: 2. La risposta più insidiosa è 3: il C non arrotonda, taglia. Compila senza avvisi, anche con `-Wall`.
+
+D: Con `int x = 5, y = 2;` quale espressione vale 2.5?
++ `x / (float)y`
+- `(float)(x / y)`
+- `x / y`
+- `(int)(x / 2.0)`
+- `x / y * 1.0`
+= Il cast su `y` rende reale un operando, e la divisione è con la virgola. La risposta più insidiosa è `(float)(x / y)`: la divisione tra interi avviene dentro la parentesi, e il cast converte il 2 in 2.0. `(int)(x / 2.0)` taglia 2.5 a 2. `x / y * 1.0` fa prima la divisione intera, 2, e poi la moltiplica: 2.0.
+
+D: Come si legge un `double` chiamato `d` con `scanf`?
++ `scanf("%lf", &d);`
+- `scanf("%f", &d);`
+- `scanf("%d", &d);`
+- `scanf("%lf", d);`
+- `scanf("%e", d);`
+= Per un `double` serve `%lf`, e `scanf` vuole l'indirizzo. La risposta più insidiosa è `scanf("%f", &d);`: `%f` va bene in `printf`, ma in `scanf` è per i `float`, e con `-Wall -Werror` non compila. Le ultime due passano il valore invece dell'indirizzo.
+
+D: Che cosa stampa `printf("%.2f\n", 2.0 / 3);`?
++ `0.67`
+- `0.66`
+- `0.666667`
+- `0`
+- `0.67e+00`
+= `2.0 / 3` è una divisione con la virgola, perché 2.0 è reale: 0.6666… Con `%.2f` si stampano 2 cifre, arrotondate: 0.67. La risposta più insidiosa è `0.66`: `printf` arrotonda, non taglia. `0.666667` sarebbe con `%f`.
+
+D: Quale riga dà un errore di compilazione con gcc 16.1, anche senza opzioni?
++ `int x = 5; int *p = x;`
+- `int x = 3.7;`
+- `double d = 7;`
+- `char c = 'A'; int n = c;`
+- `float f = 1e10;`
+= Un intero non diventa un indirizzo da solo: gcc si ferma con «makes pointer from integer without a cast». La risposta più insidiosa è `int x = 3.7;`: perde la parte dopo la virgola, ma compila senza avvisi. Le altre sono conversioni normali.
+
+D: Con `int a = 7, b = 2;` quanto vale `double r = a / b * 2.0;`?
+N: 6
+= Si calcola da sinistra: `a / b` tra interi fa 3, poi `3 * 2.0` fa 6.0. La divisione intera avviene prima che il 2.0 entri in gioco.
+
+D: Di che tipo è il risultato di `'A' + 1.5`?
++ `double`
+- `char`
+- `int`
+- `float`
+- non si può sommare un carattere e un numero
+= `'A'` è un `char`, che sale a `int`; con un `double` come 1.5 si sale a `double`. La risposta più insidiosa è `float`: le costanti con la virgola senza la `f` finale sono `double`. Il risultato vale 66.5.
+
+D: Che cosa vale `(int)-3.7`?
++ -3
+- -4
+- 3
+- -3.7
+- 0
+= Il cast a `int` taglia verso lo zero: −3.7 diventa −3. La risposta più insidiosa è −4, che sarebbe l'arrotondamento per difetto di `floor`. Il segno resta.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: il tipo e il valore
+Con `int i = 9; double d = 2.0;` scrivi tipo e valore di: (a) `i / 2`; (b) `i / d`; (c) `i % 2`; (d) `(double)i / 2`; (e) `(double)(i / 2)`.
+::: soluzione
+(a) `int`, 4. (b) `double`, 4.5. (c) `int`, 1. (d) `double`, 4.5: il cast è su `i`. (e) `double`, 4.0: la divisione intera avviene prima del cast.
+:::
+
+::: esercizio base Riscaldamento: stampe dei reali
+Con `double z = 1234.5678;` scrivi che cosa stampano `%f`, `%.1f`, `%e` e `%g`. Poi provalo.
+::: soluzione
+- `%f`: `1234.567800`
+- `%.1f`: `1234.6`, arrotondato
+- `%e`: `1.234568e+03`
+- `%g`: `1234.57`: `%g` tiene 6 cifre significative in tutto
+:::
+
+::: esercizio base Riscaldamento: assegnamenti che perdono
+Che cosa valgono le variabili? `int a = 9.99; int b = -9.99; float c = 1/4; float d = 1.0/4; double e = 'a';`
+::: soluzione
+`a` = 9 e `b` = −9: taglio verso lo zero. `c` = 0.0: divisione intera, 1/4 fa 0. `d` = 0.25. `e` = 97.0: il codice ASCII di `a`.
+:::
+
+::: esercizio medio Il programma delle slide 17–19, corretto
+Il programma con `int x = 5, y = 2; float z = x / y;` stampa 2.000000. Correggilo in due modi diversi perché stampi 2.500000, senza cambiare il tipo di `x` e `y`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int x = 5, y = 2;
+    float z1 = x / (float)y;   // cast su un operando
+    float z2 = (float)x / y;   // cast sull'altro operando
+    printf("%f %f\n", z1, z2);
+}
+```
+Stampa `2.500000 2.500000`. Anche `x * 1.0 / y` funziona, ma con il cast chi legge vede subito che vuoi una divisione con la virgola.
+:::
+
+::: esercizio medio Radice e potenza
+Scrivi un programma che legge un `double` con `scanf` e stampa il suo quadrato e la sua radice quadrata con 3 cifre dopo la virgola. Prova con 2.
+::: soluzione
+```c
+#include <stdio.h>
+#include <math.h>
+
+int main(void) {
+    double x;
+    printf("Inserisci un numero: ");
+    scanf("%lf", &x);
+    printf("Quadrato: %.3f\n", pow(x, 2));
+    printf("Radice: %.3f\n", sqrt(x));
+}
+```
+Con 2 stampa `Quadrato: 4.000` e `Radice: 1.414`. Su Linux si compila con `gcc -Wall -Werror radice.c -o radice -lm`.
+:::
+
+::: esercizio esame La media di tre voti
+Scrivi un programma che legge tre voti interi e stampa la loro media con 2 cifre dopo la virgola. Con 1, 2, 5 deve stampare `2.67`. Poi spiega che cosa stamperebbe con `double m = (a + b + c) / 3;`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a, b, c;
+    scanf("%d %d %d", &a, &b, &c);
+    double m = (a + b + c) / 3.0;
+    printf("%.2f\n", m);
+}
+```
+Stampa `2.67`. Con `(a + b + c) / 3` la somma 8 è divisa per l'intero 3: divisione intera, 2, poi convertito in 2.0. Stamperebbe `2.00`. Programma provato con gcc 16.1 e `-Wall -Werror`.
+:::
+
+::: esercizio esame Trova i tre errori
+Questo programma dovrebbe leggere il lato di un quadrato con la virgola e stampare l'area con 2 cifre. Trova gli errori: `double lato; scanf("%f", &lato); int area = lato * lato; printf("Area: %.2f\n", area);`
+::: soluzione
+1. `scanf("%f", &lato)`: per un `double` serve `%lf`. Con `-Wall -Werror` non compila.
+2. `int area`: l'area con la virgola va in un `double`; in un `int` perde la parte frazionaria.
+3. `printf("%.2f", area)` con un `int`: lo specificatore non corrisponde al tipo. Con `-Wall -Werror` non compila.
+
+Corretto: `double lato; scanf("%lf", &lato); double area = lato * lato; printf("Area: %.2f\n", area);`.
+:::
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra float e double?
+`float` usa di solito 4 byte e ha circa 7 cifre giuste; `double` usa 8 byte e ha circa 15–16 cifre giuste, con un intervallo molto più ampio.
+:::
+
+::: domanda Con quale specificatore si legge un double con scanf? E si stampa con printf?
+Si legge con `%lf`. Si stampa con `%f`, `%e` o `%g`, perché `printf` riceve i `float` già convertiti in `double`.
+:::
+
+::: domanda Perché `float z = 5 / 2;` vale 2.0?
+Perché `5 / 2` è una divisione tra due interi e dà 2. Solo dopo, nell'assegnamento, il 2 diventa il `float` 2.0.
+:::
+
+::: domanda Che cosa succede mettendo 3.7 in un int?
+La parte dopo la virgola viene tagliata, senza arrotondare e senza avvisi: l'`int` vale 3.
+:::
+
+::: domanda Che cos'è la promozione di tipo?
+La conversione automatica dei due operandi di un operatore al tipo più ampio, prima di fare il conto: un intero con un reale diventa un reale.
+:::
+
+::: domanda Che differenza c'è tra `(double)a / b` e `(double)(a / b)` con a e b interi?
+Nel primo il cast è su `a`, e la divisione è con la virgola. Nel secondo la divisione tra interi avviene prima, e il cast converte un risultato già tagliato.
+:::
+
+::: domanda Perché non si confrontano due double con ==?
+Perché quasi tutti i reali sono approssimati: due calcoli che dovrebbero dare lo stesso valore possono differire nell'ultima cifra.
+:::
+
+## Glossario
+
+```glossario
+float | Tipo reale, di solito 4 byte, con circa 7 cifre decimali giuste.
+double | Tipo reale in doppia precisione, di solito 8 byte, con circa 15–16 cifre decimali giuste.
+IEEE 754 | Lo standard che descrive come sono scritti in memoria i numeri reali: segno, esponente e mantissa.
+%f, %e, %g | Specificatori di printf per i reali: virgola fissa, notazione scientifica, scrittura più corta.
+%lf | Specificatore di scanf per leggere un double.
+math.h | Libreria del C con le funzioni matematiche: sqrt, pow, floor, ceil, round, sin, cos.
+Conversione implicita | Cambio di tipo fatto dal compilatore da solo, per esempio in un assegnamento o in un'espressione mista.
+Promozione di tipo | Conversione automatica degli operandi al tipo più ampio prima di un'operazione.
+Cast | Conversione esplicita scritta con il tipo tra parentesi, come `(float)y`; vale solo per l'espressione subito a destra.
+Comportamento indefinito | Situazione in cui il linguaggio non dice che cosa succede, come un double troppo grande messo in un int.
+```
+
+## Checklist
+
+```checklist
+- So la differenza tra float e double, in byte e in cifre giuste.
+- So stampare un reale con %f, %e, %g e con un numero fissato di cifre.
+- So leggere un double con %lf.
+- So usare sqrt e pow di math.h e so quando serve -lm.
+- So che cosa si perde nelle conversioni dell'assegnamento.
+- So decidere il tipo di un'espressione, operatore per operatore.
+- So perché `float z = 5 / 2;` vale 2.0, e come correggerlo con un cast.
+- So dove mettere il cast per fare una media con la virgola.
+```
+
+## Fonti
+
+- Slide «Numeri reali in C. Float, double, precisione, conversione» (03B_floats), Programmazione I – Teoria, canale B, A.A. 2026/27, Elvio Amparore: float e double (slide 2–3), formati di stampa (slide 4–5), programmi con float e double (slide 6–8), math.h (slide 9–10), conversioni implicite e tabella delle conseguenze (slide 11–14), promozione di tipo (slide 15–16), divisione tra interi (slide 17–22), cast esplicito (slide 23–25).
+- Laboratorio 02 «Operatori e Tipi», canale B: `media.c`, `aritmetica.c`, `circonferenza.c`.
+- [cppreference, `<math.h>`](https://en.cppreference.com/w/c/header/math.html), il riferimento citato nelle slide.
+- I programmi di questi appunti sono stati compilati con gcc 16.1 su Windows 11 a 64 bit, con `-Wall -Werror`, ed eseguiti; gli errori del compilatore citati sono quelli veri. Le prove sulla precisione (0.1, 16 777 217, 3 miliardi), le tabelle dei casi, i quiz e gli esercizi sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/PROG1/lezioni/Lab01_introduzione.md -->
 > File: `contesto_ai/PROG1/lezioni/Lab01_introduzione.md`
 
@@ -6043,6 +7176,771 @@ CodeRunner | Il sistema di Moodle che compila il codice con -Wall -Werror, lo es
 - **Sessioni del terminale**: ottenute il 05/10/2026 con Ubuntu (shell bash; i messaggi d'errore di `mkdir` sono quelli di GNU coreutils) e con il Prompt dei comandi di Windows 11 in inglese, in una cartella di prova. Le risposte sono vere; ho cambiato solo il nome della cartella dell'utente in `jon_snow`, come nelle slide, e tolto righe che dipendono dal mio computer.
 - **Programmi C**: tutti compilati con gcc 16.1 (MinGW-w64) e `-Wall -Werror`, ed eseguiti; i programmi che leggono dalla tastiera sono stati provati con i dati passati con la pipe. Messaggi d'errore e `objdump -d` sono quelli veri di gcc 16.1 e binutils 2.47.
 - Le spiegazioni a parole, le sessioni del terminale, i riquadri «Prova tu», i quiz, gli esercizi senza numero di slide e le parti «Oltre le slide» sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/lezioni/Lab02_operatori_tipi.md -->
+> File: `contesto_ai/PROG1/lezioni/Lab02_operatori_tipi.md`
+
+```yaml
+corso: PROG1
+lezione: Lab02
+titolo: "Laboratorio 02: operatori e tipi"
+data: 2026-10-12
+docenti: Elisa Marengo (turno B2) e Valerio Basile (turno B1); teoria Elvio Amparore
+sopratitolo: Canale B · Laboratorio 02 · Programmazione I
+descrizione: >-
+  Appunti del secondo laboratorio di Programmazione I (canale B, Lab02): divisione intera e reale, resto, overflow,
+  ordine di valutazione delle espressioni, circonferenza e area con const, gli errori di compilazione da trovare,
+  la media di tre numeri con le conversioni e gli arrotondamenti, la tabella dei tipi e degli specificatori, le
+  dimensioni dei tipi e dei puntatori, la documentazione del C, il programma della spesa e gli scambi di variabili,
+  con tutti i programmi del codice di partenza provati e gli esercizi svolti.
+lede: >-
+  Il secondo laboratorio mette alla prova le lezioni 02B, 02C, 03A e 03B: si leggono programmi già scritti, si
+  indovina che cosa stampano, si cercano gli errori e si scrivono programmi piccoli. Qui trovi ogni esercizio con la
+  soluzione provata, e il perché di ogni risultato strano.
+materiale: slide
+scheda:
+  Slide: Lab02 «Operatori e Tipi», laboratorio canale B · 18 pagine, con la tabella dei tipi e il codice di partenza
+  Laboratorio: Elisa Marengo (turno B2, lun 12/10) e Valerio Basile (turno B1, mar 13/10) · 14–17 · laboratorio Turing
+  Tempo di studio: 2–3 ore, davanti a un computer
+fonte: >-
+  Slide «Operatori e Tipi» (Lezione nº 2 di laboratorio), «Tabella dei tipi e specificatori di conversione» e codice di
+  partenza (aritmetica.c, circonferenza.c, dim_tipi.c, errori.c, media.c, scambio.c), Programmazione I – Laboratorio,
+  canale B, A.A. 2026/27
+appunti_html: appunti/PROG1/Lab02_operatori_tipi.html
+genera_html: true
+```
+
+## In breve
+
+- Il laboratorio usa sei programmi già pronti, il **codice di partenza**: si leggono, si provano, si completano o si correggono. Poi si scrivono tre programmi nuovi.
+- **Divisione**: tra due interi `/` dà la parte intera, `%` il resto. Basta un reale per avere la divisione con la virgola: `99 / 50` fa 1, `99 / 50.0` fa 1.98.
+- Un `int` che supera il massimo, 2 147 483 647, **va in overflow** e ricomincia dai negativi: il compilatore non avvisa.
+- Le espressioni seguono le **precedenze**: `*`, `/`, `%` prima di `+` e `-`, da sinistra a destra. Le parentesi cambiano l'ordine.
+- `const` dichiara una **costante**: un valore che il programma non può cambiare.
+- Una **media** si calcola dividendo per `3.0`, non per `3`. Per arrotondare ci sono `floor`, `ceil` e `round`, mentre il cast a `int` taglia.
+- I numeri con la virgola sono approssimati: `8.136 * 1000` convertito in `int` dà **8135**.
+- Tutti i **puntatori** hanno la stessa dimensione, 8 byte su un computer a 64 bit: contengono un indirizzo, qualunque sia il tipo puntato.
+
+> [!CANALI]
+> **Canale B.** È il secondo laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 12/10 con **Elisa Marengo**, turno **B1** martedì 13/10 con **Valerio Basile**. Gli esercizi riprendono la teoria delle lezioni [02B](02B_assegnamento_memory_model.html) (tipi, operatori, precedenze), [02C](02C_referenziamento_scanf_puntatori.html) (`scanf`, puntatori), [03A](03A_scambio_variabili.html) (scambio) e [03B](03B_floats.html) (reali e conversioni).
+>
+> **Canali A e C.** Secondo la scheda del corso i laboratori hanno la stessa sequenza nei tre canali e gli stessi esercizi su CodeRunner. Le slide 2026/27 dei canali A e C per questo laboratorio non le ho viste: controlla il giorno del tuo turno su Moodle.
+>
+> I programmi del codice di partenza li ho compilati e provati tutti con gcc 16.1 su Windows 11 a 64 bit. Dove il risultato su Linux, al laboratorio Turing, può essere diverso, lo dico.
+
+## Aritmetica e overflow: aritmetica.c (slide 2)
+
+Il primo programma va **letto prima di eseguirlo**: per ogni `printf` prova a indovinare che cosa stampa, poi controlla. La slide dice di compilarlo con:
+
+```
+gcc -Wall aritmetica.c -o aritmetica        (Linux e macOS)
+gcc -Wall aritmetica.c -o aritmetica.exe    (Windows)
+```
+
+> [!NOTA] Senza -Werror, per una volta
+> Il programma dichiara tre variabili che non usa, `n1`, `p` e `t`. Con `-Wall` gcc stampa tre avvisi `unused variable`; con `-Wall -Werror` non compila. Per questo la slide usa solo `-Wall`: gli avvisi si leggono, ma il programma parte. All'esame invece vale `-Werror`, e le variabili inutili vanno tolte.
+
+### Le divisioni
+
+```c
+printf("99 / 50 = %d\n", 99 / 50);       // divisione intera
+printf("99 %% 50 = %d\n", 99 % 50);      // resto della divisione intera
+printf("99 / 50.0 = %f\n", 99 / 50.0);   // divisione reale
+printf("99.0 / 50 = %f\n", 99.0 / 50);   // divisione reale
+```
+
+```
+99 / 50 = 1
+99 % 50 = 49
+99 / 50.0 = 1.980000
+99.0 / 50 = 1.980000
+```
+
+Due cose da notare.
+
+- `%%` dentro la stringa di `printf` stampa un solo `%`. Un `%` da solo sarebbe l'inizio di uno specificatore.
+- Basta **un** reale, a sinistra o a destra, per avere la divisione con la virgola: è la promozione di tipo della lezione 03B.
+
+Poi il programma prova il cast in due posti diversi, con `int m = 99` e `int n = 50`:
+
+```
+m / n, con cast su m: 1.980000
+m / n, con cast sul risultato: 1.000000
+```
+
+`(double) m / n` converte `m` prima della divisione; `(double) (m / n)` converte il risultato di una divisione già intera. È la trappola della lezione 03B.
+
+### L'overflow
+
+```c
+int max = INT_MAX;
+printf("INT_MAX = %d\n", max);
+max = max + 3;
+printf("dopo aver sommato 3 = %d\n", max);
+```
+
+```
+INT_MIN = -2147483648
+INT_MAX = 2147483647
+dopo aver sommato 3 = -2147483646
+```
+
+`INT_MAX` e `INT_MIN` sono il massimo e il minimo di un `int`, definiti in `limits.h`. Aggiungendo 3 al massimo, il numero esce dall'intervallo e **ricomincia dai negativi**, come il contachilometri all'indietro della [lezione 03 di Fondamenti](../FDA/03_interi_con_segno_virgola_mobile.html): è l'**overflow** in complemento a 2. Il compilatore non avvisa.
+
+> [!TRAPPOLA] L'overflow degli int con il segno non è garantito
+> Per lo standard del C, l'overflow di un intero con il segno è un **comportamento indefinito**: il risultato −2 147 483 646 è quello che succede quasi sempre, ma il linguaggio non lo promette. Il programma va scritto in modo che l'overflow non capiti.
+
+L'ultima riga stampa l'indirizzo di `max` con `%p`: cambia a ogni esecuzione, come nella lezione 02C.
+
+::: prova Che cosa stampano `printf("%d", 17 / 5)`, `printf("%d", 17 % 5)` e `printf("%f", 17 / 5.0)`?
+`3`, `2` e `3.400000`.
+:::
+
+> [!RICORDA]
+> - Tra interi: `/` dà la parte intera, `%` il resto. Con un reale: divisione con la virgola.
+> - `%%` stampa un `%`. Superare `INT_MAX` è overflow.
+
+## Operazioni su interi (slide 3)
+
+Il primo programma da scrivere da zero: `operazioni_su_interi.c`. Chiede due interi `n1` e `n2`, e stampa la somma, il prodotto, la divisione intera, la divisione reale e il resto.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int n1;
+    int n2;
+    printf("Inserisci due numeri interi: ");
+    scanf("%d %d", &n1, &n2);
+
+    int somma = n1 + n2;
+    printf("Somma: %d\n", somma);
+    printf("Prodotto: %d\n", n1 * n2);
+    printf("Divisione intera: %d\n", n1 / n2);
+    printf("Divisione reale: %f\n", (double)n1 / n2);
+    printf("Resto: %d\n", n1 % n2);
+}
+```
+
+Con l'input `17 5` stampa somma 22, prodotto 85, divisione intera 3, divisione reale 3.400000 e resto 2.
+
+> [!TRAPPOLA] Con i negativi
+> Con `-17 5` il programma stampa divisione intera −3 e resto −2. In C la divisione intera **taglia verso lo zero**, e il resto ha il segno del primo numero. In matematica, nella lezione di Matematica Discreta, il resto è sempre positivo: lì −17 diviso 5 dà quoziente −4 e resto 3. Attenzione quando usi `%` con i negativi.
+
+Il programma non controlla `n2 = 0`: con `0` come secondo numero, la divisione intera fa fallire il programma. Lo saprai sistemare con le condizioni.
+
+::: prova Che cosa stampa il programma con l'input `7 2`?
+Somma 9, prodotto 14, divisione intera 3, divisione reale 3.500000, resto 1.
+:::
+
+> [!RICORDA]
+> - La divisione reale tra due `int` si ottiene con un cast su un operando.
+> - In C, con i negativi, `/` taglia verso lo zero e `%` ha il segno del primo numero.
+
+## L'ordine di valutazione (slide 4–7)
+
+Le slide chiedono di calcolare a mano tre espressioni, prima di provarle. Si usano le precedenze della lezione 02B: prima le parentesi, poi `*`, `/` e `%` da sinistra a destra, poi `+` e `-` da sinistra a destra.
+
+| Espressione | Passi | Risultato |
+|---|---|---|
+| `7 + 3 * 6 / 2 - 1` | `3 * 6` = 18, `18 / 2` = 9, `7 + 9` = 16, `16 - 1` = 15 | **15** |
+| `2 % 2 + 2 * 2 - 2 / 2` | `2 % 2` = 0, `2 * 2` = 4, `2 / 2` = 1, `0 + 4 - 1` = 3 | **3** |
+| `(3 * 9 * (3 + (9 * 3 / (3))))` | `9 * 3 / 3` = 9, `3 + 9` = 12, `3 * 9 * 12` = 324 | **324** |
+
+Sono i risultati delle slide 5, e quelli che stampa il programma.
+
+### Quale formula è $y = ax^3 + 7$?
+
+La slide 6 dà sei espressioni e chiede quali calcolano $ax^3 + 7$. La regola: la moltiplicazione viene prima della somma, e le parentesi intorno a una moltiplicazione non cambiano niente.
+
+| # | Espressione | Giusta? | Perché |
+|:-:|---|:-:|---|
+| 1 | `a * x * x * x + 7` | sì | le moltiplicazioni prima, poi `+ 7` |
+| 2 | `a * x * x * (x + 7)` | no | la parentesi fa sommare 7 a `x` prima |
+| 3 | `(a * x) * x * (x + 7)` | no | stesso errore della 2 |
+| 4 | `(a * x) * x * x + 7` | sì | la parentesi intorno a `a * x` non cambia niente |
+| 5 | `a * (x * x * x) + 7` | sì | come la 4 |
+| 6 | `a * x * (x * x + 7)` | no | il 7 entra nella moltiplicazione |
+
+Ho controllato con `a = 2` e `x = 3`: la formula vale 61. Le espressioni 1, 4 e 5 danno 61; la 2 e la 3 danno 180; la 6 dà 96.
+
+::: prova Quanto vale `10 - 4 - 3`? E `10 - (4 - 3)`?
+3, perché `-` si fa da sinistra: `10 - 4` = 6, poi `6 - 3` = 3. Con le parentesi: `4 - 3` = 1, poi `10 - 1` = 9.
+:::
+
+> [!RICORDA]
+> - `*`, `/`, `%` prima di `+` e `-`; a parità, da sinistra a destra.
+> - Una parentesi intorno a una moltiplicazione non cambia niente; una intorno a una somma sì.
+
+## Circonferenza e area: circonferenza.c (slide 8)
+
+Il programma `circonferenza.c` legge il raggio e deve stampare circonferenza e area. Le due righe di calcolo sono lasciate da completare: ricorda che la circonferenza è $2 \pi r$ e l'area è $\pi r^2$.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    // La costante pi greco
+    const float PI_GRECO = 3.1415926535f;
+
+    // Chiediamo all'utente il raggio
+    printf("Inserisci il raggio del cerchio: ");
+    float r;
+    scanf("%f", &r);
+
+    // Calcolo della circonferenza e dell'area
+    float circonferenza = 2 * PI_GRECO * r;
+    printf("La circonferenza del cerchio e': %f\n", circonferenza);
+
+    float area = PI_GRECO * r * r;
+    printf("L'area del cerchio e': %f\n", area);
+}
+```
+
+Con il raggio 3 stampa `18.849556` e `28.274334`. Così com'è, il codice di partenza non compila nemmeno con `-Wall`: `circonferenza` e `area` sono usate nelle `printf` ma non dichiarate.
+
+> [!NOTA] Prova con il raggio 2
+> Con il raggio 2 la circonferenza e l'area vengono **uguali**, tutte e due 12.566371. Non è un errore: $2 \cdot \pi \cdot 2$ e $\pi \cdot 2^2$ fanno tutti e due $4\pi$. Per controllare il programma usa un altro raggio.
+
+### La domanda: che cosa vuol dire const?
+
+`const` davanti a una dichiarazione la rende una **costante**: il valore si dà all'inizio e poi non si può più cambiare. Se scrivi `PI_GRECO = 3;` più avanti, gcc si ferma con `error: assignment of read-only variable 'PI_GRECO'`. Il nome tutto maiuscolo è una convenzione per le costanti, non un obbligo.
+
+Il commento del codice ricorda che `math.h` ha già la costante **`M_PI`**. Le slide avvisano che, su Linux, usando `math.h` può servire l'opzione `-lm`.
+
+::: prova Con il raggio 1, che cosa devono stampare circonferenza e area?
+La circonferenza $2\pi$, circa 6.283185, e l'area $\pi$, circa 3.141593.
+:::
+
+> [!RICORDA]
+> - `const` fa una variabile che non si può più modificare.
+> - Per provare un programma, scegli dati che non diano risultati uguali per caso.
+
+## Trovare gli errori (slide 9–11)
+
+All'esame il compilatore ti dice dove ha trovato un errore, ma non sempre perché. Qui si allena l'occhio: prima si cercano gli errori leggendo, poi si controlla con gcc.
+
+### Il programma della slide 9
+
+```c
+#include <stdio.h>
+int main() {
+int x, y;
+printf("Inserisci due interi: ");
+scanf("%d %d", &x, y)
+z = x + y;
+printf("La somma %d + %d vale ", x, y);
+printf("%d\n", &z);
+}
+```
+
+Gli errori sono quattro:
+
+1. in `scanf` manca la `&` davanti a `y`: `scanf` vuole un indirizzo;
+2. manca il `;` dopo la `scanf`;
+3. `z` non è dichiarata;
+4. l'ultima `printf` stampa `&z`, l'indirizzo, invece del valore `z`.
+
+gcc con `-Wall -Werror` ne trova subito tre: `format '%d' expects argument of type 'int *', but argument 3 has type 'int'`, `expected ';' before 'z'` e `'z' undeclared`. Il quarto lo segnala dopo aver corretto gli altri. Il programma corretto:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int x, y;
+    printf("Inserisci due interi: ");
+    scanf("%d %d", &x, &y);
+    int z = x + y;
+    printf("La somma %d + %d vale ", x, y);
+    printf("%d\n", z);
+}
+```
+
+### errori.c: gli otto errori
+
+La slide 11 chiede di trovare, **senza compilare**, gli 8 errori di `errori.c`. Prova da solo prima di leggere.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    float f1, f2;
+    printf("Inserisci due numeri reali: ");
+    scanf("%f %d", &f1, &f2);
+
+    float risultato = (f1 + f2) / 2);
+    printf("Risultato = %f %d\n", &risultato);
+
+    // Calcoliamo il quadrato
+    // float quadrato = risultato * risultato;
+    printf("Il quadrato e' \n", quadrato) }
+}
+```
+
+| # | Riga | Errore | Correzione |
+|:-:|---|---|---|
+| 1 | `scanf("%f %d", …)` | `%d` per un `float` | `%f %f` |
+| 2 | `(f1 + f2) / 2);` | una parentesi chiusa di troppo | `(f1 + f2) / 2;` |
+| 3 | `printf(…, &risultato)` | passa l'indirizzo invece del valore | `risultato` |
+| 4 | `"Risultato = %f %d\n"` | `%d` senza un valore da stampare | togliere `%d` |
+| 5 | `// float quadrato = …` | la dichiarazione è commentata: `quadrato` non esiste | togliere `//` |
+| 6 | `"Il quadrato e' \n"` | manca lo specificatore per `quadrato` | `%f` |
+| 7 | `printf(…) }` | manca il `;` dopo la `printf` | `;` |
+| 8 | `}` finale | una graffa chiusa di troppo | togliere una `}` |
+
+Compilando il file originale con `-Wall -Werror`, gcc 16.1 segnala gli errori 1, 2, 3, 4, 5, 7 e 8. Il 6 lo segnala solo dopo le altre correzioni, come «troppi argomenti per il formato». Il programma corretto, con 3 e 4, stampa `Risultato = 3.500000` e `Il quadrato e' 12.250000`.
+
+::: prova Perché `printf("%d\n", &z);` è un errore anche se compila senza -Wall?
+Perché `&z` è l'indirizzo di `z`, non il suo valore: il programma stamperebbe un numero senza senso. Con `-Wall -Werror` gcc lo blocca, perché `%d` vuole un `int` e riceve un `int *`.
+:::
+
+> [!RICORDA]
+> - In `scanf` serve la `&`; in `printf` no.
+> - Ogni specificatore vuole un valore del tipo giusto, nello stesso ordine.
+> - Il primo errore può nasconderne altri: correggi e ricompila.
+
+## La media di tre numeri: media.c (slide 12)
+
+`media.c` legge tre interi `x`, `y`, `z` e calcola la media in tre modi. Con l'input 8, 2, 3, che danno somma 13:
+
+| Riga del programma | Che cosa fa | Stampa |
+|---|---|---|
+| `int media1 = (x + y + z) / 3;` | divisione intera | `4` |
+| `double media2 = (x + y + z) / 3;` | divisione intera, poi convertita in `double` | `4.000000` |
+| `double media3 = (x + y + z) / 3.0;` | divisione con la virgola | `4.333333` |
+
+Solo la terza è giusta: è la divisione che inganna della lezione 03B.
+
+### Le tre varianti del commento
+
+Il codice chiede che cosa fanno tre modi di scrivere `media3`, e dove avviene la conversione da `int` a `double`. Con 1, 2, 5, che danno somma 8:
+
+| Variante | Tipi delle operazioni | Dove si converte | Valore |
+|---|---|---|---|
+| `(x + y + z) / 3.0` | somma `int`; divisione tra `int` e `double` | la somma diventa `double` per la divisione | 2.666667 |
+| `(double)(x + y + z) / 3` | somma `int`; cast; divisione tra `double` e `int` | il cast sulla somma, poi il 3 diventa `double` | 2.666667 |
+| `(double)((x + y + z) / 3)` | somma `int`; divisione **intera**; cast | il cast sul risultato, quando la virgola è già persa | 2.000000 |
+
+### Arrotondare
+
+Il programma arrotonda `media3` in quattro modi. Con 1, 2, 5, cioè 2.666667:
+
+| Espressione | Che cosa fa | Risultato |
+|---|---|---|
+| `(int)media3` | taglia la parte dopo la virgola | 2 |
+| `(int)floor(media3)` | arrotonda per difetto | 2 |
+| `(int)round(media3)` | arrotonda al più vicino | 3 |
+| `(int)ceil(media3)` | arrotonda per eccesso | 3 |
+
+Con i numeri positivi il cast e `floor` danno lo stesso risultato. Con i negativi no: con −2.5 il cast dà −2, `floor` dà −3, `ceil` dà −2 e `round` dà −3, perché a metà strada `round` si allontana dallo zero.
+
+### 8.136 per 1000
+
+L'ultima parte del programma calcola `(int)(f * 1000)` con `f = 8.136`, e stampa **8135**, non 8136. Il motivo è quello della lezione 03B: 8.136 non si scrive esattamente in base 2. In memoria è un po' meno di 8.136, e `f * 1000` vale 8135.99999999999909… Il cast a `int` **taglia**, e resta 8135. Con `(int)round(f * 1000)` si ottiene 8136.
+
+::: prova Con l'input 8, 2, 3, che cosa stampa `(int)ceil(media3)`?
+5: `media3` vale 4.333333, e `ceil` arrotonda per eccesso a 5.
+:::
+
+> [!RICORDA]
+> - Per una media con la virgola si divide per `3.0`, o si fa un cast su un operando.
+> - Il cast a `int` taglia; per arrotondare al più vicino serve `round`.
+
+## La tabella dei tipi e dim_tipi.c (slide 13–15)
+
+Le slide 13 e 14, e il foglio a parte, riportano la tabella dei tipi del C con dimensione, intervallo e specificatore. La slide 14 lo dice in grande: **non serve impararla a memoria**. La versione con le spiegazioni è nella [lezione 02B](02B_assegnamento_memory_model.html).
+
+| Tipo | Uso | Byte (64 bit) | Specificatore |
+|---|---|:-:|---|
+| `char` | caratteri ASCII | 1 | `%c` |
+| `short` | interi | 2 | `%hd` |
+| `int` | interi | 4 | `%d` |
+| `long` | interi | 8 su Linux, 4 su Windows | `%ld` |
+| `long long` | interi | 8 | `%lld` |
+| `unsigned int` | naturali | 4 | `%u` |
+| `size_t` | dimensioni | 8 | `%zu` |
+| `float` | reali | 4 | `%f` |
+| `double` | reali | 8 | `%lf` in `scanf`, `%f` in `printf` |
+
+Gli `unsigned` partono da 0 e arrivano al doppio: un `unsigned char` va da 0 a 255, un `unsigned int` da 0 a 4 294 967 295.
+
+### Che cosa stampa dim_tipi.c
+
+`dim_tipi.c` stampa la dimensione di ogni tipo con `sizeof` e il suo intervallo, con le costanti di `limits.h` e `float.h`. Sul mio PC, Windows 11 a 64 bit:
+
+```
+sizeof(long)     = 4  intervallo: -2147483648, 2147483647
+sizeof(long long)= 8  intervallo: -9223372036854775808, 9223372036854775807
+...
+sizeof(float) = 4  intervallo: 1.175494e-38, 3.402823e+38
+sizeof(double)= 8  intervallo: 2.225074e-308, 1.797693e+308
+...
+sizeof(char*)    = 8
+sizeof(int*)     = 8
+sizeof(double*)  = 8
+```
+
+`long` vale 4 byte su Windows e 8 su Linux: la tabella lo avvisa, le dimensioni dipendono dal sistema. Al laboratorio Turing, con Linux, vedrai 8.
+
+### La domanda: che cosa hanno di speciale i puntatori?
+
+Tutti i tipi puntatore hanno la **stessa dimensione**: 8 byte su un computer a 64 bit. Il perché è nella lezione 02C: un puntatore contiene un **indirizzo**, e tutti gli indirizzi di una macchina hanno la stessa lunghezza, qualunque cosa ci sia a quell'indirizzo. Un `char` è di 1 byte e un `double` di 8, ma i loro indirizzi sono tutti e due di 8 byte.
+
+L'ultima parte del programma usa `size_t`, il tipo senza segno restituito da `sizeof`: 100 `int` occupano `100 * sizeof(int)` = 400 byte.
+
+::: prova Su un computer a 64 bit, quanto valgono `sizeof(char)`, `sizeof(char*)` e `sizeof(int) * 10`?
+1, 8 e 40.
+:::
+
+> [!RICORDA]
+> - La tabella dei tipi non va imparata a memoria: servono gli specificatori più usati.
+> - Ogni puntatore occupa 8 byte su 64 bit, qualunque sia il tipo puntato.
+
+## La documentazione del C (slide 16)
+
+Nessuno ricorda tutte le funzioni e tutti gli specificatori: si cercano nella **documentazione**. Il riferimento più usato è **cppreference**, che ha una versione da scaricare e usare senza Internet. La slide spiega come:
+
+1. vai su [cppreference.com/w/c](https://en.cppreference.com/w/c);
+2. in fondo alla pagina, «Offline version»: scarica la versione più recente;
+3. apri la pagina `html-book/reference/en/c.html`;
+4. nella sezione degli header cerca `<stdio.h>` e leggi la documentazione completa di `printf`.
+
+La slide avverte che la documentazione vera è molto più dettagliata di quello visto a lezione. Serve proprio a imparare a cercare: nella pagina di `printf` trovi, per esempio, che `%%` stampa un `%` e che `%.3f` fissa le cifre dopo la virgola.
+
+::: prova Nella pagina di printf, quale specificatore stampa un intero in esadecimale?
+`%x`, con le lettere minuscole, o `%X` con le maiuscole. `printf("%x", 255)` stampa `ff`.
+:::
+
+> [!RICORDA]
+> - cppreference è il riferimento del C, anche senza Internet.
+> - Per ogni funzione nuova, guarda prima la sua pagina.
+
+## La spesa al mercato (slide 17)
+
+Il programma `mercato.c` calcola la spesa per 3 pacchi di orecchiette a 1.50 euro e 1 kg e mezzo di pomodori a 2.50 euro al kg. Le slide chiedono variabili con tipi adatti, una variabile per il totale, indentazione e commenti.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    // prezzi unitari, in euro
+    double prezzoOrecchiette = 1.50;   // un pacco
+    double prezzoPomodori = 2.50;      // al kg
+
+    // quantita' acquistate
+    int pacchiOrecchiette = 3;
+    double kgPomodori = 1.5;
+
+    double totale = pacchiOrecchiette * prezzoOrecchiette + kgPomodori * prezzoPomodori;
+    printf("Spesa totale: %.2f euro\n", totale);
+}
+```
+
+Stampa `Spesa totale: 8.25 euro`: 3 per 1.50 fa 4.50, 1.5 per 2.50 fa 3.75.
+
+Le scelte dei tipi: i pacchi si contano, quindi `int`; i chili e i prezzi hanno la virgola, quindi `double`. Il `%.2f` stampa i centesimi.
+
+### Con le quantità da tastiera
+
+La seconda parte chiede di leggere le quantità da tastiera invece di scriverle nel codice. Servono due `scanf`, con lo specificatore giusto per ogni tipo:
+
+```c
+int pacchiOrecchiette;
+double kgPomodori;
+printf("Pacchi di orecchiette: ");
+scanf("%d", &pacchiOrecchiette);
+printf("Kg di pomodori: ");
+scanf("%lf", &kgPomodori);
+```
+
+Con 3 pacchi e 2 kg stampa `Spesa totale: 9.50 euro`. Il `%lf` per il `double` è obbligatorio: con `%f`, `-Wall -Werror` non compila.
+
+::: prova Se i prezzi fossero in centesimi, che tipo useresti?
+`int`: 150 e 250 centesimi sono interi esatti. Molti programmi che contano soldi fanno così, per evitare le approssimazioni dei reali.
+:::
+
+> [!RICORDA]
+> - Le cose che si contano sono `int`; le misure con la virgola sono `double`.
+> - Leggere un `double`: `%lf`.
+
+## Gli scambi di variabili (slide 18)
+
+L'ultimo esercizio riprende la [lezione 03A](03A_scambio_variabili.html). Prima si legge e si prova `scambio.c`, che scambia `x = 5` e `y = 8` con una variabile intermedia e stampa `x: 8, y: 5`. Poi si scrive `scambio4.c`: quattro variabili, in cui `v1` prende il valore di `v2`, `v2` di `v3`, `v3` di `v4` e `v4` di `v1`.
+
+La soluzione completa, provata, è nella lezione 03A, nell'esercizio «scambio4.c del Laboratorio 02». L'idea: una sola variabile d'appoggio, che salva `v1` prima che venga sovrascritta.
+
+```c
+int temp = v1;
+v1 = v2;
+v2 = v3;
+v3 = v4;
+v4 = temp;
+```
+
+Con 10, 20, 30, 40 alla fine i valori sono 20, 30, 40, 10.
+
+::: prova E se volessi il giro al contrario, con `v1` che prende il valore di `v4`?
+Si salva la variabile sovrascritta per prima, che ora è `v4`: `int temp = v4; v4 = v3; v3 = v2; v2 = v1; v1 = temp;`.
+:::
+
+> [!RICORDA]
+> - Una rotazione di quattro variabili richiede una sola variabile d'appoggio.
+> - Si salva per prima la variabile che verrà sovrascritta per prima.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `%` | «modulo» | il resto della divisione intera | `99 % 50` vale 49 |
+| `%%` | «percento percento» | in `printf`: stampa un `%` | `printf("100%%")` |
+| `INT_MAX`, `INT_MIN` | «int max», «int min» | il massimo e il minimo di un `int`, da `limits.h` | 2147483647 |
+| `const` | «const» | la variabile non si può modificare | `const float PI = 3.14f;` |
+| `M_PI` | «emme pi» | la costante pi greco di `math.h` | |
+| `floor`, `ceil`, `round` | «floor», «ceil», «round» | arrotondano per difetto, per eccesso, al più vicino | `ceil(4.3)` vale 5 |
+| `sizeof` | «size of» | i byte occupati da un tipo | `sizeof(int)` vale 4 |
+| `%zu` | «percento zeta u» | specificatore per `size_t` | |
+| `-Wall` | «meno W all» | gcc mostra gli avvisi | |
+
+## Verso l'esame
+
+L'esame è al PC, con **CodeRunner**: il tuo codice viene compilato con `-Wall -Werror` e le sue stampe confrontate con quelle attese. Questo laboratorio allena quasi tutto quello che serve per non perdere punti nei primi esercizi:
+
+1. **leggere gli errori del compilatore** e correggerli uno alla volta, come in `errori.c`;
+2. **scegliere i tipi**: `int` per contare, `double` per misurare;
+3. **le divisioni**: intera quando vuoi la parte intera, con la virgola quando vuoi la media;
+4. **gli specificatori** giusti in `printf` e in `scanf`, compresi `%lf` e `%.2f`;
+5. **niente variabili inutilizzate**: con `-Werror` bloccano la compilazione.
+
+> [!METODO] Prima di consegnare un esercizio
+> 1. Compila con `gcc -Wall -Werror`. Se ci sono errori, correggi **il primo** e ricompila.
+> 2. Prova con dati scelti bene: un caso normale, uno con la virgola, uno con i negativi o lo zero.
+> 3. Calcola a mano almeno un risultato e confrontalo con la stampa.
+> 4. Controlla la forma della stampa: spazi, a capo, numero di cifre.
+
+## Quiz
+
+```quiz
+D: Che cosa stampa `printf("%d %d", 99 / 50, 99 % 50);`?
++ `1 49`
+- `1.98 0`
+- `1 1`
+- `49 1`
+- `2 49`
+= Tra interi `/` dà la parte intera, 1, e `%` il resto, 49. La risposta più insidiosa è `2 49`: la divisione intera non arrotonda, taglia.
+
+D: Quanto vale `7 + 3 * 6 / 2 - 1` in C?
+N: 15
+= Prima `3 * 6` = 18, poi `18 / 2` = 9, poi `7 + 9 - 1` = 15.
+
+D: Quale espressione calcola $ax^3 + 7$?
++ `a * (x * x * x) + 7`
+- `a * x * x * (x + 7)`
+- `a * x * (x * x + 7)`
+- `(a * x) * x * (x + 7)`
+- `a * x * x * x * 7`
+= Le moltiplicazioni prima, poi si somma 7. La risposta più insidiosa è `a * x * x * (x + 7)`: la parentesi fa sommare 7 a `x` prima di moltiplicare. L'ultima moltiplica per 7 invece di sommarlo.
+
+D: Con `int x = 1, y = 2, z = 5;` quanto vale `(double)((x + y + z) / 3)`?
++ 2.0
+- 2.666667
+- 3.0
+- 2.67
+- 8.0
+= La divisione dentro la parentesi è tra interi: 8 / 3 fa 2, e il cast lo converte in 2.0. La risposta più insidiosa è 2.666667: si otterrebbe con il cast sulla somma, prima della divisione.
+
+D: Che cosa stampa `printf("%d", (int)(8.136 * 1000));`?
++ `8135`
+- `8136`
+- `8136.0`
+- `8137`
+- non compila
+= 8.136 in memoria è un po' meno di 8.136, quindi il prodotto è 8135.999…, e il cast a `int` taglia: 8135. La risposta più insidiosa è 8136, il risultato «giusto» a mano: si otterrebbe con `round`.
+
+D: Su un computer a 64 bit, quanto vale `sizeof(char*)`?
++ 8
+- 1
+- 4
+- 2
+- dipende dal carattere puntato
+= Un puntatore contiene un indirizzo, e gli indirizzi sono di 8 byte su 64 bit. La risposta più insidiosa è 1: è `sizeof(char)`, la dimensione del carattere, non del suo indirizzo.
+
+D: Perché `aritmetica.c` non compila con `-Wall -Werror`?
++ Dichiara variabili che non usa
+- Usa `INT_MAX` senza `limits.h`
+- La divisione `99 / 50` è un errore
+- `%%` non è valido in `printf`
+- Va in overflow
+= `n1`, `p` e `t` sono dichiarate e mai usate: con `-Werror` l'avviso `unused variable` diventa un errore. La risposta più insidiosa è l'overflow: è un problema vero, ma il compilatore non lo segnala. `limits.h` è incluso.
+
+D: Quale riga legge correttamente i chili di pomodori in `double kg`?
++ `scanf("%lf", &kg);`
+- `scanf("%f", &kg);`
+- `scanf("%d", &kg);`
+- `scanf("%lf", kg);`
+- `scanf("%.2f", &kg);`
+= Per un `double` in `scanf` serve `%lf`, con la `&`. La risposta più insidiosa è `%f`: va bene per un `float`, non per un `double`. `%.2f` è un formato di stampa, non di lettura.
+
+D: Con `-17` e `5`, che cosa stampa `printf("%d %d", -17 / 5, -17 % 5);`?
++ `-3 -2`
+- `-4 3`
+- `-3 2`
+- `-4 -2`
+- `3 2`
+= In C la divisione intera taglia verso lo zero, −3.4 diventa −3, e il resto ha il segno del primo numero: −17 = 5 · (−3) − 2. La risposta più insidiosa è `-4 3`: è la divisione con il resto positivo della matematica, non quella del C.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: indovina le stampe
+Senza compilare, scrivi che cosa stampano: (a) `printf("%d", 20 / 3);` (b) `printf("%d", 20 % 3);` (c) `printf("%f", 20 / 3.0);` (d) `printf("%.1f", 20 / 3.0);` (e) `printf("%d%%", 50);`
+::: soluzione
+(a) `6`. (b) `2`. (c) `6.666667`. (d) `6.7`, arrotondato. (e) `50%`.
+:::
+
+::: esercizio base Riscaldamento: precedenze
+Calcola a mano: (a) `8 - 2 * 3`; (b) `(8 - 2) * 3`; (c) `20 / 4 / 5`; (d) `20 / (4 / 5)`; (e) `7 % 3 * 2`.
+::: soluzione
+(a) 2. (b) 18. (c) 1, da sinistra: `20 / 4` = 5, poi `5 / 5` = 1. (d) Errore a runtime: `4 / 5` tra interi fa 0, e dividere per zero fa fallire il programma. (e) 2: `7 % 3` = 1, poi `1 * 2` = 2.
+:::
+
+::: esercizio base Riscaldamento: il tipo giusto
+Che tipo usi per: (a) l'età in anni; (b) la media dei voti; (c) il numero di byte di un file; (d) la lettera iniziale di un nome; (e) il prezzo in euro con i centesimi?
+::: soluzione
+(a) `int`. (b) `double`. (c) `size_t`, il tipo delle dimensioni, o `long long` se il file è enorme. (d) `char`. (e) `double`, oppure un `int` che conta i centesimi.
+:::
+
+::: esercizio medio Secondi in ore, minuti e secondi
+Scrivi un programma che legge un numero di secondi e stampa ore, minuti e secondi. Con 3725 deve stampare `1 h 2 min 5 s`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int totale;
+    scanf("%d", &totale);
+    int ore = totale / 3600;
+    int minuti = (totale % 3600) / 60;
+    int secondi = totale % 60;
+    printf("%d h %d min %d s\n", ore, minuti, secondi);
+}
+```
+3725 / 3600 fa 1 ora; il resto, 125, diviso 60 fa 2 minuti; 3725 % 60 fa 5 secondi. `/` e `%` insieme separano le unità.
+:::
+
+::: esercizio medio Le temperature
+Scrivi un programma che legge una temperatura in gradi Celsius, un `double`, e la stampa in gradi Fahrenheit con una cifra dopo la virgola. La formula è $F = C \cdot 9/5 + 32$. Attenzione a come scrivi 9/5.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    double c;
+    scanf("%lf", &c);
+    double f = c * 9.0 / 5.0 + 32;
+    printf("%.1f\n", f);
+}
+```
+Con 100 stampa `212.0`, con 37 stampa `98.6`. Se scrivi `c * (9 / 5) + 32`, la parentesi fa la divisione intera `9 / 5` = 1, e il risultato è sbagliato: con 100 viene 132.0.
+:::
+
+::: esercizio esame Media e arrotondamenti
+Scrivi un programma che legge quattro voti interi e stampa la media con 2 cifre dopo la virgola, poi la media arrotondata al voto intero più vicino. Con 27, 28, 30, 24 deve stampare `27.25` e `27`.
+::: soluzione
+```c
+#include <stdio.h>
+#include <math.h>
+
+int main(void) {
+    int a, b, c, d;
+    scanf("%d %d %d %d", &a, &b, &c, &d);
+    double media = (a + b + c + d) / 4.0;
+    printf("%.2f\n", media);
+    printf("%d\n", (int)round(media));
+}
+```
+La somma 109 divisa per 4.0 fa 27.25; `round` dà 27. Con i voti 27, 28, 30, 25 la media è 27.5 e `round` dà 28. Su Linux si compila con `-lm`.
+:::
+
+::: esercizio esame Trova gli errori
+Il programma dovrebbe leggere base e altezza di un triangolo, due `double`, e stampare l'area. Trova e correggi gli errori: `double b, h; scanf("%lf %lf", b, h); double area = 1 / 2 * b * h; printf("Area: %d\n", area);`
+::: soluzione
+1. In `scanf` mancano le `&`: `&b, &h`. Con `-Wall -Werror` non compila.
+2. `1 / 2` è una divisione intera e fa 0: l'area sarebbe sempre 0. Va scritto `b * h / 2` oppure `0.5 * b * h`.
+3. `%d` per un `double`: serve `%f`. Con `-Wall -Werror` non compila.
+
+Corretto: `scanf("%lf %lf", &b, &h); double area = b * h / 2; printf("Area: %f\n", area);`.
+:::
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra `99 / 50` e `99 / 50.0`?
+Il primo è una divisione tra interi e dà 1. Nel secondo c'è un reale, quindi la divisione è con la virgola e dà 1.98.
+:::
+
+::: domanda Che cosa succede sommando 3 a INT_MAX?
+Il numero esce dall'intervallo degli `int` e, di solito, ricomincia dai negativi: −2 147 483 646. È un overflow, e per il C è comportamento indefinito.
+:::
+
+::: domanda A che cosa serve const?
+A dichiarare una costante: il valore si dà all'inizio e il programma non può più cambiarlo.
+:::
+
+::: domanda Che differenza c'è tra `(int)x`, `floor(x)` e `round(x)`?
+`(int)x` taglia la parte dopo la virgola, verso lo zero. `floor` arrotonda per difetto, `round` al più vicino. Con −2.5: −2, −3 e −3.
+:::
+
+::: domanda Perché `(int)(8.136 * 1000)` dà 8135?
+Perché 8.136 non si scrive esattamente in base 2: il prodotto è 8135.999…, e il cast a `int` taglia.
+:::
+
+::: domanda Perché tutti i puntatori hanno la stessa dimensione?
+Perché contengono un indirizzo, e su una macchina tutti gli indirizzi hanno la stessa lunghezza: 8 byte su 64 bit.
+:::
+
+::: domanda Dove si cercano le informazioni su printf e sulle altre funzioni del C?
+Nella documentazione, per esempio su cppreference, che ha anche una versione da usare senza Internet.
+:::
+
+## Glossario
+
+```glossario
+Codice di partenza | I programmi già scritti forniti con il laboratorio, da leggere, provare e completare.
+Divisione intera | `/` tra due interi: tiene solo la parte intera, tagliando verso lo zero.
+Modulo | `%`: il resto della divisione intera; in C ha il segno del primo numero.
+Overflow | Un risultato intero che supera il massimo del suo tipo; per gli int con il segno è comportamento indefinito.
+INT_MAX, INT_MIN | Massimo e minimo di un int, definiti in limits.h.
+const | Parola chiave che rende una variabile non modificabile.
+floor, ceil, round | Funzioni di math.h che arrotondano per difetto, per eccesso e al più vicino.
+sizeof | Operatore che dà quanti byte occupa un tipo o una variabile.
+cppreference | Sito di documentazione del C e del C++, scaricabile per l'uso senza Internet.
+-Wall | Opzione di gcc che mostra gli avvisi; con -Werror ogni avviso diventa un errore.
+```
+
+## Checklist
+
+```checklist
+- So prevedere il risultato di `/` e `%` tra interi, anche con i negativi.
+- So che cos'è l'overflow di un int e perché il compilatore non lo segnala.
+- So calcolare un'espressione rispettando le precedenze.
+- So completare circonferenza.c e spiegare che cosa fa const.
+- So trovare gli errori di un programma, anche senza compilarlo.
+- So calcolare una media con la virgola e arrotondarla nei quattro modi.
+- So spiegare perché 8.136 per 1000 dà 8135.
+- So che i puntatori hanno tutti la stessa dimensione, e perché.
+- So scrivere mercato.c, anche con le quantità da tastiera.
+- So ruotare quattro variabili con una sola variabile d'appoggio.
+```
+
+## Fonti
+
+- Slide «Operatori e Tipi» (Lezione nº 2 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27: aritmetica.c (slide 2), operazioni su interi (slide 3), ordine di valutazione (slide 4–7), circonferenza (slide 8), errori in C (slide 9–11), media (slide 12), tabella dei tipi (slide 13–14), dimensioni dei tipi (slide 15), documentazione (slide 16), mercato (slide 17), scambio di variabili (slide 18).
+- «Tabella dei tipi e specificatori di conversione», foglio del laboratorio canale B.
+- Codice di partenza del laboratorio: aritmetica.c, circonferenza.c, dim_tipi.c, errori.c, media.c, scambio.c.
+- [cppreference, la documentazione del C](https://en.cppreference.com/w/c).
+- Tutti i programmi, del codice di partenza e delle soluzioni, sono stati compilati con gcc 16.1 su Windows 11 a 64 bit ed eseguiti; le stampe e gli errori riportati sono quelli veri. Le soluzioni, i quiz e gli esercizi sono di questi appunti.
 
 
 ---

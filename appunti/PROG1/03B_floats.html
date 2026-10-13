@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03B · Numeri reali in C, float e double, conversioni di tipo</title>
+<meta name="lezione" content="03B">
+<meta name="data" content="2026-10-13">
+<meta name="description" content="Appunti della lezione 03B di Programmazione I (canale B): i tipi float e double, precisione e intervallo, la stampa con %f, %e e %g e la lettura dei double con %lf, le operazioni sui reali e la libreria math.h, le conversioni di tipo implicite e le loro conseguenze, la promozione di tipo, la divisione tra interi che perde la parte frazionaria, il cast esplicito, con tutti i programmi delle slide provati, quiz ed esercizi.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/03B_floats.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#i-numeri-con-la-virgola-float-e-double"><span class="n">§1</span><span>I numeri con la virgola: float e double</span></a></li>
+<li><a href="#stampare-e-leggere-i-reali"><span class="n">§2</span><span>Stampare e leggere i reali</span></a></li>
+<li><a href="#calcoli-con-i-reali-e-math-h"><span class="n">§3</span><span>Calcoli con i reali e math.h</span></a></li>
+<li><a href="#mescolare-i-tipi-le-conversioni"><span class="n">§4</span><span>Mescolare i tipi: le conversioni</span></a></li>
+<li><a href="#la-promozione-di-tipo"><span class="n">§5</span><span>La promozione di tipo</span></a></li>
+<li><a href="#la-divisione-che-inganna"><span class="n">§6</span><span>La divisione che inganna</span></a></li>
+<li><a href="#il-cast-convertire-a-comando"><span class="n">§7</span><span>Il cast: convertire a comando</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§8</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§9</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§10</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§11</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§12</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§13</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§14</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 03B</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 03B</p>
+      <h1>Numeri reali in C, float e double, conversioni di tipo</h1>
+      <p class="lede">I numeri con la virgola in C si chiamano float e double. Qui vedi come si stampano e si leggono, quante cifre tengono davvero, e soprattutto che cosa succede quando mescoli interi e reali nella stessa espressione: è lì che 5 diviso 2 diventa 2 invece di 2,5.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>03B_floats («Numeri reali in C. Float, double, precisione, conversione») · 25 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>90 minuti, meglio con gcc a portata di mano</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:620px">
+<h2 id="tldr-title">La lezione in 8 punti</h2>
+<ul>
+<li>I numeri con la virgola in C sono di due tipi: <strong><code>float</code></strong>, di solito 4 byte e circa 7 cifre giuste, e <strong><code>double</code></strong>, di solito 8 byte e circa 15–16 cifre giuste.</li>
+<li>Si stampano con <strong><code>%f</code></strong> (notazione normale, 6 cifre dopo la virgola), <strong><code>%e</code></strong> (notazione scientifica) e <strong><code>%g</code></strong> (la più corta delle due). <code>%.3f</code> tiene 3 cifre dopo la virgola.</li>
+<li>Con <code>scanf</code>, un <code>double</code> si legge con <strong><code>%lf</code></strong>, non con <code>%f</code>.</li>
+<li>Sui reali ci sono <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, ma <strong>non</strong> il resto <code>%</code>. Radici, potenze e altre funzioni sono nella libreria <strong><code>math.h</code></strong>.</li>
+<li>Quando un&#39;espressione mescola tipi diversi, il C li <strong>converte</strong> da solo: il tipo «più piccolo» diventa quello «più grande». Un intero con un reale dà un reale.</li>
+<li>Ma <strong>tra due interi</strong> la divisione resta intera: in <code>float z = 5 / 2;</code> la divisione fa 2, e solo dopo il 2 diventa 2.000000.</li>
+<li>Mettere un reale in un <code>int</code> <strong>taglia</strong> la parte dopo la virgola, senza avvisi.</li>
+<li>Il <strong>cast</strong> <code>(float)y</code> converte un valore quando lo decidi tu: <code>x / (float)y</code> fa la divisione con la virgola.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È la seconda parte della lezione di martedì 13/10, dalle 11 alle 13, dopo la <a href="03A_scambio_variabili.html">03A</a> sullo scambio di variabili. Riprende la tabella dei tipi della <a href="02B_assegnamento_memory_model.html">02B</a>.</p>
+<p><strong>Fondamenti dell&#39;Informatica.</strong> Le slide rimandano a Fondamenti per la codifica dei reali, lo standard <strong>IEEE 754</strong>. L&#39;idea è nella <a href="../FDA/03_interi_con_segno_virgola_mobile.html">lezione 03 di Fondamenti</a>: segno, esponente e mantissa, con un formato da 8 bit invece di 32 o 64.</p>
+<p><strong>Canali A e C.</strong> Le slide 2026/27 dei canali A e C per questa lezione non le ho viste. L&#39;esame è unico, e le conversioni di tipo sono una fonte di errori in tutti gli esercizi con le medie.</p>
+<p><strong>Laboratorio.</strong> Il <a href="Lab02_operatori_tipi.html">Laboratorio 02</a> fa provare tutto questo con <code>aritmetica.c</code>, <code>media.c</code> e <code>circonferenza.c</code>.</p>
+</div>
+
+
+<section id="i-numeri-con-la-virgola-float-e-double" aria-labelledby="h-i-numeri-con-la-virgola-float-e-double" style="--h:1750px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-i-numeri-con-la-virgola-float-e-double">I numeri con la virgola: float e double</h2><span class="slides">slide 2–3</span></div>
+<p>Per contare le persone in aula bastano gli interi. Ma per la media dei voti, il prezzo al chilo dei pomodori o la velocità di un&#39;auto servono i numeri con la virgola: una parte intera e una parte frazionaria. In C si chiamano <strong>numeri reali</strong> e hanno due tipi principali.</p>
+<div class="table-wrap"><table><thead><tr><th>Tipo</th><th>Dimensione tipica</th><th>Cifre giuste, circa</th><th>Intervallo, circa</th><th>Quando usarlo</th></tr></thead><tbody><tr><td><code>float</code></td><td>32 bit, 4 byte</td><td>7 cifre decimali</td><td>da <span class="katex" role="math" aria-label="10^{-38}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">38</span></span></span></span></span></span></span></span></span></span></span></span> a <span class="katex" role="math" aria-label="10^{38}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">38</span></span></span></span></span></span></span></span></span></span></span></span></td><td>per risparmiare memoria, o per calcoli poco delicati</td></tr>
+<tr><td><code>double</code></td><td>64 bit, 8 byte</td><td>15–16 cifre decimali</td><td>da <span class="katex" role="math" aria-label="10^{-308}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">308</span></span></span></span></span></span></span></span></span></span></span></span> a <span class="katex" role="math" aria-label="10^{308}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">308</span></span></span></span></span></span></span></span></span></span></span></span></td><td>calcoli scientifici, quando serve precisione</td></tr></tbody></table></div>
+<p>Il nome <code>double</code> viene da «doppia precisione»: usa il doppio dei bit di <code>float</code>. In memoria funzionano come la virgola mobile della lezione 03 di Fondamenti: un bit di segno, un esponente che dice dove sta la virgola, e una mantissa con le cifre. Lo standard che lo descrive si chiama <strong>IEEE 754</strong>.</p>
+<h3 id="le-cifre-giuste-sono-poche">Le cifre giuste sono poche</h3>
+<p>«Circa 7 cifre» vuol dire proprio questo: dopo la settima cifra il numero è approssimato. Ho provato sul mio PC tre stampe con tante cifre:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">float</span> f = 0.1f;
+<span class="kw">double</span> d = 0.1;
+printf(<span class="str">&quot;%.20f\n%.20f\n&quot;</span>, f, d);</code></pre>
+<pre class="code"><code>0.10000000149011611938
+0.10000000000000000555</code></pre>
+<p>Un decimo non si scrive esattamente in base 2, come un terzo non si scrive esattamente in base 10. Il <code>float</code> sbaglia dall&#39;ottava cifra, il <code>double</code> dalla diciottesima. Per la stessa ragione <code>0.1 + 0.2</code> in <code>double</code> vale <code>0.30000000000000004</code>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · I reali non si confrontano con ==</span></p><p>Siccome quasi tutti i reali sono approssimati, due calcoli che «dovrebbero» dare lo stesso numero spesso differiscono nell&#39;ultima cifra. Confrontare due <code>double</code> con <code>==</code> è quasi sempre un errore. Lo vedrai con le condizioni: si controlla che la differenza sia molto piccola.</p>
+</div>
+<h3 id="le-operazioni">Le operazioni</h3>
+<p>Sui reali ci sono le quattro operazioni: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>. La divisione <code>/</code> tra due reali è quella vera, con la virgola: <code>5.0 / 2.0</code> fa <code>2.5</code>.</p>
+<p>Il resto <strong><code>%</code> non c&#39;è</strong>: con due <code>double</code> gcc si ferma con <code>error: invalid operands to binary % (have 'double' and 'double')</code>. Le slide avvisano che esiste una funzione di libreria, <code>fmod</code>, ma nel corso non si usa.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quale tipo usi per: (a) il numero di studenti in aula; (b) la temperatura in gradi; (c) un risultato di fisica con 12 cifre giuste?</span></summary><div class="ans"><p>(a) <code>int</code>: è un numero intero. (b) <code>float</code> o <code>double</code>: ha la virgola; basta anche <code>float</code>. (c) <code>double</code>: il <code>float</code> ha solo circa 7 cifre giuste.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>float</code>: 4 byte, circa 7 cifre. <code>double</code>: 8 byte, circa 15–16 cifre.</li>
+<li>I reali sono quasi sempre approssimati: niente <code>==</code> tra reali.</li>
+<li>Niente <code>%</code> tra reali.</li>
+</ul>
+</div>
+</section>
+
+<section id="stampare-e-leggere-i-reali" aria-labelledby="h-stampare-e-leggere-i-reali" style="--h:1600px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-stampare-e-leggere-i-reali">Stampare e leggere i reali</h2><span class="slides">slide 4–5</span></div>
+<p>Con <code>printf</code> un reale si può stampare in tre modi. Con <code>double z = 2.5;</code>:</p>
+<div class="table-wrap"><table><thead><tr><th>Specificatore</th><th>Che cosa stampa</th><th>Esempio</th><th>Quando usarlo</th></tr></thead><tbody><tr><td><code>%f</code></td><td>notazione con la virgola fissa, 6 cifre dopo la virgola</td><td><code>2.500000</code></td><td>la scrittura «naturale» di un numero</td></tr>
+<tr><td><code>%e</code></td><td>notazione scientifica</td><td><code>2.500000e+00</code></td><td>numeri molto grandi o molto piccoli</td></tr>
+<tr><td><code>%g</code></td><td>la più corta tra <code>%f</code> e <code>%e</code>, senza zeri inutili</td><td><code>2.5</code></td><td>una stampa compatta</td></tr></tbody></table></div>
+<p><code>e+00</code> vuol dire «per 10 alla 0». Così <code>1.5e+03</code> è <span class="katex" role="math" aria-label="1{,}5 \cdot 10^3 = 1500"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1500</span></span></span></span>.</p>
+<h3 id="quante-cifre-dopo-la-virgola">Quante cifre dopo la virgola</h3>
+<p>Tra il <code>%</code> e la lettera si può scrivere un punto e un numero: è quante cifre stampare dopo la virgola.</p>
+<pre class="code" data-lingua="c"><code>printf(<span class="str">&quot;z vale %f\n&quot;</span>, z);      <span class="cm">// z vale 2.500000</span>
+printf(<span class="str">&quot;z vale %.3f\n&quot;</span>, z);    <span class="cm">// z vale 2.500</span>
+printf(<span class="str">&quot;z vale %.3e\n&quot;</span>, z);    <span class="cm">// z vale 2.500e+00</span></code></pre>
+<p>Le slide dicono «troncata al terzo decimale». In realtà <code>printf</code> <strong>arrotonda</strong> all&#39;ultima cifra stampata: <code>printf(&quot;%.2f&quot;, 1.0 / 3)</code> stampa <code>0.33</code>, e <code>printf(&quot;%.2f&quot;, 2.0 / 3)</code> stampa <code>0.67</code>.</p>
+<p>Un&#39;altra cosa da sapere: <code>printf</code> usa <code>%f</code> sia per i <code>float</code> sia per i <code>double</code>. Quando passi un <code>float</code> a <code>printf</code>, il C lo trasforma da solo in <code>double</code>. Per questo i messaggi di errore di gcc su <code>%f</code> parlano sempre di <code>double</code>.</p>
+<h3 id="leggere-un-double">Leggere un double</h3>
+<p>Con <code>scanf</code> le cose cambiano. <code>scanf</code> non riceve un valore ma un <strong>indirizzo</strong> (lezione 02C), e deve sapere quanti byte scrivere: 4 per un <code>float</code>, 8 per un <code>double</code>. Per questo:</p>
+<ul>
+<li>un <code>float</code> si legge con <code>%f</code>;</li>
+<li>un <code>double</code> si legge con <strong><code>%lf</code></strong> (o <code>%le</code>, <code>%lg</code>).</li>
+</ul>
+<pre class="code" data-lingua="c"><code><span class="kw">double</span> x;
+<span class="kw">float</span> y;
+<span class="kw">int</span> letti = scanf(<span class="str">&quot;%lf %f&quot;</span>, &amp;x, &amp;y);</code></pre>
+<p>Con l&#39;input <code>3.25 1.5</code> il programma legge tutti e due i valori: <code>letti</code> vale 2.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · %f con un double in scanf</span></p><p><code>double x; scanf(&quot;%f&quot;, &amp;x);</code> con <code>-Wall -Werror</code> non compila: <code>error: format '%f' expects argument of type 'float *', but argument 2 has type 'double *'</code>. Senza le opzioni compila, ma scrive solo 4 degli 8 byte di <code>x</code> e il valore letto è sbagliato. In <code>printf</code> invece <code>%f</code> va bene per tutti e due.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampano <code>printf(&quot;%.1f&quot;, 3.14159)</code> e <code>printf(&quot;%g&quot;, 0.5)</code>? E come leggi un <code>double</code> chiamato <code>peso</code>?</span></summary><div class="ans"><p><code>3.1</code> e <code>0.5</code>. Il <code>double</code> si legge con <code>scanf(&quot;%lf&quot;, &amp;peso);</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>printf</code>: <code>%f</code>, <code>%e</code>, <code>%g</code> per <code>float</code> e <code>double</code>; <code>%.3f</code> dà 3 cifre dopo la virgola.</li>
+<li><code>scanf</code>: <code>%f</code> per <code>float</code>, <code>%lf</code> per <code>double</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="calcoli-con-i-reali-e-math-h" aria-labelledby="h-calcoli-con-i-reali-e-math-h" style="--h:1680px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-calcoli-con-i-reali-e-math-h">Calcoli con i reali e math.h</h2><span class="slides">slide 6–10</span></div>
+<p>Il primo programma delle slide divide due <code>float</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">float</span> x = 5, y = 2, z;
+    z = x / y;
+    printf(<span class="str">&quot;La var x vale %f\n&quot;</span>, x);
+    printf(<span class="str">&quot;La var y vale %f\n&quot;</span>, y);
+    printf(<span class="str">&quot;La var z vale %f\n&quot;</span>, z);
+}</code></pre>
+<pre class="code"><code>La var x vale 5.000000
+La var y vale 2.000000
+La var z vale 2.500000</code></pre>
+<p><code>float x = 5</code> mette nel <code>float</code> il numero 5, che diventa 5.0. La divisione tra due <code>float</code> è con la virgola: 2.5.</p>
+<p>Le slide 7 e 8 rifanno lo stesso programma con i <code>double</code>, e poi con <code>x</code> e <code>y</code> di tipo <code>float</code> e <code>z</code> di tipo <code>double</code>. Il risultato stampato è sempre 2.500000; cambia solo lo spazio in memoria: 4 byte per ogni <code>float</code>, 8 per ogni <code>double</code>.</p>
+<h3 id="la-libreria-math-h">La libreria math.h</h3>
+<p>Gli operatori del C fanno solo le operazioni di base. Per radici, potenze, logaritmi e trigonometria c&#39;è la libreria <strong><code>math.h</code></strong>, da includere con <code>#include &lt;math.h&gt;</code>. Le funzioni più usate:</p>
+<div class="table-wrap"><table><thead><tr><th>Funzione</th><th>Che cosa calcola</th><th>Esempio</th></tr></thead><tbody><tr><td><code>sqrt(x)</code></td><td>la radice quadrata</td><td><code>sqrt(9.0)</code> vale 3.0</td></tr>
+<tr><td><code>pow(x, y)</code></td><td><span class="katex" role="math" aria-label="x"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> elevato alla <span class="katex" role="math" aria-label="y"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></td><td><code>pow(9.0, 2)</code> vale 81.0</td></tr>
+<tr><td><code>sin(x)</code>, <code>cos(x)</code></td><td>seno e coseno, con l&#39;angolo in radianti</td><td><code>cos(0.0)</code> vale 1.0</td></tr>
+<tr><td><code>floor(x)</code>, <code>ceil(x)</code>, <code>round(x)</code></td><td>arrotonda per difetto, per eccesso, al più vicino</td><td><code>round(2.5)</code> vale 3.0</td></tr></tbody></table></div>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;math.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">float</span> num = 9.0, radice, quadrato;
+    quadrato = pow(num, 2);
+    radice = sqrt(num);
+    printf(<span class="str">&quot;Il quadrato di %.0f e' %.2f\n&quot;</span>, num, quadrato);
+    printf(<span class="str">&quot;La radice di %.0f e' %.2f\n&quot;</span>, num, radice);
+}</code></pre>
+<pre class="code"><code>Il quadrato di 9 e' 81.00
+La radice di 9 e' 3.00</code></pre>
+<div class="box neutro"><p class="box-label"><span>Nota · -lm su Linux</span></p><p>Su Linux le funzioni di <code>math.h</code> stanno in una libreria a parte, e va aggiunta quando si compila: <code>gcc programma.c -lm</code>. La <code>m</code> sta per <em>math</em>. Su Windows con gcc, sul mio PC, non serve, ma aggiungerla non fa danni. Al laboratorio Turing, che usa Linux, mettila. Tutto il riferimento della libreria è su <a href="https://en.cppreference.com/w/c/header/math.html" target="_blank" rel="noopener">cppreference</a>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Scrivi l&#39;espressione C per la diagonale di un rettangolo con lati <code>a</code> e <code>b</code>, cioè la radice di <span class="katex" role="math" aria-label="a^2 + b^2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>.</span></summary><div class="ans"><p><code>sqrt(a * a + b * b)</code>, oppure <code>sqrt(pow(a, 2) + pow(b, 2))</code>. Serve <code>#include &lt;math.h&gt;</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Divisione tra due reali: con la virgola.</li>
+<li><code>math.h</code> per <code>sqrt</code>, <code>pow</code>, <code>floor</code>, <code>ceil</code>, <code>round</code> e le altre; su Linux si compila con <code>-lm</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="mescolare-i-tipi-le-conversioni" aria-labelledby="h-mescolare-i-tipi-le-conversioni" style="--h:2050px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-mescolare-i-tipi-le-conversioni">Mescolare i tipi: le conversioni</h2><span class="slides">slide 11–14</span></div>
+<p>In un&#39;espressione puoi mettere insieme un <code>int</code>, un <code>float</code> e un <code>char</code>. Ma i tre tipi sono scritti in memoria in modi diversi: per fare il conto, il C deve prima portarli tutti allo stesso formato. Questo passaggio si chiama <strong>conversione di tipo</strong>, e ce ne sono di due modi:</p>
+<ul>
+<li><strong>conversione implicita</strong>: la fa il compilatore da solo, senza che tu scriva niente;</li>
+<li><strong>conversione esplicita</strong>, o <strong>cast</strong>: la chiedi tu, scrivendo il tipo tra parentesi.</li>
+</ul>
+<p>Tutte e due possono <strong>perdere informazione</strong>: cifre, o l&#39;intera parte dopo la virgola.</p>
+<div class="box idea"><p class="box-label"><span>L'idea</span></p><p>È come versare un liquido da un contenitore all&#39;altro. Da un bicchiere in una caraffa non perdi niente. Dalla caraffa al bicchiere, quello che non ci sta va perso.</p>
+</div>
+<h3 id="le-conversioni-dell-assegnamento">Le conversioni dell&#39;assegnamento</h3>
+<p>L&#39;assegnamento è il caso più comune: il valore a destra viene convertito nel tipo della variabile a sinistra. La tabella delle slide, con i valori che ho ottenuto sul mio PC:</p>
+<div class="table-wrap"><table><thead><tr><th>Conversione</th><th>Si perde qualcosa?</th><th>Esempio</th><th>Risultato</th></tr></thead><tbody><tr><td><code>int</code> → <code>float</code></td><td>no, tranne con interi molto grandi</td><td><code>int x = 5; float y = x;</code></td><td><code>y</code> vale 5.0</td></tr>
+<tr><td><code>float</code> → <code>int</code></td><td>sì, la parte dopo la virgola</td><td><code>float x = 3.7; int y = x;</code></td><td><code>y</code> vale 3</td></tr>
+<tr><td><code>int</code> → <code>double</code></td><td>no</td><td><code>int x = 42; double y = x;</code></td><td><code>y</code> vale 42.0</td></tr>
+<tr><td><code>double</code> → <code>int</code></td><td>sì, la parte dopo la virgola; comportamento indefinito se il numero non ci sta</td><td><code>double x = 9.9; int y = x;</code></td><td><code>y</code> vale 9</td></tr>
+<tr><td><code>double</code> → <code>float</code></td><td>sì, cifre di precisione</td><td><code>double a = 3.14159; float b = a;</code></td><td><code>b</code> circa 3.14159, meno preciso</td></tr>
+<tr><td><code>char</code> → <code>int</code></td><td>no: il codice ASCII</td><td><code>char c = 'A'; int x = c;</code></td><td><code>x</code> vale 65</td></tr>
+<tr><td><code>int</code> → <code>int*</code></td><td>non si può</td><td><code>int x = 5; int *p = x;</code></td><td>errore di compilazione</td></tr></tbody></table></div>
+<p>Tre osservazioni.</p>
+<ol>
+<li><strong>La parte dopo la virgola viene tagliata, non arrotondata.</strong> 9.9 diventa 9, non 10. Con i negativi il taglio va verso lo zero: −2.7 diventa −2.</li>
+<li><strong>Gli interi molto grandi</strong> non stanno in un <code>float</code>, che ha solo 24 bit di mantissa. 16 777 217 messo in un <code>float</code> diventa 16 777 216.</li>
+<li><strong>Un <code>double</code> fuori dall&#39;intervallo degli <code>int</code></strong>, come 3 miliardi, non si può convertire: il comportamento è indefinito. Sul mio PC <code>(int)3e9</code> dà −2 147 483 648, ma non è garantito.</li>
+</ol>
+<p>L&#39;ultima riga della tabella è un errore vero: con gcc 16.1, anche senza opzioni, <code>int *p = x;</code> dà <code>error: initialization of 'int *' from 'int' makes pointer from integer without a cast</code>. Un numero e un indirizzo non sono la stessa cosa (lezione 02C).</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Il compilatore non avvisa</span></p><p>Le conversioni con perdita di dati della tabella <strong>non</strong> danno errori né avvisi, nemmeno con <code>-Wall -Werror</code>. <code>int y = 3.7;</code> compila e mette 3 in <code>y</code>, in silenzio. gcc ha un&#39;opzione che avvisa, <code>-Wconversion</code>, ma non fa parte di <code>-Wall</code> (lezione 02B).</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto valgono <code>a</code>, <code>b</code> e <code>c</code> dopo <code>int a = 7.99; int b = -7.99; char ch = 'C'; int c = ch;</code>?</span></summary><div class="ans"><p><code>a</code> vale 7 e <code>b</code> vale −7: la parte dopo la virgola è tagliata verso lo zero. <code>c</code> vale 67, il codice ASCII di <code>C</code> (65 è <code>A</code>).</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Da un tipo più piccolo a uno più grande non si perde niente; al contrario sì.</li>
+<li>Reale in un <code>int</code>: la parte dopo la virgola sparisce, in silenzio.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-promozione-di-tipo" aria-labelledby="h-la-promozione-di-tipo" style="--h:980px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-la-promozione-di-tipo">La promozione di tipo</h2><span class="slides">slide 15–16</span></div>
+<p>Quando un operatore come <code>+</code> o <code>/</code> riceve due valori di tipo diverso, il compilatore li porta allo stesso tipo <strong>prima</strong> di fare il conto. Per non perdere informazione sceglie sempre il tipo <strong>più ampio</strong>. Questo si chiama <strong>promozione di tipo</strong>.</p>
+<ul>
+<li>I tipi interi piccoli salgono: <code>char</code> → <code>short</code> → <code>int</code> → <code>long</code>.</li>
+<li>I reali salgono: <code>float</code> → <code>double</code>.</li>
+<li>Un intero con un reale diventa un <strong>reale</strong>.</li>
+</ul>
+<p>Esempi delle slide:</p>
+<ul>
+<li><code>char + int</code>: il <code>char</code> diventa <code>int</code>, il risultato è <code>int</code>. Così <code>'A' + 2</code> vale 67, e <code>'a' - 'A'</code> vale 32.</li>
+<li><code>int + double</code>: l&#39;<code>int</code> diventa <code>double</code>, il risultato è <code>double</code>. Così <code>3 + 0.5</code> vale 3.5.</li>
+</ul>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Leggere il tipo di un&#39;espressione</span></p><ol>
+<li>Parti dalle operazioni più interne, rispettando le precedenze della lezione 02B.</li>
+<li>Per ogni operatore guarda i tipi dei due valori. Se sono interi tutti e due, il risultato è intero, e la divisione è intera. Se almeno uno è reale, il risultato è reale.</li>
+<li>Solo alla fine, nell&#39;assegnamento, il risultato si converte nel tipo della variabile.</li>
+</ol>
+</div>
+<p>Il passo 2 è il punto chiave: la promozione guarda <strong>un operatore alla volta</strong>, non tutta l&#39;espressione. Lo mostra la prossima sezione.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Di che tipo è, e quanto vale, ciascuna espressione? (a) <code>7 / 2</code>; (b) <code>7 / 2.0</code>; (c) <code>7.0 / 2</code>; (d) <code>'B' - 'A'</code>.</span></summary><div class="ans"><p>(a) <code>int</code>, 3: divisione intera. (b) <code>double</code>, 3.5. (c) <code>double</code>, 3.5. (d) <code>int</code>, 1.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Due tipi diversi: si sale al più ampio. Intero con reale: reale.</li>
+<li>La promozione si decide operatore per operatore.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-divisione-che-inganna" aria-labelledby="h-la-divisione-che-inganna" style="--h:1430px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-la-divisione-che-inganna">La divisione che inganna</h2><span class="slides">slide 17–22</span></div>
+<p>Ecco il caso più traditore della lezione. Il risultato va in un <code>float</code>, eppure la divisione perde la virgola.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 5, y = 2;
+    <span class="kw">float</span> z = x / y;
+    printf(<span class="str">&quot;La var x vale %d\n&quot;</span>, x);
+    printf(<span class="str">&quot;La var y vale %d\n&quot;</span>, y);
+    printf(<span class="str">&quot;La var z vale %f\n&quot;</span>, z);
+}</code></pre>
+<pre class="code"><code>La var x vale 5
+La var y vale 2
+La var z vale 2.000000</code></pre>
+<p>Perché 2.000000 e non 2.500000? Segui il metodo: l&#39;operatore <code>/</code> riceve due <code>int</code>, quindi fa la <strong>divisione intera</strong>, che dà 2. Solo <strong>dopo</strong>, nell&#39;assegnamento, il 2 viene convertito in <code>float</code> e diventa 2.000000. Il fatto che <code>z</code> sia un <code>float</code> arriva troppo tardi: la parte frazionaria è già persa.</p>
+<div class="box idea"><p class="box-label"><span>L'idea</span></p><p>Il tipo della variabile a sinistra non cambia il modo in cui si calcola la destra. Prima si calcola la destra, con i suoi tipi; poi il risultato si converte.</p>
+</div>
+<h3 id="il-caso-opposto">Il caso opposto</h3>
+<p>Le slide 20–22 fanno il contrario: due <code>float</code> e il risultato in un <code>int</code>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">float</span> x = 5, y = 2;
+<span class="kw">int</span> z = x / y;</code></pre>
+<p>Qui la divisione è tra due reali e dà 2.5, giusto. Ma poi l&#39;assegnamento mette 2.5 in un <code>int</code>: la parte dopo la virgola sparisce e <code>z</code> vale 2. Il risultato è lo stesso del caso di prima, ma la perdita avviene in un momento diverso: nell&#39;assegnamento, non nella divisione.</p>
+<div class="table-wrap"><table><thead><tr><th>Programma</th><th>Divisione</th><th>Risultato della divisione</th><th>Assegnamento</th><th><code>z</code></th></tr></thead><tbody><tr><td><code>int x, y; float z = x / y;</code></td><td>tra interi</td><td>2</td><td><code>int</code> → <code>float</code></td><td>2.000000</td></tr>
+<tr><td><code>float x, y; int z = x / y;</code></td><td>tra reali</td><td>2.5</td><td><code>float</code> → <code>int</code></td><td>2</td></tr>
+<tr><td><code>float x, y; float z = x / y;</code></td><td>tra reali</td><td>2.5</td><td>nessuna conversione</td><td>2.500000</td></tr></tbody></table></div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int a = 7, b = 2;</code> quanto vale <code>double r = a / b * 2.0;</code>? E <code>double s = a * 2.0 / b;</code>?</span></summary><div class="ans"><p><code>r</code> vale 6.0: prima <code>a / b</code> tra interi fa 3, poi <code>3 * 2.0</code> fa 6.0. <code>s</code> vale 7.0: prima <code>a * 2.0</code> fa 14.0, un reale, e poi <code>14.0 / 2</code> fa 7.0. Stessi numeri, ordine diverso, risultato diverso.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>float z = 5 / 2;</code> dà 2.0: la divisione tra interi taglia prima dell&#39;assegnamento.</li>
+<li><code>int z = 5.0 / 2.0;</code> dà 2: l&#39;assegnamento taglia dopo la divisione.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-cast-convertire-a-comando" aria-labelledby="h-il-cast-convertire-a-comando" style="--h:1740px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-il-cast-convertire-a-comando">Il cast: convertire a comando</h2><span class="slides">slide 23–25</span></div>
+<p>Per avere 2.5 da due <code>int</code> bisogna fare in modo che la divisione veda <strong>almeno un reale</strong>. Si fa con il <strong>cast esplicito</strong>: il nome del tipo tra parentesi, davanti al valore da convertire.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> x = 5, y = 2;
+<span class="kw">float</span> z = x / (<span class="kw">float</span>)y;   <span class="cm">// y convertito in float: risultato 2.5</span></code></pre>
+<p><code>(float)y</code> vale 2.0, un <code>float</code>. Ora la divisione è tra un <code>int</code> e un <code>float</code>: per la promozione l&#39;<code>int</code> sale a <code>float</code>, e il risultato è 2.5.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Cast (slide 23 e 25)</span></p><p>Il <strong>cast</strong> <code>(tipo)espressione</code> converte il valore dell&#39;espressione nel tipo scritto tra parentesi. Agisce solo sull&#39;espressione <strong>immediatamente alla sua destra</strong>, e cambia il tipo del valore solo durante quel calcolo: non cambia il tipo delle variabili.</p>
+</div>
+<p><strong>Come si legge.</strong> <code>(float)y</code> si legge «y convertito in float». Dopo il calcolo <code>y</code> è ancora un <code>int</code> che vale 2: il cast ha creato un valore nuovo, non ha cambiato <code>y</code>.</p>
+<h3 id="dove-si-mette-il-cast">Dove si mette il cast</h3>
+<p>La posizione delle parentesi decide tutto. Con <code>int x = 5, y = 2;</code>, ho provato tre versioni:</p>
+<div class="table-wrap"><table><thead><tr><th>Espressione</th><th>Che cosa succede</th><th>Valore</th></tr></thead><tbody><tr><td><code>x / (float)y</code></td><td><code>y</code> diventa 2.0, divisione con la virgola</td><td>2.5</td></tr>
+<tr><td><code>(float)x / y</code></td><td><code>x</code> diventa 5.0, divisione con la virgola</td><td>2.5</td></tr>
+<tr><td><code>(float)(x / y)</code></td><td>prima <code>x / y</code> tra interi fa 2, poi 2 diventa 2.0</td><td>2.0</td></tr></tbody></table></div>
+<p>Nel terzo caso il cast arriva troppo tardi: la parte dopo la virgola è persa dentro la parentesi. È lo stesso errore della sezione prima, scritto con il cast.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Un dettaglio nella slide 24</span></p><p>Nella slide 24 il codice stampa <code>x</code> e <code>y</code> con <code>%d</code>, ma il terminale disegnato mostra <code>5.000000</code> e <code>2.000000</code>. Con il codice della slide l&#39;uscita vera è <code>La var x vale 5</code> e <code>La var y vale 2</code>, e poi <code>La var z vale 2.500000</code>. È solo una svista del disegno: il punto della slide, il 2.5, è giusto.</p>
+</div>
+<div class="box trap"><p class="box-label"><span>Trappola · Il cast di un intero già diviso</span></p><p><code>(double)(somma / n)</code> sembra calcolare una media con la virgola, ma la divisione dentro la parentesi è tra interi. Il cast va su uno dei due valori <strong>prima</strong> della divisione: <code>(double)somma / n</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int somma = 17, n = 4;</code> scrivi un&#39;espressione che calcoli la media 4.25 con un cast, e una che sembri giusta ma dia 4.0.</span></summary><div class="ans"><p>Giusta: <code>(double)somma / n</code>, oppure <code>somma / (double)n</code>. Sbagliata: <code>(double)(somma / n)</code>, che divide tra interi e dà 4, poi lo converte in 4.0.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>(tipo)espressione</code> converte solo l&#39;espressione subito a destra.</li>
+<li>Il cast non cambia il tipo delle variabili.</li>
+<li>Per una divisione con la virgola tra interi, il cast va <strong>su un operando</strong>, non sul risultato.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:760px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>float</code></td><td>«float»</td><td>reale, 4 byte, circa 7 cifre</td><td><code>float t = 21.5f;</code></td></tr>
+<tr><td><code>double</code></td><td>«dabol»</td><td>reale, 8 byte, circa 15–16 cifre</td><td><code>double pi = 3.14159265;</code></td></tr>
+<tr><td><code>%f</code></td><td>«percento effe»</td><td>in <code>printf</code>: reale con 6 cifre dopo la virgola</td><td><code>2.500000</code></td></tr>
+<tr><td><code>%.2f</code></td><td>«percento punto due effe»</td><td>reale con 2 cifre dopo la virgola</td><td><code>2.50</code></td></tr>
+<tr><td><code>%e</code></td><td>«percento e»</td><td>notazione scientifica</td><td><code>2.500000e+00</code></td></tr>
+<tr><td><code>%g</code></td><td>«percento gi»</td><td>la scrittura più corta</td><td><code>2.5</code></td></tr>
+<tr><td><code>%lf</code></td><td>«percento elle effe»</td><td>in <code>scanf</code>: un <code>double</code></td><td><code>scanf(&quot;%lf&quot;, &amp;x);</code></td></tr>
+<tr><td><code>(float)y</code></td><td>«y convertito in float»</td><td>cast esplicito</td><td><code>x / (float)y</code></td></tr>
+<tr><td><code>math.h</code></td><td>«math punto acca»</td><td>libreria delle funzioni matematiche</td><td><code>sqrt(2.0)</code></td></tr>
+<tr><td><code>-lm</code></td><td>«meno elle emme»</td><td>opzione di gcc per la libreria matematica su Linux</td><td><code>gcc p.c -lm</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:950px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>L&#39;esame di Programmazione I è al PC, unico per i tre canali: appelli <strong>lunedì 25/01/2027</strong> e <strong>giovedì 11/02/2027</strong>. CodeRunner confronta le stampe del tuo programma con quelle attese, carattere per carattere: un 2.000000 al posto di 2.500000 è un test fallito.</p>
+<p><strong>Gli errori che costano</strong></p>
+<ol>
+<li><strong>La media tra interi.</strong> Sommare interi e dividere per il numero di elementi dà una divisione intera. Serve un cast su un operando, o una costante reale come <code>3.0</code>.</li>
+<li><strong><code>%lf</code> dimenticato in <code>scanf</code></strong> con un <code>double</code>: con <code>-Wall -Werror</code> non compila.</li>
+<li><strong>Lo specificatore sbagliato in <code>printf</code></strong>: <code>%d</code> con un <code>double</code>, o <code>%f</code> con un <code>int</code>, non compila con <code>-Wall -Werror</code>.</li>
+<li><strong>Il numero di cifre</strong>: se il testo chiede due cifre dopo la virgola, serve <code>%.2f</code>; con <code>%f</code> ne escono sei e il test fallisce.</li>
+<li><strong>I reali confrontati con <code>==</code></strong>: con le condizioni, nelle prossime lezioni.</li>
+</ol>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Prima di dividere</span></p><ol>
+<li>Guarda i tipi dei due operandi del <code>/</code>.</li>
+<li>Se sono tutti e due interi e vuoi la virgola, metti un cast su <strong>uno</strong> dei due, oppure usa una costante con la virgola.</li>
+<li>Controlla con un esempio a mano: 5 diviso 2 deve dare 2.5.</li>
+</ol>
+</div>
+<div class="box exam"><p class="box-label"><span>Conta all'esame · La media di tre numeri</span></p><p>Il programma <code>media.c</code> del <a href="Lab02_operatori_tipi.html">Laboratorio 02</a> è proprio questo esercizio: con i voti 1, 2, 5, la media intera dà 2, la media con il cast sul risultato dà 2.000000, quella giusta dà 2.666667. È un modello di errore che negli esercizi d&#39;esame si ripete in ogni calcolo di media.</p>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2030px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Con <code>int x = 5, y = 2;</code> quanto vale <code>float z = x / y;</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3.0</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2.5</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2.0</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2.25</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>/</code> tra due <code>int</code> è la divisione intera: dà 2. Solo dopo il 2 diventa il <code>float</code> 2.0. La risposta più insidiosa è 2.5: il tipo di <code>z</code> non cambia il calcolo a destra. Nessun arrotondamento porta a 3.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con <code>float x = 5, y = 2;</code> quanto vale <code>int z = x / y;</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2.5</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2.0, perché resta un float</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La divisione tra <code>float</code> dà 2.5; l&#39;assegnamento a un <code>int</code> taglia la parte dopo la virgola: 2. La risposta più insidiosa è 3: il C non arrotonda, taglia. Compila senza avvisi, anche con <code>-Wall</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con <code>int x = 5, y = 2;</code> quale espressione vale 2.5?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x / y * 1.0</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x / (float)y</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x / y</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>(float)(x / y)</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>(int)(x / 2.0)</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il cast su <code>y</code> rende reale un operando, e la divisione è con la virgola. La risposta più insidiosa è <code>(float)(x / y)</code>: la divisione tra interi avviene dentro la parentesi, e il cast converte il 2 in 2.0. <code>(int)(x / 2.0)</code> taglia 2.5 a 2. <code>x / y * 1.0</code> fa prima la divisione intera, 2, e poi la moltiplica: 2.0.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Come si legge un <code>double</code> chiamato <code>d</code> con <code>scanf</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%e&quot;, d);</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%lf&quot;, d);</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%d&quot;, &amp;d);</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%lf&quot;, &amp;d);</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%f&quot;, &amp;d);</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Per un <code>double</code> serve <code>%lf</code>, e <code>scanf</code> vuole l&#39;indirizzo. La risposta più insidiosa è <code>scanf(&quot;%f&quot;, &amp;d);</code>: <code>%f</code> va bene in <code>printf</code>, ma in <code>scanf</code> è per i <code>float</code>, e con <code>-Wall -Werror</code> non compila. Le ultime due passano il valore invece dell&#39;indirizzo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>printf(&quot;%.2f\n&quot;, 2.0 / 3);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0.66</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0.67</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0.67e+00</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0.666667</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>2.0 / 3</code> è una divisione con la virgola, perché 2.0 è reale: 0.6666… Con <code>%.2f</code> si stampano 2 cifre, arrotondate: 0.67. La risposta più insidiosa è <code>0.66</code>: <code>printf</code> arrotonda, non taglia. <code>0.666667</code> sarebbe con <code>%f</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale riga dà un errore di compilazione con gcc 16.1, anche senza opzioni?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>float f = 1e10;</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int x = 5; int *p = x;</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int x = 3.7;</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>double d = 7;</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char c = 'A'; int n = c;</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Un intero non diventa un indirizzo da solo: gcc si ferma con «makes pointer from integer without a cast». La risposta più insidiosa è <code>int x = 3.7;</code>: perde la parte dopo la virgola, ma compila senza avvisi. Le altre sono conversioni normali.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Con <code>int a = 7, b = 2;</code> quanto vale <code>double r = a / b * 2.0;</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="6" data-toll="1e-9"><span class="q-giusto" hidden>6</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Si calcola da sinistra: <code>a / b</code> tra interi fa 3, poi <code>3 * 2.0</code> fa 6.0. La divisione intera avviene prima che il 2.0 entri in gioco.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Di che tipo è il risultato di <code>'A' + 1.5</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>float</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non si può sommare un carattere e un numero</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>double</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>'A'</code> è un <code>char</code>, che sale a <code>int</code>; con un <code>double</code> come 1.5 si sale a <code>double</code>. La risposta più insidiosa è <code>float</code>: le costanti con la virgola senza la <code>f</code> finale sono <code>double</code>. Il risultato vale 66.5.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa vale <code>(int)-3.7</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">-4</span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3</span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">-3.7</span></label><label class="opz"><input type="radio" name="q1-8" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">-3</span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il cast a <code>int</code> taglia verso lo zero: −3.7 diventa −3. La risposta più insidiosa è −4, che sarebbe l&#39;arrotondamento per difetto di <code>floor</code>. Il segno resta.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1470px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: il tipo e il valore <span class="lvl">base</span></h3><p>Con <code>int i = 9; double d = 2.0;</code> scrivi tipo e valore di: (a) <code>i / 2</code>; (b) <code>i / d</code>; (c) <code>i % 2</code>; (d) <code>(double)i / 2</code>; (e) <code>(double)(i / 2)</code>.</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) <code>int</code>, 4. (b) <code>double</code>, 4.5. (c) <code>int</code>, 1. (d) <code>double</code>, 4.5: il cast è su <code>i</code>. (e) <code>double</code>, 4.0: la divisione intera avviene prima del cast.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: stampe dei reali <span class="lvl">base</span></h3><p>Con <code>double z = 1234.5678;</code> scrivi che cosa stampano <code>%f</code>, <code>%.1f</code>, <code>%e</code> e <code>%g</code>. Poi provalo.</p>
+<details class="sol"><summary>Soluzione</summary><ul>
+<li><code>%f</code>: <code>1234.567800</code></li>
+<li><code>%.1f</code>: <code>1234.6</code>, arrotondato</li>
+<li><code>%e</code>: <code>1.234568e+03</code></li>
+<li><code>%g</code>: <code>1234.57</code>: <code>%g</code> tiene 6 cifre significative in tutto</li>
+</ul>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Riscaldamento: assegnamenti che perdono <span class="lvl">base</span></h3><p>Che cosa valgono le variabili? <code>int a = 9.99; int b = -9.99; float c = 1/4; float d = 1.0/4; double e = 'a';</code></p>
+<details class="sol"><summary>Soluzione</summary><p><code>a</code> = 9 e <code>b</code> = −9: taglio verso lo zero. <code>c</code> = 0.0: divisione intera, 1/4 fa 0. <code>d</code> = 0.25. <code>e</code> = 97.0: il codice ASCII di <code>a</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Il programma delle slide 17–19, corretto <span class="lvl">medio</span></h3><p>Il programma con <code>int x = 5, y = 2; float z = x / y;</code> stampa 2.000000. Correggilo in due modi diversi perché stampi 2.500000, senza cambiare il tipo di <code>x</code> e <code>y</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 5, y = 2;
+    <span class="kw">float</span> z1 = x / (<span class="kw">float</span>)y;   <span class="cm">// cast su un operando</span>
+    <span class="kw">float</span> z2 = (<span class="kw">float</span>)x / y;   <span class="cm">// cast sull'altro operando</span>
+    printf(<span class="str">&quot;%f %f\n&quot;</span>, z1, z2);
+}</code></pre>
+<p>Stampa <code>2.500000 2.500000</code>. Anche <code>x * 1.0 / y</code> funziona, ma con il cast chi legge vede subito che vuoi una divisione con la virgola.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Radice e potenza <span class="lvl">medio</span></h3><p>Scrivi un programma che legge un <code>double</code> con <code>scanf</code> e stampa il suo quadrato e la sua radice quadrata con 3 cifre dopo la virgola. Prova con 2.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;math.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">double</span> x;
+    printf(<span class="str">&quot;Inserisci un numero: &quot;</span>);
+    scanf(<span class="str">&quot;%lf&quot;</span>, &amp;x);
+    printf(<span class="str">&quot;Quadrato: %.3f\n&quot;</span>, pow(x, 2));
+    printf(<span class="str">&quot;Radice: %.3f\n&quot;</span>, sqrt(x));
+}</code></pre>
+<p>Con 2 stampa <code>Quadrato: 4.000</code> e <code>Radice: 1.414</code>. Su Linux si compila con <code>gcc -Wall -Werror radice.c -o radice -lm</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · La media di tre voti <span class="lvl">tipo esame</span></h3><p>Scrivi un programma che legge tre voti interi e stampa la loro media con 2 cifre dopo la virgola. Con 1, 2, 5 deve stampare <code>2.67</code>. Poi spiega che cosa stamperebbe con <code>double m = (a + b + c) / 3;</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a, b, c;
+    scanf(<span class="str">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c);
+    <span class="kw">double</span> m = (a + b + c) / 3.0;
+    printf(<span class="str">&quot;%.2f\n&quot;</span>, m);
+}</code></pre>
+<p>Stampa <code>2.67</code>. Con <code>(a + b + c) / 3</code> la somma 8 è divisa per l&#39;intero 3: divisione intera, 2, poi convertito in 2.0. Stamperebbe <code>2.00</code>. Programma provato con gcc 16.1 e <code>-Wall -Werror</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · Trova i tre errori <span class="lvl">tipo esame</span></h3><p>Questo programma dovrebbe leggere il lato di un quadrato con la virgola e stampare l&#39;area con 2 cifre. Trova gli errori: <code>double lato; scanf(&quot;%f&quot;, &amp;lato); int area = lato * lato; printf(&quot;Area: %.2f\n&quot;, area);</code></p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li><code>scanf(&quot;%f&quot;, &amp;lato)</code>: per un <code>double</code> serve <code>%lf</code>. Con <code>-Wall -Werror</code> non compila.</li>
+<li><code>int area</code>: l&#39;area con la virgola va in un <code>double</code>; in un <code>int</code> perde la parte frazionaria.</li>
+<li><code>printf(&quot;%.2f&quot;, area)</code> con un <code>int</code>: lo specificatore non corrisponde al tipo. Con <code>-Wall -Werror</code> non compila.</li>
+</ol>
+<p>Corretto: <code>double lato; scanf(&quot;%lf&quot;, &amp;lato); double area = lato * lato; printf(&quot;Area: %.2f\n&quot;, area);</code>.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:640px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che differenza c&#39;è tra float e double?</span></summary><div class="ans"><p><code>float</code> usa di solito 4 byte e ha circa 7 cifre giuste; <code>double</code> usa 8 byte e ha circa 15–16 cifre giuste, con un intervallo molto più ampio.</p>
+</div></details>
+<details class="qa"><summary><span>Con quale specificatore si legge un double con scanf? E si stampa con printf?</span></summary><div class="ans"><p>Si legge con <code>%lf</code>. Si stampa con <code>%f</code>, <code>%e</code> o <code>%g</code>, perché <code>printf</code> riceve i <code>float</code> già convertiti in <code>double</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>float z = 5 / 2;</code> vale 2.0?</span></summary><div class="ans"><p>Perché <code>5 / 2</code> è una divisione tra due interi e dà 2. Solo dopo, nell&#39;assegnamento, il 2 diventa il <code>float</code> 2.0.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa succede mettendo 3.7 in un int?</span></summary><div class="ans"><p>La parte dopo la virgola viene tagliata, senza arrotondare e senza avvisi: l&#39;<code>int</code> vale 3.</p>
+</div></details>
+<details class="qa"><summary><span>Che cos&#39;è la promozione di tipo?</span></summary><div class="ans"><p>La conversione automatica dei due operandi di un operatore al tipo più ampio, prima di fare il conto: un intero con un reale diventa un reale.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra <code>(double)a / b</code> e <code>(double)(a / b)</code> con a e b interi?</span></summary><div class="ans"><p>Nel primo il cast è su <code>a</code>, e la divisione è con la virgola. Nel secondo la divisione tra interi avviene prima, e il cast converte un risultato già tagliato.</p>
+</div></details>
+<details class="qa"><summary><span>Perché non si confrontano due double con ==?</span></summary><div class="ans"><p>Perché quasi tutti i reali sono approssimati: due calcoli che dovrebbero dare lo stesso valore possono differire nell&#39;ultima cifra.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:660px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>float</dt><dd>Tipo reale, di solito 4 byte, con circa 7 cifre decimali giuste.</dd></div>
+<div><dt>double</dt><dd>Tipo reale in doppia precisione, di solito 8 byte, con circa 15–16 cifre decimali giuste.</dd></div>
+<div><dt>IEEE 754</dt><dd>Lo standard che descrive come sono scritti in memoria i numeri reali: segno, esponente e mantissa.</dd></div>
+<div><dt>%f, %e, %g</dt><dd>Specificatori di printf per i reali: virgola fissa, notazione scientifica, scrittura più corta.</dd></div>
+<div><dt>%lf</dt><dd>Specificatore di scanf per leggere un double.</dd></div>
+<div><dt>math.h</dt><dd>Libreria del C con le funzioni matematiche: sqrt, pow, floor, ceil, round, sin, cos.</dd></div>
+<div><dt>Conversione implicita</dt><dd>Cambio di tipo fatto dal compilatore da solo, per esempio in un assegnamento o in un&#39;espressione mista.</dd></div>
+<div><dt>Promozione di tipo</dt><dd>Conversione automatica degli operandi al tipo più ampio prima di un&#39;operazione.</dd></div>
+<div><dt>Cast</dt><dd>Conversione esplicita scritta con il tipo tra parentesi, come <code>(float)y</code>; vale solo per l&#39;espressione subito a destra.</dd></div>
+<div><dt>Comportamento indefinito</dt><dd>Situazione in cui il linguaggio non dice che cosa succede, come un double troppo grande messo in un int.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:420px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 8</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-03B-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So la differenza tra float e double, in byte e in cifre giuste.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So stampare un reale con %f, %e, %g e con un numero fissato di cifre.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So leggere un double con %lf.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So usare sqrt e pow di math.h e so quando serve -lm.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So che cosa si perde nelle conversioni dell&#39;assegnamento.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So decidere il tipo di un&#39;espressione, operatore per operatore.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So perché <code>float z = 5 / 2;</code> vale 2.0, e come correggerlo con un cast.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So dove mettere il cast per fare una media con la virgola.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Numeri reali in C. Float, double, precisione, conversione» (03B_floats), Programmazione I – Teoria, canale B, A.A. 2026/27, Elvio Amparore: float e double (slide 2–3), formati di stampa (slide 4–5), programmi con float e double (slide 6–8), math.h (slide 9–10), conversioni implicite e tabella delle conseguenze (slide 11–14), promozione di tipo (slide 15–16), divisione tra interi (slide 17–22), cast esplicito (slide 23–25).</li>
+<li>Laboratorio 02 «Operatori e Tipi», canale B: <code>media.c</code>, <code>aritmetica.c</code>, <code>circonferenza.c</code>.</li>
+<li><a href="https://en.cppreference.com/w/c/header/math.html" target="_blank" rel="noopener">cppreference, <code>&lt;math.h&gt;</code></a>, il riferimento citato nelle slide.</li>
+<li>I programmi di questi appunti sono stati compilati con gcc 16.1 su Windows 11 a 64 bit, con <code>-Wall -Werror</code>, ed eseguiti; gli errori del compilatore citati sono quelli veri. Le prove sulla precisione (0.1, 16 777 217, 3 miliardi), le tabelle dei casi, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

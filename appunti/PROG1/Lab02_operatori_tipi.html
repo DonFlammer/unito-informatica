@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab02 · Laboratorio 02: operatori e tipi</title>
+<meta name="lezione" content="Lab02">
+<meta name="data" content="2026-10-12">
+<meta name="description" content="Appunti del secondo laboratorio di Programmazione I (canale B, Lab02): divisione intera e reale, resto, overflow, ordine di valutazione delle espressioni, circonferenza e area con const, gli errori di compilazione da trovare, la media di tre numeri con le conversioni e gli arrotondamenti, la tabella dei tipi e degli specificatori, le dimensioni dei tipi e dei puntatori, la documentazione del C, il programma della spesa e gli scambi di variabili, con tutti i programmi del codice di partenza provati e gli esercizi svolti.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/Lab02_operatori_tipi.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#aritmetica-e-overflow-aritmetica-c"><span class="n">§1</span><span>Aritmetica e overflow: aritmetica.c</span></a></li>
+<li><a href="#operazioni-su-interi"><span class="n">§2</span><span>Operazioni su interi</span></a></li>
+<li><a href="#l-ordine-di-valutazione"><span class="n">§3</span><span>L&#39;ordine di valutazione</span></a></li>
+<li><a href="#circonferenza-e-area-circonferenza-c"><span class="n">§4</span><span>Circonferenza e area: circonferenza.c</span></a></li>
+<li><a href="#trovare-gli-errori"><span class="n">§5</span><span>Trovare gli errori</span></a></li>
+<li><a href="#la-media-di-tre-numeri-media-c"><span class="n">§6</span><span>La media di tre numeri: media.c</span></a></li>
+<li><a href="#la-tabella-dei-tipi-e-dim-tipi-c"><span class="n">§7</span><span>La tabella dei tipi e dim_tipi.c</span></a></li>
+<li><a href="#la-documentazione-del-c"><span class="n">§8</span><span>La documentazione del C</span></a></li>
+<li><a href="#la-spesa-al-mercato"><span class="n">§9</span><span>La spesa al mercato</span></a></li>
+<li><a href="#gli-scambi-di-variabili"><span class="n">§10</span><span>Gli scambi di variabili</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§11</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§12</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§13</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§14</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§15</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§16</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§17</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione Lab02</nav>
+      <p class="eyebrow">Canale B · Laboratorio 02 · Programmazione I</p>
+      <h1>Laboratorio 02: operatori e tipi</h1>
+      <p class="lede">Il secondo laboratorio mette alla prova le lezioni 02B, 02C, 03A e 03B: si leggono programmi già scritti, si indovina che cosa stampano, si cercano gli errori e si scrivono programmi piccoli. Qui trovi ogni esercizio con la soluzione provata, e il perché di ogni risultato strano.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>Lab02 «Operatori e Tipi», laboratorio canale B · 18 pagine, con la tabella dei tipi e il codice di partenza</dd></div><div><dt>Laboratorio</dt><dd>Elisa Marengo (turno B2, lun 12/10) e Valerio Basile (turno B1, mar 13/10) · 14–17 · laboratorio Turing</dd></div><div><dt>Tempo di studio</dt><dd>2–3 ore, davanti a un computer</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:640px">
+<h2 id="tldr-title">La lezione in 8 punti</h2>
+<ul>
+<li>Il laboratorio usa sei programmi già pronti, il <strong>codice di partenza</strong>: si leggono, si provano, si completano o si correggono. Poi si scrivono tre programmi nuovi.</li>
+<li><strong>Divisione</strong>: tra due interi <code>/</code> dà la parte intera, <code>%</code> il resto. Basta un reale per avere la divisione con la virgola: <code>99 / 50</code> fa 1, <code>99 / 50.0</code> fa 1.98.</li>
+<li>Un <code>int</code> che supera il massimo, 2 147 483 647, <strong>va in overflow</strong> e ricomincia dai negativi: il compilatore non avvisa.</li>
+<li>Le espressioni seguono le <strong>precedenze</strong>: <code>*</code>, <code>/</code>, <code>%</code> prima di <code>+</code> e <code>-</code>, da sinistra a destra. Le parentesi cambiano l&#39;ordine.</li>
+<li><code>const</code> dichiara una <strong>costante</strong>: un valore che il programma non può cambiare.</li>
+<li>Una <strong>media</strong> si calcola dividendo per <code>3.0</code>, non per <code>3</code>. Per arrotondare ci sono <code>floor</code>, <code>ceil</code> e <code>round</code>, mentre il cast a <code>int</code> taglia.</li>
+<li>I numeri con la virgola sono approssimati: <code>8.136 * 1000</code> convertito in <code>int</code> dà <strong>8135</strong>.</li>
+<li>Tutti i <strong>puntatori</strong> hanno la stessa dimensione, 8 byte su un computer a 64 bit: contengono un indirizzo, qualunque sia il tipo puntato.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È il secondo laboratorio, al laboratorio Turing, dalle 14 alle 17: turno <strong>B2</strong> lunedì 12/10 con <strong>Elisa Marengo</strong>, turno <strong>B1</strong> martedì 13/10 con <strong>Valerio Basile</strong>. Gli esercizi riprendono la teoria delle lezioni <a href="02B_assegnamento_memory_model.html">02B</a> (tipi, operatori, precedenze), <a href="02C_referenziamento_scanf_puntatori.html">02C</a> (<code>scanf</code>, puntatori), <a href="03A_scambio_variabili.html">03A</a> (scambio) e <a href="03B_floats.html">03B</a> (reali e conversioni).</p>
+<p><strong>Canali A e C.</strong> Secondo la scheda del corso i laboratori hanno la stessa sequenza nei tre canali e gli stessi esercizi su CodeRunner. Le slide 2026/27 dei canali A e C per questo laboratorio non le ho viste: controlla il giorno del tuo turno su Moodle.</p>
+<p>I programmi del codice di partenza li ho compilati e provati tutti con gcc 16.1 su Windows 11 a 64 bit. Dove il risultato su Linux, al laboratorio Turing, può essere diverso, lo dico.</p>
+</div>
+
+
+<section id="aritmetica-e-overflow-aritmetica-c" aria-labelledby="h-aritmetica-e-overflow-aritmetica-c" style="--h:2000px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-aritmetica-e-overflow-aritmetica-c">Aritmetica e overflow: aritmetica.c</h2><span class="slides">slide 2</span></div>
+<p>Il primo programma va <strong>letto prima di eseguirlo</strong>: per ogni <code>printf</code> prova a indovinare che cosa stampa, poi controlla. La slide dice di compilarlo con:</p>
+<pre class="code"><code>gcc -Wall aritmetica.c -o aritmetica        (Linux e macOS)
+gcc -Wall aritmetica.c -o aritmetica.exe    (Windows)</code></pre>
+<div class="box neutro"><p class="box-label"><span>Nota · Senza -Werror, per una volta</span></p><p>Il programma dichiara tre variabili che non usa, <code>n1</code>, <code>p</code> e <code>t</code>. Con <code>-Wall</code> gcc stampa tre avvisi <code>unused variable</code>; con <code>-Wall -Werror</code> non compila. Per questo la slide usa solo <code>-Wall</code>: gli avvisi si leggono, ma il programma parte. All&#39;esame invece vale <code>-Werror</code>, e le variabili inutili vanno tolte.</p>
+</div>
+<h3 id="le-divisioni">Le divisioni</h3>
+<pre class="code" data-lingua="c"><code>printf(<span class="str">&quot;99 / 50 = %d\n&quot;</span>, 99 / 50);       <span class="cm">// divisione intera</span>
+printf(<span class="str">&quot;99 %% 50 = %d\n&quot;</span>, 99 % 50);      <span class="cm">// resto della divisione intera</span>
+printf(<span class="str">&quot;99 / 50.0 = %f\n&quot;</span>, 99 / 50.0);   <span class="cm">// divisione reale</span>
+printf(<span class="str">&quot;99.0 / 50 = %f\n&quot;</span>, 99.0 / 50);   <span class="cm">// divisione reale</span></code></pre>
+<pre class="code"><code>99 / 50 = 1
+99 % 50 = 49
+99 / 50.0 = 1.980000
+99.0 / 50 = 1.980000</code></pre>
+<p>Due cose da notare.</p>
+<ul>
+<li><code>%%</code> dentro la stringa di <code>printf</code> stampa un solo <code>%</code>. Un <code>%</code> da solo sarebbe l&#39;inizio di uno specificatore.</li>
+<li>Basta <strong>un</strong> reale, a sinistra o a destra, per avere la divisione con la virgola: è la promozione di tipo della lezione 03B.</li>
+</ul>
+<p>Poi il programma prova il cast in due posti diversi, con <code>int m = 99</code> e <code>int n = 50</code>:</p>
+<pre class="code"><code>m / n, con cast su m: 1.980000
+m / n, con cast sul risultato: 1.000000</code></pre>
+<p><code>(double) m / n</code> converte <code>m</code> prima della divisione; <code>(double) (m / n)</code> converte il risultato di una divisione già intera. È la trappola della lezione 03B.</p>
+<h3 id="l-overflow">L&#39;overflow</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> max = INT_MAX;
+printf(<span class="str">&quot;INT_MAX = %d\n&quot;</span>, max);
+max = max + 3;
+printf(<span class="str">&quot;dopo aver sommato 3 = %d\n&quot;</span>, max);</code></pre>
+<pre class="code"><code>INT_MIN = -2147483648
+INT_MAX = 2147483647
+dopo aver sommato 3 = -2147483646</code></pre>
+<p><code>INT_MAX</code> e <code>INT_MIN</code> sono il massimo e il minimo di un <code>int</code>, definiti in <code>limits.h</code>. Aggiungendo 3 al massimo, il numero esce dall&#39;intervallo e <strong>ricomincia dai negativi</strong>, come il contachilometri all&#39;indietro della <a href="../FDA/03_interi_con_segno_virgola_mobile.html">lezione 03 di Fondamenti</a>: è l&#39;<strong>overflow</strong> in complemento a 2. Il compilatore non avvisa.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · L&#39;overflow degli int con il segno non è garantito</span></p><p>Per lo standard del C, l&#39;overflow di un intero con il segno è un <strong>comportamento indefinito</strong>: il risultato −2 147 483 646 è quello che succede quasi sempre, ma il linguaggio non lo promette. Il programma va scritto in modo che l&#39;overflow non capiti.</p>
+</div>
+<p>L&#39;ultima riga stampa l&#39;indirizzo di <code>max</code> con <code>%p</code>: cambia a ogni esecuzione, come nella lezione 02C.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampano <code>printf(&quot;%d&quot;, 17 / 5)</code>, <code>printf(&quot;%d&quot;, 17 % 5)</code> e <code>printf(&quot;%f&quot;, 17 / 5.0)</code>?</span></summary><div class="ans"><p><code>3</code>, <code>2</code> e <code>3.400000</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Tra interi: <code>/</code> dà la parte intera, <code>%</code> il resto. Con un reale: divisione con la virgola.</li>
+<li><code>%%</code> stampa un <code>%</code>. Superare <code>INT_MAX</code> è overflow.</li>
+</ul>
+</div>
+</section>
+
+<section id="operazioni-su-interi" aria-labelledby="h-operazioni-su-interi" style="--h:1020px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-operazioni-su-interi">Operazioni su interi</h2><span class="slides">slide 3</span></div>
+<p>Il primo programma da scrivere da zero: <code>operazioni_su_interi.c</code>. Chiede due interi <code>n1</code> e <code>n2</code>, e stampa la somma, il prodotto, la divisione intera, la divisione reale e il resto.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n1;
+    <span class="kw">int</span> n2;
+    printf(<span class="str">&quot;Inserisci due numeri interi: &quot;</span>);
+    scanf(<span class="str">&quot;%d %d&quot;</span>, &amp;n1, &amp;n2);
+
+    <span class="kw">int</span> somma = n1 + n2;
+    printf(<span class="str">&quot;Somma: %d\n&quot;</span>, somma);
+    printf(<span class="str">&quot;Prodotto: %d\n&quot;</span>, n1 * n2);
+    printf(<span class="str">&quot;Divisione intera: %d\n&quot;</span>, n1 / n2);
+    printf(<span class="str">&quot;Divisione reale: %f\n&quot;</span>, (<span class="kw">double</span>)n1 / n2);
+    printf(<span class="str">&quot;Resto: %d\n&quot;</span>, n1 % n2);
+}</code></pre>
+<p>Con l&#39;input <code>17 5</code> stampa somma 22, prodotto 85, divisione intera 3, divisione reale 3.400000 e resto 2.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Con i negativi</span></p><p>Con <code>-17 5</code> il programma stampa divisione intera −3 e resto −2. In C la divisione intera <strong>taglia verso lo zero</strong>, e il resto ha il segno del primo numero. In matematica, nella lezione di Matematica Discreta, il resto è sempre positivo: lì −17 diviso 5 dà quoziente −4 e resto 3. Attenzione quando usi <code>%</code> con i negativi.</p>
+</div>
+<p>Il programma non controlla <code>n2 = 0</code>: con <code>0</code> come secondo numero, la divisione intera fa fallire il programma. Lo saprai sistemare con le condizioni.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa il programma con l&#39;input <code>7 2</code>?</span></summary><div class="ans"><p>Somma 9, prodotto 14, divisione intera 3, divisione reale 3.500000, resto 1.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>La divisione reale tra due <code>int</code> si ottiene con un cast su un operando.</li>
+<li>In C, con i negativi, <code>/</code> taglia verso lo zero e <code>%</code> ha il segno del primo numero.</li>
+</ul>
+</div>
+</section>
+
+<section id="l-ordine-di-valutazione" aria-labelledby="h-l-ordine-di-valutazione" style="--h:1300px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-l-ordine-di-valutazione">L&#39;ordine di valutazione</h2><span class="slides">slide 4–7</span></div>
+<p>Le slide chiedono di calcolare a mano tre espressioni, prima di provarle. Si usano le precedenze della lezione 02B: prima le parentesi, poi <code>*</code>, <code>/</code> e <code>%</code> da sinistra a destra, poi <code>+</code> e <code>-</code> da sinistra a destra.</p>
+<div class="table-wrap"><table><thead><tr><th>Espressione</th><th>Passi</th><th>Risultato</th></tr></thead><tbody><tr><td><code>7 + 3 * 6 / 2 - 1</code></td><td><code>3 * 6</code> = 18, <code>18 / 2</code> = 9, <code>7 + 9</code> = 16, <code>16 - 1</code> = 15</td><td><strong>15</strong></td></tr>
+<tr><td><code>2 % 2 + 2 * 2 - 2 / 2</code></td><td><code>2 % 2</code> = 0, <code>2 * 2</code> = 4, <code>2 / 2</code> = 1, <code>0 + 4 - 1</code> = 3</td><td><strong>3</strong></td></tr>
+<tr><td><code>(3 * 9 * (3 + (9 * 3 / (3))))</code></td><td><code>9 * 3 / 3</code> = 9, <code>3 + 9</code> = 12, <code>3 * 9 * 12</code> = 324</td><td><strong>324</strong></td></tr></tbody></table></div>
+<p>Sono i risultati delle slide 5, e quelli che stampa il programma.</p>
+<h3 id="quale-formula-e-m0">Quale formula è <span class="katex" role="math" aria-label="y = ax^3 + 7"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span>?</h3>
+<p>La slide 6 dà sei espressioni e chiede quali calcolano <span class="katex" role="math" aria-label="ax^3 + 7"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span>. La regola: la moltiplicazione viene prima della somma, e le parentesi intorno a una moltiplicazione non cambiano niente.</p>
+<div class="table-wrap"><table><thead><tr><th class="centro">#</th><th>Espressione</th><th class="centro">Giusta?</th><th>Perché</th></tr></thead><tbody><tr><td class="centro">1</td><td><code>a * x * x * x + 7</code></td><td class="centro">sì</td><td>le moltiplicazioni prima, poi <code>+ 7</code></td></tr>
+<tr><td class="centro">2</td><td><code>a * x * x * (x + 7)</code></td><td class="centro">no</td><td>la parentesi fa sommare 7 a <code>x</code> prima</td></tr>
+<tr><td class="centro">3</td><td><code>(a * x) * x * (x + 7)</code></td><td class="centro">no</td><td>stesso errore della 2</td></tr>
+<tr><td class="centro">4</td><td><code>(a * x) * x * x + 7</code></td><td class="centro">sì</td><td>la parentesi intorno a <code>a * x</code> non cambia niente</td></tr>
+<tr><td class="centro">5</td><td><code>a * (x * x * x) + 7</code></td><td class="centro">sì</td><td>come la 4</td></tr>
+<tr><td class="centro">6</td><td><code>a * x * (x * x + 7)</code></td><td class="centro">no</td><td>il 7 entra nella moltiplicazione</td></tr></tbody></table></div>
+<p>Ho controllato con <code>a = 2</code> e <code>x = 3</code>: la formula vale 61. Le espressioni 1, 4 e 5 danno 61; la 2 e la 3 danno 180; la 6 dà 96.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto vale <code>10 - 4 - 3</code>? E <code>10 - (4 - 3)</code>?</span></summary><div class="ans"><p>3, perché <code>-</code> si fa da sinistra: <code>10 - 4</code> = 6, poi <code>6 - 3</code> = 3. Con le parentesi: <code>4 - 3</code> = 1, poi <code>10 - 1</code> = 9.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>*</code>, <code>/</code>, <code>%</code> prima di <code>+</code> e <code>-</code>; a parità, da sinistra a destra.</li>
+<li>Una parentesi intorno a una moltiplicazione non cambia niente; una intorno a una somma sì.</li>
+</ul>
+</div>
+</section>
+
+<section id="circonferenza-e-area-circonferenza-c" aria-labelledby="h-circonferenza-e-area-circonferenza-c" style="--h:1250px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-circonferenza-e-area-circonferenza-c">Circonferenza e area: circonferenza.c</h2><span class="slides">slide 8</span></div>
+<p>Il programma <code>circonferenza.c</code> legge il raggio e deve stampare circonferenza e area. Le due righe di calcolo sono lasciate da completare: ricorda che la circonferenza è <span class="katex" role="math" aria-label="2 \pi r"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> e l&#39;area è <span class="katex" role="math" aria-label="\pi r^2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="cm">// La costante pi greco</span>
+    <span class="kw">const</span> <span class="kw">float</span> PI_GRECO = 3.1415926535f;
+
+    <span class="cm">// Chiediamo all'utente il raggio</span>
+    printf(<span class="str">&quot;Inserisci il raggio del cerchio: &quot;</span>);
+    <span class="kw">float</span> r;
+    scanf(<span class="str">&quot;%f&quot;</span>, &amp;r);
+
+    <span class="cm">// Calcolo della circonferenza e dell'area</span>
+    <span class="kw">float</span> circonferenza = 2 * PI_GRECO * r;
+    printf(<span class="str">&quot;La circonferenza del cerchio e': %f\n&quot;</span>, circonferenza);
+
+    <span class="kw">float</span> area = PI_GRECO * r * r;
+    printf(<span class="str">&quot;L'area del cerchio e': %f\n&quot;</span>, area);
+}</code></pre>
+<p>Con il raggio 3 stampa <code>18.849556</code> e <code>28.274334</code>. Così com&#39;è, il codice di partenza non compila nemmeno con <code>-Wall</code>: <code>circonferenza</code> e <code>area</code> sono usate nelle <code>printf</code> ma non dichiarate.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Prova con il raggio 2</span></p><p>Con il raggio 2 la circonferenza e l&#39;area vengono <strong>uguali</strong>, tutte e due 12.566371. Non è un errore: <span class="katex" role="math" aria-label="2 \cdot \pi \cdot 2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> e <span class="katex" role="math" aria-label="\pi \cdot 2^2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4445em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> fanno tutti e due <span class="katex" role="math" aria-label="4\pi"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span></span></span></span>. Per controllare il programma usa un altro raggio.</p>
+</div>
+<h3 id="la-domanda-che-cosa-vuol-dire-const">La domanda: che cosa vuol dire const?</h3>
+<p><code>const</code> davanti a una dichiarazione la rende una <strong>costante</strong>: il valore si dà all&#39;inizio e poi non si può più cambiare. Se scrivi <code>PI_GRECO = 3;</code> più avanti, gcc si ferma con <code>error: assignment of read-only variable 'PI_GRECO'</code>. Il nome tutto maiuscolo è una convenzione per le costanti, non un obbligo.</p>
+<p>Il commento del codice ricorda che <code>math.h</code> ha già la costante <strong><code>M_PI</code></strong>. Le slide avvisano che, su Linux, usando <code>math.h</code> può servire l&#39;opzione <code>-lm</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con il raggio 1, che cosa devono stampare circonferenza e area?</span></summary><div class="ans"><p>La circonferenza <span class="katex" role="math" aria-label="2\pi"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span></span></span></span>, circa 6.283185, e l&#39;area <span class="katex" role="math" aria-label="\pi"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span></span></span></span>, circa 3.141593.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>const</code> fa una variabile che non si può più modificare.</li>
+<li>Per provare un programma, scegli dati che non diano risultati uguali per caso.</li>
+</ul>
+</div>
+</section>
+
+<section id="trovare-gli-errori" aria-labelledby="h-trovare-gli-errori" style="--h:1940px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-trovare-gli-errori">Trovare gli errori</h2><span class="slides">slide 9–11</span></div>
+<p>All&#39;esame il compilatore ti dice dove ha trovato un errore, ma non sempre perché. Qui si allena l&#39;occhio: prima si cercano gli errori leggendo, poi si controlla con gcc.</p>
+<h3 id="il-programma-della-slide-9">Il programma della slide 9</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">int</span> main() {
+<span class="kw">int</span> x, y;
+printf(<span class="str">&quot;Inserisci due interi: &quot;</span>);
+scanf(<span class="str">&quot;%d %d&quot;</span>, &amp;x, y)
+z = x + y;
+printf(<span class="str">&quot;La somma %d + %d vale &quot;</span>, x, y);
+printf(<span class="str">&quot;%d\n&quot;</span>, &amp;z);
+}</code></pre>
+<p>Gli errori sono quattro:</p>
+<ol>
+<li>in <code>scanf</code> manca la <code>&amp;</code> davanti a <code>y</code>: <code>scanf</code> vuole un indirizzo;</li>
+<li>manca il <code>;</code> dopo la <code>scanf</code>;</li>
+<li><code>z</code> non è dichiarata;</li>
+<li>l&#39;ultima <code>printf</code> stampa <code>&amp;z</code>, l&#39;indirizzo, invece del valore <code>z</code>.</li>
+</ol>
+<p>gcc con <code>-Wall -Werror</code> ne trova subito tre: <code>format '%d' expects argument of type 'int *', but argument 3 has type 'int'</code>, <code>expected ';' before 'z'</code> e <code>'z' undeclared</code>. Il quarto lo segnala dopo aver corretto gli altri. Il programma corretto:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x, y;
+    printf(<span class="str">&quot;Inserisci due interi: &quot;</span>);
+    scanf(<span class="str">&quot;%d %d&quot;</span>, &amp;x, &amp;y);
+    <span class="kw">int</span> z = x + y;
+    printf(<span class="str">&quot;La somma %d + %d vale &quot;</span>, x, y);
+    printf(<span class="str">&quot;%d\n&quot;</span>, z);
+}</code></pre>
+<h3 id="errori-c-gli-otto-errori">errori.c: gli otto errori</h3>
+<p>La slide 11 chiede di trovare, <strong>senza compilare</strong>, gli 8 errori di <code>errori.c</code>. Prova da solo prima di leggere.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">float</span> f1, f2;
+    printf(<span class="str">&quot;Inserisci due numeri reali: &quot;</span>);
+    scanf(<span class="str">&quot;%f %d&quot;</span>, &amp;f1, &amp;f2);
+
+    <span class="kw">float</span> risultato = (f1 + f2) / 2);
+    printf(<span class="str">&quot;Risultato = %f %d\n&quot;</span>, &amp;risultato);
+
+    <span class="cm">// Calcoliamo il quadrato</span>
+    <span class="cm">// float quadrato = risultato * risultato;</span>
+    printf(<span class="str">&quot;Il quadrato e' \n&quot;</span>, quadrato) }
+}</code></pre>
+<div class="table-wrap"><table><thead><tr><th class="centro">#</th><th>Riga</th><th>Errore</th><th>Correzione</th></tr></thead><tbody><tr><td class="centro">1</td><td><code>scanf(&quot;%f %d&quot;, …)</code></td><td><code>%d</code> per un <code>float</code></td><td><code>%f %f</code></td></tr>
+<tr><td class="centro">2</td><td><code>(f1 + f2) / 2);</code></td><td>una parentesi chiusa di troppo</td><td><code>(f1 + f2) / 2;</code></td></tr>
+<tr><td class="centro">3</td><td><code>printf(…, &amp;risultato)</code></td><td>passa l&#39;indirizzo invece del valore</td><td><code>risultato</code></td></tr>
+<tr><td class="centro">4</td><td><code>&quot;Risultato = %f %d\n&quot;</code></td><td><code>%d</code> senza un valore da stampare</td><td>togliere <code>%d</code></td></tr>
+<tr><td class="centro">5</td><td><code>// float quadrato = …</code></td><td>la dichiarazione è commentata: <code>quadrato</code> non esiste</td><td>togliere <code>//</code></td></tr>
+<tr><td class="centro">6</td><td><code>&quot;Il quadrato e' \n&quot;</code></td><td>manca lo specificatore per <code>quadrato</code></td><td><code>%f</code></td></tr>
+<tr><td class="centro">7</td><td><code>printf(…) }</code></td><td>manca il <code>;</code> dopo la <code>printf</code></td><td><code>;</code></td></tr>
+<tr><td class="centro">8</td><td><code>}</code> finale</td><td>una graffa chiusa di troppo</td><td>togliere una <code>}</code></td></tr></tbody></table></div>
+<p>Compilando il file originale con <code>-Wall -Werror</code>, gcc 16.1 segnala gli errori 1, 2, 3, 4, 5, 7 e 8. Il 6 lo segnala solo dopo le altre correzioni, come «troppi argomenti per il formato». Il programma corretto, con 3 e 4, stampa <code>Risultato = 3.500000</code> e <code>Il quadrato e' 12.250000</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Perché <code>printf(&quot;%d\n&quot;, &amp;z);</code> è un errore anche se compila senza -Wall?</span></summary><div class="ans"><p>Perché <code>&amp;z</code> è l&#39;indirizzo di <code>z</code>, non il suo valore: il programma stamperebbe un numero senza senso. Con <code>-Wall -Werror</code> gcc lo blocca, perché <code>%d</code> vuole un <code>int</code> e riceve un <code>int *</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>In <code>scanf</code> serve la <code>&amp;</code>; in <code>printf</code> no.</li>
+<li>Ogni specificatore vuole un valore del tipo giusto, nello stesso ordine.</li>
+<li>Il primo errore può nasconderne altri: correggi e ricompila.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-media-di-tre-numeri-media-c" aria-labelledby="h-la-media-di-tre-numeri-media-c" style="--h:1750px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-la-media-di-tre-numeri-media-c">La media di tre numeri: media.c</h2><span class="slides">slide 12</span></div>
+<p><code>media.c</code> legge tre interi <code>x</code>, <code>y</code>, <code>z</code> e calcola la media in tre modi. Con l&#39;input 8, 2, 3, che danno somma 13:</p>
+<div class="table-wrap"><table><thead><tr><th>Riga del programma</th><th>Che cosa fa</th><th>Stampa</th></tr></thead><tbody><tr><td><code>int media1 = (x + y + z) / 3;</code></td><td>divisione intera</td><td><code>4</code></td></tr>
+<tr><td><code>double media2 = (x + y + z) / 3;</code></td><td>divisione intera, poi convertita in <code>double</code></td><td><code>4.000000</code></td></tr>
+<tr><td><code>double media3 = (x + y + z) / 3.0;</code></td><td>divisione con la virgola</td><td><code>4.333333</code></td></tr></tbody></table></div>
+<p>Solo la terza è giusta: è la divisione che inganna della lezione 03B.</p>
+<h3 id="le-tre-varianti-del-commento">Le tre varianti del commento</h3>
+<p>Il codice chiede che cosa fanno tre modi di scrivere <code>media3</code>, e dove avviene la conversione da <code>int</code> a <code>double</code>. Con 1, 2, 5, che danno somma 8:</p>
+<div class="table-wrap"><table><thead><tr><th>Variante</th><th>Tipi delle operazioni</th><th>Dove si converte</th><th>Valore</th></tr></thead><tbody><tr><td><code>(x + y + z) / 3.0</code></td><td>somma <code>int</code>; divisione tra <code>int</code> e <code>double</code></td><td>la somma diventa <code>double</code> per la divisione</td><td>2.666667</td></tr>
+<tr><td><code>(double)(x + y + z) / 3</code></td><td>somma <code>int</code>; cast; divisione tra <code>double</code> e <code>int</code></td><td>il cast sulla somma, poi il 3 diventa <code>double</code></td><td>2.666667</td></tr>
+<tr><td><code>(double)((x + y + z) / 3)</code></td><td>somma <code>int</code>; divisione <strong>intera</strong>; cast</td><td>il cast sul risultato, quando la virgola è già persa</td><td>2.000000</td></tr></tbody></table></div>
+<h3 id="arrotondare">Arrotondare</h3>
+<p>Il programma arrotonda <code>media3</code> in quattro modi. Con 1, 2, 5, cioè 2.666667:</p>
+<div class="table-wrap"><table><thead><tr><th>Espressione</th><th>Che cosa fa</th><th>Risultato</th></tr></thead><tbody><tr><td><code>(int)media3</code></td><td>taglia la parte dopo la virgola</td><td>2</td></tr>
+<tr><td><code>(int)floor(media3)</code></td><td>arrotonda per difetto</td><td>2</td></tr>
+<tr><td><code>(int)round(media3)</code></td><td>arrotonda al più vicino</td><td>3</td></tr>
+<tr><td><code>(int)ceil(media3)</code></td><td>arrotonda per eccesso</td><td>3</td></tr></tbody></table></div>
+<p>Con i numeri positivi il cast e <code>floor</code> danno lo stesso risultato. Con i negativi no: con −2.5 il cast dà −2, <code>floor</code> dà −3, <code>ceil</code> dà −2 e <code>round</code> dà −3, perché a metà strada <code>round</code> si allontana dallo zero.</p>
+<h3 id="8-136-per-1000">8.136 per 1000</h3>
+<p>L&#39;ultima parte del programma calcola <code>(int)(f * 1000)</code> con <code>f = 8.136</code>, e stampa <strong>8135</strong>, non 8136. Il motivo è quello della lezione 03B: 8.136 non si scrive esattamente in base 2. In memoria è un po&#39; meno di 8.136, e <code>f * 1000</code> vale 8135.99999999999909… Il cast a <code>int</code> <strong>taglia</strong>, e resta 8135. Con <code>(int)round(f * 1000)</code> si ottiene 8136.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con l&#39;input 8, 2, 3, che cosa stampa <code>(int)ceil(media3)</code>?</span></summary><div class="ans"><p>5: <code>media3</code> vale 4.333333, e <code>ceil</code> arrotonda per eccesso a 5.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Per una media con la virgola si divide per <code>3.0</code>, o si fa un cast su un operando.</li>
+<li>Il cast a <code>int</code> taglia; per arrotondare al più vicino serve <code>round</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-tabella-dei-tipi-e-dim-tipi-c" aria-labelledby="h-la-tabella-dei-tipi-e-dim-tipi-c" style="--h:1640px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-la-tabella-dei-tipi-e-dim-tipi-c">La tabella dei tipi e dim_tipi.c</h2><span class="slides">slide 13–15</span></div>
+<p>Le slide 13 e 14, e il foglio a parte, riportano la tabella dei tipi del C con dimensione, intervallo e specificatore. La slide 14 lo dice in grande: <strong>non serve impararla a memoria</strong>. La versione con le spiegazioni è nella <a href="02B_assegnamento_memory_model.html">lezione 02B</a>.</p>
+<div class="table-wrap"><table><thead><tr><th>Tipo</th><th>Uso</th><th class="centro">Byte (64 bit)</th><th>Specificatore</th></tr></thead><tbody><tr><td><code>char</code></td><td>caratteri ASCII</td><td class="centro">1</td><td><code>%c</code></td></tr>
+<tr><td><code>short</code></td><td>interi</td><td class="centro">2</td><td><code>%hd</code></td></tr>
+<tr><td><code>int</code></td><td>interi</td><td class="centro">4</td><td><code>%d</code></td></tr>
+<tr><td><code>long</code></td><td>interi</td><td class="centro">8 su Linux, 4 su Windows</td><td><code>%ld</code></td></tr>
+<tr><td><code>long long</code></td><td>interi</td><td class="centro">8</td><td><code>%lld</code></td></tr>
+<tr><td><code>unsigned int</code></td><td>naturali</td><td class="centro">4</td><td><code>%u</code></td></tr>
+<tr><td><code>size_t</code></td><td>dimensioni</td><td class="centro">8</td><td><code>%zu</code></td></tr>
+<tr><td><code>float</code></td><td>reali</td><td class="centro">4</td><td><code>%f</code></td></tr>
+<tr><td><code>double</code></td><td>reali</td><td class="centro">8</td><td><code>%lf</code> in <code>scanf</code>, <code>%f</code> in <code>printf</code></td></tr></tbody></table></div>
+<p>Gli <code>unsigned</code> partono da 0 e arrivano al doppio: un <code>unsigned char</code> va da 0 a 255, un <code>unsigned int</code> da 0 a 4 294 967 295.</p>
+<h3 id="che-cosa-stampa-dim-tipi-c">Che cosa stampa dim_tipi.c</h3>
+<p><code>dim_tipi.c</code> stampa la dimensione di ogni tipo con <code>sizeof</code> e il suo intervallo, con le costanti di <code>limits.h</code> e <code>float.h</code>. Sul mio PC, Windows 11 a 64 bit:</p>
+<pre class="code"><code>sizeof(long)     = 4  intervallo: -2147483648, 2147483647
+sizeof(long long)= 8  intervallo: -9223372036854775808, 9223372036854775807
+...
+sizeof(float) = 4  intervallo: 1.175494e-38, 3.402823e+38
+sizeof(double)= 8  intervallo: 2.225074e-308, 1.797693e+308
+...
+sizeof(char*)    = 8
+sizeof(int*)     = 8
+sizeof(double*)  = 8</code></pre>
+<p><code>long</code> vale 4 byte su Windows e 8 su Linux: la tabella lo avvisa, le dimensioni dipendono dal sistema. Al laboratorio Turing, con Linux, vedrai 8.</p>
+<h3 id="la-domanda-che-cosa-hanno-di-speciale-i-puntator">La domanda: che cosa hanno di speciale i puntatori?</h3>
+<p>Tutti i tipi puntatore hanno la <strong>stessa dimensione</strong>: 8 byte su un computer a 64 bit. Il perché è nella lezione 02C: un puntatore contiene un <strong>indirizzo</strong>, e tutti gli indirizzi di una macchina hanno la stessa lunghezza, qualunque cosa ci sia a quell&#39;indirizzo. Un <code>char</code> è di 1 byte e un <code>double</code> di 8, ma i loro indirizzi sono tutti e due di 8 byte.</p>
+<p>L&#39;ultima parte del programma usa <code>size_t</code>, il tipo senza segno restituito da <code>sizeof</code>: 100 <code>int</code> occupano <code>100 * sizeof(int)</code> = 400 byte.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Su un computer a 64 bit, quanto valgono <code>sizeof(char)</code>, <code>sizeof(char*)</code> e <code>sizeof(int) * 10</code>?</span></summary><div class="ans"><p>1, 8 e 40.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>La tabella dei tipi non va imparata a memoria: servono gli specificatori più usati.</li>
+<li>Ogni puntatore occupa 8 byte su 64 bit, qualunque sia il tipo puntato.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-documentazione-del-c" aria-labelledby="h-la-documentazione-del-c" style="--h:700px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-la-documentazione-del-c">La documentazione del C</h2><span class="slides">slide 16</span></div>
+<p>Nessuno ricorda tutte le funzioni e tutti gli specificatori: si cercano nella <strong>documentazione</strong>. Il riferimento più usato è <strong>cppreference</strong>, che ha una versione da scaricare e usare senza Internet. La slide spiega come:</p>
+<ol>
+<li>vai su <a href="https://en.cppreference.com/w/c" target="_blank" rel="noopener">cppreference.com/w/c</a>;</li>
+<li>in fondo alla pagina, «Offline version»: scarica la versione più recente;</li>
+<li>apri la pagina <code>html-book/reference/en/c.html</code>;</li>
+<li>nella sezione degli header cerca <code>&lt;stdio.h&gt;</code> e leggi la documentazione completa di <code>printf</code>.</li>
+</ol>
+<p>La slide avverte che la documentazione vera è molto più dettagliata di quello visto a lezione. Serve proprio a imparare a cercare: nella pagina di <code>printf</code> trovi, per esempio, che <code>%%</code> stampa un <code>%</code> e che <code>%.3f</code> fissa le cifre dopo la virgola.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nella pagina di printf, quale specificatore stampa un intero in esadecimale?</span></summary><div class="ans"><p><code>%x</code>, con le lettere minuscole, o <code>%X</code> con le maiuscole. <code>printf(&quot;%x&quot;, 255)</code> stampa <code>ff</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>cppreference è il riferimento del C, anche senza Internet.</li>
+<li>Per ogni funzione nuova, guarda prima la sua pagina.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-spesa-al-mercato" aria-labelledby="h-la-spesa-al-mercato" style="--h:1080px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-la-spesa-al-mercato">La spesa al mercato</h2><span class="slides">slide 17</span></div>
+<p>Il programma <code>mercato.c</code> calcola la spesa per 3 pacchi di orecchiette a 1.50 euro e 1 kg e mezzo di pomodori a 2.50 euro al kg. Le slide chiedono variabili con tipi adatti, una variabile per il totale, indentazione e commenti.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="cm">// prezzi unitari, in euro</span>
+    <span class="kw">double</span> prezzoOrecchiette = 1.50;   <span class="cm">// un pacco</span>
+    <span class="kw">double</span> prezzoPomodori = 2.50;      <span class="cm">// al kg</span>
+
+    <span class="cm">// quantita' acquistate</span>
+    <span class="kw">int</span> pacchiOrecchiette = 3;
+    <span class="kw">double</span> kgPomodori = 1.5;
+
+    <span class="kw">double</span> totale = pacchiOrecchiette * prezzoOrecchiette + kgPomodori * prezzoPomodori;
+    printf(<span class="str">&quot;Spesa totale: %.2f euro\n&quot;</span>, totale);
+}</code></pre>
+<p>Stampa <code>Spesa totale: 8.25 euro</code>: 3 per 1.50 fa 4.50, 1.5 per 2.50 fa 3.75.</p>
+<p>Le scelte dei tipi: i pacchi si contano, quindi <code>int</code>; i chili e i prezzi hanno la virgola, quindi <code>double</code>. Il <code>%.2f</code> stampa i centesimi.</p>
+<h3 id="con-le-quantita-da-tastiera">Con le quantità da tastiera</h3>
+<p>La seconda parte chiede di leggere le quantità da tastiera invece di scriverle nel codice. Servono due <code>scanf</code>, con lo specificatore giusto per ogni tipo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> pacchiOrecchiette;
+<span class="kw">double</span> kgPomodori;
+printf(<span class="str">&quot;Pacchi di orecchiette: &quot;</span>);
+scanf(<span class="str">&quot;%d&quot;</span>, &amp;pacchiOrecchiette);
+printf(<span class="str">&quot;Kg di pomodori: &quot;</span>);
+scanf(<span class="str">&quot;%lf&quot;</span>, &amp;kgPomodori);</code></pre>
+<p>Con 3 pacchi e 2 kg stampa <code>Spesa totale: 9.50 euro</code>. Il <code>%lf</code> per il <code>double</code> è obbligatorio: con <code>%f</code>, <code>-Wall -Werror</code> non compila.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Se i prezzi fossero in centesimi, che tipo useresti?</span></summary><div class="ans"><p><code>int</code>: 150 e 250 centesimi sono interi esatti. Molti programmi che contano soldi fanno così, per evitare le approssimazioni dei reali.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Le cose che si contano sono <code>int</code>; le misure con la virgola sono <code>double</code>.</li>
+<li>Leggere un <code>double</code>: <code>%lf</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="gli-scambi-di-variabili" aria-labelledby="h-gli-scambi-di-variabili" style="--h:680px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-gli-scambi-di-variabili">Gli scambi di variabili</h2><span class="slides">slide 18</span></div>
+<p>L&#39;ultimo esercizio riprende la <a href="03A_scambio_variabili.html">lezione 03A</a>. Prima si legge e si prova <code>scambio.c</code>, che scambia <code>x = 5</code> e <code>y = 8</code> con una variabile intermedia e stampa <code>x: 8, y: 5</code>. Poi si scrive <code>scambio4.c</code>: quattro variabili, in cui <code>v1</code> prende il valore di <code>v2</code>, <code>v2</code> di <code>v3</code>, <code>v3</code> di <code>v4</code> e <code>v4</code> di <code>v1</code>.</p>
+<p>La soluzione completa, provata, è nella lezione 03A, nell&#39;esercizio «scambio4.c del Laboratorio 02». L&#39;idea: una sola variabile d&#39;appoggio, che salva <code>v1</code> prima che venga sovrascritta.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> temp = v1;
+v1 = v2;
+v2 = v3;
+v3 = v4;
+v4 = temp;</code></pre>
+<p>Con 10, 20, 30, 40 alla fine i valori sono 20, 30, 40, 10.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>E se volessi il giro al contrario, con <code>v1</code> che prende il valore di <code>v4</code>?</span></summary><div class="ans"><p>Si salva la variabile sovrascritta per prima, che ora è <code>v4</code>: <code>int temp = v4; v4 = v3; v3 = v2; v2 = v1; v1 = temp;</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Una rotazione di quattro variabili richiede una sola variabile d&#39;appoggio.</li>
+<li>Si salva per prima la variabile che verrà sovrascritta per prima.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:710px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>%</code></td><td>«modulo»</td><td>il resto della divisione intera</td><td><code>99 % 50</code> vale 49</td></tr>
+<tr><td><code>%%</code></td><td>«percento percento»</td><td>in <code>printf</code>: stampa un <code>%</code></td><td><code>printf(&quot;100%%&quot;)</code></td></tr>
+<tr><td><code>INT_MAX</code>, <code>INT_MIN</code></td><td>«int max», «int min»</td><td>il massimo e il minimo di un <code>int</code>, da <code>limits.h</code></td><td>2147483647</td></tr>
+<tr><td><code>const</code></td><td>«const»</td><td>la variabile non si può modificare</td><td><code>const float PI = 3.14f;</code></td></tr>
+<tr><td><code>M_PI</code></td><td>«emme pi»</td><td>la costante pi greco di <code>math.h</code></td><td></td></tr>
+<tr><td><code>floor</code>, <code>ceil</code>, <code>round</code></td><td>«floor», «ceil», «round»</td><td>arrotondano per difetto, per eccesso, al più vicino</td><td><code>ceil(4.3)</code> vale 5</td></tr>
+<tr><td><code>sizeof</code></td><td>«size of»</td><td>i byte occupati da un tipo</td><td><code>sizeof(int)</code> vale 4</td></tr>
+<tr><td><code>%zu</code></td><td>«percento zeta u»</td><td>specificatore per <code>size_t</code></td><td></td></tr>
+<tr><td><code>-Wall</code></td><td>«meno W all»</td><td>gcc mostra gli avvisi</td><td></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:670px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>L&#39;esame è al PC, con <strong>CodeRunner</strong>: il tuo codice viene compilato con <code>-Wall -Werror</code> e le sue stampe confrontate con quelle attese. Questo laboratorio allena quasi tutto quello che serve per non perdere punti nei primi esercizi:</p>
+<ol>
+<li><strong>leggere gli errori del compilatore</strong> e correggerli uno alla volta, come in <code>errori.c</code>;</li>
+<li><strong>scegliere i tipi</strong>: <code>int</code> per contare, <code>double</code> per misurare;</li>
+<li><strong>le divisioni</strong>: intera quando vuoi la parte intera, con la virgola quando vuoi la media;</li>
+<li><strong>gli specificatori</strong> giusti in <code>printf</code> e in <code>scanf</code>, compresi <code>%lf</code> e <code>%.2f</code>;</li>
+<li><strong>niente variabili inutilizzate</strong>: con <code>-Werror</code> bloccano la compilazione.</li>
+</ol>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Prima di consegnare un esercizio</span></p><ol>
+<li>Compila con <code>gcc -Wall -Werror</code>. Se ci sono errori, correggi <strong>il primo</strong> e ricompila.</li>
+<li>Prova con dati scelti bene: un caso normale, uno con la virgola, uno con i negativi o lo zero.</li>
+<li>Calcola a mano almeno un risultato e confrontalo con la stampa.</li>
+<li>Controlla la forma della stampa: spazi, a capo, numero di cifre.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:1910px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>printf(&quot;%d %d&quot;, 99 / 50, 99 % 50);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>2 49</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>1.98 0</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>1 1</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>49 1</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>1 49</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Tra interi <code>/</code> dà la parte intera, 1, e <code>%</code> il resto, 49. La risposta più insidiosa è <code>2 49</code>: la divisione intera non arrotonda, taglia.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Quanto vale <code>7 + 3 * 6 / 2 - 1</code> in C?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="15" data-toll="1e-9"><span class="q-giusto" hidden>15</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Prima <code>3 * 6</code> = 18, poi <code>18 / 2</code> = 9, poi <code>7 + 9 - 1</code> = 15.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale espressione calcola <span class="katex" role="math" aria-label="ax^3 + 7"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>(a * x) * x * (x + 7)</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a * x * x * x * 7</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a * x * (x * x + 7)</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a * x * x * (x + 7)</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a * (x * x * x) + 7</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Le moltiplicazioni prima, poi si somma 7. La risposta più insidiosa è <code>a * x * x * (x + 7)</code>: la parentesi fa sommare 7 a <code>x</code> prima di moltiplicare. L&#39;ultima moltiplica per 7 invece di sommarlo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con <code>int x = 1, y = 2, z = 5;</code> quanto vale <code>(double)((x + y + z) / 3)</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2.666667</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3.0</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2.0</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8.0</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2.67</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La divisione dentro la parentesi è tra interi: 8 / 3 fa 2, e il cast lo converte in 2.0. La risposta più insidiosa è 2.666667: si otterrebbe con il cast sulla somma, prima della divisione.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>printf(&quot;%d&quot;, (int)(8.136 * 1000));</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>8137</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>8136</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>8135</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>8136.0</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>8.136 in memoria è un po&#39; meno di 8.136, quindi il prodotto è 8135.999…, e il cast a <code>int</code> taglia: 8135. La risposta più insidiosa è 8136, il risultato «giusto» a mano: si otterrebbe con <code>round</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Su un computer a 64 bit, quanto vale <code>sizeof(char*)</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">1</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">dipende dal carattere puntato</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Un puntatore contiene un indirizzo, e gli indirizzi sono di 8 byte su 64 bit. La risposta più insidiosa è 1: è <code>sizeof(char)</code>, la dimensione del carattere, non del suo indirizzo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Perché <code>aritmetica.c</code> non compila con <code>-Wall -Werror</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">La divisione <code>99 / 50</code> è un errore</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Dichiara variabili che non usa</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Usa <code>INT_MAX</code> senza <code>limits.h</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>%%</code> non è valido in <code>printf</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Va in overflow</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>n1</code>, <code>p</code> e <code>t</code> sono dichiarate e mai usate: con <code>-Werror</code> l&#39;avviso <code>unused variable</code> diventa un errore. La risposta più insidiosa è l&#39;overflow: è un problema vero, ma il compilatore non lo segnala. <code>limits.h</code> è incluso.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale riga legge correttamente i chili di pomodori in <code>double kg</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%f&quot;, &amp;kg);</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%.2f&quot;, &amp;kg);</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%lf&quot;, kg);</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%lf&quot;, &amp;kg);</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%d&quot;, &amp;kg);</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Per un <code>double</code> in <code>scanf</code> serve <code>%lf</code>, con la <code>&amp;</code>. La risposta più insidiosa è <code>%f</code>: va bene per un <code>float</code>, non per un <code>double</code>. <code>%.2f</code> è un formato di stampa, non di lettura.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con <code>-17</code> e <code>5</code>, che cosa stampa <code>printf(&quot;%d %d&quot;, -17 / 5, -17 % 5);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>-4 3</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>-3 2</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>-4 -2</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>-3 -2</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 2</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>In C la divisione intera taglia verso lo zero, −3.4 diventa −3, e il resto ha il segno del primo numero: −17 = 5 · (−3) − 2. La risposta più insidiosa è <code>-4 3</code>: è la divisione con il resto positivo della matematica, non quella del C.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1530px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: indovina le stampe <span class="lvl">base</span></h3><p>Senza compilare, scrivi che cosa stampano: (a) <code>printf(&quot;%d&quot;, 20 / 3);</code> (b) <code>printf(&quot;%d&quot;, 20 % 3);</code> (c) <code>printf(&quot;%f&quot;, 20 / 3.0);</code> (d) <code>printf(&quot;%.1f&quot;, 20 / 3.0);</code> (e) <code>printf(&quot;%d%%&quot;, 50);</code></p>
+<details class="sol"><summary>Soluzione</summary><p>(a) <code>6</code>. (b) <code>2</code>. (c) <code>6.666667</code>. (d) <code>6.7</code>, arrotondato. (e) <code>50%</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: precedenze <span class="lvl">base</span></h3><p>Calcola a mano: (a) <code>8 - 2 * 3</code>; (b) <code>(8 - 2) * 3</code>; (c) <code>20 / 4 / 5</code>; (d) <code>20 / (4 / 5)</code>; (e) <code>7 % 3 * 2</code>.</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) 2. (b) 18. (c) 1, da sinistra: <code>20 / 4</code> = 5, poi <code>5 / 5</code> = 1. (d) Errore a runtime: <code>4 / 5</code> tra interi fa 0, e dividere per zero fa fallire il programma. (e) 2: <code>7 % 3</code> = 1, poi <code>1 * 2</code> = 2.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Riscaldamento: il tipo giusto <span class="lvl">base</span></h3><p>Che tipo usi per: (a) l&#39;età in anni; (b) la media dei voti; (c) il numero di byte di un file; (d) la lettera iniziale di un nome; (e) il prezzo in euro con i centesimi?</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) <code>int</code>. (b) <code>double</code>. (c) <code>size_t</code>, il tipo delle dimensioni, o <code>long long</code> se il file è enorme. (d) <code>char</code>. (e) <code>double</code>, oppure un <code>int</code> che conta i centesimi.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Secondi in ore, minuti e secondi <span class="lvl">medio</span></h3><p>Scrivi un programma che legge un numero di secondi e stampa ore, minuti e secondi. Con 3725 deve stampare <code>1 h 2 min 5 s</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> totale;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;totale);
+    <span class="kw">int</span> ore = totale / 3600;
+    <span class="kw">int</span> minuti = (totale % 3600) / 60;
+    <span class="kw">int</span> secondi = totale % 60;
+    printf(<span class="str">&quot;%d h %d min %d s\n&quot;</span>, ore, minuti, secondi);
+}</code></pre>
+<p>3725 / 3600 fa 1 ora; il resto, 125, diviso 60 fa 2 minuti; 3725 % 60 fa 5 secondi. <code>/</code> e <code>%</code> insieme separano le unità.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Le temperature <span class="lvl">medio</span></h3><p>Scrivi un programma che legge una temperatura in gradi Celsius, un <code>double</code>, e la stampa in gradi Fahrenheit con una cifra dopo la virgola. La formula è <span class="katex" role="math" aria-label="F = C \cdot 9/5 + 32"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">9/5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">32</span></span></span></span>. Attenzione a come scrivi 9/5.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">double</span> c;
+    scanf(<span class="str">&quot;%lf&quot;</span>, &amp;c);
+    <span class="kw">double</span> f = c * 9.0 / 5.0 + 32;
+    printf(<span class="str">&quot;%.1f\n&quot;</span>, f);
+}</code></pre>
+<p>Con 100 stampa <code>212.0</code>, con 37 stampa <code>98.6</code>. Se scrivi <code>c * (9 / 5) + 32</code>, la parentesi fa la divisione intera <code>9 / 5</code> = 1, e il risultato è sbagliato: con 100 viene 132.0.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Media e arrotondamenti <span class="lvl">tipo esame</span></h3><p>Scrivi un programma che legge quattro voti interi e stampa la media con 2 cifre dopo la virgola, poi la media arrotondata al voto intero più vicino. Con 27, 28, 30, 24 deve stampare <code>27.25</code> e <code>27</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;math.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a, b, c, d;
+    scanf(<span class="str">&quot;%d %d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c, &amp;d);
+    <span class="kw">double</span> media = (a + b + c + d) / 4.0;
+    printf(<span class="str">&quot;%.2f\n&quot;</span>, media);
+    printf(<span class="str">&quot;%d\n&quot;</span>, (<span class="kw">int</span>)round(media));
+}</code></pre>
+<p>La somma 109 divisa per 4.0 fa 27.25; <code>round</code> dà 27. Con i voti 27, 28, 30, 25 la media è 27.5 e <code>round</code> dà 28. Su Linux si compila con <code>-lm</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · Trova gli errori <span class="lvl">tipo esame</span></h3><p>Il programma dovrebbe leggere base e altezza di un triangolo, due <code>double</code>, e stampare l&#39;area. Trova e correggi gli errori: <code>double b, h; scanf(&quot;%lf %lf&quot;, b, h); double area = 1 / 2 * b * h; printf(&quot;Area: %d\n&quot;, area);</code></p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>In <code>scanf</code> mancano le <code>&amp;</code>: <code>&amp;b, &amp;h</code>. Con <code>-Wall -Werror</code> non compila.</li>
+<li><code>1 / 2</code> è una divisione intera e fa 0: l&#39;area sarebbe sempre 0. Va scritto <code>b * h / 2</code> oppure <code>0.5 * b * h</code>.</li>
+<li><code>%d</code> per un <code>double</code>: serve <code>%f</code>. Con <code>-Wall -Werror</code> non compila.</li>
+</ol>
+<p>Corretto: <code>scanf(&quot;%lf %lf&quot;, &amp;b, &amp;h); double area = b * h / 2; printf(&quot;Area: %f\n&quot;, area);</code>.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:630px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che differenza c&#39;è tra <code>99 / 50</code> e <code>99 / 50.0</code>?</span></summary><div class="ans"><p>Il primo è una divisione tra interi e dà 1. Nel secondo c&#39;è un reale, quindi la divisione è con la virgola e dà 1.98.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa succede sommando 3 a INT_MAX?</span></summary><div class="ans"><p>Il numero esce dall&#39;intervallo degli <code>int</code> e, di solito, ricomincia dai negativi: −2 147 483 646. È un overflow, e per il C è comportamento indefinito.</p>
+</div></details>
+<details class="qa"><summary><span>A che cosa serve const?</span></summary><div class="ans"><p>A dichiarare una costante: il valore si dà all&#39;inizio e il programma non può più cambiarlo.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra <code>(int)x</code>, <code>floor(x)</code> e <code>round(x)</code>?</span></summary><div class="ans"><p><code>(int)x</code> taglia la parte dopo la virgola, verso lo zero. <code>floor</code> arrotonda per difetto, <code>round</code> al più vicino. Con −2.5: −2, −3 e −3.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>(int)(8.136 * 1000)</code> dà 8135?</span></summary><div class="ans"><p>Perché 8.136 non si scrive esattamente in base 2: il prodotto è 8135.999…, e il cast a <code>int</code> taglia.</p>
+</div></details>
+<details class="qa"><summary><span>Perché tutti i puntatori hanno la stessa dimensione?</span></summary><div class="ans"><p>Perché contengono un indirizzo, e su una macchina tutti gli indirizzi hanno la stessa lunghezza: 8 byte su 64 bit.</p>
+</div></details>
+<details class="qa"><summary><span>Dove si cercano le informazioni su printf e sulle altre funzioni del C?</span></summary><div class="ans"><p>Nella documentazione, per esempio su cppreference, che ha anche una versione da usare senza Internet.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:580px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Codice di partenza</dt><dd>I programmi già scritti forniti con il laboratorio, da leggere, provare e completare.</dd></div>
+<div><dt>Divisione intera</dt><dd><code>/</code> tra due interi: tiene solo la parte intera, tagliando verso lo zero.</dd></div>
+<div><dt>Modulo</dt><dd><code>%</code>: il resto della divisione intera; in C ha il segno del primo numero.</dd></div>
+<div><dt>Overflow</dt><dd>Un risultato intero che supera il massimo del suo tipo; per gli int con il segno è comportamento indefinito.</dd></div>
+<div><dt>INT_MAX, INT_MIN</dt><dd>Massimo e minimo di un int, definiti in limits.h.</dd></div>
+<div><dt>const</dt><dd>Parola chiave che rende una variabile non modificabile.</dd></div>
+<div><dt>floor, ceil, round</dt><dd>Funzioni di math.h che arrotondano per difetto, per eccesso e al più vicino.</dd></div>
+<div><dt>sizeof</dt><dd>Operatore che dà quanti byte occupa un tipo o una variabile.</dd></div>
+<div><dt>cppreference</dt><dd>Sito di documentazione del C e del C++, scaricabile per l&#39;uso senza Internet.</dd></div>
+<div><dt>Wall</dt><dd>Opzione di gcc che mostra gli avvisi; con -Werror ogni avviso diventa un errore.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:510px">
+<div class="sec-head"><span class="sec-num">§17</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 10</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-Lab02-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So prevedere il risultato di <code>/</code> e <code>%</code> tra interi, anche con i negativi.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So che cos&#39;è l&#39;overflow di un int e perché il compilatore non lo segnala.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So calcolare un&#39;espressione rispettando le precedenze.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So completare circonferenza.c e spiegare che cosa fa const.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So trovare gli errori di un programma, anche senza compilarlo.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So calcolare una media con la virgola e arrotondarla nei quattro modi.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So spiegare perché 8.136 per 1000 dà 8135.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So che i puntatori hanno tutti la stessa dimensione, e perché.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So scrivere mercato.c, anche con le quantità da tastiera.</span></label></li>
+<li><label><input type="checkbox" id="chk-10"><span>So ruotare quattro variabili con una sola variabile d&#39;appoggio.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Operatori e Tipi» (Lezione nº 2 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27: aritmetica.c (slide 2), operazioni su interi (slide 3), ordine di valutazione (slide 4–7), circonferenza (slide 8), errori in C (slide 9–11), media (slide 12), tabella dei tipi (slide 13–14), dimensioni dei tipi (slide 15), documentazione (slide 16), mercato (slide 17), scambio di variabili (slide 18).</li>
+<li>«Tabella dei tipi e specificatori di conversione», foglio del laboratorio canale B.</li>
+<li>Codice di partenza del laboratorio: aritmetica.c, circonferenza.c, dim_tipi.c, errori.c, media.c, scambio.c.</li>
+<li><a href="https://en.cppreference.com/w/c" target="_blank" rel="noopener">cppreference, la documentazione del C</a>.</li>
+<li>Tutti i programmi, del codice di partenza e delle soluzioni, sono stati compilati con gcc 16.1 su Windows 11 a 64 bit ed eseguiti; le stampe e gli errori riportati sono quelli veri. Le soluzioni, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

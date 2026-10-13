@@ -800,6 +800,16 @@ figure.widget[data-widget="macchina"] .trace-box td { white-space: normal; }
 .cd-tabella th, .cd-tabella td { padding: .45rem .65rem; }
 .cd-tabella td { font-family: var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .cd-tabella td.cd-lista { white-space: normal; }
+.lg-tasti .lg-tasto { min-width: 2.4rem; font: 600 1rem var(--mono); padding: .3rem .55rem; }
+.lg-formula { font-family: var(--mono); }
+.widget input.lg-formula.w-largo { width: min(24rem, 100%); }
+.lg-tabella th { font-family: var(--mono); font-weight: 600; white-space: nowrap; }
+.lg-tabella td { text-align: center; }
+.lg-tabella td.lg-v { color: var(--accent); font-weight: 600; }
+.lg-tabella td.lg-f { color: var(--text-3); }
+.lg-tabella td.lg-lettera { color: var(--text-2); font-weight: 500; }
+.lg-tabella th.lg-finale, .lg-tabella td.lg-finale { border-left: 1.5px solid var(--line-2); }
+.lg-tabella td.lg-finale.lg-v { color: var(--accent); font-weight: 700; }
 .cd-byte { white-space: nowrap; }
 table.cd-stretta .cd-largo, table.cd-colonne.cd-stretta th { display: none; }
 table.cd-stretta:not(.cd-colonne) th, table.cd-stretta:not(.cd-colonne) td { padding: .4rem .45rem; }

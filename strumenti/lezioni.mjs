@@ -477,7 +477,7 @@ function bloccoChecklist(corpo, ctx) {
 
 // ogni strumento e lo script che lo disegna (in assets/js/)
 const WIDGET = { complessi: 'geometria.js', vettori: 'geometria.js', matrice: 'geometria.js', gauss: 'geometria.js', ruffini: 'geometria.js',
-  spazio: 'geometria.js', macchina: 'macchina.js', porte: 'porte.js', codifica: 'codifica.js' };
+  spazio: 'geometria.js', macchina: 'macchina.js', porte: 'porte.js', codifica: 'codifica.js', logica: 'logica.js' };
 function bloccoWidget(corpo, ctx, info) {
   const tipo = info.split(/\s+/)[0];
   if (!(tipo in WIDGET)) throw new Error(`strumento «${tipo}» sconosciuto (${Object.keys(WIDGET).join(', ')})`);

@@ -445,7 +445,7 @@ Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_po
 
 **Che cosa serve di questa lezione**
 
-1. **Valutare una formula riga per riga.** Nella simulazione 1 del 2023/24 un quiz dà una formula e quattro righe di valori, e chiede il valore della formula in ogni riga. Quella formula usa anche $\to$ e $\leftrightarrow$, che sono la lezione 07; il metodo è quello di qui.
+1. **Valutare una formula riga per riga.** Nella simulazione 1 del 2023/24 un quiz dà una formula e quattro righe di valori, e chiede il valore della formula in ogni riga. Quella formula usa anche $\to$ e $\leftrightarrow$, che sono la [lezione 07](07_condizionali_equivalenza_logica.html); il metodo è quello di qui.
 2. **Dalla tabella alla formula, e i circuiti.** I quiz sui circuiti (simulazione 1, domande 5 e 6) chiedono quali formule hanno una certa tavola. Si risolvono con le tavole di questa lezione: sono svolti nella [lezione 05](05_esercizi_circuiti_rappresentazioni.html).
 3. **Tradurre e negare.** Le negazioni di frasi, con «tutti», «nessuno», «almeno uno», tornano nella simulazione 2 del 2023/24, con i quantificatori del §1.5 del libro.
 

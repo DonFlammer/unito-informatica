@@ -803,7 +803,7 @@ figure.widget[data-widget="macchina"] .trace-box td { white-space: normal; }
 .lg-tasti .lg-tasto { min-width: 2.4rem; font: 600 1rem var(--mono); padding: .3rem .55rem; }
 .lg-formula { font-family: var(--mono); }
 .widget input.lg-formula.w-largo { width: min(24rem, 100%); }
-.lg-tabella th { font-family: var(--mono); font-weight: 600; white-space: nowrap; }
+.lg-tabella th { font-family: var(--mono); font-weight: 600; white-space: nowrap; text-transform: none; letter-spacing: 0; text-align: center; font-size: .86rem; }
 .lg-tabella td { text-align: center; }
 .lg-tabella td.lg-v { color: var(--accent); font-weight: 600; }
 .lg-tabella td.lg-f { color: var(--text-3); }

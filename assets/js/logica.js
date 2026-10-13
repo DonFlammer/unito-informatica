@@ -285,7 +285,9 @@
       if (!critiche) {
         frasi.push(el('p', {}, el('b', { text: 'È valida, ma a vuoto: ' }), document.createTextNode('nessuna riga rende vere tutte le premesse insieme.')));
       } else if (!contro.length) {
-        frasi.push(el('p', {}, el('b', { text: 'È valida: ' }), document.createTextNode(`le righe con tutte le premesse vere sono ${critiche}, in verde, e in tutte la conclusione è vera.`)));
+        frasi.push(el('p', {}, el('b', { text: 'È valida: ' }), document.createTextNode(critiche === 1
+          ? 'una sola riga ha tutte le premesse vere, in verde, e lì la conclusione è vera.'
+          : `le righe con tutte le premesse vere sono ${critiche}, in verde, e in tutte la conclusione è vera.`)));
       } else {
         frasi.push(el('p', {}, el('b', { text: 'Non è valida: ' }), document.createTextNode(`in ${contro.length} ${contro.length === 1 ? 'riga' : 'righe'}, in rosso, le premesse sono tutte vere e la conclusione è falsa.`)),
           el('p', { text: `Un controesempio: ${descrivi(nomi, contro[0])}.` }));

@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03A · Scambiare due variabili</title>
+<meta name="lezione" content="03A">
+<meta name="data" content="2026-10-13">
+<meta name="description" content="Appunti della lezione 03A di Programmazione I (canale B): scambiare il contenuto di due variabili, perché lo scambio ovvio x = y; y = x; non funziona, lo scambio con la variabile d'appoggio passo per passo nel modello della memoria, l'ordine delle istruzioni, la rotazione di tre e quattro variabili, con programmi provati, quiz ed esercizi.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/03A_scambio_variabili.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#due-tazze-da-scambiare"><span class="n">§1</span><span>Due tazze da scambiare</span></a></li>
+<li><a href="#lo-scambio-che-non-funziona"><span class="n">§2</span><span>Lo scambio che non funziona</span></a></li>
+<li><a href="#lo-scambio-con-la-variabile-d-appoggio"><span class="n">§3</span><span>Lo scambio con la variabile d&#39;appoggio</span></a></li>
+<li><a href="#scambiare-piu-di-due-variabili"><span class="n">§4</span><span>Scambiare più di due variabili</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§5</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§6</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§7</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§8</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§9</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§10</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§11</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 03A</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 03A</p>
+      <h1>Scambiare due variabili</h1>
+      <p class="lede">Due tazze, una di tè verde e una di tè nero: come le scambi senza mescolarle? Serve una terza tazza vuota, e i travasi vanno fatti nell&#39;ordine giusto. Con le variabili è lo stesso, ed è un&#39;operazione che ritroverai in tutti gli algoritmi di ordinamento.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>03A_scambio_variabili («Scambiare variabili. Uso delle variabili temporanee») · 16 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>45–60 minuti</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:540px">
+<h2 id="tldr-title">La lezione in 6 punti</h2>
+<ul>
+<li><strong>Scambiare</strong> due variabili vuol dire che, alla fine, ognuna contiene il valore che aveva l&#39;altra. È un&#39;operazione che serve in molti algoritmi, per esempio per ordinare un elenco.</li>
+<li>Lo scambio «ovvio», <code>x = y;</code> seguito da <code>y = x;</code>, <strong>non funziona</strong>: il primo assegnamento cancella il vecchio valore di <code>x</code>, e alla fine le due variabili valgono uguale.</li>
+<li>Serve una <strong>variabile d&#39;appoggio</strong>, dello stesso tipo, che conservi per un momento uno dei due valori. Si chiama di solito <code>temp</code> o <code>aux</code>.</li>
+<li>Lo scambio corretto ha tre passi, in quest&#39;ordine: <code>temp = x;</code>, poi <code>x = y;</code>, poi <code>y = temp;</code>.</li>
+<li>L&#39;<strong>ordine</strong> conta: con gli stessi tre assegnamenti in un altro ordine il valore di <code>x</code> si perde di nuovo.</li>
+<li>È come scambiare due tazze di tè senza mescolarle: serve una tazza vuota, e i travasi vanno fatti nell&#39;ordine giusto.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È la prima parte della lezione di martedì 13/10, dalle 11 alle 13, insieme alla <a href="03B_floats.html">03B</a> sui numeri reali. Riprende il modello della memoria della <a href="02B_assegnamento_memory_model.html">02B</a>: l&#39;assegnamento copia un valore e cancella quello di prima.</p>
+<p><strong>Canali A e C.</strong> Le slide 2026/27 dei canali A e C per questa lezione non le ho viste. Lo scambio con la variabile d&#39;appoggio è un argomento comune, e l&#39;esame è unico per i tre canali.</p>
+<p><strong>Laboratorio.</strong> Nel <a href="Lab02_operatori_tipi.html">Laboratorio 02</a> c&#39;è il programma <code>scambio.c</code> e l&#39;esercizio <code>scambio4.c</code>, che scambia quattro variabili in giro.</p>
+</div>
+
+
+<section id="due-tazze-da-scambiare" aria-labelledby="h-due-tazze-da-scambiare" style="--h:980px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-due-tazze-da-scambiare">Due tazze da scambiare</h2><span class="slides">slide 2–4</span></div>
+<p>Hai due tazze: una contiene tè verde, l&#39;altra tè nero. Vuoi <strong>scambiarne il contenuto</strong>: alla fine il tè verde deve stare nella tazza che era del nero, e viceversa. Però non puoi versare l&#39;uno nell&#39;altro: i due tè si mescolerebbero.</p>
+<p>La prima idea delle slide usa <strong>due</strong> tazze vuote in più. Versi il verde nella prima tazza vuota, il nero nella seconda, poi rimetti ognuno al suo nuovo posto. Funziona, ma usa il doppio dello spazio.</p>
+<p>Si può fare di meglio, con <strong>una sola</strong> tazza vuota:</p>
+<ol>
+<li>versi il tè verde nella tazza vuota;</li>
+<li>versi il tè nero nella tazza che era del verde, ora libera;</li>
+<li>versi il tè verde dalla tazza d&#39;appoggio nella tazza che era del nero, ora libera.</li>
+</ol>
+<div class="box idea"><p class="box-label"><span>L'idea</span></p><p>Per scambiare due contenuti senza mescolarli serve un posto libero dove mettere da parte uno dei due. Poi i passaggi vanno fatti in un ordine preciso: si libera una tazza prima di riempirla.</p>
+</div>
+<p>Le slide insistono su questo: la soluzione con una tazza sola funziona ed è efficiente, <strong>ma i travasi devono avvenire nell&#39;ordine giusto</strong>. Se al passo 1 versassi il nero nella tazza del verde, mescoleresti tutto.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nella soluzione con una tazza d&#39;appoggio, quante tazze sono piene dopo il passo 1? E dopo il passo 2?</span></summary><div class="ans"><p>Dopo il passo 1 sono piene la tazza del nero e la tazza d&#39;appoggio: quella del verde è libera. Dopo il passo 2 sono piene la tazza del verde, che ora contiene il nero, e la tazza d&#39;appoggio: è libera quella che era del nero.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Per scambiare senza mescolare serve un posto in più, vuoto.</li>
+<li>L&#39;ordine dei travasi conta: prima si libera una tazza, poi la si riempie.</li>
+</ul>
+</div>
+</section>
+
+<section id="lo-scambio-che-non-funziona" aria-labelledby="h-lo-scambio-che-non-funziona" style="--h:1410px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-lo-scambio-che-non-funziona">Lo scambio che non funziona</h2><span class="slides">slide 5–10</span></div>
+<p>Con le variabili il problema è lo stesso. Le tazze sono le caselle della memoria, e il tè è il valore. Ma c&#39;è una differenza importante con l&#39;acqua: l&#39;<strong>assegnamento</strong> della <a href="02B_assegnamento_memory_model.html">lezione 02B</a> non versa, <strong>copia</strong> e <strong>cancella</strong>. Con <code>x = y;</code> il valore di <code>y</code> viene copiato in <code>x</code>, e quello che c&#39;era prima in <code>x</code> è perso.</p>
+<p>Il primo modo che viene in mente, e che le slide chiamano «naïve», è questo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 5;
+    <span class="kw">int</span> y = 2;
+    x = y;      <span class="cm">// assegno il contenuto di y a x</span>
+    y = x;      <span class="cm">// assegno il contenuto di x a y</span>
+    printf(<span class="str">&quot;Le var x, y valgono %d, %d\n&quot;</span>, x, y);
+}</code></pre>
+<p>Ci si aspetta <code>2, 5</code>. Invece il programma stampa:</p>
+<pre class="code"><code>Le var x, y valgono 2, 2</code></pre>
+<h3 id="passo-per-passo">Passo per passo</h3>
+<p>Le slide seguono le caselle di <code>x</code> e <code>y</code> dopo ogni istruzione, nel modello della memoria della lezione 02B. Ecco la stessa cosa come tabella: una colonna per variabile, una riga per istruzione.</p>
+<div class="table-wrap"><table><thead><tr><th>Dopo l&#39;istruzione</th><th class="centro"><code>x</code></th><th class="centro"><code>y</code></th><th>Che cosa è successo</th></tr></thead><tbody><tr><td><code>int x = 5;</code></td><td class="centro">5</td><td class="centro"></td><td></td></tr>
+<tr><td><code>int y = 2;</code></td><td class="centro">5</td><td class="centro">2</td><td></td></tr>
+<tr><td><code>x = y;</code></td><td class="centro"><strong>2</strong></td><td class="centro">2</td><td>il 2 di <code>y</code> è copiato in <code>x</code>: il <strong>5 è perso</strong></td></tr>
+<tr><td><code>y = x;</code></td><td class="centro">2</td><td class="centro"><strong>2</strong></td><td>il 2 di <code>x</code> è copiato in <code>y</code>, che vale già 2</td></tr></tbody></table></div>
+<p>Il problema è la terza riga. Dopo <code>x = y;</code> il valore 5 non c&#39;è più da nessuna parte. La quarta istruzione non può rimetterlo in <code>y</code>: sovrascrive <code>y</code> con sé stessa.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Il compilatore non ti avvisa</span></p><p><code>x = y; y = x;</code> compila senza errori e senza avvisi, anche con <code>-Wall -Werror</code>: per il C sono due assegnamenti corretti. Lo sbaglio è nella logica, non nella sintassi. Lo trovi solo seguendo i valori, come nella tabella.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int a = 7; int b = 3;</code> che cosa valgono <code>a</code> e <code>b</code> dopo <code>b = a; a = b;</code>?</span></summary><div class="ans"><p>Tutte e due 7. <code>b = a;</code> copia 7 in <code>b</code> e perde il 3. Poi <code>a = b;</code> copia 7 in <code>a</code>, che valeva già 7.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>L&#39;assegnamento copia e cancella: dopo <code>x = y;</code> il vecchio valore di <code>x</code> non esiste più.</li>
+<li><code>x = y; y = x;</code> lascia le due variabili uguali, con il valore di <code>y</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="lo-scambio-con-la-variabile-d-appoggio" aria-labelledby="h-lo-scambio-con-la-variabile-d-appoggio" style="--h:2030px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-lo-scambio-con-la-variabile-d-appoggio">Lo scambio con la variabile d&#39;appoggio</h2><span class="slides">slide 11–16</span></div>
+<p>Per scambiare correttamente serve una <strong>terza variabile</strong>, dello stesso tipo, che conservi per un momento il valore che sta per essere cancellato. È la tazza vuota. Le slide chiamano questo metodo <strong>scambio con variabile temporanea</strong>, o con <strong>variabile d&#39;appoggio</strong>.</p>
+<p>I tre passi sono quelli delle tazze:</p>
+<ol>
+<li>salvo il valore di <code>x</code> nella variabile d&#39;appoggio;</li>
+<li>copio il valore di <code>y</code> in <code>x</code>;</li>
+<li>copio il valore della variabile d&#39;appoggio in <code>y</code>.</li>
+</ol>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 5;
+    <span class="kw">int</span> y = 2;
+    <span class="kw">int</span> temp;
+    temp = x;   <span class="cm">// [1] salvo x</span>
+    x = y;      <span class="cm">// [2] copio y in x</span>
+    y = temp;   <span class="cm">// [3] copio il vecchio x in y</span>
+    printf(<span class="str">&quot;Le var x, y valgono %d, %d\n&quot;</span>, x, y);
+}</code></pre>
+<p>Stampa:</p>
+<pre class="code"><code>Le var x, y valgono 2, 5</code></pre>
+<h3 id="passo-per-passo-2">Passo per passo</h3>
+<div class="table-wrap"><table><thead><tr><th>Dopo l&#39;istruzione</th><th class="centro"><code>x</code></th><th class="centro"><code>y</code></th><th class="centro"><code>temp</code></th><th>Che cosa è successo</th></tr></thead><tbody><tr><td><code>int x = 5;</code></td><td class="centro">5</td><td class="centro"></td><td class="centro"></td><td></td></tr>
+<tr><td><code>int y = 2;</code></td><td class="centro">5</td><td class="centro">2</td><td class="centro"></td><td></td></tr>
+<tr><td><code>int temp;</code></td><td class="centro">5</td><td class="centro">2</td><td class="centro">?</td><td><code>temp</code> esiste ma non ha ancora un valore</td></tr>
+<tr><td><code>temp = x;</code></td><td class="centro">5</td><td class="centro">2</td><td class="centro"><strong>5</strong></td><td>il 5 è al sicuro in <code>temp</code></td></tr>
+<tr><td><code>x = y;</code></td><td class="centro"><strong>2</strong></td><td class="centro">2</td><td class="centro">5</td><td>il 5 in <code>x</code> è perso, ma c&#39;è una copia</td></tr>
+<tr><td><code>y = temp;</code></td><td class="centro">2</td><td class="centro"><strong>5</strong></td><td class="centro">5</td><td>lo scambio è fatto</td></tr></tbody></table></div>
+<p>Il «?» è il valore indeterminato della lezione 02B: una variabile dichiarata e non ancora assegnata contiene bit a caso. Qui non è un problema, perché <code>temp</code> viene scritta prima di essere letta. Alla fine <code>temp</code> contiene ancora 5: non serve più, e non dà fastidio.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · I nomi delle variabili d&#39;appoggio</span></p><p>Le slide elencano i nomi più usati: <code>temp</code>, <code>aux</code>, <code>prevX</code>, <code>savedX</code>, <code>backup</code>. Il nome dice a chi legge che la variabile serve solo a tenere un valore per poco. Si può anche dichiarare e assegnare in una riga sola: <code>int temp = x;</code>, come nel programma <code>scambio.c</code> del laboratorio.</p>
+</div>
+<h3 id="l-ordine-conta">L&#39;ordine conta</h3>
+<p>Con gli stessi tre assegnamenti in un altro ordine, lo scambio fallisce. Prova a mettere prima <code>x = y;</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> x = 5;
+<span class="kw">int</span> y = 2;
+<span class="kw">int</span> temp;
+x = y;      <span class="cm">// il 5 è perso subito</span>
+temp = x;   <span class="cm">// temp riceve il 2</span>
+y = temp;   <span class="cm">// y riceve il 2</span></code></pre>
+<p>Il programma stampa <code>2, 2</code>, come lo scambio sbagliato. La variabile d&#39;appoggio c&#39;è, ma arriva tardi: quando salvi <code>x</code>, il 5 è già stato cancellato. È la tazza vuota usata dopo aver già mescolato i tè.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Scrivere uno scambio senza sbagliare</span></p><ol>
+<li>Scegli quale variabile salvare per prima, per esempio <code>x</code>.</li>
+<li>Primo assegnamento: <code>temp = x;</code>. Ora <code>x</code> si può sovrascrivere.</li>
+<li>Secondo: <code>x = y;</code>. Ora <code>y</code> si può sovrascrivere.</li>
+<li>Terzo: <code>y = temp;</code>.</li>
+</ol>
+<p>Ogni riga comincia con la variabile che la riga prima ha appena «liberato». È la catena <code>temp ← x ← y ← temp</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Scambia <code>a</code> e <code>b</code> usando <code>aux</code>, salvando per prima <code>b</code>. Scrivi le tre righe.</span></summary><div class="ans"><p><code>aux = b;</code> poi <code>b = a;</code> poi <code>a = aux;</code>. La catena è <code>aux ← b ← a ← aux</code>: ogni riga riempie la variabile liberata dalla riga prima.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Tre passi: <code>temp = x;</code>, <code>x = y;</code>, <code>y = temp;</code>.</li>
+<li>La variabile d&#39;appoggio è dello stesso tipo delle altre due.</li>
+<li>Se salvi <code>x</code> dopo averlo sovrascritto, lo scambio fallisce.</li>
+</ul>
+</div>
+</section>
+
+<section id="scambiare-piu-di-due-variabili" aria-labelledby="h-scambiare-piu-di-due-variabili" style="--h:1200px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-scambiare-piu-di-due-variabili">Scambiare più di due variabili</h2></div>
+<p>Lo stesso metodo funziona con più variabili. Pensa a una <strong>rotazione</strong>: ogni variabile prende il valore della successiva, e l&#39;ultima prende quello della prima. Basta ancora <strong>una sola</strong> variabile d&#39;appoggio.</p>
+<p>Con tre variabili <code>a</code>, <code>b</code>, <code>c</code>, che valgono 1, 2, 3, la rotazione vuole <code>a</code> = 2, <code>b</code> = 3, <code>c</code> = 1:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> temp = a;   <span class="cm">// salvo a, che sarà sovrascritta per prima</span>
+a = b;
+b = c;
+c = temp;</code></pre>
+<div class="table-wrap"><table><thead><tr><th>Dopo l&#39;istruzione</th><th class="centro"><code>a</code></th><th class="centro"><code>b</code></th><th class="centro"><code>c</code></th><th class="centro"><code>temp</code></th></tr></thead><tbody><tr><td>inizio</td><td class="centro">1</td><td class="centro">2</td><td class="centro">3</td><td class="centro"></td></tr>
+<tr><td><code>int temp = a;</code></td><td class="centro">1</td><td class="centro">2</td><td class="centro">3</td><td class="centro">1</td></tr>
+<tr><td><code>a = b;</code></td><td class="centro">2</td><td class="centro">2</td><td class="centro">3</td><td class="centro">1</td></tr>
+<tr><td><code>b = c;</code></td><td class="centro">2</td><td class="centro">3</td><td class="centro">3</td><td class="centro">1</td></tr>
+<tr><td><code>c = temp;</code></td><td class="centro">2</td><td class="centro">3</td><td class="centro">1</td><td class="centro">1</td></tr></tbody></table></div>
+<p>Ogni riga riempie la variabile che la riga prima ha liberato. È la stessa catena dello scambio, solo più lunga. L&#39;esercizio <code>scambio4.c</code> del <a href="Lab02_operatori_tipi.html">Laboratorio 02</a> chiede proprio questo, con quattro variabili.</p>
+<div class="box extra"><p class="box-label"><span>Oltre le slide · Scambiare senza variabile d&#39;appoggio</span></p><p>Con gli interi c&#39;è un trucco: <code>x = x + y; y = x - y; x = x - y;</code>. Con 5 e 2: <code>x</code> diventa 7, poi <code>y</code> = 7 − 2 = 5, poi <code>x</code> = 7 − 5 = 2. Funziona, ma è più difficile da leggere, e se <code>x + y</code> supera il massimo di un <code>int</code> va in overflow (lezione 02B). Non funziona con i <code>float</code>, che perdono cifre. Con la variabile d&#39;appoggio non c&#39;è nessun rischio: è il modo da usare sempre, anche all&#39;esame.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int p = 10, q = 20, r = 30;</code> scrivi le righe che portano a <code>p</code> = 30, <code>q</code> = 10, <code>r</code> = 20.</span></summary><div class="ans"><p>È la rotazione al contrario: ognuno prende il valore della variabile prima. <code>int temp = r;</code> poi <code>r = q;</code> poi <code>q = p;</code> poi <code>p = temp;</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Per ruotare <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> variabili basta una variabile d&#39;appoggio.</li>
+<li>Si salva per prima la variabile che verrà sovrascritta per prima.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:420px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>x = y;</code></td><td>«x prende y»</td><td>copia il valore di <code>y</code> in <code>x</code>; il vecchio <code>x</code> è perso</td><td></td></tr>
+<tr><td><code>temp</code>, <code>aux</code></td><td>«temp», «aux»</td><td>nomi tipici della variabile d&#39;appoggio</td><td><code>int temp = x;</code></td></tr>
+<tr><td>?</td><td>«indeterminato»</td><td>negli schemi: variabile senza un valore assegnato</td><td><code>int temp;</code></td></tr>
+<tr><td>swap</td><td>«suop»</td><td>il nome inglese dello scambio</td><td></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:930px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>L&#39;esame di Programmazione I è al PC, unico per i tre canali: appelli <strong>lunedì 25/01/2027</strong> e <strong>giovedì 11/02/2027</strong>. Lo scambio tornerà almeno in tre modi.</p>
+<ol>
+<li><strong>Esercizi sullo stato della memoria.</strong> Si chiede il valore delle variabili dopo una sequenza di assegnamenti. Lo scambio sbagliato e quello con l&#39;ordine sbagliato sono trappole perfette: la tabella «una riga per istruzione» li smaschera.</li>
+<li><strong>Ordinare un array.</strong> Gli algoritmi di ordinamento, come il <em>bubble sort</em> citato nelle slide, scambiano due elementi a ogni passo. Lo scambio è sempre quello con la variabile d&#39;appoggio.</li>
+<li><strong>Una funzione che scambia.</strong> Con i puntatori della <a href="02C_referenziamento_scanf_puntatori.html">lezione 02C</a> si scriverà una funzione che scambia due variabili del chiamante: dentro ci sono gli stessi tre passi, con <code>*pA</code> e <code>*pB</code> al posto di <code>x</code> e <code>y</code>.</li>
+</ol>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Le domande sugli scambi</span></p><ol>
+<li>Fai la tabella: una colonna per variabile, una riga per istruzione.</li>
+<li>A ogni assegnamento, <strong>cancella</strong> il valore vecchio della variabile a sinistra e scrivi quello nuovo.</li>
+<li>Controlla alla fine: i valori di partenza ci sono ancora tutti? Se un valore è sparito, lo scambio è sbagliato.</li>
+</ol>
+</div>
+<p><strong>Errori da evitare</strong></p>
+<ul>
+<li>Scrivere <code>x = y; y = x;</code>.</li>
+<li>Salvare nella variabile d&#39;appoggio dopo aver già sovrascritto.</li>
+<li>Usare una variabile d&#39;appoggio di un tipo diverso: con <code>int temp</code> e due <code>double</code> la parte dopo la virgola si perde (lezione 03B).</li>
+<li>Dimenticare che <code>temp</code> non serve più dopo lo scambio: non va stampata, non è un risultato.</li>
+</ul>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:1780px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Con <code>int x = 4, y = 9;</code> che cosa valgono <code>x</code> e <code>y</code> dopo <code>x = y; y = x;</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 9, <code>y</code> = 4</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 4, <code>y</code> = 9</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 9, <code>y</code> = 9</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 4, <code>y</code> = 4</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il programma non compila</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>x = y;</code> copia 9 in <code>x</code> e perde il 4. <code>y = x;</code> copia 9 in <code>y</code>. La risposta più insidiosa è <code>x</code> = 9, <code>y</code> = 4: è lo scambio che si voleva, ma il 4 non esiste più quando serve. Il codice compila senza avvisi.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale sequenza scambia correttamente <code>x</code> e <code>y</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x = y; y = x;</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x = y; temp = x; y = temp;</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>temp = y; x = y; y = temp;</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>temp = x; x = y; y = temp;</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>temp = x; y = x; x = temp;</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Si salva <code>x</code>, poi si sovrascrive <code>x</code>, poi si mette il vecchio <code>x</code> in <code>y</code>. La risposta più insidiosa è <code>x = y; temp = x; y = temp;</code>: ha gli stessi tre pezzi, ma salva <code>x</code> quando il suo valore è già perso. L&#39;ultima salva <code>y</code> e poi sovrascrive <code>x</code> senza averlo salvato.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con <code>int a = 1, b = 2;</code> che cosa stampa <code>int t = a; a = b; b = t; printf(&quot;%d %d&quot;, a, b);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>1 2</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>1 1</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>2 1</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>2 2</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>2 1 1</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>È lo scambio corretto: alla fine <code>a</code> vale 2 e <code>b</code> vale 1. La risposta più insidiosa è <code>2 1 1</code>: <code>t</code> vale ancora 1, ma <code>printf</code> stampa solo <code>a</code> e <code>b</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Per scambiare due variabili <code>double</code>, di che tipo deve essere la variabile d&#39;appoggio?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un tipo qualsiasi</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>double</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>float</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non serve una variabile d&#39;appoggio con i <code>double</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La variabile d&#39;appoggio deve contenere esattamente il valore salvato, quindi deve avere lo stesso tipo. La risposta più insidiosa è <code>float</code>: è un tipo reale, ma ha meno cifre e il valore salvato verrebbe approssimato. Con <code>int</code> si perderebbe tutta la parte dopo la virgola.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Con <code>int a = 1, b = 2, c = 3;</code> quanto vale <code>c</code> dopo <code>int t = a; a = b; b = c; c = t;</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="1" data-toll="1e-9"><span class="q-giusto" hidden>1</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>È la rotazione: <code>a</code> prende 2, <code>b</code> prende 3, <code>c</code> prende il vecchio valore di <code>a</code>, che era 1 ed era salvato in <code>t</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quanti assegnamenti servono, al minimo, per scambiare due variabili con la variabile d&#39;appoggio, contando anche quello in <code>temp</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">1</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">6</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Salvare, sovrascrivere la prima, sovrascrivere la seconda. La risposta più insidiosa è 2: con due soli assegnamenti un valore si perde sempre, come in <code>x = y; y = x;</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Perché <code>x = y; y = x;</code> compila senza avvisi anche con <code>-Wall -Werror</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Sono due assegnamenti corretti: l&#39;errore è nella logica, non nella sintassi</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Perché gli <code>int</code> non danno mai avvisi</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">In realtà gcc dà un avviso</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Perché <code>-Wall</code> non controlla gli assegnamenti</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Perché gcc corregge da solo lo scambio</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Per il compilatore sono due istruzioni valide: non sa che cosa volevi fare. La risposta più insidiosa è «gcc corregge da solo»: il compilatore traduce quello che hai scritto, senza indovinare le intenzioni.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1540px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: segui i valori <span class="lvl">base</span></h3><p>Con <code>int x = 8; int y = 3; int z = 0;</code> che cosa valgono le tre variabili dopo <code>z = x; x = y; y = z;</code>? E dopo <code>z = x; y = x; x = z;</code>, ripartendo dagli stessi valori?</p>
+<details class="sol"><summary>Soluzione</summary><ol>
+<li>Prima sequenza: <code>z</code> = 8, poi <code>x</code> = 3, poi <code>y</code> = 8. Alla fine <code>x</code> = 3, <code>y</code> = 8, <code>z</code> = 8: è uno scambio corretto, con <code>z</code> come variabile d&#39;appoggio.</li>
+<li>Seconda sequenza: <code>z</code> = 8, poi <code>y</code> = 8, poi <code>x</code> = 8. Alla fine valgono tutte 8: il 3 di <code>y</code> è stato perso al secondo passo.</li>
+</ol>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: il programma scambio.c del laboratorio <span class="lvl">base</span></h3><p>Il programma <code>scambio.c</code> del Laboratorio 02 scambia <code>x = 5</code> e <code>y = 8</code> e stampa i valori prima e dopo. Scrivilo tu, compila con <code>-Wall -Werror</code> e controlla le due righe stampate.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 5;
+    <span class="kw">int</span> y = 8;
+    printf(<span class="str">&quot;x: %d, y: %d\n&quot;</span>, x, y);
+
+    <span class="cm">// scambio x con y usando una variabile intermedia</span>
+    <span class="kw">int</span> temp = x;
+    x = y;
+    y = temp;
+
+    printf(<span class="str">&quot;x: %d, y: %d\n&quot;</span>, x, y);
+}</code></pre>
+<p>Stampa:</p>
+<pre class="code"><code>x: 5, y: 8
+x: 8, y: 5</code></pre>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Riscaldamento: due double <span class="lvl">base</span></h3><p>Scrivi lo scambio di <code>double a = 1.5;</code> e <code>double b = -4.25;</code> e stampa i valori con <code>%f</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">double</span> a = 1.5;
+    <span class="kw">double</span> b = -4.25;
+    <span class="kw">double</span> tmp = a;
+    a = b;
+    b = tmp;
+    printf(<span class="str">&quot;a = %f, b = %f\n&quot;</span>, a, b);
+}</code></pre>
+<p>Stampa <code>a = -4.250000, b = 1.500000</code>. La variabile d&#39;appoggio è <code>double</code>, come le altre due.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Rotazione di tre variabili <span class="lvl">medio</span></h3><p>Con <code>int a = 1, b = 2, c = 3;</code> scrivi le istruzioni che portano a <code>a</code> = 2, <code>b</code> = 3, <code>c</code> = 1, usando una sola variabile d&#39;appoggio. Poi fai la tabella dei valori.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a = 1;
+    <span class="kw">int</span> b = 2;
+    <span class="kw">int</span> c = 3;
+    <span class="kw">int</span> tmp = a;
+    a = b;
+    b = c;
+    c = tmp;
+    printf(<span class="str">&quot;a = %d, b = %d, c = %d\n&quot;</span>, a, b, c);
+}</code></pre>
+<p>Stampa <code>a = 2, b = 3, c = 1</code>. La tabella è quella della sezione «Scambiare più di due variabili».</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Trova l&#39;errore <span class="lvl">medio</span></h3><p>Uno studente vuole scambiare <code>x</code> e <code>y</code> e scrive <code>int temp = y; y = x; x = y;</code>. Che cosa ottiene con <code>x = 5</code>, <code>y = 2</code>? Correggi cambiando una sola riga.</p>
+<details class="sol"><summary>Soluzione</summary><p><code>temp</code> = 2, poi <code>y</code> = 5, poi <code>x</code> = 5: tutte e due valgono 5, e il 2 è rimasto in <code>temp</code> senza essere usato. L&#39;ultima riga deve prendere il valore salvato: <code>x = temp;</code>. Con la correzione la catena è <code>temp ← y ← x ← temp</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Stato della memoria <span class="lvl">tipo esame</span></h3><p>Scrivi il valore di ogni variabile dopo ogni istruzione, partendo da <code>int a = 4; int b = 7; int c = 1; int t;</code>: (1) <code>t = a;</code> (2) <code>a = c;</code> (3) <code>c = b;</code> (4) <code>b = t;</code> (5) <code>t = c;</code>. Alla fine, che cosa è successo ai valori di partenza?</p>
+<details class="sol"><summary>Soluzione</summary><div class="table-wrap"><table><thead><tr><th>Dopo</th><th class="centro"><code>a</code></th><th class="centro"><code>b</code></th><th class="centro"><code>c</code></th><th class="centro"><code>t</code></th></tr></thead><tbody><tr><td>dichiarazioni</td><td class="centro">4</td><td class="centro">7</td><td class="centro">1</td><td class="centro">?</td></tr>
+<tr><td><code>t = a;</code></td><td class="centro">4</td><td class="centro">7</td><td class="centro">1</td><td class="centro">4</td></tr>
+<tr><td><code>a = c;</code></td><td class="centro">1</td><td class="centro">7</td><td class="centro">1</td><td class="centro">4</td></tr>
+<tr><td><code>c = b;</code></td><td class="centro">1</td><td class="centro">7</td><td class="centro">7</td><td class="centro">4</td></tr>
+<tr><td><code>b = t;</code></td><td class="centro">1</td><td class="centro">4</td><td class="centro">7</td><td class="centro">4</td></tr>
+<tr><td><code>t = c;</code></td><td class="centro">1</td><td class="centro">4</td><td class="centro">7</td><td class="centro">7</td></tr></tbody></table></div>
+<p>I tre valori 4, 7, 1 ci sono ancora tutti: è una rotazione, <code>a</code> ha preso il valore di <code>c</code>, <code>c</code> quello di <code>b</code>, <code>b</code> quello di <code>a</code>. L&#39;ultima istruzione cambia solo <code>t</code>, che non conta.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · scambio4.c del Laboratorio 02 <span class="lvl">tipo esame</span></h3><p>Scrivi un programma che prende quattro variabili intere <code>v1</code>, <code>v2</code>, <code>v3</code>, <code>v4</code>, con valori a scelta, e le scambia così: <code>v1</code> prende il valore di <code>v2</code>, <code>v2</code> quello di <code>v3</code>, <code>v3</code> quello di <code>v4</code>, <code>v4</code> quello di <code>v1</code>. Stampa i valori prima e dopo.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> v1 = 10;
+    <span class="kw">int</span> v2 = 20;
+    <span class="kw">int</span> v3 = 30;
+    <span class="kw">int</span> v4 = 40;
+    printf(<span class="str">&quot;prima: v1 = %d, v2 = %d, v3 = %d, v4 = %d\n&quot;</span>, v1, v2, v3, v4);
+
+    <span class="kw">int</span> temp = v1;   <span class="cm">// salvo v1, che verra' sovrascritto per primo</span>
+    v1 = v2;
+    v2 = v3;
+    v3 = v4;
+    v4 = temp;
+
+    printf(<span class="str">&quot;dopo:  v1 = %d, v2 = %d, v3 = %d, v4 = %d\n&quot;</span>, v1, v2, v3, v4);
+}</code></pre>
+<p>Stampa:</p>
+<pre class="code"><code>prima: v1 = 10, v2 = 20, v3 = 30, v4 = 40
+dopo:  v1 = 20, v2 = 30, v3 = 40, v4 = 10</code></pre>
+<p>Provato con gcc 16.1 e <code>-Wall -Werror</code>. Una sola variabile d&#39;appoggio basta per qualunque rotazione.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:520px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Perché <code>x = y; y = x;</code> non scambia le due variabili?</span></summary><div class="ans"><p>Perché l&#39;assegnamento cancella il valore di prima: dopo <code>x = y;</code> il vecchio valore di <code>x</code> non c&#39;è più, e <code>y = x;</code> copia in <code>y</code> il valore che aveva già.</p>
+</div></details>
+<details class="qa"><summary><span>Quali sono i tre passi dello scambio con la variabile d&#39;appoggio?</span></summary><div class="ans"><p><code>temp = x;</code> per salvare <code>x</code>; <code>x = y;</code> per mettere <code>y</code> in <code>x</code>; <code>y = temp;</code> per mettere il vecchio <code>x</code> in <code>y</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Perché l&#39;ordine dei tre passi conta?</span></summary><div class="ans"><p>Perché si può sovrascrivere una variabile solo dopo averne salvato il valore. Se si scrive prima <code>x = y;</code>, il valore di <code>x</code> è perso prima di essere salvato.</p>
+</div></details>
+<details class="qa"><summary><span>Di che tipo deve essere la variabile d&#39;appoggio?</span></summary><div class="ans"><p>Dello stesso tipo delle variabili da scambiare, altrimenti il valore salvato può essere cambiato o approssimato.</p>
+</div></details>
+<details class="qa"><summary><span>Quante variabili d&#39;appoggio servono per ruotare quattro variabili?</span></summary><div class="ans"><p>Una sola: si salva la prima che verrà sovrascritta, e ogni assegnamento riempie la variabile liberata da quello prima.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:410px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Scambio (swap)</dt><dd>Operazione che mette in ciascuna di due variabili il valore che aveva l&#39;altra.</dd></div>
+<div><dt>Variabile d&#39;appoggio</dt><dd>Variabile in più, dello stesso tipo, che conserva per poco un valore che sta per essere sovrascritto; detta anche variabile temporanea.</dd></div>
+<div><dt>Sovrascrivere</dt><dd>Assegnare un nuovo valore a una variabile: il valore di prima è perso.</dd></div>
+<div><dt>Rotazione</dt><dd>Scambio a catena tra più variabili: ognuna prende il valore della successiva, l&#39;ultima quello della prima.</dd></div>
+<div><dt>Valore indeterminato</dt><dd>Contenuto di una variabile dichiarata e non ancora assegnata; negli schemi «?».</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:340px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 5</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-03A-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So spiegare perché <code>x = y; y = x;</code> non scambia due variabili.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So scrivere lo scambio con la variabile d&#39;appoggio, nell&#39;ordine giusto.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So seguire uno scambio con la tabella «una riga per istruzione».</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So scegliere il tipo giusto per la variabile d&#39;appoggio.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So ruotare tre o quattro variabili con una sola variabile d&#39;appoggio.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Scambiare variabili. Uso delle variabili temporanee» (03A_scambio variabili), Programmazione I – Teoria, canale B, A.A. 2026/27, Elvio Amparore: le tazze di tè (slide 2–4), lo scambio sbagliato passo per passo (slide 5–10), lo scambio con la variabile d&#39;appoggio passo per passo (slide 11–16).</li>
+<li>Laboratorio 02 «Operatori e Tipi», canale B: il programma <code>scambio.c</code> e l&#39;esercizio <code>scambio4.c</code> (slide 18).</li>
+<li>I programmi di questi appunti sono stati compilati con gcc 16.1 e <code>-Wall -Werror</code> ed eseguiti; le stampe riportate sono quelle vere. La rotazione di tre variabili, il trucco con le somme, le tabelle passo per passo, i quiz e gli esercizi senza indicazione sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

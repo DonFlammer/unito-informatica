@@ -485,6 +485,8 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 | Lab02 | 12/10/2026 (B2), 13/10 (B1) | Laboratorio 02: operatori e tipi | `lezioni/Lab02_operatori_tipi.md` · HTML: `appunti/PROG1/Lab02_operatori_tipi.html` | codice di partenza provato (aritmetica.c, circonferenza.c, dim_tipi.c, errori.c, media.c, scambio.c); divisione intera e reale, `%` con i negativi (taglio verso lo zero), overflow di `INT_MAX` (comportamento indefinito), precedenze e $ax^3 + 7$, `const`, gli 8 errori di errori.c, media con `/ 3.0`, `floor`/`ceil`/`round`, 8.136 × 1000 = 8135, tabella dei tipi (`long` 4 byte su Windows), puntatori tutti di 8 byte, cppreference offline, mercato.c, scambio4.c |
 | 03A | 13/10/2026 | Scambiare due variabili | `lezioni/03A_scambio_variabili.md` · HTML: `appunti/PROG1/03A_scambio_variabili.html` | le tazze di tè; `x = y; y = x;` non scambia (l'assegnamento cancella); variabile d'appoggio `temp`, tre passi in ordine; l'ordine sbagliato perde il valore; rotazione di 3 e 4 variabili con una sola variabile d'appoggio; tabella «una riga per istruzione» |
 | 03B | 13/10/2026 | Numeri reali, float e double, conversioni | `lezioni/03B_floats.md` · HTML: `appunti/PROG1/03B_floats.html` | `float` (4 byte, ~7 cifre) e `double` (8 byte, ~15–16 cifre), IEEE 754; `%f`, `%e`, `%g`, `%.3f` (arrotonda); `%lf` in `scanf`; niente `%` tra reali; `math.h` e `-lm`; conversioni implicite e tabella delle perdite; promozione di tipo operatore per operatore; `float z = 5 / 2;` vale 2.0; cast `(float)y` sull'operando, non sul risultato |
+| 03C | 14/10/2026 | Espressioni booleane, il tipo bool e gli operatori logici | `lezioni/03C_booleani.md` · HTML: `appunti/PROG1/03C_booleani.html` | operatori relazionali (1 o 0), `=` e `==`; `bool`, `true`, `false` da `stdbool.h` (1 byte, stampato con `%d`); `&&`, `\|\|`, `!` con le tavole di verità; intervalli con due confronti (`0 <= x <= 10` sempre vero, avviso di gcc); cortocircuito per proteggere divisioni e `scanf`; `-7 % 2` vale −1; condizioni lunghe in variabili `bool` (`&&` dentro `\|\|` senza parentesi non compila con `-Werror`); precedenze; ternario `c ? a : b`; De Morgan |
+| 03D | 14/10/2026 | Dal flusso sequenziale alle decisioni, if ed else | `lezioni/03D_decisioni.md` · HTML: `appunti/PROG1/03D_decisioni.html` | sequenza, selezione, iterazione e teorema di Böhm-Jacopini (1966); `if`, `if-else`, catena `else if` (un solo blocco eseguito); errori: `if (a = 5)`, graffe dimenticate (`-Wmisleading-indentation`), ordine dei casi, condizioni irraggiungibili; `void main()` delle slide non compila con `-Werror`; scambio condizionato e visibilità di `temp` nel blocco; annidamenti inutili; schemi: massimo, controllo di `scanf`, divisione protetta, intervallo; niente `switch` all'esame |
 
 ## Fili conduttori (da ricollegare nelle prossime lezioni)
 
@@ -5611,6 +5613,1411 @@ Comportamento indefinito | Situazione in cui il linguaggio non dice che cosa suc
 - Laboratorio 02 «Operatori e Tipi», canale B: `media.c`, `aritmetica.c`, `circonferenza.c`.
 - [cppreference, `<math.h>`](https://en.cppreference.com/w/c/header/math.html), il riferimento citato nelle slide.
 - I programmi di questi appunti sono stati compilati con gcc 16.1 su Windows 11 a 64 bit, con `-Wall -Werror`, ed eseguiti; gli errori del compilatore citati sono quelli veri. Le prove sulla precisione (0.1, 16 777 217, 3 miliardi), le tabelle dei casi, i quiz e gli esercizi sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/lezioni/03C_booleani.md -->
+> File: `contesto_ai/PROG1/lezioni/03C_booleani.md`
+
+```yaml
+corso: PROG1
+lezione: 03C
+titolo: Espressioni booleane, il tipo bool e gli operatori logici
+data: 2026-10-14
+docenti: Elvio Amparore
+simboli_logici: si
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 03C
+descrizione: >-
+  Appunti della lezione 03C di Programmazione I (canale B): gli operatori di confronto ==, !=, <, >, <=, >=, la
+  differenza tra = e ==, il tipo bool di stdbool.h, gli operatori logici &&, || e ! con le tavole di verità, i confronti
+  su un intervallo, la valutazione in cortocircuito, come spezzare le condizioni lunghe e l'operatore ternario, con
+  tutti i programmi delle slide provati, quiz ed esercizi.
+lede: >-
+  Un programma non fa solo conti: deve anche rispondere a domande con un sì o con un no. «Il voto è almeno 18?»,
+  «l'input è valido?». In C queste domande si scrivono con le espressioni booleane, che valgono 1 se la risposta è sì
+  e 0 se è no.
+materiale: slide
+scheda:
+  Slide: 03C_booleans («Espressioni booleane. Operatori logici per decidere nei programmi») · 20 pagine
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 75 minuti, meglio con gcc a portata di mano
+fonte: >-
+  Slide «Espressioni booleane. Operatori logici per decidere nei programmi» (03C_booleans), Programmazione I –
+  Teoria, canale B, A.A. 2026/27
+appunti_html: appunti/PROG1/03C_booleani.html
+genera_html: true
+```
+
+## In breve
+
+- Un'**espressione booleana** è una domanda con risposta sì o no. In C vale **1** se è vera e **0** se è falsa.
+- Si confrontano due valori con **`==`**, `!=`, `<`, `>`, `<=`, `>=`. Attenzione: `==` confronta, `=` assegna.
+- Il tipo **`bool`**, con le costanti `true` e `false`, si usa includendo `stdbool.h`. Si stampa con `%d`, e appare 0 oppure 1.
+- Le domande si combinano con **`&&`** (e: vere tutte e due), **`||`** (o: almeno una vera) e **`!`** (non: rovescia la risposta).
+- «x tra 18 e 30» in C si scrive `18 <= x && x <= 30`, con due confronti. Scritto come in matematica è sempre vero.
+- **Cortocircuito**: se la prima parte basta a decidere, la seconda non viene calcolata. Così `divisore != 0 && n / divisore > 5` non divide mai per zero.
+- Le condizioni lunghe si spezzano in variabili `bool` con un nome chiaro. Con `-Wall -Werror`, `&&` e `||` mescolati senza parentesi non compilano.
+- L'**operatore ternario** `condizione ? a : b` vale `a` se la condizione è vera, `b` se è falsa.
+
+> [!CANALI]
+> **Canale B.** È la prima parte della lezione di mercoledì 14/10, dalle 9 alle 11, prima della [03D](03D_decisioni.html) sugli `if`. Usa la memoria e i tipi della [02B](02B_assegnamento_memory_model.html) e la `scanf` della [02C](02C_referenziamento_scanf_puntatori.html).
+>
+> **Fondamenti dell'Informatica.** Le stesse tre operazioni, con le tavole di verità, sono nella [lezione 06 di Fondamenti](../FDA/06_proposizioni_connettivi_tavole.html), e le leggi di De Morgan nella [lezione 07](../FDA/07_condizionali_equivalenza_logica.html). Le porte logiche AND, OR e NOT della [lezione 01](../FDA/01_bit_porte_esadecimale.html) fanno la stessa cosa con i fili.
+>
+> **Canali A e C.** Secondo l'elenco delle lezioni 2025/26 nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md), nel canale A (Fiandrotti) c'è un deck «booleani» seguito da uno su `if-else`; nel canale C (Mazzei) sono le lezioni 04 «Booleani» e 05 «IF». Le slide 2026/27 dei canali A e C non le ho viste. L'esame è unico.
+>
+> **Laboratorio.** Il prossimo laboratorio, il Lab03, è proprio sulle condizioni booleane.
+>
+> Tutti i programmi li ho compilati e provati con gcc 16.1, con `-Wall -Werror`. Quando un programma delle slide non compila così, lo dico.
+
+## A che cosa servono (slide 2)
+
+Pensa al tornello della metropolitana. Avvicini il biglietto, e il tornello si fa una domanda: «il biglietto è valido?». Se la risposta è sì si apre, se è no resta chiuso. Il tornello non fa conti difficili: risponde a una domanda con un sì o con un no, e poi sceglie che cosa fare.
+
+Anche un programma fa così. Finora i nostri programmi eseguivano le istruzioni una dopo l'altra, sempre tutte. Ma un programma vero deve **decidere**, e per decidere deve farsi domande come queste, che vengono dalle slide:
+
+- «Ho già fatto tutte le somme richieste?», come nella moltiplicazione della [lezione 01A](01A_primo_algoritmo.html);
+- «L'input scritto da tastiera è corretto?»;
+- «Lo studente ha superato l'esame?».
+
+Le **espressioni booleane** sono il modo di scrivere queste domande in C. Sono il ponte tra i dati, che sono numeri, e le scelte. In questa lezione impari a scriverle; nella [03D](03D_decisioni.html) le usi per scegliere che cosa fare, con `if`.
+
+::: prova Trasforma in una domanda con risposta sì o no: «il programma deve fermarsi quando il conto supera 100 euro».
+«Il conto è maggiore di 100?». In C sarà `conto > 100`.
+:::
+
+> [!RICORDA]
+> - Un'espressione booleana è una domanda con risposta sì o no.
+> - Serve al programma per scegliere che cosa fare.
+
+## Confrontare due valori (slide 3–4)
+
+La domanda più semplice confronta due numeri: «il voto è almeno 18?». In C si scrive `voto >= 18`. Il risultato non è un sì scritto a parole: è un **numero**, **1** se la risposta è sì e **0** se è no.
+
+| In matematica | In C | Si legge | Esempio | Vale |
+|:-:|:-:|---|---|:-:|
+| $x = y$ | `==` | «uguale a» | `3 == 2` | 0 |
+| $x \neq y$ | `!=` | «diverso da» | `3 != 2` | 1 |
+| $x > y$ | `>` | «maggiore di» | `3 > 2` | 1 |
+| $x < y$ | `<` | «minore di» | `3 < 2` | 0 |
+| $x \ge y$ | `>=` | «maggiore o uguale a» | `3 >= 3` | 1 |
+| $x \le y$ | `<=` | «minore o uguale a» | `5 <= 3` | 0 |
+
+Si chiamano **operatori relazionali**, perché dicono in che relazione stanno due valori. Gli esempi delle slide:
+
+- `contatore != n`: le ripetizioni non sono ancora finite;
+- `pinInserito == pinCorretto`: il PIN è giusto;
+- `temperatura <= limiteMax`: la temperatura non supera il limite;
+- `voto >= 18`: l'esame è superato.
+
+> [!TRAPPOLA] Uguale si scrive con due segni
+> In C **`=`** è l'assegnamento della [02B](02B_assegnamento_memory_model.html): `x = 5` **mette** 5 in `x`. Per **chiedere** se `x` vale 5 si scrive **`x == 5`**. Confonderli è uno degli errori più comuni, e lo ritrovi nella 03D.
+
+`>=` e `<=` si scrivono con il segno di uguale **dopo**: `=>` e `=<` non esistono in C.
+
+::: prova Con `int a = 7, b = 10;`, quanto valgono `a < b`, `a == b - 3` e `b != 10`?
+`a < b` vale 1. `a == b - 3` vale 1, perché prima si fa la sottrazione: 10 − 3 = 7. `b != 10` vale 0.
+:::
+
+> [!RICORDA]
+> - Un confronto vale 1 se è vero, 0 se è falso.
+> - `==` confronta, `=` assegna.
+
+## Il tipo bool (slide 5–7)
+
+Per tenere la risposta a una domanda serve una variabile. Il C più vecchio usava gli `int`, con questa regola, che vale ancora oggi:
+
+- **0** vuol dire **falso**;
+- **qualunque altro numero** vuol dire **vero**.
+
+Dal 1999, cioè dalla versione del C chiamata C99, esiste un tipo apposta. Si usa scrivendo in cima al programma:
+
+```c
+#include <stdbool.h>
+```
+
+e porta tre cose: il tipo **`bool`** e le due costanti **`true`**, che vale 1, e **`false`**, che vale 0. Il nome viene da George Boole, il matematico che nell'Ottocento ha studiato la logica del vero e del falso. Le slide chiedono di usare `bool` ogni volta che si può: chi legge capisce subito che la variabile contiene un sì o un no.
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+    int votoScritto = 25;
+    int sogliaSuff = 18;
+    bool superato = votoScritto >= sogliaSuff;
+    printf("Lo studente supera l'esame? %d\n", superato);
+}
+```
+
+```
+Lo studente supera l'esame? 1
+```
+
+La riga `bool superato = votoScritto >= sogliaSuff;` funziona come ogni assegnamento: prima si calcola la destra, `25 >= 18`, che vale 1, poi il risultato si copia in `superato`.
+
+Per `bool` **non c'è uno specificatore** di `printf`: si usa `%d`, come per gli interi, e si vede 0 oppure 1.
+
+> [!NOTA] Quanto spazio occupa un bool
+> Nella slide 6 la variabile `b` è disegnata come un solo bit, 0 o 1, perché è l'informazione che contiene. In memoria però un `bool` occupa un byte intero: `sizeof(bool)` stampa 1. Il motivo è che la memoria si indirizza a byte, come nella [lezione 01B](01B_architettura.html).
+
+Se metti in un `bool` un numero diverso da 0 e 1, diventa `true`: con `bool c = 5;`, `printf("%d", c)` stampa 1.
+
+::: prova Con `int eta = 16;`, che cosa stampa `bool maggiorenne = eta >= 18; printf("%d", maggiorenne);`?
+0: 16 non è maggiore o uguale a 18.
+:::
+
+> [!RICORDA]
+> - `bool`, `true` e `false` vengono da `stdbool.h`.
+> - Per il C, 0 è falso e qualunque altro numero è vero.
+> - Un `bool` si stampa con `%d`.
+
+## Unire più domande: &&, || e ! (slide 8–12)
+
+Spesso una sola domanda non basta. Il login di un sito riesce se hai fatto meno di 3 tentativi **e** l'account non è bloccato. Il biglietto è scontato se hai meno di 12 anni **oppure** sei tesserato. Per unire le domande ci sono tre **operatori logici**:
+
+| In C | Si legge | Vale vero quando | In logica |
+|:-:|---|---|:-:|
+| `a && b` | «a e b» | **tutte e due** sono vere | $a \land b$ |
+| `a \|\| b` | «a o b» | **almeno una** è vera | $a \lor b$ |
+| `!a` | «non a» | `a` è falsa | $\neg a$ |
+
+Gli esempi delle slide, riscritti con i nomi delle variabili:
+
+```c
+bool login = (numTentativi < 3) && !accountBloccato;
+bool riscaldamento = (temperatura < 18) && termostatoOn;
+bool sconto = (eta < 12) || tesserato;
+bool ventolaAccesa = (temperatura >= 28) || modoManuale;
+```
+
+Il primo si legge: «login è vero se i tentativi sono meno di 3 e l'account **non** è bloccato».
+
+### Le tavole di verità
+
+Una **tavola di verità** scrive il risultato per tutte le combinazioni possibili. Con due domande le combinazioni sono quattro.
+
+| `c1` | `c2` | `c1 && c2` | `c1 \|\| c2` |
+|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 |
+| 0 | 1 | 0 | 1 |
+| 1 | 0 | 0 | 1 |
+| 1 | 1 | **1** | 1 |
+
+| `c` | `!c` |
+|:-:|:-:|
+| 0 | 1 |
+| 1 | 0 |
+
+- `&&` dà 1 in **una sola** riga, quella con tutti e due a 1.
+- `||` dà 0 in **una sola** riga, quella con tutti e due a 0.
+- L'«o» del C è inclusivo: se sono vere tutte e due, il risultato è vero.
+
+Sono le stesse tavole della [lezione 06 di Fondamenti](../FDA/06_proposizioni_connettivi_tavole.html), con 1 e 0 al posto di V e F.
+
+Prova a scrivere una formula e a vederne la tavola. Qui si usano le lettere per le domande, `&` o `&&` per «e», `|` o `||` per «o», `!` per «non»:
+
+```widget logica
+titolo: La tavola di verità di una condizione
+modo: tavola
+formula: (a | t) & !b
+```
+
+::: prova Con `int eta = 15; bool tesserato = false;`, quanto vale `(eta < 12) || tesserato`? E `!tesserato && eta >= 14`?
+Il primo vale 0: 15 non è minore di 12, e `tesserato` è falso. Il secondo vale 1: `!tesserato` è vero e 15 è almeno 14.
+:::
+
+> [!RICORDA]
+> - `&&`: vere tutte e due. `||`: almeno una vera. `!`: rovescia.
+> - Con due domande la tavola di verità ha 4 righe.
+
+## Un valore dentro un intervallo (slide 13–14)
+
+Un esempio di tutti i giorni: «ho tra 18 e 30 anni». In matematica si scrive in modo compatto, $18 \le x \le 30$. In C questa scrittura **non funziona**: bisogna spezzarla in due confronti uniti da `&&`.
+
+```c
+18 <= x && x <= 30
+```
+
+Si legge: «18 è minore o uguale a x, **e** x è minore o uguale a 30». È la forma più vicina a quella della matematica: `x` sta in mezzo, e i due estremi ai lati.
+
+| Intervallo | Si legge | In C |
+|:-:|---|---|
+| $[a, b]$ | chiuso: estremi compresi | `a <= x && x <= b` |
+| $[a, b)$ | semiaperto: `a` compreso, `b` escluso | `a <= x && x < b` |
+| $(a, b]$ | semiaperto: `a` escluso, `b` compreso | `a < x && x <= b` |
+| $(a, b)$ | aperto: estremi esclusi | `a < x && x < b` |
+
+Le slide avvertono che il secondo, **`a <= x && x < b`**, si userà moltissimo: è il controllo che un indice stia dentro un array, che vedrai più avanti.
+
+> [!TRAPPOLA] 0 <= x <= 10 è sempre vero
+> Scritto come in matematica, `0 <= x <= 10` si calcola da sinistra: prima `0 <= x`, che vale 0 o 1, poi `0 <= 10` oppure `1 <= 10`. Tutti e due valgono 1. Quindi l'espressione è vera **sempre**, anche con `x = 50`. gcc con `-Wall` avvisa: `comparisons like 'X<=Y<=Z' do not have their mathematical meaning`. Con `-Werror` il programma non compila.
+
+Per il contrario, «x è **fuori** da $[18, 30]$», si usa `||`: `x < 18 || x > 30`. Basta che sia vera una delle due.
+
+::: prova Scrivi in C: «il voto è sufficiente ma non è 30», con i voti da 0 a 30.
+`18 <= voto && voto < 30`, oppure `voto >= 18 && voto != 30`.
+:::
+
+> [!RICORDA]
+> - Un intervallo in C sono due confronti uniti da `&&`.
+> - «Fuori dall'intervallo» si scrive con `||`.
+
+## Il cortocircuito (slide 15–18)
+
+Torna al tornello. Se il biglietto è scaduto, il tornello resta chiuso: non ha bisogno di controllare anche se è il biglietto giusto per quella linea. Il C fa la stessa cosa. Le parti di un `&&` o di un `||` si calcolano **da sinistra a destra**, e il calcolo si ferma appena il risultato è sicuro.
+
+- In `a && b`, se `a` è **falsa** il risultato è falso comunque: `b` **non viene calcolata**.
+- In `a || b`, se `a` è **vera** il risultato è vero comunque: `b` **non viene calcolata**.
+
+Si chiama **valutazione in cortocircuito**, in inglese *short-circuit evaluation*. Non è solo un risparmio di tempo: serve a proteggere la seconda parte.
+
+```c
+bool condizione = (divisore != 0) && ((numeratore / divisore) > 5);
+```
+
+Se `divisore` vale 0, la prima parte è falsa e la divisione non viene mai fatta. Senza cortocircuito il programma si fermerebbe con una divisione per zero, un errore a runtime della [lezione 02A](02A_da_assembly_a_c.html). Ho provato con `numeratore = 40`: con `divisore = 0` la condizione vale 0 e il programma va avanti; con `divisore = 4` vale 1, perché 40 / 4 = 10 è maggiore di 5.
+
+L'**ordine conta**: scritto al contrario, `(numeratore / divisore > 5) && (divisore != 0)`, la divisione si farebbe prima del controllo.
+
+### Con scanf
+
+```c
+int valore;
+bool scanPari = (scanf("%d", &valore) == 1) && (valore % 2 == 0);
+```
+
+Ricordi dalla [02C](02C_referenziamento_scanf_puntatori.html) che `scanf` restituisce quanti valori ha letto. Se l'input non è un numero, `scanf` restituisce 0 e `valore` resta «?»: grazie al cortocircuito, quel valore senza senso non viene mai guardato.
+
+Il programma completo della slide 18 fa tre domande sullo stesso numero:
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+    int numero;
+    bool letto, positivo, dispari;
+    printf("Inserisci un numero intero: ");
+    letto = (scanf("%d", &numero) == 1); // true se scanf ha letto correttamente
+    positivo = letto && (numero > 0);      // input valido e maggiore di 0
+    dispari  = letto && (numero % 2 != 0); // input valido e non divisibile per 2
+    // stampa i risultati (0 = falso, 1 = vero)
+    printf("Input valido? %d\n", letto);
+    printf("Numero positivo? %d\n", positivo);
+    printf("Numero dispari? %d\n", dispari);
+}
+```
+
+| Input | Input valido? | Numero positivo? | Numero dispari? |
+|---|:-:|:-:|:-:|
+| `7` | 1 | 1 | 1 |
+| `-4` | 1 | 0 | 0 |
+| `-7` | 1 | 0 | 1 |
+| `0` | 1 | 0 | 0 |
+| `abc` | 0 | 0 | 0 |
+| `3.9` | 1 | 1 | 1 |
+
+Con `3.9` la `scanf` legge il 3 e si ferma al punto, come nella 02C: per lei l'input è valido.
+
+> [!TRAPPOLA] Dispari si controlla con != 0
+> Con i negativi, in C, il resto ha il segno del primo numero: `-7 % 2` vale **−1**, non 1. Quindi `numero % 2 == 1` direbbe che −7 non è dispari. `numero % 2 != 0` funziona sempre, ed è quello che usano le slide.
+
+::: prova Con `int n = 0;`, quanto vale `n` dopo `bool r = (n > 0) && (++n > 0);`? E dopo `bool s = (n == 0) || (++n > 0);`?
+Dopo la prima riga `n` vale ancora 0: `n > 0` è falso, quindi `++n` non viene eseguito. Dopo la seconda vale ancora 0: `n == 0` è vero, e con `||` basta. L'ho provato con gcc.
+:::
+
+> [!RICORDA]
+> - `&&` si ferma alla prima parte falsa, `||` alla prima vera.
+> - Metti per primo il controllo che protegge: `divisore != 0 && …`, `scanf(…) == 1 && …`.
+
+## Condizioni lunghe: dare un nome ai pezzi (slide 19)
+
+Quando `&&` e `||` si mescolano, una condizione diventa difficile da leggere e facile da sbagliare. L'esempio delle slide:
+
+```c
+bool sconto = registrato && spesaTotale >= 100 ||
+              (codiceNonScaduto && attivatoDallUtente);
+```
+
+Le slide propongono di spezzarla in **variabili `bool` intermedie**, con nomi che dicono che cosa controllano:
+
+```c
+bool clientePremium = registrato && (spesaTotale >= 100);
+bool promoExtra     = codiceNonScaduto && attivatoDallUtente;
+bool sconto         = clientePremium || promoExtra;
+```
+
+L'ultima riga ora si legge come una frase: «c'è lo sconto se il cliente è premium oppure c'è la promozione».
+
+> [!TRAPPOLA] La prima versione non compila con -Werror
+> Ho compilato la versione lunga della slide 19 con `gcc -Wall`: gcc avvisa `suggest parentheses around '&&' within '||'`. Con `-Werror`, come all'esame, il programma non compila. La versione spezzata compila senza avvisi. Se non vuoi spezzare, metti le parentesi: `(registrato && spesaTotale >= 100) || (codiceNonScaduto && attivatoDallUtente)`.
+
+### L'ordine delle operazioni
+
+Senza parentesi, il C calcola in quest'ordine, dal primo all'ultimo:
+
+| Ordine | Operatori | Esempio |
+|:-:|---|---|
+| 1 | `!` | `!a` |
+| 2 | `*`, `/`, `%` | `n % 2` |
+| 3 | `+`, `-` | `b - 3` |
+| 4 | `<`, `>`, `<=`, `>=` | `x < 18` |
+| 5 | `==`, `!=` | `n % 2 != 0` |
+| 6 | `&&` | |
+| 7 | `\|\|` | |
+| 8 | `=` | `bool r = …` |
+
+Per questo `numero % 2 != 0` funziona senza parentesi: prima il resto, poi il confronto. E `a || b && c` vuol dire `a || (b && c)`, perché `&&` viene prima. Non serve ricordare la tabella a memoria: nel dubbio, **metti le parentesi**.
+
+> [!TRAPPOLA] Il ! si attacca a una cosa sola
+> `!x > 0` non vuol dire «x non è positivo». Il `!` viene prima di `>`, quindi si calcola `(!x) > 0`: con `x = 5`, `!x` vale 0 e il risultato è 0. Per negare il confronto servono le parentesi: `!(x > 0)`, cioè `x <= 0`. gcc con `-Wall` se ne accorge e avvisa: `logical not is only applied to the left hand side of comparison`. Con `-Werror` non compila.
+
+::: prova Spezza in variabili con un nome: «posso uscire se ho finito i compiti e non piove, oppure se è sabato».
+`bool doveriFatti = compitiFiniti && !piove;`, poi `bool possoUscire = doveriFatti || sabato;`.
+:::
+
+> [!RICORDA]
+> - Condizioni lunghe: variabili `bool` intermedie con nomi chiari.
+> - `&&` viene prima di `||`; nel dubbio, parentesi.
+
+## L'operatore ternario (slide 20)
+
+A volte la domanda serve solo a scegliere tra **due valori**: «se x è pari prendi 100, altrimenti 200». Per questo il C ha un operatore con tre pezzi, l'**operatore ternario**:
+
+```c
+condizione ? valore_se_vero : valore_se_falso
+```
+
+Si legge: «la condizione è vera? Allora questo, altrimenti quello». L'esempio delle slide:
+
+```c
+int x = 5;
+int y = (x % 2 == 0) ? 100 : 200;  // y = 200, perché x è dispari
+```
+
+Altri due usi tipici, provati:
+
+```c
+int massimo = (a > b) ? a : b;
+printf("%s\n", voto >= 18 ? "promosso" : "bocciato");
+```
+
+Con `a = 3` e `b = 8`, `massimo` vale 8. `%s` stampa un testo: lo vedrai con le stringhe.
+
+Le slide consigliano il ternario solo per scelte piccole e chiare. Quando la scelta è più complicata, o deve eseguire istruzioni e non solo scegliere un valore, si usa `if…else`, nella [03D](03D_decisioni.html).
+
+::: prova Con `int t = 31;`, quanto vale `int stato = (t > 30) ? 2 : (t > 20) ? 1 : 0;`?
+2, perché 31 è maggiore di 30. Con `t = 25` varrebbe 1, con `t = 10` varrebbe 0. Due ternari uno dentro l'altro si leggono male: qui un `if` sarebbe più chiaro.
+:::
+
+> [!RICORDA]
+> - `c ? a : b` vale `a` se `c` è vera, `b` se è falsa.
+> - Solo per scelte piccole; per il resto, `if…else`.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `==` | «uguale uguale» | i due valori sono uguali? | `pin == 1234` |
+| `!=` | «diverso» | i due valori sono diversi? | `contatore != n` |
+| `<=`, `>=` | «minore o uguale», «maggiore o uguale» | confronti con l'uguale compreso | `voto >= 18` |
+| `&&` | «and», «e» | vere tutte e due | `x > 0 && y > 0` |
+| `\|\|` | «or», «o» | almeno una vera | `eta < 12 \|\| tesserato` |
+| `!` | «not», «non» | rovescia vero e falso | `!accountBloccato` |
+| `bool` | «bul» | tipo con due valori, da `stdbool.h` | `bool ok = true;` |
+| `true`, `false` | «tru», «fols» | vero (1) e falso (0) | |
+| `? :` | «ternario» | sceglie tra due valori | `a > b ? a : b` |
+
+## Verso l'esame
+
+All'esame le condizioni sono dappertutto: per decidere che cosa fare con `if`, per fermare un ciclo con `while`, per controllare un indice. Gli errori tipici che fanno perdere punti, o che fanno fallire la compilazione su CodeRunner con `-Wall -Werror`:
+
+1. **`=` al posto di `==`**: con `-Wall -Werror` dentro un `if` non compila, ma in un'altra posizione può passare e dare un risultato sbagliato;
+2. **intervalli scritti come in matematica**: `0 <= x <= 10` non compila con `-Werror`;
+3. **`&&` e `||` mescolati senza parentesi**: avviso di gcc, quindi errore con `-Werror`;
+4. **l'ordine sbagliato nei controlli** che proteggono: prima `divisore != 0`, poi la divisione; prima l'indice dentro l'intervallo, poi l'elemento;
+5. **`% 2 == 1` per i dispari**: sbagliato con i negativi.
+
+Più avanti, negli esercizi sulla **correttezza** dei programmi, scriverai condizioni dentro `assert`: lì serve saper scrivere e negare una condizione senza errori.
+
+> [!METODO] Negare una condizione
+> Per scrivere il contrario di una condizione, senza `!` davanti:
+> 1. ogni confronto diventa il suo contrario: `<` diventa `>=`, `==` diventa `!=`, e così via;
+> 2. ogni `&&` diventa `||` e ogni `||` diventa `&&` (leggi di De Morgan).
+>
+> Il contrario di `x >= 18 && x <= 30` è `x < 18 || x > 30`. Ho controllato con `a = 3`, `bb = 8`: `!(a > 0 && bb > 10)` e `a <= 0 || bb <= 10` valgono tutti e due 1.
+
+## Quiz
+
+```quiz
+D: Con `int a = 5, b = 3;`, quanto vale `a > b && b > 4`?
++ 0
+- 1
+- 3
+- 5
+- non compila
+= `a > b` vale 1, ma `b > 4` vale 0: con `&&` servono vere tutte e due, quindi il risultato è 0. La risposta più insidiosa è 1, che si ottiene leggendo solo la prima parte.
+
+D: Che cosa stampa `bool b = 7; printf("%d", b);`?
++ `1`
+- `7`
+- `true`
+- `0`
+- non compila
+= Ogni numero diverso da 0 messo in un `bool` diventa `true`, che si stampa come 1. La risposta più insidiosa è `true`: `printf` con `%d` stampa un numero, non la parola.
+
+D: Quale espressione dice se `x` è tra 1 e 10, estremi compresi?
++ `1 <= x && x <= 10`
+- `1 <= x <= 10`
+- `1 <= x || x <= 10`
+- `x >= 1 && x < 10`
+- `!(x < 1 && x > 10)`
+= Servono due confronti uniti da `&&`. La risposta più insidiosa è `1 <= x <= 10`: si calcola da sinistra e vale sempre 1. Con `||` è vera per ogni numero; con `x < 10` il 10 resta fuori; l'ultima nega una condizione che non è mai vera.
+
+D: Con `int d = 0, n = 10;`, che cosa succede con `bool c = (d != 0) && (n / d > 2);`?
++ `c` vale 0 e la divisione non viene fatta
+- il programma si ferma per divisione per zero
+- `c` vale 1
+- non compila
+- `c` vale 0, ma la divisione viene fatta lo stesso
+= `d != 0` è falso, e con `&&` il calcolo si ferma lì: è il cortocircuito. La risposta più insidiosa è la divisione per zero: succederebbe con le due parti scambiate.
+
+D: Con `int n = -9;`, quale espressione è vera?
++ `n % 2 != 0`
+- `n % 2 == 1`
+- `n % 2 == 0`
+- `!(n % 2)`
+- `n % 2 > 0`
+= In C `-9 % 2` vale −1. Solo `n % 2 != 0` riconosce il dispari. La risposta più insidiosa è `n % 2 == 1`: funziona solo con i positivi.
+
+D: Quanto vale `int y = (4 > 7) ? 10 : 20;`?
+N: 20
+= `4 > 7` è falso, quindi il ternario sceglie il valore dopo i due punti, 20.
+
+D: Quale riga è uguale a `!(x > 0 && y > 0)`?
++ `x <= 0 || y <= 0`
+- `x <= 0 && y <= 0`
+- `x < 0 || y < 0`
+- `!x > 0 && !y > 0`
+- `x > 0 || y > 0`
+= Per De Morgan il `&&` diventa `||`, e ogni confronto si rovescia: `>` diventa `<=`. La risposta più insidiosa è `x <= 0 && y <= 0`: rovescia i confronti ma lascia `&&`. `x < 0` dimentica lo zero.
+
+D: Perché `bool s = a && b || c && d;` non compila con `gcc -Wall -Werror`?
++ gcc chiede le parentesi intorno agli `&&` dentro un `||`
+- `&&` e `||` non si possono usare insieme
+- manca `stdbool.h`
+- `bool` non si può assegnare con un'espressione
+- `||` vale solo per gli interi
+= Il C la capisce, come `(a && b) || (c && d)`, ma gcc avvisa `suggest parentheses around '&&' within '||'`, e con `-Werror` l'avviso diventa un errore. La risposta più insidiosa è «non si possono usare insieme»: si può, con le parentesi.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: 1 o 0?
+Con `int a = 4, b = 9; bool c = false;`, calcola a mano: (a) `a == 4`; (b) `a = 4`, come valore; (c) `b % a == 1`; (d) `!c && a < b`; (e) `c || b > 10`.
+::: soluzione
+(a) 1. (b) 4: un assegnamento vale il valore assegnato, e `a` diventa 4. Dentro un `if` sarebbe vero. (c) 1: 9 % 4 = 1. (d) 1: `!c` è vero e 4 < 9. (e) 0: `c` è falso e 9 non è maggiore di 10.
+:::
+
+::: esercizio base Riscaldamento: da parole a C
+Scrivi un'espressione booleana per: (a) «`n` è pari»; (b) «`c` è una lettera maiuscola», con `char c`; (c) «l'anno è tra il 2000 e il 2099»; (d) «`x` non è né 0 né 1».
+::: soluzione
+(a) `n % 2 == 0`. (b) `'A' <= c && c <= 'Z'`: le maiuscole hanno codici ASCII consecutivi, da 65 a 90. (c) `2000 <= anno && anno <= 2099`. (d) `x != 0 && x != 1`.
+:::
+
+::: esercizio base Riscaldamento: il cortocircuito
+Con `int k = 1;`, quanto vale `k` dopo ognuna delle righe, eseguite una dopo l'altra? (a) `bool p = (k > 5) && (++k > 0);` (b) `bool q = (k > 5) || (++k > 0);` (c) `bool r = (k == 2) || (++k > 0);`
+::: soluzione
+(a) 1: `k > 5` è falso e `&&` si ferma. (b) 2: `k > 5` è falso, quindi `||` deve guardare la seconda parte, ed esegue `++k`. (c) 2: `k == 2` è vero e `||` si ferma.
+:::
+
+::: esercizio base Riscaldamento: negare
+Scrivi il contrario senza usare `!`: (a) `x > 5`; (b) `a == b && c < 0`; (c) `eta < 12 || tesserato`, con `tesserato` di tipo `bool`.
+::: soluzione
+(a) `x <= 5`. (b) `a != b || c >= 0`. (c) `eta >= 12 && !tesserato`: qui il `!` resta sulla variabile `bool`, che non ha un confronto da rovesciare.
+:::
+
+::: esercizio medio L'anno bisestile
+Un anno è bisestile se è divisibile per 4 ma non per 100, oppure se è divisibile per 400. Scrivi un programma che legge un anno e stampa 1 se è bisestile, 0 se non lo è, usando una variabile `bool`.
+::: soluzione
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+    int anno;
+    scanf("%d", &anno);
+    bool divPer4ManonPer100 = (anno % 4 == 0) && (anno % 100 != 0);
+    bool divPer400 = (anno % 400 == 0);
+    bool bisestile = divPer4ManonPer100 || divPer400;
+    printf("%d\n", bisestile);
+}
+```
+Con 2024 stampa 1, con 2026 stampa 0, con 1900 stampa 0 (divisibile per 100 ma non per 400), con 2000 stampa 1. Le due variabili intermedie evitano gli `&&` dentro un `||` senza parentesi.
+:::
+
+::: esercizio medio Il triangolo
+Tre lunghezze intere `a`, `b`, `c` formano un triangolo se sono tutte positive e ognuna è minore della somma delle altre due. Scrivi la condizione con variabili `bool` intermedie, e prova 3, 4, 5 e 1, 2, 3.
+::: soluzione
+```c
+bool positive = a > 0 && b > 0 && c > 0;
+bool disuguaglianze = a < b + c && b < a + c && c < a + b;
+bool triangolo = positive && disuguaglianze;
+```
+Con 3, 4, 5 vale 1. Con 1, 2, 3 vale 0: 3 non è minore di 1 + 2, perché è uguale. È il triangolo «schiacciato» in un segmento.
+:::
+
+::: esercizio esame Input valido e nell'intervallo
+Scrivi un programma che legge un voto intero e stampa `1` se la lettura è riuscita **e** il voto è tra 18 e 30 compresi, `0` altrimenti. Non deve mai guardare la variabile se `scanf` non ha letto niente. Prova con `25`, `17`, `31` e `ciao`.
+::: soluzione
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+    int voto;
+    bool letto = (scanf("%d", &voto) == 1);
+    bool valido = letto && 18 <= voto && voto <= 30;
+    printf("%d\n", valido);
+}
+```
+Stampa 1 con 25, e 0 con 17, 31 e `ciao`. Con `ciao` il cortocircuito si ferma a `letto`, che è falso: `voto` contiene «?» ma non viene mai confrontato. `a && b && c` si calcola come `(a && b) && c`, quindi qui gcc non chiede parentesi.
+:::
+
+## Domande di ripasso
+
+::: domanda Quanto vale in C un confronto vero? E uno falso?
+1 e 0.
+:::
+
+::: domanda Che differenza c'è tra `=` e `==`?
+`=` assegna un valore a una variabile; `==` chiede se due valori sono uguali e vale 1 o 0.
+:::
+
+::: domanda Che cosa porta `stdbool.h`?
+Il tipo `bool` e le costanti `true` e `false`.
+:::
+
+::: domanda Quando è vera `a && b`? E `a || b`?
+`a && b` quando sono vere tutte e due; `a || b` quando ne è vera almeno una, anche tutte e due.
+:::
+
+::: domanda Come si scrive in C «x tra 0 e 10, compresi»?
+`0 <= x && x <= 10`. La scrittura `0 <= x <= 10` è sempre vera.
+:::
+
+::: domanda Che cos'è il cortocircuito e a che cosa serve?
+Il C smette di calcolare un `&&` alla prima parte falsa e un `||` alla prima vera. Serve a proteggere la seconda parte, per esempio a non dividere per zero o a non usare un valore non letto.
+:::
+
+::: domanda Quando conviene l'operatore ternario?
+Per scegliere tra due valori con una condizione semplice. Per scelte più complicate si usa `if…else`.
+:::
+
+## Glossario
+
+```glossario
+Espressione booleana | Un'espressione con risposta vero o falso; in C vale 1 o 0.
+Operatore relazionale | ==, !=, <, >, <=, >=: confronta due valori.
+bool | Tipo con due valori, true e false, da stdbool.h; occupa un byte.
+true, false | Le costanti vero (1) e falso (0) di stdbool.h.
+&& (AND) | Vero quando sono vere tutte e due le parti.
+|| (OR) | Vero quando è vera almeno una parte.
+! (NOT) | Rovescia vero e falso.
+Tavola di verità | Tabella con il risultato per ogni combinazione di vero e falso.
+Cortocircuito | Il calcolo di && o || si ferma appena il risultato è sicuro.
+Operatore ternario | condizione ? a : b, vale a se la condizione è vera, b se è falsa.
+Leggi di De Morgan | Il contrario di un AND è l'OR dei contrari, e viceversa.
+```
+
+## Checklist
+
+```checklist
+- So che un confronto in C vale 1 o 0.
+- Non confondo `=` e `==`.
+- So usare `bool`, `true` e `false` con `stdbool.h`, e stampare un `bool` con `%d`.
+- So le tavole di verità di `&&`, `||` e `!`.
+- So scrivere un intervallo chiuso, aperto o semiaperto con due confronti.
+- So perché `0 <= x <= 10` è sempre vero.
+- So spiegare il cortocircuito e mettere per primo il controllo che protegge.
+- So spezzare una condizione lunga in variabili `bool` con un nome.
+- So negare una condizione con De Morgan.
+- So usare l'operatore ternario per scegliere tra due valori.
+```
+
+## Fonti
+
+- Slide «Espressioni booleane. Operatori logici per decidere nei programmi» (03C_booleans), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: perché servono (slide 2), operatori (3–4), il tipo `bool` (5–7), espressioni booleane e tavole di verità (8–12), intervalli (13–14), cortocircuito (15–18), espressioni complesse (19), operatore ternario (20).
+- Elenco delle lezioni dei canali A e C dalla [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+- Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con `-Wall -Werror`, ed eseguiti; gli avvisi citati sono quelli veri. Le soluzioni, i quiz e gli esercizi sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/lezioni/03D_decisioni.md -->
+> File: `contesto_ai/PROG1/lezioni/03D_decisioni.md`
+
+```yaml
+corso: PROG1
+lezione: 03D
+titolo: Dal flusso sequenziale alle decisioni, if ed else
+data: 2026-10-14
+docenti: Elvio Amparore
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 03D
+descrizione: >-
+  Appunti della lezione 03D di Programmazione I (canale B): sequenza, selezione e iterazione, il teorema di
+  Böhm-Jacopini, i costrutti if, if-else ed else if, gli errori più comuni, lo scambio condizionato e la visibilità di
+  una variabile dichiarata in un blocco, gli annidamenti inutili e gli schemi ricorrenti (massimo, controllo
+  dell'input, divisione protetta, intervallo), con tutti i programmi delle slide provati, quiz ed esercizi.
+lede: >-
+  Con le espressioni booleane della 03C il programma sa farsi una domanda. Con if impara a scegliere: se la risposta
+  è sì fa una cosa, se è no ne fa un'altra. È il primo passo per uscire dalla fila di istruzioni sempre uguale.
+materiale: slide
+scheda:
+  Slide: 03D_decisioni («Dal flusso sequenziale alle decisioni») · 25 pagine
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 75 minuti, meglio con gcc a portata di mano
+fonte: >-
+  Slide «Dal flusso sequenziale alle decisioni. Introduzione al controllo di flusso nella programmazione strutturata»
+  (03D_decisioni), Programmazione I – Teoria, canale B, A.A. 2026/27
+appunti_html: appunti/PROG1/03D_decisioni.html
+genera_html: true
+```
+
+## In breve
+
+- Ogni programma si costruisce con tre strutture: **sequenza** (una istruzione dopo l'altra), **selezione** (scegliere) e **iterazione** (ripetere). Bastano per qualunque algoritmo: è il **teorema di Böhm-Jacopini** del 1966.
+- **`if (condizione) { … }`** esegue il blocco solo se la condizione è vera; altrimenti lo salta.
+- **`if … else`** sceglie tra due blocchi: uno se la condizione è vera, l'altro se è falsa.
+- **`else if`** mette in fila più domande: si entra nel primo blocco con la condizione vera, e gli altri si saltano.
+- Gli errori più comuni: `=` al posto di `==`, le graffe dimenticate, le condizioni nell'ordine sbagliato. Con `-Wall -Werror` i primi due non compilano.
+- Una variabile dichiarata **dentro** un blocco esiste solo lì: alla `}` sparisce dallo stack.
+- Gli schemi da sapere: il massimo di due numeri, il controllo dell'input con `scanf`, la divisione protetta, il controllo di un intervallo.
+
+> [!CANALI]
+> **Canale B.** È la seconda parte della lezione di mercoledì 14/10, dalle 9 alle 11, dopo la [03C](03C_booleani.html) sulle espressioni booleane. Lo scambio condizionato riprende la [03A](03A_scambio_variabili.html), e il disegno della memoria è quello della [02B](02B_assegnamento_memory_model.html).
+>
+> **Canali A e C.** Secondo l'elenco delle lezioni 2025/26 nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md), nel canale A (Fiandrotti) c'è un deck su `if-else` dopo quello sui booleani; nel canale C (Mazzei) è la lezione 05 «IF». Le slide 2026/27 dei canali A e C non le ho viste. L'esame è unico.
+>
+> **Un avviso sulle slide.** Gli esempi delle slide 13–20 cominciano con `void main()`. Con gcc 16.1 e `-Wall -Werror`, come all'esame, non compilano: `error: return type of 'main' is not 'int'`. In questi appunti li scrivo con `int main(void)`. Senza opzioni compilano, e le stampe sono quelle delle slide.
+>
+> Tutti i programmi li ho compilati e provati con gcc 16.1, con `-Wall -Werror`.
+
+## Tre strutture bastano (slide 2–3)
+
+Pensa a una ricetta. Ci sono passi da fare in fila: «sbatti le uova, aggiungi la farina». Ci sono scelte: «se l'impasto è troppo duro, aggiungi latte». E ci sono ripetizioni: «mescola finché non ci sono più grumi». Con questi tre tipi di passo si scrive qualunque ricetta.
+
+I programmi funzionano allo stesso modo. La **programmazione strutturata** usa tre **strutture di controllo**:
+
+| Struttura | Che cosa fa | In C |
+|---|---|---|
+| **sequenza** | esegue le istruzioni una dopo l'altra, nell'ordine | quello fatto finora |
+| **selezione** | sceglie tra strade diverse con una condizione | `if`, `else` |
+| **iterazione** | ripete un blocco finché una condizione è vera | `while`, `for`, `do-while` |
+
+Negli anni '60 non era ancora chiaro quali strumenti servissero per descrivere l'ordine delle istruzioni: molti programmi saltavano da un punto all'altro, come la versione V5 della [lezione 01A](01A_primo_algoritmo.html). Nel 1966 **Corrado Böhm** e **Giuseppe Jacopini**, due informatici italiani, hanno dimostrato che **sequenza, selezione e iterazione bastano** per scrivere qualunque algoritmo. È il **teorema di Böhm-Jacopini**, e da lì vengono i linguaggi di oggi: pochi pezzi semplici, che si mettono uno dentro l'altro per costruire programmi complicati quanto si vuole.
+
+In questa lezione c'è la selezione. L'iterazione arriva con `while` e `for`.
+
+::: prova Nella frase «ripeti finché non hai letto un numero valido, e se è negativo cambiagli segno», quali strutture ci sono?
+Un'iterazione («ripeti finché») e una selezione («se è negativo»). Le due istruzioni, leggere e cambiare segno, sono in sequenza.
+:::
+
+> [!RICORDA]
+> - Le tre strutture: sequenza, selezione, iterazione.
+> - Per il teorema di Böhm-Jacopini bastano per qualunque algoritmo.
+
+## Il costrutto if (slide 4–5)
+
+L'esempio delle slide: se piove prendo l'ombrello, altrimenti esco senza. Il programma arriva a un **bivio**, si fa una domanda, e segue una delle due strade. Si chiama **controllo di flusso condizionato**: il «flusso» è l'ordine in cui le istruzioni vengono eseguite.
+
+La forma più semplice ha una sola strada in più:
+
+```c
+if (condizione) {
+    // codice eseguito solo se la condizione è vera
+}
+```
+
+- Se la condizione è **vera** (cioè diversa da 0), il programma **entra** nel blocco tra le graffe.
+- Se è **falsa** (cioè 0), **salta** il blocco e continua dopo la `}`.
+
+La condizione è un'espressione booleana della [03C](03C_booleani.html), sempre **tra parentesi tonde**. L'esempio delle slide:
+
+```c
+int voto = 25;
+if (voto >= 18) {
+    printf("Esame superato!\n");
+}
+```
+
+Stampa `Esame superato!`. Con `voto = 15` non stampa niente: il blocco viene saltato.
+
+::: prova Che cosa stampa questo codice con `n = 4`? E con `n = 9`? `if (n % 2 == 0) { printf("pari "); } printf("fine");`
+Con 4 stampa `pari fine`. Con 9 stampa solo `fine`: la seconda `printf` è fuori dal blocco e viene eseguita sempre.
+:::
+
+> [!RICORDA]
+> - `if (condizione) { … }`: il blocco si esegue solo se la condizione è vera.
+> - Quello che sta dopo la `}` si esegue sempre.
+
+## Due strade: if-else (slide 6)
+
+Con `else`, «altrimenti», il programma ha **due** strade, e ne percorre sempre esattamente una:
+
+```c
+if (condizione) {
+    // blocco A: se la condizione è vera
+}
+else {
+    // blocco B: se la condizione è falsa
+}
+```
+
+L'esempio delle slide è la batteria del telefono:
+
+```c
+int batteria = 15;
+
+if (batteria < 20) {
+    printf("Batteria quasi scarica! Collega il caricatore.\n");
+}
+else {
+    printf("Batteria sufficiente.\n");
+}
+```
+
+Con 15 stampa il primo messaggio, con 20 o più il secondo. Non succede mai che stampi tutti e due, e nemmeno che non ne stampi nessuno.
+
+::: prova Scrivi un `if-else` che stampa `positivo o zero` se `x` è almeno 0, e `negativo` altrimenti.
+`if (x >= 0) { printf("positivo o zero\n"); } else { printf("negativo\n"); }`.
+:::
+
+> [!RICORDA]
+> - Con `if-else` si esegue sempre uno e un solo blocco dei due.
+> - `else` non ha una condizione: vale «in tutti gli altri casi».
+
+## Più strade: else if (slide 7–8)
+
+A volte le strade sono più di due. Il semaforo dell'esempio ha tre colori, più il caso di un colore sbagliato. Si mettono le domande **in fila**, con `else if`:
+
+```c
+char colore = 'G';   // R = Rosso, G = Giallo, V = Verde
+if (colore == 'R') {
+    printf("Fermati!\n");
+}
+else if (colore == 'G') {
+    printf("Attenzione, rallenta.\n");
+}
+else if (colore == 'V') {
+    printf("Puoi passare.\n");
+}
+else {
+    printf("Colore non valido!\n");
+}
+```
+
+Il programma fa le domande **dall'alto in basso**:
+
+1. il colore è `'R'`? No, allora passa alla domanda dopo;
+2. il colore è `'G'`? Sì: stampa `Attenzione, rallenta.` e **salta tutto il resto**, fino alla fine della catena.
+
+Se nessuna condizione è vera, entra nell'`else` finale, il **caso di default**. Ho provato tutti i casi: `'R'`, `'G'` e `'V'` danno i loro messaggi; `'g'` minuscolo dà `Colore non valido!`, perché `'g'` e `'G'` sono caratteri diversi, con codici ASCII 103 e 71.
+
+> [!NOTA] I caratteri si confrontano con ==
+> Un `char` è un piccolo numero, il codice ASCII del carattere. Per questo `colore == 'R'` funziona come un confronto tra numeri. Il carattere va tra apici singoli: `'R'` è un carattere, `"R"` è una stringa, che si confronta in un altro modo.
+
+> [!TRAPPOLA] All'esame niente switch
+> Il C ha anche un'istruzione `switch` per scegliere tra molti valori. Le regole d'esame di Programmazione I la **vietano**, come `break` e `continue`: le catene di scelte si scrivono con `if` ed `else if`.
+
+::: prova Con il programma del semaforo e `colore = 'V'`, quante condizioni vengono controllate prima di stampare?
+Tre: `'R'`, poi `'G'`, poi `'V'`, che è vera.
+:::
+
+> [!RICORDA]
+> - Le condizioni di una catena `else if` si controllano dall'alto in basso.
+> - Si entra nel primo blocco con la condizione vera; tutti gli altri si saltano.
+> - L'`else` finale raccoglie i casi rimasti.
+
+## Gli errori più comuni (slide 9–12)
+
+Gli `if` sono semplici da scrivere e facili da sbagliare. Le slide raccolgono gli errori che si vedono più spesso. Per ognuno ho controllato che cosa fa gcc.
+
+### Un uguale solo
+
+```c
+if (a = 5) { ... }  // ERRORE: assegnamento
+```
+
+`a = 5` non chiede niente: **mette** 5 in `a`, e vale 5, cioè vero. Il blocco viene eseguito **sempre**, qualunque cosa ci fosse in `a`. gcc con `-Wall` avvisa: `suggest parentheses around assignment used as truth value`. Con `-Werror` non compila, ed è una fortuna.
+
+### Le graffe dimenticate
+
+```c
+if (x > 0)
+    printf("Positivo\n");
+    printf("Errore!\n"); // eseguito sempre
+```
+
+Senza graffe, l'`if` comanda **una sola istruzione**, la prima. La seconda `printf` è rientrata come se dipendesse dall'`if`, ma per il C il rientro non conta niente: viene eseguita sempre. gcc con `-Wall` avvisa: `this 'if' clause does not guard...`, e con `-Werror` non compila. Le slide consigliano di mettere **sempre** le graffe, anche con una sola istruzione.
+
+### L'ordine sbagliato
+
+```c
+if (num % 2 == 0) {
+    printf("Pari non nullo\n");
+}
+else if (num == 0) {
+    printf("Zero\n");   // Mai raggiunto
+}
+```
+
+Lo 0 è pari: con `num = 0` la prima condizione è già vera, e il programma stampa `Pari non nullo`, che è falso. Il blocco `Zero` non viene mai raggiunto. Si corregge mettendo **prima il caso più specifico**:
+
+```c
+if (num == 0) {
+    printf("Zero\n");
+}
+else if (num % 2 == 0) {
+    printf("Pari non nullo\n");
+}
+```
+
+Ho provato: con 0 la prima versione stampa `Pari non nullo`, la seconda `Zero`. Con 4 tutte e due stampano `Pari non nullo`.
+
+### Condizioni che non diventano mai vere
+
+```c
+if (x > 10) {
+    ...
+}
+else if (x > 20) {
+    ... // mai eseguito!
+}
+```
+
+Ogni numero maggiore di 20 è anche maggiore di 10, quindi entra già nel primo blocco. Il secondo non si raggiunge mai. Qui gcc **non avvisa**: l'errore è di logica, e lo trovi solo ragionando. Le soglie vanno in ordine dalla più alta alla più bassa (`x > 20` prima di `x > 10`), oppure con intervalli precisi.
+
+### L'else mancante
+
+È buona norma gestire **tutti** i casi, con un `else` finale anche solo per stampare un errore. Così il programma non arriva mai in una situazione che non hai previsto.
+
+### Condizioni troppo lunghe
+
+```c
+if (a > 10 && b < 5 || c == 7 && !(d%2)) {
+    ...
+}
+```
+
+Come nella [03C](03C_booleani.html), una condizione così si spezza in variabili `bool` con un nome:
+
+```c
+bool condA = (a > 10 && b < 5);
+bool condB = (c == 7 && d % 2 == 0);
+
+if (condA || condB) { ... }
+```
+
+La prima versione, tra l'altro, con `-Wall -Werror` non compila: gcc chiede le parentesi intorno agli `&&` dentro l'`||`.
+
+| Errore | gcc con `-Wall` | Con `-Werror` |
+|---|---|---|
+| `if (a = 5)` | avviso `-Wparentheses` | non compila |
+| graffe dimenticate, rientro ingannevole | avviso `-Wmisleading-indentation` | non compila |
+| `&&` dentro `\|\|` senza parentesi | avviso `-Wparentheses` | non compila |
+| ordine sbagliato delle condizioni | niente | compila, risultato sbagliato |
+| condizione mai raggiungibile | niente | compila, risultato sbagliato |
+
+::: prova Che cosa stampa questo codice con `x = 25`? `if (x > 10) { printf("A"); } else if (x > 20) { printf("B"); } else { printf("C"); }`
+`A`: 25 è maggiore di 10, quindi si entra nel primo blocco e gli altri si saltano. `B` non viene mai stampato, per nessun valore.
+:::
+
+> [!RICORDA]
+> - Sempre le graffe, anche per una sola istruzione.
+> - Prima i casi più specifici, poi quelli generali.
+> - gcc trova gli errori di scrittura, non quelli di ordine: quelli si trovano provando i casi limite.
+
+## Lo scambio condizionato (slide 13–20)
+
+L'esempio delle slide: leggere due interi `x` e `y` e stamparli dal più piccolo al più grande. La prima idea è stampare in due ordini diversi:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int x, y;
+    printf("Inserisci x:");
+    scanf("%d", &x);
+    printf("Inserisci y:");
+    scanf("%d", &y);
+    if (y < x) {
+        printf("%d %d", y, x);
+    }
+    else { // y >= x
+        printf("%d %d", x, y);
+    }
+}
+```
+
+La seconda idea è più utile: se sono nell'ordine sbagliato, **si scambiano**. Dopo l'`if` le variabili sono in ordine, e basta una sola `printf`. È lo scambio con la variabile d'appoggio della [03A](03A_scambio_variabili.html), fatto solo quando serve: uno **scambio condizionato**.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int x, y;
+    printf("Inserisci x:");
+    scanf("%d", &x);
+    printf("Inserisci y:");
+    scanf("%d", &y);
+    if (y < x) {
+        //scambio condizionato
+        int temp = x;
+        x = y;
+        y = temp;
+    }
+    printf("%d %d", x, y);
+}
+```
+
+Con 10 e 5 stampa `5 10`; con 3 e 8 stampa `3 8`, senza scambio.
+
+### Che cosa succede nella memoria
+
+Le slide 15–20 seguono il programma con l'input 10 e 5, una riga alla volta. Ogni riga della tabella è lo stato della memoria **dopo** l'istruzione indicata.
+
+| Dopo l'istruzione | `x` | `y` | `temp` |
+|---|:-:|:-:|:-:|
+| `int x, y;` | ? | ? | non esiste |
+| le due `scanf` | 10 | 5 | non esiste |
+| `int temp = x;` | 10 | 5 | 10 |
+| `x = y;` | 5 | 5 | 10 |
+| `y = temp;` | 5 | 10 | 10 |
+| la `}` dell'`if` | 5 | 10 | non esiste |
+
+La cosa nuova è l'ultima colonna. `temp` è dichiarata **dentro** il blocco dell'`if`: nasce sullo stack quando il programma arriva alla sua dichiarazione, e alla `}` del blocco **viene tolta dallo stack**. Dopo l'`if` non esiste più.
+
+> [!DEF] Visibilità di una variabile
+> Una variabile dichiarata in un blocco `{ … }` è **visibile**, cioè si può usare, solo dalla sua dichiarazione alla `}` che chiude quel blocco. Fuori dal blocco il suo nome non esiste.
+
+**Come si legge.** È la regola delle variabili locali della [02B](02B_assegnamento_memory_model.html), applicata ai blocchi dell'`if`. Se dopo l'`if` scrivi `printf("%d", temp);`, gcc si ferma: `error: 'temp' undeclared`. L'ho provato.
+
+Questo è utile: `temp` serve solo per lo scambio, e dichiararla dentro il blocco evita che qualcuno la usi per sbaglio più avanti.
+
+::: prova Con l'input 4 e 4, quante volte viene creata `temp`? Che cosa stampa il programma?
+Nessuna: `4 < 4` è falso, quindi il blocco viene saltato e `temp` non nasce. Stampa `4 4`.
+:::
+
+> [!RICORDA]
+> - Scambio condizionato: si scambia solo se l'ordine è sbagliato.
+> - Una variabile dichiarata in un blocco sparisce alla `}` del blocco.
+
+## Niente scale di if inutili (slide 21)
+
+Un `if` dentro un `else` funziona, ma spinge il codice sempre più a destra e si legge male. L'esempio delle slide è il prezzo del biglietto: gratis sotto i 6 anni, ridotto sotto i 18, intero dai 18 in su.
+
+```c
+if (eta < 6) {
+    printf("Biglietto gratuito\n");
+}
+else {
+    if (eta < 18) {
+        printf("Biglietto ridotto\n");
+    }
+    else {
+        printf("Biglietto intero\n");
+    }
+}
+```
+
+La stessa scelta con `else if` sta su un solo livello:
+
+```c
+if (eta < 6) {
+    printf("Biglietto gratuito\n");
+}
+else if (eta < 18) {
+    printf("Biglietto ridotto\n");
+}
+else {
+    printf("Biglietto intero\n");
+}
+```
+
+Le due versioni fanno esattamente la stessa cosa. Ho provato i **casi limite**, quelli sul confine tra due fasce: 5 dà gratuito, 6 ridotto, 17 ridotto, 18 intero.
+
+Nota che la seconda condizione è solo `eta < 18`, non `6 <= eta && eta < 18`: se il programma arriva lì, `eta < 6` è già falso, quindi `eta` è almeno 6. Un `else if` porta con sé il «no» di tutte le domande prima.
+
+::: prova Aggiungi una fascia: dai 65 anni in su il biglietto è ridotto. Dove metti la condizione?
+Prima dell'`else` finale: `else if (eta >= 65) { printf("Biglietto ridotto\n"); }`. Oppure, per non ripetere il messaggio, `else if (eta < 18 || eta >= 65)` al posto di `else if (eta < 18)`.
+:::
+
+> [!RICORDA]
+> - Un `if` dentro un `else` si scrive meglio con `else if`.
+> - Ogni `else if` sa già che le condizioni precedenti sono false.
+
+## Schemi che tornano sempre (slide 22–25)
+
+Alcuni `if` compaiono in quasi tutti i programmi. Vale la pena saperli scrivere senza pensarci.
+
+### Il massimo di due numeri
+
+```c
+int a, b, max;
+scanf("%d%d", &a, &b);
+// determina il massimo tra a e b
+if (a > b) {
+    max = a;
+}
+else {
+    max = b;
+}
+// in questo punto max contiene il massimo tra a e b
+```
+
+Con 4 e 9, `max` vale 9. Con due numeri uguali va bene lo stesso: si prende `b`, che vale quanto `a`.
+
+### Controllare l'input
+
+Prima di usare un valore letto, si controlla che `scanf` l'abbia letto davvero, come nella [02C](02C_referenziamento_scanf_puntatori.html):
+
+```c
+int valore;
+if (scanf("%d", &valore) == 1) {
+    printf("Hai inserito: %d\n", valore);
+}
+else {
+    printf("Input non valido\n");
+}
+```
+
+### Proteggere un'operazione
+
+Prima di dividere, si controlla che il divisore non sia zero:
+
+```c
+if (divisore != 0) {
+    printf("Risultato: %d\n", dividendo / divisore);
+}
+else {
+    printf("Errore: divisione per zero!\n");
+}
+```
+
+### Controllare un intervallo
+
+```c
+float temperatura;
+bool inputOk = scanf("%f", &temperatura) == 1;
+// 0 <= temperatura_valida <= 100
+if (inputOk && 0 <= temperatura && temperatura <= 100) {
+    printf("Temperatura entro i limiti\n");
+}
+else {
+    printf("Temperatura fuori intervallo o lettura errata\n");
+}
+```
+
+Qui lavorano insieme tre idee della [03C](03C_booleani.html): l'intervallo con due confronti, il cortocircuito che non guarda `temperatura` se la lettura è fallita, e una variabile `bool` con un nome chiaro. Ho provato: 25 e 100 sono entro i limiti; −3, 100.5 e `ciao` danno il secondo messaggio.
+
+::: prova Con il programma della temperatura e l'input `0`, che cosa stampa? Perché?
+`Temperatura entro i limiti`: l'intervallo è chiuso, `0 <= temperatura` è vero anche con 0.
+:::
+
+> [!RICORDA]
+> - Massimo: un `if-else` che sceglie quale copiare in `max`.
+> - Prima di usare un input, controlla che `scanf` restituisca 1.
+> - Prima di dividere, controlla il divisore.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `if (c) { … }` | «if», «se» | esegue il blocco se `c` è vera | `if (voto >= 18) { … }` |
+| `else { … }` | «else», «altrimenti» | il blocco da eseguire se la condizione è falsa | |
+| `else if (c) { … }` | «else if», «altrimenti se» | un'altra domanda, solo se le precedenti erano false | |
+| `{ }` | «graffe» | un blocco di istruzioni; le variabili dichiarate dentro vivono solo lì | |
+| `'R'` | «carattere R» | un `char`, tra apici singoli | `colore == 'R'` |
+
+## Verso l'esame
+
+All'esame, su CodeRunner, quasi ogni esercizio ha degli `if`. Le cose da avere in mano:
+
+1. **compila con `-Wall -Werror`** e leggi gli avvisi: `=` al posto di `==` e le graffe dimenticate vengono fermati qui;
+2. **`int main(void)`**, non `void main()`;
+3. **niente `switch`, `break` e `continue`**: le scelte si fanno con `if` ed `else if`;
+4. **prova i casi limite**: lo zero, i numeri uguali, i valori sul confine tra due fasce (17 e 18, 5 e 6);
+5. **un `else` finale** per i casi che non ti aspetti, come l'input non valido.
+
+Negli esercizi sullo **stato della memoria** può comparire un `if` con una variabile dichiarata dentro: la sua casella esiste solo mentre il programma è nel blocco, e alla `}` si cancella.
+
+> [!METODO] Seguire un programma con gli if
+> 1. Scrivi i valori iniziali delle variabili.
+> 2. A ogni `if`, calcola la condizione con i valori di quel momento e scrivi «vero» o «falso».
+> 3. Segui solo il blocco scelto; in una catena `else if`, fermati alla prima condizione vera.
+> 4. Aggiorna la tabella dei valori dopo ogni assegnamento, e cancella le variabili del blocco alla sua `}`.
+
+## Quiz
+
+```quiz
+D: Che cosa stampa `int n = 0; if (n % 2 == 0) { printf("A"); } else if (n == 0) { printf("B"); } else { printf("C"); }`?
++ `A`
+- `B`
+- `AB`
+- `C`
+- niente
+= 0 % 2 vale 0, quindi la prima condizione è vera: stampa `A` e salta il resto. La risposta più insidiosa è `B`: il caso dello zero è scritto, ma dopo un caso più generale che lo cattura prima.
+
+D: Che cosa stampa questo codice con `x = -3`? `if (x > 0) printf("P"); printf("Q");`
++ `Q`
+- `PQ`
+- niente
+- `P`
+- non compila mai
+= Senza graffe l'`if` comanda solo la prima `printf`. La seconda si esegue sempre. La risposta più insidiosa è «niente»: il rientro e la riga sotto fanno credere che anche `Q` dipenda dall'`if`. Scritto su due righe rientrate, gcc con `-Wall -Werror` lo ferma.
+
+D: Con `int a = 0;`, che cosa stampa `if (a = 7) { printf("%d", a); }` compilato senza opzioni?
++ `7`
+- niente
+- `0`
+- `1`
+- un indirizzo
+= `a = 7` assegna 7 e vale 7, quindi la condizione è vera e si stampa il nuovo valore di `a`. La risposta più insidiosa è «niente», che si avrebbe con `a == 7`. Con `-Wall -Werror` non compilerebbe.
+
+D: Perché `void main() { … }` non va bene all'esame?
++ Con `-Wall -Werror` gcc non lo compila: `main` deve restituire `int`
+- Il C non permette `void`
+- Manca `return 0`
+- Non si possono dichiarare variabili dentro `main`
+- `void main` non può usare `scanf`
+= gcc avvisa `return type of 'main' is not 'int'`, e con `-Werror` l'avviso diventa un errore. La risposta più insidiosa è `return 0`: in `int main(void)` si può anche omettere, per `main` vale 0 da solo.
+
+D: Dopo questo codice, che cosa succede alla riga `printf("%d", temp);`? `int x = 2, y = 1; if (y < x) { int temp = x; x = y; y = temp; } printf("%d", temp);`
++ Non compila: `temp` non è dichiarata in quel punto
+- Stampa 2
+- Stampa 1
+- Stampa un valore a caso
+- Stampa 0
+= `temp` vive solo dentro il blocco dell'`if`: alla `}` sparisce, e gcc dà `error: 'temp' undeclared`. La risposta più insidiosa è 2, il valore che `temp` aveva nel blocco.
+
+D: Quale catena dà il prezzo giusto per ogni età: gratis sotto i 6, ridotto da 6 a 17, intero dai 18?
++ `if (eta < 6) … else if (eta < 18) … else …`
+- `if (eta < 18) … else if (eta < 6) … else …`
+- `if (eta < 6) … if (eta < 18) … else …`
+- `if (eta <= 6) … else if (eta <= 18) … else …`
+- `if (eta < 6) … else if (eta > 18) … else …`
+= Le domande vanno dalla più specifica. La risposta più insidiosa è la seconda: con 3 anni `eta < 18` è già vera, e il caso gratuito non arriva mai. La terza, con due `if` separati, a 3 anni stampa due messaggi; la quarta sbaglia i confini 6 e 18; la quinta dà il ridotto a 18 anni.
+
+D: Con `int x = 7, y = 3, z;` e poi `if (x > y) { z = x - y; } else { z = y - x; }`, quanto vale `z`?
+N: 4
+= 7 > 3 è vero, quindi si esegue il primo blocco: z = 7 − 3 = 4. In tutti e due i casi `z` è la distanza tra i due numeri.
+
+D: Quale riga legge un intero e lo usa solo se la lettura è riuscita?
++ `if (scanf("%d", &v) == 1) { … }`
+- `if (scanf("%d", &v)) == 1 { … }`
+- `if (scanf("%d", v) == 1) { … }`
+- `if (v == scanf("%d", &v)) { … }`
+- `if (scanf("%d", &v) = 1) { … }`
+= `scanf` restituisce quanti valori ha letto, e serve la `&`. La risposta più insidiosa è quella con `= 1`: è un assegnamento, e non compila nemmeno, perché non si può assegnare al risultato di una funzione. La seconda ha le parentesi nel posto sbagliato.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: che cosa stampa?
+Con `int x = 7, y = 3, z = 0;` esegui: `if (x > y) { z = x - y; } else { z = y - x; }` e poi `if (z % 2 == 0) { x = x + z; } else if (z > 3) { y = y + z; } else { x = 0; }`. Quanto valgono `x`, `y`, `z`?
+::: soluzione
+`z = 4`. Poi `4 % 2 == 0` è vero, quindi `x = 7 + 4 = 11`, e il resto della catena si salta. Alla fine `x = 11`, `y = 3`, `z = 4`. Il programma che stampa i tre valori dà `11 3 4`.
+:::
+
+::: esercizio base Riscaldamento: trova gli errori
+Ogni riga ha un errore. Trovalo. (a) `if (n = 0) { printf("zero"); }` (b) `if n > 0 { printf("positivo"); }` (c) `if (x > 0); { printf("positivo"); }` (d) `else (x < 0) { printf("negativo"); }`
+::: soluzione
+(a) `=` al posto di `==`. (b) Mancano le parentesi tonde intorno alla condizione: `if (n > 0)`. (c) Il `;` dopo la parentesi chiude l'`if` con un'istruzione vuota: il blocco si esegue sempre. gcc con `-Wall` se ne accorge quando il blocco sta sulla stessa riga (`this 'if' clause does not guard...`). (d) `else` non ha condizione: serve `else if (x < 0)`.
+:::
+
+::: esercizio base Riscaldamento: i casi limite
+Per il codice del biglietto (gratis sotto i 6, ridotto sotto i 18, intero altrimenti), quali età proveresti per controllarlo? Perché proprio quelle?
+::: soluzione
+5 e 6, 17 e 18: sono i valori ai due lati di ogni confine, dove un `<` scritto al posto di `<=` cambia il risultato. In più un valore in mezzo a ogni fascia, per esempio 2, 10 e 40, e magari 0.
+:::
+
+::: esercizio medio Il massimo di tre numeri
+Scrivi un programma che legge tre interi e stampa il più grande. Prova con 4 9 2, con −1 −5 −3 e con 7 7 7.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a, b, c;
+    scanf("%d %d %d", &a, &b, &c);
+    int max = a;
+    if (b > max) {
+        max = b;
+    }
+    if (c > max) {
+        max = c;
+    }
+    printf("%d\n", max);
+    return 0;
+}
+```
+Stampa 9, −1 e 7. L'idea: si parte da un candidato e lo si aggiorna quando si trova di meglio. Qui gli `if` sono **separati**, non in catena, perché ogni confronto va fatto comunque. È lo stesso schema che userai con i cicli per il massimo di un array.
+:::
+
+::: esercizio medio Il voto in parole
+Scrivi un `if-else if` che legge un voto da 0 a 30 e stampa `insufficiente` sotto il 18, `sufficiente` da 18 a 23, `buono` da 24 a 27, `ottimo` da 28 in su. Con quali voti lo provi?
+::: soluzione
+```c
+if (v < 18) {
+    printf("insufficiente\n");
+}
+else if (v < 24) {
+    printf("sufficiente\n");
+}
+else if (v < 28) {
+    printf("buono\n");
+}
+else {
+    printf("ottimo\n");
+}
+```
+Provato con 17, 18, 24, 27, 28 e 30: danno insufficiente, sufficiente, buono, buono, ottimo, ottimo. Ogni `else if` sa già che il voto non è sotto la soglia precedente.
+:::
+
+::: esercizio esame Ordinare tre numeri
+Scrivi un programma che legge tre interi `a`, `b`, `c` e li stampa dal più piccolo al più grande, usando solo scambi condizionati. Se la lettura non riesce, stampa `Input non valido`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int a, b, c;
+    if (scanf("%d %d %d", &a, &b, &c) == 3) {
+        // porta il piu' piccolo in a
+        if (b < a) {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+        if (c < a) {
+            int temp = a;
+            a = c;
+            c = temp;
+        }
+        // ora a e' il minimo: sistema b e c
+        if (c < b) {
+            int temp = b;
+            b = c;
+            c = temp;
+        }
+        printf("%d %d %d\n", a, b, c);
+    }
+    else {
+        printf("Input non valido\n");
+    }
+    return 0;
+}
+```
+Provato con 3 1 2, 9 8 7, 5 5 1 e 1 2 3: stampa sempre i numeri in ordine. Con `x` stampa `Input non valido`. Ogni `temp` vive solo nel suo blocco, quindi lo stesso nome si può usare tre volte.
+:::
+
+::: esercizio esame La tariffa del parcheggio
+Un parcheggio costa: la prima ora gratis, poi 2 euro per ogni ora dopo la prima, fino a 5 ore; oltre le 5 ore 12 euro fissi. Scrivi un programma che legge le ore (un intero) e stampa il prezzo, con un messaggio di errore se l'input non è valido o è negativo.
+::: soluzione
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+    int ore;
+    bool letto = (scanf("%d", &ore) == 1);
+    if (!letto || ore < 0) {
+        printf("Input non valido\n");
+    }
+    else if (ore <= 1) {
+        printf("Gratis\n");
+    }
+    else if (ore <= 5) {
+        printf("%d euro\n", (ore - 1) * 2);
+    }
+    else {
+        printf("12 euro\n");
+    }
+    return 0;
+}
+```
+Provato: 0 e 1 danno `Gratis`, 3 dà `4 euro`, 5 dà `8 euro`, 6 dà `12 euro`, −2 e `boh` danno `Input non valido`. Il primo controllo usa il cortocircuito: se `letto` è falso, `ore` non viene guardata.
+:::
+
+## Domande di ripasso
+
+::: domanda Quali sono le tre strutture della programmazione strutturata?
+Sequenza, selezione e iterazione.
+:::
+
+::: domanda Che cosa dice il teorema di Böhm-Jacopini?
+Che sequenza, selezione e iterazione bastano per scrivere qualunque algoritmo.
+:::
+
+::: domanda In una catena `if … else if … else`, quanti blocchi vengono eseguiti?
+Uno solo: il primo con la condizione vera, oppure l'`else` se nessuna è vera.
+:::
+
+::: domanda Perché conviene mettere sempre le graffe?
+Perché senza graffe l'`if` comanda solo l'istruzione dopo, e una seconda riga rientrata sembra dipendere dall'`if` ma viene eseguita sempre.
+:::
+
+::: domanda In che ordine vanno le condizioni di una catena `else if`?
+Dalla più specifica alla più generale: altrimenti un caso generale cattura prima quello specifico.
+:::
+
+::: domanda Dove si può usare una variabile dichiarata dentro il blocco di un `if`?
+Solo dentro quel blocco, dalla dichiarazione alla `}`. Fuori non esiste.
+:::
+
+::: domanda Come si controlla che `scanf` abbia letto un intero?
+Con `if (scanf("%d", &x) == 1)`: `scanf` restituisce quanti valori ha letto.
+:::
+
+## Glossario
+
+```glossario
+Flusso di controllo | L'ordine in cui il programma esegue le istruzioni.
+Programmazione strutturata | Scrivere i programmi solo con sequenza, selezione e iterazione.
+Teorema di Böhm-Jacopini | Sequenza, selezione e iterazione bastano per qualunque algoritmo (1966).
+Selezione | Scegliere quale blocco eseguire in base a una condizione.
+if | Esegue un blocco solo se la condizione è vera.
+else | Il blocco da eseguire quando la condizione è falsa.
+else if | Una nuova condizione, controllata solo se le precedenti erano false.
+Blocco | Istruzioni tra graffe; le variabili dichiarate dentro esistono solo lì.
+Visibilità | La parte di programma in cui un nome di variabile si può usare.
+Scambio condizionato | Scambiare due variabili solo se sono nell'ordine sbagliato.
+Caso limite | Un valore sul confine tra due casi, dove gli errori si vedono meglio.
+```
+
+## Checklist
+
+```checklist
+- So nominare le tre strutture e il teorema di Böhm-Jacopini.
+- So scrivere `if`, `if-else` e una catena `else if`.
+- So che in una catena si esegue un solo blocco, il primo con la condizione vera.
+- So riconoscere `=` al posto di `==` e le graffe dimenticate.
+- So mettere le condizioni dalla più specifica alla più generale.
+- So che una variabile dichiarata in un blocco sparisce alla sua `}`.
+- So scrivere lo scambio condizionato e seguirlo nella memoria.
+- So scrivere senza pensarci il massimo, il controllo dell'input, la divisione protetta e l'intervallo.
+- So scegliere i casi limite per provare un programma con gli `if`.
+```
+
+## Fonti
+
+- Slide «Dal flusso sequenziale alle decisioni. Introduzione al controllo di flusso nella programmazione strutturata» (03D_decisioni), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: programmazione strutturata e Böhm-Jacopini (slide 2–3), `if`, `if-else`, `else if` (4–8), errori comuni e buona prassi (9–12), stampa in ordine e visibilità nei blocchi (13–20), annidamenti (21), schemi ricorrenti (22–25).
+- C. Böhm, G. Jacopini, «Flow diagrams, Turing machines and languages with only two formation rules», *Communications of the ACM*, 1966.
+- Regole d'esame e lezioni dei canali A e C dalla [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+- Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con `-Wall -Werror` (gli esempi con `void main()` anche senza opzioni), ed eseguiti; gli avvisi citati sono quelli veri. Le soluzioni, i quiz e gli esercizi sono di questi appunti.
 
 
 ---
@@ -16784,6 +18191,7 @@ Le lezioni seguono il libro di Andrea Mori e gli argomenti indicati per il canal
 | D03 | Prodotto cartesiano e relazioni di equivalenza | cap. 1, pp. 13–15; app. A, pp. 153–155 | `lezioni/D03_prodotto_cartesiano_relazioni.md` · HTML: `appunti/MDAG/D03_prodotto_cartesiano_relazioni.html` | coppie ordinate, prodotto cartesiano e numero dei suoi elementi, terne, relazioni, proprietà riflessiva, simmetrica, antisimmetrica e transitiva, relazioni d'ordine, relazioni di equivalenza, congruenza modulo N, classi di equivalenza e partizioni, insieme quoziente. Argomenti ricostruiti dal libro e dal diario 2025/26: il docente non li aveva ancora pubblicati |
 | D04 | Funzioni, immagini e controimmagini | cap. 2, pp. 17–23; esercizi 2.1–2.8 | `lezioni/D04_funzioni_immagini_controimmagini.md` · HTML: `appunti/MDAG/D04_funzioni_immagini_controimmagini.html` | funzione come grafico in $A \times B$ (un pallino per colonna), dominio e codominio, funzioni uguali; identità, costanti, proiezioni, successioni, funzione quoziente, prodotto; restrizione; buona definizione; immagine $f(S)$ e $\operatorname{Im}(f)$; controimmagine $f^{-1}(b)$, $f^{-1}(T)$; suriettiva, iniettiva, biettiva (righe della tabella, Proposizione 2.11); domanda 3 del quiz (14/01/2025) |
 | D05 | Composizione di funzioni e funzioni inverse | cap. 2, pp. 23–29; esercizi 2.10–2.15 | `lezioni/D05_composizione_funzioni_inverse.md` · HTML: `appunti/MDAG/D05_composizione_funzioni_inverse.html` | composizione $g \circ f$ (prima $f$, poi $g$), quando si può comporre, calcolo con le formule e con tre funzioni; proprietà associativa, identità neutra, costanti, non commutativa; composizione e iniettività o suriettività (Proposizioni 2.16, 2.17, Corollario 2.18); funzioni inverse, esistono solo per le biezioni e sono uniche (Teorema 2.20), come si trova l'inversa di una formula; $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$; cancellazione; domanda 3 del quiz, tutti i modelli 2025–2026. Argomenti ricostruiti dal libro e dal diario 2025/26 |
+| D06 | Insiemi finiti, principio dei piccioni e inclusione-esclusione | cap. 3, pp. 39–48; esercizi 3.1, 3.4–3.6, 3.10 | `lezioni/D06_insiemi_finiti_inclusione_esclusione.md` · HTML: `appunti/MDAG/D06_insiemi_finiti_inclusione_esclusione.html` | equipollenza e cardinalità con le biezioni ($\N$ e i pari, $\N \times \N$); $\lvert A \rvert \le \lvert B \rvert$ e Schröder-Bernstein; finito e infinito (Def 3.5), Prop 3.6 e Nota 3.8 (iniettiva = suriettiva = biettiva tra insiemi finiti con lo stesso numero di elementi), $I_n$; principio dei piccioni; numerabili ($\Z$, $\Q$ sì, $\R$ no); inclusione-esclusione per 2 e 3 insiemi, usata al contrario e per i «né… né…»; multipli con la parte intera e il minimo comune multiplo; appello del 01/07/2026, problema 1, versioni A–D; sviste del libro a p. 47 e p. 48 |
 
 ## Algebra lineare e Geometria (parte 2, modB)
 
@@ -21665,6 +23073,585 @@ Cancellazione | Una funzione biettiva si può togliere da tutte e due le parti d
 - Programma del corso: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md), voce «Relazioni e funzioni».
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): un riepilogo già pronto, non ufficiale.
 - Le spiegazioni a parole, la mensa con la cassa e le tessere, gli uffici dei pacchi, le calze e le scarpe, i riquadri «Prova tu», i quiz senza data, gli esercizi di riscaldamento e gli esercizi sulle versioni d'esame sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D06_insiemi_finiti_inclusione_esclusione.md -->
+> File: `contesto_ai/MDAG/lezioni/D06_insiemi_finiti_inclusione_esclusione.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D06
+titolo: Insiemi finiti, principio dei piccioni e inclusione-esclusione
+data: 2026-10-14
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D06
+descrizione: >-
+  Appunti della lezione D06 di Matematica Discreta (MDAG, parte 1, canali A, B e C): insiemi equipollenti e
+  cardinalità, insiemi finiti e infiniti, funzioni tra insiemi finiti con lo stesso numero di elementi, il principio
+  dei piccioni, insiemi numerabili, il principio di inclusione-esclusione per due e per tre insiemi, come contare i
+  multipli di un numero con la parte intera e il minimo comune multiplo, con il problema d'esame del 01/07/2026.
+lede: >-
+  Il capitolo 3 di Mori comincia a contare. Prima una domanda che sembra facile: che cosa vuol dire che due insiemi
+  hanno lo stesso numero di elementi? Poi due strumenti che si usano di continuo: il principio dei piccioni e la
+  formula per contare gli elementi di un'unione senza contare due volte quelli in comune.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 3, pp. 39–48, esercizi pp. 64–65
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2–3 ore, anche in più volte
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 3 «Combinatorica», pp. 39–48, ed esercizi
+  3.1–3.6 e 3.10; diario delle lezioni del canale B 2025/26; problema 1 dell'appello di Matematica Discreta del
+  01/07/2026
+appunti_html: appunti/MDAG/D06_insiemi_finiti_inclusione_esclusione.html
+genera_html: true
+```
+
+## In breve
+
+- Due insiemi hanno lo **stesso numero di elementi** quando si possono accoppiare uno a uno, cioè quando c'è una funzione biettiva tra loro. È la definizione di **cardinalità**, e funziona anche per gli insiemi infiniti.
+- Un insieme è **finito** quando ogni funzione iniettiva da sé in sé è anche suriettiva. Tra due insiemi finiti con lo stesso numero di elementi, per una funzione iniettiva, suriettiva e biettiva vogliono dire la stessa cosa.
+- **Principio dei piccioni**: se ci sono più piccioni che gabbie, almeno una gabbia ha due piccioni o più. Detto con le funzioni: da un insieme più grande a uno più piccolo non ci sono funzioni iniettive.
+- Alcuni insiemi infiniti si possono mettere in fila come una lista: interi e frazioni sì, i numeri reali no.
+- **Inclusione-esclusione con due insiemi**: gli elementi dell'unione sono quelli del primo più quelli del secondo, meno quelli in comune, che altrimenti si contano due volte.
+- **Con tre insiemi**: si sommano i tre, si tolgono le tre intersezioni a due, si aggiunge l'intersezione di tutti e tre.
+- I multipli di 3 tra 1 e 20 sono 6: la **parte intera** di 20 diviso 3. I numeri divisibili per 4 e per 6 sono i multipli del **minimo comune multiplo**, 12, non di 24.
+- All'esame il primo problema dell'appello del 01/07/2026 chiedeva proprio questi conti, in quattro versioni.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di mercoledì 14/10/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho trovati sul Moodle del canale B: li ho ricostruiti dall'ordine del libro e dal diario dell'anno scorso, in cui la sesta lezione era «principio della gabbia dei piccioni, mappe iniettive, suriettive e biettive tra insiemi finiti, il principio di inclusione/esclusione per due o tre insiemi, ordinamenti». Gli «ordinamenti», cioè i modi di mettere in fila gli elementi, sono nella sezione dopo del libro, «il metodo delle scelte successive» (p. 48): li tratto nella prossima lezione. Quando il docente pubblica gli argomenti, controllo e aggiorno.
+>
+> Nel libro ho trovato due sviste, segnalate nel testo: a p. 47 il risultato dell'esempio sui film, e a p. 48 un'intersezione scritta al posto di un'unione.
+
+## Contare senza numeri (pp. 39–40)
+
+Immagina una sala da ballo. Vuoi sapere se ci sono tanti uomini quante donne, ma non hai voglia di contarli. Fai una cosa più furba: chiedi a tutti di formare delle coppie, un uomo e una donna. Se alla fine nessuno resta da solo, sono lo stesso numero. Non hai usato nessun numero, solo un accoppiamento.
+
+Contare gli elementi di un insieme vuol dire proprio questo: mettere un'etichetta «1» su un elemento, «2» su un altro, e così via, senza saltarne e senza ripeterne. È un accoppiamento tra gli elementi e i numeri $1, 2, 3, \dots$. Nella lezione D04 un accoppiamento così, senza nessuno da solo e senza nessuno con due compagni, aveva un nome: una **funzione biettiva**.
+
+> [!DEF] 3.1 · Insiemi equipollenti, cardinalità
+> Due insiemi $A$ e $B$ sono **equipollenti** se esiste una funzione biettiva $f \colon A \to B$. In questo caso hanno la stessa **cardinalità**, e si scrive $\lvert A \rvert = \lvert B \rvert$.
+
+**Come si legge.** «Equipollenti» è una parola vecchia per «ugualmente potenti»: due insiemi lo sono quando si possono accoppiare uno a uno. La cardinalità $\lvert A \rvert$, che hai visto nella lezione D01 come «numero degli elementi», ora ha una definizione precisa che non ha bisogno di contare.
+
+Le biezioni si compongono, come nella lezione D05. Quindi se un primo insieme si accoppia con un secondo, e il secondo con un terzo, anche il primo si accoppia con il terzo.
+
+### Le sorprese degli insiemi infiniti
+
+Con questa definizione gli insiemi infiniti si comportano in modo strano.
+
+- **I naturali e i pari.** La funzione che manda $n$ in $2n$ accoppia ogni naturale con un numero pari: 0 con 0, 1 con 2, 2 con 4, e così via. Ogni pari ha il suo compagno, $m$ con $m/2$. Quindi i naturali e i numeri pari sono **lo stesso numero**, anche se i pari sono solo una parte dei naturali. Il libro ricorda che l'osservazione risale a Galileo Galilei.
+- **Le coppie di naturali.** Anche $\N \times \N$, l'insieme delle coppie della lezione D03, ha tanti elementi quanti $\N$. Basta mettere le coppie in fila: prima quella con somma 0, poi quelle con somma 1, poi quelle con somma 2, e così via. Ogni coppia prima o poi arriva, e riceve il suo numero.
+
+| Posto nella fila | 0 | 1 | 2 | 3 | 4 | 5 | 6 | … |
+|---|---|---|---|---|---|---|---|---|
+| Coppia | $(0,0)$ | $(0,1)$ | $(1,0)$ | $(0,2)$ | $(1,1)$ | $(2,0)$ | $(0,3)$ | … |
+
+::: prova Trova una funzione biettiva tra $\{a, b, c\}$ e $\{1, 2, 3\}$. Ce n'è una tra $\{a, b, c\}$ e $\{1, 2\}$?
+Per esempio $a \mapsto 1$, $b \mapsto 2$, $c \mapsto 3$. Tra $\{a, b, c\}$ e $\{1, 2\}$ no: due lettere dovrebbero andare nello stesso numero, e la funzione non sarebbe iniettiva.
+:::
+
+> [!RICORDA]
+> - Stessa cardinalità vuol dire: c'è una funzione biettiva tra i due insiemi.
+> - Con gli insiemi infiniti, una parte può avere tanti elementi quanto il tutto.
+
+## Più piccolo o uguale (pp. 40–41)
+
+Torna alla sala da ballo. Se ogni uomo trova una compagna ma restano donne sole, le donne sono di più, o almeno non sono meno. Un accoppiamento in cui ognuno del primo gruppo ha un compagno diverso è una **funzione iniettiva**.
+
+> [!DEF] 3.2 · Cardinalità più piccola o uguale
+> Se esiste una funzione iniettiva $A \to B$, si scrive $\lvert A \rvert \le \lvert B \rvert$.
+
+**Come si legge.** «$A$ entra in $B$ senza sovrapposizioni». La Nota 3.3 del libro aggiunge che, per insiemi non vuoti, è lo stesso che chiedere una funzione suriettiva da $B$ ad $A$: è l'esercizio 3.1, svolto in fondo.
+
+Due esempi del libro:
+
+- se $A \subset B$, la funzione che manda ogni elemento in sé stesso è iniettiva, quindi $\lvert A \rvert \le \lvert B \rvert$;
+- ogni insieme non vuoto ha al massimo tanti elementi quanti il suo insieme delle parti, della lezione D01. Basta mandare ogni elemento $x$ nel sottoinsieme $\{x\}$: elementi diversi danno sottoinsiemi diversi.
+
+Il Teorema 3.4 raccoglie due fatti che il libro accetta senza dimostrazione, perché la dimostrazione va oltre il corso: due insiemi si possono sempre confrontare, e se $\lvert A \rvert \le \lvert B \rvert$ e $\lvert B \rvert \le \lvert A \rvert$ allora $\lvert A \rvert = \lvert B \rvert$. Il secondo è il **teorema di Schröder-Bernstein**.
+
+::: prova Perché $\lvert \{1, 2\} \rvert \le \lvert \{1, 2, 3, 4\} \rvert$?
+Perché $\{1, 2\}$ è contenuto in $\{1, 2, 3, 4\}$: la funzione che manda 1 in 1 e 2 in 2 è iniettiva.
+:::
+
+> [!RICORDA]
+> - Funzione iniettiva da $A$ a $B$: $A$ ha al massimo tanti elementi quanti $B$.
+> - Un sottoinsieme ha al massimo tanti elementi quanti l'insieme che lo contiene.
+
+## Insiemi finiti e infiniti (pp. 41–44)
+
+Prendi un insieme e una funzione iniettiva da lui in sé stesso: ogni elemento va in un elemento diverso. Con un insieme di 5 persone che si scambiano i posti a sedere, nessuno resta in piedi e nessuna sedia resta vuota: se nessuna sedia ha due persone, allora tutte le sedie sono occupate. Con i naturali invece la funzione $n \mapsto n + 1$ è iniettiva ma lascia fuori lo 0. È questa la differenza tra finito e infinito.
+
+> [!DEF] 3.5 · Insieme finito e infinito
+> Un insieme $A$ è **infinito** se esiste una funzione $f \colon A \to A$ iniettiva ma non suriettiva. È **finito** se non è infinito, cioè se ogni funzione iniettiva $f \colon A \to A$ è una biezione.
+
+**Come si legge.** Infinito vuol dire «c'è posto per tutti e ne avanza»: come nell'albergo con infinite stanze, dove si sposta ogni ospite di una stanza e la prima si libera. Finito vuol dire che questo trucco non riesce mai.
+
+### Tra insiemi finiti, le tre proprietà coincidono
+
+Torna alle 5 persone e alle 5 sedie. Ogni modo di farle sedere è una funzione dalle persone alle sedie. Se nessuna sedia ha due persone, la funzione è iniettiva, e allora nessuna sedia resta vuota: è anche suriettiva. Il libro lo dice per una funzione da un insieme finito in sé stesso.
+
+> [!PROP] 3.6
+> Sia $A$ un insieme finito e $f \colon A \to A$ una funzione. Sono equivalenti: $f$ è iniettiva; $f$ è suriettiva; $f$ è biettiva.
+
+**Come si legge.** Con le persone e le sedie: se nessuna sedia ha due persone, tutte sono occupate; se tutte le sedie sono occupate, nessuna ne ha due. Basta controllare una delle due proprietà, e l'altra viene gratis.
+
+> [!DIM] della Proposizione 3.6 (p. 41)
+> Se $f$ è iniettiva, è suriettiva per la definizione di insieme finito. Se $f$ è suriettiva, ogni controimmagine $f^{-1}(a)$ è non vuota: si sceglie un elemento $g(a)$ in ognuna. Controimmagini di elementi diversi sono disgiunte, quindi $g$ è iniettiva, e allora anche suriettiva. Ma allora ogni elemento di $A$ è il $g(a)$ di qualche $a$, quindi ogni controimmagine contiene esattamente un elemento: $f$ è iniettiva. Infine, biettiva vuol dire iniettiva e suriettiva.
+
+### I numeri da 1 a n
+
+Il libro chiama $I_n$ l'insieme dei numeri da 1 a $n$: $I_n = \{1, 2, \dots, n\}$. Sono i modelli di tutti gli insiemi finiti. Il Teorema 3.7 dice che:
+
+1. ogni $I_n$ è finito;
+2. se $m \neq n$, $I_m$ e $I_n$ non sono equipollenti;
+3. se $m \le n$, allora $\lvert I_m \rvert \le \lvert I_n \rvert$;
+4. ogni insieme finito non vuoto è equipollente a uno e un solo $I_n$;
+5. ogni insieme infinito contiene una copia dei naturali: $\lvert \N \rvert \le \lvert X \rvert$.
+
+Quindi si può scrivere $\lvert I_n \rvert = n$, e per ogni insieme finito $A$ c'è un solo numero $n$ con $\lvert A \rvert = n$: il suo numero di elementi, quello che conti sulle dita.
+
+> [!DIM] del Teorema 3.7, in breve (pp. 41–43)
+> 1. Per induzione su $n$, come nella lezione D02. Data $f \colon I_{n+1} \to I_{n+1}$ iniettiva, se $f(n+1) = n+1$ la restrizione a $I_n$ è iniettiva in $I_n$ e quindi suriettiva. Altrimenti si compone $f$ con lo scambio $s$ di $f(n+1)$ e $n+1$, e ci si riporta al primo caso.
+> 2. Per assurdo, con lo stesso scambio, si scende al più piccolo $m$ per cui succederebbe e si trova una contraddizione.
+> 3. La funzione $k \mapsto k$ da $I_m$ a $I_n$ è iniettiva.
+> 4. Si tolgono gli elementi uno alla volta: $x_1$, poi $x_2$, e così via. Se non si finisse mai, la funzione $x_1 \mapsto x_2$, $x_2 \mapsto x_3$, … sarebbe iniettiva ma non suriettiva. Quindi si finisce dopo $n$ passi, e $i \mapsto x_i$ è una biezione da $I_n$ ad $A$.
+> 5. Si prende un elemento fuori dall'immagine di una $f$ iniettiva non suriettiva, e si applica $f$ di continuo: si ottengono infiniti elementi tutti diversi.
+
+La Nota 3.8 estende la Proposizione 3.6: tra due insiemi finiti **diversi** con lo **stesso numero** di elementi, una funzione è iniettiva se e solo se è suriettiva, se e solo se è biettiva.
+
+::: prova Una funzione da $\{1, 2, 3, 4\}$ a $\{a, b, c, d\}$ manda 1 in $b$, 2 in $d$, 3 in $a$, 4 in $c$. È biettiva?
+Sì. I due insiemi hanno 4 elementi, e la funzione è iniettiva: le quattro immagini sono diverse. Per la Nota 3.8 è anche suriettiva, quindi biettiva.
+:::
+
+> [!RICORDA]
+> - Finito: ogni funzione iniettiva da sé in sé è biettiva.
+> - Tra insiemi finiti con lo stesso numero di elementi: iniettiva, suriettiva e biettiva vogliono dire la stessa cosa.
+
+## Il principio dei piccioni (p. 44)
+
+Hai 10 piccioni e 9 gabbie, e ogni piccione deve entrare in una gabbia. Comunque li sistemi, almeno una gabbia ne avrà due. Sembra una banalità da niente, ma permette di dimostrare cose che altrimenti nessuno saprebbe controllare.
+
+> [!TEOREMA] Nota 3.9 · Principio dei piccioni
+> Se $A$ e $B$ sono insiemi finiti con $\lvert A \rvert > \lvert B \rvert$, non esiste nessuna funzione iniettiva $A \to B$. Detto con i piccioni: se ci sono più piccioni che gabbie, almeno una gabbia contiene più di un piccione.
+
+**Come si legge.** $P$ è l'insieme dei piccioni, $G$ quello delle gabbie. Mettere ogni piccione in una gabbia è una funzione $f \colon P \to G$. I piccioni nella gabbia $g$ sono la controimmagine $f^{-1}(g)$. Con più piccioni che gabbie la funzione non può essere iniettiva, quindi qualche controimmagine ha più di un elemento. In altri testi i piccioni sono calzini e le gabbie sono cassetti: è lo stesso principio.
+
+> [!ESEMPIO] · Tre usi del principio
+> - **Il compleanno.** In un gruppo di 13 persone, due sono nate nello stesso mese. I piccioni sono le 13 persone, le gabbie i 12 mesi.
+> - **I capelli.** L'esempio del libro: un corpo umano ha circa 5 milioni di peli. In una città con molti più di 5 milioni di abitanti, anche senza contare chi non ne ha, due persone hanno esattamente lo stesso numero di peli. I piccioni sono gli abitanti, le gabbie i numeri possibili di peli.
+> - **I calzini.** In un cassetto ci sono calzini neri e bianchi, mescolati al buio. Per essere sicuro di avere due calzini dello stesso colore ne bastano 3: i colori sono 2 gabbie, e 3 calzini sono più di 2.
+
+> [!TRAPPOLA] Il principio dice che c'è, non dice dove
+> Il principio garantisce che **esiste** una gabbia con due piccioni, ma non dice **quale**. Nel gruppo di 13 persone non sai in che mese sono nate le due, solo che ci sono.
+
+::: prova Quanti numeri devi scegliere tra 1 e 100 per essere sicuro che due abbiano la stessa ultima cifra?
+11. Le ultime cifre possibili sono 10, da 0 a 9: sono le gabbie. Con 11 numeri, cioè 11 piccioni, due finiscono nella stessa gabbia. Con 10 non basta: 1, 2, …, 10 hanno ultime cifre tutte diverse.
+:::
+
+> [!RICORDA]
+> - Più piccioni che gabbie: almeno una gabbia con due piccioni o più.
+> - Il trucco negli esercizi è decidere chi sono i piccioni e chi le gabbie.
+
+## Insiemi che si mettono in fila (pp. 44–45)
+
+Gli insiemi infiniti non sono tutti uguali. Alcuni si possono scrivere come una lista, un elemento dopo l'altro, in modo che ogni elemento prima o poi compaia.
+
+> [!DEF] 3.10 · Insieme numerabile
+> Un insieme $X$ è **numerabile** se è equipollente a $\N$.
+
+**Come si legge.** Numerabile vuol dire «si può mettere in fila»: $X = \{a_1, a_2, a_3, \dots\}$, dove $a_1$ è il primo della fila, $a_2$ il secondo, e così via.
+
+- **Gli interi** sono numerabili: la fila $0, 1, -1, 2, -2, 3, -3, \dots$ li contiene tutti. Non importa che non siano in ordine di grandezza.
+- **Le frazioni** sono numerabili: si mettono in fila le frazioni positive secondo la somma di numeratore e denominatore, saltando quelle non ridotte, e poi si alternano i positivi con i negativi.
+- **I numeri reali no.** Verso il 1880 Georg Cantor ha dimostrato che $\R$ non si può mettere in fila. Ha dimostrato anche che l'insieme delle parti ha sempre **più** elementi dell'insieme di partenza. Il libro si limita a citarlo.
+
+All'esame questa parte non è mai stata chiesta: serve per capire che «infinito» non è una sola cosa.
+
+::: prova Scrivi i primi 7 elementi della fila degli interi. In che posto compare $-3$?
+$0, 1, -1, 2, -2, 3, -3$: il $-3$ è il settimo.
+:::
+
+> [!RICORDA]
+> - Numerabile vuol dire che si può mettere in fila come i naturali.
+> - Interi e frazioni sono numerabili, i reali no.
+
+## Contare un'unione: due insiemi (pp. 45–46)
+
+In una classe 18 studenti giocano a calcio e 12 a pallavolo. Quanti fanno almeno uno dei due sport? Non 30: chi gioca a tutti e due è contato una volta tra i calciatori e una volta tra i pallavolisti. Se quelli che fanno tutti e due gli sport sono 5, la risposta è $18 + 12 - 5 = 25$. Si **includono** tutti, poi si **escludono** quelli contati due volte.
+
+> [!PROP] 3.11 · Principio di inclusione-esclusione per 2 insiemi
+> Se $A$ e $B$ sono insiemi finiti, allora $\lvert A \cup B \rvert = \lvert A \rvert + \lvert B \rvert - \lvert A \cap B \rvert$.
+
+**Come si legge.** Gli elementi dell'unione sono quelli di $A$, più quelli di $B$, meno quelli comuni, che la somma aveva contato due volte. Se $A$ e $B$ sono disgiunti, l'intersezione è vuota e si sommano soltanto. È la formula della lezione D02, ora con il suo nome.
+
+> [!ESEMPIO] · Gli esami delle matricole (p. 46)
+> **Situazione:** 152 matricole hanno superato matematica, 144 fisica, 89 tutti e due. Quante ne hanno superato almeno uno?
+>
+> **Passo 1: gli insiemi.** $M$ = chi ha superato matematica, $F$ = chi ha superato fisica. «Almeno uno» è l'unione.
+>
+> **Passo 2: la formula.** $\lvert M \cup F \rvert = 152 + 144 - 89 = 207$.
+
+### Usare la formula al contrario
+
+La Nota 3.12 riscrive la formula così: $\lvert A \cup B \rvert + \lvert A \cap B \rvert = \lvert A \rvert + \lvert B \rvert$. Ci sono quattro numeri, e conoscendone tre si trova il quarto.
+
+> [!ESEMPIO] · Il ristorante (p. 46)
+> **Situazione:** a un tavolo di 14 persone sono stati ordinati 8 primi e 11 secondi, e ognuno ha ordinato qualcosa. Quanti hanno preso sia il primo sia il secondo?
+>
+> **Passo 1: gli insiemi.** $P$ = chi ha preso un primo, $S$ = chi ha preso un secondo. Ognuno ha ordinato qualcosa, quindi l'unione sono tutte le 14 persone.
+>
+> **Passo 2: la formula.** $14 + \lvert P \cap S \rvert = 8 + 11$, quindi $\lvert P \cap S \rvert = 5$.
+
+### Contare i «né… né…»
+
+Spesso si chiede quanti elementi **non** stanno né in $A$ né in $B$. Per De Morgan, della lezione D02, sono il complementare dell'unione: si toglie l'unione dal totale.
+
+> [!ESEMPIO] · Né per 3 né per 5 (p. 46)
+> **Situazione:** quanti numeri tra 1 e 180 non sono divisibili né per 3 né per 5?
+>
+> **Passo 1: gli insiemi.** $D_3$ = i multipli di 3 tra 1 e 180, $D_5$ = i multipli di 5. Ne cerchiamo il complementare dell'unione.
+>
+> **Passo 2: i multipli.** In ogni gruppo di 3 numeri di fila ce n'è uno divisibile per 3, quindi $\lvert D_3 \rvert = 180 / 3 = 60$; allo stesso modo $\lvert D_5 \rvert = 36$. Un numero è divisibile per 3 e per 5 se e solo se è divisibile per 15: $\lvert D_3 \cap D_5 \rvert = 12$.
+>
+> **Passo 3: la formula.** L'unione ha $60 + 36 - 12 = 84$ elementi. Quelli che restano fuori sono $180 - 84 = 96$. L'ho ricontrollato con un programma.
+
+::: prova In un gruppo di 30 amici, 20 hanno un gatto, 14 un cane e 3 non hanno animali. Quanti hanno sia un gatto sia un cane?
+Chi ha almeno un animale sono $30 - 3 = 27$. Allora $27 + \lvert G \cap C \rvert = 20 + 14$, quindi $\lvert G \cap C \rvert = 7$.
+:::
+
+> [!RICORDA]
+> - Unione di due insiemi: somma meno intersezione.
+> - Quattro numeri nella formula: da tre si ricava il quarto.
+> - «Né… né…»: totale meno unione.
+
+## Contare i multipli (pp. 46–48)
+
+Quasi tutti gli esercizi d'esame su questa formula contano numeri divisibili per qualcosa. Servono due strumenti, che il libro usa senza dar loro un nome.
+
+**Quanti multipli di k ci sono tra 1 e n.** Tra 1 e 20 i multipli di 3 sono 3, 6, 9, 12, 15, 18: sono 6. Il conto: 20 diviso 3 fa 6 con il resto di 2, e si tiene il 6. È la **parte intera** di $20/3$, cioè il numero senza la parte dopo la virgola, e si scrive $\lfloor 20/3 \rfloor = 6$. In generale:
+
+$$\text{multipli di } k \text{ tra 1 e } n = \left\lfloor \frac nk \right\rfloor.$$
+
+**Divisibili per a e per b.** Un numero divisibile per 4 e per 6 non è per forza divisibile per 24: 12 lo è per 4 e per 6, ma non per 24. Il numero giusto è il **minimo comune multiplo**, il più piccolo numero che è multiplo di tutti e due: $\operatorname{mcm}(4, 6) = 12$. Quindi i numeri divisibili per 4 e per 6 sono i multipli di 12. Quando $a$ e $b$ non hanno divisori in comune, come 3 e 5, il minimo comune multiplo è il prodotto: 15.
+
+> [!METODO] Contare i numeri divisibili per qualcosa
+> 1. Scrivi gli insiemi: $D_a$ = multipli di $a$ tra 1 e $n$.
+> 2. Traduci la domanda: «per $a$ o per $b$» è un'unione; «per $a$ e per $b$» è un'intersezione, cioè i multipli di $\operatorname{mcm}(a, b)$; «per $a$ ma non per $b$» è $\lvert D_a \rvert - \lvert D_a \cap D_b \rvert$; «né per $a$ né per $b$» è il totale meno l'unione.
+> 3. Conta ogni insieme con la parte intera di $n$ diviso il numero.
+> 4. Metti tutto nella formula di inclusione-esclusione.
+
+> [!TRAPPOLA] Il prodotto non è sempre il minimo comune multiplo
+> Tra 1 e 100 i numeri divisibili per 4 e per 6 sono i multipli di 12, cioè 8. Con i multipli di 24 ne troveresti 4, e sbaglieresti. Il prodotto va bene solo se i due numeri non hanno divisori comuni, come 3 e 5 o 5 e 11.
+
+::: prova Quanti numeri tra 1 e 1000 sono divisibili per 3 ma non per 5?
+Multipli di 3: $\lfloor 1000/3 \rfloor = 333$. Multipli di 15: $\lfloor 1000/15 \rfloor = 66$. Restano $333 - 66 = 267$.
+:::
+
+> [!RICORDA]
+> - Multipli di $k$ tra 1 e $n$: la parte intera di $n/k$.
+> - «Divisibile per $a$ e per $b$»: multiplo del minimo comune multiplo.
+
+## Contare un'unione: tre insiemi (pp. 46–48)
+
+Con tre insiemi il ragionamento è lo stesso, ma bisogna fare attenzione due volte. Pensa a tre cerchi che si sovrappongono, come nei disegni della lezione D02.
+
+1. Sommi gli elementi dei tre insiemi. Chi sta in due insiemi è contato due volte.
+2. Togli le tre intersezioni a due. Ora chi sta in due insiemi è contato una volta. Ma chi sta in **tutti e tre** era contato 3 volte, ed è stato tolto 3 volte: ora non è contato più.
+3. Aggiungi l'intersezione dei tre, e ogni elemento è contato esattamente una volta.
+
+> [!PROP] 3.13 · Principio di inclusione-esclusione per 3 insiemi
+> Se $A$, $B$, $C$ sono insiemi finiti, allora
+> $$\lvert A \cup B \cup C \rvert = \lvert A \rvert + \lvert B \rvert + \lvert C \rvert - \lvert A \cap B \rvert - \lvert A \cap C \rvert - \lvert B \cap C \rvert + \lvert A \cap B \cap C \rvert.$$
+
+**Come si legge.** Più i singoli, meno le coppie, più il terzetto. I segni si alternano. La dimostrazione del libro è proprio il conto in tre passi qui sopra. La Nota 3.14 ne dà un'altra: si vede $A \cup B$ come un solo insieme e si usa due volte la formula per due insiemi (esercizio 3.2).
+
+> [!ESEMPIO] · Divisibili per 5, 6 o 11 (p. 48)
+> **Situazione:** quanti numeri tra 1 e 660 sono divisibili per almeno uno tra 5, 6 e 11?
+>
+> **Passo 1: i singoli.** $\lvert D_5 \rvert = 132$, $\lvert D_6 \rvert = 110$, $\lvert D_{11} \rvert = 60$.
+>
+> **Passo 2: le coppie.** 5, 6 e 11 non hanno divisori comuni a due a due, quindi il minimo comune multiplo è il prodotto: $\lvert D_{30} \rvert = 22$, $\lvert D_{55} \rvert = 12$, $\lvert D_{66} \rvert = 10$.
+>
+> **Passo 3: il terzetto.** $\lvert D_{330} \rvert = 2$.
+>
+> **Passo 4: la formula.** $132 + 110 + 60 - 22 - 12 - 10 + 2 = 260$.
+>
+> Nel libro il risultato è scritto come $\lvert D_5 \cap D_6 \cap D_{11} \rvert$: è una svista, perché quello che si calcola è l'unione $\lvert D_5 \cup D_6 \cup D_{11} \rvert$. L'intersezione ha solo 2 elementi.
+
+> [!NOTA] L'esempio dei film a p. 47
+> Il libro conta gli spettatori di tre film con 129 biglietti, 109, 76 e 55 spettatori per film, e 52, 28 e 44 spettatori per le coppie di film. Con la formula viene $129 = 240 - 124 + x$, quindi gli spettatori dei tre film sono $x = 13$, non 23 come nel libro. In più, con questi dati chi ha visto solo il secondo film sarebbe $76 - 39 - 31 - 13 = -7$: i numeri dell'esempio non possono essere tutti veri. Il metodo resta giusto.
+
+### Insiemi che non si toccano
+
+Con più di tre insiemi la formula diventa lunga: con 4 insiemi ha 15 addendi dopo l'uguale. C'è un caso in cui è cortissima.
+
+> [!PROP] 3.15 · Unione di insiemi disgiunti
+> Se $A_1, \dots, A_n$ sono insiemi finiti a due a due disgiunti, cioè nessuno ha elementi in comune con un altro, allora $\lvert A_1 \cup \dots \cup A_n \rvert = \lvert A_1 \rvert + \dots + \lvert A_n \rvert$.
+
+**Come si legge.** Se nessuno è contato due volte, basta sommare. È il caso delle partizioni della lezione D02: le parti di una partizione sommate danno tutto l'insieme.
+
+::: prova Quanti numeri tra 1 e 30 non sono divisibili né per 2, né per 3, né per 5?
+Singoli: 15, 10, 6. Coppie: multipli di 6, 10, 15, cioè 5, 3, 2. Terzetto: multipli di 30, cioè 1. Unione: $15 + 10 + 6 - 5 - 3 - 2 + 1 = 22$. Restano $30 - 22 = 8$: sono 1, 7, 11, 13, 17, 19, 23, 29.
+:::
+
+> [!RICORDA]
+> - Tre insiemi: più i singoli, meno le coppie, più il terzetto.
+> - Insiemi disgiunti: basta sommare.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\lvert A \rvert$ | «cardinalità di A» | il numero degli elementi di $A$ | $\lvert \{a, b\} \rvert = 2$ |
+| $\lvert A \rvert \le \lvert B \rvert$ | «A ha cardinalità minore o uguale» | c'è una funzione iniettiva da $A$ a $B$ | |
+| $I_n$ | «i con n» | l'insieme $\{1, 2, \dots, n\}$ | $I_3 = \{1, 2, 3\}$ |
+| $D_k$ | «di con k» | i multipli di $k$ in un insieme fissato | |
+| $\lfloor x \rfloor$ | «parte intera di x» | $x$ senza la parte dopo la virgola, per $x$ positivo | $\lfloor 20/3 \rfloor = 6$ |
+| $\operatorname{mcm}(a, b)$ | «minimo comune multiplo» | il più piccolo multiplo comune di $a$ e $b$ | $\operatorname{mcm}(4, 6) = 12$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Al 14/10/2026 le regole del 2026/27 non sono ancora uscite; quelle del 2025/26 dicono così.
+
+- **10 domande a risposta multipla**, ognuna con 5 risposte e una sola giusta. Una risposta giusta vale 1 punto; una sbagliata o vuota vale 0.
+- **2 problemi** a risposta aperta, divisi in più domande con il punteggio scritto accanto.
+- **Sbarramento.** Con meno di 6 punti nel quiz la prova non è superata, e i problemi non vengono corretti.
+- **Sufficienza:** almeno 18 punti in tutto. **Durata:** 2 ore.
+- **Materiale ammesso:** libro di testo e appunti del corso, e una calcolatrice non programmabile.
+
+Gli appelli 2026/27 sono martedì 19/01/2027 e mercoledì 03/02/2027 alle 14:00. Dettagli nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+
+**Che cosa serve di questa lezione**
+
+1. **Contare i divisibili.** Il problema 1 dell'appello del 01/07/2026 era tutto qui: multipli, «ma non per», coprimi. Vale 7 punti su 11.
+2. **Inclusione-esclusione con tre insiemi.** Serve per i numeri coprimi con un numero che ha tre fattori primi diversi, come 900 o 750.
+3. **Il principio dei piccioni e le funzioni tra insiemi finiti** tornano nelle permutazioni e nei gruppi: una funzione iniettiva da un insieme finito in sé stesso è già biettiva.
+
+### Una domanda vera, letta insieme
+
+**Appello del 01/07/2026, problema 1, versione A.** Il testo: «a) (4 punti) Quanti sono i numeri tra 1 e 1000 divisibili per 3? Quanti quelli divisibili per 6 ma non per 45? b) (3 punti) Quanti sono i numeri tra 1 e 500 che sono coprimi con 1000?».
+
+**In pratica chiede:** tre conteggi di multipli. «Coprimo con 1000» vuol dire che il numero non ha divisori in comune con 1000, a parte 1.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: i divisibili per 3.** Sono $\lfloor 1000/3 \rfloor = 333$.
+>
+> **Passo 2: per 6 ma non per 45.** I multipli di 6 sono $\lfloor 1000/6 \rfloor = 166$. Quelli divisibili anche per 45 sono i multipli di $\operatorname{mcm}(6, 45) = 90$, non di $6 \cdot 45 = 270$: sono $\lfloor 1000/90 \rfloor = 11$. Restano $166 - 11 = 155$.
+>
+> **Passo 3: coprimi con 1000.** $1000 = 2^3 \cdot 5^3$: un numero è coprimo con 1000 esattamente quando non è divisibile né per 2 né per 5. Tra 1 e 500 ci sono 250 multipli di 2, 100 multipli di 5 e 50 multipli di 10. L'unione ha $250 + 100 - 50 = 300$ elementi, quindi i coprimi sono $500 - 300 = 200$.
+>
+> Sono i risultati delle soluzioni ufficiali. La parte c) del problema contava i sottoinsiemi di un insieme di 25 primi: $2^{25} - 1$, con il conto della lezione D01, e una seconda domanda che userà le combinazioni della prossima lezione.
+
+> [!ESAME] Le altre versioni dello stesso appello
+> Tutte ricontrollate con un programma.
+> - **Versione B.** Tra 1 e 1200: divisibili per 4, 300; per 8 ma non per 60, $150 - 10 = 140$, con $\operatorname{mcm}(8, 60) = 120$. Coprimi con $900 = 2^2 \cdot 3^2 \cdot 5^2$ tra 1 e 600: con tre insiemi, $600 - (300 + 200 + 120) + (100 + 60 + 40) - 20 = 160$.
+> - **Versione C.** Tra 1 e 900: divisibili per 5, 180; per 10 ma non per 35, $90 - 12 = 78$, con $\operatorname{mcm}(10, 35) = 70$. Coprimi con $750 = 2 \cdot 3 \cdot 5^3$ tra 1 e 450: $450 - (225 + 150 + 90) + (75 + 45 + 30) - 15 = 120$.
+> - **Versione D.** Tra 1 e 1500: divisibili per 6, 250; per 12 ma non per 50, $125 - 5 = 120$, con $\operatorname{mcm}(12, 50) = 300$. Coprimi con $1500 = 2^2 \cdot 3 \cdot 5^3$ tra 1 e 750: $750 - (375 + 250 + 150) + (125 + 75 + 50) - 25 = 200$.
+
+> [!ESAME] Che cosa scrivere sul foglio di riepilogo
+> All'esame si possono portare libro e appunti. Conviene avere in una pagina le due formule di inclusione-esclusione e la parte intera per contare i multipli. Poi la regola del minimo comune multiplo, con l'esempio di 6 e 45, e la traduzione di «o», «e», «ma non», «né… né…».
+
+## Quiz
+
+```quiz
+D: Quanti numeri tra 1 e 100 sono divisibili per 4 e per 6?
++ 8
+- 4
+- 16
+- 41
+- 12
+= Divisibili per 4 e per 6 vuol dire multipli di $\operatorname{mcm}(4, 6) = 12$: $\lfloor 100/12 \rfloor = 8$. La risposta più insidiosa è 4, che si ottiene con i multipli di 24, il prodotto. 41 sarebbe chi è divisibile per 4 **o** per 6.
+
+D: In una classe 18 studenti studiano inglese, 12 spagnolo e 7 tutte e due le lingue. Quanti studiano almeno una delle due?
+N: 23
+= $18 + 12 - 7 = 23$: chi studia tutte e due le lingue va tolto una volta, perché la somma lo conta due volte.
+
+D: Quanti numeri tra 1 e 60 non sono divisibili né per 2 né per 3?
++ 20
+- 10
+- 40
+- 30
+- 50
+= Multipli di 2: 30; di 3: 20; di 6: 10. L'unione ha $30 + 20 - 10 = 40$ elementi, e fuori restano $60 - 40 = 20$. La risposta più insidiosa è 40: è l'unione, cioè chi è divisibile per almeno uno, non chi non lo è.
+
+D: Un gruppo ha 25 persone. Quale affermazione è sicuramente vera?
++ Almeno 3 persone sono nate nello stesso mese
+- Almeno 2 persone sono nate lo stesso giorno dell'anno
+- Almeno 4 persone sono nate nello stesso mese
+- Ogni mese ha almeno 2 compleanni
+- Almeno 3 persone sono nate in gennaio
+= Con 12 mesi e 25 persone: se ogni mese ne avesse al massimo 2, le persone sarebbero al massimo 24. Quindi un mese ne ha almeno 3. La risposta più insidiosa è «almeno 4»: 25 persone si possono distribuire 3, 2, 2, …, 2. I giorni dell'anno sono 365, più delle persone.
+
+D: Siano $A$ e $B$ insiemi finiti con $\lvert A \rvert = \lvert B \rvert = 7$, e $f \colon A \to B$ iniettiva. Allora:
++ $f$ è biettiva
+- $f$ può non essere suriettiva
+- $f$ è suriettiva solo se $A = B$
+- non esiste nessuna funzione iniettiva tra $A$ e $B$
+- $f$ è costante
+= Tra insiemi finiti con lo stesso numero di elementi, iniettiva vuol dire anche suriettiva, e quindi biettiva (Nota 3.8). La risposta più insidiosa è «può non essere suriettiva»: succede solo con gli insiemi infiniti, come $n \mapsto n + 1$ sui naturali.
+
+D: Se $\lvert A \rvert = 10$, $\lvert B \rvert = 8$, $\lvert C \rvert = 6$, le tre intersezioni a due hanno 3, 2 e 2 elementi e l'intersezione dei tre ne ha 1, quanti elementi ha $A \cup B \cup C$?
+N: 18
+= $10 + 8 + 6 - 3 - 2 - 2 + 1 = 18$. Chi dimentica di aggiungere l'intersezione dei tre trova 17.
+
+D: Quanti numeri tra 1 e 1000 sono divisibili per 6 ma non per 45?
++ 155
+- 162
+- 166
+- 144
+- 11
+= Multipli di 6: 166. Quelli divisibili anche per 45 sono i multipli di $\operatorname{mcm}(6, 45) = 90$, cioè 11. Restano $166 - 11 = 155$. La risposta più insidiosa è 162, che si ottiene togliendo i multipli di 270, il prodotto. È la versione A dell'appello del 01/07/2026.
+
+D: Quale di questi insiemi **non** è numerabile?
++ $\R$
+- $\Z$
+- $\Q$
+- $\N \times \N$
+- i numeri pari
+= Cantor ha dimostrato che i reali non si possono mettere in fila. La risposta più insidiosa è $\Q$: le frazioni sembrano «di più» degli interi, ma si possono elencare tutte.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: parte intera
+Quanti sono i multipli di 7 tra 1 e 100? E quelli di 7 tra 1 e 700? E quelli di 13 tra 1 e 50?
+::: soluzione
+$\lfloor 100/7 \rfloor = 14$, perché $7 \cdot 14 = 98$. $\lfloor 700/7 \rfloor = 100$. $\lfloor 50/13 \rfloor = 3$: sono 13, 26, 39.
+:::
+
+::: esercizio base Riscaldamento: minimo comune multiplo
+Per quale numero è divisibile un numero divisibile per: (a) 2 e 3; (b) 4 e 10; (c) 6 e 9; (d) 5 e 25?
+::: soluzione
+(a) 6. (b) 20, non 40. (c) 18, non 54. (d) 25: se è divisibile per 25, lo è già per 5.
+:::
+
+::: esercizio base Riscaldamento: piccioni e gabbie
+In ognuna di queste frasi, chi sono i piccioni e chi le gabbie? (a) In un condominio di 400 persone, due festeggiano il compleanno lo stesso giorno. (b) Scelti 5 numeri da 1 a 8, due hanno somma 9.
+::: soluzione
+(a) Piccioni: le 400 persone; gabbie: i 366 giorni possibili. (b) Gabbie: le 4 coppie $\{1, 8\}$, $\{2, 7\}$, $\{3, 6\}$, $\{4, 5\}$, che hanno tutte somma 9; piccioni: i 5 numeri scelti. Due finiscono nella stessa coppia, e quella coppia ha somma 9.
+:::
+
+::: esercizio base Riscaldamento: la formula al contrario
+$\lvert A \rvert = 12$, $\lvert B \rvert = 9$, $\lvert A \cup B \rvert = 16$. Quanto vale $\lvert A \cap B \rvert$? E $\lvert A \setminus B \rvert$?
+::: soluzione
+$16 + \lvert A \cap B \rvert = 12 + 9$, quindi $\lvert A \cap B \rvert = 5$. Gli elementi di $A$ fuori da $B$ sono $12 - 5 = 7$.
+:::
+
+::: esercizio medio Esercizio 3.10 c) del libro
+A un corso di ballo sono iscritti 11 uomini e 9 donne, con due lezioni a settimana. La scorsa settimana ogni studente era presente ad almeno una lezione: il lunedì c'erano 8 donne e 7 uomini, il giovedì 7 donne e 9 uomini. Quanti dei 20 studenti erano presenti a tutte e due le lezioni?
+::: soluzione
+Il lunedì c'erano 15 persone, il giovedì 16. Ognuno era presente almeno una volta, quindi l'unione ha 20 elementi: $20 + \lvert L \cap G \rvert = 15 + 16$, e $\lvert L \cap G \rvert = 11$.
+:::
+
+::: esercizio medio Esercizio 3.4 del libro
+Quanti sono i numeri interi (a) da 1 a 1680 divisibili per almeno uno tra 2, 6 e 7? (b) da 1 a 2160 non divisibili né per 5, né per 9, né per 12?
+::: soluzione
+(a) Chi è divisibile per 6 lo è già per 2, quindi basta contare i divisibili per 2 o per 7: $840 + 240 - 120 = 960$, dove 120 sono i multipli di 14. Con la formula a tre insiemi viene lo stesso: $840 + 280 + 240 - 280 - 120 - 40 + 40 = 960$.
+
+(b) Singoli: $\lvert D_5 \rvert = 432$, $\lvert D_9 \rvert = 240$, $\lvert D_{12} \rvert = 180$. Coppie: $\operatorname{mcm}(5, 9) = 45$, 48 multipli; $\operatorname{mcm}(5, 12) = 60$, 36 multipli; $\operatorname{mcm}(9, 12) = 36$, non 108, quindi 60 multipli. Terzetto: $\operatorname{mcm}(5, 9, 12) = 180$, 12 multipli. Unione: $432 + 240 + 180 - 48 - 36 - 60 + 12 = 720$. Fuori: $2160 - 720 = 1440$. Ricontrollati tutti e due con un programma.
+:::
+
+::: esercizio esame Esercizio 3.5 del libro: le monete
+Un collezionista ha 25 monete d'argento, 170 monete europee e 415 monete rotonde, e ogni moneta ha almeno una di queste caratteristiche. Le monete d'argento rotonde sono 22, le europee rotonde 152, e le monete europee d'argento sono tutte rotonde. Quante monete ci sono nella collezione?
+::: soluzione
+Con $A$ = argento, $E$ = europee, $R$ = rotonde: tutte le monete stanno in $A \cup E \cup R$. Non conosci $\lvert A \cap E \rvert$, ma le europee d'argento sono tutte rotonde, quindi $A \cap E = A \cap E \cap R$. Nella formula i due pezzi si cancellano:
+
+$\lvert A \cup E \cup R \rvert = 25 + 170 + 415 - \lvert A \cap E \rvert - 22 - 152 + \lvert A \cap E \cap R \rvert = 436$.
+
+Le monete sono 436. Il trucco è accorgersi che due termini sconosciuti sono uguali.
+:::
+
+::: esercizio esame Esercizio 3.6 del libro: la festa
+A una festa c'erano 20 persone bionde, 18 con i capelli neri, 15 con gli occhi azzurri e 12 con gli occhi verdi, e ognuno aveva almeno una di queste caratteristiche. Tra i biondi, 12 avevano gli occhi azzurri e 4 verdi; tra chi aveva i capelli neri, 1 aveva gli occhi azzurri e 7 verdi. Quante persone c'erano?
+::: soluzione
+Ci sono 4 insiemi, ma molte intersezioni sono vuote: nessuno è biondo e con i capelli neri, nessuno ha gli occhi azzurri e verdi. Le intersezioni non vuote sono le 4 coppie «capelli e occhi», e tutte quelle di tre o quattro insiemi sono vuote. Quindi:
+
+$20 + 18 + 15 + 12 - 12 - 4 - 1 - 7 = 41$.
+
+C'erano 41 persone.
+:::
+
+::: esercizio difficile Esercizio 3.1 del libro
+Siano $A$ e $B$ insiemi non vuoti. Dimostra che (a) se esiste una funzione iniettiva $A \to B$, esiste una funzione suriettiva $B \to A$; (b) se esiste una funzione suriettiva $A \to B$, esiste una funzione iniettiva $B \to A$.
+::: soluzione
+(a) Sia $f \colon A \to B$ iniettiva, e scegli un elemento qualsiasi $a_0$ di $A$, che esiste perché $A$ non è vuoto. Definisci $g \colon B \to A$ così: se $b$ è nell'immagine di $f$, $b = f(a)$ per un solo $a$, perché $f$ è iniettiva, e poni $g(b) = a$; se $b$ non è nell'immagine, poni $g(b) = a_0$. Ogni $a$ di $A$ è $g(f(a))$, quindi $g$ è suriettiva.
+
+(b) Sia $f \colon A \to B$ suriettiva. Per ogni $b$ la controimmagine $f^{-1}(b)$ non è vuota: scegli un suo elemento e chiamalo $g(b)$. Se $b \neq b'$, le controimmagini sono disgiunte, quindi $g(b) \neq g(b')$: $g$ è iniettiva. È lo stesso ragionamento della dimostrazione della Proposizione 3.6.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa vuol dire che due insiemi hanno la stessa cardinalità?
+Che esiste una funzione biettiva tra loro: si possono accoppiare uno a uno.
+:::
+
+::: domanda Quando un insieme è finito, secondo il libro?
+Quando ogni funzione iniettiva da lui in sé stesso è anche suriettiva.
+:::
+
+::: domanda Che cosa dice il principio dei piccioni?
+Che se ci sono più piccioni che gabbie, almeno una gabbia contiene più di un piccione. Con le funzioni: da un insieme finito più grande a uno più piccolo non ci sono funzioni iniettive.
+:::
+
+::: domanda Perché i naturali e i numeri pari hanno la stessa cardinalità?
+Perché la funzione che manda $n$ in $2n$ è una biezione tra loro.
+:::
+
+::: domanda Qual è la formula di inclusione-esclusione per due insiemi? E per tre?
+Due: somma meno intersezione. Tre: più i singoli, meno le tre intersezioni a due, più l'intersezione dei tre.
+:::
+
+::: domanda Come si contano i multipli di $k$ tra 1 e $n$?
+Con la parte intera di $n/k$.
+:::
+
+::: domanda I numeri divisibili per 6 e per 45 sono i multipli di quale numero?
+Di 90, il minimo comune multiplo, non di 270.
+:::
+
+## Glossario
+
+```glossario
+Equipollenti | Due insiemi tra cui esiste una funzione biettiva.
+Cardinalità | Il «numero di elementi» di un insieme, definito con le biezioni; si scrive |A|.
+Insieme finito | Un insieme in cui ogni funzione iniettiva da sé in sé è biettiva.
+Insieme infinito | Un insieme con una funzione iniettiva ma non suriettiva da sé in sé.
+I_n | L'insieme {1, 2, …, n}, modello degli insiemi con n elementi.
+Principio dei piccioni | Più piccioni che gabbie: almeno una gabbia ha più di un piccione.
+Numerabile | Equipollente a N: si può mettere in fila come una lista.
+Inclusione-esclusione | La formula che conta gli elementi di un'unione togliendo quelli contati più volte.
+Parte intera | Un numero senza la parte dopo la virgola: la parte intera di 20/3 è 6.
+Minimo comune multiplo | Il più piccolo numero multiplo di due numeri dati.
+Coprimi | Due numeri senza divisori comuni a parte 1.
+```
+
+## Checklist
+
+```checklist
+- So spiegare che cosa vuol dire che due insiemi hanno la stessa cardinalità.
+- So dare un esempio di insieme infinito equipollente a una sua parte.
+- So che tra insiemi finiti con lo stesso numero di elementi iniettiva, suriettiva e biettiva coincidono.
+- So usare il principio dei piccioni, scegliendo chi sono i piccioni e chi le gabbie.
+- So quali insiemi sono numerabili tra N, Z, Q e R.
+- So la formula di inclusione-esclusione per due e per tre insiemi.
+- So usarla al contrario, per trovare un'intersezione.
+- So contare i multipli di un numero con la parte intera.
+- So che «divisibile per a e per b» vuol dire multiplo del minimo comune multiplo.
+- So risolvere il problema 1 dell'appello del 01/07/2026 in tutte le versioni.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 3 «Combinatorica», pp. 39–48 (definizioni 3.1, 3.2, 3.5, 3.10, note 3.3, 3.8, 3.9, 3.12, 3.14, proposizioni 3.6, 3.11, 3.13, 3.15, teoremi 3.4 e 3.7, esempi delle pp. 40, 44, 46–48); esercizi 3.1, 3.4, 3.5, 3.6 e 3.10 (pp. 64–65). Le definizioni e gli enunciati nei riquadri riprendono il libro. Segnalati nel testo il risultato dell'esempio a p. 47 e l'intersezione al posto dell'unione a p. 48.
+- Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 6 (principio della gabbia dei piccioni, funzioni tra insiemi finiti, inclusione-esclusione per due o tre insiemi, ordinamenti). Gli argomenti della lezione del 14/10/2026 non erano pubblicati quando ho scritto questi appunti.
+- Appello di Matematica Discreta del 01/07/2026, problema 1, versioni A–D, con le soluzioni ufficiali della versione A.
+- V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): un riepilogo già pronto, non ufficiale.
+- Tutti i conteggi, degli esempi, degli esercizi e delle quattro versioni d'esame, li ho ricontrollati con un programma.
 
 
 ---

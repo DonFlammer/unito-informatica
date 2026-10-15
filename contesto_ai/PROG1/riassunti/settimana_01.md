@@ -177,6 +177,52 @@ Preprocessore, compilatore, assemblatore, linker.
 Un errore logico.
 :::
 
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette e non chiede la storia dei computer. Chiede però di seguire a mano un programma, istruzione per istruzione, negli esercizi sulla correttezza e sullo stato della memoria, e di scrivere codice che compili con `gcc -Wall -Werror`. Queste domande sono sul modello di quegli esercizi, con gli argomenti di questa settimana. Le domande vere con gli assegnamenti sono nel riassunto della settimana 2. Ho provato tutto a mano e con gcc.
+
+```quiz
+D: Sul modello degli esercizi di correttezza. La versione V2 della moltiplicazione prima somma, poi controlla «i = n?». Che cosa succede con $n = 0$?
+- Restituisce 0, il risultato giusto.
+- Restituisce $m$.
++ Non termina: `i` vale già 1 al primo controllo e non torna mai a 0.
+- Si ferma con un errore di divisione per zero.
+- Restituisce $m \cdot 0$ dopo un giro.
+= Dopo la prima somma `i` vale 1, e «1 = 0?» è falso; poi 2, 3… e il ciclo non finisce mai. La risposta più insidiosa è «restituisce $m$»: è quello che vedresti se il ciclo si fermasse dopo un giro, ma il controllo è sbagliato e non si ferma. La V3, con il controllo prima della somma, dà 0.
+
+D: Sul modello dello stato della memoria. Le istruzioni `LOAD R0, @A`, `LOAD R1, @B`, `ADD R0, R1`, `STORE R0, @A` partono con 7 all'indirizzo A e 5 all'indirizzo B. Che cosa c'è alla fine in A e in B?
++ A = 12, B = 5
+- A = 7, B = 12
+- A = 12, B = 12
+- A = 7, B = 5
+- A = 12, B = 0
+= `ADD` mette la somma in R0, e `STORE` scrive R0 nella cella A. La cella B viene solo letta, quindi resta 5. La risposta più insidiosa è A = 12, B = 12: leggere una cella non la cambia e non la svuota.
+
+D: Sul modello del conteggio dei passi. Il programma assembly della moltiplicazione esegue 4 istruzioni iniziali, 5 per ogni giro del ciclo e 3 alla fine. Quante istruzioni esegue con $n = 3$?
+- $15$
+- $20$
++ $22$
+- $27$
+- $7$
+= $4 + 5 \cdot 3 + 3 = 22$; in generale $5n + 7$. La risposta più insidiosa è 20: dimentica le ultime tre, cioè il confronto che fa uscire dal ciclo e la fine.
+
+D: Sul modello degli errori di compilazione. Un programma usa `printf` ma non ha `#include <stdio.h>`. Che cosa succede con `gcc -Wall -Werror`?
+- Compila, perché `printf` è sempre disponibile.
+- Compila con un avviso, e il programma parte.
++ Non compila: `implicit declaration of function 'printf'`.
+- Compila ma non stampa niente.
+- Errore a runtime alla prima `printf`.
+= gcc 16.1 dà proprio questo errore. Con `-Werror` ogni avviso blocca la compilazione, come su CodeRunner all'esame. La risposta più insidiosa è «compila con un avviso»: succedeva con compilatori più vecchi e senza `-Werror`.
+
+D: Sul modello delle domande sulla memoria. Con 1024 byte di memoria, gli indirizzi partono da 0. Qual è l'ultimo?
+- $1024$
++ $1023$
+- $1000$
+- $999$
+- $2^{1024}$
+= Se si parte da 0, il millesimo-ventiquattresimo byte ha indirizzo 1023. La risposta più insidiosa è 1024: conta come se si partisse da 1. Lo stesso succede con gli indici degli array: da 0 a lunghezza meno 1.
+```
+
 ## Fonti
 
 - Le lezioni complete: [01A · Un primo algoritmo](01A_primo_algoritmo.html), [01B · Architettura del calcolatore](01B_architettura.html), [02A · Dal linguaggio macchina al C](02A_da_assembly_a_c.html), con esercizi, quiz e i riferimenti alle slide.

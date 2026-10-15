@@ -48,6 +48,19 @@ Un numero complesso è un punto di un foglio a quadretti, descritto da due numer
 | modulo | Pitagora: la radice di $a^2 + b^2$ | $\lvert 3 + 4i \rvert = 5$ |
 | potenze di $i$ | si ripetono ogni 4: $i$, $-1$, $-i$, $1$ | $i^7 = -i$, perché 7 diviso 4 dà resto 3 |
 
+```grafico
+titolo: Il numero $z = 3 + 2i$ è il punto $(3, 2)$. Il coniugato $\bar z = 3 - 2i$ è il suo riflesso rispetto all'asse orizzontale; il modulo $\lvert z \rvert = \sqrt{13}$ è la lunghezza del segmento dall'origine.
+x: -1 5
+y: -3 3
+assi: si
+griglia: si
+nomi: Re Im
+segmento: 0 0 3 2 | blu | spesso | $\lvert z \rvert$ | no
+segmento: 3 2 3 -2 | grigio | tratteggio
+punto: 3 2 | blu | $z = 3 + 2i$ | e
+punto: 3 -2 | ambra | $\bar z = 3 - 2i$ | e
+```
+
 > [!METODO] Dividere due numeri complessi
 > 1. Scrivi la divisione come frazione.
 > 2. Moltiplica sopra e sotto per il **coniugato del numero sotto**: sotto resta un numero reale, il quadrato del modulo.
@@ -160,6 +173,92 @@ Quando il polinomio vale 0 in $a$, cioè quando $x - a$ lo divide senza resto.
 ::: domanda Che cosa dice il teorema fondamentale dell'algebra?
 Che un polinomio di grado $n$ ha esattamente $n$ radici tra i numeri complessi, contate con la molteplicità.
 :::
+
+## Quiz d'esame
+
+Tutte domande vere degli appelli di Algebra lineare dal 2024 al 2026: in ognuno dei 15 appelli c'è almeno una domanda sui numeri complessi o sulle radici di un polinomio. Le risposte sono quelle delle soluzioni ufficiali, ricontrollate con un programma. All'esame non c'è la calcolatrice: falle a mano.
+
+```quiz
+D: Appello del 03/06/2025, domanda 1. Dato $z \in \C$ che soddisfa $(1 + i)z = 3 + 2i$, allora $2z(5 + i)$ è uguale a:
+- $13 + 13i$
+- $26i$
+- $1 + i$
+- $13 - 13i$
++ $26$
+= $z = \frac{3 + 2i}{1 + i} = \frac{(3 + 2i)(1 - i)}2 = \frac{5 - i}2$, quindi $2z = 5 - i$, e $(5 - i)(5 + i) = 25 + 1 = 26$. La risposta più insidiosa è $26i$: viene moltiplicando sopra per $1 + i$ invece che per il coniugato $1 - i$.
+
+D: Appello del 08/02/2024, domanda 1. Trovare il numero $z \in \C$ tale che $(i - 1)(i - 2)z = (i + 1)(i + 2)(i + 3)$.
+- $10 + 3i$
++ $i - 3$
+- $30 + 10i$
+- $3i - 1$
+- $1 - 30i$
+= A sinistra $(i - 1)(i - 2) = 1 - 3i$, a destra il prodotto vale $10i$. Quindi $z = \frac{10i}{1 - 3i} = \frac{10i(1 + 3i)}{10} = -3 + i$. La risposta più insidiosa è $30 + 10i$: è il numero sopra prima di dividere per 10, con il segno sbagliato. $3i - 1$ scambia la parte reale e quella immaginaria.
+
+D: Appello del 03/06/2026, domanda 1. Se $(1 + i)z = 2i$, allora $\frac 1{z + i}$ è uguale a:
+- $0$
+- $\frac 1{1 + i}$
++ $\frac{1 - 2i}5$
+- $\frac i{1 + i}$
+- $\frac{2 + i}5$
+= $z = \frac{2i}{1 + i} = \frac{2i(1 - i)}2 = 1 + i$, quindi $z + i = 1 + 2i$ e $\frac 1{1 + 2i} = \frac{1 - 2i}{1 + 4}$. La risposta più insidiosa è $\frac 1{1 + i}$: è l'inverso di $z$, non di $z + i$. $\frac{2 + i}5$ si ottiene scambiando le parti.
+
+D: Appello del 24/01/2024, domanda 2. Dato $z = -\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$, allora $z^{12}$ è uguale a:
++ $-1$
+- $-2i$
+- $\frac 1{2^6}(1 - i)$
+- $\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$
+- $2^{12} i$
+= $z$ ha distanza 1 dall'origine e angolo $\frac{3\pi}4$. Alla dodicesima: distanza 1, angolo $12 \cdot \frac{3\pi}4 = 9\pi$, cioè mezzo giro più quattro giri interi. Il punto è $-1$. La risposta più insidiosa è $2^{12} i$: viene se si sbaglia la distanza, che è 1 e non 2.
+
+D: Appello del 15/01/2026, domanda 5. Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, allora $z^9$ è uguale a:
+- $1$
+- $\frac 12 - \frac{\sqrt 3}2 i$
+- $-\frac{9\sqrt 3}2 + \frac 92 i$
++ $i$
+- $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9} i$
+= Distanza 1, angolo $-\frac\pi6$. Alla nona: angolo $-\frac{3\pi}2$, che più un giro dà $\frac\pi2$: il punto è $i$. Le risposte più insidiose sono le due con il 9: moltiplicano o elevano ciascuna parte da sola, che con i complessi non si può fare.
+
+D: Appello del 16/01/2025, domanda 1. Dato $z = 2\cos\frac\pi4 + 2i\sin\frac\pi4$, allora $-3iz$ in coordinate polari è uguale a:
+- $-6i\cos\frac\pi4 - 6i\sin\frac\pi4$
+- $-6e^{3\pi i/4}$
+- $-6i\cos\frac\pi4 + 6i\sin\frac\pi4$
++ $6e^{7\pi i/4}$
+- $0$
+= $z$ ha distanza 2 e angolo $\frac\pi4$; $-3i$ ha distanza 3 e angolo $\frac{3\pi}2$. Distanze moltiplicate, angoli sommati: $6e^{7\pi i/4}$. La risposta più insidiosa è $-6e^{3\pi i/4}$: è lo stesso numero, ma con un 6 negativo davanti non è scritto in coordinate polari, dove la distanza è sempre positiva.
+
+D: Appello del 02/09/2025, domanda 2. Quale dei seguenti è una radice terza di $z = 8e^{3\pi i/5}$?
+- $4e^{\pi i/5}$
++ $2e^{\pi i/5 + 2\pi i/3}$
+- $8e^{\pi i/3 + 2\pi ik}$
+- $2e^{3\pi i/5}$
+- $2e^{3\pi i/5 + \pi i/3}$
+= Le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi5 + \frac{2k\pi}3$: con $k = 1$ è la seconda risposta. La risposta più insidiosa è $2e^{3\pi i/5}$: la distanza è giusta, ma l'angolo non è stato diviso per 3. Le risposte con 4 e con 8 hanno la distanza sbagliata.
+
+D: Appello del 07/09/2026, domanda 1. Quale dei seguenti è una radice del polinomio $p(z) = z^4 + 5z^2 + 4$?
+- $z = -3 + i$
+- $z = 1 - i$
+- $z = -1$
++ $z = -2i$
+- il polinomio non ha radici
+= Con $t = z^2$: $t^2 + 5t + 4 = (t + 1)(t + 4)$, quindi $z^2 = -1$ o $z^2 = -4$, cioè $z = \pm i$ o $z = \pm 2i$. Controllo: $(-2i)^2 = -4$ e $(-2i)^4 = 16$, e $16 - 20 + 4 = 0$. La risposta più insidiosa è «non ha radici»: è vero solo tra i reali. Tra i complessi un polinomio di grado 4 ne ha quattro.
+
+D: Appello del 10/07/2025, domanda 1. Quale dei seguenti è una radice di $p(z) = z^4 + 7z^2 + 12$?
++ $z = -2i$
+- $z = -2$
+- il polinomio non ha radici
+- $z = 3 + 4i$
+- $z = 4$
+= Con $w = z^2$: $(w + 3)(w + 4)$, quindi $z^2 = -3$ o $z^2 = -4$. $-2i$ al quadrato fa $-4$: è una radice. La risposta più insidiosa è $-2$: anche il suo quadrato è 4, ma con il segno più, e per $z$ reale il polinomio vale almeno 12.
+
+D: Appello del 03/07/2026, domanda 7. Quale dei seguenti è una radice del polinomio $p(z) = z^3 + 2z^2 + z + 2$?
+- $z = 0$
++ $z = i$
+- $z = 1 + i$
+- $z = 1$
+- $z^3 + 2z^2 + z + 2 = 0$
+= Raccogliendo a coppie, $p(z) = z^2(z + 2) + (z + 2) = (z^2 + 1)(z + 2)$: le radici sono $-2$, $i$, $-i$. Controllo diretto: $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è l'ultima: è l'equazione, non un numero. $p(0) = 2$ e $p(1) = 6$.
+```
 
 ## Fonti
 

@@ -110,6 +110,25 @@ Ogni variabile ha un **valore**, che cosa c'è dentro, e un **indirizzo**, dove 
 | `*p` | la variabile all'indirizzo contenuto in `p` | è `x`: vale 5 |
 | `*p = 8;` | scrive nella variabile puntata | ora `x` vale 8 |
 
+```grafico
+titolo: Dopo `int x = 5; int* p = &x;` la casella di `p` contiene l'indirizzo di `x`, qui 0x03FC. `*p` vuol dire «la casella a quell'indirizzo»: `*p = 8;` cambia `x`, non `p`.
+x: 0 10
+y: 0 4.4
+assi: no
+griglia: no
+poligono: 3 2.6 6 2.6 6 3.6 3 3.6 | blu
+poligono: 3 0.8 6 0.8 6 1.8 3 1.8 | ambra
+testo: 4.5 3.1 | blu | "5"
+testo: 4.5 1.3 | ambra | "0x03FC"
+testo: 2.6 3.1 | blu | "x" | o
+testo: 2.6 1.3 | ambra | "p" | o
+testo: 4.5 3.95 | grigio | "indirizzo 0x03FC"
+freccia: 6.1 1.3 7.4 1.3 | ambra
+freccia: 7.4 1.3 7.4 3.1 | ambra
+freccia: 7.4 3.1 6.1 3.1 | ambra
+testo: 7.5 2.2 | ambra | "*p" | e
+```
+
 - Due puntatori con lo stesso indirizzo sono **alias**: scrivere con uno cambia la variabile per tutti.
 - Un puntatore non inizializzato contiene «?»; `NULL` vuol dire «non punta a niente». Su tutti e due **non** si usa `*`.
 - Ogni puntatore occupa 8 byte su 64 bit, qualunque sia il tipo puntato. `&` e `*` si annullano: `*&x` è `x`.
@@ -165,6 +184,60 @@ Il numero di valori letti con successo. Se il primo valore non va bene, restitui
 ::: domanda Perché non si può usare `*p` se `p` vale `NULL`?
 Perché `NULL` non è l'indirizzo di nessuna variabile: non c'è niente da leggere o da scrivere.
 :::
+
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza di una sequenza di assegnazioni» e «stato della memoria», e tre di programmazione. Le prime due domande sono l'esercizio vero di correttezza della pagina Moodle 2023/24 («Corr. Ass. 1») e una sua variante vista negli appelli: si risolvono con gli assegnamenti di questa settimana. Le altre sono sul modello dell'esercizio sullo stato della memoria e degli errori che fanno fallire i test. Ho provato tutto con gcc.
+
+```quiz
+D: Moodle 2023/24, esercizio «Corr. Ass. 1». Il programma esegue `r = r + 2;` e poi `r = r * 3;`. Alla fine deve valere `33 <= r && r <= 39`. Per quali valori interi iniziali di `r` succede?
++ `9 <= r && r <= 11`
+- `11 <= r && r <= 13`
+- `11 <= r && r <= 12`
+- `31 <= r && r <= 37`
+- `33 <= r && r <= 39`
+= Si ragiona all'indietro, dall'ultima istruzione: prima di `r = r * 3` serve $33 \le 3r \le 39$, cioè $11 \le r \le 13$; prima di `r = r + 2` serve $11 \le r + 2 \le 13$, cioè $9 \le r \le 11$. Controllo: 9 diventa 33, 11 diventa 39. La risposta più insidiosa è `11 <= r && r <= 13`: si ferma a metà strada. `11 <= r && r <= 12` applica le istruzioni nell'ordine sbagliato. Nella pagina Moodle la stessa condizione era scritta come `33 <= (r+2)*3 && r <= 11`.
+
+D: Variante dello stesso esercizio vista negli appelli. Con le stesse istruzioni, `r = r + 2;` e `r = r * 3;`, alla fine deve valere `r == 33`. Che cosa deve valere `r` all'inizio?
+- `r == 11`
++ `r == 9`
+- `r == 31`
+- `r == 33`
+- nessun valore intero va bene
+= All'indietro: $3r = 33$ dà $r = 11$, e $r + 2 = 11$ dà $r = 9$. Controllo: $(9 + 2) \cdot 3 = 33$. La risposta più insidiosa è `r == 11`: è il valore a metà, dopo `r = r + 2`.
+
+D: Sul modello di «Corr. Ass. 1». Con le stesse istruzioni, alla fine deve valere `34 <= r`. Da quale valore iniziale intero di `r` in su funziona?
+- da 11
+- da 32
++ da 10
+- da 34
+- da 9
+= Serve $3(r + 2) \ge 34$. Tra gli interi, $3 \cdot 11 = 33$ non basta e $3 \cdot 12 = 36$ sì: quindi $r + 2 \ge 12$, cioè $r \ge 10$. La risposta più insidiosa è 9: andrebbe bene con 33, non con 34. Negli interi si arrotonda per eccesso quando si divide un «almeno»: è la trappola segnalata nelle soluzioni.
+
+D: Sul modello dell'esercizio sullo stato della memoria. Dopo `int x = 5, y = 8; int *p = &x; *p = *p + y; p = &y; *p = x - 1;` quanto valgono `x` e `y`?
+- `x = 5`, `y = 12`
++ `x = 13`, `y = 12`
+- `x = 13`, `y = 8`
+- `x = 13`, `y = 4`
+- `x = 4`, `y = 8`
+= `*p = *p + y` scrive in `x`, perché `p` contiene l'indirizzo di `x`: $5 + 8 = 13$. Poi `p = &y` sposta il puntatore, e `*p = x - 1` scrive in `y`: $13 - 1 = 12$. La risposta più insidiosa è `x = 13`, `y = 4`: usa il vecchio valore di `x` nell'ultima riga. Ricorda: a destra si usano i valori di quel momento.
+
+D: Sul modello degli errori che fanno fallire i test. Con `int a = 7, b = 2; double m = a / b;`, che cosa stampa `printf("%f", m);`?
++ `3.000000`
+- `3.500000`
+- `3`
+- `4.000000`
+- non compila
+= `a / b` è una divisione tra interi e fa 3; solo dopo il 3 diventa `3.000000`. Per avere 3,5 serve `(double)a / b`. La risposta più insidiosa è `3.500000`: è il risultato «giusto» a mano, ma il C fa prima la divisione intera.
+
+D: Sul modello della lettura con `scanf`. Con `int a = 0, b = -1;` e l'input `12.9`, che cosa restituisce `scanf("%d %d", &a, &b)` e che cosa c'è in `a` e `b`?
+- restituisce 2, `a = 12`, `b = 9`
++ restituisce 1, `a = 12`, `b = -1`
+- restituisce 0, `a = 0`, `b = -1`
+- restituisce 2, `a = 12`, `b = 0`
+- restituisce 1, `a = 13`, `b = -1`
+= `scanf` legge 12 e si ferma al punto, che non può far parte di un intero. Per il secondo `%d` trova `.9` e si arrende: ha letto un solo valore, e `b` non viene toccata. La risposta più insidiosa è «2, `a = 12`, `b = 9`»: il punto non è uno spazio, quindi il 9 non viene letto. Con `13` si arrotonderebbe, ma `scanf` non arrotonda mai.
+```
 
 ## Fonti
 

@@ -91,6 +91,30 @@ Una **funzione** è come la mensa: **ogni** studente sceglie **un solo** piatto.
 | suriettiva | almeno un pallino per riga | ogni $f^{-1}(b)$ è non vuota |
 | biettiva | esattamente un pallino per riga | ogni $f^{-1}(b)$ ha esattamente un elemento |
 
+```grafico
+titolo: Una funzione dagli studenti ai piatti: da ogni studente parte **una sola** freccia. La pasta riceve due frecce, quindi la funzione non è iniettiva; l'insalata nessuna, quindi non è suriettiva.
+x: 0 10
+y: 0 6
+assi: no
+griglia: no
+poligono: 0.4 0.4 3.4 0.4 3.4 5.6 0.4 5.6 | blu
+poligono: 6.6 0.4 9.6 0.4 9.6 5.6 6.6 5.6 | ambra
+testo: 1.9 5.25 | blu | "studenti"
+testo: 8.1 5.25 | ambra | "piatti"
+punto: 2.6 4.3 | blu | "Anna" | o
+punto: 2.6 3.3 | blu | "Bruno" | o
+punto: 2.6 2.3 | blu | "Carla" | o
+punto: 2.6 1.3 | blu | "Dario" | o
+punto: 7.4 4.3 | ambra | "pasta" | e
+punto: 7.4 3.1 | ambra | "riso" | e
+punto: 7.4 1.9 | ambra | "zuppa" | e
+punto: 7.4 0.9 | ambra | "insalata" | e
+freccia: 2.7 4.3 7.25 4.3
+freccia: 2.7 3.3 7.25 4.2
+freccia: 2.7 2.3 7.25 3.1
+freccia: 2.7 1.3 7.25 1.9
+```
+
 > [!METODO] Smentire o dimostrare
 > - **Non iniettiva**: basta trovare due elementi diversi con lo stesso valore, come $1$ e $-1$ quando c'è un quadrato.
 > - **Non suriettiva**: basta un elemento del codominio che non arriva mai.
@@ -143,6 +167,92 @@ Trovando due elementi diversi con lo stesso valore.
 ::: domanda $f(n) = 2n + 1$ da $\Z$ a $\Z$ è suriettiva?
 No: i valori sono tutti dispari, e 0 non viene mai raggiunto.
 :::
+
+## Quiz d'esame
+
+Tutte domande vere dei quiz di Matematica Discreta: le prime sei sul prodotto cartesiano, che è quasi sempre la domanda 2, le altre sulle funzioni. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma. Sulle relazioni di equivalenza nei quiz 2021–2026 non ho trovato domande a scelta multipla.
+
+```quiz
+D: Appello del 07/07/2025, domanda 1. Siano $A = \{a, d, h, m\}$ e $B = \{c, g, p, t\}$. Allora:
+- $(d, m) \in A \times B$
+- $g \in A \times B$
+- $(p, m) \in A \times B$
+- $\{a, t\} \subset A \times B$
++ $(h, t) \in A \times B$
+= $h$ sta in $A$ e $t$ in $B$, nell'ordine giusto. La risposta più insidiosa è $(d, m)$: tutte e due le lettere stanno in $A$, ma il secondo pezzo deve stare in $B$. $g$ e $\{a, t\}$ non sono coppie; $(p, m)$ ha i pezzi negli insiemi sbagliati.
+
+D: Appello del 14/01/2025, domanda 2. Siano $A = \{1, 2, 5, 8\}$ e $B = \{2, 3, 8, 9\}$. La terna $(1, 2, 5)$ è un elemento di:
+- $B \times A \times A$
++ $A \times B \times A$
+- $B \times B \times B$
+- $B \times B \times A$
+- $A \times A \times B$
+= Pezzo per pezzo: 1 sta solo in $A$, 2 sta in $B$ (e anche in $A$), 5 sta solo in $A$. Quindi il primo e il terzo insieme devono essere $A$. La risposta più insidiosa è $A \times A \times B$: va bene per i primi due pezzi, ma 5 non sta in $B$.
+
+D: Appello del 13/01/2026, domanda 2. Siano $R = \{2, 5, 6, 9\}$ e $S = \{d, g, n, z\}$. Allora:
++ $(g, 6) \notin R \times S$
+- $(d, z) \in R \times S$
+- $(5, 6, g) \in R \times S$
+- $(3, n) \in R \times S$
+- $(2, d) \notin R \times S$
+= Le coppie di $R \times S$ hanno prima un numero di $R$ e poi una lettera di $S$. $(g, 6)$ ha l'ordine rovesciato, quindi non ci sta: la frase è vera. La risposta più insidiosa è $(2, d) \notin R \times S$: la coppia ci sta, quindi la frase con «non appartiene» è falsa. $(5, 6, g)$ è una terna, e 3 non sta in $R$.
+
+D: Appello del 03/02/2026, domanda 2. Siano $P = \{1, 3, 4, 7, 8\}$ e $Q = \{2, 3, 5, 6, 9\}$. Quale insieme NON è un sottoinsieme di $P \times Q$?
+- $\{(3, 3)\}$
+- $\{(8, 3), (3, 9)\}$
+- $\emptyset$
++ $\{(1, 3), (6, 7), (8, 2)\}$
+- $\{(4, 6), (1, 9), (7, 5)\}$
+= Nella coppia $(6, 7)$ il 6 non sta in $P$ e il 7 non sta in $Q$: basta una coppia sbagliata. La risposta più insidiosa è $\emptyset$: il vuoto è un sottoinsieme di ogni insieme, quindi va bene. $(3, 3)$ va bene perché 3 sta in tutti e due.
+
+D: Appello del 06/06/2026, domanda 2. Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora:
+- $(6, \rho) \in X \times Y$
++ $(\omega, 4) \notin X \times Y$
+- $\emptyset \in X \times Y$
+- $(\delta, 2) \notin X \times Y$
+- $\beta \in X \times Y$
+= 4 non sta in $Y$, quindi $(\omega, 4)$ non è nel prodotto: la frase è vera. La risposta più insidiosa è $(\delta, 2) \notin X \times Y$: la coppia invece ci sta. $(6, \rho)$ ha l'ordine rovesciato; il vuoto e $\beta$ non sono coppie.
+
+D: Appello del 01/07/2026, domanda 2. Siano $R = \{1, 4, 6, 8\}$ e $S = \{2, 5, 7, 8\}$. Allora:
+- $(8, 8) \notin R \times S$
+- $(1, 2) \notin R \times S$
+- $\{6, 7\} \in R \times S$
+- $(7, 6) \in R \times S$
++ $(4, 5) \in R \times S$
+= 4 sta in $R$ e 5 in $S$. La risposta più insidiosa è $(8, 8) \notin R \times S$: 8 sta in tutti e due gli insiemi, quindi la coppia c'è, e la frase è falsa. $\{6, 7\}$ è un insieme, non una coppia; $(7, 6)$ ha l'ordine rovesciato.
+
+D: Appello del 14/01/2025, domanda 3. Sia $f \colon \Z \to \N$ la funzione $f(n) = n^2 + 1$ se $n$ è pari, $f(n) = n^2 - 1$ se $n$ è dispari. Allora:
+- se $m$ sta nell'immagine di $f$, allora $m + 1$ non ci sta
+- $f^{-1}(p) = \emptyset$ se $p$ è primo
++ $f(m) = f(n)$ se e solo se $m = \pm n$
+- $f$ è iniettiva
+- $f$ è suriettiva
+= $n$ e $-n$ sono tutti e due pari o tutti e due dispari, quindi hanno lo stesso valore. Al contrario, due numeri con lo stesso valore hanno lo stesso quadrato, oppure i quadrati differiscono di 2, che tra quadrati di interi non succede. La risposta più insidiosa è «iniettiva»: $f(1) = f(-1) = 0$. $f(0) = 1$ e $f(1) = 0$ smentiscono la prima; $f(2) = 5$ è primo; il 2 non è mai raggiunto, quindi non è suriettiva.
+
+D: Appello del 14/01/2025, domanda 3, altra versione. Sia $f \colon \Z \to \N$ la funzione $f(n) = n^2 + 2$ se $n$ è pari, $f(n) = n^2$ se $n$ è dispari. Allora:
+- se $s$ sta nell'immagine di $f$, allora $s + 1$ non ci sta
+- $f^{-1}(p) = \emptyset$ se $p$ è primo
+- $f(2n) = 4n^2 + 4$ per ogni $n$
++ $f$ non è iniettiva
+- $f$ è suriettiva
+= $f(1) = f(-1) = 1$: due numeri diversi con lo stesso valore. La risposta più insidiosa è $f(2n) = 4n^2 + 4$: $2n$ è pari, quindi $f(2n) = 4n^2 + 2$. $f(0) = 2$ e $f(1) = 1$ smentiscono la prima; $f(0) = 2$ è primo; il 3 non è mai raggiunto.
+
+D: Quiz 2021–2025. Sia $f \colon \Z \to \Z$ la funzione $f(n) = 2n$ se $n$ è dispari, $f(n) = 2$ se $n$ è pari. Allora:
+- $f$ è suriettiva
+- $f(n/2) = 2$ per ogni $n$ pari
+- $f(2n) = 4n$ per ogni $n$ dispari
++ $f^{-1}(8) = \emptyset$
+- $f$ è iniettiva
+= Per avere 8 servirebbe $2n = 8$ con $n$ dispari, ma $n = 4$ è pari; i pari danno sempre 2. Quindi nessuno va in 8. La risposta più insidiosa è $f(2n) = 4n$: $2n$ è pari, quindi $f(2n) = 2$. $f(n/2)$ vale 2 solo se $n/2$ è pari; $f$ dà solo numeri pari, quindi non è suriettiva; tutti i pari vanno in 2, quindi non è iniettiva.
+
+D: Quiz 2021–2025. Sia $h \colon \Z \to \Z$ la funzione $h(n) = 2n$ se $n$ è dispari, $h(n) = n$ se $n$ è pari. Allora:
+- $h$ è suriettiva
+- $h(n/2) = n$ per ogni $n$ pari
+- $\{4, 8\} = h^{-1}(8)$
++ $\{3, 6\} = h^{-1}(6)$
+- $h$ è iniettiva
+= Chi va in 6: il dispari 3, perché $2 \cdot 3 = 6$, e il pari 6. Quindi $h^{-1}(6) = \{3, 6\}$, e per lo stesso motivo $h$ non è iniettiva. La risposta più insidiosa è $\{4, 8\} = h^{-1}(8)$: 4 è pari e va in 4, non in 8; il dispari che andrebbe in 8 sarebbe 4, che non è dispari, quindi $h^{-1}(8) = \{8\}$. $h$ dà solo numeri pari, quindi non è suriettiva.
+```
 
 ## Fonti
 

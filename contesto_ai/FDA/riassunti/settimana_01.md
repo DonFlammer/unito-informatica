@@ -162,6 +162,52 @@ $37 = 32 + 4 + 1$, quindi 100101.
 $2 + \frac12 + \frac14 = 2{,}75$.
 :::
 
+## Quiz d'esame
+
+Le domande vere che conosco sono quelle delle due simulazioni d'esame ufficiali del 2023/24, sulla pagina d'esame comune di Moodle. Qui ci sono tutte quelle sugli argomenti di questa settimana: circuiti, flip-flop e base 2. Esadecimale, memoria, testo, immagini e suoni non comparivano nelle simulazioni, ma sono nel programma comune. Le risposte le ho ricontrollate con un programma. All'esame ogni quiz vale 3 punti e può avere più voci, ognuna con il suo punteggio.
+
+```quiz
+D: Simulazione d'esame 1, 2023/24, domanda 5. La tabella di verità ha $y = 1$ solo nelle righe $x_1 x_2 x_3$ = 010, 011, 101 e 110. Quale formula è giusta?
+- $\overline{x_1}\,x_2 + x_1\,x_2\,x_3$
+- $x_1\,x_2 + \overline{x_2}\,x_3$
++ $\overline{x_1}\,x_2\,\overline{x_3} + \overline{x_1}\,x_2\,x_3 + x_1\,\overline{x_2}\,x_3 + x_1\,x_2\,\overline{x_3}$
+- $x_1\,x_2\,x_3$
+- $\overline{x_1}\,\overline{x_2}\,\overline{x_3} + x_1\,x_2\,x_3$
+= Un AND per ogni riga con $y = 1$, con il NOT sugli ingressi a 0, poi tutti uniti da OR: è la terza. La risposta più insidiosa è la prima: è giusta in quasi tutte le righe, ma vale 1 anche in 111, dove $y = 0$, e vale 0 in 101 e 110. La seconda sbaglia le righe 001 e 111.
+
+D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola (A AND NOT C) OR (NOT C AND B). Quale formula NON lo descrive?
+- $(\neg C \land A) \lor (\neg C \land B)$
++ $(\neg C \lor A) \land (\neg C \lor B)$
+- $\neg((C \lor \neg A) \land (C \lor \neg B))$
+- $\neg C \land (A \lor B)$
+- $(A \land \neg C) \lor (B \land \neg C)$
+= Basta una riga diversa: con $A = B = C = 0$ il circuito dà 0, perché tutte e due le AND ricevono uno 0, mentre la seconda formula dà 1, perché $\neg C$ rende veri tutti e due gli OR. La risposta più insidiosa è la terza, con la negazione davanti: per De Morgan è uguale al circuito in tutte le 8 righe.
+
+D: Simulazione d'esame 2, 2023/24, domanda 3. Due NAND si richiamano: quello in alto riceve l'ingresso in alto e l'uscita dell'altro; quello in basso riceve l'ingresso in basso e l'uscita del primo, che è $y$. Con l'ingresso in alto a 1 e quello in basso a 0, su che valore si stabilizza $y$?
++ $0$
+- $1$
+- Dipende dal valore di prima.
+- Non si stabilizza mai.
+- Vale 1 per un istante e poi 0, all'infinito.
+= Il NAND in basso riceve uno 0 e dà 1 qualunque sia $y$. Allora quello in alto riceve 1 e 1, e dà 0. Ricalcolando non cambia niente: $y$ resta 0. La risposta più insidiosa è «dipende dal valore di prima»: succede solo con tutti e due gli ingressi a 1, quando il circuito ricorda un bit. Le note scritte a mano sulla copia della simulazione che circola tra gli studenti qui sono sbagliate.
+
+D: Sullo stesso circuito della simulazione 2, domanda 3. Tutti e due gli ingressi valgono 1. Su che valore si stabilizza $y$?
+- Sempre $0$.
+- Sempre $1$.
++ Resta il valore che aveva prima: il circuito ricorda un bit.
+- Oscilla tra 0 e 1.
+- Il circuito è combinatorio, quindi la domanda non ha senso.
+= Con un ingresso fisso a 1 ogni NAND dà il contrario dell'altra uscita, e tutti e due gli stati sono stabili. È il flip-flop: un circuito sequenziale, perché le uscite tornano indietro. La risposta più insidiosa è «combinatorio»: lo sarebbe se nessun filo tornasse indietro.
+
+D: Simulazioni d'esame 1 (domanda 2) e 2 (domanda 1), 2023/24, prima parte. Come si scrive 3,625 in base 2 in virgola fissa?
+- $11{,}111$
++ $11{,}101$
+- $111{,}01$
+- $11{,}625$
+- $11{,}011$
+= 3 è 11. Per 0,625 si raddoppia: 1,25 dà 1; 0,5 dà 0; 1 dà 1. Quindi 0,101, e 3,625 = 11,101. Controllo: $2 + 1 + \frac 12 + \frac 18 = 3{,}625$. La risposta più insidiosa è 11,011: ha le cifre dopo la virgola al contrario e vale 3,375. 11,625 copia le cifre decimali; 111,01 vale 7,25.
+```
+
 ## Fonti
 
 - Le lezioni complete: [01 · Bit, porte logiche, esadecimale e memorie](01_bit_porte_esadecimale.html) e [02 · Testo, colori e suoni in bit; i numeri in base 2](02_testo_colori_suoni_binario.html), con strumenti interattivi, quiz ed esercizi.

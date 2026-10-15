@@ -161,6 +161,100 @@ Il quarto: lo zero è il successivo di 11.
 A $1 + 3 + \dots + (2n + 1) = (n + 1)^2$.
 :::
 
+## Quiz d'esame
+
+Tutte domande vere dei quiz di Matematica Discreta, con la data dell'appello. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma. All'esame ogni domanda vale 1 punto, e servono almeno 6 punti su 10 nel quiz perché i problemi vengano corretti.
+
+```quiz
+D: Appello del 13/01/2026, domanda 1. Sia $A = \{b, e, h, k, m, p, q, s, u, x\}$. Allora:
+- $t \in A$
+- $h \notin A$
+- $\{h, s\} \in A$
++ $\{k, q, u\} \subset A$
+- $\{e, s, y\} \subset A$
+= Le lettere $k$, $q$, $u$ sono tutte in $A$, quindi l'insieme che le contiene è un sottoinsieme. La risposta più insidiosa è $\{h, s\} \in A$: $h$ e $s$ ci sono, ma gli elementi di $A$ sono lettere, non insiemi. Sarebbe giusto $\{h, s\} \subset A$. $t$ e $y$ non sono in $A$, e $h$ invece c'è.
+
+D: Appello del 10/09/2026, domanda 1. Sia $X = \{c, \{f, m\}, p, q, \{x\}\}$. Allora:
+- $q \subset X$
+- $\{c, p\} \in X$
++ $\{f, m\} \in X$
+- $\{x\} \subset X$
+- $\emptyset \in X$
+= $X$ ha cinque elementi, e due di loro sono insiemi: $\{f, m\}$ e $\{x\}$. Quindi $\{f, m\} \in X$. La risposta più insidiosa è $\{x\} \subset X$: vorrebbe dire che la lettera $x$ è un elemento di $X$, ma l'elemento è $\{x\}$, non $x$. $q$ non è un insieme, $\{c, p\}$ non è tra gli elementi, e il vuoto non è elencato.
+
+D: Appello del 14/01/2025, domanda 1. Siano $X = \{a, g, h, m\}$ e $Y = \{g, h, m, p, s\}$. Allora:
+- $\emptyset \in X \cap Y$
+- $X \subset Y$
++ $m \in X \cap Y$
+- $g \subset X \cap Y$
+- $\{g, h\} \in X \cap Y$
+= $X \cap Y = \{g, h, m\}$, e $m$ è uno dei suoi elementi. La risposta più insidiosa è $\{g, h\} \in X \cap Y$: è un sottoinsieme dell'intersezione, non un suo elemento. $X \subset Y$ è falso perché $a$ non sta in $Y$.
+
+D: Appello del 04/02/2025, domanda 1. Siano $A = \{2, 3, 5, 7, 9\}$ e $B = \{1, 4, 5, 8, 9\}$. Allora:
+- $6 \in A \cup B$
+- $\{3, 4\} \in A \cup B$
+- $\{2, 8\} \subset A \cap B$
++ $\{5, 9\} = A \cap B$
+- $9 \subset A \cap B$
+= Gli elementi comuni sono 5 e 9, quindi $A \cap B = \{5, 9\}$. La risposta più insidiosa è $\{2, 8\} \subset A \cap B$: 2 sta solo in $A$ e 8 solo in $B$, quindi sono nell'unione, non nell'intersezione. 6 non sta in nessuno dei due.
+
+D: Appello del 03/02/2026, domanda 1. Siano $X = \{a, b, f, h, r, s, t, v, z\}$ e $Y = \{d, g, h, m, p, s, t, x, y\}$. Allora:
+- $\{b, s, t\} \subset X \cap Y$
++ $f \notin X \cap Y$
+- $\{h, t\} = X \cap Y$
+- $\{h, s\} \in X \cap Y$
+- $s \subset X \cap Y$
+= $X \cap Y = \{h, s, t\}$, e $f$ sta solo in $X$. La risposta più insidiosa è $\{h, t\} = X \cap Y$: dimentica la $s$. $b$ non sta in $Y$; $\{h, s\}$ è un sottoinsieme, non un elemento; $s$ è una lettera, non un insieme.
+
+D: Appello del 06/06/2026, domanda 1. Ricordando che $n\Z = \{nk \mid k \in \Z\}$, cioè i multipli di $n$, quale affermazione è vera?
+- $7 \in 3\Z \cup 5\Z$
+- $\{12, 20\} \subset 3\Z \cap 4\Z$
+- $4\Z \cap 5\Z = \emptyset$
+- $8 \in 2\Z \cap 5\Z$
++ $\{10, 21\} \subset 2\Z \cup 7\Z$
+= 10 è multiplo di 2 e 21 è multiplo di 7: tutti e due stanno nell'unione. La risposta più insidiosa è $\{12, 20\} \subset 3\Z \cap 4\Z$: 12 va bene, ma 20 non è multiplo di 3. $4\Z \cap 5\Z$ contiene i multipli di 20, quindi non è vuoto; 7 non è multiplo né di 3 né di 5; 8 non è multiplo di 5.
+
+D: Appello del 01/07/2026, domanda 1. Siano $A = \{b, f, h, m, n\}$, $B = \{d, g, h, p, q\}$ e $X = \{a, f, g, h, s, x, y\}$. Quale dei seguenti è un sottoinsieme di $(A \cup B) \cap X$?
+- $\{\emptyset\}$
++ $\{f, h\}$
+- $\{n\}$
+- $\{a, g\}$
+- $\{b, q\}$
+= $(A \cup B) \cap X = \{f, g, h\}$: le lettere di $X$ che stanno in $A$ o in $B$. $\{f, h\}$ è un suo sottoinsieme. La risposta più insidiosa è $\{a, g\}$: $g$ va bene, ma $a$ sta solo in $X$. $\{\emptyset\}$ contiene il vuoto come elemento, e il vuoto non è un elemento di quell'insieme.
+
+D: Appello del 06/06/2025, domanda 1. Siano $A = \{3, 4, 7, 9\}$, $B = \{1, 3, 5, 6, 8, 9\}$ e $C = \{2, 4, 5, 8, 9\}$. Allora:
+- $4 \in A \cap B \cap C$
+- $A \subset B \cup C$
+- $B \cap C \subset A$
+- $A \cap B \subset C$
++ $A \cap B \cap C \neq \emptyset$
+= 9 sta in tutti e tre gli insiemi, quindi l'intersezione non è vuota. La risposta più insidiosa è $A \cap B \subset C$: $A \cap B = \{3, 9\}$, e 3 non sta in $C$. 4 non sta in $B$; 7 non sta né in $B$ né in $C$; $B \cap C = \{5, 8, 9\}$ e 5 non sta in $A$.
+
+D: Appello del 04/02/2025, domanda 2. Sia $S = \{a, c, f, h, m, t, v\}$. Quale delle seguenti è una partizione di $S$?
++ $\{m\} \cup \{a, c, t\} \cup \{f, h, v\}$
+- $\{f, m\} \cup \{a, t\} \cup \{c, v\}$
+- $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$
+- $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$
+- $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$
+= I tre controlli: parti non vuote, che non si toccano, che coprono tutto. La prima li passa. La seconda dimentica la $h$. La terza ha una parte vuota. La quarta e la quinta ripetono una lettera, la $c$ e la $h$: sono ricoprimenti, non partizioni.
+
+D: Appello del 07/07/2025, domanda 2. Sia $X = \{b, c, f, h, k, m, r, u, v, z\}$. Quale è un ricoprimento di $X$ ma non una partizione?
+- $\{f, h, k, u, v\} \cup \{b, c, k, r, z\}$
+- $\{b, c, k, r, s, z\} \cup \{f, h, m, u, v\}$
++ $\{b, f, k, m, r\} \cup \{c, h, r, u, v, z\}$
+- $\{b, c, m, v, z\} \cup \{f, h, k, u\}$
+- $\{b, f, k, r, u, z\} \cup \{c, m, t, v\}$
+= La terza copre tutte e dieci le lettere e ripete la $r$: è un ricoprimento ma non una partizione. La risposta più insidiosa è la prima, che ripete la $k$ ma dimentica la $m$: non copre tutto. La seconda e la quinta contengono lettere che in $X$ non ci sono ($s$ e $t$); la quarta dimentica la $r$.
+
+D: Appello del 06/06/2025, domanda 2. L'affermazione «per ogni $x \in \N$ e per ogni $y \in \N$, $x^2 + x \ge y$» è contraddetta da:
+- $(x, y) = (2, 5)$
+- $(x, y) = (-4, 10)$
++ $(x, y) = (1, 3)$
+- $(x, y) = (0, -1)$
+- $(x, y) = (3, 12)$
+= Un controesempio è una coppia di naturali per cui la frase è falsa. Con $(1, 3)$: $1 + 1 = 2$, che non è almeno 3. La risposta più insidiosa è $(-4, 10)$: la disuguaglianza è falsa, ma $-4$ non è un naturale, quindi non conta. Con $(2, 5)$ e $(3, 12)$ la disuguaglianza è vera; in $(0, -1)$ c'è un numero negativo.
+```
+
 ## Fonti
 
 - Le lezioni complete: [D01 · Insiemi e induzione](D01_insiemi_induzione.html) e [D02 · Complementare, De Morgan, induzione e partizioni](D02_complementare_induzione_partizioni.html), con quiz degli appelli ed esercizi svolti.

@@ -112,7 +112,7 @@ Gli enunciati nei riquadri `DEF`, `PROP`, `TEOREMA` seguono le slide o le dispen
 
 ## Riassunti settimanali
 
-Ogni settimana, per ogni corso, un riassunto delle lezioni in `<CORSO>/riassunti/settimana_NN.md` (per MDAG uno per parte: `settimana_NN_MD.md` e `settimana_NN_AG.md`). Il formato è quello delle lezioni, con `tipo: riassunto` e `lezione: S<N>` nell'intestazione: la pagina va in `appunti/<CORSO>/riassunto_settimana_NN….html` e compare nella sezione «Riassunti settimanali» in fondo alla pagina del corso, non tra le lezioni. Contiene «In breve», una sezione per lezione con i punti, le tabelle e i metodi da sapere, «Verso l'esame», «Domande di ripasso» e le «Fonti» con i link alle lezioni complete.
+Ogni settimana, per ogni corso, un riassunto delle lezioni in `<CORSO>/riassunti/settimana_NN.md` (per MDAG uno per parte: `settimana_NN_MD.md` e `settimana_NN_AG.md`). Il formato è quello delle lezioni, con `tipo: riassunto` e `lezione: S<N>` nell'intestazione: la pagina va in `appunti/<CORSO>/riassunto_settimana_NN….html` e compare nella sezione «Riassunti settimanali» in fondo alla pagina del corso, non tra le lezioni. Contiene «In breve», una sezione per lezione con i punti, le tabelle, i metodi e qualche disegno (`grafico`), «Verso l'esame», «Domande di ripasso», «Quiz d'esame» e le «Fonti» con i link alle lezioni complete. Il «Quiz d'esame» è un blocco `quiz` con domande vere degli appelli o delle simulazioni, ognuna con la data; dove un corso non ha domande a scelta su quegli argomenti, le domande sono «sul modello di» un esercizio d'esame vero, ed è scritto.
 
 
 ---
@@ -9534,6 +9534,52 @@ Preprocessore, compilatore, assemblatore, linker.
 Un errore logico.
 :::
 
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette e non chiede la storia dei computer. Chiede però di seguire a mano un programma, istruzione per istruzione, negli esercizi sulla correttezza e sullo stato della memoria, e di scrivere codice che compili con `gcc -Wall -Werror`. Queste domande sono sul modello di quegli esercizi, con gli argomenti di questa settimana. Le domande vere con gli assegnamenti sono nel riassunto della settimana 2. Ho provato tutto a mano e con gcc.
+
+```quiz
+D: Sul modello degli esercizi di correttezza. La versione V2 della moltiplicazione prima somma, poi controlla «i = n?». Che cosa succede con $n = 0$?
+- Restituisce 0, il risultato giusto.
+- Restituisce $m$.
++ Non termina: `i` vale già 1 al primo controllo e non torna mai a 0.
+- Si ferma con un errore di divisione per zero.
+- Restituisce $m \cdot 0$ dopo un giro.
+= Dopo la prima somma `i` vale 1, e «1 = 0?» è falso; poi 2, 3… e il ciclo non finisce mai. La risposta più insidiosa è «restituisce $m$»: è quello che vedresti se il ciclo si fermasse dopo un giro, ma il controllo è sbagliato e non si ferma. La V3, con il controllo prima della somma, dà 0.
+
+D: Sul modello dello stato della memoria. Le istruzioni `LOAD R0, @A`, `LOAD R1, @B`, `ADD R0, R1`, `STORE R0, @A` partono con 7 all'indirizzo A e 5 all'indirizzo B. Che cosa c'è alla fine in A e in B?
++ A = 12, B = 5
+- A = 7, B = 12
+- A = 12, B = 12
+- A = 7, B = 5
+- A = 12, B = 0
+= `ADD` mette la somma in R0, e `STORE` scrive R0 nella cella A. La cella B viene solo letta, quindi resta 5. La risposta più insidiosa è A = 12, B = 12: leggere una cella non la cambia e non la svuota.
+
+D: Sul modello del conteggio dei passi. Il programma assembly della moltiplicazione esegue 4 istruzioni iniziali, 5 per ogni giro del ciclo e 3 alla fine. Quante istruzioni esegue con $n = 3$?
+- $15$
+- $20$
++ $22$
+- $27$
+- $7$
+= $4 + 5 \cdot 3 + 3 = 22$; in generale $5n + 7$. La risposta più insidiosa è 20: dimentica le ultime tre, cioè il confronto che fa uscire dal ciclo e la fine.
+
+D: Sul modello degli errori di compilazione. Un programma usa `printf` ma non ha `#include <stdio.h>`. Che cosa succede con `gcc -Wall -Werror`?
+- Compila, perché `printf` è sempre disponibile.
+- Compila con un avviso, e il programma parte.
++ Non compila: `implicit declaration of function 'printf'`.
+- Compila ma non stampa niente.
+- Errore a runtime alla prima `printf`.
+= gcc 16.1 dà proprio questo errore. Con `-Werror` ogni avviso blocca la compilazione, come su CodeRunner all'esame. La risposta più insidiosa è «compila con un avviso»: succedeva con compilatori più vecchi e senza `-Werror`.
+
+D: Sul modello delle domande sulla memoria. Con 1024 byte di memoria, gli indirizzi partono da 0. Qual è l'ultimo?
+- $1024$
++ $1023$
+- $1000$
+- $999$
+- $2^{1024}$
+= Se si parte da 0, il millesimo-ventiquattresimo byte ha indirizzo 1023. La risposta più insidiosa è 1024: conta come se si partisse da 1. Lo stesso succede con gli indici degli array: da 0 a lunghezza meno 1.
+```
+
 ## Fonti
 
 - Le lezioni complete: [01A · Un primo algoritmo](01A_primo_algoritmo.html), [01B · Architettura del calcolatore](01B_architettura.html), [02A · Dal linguaggio macchina al C](02A_da_assembly_a_c.html), con esercizi, quiz e i riferimenti alle slide.
@@ -9657,6 +9703,25 @@ Ogni variabile ha un **valore**, che cosa c'è dentro, e un **indirizzo**, dove 
 | `*p` | la variabile all'indirizzo contenuto in `p` | è `x`: vale 5 |
 | `*p = 8;` | scrive nella variabile puntata | ora `x` vale 8 |
 
+```grafico
+titolo: Dopo `int x = 5; int* p = &x;` la casella di `p` contiene l'indirizzo di `x`, qui 0x03FC. `*p` vuol dire «la casella a quell'indirizzo»: `*p = 8;` cambia `x`, non `p`.
+x: 0 10
+y: 0 4.4
+assi: no
+griglia: no
+poligono: 3 2.6 6 2.6 6 3.6 3 3.6 | blu
+poligono: 3 0.8 6 0.8 6 1.8 3 1.8 | ambra
+testo: 4.5 3.1 | blu | "5"
+testo: 4.5 1.3 | ambra | "0x03FC"
+testo: 2.6 3.1 | blu | "x" | o
+testo: 2.6 1.3 | ambra | "p" | o
+testo: 4.5 3.95 | grigio | "indirizzo 0x03FC"
+freccia: 6.1 1.3 7.4 1.3 | ambra
+freccia: 7.4 1.3 7.4 3.1 | ambra
+freccia: 7.4 3.1 6.1 3.1 | ambra
+testo: 7.5 2.2 | ambra | "*p" | e
+```
+
 - Due puntatori con lo stesso indirizzo sono **alias**: scrivere con uno cambia la variabile per tutti.
 - Un puntatore non inizializzato contiene «?»; `NULL` vuol dire «non punta a niente». Su tutti e due **non** si usa `*`.
 - Ogni puntatore occupa 8 byte su 64 bit, qualunque sia il tipo puntato. `&` e `*` si annullano: `*&x` è `x`.
@@ -9712,6 +9777,60 @@ Il numero di valori letti con successo. Se il primo valore non va bene, restitui
 ::: domanda Perché non si può usare `*p` se `p` vale `NULL`?
 Perché `NULL` non è l'indirizzo di nessuna variabile: non c'è niente da leggere o da scrivere.
 :::
+
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza di una sequenza di assegnazioni» e «stato della memoria», e tre di programmazione. Le prime due domande sono l'esercizio vero di correttezza della pagina Moodle 2023/24 («Corr. Ass. 1») e una sua variante vista negli appelli: si risolvono con gli assegnamenti di questa settimana. Le altre sono sul modello dell'esercizio sullo stato della memoria e degli errori che fanno fallire i test. Ho provato tutto con gcc.
+
+```quiz
+D: Moodle 2023/24, esercizio «Corr. Ass. 1». Il programma esegue `r = r + 2;` e poi `r = r * 3;`. Alla fine deve valere `33 <= r && r <= 39`. Per quali valori interi iniziali di `r` succede?
++ `9 <= r && r <= 11`
+- `11 <= r && r <= 13`
+- `11 <= r && r <= 12`
+- `31 <= r && r <= 37`
+- `33 <= r && r <= 39`
+= Si ragiona all'indietro, dall'ultima istruzione: prima di `r = r * 3` serve $33 \le 3r \le 39$, cioè $11 \le r \le 13$; prima di `r = r + 2` serve $11 \le r + 2 \le 13$, cioè $9 \le r \le 11$. Controllo: 9 diventa 33, 11 diventa 39. La risposta più insidiosa è `11 <= r && r <= 13`: si ferma a metà strada. `11 <= r && r <= 12` applica le istruzioni nell'ordine sbagliato. Nella pagina Moodle la stessa condizione era scritta come `33 <= (r+2)*3 && r <= 11`.
+
+D: Variante dello stesso esercizio vista negli appelli. Con le stesse istruzioni, `r = r + 2;` e `r = r * 3;`, alla fine deve valere `r == 33`. Che cosa deve valere `r` all'inizio?
+- `r == 11`
++ `r == 9`
+- `r == 31`
+- `r == 33`
+- nessun valore intero va bene
+= All'indietro: $3r = 33$ dà $r = 11$, e $r + 2 = 11$ dà $r = 9$. Controllo: $(9 + 2) \cdot 3 = 33$. La risposta più insidiosa è `r == 11`: è il valore a metà, dopo `r = r + 2`.
+
+D: Sul modello di «Corr. Ass. 1». Con le stesse istruzioni, alla fine deve valere `34 <= r`. Da quale valore iniziale intero di `r` in su funziona?
+- da 11
+- da 32
++ da 10
+- da 34
+- da 9
+= Serve $3(r + 2) \ge 34$. Tra gli interi, $3 \cdot 11 = 33$ non basta e $3 \cdot 12 = 36$ sì: quindi $r + 2 \ge 12$, cioè $r \ge 10$. La risposta più insidiosa è 9: andrebbe bene con 33, non con 34. Negli interi si arrotonda per eccesso quando si divide un «almeno»: è la trappola segnalata nelle soluzioni.
+
+D: Sul modello dell'esercizio sullo stato della memoria. Dopo `int x = 5, y = 8; int *p = &x; *p = *p + y; p = &y; *p = x - 1;` quanto valgono `x` e `y`?
+- `x = 5`, `y = 12`
++ `x = 13`, `y = 12`
+- `x = 13`, `y = 8`
+- `x = 13`, `y = 4`
+- `x = 4`, `y = 8`
+= `*p = *p + y` scrive in `x`, perché `p` contiene l'indirizzo di `x`: $5 + 8 = 13$. Poi `p = &y` sposta il puntatore, e `*p = x - 1` scrive in `y`: $13 - 1 = 12$. La risposta più insidiosa è `x = 13`, `y = 4`: usa il vecchio valore di `x` nell'ultima riga. Ricorda: a destra si usano i valori di quel momento.
+
+D: Sul modello degli errori che fanno fallire i test. Con `int a = 7, b = 2; double m = a / b;`, che cosa stampa `printf("%f", m);`?
++ `3.000000`
+- `3.500000`
+- `3`
+- `4.000000`
+- non compila
+= `a / b` è una divisione tra interi e fa 3; solo dopo il 3 diventa `3.000000`. Per avere 3,5 serve `(double)a / b`. La risposta più insidiosa è `3.500000`: è il risultato «giusto» a mano, ma il C fa prima la divisione intera.
+
+D: Sul modello della lettura con `scanf`. Con `int a = 0, b = -1;` e l'input `12.9`, che cosa restituisce `scanf("%d %d", &a, &b)` e che cosa c'è in `a` e `b`?
+- restituisce 2, `a = 12`, `b = 9`
++ restituisce 1, `a = 12`, `b = -1`
+- restituisce 0, `a = 0`, `b = -1`
+- restituisce 2, `a = 12`, `b = 0`
+- restituisce 1, `a = 13`, `b = -1`
+= `scanf` legge 12 e si ferma al punto, che non può far parte di un intero. Per il secondo `%d` trova `.9` e si arrende: ha letto un solo valore, e `b` non viene toccata. La risposta più insidiosa è «2, `a = 12`, `b = 9`»: il punto non è uno spazio, quindi il 9 non viene letto. Con `13` si arrotonderebbe, ma `scanf` non arrotonda mai.
+```
 
 ## Fonti
 
@@ -17881,6 +18000,52 @@ $37 = 32 + 4 + 1$, quindi 100101.
 $2 + \frac12 + \frac14 = 2{,}75$.
 :::
 
+## Quiz d'esame
+
+Le domande vere che conosco sono quelle delle due simulazioni d'esame ufficiali del 2023/24, sulla pagina d'esame comune di Moodle. Qui ci sono tutte quelle sugli argomenti di questa settimana: circuiti, flip-flop e base 2. Esadecimale, memoria, testo, immagini e suoni non comparivano nelle simulazioni, ma sono nel programma comune. Le risposte le ho ricontrollate con un programma. All'esame ogni quiz vale 3 punti e può avere più voci, ognuna con il suo punteggio.
+
+```quiz
+D: Simulazione d'esame 1, 2023/24, domanda 5. La tabella di verità ha $y = 1$ solo nelle righe $x_1 x_2 x_3$ = 010, 011, 101 e 110. Quale formula è giusta?
+- $\overline{x_1}\,x_2 + x_1\,x_2\,x_3$
+- $x_1\,x_2 + \overline{x_2}\,x_3$
++ $\overline{x_1}\,x_2\,\overline{x_3} + \overline{x_1}\,x_2\,x_3 + x_1\,\overline{x_2}\,x_3 + x_1\,x_2\,\overline{x_3}$
+- $x_1\,x_2\,x_3$
+- $\overline{x_1}\,\overline{x_2}\,\overline{x_3} + x_1\,x_2\,x_3$
+= Un AND per ogni riga con $y = 1$, con il NOT sugli ingressi a 0, poi tutti uniti da OR: è la terza. La risposta più insidiosa è la prima: è giusta in quasi tutte le righe, ma vale 1 anche in 111, dove $y = 0$, e vale 0 in 101 e 110. La seconda sbaglia le righe 001 e 111.
+
+D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola (A AND NOT C) OR (NOT C AND B). Quale formula NON lo descrive?
+- $(\neg C \land A) \lor (\neg C \land B)$
++ $(\neg C \lor A) \land (\neg C \lor B)$
+- $\neg((C \lor \neg A) \land (C \lor \neg B))$
+- $\neg C \land (A \lor B)$
+- $(A \land \neg C) \lor (B \land \neg C)$
+= Basta una riga diversa: con $A = B = C = 0$ il circuito dà 0, perché tutte e due le AND ricevono uno 0, mentre la seconda formula dà 1, perché $\neg C$ rende veri tutti e due gli OR. La risposta più insidiosa è la terza, con la negazione davanti: per De Morgan è uguale al circuito in tutte le 8 righe.
+
+D: Simulazione d'esame 2, 2023/24, domanda 3. Due NAND si richiamano: quello in alto riceve l'ingresso in alto e l'uscita dell'altro; quello in basso riceve l'ingresso in basso e l'uscita del primo, che è $y$. Con l'ingresso in alto a 1 e quello in basso a 0, su che valore si stabilizza $y$?
++ $0$
+- $1$
+- Dipende dal valore di prima.
+- Non si stabilizza mai.
+- Vale 1 per un istante e poi 0, all'infinito.
+= Il NAND in basso riceve uno 0 e dà 1 qualunque sia $y$. Allora quello in alto riceve 1 e 1, e dà 0. Ricalcolando non cambia niente: $y$ resta 0. La risposta più insidiosa è «dipende dal valore di prima»: succede solo con tutti e due gli ingressi a 1, quando il circuito ricorda un bit. Le note scritte a mano sulla copia della simulazione che circola tra gli studenti qui sono sbagliate.
+
+D: Sullo stesso circuito della simulazione 2, domanda 3. Tutti e due gli ingressi valgono 1. Su che valore si stabilizza $y$?
+- Sempre $0$.
+- Sempre $1$.
++ Resta il valore che aveva prima: il circuito ricorda un bit.
+- Oscilla tra 0 e 1.
+- Il circuito è combinatorio, quindi la domanda non ha senso.
+= Con un ingresso fisso a 1 ogni NAND dà il contrario dell'altra uscita, e tutti e due gli stati sono stabili. È il flip-flop: un circuito sequenziale, perché le uscite tornano indietro. La risposta più insidiosa è «combinatorio»: lo sarebbe se nessun filo tornasse indietro.
+
+D: Simulazioni d'esame 1 (domanda 2) e 2 (domanda 1), 2023/24, prima parte. Come si scrive 3,625 in base 2 in virgola fissa?
+- $11{,}111$
++ $11{,}101$
+- $111{,}01$
+- $11{,}625$
+- $11{,}011$
+= 3 è 11. Per 0,625 si raddoppia: 1,25 dà 1; 0,5 dà 0; 1 dà 1. Quindi 0,101, e 3,625 = 11,101. Controllo: $2 + 1 + \frac 12 + \frac 18 = 3{,}625$. La risposta più insidiosa è 11,011: ha le cifre dopo la virgola al contrario e vale 3,375. 11,625 copia le cifre decimali; 111,01 vale 7,25.
+```
+
 ## Fonti
 
 - Le lezioni complete: [01 · Bit, porte logiche, esadecimale e memorie](01_bit_porte_esadecimale.html) e [02 · Testo, colori e suoni in bit; i numeri in base 2](02_testo_colori_suoni_binario.html), con strumenti interattivi, quiz ed esercizi.
@@ -17948,6 +18113,36 @@ Il complemento a 2 è un contachilometri di bit: andando indietro da 0000 si arr
 > 4. L'esponente più 4, scritto con 3 bit.
 >
 > 3,625 è 11,101 in base 2: virgola spostata di 2, quindi esponente 2 + 4 = 6, cioè 110; mantissa 1110, perché l'ultimo 1 si perde. Il byte è **0 110 1110**, che vale 3,5: è il quiz delle simulazioni 2023/24.
+
+```grafico
+titolo: 3,625 nel formato a 8 bit del libro: un bit di segno, 3 bit di esponente in eccesso 4 (110 = 6 − 4 = 2), 4 bit di mantissa. L'ultima cifra di 0,11101 non entra: il byte vale 3,5.
+x: 0 9.6
+y: 0 3
+assi: no
+griglia: no
+poligono: 0.2 1.2 1.2 1.2 1.2 2.2 0.2 2.2 | verde
+poligono: 1.2 1.2 2.2 1.2 2.2 2.2 1.2 2.2 | blu
+poligono: 2.2 1.2 3.2 1.2 3.2 2.2 2.2 2.2 | blu
+poligono: 3.2 1.2 4.2 1.2 4.2 2.2 3.2 2.2 | blu
+poligono: 4.2 1.2 5.2 1.2 5.2 2.2 4.2 2.2 | ambra
+poligono: 5.2 1.2 6.2 1.2 6.2 2.2 5.2 2.2 | ambra
+poligono: 6.2 1.2 7.2 1.2 7.2 2.2 6.2 2.2 | ambra
+poligono: 7.2 1.2 8.2 1.2 8.2 2.2 7.2 2.2 | ambra
+testo: 0.7 1.7 | verde | "0"
+testo: 1.7 1.7 | blu | "1"
+testo: 2.7 1.7 | blu | "1"
+testo: 3.7 1.7 | blu | "0"
+testo: 4.7 1.7 | ambra | "1"
+testo: 5.7 1.7 | ambra | "1"
+testo: 6.7 1.7 | ambra | "1"
+testo: 7.7 1.7 | ambra | "0"
+testo: 0.7 0.7 | verde | "segno"
+testo: 2.7 0.7 | blu | "esponente"
+testo: 6.2 0.7 | ambra | "mantissa"
+poligono: 8.4 1.2 9.4 1.2 9.4 2.2 8.4 2.2 | grigio | tratteggio
+testo: 8.9 1.7 | grigio | "1"
+testo: 8.9 0.7 | grigio | "persa"
+```
 
 ::: prova Quanto vale 10000001 in complemento a 2? E 0110 in eccesso 8?
 10000001 vale −128 + 1 = −127. 0110 vale 6 − 8 = −2.
@@ -18045,6 +18240,44 @@ Perché l'occhio nota le differenze di luminosità più di quelle di colore: si 
 ::: domanda Che cosa vuol dire che un codice ha distanza minima 3?
 Che due parole del codice differiscono sempre in almeno 3 posti: un errore si corregge scegliendo la parola più vicina, due errori si scoprono.
 :::
+
+## Quiz d'esame
+
+Le domande vere che conosco sono quelle delle due simulazioni d'esame ufficiali del 2023/24. Qui ci sono tutte quelle sugli argomenti di questa settimana: distanza di Hamming, virgola mobile e complemento a 2. La compressione nelle simulazioni non c'era. Le risposte le ho ricontrollate con un programma.
+
+```quiz
+D: Simulazione d'esame 1, 2023/24, domanda 1. Calcolare la distanza di Hamming tra le coppie 01011101 e 00101101; 01011100 e 00101100; 01101100 e 01101110; 01111100 e 01111110. Quali sono le quattro distanze, nell'ordine?
+- 1, 1, 3, 3
++ 3, 3, 1, 1
+- 3, 3, 2, 2
+- 2, 2, 1, 1
+- 3, 4, 1, 1
+= Nelle prime due coppie le file sono diverse nei posti 2, 3 e 4; nelle ultime due solo nel posto 7. La risposta più insidiosa è 3, 4, 1, 1: chi conta male la seconda coppia conta anche una colonna uguale. Si scrivono le due file una sotto l'altra e si segnano le colonne diverse.
+
+D: Simulazioni d'esame 1 (domanda 2) e 2 (domanda 1), 2023/24. Il numero 3,625 nel formato a 8 bit del libro: segno, 3 bit di esponente in eccesso 4, 4 bit di mantissa. Quale affermazione è giusta?
+- In virgola fissa è 11.111 e in virgola mobile 01101101.
+- In virgola mobile è 11101110, senza troncamento.
++ In virgola fissa è 11.101; in virgola mobile è 01101110, e c'è troncamento solo in virgola mobile.
+- In virgola fissa è 111.01, e c'è troncamento in tutte e due.
+- In virgola mobile è 01101110, senza troncamento.
+= 3,625 = 11,101. Spostando la virgola di due posti a sinistra viene 0,11101: esponente 2, cioè 110 in eccesso 4, e cinque cifre. La mantissa tiene 1110 e perde l'ultimo 1: il byte 01101110 vale 3,5, quindi c'è troncamento. La risposta più insidiosa è l'ultima: il byte è giusto, ma il troncamento c'è.
+
+D: Simulazione d'esame 2, 2023/24, domanda 8. Quanto vale 10000001 in complemento a 2 su 8 bit?
+- $-1$
+- $129$
++ $-127$
+- $-128$
+- $1$
+= Il bit di sinistra vale $-128$: $-128 + 1 = -127$. Controllo: senza segno vale 129, e $129 - 256 = -127$. La risposta più insidiosa è $-1$: legge il primo bit come un segno meno davanti a 0000001, che non è il complemento a 2. $-128$ è 10000000.
+
+D: Simulazione d'esame 2, 2023/24, domanda 8. Quale riga dà i valori giusti di 11111111, 01010101 e 00001111 in complemento a 2 su 8 bit?
+- $255$, $85$, $15$
++ $-1$, $85$, $15$
+- $-1$, $-85$, $-15$
+- $-127$, $85$, $15$
+- $-1$, $-43$, $15$
+= 11111111 vale $-128 + 127 = -1$. Gli altri due cominciano con 0, quindi si leggono come senza segno: 85 e 15. La risposta più insidiosa è la prima: legge tutto senza segno. $-127$ sarebbe 10000001.
+```
 
 ## Fonti
 
@@ -58541,6 +58774,44 @@ $\sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt 2$; $\frac6{\sqrt 2} = \frac{6\sqrt 2}2 
 No: $\sqrt 2 \cdot \sqrt 8 = \sqrt{16} = 4$.
 :::
 
+## Quiz d'esame
+
+Nei 15 appelli di Algebra lineare dal 2024 al 2026 non c'è una domanda solo sui numeri reali. I conti di questa settimana, con radici e frazioni senza calcolatrice, stanno però dentro molte domande vere. Le prime tre domande qui sotto sono proprio quei conti, presi dalle domande indicate; la quarta è una domanda vera intera. Le risposte sono quelle delle soluzioni ufficiali, ricontrollate con un programma.
+
+```quiz
+D: Dal primo passo dell'appello del 15/01/2026, domanda 5. Per $z = \frac{\sqrt 3}2 - \frac 12 i$ serve la distanza dall'origine, $\sqrt{\left(\frac{\sqrt 3}2\right)^2 + \left(\frac 12\right)^2}$. Quanto vale?
++ $1$
+- $\frac{\sqrt 3 + 1}2$
+- $\frac{\sqrt 3}4 + \frac 14$
+- $\frac 12$
+- $2$
+= $\left(\frac{\sqrt 3}2\right)^2 = \frac 34$ e $\left(\frac 12\right)^2 = \frac 14$; la somma è 1, e la radice di 1 è 1. La risposta più insidiosa è $\frac{\sqrt 3 + 1}2$: si ottiene togliendo la radice pezzo per pezzo, ma $\sqrt{a^2 + b^2}$ non è $a + b$. $\frac{\sqrt 3}4$ dimentica che $(\sqrt 3)^2 = 3$.
+
+D: Dal primo passo dell'appello del 24/01/2024, domanda 2. Per $z = -\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$ serve $\left(\frac{\sqrt 2}2\right)^2$. Quanto vale?
+- $\frac{\sqrt 2}4$
++ $\frac 12$
+- $1$
+- $\frac{\sqrt 2}2$
+- $2$
+= Si eleva sopra e sotto: $\frac{(\sqrt 2)^2}{2^2} = \frac 24 = \frac 12$. Allora la distanza di $z$ è $\sqrt{\frac 12 + \frac 12} = 1$. La risposta più insidiosa è $\frac{\sqrt 2}4$: eleva solo il numero sotto.
+
+D: Dall'appello dell'08/02/2024, domanda 4. Il conto finale della domanda è la somma dei tre numeri $\sqrt 2 \cdot \sqrt 3 - \sqrt 2 \cdot \sqrt 3$, $-\sqrt 3 \cdot \sqrt 2 + \sqrt 3 \cdot \sqrt 2$ e $\sqrt 5 \cdot \sqrt 5$. Le risposte della domanda vera erano queste: quale è giusta?
+- $30$
+- $(\sqrt 2 + \sqrt 3 + \sqrt 5)^2$
++ $5$
+- $\sqrt{30}$
+- $\sqrt 5$
+= I primi due numeri valgono 0, perché sono un numero meno sé stesso. Il terzo è $\sqrt 5 \cdot \sqrt 5 = 5$. La risposta più insidiosa è $(\sqrt 2 + \sqrt 3 + \sqrt 5)^2$: sembra contenere tutti i pezzi, ma vale $10 + 2\sqrt 6 + 2\sqrt{10} + 2\sqrt{15}$. $\sqrt{30}$ moltiplica tutte le radici insieme. La domanda vera chiedeva la traccia del prodotto di due matrici, che vedrai nella lezione L08: la soluzione ufficiale è 5.
+
+D: Appello del 07/02/2025, domanda 2. Qual è la risposta corretta alla domanda «$\C$ ammette una struttura di spazio vettoriale su $\R$?»
+- No, poiché $\C$ è già uno spazio vettoriale su $\C$ stesso.
+- Sì, perché ogni campo è uno spazio vettoriale su $\R$.
+- No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.
+- No, in quanto $\C$ e $\R$ sono campi diversi.
++ Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$ e $\cdot$ su $\R$ sono le stesse che in $\C$.
+= Il punto chiave è della settimana 1: $\R$ sta dentro $\C$, e un reale per un complesso dà ancora un complesso. La risposta più insidiosa è «ogni campo è uno spazio vettoriale su $\R$»: è falsa, per esempio $\Q$ non contiene $\R$. La soluzione ufficiale nota che la prima e la quarta dicono cose vere che non rispondono alla domanda. Che cosa sia uno spazio vettoriale lo vedrai nella lezione L05.
+```
+
 ## Fonti
 
 - La lezione completa: [L01 · Numeri reali](L01_numeri_reali.html), con quiz degli appelli ed esercizi svolti. Tutte le 26 lezioni di Algebra lineare e Geometria sono già nel sito.
@@ -58716,6 +58987,100 @@ Il quarto: lo zero è il successivo di 11.
 A $1 + 3 + \dots + (2n + 1) = (n + 1)^2$.
 :::
 
+## Quiz d'esame
+
+Tutte domande vere dei quiz di Matematica Discreta, con la data dell'appello. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma. All'esame ogni domanda vale 1 punto, e servono almeno 6 punti su 10 nel quiz perché i problemi vengano corretti.
+
+```quiz
+D: Appello del 13/01/2026, domanda 1. Sia $A = \{b, e, h, k, m, p, q, s, u, x\}$. Allora:
+- $t \in A$
+- $h \notin A$
+- $\{h, s\} \in A$
++ $\{k, q, u\} \subset A$
+- $\{e, s, y\} \subset A$
+= Le lettere $k$, $q$, $u$ sono tutte in $A$, quindi l'insieme che le contiene è un sottoinsieme. La risposta più insidiosa è $\{h, s\} \in A$: $h$ e $s$ ci sono, ma gli elementi di $A$ sono lettere, non insiemi. Sarebbe giusto $\{h, s\} \subset A$. $t$ e $y$ non sono in $A$, e $h$ invece c'è.
+
+D: Appello del 10/09/2026, domanda 1. Sia $X = \{c, \{f, m\}, p, q, \{x\}\}$. Allora:
+- $q \subset X$
+- $\{c, p\} \in X$
++ $\{f, m\} \in X$
+- $\{x\} \subset X$
+- $\emptyset \in X$
+= $X$ ha cinque elementi, e due di loro sono insiemi: $\{f, m\}$ e $\{x\}$. Quindi $\{f, m\} \in X$. La risposta più insidiosa è $\{x\} \subset X$: vorrebbe dire che la lettera $x$ è un elemento di $X$, ma l'elemento è $\{x\}$, non $x$. $q$ non è un insieme, $\{c, p\}$ non è tra gli elementi, e il vuoto non è elencato.
+
+D: Appello del 14/01/2025, domanda 1. Siano $X = \{a, g, h, m\}$ e $Y = \{g, h, m, p, s\}$. Allora:
+- $\emptyset \in X \cap Y$
+- $X \subset Y$
++ $m \in X \cap Y$
+- $g \subset X \cap Y$
+- $\{g, h\} \in X \cap Y$
+= $X \cap Y = \{g, h, m\}$, e $m$ è uno dei suoi elementi. La risposta più insidiosa è $\{g, h\} \in X \cap Y$: è un sottoinsieme dell'intersezione, non un suo elemento. $X \subset Y$ è falso perché $a$ non sta in $Y$.
+
+D: Appello del 04/02/2025, domanda 1. Siano $A = \{2, 3, 5, 7, 9\}$ e $B = \{1, 4, 5, 8, 9\}$. Allora:
+- $6 \in A \cup B$
+- $\{3, 4\} \in A \cup B$
+- $\{2, 8\} \subset A \cap B$
++ $\{5, 9\} = A \cap B$
+- $9 \subset A \cap B$
+= Gli elementi comuni sono 5 e 9, quindi $A \cap B = \{5, 9\}$. La risposta più insidiosa è $\{2, 8\} \subset A \cap B$: 2 sta solo in $A$ e 8 solo in $B$, quindi sono nell'unione, non nell'intersezione. 6 non sta in nessuno dei due.
+
+D: Appello del 03/02/2026, domanda 1. Siano $X = \{a, b, f, h, r, s, t, v, z\}$ e $Y = \{d, g, h, m, p, s, t, x, y\}$. Allora:
+- $\{b, s, t\} \subset X \cap Y$
++ $f \notin X \cap Y$
+- $\{h, t\} = X \cap Y$
+- $\{h, s\} \in X \cap Y$
+- $s \subset X \cap Y$
+= $X \cap Y = \{h, s, t\}$, e $f$ sta solo in $X$. La risposta più insidiosa è $\{h, t\} = X \cap Y$: dimentica la $s$. $b$ non sta in $Y$; $\{h, s\}$ è un sottoinsieme, non un elemento; $s$ è una lettera, non un insieme.
+
+D: Appello del 06/06/2026, domanda 1. Ricordando che $n\Z = \{nk \mid k \in \Z\}$, cioè i multipli di $n$, quale affermazione è vera?
+- $7 \in 3\Z \cup 5\Z$
+- $\{12, 20\} \subset 3\Z \cap 4\Z$
+- $4\Z \cap 5\Z = \emptyset$
+- $8 \in 2\Z \cap 5\Z$
++ $\{10, 21\} \subset 2\Z \cup 7\Z$
+= 10 è multiplo di 2 e 21 è multiplo di 7: tutti e due stanno nell'unione. La risposta più insidiosa è $\{12, 20\} \subset 3\Z \cap 4\Z$: 12 va bene, ma 20 non è multiplo di 3. $4\Z \cap 5\Z$ contiene i multipli di 20, quindi non è vuoto; 7 non è multiplo né di 3 né di 5; 8 non è multiplo di 5.
+
+D: Appello del 01/07/2026, domanda 1. Siano $A = \{b, f, h, m, n\}$, $B = \{d, g, h, p, q\}$ e $X = \{a, f, g, h, s, x, y\}$. Quale dei seguenti è un sottoinsieme di $(A \cup B) \cap X$?
+- $\{\emptyset\}$
++ $\{f, h\}$
+- $\{n\}$
+- $\{a, g\}$
+- $\{b, q\}$
+= $(A \cup B) \cap X = \{f, g, h\}$: le lettere di $X$ che stanno in $A$ o in $B$. $\{f, h\}$ è un suo sottoinsieme. La risposta più insidiosa è $\{a, g\}$: $g$ va bene, ma $a$ sta solo in $X$. $\{\emptyset\}$ contiene il vuoto come elemento, e il vuoto non è un elemento di quell'insieme.
+
+D: Appello del 06/06/2025, domanda 1. Siano $A = \{3, 4, 7, 9\}$, $B = \{1, 3, 5, 6, 8, 9\}$ e $C = \{2, 4, 5, 8, 9\}$. Allora:
+- $4 \in A \cap B \cap C$
+- $A \subset B \cup C$
+- $B \cap C \subset A$
+- $A \cap B \subset C$
++ $A \cap B \cap C \neq \emptyset$
+= 9 sta in tutti e tre gli insiemi, quindi l'intersezione non è vuota. La risposta più insidiosa è $A \cap B \subset C$: $A \cap B = \{3, 9\}$, e 3 non sta in $C$. 4 non sta in $B$; 7 non sta né in $B$ né in $C$; $B \cap C = \{5, 8, 9\}$ e 5 non sta in $A$.
+
+D: Appello del 04/02/2025, domanda 2. Sia $S = \{a, c, f, h, m, t, v\}$. Quale delle seguenti è una partizione di $S$?
++ $\{m\} \cup \{a, c, t\} \cup \{f, h, v\}$
+- $\{f, m\} \cup \{a, t\} \cup \{c, v\}$
+- $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$
+- $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$
+- $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$
+= I tre controlli: parti non vuote, che non si toccano, che coprono tutto. La prima li passa. La seconda dimentica la $h$. La terza ha una parte vuota. La quarta e la quinta ripetono una lettera, la $c$ e la $h$: sono ricoprimenti, non partizioni.
+
+D: Appello del 07/07/2025, domanda 2. Sia $X = \{b, c, f, h, k, m, r, u, v, z\}$. Quale è un ricoprimento di $X$ ma non una partizione?
+- $\{f, h, k, u, v\} \cup \{b, c, k, r, z\}$
+- $\{b, c, k, r, s, z\} \cup \{f, h, m, u, v\}$
++ $\{b, f, k, m, r\} \cup \{c, h, r, u, v, z\}$
+- $\{b, c, m, v, z\} \cup \{f, h, k, u\}$
+- $\{b, f, k, r, u, z\} \cup \{c, m, t, v\}$
+= La terza copre tutte e dieci le lettere e ripete la $r$: è un ricoprimento ma non una partizione. La risposta più insidiosa è la prima, che ripete la $k$ ma dimentica la $m$: non copre tutto. La seconda e la quinta contengono lettere che in $X$ non ci sono ($s$ e $t$); la quarta dimentica la $r$.
+
+D: Appello del 06/06/2025, domanda 2. L'affermazione «per ogni $x \in \N$ e per ogni $y \in \N$, $x^2 + x \ge y$» è contraddetta da:
+- $(x, y) = (2, 5)$
+- $(x, y) = (-4, 10)$
++ $(x, y) = (1, 3)$
+- $(x, y) = (0, -1)$
+- $(x, y) = (3, 12)$
+= Un controesempio è una coppia di naturali per cui la frase è falsa. Con $(1, 3)$: $1 + 1 = 2$, che non è almeno 3. La risposta più insidiosa è $(-4, 10)$: la disuguaglianza è falsa, ma $-4$ non è un naturale, quindi non conta. Con $(2, 5)$ e $(3, 12)$ la disuguaglianza è vera; in $(0, -1)$ c'è un numero negativo.
+```
+
 ## Fonti
 
 - Le lezioni complete: [D01 · Insiemi e induzione](D01_insiemi_induzione.html) e [D02 · Complementare, De Morgan, induzione e partizioni](D02_complementare_induzione_partizioni.html), con quiz degli appelli ed esercizi svolti.
@@ -58777,6 +59142,19 @@ Un numero complesso è un punto di un foglio a quadretti, descritto da due numer
 | coniugato | cambia il segno davanti alla $i$ | il coniugato di $3 + 2i$ è $3 - 2i$ |
 | modulo | Pitagora: la radice di $a^2 + b^2$ | $\lvert 3 + 4i \rvert = 5$ |
 | potenze di $i$ | si ripetono ogni 4: $i$, $-1$, $-i$, $1$ | $i^7 = -i$, perché 7 diviso 4 dà resto 3 |
+
+```grafico
+titolo: Il numero $z = 3 + 2i$ è il punto $(3, 2)$. Il coniugato $\bar z = 3 - 2i$ è il suo riflesso rispetto all'asse orizzontale; il modulo $\lvert z \rvert = \sqrt{13}$ è la lunghezza del segmento dall'origine.
+x: -1 5
+y: -3 3
+assi: si
+griglia: si
+nomi: Re Im
+segmento: 0 0 3 2 | blu | spesso | $\lvert z \rvert$ | no
+segmento: 3 2 3 -2 | grigio | tratteggio
+punto: 3 2 | blu | $z = 3 + 2i$ | e
+punto: 3 -2 | ambra | $\bar z = 3 - 2i$ | e
+```
 
 > [!METODO] Dividere due numeri complessi
 > 1. Scrivi la divisione come frazione.
@@ -58891,6 +59269,92 @@ Quando il polinomio vale 0 in $a$, cioè quando $x - a$ lo divide senza resto.
 Che un polinomio di grado $n$ ha esattamente $n$ radici tra i numeri complessi, contate con la molteplicità.
 :::
 
+## Quiz d'esame
+
+Tutte domande vere degli appelli di Algebra lineare dal 2024 al 2026: in ognuno dei 15 appelli c'è almeno una domanda sui numeri complessi o sulle radici di un polinomio. Le risposte sono quelle delle soluzioni ufficiali, ricontrollate con un programma. All'esame non c'è la calcolatrice: falle a mano.
+
+```quiz
+D: Appello del 03/06/2025, domanda 1. Dato $z \in \C$ che soddisfa $(1 + i)z = 3 + 2i$, allora $2z(5 + i)$ è uguale a:
+- $13 + 13i$
+- $26i$
+- $1 + i$
+- $13 - 13i$
++ $26$
+= $z = \frac{3 + 2i}{1 + i} = \frac{(3 + 2i)(1 - i)}2 = \frac{5 - i}2$, quindi $2z = 5 - i$, e $(5 - i)(5 + i) = 25 + 1 = 26$. La risposta più insidiosa è $26i$: viene moltiplicando sopra per $1 + i$ invece che per il coniugato $1 - i$.
+
+D: Appello del 08/02/2024, domanda 1. Trovare il numero $z \in \C$ tale che $(i - 1)(i - 2)z = (i + 1)(i + 2)(i + 3)$.
+- $10 + 3i$
++ $i - 3$
+- $30 + 10i$
+- $3i - 1$
+- $1 - 30i$
+= A sinistra $(i - 1)(i - 2) = 1 - 3i$, a destra il prodotto vale $10i$. Quindi $z = \frac{10i}{1 - 3i} = \frac{10i(1 + 3i)}{10} = -3 + i$. La risposta più insidiosa è $30 + 10i$: è il numero sopra prima di dividere per 10, con il segno sbagliato. $3i - 1$ scambia la parte reale e quella immaginaria.
+
+D: Appello del 03/06/2026, domanda 1. Se $(1 + i)z = 2i$, allora $\frac 1{z + i}$ è uguale a:
+- $0$
+- $\frac 1{1 + i}$
++ $\frac{1 - 2i}5$
+- $\frac i{1 + i}$
+- $\frac{2 + i}5$
+= $z = \frac{2i}{1 + i} = \frac{2i(1 - i)}2 = 1 + i$, quindi $z + i = 1 + 2i$ e $\frac 1{1 + 2i} = \frac{1 - 2i}{1 + 4}$. La risposta più insidiosa è $\frac 1{1 + i}$: è l'inverso di $z$, non di $z + i$. $\frac{2 + i}5$ si ottiene scambiando le parti.
+
+D: Appello del 24/01/2024, domanda 2. Dato $z = -\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$, allora $z^{12}$ è uguale a:
++ $-1$
+- $-2i$
+- $\frac 1{2^6}(1 - i)$
+- $\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$
+- $2^{12} i$
+= $z$ ha distanza 1 dall'origine e angolo $\frac{3\pi}4$. Alla dodicesima: distanza 1, angolo $12 \cdot \frac{3\pi}4 = 9\pi$, cioè mezzo giro più quattro giri interi. Il punto è $-1$. La risposta più insidiosa è $2^{12} i$: viene se si sbaglia la distanza, che è 1 e non 2.
+
+D: Appello del 15/01/2026, domanda 5. Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, allora $z^9$ è uguale a:
+- $1$
+- $\frac 12 - \frac{\sqrt 3}2 i$
+- $-\frac{9\sqrt 3}2 + \frac 92 i$
++ $i$
+- $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9} i$
+= Distanza 1, angolo $-\frac\pi6$. Alla nona: angolo $-\frac{3\pi}2$, che più un giro dà $\frac\pi2$: il punto è $i$. Le risposte più insidiose sono le due con il 9: moltiplicano o elevano ciascuna parte da sola, che con i complessi non si può fare.
+
+D: Appello del 16/01/2025, domanda 1. Dato $z = 2\cos\frac\pi4 + 2i\sin\frac\pi4$, allora $-3iz$ in coordinate polari è uguale a:
+- $-6i\cos\frac\pi4 - 6i\sin\frac\pi4$
+- $-6e^{3\pi i/4}$
+- $-6i\cos\frac\pi4 + 6i\sin\frac\pi4$
++ $6e^{7\pi i/4}$
+- $0$
+= $z$ ha distanza 2 e angolo $\frac\pi4$; $-3i$ ha distanza 3 e angolo $\frac{3\pi}2$. Distanze moltiplicate, angoli sommati: $6e^{7\pi i/4}$. La risposta più insidiosa è $-6e^{3\pi i/4}$: è lo stesso numero, ma con un 6 negativo davanti non è scritto in coordinate polari, dove la distanza è sempre positiva.
+
+D: Appello del 02/09/2025, domanda 2. Quale dei seguenti è una radice terza di $z = 8e^{3\pi i/5}$?
+- $4e^{\pi i/5}$
++ $2e^{\pi i/5 + 2\pi i/3}$
+- $8e^{\pi i/3 + 2\pi ik}$
+- $2e^{3\pi i/5}$
+- $2e^{3\pi i/5 + \pi i/3}$
+= Le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi5 + \frac{2k\pi}3$: con $k = 1$ è la seconda risposta. La risposta più insidiosa è $2e^{3\pi i/5}$: la distanza è giusta, ma l'angolo non è stato diviso per 3. Le risposte con 4 e con 8 hanno la distanza sbagliata.
+
+D: Appello del 07/09/2026, domanda 1. Quale dei seguenti è una radice del polinomio $p(z) = z^4 + 5z^2 + 4$?
+- $z = -3 + i$
+- $z = 1 - i$
+- $z = -1$
++ $z = -2i$
+- il polinomio non ha radici
+= Con $t = z^2$: $t^2 + 5t + 4 = (t + 1)(t + 4)$, quindi $z^2 = -1$ o $z^2 = -4$, cioè $z = \pm i$ o $z = \pm 2i$. Controllo: $(-2i)^2 = -4$ e $(-2i)^4 = 16$, e $16 - 20 + 4 = 0$. La risposta più insidiosa è «non ha radici»: è vero solo tra i reali. Tra i complessi un polinomio di grado 4 ne ha quattro.
+
+D: Appello del 10/07/2025, domanda 1. Quale dei seguenti è una radice di $p(z) = z^4 + 7z^2 + 12$?
++ $z = -2i$
+- $z = -2$
+- il polinomio non ha radici
+- $z = 3 + 4i$
+- $z = 4$
+= Con $w = z^2$: $(w + 3)(w + 4)$, quindi $z^2 = -3$ o $z^2 = -4$. $-2i$ al quadrato fa $-4$: è una radice. La risposta più insidiosa è $-2$: anche il suo quadrato è 4, ma con il segno più, e per $z$ reale il polinomio vale almeno 12.
+
+D: Appello del 03/07/2026, domanda 7. Quale dei seguenti è una radice del polinomio $p(z) = z^3 + 2z^2 + z + 2$?
+- $z = 0$
++ $z = i$
+- $z = 1 + i$
+- $z = 1$
+- $z^3 + 2z^2 + z + 2 = 0$
+= Raccogliendo a coppie, $p(z) = z^2(z + 2) + (z + 2) = (z^2 + 1)(z + 2)$: le radici sono $-2$, $i$, $-i$. Controllo diretto: $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è l'ultima: è l'equazione, non un numero. $p(0) = 2$ e $p(1) = 6$.
+```
+
 ## Fonti
 
 - Le lezioni complete: [L02 · Numeri complessi I](L02_numeri_complessi_1.html), [L03 · Numeri complessi II](L03_numeri_complessi_2.html), [L04 · Polinomi](L04_polinomi.html), con le domande vere degli appelli, gli strumenti interattivi e gli esercizi.
@@ -58996,6 +59460,30 @@ Una **funzione** è come la mensa: **ogni** studente sceglie **un solo** piatto.
 | suriettiva | almeno un pallino per riga | ogni $f^{-1}(b)$ è non vuota |
 | biettiva | esattamente un pallino per riga | ogni $f^{-1}(b)$ ha esattamente un elemento |
 
+```grafico
+titolo: Una funzione dagli studenti ai piatti: da ogni studente parte **una sola** freccia. La pasta riceve due frecce, quindi la funzione non è iniettiva; l'insalata nessuna, quindi non è suriettiva.
+x: 0 10
+y: 0 6
+assi: no
+griglia: no
+poligono: 0.4 0.4 3.4 0.4 3.4 5.6 0.4 5.6 | blu
+poligono: 6.6 0.4 9.6 0.4 9.6 5.6 6.6 5.6 | ambra
+testo: 1.9 5.25 | blu | "studenti"
+testo: 8.1 5.25 | ambra | "piatti"
+punto: 2.6 4.3 | blu | "Anna" | o
+punto: 2.6 3.3 | blu | "Bruno" | o
+punto: 2.6 2.3 | blu | "Carla" | o
+punto: 2.6 1.3 | blu | "Dario" | o
+punto: 7.4 4.3 | ambra | "pasta" | e
+punto: 7.4 3.1 | ambra | "riso" | e
+punto: 7.4 1.9 | ambra | "zuppa" | e
+punto: 7.4 0.9 | ambra | "insalata" | e
+freccia: 2.7 4.3 7.25 4.3
+freccia: 2.7 3.3 7.25 4.2
+freccia: 2.7 2.3 7.25 3.1
+freccia: 2.7 1.3 7.25 1.9
+```
+
 > [!METODO] Smentire o dimostrare
 > - **Non iniettiva**: basta trovare due elementi diversi con lo stesso valore, come $1$ e $-1$ quando c'è un quadrato.
 > - **Non suriettiva**: basta un elemento del codominio che non arriva mai.
@@ -59048,6 +59536,92 @@ Trovando due elementi diversi con lo stesso valore.
 ::: domanda $f(n) = 2n + 1$ da $\Z$ a $\Z$ è suriettiva?
 No: i valori sono tutti dispari, e 0 non viene mai raggiunto.
 :::
+
+## Quiz d'esame
+
+Tutte domande vere dei quiz di Matematica Discreta: le prime sei sul prodotto cartesiano, che è quasi sempre la domanda 2, le altre sulle funzioni. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma. Sulle relazioni di equivalenza nei quiz 2021–2026 non ho trovato domande a scelta multipla.
+
+```quiz
+D: Appello del 07/07/2025, domanda 1. Siano $A = \{a, d, h, m\}$ e $B = \{c, g, p, t\}$. Allora:
+- $(d, m) \in A \times B$
+- $g \in A \times B$
+- $(p, m) \in A \times B$
+- $\{a, t\} \subset A \times B$
++ $(h, t) \in A \times B$
+= $h$ sta in $A$ e $t$ in $B$, nell'ordine giusto. La risposta più insidiosa è $(d, m)$: tutte e due le lettere stanno in $A$, ma il secondo pezzo deve stare in $B$. $g$ e $\{a, t\}$ non sono coppie; $(p, m)$ ha i pezzi negli insiemi sbagliati.
+
+D: Appello del 14/01/2025, domanda 2. Siano $A = \{1, 2, 5, 8\}$ e $B = \{2, 3, 8, 9\}$. La terna $(1, 2, 5)$ è un elemento di:
+- $B \times A \times A$
++ $A \times B \times A$
+- $B \times B \times B$
+- $B \times B \times A$
+- $A \times A \times B$
+= Pezzo per pezzo: 1 sta solo in $A$, 2 sta in $B$ (e anche in $A$), 5 sta solo in $A$. Quindi il primo e il terzo insieme devono essere $A$. La risposta più insidiosa è $A \times A \times B$: va bene per i primi due pezzi, ma 5 non sta in $B$.
+
+D: Appello del 13/01/2026, domanda 2. Siano $R = \{2, 5, 6, 9\}$ e $S = \{d, g, n, z\}$. Allora:
++ $(g, 6) \notin R \times S$
+- $(d, z) \in R \times S$
+- $(5, 6, g) \in R \times S$
+- $(3, n) \in R \times S$
+- $(2, d) \notin R \times S$
+= Le coppie di $R \times S$ hanno prima un numero di $R$ e poi una lettera di $S$. $(g, 6)$ ha l'ordine rovesciato, quindi non ci sta: la frase è vera. La risposta più insidiosa è $(2, d) \notin R \times S$: la coppia ci sta, quindi la frase con «non appartiene» è falsa. $(5, 6, g)$ è una terna, e 3 non sta in $R$.
+
+D: Appello del 03/02/2026, domanda 2. Siano $P = \{1, 3, 4, 7, 8\}$ e $Q = \{2, 3, 5, 6, 9\}$. Quale insieme NON è un sottoinsieme di $P \times Q$?
+- $\{(3, 3)\}$
+- $\{(8, 3), (3, 9)\}$
+- $\emptyset$
++ $\{(1, 3), (6, 7), (8, 2)\}$
+- $\{(4, 6), (1, 9), (7, 5)\}$
+= Nella coppia $(6, 7)$ il 6 non sta in $P$ e il 7 non sta in $Q$: basta una coppia sbagliata. La risposta più insidiosa è $\emptyset$: il vuoto è un sottoinsieme di ogni insieme, quindi va bene. $(3, 3)$ va bene perché 3 sta in tutti e due.
+
+D: Appello del 06/06/2026, domanda 2. Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora:
+- $(6, \rho) \in X \times Y$
++ $(\omega, 4) \notin X \times Y$
+- $\emptyset \in X \times Y$
+- $(\delta, 2) \notin X \times Y$
+- $\beta \in X \times Y$
+= 4 non sta in $Y$, quindi $(\omega, 4)$ non è nel prodotto: la frase è vera. La risposta più insidiosa è $(\delta, 2) \notin X \times Y$: la coppia invece ci sta. $(6, \rho)$ ha l'ordine rovesciato; il vuoto e $\beta$ non sono coppie.
+
+D: Appello del 01/07/2026, domanda 2. Siano $R = \{1, 4, 6, 8\}$ e $S = \{2, 5, 7, 8\}$. Allora:
+- $(8, 8) \notin R \times S$
+- $(1, 2) \notin R \times S$
+- $\{6, 7\} \in R \times S$
+- $(7, 6) \in R \times S$
++ $(4, 5) \in R \times S$
+= 4 sta in $R$ e 5 in $S$. La risposta più insidiosa è $(8, 8) \notin R \times S$: 8 sta in tutti e due gli insiemi, quindi la coppia c'è, e la frase è falsa. $\{6, 7\}$ è un insieme, non una coppia; $(7, 6)$ ha l'ordine rovesciato.
+
+D: Appello del 14/01/2025, domanda 3. Sia $f \colon \Z \to \N$ la funzione $f(n) = n^2 + 1$ se $n$ è pari, $f(n) = n^2 - 1$ se $n$ è dispari. Allora:
+- se $m$ sta nell'immagine di $f$, allora $m + 1$ non ci sta
+- $f^{-1}(p) = \emptyset$ se $p$ è primo
++ $f(m) = f(n)$ se e solo se $m = \pm n$
+- $f$ è iniettiva
+- $f$ è suriettiva
+= $n$ e $-n$ sono tutti e due pari o tutti e due dispari, quindi hanno lo stesso valore. Al contrario, due numeri con lo stesso valore hanno lo stesso quadrato, oppure i quadrati differiscono di 2, che tra quadrati di interi non succede. La risposta più insidiosa è «iniettiva»: $f(1) = f(-1) = 0$. $f(0) = 1$ e $f(1) = 0$ smentiscono la prima; $f(2) = 5$ è primo; il 2 non è mai raggiunto, quindi non è suriettiva.
+
+D: Appello del 14/01/2025, domanda 3, altra versione. Sia $f \colon \Z \to \N$ la funzione $f(n) = n^2 + 2$ se $n$ è pari, $f(n) = n^2$ se $n$ è dispari. Allora:
+- se $s$ sta nell'immagine di $f$, allora $s + 1$ non ci sta
+- $f^{-1}(p) = \emptyset$ se $p$ è primo
+- $f(2n) = 4n^2 + 4$ per ogni $n$
++ $f$ non è iniettiva
+- $f$ è suriettiva
+= $f(1) = f(-1) = 1$: due numeri diversi con lo stesso valore. La risposta più insidiosa è $f(2n) = 4n^2 + 4$: $2n$ è pari, quindi $f(2n) = 4n^2 + 2$. $f(0) = 2$ e $f(1) = 1$ smentiscono la prima; $f(0) = 2$ è primo; il 3 non è mai raggiunto.
+
+D: Quiz 2021–2025. Sia $f \colon \Z \to \Z$ la funzione $f(n) = 2n$ se $n$ è dispari, $f(n) = 2$ se $n$ è pari. Allora:
+- $f$ è suriettiva
+- $f(n/2) = 2$ per ogni $n$ pari
+- $f(2n) = 4n$ per ogni $n$ dispari
++ $f^{-1}(8) = \emptyset$
+- $f$ è iniettiva
+= Per avere 8 servirebbe $2n = 8$ con $n$ dispari, ma $n = 4$ è pari; i pari danno sempre 2. Quindi nessuno va in 8. La risposta più insidiosa è $f(2n) = 4n$: $2n$ è pari, quindi $f(2n) = 2$. $f(n/2)$ vale 2 solo se $n/2$ è pari; $f$ dà solo numeri pari, quindi non è suriettiva; tutti i pari vanno in 2, quindi non è iniettiva.
+
+D: Quiz 2021–2025. Sia $h \colon \Z \to \Z$ la funzione $h(n) = 2n$ se $n$ è dispari, $h(n) = n$ se $n$ è pari. Allora:
+- $h$ è suriettiva
+- $h(n/2) = n$ per ogni $n$ pari
+- $\{4, 8\} = h^{-1}(8)$
++ $\{3, 6\} = h^{-1}(6)$
+- $h$ è iniettiva
+= Chi va in 6: il dispari 3, perché $2 \cdot 3 = 6$, e il pari 6. Quindi $h^{-1}(6) = \{3, 6\}$, e per lo stesso motivo $h$ non è iniettiva. La risposta più insidiosa è $\{4, 8\} = h^{-1}(8)$: 4 è pari e va in 4, non in 8; il dispari che andrebbe in 8 sarebbe 4, che non è dispari, quindi $h^{-1}(8) = \{8\}$. $h$ dà solo numeri pari, quindi non è suriettiva.
+```
 
 ## Fonti
 

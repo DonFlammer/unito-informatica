@@ -117,6 +117,44 @@ $\sqrt{50} = \sqrt{25 \cdot 2} = 5\sqrt 2$; $\frac6{\sqrt 2} = \frac{6\sqrt 2}2 
 No: $\sqrt 2 \cdot \sqrt 8 = \sqrt{16} = 4$.
 :::
 
+## Quiz d'esame
+
+Nei 15 appelli di Algebra lineare dal 2024 al 2026 non c'è una domanda solo sui numeri reali. I conti di questa settimana, con radici e frazioni senza calcolatrice, stanno però dentro molte domande vere. Le prime tre domande qui sotto sono proprio quei conti, presi dalle domande indicate; la quarta è una domanda vera intera. Le risposte sono quelle delle soluzioni ufficiali, ricontrollate con un programma.
+
+```quiz
+D: Dal primo passo dell'appello del 15/01/2026, domanda 5. Per $z = \frac{\sqrt 3}2 - \frac 12 i$ serve la distanza dall'origine, $\sqrt{\left(\frac{\sqrt 3}2\right)^2 + \left(\frac 12\right)^2}$. Quanto vale?
++ $1$
+- $\frac{\sqrt 3 + 1}2$
+- $\frac{\sqrt 3}4 + \frac 14$
+- $\frac 12$
+- $2$
+= $\left(\frac{\sqrt 3}2\right)^2 = \frac 34$ e $\left(\frac 12\right)^2 = \frac 14$; la somma è 1, e la radice di 1 è 1. La risposta più insidiosa è $\frac{\sqrt 3 + 1}2$: si ottiene togliendo la radice pezzo per pezzo, ma $\sqrt{a^2 + b^2}$ non è $a + b$. $\frac{\sqrt 3}4$ dimentica che $(\sqrt 3)^2 = 3$.
+
+D: Dal primo passo dell'appello del 24/01/2024, domanda 2. Per $z = -\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$ serve $\left(\frac{\sqrt 2}2\right)^2$. Quanto vale?
+- $\frac{\sqrt 2}4$
++ $\frac 12$
+- $1$
+- $\frac{\sqrt 2}2$
+- $2$
+= Si eleva sopra e sotto: $\frac{(\sqrt 2)^2}{2^2} = \frac 24 = \frac 12$. Allora la distanza di $z$ è $\sqrt{\frac 12 + \frac 12} = 1$. La risposta più insidiosa è $\frac{\sqrt 2}4$: eleva solo il numero sotto.
+
+D: Dall'appello dell'08/02/2024, domanda 4. Il conto finale della domanda è la somma dei tre numeri $\sqrt 2 \cdot \sqrt 3 - \sqrt 2 \cdot \sqrt 3$, $-\sqrt 3 \cdot \sqrt 2 + \sqrt 3 \cdot \sqrt 2$ e $\sqrt 5 \cdot \sqrt 5$. Le risposte della domanda vera erano queste: quale è giusta?
+- $30$
+- $(\sqrt 2 + \sqrt 3 + \sqrt 5)^2$
++ $5$
+- $\sqrt{30}$
+- $\sqrt 5$
+= I primi due numeri valgono 0, perché sono un numero meno sé stesso. Il terzo è $\sqrt 5 \cdot \sqrt 5 = 5$. La risposta più insidiosa è $(\sqrt 2 + \sqrt 3 + \sqrt 5)^2$: sembra contenere tutti i pezzi, ma vale $10 + 2\sqrt 6 + 2\sqrt{10} + 2\sqrt{15}$. $\sqrt{30}$ moltiplica tutte le radici insieme. La domanda vera chiedeva la traccia del prodotto di due matrici, che vedrai nella lezione L08: la soluzione ufficiale è 5.
+
+D: Appello del 07/02/2025, domanda 2. Qual è la risposta corretta alla domanda «$\C$ ammette una struttura di spazio vettoriale su $\R$?»
+- No, poiché $\C$ è già uno spazio vettoriale su $\C$ stesso.
+- Sì, perché ogni campo è uno spazio vettoriale su $\R$.
+- No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.
+- No, in quanto $\C$ e $\R$ sono campi diversi.
++ Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$ e $\cdot$ su $\R$ sono le stesse che in $\C$.
+= Il punto chiave è della settimana 1: $\R$ sta dentro $\C$, e un reale per un complesso dà ancora un complesso. La risposta più insidiosa è «ogni campo è uno spazio vettoriale su $\R$»: è falsa, per esempio $\Q$ non contiene $\R$. La soluzione ufficiale nota che la prima e la quarta dicono cose vere che non rispondono alla domanda. Che cosa sia uno spazio vettoriale lo vedrai nella lezione L05.
+```
+
 ## Fonti
 
 - La lezione completa: [L01 · Numeri reali](L01_numeri_reali.html), con quiz degli appelli ed esercizi svolti. Tutte le 26 lezioni di Algebra lineare e Geometria sono già nel sito.

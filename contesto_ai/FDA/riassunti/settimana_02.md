@@ -55,6 +55,36 @@ Il complemento a 2 è un contachilometri di bit: andando indietro da 0000 si arr
 >
 > 3,625 è 11,101 in base 2: virgola spostata di 2, quindi esponente 2 + 4 = 6, cioè 110; mantissa 1110, perché l'ultimo 1 si perde. Il byte è **0 110 1110**, che vale 3,5: è il quiz delle simulazioni 2023/24.
 
+```grafico
+titolo: 3,625 nel formato a 8 bit del libro: un bit di segno, 3 bit di esponente in eccesso 4 (110 = 6 − 4 = 2), 4 bit di mantissa. L'ultima cifra di 0,11101 non entra: il byte vale 3,5.
+x: 0 9.6
+y: 0 3
+assi: no
+griglia: no
+poligono: 0.2 1.2 1.2 1.2 1.2 2.2 0.2 2.2 | verde
+poligono: 1.2 1.2 2.2 1.2 2.2 2.2 1.2 2.2 | blu
+poligono: 2.2 1.2 3.2 1.2 3.2 2.2 2.2 2.2 | blu
+poligono: 3.2 1.2 4.2 1.2 4.2 2.2 3.2 2.2 | blu
+poligono: 4.2 1.2 5.2 1.2 5.2 2.2 4.2 2.2 | ambra
+poligono: 5.2 1.2 6.2 1.2 6.2 2.2 5.2 2.2 | ambra
+poligono: 6.2 1.2 7.2 1.2 7.2 2.2 6.2 2.2 | ambra
+poligono: 7.2 1.2 8.2 1.2 8.2 2.2 7.2 2.2 | ambra
+testo: 0.7 1.7 | verde | "0"
+testo: 1.7 1.7 | blu | "1"
+testo: 2.7 1.7 | blu | "1"
+testo: 3.7 1.7 | blu | "0"
+testo: 4.7 1.7 | ambra | "1"
+testo: 5.7 1.7 | ambra | "1"
+testo: 6.7 1.7 | ambra | "1"
+testo: 7.7 1.7 | ambra | "0"
+testo: 0.7 0.7 | verde | "segno"
+testo: 2.7 0.7 | blu | "esponente"
+testo: 6.2 0.7 | ambra | "mantissa"
+poligono: 8.4 1.2 9.4 1.2 9.4 2.2 8.4 2.2 | grigio | tratteggio
+testo: 8.9 1.7 | grigio | "1"
+testo: 8.9 0.7 | grigio | "persa"
+```
+
 ::: prova Quanto vale 10000001 in complemento a 2? E 0110 in eccesso 8?
 10000001 vale −128 + 1 = −127. 0110 vale 6 − 8 = −2.
 :::
@@ -151,6 +181,44 @@ Perché l'occhio nota le differenze di luminosità più di quelle di colore: si 
 ::: domanda Che cosa vuol dire che un codice ha distanza minima 3?
 Che due parole del codice differiscono sempre in almeno 3 posti: un errore si corregge scegliendo la parola più vicina, due errori si scoprono.
 :::
+
+## Quiz d'esame
+
+Le domande vere che conosco sono quelle delle due simulazioni d'esame ufficiali del 2023/24. Qui ci sono tutte quelle sugli argomenti di questa settimana: distanza di Hamming, virgola mobile e complemento a 2. La compressione nelle simulazioni non c'era. Le risposte le ho ricontrollate con un programma.
+
+```quiz
+D: Simulazione d'esame 1, 2023/24, domanda 1. Calcolare la distanza di Hamming tra le coppie 01011101 e 00101101; 01011100 e 00101100; 01101100 e 01101110; 01111100 e 01111110. Quali sono le quattro distanze, nell'ordine?
+- 1, 1, 3, 3
++ 3, 3, 1, 1
+- 3, 3, 2, 2
+- 2, 2, 1, 1
+- 3, 4, 1, 1
+= Nelle prime due coppie le file sono diverse nei posti 2, 3 e 4; nelle ultime due solo nel posto 7. La risposta più insidiosa è 3, 4, 1, 1: chi conta male la seconda coppia conta anche una colonna uguale. Si scrivono le due file una sotto l'altra e si segnano le colonne diverse.
+
+D: Simulazioni d'esame 1 (domanda 2) e 2 (domanda 1), 2023/24. Il numero 3,625 nel formato a 8 bit del libro: segno, 3 bit di esponente in eccesso 4, 4 bit di mantissa. Quale affermazione è giusta?
+- In virgola fissa è 11.111 e in virgola mobile 01101101.
+- In virgola mobile è 11101110, senza troncamento.
++ In virgola fissa è 11.101; in virgola mobile è 01101110, e c'è troncamento solo in virgola mobile.
+- In virgola fissa è 111.01, e c'è troncamento in tutte e due.
+- In virgola mobile è 01101110, senza troncamento.
+= 3,625 = 11,101. Spostando la virgola di due posti a sinistra viene 0,11101: esponente 2, cioè 110 in eccesso 4, e cinque cifre. La mantissa tiene 1110 e perde l'ultimo 1: il byte 01101110 vale 3,5, quindi c'è troncamento. La risposta più insidiosa è l'ultima: il byte è giusto, ma il troncamento c'è.
+
+D: Simulazione d'esame 2, 2023/24, domanda 8. Quanto vale 10000001 in complemento a 2 su 8 bit?
+- $-1$
+- $129$
++ $-127$
+- $-128$
+- $1$
+= Il bit di sinistra vale $-128$: $-128 + 1 = -127$. Controllo: senza segno vale 129, e $129 - 256 = -127$. La risposta più insidiosa è $-1$: legge il primo bit come un segno meno davanti a 0000001, che non è il complemento a 2. $-128$ è 10000000.
+
+D: Simulazione d'esame 2, 2023/24, domanda 8. Quale riga dà i valori giusti di 11111111, 01010101 e 00001111 in complemento a 2 su 8 bit?
+- $255$, $85$, $15$
++ $-1$, $85$, $15$
+- $-1$, $-85$, $-15$
+- $-127$, $85$, $15$
+- $-1$, $-43$, $15$
+= 11111111 vale $-128 + 127 = -1$. Gli altri due cominciano con 0, quindi si leggono come senza segno: 85 e 15. La risposta più insidiosa è la prima: legge tutto senza segno. $-127$ sarebbe 10000001.
+```
 
 ## Fonti
 

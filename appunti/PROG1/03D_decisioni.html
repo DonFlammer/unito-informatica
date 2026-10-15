@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>03D · Dal flusso sequenziale alle decisioni, if ed else</title>
+<meta name="lezione" content="03D">
+<meta name="data" content="2026-10-14">
+<meta name="description" content="Appunti della lezione 03D di Programmazione I (canale B): sequenza, selezione e iterazione, il teorema di Böhm-Jacopini, i costrutti if, if-else ed else if, gli errori più comuni, lo scambio condizionato e la visibilità di una variabile dichiarata in un blocco, gli annidamenti inutili e gli schemi ricorrenti (massimo, controllo dell'input, divisione protetta, intervallo), con tutti i programmi delle slide provati, quiz ed esercizi.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/03D_decisioni.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#tre-strutture-bastano"><span class="n">§1</span><span>Tre strutture bastano</span></a></li>
+<li><a href="#il-costrutto-if"><span class="n">§2</span><span>Il costrutto if</span></a></li>
+<li><a href="#due-strade-if-else"><span class="n">§3</span><span>Due strade: if-else</span></a></li>
+<li><a href="#piu-strade-else-if"><span class="n">§4</span><span>Più strade: else if</span></a></li>
+<li><a href="#gli-errori-piu-comuni"><span class="n">§5</span><span>Gli errori più comuni</span></a></li>
+<li><a href="#lo-scambio-condizionato"><span class="n">§6</span><span>Lo scambio condizionato</span></a></li>
+<li><a href="#niente-scale-di-if-inutili"><span class="n">§7</span><span>Niente scale di if inutili</span></a></li>
+<li><a href="#schemi-che-tornano-sempre"><span class="n">§8</span><span>Schemi che tornano sempre</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§9</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§10</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§11</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§12</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§13</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§14</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§15</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 03D</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 03D</p>
+      <h1>Dal flusso sequenziale alle decisioni, if ed else</h1>
+      <p class="lede">Con le espressioni booleane della 03C il programma sa farsi una domanda. Con if impara a scegliere: se la risposta è sì fa una cosa, se è no ne fa un&#39;altra. È il primo passo per uscire dalla fila di istruzioni sempre uguale.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>03D_decisioni («Dal flusso sequenziale alle decisioni») · 25 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>75 minuti, meglio con gcc a portata di mano</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:590px">
+<h2 id="tldr-title">La lezione in 7 punti</h2>
+<ul>
+<li>Ogni programma si costruisce con tre strutture: <strong>sequenza</strong> (una istruzione dopo l&#39;altra), <strong>selezione</strong> (scegliere) e <strong>iterazione</strong> (ripetere). Bastano per qualunque algoritmo: è il <strong>teorema di Böhm-Jacopini</strong> del 1966.</li>
+<li><strong><code>if (condizione) { … }</code></strong> esegue il blocco solo se la condizione è vera; altrimenti lo salta.</li>
+<li><strong><code>if … else</code></strong> sceglie tra due blocchi: uno se la condizione è vera, l&#39;altro se è falsa.</li>
+<li><strong><code>else if</code></strong> mette in fila più domande: si entra nel primo blocco con la condizione vera, e gli altri si saltano.</li>
+<li>Gli errori più comuni: <code>=</code> al posto di <code>==</code>, le graffe dimenticate, le condizioni nell&#39;ordine sbagliato. Con <code>-Wall -Werror</code> i primi due non compilano.</li>
+<li>Una variabile dichiarata <strong>dentro</strong> un blocco esiste solo lì: alla <code>}</code> sparisce dallo stack.</li>
+<li>Gli schemi da sapere: il massimo di due numeri, il controllo dell&#39;input con <code>scanf</code>, la divisione protetta, il controllo di un intervallo.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È la seconda parte della lezione di mercoledì 14/10, dalle 9 alle 11, dopo la <a href="03C_booleani.html">03C</a> sulle espressioni booleane. Lo scambio condizionato riprende la <a href="03A_scambio_variabili.html">03A</a>, e il disegno della memoria è quello della <a href="02B_assegnamento_memory_model.html">02B</a>.</p>
+<p><strong>Canali A e C.</strong> Secondo l&#39;elenco delle lezioni 2025/26 nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>, nel canale A (Fiandrotti) c&#39;è un deck su <code>if-else</code> dopo quello sui booleani; nel canale C (Mazzei) è la lezione 05 «IF». Le slide 2026/27 dei canali A e C non le ho viste. L&#39;esame è unico.</p>
+<p><strong>Un avviso sulle slide.</strong> Gli esempi delle slide 13–20 cominciano con <code>void main()</code>. Con gcc 16.1 e <code>-Wall -Werror</code>, come all&#39;esame, non compilano: <code>error: return type of 'main' is not 'int'</code>. In questi appunti li scrivo con <code>int main(void)</code>. Senza opzioni compilano, e le stampe sono quelle delle slide.</p>
+<p>Tutti i programmi li ho compilati e provati con gcc 16.1, con <code>-Wall -Werror</code>.</p>
+</div>
+
+
+<section id="tre-strutture-bastano" aria-labelledby="h-tre-strutture-bastano" style="--h:1160px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-tre-strutture-bastano">Tre strutture bastano</h2><span class="slides">slide 2–3</span></div>
+<p>Pensa a una ricetta. Ci sono passi da fare in fila: «sbatti le uova, aggiungi la farina». Ci sono scelte: «se l&#39;impasto è troppo duro, aggiungi latte». E ci sono ripetizioni: «mescola finché non ci sono più grumi». Con questi tre tipi di passo si scrive qualunque ricetta.</p>
+<p>I programmi funzionano allo stesso modo. La <strong>programmazione strutturata</strong> usa tre <strong>strutture di controllo</strong>:</p>
+<div class="table-wrap"><table><thead><tr><th>Struttura</th><th>Che cosa fa</th><th>In C</th></tr></thead><tbody><tr><td><strong>sequenza</strong></td><td>esegue le istruzioni una dopo l&#39;altra, nell&#39;ordine</td><td>quello fatto finora</td></tr>
+<tr><td><strong>selezione</strong></td><td>sceglie tra strade diverse con una condizione</td><td><code>if</code>, <code>else</code></td></tr>
+<tr><td><strong>iterazione</strong></td><td>ripete un blocco finché una condizione è vera</td><td><code>while</code>, <code>for</code>, <code>do-while</code></td></tr></tbody></table></div>
+<p>Negli anni &#39;60 non era ancora chiaro quali strumenti servissero per descrivere l&#39;ordine delle istruzioni: molti programmi saltavano da un punto all&#39;altro, come la versione V5 della <a href="01A_primo_algoritmo.html">lezione 01A</a>. Nel 1966 <strong>Corrado Böhm</strong> e <strong>Giuseppe Jacopini</strong>, due informatici italiani, hanno dimostrato che <strong>sequenza, selezione e iterazione bastano</strong> per scrivere qualunque algoritmo. È il <strong>teorema di Böhm-Jacopini</strong>, e da lì vengono i linguaggi di oggi: pochi pezzi semplici, che si mettono uno dentro l&#39;altro per costruire programmi complicati quanto si vuole.</p>
+<p>In questa lezione c&#39;è la selezione. L&#39;iterazione arriva con <code>while</code> e <code>for</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nella frase «ripeti finché non hai letto un numero valido, e se è negativo cambiagli segno», quali strutture ci sono?</span></summary><div class="ans"><p>Un&#39;iterazione («ripeti finché») e una selezione («se è negativo»). Le due istruzioni, leggere e cambiare segno, sono in sequenza.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Le tre strutture: sequenza, selezione, iterazione.</li>
+<li>Per il teorema di Böhm-Jacopini bastano per qualunque algoritmo.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-costrutto-if" aria-labelledby="h-il-costrutto-if" style="--h:850px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-il-costrutto-if">Il costrutto if</h2><span class="slides">slide 4–5</span></div>
+<p>L&#39;esempio delle slide: se piove prendo l&#39;ombrello, altrimenti esco senza. Il programma arriva a un <strong>bivio</strong>, si fa una domanda, e segue una delle due strade. Si chiama <strong>controllo di flusso condizionato</strong>: il «flusso» è l&#39;ordine in cui le istruzioni vengono eseguite.</p>
+<p>La forma più semplice ha una sola strada in più:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (condizione) {
+    <span class="cm">// codice eseguito solo se la condizione è vera</span>
+}</code></pre>
+<ul>
+<li>Se la condizione è <strong>vera</strong> (cioè diversa da 0), il programma <strong>entra</strong> nel blocco tra le graffe.</li>
+<li>Se è <strong>falsa</strong> (cioè 0), <strong>salta</strong> il blocco e continua dopo la <code>}</code>.</li>
+</ul>
+<p>La condizione è un&#39;espressione booleana della <a href="03C_booleani.html">03C</a>, sempre <strong>tra parentesi tonde</strong>. L&#39;esempio delle slide:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> voto = 25;
+<span class="kw">if</span> (voto &gt;= 18) {
+    printf(<span class="str">&quot;Esame superato!\n&quot;</span>);
+}</code></pre>
+<p>Stampa <code>Esame superato!</code>. Con <code>voto = 15</code> non stampa niente: il blocco viene saltato.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa questo codice con <code>n = 4</code>? E con <code>n = 9</code>? <code>if (n % 2 == 0) { printf(&quot;pari &quot;); } printf(&quot;fine&quot;);</code></span></summary><div class="ans"><p>Con 4 stampa <code>pari fine</code>. Con 9 stampa solo <code>fine</code>: la seconda <code>printf</code> è fuori dal blocco e viene eseguita sempre.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>if (condizione) { … }</code>: il blocco si esegue solo se la condizione è vera.</li>
+<li>Quello che sta dopo la <code>}</code> si esegue sempre.</li>
+</ul>
+</div>
+</section>
+
+<section id="due-strade-if-else" aria-labelledby="h-due-strade-if-else" style="--h:700px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-due-strade-if-else">Due strade: if-else</h2><span class="slides">slide 6</span></div>
+<p>Con <code>else</code>, «altrimenti», il programma ha <strong>due</strong> strade, e ne percorre sempre esattamente una:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (condizione) {
+    <span class="cm">// blocco A: se la condizione è vera</span>
+}
+<span class="kw">else</span> {
+    <span class="cm">// blocco B: se la condizione è falsa</span>
+}</code></pre>
+<p>L&#39;esempio delle slide è la batteria del telefono:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> batteria = 15;
+
+<span class="kw">if</span> (batteria &lt; 20) {
+    printf(<span class="str">&quot;Batteria quasi scarica! Collega il caricatore.\n&quot;</span>);
+}
+<span class="kw">else</span> {
+    printf(<span class="str">&quot;Batteria sufficiente.\n&quot;</span>);
+}</code></pre>
+<p>Con 15 stampa il primo messaggio, con 20 o più il secondo. Non succede mai che stampi tutti e due, e nemmeno che non ne stampi nessuno.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Scrivi un <code>if-else</code> che stampa <code>positivo o zero</code> se <code>x</code> è almeno 0, e <code>negativo</code> altrimenti.</span></summary><div class="ans"><p><code>if (x &gt;= 0) { printf(&quot;positivo o zero\n&quot;); } else { printf(&quot;negativo\n&quot;); }</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Con <code>if-else</code> si esegue sempre uno e un solo blocco dei due.</li>
+<li><code>else</code> non ha una condizione: vale «in tutti gli altri casi».</li>
+</ul>
+</div>
+</section>
+
+<section id="piu-strade-else-if" aria-labelledby="h-piu-strade-else-if" style="--h:1270px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-piu-strade-else-if">Più strade: else if</h2><span class="slides">slide 7–8</span></div>
+<p>A volte le strade sono più di due. Il semaforo dell&#39;esempio ha tre colori, più il caso di un colore sbagliato. Si mettono le domande <strong>in fila</strong>, con <code>else if</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> colore = <span class="str">'G'</span>;   <span class="cm">// R = Rosso, G = Giallo, V = Verde</span>
+<span class="kw">if</span> (colore == <span class="str">'R'</span>) {
+    printf(<span class="str">&quot;Fermati!\n&quot;</span>);
+}
+<span class="kw">else</span> <span class="kw">if</span> (colore == <span class="str">'G'</span>) {
+    printf(<span class="str">&quot;Attenzione, rallenta.\n&quot;</span>);
+}
+<span class="kw">else</span> <span class="kw">if</span> (colore == <span class="str">'V'</span>) {
+    printf(<span class="str">&quot;Puoi passare.\n&quot;</span>);
+}
+<span class="kw">else</span> {
+    printf(<span class="str">&quot;Colore non valido!\n&quot;</span>);
+}</code></pre>
+<p>Il programma fa le domande <strong>dall&#39;alto in basso</strong>:</p>
+<ol>
+<li>il colore è <code>'R'</code>? No, allora passa alla domanda dopo;</li>
+<li>il colore è <code>'G'</code>? Sì: stampa <code>Attenzione, rallenta.</code> e <strong>salta tutto il resto</strong>, fino alla fine della catena.</li>
+</ol>
+<p>Se nessuna condizione è vera, entra nell&#39;<code>else</code> finale, il <strong>caso di default</strong>. Ho provato tutti i casi: <code>'R'</code>, <code>'G'</code> e <code>'V'</code> danno i loro messaggi; <code>'g'</code> minuscolo dà <code>Colore non valido!</code>, perché <code>'g'</code> e <code>'G'</code> sono caratteri diversi, con codici ASCII 103 e 71.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · I caratteri si confrontano con ==</span></p><p>Un <code>char</code> è un piccolo numero, il codice ASCII del carattere. Per questo <code>colore == 'R'</code> funziona come un confronto tra numeri. Il carattere va tra apici singoli: <code>'R'</code> è un carattere, <code>&quot;R&quot;</code> è una stringa, che si confronta in un altro modo.</p>
+</div>
+<div class="box trap"><p class="box-label"><span>Trappola · All&#39;esame niente switch</span></p><p>Il C ha anche un&#39;istruzione <code>switch</code> per scegliere tra molti valori. Le regole d&#39;esame di Programmazione I la <strong>vietano</strong>, come <code>break</code> e <code>continue</code>: le catene di scelte si scrivono con <code>if</code> ed <code>else if</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con il programma del semaforo e <code>colore = 'V'</code>, quante condizioni vengono controllate prima di stampare?</span></summary><div class="ans"><p>Tre: <code>'R'</code>, poi <code>'G'</code>, poi <code>'V'</code>, che è vera.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Le condizioni di una catena <code>else if</code> si controllano dall&#39;alto in basso.</li>
+<li>Si entra nel primo blocco con la condizione vera; tutti gli altri si saltano.</li>
+<li>L&#39;<code>else</code> finale raccoglie i casi rimasti.</li>
+</ul>
+</div>
+</section>
+
+<section id="gli-errori-piu-comuni" aria-labelledby="h-gli-errori-piu-comuni" style="--h:2410px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-gli-errori-piu-comuni">Gli errori più comuni</h2><span class="slides">slide 9–12</span></div>
+<p>Gli <code>if</code> sono semplici da scrivere e facili da sbagliare. Le slide raccolgono gli errori che si vedono più spesso. Per ognuno ho controllato che cosa fa gcc.</p>
+<h3 id="un-uguale-solo">Un uguale solo</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (a = 5) { ... }  <span class="cm">// ERRORE: assegnamento</span></code></pre>
+<p><code>a = 5</code> non chiede niente: <strong>mette</strong> 5 in <code>a</code>, e vale 5, cioè vero. Il blocco viene eseguito <strong>sempre</strong>, qualunque cosa ci fosse in <code>a</code>. gcc con <code>-Wall</code> avvisa: <code>suggest parentheses around assignment used as truth value</code>. Con <code>-Werror</code> non compila, ed è una fortuna.</p>
+<h3 id="le-graffe-dimenticate">Le graffe dimenticate</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (x &gt; 0)
+    printf(<span class="str">&quot;Positivo\n&quot;</span>);
+    printf(<span class="str">&quot;Errore!\n&quot;</span>); <span class="cm">// eseguito sempre</span></code></pre>
+<p>Senza graffe, l&#39;<code>if</code> comanda <strong>una sola istruzione</strong>, la prima. La seconda <code>printf</code> è rientrata come se dipendesse dall&#39;<code>if</code>, ma per il C il rientro non conta niente: viene eseguita sempre. gcc con <code>-Wall</code> avvisa: <code>this 'if' clause does not guard...</code>, e con <code>-Werror</code> non compila. Le slide consigliano di mettere <strong>sempre</strong> le graffe, anche con una sola istruzione.</p>
+<h3 id="l-ordine-sbagliato">L&#39;ordine sbagliato</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (num % 2 == 0) {
+    printf(<span class="str">&quot;Pari non nullo\n&quot;</span>);
+}
+<span class="kw">else</span> <span class="kw">if</span> (num == 0) {
+    printf(<span class="str">&quot;Zero\n&quot;</span>);   <span class="cm">// Mai raggiunto</span>
+}</code></pre>
+<p>Lo 0 è pari: con <code>num = 0</code> la prima condizione è già vera, e il programma stampa <code>Pari non nullo</code>, che è falso. Il blocco <code>Zero</code> non viene mai raggiunto. Si corregge mettendo <strong>prima il caso più specifico</strong>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (num == 0) {
+    printf(<span class="str">&quot;Zero\n&quot;</span>);
+}
+<span class="kw">else</span> <span class="kw">if</span> (num % 2 == 0) {
+    printf(<span class="str">&quot;Pari non nullo\n&quot;</span>);
+}</code></pre>
+<p>Ho provato: con 0 la prima versione stampa <code>Pari non nullo</code>, la seconda <code>Zero</code>. Con 4 tutte e due stampano <code>Pari non nullo</code>.</p>
+<h3 id="condizioni-che-non-diventano-mai-vere">Condizioni che non diventano mai vere</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (x &gt; 10) {
+    ...
+}
+<span class="kw">else</span> <span class="kw">if</span> (x &gt; 20) {
+    ... <span class="cm">// mai eseguito!</span>
+}</code></pre>
+<p>Ogni numero maggiore di 20 è anche maggiore di 10, quindi entra già nel primo blocco. Il secondo non si raggiunge mai. Qui gcc <strong>non avvisa</strong>: l&#39;errore è di logica, e lo trovi solo ragionando. Le soglie vanno in ordine dalla più alta alla più bassa (<code>x &gt; 20</code> prima di <code>x &gt; 10</code>), oppure con intervalli precisi.</p>
+<h3 id="l-else-mancante">L&#39;else mancante</h3>
+<p>È buona norma gestire <strong>tutti</strong> i casi, con un <code>else</code> finale anche solo per stampare un errore. Così il programma non arriva mai in una situazione che non hai previsto.</p>
+<h3 id="condizioni-troppo-lunghe">Condizioni troppo lunghe</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (a &gt; 10 &amp;&amp; b &lt; 5 || c == 7 &amp;&amp; !(d%2)) {
+    ...
+}</code></pre>
+<p>Come nella <a href="03C_booleani.html">03C</a>, una condizione così si spezza in variabili <code>bool</code> con un nome:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> condA = (a &gt; 10 &amp;&amp; b &lt; 5);
+<span class="kw">bool</span> condB = (c == 7 &amp;&amp; d % 2 == 0);
+
+<span class="kw">if</span> (condA || condB) { ... }</code></pre>
+<p>La prima versione, tra l&#39;altro, con <code>-Wall -Werror</code> non compila: gcc chiede le parentesi intorno agli <code>&amp;&amp;</code> dentro l&#39;<code>||</code>.</p>
+<div class="table-wrap"><table><thead><tr><th>Errore</th><th>gcc con <code>-Wall</code></th><th>Con <code>-Werror</code></th></tr></thead><tbody><tr><td><code>if (a = 5)</code></td><td>avviso <code>-Wparentheses</code></td><td>non compila</td></tr>
+<tr><td>graffe dimenticate, rientro ingannevole</td><td>avviso <code>-Wmisleading-indentation</code></td><td>non compila</td></tr>
+<tr><td><code>&amp;&amp;</code> dentro <code>\|\|</code> senza parentesi</td><td>avviso <code>-Wparentheses</code></td><td>non compila</td></tr>
+<tr><td>ordine sbagliato delle condizioni</td><td>niente</td><td>compila, risultato sbagliato</td></tr>
+<tr><td>condizione mai raggiungibile</td><td>niente</td><td>compila, risultato sbagliato</td></tr></tbody></table></div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa questo codice con <code>x = 25</code>? <code>if (x &gt; 10) { printf(&quot;A&quot;); } else if (x &gt; 20) { printf(&quot;B&quot;); } else { printf(&quot;C&quot;); }</code></span></summary><div class="ans"><p><code>A</code>: 25 è maggiore di 10, quindi si entra nel primo blocco e gli altri si saltano. <code>B</code> non viene mai stampato, per nessun valore.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Sempre le graffe, anche per una sola istruzione.</li>
+<li>Prima i casi più specifici, poi quelli generali.</li>
+<li>gcc trova gli errori di scrittura, non quelli di ordine: quelli si trovano provando i casi limite.</li>
+</ul>
+</div>
+</section>
+
+<section id="lo-scambio-condizionato" aria-labelledby="h-lo-scambio-condizionato" style="--h:1760px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-lo-scambio-condizionato">Lo scambio condizionato</h2><span class="slides">slide 13–20</span></div>
+<p>L&#39;esempio delle slide: leggere due interi <code>x</code> e <code>y</code> e stamparli dal più piccolo al più grande. La prima idea è stampare in due ordini diversi:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x, y;
+    printf(<span class="str">&quot;Inserisci x:&quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;x);
+    printf(<span class="str">&quot;Inserisci y:&quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;y);
+    <span class="kw">if</span> (y &lt; x) {
+        printf(<span class="str">&quot;%d %d&quot;</span>, y, x);
+    }
+    <span class="kw">else</span> { <span class="cm">// y &gt;= x</span>
+        printf(<span class="str">&quot;%d %d&quot;</span>, x, y);
+    }
+}</code></pre>
+<p>La seconda idea è più utile: se sono nell&#39;ordine sbagliato, <strong>si scambiano</strong>. Dopo l&#39;<code>if</code> le variabili sono in ordine, e basta una sola <code>printf</code>. È lo scambio con la variabile d&#39;appoggio della <a href="03A_scambio_variabili.html">03A</a>, fatto solo quando serve: uno <strong>scambio condizionato</strong>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x, y;
+    printf(<span class="str">&quot;Inserisci x:&quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;x);
+    printf(<span class="str">&quot;Inserisci y:&quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;y);
+    <span class="kw">if</span> (y &lt; x) {
+        <span class="cm">//scambio condizionato</span>
+        <span class="kw">int</span> temp = x;
+        x = y;
+        y = temp;
+    }
+    printf(<span class="str">&quot;%d %d&quot;</span>, x, y);
+}</code></pre>
+<p>Con 10 e 5 stampa <code>5 10</code>; con 3 e 8 stampa <code>3 8</code>, senza scambio.</p>
+<h3 id="che-cosa-succede-nella-memoria">Che cosa succede nella memoria</h3>
+<p>Le slide 15–20 seguono il programma con l&#39;input 10 e 5, una riga alla volta. Ogni riga della tabella è lo stato della memoria <strong>dopo</strong> l&#39;istruzione indicata.</p>
+<div class="table-wrap"><table><thead><tr><th>Dopo l&#39;istruzione</th><th class="centro"><code>x</code></th><th class="centro"><code>y</code></th><th class="centro"><code>temp</code></th></tr></thead><tbody><tr><td><code>int x, y;</code></td><td class="centro">?</td><td class="centro">?</td><td class="centro">non esiste</td></tr>
+<tr><td>le due <code>scanf</code></td><td class="centro">10</td><td class="centro">5</td><td class="centro">non esiste</td></tr>
+<tr><td><code>int temp = x;</code></td><td class="centro">10</td><td class="centro">5</td><td class="centro">10</td></tr>
+<tr><td><code>x = y;</code></td><td class="centro">5</td><td class="centro">5</td><td class="centro">10</td></tr>
+<tr><td><code>y = temp;</code></td><td class="centro">5</td><td class="centro">10</td><td class="centro">10</td></tr>
+<tr><td>la <code>}</code> dell&#39;<code>if</code></td><td class="centro">5</td><td class="centro">10</td><td class="centro">non esiste</td></tr></tbody></table></div>
+<p>La cosa nuova è l&#39;ultima colonna. <code>temp</code> è dichiarata <strong>dentro</strong> il blocco dell&#39;<code>if</code>: nasce sullo stack quando il programma arriva alla sua dichiarazione, e alla <code>}</code> del blocco <strong>viene tolta dallo stack</strong>. Dopo l&#39;<code>if</code> non esiste più.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Visibilità di una variabile</span></p><p>Una variabile dichiarata in un blocco <code>{ … }</code> è <strong>visibile</strong>, cioè si può usare, solo dalla sua dichiarazione alla <code>}</code> che chiude quel blocco. Fuori dal blocco il suo nome non esiste.</p>
+</div>
+<p><strong>Come si legge.</strong> È la regola delle variabili locali della <a href="02B_assegnamento_memory_model.html">02B</a>, applicata ai blocchi dell&#39;<code>if</code>. Se dopo l&#39;<code>if</code> scrivi <code>printf(&quot;%d&quot;, temp);</code>, gcc si ferma: <code>error: 'temp' undeclared</code>. L&#39;ho provato.</p>
+<p>Questo è utile: <code>temp</code> serve solo per lo scambio, e dichiararla dentro il blocco evita che qualcuno la usi per sbaglio più avanti.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con l&#39;input 4 e 4, quante volte viene creata <code>temp</code>? Che cosa stampa il programma?</span></summary><div class="ans"><p>Nessuna: <code>4 &lt; 4</code> è falso, quindi il blocco viene saltato e <code>temp</code> non nasce. Stampa <code>4 4</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Scambio condizionato: si scambia solo se l&#39;ordine è sbagliato.</li>
+<li>Una variabile dichiarata in un blocco sparisce alla <code>}</code> del blocco.</li>
+</ul>
+</div>
+</section>
+
+<section id="niente-scale-di-if-inutili" aria-labelledby="h-niente-scale-di-if-inutili" style="--h:920px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-niente-scale-di-if-inutili">Niente scale di if inutili</h2><span class="slides">slide 21</span></div>
+<p>Un <code>if</code> dentro un <code>else</code> funziona, ma spinge il codice sempre più a destra e si legge male. L&#39;esempio delle slide è il prezzo del biglietto: gratis sotto i 6 anni, ridotto sotto i 18, intero dai 18 in su.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (eta &lt; 6) {
+    printf(<span class="str">&quot;Biglietto gratuito\n&quot;</span>);
+}
+<span class="kw">else</span> {
+    <span class="kw">if</span> (eta &lt; 18) {
+        printf(<span class="str">&quot;Biglietto ridotto\n&quot;</span>);
+    }
+    <span class="kw">else</span> {
+        printf(<span class="str">&quot;Biglietto intero\n&quot;</span>);
+    }
+}</code></pre>
+<p>La stessa scelta con <code>else if</code> sta su un solo livello:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (eta &lt; 6) {
+    printf(<span class="str">&quot;Biglietto gratuito\n&quot;</span>);
+}
+<span class="kw">else</span> <span class="kw">if</span> (eta &lt; 18) {
+    printf(<span class="str">&quot;Biglietto ridotto\n&quot;</span>);
+}
+<span class="kw">else</span> {
+    printf(<span class="str">&quot;Biglietto intero\n&quot;</span>);
+}</code></pre>
+<p>Le due versioni fanno esattamente la stessa cosa. Ho provato i <strong>casi limite</strong>, quelli sul confine tra due fasce: 5 dà gratuito, 6 ridotto, 17 ridotto, 18 intero.</p>
+<p>Nota che la seconda condizione è solo <code>eta &lt; 18</code>, non <code>6 &lt;= eta &amp;&amp; eta &lt; 18</code>: se il programma arriva lì, <code>eta &lt; 6</code> è già falso, quindi <code>eta</code> è almeno 6. Un <code>else if</code> porta con sé il «no» di tutte le domande prima.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Aggiungi una fascia: dai 65 anni in su il biglietto è ridotto. Dove metti la condizione?</span></summary><div class="ans"><p>Prima dell&#39;<code>else</code> finale: <code>else if (eta &gt;= 65) { printf(&quot;Biglietto ridotto\n&quot;); }</code>. Oppure, per non ripetere il messaggio, <code>else if (eta &lt; 18 || eta &gt;= 65)</code> al posto di <code>else if (eta &lt; 18)</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Un <code>if</code> dentro un <code>else</code> si scrive meglio con <code>else if</code>.</li>
+<li>Ogni <code>else if</code> sa già che le condizioni precedenti sono false.</li>
+</ul>
+</div>
+</section>
+
+<section id="schemi-che-tornano-sempre" aria-labelledby="h-schemi-che-tornano-sempre" style="--h:1300px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-schemi-che-tornano-sempre">Schemi che tornano sempre</h2><span class="slides">slide 22–25</span></div>
+<p>Alcuni <code>if</code> compaiono in quasi tutti i programmi. Vale la pena saperli scrivere senza pensarci.</p>
+<h3 id="il-massimo-di-due-numeri">Il massimo di due numeri</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> a, b, max;
+scanf(<span class="str">&quot;%d%d&quot;</span>, &amp;a, &amp;b);
+<span class="cm">// determina il massimo tra a e b</span>
+<span class="kw">if</span> (a &gt; b) {
+    max = a;
+}
+<span class="kw">else</span> {
+    max = b;
+}
+<span class="cm">// in questo punto max contiene il massimo tra a e b</span></code></pre>
+<p>Con 4 e 9, <code>max</code> vale 9. Con due numeri uguali va bene lo stesso: si prende <code>b</code>, che vale quanto <code>a</code>.</p>
+<h3 id="controllare-l-input">Controllare l&#39;input</h3>
+<p>Prima di usare un valore letto, si controlla che <code>scanf</code> l&#39;abbia letto davvero, come nella <a href="02C_referenziamento_scanf_puntatori.html">02C</a>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> valore;
+<span class="kw">if</span> (scanf(<span class="str">&quot;%d&quot;</span>, &amp;valore) == 1) {
+    printf(<span class="str">&quot;Hai inserito: %d\n&quot;</span>, valore);
+}
+<span class="kw">else</span> {
+    printf(<span class="str">&quot;Input non valido\n&quot;</span>);
+}</code></pre>
+<h3 id="proteggere-un-operazione">Proteggere un&#39;operazione</h3>
+<p>Prima di dividere, si controlla che il divisore non sia zero:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">if</span> (divisore != 0) {
+    printf(<span class="str">&quot;Risultato: %d\n&quot;</span>, dividendo / divisore);
+}
+<span class="kw">else</span> {
+    printf(<span class="str">&quot;Errore: divisione per zero!\n&quot;</span>);
+}</code></pre>
+<h3 id="controllare-un-intervallo">Controllare un intervallo</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">float</span> temperatura;
+<span class="kw">bool</span> inputOk = scanf(<span class="str">&quot;%f&quot;</span>, &amp;temperatura) == 1;
+<span class="cm">// 0 &lt;= temperatura_valida &lt;= 100</span>
+<span class="kw">if</span> (inputOk &amp;&amp; 0 &lt;= temperatura &amp;&amp; temperatura &lt;= 100) {
+    printf(<span class="str">&quot;Temperatura entro i limiti\n&quot;</span>);
+}
+<span class="kw">else</span> {
+    printf(<span class="str">&quot;Temperatura fuori intervallo o lettura errata\n&quot;</span>);
+}</code></pre>
+<p>Qui lavorano insieme tre idee della <a href="03C_booleani.html">03C</a>: l&#39;intervallo con due confronti, il cortocircuito che non guarda <code>temperatura</code> se la lettura è fallita, e una variabile <code>bool</code> con un nome chiaro. Ho provato: 25 e 100 sono entro i limiti; −3, 100.5 e <code>ciao</code> danno il secondo messaggio.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con il programma della temperatura e l&#39;input <code>0</code>, che cosa stampa? Perché?</span></summary><div class="ans"><p><code>Temperatura entro i limiti</code>: l&#39;intervallo è chiuso, <code>0 &lt;= temperatura</code> è vero anche con 0.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Massimo: un <code>if-else</code> che sceglie quale copiare in <code>max</code>.</li>
+<li>Prima di usare un input, controlla che <code>scanf</code> restituisca 1.</li>
+<li>Prima di dividere, controlla il divisore.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:510px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>if (c) { … }</code></td><td>«if», «se»</td><td>esegue il blocco se <code>c</code> è vera</td><td><code>if (voto &gt;= 18) { … }</code></td></tr>
+<tr><td><code>else { … }</code></td><td>«else», «altrimenti»</td><td>il blocco da eseguire se la condizione è falsa</td><td></td></tr>
+<tr><td><code>else if (c) { … }</code></td><td>«else if», «altrimenti se»</td><td>un&#39;altra domanda, solo se le precedenti erano false</td><td></td></tr>
+<tr><td><code>{ }</code></td><td>«graffe»</td><td>un blocco di istruzioni; le variabili dichiarate dentro vivono solo lì</td><td></td></tr>
+<tr><td><code>'R'</code></td><td>«carattere R»</td><td>un <code>char</code>, tra apici singoli</td><td><code>colore == 'R'</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:720px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>All&#39;esame, su CodeRunner, quasi ogni esercizio ha degli <code>if</code>. Le cose da avere in mano:</p>
+<ol>
+<li><strong>compila con <code>-Wall -Werror</code></strong> e leggi gli avvisi: <code>=</code> al posto di <code>==</code> e le graffe dimenticate vengono fermati qui;</li>
+<li><strong><code>int main(void)</code></strong>, non <code>void main()</code>;</li>
+<li><strong>niente <code>switch</code>, <code>break</code> e <code>continue</code></strong>: le scelte si fanno con <code>if</code> ed <code>else if</code>;</li>
+<li><strong>prova i casi limite</strong>: lo zero, i numeri uguali, i valori sul confine tra due fasce (17 e 18, 5 e 6);</li>
+<li><strong>un <code>else</code> finale</strong> per i casi che non ti aspetti, come l&#39;input non valido.</li>
+</ol>
+<p>Negli esercizi sullo <strong>stato della memoria</strong> può comparire un <code>if</code> con una variabile dichiarata dentro: la sua casella esiste solo mentre il programma è nel blocco, e alla <code>}</code> si cancella.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Seguire un programma con gli if</span></p><ol>
+<li>Scrivi i valori iniziali delle variabili.</li>
+<li>A ogni <code>if</code>, calcola la condizione con i valori di quel momento e scrivi «vero» o «falso».</li>
+<li>Segui solo il blocco scelto; in una catena <code>else if</code>, fermati alla prima condizione vera.</li>
+<li>Aggiorna la tabella dei valori dopo ogni assegnamento, e cancella le variabili del blocco alla sua <code>}</code>.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2210px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>int n = 0; if (n % 2 == 0) { printf(&quot;A&quot;); } else if (n == 0) { printf(&quot;B&quot;); } else { printf(&quot;C&quot;); }</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>C</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">niente</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>AB</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>A</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>B</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>0 % 2 vale 0, quindi la prima condizione è vera: stampa <code>A</code> e salta il resto. La risposta più insidiosa è <code>B</code>: il caso dello zero è scritto, ma dopo un caso più generale che lo cattura prima.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa questo codice con <code>x = -3</code>? <code>if (x &gt; 0) printf(&quot;P&quot;); printf(&quot;Q&quot;);</code></div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila mai</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>Q</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>P</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">niente</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>PQ</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Senza graffe l&#39;<code>if</code> comanda solo la prima <code>printf</code>. La seconda si esegue sempre. La risposta più insidiosa è «niente»: il rientro e la riga sotto fanno credere che anche <code>Q</code> dipenda dall&#39;<code>if</code>. Scritto su due righe rientrate, gcc con <code>-Wall -Werror</code> lo ferma.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con <code>int a = 0;</code>, che cosa stampa <code>if (a = 7) { printf(&quot;%d&quot;, a); }</code> compilato senza opzioni?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>7</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">niente</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>1</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un indirizzo</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>a = 7</code> assegna 7 e vale 7, quindi la condizione è vera e si stampa il nuovo valore di <code>a</code>. La risposta più insidiosa è «niente», che si avrebbe con <code>a == 7</code>. Con <code>-Wall -Werror</code> non compilerebbe.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Perché <code>void main() { … }</code> non va bene all&#39;esame?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il C non permette <code>void</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void main</code> non può usare <code>scanf</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Manca <code>return 0</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non si possono dichiarare variabili dentro <code>main</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Con <code>-Wall -Werror</code> gcc non lo compila: <code>main</code> deve restituire <code>int</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>gcc avvisa <code>return type of 'main' is not 'int'</code>, e con <code>-Werror</code> l&#39;avviso diventa un errore. La risposta più insidiosa è <code>return 0</code>: in <code>int main(void)</code> si può anche omettere, per <code>main</code> vale 0 da solo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Dopo questo codice, che cosa succede alla riga <code>printf(&quot;%d&quot;, temp);</code>? <code>int x = 2, y = 1; if (y &lt; x) { int temp = x; x = y; y = temp; } printf(&quot;%d&quot;, temp);</code></div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa 2</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non compila: <code>temp</code> non è dichiarata in quel punto</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa 1</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa un valore a caso</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa 0</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>temp</code> vive solo dentro il blocco dell&#39;<code>if</code>: alla <code>}</code> sparisce, e gcc dà <code>error: 'temp' undeclared</code>. La risposta più insidiosa è 2, il valore che <code>temp</code> aveva nel blocco.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale catena dà il prezzo giusto per ogni età: gratis sotto i 6, ridotto da 6 a 17, intero dai 18?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (eta &lt; 6) … else if (eta &gt; 18) … else …</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (eta &lt; 6) … else if (eta &lt; 18) … else …</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (eta &lt;= 6) … else if (eta &lt;= 18) … else …</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (eta &lt; 6) … if (eta &lt; 18) … else …</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (eta &lt; 18) … else if (eta &lt; 6) … else …</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Le domande vanno dalla più specifica. La risposta più insidiosa è la seconda: con 3 anni <code>eta &lt; 18</code> è già vera, e il caso gratuito non arriva mai. La terza, con due <code>if</code> separati, a 3 anni stampa due messaggi; la quarta sbaglia i confini 6 e 18; la quinta dà il ridotto a 18 anni.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Con <code>int x = 7, y = 3, z;</code> e poi <code>if (x &gt; y) { z = x - y; } else { z = y - x; }</code>, quanto vale <code>z</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="4" data-toll="1e-9"><span class="q-giusto" hidden>4</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>7 &gt; 3 è vero, quindi si esegue il primo blocco: z = 7 − 3 = 4. In tutti e due i casi <code>z</code> è la distanza tra i due numeri.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale riga legge un intero e lo usa solo se la lettura è riuscita?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (scanf(&quot;%d&quot;, &amp;v) = 1) { … }</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (scanf(&quot;%d&quot;, v) == 1) { … }</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (scanf(&quot;%d&quot;, &amp;v) == 1) { … }</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (v == scanf(&quot;%d&quot;, &amp;v)) { … }</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (scanf(&quot;%d&quot;, &amp;v)) == 1 { … }</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>scanf</code> restituisce quanti valori ha letto, e serve la <code>&amp;</code>. La risposta più insidiosa è quella con <code>= 1</code>: è un assegnamento, e non compila nemmeno, perché non si può assegnare al risultato di una funzione. La seconda ha le parentesi nel posto sbagliato.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1580px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: che cosa stampa? <span class="lvl">base</span></h3><p>Con <code>int x = 7, y = 3, z = 0;</code> esegui: <code>if (x &gt; y) { z = x - y; } else { z = y - x; }</code> e poi <code>if (z % 2 == 0) { x = x + z; } else if (z &gt; 3) { y = y + z; } else { x = 0; }</code>. Quanto valgono <code>x</code>, <code>y</code>, <code>z</code>?</p>
+<details class="sol"><summary>Soluzione</summary><p><code>z = 4</code>. Poi <code>4 % 2 == 0</code> è vero, quindi <code>x = 7 + 4 = 11</code>, e il resto della catena si salta. Alla fine <code>x = 11</code>, <code>y = 3</code>, <code>z = 4</code>. Il programma che stampa i tre valori dà <code>11 3 4</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: trova gli errori <span class="lvl">base</span></h3><p>Ogni riga ha un errore. Trovalo. (a) <code>if (n = 0) { printf(&quot;zero&quot;); }</code> (b) <code>if n &gt; 0 { printf(&quot;positivo&quot;); }</code> (c) <code>if (x &gt; 0); { printf(&quot;positivo&quot;); }</code> (d) <code>else (x &lt; 0) { printf(&quot;negativo&quot;); }</code></p>
+<details class="sol"><summary>Soluzione</summary><p>(a) <code>=</code> al posto di <code>==</code>. (b) Mancano le parentesi tonde intorno alla condizione: <code>if (n &gt; 0)</code>. (c) Il <code>;</code> dopo la parentesi chiude l&#39;<code>if</code> con un&#39;istruzione vuota: il blocco si esegue sempre. gcc con <code>-Wall</code> se ne accorge quando il blocco sta sulla stessa riga (<code>this 'if' clause does not guard...</code>). (d) <code>else</code> non ha condizione: serve <code>else if (x &lt; 0)</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Riscaldamento: i casi limite <span class="lvl">base</span></h3><p>Per il codice del biglietto (gratis sotto i 6, ridotto sotto i 18, intero altrimenti), quali età proveresti per controllarlo? Perché proprio quelle?</p>
+<details class="sol"><summary>Soluzione</summary><p>5 e 6, 17 e 18: sono i valori ai due lati di ogni confine, dove un <code>&lt;</code> scritto al posto di <code>&lt;=</code> cambia il risultato. In più un valore in mezzo a ogni fascia, per esempio 2, 10 e 40, e magari 0.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Il massimo di tre numeri <span class="lvl">medio</span></h3><p>Scrivi un programma che legge tre interi e stampa il più grande. Prova con 4 9 2, con −1 −5 −3 e con 7 7 7.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a, b, c;
+    scanf(<span class="str">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c);
+    <span class="kw">int</span> max = a;
+    <span class="kw">if</span> (b &gt; max) {
+        max = b;
+    }
+    <span class="kw">if</span> (c &gt; max) {
+        max = c;
+    }
+    printf(<span class="str">&quot;%d\n&quot;</span>, max);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa 9, −1 e 7. L&#39;idea: si parte da un candidato e lo si aggiorna quando si trova di meglio. Qui gli <code>if</code> sono <strong>separati</strong>, non in catena, perché ogni confronto va fatto comunque. È lo stesso schema che userai con i cicli per il massimo di un array.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Il voto in parole <span class="lvl">medio</span></h3><p>Scrivi un <code>if-else if</code> che legge un voto da 0 a 30 e stampa <code>insufficiente</code> sotto il 18, <code>sufficiente</code> da 18 a 23, <code>buono</code> da 24 a 27, <code>ottimo</code> da 28 in su. Con quali voti lo provi?</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">if</span> (v &lt; 18) {
+    printf(<span class="str">&quot;insufficiente\n&quot;</span>);
+}
+<span class="kw">else</span> <span class="kw">if</span> (v &lt; 24) {
+    printf(<span class="str">&quot;sufficiente\n&quot;</span>);
+}
+<span class="kw">else</span> <span class="kw">if</span> (v &lt; 28) {
+    printf(<span class="str">&quot;buono\n&quot;</span>);
+}
+<span class="kw">else</span> {
+    printf(<span class="str">&quot;ottimo\n&quot;</span>);
+}</code></pre>
+<p>Provato con 17, 18, 24, 27, 28 e 30: danno insufficiente, sufficiente, buono, buono, ottimo, ottimo. Ogni <code>else if</code> sa già che il voto non è sotto la soglia precedente.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Ordinare tre numeri <span class="lvl">tipo esame</span></h3><p>Scrivi un programma che legge tre interi <code>a</code>, <code>b</code>, <code>c</code> e li stampa dal più piccolo al più grande, usando solo scambi condizionati. Se la lettura non riesce, stampa <code>Input non valido</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a, b, c;
+    <span class="kw">if</span> (scanf(<span class="str">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c) == 3) {
+        <span class="cm">// porta il piu' piccolo in a</span>
+        <span class="kw">if</span> (b &lt; a) {
+            <span class="kw">int</span> temp = a;
+            a = b;
+            b = temp;
+        }
+        <span class="kw">if</span> (c &lt; a) {
+            <span class="kw">int</span> temp = a;
+            a = c;
+            c = temp;
+        }
+        <span class="cm">// ora a e' il minimo: sistema b e c</span>
+        <span class="kw">if</span> (c &lt; b) {
+            <span class="kw">int</span> temp = b;
+            b = c;
+            c = temp;
+        }
+        printf(<span class="str">&quot;%d %d %d\n&quot;</span>, a, b, c);
+    }
+    <span class="kw">else</span> {
+        printf(<span class="str">&quot;Input non valido\n&quot;</span>);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato con 3 1 2, 9 8 7, 5 5 1 e 1 2 3: stampa sempre i numeri in ordine. Con <code>x</code> stampa <code>Input non valido</code>. Ogni <code>temp</code> vive solo nel suo blocco, quindi lo stesso nome si può usare tre volte.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · La tariffa del parcheggio <span class="lvl">tipo esame</span></h3><p>Un parcheggio costa: la prima ora gratis, poi 2 euro per ogni ora dopo la prima, fino a 5 ore; oltre le 5 ore 12 euro fissi. Scrivi un programma che legge le ore (un intero) e stampa il prezzo, con un messaggio di errore se l&#39;input non è valido o è negativo.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> ore;
+    <span class="kw">bool</span> letto = (scanf(<span class="str">&quot;%d&quot;</span>, &amp;ore) == 1);
+    <span class="kw">if</span> (!letto || ore &lt; 0) {
+        printf(<span class="str">&quot;Input non valido\n&quot;</span>);
+    }
+    <span class="kw">else</span> <span class="kw">if</span> (ore &lt;= 1) {
+        printf(<span class="str">&quot;Gratis\n&quot;</span>);
+    }
+    <span class="kw">else</span> <span class="kw">if</span> (ore &lt;= 5) {
+        printf(<span class="str">&quot;%d euro\n&quot;</span>, (ore - 1) * 2);
+    }
+    <span class="kw">else</span> {
+        printf(<span class="str">&quot;12 euro\n&quot;</span>);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato: 0 e 1 danno <code>Gratis</code>, 3 dà <code>4 euro</code>, 5 dà <code>8 euro</code>, 6 dà <code>12 euro</code>, −2 e <code>boh</code> danno <code>Input non valido</code>. Il primo controllo usa il cortocircuito: se <code>letto</code> è falso, <code>ore</code> non viene guardata.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:670px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Quali sono le tre strutture della programmazione strutturata?</span></summary><div class="ans"><p>Sequenza, selezione e iterazione.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa dice il teorema di Böhm-Jacopini?</span></summary><div class="ans"><p>Che sequenza, selezione e iterazione bastano per scrivere qualunque algoritmo.</p>
+</div></details>
+<details class="qa"><summary><span>In una catena <code>if … else if … else</code>, quanti blocchi vengono eseguiti?</span></summary><div class="ans"><p>Uno solo: il primo con la condizione vera, oppure l&#39;<code>else</code> se nessuna è vera.</p>
+</div></details>
+<details class="qa"><summary><span>Perché conviene mettere sempre le graffe?</span></summary><div class="ans"><p>Perché senza graffe l&#39;<code>if</code> comanda solo l&#39;istruzione dopo, e una seconda riga rientrata sembra dipendere dall&#39;<code>if</code> ma viene eseguita sempre.</p>
+</div></details>
+<details class="qa"><summary><span>In che ordine vanno le condizioni di una catena <code>else if</code>?</span></summary><div class="ans"><p>Dalla più specifica alla più generale: altrimenti un caso generale cattura prima quello specifico.</p>
+</div></details>
+<details class="qa"><summary><span>Dove si può usare una variabile dichiarata dentro il blocco di un <code>if</code>?</span></summary><div class="ans"><p>Solo dentro quel blocco, dalla dichiarazione alla <code>}</code>. Fuori non esiste.</p>
+</div></details>
+<details class="qa"><summary><span>Come si controlla che <code>scanf</code> abbia letto un intero?</span></summary><div class="ans"><p>Con <code>if (scanf(&quot;%d&quot;, &amp;x) == 1)</code>: <code>scanf</code> restituisce quanti valori ha letto.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:560px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Flusso di controllo</dt><dd>L&#39;ordine in cui il programma esegue le istruzioni.</dd></div>
+<div><dt>Programmazione strutturata</dt><dd>Scrivere i programmi solo con sequenza, selezione e iterazione.</dd></div>
+<div><dt>Teorema di Böhm-Jacopini</dt><dd>Sequenza, selezione e iterazione bastano per qualunque algoritmo (1966).</dd></div>
+<div><dt>Selezione</dt><dd>Scegliere quale blocco eseguire in base a una condizione.</dd></div>
+<div><dt>if</dt><dd>Esegue un blocco solo se la condizione è vera.</dd></div>
+<div><dt>else</dt><dd>Il blocco da eseguire quando la condizione è falsa.</dd></div>
+<div><dt>else if</dt><dd>Una nuova condizione, controllata solo se le precedenti erano false.</dd></div>
+<div><dt>Blocco</dt><dd>Istruzioni tra graffe; le variabili dichiarate dentro esistono solo lì.</dd></div>
+<div><dt>Visibilità</dt><dd>La parte di programma in cui un nome di variabile si può usare.</dd></div>
+<div><dt>Scambio condizionato</dt><dd>Scambiare due variabili solo se sono nell&#39;ordine sbagliato.</dd></div>
+<div><dt>Caso limite</dt><dd>Un valore sul confine tra due casi, dove gli errori si vedono meglio.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:500px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 9</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-03D-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So nominare le tre strutture e il teorema di Böhm-Jacopini.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So scrivere <code>if</code>, <code>if-else</code> e una catena <code>else if</code>.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So che in una catena si esegue un solo blocco, il primo con la condizione vera.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So riconoscere <code>=</code> al posto di <code>==</code> e le graffe dimenticate.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So mettere le condizioni dalla più specifica alla più generale.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So che una variabile dichiarata in un blocco sparisce alla sua <code>}</code>.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So scrivere lo scambio condizionato e seguirlo nella memoria.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So scrivere senza pensarci il massimo, il controllo dell&#39;input, la divisione protetta e l&#39;intervallo.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So scegliere i casi limite per provare un programma con gli <code>if</code>.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Dal flusso sequenziale alle decisioni. Introduzione al controllo di flusso nella programmazione strutturata» (03D_decisioni), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: programmazione strutturata e Böhm-Jacopini (slide 2–3), <code>if</code>, <code>if-else</code>, <code>else if</code> (4–8), errori comuni e buona prassi (9–12), stampa in ordine e visibilità nei blocchi (13–20), annidamenti (21), schemi ricorrenti (22–25).</li>
+<li>C. Böhm, G. Jacopini, «Flow diagrams, Turing machines and languages with only two formation rules», <em>Communications of the ACM</em>, 1966.</li>
+<li>Regole d&#39;esame e lezioni dei canali A e C dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+<li>Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con <code>-Wall -Werror</code> (gli esempi con <code>void main()</code> anche senza opzioni), ed eseguiti; gli avvisi citati sono quelli veri. Le soluzioni, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 ---
 corso: FDA
 lezione: "07"
+data: 2026-10-15
 titolo: «Se… allora», «se e solo se» ed equivalenza logica
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 07 · Libro, parte 2, §1.3
@@ -38,7 +39,7 @@ simboli_logici: si
 - All'esame: la simulazione 1 del 2023/24 chiede il valore di $(A \to B) \leftrightarrow (B \to A)$ riga per riga.
 
 > [!CANALI]
-> Nel canale B è la lezione di giovedì 15/10, dalle 9 alle 11. Per il docente è la lezione 8, perché la prima è stata un'introduzione: qui è la 07. Il diario del canale B la annuncia così: «Capitolo 1.3 (Parte 2). Proposizioni condizionali e equivalenza logica.» **Ho scritto questi appunti prima della lezione**, sul §1.3 del libro, con le sue domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti). Quando la lezione sarà fatta, li confronto con il diario e aggiorno. Si parte dalla [lezione 06](06_proposizioni_connettivi_tavole.html): proposizioni, connettivi e tavole di verità. Nel canale A gli stessi argomenti sono nelle dispense di Felice Cardone; nel canale C nei lucidi del docente.
+> Nel canale B è la lezione di giovedì 15/10, dalle 9 alle 11. Per il docente è la lezione 8, perché la prima è stata un'introduzione: qui è la 07. Il diario del canale B la annuncia così: «Capitolo 1.3 (Parte 2). Proposizioni condizionali e equivalenza logica.» **Ho scritto questi appunti prima della lezione**, sul §1.3 del libro, con le sue domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti). Il diario del docente non dice altro su che cosa è stato fatto in aula. Si parte dalla [lezione 06](06_proposizioni_connettivi_tavole.html): proposizioni, connettivi e tavole di verità. Nel canale A gli stessi argomenti sono nelle dispense di Felice Cardone; nel canale C nei lucidi del docente.
 
 ## Una promessa: «se… allora» (libro, §1.3)
 

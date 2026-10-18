@@ -1,6 +1,7 @@
 ---
 corso: FDA
 lezione: "08"
+data: 2026-10-16
 titolo: Argomentazioni e regole di inferenza
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 08 · Libro, parte 2, §1.4 ed esercizi
@@ -37,7 +38,7 @@ simboli_logici: si
 - È la base di tutte le dimostrazioni della parte 2 del libro, e di tutta la matematica del corso.
 
 > [!CANALI]
-> Nel canale B è la lezione di venerdì 16/10, dalle 11 alle 13. Per il docente è la lezione 9, perché la prima è stata un'introduzione: qui è la 08. Il diario del canale B la annuncia così: «Capitolo 1.4 (Parte 2). Regole di inferenza per le proposizioni. Esercizi.» **Ho scritto questi appunti prima della lezione**, sul §1.4 del libro, con le sue domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti); gli esercizi sono quelli del libro e altri miei, non quelli che il docente farà in aula. Quando la lezione sarà fatta, confronto con il diario e aggiorno. Servono le lezioni [06](06_proposizioni_connettivi_tavole.html) e [07](07_condizionali_equivalenza_logica.html): connettivi, tavole e «se… allora». Nel canale A lo stesso argomento è nelle dispense di Felice Cardone, «La relazione di conseguenza per la logica proposizionale» e «Appunti su un metodo alternativo alle tavole di verità»; nel canale C nei lucidi del docente.
+> Nel canale B è la lezione di venerdì 16/10, dalle 11 alle 13. Per il docente è la lezione 9, perché la prima è stata un'introduzione: qui è la 08. Il diario del canale B la annuncia così: «Capitolo 1.4 (Parte 2). Regole di inferenza per le proposizioni. Esercizi.» **Ho scritto questi appunti prima della lezione**, sul §1.4 del libro, con le sue domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti); gli esercizi sono quelli del libro e altri miei, non quelli che il docente farà in aula. Il diario del docente non dice altro su che cosa è stato fatto in aula. Servono le lezioni [06](06_proposizioni_connettivi_tavole.html) e [07](07_condizionali_equivalenza_logica.html): connettivi, tavole e «se… allora». Nel canale A lo stesso argomento è nelle dispense di Felice Cardone, «La relazione di conseguenza per la logica proposizionale» e «Appunti su un metodo alternativo alle tavole di verità»; nel canale C nei lucidi del docente.
 
 ## Dagli indizi alla conclusione (libro, §1.4)
 

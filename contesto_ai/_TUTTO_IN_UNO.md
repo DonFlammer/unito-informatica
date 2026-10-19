@@ -9840,6 +9840,325 @@ D: Sul modello della lettura con `scanf`. Con `int a = 0, b = -1;` e l'input `12
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/riassunti/settimana_03.md -->
+> File: `contesto_ai/PROG1/riassunti/settimana_03.md`
+
+```yaml
+corso: PROG1
+lezione: S3
+tipo: riassunto
+titolo: "Settimana 3: operatori e tipi, scambi, numeri reali, condizioni e if"
+data: 2026-10-14
+docenti: Elvio Amparore
+sopratitolo: Riassunto settimanale · Programmazione I · Canale B · 12/10 – 16/10/2026
+descrizione: >-
+  Riassunto della settimana 3 di Programmazione I (canale B): il secondo laboratorio su divisioni, overflow,
+  precedenze, const, medie e dimensione dei tipi; lo scambio di due variabili con la variabile d'appoggio; float e
+  double, printf e scanf con i reali, conversioni e cast; espressioni booleane, bool, &&, || e !, cortocircuito,
+  operatore ternario; sequenza, selezione e iterazione, if, else ed else if.
+lede: >-
+  Il laboratorio e le quattro lezioni della settimana in poche pagine: le divisioni che ingannano, lo scambio fatto
+  bene, come si scrive una condizione che compila con -Wall -Werror, come si segue un programma con gli if, e le
+  domande per controllarti.
+materiale: slide
+scheda:
+  Lezioni: "[Lab02](Lab02_operatori_tipi.html) lun 12/10 (B2) e mar 13/10 (B1) · [03A](03A_scambio_variabili.html) e [03B](03B_floats.html) mar 13/10 · [03C](03C_booleani.html) e [03D](03D_decisioni.html) mer 14/10"
+  Tempo di ripasso: 45 minuti
+fonte: >-
+  Gli appunti del Laboratorio 02 e delle lezioni 03A, 03B, 03C e 03D di Programmazione I (canale B), scritti sulle
+  slide del laboratorio e di E. G. Amparore
+appunti_html: appunti/PROG1/riassunto_settimana_03.html
+genera_html: true
+```
+
+## In breve
+
+- Tra due interi `/` dà la parte intera e `%` il resto: `99 / 50` fa 1. Basta un reale per avere la divisione con la virgola: `99 / 50.0` fa 1.98.
+- Per **scambiare** due variabili serve una **variabile d'appoggio**: `temp = x; x = y; y = temp;`, in quest'ordine.
+- `float` ha circa 7 cifre giuste, `double` circa 15. Un `double` si stampa con `%f` e si legge con **`%lf`**.
+- Mettere un reale in un `int` **taglia** la parte dopo la virgola. Il **cast** `(double)a` converte quando lo decidi tu.
+- Un confronto vale **1** se è vero e **0** se è falso. Le condizioni si uniscono con `&&`, `||` e `!`; «x tra 18 e 30» si scrive `18 <= x && x <= 30`.
+- **Cortocircuito**: se la prima parte di `&&` o `||` basta a decidere, la seconda non viene calcolata.
+- `if` esegue un blocco solo se la condizione è vera; `else` dà l'altra strada; `else if` mette in fila più domande.
+
+## Lab02 · Operatori e tipi (lun 12/10, mar 13/10)
+
+Il laboratorio ha sei programmi di partenza da leggere, provare e correggere, poi tre programmi nuovi. Le cose da portarsi via:
+
+| Che cosa | Esempio | Risultato |
+|---|---|---|
+| divisione tra interi | `99 / 50` e `99 % 50` | 1 e 49 |
+| basta un reale | `99 / 50.0` | 1.98 |
+| overflow di un `int` | `x + 1` con `x` che vale 2147483647 | un numero negativo, senza avvisi |
+| precedenze | `2 + 3 * 4` | 14: `*`, `/`, `%` prima di `+` e `-` |
+| media di tre interi | `(a + b + c) / 3` con 4, 5, 5 | 4: serve `3.0`, che dà 4.67 |
+| approssimazione | `(int)(8.136 * 1000)` | 8135, non 8136 |
+| dimensione di un puntatore | `sizeof(int*)`, `sizeof(double*)` | 8 byte tutti e due, su 64 bit |
+
+- `const` dichiara una **costante**: `const double PI = 3.14159;` non si può più cambiare.
+- Per arrotondare ci sono `floor`, `ceil` e `round` di `math.h`; il cast a `int` taglia e basta.
+- In `errori.c` gli errori sono 8: il compilatore li segnala uno alla volta, e conviene correggere sempre il **primo**.
+
+::: prova Quanto valgono `17 / 4`, `17 % 4` e `17 / 4.0`?
+4, 1 e 4.25: tra interi la divisione taglia, con un reale no.
+:::
+
+> [!RICORDA]
+> - Tra interi la divisione è intera. Una media si divide per `3.0`.
+> - L'overflow degli `int` non dà avvisi: il risultato è sbagliato in silenzio.
+
+## 03A · Scambiare due variabili (mar 13/10)
+
+Lo scambio «ovvio» `x = y; y = x;` non funziona: il primo assegnamento cancella il vecchio valore di `x`, e alla fine le due variabili valgono uguale. Come con due tazze di tè da scambiare, serve una terza tazza vuota.
+
+```grafico
+titolo: Lo scambio con la variabile d'appoggio, partendo da `x = 8` e `y = 3`. Prima si mette da parte `x` (1), poi si copia `y` in `x` (2), infine si rimette in `y` il valore messo da parte (3).
+x: 0 10
+y: 0 5
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 1 3 3 3 3 4.2 1 4.2 | blu
+poligono: 7 3 9 3 9 4.2 7 4.2 | ambra
+poligono: 4 0.4 6 0.4 6 1.6 4 1.6 | grigio
+testo: 2 3.6 | blu | "8 → 3"
+testo: 8 3.6 | ambra | "3 → 8"
+testo: 5 1 | grigio | "8"
+testo: 2 4.6 | blu | "x"
+testo: 8 4.6 | ambra | "y"
+testo: 5 0.1 | grigio | "temp"
+freccia: 1.8 2.9 3.9 1.1 | blu
+freccia: 6.9 3.6 3.1 3.6 | ambra
+freccia: 6.1 1.1 8.2 2.9 | grigio
+testo: 2.5 1.8 | blu | "1"
+testo: 5 3.95 | ambra | "2"
+testo: 7.6 1.8 | grigio | "3"
+```
+
+- `temp` deve avere lo stesso tipo delle due variabili.
+- L'ordine conta: con gli stessi tre assegnamenti in un altro ordine un valore si perde di nuovo. La regola: si copia per primo il valore che sta per essere sovrascritto.
+- Per scambiare in giro più variabili, come nell'esercizio `scambio4.c`, basta una sola variabile d'appoggio.
+
+::: prova Con `int a = 1, b = 2;`, quanto valgono le due variabili dopo `temp = a; b = a; a = temp;`?
+Tutte e due 1. L'ordine è sbagliato: `b = a` cancella il 2 prima che qualcuno l'abbia messo da parte.
+:::
+
+> [!RICORDA]
+> - `temp = x; x = y; y = temp;`: ogni variabile, a sinistra, è stata letta prima di essere riscritta.
+> - Il compilatore non avvisa se lo scambio è sbagliato: va controllato a mano.
+
+## 03B · Numeri reali, conversioni e cast (mar 13/10)
+
+I numeri con la virgola in C hanno due tipi, che cambiano per spazio occupato e precisione:
+
+| Tipo | Byte | Cifre giuste | `printf` | `scanf` |
+|---|---|---|---|---|
+| `float` | 4 | circa 7 | `%f` | `%f` |
+| `double` | 8 | circa 15–16 | `%f` | `%lf` |
+
+- `%f` stampa 6 cifre dopo la virgola, `%.2f` due, `%e` usa la notazione scientifica, `%g` sceglie la più corta.
+- Sui reali non c'è `%`. Radici e potenze sono in `math.h`: `sqrt`, `pow`.
+- I reali sono approssimati: non si confrontano con `==`.
+- **Promozione**: in un'espressione con tipi diversi il più piccolo diventa il più grande, e un intero con un reale dà un reale.
+- **La divisione che inganna**: in `float z = 5 / 2;` la divisione è tra interi e fa 2; solo dopo il 2 diventa 2.000000.
+- **Il cast** va messo **prima** della divisione: `(double)a / b` divide con la virgola, `(double)(a / b)` converte un risultato già tagliato.
+
+::: prova Con `int a = 9, b = 4;`, quanto valgono `(double)a / b` e `(double)(a / b)`?
+2.25 e 2.0: nel secondo la divisione tra interi è già stata fatta, e il cast converte il 2.
+:::
+
+> [!RICORDA]
+> - Un `double` si legge con `%lf`.
+> - Il tipo di una divisione lo decidono i due operandi, non la variabile a sinistra dell'uguale.
+
+## 03C · Espressioni booleane (mer 14/10)
+
+Un'espressione booleana è una domanda con risposta sì o no: in C vale 1 se è vera e 0 se è falsa. Si confronta con `==`, `!=`, `<`, `>`, `<=`, `>=`; `==` confronta, `=` assegna. Il tipo `bool`, con `true` e `false`, viene da `stdbool.h`.
+
+| `a` | `b` | `a && b` | `a \|\| b` | `!a` |
+|---|---|---|---|---|
+| vero | vero | vero | vero | falso |
+| vero | falso | falso | vero | falso |
+| falso | vero | falso | vero | vero |
+| falso | falso | falso | falso | vero |
+
+> [!TRAPPOLA] Due errori che con -Wall -Werror non compilano
+> - `0 <= x <= 10` si calcola da sinistra e vale sempre 1: gcc lo rifiuta, «comparisons like 'X<=Y<=Z' do not have their mathematical meaning». Si scrive `0 <= x && x <= 10`.
+> - `&&` dentro `||` senza parentesi: gcc chiede le parentesi. Le condizioni lunghe si spezzano in variabili `bool` con un nome chiaro.
+
+- **Cortocircuito**: in `d != 0 && n / d > 5`, se `d` vale 0 la divisione non viene mai fatta. L'ordine dei pezzi conta.
+- Per negare una condizione si usa De Morgan: il contrario di `a && b` è `!a || !b`. Il `!` si attacca a una cosa sola: `!x > 5` vuol dire `(!x) > 5`.
+- **Ternario**: `max = a > b ? a : b;` vale `a` se la condizione è vera, altrimenti `b`.
+
+::: prova Come si scrive la condizione «`n` non è tra 1 e 100»?
+`n < 1 || n > 100`: per De Morgan è il contrario di `1 <= n && n <= 100`.
+:::
+
+> [!RICORDA]
+> - Vero è 1, falso è 0. Un intervallo si scrive con due confronti e `&&`.
+> - Il cortocircuito protegge la seconda parte: prima il controllo, poi l'operazione.
+
+## 03D · Decisioni: if ed else (mer 14/10)
+
+Ogni programma si costruisce con tre strutture: **sequenza**, **selezione** e **iterazione**. Per il teorema di Böhm-Jacopini (1966) bastano per qualunque algoritmo. Questa lezione è la selezione.
+
+```grafico
+titolo: Il massimo di due numeri con `if … else`: dalla domanda partono due strade, ne viene percorsa una sola, e poi le strade si riuniscono.
+x: 0 10
+y: 0 7
+assi: no
+griglia: no
+proporzioni: libere
+freccia: 5 6.9 5 6.1 | grigio
+poligono: 5 6 7 5 5 4 3 5 | ambra
+testo: 5 5 | ambra | "a > b ?"
+segmento: 3 5 1.8 5 | verde
+freccia: 1.8 5 1.8 3.3 | verde
+segmento: 7 5 8.2 5 | rosa
+freccia: 8.2 5 8.2 3.3 | rosa
+testo: 2.4 5.35 | verde | "vero"
+testo: 7.6 5.35 | rosa | "falso"
+poligono: 0.6 2.2 3 2.2 3 3.2 0.6 3.2 | verde
+poligono: 7 2.2 9.4 2.2 9.4 3.2 7 3.2 | rosa
+testo: 1.8 2.7 | verde | "max = a"
+testo: 8.2 2.7 | rosa | "max = b"
+segmento: 1.8 2.2 1.8 1.2 | grigio
+segmento: 8.2 2.2 8.2 1.2 | grigio
+segmento: 1.8 1.2 8.2 1.2 | grigio
+freccia: 5 1.2 5 0.2 | grigio
+```
+
+- `if (condizione) { … }` esegue il blocco solo se la condizione è vera.
+- `else` è l'altra strada; con `else if` si entra nel **primo** blocco con la condizione vera, e gli altri si saltano. All'esame niente `switch`.
+- Gli errori più comuni: `=` al posto di `==` e le graffe dimenticate (con `-Wall -Werror` tutti e due non compilano), le condizioni nell'ordine sbagliato.
+- Una variabile dichiarata dentro un blocco esiste solo lì: alla `}` sparisce dallo stack.
+- Gli esempi delle slide con `void main()` non compilano con `-Wall -Werror`: si scrive `int main(void)`.
+- Schemi che tornano sempre: il massimo di due numeri, il controllo del valore restituito da `scanf`, la divisione protetta, il controllo di un intervallo.
+
+::: prova Con `int voto = 24;`, quale blocco esegue `if (voto >= 18) { … } else if (voto >= 24) { … } else { … }`?
+Il primo: `voto >= 18` è già vera, e gli altri si saltano. Il secondo blocco non viene mai eseguito, perché le condizioni sono nell'ordine sbagliato: la più stretta va messa prima.
+:::
+
+> [!RICORDA]
+> - Con `else if` le condizioni si controllano in ordine, e conta solo la prima vera.
+> - Per seguire un programma con gli if, scrivi i valori delle variabili prima di ogni domanda.
+
+## Verso l'esame
+
+- **Correttezza di una sequenza di assegnazioni**: si ragiona all'indietro dalla post-condizione. Lo scambio con `temp` è un esercizio perfetto per allenarsi.
+- **Stato della memoria**: una riga per variabile, i valori aggiornati a ogni assegnamento. Attenzione alle conversioni: un `double` messo in un `int` perde la parte dopo la virgola.
+- **Programmazione**: i test di CodeRunner confrontano le stampe. Una media divisa per `3` invece che per `3.0`, o un `%f` al posto di `%lf` in `scanf`, fanno fallire i test.
+- Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Quanto valgono `99 / 50`, `99 % 50` e `99 / 50.0`?
+1, 49 e 1.98.
+:::
+
+::: domanda Perché `x = y; y = x;` non scambia le due variabili?
+Perché il primo assegnamento cancella il vecchio valore di `x`: alla fine tutte e due valgono il vecchio `y`.
+:::
+
+::: domanda Con quale specificatore si legge un `double` con `scanf`?
+`%lf`. Con `%f` `scanf` scriverebbe un `float` nella casella di un `double`.
+:::
+
+::: domanda Che cosa vale `float z = 5 / 2;`?
+2.000000: la divisione è tra interi e fa 2, poi il 2 viene convertito.
+:::
+
+::: domanda Come si scrive in C «`x` è tra 0 e 10»?
+`0 <= x && x <= 10`.
+:::
+
+::: domanda Perché `d != 0 && n / d > 5` non divide mai per zero?
+Per il cortocircuito: se `d` vale 0 la prima parte è falsa, e la seconda non viene calcolata.
+:::
+
+::: domanda Quali sono le tre strutture del teorema di Böhm-Jacopini?
+Sequenza, selezione e iterazione.
+:::
+
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza di una sequenza di assegnazioni» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono **sul modello** di questi esercizi, con gli argomenti della settimana: le prime due come l'esercizio «Corr. Ass. 1» della pagina Moodle 2023/24, le altre come lo stato della memoria e gli errori che fanno fallire i test. Ho compilato e provato tutto con gcc 16.1 e `-Wall -Werror`.
+
+```quiz
+D: Sul modello di «Corr. Ass. 1», ragionamento all'indietro. Il programma esegue `temp = x;`, poi `x = y;`, poi `y = temp;`. Alla fine deve valere `x == 3 && y == 8`. Quale pre-condizione serve all'inizio?
+- `x == 3 && y == 8`
++ `x == 8 && y == 3`
+- `x == 8 && y == 8`
+- `x == 3 && y == 3`
+- `temp == 8 && y == 3`
+= All'indietro: prima di `y = temp` serve `x == 3 && temp == 8`; prima di `x = y` serve `y == 3 && temp == 8`; prima di `temp = x` serve `y == 3 && x == 8`. Lo scambio scambia, quindi all'inizio i valori sono rovesciati. La risposta più insidiosa è `temp == 8 && y == 3`: è la condizione a metà strada, ma all'inizio `temp` non ha ancora un valore.
+
+D: Sul modello di «Corr. Ass. 1», con lo scambio sbagliato. Il programma esegue `x = y;` e poi `y = x;`. Alla fine deve valere `x == 5 && y == 5`. Qual è la pre-condizione più debole?
+- `x == 5 && y == 5`
++ `y == 5`
+- `x == 5`
+- `true`: vale sempre
+- `false`: non vale mai
+= Prima di `y = x` si sostituisce `y` con `x`: `x == 5 && x == 5`, cioè `x == 5`. Prima di `x = y` si sostituisce `x` con `y`: `y == 5`. Il vecchio valore di `x` non conta, perché viene cancellato subito. La risposta più insidiosa è `x == 5 && y == 5`: funziona, ma chiede più del necessario.
+
+D: Sul modello dello stato della memoria. Dopo `int a = 7, b = 2; double m = a / b; double n = (double)a / b; int k = n;` quanto valgono `m`, `n` e `k`?
+- `m` = 3.5, `n` = 3.5, `k` = 3
++ `m` = 3.0, `n` = 3.5, `k` = 3
+- `m` = 3.0, `n` = 3.0, `k` = 3
+- `m` = 3.0, `n` = 3.5, `k` = 4
+- `m` = 3.5, `n` = 3.5, `k` = 4
+= In `a / b` tutti e due sono interi: la divisione fa 3, e solo dopo diventa 3.0. In `(double)a / b` il cast viene prima, quindi la divisione è con la virgola: 3.5. Mettere 3.5 in un `int` taglia, non arrotonda: 3. La risposta più insidiosa è quella con `m` = 3.5: conta il tipo dei due operandi, non quello della variabile a sinistra.
+
+D: Sul modello dello stato della memoria. Dopo questo codice quanto valgono `x` e `y`? `int x = 7, y = 3; if (x > y) { int t = x; x = y; y = t; } if (x % 2 == 0) { x = x + 10; } else if (y > 5) { y = y - 5; } else { x = 0; }`
+- `x` = 7, `y` = 3
+- `x` = 13, `y` = 7
++ `x` = 3, `y` = 2
+- `x` = 0, `y` = 7
+- `x` = 3, `y` = 7
+= Il primo `if` scambia: `x` = 3, `y` = 7. Poi `x % 2` vale 1, quindi la prima strada no; `y > 5` sì, quindi `y` = 2, e l'`else` si salta. La risposta più insidiosa è `x` = 3, `y` = 7: chi pensa che dopo una condizione falsa si salti tutto si ferma al primo blocco. `t` esiste solo dentro le graffe del primo `if`.
+
+D: Sul modello degli errori che fanno fallire i test. Con `int d = 0, n = 10; bool ok = d != 0 && n / d > 5;`, che cosa stampa `printf("%d", ok);`?
+- Il programma si blocca per una divisione per zero
++ 0
+- 1
+- Non compila
+- Un valore che cambia da un'esecuzione all'altra
+= `d != 0` è falso, quindi tutta la congiunzione è falsa e la divisione non viene calcolata: è il cortocircuito. `ok` vale 0. La risposta più insidiosa è il blocco per divisione per zero: succederebbe scrivendo `n / d > 5 && d != 0`, con i pezzi nell'ordine sbagliato.
+
+D: Sul modello degli errori di compilazione. Con `int x = 50;`, che cosa succede compilando con `gcc -Wall -Werror` un programma che contiene `printf("%d", 0 <= x <= 10);`?
+- Stampa 0
+- Stampa 1
+- Stampa 50
++ Non compila
+- Compila con un avviso e stampa 1
+= gcc con `-Wall` segnala «comparisons like 'X<=Y<=Z' do not have their mathematical meaning», e `-Werror` trasforma l'avviso in errore. La risposta più insidiosa è «stampa 1»: è quello che succede senza opzioni, perché `0 <= 50` vale 1 e `1 <= 10` è vero. Con un avviso e basta si compilerebbe solo senza `-Werror`.
+
+D: Sul modello degli errori che fanno fallire i test. Dopo `int a = 4, b = 5, c = 5; double m = (a + b + c) / 3;`, che cosa stampa `printf("%.2f", m);`?
+- 4.67
++ 4.00
+- 4.66
+- 4
+- 14.00
+= `(a + b + c) / 3` è una divisione tra interi: 14 diviso 3 fa 4, e in `m` va 4.0. Con `%.2f` si stampa 4.00. La risposta più insidiosa è 4.67, che è la media vera: per averla serve `/ 3.0`. 4 senza decimali non può uscire da `%.2f`.
+
+D: Sul modello del Laboratorio 02. Che cosa stampa `printf("%d", (int)(8.136 * 1000));`?
+- 8136
++ 8135
+- 8137
+- 8.136
+- Non compila
+= 8.136 in binario non si scrive esattamente: è un po' meno, e `8.136 * 1000` viene circa 8135.999999. Il cast a `int` taglia la parte dopo la virgola: 8135. La risposta più insidiosa è 8136, che sarebbe il risultato con un arrotondamento: per averlo serve `round` di `math.h`.
+```
+
+## Fonti
+
+- Le lezioni complete: [Lab02 · Operatori e tipi](Lab02_operatori_tipi.html), [03A · Scambiare due variabili](03A_scambio_variabili.html), [03B · Numeri reali, float e double, conversioni di tipo](03B_floats.html), [03C · Espressioni booleane, il tipo bool e gli operatori logici](03C_booleani.html), [03D · Dal flusso sequenziale alle decisioni, if ed else](03D_decisioni.html), con i programmi provati, i quiz e gli esercizi.
+- Slide del canale B: Lab02 «Operatori e Tipi» con la tabella dei tipi; 03A_scambio_variabili, 03B_floats, 03C_booleans, 03D_decisioni (E. G. Amparore).
+- Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/corso.md -->
 > File: `contesto_ai/FDA/corso.md`
 
@@ -18285,6 +18604,287 @@ D: Simulazione d'esame 2, 2023/24, domanda 8. Quale riga dà i valori giusti di 
 
 - Le lezioni complete: [03 · Numeri negativi e numeri in virgola mobile](03_interi_con_segno_virgola_mobile.html), [04 · Comprimere i dati ed errori di comunicazione](04_compressione_errori_comunicazione.html), [05 · Esercizi sulla parte 1](05_esercizi_circuiti_rappresentazioni.html), con gli strumenti interattivi, i quiz e i riferimenti al libro.
 - Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/riassunti/settimana_03.md -->
+> File: `contesto_ai/FDA/riassunti/settimana_03.md`
+
+```yaml
+corso: FDA
+lezione: S3
+tipo: riassunto
+titolo: "Settimana 3: proposizioni, condizionali, equivalenze e argomentazioni"
+data: 2026-10-16
+docenti: Stefano Berardi
+sopratitolo: Riassunto settimanale · Fondamenti dell'Informatica · Canale B · 12/10 – 16/10/2026
+descrizione: >-
+  Riassunto della settimana 3 di Fondamenti dell'Informatica (canale B, libro parte 2, §1.2–1.4): proposizioni,
+  connettivi, o esclusivo, precedenze e tavole di verità; «se… allora», «solo se», inversa e contronominale,
+  «se e solo se», equivalenza logica e leggi di De Morgan; argomentazioni valide, metodo delle tavole, le sette
+  regole di inferenza e le due fallacie.
+lede: >-
+  Le tre lezioni di logica della settimana in poche pagine: come si costruisce una tavola di verità, quando una
+  freccia è falsa, come si nega una frase, come si decide se un ragionamento è valido, e le domande vere delle
+  simulazioni d'esame.
+materiale: libro
+simboli_logici: si
+scheda:
+  Lezioni: "[06](06_proposizioni_connettivi_tavole.html) lun 12/10, §1.2 · [07](07_condizionali_equivalenza_logica.html) gio 15/10, §1.3 · [08](08_argomentazioni_regole_inferenza.html) ven 16/10, §1.4"
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni 06, 07 e 08 di Fondamenti dell'Informatica (canale B), scritti sul libro di testo, parte 2
+  (Johnsonbaugh, cap. 1), §1.2–1.4
+appunti_html: appunti/FDA/riassunto_settimana_03.html
+genera_html: true
+```
+
+## In breve
+
+- Una **proposizione** è una frase vera o falsa. Si combinano con «e», «o» e «non»: congiunzione, disgiunzione e negazione.
+- L'«o» della logica è **inclusivo**: vale anche quando sono vere tutte e due le parti. L'«o» esclusivo ha un simbolo suo, ⊕.
+- La **tavola di verità** prova tutte le combinazioni delle lettere: 4 righe con 2 lettere, 8 con 3.
+- «**Se** p **allora** q» è falsa in un solo caso: p vera e q falsa. Con l'ipotesi falsa è vera a vuoto.
+- Due formule sono **equivalenti** quando hanno la stessa tavola. Le più usate sono le **leggi di De Morgan** e la contronominale.
+- Un'**argomentazione** è **valida** quando nelle righe con tutte le premesse vere la conclusione è vera. Una sola riga che non torna è un controesempio.
+- Sono le porte logiche della lezione 01 con V e F al posto di 1 e 0: i quiz sui circuiti si risolvono con questi strumenti.
+
+## 06 · Proposizioni e tavole di verità (lun 12/10)
+
+«Torino è in Piemonte» è una proposizione; una domanda, un ordine o «x è maggiore di 3» no. Al posto delle frasi si usano lettere, e i connettivi si scrivono con i simboli:
+
+| Connettivo | Simbolo | È vera quando… |
+|---|---|---|
+| e (congiunzione) | $p \wedge q$ | tutte e due sono vere |
+| o (disgiunzione) | $p \vee q$ | almeno una è vera |
+| o esclusivo | $p \oplus q$ | esattamente una è vera |
+| non (negazione) | $\neg p$ | $p$ è falsa |
+
+- **Precedenze**: senza parentesi prima «non», poi «e», poi «o». Il «non» si attacca solo a quello che segue: $\neg p \wedge q$ è $(\neg p) \wedge q$.
+- **Costruire una tavola**: una colonna per ogni lettera, le righe in ordine (con 3 lettere, la prima cambia ogni 4 righe, la seconda ogni 2, la terza a ogni riga), poi una colonna per ogni pezzo della formula, dall'interno verso l'esterno.
+- Una formula vera in tutte le righe è una **tautologia**, come $p \vee \neg p$; falsa in tutte, una **contraddizione**, come $p \wedge \neg p$.
+- «Né p né q» vuol dire $\neg p \wedge \neg q$: nessuna delle due.
+
+::: prova Quanto vale $(A \vee B) \wedge \neg(A \wedge B)$ nelle righe $A$ = V, $B$ = V e $A$ = V, $B$ = F?
+F nella prima, perché $\neg(A \wedge B)$ è falsa; V nella seconda. È la tavola dell'o esclusivo.
+:::
+
+> [!RICORDA]
+> - «E»: tutte e due. «O»: almeno una. «O esclusivo»: esattamente una.
+> - Con $n$ lettere la tavola ha $2^n$ righe.
+
+## 07 · «Se… allora» ed equivalenza (gio 15/10)
+
+«Se la squadra vince, offro la pizza» è una promessa. È infranta in un solo caso: la squadra vince e la pizza non arriva. Se la squadra perde, la promessa non è infranta comunque vada: la frase è **vera a vuoto**.
+
+| $p$ | $q$ | $p \to q$ | $p \leftrightarrow q$ |
+|---|---|---|---|
+| V | V | V | V |
+| V | F | F | F |
+| F | V | V | F |
+| F | F | V | V |
+
+```grafico
+titolo: «Se piove, la strada è bagnata»: dove $p$ è vera, anche $q$ lo è, e il cerchio di $p$ sta dentro quello di $q$. Una strada bagnata senza pioggia, lavata per esempio, non smentisce la promessa: per questo da $q$ non si può ricavare $p$.
+x: -4 4
+y: -2.6 2.6
+assi: no
+griglia: no
+poligono: -3.8 -2.4 3.8 -2.4 3.8 2.4 -3.8 2.4 | grigio
+cerchio: 0.5 0 2 | ambra
+cerchio: 0 0 0.9 | blu
+testo: 0 0.15 | blu | "piove"
+testo: 0 -0.35 | blu | "$p$"
+testo: 1.9 0.9 | ambra | "strada bagnata"
+testo: 1.9 0.4 | ambra | "$q$"
+testo: -2.9 1.9 | grigio | "strada asciutta"
+```
+
+- **Sufficiente e necessaria**: in $p \to q$ l'ipotesi $p$ è condizione sufficiente, la conclusione $q$ è condizione necessaria.
+- **«Solo se»**: «p solo se q» è $p \to q$. Quello che segue «solo se» è la conclusione.
+- **Inversa** e **contronominale**: l'inversa $q \to p$ dice un'altra cosa; la contronominale $\neg q \to \neg p$ dice la stessa cosa della frase di partenza.
+- **«Se e solo se»**: $p \leftrightarrow q$ è vera quando le due parti hanno lo stesso valore.
+
+**Equivalenze da sapere.** Due formule sono equivalenti, $\equiv$, quando hanno la stessa tavola:
+
+- De Morgan: $\neg(p \wedge q) \equiv \neg p \vee \neg q$ e $\neg(p \vee q) \equiv \neg p \wedge \neg q$;
+- la freccia senza freccia: $p \to q \equiv \neg p \vee q$;
+- la negazione di una promessa: $\neg(p \to q) \equiv p \wedge \neg q$.
+
+> [!TRAPPOLA] De Morgan a metà
+> Negando un «e» bisogna negare **tutte e due** le parti **e** cambiare «e» in «o». Il contrario di «studio e lavoro» non è «non studio e non lavoro», ma «non studio **o** non lavoro».
+
+::: prova Qual è la negazione di «se piove, prendo l'ombrello»?
+«Piove e non prendo l'ombrello»: $\neg(p \to q) \equiv p \wedge \neg q$. Non è «se non piove, non prendo l'ombrello».
+:::
+
+> [!RICORDA]
+> - $p \to q$ è falsa solo con $p$ vera e $q$ falsa.
+> - Contronominale: stessa cosa. Inversa: un'altra cosa.
+
+## 08 · Argomentazioni e regole di inferenza (ven 16/10)
+
+Un detective mette in fila gli indizi e arriva a una conclusione. Le frasi di partenza sono le **premesse**, quella d'arrivo la **conclusione**. L'argomentazione è **valida** quando, se tutte le premesse sono vere, la conclusione non può essere falsa. Valida non vuol dire vera: vuol dire che la conclusione **segue** dalle premesse.
+
+```grafico
+titolo: Il metodo delle tavole: si guardano solo le righe con tutte le premesse vere. Basta una di queste righe con la conclusione falsa per dire che l'argomentazione non è valida.
+x: 0 10
+y: 0 7
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 1.6 5.8 8.4 5.8 8.4 6.8 1.6 6.8 | blu
+testo: 5 6.3 | blu | "righe con tutte le premesse vere"
+freccia: 5 5.8 5 5.05 | grigio
+poligono: 5 5 8 4 5 3 2 4 | ambra
+testo: 5 4 | ambra | "conclusione vera?"
+segmento: 2 4 1.5 4 | verde
+freccia: 1.5 4 1.5 2.35 | verde
+segmento: 8 4 8.5 4 | rosa
+freccia: 8.5 4 8.5 2.35 | rosa
+testo: 1.6 4.35 | verde | "in tutte"
+testo: 8.4 4.35 | rosa | "non in una"
+poligono: 0.3 1.3 2.7 1.3 2.7 2.3 0.3 2.3 | verde
+poligono: 7.3 1.3 9.7 1.3 9.7 2.3 7.3 2.3 | rosa
+testo: 1.5 1.8 | verde | "valida"
+testo: 8.5 1.8 | rosa | "non valida"
+testo: 8.5 0.75 | rosa | "è il controesempio"
+```
+
+Le **regole di inferenza** sono argomentazioni valide corte, da usare come passi:
+
+| Regola | Premesse | Conclusione |
+|---|---|---|
+| modus ponens | $p \to q$ e $p$ | $q$ |
+| modus tollens | $p \to q$ e $\neg q$ | $\neg p$ |
+| addizione | $p$ | $p \vee q$ |
+| semplificazione | $p \wedge q$ | $p$ |
+| congiunzione | $p$ e $q$ | $p \wedge q$ |
+| sillogismo ipotetico | $p \to q$ e $q \to r$ | $p \to r$ |
+| sillogismo disgiuntivo | $p \vee q$ e $\neg p$ | $q$ |
+
+> [!TRAPPOLA] Due ragionamenti che sembrano giusti
+> - **Affermare il conseguente**: da $p \to q$ e $q$ ricavare $p$. La strada è bagnata, ma magari l'hanno lavata.
+> - **Negare l'antecedente**: da $p \to q$ e $\neg p$ ricavare $\neg q$. Non piove, ma la strada può essere bagnata lo stesso.
+>
+> In tutti e due i casi c'è una riga con le premesse vere e la conclusione falsa: $p$ falsa e $q$ vera.
+
+Mettendo in fila le regole si arriva alla conclusione senza tavole: è una **dimostrazione**. Con 4 o 5 lettere conviene, perché le tavole avrebbero 16 o 32 righe.
+
+::: prova Da «se studio, passo l'esame» e «non ho passato l'esame», che cosa segue?
+«Non ho studiato»: è il modus tollens. Dalle stesse premesse non segue niente su altri esami.
+:::
+
+> [!RICORDA]
+> - Valida: nessuna riga con le premesse vere e la conclusione falsa.
+> - Modus ponens e modus tollens sono validi; affermare il conseguente e negare l'antecedente no.
+
+## Verso l'esame
+
+- **Il valore di una formula riga per riga**: è il quiz 3 della simulazione 1 del 2023/24, con $(A \to B) \leftrightarrow (B \to A)$. Si scrive una colonna per pezzo.
+- **Formule equivalenti nei circuiti**: nel quiz 6 della stessa simulazione bisogna riconoscere con De Morgan che due formule descrivono lo stesso circuito.
+- **Tradurre e negare**: «solo se», «condizione necessaria», la negazione di un «se… allora». Con i quantificatori del §1.5 tornano nella simulazione 2.
+- L'esame è un quiz di 9 domande da 3 punti in 45 minuti, con Safe Exam Browser. Appelli 2026/27: venerdì 29/01/2027 e giovedì 18/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Quando è vera $p \vee q$? E $p \oplus q$?
+$p \vee q$ quando almeno una delle due è vera; $p \oplus q$ quando ne è vera esattamente una.
+:::
+
+::: domanda Quante righe ha la tavola di verità di una formula con 3 lettere?
+8, cioè $2^3$.
+:::
+
+::: domanda In quale riga $p \to q$ è falsa?
+Solo con $p$ vera e $q$ falsa.
+:::
+
+::: domanda Come si scrive «p solo se q» con la freccia?
+$p \to q$: quello che segue «solo se» è la conclusione.
+:::
+
+::: domanda Qual è la contronominale di $p \to q$, ed è equivalente?
+$\neg q \to \neg p$, ed è equivalente: ha la stessa tavola.
+:::
+
+::: domanda Quanto vale $\neg(p \vee q)$ per De Morgan?
+$\neg p \wedge \neg q$.
+:::
+
+::: domanda Da $p \to q$ e $q$ si può ricavare $p$?
+No: è la fallacia di affermare il conseguente. Il controesempio è la riga con $p$ falsa e $q$ vera.
+:::
+
+## Quiz d'esame
+
+Le domande vere che conosco sono quelle delle due simulazioni d'esame ufficiali del 2023/24. Le prime tre vengono da lì: le simulazioni hanno domande a più risposte, che qui sono diventate domande con una risposta giusta. Sulle argomentazioni e sulle traduzioni con «solo se» nelle simulazioni non ci sono domande: le ultime quattro sono **sul modello** di quelle vere, con gli esercizi del libro. Ho ricontrollato tutte le tavole con un programma.
+
+```quiz
+D: Simulazione d'esame 1, 2023/24, domanda 3. Considera la formula $(A \to B) \leftrightarrow (B \to A)$. Quali sono i suoi valori nelle righe $A$ = V, $B$ = V; $A$ = V, $B$ = F; $A$ = F, $B$ = F; $A$ = F, $B$ = V, in quest'ordine?
+- V, V, V, V
++ V, F, V, F
+- V, F, V, V
+- F, V, F, V
+- V, F, F, F
+= Le due frecce hanno lo stesso valore quando $A$ e $B$ sono uguali: con V, V e con F, F tutte e due sono vere. Con $A$ = V, $B$ = F la prima freccia è falsa e la seconda vera; con $A$ = F, $B$ = V il contrario. Quindi V, F, V, F. La risposta più insidiosa è V, F, V, V: chi pensa che con $A$ falsa tutto sia «vero a vuoto» dimentica che $B \to A$ con $B$ vera e $A$ falsa è falsa.
+
+D: Simulazione d'esame 2, 2023/24, domanda 2, con una risposta cambiata. Quale di queste NON è una proprietà valida in tutte le algebre booleane? Qui $+$ è l'«o», $\cdot$ l'«e» e $x'$ il «non».
++ $x + (y \cdot z) = (x \cdot y) + (x \cdot z)$
+- $x + (y \cdot z) = (y + x) \cdot (z + x)$
+- $x + x = x$
+- $x + x' = 1$ e $x \cdot x' = 0$
+- $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$
+= Con $x = 1$, $y = 0$, $z = 0$ la sinistra vale 1 e la destra 0. La risposta più insidiosa è la seconda, che con i numeri sembra sbagliata: in logica però l'«o» si distribuisce sull'«e», $p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$. Le altre sono l'idempotenza, il complemento e la distributiva dell'«e» sull'«o». L'ultima risposta l'ho messa io al posto di un'affermazione sugli insiemi con due elementi, falsa anche lei.
+
+D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola $(A \wedge \neg C) \vee (\neg C \wedge B)$. Quale formula descrive la stessa funzione?
+- $(\neg C \vee A) \wedge (\neg C \vee B)$
++ $\neg((C \vee \neg A) \wedge (C \vee \neg B))$
+- $\neg C \wedge A \wedge B$
+- $\neg(C \wedge (A \vee B))$
+- $\neg C \vee A \vee B$
+= Con De Morgan sulla parentesi grande: $\neg(C \vee \neg A) \vee \neg(C \vee \neg B)$, e di nuovo: $(\neg C \wedge A) \vee (\neg C \wedge B)$. La risposta più insidiosa è la prima, che scambia «e» e «o»: con $A$, $B$ e $C$ tutte false vale V, mentre il circuito dà F. La terza vuole $A$ e $B$ vere tutte e due; la quarta e la quinta sono vere anche con le tre lettere false.
+
+D: Sul modello degli esercizi del §1.3. Con $p$ = «passo l'esame» e $q$ = «studio», come si scrive «passo l'esame solo se studio»?
++ $p \to q$
+- $q \to p$
+- $p \leftrightarrow q$
+- $p \wedge q$
+- $\neg p \to \neg q$
+= Quello che segue «solo se» è la conclusione: se passo l'esame, allora ho studiato. Studiare è una condizione necessaria. La risposta più insidiosa è $q \to p$, l'inversa: direbbe che basta studiare per passare. $\neg p \to \neg q$ è la contronominale di $q \to p$, quindi dice la stessa cosa sbagliata.
+
+D: Sul modello della simulazione 2, domanda 6, che chiede le negazioni di frasi. Qual è la negazione di «se il treno è in ritardo, perdo la coincidenza»?
+- Se il treno non è in ritardo, non perdo la coincidenza.
+- Se perdo la coincidenza, il treno è in ritardo.
++ Il treno è in ritardo e non perdo la coincidenza.
+- Il treno non è in ritardo e perdo la coincidenza.
+- Il treno non è in ritardo o non perdo la coincidenza.
+= $\neg(p \to q) \equiv p \wedge \neg q$: la promessa è smentita solo se il treno è in ritardo e la coincidenza non si perde. La risposta più insidiosa è la prima, l'opposta: è un'altra promessa, non la negazione, e con il treno in ritardo e la coincidenza persa è vera come la frase di partenza.
+
+D: Sul modello degli esercizi del §1.4. L'argomentazione «se piove, la strada è bagnata; la strada è bagnata; quindi piove» è:
+- valida, per il modus ponens
+- valida, per il modus tollens
++ non valida: afferma il conseguente
+- non valida: nega l'antecedente
+- valida, perché la conclusione può essere vera
+= Le premesse sono $p \to q$ e $q$, la conclusione $p$. Nella riga $p$ falsa, $q$ vera le premesse sono vere e la conclusione falsa: è il controesempio. Si chiama affermare il conseguente. La risposta più insidiosa è il modus ponens, che parte da $p$, non da $q$. Che la conclusione possa essere vera non basta: deve esserlo in tutte le righe con le premesse vere.
+
+D: Sul modello degli esercizi del §1.4. Da $p \vee q$, $q \to r$ e $\neg r$ che cosa segue?
+- $q$
+- $\neg p$
++ $p$
+- $r$
+- niente: l'argomentazione non è valida
+= Da $q \to r$ e $\neg r$ viene $\neg q$, per il modus tollens. Da $p \vee q$ e $\neg q$ viene $p$, per il sillogismo disgiuntivo. La risposta più insidiosa è $\neg p$: chi dimentica la catena pensa che negare $r$ neghi tutto.
+```
+
+## Fonti
+
+- Le lezioni complete: [06 · Proposizioni, connettivi e tavole di verità](06_proposizioni_connettivi_tavole.html), [07 · «Se… allora», «se e solo se» ed equivalenza logica](07_condizionali_equivalenza_logica.html), [08 · Argomentazioni e regole di inferenza](08_argomentazioni_regole_inferenza.html), con gli strumenti per le tavole, i quiz e gli esercizi.
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, cap. 1), §1.2–1.4.
+- Simulazioni d'esame del 2023/24 della pagina d'esame comune: simulazione 1, domande 3 e 6; simulazione 2, domanda 2.
+- Esame e diario del canale B: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
 
 
 ---
@@ -60175,6 +60775,593 @@ D: Quiz 2021–2025. Sia $h \colon \Z \to \Z$ la funzione $h(n) = 2n$ se $n$ è 
 
 - Le lezioni complete: [D03 · Prodotto cartesiano e relazioni di equivalenza](D03_prodotto_cartesiano_relazioni.html), [D04 · Funzioni, immagini e controimmagini](D04_funzioni_immagini_controimmagini.html), con le domande vere degli appelli, i quiz e gli esercizi.
 - A. Mori, *Lezioni di Matematica Discreta*: cap. 1, pp. 13–15; appendice A, pp. 153–155; cap. 2, pp. 17–23.
+- Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_03_AG.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_03_AG.md`
+
+```yaml
+corso: MDAG
+modulo: AG
+lezione: S3
+tipo: riassunto
+titolo: "Settimana 3: spazi vettoriali, sottospazi e Span"
+data: 2026-10-15
+docenti: Reto Buzano e Marco Radeschi
+sopratitolo: Riassunto settimanale · Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · 12/10 – 16/10/2026
+descrizione: >-
+  Riassunto della settimana 3 di Algebra lineare e Geometria (MDAG, parte 2): vettori di R^n, somma e prodotto per
+  scalare, le otto regole, gruppi e campi, definizione di spazio vettoriale ed esempi (polinomi, funzioni,
+  successioni); matrici, sottospazi, matrici diagonali, triangolari, simmetriche e antisimmetriche, combinazioni
+  lineari e Span.
+lede: >-
+  Le due lezioni della settimana in poche pagine: che cosa vuol dire spazio vettoriale, come si riconosce un
+  sottospazio in pochi secondi, che cos'è lo Span, e le domande vere degli appelli 2024–2026 su questi argomenti.
+materiale: dispense
+scheda:
+  Lezioni: "[L05](L05_spazi_vettoriali_1.html) mar 13/10 · [L06](L06_spazi_vettoriali_2.html) gio 15/10, nel canale B"
+  Dispense: Buzano e Radeschi 2026, pp. 20–30
+  Tempo di ripasso: 35 minuti
+fonte: >-
+  Gli appunti delle lezioni L05 e L06 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso
+  (R. Buzano, M. Radeschi)
+appunti_html: appunti/MDAG/riassunto_settimana_03_AG.html
+genera_html: true
+```
+
+## In breve
+
+- Un **vettore** è una lista ordinata di numeri. Nel piano $(3, 2)$ è lo spostamento «3 a destra e 2 in su».
+- I vettori si **sommano** un posto alla volta e si **moltiplicano per un numero**, lo **scalare**, moltiplicando ogni posto.
+- Uno **spazio vettoriale** è un insieme in cui queste due operazioni non fanno mai uscire e seguono otto regole. Lo sono anche i polinomi, le funzioni, le successioni e le matrici.
+- Un **sottospazio** è una parte di uno spazio vettoriale da cui non si esce: contiene lo zero ed è chiusa rispetto a somme e multipli.
+- Una **combinazione lineare** è una ricetta: alcuni vettori, ciascuno moltiplicato per una dose, poi sommati. Lo **Span** è l'insieme di tutte le ricette, ed è sempre un sottospazio.
+- All'esame «quale di questi insiemi è (o non è) un sottospazio?» è una domanda del quiz in quasi ogni appello.
+
+## L05 · Spazi vettoriali I (mar 13/10)
+
+**I vettori e le due operazioni.** Su una mappa a quadretti, fare un passo a destra e due in su, e poi tre a destra e uno in su, porta quattro a destra e tre in su. Quindi $(1, 2) + (3, 1) = (4, 3)$: sommare vuol dire fare uno spostamento dopo l'altro, un posto alla volta. Moltiplicare per 2 vuol dire fare lo stesso spostamento due volte; per $-1$, farlo al contrario.
+
+```grafico
+titolo: La somma di $v = (1, 2)$ e $w = (3, 1)$ è la diagonale del parallelogramma costruito sui due vettori: $(4, 3)$. Nell'altro ordine si arriva nello stesso punto.
+x: -1 5
+y: -1 4
+poligono: 0 0 1 2 4 3 3 1 | ambra | tenue
+segmento: 1 2 4 3 | blu | tratteggio
+segmento: 3 1 4 3 | accento | tratteggio
+vettore: 4 3 | ambra | spesso | $v + w$ | n
+vettore: 1 2 | accento | spesso | $v$ | no
+vettore: 3 1 | blu | spesso | $w$ | se
+```
+
+- Si sommano solo vettori con lo stesso numero di coordinate: $(1, 2) + (1, 2, 3)$ non ha senso.
+- Tutti i multipli di un vettore diverso da zero stanno su una retta che passa per l'origine.
+- Le **otto regole** sono quattro per la somma e quattro per i multipli. Per la somma: l'ordine non conta, le parentesi non contano, c'è il vettore zero, ogni vettore ha l'opposto. Per i multipli: due distributive, due scalari uno dopo l'altro, lo scalare 1 che non cambia niente.
+
+**Gruppi e campi.** Sono i nomi di due liste di regole, la parte più teorica della lezione.
+
+| Nome | Che cosa chiede | Sì | No |
+|---|---|---|---|
+| **gruppo** | un'operazione che non fa uscire, con elemento neutro, associativa, con l'inverso di ogni elemento | $\Z$ con la somma | $\N$ con la somma: manca l'opposto |
+| **campo** | le quattro operazioni senza uscire, dividendo solo per numeri diversi da zero | $\Q$, $\R$, $\C$ | $\N$, $\Z$: $1/2$ esce |
+
+**Lo spazio vettoriale.** Un insieme con una somma e un prodotto per scalare che non fanno uscire e rispettano le otto regole. Gli scalari sono i numeri di un campo: nel corso $\R$ o $\C$. Tra due vettori **non** c'è un prodotto.
+
+| Spazio | I vettori | Il vettore zero |
+|---|---|---|
+| $\R^n$, $\C^n$ | liste di $n$ numeri | $(0, \dots, 0)$ |
+| successioni | liste infinite di numeri | la successione di soli zeri |
+| funzioni da un insieme in $\R$ | una funzione, sommata punto per punto | la funzione che vale sempre 0 |
+| $\R_k[x]$ | i polinomi di grado **al massimo** $k$ | il polinomio nullo |
+
+> [!TRAPPOLA] Due zeri e due gradi
+> Il numero zero è uno scalare; il **vettore zero** è il vettore che sommato non cambia niente. Qualunque vettore per il numero zero dà il vettore zero. E i polinomi di grado **esattamente** 2 non sono uno spazio vettoriale: $x^2 + (-x^2 + x) = x$ ha grado 1, ed esce.
+
+> [!METODO] «È uno spazio vettoriale?»
+> 1. Scrivi chi sono i vettori, chi sono gli scalari e quali sono le due operazioni.
+> 2. Prova con elementi concreti: una somma, un multiplo per $-1$ e per 0. Restano dentro?
+> 3. Il vettore zero c'è?
+> 4. Per dire **no** basta un esempio. Per dire **sì** serve un ragionamento che valga per tutti.
+
+::: prova L'insieme dei vettori $(x, y)$ del piano con $x \ge 0$ è uno spazio vettoriale con le operazioni solite?
+No. $(1, 0)$ ci sta, ma $(-1) \cdot (1, 0) = (-1, 0)$ no: un multiplo esce.
+:::
+
+> [!RICORDA]
+> - Spazio vettoriale: somma e prodotto per scalare che non fanno uscire, più le otto regole.
+> - Per dire di no: manca lo zero, oppure una somma o un multiplo escono.
+
+## L06 · Spazi vettoriali II (gio 15/10)
+
+**Le matrici.** Una matrice è una tabella di numeri: con $m$ righe e $n$ colonne si chiama $m \times n$; $a_{ij}$ è il numero nella riga $i$ e nella colonna $j$. Le matrici della stessa forma si sommano e si moltiplicano per un numero casella per casella: formano lo spazio vettoriale $M(m, n, \K)$.
+
+**I sottospazi.** Una parte di uno spazio vettoriale è un sottospazio quando supera tre controlli:
+
+1. contiene il vettore zero;
+2. la somma di due suoi vettori resta dentro;
+3. ogni multiplo di un suo vettore resta dentro.
+
+```grafico
+titolo: La retta $y = 2x$ passa per l'origine ed è un sottospazio. La retta $y = 2x + 1$ no: non contiene l'origine, e la somma dei suoi punti $(0, 1)$ e $(1, 3)$ è $(1, 4)$, che sta fuori.
+x: -4 4
+y: -3 5
+retta: 0 0 1.5 3 | accento | $y = 2x$ | e
+retta: 0 1 -1.5 -2 | rosa | tratteggio | $y = 2x + 1$ | o
+punto: 0 0 | accento | $O$ | se
+punto: 0 1 | rosa | $(0, 1)$ | o
+punto: 1 3 | rosa | $(1, 3)$ | o
+punto: 1 4 | ambra | $(1, 4)$ | no
+```
+
+> [!TRAPPOLA] Un solo controllo non basta
+> Il primo quadrante contiene lo zero e le somme restano dentro, ma il multiplo per $-1$ esce. I due assi insieme hanno lo zero e i multipli, ma $(1, 0) + (0, 1) = (1, 1)$ esce. Allo stesso modo «le triangolari», superiori oppure inferiori, non sono un sottospazio; lo sono le superiori e le inferiori separatamente.
+
+**Cinque classi di matrici quadrate**, tutte sottospazi:
+
+| Classe | Che cosa vuol dire |
+|---|---|
+| diagonali | zeri fuori dalla diagonale |
+| triangolari superiori | zeri sotto la diagonale |
+| triangolari inferiori | zeri sopra la diagonale |
+| simmetriche | uguali allo specchio sulla diagonale: $a_{ij} = a_{ji}$ |
+| antisimmetriche | opposte allo specchio: $a_{ij} = -a_{ji}$, e quindi diagonale di zeri |
+
+**Combinazioni lineari e Span.** Con gli ingredienti $v_1, \dots, v_k$ e le dosi $\lambda_1, \dots, \lambda_k$ la ricetta è $\lambda_1 v_1 + \dots + \lambda_k v_k$. Lo $\Span(v_1, \dots, v_k)$ è l'insieme di tutte le ricette: è sempre un sottospazio (Proposizione 6.7), ed è il più piccolo che contiene gli ingredienti.
+
+- Lo Span di un vettore diverso da zero è la retta dei suoi multipli: $\Span\big((1, 2)\big) = \Span\big((2, 4)\big)$.
+- Lo Span di due vettori **non** è l'insieme dei due vettori: contiene infinite ricette.
+- **Il vettore sta nello Span?** Chiama le dosi con delle lettere, scrivi la ricetta uguale al vettore coordinata per coordinata, risolvi il sistema. Se trovi le dosi, sì; se arrivi a una cosa impossibile, come $3 = 4$, no.
+
+> [!METODO] «È un sottospazio?» in pochi secondi
+> | Se l'insieme è descritto da… | allora… |
+> |---|---|
+> | equazioni lineari **senza termine noto**: $x - 2y = 0$, $a = 2c$, $p(1) = 0$ | sì |
+> | un'equazione con termine noto: $x + y = 1$, $p(0) = 1$ | no: manca lo zero |
+> | disuguaglianze: $x \ge 0$ | quasi sempre no: prova il multiplo per $-1$ |
+> | prodotti o potenze delle lettere: $xy = 0$, $x^2 = 1$ | quasi sempre no: prova una somma |
+> | una lettera con un pezzo fisso: $\{(1 + t)x^2 + tx\}$ | no: nessun valore di $t$ dà lo zero |
+> | uno Span | sì, sempre |
+
+::: prova Il vettore $(1, 1)$ sta nello $\Span\big((1, 2), (2, 4)\big)$?
+No. Ogni ricetta è $\lambda(1, 2) + \mu(2, 4) = (\lambda + 2\mu)(1, 2)$, un multiplo di $(1, 2)$: la seconda coordinata è sempre il doppio della prima.
+:::
+
+> [!RICORDA]
+> - Sottospazio: zero, somme, multipli. Per dire no basta un esempio che non funziona.
+> - Lo Span è l'insieme di tutte le ricette con quegli ingredienti, ed è sempre un sottospazio.
+
+## Verso l'esame
+
+- **Quiz**: «quale di questi insiemi è (o non è) un sottospazio?» è uscita il 08/02/2024, il 03/06/2025, il 05/02/2026 e il 07/09/2026. Si risolve con la tabella dei segnali della L06: quasi sempre basta guardare se c'è lo zero.
+- **Span tra i polinomi**: il 24/01/2024 la domanda 1 chiedeva quali polinomi generano un sottospazio dato.
+- Questi argomenti tornano in tutto il corso: dimensione e basi nella L07, nucleo e immagine nella L14, autospazi nella L18.
+- Appelli 2026/27: venerdì 22/01/2027 e venerdì 05/02/2027, alle 14:00, con 4 facciate scritte a mano e senza calcolatrice.
+
+## Domande di ripasso
+
+::: domanda Quanto fa $(1, 2) + (3, 1)$? E $-2 \cdot (1, -3)$?
+$(4, 3)$ e $(-2, 6)$: si lavora un posto alla volta.
+:::
+
+::: domanda Perché $\Z$ non è un campo?
+Perché non sempre si può dividere senza uscire: $1/2$ non è intero.
+:::
+
+::: domanda I polinomi di grado esattamente 3 formano uno spazio vettoriale?
+No: il polinomio nullo non ha grado 3, e $x^3 + (-x^3 + 1) = 1$ ha grado 0.
+:::
+
+::: domanda Quali sono i tre controlli per un sottospazio?
+Contiene lo zero; la somma di due suoi vettori resta dentro; ogni multiplo di un suo vettore resta dentro.
+:::
+
+::: domanda Le matrici $2 \times 2$ con $a_{11} = 1$ sono un sottospazio?
+No: la matrice nulla ha $a_{11} = 0$, quindi manca lo zero.
+:::
+
+::: domanda Che cos'è lo Span di un solo vettore $v \neq 0$ nel piano?
+La retta che passa per l'origine e contiene $v$: tutti i suoi multipli.
+:::
+
+## Quiz d'esame
+
+Tutte domande vere degli appelli di Algebra lineare e Geometria, con le risposte delle soluzioni ufficiali, ricontrollate con un programma. Sono la domanda 1, 2 o 3 del quiz, quella che vale 1 punto.
+
+```quiz
+D: Appello del 07/02/2025, domanda 2. Identificate la risposta corretta alla domanda «$\C$ ammette una struttura di spazio vettoriale su $\R$?».
+- No, poiché $\C$ è già uno spazio vettoriale su $\C$ stesso.
+- Sì, perché ogni campo è uno spazio vettoriale su $\R$.
+- No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.
+- No, in quanto $\C$ e $\R$ sono campi diversi.
++ Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$, $\cdot$ su $\R$ sono le stesse che in $\C$.
+= Due numeri complessi si sommano, e un complesso per un reale resta complesso: le otto regole valgono perché valgono per i numeri. La risposta più insidiosa è «ogni campo è uno spazio vettoriale su $\R$»: è falso, per esempio $\Q$ non lo è, perché $\sqrt 2 \cdot 1$ esce. Le due «No» con motivazioni vere non rispondono alla domanda; $\R$ su $\C$ non funziona, perché $i \cdot 1$ non è reale.
+
+D: Appello del 03/06/2025, domanda 2. Quale dei seguenti insiemi è un sottospazio vettoriale di $\R^3$?
+- $\{(x, y, z) \in \R^3 \mid x^2 - 2x + 1 = 0\}$
+- $\{(x, y, z) \in \R^3 \mid x + 2yz + 3z = 7\}$
+- $\{(x, y, z) \in \R^3 \mid -x + 7y + z = 5\}$
++ $\{(x, y, z) \in \R^3 \mid x + \frac y2 - 5\pi z = 0\}$
+- $\{(x, y, z) \in \R^3 \mid x + 3iy + 5z = 0\}$
+= Un'equazione lineare, con numeri reali e senza termine noto. La risposta più insidiosa è la prima: sembra senza termine noto, ma è $(x - 1)^2 = 0$, cioè $x = 1$, e l'origine non la rispetta. La seconda e la terza hanno il termine noto; l'ultima ha un numero non reale, e la soluzione ufficiale la scarta perché «non è definita sui numeri reali».
+
+D: Appello del 08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
+- $\{p(x) \in \R_2[x] \mid p(0) = 0\}$
+- $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$
+- $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 0\}$
++ $\{(1 + t)x^2 + tx \mid t \in \R\}$
+- $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$
+= Per avere il polinomio nullo servirebbero $1 + t = 0$ e $t = 0$ insieme: impossibile. La risposta più insidiosa è la seconda, che ha una forma simile: ma $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$ è uno Span, quindi è un sottospazio. Le altre sono equazioni lineari senza termine noto.
+
+D: Appello del 05/02/2026, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
+- $\{p(x) \in \R_2[x] \mid p(1) = p(2)\}$
+- $\Span(x + 1, x^2 - 1)$
++ $\{x^2 + tx \mid t \in \R\}$
+- $\{p(x) = ax^2 + bx + c \mid a + b - c = 0\}$
+- $\R_1[x]^\perp$
+= Tutti i polinomi dell'insieme hanno 1 davanti a $x^2$: il polinomio nullo manca. La risposta più insidiosa è $p(1) = p(2)$: sembra una condizione strana, ma è $a + b + c = 4a + 2b + c$, cioè $3a + b = 0$, un'equazione lineare senza termine noto. Uno Span è sempre un sottospazio. L'ultimo è il complemento ortogonale, della lezione L21: anche lui è sempre un sottospazio.
+
+D: Appello del 07/09/2026, domanda 3. Quale dei seguenti insiemi è un sottospazio di $\R_2[x]$?
+- $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 2\}$
+- $\{p(x) \in \R_2[x] \mid p(0) = 1\}$
++ $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(-1)\}$
+- $\{tx^2 + sx + 1 \mid s, t \in \R\}$
+- $\{(1 + t)x^2 + tx \mid t \in \R\}$
+= È l'unico insieme che contiene il polinomio nullo, e le condizioni $p(1) = 0$ e $p(-1) = 0$ restano vere per somme e multipli. La risposta più insidiosa è la prima: $a = 2c$ va bene, ma $b = 2$ esclude il polinomio nullo. Nelle altre il termine noto è fissato a 1, oppure nessun $t$ dà lo zero.
+
+D: Appello del 24/01/2024, domanda 1. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) = x + 2$, $c(x) = 2x^2 - 2$, $d(x) = x^2 - x$, $e(x) = 2x^3 + 1$, $f(x) = x^3 - x^2$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale:
+- $U = \Span(a, c)$
++ $U = \Span(a, c, f)$
+- $U = \Span(c, d, e, f)$
+- $U = \Span(b, e, f)$
+- $U = \Span(a, c, d)$
+= $a$, $c$ e $f$ fanno zero in 1, quindi il loro Span sta in $U$; e ogni $p$ con $p(1) = 0$ è $(x - 1)$ per un polinomio di grado al massimo 2, che si scrive con $a$, $c$, $f$. La risposta più insidiosa è $\Span(a, c, d)$: tutti fanno zero in 1, ma hanno grado al massimo 2, e $x^3 - 1$ resta fuori. $b$ ed $e$ non fanno zero in 1, quindi gli Span con loro escono da $U$.
+```
+
+## Fonti
+
+- Le lezioni complete: [L05 · Spazi vettoriali I](L05_spazi_vettoriali_1.html), [L06 · Spazi vettoriali II](L06_spazi_vettoriali_2.html), con le domande vere degli appelli, i quiz e gli esercizi.
+- Dispense 2026 del corso (R. Buzano, M. Radeschi), lezioni 5 e 6, pp. 20–30; B. Martelli, *Geometria e algebra lineare*, §1.5, §2.1 e §2.2.
+- Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_03_MD.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_03_MD.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: S3
+tipo: riassunto
+titolo: "Settimana 3: composizione e inverse, insiemi finiti, primi conteggi"
+data: 2026-10-16
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Riassunto settimanale · Parte 1 (modA) · Matematica Discreta · Canali A, B e C · 12/10 – 16/10/2026
+descrizione: >-
+  Riassunto della settimana 3 di Matematica Discreta (MDAG, parte 1): composizione di funzioni, funzioni inverse e
+  biezioni; cardinalità, insiemi finiti e infiniti, principio dei piccioni, inclusione-esclusione e multipli; metodo
+  delle scelte successive, parole, fattoriale, disposizioni semplici e con ripetizione, anagrammi, combinazioni.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: come si calcola una composizione senza sbagliare l'ordine, come si
+  contano un'unione e i multipli, quale formula usare nei primi problemi di conteggio, e le domande vere della domanda
+  3 e della domanda 4 del quiz.
+materiale: libro
+scheda:
+  Lezioni: "[D05](D05_composizione_funzioni_inverse.html) lun 12/10 · [D06](D06_insiemi_finiti_inclusione_esclusione.html) mer 14/10 · [D07](D07_parole_anagrammi_disposizioni.html) ven 16/10"
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 2, pp. 23–29; cap. 3, pp. 39–55
+  Tempo di ripasso: 45 minuti
+fonte: >-
+  Gli appunti delle lezioni D05, D06 e D07 di Matematica Discreta, scritti sul libro di A. Mori
+appunti_html: appunti/MDAG/riassunto_settimana_03_MD.html
+genera_html: true
+```
+
+## In breve
+
+- **Comporre** vuol dire applicare due funzioni una dopo l'altra. In $g \circ f$ si applica **prima** la funzione scritta a destra.
+- La composizione è associativa ma **non** commutativa: scambiando l'ordine il risultato in generale cambia, e a volte la composta nell'altro ordine non esiste.
+- Una funzione ha l'**inversa** se e solo se è biettiva. L'inversa di una formula si trova scrivendo $y = f(x)$ e ricavando $x$.
+- Due insiemi hanno lo stesso numero di elementi quando c'è una biezione tra loro. Tra insiemi finiti con lo stesso numero di elementi, iniettiva, suriettiva e biettiva sono la stessa cosa.
+- **Piccioni**: con più piccioni che gabbie, una gabbia ne ha almeno due. **Inclusione-esclusione**: l'unione di due insiemi ha la somma dei loro elementi meno quelli in comune.
+- **Scelte successive**: se una cosa si costruisce con più scelte una dopo l'altra, i numeri di possibilità si moltiplicano. Da qui vengono tutte le formule della D07.
+- All'esame la **domanda 3** del quiz è quasi sempre una composizione, la **domanda 4** un conteggio.
+
+## D05 · Composizione e funzioni inverse (lun 12/10)
+
+**Una funzione dopo l'altra.** Alla mensa ogni studente sceglie un piatto, e ogni piatto ha un prezzo: «dallo studente al prezzo» è la composizione delle due funzioni. Con $f \colon A \to B$ e $g \colon B \to C$ la composta $g \circ f$ va da $A$ a $C$: $(g \circ f)(a) = g(f(a))$. Si può comporre solo se l'arrivo della prima è la partenza della seconda.
+
+```grafico
+titolo: $g \circ f$ si legge da destra: prima $f$ porta $a$ in $B$, poi $g$ porta $f(a)$ in $C$. La freccia tratteggiata è la composta, che salta il passaggio intermedio.
+x: 0 12
+y: 0 5
+assi: no
+griglia: no
+proporzioni: libere
+cerchio: 1.8 2.4 1.3 | blu
+cerchio: 6 2.4 1.3 | ambra
+cerchio: 10.2 2.4 1.3 | verde
+testo: 1.8 4.3 | blu | $A$
+testo: 6 4.3 | ambra | $B$
+testo: 10.2 4.3 | verde | $C$
+punto: 1.8 2.4 | blu | $a$ | o
+punto: 6 2.4 | ambra | $f(a)$ | s
+punto: 10.2 2.4 | verde | $g(f(a))$ | s
+freccia: 2 2.4 5.8 2.4 | blu
+freccia: 6.2 2.4 10 2.4 | ambra
+testo: 3.9 2.85 | blu | $f$
+testo: 8.1 2.85 | ambra | $g$
+arco: 6 -2 6.08 0.81 2.33 | grigio | tratteggio
+testo: 6 4.45 | grigio | $g \circ f$
+```
+
+> [!METODO] La domanda 3 del quiz
+> 1. Leggi ogni catena **da destra a sinistra**: la funzione più vicina alla variabile si usa per prima.
+> 2. Con un valore, come $g \circ f \circ f(0)$, calcola un passo alla volta e scrivi ogni numero.
+> 3. Con una formula, sostituisci con le parentesi: in $g(f(n))$, al posto di ogni $n$ di $g$ va tutta la formula di $f$. Poi controlla su $x = 0$.
+> 4. Se chiede quale composizione «non è definita», segui gli insiemi da destra: l'arrivo di ogni funzione deve essere la partenza della successiva.
+> 5. Se chiede $g$ conoscendo $g \circ f$, prova le cinque risposte.
+
+Un esempio dall'appello del 06/06/2025. Con $f(n) = 2n + 3$ e $g(n) = 3n - 2$:
+
+$$(g \circ f)(n) = g(2n + 3) = 3(2n + 3) - 2 = 6n + 7.$$
+
+**Le regole.** Con tre o più funzioni le parentesi non contano, conta solo l'ordine. L'identità non cambia niente; una costante, prima o dopo, rende costante la composta. Composte di iniettive restano iniettive, composte di suriettive restano suriettive.
+
+**Le inverse.** Due funzioni sono inverse quando le due composte, nei due ordini, sono l'identità. L'inversa esiste solo per le biezioni ed è una sola (Teorema 2.20).
+
+- Per trovarla: controlla che $f$ sia biettiva con il dominio e il codominio dati, scrivi $y = f(x)$, ricava $x$, controlla componendo.
+- $f(x) = 2x + 5$ sui reali: da $y = 2x + 5$ viene $x = \frac{y - 5}{2}$, quindi $f^{-1}(y) = \frac 12 y - \frac 52$.
+- L'inversa di una composta si fa al contrario, come calze e scarpe: $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$.
+
+> [!TRAPPOLA] Due cose con lo stesso simbolo
+> $f^{-1}(b)$ della lezione D04 è la **controimmagine**, un insieme, ed esiste sempre. Qui $f^{-1}(b)$ è il valore della **funzione inversa**, un elemento, ed esiste solo se $f$ è biettiva. E la stessa formula può essere biettiva sui reali e non sugli interi: $3n - 2$ sugli interi non raggiunge 0.
+
+::: prova Con $f(n) = n + 3$ e $g(n) = 1 - 3n$ sugli interi, quanto fa $(g \circ f)(n)$?
+$g(n + 3) = 1 - 3(n + 3) = -8 - 3n$. È la risposta giusta dell'appello del 04/02/2025, versione 2.
+:::
+
+> [!RICORDA]
+> - $(g \circ f)(a) = g(f(a))$: prima $f$, poi $g$. Si calcola da dentro.
+> - Inversa: solo per le biezioni. Si trova da $y = f(x)$ e si controlla componendo.
+
+## D06 · Insiemi finiti e unioni (mer 14/10)
+
+**Contare con le biezioni.** Due insiemi hanno la stessa **cardinalità** quando c'è una funzione biettiva tra loro. Con gli insiemi infiniti succedono cose strane: i numeri pari sono «tanti quanti» i naturali, con $n \mapsto 2n$.
+
+- Un insieme è **finito** quando ogni funzione iniettiva da sé in sé è anche suriettiva. Tra due insiemi finiti con lo stesso numero di elementi, iniettiva, suriettiva e biettiva vogliono dire la stessa cosa (Nota 3.8).
+- **Principio dei piccioni**: 13 persone, 12 mesi, quindi almeno due persone sono nate nello stesso mese. Dice che la gabbia c'è, non quale.
+- Interi e frazioni si mettono in fila come i naturali: sono **numerabili**. I reali no.
+
+**Contare un'unione.** Si sommano i due insiemi e si tolgono gli elementi in comune, che altrimenti si contano due volte:
+
+$$\lvert A \cup B \rvert = \lvert A \rvert + \lvert B \rvert - \lvert A \cap B \rvert.$$
+
+Con tre insiemi: più i tre singoli, meno le tre intersezioni a due, più l'intersezione di tutti e tre.
+
+```grafico
+titolo: Tra 1 e 500 ci sono 250 multipli di 2 e 100 multipli di 5; i 50 multipli di 10 stanno in tutti e due. L'unione ne ha $250 + 100 - 50 = 300$, e fuori restano i 200 numeri coprimi con 1000.
+x: -4 4
+y: -2.6 2.6
+assi: no
+griglia: no
+poligono: -3.8 -2.4 3.8 -2.4 3.8 2.4 -3.8 2.4 | grigio
+cerchio: -0.9 0 1.7 | blu
+cerchio: 0.9 0 1.7 | ambra
+testo: -3.1 2.05 | grigio | "1–500"
+testo: -1.9 1.95 | blu | "multipli di 2"
+testo: 1.9 1.95 | ambra | "multipli di 5"
+testo: -1.65 0 | blu | "200"
+testo: 0 0 | accento | "50"
+testo: 1.65 0 | ambra | "50"
+testo: 3.1 -1.95 | grigio | "200"
+```
+
+> [!METODO] Contare i numeri divisibili per qualcosa
+> 1. I multipli di $k$ tra 1 e $n$ sono la parte intera di $n/k$: tra 1 e 1000 i multipli di 3 sono 333.
+> 2. «Divisibile per $a$ e per $b$» vuol dire multiplo del **minimo comune multiplo**, non del prodotto: per 6 e 45 è 90, non 270.
+> 3. «Per $a$ o per $b$» è un'unione: inclusione-esclusione. «Né per $a$ né per $b$» è il totale meno l'unione.
+
+::: prova Tra 1 e 1000, quanti numeri sono divisibili per 6 ma non per 45?
+I multipli di 6 sono 166; quelli divisibili anche per 45 sono i multipli di 90, cioè 11. Restano $166 - 11 = 155$: è l'appello del 01/07/2026, problema 1.
+:::
+
+> [!RICORDA]
+> - Stessa cardinalità: c'è una biezione. Più piccioni che gabbie: una gabbia ne ha due.
+> - Unione di due insiemi: somma meno intersezione. «E» tra divisibilità: minimo comune multiplo.
+
+## D07 · Parole, anagrammi, disposizioni (ven 16/10)
+
+**Scelte successive.** Con 2 primi e 3 secondi i menù possibili sono 6, perché per ogni primo ci sono tre secondi: si moltiplica. Vale anche quando le possibilità di una scelta dipendono dalle precedenti, purché il loro **numero** sia sempre lo stesso.
+
+| Che cosa conti | Esempio | Formula |
+|---|---|---|
+| parole di lunghezza $k$ su $n$ simboli, ripetizioni ammesse (**disposizioni con ripetizione**) | parole di 6 lettere con 15 simboli | $n^k$: $15^6$ |
+| file di $n$ oggetti diversi (**ordinamenti**) | 5 libri sullo scaffale | $n!$: $5! = 120$ |
+| $k$ oggetti diversi presi da $n$, **in ordine** (**disposizioni semplici**) | podio con 12 atleti | $\frac{n!}{(n-k)!}$: $12 \cdot 11 \cdot 10$ |
+| **anagrammi** con lettere ripetute | TROTTO | $\frac{6!}{2! \, 3!} = 60$ |
+
+```grafico
+titolo: Il podio con 12 atleti: 12 scelte per l'oro, 11 per l'argento, 10 per il bronzo. Le scelte si moltiplicano: $12 \cdot 11 \cdot 10 = 1320 = \frac{12!}{9!}$.
+x: 0 10
+y: 0 5
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 3.6 0.5 6.4 0.5 6.4 3.2 3.6 3.2 | ambra
+poligono: 0.8 0.5 3.6 0.5 3.6 2.4 0.8 2.4 | grigio
+poligono: 6.4 0.5 9.2 0.5 9.2 1.7 6.4 1.7 | rosa
+testo: 5 2.4 | ambra | "1°"
+testo: 2.2 1.7 | grigio | "2°"
+testo: 7.8 1.2 | rosa | "3°"
+testo: 5 3.9 | ambra | "12 scelte"
+testo: 2.2 3.1 | grigio | "11 scelte"
+testo: 7.8 2.4 | rosa | "10 scelte"
+```
+
+**Anagrammi.** Se tutte le lettere fossero diverse, gli anagrammi di una parola di $n$ lettere sarebbero $n!$. Ogni lettera ripetuta $r$ volte fa contare ogni parola $r!$ volte: si divide per $r!$. In TROTTO la T compare 3 volte e la O 2: $\frac{6!}{3! \, 2!} = \frac{720}{12} = 60$.
+
+**Combinazioni.** Scegliere $k$ oggetti da $n$ **senza** ordine: dalle 4 piante $a$, $b$, $c$, $d$ le coppie sono 6, mentre le scelte in ordine erano $\frac{4!}{2!} = 12$. La formula generale arriva nella prossima lezione.
+
+> [!METODO] Quale formula?
+> 1. **Conta l'ordine?** Se scambiando due elementi ottieni una cosa diversa, sì.
+> 2. **Si possono ripetere?** Se lo stesso simbolo può tornare, sì.
+> 3. Ordine sì e ripetizioni sì: $n^k$. Ordine sì e ripetizioni no: $\frac{n!}{(n-k)!}$. Tutti gli $n$ oggetti in fila: $n!$. Ordine no: combinazioni.
+
+::: prova Quanti modi ci sono di far sedere 8 persone in una fila di 11 sedie?
+Le persone scelgono la sedia una dopo l'altra: $11 \cdot 10 \cdots 4 = \frac{11!}{3!}$. È l'appello del 14/01/2025, domanda 4.
+:::
+
+> [!RICORDA]
+> - Scelte una dopo l'altra: si moltiplica. Ordine e ripetizioni decidono la formula.
+> - Anagrammi: $n!$ diviso il fattoriale di quante volte compare ogni lettera ripetuta.
+
+## Verso l'esame
+
+- **Domanda 3 del quiz**: in tutti gli appelli 2025–2026 è una composizione, con valori, con formule, con tre funzioni o con «quale non è definita». Il metodo è nella sezione D05.
+- **Domanda 4 del quiz**: un conteggio. Nel 2025–2026 sono uscite parole, sedie, colorazioni, palline e anagrammi: tutti con le formule della D07. Le combinazioni (degustazioni di birre, caselle da colorare) servono dalla prossima lezione.
+- **Problemi**: l'inclusione-esclusione con i multipli era il problema 1 dell'appello del 01/07/2026; anagrammi e ordinamenti il problema 1 del 03/02/2026.
+- Appelli 2026/27: martedì 19/01/2027 e mercoledì 03/02/2027, alle 14:00, con libro e appunti.
+
+## Domande di ripasso
+
+::: domanda In $g \circ f$, quale funzione si applica per prima?
+$f$, quella a destra: $(g \circ f)(a) = g(f(a))$.
+:::
+
+::: domanda Quando una funzione ha l'inversa?
+Quando è biettiva. In quel caso l'inversa è una sola.
+:::
+
+::: domanda Quanto fa $(g \circ f)^{-1}$?
+$f^{-1} \circ g^{-1}$: si disfa prima l'ultima funzione applicata.
+:::
+
+::: domanda Che cosa dice il principio dei piccioni?
+Se ci sono più piccioni che gabbie, almeno una gabbia ha due piccioni o più. Con le funzioni: da un insieme finito più grande a uno più piccolo non ci sono funzioni iniettive.
+:::
+
+::: domanda Tra 1 e 100, quanti numeri sono divisibili per 4 e per 6?
+8: sono i multipli di 12, il minimo comune multiplo. Con 24 se ne troverebbero 4, sbagliando.
+:::
+
+::: domanda Quante parole di 3 lettere si formano con 26 lettere? E se le lettere devono essere diverse?
+$26^3 = 17576$; con lettere diverse $26 \cdot 25 \cdot 24 = 15600$.
+:::
+
+::: domanda Quanti sono gli anagrammi di ORO?
+3: le $3! = 6$ file delle lettere si raggruppano a due a due, perché scambiare le due O non cambia la parola.
+:::
+
+## Quiz d'esame
+
+Tutte domande vere dei quiz di Matematica Discreta, tranne la settima, che viene da un problema vero ed è messa a scelta multipla da me. Le prime sei sono la domanda 3, le ultime sei la domanda 4. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma. Sul principio dei piccioni nei quiz 2021–2026 non ho trovato domande.
+
+```quiz
+D: Appello del 01/07/2026, domanda 3. Siano $f, g, h \colon \Z \to \Z$ definite da $f(n) = n^2 - 1$, $g(n) = 1 - n$ e $h(n) = 3n + 1$. Allora:
+- $f(h(g(1))) = 3$
+- $h(g(f(1))) = 3$
+- $g(h(f(1))) = -1$
++ $h(f(g(1))) = -2$
+- $g(f(h(1))) = 14$
+= Da dentro: $g(1) = 0$, $f(0) = -1$, $h(-1) = -2$. La risposta più insidiosa è $g(f(h(1))) = 14$: $h(1) = 4$, $f(4) = 15$, $g(15) = -14$, con il segno meno. Le altre: $f(h(g(1))) = f(1) = 0$; $h(g(f(1))) = h(1) = 4$; $g(h(f(1))) = g(1) = 0$.
+
+D: Appello del 03/02/2026, domanda 3, versione 3. Siano $f, g \colon \Z \to \Z$ definite da $f(n) = 4n - 1$ e $g(n) = -n + 3$. Allora:
++ $f \circ g(-x) = 4x + 11$
+- $f \circ g(x + 1) = 4x + 7$
+- $f \circ g(x - 1) = -4x + 5$
+- $g \circ f(2x) = 8x + 4$
+- $g \circ f(-x) = -4x + 11$
+= $g(-x) = x + 3$, poi $f(x + 3) = 4x + 12 - 1 = 4x + 11$. La risposta più insidiosa è $f \circ g(x + 1) = 4x + 7$: il valore vero è $f(-x + 2) = -4x + 7$, con il segno cambiato. Gli altri valori veri sono $-4x + 15$, $-8x + 4$ e $4x + 4$.
+
+D: Appello del 06/06/2026, domanda 3, versione 2. Siano $f(x) = x + 3$, $g(x) = -x + 1$ e $h(x) = 2x$. Allora:
+- $(g \circ f \circ h)(x) = -2x + 2$
++ $(h \circ f \circ g)(x) = -2x + 8$
+- $(f \circ h \circ g)(x) = -2x + 3$
+- $(f \circ g \circ h)(x) = -2x - 4$
+- $(g \circ h \circ f)(x) = -2x + 5$
+= Si parte da destra: $g$ dà $-x + 1$, $f$ dà $-x + 4$, $h$ dà $-2x + 8$. La risposta più insidiosa è $(g \circ h \circ f)(x) = -2x + 5$: il valore vero è $-(2x + 6) + 1 = -2x - 5$. Le altre tre valgono davvero $-2x - 2$, $-2x + 5$ e $-2x + 4$: le trappole hanno tutte la forma $-2x + \text{qualcosa}$, e solo l'ordine giusto dà il numero giusto.
+
+D: Appello del 13/01/2026, domanda 3, versione 2. Supponiamo di avere funzioni $f \colon A \to C$, $g \colon C \to A$, $h \colon B \to A$, $k \colon B \to C$. Quale delle seguenti composizioni NON è definita?
++ $k \circ g \circ f \circ h$
+- $f \circ g \circ f \circ h$
+- $f \circ g \circ f \circ g$
+- $g \circ f \circ g \circ k$
+- $g \circ f \circ g \circ f$
+= Da destra: $h$ porta in $A$, $f$ in $C$, $g$ in $A$; poi $k$ dovrebbe partire da $A$, ma parte da $B$. La risposta più insidiosa è $g \circ f \circ g \circ k$: $k$ va da $B$ a $C$, e da lì $g$, $f$, $g$ si incastrano. Nelle altre $f$ e $g$ si alternano tra $A$ e $C$ senza problemi.
+
+D: Appello del 07/07/2025, domanda 3, versione 3. Sia $f(x) = 5 - 2x$ e $g(x)$ tale che $(g \circ f)(x) = 4x - 9$. Allora:
+- $g(x) = 3 - 2x$
+- $g(x) = 3 - x$
+- $g(x) = 1 - x$
++ $g(x) = 1 - 2x$
+- $g(x) = 1 + 2x$
+= Si provano le risposte: $g(5 - 2x) = 1 - 2(5 - 2x) = 1 - 10 + 4x = 4x - 9$. La risposta più insidiosa è $g(x) = 3 - 2x$: dà $4x - 7$, sbagliato solo nel numero. $1 + 2x$ dà $11 - 4x$; con $1 - x$ e $3 - x$ il coefficiente di $x$ è 2, non 4.
+
+D: Quiz 2021–2025, domanda 3. Sia $f \colon \R \to \R$ la funzione $f(x) = 3x - 2$. La funzione inversa è:
++ $g(x) = \frac 13 x + \frac 23$
+- $g(x) = \frac 12 x + \frac 32$
+- $g(x) = x + \frac 23$
+- $g(x) = \frac 13 x - \frac 23$
+- $g(x) = \frac 12 x - \frac 32$
+= Da $y = 3x - 2$ viene $x = \frac{y + 2}{3}$. Controllo: $g(f(x)) = \frac{3x - 2}{3} + \frac 23 = x$. La risposta più insidiosa è $\frac 13 x - \frac 23$, con il segno sbagliato: $g(f(0)) = g(-2) = -\frac 43$, non 0.
+
+D: Appello del 01/07/2026, problema 1, versione A, messo a scelta multipla. Quanti sono i numeri tra 1 e 1000 divisibili per 6 ma non per 45?
+- 166
++ 155
+- 163
+- 144
+- 11
+= I multipli di 6 sono $\lfloor 1000/6 \rfloor = 166$. Tra questi vanno tolti i divisibili anche per 45, cioè i multipli di $\operatorname{mcm}(6, 45) = 90$: sono 11. Restano 155. La risposta più insidiosa è 163: chi usa il prodotto $6 \cdot 45 = 270$ toglie solo 3 numeri. 144 toglie tutti i 22 multipli di 45, anche quelli dispari; 166 dimentica di togliere; 11 sono quelli da togliere.
+
+D: Appello del 01/07/2026, domanda 4, versione 2. Il numero di anagrammi della parola STRETTE è:
++ $\frac{7!}{2! \cdot 3!}$
+- $7! - (2! \cdot 3!)$
+- $7! - (2! + 3!)$
+- $7!$
+- $\frac{7!}{2 \cdot 3}$
+= STRETTE ha 7 lettere: la T compare 3 volte, la E 2. Si divide $7!$ per $3!$ e per $2!$. La risposta più insidiosa è $\frac{7!}{2 \cdot 3}$: divide per 6 invece che per 12, cioè per 3 e non per $3! = 6$. Togliere qualcosa da $7!$ non ha senso: le ripetizioni fanno contare ogni parola più volte, quindi si divide.
+
+D: Appello del 14/01/2025, domanda 4, versione 2. Quanti modi ci sono per far sedere 4 persone in una fila di 12 sedie?
++ $\frac{12!}{8!}$
+- $12^4$
+- $\frac{12!}{4!}$
+- $12!$
+- $4^{12}$
+= La prima persona ha 12 sedie, la seconda 11, la terza 10, la quarta 9: $12 \cdot 11 \cdot 10 \cdot 9 = \frac{12!}{8!}$. La risposta più insidiosa è $12^4$: permetterebbe a due persone di sedersi sulla stessa sedia. $\frac{12!}{4!}$ divide per le persone invece che per le sedie vuote.
+
+D: Quiz 2021–2025, domanda 4. Un DJ deve scegliere 4 canzoni da un catalogo di 15 da suonare in sequenza. Quante sono le possibili sequenze di tali 4 canzoni?
+- $15!$
+- $4!$
++ $\frac{15!}{11!}$
+- $15^4$
+- $\frac{15!}{4!}$
+= Conta l'ordine, perché è una sequenza, e una canzone non si ripete: disposizioni semplici, $15 \cdot 14 \cdot 13 \cdot 12 = \frac{15!}{11!}$. La risposta più insidiosa è $15^4$, che permette di suonare due volte la stessa canzone.
+
+D: Appello del 03/02/2026, domanda 4, versione 2. Da una scatola che contiene palline bianche e nere ne vengono estratte, in successione, 9. Quante sono le estrazioni che iniziano con 2 palline bianche?
+- $\frac{9!}{7!}$
+- $9!$
++ $2^7$
+- $7^2$
+- $\frac{9!}{2!}$
+= Le prime due palline sono fissate, bianche. Le altre 7 possono essere bianche o nere: è una parola di lunghezza 7 su un alfabeto di 2 simboli, $2^7$. La risposta più insidiosa è $7^2$, con base ed esponente scambiati. I fattoriali non c'entrano: le palline dello stesso colore non si distinguono.
+
+D: Quiz 2021–2025, domanda 4. Quanti sono gli anagrammi della parola SCACCO?
+- $\frac{6!}{3} = 240$
++ $\frac{6!}{3!} = 120$
+- $\binom 63 = 20$
+- $3! = 6$
+- $6! - 3! = 714$
+= La C compare 3 volte, le altre lettere una: $\frac{720}{6} = 120$. La risposta più insidiosa è 240: divide per 3, il numero di C, invece che per $3!$, il numero di modi di scambiarle tra loro.
+```
+
+## Fonti
+
+- Le lezioni complete: [D05 · Composizione di funzioni e funzioni inverse](D05_composizione_funzioni_inverse.html), [D06 · Insiemi finiti, principio dei piccioni e inclusione-esclusione](D06_insiemi_finiti_inclusione_esclusione.html), [D07 · Parole, ordinamenti, anagrammi e disposizioni](D07_parole_anagrammi_disposizioni.html), con le domande vere degli appelli, i quiz e gli esercizi.
+- A. Mori, *Lezioni di Matematica Discreta*: cap. 2, pp. 23–29; cap. 3, pp. 39–55.
 - Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
 
 

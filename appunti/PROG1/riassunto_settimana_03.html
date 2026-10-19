@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S3 · Settimana 3: operatori e tipi, scambi, numeri reali, condizioni e if</title>
+<meta name="lezione" content="S3">
+<meta name="data" content="2026-10-14">
+<meta name="tipo" content="riassunto">
+<meta name="description" content="Riassunto della settimana 3 di Programmazione I (canale B): il secondo laboratorio su divisioni, overflow, precedenze, const, medie e dimensione dei tipi; lo scambio di due variabili con la variabile d'appoggio; float e double, printf e scanf con i reali, conversioni e cast; espressioni booleane, bool, &amp;&amp;, || e !, cortocircuito, operatore ternario; sequenza, selezione e iterazione, if, else ed else if.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/riassunti/settimana_03.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#lab02-operatori-e-tipi-lun-12-10-mar-13-10"><span class="n">§1</span><span>Lab02 · Operatori e tipi (lun 12/10, mar 13/10)</span></a></li>
+<li><a href="#03a-scambiare-due-variabili-mar-13-10"><span class="n">§2</span><span>03A · Scambiare due variabili (mar 13/10)</span></a></li>
+<li><a href="#03b-numeri-reali-conversioni-e-cast-mar-13-10"><span class="n">§3</span><span>03B · Numeri reali, conversioni e cast (mar 13/10)</span></a></li>
+<li><a href="#03c-espressioni-booleane-mer-14-10"><span class="n">§4</span><span>03C · Espressioni booleane (mer 14/10)</span></a></li>
+<li><a href="#03d-decisioni-if-ed-else-mer-14-10"><span class="n">§5</span><span>03D · Decisioni: if ed else (mer 14/10)</span></a></li>
+<li><a href="#esame"><span class="n">§6</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#domande"><span class="n">§7</span><span>Domande di ripasso</span></a></li>
+<li><a href="#quiz"><span class="n">§8</span><span>Quiz d&#39;esame</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Riassunto settimanale</nav>
+      <p class="eyebrow">Riassunto settimanale · Programmazione I · Canale B · 12/10 – 16/10/2026</p>
+      <h1>Settimana 3: operatori e tipi, scambi, numeri reali, condizioni e if</h1>
+      <p class="lede">Il laboratorio e le quattro lezioni della settimana in poche pagine: le divisioni che ingannano, lo scambio fatto bene, come si scrive una condizione che compila con -Wall -Werror, come si segue un programma con gli if, e le domande per controllarti.</p>
+      <dl class="meta"><div><dt>Lezioni</dt><dd><a href="Lab02_operatori_tipi.html">Lab02</a> lun 12/10 (B2) e mar 13/10 (B1) · <a href="03A_scambio_variabili.html">03A</a> e <a href="03B_floats.html">03B</a> mar 13/10 · <a href="03C_booleani.html">03C</a> e <a href="03D_decisioni.html">03D</a> mer 14/10</dd></div><div><dt>Tempo di ripasso</dt><dd>45 minuti</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:540px">
+<h2 id="tldr-title">La settimana in 7 punti</h2>
+<ul>
+<li>Tra due interi <code>/</code> dà la parte intera e <code>%</code> il resto: <code>99 / 50</code> fa 1. Basta un reale per avere la divisione con la virgola: <code>99 / 50.0</code> fa 1.98.</li>
+<li>Per <strong>scambiare</strong> due variabili serve una <strong>variabile d&#39;appoggio</strong>: <code>temp = x; x = y; y = temp;</code>, in quest&#39;ordine.</li>
+<li><code>float</code> ha circa 7 cifre giuste, <code>double</code> circa 15. Un <code>double</code> si stampa con <code>%f</code> e si legge con <strong><code>%lf</code></strong>.</li>
+<li>Mettere un reale in un <code>int</code> <strong>taglia</strong> la parte dopo la virgola. Il <strong>cast</strong> <code>(double)a</code> converte quando lo decidi tu.</li>
+<li>Un confronto vale <strong>1</strong> se è vero e <strong>0</strong> se è falso. Le condizioni si uniscono con <code>&amp;&amp;</code>, <code>||</code> e <code>!</code>; «x tra 18 e 30» si scrive <code>18 &lt;= x &amp;&amp; x &lt;= 30</code>.</li>
+<li><strong>Cortocircuito</strong>: se la prima parte di <code>&amp;&amp;</code> o <code>||</code> basta a decidere, la seconda non viene calcolata.</li>
+<li><code>if</code> esegue un blocco solo se la condizione è vera; <code>else</code> dà l&#39;altra strada; <code>else if</code> mette in fila più domande.</li>
+</ul>
+</section>
+
+<section id="lab02-operatori-e-tipi-lun-12-10-mar-13-10" aria-labelledby="h-lab02-operatori-e-tipi-lun-12-10-mar-13-10" style="--h:1010px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-lab02-operatori-e-tipi-lun-12-10-mar-13-10">Lab02 · Operatori e tipi (lun 12/10, mar 13/10)</h2></div>
+<p>Il laboratorio ha sei programmi di partenza da leggere, provare e correggere, poi tre programmi nuovi. Le cose da portarsi via:</p>
+<div class="table-wrap"><table><thead><tr><th>Che cosa</th><th>Esempio</th><th>Risultato</th></tr></thead><tbody><tr><td>divisione tra interi</td><td><code>99 / 50</code> e <code>99 % 50</code></td><td>1 e 49</td></tr>
+<tr><td>basta un reale</td><td><code>99 / 50.0</code></td><td>1.98</td></tr>
+<tr><td>overflow di un <code>int</code></td><td><code>x + 1</code> con <code>x</code> che vale 2147483647</td><td>un numero negativo, senza avvisi</td></tr>
+<tr><td>precedenze</td><td><code>2 + 3 * 4</code></td><td>14: <code>*</code>, <code>/</code>, <code>%</code> prima di <code>+</code> e <code>-</code></td></tr>
+<tr><td>media di tre interi</td><td><code>(a + b + c) / 3</code> con 4, 5, 5</td><td>4: serve <code>3.0</code>, che dà 4.67</td></tr>
+<tr><td>approssimazione</td><td><code>(int)(8.136 * 1000)</code></td><td>8135, non 8136</td></tr>
+<tr><td>dimensione di un puntatore</td><td><code>sizeof(int*)</code>, <code>sizeof(double*)</code></td><td>8 byte tutti e due, su 64 bit</td></tr></tbody></table></div>
+<ul>
+<li><code>const</code> dichiara una <strong>costante</strong>: <code>const double PI = 3.14159;</code> non si può più cambiare.</li>
+<li>Per arrotondare ci sono <code>floor</code>, <code>ceil</code> e <code>round</code> di <code>math.h</code>; il cast a <code>int</code> taglia e basta.</li>
+<li>In <code>errori.c</code> gli errori sono 8: il compilatore li segnala uno alla volta, e conviene correggere sempre il <strong>primo</strong>.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto valgono <code>17 / 4</code>, <code>17 % 4</code> e <code>17 / 4.0</code>?</span></summary><div class="ans"><p>4, 1 e 4.25: tra interi la divisione taglia, con un reale no.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Tra interi la divisione è intera. Una media si divide per <code>3.0</code>.</li>
+<li>L&#39;overflow degli <code>int</code> non dà avvisi: il risultato è sbagliato in silenzio.</li>
+</ul>
+</div>
+</section>
+
+<section id="03a-scambiare-due-variabili-mar-13-10" aria-labelledby="h-03a-scambiare-due-variabili-mar-13-10" style="--h:1120px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-03a-scambiare-due-variabili-mar-13-10">03A · Scambiare due variabili (mar 13/10)</h2></div>
+<p>Lo scambio «ovvio» <code>x = y; y = x;</code> non funziona: il primo assegnamento cancella il vecchio valore di <code>x</code>, e alla fine le due variabili valgono uguale. Come con due tazze di tè da scambiare, serve una terza tazza vuota.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Lo scambio con la variabile d'appoggio, partendo da `x = 8` e `y = 3`. Prima si mette da parte `x` (1), poi si copia `y` in `x` (2), infine si rimette in `y` il valore messo da parte (3)." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M56 136L168 136L168 54.4L56 54.4Z"/><path class="g-poligono g-ambra" d="M392 136L504 136L504 54.4L392 54.4Z"/><path class="g-poligono g-grigio" d="M224 278.8L336 278.8L336 197.2L224 197.2Z"/><path class="g-linea g-blu" d="M100.8 142.8L218.4 231.2" marker-end="url(#g-freccia-1-blu)"/><path class="g-linea g-ambra" d="M386.4 95.2L173.6 95.2" marker-end="url(#g-freccia-1-ambra)"/><path class="g-linea g-grigio" d="M341.6 231.2L459.2 142.8" marker-end="url(#g-freccia-1-grigio)"/></svg><span class="g-et g-c g-testo g-blu" style="left:20.00%;top:28.00%">8 → 3</span><span class="g-et g-c g-testo g-ambra" style="left:80.00%;top:28.00%">3 → 8</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:70.00%">8</span><span class="g-et g-c g-testo g-blu" style="left:20.00%;top:8.00%">x</span><span class="g-et g-c g-testo g-ambra" style="left:80.00%;top:8.00%">y</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:90.00%">temp</span><span class="g-et g-c g-testo g-blu" style="left:26.00%;top:60.00%">1</span><span class="g-et g-c g-testo g-ambra" style="left:50.00%;top:21.00%">2</span><span class="g-et g-c g-testo g-grigio" style="left:74.00%;top:60.00%">3</span></div><figcaption>Lo scambio con la variabile d&#39;appoggio, partendo da <code>x = 8</code> e <code>y = 3</code>. Prima si mette da parte <code>x</code> (1), poi si copia <code>y</code> in <code>x</code> (2), infine si rimette in <code>y</code> il valore messo da parte (3).</figcaption></figure>
+<ul>
+<li><code>temp</code> deve avere lo stesso tipo delle due variabili.</li>
+<li>L&#39;ordine conta: con gli stessi tre assegnamenti in un altro ordine un valore si perde di nuovo. La regola: si copia per primo il valore che sta per essere sovrascritto.</li>
+<li>Per scambiare in giro più variabili, come nell&#39;esercizio <code>scambio4.c</code>, basta una sola variabile d&#39;appoggio.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int a = 1, b = 2;</code>, quanto valgono le due variabili dopo <code>temp = a; b = a; a = temp;</code>?</span></summary><div class="ans"><p>Tutte e due 1. L&#39;ordine è sbagliato: <code>b = a</code> cancella il 2 prima che qualcuno l&#39;abbia messo da parte.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>temp = x; x = y; y = temp;</code>: ogni variabile, a sinistra, è stata letta prima di essere riscritta.</li>
+<li>Il compilatore non avvisa se lo scambio è sbagliato: va controllato a mano.</li>
+</ul>
+</div>
+</section>
+
+<section id="03b-numeri-reali-conversioni-e-cast-mar-13-10" aria-labelledby="h-03b-numeri-reali-conversioni-e-cast-mar-13-10" style="--h:860px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-03b-numeri-reali-conversioni-e-cast-mar-13-10">03B · Numeri reali, conversioni e cast (mar 13/10)</h2></div>
+<p>I numeri con la virgola in C hanno due tipi, che cambiano per spazio occupato e precisione:</p>
+<div class="table-wrap"><table><thead><tr><th>Tipo</th><th>Byte</th><th>Cifre giuste</th><th><code>printf</code></th><th><code>scanf</code></th></tr></thead><tbody><tr><td><code>float</code></td><td>4</td><td>circa 7</td><td><code>%f</code></td><td><code>%f</code></td></tr>
+<tr><td><code>double</code></td><td>8</td><td>circa 15–16</td><td><code>%f</code></td><td><code>%lf</code></td></tr></tbody></table></div>
+<ul>
+<li><code>%f</code> stampa 6 cifre dopo la virgola, <code>%.2f</code> due, <code>%e</code> usa la notazione scientifica, <code>%g</code> sceglie la più corta.</li>
+<li>Sui reali non c&#39;è <code>%</code>. Radici e potenze sono in <code>math.h</code>: <code>sqrt</code>, <code>pow</code>.</li>
+<li>I reali sono approssimati: non si confrontano con <code>==</code>.</li>
+<li><strong>Promozione</strong>: in un&#39;espressione con tipi diversi il più piccolo diventa il più grande, e un intero con un reale dà un reale.</li>
+<li><strong>La divisione che inganna</strong>: in <code>float z = 5 / 2;</code> la divisione è tra interi e fa 2; solo dopo il 2 diventa 2.000000.</li>
+<li><strong>Il cast</strong> va messo <strong>prima</strong> della divisione: <code>(double)a / b</code> divide con la virgola, <code>(double)(a / b)</code> converte un risultato già tagliato.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int a = 9, b = 4;</code>, quanto valgono <code>(double)a / b</code> e <code>(double)(a / b)</code>?</span></summary><div class="ans"><p>2.25 e 2.0: nel secondo la divisione tra interi è già stata fatta, e il cast converte il 2.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Un <code>double</code> si legge con <code>%lf</code>.</li>
+<li>Il tipo di una divisione lo decidono i due operandi, non la variabile a sinistra dell&#39;uguale.</li>
+</ul>
+</div>
+</section>
+
+<section id="03c-espressioni-booleane-mer-14-10" aria-labelledby="h-03c-espressioni-booleane-mer-14-10" style="--h:1090px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-03c-espressioni-booleane-mer-14-10">03C · Espressioni booleane (mer 14/10)</h2></div>
+<p>Un&#39;espressione booleana è una domanda con risposta sì o no: in C vale 1 se è vera e 0 se è falsa. Si confronta con <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>; <code>==</code> confronta, <code>=</code> assegna. Il tipo <code>bool</code>, con <code>true</code> e <code>false</code>, viene da <code>stdbool.h</code>.</p>
+<div class="table-wrap"><table><thead><tr><th><code>a</code></th><th><code>b</code></th><th><code>a &amp;&amp; b</code></th><th><code>a \|\| b</code></th><th><code>!a</code></th></tr></thead><tbody><tr><td>vero</td><td>vero</td><td>vero</td><td>vero</td><td>falso</td></tr>
+<tr><td>vero</td><td>falso</td><td>falso</td><td>vero</td><td>falso</td></tr>
+<tr><td>falso</td><td>vero</td><td>falso</td><td>vero</td><td>vero</td></tr>
+<tr><td>falso</td><td>falso</td><td>falso</td><td>falso</td><td>vero</td></tr></tbody></table></div>
+<div class="box trap"><p class="box-label"><span>Trappola · Due errori che con -Wall -Werror non compilano</span></p><ul>
+<li><code>0 &lt;= x &lt;= 10</code> si calcola da sinistra e vale sempre 1: gcc lo rifiuta, «comparisons like &#39;X&lt;=Y&lt;=Z&#39; do not have their mathematical meaning». Si scrive <code>0 &lt;= x &amp;&amp; x &lt;= 10</code>.</li>
+<li><code>&amp;&amp;</code> dentro <code>||</code> senza parentesi: gcc chiede le parentesi. Le condizioni lunghe si spezzano in variabili <code>bool</code> con un nome chiaro.</li>
+</ul>
+</div>
+<ul>
+<li><strong>Cortocircuito</strong>: in <code>d != 0 &amp;&amp; n / d &gt; 5</code>, se <code>d</code> vale 0 la divisione non viene mai fatta. L&#39;ordine dei pezzi conta.</li>
+<li>Per negare una condizione si usa De Morgan: il contrario di <code>a &amp;&amp; b</code> è <code>!a || !b</code>. Il <code>!</code> si attacca a una cosa sola: <code>!x &gt; 5</code> vuol dire <code>(!x) &gt; 5</code>.</li>
+<li><strong>Ternario</strong>: <code>max = a &gt; b ? a : b;</code> vale <code>a</code> se la condizione è vera, altrimenti <code>b</code>.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Come si scrive la condizione «<code>n</code> non è tra 1 e 100»?</span></summary><div class="ans"><p><code>n &lt; 1 || n &gt; 100</code>: per De Morgan è il contrario di <code>1 &lt;= n &amp;&amp; n &lt;= 100</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Vero è 1, falso è 0. Un intervallo si scrive con due confronti e <code>&amp;&amp;</code>.</li>
+<li>Il cortocircuito protegge la seconda parte: prima il controllo, poi l&#39;operazione.</li>
+</ul>
+</div>
+</section>
+
+<section id="03d-decisioni-if-ed-else-mer-14-10" aria-labelledby="h-03d-decisioni-if-ed-else-mer-14-10" style="--h:1290px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-03d-decisioni-if-ed-else-mer-14-10">03D · Decisioni: if ed else (mer 14/10)</h2></div>
+<p>Ogni programma si costruisce con tre strutture: <strong>sequenza</strong>, <strong>selezione</strong> e <strong>iterazione</strong>. Per il teorema di Böhm-Jacopini (1966) bastano per qualunque algoritmo. Questa lezione è la selezione.</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Il massimo di due numeri con `if … else`: dalla domanda partono due strade, ne viene percorsa una sola, e poi le strade si riuniscono." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-linea g-grigio" d="M280 4.86L280 43.71" marker-end="url(#g-freccia-2-grigio)"/><path class="g-poligono g-ambra" d="M280 48.57L392 97.14L280 145.71L168 97.14Z"/><path class="g-linea g-verde" d="M168 97.14L100.8 97.14"/><path class="g-linea g-verde" d="M100.8 97.14L100.8 179.71" marker-end="url(#g-freccia-2-verde)"/><path class="g-linea g-rosa" d="M392 97.14L459.2 97.14"/><path class="g-linea g-rosa" d="M459.2 97.14L459.2 179.71" marker-end="url(#g-freccia-2-rosa)"/><path class="g-poligono g-verde" d="M33.6 233.14L168 233.14L168 184.57L33.6 184.57Z"/><path class="g-poligono g-rosa" d="M392 233.14L526.4 233.14L526.4 184.57L392 184.57Z"/><path class="g-linea g-grigio" d="M100.8 233.14L100.8 281.71"/><path class="g-linea g-grigio" d="M459.2 233.14L459.2 281.71"/><path class="g-linea g-grigio" d="M100.8 281.71L459.2 281.71"/><path class="g-linea g-grigio" d="M280 281.71L280 330.29" marker-end="url(#g-freccia-2-grigio)"/></svg><span class="g-et g-c g-testo g-ambra" style="left:50.00%;top:28.57%">a &gt; b ?</span><span class="g-et g-c g-testo g-verde" style="left:24.00%;top:23.57%">vero</span><span class="g-et g-c g-testo g-rosa" style="left:76.00%;top:23.57%">falso</span><span class="g-et g-c g-testo g-verde" style="left:18.00%;top:61.43%">max = a</span><span class="g-et g-c g-testo g-rosa" style="left:82.00%;top:61.43%">max = b</span></div><figcaption>Il massimo di due numeri con <code>if … else</code>: dalla domanda partono due strade, ne viene percorsa una sola, e poi le strade si riuniscono.</figcaption></figure>
+<ul>
+<li><code>if (condizione) { … }</code> esegue il blocco solo se la condizione è vera.</li>
+<li><code>else</code> è l&#39;altra strada; con <code>else if</code> si entra nel <strong>primo</strong> blocco con la condizione vera, e gli altri si saltano. All&#39;esame niente <code>switch</code>.</li>
+<li>Gli errori più comuni: <code>=</code> al posto di <code>==</code> e le graffe dimenticate (con <code>-Wall -Werror</code> tutti e due non compilano), le condizioni nell&#39;ordine sbagliato.</li>
+<li>Una variabile dichiarata dentro un blocco esiste solo lì: alla <code>}</code> sparisce dallo stack.</li>
+<li>Gli esempi delle slide con <code>void main()</code> non compilano con <code>-Wall -Werror</code>: si scrive <code>int main(void)</code>.</li>
+<li>Schemi che tornano sempre: il massimo di due numeri, il controllo del valore restituito da <code>scanf</code>, la divisione protetta, il controllo di un intervallo.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int voto = 24;</code>, quale blocco esegue <code>if (voto &gt;= 18) { … } else if (voto &gt;= 24) { … } else { … }</code>?</span></summary><div class="ans"><p>Il primo: <code>voto &gt;= 18</code> è già vera, e gli altri si saltano. Il secondo blocco non viene mai eseguito, perché le condizioni sono nell&#39;ordine sbagliato: la più stretta va messa prima.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Con <code>else if</code> le condizioni si controllano in ordine, e conta solo la prima vera.</li>
+<li>Per seguire un programma con gli if, scrivi i valori delle variabili prima di ogni domanda.</li>
+</ul>
+</div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:410px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<ul>
+<li><strong>Correttezza di una sequenza di assegnazioni</strong>: si ragiona all&#39;indietro dalla post-condizione. Lo scambio con <code>temp</code> è un esercizio perfetto per allenarsi.</li>
+<li><strong>Stato della memoria</strong>: una riga per variabile, i valori aggiornati a ogni assegnamento. Attenzione alle conversioni: un <code>double</code> messo in un <code>int</code> perde la parte dopo la virgola.</li>
+<li><strong>Programmazione</strong>: i test di CodeRunner confrontano le stampe. Una media divisa per <code>3</code> invece che per <code>3.0</code>, o un <code>%f</code> al posto di <code>%lf</code> in <code>scanf</code>, fanno fallire i test.</li>
+<li>Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.</li>
+</ul>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:630px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Quanto valgono <code>99 / 50</code>, <code>99 % 50</code> e <code>99 / 50.0</code>?</span></summary><div class="ans"><p>1, 49 e 1.98.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>x = y; y = x;</code> non scambia le due variabili?</span></summary><div class="ans"><p>Perché il primo assegnamento cancella il vecchio valore di <code>x</code>: alla fine tutte e due valgono il vecchio <code>y</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Con quale specificatore si legge un <code>double</code> con <code>scanf</code>?</span></summary><div class="ans"><p><code>%lf</code>. Con <code>%f</code> <code>scanf</code> scriverebbe un <code>float</code> nella casella di un <code>double</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa vale <code>float z = 5 / 2;</code>?</span></summary><div class="ans"><p>2.000000: la divisione è tra interi e fa 2, poi il 2 viene convertito.</p>
+</div></details>
+<details class="qa"><summary><span>Come si scrive in C «<code>x</code> è tra 0 e 10»?</span></summary><div class="ans"><p><code>0 &lt;= x &amp;&amp; x &lt;= 10</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>d != 0 &amp;&amp; n / d &gt; 5</code> non divide mai per zero?</span></summary><div class="ans"><p>Per il cortocircuito: se <code>d</code> vale 0 la prima parte è falsa, e la seconda non viene calcolata.</p>
+</div></details>
+<details class="qa"><summary><span>Quali sono le tre strutture del teorema di Böhm-Jacopini?</span></summary><div class="ans"><p>Sequenza, selezione e iterazione.</p>
+</div></details></div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:3080px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-quiz">Quiz d&#39;esame</h2><span class="slides">come all'esame</span></div>
+<p>L&#39;esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza di una sequenza di assegnazioni» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono <strong>sul modello</strong> di questi esercizi, con gli argomenti della settimana: le prime due come l&#39;esercizio «Corr. Ass. 1» della pagina Moodle 2023/24, le altre come lo stato della memoria e gli errori che fanno fallire i test. Ho compilato e provato tutto con gcc 16.1 e <code>-Wall -Werror</code>.</p>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Sul modello di «Corr. Ass. 1», ragionamento all&#39;indietro. Il programma esegue <code>temp = x;</code>, poi <code>x = y;</code>, poi <code>y = temp;</code>. Alla fine deve valere <code>x == 3 &amp;&amp; y == 8</code>. Quale pre-condizione serve all&#39;inizio?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x == 8 &amp;&amp; y == 8</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x == 8 &amp;&amp; y == 3</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>temp == 8 &amp;&amp; y == 3</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x == 3 &amp;&amp; y == 3</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x == 3 &amp;&amp; y == 8</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>All&#39;indietro: prima di <code>y = temp</code> serve <code>x == 3 &amp;&amp; temp == 8</code>; prima di <code>x = y</code> serve <code>y == 3 &amp;&amp; temp == 8</code>; prima di <code>temp = x</code> serve <code>y == 3 &amp;&amp; x == 8</code>. Lo scambio scambia, quindi all&#39;inizio i valori sono rovesciati. La risposta più insidiosa è <code>temp == 8 &amp;&amp; y == 3</code>: è la condizione a metà strada, ma all&#39;inizio <code>temp</code> non ha ancora un valore.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello di «Corr. Ass. 1», con lo scambio sbagliato. Il programma esegue <code>x = y;</code> e poi <code>y = x;</code>. Alla fine deve valere <code>x == 5 &amp;&amp; y == 5</code>. Qual è la pre-condizione più debole?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>y == 5</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>true</code>: vale sempre</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>false</code>: non vale mai</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x == 5 &amp;&amp; y == 5</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x == 5</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Prima di <code>y = x</code> si sostituisce <code>y</code> con <code>x</code>: <code>x == 5 &amp;&amp; x == 5</code>, cioè <code>x == 5</code>. Prima di <code>x = y</code> si sostituisce <code>x</code> con <code>y</code>: <code>y == 5</code>. Il vecchio valore di <code>x</code> non conta, perché viene cancellato subito. La risposta più insidiosa è <code>x == 5 &amp;&amp; y == 5</code>: funziona, ma chiede più del necessario.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello dello stato della memoria. Dopo <code>int a = 7, b = 2; double m = a / b; double n = (double)a / b; int k = n;</code> quanto valgono <code>m</code>, <code>n</code> e <code>k</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>m</code> = 3.0, <code>n</code> = 3.5, <code>k</code> = 3</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>m</code> = 3.0, <code>n</code> = 3.5, <code>k</code> = 4</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>m</code> = 3.5, <code>n</code> = 3.5, <code>k</code> = 3</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>m</code> = 3.5, <code>n</code> = 3.5, <code>k</code> = 4</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>m</code> = 3.0, <code>n</code> = 3.0, <code>k</code> = 3</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>In <code>a / b</code> tutti e due sono interi: la divisione fa 3, e solo dopo diventa 3.0. In <code>(double)a / b</code> il cast viene prima, quindi la divisione è con la virgola: 3.5. Mettere 3.5 in un <code>int</code> taglia, non arrotonda: 3. La risposta più insidiosa è quella con <code>m</code> = 3.5: conta il tipo dei due operandi, non quello della variabile a sinistra.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello dello stato della memoria. Dopo questo codice quanto valgono <code>x</code> e <code>y</code>? <code>int x = 7, y = 3; if (x &gt; y) { int t = x; x = y; y = t; } if (x % 2 == 0) { x = x + 10; } else if (y &gt; 5) { y = y - 5; } else { x = 0; }</code></div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 13, <code>y</code> = 7</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 0, <code>y</code> = 7</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 7, <code>y</code> = 3</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 3, <code>y</code> = 2</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 3, <code>y</code> = 7</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il primo <code>if</code> scambia: <code>x</code> = 3, <code>y</code> = 7. Poi <code>x % 2</code> vale 1, quindi la prima strada no; <code>y &gt; 5</code> sì, quindi <code>y</code> = 2, e l&#39;<code>else</code> si salta. La risposta più insidiosa è <code>x</code> = 3, <code>y</code> = 7: chi pensa che dopo una condizione falsa si salti tutto si ferma al primo blocco. <code>t</code> esiste solo dentro le graffe del primo <code>if</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello degli errori che fanno fallire i test. Con <code>int d = 0, n = 10; bool ok = d != 0 &amp;&amp; n / d &gt; 5;</code>, che cosa stampa <code>printf(&quot;%d&quot;, ok);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Il programma si blocca per una divisione per zero</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">1</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non compila</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Un valore che cambia da un&#39;esecuzione all&#39;altra</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>d != 0</code> è falso, quindi tutta la congiunzione è falsa e la divisione non viene calcolata: è il cortocircuito. <code>ok</code> vale 0. La risposta più insidiosa è il blocco per divisione per zero: succederebbe scrivendo <code>n / d &gt; 5 &amp;&amp; d != 0</code>, con i pezzi nell&#39;ordine sbagliato.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello degli errori di compilazione. Con <code>int x = 50;</code>, che cosa succede compilando con <code>gcc -Wall -Werror</code> un programma che contiene <code>printf(&quot;%d&quot;, 0 &lt;= x &lt;= 10);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa 0</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa 1</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Compila con un avviso e stampa 1</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non compila</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa 50</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>gcc con <code>-Wall</code> segnala «comparisons like &#39;X&lt;=Y&lt;=Z&#39; do not have their mathematical meaning», e <code>-Werror</code> trasforma l&#39;avviso in errore. La risposta più insidiosa è «stampa 1»: è quello che succede senza opzioni, perché <code>0 &lt;= 50</code> vale 1 e <code>1 &lt;= 10</code> è vero. Con un avviso e basta si compilerebbe solo senza <code>-Werror</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello degli errori che fanno fallire i test. Dopo <code>int a = 4, b = 5, c = 5; double m = (a + b + c) / 3;</code>, che cosa stampa <code>printf(&quot;%.2f&quot;, m);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4.66</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4.00</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">14.00</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4.67</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>(a + b + c) / 3</code> è una divisione tra interi: 14 diviso 3 fa 4, e in <code>m</code> va 4.0. Con <code>%.2f</code> si stampa 4.00. La risposta più insidiosa è 4.67, che è la media vera: per averla serve <code>/ 3.0</code>. 4 senza decimali non può uscire da <code>%.2f</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello del Laboratorio 02. Che cosa stampa <code>printf(&quot;%d&quot;, (int)(8.136 * 1000));</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8137</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non compila</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8.136</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8135</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8136</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>8.136 in binario non si scrive esattamente: è un po&#39; meno, e <code>8.136 * 1000</code> viene circa 8135.999999. Il cast a <code>int</code> taglia la parte dopo la virgola: 8135. La risposta più insidiosa è 8136, che sarebbe il risultato con un arrotondamento: per averlo serve <code>round</code> di <code>math.h</code>.</div></li></ol></div>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Le lezioni complete: <a href="Lab02_operatori_tipi.html">Lab02 · Operatori e tipi</a>, <a href="03A_scambio_variabili.html">03A · Scambiare due variabili</a>, <a href="03B_floats.html">03B · Numeri reali, float e double, conversioni di tipo</a>, <a href="03C_booleani.html">03C · Espressioni booleane, il tipo bool e gli operatori logici</a>, <a href="03D_decisioni.html">03D · Dal flusso sequenziale alle decisioni, if ed else</a>, con i programmi provati, i quiz e gli esercizi.</li>
+<li>Slide del canale B: Lab02 «Operatori e Tipi» con la tabella dei tipi; 03A_scambio_variabili, 03B_floats, 03C_booleans, 03D_decisioni (E. G. Amparore).</li>
+<li>Regole d&#39;esame e appelli: <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

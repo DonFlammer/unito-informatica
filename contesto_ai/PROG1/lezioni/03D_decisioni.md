@@ -11,8 +11,8 @@ descrizione: >-
   una variabile dichiarata in un blocco, gli annidamenti inutili e gli schemi ricorrenti (massimo, controllo
   dell'input, divisione protetta, intervallo), con tutti i programmi delle slide provati, quiz ed esercizi.
 lede: >-
-  Con le espressioni booleane della 03C il programma sa farsi una domanda. Con if impara a scegliere: se la risposta
-  è sì fa una cosa, se è no ne fa un'altra. È il primo passo per uscire dalla fila di istruzioni sempre uguale.
+  Con le espressioni booleane della 03C il programma valuta una condizione; con if ed else sceglie quale blocco di
+  istruzioni eseguire. È la selezione, la seconda delle tre strutture della programmazione strutturata.
 materiale: slide
 scheda:
   Slide: 03D_decisioni («Dal flusso sequenziale alle decisioni») · 25 pagine
@@ -46,9 +46,7 @@ genera_html: true
 
 ## Tre strutture bastano (slide 2–3)
 
-Pensa a una ricetta. Ci sono passi da fare in fila: «sbatti le uova, aggiungi la farina». Ci sono scelte: «se l'impasto è troppo duro, aggiungi latte». E ci sono ripetizioni: «mescola finché non ci sono più grumi». Con questi tre tipi di passo si scrive qualunque ricetta.
-
-I programmi funzionano allo stesso modo. La **programmazione strutturata** usa tre **strutture di controllo**:
+Un algoritmo è fatto di passi in fila, di scelte («se l'input è negativo, cambia segno») e di ripetizioni («leggi finché il numero non è valido»). La **programmazione strutturata** dà a ciascuno dei tre una **struttura di controllo**:
 
 | Struttura | Che cosa fa | In C |
 |---|---|---|
@@ -70,7 +68,7 @@ Un'iterazione («ripeti finché») e una selezione («se è negativo»). Le due 
 
 ## Il costrutto if (slide 4–5)
 
-L'esempio delle slide: se piove prendo l'ombrello, altrimenti esco senza. Il programma arriva a un **bivio**, si fa una domanda, e segue una delle due strade. Si chiama **controllo di flusso condizionato**: il «flusso» è l'ordine in cui le istruzioni vengono eseguite.
+Il **flusso** di un programma è l'ordine in cui le istruzioni vengono eseguite. Con un `if` il flusso arriva a un bivio: il programma valuta una condizione e prende una delle due strade. Si chiama **controllo di flusso condizionato**.
 
 La forma più semplice ha una sola strada in più:
 
@@ -140,7 +138,7 @@ Con 15 stampa il primo messaggio, con 20 o più il secondo. Non succede mai che 
 
 ## Più strade: else if (slide 7–8)
 
-A volte le strade sono più di due. Il semaforo dell'esempio ha tre colori, più il caso di un colore sbagliato. Si mettono le domande **in fila**, con `else if`:
+A volte le strade sono più di due. Il semaforo dell'esempio ha tre colori, più il caso di un colore sbagliato. Le condizioni si mettono **in fila**, con `else if`:
 
 ```c
 char colore = 'G';   // R = Rosso, G = Giallo, V = Verde
@@ -158,7 +156,7 @@ else {
 }
 ```
 
-Il programma fa le domande **dall'alto in basso**:
+Il programma controlla le condizioni **dall'alto in basso**:
 
 1. il colore è `'R'`? No, allora passa alla domanda dopo;
 2. il colore è `'G'`? Sì: stampa `Attenzione, rallenta.` e **salta tutto il resto**, fino alla fine della catena.
@@ -190,7 +188,7 @@ Gli `if` sono semplici da scrivere e facili da sbagliare. Le slide raccolgono gl
 if (a = 5) { ... }  // ERRORE: assegnamento
 ```
 
-`a = 5` non chiede niente: **mette** 5 in `a`, e vale 5, cioè vero. Il blocco viene eseguito **sempre**, qualunque cosa ci fosse in `a`. gcc con `-Wall` avvisa: `suggest parentheses around assignment used as truth value`. Con `-Werror` non compila, ed è una fortuna.
+`a = 5` non confronta: **mette** 5 in `a`, e vale 5, cioè vero. Il blocco viene eseguito **sempre**, qualunque cosa ci fosse in `a`. gcc con `-Wall` avvisa: `suggest parentheses around assignment used as truth value`. Con `-Werror` non compila, ed è una fortuna.
 
 ### Le graffe dimenticate
 
@@ -388,7 +386,7 @@ else {
 
 Le due versioni fanno esattamente la stessa cosa. Ho provato i **casi limite**, quelli sul confine tra due fasce: 5 dà gratuito, 6 ridotto, 17 ridotto, 18 intero.
 
-Nota che la seconda condizione è solo `eta < 18`, non `6 <= eta && eta < 18`: se il programma arriva lì, `eta < 6` è già falso, quindi `eta` è almeno 6. Un `else if` porta con sé il «no» di tutte le domande prima.
+Nota che la seconda condizione è solo `eta < 18`, non `6 <= eta && eta < 18`: se il programma arriva lì, `eta < 6` è già falso, quindi `eta` è almeno 6. Un `else if` sa già che tutte le condizioni prima sono false.
 
 ::: prova Aggiungi una fascia: dai 65 anni in su il biglietto è ridotto. Dove metti la condizione?
 Prima dell'`else` finale: `else if (eta >= 65) { printf("Biglietto ridotto\n"); }`. Oppure, per non ripetere il messaggio, `else if (eta < 18 || eta >= 65)` al posto di `else if (eta < 18)`.
@@ -475,11 +473,11 @@ Qui lavorano insieme tre idee della [03C](03C_booleani.html): l'intervallo con d
 
 | Simbolo | Si legge | Vuol dire | Esempio |
 |---|---|---|---|
-| `if (c) { … }` | «if», «se» | esegue il blocco se `c` è vera | `if (voto >= 18) { … }` |
-| `else { … }` | «else», «altrimenti» | il blocco da eseguire se la condizione è falsa | |
-| `else if (c) { … }` | «else if», «altrimenti se» | un'altra domanda, solo se le precedenti erano false | |
-| `{ }` | «graffe» | un blocco di istruzioni; le variabili dichiarate dentro vivono solo lì | |
-| `'R'` | «carattere R» | un `char`, tra apici singoli | `colore == 'R'` |
+| `if (c) { … }` | «se» | esegue il blocco se `c` è vera | `if (voto >= 18) { … }` |
+| `else { … }` | «altrimenti» | il blocco da eseguire se la condizione è falsa | |
+| `else if (c) { … }` | «altrimenti se» | un'altra condizione, controllata solo se le precedenti erano false | |
+| `{ }` | graffe | un blocco di istruzioni; le variabili dichiarate dentro vivono solo lì | |
+| `'R'` | carattere | un `char`, tra apici singoli | `colore == 'R'` |
 
 ## Verso l'esame
 

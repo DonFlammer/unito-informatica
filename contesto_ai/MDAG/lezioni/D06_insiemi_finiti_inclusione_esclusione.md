@@ -46,9 +46,9 @@ genera_html: true
 
 ## Contare senza numeri (pp. 39–40)
 
-Immagina una sala da ballo. Vuoi sapere se ci sono tanti uomini quante donne, ma non hai voglia di contarli. Fai una cosa più furba: chiedi a tutti di formare delle coppie, un uomo e una donna. Se alla fine nessuno resta da solo, sono lo stesso numero. Non hai usato nessun numero, solo un accoppiamento.
+Per sapere se in una sala ci sono tanti uomini quante donne non serve contarli: basta formare le coppie uomo-donna e vedere se qualcuno resta solo. Due insiemi hanno lo stesso numero di elementi quando si possono accoppiare così, uno a uno.
 
-Contare gli elementi di un insieme vuol dire proprio questo: mettere un'etichetta «1» su un elemento, «2» su un altro, e così via, senza saltarne e senza ripeterne. È un accoppiamento tra gli elementi e i numeri $1, 2, 3, \dots$. Nella lezione D04 un accoppiamento così, senza nessuno da solo e senza nessuno con due compagni, aveva un nome: una **funzione biettiva**.
+Anche contare è un accoppiamento: si mette l'etichetta «1» su un elemento, «2» su un altro, e così via, senza saltarne e senza ripeterne. Un accoppiamento in cui nessuno resta solo e nessuno ha due compagni è una **funzione biettiva**, della lezione D04.
 
 > [!DEF] 3.1 · Insiemi equipollenti, cardinalità
 > Due insiemi $A$ e $B$ sono **equipollenti** se esiste una funzione biettiva $f \colon A \to B$. In questo caso hanno la stessa **cardinalità**, e si scrive $\lvert A \rvert = \lvert B \rvert$.
@@ -78,7 +78,7 @@ Per esempio $a \mapsto 1$, $b \mapsto 2$, $c \mapsto 3$. Tra $\{a, b, c\}$ e $\{
 
 ## Più piccolo o uguale (pp. 40–41)
 
-Torna alla sala da ballo. Se ogni uomo trova una compagna ma restano donne sole, le donne sono di più, o almeno non sono meno. Un accoppiamento in cui ognuno del primo gruppo ha un compagno diverso è una **funzione iniettiva**.
+Se ogni uomo trova una compagna diversa ma restano donne sole, le donne non sono meno degli uomini. Un accoppiamento in cui ogni elemento del primo insieme ha un compagno diverso nel secondo è una **funzione iniettiva**.
 
 > [!DEF] 3.2 · Cardinalità più piccola o uguale
 > Se esiste una funzione iniettiva $A \to B$, si scrive $\lvert A \rvert \le \lvert B \rvert$.
@@ -102,21 +102,21 @@ Perché $\{1, 2\}$ è contenuto in $\{1, 2, 3, 4\}$: la funzione che manda 1 in 
 
 ## Insiemi finiti e infiniti (pp. 41–44)
 
-Prendi un insieme e una funzione iniettiva da lui in sé stesso: ogni elemento va in un elemento diverso. Con un insieme di 5 persone che si scambiano i posti a sedere, nessuno resta in piedi e nessuna sedia resta vuota: se nessuna sedia ha due persone, allora tutte le sedie sono occupate. Con i naturali invece la funzione $n \mapsto n + 1$ è iniettiva ma lascia fuori lo 0. È questa la differenza tra finito e infinito.
+Prendi una funzione iniettiva da un insieme in sé stesso: elementi diversi vanno in elementi diversi. Se 5 persone si risiedono su 5 sedie senza che due prendano la stessa, tutte le sedie restano occupate. Sui naturali invece $n \mapsto n + 1$ è iniettiva ma lascia fuori lo 0. Il libro usa proprio questa differenza per definire finito e infinito.
 
 > [!DEF] 3.5 · Insieme finito e infinito
 > Un insieme $A$ è **infinito** se esiste una funzione $f \colon A \to A$ iniettiva ma non suriettiva. È **finito** se non è infinito, cioè se ogni funzione iniettiva $f \colon A \to A$ è una biezione.
 
-**Come si legge.** Infinito vuol dire «c'è posto per tutti e ne avanza»: come nell'albergo con infinite stanze, dove si sposta ogni ospite di una stanza e la prima si libera. Finito vuol dire che questo trucco non riesce mai.
+**Come si legge.** Un insieme è infinito quando si può spostare ogni elemento su un elemento diverso e restare comunque con un posto libero, come $n \mapsto n + 1$ lascia libero lo 0. Finito vuol dire che questo non riesce mai.
 
 ### Tra insiemi finiti, le tre proprietà coincidono
 
-Torna alle 5 persone e alle 5 sedie. Ogni modo di farle sedere è una funzione dalle persone alle sedie. Se nessuna sedia ha due persone, la funzione è iniettiva, e allora nessuna sedia resta vuota: è anche suriettiva. Il libro lo dice per una funzione da un insieme finito in sé stesso.
+Nell'esempio delle 5 sedie, «nessuna sedia con due persone» (iniettiva) ha già dato «nessuna sedia vuota» (suriettiva). Vale anche il contrario, e per ogni insieme finito.
 
 > [!PROP] 3.6
 > Sia $A$ un insieme finito e $f \colon A \to A$ una funzione. Sono equivalenti: $f$ è iniettiva; $f$ è suriettiva; $f$ è biettiva.
 
-**Come si legge.** Con le persone e le sedie: se nessuna sedia ha due persone, tutte sono occupate; se tutte le sedie sono occupate, nessuna ne ha due. Basta controllare una delle due proprietà, e l'altra viene gratis.
+**Come si legge.** Per una funzione da un insieme finito in sé stesso basta controllare una delle due proprietà: l'altra segue.
 
 > [!DIM] della Proposizione 3.6 (p. 41)
 > Se $f$ è iniettiva, è suriettiva per la definizione di insieme finito. Se $f$ è suriettiva, ogni controimmagine $f^{-1}(a)$ è non vuota: si sceglie un elemento $g(a)$ in ognuna. Controimmagini di elementi diversi sono disgiunte, quindi $g$ è iniettiva, e allora anche suriettiva. Ma allora ogni elemento di $A$ è il $g(a)$ di qualche $a$, quindi ogni controimmagine contiene esattamente un elemento: $f$ è iniettiva. Infine, biettiva vuol dire iniettiva e suriettiva.
@@ -152,7 +152,7 @@ Sì. I due insiemi hanno 4 elementi, e la funzione è iniettiva: le quattro imma
 
 ## Il principio dei piccioni (p. 44)
 
-Hai 10 piccioni e 9 gabbie, e ogni piccione deve entrare in una gabbia. Comunque li sistemi, almeno una gabbia ne avrà due. Sembra una banalità da niente, ma permette di dimostrare cose che altrimenti nessuno saprebbe controllare.
+Con 10 piccioni e 9 gabbie, comunque si sistemino i piccioni almeno una gabbia ne contiene due. L'idea è immediata, ma dimostra l'esistenza di coincidenze che sarebbe impossibile verificare caso per caso, come nell'esempio dei capelli più sotto.
 
 > [!TEOREMA] Nota 3.9 · Principio dei piccioni
 > Se $A$ e $B$ sono insiemi finiti con $\lvert A \rvert > \lvert B \rvert$, non esiste nessuna funzione iniettiva $A \to B$. Detto con i piccioni: se ci sono più piccioni che gabbie, almeno una gabbia contiene più di un piccione.
@@ -276,7 +276,7 @@ Multipli di 3: $\lfloor 1000/3 \rfloor = 333$. Multipli di 15: $\lfloor 1000/15 
 
 ## Contare un'unione: tre insiemi (pp. 46–48)
 
-Con tre insiemi il ragionamento è lo stesso, ma bisogna fare attenzione due volte. Pensa a tre cerchi che si sovrappongono, come nei disegni della lezione D02.
+Con tre insiemi il ragionamento è lo stesso, ma le correzioni sono due. Pensa ai tre cerchi sovrapposti dei diagrammi di Venn della lezione D02.
 
 1. Sommi gli elementi dei tre insiemi. Chi sta in due insiemi è contato due volte.
 2. Togli le tre intersezioni a due. Ora chi sta in due insiemi è contato una volta. Ma chi sta in **tutti e tre** era contato 3 volte, ed è stato tolto 3 volte: ora non è contato più.

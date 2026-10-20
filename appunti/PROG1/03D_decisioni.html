@@ -74,7 +74,7 @@
       <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 03D</nav>
       <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 03D</p>
       <h1>Dal flusso sequenziale alle decisioni, if ed else</h1>
-      <p class="lede">Con le espressioni booleane della 03C il programma sa farsi una domanda. Con if impara a scegliere: se la risposta è sì fa una cosa, se è no ne fa un&#39;altra. È il primo passo per uscire dalla fila di istruzioni sempre uguale.</p>
+      <p class="lede">Con le espressioni booleane della 03C il programma valuta una condizione; con if ed else sceglie quale blocco di istruzioni eseguire. È la selezione, la seconda delle tre strutture della programmazione strutturata.</p>
       <dl class="meta"><div><dt>Slide</dt><dd>03D_decisioni («Dal flusso sequenziale alle decisioni») · 25 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>75 minuti, meglio con gcc a portata di mano</dd></div></dl>
       <ul class="legend" aria-label="Legenda dei riquadri">
         <li class="l-def"><i></i>Definizione o risultato da sapere</li>
@@ -106,10 +106,9 @@
 </div>
 
 
-<section id="tre-strutture-bastano" aria-labelledby="h-tre-strutture-bastano" style="--h:1160px">
+<section id="tre-strutture-bastano" aria-labelledby="h-tre-strutture-bastano" style="--h:1080px">
 <div class="sec-head"><span class="sec-num">§1</span><h2 id="h-tre-strutture-bastano">Tre strutture bastano</h2><span class="slides">slide 2–3</span></div>
-<p>Pensa a una ricetta. Ci sono passi da fare in fila: «sbatti le uova, aggiungi la farina». Ci sono scelte: «se l&#39;impasto è troppo duro, aggiungi latte». E ci sono ripetizioni: «mescola finché non ci sono più grumi». Con questi tre tipi di passo si scrive qualunque ricetta.</p>
-<p>I programmi funzionano allo stesso modo. La <strong>programmazione strutturata</strong> usa tre <strong>strutture di controllo</strong>:</p>
+<p>Un algoritmo è fatto di passi in fila, di scelte («se l&#39;input è negativo, cambia segno») e di ripetizioni («leggi finché il numero non è valido»). La <strong>programmazione strutturata</strong> dà a ciascuno dei tre una <strong>struttura di controllo</strong>:</p>
 <div class="table-wrap"><table><thead><tr><th>Struttura</th><th>Che cosa fa</th><th>In C</th></tr></thead><tbody><tr><td><strong>sequenza</strong></td><td>esegue le istruzioni una dopo l&#39;altra, nell&#39;ordine</td><td>quello fatto finora</td></tr>
 <tr><td><strong>selezione</strong></td><td>sceglie tra strade diverse con una condizione</td><td><code>if</code>, <code>else</code></td></tr>
 <tr><td><strong>iterazione</strong></td><td>ripete un blocco finché una condizione è vera</td><td><code>while</code>, <code>for</code>, <code>do-while</code></td></tr></tbody></table></div>
@@ -124,9 +123,9 @@
 </div>
 </section>
 
-<section id="il-costrutto-if" aria-labelledby="h-il-costrutto-if" style="--h:850px">
+<section id="il-costrutto-if" aria-labelledby="h-il-costrutto-if" style="--h:830px">
 <div class="sec-head"><span class="sec-num">§2</span><h2 id="h-il-costrutto-if">Il costrutto if</h2><span class="slides">slide 4–5</span></div>
-<p>L&#39;esempio delle slide: se piove prendo l&#39;ombrello, altrimenti esco senza. Il programma arriva a un <strong>bivio</strong>, si fa una domanda, e segue una delle due strade. Si chiama <strong>controllo di flusso condizionato</strong>: il «flusso» è l&#39;ordine in cui le istruzioni vengono eseguite.</p>
+<p>Il <strong>flusso</strong> di un programma è l&#39;ordine in cui le istruzioni vengono eseguite. Con un <code>if</code> il flusso arriva a un bivio: il programma valuta una condizione e prende una delle due strade. Si chiama <strong>controllo di flusso condizionato</strong>.</p>
 <p>La forma più semplice ha una sola strada in più:</p>
 <pre class="code" data-lingua="c"><code><span class="kw">if</span> (condizione) {
     <span class="cm">// codice eseguito solo se la condizione è vera</span>
@@ -180,7 +179,7 @@
 
 <section id="piu-strade-else-if" aria-labelledby="h-piu-strade-else-if" style="--h:1270px">
 <div class="sec-head"><span class="sec-num">§4</span><h2 id="h-piu-strade-else-if">Più strade: else if</h2><span class="slides">slide 7–8</span></div>
-<p>A volte le strade sono più di due. Il semaforo dell&#39;esempio ha tre colori, più il caso di un colore sbagliato. Si mettono le domande <strong>in fila</strong>, con <code>else if</code>:</p>
+<p>A volte le strade sono più di due. Il semaforo dell&#39;esempio ha tre colori, più il caso di un colore sbagliato. Le condizioni si mettono <strong>in fila</strong>, con <code>else if</code>:</p>
 <pre class="code" data-lingua="c"><code><span class="kw">char</span> colore = <span class="str">'G'</span>;   <span class="cm">// R = Rosso, G = Giallo, V = Verde</span>
 <span class="kw">if</span> (colore == <span class="str">'R'</span>) {
     printf(<span class="str">&quot;Fermati!\n&quot;</span>);
@@ -194,7 +193,7 @@
 <span class="kw">else</span> {
     printf(<span class="str">&quot;Colore non valido!\n&quot;</span>);
 }</code></pre>
-<p>Il programma fa le domande <strong>dall&#39;alto in basso</strong>:</p>
+<p>Il programma controlla le condizioni <strong>dall&#39;alto in basso</strong>:</p>
 <ol>
 <li>il colore è <code>'R'</code>? No, allora passa alla domanda dopo;</li>
 <li>il colore è <code>'G'</code>? Sì: stampa <code>Attenzione, rallenta.</code> e <strong>salta tutto il resto</strong>, fino alla fine della catena.</li>
@@ -219,7 +218,7 @@
 <p>Gli <code>if</code> sono semplici da scrivere e facili da sbagliare. Le slide raccolgono gli errori che si vedono più spesso. Per ognuno ho controllato che cosa fa gcc.</p>
 <h3 id="un-uguale-solo">Un uguale solo</h3>
 <pre class="code" data-lingua="c"><code><span class="kw">if</span> (a = 5) { ... }  <span class="cm">// ERRORE: assegnamento</span></code></pre>
-<p><code>a = 5</code> non chiede niente: <strong>mette</strong> 5 in <code>a</code>, e vale 5, cioè vero. Il blocco viene eseguito <strong>sempre</strong>, qualunque cosa ci fosse in <code>a</code>. gcc con <code>-Wall</code> avvisa: <code>suggest parentheses around assignment used as truth value</code>. Con <code>-Werror</code> non compila, ed è una fortuna.</p>
+<p><code>a = 5</code> non confronta: <strong>mette</strong> 5 in <code>a</code>, e vale 5, cioè vero. Il blocco viene eseguito <strong>sempre</strong>, qualunque cosa ci fosse in <code>a</code>. gcc con <code>-Wall</code> avvisa: <code>suggest parentheses around assignment used as truth value</code>. Con <code>-Werror</code> non compila, ed è una fortuna.</p>
 <h3 id="le-graffe-dimenticate">Le graffe dimenticate</h3>
 <pre class="code" data-lingua="c"><code><span class="kw">if</span> (x &gt; 0)
     printf(<span class="str">&quot;Positivo\n&quot;</span>);
@@ -358,7 +357,7 @@
     printf(<span class="str">&quot;Biglietto intero\n&quot;</span>);
 }</code></pre>
 <p>Le due versioni fanno esattamente la stessa cosa. Ho provato i <strong>casi limite</strong>, quelli sul confine tra due fasce: 5 dà gratuito, 6 ridotto, 17 ridotto, 18 intero.</p>
-<p>Nota che la seconda condizione è solo <code>eta &lt; 18</code>, non <code>6 &lt;= eta &amp;&amp; eta &lt; 18</code>: se il programma arriva lì, <code>eta &lt; 6</code> è già falso, quindi <code>eta</code> è almeno 6. Un <code>else if</code> porta con sé il «no» di tutte le domande prima.</p>
+<p>Nota che la seconda condizione è solo <code>eta &lt; 18</code>, non <code>6 &lt;= eta &amp;&amp; eta &lt; 18</code>: se il programma arriva lì, <code>eta &lt; 6</code> è già falso, quindi <code>eta</code> è almeno 6. Un <code>else if</code> sa già che tutte le condizioni prima sono false.</p>
 <div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Aggiungi una fascia: dai 65 anni in su il biglietto è ridotto. Dove metti la condizione?</span></summary><div class="ans"><p>Prima dell&#39;<code>else</code> finale: <code>else if (eta &gt;= 65) { printf(&quot;Biglietto ridotto\n&quot;); }</code>. Oppure, per non ripetere il messaggio, <code>else if (eta &lt; 18 || eta &gt;= 65)</code> al posto di <code>else if (eta &lt; 18)</code>.</p>
 </div></details></div></div>
 <div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
@@ -421,13 +420,13 @@ scanf(<span class="str">&quot;%d%d&quot;</span>, &amp;a, &amp;b);
 </div>
 </section>
 
-<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:510px">
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:500px">
 <div class="sec-head"><span class="sec-num">§9</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
-<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>if (c) { … }</code></td><td>«if», «se»</td><td>esegue il blocco se <code>c</code> è vera</td><td><code>if (voto &gt;= 18) { … }</code></td></tr>
-<tr><td><code>else { … }</code></td><td>«else», «altrimenti»</td><td>il blocco da eseguire se la condizione è falsa</td><td></td></tr>
-<tr><td><code>else if (c) { … }</code></td><td>«else if», «altrimenti se»</td><td>un&#39;altra domanda, solo se le precedenti erano false</td><td></td></tr>
-<tr><td><code>{ }</code></td><td>«graffe»</td><td>un blocco di istruzioni; le variabili dichiarate dentro vivono solo lì</td><td></td></tr>
-<tr><td><code>'R'</code></td><td>«carattere R»</td><td>un <code>char</code>, tra apici singoli</td><td><code>colore == 'R'</code></td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>if (c) { … }</code></td><td>«se»</td><td>esegue il blocco se <code>c</code> è vera</td><td><code>if (voto &gt;= 18) { … }</code></td></tr>
+<tr><td><code>else { … }</code></td><td>«altrimenti»</td><td>il blocco da eseguire se la condizione è falsa</td><td></td></tr>
+<tr><td><code>else if (c) { … }</code></td><td>«altrimenti se»</td><td>un&#39;altra condizione, controllata solo se le precedenti erano false</td><td></td></tr>
+<tr><td><code>{ }</code></td><td>graffe</td><td>un blocco di istruzioni; le variabili dichiarate dentro vivono solo lì</td><td></td></tr>
+<tr><td><code>'R'</code></td><td>carattere</td><td>un <code>char</code>, tra apici singoli</td><td><code>colore == 'R'</code></td></tr></tbody></table></div>
 </section>
 
 <section id="esame" aria-labelledby="h-esame" style="--h:720px">

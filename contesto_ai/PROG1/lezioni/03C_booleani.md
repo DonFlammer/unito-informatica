@@ -12,9 +12,8 @@ descrizione: >-
   su un intervallo, la valutazione in cortocircuito, come spezzare le condizioni lunghe e l'operatore ternario, con
   tutti i programmi delle slide provati, quiz ed esercizi.
 lede: >-
-  Un programma non fa solo conti: deve anche rispondere a domande con un sì o con un no. «Il voto è almeno 18?»,
-  «l'input è valido?». In C queste domande si scrivono con le espressioni booleane, che valgono 1 se la risposta è sì
-  e 0 se è no.
+  Per decidere, un programma deve valutare condizioni come «il voto è almeno 18?» o «l'input è valido?». In C sono
+  espressioni booleane: valgono 1 se sono vere e 0 se sono false, e si combinano con &&, || e !.
 materiale: slide
 scheda:
   Slide: 03C_booleans («Espressioni booleane. Operatori logici per decidere nei programmi») · 20 pagine
@@ -29,10 +28,10 @@ genera_html: true
 
 ## In breve
 
-- Un'**espressione booleana** è una domanda con risposta sì o no. In C vale **1** se è vera e **0** se è falsa.
+- Un'**espressione booleana** è una condizione che può essere solo vera o falsa. In C vale **1** se è vera e **0** se è falsa.
 - Si confrontano due valori con **`==`**, `!=`, `<`, `>`, `<=`, `>=`. Attenzione: `==` confronta, `=` assegna.
 - Il tipo **`bool`**, con le costanti `true` e `false`, si usa includendo `stdbool.h`. Si stampa con `%d`, e appare 0 oppure 1.
-- Le domande si combinano con **`&&`** (e: vere tutte e due), **`||`** (o: almeno una vera) e **`!`** (non: rovescia la risposta).
+- Le condizioni si combinano con **`&&`** (e: vere tutte e due), **`||`** (o: almeno una vera) e **`!`** (non: rovescia vero e falso).
 - «x tra 18 e 30» in C si scrive `18 <= x && x <= 30`, con due confronti. Scritto come in matematica è sempre vero.
 - **Cortocircuito**: se la prima parte basta a decidere, la seconda non viene calcolata. Così `divisore != 0 && n / divisore > 5` non divide mai per zero.
 - Le condizioni lunghe si spezzano in variabili `bool` con un nome chiaro. Con `-Wall -Werror`, `&&` e `||` mescolati senza parentesi non compilano.
@@ -51,27 +50,25 @@ genera_html: true
 
 ## A che cosa servono (slide 2)
 
-Pensa al tornello della metropolitana. Avvicini il biglietto, e il tornello si fa una domanda: «il biglietto è valido?». Se la risposta è sì si apre, se è no resta chiuso. Il tornello non fa conti difficili: risponde a una domanda con un sì o con un no, e poi sceglie che cosa fare.
+Finora i programmi eseguivano tutte le istruzioni, una dopo l'altra. Un programma vero deve **decidere** in base ai dati, e le slide danno tre condizioni tipiche:
 
-Anche un programma fa così. Finora i nostri programmi eseguivano le istruzioni una dopo l'altra, sempre tutte. Ma un programma vero deve **decidere**, e per decidere deve farsi domande come queste, che vengono dalle slide:
+- «ho già fatto tutte le somme richieste?», come nella moltiplicazione della [lezione 01A](01A_primo_algoritmo.html);
+- «l'input scritto da tastiera è corretto?»;
+- «lo studente ha superato l'esame?».
 
-- «Ho già fatto tutte le somme richieste?», come nella moltiplicazione della [lezione 01A](01A_primo_algoritmo.html);
-- «L'input scritto da tastiera è corretto?»;
-- «Lo studente ha superato l'esame?».
+Un'**espressione booleana** è una condizione di questo tipo scritta in C: ha due soli risultati possibili, vero o falso. Collega i dati, che sono numeri, alle scelte del programma. Qui si vede come scriverle; nella [03D](03D_decisioni.html) si usano con `if` per scegliere quali istruzioni eseguire.
 
-Le **espressioni booleane** sono il modo di scrivere queste domande in C. Sono il ponte tra i dati, che sono numeri, e le scelte. In questa lezione impari a scriverle; nella [03D](03D_decisioni.html) le usi per scegliere che cosa fare, con `if`.
-
-::: prova Trasforma in una domanda con risposta sì o no: «il programma deve fermarsi quando il conto supera 100 euro».
-«Il conto è maggiore di 100?». In C sarà `conto > 100`.
+::: prova Nella moltiplicazione della 01A, che calcola `a · b` sommando `a` per `b` volte, quale condizione dice al programma che deve sommare ancora?
+«Ho fatto meno di `b` somme». Con un contatore delle somme fatte, in C diventa `contatore < b`, oppure `contatore != b` come nelle slide: i confronti sono nella prossima sezione.
 :::
 
 > [!RICORDA]
-> - Un'espressione booleana è una domanda con risposta sì o no.
-> - Serve al programma per scegliere che cosa fare.
+> - Un'espressione booleana è una condizione che può essere solo vera o falsa.
+> - Il programma la usa per scegliere che cosa eseguire.
 
 ## Confrontare due valori (slide 3–4)
 
-La domanda più semplice confronta due numeri: «il voto è almeno 18?». In C si scrive `voto >= 18`. Il risultato non è un sì scritto a parole: è un **numero**, **1** se la risposta è sì e **0** se è no.
+La condizione più semplice confronta due numeri: «il voto è almeno 18?» in C è `voto >= 18`. Il risultato è un **numero**: **1** se il confronto è vero, **0** se è falso.
 
 | In matematica | In C | Si legge | Esempio | Vale |
 |:-:|:-:|---|---|:-:|
@@ -153,7 +150,7 @@ Se metti in un `bool` un numero diverso da 0 e 1, diventa `true`: con `bool c = 
 
 ## Unire più domande: &&, || e ! (slide 8–12)
 
-Spesso una sola domanda non basta. Il login di un sito riesce se hai fatto meno di 3 tentativi **e** l'account non è bloccato. Il biglietto è scontato se hai meno di 12 anni **oppure** sei tesserato. Per unire le domande ci sono tre **operatori logici**:
+Spesso una condizione è fatta di più pezzi. Il login riesce se i tentativi sono meno di 3 **e** l'account non è bloccato; il biglietto è scontato se l'età è sotto i 12 anni **oppure** c'è la tessera. I pezzi si uniscono con tre **operatori logici**:
 
 | In C | Si legge | Vale vero quando | In logica |
 |:-:|---|---|:-:|
@@ -174,7 +171,7 @@ Il primo si legge: «login è vero se i tentativi sono meno di 3 e l'account **n
 
 ### Le tavole di verità
 
-Una **tavola di verità** scrive il risultato per tutte le combinazioni possibili. Con due domande le combinazioni sono quattro.
+Una **tavola di verità** scrive il risultato per tutte le combinazioni possibili. Con due condizioni le combinazioni sono quattro.
 
 | `c1` | `c2` | `c1 && c2` | `c1 \|\| c2` |
 |:-:|:-:|:-:|:-:|
@@ -194,7 +191,7 @@ Una **tavola di verità** scrive il risultato per tutte le combinazioni possibil
 
 Sono le stesse tavole della [lezione 06 di Fondamenti](../FDA/06_proposizioni_connettivi_tavole.html), con 1 e 0 al posto di V e F.
 
-Prova a scrivere una formula e a vederne la tavola. Qui si usano le lettere per le domande, `&` o `&&` per «e», `|` o `||` per «o», `!` per «non»:
+Nello strumento qui sotto scrivi una condizione e vedi la sua tavola. Le lettere sono le condizioni di base; `&` o `&&` vuol dire «e», `|` o `||` «o», `!` «non»:
 
 ```widget logica
 titolo: La tavola di verità di una condizione
@@ -208,11 +205,11 @@ Il primo vale 0: 15 non è minore di 12, e `tesserato` è falso. Il secondo vale
 
 > [!RICORDA]
 > - `&&`: vere tutte e due. `||`: almeno una vera. `!`: rovescia.
-> - Con due domande la tavola di verità ha 4 righe.
+> - Con due condizioni la tavola di verità ha 4 righe.
 
 ## Un valore dentro un intervallo (slide 13–14)
 
-Un esempio di tutti i giorni: «ho tra 18 e 30 anni». In matematica si scrive in modo compatto, $18 \le x \le 30$. In C questa scrittura **non funziona**: bisogna spezzarla in due confronti uniti da `&&`.
+Una condizione come «l'età è tra 18 e 30» in C va spezzata in due confronti uniti da `&&`. La scrittura compatta della matematica, $18 \le x \le 30$, **non funziona**.
 
 ```c
 18 <= x && x <= 30
@@ -244,7 +241,7 @@ Per il contrario, «x è **fuori** da $[18, 30]$», si usa `||`: `x < 18 || x > 
 
 ## Il cortocircuito (slide 15–18)
 
-Torna al tornello. Se il biglietto è scaduto, il tornello resta chiuso: non ha bisogno di controllare anche se è il biglietto giusto per quella linea. Il C fa la stessa cosa. Le parti di un `&&` o di un `||` si calcolano **da sinistra a destra**, e il calcolo si ferma appena il risultato è sicuro.
+Le parti di un `&&` o di un `||` si calcolano **da sinistra a destra**, e il calcolo si ferma appena il risultato è sicuro.
 
 - In `a && b`, se `a` è **falsa** il risultato è falso comunque: `b` **non viene calcolata**.
 - In `a || b`, se `a` è **vera** il risultato è vero comunque: `b` **non viene calcolata**.
@@ -352,8 +349,8 @@ Per questo `numero % 2 != 0` funziona senza parentesi: prima il resto, poi il co
 > [!TRAPPOLA] Il ! si attacca a una cosa sola
 > `!x > 0` non vuol dire «x non è positivo». Il `!` viene prima di `>`, quindi si calcola `(!x) > 0`: con `x = 5`, `!x` vale 0 e il risultato è 0. Per negare il confronto servono le parentesi: `!(x > 0)`, cioè `x <= 0`. gcc con `-Wall` se ne accorge e avvisa: `logical not is only applied to the left hand side of comparison`. Con `-Werror` non compila.
 
-::: prova Spezza in variabili con un nome: «posso uscire se ho finito i compiti e non piove, oppure se è sabato».
-`bool doveriFatti = compitiFiniti && !piove;`, poi `bool possoUscire = doveriFatti || sabato;`.
+::: prova Spezza in variabili con un nome: «il prelievo è permesso se il saldo basta e la carta non è bloccata, oppure se il conto ha il fido».
+`bool saldoOk = saldo >= importo && !cartaBloccata;`, poi `bool prelievoOk = saldoOk || haFido;`.
 :::
 
 > [!RICORDA]
@@ -362,13 +359,13 @@ Per questo `numero % 2 != 0` funziona senza parentesi: prima il resto, poi il co
 
 ## L'operatore ternario (slide 20)
 
-A volte la domanda serve solo a scegliere tra **due valori**: «se x è pari prendi 100, altrimenti 200». Per questo il C ha un operatore con tre pezzi, l'**operatore ternario**:
+A volte la condizione serve solo a scegliere tra **due valori**: «se x è pari prendi 100, altrimenti 200». Per questo il C ha un operatore con tre pezzi, l'**operatore ternario**:
 
 ```c
 condizione ? valore_se_vero : valore_se_falso
 ```
 
-Si legge: «la condizione è vera? Allora questo, altrimenti quello». L'esempio delle slide:
+Vale il primo valore se la condizione è vera, il secondo se è falsa. L'esempio delle slide:
 
 ```c
 int x = 5;
@@ -398,15 +395,15 @@ Le slide consigliano il ternario solo per scelte piccole e chiare. Quando la sce
 
 | Simbolo | Si legge | Vuol dire | Esempio |
 |---|---|---|---|
-| `==` | «uguale uguale» | i due valori sono uguali? | `pin == 1234` |
-| `!=` | «diverso» | i due valori sono diversi? | `contatore != n` |
-| `<=`, `>=` | «minore o uguale», «maggiore o uguale» | confronti con l'uguale compreso | `voto >= 18` |
-| `&&` | «and», «e» | vere tutte e due | `x > 0 && y > 0` |
-| `\|\|` | «or», «o» | almeno una vera | `eta < 12 \|\| tesserato` |
-| `!` | «not», «non» | rovescia vero e falso | `!accountBloccato` |
-| `bool` | «bul» | tipo con due valori, da `stdbool.h` | `bool ok = true;` |
-| `true`, `false` | «tru», «fols» | vero (1) e falso (0) | |
-| `? :` | «ternario» | sceglie tra due valori | `a > b ? a : b` |
+| `==` | uguaglianza | i due valori sono uguali? | `pin == 1234` |
+| `!=` | diverso | i due valori sono diversi? | `contatore != n` |
+| `<=`, `>=` | minore o uguale, maggiore o uguale | confronti con l'uguale compreso | `voto >= 18` |
+| `&&` | AND logico | vere tutte e due | `x > 0 && y > 0` |
+| `\|\|` | OR logico | almeno una vera | `eta < 12 \|\| tesserato` |
+| `!` | NOT logico | rovescia vero e falso | `!accountBloccato` |
+| `bool` | tipo booleano | due valori, da `stdbool.h` | `bool ok = true;` |
+| `true`, `false` | costanti booleane | vero (1) e falso (0) | |
+| `? :` | operatore ternario | sceglie tra due valori | `a > b ? a : b` |
 
 ## Verso l'esame
 

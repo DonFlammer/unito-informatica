@@ -75,7 +75,7 @@
       <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 03C</nav>
       <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 03C</p>
       <h1>Espressioni booleane, il tipo bool e gli operatori logici</h1>
-      <p class="lede">Un programma non fa solo conti: deve anche rispondere a domande con un sì o con un no. «Il voto è almeno 18?», «l&#39;input è valido?». In C queste domande si scrivono con le espressioni booleane, che valgono 1 se la risposta è sì e 0 se è no.</p>
+      <p class="lede">Per decidere, un programma deve valutare condizioni come «il voto è almeno 18?» o «l&#39;input è valido?». In C sono espressioni booleane: valgono 1 se sono vere e 0 se sono false, e si combinano con &amp;&amp;, || e !.</p>
       <dl class="meta"><div><dt>Slide</dt><dd>03C_booleans («Espressioni booleane. Operatori logici per decidere nei programmi») · 20 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>75 minuti, meglio con gcc a portata di mano</dd></div></dl>
       <ul class="legend" aria-label="Legenda dei riquadri">
         <li class="l-def"><i></i>Definizione o risultato da sapere</li>
@@ -87,13 +87,13 @@
       </ul>
     </header>
 
-<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:610px">
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:620px">
 <h2 id="tldr-title">La lezione in 8 punti</h2>
 <ul>
-<li>Un&#39;<strong>espressione booleana</strong> è una domanda con risposta sì o no. In C vale <strong>1</strong> se è vera e <strong>0</strong> se è falsa.</li>
+<li>Un&#39;<strong>espressione booleana</strong> è una condizione che può essere solo vera o falsa. In C vale <strong>1</strong> se è vera e <strong>0</strong> se è falsa.</li>
 <li>Si confrontano due valori con <strong><code>==</code></strong>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>. Attenzione: <code>==</code> confronta, <code>=</code> assegna.</li>
 <li>Il tipo <strong><code>bool</code></strong>, con le costanti <code>true</code> e <code>false</code>, si usa includendo <code>stdbool.h</code>. Si stampa con <code>%d</code>, e appare 0 oppure 1.</li>
-<li>Le domande si combinano con <strong><code>&amp;&amp;</code></strong> (e: vere tutte e due), <strong><code>||</code></strong> (o: almeno una vera) e <strong><code>!</code></strong> (non: rovescia la risposta).</li>
+<li>Le condizioni si combinano con <strong><code>&amp;&amp;</code></strong> (e: vere tutte e due), <strong><code>||</code></strong> (o: almeno una vera) e <strong><code>!</code></strong> (non: rovescia vero e falso).</li>
 <li>«x tra 18 e 30» in C si scrive <code>18 &lt;= x &amp;&amp; x &lt;= 30</code>, con due confronti. Scritto come in matematica è sempre vero.</li>
 <li><strong>Cortocircuito</strong>: se la prima parte basta a decidere, la seconda non viene calcolata. Così <code>divisore != 0 &amp;&amp; n / divisore &gt; 5</code> non divide mai per zero.</li>
 <li>Le condizioni lunghe si spezzano in variabili <code>bool</code> con un nome chiaro. Con <code>-Wall -Werror</code>, <code>&amp;&amp;</code> e <code>||</code> mescolati senza parentesi non compilano.</li>
@@ -109,28 +109,27 @@
 </div>
 
 
-<section id="a-che-cosa-servono" aria-labelledby="h-a-che-cosa-servono" style="--h:830px">
+<section id="a-che-cosa-servono" aria-labelledby="h-a-che-cosa-servono" style="--h:690px">
 <div class="sec-head"><span class="sec-num">§1</span><h2 id="h-a-che-cosa-servono">A che cosa servono</h2><span class="slides">slide 2</span></div>
-<p>Pensa al tornello della metropolitana. Avvicini il biglietto, e il tornello si fa una domanda: «il biglietto è valido?». Se la risposta è sì si apre, se è no resta chiuso. Il tornello non fa conti difficili: risponde a una domanda con un sì o con un no, e poi sceglie che cosa fare.</p>
-<p>Anche un programma fa così. Finora i nostri programmi eseguivano le istruzioni una dopo l&#39;altra, sempre tutte. Ma un programma vero deve <strong>decidere</strong>, e per decidere deve farsi domande come queste, che vengono dalle slide:</p>
+<p>Finora i programmi eseguivano tutte le istruzioni, una dopo l&#39;altra. Un programma vero deve <strong>decidere</strong> in base ai dati, e le slide danno tre condizioni tipiche:</p>
 <ul>
-<li>«Ho già fatto tutte le somme richieste?», come nella moltiplicazione della <a href="01A_primo_algoritmo.html">lezione 01A</a>;</li>
-<li>«L&#39;input scritto da tastiera è corretto?»;</li>
-<li>«Lo studente ha superato l&#39;esame?».</li>
+<li>«ho già fatto tutte le somme richieste?», come nella moltiplicazione della <a href="01A_primo_algoritmo.html">lezione 01A</a>;</li>
+<li>«l&#39;input scritto da tastiera è corretto?»;</li>
+<li>«lo studente ha superato l&#39;esame?».</li>
 </ul>
-<p>Le <strong>espressioni booleane</strong> sono il modo di scrivere queste domande in C. Sono il ponte tra i dati, che sono numeri, e le scelte. In questa lezione impari a scriverle; nella <a href="03D_decisioni.html">03D</a> le usi per scegliere che cosa fare, con <code>if</code>.</p>
-<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Trasforma in una domanda con risposta sì o no: «il programma deve fermarsi quando il conto supera 100 euro».</span></summary><div class="ans"><p>«Il conto è maggiore di 100?». In C sarà <code>conto &gt; 100</code>.</p>
+<p>Un&#39;<strong>espressione booleana</strong> è una condizione di questo tipo scritta in C: ha due soli risultati possibili, vero o falso. Collega i dati, che sono numeri, alle scelte del programma. Qui si vede come scriverle; nella <a href="03D_decisioni.html">03D</a> si usano con <code>if</code> per scegliere quali istruzioni eseguire.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nella moltiplicazione della 01A, che calcola <code>a · b</code> sommando <code>a</code> per <code>b</code> volte, quale condizione dice al programma che deve sommare ancora?</span></summary><div class="ans"><p>«Ho fatto meno di <code>b</code> somme». Con un contatore delle somme fatte, in C diventa <code>contatore &lt; b</code>, oppure <code>contatore != b</code> come nelle slide: i confronti sono nella prossima sezione.</p>
 </div></details></div></div>
 <div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
-<li>Un&#39;espressione booleana è una domanda con risposta sì o no.</li>
-<li>Serve al programma per scegliere che cosa fare.</li>
+<li>Un&#39;espressione booleana è una condizione che può essere solo vera o falsa.</li>
+<li>Il programma la usa per scegliere che cosa eseguire.</li>
 </ul>
 </div>
 </section>
 
-<section id="confrontare-due-valori" aria-labelledby="h-confrontare-due-valori" style="--h:1070px">
+<section id="confrontare-due-valori" aria-labelledby="h-confrontare-due-valori" style="--h:1050px">
 <div class="sec-head"><span class="sec-num">§2</span><h2 id="h-confrontare-due-valori">Confrontare due valori</h2><span class="slides">slide 3–4</span></div>
-<p>La domanda più semplice confronta due numeri: «il voto è almeno 18?». In C si scrive <code>voto &gt;= 18</code>. Il risultato non è un sì scritto a parole: è un <strong>numero</strong>, <strong>1</strong> se la risposta è sì e <strong>0</strong> se è no.</p>
+<p>La condizione più semplice confronta due numeri: «il voto è almeno 18?» in C è <code>voto &gt;= 18</code>. Il risultato è un <strong>numero</strong>: <strong>1</strong> se il confronto è vero, <strong>0</strong> se è falso.</p>
 <div class="table-wrap"><table><thead><tr><th class="centro">In matematica</th><th class="centro">In C</th><th>Si legge</th><th>Esempio</th><th class="centro">Vale</th></tr></thead><tbody><tr><td class="centro"><span class="katex" role="math" aria-label="x = y"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></td><td class="centro"><code>==</code></td><td>«uguale a»</td><td><code>3 == 2</code></td><td class="centro">0</td></tr>
 <tr><td class="centro"><span class="katex" role="math" aria-label="x \neq y"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></td><td class="centro"><code>!=</code></td><td>«diverso da»</td><td><code>3 != 2</code></td><td class="centro">1</td></tr>
 <tr><td class="centro"><span class="katex" role="math" aria-label="x &gt; y"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span></span></span></span></td><td class="centro"><code>&gt;</code></td><td>«maggiore di»</td><td><code>3 &gt; 2</code></td><td class="centro">1</td></tr>
@@ -191,9 +190,9 @@
 </div>
 </section>
 
-<section id="unire-piu-domande-e" aria-labelledby="h-unire-piu-domande-e" style="--h:1900px">
+<section id="unire-piu-domande-e" aria-labelledby="h-unire-piu-domande-e" style="--h:1910px">
 <div class="sec-head"><span class="sec-num">§4</span><h2 id="h-unire-piu-domande-e">Unire più domande: &amp;&amp;, || e !</h2><span class="slides">slide 8–12</span></div>
-<p>Spesso una sola domanda non basta. Il login di un sito riesce se hai fatto meno di 3 tentativi <strong>e</strong> l&#39;account non è bloccato. Il biglietto è scontato se hai meno di 12 anni <strong>oppure</strong> sei tesserato. Per unire le domande ci sono tre <strong>operatori logici</strong>:</p>
+<p>Spesso una condizione è fatta di più pezzi. Il login riesce se i tentativi sono meno di 3 <strong>e</strong> l&#39;account non è bloccato; il biglietto è scontato se l&#39;età è sotto i 12 anni <strong>oppure</strong> c&#39;è la tessera. I pezzi si uniscono con tre <strong>operatori logici</strong>:</p>
 <div class="table-wrap"><table><thead><tr><th class="centro">In C</th><th>Si legge</th><th>Vale vero quando</th><th class="centro">In logica</th></tr></thead><tbody><tr><td class="centro"><code>a &amp;&amp; b</code></td><td>«a e b»</td><td><strong>tutte e due</strong> sono vere</td><td class="centro"><span class="katex" role="math" aria-label="a \land b"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></td></tr>
 <tr><td class="centro"><code>a \|\| b</code></td><td>«a o b»</td><td><strong>almeno una</strong> è vera</td><td class="centro"><span class="katex" role="math" aria-label="a \lor b"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span></td></tr>
 <tr><td class="centro"><code>!a</code></td><td>«non a»</td><td><code>a</code> è falsa</td><td class="centro"><span class="katex" role="math" aria-label="\neg a"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord">¬</span><span class="mord mathnormal">a</span></span></span></span></td></tr></tbody></table></div>
@@ -204,7 +203,7 @@
 <span class="kw">bool</span> ventolaAccesa = (temperatura &gt;= 28) || modoManuale;</code></pre>
 <p>Il primo si legge: «login è vero se i tentativi sono meno di 3 e l&#39;account <strong>non</strong> è bloccato».</p>
 <h3 id="le-tavole-di-verita">Le tavole di verità</h3>
-<p>Una <strong>tavola di verità</strong> scrive il risultato per tutte le combinazioni possibili. Con due domande le combinazioni sono quattro.</p>
+<p>Una <strong>tavola di verità</strong> scrive il risultato per tutte le combinazioni possibili. Con due condizioni le combinazioni sono quattro.</p>
 <div class="table-wrap"><table><thead><tr><th class="centro"><code>c1</code></th><th class="centro"><code>c2</code></th><th class="centro"><code>c1 &amp;&amp; c2</code></th><th class="centro"><code>c1 \|\| c2</code></th></tr></thead><tbody><tr><td class="centro">0</td><td class="centro">0</td><td class="centro">0</td><td class="centro">0</td></tr>
 <tr><td class="centro">0</td><td class="centro">1</td><td class="centro">0</td><td class="centro">1</td></tr>
 <tr><td class="centro">1</td><td class="centro">0</td><td class="centro">0</td><td class="centro">1</td></tr>
@@ -217,20 +216,20 @@
 <li>L&#39;«o» del C è inclusivo: se sono vere tutte e due, il risultato è vero.</li>
 </ul>
 <p>Sono le stesse tavole della <a href="../FDA/06_proposizioni_connettivi_tavole.html">lezione 06 di Fondamenti</a>, con 1 e 0 al posto di V e F.</p>
-<p>Prova a scrivere una formula e a vederne la tavola. Qui si usano le lettere per le domande, <code>&amp;</code> o <code>&amp;&amp;</code> per «e», <code>|</code> o <code>||</code> per «o», <code>!</code> per «non»:</p>
+<p>Nello strumento qui sotto scrivi una condizione e vedi la sua tavola. Le lettere sono le condizioni di base; <code>&amp;</code> o <code>&amp;&amp;</code> vuol dire «e», <code>|</code> o <code>||</code> «o», <code>!</code> «non»:</p>
 <figure class="widget" id="strumento-1" data-widget="logica" data-modo="tavola" data-formula="(a | t) &amp; !b"><figcaption class="widget-titolo">La tavola di verità di una condizione</figcaption><p class="widget-carica">Caricamento dello strumento interattivo…</p></figure>
 <div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int eta = 15; bool tesserato = false;</code>, quanto vale <code>(eta &lt; 12) || tesserato</code>? E <code>!tesserato &amp;&amp; eta &gt;= 14</code>?</span></summary><div class="ans"><p>Il primo vale 0: 15 non è minore di 12, e <code>tesserato</code> è falso. Il secondo vale 1: <code>!tesserato</code> è vero e 15 è almeno 14.</p>
 </div></details></div></div>
 <div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
 <li><code>&amp;&amp;</code>: vere tutte e due. <code>||</code>: almeno una vera. <code>!</code>: rovescia.</li>
-<li>Con due domande la tavola di verità ha 4 righe.</li>
+<li>Con due condizioni la tavola di verità ha 4 righe.</li>
 </ul>
 </div>
 </section>
 
-<section id="un-valore-dentro-un-intervallo" aria-labelledby="h-un-valore-dentro-un-intervallo" style="--h:1220px">
+<section id="un-valore-dentro-un-intervallo" aria-labelledby="h-un-valore-dentro-un-intervallo" style="--h:1200px">
 <div class="sec-head"><span class="sec-num">§5</span><h2 id="h-un-valore-dentro-un-intervallo">Un valore dentro un intervallo</h2><span class="slides">slide 13–14</span></div>
-<p>Un esempio di tutti i giorni: «ho tra 18 e 30 anni». In matematica si scrive in modo compatto, <span class="katex" role="math" aria-label="18 \le x \le 30"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">18</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span>. In C questa scrittura <strong>non funziona</strong>: bisogna spezzarla in due confronti uniti da <code>&amp;&amp;</code>.</p>
+<p>Una condizione come «l&#39;età è tra 18 e 30» in C va spezzata in due confronti uniti da <code>&amp;&amp;</code>. La scrittura compatta della matematica, <span class="katex" role="math" aria-label="18 \le x \le 30"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">18</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">30</span></span></span></span>, <strong>non funziona</strong>.</p>
 <pre class="code" data-lingua="c"><code>18 &lt;= x &amp;&amp; x &lt;= 30</code></pre>
 <p>Si legge: «18 è minore o uguale a x, <strong>e</strong> x è minore o uguale a 30». È la forma più vicina a quella della matematica: <code>x</code> sta in mezzo, e i due estremi ai lati.</p>
 <div class="table-wrap"><table><thead><tr><th class="centro">Intervallo</th><th>Si legge</th><th>In C</th></tr></thead><tbody><tr><td class="centro"><span class="katex" role="math" aria-label="[a, b]"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">]</span></span></span></span></td><td>chiuso: estremi compresi</td><td><code>a &lt;= x &amp;&amp; x &lt;= b</code></td></tr>
@@ -250,9 +249,9 @@
 </div>
 </section>
 
-<section id="il-cortocircuito" aria-labelledby="h-il-cortocircuito" style="--h:2100px">
+<section id="il-cortocircuito" aria-labelledby="h-il-cortocircuito" style="--h:2000px">
 <div class="sec-head"><span class="sec-num">§6</span><h2 id="h-il-cortocircuito">Il cortocircuito</h2><span class="slides">slide 15–18</span></div>
-<p>Torna al tornello. Se il biglietto è scaduto, il tornello resta chiuso: non ha bisogno di controllare anche se è il biglietto giusto per quella linea. Il C fa la stessa cosa. Le parti di un <code>&amp;&amp;</code> o di un <code>||</code> si calcolano <strong>da sinistra a destra</strong>, e il calcolo si ferma appena il risultato è sicuro.</p>
+<p>Le parti di un <code>&amp;&amp;</code> o di un <code>||</code> si calcolano <strong>da sinistra a destra</strong>, e il calcolo si ferma appena il risultato è sicuro.</p>
 <ul>
 <li>In <code>a &amp;&amp; b</code>, se <code>a</code> è <strong>falsa</strong> il risultato è falso comunque: <code>b</code> <strong>non viene calcolata</strong>.</li>
 <li>In <code>a || b</code>, se <code>a</code> è <strong>vera</strong> il risultato è vero comunque: <code>b</code> <strong>non viene calcolata</strong>.</li>
@@ -299,7 +298,7 @@
 </div>
 </section>
 
-<section id="condizioni-lunghe-dare-un-nome-ai-pezzi" aria-labelledby="h-condizioni-lunghe-dare-un-nome-ai-pezzi" style="--h:1750px">
+<section id="condizioni-lunghe-dare-un-nome-ai-pezzi" aria-labelledby="h-condizioni-lunghe-dare-un-nome-ai-pezzi" style="--h:1770px">
 <div class="sec-head"><span class="sec-num">§7</span><h2 id="h-condizioni-lunghe-dare-un-nome-ai-pezzi">Condizioni lunghe: dare un nome ai pezzi</h2><span class="slides">slide 19</span></div>
 <p>Quando <code>&amp;&amp;</code> e <code>||</code> si mescolano, una condizione diventa difficile da leggere e facile da sbagliare. L&#39;esempio delle slide:</p>
 <pre class="code" data-lingua="c"><code><span class="kw">bool</span> sconto = registrato &amp;&amp; spesaTotale &gt;= 100 ||
@@ -324,7 +323,7 @@
 <p>Per questo <code>numero % 2 != 0</code> funziona senza parentesi: prima il resto, poi il confronto. E <code>a || b &amp;&amp; c</code> vuol dire <code>a || (b &amp;&amp; c)</code>, perché <code>&amp;&amp;</code> viene prima. Non serve ricordare la tabella a memoria: nel dubbio, <strong>metti le parentesi</strong>.</p>
 <div class="box trap"><p class="box-label"><span>Trappola · Il ! si attacca a una cosa sola</span></p><p><code>!x &gt; 0</code> non vuol dire «x non è positivo». Il <code>!</code> viene prima di <code>&gt;</code>, quindi si calcola <code>(!x) &gt; 0</code>: con <code>x = 5</code>, <code>!x</code> vale 0 e il risultato è 0. Per negare il confronto servono le parentesi: <code>!(x &gt; 0)</code>, cioè <code>x &lt;= 0</code>. gcc con <code>-Wall</code> se ne accorge e avvisa: <code>logical not is only applied to the left hand side of comparison</code>. Con <code>-Werror</code> non compila.</p>
 </div>
-<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Spezza in variabili con un nome: «posso uscire se ho finito i compiti e non piove, oppure se è sabato».</span></summary><div class="ans"><p><code>bool doveriFatti = compitiFiniti &amp;&amp; !piove;</code>, poi <code>bool possoUscire = doveriFatti || sabato;</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Spezza in variabili con un nome: «il prelievo è permesso se il saldo basta e la carta non è bloccata, oppure se il conto ha il fido».</span></summary><div class="ans"><p><code>bool saldoOk = saldo &gt;= importo &amp;&amp; !cartaBloccata;</code>, poi <code>bool prelievoOk = saldoOk || haFido;</code>.</p>
 </div></details></div></div>
 <div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
 <li>Condizioni lunghe: variabili <code>bool</code> intermedie con nomi chiari.</li>
@@ -335,9 +334,9 @@
 
 <section id="l-operatore-ternario" aria-labelledby="h-l-operatore-ternario" style="--h:860px">
 <div class="sec-head"><span class="sec-num">§8</span><h2 id="h-l-operatore-ternario">L&#39;operatore ternario</h2><span class="slides">slide 20</span></div>
-<p>A volte la domanda serve solo a scegliere tra <strong>due valori</strong>: «se x è pari prendi 100, altrimenti 200». Per questo il C ha un operatore con tre pezzi, l&#39;<strong>operatore ternario</strong>:</p>
+<p>A volte la condizione serve solo a scegliere tra <strong>due valori</strong>: «se x è pari prendi 100, altrimenti 200». Per questo il C ha un operatore con tre pezzi, l&#39;<strong>operatore ternario</strong>:</p>
 <pre class="code" data-lingua="c"><code>condizione ? valore_se_vero : valore_se_falso</code></pre>
-<p>Si legge: «la condizione è vera? Allora questo, altrimenti quello». L&#39;esempio delle slide:</p>
+<p>Vale il primo valore se la condizione è vera, il secondo se è falsa. L&#39;esempio delle slide:</p>
 <pre class="code" data-lingua="c"><code><span class="kw">int</span> x = 5;
 <span class="kw">int</span> y = (x % 2 == 0) ? 100 : 200;  <span class="cm">// y = 200, perché x è dispari</span></code></pre>
 <p>Altri due usi tipici, provati:</p>
@@ -356,15 +355,15 @@ printf(<span class="str">&quot;%s\n&quot;</span>, voto &gt;= 18 ? <span class="s
 
 <section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:660px">
 <div class="sec-head"><span class="sec-num">§9</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
-<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>==</code></td><td>«uguale uguale»</td><td>i due valori sono uguali?</td><td><code>pin == 1234</code></td></tr>
-<tr><td><code>!=</code></td><td>«diverso»</td><td>i due valori sono diversi?</td><td><code>contatore != n</code></td></tr>
-<tr><td><code>&lt;=</code>, <code>&gt;=</code></td><td>«minore o uguale», «maggiore o uguale»</td><td>confronti con l&#39;uguale compreso</td><td><code>voto &gt;= 18</code></td></tr>
-<tr><td><code>&amp;&amp;</code></td><td>«and», «e»</td><td>vere tutte e due</td><td><code>x &gt; 0 &amp;&amp; y &gt; 0</code></td></tr>
-<tr><td><code>\|\|</code></td><td>«or», «o»</td><td>almeno una vera</td><td><code>eta &lt; 12 \|\| tesserato</code></td></tr>
-<tr><td><code>!</code></td><td>«not», «non»</td><td>rovescia vero e falso</td><td><code>!accountBloccato</code></td></tr>
-<tr><td><code>bool</code></td><td>«bul»</td><td>tipo con due valori, da <code>stdbool.h</code></td><td><code>bool ok = true;</code></td></tr>
-<tr><td><code>true</code>, <code>false</code></td><td>«tru», «fols»</td><td>vero (1) e falso (0)</td><td></td></tr>
-<tr><td><code>? :</code></td><td>«ternario»</td><td>sceglie tra due valori</td><td><code>a &gt; b ? a : b</code></td></tr></tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>==</code></td><td>uguaglianza</td><td>i due valori sono uguali?</td><td><code>pin == 1234</code></td></tr>
+<tr><td><code>!=</code></td><td>diverso</td><td>i due valori sono diversi?</td><td><code>contatore != n</code></td></tr>
+<tr><td><code>&lt;=</code>, <code>&gt;=</code></td><td>minore o uguale, maggiore o uguale</td><td>confronti con l&#39;uguale compreso</td><td><code>voto &gt;= 18</code></td></tr>
+<tr><td><code>&amp;&amp;</code></td><td>AND logico</td><td>vere tutte e due</td><td><code>x &gt; 0 &amp;&amp; y &gt; 0</code></td></tr>
+<tr><td><code>\|\|</code></td><td>OR logico</td><td>almeno una vera</td><td><code>eta &lt; 12 \|\| tesserato</code></td></tr>
+<tr><td><code>!</code></td><td>NOT logico</td><td>rovescia vero e falso</td><td><code>!accountBloccato</code></td></tr>
+<tr><td><code>bool</code></td><td>tipo booleano</td><td>due valori, da <code>stdbool.h</code></td><td><code>bool ok = true;</code></td></tr>
+<tr><td><code>true</code>, <code>false</code></td><td>costanti booleane</td><td>vero (1) e falso (0)</td><td></td></tr>
+<tr><td><code>? :</code></td><td>operatore ternario</td><td>sceglie tra due valori</td><td><code>a &gt; b ? a : b</code></td></tr></tbody></table></div>
 </section>
 
 <section id="esame" aria-labelledby="h-esame" style="--h:860px">

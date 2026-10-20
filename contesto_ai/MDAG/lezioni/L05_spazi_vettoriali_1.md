@@ -3,6 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L05
 titolo: Spazi vettoriali I
+data: 2026-10-13
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L05
 descrizione: >-
@@ -36,7 +37,7 @@ genera_html: true
 - All'esame devi saper dire se un insieme è uno spazio vettoriale. Per dire di no basta un esempio: manca il vettore zero, oppure una somma o un multiplo escono dall'insieme.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di martedì 13/10/2026, dalle 9 alle 11: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Un vettore è una lista di numeri (pp. 20–21)
 

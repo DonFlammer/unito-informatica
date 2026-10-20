@@ -3,6 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L03
 titolo: Numeri complessi II
+data: 2026-10-07
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L03
 descrizione: >-
@@ -35,7 +36,7 @@ genera_html: true
 - All'esame: potenze alte, prodotti in forma polare e radici sono stati la domanda sui complessi in 9 appelli su 15 dal 2024 al 2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di mercoledì 07/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Ripasso: angoli, seno e coseno (oltre le dispense)
 

@@ -3,7 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L01
 titolo: Numeri reali
-data: 2026-09-30
+data: 2026-10-01
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L01
 descrizione: >-
@@ -36,7 +36,7 @@ genera_html: true
 - Per l'esame servono tre cose: riconoscere un campo, usare le parentesi giuste e fare i conti con le radici senza calcolatrice.
 
 > [!CANALI]
-> Algebra lineare e Geometria usa le **stesse dispense** nei tre canali: Buzano insegna nei canali A e B, Radeschi nei canali B e C. Questi appunti seguono le dispense 2026, quindi valgono allo stesso modo per A, B e C. Cambiano solo i giorni delle lezioni: la pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)) avverte che i cambi d'orario vengono annunciati lì e a lezione. Esame e quiz sono comuni ai tre canali.
+> Algebra lineare e Geometria usa le **stesse dispense** nei tre canali: Buzano insegna nei canali A e B, Radeschi nei canali B e C. Questi appunti seguono le dispense 2026, quindi valgono allo stesso modo per A, B e C. Cambiano solo i giorni delle lezioni: la pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)) avverte che i cambi d'orario vengono annunciati lì e a lezione. Esame e quiz sono comuni ai tre canali. Nel canale B corrisponde all'incontro di giovedì 01/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Gli insiemi: sacchetti con dentro delle cose (p. 2)
 

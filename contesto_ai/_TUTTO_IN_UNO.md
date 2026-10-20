@@ -10254,6 +10254,9 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - lun 12/10: inizio della parte 2 del libro (Johnsonbaugh), §1.2 «Logica proposizionale»: proposizioni, connettivi, tavole di verità. Posposto il §1.1 sugli insiemi. Negli appunti è la lezione 06.
 - gio 15/10: §1.3, proposizioni condizionali ed equivalenza logica. Negli appunti è la lezione 07, scritta prima della lezione.
 - ven 16/10: §1.4, regole di inferenza per le proposizioni, ed esercizi. Negli appunti è la lezione 08, scritta prima della lezione.
+- lun 19/10: §1.5, quantificatori: funzione proposizionale (esempio 1.5.3 (a)) quantificata universalmente ed esistenzialmente, programmi per i quantificatori, leggi di De Morgan per i quantificatori. Negli appunti è la lezione 09.
+- gio 22/10 (in programma): analogie tra quantificatore universale e congiunzione, esistenziale e disgiunzione; quiz sulle regole di inferenza (sì/no) e sui quantificatori. Negli appunti è la lezione 10, scritta prima della lezione.
+- ven 23/10 (in programma): §1.6, quantificatori annidati. Negli appunti è la lezione 11, scritta prima della lezione.
 
 ## Materiale
 
@@ -18149,6 +18152,1514 @@ Conseguenza logica | $A_1, \dots, A_n \models A$: la notazione del canale A per 
 
 ---
 
+<!-- FILE: contesto_ai/FDA/lezioni/09_quantificatori.md -->
+> File: `contesto_ai/FDA/lezioni/09_quantificatori.md`
+
+```yaml
+corso: FDA
+lezione: "09"
+data: 2026-10-19
+titolo: Funzioni proposizionali e quantificatori
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 09 · Libro, parte 2, §1.5
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 09 di Fondamenti dell'Informatica (canale B): funzioni proposizionali e dominio, il
+  quantificatore universale «per ogni» e il controesempio, il quantificatore esistenziale «esiste» e il testimone,
+  come si dimostra che una frase quantificata è vera o falsa, i programmi che controllano un quantificatore su un
+  dominio finito, la traduzione di «ogni» e «qualche», le leggi di De Morgan per i quantificatori, con quiz ed
+  esercizi.
+lede: >-
+  «n è dispari» non è né vera né falsa finché non si sa chi è n. Con «per ogni n» e «esiste un n» diventa una
+  proposizione con un valore preciso: qui si vede come stabilirlo, come lo controlla un programma e come si nega.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 1), §1.5
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2–3 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 1), §1.5 «Quantifiers», con le
+  domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A; diario del canale B; F.
+  Cardone, «Alcuni esempi relativi a formalizzazione, connettivi proposizionali e quantificatori» (Moodle del canale A)
+appunti_html: appunti/FDA/09_quantificatori.html
+genera_html: true
+```
+
+## In breve
+
+- Una **funzione proposizionale** è una frase con una variabile, come «$n$ è dispari»: diventa una proposizione, vera o falsa, quando al posto di $n$ si mette un valore. I valori possibili formano il **dominio**.
+- **Per ogni**, $\forall x\, P(x)$: è vera se la frase è vera per **tutti** i valori del dominio. Per dire che è falsa basta un **controesempio**.
+- **Esiste**, $\exists x\, P(x)$: è vera se la frase è vera per **almeno un** valore. Basta trovarne uno, il **testimone**; per dire che è falsa bisogna controllarli tutti.
+- Su un dominio finito un programma controlla un «per ogni» scorrendo i valori e fermandosi al primo controesempio, e un «esiste» fermandosi al primo testimone.
+- «Ogni A è B» si scrive con la freccia, $\forall x\,(A(x) \to B(x))$; «qualche A è B» con la congiunzione, $\exists x\,(A(x) \wedge B(x))$.
+- **De Morgan per i quantificatori**: negare un «per ogni» dà un «esiste… non», e negare un «esiste» dà un «per ogni… non».
+
+> [!CANALI]
+> Nel canale B è la lezione di lunedì 19/10, dalle 9 alle 11. Per il docente è la lezione 10, perché la prima è stata un'introduzione: qui è la 09. Il diario del canale B la annuncia così: «Capitolo 1.5 (Parte 2). Quantificatori. Funzione proposizionale Example 1.5.3 (a), quantificata universalmente e esistenzialmente. Capitolo 1.5 (Parte 2): programmi per i quantificatori, esempi presi da 1. Leggi di de' Morgan per quantificatori.» Il libro non è disponibile: ho scritto questi appunti sul §1.5 dell'edizione originale di Johnsonbaugh, con le domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti). L'esempio 1.5.3 (a), nell'edizione originale, è la funzione proposizionale «$n^2 + 2n$ è un intero dispari» sugli interi positivi: è quello che uso qui sotto. I programmi del docente non li ho visti: quelli qui sotto sono miei, in C, provati con gcc.
+>
+> Servono le lezioni [06](06_proposizioni_connettivi_tavole.html), [07](07_condizionali_equivalenza_logica.html) e [08](08_argomentazioni_regole_inferenza.html): connettivi, «se… allora», leggi di De Morgan. Nel canale A lo stesso argomento è nelle note di Felice Cardone, «Alcuni esempi relativi a formalizzazione, connettivi proposizionali e quantificatori» e «Svedesi e Protestanti»; nel canale C nei lucidi del docente.
+>
+> La **prossima lezione** (giovedì 22/10) mette in parallelo i quantificatori con «e» e «o» e ha due quiz; quella di **venerdì 23/10** è sui quantificatori annidati (§1.6).
+
+## Frasi con una variabile (libro, §1.5)
+
+La frase «un numero è dispari», scritta con una variabile, non è una proposizione: finché non si sa di che numero si parla, non è né vera né falsa. Scritta «$n$ è dispari», con $n = 7$ diventa vera, con $n = 4$ diventa falsa. È uno stampo che produce una proposizione per ogni valore che ci metti dentro.
+
+> [!DEF] Funzione proposizionale (libro, §1.5)
+> Sia $P(x)$ un'affermazione che contiene la variabile $x$, e sia $D$ un insieme. $P$ è una **funzione proposizionale** rispetto a $D$ se, per ogni $x$ di $D$, $P(x)$ è una proposizione. L'insieme $D$ si chiama **dominio** (in inglese *domain of discourse*).
+
+**Come si legge.** Il dominio dice quali valori si possono mettere al posto di $x$. Senza dominio la frase non ha un senso preciso: «$x^2 = 2$» ha soluzioni tra i numeri reali, nessuna tra gli interi.
+
+### L'esempio del diario: n² + 2n è dispari
+
+Il diario parte dall'esempio 1.5.3 (a): $P(n)$ = «$n^2 + 2n$ è un intero dispari», con dominio gli interi positivi. Ogni valore di $n$ dà una proposizione diversa:
+
+| $n$ | $n^2 + 2n$ | $P(n)$ |
+|:-:|:-:|:-:|
+| 1 | 3 | V |
+| 2 | 8 | F |
+| 3 | 15 | V |
+| 4 | 24 | F |
+| 5 | 35 | V |
+| 6 | 48 | F |
+
+Si vede uno schema: $n^2 + 2n = n(n + 2)$, e il prodotto è dispari solo quando $n$ è dispari. Quindi $P(n)$ è vera per gli $n$ dispari e falsa per quelli pari.
+
+```grafico
+titolo: La funzione proposizionale $P(n)$ = «$n^2 + 2n$ è dispari» sui primi otto interi positivi: verde dove è vera, rosa dove è falsa. «Per ogni» chiede che siano tutte verdi; «esiste» che ce ne sia almeno una.
+x: 0 9
+y: 0 2.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.58 0.4 1.42 0.4 1.42 1.3 0.58 1.3 | verde
+testo: 1 0.85 | verde | "1"
+testo: 1 1.75 | verde | "V"
+poligono: 1.58 0.4 2.42 0.4 2.42 1.3 1.58 1.3 | rosa
+testo: 2 0.85 | rosa | "2"
+testo: 2 1.75 | rosa | "F"
+poligono: 2.58 0.4 3.42 0.4 3.42 1.3 2.58 1.3 | verde
+testo: 3 0.85 | verde | "3"
+testo: 3 1.75 | verde | "V"
+poligono: 3.58 0.4 4.42 0.4 4.42 1.3 3.58 1.3 | rosa
+testo: 4 0.85 | rosa | "4"
+testo: 4 1.75 | rosa | "F"
+poligono: 4.58 0.4 5.42 0.4 5.42 1.3 4.58 1.3 | verde
+testo: 5 0.85 | verde | "5"
+testo: 5 1.75 | verde | "V"
+poligono: 5.58 0.4 6.42 0.4 6.42 1.3 5.58 1.3 | rosa
+testo: 6 0.85 | rosa | "6"
+testo: 6 1.75 | rosa | "F"
+poligono: 6.58 0.4 7.42 0.4 7.42 1.3 6.58 1.3 | verde
+testo: 7 0.85 | verde | "7"
+testo: 7 1.75 | verde | "V"
+poligono: 7.58 0.4 8.42 0.4 8.42 1.3 7.58 1.3 | rosa
+testo: 8 0.85 | rosa | "8"
+testo: 8 1.75 | rosa | "F"
+```
+
+Le domande 10 e 11 dell'autoverifica del capitolo 1 usano lo stesso criterio su una frase che parla di «la squadra». Se non si sa di quale squadra si parla, la frase non è una proposizione. Se invece «la squadra» è una variabile che prende i valori tra tutte le squadre, è una funzione proposizionale.
+
+::: prova Quali sono funzioni proposizionali, e con quale dominio? (a) «$x + 3 = 5$»; (b) «7 è primo»; (c) «il film $f$ ha vinto un Oscar».
+(a) Funzione proposizionale, per esempio sugli interi: vera solo con $x = 2$. (b) È già una proposizione, vera: non ha variabili. (c) Funzione proposizionale, con dominio l'insieme dei film.
+:::
+
+> [!RICORDA]
+> - Una funzione proposizionale diventa vera o falsa solo quando si sceglie il valore della variabile.
+> - Il dominio è l'insieme dei valori possibili, e va sempre detto.
+
+## Per ogni: il quantificatore universale (libro, §1.5)
+
+C'è un secondo modo, oltre a sostituire un valore, per trasformare una funzione proposizionale in una proposizione. Per $P(n)$ vuol dire chiedersi se è vera **per tutti** gli $n$ del dominio. «Per ogni intero positivo $n$, $n^2 + 2n$ è dispari» è una proposizione, e ha un valore preciso: è falsa, perché con $n = 2$ si ottiene 8.
+
+> [!DEF] Quantificatore universale (libro, §1.5)
+> Sia $P$ una funzione proposizionale con dominio $D$. L'affermazione «per ogni $x$, $P(x)$», scritta $\forall x\, P(x)$, è **vera** se $P(x)$ è vera per ogni $x$ di $D$, ed è **falsa** se esiste almeno un $x$ di $D$ per cui $P(x)$ è falsa. Il simbolo $\forall$ è il **quantificatore universale**; un valore di $x$ con $P(x)$ falsa è un **controesempio**.
+
+**Come si legge.** $\forall$ è una A rovesciata, da *all*, «tutti». Si legge «per ogni». Per dire che è vera bisogna controllare **tutti** i valori; per dire che è falsa ne basta **uno**.
+
+> [!ESEMPIO] · Due frasi «per ogni» sui numeri reali
+> **Situazione:** il dominio è l'insieme dei numeri reali.
+>
+> **Passo 1.** $\forall x\,(x^2 \ge 0)$ è vera: il quadrato di un numero reale non è mai negativo, qualunque numero si scelga.
+>
+> **Passo 2.** $\forall x\,(x^2 > x)$ è falsa. Un controesempio è $x = 0$: $0^2 = 0$ non è maggiore di 0. Anche $x = 1$ e $x = \frac12$ sono controesempi; ne basta uno.
+
+> [!TRAPPOLA] Gli esempi non dimostrano un «per ogni»
+> Che $P(n)$ sia vera per $n = 1, 3, 5, 7$ non dimostra $\forall n\, P(n)$: il controesempio può arrivare dopo. Al contrario, un solo controesempio basta per dire che il «per ogni» è falso, anche se tutti gli altri valori vanno bene.
+
+::: prova Sugli interi positivi, «per ogni $n$, $n$ e $n + 2$ sono primi» è vera o falsa?
+Falsa. Un controesempio è $n = 7$: 7 è primo, ma 9 no. Anche $n = 1$ va bene, perché 1 non è primo.
+:::
+
+> [!RICORDA]
+> - $\forall x\, P(x)$ è vera se $P(x)$ è vera per tutti gli $x$ del dominio.
+> - Per dire che è falsa basta un controesempio.
+
+## Esiste: il quantificatore esistenziale (libro, §1.5)
+
+La domanda opposta è più debole: c'è **almeno un** intero positivo $n$ con $n^2 + 2n$ dispari? Sì, $n = 1$: $1 + 2 = 3$. Basta questo esempio per rispondere.
+
+> [!DEF] Quantificatore esistenziale (libro, §1.5)
+> Sia $P$ una funzione proposizionale con dominio $D$. L'affermazione «esiste $x$ tale per cui $P(x)$», scritta $\exists x\, P(x)$, è **vera** se esiste almeno un $x$ di $D$ per cui $P(x)$ è vera, ed è **falsa** se $P(x)$ è falsa per ogni $x$ di $D$. Il simbolo $\exists$ è il **quantificatore esistenziale**.
+
+**Come si legge.** $\exists$ è una E rovesciata, da *exists*. Si legge «esiste un $x$ per cui…» oppure «per qualche $x$…». «Esiste» vuol dire **almeno uno**, non «esattamente uno». Il valore che rende vera $P(x)$ si chiama **testimone**.
+
+> [!ESEMPIO] · Due frasi «esiste» sui numeri reali
+> **Passo 1.** $\exists x\,\bigl(\frac{x}{x^2 + 1} = \frac25\bigr)$ è vera: con $x = 2$ viene $\frac{2}{5}$. Il testimone è 2.
+>
+> **Passo 2.** $\exists x\,\bigl(\frac{1}{x^2 + 1} > 1\bigr)$ è falsa: $x^2 + 1$ è almeno 1 per ogni $x$, quindi la frazione è al massimo 1. Per dirlo si è dovuto ragionare su **tutti** gli $x$.
+
+Le domande di ripasso del §1.5 raccolgono i quattro casi in una tabella. È la cosa da sapere a memoria.
+
+| Per dimostrare che… | è vera | è falsa |
+|---|---|---|
+| $\forall x\, P(x)$ | mostra che $P(x)$ è vera per **ogni** $x$ | trova **un** $x$ con $P(x)$ falsa (controesempio) |
+| $\exists x\, P(x)$ | trova **un** $x$ con $P(x)$ vera (testimone) | mostra che $P(x)$ è falsa per **ogni** $x$ |
+
+::: prova Sugli interi positivi, «esiste $n$ tale che $n$ e $n + 2$ sono primi» è vera o falsa?
+Vera. Un testimone è $n = 5$: 5 e 7 sono primi. Anche $n = 3$ e $n = 11$ vanno bene.
+:::
+
+> [!RICORDA]
+> - $\exists x\, P(x)$ è vera se $P(x)$ è vera per almeno un $x$: basta un testimone.
+> - Per dire che è falsa bisogna controllare tutti gli $x$.
+
+## Il dominio cambia la risposta
+
+La stessa formula può essere vera su un dominio e falsa su un altro. Per questo un esercizio sui quantificatori dice sempre il dominio, e la prima cosa da fare è leggerlo.
+
+> [!ESEMPIO] · $\forall x\,(x^2 \ge x)$ su due domini
+> **Sugli interi** è vera. Con $x \le 0$, $x^2$ è almeno 0, quindi almeno $x$. Con $x \ge 1$, $x^2 = x \cdot x \ge x \cdot 1 = x$.
+>
+> **Sui reali** è falsa. Controesempio: $x = \frac12$, perché $\frac14$ è minore di $\frac12$. Tra gli interi questo controesempio non c'era.
+
+Un altro caso: $\exists x\,(x^2 = 2)$ è vera sui reali (testimone $\sqrt2$) e falsa sugli interi e sulle frazioni.
+
+::: prova Sugli interi positivi, $\exists n\,(2n = 7)$ è vera o falsa? E sui reali?
+Sugli interi positivi è falsa: $2n$ è pari per ogni intero $n$, e 7 è dispari. Sui reali è vera, con testimone $n = 3{,}5$.
+:::
+
+> [!RICORDA]
+> - Prima di rispondere, guarda il dominio.
+> - Allargare il dominio può creare testimoni e controesempi nuovi.
+
+## Un programma che controlla un quantificatore
+
+Il diario cita i «programmi per i quantificatori». L'idea: se il dominio è **finito**, un computer può controllare un «per ogni» o un «esiste» provando i valori uno per uno.
+
+- Per $\forall n\, P(n)$ si provano i valori in ordine e ci si ferma al **primo controesempio**. Se non se ne trova nessuno, la frase è vera.
+- Per $\exists n\, P(n)$ ci si ferma al **primo testimone**. Se non se ne trova nessuno, la frase è falsa.
+
+Ecco il programma per l'esempio del diario, con dominio i numeri da 1 a 10. Usa un ciclo `while`, che ripete il blocco tra graffe finché la condizione tra parentesi è vera; in Programmazione I arriva tra poco. Le condizioni con `&&` e il cortocircuito sono quelli della [lezione 03C di Programmazione I](../PROG1/03C_booleani.html).
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+    int N = 10;
+
+    // per ogni n tra 1 e N, n*n + 2*n e' dispari?
+    int i = 1;
+    while (i <= N && (i * i + 2 * i) % 2 != 0) {
+        i = i + 1;
+    }
+    bool perOgni = (i > N);
+    printf("per ogni: %d\n", perOgni);
+    if (!perOgni) {
+        printf("controesempio: n = %d\n", i);
+    }
+
+    // esiste n tra 1 e N con n*n + 2*n dispari?
+    int j = 1;
+    while (j <= N && (j * j + 2 * j) % 2 == 0) {
+        j = j + 1;
+    }
+    bool esiste = (j <= N);
+    printf("esiste: %d\n", esiste);
+    if (esiste) {
+        printf("testimone: n = %d\n", j);
+    }
+    return 0;
+}
+```
+
+```
+per ogni: 0
+controesempio: n = 2
+esiste: 1
+testimone: n = 1
+```
+
+**Come si legge.** Il primo ciclo va avanti finché $P(i)$ è vera; si ferma al primo $i$ con $P(i)$ falsa, oppure quando ha finito il dominio. Se è uscito perché $i$ ha superato $N$, non ha trovato controesempi e il «per ogni» è vero. Il secondo ciclo fa il contrario: va avanti finché $P(j)$ è falsa.
+
+```grafico
+titolo: Il ciclo che controlla «per ogni»: prova i valori in ordine e si ferma al primo controesempio. Se arriva in fondo al dominio senza trovarne, la frase è vera.
+x: 0 10
+y: 0 7.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 3.5 6.2 6.5 6.2 6.5 6.95 3.5 6.95 | blu
+testo: 5 6.57 | blu | "i = 1"
+freccia: 5 6.2 5 5.55 | grigio
+poligono: 5 5.5 7 4.7 5 3.9 3 4.7 | ambra
+testo: 5 4.7 | ambra | "i ≤ N?"
+freccia: 7 4.7 8 4.7 | verde
+testo: 7.5 5.2 | verde | "no"
+poligono: 8 4.3 9.95 4.3 9.95 5.1 8 5.1 | verde
+testo: 8.97 4.7 | verde | "∀ vero"
+freccia: 5 3.9 5 3.25 | grigio
+testo: 5.4 3.55 | grigio | "sì"
+poligono: 5 3.2 7 2.4 5 1.6 3 2.4 | ambra
+testo: 5 2.4 | ambra | "P(i)?"
+freccia: 7 2.4 8 2.4 | rosa
+testo: 7.5 2.9 | rosa | "no"
+poligono: 8 2 9.95 2 9.95 2.8 8 2.8 | rosa
+testo: 8.97 2.4 | rosa | "∀ falso"
+freccia: 5 1.6 5 1.05 | grigio
+testo: 5.4 1.3 | grigio | "sì"
+poligono: 3.5 0.3 6.5 0.3 6.5 1 3.5 1 | blu
+testo: 5 0.65 | blu | "i = i + 1"
+segmento: 3.5 0.65 1.2 0.65 | grigio
+segmento: 1.2 0.65 1.2 5.85 | grigio
+freccia: 1.2 5.85 4.95 5.85 | grigio
+```
+
+> [!TRAPPOLA] Su un dominio infinito il programma non basta
+> Sugli interi positivi il ciclo per $\forall n\,P(n)$ si ferma solo se trova un controesempio. Se la frase è vera, il ciclo non finisce mai: un programma può **smentire** un «per ogni» su un dominio infinito, ma non può **dimostrarlo**. Per quello serve un ragionamento, come $n(n + 2)$ dispari solo per $n$ dispari, o l'induzione della prossima parte del corso.
+
+::: prova Nel programma, che cosa cambia se il dominio diventa da 1 a 1, cioè $N = 1$?
+Il «per ogni» diventa vero: c'è solo $n = 1$, e $P(1)$ è vera. Il primo ciclo fa un giro, $i$ diventa 2, e $i > N$. Anche l'«esiste» è vero, con testimone 1.
+:::
+
+> [!RICORDA]
+> - Su un dominio finito, «per ogni» si controlla cercando il primo controesempio, «esiste» cercando il primo testimone.
+> - Su un dominio infinito un programma può solo smentire un «per ogni», non dimostrarlo.
+
+## Tradurre «ogni» e «qualche» (libro, §1.5)
+
+Nelle frasi vere il dominio è spesso più grande della categoria di cui si parla. «Ogni ragioniere ha una Porsche» parla dei ragionieri, ma il dominio è l'insieme di tutte le persone. Con $P(x)$ = «$x$ è un ragioniere» e $Q(x)$ = «$x$ ha una Porsche», la traduzione giusta è quella degli esercizi 48 e 51 del libro.
+
+| Frase | Traduzione | Perché |
+|---|---|---|
+| Ogni ragioniere ha una Porsche | $\forall x\,(P(x) \to Q(x))$ | per ogni persona: **se** è un ragioniere, **allora** ha una Porsche |
+| Qualche ragioniere ha una Porsche | $\exists x\,(P(x) \wedge Q(x))$ | c'è una persona che è un ragioniere **e** ha una Porsche |
+
+```grafico
+titolo: A sinistra «ogni ragioniere ha una Porsche»: l'insieme dei ragionieri sta dentro quello di chi ha una Porsche. A destra «qualche ragioniere ha una Porsche»: basta un punto nell'intersezione.
+x: 0 12
+y: 0 5
+assi: no
+griglia: no
+proporzioni: libere
+cerchio: 3 2.4 2 | ambra
+cerchio: 2.4 2.4 0.95 | blu
+testo: 2.4 2.4 | blu | "$P$"
+testo: 4.2 2.4 | ambra | "$Q$"
+testo: 3 4.75 | grigio | "∀x (P(x) → Q(x))"
+cerchio: 8 2.4 1.5 | blu
+cerchio: 10 2.4 1.5 | ambra
+punto: 9 2.4 | accento
+testo: 7.3 2.4 | blu | "$P$"
+testo: 10.7 2.4 | ambra | "$Q$"
+testo: 9 4.75 | grigio | "∃x (P(x) ∧ Q(x))"
+```
+
+> [!TRAPPOLA] Le due traduzioni sbagliate
+> - $\forall x\,(P(x) \wedge Q(x))$ dice che **tutte** le persone sono ragionieri e hanno una Porsche: molto di più.
+> - $\exists x\,(P(x) \to Q(x))$ è vera appena esiste una persona che **non** è un ragioniere, perché per lei la freccia è vera a vuoto, come nella [lezione 07](07_condizionali_equivalenza_logica.html). Non dice niente sui ragionieri.
+>
+> Regola pratica: **«per ogni» va con la freccia, «esiste» va con la congiunzione.**
+
+Lo stesso schema vale per gli esempi delle note di Cardone (canale A): «qualche numero primo è pari» diventa $\exists x\,(\mathrm{Primo}(x) \wedge \mathrm{Pari}(x))$, e «tutti i numeri maggiori di 5 sono maggiori di 3» diventa $\forall x\,(x > 5 \to x > 3)$.
+
+::: prova Con $S(x)$ = «$x$ è uno studente» e $M(x)$ = «$x$ segue un corso di matematica», traduci: (a) «ogni studente segue un corso di matematica»; (b) «qualche studente segue un corso di matematica».
+(a) $\forall x\,(S(x) \to M(x))$. (b) $\exists x\,(S(x) \wedge M(x))$. Se il dominio è già l'insieme degli studenti, bastano $\forall x\, M(x)$ ed $\exists x\, M(x)$: è la scelta degli esercizi 32 e 35 del libro.
+:::
+
+> [!RICORDA]
+> - «Ogni A è B»: $\forall x\,(A(x) \to B(x))$.
+> - «Qualche A è B»: $\exists x\,(A(x) \wedge B(x))$.
+
+## Negare un quantificatore: le leggi di De Morgan (libro, §1.5)
+
+Qual è il contrario di «ogni studente segue un corso di matematica»? Non è «nessuno studente segue un corso di matematica». Per smentire la frase basta **uno** studente che non lo segue: il contrario è «**qualche** studente **non** segue un corso di matematica». È la soluzione dell'esercizio 38 del libro.
+
+> [!TEOREMA] Leggi di De Morgan generalizzate (libro, §1.5)
+> Se $P$ è una funzione proposizionale, ciascuna delle coppie seguenti ha lo stesso valore di verità:
+> $$\neg\,\forall x\, P(x) \quad \text{e} \quad \exists x\, \neg P(x), \qquad\qquad \neg\,\exists x\, P(x) \quad \text{e} \quad \forall x\, \neg P(x).$$
+
+**Come si legge.** Il «non» passa attraverso il quantificatore e lo **gira**: $\forall$ diventa $\exists$, $\exists$ diventa $\forall$. È lo stesso fenomeno delle leggi di De Morgan della [lezione 07](07_condizionali_equivalenza_logica.html), dove la negazione girava $\wedge$ in $\vee$; nella prossima lezione si vede che non è un caso.
+
+**Perché è vero.** $\neg\,\forall x\, P(x)$ dice che non tutti gli $x$ rendono vera $P$: c'è almeno un $x$ con $P(x)$ falsa, cioè un controesempio. È esattamente $\exists x\, \neg P(x)$. Allo stesso modo, «non esiste un $x$ con $P(x)$» vuol dire che per ogni $x$ la $P(x)$ è falsa.
+
+### Negare «ogni A è B»
+
+Con la regola dei quantificatori e quella della freccia, $\neg(p \to q) \equiv p \wedge \neg q$ della lezione 07, si nega in due passi:
+
+$$\neg\,\forall x\,(A(x) \to B(x)) \;\equiv\; \exists x\,\neg(A(x) \to B(x)) \;\equiv\; \exists x\,(A(x) \wedge \neg B(x)).$$
+
+«Non è vero che ogni ragioniere ha una Porsche» diventa «qualche ragioniere non ha una Porsche» (esercizio 52 del libro). Dall'altra parte, la negazione di «qualche A è B» è «nessun A è B»: $\forall x\,(A(x) \to \neg B(x))$.
+
+> [!ESEMPIO] · «Non è tutto oro quel che luccica»
+> **Situazione:** il proverbio, con $L(x)$ = «$x$ luccica» e $O(x)$ = «$x$ è oro».
+>
+> **Passo 1: che cosa vuol dire.** Non dice che niente di ciò che luccica è oro. Dice che non è vero che tutto ciò che luccica è oro: $\neg\,\forall x\,(L(x) \to O(x))$.
+>
+> **Passo 2: De Morgan.** $\exists x\,(L(x) \wedge \neg O(x))$: c'è qualcosa che luccica e non è oro.
+>
+> Gli esercizi 61–70 del libro sono di questo tipo: frasi come «tutti gli uomini non tradiscono la moglie», che alla lettera vogliono dire «nessuno», ma che chi le dice intende come «non tutti».
+
+> [!TRAPPOLA] «Tutti… non» è ambiguo
+> «Tutti gli studenti non hanno passato l'esame» si può leggere come $\forall x\,\neg P(x)$, nessuno l'ha passato, oppure come $\neg\,\forall x\, P(x)$, non tutti l'hanno passato. All'esame la formula toglie l'ambiguità: leggi dove sta il $\neg$.
+
+::: prova Nega, spostando il $\neg$ fino in fondo: (a) $\forall x\,(x^2 > x)$; (b) «qualche numero primo è pari», $\exists x\,(\mathrm{Primo}(x) \wedge \mathrm{Pari}(x))$.
+(a) $\exists x\,(x^2 \le x)$: la soluzione dell'esercizio 59 del libro. (b) $\forall x\,\neg(\mathrm{Primo}(x) \wedge \mathrm{Pari}(x))$, cioè $\forall x\,(\mathrm{Primo}(x) \to \neg\mathrm{Pari}(x))$: «nessun primo è pari». È l'esempio delle note di Cardone; la frase di partenza è vera (il 2), quindi la negazione è falsa.
+:::
+
+> [!RICORDA]
+> - $\neg\,\forall$ diventa $\exists\,\neg$; $\neg\,\exists$ diventa $\forall\,\neg$.
+> - La negazione di «ogni A è B» è «qualche A non è B», non «nessun A è B».
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $P(x)$ | «P di x» | una funzione proposizionale nella variabile $x$ | $P(n)$: «$n^2 + 2n$ è dispari» |
+| $\forall x\, P(x)$ | «per ogni x, P di x» | $P(x)$ è vera per tutti gli $x$ del dominio | $\forall x\,(x^2 \ge 0)$ |
+| $\exists x\, P(x)$ | «esiste x tale per cui P di x» | $P(x)$ è vera per almeno un $x$ | $\exists x\,(x^2 = 2)$ sui reali |
+| $D$ | «dominio» | l'insieme dei valori possibili di $x$ | gli interi positivi |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser, da 3 punti l'uno; servono almeno 18 punti.
+
+**Che cosa serve di questa lezione**
+
+1. **Negare frasi con quantificatori.** Nella simulazione 2 del 2023/24 un quiz intero chiede di abbinare quattro frasi alla loro negazione. Le frasi hanno due quantificatori, l'argomento di venerdì 23/10; la regola è quella di questa lezione, applicata due volte.
+2. **Vero o falso su un dominio.** Domande come «$\forall x\,(x^2 > x)$ è vera sui reali?»: si cerca un controesempio o un testimone.
+3. **Tradurre** «ogni» con la freccia e «qualche» con la congiunzione.
+
+### Una domanda sul modello della simulazione 2, letta insieme
+
+Il quiz vero ha frasi con due quantificatori; questa versione ne ha uno solo, con la stessa forma di domanda.
+
+**Il testo**: «Associare a ciascuna proposizione la sua negazione: (1) Ogni studente ha superato l'esame. (2) Qualche studente ha superato l'esame. (3) Nessuno studente ha superato l'esame.» Negazioni da scegliere: (a) «Nessuno studente ha superato l'esame»; (b) «Qualche studente ha superato l'esame»; (c) «Qualche studente non ha superato l'esame».
+
+**In pratica chiede:** per ogni frase, che cosa basta per smentirla?
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> Con $S(x)$ = «$x$ ha superato l'esame», sul dominio degli studenti:
+>
+> - (1) è $\forall x\, S(x)$; la negazione è $\exists x\,\neg S(x)$: **(c)**.
+> - (2) è $\exists x\, S(x)$; la negazione è $\forall x\,\neg S(x)$: **(a)**.
+> - (3) è $\forall x\,\neg S(x)$; la negazione è $\exists x\, S(x)$: **(b)**.
+>
+> La trappola è abbinare (1) ad (a): «nessuno» non è il contrario di «tutti». Tra «tutti» e «nessuno» c'è il caso in cui alcuni passano e altri no, e lì le due frasi sono false insieme.
+
+> [!METODO] Le domande sui quantificatori
+> 1. **Leggi il dominio.**
+> 2. **Per decidere se è vera:** per $\forall$ cerca un controesempio, per $\exists$ un testimone. Se non lo trovi, ragiona su tutti i valori.
+> 3. **Per negare:** gira ogni quantificatore e sposta il $\neg$ dentro; poi usa $\neg(p \to q) \equiv p \wedge \neg q$ e De Morgan.
+> 4. **Per tradurre:** «ogni A è B» con la freccia, «qualche A è B» con la congiunzione.
+
+**Errori da evitare**
+
+- Dimostrare un «per ogni» con qualche esempio.
+- Negare «tutti» con «nessuno».
+- Tradurre «ogni A è B» con $\wedge$, o «qualche A è B» con $\to$.
+- Dimenticare il dominio.
+
+## Quiz
+
+```quiz
+D: Sugli interi positivi, con $P(n)$ = «$n^2 + 2n$ è dispari», quale affermazione è vera?
++ $\forall n\, P(n)$ è falsa e $\exists n\, P(n)$ è vera
+- $\forall n\, P(n)$ è vera
+- tutte e due sono false
+- $\exists n\, P(n)$ è falsa e $\forall n\, P(n)$ è vera
+- $P(n)$ è una proposizione vera
+= Con $n = 2$ viene 8, pari: è un controesempio, e il «per ogni» è falso. Con $n = 1$ viene 3, dispari: è un testimone, e l'«esiste» è vero. La risposta più insidiosa è l'ultima: $P(n)$ da sola non è una proposizione, perché non si sa chi è $n$.
+
+D: Che cosa basta per dimostrare che $\forall x\, P(x)$ è falsa?
++ un valore di $x$ per cui $P(x)$ è falsa
+- un valore di $x$ per cui $P(x)$ è vera
+- che $P(x)$ sia falsa per tutti gli $x$
+- che $\exists x\, P(x)$ sia falsa
+- tre o quattro esempi in cui $P(x)$ è falsa
+= Basta un controesempio. La risposta più insidiosa è «falsa per tutti gli $x$»: è sufficiente ma chiede molto di più del necessario, e corrisponde a $\forall x\,\neg P(x)$.
+
+D: Qual è la negazione di $\exists x\,(x^2 = 2)$?
++ $\forall x\,(x^2 \neq 2)$
+- $\exists x\,(x^2 \neq 2)$
+- $\forall x\,(x^2 = 2)$
+- $\neg\,\forall x\,(x^2 = 2)$
+- $\exists x\,\neg(x^2 = 2)$
+= Il $\neg$ gira $\exists$ in $\forall$ e nega la frase interna. La risposta più insidiosa è $\exists x\,(x^2 \neq 2)$: nega la frase interna ma lascia il quantificatore com'è. Anche l'ultima è la stessa cosa scritta in un altro modo.
+
+D: Quale formula traduce «ogni ragioniere ha una Porsche», con $P(x)$ = «$x$ è un ragioniere» e $Q(x)$ = «$x$ ha una Porsche», sul dominio di tutte le persone?
++ $\forall x\,(P(x) \to Q(x))$
+- $\forall x\,(P(x) \wedge Q(x))$
+- $\exists x\,(P(x) \wedge Q(x))$
+- $\exists x\,(P(x) \to Q(x))$
+- $\forall x\,(Q(x) \to P(x))$
+= «Per ogni» va con la freccia. La risposta più insidiosa è $\forall x\,(P(x) \wedge Q(x))$: direbbe che tutte le persone sono ragionieri. L'ultima gira la freccia: «chi ha una Porsche è un ragioniere».
+
+D: Qual è la negazione di «ogni studente segue un corso di matematica»?
++ Qualche studente non segue un corso di matematica
+- Nessuno studente segue un corso di matematica
+- Ogni studente non segue un corso di matematica
+- Qualche studente segue un corso di matematica
+- Ogni studente segue un corso che non è di matematica
+= $\neg\,\forall x\, M(x) \equiv \exists x\,\neg M(x)$: basta uno studente che non lo segue. È la soluzione dell'esercizio 38 del libro. La risposta più insidiosa è «nessuno»: tra «tutti» e «nessuno» c'è il caso in cui alcuni lo seguono e altri no.
+
+D: Sui numeri reali, quale di queste frasi è vera?
++ $\exists x\,\bigl(\frac{x}{x^2 + 1} = \frac25\bigr)$
+- $\forall x\,(x^2 > x)$
+- $\exists x\,\bigl(\frac{1}{x^2 + 1} > 1\bigr)$
+- $\forall x\,(x^2 \ge x)$
+- $\exists x\,(x^2 < 0)$
+= Con $x = 2$: $\frac{2}{5}$. La risposta più insidiosa è $\forall x\,(x^2 \ge x)$: è vera sugli interi, ma sui reali $x = \frac12$ è un controesempio. La terza è falsa perché $x^2 + 1 \ge 1$.
+
+D: Un programma controlla $\forall n\, P(n)$ sugli interi da 1 a 1000 e risponde «vero». Che cosa si può concludere sugli interi positivi?
++ niente su $\forall n\, P(n)$: un controesempio potrebbe essere più grande di 1000
+- che $\forall n\, P(n)$ è vera
+- che $\forall n\, P(n)$ è falsa
+- che $\exists n\, \neg P(n)$ è vera
+- che $P(n)$ è vera solo per $n \le 1000$
+= Il programma ha controllato solo un pezzo del dominio. Si può dire che $\exists n\, P(n)$ è vera (per esempio $n = 1$), ma per il «per ogni» serve un ragionamento. La risposta più insidiosa è «è vera»: mille esempi non sono una dimostrazione.
+
+D: Con $L(x)$ = «$x$ luccica» e $O(x)$ = «$x$ è oro», quale formula dice «non è tutto oro quel che luccica»?
++ $\exists x\,(L(x) \wedge \neg O(x))$
+- $\forall x\,(L(x) \to \neg O(x))$
+- $\exists x\,(L(x) \to \neg O(x))$
+- $\forall x\,(\neg L(x) \to O(x))$
+- $\neg\,\exists x\,(L(x) \wedge O(x))$
+= È $\neg\,\forall x\,(L(x) \to O(x))$, che per De Morgan e per $\neg(p \to q) \equiv p \wedge \neg q$ diventa «qualcosa luccica e non è oro». La risposta più insidiosa è $\forall x\,(L(x) \to \neg O(x))$, la lettura alla lettera: «niente di ciò che luccica è oro». L'ultima dice la stessa cosa.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: vero o falso?
+Sugli interi positivi, con $D(n)$ = «$n$ divide 77», di' se sono vere: (a) $D(11)$; (b) $\forall n\, D(n)$; (c) $\exists n\,\neg D(n)$; (d) $\exists n\,(D(n) \wedge n > 10)$.
+::: soluzione
+(a) Vera: $77 = 11 \cdot 7$. (b) Falsa: un controesempio è $n = 2$. (c) Vera: $n = 2$ è un testimone. Le prime tre sono gli esercizi 7, 10 e 13 del libro. (d) Vera, con testimone 11, oppure 77.
+:::
+
+::: esercizio base Riscaldamento: controesempio o testimone
+Sui numeri reali, decidi e giustifica: (a) $\forall x\,(x^2 - 1 > 0)$; (b) $\exists x\,(x^2 - x - 6 = 0)$; (c) $\forall x\,(x + 1 > x)$; (d) $\exists x\,(x^2 + 1 = 0)$.
+::: soluzione
+(a) Falsa: controesempio $x = 0$, che dà $-1$. (b) Vera: testimone $x = 3$ (anche $x = -2$). (c) Vera: aggiungere 1 fa sempre crescere un numero. (d) Falsa: $x^2 + 1$ è almeno 1 per ogni $x$ reale.
+:::
+
+::: esercizio base Riscaldamento: negare
+Nega spostando il $\neg$ dentro: (a) $\forall x\,(x > 0)$; (b) $\exists x\,(x \text{ è pari} \wedge x \text{ è primo})$; (c) $\forall x\,(x > 5 \to x > 3)$.
+::: soluzione
+(a) $\exists x\,(x \le 0)$. (b) $\forall x\,(x \text{ è pari} \to x \text{ non è primo})$, cioè «nessun pari è primo». (c) $\exists x\,(x > 5 \wedge x \le 3)$: è l'esempio delle note di Cardone. Sui numeri è falsa, perché la frase di partenza è vera.
+:::
+
+::: esercizio medio Gli sportivi (esercizi 39–47 del libro)
+Il dominio è l'insieme delle persone. $P(x)$ = «$x$ è un atleta professionista», $Q(x)$ = «$x$ gioca a calcio». Scrivi in parole e di' se sono vere: (a) $\forall x\,(P(x) \to Q(x))$; (b) $\exists x\,(\neg Q(x)) \vee \exists x\,(Q(x) \wedge P(x))$; (c) $\forall x\,(P(x) \wedge Q(x))$. Poi nega la (a).
+::: soluzione
+(a) «Ogni atleta professionista gioca a calcio»: falsa, ci sono tennisti professionisti. (b) «Qualcuno non gioca a calcio, oppure qualche calciatore è un atleta professionista»: vera, e basta già la prima parte. (c) «Tutti sono atleti professionisti e giocano a calcio»: falsa. La negazione della (a) è $\exists x\,(P(x) \wedge \neg Q(x))$: «qualche atleta professionista non gioca a calcio». Sono le soluzioni degli esercizi 39, 42, 45 e 47.
+:::
+
+::: esercizio medio Il programma per «esiste»
+Modifica il programma della lezione per controllare, sui numeri da 1 a 30, la frase «esiste $n$ tale che $n$ e $n + 2$ sono primi», e prevedi che cosa stampa.
+::: soluzione
+Serve una condizione «$n$ è primo». Con una funzione `primo(n)` che restituisce vero se $n$ è primo, il ciclo è `while (j <= N && !(primo(j) && primo(j + 2))) { j = j + 1; }`, e alla fine `esiste = (j <= N)`. Stampa `esiste: 1` e `testimone: n = 3`: 3 e 5 sono primi, e 3 è il primo testimone. Le funzioni si vedono più avanti in Programmazione I; per ora basta il ragionamento.
+:::
+
+::: esercizio esame Tradurre e negare
+Con $S(x)$ = «$x$ è svedese» e $P(x)$ = «$x$ è protestante», sul dominio delle persone: (a) traduci «qualche svedese non è protestante»; (b) traduci «nessuno svedese è protestante»; (c) nega la (b) e scrivila in parole.
+::: soluzione
+(a) $\exists x\,(S(x) \wedge \neg P(x))$. (b) $\forall x\,(S(x) \to \neg P(x))$, oppure $\neg\,\exists x\,(S(x) \wedge P(x))$: sono equivalenti per De Morgan. (c) $\exists x\,(S(x) \wedge P(x))$: «qualche svedese è protestante». Nel canale A la nota «Svedesi e Protestanti» formalizza una frase più difficile, «tutti sono protestanti tranne gli svedesi»: la risposta finale è $\forall x\,(P(x) \leftrightarrow \neg S(x))$.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è una funzione proposizionale?
+Un'affermazione con una variabile che diventa una proposizione, vera o falsa, per ogni valore della variabile preso dal dominio.
+:::
+
+::: domanda Quando è vera $\forall x\, P(x)$? E $\exists x\, P(x)$?
+$\forall x\, P(x)$ quando $P(x)$ è vera per tutti gli $x$ del dominio; $\exists x\, P(x)$ quando è vera per almeno un $x$.
+:::
+
+::: domanda Che cos'è un controesempio? E un testimone?
+Un controesempio a $\forall x\, P(x)$ è un $x$ con $P(x)$ falsa. Un testimone di $\exists x\, P(x)$ è un $x$ con $P(x)$ vera.
+:::
+
+::: domanda Come si nega $\forall x\, P(x)$? E $\exists x\, P(x)$?
+$\neg\,\forall x\, P(x) \equiv \exists x\,\neg P(x)$ e $\neg\,\exists x\, P(x) \equiv \forall x\,\neg P(x)$: sono le leggi di De Morgan per i quantificatori.
+:::
+
+::: domanda Perché «ogni A è B» si traduce con la freccia e non con la congiunzione?
+Perché la frase parla solo degli A: per ogni elemento, se è un A allora è un B. Con la congiunzione si direbbe che tutti gli elementi del dominio sono A e B.
+:::
+
+::: domanda Un programma può dimostrare un «per ogni» su un dominio infinito?
+No: può trovare un controesempio, ma se la frase è vera non finisce mai di controllare.
+:::
+
+## Glossario
+
+```glossario
+Funzione proposizionale | Un'affermazione con una variabile, che diventa una proposizione per ogni valore del dominio.
+Dominio | L'insieme dei valori che la variabile può prendere.
+Quantificatore universale | ∀, «per ogni»: la frase è vera se lo è per tutti i valori del dominio.
+Quantificatore esistenziale | ∃, «esiste»: la frase è vera se lo è per almeno un valore.
+Controesempio | Un valore che rende falsa P(x), e quindi falsa ∀x P(x).
+Testimone | Un valore che rende vera P(x), e quindi vera ∃x P(x).
+Leggi di De Morgan generalizzate | ¬∀x P(x) equivale a ∃x ¬P(x); ¬∃x P(x) equivale a ∀x ¬P(x).
+```
+
+## Checklist
+
+```checklist
+- So dire che cos'è una funzione proposizionale e che cos'è il dominio.
+- So quando è vera una frase con ∀ e quando una con ∃.
+- So che per smentire un ∀ basta un controesempio, e per dimostrare un ∃ basta un testimone.
+- So che il dominio può cambiare la risposta.
+- So come un programma controlla un quantificatore su un dominio finito, e perché non basta su uno infinito.
+- So tradurre «ogni A è B» con la freccia e «qualche A è B» con la congiunzione.
+- So negare una frase con un quantificatore, anche «ogni A è B».
+- Non confondo «non tutti» con «nessuno».
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 1), §1.5 «Quantifiers»: funzione proposizionale e dominio, quantificatore universale e controesempio, quantificatore esistenziale, leggi di De Morgan generalizzate; le domande di ripasso 1–10 e gli esercizi 7, 10, 13, 32, 35, 38, 39, 42, 45, 47, 48, 51, 52, 53, 59, 61–70 e le domande 10, 11, 18 e 19 dell'autoverifica del capitolo 1, con le soluzioni pubblicate sul Moodle del canale A ([id 3851](https://informatica.i-learn.unito.it/course/view.php?id=3851), aperto agli ospiti). Il libro non è disponibile: le frasi degli esercizi sono riportate come compaiono nelle soluzioni, tradotte; l'esempio 1.5.3 (a) è quello dell'edizione originale.
+- Diario del canale B: «Lezione 10. Lunedì 19 Ottobre ore 09-11. Capitolo 1.5 (Parte 2). Quantificatori. Funzione proposizionale Example 1.5.3 (a), quantificata universalmente e esistenzialmente. Capitolo 1.5 (Parte 2): programmi per i quantificatori, esempi presi da 1. Leggi di de' Morgan per quantificatori.»
+- F. Cardone, «Alcuni esempi relativi a formalizzazione, connettivi proposizionali e quantificatori», e la nota scritta a mano «Svedesi e Protestanti» (Moodle del canale A).
+- Simulazione d'esame 2 del 2023/24, quiz 6 (negazione di frasi con quantificatori), dalla «Guida degli studenti» del gruppo TSI.
+- Il programma in C l'ho scritto io e l'ho compilato con gcc 16.1, con `-Wall -Werror`; l'uscita è quella vera. I valori di verità degli esempi li ho ricontrollati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/10_quantificatori_e_connettivi.md -->
+> File: `contesto_ai/FDA/lezioni/10_quantificatori_e_connettivi.md`
+
+```yaml
+corso: FDA
+lezione: "10"
+titolo: Quantificatori, «e» e «o», e le regole di inferenza con i quantificatori
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 10 · Libro, parte 2, §1.4–1.5 ed esercizi
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 10 di Fondamenti dell'Informatica (canale B): su un dominio finito «per ogni» è una lunga
+  congiunzione ed «esiste» una lunga disgiunzione, le leggi di De Morgan per i quantificatori ricavate da quelle per
+  «e» e «o», quando un quantificatore si distribuisce su «e» e su «o», le quattro regole di inferenza con i
+  quantificatori, e due serie di domande sì/no su argomentazioni e quantificatori, con quiz ed esercizi.
+lede: >-
+  Su un dominio di quattro elementi, «per ogni x» vuol dire «per il primo, e per il secondo, e per il terzo, e per il
+  quarto». Da questa osservazione vengono le leggi di De Morgan per i quantificatori, la risposta alla domanda «posso
+  distribuire il per ogni?» e le regole per ragionare con frasi che dicono «tutti» e «qualcuno».
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 1), §1.4–1.5
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 1), §1.5 «Quantifiers», con le
+  domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A; diario del canale B
+appunti_html: appunti/FDA/10_quantificatori_e_connettivi.html
+genera_html: true
+```
+
+## In breve
+
+- Su un dominio **finito**, «per ogni» è una lunga congiunzione, con un termine per ogni elemento, ed «esiste» è una lunga disgiunzione.
+- Per questo le leggi di De Morgan per i quantificatori sono quelle per «e» e «o», con tanti termini invece di due.
+- «Per ogni» si distribuisce su «e», ma **non** su «o»; «esiste» si distribuisce su «o», ma **non** su «e».
+- Quattro regole di inferenza permettono di ragionare con i quantificatori: da «tutti» si passa a un caso qualsiasi, e da un caso qualsiasi a «tutti»; da «qualcuno» si passa a un caso, e da un caso a «qualcuno».
+- L'esempio classico: «tutti gli uomini sono mortali; Socrate è un uomo; quindi Socrate è mortale» usa la prima regola e poi il modus ponens.
+- Due serie di domande sì/no, sulle argomentazioni della [lezione 08](08_argomentazioni_regole_inferenza.html) e sui quantificatori della [lezione 09](09_quantificatori.html), allenano per i quiz.
+
+> [!CANALI]
+> Nel canale B è la lezione di giovedì 22/10, dalle 9 alle 11. Per il docente è la lezione 11, perché la prima è stata un'introduzione: qui è la 10. Il diario del canale B la annuncia così: «Analogie tra quantificatori universali e congiunzioni, quantificatori esistenziali e disgiunzioni. Prima ora. quiz Lezione 10 Regole di Inferenza (risposta sì/no). Seconda ora: quiz Lezione 11: Quantificatori». **Ho scritto questi appunti prima della lezione.** I due quiz sono quelli del docente, che non ho: le due sezioni «Allenamento» qui sotto sono domande mie nello stesso formato sì/no, tutte controllate con un programma. Il libro non è disponibile: la parte sul libro viene dal §1.5 dell'edizione originale di Johnsonbaugh e dalle soluzioni degli esercizi pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti).
+>
+> Servono le lezioni [07](07_condizionali_equivalenza_logica.html) (De Morgan), [08](08_argomentazioni_regole_inferenza.html) (regole di inferenza) e [09](09_quantificatori.html) (quantificatori). Le porte AND e OR della [lezione 01](01_bit_porte_esadecimale.html) danno un'immagine utile per la prima sezione.
+
+## «Per ogni» come una lunga «e» (libro, §1.5)
+
+Prendi un dominio con quattro elementi, i numeri 1, 2, 3 e 4. Dire che $P(x)$ è vera per ogni $x$ vuol dire che è vera per 1, e per 2, e per 3, e per 4. Dire che esiste un $x$ con $P(x)$ vuol dire che è vera per 1, o per 2, o per 3, o per 4. Sono le soluzioni degli esercizi 25 e 28 del libro:
+
+$$\forall x\, P(x) \;\equiv\; P(1) \wedge P(2) \wedge P(3) \wedge P(4), \qquad \exists x\, P(x) \;\equiv\; P(1) \vee P(2) \vee P(3) \vee P(4).$$
+
+**Come si legge.** Il quantificatore universale è una congiunzione con un termine per ogni elemento del dominio; quello esistenziale è una disgiunzione. Il simbolo $\forall$ somiglia a una $\wedge$ «grande», e anche $\exists$ si comporta come una $\vee$ grande.
+
+```grafico
+titolo: Con la luce che si accende quando la frase è vera, «per ogni» è un circuito con gli interruttori in serie, che devono essere chiusi tutti; «esiste» è un circuito in parallelo, dove ne basta uno. Sono la porta AND e la porta OR della lezione 01, con un ingresso per ogni elemento del dominio.
+x: 0 12
+y: 0 6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 3.1 5.5 | blu | "∀x P(x): in serie"
+segmento: 0.1 3 0.5 3 | grigio
+poligono: 0.5 2.55 1.95 2.55 1.95 3.45 0.5 3.45 | blu
+testo: 1.22 3 | blu | "P(1)"
+segmento: 1.95 3 2.25 3 | grigio
+poligono: 2.25 2.55 3.7 2.55 3.7 3.45 2.25 3.45 | blu
+testo: 2.97 3 | blu | "P(2)"
+segmento: 3.7 3 4 3 | grigio
+poligono: 4 2.55 5.45 2.55 5.45 3.45 4 3.45 | blu
+testo: 4.72 3 | blu | "P(3)"
+segmento: 5.45 3 5.8 3 | grigio
+cerchio: 6.1 3 0.3 | accento
+testo: 6.1 2.2 | accento | "luce"
+testo: 9.2 5.5 | ambra | "∃x P(x): in parallelo"
+segmento: 7.2 1.3 7.2 4.7 | grigio
+segmento: 7.2 4.3 7.6 4.3 | grigio
+segmento: 7.2 3 7.6 3 | grigio
+segmento: 7.2 1.7 7.6 1.7 | grigio
+poligono: 7.6 3.9 9.05 3.9 9.05 4.7 7.6 4.7 | ambra
+testo: 8.32 4.3 | ambra | "P(1)"
+poligono: 7.6 2.6 9.05 2.6 9.05 3.4 7.6 3.4 | ambra
+testo: 8.32 3 | ambra | "P(2)"
+poligono: 7.6 1.3 9.05 1.3 9.05 2.1 7.6 2.1 | ambra
+testo: 8.32 1.7 | ambra | "P(3)"
+segmento: 9.05 4.3 9.5 4.3 | grigio
+segmento: 9.05 3 9.5 3 | grigio
+segmento: 9.05 1.7 9.5 1.7 | grigio
+segmento: 9.5 1.3 9.5 4.7 | grigio
+segmento: 9.5 3 10.9 3 | grigio
+cerchio: 11.2 3 0.3 | accento
+testo: 11.2 2.2 | accento | "luce"
+```
+
+Sui domini infiniti, come gli interi, la congiunzione avrebbe infiniti termini e non si può scrivere: lì i quantificatori servono davvero. L'analogia resta però la guida giusta per capire come si comportano.
+
+::: prova Sul dominio $\{2, 3, 4\}$, scrivi senza quantificatori $\forall x\, P(x)$ ed $\exists x\, \neg P(x)$.
+$\forall x\, P(x) \equiv P(2) \wedge P(3) \wedge P(4)$. $\exists x\, \neg P(x) \equiv \neg P(2) \vee \neg P(3) \vee \neg P(4)$.
+:::
+
+> [!RICORDA]
+> - Su un dominio finito, $\forall$ è una lunga $\wedge$ ed $\exists$ una lunga $\vee$.
+> - Sui domini infiniti l'analogia resta, ma la formula non si può più scrivere per esteso.
+
+## De Morgan, due volte la stessa legge
+
+Le leggi di De Morgan della [lezione 07](07_condizionali_equivalenza_logica.html) dicono che la negazione di una «e» è la «o» delle negazioni, e viceversa. Con tre termini:
+
+$$\neg(P(1) \wedge P(2) \wedge P(3)) \;\equiv\; \neg P(1) \vee \neg P(2) \vee \neg P(3).$$
+
+A sinistra c'è la negazione di «$P(x)$ per ogni $x$ del dominio $\{1, 2, 3\}$»; a destra «esiste un $x$ per cui $P(x)$ è falsa». È la prima legge di De Morgan per i quantificatori della [lezione 09](09_quantificatori.html):
+
+$$\neg\,\forall x\, P(x) \;\equiv\; \exists x\,\neg P(x).$$
+
+La seconda viene allo stesso modo dall'altra legge di De Morgan:
+
+$$\neg(P(1) \vee P(2) \vee P(3)) \;\equiv\; \neg P(1) \wedge \neg P(2) \wedge \neg P(3), \quad\text{cioè}\quad \neg\,\exists x\, P(x) \;\equiv\; \forall x\,\neg P(x).$$
+
+**Come si legge.** Negare scambia «e» con «o», e quindi scambia «per ogni» con «esiste». Non sono due regole da ricordare: è la stessa regola vista sui connettivi e sui quantificatori.
+
+::: prova Sul dominio $\{1, 2\}$, verifica con le due leggi di De Morgan per «e» e «o» che $\neg\,\exists x\,\neg P(x) \equiv \forall x\, P(x)$.
+$\neg\,\exists x\,\neg P(x) = \neg(\neg P(1) \vee \neg P(2)) \equiv \neg\neg P(1) \wedge \neg\neg P(2) \equiv P(1) \wedge P(2)$, che è $\forall x\, P(x)$.
+:::
+
+> [!RICORDA]
+> - Le leggi di De Morgan per i quantificatori sono quelle per «e» e «o», con un termine per ogni elemento.
+> - Negare scambia $\forall$ con $\exists$, come scambia $\wedge$ con $\vee$.
+
+## Quando un quantificatore si distribuisce
+
+L'analogia risponde a una domanda che torna spesso nei quiz: si può «aprire» un quantificatore davanti a una «e» o a una «o»? Per la «e» e il «per ogni» sì: «tutti sono alti e biondi» dice la stessa cosa di «tutti sono alti, e tutti sono biondi». È solo un rimescolamento di una lunga congiunzione.
+
+| Formula | Si distribuisce? | Perché |
+|---|---|---|
+| $\forall x\,(P(x) \wedge Q(x))$ | **sì**: $\equiv \forall x\, P(x) \wedge \forall x\, Q(x)$ | è tutta una congiunzione |
+| $\exists x\,(P(x) \vee Q(x))$ | **sì**: $\equiv \exists x\, P(x) \vee \exists x\, Q(x)$ | è tutta una disgiunzione |
+| $\forall x\,(P(x) \vee Q(x))$ | **no** | ogni $x$ può soddisfare una parte diversa |
+| $\exists x\,(P(x) \wedge Q(x))$ | **no** | le due parti possono avere testimoni diversi |
+
+> [!ESEMPIO] · I due «no», sugli interi
+> **Per ogni e «o».** «Ogni intero è positivo o non positivo», $\forall x\,(x > 0 \vee x \le 0)$, è vera. Ma «ogni intero è positivo, oppure ogni intero è non positivo» è falsa: tutte e due le parti sono false. L'esercizio 72 del libro mostra lo stesso errore con «tutti gli interi sono positivi o tutti i positivi sono interi».
+>
+> **Esiste e «e».** «Esiste un intero pari» ed «esiste un intero dispari» sono vere tutte e due. Ma «esiste un intero pari e dispari» è falsa: i testimoni delle due parti sono numeri diversi.
+
+```grafico
+titolo: Il dominio diviso in due: a sinistra gli interi positivi, a destra gli altri. Ogni intero sta in una delle due parti, quindi «ogni x è positivo o non positivo» è vera. Ma nessuna delle due parti copre tutto il dominio: «tutti positivi, oppure tutti non positivi» è falsa.
+x: 0 10
+y: 0 4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.4 0.4 5 0.4 5 3.4 0.4 3.4 | blu
+poligono: 5 0.4 9.6 0.4 9.6 3.4 5 3.4 | ambra
+testo: 2.7 2.6 | blu | "x > 0"
+testo: 7.3 2.6 | ambra | "x ≤ 0"
+testo: 2.7 1.4 | blu | "1, 2, 3, …"
+testo: 7.3 1.4 | ambra | "0, −1, −2, …"
+testo: 5 3.75 | grigio | "gli interi"
+```
+
+In un verso le due formule restano comunque collegate. Se ogni $x$ ha $P$, allora ogni $x$ ha $P$ o $Q$: da $\forall x\, P(x) \vee \forall x\, Q(x)$ segue $\forall x\,(P(x) \vee Q(x))$, ma non il contrario. E da $\exists x\,(P(x) \wedge Q(x))$ seguono $\exists x\, P(x)$ e $\exists x\, Q(x)$, ma non il contrario.
+
+::: prova Sul dominio delle persone, «esiste qualcuno che parla inglese e francese» e «esiste qualcuno che parla inglese, ed esiste qualcuno che parla francese»: quale segue dall'altra?
+Dalla prima segue la seconda: chi parla le due lingue fa da testimone per tutte e due le parti. Il contrario no: chi parla inglese e chi parla francese possono essere due persone diverse.
+:::
+
+> [!RICORDA]
+> - $\forall$ si distribuisce su $\wedge$, $\exists$ su $\vee$.
+> - $\forall$ non si distribuisce su $\vee$, ed $\exists$ non si distribuisce su $\wedge$.
+
+## Ragionare con i quantificatori: quattro regole (libro, §1.5)
+
+L'argomentazione più famosa della logica è questa: «Tutti gli uomini sono mortali. Socrate è un uomo. Quindi Socrate è mortale.» Le regole della [lezione 08](08_argomentazioni_regole_inferenza.html) non bastano a dire che è valida, perché la prima premessa parla di **tutti**. Serve un passo in più: da «per ogni $x$, se $x$ è un uomo allora è mortale» si ricava il caso particolare «se Socrate è un uomo, allora Socrate è mortale». Poi basta il modus ponens.
+
+Il libro raccoglie quattro regole di questo tipo, nelle domande di ripasso 11–14 del §1.5. $D$ è il dominio.
+
+| Regola | Premessa | Conclusione | A parole |
+|---|---|---|---|
+| **particolarizzazione universale** | $\forall x\, P(x)$ | $P(d)$, per ogni $d$ in $D$ | ciò che vale per tutti vale per ciascuno |
+| **generalizzazione universale** | $P(d)$ per ogni $d$ in $D$ | $\forall x\, P(x)$ | se vale per un elemento **qualsiasi**, vale per tutti |
+| **particolarizzazione esistenziale** | $\exists x\, P(x)$ | $P(d)$ per **qualche** $d$ in $D$ | c'è un testimone, anche se non si sa quale |
+| **generalizzazione esistenziale** | $P(d)$ per qualche $d$ in $D$ | $\exists x\, P(x)$ | un esempio basta per dire «esiste» |
+
+**Come si legge.** In inglese le regole si chiamano *universal instantiation*, *universal generalization*, *existential instantiation* ed *existential generalization*; in italiano si trovano anche «istanziazione» al posto di «particolarizzazione».
+
+> [!TRAPPOLA] Le due regole delicate
+> - **Generalizzazione universale.** Vale solo se $d$ è davvero **qualsiasi**: il ragionamento non deve usare niente di particolare su $d$. Da «2 è pari» non segue «ogni numero è pari».
+> - **Particolarizzazione esistenziale.** Dà un testimone $d$, ma non si sceglie quale: non si può decidere che sia un elemento già nominato. Da «qualcuno ha rubato la torta» non segue «Bruno ha rubato la torta».
+
+> [!ESEMPIO] · La calcolatrice di Ralphie (esercizio 76 del libro)
+> **Situazione:** «Ogni studente del corso ha una calcolatrice grafica. Chi ha una calcolatrice grafica capisce la trigonometria. Ralphie è uno studente del corso. Quindi Ralphie capisce la trigonometria.» Il dominio sono gli studenti del corso.
+>
+> **Passo 1: le formule.** $P(x)$ = «$x$ ha una calcolatrice grafica», $Q(x)$ = «$x$ capisce la trigonometria». Premesse: $\forall x\, P(x)$ e $\forall x\,(P(x) \to Q(x))$.
+>
+> **Passo 2: particolarizzazione universale**, due volte, con $d$ = Ralphie: $P(\text{Ralphie})$ e $P(\text{Ralphie}) \to Q(\text{Ralphie})$.
+>
+> **Passo 3: modus ponens.** $Q(\text{Ralphie})$: Ralphie capisce la trigonometria. L'argomentazione è valida.
+
+::: prova Che regole servono per «Tutti gli iscritti hanno la matricola. Anna è iscritta. Quindi qualcuno ha la matricola»?
+Con $I(x)$ = «$x$ è iscritto» e $M(x)$ = «$x$ ha la matricola», la premessa è $\forall x\,(I(x) \to M(x))$. Particolarizzazione universale con $d$ = Anna: $I(\text{Anna}) \to M(\text{Anna})$. Modus ponens con $I(\text{Anna})$: $M(\text{Anna})$. Generalizzazione esistenziale: $\exists x\, M(x)$.
+:::
+
+> [!RICORDA]
+> - Particolarizzazione universale: da «tutti» a un caso; generalizzazione esistenziale: da un caso a «qualcuno».
+> - La generalizzazione universale chiede un elemento qualsiasi; la particolarizzazione esistenziale non sceglie il testimone.
+
+## Allenamento: regole di inferenza, sì o no
+
+Nella prima ora il docente fa un quiz sulle regole di inferenza con risposta sì o no. Il quiz del docente non l'ho visto. Le domande qui sotto sono mie, nello stesso formato, e ognuna è controllata su tutte le righe della tavola. Per ognuna: l'argomentazione è valida? Se no, il controesempio.
+
+| | Argomentazione | Valida? | Perché |
+|:-:|---|:-:|---|
+| a | $p \to q,\ q \to r \;/\; \therefore p \to r$ | sì | sillogismo ipotetico |
+| b | $p \vee q,\ p \;/\; \therefore \neg q$ | no | l'«o» è inclusivo: $p$ = V, $q$ = V |
+| c | $p \to q,\ \neg p \;/\; \therefore \neg q$ | no | negare l'antecedente: $p$ = F, $q$ = V |
+| d | $\neg(p \wedge q),\ p \;/\; \therefore \neg q$ | sì | De Morgan, poi sillogismo disgiuntivo |
+| e | $p \to q,\ p \to r \;/\; \therefore p \to (q \wedge r)$ | sì | se $p$ è vera, lo sono $q$ e $r$ |
+| f | $p \to r,\ q \to r \;/\; \therefore (p \vee q) \to r$ | sì | ragionamento per casi |
+| g | $p \to (q \vee r),\ p \;/\; \therefore q$ | no | $p$ = V, $q$ = F, $r$ = V |
+| h | $p \to q \;/\; \therefore q \to p$ | no | l'inversa: $p$ = F, $q$ = V |
+
+**Come si legge.** Per un «no» basta una riga con le premesse vere e la conclusione falsa. Per un «sì» bisogna sapere che quella riga non c'è: o perché è una regola nota, o perché provando a costruirla si arriva a una contraddizione.
+
+::: prova Sì o no: (1) $p \to q \;/\; \therefore \neg q \to \neg p$; (2) $(p \vee q) \to r \;/\; \therefore p \to r$; (3) $p \wedge q \;/\; \therefore p \vee r$.
+(1) Sì: è la contronominale, equivalente alla premessa (lezione 07). (2) Sì: se $p$ è vera, anche $p \vee q$ lo è, e quindi $r$. (3) Sì: semplificazione, poi addizione.
+:::
+
+> [!RICORDA]
+> - Per il «no» basta un controesempio; per il «sì» bisogna escluderli tutti.
+> - Gli errori che tornano sempre: l'«o» letto come esclusivo, negare l'antecedente, affermare il conseguente, scambiare una freccia con la sua inversa.
+
+## Allenamento: quantificatori, sì o no
+
+Nella seconda ora il quiz è sui quantificatori. Anche qui le domande sono mie, nel formato sì/no, controllate con un programma sugli interi da −20 a 20 e, dove serve, con un ragionamento.
+
+| | Domanda (dominio: gli interi, salvo dove indicato) | Risposta | Perché |
+|:-:|---|:-:|---|
+| a | $\forall x\,(x^2 \ge 0)$ è vera? | sì | un quadrato non è mai negativo |
+| b | $\exists x\,(x^2 = 3)$ è vera? | no | $1^2 = 1$, $2^2 = 4$: 3 non è un quadrato |
+| c | $\forall x\,(x \text{ pari} \to x^2 \text{ pari})$ è vera? | sì | $(2k)^2 = 4k^2$ |
+| d | $\exists x\,(5 < x \wedge x < 6)$ è vera? E sui reali? | no; sì | tra 5 e 6 non ci sono interi; 5,5 è un reale |
+| e | $\neg\,\forall x\,(x > 0)$ equivale a $\exists x\,(x \le 0)$? | sì | De Morgan, e il contrario di $>$ è $\le$ |
+| f | $\forall x\,(P(x) \vee Q(x))$ equivale a $\forall x\, P(x) \vee \forall x\, Q(x)$? | no | positivi e non positivi |
+| g | Da $\forall x\, P(x)$ segue $\exists x\, P(x)$? | sì | il dominio non è vuoto: un suo elemento fa da testimone |
+| h | Da $\exists x\, P(x)$ segue $\forall x\, P(x)$? | no | un testimone non dice niente sugli altri |
+
+> [!NOTA] Il dominio vuoto
+> La risposta (g) usa il fatto che il dominio ha almeno un elemento, come in tutti gli esempi del libro. Su un dominio vuoto ogni «per ogni» sarebbe vero, perché non ci sono controesempi, e ogni «esiste» falso.
+
+::: prova Sì o no, sugli interi: (1) $\exists x\,(x^2 = x)$; (2) $\forall x\,(x^2 > x)$; (3) $\neg\,\exists x\,(x < x)$.
+(1) Sì: $x = 0$ e $x = 1$. (2) No: controesempio $x = 0$. (3) Sì: nessun numero è minore di sé stesso, quindi $\exists x\,(x < x)$ è falsa e la sua negazione è vera.
+:::
+
+> [!RICORDA]
+> - Per un $\forall$ cerca prima un controesempio, per un $\exists$ un testimone.
+> - Guarda sempre il dominio: interi e reali danno risposte diverse.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\forall x\, P(x)$ | «per ogni x, P di x» | su un dominio finito, $P(d_1) \wedge \dots \wedge P(d_n)$ | $P(1) \wedge P(2)$ su $\{1, 2\}$ |
+| $\exists x\, P(x)$ | «esiste x tale per cui P di x» | su un dominio finito, $P(d_1) \vee \dots \vee P(d_n)$ | $P(1) \vee P(2)$ su $\{1, 2\}$ |
+| $P(d)$ | «P di d» | la frase per un elemento $d$ del dominio | $P(\text{Socrate})$ |
+| $\therefore$ | «quindi» | introduce la conclusione | |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser, da 3 punti l'uno; servono almeno 18 punti.
+
+**Che cosa serve di questa lezione**
+
+1. **Domande sì/no** su argomentazioni e su frasi con quantificatori: lo stesso formato dei quiz di questa lezione. Nella simulazione 2 del 2023/24 c'è un quiz sulla negazione di frasi con quantificatori (lezione 11).
+2. **De Morgan e la distribuzione**: «posso spezzare il per ogni?» si risolve con la tabella della sezione sulla distribuzione.
+3. **Le regole con i quantificatori** servono per le dimostrazioni del capitolo 2 del libro, che arriva dopo.
+
+### Una domanda nello stile del quiz, letta insieme
+
+**Il testo**: «Sul dominio degli interi, quali di queste equivalenze sono vere? (a) $\forall x\,(P(x) \wedge Q(x)) \equiv \forall x\, P(x) \wedge \forall x\, Q(x)$; (b) $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$; (c) $\neg\,\exists x\, P(x) \equiv \forall x\, \neg P(x)$; (d) $\forall x\,(P(x) \vee Q(x)) \equiv \forall x\, P(x) \vee \forall x\, Q(x)$.»
+
+**In pratica chiede:** per ognuna, sì o no; per i «no», un esempio che le separa.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> - (a) **Sì**: è una lunga congiunzione rimescolata.
+> - (b) **No**: con $P$ = «pari» e $Q$ = «dispari» la destra è vera e la sinistra falsa.
+> - (c) **Sì**: è De Morgan per i quantificatori.
+> - (d) **No**: con $P$ = «positivo» e $Q$ = «non positivo» la sinistra è vera e la destra falsa.
+>
+> Le due risposte «no» hanno la stessa causa: le due parti della frase hanno bisogno di elementi diversi del dominio.
+
+> [!METODO] Le domande sì/no
+> 1. **Argomentazioni**: riconosci la regola o l'errore classico; altrimenti cerca un controesempio rendendo falsa la conclusione.
+> 2. **Quantificatori**: leggi il dominio; cerca un controesempio per $\forall$, un testimone per $\exists$.
+> 3. **Equivalenze con i quantificatori**: pensa al dominio come a pochi elementi e scrivi la lunga $\wedge$ o $\vee$.
+
+**Errori da evitare**
+
+- Distribuire $\forall$ su $\vee$, o $\exists$ su $\wedge$.
+- Usare la generalizzazione universale partendo da un caso particolare.
+- Dare un nome già usato al testimone di un $\exists$.
+
+## Quiz
+
+```quiz
+D: Sul dominio $\{1, 2, 3\}$, a che cosa equivale $\exists x\, P(x)$?
++ $P(1) \vee P(2) \vee P(3)$
+- $P(1) \wedge P(2) \wedge P(3)$
+- $P(1)$
+- $\neg P(1) \vee \neg P(2) \vee \neg P(3)$
+- $P(1) \to P(2) \to P(3)$
+= «Esiste» vuol dire che almeno una delle tre è vera: una disgiunzione. La risposta più insidiosa è la congiunzione, che corrisponde a $\forall x\, P(x)$. La quarta è $\exists x\,\neg P(x)$.
+
+D: Quale equivalenza è **sempre** vera?
++ $\forall x\,(P(x) \wedge Q(x)) \equiv \forall x\, P(x) \wedge \forall x\, Q(x)$
+- $\forall x\,(P(x) \vee Q(x)) \equiv \forall x\, P(x) \vee \forall x\, Q(x)$
+- $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$
+- $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$
+- $\exists x\, P(x) \equiv \forall x\, P(x)$
+= $\forall$ si distribuisce su $\wedge$. La risposta più insidiosa è la terza: «esiste un pari ed esiste un dispari» è vera, «esiste un numero pari e dispari» no. La quarta confonde «non tutti» con «nessuno».
+
+D: Da $\forall x\,(U(x) \to M(x))$ e $U(\text{Socrate})$, quali regole danno $M(\text{Socrate})$?
++ particolarizzazione universale, poi modus ponens
+- generalizzazione universale, poi modus ponens
+- particolarizzazione esistenziale, poi modus tollens
+- generalizzazione esistenziale
+- solo il modus ponens
+= Prima si passa da «tutti» al caso di Socrate: $U(\text{Socrate}) \to M(\text{Socrate})$. Poi il modus ponens. La risposta più insidiosa è «solo il modus ponens»: senza il primo passo la freccia è dentro un quantificatore, e il modus ponens non si applica.
+
+D: Quale passaggio è **sbagliato**?
++ da $P(2)$ dedurre $\forall x\, P(x)$
+- da $P(2)$ dedurre $\exists x\, P(x)$
+- da $\forall x\, P(x)$ dedurre $P(2)$
+- da $\forall x\, P(x)$ dedurre $\exists x\, P(x)$, su un dominio non vuoto
+- da $\neg\,\exists x\, P(x)$ dedurre $\neg P(2)$
+= La generalizzazione universale chiede un elemento qualsiasi, non il 2. La risposta più insidiosa è l'ultima, che è corretta: $\neg\,\exists x\, P(x)$ equivale a $\forall x\,\neg P(x)$, e da lì si passa al caso del 2.
+
+D: L'argomentazione $p \vee q,\ p \;/\; \therefore \neg q$ è valida?
++ No: con $p$ e $q$ vere le premesse sono vere e la conclusione falsa
+- Sì: è il sillogismo disgiuntivo
+- Sì: è la semplificazione
+- No: con $p$ falsa e $q$ vera
+- Sì, se l'«o» è inclusivo
+= L'«o» della logica è inclusivo: $p$ vera non esclude $q$ vera. La risposta più insidiosa è il sillogismo disgiuntivo, che parte da $\neg p$, non da $p$. Con $p$ falsa la seconda premessa è falsa, quindi la riga non è un controesempio.
+
+D: Sugli interi, $\exists x\,(5 < x \wedge x < 6)$ è vera?
++ No: tra 5 e 6 non c'è nessun intero
+- Sì: $x = 5{,}5$
+- Sì: $x = 5$
+- Sì: $x = 6$
+- Non si può dire senza un programma
+= Il dominio sono gli interi, e 5,5 non lo è. Sui reali la frase sarebbe vera. La risposta più insidiosa è 5,5, che ignora il dominio; 5 e 6 non rispettano le disuguaglianze strette.
+
+D: Quante delle argomentazioni seguenti sono valide? $p \to q,\ q \to r \;/\; \therefore p \to r$; $p \to q \;/\; \therefore q \to p$; $p \to r,\ q \to r \;/\; \therefore (p \vee q) \to r$; $p \to q,\ \neg p \;/\; \therefore \neg q$.
+N: 2
+= La prima (sillogismo ipotetico) e la terza (ragionamento per casi). La seconda è l'inversa e la quarta nega l'antecedente: tutte e due hanno il controesempio $p$ = F, $q$ = V.
+
+D: Da $\exists x\,(P(x) \wedge Q(x))$ che cosa segue?
++ $\exists x\, P(x) \wedge \exists x\, Q(x)$
+- $\forall x\, P(x)$
+- $\forall x\,(P(x) \to Q(x))$
+- $\exists x\, P(x) \wedge \forall x\, Q(x)$
+- niente
+= Il testimone della congiunzione è testimone di tutte e due le parti. Il viceversa non vale. La risposta più insidiosa è $\forall x\,(P(x) \to Q(x))$: un solo elemento con $P$ e $Q$ non dice niente degli altri.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: per esteso
+Sul dominio $\{1, 2, 3, 4\}$ scrivi senza quantificatori: (a) $\forall x\, P(x)$; (b) $\exists x\, P(x)$; (c) $\neg\,\forall x\, P(x)$, prima con De Morgan per «e» e poi con De Morgan per i quantificatori.
+::: soluzione
+(a) $P(1) \wedge P(2) \wedge P(3) \wedge P(4)$ (esercizio 25 del libro). (b) $P(1) \vee P(2) \vee P(3) \vee P(4)$ (esercizio 28). (c) $\neg P(1) \vee \neg P(2) \vee \neg P(3) \vee \neg P(4)$, che è $\exists x\, \neg P(x)$: le due strade danno lo stesso risultato.
+:::
+
+::: esercizio base Riscaldamento: distribuire
+Di' se sono equivalenti, e dai un controesempio quando non lo sono. Dominio: le persone. (a) «Tutti sanno nuotare e sciare» e «tutti sanno nuotare, e tutti sanno sciare». (b) «Qualcuno è medico o avvocato» e «qualcuno è medico, o qualcuno è avvocato». (c) «Ognuno è maggiorenne o minorenne» e «tutti sono maggiorenni, o tutti sono minorenni».
+::: soluzione
+(a) Sì: $\forall$ si distribuisce su $\wedge$. (b) Sì: $\exists$ si distribuisce su $\vee$. (c) No: la prima è vera, la seconda falsa appena ci sono almeno un maggiorenne e almeno un minorenne.
+:::
+
+::: esercizio medio Le regole con i quantificatori
+Scrivi con le formule e mostra che è valida, dicendo le regole usate: «Ogni numero divisibile per 4 è pari. 12 è divisibile per 4. Quindi esiste un numero pari.»
+::: soluzione
+Con $Q(x)$ = «$x$ è divisibile per 4» e $P(x)$ = «$x$ è pari»: premesse $\forall x\,(Q(x) \to P(x))$ e $Q(12)$. Particolarizzazione universale con 12: $Q(12) \to P(12)$. Modus ponens: $P(12)$. Generalizzazione esistenziale: $\exists x\, P(x)$.
+:::
+
+::: esercizio medio Dove sbaglia?
+Trova il passaggio sbagliato: «Qualche studente ha preso 30. Qualche studente è di Torino. Quindi qualche studente di Torino ha preso 30.»
+::: soluzione
+Con la particolarizzazione esistenziale, la prima premessa dà uno studente $a$ che ha preso 30, la seconda uno studente $b$ di Torino. L'errore è supporre che $a$ e $b$ siano la stessa persona: ogni particolarizzazione esistenziale dà un testimone nuovo. È il caso di $\exists$ che non si distribuisce su $\wedge$, letto al contrario.
+:::
+
+::: esercizio esame Sì o no
+Rispondi sì o no e giustifica in una riga. (a) $p \to q,\ \neg q \;/\; \therefore \neg p$ è valida? (b) $\neg(p \to q) \equiv p \wedge \neg q$? (c) Sui reali, $\exists x\,(x^2 = 4)$ è vera? (d) $\neg\,\forall x\,(P(x) \to Q(x)) \equiv \exists x\,(P(x) \wedge \neg Q(x))$? (e) Da $\forall x\,(P(x) \vee Q(x))$ e $\neg P(3)$ segue $Q(3)$?
+::: soluzione
+(a) Sì: modus tollens. (b) Sì: la freccia è falsa solo con ipotesi vera e conclusione falsa (lezione 07). (c) Sì: testimoni 2 e −2. (d) Sì: De Morgan per i quantificatori, poi la regola (b). (e) Sì: particolarizzazione universale con 3, poi sillogismo disgiuntivo.
+:::
+
+## Domande di ripasso
+
+::: domanda Su un dominio finito, a che cosa corrispondono «per ogni» ed «esiste»?
+«Per ogni» a una congiunzione con un termine per ogni elemento, «esiste» a una disgiunzione.
+:::
+
+::: domanda Da dove vengono le leggi di De Morgan per i quantificatori?
+Dalle leggi di De Morgan per «e» e «o», applicate alla lunga congiunzione o disgiunzione.
+:::
+
+::: domanda Su quale connettivo si distribuisce il «per ogni»? E l'«esiste»?
+Il «per ogni» sulla congiunzione, l'«esiste» sulla disgiunzione. Negli altri due casi no.
+:::
+
+::: domanda Che cosa dice la particolarizzazione universale?
+Che da $\forall x\, P(x)$ segue $P(d)$ per ogni elemento $d$ del dominio.
+:::
+
+::: domanda Quando si può usare la generalizzazione universale?
+Quando $P(d)$ è stata dimostrata per un $d$ qualsiasi, senza usare niente di particolare su $d$.
+:::
+
+## Glossario
+
+```glossario
+Particolarizzazione universale | Da ∀x P(x) segue P(d) per ogni d del dominio.
+Generalizzazione universale | Da P(d) per un d qualsiasi segue ∀x P(x).
+Particolarizzazione esistenziale | Da ∃x P(x) segue P(d) per qualche d, che non si sceglie.
+Generalizzazione esistenziale | Da P(d) per qualche d segue ∃x P(x).
+Distributività | ∀ si distribuisce su ∧, ∃ su ∨; negli altri due casi no.
+```
+
+## Checklist
+
+```checklist
+- So scrivere ∀ ed ∃ come congiunzione e disgiunzione su un dominio finito.
+- So ricavare le leggi di De Morgan per i quantificatori da quelle per «e» e «o».
+- So quando un quantificatore si distribuisce e quando no, con un controesempio.
+- So le quattro regole di inferenza con i quantificatori e quando usarle.
+- So risolvere l'argomentazione di Socrate e quella di Ralphie.
+- So rispondere sì o no a domande su argomentazioni e quantificatori, con un controesempio per i «no».
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 1), §1.5 «Quantifiers»: domande di ripasso 11–14 (regole di inferenza con i quantificatori) ed esercizi 25, 28, 72 e 76, con le soluzioni pubblicate sul Moodle del canale A ([id 3851](https://informatica.i-learn.unito.it/course/view.php?id=3851), aperto agli ospiti). Il libro non è disponibile: le frasi degli esercizi sono riportate come compaiono nelle soluzioni, tradotte.
+- Diario del canale B: «Lezione 11. Giovedì 22 Ottobre ore 09-11. Analogie tra quantificatori universali e congiunzioni, quantificatori esistenziali e disgiunzioni. Prima ora. quiz Lezione 10 Regole di Inferenza (risposta sì/no). Seconda ora: quiz Lezione 11: Quantificatori». Appunti scritti prima della lezione.
+- Le domande delle due sezioni «Allenamento», i quiz e gli esercizi senza indicazione sono di questi appunti. Le argomentazioni le ho controllate con un programma su tutte le righe della tavola, le frasi sugli interi su tutti gli interi da −20 a 20, le distribuzioni su tutte le coppie di predicati di un dominio di tre elementi.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/11_quantificatori_annidati.md -->
+> File: `contesto_ai/FDA/lezioni/11_quantificatori_annidati.md`
+
+```yaml
+corso: FDA
+lezione: "11"
+titolo: Quantificatori annidati
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 11 · Libro, parte 2, §1.6
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 11 di Fondamenti dell'Informatica (canale B): funzioni proposizionali con due variabili, le
+  quattro combinazioni di «per ogni» ed «esiste», perché l'ordine dei quantificatori conta, il gioco contro
+  l'avversario per decidere se una frase è vera, la negazione di frasi con più quantificatori, la traduzione dal
+  linguaggio comune, con il quiz 6 della simulazione d'esame 2 del 2023/24, quiz ed esercizi.
+lede: >-
+  «Ognuno ama qualcuno» e «qualcuno è amato da tutti» usano gli stessi due quantificatori, in un ordine diverso, e
+  dicono cose molto diverse. Qui si vede come leggere, decidere e negare le frasi con due o più quantificatori.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 1), §1.6
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2–3 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 1), §1.6 «Nested Quantifiers», con
+  le domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A; diario del canale B;
+  simulazione d'esame 2 del 2023/24, quiz 6; F. Cardone, «Alcuni esempi relativi a formalizzazione, connettivi
+  proposizionali e quantificatori» (Moodle del canale A)
+appunti_html: appunti/FDA/11_quantificatori_annidati.html
+genera_html: true
+```
+
+## In breve
+
+- Una funzione proposizionale può avere **due variabili**, come «la ragazza $d$ ha ballato con il ragazzo $u$». Per farne una proposizione servono due quantificatori, uno per variabile.
+- Le combinazioni sono quattro: «per ogni… per ogni», «per ogni… esiste», «esiste… per ogni», «esiste… esiste».
+- **L'ordine conta.** Sugli interi «per ogni numero ce n'è uno più grande» è vera, «c'è un numero più grande di tutti» è falsa. Nella prima il secondo numero cambia con il primo; nella seconda deve essere uno solo.
+- Per decidere se una frase è vera si può **giocare**: l'avversario sceglie i valori delle variabili con «per ogni», tu quelli con «esiste». La frase è vera se vinci comunque giochi l'avversario.
+- Per **negare** si scorre la frase da sinistra: ogni «per ogni» diventa «esiste», ogni «esiste» diventa «per ogni», e la negazione finisce sulla frase interna.
+- All'esame: il quiz 6 della simulazione 2 del 2023/24 chiede proprio di negare quattro frasi con due quantificatori.
+
+> [!CANALI]
+> Nel canale B è la lezione di venerdì 23/10, dalle 11 alle 13. Per il docente è la lezione 12, perché la prima è stata un'introduzione: qui è la 11. Il diario del canale B la annuncia così: «Capitolo 1.6 (Parte 2). Quantificatori annidati». **Ho scritto questi appunti prima della lezione**, sul §1.6 dell'edizione originale di Johnsonbaugh e sulle soluzioni degli esercizi pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti): il libro non è disponibile. L'esempio del ballo viene dalla simulazione d'esame 2 del 2023/24.
+>
+> Servono le lezioni [09](09_quantificatori.html) e [10](10_quantificatori_e_connettivi.html). Nel canale A gli stessi argomenti sono negli esempi delle note di Felice Cardone, che usano anche i quantificatori «ristretti», come «per ogni $x$ in $A$».
+
+## Frasi con due variabili (libro, §1.6)
+
+Alla festa del corso ci sono tre ragazze, Anna, Bice e Carla, e due ragazzi, Dario ed Ezio. Anna ha ballato con tutti e due, Bice solo con Dario, Carla con nessuno. La frase «$d$ ha ballato con $u$», con $d$ tra le ragazze e $u$ tra i ragazzi, si scrive $B(d, u)$: è una funzione proposizionale con **due** variabili.
+
+```grafico
+titolo: Chi ha ballato con chi: una freccia da $d$ a $u$ vuol dire che $B(d, u)$ è vera. Anna ha ballato con tutti e due i ragazzi, Bice solo con Dario, Carla con nessuno.
+x: 0 11
+y: 0 6
+assi: no
+griglia: no
+proporzioni: libere
+cerchio: 2.6 3 2.2 | rosa
+cerchio: 8.4 3 2.2 | blu
+testo: 2.6 5.65 | rosa | "ragazze"
+testo: 8.4 5.65 | blu | "ragazzi"
+punto: 3.3 4.3 | rosa
+punto: 3.3 3 | rosa
+punto: 3.3 1.7 | rosa
+testo: 2.1 4.3 | rosa | "Anna"
+testo: 2.1 3 | rosa | "Bice"
+testo: 2.1 1.7 | rosa | "Carla"
+punto: 7.7 3.8 | blu
+punto: 7.7 2.2 | blu
+testo: 8.95 3.8 | blu | "Dario"
+testo: 8.95 2.2 | blu | "Ezio"
+freccia: 3.45 4.25 7.55 3.85 | grigio
+freccia: 3.45 4.2 7.55 2.3 | grigio
+freccia: 3.45 3 7.55 3.75 | grigio
+```
+
+Per ottenere una proposizione bisogna fissare **tutte e due** le variabili: o con un valore, come $B(\text{Bice}, \text{Dario})$, che è vera, o con un quantificatore per ciascuna. Il dominio è l'insieme delle coppie (ragazza, ragazzo), il prodotto cartesiano $X \times Y$ della [lezione D03 di Matematica Discreta](../MDAG/D03_prodotto_cartesiano_relazioni.html).
+
+::: prova Quante proposizioni $B(d, u)$ ci sono in tutto, e quante sono vere?
+Le coppie sono $3 \cdot 2 = 6$. Le vere sono 3, una per freccia: (Anna, Dario), (Anna, Ezio), (Bice, Dario).
+:::
+
+> [!RICORDA]
+> - Una funzione proposizionale con due variabili ha come dominio le coppie.
+> - Servono due quantificatori, o un valore per ogni variabile, per avere una proposizione.
+
+## Le quattro combinazioni (libro, §1.6)
+
+Con due quantificatori e due variabili ci sono quattro frasi da leggere sul disegno. Ognuna si legge **da sinistra a destra**: il primo quantificatore sceglie la ragazza, il secondo il ragazzo.
+
+| Formula | A parole | Sul disegno |
+|---|---|---|
+| $\forall d\, \forall u\, B(d, u)$ | ogni ragazza ha ballato con ogni ragazzo | **falsa**: Carla con nessuno |
+| $\forall d\, \exists u\, B(d, u)$ | ogni ragazza ha ballato con qualche ragazzo | **falsa**: Carla con nessuno |
+| $\exists d\, \forall u\, B(d, u)$ | qualche ragazza ha ballato con ogni ragazzo | **vera**: Anna |
+| $\exists d\, \exists u\, B(d, u)$ | qualche ragazza ha ballato con qualche ragazzo | **vera**: per esempio Bice e Dario |
+
+**Come si legge.** Le domande di ripasso 1–4 del §1.6 danno la regola per ciascuna:
+
+- «per ogni… per ogni» è vera se la frase interna è vera per **tutte** le coppie; basta una coppia falsa per renderla falsa;
+- «per ogni… esiste» è vera se, per ogni valore della prima variabile, si trova **almeno un** valore della seconda, che può cambiare con la prima;
+- «esiste… per ogni» è vera se c'è **un** valore della prima variabile che va bene con **tutti** i valori della seconda;
+- «esiste… esiste» è vera se c'è **almeno una** coppia vera.
+
+Due quantificatori dello stesso tipo si possono scambiare: due «per ogni» di seguito, o due «esiste», dicono la stessa cosa in qualunque ordine. Con tipi diversi no, ed è l'argomento della prossima sezione.
+
+::: prova Sul disegno, $\forall u\, \exists d\, B(d, u)$ è vera? Leggila a parole prima di rispondere.
+«Ogni ragazzo ha ballato con qualche ragazza». È vera: Dario ha ballato con Anna (e con Bice), Ezio con Anna.
+:::
+
+> [!RICORDA]
+> - Si legge da sinistra a destra: il primo quantificatore sceglie per primo.
+> - Due quantificatori dello stesso tipo si possono scambiare.
+
+## L'ordine conta
+
+Prendi i numeri interi e il confronto «minore o uguale». «Per ogni $x$ esiste $y$ con $x \le y$» è vera: per un intero qualsiasi basta prendere $y = x$. «Esiste $x$ tale che per ogni $y$, $x \le y$» è falsa: direbbe che c'è un intero più piccolo di tutti, e qualunque $x$ si scelga, $y = x - 1$ è più piccolo. È la domanda di ripasso 5 del §1.6.
+
+$$\forall x\, \exists y\,(x \le y) \;\text{ vera}, \qquad \exists x\, \forall y\,(x \le y) \;\text{ falsa}.$$
+
+**Come si legge.** Nella prima frase il secondo numero si sceglie **dopo** il primo, e può cambiare con lui: per 3 si prende 3, per 10 si prende 10. Nella seconda si sceglie **un** numero prima, e quello deve funzionare contro tutti gli altri.
+
+```grafico
+titolo: A sinistra «per ogni $x$ esiste $y$»: ogni $x$ ha la sua freccia, e le frecce possono arrivare in punti diversi. A destra «esiste $y$ per ogni $x$»: tutte le frecce arrivano nello stesso $y$.
+x: 0 12
+y: 0 5
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.9 4.6 | blu | "∀x ∃y"
+punto: 1.2 3.4 | blu
+punto: 1.2 2.2 | blu
+punto: 1.2 1 | blu
+punto: 4.6 3.4 | ambra
+punto: 4.6 2.2 | ambra
+punto: 4.6 1 | ambra
+freccia: 1.35 3.4 4.45 3.4 | grigio
+freccia: 1.35 2.2 4.45 2.2 | grigio
+freccia: 1.35 1 4.45 1 | grigio
+testo: 9.1 4.6 | blu | "∃y ∀x"
+punto: 7.4 3.4 | blu
+punto: 7.4 2.2 | blu
+punto: 7.4 1 | blu
+punto: 10.8 2.2 | ambra
+freccia: 7.55 3.35 10.65 2.3 | grigio
+freccia: 7.55 2.2 10.65 2.2 | grigio
+freccia: 7.55 1.05 10.65 2.1 | grigio
+testo: 1.2 0.3 | blu | "x"
+testo: 4.6 0.3 | ambra | "y"
+testo: 7.4 0.3 | blu | "x"
+testo: 10.8 0.3 | ambra | "y"
+```
+
+> [!ESEMPIO] · Ognuno ama qualcuno, qualcuno è amato da tutti
+> **Situazione:** $A(x, y)$ = «$x$ ama $y$», sul dominio delle persone.
+>
+> **Passo 1.** $\forall x\, \exists y\, A(x, y)$: «ognuno ama qualcuno». Ognuno può amare una persona diversa. È la soluzione dell'esercizio 37 del libro.
+>
+> **Passo 2.** $\exists y\, \forall x\, A(x, y)$: «c'è qualcuno che è amato da tutti». Qui la persona amata è **una sola**, la stessa per tutti.
+>
+> **Passo 3.** La seconda dice molto di più della prima. Se c'è una persona amata da tutti, allora ognuno ama qualcuno, cioè lei. Il contrario non vale.
+
+> [!TEOREMA] Da «esiste… per ogni» segue «per ogni… esiste»
+> Se $\exists x\, \forall y\, P(x, y)$ è vera, allora è vera anche $\forall y\, \exists x\, P(x, y)$. Il viceversa in generale è falso.
+
+**Come si legge.** Se una scelta va bene per tutti, allora ognuno ha una scelta che va bene: la stessa. Se il valore $x_0$ funziona per tutti gli $y$, per ogni $y$ basta prendere proprio $x_0$. Nel viceversa ogni $y$ può avere il suo $x$, e non è sicuro che ce ne sia uno buono per tutti.
+
+::: prova Sui numeri reali, $\forall x\, \exists y\,(x + y = 0)$ è vera? E $\exists y\, \forall x\,(x + y = 0)$?
+La prima è vera: per ogni $x$ si prende $y = -x$. La seconda è falsa: un solo $y$ dovrebbe dare 0 sommato a ogni $x$, ma con $x = 0$ serve $y = 0$ e con $x = 1$ serve $y = -1$.
+:::
+
+> [!RICORDA]
+> - In «per ogni… esiste» il secondo valore può cambiare con il primo; in «esiste… per ogni» è uno solo.
+> - «Esiste… per ogni» implica «per ogni… esiste», non il contrario.
+
+## Il gioco contro l'avversario (libro, §1.6)
+
+Per decidere se una frase con molti quantificatori è vera, il libro propone un gioco a due, nella domanda di ripasso 10 del §1.6. Tu vuoi rendere vera la frase interna, l'avversario vuole renderla falsa. Si leggono i quantificatori da sinistra:
+
+- per un **$\forall$** sceglie il valore **l'avversario**, che cercherà il caso peggiore per te;
+- per un **$\exists$** scegli **tu**, e puoi guardare i valori già scelti.
+
+Alla fine, se la frase interna è vera vinci tu. La frase quantificata è **vera** se tu hai un modo di vincere **comunque** giochi l'avversario, ed è **falsa** se l'avversario ha un modo di vincere comunque giochi tu.
+
+> [!ESEMPIO] · Tre partite (esercizi 48, 60 e 63 del libro, sui reali)
+> **$\forall x\, \forall y\,(x^2 < y + 1)$.** L'avversario sceglie tutti e due: $x = 2$, $y = 0$. Viene $4 < 1$, falso. Vince l'avversario: la frase è **falsa**.
+>
+> **$\exists x\, \forall y\,(x^2 + y^2 \ge 0)$.** Scegli tu $x = 0$; qualunque $y$ scelga l'avversario, $y^2 \ge 0$. Vinci tu: la frase è **vera**.
+>
+> **$\forall x\, \exists y\,(x < y \to x^2 < y^2)$.** L'avversario sceglie $x$; tu rispondi con $y = x - 1$. Allora $x < y$ è falsa e la freccia è vera a vuoto. Vinci sempre: la frase è **vera**.
+
+> [!ESEMPIO] · Il dominio decide la partita
+> **Situazione:** $\forall x\, \forall y\, \exists z\,\bigl(x < y \to (x < z \wedge z < y)\bigr)$: «tra due numeri diversi ce n'è sempre un terzo».
+>
+> **Sugli interi** l'avversario sceglie $x = 1$, $y = 2$: nessun intero $z$ sta strettamente tra 1 e 2. La frase è **falsa**; è la soluzione dell'esercizio 72 del libro.
+>
+> **Sui reali** rispondi sempre con $z = \frac{x + y}{2}$, il punto medio. La frase è **vera**.
+
+::: prova Gioca la partita per $\forall x\, \exists y\,(x = y^3)$ sui reali. Chi vince?
+Vinci tu: qualunque $x$ scelga l'avversario, rispondi con $y$ = la radice cubica di $x$, che esiste per ogni numero reale. La frase è vera: «ogni numero reale ha una radice cubica», domanda 22 dell'autoverifica del capitolo 1. Con $y^2$ al posto di $y^3$ l'avversario vincerebbe scegliendo $x = -1$.
+:::
+
+> [!RICORDA]
+> - Per $\forall$ sceglie l'avversario, per $\exists$ scegli tu, nell'ordine in cui compaiono.
+> - La frase è vera se hai sempre una risposta vincente.
+
+## Negare frasi con più quantificatori (libro, §1.6)
+
+La regola della [lezione 09](09_quantificatori.html) si applica una volta per quantificatore. Si parte da sinistra, e la negazione «scivola» verso destra girando ogni quantificatore che attraversa:
+
+$$\neg\,\forall x\, \exists y\, P(x, y) \;\equiv\; \exists x\, \neg\,\exists y\, P(x, y) \;\equiv\; \exists x\, \forall y\, \neg P(x, y).$$
+
+Sono le domande di ripasso 6–9 del §1.6:
+
+| Frase | Negazione |
+|---|---|
+| $\forall x\, \forall y\, P(x, y)$ | $\exists x\, \exists y\, \neg P(x, y)$ |
+| $\forall x\, \exists y\, P(x, y)$ | $\exists x\, \forall y\, \neg P(x, y)$ |
+| $\exists x\, \forall y\, P(x, y)$ | $\forall x\, \exists y\, \neg P(x, y)$ |
+| $\exists x\, \exists y\, P(x, y)$ | $\forall x\, \forall y\, \neg P(x, y)$ |
+
+**Come si legge.** L'**ordine** delle variabili non cambia: cambia solo il **tipo** di ogni quantificatore. Con tre quantificatori è lo stesso, come nella domanda 23 dell'autoverifica:
+
+$$\neg\,\forall x\, \exists y\, \forall z\, P(x, y, z) \;\equiv\; \exists x\, \forall y\, \exists z\, \neg P(x, y, z).$$
+
+> [!ESEMPIO] · Nessuno conosce tutti
+> **Situazione:** $K(x, y)$ = «$x$ conosce $y$».
+>
+> **Passo 1: la frase.** «Ognuno conosce qualcuno» è $\forall x\, \exists y\, K(x, y)$ (domanda 13 dell'autoverifica).
+>
+> **Passo 2: la negazione.** $\exists x\, \forall y\, \neg K(x, y)$: «qualcuno non conosce nessuno». È la domanda 12 dell'autoverifica.
+
+> [!TRAPPOLA] Non si spostano le variabili
+> Negando, le variabili restano nello stesso ordine: cambia solo il tipo dei quantificatori. Un altro errore è nell'esercizio 95 del libro: girare il primo quantificatore e poi lasciare il $\neg$ davanti al secondo **senza** girare anche lui. Con il $\neg$ in mezzo, il secondo quantificatore va girato quando il $\neg$ lo attraversa.
+
+::: prova Nega spostando il $\neg$ fino in fondo: «per ogni intero $x$ esiste un intero $y$ con $x < y$».
+$\neg\,\forall x\, \exists y\,(x < y) \equiv \exists x\, \forall y\,(x \ge y)$: «esiste un intero maggiore o uguale a tutti gli interi». La frase di partenza è vera, quindi la negazione è falsa: non c'è un intero più grande di tutti.
+:::
+
+> [!RICORDA]
+> - Negando, ogni «per ogni» diventa «esiste» e viceversa; l'ordine resta.
+> - Alla fine il $\neg$ sta sulla frase interna.
+
+## Tradurre dal linguaggio comune
+
+Le frasi con due quantificatori sono quelle di tutti i giorni: «ogni studente ha un docente preferito», «c'è un libro che tutti hanno letto». Per tradurle conviene seguire sempre gli stessi passi.
+
+> [!METODO] Tradurre una frase con due quantificatori
+> 1. Trova le due variabili e il loro dominio: chi fa e chi riceve.
+> 2. Scrivi la funzione proposizionale con due variabili.
+> 3. Leggi la frase nell'ordine: chi viene scelto per primo? Quel quantificatore va a sinistra.
+> 4. Rileggi la formula ad alta voce e controlla che dica la stessa cosa.
+
+> [!ESEMPIO] · Il ballo
+> Con $B(d, u)$ = «la donna $d$ ha ballato con l'uomo $u$»:
+>
+> - «Una donna ha ballato con ogni uomo»: $\exists d\, \forall u\, B(d, u)$.
+> - «Ogni donna ha ballato con qualche uomo»: $\forall d\, \exists u\, B(d, u)$.
+> - «Tutti gli uomini hanno ballato con qualche donna»: $\forall u\, \exists d\, B(d, u)$. La variabile scelta per prima è l'uomo, anche se in $B$ compare al secondo posto.
+
+> [!APPROFONDIMENTO] Per Analisi: il limite
+> La definizione di limite che si incontra nel secondo semestre è una frase con tre quantificatori annidati (esercizio 99 del libro): $\forall \varepsilon > 0\; \exists \delta > 0\; \forall x\,\bigl(0 < \lvert x - a \rvert < \delta \to \lvert f(x) - L \rvert < \varepsilon\bigr)$. Si legge come un gioco: l'avversario sceglie la precisione $\varepsilon$, tu rispondi con una distanza $\delta$, e poi l'avversario sceglie un $x$ abbastanza vicino ad $a$.
+
+::: prova Con $L(x, y)$ = «$x$ ha letto $y$», $x$ tra gli studenti e $y$ tra i libri, traduci: (a) «c'è un libro che tutti hanno letto»; (b) «ogni studente ha letto qualche libro»; (c) nega la (a).
+(a) $\exists y\, \forall x\, L(x, y)$: il libro si sceglie per primo. (b) $\forall x\, \exists y\, L(x, y)$. (c) $\forall y\, \exists x\, \neg L(x, y)$: «per ogni libro c'è uno studente che non l'ha letto».
+:::
+
+> [!RICORDA]
+> - Il quantificatore della variabile scelta per prima va a sinistra.
+> - L'ordine degli argomenti in $B(d, u)$ non cambia: cambia solo l'ordine dei quantificatori.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $P(x, y)$ | «P di x e y» | funzione proposizionale con due variabili | $B(d, u)$ |
+| $\forall x\, \exists y$ | «per ogni x esiste y» | per ogni $x$ c'è un $y$, che può dipendere da $x$ | $\forall x\, \exists y\,(x \le y)$ |
+| $\exists x\, \forall y$ | «esiste x tale che per ogni y» | un solo $x$ va bene per tutti gli $y$ | $\exists d\, \forall u\, B(d, u)$ |
+| $X \times Y$ | «X per Y» | il dominio delle coppie | ragazze × ragazzi |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser, da 3 punti l'uno; servono almeno 18 punti.
+
+**Che cosa serve di questa lezione**
+
+1. **Negare frasi con due quantificatori.** È il quiz 6 della simulazione 2 del 2023/24, qui sotto.
+2. **Vero o falso su un dominio**, con il gioco: l'ordine dei quantificatori decide la risposta.
+3. **Tradurre** frasi come «tutti… qualche…» nell'ordine giusto.
+
+### Una domanda vera, letta insieme
+
+**Simulazione d'esame 2 del 2023/24, quiz 6.** Il testo: «Associare a ciascuna proposizione la sua negazione.» Le proposizioni: «Una donna ha ballato con ogni uomo»; «Qualche donna ha ballato con qualche uomo»; «Tutti gli uomini hanno ballato con qualche donna»; «Ogni donna ha ballato con ogni uomo». Le negazioni si scelgono da un menù, che nella schermata non si vede.
+
+**In pratica chiede:** quattro negazioni, ciascuna con due quantificatori.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> Con $B(d, u)$ = «la donna $d$ ha ballato con l'uomo $u$»:
+>
+> 1. «Una donna ha ballato con ogni uomo»: $\exists d\, \forall u\, B(d, u)$. Negazione: $\forall d\, \exists u\, \neg B(d, u)$, «ogni donna non ha ballato con qualche uomo», cioè nessuna donna ha ballato con tutti.
+> 2. «Qualche donna ha ballato con qualche uomo»: $\exists d\, \exists u\, B(d, u)$. Negazione: $\forall d\, \forall u\, \neg B(d, u)$, «nessuna donna ha ballato con nessun uomo».
+> 3. «Tutti gli uomini hanno ballato con qualche donna»: $\forall u\, \exists d\, B(d, u)$. Negazione: $\exists u\, \forall d\, \neg B(d, u)$, «c'è un uomo che non ha ballato con nessuna donna».
+> 4. «Ogni donna ha ballato con ogni uomo»: $\forall d\, \forall u\, B(d, u)$. Negazione: $\exists d\, \exists u\, \neg B(d, u)$, «qualche donna non ha ballato con qualche uomo».
+>
+> Sono le risposte che lo studente ha scritto a mano sulla simulazione. Le ho ricontrollate con un programma su tutti i 64 modi possibili di ballare con 3 donne e 2 uomini.
+
+> [!METODO] Negare una frase con più quantificatori
+> 1. Traduci in formula, con un quantificatore per variabile.
+> 2. Gira ogni quantificatore, nello stesso ordine.
+> 3. Metti il $\neg$ sulla frase interna, e semplificalo se puoi ($\neg(x < y)$ diventa $x \ge y$).
+> 4. Rileggi a parole. Se la negazione contiene «nessuno», controlla che venga da un $\forall\,\neg$.
+
+**Errori da evitare**
+
+- Scambiare l'ordine delle variabili negando.
+- Pensare che $\forall x\, \exists y$ e $\exists y\, \forall x$ dicano la stessa cosa.
+- Girare solo il primo quantificatore.
+
+## Quiz
+
+```quiz
+D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Una donna ha ballato con ogni uomo»?
++ Ogni donna non ha ballato con qualche uomo
+- Nessuna donna ha ballato con nessun uomo
+- Una donna non ha ballato con nessun uomo
+- Ogni uomo ha ballato con qualche donna
+- Qualche donna non ha ballato con qualche uomo
+= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è l'ultima, $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo». Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
+
+D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Qualche donna ha ballato con qualche uomo»?
++ Nessuna donna ha ballato con nessun uomo
+- Qualche donna non ha ballato con qualche uomo
+- Ogni donna non ha ballato con qualche uomo
+- Ogni donna ha ballato con ogni uomo
+- Qualche donna non ha ballato con nessun uomo
+= $\neg\,\exists d\, \exists u\, B \equiv \forall d\, \forall u\, \neg B$: nessuna coppia ha ballato. La risposta più insidiosa è la seconda, che nega solo la frase interna e lascia i due «qualche».
+
+D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gli uomini hanno ballato con qualche donna»?
++ Qualche uomo non ha ballato con nessuna donna
+- Nessun uomo ha ballato con qualche donna
+- Tutti gli uomini non hanno ballato con qualche donna
+- Qualche donna non ha ballato con nessun uomo
+- Qualche uomo ha ballato con tutte le donne
+= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è la quarta, che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
+
+D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Ogni donna ha ballato con ogni uomo»?
++ Qualche donna non ha ballato con qualche uomo
+- Nessuna donna ha ballato con nessun uomo
+- Ogni donna non ha ballato con nessun uomo
+- Una donna ha ballato con ogni uomo
+- Ogni donna non ha ballato con qualche uomo
+= $\neg\,\forall d\, \forall u\, B \equiv \exists d\, \exists u\, \neg B$: basta una coppia che non ha ballato. La risposta più insidiosa è «nessuna donna ha ballato con nessun uomo»: è il contrario estremo, non la negazione.
+
+D: Sugli interi, quale frase è vera?
++ $\forall x\, \exists y\,(x < y)$
+- $\exists y\, \forall x\,(x < y)$
+- $\exists x\, \forall y\,(x \le y)$
+- $\forall x\, \forall y\,(x < y)$
+- $\exists x\, \forall y\,(x \ge y)$
+= Per ogni intero c'è un intero più grande, per esempio $x + 1$. La risposta più insidiosa è la seconda: direbbe che c'è un intero più grande di tutti. La terza e l'ultima chiedono un minimo o un massimo degli interi, che non esistono.
+
+D: Qual è la negazione di $\forall x\, \exists y\, \forall z\, P(x, y, z)$?
++ $\exists x\, \forall y\, \exists z\, \neg P(x, y, z)$
+- $\exists x\, \exists y\, \exists z\, \neg P(x, y, z)$
+- $\forall x\, \exists y\, \forall z\, \neg P(x, y, z)$
+- $\exists z\, \forall y\, \exists x\, \neg P(x, y, z)$
+- $\exists x\, \forall y\, \forall z\, \neg P(x, y, z)$
+= Si gira ogni quantificatore nell'ordine: è la domanda 23 dell'autoverifica del libro. La risposta più insidiosa è la quarta, che gira i quantificatori ma inverte anche l'ordine delle variabili.
+
+D: Sui numeri reali, chi vince il gioco per $\exists y\, \forall x\,(x + y = 0)$?
++ L'avversario: per qualunque $y$, sceglie un $x$ diverso da $-y$
+- Tu: scegli $y = 0$
+- Tu: scegli $y = -x$
+- Nessuno, il gioco non finisce
+- Dipende dall'ordine in cui si gioca
+= Tu scegli $y$ per primo, senza conoscere $x$; poi l'avversario sceglie $x = 1 - y$, e la somma è 1. La risposta più insidiosa è «$y = -x$»: si potrebbe fare in $\forall x\, \exists y$, dove $y$ si sceglie dopo $x$.
+
+D: Se $\exists x\, \forall y\, P(x, y)$ è vera, quale frase è sicuramente vera?
++ $\forall y\, \exists x\, P(x, y)$
+- $\forall x\, \forall y\, P(x, y)$
+- $\forall x\, \exists y\, P(x, y)$
+- $\exists y\, \forall x\, P(x, y)$
+- nessuna delle altre
+= L'$x_0$ che va bene per tutti gli $y$ fa da testimone per ogni $y$. La risposta più insidiosa è $\forall x\, \exists y$: parla di tutti gli $x$, mentre sappiamo qualcosa solo di $x_0$.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: leggere sul disegno
+Sul disegno del ballo, di' se sono vere: (a) $\exists u\, \forall d\, B(d, u)$; (b) $\forall u\, \exists d\, B(d, u)$; (c) $\exists d\, \forall u\, \neg B(d, u)$; (d) $\forall d\, \forall u\,(B(d, u) \to d = \text{Anna} \vee d = \text{Bice})$.
+::: soluzione
+(a) Falsa: nessun ragazzo ha ballato con tutte e tre, Carla non ha ballato. (b) Vera: Dario con Anna, Ezio con Anna. (c) Vera: Carla non ha ballato con nessuno. (d) Vera: tutte le frecce partono da Anna o da Bice.
+:::
+
+::: esercizio base Riscaldamento: negare
+Nega spostando il $\neg$ fino in fondo: (a) $\forall x\, \forall y\,(x + y = y + x)$; (b) $\exists x\, \forall y\,(x \cdot y = 0)$; (c) $\forall x\, \exists y\,(y^2 = x)$.
+::: soluzione
+(a) $\exists x\, \exists y\,(x + y \neq y + x)$. (b) $\forall x\, \exists y\,(x \cdot y \neq 0)$. (c) $\exists x\, \forall y\,(y^2 \neq x)$. Sui reali: (a) e (b) sono vere (in (b) basta $x = 0$), quindi le loro negazioni sono false; (c) è falsa, con $x = -1$, quindi la sua negazione è vera.
+:::
+
+::: esercizio medio Chi è più alto (esercizi 1–6 del libro)
+$T(x, y)$ = «$x$ è più alto di $y$», sul dominio delle persone. Scrivi in parole: (a) $\forall x\, \forall y\, T(x, y)$; (b) $\exists x\, \exists y\, T(x, y)$; (c) nega la (a). Su un gruppo di due persone, Erin più bassa di Garth, quali sono vere?
+::: soluzione
+(a) «Ognuno è più alto di ognuno»: falsa, Garth non è più alto di sé stesso. (b) «Qualcuno è più alto di qualcuno»: vera, Garth è più alto di Erin. (c) $\exists x\, \exists y\, \neg T(x, y)$: «qualcuno non è più alto di qualcuno», vera. Sono le soluzioni degli esercizi 1, 4, 5 e 6.
+:::
+
+::: esercizio medio Il gioco
+Sugli interi, decidi con il gioco: (a) $\forall x\, \exists y\,(x + y = 10)$; (b) $\exists y\, \forall x\,(x \cdot y = x)$; (c) $\forall x\, \exists y\,(2y = x)$.
+::: soluzione
+(a) Vera: a ogni $x$ rispondi con $y = 10 - x$. (b) Vera: scegli $y = 1$, e $x \cdot 1 = x$ per ogni $x$. (c) Falsa: l'avversario sceglie $x = 1$, e nessun intero $y$ dà $2y = 1$. Sui reali la (c) sarebbe vera, con $y = \frac{x}{2}$.
+:::
+
+::: esercizio esame Tradurre, decidere, negare
+Il dominio di $x$ sono gli studenti del corso, quello di $y$ gli appelli. $S(x, y)$ = «$x$ ha superato l'esame all'appello $y$». (a) Traduci «c'è un appello in cui tutti hanno superato l'esame» e «ogni studente ha superato l'esame in qualche appello». (b) Quale delle due implica l'altra? (c) Nega la seconda e scrivila a parole.
+::: soluzione
+(a) $\exists y\, \forall x\, S(x, y)$ e $\forall x\, \exists y\, S(x, y)$. (b) La prima implica la seconda: se all'appello $y_0$ hanno passato tutti, ogni studente ha passato in $y_0$. Il contrario no: ognuno può aver passato in un appello diverso. (c) $\exists x\, \forall y\, \neg S(x, y)$: «c'è uno studente che non ha superato l'esame in nessun appello».
+:::
+
+## Domande di ripasso
+
+::: domanda Quando è vera $\forall x\, \exists y\, P(x, y)$?
+Quando per ogni $x$ si trova almeno un $y$ con $P(x, y)$ vera; il $y$ può cambiare con $x$.
+:::
+
+::: domanda Quando è vera $\exists x\, \forall y\, P(x, y)$?
+Quando c'è un $x$ con $P(x, y)$ vera per tutti gli $y$.
+:::
+
+::: domanda Quale delle due implica l'altra?
+$\exists x\, \forall y\, P(x, y)$ implica $\forall y\, \exists x\, P(x, y)$; il contrario no.
+:::
+
+::: domanda Come funziona il gioco per decidere una frase quantificata?
+Per ogni $\forall$ sceglie l'avversario, per ogni $\exists$ scegli tu, nell'ordine. La frase è vera se hai sempre una scelta vincente.
+:::
+
+::: domanda Come si nega $\forall x\, \exists y\, P(x, y)$?
+$\exists x\, \forall y\, \neg P(x, y)$: si gira ogni quantificatore e si nega la frase interna, senza cambiare l'ordine.
+:::
+
+## Glossario
+
+```glossario
+Quantificatori annidati | Più quantificatori uno dopo l'altro, uno per variabile.
+Funzione proposizionale con due variabili | P(x, y): diventa una proposizione quando si fissano tutte e due le variabili.
+Ordine dei quantificatori | Si legge da sinistra; ∀x ∃y e ∃y ∀x dicono cose diverse.
+Gioco dei quantificatori | L'avversario sceglie per ∀, tu per ∃: la frase è vera se vinci sempre.
+Negazione di quantificatori annidati | Si gira ogni quantificatore e si nega la frase interna, senza cambiare l'ordine.
+```
+
+## Checklist
+
+```checklist
+- So leggere una funzione proposizionale con due variabili su un disegno o una tabella.
+- So decidere le quattro combinazioni ∀∀, ∀∃, ∃∀, ∃∃.
+- So spiegare perché l'ordine dei quantificatori conta, con un esempio.
+- So usare il gioco contro l'avversario.
+- So negare una frase con due o tre quantificatori.
+- So risolvere il quiz 6 della simulazione 2 del 2023/24.
+- So tradurre frasi come «tutti… qualche…» mettendo i quantificatori nell'ordine giusto.
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 1), §1.6 «Nested Quantifiers»: domande di ripasso 1–10 ed esercizi 1, 4, 5, 6, 37, 48, 60, 63, 72, 95 e 99, più le domande 12, 13, 22 e 23 dell'autoverifica del capitolo 1, con le soluzioni pubblicate sul Moodle del canale A ([id 3851](https://informatica.i-learn.unito.it/course/view.php?id=3851), aperto agli ospiti). Il libro non è disponibile: le frasi degli esercizi sono riportate come compaiono nelle soluzioni, tradotte.
+- Diario del canale B: «Lezione 12. Venerdì 23 Ottobre ore 11-13. Capitolo 1.6 (Parte 2). Quantificatori annidati». Appunti scritti prima della lezione.
+- Simulazione d'esame 2 del 2023/24, quiz 6 (negazione di frasi con quantificatori), dalla «Guida degli studenti» del gruppo TSI; le opzioni del menù non si vedono nella schermata.
+- F. Cardone, «Alcuni esempi relativi a formalizzazione, connettivi proposizionali e quantificatori» (Moodle del canale A).
+- La festa con Anna, Bice, Carla, Dario ed Ezio, i quiz e gli esercizi senza indicazione sono di questi appunti. Le frasi sul ballo le ho controllate con un programma su tutte le 64 relazioni possibili tra 3 donne e 2 uomini.
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/riassunti/settimana_01.md -->
 > File: `contesto_ai/FDA/riassunti/settimana_01.md`
 
@@ -19022,7 +20533,8 @@ Le lezioni seguono il libro di Andrea Mori e gli argomenti indicati per il canal
 | D04 | Funzioni, immagini e controimmagini | cap. 2, pp. 17–23; esercizi 2.1–2.8 | `lezioni/D04_funzioni_immagini_controimmagini.md` · HTML: `appunti/MDAG/D04_funzioni_immagini_controimmagini.html` | funzione come grafico in $A \times B$ (un pallino per colonna), dominio e codominio, funzioni uguali; identità, costanti, proiezioni, successioni, funzione quoziente, prodotto; restrizione; buona definizione; immagine $f(S)$ e $\operatorname{Im}(f)$; controimmagine $f^{-1}(b)$, $f^{-1}(T)$; suriettiva, iniettiva, biettiva (righe della tabella, Proposizione 2.11); domanda 3 del quiz (14/01/2025) |
 | D05 | Composizione di funzioni e funzioni inverse | cap. 2, pp. 23–29; esercizi 2.10–2.15 | `lezioni/D05_composizione_funzioni_inverse.md` · HTML: `appunti/MDAG/D05_composizione_funzioni_inverse.html` | composizione $g \circ f$ (prima $f$, poi $g$), quando si può comporre, calcolo con le formule e con tre funzioni; proprietà associativa, identità neutra, costanti, non commutativa; composizione e iniettività o suriettività (Proposizioni 2.16, 2.17, Corollario 2.18); funzioni inverse, esistono solo per le biezioni e sono uniche (Teorema 2.20), come si trova l'inversa di una formula; $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$; cancellazione; domanda 3 del quiz, tutti i modelli 2025–2026. Argomenti ricostruiti dal libro e dal diario 2025/26 |
 | D06 | Insiemi finiti, principio dei piccioni e inclusione-esclusione | cap. 3, pp. 39–48; esercizi 3.1, 3.4–3.6, 3.10 | `lezioni/D06_insiemi_finiti_inclusione_esclusione.md` · HTML: `appunti/MDAG/D06_insiemi_finiti_inclusione_esclusione.html` | equipollenza e cardinalità con le biezioni ($\N$ e i pari, $\N \times \N$); $\lvert A \rvert \le \lvert B \rvert$ e Schröder-Bernstein; finito e infinito (Def 3.5), Prop 3.6 e Nota 3.8 (iniettiva = suriettiva = biettiva tra insiemi finiti con lo stesso numero di elementi), $I_n$; principio dei piccioni; numerabili ($\Z$, $\Q$ sì, $\R$ no); inclusione-esclusione per 2 e 3 insiemi, usata al contrario e per i «né… né…»; multipli con la parte intera e il minimo comune multiplo; appello del 01/07/2026, problema 1, versioni A–D; sviste del libro a p. 47 e p. 48 |
-| D07 | Parole, ordinamenti, anagrammi e disposizioni | cap. 3, pp. 48–55; esercizi 3.8, 3.9 | `lezioni/D07_parole_anagrammi_disposizioni.md` · HTML: `appunti/MDAG/D07_parole_anagrammi_disposizioni.html` | metodo delle scelte successive (albero), parole su un alfabeto e disposizioni con ripetizione $n^k$, ordinamenti e fattoriale, disposizioni semplici $rac{n!}{(n-k)!}$, anagrammi con lettere ripetute, combinazioni semplici (solo l'enunciato, Def 3.27); domanda 4 del quiz 2025–2026, problemi 03/02/2026 e 2023/24; sviste: targhe a p. 50 del libro, SILLOGISMO nella soluzione «17 riepilogo» |
+| D07 | Parole, ordinamenti, anagrammi e disposizioni | cap. 3, pp. 48–55; esercizi 3.8, 3.9 | `lezioni/D07_parole_anagrammi_disposizioni.md` · HTML: `appunti/MDAG/D07_parole_anagrammi_disposizioni.html` | metodo delle scelte successive (albero), parole su un alfabeto e disposizioni con ripetizione $n^k$, ordinamenti e fattoriale, disposizioni semplici $\frac{n!}{(n-k)!}$, anagrammi con lettere ripetute, combinazioni semplici (solo l'enunciato, Def 3.27); domanda 4 del quiz 2025–2026, problemi 03/02/2026 e 2023/24; sviste: targhe a p. 50 del libro, SILLOGISMO nella soluzione «17 riepilogo» |
+| D08 | Combinazioni semplici e con ripetizione | cap. 3, pp. 55–58 e 62–64; esercizi 3.8, 3.10–3.12 | `lezioni/D08_combinazioni.md` · HTML: `appunti/MDAG/D08_combinazioni.html` | combinazioni semplici come disposizioni diviso $k!$, coefficiente binomiale $\binom{n}{k}$, simmetria, scelte da moltiplicare o da sommare, combinazioni con ripetizione con caselle e separatori, «almeno uno per tipo», la tabella delle quattro formule; domanda 4 del 04/02/2025, 06/06/2025, 13/01/2026, 10/09/2026, problemi 14/01/2025, 08/09/2025, 03/02/2026 e 01/07/2026; sviste a p. 57 del libro (scuola di ballo, gelateria, $C_{100,4}$). Argomenti ricostruiti dal libro e dal diario 2025/26 |
 
 ## Algebra lineare e Geometria (parte 2, modB)
 
@@ -25032,6 +26544,527 @@ Combinazione semplice | Un sottoinsieme di k elementi: l'ordine non conta.
 
 ---
 
+<!-- FILE: contesto_ai/MDAG/lezioni/D08_combinazioni.md -->
+> File: `contesto_ai/MDAG/lezioni/D08_combinazioni.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D08
+titolo: Combinazioni semplici e con ripetizione
+data: 2026-10-19
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D08
+descrizione: >-
+  Appunti della lezione D08 di Matematica Discreta (MDAG, parte 1, canali A, B e C): la formula delle combinazioni
+  semplici, il coefficiente binomiale, la simmetria tra scegliere k elementi e lasciarne n − k, i problemi con più
+  scelte da moltiplicare o da sommare, le combinazioni con ripetizione con il metodo delle caselle e dei
+  separatori, la tabella delle quattro formule, con le domande 4 del quiz e i problemi d'esame sulle combinazioni.
+lede: >-
+  Scegliere 3 birre da 9 per una degustazione, 5 numeri da 90, 5 fiori da 4 varietà: quando l'ordine non conta si
+  contano sottoinsiemi, e se si può ripetere si contano «scelte con ripetizione». Due formule, e un modo per non
+  confonderle mai.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 3, pp. 55–58 e 62–64, esercizi pp. 64–66
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2–3 ore, anche in più volte
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 3 «Combinatorica», pp. 55–58 e 62–64, ed
+  esercizi 3.8, 3.10, 3.11, 3.12; diario delle lezioni del canale B 2025/26; quiz e problemi degli appelli di
+  Matematica Discreta 2025–2026
+appunti_html: appunti/MDAG/D08_combinazioni.html
+genera_html: true
+```
+
+## In breve
+
+- Una **combinazione semplice** è un sottoinsieme: si scelgono alcuni elementi di un insieme, e conta **quali**, non l'ordine.
+- Ogni combinazione corrisponde a $k!$ disposizioni, una per ogni ordine: per questo le combinazioni sono le disposizioni divise per $k!$.
+- Il numero si scrive con il **coefficiente binomiale**, «n su k»: le degustazioni di 3 birre scelte tra 9 sono $\binom{9}{3} = 84$.
+- Scegliere $k$ elementi equivale a scegliere gli $n - k$ da lasciare fuori: i due numeri sono uguali.
+- Con più scelte **indipendenti** i numeri si **moltiplicano**; con casi **alternativi** si **sommano**.
+- Una **combinazione con ripetizione** sceglie $k$ elementi tra $n$ tipi, potendo prendere più volte lo stesso tipo: 5 fiori da 4 varietà, 24 cioccolatini da 8 gusti. Si contano con le caselle e i separatori.
+- All'esame la **domanda 4** del quiz chiede spesso combinazioni, e i problemi chiedono mazzi di fiori, kit e sottoinsiemi con un vincolo.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di lunedì 19/10/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dall'ordine del libro e dal diario dell'anno scorso, in cui l'ottava lezione era «Combinazioni semplici e con ripetizioni. Esempi.». Nel libro sono le pp. 55–58 per le combinazioni semplici e le pp. 62–64 per quelle con ripetizione. Dalle pp. 58–59 prendo solo la definizione del coefficiente binomiale e il suo legame con le combinazioni, che servono per scrivere le formule. Le proprietà dei coefficienti binomiali, la formula di Stiefel, il triangolo di Tartaglia e il binomio di Newton (pp. 58–61) erano nelle due lezioni successive del diario: li tratto nella prossima. Quando il docente pubblica gli argomenti, controllo e aggiorno.
+>
+> Nel libro ho trovato tre sviste a p. 57, segnalate nel testo: nel calcolo di $C_{100,4}$, nell'esempio della scuola di ballo e in quello della gelateria.
+
+## Dalle disposizioni alle combinazioni (pp. 55–56)
+
+Nella lezione D07 le 4 piante del negozio davano 12 disposizioni di 2 elementi, ma solo 6 combinazioni. Ogni coppia di piante compariva due volte, come $(a, b)$ e come $(b, a)$. Con 3 elementi ogni sottoinsieme $\{a, b, c\}$ comparirebbe $3! = 6$ volte, una per ogni ordine. La formula nasce da qui.
+
+```grafico
+titolo: Le 12 disposizioni di 2 piante su 4 raggruppate per sottoinsieme: ogni riquadro è una combinazione, e contiene le $2! = 2$ disposizioni che la producono. Quindi le combinazioni sono $12 / 2 = 6$.
+x: 0 12
+y: 0 3.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.2 0.3 1.9 0.3 1.9 2.4 0.2 2.4 | blu
+testo: 1.05 1.75 | blu | "ab"
+testo: 1.05 1 | blu | "ba"
+testo: 1.05 2.85 | blu | "{a, b}"
+poligono: 2.2 0.3 3.9 0.3 3.9 2.4 2.2 2.4 | ambra
+testo: 3.05 1.75 | ambra | "ac"
+testo: 3.05 1 | ambra | "ca"
+testo: 3.05 2.85 | ambra | "{a, c}"
+poligono: 4.2 0.3 5.9 0.3 5.9 2.4 4.2 2.4 | verde
+testo: 5.05 1.75 | verde | "ad"
+testo: 5.05 1 | verde | "da"
+testo: 5.05 2.85 | verde | "{a, d}"
+poligono: 6.2 0.3 7.9 0.3 7.9 2.4 6.2 2.4 | rosa
+testo: 7.05 1.75 | rosa | "bc"
+testo: 7.05 1 | rosa | "cb"
+testo: 7.05 2.85 | rosa | "{b, c}"
+poligono: 8.2 0.3 9.9 0.3 9.9 2.4 8.2 2.4 | blu
+testo: 9.05 1.75 | blu | "bd"
+testo: 9.05 1 | blu | "db"
+testo: 9.05 2.85 | blu | "{b, d}"
+poligono: 10.2 0.3 11.9 0.3 11.9 2.4 10.2 2.4 | ambra
+testo: 11.05 1.75 | ambra | "cd"
+testo: 11.05 1 | ambra | "dc"
+testo: 11.05 2.85 | ambra | "{c, d}"
+```
+
+> [!PROP] 3.28 · Numero delle combinazioni semplici
+> Sia $A$ un insieme finito con $\lvert A \rvert = n$ e sia $k$ un intero tra 1 e $n$. Il numero delle combinazioni di ordine $k$ in $A$, cioè dei sottoinsiemi $C \subset A$ con $\lvert C \rvert = k$, è
+> $$C_{n,k} = \frac{1}{k!}\, D_{n,k} = \frac{n \cdot (n-1) \cdots (n-k+1)}{k!}.$$
+
+**Come si legge.** Si contano prima le scelte **in ordine**, le disposizioni $D_{n,k}$ della lezione D07. Poi si divide per $k!$: ogni sottoinsieme è stato contato una volta per ogni modo di mettere in fila i suoi $k$ elementi. La dimostrazione del libro è proprio questo ragionamento.
+
+> [!ESEMPIO] · Il fioraio (p. 56)
+> **Situazione:** un fioraio vende piante di 14 specie diverse; una cliente ne vuole 3 di specie diverse. Quante scelte ha?
+>
+> **Passo 1: l'ordine conta?** No, conta solo quali piante. Ripetizioni? No, specie diverse.
+>
+> **Passo 2: la formula.** $C_{14,3} = \frac{14 \cdot 13 \cdot 12}{3!} = \frac{2184}{6} = 364$.
+
+Il libro calcola anche le estrazioni del SuperEnalotto, 6 numeri su 90: $C_{90,6} = \frac{90 \cdot 89 \cdot 88 \cdot 87 \cdot 86 \cdot 85}{6!} = 622\,614\,630$.
+
+::: prova Quante strette di mano ci sono in un gruppo di 8 persone, se ognuno stringe la mano a tutti gli altri una volta?
+Ogni stretta è una coppia di persone, senza ordine: $C_{8,2} = \frac{8 \cdot 7}{2} = 28$.
+:::
+
+> [!RICORDA]
+> - Combinazioni = disposizioni diviso $k!$.
+> - Si usano quando l'ordine non conta e non si ripete.
+
+## Il coefficiente binomiale (pp. 56–58)
+
+La formula della Proposizione 3.28 ha un problema. Con $k = 0$ non ha senso, ma la risposta c'è, ed è 1, perché l'insieme vuoto è l'unico sottoinsieme con 0 elementi (Nota 3.29). Per avere una formula che vale sempre, si moltiplica sopra e sotto per $(n - k)!$: il numeratore diventa $n!$.
+
+> [!DEF] 3.31 · Coefficiente binomiale
+> Siano $k$ ed $n$ interi con $0 \le k \le n$. Il **coefficiente binomiale** è il numero
+> $$\binom{n}{k} = \frac{n!}{k!\,(n-k)!}.$$
+
+**Come si legge.** Si legge «$n$ su $k$». Con la convenzione $0! = 1$ della lezione D07, vale anche per $k = 0$ e $k = n$: tutti e due danno 1. La Proposizione 3.32 del libro dice che è proprio il numero delle combinazioni: $C_{n,k} = \binom{n}{k}$.
+
+> [!ESEMPIO] · Tre modi di scrivere la stessa risposta
+> **Situazione:** le degustazioni di 3 birre scelte tra 9.
+>
+> **Passo 1.** Con la Proposizione 3.28: $\frac{9 \cdot 8 \cdot 7}{3!} = \frac{504}{6} = 84$.
+>
+> **Passo 2.** Con il coefficiente binomiale: $\binom{9}{3} = \frac{9!}{3! \cdot 6!}$. È la forma delle risposte del quiz d'esame, che non chiede di fare il conto.
+>
+> **Passo 3.** Come controllo, $\frac{9!}{6!} = 504$ sono le disposizioni, e dividendo per $3! = 6$ si torna a 84.
+
+Alcuni valori da riconoscere al volo: $\binom{n}{0} = \binom{n}{n} = 1$, $\binom{n}{1} = n$, $\binom{n}{2} = \frac{n(n-1)}{2}$.
+
+::: prova Calcola $\binom{6}{2}$, $\binom{7}{3}$ e $\binom{5}{5}$.
+$\binom{6}{2} = \frac{6 \cdot 5}{2} = 15$. $\binom{7}{3} = \frac{7 \cdot 6 \cdot 5}{6} = 35$. $\binom{5}{5} = 1$: c'è un solo modo di prendere tutto.
+:::
+
+> [!RICORDA]
+> - $\binom{n}{k} = \frac{n!}{k!\,(n-k)!}$ conta i sottoinsiemi di $k$ elementi.
+> - $\binom{n}{0} = \binom{n}{n} = 1$ e $\binom{n}{1} = n$.
+
+## Scegliere o lasciare fuori (pp. 56–57)
+
+Scegliere 3 persone da invitare tra 10 è la stessa cosa che scegliere le 7 da non invitare: ogni scelta dei 3 decide i 7 esclusi, e viceversa. I due numeri devono quindi essere uguali.
+
+> [!PROP] 3.30 · Simmetria
+> Siano $n$ e $k$ interi con $0 \le k \le n$. Allora $C_{n,k} = C_{n,n-k}$, cioè $\binom{n}{k} = \binom{n}{n-k}$.
+
+**Come si legge.** La dimostrazione del libro usa il complementare della lezione D02: mandare ogni sottoinsieme nel suo complementare è una funzione biettiva, inversa di sé stessa (lezione D05), che scambia i sottoinsiemi di $k$ elementi con quelli di $n - k$. Con la formula basta scriverla: $\binom{n}{n-k} = \frac{n!}{(n-k)!\,k!}$, e nel denominatore $k!$ e $(n-k)!$ si sono solo scambiati di posto.
+
+È utile quando $k$ è vicino a $n$. Il libro calcola $C_{100,96} = C_{100,4} = \frac{100 \cdot 99 \cdot 98 \cdot 97}{4!} = 3\,921\,225$. Nel libro il numeratore è stampato come $100 \cdot 99 \cdot 87 \cdot 97$: è una svista, il risultato è giusto con 98.
+
+> [!ESAME] Le caselle colorate: appello del 13/01/2026
+> «Le 10 caselle di una riga devono essere colorate di rosso o di blu in modo che ci siano esattamente 3 caselle rosse. Quanti sono i modi di farlo?» Risposte: $\frac{10!}{7!}$; $10! - 7!$; $\binom{10}{7}$; $\binom{7}{3}$; $3!$. Giusta: $\binom{10}{7}$. Una colorazione è decisa da **quali** 3 caselle sono rosse, cioè da un sottoinsieme di 3 caselle su 10: $\binom{10}{3}$. La risposta è scritta come $\binom{10}{7}$, le 7 caselle blu: per la simmetria è lo stesso numero, 120. La trappola è $\frac{10!}{7!}$, che conta le caselle rosse in ordine.
+
+::: prova Quanto vale $\binom{50}{48}$? Fallo senza calcolare fattoriali grandi.
+$\binom{50}{48} = \binom{50}{2} = \frac{50 \cdot 49}{2} = 1225$.
+:::
+
+> [!RICORDA]
+> - $\binom{n}{k} = \binom{n}{n-k}$: scegliere chi entra è come scegliere chi resta fuori.
+> - All'esame la stessa risposta può essere scritta nelle due forme.
+
+## Più scelte insieme: moltiplicare o sommare (pp. 57–58)
+
+Molti problemi non sono una sola combinazione, ma più scelte. La domanda da farsi è: le scelte si fanno **tutte**, una dopo l'altra, oppure **una sola** tra più casi possibili?
+
+- Scelte **indipendenti**, da fare tutte: si **moltiplicano**, con il metodo delle scelte successive della lezione D07.
+- Casi **alternativi**, che si escludono: si **sommano**, perché sono insiemi disgiunti (Proposizione 3.15, lezione D06).
+
+> [!ESEMPIO] · La formazione di calcio (p. 57)
+> **Situazione:** una rosa di 3 portieri, 9 difensori, 7 centrocampisti e 4 attaccanti. Si gioca con 1 portiere, 4 difensori, 4 centrocampisti e 2 attaccanti. Quante formazioni?
+>
+> **Passo 1: le scelte.** Quattro scelte indipendenti, una per ruolo: $\binom{3}{1} = 3$, $\binom{9}{4} = 126$, $\binom{7}{4} = 35$, $\binom{4}{2} = 6$.
+>
+> **Passo 2: si moltiplica.** $3 \cdot 126 \cdot 35 \cdot 6 = 79\,380$.
+
+> [!ESEMPIO] · La gelateria (pp. 57–58)
+> **Situazione:** una gelateria ha 14 gusti; un cono ha da 1 a 4 gusti diversi. Quanti coni diversi?
+>
+> **Passo 1: i casi.** Un cono ha 1, 2, 3 **oppure** 4 gusti: sono casi alternativi.
+>
+> **Passo 2: si somma.** $\binom{14}{1} + \binom{14}{2} + \binom{14}{3} + \binom{14}{4} = 14 + 91 + 364 + 1001 = 1470$.
+
+> [!NOTA] Due sviste nella p. 57
+> - **La scuola di ballo.** Si scelgono 5 ballerini tra 9 e 3 ballerine tra 11. Il libro scrive $C_{9,5} = 84$, ma $\binom{9}{5} = \binom{9}{4} = \frac{9 \cdot 8 \cdot 7 \cdot 6}{4!} = 126$: 84 è $\binom{9}{3}$. Il totale giusto è $126 \cdot 165 = 20\,790$, non 13 860.
+> - **La gelateria.** Il testo dice 16 gusti, ma i conti usano 14; poi scrive $C_{14,1} = 4$ invece di 14, e il totale 1460 invece di 1470. Con 16 gusti verrebbe $16 + 120 + 560 + 1820 = 2516$. Il metodo resta giusto.
+
+> [!ESAME] Pari e dispari: appello del 04/02/2025
+> «Dall'insieme $\{1, 2, 3, \dots, 15, 16\}$ vogliamo scegliere 2 numeri pari e 3 numeri dispari. Quante scelte possibili ci sono?» Risposte: $\binom{16}{5}$; $16^5$; $\binom{8}{2} \cdot \binom{8}{3}$; $\binom{16}{2} \cdot \binom{16}{3}$; $8^2 \cdot 8^3$. Giusta: $\binom{8}{2} \cdot \binom{8}{3} = 28 \cdot 56 = 1568$. I pari sono 8 e i dispari 8: due scelte indipendenti. La trappola è $\binom{16}{2} \cdot \binom{16}{3}$, che sceglie i pari tra tutti i 16 numeri.
+
+::: prova Appello del 06/06/2025: quanti sono i modi di scegliere tre numeri divisibili per 3 e due numeri non divisibili per 3, compresi tra 1 e 15?
+Tra 1 e 15 i multipli di 3 sono 5 e gli altri 10. Due scelte indipendenti: $\binom{5}{3} \cdot \binom{10}{2} = 10 \cdot 45 = 450$. È la risposta giusta del quiz.
+:::
+
+> [!RICORDA]
+> - Scelte da fare tutte: si moltiplica. Casi alternativi: si somma.
+> - Prima di scegliere, conta quanti elementi ha ogni gruppo.
+
+## Combinazioni con ripetizione (pp. 62–64)
+
+Un negozio vende fiori di 4 varietà, rose, tulipani, margherite e orchidee, in quantità illimitata. Quanti mazzi diversi di 5 fiori si possono comporre? In un mazzo l'ordine non conta, ma la stessa varietà può comparire più volte: 3 rose e 2 tulipani è un mazzo. Non è un sottoinsieme, perché gli elementi si ripetono.
+
+> [!DEF] 3.37 · Combinazione con ripetizione
+> Sia $A$ un insieme finito con $\lvert A \rvert = n$ e sia $k$ un intero non negativo. Una **combinazione con ripetizione** di ordine $k$ in $A$ è una scelta di $k$ elementi di $A$ in cui ciascun elemento può essere scelto più volte.
+
+**Come si legge.** È una «lista della spesa» senza ordine: conta solo **quante volte** si prende ogni elemento. La Nota 3.38 osserva che qui $k$ può anche superare $n$: 24 cioccolatini da 8 gusti, 10 lanci di una moneta con 2 facce.
+
+### Caselle e separatori
+
+Il libro conta i monomi di grado 9 nelle variabili $w$, $x$, $y$, $z$, come $w\,x^2\,y^4\,z^2$: ogni monomio è una scelta di 9 variabili con ripetizione, senza ordine. Il trucco è scrivere le variabili in ordine alfabetico in 9 caselle e segnare dove si cambia variabile. Per separare 4 variabili servono 3 separatori. Aggiungendo 3 caselle per i separatori, si hanno 12 caselle in fila, e un monomio corrisponde esattamente alla scelta delle 3 caselle-separatore.
+
+```grafico
+titolo: Il monomio $w\,x^2\,y^4\,z^2$ come fila di 12 caselle: 9 per le variabili e 3, con il punto, per i separatori. Scegliere le 3 caselle-separatore tra le 12 decide il monomio: $\binom{12}{3} = 220$.
+x: 0 12.4
+y: 0 2.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.2 0.6 1.15 0.6 1.15 1.6 0.2 1.6 | blu
+testo: 0.67 1.1 | blu | "w"
+poligono: 1.2 0.6 2.15 0.6 2.15 1.6 1.2 1.6 | accento
+punto: 1.67 1.1 | accento
+poligono: 2.2 0.6 3.15 0.6 3.15 1.6 2.2 1.6 | ambra
+testo: 2.67 1.1 | ambra | "x"
+poligono: 3.2 0.6 4.15 0.6 4.15 1.6 3.2 1.6 | ambra
+testo: 3.67 1.1 | ambra | "x"
+poligono: 4.2 0.6 5.15 0.6 5.15 1.6 4.2 1.6 | accento
+punto: 4.67 1.1 | accento
+poligono: 5.2 0.6 6.15 0.6 6.15 1.6 5.2 1.6 | verde
+testo: 5.67 1.1 | verde | "y"
+poligono: 6.2 0.6 7.15 0.6 7.15 1.6 6.2 1.6 | verde
+testo: 6.67 1.1 | verde | "y"
+poligono: 7.2 0.6 8.15 0.6 8.15 1.6 7.2 1.6 | verde
+testo: 7.67 1.1 | verde | "y"
+poligono: 8.2 0.6 9.15 0.6 9.15 1.6 8.2 1.6 | verde
+testo: 8.67 1.1 | verde | "y"
+poligono: 9.2 0.6 10.15 0.6 10.15 1.6 9.2 1.6 | accento
+punto: 9.67 1.1 | accento
+poligono: 10.2 0.6 11.15 0.6 11.15 1.6 10.2 1.6 | rosa
+testo: 10.67 1.1 | rosa | "z"
+poligono: 11.2 0.6 12.15 0.6 12.15 1.6 11.2 1.6 | rosa
+testo: 11.67 1.1 | rosa | "z"
+testo: 6.2 2.05 | grigio | "9 variabili + 3 separatori = 12 caselle"
+```
+
+> [!PROP] 3.39 · Numero delle combinazioni con ripetizione
+> Sia $A$ un insieme finito con $\lvert A \rvert = n$ e sia $k$ un intero positivo. Il numero delle combinazioni con ripetizione di ordine $k$ in $A$ è
+> $$C'_{n,k} = \binom{k + n - 1}{n - 1} = \frac{(k + n - 1)!}{(n - 1)!\, k!}.$$
+
+**Come si legge.** $k$ caselle per gli elementi scelti, $n - 1$ separatori per dividere gli $n$ tipi: in tutto $k + n - 1$ caselle, tra cui si scelgono le $n - 1$ dei separatori. Per la simmetria è anche $\binom{k + n - 1}{k}$, la scelta delle caselle degli elementi. Attenzione: $n$ è il numero dei **tipi**, $k$ quanti elementi si prendono.
+
+> [!ESEMPIO] · I mazzi di fiori: appello del 14/01/2025, problema 2 a)
+> **Situazione:** 4 varietà di fiori in quantità illimitata. «Quanti mazzi diversi di 5 fiori si possono comporre?»
+>
+> **Passo 1: che cosa si sceglie.** 5 fiori ($k = 5$) tra 4 tipi ($n = 4$), senza ordine e con ripetizione.
+>
+> **Passo 2: la formula.** $\binom{5 + 4 - 1}{5} = \binom{8}{5} = 56$. È la soluzione ufficiale.
+
+> [!TRAPPOLA] «Almeno uno di ogni tipo»
+> La parte b) dello stesso problema chiede i mazzi di 6 fiori con **almeno un fiore di ogni varietà**. Il trucco della soluzione ufficiale: si mette da parte un fiore per varietà, 4 in tutto, e restano 2 fiori da scegliere liberamente tra 4 varietà: $\binom{2 + 4 - 1}{2} = \binom{5}{2} = 10$. Usare la formula con $k = 6$ conterebbe anche i mazzi a cui manca una varietà.
+
+::: prova Quanti esiti ci sono, senza contare l'ordine, lanciando 10 volte una moneta? E componendo una scatola di 24 cioccolatini scelti tra 8 tipi?
+Moneta: $n = 2$ tipi, $k = 10$: $\binom{11}{1} = 11$, cioè da 0 a 10 teste. Cioccolatini: $n = 8$, $k = 24$: $\binom{31}{7} = 2\,629\,575$. Sono gli esempi di p. 62 del libro.
+:::
+
+> [!RICORDA]
+> - Combinazioni con ripetizione: $\binom{k + n - 1}{n - 1}$, con $n$ tipi e $k$ elementi scelti.
+> - «Almeno uno per tipo»: metti da parte uno per tipo, poi conta i rimanenti.
+
+## Quale formula? Le quattro domande
+
+Tutti i conti delle lezioni D07 e D08 si riducono a due domande: **l'ordine conta?** **Si può ripetere?** Le risposte scelgono la formula.
+
+| | si ripete | non si ripete |
+|---|---|---|
+| **l'ordine conta** | disposizioni con ripetizione: $n^k$ | disposizioni semplici: $\frac{n!}{(n-k)!}$ |
+| **l'ordine non conta** | combinazioni con ripetizione: $\binom{k + n - 1}{k}$ | combinazioni semplici: $\binom{n}{k}$ |
+
+Un esempio per ogni casella, sempre con 4 oggetti e scelte di 2:
+
+- parole di 2 lettere su un alfabeto di 4: $4^2 = 16$;
+- primo e secondo posto tra 4 atleti: $4 \cdot 3 = 12$;
+- mazzi di 2 fiori da 4 varietà: $\binom{5}{2} = 10$;
+- coppie di piante diverse tra 4: $\binom{4}{2} = 6$.
+
+> [!METODO] Le domande di calcolo combinatorio
+> 1. Che cosa si sceglie, e da quale insieme? Scrivi $n$ e $k$.
+> 2. L'ordine conta? Se scambiando due elementi ottieni un risultato diverso, sì. Le parole «mazzo», «gruppo», «sottoinsieme», «degustazione» dicono di no; «fila», «classifica», «sequenza», «parola» dicono di sì.
+> 3. Si può ripetere?
+> 4. Scegli la casella della tabella.
+> 5. Più scelte da fare tutte: moltiplica. Casi alternativi: somma. «Almeno uno»: conta il contrario e sottrai, oppure metti da parte uno per tipo.
+
+::: prova Per ognuna, quale casella? (a) le password di 6 cifre; (b) le squadre di 5 giocatori scelti tra 12; (c) i sacchetti di 10 caramelle da 3 gusti; (d) i primi tre classificati su 20.
+(a) Ordine sì, ripetizione sì: $10^6$. (b) Ordine no, ripetizione no: $\binom{12}{5} = 792$. (c) Ordine no, ripetizione sì: $\binom{12}{2} = 66$. (d) Ordine sì, ripetizione no: $20 \cdot 19 \cdot 18 = 6840$.
+:::
+
+> [!RICORDA]
+> - Due domande: l'ordine conta? si ripete?
+> - Quattro formule: $n^k$, $\frac{n!}{(n-k)!}$, $\binom{n}{k}$, $\binom{k+n-1}{k}$.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $C_{n,k}$ | «C n k» | combinazioni semplici di $k$ elementi da $n$ | $C_{4,2} = 6$ |
+| $\binom{n}{k}$ | «n su k» | coefficiente binomiale, $\frac{n!}{k!\,(n-k)!}$ | $\binom{9}{3} = 84$ |
+| $C'_{n,k}$ | «C primo n k» | combinazioni con ripetizione di $k$ elementi da $n$ tipi | $C'_{4,5} = 56$ |
+| $D_{n,k}$ | «D n k» | disposizioni semplici, della lezione D07 | $D_{4,2} = 12$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Al 19/10/2026 le regole del 2026/27 non sono ancora uscite; quelle del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)). Il testo dei problemi dice: «Non è necessario calcolare gli esponenziali, i fattoriali e i coefficienti binomiali».
+
+**Che cosa serve di questa lezione**
+
+1. **La domanda 4 del quiz.** Le combinazioni escono negli appelli del 04/02/2025, 06/06/2025, 13/01/2026 e 10/09/2026. Le risposte sono formule: basta riconoscere $\binom{n}{k}$ scritto come $\frac{n!}{k!\,(n-k)!}$.
+2. **Il primo o il secondo problema.** Mazzi di fiori (14/01/2025), kit di asciugamani (08/09/2025), sottoinsiemi con un vincolo (03/02/2026, 01/07/2026).
+
+### Una domanda vera, letta insieme
+
+**Appello del 10/09/2026, domanda 4.** Il testo: «La birreria Qvizz produce 9 birre e offre delle degustazioni di 3 a scelta. Quante sono le possibili degustazioni? 1. $\frac{9!}{3! \cdot 6!}$; 2. $\frac{9!}{6!}$; 3. $\frac{9!}{3 \cdot 6}$; 4. $\frac{9!}{3!}$; 5. $9!$».
+
+**In pratica chiede:** quanti sottoinsiemi di 3 birre ci sono tra 9?
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: le due domande.** In una degustazione l'ordine delle birre non conta, e le birre sono diverse: combinazioni semplici.
+>
+> **Passo 2: la formula.** $\binom{9}{3} = \frac{9!}{3! \cdot 6!} = 84$: la risposta 1.
+>
+> **Passo 3: le altre.** La 2, $\frac{9!}{6!} = 504$, conta le degustazioni con l'ordine: sono le disposizioni. La 3 divide per 3 e 6 invece che per $3!$ e $6!$. La 4 divide per il fattoriale sbagliato, e la 5 conta tutti gli ordinamenti delle 9 birre.
+>
+> Nelle altre versioni dello stesso appello: 3 birre da 8, $\frac{8!}{3! \cdot 5!}$; 3 da 10, $\frac{10!}{3! \cdot 7!}$; 4 da 9, $\frac{9!}{4! \cdot 5!}$.
+
+### I problemi
+
+> [!ESAME] Il kit di asciugamani: appello dell'08/09/2025, problema 2
+> «Un hotel fornisce a ogni ospite un kit composto da due asciugamani piccoli e uno grande. Gli asciugamani piccoli possono essere di 5 colori; quelli grandi bianchi oppure blu.» I due piccoli sono indistinguibili, quindi conta solo quali colori hanno.
+>
+> a) I kit sono 30: i due piccoli sono una combinazione con ripetizione di 2 colori da 5, $\binom{6}{2} = 15$, e per il grande ci sono 2 scelte, $15 \cdot 2 = 30$. Con i due piccoli di colori diversi: $\binom{5}{2} \cdot 2 = 20$.
+>
+> b) Con almeno un asciugamano bianco: si contano quelli **senza** bianco, grande blu e piccoli tra 4 colori, $\binom{5}{2} = 10$, e si tolgono: $30 - 10 = 20$.
+>
+> c) Assegnare un kit a ognuna di 10 camere è una disposizione con ripetizione, $30^{10}$; con kit tutti diversi, $\frac{30!}{20!}$. Sono le soluzioni ufficiali.
+
+> [!ESAME] I sottoinsiemi con un vincolo: appelli del 2026
+> - **03/02/2026, problema 1 c).** $A = \{A, B, C, D, E, F, 1, 2, 3, 4\}$: quanti sottoinsiemi contengono almeno 3 lettere? Si sceglie quante lettere, da 3 a 6, e poi le cifre liberamente: $2^4 \cdot \bigl(\binom{6}{3} + \binom{6}{4} + \binom{6}{5} + \binom{6}{6}\bigr) = 16 \cdot 42 = 672$. Casi alternativi sommati, poi una scelta indipendente moltiplicata.
+> - **01/07/2026, problema 1 c).** I numeri che sono prodotto di primi distinti presi tra i 25 primi fino a 100 sono $2^{25} - 1$, i sottoinsiemi non vuoti della lezione D01. Quelli prodotto di esattamente 4 primi distinti sono $\binom{25}{4} = 12\,650$.
+
+**Errori da evitare**
+
+- Usare le disposizioni quando l'ordine non conta, o il contrario.
+- Nelle combinazioni con ripetizione, scambiare $n$ (i tipi) con $k$ (quanti se ne prendono).
+- Sommare scelte che vanno fatte tutte, o moltiplicare casi alternativi.
+- Scegliere da tutto l'insieme invece che dal gruppo giusto (i pari tra i pari).
+
+## Quiz
+
+```quiz
+D: Appello del 10/09/2026. La birreria Qvizz produce 9 birre e offre delle degustazioni di 3 a scelta. Quante sono le possibili degustazioni?
++ $\frac{9!}{3! \cdot 6!}$
+- $\frac{9!}{6!}$
+- $\frac{9!}{3 \cdot 6}$
+- $\frac{9!}{3!}$
+- $9!$
+= L'ordine non conta e le birre sono diverse: $\binom{9}{3} = 84$. La risposta più insidiosa è $\frac{9!}{6!}$, che conta le degustazioni con l'ordine.
+
+D: Appello del 13/01/2026. Le 12 caselle di una riga devono essere colorate di verde o di bianco in modo che ci siano esattamente 5 caselle bianche. Quanti sono i modi di farlo?
++ $\binom{12}{7}$
+- $\frac{12!}{7!}$
+- $12! - 7!$
+- $\binom{7}{5}$
+- $5!$
+= Si sceglie quali 5 caselle sono bianche: $\binom{12}{5}$, che per la simmetria è uguale a $\binom{12}{7}$, le 7 verdi. La risposta più insidiosa è $\frac{12!}{7!}$: conta le caselle bianche in ordine.
+
+D: Appello del 04/02/2025. Dall'insieme $\{1, 2, \dots, 20\}$ vogliamo scegliere 5 numeri pari e 2 numeri dispari. Quante scelte possibili ci sono?
++ $\binom{10}{5} \cdot \binom{10}{2}$
+- $\binom{20}{7}$
+- $\binom{20}{5} \cdot \binom{20}{2}$
+- $20^7$
+- $10^5 \cdot 10^2$
+= 10 pari e 10 dispari, due scelte indipendenti: si moltiplica. La risposta più insidiosa è $\binom{20}{5} \cdot \binom{20}{2}$, che sceglie i pari tra tutti i numeri. $\binom{20}{7}$ non garantisce 5 pari e 2 dispari.
+
+D: Appello del 06/06/2025. Quanti sono i modi di scegliere due numeri divisibili per 4 e quattro numeri non divisibili per 4 compresi tra 1 e 12 inclusi?
++ $\binom{3}{2} \cdot \binom{9}{4}$
+- $\binom{12}{2} \cdot \binom{12}{4}$
+- $\binom{12}{6}$
+- $12! \cdot 6!$
+- $\frac{12!}{2! \cdot 4!}$
+= Tra 1 e 12 i multipli di 4 sono 3 (4, 8, 12) e gli altri 9: $\binom{3}{2} \cdot \binom{9}{4} = 3 \cdot 126 = 378$. La risposta più insidiosa è $\binom{12}{2} \cdot \binom{12}{4}$, che non separa i due gruppi.
+
+D: Quanti sono i mazzi di 5 fiori che si possono comporre con 4 varietà disponibili in quantità illimitata?
+N: 56
+= Combinazioni con ripetizione di 5 elementi da 4 tipi: $\binom{5 + 4 - 1}{5} = \binom{8}{5} = 56$. È il problema 2 a) dell'appello del 14/01/2025.
+
+D: Con 4 varietà di fiori, quanti mazzi di 6 fiori contengono almeno un fiore di ogni varietà?
++ $\binom{5}{2} = 10$
+- $\binom{9}{6} = 84$
+- $\binom{6}{4} = 15$
+- $4^2 = 16$
+- $\binom{9}{3} - 4 = 80$
+= Si mette da parte un fiore per varietà e se ne scelgono altri 2 tra 4 varietà, con ripetizione: $\binom{2 + 4 - 1}{2} = 10$. La risposta più insidiosa è $\binom{9}{6} = 84$: sono tutti i mazzi di 6 fiori, anche quelli a cui manca una varietà. È il problema 2 b) del 14/01/2025.
+
+D: Quanto vale $\binom{100}{98}$?
+N: 4950
+= Per la simmetria $\binom{100}{98} = \binom{100}{2} = \frac{100 \cdot 99}{2} = 4950$.
+
+D: Una gelateria ha 14 gusti e vende coni con 1 o 2 gusti diversi. Quanti coni diversi?
++ $14 + \binom{14}{2} = 105$
+- $14 \cdot \binom{14}{2} = 1274$
+- $\binom{14}{3} = 364$
+- $14^2 = 196$
+- $\binom{15}{2} = 105$, ma solo per caso
+= Un cono ha 1 gusto **oppure** 2: casi alternativi, si sommano: $14 + 91 = 105$. La risposta più insidiosa è il prodotto, che si usa per scelte da fare tutte. $14^2$ conta i coni con l'ordine e con il gusto ripetuto.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: coefficienti binomiali
+Calcola $\binom{8}{3}$, $\binom{10}{8}$, $\binom{12}{1}$, $\binom{7}{0}$, e controlla che $\binom{6}{2} = \binom{6}{4}$.
+::: soluzione
+$\binom{8}{3} = \frac{8 \cdot 7 \cdot 6}{6} = 56$. $\binom{10}{8} = \binom{10}{2} = 45$. $\binom{12}{1} = 12$. $\binom{7}{0} = 1$. $\binom{6}{2} = 15$ e $\binom{6}{4} = \frac{6 \cdot 5 \cdot 4 \cdot 3}{24} = 15$.
+:::
+
+::: esercizio base Riscaldamento: quale formula?
+Per ognuna, l'ordine conta? si ripete? Poi conta. (a) I comitati di 3 persone scelti in una classe di 25. (b) Presidente, vice e segretario scelti nella stessa classe. (c) Le scatole di 6 uova scelte tra 3 tipi. (d) Le sequenze di 6 lanci di un dado.
+::: soluzione
+(a) No, no: $\binom{25}{3} = 2300$. (b) Sì, no: $25 \cdot 24 \cdot 23 = 13\,800$. (c) No, sì: $\binom{6 + 3 - 1}{6} = \binom{8}{2} = 28$. (d) Sì, sì: $6^6 = 46\,656$.
+:::
+
+::: esercizio base Riscaldamento: moltiplicare o sommare
+In un mazzo da 40 carte ci sono 10 carte per ognuno dei 4 semi. In quanti modi si scelgono 4 carte (a) tutte di cuori; (b) 2 di cuori e 2 di picche; (c) tutte dello stesso seme?
+::: soluzione
+(a) $\binom{10}{4} = 210$. (b) Scelte indipendenti: $\binom{10}{2} \cdot \binom{10}{2} = 45 \cdot 45 = 2025$. (c) Casi alternativi, uno per seme: $4 \cdot 210 = 840$.
+:::
+
+::: esercizio medio Esercizio 3.10 b) del libro: la coreografia
+A un corso di ballo sono iscritti 11 uomini e 9 donne. Per uno spettacolo i maestri scelgono 5 uomini e 5 donne. Quante sono le scelte possibili?
+::: soluzione
+Due scelte indipendenti: $\binom{11}{5} \cdot \binom{9}{5} = 462 \cdot 126 = 58\,212$.
+:::
+
+::: esercizio medio Esercizio 3.12 del libro: le rose
+Un fiorista vende rose di 5 colori. (a) Quanti abbinamenti di colore ci sono per un mazzo bicolore? (c) Quanti mazzi distinti di 12 rose si possono formare se si vuole che tutti i colori siano presenti?
+::: soluzione
+(a) Si scelgono 2 colori tra 5: $\binom{5}{2} = 10$. (c) Si mette da parte una rosa per colore, 5 in tutto; restano 7 rose da 5 colori, con ripetizione: $\binom{7 + 5 - 1}{7} = \binom{11}{4} = 330$. La parte b) usa il principio dei piccioni della lezione D06: con 21 rose almeno un colore ne ha 5, con 20 no (4 per colore).
+:::
+
+::: esercizio medio Esercizio 3.8 c) del libro: la valigia
+Anna ha 11 magliette, 5 paia di pantaloni, 6 paia di scarpe e 2 borsette. Per un weekend porta 4 magliette, 2 paia di pantaloni, 2 paia di scarpe e 1 borsetta. Quante sono le scelte possibili?
+::: soluzione
+Quattro scelte indipendenti, senza ordine: $\binom{11}{4} \cdot \binom{5}{2} \cdot \binom{6}{2} \cdot \binom{2}{1} = 330 \cdot 10 \cdot 15 \cdot 2 = 99\,000$.
+:::
+
+::: esercizio esame Esercizio 3.11 b) del libro: il gruppo di lavoro
+Un gruppo di 16 informatici lavora a un progetto con Italia, Francia, Belgio e Spagna. Quante diverse distribuzioni per nazionalità può avere il gruppo, se c'è almeno un membro per nazione? Conta solo quanti membri ha ogni nazione.
+::: soluzione
+Una distribuzione dice quanti informatici per nazione: è una combinazione con ripetizione di 16 elementi da 4 tipi, con almeno uno per tipo. Si mette da parte un membro per nazione e restano 12 da distribuire liberamente: $\binom{12 + 4 - 1}{12} = \binom{15}{3} = 455$.
+:::
+
+::: esercizio esame Il kit (appello dell'08/09/2025)
+Rifai il problema degli asciugamani con 6 colori per i piccoli e 3 per il grande: quanti kit? Quanti con i due piccoli di colori diversi?
+::: soluzione
+Piccoli: $\binom{2 + 6 - 1}{2} = \binom{7}{2} = 21$; per il grande 3 scelte: $21 \cdot 3 = 63$ kit. Con i piccoli di colori diversi: $\binom{6}{2} \cdot 3 = 15 \cdot 3 = 45$.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è una combinazione semplice di ordine $k$ in un insieme di $n$ elementi?
+Un sottoinsieme di $k$ elementi: conta quali elementi, non l'ordine.
+:::
+
+::: domanda Perché le combinazioni sono le disposizioni divise per $k!$?
+Perché ogni sottoinsieme di $k$ elementi corrisponde a $k!$ disposizioni, una per ogni modo di metterlo in fila.
+:::
+
+::: domanda Perché $\binom{n}{k} = \binom{n}{n-k}$?
+Perché scegliere i $k$ elementi da prendere è come scegliere gli $n - k$ da lasciare fuori: il complementare è una biezione tra i due tipi di sottoinsiemi.
+:::
+
+::: domanda Quando si moltiplica e quando si somma?
+Si moltiplica per scelte indipendenti da fare tutte; si somma per casi alternativi che si escludono.
+:::
+
+::: domanda Quante sono le combinazioni con ripetizione di $k$ elementi da $n$ tipi?
+$\binom{k + n - 1}{n - 1}$: si scelgono le $n - 1$ caselle dei separatori tra $k + n - 1$.
+:::
+
+::: domanda Come si contano le scelte con «almeno uno di ogni tipo»?
+Si mette da parte un elemento per tipo e si contano le scelte libere dei rimanenti.
+:::
+
+## Glossario
+
+```glossario
+Combinazione semplice | Un sottoinsieme di k elementi di un insieme di n: senza ordine e senza ripetizioni.
+Coefficiente binomiale | n su k, n!/(k!(n−k)!): il numero dei sottoinsiemi di k elementi.
+Simmetria dei coefficienti binomiali | n su k è uguale a n su n−k.
+Combinazione con ripetizione | Una scelta di k elementi tra n tipi, senza ordine, in cui un tipo si può prendere più volte.
+Caselle e separatori | Il metodo che conta le combinazioni con ripetizione: k caselle per gli elementi, n−1 per i separatori.
+```
+
+## Checklist
+
+```checklist
+- So spiegare perché le combinazioni sono le disposizioni divise per k!.
+- So calcolare un coefficiente binomiale e riconoscerlo scritto con i fattoriali.
+- So usare la simmetria per semplificare i conti.
+- So quando moltiplicare e quando sommare.
+- So contare le combinazioni con ripetizione con caselle e separatori.
+- So risolvere «almeno uno di ogni tipo».
+- So scegliere tra le quattro formule con le due domande: ordine? ripetizione?
+- So risolvere le domande 4 degli appelli 2025–2026 sulle combinazioni e i problemi dei fiori e degli asciugamani.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 3 «Combinatorica», pp. 55–58 (definizione 3.27, proposizioni 3.28, 3.30, nota 3.29, esempi delle pp. 56–58) e pp. 58 e 62–64 (definizioni 3.31, 3.37, proposizioni 3.32, 3.39, nota 3.38, esempi della p. 62); esercizi 3.8 c), 3.10 b), 3.11 b) e 3.12 (pp. 64–66). Le definizioni e gli enunciati nei riquadri riprendono il libro. Segnalate nel testo tre sviste a p. 57.
+- Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 8 (combinazioni semplici e con ripetizioni, esempi). Gli argomenti della lezione del 19/10/2026 non erano pubblicati quando ho scritto questi appunti.
+- Quiz degli appelli di Matematica Discreta del 04/02/2025, 06/06/2025, 13/01/2026 e 10/09/2026 (domanda 4); problemi degli appelli del 14/01/2025 (problema 2), 08/09/2025 (problema 2), 03/02/2026 (problema 1 c) e 01/07/2026 (problema 1 c), con le soluzioni ufficiali.
+- Tutti i conteggi li ho ricontrollati con un programma, i mazzi di fiori e i monomi anche elencandoli uno per uno.
+
+
+---
+
 <!-- FILE: contesto_ai/MDAG/lezioni/L01_numeri_reali.md -->
 > File: `contesto_ai/MDAG/lezioni/L01_numeri_reali.md`
 
@@ -25040,7 +27073,7 @@ corso: MDAG
 modulo: AG
 lezione: L01
 titolo: Numeri reali
-data: 2026-09-30
+data: 2026-10-01
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L01
 descrizione: >-
@@ -25073,7 +27106,7 @@ genera_html: true
 - Per l'esame servono tre cose: riconoscere un campo, usare le parentesi giuste e fare i conti con le radici senza calcolatrice.
 
 > [!CANALI]
-> Algebra lineare e Geometria usa le **stesse dispense** nei tre canali: Buzano insegna nei canali A e B, Radeschi nei canali B e C. Questi appunti seguono le dispense 2026, quindi valgono allo stesso modo per A, B e C. Cambiano solo i giorni delle lezioni: la pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)) avverte che i cambi d'orario vengono annunciati lì e a lezione. Esame e quiz sono comuni ai tre canali.
+> Algebra lineare e Geometria usa le **stesse dispense** nei tre canali: Buzano insegna nei canali A e B, Radeschi nei canali B e C. Questi appunti seguono le dispense 2026, quindi valgono allo stesso modo per A, B e C. Cambiano solo i giorni delle lezioni: la pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)) avverte che i cambi d'orario vengono annunciati lì e a lezione. Esame e quiz sono comuni ai tre canali. Nel canale B corrisponde all'incontro di giovedì 01/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Gli insiemi: sacchetti con dentro delle cose (p. 2)
 
@@ -26533,6 +28566,7 @@ corso: MDAG
 modulo: AG
 lezione: L02
 titolo: Numeri complessi I
+data: 2026-10-06
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L02
 descrizione: >-
@@ -26566,7 +28600,7 @@ genera_html: true
 - All'esame: in tre appelli la prima domanda del quiz chiedeva di trovare un numero complesso sconosciuto da un'uguaglianza come $(1 + i)z = 3 + 2i$. Si risolve con una divisione.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di martedì 06/10/2026, dalle 9 alle 11: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Una domanda senza risposta tra i numeri reali (p. 6)
 
@@ -28564,6 +30598,7 @@ corso: MDAG
 modulo: AG
 lezione: L03
 titolo: Numeri complessi II
+data: 2026-10-07
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L03
 descrizione: >-
@@ -28596,7 +30631,7 @@ genera_html: true
 - All'esame: potenze alte, prodotti in forma polare e radici sono stati la domanda sui complessi in 9 appelli su 15 dal 2024 al 2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di mercoledì 07/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Ripasso: angoli, seno e coseno (oltre le dispense)
 
@@ -29938,6 +31973,7 @@ corso: MDAG
 modulo: AG
 lezione: L04
 titolo: Polinomi
+data: 2026-10-08
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L04
 descrizione: >-
@@ -29972,7 +32008,7 @@ genera_html: true
 - All'esame: «quale di questi numeri è una radice?» è stata la domanda sui complessi in tre appelli, e le radici dei polinomi servono in quasi ogni problema sugli autovalori.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di giovedì 08/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Che cos'è un polinomio (p. 15)
 
@@ -31102,6 +33138,7 @@ corso: MDAG
 modulo: AG
 lezione: L05
 titolo: Spazi vettoriali I
+data: 2026-10-13
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L05
 descrizione: >-
@@ -31135,7 +33172,7 @@ genera_html: true
 - All'esame devi saper dire se un insieme è uno spazio vettoriale. Per dire di no basta un esempio: manca il vettore zero, oppure una somma o un multiplo escono dall'insieme.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di martedì 13/10/2026, dalle 9 alle 11: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Un vettore è una lista di numeri (pp. 20–21)
 
@@ -33084,6 +35121,7 @@ corso: MDAG
 modulo: AG
 lezione: L06
 titolo: Spazi vettoriali II
+data: 2026-10-15
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L06
 descrizione: >-
@@ -33117,7 +35155,7 @@ genera_html: true
 - All'esame «quale di questi insiemi è (o non è) un sottospazio?» esce quasi a ogni appello: 08/02/2024, 03/06/2025, 05/02/2026, 07/09/2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di giovedì 15/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Tabelle di numeri: le matrici (p. 26)
 

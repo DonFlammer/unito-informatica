@@ -3,6 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L08
 titolo: Matrici I
+data: 2026-10-21
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L08
 descrizione: >-
@@ -36,7 +37,7 @@ genera_html: true
 - All'esame trovi quasi sempre tre domande su questa lezione: «quale identità vale?» tra due prodotti, la traccia di un prodotto e un rango da calcolare.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di mercoledì 21/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Le matrici: tabelle di numeri (p. 36)
 

@@ -3,6 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L07
 titolo: Spazi vettoriali III
+data: 2026-10-20
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L07
 descrizione: >-
@@ -36,7 +37,7 @@ genera_html: true
 - All'esame escono domande su dimensioni, su «generatori e/o indipendenti» e su quale insieme è una base: per esempio negli appelli del 24/01/2024, 16/01/2025, 15/01/2026 e 07/09/2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di martedì 20/10/2026, dalle 9 alle 11: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Che cosa vuol dire «dimensione» (p. 31)
 

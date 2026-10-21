@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>04A · Cicli e ripetizioni, while, for e do-while</title>
+<meta name="lezione" content="04A">
+<meta name="data" content="2026-10-20">
+<meta name="description" content="Appunti della lezione 04A di Programmazione I (canale B): il ciclo while con inizializzazione, condizione e aggiornamento, accumulatori e contatori, il valore di terminazione, la visibilità delle variabili dichiarate nel ciclo, il ciclo for e la sua equivalenza con il while, gli intervalli, i cicli annidati, gli errori più comuni, le variabili sentinella al posto di break e continue, il do-while, con tutti i programmi delle slide provati, quiz ed esercizi.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/04A_iterazioni.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#il-ciclo-while"><span class="n">§1</span><span>Il ciclo while</span></a></li>
+<li><a href="#contare-all-indietro-e-accumulare"><span class="n">§2</span><span>Contare all&#39;indietro e accumulare</span></a></li>
+<li><a href="#il-valore-di-terminazione"><span class="n">§3</span><span>Il valore di terminazione</span></a></li>
+<li><a href="#le-variabili-dentro-il-ciclo"><span class="n">§4</span><span>Le variabili dentro il ciclo</span></a></li>
+<li><a href="#il-ciclo-infinito"><span class="n">§5</span><span>Il ciclo infinito</span></a></li>
+<li><a href="#il-ciclo-for"><span class="n">§6</span><span>Il ciclo for</span></a></li>
+<li><a href="#i-cicli-annidati"><span class="n">§7</span><span>I cicli annidati</span></a></li>
+<li><a href="#gli-errori-piu-comuni-con-il-for"><span class="n">§8</span><span>Gli errori più comuni con il for</span></a></li>
+<li><a href="#while-o-for"><span class="n">§9</span><span>while o for?</span></a></li>
+<li><a href="#le-sentinelle"><span class="n">§10</span><span>Le sentinelle</span></a></li>
+<li><a href="#break-e-continue-e-perche-non-si-usano"><span class="n">§11</span><span>break e continue, e perché non si usano</span></a></li>
+<li><a href="#il-ciclo-do-while"><span class="n">§12</span><span>Il ciclo do-while</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§13</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§14</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§15</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§16</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§17</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§18</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§19</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 04A</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 04A</p>
+      <h1>Cicli e ripetizioni, while, for e do-while</h1>
+      <p class="lede">Con if ed else il programma sceglie; con while e for ripete. È l&#39;iterazione, la terza struttura della programmazione strutturata, e con lei si possono scrivere programmi che lavorano su quantità di dati non note in anticipo.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>04A_iterazioni («Cicli e ripetizioni») · 38 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>90 minuti, meglio con gcc a portata di mano</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:640px">
+<h2 id="tldr-title">La lezione in 8 punti</h2>
+<ul>
+<li><strong><code>while (condizione) { … }</code></strong> ripete il blocco finché la condizione è vera. Se è falsa già all&#39;inizio, il blocco non viene eseguito nemmeno una volta.</li>
+<li>Ogni ciclo ha tre pezzi: <strong>inizializzazione</strong>, <strong>condizione</strong>, <strong>aggiornamento</strong>. Se manca l&#39;aggiornamento, il ciclo non finisce più.</li>
+<li>Un <strong>accumulatore</strong> raccoglie un risultato giro dopo giro (una somma), un <strong>contatore</strong> conta i giri utili.</li>
+<li>Quando non sai quante volte ripetere, ti fermi su un <strong>valore sentinella</strong>, per esempio un numero negativo letto in input.</li>
+<li>Una variabile dichiarata <strong>dentro</strong> il ciclo viene creata a ogni giro e sparisce alla <code>}</code>.</li>
+<li><strong><code>for (init; condizione; aggiornamento)</code></strong> è un <code>while</code> con i tre pezzi scritti sulla stessa riga. Si usa per contare su un intervallo, come <code>[0, 10)</code>.</li>
+<li><code>break</code> e <code>continue</code> esistono, ma <strong>all&#39;esame sono vietati</strong>: si esce dal ciclo solo con la condizione, aiutandosi con una <strong>variabile sentinella</strong> <code>bool</code>.</li>
+<li><strong><code>do { … } while (condizione);</code></strong> esegue il blocco almeno una volta, e controlla la condizione alla fine.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È la lezione di martedì 20/10, dalle 11 alle 13. Riprende le espressioni booleane della <a href="03C_booleani.html">03C</a> e la visibilità nei blocchi della <a href="03D_decisioni.html">03D</a>; il ciclo della moltiplicazione nella <a href="01A_primo_algoritmo.html">01A</a> era già un <code>while</code> scritto a parole.</p>
+<p><strong>Canali A e C.</strong> Secondo l&#39;elenco delle lezioni 2025/26 nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>, i cicli vengono subito dopo <code>if-else</code> anche nei canali A e C. Le slide 2026/27 dei canali A e C non le ho viste. L&#39;esame è unico.</p>
+<p><strong>Due avvisi sulle slide.</strong> Nella slide 38 la condizione del <code>do-while</code> è sbagliata: <code>!(1 &lt;= x || x &lt;= 10)</code> è sempre falsa, e il programma accetta anche 50. La versione giusta, con <code>&amp;&amp;</code>, è nella sezione sul <code>do-while</code>. Nella slide 8, se il primo numero letto è già negativo, la media divide per zero e stampa <code>-nan(ind)</code> (su Linux <code>-nan</code>).</p>
+<p>Tutti i programmi li ho compilati e provati con gcc 16.1, con <code>-Wall -Werror</code>.</p>
+</div>
+
+
+<section id="il-ciclo-while" aria-labelledby="h-il-ciclo-while" style="--h:1760px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-il-ciclo-while">Il ciclo while</h2><span class="slides">slide 2–5</span></div>
+<p>Per stampare i numeri da 0 a 9 potresti scrivere dieci <code>printf</code>. Per stamparli fino a 1000 no: serve un modo per dire «ripeti». Il primo è il <code>while</code>, «finché»:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">while</span> (condizione) {
+    <span class="cm">// blocco di istruzioni da ripetere</span>
+}</code></pre>
+<ol>
+<li>Il programma valuta la condizione.</li>
+<li>Se è <strong>vera</strong>, esegue il blocco e torna al punto 1.</li>
+<li>Se è <strong>falsa</strong>, salta dopo la <code>}</code> e va avanti.</li>
+</ol>
+<p>Ogni esecuzione del blocco si chiama <strong>iterazione</strong>, o giro. L&#39;esempio delle slide:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> i = 0;
+
+    <span class="kw">while</span> (i &lt; 10) {
+        printf(<span class="str">&quot;%d\n&quot;</span>, i);
+        i++;
+    }
+}</code></pre>
+<p>Stampa 0, 1, 2, …, 9, uno per riga. Quando <code>i</code> arriva a 10, <code>i &lt; 10</code> è falsa e il ciclo finisce: il 10 non viene stampato.</p>
+<p>Il ciclo regge su tre pezzi, e le slide li chiamano la <strong>terna fondamentale</strong>:</p>
+<div class="table-wrap"><table><thead><tr><th>Pezzo</th><th>Nel programma</th><th>A che cosa serve</th></tr></thead><tbody><tr><td><strong>inizializzazione</strong></td><td><code>int i = 0;</code></td><td>dà il valore di partenza alla variabile che controlla il ciclo</td></tr>
+<tr><td><strong>condizione</strong></td><td><code>i &lt; 10</code></td><td>decide se fare un altro giro</td></tr>
+<tr><td><strong>aggiornamento</strong></td><td><code>i++;</code></td><td>cambia la variabile, così prima o poi la condizione diventa falsa</td></tr></tbody></table></div>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/538"><svg viewBox="0 0 560 538" role="img" aria-label="Il while della slide 5 come diagramma di flusso. In rosa l'inizializzazione, in verde la condizione, in ambra l'aggiornamento. La freccia a sinistra riporta alla condizione dopo ogni giro; si esce solo dal ramo «falso»." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-grigio" d="M190.4 56.04L369.6 56.04L369.6 16.81L190.4 16.81Z"/><path class="g-linea g-grigio" d="M280 56.04L280 92.47" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-rosa" d="M190.4 134.5L369.6 134.5L369.6 95.27L190.4 95.27Z"/><path class="g-linea g-grigio" d="M280 134.5L280 170.93" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-verde" d="M280 173.73L403.2 218.56L280 263.4L156.8 218.56Z"/><path class="g-linea g-grigio" d="M280 263.4L280 305.43" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-blu" d="M190.4 347.46L369.6 347.46L369.6 308.23L190.4 308.23Z"/><path class="g-linea g-grigio" d="M280 347.46L280 383.89" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-ambra" d="M190.4 425.92L369.6 425.92L369.6 386.69L190.4 386.69Z"/><path class="g-linea g-grigio" d="M190.4 406.3L72.8 406.3"/><path class="g-linea g-grigio" d="M72.8 406.3L72.8 218.56"/><path class="g-linea g-grigio" d="M72.8 218.56L154 218.56" marker-end="url(#g-freccia-1-grigio)"/><path class="g-linea g-rosa" d="M403.2 218.56L487.2 218.56"/><path class="g-linea g-rosa" d="M487.2 218.56L487.2 495.97"/><path class="g-linea g-rosa" d="M487.2 495.97L372.4 495.97" marker-end="url(#g-freccia-1-rosa)"/><path class="g-poligono g-grigio" d="M190.4 515.58L369.6 515.58L369.6 476.35L190.4 476.35Z"/></svg><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:6.77%">inizio</span><span class="g-et g-c g-testo g-rosa" style="left:50.00%;top:21.36%">i = 0</span><span class="g-et g-c g-testo g-verde" style="left:50.00%;top:40.62%">i &lt; 10 ?</span><span class="g-et g-c g-testo g-verde" style="left:58.50%;top:53.12%">vero</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:60.94%">stampa i</span><span class="g-et g-c g-testo g-ambra" style="left:50.00%;top:75.52%">i++</span><span class="g-et g-c g-testo g-rosa" style="left:79.50%;top:36.46%">falso</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:92.19%">fine</span></div><figcaption>Il while della slide 5 come diagramma di flusso. In rosa l&#39;inizializzazione, in verde la condizione, in ambra l&#39;aggiornamento. La freccia a sinistra riporta alla condizione dopo ogni giro; si esce solo dal ramo «falso».</figcaption></figure>
+<p>Se la condizione è falsa <strong>già all&#39;inizio</strong>, per esempio con <code>int i = 20;</code>, il blocco non viene eseguito nemmeno una volta e il programma non stampa niente. Se invece la condizione resta <strong>sempre vera</strong>, il ciclo non finisce mai: è un <strong>ciclo infinito</strong> (più avanti c&#39;è un esempio).</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int i = 3;</code> e la condizione <code>i &lt; 6</code>, quante volte gira il ciclo della slide? Che cosa stampa?</span></summary><div class="ans"><p>Tre volte: stampa 3, 4 e 5. Al quarto controllo <code>i</code> vale 6 e <code>6 &lt; 6</code> è falsa.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>while</code> controlla la condizione <strong>prima</strong> di ogni giro.</li>
+<li>Inizializzazione, condizione, aggiornamento: senza uno dei tre il ciclo non funziona.</li>
+<li>Condizione falsa all&#39;inizio: zero giri.</li>
+</ul>
+</div>
+</section>
+
+<section id="contare-all-indietro-e-accumulare" aria-labelledby="h-contare-all-indietro-e-accumulare" style="--h:1120px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-contare-all-indietro-e-accumulare">Contare all&#39;indietro e accumulare</h2><span class="slides">slide 6–7</span></div>
+<p>Non si conta solo in avanti. Il conto alla rovescia ha la stessa terna, con la condizione e l&#39;aggiornamento girati:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> i = 5;
+<span class="kw">while</span> (i &gt; 0) {
+    printf(<span class="str">&quot;%d\n&quot;</span>, i);
+    i--;
+}</code></pre>
+<p>Stampa 5, 4, 3, 2, 1. La forma del ciclo non è fissa: la decide il problema.</p>
+<p>Spesso il ciclo serve a <strong>costruire un risultato</strong> un pezzo alla volta. Per sommare i numeri da 1 a <code>n</code> si usa una variabile che parte da 0 e a ogni giro riceve un numero in più. Si chiama <strong>accumulatore</strong>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> n = 5, i = 1, somma = 0;
+<span class="kw">while</span> (i &lt;= n) {
+    somma = somma + i;
+    i++;
+}
+printf(<span class="str">&quot;Somma = %d\n&quot;</span>, somma);</code></pre>
+<p>Stampa <code>Somma = 15</code>. Ecco i valori <strong>dopo</strong> ogni giro:</p>
+<div class="table-wrap"><table><thead><tr><th class="centro">Giro</th><th class="centro"><code>i</code> usato nel giro</th><th class="centro"><code>somma</code> dopo il giro</th><th class="centro"><code>i</code> dopo il giro</th></tr></thead><tbody><tr><td class="centro">prima del ciclo</td><td class="centro"></td><td class="centro">0</td><td class="centro">1</td></tr>
+<tr><td class="centro">1</td><td class="centro">1</td><td class="centro">1</td><td class="centro">2</td></tr>
+<tr><td class="centro">2</td><td class="centro">2</td><td class="centro">3</td><td class="centro">3</td></tr>
+<tr><td class="centro">3</td><td class="centro">3</td><td class="centro">6</td><td class="centro">4</td></tr>
+<tr><td class="centro">4</td><td class="centro">4</td><td class="centro">10</td><td class="centro">5</td></tr>
+<tr><td class="centro">5</td><td class="centro">5</td><td class="centro">15</td><td class="centro">6</td></tr></tbody></table></div>
+<p>Al sesto controllo <code>6 &lt;= 5</code> è falsa e il ciclo finisce. L&#39;accumulatore deve partire dal valore «neutro»: 0 per una somma, 1 per un prodotto. Se parte da un valore a caso, perché non l&#39;hai inizializzato, il risultato è sbagliato.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Come cambi il programma per calcolare il prodotto 1 · 2 · 3 · 4 · 5?</span></summary><div class="ans"><p><code>int prodotto = 1;</code> al posto di <code>somma = 0</code>, e nel ciclo <code>prodotto = prodotto * i;</code>. Stampa 120. Se il prodotto partisse da 0, resterebbe 0 per sempre.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>L&#39;aggiornamento può essere <code>i++</code>, <code>i--</code>, <code>i += 2</code>: dipende dal problema.</li>
+<li>Accumulatore: parte da 0 per le somme, da 1 per i prodotti.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-valore-di-terminazione" aria-labelledby="h-il-valore-di-terminazione" style="--h:1320px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-il-valore-di-terminazione">Il valore di terminazione</h2><span class="slides">slide 8, 23</span></div>
+<p>Vuoi la media delle altezze di un gruppo, ma non sai quante persone sono. Ti metti d&#39;accordo con chi usa il programma: quando ha finito, scrive un numero negativo. Quel numero non è un dato, è il segnale di fine. Si chiama <strong>valore di terminazione</strong>, o <strong>valore sentinella</strong>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> somma = 0, count = 0, altezza = 0;
+
+<span class="kw">while</span> (altezza &gt;= 0) {
+    printf(<span class="str">&quot;Inserisci altezza: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;altezza);
+
+    <span class="kw">if</span> (altezza &gt;= 0) {
+        somma += altezza;
+        count++;
+    }
+}
+printf(<span class="str">&quot;Media = %f\n&quot;</span>, somma / (<span class="kw">float</span>)count);</code></pre>
+<p>Qui lavorano due variabili:</p>
+<ul>
+<li><code>somma</code> è l&#39;<strong>accumulatore</strong> delle altezze;</li>
+<li><code>count</code> è un <strong>contatore</strong>: conta le altezze valide, e alla fine serve per dividere.</li>
+</ul>
+<p>L&#39;<code>if</code> dentro il ciclo è necessario: senza, anche il numero negativo finirebbe nella somma. Il cast <code>(float)count</code> fa la divisione con la virgola, come nella <a href="03B_floats.html">03B</a>. Con 170, 180, 175 e −1 stampa <code>Media = 175.000000</code>.</p>
+<p>C&#39;è un caso che il programma delle slide non gestisce: se il <strong>primo</strong> numero è già negativo, <code>count</code> resta 0 e la divisione è 0 / 0. Con i <code>float</code> non si blocca: stampa <code>Media = -nan(ind)</code> su Windows, <code>-nan</code> su Linux, cioè «non è un numero». Si corregge con un <code>if (count &gt; 0)</code> prima della divisione.</p>
+<p>Il ciclo può anche finire per un successo. Nell&#39;esempio del PIN si ripete finché il numero letto non è quello giusto:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> segreto = 12345, guess = -1;
+<span class="kw">while</span> (guess != segreto) {
+    printf(<span class="str">&quot;Indovina il pin segreto: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;guess);
+}
+printf(<span class="str">&quot;Bravo, hai indovinato!\n&quot;</span>);</code></pre>
+<p><code>guess</code> parte da −1 apposta: serve un valore diverso dal segreto, altrimenti il ciclo non comincerebbe nemmeno.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nel programma delle altezze, perché <code>altezza</code> è inizializzata a 0 e non lasciata senza valore?</span></summary><div class="ans"><p>Perché la condizione <code>altezza &gt;= 0</code> viene controllata prima della prima <code>scanf</code>. Con un valore indeterminato il ciclo potrebbe non partire; con 0 la condizione è vera e si arriva alla lettura.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Valore sentinella: un valore che non è un dato e segnala la fine (qui un&#39;altezza negativa).</li>
+<li>Accumulatore per il risultato, contatore per il numero di dati.</li>
+<li>Prima di dividere per il contatore, controlla che non sia 0.</li>
+</ul>
+</div>
+</section>
+
+<section id="le-variabili-dentro-il-ciclo" aria-labelledby="h-le-variabili-dentro-il-ciclo" style="--h:1740px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-le-variabili-dentro-il-ciclo">Le variabili dentro il ciclo</h2><span class="slides">slide 9–22</span></div>
+<p>Il blocco di un <code>while</code> è un blocco come quello di un <code>if</code>, e vale la regola della <a href="03D_decisioni.html">03D</a>: una variabile dichiarata dentro esiste solo dalla dichiarazione alla <code>}</code>. La novità è che il blocco si ripete, quindi la variabile <strong>nasce e sparisce a ogni giro</strong>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 1;
+
+    <span class="kw">while</span> (x &lt; 3) {
+        <span class="kw">int</span> y = x * 2;
+        printf(<span class="str">&quot;x=%d, y=%d\n&quot;</span>, x, y);
+        x++;
+    }
+    printf(<span class="str">&quot;x finale=%d&quot;</span>, x);
+}</code></pre>
+<p>Stampa:</p>
+<pre class="code"><code>x=1, y=2
+x=2, y=4
+x finale=3</code></pre>
+<p>Le slide 10–22 seguono il programma riga per riga sullo stack:</p>
+<div class="table-wrap"><table><thead><tr><th>Momento</th><th class="centro"><code>x</code></th><th class="centro"><code>y</code></th></tr></thead><tbody><tr><td><code>int x = 1;</code></td><td class="centro">1</td><td class="centro">non esiste</td></tr>
+<tr><td>1º giro, <code>int y = x * 2;</code></td><td class="centro">1</td><td class="centro">2</td></tr>
+<tr><td>1º giro, <code>x++;</code></td><td class="centro">2</td><td class="centro">2</td></tr>
+<tr><td><code>}</code> del 1º giro</td><td class="centro">2</td><td class="centro">non esiste</td></tr>
+<tr><td>2º giro, <code>int y = x * 2;</code></td><td class="centro">2</td><td class="centro">4</td></tr>
+<tr><td>2º giro, <code>x++;</code></td><td class="centro">3</td><td class="centro">4</td></tr>
+<tr><td><code>}</code> del 2º giro</td><td class="centro">3</td><td class="centro">non esiste</td></tr>
+<tr><td>controllo <code>3 &lt; 3</code>: falso, si esce</td><td class="centro">3</td><td class="centro">non esiste</td></tr></tbody></table></div>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Lo stack in tre momenti. A ogni giro y viene creata sotto x e alla } del ciclo viene tolta; al giro dopo nasce di nuovo, con un valore nuovo. x invece resta per tutto il main." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M37.33 153L149.33 153L149.33 85L37.33 85Z"/><path class="g-poligono g-ambra" d="M37.33 229.5L149.33 229.5L149.33 161.5L37.33 161.5Z"/><path class="g-poligono g-blu" d="M224 153L336 153L336 85L224 85Z"/><path class="g-poligono g-blu" d="M410.67 153L522.67 153L522.67 85L410.67 85Z"/><path class="g-poligono g-ambra" d="M410.67 229.5L522.67 229.5L522.67 161.5L410.67 161.5Z"/><path class="g-linea g-grigio" d="M158.67 119L214.67 119" marker-end="url(#g-freccia-2-grigio)"/><path class="g-linea g-grigio" d="M345.33 119L401.33 119" marker-end="url(#g-freccia-2-grigio)"/></svg><span class="g-et g-c g-testo g-grigio" style="left:16.67%;top:11.25%">1º giro</span><span class="g-et g-c g-testo g-blu" style="left:16.67%;top:35.00%">x = 1</span><span class="g-et g-c g-testo g-ambra" style="left:16.67%;top:57.50%">y = 2</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:11.25%">dopo la }</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:35.00%">x = 2</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:57.50%">(y non c'è)</span><span class="g-et g-c g-testo g-grigio" style="left:83.33%;top:11.25%">2º giro</span><span class="g-et g-c g-testo g-blu" style="left:83.33%;top:35.00%">x = 2</span><span class="g-et g-c g-testo g-ambra" style="left:83.33%;top:57.50%">y = 4</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:87.50%">lo stack cresce verso il basso: y sta sotto x</span></div><figcaption>Lo stack in tre momenti. A ogni giro y viene creata sotto x e alla } del ciclo viene tolta; al giro dopo nasce di nuovo, con un valore nuovo. x invece resta per tutto il main.</figcaption></figure>
+<p>Dopo il ciclo <code>y</code> non esiste più. Se scrivi <code>printf(&quot;%d&quot;, y);</code> dopo la <code>}</code>, gcc si ferma con <code>error: 'y' undeclared</code>. L&#39;ho provato. Se il valore di <code>y</code> ti serve dopo il ciclo, le slide danno due strade:</p>
+<ul>
+<li>dichiari <code>y</code> <strong>prima</strong> del ciclo, e dentro le assegni solo il valore;</li>
+<li>prima della fine del ciclo copi il valore in una variabile dichiarata fuori.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nel programma, quante volte viene creata <code>y</code>? Che valore ha l&#39;ultima <code>y</code> creata?</span></summary><div class="ans"><p>Due volte, una per giro. L&#39;ultima vale 4. Al terzo controllo la condizione è falsa e <code>y</code> non viene creata.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Una variabile dichiarata nel blocco del ciclo nasce e sparisce a ogni giro.</li>
+<li>Dopo il ciclo non esiste: se ti serve, dichiarala prima.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-ciclo-infinito" aria-labelledby="h-il-ciclo-infinito" style="--h:640px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-il-ciclo-infinito">Il ciclo infinito</h2><span class="slides">slide 24</span></div>
+<p>Il primo errore con i cicli è dimenticare l&#39;aggiornamento:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> i = 0;
+<span class="kw">while</span> (i &lt; 10) {
+    printf(<span class="str">&quot;%d\n&quot;</span>, i);
+    <span class="cm">// manca i++;</span>
+}</code></pre>
+<p><code>i</code> resta 0, <code>0 &lt; 10</code> è sempre vero, e il programma stampa 0 all&#39;infinito. gcc non dà nessun avviso: per lui è un programma corretto. Lo fermi dal terminale con <strong>Ctrl+C</strong>.</p>
+<p>Lo stesso succede quando l&#39;aggiornamento c&#39;è ma va <strong>nel verso sbagliato</strong>: con <code>i--</code> al posto di <code>i++</code>, <code>i</code> scende verso i negativi e resta sempre minore di 10.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span><code>int k = 1; while (k != 10) { k = k + 2; }</code> finisce?</span></summary><div class="ans"><p>No: <code>k</code> vale 1, 3, 5, 7, 9, 11, … e salta il 10. La condizione <code>k != 10</code> resta vera. Con <code>k &lt; 10</code> il ciclo finirebbe a 11.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Senza aggiornamento, o con l&#39;aggiornamento nel verso sbagliato, il ciclo non finisce.</li>
+<li>gcc non se ne accorge. Ctrl+C ferma il programma.</li>
+<li>Con <code>!=</code> nella condizione, controlla che la variabile passi davvero per quel valore.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-ciclo-for" aria-labelledby="h-il-ciclo-for" style="--h:1900px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-il-ciclo-for">Il ciclo for</h2><span class="slides">slide 25–29</span></div>
+<p>Nella maggior parte dei cicli che contano, i tre pezzi della terna sono sparsi: l&#39;inizializzazione prima del <code>while</code>, la condizione in alto, l&#39;aggiornamento in fondo al blocco. Il <code>for</code> li mette <strong>sulla stessa riga</strong>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (inizializzazione; condizione; aggiornamento) {
+    <span class="cm">// blocco di istruzioni da ripetere</span>
+}</code></pre>
+<ul>
+<li>l&#39;<strong>inizializzazione</strong> si esegue una volta sola, prima di tutto;</li>
+<li>la <strong>condizione</strong> si controlla prima di ogni giro;</li>
+<li>l&#39;<strong>aggiornamento</strong> si esegue alla fine di ogni giro.</li>
+</ul>
+<p>I numeri da 0 a 9 diventano:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt; 10; i++) {
+    printf(<span class="str">&quot;%d\n&quot;</span>, i);
+}</code></pre>
+<p>Il <code>for</code> è un modo più compatto di scrivere un <code>while</code>. Questi due pezzi di codice fanno la stessa cosa:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt; 10; i++) {
+    printf(<span class="str">&quot;%d\n&quot;</span>, i);
+}</code></pre>
+<pre class="code" data-lingua="c"><code>{
+    <span class="kw">int</span> i = 0;
+    <span class="kw">while</span> (i &lt; 10) {
+        printf(<span class="str">&quot;%d\n&quot;</span>, i);
+        i++;
+    }
+}</code></pre>
+<p>Le graffe esterne della seconda versione contano: la <code>i</code> dichiarata nel <code>for</code> esiste <strong>solo dentro il for</strong>. Dopo, come per <code>y</code> nella sezione prima, gcc dice <code>error: 'i' undeclared</code>.</p>
+<h3 id="contare-su-un-intervallo">Contare su un intervallo</h3>
+<p>Il <code>for</code> è fatto per percorrere un <strong>intervallo</strong> di numeri. Bastano tre cose: il valore iniziale, la condizione per restare nell&#39;intervallo e il <strong>passo</strong>.</p>
+<div class="table-wrap"><table><thead><tr><th>Intervallo</th><th>Valori</th><th>Ciclo</th></tr></thead><tbody><tr><td>da 0 a 10 escluso, <code>[0, 10)</code></td><td>0, 1, …, 9</td><td><code>for (int i = 0; i &lt; 10; i++)</code></td></tr>
+<tr><td>pari da 0 a 40 incluso, <code>[0, 40]</code></td><td>0, 2, …, 40</td><td><code>for (int i = 0; i &lt;= 40; i += 2)</code></td></tr>
+<tr><td>da <code>n</code> a 0, all&#39;indietro</td><td><code>n</code>, …, 1, 0</td><td><code>for (int i = n; i &gt;= 0; i--)</code></td></tr>
+<tr><td>da 1 a <code>N</code> incluso, <code>[1, N]</code></td><td>1, 2, …, N</td><td><code>for (int i = 1; i &lt;= N; i++)</code></td></tr></tbody></table></div>
+<p>La parentesi quadra vuol dire «incluso», la tonda «escluso»: <code>[0, 10)</code> è un <strong>intervallo semiaperto</strong>, con lo 0 dentro e il 10 fuori. Con <code>i &lt; 10</code> il 10 resta fuori, con <code>i &lt;= 10</code> dentro. Il ciclo sui pari gira 21 volte, perché conta anche lo 0 e il 40.</p>
+<p>Un modo veloce per contare i giri: con passo 1, l&#39;intervallo <code>[a, b)</code> dà <code>b − a</code> giri. <code>[0, 10)</code> dà 10 giri, <code>[1, N]</code>, che è <code>[1, N + 1)</code>, ne dà <code>N</code>.</p>
+<p>Gli ultimi due esempi delle slide:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> somma = 0;
+<span class="kw">for</span> (<span class="kw">int</span> i = 1; i &lt;= N; i++) {
+    somma += i;
+}</code></pre>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">int</span> i = 1; i &lt;= 10; i++) {
+    printf(<span class="str">&quot;%d x 5 = %d\n&quot;</span>, i, i*5);
+}</code></pre>
+<p>Con <code>N = 10</code> la somma vale 55; la tabellina stampa da <code>1 x 5 = 5</code> a <code>10 x 5 = 50</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Scrivi un <code>for</code> che stampa i multipli di 3 da 3 a 30 inclusi. Quanti giri fa?</span></summary><div class="ans"><p><code>for (int i = 3; i &lt;= 30; i += 3) { printf(&quot;%d\n&quot;, i); }</code>. Fa 10 giri: 3, 6, …, 30.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>for (init; condizione; aggiornamento)</code> è un <code>while</code> con la terna su una riga.</li>
+<li>La variabile dichiarata nell&#39;inizializzazione esiste solo dentro il <code>for</code>.</li>
+<li><code>[a, b)</code>: <code>a</code> incluso, <code>b</code> escluso. Con passo 1 sono <code>b − a</code> giri.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-cicli-annidati" aria-labelledby="h-i-cicli-annidati" style="--h:1160px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-i-cicli-annidati">I cicli annidati</h2><span class="slides">slide 30</span></div>
+<p>Un ciclo può stare dentro un altro. Per ogni giro del ciclo esterno, quello interno fa <strong>tutti</strong> i suoi giri, poi si ricomincia:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">int</span> r = 0; r &lt; 3; r++) {
+    <span class="kw">for</span> (<span class="kw">int</span> c = 0; c &lt; 3; c++) {
+        printf(<span class="str">&quot;(%d,%d) &quot;</span>, r, c);
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+}</code></pre>
+<p>Stampa:</p>
+<pre class="code"><code>(0,0) (0,1) (0,2)
+(1,0) (1,1) (1,2)
+(2,0) (2,1) (2,2)</code></pre>
+<figure class="grafico" id="grafico-3"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="L'ordine in cui il ciclo annidato visita le coppie: r sceglie la riga, c scorre tutta la riga, poi printf(&quot;\n&quot;) va a capo e r passa alla riga dopo. Le coppie sono 3 × 3 = 9." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-3-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-3-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-3-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-3-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-3-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-3-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-3-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-3-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M85.33 113.33L170.67 113.33L170.67 53.68L85.33 53.68Z"/><path class="g-linea g-blu" d="M173.33 83.51L210.67 83.51" marker-end="url(#g-freccia-3-blu)"/><path class="g-poligono g-blu" d="M213.33 113.33L298.67 113.33L298.67 53.68L213.33 53.68Z"/><path class="g-linea g-blu" d="M301.33 83.51L338.67 83.51" marker-end="url(#g-freccia-3-blu)"/><path class="g-poligono g-blu" d="M341.33 113.33L426.67 113.33L426.67 53.68L341.33 53.68Z"/><path class="g-poligono g-ambra" d="M85.33 214.74L170.67 214.74L170.67 155.09L85.33 155.09Z"/><path class="g-linea g-ambra" d="M173.33 184.91L210.67 184.91" marker-end="url(#g-freccia-3-ambra)"/><path class="g-poligono g-ambra" d="M213.33 214.74L298.67 214.74L298.67 155.09L213.33 155.09Z"/><path class="g-linea g-ambra" d="M301.33 184.91L338.67 184.91" marker-end="url(#g-freccia-3-ambra)"/><path class="g-poligono g-ambra" d="M341.33 214.74L426.67 214.74L426.67 155.09L341.33 155.09Z"/><path class="g-poligono g-verde" d="M85.33 316.14L170.67 316.14L170.67 256.49L85.33 256.49Z"/><path class="g-linea g-verde" d="M173.33 286.32L210.67 286.32" marker-end="url(#g-freccia-3-verde)"/><path class="g-poligono g-verde" d="M213.33 316.14L298.67 316.14L298.67 256.49L213.33 256.49Z"/><path class="g-linea g-verde" d="M301.33 286.32L338.67 286.32" marker-end="url(#g-freccia-3-verde)"/><path class="g-poligono g-verde" d="M341.33 316.14L426.67 316.14L426.67 256.49L341.33 256.49Z"/></svg><span class="g-et g-c g-testo g-grigio" style="left:22.86%;top:7.02%">c = 0</span><span class="g-et g-c g-testo g-grigio" style="left:45.71%;top:7.02%">c = 1</span><span class="g-et g-c g-testo g-grigio" style="left:68.57%;top:7.02%">c = 2</span><span class="g-et g-c g-testo g-blu" style="left:6.67%;top:24.56%">r = 0</span><span class="g-et g-c g-testo g-blu" style="left:22.86%;top:24.56%">(0,0)</span><span class="g-et g-c g-testo g-blu" style="left:45.71%;top:24.56%">(0,1)</span><span class="g-et g-c g-testo g-blu" style="left:68.57%;top:24.56%">(0,2)</span><span class="g-et g-c g-testo g-grigio" style="left:88.57%;top:24.56%">a capo</span><span class="g-et g-c g-testo g-ambra" style="left:6.67%;top:54.39%">r = 1</span><span class="g-et g-c g-testo g-ambra" style="left:22.86%;top:54.39%">(1,0)</span><span class="g-et g-c g-testo g-ambra" style="left:45.71%;top:54.39%">(1,1)</span><span class="g-et g-c g-testo g-ambra" style="left:68.57%;top:54.39%">(1,2)</span><span class="g-et g-c g-testo g-grigio" style="left:88.57%;top:54.39%">a capo</span><span class="g-et g-c g-testo g-verde" style="left:6.67%;top:84.21%">r = 2</span><span class="g-et g-c g-testo g-verde" style="left:22.86%;top:84.21%">(2,0)</span><span class="g-et g-c g-testo g-verde" style="left:45.71%;top:84.21%">(2,1)</span><span class="g-et g-c g-testo g-verde" style="left:68.57%;top:84.21%">(2,2)</span><span class="g-et g-c g-testo g-grigio" style="left:88.57%;top:84.21%">a capo</span></div><figcaption>L&#39;ordine in cui il ciclo annidato visita le coppie: r sceglie la riga, c scorre tutta la riga, poi printf(&quot;\n&quot;) va a capo e r passa alla riga dopo. Le coppie sono 3 × 3 = 9.</figcaption></figure>
+<p>Le regole di visibilità si sommano: <code>r</code> esiste in tutto il ciclo esterno, quindi anche in quello interno; <code>c</code> esiste solo nel ciclo interno, e viene ricreata a ogni giro di <code>r</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quante volte viene chiamata <code>printf</code> in tutto, contando anche quella che va a capo?</span></summary><div class="ans"><p>12: 9 per le coppie e 3 per andare a capo, una per riga.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Per ogni giro del ciclo esterno, l&#39;interno fa tutti i suoi giri.</li>
+<li>3 giri fuori × 3 giri dentro = 9 esecuzioni del blocco interno.</li>
+</ul>
+</div>
+</section>
+
+<section id="gli-errori-piu-comuni-con-il-for" aria-labelledby="h-gli-errori-piu-comuni-con-il-for" style="--h:1200px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-gli-errori-piu-comuni-con-il-for">Gli errori più comuni con il for</h2><span class="slides">slide 31</span></div>
+<p>Le slide raccolgono cinque errori. Per ognuno ho controllato che cosa fanno gcc e il programma.</p>
+<div class="table-wrap"><table><thead><tr><th>Errore</th><th>Esempio</th><th>Che cosa succede</th><th>gcc con <code>-Wall -Werror</code></th></tr></thead><tbody><tr><td>condizione sempre vera</td><td><code>for (int i = 0; i &gt;= 0; i++)</code></td><td>ciclo infinito: <code>i</code> cresce e resta positiva</td><td>compila</td></tr>
+<tr><td>aggiornamento mancante</td><td><code>for (int i = 0; i &lt; 10; )</code></td><td><code>i</code> resta 0: ciclo infinito</td><td>compila</td></tr>
+<tr><td>un giro in più (<em>off-by-one</em>)</td><td><code>for (int i = 0; i &lt;= 10; i++)</code></td><td>11 giri invece di 10</td><td>compila</td></tr>
+<tr><td>contatore cambiato nel blocco</td><td><code>i = i + 2;</code> dentro il <code>for</code></td><td><code>i</code> avanza di 3 a ogni giro: stampa 0 3 6 9</td><td>compila</td></tr>
+<tr><td>contatore usato dopo il <code>for</code></td><td><code>printf(&quot;%d&quot;, i);</code> dopo la <code>}</code></td><td><code>i</code> non esiste più</td><td><code>error: 'i' undeclared</code></td></tr></tbody></table></div>
+<p>Solo l&#39;ultimo viene fermato dal compilatore. Gli altri compilano e danno un risultato sbagliato, e li trovi solo provando il programma o contando i giri a mano.</p>
+<p>L&#39;<em>off-by-one</em>, «sbagliato di uno», è il più frequente: <code>&lt;</code> e <code>&lt;=</code> differiscono di un solo giro, e quel giro può leggere un dato che non c&#39;è. Con gli array della <a href="05A_array_stringhe.html">05A</a> diventa un accesso fuori dai limiti.</p>
+<p>Il quarto errore è più sottile: la <code>i</code> del <code>for</code> va <strong>usata</strong>, non modificata nel blocco. Chi legge <code>for (int i = 0; i &lt; 10; i++)</code> si aspetta dieci giri, e dentro il blocco non deve trovare altre modifiche.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanti giri fa <code>for (int i = 1; i &lt;= 10; i++)</code>? E <code>for (int i = 1; i &lt; 10; i++)</code>?</span></summary><div class="ans"><p>10 il primo, da 1 a 10. 9 il secondo, da 1 a 9.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Quasi tutti gli errori dei cicli compilano: si trovano contando i giri.</li>
+<li><code>&lt;</code> o <code>&lt;=</code>: decidi se l&#39;ultimo valore è incluso, poi scrivi la condizione.</li>
+<li>Nel blocco di un <code>for</code>, il contatore si legge e non si cambia.</li>
+</ul>
+</div>
+</section>
+
+<section id="while-o-for" aria-labelledby="h-while-o-for" style="--h:680px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-while-o-for">while o for?</h2><span class="slides">slide 32</span></div>
+<p>I due cicli fanno le stesse cose: si sceglie quello che si legge meglio.</p>
+<div class="table-wrap"><table><thead><tr><th>Usa <code>for</code> quando</th><th>Usa <code>while</code> quando</th></tr></thead><tbody><tr><td>sai già quante iterazioni servono</td><td>non lo sai in anticipo</td></tr>
+<tr><td>percorri un intervallo di numeri, con passo costante</td><td>la condizione dipende dall&#39;input o da un evento</td></tr>
+<tr><td>il contatore avanza in modo regolare</td><td>l&#39;aggiornamento è irregolare, o non è un numero</td></tr></tbody></table></div>
+<p>Stampare la tabellina del 5: <code>for</code>. Leggere altezze finché non arriva un negativo: <code>while</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quale ciclo useresti per chiedere un PIN finché non è giusto? E per sommare i numeri da 1 a 100?</span></summary><div class="ans"><p><code>while</code> per il PIN: non sai quanti tentativi servono. <code>for</code> per la somma: l&#39;intervallo <code>[1, 100]</code> è noto.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Numero di giri noto, intervallo regolare: <code>for</code>.</li>
+<li>Fine decisa da un evento o dall&#39;input: <code>while</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="le-sentinelle" aria-labelledby="h-le-sentinelle" style="--h:1940px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-le-sentinelle">Le sentinelle</h2><span class="slides">slide 33–36</span></div>
+<p>Nella sezione sul valore di terminazione il ciclo si fermava guardando un dato. Le slide ora separano due idee.</p>
+<ul>
+<li><strong>Valore sentinella</strong>: un valore speciale nei dati che dice «basta». Altri nomi: valore di terminazione, marcatore di fine input, codice di arresto, EOF (<em>end of file</em>).</li>
+<li><strong>Variabile sentinella</strong>: una variabile <code>bool</code> che dice al ciclo se continuare. Altri nomi: flag di controllo, <em>loop flag</em>.</li>
+</ul>
+<p>Spesso lavorano insieme: quando arriva il valore sentinella, il programma mette la variabile sentinella a <code>false</code>, e il ciclo si ferma al controllo successivo.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Variabile sentinella</span></p><p>Una variabile <code>bool</code> che compare nella condizione del ciclo. Il ciclo continua finché ha il valore iniziale; dentro il blocco, quando il lavoro è finito, le si assegna l&#39;altro valore.</p>
+</div>
+<p><strong>Come si legge.</strong> È il modo di far finire un ciclo senza <code>break</code>: la decisione di smettere si prende dentro il blocco, ma l&#39;uscita avviene sempre dalla condizione. Il nome dice che cosa si aspetta, come <code>trovato</code> o <code>continua</code>.</p>
+<p>L&#39;esempio delle slide cerca il primo numero il cui quadrato supera 500:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> n = 1;
+<span class="kw">bool</span> trovato = <span class="kw">false</span>; <span class="cm">// variabile sentinella</span>
+
+<span class="kw">while</span> (!trovato) {
+    <span class="kw">int</span> q = n * n;
+    <span class="kw">if</span> (q &gt; 500) {
+        trovato = <span class="kw">true</span>;
+    }
+    <span class="kw">else</span> {
+        n++;
+    }
+}
+printf(<span class="str">&quot;%d x %d = %d\n&quot;</span>, n, n, n*n);</code></pre>
+<p>Stampa <code>23 x 23 = 529</code>: 22 × 22 = 484 non basta. La stessa ricerca si scrive anche in tre righe, mettendo il valore sentinella direttamente nella condizione:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> n = 1;
+<span class="kw">while</span> (n * n &lt;= 500) {
+    n++;
+}</code></pre>
+<p>Danno lo stesso risultato. La versione con <code>trovato</code> si allunga, ma regge meglio quando i motivi per fermarsi diventano due o tre.</p>
+<p>La media delle altezze, riscritta con una variabile sentinella:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> somma = 0, count = 0;
+<span class="kw">bool</span> continua = <span class="kw">true</span>;   <span class="cm">// variabile sentinella</span>
+
+<span class="kw">while</span> (continua) {
+    <span class="kw">int</span> altezza;
+    printf(<span class="str">&quot;Inserisci altezza (negativa per terminare): &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;altezza);
+
+    <span class="kw">if</span> (altezza &gt;= 0) {
+        somma += altezza;
+        count++;
+    }
+    <span class="kw">else</span> { <span class="cm">// altezza è un valore sentinella (&lt;0)</span>
+        continua = <span class="kw">false</span>; <span class="cm">// aggiorna la sentinella, il ciclo finisce</span>
+    }
+}
+printf(<span class="str">&quot;Media = %f\n&quot;</span>, somma / (<span class="kw">float</span>)count);</code></pre>
+<p>Rispetto alla prima versione, <code>altezza</code> sta dentro il ciclo e non serve più inizializzarla a 0: la condizione guarda <code>continua</code>, non <code>altezza</code>. Con 170, 180, 175 e −1 stampa ancora <code>Media = 175.000000</code>.</p>
+<p>Le slide usano <code>bool</code> senza <code>#include &lt;stdbool.h&gt;</code>. Con gcc 16, che segue lo standard C23, compila lo stesso, perché in C23 <code>bool</code>, <code>true</code> e <code>false</code> fanno parte del linguaggio. Con un compilatore più vecchio serve l&#39;<code>#include</code>, quindi conviene scriverlo sempre, come nella <a href="03C_booleani.html">03C</a>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con una variabile sentinella <code>trovato</code>, scrivi un ciclo che cerca il primo multiplo di 7 maggiore di 50.</span></summary><div class="ans"><p><code>int n = 51; bool trovato = false; while (!trovato) { if (n % 7 == 0) { trovato = true; } else { n++; } }</code>. Alla fine <code>n</code> vale 56.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Valore sentinella: un dato speciale che segnala la fine.</li>
+<li>Variabile sentinella: un <code>bool</code> nella condizione del ciclo.</li>
+<li>Il ciclo finisce sempre dalla condizione, mai da un salto in mezzo al blocco.</li>
+</ul>
+</div>
+</section>
+
+<section id="break-e-continue-e-perche-non-si-usano" aria-labelledby="h-break-e-continue-e-perche-non-si-usano" style="--h:920px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-break-e-continue-e-perche-non-si-usano">break e continue, e perché non si usano</h2><span class="slides">slide 37</span></div>
+<p>Il C ha due parole per saltare dentro un ciclo:</p>
+<ul>
+<li><strong><code>break</code></strong> interrompe subito il ciclo, e il programma riprende dopo la <code>}</code>;</li>
+<li><strong><code>continue</code></strong> salta il resto del blocco e passa al controllo della condizione, cioè al giro dopo.</li>
+</ul>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt; 10; i++) {
+    <span class="kw">if</span> (i == 5)
+        <span class="kw">break</span>;   <span class="cm">// stop al ciclo</span>
+    printf(<span class="str">&quot;%d &quot;</span>, i);
+}</code></pre>
+<p>Stampa <code>0 1 2 3 4</code>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt; 10; i++) {
+    <span class="kw">if</span> (i % 2 == 0)
+        <span class="kw">continue</span>; <span class="cm">// salta i pari</span>
+    printf(<span class="str">&quot;%d &quot;</span>, i);
+}</code></pre>
+<p>Stampa <code>1 3 5 7 9</code>.</p>
+<p>Funzionano, ma rendono il ciclo più difficile da leggere: per sapere quando finisce non basta guardare la condizione, bisogna cercare i <code>break</code> nel blocco. Per questo nel corso non si usano, e le <strong>regole d&#39;esame li vietano</strong>. Si riscrivono così:</p>
+<ul>
+<li>il primo diventa <code>for (int i = 0; i &lt; 5; i++)</code>: la condizione dice da sola quando fermarsi;</li>
+<li>il secondo diventa <code>for (int i = 1; i &lt; 10; i += 2)</code>, oppure un <code>if (i % 2 != 0)</code> intorno alla <code>printf</code>.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Riscrivi senza <code>break</code>: <code>for (int i = 0; i &lt; n; i++) { if (v == i * i) break; }</code>. Ti serve sapere se <code>v</code> è un quadrato.</span></summary><div class="ans"><p>Con una sentinella nella condizione: <code>bool trovato = false; for (int i = 0; i &lt; n &amp;&amp; !trovato; i++) { if (v == i * i) { trovato = true; } }</code>. Il ciclo si ferma al giro dopo aver trovato il quadrato, senza salti.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>break</code> esce dal ciclo, <code>continue</code> salta al giro dopo.</li>
+<li>All&#39;esame sono vietati: metti la sentinella nella condizione, con <code>&amp;&amp; !trovato</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-ciclo-do-while" aria-labelledby="h-il-ciclo-do-while" style="--h:1300px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-il-ciclo-do-while">Il ciclo do-while</h2><span class="slides">slide 38</span></div>
+<p>A volte il blocco va eseguito <strong>almeno una volta</strong>, perché solo dopo averlo eseguito sai se ripetere. È il caso dell&#39;input: prima chiedi il numero, poi controlli se va bene. Per questo c&#39;è il <code>do-while</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">do</span> {
+    <span class="cm">// blocco di istruzioni da ripetere</span>
+} <span class="kw">while</span> (condizione);</code></pre>
+<p>La condizione è in fondo, e dopo la <code>)</code> c&#39;è il <strong>punto e virgola</strong>. Il blocco gira una volta, poi si ripete finché la condizione è vera.</p>
+<p>Nell&#39;esempio delle slide il programma chiede un numero tra 1 e 10, e lo richiede finché non lo è. La condizione delle slide è sbagliata:</p>
+<pre class="code" data-lingua="c"><code>} <span class="kw">while</span> (retval == 0 || !(1 &lt;= x || x &lt;= 10));   <span class="cm">// SBAGLIATA</span></code></pre>
+<p><code>1 &lt;= x || x &lt;= 10</code> è vera per ogni intero: qualunque numero è almeno 1 oppure al massimo 10. La negazione è sempre falsa, e il ciclo accetta tutto. L&#39;ho provato: con 50 stampa <code>Hai inserito 50</code>. La condizione giusta usa <code>&amp;&amp;</code>, come gli intervalli della <a href="03C_booleani.html">03C</a>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> x, retval;
+<span class="kw">do</span> {
+    printf(<span class="str">&quot;Inserisci un numero [1,10]: &quot;</span>);
+    retval = scanf(<span class="str">&quot;%d&quot;</span>, &amp;x);
+    <span class="cm">// ripeti se l'input non è valido o non è in [1,10]</span>
+} <span class="kw">while</span> (retval == 0 || !(1 &lt;= x &amp;&amp; x &lt;= 10));
+
+printf(<span class="str">&quot;Hai inserito %d\n&quot;</span>, x);</code></pre>
+<p>Con 50, poi 0, poi 7 chiede tre volte e stampa <code>Hai inserito 7</code>.</p>
+<p>Resta un caso: se scrivi una lettera, il programma richiede il numero all&#39;infinito. La lettera rimane nell&#39;input, ogni <code>scanf</code> la trova di nuovo, non riesce a leggerla e restituisce 0. Per toglierla si legge la parola e la si butta via con <code>scanf(&quot;%*s&quot;)</code>: l&#39;asterisco vuol dire «leggi, ma non salvare da nessuna parte». La versione completa è negli esercizi.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa <code>int n = 100; do { n = n * 3; } while (n &lt; 50); printf(&quot;%d&quot;, n);</code>?</span></summary><div class="ans"><ol start="300">
+<li>Il blocco gira una volta comunque; poi <code>300 &lt; 50</code> è falso e il ciclo finisce. Con un <code>while</code> normale il blocco non girerebbe e stamperebbe 100.</li>
+</ol>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>do { … } while (c);</code>: il blocco gira almeno una volta, la condizione è in fondo.</li>
+<li>Dopo <code>while (c)</code> ci vuole il <code>;</code>.</li>
+<li>Un intervallo è <code>1 &lt;= x &amp;&amp; x &lt;= 10</code>, con <code>&amp;&amp;</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:710px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>while (c) { … }</code></td><td>«finché»</td><td>ripete il blocco finché <code>c</code> è vera; controlla prima di ogni giro</td><td><code>while (i &lt; 10) { … }</code></td></tr>
+<tr><td><code>for (init; c; agg) { … }</code></td><td>«for»</td><td>un <code>while</code> con la terna sulla stessa riga</td><td><code>for (int i = 0; i &lt; 10; i++)</code></td></tr>
+<tr><td><code>do { … } while (c);</code></td><td>«fai… finché»</td><td>esegue il blocco almeno una volta, controlla alla fine</td><td>validare un input</td></tr>
+<tr><td><code>i++</code>, <code>i--</code>, <code>i += 2</code></td><td>aggiornamento</td><td>fa avanzare il contatore</td><td></td></tr>
+<tr><td><code>[a, b)</code></td><td>da <code>a</code> incluso a <code>b</code> escluso</td><td>intervallo semiaperto</td><td><code>[0, 10)</code> sono 0, …, 9</td></tr>
+<tr><td><code>break</code></td><td>«interrompi»</td><td>esce dal ciclo; vietato all&#39;esame</td><td></td></tr>
+<tr><td><code>continue</code></td><td>«continua»</td><td>salta al giro dopo; vietato all&#39;esame</td><td></td></tr>
+<tr><td><code>%*s</code></td><td>asterisco in <code>scanf</code></td><td>legge una parola senza salvarla</td><td><code>scanf(&quot;%*s&quot;);</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:1260px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>All&#39;esame, su CodeRunner, l&#39;esercizio iterativo è una funzione con uno o due cicli. Le cose da avere in mano:</p>
+<ol>
+<li><strong>niente <code>break</code> e <code>continue</code></strong> (né <code>switch</code>): si esce dal ciclo solo con la condizione, usando una variabile sentinella;</li>
+<li><strong>una sola <code>return</code></strong> nelle funzioni iterative, alla fine: la sentinella serve anche a questo;</li>
+<li><strong>«per ogni» parte da <code>true</code>, «esiste» parte da <code>false</code></strong>: è lo schema degli esercizi d&#39;esame, e lo trovi già nel controllo dei numeri primi qui sotto;</li>
+<li><strong>conta i giri</strong> dei casi limite: zero giri (condizione falsa subito), un giro solo, l&#39;ultimo giro (<code>&lt;</code> o <code>&lt;=</code>);</li>
+<li><strong>inizializza accumulatori e contatori</strong> prima del ciclo.</li>
+</ol>
+<p>Un esercizio vero del pre-esame 2023/24 chiede se in ogni riga di una matrice esiste un multiplo di 7. Le matrici arrivano più avanti, ma lo schema della soluzione è questo (semplificato: tolgo il controllo sulla lunghezza delle righe), con due sentinelle nelle condizioni dei cicli:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> ok = <span class="kw">true</span>;                        <span class="cm">// &quot;per ogni riga&quot;: parte da true</span>
+<span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; rows &amp;&amp; ok; i++) {
+    <span class="kw">bool</span> found = <span class="kw">false</span>;                <span class="cm">// &quot;esiste un multiplo di 7&quot;: parte da false</span>
+    <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; rags[i] &amp;&amp; !found; j++) {
+        <span class="kw">if</span> (mat[i][j] % 7 == 0) {
+            found = <span class="kw">true</span>;
+        }
+    }
+    ok = found;
+}</code></pre>
+<p>È la stessa idea del programma che controlla un quantificatore nella <a href="../FDA/09_quantificatori.html">lezione 09 di Fondamenti</a>: «per ogni» si ferma al primo controesempio, «esiste» al primo testimone. La soluzione completa è nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a>.</p>
+<p>Negli esercizi sullo <strong>stato della memoria</strong> compaiono cicli con variabili dichiarate nel blocco: la loro casella si crea a ogni giro e si cancella alla <code>}</code>.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Seguire un ciclo a mano</span></p><ol>
+<li>Scrivi i valori iniziali di tutte le variabili.</li>
+<li>Calcola la condizione con i valori di quel momento: se è falsa, hai finito.</li>
+<li>Esegui il blocco una riga alla volta e scrivi una riga della tabella alla fine del giro.</li>
+<li>Esegui l&#39;aggiornamento (nel <code>for</code> dopo il blocco) e torna al punto 2.</li>
+<li>Per un <code>do-while</code>, comincia dal punto 3.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2130px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Quante volte stampa questo ciclo? <code>int i = 10; while (i &lt; 10) { printf(&quot;x&quot;); i++; }</code></div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">una</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">undici</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">dieci</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">nessuna</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">all&#39;infinito</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La condizione <code>10 &lt; 10</code> è falsa già al primo controllo, quindi il blocco non gira mai. La risposta più insidiosa è «una»: lo sarebbe con un <code>do-while</code>, che esegue il blocco prima di controllare.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>for (int i = 0; i &lt; 10; i++) { printf(&quot;%d &quot;, i); i = i + 2; }</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">niente: non compila</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0 3 6</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0 1 2 … 9</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0 2 4 6 8</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0 3 6 9</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>A ogni giro <code>i</code> aumenta di 2 nel blocco e di 1 nell&#39;aggiornamento, cioè di 3. Dopo il 9 diventa 12 e il ciclo finisce. La risposta più insidiosa è <code>0 2 4 6 8</code>, che si avrebbe con il solo <code>i += 2</code> nell&#39;aggiornamento. Compila senza avvisi: l&#39;ho provato.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Sul modello del laboratorio 04 del 2025/26: quante volte gira <code>for (int i = 20; i &gt;= 2; i -= 7)</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="3" data-toll="1e-9"><span class="q-giusto" hidden>3</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>i</code> vale 20, 13, 6. Al passo dopo vale −1, e <code>−1 &gt;= 2</code> è falso.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Sul modello del laboratorio 04 del 2025/26: quante volte gira <code>for (int i = 7; i &lt;= 77; i += 7)</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="11" data-toll="1e-9"><span class="q-giusto" hidden>11</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>i</code> vale 7, 14, …, 77: i multipli di 7 da 1·7 a 11·7. Il 77 è incluso perché la condizione è <code>&lt;=</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>int n = 1; do { n = n * 3; } while (n &lt; 50); printf(&quot;%d&quot;, n);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>81</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>27</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>50</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>243</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>n</code> vale 3, 9, 27, 81: dopo 27 la condizione <code>27 &lt; 50</code> è ancora vera, quindi c&#39;è un altro giro. La risposta più insidiosa è 27, l&#39;ultimo valore sotto 50: ma il controllo viene dopo la moltiplicazione.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa succede compilando con <code>-Wall -Werror</code> un programma che dopo <code>for (int i = 0; i &lt; 5; i++) { … }</code> fa <code>printf(&quot;%d&quot;, i);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa 5</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa 4</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non compila: <code>i</code> esiste solo dentro il <code>for</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa un valore a caso</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Compila con un avviso</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>gcc dà <code>error: 'i' undeclared</code>. La risposta più insidiosa è 5, il valore che <code>i</code> avrebbe se fosse dichiarata prima del <code>for</code>, come nella versione con il <code>while</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale condizione ripete la lettura finché <code>x</code> non è tra 1 e 10 inclusi?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>while (1 &lt;= x &amp;&amp; x &lt;= 10);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>while (!(1 &lt;= x &amp;&amp; x &lt;= 10));</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>while (x &lt; 1 &amp;&amp; x &gt; 10);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>while (!(1 &lt;= x || x &lt;= 10));</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>while (1 &lt;= x &lt;= 10);</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Si ripete quando x <strong>non</strong> è nell&#39;intervallo. La risposta più insidiosa è la seconda, quella delle slide: con <code>||</code> la parte tra parentesi è sempre vera e il ciclo non ripete mai. La quarta è il confronto doppio che in C non funziona, la quinta non è mai vera.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Quante volte viene eseguito <code>t++</code> in <code>for (int r = 0; r &lt; 3; r++) { for (int q = r; q &lt; 3; q++) { t++; } }</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="6" data-toll="1e-9"><span class="q-giusto" hidden>6</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il ciclo interno parte da <code>r</code>: fa 3 giri con r = 0, 2 con r = 1, 1 con r = 2. In tutto 3 + 2 + 1 = 6.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale ciclo calcola la somma dei pari da 2 a 100 senza <code>if</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>for (int k = 2; k &lt;= 100; k++) { s += 2; }</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>for (int k = 0; k &lt;= 100; k++) { s += k; }</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>for (int k = 2; k &lt; 100; k += 2) { s += k; }</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>while (k &lt;= 100) { s += k; }</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>for (int k = 2; k &lt;= 100; k += 2) { s += k; }</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Si parte da 2 e si avanza di 2, con il 100 incluso. La risposta più insidiosa è la seconda, che si ferma a 98: il classico errore di uno. La terza somma tutti i numeri, la quarta somma 2 per 99 volte, la quinta non aggiorna <code>k</code>.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1730px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: segui il ciclo <span class="lvl">base</span></h3><p>Che cosa stampa? <code>int s = 0; for (int i = 1; i &lt;= 4; i++) { s = s + i * i; } printf(&quot;%d&quot;, s);</code></p>
+<details class="sol"><summary>Soluzione</summary><p><code>s</code> vale 1, poi 1 + 4 = 5, poi 5 + 9 = 14, poi 14 + 16 = 30. Stampa <code>30</code>, la somma dei quadrati da 1 a 4.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: conta i giri <span class="lvl">base</span></h3><p>Quanti giri fa ciascun ciclo? (a) <code>for (int i = 3; i &lt; 20; i += 4)</code> (b) <code>int x = 10; while (x &gt; 1) { x = x / 2; }</code> (c) <code>for (int i = 0; i != 7; i += 2)</code></p>
+<details class="sol"><summary>Soluzione</summary><p>(a) 5: <code>i</code> vale 3, 7, 11, 15, 19. (b) 3: <code>x</code> passa da 10 a 5, a 2, a 1 (divisione intera). (c) Infinito: <code>i</code> vale 0, 2, 4, 6, 8, … e non passa mai per 7. Con <code>i &lt; 7</code> farebbe 4 giri.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Riscaldamento: trova l&#39;errore <span class="lvl">base</span></h3><p>Ogni ciclo ha un errore. Trovalo. (a) <code>int i = 0; while (i &lt; 10) { printf(&quot;%d&quot;, i); }</code> (b) <code>for (int i = 0; i &lt;= 10; i++)</code> per stampare 10 numeri (c) <code>do { scanf(&quot;%d&quot;, &amp;x); } while (x &lt; 0)</code> (d) <code>int somma; for (int i = 1; i &lt;= 5; i++) { somma += i; }</code></p>
+<details class="sol"><summary>Soluzione</summary><p>(a) Manca l&#39;aggiornamento <code>i++</code>: ciclo infinito. (b) Un giro in più: da 0 a 10 sono 11 numeri, serve <code>i &lt; 10</code>. (c) Manca il <code>;</code> dopo la <code>)</code>: gcc dà <code>error: expected ';' before 'return'</code> (o prima dell&#39;istruzione che segue). (d) <code>somma</code> non è inizializzata: parte da un valore indeterminato. Con <code>-Wall -Werror</code> compila lo stesso, e da me ha stampato 32773; solo aggiungendo <code>-O2</code> gcc se ne accorge (<code>'somma' is used uninitialized</code>). Scrivi sempre <code>int somma = 0;</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · La somma delle cifre <span class="lvl">medio</span></h3><p>Scrivi un programma che legge un intero non negativo e stampa la somma delle sue cifre: con 4072 stampa 13. Se l&#39;input non è valido o è negativo, stampa <code>Input non valido</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n;
+    <span class="kw">if</span> (scanf(<span class="str">&quot;%d&quot;</span>, &amp;n) == 1 &amp;&amp; n &gt;= 0) {
+        <span class="kw">int</span> somma = 0;
+        <span class="kw">while</span> (n &gt; 0) {
+            somma += n % 10;   <span class="cm">// l'ultima cifra</span>
+            n = n / 10;        <span class="cm">// toglie l'ultima cifra</span>
+        }
+        printf(<span class="str">&quot;%d\n&quot;</span>, somma);
+    }
+    <span class="kw">else</span> {
+        printf(<span class="str">&quot;Input non valido\n&quot;</span>);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato: 4072 dà 13, 0 dà 0, 7 dà 7, −5 e <code>x</code> danno <code>Input non valido</code>. È un <code>while</code> perché il numero di cifre non è noto in anticipo: <code>% 10</code> prende l&#39;ultima cifra, <code>/ 10</code> la toglie.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Il triangolo <span class="lvl">medio</span></h3><p>Scrivi un programma che legge <code>n</code> e stampa un triangolo di asterischi con <code>n</code> righe: la riga 1 ha un asterisco, la riga 2 ne ha due, e così via.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;n);
+    <span class="kw">for</span> (<span class="kw">int</span> riga = 1; riga &lt;= n; riga++) {
+        <span class="kw">for</span> (<span class="kw">int</span> k = 0; k &lt; riga; k++) {
+            printf(<span class="str">&quot;*&quot;</span>);
+        }
+        printf(<span class="str">&quot;\n&quot;</span>);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Con 4 stampa <code>*</code>, <code>**</code>, <code>***</code>, <code>****</code>; con 0 non stampa niente. Il ciclo interno usa la variabile di quello esterno: alla riga <code>riga</code> fa <code>riga</code> giri.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Il numero è primo? <span class="lvl">tipo esame</span></h3><p>Scrivi un programma che legge <code>n</code> e dice se è primo, senza <code>break</code>. Un numero è primo se è almeno 2 e <strong>nessun</strong> numero tra 2 e <code>n − 1</code> lo divide.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;n);
+    <span class="kw">bool</span> primo = (n &gt;= 2);              <span class="cm">// 0 e 1 non sono primi</span>
+    <span class="kw">for</span> (<span class="kw">int</span> d = 2; d &lt; n &amp;&amp; primo; d++) {
+        <span class="kw">if</span> (n % d == 0) {
+            primo = <span class="kw">false</span>;              <span class="cm">// trovato un divisore: si esce dal ciclo</span>
+        }
+    }
+    <span class="kw">if</span> (primo) {
+        printf(<span class="str">&quot;%d e' primo\n&quot;</span>, n);
+    }
+    <span class="kw">else</span> {
+        printf(<span class="str">&quot;%d non e' primo\n&quot;</span>, n);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato con 1, 2, 9, 13, 25 e 97: sono primi solo 2, 13 e 97. «Nessun divisore» è un «per ogni» (ogni <code>d</code> non divide <code>n</code>), quindi la sentinella parte da vero e il ciclo si ferma al primo controesempio. Con <code>n = 2</code> il ciclo non gira mai, e 2 risulta primo.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · Il massimo di una sequenza <span class="lvl">tipo esame</span></h3><p>Scrivi un programma che legge interi finché non arriva 0 (o finisce l&#39;input) e stampa il più grande. Se non c&#39;è nessun numero prima dello 0, stampa <code>Nessun numero</code>. Niente <code>break</code>; attenzione ai numeri negativi.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x, max = 0;
+    <span class="kw">bool</span> trovato = <span class="kw">false</span>;               <span class="cm">// ho letto almeno un numero?</span>
+    <span class="kw">bool</span> continua = <span class="kw">true</span>;
+    <span class="kw">while</span> (continua) {
+        <span class="kw">if</span> (scanf(<span class="str">&quot;%d&quot;</span>, &amp;x) != 1 || x == 0) {
+            continua = <span class="kw">false</span>;           <span class="cm">// 0 o input finito: valore sentinella</span>
+        }
+        <span class="kw">else</span> <span class="kw">if</span> (!trovato || x &gt; max) {
+            max = x;
+            trovato = <span class="kw">true</span>;
+        }
+    }
+    <span class="kw">if</span> (trovato) {
+        printf(<span class="str">&quot;Massimo: %d\n&quot;</span>, max);
+    }
+    <span class="kw">else</span> {
+        printf(<span class="str">&quot;Nessun numero\n&quot;</span>);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato: <code>4 -2 9 3 0</code> dà 9, <code>-7 -3 -9 0</code> dà −3, <code>0</code> dà <code>Nessun numero</code>, <code>5 8</code> senza zero dà 8. Il punto delicato sono i negativi: se <code>max</code> partisse da 0 e il primo numero non venisse preso comunque, con tutti negativi il programma stamperebbe 0, che non è nella sequenza. Per questo il primo numero si prende sempre (<code>!trovato</code>).</p>
+</details></article>
+<article class="ex" id="esercizio-8"><h3>8 · La lettura a prova di lettere <span class="lvl">difficile</span></h3><p>Completa il <code>do-while</code> della slide 38 in modo che, se l&#39;utente scrive una parola al posto del numero, il programma la scarti e chieda di nuovo, invece di ripetere la domanda all&#39;infinito.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x, retval;
+    <span class="kw">do</span> {
+        printf(<span class="str">&quot;Inserisci un numero [1,10]: &quot;</span>);
+        retval = scanf(<span class="str">&quot;%d&quot;</span>, &amp;x);
+        <span class="kw">if</span> (retval == 0) {
+            scanf(<span class="str">&quot;%*s&quot;</span>);   <span class="cm">// scarta la parola che non e' un numero</span>
+        }
+    } <span class="kw">while</span> (retval == 0 || (retval == 1 &amp;&amp; !(1 &lt;= x &amp;&amp; x &lt;= 10)));
+    <span class="kw">if</span> (retval == 1) {
+        printf(<span class="str">&quot;Hai inserito %d\n&quot;</span>, x);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato con <code>ciao 50 0 7</code>: chiede quattro volte e stampa <code>Hai inserito 7</code>. Con <code>abc</code> e poi la fine dell&#39;input chiede due volte ed esce senza stampare: quando l&#39;input finisce <code>scanf</code> restituisce <code>EOF</code> (−1), che non è né 0 né 1, e il ciclo si ferma.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:650px">
+<div class="sec-head"><span class="sec-num">§17</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Quali sono i tre pezzi di ogni ciclo?</span></summary><div class="ans"><p>Inizializzazione, condizione, aggiornamento.</p>
+</div></details>
+<details class="qa"><summary><span>Qual è la differenza tra <code>while</code> e <code>do-while</code>?</span></summary><div class="ans"><p>Il <code>while</code> controlla la condizione prima di ogni giro, quindi può fare zero giri. Il <code>do-while</code> la controlla alla fine, quindi fa sempre almeno un giro.</p>
+</div></details>
+<details class="qa"><summary><span>Come si scrive un <code>for</code> con un <code>while</code>?</span></summary><div class="ans"><p><code>{ init; while (condizione) { blocco; aggiornamento; } }</code>. Le graffe esterne limitano la visibilità della variabile dichiarata nell&#39;inizializzazione.</p>
+</div></details>
+<details class="qa"><summary><span>Quanti giri fa un <code>for</code> sull&#39;intervallo <code>[a, b)</code> con passo 1?</span></summary><div class="ans"><p><code>b − a</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra valore sentinella e variabile sentinella?</span></summary><div class="ans"><p>Il valore sentinella è un dato speciale che segnala la fine (un&#39;altezza negativa). La variabile sentinella è un <code>bool</code> nella condizione del ciclo, che il blocco cambia quando bisogna smettere.</p>
+</div></details>
+<details class="qa"><summary><span>Perché all&#39;esame non si usano <code>break</code> e <code>continue</code>?</span></summary><div class="ans"><p>Perché le regole d&#39;esame li vietano: il ciclo deve finire solo dalla condizione, che così dice da sola quando ci si ferma.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa succede a una variabile dichiarata nel blocco di un ciclo?</span></summary><div class="ans"><p>Viene creata a ogni giro e tolta dallo stack alla <code>}</code>. Dopo il ciclo non esiste.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:720px">
+<div class="sec-head"><span class="sec-num">§18</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Iterazione</dt><dd>Una ripetizione del blocco di un ciclo; anche la struttura «ripeti» della programmazione strutturata.</dd></div>
+<div><dt>Ciclo while</dt><dd>Ripete un blocco finché la condizione è vera, controllandola prima di ogni giro.</dd></div>
+<div><dt>Ciclo for</dt><dd>Un while con inizializzazione, condizione e aggiornamento sulla stessa riga.</dd></div>
+<div><dt>Ciclo do-while</dt><dd>Esegue il blocco almeno una volta e controlla la condizione alla fine.</dd></div>
+<div><dt>Terna fondamentale</dt><dd>Inizializzazione, condizione e aggiornamento di un ciclo.</dd></div>
+<div><dt>Ciclo infinito</dt><dd>Un ciclo la cui condizione non diventa mai falsa.</dd></div>
+<div><dt>Accumulatore</dt><dd>Variabile che raccoglie un risultato giro dopo giro, come una somma.</dd></div>
+<div><dt>Contatore</dt><dd>Variabile che conta i giri o i dati validi.</dd></div>
+<div><dt>Valore sentinella</dt><dd>Un dato speciale che segnala la fine dei dati.</dd></div>
+<div><dt>Variabile sentinella</dt><dd>Variabile bool nella condizione del ciclo che decide se continuare.</dd></div>
+<div><dt>Intervallo semiaperto</dt><dd>[a, b): a incluso, b escluso.</dd></div>
+<div><dt>Off-by-one</dt><dd>Errore di un giro in più o in meno, di solito &lt; al posto di &lt;= o il contrario.</dd></div>
+<div><dt>Ciclo annidato</dt><dd>Un ciclo dentro il blocco di un altro.</dd></div>
+<div><dt>break</dt><dd>Esce subito dal ciclo; vietato all&#39;esame.</dd></div>
+<div><dt>continue</dt><dd>Salta al giro successivo; vietato all&#39;esame.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:520px">
+<div class="sec-head"><span class="sec-num">§19</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 11</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-04A-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So scrivere un while con inizializzazione, condizione e aggiornamento.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So seguire un ciclo a mano con una tabella dei valori.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So usare un accumulatore e un contatore, e inizializzarli bene.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So fermare un ciclo con un valore sentinella letto in input.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So che una variabile dichiarata nel ciclo nasce e sparisce a ogni giro.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So riconoscere un ciclo infinito e fermarlo con Ctrl+C.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So scrivere un for su un intervallo e contarne i giri.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So passare da un for a un while e viceversa.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So come gira un ciclo annidato.</span></label></li>
+<li><label><input type="checkbox" id="chk-10"><span>So usare una variabile sentinella al posto di break.</span></label></li>
+<li><label><input type="checkbox" id="chk-11"><span>So quando serve un do-while e scrivere la condizione di un intervallo con &amp;&amp;.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Cicli e ripetizioni. Iterazioni strutturate per eseguire azioni più volte» (04A_iterazioni), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: <code>while</code> e terna fondamentale (slide 2–5), conto alla rovescia e accumulatori (6–7), valore di terminazione (8), visibilità nei blocchi (9–22), PIN (23), ciclo infinito (24), <code>for</code>, equivalenza e intervalli (25–29), cicli annidati (30), errori comuni (31), <code>for</code> o <code>while</code> (32), sentinelle (33–36), <code>break</code> e <code>continue</code> (37), <code>do-while</code> (38).</li>
+<li>Laboratorio 04 «Iterazioni», Programmazione I, A.A. 2025/26: le domande su come cambia la variabile di controllo dei <code>for</code>.</li>
+<li>Esercizio <code>e1</code> del pre-esame 2023/24 e regole d&#39;esame dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a> e dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+<li>Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con <code>-Wall -Werror</code>, ed eseguiti; gli errori e le stampe citati sono quelli veri. Le soluzioni, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

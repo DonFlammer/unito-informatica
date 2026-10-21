@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>05A · Array e stringhe</title>
+<meta name="lezione" content="05A">
+<meta name="data" content="2026-10-21">
+<meta name="description" content="Appunti della lezione 05A di Programmazione I (canale B): array statici, indici da 0 e intervallo semiaperto, size_t e %zu, inizializzazione, #define, scansione in avanti e all'indietro, somma, conteggio e massimo, legame tra array e puntatori, VLA, gli errori più comuni, caratteri e codice ASCII, da ASCII a Unicode, stringhe con il terminatore, scansione con indice e con puntatore, lettura con %s e con la maschera di scansione, con tutti i programmi delle slide provati, quiz ed esercizi.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/05A_array_stringhe.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#da-una-variabile-a-tante"><span class="n">§1</span><span>Da una variabile a tante</span></a></li>
+<li><a href="#dichiarare-e-usare-un-array"><span class="n">§2</span><span>Dichiarare e usare un array</span></a></li>
+<li><a href="#la-scansione-di-un-array"><span class="n">§3</span><span>La scansione di un array</span></a></li>
+<li><a href="#somma-conteggio-e-massimo"><span class="n">§4</span><span>Somma, conteggio e massimo</span></a></li>
+<li><a href="#array-e-puntatori"><span class="n">§5</span><span>Array e puntatori</span></a></li>
+<li><a href="#array-di-lunghezza-variabile-i-vla"><span class="n">§6</span><span>Array di lunghezza variabile, i VLA</span></a></li>
+<li><a href="#gli-errori-piu-comuni-con-gli-array"><span class="n">§7</span><span>Gli errori più comuni con gli array</span></a></li>
+<li><a href="#caratteri-e-codice-ascii"><span class="n">§8</span><span>Caratteri e codice ASCII</span></a></li>
+<li><a href="#da-ascii-a-unicode"><span class="n">§9</span><span>Da ASCII a Unicode</span></a></li>
+<li><a href="#stringhe-e-terminatore"><span class="n">§10</span><span>Stringhe e terminatore</span></a></li>
+<li><a href="#scorrere-una-stringa"><span class="n">§11</span><span>Scorrere una stringa</span></a></li>
+<li><a href="#leggere-stringhe-dall-input"><span class="n">§12</span><span>Leggere stringhe dall&#39;input</span></a></li>
+<li><a href="#gli-errori-piu-comuni-con-le-stringhe"><span class="n">§13</span><span>Gli errori più comuni con le stringhe</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§14</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§15</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§16</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§17</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§18</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§19</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§20</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 05A</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 05A</p>
+      <h1>Array e stringhe</h1>
+      <p class="lede">Finora ogni variabile conteneva un valore solo. Un array ne contiene molti dello stesso tipo, uno dopo l&#39;altro in memoria, e con un ciclo for si possono leggere tutti. Una stringa è un array di caratteri con un segnale di fine.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>05A_array_stringhe («Array e stringhe») · 35 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>100 minuti, meglio con gcc a portata di mano</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:670px">
+<h2 id="tldr-title">La lezione in 8 punti</h2>
+<ul>
+<li>Un <strong>array</strong> è una fila di valori dello <strong>stesso tipo</strong>, uno accanto all&#39;altro in memoria. <code>int voti[5];</code> ne crea cinque.</li>
+<li>Gli elementi si raggiungono con l&#39;<strong>indice</strong>, che parte da <strong>0</strong>: in un array di lunghezza <code>n</code> gli indici validi sono <code>[0, n)</code>. Indici e lunghezze hanno il tipo <strong><code>size_t</code></strong>, che si stampa con <strong><code>%zu</code></strong>.</li>
+<li>Per leggere tutto l&#39;array basta un <code>for (size_t i = 0; i &lt; n; i++)</code>: è la <strong>scansione</strong>. Somma, conteggio e massimo sono scansioni con un accumulatore.</li>
+<li>Il nome dell&#39;array, nelle espressioni, diventa il <strong>puntatore al primo elemento</strong>: <code>v[i]</code> è la stessa cosa di <code>*(v + i)</code>.</li>
+<li>Il C <strong>non controlla</strong> gli indici: <code>v[5]</code> in un array di 5 elementi compila, e legge memoria che non è dell&#39;array. E gli array non si assegnano né si confrontano con <code>=</code> e <code>==</code>.</li>
+<li>Un <strong>carattere</strong> (<code>char</code>) è un numero, il suo codice <strong>ASCII</strong>: <code>'A'</code> vale 65, <code>'a'</code> vale 97, <code>'0'</code> vale 48.</li>
+<li>Una <strong>stringa</strong> è un array di <code>char</code> che finisce con il carattere <strong><code>'\0'</code></strong>: <code>&quot;ciao&quot;</code> occupa 5 byte.</li>
+<li><code>scanf(&quot;%19s&quot;, nome)</code> legge una parola, senza <code>&amp;</code>; per una frase con gli spazi serve <code>scanf(&quot; %49[^\n]&quot;, frase)</code>.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È la lezione di mercoledì 21/10, dalle 9 alle 11. Usa i cicli della <a href="04A_iterazioni.html">04A</a> e i puntatori della <a href="02C_referenziamento_scanf_puntatori.html">02C</a>; i codici dei caratteri si sono già visti nella <a href="../FDA/02_testo_colori_suoni_binario.html">lezione 02 di Fondamenti</a>.</p>
+<p><strong>Canali A e C.</strong> Secondo l&#39;elenco delle lezioni 2025/26 nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>, array e stringhe vengono dopo i cicli anche negli altri canali. Le slide 2026/27 dei canali A e C non le ho viste. L&#39;esame è unico.</p>
+<p><strong>Un avviso sulle slide.</strong> Nelle slide 24–25, sulla storia di Unicode, alcuni numeri vanno corretti: li sistemo nella sezione su Unicode. Non servono per l&#39;esame.</p>
+<p>Tutti i programmi li ho compilati e provati con gcc 16.1, con <code>-Wall -Werror</code>.</p>
+</div>
+
+
+<section id="da-una-variabile-a-tante" aria-labelledby="h-da-una-variabile-a-tante" style="--h:1140px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-da-una-variabile-a-tante">Da una variabile a tante</h2><span class="slides">slide 2–3</span></div>
+<p>Per la media di cinque voti potresti dichiarare <code>voto1</code>, <code>voto2</code>, …, <code>voto5</code>. Con trenta studenti diventano trenta variabili, e nessun ciclo può scorrerle, perché hanno nomi diversi. Serve <strong>un solo nome</strong> per tutti i voti, con un numero che dice quale: <code>voti[0]</code>, <code>voti[1]</code>, … È un <strong>array</strong>.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Array</span></p><p>Una sequenza di valori dello stesso tipo, detti <strong>elementi</strong>, memorizzati in posizioni contigue della memoria. Ogni elemento si raggiunge con un <strong>indice</strong>. Il numero di elementi, la <strong>lunghezza</strong>, è fissato: gli indici validi vanno da 0 a lunghezza − 1.</p>
+</div>
+<p><strong>Come si legge.</strong> Quattro cose: tutti gli elementi hanno lo stesso tipo; stanno attaccati in memoria, uno dopo l&#39;altro; si chiamano per numero; il primo numero è 0, non 1. Per questo l&#39;ultimo indice di un array di 5 elementi è 4.</p>
+<p>Gli indici validi formano l&#39;intervallo semiaperto della <a href="04A_iterazioni.html">04A</a>: <code>[0, lunghezza)</code>, con lo 0 dentro e la lunghezza fuori. È lo stesso intervallo del <code>for</code> che conta da 0 a <code>n</code> escluso, e non è un caso: il <code>for</code> è fatto per scorrere gli array.</p>
+<p>Per lunghezze e indici il C ha un tipo apposta, <strong><code>size_t</code></strong>: un intero <strong>senza segno</strong> (quindi mai negativo), abbastanza grande per qualunque dimensione. È definito in <code>&lt;stddef.h&gt;</code>, e arriva anche con <code>&lt;stdio.h&gt;</code>. Il libro di Deitel consiglia di usarlo per ogni variabile che rappresenta una dimensione o un indice di array.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Un array ha lunghezza 8. Quali sono il primo e l&#39;ultimo indice validi? Che cosa succede con l&#39;indice 8?</span></summary><div class="ans"><p>Il primo è 0, l&#39;ultimo 7. L&#39;indice 8 è fuori dall&#39;array: <code>[0, 8)</code> lascia fuori l&#39;8.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Array: valori dello stesso tipo, attaccati in memoria, raggiunti con un indice.</li>
+<li>Indici validi: da 0 a lunghezza − 1, cioè <code>[0, lunghezza)</code>.</li>
+<li>Indici e lunghezze: <code>size_t</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="dichiarare-e-usare-un-array" aria-labelledby="h-dichiarare-e-usare-un-array" style="--h:1740px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-dichiarare-e-usare-un-array">Dichiarare e usare un array</h2><span class="slides">slide 4–6</span></div>
+<p>Si dichiara con il tipo degli elementi, il nome e la lunghezza tra quadre; si usa con il nome e l&#39;indice tra quadre:</p>
+<pre class="code" data-lingua="c"><code><span class="cm">// array statico di 4 interi nello stack</span>
+<span class="kw">int</span> numeri[4];
+numeri[0] = 10; <span class="cm">// primo elemento</span>
+numeri[1] = 20; <span class="cm">// secondo elemento</span>
+printf(<span class="str">&quot;%d\n&quot;</span>, numeri[0]); <span class="cm">// stampa 10</span></code></pre>
+<p><code>numeri[1] = 20</code> si comporta come l&#39;assegnamento a una variabile: ogni elemento <strong>è</strong> una variabile <code>int</code>, con il suo indirizzo. Gli elementi 2 e 3 non sono stati assegnati, e il loro valore è indeterminato, come quello di una variabile locale senza inizializzazione.</p>
+<p>In memoria gli elementi stanno in celle consecutive della stessa dimensione. Con <code>int</code> da 4 byte, se <code>numeri[0]</code> sta all&#39;indirizzo <code>0x1000</code>, gli altri sono a <code>0x1004</code>, <code>0x1008</code>, <code>0x100C</code>:</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="L'array int numeri[4] in memoria: quattro celle da 4 byte, una dopo l'altra. Sopra l'indice, dentro il valore, sotto l'indirizzo. Gli elementi 2 e 3 non sono stati assegnati e valgono «?»." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M39.2 207.78L156.8 207.78L156.8 94.44L39.2 94.44Z"/><path class="g-poligono g-blu" d="M162.4 207.78L280 207.78L280 94.44L162.4 94.44Z"/><path class="g-poligono g-grigio" d="M285.6 207.78L403.2 207.78L403.2 94.44L285.6 94.44Z"/><path class="g-poligono g-grigio" d="M408.8 207.78L526.4 207.78L526.4 94.44L408.8 94.44Z"/></svg><span class="g-et g-c g-testo g-grigio" style="left:17.50%;top:13.89%">numeri[0]</span><span class="g-et g-c g-testo g-grigio" style="left:39.50%;top:13.89%">numeri[1]</span><span class="g-et g-c g-testo g-grigio" style="left:61.50%;top:13.89%">numeri[2]</span><span class="g-et g-c g-testo g-grigio" style="left:83.50%;top:13.89%">numeri[3]</span><span class="g-et g-c g-testo g-blu" style="left:17.50%;top:44.44%">10</span><span class="g-et g-c g-testo g-blu" style="left:39.50%;top:44.44%">20</span><span class="g-et g-c g-testo g-grigio" style="left:61.50%;top:44.44%">?</span><span class="g-et g-c g-testo g-grigio" style="left:83.50%;top:44.44%">?</span><span class="g-et g-c g-testo g-ambra" style="left:17.50%;top:75.00%">0x1000</span><span class="g-et g-c g-testo g-ambra" style="left:39.50%;top:75.00%">0x1004</span><span class="g-et g-c g-testo g-ambra" style="left:61.50%;top:75.00%">0x1008</span><span class="g-et g-c g-testo g-ambra" style="left:83.50%;top:75.00%">0x100C</span><span class="g-et g-c g-testo g-grigio" style="left:50.50%;top:93.06%">+4 byte a ogni cella</span></div><figcaption>L&#39;array int numeri[4] in memoria: quattro celle da 4 byte, una dopo l&#39;altra. Sopra l&#39;indice, dentro il valore, sotto l&#39;indirizzo. Gli elementi 2 e 3 non sono stati assegnati e valgono «?».</figcaption></figure>
+<p>In matematica un array si scrive come un vettore, <code>numeri = (a₀, a₁, a₂, a₃)</code>. Attenzione: in matematica gli indici partono di solito da 1, in C <strong>sempre</strong> da 0.</p>
+<h3 id="dare-i-valori-iniziali">Dare i valori iniziali</h3>
+<p>Un array si può riempire già nella dichiarazione, con i valori tra graffe:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> voti[5] = {18, 19, 24, 21, 30};
+<span class="kw">int</span> voti[] = {18, 19, 24, 21, 30};   <span class="cm">// uguale: la lunghezza la conta il compilatore</span>
+<span class="kw">int</span> voti[5] = {0};                   <span class="cm">// tutti a zero</span>
+<span class="kw">int</span> voti[5];                         <span class="cm">// valori indeterminati</span></code></pre>
+<p>La terza riga funziona per una regola generale: se i valori tra graffe sono <strong>meno</strong> della lunghezza, gli elementi rimasti valgono 0. Con <code>int v[5] = {18, 19};</code> l&#39;ho provato: <code>v[2]</code>, <code>v[3]</code> e <code>v[4]</code> valgono 0.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Dopo <code>int w[6] = {1, 2, 3};</code>, quanto valgono <code>w[2]</code> e <code>w[3]</code>? Quanti elementi ha <code>w</code>?</span></summary><div class="ans"><p><code>w[2]</code> vale 3, <code>w[3]</code> vale 0 (completato con zeri). Gli elementi sono 6.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>tipo nome[lunghezza];</code> per dichiarare, <code>nome[indice]</code> per usare.</li>
+<li>Celle consecutive: l&#39;indirizzo cresce di <code>sizeof(tipo)</code> a ogni elemento.</li>
+<li>Con meno valori iniziali della lunghezza, il resto è 0. Senza valori iniziali, è indeterminato.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-scansione-di-un-array" aria-labelledby="h-la-scansione-di-un-array" style="--h:1780px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-la-scansione-di-un-array">La scansione di un array</h2><span class="slides">slide 7–10</span></div>
+<p>La lunghezza di un array statico si scrive di solito con una <strong>costante</strong>, definita in cima con <code>#define</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#define</span> N 5
+<span class="kw">int</span> voti[N] = {18, 24, 28, 30, 19};
+
+<span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; N; i++) {
+    printf(<span class="str">&quot;Voto %zu: %d\n&quot;</span>, i, voti[i]);
+}</code></pre>
+<p><code>#define N 5</code> dice al compilatore di sostituire <code>N</code> con <code>5</code> dappertutto, prima di compilare. Se la lunghezza cambia, la cambi in un punto solo. La variabile <code>i</code> è un <code>size_t</code>, perché è un indice, e si stampa con <strong><code>%zu</code></strong>.</p>
+<p>Il ciclo che passa per tutti gli indici validi si chiama <strong>scansione</strong> dell&#39;array (<em>array traversal</em>, <em>linear scan</em>). Gli indici sono <code>[0, lunghezza)</code>, quindi la scansione ha sempre questa forma:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; length; i++) { <span class="cm">/* usa v[i] */</span> }</code></pre>
+<h3 id="all-indietro">All&#39;indietro</h3>
+<p>Scorrere al contrario è più delicato, perché <code>size_t</code> non va sotto zero. La forma che viene in mente non funziona:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">size_t</span> i = N - 1; i &gt;= 0; i--)   <span class="cm">// SBAGLIATO: non finisce mai</span></code></pre>
+<p>Un <code>size_t</code> è <strong>sempre</strong> <code>&gt;= 0</code>: quando <code>i</code> vale 0 e fa <code>i--</code>, non diventa −1 ma il numero più grande possibile, e il ciclo continua leggendo fuori dall&#39;array. gcc con <code>-Wall -Werror</code> <strong>lo compila</strong>; solo con <code>-Wextra</code> lo ferma (<code>comparison of unsigned expression in '&gt;= 0' is always true</code>). Le slide danno due forme corrette:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">size_t</span> i = length; i &gt; 0; i--) { <span class="cm">/* usa v[i-1] */</span> }</code></pre>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (ptrdiff_t i = (ptrdiff_t)length - 1; i &gt;= 0; i--) { <span class="cm">/* usa v[i] */</span> }</code></pre>
+<p>Nella prima <code>i</code> va da <code>length</code> a 1, e si usa <code>v[i-1]</code>, che va da <code>v[length-1]</code> a <code>v[0]</code>. Nella seconda si usa <strong><code>ptrdiff_t</code></strong>, l&#39;intero <strong>con</strong> segno per gli indici, che può scendere a −1 e far finire il ciclo; si stampa con <code>%td</code>.</p>
+<p>L&#39;esempio completo della slide 10, provato:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;    <span class="cm">// definisce size_t e ptrdiff_t</span>
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">#define</span> N 5
+    <span class="kw">int</span> v[N] = {10, 20, 30, 40, 50};
+
+    <span class="cm">// Scansione in avanti: indici [0, N)</span>
+    printf(<span class="str">&quot;Scansione in avanti:\n&quot;</span>);
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; N; i++) {
+        printf(<span class="str">&quot;v[%zu] = %d\n&quot;</span>, i, v[i]);
+    }
+
+    <span class="cm">// Scansione all'indietro: indici [N-1, 0]</span>
+    printf(<span class="str">&quot;\nScansione all'indietro:\n&quot;</span>);
+    <span class="kw">for</span> (ptrdiff_t i = N - 1; i &gt;= 0; i--) {
+        printf(<span class="str">&quot;v[%td] = %d\n&quot;</span>, i, v[i]);
+    }
+}</code></pre>
+<p>Stampa <code>v[0] = 10</code> … <code>v[4] = 50</code>, poi <code>v[4] = 50</code> … <code>v[0] = 10</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>#define N 4</code> e <code>int v[N] = {1, 2, 3, 4};</code>, che cosa stampa <code>for (size_t i = N; i &gt; 0; i--) { printf(&quot;%d &quot;, v[i-1]); }</code>?</span></summary><div class="ans"><p><code>4 3 2 1</code>. <code>i</code> vale 4, 3, 2, 1, e si stampa l&#39;elemento prima: <code>v[3]</code>, <code>v[2]</code>, <code>v[1]</code>, <code>v[0]</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Scansione in avanti: <code>for (size_t i = 0; i &lt; n; i++)</code>.</li>
+<li>All&#39;indietro con <code>size_t</code>: <code>i</code> da <code>n</code> a 1 e <code>v[i-1]</code>. Mai <code>i &gt;= 0</code> con un <code>size_t</code>.</li>
+<li><code>%zu</code> per <code>size_t</code>, <code>%td</code> per <code>ptrdiff_t</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="somma-conteggio-e-massimo" aria-labelledby="h-somma-conteggio-e-massimo" style="--h:2530px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-somma-conteggio-e-massimo">Somma, conteggio e massimo</h2><span class="slides">slide 8, 11, 12</span></div>
+<p>Quasi tutto quello che si fa con un array è una scansione con un accumulatore, come nella <a href="04A_iterazioni.html">04A</a>. Le slide ne mostrano tre.</p>
+<h3 id="la-media">La media</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">#define</span> N 5
+<span class="kw">int</span> voti[N] = {18, 19, 24, 21, 30};
+<span class="kw">int</span> somma = 0;
+<span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; N; i++) {
+    somma += voti[i];
+}
+printf(<span class="str">&quot;Media: %f\n&quot;</span>, somma / (<span class="kw">float</span>)N);</code></pre>
+<p>Stampa <code>Media: 22.400000</code>. Le slide scrivono la stessa cosa in notazione matematica: la media è la somma di tutti i <code>voti[i]</code>, per <code>i</code> da 0 a <code>N − 1</code>, divisa per <code>N</code>. Il simbolo della somma è la sigma maiuscola Σ, con sotto il primo indice e sopra l&#39;ultimo:</p>
+<div class="formula"><span class="katex-display"><span class="katex" role="math" aria-label="\mathbb{E}[voti] = \frac{\sum_{i=0}^{N-1} voti[i]}{N}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathbb">E</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3569em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6709em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.109em;">N</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">v</span><span class="mord mathnormal">o</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div>
+<p><span class="katex" role="math" aria-label="\mathbb{E}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">E</span></span></span></span> è il simbolo della media (il «valore atteso»). Con gli indici che partono da 1, come in matematica, la somma andrebbe da 1 a <span class="katex" role="math" aria-label="N"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span>: lo stesso conto, numerato in un altro modo.</p>
+<h3 id="contare">Contare</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">#define</span> N 8
+<span class="kw">double</span> temperature[N] = {18.5, 21.1, 25.2, 28.2,
+                         19.4, 22.0, 26.3, 21.8};
+<span class="kw">int</span> conta = 0;
+<span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; N; i++) {
+    <span class="kw">if</span> (temperature[i] &gt; 22.0) {
+        conta++;
+    }
+}
+printf(<span class="str">&quot;Giorni caldi: %d su %d\n&quot;</span>, conta, N);</code></pre>
+<p>Stampa <code>Giorni caldi: 3 su 8</code>: 25.2, 28.2 e 26.3. Il 22.0 non conta, perché la condizione è <code>&gt;</code> e non <code>&gt;=</code>. Le slide lo scrivono come la cardinalità di un insieme, <span class="katex" role="math" aria-label="C"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span> = le temperature maggiori di 22.0, e conta = <span class="katex" role="math" aria-label="|C|"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord">∣</span></span></span></span>. Una differenza da tenere a mente: un insieme non ha doppioni, un array sì. Se due giorni avessero entrambi 25.2, l&#39;insieme avrebbe un elemento solo, mentre il programma conta due giorni.</p>
+<h3 id="il-massimo">Il massimo</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">#define</span> N 6
+<span class="kw">int</span> numeri[N] = {3, 7, 2, 9, 5, 1};
+<span class="kw">int</span> max = numeri[0];
+<span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt; N; i++) {
+    <span class="kw">if</span> (numeri[i] &gt; max) {
+        max = numeri[i];
+    }
+}
+printf(<span class="str">&quot;Massimo: %d\n&quot;</span>, max);</code></pre>
+<p>Stampa <code>Massimo: 9</code>. Il candidato parte dal primo elemento, e il ciclo parte da <code>i = 1</code>, perché <code>numeri[0]</code> è già stato guardato. È lo schema del massimo di tre numeri della <a href="03D_decisioni.html">03D</a>, ripetuto per tutto l&#39;array.</p>
+<p>Le slide descrivono il ciclo con una frase che resta vera a ogni giro:</p>
+<div class="table-wrap"><table><thead><tr><th>Momento</th><th>Che cosa contiene <code>max</code></th></tr></thead><tbody><tr><td>inizio, <code>i = 1</code></td><td>il massimo di <code>[0, 1)</code>, cioè di <code>numeri[0]</code></td></tr>
+<tr><td>all&#39;inizio del giro <code>i</code></td><td>il massimo di <code>[0, i)</code>, gli elementi già visti</td></tr>
+<tr><td>fine, <code>i = N</code></td><td>il massimo di <code>[0, N)</code>, tutto l&#39;array</td></tr></tbody></table></div>
+<p>Una frase così si chiama <strong>invariante</strong> del ciclo, e tornerà quando si parlerà di correttezza.</p>
+<p>La slide chiede: <strong>quale problema ha questo programma?</strong> Funziona solo se l&#39;array <strong>non è vuoto</strong>. Con lunghezza 0, <code>numeri[0]</code> non esiste, e la prima riga legge fuori dall&#39;array. Il titolo della slide lo dice, «massimo in un array non vuoto»: è una <strong>precondizione</strong>, una cosa che deve essere vera prima di chiamare il codice.</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La scansione per il massimo su {3, 7, 2, 9, 5, 1}. In verde gli elementi che hanno aggiornato max: 3 all'inizio, poi 7, poi 9. Gli altri (grigi) non superano il massimo del momento." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-verde" d="M22.4 212.5L103.04 212.5L103.04 85L22.4 85Z"/><path class="g-poligono g-verde" d="M112 212.5L192.64 212.5L192.64 85L112 85Z"/><path class="g-poligono g-grigio" d="M201.6 212.5L282.24 212.5L282.24 85L201.6 85Z"/><path class="g-poligono g-verde" d="M291.2 212.5L371.84 212.5L371.84 85L291.2 85Z"/><path class="g-poligono g-grigio" d="M380.8 212.5L461.44 212.5L461.44 85L380.8 85Z"/><path class="g-poligono g-grigio" d="M470.4 212.5L551.04 212.5L551.04 85L470.4 85Z"/></svg><span class="g-et g-c g-testo g-verde" style="left:11.20%;top:43.75%">3</span><span class="g-et g-c g-testo g-verde" style="left:27.20%;top:43.75%">7</span><span class="g-et g-c g-testo g-grigio" style="left:43.20%;top:43.75%">2</span><span class="g-et g-c g-testo g-verde" style="left:59.20%;top:43.75%">9</span><span class="g-et g-c g-testo g-grigio" style="left:75.20%;top:43.75%">5</span><span class="g-et g-c g-testo g-grigio" style="left:91.20%;top:43.75%">1</span><span class="g-et g-c g-testo g-grigio" style="left:11.20%;top:81.25%">max = 3</span><span class="g-et g-c g-testo g-grigio" style="left:27.20%;top:81.25%">7</span><span class="g-et g-c g-testo g-grigio" style="left:43.20%;top:81.25%">7</span><span class="g-et g-c g-testo g-grigio" style="left:59.20%;top:81.25%">9</span><span class="g-et g-c g-testo g-grigio" style="left:75.20%;top:81.25%">9</span><span class="g-et g-c g-testo g-grigio" style="left:91.20%;top:81.25%">9</span><span class="g-et g-c g-testo g-grigio" style="left:51.20%;top:10.94%">indice 0, 1, 2, 3, 4, 5</span></div><figcaption>La scansione per il massimo su {3, 7, 2, 9, 5, 1}. In verde gli elementi che hanno aggiornato max: 3 all&#39;inizio, poi 7, poi 9. Gli altri (grigi) non superano il massimo del momento.</figcaption></figure>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Come cambi il programma del massimo per avere anche la <strong>posizione</strong> del massimo?</span></summary><div class="ans"><p>Aggiungi <code>size_t pos = 0;</code> prima del ciclo e, dentro l&#39;<code>if</code>, <code>pos = i;</code> insieme a <code>max = numeri[i];</code>. Alla fine <code>pos</code> vale 3.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Somma: accumulatore da 0. Conteggio: contatore e <code>if</code>. Massimo: candidato dal primo elemento, ciclo da 1.</li>
+<li>Il massimo ha bisogno di un array non vuoto.</li>
+<li>L&#39;invariante dice che cosa resta vero a ogni giro.</li>
+</ul>
+</div>
+</section>
+
+<section id="array-e-puntatori" aria-labelledby="h-array-e-puntatori" style="--h:1780px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-array-e-puntatori">Array e puntatori</h2><span class="slides">slide 13–14</span></div>
+<p>Nella <a href="02C_referenziamento_scanf_puntatori.html">02C</a> un puntatore era l&#39;indirizzo di una variabile. Un array è una fila di variabili, e il suo nome ha un legame stretto con gli indirizzi.</p>
+<p>Con <code>int v[5] = {10, 20, 30, 40, 50};</code>:</p>
+<pre class="code" data-lingua="c"><code>printf(<span class="str">&quot;%p\n&quot;</span>, v);       <span class="cm">// indirizzo del primo elemento</span>
+printf(<span class="str">&quot;%p\n&quot;</span>, &amp;v[0]);   <span class="cm">// stesso indirizzo</span>
+printf(<span class="str">&quot;%d\n&quot;</span>, v[2]);    <span class="cm">// 30</span>
+printf(<span class="str">&quot;%d\n&quot;</span>, *(v+2));  <span class="cm">// 30 (equivalente)</span>
+scanf(<span class="str">&quot;%d&quot;</span>, &amp;v[2]);      <span class="cm">// leggi da input e modifica v[2]</span>
+<span class="kw">size_t</span> array_sz = <span class="kw">sizeof</span>(v); <span class="cm">// dimensione dell'intero array</span></code></pre>
+<p>Le prime due righe stampano lo stesso indirizzo. Il nome <code>v</code>, usato in un&#39;espressione, <strong>viene convertito</strong> in un puntatore <code>int*</code> al primo elemento, cioè <code>&amp;v[0]</code>.</p>
+<p>Un array e un puntatore restano però oggetti diversi. <code>v</code> è un <code>int[5]</code>: <code>sizeof(v)</code> vale <strong>20</strong>, i cinque <code>int</code> da 4 byte, mentre un puntatore occupa 8 byte. Solo l&#39;<strong>espressione</strong> <code>v</code>, quando serve, diventa un <code>int*</code>.</p>
+<h3 id="l-aritmetica-dei-puntatori">L&#39;aritmetica dei puntatori</h3>
+<p>In C l&#39;indicizzazione è definita così:</p>
+<pre class="code"><code>v[i]   ≡   *(v + i)</code></pre>
+<p><code>v + i</code> è il puntatore all&#39;elemento di indice <code>i</code>, e la <code>*</code> ne prende il valore. Sommare <code>i</code> a un puntatore non aggiunge <code>i</code> byte, ma <code>i</code> <strong>elementi</strong>:</p>
+<pre class="code"><code>v + i   =   indirizzo di v[0] + i * sizeof(tipo dell'elemento)</code></pre>
+<p>Con gli <code>int</code> da 4 byte, <code>v + 1</code> è 4 byte dopo <code>v</code>. Da me <code>v</code> era <code>00000018D21FF980</code> e <code>v + 1</code> era <code>00000018D21FF984</code>: lo stesso indirizzo di <code>&amp;v[1]</code>.</p>
+<figure class="grafico" id="grafico-3"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="v[i] è *(v + i). Il nome v diventa il puntatore al primo elemento; v + 2 avanza di due elementi, cioè di 8 byte; la * prende il valore che trova lì, 30." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-3-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-3-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-3-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-3-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-3-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-3-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-3-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-3-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M37.33 216.36L130.67 216.36L130.67 131.36L37.33 131.36Z"/><path class="g-poligono g-blu" d="M140 216.36L233.33 216.36L233.33 131.36L140 131.36Z"/><path class="g-poligono g-verde" d="M242.67 216.36L336 216.36L336 131.36L242.67 131.36Z"/><path class="g-poligono g-blu" d="M345.33 216.36L438.67 216.36L438.67 131.36L345.33 131.36Z"/><path class="g-poligono g-blu" d="M448 216.36L541.33 216.36L541.33 131.36L448 131.36Z"/><path class="g-linea g-ambra" d="M84 50.23L84 123.64" marker-end="url(#g-freccia-3-ambra)"/><path class="g-linea g-ambra" d="M186.67 50.23L186.67 123.64" marker-end="url(#g-freccia-3-ambra)"/><path class="g-linea g-verde" d="M289.33 50.23L289.33 123.64" marker-end="url(#g-freccia-3-verde)"/></svg><span class="g-et g-c g-testo g-blu" style="left:15.00%;top:51.14%">10</span><span class="g-et g-c g-testo g-blu" style="left:33.33%;top:51.14%">20</span><span class="g-et g-c g-testo g-verde" style="left:51.67%;top:51.14%">30</span><span class="g-et g-c g-testo g-blu" style="left:70.00%;top:51.14%">40</span><span class="g-et g-c g-testo g-blu" style="left:88.33%;top:51.14%">50</span><span class="g-et g-c g-testo g-ambra" style="left:15.00%;top:9.09%">v</span><span class="g-et g-c g-testo g-ambra" style="left:33.33%;top:9.09%">v + 1</span><span class="g-et g-c g-testo g-verde" style="left:51.67%;top:9.09%">v + 2</span><span class="g-et g-c g-testo g-grigio" style="left:15.00%;top:75.00%">v[0]</span><span class="g-et g-c g-testo g-grigio" style="left:33.33%;top:75.00%">v[1]</span><span class="g-et g-c g-testo g-verde" style="left:51.67%;top:75.00%">v[2]</span><span class="g-et g-c g-testo g-verde" style="left:51.67%;top:90.91%">*(v + 2) = v[2] = 30</span><span class="g-et g-c g-testo g-grigio" style="left:70.00%;top:75.00%">v[3]</span><span class="g-et g-c g-testo g-grigio" style="left:88.33%;top:75.00%">v[4]</span></div><figcaption>v[i] è *(v + i). Il nome v diventa il puntatore al primo elemento; v + 2 avanza di due elementi, cioè di 8 byte; la * prende il valore che trova lì, 30.</figcaption></figure>
+<p>Negli appunti useremo quasi sempre <code>v[i]</code>. Sapere che è un&#39;operazione sugli indirizzi serve a capire due cose: perché gli indici partono da 0 (<code>v[0]</code> è <code>*(v + 0)</code>, il primo elemento), e perché un indice sbagliato legge la memoria vicina invece di dare errore.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>int a[4] = {5, 6, 7, 8};</code> e <code>int *q = a;</code>, quanto valgono <code>*(q + 3)</code> e <code>q[1] + a[2]</code>?</span></summary><div class="ans"><p><code>*(q + 3)</code> è <code>a[3]</code>, cioè 8. <code>q[1] + a[2]</code> è 6 + 7 = 13. Anche un puntatore si può usare con le quadre. L&#39;ho provato.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Nelle espressioni il nome dell&#39;array diventa <code>&amp;v[0]</code>.</li>
+<li><code>v[i]</code> è <code>*(v + i)</code>; <code>v + i</code> avanza di <code>i</code> elementi, non di <code>i</code> byte.</li>
+<li><code>sizeof(v)</code> dà la dimensione di tutto l&#39;array: 20 byte per 5 <code>int</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="array-di-lunghezza-variabile-i-vla" aria-labelledby="h-array-di-lunghezza-variabile-i-vla" style="--h:1250px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-array-di-lunghezza-variabile-i-vla">Array di lunghezza variabile, i VLA</h2><span class="slides">slide 15–16</span></div>
+<p>Un array statico ha la lunghezza scritta nel codice. Se il numero di persone lo decide l&#39;utente, non va bene. Dal C99 esistono i <strong>VLA</strong> (<em>Variable Length Array</em>): array sullo stack, con la lunghezza decisa <strong>mentre il programma gira</strong>. Cambia solo la dichiarazione:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> len;
+scanf(<span class="str">&quot;%zu&quot;</span>, &amp;len);
+<span class="kw">int</span> v[len];   <span class="cm">// lunghezza len decisa a runtime</span></code></pre>
+<p>L&#39;esempio delle slide legge le altezze di <code>n</code> persone e le stampa in tabella:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">size_t</span> n;
+    printf(<span class="str">&quot;Quante persone? &quot;</span>);
+    scanf(<span class="str">&quot;%zu&quot;</span>, &amp;n);
+
+    <span class="kw">int</span> altezze[n];  <span class="cm">// dimensione VLA indicata dall'utente</span>
+
+    <span class="cm">// Caricamento da input</span>
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+        printf(<span class="str">&quot;Inserisci altezza persona %zu (in cm): &quot;</span>, i + 1);
+        scanf(<span class="str">&quot;%d&quot;</span>, &amp;altezze[i]);
+    }
+
+    <span class="cm">// Stampa tabella</span>
+    printf(<span class="str">&quot;\nTabella delle altezze:\n&quot;</span>);
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+        printf(<span class="str">&quot;Persona %zu: %d cm\n&quot;</span>, i + 1, altezze[i]);
+    }
+}</code></pre>
+<p>Con 3, 170, 182, 165 stampa <code>Persona 1: 170 cm</code> e così via. La stampa usa <code>i + 1</code> perché le persone si contano da 1, gli indici da 0.</p>
+<p>Tre limiti dei VLA, che le slide non dicono:</p>
+<ul>
+<li><strong>non si inizializzano</strong> con una lista: <code>int v[n] = {0};</code> dà <code>error: variable-sized object may not be initialized except with an empty initializer</code>. Si azzerano con un ciclo; con gcc 16 è ammesso solo <code>= {}</code>, una novità del C23;</li>
+<li>la lunghezza deve essere <strong>almeno 1</strong>: con 0 il comportamento non è definito. Conviene controllare <code>n</code> prima di dichiarare l&#39;array;</li>
+<li>lo stack è piccolo (su Windows di solito 1 MB): un VLA di milioni di elementi non ci sta, e il programma termina con un errore.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Perché nel programma dei VLA la <code>scanf</code> delle altezze ha <code>&amp;altezze[i]</code> con la <code>&amp;</code>?</span></summary><div class="ans"><p>Perché <code>altezze[i]</code> è un <code>int</code>, e <code>scanf</code> vuole il suo indirizzo, come per una variabile qualunque. Si poteva scrivere anche <code>altezze + i</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>VLA: <code>int v[n];</code> con <code>n</code> letto in input. Vive sullo stack.</li>
+<li>Niente lista di valori iniziali; lunghezza almeno 1.</li>
+</ul>
+</div>
+</section>
+
+<section id="gli-errori-piu-comuni-con-gli-array" aria-labelledby="h-gli-errori-piu-comuni-con-gli-array" style="--h:1740px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-gli-errori-piu-comuni-con-gli-array">Gli errori più comuni con gli array</h2><span class="slides">slide 17–18</span></div>
+<p>Due errori tornano sempre: trattare un array come una variabile sola, e uscire dai suoi limiti. Per ognuno ho controllato che cosa fa gcc.</p>
+<h3 id="assegnare-o-confrontare-un-array-intero">Assegnare o confrontare un array intero</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> a[3] = {1, 2, 3};
+<span class="kw">int</span> b[3];
+b = a;    <span class="cm">// ERRORE: non si può assegnare un intero array</span></code></pre>
+<p>gcc: <code>error: assignment to expression with array type</code>. Gli array non si comportano come le variabili scalari: non si assegnano, non si copiano e non si confrontano tutti insieme. Si copia <strong>un elemento alla volta</strong>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; 3; i++)
+    b[i] = a[i];</code></pre>
+<p>Anche <code>a == b</code> non confronta gli elementi: confronta gli <strong>indirizzi</strong> dei due array, che sono sempre diversi. gcc con <code>-Wall -Werror</code> lo ferma: <code>comparison between two arrays [-Werror=array-compare]</code>. Per sapere se due array sono uguali serve una scansione con una sentinella.</p>
+<h3 id="uscire-dai-limiti">Uscire dai limiti</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> v[5] = {10, 20, 30, 40, 50};
+printf(<span class="str">&quot;%d\n&quot;</span>, v[5]); <span class="cm">// ERRORE: indice 5 fuori dall'intervallo [0, 5)</span></code></pre>
+<p>Il C <strong>non controlla</strong> gli indici. <code>v[5]</code> è <code>*(v + 5)</code>: il programma legge i 4 byte subito dopo l&#39;array, qualunque cosa ci sia. È <strong>comportamento indefinito</strong>: il linguaggio non garantisce niente, e il programma può stampare un numero a caso, corrompere altre variabili o terminare.</p>
+<p>Con <code>-Wall -Werror</code> questo programma <strong>compila</strong>. gcc se ne accorge solo con le ottimizzazioni, <code>-O2</code>: <code>array subscript 5 is above array bounds of 'int[5]'</code>. E se l&#39;indice viene da una variabile, non se ne accorge mai. La difesa è scrivere i cicli in modo che l&#39;indice resti sempre in <code>[0, lunghezza)</code>.</p>
+<div class="table-wrap"><table><thead><tr><th>Errore</th><th>Esempio</th><th>gcc con <code>-Wall -Werror</code></th></tr></thead><tbody><tr><td>assegnare un array</td><td><code>b = a;</code></td><td><code>error: assignment to expression with array type</code></td></tr>
+<tr><td>confrontare due array</td><td><code>a == b</code></td><td><code>error: comparison between two arrays</code></td></tr>
+<tr><td>indice fuori dai limiti</td><td><code>v[5]</code> con 5 elementi</td><td>compila (con <code>-O2</code>: <code>array subscript 5 is above array bounds</code>)</td></tr>
+<tr><td>scansione all&#39;indietro con <code>size_t</code></td><td><code>i &gt;= 0</code></td><td>compila (con <code>-Wextra</code>: <code>always true</code>)</td></tr>
+<tr><td>VLA con lista iniziale</td><td><code>int v[n] = {0};</code></td><td><code>error: variable-sized object may not be initialized</code></td></tr></tbody></table></div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>In <code>int v[5];</code> scrivi un ciclo che mette in ogni elemento il doppio del suo indice. Che cosa contiene <code>v</code> alla fine?</span></summary><div class="ans"><p><code>for (size_t i = 0; i &lt; 5; i++) { v[i] = 2 * i; }</code>. Contiene 0, 2, 4, 6, 8. Con <code>i &lt;= 5</code> l&#39;ultimo giro scriverebbe in <code>v[5]</code>, fuori dall&#39;array.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Copia e confronto si fanno elemento per elemento.</li>
+<li>Il C non controlla gli indici: un <code>&lt;=</code> di troppo scrive fuori dall&#39;array, e gcc non dice niente.</li>
+</ul>
+</div>
+</section>
+
+<section id="caratteri-e-codice-ascii" aria-labelledby="h-caratteri-e-codice-ascii" style="--h:1590px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-caratteri-e-codice-ascii">Caratteri e codice ASCII</h2><span class="slides">slide 19–21</span></div>
+<p>Il testo, in C, è fatto di <strong>caratteri</strong>: lettere, cifre, spazi, simboli. Il tipo per un carattere è <strong><code>char</code></strong>, un byte. Dentro quel byte c&#39;è un <strong>numero</strong>: ogni carattere ha un codice, fissato da uno standard. Lo standard di base è l&#39;<strong>ASCII</strong> (<em>American Standard Code for Information Interchange</em>, si legge «àski»), con 128 caratteri, i codici da 0 a 127.</p>
+<p>Non serve impararlo a memoria. Bastano tre blocchi e quattro caratteri speciali:</p>
+<figure class="grafico" id="grafico-4"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="I tre blocchi dell'ASCII da ricordare. Le cifre sono consecutive da 48, le maiuscole da 65, le minuscole da 97: tra una maiuscola e la sua minuscola ci sono sempre 32 posti." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-4-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-4-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-4-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-4-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-4-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-4-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-4-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-4-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-ambra" d="M18.67 108.18L168 108.18L168 30.91L18.67 30.91Z"/><path class="g-poligono g-blu" d="M205.33 108.18L354.67 108.18L354.67 30.91L205.33 30.91Z"/><path class="g-poligono g-verde" d="M392 108.18L541.33 108.18L541.33 30.91L392 30.91Z"/><path class="g-linea g-grigio" d="M308 185.45L438.67 185.45" marker-end="url(#g-freccia-4-grigio)"/></svg><span class="g-et g-c g-testo g-ambra" style="left:16.67%;top:20.46%">'0' … '9'</span><span class="g-et g-c g-testo g-ambra" style="left:16.67%;top:40.91%">48 … 57</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:20.46%">'A' … 'Z'</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:40.91%">65 … 90</span><span class="g-et g-c g-testo g-verde" style="left:83.33%;top:20.46%">'a' … 'z'</span><span class="g-et g-c g-testo g-verde" style="left:83.33%;top:40.91%">97 … 122</span><span class="g-et g-c g-testo g-grigio" style="left:66.67%;top:64.77%">+ 32</span><span class="g-et g-c g-testo g-rosa" style="left:20.83%;top:77.27%">'\0' = 0</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:77.27%">'\t' = 9</span><span class="g-et g-c g-testo g-grigio" style="left:79.17%;top:77.27%">'\n' = 10</span><span class="g-et g-c g-testo g-grigio" style="left:33.33%;top:92.04%">'\r' = 13</span><span class="g-et g-c g-testo g-grigio" style="left:66.67%;top:92.04%">' ' = 32</span></div><figcaption>I tre blocchi dell&#39;ASCII da ricordare. Le cifre sono consecutive da 48, le maiuscole da 65, le minuscole da 97: tra una maiuscola e la sua minuscola ci sono sempre 32 posti.</figcaption></figure>
+<p>Siccome un <code>char</code> è un numero, con i caratteri si fanno i conti. L&#39;ho provato:</p>
+<ul>
+<li><code>'7' - '0'</code> vale 7: è il modo per trasformare una cifra scritta in testo nel suo valore;</li>
+<li><code>'a' - 32</code> è <code>'A'</code>, e <code>'C' + 1</code> è <code>'D'</code>;</li>
+<li><code>printf(&quot;%d&quot;, 'A')</code> stampa 65, <code>printf(&quot;%c&quot;, 65)</code> stampa <code>A</code>: lo stesso numero, letto in due modi.</li>
+</ul>
+<p>I caratteri da 0 a 31, e il 127, sono <strong>caratteri di controllo</strong>, che non si vedono. Quelli che userai sono quattro:</p>
+<ul>
+<li><code>'\0'</code>, NUL, codice 0: il terminatore delle stringhe;</li>
+<li><code>'\n'</code>, a capo (<em>line feed</em>), codice 10;</li>
+<li><code>'\t'</code>, tabulazione, codice 9;</li>
+<li><code>'\r'</code>, ritorno carrello, codice 13, che Windows mette prima di <code>'\n'</code> nei file di testo.</li>
+</ul>
+<p>Un carattere si scrive tra <strong>apici singoli</strong>, <code>'A'</code>; una stringa tra <strong>doppi apici</strong>, <code>&quot;A&quot;</code>. Sono cose diverse: <code>'A'</code> è un numero, <code>&quot;A&quot;</code> è un array di due <code>char</code>, <code>'A'</code> e <code>'\0'</code>. Le stringhe scritte tra doppi apici nel codice si chiamano <strong>letterali stringa</strong>, e le usi da sempre in <code>printf</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Come controlli con un <code>if</code> che il <code>char c</code> sia una lettera minuscola? E come la trasformi in maiuscola?</span></summary><div class="ans"><p><code>if ('a' &lt;= c &amp;&amp; c &lt;= 'z')</code>, poi <code>c = c - 32;</code>, oppure <code>c = c - 'a' + 'A';</code>, che non obbliga a ricordare il 32.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Un <code>char</code> è un numero da un byte: il codice del carattere.</li>
+<li><code>'0'</code> = 48, <code>'A'</code> = 65, <code>'a'</code> = 97; maiuscola e minuscola distano 32.</li>
+<li><code>'A'</code> è un carattere, <code>&quot;A&quot;</code> è una stringa di due byte.</li>
+</ul>
+</div>
+</section>
+
+<section id="da-ascii-a-unicode" aria-labelledby="h-da-ascii-a-unicode" style="--h:1950px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-da-ascii-a-unicode">Da ASCII a Unicode</h2><span class="slides">slide 22–26</span></div>
+<p>128 caratteri bastano per l&#39;inglese, non per il resto del mondo: mancano le lettere accentate, il greco, il cirillico, l&#39;arabo, gli ideogrammi cinesi, giapponesi e coreani (CJK), e molti simboli come ∞. La storia raccontata nelle slide:</p>
+<div class="table-wrap"><table><thead><tr><th>Quando</th><th>Che cosa</th><th>Il problema</th></tr></thead><tbody><tr><td>1963</td><td><strong>ASCII</strong>, 7 bit, 128 caratteri</td><td>solo l&#39;alfabeto latino senza accenti</td></tr>
+<tr><td>anni &#39;70–&#39;80</td><td><strong>codepage</strong>: i 128 codici in più di un byte (da 128 a 255) cambiano significato a seconda di un&#39;impostazione del sistema; la più usata in Europa e negli USA è la <strong>ISO 8859-1</strong>, o <strong>Latin-1</strong>, con le lettere accentate</td><td>un file si legge bene solo sapendo con quale codepage è stato scritto; di codepage ce ne sono più di 1400</td></tr>
+<tr><td>dal 1988</td><td><strong>Unicode</strong>: un numero unico per ogni carattere del mondo, il <strong>code point</strong>; i primi 256 sono ASCII più Latin-1</td><td>16 bit non bastano: solo gli ideogrammi CJK unificati sono quasi centomila</td></tr>
+<tr><td>dal 1996</td><td><strong>Unicode 2.0</strong> e successivi: code point fino a 21 bit; la <strong>definizione</strong> dei caratteri si separa dalla loro <strong>codifica</strong> in byte</td><td></td></tr></tbody></table></div>
+<p>Le codifiche di Unicode sono di due famiglie:</p>
+<ul>
+<li><strong>a larghezza fissa</strong>: ogni carattere occupa sempre lo stesso spazio, 16 o 32 bit. Semplice da gestire, ma un testo inglese occupa due o quattro volte tanto;</li>
+<li><strong>a lunghezza variabile</strong>, come <strong>UTF-8</strong>: ogni carattere occupa da 1 a 4 byte. I caratteri ASCII restano di 1 byte, con lo stesso codice. È efficiente, ma un carattere non corrisponde più a un byte.</li>
+</ul>
+<p>L&#39;ultimo punto si vede con gcc. Il file sorgente è salvato in UTF-8, quindi <code>&quot;è&quot;</code> occupa 2 byte più il terminatore: <code>sizeof(&quot;è&quot;)</code> vale <strong>3</strong>, mentre <code>sizeof(&quot;e&quot;)</code> vale 2. L&#39;ho provato.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Alcuni numeri delle slide 24–25</span></p><ul>
+<li>La proposta di Unicode è del 1988; la versione 1.0 è uscita nel 1991.</li>
+<li>I code point possibili non sono 2 097 152 (tutti i numeri a 21 bit), ma 1 114 112: da <code>U+0000</code> a <code>U+10FFFF</code>. I 149 813 caratteri e i 161 alfabeti delle slide sono i numeri della versione 15.1, del 2023.</li>
+<li>Le codifiche a 16 e 32 bit si chiamano <strong>UCS-2</strong> e <strong>UTF-16</strong> (16 bit; UTF-16 usa due unità da 16 bit per i caratteri oltre i primi 65 536) e <strong>UTF-32</strong> (32 bit), non «UCS-16» e «UCS-32».</li>
+<li>UTF-8 arrivava a 6 byte nella prima versione; dal 2003 (RFC 3629) arriva a <strong>4</strong>.</li>
+</ul>
+<p>Nessuno di questi numeri serve per l&#39;esame.</p>
+</div>
+<p>Il C ha tre modi di trattare il testo: un <code>char</code> per carattere (va bene per ASCII e Latin-1), i caratteri larghi <code>wchar_t</code>, e il multi-byte, sempre con <code>char</code> ma con più byte per carattere. <strong>In Programmazione I si usa solo il primo</strong>: un carattere, un <code>char</code>, un byte. Per questo negli esercizi il testo è senza lettere accentate.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanti byte occupa la stringa <code>&quot;perché&quot;</code> in un sorgente UTF-8, terminatore compreso?</span></summary><div class="ans"><p>8: <code>p</code>, <code>e</code>, <code>r</code>, <code>c</code>, <code>h</code> da un byte, <code>é</code> da due, più il <code>'\0'</code>. Con <code>sizeof</code> si controlla.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>ASCII: 128 caratteri, 7 bit. Unicode: un numero per ogni carattere del mondo.</li>
+<li>UTF-8: da 1 a 4 byte per carattere, ASCII invariato.</li>
+<li>In Programmazione I: un carattere = un <code>char</code> = un byte.</li>
+</ul>
+</div>
+</section>
+
+<section id="stringhe-e-terminatore" aria-labelledby="h-stringhe-e-terminatore" style="--h:1590px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-stringhe-e-terminatore">Stringhe e terminatore</h2><span class="slides">slide 27</span></div>
+<p>Una stringa è un array di <code>char</code>. Ma rispetto agli altri array ha una cosa in più: per convenzione finisce <strong>sempre</strong> con il carattere <code>'\0'</code>, il <strong>terminatore</strong> (NUL, codice 0). È un valore sentinella, come l&#39;altezza negativa della <a href="04A_iterazioni.html">04A</a>: dice «il testo finisce qui».</p>
+<p>La parola <code>&quot;ciao&quot;</code> è un array di <strong>5</strong> <code>char</code>:</p>
+<figure class="grafico" id="grafico-5"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La stringa &quot;ciao&quot; in memoria: quattro caratteri e il terminatore '\0'. Sotto, il codice ASCII di ogni carattere. La lunghezza del testo è 4, lo spazio occupato è 5 byte." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-5-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-5-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-5-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-5-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-5-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-5-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-5-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-5-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M30.55 190L122.18 190L122.18 80L30.55 80Z"/><path class="g-poligono g-blu" d="M132.36 190L224 190L224 80L132.36 80Z"/><path class="g-poligono g-blu" d="M234.18 190L325.82 190L325.82 80L234.18 80Z"/><path class="g-poligono g-blu" d="M336 190L427.64 190L427.64 80L336 80Z"/><path class="g-poligono g-rosa" d="M437.82 190L529.45 190L529.45 80L437.82 80Z"/></svg><span class="g-et g-c g-testo g-grigio" style="left:13.64%;top:11.76%">0</span><span class="g-et g-c g-testo g-grigio" style="left:31.82%;top:11.76%">1</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:11.76%">2</span><span class="g-et g-c g-testo g-grigio" style="left:68.18%;top:11.76%">3</span><span class="g-et g-c g-testo g-grigio" style="left:86.36%;top:11.76%">4</span><span class="g-et g-c g-testo g-blu" style="left:13.64%;top:39.71%">'c'</span><span class="g-et g-c g-testo g-blu" style="left:31.82%;top:39.71%">'i'</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:39.71%">'a'</span><span class="g-et g-c g-testo g-blu" style="left:68.18%;top:39.71%">'o'</span><span class="g-et g-c g-testo g-rosa" style="left:86.36%;top:39.71%">'\0'</span><span class="g-et g-c g-testo g-grigio" style="left:13.64%;top:70.59%">99</span><span class="g-et g-c g-testo g-grigio" style="left:31.82%;top:70.59%">105</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:70.59%">97</span><span class="g-et g-c g-testo g-grigio" style="left:68.18%;top:70.59%">111</span><span class="g-et g-c g-testo g-rosa" style="left:86.36%;top:70.59%">0</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:91.18%">indici sopra, codici ASCII sotto</span></div><figcaption>La stringa &quot;ciao&quot; in memoria: quattro caratteri e il terminatore &#39;\0&#39;. Sotto, il codice ASCII di ogni carattere. La lunghezza del testo è 4, lo spazio occupato è 5 byte.</figcaption></figure>
+<p>Tre modi di crearla:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> txt[] = { <span class="str">'c'</span>, <span class="str">'i'</span>, <span class="str">'a'</span>, <span class="str">'o'</span>, <span class="str">'\0'</span> };  <span class="cm">// carattere per carattere</span>
+<span class="kw">char</span> txt[] = <span class="str">&quot;ciao&quot;</span>;                        <span class="cm">// il compilatore aggiunge il '\0'</span>
+<span class="kw">const</span> <span class="kw">char</span>* txt = <span class="str">&quot;ciao&quot;</span>;                   <span class="cm">// un puntatore a un letterale</span></code></pre>
+<p>Le prime due creano un array di 5 <code>char</code> <strong>modificabile</strong>: <code>sizeof(txt)</code> vale 5, e i codici sono 99, 105, 97, 111, 0. L&#39;ho provato. La terza non crea un array: <code>txt</code> è un puntatore a un letterale stringa, che sta in una zona di memoria in sola lettura.</p>
+<p>C&#39;è un caso che il compilatore accetta e che è quasi sempre un errore:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> nome[4] = <span class="str">&quot;Anna&quot;</span>;   <span class="cm">// compila: ma il '\0' non ci sta</span></code></pre>
+<p>L&#39;array ha 4 posti, e <code>&quot;Anna&quot;</code> ne vuole 5. In C questa riga è permessa: il compilatore mette le quattro lettere e <strong>lascia fuori il terminatore</strong>, senza avvisi. Il risultato non è una stringa. Se non devi contare a mano, lascia le quadre vuote: <code>char nome[] = &quot;Anna&quot;;</code> riserva sempre il posto giusto.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto vale <code>sizeof</code> di <code>char s[] = &quot;pane&quot;;</code>? E dopo <code>s[0] = 'c';</code>, che cosa stampa <code>printf(&quot;%s&quot;, s)</code>?</span></summary><div class="ans"><p>5, quattro lettere e il terminatore. Stampa <code>cane</code>: l&#39;array è modificabile.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Stringa = array di <code>char</code> che finisce con <code>'\0'</code>.</li>
+<li><code>&quot;ciao&quot;</code> occupa 5 byte: la lunghezza del testo più uno.</li>
+<li><code>char nome[] = &quot;...&quot;;</code> riserva lo spazio giusto; una lunghezza scritta a mano può lasciare fuori il <code>'\0'</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="scorrere-una-stringa" aria-labelledby="h-scorrere-una-stringa" style="--h:1360px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-scorrere-una-stringa">Scorrere una stringa</h2><span class="slides">slide 28–29</span></div>
+<p>La lunghezza di una stringa non serve saperla: basta scorrere fino al terminatore. Ci sono due modi.</p>
+<p><strong>Con un indice</strong>, come un array, ma con la condizione «finché non sei sul terminatore»:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> parola[] = <span class="str">&quot;ciao&quot;</span>;
+
+<span class="kw">for</span> (<span class="kw">size_t</span> i = 0; parola[i] != <span class="str">'\0'</span>; i++) {
+    printf(<span class="str">&quot;%c\n&quot;</span>, parola[i]);
+}</code></pre>
+<p><strong>Con un puntatore</strong>, che parte dal primo carattere e avanza di uno a ogni giro:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> parola[] = <span class="str">&quot;ciao&quot;</span>;
+<span class="kw">char</span>* p = parola; <span class="cm">// parola diventa &amp;parola[0]</span>
+
+<span class="kw">while</span> (*p != <span class="str">'\0'</span>) {
+    printf(<span class="str">&quot;%c\n&quot;</span>, *p);
+    p++;   <span class="cm">// passa al carattere successivo</span>
+}</code></pre>
+<p>Tutti e due stampano <code>c</code>, <code>i</code>, <code>a</code>, <code>o</code>, uno per riga. Nel secondo <code>p</code> è un <code>char*</code>: <code>p++</code> lo sposta di un <code>char</code>, cioè di un byte, e <code>*p</code> è il carattere su cui si trova. Quando <code>*p</code> è <code>'\0'</code> il ciclo finisce.</p>
+<figure class="grafico" id="grafico-6"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La scansione con il puntatore. p parte da parola[0] e a ogni giro p++ lo sposta di una cella. Il ciclo si ferma quando *p è il terminatore: a quel punto p ha fatto 4 passi, la lunghezza del testo." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-6-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-6-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-6-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-6-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-6-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-6-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-6-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-6-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M30.55 268.42L122.18 268.42L122.18 170L30.55 170Z"/><path class="g-poligono g-blu" d="M132.36 268.42L224 268.42L224 170L132.36 170Z"/><path class="g-poligono g-blu" d="M234.18 268.42L325.82 268.42L325.82 170L234.18 170Z"/><path class="g-poligono g-blu" d="M336 268.42L427.64 268.42L427.64 170L336 170Z"/><path class="g-poligono g-rosa" d="M437.82 268.42L529.45 268.42L529.45 170L437.82 170Z"/><path class="g-linea g-ambra" d="M76.36 62.63L76.36 161.05" marker-end="url(#g-freccia-6-ambra)"/><path class="g-linea g-grigio" d="M106.91 98.42L147.64 98.42" marker-end="url(#g-freccia-6-grigio)"/><path class="g-linea g-grigio" d="M208.73 98.42L249.45 98.42" marker-end="url(#g-freccia-6-grigio)"/><path class="g-linea g-grigio" d="M310.55 98.42L351.27 98.42" marker-end="url(#g-freccia-6-grigio)"/><path class="g-linea g-grigio" d="M412.36 98.42L453.09 98.42" marker-end="url(#g-freccia-6-grigio)"/><path class="g-linea g-rosa" d="M483.64 62.63L483.64 161.05" marker-end="url(#g-freccia-6-rosa)"/></svg><span class="g-et g-c g-testo g-blu" style="left:13.64%;top:64.47%">'c'</span><span class="g-et g-c g-testo g-blu" style="left:31.82%;top:64.47%">'i'</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:64.47%">'a'</span><span class="g-et g-c g-testo g-blu" style="left:68.18%;top:64.47%">'o'</span><span class="g-et g-c g-testo g-rosa" style="left:86.36%;top:64.47%">'\0'</span><span class="g-et g-c g-testo g-ambra" style="left:13.64%;top:10.53%">p</span><span class="g-et g-c g-testo g-grigio" style="left:22.73%;top:17.11%">p++</span><span class="g-et g-c g-testo g-grigio" style="left:40.91%;top:17.11%">p++</span><span class="g-et g-c g-testo g-grigio" style="left:59.09%;top:17.11%">p++</span><span class="g-et g-c g-testo g-grigio" style="left:77.27%;top:17.11%">p++</span><span class="g-et g-c g-testo g-rosa" style="left:86.36%;top:10.53%">stop</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:90.79%">while (*p != '\0')</span></div><figcaption>La scansione con il puntatore. p parte da parola[0] e a ogni giro p++ lo sposta di una cella. Il ciclo si ferma quando *p è il terminatore: a quel punto p ha fatto 4 passi, la lunghezza del testo.</figcaption></figure>
+<p>Contando i giri si ottiene la <strong>lunghezza</strong> del testo: la funzione <code>strlen</code>, che vedrai più avanti, fa esattamente questo.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Scrivi un ciclo che conta le lettere <code>'a'</code> in <code>char s[] = &quot;banana&quot;;</code>.</span></summary><div class="ans"><p><code>int conta = 0; for (size_t i = 0; s[i] != '\0'; i++) { if (s[i] == 'a') { conta++; } }</code>. Alla fine <code>conta</code> vale 3.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Con l&#39;indice: <code>for (size_t i = 0; s[i] != '\0'; i++)</code>.</li>
+<li>Con il puntatore: <code>while (*p != '\0') { …; p++; }</code>.</li>
+<li>I giri fino al terminatore sono la lunghezza del testo.</li>
+</ul>
+</div>
+</section>
+
+<section id="leggere-stringhe-dall-input" aria-labelledby="h-leggere-stringhe-dall-input" style="--h:1450px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-leggere-stringhe-dall-input">Leggere stringhe dall&#39;input</h2><span class="slides">slide 30–32</span></div>
+<p>Una stringa si legge con <code>scanf</code>, come un numero, ma con due specifiche diverse: una per una parola sola, una per una riga intera.</p>
+<h3 id="una-parola-s">Una parola: %s</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> nome[20];   <span class="cm">// spazio per massimo 19 caratteri + '\0'</span>
+    printf(<span class="str">&quot;Inserisci il tuo nome: &quot;</span>);
+    scanf(<span class="str">&quot;%19s&quot;</span>, nome);  <span class="cm">// legge una parola (senza spazi)</span>
+    printf(<span class="str">&quot;Ciao, %s!\n&quot;</span>, nome);
+}</code></pre>
+<p>Tre cose da notare:</p>
+<ul>
+<li><strong>niente <code>&amp;</code></strong> davanti a <code>nome</code>: è un array, e come argomento diventa già il puntatore <code>&amp;nome[0]</code>;</li>
+<li><strong><code>%s</code> legge una parola</strong>: si ferma al primo spazio, tab o a capo. Con <code>Mario Rossi</code> stampa <code>Ciao, Mario!</code>, e <code>Rossi</code> resta nell&#39;input;</li>
+<li><strong>il 19</strong> dice a <code>scanf</code> di leggere al massimo 19 caratteri, per lasciare posto al <code>'\0'</code> nei 20 dell&#39;array. <code>scanf</code> non sa quanto è grande l&#39;array: senza limite, una parola lunga scriverebbe oltre la fine (<em>buffer overflow</em>).</li>
+</ul>
+<h3 id="una-frase-la-maschera-di-scansione">Una frase: la maschera di scansione</h3>
+<p>Per leggere anche gli spazi si usa una <strong>maschera di scansione</strong>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> frase[50];
+printf(<span class="str">&quot;Inserisci una frase: &quot;</span>);
+scanf(<span class="str">&quot; %49[^\n]&quot;</span>, frase);
+printf(<span class="str">&quot;Hai scritto: %s\n&quot;</span>, frase);</code></pre>
+<div class="table-wrap"><table><thead><tr><th>Parte</th><th>Significato</th></tr></thead><tbody><tr><td><code>&quot; &quot;</code> (lo spazio prima del <code>%</code>)</td><td>salta spazi e a capo all&#39;inizio, compreso l&#39;a capo rimasto da una <code>scanf</code> precedente</td></tr>
+<tr><td><code>%</code></td><td>inizio della specifica</td></tr>
+<tr><td><code>49</code></td><td>al massimo 49 caratteri: lascia posto al <code>'\0'</code></td></tr>
+<tr><td><code>[^\n]</code></td><td>legge tutti i caratteri <strong>tranne</strong> l&#39;a capo, cioè fino alla fine della riga</td></tr></tbody></table></div>
+<p>Con <code>Mario Rossi va al mare</code> (spazi all&#39;inizio compresi) stampa <code>Hai scritto: Mario Rossi va al mare</code>. Se la riga è più lunga di 49 caratteri, il resto rimane nell&#39;input per la prossima lettura. Per input più complessi esiste <code>fgets()</code>, che nel corso non si usa.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa contiene <code>nome</code> dopo <code>scanf(&quot;%19s&quot;, nome);</code> se l&#39;utente scrive <code>Luca  Bianchi</code>?</span></summary><div class="ans"><p><code>Luca</code>. <code>%s</code> salta gli spazi iniziali e si ferma allo spazio dopo <code>Luca</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>scanf(&quot;%19s&quot;, nome)</code>: una parola, senza <code>&amp;</code>, con il limite di lunghezza − 1.</li>
+<li><code>scanf(&quot; %49[^\n]&quot;, frase)</code>: tutta la riga, spazi compresi.</li>
+</ul>
+</div>
+</section>
+
+<section id="gli-errori-piu-comuni-con-le-stringhe" aria-labelledby="h-gli-errori-piu-comuni-con-le-stringhe" style="--h:1940px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-gli-errori-piu-comuni-con-le-stringhe">Gli errori più comuni con le stringhe</h2><span class="slides">slide 33–35</span></div>
+<p>Gli errori sulle stringhe hanno quasi sempre la stessa causa: il programma scrive o legge dove non dovrebbe, e il compilatore spesso non se ne accorge.</p>
+<h3 id="il-terminatore-dimenticato">Il terminatore dimenticato</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> nome[4] = {<span class="str">'A'</span>, <span class="str">'n'</span>, <span class="str">'n'</span>, <span class="str">'a'</span>};   <span class="cm">// ERRORE: manca '\0'</span>
+printf(<span class="str">&quot;%s\n&quot;</span>, nome);  <span class="cm">// comportamento indefinito</span></code></pre>
+<p>Compila senza avvisi. <code>printf</code> con <code>%s</code> scrive caratteri finché non trova uno 0: qui non c&#39;è, quindi continua nella memoria dopo l&#39;array, e stampa quello che trova. Tutte le funzioni sulle stringhe (<code>printf</code>, <code>scanf</code>, <code>strlen</code>) assumono che il terminatore ci sia. Si corregge con <code>char nome[5] = {'A', 'n', 'n', 'a', '\0'};</code> o, meglio, con <code>char nome[] = &quot;Anna&quot;;</code>.</p>
+<h3 id="modificare-un-letterale">Modificare un letterale</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span>* s = <span class="str">&quot;ciao&quot;</span>;
+s[0] = <span class="str">'m'</span>;    <span class="cm">// ERRORE: comportamento indefinito</span></code></pre>
+<p>Compila, ma <code>s</code> punta a un letterale, che sta in memoria in sola lettura: sui sistemi di oggi il programma si blocca quando prova a scrivere. Con un array invece si ottiene una copia modificabile:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> s[] = <span class="str">&quot;ciao&quot;</span>;
+s[0] = <span class="str">'m'</span>;         <span class="cm">// ok: &quot;miao&quot;</span></code></pre>
+<p>Scrivendo <code>const char* s = &quot;ciao&quot;;</code>, come nella slide 27, l&#39;errore lo trova gcc: <code>error: assignment of read-only location '*s'</code>. L&#39;ho provato. Per un puntatore a un letterale, <code>const</code> va messo sempre.</p>
+<h3 id="la-con-s">La &amp; con %s</h3>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> parola[20];
+scanf(<span class="str">&quot;%s&quot;</span>, &amp;parola);   <span class="cm">// ERRORE: &amp; non necessario</span></code></pre>
+<p><code>parola</code> diventa già un <code>char*</code>. <code>&amp;parola</code> invece è l&#39;indirizzo di tutto l&#39;array, di tipo <code>char (*)[20]</code>, «puntatore a un array di 20 <code>char</code>». Il valore è lo stesso indirizzo, ma il tipo è sbagliato, e con <code>-Wall -Werror</code> non compila: <code>format '%s' expects argument of type 'char *', but argument 2 has type 'char (*)[20]'</code>. La forma giusta è <code>scanf(&quot;%19s&quot;, parola);</code>, con il limite.</p>
+<div class="table-wrap"><table><thead><tr><th>Errore</th><th>gcc con <code>-Wall -Werror</code></th><th>Che cosa succede</th></tr></thead><tbody><tr><td><code>char nome[4] = {'A','n','n','a'};</code> e poi <code>%s</code></td><td>compila</td><td>stampa oltre la fine dell&#39;array</td></tr>
+<tr><td><code>char nome[4] = &quot;Anna&quot;;</code></td><td>compila</td><td>il <code>'\0'</code> non c&#39;è</td></tr>
+<tr><td><code>char* s = &quot;ciao&quot;; s[0] = 'm';</code></td><td>compila</td><td>il programma si blocca</td></tr>
+<tr><td>lo stesso con <code>const char*</code></td><td><code>error: assignment of read-only location</code></td><td>non compila</td></tr>
+<tr><td><code>scanf(&quot;%s&quot;, &amp;parola)</code></td><td><code>error: format '%s' expects argument of type 'char *'</code></td><td>non compila</td></tr>
+<tr><td><code>scanf(&quot;%s&quot;, parola)</code> senza limite</td><td>compila</td><td>una parola lunga scrive fuori dall&#39;array</td></tr></tbody></table></div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quale di queste righe crea una stringa che puoi modificare? (a) <code>char* a = &quot;ok&quot;;</code> (b) <code>char b[] = &quot;ok&quot;;</code> (c) <code>const char* c = &quot;ok&quot;;</code></span></summary><div class="ans"><p>Solo (b): è un array con la sua copia del testo. (a) e (c) puntano a un letterale in sola lettura; con (c) gcc ti ferma se provi a scriverci.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Senza <code>'\0'</code> non è una stringa, e <code>%s</code> legge oltre la fine.</li>
+<li>I letterali non si modificano: per un puntatore usa <code>const char*</code>, per un testo da cambiare un array.</li>
+<li><code>scanf</code> con <code>%s</code>: niente <code>&amp;</code>, sempre il limite.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:970px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>int v[5];</code></td><td>«array di 5 int»</td><td>dichiara un array di lunghezza 5</td><td><code>int voti[5] = {0};</code></td></tr>
+<tr><td><code>v[i]</code></td><td>«v di i»</td><td>l&#39;elemento di indice <code>i</code>, uguale a <code>*(v + i)</code></td><td><code>v[0]</code> è il primo</td></tr>
+<tr><td><code>{…}</code></td><td>lista di inizializzazione</td><td>i valori iniziali; quelli mancanti valgono 0</td><td><code>{18, 19, 24}</code></td></tr>
+<tr><td><code>#define N 5</code></td><td>«definisci N come 5»</td><td>costante sostituita prima di compilare</td><td><code>int v[N];</code></td></tr>
+<tr><td><code>size_t</code></td><td>«size t»</td><td>intero senza segno per indici e lunghezze</td><td><code>for (size_t i = 0; …)</code></td></tr>
+<tr><td><code>ptrdiff_t</code></td><td>«pointer diff t»</td><td>intero con segno per indici che scendono sotto 0</td><td>scansione all&#39;indietro</td></tr>
+<tr><td><code>%zu</code>, <code>%td</code></td><td>specifiche di <code>printf</code></td><td>stampano <code>size_t</code> e <code>ptrdiff_t</code></td><td><code>printf(&quot;%zu&quot;, i);</code></td></tr>
+<tr><td><code>'a'</code></td><td>carattere</td><td>un <code>char</code>, cioè il suo codice ASCII</td><td><code>'a'</code> vale 97</td></tr>
+<tr><td><code>&quot;ciao&quot;</code></td><td>stringa</td><td>array di <code>char</code> con <code>'\0'</code> in fondo</td><td>5 byte</td></tr>
+<tr><td><code>'\0'</code></td><td>NUL, terminatore</td><td>il carattere di codice 0 che chiude le stringhe</td><td><code>s[i] != '\0'</code></td></tr>
+<tr><td><code>%s</code>, <code>%19s</code></td><td>specifica per le stringhe</td><td>stampa o legge una parola</td><td><code>scanf(&quot;%19s&quot;, nome);</code></td></tr>
+<tr><td><code>%49[^\n]</code></td><td>maschera di scansione</td><td>legge fino all&#39;a capo, al massimo 49 caratteri</td><td><code>scanf(&quot; %49[^\n]&quot;, f);</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:990px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>Gli array sono in quasi tutti gli esercizi d&#39;esame di Programmazione I. Le cose da avere in mano:</p>
+<ol>
+<li><strong>all&#39;esame un array si passa come coppia (lunghezza, array)</strong>, per esempio <code>(size_t aLen, int a[])</code>: la lunghezza viaggia sempre insieme all&#39;array, e la scansione è <code>for (size_t i = 0; i &lt; aLen; i++)</code>;</li>
+<li><strong>l&#39;array vuoto è un caso da provare sempre</strong>: con lunghezza 0 il ciclo non gira, e il risultato deve avere comunque senso. Il massimo di un array vuoto non esiste: leggi bene la consegna;</li>
+<li><strong>niente <code>break</code></strong>: per cercare un elemento, la sentinella va nella condizione (<code>i &lt; aLen &amp;&amp; !trovato</code>), come nella <a href="04A_iterazioni.html">04A</a>;</li>
+<li><strong>controlla ogni indice</strong>: <code>&lt;</code> e non <code>&lt;=</code>, <code>v[i-1]</code> solo se <code>i &gt; 0</code>;</li>
+<li><strong>le stringhe finiscono con <code>'\0'</code></strong>: negli esercizi sulle stringhe la scansione si ferma al terminatore, e una stringa modificata va richiusa con <code>'\0'</code>.</li>
+</ol>
+<p>Negli esercizi sullo <strong>stato della memoria</strong> un array locale occupa tante caselle consecutive sullo stack, una per elemento, e gli elementi non inizializzati valgono «?». Nell&#39;esercizio B4 della <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta</a> la trappola è proprio questa: alcune celle non vengono mai scritte, e il loro valore resta indeterminato.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Scrivere un ciclo su un array senza sbagliare gli indici</span></p><ol>
+<li>Scrivi l&#39;intervallo degli indici che ti servono: tutto l&#39;array è <code>[0, n)</code>, dal secondo elemento è <code>[1, n)</code>.</li>
+<li>Traduci l&#39;intervallo nel <code>for</code>: <code>[a, b)</code> diventa <code>for (size_t i = a; i &lt; b; i++)</code>.</li>
+<li>Se dentro usi <code>v[i+1]</code> o <code>v[i-1]</code>, controlla che resti nell&#39;intervallo anche al primo e all&#39;ultimo giro.</li>
+<li>Prova a mano con <code>n = 0</code>, <code>n = 1</code> e <code>n = 2</code>.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:1990px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">In <code>int v[8];</code>, qual è l&#39;ultimo indice valido?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">7</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">9</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">dipende dal compilatore</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Gli indici sono <code>[0, 8)</code>: da 0 a 7. La risposta più insidiosa è 8, la lunghezza: <code>v[8]</code> è il primo indice fuori dall&#39;array, e il C non lo segnala.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>int w[6] = {1, 2, 3}; printf(&quot;%d %d&quot;, w[2], w[3]);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 ?</code> (un valore a caso)</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 0</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>2 3</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 3</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Con meno valori della lunghezza, gli elementi rimasti valgono 0. La risposta più insidiosa è il valore a caso: vale per <code>int w[6];</code> senza lista, non quando la lista c&#39;è.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Quanto vale <code>sizeof(s)</code> con <code>char s[] = &quot;pane&quot;;</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="5" data-toll="1e-9"><span class="q-giusto" hidden>5</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Quattro lettere più il terminatore <code>'\0'</code>, che il compilatore aggiunge da solo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa fa <code>for (size_t i = N - 1; i &gt;= 0; i--) { printf(&quot;%d &quot;, v[i]); }</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non stampa niente</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non compila con <code>-Wall -Werror</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa l&#39;array al contrario e poi <code>v[-1]</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non finisce: un <code>size_t</code> è sempre <code>&gt;= 0</code>, e dopo 0 diventa enorme</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Stampa l&#39;array al contrario</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>size_t</code> è senza segno: <code>0 - 1</code> non dà −1 ma il numero più grande possibile, e il ciclo legge fuori dall&#39;array. La risposta più insidiosa è «non compila»: con <code>-Wall</code> compila, l&#39;avviso arriva solo con <code>-Wextra</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con <code>int a[3] = {1, 2, 3}, b[3];</code>, quale riga copia <code>a</code> in <code>b</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>b = a;</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>b[3] = a[3];</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>b[] = a[];</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>for (size_t i = 0; i &lt; 3; i++) { b[i] = a[i]; }</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>*b = *a;</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Gli array si copiano un elemento alla volta. La risposta più insidiosa è <code>b = a;</code>, che non compila (<code>assignment to expression with array type</code>). <code>b[3] = a[3]</code> scrive e legge fuori dai due array; <code>*b = *a</code> copia solo il primo elemento.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Con <code>int v[5] = {10, 20, 30, 40, 50};</code>, quanto vale <code>*(v + 3)</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="40" data-toll="1e-9"><span class="q-giusto" hidden>40</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>*(v + 3)</code> è <code>v[3]</code>: il quarto elemento, perché si conta da 0. <code>v + 3</code> avanza di 3 elementi, cioè di 12 byte.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale riga legge un nome di al massimo 29 caratteri in <code>char nome[30];</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%s&quot;, nome[30]);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%c&quot;, nome);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%29s&quot;, nome);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%29s&quot;, &amp;nome);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%30s&quot;, nome);</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il limite è la lunghezza meno uno, per il <code>'\0'</code>, e niente <code>&amp;</code>. La risposta più insidiosa è <code>%30s</code>: 30 caratteri più il terminatore fanno 31 byte, uno oltre l&#39;array. Con <code>&amp;nome</code> gcc dà errore di formato.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>printf(&quot;%c%c&quot;, 'b' - 1, '0' + 7);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a0</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a7</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>b7</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a55</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>977</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>'b' - 1</code> è il codice di <code>'a'</code>; <code>'0' + 7</code> è il codice 55, cioè il carattere <code>'7'</code>. Con <code>%c</code> si stampano i caratteri, non i numeri: la risposta più insidiosa è <code>a55</code>, che sarebbe con <code>%d</code> per il secondo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale di queste dichiarazioni crea una stringa <strong>non</strong> terminata?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char n[5] = &quot;Anna&quot;;</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char n[10] = &quot;Anna&quot;;</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char n[4] = &quot;Anna&quot;;</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char n[] = &quot;Anna&quot;;</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char n[5] = {'A', 'n', 'n', 'a', '\0'};</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>&quot;Anna&quot;</code> vuole 5 byte; con 4 il C lascia fuori il <code>'\0'</code> senza avvisi. La risposta più insidiosa è l&#39;ultima: 10 posti sono troppi, ma gli avanzati valgono 0, quindi la stringa è terminata.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1460px">
+<div class="sec-head"><span class="sec-num">§17</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: che cosa stampa? <span class="lvl">base</span></h3><p><code>int v[5] = {3, 1, 4, 1, 5}; int s = 0; for (size_t i = 0; i &lt; 5; i += 2) { s += v[i]; } printf(&quot;%d&quot;, s);</code></p>
+<details class="sol"><summary>Soluzione</summary><p>Il ciclo guarda gli indici 0, 2, 4: 3 + 4 + 5 = 12. Stampa <code>12</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: trova l&#39;errore <span class="lvl">base</span></h3><p>Ogni riga ha un errore. (a) <code>int v[3] = {1, 2, 3}; printf(&quot;%d&quot;, v[3]);</code> (b) <code>char s[10]; scanf(&quot;%s&quot;, &amp;s);</code> (c) <code>int a[4], b[4]; if (a == b) { … }</code> (d) <code>size_t n = 0; int v[n];</code></p>
+<details class="sol"><summary>Soluzione</summary><p>(a) L&#39;indice 3 è fuori da <code>[0, 3)</code>: compila, ma legge memoria non dell&#39;array. (b) La <code>&amp;</code> non serve, e manca il limite: <code>scanf(&quot;%9s&quot;, s);</code>. Con <code>&amp;s</code> gcc non compila. (c) <code>a == b</code> confronta gli indirizzi, non gli elementi; con <code>-Wall -Werror</code> non compila (<code>comparison between two arrays</code>). (d) Un VLA deve avere lunghezza almeno 1.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Riscaldamento: la lunghezza a mano <span class="lvl">base</span></h3><p>Scrivi un programma che legge una parola (al massimo 49 caratteri) e ne stampa la lunghezza senza usare <code>strlen</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> parola[50];
+    <span class="kw">if</span> (scanf(<span class="str">&quot;%49s&quot;</span>, parola) == 1) {
+        <span class="kw">size_t</span> len = 0;
+        <span class="kw">while</span> (parola[len] != <span class="str">'\0'</span>) {
+            len++;
+        }
+        printf(<span class="str">&quot;%zu\n&quot;</span>, len);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato: <code>ciao</code> dà 4, <code>x</code> dà 1, <code>precipitevolissimevolmente</code> dà 26. Alla fine del ciclo <code>len</code> è l&#39;indice del terminatore, che è proprio il numero di caratteri prima.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Contare le vocali <span class="lvl">medio</span></h3><p>Scrivi un programma che legge una frase (anche con spazi, al massimo 99 caratteri) e stampa quante vocali contiene, maiuscole o minuscole.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> frase[100];
+    <span class="kw">int</span> vocali = 0;
+    <span class="kw">if</span> (scanf(<span class="str">&quot; %99[^\n]&quot;</span>, frase) == 1) {
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; frase[i] != <span class="str">'\0'</span>; i++) {
+            <span class="kw">char</span> c = frase[i];
+            <span class="kw">if</span> (c == <span class="str">'a'</span> || c == <span class="str">'e'</span> || c == <span class="str">'i'</span> || c == <span class="str">'o'</span> || c == <span class="str">'u'</span> ||
+                c == <span class="str">'A'</span> || c == <span class="str">'E'</span> || c == <span class="str">'I'</span> || c == <span class="str">'O'</span> || c == <span class="str">'U'</span>) {
+                vocali++;
+            }
+        }
+    }
+    printf(<span class="str">&quot;%d\n&quot;</span>, vocali);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato: <code>Ciao a tutti</code> dà 6, <code>xyz</code> dà 0, <code>AEIOU aeiou</code> dà 10, una riga vuota dà 0 (la <code>scanf</code> non legge niente e restituisce un valore diverso da 1).</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Invertire un array <span class="lvl">medio</span></h3><p>Scrivi un programma che inverte sul posto l&#39;array <code>int v[N] = {1, 2, 3, 4, 5, 6};</code>, cioè senza un secondo array, e lo stampa.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;
+
+<span class="kw">#define</span> N 6
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> v[N] = {1, 2, 3, 4, 5, 6};
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; N / 2; i++) {
+        <span class="kw">int</span> temp = v[i];            <span class="cm">// scambio di v[i] e v[N - 1 - i]</span>
+        v[i] = v[N - 1 - i];
+        v[N - 1 - i] = temp;
+    }
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; N; i++) {
+        printf(<span class="str">&quot;%d &quot;</span>, v[i]);
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa <code>6 5 4 3 2 1</code>. Si scambiano il primo con l&#39;ultimo, il secondo con il penultimo, e così via, con lo scambio della <a href="03A_scambio_variabili.html">03A</a>. Il ciclo va solo fino a metà: se arrivasse in fondo, ogni coppia verrebbe scambiata due volte e l&#39;array tornerebbe com&#39;era. Con <code>N = 5</code> l&#39;elemento centrale resta al suo posto, e stampa <code>5 4 3 2 1</code>: provato anche questo.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Tutti pari? <span class="lvl">tipo esame</span></h3><p>Scrivi un programma che legge <code>n</code>, poi <code>n</code> interi in un VLA, e stampa <code>Tutti pari</code> se lo sono tutti, altrimenti la posizione e il valore del <strong>primo</strong> dispari. Niente <code>break</code>. Se <code>n</code> non è valido o è 0, stampa <code>Input non valido</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">size_t</span> n;
+    <span class="kw">if</span> (scanf(<span class="str">&quot;%zu&quot;</span>, &amp;n) != 1 || n == 0) {
+        printf(<span class="str">&quot;Input non valido\n&quot;</span>);
+    }
+    <span class="kw">else</span> {
+        <span class="kw">int</span> v[n];
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+            scanf(<span class="str">&quot;%d&quot;</span>, &amp;v[i]);
+        }
+        <span class="kw">bool</span> tuttiPari = <span class="kw">true</span>;          <span class="cm">// &quot;per ogni&quot;: parte da true</span>
+        <span class="kw">size_t</span> i = 0;
+        <span class="kw">while</span> (i &lt; n &amp;&amp; tuttiPari) {
+            <span class="kw">if</span> (v[i] % 2 != 0) {
+                tuttiPari = <span class="kw">false</span>;      <span class="cm">// controesempio trovato in posizione i</span>
+            }
+            <span class="kw">else</span> {
+                i++;
+            }
+        }
+        <span class="kw">if</span> (tuttiPari) {
+            printf(<span class="str">&quot;Tutti pari\n&quot;</span>);
+        }
+        <span class="kw">else</span> {
+            printf(<span class="str">&quot;Il primo dispari e' v[%zu] = %d\n&quot;</span>, i, v[i]);
+        }
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato: <code>4 2 8 6 0</code> dà <code>Tutti pari</code>; <code>5 2 4 7 6 9</code> dà <code>v[2] = 7</code>; <code>1 -3</code> dà <code>v[0] = -3</code> (con i negativi <code>% 2</code> vale −1, che è comunque diverso da 0); <code>0</code> e <code>x</code> danno <code>Input non valido</code>. Il controllo <code>n == 0</code> viene prima della dichiarazione del VLA. Quando trova il dispari, il ciclo <strong>non</strong> incrementa <code>i</code>: così dopo il ciclo <code>i</code> è proprio la posizione del controesempio.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · Il cifrario di Cesare <span class="lvl">difficile</span></h3><p>Scrivi un programma che legge una riga e sposta ogni lettera minuscola di 3 posti nell&#39;alfabeto, ricominciando da capo dopo la <code>z</code> (<code>x</code> → <code>a</code>, <code>y</code> → <code>b</code>, <code>z</code> → <code>c</code>). Gli altri caratteri restano uguali.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> s[100];
+    <span class="kw">if</span> (scanf(<span class="str">&quot; %99[^\n]&quot;</span>, s) == 1) {
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; s[i] != <span class="str">'\0'</span>; i++) {
+            <span class="kw">if</span> (<span class="str">'a'</span> &lt;= s[i] &amp;&amp; s[i] &lt;= <span class="str">'z'</span>) {
+                s[i] = (<span class="kw">char</span>)(<span class="str">'a'</span> + (s[i] - <span class="str">'a'</span> + 3) % 26);
+            }
+        }
+        printf(<span class="str">&quot;%s\n&quot;</span>, s);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato: <code>ciao zaino</code> diventa <code>fldr cdlqr</code>, <code>xyz ABC</code> diventa <code>abc ABC</code>. Il trucco è passare dalla lettera alla sua posizione nell&#39;alfabeto (<code>s[i] - 'a'</code>, da 0 a 25) e sommare 3. Il resto della divisione per 26 fa ricominciare da capo, e <code>'a' + …</code> torna alla lettera.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:700px">
+<div class="sec-head"><span class="sec-num">§18</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che cos&#39;è un array?</span></summary><div class="ans"><p>Una sequenza di valori dello stesso tipo, memorizzati in celle consecutive e raggiunti con un indice da 0 a lunghezza − 1.</p>
+</div></details>
+<details class="qa"><summary><span>Perché per gli indici si usa <code>size_t</code>, e quando invece serve <code>ptrdiff_t</code>?</span></summary><div class="ans"><p><code>size_t</code> è l&#39;intero senza segno pensato per dimensioni e indici. <code>ptrdiff_t</code> ha il segno, e serve quando l&#39;indice deve scendere sotto 0, come nella scansione all&#39;indietro con <code>i &gt;= 0</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Che legame c&#39;è tra <code>v[i]</code> e i puntatori?</span></summary><div class="ans"><p><code>v[i]</code> è per definizione <code>*(v + i)</code>: il nome dell&#39;array diventa il puntatore al primo elemento, e <code>v + i</code> avanza di <code>i</code> elementi.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa succede se si legge <code>v[n]</code> in un array di lunghezza <code>n</code>?</span></summary><div class="ans"><p>Comportamento indefinito: il C non controlla gli indici, e si legge la memoria subito dopo l&#39;array.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa distingue una stringa da un array di <code>char</code> qualunque?</span></summary><div class="ans"><p>Il terminatore <code>'\0'</code> in fondo, che segnala dove finisce il testo.</p>
+</div></details>
+<details class="qa"><summary><span>Quanti byte occupa <code>&quot;ciao&quot;</code>?</span></summary><div class="ans"><p>5: quattro caratteri più il terminatore.</p>
+</div></details>
+<details class="qa"><summary><span>Perché in <code>scanf(&quot;%19s&quot;, nome)</code> non c&#39;è la <code>&amp;</code>?</span></summary><div class="ans"><p>Perché <code>nome</code> è un array, e come argomento diventa già il puntatore al primo elemento.</p>
+</div></details>
+<details class="qa"><summary><span>Come si legge una riga intera con gli spazi?</span></summary><div class="ans"><p>Con la maschera di scansione: <code>scanf(&quot; %49[^\n]&quot;, frase);</code>.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:920px">
+<div class="sec-head"><span class="sec-num">§19</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Array</dt><dd>Sequenza di valori dello stesso tipo, in celle consecutive, raggiunti con un indice.</dd></div>
+<div><dt>Elemento</dt><dd>Uno dei valori di un array.</dd></div>
+<div><dt>Indice</dt><dd>Il numero di un elemento, da 0 a lunghezza − 1.</dd></div>
+<div><dt>Lunghezza</dt><dd>Il numero di elementi di un array.</dd></div>
+<div><dt>size_t</dt><dd>Intero senza segno per lunghezze e indici; si stampa con %zu.</dd></div>
+<div><dt>ptrdiff_t</dt><dd>Intero con segno per indici che possono scendere sotto 0; si stampa con %td.</dd></div>
+<div><dt>Scansione</dt><dd>Il ciclo che passa per tutti gli indici validi di un array.</dd></div>
+<div><dt>Invariante</dt><dd>Una frase che resta vera a ogni giro di un ciclo.</dd></div>
+<div><dt>Precondizione</dt><dd>Una condizione che deve valere prima di eseguire il codice, come «l&#39;array non è vuoto».</dd></div>
+<div><dt>VLA</dt><dd>Array sullo stack con la lunghezza decisa mentre il programma gira.</dd></div>
+<div><dt>Comportamento indefinito</dt><dd>Situazione in cui il linguaggio non garantisce niente, come un indice fuori dai limiti.</dd></div>
+<div><dt>char</dt><dd>Il tipo di un carattere: un byte che contiene il suo codice.</dd></div>
+<div><dt>ASCII</dt><dd>Il codice standard di 128 caratteri, da 0 a 127.</dd></div>
+<div><dt>Unicode</dt><dd>Lo standard che dà un numero a ogni carattere del mondo.</dd></div>
+<div><dt>UTF-8</dt><dd>Codifica di Unicode da 1 a 4 byte per carattere, compatibile con ASCII.</dd></div>
+<div><dt>Stringa</dt><dd>Array di char che finisce con il terminatore &#39;\0&#39;.</dd></div>
+<div><dt>Terminatore</dt><dd>Il carattere &#39;\0&#39;, di codice 0, che chiude una stringa.</dd></div>
+<div><dt>Letterale stringa</dt><dd>Una stringa scritta tra doppi apici nel codice; non si può modificare.</dd></div>
+<div><dt>Maschera di scansione</dt><dd>Specifica di scanf come %49[^\n], che dice quali caratteri leggere.</dd></div>
+<div><dt>Buffer overflow</dt><dd>Scrittura oltre la fine di un array, per esempio con %s senza limite.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:690px">
+<div class="sec-head"><span class="sec-num">§20</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 13</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-05A-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So dichiarare, inizializzare e usare un array, anche con una lista più corta della lunghezza.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So che gli indici validi sono [0, n) e scrivere la scansione con size_t e %zu.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So scorrere un array all&#39;indietro senza il ciclo infinito di size_t.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So scrivere somma, media, conteggio e massimo, e so perché il massimo vuole un array non vuoto.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So che v[i] è *(v + i) e che sizeof dell&#39;array è diverso da sizeof di un puntatore.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So dichiarare un VLA e conoscerne i limiti.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So che gli array non si assegnano e non si confrontano con = e ==.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So che il C non controlla gli indici e che gcc spesso non avvisa.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So usare i codici ASCII per fare conti con i caratteri.</span></label></li>
+<li><label><input type="checkbox" id="chk-10"><span>So che una stringa finisce con &#39;\0&#39; e quanti byte occupa.</span></label></li>
+<li><label><input type="checkbox" id="chk-11"><span>So scorrere una stringa con un indice e con un puntatore.</span></label></li>
+<li><label><input type="checkbox" id="chk-12"><span>So leggere una parola con %19s e una riga con la maschera di scansione.</span></label></li>
+<li><label><input type="checkbox" id="chk-13"><span>So riconoscere il terminatore dimenticato, il letterale modificato e la &amp; di troppo.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Array e stringhe. Rappresentazione dei dati sequenziali, array statici, VLA e stringhe» (05A_array_stringhe), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: array e <code>size_t</code> (slide 2–3), array statici e memoria (4–6), esempi e scansione (7–12), array e puntatori (13–14), VLA (15–16), errori comuni (17–18), caratteri e ASCII (19–21), da ASCII a Unicode (22–26), terminatore (27), scansione delle stringhe (28–29), lettura con <code>scanf</code> (30–32), errori sulle stringhe (33–35).</li>
+<li>P. Deitel, H. Deitel, <em>C How to Program</em>, citato nella slide 3 per l&#39;uso di <code>size_t</code> (p. 247).</li>
+<li>The Unicode Consortium, <em>The Unicode Standard</em>, versione 15.1 (2023), per i numeri di caratteri e alfabeti; F. Yergeau, RFC 3629, «UTF-8, a transformation format of ISO 10646» (2003), per la lunghezza massima di 4 byte.</li>
+<li>Esercizio B4 e regole d&#39;esame dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a> e dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+<li>Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con <code>-Wall -Werror</code> (alcuni anche con <code>-O2</code> e <code>-Wextra</code>, dove lo dico), ed eseguiti, tranne quelli che si bloccano; gli errori e le stampe citati sono quelli veri. Le soluzioni, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

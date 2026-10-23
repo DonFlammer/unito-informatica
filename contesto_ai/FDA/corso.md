@@ -96,8 +96,8 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - gio 15/10: §1.3, proposizioni condizionali ed equivalenza logica. Negli appunti è la lezione 07, scritta prima della lezione.
 - ven 16/10: §1.4, regole di inferenza per le proposizioni, ed esercizi. Negli appunti è la lezione 08, scritta prima della lezione.
 - lun 19/10: §1.5, quantificatori: funzione proposizionale (esempio 1.5.3 (a)) quantificata universalmente ed esistenzialmente, programmi per i quantificatori, leggi di De Morgan per i quantificatori. Negli appunti è la lezione 09.
-- gio 22/10 (in programma): analogie tra quantificatore universale e congiunzione, esistenziale e disgiunzione; quiz sulle regole di inferenza (sì/no) e sui quantificatori. Negli appunti è la lezione 10, scritta prima della lezione.
-- ven 23/10 (in programma): §1.6, quantificatori annidati. Negli appunti è la lezione 11, scritta prima della lezione.
+- gio 22/10: analogie tra quantificatore universale e congiunzione, esistenziale e disgiunzione; quiz sulle regole di inferenza (sì/no) e sui quantificatori. Negli appunti è la lezione 10, scritta prima della lezione.
+- ven 23/10: §1.6, quantificatori annidati. Negli appunti è la lezione 11, scritta prima della lezione.
 
 ## Materiale
 

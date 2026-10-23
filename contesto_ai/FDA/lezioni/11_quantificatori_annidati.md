@@ -1,6 +1,7 @@
 ---
 corso: FDA
 lezione: "11"
+data: 2026-10-23
 titolo: Quantificatori annidati
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 11 · Libro, parte 2, §1.6

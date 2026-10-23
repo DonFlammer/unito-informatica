@@ -1,6 +1,7 @@
 ---
 corso: FDA
 lezione: "10"
+data: 2026-10-22
 titolo: Quantificatori, «e» e «o», e le regole di inferenza con i quantificatori
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 10 · Libro, parte 2, §1.4–1.5 ed esercizi

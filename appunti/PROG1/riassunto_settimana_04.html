@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S4 · Settimana 4: cicli, array e stringhe</title>
+<meta name="lezione" content="S4">
+<meta name="data" content="2026-10-21">
+<meta name="tipo" content="riassunto">
+<meta name="description" content="Riassunto della settimana 4 di Programmazione I (canale B): il ciclo while con inizializzazione, condizione e aggiornamento, accumulatori e sentinelle, il for e gli intervalli, i cicli annidati, break e continue vietati all'esame, il do-while; gli array, gli indici da 0 e size_t, la scansione, somma, conteggio e massimo, array e puntatori, i VLA, i caratteri ASCII e le stringhe con il terminatore.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/riassunti/settimana_04.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#04a-cicli-while-for-e-do-while-mar-20-10"><span class="n">§1</span><span>04A · Cicli: while, for e do-while (mar 20/10)</span></a></li>
+<li><a href="#05a-array-e-stringhe-mer-21-10"><span class="n">§2</span><span>05A · Array e stringhe (mer 21/10)</span></a></li>
+<li><a href="#esame"><span class="n">§3</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#domande"><span class="n">§4</span><span>Domande di ripasso</span></a></li>
+<li><a href="#quiz"><span class="n">§5</span><span>Quiz d&#39;esame</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Riassunto settimanale</nav>
+      <p class="eyebrow">Riassunto settimanale · Programmazione I · Canale B · 19/10 – 23/10/2026</p>
+      <h1>Settimana 4: cicli, array e stringhe</h1>
+      <p class="lede">Le due lezioni della settimana in poche pagine: come si scrive un ciclo che finisce, come si scorre un array senza uscire dai limiti, che cosa c&#39;è davvero in una stringa, e le domande per controllarti.</p>
+      <dl class="meta"><div><dt>Lezioni</dt><dd><a href="04A_iterazioni.html">04A</a> mar 20/10 · <a href="05A_array_stringhe.html">05A</a> mer 21/10</dd></div><div><dt>Tempo di ripasso</dt><dd>45 minuti</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:590px">
+<h2 id="tldr-title">La settimana in 7 punti</h2>
+<ul>
+<li><code>while (condizione) { … }</code> ripete finché la condizione è vera, e la controlla <strong>prima</strong> di ogni giro: se è falsa subito, zero giri.</li>
+<li>Ogni ciclo ha tre pezzi: <strong>inizializzazione</strong>, <strong>condizione</strong>, <strong>aggiornamento</strong>. Senza aggiornamento il ciclo non finisce, e gcc non avvisa.</li>
+<li><code>for (init; condizione; aggiornamento)</code> è un <code>while</code> con i tre pezzi su una riga. L&#39;intervallo <code>[a, b)</code> con passo 1 fa <code>b − a</code> giri.</li>
+<li>All&#39;esame <strong>niente <code>break</code> e <code>continue</code></strong>: si esce dal ciclo con la condizione, usando una <strong>variabile sentinella</strong> <code>bool</code>.</li>
+<li>Un <strong>array</strong> è una fila di valori dello stesso tipo; gli indici validi sono <code>[0, n)</code>, si scrivono con <code>size_t</code> e si stampano con <code>%zu</code>.</li>
+<li>Il C <strong>non controlla gli indici</strong>: <code>v[n]</code> compila e legge fuori dall&#39;array. Gli array non si assegnano e non si confrontano con <code>=</code> e <code>==</code>.</li>
+<li>Una <strong>stringa</strong> è un array di <code>char</code> che finisce con <code>'\0'</code>: <code>&quot;ciao&quot;</code> occupa 5 byte. Si legge con <code>scanf(&quot;%19s&quot;, nome)</code>, senza <code>&amp;</code>.</li>
+</ul>
+</section>
+
+<div class="box neutro"><p class="box-label"><span>Nota · Il laboratorio</span></p><p>Il Laboratorio 03 (lunedì 19/10 per il turno B2, martedì 20/10 per il turno B1) non è in questo riassunto: non ho ancora le sue slide.</p>
+</div>
+
+
+<section id="04a-cicli-while-for-e-do-while-mar-20-10" aria-labelledby="h-04a-cicli-while-for-e-do-while-mar-20-10" style="--h:1810px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-04a-cicli-while-for-e-do-while-mar-20-10">04A · Cicli: while, for e do-while (mar 20/10)</h2></div>
+<p>Il <code>while</code> è la terza struttura della programmazione strutturata, l&#39;iterazione. Il blocco si ripete finché la condizione è vera; ogni ripetizione è un giro.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/403"><svg viewBox="0 0 560 403" role="img" aria-label="La terna di ogni ciclo nel while che stampa da 0 a 9: inizializzazione (rosa), condizione (verde), aggiornamento (ambra). Dopo l'aggiornamento si torna sempre alla condizione; si esce solo dal ramo «falso»." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-rosa" d="M190.4 55.97L369.6 55.97L369.6 16.79L190.4 16.79Z"/><path class="g-linea g-grigio" d="M280 55.97L280 92.35" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-verde" d="M280 95.15L403.2 139.93L280 184.71L156.8 139.93Z"/><path class="g-linea g-grigio" d="M280 184.71L280 221.09" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-blu" d="M190.4 263.07L369.6 263.07L369.6 223.89L190.4 223.89Z"/><path class="g-linea g-grigio" d="M280 263.07L280 299.45" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-ambra" d="M190.4 341.43L369.6 341.43L369.6 302.25L190.4 302.25Z"/><path class="g-linea g-grigio" d="M190.4 321.84L72.8 321.84"/><path class="g-linea g-grigio" d="M72.8 321.84L72.8 139.93"/><path class="g-linea g-grigio" d="M72.8 139.93L154 139.93" marker-end="url(#g-freccia-1-grigio)"/><path class="g-linea g-rosa" d="M403.2 139.93L487.2 139.93"/><path class="g-linea g-rosa" d="M487.2 139.93L487.2 380.61"/><path class="g-linea g-rosa" d="M487.2 380.61L372.4 380.61" marker-end="url(#g-freccia-1-rosa)"/></svg><span class="g-et g-c g-testo g-rosa" style="left:50.00%;top:9.03%">i = 0</span><span class="g-et g-c g-testo g-verde" style="left:50.00%;top:34.72%">i &lt; 10 ?</span><span class="g-et g-c g-testo g-verde" style="left:58.50%;top:50.00%">vero</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:60.42%">stampa i</span><span class="g-et g-c g-testo g-ambra" style="left:50.00%;top:79.86%">i++</span><span class="g-et g-c g-testo g-rosa" style="left:79.50%;top:29.17%">falso</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:94.44%">fine</span></div><figcaption>La terna di ogni ciclo nel while che stampa da 0 a 9: inizializzazione (rosa), condizione (verde), aggiornamento (ambra). Dopo l&#39;aggiornamento si torna sempre alla condizione; si esce solo dal ramo «falso».</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th>Che cosa</th><th>Come si scrive</th><th>Da ricordare</th></tr></thead><tbody><tr><td>accumulatore</td><td><code>int somma = 0;</code> e nel ciclo <code>somma += i;</code></td><td>parte da 0 per le somme, da 1 per i prodotti</td></tr>
+<tr><td>contatore</td><td><code>count++</code> quando un dato è valido</td><td>prima di dividere per <code>count</code>, controlla che non sia 0</td></tr>
+<tr><td>valore sentinella</td><td>un&#39;altezza negativa che segnala la fine</td><td>non è un dato: non va nella somma</td></tr>
+<tr><td>variabile sentinella</td><td><code>bool continua = true; while (continua) { … }</code></td><td>il blocco la cambia, il ciclo finisce alla condizione</td></tr>
+<tr><td><code>for</code> su un intervallo</td><td><code>for (int i = 0; i &lt; 10; i++)</code></td><td><code>[0, 10)</code>: lo 0 dentro, il 10 fuori</td></tr>
+<tr><td>ciclo annidato</td><td>un <code>for</code> dentro un <code>for</code></td><td>3 giri fuori × 3 dentro = 9 esecuzioni</td></tr>
+<tr><td><code>do-while</code></td><td><code>do { … } while (c);</code></td><td>almeno un giro; il <code>;</code> finale è obbligatorio</td></tr></tbody></table></div>
+<ul>
+<li>Una variabile dichiarata <strong>nel blocco</strong> del ciclo nasce e sparisce a ogni giro; quella dichiarata nell&#39;inizializzazione del <code>for</code> esiste solo dentro il <code>for</code>.</li>
+<li>Gli errori dei cicli <strong>compilano quasi tutti</strong>: condizione sempre vera, aggiornamento mancante, un giro in più (<code>&lt;=</code> al posto di <code>&lt;</code>), contatore cambiato nel blocco. Si trovano contando i giri a mano.</li>
+<li><code>for</code> quando sai quanti giri servono, <code>while</code> quando decide l&#39;input.</li>
+<li><strong>Errore nella slide 38</strong>: <code>!(1 &lt;= x || x &lt;= 10)</code> è sempre falso e accetta tutto; l&#39;intervallo vuole <code>&amp;&amp;</code>: <code>!(1 &lt;= x &amp;&amp; x &lt;= 10)</code>.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanti giri fa <code>for (int i = 20; i &gt;= 2; i -= 7)</code>, e con quali valori?</span></summary><div class="ans"><p>3: <code>i</code> vale 20, 13, 6. Al passo dopo vale −1, e la condizione è falsa.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Inizializzazione, condizione, aggiornamento: controlla sempre che la condizione possa diventare falsa.</li>
+<li>Niente <code>break</code>: la sentinella va nella condizione, con <code>&amp;&amp; !trovato</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="05a-array-e-stringhe-mer-21-10" aria-labelledby="h-05a-array-e-stringhe-mer-21-10" style="--h:1850px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-05a-array-e-stringhe-mer-21-10">05A · Array e stringhe (mer 21/10)</h2></div>
+<p>Un array mette sotto un solo nome tanti valori dello stesso tipo, in celle attaccate: <code>int voti[5];</code> ne crea cinque, <code>voti[0]</code> … <code>voti[4]</code>.</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La stringa &quot;ciao&quot; è un array di 5 char: quattro lettere e il terminatore '\0' (in rosa). La scansione con l'indice o con il puntatore si ferma quando trova il terminatore." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M30.55 215.33L122.18 215.33L122.18 90.67L30.55 90.67Z"/><path class="g-poligono g-blu" d="M132.36 215.33L224 215.33L224 90.67L132.36 90.67Z"/><path class="g-poligono g-blu" d="M234.18 215.33L325.82 215.33L325.82 90.67L234.18 90.67Z"/><path class="g-poligono g-blu" d="M336 215.33L427.64 215.33L427.64 90.67L336 90.67Z"/><path class="g-poligono g-rosa" d="M437.82 215.33L529.45 215.33L529.45 90.67L437.82 90.67Z"/></svg><span class="g-et g-c g-testo g-grigio" style="left:13.64%;top:13.33%">0</span><span class="g-et g-c g-testo g-grigio" style="left:31.82%;top:13.33%">1</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:13.33%">2</span><span class="g-et g-c g-testo g-grigio" style="left:68.18%;top:13.33%">3</span><span class="g-et g-c g-testo g-grigio" style="left:86.36%;top:13.33%">4</span><span class="g-et g-c g-testo g-blu" style="left:13.64%;top:45.00%">'c'</span><span class="g-et g-c g-testo g-blu" style="left:31.82%;top:45.00%">'i'</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:45.00%">'a'</span><span class="g-et g-c g-testo g-blu" style="left:68.18%;top:45.00%">'o'</span><span class="g-et g-c g-testo g-rosa" style="left:86.36%;top:45.00%">'\0'</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:85.00%">for (size_t i = 0; s[i] != '\0'; i++)</span></div><figcaption>La stringa &quot;ciao&quot; è un array di 5 char: quattro lettere e il terminatore &#39;\0&#39; (in rosa). La scansione con l&#39;indice o con il puntatore si ferma quando trova il terminatore.</figcaption></figure>
+<div class="table-wrap"><table><thead><tr><th>Che cosa</th><th>Esempio</th><th>Da ricordare</th></tr></thead><tbody><tr><td>dichiarazione</td><td><code>int v[5] = {18, 19};</code></td><td>gli elementi senza valore iniziale valgono 0; senza lista sono indeterminati</td></tr>
+<tr><td>scansione</td><td><code>for (size_t i = 0; i &lt; n; i++)</code></td><td>gli indici sono <code>[0, n)</code></td></tr>
+<tr><td>all&#39;indietro</td><td><code>for (size_t i = n; i &gt; 0; i--)</code> con <code>v[i-1]</code></td><td><code>size_t i &gt;= 0</code> è sempre vero: compila e non finisce</td></tr>
+<tr><td>massimo</td><td><code>max = v[0];</code> poi il ciclo da 1</td><td>serve un array non vuoto</td></tr>
+<tr><td>array e puntatori</td><td><code>v[i]</code> è <code>*(v + i)</code></td><td><code>v</code> diventa <code>&amp;v[0]</code>; <code>sizeof(v)</code> è tutto l&#39;array</td></tr>
+<tr><td>VLA</td><td><code>int v[n];</code> con <code>n</code> letto</td><td>niente <code>= {0}</code>; <code>n</code> almeno 1</td></tr>
+<tr><td>caratteri</td><td><code>'A'</code> = 65, <code>'a'</code> = 97, <code>'0'</code> = 48</td><td><code>'7' - '0'</code> vale 7</td></tr>
+<tr><td>stringhe</td><td><code>char s[] = &quot;ciao&quot;;</code></td><td>5 byte; <code>char s[4] = &quot;ciao&quot;</code> lascia fuori il <code>'\0'</code> senza avvisi</td></tr>
+<tr><td>lettura</td><td><code>scanf(&quot;%19s&quot;, nome)</code>, <code>scanf(&quot; %49[^\n]&quot;, frase)</code></td><td>niente <code>&amp;</code>; il limite è la lunghezza meno 1</td></tr></tbody></table></div>
+<ul>
+<li><code>b = a</code> tra array non compila (<code>assignment to expression with array type</code>); <code>a == b</code> confronta gli indirizzi e con <code>-Wall -Werror</code> non compila. Si copia e si confronta elemento per elemento.</li>
+<li><code>v[5]</code> in un array di 5 compila con <code>-Wall -Werror</code>; gcc lo vede solo con <code>-O2</code>. Con un indice variabile non lo vede mai.</li>
+<li>Un letterale stringa non si modifica: <code>char* s = &quot;ciao&quot;; s[0] = 'm';</code> compila e si blocca. Con <code>const char*</code> gcc lo ferma.</li>
+<li>Unicode dà un numero a ogni carattere del mondo; in UTF-8 un carattere occupa da 1 a 4 byte, e <code>sizeof(&quot;è&quot;)</code> vale 3. In Programmazione I si usa un <code>char</code> per carattere.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa <code>char t[] = &quot;ciao&quot;; t[0] = t[3]; printf(&quot;%s&quot;, t);</code>?</span></summary><div class="ans"><p><code>oiao</code>: <code>t[3]</code> è <code>'o'</code>, e l&#39;array è modificabile.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Indici <code>[0, n)</code>: <code>&lt;</code> e non <code>&lt;=</code>.</li>
+<li>Una stringa finisce con <code>'\0'</code>, e ogni funzione sulle stringhe lo cerca.</li>
+</ul>
+</div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:430px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<ul>
+<li><strong>Programmazione</strong>: l&#39;esercizio iterativo è una funzione con un ciclo su un array passato come (lunghezza, array). Una sola <code>return</code>, niente <code>break</code>; «per ogni» parte da <code>true</code>, «esiste» da <code>false</code>, e la sentinella va nella condizione del ciclo.</li>
+<li><strong>Stato della memoria</strong>: un array occupa celle consecutive sullo stack; quelle mai scritte valgono «?». Una variabile dichiarata nel blocco del ciclo si crea e si cancella a ogni giro.</li>
+<li><strong>Casi limite</strong> da provare sempre: array vuoto, un solo elemento, l&#39;ultimo indice, la stringa vuota.</li>
+<li>Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.</li>
+</ul>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:660px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Qual è la differenza tra <code>while</code> e <code>do-while</code>?</span></summary><div class="ans"><p>Il <code>while</code> controlla la condizione prima di ogni giro e può fare zero giri; il <code>do-while</code> la controlla alla fine e fa sempre almeno un giro.</p>
+</div></details>
+<details class="qa"><summary><span>Quanti giri fa un <code>for</code> sull&#39;intervallo <code>[a, b)</code> con passo 1?</span></summary><div class="ans"><p><code>b − a</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Come si esce da un ciclo senza <code>break</code> quando si è trovato quello che si cercava?</span></summary><div class="ans"><p>Con una variabile sentinella <code>bool trovato = false;</code> messa nella condizione, <code>i &lt; n &amp;&amp; !trovato</code>, e assegnata a <code>true</code> nel blocco.</p>
+</div></details>
+<details class="qa"><summary><span>Quali sono gli indici validi di un array di lunghezza <code>n</code>?</span></summary><div class="ans"><p>Da 0 a <code>n − 1</code>, cioè l&#39;intervallo <code>[0, n)</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>for (size_t i = n - 1; i &gt;= 0; i--)</code> non finisce?</span></summary><div class="ans"><p>Perché <code>size_t</code> è senza segno: <code>i &gt;= 0</code> è sempre vero, e dopo 0 <code>i</code> diventa il numero più grande possibile.</p>
+</div></details>
+<details class="qa"><summary><span>Quanti byte occupa <code>&quot;esame&quot;</code>?</span></summary><div class="ans"><p>6: cinque lettere più il terminatore <code>'\0'</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Perché in <code>scanf(&quot;%19s&quot;, nome)</code> non serve la <code>&amp;</code>?</span></summary><div class="ans"><p>Perché <code>nome</code> è un array, e come argomento diventa già il puntatore al primo elemento.</p>
+</div></details></div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2820px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-quiz">Quiz d&#39;esame</h2><span class="slides">come all'esame</span></div>
+<p>L&#39;esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono <strong>sul modello</strong> di questi esercizi, con gli argomenti della settimana: lo stato della memoria come l&#39;esercizio B4 del Moodle 2023/24, riproposto nel canale B nel 2024, con le celle non inizializzate; la correttezza con l&#39;invariante di un ciclo, come nella moltiplicazione della 01A; gli errori che fanno fallire i test. Ho compilato e provato tutto con gcc 16.1 e <code>-Wall -Werror</code>.</p>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Sul modello dello stato della memoria (esercizio B4, celle non inizializzate). Dopo <code>int v[4]; for (size_t i = 0; i &lt; 4; i += 2) { v[i] = (int)i * 3; }</code>, quanto valgono <code>v[2]</code> e <code>v[1]</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>v[2]</code> = 3, <code>v[1]</code> = 0</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>v[2]</code> = 6, <code>v[1]</code> = 3</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>v[2]</code> = 2, <code>v[1]</code> indeterminato</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>v[2]</code> = 6, <code>v[1]</code> indeterminato</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>v[2]</code> = 6, <code>v[1]</code> = 0</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il ciclo scrive solo gli indici 0 e 2: <code>v[0]</code> = 0, <code>v[2]</code> = 6. <code>v[1]</code> e <code>v[3]</code> non vengono mai scritti, e l&#39;array è dichiarato senza lista: il loro valore è indeterminato, la «?» degli esercizi. La risposta più insidiosa è <code>v[1]</code> = 0: varrebbe 0 solo con <code>int v[4] = {0};</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello dello stato della memoria. Dopo <code>int s = 0; for (int i = 1; i &lt;= 5; i += 2) { s += i; }</code>, quanto vale <code>s</code>, e quanti giri ha fatto il ciclo?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>s</code> = 15, 5 giri</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>s</code> = 6, 3 giri</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>s</code> = 4, 2 giri</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>s</code> = 9, 5 giri</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>s</code> = 9, 3 giri</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>i</code> vale 1, 3, 5: tre giri, e <code>s</code> = 1 + 3 + 5 = 9. Al passo dopo <code>i</code> vale 7 e la condizione è falsa. La risposta più insidiosa è <code>s</code> = 15: è la somma di tutti i numeri da 1 a 5, ma il passo è 2.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello di «correttezza», con un invariante. Nel ciclo <code>int t = 0, k = 0; while (k &lt; n) { t = t + m; k++; }</code>, quale frase resta vera all&#39;inizio di ogni giro e alla fine?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>t == m * n</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>k == n</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>t == m + k</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>t == k</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>t == m * k</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>All&#39;inizio <code>t</code> = 0 e <code>k</code> = 0; a ogni giro <code>t</code> aumenta di <code>m</code> e <code>k</code> di 1, quindi <code>t == m * k</code> resta vera. Alla fine <code>k == n</code>, e quindi <code>t == m * n</code>. La risposta più insidiosa è <code>t == m * n</code>: vale solo alla fine, non durante. <code>k == n</code> vale solo all&#39;uscita. Con <code>m</code> = 7 e <code>n</code> = 4 il programma dà <code>t</code> = 28.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello degli errori che fanno fallire i test. Una funzione deve sommare gli elementi di un array di lunghezza <code>n</code> con <code>for (size_t i = 0; i &lt;= n; i++) { somma += v[i]; }</code>. Che cosa succede?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Salta l&#39;ultimo elemento</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non compila con <code>-Wall -Werror</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Compila, ma legge anche <code>v[n]</code>, che è fuori dall&#39;array</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Salta il primo elemento</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Funziona solo se <code>n</code> è pari</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Gli indici validi sono <code>[0, n)</code>: con <code>&lt;=</code> l&#39;ultimo giro legge <code>v[n]</code>, e il risultato contiene un valore a caso. gcc non avvisa, perché l&#39;indice è una variabile. La risposta più insidiosa è «non compila»: il C non controlla gli indici.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Sul modello della programmazione senza <code>break</code>. Con <code>int w[6] = {4, -2, 7, -5, 0, 3};</code>, <code>size_t i = 0; bool trovato = false;</code> e <code>while (i &lt; 6 &amp;&amp; !trovato) { if (w[i] &lt; 0) { trovato = true; } else { i++; } }</code>, quanto vale <code>i</code> alla fine?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="1" data-toll="1e-9"><span class="q-giusto" hidden>1</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Al primo giro <code>w[0]</code> = 4 non è negativo, quindi <code>i</code> diventa 1. Al secondo <code>w[1]</code> = −2 è negativo: <code>trovato</code> diventa vero e <code>i</code> non cambia. La condizione è falsa e il ciclo finisce con <code>i</code> = 1, la posizione del primo negativo.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Sul modello dello stato della memoria. Quanto vale <code>sizeof(e)</code> dopo <code>char e[] = &quot;esame&quot;;</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="6" data-toll="1e-9"><span class="q-giusto" hidden>6</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Cinque lettere più il terminatore <code>'\0'</code>, che il compilatore aggiunge.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello degli errori di compilazione. Quale riga <strong>non</strong> compila con <code>gcc -Wall -Werror</code>, con <code>char parola[20];</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%19s&quot;, &amp;parola);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf(&quot;%19s&quot;, parola);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>for (size_t i = 19; i &gt;= 0; i--) { parola[i] = 'x'; }</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;%d&quot;, parola[25]);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char nome[4] = &quot;Anna&quot;;</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>&amp;parola</code> ha tipo <code>char (*)[20]</code>, e gcc dà <code>format '%s' expects argument of type 'char *'</code>. La risposta più insidiosa è il ciclo con <code>i &gt;= 0</code>: è sbagliato (non finisce mai), ma con <code>-Wall</code> compila; lo ferma solo <code>-Wextra</code>. Anche <code>&quot;Anna&quot;</code> in 4 posti e <code>parola[25]</code> compilano, e sono errori.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello dello stato della memoria. Dopo <code>int x = 1, y = 0; do { y += x; x *= 2; } while (x &lt; 10);</code>, quanto valgono <code>x</code> e <code>y</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 16, <code>y</code> = 31</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 16, <code>y</code> = 15</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 10, <code>y</code> = 15</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 8, <code>y</code> = 7</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x</code> = 2, <code>y</code> = 1</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>y</code> riceve 1, 2, 4, 8 e <code>x</code> diventa 2, 4, 8, 16. Dopo il giro con <code>x</code> = 8 la condizione <code>16 &lt; 10</code> è falsa: <code>y</code> = 15. La risposta più insidiosa è <code>x</code> = 8, <code>y</code> = 7: ci si ferma un giro prima dimenticando che la condizione si controlla dopo il blocco.</div></li></ol></div>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Le lezioni complete: <a href="04A_iterazioni.html">04A · Cicli e ripetizioni, while, for e do-while</a>, <a href="05A_array_stringhe.html">05A · Array e stringhe</a>, con i programmi provati, i quiz e gli esercizi.</li>
+<li>Slide del canale B: 04A_iterazioni e 05A_array_stringhe (E. G. Amparore).</li>
+<li>Esercizio B4 e regole d&#39;esame dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a> e dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

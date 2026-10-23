@@ -12364,6 +12364,265 @@ D: Sul modello del Laboratorio 02. Che cosa stampa `printf("%d", (int)(8.136 * 1
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/riassunti/settimana_04.md -->
+> File: `contesto_ai/PROG1/riassunti/settimana_04.md`
+
+```yaml
+corso: PROG1
+lezione: S4
+tipo: riassunto
+titolo: "Settimana 4: cicli, array e stringhe"
+data: 2026-10-21
+docenti: Elvio Amparore
+sopratitolo: Riassunto settimanale · Programmazione I · Canale B · 19/10 – 23/10/2026
+descrizione: >-
+  Riassunto della settimana 4 di Programmazione I (canale B): il ciclo while con inizializzazione, condizione e
+  aggiornamento, accumulatori e sentinelle, il for e gli intervalli, i cicli annidati, break e continue vietati
+  all'esame, il do-while; gli array, gli indici da 0 e size_t, la scansione, somma, conteggio e massimo, array e
+  puntatori, i VLA, i caratteri ASCII e le stringhe con il terminatore.
+lede: >-
+  Le due lezioni della settimana in poche pagine: come si scrive un ciclo che finisce, come si scorre un array senza
+  uscire dai limiti, che cosa c'è davvero in una stringa, e le domande per controllarti.
+materiale: slide
+scheda:
+  Lezioni: "[04A](04A_iterazioni.html) mar 20/10 · [05A](05A_array_stringhe.html) mer 21/10"
+  Tempo di ripasso: 45 minuti
+fonte: >-
+  Gli appunti delle lezioni 04A e 05A di Programmazione I (canale B), scritti sulle slide di E. G. Amparore
+appunti_html: appunti/PROG1/riassunto_settimana_04.html
+genera_html: true
+```
+
+## In breve
+
+- `while (condizione) { … }` ripete finché la condizione è vera, e la controlla **prima** di ogni giro: se è falsa subito, zero giri.
+- Ogni ciclo ha tre pezzi: **inizializzazione**, **condizione**, **aggiornamento**. Senza aggiornamento il ciclo non finisce, e gcc non avvisa.
+- `for (init; condizione; aggiornamento)` è un `while` con i tre pezzi su una riga. L'intervallo `[a, b)` con passo 1 fa `b − a` giri.
+- All'esame **niente `break` e `continue`**: si esce dal ciclo con la condizione, usando una **variabile sentinella** `bool`.
+- Un **array** è una fila di valori dello stesso tipo; gli indici validi sono `[0, n)`, si scrivono con `size_t` e si stampano con `%zu`.
+- Il C **non controlla gli indici**: `v[n]` compila e legge fuori dall'array. Gli array non si assegnano e non si confrontano con `=` e `==`.
+- Una **stringa** è un array di `char` che finisce con `'\0'`: `"ciao"` occupa 5 byte. Si legge con `scanf("%19s", nome)`, senza `&`.
+
+> [!NOTA] Il laboratorio
+> Il Laboratorio 03 (lunedì 19/10 per il turno B2, martedì 20/10 per il turno B1) non è in questo riassunto: non ho ancora le sue slide.
+
+## 04A · Cicli: while, for e do-while (mar 20/10)
+
+Il `while` è la terza struttura della programmazione strutturata, l'iterazione. Il blocco si ripete finché la condizione è vera; ogni ripetizione è un giro.
+
+```grafico
+titolo: La terna di ogni ciclo nel while che stampa da 0 a 9: inizializzazione (rosa), condizione (verde), aggiornamento (ambra). Dopo l'aggiornamento si torna sempre alla condizione; si esce solo dal ramo «falso».
+x: 0 10
+y: 0.4 7.6
+assi: no
+griglia: no
+poligono: 3.4 6.6 6.6 6.6 6.6 7.3 3.4 7.3 | rosa
+testo: 5 6.95 | rosa | "i = 0"
+freccia: 5 6.6 5 5.95 | grigio
+poligono: 5 5.9 7.2 5.1 5 4.3 2.8 5.1 | verde
+testo: 5 5.1 | verde | "i < 10 ?"
+freccia: 5 4.3 5 3.65 | grigio
+testo: 5.85 4 | verde | "vero"
+poligono: 3.4 2.9 6.6 2.9 6.6 3.6 3.4 3.6 | blu
+testo: 5 3.25 | blu | "stampa i"
+freccia: 5 2.9 5 2.25 | grigio
+poligono: 3.4 1.5 6.6 1.5 6.6 2.2 3.4 2.2 | ambra
+testo: 5 1.85 | ambra | "i++"
+segmento: 3.4 1.85 1.3 1.85 | grigio
+segmento: 1.3 1.85 1.3 5.1 | grigio
+freccia: 1.3 5.1 2.75 5.1 | grigio
+segmento: 7.2 5.1 8.7 5.1 | rosa
+testo: 7.95 5.5 | rosa | "falso"
+segmento: 8.7 5.1 8.7 0.8 | rosa
+freccia: 8.7 0.8 6.65 0.8 | rosa
+testo: 5 0.8 | grigio | "fine"
+```
+
+| Che cosa | Come si scrive | Da ricordare |
+|---|---|---|
+| accumulatore | `int somma = 0;` e nel ciclo `somma += i;` | parte da 0 per le somme, da 1 per i prodotti |
+| contatore | `count++` quando un dato è valido | prima di dividere per `count`, controlla che non sia 0 |
+| valore sentinella | un'altezza negativa che segnala la fine | non è un dato: non va nella somma |
+| variabile sentinella | `bool continua = true; while (continua) { … }` | il blocco la cambia, il ciclo finisce alla condizione |
+| `for` su un intervallo | `for (int i = 0; i < 10; i++)` | `[0, 10)`: lo 0 dentro, il 10 fuori |
+| ciclo annidato | un `for` dentro un `for` | 3 giri fuori × 3 dentro = 9 esecuzioni |
+| `do-while` | `do { … } while (c);` | almeno un giro; il `;` finale è obbligatorio |
+
+- Una variabile dichiarata **nel blocco** del ciclo nasce e sparisce a ogni giro; quella dichiarata nell'inizializzazione del `for` esiste solo dentro il `for`.
+- Gli errori dei cicli **compilano quasi tutti**: condizione sempre vera, aggiornamento mancante, un giro in più (`<=` al posto di `<`), contatore cambiato nel blocco. Si trovano contando i giri a mano.
+- `for` quando sai quanti giri servono, `while` quando decide l'input.
+- **Errore nella slide 38**: `!(1 <= x || x <= 10)` è sempre falso e accetta tutto; l'intervallo vuole `&&`: `!(1 <= x && x <= 10)`.
+
+::: prova Quanti giri fa `for (int i = 20; i >= 2; i -= 7)`, e con quali valori?
+3: `i` vale 20, 13, 6. Al passo dopo vale −1, e la condizione è falsa.
+:::
+
+> [!RICORDA]
+> - Inizializzazione, condizione, aggiornamento: controlla sempre che la condizione possa diventare falsa.
+> - Niente `break`: la sentinella va nella condizione, con `&& !trovato`.
+
+## 05A · Array e stringhe (mer 21/10)
+
+Un array mette sotto un solo nome tanti valori dello stesso tipo, in celle attaccate: `int voti[5];` ne crea cinque, `voti[0]` … `voti[4]`.
+
+```grafico
+titolo: La stringa "ciao" è un array di 5 char: quattro lettere e il terminatore '\0' (in rosa). La scansione con l'indice o con il puntatore si ferma quando trova il terminatore.
+x: 0 11
+y: 0.6 3.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.5 3.2 | grigio | "0"
+testo: 3.5 3.2 | grigio | "1"
+testo: 5.5 3.2 | grigio | "2"
+testo: 7.5 3.2 | grigio | "3"
+testo: 9.5 3.2 | grigio | "4"
+poligono: 0.6 1.7 2.4 1.7 2.4 2.8 0.6 2.8 | blu
+testo: 1.5 2.25 | blu | "'c'"
+poligono: 2.6 1.7 4.4 1.7 4.4 2.8 2.6 2.8 | blu
+testo: 3.5 2.25 | blu | "'i'"
+poligono: 4.6 1.7 6.4 1.7 6.4 2.8 4.6 2.8 | blu
+testo: 5.5 2.25 | blu | "'a'"
+poligono: 6.6 1.7 8.4 1.7 8.4 2.8 6.6 2.8 | blu
+testo: 7.5 2.25 | blu | "'o'"
+poligono: 8.6 1.7 10.4 1.7 10.4 2.8 8.6 2.8 | rosa
+testo: 9.5 2.25 | rosa | "'\0'"
+testo: 5.5 1.05 | grigio | "for (size_t i = 0; s[i] != '\0'; i++)"
+```
+
+| Che cosa | Esempio | Da ricordare |
+|---|---|---|
+| dichiarazione | `int v[5] = {18, 19};` | gli elementi senza valore iniziale valgono 0; senza lista sono indeterminati |
+| scansione | `for (size_t i = 0; i < n; i++)` | gli indici sono `[0, n)` |
+| all'indietro | `for (size_t i = n; i > 0; i--)` con `v[i-1]` | `size_t i >= 0` è sempre vero: compila e non finisce |
+| massimo | `max = v[0];` poi il ciclo da 1 | serve un array non vuoto |
+| array e puntatori | `v[i]` è `*(v + i)` | `v` diventa `&v[0]`; `sizeof(v)` è tutto l'array |
+| VLA | `int v[n];` con `n` letto | niente `= {0}`; `n` almeno 1 |
+| caratteri | `'A'` = 65, `'a'` = 97, `'0'` = 48 | `'7' - '0'` vale 7 |
+| stringhe | `char s[] = "ciao";` | 5 byte; `char s[4] = "ciao"` lascia fuori il `'\0'` senza avvisi |
+| lettura | `scanf("%19s", nome)`, `scanf(" %49[^\n]", frase)` | niente `&`; il limite è la lunghezza meno 1 |
+
+- `b = a` tra array non compila (`assignment to expression with array type`); `a == b` confronta gli indirizzi e con `-Wall -Werror` non compila. Si copia e si confronta elemento per elemento.
+- `v[5]` in un array di 5 compila con `-Wall -Werror`; gcc lo vede solo con `-O2`. Con un indice variabile non lo vede mai.
+- Un letterale stringa non si modifica: `char* s = "ciao"; s[0] = 'm';` compila e si blocca. Con `const char*` gcc lo ferma.
+- Unicode dà un numero a ogni carattere del mondo; in UTF-8 un carattere occupa da 1 a 4 byte, e `sizeof("è")` vale 3. In Programmazione I si usa un `char` per carattere.
+
+::: prova Che cosa stampa `char t[] = "ciao"; t[0] = t[3]; printf("%s", t);`?
+`oiao`: `t[3]` è `'o'`, e l'array è modificabile.
+:::
+
+> [!RICORDA]
+> - Indici `[0, n)`: `<` e non `<=`.
+> - Una stringa finisce con `'\0'`, e ogni funzione sulle stringhe lo cerca.
+
+## Verso l'esame
+
+- **Programmazione**: l'esercizio iterativo è una funzione con un ciclo su un array passato come (lunghezza, array). Una sola `return`, niente `break`; «per ogni» parte da `true`, «esiste» da `false`, e la sentinella va nella condizione del ciclo.
+- **Stato della memoria**: un array occupa celle consecutive sullo stack; quelle mai scritte valgono «?». Una variabile dichiarata nel blocco del ciclo si crea e si cancella a ogni giro.
+- **Casi limite** da provare sempre: array vuoto, un solo elemento, l'ultimo indice, la stringa vuota.
+- Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Qual è la differenza tra `while` e `do-while`?
+Il `while` controlla la condizione prima di ogni giro e può fare zero giri; il `do-while` la controlla alla fine e fa sempre almeno un giro.
+:::
+
+::: domanda Quanti giri fa un `for` sull'intervallo `[a, b)` con passo 1?
+`b − a`.
+:::
+
+::: domanda Come si esce da un ciclo senza `break` quando si è trovato quello che si cercava?
+Con una variabile sentinella `bool trovato = false;` messa nella condizione, `i < n && !trovato`, e assegnata a `true` nel blocco.
+:::
+
+::: domanda Quali sono gli indici validi di un array di lunghezza `n`?
+Da 0 a `n − 1`, cioè l'intervallo `[0, n)`.
+:::
+
+::: domanda Perché `for (size_t i = n - 1; i >= 0; i--)` non finisce?
+Perché `size_t` è senza segno: `i >= 0` è sempre vero, e dopo 0 `i` diventa il numero più grande possibile.
+:::
+
+::: domanda Quanti byte occupa `"esame"`?
+6: cinque lettere più il terminatore `'\0'`.
+:::
+
+::: domanda Perché in `scanf("%19s", nome)` non serve la `&`?
+Perché `nome` è un array, e come argomento diventa già il puntatore al primo elemento.
+:::
+
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono **sul modello** di questi esercizi, con gli argomenti della settimana: lo stato della memoria come l'esercizio B4 del Moodle 2023/24, riproposto nel canale B nel 2024, con le celle non inizializzate; la correttezza con l'invariante di un ciclo, come nella moltiplicazione della 01A; gli errori che fanno fallire i test. Ho compilato e provato tutto con gcc 16.1 e `-Wall -Werror`.
+
+```quiz
+D: Sul modello dello stato della memoria (esercizio B4, celle non inizializzate). Dopo `int v[4]; for (size_t i = 0; i < 4; i += 2) { v[i] = (int)i * 3; }`, quanto valgono `v[2]` e `v[1]`?
++ `v[2]` = 6, `v[1]` indeterminato
+- `v[2]` = 6, `v[1]` = 0
+- `v[2]` = 6, `v[1]` = 3
+- `v[2]` = 2, `v[1]` indeterminato
+- `v[2]` = 3, `v[1]` = 0
+= Il ciclo scrive solo gli indici 0 e 2: `v[0]` = 0, `v[2]` = 6. `v[1]` e `v[3]` non vengono mai scritti, e l'array è dichiarato senza lista: il loro valore è indeterminato, la «?» degli esercizi. La risposta più insidiosa è `v[1]` = 0: varrebbe 0 solo con `int v[4] = {0};`.
+
+D: Sul modello dello stato della memoria. Dopo `int s = 0; for (int i = 1; i <= 5; i += 2) { s += i; }`, quanto vale `s`, e quanti giri ha fatto il ciclo?
++ `s` = 9, 3 giri
+- `s` = 15, 5 giri
+- `s` = 9, 5 giri
+- `s` = 6, 3 giri
+- `s` = 4, 2 giri
+= `i` vale 1, 3, 5: tre giri, e `s` = 1 + 3 + 5 = 9. Al passo dopo `i` vale 7 e la condizione è falsa. La risposta più insidiosa è `s` = 15: è la somma di tutti i numeri da 1 a 5, ma il passo è 2.
+
+D: Sul modello di «correttezza», con un invariante. Nel ciclo `int t = 0, k = 0; while (k < n) { t = t + m; k++; }`, quale frase resta vera all'inizio di ogni giro e alla fine?
++ `t == m * k`
+- `t == m * n`
+- `t == k`
+- `t == m + k`
+- `k == n`
+= All'inizio `t` = 0 e `k` = 0; a ogni giro `t` aumenta di `m` e `k` di 1, quindi `t == m * k` resta vera. Alla fine `k == n`, e quindi `t == m * n`. La risposta più insidiosa è `t == m * n`: vale solo alla fine, non durante. `k == n` vale solo all'uscita. Con `m` = 7 e `n` = 4 il programma dà `t` = 28.
+
+D: Sul modello degli errori che fanno fallire i test. Una funzione deve sommare gli elementi di un array di lunghezza `n` con `for (size_t i = 0; i <= n; i++) { somma += v[i]; }`. Che cosa succede?
++ Compila, ma legge anche `v[n]`, che è fuori dall'array
+- Non compila con `-Wall -Werror`
+- Salta l'ultimo elemento
+- Salta il primo elemento
+- Funziona solo se `n` è pari
+= Gli indici validi sono `[0, n)`: con `<=` l'ultimo giro legge `v[n]`, e il risultato contiene un valore a caso. gcc non avvisa, perché l'indice è una variabile. La risposta più insidiosa è «non compila»: il C non controlla gli indici.
+
+D: Sul modello della programmazione senza `break`. Con `int w[6] = {4, -2, 7, -5, 0, 3};`, `size_t i = 0; bool trovato = false;` e `while (i < 6 && !trovato) { if (w[i] < 0) { trovato = true; } else { i++; } }`, quanto vale `i` alla fine?
+N: 1
+= Al primo giro `w[0]` = 4 non è negativo, quindi `i` diventa 1. Al secondo `w[1]` = −2 è negativo: `trovato` diventa vero e `i` non cambia. La condizione è falsa e il ciclo finisce con `i` = 1, la posizione del primo negativo.
+
+D: Sul modello dello stato della memoria. Quanto vale `sizeof(e)` dopo `char e[] = "esame";`?
+N: 6
+= Cinque lettere più il terminatore `'\0'`, che il compilatore aggiunge.
+
+D: Sul modello degli errori di compilazione. Quale riga **non** compila con `gcc -Wall -Werror`, con `char parola[20];`?
++ `scanf("%19s", &parola);`
+- `scanf("%19s", parola);`
+- `char nome[4] = "Anna";`
+- `printf("%d", parola[25]);`
+- `for (size_t i = 19; i >= 0; i--) { parola[i] = 'x'; }`
+= `&parola` ha tipo `char (*)[20]`, e gcc dà `format '%s' expects argument of type 'char *'`. La risposta più insidiosa è il ciclo con `i >= 0`: è sbagliato (non finisce mai), ma con `-Wall` compila; lo ferma solo `-Wextra`. Anche `"Anna"` in 4 posti e `parola[25]` compilano, e sono errori.
+
+D: Sul modello dello stato della memoria. Dopo `int x = 1, y = 0; do { y += x; x *= 2; } while (x < 10);`, quanto valgono `x` e `y`?
++ `x` = 16, `y` = 15
+- `x` = 8, `y` = 7
+- `x` = 16, `y` = 31
+- `x` = 10, `y` = 15
+- `x` = 2, `y` = 1
+= `y` riceve 1, 2, 4, 8 e `x` diventa 2, 4, 8, 16. Dopo il giro con `x` = 8 la condizione `16 < 10` è falsa: `y` = 15. La risposta più insidiosa è `x` = 8, `y` = 7: ci si ferma un giro prima dimenticando che la condizione si controlla dopo il blocco.
+```
+
+## Fonti
+
+- Le lezioni complete: [04A · Cicli e ripetizioni, while, for e do-while](04A_iterazioni.html), [05A · Array e stringhe](05A_array_stringhe.html), con i programmi provati, i quiz e gli esercizi.
+- Slide del canale B: 04A_iterazioni e 05A_array_stringhe (E. G. Amparore).
+- Esercizio B4 e regole d'esame dalla [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md) e dalla [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/corso.md -->
 > File: `contesto_ai/FDA/corso.md`
 
@@ -12465,8 +12724,8 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - gio 15/10: §1.3, proposizioni condizionali ed equivalenza logica. Negli appunti è la lezione 07, scritta prima della lezione.
 - ven 16/10: §1.4, regole di inferenza per le proposizioni, ed esercizi. Negli appunti è la lezione 08, scritta prima della lezione.
 - lun 19/10: §1.5, quantificatori: funzione proposizionale (esempio 1.5.3 (a)) quantificata universalmente ed esistenzialmente, programmi per i quantificatori, leggi di De Morgan per i quantificatori. Negli appunti è la lezione 09.
-- gio 22/10 (in programma): analogie tra quantificatore universale e congiunzione, esistenziale e disgiunzione; quiz sulle regole di inferenza (sì/no) e sui quantificatori. Negli appunti è la lezione 10, scritta prima della lezione.
-- ven 23/10 (in programma): §1.6, quantificatori annidati. Negli appunti è la lezione 11, scritta prima della lezione.
+- gio 22/10: analogie tra quantificatore universale e congiunzione, esistenziale e disgiunzione; quiz sulle regole di inferenza (sì/no) e sui quantificatori. Negli appunti è la lezione 10, scritta prima della lezione.
+- ven 23/10: §1.6, quantificatori annidati. Negli appunti è la lezione 11, scritta prima della lezione.
 
 ## Materiale
 
@@ -20955,6 +21214,7 @@ Leggi di De Morgan generalizzate | ¬∀x P(x) equivale a ∃x ¬P(x); ¬∃x P(
 ```yaml
 corso: FDA
 lezione: "10"
+data: 2026-10-22
 titolo: Quantificatori, «e» e «o», e le regole di inferenza con i quantificatori
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 10 · Libro, parte 2, §1.4–1.5 ed esercizi
@@ -21403,6 +21663,7 @@ Distributività | ∀ si distribuisce su ∧, ∃ su ∨; negli altri due casi n
 ```yaml
 corso: FDA
 lezione: "11"
+data: 2026-10-23
 titolo: Quantificatori annidati
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 11 · Libro, parte 2, §1.6
@@ -22605,6 +22866,323 @@ D: Sul modello degli esercizi del §1.4. Da $p \vee q$, $q \to r$ e $\neg r$ che
 
 ---
 
+<!-- FILE: contesto_ai/FDA/riassunti/settimana_04.md -->
+> File: `contesto_ai/FDA/riassunti/settimana_04.md`
+
+```yaml
+corso: FDA
+lezione: S4
+tipo: riassunto
+titolo: "Settimana 4: i quantificatori"
+data: 2026-10-23
+docenti: Stefano Berardi
+sopratitolo: Riassunto settimanale · Fondamenti dell'Informatica · Canale B · 19/10 – 23/10/2026
+descrizione: >-
+  Riassunto della settimana 4 di Fondamenti dell'Informatica (canale B, libro parte 2, §1.5–1.6): funzioni
+  proposizionali e dominio, «per ogni» ed «esiste», controesempio e testimone, traduzione di «ogni» e «qualche»,
+  De Morgan per i quantificatori, «per ogni» come lunga congiunzione ed «esiste» come lunga disgiunzione, quando un
+  quantificatore si distribuisce, le quattro regole di inferenza, i quantificatori annidati, l'ordine e la negazione.
+lede: >-
+  Le tre lezioni sui quantificatori in poche pagine: quando una frase con «per ogni» o «esiste» è vera, come si
+  traduce e come si nega, perché l'ordine di due quantificatori cambia il significato, e il quiz vero della
+  simulazione d'esame.
+materiale: libro
+simboli_logici: quantificatori
+scheda:
+  Lezioni: "[09](09_quantificatori.html) lun 19/10, §1.5 · [10](10_quantificatori_e_connettivi.html) gio 22/10, §1.5 · [11](11_quantificatori_annidati.html) ven 23/10, §1.6"
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni 09, 10 e 11 di Fondamenti dell'Informatica (canale B), scritti sul libro di testo, parte 2
+  (Johnsonbaugh, cap. 1), §1.5–1.6
+appunti_html: appunti/FDA/riassunto_settimana_04.html
+genera_html: true
+```
+
+## In breve
+
+- Una **funzione proposizionale** è una frase con una variabile, come «$n$ è dispari»: diventa vera o falsa quando si sceglie il valore. I valori possibili sono il **dominio**.
+- **Per ogni** ($\forall$) è vera se la frase vale per tutti i valori: per smentirla basta un **controesempio**. **Esiste** ($\exists$) è vera se vale per almeno uno: basta un **testimone**.
+- «Ogni A è B» si scrive con la freccia, «qualche A è B» con la «e».
+- **De Morgan**: negare «per ogni» dà «esiste… non», negare «esiste» dà «per ogni… non».
+- Su un dominio finito «per ogni» è una lunga «e» ed «esiste» una lunga «o». Per questo «per ogni» si distribuisce sulla «e» ed «esiste» sulla «o», ma non al contrario.
+- Con due variabili servono due quantificatori, e **l'ordine conta**: «per ogni numero ce n'è uno più grande» è vera sugli interi, «c'è un numero più grande di tutti» no.
+- Per negare una frase con più quantificatori si girano tutti, nello stesso ordine, e il «non» finisce sulla frase interna.
+
+## 09 · Per ogni ed esiste (lun 19/10)
+
+L'esempio 1.5.3 (a) del libro è una frase su un numero intero positivo: «il quadrato del numero più il suo doppio è dispari», cioè $n^2 + 2n$ dispari. È vera per 1, 3, 5, … e falsa per i pari.
+
+```grafico
+titolo: La frase «$n^2 + 2n$ è dispari» sui primi otto interi positivi: verde dove è vera, rosa dove è falsa. «Per ogni» chiede che siano tutte verdi (falso: il 2 è un controesempio); «esiste» che ce ne sia almeno una (vero: l'1 è un testimone).
+x: 0 9
+y: 0 2.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.58 0.4 1.42 0.4 1.42 1.3 0.58 1.3 | verde
+testo: 1 0.85 | verde | "1"
+testo: 1 1.75 | verde | "V"
+poligono: 1.58 0.4 2.42 0.4 2.42 1.3 1.58 1.3 | rosa
+testo: 2 0.85 | rosa | "2"
+testo: 2 1.75 | rosa | "F"
+poligono: 2.58 0.4 3.42 0.4 3.42 1.3 2.58 1.3 | verde
+testo: 3 0.85 | verde | "3"
+testo: 3 1.75 | verde | "V"
+poligono: 3.58 0.4 4.42 0.4 4.42 1.3 3.58 1.3 | rosa
+testo: 4 0.85 | rosa | "4"
+testo: 4 1.75 | rosa | "F"
+poligono: 4.58 0.4 5.42 0.4 5.42 1.3 4.58 1.3 | verde
+testo: 5 0.85 | verde | "5"
+testo: 5 1.75 | verde | "V"
+poligono: 5.58 0.4 6.42 0.4 6.42 1.3 5.58 1.3 | rosa
+testo: 6 0.85 | rosa | "6"
+testo: 6 1.75 | rosa | "F"
+poligono: 6.58 0.4 7.42 0.4 7.42 1.3 6.58 1.3 | verde
+testo: 7 0.85 | verde | "7"
+testo: 7 1.75 | verde | "V"
+poligono: 7.58 0.4 8.42 0.4 8.42 1.3 7.58 1.3 | rosa
+testo: 8 0.85 | rosa | "8"
+testo: 8 1.75 | rosa | "F"
+```
+
+| Frase | Quando è vera | Come si smentisce |
+|---|---|---|
+| $\forall x\, P(x)$ | $P$ vale per **tutti** i valori del dominio | un controesempio |
+| $\exists x\, P(x)$ | $P$ vale per **almeno un** valore | controllando tutti i valori |
+| «ogni A è B» | $\forall x\,(A(x) \to B(x))$ | un A che non è B |
+| «qualche A è B» | $\exists x\,(A(x) \wedge B(x))$ | nessun A è B |
+
+- **Il dominio cambia la risposta**: $\exists x\,(x^2 = 2)$ è falsa sugli interi e vera sui reali.
+- Un programma controlla un «per ogni» su un dominio finito con un ciclo che si ferma al primo controesempio, e un «esiste» al primo testimone: è lo schema delle sentinelle di Programmazione I.
+- **De Morgan**: $\neg\,\forall x\, P(x) \equiv \exists x\, \neg P(x)$ e $\neg\,\exists x\, P(x) \equiv \forall x\, \neg P(x)$. «Non è tutto oro quel che luccica» vuol dire «qualcosa che luccica non è oro».
+
+::: prova Qual è la negazione di «ogni studente ha superato l'esame»?
+«Qualche studente non ha superato l'esame». Non «nessuno l'ha superato»: quello è più forte.
+:::
+
+> [!RICORDA]
+> - Per ogni: un controesempio basta a smentirla. Esiste: un testimone basta a dimostrarla.
+> - «Ogni» con la freccia, «qualche» con la «e».
+
+## 10 · Quantificatori, «e» e «o» (gio 22/10)
+
+Se il dominio ha pochi elementi, per esempio 1, 2 e 3, i quantificatori si possono scrivere per esteso.
+
+```grafico
+titolo: Sul dominio {1, 2, 3} «per ogni» è una congiunzione con un termine per elemento, «esiste» una disgiunzione. La negazione scambia le due righe: è De Morgan.
+x: 0 12
+y: 0.4 4.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.3 3.3 | blu | "∀x P(x)"
+testo: 2.9 3.3 | grigio | "="
+poligono: 3.5 2.85 5.3 2.85 5.3 3.75 3.5 3.75 | blu
+testo: 4.4 3.3 | blu | "P(1)"
+testo: 5.95 3.3 | blu | "∧"
+poligono: 6.6 2.85 8.4 2.85 8.4 3.75 6.6 3.75 | blu
+testo: 7.5 3.3 | blu | "P(2)"
+testo: 9.05 3.3 | blu | "∧"
+poligono: 9.7 2.85 11.5 2.85 11.5 3.75 9.7 3.75 | blu
+testo: 10.6 3.3 | blu | "P(3)"
+testo: 1.3 1.4 | ambra | "∃x P(x)"
+testo: 2.9 1.4 | grigio | "="
+poligono: 3.5 0.95 5.3 0.95 5.3 1.85 3.5 1.85 | ambra
+testo: 4.4 1.4 | ambra | "P(1)"
+testo: 5.95 1.4 | ambra | "∨"
+poligono: 6.6 0.95 8.4 0.95 8.4 1.85 6.6 1.85 | ambra
+testo: 7.5 1.4 | ambra | "P(2)"
+testo: 9.05 1.4 | ambra | "∨"
+poligono: 9.7 0.95 11.5 0.95 11.5 1.85 9.7 1.85 | ambra
+testo: 10.6 1.4 | ambra | "P(3)"
+```
+
+- Da qui vengono le leggi di De Morgan per i quantificatori: sono quelle per «e» e «o», con tanti termini.
+- **Distribuzione**: $\forall x\,(P(x) \wedge Q(x)) \equiv \forall x\, P(x) \wedge \forall x\, Q(x)$ ed $\exists x\,(P(x) \vee Q(x)) \equiv \exists x\, P(x) \vee \exists x\, Q(x)$. Le altre due no: «ogni intero è positivo o non positivo» è vera, «tutti positivi oppure tutti non positivi» è falsa.
+
+| Regola | Da | Si ricava |
+|---|---|---|
+| particolarizzazione universale | $\forall x\, P(x)$ | $P(d)$ per ogni $d$ |
+| generalizzazione universale | $P(d)$ per un $d$ **qualsiasi** | $\forall x\, P(x)$ |
+| particolarizzazione esistenziale | $\exists x\, P(x)$ | $P(d)$ per **qualche** $d$, che non si sceglie |
+| generalizzazione esistenziale | $P(d)$ per un $d$ | $\exists x\, P(x)$ |
+
+«Tutti gli uomini sono mortali; Socrate è un uomo; quindi Socrate è mortale» usa la particolarizzazione universale e poi il modus ponens della lezione 08.
+
+::: prova Sul dominio delle persone, da «esiste qualcuno che parla inglese e francese» segue «esiste qualcuno che parla inglese, ed esiste qualcuno che parla francese»? E il contrario?
+Sì: la stessa persona fa da testimone per le due parti. Il contrario no: possono essere due persone diverse.
+:::
+
+> [!RICORDA]
+> - $\forall$ è una lunga $\wedge$, $\exists$ una lunga $\vee$.
+> - $\forall$ si distribuisce su $\wedge$, $\exists$ su $\vee$. Le altre due coppie no.
+
+## 11 · Quantificatori annidati (ven 23/10)
+
+Alla festa del corso, la frase «la ragazza ha ballato con il ragazzo» ha due variabili, una per la ragazza e una per il ragazzo. Si scrive $B(d, u)$, e per farne una proposizione servono due quantificatori. Si leggono da sinistra a destra: il primo sceglie per primo.
+
+```grafico
+titolo: A sinistra «per ogni $x$ esiste $y$»: ogni $x$ ha la sua freccia, e le frecce possono arrivare in punti diversi. A destra «esiste $y$ per ogni $x$»: tutte le frecce arrivano nello stesso $y$.
+x: 0 12
+y: 0 5
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.9 4.6 | blu | "∀x ∃y"
+punto: 1.2 3.4 | blu
+punto: 1.2 2.2 | blu
+punto: 1.2 1 | blu
+punto: 4.6 3.4 | ambra
+punto: 4.6 2.2 | ambra
+punto: 4.6 1 | ambra
+freccia: 1.35 3.4 4.45 3.4 | grigio
+freccia: 1.35 2.2 4.45 2.2 | grigio
+freccia: 1.35 1 4.45 1 | grigio
+testo: 9.1 4.6 | blu | "∃y ∀x"
+punto: 7.4 3.4 | blu
+punto: 7.4 2.2 | blu
+punto: 7.4 1 | blu
+punto: 10.8 2.2 | ambra
+freccia: 7.55 3.35 10.65 2.3 | grigio
+freccia: 7.55 2.2 10.65 2.2 | grigio
+freccia: 7.55 1.05 10.65 2.1 | grigio
+testo: 1.2 0.3 | blu | "x"
+testo: 4.6 0.3 | ambra | "y"
+testo: 7.4 0.3 | blu | "x"
+testo: 10.8 0.3 | ambra | "y"
+```
+
+| Formula | Vera quando |
+|---|---|
+| $\forall x\, \forall y\, P(x, y)$ | tutte le coppie vanno bene |
+| $\forall x\, \exists y\, P(x, y)$ | per ogni $x$ si trova un $y$, che può cambiare con $x$ |
+| $\exists x\, \forall y\, P(x, y)$ | c'è un $x$ che va bene con tutti gli $y$ |
+| $\exists x\, \exists y\, P(x, y)$ | c'è almeno una coppia |
+
+- Due quantificatori **dello stesso tipo** si possono scambiare; di tipi diversi no. Sugli interi $\forall x\, \exists y\, (y > x)$ è vera, $\exists y\, \forall x\, (y > x)$ è falsa.
+- **Il gioco**: l'avversario sceglie le variabili con $\forall$, tu quelle con $\exists$, nell'ordine della frase. La frase è vera se vinci comunque giochi l'avversario.
+- **Negare**: si girano tutti i quantificatori, nello stesso ordine, e il «non» va sulla frase interna: $\neg\,\forall x\, \exists y\, P \equiv \exists x\, \forall y\, \neg P$.
+
+::: prova Sugli interi, $\exists x\, \forall y\, (x \cdot y = 0)$ è vera?
+Sì: con $x = 0$ il prodotto è 0 per ogni $y$. L'avversario sceglie $y$ dopo di te, ma non può battere lo 0.
+:::
+
+> [!RICORDA]
+> - L'ordine dei quantificatori conta quando sono di tipo diverso.
+> - Negando, ogni $\forall$ diventa $\exists$ e viceversa, nello stesso ordine.
+
+## Verso l'esame
+
+- **Negare frasi con due quantificatori**: è il quiz 6 della simulazione 2 del 2023/24, qui sotto.
+- **Vero o falso su un dominio**: si gioca contro l'avversario, nell'ordine dei quantificatori, e si controlla il dominio.
+- **Domande sì/no** su argomentazioni e quantificatori: il formato dei quiz che il docente ha fatto in aula giovedì 22/10.
+- L'esame è un quiz di 9 domande da 3 punti in 45 minuti, con Safe Exam Browser. Appelli 2026/27: venerdì 29/01/2027 e giovedì 18/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra un controesempio e un testimone?
+Un controesempio è un valore per cui la frase è falsa, e smentisce un «per ogni». Un testimone è un valore per cui è vera, e dimostra un «esiste».
+:::
+
+::: domanda Come si scrive «ogni studente è iscritto» e «qualche studente è iscritto»?
+$\forall x\,(S(x) \to I(x))$ ed $\exists x\,(S(x) \wedge I(x))$.
+:::
+
+::: domanda Qual è la negazione di $\exists x\, P(x)$?
+$\forall x\, \neg P(x)$: nessun valore rende vera $P$.
+:::
+
+::: domanda Su quale connettivo si distribuisce il «per ogni»?
+Sulla «e»: $\forall x\,(P(x) \wedge Q(x)) \equiv \forall x\, P(x) \wedge \forall x\, Q(x)$. Sulla «o» no.
+:::
+
+::: domanda Che cosa dice la particolarizzazione universale?
+Che da $\forall x\, P(x)$ si ricava $P(d)$ per qualunque elemento $d$ del dominio.
+:::
+
+::: domanda Perché $\forall x\, \exists y$ ed $\exists y\, \forall x$ non dicono la stessa cosa?
+Nella prima $y$ può cambiare a seconda di $x$; nella seconda deve essere uno solo, buono per tutti gli $x$.
+:::
+
+## Quiz d'esame
+
+Le prime tre domande sono il quiz 6 della simulazione d'esame 2 del 2023/24, dalla «Guida degli studenti» del gruppo TSI: nella schermata le opzioni del menù non si vedono, quindi le risposte sbagliate sono ricostruite. Le altre sono **sul modello** dei quiz della simulazione, con gli argomenti della settimana; tutte le risposte le ho controllate con un programma sui domini finiti.
+
+```quiz
+D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Una donna ha ballato con ogni uomo»?
++ Ogni donna non ha ballato con qualche uomo
+- Nessuna donna ha ballato con nessun uomo
+- Una donna non ha ballato con nessun uomo
+- Ogni uomo ha ballato con qualche donna
+- Qualche donna non ha ballato con qualche uomo
+= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è l'ultima, $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo».
+
+D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gli uomini hanno ballato con qualche donna»?
++ Qualche uomo non ha ballato con nessuna donna
+- Nessun uomo ha ballato con qualche donna
+- Tutti gli uomini non hanno ballato con qualche donna
+- Qualche donna non ha ballato con nessun uomo
+- Qualche uomo ha ballato con tutte le donne
+= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è la quarta, che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
+
+D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Ogni donna ha ballato con ogni uomo»?
++ Qualche donna non ha ballato con qualche uomo
+- Nessuna donna ha ballato con nessun uomo
+- Ogni donna non ha ballato con nessun uomo
+- Una donna ha ballato con ogni uomo
+- Ogni donna non ha ballato con qualche uomo
+= $\neg\,\forall d\, \forall u\, B \equiv \exists d\, \exists u\, \neg B$: basta una coppia che non ha ballato. La risposta più insidiosa è «nessuna donna ha ballato con nessun uomo»: è il contrario estremo, non la negazione.
+
+D: Sul modello della simulazione 2. Sugli interi, quale frase è vera?
++ $\exists x\, \forall y\, (x \cdot y = 0)$
+- $\exists y\, \forall x\, (y > x)$
+- $\forall x\, \exists y\, (x \cdot y = 1)$
+- $\forall x\, (x^2 > 0)$
+- $\forall x\, \forall y\, (x + y \ne 0)$
+= Con $x = 0$ il prodotto è 0 per ogni $y$. La risposta più insidiosa è la seconda, che scambia l'ordine di «ogni numero ha un numero più grande»: un numero più grande di tutti non c'è. La terza è falsa per $x = 2$, la quarta per $x = 0$, l'ultima per $x = 1$, $y = -1$.
+
+D: Sul modello della simulazione 2. Qual è la negazione di $\forall x\,(P(x) \to Q(x))$?
++ $\exists x\,(P(x) \wedge \neg Q(x))$
+- $\forall x\,(P(x) \to \neg Q(x))$
+- $\exists x\,(\neg P(x) \to \neg Q(x))$
+- $\forall x\,(\neg P(x) \wedge Q(x))$
+- $\exists x\,(P(x) \to \neg Q(x))$
+= Il «per ogni» diventa «esiste», e la negazione di $P \to Q$ è $P \wedge \neg Q$ (lezione 07). «Non tutti i P sono Q» vuol dire «c'è un P che non è Q». La risposta più insidiosa è l'ultima: nega la conclusione ma lascia la freccia, che con $P$ falsa è vera a vuoto.
+
+D: Sul modello delle domande sì/no della lezione 10. Quale equivalenza vale per ogni dominio?
++ $\forall x\,(P(x) \wedge Q(x)) \equiv \forall x\, P(x) \wedge \forall x\, Q(x)$
+- $\forall x\,(P(x) \vee Q(x)) \equiv \forall x\, P(x) \vee \forall x\, Q(x)$
+- $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$
+- $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$
+- $\forall x\, \exists y\, P(x, y) \equiv \exists y\, \forall x\, P(x, y)$
+= «Per ogni» è una lunga «e», e si distribuisce sulla «e». La risposta più insidiosa è la terza: due testimoni diversi non fanno un testimone comune (un intero pari e uno dispari esistono, uno pari e dispari no). La quarta sbaglia De Morgan, l'ultima scambia l'ordine.
+
+D: Sul modello delle domande sì/no della lezione 10. «Tutti gli iscritti hanno la matricola. Luca è iscritto. Quindi Luca ha la matricola.» Quale regola serve, oltre al modus ponens?
++ La particolarizzazione universale
+- La generalizzazione universale
+- La particolarizzazione esistenziale
+- La generalizzazione esistenziale
+- Nessuna: l'argomentazione non è valida
+= Da «per ogni $x$, se $x$ è iscritto allora ha la matricola» si passa al caso di Luca, poi il modus ponens chiude. La risposta più insidiosa è la generalizzazione universale, che fa il percorso inverso, da un elemento qualsiasi a tutti.
+
+D: Sul modello della simulazione 2. Sul dominio delle persone, con $A(x, y)$ = «$x$ ama $y$», come si scrive «tutti amano qualcuno»?
++ $\forall x\, \exists y\, A(x, y)$
+- $\exists y\, \forall x\, A(x, y)$
+- $\forall y\, \exists x\, A(x, y)$
+- $\exists x\, \forall y\, A(x, y)$
+- $\forall x\, \forall y\, A(x, y)$
+= Per ogni persona $x$ c'è una persona $y$, che può cambiare con $x$, amata da $x$. La risposta più insidiosa è la seconda, «c'è qualcuno amato da tutti»: l'ordine scambiato. La terza dice «tutti sono amati da qualcuno».
+```
+
+## Fonti
+
+- Le lezioni complete: [09 · Quantificatori](09_quantificatori.html), [10 · Quantificatori, «e» e «o», e le regole di inferenza](10_quantificatori_e_connettivi.html), [11 · Quantificatori annidati](11_quantificatori_annidati.html), con i programmi, i quiz e gli esercizi.
+- Libro di testo, parte 2 (Johnsonbaugh, cap. 1), §1.5–1.6, sull'edizione originale e sulle soluzioni degli esercizi pubblicate sul Moodle del canale A; diario del canale B nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md).
+- Simulazione d'esame 2 del 2023/24, quiz 6, dalla «Guida degli studenti» del gruppo TSI.
+
+
+---
+
 <!-- FILE: contesto_ai/MDAG/corso.md -->
 > File: `contesto_ai/MDAG/corso.md`
 
@@ -22745,6 +23323,7 @@ Le lezioni seguono il libro di Andrea Mori e gli argomenti indicati per il canal
 | D06 | Insiemi finiti, principio dei piccioni e inclusione-esclusione | cap. 3, pp. 39–48; esercizi 3.1, 3.4–3.6, 3.10 | `lezioni/D06_insiemi_finiti_inclusione_esclusione.md` · HTML: `appunti/MDAG/D06_insiemi_finiti_inclusione_esclusione.html` | equipollenza e cardinalità con le biezioni ($\N$ e i pari, $\N \times \N$); $\lvert A \rvert \le \lvert B \rvert$ e Schröder-Bernstein; finito e infinito (Def 3.5), Prop 3.6 e Nota 3.8 (iniettiva = suriettiva = biettiva tra insiemi finiti con lo stesso numero di elementi), $I_n$; principio dei piccioni; numerabili ($\Z$, $\Q$ sì, $\R$ no); inclusione-esclusione per 2 e 3 insiemi, usata al contrario e per i «né… né…»; multipli con la parte intera e il minimo comune multiplo; appello del 01/07/2026, problema 1, versioni A–D; sviste del libro a p. 47 e p. 48 |
 | D07 | Parole, ordinamenti, anagrammi e disposizioni | cap. 3, pp. 48–55; esercizi 3.8, 3.9 | `lezioni/D07_parole_anagrammi_disposizioni.md` · HTML: `appunti/MDAG/D07_parole_anagrammi_disposizioni.html` | metodo delle scelte successive (albero), parole su un alfabeto e disposizioni con ripetizione $n^k$, ordinamenti e fattoriale, disposizioni semplici $\frac{n!}{(n-k)!}$, anagrammi con lettere ripetute, combinazioni semplici (solo l'enunciato, Def 3.27); domanda 4 del quiz 2025–2026, problemi 03/02/2026 e 2023/24; sviste: targhe a p. 50 del libro, SILLOGISMO nella soluzione «17 riepilogo» |
 | D08 | Combinazioni semplici e con ripetizione | cap. 3, pp. 55–58 e 62–64; esercizi 3.8, 3.10–3.12 | `lezioni/D08_combinazioni.md` · HTML: `appunti/MDAG/D08_combinazioni.html` | combinazioni semplici come disposizioni diviso $k!$, coefficiente binomiale $\binom{n}{k}$, simmetria, scelte da moltiplicare o da sommare, combinazioni con ripetizione con caselle e separatori, «almeno uno per tipo», la tabella delle quattro formule; domanda 4 del 04/02/2025, 06/06/2025, 13/01/2026, 10/09/2026, problemi 14/01/2025, 08/09/2025, 03/02/2026 e 01/07/2026; sviste a p. 57 del libro (scuola di ballo, gelateria, $C_{100,4}$). Argomenti ricostruiti dal libro e dal diario 2025/26 |
+| D09 | Problemi di combinatoria, coefficienti binomiali e formula di Stiefel | cap. 3, pp. 57–61; esercizi 3.13, 3.15, 3.17–3.19 | `lezioni/D09_coefficienti_binomiali_stiefel.md` · HTML: `appunti/MDAG/D09_coefficienti_binomiali_stiefel.html` | spezzare un problema in scelte (prova scritta del 12/02/2020: sedie, allenatore, monete nei salvadanai; 14/07/2020: circolo di tennis), analisi dei casi (semifinali dell'esercizio 3.13, 12 348), proposizione 3.33: bordi, simmetria e formula di Stiefel con le due dimostrazioni, triangolo di Tartaglia, somma di una riga uguale a $2^n$ (proposizione 3.35 e nota 3.36); problema 2 della prova del 22 e 23/02/2021 (carte di cuori). Argomenti ricostruiti dal diario 2025/26 (lezione 9, più il triangolo della lezione 10); il binomio di Newton resta per la D10 |
 
 ## Algebra lineare e Geometria (parte 2, modB)
 
@@ -29271,6 +29850,486 @@ Caselle e separatori | Il metodo che conta le combinazioni con ripetizione: k ca
 - Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 8 (combinazioni semplici e con ripetizioni, esempi). Gli argomenti della lezione del 19/10/2026 non erano pubblicati quando ho scritto questi appunti.
 - Quiz degli appelli di Matematica Discreta del 04/02/2025, 06/06/2025, 13/01/2026 e 10/09/2026 (domanda 4); problemi degli appelli del 14/01/2025 (problema 2), 08/09/2025 (problema 2), 03/02/2026 (problema 1 c) e 01/07/2026 (problema 1 c), con le soluzioni ufficiali.
 - Tutti i conteggi li ho ricontrollati con un programma, i mazzi di fiori e i monomi anche elencandoli uno per uno.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D09_coefficienti_binomiali_stiefel.md -->
+> File: `contesto_ai/MDAG/lezioni/D09_coefficienti_binomiali_stiefel.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D09
+titolo: Problemi di combinatoria, coefficienti binomiali e formula di Stiefel
+data: 2026-10-23
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D09
+descrizione: >-
+  Appunti della lezione D09 di Matematica Discreta (MDAG, parte 1, canali A, B e C): come si risolve un problema di
+  combinatoria spezzandolo in scelte, i problemi con l'analisi dei casi, le proprietà dei coefficienti binomiali, la
+  formula di Stiefel con le due dimostrazioni, il triangolo di Tartaglia e la somma di una riga, con i problemi d'esame
+  e le domande 4 del quiz.
+lede: >-
+  Un problema d'esame di combinatoria raramente è una formula sola: è una catena di scelte da moltiplicare o una lista
+  di casi da sommare. Poi i coefficienti binomiali, che hanno una regola che li lega tra loro e li dispone in un
+  triangolo.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 3, pp. 57–61, esercizi pp. 65–66
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2–3 ore, anche in più volte
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 3 «Combinatorica», pp. 57–61, ed esercizi 3.13,
+  3.15, 3.17, 3.18, 3.19; diario delle lezioni del canale B 2025/26; problemi degli appelli di Matematica Discreta del
+  12/02/2020, 14/07/2020 e 22 e 23/02/2021 e quiz degli appelli 2025–2026
+appunti_html: appunti/MDAG/D09_coefficienti_binomiali_stiefel.html
+genera_html: true
+```
+
+## In breve
+
+- Un problema di combinatoria si risolve spezzandolo in **scelte**: per ognuna ci si chiede se l'ordine conta e se si ripete, poi si moltiplicano le scelte da fare tutte e si sommano i casi alternativi.
+- Quando un vincolo divide il problema in situazioni diverse, si fa l'**analisi dei casi**: si conta ogni caso a parte e si somma.
+- I coefficienti binomiali hanno tre proprietà da sapere: valgono 1 ai bordi, sono **simmetrici**, e soddisfano la **formula di Stiefel**.
+- Stiefel dice che i sottoinsiemi di $k$ elementi si dividono in quelli che contengono un elemento fissato e quelli che non lo contengono: $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$.
+- Con Stiefel si costruisce il **triangolo di Tartaglia**: ogni numero è la somma dei due sopra.
+- La somma di una riga del triangolo è $2^n$: tutti i sottoinsiemi di un insieme di $n$ elementi, contati per grandezza.
+- All'esame i problemi d'esame di combinatoria chiedono proprio questo: scelte in fila, casi da sommare, e risposte lasciate come coefficienti binomiali.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di venerdì 23/10/2026, dalle 9 alle 11, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la nona lezione era «Risoluzione di problemi di combinatoria. Proprietà dei coefficienti binomiali. Formula di Stiefel». Nel libro sono le pp. 57–60. Aggiungo il triangolo di Tartaglia (p. 60), che nel diario era nella lezione dopo, perché è il modo naturale di usare la formula di Stiefel, e la somma di una riga (p. 61, nota 3.36), che si dimostra con l'insieme delle parti della lezione D01. Il binomio di Newton (teorema 3.34) resta per la prossima lezione. Quando il docente pubblica gli argomenti, controllo e aggiorno.
+
+## Come si affronta un problema (pp. 57–58)
+
+Nella D08 ogni esempio era una formula sola. All'esame invece un problema è quasi sempre fatto di più pezzi, e il lavoro sta nel trovarli. Il libro lo dice così: a volte la soluzione non è un calcolo diretto, ma richiede il metodo delle scelte successive oppure un'analisi di vari casi.
+
+Il procedimento è sempre lo stesso:
+
+1. **Spezza** il problema in scelte più piccole, ognuna con un insieme da cui scegliere e un numero di elementi.
+2. Per ogni scelta fai le due domande della D08: **l'ordine conta?** **si ripete?** E scegli la formula.
+3. **Mettile insieme**: si moltiplicano le scelte da fare tutte, si sommano i casi che si escludono.
+
+Un esercizio d'esame vero, con tre domande che usano tre formule diverse.
+
+> [!ESAME] Persone, giocatori e monete: prova scritta del 12/02/2020, esercizio 1
+> 1. «In quanti modi diversi 4 persone possono sedersi in una fila di 10 sedie?» Ogni persona prende una sedia diversa, e conta chi sta dove: l'ordine conta, senza ripetizione. Sono le disposizioni semplici della D07: $10 \cdot 9 \cdot 8 \cdot 7 = 5040$.
+> 2. «Un allenatore ha 3 portieri, 8 difensori, 8 centrocampisti e 6 attaccanti. In quanti modi può scegliere 1 portiere, 4 difensori, 4 centrocampisti e 2 attaccanti?» Quattro scelte da fare tutte, ognuna senza ordine: $\binom{3}{1} \cdot \binom{8}{4} \cdot \binom{8}{4} \cdot \binom{6}{2} = 3 \cdot 70 \cdot 70 \cdot 15 = 220\,500$.
+> 3. «Ho 15 monete da 1 euro e 4 salvadanai. In quanti modi posso mettere tutte le monete nei 4 salvadanai in modo che nessuno sia vuoto?» Le monete sono uguali: conta solo quante ne finiscono in ogni salvadanaio. È una combinazione con ripetizione di 15 elementi da 4 tipi, con almeno uno per tipo, come nella D08: se ne mette una per salvadanaio e restano 11 monete libere, $\binom{11 + 4 - 1}{11} = \binom{14}{3} = 364$.
+
+Le tre risposte sono le soluzioni ufficiali. Nota che la stessa parola, «modi», nasconde tre conti diversi: è il tipo di oggetto che si conta a decidere.
+
+::: prova Prova scritta del 14/07/2020: il circolo di tennis ha 8 tennisti e 5 tenniste, e deve scegliere 4 tennisti per i singolari maschili e 2 tenniste per quelli femminili. Quante squadre può formare? E in quanti ordini si possono giocare i 7 incontri, se si giocano prima i 4 singolari maschili, poi i 2 femminili, poi il doppio?
+Squadre: due scelte da fare tutte, senza ordine, $\binom{8}{4} \cdot \binom{5}{2} = 70 \cdot 10 = 700$. Ordini: i 4 maschili si ordinano in $4! = 24$ modi, i 2 femminili in $2! = 2$, e il doppio è fisso in fondo: $24 \cdot 2 = 48$. Sono le soluzioni ufficiali.
+:::
+
+> [!RICORDA]
+> - Prima si spezza il problema in scelte, poi si sceglie una formula per ogni scelta.
+> - Scelte da fare tutte: si moltiplica. Casi che si escludono: si somma.
+
+## Contare per casi (esercizio 3.13)
+
+A volte il vincolo non si traduce in una scelta sola. Il modo sicuro è elencare le **situazioni possibili**, contarle una per una e sommare. Servono due controlli: i casi non devono sovrapporsi (altrimenti si conta due volte), e devono coprire tutto.
+
+L'esercizio 3.13 del libro: alle semifinali dei 100 metri arrivano 16 atleti, divisi in due semifinali da 8. Di loro 9 sono europei e 7 no. Quante distribuzioni ci sono se in ogni semifinale ci sono **al massimo 6 europei**?
+
+Basta decidere chi va nella prima semifinale: gli altri 8 vanno nella seconda. Il vincolo dipende da quanti europei finiscono nella prima, e conviene chiamare questo numero $e$.
+
+- Nella prima ci sono $e$ europei, quindi nella seconda $9 - e$. Il vincolo chiede $e \le 6$ e $9 - e \le 6$, cioè $e$ tra 3 e 6.
+- Per ogni valore di $e$ si fanno due scelte: gli $e$ europei tra 9, e gli $8 - e$ non europei tra 7.
+
+| $e$ | europei | non europei | distribuzioni |
+|:-:|:-:|:-:|:-:|
+| 3 | $\binom{9}{3} = 84$ | $\binom{7}{5} = 21$ | 1764 |
+| 4 | $\binom{9}{4} = 126$ | $\binom{7}{4} = 35$ | 4410 |
+| 5 | $\binom{9}{5} = 126$ | $\binom{7}{3} = 35$ | 4410 |
+| 6 | $\binom{9}{6} = 84$ | $\binom{7}{2} = 21$ | 1764 |
+
+In tutto $1764 + 4410 + 4410 + 1764 = 12\,348$. I casi si escludono, perché la prima semifinale ha un solo numero di europei, e coprono tutto: per questo si sommano.
+
+Un controllo: senza vincoli le distribuzioni sono $\binom{16}{8} = 12\,870$. Quelle escluse sono i casi con $e$ uguale a 1, 2, 7 o 8, cioè $9 + 252 + 252 + 9 = 522$, e $12\,870 - 522 = 12\,348$. L'ho controllato anche con un programma che prova tutte le distribuzioni.
+
+::: prova Nello stesso problema, quante distribuzioni mettono tutti i 7 non europei nella stessa semifinale?
+Se sono tutti nella prima, il posto rimasto va a uno dei 9 europei: $\binom{7}{7} \cdot \binom{9}{1} = 9$. Lo stesso se sono tutti nella seconda: altri 9. I due casi si escludono, in tutto 18.
+:::
+
+> [!RICORDA]
+> - Analisi dei casi: una variabile che distingue le situazioni, un conto per ogni valore, poi la somma.
+> - I casi non si sovrappongono e coprono tutto.
+> - Il conto del contrario è un buon controllo.
+
+## I bordi e la simmetria (Prop. 3.33, parti 1 e 2)
+
+Prima di Stiefel, due proprietà già viste nella D08, che il libro raccoglie nella stessa proposizione. Da un insieme di 7 elementi c'è un solo modo di non prendere niente (l'insieme vuoto) e un solo modo di prendere tutto. E scegliere 2 elementi da tenere equivale a scegliere i 5 da lasciare fuori.
+
+> [!PROP] 3.33 · Proprietà dei coefficienti binomiali (parti 1 e 2)
+> 1. Per ogni $n \ge 0$, $\binom{n}{0} = \binom{n}{n} = 1$.
+> 2. Per ogni coppia di interi con $n \ge 0$ e $0 \le k \le n$, $\binom{n}{k} = \binom{n}{n-k}$.
+
+**Come si legge.** La prima parte: i sottoinsiemi con 0 elementi e con $n$ elementi sono uno solo ciascuno. Con la formula, $\frac{n!}{0! \, n!} = 1$, perché $0! = 1$. La seconda è la simmetria della D08: il libro la dimostra con il complementare, oppure scrivendo la formula, in cui $k!$ e $(n-k)!$ si scambiano di posto.
+
+::: prova Quanto valgono $\binom{9}{9}$, $\binom{9}{0}$ e $\binom{9}{7}$?
+1, 1 e, per la simmetria, $\binom{9}{2} = \frac{9 \cdot 8}{2} = 36$.
+:::
+
+> [!RICORDA]
+> - Ai bordi vale 1: $\binom{n}{0} = \binom{n}{n} = 1$.
+> - Simmetria: $\binom{n}{k} = \binom{n}{n-k}$.
+
+## La formula di Stiefel (Proposizione 3.33, parte 3)
+
+Cinque amici, Anna, Bruno, Carla, Dario ed Elisa, devono formare un comitato di 3. I comitati sono $\binom{5}{3} = 10$. Si possono contare anche in un altro modo, guardando solo Anna.
+
+- I comitati **con** Anna: Anna c'è, e restano da scegliere 2 persone tra le altre 4, cioè $\binom{4}{2} = 6$.
+- I comitati **senza** Anna: tutte e 3 le persone vanno scelte tra le altre 4, cioè $\binom{4}{3} = 4$.
+
+Ogni comitato contiene Anna oppure no, mai tutte e due le cose: $6 + 4 = 10$.
+
+```grafico
+titolo: I 10 comitati di 3 persone su 5, divisi in due gruppi: a sinistra i 6 che contengono Anna (A), a destra i 4 che non la contengono. È la formula di Stiefel con n = 5 e k = 3.
+x: 0 12.6
+y: 0.2 5
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.2 0.6 6.4 0.6 6.4 4 0.2 4 | blu
+testo: 3.3 4.5 | blu | "con Anna: $\binom{4}{2} = 6$"
+testo: 1.8 3.3 | blu | "{A, B, C}"
+testo: 4.8 3.3 | blu | "{A, B, D}"
+testo: 1.8 2.3 | blu | "{A, B, E}"
+testo: 4.8 2.3 | blu | "{A, C, D}"
+testo: 1.8 1.3 | blu | "{A, C, E}"
+testo: 4.8 1.3 | blu | "{A, D, E}"
+poligono: 6.8 0.6 12.4 0.6 12.4 4 6.8 4 | ambra
+testo: 9.6 4.5 | ambra | "senza Anna: $\binom{4}{3} = 4$"
+testo: 8.25 2.9 | ambra | "{B, C, D}"
+testo: 10.95 2.9 | ambra | "{B, C, E}"
+testo: 8.25 1.6 | ambra | "{B, D, E}"
+testo: 10.95 1.6 | ambra | "{C, D, E}"
+```
+
+Il ragionamento non dipende dai numeri: con $n$ persone e comitati di $k$, si fissa una persona, e i comitati con lei sono $\binom{n-1}{k-1}$ (si scelgono le altre $k - 1$), quelli senza di lei sono $\binom{n-1}{k}$.
+
+> [!PROP] 3.33 · Formula di Stiefel (parte 3)
+> Per ogni coppia di interi $k$ ed $n$ con $n \ge 1$ e $1 \le k \le n$,
+> $$\binom{n-1}{k-1} + \binom{n-1}{k} = \binom{n}{k}.$$
+
+**Come si legge.** A destra ci sono tutti i sottoinsiemi di $k$ elementi di un insieme $A$ con $n$ elementi. A sinistra gli stessi, divisi in due gruppi rispetto a un elemento $a$ fissato: quelli che contengono $a$, che sono tanti quanti i sottoinsiemi di $k - 1$ elementi in $A \setminus \{a\}$, e quelli che non lo contengono, che sono sottoinsiemi di $k$ elementi di $A \setminus \{a\}$. È la dimostrazione del libro, la stessa del comitato. Quando $k = n$ il secondo addendo è $\binom{n-1}{n}$, che vale 0: non ci sono sottoinsiemi più grandi dell'insieme.
+
+> [!DIM] La seconda dimostrazione del libro, solo con la formula
+> Si mettono le due frazioni allo stesso denominatore $k!\,(n-k)!$:
+> $$\binom{n-1}{k-1} + \binom{n-1}{k} = \frac{(n-1)!}{(k-1)!\,(n-k)!} + \frac{(n-1)!}{k!\,(n-1-k)!}.$$
+> Nella prima frazione si moltiplica sopra e sotto per $k$, nella seconda per $n - k$:
+> $$= \frac{k\,(n-1)! + (n-k)\,(n-1)!}{k!\,(n-k)!} = \frac{n\,(n-1)!}{k!\,(n-k)!} = \frac{n!}{k!\,(n-k)!} = \binom{n}{k}.$$
+> La seconda frazione ha senso solo per $k \le n - 1$; per $k = n$ la formula si controlla a mano: $1 + 0 = 1$.
+
+::: prova Controlla la formula con $n = 6$ e $k = 2$, calcolando i tre coefficienti.
+$\binom{5}{1} + \binom{5}{2} = 5 + 10 = 15$, e $\binom{6}{2} = \frac{6 \cdot 5}{2} = 15$.
+:::
+
+> [!RICORDA]
+> - Stiefel: si fissa un elemento e si separano i sottoinsiemi che lo contengono da quelli che non lo contengono.
+> - I primi sono $\binom{n-1}{k-1}$, i secondi $\binom{n-1}{k}$.
+
+## Il triangolo di Tartaglia (p. 60)
+
+Con la formula di Stiefel i coefficienti binomiali di una riga si ottengono da quelli della riga prima. Si possono quindi costruire uno dopo l'altro, senza fattoriali. Il libro dà il procedimento:
+
+1. la riga $n = 0$ contiene solo 1;
+2. ogni riga nuova comincia e finisce con 1;
+3. ogni altro numero è la somma dei due numeri della riga sopra, quello nella stessa posizione e quello a sinistra.
+
+Disposti al centro, i numeri formano un triangolo, il **triangolo di Pascal-Tartaglia**. Nella riga $n$, al posto $k$ (contando da 0), c'è $\binom{n}{k}$.
+
+```grafico
+titolo: Le righe da 0 a 6 del triangolo di Tartaglia. Ogni numero è la somma dei due sopra: in verde 5 e 10 della riga 5, che danno 15 nella riga 6. È Stiefel: $\binom{5}{1} + \binom{5}{2} = \binom{6}{2}$.
+x: -0.5 12
+y: 0.3 7
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.5 6.5 | grigio | "n = 0"
+testo: 0.5 5.55 | grigio | "n = 1"
+testo: 0.5 4.6 | grigio | "n = 2"
+testo: 0.5 3.65 | grigio | "n = 3"
+testo: 0.5 2.7 | grigio | "n = 4"
+testo: 0.5 1.75 | grigio | "n = 5"
+testo: 0.5 0.8 | grigio | "n = 6"
+testo: 6 6.5 | blu | "1"
+testo: 5.3 5.55 | blu | "1"
+testo: 6.7 5.55 | blu | "1"
+testo: 4.6 4.6 | blu | "1"
+testo: 6 4.6 | blu | "2"
+testo: 7.4 4.6 | blu | "1"
+testo: 3.9 3.65 | blu | "1"
+testo: 5.3 3.65 | blu | "3"
+testo: 6.7 3.65 | blu | "3"
+testo: 8.1 3.65 | blu | "1"
+testo: 3.2 2.7 | blu | "1"
+testo: 4.6 2.7 | blu | "4"
+testo: 6 2.7 | blu | "6"
+testo: 7.4 2.7 | blu | "4"
+testo: 8.8 2.7 | blu | "1"
+testo: 2.5 1.75 | blu | "1"
+testo: 3.9 1.75 | verde | "5"
+testo: 5.3 1.75 | verde | "10"
+testo: 6.7 1.75 | blu | "10"
+testo: 8.1 1.75 | blu | "5"
+testo: 9.5 1.75 | blu | "1"
+testo: 1.8 0.8 | blu | "1"
+testo: 3.2 0.8 | blu | "6"
+testo: 4.6 0.8 | accento | "15"
+testo: 6 0.8 | blu | "20"
+testo: 7.4 0.8 | blu | "15"
+testo: 8.8 0.8 | blu | "6"
+testo: 10.2 0.8 | blu | "1"
+freccia: 4.05 1.5 4.45 1.08 | verde
+freccia: 5.15 1.5 4.75 1.08 | verde
+```
+
+Nel triangolo si vedono le proprietà della sezione prima: i bordi valgono 1, e ogni riga è simmetrica, perché $\binom{n}{k} = \binom{n}{n-k}$. Si vede anche che la seconda posizione di ogni riga vale $n$, perché $\binom{n}{1} = n$.
+
+::: prova Costruisci la riga $n = 7$ partendo dalla riga 6 del disegno, 1 6 15 20 15 6 1.
+1, 1 + 6 = 7, 6 + 15 = 21, 15 + 20 = 35, 20 + 15 = 35, 21, 7, 1. La riga è 1 7 21 35 35 21 7 1, come nella tabella del libro.
+:::
+
+> [!RICORDA]
+> - Nel triangolo ogni numero è la somma dei due sopra: è la formula di Stiefel.
+> - Riga $n$, posto $k$ (da 0): $\binom{n}{k}$. Bordi a 1, righe simmetriche.
+
+## La somma di una riga (Proposizione 3.35 e nota 3.36)
+
+Somma i numeri di una riga del triangolo: $1 + 4 + 6 + 4 + 1 = 16$ nella riga 4, $1 + 5 + 10 + 10 + 5 + 1 = 32$ nella riga 5. Escono sempre potenze di 2, e c'è un motivo.
+
+Nella lezione D01 un insieme $A$ con $n$ elementi ha $2^n$ sottoinsiemi. Si possono contare per grandezza: quelli con 0 elementi, quelli con 1, e così via fino a $n$. I sottoinsiemi di $k$ elementi sono $\binom{n}{k}$, i gruppi non si sovrappongono e coprono tutto l'insieme delle parti: sono una partizione, come nella D02. Quindi la somma della riga $n$ è il numero di tutti i sottoinsiemi.
+
+> [!PROP] 3.35 · Somma dei coefficienti binomiali
+> Per ogni intero $n \ge 0$,
+> $$\binom{n}{0} + \binom{n}{1} + \binom{n}{2} + \dots + \binom{n}{n} = 2^n.$$
+
+**Come si legge.** A sinistra i sottoinsiemi di un insieme di $n$ elementi contati per grandezza, a destra contati tutti insieme. Il libro lo dimostra con il binomio di Newton della prossima lezione; la nota 3.36 dà la dimostrazione con l'insieme delle parti che ho scritto sopra. L'esercizio 3.17 chiede una terza dimostrazione, per induzione con la formula di Stiefel.
+
+::: prova Quanti sottoinsiemi di $\{1, 2, 3, 4, 5, 6\}$ hanno almeno 2 elementi?
+Tutti sono $2^6 = 64$. Si tolgono quelli con 0 o 1 elemento, $\binom{6}{0} + \binom{6}{1} = 1 + 6 = 7$: restano $64 - 7 = 57$.
+:::
+
+> [!RICORDA]
+> - La somma della riga $n$ del triangolo è $2^n$: tutti i sottoinsiemi, contati per grandezza.
+> - Utile per gli «almeno»: tutti meno quelli troppo piccoli.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\binom{n}{k}$ | «n su k» | il numero dei sottoinsiemi di $k$ elementi di un insieme di $n$ | $\binom{5}{3} = 10$ |
+| $\binom{n-1}{k-1} + \binom{n-1}{k}$ | «formula di Stiefel» | i sottoinsiemi con e senza un elemento fissato | $6 + 4 = 10$ |
+| $A \setminus \{a\}$ | «A meno a» | l'insieme $A$ senza l'elemento $a$ (lezione D02) | $\{1, 2, 3\} \setminus \{1\} = \{2, 3\}$ |
+| $2^n$ | «2 alla n» | il numero di tutti i sottoinsiemi di un insieme di $n$ elementi | $2^4 = 16$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Al 23/10/2026 le regole del 2026/27 non sono ancora uscite; quelle del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)).
+
+**Che cosa serve di questa lezione**
+
+1. **Il problema di combinatoria.** È quasi sempre in tre parti, come quelli di questa lezione, e il testo dice: «Non è necessario calcolare gli esponenziali, i fattoriali e i coefficienti binomiali». Si lascia la risposta come prodotto o somma di coefficienti binomiali, ma si **spiega** da dove viene ogni pezzo.
+2. **La domanda 4 del quiz.** Chiede di scegliere la formula giusta tra cinque: sono le quattro caselle della D08 più qualche formula sbagliata che le somiglia.
+3. **Stiefel e il triangolo** non sono mai stati chiesti da soli negli appelli 2025–2026. Servono però a fare i conti a mano senza fattoriali, e sono la base del binomio di Newton.
+
+### Una domanda vera, letta insieme
+
+**Prova scritta del 22 e 23/02/2021, problema 2.** Il testo: «Adriana, Berto e Camilla giocano con un mazzo di 40 carte, 10 di ciascun seme. 1. Scelte 12 carte coperte dal mazzo, quanti modi ci sono per distribuirle fra i tre giocatori? 2. Adriana ha ricevuto 2 carte e sono entrambe di cuori. Quante sono le possibili mani di Adriana? 3. Berto ha ricevuto 3 carte e Camilla 7. Quante possono essere complessivamente le loro mani se entrambi hanno ricevuto lo stesso numero di carte di cuori?»
+
+**In pratica chiede:** tre conti diversi, il terzo con l'analisi dei casi.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: le carte coperte.** Le 12 carte sono coperte: non si sa quali siano, conta solo **quante** ne riceve ciascuno. È una combinazione con ripetizione di 12 elementi da 3 tipi: $\binom{12 + 3 - 1}{2} = \binom{14}{2} = 91$.
+>
+> **Passo 2: la mano di Adriana.** Due carte scelte tra le 10 di cuori, senza ordine: $\binom{10}{2} = 45$.
+>
+> **Passo 3: i casi.** Berto ha 3 carte, quindi le carte di cuori di ognuno, chiamiamole $k$, possono essere 0, 1, 2 o 3. Per ogni $k$ le scelte da fare tutte sono quattro: le $k$ carte di cuori di Berto, $\binom{10}{k}$; le sue $3 - k$ altre carte tra le 30 non di cuori, $\binom{30}{3-k}$; le $k$ carte di cuori di Camilla tra quelle rimaste, $\binom{10-k}{k}$; le sue $7 - k$ altre carte tra le $27 + k$ non di cuori rimaste, $\binom{27+k}{7-k}$.
+>
+> **Passo 4: la somma.** I casi si escludono: si somma su $k$ da 0 a 3 il prodotto dei quattro coefficienti. La soluzione ufficiale si ferma qui, lasciando i coefficienti indicati. Fatti i conti con un programma, sono 22 958 812 800 coppie di mani.
+>
+> La soluzione ufficiale avverte che il punto 3 si risolve a prescindere dalla mano di Adriana, e che altre interpretazioni si trattano allo stesso modo.
+
+**Errori da evitare**
+
+- Scegliere la formula prima di aver capito che cosa si conta: oggetti uguali (le carte coperte, le monete) o diversi (le persone).
+- Nell'analisi dei casi, dimenticare un caso (qui $k = 0$) o contarne due volte uno.
+- Lasciare un numero senza spiegazione: all'esame «motivando adeguatamente le risposte» vuol dire scrivere quale scelta conta ogni coefficiente.
+
+## Quiz
+
+```quiz
+D: Appello del 14/01/2025. Quanti modi ci sono per far sedere 7 persone in una fila di 13 sedie?
++ $\frac{13!}{6!}$
+- $13!$
+- $\frac{13!}{7!}$
+- $13^7$
+- $7^{13}$
+= Ogni persona prende una sedia diversa e conta chi sta dove: disposizioni semplici, $13 \cdot 12 \cdots 7 = \frac{13!}{6!}$. La risposta più insidiosa è $\frac{13!}{7!}$, che divide per il fattoriale delle persone invece che delle 6 sedie vuote.
+
+D: Appello del 10/09/2026. La birreria Qvizz produce 10 birre e offre delle degustazioni di 3 a scelta. Quante sono le possibili degustazioni?
++ $\frac{10!}{3! \cdot 7!}$
+- $\frac{10!}{7!}$
+- $\frac{10!}{3!}$
+- $\frac{10!}{3 \cdot 6}$
+- $10!$
+= L'ordine non conta e le birre sono diverse: $\binom{10}{3} = 120$. La risposta più insidiosa è $\frac{10!}{7!}$: sono le degustazioni con l'ordine.
+
+D: Appello del 07/07/2025. Si vogliono colorare le caselle di una griglia con 7 righe e 3 colonne avendo 4 colori a disposizione, ripetibili. Quante sono le colorazioni possibili?
++ $4^{21}$
+- $21^4$
+- $\frac{21!}{4!}$
+- $21 \cdot 4$
+- $21! \cdot 4$
+= Ognuna delle 21 caselle sceglie uno dei 4 colori: disposizioni con ripetizione, $4^{21}$. La risposta più insidiosa è $21^4$, con base ed esponente scambiati.
+
+D: Appello del 03/02/2026. Da una scatola con palline bianche e nere se ne estraggono in successione 11. Quante sono le estrazioni che iniziano con 5 palline bianche?
++ $2^6$
+- $6^2$
+- $\frac{11!}{5!}$
+- $\frac{11!}{6!}$
+- $11!$
+= Le prime 5 sono fissate (bianche); le altre 6 possono essere bianche o nere: $2^6 = 64$. La risposta più insidiosa è $6^2$, ancora con base ed esponente scambiati.
+
+D: Appello del 13/01/2026. Le 8 caselle di una riga devono essere colorate di nero o di viola in modo che ci siano esattamente 6 caselle viola. Quanti sono i modi di farlo?
++ $\binom{8}{2}$
+- $\binom{6}{2}$
+- $8!$
+- $\frac{8!}{2!}$
+- $8! - 2!$
+= Si scelgono le 6 caselle viola, o le 2 nere: $\binom{8}{6} = \binom{8}{2} = 28$. La risposta più insidiosa è $\binom{6}{2}$, che sceglie tra le caselle viola invece che tra tutte.
+
+D: Quanto vale $\binom{7}{3} + \binom{7}{4}$?
++ $\binom{8}{4}$
+- $\binom{8}{3}$
+- $\binom{14}{7}$
+- $\binom{7}{7}$
+- $\binom{8}{7}$
+= Per Stiefel con $n = 8$ e $k = 4$: $\binom{7}{3} + \binom{7}{4} = \binom{8}{4} = 70$, cioè $35 + 35$. La risposta più insidiosa è $\binom{8}{3} = 56$: in basso va il $k$ più grande dei due, non il più piccolo. $\binom{14}{7}$ somma sopra e sotto, che non si fa.
+
+D: Quanto vale la somma della riga 9 del triangolo di Tartaglia, $\binom{9}{0} + \binom{9}{1} + \dots + \binom{9}{9}$?
+N: 512
+= È il numero di tutti i sottoinsiemi di un insieme di 9 elementi: $2^9 = 512$.
+
+D: Prova scritta del 12/02/2020. In quanti modi si possono mettere 15 monete da 1 euro in 4 salvadanai senza lasciarne nessuno vuoto?
++ $\binom{14}{3}$
+- $\binom{15}{4}$
+- $4^{15}$
+- $\binom{18}{3}$
+- $\frac{15!}{11!}$
+= Le monete sono uguali: si mette una moneta per salvadanaio e le altre 11 si distribuiscono con ripetizione tra 4, $\binom{11 + 3}{3} = \binom{14}{3} = 364$. La risposta più insidiosa è $\binom{18}{3}$, che conta anche i salvadanai vuoti. $4^{15}$ tratterebbe le monete come diverse.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: Stiefel con i numeri
+Calcola con la formula di Stiefel, senza fattoriali, $\binom{6}{3}$ sapendo che $\binom{5}{2} = 10$ e $\binom{5}{3} = 10$. Poi controlla con la formula del coefficiente binomiale.
+::: soluzione
+$\binom{6}{3} = \binom{5}{2} + \binom{5}{3} = 10 + 10 = 20$. Con la formula: $\frac{6 \cdot 5 \cdot 4}{3!} = \frac{120}{6} = 20$.
+:::
+
+::: esercizio base Riscaldamento: la riga 8
+Costruisci la riga $n = 8$ del triangolo di Tartaglia dalla riga 7, 1 7 21 35 35 21 7 1, e controlla che la somma sia $2^8$.
+::: soluzione
+1, 8, 28, 56, 70, 56, 28, 8, 1. La somma è $1 + 8 + 28 + 56 + 70 + 56 + 28 + 8 + 1 = 256 = 2^8$.
+:::
+
+::: esercizio base Riscaldamento: quale formula?
+Per ognuna, spezza in scelte e conta. (a) Le squadre di 2 maschi e 2 femmine in una classe di 10 maschi e 12 femmine. (b) I modi di dare 3 medaglie diverse (oro, argento, bronzo) a 3 dei 10 maschi. (c) I sacchetti di 6 caramelle da 4 gusti.
+::: soluzione
+(a) Due scelte da fare tutte: $\binom{10}{2} \cdot \binom{12}{2} = 45 \cdot 66 = 2970$. (b) L'ordine conta: $10 \cdot 9 \cdot 8 = 720$. (c) Con ripetizione, senza ordine: $\binom{6 + 4 - 1}{6} = \binom{9}{3} = 84$.
+:::
+
+::: esercizio medio Esercizio 3.13 a) e b) del libro: le semifinali
+I 16 atleti vanno divisi in due semifinali da 8. (a) Quante distribuzioni ci sono senza condizioni? (b) Quante se i 4 atleti con i tempi migliori devono essere 2 per semifinale?
+::: soluzione
+(a) Si scelgono gli 8 della prima semifinale: $\binom{16}{8} = 12\,870$. (b) Due scelte da fare tutte per la prima semifinale: 2 dei 4 migliori, $\binom{4}{2} = 6$, e 6 degli altri 12, $\binom{12}{6} = 924$. In tutto $6 \cdot 924 = 5544$. Qui le due semifinali sono distinte (la prima e la seconda); se non lo fossero, ogni distribuzione sarebbe contata due volte.
+:::
+
+::: esercizio medio Quanti sottoinsiemi con almeno 3 elementi
+Quanti sottoinsiemi di un insieme di 8 elementi hanno almeno 3 elementi? Usa la somma della riga.
+::: soluzione
+Tutti sono $2^8 = 256$. Quelli con 0, 1 o 2 elementi sono $1 + 8 + 28 = 37$. Restano $256 - 37 = 219$.
+:::
+
+::: esercizio esame Il circolo di tennis, sul modello della prova scritta del 14/07/2020
+Il circolo «Rosewall» ha 7 tennisti e 6 tenniste. Deve scegliere 4 tennisti per i singolari maschili e 2 tenniste per quelli femminili, e poi, tra i 6 scelti, un tennista e una tennista per il doppio misto. Quante sono le scelte complessive?
+::: soluzione
+Tre scelte da fare tutte: i 4 tennisti, $\binom{7}{4} = 35$; le 2 tenniste, $\binom{6}{2} = 15$; la coppia del doppio, uno dei 4 tennisti e una delle 2 tenniste, $4 \cdot 2 = 8$. In tutto $35 \cdot 15 \cdot 8 = 4200$. È lo stesso schema dell'esercizio d'esame, con numeri diversi.
+:::
+
+::: esercizio esame Le carte di cuori: la prova scritta del 22 e 23/02/2021 con un mazzo più piccolo
+Un mazzo ha 20 carte, 5 di cuori. Berto riceve 2 carte e Camilla 3, tutte diverse. Quante sono le coppie di mani in cui hanno lo stesso numero di carte di cuori?
+::: soluzione
+Il numero $k$ di carte di cuori di ciascuno può essere 0, 1 o 2. Per ogni $k$ ci sono quattro scelte. Per Berto: le cuori, $\binom{5}{k}$, e le altre carte, $\binom{15}{2-k}$. Per Camilla: le cuori tra le $5 - k$ rimaste, $\binom{5-k}{k}$, e le altre tra le $13 + k$ non di cuori rimaste, $\binom{13+k}{3-k}$. Con $k = 0$: $1 \cdot 105 \cdot 1 \cdot 286 = 30\,030$. Con $k = 1$: $5 \cdot 15 \cdot 4 \cdot 91 = 27\,300$. Con $k = 2$: $10 \cdot 1 \cdot 3 \cdot 15 = 450$. In tutto $57\,780$. L'ho controllato con un programma che prova tutte le mani.
+:::
+
+::: esercizio difficile Esercizio 3.18 del libro: Stiefel due volte
+Se $n \ge 2$ e $2 \le k \le n - 2$, dimostra che $\binom{n}{k} = \binom{n-2}{k-2} + 2\binom{n-2}{k-1} + \binom{n-2}{k}$.
+::: soluzione
+Si applica Stiefel a $\binom{n}{k}$: $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$. Poi di nuovo a ciascun addendo: $\binom{n-1}{k-1} = \binom{n-2}{k-2} + \binom{n-2}{k-1}$ e $\binom{n-1}{k} = \binom{n-2}{k-1} + \binom{n-2}{k}$. Sommando, $\binom{n-2}{k-1}$ compare due volte. Nel triangolo: un numero è la somma dei tre numeri due righe sopra, con quello centrale contato due volte. Con $n = 6$, $k = 3$: $\binom{4}{1} + 2\binom{4}{2} + \binom{4}{3} = 4 + 12 + 4 = 20 = \binom{6}{3}$.
+:::
+
+::: esercizio difficile Esercizio 3.19 del libro: pari e dispari
+Sia $n$ dispari. Dimostra che la somma dei $\binom{n}{k}$ con $k$ pari è uguale alla somma di quelli con $k$ dispari.
+::: soluzione
+Per la simmetria $\binom{n}{k} = \binom{n}{n-k}$. Se $n$ è dispari, $k$ e $n - k$ hanno parità diverse: uno è pari e l'altro dispari. Quindi i termini della riga si accoppiano, ognuno pari con uno dispari uguale, e le due somme sono uguali. Siccome insieme fanno $2^n$, ognuna vale $2^{n-1}$. Con $n = 5$: $1 + 10 + 5 = 16$ e $5 + 10 + 1 = 16$. Il libro chiede anche se vale per $n$ pari: con $n = 4$, $1 + 6 + 1 = 8$ e $4 + 4 = 8$, ma l'argomento della simmetria non basta più; la dimostrazione viene con il binomio di Newton.
+:::
+
+## Domande di ripasso
+
+::: domanda Come si affronta un problema di combinatoria con più richieste?
+Si spezza in scelte; per ognuna ci si chiede se l'ordine conta e se si ripete; poi si moltiplicano le scelte da fare tutte e si sommano i casi alternativi.
+:::
+
+::: domanda Quando serve l'analisi dei casi?
+Quando un vincolo divide le situazioni in tipi diversi, ognuno con un conto diverso: si conta ogni caso e si somma, controllando che i casi non si sovrappongano e coprano tutto.
+:::
+
+::: domanda Che cosa dice la formula di Stiefel, a parole?
+I sottoinsiemi di $k$ elementi di un insieme di $n$ si dividono in quelli che contengono un elemento fissato, $\binom{n-1}{k-1}$, e quelli che non lo contengono, $\binom{n-1}{k}$.
+:::
+
+::: domanda Come si costruisce il triangolo di Tartaglia?
+Ogni riga comincia e finisce con 1; ogni altro numero è la somma dei due sopra. Nella riga $n$, al posto $k$, c'è $\binom{n}{k}$.
+:::
+
+::: domanda Perché la somma della riga $n$ del triangolo è $2^n$?
+Perché conta i sottoinsiemi di un insieme di $n$ elementi divisi per grandezza, e in tutto i sottoinsiemi sono $2^n$.
+:::
+
+## Glossario
+
+```glossario
+Scelte successive | Scelte da fare tutte, una dopo l'altra: i numeri si moltiplicano.
+Analisi dei casi | Dividere un problema in situazioni che si escludono, contarle a parte e sommare.
+Formula di Stiefel | n su k è uguale a (n−1 su k−1) più (n−1 su k): con e senza un elemento fissato.
+Triangolo di Tartaglia | La tabella dei coefficienti binomiali, riga per riga; ogni numero è la somma dei due sopra.
+Somma di una riga | La somma dei coefficienti binomiali di n è 2 alla n, il numero di tutti i sottoinsiemi.
+```
+
+## Checklist
+
+```checklist
+- So spezzare un problema di combinatoria in scelte e scegliere la formula per ognuna.
+- So quando moltiplicare e quando sommare.
+- So fare un'analisi dei casi e controllarla con il conto del contrario.
+- So le proprietà ai bordi e la simmetria dei coefficienti binomiali.
+- So spiegare la formula di Stiefel con un elemento fissato, e controllarla con i numeri.
+- So costruire il triangolo di Tartaglia e leggerci i coefficienti binomiali.
+- So perché la somma di una riga è 2 alla n, e usarla per gli «almeno».
+- So risolvere i problemi d'esame del 12/02/2020, del 14/07/2020 e del 22 e 23/02/2021.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 3 «Combinatorica», pp. 57–58 (problemi con scelte successive e analisi dei casi), pp. 58–60 (proposizioni 3.32 e 3.33 con le dimostrazioni, procedimento e tabella del triangolo di Pascal-Tartaglia), p. 61 (proposizione 3.35 e nota 3.36); esercizi 3.13, 3.15, 3.17, 3.18 e 3.19 (p. 66). Le definizioni e gli enunciati nei riquadri riprendono il libro. Il binomio di Newton (teorema 3.34, pp. 60–61) è per la prossima lezione.
+- Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 9 (risoluzione di problemi di combinatoria, proprietà dei coefficienti binomiali, formula di Stiefel) e lezione 10 (triangolo di Tartaglia-Pascal, binomio di Newton). Gli argomenti della lezione del 23/10/2026 non erano pubblicati quando ho scritto questi appunti.
+- Problemi delle prove scritte di Matematica Discreta del 12/02/2020 (esercizio 1), 14/07/2020 (esercizio 1) e 22 e 23/02/2021 (problema 2), con le soluzioni ufficiali; domande 4 dei quiz degli appelli del 14/01/2025, 07/07/2025, 13/01/2026, 03/02/2026 e 10/09/2026.
+- Tutti i numeri li ho controllati con Python (`math.comb`), e i conti dell'esercizio 3.13 e delle carte di cuori con il mazzo da 20 anche provando tutte le possibilità.
 
 
 ---
@@ -41547,6 +42606,7 @@ corso: MDAG
 modulo: AG
 lezione: L09
 titolo: Matrici II
+data: 2026-10-22
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L09
 descrizione: >-
@@ -41580,7 +42640,7 @@ genera_html: true
 - All'esame: «il determinante di questa matrice è…», con matrici grandi piene di zeri, con $\pi$ ed $e$ da tirare fuori, oppure con il tranello della matrice non quadrata.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di giovedì 22/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
 
 ## Un numero che misura un'area (pp. 41–42)
 
@@ -65608,6 +66668,527 @@ D: Quiz 2021–2025, domanda 4. Quanti sono gli anagrammi della parola SCACCO?
 - Le lezioni complete: [D05 · Composizione di funzioni e funzioni inverse](D05_composizione_funzioni_inverse.html), [D06 · Insiemi finiti, principio dei piccioni e inclusione-esclusione](D06_insiemi_finiti_inclusione_esclusione.html), [D07 · Parole, ordinamenti, anagrammi e disposizioni](D07_parole_anagrammi_disposizioni.html), con le domande vere degli appelli, i quiz e gli esercizi.
 - A. Mori, *Lezioni di Matematica Discreta*: cap. 2, pp. 23–29; cap. 3, pp. 39–55.
 - Regole d'esame e appelli: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_04_AG.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_04_AG.md`
+
+```yaml
+corso: MDAG
+modulo: AG
+lezione: S4
+tipo: riassunto
+titolo: "Settimana 4: basi e dimensione, matrici, determinante"
+data: 2026-10-22
+docenti: Reto Buzano e Marco Radeschi
+sopratitolo: Riassunto settimanale · Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · 19/10 – 23/10/2026
+descrizione: >-
+  Riassunto della settimana 4 di Algebra lineare e Geometria (MDAG, parte 2): dipendenza e indipendenza lineare,
+  basi, dimensione e il teorema che basta un controllo; matrici, trasposta, rango, prodotto riga per colonna, ordine
+  dei fattori e traccia; determinante, matrici triangolari, sviluppo di Laplace e le regole che fanno risparmiare
+  conti.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: come si decide se dei vettori sono una base, come si moltiplicano due
+  matrici senza sbagliare l'ordine, come si calcola un determinante grande senza calcolatrice, e le domande vere degli
+  appelli 2025–2026.
+materiale: dispense
+scheda:
+  Lezioni: "[L07](L07_spazi_vettoriali_3.html) mar 20/10 · [L08](L08_matrici_1.html) mer 21/10 · [L09](L09_matrici_2.html) gio 22/10, nel canale B"
+  Dispense: Buzano e Radeschi 2026, pp. 31–44
+  Tempo di ripasso: 45 minuti
+fonte: >-
+  Gli appunti delle lezioni L07, L08 e L09 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso
+  (R. Buzano, M. Radeschi)
+appunti_html: appunti/MDAG/riassunto_settimana_04_AG.html
+genera_html: true
+```
+
+## In breve
+
+- Dei vettori sono **linearmente indipendenti** quando l'unica combinazione che dà il vettore zero ha tutti i coefficienti uguali a zero. Altrimenti uno di loro si ottiene dagli altri: sono **dipendenti**.
+- Una **base** è una lista di vettori indipendenti che genera tutto lo spazio. Tutte le basi hanno lo stesso numero di vettori, la **dimensione**.
+- Con tanti vettori quanta è la dimensione, basta un controllo: se sono indipendenti, sono una base.
+- Una matrice ha una **taglia**, righe per colonne. La **trasposta** scambia righe e colonne; il **rango** conta le colonne che non si ottengono dalle altre.
+- Il **prodotto riga per colonna** si fa solo se le colonne della prima sono tante quante le righe della seconda, e **l'ordine conta**. La **traccia** è la somma della diagonale.
+- Il **determinante** esiste solo per le matrici quadrate. Per una triangolare è il prodotto della diagonale; per le altre si usa lo **sviluppo di Laplace** lungo la riga o la colonna con più zeri.
+- Queste tre lezioni sono tra le più presenti nei quiz: dimensioni, basi, «quale identità vale?», tracce, ranghi e determinanti escono in quasi ogni appello.
+
+> [!CANALI]
+> Le dispense sono le stesse per i canali A, B e C. Nel canale B le tre lezioni corrispondono agli incontri di martedì 20/10 (L07), mercoledì 21/10 (L08) e giovedì 22/10 (L09), una lezione delle dispense per incontro; le date vengono dal calendario del canale B.
+
+## L07 · Dipendenza, basi e dimensione (mar 20/10)
+
+Due vettori del piano sono dipendenti quando stanno sulla stessa retta per l'origine: uno è un multiplo dell'altro, e non aggiunge una direzione nuova.
+
+```grafico
+titolo: $(1, 2)$ e $(2, 4)$ stanno sulla stessa retta per l'origine (dipendenti); $(1, 2)$ e $(2, 1)$ no (indipendenti)
+x: -1 5
+y: -1 5
+retta: 0 0 2.4 4.8 | grigio | tratteggio | $y = 2x$ | e
+vettore: 2 4 | blu | spesso | $(2, 4)$ | e
+vettore: 1 2 | accento | spesso | $(1, 2)$ | o
+vettore: 2 1 | ambra | spesso | $(2, 1)$ | se
+```
+
+| Spazio | Dimensione | Una base |
+|---|---|---|
+| $\R^n$ | $n$ | la base canonica $e_1, \dots, e_n$ |
+| polinomi di grado al massimo $n$ | $n + 1$ | $1, x, \dots, x^n$ |
+| matrici $2 \times 2$ | 4 | le quattro matrici con un solo 1 |
+| matrici $3 \times 3$ simmetriche | 6 | una per ogni casella sulla diagonale e sopra |
+
+- Un vettore da solo è dipendente solo se è zero; due vettori solo se uno è multiplo dell'altro. Con tre o più, guardarli a coppie **non basta**.
+- Più vettori della dimensione: sicuramente dipendenti. Meno: sicuramente non generano.
+- Ogni vettore si scrive **in un solo modo** come combinazione dei vettori di una base.
+
+> [!METODO] «Sono generatori e/o indipendenti?»
+> 1. Conta i vettori e confrontali con la dimensione.
+> 2. Cerca i doppioni: un vettore che è combinazione degli altri.
+> 3. Togliendo i doppioni restano $r$ vettori: sono indipendenti se non hai tolto niente, generano se $r$ è la dimensione.
+
+::: prova Qual è la dimensione dello spazio dei polinomi di grado al massimo 3?
+4: la base è $1, x, x^2, x^3$. L'errore tipico è dire 3, dimenticando il numero 1.
+:::
+
+> [!RICORDA]
+> - Indipendenti: l'unica combinazione nulla è quella con tutti i coefficienti zero.
+> - Dimensione = numero di vettori di una base. Con il numero giusto basta controllare l'indipendenza.
+
+## L08 · Matrici, prodotto e traccia (mer 21/10)
+
+Una matrice è una tabella di numeri; la sua taglia si scrive righe per colonne. Il prodotto riga per colonna funziona come il conto della spesa: quantità per prezzi, poi si somma.
+
+| Operazione | Che cosa fa | Da ricordare |
+|---|---|---|
+| trasposta ${}^tA$ | le righe diventano colonne | ${}^t(AB) = {}^tB\,{}^tA$, con l'ordine girato |
+| rango | quante colonne non si ottengono dalle altre | contando le righe viene lo stesso numero |
+| prodotto $AB$ | casella $(i, j)$: riga $i$ di $A$ per colonna $j$ di $B$ | $A$ $m \times n$ e $B$ $n \times p$ danno $m \times p$ |
+| traccia $\tr A$ | somma della diagonale, solo per matrici quadrate | $\tr(AB) = \tr(BA)$ |
+
+- **L'ordine conta**: di solito $AB \ne BA$, e può anche darsi che $AB$ esista e $BA$ no.
+- Un prodotto può dare la matrice nulla anche se nessuno dei due fattori è nullo.
+- Per la traccia di un prodotto servono **solo le caselle della diagonale**: non serve calcolare tutto il prodotto.
+
+::: prova $A$ è $2 \times 3$ e $B$ è $3 \times 4$. Che taglia ha $AB$? Esiste $BA$?
+$AB$ è $2 \times 4$. $BA$ no: $B$ ha 4 colonne e $A$ ha 2 righe.
+:::
+
+> [!RICORDA]
+> - Le taglie interne devono essere uguali; il risultato ha le taglie esterne.
+> - La traccia di un prodotto non cambia scambiando i fattori.
+
+## L09 · Il determinante (gio 22/10)
+
+Il determinante è un numero che si calcola da una matrice quadrata. Per una matrice $2 \times 2$ è «diagonale meno l'altra diagonale», e senza segno è l'area del parallelogramma che ha per lati le due colonne.
+
+```grafico
+titolo: Il parallelogramma con lati ${}^t(3, 1)$ e ${}^t(1, 2)$ ha area $3 \cdot 2 - 1 \cdot 1 = 5$
+x: -0.5 4.5
+y: -0.5 3.5
+poligono: 0 0 3 1 4 3 1 2 | verde
+vettore: 3 1 | accento | spesso | $A^1$ | se
+vettore: 1 2 | blu | spesso | $A^2$ | no
+```
+
+- La definizione delle dispense somma $n!$ prodotti con un segno: è la parte teorica, e all'esame non si usa direttamente.
+- Matrice **triangolare**: prodotto dei numeri sulla diagonale.
+- **Sviluppo di Laplace**: si sceglie la riga o la colonna con più zeri; ogni casella diversa da zero dà un pezzo, con il segno a scacchiera ($+$ nella casella $(1, 1)$) e il determinante della sottomatrice senza quella riga e quella colonna.
+- **Tre regole**: una riga di zeri dà determinante 0; moltiplicare una riga per un numero moltiplica il determinante per quel numero; per questo $\det(2A) = 2^n \det A$ per una matrice $n \times n$.
+
+> [!METODO] Il determinante all'esame, in ordine
+> 1. È quadrata? Se no, non esiste.
+> 2. È triangolare? Prodotto della diagonale.
+> 3. Ci sono numeri comuni da tirare fuori da una riga o da una colonna?
+> 4. Laplace lungo la riga o la colonna con più zeri; per una $3 \times 3$ finale, Sarrus.
+
+::: prova Quanto vale il determinante di $\begin{pmatrix} 2 & 5 & 1 \\ 0 & 3 & 7 \\ 0 & 0 & 4 \end{pmatrix}$?
+$2 \cdot 3 \cdot 4 = 24$: la matrice è triangolare superiore.
+:::
+
+> [!RICORDA]
+> - Solo le matrici quadrate hanno determinante.
+> - Laplace: la riga o la colonna con più zeri, e i segni a scacchiera.
+
+## Verso l'esame
+
+- **Dimensioni e basi** (L07): dimensione di spazi di matrici, di uno Span o di un sottospazio di polinomi; «generatori e/o indipendenti?»; quale insieme è una base.
+- **Matrici** (L08): «quale identità vale?» tra $AB$, $BA$, $A$ e $B$; la traccia di un prodotto, anche con una matrice non quadrata; un rango.
+- **Determinante** (L09): matrici grandi piene di zeri, numeri come $\pi$ ed $e$ da tirare fuori, e il tranello della matrice non quadrata. Dalla prossima lezione anche il determinante di un prodotto.
+- La prova: 10 quiz a 5 risposte e 2 problemi da 11 punti, 2 ore, niente calcolatrice, 4 facciate scritte a mano. Appelli 2026/27: venerdì 22/01/2027 e venerdì 05/02/2027, alle 14:00.
+
+## Domande di ripasso
+
+::: domanda Quando dei vettori sono linearmente indipendenti?
+Quando l'unica combinazione lineare che dà il vettore zero è quella con tutti i coefficienti uguali a zero.
+:::
+
+::: domanda Che cos'è la dimensione di uno spazio vettoriale?
+Il numero di vettori di una sua base: tutte le basi ne hanno lo stesso numero.
+:::
+
+::: domanda Hai 3 vettori in uno spazio di dimensione 3. Che cosa devi controllare per sapere se sono una base?
+Solo che siano indipendenti: con il numero giusto di vettori, l'indipendenza basta.
+:::
+
+::: domanda Quando si può fare il prodotto $AB$, e che taglia ha?
+Quando le colonne di $A$ sono tante quante le righe di $B$. Se $A$ è $m \times n$ e $B$ è $n \times p$, $AB$ è $m \times p$.
+:::
+
+::: domanda Quanto vale ${}^t(AB)$?
+${}^tB\,{}^tA$: si trasporta e si gira l'ordine.
+:::
+
+::: domanda Come si calcola il determinante di una matrice triangolare?
+È il prodotto dei numeri sulla diagonale.
+:::
+
+## Quiz d'esame
+
+Tutte domande vere degli appelli di Algebra lineare e Geometria, con le risposte delle soluzioni ufficiali, ricontrollate nelle lezioni L07–L09 con i conti scritti per esteso.
+
+```quiz
+D: Appello del 16/01/2025, domanda 2. I polinomi $1$, $x$, $x^2$ e $1 + 2x + x^2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti?
++ Sono generatori, ma non linearmente indipendenti
+- Sono linearmente indipendenti, ma non generatori
+- Non sono né linearmente indipendenti né generatori
+- La domanda è mal posta: i polinomi non sono vettori
+- Sono sia generatori che linearmente indipendenti
+= Sono 4 in uno spazio di dimensione 3: c'è per forza un doppione, ed è $1 + 2x + x^2 = 1 + 2 \cdot x + x^2$. I primi tre sono la base canonica, quindi generano. La risposta più insidiosa è «mal posta»: i polinomi sono vettori dello spazio dei polinomi.
+
+D: Appello del 15/01/2026, domanda 4. La dimensione dello spazio $S(3)$ delle matrici $3 \times 3$ simmetriche è:
++ sei
+- nove
+- zero
+- tre
+- $S(3)$ non ha una dimensione perché non è uno spazio vettoriale
+= Una matrice simmetrica $3 \times 3$ è decisa dai 6 numeri sulla diagonale e sopra: quelli sotto sono copie allo specchio. La risposta più insidiosa è nove, la dimensione di tutte le matrici $3 \times 3$.
+
+D: Appello del 07/09/2026, domanda 2. Con $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $B = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$, $C = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, $D = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$, $E = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, $F = \begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}$, quale insieme forma una base di $M(2, \R)$?
++ $\{A, B, E, F\}$
+- $\{A, B, F\}$
+- $\{A, C, D, E\}$
+- $\{B, C, D, E, F\}$
+- $\{B, C, F\}$
+= Una base di $M(2, \R)$ ha 4 elementi: restano solo due risposte. In $\{A, C, D, E\}$ c'è un doppione, $C + D = A$. In $\{A, B, E, F\}$ la combinazione nulla dà, casella per casella, tutti i coefficienti zero: è indipendente, quindi base. La risposta più insidiosa è proprio quella con il doppione.
+
+D: Appello del 15/01/2026, domanda 1. Con $A = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix}$, quale identità vale?
++ $AB = BA$
+- $BA = B$
+- $AB = B$
+- $AB = A$
+- $BA = A$
+= Facendo i conti riga per colonna, $AB$ e $BA$ sono tutte e due la matrice identità: le due matrici sono una l'inversa dell'altra. Di solito $AB \ne BA$: qui no. La risposta più insidiosa è scegliere senza calcolare, pensando che $AB = BA$ sia sempre falso.
+
+D: Appello del 10/07/2025, domanda 9. Data la matrice $A = \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 1 \end{pmatrix}$, la traccia di $A \cdot {}^tA$ è:
++ 7
+- 9
+- non si può calcolare, poiché $A$ non è una matrice quadrata
+- 6
+- 0
+= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata. Ogni casella della diagonale è una riga di $A$ per sé stessa: $5 + 1 + 1 = 7$. La risposta più insidiosa è «non si può calcolare»: la traccia si chiede del prodotto, non di $A$.
+
+D: Appello del 02/09/2025, domanda 3. Il determinante di $\begin{pmatrix} 1 & 2 & 0 & 0 & 0 \\ 0 & 1 & 3 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 2 \\ 1 & 0 & 0 & 0 & 1 \end{pmatrix}$ è:
++ 13
+- 12
+- 0
+- 11
+- 1
+= Laplace lungo la prima colonna: la casella $(1, 1)$ dà una sottomatrice triangolare con determinante 1, la casella $(5, 1)$, con segno più, una triangolare con determinante $2 \cdot 3 \cdot 1 \cdot 2 = 12$. In tutto 13. La risposta più insidiosa è 12, di chi dimentica il primo pezzo.
+
+D: Appello del 10/07/2025, domanda 4. Sia $A = \begin{pmatrix} 1 & -1 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 2 & -1 & 0 \end{pmatrix}$. Qual è il determinante di $A$?
++ $\det(A)$ non è definito
+- $1$
+- $0$
+- $2$
+- $-1$
+= La matrice ha 3 righe e 4 colonne: non è quadrata, e il determinante non esiste. La risposta più insidiosa è $-1$, il determinante della parte $3 \times 3$ a sinistra.
+
+D: Appello del 03/06/2026, domanda 2. Il determinante di $\begin{pmatrix} 1 & e & 1 & 1 \\ \pi & 2\pi e & 3\pi & \pi \\ 1 & e & 2 & 0 \\ 0 & e & 0 & 3 \end{pmatrix}$ è uguale a:
++ $\pi e$
+- $1$
+- $0$
+- $\pi + e$
+- $6 + 2\pi e$
+= Si tira fuori $\pi$ dalla seconda riga ed $e$ dalla seconda colonna; resta una matrice di numeri interi con determinante 1, calcolato con Laplace lungo la quarta riga. La risposta più insidiosa è 1: è il determinante dopo aver tirato fuori $\pi$ ed $e$, che vanno rimoltiplicati.
+```
+
+## Fonti
+
+- Le lezioni complete: [L07 · Spazi vettoriali III](L07_spazi_vettoriali_3.html), [L08 · Matrici I](L08_matrici_1.html), [L09 · Matrici II](L09_matrici_2.html), con gli esempi, i quiz e gli esercizi.
+- R. Buzano, M. Radeschi, dispense 2026 di Algebra lineare e Geometria, pp. 31–44.
+- Quiz degli appelli del 16/01/2025, 10/07/2025, 02/09/2025, 15/01/2026, 03/06/2026 e 07/09/2026, con le soluzioni ufficiali.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_04_MD.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_04_MD.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: S4
+tipo: riassunto
+titolo: "Settimana 4: combinazioni, coefficienti binomiali e problemi di conteggio"
+data: 2026-10-23
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Riassunto settimanale · Parte 1 (modA) · Matematica Discreta · Canali A, B e C · 19/10 – 23/10/2026
+descrizione: >-
+  Riassunto della settimana 4 di Matematica Discreta (MDAG, parte 1): combinazioni semplici e coefficiente binomiale,
+  simmetria, scelte da moltiplicare o da sommare, combinazioni con ripetizione con caselle e separatori, la tabella
+  delle quattro formule; come si spezza un problema di combinatoria, l'analisi dei casi, le proprietà dei
+  coefficienti binomiali, la formula di Stiefel, il triangolo di Tartaglia e la somma di una riga.
+lede: >-
+  Le due lezioni della settimana in poche pagine: quale delle quattro formule usare, come si spezza un problema
+  d'esame in scelte e in casi, perché i coefficienti binomiali formano un triangolo, e le domande vere della domanda 4
+  del quiz.
+materiale: libro
+scheda:
+  Lezioni: "[D08](D08_combinazioni.html) lun 19/10 · [D09](D09_coefficienti_binomiali_stiefel.html) ven 23/10"
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 3, pp. 55–64
+  Tempo di ripasso: 45 minuti
+fonte: >-
+  Gli appunti delle lezioni D08 e D09 di Matematica Discreta, scritti sul libro di A. Mori
+appunti_html: appunti/MDAG/riassunto_settimana_04_MD.html
+genera_html: true
+```
+
+## In breve
+
+- Una **combinazione semplice** è un sottoinsieme: conta **quali** elementi, non l'ordine. Si contano con il coefficiente binomiale $\binom{n}{k}$.
+- Scegliere $k$ elementi è come scegliere gli $n - k$ da lasciare fuori: è la **simmetria**.
+- Una **combinazione con ripetizione** prende $k$ elementi tra $n$ tipi, anche più volte lo stesso: si contano con **caselle e separatori**.
+- Due domande scelgono la formula: **l'ordine conta?** **si ripete?**
+- Un problema d'esame si **spezza in scelte**: quelle da fare tutte si moltiplicano, i casi che si escludono si sommano.
+- **Formula di Stiefel**: i sottoinsiemi di $k$ elementi si dividono in quelli con e senza un elemento fissato. Da qui il **triangolo di Tartaglia**, in cui ogni numero è la somma dei due sopra.
+- La somma della riga $n$ del triangolo è $2^n$: tutti i sottoinsiemi, contati per grandezza.
+
+## D08 · Combinazioni (lun 19/10)
+
+Le 12 disposizioni di 2 piante su 4 danno solo 6 coppie, perché ogni coppia compare in due ordini. In generale ogni sottoinsieme di $k$ elementi corrisponde a $k!$ disposizioni, e le combinazioni sono le disposizioni divise per $k!$.
+
+| | si ripete | non si ripete |
+|---|---|---|
+| **l'ordine conta** | disposizioni con ripetizione: $n^k$ | disposizioni semplici: $\frac{n!}{(n-k)!}$ |
+| **l'ordine non conta** | combinazioni con ripetizione: $\binom{k + n - 1}{k}$ | combinazioni semplici: $\binom{n}{k}$ |
+
+- $\binom{n}{k} = \frac{n!}{k!\,(n-k)!}$, «n su k». Da riconoscere al volo: $\binom{n}{0} = \binom{n}{n} = 1$, $\binom{n}{1} = n$, $\binom{n}{2} = \frac{n(n-1)}{2}$.
+- **Simmetria**: $\binom{n}{k} = \binom{n}{n-k}$. All'esame la stessa risposta può essere scritta nelle due forme.
+- **Moltiplicare o sommare**: le scelte di una formazione di calcio (portiere, difensori, …) si moltiplicano; i coni da 1, 2, 3 o 4 gusti si sommano.
+- **Le parole che decidono**: «mazzo», «gruppo», «degustazione» vogliono dire che l'ordine non conta; «fila», «classifica», «parola» che conta.
+
+```grafico
+titolo: Un mazzo di 5 fiori da 4 varietà (rose, tulipani, margherite, orchidee) come fila di 8 caselle: 5 per i fiori e 3 per i separatori (con il punto). Qui 2 rose, 1 tulipano, nessuna margherita, 2 orchidee. Scegliere le 3 caselle dei separatori tra le 8 decide il mazzo: $\binom{8}{3} = 56$.
+x: 0 8.4
+y: 0 2.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.2 0.6 1.15 0.6 1.15 1.6 0.2 1.6 | rosa
+testo: 0.67 1.1 | rosa | "R"
+poligono: 1.2 0.6 2.15 0.6 2.15 1.6 1.2 1.6 | rosa
+testo: 1.67 1.1 | rosa | "R"
+poligono: 2.2 0.6 3.15 0.6 3.15 1.6 2.2 1.6 | accento
+punto: 2.67 1.1 | accento
+poligono: 3.2 0.6 4.15 0.6 4.15 1.6 3.2 1.6 | ambra
+testo: 3.67 1.1 | ambra | "T"
+poligono: 4.2 0.6 5.15 0.6 5.15 1.6 4.2 1.6 | accento
+punto: 4.67 1.1 | accento
+poligono: 5.2 0.6 6.15 0.6 6.15 1.6 5.2 1.6 | accento
+punto: 5.67 1.1 | accento
+poligono: 6.2 0.6 7.15 0.6 7.15 1.6 6.2 1.6 | blu
+testo: 6.67 1.1 | blu | "O"
+poligono: 7.2 0.6 8.15 0.6 8.15 1.6 7.2 1.6 | blu
+testo: 7.67 1.1 | blu | "O"
+testo: 4.2 2.05 | grigio | "5 fiori + 3 separatori = 8 caselle"
+```
+
+> [!TRAPPOLA] «Almeno uno di ogni tipo»
+> Si mette da parte un elemento per tipo e si contano le scelte libere dei rimanenti. Mazzi di 6 fiori da 4 varietà, con tutte le varietà: restano 2 fiori liberi, $\binom{2 + 4 - 1}{2} = 10$, non $\binom{9}{6} = 84$.
+
+::: prova Quanti sacchetti di 10 caramelle si fanno con 3 gusti?
+L'ordine non conta, i gusti si ripetono: $\binom{10 + 3 - 1}{10} = \binom{12}{2} = 66$.
+:::
+
+> [!RICORDA]
+> - Due domande, quattro formule.
+> - Nelle combinazioni con ripetizione $n$ sono i tipi, $k$ gli elementi presi.
+
+## D09 · Problemi, Stiefel e Tartaglia (ven 23/10)
+
+La lezione comincia dai problemi: quasi nessuno è una formula sola. Si spezza in scelte, si sceglie una formula per ognuna, poi si mette insieme.
+
+- **Scelte da fare tutte**: si moltiplicano. Le squadre del circolo di tennis (prova scritta del 14/07/2020), 4 tennisti su 8 e 2 tenniste su 5, sono $\binom{8}{4} \cdot \binom{5}{2} = 700$.
+- **Analisi dei casi**: se un vincolo divide le situazioni, si conta ogni caso e si somma. Nelle semifinali dell'esercizio 3.13 si conta a parte ogni possibile numero di europei nella prima semifinale.
+- **Oggetti uguali o diversi**: 15 monete in 4 salvadanai senza vuoti (prova scritta del 12/02/2020) sono una combinazione con ripetizione, perché le monete sono uguali: $\binom{14}{3} = 364$.
+
+La **formula di Stiefel**: $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$. Tra i 10 comitati di 3 persone su 5, quelli con Anna sono $\binom{4}{2} = 6$ e quelli senza Anna $\binom{4}{3} = 4$.
+
+```grafico
+titolo: Le righe da 0 a 5 del triangolo di Tartaglia: ogni numero è la somma dei due sopra, come dice la formula di Stiefel. In verde 4 e 6 della riga 4, che danno il 10 della riga 5. La somma di ogni riga è una potenza di 2.
+x: 0 12
+y: 0.6 6.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.6 6 | grigio | "n = 0"
+testo: 0.6 5.05 | grigio | "n = 1"
+testo: 0.6 4.1 | grigio | "n = 2"
+testo: 0.6 3.15 | grigio | "n = 3"
+testo: 0.6 2.2 | grigio | "n = 4"
+testo: 0.6 1.25 | grigio | "n = 5"
+testo: 6 6 | blu | "1"
+testo: 5.3 5.05 | blu | "1"
+testo: 6.7 5.05 | blu | "1"
+testo: 4.6 4.1 | blu | "1"
+testo: 6 4.1 | blu | "2"
+testo: 7.4 4.1 | blu | "1"
+testo: 3.9 3.15 | blu | "1"
+testo: 5.3 3.15 | blu | "3"
+testo: 6.7 3.15 | blu | "3"
+testo: 8.1 3.15 | blu | "1"
+testo: 3.2 2.2 | blu | "1"
+testo: 4.6 2.2 | verde | "4"
+testo: 6 2.2 | verde | "6"
+testo: 7.4 2.2 | blu | "4"
+testo: 8.8 2.2 | blu | "1"
+testo: 2.5 1.25 | blu | "1"
+testo: 3.9 1.25 | blu | "5"
+testo: 5.3 1.25 | accento | "10"
+testo: 6.7 1.25 | blu | "10"
+testo: 8.1 1.25 | blu | "5"
+testo: 9.5 1.25 | blu | "1"
+freccia: 4.75 1.95 5.15 1.53 | verde
+freccia: 5.85 1.95 5.45 1.53 | verde
+testo: 11 6 | grigio | "1"
+testo: 11 5.05 | grigio | "2"
+testo: 11 4.1 | grigio | "4"
+testo: 11 3.15 | grigio | "8"
+testo: 11 2.2 | grigio | "16"
+testo: 11 1.25 | grigio | "32"
+```
+
+- Le altre proprietà: $\binom{n}{0} = \binom{n}{n} = 1$ ai bordi, e la simmetria, che rende ogni riga uguale letta al contrario.
+- **Somma di una riga**: $\binom{n}{0} + \binom{n}{1} + \dots + \binom{n}{n} = 2^n$, perché conta i sottoinsiemi per grandezza. Serve per gli «almeno»: i sottoinsiemi di 6 elementi con almeno 2 elementi sono $64 - 1 - 6 = 57$.
+- Il binomio di Newton, che spiega il nome «coefficiente binomiale», è il prossimo argomento.
+
+::: prova Con Stiefel, quanto vale $\binom{7}{3} + \binom{7}{4}$?
+$\binom{8}{4} = 70$: in basso va il $k$ più grande dei due.
+:::
+
+> [!RICORDA]
+> - Problemi: si spezza in scelte; si moltiplica o si somma.
+> - Stiefel: con e senza un elemento fissato. Tartaglia: ogni numero è la somma dei due sopra.
+
+## Verso l'esame
+
+- **Domanda 4 del quiz**: un conteggio, con le risposte già scritte come formule. Negli appelli 2025–2026 sono uscite combinazioni (degustazioni, caselle colorate, numeri pari e dispari) e disposizioni (sedie, parole, colorazioni di griglie, palline).
+- **Problemi**: mazzi di fiori (14/01/2025), kit di asciugamani (08/09/2025), sottoinsiemi con un vincolo (03/02/2026, 01/07/2026), e negli anni prima persone e sedie, squadre, monete, carte. Il testo dice: «Non è necessario calcolare gli esponenziali, i fattoriali e i coefficienti binomiali». Si lascia la formula, ma si spiega ogni pezzo.
+- Appelli 2026/27: martedì 19/01/2027 e mercoledì 03/02/2027, alle 14:00, con libro e appunti.
+
+## Domande di ripasso
+
+::: domanda Quando si usano le combinazioni semplici e quando le disposizioni semplici?
+Tutte e due senza ripetizioni; le combinazioni quando l'ordine non conta, le disposizioni quando conta.
+:::
+
+::: domanda Perché $\binom{n}{k} = \binom{n}{n-k}$?
+Perché scegliere i $k$ elementi da prendere è come scegliere gli $n - k$ da lasciare fuori.
+:::
+
+::: domanda Quante sono le combinazioni con ripetizione di $k$ elementi da $n$ tipi?
+$\binom{k + n - 1}{k}$: $k$ caselle per gli elementi e $n - 1$ per i separatori.
+:::
+
+::: domanda Quando si moltiplica e quando si somma?
+Si moltiplica per scelte da fare tutte; si somma per casi che si escludono.
+:::
+
+::: domanda Che cosa dice la formula di Stiefel?
+$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$: i sottoinsiemi di $k$ elementi con un elemento fissato e quelli senza.
+:::
+
+::: domanda Quanto vale la somma della riga $n$ del triangolo di Tartaglia, e perché?
+$2^n$: sono tutti i sottoinsiemi di un insieme di $n$ elementi, divisi per grandezza.
+:::
+
+## Quiz d'esame
+
+Le prime sei sono domande vere: la domanda 4 dei quiz degli appelli 2025–2026. Le ultime due vengono da problemi veri, e le ho messe a scelta multipla io. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma.
+
+```quiz
+D: Appello del 10/09/2026. La birreria Qvizz produce 8 birre e offre delle degustazioni di 3 a scelta. Quante sono le possibili degustazioni?
++ $\frac{8!}{3! \cdot 5!}$
+- $\frac{8!}{5!}$
+- $\frac{8!}{3!}$
+- $\frac{8!}{3 \cdot 5}$
+- $8!$
+= L'ordine non conta e le birre sono diverse: $\binom{8}{3} = 56$. La risposta più insidiosa è $\frac{8!}{5!}$: conta le degustazioni con l'ordine.
+
+D: Appello del 13/01/2026. Le 9 caselle di una riga devono essere colorate di giallo o di grigio in modo che ci siano esattamente 4 caselle gialle. Quanti sono i modi di farlo?
++ $\binom{9}{5}$
+- $\frac{9!}{5!}$
+- $9! - 5!$
+- $\binom{5}{4}$
+- $9!$
+= Si sceglie quali 4 caselle sono gialle, $\binom{9}{4}$, che per la simmetria è $\binom{9}{5} = 126$, le 5 grigie. La risposta più insidiosa è $\frac{9!}{5!}$, che sceglie le caselle gialle in ordine.
+
+D: Appello del 04/02/2025. Dall'insieme $\{1, 2, \dots, 14\}$ vogliamo scegliere 4 numeri pari e 2 numeri dispari. Quante scelte possibili ci sono?
++ $\binom{7}{4} \cdot \binom{7}{2}$
+- $\binom{14}{6}$
+- $\binom{14}{4} \cdot \binom{14}{2}$
+- $14^6$
+- $7^2 \cdot 7^4$
+= 7 pari e 7 dispari, due scelte da fare tutte: $35 \cdot 21 = 735$. La risposta più insidiosa è $\binom{14}{4} \cdot \binom{14}{2}$, che sceglie i pari tra tutti i numeri.
+
+D: Appello del 06/06/2025. Quanti sono i modi di scegliere due numeri divisibili per 5 e quattro numeri non divisibili per 5 compresi tra 1 e 20 inclusi?
++ $\binom{4}{2} \cdot \binom{16}{4}$
+- $\binom{20}{2} \cdot \binom{20}{4}$
+- $\frac{20!}{14!}$
+- $4! \cdot 16!$
+- $\frac{4!}{2!} \cdot \frac{16!}{12!}$
+= Tra 1 e 20 i multipli di 5 sono 4 e gli altri 16: $6 \cdot 1820 = 10\,920$. La risposta più insidiosa è l'ultima: sono le stesse scelte, ma con l'ordine.
+
+D: Appello del 14/01/2025. Quanti modi ci sono per far sedere 6 persone in una fila di 10 sedie?
++ $\frac{10!}{4!}$
+- $\frac{10!}{6!}$
+- $10^6$
+- $6^{10}$
+- $10!$
+= Conta chi sta su quale sedia, e ogni sedia ha al massimo una persona: disposizioni semplici, $10 \cdot 9 \cdot 8 \cdot 7 \cdot 6 \cdot 5 = \frac{10!}{4!}$. La risposta più insidiosa è $\frac{10!}{6!}$, che divide per il fattoriale delle persone invece che delle 4 sedie vuote.
+
+D: Appello del 06/06/2026. Quante parole di lunghezza 4 si possono formare con un alfabeto di 16 simboli?
++ $16^4$
+- $4^{16}$
+- $\frac{16!}{4!}$
+- $4 \cdot 16$
+- $4! \cdot 16!$
+= In una parola l'ordine conta e le lettere si ripetono: $16^4 = 65\,536$. La risposta più insidiosa è $4^{16}$, con base ed esponente scambiati.
+
+D: Dal problema 2 dell'appello del 14/01/2025. Con 4 varietà di fiori in quantità illimitata, quanti mazzi diversi di 5 fiori si possono comporre?
++ $\binom{8}{5}$
+- $\binom{9}{5}$
+- $4^5$
+- $\binom{5}{4}$
+- $\frac{8!}{3!}$
+= Combinazioni con ripetizione di 5 elementi da 4 tipi: $\binom{5 + 4 - 1}{5} = 56$. La risposta più insidiosa è $4^5$, che conta i fiori in ordine, come in una fila.
+
+D: Dall'esercizio 1 della prova scritta del 12/02/2020. In quanti modi si possono mettere 15 monete da 1 euro in 4 salvadanai, senza lasciarne nessuno vuoto?
++ $\binom{14}{3}$
+- $\binom{18}{3}$
+- $\binom{15}{4}$
+- $4^{15}$
+- $\frac{15!}{11!}$
+= Le monete sono uguali: una per salvadanaio, poi le altre 11 con ripetizione tra 4, $\binom{11 + 3}{3} = 364$. La risposta più insidiosa è $\binom{18}{3}$, che conta anche i salvadanai vuoti.
+```
+
+## Fonti
+
+- Le lezioni complete: [D08 · Combinazioni semplici e con ripetizione](D08_combinazioni.html), [D09 · Problemi di combinatoria, coefficienti binomiali e formula di Stiefel](D09_coefficienti_binomiali_stiefel.html), con gli esempi, i quiz e gli esercizi.
+- A. Mori, *Lezioni di Matematica Discreta*, cap. 3, pp. 55–64.
+- Quiz degli appelli del 14/01/2025, 04/02/2025, 06/06/2025, 13/01/2026, 06/06/2026 e 10/09/2026 (domanda 4); problemi dell'appello del 14/01/2025 e della prova scritta del 12/02/2020, con le soluzioni ufficiali.
 
 
 ---

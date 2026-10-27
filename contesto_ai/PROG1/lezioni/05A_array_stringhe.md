@@ -17,6 +17,7 @@ lede: >-
 materiale: slide
 scheda:
   Slide: 05A_array_stringhe («Array e stringhe») · 35 pagine
+  Lezioni: mercoledì 21/10 (fino alla slide 9) e martedì 27/10 (dalla 9 alla 35)
   Corso: Prof. Elvio Amparore · A.A. 2026/27
   Tempo di studio: 100 minuti, meglio con gcc a portata di mano
 fonte: >-
@@ -38,7 +39,7 @@ genera_html: true
 - `scanf("%19s", nome)` legge una parola, senza `&`; per una frase con gli spazi serve `scanf(" %49[^\n]", frase)`.
 
 > [!CANALI]
-> **Canale B.** È la lezione di mercoledì 21/10, dalle 9 alle 11. Usa i cicli della [04A](04A_iterazioni.html) e i puntatori della [02C](02C_referenziamento_scanf_puntatori.html); i codici dei caratteri si sono già visti nella [lezione 02 di Fondamenti](../FDA/02_testo_colori_suoni_binario.html).
+> **Canale B.** Amparore ha usato queste slide in due lezioni: mercoledì 21/10, dalle 9 alle 11, fino alla scansione (slide 9), e martedì 27/10, dalle 11 alle 13, con un ripasso veloce delle slide 3–9 e poi tutto il resto, dagli esempi con i cicli alle stringhe. La seconda parte l'ho ricontrollata sul video del 27/10: le slide sono le stesse del PDF. Usa i cicli della [04A](04A_iterazioni.html) e i puntatori della [02C](02C_referenziamento_scanf_puntatori.html); i codici dei caratteri si sono già visti nella [lezione 02 di Fondamenti](../FDA/02_testo_colori_suoni_binario.html).
 >
 > **Canali A e C.** Secondo l'elenco delle lezioni 2025/26 nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md), array e stringhe vengono dopo i cicli anche negli altri canali. Le slide 2026/27 dei canali A e C non le ho viste. L'esame è unico.
 >
@@ -636,6 +637,9 @@ char nome[4] = "Anna";   // compila: ma il '\0' non ci sta
 ```
 
 L'array ha 4 posti, e `"Anna"` ne vuole 5. In C questa riga è permessa: il compilatore mette le quattro lettere e **lascia fuori il terminatore**, senza avvisi. Il risultato non è una stringa. Se non devi contare a mano, lascia le quadre vuote: `char nome[] = "Anna";` riserva sempre il posto giusto.
+
+> [!NOTA] Il manuale di printf
+> Il 27/10, parlando del terminatore, Amparore ha aperto nel terminale il manuale di `printf` con `man 3 printf`. Il 3 è la sezione del manuale dedicata alle funzioni della libreria del C; dentro si scorre con le frecce e si esce con `q`. Il comando c'è su Linux, quindi al laboratorio Turing, e su macOS; su Windows con MinGW no, ma le stesse pagine si trovano sul web cercando «man 3 printf».
 
 ::: prova Quanto vale `sizeof` di `char s[] = "pane";`? E dopo `s[0] = 'c';`, che cosa stampa `printf("%s", s)`?
 5, quattro lettere e il terminatore. Stampa `cane`: l'array è modificabile.

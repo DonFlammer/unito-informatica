@@ -81,7 +81,7 @@
       <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 05A</p>
       <h1>Array e stringhe</h1>
       <p class="lede">Finora ogni variabile conteneva un valore solo. Un array ne contiene molti dello stesso tipo, uno dopo l&#39;altro in memoria, e con un ciclo for si possono leggere tutti. Una stringa è un array di caratteri con un segnale di fine.</p>
-      <dl class="meta"><div><dt>Slide</dt><dd>05A_array_stringhe («Array e stringhe») · 35 pagine</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>100 minuti, meglio con gcc a portata di mano</dd></div></dl>
+      <dl class="meta"><div><dt>Slide</dt><dd>05A_array_stringhe («Array e stringhe») · 35 pagine</dd></div><div><dt>Lezioni</dt><dd>mercoledì 21/10 (fino alla slide 9) e martedì 27/10 (dalla 9 alla 35)</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>100 minuti, meglio con gcc a portata di mano</dd></div></dl>
       <ul class="legend" aria-label="Legenda dei riquadri">
         <li class="l-def"><i></i>Definizione o risultato da sapere</li>
         <li class="l-trap"><i></i>Trappola / errore tipico</li>
@@ -106,7 +106,7 @@
 </ul>
 </section>
 
-<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È la lezione di mercoledì 21/10, dalle 9 alle 11. Usa i cicli della <a href="04A_iterazioni.html">04A</a> e i puntatori della <a href="02C_referenziamento_scanf_puntatori.html">02C</a>; i codici dei caratteri si sono già visti nella <a href="../FDA/02_testo_colori_suoni_binario.html">lezione 02 di Fondamenti</a>.</p>
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Amparore ha usato queste slide in due lezioni: mercoledì 21/10, dalle 9 alle 11, fino alla scansione (slide 9), e martedì 27/10, dalle 11 alle 13, con un ripasso veloce delle slide 3–9 e poi tutto il resto, dagli esempi con i cicli alle stringhe. La seconda parte l&#39;ho ricontrollata sul video del 27/10: le slide sono le stesse del PDF. Usa i cicli della <a href="04A_iterazioni.html">04A</a> e i puntatori della <a href="02C_referenziamento_scanf_puntatori.html">02C</a>; i codici dei caratteri si sono già visti nella <a href="../FDA/02_testo_colori_suoni_binario.html">lezione 02 di Fondamenti</a>.</p>
 <p><strong>Canali A e C.</strong> Secondo l&#39;elenco delle lezioni 2025/26 nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>, array e stringhe vengono dopo i cicli anche negli altri canali. Le slide 2026/27 dei canali A e C non le ho viste. L&#39;esame è unico.</p>
 <p><strong>Un avviso sulle slide.</strong> Nelle slide 24–25, sulla storia di Unicode, alcuni numeri vanno corretti: li sistemo nella sezione su Unicode. Non servono per l&#39;esame.</p>
 <p>Tutti i programmi li ho compilati e provati con gcc 16.1, con <code>-Wall -Werror</code>.</p>
@@ -429,7 +429,7 @@ printf(<span class="str">&quot;%d\n&quot;</span>, v[5]); <span class="cm">// ERR
 </div>
 </section>
 
-<section id="stringhe-e-terminatore" aria-labelledby="h-stringhe-e-terminatore" style="--h:1590px">
+<section id="stringhe-e-terminatore" aria-labelledby="h-stringhe-e-terminatore" style="--h:1870px">
 <div class="sec-head"><span class="sec-num">§10</span><h2 id="h-stringhe-e-terminatore">Stringhe e terminatore</h2><span class="slides">slide 27</span></div>
 <p>Una stringa è un array di <code>char</code>. Ma rispetto agli altri array ha una cosa in più: per convenzione finisce <strong>sempre</strong> con il carattere <code>'\0'</code>, il <strong>terminatore</strong> (NUL, codice 0). È un valore sentinella, come l&#39;altezza negativa della <a href="04A_iterazioni.html">04A</a>: dice «il testo finisce qui».</p>
 <p>La parola <code>&quot;ciao&quot;</code> è un array di <strong>5</strong> <code>char</code>:</p>
@@ -442,6 +442,8 @@ printf(<span class="str">&quot;%d\n&quot;</span>, v[5]); <span class="cm">// ERR
 <p>C&#39;è un caso che il compilatore accetta e che è quasi sempre un errore:</p>
 <pre class="code" data-lingua="c"><code><span class="kw">char</span> nome[4] = <span class="str">&quot;Anna&quot;</span>;   <span class="cm">// compila: ma il '\0' non ci sta</span></code></pre>
 <p>L&#39;array ha 4 posti, e <code>&quot;Anna&quot;</code> ne vuole 5. In C questa riga è permessa: il compilatore mette le quattro lettere e <strong>lascia fuori il terminatore</strong>, senza avvisi. Il risultato non è una stringa. Se non devi contare a mano, lascia le quadre vuote: <code>char nome[] = &quot;Anna&quot;;</code> riserva sempre il posto giusto.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Il manuale di printf</span></p><p>Il 27/10, parlando del terminatore, Amparore ha aperto nel terminale il manuale di <code>printf</code> con <code>man 3 printf</code>. Il 3 è la sezione del manuale dedicata alle funzioni della libreria del C; dentro si scorre con le frecce e si esce con <code>q</code>. Il comando c&#39;è su Linux, quindi al laboratorio Turing, e su macOS; su Windows con MinGW no, ma le stesse pagine si trovano sul web cercando «man 3 printf».</p>
+</div>
 <div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto vale <code>sizeof</code> di <code>char s[] = &quot;pane&quot;;</code>? E dopo <code>s[0] = 'c';</code>, che cosa stampa <code>printf(&quot;%s&quot;, s)</code>?</span></summary><div class="ans"><p>5, quattro lettere e il terminatore. Stampa <code>cane</code>: l&#39;array è modificabile.</p>
 </div></details></div></div>
 <div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>

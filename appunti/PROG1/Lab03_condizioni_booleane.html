@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab03 · Laboratorio 03: condizioni booleane</title>
+<meta name="lezione" content="Lab03">
+<meta name="data" content="2026-10-19">
+<meta name="description" content="Appunti del terzo laboratorio di Programmazione I (canale B, Lab03): il valore di espressioni booleane, perché 3 &lt; 5 &lt; 7 non vuol dire quello che sembra, De Morgan, i sei esercizi di esercizi_booleani.c, il saluto secondo l'ora, come funziona CodeRunner, il punto e virgola dopo l'if e l'else senza graffe, il massimo di quattro numeri, il menù di operazioni, l'equazione di secondo grado con tutti i casi, sasso-carta-forbici-lucertola-Spock, con i programmi provati.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/Lab03_condizioni_booleane.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#il-valore-di-un-espressione-booleana"><span class="n">§1</span><span>Il valore di un&#39;espressione booleana</span></a></li>
+<li><a href="#esercizi-booleani-c-sei-condizioni"><span class="n">§2</span><span>esercizi_booleani.c: sei condizioni</span></a></li>
+<li><a href="#il-saluto-secondo-l-ora-saluta-c"><span class="n">§3</span><span>Il saluto secondo l&#39;ora: saluta.c</span></a></li>
+<li><a href="#coderunner"><span class="n">§4</span><span>CodeRunner</span></a></li>
+<li><a href="#due-errori-che-compilano"><span class="n">§5</span><span>Due errori che compilano</span></a></li>
+<li><a href="#il-massimo-di-quattro-numeri"><span class="n">§6</span><span>Il massimo di quattro numeri</span></a></li>
+<li><a href="#il-menu-di-operazioni"><span class="n">§7</span><span>Il menù di operazioni</span></a></li>
+<li><a href="#l-equazione-di-secondo-grado"><span class="n">§8</span><span>L&#39;equazione di secondo grado</span></a></li>
+<li><a href="#sasso-carta-forbici-lucertola-spock-lab03-es3"><span class="n">§9</span><span>Sasso-carta-forbici-lucertola-Spock (Lab03-Es3)</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§10</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§11</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§12</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§13</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§14</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§15</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§16</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione Lab03</nav>
+      <p class="eyebrow">Canale B · Laboratorio 03 · Programmazione I</p>
+      <h1>Laboratorio 03: condizioni booleane</h1>
+      <p class="lede">Il terzo laboratorio mette in pratica le lezioni 03C e 03D: si calcolano espressioni booleane a mano, si scrivono if ed else per scegliere tra più casi e si incontra CodeRunner, il sistema dell&#39;esame. Qui trovi ogni esercizio risolto e provato, e quello che il compilatore dice davvero sugli errori delle slide.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>Lab03 «Condizioni booleane», laboratorio canale B · 22 pagine, esercizi anche su CodeRunner</dd></div><div><dt>Laboratorio</dt><dd>Elisa Marengo (turno B2, lun 19/10) e Valerio Basile (turno B1, mar 20/10) · 14–17 · laboratorio Turing</dd></div><div><dt>Tempo di studio</dt><dd>2–3 ore, davanti a un computer</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:660px">
+<h2 id="tldr-title">La lezione in 7 punti</h2>
+<ul>
+<li>In C un confronto vale <strong>1 se è vero e 0 se è falso</strong>. Per questo <code>3 &lt; 5 &lt; 7</code> non controlla che 5 stia tra 3 e 7: calcola <code>(3 &lt; 5) &lt; 7</code>, cioè <code>1 &lt; 7</code>. Si scrive <code>3 &lt; 5 &amp;&amp; 5 &lt; 7</code>.</li>
+<li>Le <strong>leggi di De Morgan</strong> dicono come si nega un «e» e un «o»: <code>!(a &amp;&amp; b)</code> è come <code>!a || !b</code>, e <code>!(a || b)</code> è come <code>!a &amp;&amp; !b</code>.</li>
+<li>Per scegliere tra più casi si usa una catena di <code>if</code>, <code>else if</code>, <code>else</code>: i casi si controllano in ordine e se ne esegue <strong>uno solo</strong>.</li>
+<li><strong>CodeRunner</strong> compila il tuo programma con <code>-Wall -Werror</code>, lo esegue con diversi input e confronta le stampe con quelle attese, carattere per carattere.</li>
+<li>Due errori che le slide definiscono «insidiosi»: il <strong>punto e virgola dopo l&#39;<code>if</code></strong> e l&#39;<code>else</code> con due istruzioni <strong>senza graffe</strong>. Con le graffe sempre, non succedono.</li>
+<li>Il <strong>massimo</strong> di più numeri si trova con una variabile di supporto: si parte dal primo e la si aggiorna quando arriva un numero più grande.</li>
+<li>L&#39;equazione di secondo grado ha <strong>sei casi</strong>: indeterminata, impossibile, di primo grado, una radice, due radici reali, radici complesse.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È il terzo laboratorio, al laboratorio Turing, dalle 14 alle 17: turno <strong>B2</strong> lunedì 19/10 con <strong>Elisa Marengo</strong>, turno <strong>B1</strong> martedì 20/10 con <strong>Valerio Basile</strong>. Gli esercizi riprendono le lezioni <a href="03C_booleani.html">03C</a> (espressioni booleane) e <a href="03D_decisioni.html">03D</a> (<code>if</code> ed <code>else</code>); il gioco finale usa il valore restituito da <code>scanf</code>, della <a href="02C_referenziamento_scanf_puntatori.html">02C</a>.</p>
+<p><strong>Canali A e C.</strong> Secondo la scheda del corso i laboratori hanno la stessa sequenza nei tre canali e gli stessi esercizi su CodeRunner. Le slide 2026/27 dei canali A e C per questo laboratorio non le ho viste.</p>
+<p>I tre esercizi su CodeRunner (Lab03-Es1, Es2 ed Es3) e il codice di partenza (<code>booleani.c</code>, <code>esercizi_booleani.c</code>) sono su Moodle e non li ho: qui ci sono soluzioni mie degli stessi problemi. Tutti i programmi li ho compilati con gcc 16.1 su Windows 11 a 64 bit ed eseguiti.</p>
+</div>
+
+
+<section id="il-valore-di-un-espressione-booleana" aria-labelledby="h-il-valore-di-un-espressione-booleana" style="--h:1400px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-il-valore-di-un-espressione-booleana">Il valore di un&#39;espressione booleana</h2><span class="slides">slide 2–3</span></div>
+<p>La prima domanda del laboratorio chiede il valore di nove espressioni. In C il risultato di un confronto o di un&#39;operazione logica è un intero: <strong>1</strong> se è vera, <strong>0</strong> se è falsa. Con <code>printf(&quot;%d&quot;, ...)</code> si vede proprio 1 o 0; le slide scrivono <code>true</code> e <code>false</code>.</p>
+<div class="table-wrap"><table><thead><tr><th>Espressione</th><th>Come si calcola</th><th class="centro">Valore</th></tr></thead><tbody><tr><td><code>3&gt;5 \|\| 10 == 7+3</code></td><td>falso, oppure vero</td><td class="centro">1</td></tr>
+<tr><td><code>3 != 5 &amp;&amp; (6 &lt; 2 \|\| 5+2 == 10 - 3)</code></td><td>vero, e (falso oppure vero)</td><td class="centro">1</td></tr>
+<tr><td><code>3 &lt; 5 &lt; 7</code></td><td><code>(3 &lt; 5) &lt; 7</code>, cioè <code>1 &lt; 7</code></td><td class="centro">1, ma per il motivo sbagliato</td></tr>
+<tr><td><code>4 &gt; 3 &gt; 2</code></td><td><code>(4 &gt; 3) &gt; 2</code>, cioè <code>1 &gt; 2</code></td><td class="centro">0</td></tr>
+<tr><td><code>3 &lt; 5 &amp;&amp; 5 &lt; 7</code></td><td>vero e vero</td><td class="centro">1</td></tr>
+<tr><td><code>3 &lt; 5 &amp;&amp; 7 &lt; 5</code></td><td>vero e falso</td><td class="centro">0</td></tr>
+<tr><td><code>true &amp;&amp; false</code></td><td></td><td class="centro">0</td></tr>
+<tr><td><code>true &amp;&amp; 5 &lt; 7</code></td><td>il <code>&lt;</code> si calcola prima dell&#39;<code>&amp;&amp;</code></td><td class="centro">1</td></tr>
+<tr><td><code>false \|\| 5 &lt; 10</code></td><td></td><td class="centro">1</td></tr></tbody></table></div>
+<p>I valori li ho controllati con un programma. Le due righe interessanti sono la terza e la quarta. In matematica <span class="katex" role="math" aria-label="4 &gt; 3 &gt; 2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> è vera; in C gli operatori di confronto si applicano <strong>da sinistra, due alla volta</strong>. Prima <code>4 &gt; 3</code>, che vale 1; poi <code>1 &gt; 2</code>, che è falso.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · gcc avvisa, e con -Werror non compila</span></p><p>Le slide usano solo <code>-Wall</code>. Con <code>3 &lt; 5 &lt; 7</code> gcc 16 dà l&#39;avviso <code>comparisons like 'X&lt;=Y&lt;=Z' do not have their mathematical meaning [-Wparentheses]</code>: con <code>-Werror</code>, cioè all&#39;esame e su CodeRunner, il programma non compila. «5 sta tra 3 e 7» si scrive <code>3 &lt; 5 &amp;&amp; 5 &lt; 7</code>.</p>
+</div>
+<p>La slide 4 ricorda le <strong>leggi di De Morgan</strong> della <a href="../FDA/07_condizionali_equivalenza_logica.html">lezione 07 di Fondamenti</a>: per negare un «e» si negano i pezzi e si mette un «o», e viceversa. In C: <code>!(a &amp;&amp; b)</code> è come <code>!a || !b</code>, e <code>!(a || b)</code> è come <code>!a &amp;&amp; !b</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto valgono <code>!(3 &lt; 5 &amp;&amp; 2 &gt; 4)</code> e <code>10 &gt; 5 &gt; 1</code>? E quale delle due fa scattare l&#39;avviso di gcc?</span></summary><div class="ans"><p><code>!(3 &lt; 5 &amp;&amp; 2 &gt; 4)</code> vale 1: dentro la parentesi c&#39;è vero e falso, cioè falso, e il <code>!</code> lo gira. <code>10 &gt; 5 &gt; 1</code> vale 0: <code>10 &gt; 5</code> dà 1, e <code>1 &gt; 1</code> è falso. L&#39;avviso è per la seconda.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Vero vale 1, falso vale 0.</li>
+<li><code>a &lt; b &lt; c</code> in C non vuol dire «b sta tra a e c»: si scrive <code>a &lt; b &amp;&amp; b &lt; c</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="esercizi-booleani-c-sei-condizioni" aria-labelledby="h-esercizi-booleani-c-sei-condizioni" style="--h:1460px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-esercizi-booleani-c-sei-condizioni">esercizi_booleani.c: sei condizioni</h2><span class="slides">slide 4–5</span></div>
+<p>Il codice di partenza ha due file. <code>booleani.c</code> va solo letto e provato, per vedere esempi di operazioni booleane. In <code>esercizi_booleani.c</code> vanno scritti sei punti. Ecco una soluzione per ognuno: ogni punto legge i suoi valori.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a, b, c;
+    <span class="kw">bool</span> b1, b2;
+    <span class="kw">int</span> t1, t2;
+
+    <span class="cm">// 1. a multiplo di b: stampa 1 o 0</span>
+    printf(<span class="str">&quot;a e b: &quot;</span>);
+    scanf(<span class="str">&quot;%d %d&quot;</span>, &amp;a, &amp;b);
+    printf(<span class="str">&quot;%d\n&quot;</span>, b != 0 &amp;&amp; a % b == 0);
+
+    <span class="cm">// 2. a e' un voto tra 1 e 30?</span>
+    printf(<span class="str">&quot;voto: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;a);
+    printf(<span class="str">&quot;%s\n&quot;</span>, (a &gt;= 1 &amp;&amp; a &lt;= 30) ? <span class="str">&quot;true&quot;</span> : <span class="str">&quot;false&quot;</span>);
+
+    <span class="cm">// 3. false se b1 e b2 sono entrambi veri, true altrimenti</span>
+    printf(<span class="str">&quot;b1 e b2 (0 o 1): &quot;</span>);
+    scanf(<span class="str">&quot;%d %d&quot;</span>, &amp;t1, &amp;t2);
+    b1 = t1;
+    b2 = t2;
+    printf(<span class="str">&quot;%s\n&quot;</span>, !(b1 &amp;&amp; b2) ? <span class="str">&quot;true&quot;</span> : <span class="str">&quot;false&quot;</span>);
+
+    <span class="cm">// 4. il massimo di due interi</span>
+    printf(<span class="str">&quot;a e b: &quot;</span>);
+    scanf(<span class="str">&quot;%d %d&quot;</span>, &amp;a, &amp;b);
+    <span class="kw">if</span> (a &gt; b) {
+        printf(<span class="str">&quot;%d\n&quot;</span>, a);
+    } <span class="kw">else</span> <span class="kw">if</span> (b &gt; a) {
+        printf(<span class="str">&quot;%d\n&quot;</span>, b);
+    } <span class="kw">else</span> {
+        printf(<span class="str">&quot;I due valori sono uguali\n&quot;</span>);
+    }
+
+    <span class="cm">// 5. il massimo di tre interi, con max</span>
+    printf(<span class="str">&quot;a, b e c: &quot;</span>);
+    scanf(<span class="str">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c);
+    <span class="kw">int</span> max = a;
+    <span class="kw">if</span> (b &gt; max) {
+        max = b;
+    }
+    <span class="kw">if</span> (c &gt; max) {
+        max = c;
+    }
+    printf(<span class="str">&quot;%d\n&quot;</span>, max);
+
+    <span class="cm">// 6. ordinati in modo crescente?</span>
+    printf(<span class="str">&quot;a, b e c: &quot;</span>);
+    scanf(<span class="str">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c);
+    <span class="kw">if</span> (a &lt; b &amp;&amp; b &lt; c) {
+        printf(<span class="str">&quot;ordinati\n&quot;</span>);
+    }
+}</code></pre>
+<p>Con l&#39;input <code>12 4</code>, <code>31</code>, <code>1 1</code>, <code>7 7</code>, <code>3 9 5</code>, <code>1 2 3</code> stampa 1, <code>false</code>, <code>false</code>, <code>I due valori sono uguali</code>, 9 e <code>ordinati</code>. Alcuni dettagli:</p>
+<ul>
+<li><strong>Punto 1.</strong> «<span class="katex" role="math" aria-label="a"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> multiplo di <span class="katex" role="math" aria-label="b"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span></span></span></span>» vuol dire che la divisione <span class="katex" role="math" aria-label="a / b"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mord">/</span><span class="mord mathnormal">b</span></span></span></span> ha resto 0: <code>a % b == 0</code>. Il controllo <code>b != 0</code> viene prima, così con <span class="katex" role="math" aria-label="b = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> l&#39;<code>&amp;&amp;</code> si ferma e la divisione per zero non avviene: è la valutazione cortocircuitata della <a href="03C_booleani.html">03C</a>.</li>
+<li><strong>Punto 3.</strong> «false se tutti e due sono veri, true altrimenti» è <code>!(b1 &amp;&amp; b2)</code>, che per De Morgan è anche <code>!b1 || !b2</code>. I due booleani si leggono come interi, perché <code>scanf</code> non ha uno specificatore per <code>bool</code>.</li>
+<li><strong>Punto 2.</strong> Il <code>? :</code> sceglie quale stringa stampare: <code>condizione ? se_vera : se_falsa</code>.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con il punto 6, l&#39;input <code>1 1 2</code> stampa «ordinati»? E se la richiesta fosse «in ordine non decrescente»?</span></summary><div class="ans"><p>No: <code>1 &lt; 1</code> è falso. Per «non decrescente», dove i numeri uguali vanno bene, si scrive <code>a &lt;= b &amp;&amp; b &lt;= c</code>, e allora stampa «ordinati».</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>«Multiplo» si controlla con il resto: <code>a % b == 0</code>, dopo aver escluso <code>b == 0</code>.</li>
+<li>Le condizioni con «tra», «entrambi», «almeno uno» si traducono con <code>&amp;&amp;</code> e <code>||</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-saluto-secondo-l-ora-saluta-c" aria-labelledby="h-il-saluto-secondo-l-ora-saluta-c" style="--h:880px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-il-saluto-secondo-l-ora-saluta-c">Il saluto secondo l&#39;ora: saluta.c</h2><span class="slides">slide 6</span></div>
+<p>Il programma chiede l&#39;ora e stampa uno di quattro saluti. Gli intervalli li decidi tu: l&#39;importante è che coprano tutte le ore da 0 a 23 senza sovrapposizioni, e che un&#39;ora fuori dall&#39;intervallo dia un messaggio d&#39;errore.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> ora;
+    printf(<span class="str">&quot;Che ore sono? &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;ora);
+    <span class="kw">if</span> (ora &lt; 0 || ora &gt; 23) {
+        printf(<span class="str">&quot;Ora non valida\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (ora &gt;= 6 &amp;&amp; ora &lt; 13) {
+        printf(<span class="str">&quot;Buongiorno\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (ora &gt;= 13 &amp;&amp; ora &lt; 18) {
+        printf(<span class="str">&quot;Buon pomeriggio\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (ora &gt;= 18 &amp;&amp; ora &lt; 23) {
+        printf(<span class="str">&quot;Buonasera\n&quot;</span>);
+    } <span class="kw">else</span> {
+        printf(<span class="str">&quot;Buona notte\n&quot;</span>);
+    }
+}</code></pre>
+<p>La catena <code>else if</code> si legge dall&#39;alto: appena una condizione è vera si esegue il suo blocco e si salta il resto. L&#39;ultimo <code>else</code> prende tutto quello che resta: le ore da 0 a 5 e le 23. Con 3, 9, 15, 20 e 25 stampa <code>Buona notte</code>, <code>Buongiorno</code>, <code>Buon pomeriggio</code>, <code>Buonasera</code> e <code>Ora non valida</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nella catena, la condizione <code>ora &gt;= 13 &amp;&amp; ora &lt; 18</code> si potrebbe accorciare in <code>ora &lt; 18</code>? Perché?</span></summary><div class="ans"><p>Sì: a quel punto della catena si sa già che l&#39;ora non è minore di 13, altrimenti sarebbe entrata in un ramo precedente. Allo stesso modo <code>ora &gt;= 18 &amp;&amp;</code> è superfluo nel ramo dopo. La versione lunga però si legge anche da sola.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>In una catena <code>if</code>, <code>else if</code>, <code>else</code> si esegue un solo ramo, il primo con la condizione vera.</li>
+<li>L&#39;<code>else</code> finale raccoglie tutti i casi non elencati.</li>
+</ul>
+</div>
+</section>
+
+<section id="coderunner" aria-labelledby="h-coderunner" style="--h:1070px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-coderunner">CodeRunner</h2><span class="slides">slide 7–10</span></div>
+<p>Gli esercizi su Moodle con il nome «Lab03-Es…» si fanno su <strong>CodeRunner</strong>, lo stesso sistema dell&#39;esame. Si apre l&#39;esercizio, si preme «Tenta il quiz adesso» e si trova il testo, un&#39;area in cui scrivere il codice e il pulsante per compilare ed eseguire. Il programma viene eseguito con diversi input preparati dai docenti e le sue stampe vengono confrontate con quelle attese.</p>
+<div class="table-wrap"><table><thead><tr><th>Esito</th><th>Che cosa vuol dire</th></tr></thead><tbody><tr><td>errore di compilazione</td><td>il programma non compila con <code>-Wall -Werror</code>: anche un solo avviso lo blocca</td></tr>
+<tr><td>alcuni test falliti</td><td>compila e gira, ma almeno una stampa è diversa da quella attesa</td></tr>
+<tr><td>tutti i test superati</td><td>compila, gira e produce tutte le stampe attese</td></tr></tbody></table></div>
+<p>Le stampe si confrontano <strong>carattere per carattere</strong>: uno spazio in più, una maiuscola o un <code>\n</code> mancante bastano a far fallire un test. In laboratorio puoi verificare quante volte vuoi, e l&#39;esercizio non viene valutato: i messaggi sui punteggi si possono ignorare.</p>
+<p>Il primo esercizio, «Lab03-Es1 Scelte su Interi», chiede di scegliere tra più casi su degli interi letti in input. Il testo esatto è su Moodle e non l&#39;ho.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Un esercizio chiede di stampare <code>Il massimo e' 9</code> e tu stampi <code>il massimo e' 9</code>. Che esito dà CodeRunner?</span></summary><div class="ans"><p>Test fallito: la maiuscola iniziale è diversa. Il programma compila e gira, ma la stampa non coincide con quella attesa.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>CodeRunner compila con <code>-Wall -Werror</code>: un avviso è già un errore.</li>
+<li>Le stampe devono coincidere carattere per carattere, compresi spazi e a capo.</li>
+</ul>
+</div>
+</section>
+
+<section id="due-errori-che-compilano" aria-labelledby="h-due-errori-che-compilano" style="--h:1920px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-due-errori-che-compilano">Due errori che compilano</h2><span class="slides">slide 11–15</span></div>
+<p>Le slide mostrano due programmi sbagliati che, dicono, «compilano senza segnalare problemi». Il primo ha un punto e virgola subito dopo l&#39;<code>if</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main() {
+    <span class="kw">int</span> voto;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;voto);
+    <span class="kw">if</span> (voto &gt;= 18);
+        printf(<span class="str">&quot;Esame passato.\n&quot;</span>);
+}</code></pre>
+<p>Per il C il <code>;</code> è un&#39;<strong>istruzione vuota</strong>: l&#39;<code>if</code> controlla quella, e la <code>printf</code> dopo viene eseguita sempre. Con il voto 15 il programma stampa <code>Esame passato.</code></p>
+<p>Il secondo ha un <code>else</code> con due istruzioni e senza graffe:</p>
+<pre class="code" data-lingua="c"><code>    <span class="kw">if</span> (voto &gt;= 18)
+        printf(<span class="str">&quot;Esame passato.\n&quot;</span>);
+    <span class="kw">else</span>
+        printf(<span class="str">&quot;Esame non passato.\n&quot;</span>);
+        printf(<span class="str">&quot;Ripresentarsi al prossimo appello.\n&quot;</span>);</code></pre>
+<p>Senza graffe, l&#39;<code>else</code> controlla <strong>solo la prima istruzione</strong> che lo segue. L&#39;ultima <code>printf</code> sta fuori, anche se l&#39;indentazione fa pensare il contrario: con il voto 25 il programma stampa <code>Esame passato.</code> e poi <code>Ripresentarsi al prossimo appello.</code></p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Che cosa controlla davvero l'else senza graffe. Il riquadro ambra è il ramo dell'else: contiene solo la prima printf. La seconda, in rosa, sta fuori e viene eseguita sempre, con qualunque voto." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M46.67 85L513.33 85L513.33 30.36L46.67 30.36Z"/><path class="g-poligono g-ambra" d="M46.67 170L513.33 170L513.33 115.36L46.67 115.36Z"/><path class="g-poligono g-rosa" d="M46.67 279.29L513.33 279.29L513.33 224.64L46.67 224.64Z"/><path class="g-linea g-grigio" d="M280 170L280 218.57" marker-end="url(#g-freccia-1-grigio)"/></svg><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:16.96%">if (voto &gt;= 18) → «Esame passato.»</span><span class="g-et g-c g-testo g-ambra" style="left:50.00%;top:41.96%">else → «Esame non passato.»</span><span class="g-et g-c g-testo g-rosa" style="left:50.00%;top:74.11%">«Ripresentarsi...»: sempre</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:92.86%">l'indentazione non conta: contano le graffe</span></div><figcaption>Che cosa controlla davvero l&#39;else senza graffe. Il riquadro ambra è il ramo dell&#39;else: contiene solo la prima printf. La seconda, in rosa, sta fuori e viene eseguita sempre, con qualunque voto.</figcaption></figure>
+<div class="box trap"><p class="box-label"><span>Trappola · Con gcc 16 non compilano più in silenzio</span></p><p>Le slide dicono che i due programmi compilano senza avvisi. Con gcc 16.1 e <code>-Wall</code> non è così: per tutti e due gcc avvisa <code>this 'if' clause does not guard...</code> (o <code>this 'else' clause</code>) <code>[-Wmisleading-indentation]</code>, perché l&#39;indentazione fa credere che la <code>printf</code> stia dentro. Con <code>-Werror</code> il programma non compila. Se però la <code>printf</code> non fosse indentata, l&#39;avviso sparirebbe e l&#39;errore resterebbe nascosto. Il punto e virgola vuoto ha anche un suo avviso, <code>suggest braces around empty body</code>, ma solo con <code>-Wextra</code>.</p>
+</div>
+<p>La regola delle slide (slide 15) risolve tutti e due i problemi: <strong>metti sempre le graffe</strong> attorno ai blocchi di <code>if</code> ed <code>else</code>, tranne quando il blocco è una riga sola, corta, scritta sulla stessa riga dell&#39;<code>if</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con le graffe, dove va la <code>printf</code> della seconda frase perché sia stampata solo quando l&#39;esame non è passato?</span></summary><div class="ans"><p>Dentro il blocco dell&#39;<code>else</code>: <code>else { printf(&quot;Esame non passato.\n&quot;); printf(&quot;Ripresentarsi al prossimo appello.\n&quot;); }</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Un <code>;</code> subito dopo <code>if (...)</code> è un&#39;istruzione vuota: l&#39;<code>if</code> non controlla più niente.</li>
+<li>Senza graffe, <code>if</code> ed <code>else</code> controllano una sola istruzione. Le graffe sempre evitano entrambi gli errori.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-massimo-di-quattro-numeri" aria-labelledby="h-il-massimo-di-quattro-numeri" style="--h:970px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-il-massimo-di-quattro-numeri">Il massimo di quattro numeri</h2><span class="slides">slide 16, Lab03-Es2</span></div>
+<p>Il secondo esercizio su CodeRunner, «Emersione del Massimo», estende quello visto a lezione nella <a href="03D_decisioni.html">03D</a>: trovare il più grande di quattro numeri. Il testo esatto è su Moodle. L&#39;idea è la stessa del punto 5 di <code>esercizi_booleani.c</code>: una variabile <code>max</code> che parte dal primo numero e viene aggiornata ogni volta che arriva un numero più grande. Il massimo «emerge» confronto dopo confronto.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> a, b, c, d;
+scanf(<span class="str">&quot;%d %d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c, &amp;d);
+<span class="kw">int</span> max = a;            <span class="cm">// il primo e' il massimo provvisorio</span>
+<span class="kw">if</span> (b &gt; max) {
+    max = b;
+}
+<span class="kw">if</span> (c &gt; max) {
+    max = c;
+}
+<span class="kw">if</span> (d &gt; max) {
+    max = d;
+}
+printf(<span class="str">&quot;%d\n&quot;</span>, max);</code></pre>
+<p>Con <code>3 -2 9 4</code> stampa 9, con <code>-7 -3 -9 -4</code> stampa −3. Gli <code>if</code> sono separati, non una catena con <code>else</code>: <strong>ogni</strong> numero va confrontato con il massimo provvisorio. Con i cicli della <a href="04A_iterazioni.html">04A</a> lo stesso schema funziona per un numero qualsiasi di valori.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Non partire da 0</span></p><p>Con <code>int max = 0;</code> il programma sbaglia quando tutti i numeri sono negativi: con <code>-7 -3 -9 -4</code> stamperebbe 0, che non è tra i numeri letti. Il massimo provvisorio deve essere uno dei numeri.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanti confronti fa il programma con 4 numeri? E con 10, con lo stesso schema?</span></summary><div class="ans"><p>3 confronti: il primo numero non si confronta. Con 10 numeri, 9.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Massimo: <code>max</code> parte dal primo valore, poi un <code>if</code> separato per ogni altro valore.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-menu-di-operazioni" aria-labelledby="h-il-menu-di-operazioni" style="--h:1030px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-il-menu-di-operazioni">Il menù di operazioni</h2><span class="slides">slide 17</span></div>
+<p>Il programma legge tre interi, stampa un piccolo menù, legge la scelta e calcola somma, prodotto o media. Se la scelta non è 1, 2 o 3 deve stampare un errore.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x1, x2, x3, scelta;
+    printf(<span class="str">&quot;Inserisci tre interi: &quot;</span>);
+    scanf(<span class="str">&quot;%d %d %d&quot;</span>, &amp;x1, &amp;x2, &amp;x3);
+    printf(<span class="str">&quot;scrivi 1 per calcolare la somma\n&quot;</span>);
+    printf(<span class="str">&quot;scrivi 2 per calcolare il prodotto\n&quot;</span>);
+    printf(<span class="str">&quot;scrivi 3 per calcolare la media\n&quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;scelta);
+    <span class="kw">if</span> (scelta == 1) {
+        printf(<span class="str">&quot;somma: %d\n&quot;</span>, x1 + x2 + x3);
+    } <span class="kw">else</span> <span class="kw">if</span> (scelta == 2) {
+        printf(<span class="str">&quot;prodotto: %d\n&quot;</span>, x1 * x2 * x3);
+    } <span class="kw">else</span> <span class="kw">if</span> (scelta == 3) {
+        printf(<span class="str">&quot;media: %f\n&quot;</span>, (x1 + x2 + x3) / 3.0);
+    } <span class="kw">else</span> {
+        printf(<span class="str">&quot;Errore: operazione %d non disponibile\n&quot;</span>, scelta);
+    }
+}</code></pre>
+<p>Con <code>2 3 4</code> e la scelta 3 stampa <code>media: 3.000000</code>; con la scelta 7, il messaggio d&#39;errore. La media divide per <code>3.0</code> e non per <code>3</code>, come nel <a href="Lab02_operatori_tipi.html">Lab02</a>: tra interi la divisione taglia la parte decimale.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Lo switch è vietato all&#39;esame</span></p><p>Un menù di questo tipo in C si scrive spesso con <code>switch</code> e <code>case</code>. Le regole d&#39;esame di Programmazione I lo vietano, insieme a <code>break</code>: con la catena di <code>else if</code> si fa la stessa cosa.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con i numeri <code>1 2 2</code> e la scelta 3, che cosa stamperebbe la media scritta come <code>(x1 + x2 + x3) / 3</code>?</span></summary><div class="ans"><p><code>1</code>, e con <code>%f</code> il programma sarebbe pure sbagliato: <code>5 / 3</code> tra interi fa 1, un <code>int</code>, mentre <code>%f</code> vuole un <code>double</code>. Con <code>-Wall -Werror</code> non compilerebbe. La versione giusta stampa <code>1.666667</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Un menù si scrive con una catena di <code>else if</code> e un <code>else</code> finale per le scelte non valide.</li>
+</ul>
+</div>
+</section>
+
+<section id="l-equazione-di-secondo-grado" aria-labelledby="h-l-equazione-di-secondo-grado" style="--h:2380px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-l-equazione-di-secondo-grado">L&#39;equazione di secondo grado</h2><span class="slides">slide 18–20</span></div>
+<p>Un&#39;equazione di secondo grado può avere due soluzioni, una sola, nessuna reale, oppure non essere nemmeno di secondo grado. Il programma deve distinguere tutti i casi, seguendo il diagramma della slide 19. L&#39;equazione è <span class="katex" role="math" aria-label="ax^2 + bx + c = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">a</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>.</p>
+<p>Se <span class="katex" role="math" aria-label="a = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> l&#39;equazione è di primo grado, <span class="katex" role="math" aria-label="bx + c = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">b</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>, e ha tre sotto-casi: con <span class="katex" role="math" aria-label="b \neq 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> la soluzione è <span class="katex" role="math" aria-label="x = -\frac{c}{b}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0404em;vertical-align:-0.345em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6954em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">c</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>; con <span class="katex" role="math" aria-label="b = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> e <span class="katex" role="math" aria-label="c = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> ogni <span class="katex" role="math" aria-label="x"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> va bene, ed è <strong>indeterminata</strong>; con <span class="katex" role="math" aria-label="b = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> e <span class="katex" role="math" aria-label="c \neq 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> resta <span class="katex" role="math" aria-label="c = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>, falso, ed è <strong>impossibile</strong>. Se <span class="katex" role="math" aria-label="a \neq 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace nobreak"></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> si calcola il discriminante, che decide il resto:</p>
+<div class="formula"><span class="katex-display"><span class="katex" role="math" aria-label="\delta = b^2 - 4ac, \qquad x_{1,2} = \frac{-b \pm \sqrt{\delta}}{2a}."><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9474em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9305em;vertical-align:-0.2861em;"></span><span class="mord">4</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:2em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mpunct mtight">,</span><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2952em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6092em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal">a</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">±</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9322em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span></span></span><span style="top:-2.8922em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1078em;"><span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord">.</span></span></span></span></span></div>
+<p>La slide spezza la formula in pezzi: <span class="katex" role="math" aria-label="W = 2a"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mord mathnormal">a</span></span></span></span>, <span class="katex" role="math" aria-label="W_1 = -\frac{b}{W}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord">−</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">W</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> e <span class="katex" role="math" aria-label="W_2 = \frac{\sqrt{\lvert\delta\rvert}}{W}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.6746em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3296em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">W</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6038em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0369em;"><span class="svg-align" style="top:-3.4286em;"><span class="pstrut" style="height:3.4286em;"></span><span class="mord mtight" style="padding-left:1.19em;"><span class="mopen mtight">∣</span><span class="mord mathnormal mtight" style="margin-right:0.0379em;">δ</span><span class="mclose mtight">∣</span></span></span><span style="top:-3.0089em;"><span class="pstrut" style="height:3.4286em;"></span><span class="hide-tail mtight" style="min-width:0.853em;height:1.5429em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.5429em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4197em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>. Con <span class="katex" role="math" aria-label="\delta &gt; 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> le radici sono <span class="katex" role="math" aria-label="W_1 + W_2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> e <span class="katex" role="math" aria-label="W_1 - W_2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>; con <span class="katex" role="math" aria-label="\delta = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> c&#39;è una radice sola, <span class="katex" role="math" aria-label="W_1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>; con <span class="katex" role="math" aria-label="\delta &lt; 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.0379em;">δ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> le radici sono complesse, <span class="katex" role="math" aria-label="W_1 \pm W_2\,i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">±</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span></span></span></span>.</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Il diagramma della slide 19. A sinistra il caso a = 0, che non è di secondo grado; a destra il discriminante decide. In verde le risposte «sì», in rosa le «no». Con una radice questa è W₁, con due radici reali sono W₁ ± W₂, con le complesse W₁ ± W₂ i." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M130.67 10.12L191.33 32.38L130.67 54.64L70 32.38Z"/><path class="g-poligono g-blu" d="M130.67 91.07L191.33 113.33L130.67 135.6L70 113.33Z"/><path class="g-poligono g-blu" d="M93.33 180.12L154 202.38L93.33 224.64L32.67 202.38Z"/><path class="g-linea g-verde" d="M130.67 54.64L130.67 89.05" marker-end="url(#g-freccia-2-verde)"/><path class="g-linea g-rosa" d="M191.33 113.33L214.67 149.76" marker-end="url(#g-freccia-2-rosa)"/><path class="g-linea g-verde" d="M116.67 131.55L98 178.1" marker-end="url(#g-freccia-2-verde)"/><path class="g-linea g-verde" d="M65.33 212.5L65.33 285.36" marker-end="url(#g-freccia-2-verde)"/><path class="g-linea g-rosa" d="M154 202.38L196 240.83" marker-end="url(#g-freccia-2-rosa)"/><path class="g-linea g-rosa" d="M191.33 32.38L303.33 32.38" marker-end="url(#g-freccia-2-rosa)"/><path class="g-poligono g-ambra" d="M308 52.62L550.67 52.62L550.67 12.14L308 12.14Z"/><path class="g-linea g-grigio" d="M429.33 52.62L429.33 89.05" marker-end="url(#g-freccia-2-grigio)"/><path class="g-poligono g-blu" d="M429.33 91.07L490 113.33L429.33 135.6L368.67 113.33Z"/><path class="g-linea g-verde" d="M368.67 113.33L340.67 151.79" marker-end="url(#g-freccia-2-verde)"/><path class="g-linea g-rosa" d="M429.33 135.6L429.33 178.1" marker-end="url(#g-freccia-2-rosa)"/><path class="g-poligono g-blu" d="M429.33 180.12L490 202.38L429.33 224.64L368.67 202.38Z"/><path class="g-linea g-verde" d="M401.33 214.52L373.33 265.12" marker-end="url(#g-freccia-2-verde)"/><path class="g-linea g-rosa" d="M457.33 214.52L490 297.5" marker-end="url(#g-freccia-2-rosa)"/></svg><span class="g-et g-c g-testo g-blu" style="left:23.33%;top:9.52%">a = 0?</span><span class="g-et g-c g-testo g-blu" style="left:23.33%;top:33.33%">b = 0?</span><span class="g-et g-c g-testo g-blu" style="left:16.67%;top:59.52%">c = 0?</span><span class="g-et g-c g-testo g-grigio" style="left:38.33%;top:48.81%">x = −c/b</span><span class="g-et g-c g-testo g-grigio" style="left:15.83%;top:89.29%">indeterminata</span><span class="g-et g-c g-testo g-grigio" style="left:36.67%;top:75.59%">impossibile</span><span class="g-et g-c g-testo g-ambra" style="left:76.67%;top:9.52%">δ = b² − 4ac</span><span class="g-et g-c g-testo g-blu" style="left:76.67%;top:33.33%">δ = 0?</span><span class="g-et g-c g-testo g-grigio" style="left:60.83%;top:49.41%">una radice</span><span class="g-et g-c g-testo g-blu" style="left:76.67%;top:59.52%">δ &lt; 0?</span><span class="g-et g-c g-testo g-grigio" style="left:66.67%;top:82.74%">complesse</span><span class="g-et g-c g-testo g-grigio" style="left:87.50%;top:92.26%">due reali</span></div><figcaption>Il diagramma della slide 19. A sinistra il caso a = 0, che non è di secondo grado; a destra il discriminante decide. In verde le risposte «sì», in rosa le «no». Con una radice questa è W₁, con due radici reali sono W₁ ± W₂, con le complesse W₁ ± W₂ i.</figcaption></figure>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;math.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">double</span> a, b, c;
+    printf(<span class="str">&quot;Coefficienti a, b, c: &quot;</span>);
+    scanf(<span class="str">&quot;%lf %lf %lf&quot;</span>, &amp;a, &amp;b, &amp;c);
+    <span class="kw">if</span> (a == 0) {                        <span class="cm">// non e' di secondo grado</span>
+        <span class="kw">if</span> (b == 0) {
+            <span class="kw">if</span> (c == 0) {
+                printf(<span class="str">&quot;Indeterminata\n&quot;</span>);
+            } <span class="kw">else</span> {
+                printf(<span class="str">&quot;Impossibile\n&quot;</span>);
+            }
+        } <span class="kw">else</span> {
+            printf(<span class="str">&quot;x1 = %g\n&quot;</span>, -c / b);
+        }
+    } <span class="kw">else</span> {
+        <span class="kw">double</span> delta = b * b - 4 * a * c;
+        <span class="kw">double</span> W = 2 * a;
+        <span class="kw">double</span> W1 = -b / W;
+        <span class="kw">double</span> W2 = sqrt(fabs(delta)) / W;
+        <span class="kw">if</span> (delta == 0) {
+            printf(<span class="str">&quot;Singola radice: x1 = %g\n&quot;</span>, W1);
+        } <span class="kw">else</span> <span class="kw">if</span> (delta &lt; 0) {
+            printf(<span class="str">&quot;Radici complesse coniugate: %g + %gi e %g - %gi\n&quot;</span>, W1, fabs(W2), W1, fabs(W2));
+        } <span class="kw">else</span> {
+            printf(<span class="str">&quot;x1 = %g, x2 = %g\n&quot;</span>, W1 + W2, W1 - W2);
+        }
+    }
+}</code></pre>
+<p>Con i coefficienti della slide 20 dà i risultati della tabella: <code>0 0 0</code> indeterminata, <code>0 0 4</code> impossibile, <code>0 2 -4</code> dà 2, <code>1 0 -121</code> dà 11 e −11, <code>1 2 1</code> dà −1, <code>1 -3 10</code> radici complesse (<span class="katex" role="math" aria-label="1{,}5 \pm 2{,}78i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">±</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord">2</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">78</span><span class="mord mathnormal">i</span></span></span></span>), <code>5 20 0</code> dà 0 e −4. Lo specificatore <code>%g</code> stampa il numero senza zeri inutili: <code>2</code> invece di <code>2.000000</code>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · abs non va bene per un double</span></p><p>La slide 20 consiglia <code>abs()</code> di <code>&lt;stdlib.h&gt;</code> per il valore assoluto. <code>abs</code> lavora sugli <strong>interi</strong>: con un <code>double</code> lo converte in intero e taglia i decimali. <code>sqrt(abs(-2.5))</code> vale <span class="katex" role="math" aria-label="\sqrt{2} \approx 1{,}414"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1328em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span></span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">414</span></span></span></span> invece di <span class="katex" role="math" aria-label="\sqrt{2{,}5} \approx 1{,}581"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.81em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">5</span></span></span><span style="top:-2.77em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">581</span></span></span></span>, e <code>-Wall</code> non avvisa: l&#39;avviso <code>using integer absolute value function 'abs'</code> arriva solo con <code>-Wextra</code>. Per i <code>double</code> si usa <code>fabs()</code> di <code>&lt;math.h&gt;</code>. <code>abs</code> va bene se i coefficienti sono <code>int</code>.</p>
+</div>
+<div class="box neutro"><p class="box-label"><span>Nota · -lm su Linux</span></p><p><code>sqrt</code> e <code>fabs</code> stanno nella libreria matematica. Su Windows con MinGW basta l&#39;<code>#include</code>; al laboratorio Turing, su Linux, può servire aggiungere <code>-lm</code> alla fine del comando: <code>gcc -Wall equaz_secondo.c -o equaz_secondo -lm</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa il programma con <code>-1 0 4</code>, cioè <span class="katex" role="math" aria-label="-x^2 + 4 = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>?</span></summary><div class="ans"><p><code>x1 = -2, x2 = 2</code>. Con <span class="katex" role="math" aria-label="a = -1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>, <span class="katex" role="math" aria-label="W = -2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span> è negativo, quindi <span class="katex" role="math" aria-label="W_2 = \frac{4}{-2} = -2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2484em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span>, e le radici escono nell&#39;ordine <span class="katex" role="math" aria-label="W_1 + W_2 = -2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">2</span></span></span></span> e <span class="katex" role="math" aria-label="W_1 - W_2 = 2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>. Sono comunque <span class="katex" role="math" aria-label="\pm 2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">±</span><span class="mord">2</span></span></span></span>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Prima il caso <span class="katex" role="math" aria-label="a = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span>, con i suoi tre sotto-casi; poi il discriminante decide tra una, due o nessuna radice reale.</li>
+<li>Valore assoluto: <code>fabs</code> per i <code>double</code>, <code>abs</code> per gli <code>int</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="sasso-carta-forbici-lucertola-spock-lab03-es3" aria-labelledby="h-sasso-carta-forbici-lucertola-spock-lab03-es3" style="--h:1320px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-sasso-carta-forbici-lucertola-spock-lab03-es3">Sasso-carta-forbici-lucertola-Spock (Lab03-Es3)</h2></div>
+<p>Il terzo esercizio su CodeRunner è la morra cinese a cinque mosse, quella della serie <em>The Big Bang Theory</em>. Ogni mossa batte altre due: le forbici tagliano la carta e decapitano la lucertola; la carta copre il sasso e smentisce Spock; il sasso schiaccia la lucertola e rompe le forbici; la lucertola avvelena Spock e mangia la carta; Spock rompe le forbici e vaporizza il sasso.</p>
+<p>Il testo esatto e il formato dell&#39;input sono su Moodle. Questa versione codifica le mosse con i numeri da 1 a 5 e scrive le regole in un&#39;unica espressione booleana:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="cm">// 1 = sasso, 2 = carta, 3 = forbici, 4 = lucertola, 5 = Spock</span>
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> g1, g2;
+    <span class="kw">if</span> (2 != scanf(<span class="str">&quot;%d %d&quot;</span>, &amp;g1, &amp;g2)) {
+        printf(<span class="str">&quot;Input non letto\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (g1 &lt; 1 || g1 &gt; 5 || g2 &lt; 1 || g2 &gt; 5) {
+        printf(<span class="str">&quot;Mossa non valida\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (g1 == g2) {
+        printf(<span class="str">&quot;Pareggio\n&quot;</span>);
+    } <span class="kw">else</span> {
+        <span class="kw">bool</span> vince1 =
+            (g1 == 1 &amp;&amp; (g2 == 3 || g2 == 4)) ||   <span class="cm">// sasso: forbici, lucertola</span>
+            (g1 == 2 &amp;&amp; (g2 == 1 || g2 == 5)) ||   <span class="cm">// carta: sasso, Spock</span>
+            (g1 == 3 &amp;&amp; (g2 == 2 || g2 == 4)) ||   <span class="cm">// forbici: carta, lucertola</span>
+            (g1 == 4 &amp;&amp; (g2 == 2 || g2 == 5)) ||   <span class="cm">// lucertola: carta, Spock</span>
+            (g1 == 5 &amp;&amp; (g2 == 1 || g2 == 3));     <span class="cm">// Spock: sasso, forbici</span>
+        printf(vince1 ? <span class="str">&quot;Vince il giocatore 1\n&quot;</span> : <span class="str">&quot;Vince il giocatore 2\n&quot;</span>);
+    }
+}</code></pre>
+<p>La nota della slide 22 chiede come capire se «gli input non sono stati letti»: <code>scanf</code> restituisce <strong>quante variabili ha letto</strong>. Con <code>&quot;%d %d&quot;</code> deve restituire 2; se l&#39;utente scrive una lettera, restituisce meno e le variabili non contengono valori validi. Con <code>1 3</code> vince il giocatore 1, con <code>3 1</code> il 2, con <code>2 2</code> è pareggio, con <code>6 1</code> la mossa non è valida, con <code>x</code> l&#39;input non è letto.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Perché il controllo su <code>scanf</code> è il primo della catena?</span></summary><div class="ans"><p>Perché se la lettura fallisce <code>g1</code> e <code>g2</code> non sono inizializzate: confrontarle con 1 o 5 vorrebbe dire usare valori a caso. Prima si controlla di aver letto, poi si usano i valori.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Prima si controlla che <code>scanf</code> abbia letto tutto, poi che i valori siano validi, poi si calcola.</li>
+<li>Una tabella di regole si può scrivere come «o» di casi, ognuno un «e».</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:550px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Scrittura</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>a &amp;&amp; b</code></td><td>«a e b»</td><td>vero se tutti e due sono veri</td><td><code>3 &lt; 5 &amp;&amp; 5 &lt; 7</code></td></tr>
+<tr><td><code>a \|\| b</code></td><td>«a o b»</td><td>vero se almeno uno è vero</td><td><code>ora &lt; 0 \|\| ora &gt; 23</code></td></tr>
+<tr><td><code>!a</code></td><td>«non a»</td><td>vero se <code>a</code> è falso</td><td><code>!(b1 &amp;&amp; b2)</code></td></tr>
+<tr><td><code>c ? x : y</code></td><td>«se c allora x, altrimenti y»</td><td>sceglie tra due valori</td><td><code>max ? &quot;true&quot; : &quot;false&quot;</code></td></tr>
+<tr><td><code>%g</code></td><td>«per cento g»</td><td>stampa un <code>double</code> senza zeri inutili</td><td><code>2</code> invece di <code>2.000000</code></td></tr>
+<tr><td><code>fabs(x)</code></td><td>«valore assoluto di x»</td><td>valore assoluto di un <code>double</code>, da <code>&lt;math.h&gt;</code></td><td><code>fabs(-2.5)</code> vale 2.5</td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:700px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>L&#39;esame è al PC, con <strong>CodeRunner</strong>: lo stesso sistema degli esercizi «Lab03-Es…». Il codice viene compilato con <code>-Wall -Werror</code> e le stampe confrontate con quelle attese. Da questo laboratorio servono:</p>
+<ol>
+<li><strong>le condizioni composte</strong>: «tra», «entrambi», «almeno uno», «nessuno», scritte con <code>&amp;&amp;</code>, <code>||</code>, <code>!</code> e senza confronti a catena;</li>
+<li><strong>le catene di <code>else if</code></strong>, perché <code>switch</code> e <code>break</code> sono vietati;</li>
+<li><strong>le graffe sempre</strong>: un <code>if</code> o un <code>else</code> che controlla meno di quello che credi non dà errori, dà stampe sbagliate;</li>
+<li><strong>la lettura sicura</strong>: controllare il valore restituito da <code>scanf</code> quando l&#39;input può essere sbagliato;</li>
+<li><strong>i casi limite</strong>: numeri uguali, negativi, lo zero, i valori fuori dall&#39;intervallo.</li>
+</ol>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Prima di consegnare un esercizio con le scelte</span></p><ol>
+<li>Compila con <code>gcc -Wall -Werror</code>: gli avvisi su indentazione e confronti a catena sono errori.</li>
+<li>Fai una lista dei casi: uno per ramo della catena, più i valori al confine (18 per «almeno 18», 0 per «positivo»).</li>
+<li>Prova ogni caso e confronta la stampa, compresi spazi e maiuscole.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:1790px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Che valore stampa <code>printf(&quot;%d&quot;, 4 &gt; 3 &gt; 2);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">1</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un errore a runtime</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila nemmeno con -Wall</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0, e gcc con -Wall avvisa del confronto a catena</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Si calcola <code>(4 &gt; 3) &gt; 2</code>, cioè <code>1 &gt; 2</code>, falso. La risposta più insidiosa è 1, il valore in matematica. Con <code>-Wall</code> è solo un avviso; con <code>-Werror</code> diventerebbe un errore.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Come si scrive in C «5 sta tra 3 e 7»?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 &lt; 5 || 5 &lt; 7</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 &lt; 5 &lt; 7</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>(3 &lt; 5) &lt; 7</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 &lt; 5 &amp; &lt; 7</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 &lt; 5 &amp;&amp; 5 &lt; 7</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Servono due confronti uniti da «e». La risposta più insidiosa è <code>3 &lt; 5 &lt; 7</code>: qui dà 1 per caso, perché <code>1 &lt; 7</code>, ma con <code>3 &lt; 9 &lt; 7</code> darebbe 1 anche se 9 non sta tra 3 e 7.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con il voto 15, che cosa stampa il programma con <code>if (voto &gt;= 18);</code> seguito da <code>printf(&quot;Esame passato.\n&quot;);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">niente</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>Esame passato.</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>Esame non passato.</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un errore di compilazione, sempre</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">dipende dall&#39;indentazione</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il <code>;</code> è un&#39;istruzione vuota: l&#39;<code>if</code> controlla quella, e la <code>printf</code> viene eseguita comunque. La risposta più insidiosa è «dipende dall&#39;indentazione»: l&#39;indentazione non cambia il programma, cambia solo l&#39;avviso di gcc.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">In <code>if (x) A; else B; C;</code> senza graffe, quando viene eseguita <code>C</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Solo se <code>x</code> è vero</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Mai</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Solo se <code>x</code> è falso</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Sempre</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Dipende dall&#39;indentazione</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Senza graffe l&#39;<code>else</code> controlla solo <code>B</code>. La risposta più insidiosa è «solo se <code>x</code> è falso»: è quello che suggerisce l&#39;indentazione delle slide, ma il C la ignora.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale espressione è equivalente a <code>!(a &amp;&amp; b)</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>!a || !b</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a &amp;&amp; !b</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a || b</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>!a &amp;&amp; !b</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>!a &amp;&amp; b</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>È una legge di De Morgan: negando un «e» si ottiene un «o» delle negazioni. La risposta più insidiosa è <code>!a &amp;&amp; !b</code>, che è la negazione di <code>a || b</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Il massimo di quattro interi si cerca con <code>int max = 0;</code> e tre <code>if</code>. Con quale input il programma sbaglia?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 -2 9 4</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>9 9 9 9</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0 0 0 0</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>-7 -3 -9 -4</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>1 2 3 4</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Con tutti i numeri negativi il massimo provvisorio 0 non viene mai superato, e il programma stampa 0, che non è tra i numeri. La risposta più insidiosa è <code>0 0 0 0</code>: lì 0 è giusto per caso.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che valore ha <code>sqrt(abs(-2.5))</code> in C, con <code>&lt;stdlib.h&gt;</code> e <code>&lt;math.h&gt;</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">−1,581</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2,5</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila con -Wall</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">circa 1,581</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">circa 1,414, perché <code>abs</code> converte −2,5 nell&#39;intero −2</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>abs</code> lavora sugli interi: taglia −2,5 a −2 e restituisce 2. Per i <code>double</code> serve <code>fabs</code>, che darebbe <span class="katex" role="math" aria-label="\sqrt{2{,}5} \approx 1{,}581"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.23em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.81em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">5</span></span></span><span style="top:-2.77em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord"><span class="mpunct">,</span></span><span class="mord">581</span></span></span></span>. Con <code>-Wall</code> gcc non avvisa: l&#39;avviso c&#39;è solo con <code>-Wextra</code>.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo"><code>scanf(&quot;%d %d&quot;, &amp;a, &amp;b)</code> con l&#39;input <code>7 ciao</code>. Che cosa restituisce?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="1" data-toll="1e-9"><span class="q-giusto" hidden>1</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Ha letto un solo intero, il 7: <code>ciao</code> non è un numero. Per questo nel gioco si controlla <code>2 != scanf(...)</code>.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1080px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: valori <span class="lvl">base</span></h3><p>Calcola a mano: (a) <code>5 &gt; 2 &amp;&amp; !(3 == 3)</code>; (b) <code>0 || 7</code>; (c) <code>!(1 &lt; 2 || 2 &lt; 1)</code>; (d) <code>10 % 3 == 1 &amp;&amp; 10 / 3 == 3</code>.</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) 0: <code>!(3 == 3)</code> è falso. (b) 1: in C ogni valore diverso da 0 è vero. (c) 0: dentro c&#39;è un «o» vero. (d) 1: tutti e due i confronti sono veri.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: tradurre in condizioni <span class="lvl">base</span></h3><p>Scrivi la condizione in C: (a) <code>x</code> è pari e positivo; (b) <code>x</code> è fuori dall&#39;intervallo da 10 a 20; (c) <code>x</code> e <code>y</code> hanno lo stesso segno, entrambi diversi da 0; (d) almeno uno tra <code>a</code>, <code>b</code>, <code>c</code> è zero.</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) <code>x % 2 == 0 &amp;&amp; x &gt; 0</code>. (b) <code>x &lt; 10 || x &gt; 20</code>, la negazione di <code>x &gt;= 10 &amp;&amp; x &lt;= 20</code> con De Morgan. (c) <code>(x &gt; 0 &amp;&amp; y &gt; 0) || (x &lt; 0 &amp;&amp; y &lt; 0)</code>, oppure <code>x * y &gt; 0</code>, che però può andare in overflow con numeri grandi. (d) <code>a == 0 || b == 0 || c == 0</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · L&#39;anno bisestile <span class="lvl">medio</span></h3><p>Leggi un anno e stampa <code>bisestile</code> o <code>non bisestile</code>. Un anno è bisestile se è divisibile per 4 ma non per 100, oppure se è divisibile per 400.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> anno;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;anno);
+    <span class="kw">if</span> ((anno % 4 == 0 &amp;&amp; anno % 100 != 0) || anno % 400 == 0) {
+        printf(<span class="str">&quot;bisestile\n&quot;</span>);
+    } <span class="kw">else</span> {
+        printf(<span class="str">&quot;non bisestile\n&quot;</span>);
+    }
+}</code></pre>
+<p>2024 è bisestile, 1900 no (divisibile per 100 ma non per 400), 2000 sì. Una condizione sola, con le parentesi che separano i due casi.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Il triangolo <span class="lvl">medio</span></h3><p>Leggi tre lunghezze intere positive e stampa <code>equilatero</code>, <code>isoscele</code>, <code>scaleno</code>, oppure <code>non e' un triangolo</code> se una lunghezza è maggiore o uguale alla somma delle altre due.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a, b, c;
+    scanf(<span class="str">&quot;%d %d %d&quot;</span>, &amp;a, &amp;b, &amp;c);
+    <span class="kw">if</span> (a &gt;= b + c || b &gt;= a + c || c &gt;= a + b) {
+        printf(<span class="str">&quot;non e' un triangolo\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (a == b &amp;&amp; b == c) {
+        printf(<span class="str">&quot;equilatero\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (a == b || b == c || a == c) {
+        printf(<span class="str">&quot;isoscele\n&quot;</span>);
+    } <span class="kw">else</span> {
+        printf(<span class="str">&quot;scaleno\n&quot;</span>);
+    }
+}</code></pre>
+<p>L&#39;ordine dei rami conta: un triangolo equilatero è anche isoscele, quindi il controllo «equilatero» va prima. Con <code>3 3 3</code>, <code>3 3 5</code>, <code>3 4 5</code> e <code>1 2 3</code> stampa equilatero, isoscele, scaleno e non è un triangolo.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Il voto in lettere, senza switch <span class="lvl">tipo esame</span></h3><p>Leggi un voto da 0 a 30 e stampa <code>insufficiente</code> sotto 18, <code>sufficiente</code> da 18 a 23, <code>buono</code> da 24 a 27, <code>ottimo</code> da 28 a 30, <code>voto non valido</code> fuori da 0–30. Niente <code>switch</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> voto;
+    <span class="kw">if</span> (1 != scanf(<span class="str">&quot;%d&quot;</span>, &amp;voto) || voto &lt; 0 || voto &gt; 30) {
+        printf(<span class="str">&quot;voto non valido\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (voto &lt; 18) {
+        printf(<span class="str">&quot;insufficiente\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (voto &lt;= 23) {
+        printf(<span class="str">&quot;sufficiente\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (voto &lt;= 27) {
+        printf(<span class="str">&quot;buono\n&quot;</span>);
+    } <span class="kw">else</span> {
+        printf(<span class="str">&quot;ottimo\n&quot;</span>);
+    }
+}</code></pre>
+<p>Il primo ramo controlla anche la lettura: se <code>scanf</code> non legge, l&#39;<code>||</code> si ferma lì e <code>voto</code> non viene usato. Dopo, ogni ramo può controllare solo il limite superiore, perché quelli prima hanno già escluso i voti più bassi. Da provare con 17, 18, 23, 24, 27, 28, −1 e 31.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:490px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Perché in C <code>3 &lt; 5 &lt; 7</code> non controlla che 5 stia tra 3 e 7?</span></summary><div class="ans"><p>Perché i confronti si calcolano da sinistra, due alla volta: <code>(3 &lt; 5) &lt; 7</code> diventa <code>1 &lt; 7</code>. Si scrive <code>3 &lt; 5 &amp;&amp; 5 &lt; 7</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Come funziona una catena di <code>if</code>, <code>else if</code>, <code>else</code>?</span></summary><div class="ans"><p>Le condizioni si controllano in ordine; si esegue il blocco della prima vera e si salta il resto. Se nessuna è vera, si esegue l&#39;<code>else</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa fa un <code>;</code> subito dopo <code>if (...)</code>?</span></summary><div class="ans"><p>È un&#39;istruzione vuota: l&#39;<code>if</code> controlla quella, e l&#39;istruzione dopo viene eseguita sempre.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa controlla CodeRunner?</span></summary><div class="ans"><p>Che il programma compili con <code>-Wall -Werror</code> e che, per ogni input di prova, le stampe coincidano carattere per carattere con quelle attese.</p>
+</div></details>
+<details class="qa"><summary><span>Come si trova il massimo di quattro numeri?</span></summary><div class="ans"><p>Con una variabile che parte dal primo numero e viene aggiornata da un <code>if</code> separato per ogni altro numero più grande.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:470px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Valore di verità in C</dt><dd>Un confronto vale 1 se è vero e 0 se è falso; ogni valore diverso da 0 conta come vero.</dd></div>
+<div><dt>Leggi di De Morgan</dt><dd>!(a &amp;&amp; b) è come !a || !b; !(a || b) è come !a &amp;&amp; !b.</dd></div>
+<div><dt>Catena else if</dt><dd>Sequenza di condizioni controllate in ordine: si esegue solo il ramo della prima vera.</dd></div>
+<div><dt>Istruzione vuota</dt><dd>Un ; da solo. Dopo un if fa sì che l&#39;if non controlli niente.</dd></div>
+<div><dt>CodeRunner</dt><dd>Il sistema di Moodle che compila con -Wall -Werror, esegue con input di prova e confronta le stampe.</dd></div>
+<div><dt>Massimo provvisorio</dt><dd>Variabile che contiene il più grande valore visto finora; parte dal primo valore.</dd></div>
+<div><dt>Discriminante</dt><dd>δ = b² − 4ac: decide quante radici reali ha un&#39;equazione di secondo grado.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:460px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 9</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-Lab03-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So calcolare a mano il valore di un&#39;espressione con &amp;&amp;, || e !.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So perché 3 &lt; 5 &lt; 7 è sbagliato e come si scrive giusto.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So applicare De Morgan per negare una condizione.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So scrivere una catena di else if che copre tutti i casi.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So riconoscere il ; dopo l&#39;if e l&#39;else senza graffe.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So come CodeRunner valuta un esercizio.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So trovare il massimo di più numeri senza partire da 0.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So risolvere l&#39;equazione di secondo grado con tutti i casi, usando fabs e non abs.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So controllare il valore restituito da scanf prima di usare i valori letti.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Condizioni booleane» (Lezione nº 3 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27: espressioni booleane (slide 2–3), booleani.c e De Morgan (slide 4), esercizi_booleani.c (slide 5), saluti (slide 6), CodeRunner (slide 7–10), errori (slide 11–15), Lab03-Es2 Emersione del Massimo (slide 16), selezione operazioni (slide 17), equazioni di secondo grado (slide 18–20), Lab03-Es3 Sasso-carta-forbici-lucertola-Spock (slide 21–22).</li>
+<li>I testi degli esercizi su CodeRunner (Lab03-Es1, Es2, Es3) e il codice di partenza (<code>booleani.c</code>, <code>esercizi_booleani.c</code>) sono sul Moodle del laboratorio: non li ho visti, le soluzioni qui sono mie.</li>
+<li>Lezioni <a href="03C_booleani.html">03C</a> e <a href="03D_decisioni.html">03D</a> di Amparore; regole d&#39;esame dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+<li>Tutti i programmi li ho compilati con gcc 16.1 su Windows 11 a 64 bit ed eseguiti; gli avvisi e le stampe citati sono quelli veri, compreso il caso di <code>abs</code> con un <code>double</code>. Le soluzioni, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

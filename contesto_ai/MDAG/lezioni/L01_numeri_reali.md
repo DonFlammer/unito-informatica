@@ -8,12 +8,12 @@ docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L01
 descrizione: >-
   Appunti della lezione L01 di Algebra lineare e Geometria (MDAG, parte 2): insiemi numerici, costruzione dei numeri
-  reali, irrazionalità di √2, campi, ordine, notazioni e conti con le radici, con quiz nello stile dell'esame ed
-  esercizi svolti.
+  reali con le successioni di Cauchy, irrazionalità di √2, campi, ordine, notazioni e conti con le radici, con una
+  domanda dell'appello del 07/09/2026, quiz ed esercizi svolti.
 lede: >-
-  I numeri che userai in tutto il corso: quali sono, come si chiamano e quali regole seguono. Si parte dai numeri per
-  contare e si arriva a quelli con infinite cifre dopo la virgola. In più: come si leggono i simboli della matematica
-  e come si fanno i conti con le radici senza calcolatrice.
+  I quattro insiemi di numeri del corso, le nove proprietà che fanno di un insieme un campo e le notazioni che le
+  dispense usano da qui in poi. In più: come si leggono i simboli e come si fanno i conti con le radici senza
+  calcolatrice, che all'esame servono in quasi ogni domanda.
 materiale: dispense
 scheda:
   Dispense: lezione 1 · pp. 2–5
@@ -21,89 +21,37 @@ scheda:
   Docenti: Reto Buzano e Marco Radeschi · A.A. 2026/27
   Tempo di studio: 2–3 ore, anche in più volte
 fonte: >-
-  Dispense 2026 del corso (Buzano, Radeschi), lezione 1 «Numeri reali»; B. Martelli, Geometria e algebra lineare, §1.1, §1.5 e complemento 1.II
+  Dispense 2026 del corso (Buzano, Radeschi), lezione 1 «Numeri reali»; B. Martelli, Geometria e algebra lineare, §1.1, §1.5 e complemento 1.II;
+  appello di Algebra lineare del 07/09/2026, domanda 7
 appunti_html: appunti/MDAG/L01_numeri_reali.html
 genera_html: true
 ---
 
 ## In breve
 
-- Questa lezione parla dei **numeri**: quali esistono, come si chiamano e con quale lettera si indicano.
-- I numeri sono divisi in quattro famiglie, una dentro l'altra: i numeri per contare, gli interi (con il segno meno), le frazioni e i numeri reali (quelli che possono avere infinite cifre dopo la virgola).
-- Alcuni numeri, come la radice quadrata di 2, non si possono scrivere come frazione. Si chiamano **irrazionali**.
-- I conti seguono nove regole che usi da sempre, come «2 + 5 fa lo stesso di 5 + 2». Un insieme di numeri in cui valgono tutte e nove si chiama **campo**.
-- Le parentesi cambiano il significato: con le graffe, con le tonde o con le quadre la stessa coppia di numeri indica tre cose diverse.
-- Per l'esame servono tre cose: riconoscere un campo, usare le parentesi giuste e fare i conti con le radici senza calcolatrice.
+- Le dispense partono dai quattro insiemi di numeri del corso, uno dentro l'altro: naturali, interi, razionali e reali. Ogni insieme nasce per risolvere un'equazione che nel precedente non ha soluzione.
+- I razionali sono i numeri con uno sviluppo decimale finito o periodico. I reali comprendono anche quelli con infinite cifre non periodiche, come $\pi$; in modo preciso un reale è una successione di Cauchy di razionali.
+- $\sqrt 2$ non è razionale: la dimostrazione è per assurdo, con una frazione ridotta che si rivela ancora semplificabile.
+- Somma e prodotto dei reali hanno nove proprietà: neutri, opposti, inversi, commutativa, associativa, distributiva. Un insieme con due operazioni che le rispetta tutte si chiama **campo**: razionali, reali e complessi lo sono, naturali e interi no.
+- Graffe, tonde e quadre indicano cose diverse: con le graffe si elencano gli elementi di un insieme, con tonde e quadre si scrivono gli intervalli, e le tonde servono anche per i punti del piano.
+- All'esame niente calcolatrice: bisogna saper semplificare le radici, perché le risposte del quiz le scrivono in forma razionalizzata.
 
 > [!CANALI]
-> Algebra lineare e Geometria usa le **stesse dispense** nei tre canali: Buzano insegna nei canali A e B, Radeschi nei canali B e C. Questi appunti seguono le dispense 2026, quindi valgono allo stesso modo per A, B e C. Cambiano solo i giorni delle lezioni: la pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)) avverte che i cambi d'orario vengono annunciati lì e a lezione. Esame e quiz sono comuni ai tre canali. Nel canale B corrisponde all'incontro di giovedì 01/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 01/10/2026, dalle 11 alle 13; il corso del canale B è tenuto da Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 1. Gli avvisi sui cambi d'orario sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
-## Gli insiemi: sacchetti con dentro delle cose (p. 2)
+## Insiemi ed elementi (p. 2)
 
-Prima di parlare di numeri serve una parola sola: **insieme**.
+Le dispense usano fin da subito il linguaggio degli insiemi, che si studia per bene in Matematica Discreta. Un **insieme** si scrive elencando i suoi **elementi** tra parentesi graffe, e gli si dà un nome con una lettera maiuscola:
 
-Immagina un sacchetto. Dentro ci metti delle cose: per esempio una mela, una pera e una banana. Il sacchetto con quello che contiene è un insieme. Le cose dentro si chiamano **elementi** dell'insieme.
+$$A = \{1, 3, 5\}.$$
 
-In matematica dentro il sacchetto di solito ci sono dei numeri. Al posto del sacchetto si disegnano due **parentesi graffe**, una che apre e una che chiude. Gli elementi si scrivono in mezzo, separati da virgole:
+Conta solo che cosa c'è dentro: l'ordine e le ripetizioni non contano, quindi $\{1, 3, 5\} = \{5, 1, 3\}$ e $\{1, 1, 3\} = \{1, 3\}$. I simboli di base sono questi:
 
-$$\{1, 3, 5\}$$
-
-Questo è l'insieme che contiene tre numeri: l'1, il 3 e il 5. Nient'altro.
-
-Per non riscriverlo ogni volta, a un insieme si dà un **nome**: una lettera maiuscola. Per esempio lo chiamiamo $A$:
-
-$$A = \{1, 3, 5\}$$
-
-Si legge: «$A$ è l'insieme che contiene 1, 3 e 5».
-
-### Due regole sui sacchetti
-
-In un insieme conta solo **che cosa c'è dentro**. Da qui vengono due regole.
-
-- **L'ordine non conta.** $\{1, 3, 5\}$ e $\{5, 1, 3\}$ sono lo stesso insieme. Un sacchetto resta lo stesso anche se lo scuoti.
-- **Le ripetizioni non contano.** $\{1, 1, 3\}$ è uguale a $\{1, 3\}$. Un numero o c'è o non c'è: scriverlo due volte non aggiunge niente.
-
-### «Sta dentro» e «non sta dentro»
-
-Per dire che un numero sta dentro un insieme c'è un simbolo apposta: $\in$. Assomiglia a una piccola E.
-
-$$3 \in A$$
-
-Si legge «3 appartiene ad $A$». Vuol dire: il 3 è uno degli elementi di $A$. Ed è vero, perché $A = \{1, 3, 5\}$ e il 3 c'è.
-
-Lo stesso simbolo con una barra sopra, $\notin$, vuol dire il contrario.
-
-$$2 \notin A$$
-
-Si legge «2 non appartiene ad $A$». È vero anche questo: tra 1, 3 e 5 il 2 non c'è.
-
-### Un sacchetto dentro un altro
-
-Prendi due insiemi:
-
-$$A = \{1, 3, 5\} \qquad B = \{1, 5\}$$
-
-Gli elementi di $B$ sono l'1 e il 5. Tutti e due stanno anche in $A$. Allora $B$ è **contenuto** in $A$. Un insieme contenuto in un altro si chiama **sottoinsieme**. Il simbolo è $\subset$:
-
-$$B \subset A$$
-
-Si legge «$B$ è contenuto in $A$».
-
-In $A$ c'è anche il 3, che in $B$ manca. Quindi $A$ ha qualcosa **in più** di $B$. Per dirlo si usa un simbolo un po' diverso, $\subsetneq$, con una lineetta sbarrata sotto:
-
-$$B \subsetneq A$$
-
-Si legge «$B$ è contenuto **strettamente** in $A$». Dice due cose insieme: $B$ sta dentro $A$, e $A$ ha almeno un elemento in più.
-
-### I puntini e l'insieme vuoto
-
-Quando gli elementi sono tanti, o infiniti, non si possono scrivere tutti. Allora si scrivono i primi e poi tre **puntini**. I puntini vogliono dire «e avanti così, con la stessa regola».
-
-$$\{2, 4, 6, 8, \dots\}$$
-
-Questo è l'insieme dei numeri pari da 2 in su. Dopo l'8 viene il 10, poi il 12, e non finiscono mai.
-
-Esiste anche il sacchetto vuoto: l'insieme senza nessun elemento. Si chiama **insieme vuoto** e si scrive $\emptyset$.
+- $3 \in A$, «3 appartiene ad $A$»; $2 \notin A$, «2 non appartiene ad $A$»;
+- $B \subset A$, «$B$ è contenuto in $A$»: ogni elemento di $B$ sta anche in $A$. Con $B = \{1, 5\}$ vale $B \subset A$;
+- $B \subsetneq A$, «contenuto strettamente»: $B \subset A$ e in più $A$ ha almeno un elemento che in $B$ manca, qui il 3;
+- $\emptyset$, l'insieme vuoto, senza elementi;
+- i puntini, come in $\{2, 4, 6, \dots\}$, dicono che gli elementi continuano con la stessa regola.
 
 ::: prova Vero o falso? (a) $5 \in \{1, 3, 5\}$; (b) $4 \in \{1, 3, 5\}$; (c) $\{3\} \subset \{1, 3, 5\}$; (d) $\{1, 2\} \subset \{1, 3, 5\}$.
 (a) Vero: il 5 è uno dei tre elementi.
@@ -123,63 +71,19 @@ Sì. Dentro ci sono le stesse cose (1, 2 e 3), e l'ordine non conta.
 > Le dispense ricordano che la teoria degli insiemi si fa in dettaglio nell'altra metà del corso, **Matematica Discreta**. Qui servono solo gli insiemi di numeri.
 
 > [!RICORDA]
-> - Un **insieme** è un sacchetto di elementi. Si scrive con le graffe: $\{1, 3, 5\}$.
-> - $\in$ vuol dire «sta dentro», $\notin$ vuol dire «non sta dentro».
-> - $\subset$ vuol dire «è contenuto in»: tutti gli elementi del primo insieme stanno anche nel secondo.
-> - L'ordine e le ripetizioni non contano.
+> - Un insieme si scrive con le graffe; l'ordine e le ripetizioni non contano.
+> - $\in$ è «appartiene», $\subset$ è «è contenuto in», $\subsetneq$ «è contenuto strettamente».
 
-## Le famiglie dei numeri: naturali, interi e razionali (p. 2)
+## Naturali, interi e razionali (p. 2)
 
-Adesso riempiamo i sacchetti con i numeri. Ci sono tre famiglie da conoscere subito, e ognuna ha la sua lettera.
+Le dispense costruiscono i numeri un passo alla volta. Ogni insieme nuovo serve perché nel precedente un'equazione non ha soluzione:
 
-### I numeri per contare: i naturali
-
-Sono i numeri che usi per contare le cose: zero mele, una mela, due mele, tre mele. Si chiamano **numeri naturali**.
-
-Tutti insieme formano un insieme. Si indica con una N dal tratto doppio: $\N$.
-
-$$\N = \{0, 1, 2, 3, \dots\}$$
-
-I puntini dicono che non finiscono mai: dopo ogni numero ce n'è sempre uno più grande.
-
-> [!TRAPPOLA] Lo zero è un numero naturale
-> In questo corso, e nel libro di Martelli, $\N$ **comincia da 0**. In alcuni libri di scuola comincia da 1. All'esame vale la regola del corso: $0 \in \N$.
-
-### I numeri con il segno meno: gli interi
-
-Con i numeri naturali certe sottrazioni non si possono fare. Hai 3 euro e ne devi pagare 5: quanto ti resta? Meno di niente, perché sei sotto di 2. Per scriverlo servono i **numeri negativi**: $3 - 5 = -2$.
-
-I naturali insieme ai negativi si chiamano **numeri interi**. L'insieme degli interi si indica con $\Z$:
-
-$$\Z = \{\dots, -2, -1, 0, 1, 2, \dots\}$$
-
-Qui i puntini sono da tutte e due le parti, perché gli interi continuano senza fine sia a destra sia a sinistra. La lettera Z viene dal tedesco *Zahlen*, che vuol dire «numeri».
-
-Ogni numero naturale è anche un intero. Quindi il sacchetto $\N$ sta dentro il sacchetto $\Z$. E $\Z$ ha qualcosa in più, per esempio $-1$. Con il simbolo di prima: $\N \subsetneq \Z$.
-
-### Le frazioni: i razionali
-
-Con gli interi certe divisioni non si possono fare. Dividi 1 pizza tra 2 persone: ognuno ne ha mezza. «Mezza» non è un numero intero. Per scriverlo serve una **frazione**: $\frac 12$.
-
-> [!RIPASSO] che cos'è una frazione
-> Una frazione si scrive con due numeri interi, uno sopra e uno sotto una lineetta: $\frac 34$.
->
-> - Il numero **sotto** (il *denominatore*) dice in quante parti uguali è tagliata la torta: qui 4.
-> - Il numero **sopra** (il *numeratore*) dice quante parti prendi: qui 3.
->
-> Quindi $\frac 34$ vuol dire «tre fette di una torta tagliata in quattro». È anche il risultato della divisione 3 diviso 4, cioè $0{,}75$.
->
-> Il numero sotto **non può essere 0**: non ha senso tagliare una torta in zero parti. Per questo non si divide mai per zero.
->
-> Anche un intero è una frazione: basta mettere 1 sotto. Per esempio $5 = \frac 51$.
-
-I numeri che si possono scrivere come frazione si chiamano **numeri razionali**. L'insieme dei razionali si indica con $\Q$. La Q viene da *quoziente*, che è il risultato di una divisione.
-
-Ogni intero è anche un razionale, perché $5 = \frac 51$. Quindi $\Z$ sta dentro $\Q$. E $\Q$ ha qualcosa in più, per esempio $\frac 12$. Quindi $\Z \subsetneq \Q$.
-
-### Come lo scrivono le dispense
-
-Ora che le tre famiglie sono chiare, ecco la definizione con le parole delle dispense.
+| Equazione | Soluzione | Perché manca | Insieme nuovo |
+|---|---|---|---|
+| $x + 5 = 3$ | $-2$ | non è un naturale | gli interi $\Z$ |
+| $2x = 1$ | $\frac 12$ | non è un intero | i razionali $\Q$ |
+| $x^2 = 2$ | $\sqrt 2$ | non è una frazione (lo dimostriamo più avanti) | i reali $\R$ |
+| $x^2 = -1$ | nessun reale | un quadrato reale non è mai negativo | i complessi $\C$, dalla lezione L02 |
 
 > [!DEF] 1.1 · Numeri naturali, interi e razionali
 > L'insieme dei **numeri naturali** è $\N = \{0, 1, 2, 3, \dots\}$.
@@ -189,48 +93,12 @@ Ora che le tre famiglie sono chiare, ecco la definizione con le parole delle dis
 > Se oltre agli interi consideriamo tutti i numeri esprimibili come frazioni $\frac ab$, otteniamo l'insieme dei **numeri razionali**
 > $$\Q = \left\{ \frac ab \ ;\ a, b \in \Z,\ b \neq 0 \right\}.$$
 
-**Come si legge.** L'ultima riga, quella di $\Q$, è la più difficile. Un pezzo alla volta:
+**Come si legge.** Nella scrittura di $\Q$ prima del punto e virgola c'è la forma degli elementi, dopo le condizioni: «le frazioni $\frac ab$, con $a$ e $b$ interi e $b$ diverso da zero». La Z viene dal tedesco *Zahlen*, «numeri»; la Q da *quoziente*. Ogni intero è anche razionale, perché $5 = \frac 51$.
 
-- le graffe dicono che è un insieme;
-- $\frac ab$ dice che cosa c'è dentro: frazioni. Le lettere $a$ e $b$ stanno al posto di due numeri qualsiasi;
-- il punto e virgola si legge «dove». Dopo ci sono le condizioni sulle due lettere;
-- $a, b \in \Z$ vuol dire «$a$ e $b$ sono numeri interi»;
-- $b \neq 0$ vuol dire «$b$ è diverso da zero». Il simbolo $\neq$ è un uguale sbarrato.
+> [!TRAPPOLA] Lo zero è un numero naturale
+> In questo corso, e nel libro di Martelli, $\N$ **comincia da 0**. In alcuni libri di scuola comincia da 1. All'esame vale la regola del corso: $0 \in \N$.
 
-Tutta insieme: «$\Q$ è l'insieme delle frazioni $\frac ab$, dove $a$ e $b$ sono interi e $b$ non è zero».
-
-### Perché servono famiglie sempre più grandi
-
-C'è un'idea che lega tutto. Ogni famiglia nuova nasce perché in quella vecchia **manca la risposta** a una domanda semplice.
-
-| Domanda | Risposta | C'è nella famiglia vecchia? | Famiglia nuova |
-|---|---|---|---|
-| Quale numero, sommato a 5, dà 3? | $-2$ | no: $-2$ non è un naturale | gli interi $\Z$ |
-| Quale numero, moltiplicato per 2, dà 1? | $\frac 12$ | no: $\frac 12$ non è un intero | i razionali $\Q$ |
-| Quale numero, moltiplicato per sé stesso, dà 2? | $\sqrt 2$ | no: non è una frazione (lo vediamo più avanti) | i reali $\R$ |
-| Quale numero, moltiplicato per sé stesso, dà $-1$? | nessun numero reale | no | i complessi $\C$, dalla lezione L02 |
-
-### Una frazione, tante scritture
-
-Mezza pizza è mezza pizza anche se la tagli in 4 fette e ne prendi 2. Quindi $\frac 12$ e $\frac 24$ sono lo stesso numero, scritto in due modi.
-
-Le dispense fanno questo esempio:
-
-$$\frac 17 = \frac 3{21} = \frac{-8}{-56}$$
-
-Sono tre scritture di «un settimo». Dalla prima alla seconda si passa moltiplicando sopra e sotto per 3. Dalla prima alla terza si passa moltiplicando sopra e sotto per $-8$.
-
-Come si controlla se due frazioni sono lo stesso numero? Con i **prodotti in croce**:
-
-1. moltiplica il sopra della prima per il sotto della seconda;
-2. moltiplica il sotto della prima per il sopra della seconda;
-3. se i due risultati sono uguali, le due frazioni sono lo stesso numero.
-
-Proviamo con $\frac 17$ e $\frac 3{21}$. Nei conti il puntino $\cdot$ è il segno «per».
-
-1. Sopra della prima per sotto della seconda: $1 \cdot 21 = 21$.
-2. Sotto della prima per sopra della seconda: $7 \cdot 3 = 21$.
-3. Viene 21 tutte e due le volte. Quindi $\frac 17 = \frac 3{21}$.
+Lo stesso razionale ha infinite scritture: le dispense fanno l'esempio $\frac 17 = \frac 3{21} = \frac{-8}{-56}$. Due frazioni $\frac ab$ e $\frac cd$ sono lo stesso numero quando i **prodotti in croce** coincidono, cioè $ad = bc$. Per $\frac 17$ e $\frac 3{21}$: $1 \cdot 21 = 21$ e $7 \cdot 3 = 21$.
 
 > [!NOTA] Chi viene prima
 > Le dispense precisano che $\N$ è un **concetto primitivo**: non si costruisce a partire da altro, si parte da lì. Poi $\Z$ si costruisce a partire da $\N$, e $\Q$ a partire da $\Z$. Lo strumento che permette di dire «queste due frazioni sono lo stesso numero» si chiama *relazione di equivalenza*, e si studia in Matematica Discreta.
@@ -250,79 +118,21 @@ $2 \cdot 15 = 30$ e $3 \cdot 10 = 30$. I due risultati sono uguali, quindi sì: 
 :::
 
 > [!RICORDA]
-> - $\N$: i numeri per contare, **zero compreso**.
-> - $\Z$: i naturali più i numeri negativi.
-> - $\Q$: tutte le frazioni, con il numero sotto diverso da zero.
-> - Ogni famiglia sta dentro la successiva: $\N \subsetneq \Z \subsetneq \Q$.
+> - $\N$ comincia da 0; $\Z$ aggiunge i negativi; $\Q$ sono le frazioni con denominatore diverso da zero.
+> - $\N \subsetneq \Z \subsetneq \Q$: ogni insieme ha qualcosa in più del precedente.
 
-## I numeri reali: infinite cifre dopo la virgola (pp. 2–3)
+## I numeri reali (pp. 2–3)
 
-Le frazioni non bastano ancora. Per capire che cosa manca conviene guardarle scritte con la virgola.
+Ogni frazione, fatta la divisione, ha uno sviluppo decimale che finisce oppure si ripete. Finisce, per esempio, in $\frac 14 = 0{,}25$; si ripete da un certo punto in poi in $\frac 13 = 0{,}\overline 3$ e $\frac 17 = 0{,}\overline{142857}$. Vale anche il contrario: ogni decimale finito o periodico è una frazione (esercizio 5). Uno sviluppo infinito che non si ripete mai, come quello di $\pi = 3{,}14159\ldots$, non è quindi una frazione. I **numeri reali** $\R$ sono tutti i numeri con uno sviluppo decimale, anche infinito e non periodico.
 
-### Da frazione a numero con la virgola
+Le dispense segnalano un'ambiguità: uno sviluppo che finisce con infiniti 9 è un'altra scrittura del numero arrotondato, come $5{,}973999\ldots = 5{,}974$. Il caso più noto è $0{,}999\ldots = 1$: moltiplicando per 3 i due lati di $\frac 13 = 0{,}333\ldots$ si ottiene proprio $1 = 0{,}999\ldots$
 
-Una frazione è una divisione. Se fai la divisione ottieni un numero con la virgola:
-
-$$\frac 14 = 0{,}25 \qquad\qquad \frac 13 = 0{,}333\ldots$$
-
-Possono succedere solo due cose.
-
-- Le cifre **finiscono**, come in $0{,}25$.
-- Le cifre non finiscono, ma **si ripetono** sempre uguali, come in $0{,}333\ldots$ Il gruppo di cifre che si ripete si chiama **periodo**. Per scriverlo in breve si mette una lineetta sopra: $0{,}\overline{3}$.
-
-Un periodo può essere più lungo di una cifra. Per esempio $\frac 17 = 0{,}142857142857\ldots$, che si scrive $0{,}\overline{142857}$.
-
-Vale anche il contrario: ogni numero con la virgola che finisce, oppure che si ripete, è una frazione. L'esercizio 5 mostra come si trova.
-
-### I numeri che le frazioni non raggiungono
-
-Esistono anche numeri con infinite cifre dopo la virgola **che non si ripetono mai**. Il più famoso è pi greco:
-
-$$\pi = 3{,}14159265\ldots$$
-
-Le sue cifre vanno avanti per sempre, e nessun gruppo si ripete. Quindi $\pi$ non è una frazione.
-
-Un numero che **può** avere infinite cifre dopo la virgola si chiama **numero reale**. L'insieme dei numeri reali si indica con $\R$.
-
-I reali contengono tutto quello che abbiamo visto finora: i naturali, gli interi, le frazioni. E in più i numeri come $\pi$.
-
-### Una stranezza: due scritture per lo stesso numero
-
-Le dispense avvertono di una piccola ambiguità. Un numero che finisce con infiniti 9 è uguale al numero «arrotondato»:
-
-$$5{,}973999\ldots = 5{,}974$$
-
-Il caso più semplice è $0{,}999\ldots = 1$. Non è «quasi 1»: è proprio 1, scritto in un altro modo. Ecco perché, in tre passi.
-
-1. Sappiamo che $\frac 13 = 0{,}333\ldots$
-2. Moltiplichiamo per 3 tutti e due i lati. A sinistra viene $3 \cdot \frac 13 = 1$. A destra ogni cifra 3 diventa 9, quindi viene $0{,}999\ldots$
-3. I due lati erano uguali prima, quindi sono uguali anche dopo: $1 = 0{,}999\ldots$
-
-### Come si costruiscono i numeri reali: l'idea
+### La costruzione con le successioni di Cauchy
 
 > [!NOTA] Questa parte serve per capire, non per l'esame
-> Da qui alla fine della sezione si vede come si definiscono i numeri reali in modo preciso. Nei due appelli del 2026 (15/01 e 07/09) non c'è nessuna domanda su questo argomento. Se hai poco tempo, leggi solo il riquadro «Da ricordare» in fondo alla sezione.
+> Da qui alla fine della sezione si vede come si definiscono i numeri reali in modo preciso. Negli appelli 2023–2026 non c'è nessuna domanda su questo argomento. Se hai poco tempo, leggi solo il riquadro «Ricorda» in fondo alla sezione.
 
-Dire «un numero con infinite cifre» va bene per farsi un'idea. Ma resta un problema: **come si sommano due numeri così?** Per fare una somma in colonna si parte dalla cifra più a destra. Con infinite cifre, una cifra più a destra non esiste.
-
-Le dispense risolvono il problema con un'idea diversa. Prova a «raggiungere» $\pi$ usando solo numeri che finiscono:
-
-- con una cifra dopo la virgola: $3{,}1$
-- con due cifre: $3{,}14$
-- con tre cifre: $3{,}141$
-- con quattro cifre: $3{,}1415$
-- e avanti così, senza fermarsi mai.
-
-Ognuno di questi numeri finisce, quindi è una frazione. Per esempio $3{,}14 = \frac{314}{100}$. Nessuno di loro è $\pi$. Ma più vai avanti nella lista, più ti avvicini a $\pi$.
-
-L'idea è questa: **un numero reale è una lista infinita di frazioni che si avvicinano sempre di più a qualcosa.** Anche se quel «qualcosa» non è una frazione, la lista lo individua lo stesso.
-
-Servono due parole nuove.
-
-- Una lista infinita di numeri, uno dopo l'altro, si chiama **successione**. I numeri della lista si chiamano **termini**. Si scrivono con un numerino in basso che dice il posto: $a_1$ è il primo, $a_2$ il secondo, $a_3$ il terzo. Nella lista di $\pi$: $a_1 = 3{,}1$, poi $a_2 = 3{,}14$, poi $a_3 = 3{,}141$.
-- Una successione in cui i termini, da un certo punto in poi, sono **vicinissimi tra loro** si chiama **successione di Cauchy**. Si pronuncia «coscì»: è il nome di un matematico francese.
-
-La lista di $\pi$ è una successione di Cauchy. Dal terzo termine in poi tutti cominciano con $3{,}141$, quindi tra l'uno e l'altro c'è meno di un millesimo. Dal sesto in poi c'è meno di un milionesimo. E avanti così, sempre più vicini.
+«Un numero con infinite cifre» non basta come definizione: per sommare in colonna si parte dalla cifra più a destra, che qui non esiste. Le dispense usano un'altra strada. I troncamenti di $\pi$, cioè $3{,}1$, $3{,}14$, $3{,}141$, $3{,}1415$, …, sono tutti razionali e si avvicinano sempre di più tra loro. Una lista infinita di numeri $a_1, a_2, a_3, \dots$ si chiama **successione**; se da un certo punto in poi i suoi termini sono vicini quanto si vuole tra loro, è una **successione di Cauchy**. La lista dei troncamenti individua $\pi$ anche se $\pi$ non è razionale.
 
 > [!ESEMPIO] 1.2 · Il numero $\pi$
 > Il numero reale $\pi$ ha infinite cifre dopo la virgola: $3{,}1415926\ldots$ Corrisponde alla successione di Cauchy di numeri razionali
@@ -330,42 +140,24 @@ La lista di $\pi$ è una successione di Cauchy. Dal terzo termine in poi tutti c
 > Le dispense aggiungono che la successione che definisce un numero reale **non è unica**. Per esempio anche la lista $3{,}2;\ 3{,}15;\ 3{,}142;\ 3{,}1416;\ \dots$ (ogni volta arrotondando per eccesso) si avvicina a $\pi$. Due liste diverse possono indicare lo stesso numero.
 
 > [!APPROFONDIMENTO] la definizione precisa di successione di Cauchy (p. 2)
-> Le dispense scrivono «vicinissimi tra loro» in modo preciso.
->
 > Una successione $(a_n)$ di numeri razionali $a_n \in \Q$ è **di Cauchy** se per ogni numero razionale $\varepsilon > 0$ esiste un $N > 0$ per cui
 > $$|a_m - a_n| < \varepsilon \quad \text{per ogni } m, n > N.$$
 >
-> **Come si legge.**
->
-> - $(a_n)$ è la successione, cioè tutta la lista $a_1, a_2, a_3, \dots$
-> - $\varepsilon$ è la lettera greca *epsilon*. Qui indica una **tolleranza**: un numero positivo piccolo che scegli tu, per esempio un millesimo.
-> - $|a_m - a_n|$ è la **distanza** tra due termini della lista. Le due barre verticali sono il *valore assoluto*: tolgono il segno meno, perché una distanza non è mai negativa. Per esempio $|3 - 5| = |-2| = 2$.
-> - «Esiste un $N$ … per ogni $m, n > N$» vuol dire: **da un certo posto in poi**, cioè dopo il posto numero $N$, due termini qualsiasi distano meno della tolleranza.
->
-> Tutta insieme: per quanto piccola tu scelga la tolleranza, da un certo punto in poi i termini distano tra loro meno di quella tolleranza. Più la tolleranza è piccola, più avanti nella lista bisogna andare.
+> **Come si legge.** $\varepsilon$ è una tolleranza positiva scelta a piacere; $|a_m - a_n|$ è la distanza tra due termini. La condizione dice che, comunque piccola sia la tolleranza, dopo il posto $N$ due termini qualsiasi distano meno di $\varepsilon$. Più la tolleranza è piccola, più avanti bisogna andare.
 
-### Le liste che puntano a un buco
-
-Una successione di Cauchy fatta di frazioni può comportarsi in due modi.
-
-- Si avvicina a una **frazione**. Per esempio la lista $0{,}3;\ 0{,}33;\ 0{,}333;\ \dots$ si avvicina a $\frac 13$. Allora rappresenta quella frazione, e non c'è niente di nuovo.
-- Si avvicina a qualcosa che **non è una frazione**, come la lista di $\pi$. Allora rappresenta un numero nuovo, che tra le frazioni non c'era: un **numero irrazionale**.
-
-Un'immagine utile. Metti tutte le frazioni su un righello. Sono fittissime, ma tra l'una e l'altra restano dei buchi piccolissimi: per esempio nel punto dove dovrebbe stare $\pi$. Una successione di Cauchy che punta a un buco serve a **riempirlo**.
+Una successione di Cauchy di razionali può avvicinarsi a un razionale, come $0{,}3;\ 0{,}33;\ 0{,}333;\ \dots$ che si avvicina a $\frac 13$, oppure a un «buco» tra i razionali, come la lista di $\pi$. Nel secondo caso individua un numero **irrazionale**.
 
 > [!DEF] Numeri reali (p. 3)
 > I **numeri reali** sono definiti come *classi di equivalenza* di successioni di Cauchy di numeri razionali. Due successioni di Cauchy sono **equivalenti** se la loro differenza è una successione che tende a zero.
 
-**Come si legge.** Due liste sono «equivalenti» quando si avvicinano alla stessa cosa, come le due liste di $\pi$ dell'Esempio 1.2. «Classe di equivalenza» vuol dire che tutte le liste equivalenti tra loro contano come **un solo** numero. È lo stesso trucco delle frazioni: $\frac 12$ e $\frac 24$ sono scritture diverse dello stesso numero.
+**Come si legge.** Due successioni sono equivalenti quando si avvicinano alla stessa cosa, come le due liste di $\pi$ dell'esempio 1.2. La classe di equivalenza conta tutte queste liste come un solo numero. È lo stesso meccanismo per cui $\frac 12$ e $\frac 24$ sono lo stesso razionale.
 
 > [!ESEMPIO] 1.3 · Il numero $e$
 > Le dispense danno un secondo esempio di lista che punta a un buco. Il termine di posto $n$ si calcola con questa formula:
 > $$a_n = \left(1 + \frac 1n\right)^n$$
-> Al posto di $n$ metti 1 per avere il primo termine, 2 per il secondo, 3 per il terzo. Il piccolo $n$ in alto è una potenza: il numero tra parentesi va moltiplicato per sé stesso $n$ volte.
->
-> - Con $n = 1$: dentro la parentesi $1 + \frac 11 = 2$. Poi $2^1 = 2$. Quindi $a_1 = 2$.
-> - Con $n = 2$: dentro la parentesi $1 + \frac 12 = \frac 32$. Poi $\frac 32 \cdot \frac 32 = \frac 94$. Quindi $a_2 = \frac 94 = 2{,}25$.
-> - Con $n = 3$: dentro la parentesi $1 + \frac 13 = \frac 43$. Poi $\frac 43 \cdot \frac 43 \cdot \frac 43 = \frac{64}{27}$. Quindi $a_3 = \frac{64}{27}$, che è circa $2{,}370$.
+> - Con $n = 1$: $a_1 = 2^1 = 2$.
+> - Con $n = 2$: $a_2 = \left(\frac 32\right)^2 = \frac 94 = 2{,}25$.
+> - Con $n = 3$: $a_3 = \left(\frac 43\right)^3 = \frac{64}{27} \approx 2{,}370$.
 >
 > Ogni termine è una frazione. La successione è di Cauchy, ma non si avvicina a nessuna frazione. Quindi definisce un numero reale nuovo: il **numero di Eulero** $e = 2{,}71828\ldots$
 
@@ -390,19 +182,12 @@ punto: 11 2.6042 | accento
 punto: 12 2.61304 | accento
 ```
 
-### Nei numeri reali non ci sono più buchi (p. 3)
-
-Con questa costruzione tutti i buchi del righello sono stati riempiti. Le dispense lo riassumono con due idee da tenere in testa.
-
-1. Ogni numero reale si può **approssimare** con le frazioni, con la precisione che vuoi. Per esempio $3{,}14159$ è una frazione molto vicina a $\pi$.
-2. Se rifacessi tutto il lavoro partendo da liste di numeri **reali**, invece che di frazioni, non troveresti nessun numero nuovo.
-
-La seconda idea ha un nome preciso: $\R$ è **completo**.
+Con questa costruzione i buchi sono riempiti. Le dispense ne tengono due conseguenze: ogni reale si **approssima** con razionali con la precisione che si vuole, e rifacendo la costruzione con successioni di reali non si trova niente di nuovo.
 
 > [!PROP] · $\R$ è completo
 > A differenza di $\Q$, l'insieme $\R$ dei numeri reali è **completo**: ogni successione di Cauchy in $\R$ converge.
 
-**Come si legge.** «Converge» vuol dire «si avvicina sempre di più a un numero preciso». Quindi: ogni lista di numeri reali che si stringe si avvicina a un numero reale. Non punta mai a un buco, perché di buchi non ce ne sono più. In $\Q$ invece i buchi ci sono: la lista di $\pi$ è fatta di frazioni ma non si avvicina a nessuna frazione.
+**Come si legge.** «Converge» vuol dire che si avvicina a un numero preciso dell'insieme. In $\R$ ogni successione di Cauchy ha un limite reale; in $\Q$ no, perché la lista dei troncamenti di $\pi$ è fatta di razionali ma non ha un limite razionale.
 
 > [!OLTRE] · dove trovarlo nel libro
 > Il libro di Martelli presenta questa costruzione nel complemento **1.II «Costruzione dei numeri reali»** (pp. 40–42 del libro).
@@ -420,29 +205,12 @@ $0{,}6;\ 0{,}66;\ 0{,}666;\ 0{,}6666$. Ogni termine ha una cifra in più del pre
 :::
 
 > [!RICORDA]
-> - Un **numero reale** è un numero che può avere infinite cifre dopo la virgola. L'insieme dei reali è $\R$.
-> - Le frazioni sono i numeri con la virgola che finiscono o che si ripetono. Quelli che non si ripetono mai, come $\pi$, sono **irrazionali**.
-> - In modo preciso, un numero reale è una lista di frazioni che si avvicinano sempre di più tra loro: una successione di Cauchy.
-> - $\R$ è **completo**: non ha buchi. $\Q$ invece ne ha.
+> - I razionali hanno uno sviluppo decimale finito o periodico; i reali possono averlo infinito e non periodico.
+> - In modo preciso un reale è una classe di successioni di Cauchy di razionali. $\R$ è completo, $\Q$ no.
 
-## Perché la radice di 2 non è una frazione (p. 4)
+## Perché la radice di 2 non è razionale (p. 4)
 
-Finora abbiamo solo detto che esistono numeri che non sono frazioni. In questa sezione ne guardiamo uno da vicino e dimostriamo che davvero non lo è.
-
-> [!RIPASSO] quadrato e radice quadrata
-> Il **quadrato** di un numero è il numero moltiplicato per sé stesso. Si scrive con un piccolo 2 in alto: $3^2 = 3 \cdot 3 = 9$.
->
-> La **radice quadrata** fa la strada al contrario. $\sqrt 9$ è il numero positivo che, moltiplicato per sé stesso, dà 9. Quindi $\sqrt 9 = 3$.
->
-> Altri due esempi: $\sqrt{16} = 4$ perché $4 \cdot 4 = 16$, e $\sqrt{25} = 5$ perché $5 \cdot 5 = 25$.
->
-> I numeri come 9, 16 e 25, che sono il quadrato di un intero, si chiamano **quadrati perfetti**.
-
-### Da dove viene la radice di 2
-
-$\sqrt 2$ è il numero positivo che, moltiplicato per sé stesso, dà 2. Nessun intero funziona: $1 \cdot 1 = 1$ è troppo poco, $2 \cdot 2 = 4$ è troppo. Quindi $\sqrt 2$ sta tra 1 e 2. Le prime cifre sono $1{,}41421\ldots$
-
-Non è un numero inventato: è una lunghezza che si può disegnare. Prendi un quadrato con il lato lungo 1. La sua diagonale è lunga proprio $\sqrt 2$.
+La radice di 2 è una lunghezza concreta: per il teorema di Pitagora la diagonale di un quadrato di lato 1 misura $\sqrt{1^2 + 1^2} = \sqrt 2$. Sta tra 1 e 2, perché $1^2 = 1$ e $2^2 = 4$; le prime cifre sono $1{,}41421\ldots$
 
 ```grafico
 titolo: La diagonale di un quadrato di lato 1 è lunga $\sqrt 2$
@@ -456,22 +224,7 @@ testo: 0.5 -0.12 | $1$
 testo: 1.12 0.5 | $1$
 ```
 
-> [!RIPASSO] il teorema di Pitagora
-> In un triangolo con un angolo retto, i due lati corti si chiamano *cateti* e il lato lungo si chiama *ipotenusa*. Il teorema dice: il quadrato di un cateto, più il quadrato dell'altro cateto, è uguale al quadrato dell'ipotenusa.
->
-> La diagonale taglia il quadrato in due triangoli con un angolo retto. I cateti sono i lati del quadrato, lunghi 1. L'ipotenusa è la diagonale. Quindi il quadrato della diagonale è $1^2 + 1^2 = 2$, e la diagonale è $\sqrt 2$.
-
-### Tutte le famiglie, una dentro l'altra
-
-Le dispense riassumono le quattro famiglie in una riga sola:
-
-$$\N \subsetneq \Z \subsetneq \Q \subsetneq \R$$
-
-Si legge da sinistra a destra: i naturali stanno dentro gli interi, gli interi dentro i razionali, i razionali dentro i reali. Ogni volta c'è il simbolo «strettamente», perché ogni famiglia ha qualcosa in più di quella prima:
-
-- $-1$ è un intero ma non un naturale;
-- $\frac 12$ è un razionale ma non un intero;
-- $\sqrt 2$ è un reale ma non un razionale.
+Le dispense riassumono le quattro famiglie in una riga, $\N \subsetneq \Z \subsetneq \Q \subsetneq \R$. Per $-1$ e $\frac 12$ basta guardarli. Per $\sqrt 2$ bisogna escludere tutte le infinite frazioni, e serve una dimostrazione.
 
 ```grafico
 titolo: Ogni insieme contiene il precedente e ha qualcosa in più
@@ -493,56 +246,25 @@ testo: 4.5 0.4 | ambra | $\R$
 testo: 4.5 -0.3 | $\sqrt 2,\ \pi$
 ```
 
-I primi due punti dell'elenco si vedono a occhio. Il terzo no. Come si fa a essere sicuri che **nessuna** frazione, tra le infinite che esistono, sia uguale a $\sqrt 2$? Non si possono provare tutte. Serve un ragionamento.
-
-### Ragionare per assurdo
-
-Il ragionamento che serve si chiama **dimostrazione per assurdo**. Funziona come il ragionamento di un detective.
-
-Un detective vuole dimostrare che Mario **non** era in casa alle otto. Ragiona così: «Facciamo finta che Mario fosse in casa. Allora la telecamera sul portone lo avrebbe ripreso mentre entrava. Ma nel filmato Mario non c'è. È impossibile. Quindi Mario non era in casa.»
-
-I passi sono sempre questi quattro.
-
-1. Fai finta che sia vero **il contrario** di quello che vuoi dimostrare.
-2. Ragioni in modo corretto, un passo alla volta.
-3. Arrivi a una cosa **impossibile**. In matematica si chiama *assurdo*, oppure *contraddizione*.
-4. Concludi che il punto 1 era sbagliato. Quindi è vero quello che volevi dimostrare.
-
-Per la dimostrazione servono due attrezzi, che trovi nel riquadro qui sotto.
-
-> [!RIPASSO] pari, dispari e frazioni ridotte
-> Un numero intero è **pari** se è il doppio di un altro intero: $6 = 2 \cdot 3$. È **dispari** se è un numero pari più 1: $7 = 6 + 1$.
->
-> **Primo attrezzo: se il quadrato di un numero è pari, anche il numero è pari.** Il motivo è che un numero dispari ha sempre il quadrato dispari: $3^2 = 9$, $5^2 = 25$, $7^2 = 49$. Vale per tutti i dispari. Un dispari si scrive $2k + 1$, dove $k$ è un intero. Il suo quadrato è $(2k + 1) \cdot (2k + 1) = 4k^2 + 4k + 1$. I primi due pezzi sono pari, e un numero pari più 1 è dispari.
->
-> **Secondo attrezzo: le frazioni ridotte.** Una frazione è *ridotta ai minimi termini* quando sopra e sotto non si possono più dividere per lo stesso numero. $\frac 68$ non è ridotta: sopra e sotto si dividono per 2, e diventa $\frac 34$. Invece $\frac 34$ è ridotta. Ogni frazione si può ridurre.
-
 > [!PROP] 1.4
 > Il numero $\sqrt 2$ non è razionale.
 
-**Come si legge.** «Non è razionale» vuol dire «non si può scrivere come frazione». Un numero reale che non è razionale si chiama **irrazionale**.
+**Come si legge.** Non esistono interi $a$ e $b$ con $\frac ab = \sqrt 2$. Un reale che non è razionale si chiama **irrazionale**.
 
-Ecco la dimostrazione delle dispense, un passo alla volta.
+La dimostrazione è **per assurdo**: si suppone vero il contrario e si arriva a una contraddizione. Servono due fatti sugli interi. Se $a^2$ è pari anche $a$ è pari, perché un dispari $2k + 1$ ha quadrato $4k^2 + 4k + 1$, dispari. E ogni frazione si può ridurre ai minimi termini, cioè con numeratore e denominatore senza divisori comuni.
 
-1. **Facciamo finta del contrario.** Supponiamo che $\sqrt 2$ sia una frazione: $\sqrt 2 = \frac ab$, con $a$ e $b$ interi.
-2. **Scegliamo la frazione ridotta.** Se $a$ e $b$ si potessero dividere per lo stesso numero, li dividiamo subito. Quindi possiamo supporre che $\frac ab$ sia ridotta ai minimi termini. Tieni a mente questo punto: tra poco lo contraddiremo.
-3. **Eleviamo al quadrato** tutti e due i lati. A sinistra $(\sqrt 2)^2 = 2$. A destra $\left(\frac ab\right)^2 = \frac{a^2}{b^2}$. Quindi
-   $$2 = \frac{a^2}{b^2}.$$
-4. **Togliamo la frazione.** Moltiplichiamo tutti e due i lati per $b^2$:
-   $$2b^2 = a^2.$$
-5. **$a$ è pari.** Il numero $a^2$ è il doppio di $b^2$, quindi è pari. Per il primo attrezzo, anche $a$ è pari. Allora $a$ è il doppio di un intero, che chiamiamo $k$: $a = 2k$.
-6. **Sostituiamo.** Al posto di $a$ scriviamo $2k$. Il suo quadrato è $2k \cdot 2k = 4k^2$. La riga del passo 4 diventa $2b^2 = 4k^2$. Dividiamo tutti e due i lati per 2:
-   $$b^2 = 2k^2.$$
-7. **Anche $b$ è pari.** Il numero $b^2$ è il doppio di $k^2$, quindi è pari. Di nuovo per il primo attrezzo, anche $b$ è pari.
-8. **L'assurdo.** $a$ e $b$ sono tutti e due pari, quindi si possono dividere tutti e due per 2. Ma al passo 2 avevamo scelto una frazione ridotta, che non si può più semplificare. Le due cose non possono essere vere insieme.
-9. **Conclusione.** L'ipotesi del passo 1 porta a una cosa impossibile, quindi è sbagliata. $\sqrt 2$ **non** è una frazione.
+1. Supponiamo $\sqrt 2 = \frac ab$ con $a, b$ interi e la frazione **ridotta ai minimi termini**.
+2. Elevando al quadrato, $2 = \frac{a^2}{b^2}$, cioè $2b^2 = a^2$.
+3. Allora $a^2$ è pari, quindi $a$ è pari: $a = 2k$.
+4. Sostituendo, $2b^2 = 4k^2$, cioè $b^2 = 2k^2$: anche $b^2$ è pari, quindi $b$ è pari.
+5. Numeratore e denominatore sono pari, quindi la frazione si semplifica ancora per 2: contraddice il passo 1. Quindi $\sqrt 2$ non è razionale.
 
-> [!IDEA] · la ricetta, in tre mosse
+> [!IDEA] · lo schema, in tre mosse
 > 1. Scrivi il numero come frazione **ridotta**.
 > 2. Eleva al quadrato e togli la frazione.
 > 3. Mostra che sopra e sotto hanno un divisore in comune: è l'assurdo.
 >
-> Con la stessa ricetta si dimostra che $\sqrt 3$ e $\sqrt 6$ non sono frazioni (esercizi 11 e 13).
+> Con lo stesso schema si dimostra che $\sqrt 3$ e $\sqrt 6$ non sono frazioni (esercizi 11 e 13).
 
 > [!DIM] · un'altra strada, dal libro di Martelli
 > Anche Martelli arriva alla riga $a^2 = 2b^2$. Poi usa la **scomposizione in fattori primi**, cioè la scrittura di un numero come prodotto di numeri primi: per esempio $36 = 2 \cdot 2 \cdot 3 \cdot 3$.
@@ -566,55 +288,12 @@ $a$ e $b$ risultano tutti e due pari, quindi la frazione $\frac ab$ si può anco
 :::
 
 > [!RICORDA]
-> - $\sqrt 2$ è la lunghezza della diagonale di un quadrato di lato 1. Non è una frazione: è **irrazionale**.
-> - Si dimostra **per assurdo**: si fa finta che sia una frazione ridotta e si scopre che si può ancora semplificare.
-> - Le quattro famiglie stanno una dentro l'altra: $\N \subsetneq \Z \subsetneq \Q \subsetneq \R$.
+> - $\sqrt 2$ è irrazionale: si dimostra per assurdo, con una frazione ridotta che risulta ancora semplificabile.
+> - $\N \subsetneq \Z \subsetneq \Q \subsetneq \R$.
 
-## Le nove regole dei conti: che cos'è un campo (p. 4)
+## Le nove proprietà: che cos'è un campo (p. 4)
 
-Quando fai un conto usi delle regole senza accorgertene. Per esempio sai che $2 + 5$ e $5 + 2$ danno lo stesso risultato.
-
-In questa sezione mettiamo queste regole in fila e diamo loro un nome. Può sembrare un lavoro inutile, ma non lo è. Dalla lezione L05 le stesse regole varranno anche per i vettori, che non sono numeri. Conoscerle per nome servirà lì.
-
-Sui numeri reali ci sono due **operazioni**: la somma, con il segno $+$, e il prodotto, con il puntino $\cdot$. Le dispense le chiamano operazioni **binarie**. «Binaria» vuol dire che l'operazione prende **due** numeri e ne restituisce **uno**. Da 3 e 4 la somma restituisce 7, il prodotto restituisce 12.
-
-### Le nove regole, con i numeri
-
-| N. | La regola a parole | Un esempio |
-|---|---|---|
-| 1 | sommare 0 non cambia niente | $0 + 7 = 7$ |
-| 2 | in una somma l'ordine non conta | $2 + 5 = 5 + 2$ |
-| 3 | in una somma di tre numeri puoi cominciare da dove vuoi | $1 + (2 + 3) = (1 + 2) + 3$ |
-| 4 | ogni numero ha un **opposto**: sommati fanno 0 | $7 + (-7) = 0$ |
-| 5 | moltiplicare per 1 non cambia niente | $1 \cdot 7 = 7$ |
-| 6 | in un prodotto l'ordine non conta | $2 \cdot 5 = 5 \cdot 2$ |
-| 7 | in un prodotto di tre numeri puoi cominciare da dove vuoi | $2 \cdot (3 \cdot 4) = (2 \cdot 3) \cdot 4$ |
-| 8 | ogni numero **diverso da 0** ha un **inverso**: moltiplicati fanno 1 | $4 \cdot \frac 14 = 1$ |
-| 9 | moltiplicare una somma è come moltiplicare i due pezzi e poi sommare | $3 \cdot (2 + 5) = 3 \cdot 2 + 3 \cdot 5$ |
-
-Controlliamo per intero la regola 3 e la regola 9. Le parentesi dicono quale conto va fatto per primo.
-
-- **Regola 3.** A sinistra: prima $2 + 3 = 5$, poi $1 + 5 = 6$. A destra: prima $1 + 2 = 3$, poi $3 + 3 = 6$. Stesso risultato.
-- **Regola 9.** A sinistra: prima $2 + 5 = 7$, poi $3 \cdot 7 = 21$. A destra: $3 \cdot 2 = 6$ e $3 \cdot 5 = 15$, poi $6 + 15 = 21$. Stesso risultato.
-
-Ogni regola ha un nome, che ritroverai per tutto il corso.
-
-- Il numero che «non cambia niente» si chiama **elemento neutro**. È lo 0 per la somma (regola 1) e l'1 per il prodotto (regola 5).
-- «L'ordine non conta» è la proprietà **commutativa** (regole 2 e 6).
-- «Puoi cominciare da dove vuoi» è la proprietà **associativa** (regole 3 e 7).
-- La regola 9 è la proprietà **distributiva**.
-
-### Lo zero non ha inverso
-
-Guarda bene la regola 8: vale per ogni numero **tranne lo zero**.
-
-L'inverso di un numero è quello che, moltiplicato per lui, dà 1. L'inverso di 4 è $\frac 14$. L'inverso di $\frac 23$ è $\frac 32$: basta scambiare sopra e sotto.
-
-E l'inverso di 0? Dovrebbe essere un numero che, moltiplicato per 0, dà 1. Ma qualunque numero moltiplicato per 0 dà 0, mai 1. Quindi quel numero non esiste. È lo stesso divieto di prima: non si divide per zero.
-
-### Come lo scrivono le dispense
-
-Ecco le stesse nove regole con le parole e i simboli delle dispense.
+Le proprietà di somma e prodotto che si usano senza pensarci qui ricevono un nome: per esempio $2 + 5 = 5 + 2$ è la proprietà commutativa. Non è un esercizio di stile: dalla lezione L05 le stesse proprietà definiscono gli spazi vettoriali, e lì gli oggetti non sono più numeri. Le dispense chiamano somma e prodotto operazioni **binarie**, perché prendono due numeri e ne restituiscono uno.
 
 > [!PROP] 1.5 · Le nove proprietà di $\R$
 > Su $\R$ ci sono due operazioni binarie $+$ e $\cdot$ con le seguenti proprietà:
@@ -628,37 +307,24 @@ Ecco le stesse nove regole con le parole e i simboli delle dispense.
 > 8. ogni elemento $a \in \R$ con $a \neq 0$ ha un **inverso** $a^{-1}$, per cui $a \cdot a^{-1} = a^{-1} \cdot a = 1$;
 > 9. vale la proprietà **distributiva** $a \cdot (b + c) = a \cdot b + a \cdot c$, $\forall a, b, c \in \R$.
 
-**Come si legge.** C'è un solo simbolo nuovo: $\forall$, una A rovesciata. Si legge «per ogni».
-
-- «$\forall a \in \R$» si legge «per ogni $a$ che appartiene a $\R$». Vuol dire: qualunque numero reale tu metta al posto della lettera $a$.
-- La riga 1 dice che $0 + a$ e $a + 0$ fanno $a$, per ogni numero reale $a$. Se al posto di $a$ metti 7 diventa $0 + 7 = 7 + 0 = 7$: è la regola 1 della tabella.
-- Le righe 4 e 8 parlano di «inverso». Per la somma l'inverso si chiama di solito **opposto** e si scrive $-a$. Per il prodotto si scrive $a^{-1}$, con un piccolo $-1$ in alto, ed è lo stesso di $\frac 1a$. Per esempio $4^{-1} = \frac 14$.
-- Ogni riga è una delle regole della tabella, scritta con le lettere al posto dei numeri. Le lettere servono a dire che la regola vale **per tutti** i numeri, non solo per quelli dell'esempio.
-
-### Che cos'è un campo
-
-Le nove regole non valgono solo per i numeri reali. Ogni insieme in cui si può sommare e moltiplicare, e in cui valgono tutte e nove, riceve lo stesso nome.
+**Come si legge.** Il simbolo $\forall$ si legge «per ogni»: ogni riga vale qualunque numero reale si metta al posto delle lettere. Le prime quattro righe riguardano la somma, le tre seguenti il prodotto, l'ultima li collega. L'inverso per la somma si chiama di solito **opposto** e si scrive $-a$; quello per il prodotto si scrive $a^{-1} = \frac 1a$, per esempio $4^{-1} = \frac 14$. La riga 8 esclude lo zero: un inverso di 0 dovrebbe dare 1 moltiplicato per 0, ma ogni numero per 0 fa 0. È il motivo per cui non si divide per zero.
 
 > [!DEF] Campo
 > Un insieme con due operazioni $+$ e $\cdot$ che hanno queste nove proprietà si chiama **campo**.
 
-**Come si legge.** «Campo» è solo un nome. Dice: qui dentro si possono fare le quattro operazioni con le solite regole, senza mai uscire dall'insieme. La somma e la sottrazione funzionano grazie agli opposti. Il prodotto e la divisione funzionano grazie agli inversi.
+**Come si legge.** In un campo si fanno le quattro operazioni senza uscire dall'insieme: sottrarre è sommare l'opposto, dividere è moltiplicare per l'inverso. Le dispense riprendono i campi nella lezione L05, e da qui in poi scrivono spesso $ab$ al posto di $a \cdot b$.
 
-Le dispense aggiungono due avvisi. Il concetto di campo torna più in dettaglio nella lezione L05. E al posto di $a \cdot b$ si scrive spesso solo $ab$, senza il puntino.
+Per decidere se un insieme di numeri è un campo bastano quasi sempre due domande: gli opposti stanno nell'insieme? Gli inversi dei numeri non nulli stanno nell'insieme?
 
-### Quali insiemi sono campi?
-
-Per decidere se una famiglia di numeri è un campo bastano quasi sempre due domande. Ogni numero ha il suo opposto **dentro la famiglia**? Ogni numero diverso da zero ha il suo inverso **dentro la famiglia**?
-
-| Famiglia | L'opposto c'è sempre? | L'inverso c'è sempre? | È un campo? |
+| Insieme | Opposti dentro? | Inversi dentro? | Campo? |
 |---|---|---|---|
-| $\N$ | no: l'opposto di 3 è $-3$, che non è un naturale | no: l'inverso di 3 è $\frac 13$, che non è un naturale | **no** |
-| $\Z$ | sì | no: l'inverso di 2 è $\frac 12$, che non è un intero | **no** |
+| $\N$ | no: $-3 \notin \N$ | no: $\frac 13 \notin \N$ | **no** |
+| $\Z$ | sì | no: $\frac 12 \notin \Z$ | **no** |
 | $\Q$ | sì | sì: l'inverso di $\frac ab$ è $\frac ba$ | **sì** |
 | $\R$ | sì | sì | **sì** |
 | $\C$ | sì | sì (lezione L02) | **sì** |
 
-Per dire che un insieme **non** è un campo basta **una** regola che non funziona, con **un** esempio. «$\Z$ non è un campo perché 2 non ha inverso in $\Z$» è una risposta completa.
+Per dire che un insieme **non** è un campo basta una proprietà che fallisce, con un esempio: «$\Z$ non è un campo perché 2 non ha inverso in $\Z$» è una risposta completa.
 
 > [!APPROFONDIMENTO] perché un numero per zero fa sempre zero
 > Dalle nove regole si può ricavare anche quello che sembra scontato. Per esempio che $a \cdot 0 = 0$ per ogni numero $a$.
@@ -683,15 +349,12 @@ No. Manca l'1, che serve per la regola 5: l'1 è dispari. Manca anche l'inverso 
 :::
 
 > [!RICORDA]
-> - Un **campo** è un insieme di numeri in cui valgono le nove regole. In pratica: puoi fare le quattro operazioni senza uscire dall'insieme.
-> - $\Q$, $\R$ e $\C$ sono campi. $\N$ e $\Z$ no.
-> - Lo zero non ha inverso: non si divide per zero.
+> - Un campo è un insieme con somma e prodotto che rispettano le nove proprietà: si fanno le quattro operazioni senza uscire.
+> - $\Q$, $\R$ e $\C$ sono campi; $\N$ e $\Z$ no. Lo zero non ha inverso.
 
-## Maggiore e minore: l'ordine (p. 5)
+## L'ordine (p. 5)
 
-Tra due numeri diversi ce n'è sempre uno più grande.
-
-Disegna una riga e mettici sopra i numeri: lo zero al centro, i positivi a destra, i negativi a sinistra. È la **retta dei numeri**. Un numero è **maggiore** di un altro se sta più a destra.
+Sulla retta dei numeri un numero è maggiore di un altro quando sta più a destra. Un insieme in cui due numeri diversi si confrontano sempre così si chiama **ordinato**: lo sono $\N$, $\Z$, $\Q$ e $\R$.
 
 ```grafico
 titolo: La retta dei numeri: più un numero sta a destra, più è grande
@@ -712,34 +375,12 @@ punto: 1.41421 0 | ambra | $\sqrt 2$ | n
 punto: 3.14159 0 | ambra | $\pi$ | n
 ```
 
-I simboli sono due.
-
-- $a > b$ si legge «$a$ è maggiore di $b$». L'apertura del simbolo guarda verso il numero più grande: $7 > 4$.
-- $a < b$ si legge «$a$ è minore di $b$»: $4 < 7$.
-
-Con i numeri negativi serve attenzione: $-2 > -5$, perché $-2$ sta più a destra di $-5$. Un debito di 2 euro è meglio di un debito di 5.
-
-Un insieme di numeri in cui due numeri diversi si possono sempre confrontare così si chiama **ordinato**. $\N$, $\Z$, $\Q$ e $\R$ sono tutti ordinati.
-
-### La regola precisa
-
 Le dispense danno una regola che non ha bisogno del disegno.
 
 > [!DEF] Ordine (p. 5)
 > Diciamo che $a > b$ se $a - b > 0$.
 
-**Come si legge.** Per sapere se $a$ è maggiore di $b$ fai la sottrazione $a - b$. Se il risultato è positivo, cioè maggiore di zero, allora $a > b$.
-
-Due esempi.
-
-- Con 7 e 4: $7 - 4 = 3$, che è positivo. Quindi $7 > 4$.
-- Con $-2$ e $-5$: $-2 - (-5) = -2 + 5 = 3$, che è positivo. Quindi $-2 > -5$.
-
-Con questa regola basta sapere **quali numeri sono positivi**. Le dispense lo dicono famiglia per famiglia.
-
-- In $\Z$ i positivi sono $1, 2, 3, \dots$
-- In $\Q$ una frazione è positiva quando sopra e sotto hanno **lo stesso segno**. $\frac 34$ è positiva. Anche $\frac{-3}{-4}$ è positiva, perché meno diviso meno fa più. Invece $\frac{-3}4$ è negativa.
-- In $\R$ la regola usa le successioni di Cauchy: è nel riquadro qui sotto.
+**Come si legge.** Per confrontare due numeri si guarda il segno della differenza: $-2 > -5$ perché $-2 - (-5) = 3$ è positivo. Così tutto si riduce a sapere quali numeri sono positivi. In $\Z$ sono $1, 2, 3, \dots$; in $\Q$ una frazione è positiva quando numeratore e denominatore hanno lo stesso segno, per esempio $\frac{-3}{-4}$; per $\R$ la regola usa le successioni di Cauchy.
 
 > [!APPROFONDIMENTO] quando un numero reale è positivo (p. 5)
 > Le dispense scrivono: un numero reale è positivo se è rappresentabile da una successione di Cauchy $(a_n)$ di numeri razionali per la quale esiste un numero razionale $\varepsilon > 0$ tale che $a_n > \varepsilon$ *definitivamente*.
@@ -756,29 +397,22 @@ Con questa regola basta sapere **quali numeri sono positivi**. Le dispense lo di
 
 (b) $-7 < -1$. Controllo: $-1 - (-7) = -1 + 7 = 6$, positivo. Quindi il maggiore è $-1$.
 
-(c) $\frac 12 > \frac 13$: mezza pizza è più di un terzo di pizza. Controllo: $\frac 12 - \frac 13 = \frac 36 - \frac 26 = \frac 16$, positivo.
+(c) $\frac 12 > \frac 13$. Controllo: $\frac 12 - \frac 13 = \frac 36 - \frac 26 = \frac 16$, positivo.
 :::
 
 > [!RICORDA]
-> - $a > b$ vuol dire che $a$ sta più a destra di $b$ sulla retta dei numeri. La regola precisa: $a - b$ è positivo.
-> - $\N$, $\Z$, $\Q$ e $\R$ sono ordinati. $\C$ no.
+> - $a > b$ vuol dire $a - b > 0$: sulla retta, $a$ sta più a destra.
+> - $\N$, $\Z$, $\Q$ e $\R$ sono ordinati, $\C$ no.
 
-## Parentesi da non confondere (p. 5)
+## Parentesi e intervalli (p. 5)
 
-Tre scritture si assomigliano molto e vogliono dire cose diversissime.
+Le dispense insistono sulla notazione, perché tre scritture quasi uguali indicano cose diverse.
 
 | Scrittura | Parentesi | Che cos'è | Che cosa contiene |
 |---|---|---|---|
-| $\{1, 2\}$ | graffe | un insieme con due soli elementi | solo l'1 e il 2 |
-| $(1, 2)$ | tonde | un **intervallo aperto** | tutti i numeri reali tra 1 e 2, **senza** l'1 e il 2 |
-| $[1, 2]$ | quadre | un **intervallo chiuso** | tutti i numeri reali tra 1 e 2, **compresi** l'1 e il 2 |
-
-Un **intervallo** è un pezzo della retta dei numeri: tutti i numeri reali tra un punto di partenza e un punto di arrivo. Tra 1 e 2 ci sono $1{,}5$, $1{,}01$, $1{,}999$ e infiniti altri.
-
-I due numeri scritti tra le parentesi si chiamano **estremi**. La differenza tra tonde e quadre sta tutta lì:
-
-- parentesi **tonda**: l'estremo è **escluso**;
-- parentesi **quadra**: l'estremo è **incluso**.
+| $\{1, 2\}$ | graffe | un insieme con due elementi | solo l'1 e il 2 |
+| $(1, 2)$ | tonde | un **intervallo aperto** | i reali tra 1 e 2, estremi **esclusi** |
+| $[1, 2]$ | quadre | un **intervallo chiuso** | i reali tra 1 e 2, estremi **inclusi** |
 
 ```grafico
 titolo: Tonda, estremo escluso (pallino vuoto). Quadra, estremo incluso (pallino pieno)
@@ -796,42 +430,16 @@ punto: 2 0.3 | blu | $2$ | s
 testo: 1.5 0.45 | $[1, 2]$
 ```
 
-Anche $(1, 2)$ e $[1, 2]$ sono insiemi. Ma hanno **infiniti** elementi, mentre $\{1, 2\}$ ne ha due.
-
-### Scrivere un insieme con una condizione
-
-C'è un modo molto usato per descrivere un insieme senza elencare gli elementi. Si scrive **quale condizione** devono rispettare.
-
-$$\{x \in \R \mid 1 < x < 2\}$$
-
-Si legge: «l'insieme degli $x$ che appartengono a $\R$ **tali che** $x$ è maggiore di 1 e minore di 2».
-
-Un pezzo alla volta:
-
-- la lettera $x$ sta per un numero qualsiasi;
-- $x \in \R$ dice dove si cercano gli elementi: tra i numeri reali;
-- la barretta verticale si legge «tale che». Nelle dispense al suo posto trovi a volte i due punti o il punto e virgola;
-- $1 < x < 2$ è la condizione. È un modo breve per scrivere due cose insieme: $1 < x$ e $x < 2$.
-
-Questo insieme è proprio l'intervallo aperto. Le dispense scrivono:
+Un insieme si descrive anche con una **condizione** sui suoi elementi. La barra verticale si legge «tale che» (le dispense usano anche i due punti o il punto e virgola), e $\le$ è «minore o uguale»:
 
 $$(1, 2) = \{x \in \R \mid 1 < x < 2\}, \qquad [1, 2] = \{x \in \R \mid 1 \le x \le 2\}.$$
-
-Il simbolo $\le$ si legge «minore o uguale». A differenza di $<$, permette anche l'uguale. Per questo nell'intervallo chiuso l'1 e il 2 sono compresi.
 
 > [!OLTRE] · gli altri intervalli
 > Le due parentesi si possono mescolare. $[1, 2)$ include l'1 ed esclude il 2. $(1, 2]$ esclude l'1 e include il 2.
 >
 > Per una semiretta, cioè un pezzo di retta che da una parte non finisce, si usa il simbolo $\infty$ («infinito»). Per esempio $[0, +\infty)$ contiene tutti i numeri reali da 0 in su. Accanto a $\infty$ la parentesi è sempre tonda, perché l'infinito non è un numero e non può essere «incluso».
 
-### La stessa scrittura per un punto
-
-C'è un'ultima complicazione. In questo corso $(1, 2)$ si usa anche per una cosa del tutto diversa: un **punto del piano**, oppure un **vettore** (lezione L05). In quel caso i due numeri sono le coordinate: 1 passo a destra e 2 passi in su.
-
-Come si capisce quale dei due significati vale? Dal **contesto**, cioè dalla frase intorno.
-
-- «Il numero $x$ sta in $(1, 2)$»: è l'intervallo.
-- «Il punto $P = (1, 2)$» oppure «il vettore $v = (1, 2)$»: è la coppia di coordinate. Qui l'ordine conta: $(1, 2)$ e $(2, 1)$ sono due punti diversi.
+In questo corso $(1, 2)$ indica anche un **punto del piano** o un **vettore** (lezione L05), con coordinate 1 e 2. Si capisce dal contesto: «$x$ sta in $(1, 2)$» è un intervallo, «il punto $P = (1, 2)$» è una coppia, e lì l'ordine conta.
 
 > [!ESAME] La notazione giusta
 > Le dispense insistono: è **essenziale usare sempre la notazione giusta**. Le graffe **non si usano mai** per i punti o per i vettori. Scrivere $\{1, 2\}$ al posto del vettore $(1, 2)$ è un errore: in un insieme l'ordine non conta, in un vettore sì. Negli appelli i vettori sono scritti anche come ${}^t(1, 2)$, con una piccola $t$ in alto a sinistra. Vuol dire «messo in verticale», e si vede nella lezione L08.
@@ -853,14 +461,12 @@ $[3, 7)$. A sinistra la quadra, perché il 3 è compreso ($\le$). A destra la to
 :::
 
 > [!RICORDA]
-> - Graffe: un insieme con gli elementi elencati. $\{1, 2\}$ ha due elementi.
-> - Tonde: intervallo con gli estremi **esclusi**. Quadre: intervallo con gli estremi **inclusi**.
-> - $(1, 2)$ può essere anche un punto o un vettore: lo dice il contesto.
-> - Mai le graffe per un vettore.
+> - Graffe: insieme con gli elementi elencati. Tonde: estremi esclusi. Quadre: estremi inclusi.
+> - $(1, 2)$ può essere anche un punto o un vettore; mai le graffe per un vettore.
 
 ## Le lettere greche del corso (p. 5)
 
-Nelle formule del corso compaiono spesso lettere dell'alfabeto greco. Non hanno niente di speciale: sono altri nomi per i numeri, come $x$ e $y$. Le dispense chiedono di imparare queste nove.
+Le dispense chiedono di riconoscere queste nove lettere, che nel corso indicano numeri, angoli e coefficienti come le lettere latine.
 
 | Lettera | Nome | Dove la incontrerai |
 |---|---|---|
@@ -874,40 +480,31 @@ Nelle formule del corso compaiono spesso lettere dell'alfabeto greco. Non hanno 
 | $\mu$ | mi (*mu*) | come lambda, quando serve una seconda lettera |
 | $\varrho$ | ro (*rho*) | raggi e distanze |
 
-Alcune lettere si scrivono in due modi: $\vartheta$ e $\theta$ sono entrambe theta, $\phi$ e $\varphi$ entrambe fi, $\varrho$ e $\rho$ entrambe ro, $\varepsilon$ ed $\epsilon$ entrambe epsilon.
+Theta, fi, ro ed epsilon hanno anche una seconda grafia: $\theta$, $\varphi$, $\rho$, $\epsilon$.
 
 ::: prova Come si chiamano $\lambda$, $\vartheta$ e $\varepsilon$?
 Lambda, theta ed epsilon.
 :::
 
 > [!RICORDA]
-> Le lettere greche sono solo nomi. Le più usate nel corso sono $\lambda$ (lambda) e $\mu$ (mi), che di solito indicano numeri, e $\vartheta$ (theta), che indica un angolo.
+> Le più usate nel corso sono $\lambda$ e $\mu$ per i numeri che moltiplicano i vettori, e $\vartheta$ per gli angoli.
 
-## Leggere i simboli della matematica (oltre le dispense)
+## Leggere i simboli (oltre le dispense)
 
-Le formule del corso sono frasi scritte in breve.
-
-Ogni simbolo sta al posto di qualche parola. Se rimetti le parole al posto dei simboli, una formula si legge come una frase normale. Le dispense usano questi simboli già dalla prima lezione; il libro di Martelli li spiega nel §1.1 (pp. 4–7).
+Le dispense usano dalla prima pagina i simboli della logica e degli insiemi; il libro di Martelli li spiega nel §1.1 (pp. 4–7). Una formula si legge come una frase sostituendo ogni simbolo con le sue parole.
 
 | Simbolo | Si legge | Un esempio, letto a parole |
 |---|---|---|
 | $\forall$ | «per ogni» | $\forall a \in \R:\ a + 0 = a$ si legge «per ogni numero reale $a$, $a$ più zero fa $a$» |
 | $\exists$ | «esiste» | $\exists x \in \Z:\ x + 5 = 3$ si legge «esiste un intero $x$ per cui $x$ più 5 fa 3». È vero: $x = -2$ |
-| $:$ oppure $\mid$ | «tale che», «per cui» | $\{x \in \R \mid x > 0\}$ si legge «i numeri reali $x$ tali che $x$ è maggiore di zero» |
+| $:$ oppure $\mid$ | «tale che», «per cui» | $\{x \in \R \mid x > 0\}$ si legge «i numeri reali $x$ maggiori di zero» |
 | $\Longrightarrow$ | «se … allora …» | $a = 2 \Longrightarrow a^2 = 4$ si legge «se $a$ è 2, allora $a$ al quadrato è 4» |
-| $\Longleftrightarrow$ | «se e solo se» | $a - b > 0 \Longleftrightarrow a > b$ si legge «$a$ meno $b$ è positivo se e solo se $a$ è maggiore di $b$» |
+| $\Longleftrightarrow$ | «se e solo se» | $a - b > 0 \Longleftrightarrow a > b$: le due frasi sono vere insieme o false insieme |
 | $\cup$ | «unito» | $\{1, 2\} \cup \{2, 3\} = \{1, 2, 3\}$: gli elementi che stanno nell'uno **o** nell'altro |
 | $\cap$ | «intersecato» | $\{1, 2\} \cap \{2, 3\} = \{2\}$: gli elementi che stanno nell'uno **e** nell'altro |
 | $\setminus$ | «meno» | $\{1, 2, 3\} \setminus \{3\} = \{1, 2\}$: il primo insieme senza gli elementi del secondo |
 
-«Se e solo se» vuol dire che le due frasi sono vere insieme oppure false insieme: dalla prima si ricava la seconda, e dalla seconda la prima.
-
-### Una parola cambia tutto
-
-Le parole «per ogni» ed «esiste» si chiamano **quantificatori**. Vanno lette con attenzione, perché basta cambiare un pezzo della frase per passare da vero a falso.
-
-- «Per ogni numero **reale** $x$ esiste un numero **reale** $y$ per cui $2y = x$.» È **vera**: basta prendere come $y$ la metà di $x$.
-- «Per ogni numero **intero** $x$ esiste un numero **intero** $y$ per cui $2y = x$.» È **falsa**: con $x = 1$ servirebbe $y = \frac 12$, che non è un intero.
+«Per ogni» ed «esiste» si chiamano **quantificatori**, e basta cambiare l'insieme per cambiare la verità di una frase. «Per ogni reale $x$ esiste un reale $y$ con $2y = x$» è vera: si prende $y = \frac x2$. La stessa frase con gli interi è falsa: per $x = 1$ servirebbe $y = \frac 12$.
 
 > [!TRAPPOLA] «Se … allora» non vale al contrario
 > La frase «se $a$ è 2, allora $a^2$ è 4» è vera. La frase al contrario, «se $a^2$ è 4, allora $a$ è 2», è falsa: anche $a = -2$ dà $a^2 = 4$. Quando una frase vale in tutti e due i versi si usa «se e solo se».
@@ -923,88 +520,31 @@ Unione: gli elementi che stanno in almeno uno dei due, cioè $\{1, 2, 3, 4\}$.
 :::
 
 > [!RICORDA]
-> Una formula si legge come una frase. Il simbolo $\forall$ si legge «per ogni», $\exists$ si legge «esiste», la freccia doppia $\Longrightarrow$ si legge «se … allora».
+> La A rovesciata si legge «per ogni», la E rovesciata «esiste», la freccia doppia «se … allora», che non vale al contrario.
 
-## Conti con le radici senza calcolatrice (oltre le dispense)
+## Conti con le radici (oltre le dispense)
 
-All'esame la calcolatrice è vietata, e nelle risposte del quiz compaiono spesso le radici.
+All'esame la calcolatrice è vietata, e le risposte del quiz scrivono lunghezze, distanze e angoli con le radici, in una forma precisa: un conto giusto che finisce con $\frac 1{\sqrt 3}$ va riconosciuto nella risposta $\frac{\sqrt 3}3$.
 
 > [!ESAME] Perché impararlo adesso
 > Nell'appello del 07/09/2026 le cinque risposte possibili per una distanza erano $3$, $\frac{\sqrt 3}3$, $3\sqrt 3$, $\sqrt 3$ e $3 + \sqrt 3$. Per un angolo comparivano $\arccos\frac 3{\sqrt{43}}$, $\arccos\frac 6{\sqrt{42}}$ e simili. Bisogna saper riconoscere che, per esempio, $\frac 1{\sqrt 3}$ e $\frac{\sqrt 3}3$ sono lo stesso numero.
 
-Le regole sono sei. Valgono per numeri positivi o nulli sotto la radice.
-
-### Regola 1: radice per radice
-
-Il prodotto di due radici è la radice del prodotto.
-
-$$\sqrt 2 \cdot \sqrt 8 = \sqrt{2 \cdot 8} = \sqrt{16} = 4$$
-
-### Regola 2: portare fuori un quadrato
-
-Se il numero sotto la radice è un quadrato perfetto moltiplicato per qualcos'altro, il quadrato perfetto «esce» dalla radice.
-
-Esempio con $\sqrt{12}$.
-
-1. Cerca un quadrato perfetto che divide 12. Il 4 va bene: $12 = 4 \cdot 3$.
-2. Spezza la radice con la regola 1 letta al contrario: $\sqrt{4 \cdot 3} = \sqrt 4 \cdot \sqrt 3$.
-3. Calcola la radice del quadrato perfetto: $\sqrt 4 = 2$.
-
-Risultato: $\sqrt{12} = 2\sqrt 3$. La scrittura $2\sqrt 3$ vuol dire «2 per radice di 3»: tra un numero e una radice il puntino non si scrive.
-
-### Regola 3: radice e quadrato si annullano
-
-Il quadrato di una radice restituisce il numero di partenza: $(\sqrt 5)^2 = 5$. Viene dalla definizione: $\sqrt 5$ è il numero che, moltiplicato per sé stesso, dà 5.
-
-Al contrario serve attenzione. La radice di un quadrato è sempre positiva: $\sqrt{(-3)^2} = \sqrt 9 = 3$, non $-3$.
-
-### Regola 4: si sommano solo radici uguali
-
-Due radici uguali si sommano come le mele: 2 mele più 5 mele fanno 7 mele.
-
-$$2\sqrt 3 + 5\sqrt 3 = 7\sqrt 3$$
-
-Due radici diverse non si possono unire: $\sqrt 2 + \sqrt 3$ resta scritto così.
-
-### Regola 5: togliere la radice dal numero sotto
-
-Una frazione con una radice sotto si riscrive moltiplicando sopra e sotto per quella radice. Il valore non cambia, perché moltiplicare sopra e sotto per lo stesso numero è come moltiplicare per 1.
-
-Esempio con $\frac 6{\sqrt 3}$.
-
-1. Moltiplica sopra e sotto per $\sqrt 3$. Sopra viene $6\sqrt 3$. Sotto viene $\sqrt 3 \cdot \sqrt 3 = 3$.
-2. La frazione è diventata $\frac{6\sqrt 3}3$.
-3. Semplifica: 6 diviso 3 fa 2. Risultato: $2\sqrt 3$.
-
-### Regola 6: quando sotto c'è una somma o una differenza
-
-Se sotto c'è una differenza come $\sqrt 2 - 1$, si moltiplica sopra e sotto per la stessa espressione con il segno cambiato, cioè $\sqrt 2 + 1$.
-
-> [!RIPASSO] somma per differenza
-> Moltiplicare una somma per la differenza degli stessi due numeri dà la differenza dei quadrati: $(x - y) \cdot (x + y) = x^2 - y^2$.
->
-> Controllo con $x = 5$ e $y = 2$. A sinistra: $3 \cdot 7 = 21$. A destra: $25 - 4 = 21$.
-
-Esempio con $\frac 1{\sqrt 2 - 1}$.
-
-1. Moltiplica sopra e sotto per $\sqrt 2 + 1$. Sopra viene $\sqrt 2 + 1$.
-2. Sotto viene $(\sqrt 2 - 1) \cdot (\sqrt 2 + 1)$. Per il ripasso fa $(\sqrt 2)^2 - 1^2 = 2 - 1 = 1$.
-3. Risultato: $\frac{\sqrt 2 + 1}1 = \sqrt 2 + 1$. La radice sotto è sparita.
-
-> [!TRAPPOLA] La radice di una somma
-> La radice di una somma **non** è la somma delle radici. Controllo con i numeri: $\sqrt{9 + 16} = \sqrt{25} = 5$, mentre $\sqrt 9 + \sqrt{16} = 3 + 4 = 7$.
-
-Tutte le regole in una tabella, da copiare sul foglio dell'esame.
+Le regole valgono per numeri non negativi sotto la radice.
 
 | Regola | Esempio |
 |---|---|
 | $\sqrt a \cdot \sqrt b = \sqrt{ab}$ | $\sqrt 2 \cdot \sqrt 8 = \sqrt{16} = 4$ |
-| $\sqrt{a^2 b} = a\sqrt b$ | $\sqrt{12} = \sqrt{4 \cdot 3} = 2\sqrt 3$ |
+| $\sqrt{a^2 b} = a\sqrt b$: un quadrato esce dalla radice | $\sqrt{12} = \sqrt{4 \cdot 3} = 2\sqrt 3$ |
 | $(\sqrt a)^2 = a$ | $(\sqrt 5)^2 = 5$ |
 | $\sqrt{x^2}$ è $x$ senza il segno meno | $\sqrt{(-3)^2} = 3$ |
-| si somma solo la stessa radice | $2\sqrt 3 + 5\sqrt 3 = 7\sqrt 3$ |
+| si sommano solo radici uguali | $2\sqrt 3 + 5\sqrt 3 = 7\sqrt 3$ |
 | radice sotto: moltiplica sopra e sotto per la radice | $\frac 6{\sqrt 3} = \frac{6\sqrt 3}3 = 2\sqrt 3$ |
 | differenza sotto: moltiplica sopra e sotto per la somma | $\frac 1{\sqrt 2 - 1} = \sqrt 2 + 1$ |
+
+L'ultima regola usa la differenza di quadrati, $(x - y)(x + y) = x^2 - y^2$. Con $\frac 1{\sqrt 2 - 1}$ si moltiplica sopra e sotto per $\sqrt 2 + 1$: sotto viene $(\sqrt 2)^2 - 1^2 = 1$, e resta $\sqrt 2 + 1$. Togliere le radici dal denominatore si chiama **razionalizzare**.
+
+> [!TRAPPOLA] La radice di una somma
+> La radice di una somma **non** è la somma delle radici. Controllo con i numeri: $\sqrt{9 + 16} = \sqrt{25} = 5$, mentre $\sqrt 9 + \sqrt{16} = 3 + 4 = 7$.
 
 ::: prova Semplifica $\sqrt{18}$.
 Un quadrato perfetto che divide 18 è 9: $18 = 9 \cdot 2$. Quindi $\sqrt{18} = \sqrt 9 \cdot \sqrt 2 = 3\sqrt 2$.
@@ -1015,69 +555,63 @@ Moltiplica sopra e sotto per $\sqrt 2$. Sopra viene $4\sqrt 2$, sotto viene $\sq
 :::
 
 > [!RICORDA]
-> - Un quadrato perfetto esce dalla radice: $\sqrt{12} = 2\sqrt 3$.
-> - Si sommano solo radici uguali.
-> - Per togliere una radice dal numero sotto, moltiplica sopra e sotto per quella radice.
-> - La radice di una somma **non** è la somma delle radici.
+> - Un quadrato perfetto esce dalla radice; si sommano solo radici uguali.
+> - Per razionalizzare si moltiplica sopra e sotto per la radice, o per la somma se sotto c'è una differenza. La radice di una somma non è la somma delle radici.
 
 ## I simboli di questa lezione
 
 | Simbolo | Si legge | Vuol dire | Esempio |
 |---|---|---|---|
-| $\{\ \}$ | «l'insieme di…» | le graffe racchiudono gli elementi di un insieme | $\{1, 3, 5\}$ |
-| $\in$ | «appartiene a» | sta dentro l'insieme | $3 \in \{1, 3, 5\}$ |
-| $\notin$ | «non appartiene a» | non sta dentro l'insieme | $2 \notin \{1, 3, 5\}$ |
+| $\in$, $\notin$ | «appartiene a», «non appartiene a» | sta, o non sta, nell'insieme | $3 \in \{1, 3, 5\}$ |
 | $\subset$ | «è contenuto in» | tutti gli elementi del primo stanno nel secondo | $\{1, 5\} \subset \{1, 3, 5\}$ |
 | $\subsetneq$ | «è contenuto strettamente in» | è contenuto, e il secondo ha qualcosa in più | $\N \subsetneq \Z$ |
 | $\emptyset$ | «insieme vuoto» | l'insieme senza elementi | |
-| $\dots$ | «e avanti così» | gli elementi continuano con la stessa regola | $\{0, 1, 2, \dots\}$ |
-| $\N$ | «enne» | i numeri naturali | $0, 1, 2$ |
-| $\Z$ | «zeta» | i numeri interi | $-2, 0, 7$ |
-| $\Q$ | «cu» | i numeri razionali, cioè le frazioni | $\frac 12, -\frac 34$ |
-| $\R$ | «erre» | i numeri reali | $\sqrt 2, \pi$ |
-| $\C$ | «ci» | i numeri complessi (lezione L02) | |
-| $\cdot$ | «per» | il segno della moltiplicazione | $3 \cdot 4 = 12$ |
-| $\neq$ | «diverso da» | non uguale | $b \neq 0$ |
-| $<$, $>$ | «minore di», «maggiore di» | più a sinistra, più a destra sulla retta dei numeri | $-5 < -2$ |
-| $\le$, $\ge$ | «minore o uguale», «maggiore o uguale» | come sopra, ma è permesso anche l'uguale | $2 \le 2$ |
+| $\N$, $\Z$, $\Q$, $\R$, $\C$ | «enne», «zeta», «cu», «erre», «ci» | naturali, interi, razionali, reali, complessi | $\sqrt 2 \in \R$ |
 | $\mid$ | «tale che» | introduce la condizione da rispettare | $\{x \in \R \mid x > 0\}$ |
-| $(a, b)$ | «intervallo aperto da $a$ a $b$» | i numeri reali tra $a$ e $b$, estremi esclusi | $(1, 2)$ |
-| $[a, b]$ | «intervallo chiuso da $a$ a $b$» | i numeri reali tra $a$ e $b$, estremi inclusi | $[1, 2]$ |
+| $(a, b)$, $[a, b]$ | «intervallo aperto», «intervallo chiuso» | i reali tra $a$ e $b$, estremi esclusi o inclusi | $[1, 2]$ |
 | $a_n$ | «a con enne» | il termine di posto $n$ di una successione | $a_2 = 3{,}14$ |
 | $\lvert x \rvert$ | «valore assoluto di $x$» | il numero senza il segno meno | $\lvert -2 \rvert = 2$ |
-| $a^2$ | «$a$ al quadrato» | $a$ per $a$ | $3^2 = 9$ |
-| $\sqrt a$ | «radice di $a$» | il numero positivo che al quadrato dà $a$ | $\sqrt 9 = 3$ |
-| $-a$ | «meno $a$», «l'opposto di $a$» | il numero che sommato ad $a$ dà 0 | $-7$ |
-| $a^{-1}$ | «$a$ alla meno uno», «l'inverso di $a$» | il numero che moltiplicato per $a$ dà 1 | $4^{-1} = \frac 14$ |
-| $\forall$ | «per ogni» | vale qualunque elemento tu scelga | $\forall a \in \R$ |
-| $\exists$ | «esiste» | ce n'è almeno uno | $\exists x \in \Z$ |
+| $-a$, $a^{-1}$ | «opposto di $a$», «inverso di $a$» | sommato ad $a$ dà 0; moltiplicato per $a$ dà 1 | $4^{-1} = \frac 14$ |
+| $\forall$, $\exists$ | «per ogni», «esiste» | vale per tutti; ce n'è almeno uno | $\forall a \in \R$ |
 
 ## Verso l'esame
 
-La prova di **Algebra lineare e Geometria** (parte 2 di MDAG) è scritta ed è la stessa per i canali A, B e C. Al 30/09/2026 le regole del 2026/27 non sono ancora pubblicate: su Moodle c'è scritto «informazioni seguono». Il riferimento sono quindi le regole del 2025/26, confermate dai testi degli appelli.
-
-**Com'è fatta la prova**
-
-- **10 domande a risposta multipla.** Ognuna ha 5 risposte, da (a) a (e), e **una sola è giusta**. Ogni domanda vale 1 punto.
-- **2 problemi a risposta aperta**, divisi in più domande. Ognuno vale 11 punti. Per avere punti parziali bisogna scrivere i passaggi.
-- **Sbarramento.** I problemi vengono corretti solo a chi fa **almeno 6 punti su 10** nel quiz.
-- **Durata:** 2 ore. Il massimo è 32 punti, la sufficienza è 18.
-- **Materiale ammesso:** solo un foglio protocollo, oppure due fogli A4 (4 facciate), **scritti a mano**, con formule, appunti ed esercizi. **Niente calcolatrice** e niente libri.
-- Nel quiz le risposte si segnano con una **X**, non con un cerchio.
+La prova di **Algebra lineare e Geometria**, la parte 2 di MDAG, è scritta ed è la stessa per i canali A, B e C. Al 27/10/2026 le regole del 2026/27 non sono ancora uscite; quelle del 2025/26, confermate dai testi degli appelli: **10 domande a risposta multipla** da 1 punto, ognuna con 5 risposte di cui una sola giusta, segnate con una X; **2 problemi** aperti da 11 punti, corretti solo con almeno 6 punti su 10 nel quiz; 2 ore, massimo 32 punti, sufficienza 18. Ammessi solo un foglio protocollo o due fogli A4 (4 facciate) scritti a mano; **niente calcolatrice** e niente libri.
 
 | Appello 2026/27 | Iscrizioni su MyUniTo | Ora e aule |
 |---|---|---|
 | ven 22/01/2027 | 02/01 – 15/01/2027 | 14:00, aule A, B, C, D, F |
 | ven 05/02/2027 | 16/01 – 29/01/2027 | 14:00, aule A, B, C, D, F |
 
-Il voto finale di MDAG è la media delle due prove, Matematica Discreta e Algebra lineare. Si possono sostenere anche in appelli diversi. Attenzione: ripresentarsi a una prova già superata **annulla** il voto precedente, anche se va peggio. Dettagli e fonti nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
+Il voto finale di MDAG è la media delle due prove, Matematica Discreta e Algebra lineare, che si possono sostenere anche in appelli diversi. Ripresentarsi a una prova già superata **annulla** il voto precedente, anche se va peggio. Dettagli e fonti nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
 
 **Che cosa serve di questa lezione**
 
-1. **Campi.** Dalla lezione L05 ogni spazio vettoriale è costruito «su un campo». Saper dire perché $\Z$ non è un campo è una tipica domanda di teoria del quiz.
-2. **Notazioni.** Insiemi, intervalli, punti e vettori con le parentesi giuste. Nei problemi le risposte si scrivono con questa notazione.
-3. **Conti a mano.** Frazioni e radici compaiono in quasi tutte le domande su lunghezze, angoli e distanze. Allenati adesso con gli esercizi 5 e 10.
-4. **Ragionare per assurdo.** Il quiz non chiede dimostrazioni, ma questo modo di ragionare torna spesso nelle dispense.
+1. **Campi.** Dalla lezione L05 ogni spazio vettoriale è costruito su un campo. Saper dire perché $\Z$ non è un campo è una tipica domanda di teoria.
+2. **Notazioni.** Insiemi, intervalli, punti e vettori con le parentesi giuste: nei problemi le risposte si scrivono così.
+3. **Conti con le radici.** Le risposte del quiz su distanze, norme e angoli sono scritte razionalizzate.
+4. **Ragionare per assurdo.** Il quiz non chiede dimostrazioni, ma le dispense usano spesso questo schema.
+
+Negli appelli 2023–2026 non ci sono domande dirette su questa lezione: le domande del quiz qui sotto sono sul modello di quelle d'esame, tranne la prima, che viene da un appello vero.
+
+### Una domanda vera, letta insieme
+
+**Appello del 07/09/2026, domanda 7.** Il testo: «La distanza tra le rette $r_1 = (2, 0, 0) + \operatorname{Span}(0, 1, 1)$ e $r_2 = (0, 3, 0) + \operatorname{Span}(-1, 1, 0)$ è: (a) $3$; (b) $\frac{\sqrt 3}3$; (c) $3\sqrt 3$; (d) $\sqrt 3$; (e) $3 + \sqrt 3$.»
+
+**In pratica chiede:** una distanza tra due rette nello spazio, che si impara molto più avanti. La parte che riguarda questa lezione è l'ultima riga del conto: la soluzione ufficiale arriva a $\frac 1{\sqrt 3}$, che tra le risposte non c'è scritto così.
+
+> [!ESEMPIO] · l'ultimo passo, razionalizzato
+> **Passo 1.** Il conto della soluzione ufficiale finisce con un prodotto scalare che vale 1 diviso per una norma che vale $\sqrt 3$: $d = \frac 1{\sqrt 3}$.
+>
+> **Passo 2.** Si moltiplica sopra e sotto per $\sqrt 3$: $\frac 1{\sqrt 3} = \frac{\sqrt 3}{\sqrt 3 \cdot \sqrt 3} = \frac{\sqrt 3}3$.
+>
+> **Passo 3.** È la risposta (b), quella della soluzione ufficiale. Il valore è circa $0{,}577$: si possono scartare a occhio (a), (c) e (e), che valgono almeno 3, e (d), che vale circa $1{,}73$.
+
+**Errori da evitare**
+
+- Scartare la risposta giusta perché è scritta in un'altra forma: $\frac 1{\sqrt 3}$ e $\frac{\sqrt 3}3$ sono lo stesso numero.
+- Scrivere $\sqrt{a + b} = \sqrt a + \sqrt b$.
+- Usare le graffe per un vettore o per un punto.
 
 > [!ESAME] Il foglio da 4 facciate
 > È l'unico materiale ammesso, quindi conviene costruirlo lezione per lezione. Da questa lezione bastano due cose: la tabella delle regole sulle radici e la riga «campo = 9 regole; $\N$ e $\Z$ non sono campi».
@@ -1085,6 +619,14 @@ Il voto finale di MDAG è la media delle due prove, Matematica Discreta e Algebr
 ## Quiz
 
 ```quiz
+D: Appello del 07/09/2026, domanda 7. Il conto della distanza tra le due rette arriva a $\frac 1{\sqrt 3}$. Quale delle cinque risposte del foglio è lo stesso numero?
+- $3$
++ $\frac{\sqrt 3}3$
+- $3\sqrt 3$
+- $\sqrt 3$
+- $3 + \sqrt 3$
+= Razionalizzando, $\frac 1{\sqrt 3} = \frac{\sqrt 3}{3}$: è la risposta (b) della soluzione ufficiale. La risposta più insidiosa è $\sqrt 3$, che viene capovolgendo la frazione o dimenticando di dividere per 3.
+
 D: Quale di questi insiemi, con la somma e il prodotto usuali, **non** è un campo?
 - $\Q$
 - $\R$
@@ -1339,7 +881,7 @@ Guardo il quadrato negli ultimi due casi, quelli in cui $a$ non è un multiplo d
 
 In tutti e due i casi $a^2$ non è un multiplo di 3. Quindi, se $a^2$ è un multiplo di 3, resta solo il primo caso: $a$ è un multiplo di 3.
 
-**La dimostrazione**, con la stessa ricetta usata per $\sqrt 2$.
+**La dimostrazione**, con lo stesso schema usato per $\sqrt 2$.
 
 1. Faccio finta che $\sqrt 3 = \frac ab$, con la frazione ridotta ai minimi termini.
 2. Elevo al quadrato e tolgo la frazione: $a^2 = 3b^2$. Quindi $a^2$ è un multiplo di 3.
@@ -1369,7 +911,7 @@ Quindi irrazionale più irrazionale, e irrazionale per irrazionale, **possono** 
 ::: esercizio difficile $\sqrt 2 + \sqrt 3$ è irrazionale
 (a) Dimostra che $\sqrt 6 \notin \Q$. (b) Usalo per dimostrare che $\sqrt 2 + \sqrt 3 \notin \Q$.
 ::: soluzione
-(a) Stessa ricetta.
+(a) Stesso schema.
 
 1. Faccio finta che $\sqrt 6 = \frac ab$, frazione ridotta.
 2. Elevo al quadrato e tolgo la frazione: $a^2 = 6b^2$. Siccome $6b^2 = 2 \cdot 3b^2$, il numero $a^2$ è pari. Quindi $a$ è pari: $a = 2k$.
@@ -1440,7 +982,7 @@ Si moltiplicano sopra e sotto per la stessa radice: $\frac 6{\sqrt 3} = \frac{6\
 ## Glossario
 
 ```glossario
-Insieme | Un sacchetto di oggetti, che si chiamano elementi. Si scrive con le graffe: $\{1, 3, 5\}$. Ordine e ripetizioni non contano.
+Insieme | Una collezione di oggetti, che si chiamano elementi. Si scrive con le graffe: $\{1, 3, 5\}$. Ordine e ripetizioni non contano.
 Appartenenza ($\in$) | $3 \in A$ vuol dire che 3 è un elemento di $A$. Il contrario si scrive $\notin$.
 Sottoinsieme ($\subset$) | $B \subset A$ vuol dire che ogni elemento di $B$ sta anche in $A$. Con $\subsetneq$ si aggiunge che $A$ ha qualcosa in più.
 Numeri naturali $\N$ | I numeri per contare: $0, 1, 2, 3, \dots$ Lo zero è compreso.

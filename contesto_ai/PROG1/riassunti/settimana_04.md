@@ -35,7 +35,7 @@ genera_html: true
 - Una **stringa** è un array di `char` che finisce con `'\0'`: `"ciao"` occupa 5 byte. Si legge con `scanf("%19s", nome)`, senza `&`.
 
 > [!NOTA] Il laboratorio
-> Il Laboratorio 03 (lunedì 19/10 per il turno B2, martedì 20/10 per il turno B1) non è in questo riassunto: non ho ancora le sue slide.
+> Il Laboratorio 03 (lunedì 19/10 per il turno B2, martedì 20/10 per il turno B1) ha gli appunti a parte: [Lab03, condizioni booleane](Lab03_condizioni_booleane.html), con le espressioni a catena, gli errori del punto e virgola e delle graffe, l'equazione di secondo grado e il gioco a cinque mosse.
 
 ## 04A · Cicli: while, for e do-while (mar 20/10)
 

@@ -18,7 +18,7 @@ lede: >-
 materiale: slide
 scheda:
   Slide: Lab04 «Iterazioni», laboratorio canale B · 25 pagine, esercizi anche su CodeRunner
-  Laboratorio: Elisa Marengo (turno B2, lun 26/10) e Valerio Basile (turno B1, mar 27/10) · 14–17 · laboratorio Turing
+  Laboratorio: Elisa Marengo (turno B2, lun 26/10) e Valerio Basile (turno B1, mar 03/11) · 14–17 · laboratorio Turing
   Tempo di studio: 2–3 ore, davanti a un computer
 fonte: >-
   Slide «Iterazioni» (Lezione nº 4 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27; lezione
@@ -39,7 +39,7 @@ genera_html: true
 - Per indovinare un numero tra 0 e 99 provando sempre il **punto medio** bastano al massimo 7 tentativi; provandoli tutti in fila ne possono servire 100.
 
 > [!CANALI]
-> **Canale B.** È il quarto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 26/10 con **Elisa Marengo**, turno **B1** martedì 27/10 con **Valerio Basile**. Gli esercizi riprendono la lezione [04A](04A_iterazioni.html) sui cicli; l'ultimo esempio usa gli array della [05A](05A_array_stringhe.html). Gli appunti del laboratorio 03 non ci sono ancora: non ho le slide.
+> **Canale B.** È il quarto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 26/10 con **Elisa Marengo**, turno **B1** con **Valerio Basile** martedì 03/11, perché il 27/10 il calendario non ha il laboratorio del turno B1. Gli esercizi riprendono la lezione [04A](04A_iterazioni.html) sui cicli; l'ultimo esempio usa gli array della [05A](05A_array_stringhe.html). Il laboratorio precedente è il [Lab03](Lab03_condizioni_booleane.html), sulle condizioni.
 >
 > **Canali A e C.** Secondo la scheda del corso i laboratori hanno la stessa sequenza nei tre canali e gli stessi esercizi su CodeRunner. Le slide 2026/27 dei canali A e C per questo laboratorio non le ho viste: controlla il giorno del tuo turno su Moodle.
 >

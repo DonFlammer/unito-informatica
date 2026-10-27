@@ -489,6 +489,7 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 | 03D | 14/10/2026 | Dal flusso sequenziale alle decisioni, if ed else | `lezioni/03D_decisioni.md` · HTML: `appunti/PROG1/03D_decisioni.html` | sequenza, selezione, iterazione e teorema di Böhm-Jacopini (1966); `if`, `if-else`, catena `else if` (un solo blocco eseguito); errori: `if (a = 5)`, graffe dimenticate (`-Wmisleading-indentation`), ordine dei casi, condizioni irraggiungibili; `void main()` delle slide non compila con `-Werror`; scambio condizionato e visibilità di `temp` nel blocco; annidamenti inutili; schemi: massimo, controllo di `scanf`, divisione protetta, intervallo; niente `switch` all'esame |
 | 04A | 20/10/2026 | Cicli e ripetizioni, while, for e do-while | `lezioni/04A_iterazioni.md` · HTML: `appunti/PROG1/04A_iterazioni.html` | `while` e terna fondamentale (inizializzazione, condizione, aggiornamento), diagramma di flusso; zero giri e ciclo infinito; accumulatore e contatore; valore di terminazione (media delle altezze: divisione per zero se il primo input è negativo, `-nan(ind)`); variabili dichiarate nel ciclo create a ogni giro; `for` ed equivalenza con il `while`, intervalli `[a, b)` e conteggio dei giri; cicli annidati; errori (off-by-one, contatore cambiato nel blocco, `i` fuori dal `for`); `for` o `while`; valore e variabile sentinella; `break` e `continue` vietati all'esame; `do-while`; **slide 38 sbagliata** (`!(1 <= x \|\| x <= 10)` accetta tutto), lettera in input e `scanf("%*s")`; schema `e1` del pre-esame 2023/24 |
 | 05A | 21/10/2026 | Array e stringhe | `lezioni/05A_array_stringhe.md` · HTML: `appunti/PROG1/05A_array_stringhe.html` | array statici, indici `[0, n)`, `size_t` e `%zu`, liste di inizializzazione (mancanti a 0), `#define`; scansione in avanti e all'indietro (`size_t i >= 0` compila con `-Wall` e non finisce; `ptrdiff_t` e `%td`); media, conteggio, massimo con invariante e precondizione «non vuoto»; `v[i]` ≡ `*(v + i)`, `sizeof` dell'array (20 byte) e aritmetica dei puntatori; VLA (niente `{0}`, lunghezza ≥ 1); `b = a` e `a == b` non compilano, `v[5]` compila (errore solo con `-O2`); `char` e ASCII (48, 65, 97, +32), da ASCII a Unicode con le correzioni alle slide 24–25, `sizeof("è")` = 3; stringhe e `' '`, `char nome[4] = "Anna"` senza terminatore; scansione con indice e puntatore; `%19s` senza `&`, maschera `" %49[^
+| Lab04 | 26/10/2026 (B2), 27/10 (B1) | Laboratorio 04: iterazioni | `lezioni/Lab04_iterazioni.md` · HTML: `appunti/PROG1/Lab04_iterazioni.html` | `for` o `while` e i sei cicli della slide 4 (il ciclo da 20 a 2 con passo 7 non arriva a 2); somma dei pari (2550) e virgolette tipografiche delle slide (`stray '\342'`); iterazioni_n.c e fattoriale (`int` fino a 12!, `unsigned long long` fino a 20!); sequenze terminate da 0 con `1 == scanf(...)` e cortocircuito; media con controllo del contatore (`-nan(ind)`), input da file con `<` (in PowerShell `Get-Content`); divisori; cicli annidati: Floyd e quadrato (`"\\"`); «per ogni» ed «esiste» con sentinelle booleane, anche nella condizione del ciclo; Fibonacci con la variabile temporanea; indovina il numero con `rand`, ricerca per dimezzamento (al massimo 7 tentativi su 100, provato su tutti i segreti; conto sbagliato nella slide 24: 63, non 62). Esercizi CodeRunner Lab04-Es1–Es3 e codice di partenza non visti: soluzioni mie |
 ]"`; letterali in sola lettura e `const char*`; `&parola` con `%s` non compila |
 
 ## Fili conduttori (da ricollegare nelle prossime lezioni)
@@ -11557,6 +11558,897 @@ cppreference | Sito di documentazione del C e del C++, scaricabile per l'uso sen
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/lezioni/Lab04_iterazioni.md -->
+> File: `contesto_ai/PROG1/lezioni/Lab04_iterazioni.md`
+
+```yaml
+corso: PROG1
+lezione: Lab04
+titolo: "Laboratorio 04: iterazioni"
+data: 2026-10-26
+docenti: Elisa Marengo (turno B2) e Valerio Basile (turno B1); teoria Elvio Amparore
+sopratitolo: Canale B · Laboratorio 04 · Programmazione I
+descrizione: >-
+  Appunti del quarto laboratorio di Programmazione I (canale B, Lab04): quando usare for e quando while, i sei cicli
+  for della slide 4, la somma dei pari, numeri da 0 a n e fattoriale, sequenze terminate da 0 con il valore restituito
+  da scanf, la media di una sequenza e l'input da file, divisori, triangolo di Floyd, il quadrato di caratteri, «per
+  ogni» ed «esiste» su una sequenza, Fibonacci con la variabile temporanea, il gioco dell'indovina il numero e la
+  strategia per dimezzamento, con tutti i programmi provati.
+lede: >-
+  Il quarto laboratorio mette in pratica la lezione 04A sui cicli: si sceglie il ciclo adatto, si leggono sequenze di
+  lunghezza sconosciuta, si annidano due cicli per disegnare figure e si scrive un programma che indovina un numero
+  dimezzando ogni volta l'intervallo. Qui trovi ogni esercizio risolto e provato, e due sviste delle slide.
+materiale: slide
+scheda:
+  Slide: Lab04 «Iterazioni», laboratorio canale B · 25 pagine, esercizi anche su CodeRunner
+  Laboratorio: Elisa Marengo (turno B2, lun 26/10) e Valerio Basile (turno B1, mar 27/10) · 14–17 · laboratorio Turing
+  Tempo di studio: 2–3 ore, davanti a un computer
+fonte: >-
+  Slide «Iterazioni» (Lezione nº 4 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27; lezione
+  04A di Amparore; pre-esame 2023/24 dalla raccolta di esercizi d'esame
+appunti_html: appunti/PROG1/Lab04_iterazioni.html
+genera_html: true
+```
+
+## In breve
+
+- Si usa il **`for`** quando il numero di giri è noto prima di partire, il **`while`** quando lo decide quello che succede durante i giri, per esempio un numero letto da tastiera.
+- Una **sequenza terminata da 0** si legge con `while (1 == scanf("%d", &x) && x != 0)`: `scanf` restituisce quante variabili ha letto, e l'`&&` non guarda `x` se la lettura è fallita.
+- Per una **media** servono un accumulatore e un contatore; prima di dividere si controlla che il contatore non sia 0.
+- Con `programma < file.txt` il programma legge dal file invece che dalla tastiera. Funziona su Linux, macOS e nel Prompt dei comandi di Windows, ma non in PowerShell.
+- Le figure (il triangolo di Floyd, il quadrato) si disegnano con **due cicli annidati**: quello esterno per le righe, quelli interni per i caratteri di una riga.
+- **«Per ogni»** su una sequenza: una variabile che parte da `true` e diventa `false` al primo controesempio. **«Esiste»**: parte da `false` e diventa `true` al primo esempio.
+- Nella successione di Fibonacci l'aggiornamento di due variabili insieme richiede una **variabile temporanea**.
+- Per indovinare un numero tra 0 e 99 provando sempre il **punto medio** bastano al massimo 7 tentativi; provandoli tutti in fila ne possono servire 100.
+
+> [!CANALI]
+> **Canale B.** È il quarto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 26/10 con **Elisa Marengo**, turno **B1** martedì 27/10 con **Valerio Basile**. Gli esercizi riprendono la lezione [04A](04A_iterazioni.html) sui cicli; l'ultimo esempio usa gli array della [05A](05A_array_stringhe.html). Gli appunti del laboratorio 03 non ci sono ancora: non ho le slide.
+>
+> **Canali A e C.** Secondo la scheda del corso i laboratori hanno la stessa sequenza nei tre canali e gli stessi esercizi su CodeRunner. Le slide 2026/27 dei canali A e C per questo laboratorio non le ho viste: controlla il giorno del tuo turno su Moodle.
+>
+> I tre esercizi su CodeRunner (Lab04-Es1, Es2 ed Es3) e il codice di partenza (la cartella `input_media_seq` e `fai_indovinare_numero.c`) sono su Moodle e non li ho: qui ci sono soluzioni mie degli stessi problemi, da adattare al testo esatto. Tutti i programmi li ho compilati con `gcc -Wall -Werror` (gcc 16.1, Windows 11 a 64 bit) ed eseguiti.
+
+## for o while (slide 2–5)
+
+Le slide danno una regola pratica per scegliere il ciclo. Il **`for`** va bene quando si sa già quanti giri fare: «stampa i numeri da 1 a 100», «scorri un array di `n` elementi». La variabile di controllo nasce nel `for`, cambia solo nell'aggiornamento e il corpo la usa senza modificarla:
+
+```c
+for (int i = 0; i < n; i++) {
+    // codice che usa ma non cambia i
+}
+```
+
+Il **`while`** va bene quando la fine si scopre solo durante i giri: «leggi numeri finché non arriva lo 0». Spesso la condizione è una variabile booleana che il corpo mette a `false` quando è ora di smettere, oppure un indice che avanza di passi non fissi.
+
+La slide 4 chiede come cambia la variabile `i` in sei cicli. Le risposte della slide 5, con i valori che ho fatto stampare:
+
+| Ciclo | Valori di `i` | Giri |
+|---|---|---|
+| `for (int i = 1; i <= 100; ++i)` | 1, 2, …, 100 | 100 |
+| `for (int i = 100; i >= 1; --i)` | 100, 99, …, 1 | 100 |
+| `for (int i = 7; i <= 77; i += 7)` | 7, 14, …, 77 | 11 |
+| `for (int i = 20; i >= 2; i -= 7)` | 20, 13, 6 | 3 |
+| `for (size_t i = 0; i < 10; ++i)` | 0, 1, …, 9: l'intervallo $[0, 10)$ | 10 |
+| `for (ptrdiff_t i = 100; i >= 0; --i)` | 100, 99, …, 0 | 101 |
+
+> [!TRAPPOLA] Il quarto ciclo non arriva a 2
+> La slide 5 dice che `i` «varia da 20 a 2 inclusi». Non è così: dopo 6 il valore successivo è $-1$, che non soddisfa `i >= 2`. Il 2 compare nella condizione, ma `i` ci arriva solo se la distanza tra 20 e 2, cioè 18, è un multiplo del passo. Qui il passo è 7. Nel terzo ciclo invece 77 c'è: $77 - 7 = 70$ è un multiplo di 7.
+
+L'ultimo ciclo conta all'indietro fino a 0 compreso e per questo usa `ptrdiff_t`, il tipo con il segno che fa coppia con `size_t` (si dichiara in `<stddef.h>` e si stampa con `%td`). Con `size_t i` la condizione `i >= 0` sarebbe sempre vera e il ciclo non finirebbe: è la trappola vista nella [05A](05A_array_stringhe.html).
+
+::: prova Quante volte gira `for (int i = 3; i < 30; i += 5)`, e qual è l'ultimo valore di `i` dentro il ciclo?
+I valori sono 3, 8, 13, 18, 23, 28: 6 giri, l'ultimo è 28. Il successivo, 33, non soddisfa `i < 30`.
+:::
+
+> [!RICORDA]
+> - `for` quando il numero di giri si sa prima, `while` quando si scopre durante.
+> - Il valore scritto nella condizione non è per forza raggiunto: dipende dal passo.
+
+## La somma dei numeri pari (slide 6–7)
+
+Il primo esempio somma i pari da 2 a 100. La versione della slide 6 scorre tutti i numeri da 0 a 100 e somma solo quelli con resto 0 nella divisione per 2; quella della slide 7 fa partire il ciclo da 2 e avanza di 2, così ogni giro trova un pari e non serve l'`if`:
+
+```c
+int sum = 0;                                  // accumulatore
+for (int number = 2; number <= 100; number += 2) {
+    sum += number;
+}
+printf("La somma è %d\n", sum);
+```
+
+Tutte e due stampano `La somma è 2550`. La seconda fa 50 giri invece di 101: quando il passo si conosce, conviene metterlo nell'aggiornamento invece di filtrare con un `if`.
+
+> [!TRAPPOLA] Le virgolette delle slide
+> Nelle slide le stringhe sono scritte con le virgolette tipografiche, “ e ”, che PowerPoint mette al posto di quelle dritte. Il C accetta solo `"`. Se copi il codice dalla slide, gcc risponde con `error: stray '\342' in program` (342 è il primo byte di “ in UTF-8) e poi con una serie di errori che non c'entrano. Si correggono riscrivendo le virgolette a mano.
+
+::: prova Come cambia il ciclo della slide 7 per sommare i dispari da 1 a 99? Quanto viene?
+`for (int number = 1; number <= 99; number += 2)`. La somma è 2500: i primi 50 dispari sommano $50^2$.
+:::
+
+> [!RICORDA]
+> - Un accumulatore si inizializza prima del ciclo, a 0 per una somma.
+> - Se i valori da visitare hanno un passo fisso, il passo va nell'aggiornamento del `for`.
+
+## Primi esercizi: iterazioni_n.c (slide 8)
+
+L'esercizio chiede tre cose su un intero positivo `n` letto con `scanf`: stampare i numeri da 0 a `n` e poi da `n` a 0, poi i dispari fino a `n`, poi il fattoriale $n! = 1 \cdot 2 \cdots n$. La domanda della slide è quale ciclo usare: il `for`, perché in tutti e tre i casi il numero di giri dipende solo da `n`, che si conosce prima di cominciare.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    printf("Inserisci un intero positivo: ");
+    scanf("%d", &n);
+
+    // 1. da 0 a n e poi da n a 0
+    for (int i = 0; i <= n; i++) {
+        printf("%d ", i);
+    }
+    printf("\n");
+    for (int i = n; i >= 0; i--) {
+        printf("%d ", i);
+    }
+    printf("\n");
+
+    // 2. i dispari da 0 a n
+    for (int i = 1; i <= n; i += 2) {
+        printf("%d ", i);
+    }
+    printf("\n");
+
+    // 3. il fattoriale di n
+    unsigned long long fatt = 1;
+    for (int i = 2; i <= n; i++) {
+        fatt = fatt * i;
+    }
+    printf("%d! = %llu\n", n, fatt);
+}
+```
+
+Con l'input 6 stampa `0 1 2 3 4 5 6`, poi `6 5 4 3 2 1 0`, poi `1 3 5` e infine `6! = 720`. Il fattoriale parte da 1, non da 0: è un accumulatore di prodotti, e moltiplicare per 0 darebbe sempre 0. Con $n = 0$ o $n = 1$ il ciclo non gira e il risultato resta 1, che è il valore giusto di $0!$ e $1!$.
+
+> [!TRAPPOLA] Il fattoriale cresce in fretta
+> Con un `int` il risultato è giusto solo fino a $12! = 479\,001\,600$: per 13 il mio programma stampa 1932053504, mentre $13! = 6\,227\,020\,800$ supera il massimo di un `int`, 2 147 483 647. Con `unsigned long long` (specificatore `%llu`) si arriva a $20! = 2\,432\,902\,008\,176\,640\,000$; con 21 il risultato ricomincia da capo e il programma stampa un numero sbagliato senza nessun avviso.
+
+::: prova Che cosa stampa la seconda parte con l'input 1? E con l'input 0?
+Con 1 stampa `1`: il ciclo parte da 1 e $1 \le 1$. Con 0 non stampa niente, solo l'a capo: la condizione $1 \le 0$ è falsa subito e il ciclo fa zero giri.
+:::
+
+> [!RICORDA]
+> - Un prodotto si accumula partendo da 1.
+> - Prima di usare un tipo, chiediti fino a dove arriva il risultato.
+
+## Sequenze terminate da 0 (slide 9–11)
+
+Ora il programma deve sommare dei numeri letti da tastiera, e non sa quanti sono: la sequenza finisce quando arriva uno 0, che fa da **terminatore** e non fa parte dei dati. Il numero di giri si scopre solo leggendo, quindi serve un `while`. La prima versione della slide 10 usa una variabile booleana:
+
+```c
+int sum = 0;
+bool continua = true;
+while (continua) {
+    int number;
+    scanf("%d", &number);           // legge il prossimo numero
+    if (number == 0)
+        continua = false;           // sequenza terminata
+    else
+        sum += number;
+}
+printf("La somma è %d\n", sum);
+```
+
+La seconda versione, della slide 11, mette la lettura direttamente nella condizione:
+
+```c
+int sum = 0;
+int number;
+while (1 == scanf("%d", &number) && number != 0) {
+    sum += number;
+}
+printf("La somma è %d\n", sum);
+```
+
+Funziona per due motivi. Il primo: `scanf` **restituisce un numero**, quante variabili è riuscita a leggere. Con `"%d"` restituisce 1 se ha letto un intero, e un altro valore se l'input non è un numero o è finito. Il secondo: l'`&&` valuta la parte destra solo se la sinistra è vera. Se la lettura fallisce, `number != 0` non viene nemmeno guardato, e meno male: `number` non conterrebbe niente di sensato. È la valutazione cortocircuitata vista nella [03C](03C_booleani.html).
+
+```grafico
+titolo: Il ciclo della slide 11. La condizione fa due cose in ordine, da sinistra: prima legge un numero, poi lo confronta con 0. Se la lettura fallisce si esce subito dal ramo in basso a destra, senza guardare il numero.
+x: 0 10
+y: 0.4 10
+assi: no
+griglia: no
+poligono: 3.4 9 6.6 9 6.6 9.7 3.4 9.7 | rosa
+testo: 5 9.35 | rosa | "sum = 0"
+freccia: 5 9 5 8.35 | grigio
+poligono: 5 8.3 7.4 7.5 5 6.7 2.6 7.5 | verde
+testo: 5 7.5 | verde | "scanf letto 1?"
+freccia: 5 6.7 5 5.95 | grigio
+testo: 5.6 6.3 | verde | "sì"
+poligono: 5 5.9 7.4 5.1 5 4.3 2.6 5.1 | verde
+testo: 5 5.1 | verde | "number != 0 ?"
+freccia: 5 4.3 5 3.55 | grigio
+testo: 5.6 3.9 | verde | "sì"
+poligono: 3.4 2.8 6.6 2.8 6.6 3.5 3.4 3.5 | ambra
+testo: 5 3.15 | ambra | "sum += number"
+segmento: 3.4 3.15 1.3 3.15 | grigio
+segmento: 1.3 3.15 1.3 7.5 | grigio
+freccia: 1.3 7.5 2.55 7.5 | grigio
+segmento: 7.4 7.5 8.8 7.5 | rosa
+testo: 8.1 7.9 | rosa | "no"
+segmento: 7.4 5.1 8.8 5.1 | rosa
+testo: 8.1 5.5 | rosa | "no"
+segmento: 8.8 7.5 8.8 1.15 | rosa
+freccia: 8.8 1.15 6.65 1.15 | rosa
+poligono: 3.4 0.8 6.6 0.8 6.6 1.5 3.4 1.5 | blu
+testo: 5 1.15 | blu | "stampa sum"
+```
+
+::: prova Con l'input `5 7 abc 3 0`, che cosa stampa la versione della slide 11?
+`La somma è 12`. Letti 5 e 7, la terza `scanf` trova `abc`, non legge niente e restituisce 0: il ciclo finisce senza arrivare né al 3 né allo 0.
+:::
+
+> [!RICORDA]
+> - Quando la fine si scopre leggendo, serve un `while`.
+> - `scanf` restituisce quante variabili ha letto: `1 == scanf("%d", &x)` controlla che la lettura sia riuscita.
+> - L'`&&` valuta la destra solo se la sinistra è vera.
+
+## La media di una sequenza: media_seq.c (slide 12–13)
+
+Stessa sequenza terminata da 0, ma ora si vuole la **media**, con la virgola. Con l'input `4 8 10 2 0` deve uscire 6. Come suggerisce la slide servono due variabili: un accumulatore per la somma e un contatore dei numeri letti. La media si calcola dopo il ciclo.
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int somma = 0;      // accumulatore
+    int quanti = 0;     // contatore
+    int numero;
+    while (1 == scanf("%d", &numero) && numero != 0) {
+        somma += numero;
+        quanti++;
+    }
+    if (quanti > 0) {
+        printf("%f\n", (double)somma / quanti);
+    } else {
+        printf("Sequenza vuota\n");
+    }
+}
+```
+
+Con `4 8 10 2 0` stampa `6.000000`, con `1 2 0` stampa `1.500000`. Due dettagli contano. Il **cast** `(double)somma` rende reale la divisione: senza, `3 / 2` farebbe 1, come nel [Lab02](Lab02_operatori_tipi.html). Il **controllo su `quanti`** serve perché se la sequenza è vuota, cioè il primo numero è già 0, la divisione sarebbe per zero: sul mio Windows la stampa è `-nan(ind)`, su Linux `-nan`, cioè «non è un numero».
+
+### Leggere l'input da un file
+
+La slide 13 propone di non digitare ogni volta la sequenza: il codice di partenza ha una cartella `input_media_seq` con un file per sequenza. Il simbolo `<` sulla riga di comando collega il file al posto della tastiera, e `scanf` legge dal file:
+
+```
+./media_seq < input01.txt          (Linux e macOS)
+media_seq.exe < input01.txt        (Windows, nel Prompt dei comandi)
+```
+
+> [!TRAPPOLA] In PowerShell il < non funziona
+> Il terminale di Windows apre spesso PowerShell, non il Prompt dei comandi. Lì `.\media_seq.exe < input01.txt` dà l'errore `The '<' operator is reserved for future use` (in italiano: «L'operatore '<' è riservato per un utilizzo futuro»). In PowerShell si scrive `Get-Content input01.txt | .\media_seq.exe`, che passa il contenuto del file al programma; oppure si apre il Prompt dei comandi con `cmd`. Al laboratorio Turing, su Linux, il `<` funziona.
+
+::: prova Che cosa stampa il programma se il file contiene solo `0`? E se contiene `7` senza lo 0 finale?
+Con `0` stampa `Sequenza vuota`. Con `7` stampa `7.000000`: dopo il 7 il file finisce, la seconda `scanf` non legge niente e il ciclo si chiude anche senza lo 0.
+:::
+
+> [!RICORDA]
+> - Media: accumulatore e contatore nel ciclo, divisione dopo, con un cast a `double`.
+> - Prima di dividere per un contatore, controlla che non sia 0.
+> - `programma < file` legge dal file; in PowerShell si usa `Get-Content file | programma`.
+
+## Divisori interi (slide 14, Lab04-Es1 su CodeRunner)
+
+Il primo esercizio su CodeRunner si chiama «Divisori Interi» e chiede di completare un programma finché passa tutti i test. Il testo esatto è su Moodle e non l'ho. Il problema di fondo è trovare i divisori di un intero $n$: i numeri $d$ tra 1 e $n$ per cui la divisione $n / d$ ha resto 0. I candidati sono un numero fisso, da 1 a $n$, quindi la risposta alla domanda della slide è il **`for`**.
+
+```c
+int n;
+scanf("%d", &n);                 // si assume n >= 1
+int quanti = 0;
+for (int d = 1; d <= n; d++) {
+    if (n % d == 0) {            // d divide n
+        printf("%d ", d);
+        quanti++;
+    }
+}
+printf("\n%d ha %d divisori\n", n, quanti);
+```
+
+Con 12 stampa `1 2 3 4 6 12` e `12 ha 6 divisori`. Un numero maggiore di 1 è **primo** se ha esattamente due divisori, 1 e sé stesso: basta controllare `quanti == 2`.
+
+::: prova Quanti giri fa il ciclo con $n = 100$, e quanti divisori trova?
+Fa 100 giri e trova 9 divisori: 1, 2, 4, 5, 10, 20, 25, 50, 100.
+:::
+
+> [!RICORDA]
+> - «$d$ divide $n$» in C si scrive `n % d == 0`.
+> - Se i candidati sono un intervallo noto, il ciclo è un `for`.
+
+## Cicli annidati: Floyd e il quadrato (slide 15–16)
+
+Per stampare una figura si usano due cicli uno dentro l'altro: quello **esterno** fa un giro per riga, quello **interno** stampa i caratteri della riga. A ogni giro esterno il ciclo interno riparte da capo.
+
+### Il triangolo di Floyd
+
+Il triangolo di Floyd scrive i numeri naturali in fila, uno nella prima riga, due nella seconda, tre nella terza. Con $n = 5$:
+
+```
+1
+2 3
+4 5 6
+7 8 9 10
+11 12 13 14 15
+```
+
+La riga numero `riga` contiene `riga` numeri, e il numero da scrivere non dipende dalla posizione nella riga: continua dalla riga prima. Per questo si tiene un contatore `prossimo`, dichiarato **fuori** da tutti e due i cicli.
+
+```c
+int n;
+scanf("%d", &n);
+int prossimo = 1;                       // il numero da scrivere
+for (int riga = 1; riga <= n; riga++) {
+    for (int k = 1; k <= riga; k++) {   // la riga r ha r numeri
+        printf("%d ", prossimo);
+        prossimo++;
+    }
+    printf("\n");
+}
+```
+
+Se `prossimo` fosse dichiarato dentro il ciclo esterno, ripartirebbe da 1 a ogni riga e il programma stamperebbe `1`, `1 2`, `1 2 3`.
+
+### Il quadrato
+
+Il quadrato di lato $n$ ha nella riga $i$ (contando da 0) prima $i$ asterischi, poi una barra rovesciata sulla diagonale, poi $n - 1 - i$ volte i due punti. Con $n = 6$:
+
+```
+\:::::
+*\::::
+**\:::
+***\::
+****\:
+*****\
+```
+
+Ogni riga ha tre pezzi, quindi dentro il ciclo esterno ci sono due cicli interni e una `printf` in mezzo:
+
+```c
+for (int i = 0; i < n; i++) {            // una riga per giro
+    for (int j = 0; j < i; j++) {        // i asterischi
+        printf("*");
+    }
+    printf("\\");                        // la diagonale
+    for (int j = i + 1; j < n; j++) {    // n - 1 - i due punti
+        printf(":");
+    }
+    printf("\n");
+}
+```
+
+> [!TRAPPOLA] La barra rovesciata si scrive doppia
+> Nelle stringhe del C la barra `\` comincia una sequenza speciale, come `\n`. Per stampare una barra vera si scrive `"\\"`. Con `printf("\")` la barra si mangia la virgoletta di chiusura e gcc risponde `missing terminating " character`.
+
+::: prova Nel triangolo di Floyd con $n = 10$, qual è l'ultimo numero stampato?
+55: le righe contengono $1 + 2 + \dots + 10 = 55$ numeri, e si parte da 1.
+:::
+
+> [!RICORDA]
+> - Ciclo esterno per le righe, cicli interni per i caratteri di una riga, `\n` alla fine di ogni riga.
+> - Un contatore che deve continuare da una riga all'altra si dichiara fuori dai cicli.
+
+## «Per ogni» ed «esiste» su una sequenza (slide 17–20)
+
+Molte domande su una sequenza hanno la forma «tutti i numeri soddisfano una condizione?» oppure «c'è almeno un numero che la soddisfa?». Sono i due quantificatori della logica, ∀ ed ∃, visti nella [lezione 09 di Fondamenti](../FDA/09_quantificatori.html). In C si risponde con una variabile booleana che accumula la risposta, come un accumulatore accumula una somma.
+
+Per **«per ogni»** la variabile parte da `true`: finché non si trova un controesempio, la risposta è sì. Al primo numero che non va bene diventa `false`, e non torna più indietro:
+
+```c
+bool tutti = true;
+while (1 == scanf("%d", &n) && n != 0) {
+    if (!(n > 0))                // un controesempio
+        tutti = false;
+}
+```
+
+Per **«esiste»** è il contrario: parte da `false`, e al primo numero che va bene diventa `true`:
+
+```c
+bool esiste = false;
+while (1 == scanf("%d", &n) && n != 0) {
+    if (n % 2 == 0)              // un esempio
+        esiste = true;
+}
+```
+
+Su una sequenza vuota, cioè con lo 0 subito, «per ogni» risponde sì e «esiste» risponde no. È la stessa regola della logica: un «per ogni» su un insieme vuoto è vero, un «esiste» è falso.
+
+> [!TRAPPOLA] Non rimettere mai la variabile al valore iniziale
+> Se scrivi `tutti = (n > 0);` invece di `if (!(n > 0)) tutti = false;`, la variabile alla fine dice solo se l'**ultimo** numero va bene. Con `-3 5 0` risponderebbe «tutti positivi»: il 5 ha cancellato il controesempio.
+
+### Fermarsi presto (slide 19)
+
+Quando i dati sono già in memoria, per esempio in un array, non serve guardarli tutti: «per ogni» si può fermare al primo controesempio, «esiste» al primo esempio. Basta mettere la variabile booleana nella condizione del ciclo:
+
+```c
+int v[] = {4, 7, -2, 9, 5};
+size_t n = 5;
+bool tutti = true;
+size_t i = 0;
+while (i < n && tutti) {
+    if (!(v[i] > 0))
+        tutti = false;
+    i++;
+}
+```
+
+Il ciclo guarda 4, 7 e −2, poi si ferma: `tutti` è `false` e `i` vale 3. È lo schema che all'esame sostituisce il `break`, che non si può usare. Le slide lo riprendono in un prossimo laboratorio.
+
+### Lab04-Es2 su CodeRunner
+
+Il secondo esercizio su Moodle, «Condizioni su sequenza», chiede di scrivere correttamente diverse condizioni «esiste» e «per ogni» su una sequenza. Il testo non l'ho; ecco tre condizioni dello stesso tipo in un solo ciclo, compresa una che confronta ogni numero con il precedente:
+
+```c
+bool tutti_positivi = true;      // per ogni: parte vero
+bool esiste_pari = false;        // esiste: parte falso
+bool crescente = true;           // ogni numero maggiore del precedente
+bool primo = true;               // stiamo leggendo il primo numero?
+int precedente = 0;
+int n;
+while (1 == scanf("%d", &n) && n != 0) {
+    if (!(n > 0))
+        tutti_positivi = false;
+    if (n % 2 == 0)
+        esiste_pari = true;
+    if (!primo && !(n > precedente))
+        crescente = false;
+    precedente = n;
+    primo = false;
+}
+```
+
+Con `3 5 8 11 0` le tre risposte sono sì; con `3 -1 0` sono tutte e tre no. La variabile `primo` serve perché il primo numero non ha un precedente con cui confrontarsi.
+
+::: prova Scrivi la variabile e l'`if` per «esiste un multiplo di 5 maggiore di 100».
+`bool esiste = false;` prima del ciclo, e nel ciclo `if (n % 5 == 0 && n > 100) esiste = true;`.
+:::
+
+> [!RICORDA]
+> - «Per ogni» parte da `true` e diventa `false` al primo controesempio; «esiste» parte da `false` e diventa `true` al primo esempio.
+> - Per fermarsi presto, la variabile booleana va nella condizione del ciclo, non serve il `break`.
+
+## Fibonacci (slide 21)
+
+La successione di Fibonacci comincia con 0 e 1, e ogni numero dopo è la somma dei due precedenti: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34. Il programma tiene in due variabili gli ultimi due numeri, `n` e `m`, e a ogni giro le fa avanzare di un posto: la nuova `n` è la vecchia `m`, la nuova `m` è la somma delle vecchie.
+
+La domanda della slide è se per questo aggiornamento serve una variabile temporanea. Sì: se scrivi prima `n = m;`, il vecchio valore di `n` è perso e la somma viene sbagliata; se scrivi prima `m = n + m;`, è perso il vecchio `m`. È lo stesso problema dello scambio di variabili della [03A](03A_scambio_variabili.html).
+
+```c
+int k;
+scanf("%d", &k);                 // si assume k >= 2
+int n = 0, m = 1;
+printf("%d  %d", n, m);
+for (int i = 3; i <= k; i++) {
+    int somma = n + m;           // la variabile temporanea
+    n = m;
+    m = somma;
+    printf("  %d", m);
+}
+printf("\n");
+```
+
+Con $k = 10$ stampa `0  1  1  2  3  5  8  13  21  34`. Il ciclo parte da 3 perché i primi due numeri sono già stampati.
+
+```grafico
+titolo: Un giro del ciclo, con n = 3 e m = 5. Prima si salva la somma, 8, nella temporanea; poi n prende il valore di m e m quello della temporanea. Senza la temporanea uno dei due valori vecchi andrebbe perso prima di essere usato.
+x: 0 12
+y: 0.2 5.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2 5 | grigio | "prima del giro"
+poligono: 0.8 3.6 3.2 3.6 3.2 4.4 0.8 4.4 | blu
+testo: 2 4 | blu | "n = 3"
+poligono: 0.8 2.4 3.2 2.4 3.2 3.2 0.8 3.2 | ambra
+testo: 2 2.8 | ambra | "m = 5"
+testo: 6 2.5 | grigio | "somma = n + m"
+poligono: 4.8 1.2 7.2 1.2 7.2 2 4.8 2 | rosa
+testo: 6 1.6 | rosa | "somma = 8"
+testo: 10 5 | grigio | "dopo il giro"
+poligono: 8.8 3.6 11.2 3.6 11.2 4.4 8.8 4.4 | blu
+testo: 10 4 | blu | "n = 5"
+poligono: 8.8 2.4 11.2 2.4 11.2 3.2 8.8 3.2 | ambra
+testo: 10 2.8 | ambra | "m = 8"
+freccia: 3.3 2.8 8.7 4 | grigio
+freccia: 7.3 1.6 8.7 2.5 | rosa
+testo: 6 0.5 | grigio | "n = m;   poi   m = somma;"
+```
+
+> [!APPROFONDIMENTO] Si può fare senza temporanea
+> Con gli interi esiste un trucco: `m = n + m; n = m - n;`. Dopo la prima istruzione `m` contiene la somma; nella seconda, la somma meno il vecchio `n` dà il vecchio `m`. Funziona, ma è meno leggibile e va in overflow prima: all'esame conviene la temporanea.
+
+::: prova Che cosa stampa il programma se al posto delle tre righe nel ciclo scrivi `n = m; m = n + m;`, con $k = 6$?
+`0  1  2  4  8  16`: dopo `n = m` le due variabili sono uguali, e `m = n + m` raddoppia. Sono le potenze di 2, non Fibonacci.
+:::
+
+> [!RICORDA]
+> - Per aggiornare due variabili che dipendono una dall'altra, salva prima il valore che verrebbe perso.
+
+## Indovinare un numero (slide 22–25)
+
+L'ultimo blocco è un gioco. Nella prima parte il computer sceglie un numero a caso tra 0 e 99 e tu provi a indovinarlo: a ogni tentativo il programma risponde «maggiore» o «minore». Il codice di partenza `fai_indovinare_numero.c` è su Moodle; questa è una versione mia, con `rand()` per il numero a caso:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
+
+int main(void) {
+    srand(time(NULL));                  // semina il generatore con l'ora
+    int segreto = rand() % 100;         // un numero in [0, 100)
+    int tentativi = 0;
+    bool indovinato = false;
+    while (!indovinato) {
+        int t;
+        printf("Tentativo: ");
+        scanf("%d", &t);
+        tentativi++;
+        if (t < segreto)
+            printf("Il numero e' maggiore di %d!\n", t);
+        else if (t > segreto)
+            printf("Il numero e' minore di %d!\n", t);
+        else
+            indovinato = true;
+    }
+    printf("Indovinato in %d tentativi\n", tentativi);
+}
+```
+
+`rand()` restituisce un intero grande e `% 100` lo riduce a un numero da 0 a 99. `srand(time(NULL))` cambia il punto di partenza dei numeri a caso con l'ora: senza, il programma sceglierebbe lo stesso numero a ogni esecuzione. Il ciclo è un `while`, perché non si sa quanti tentativi serviranno.
+
+### Due strategie
+
+La slide 22 chiede che strategia usa una persona per indovinare. Le slide 23 e 24 ne confrontano due, con il numero segreto 62. La prima prova i numeri in fila, 0, 1, 2, …: a ogni risposta «maggiore» l'intervallo possibile perde un solo numero, e nel caso peggiore, con il 99, servono 100 tentativi. La seconda prova sempre il **punto medio** dell'intervallo possibile $[basso, alto)$: a ogni risposta l'intervallo si dimezza.
+
+> [!TRAPPOLA] Un conto sbagliato nella slide 24
+> La slide scrive «tentativo: 62 = (51+75) / 2». Ma $51 + 75 = 126$ e $126 / 2 = 63$. Con il segreto 62 il terzo tentativo è 63, la risposta è «minore», e servono altri tre tentativi: 57, 60, 62. In tutto 6, non 3. L'ho controllato con il programma qui sotto.
+
+```grafico
+titolo: La ricerca per dimezzamento del numero 62. Ogni barra è l'intervallo ancora possibile, il punto è il tentativo. Dopo ogni risposta l'intervallo si riduce a circa la metà, e al sesto tentativo resta solo il 62.
+x: -4 104
+y: 0 8
+assi: no
+griglia: no
+proporzioni: libere
+segmento: 0 7 100 7 | blu
+punto: 50 7 | rosa
+testo: -2 7 | grigio | "1"
+segmento: 51 6 100 6 | blu
+punto: 75 6 | rosa
+testo: -2 6 | grigio | "2"
+segmento: 51 5 75 5 | blu
+punto: 63 5 | rosa
+testo: -2 5 | grigio | "3"
+segmento: 51 4 63 4 | blu
+punto: 57 4 | rosa
+testo: -2 4 | grigio | "4"
+segmento: 58 3 63 3 | blu
+punto: 60 3 | rosa
+testo: -2 3 | grigio | "5"
+segmento: 61 2 63 2 | blu
+punto: 62 2 | verde
+testo: -2 2 | grigio | "6"
+testo: 0 1 | grigio | "0"
+testo: 50 1 | grigio | "50"
+testo: 100 1 | grigio | "100"
+```
+
+### Indovina tu il numero (Lab04-Es3 su CodeRunner)
+
+L'esercizio extra rovescia il gioco: è il programma che deve indovinare, nel numero massimo di tentativi concessi. Il testo e i test sono su Moodle; questa versione mia prende il numero segreto da input, così si possono provare tutti i casi:
+
+```c
+int segreto;
+scanf("%d", &segreto);
+int basso = 0, alto = 100;          // intervallo possibile [basso, alto)
+int tentativi = 0;
+bool trovato = false;
+while (!trovato) {
+    int t = (basso + alto) / 2;
+    tentativi++;
+    printf("tentativo: %d", t);
+    if (t < segreto) {
+        printf(" -> maggiore, [%d, %d)\n", t + 1, alto);
+        basso = t + 1;
+    } else if (t > segreto) {
+        printf(" -> minore, [%d, %d)\n", basso, t);
+        alto = t;
+    } else {
+        printf(" -> trovato\n");
+        trovato = true;
+    }
+}
+printf("%d tentativi\n", tentativi);
+```
+
+L'ho fatto girare su tutti i segreti da 0 a 99: non servono mai più di **7 tentativi**. Un solo numero si trova al primo, 2 al secondo, 4 al terzo, poi 8, 16, 32, e i 37 che restano al settimo. Il motivo: dopo $k$ risposte l'intervallo è diviso per 2 circa $k$ volte, e $2^7 = 128$ è la prima potenza di 2 che supera 100. Il ciclo adatto è il `while`: il numero di tentativi dipende dalle risposte.
+
+La stessa idea, dimezzare l'intervallo, torna all'esame nella **ricorsione dicotomica**, con un intervallo $[l, r)$ diviso nel punto medio (esercizio D2 del pre-esame 2023/24 nella [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md)).
+
+::: prova Con la ricerca per dimezzamento tra 0 e 99, quali sono i tentativi per il segreto 10?
+50 (minore, $[0, 50)$), 25 (minore, $[0, 25)$), 12 (minore, $[0, 12)$), 6 (maggiore, $[7, 12)$), 9 (maggiore, $[10, 12)$), 11 (minore, $[10, 11)$), 10: sette tentativi.
+:::
+
+> [!RICORDA]
+> - `rand() % 100` dà un numero da 0 a 99; `srand(time(NULL))` cambia i numeri a ogni esecuzione.
+> - Dimezzando l'intervallo, con 100 numeri bastano 7 tentativi; provandoli in fila ne servono fino a 100.
+
+## I simboli di questa lezione
+
+| Scrittura | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `1 == scanf("%d", &x)` | «scanf ha letto un numero» | `scanf` restituisce quante variabili ha letto | condizione del ciclo di lettura |
+| `%llu` | «per cento elle elle u» | specificatore di `unsigned long long` | `printf("%llu", fatt)` |
+| `ptrdiff_t`, `%td` | «ptrdiff t» | intero con segno che fa coppia con `size_t` | `for (ptrdiff_t i = 100; i >= 0; --i)` |
+| `"\\"` | «barra rovesciata» | stampa una sola `\` | la diagonale del quadrato |
+| `rand() % 100` | «rand modulo 100» | numero a caso da 0 a 99 | il segreto del gioco |
+| `programma < file` | «programma con input dal file» | `scanf` legge dal file | `./media_seq < input01.txt` |
+
+## Verso l'esame
+
+L'esame è al PC, con **CodeRunner**: il codice viene compilato con `-Wall -Werror` e le sue stampe confrontate con quelle attese. L'esercizio iterativo, `e1`, è una funzione con uno o due cicli, e spesso è proprio un «per ogni» con dentro un «esiste» (un esempio vero del pre-esame 2023/24 è nella [04A](04A_iterazioni.html)). Questo laboratorio allena:
+
+1. **scegliere il ciclo**: `for` con un numero di giri noto, `while` quando la fine dipende dai dati;
+2. **le sentinelle booleane**: «per ogni» da `true`, «esiste» da `false`, nella condizione del ciclo per fermarsi presto, perché `break` è vietato;
+3. **i casi limite**: sequenza vuota, un solo elemento, divisione per un contatore che vale 0;
+4. **i tipi**: un risultato che cresce in fretta, come il fattoriale, non sta in un `int`;
+5. **il formato delle stampe**: CodeRunner confronta anche spazi e a capo, come in Fibonacci con due spazi tra i numeri.
+
+> [!METODO] Prima di consegnare un esercizio con un ciclo
+> 1. Compila con `gcc -Wall -Werror`.
+> 2. Segui a mano i primi due giri e l'ultimo: valori delle variabili, condizione, stampa.
+> 3. Prova i casi limite: zero giri, un giro, il valore più grande.
+> 4. Se leggi una sequenza, prova anche la sequenza vuota e una senza il terminatore.
+
+## Quiz
+
+```quiz
+D: Quanti giri fa `for (int i = 20; i >= 2; i -= 7)`?
++ 3
+- 2
+- 4
+- 18
+- il ciclo non finisce
+= I valori sono 20, 13 e 6; il successivo, −1, non soddisfa `i >= 2`. La risposta più insidiosa è 4: si conta anche il 2, che `i` non raggiunge mai perché 18 non è un multiplo di 7.
+
+D: Che cosa restituisce `scanf("%d", &x)` se l'input è `ciao`?
++ 0, perché non ha letto nessun intero
+- 1, perché ha letto una parola
+- il valore di `x`
+- −1, sempre
+- il numero di caratteri letti
+= `scanf` restituisce quante variabili ha riempito: qui nessuna. La risposta più insidiosa è «−1, sempre»: `scanf` restituisce −1 (`EOF`) solo quando l'input è finito, non quando c'è qualcosa che non è un numero.
+
+D: Nel ciclo `while (1 == scanf("%d", &n) && n != 0)`, perché l'ordine delle due condizioni conta?
++ Se la lettura fallisce, `n != 0` non viene valutato, e `n` non contiene un valore letto
+- Perché `&&` valuta prima la parte destra
+- Perché `scanf` va chiamata dopo il confronto
+- Non conta: le due condizioni si possono scambiare
+- Perché `n != 0` modifica `n`
+= L'`&&` valuta la parte destra solo se la sinistra è vera. Scambiandole si confronterebbe `n` prima di averlo letto: al primo giro `n` non è inizializzata. La risposta più insidiosa è «non conta»: logicamente l'«e» è simmetrico, ma in C l'ordine decide che cosa viene eseguito.
+
+D: Una variabile `tutti` deve dire se tutti i numeri letti sono positivi. Quale codice è giusto?
++ `bool tutti = true;` e nel ciclo `if (!(n > 0)) tutti = false;`
+- `bool tutti = false;` e nel ciclo `if (n > 0) tutti = true;`
+- `bool tutti = true;` e nel ciclo `tutti = (n > 0);`
+- `bool tutti = false;` e nel ciclo `tutti = (n > 0);`
+- `bool tutti = true;` e nel ciclo `if (n > 0) tutti = true;`
+= «Per ogni» parte da vero e diventa falso al primo controesempio. La risposta più insidiosa è `tutti = (n > 0);`: alla fine dice solo se l'ultimo numero è positivo. La seconda risponde a «esiste un positivo».
+
+D: Che cosa stampa il programma della media con l'input `0` se manca il controllo `quanti > 0`?
++ `-nan` o `-nan(ind)`: è una divisione 0.0 / 0, il risultato non è un numero
+- `0.000000`
+- il programma non compila
+- `Sequenza vuota`
+- un errore di compilazione per divisione per zero
+= Senza il controllo si calcola `(double)0 / 0`, che con i `double` dà un valore «non numero», stampato come `-nan` o `nan`. La risposta più insidiosa è `0.000000`: sembra ragionevole, ma la media di nessun numero non esiste.
+
+D: Nell'aggiornamento di Fibonacci, quale sequenza di istruzioni è giusta?
++ `int somma = n + m; n = m; m = somma;`
+- `n = m; m = n + m;`
+- `m = n + m; n = m;`
+- `n = n + m; m = n;`
+- `int somma = n + m; m = somma; n = m;`
+= Si salva la somma, poi `n` prende il vecchio `m` e `m` la somma. La risposta più insidiosa è l'ultima: aggiorna `m` prima di copiarlo in `n`, così `n` e `m` diventano uguali.
+
+D: Con la ricerca per dimezzamento tra 0 e 99, quanti tentativi servono al massimo?
+N: 7
+= Ogni risposta dimezza l'intervallo, e $2^7 = 128$ è la prima potenza di 2 più grande di 100. L'ho controllato provando tutti i 100 segreti.
+
+D: Come si stampa una sola barra rovesciata con `printf`?
++ `printf("\\");`
+- `printf("\");`
+- `printf('\');`
+- `printf("/");`
+- `printf("%\");`
+= Nelle stringhe `\` comincia una sequenza speciale, come `\n`: la barra vera si scrive `\\`. La risposta più insidiosa è `printf("\");`: la barra si mangia la virgoletta e gcc dice `missing terminating " character`.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: i valori di i
+Scrivi i valori che prende `i` e conta i giri: (a) `for (int i = 0; i < 12; i += 4)`; (b) `for (int i = 10; i > 0; i -= 3)`; (c) `for (int i = 1; i <= 64; i *= 2)`; (d) `for (int i = 5; i < 5; i++)`.
+::: soluzione
+(a) 0, 4, 8: 3 giri. (b) 10, 7, 4, 1: 4 giri. (c) 1, 2, 4, 8, 16, 32, 64: 7 giri; l'aggiornamento può essere qualsiasi assegnamento. (d) Nessun giro: $5 < 5$ è falso subito.
+:::
+
+::: esercizio base Riscaldamento: for o while
+Che ciclo usi per: (a) stampare la tabellina del 7; (b) leggere voti finché non arriva un voto negativo; (c) contare le cifre di un numero dividendo per 10 finché diventa 0; (d) sommare gli elementi di un array di 20 numeri?
+::: soluzione
+(a) `for`: 10 giri. (b) `while`: la fine dipende dall'input. (c) `while`: il numero di cifre non si sa prima. (d) `for`: 20 giri.
+:::
+
+::: esercizio medio Il massimo di una sequenza
+Leggi una sequenza di interi terminata da 0 e stampa il più grande. Se la sequenza è vuota, stampa `Sequenza vuota`.
+::: soluzione
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+    int massimo = 0;
+    bool vuota = true;
+    int n;
+    while (1 == scanf("%d", &n) && n != 0) {
+        if (vuota || n > massimo) {
+            massimo = n;
+        }
+        vuota = false;
+    }
+    if (vuota) {
+        printf("Sequenza vuota\n");
+    } else {
+        printf("%d\n", massimo);
+    }
+}
+```
+Il massimo non si può inizializzare a 0: con `-5 -2 0` il risultato sarebbe 0, che non è nella sequenza. Per questo il primo numero letto diventa il massimo, riconosciuto con `vuota`. Con `-5 -2 0` stampa `-2`.
+:::
+
+::: esercizio medio La piramide di asterischi
+Leggi $n$ e stampa una piramide di $n$ righe, centrata: la riga $i$ (da 1 a $n$) ha $n - i$ spazi e $2i - 1$ asterischi. Con $n = 3$: `  *`, ` ***`, `*****`.
+::: soluzione
+```c
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j < n - i; j++) {
+            printf(" ");
+        }
+        for (int j = 0; j < 2 * i - 1; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+}
+```
+Come il quadrato: un ciclo esterno per le righe, due cicli interni per i due pezzi della riga.
+:::
+
+::: esercizio esame Primo, senza break
+Leggi un intero $n \ge 2$ e stampa `primo` o `non primo`. Il ciclo deve fermarsi al primo divisore trovato, senza `break`.
+::: soluzione
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+    int n;
+    scanf("%d", &n);
+    bool trovato = false;            // esiste un divisore tra 2 e n-1?
+    int d = 2;
+    while (d < n && !trovato) {
+        if (n % d == 0) {
+            trovato = true;
+        }
+        d++;
+    }
+    printf(trovato ? "non primo\n" : "primo\n");
+}
+```
+È un «esiste» con la sentinella nella condizione: con 91 si ferma dopo aver provato 7, perché $91 = 7 \cdot 13$. Si potrebbe fermare anche a $d \cdot d \le n$: se $n$ ha un divisore, ne ha uno non più grande della sua radice.
+:::
+
+::: esercizio esame Tutte le cifre pari
+Leggi un intero positivo e stampa `si` se tutte le sue cifre sono pari, `no` altrimenti. Le cifre si ottengono con `% 10` e `/ 10`.
+::: soluzione
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(void) {
+    int n;
+    scanf("%d", &n);
+    bool tutte_pari = true;          // per ogni cifra: parte da true
+    while (n > 0 && tutte_pari) {
+        int cifra = n % 10;          // l'ultima cifra
+        if (cifra % 2 != 0) {
+            tutte_pari = false;
+        }
+        n = n / 10;                  // toglie l'ultima cifra
+    }
+    printf(tutte_pari ? "si\n" : "no\n");
+}
+```
+Con 2486 stampa `si`, con 2476 stampa `no` e si ferma alla cifra 7, la seconda guardata. Il ciclo è un `while`: il numero di cifre non si sa prima.
+:::
+
+## Domande di ripasso
+
+::: domanda Quando conviene un for e quando un while?
+Il `for` quando il numero di giri si conosce prima di cominciare; il `while` quando la fine si scopre durante i giri, per esempio leggendo l'input.
+:::
+
+::: domanda Che cosa restituisce scanf?
+Il numero di variabili che è riuscita a leggere: 1 con `"%d"` se ha letto un intero, 0 se ha trovato altro, −1 (`EOF`) se l'input è finito.
+:::
+
+::: domanda Come si calcola la media di una sequenza terminata da 0?
+Con un accumulatore e un contatore aggiornati nel ciclo; dopo il ciclo, se il contatore non è 0, si divide la somma convertita in `double` per il contatore.
+:::
+
+::: domanda Come si controlla un «per ogni» su una sequenza?
+Con una variabile booleana che parte da `true` e diventa `false` al primo controesempio. Per «esiste», parte da `false` e diventa `true` al primo esempio.
+:::
+
+::: domanda Perché nell'aggiornamento di Fibonacci serve una variabile temporanea?
+Perché le due variabili si aggiornano a vicenda: la prima assegnazione cancellerebbe un valore che serve ancora alla seconda.
+:::
+
+::: domanda Perché la ricerca per dimezzamento è più veloce?
+Ogni tentativo scarta metà dell'intervallo invece di un solo numero: con 100 numeri bastano 7 tentativi invece di 100.
+:::
+
+## Glossario
+
+```glossario
+Terminatore | Valore speciale che segna la fine di una sequenza e non fa parte dei dati, come lo 0 delle slide.
+Valore restituito da scanf | Il numero di variabili lette con successo; 1 con "%d" se è stato letto un intero.
+Accumulatore | Variabile che raccoglie un risultato giro dopo giro: una somma parte da 0, un prodotto da 1.
+Contatore | Variabile che conta quante volte succede qualcosa nel ciclo.
+Cicli annidati | Un ciclo dentro un altro: quello interno riparte da capo a ogni giro di quello esterno.
+Sentinella booleana | Variabile bool che accumula la risposta a un «per ogni» (da true) o a un «esiste» (da false).
+Variabile temporanea | Variabile che conserva un valore che un assegnamento cancellerebbe.
+Ricerca per dimezzamento | Strategia che prova il punto medio dell'intervallo e ne scarta metà a ogni passo.
+Redirezione dell'input | Con programma < file il programma legge dal file invece che dalla tastiera.
+```
+
+## Checklist
+
+```checklist
+- So scegliere tra for e while e contare i giri di un for con un passo qualsiasi.
+- So leggere una sequenza terminata da 0 con il valore restituito da scanf.
+- So calcolare una media senza dividere per zero.
+- So dare l'input da file con < e so che in PowerShell serve Get-Content.
+- So stampare figure con due cicli annidati.
+- So scrivere «per ogni» ed «esiste» con una variabile booleana, anche fermandomi presto senza break.
+- So aggiornare due variabili che dipendono una dall'altra.
+- So spiegare perché dimezzando l'intervallo bastano 7 tentativi su 100 numeri.
+```
+
+## Fonti
+
+- Slide «Iterazioni» (Lezione nº 4 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27: for e while (slide 2–5), sommatoria (slide 6–7), iterazioni_n.c (slide 8), sequenze (slide 9–11), media_seq.c (slide 12–13), Lab04-Es1 Divisori Interi (slide 14), Floyd (slide 15), quadrato (slide 16), quantificazione universale ed esistenziale (slide 17–19), Lab04-Es2 Condizioni su sequenza (slide 20), Fibonacci (slide 21), indovina il numero (slide 22–25).
+- I testi degli esercizi su CodeRunner e il codice di partenza (`input_media_seq`, `fai_indovinare_numero.c`) sono sul Moodle del laboratorio: non li ho visti, le soluzioni qui sono mie.
+- Lezioni [04A](04A_iterazioni.html) e [05A](05A_array_stringhe.html) di Amparore; esercizi `e1` e D2 del pre-esame 2023/24 dalla [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md).
+- Tutti i programmi li ho compilati con gcc 16.1 su Windows 11 a 64 bit, con `-Wall -Werror`, ed eseguiti; le stampe e gli errori citati sono quelli veri, compreso il messaggio di PowerShell sul `<`. La ricerca per dimezzamento l'ho provata su tutti i segreti da 0 a 99. Le soluzioni, i quiz e gli esercizi sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/PROG1/riassunti/settimana_01.md -->
 > File: `contesto_ai/PROG1/riassunti/settimana_01.md`
 
@@ -12726,6 +13618,9 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - lun 19/10: §1.5, quantificatori: funzione proposizionale (esempio 1.5.3 (a)) quantificata universalmente ed esistenzialmente, programmi per i quantificatori, leggi di De Morgan per i quantificatori. Negli appunti è la lezione 09.
 - gio 22/10: analogie tra quantificatore universale e congiunzione, esistenziale e disgiunzione; quiz sulle regole di inferenza (sì/no) e sui quantificatori. Negli appunti è la lezione 10, scritta prima della lezione.
 - ven 23/10: §1.6, quantificatori annidati. Negli appunti è la lezione 11, scritta prima della lezione.
+- lun 26/10: fine del capitolo 1 della parte 2, esercizi sulle lezioni del docente 07–12: connettivi booleani, quantificatori, regole logiche. Negli appunti è la lezione 12.
+- gio 29/10 (in programma): capitolo 2.1, metodi di prova. Negli appunti è la lezione 13, scritta prima della lezione.
+- ven 30/10 (in programma): fine del capitolo 2.1 (metodi di prova), il paradosso del bevitore, esercizi. Negli appunti è la lezione 14, scritta prima della lezione.
 
 ## Materiale
 
@@ -22131,6 +23026,1451 @@ Negazione di quantificatori annidati | Si gira ogni quantificatore e si nega la 
 
 ---
 
+<!-- FILE: contesto_ai/FDA/lezioni/12_esercizi_logica.md -->
+> File: `contesto_ai/FDA/lezioni/12_esercizi_logica.md`
+
+```yaml
+corso: FDA
+lezione: "12"
+data: 2026-10-26
+titolo: Esercizi di logica, connettivi, regole e quantificatori
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 12 · Libro, parte 2, §1.2–1.6 (esercizi)
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 12 di Fondamenti dell'Informatica (canale B), la lezione di esercizi che chiude il capitolo 1
+  della parte 2: tavole di verità e tautologie, traduzioni con «se», «solo se» e «tranne», equivalenze e negazioni,
+  argomentazioni valide e non valide, catene di regole di inferenza, quantificatori semplici e annidati, quantificatori
+  ristretti, con le domande dell'autoverifica del capitolo 1, gli esempi di Felice Cardone e le domande vere delle
+  simulazioni d'esame 2023/24.
+lede: >-
+  Il capitolo 1 della parte 2 finisce qui. Per ogni argomento delle lezioni 06–11 trovi il procedimento in poche righe ed
+  esercizi svolti, dal più facile a quello da esame. In fondo, le domande di logica delle simulazioni e un quiz lungo.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 1), §1.2–1.6
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 3–4 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 1), autoverifica del capitolo 1 con le
+  soluzioni pubblicate sul Moodle del canale A; F. Cardone, note «Alcuni esempi relativi a formalizzazione,
+  connettivi proposizionali e quantificatori», «La relazione di conseguenza per la logica proposizionale» e «Svedesi e
+  Protestanti» (Moodle del canale A); simulazioni d'esame 2023/24; diario del canale B
+appunti_html: appunti/FDA/12_esercizi_logica.html
+genera_html: true
+```
+
+## In breve
+
+- È una lezione di **esercizi**: niente argomenti nuovi. Ripassa le lezioni [06](06_proposizioni_connettivi_tavole.html)–[11](11_quantificatori_annidati.html), cioè il capitolo 1 della parte 2 tranne gli insiemi.
+- Ogni sezione comincia con un riquadro **Metodo** e il link alla lezione dove l'argomento è spiegato; poi esercizi svolti, dal più facile a quello da esame.
+- Molti esercizi vengono dall'**autoverifica** del capitolo 1 del libro e dalle note di Felice Cardone, docente del canale A.
+- Per decidere se una formula è sempre vera, o se un'argomentazione è valida, conviene **cercare il caso che la rende falsa**: se non esiste, hai finito.
+- Una frase come «tutti sono protestanti tranne gli svedesi» dice due cose insieme, e diventa un **se e solo se**.
+- Per negare frasi con «ogni elemento di A» o «qualche elemento di B» si usano le regole delle lezioni 09 e 11, più quella per negare una freccia: il risultato contiene un «e».
+
+> [!CANALI]
+> Nel canale B è la lezione di lunedì 26/10, dalle 9 alle 11. Per il docente è la lezione 13, perché la prima è stata un'introduzione: qui è la 12. Il diario del canale B la annuncia così: «Fine Capitolo 1, Parte 2. Esercizi sulle lezioni 07-12: Connettivi booleani, quantificatori, Regole Logiche». Le lezioni 07–12 del docente sono le [06](06_proposizioni_connettivi_tavole.html)–[11](11_quantificatori_annidati.html) di questi appunti. Non so quali esercizi abbia fatto in aula: qui ci sono le domande dell'autoverifica del capitolo 1 del libro, con le risposte dell'appendice pubblicata sul Moodle del canale A (id 3851, aperto agli ospiti), gli esempi delle note di Felice Cardone sullo stesso Moodle, le domande di logica delle simulazioni d'esame 2023/24 e altri esercizi miei. Il §1.1 sugli insiemi, che il docente ha rimandato, nel corso di Matematica Discreta è nelle lezioni [D01](../MDAG/D01_insiemi_induzione.html) e [D02](../MDAG/D02_complementare_induzione_partizioni.html).
+
+## Tavole di verità e tautologie (lezione 06)
+
+Un quiz su una formula chiede quasi sempre una di due cose: il suo valore in alcune righe, oppure se è vera in tutte le righe. Per la prima si calcola riga per riga; per la seconda conviene ragionare sui casi, e fare la tavola solo se il ragionamento non basta.
+
+> [!METODO] Valore e tautologie (lezione 06)
+> 1. **Valore in una riga**: sostituisci le lettere e calcola dall'interno delle parentesi verso l'esterno.
+> 2. **È una tautologia?** Cerca una riga che la renda falsa. Per un «o» devono essere falsi tutti i pezzi, per un «e» basta un pezzo falso, per una freccia serve ipotesi vera e conclusione falsa.
+> 3. Se la riga falsa non esiste, la formula è una **tautologia**. Se nessuna riga la rende vera, è una **contraddizione**.
+>
+> Tutto è spiegato nella [lezione 06](06_proposizioni_connettivi_tavole.html); lo strumento della lezione fa le tavole da solo.
+
+> [!ESEMPIO] · Domanda 15 dell'autoverifica: $\neg(p \wedge q) \vee (p \vee \neg r)$
+> **Passo 1: quando sarebbe falsa.** È un «o» di due pezzi: per essere falsa servono $\neg(p \wedge q)$ falsa **e** $p \vee \neg r$ falsa.
+>
+> **Passo 2: il primo pezzo falso.** $\neg(p \wedge q)$ è falsa solo se $p \wedge q$ è vera, cioè con $p$ e $q$ vere.
+>
+> **Passo 3: il secondo pezzo falso.** $p \vee \neg r$ è falsa solo se $p$ è falsa e $r$ è vera.
+>
+> **Passo 4: conclusione.** Il passo 2 vuole $p$ vera, il passo 3 vuole $p$ falsa: impossibile. La formula è vera in tutte le 8 righe, è una tautologia. La tavola delle soluzioni del libro ha infatti l'ultima colonna tutta T.
+
+```widget logica
+titolo: La formula della domanda 15
+modo: tavola
+formula: ¬(p ∧ q) ∨ (p ∨ ¬r)
+```
+
+::: prova Senza tavola: $(p \to q) \vee (q \to p)$ è una tautologia?
+Sì. Per essere falsa servirebbero $p \to q$ falsa, cioè $p$ = V e $q$ = F, e $q \to p$ falsa, cioè $q$ = V e $p$ = F. Le due richieste si contraddicono.
+:::
+
+> [!RICORDA]
+> - Per una tautologia, cerca la riga che la rende falsa: se le richieste si contraddicono, non c'è.
+> - Un «o» è falso solo con tutti i pezzi falsi; un «e» è vero solo con tutti i pezzi veri.
+
+## Tradurre «se», «solo se», «tranne» (lezioni 06–07)
+
+Le traduzioni dall'italiano sono la parte dove si sbaglia di più, perché il linguaggio comune è meno preciso delle formule. Le parole da guardare sono poche: «e», «o», «non», «se», «solo se», «a meno che», «tranne».
+
+> [!METODO] Tradurre una frase (lezioni 06 e 07)
+> 1. Trova le frasi semplici e dai a ognuna una lettera.
+> 2. «Se $p$, $q$» e «$q$ se $p$» diventano $p \to q$: la condizione sta dopo il «se».
+> 3. «$p$ solo se $q$» diventa $p \to q$: quello che sta dopo «solo se» va **a destra** della freccia.
+> 4. «$p$ se e solo se $q$» diventa $p \leftrightarrow q$.
+> 5. Rileggi la formula ad alta voce e controlla con un caso concreto.
+>
+> La tabella completa delle traduzioni è nella [lezione 07](07_condizionali_equivalenza_logica.html).
+
+> [!ESEMPIO] · Domande 3 e 4 dell'autoverifica: Leah e il voto
+> **Situazione:** «Leah prende A in matematica discreta solo se studia molto». La soluzione del libro la riscrive così: «se Leah prende A, allora Leah studia molto». Il testo della domanda l'ho ricostruito dalla risposta.
+>
+> **La formula.** Con $p$ = «Leah prende A» e $q$ = «Leah studia molto»: $p \to q$. Quello che sta dopo «solo se» va a destra.
+>
+> **L'inversa**, $q \to p$: «se Leah studia molto, allora prende A». Non è equivalente: si può studiare molto e prendere B.
+>
+> **La contronominale**, $\neg q \to \neg p$: «se Leah non studia molto, non prende A». È equivalente alla frase di partenza.
+
+> [!ESEMPIO] · Tutti sono protestanti tranne gli svedesi (Cardone, canale A)
+> **Situazione:** la frase «tutti sono protestanti tranne gli svedesi», con $P(x)$ = «$x$ è protestante» e $S(x)$ = «$x$ è svedese». Il dominio sono le persone.
+>
+> **Passo 1: chi non è svedese è protestante.** $\forall x\,(\neg S(x) \to P(x))$, equivalente a $\forall x\,(\neg P(x) \to S(x))$: chi non è protestante è svedese.
+>
+> **Passo 2: «tranne» dice anche il contrario.** Nella lingua comune la frase esclude che gli svedesi siano protestanti: nessuno è insieme svedese e protestante. In formula, $\neg\,\exists x\,(P(x) \wedge S(x))$, che con De Morgan diventa $\forall x\,(S(x) \to \neg P(x))$.
+>
+> **Passo 3: le due insieme.** Le due frecce, una per verso, fanno un «se e solo se»: $\forall x\,(P(x) \leftrightarrow \neg S(x))$. Ognuno è protestante esattamente quando non è svedese.
+
+```grafico
+titolo: A sinistra c'è solo «nessuno svedese è protestante»: S e P non si toccano, ma qualcuno può stare fuori da tutti e due. A destra «tutti sono protestanti tranne gli svedesi»: il rettangolo delle persone è diviso in due, e ognuno sta in una sola delle due parti.
+x: 0 12
+y: 0 5.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.3 0.6 5.6 0.6 5.6 4.6 0.3 4.6 | grigio
+cerchio: 1.8 2.6 1 | blu
+testo: 1.8 2.6 | blu | "S"
+cerchio: 4.1 2.6 1 | ambra
+testo: 4.1 2.6 | ambra | "P"
+punto: 3 1 | rosa
+testo: 3 5.1 | grigio | "∀x (S(x) → ¬P(x))"
+poligono: 6.4 0.6 9 0.6 9 4.6 6.4 4.6 | blu
+poligono: 9 0.6 11.7 0.6 11.7 4.6 9 4.6 | ambra
+testo: 7.7 2.6 | blu | "S"
+testo: 10.35 2.6 | ambra | "P"
+testo: 9 5.1 | grigio | "∀x (P(x) ↔ ¬S(x))"
+```
+
+Il punto rosa a sinistra è una persona né svedese né protestante: la prima formula la permette, la seconda no.
+
+::: prova Traduci «esco, a meno che piova» con $e$ = «esco» e $p$ = «piove».
+«A meno che» vuol dire «se non»: $\neg p \to e$, cioè «se non piove, esco», equivalente a $p \vee e$. Come «tranne», nel parlare comune spesso si intende anche il contrario, «se piove non esco»: allora è $e \leftrightarrow \neg p$. Negli esercizi del libro si traduce con la sola freccia.
+:::
+
+> [!RICORDA]
+> - «Solo se» mette la freccia verso quello che lo segue.
+> - «Tranne» e «a meno che» nel parlare comune valgono spesso in tutti e due i versi: decidi se serve il «se e solo se».
+
+## Equivalenze e negazioni (lezione 07)
+
+Due formule sono equivalenti se hanno lo stesso valore in **ogni** riga. Per dire di no basta trovare una riga in cui sono diverse; per dire di sì serve la tavola, o una catena di equivalenze già note.
+
+> [!METODO] Equivalenze e negazioni (lezione 07)
+> 1. **Diverse?** Cerca una riga che le distingua: di solito quella che rende falsa una delle due.
+> 2. **Uguali?** Trasforma una nell'altra con le equivalenze note, oppure fai la tavola.
+> 3. Le equivalenze da sapere: $p \to q \equiv \neg p \vee q$; $\neg(p \to q) \equiv p \wedge \neg q$; De Morgan, $\neg(p \wedge q) \equiv \neg p \vee \neg q$ e $\neg(p \vee q) \equiv \neg p \wedge \neg q$; la contronominale $p \to q \equiv \neg q \to \neg p$.
+
+> [!ESEMPIO] · Il circuito della simulazione 1 del 2023/24, domanda 6
+> **Situazione:** il circuito calcola $(\neg C \wedge A) \vee (\neg C \wedge B)$. Si chiede se è equivalente a $\neg((C \vee \neg A) \wedge (C \vee \neg B))$.
+>
+> **Passo 1: De Morgan sul «e» esterno.** $\neg((C \vee \neg A) \wedge (C \vee \neg B)) \equiv \neg(C \vee \neg A) \vee \neg(C \vee \neg B)$.
+>
+> **Passo 2: De Morgan su ogni «o».** $\neg(C \vee \neg A) \equiv \neg C \wedge A$, e $\neg(C \vee \neg B) \equiv \neg C \wedge B$.
+>
+> **Passo 3.** Si arriva a $(\neg C \wedge A) \vee (\neg C \wedge B)$: sono equivalenti. È una delle risposte giuste del quiz, svolto anche nella [lezione 07](07_condizionali_equivalenza_logica.html).
+
+> [!ESEMPIO] · Negare a parole
+> **«Se piove, prendo l'ombrello».** La negazione non è «se non piove, non prendo l'ombrello». È $p \wedge \neg q$: «piove e non prendo l'ombrello», l'unico caso in cui la promessa è tradita.
+>
+> **«2 < 5 e 3 > 1»** (Cardone). La negazione è «2 ≥ 5 oppure 3 ≤ 1». Il contrario di «minore» è «maggiore **o uguale**»: anche il caso dell'uguaglianza contraddice la frase.
+
+::: prova $p \to (q \to r)$ e $(p \wedge q) \to r$ sono equivalenti? E $(p \to q) \to r$ e $p \to (q \to r)$?
+Le prime due sì: tutte e due sono false solo con $p$ e $q$ vere ed $r$ falsa. Le seconde no: con $p$, $q$ ed $r$ tutte false, $(p \to q) \to r$ è falsa, perché $p \to q$ è vera e $r$ falsa, mentre $p \to (q \to r)$ è vera, perché $p$ è falsa.
+:::
+
+> [!RICORDA]
+> - Per dire «non equivalenti» basta una riga; per dire «equivalenti» serve una tavola o una catena di equivalenze.
+> - La negazione di una freccia è un «e»: $\neg(p \to q) \equiv p \wedge \neg q$.
+
+## Argomentazioni: valide o no (lezione 08)
+
+Un'argomentazione è **valida** se in ogni riga in cui le premesse sono tutte vere, anche la conclusione è vera. Nella notazione di Cardone, usata nel canale A, si scrive $p_1, \dots, p_n \models p$, e si legge «$p$ è conseguenza logica delle premesse». Come per le tautologie, conviene cercare il controesempio.
+
+> [!METODO] Decidere un'argomentazione (lezione 08)
+> 1. Traduci premesse e conclusione in formule.
+> 2. Cerca una riga con le premesse **tutte vere** e la conclusione **falsa**: parti dalla conclusione falsa, che di solito fissa più lettere.
+> 3. Se la trovi, l'argomentazione non è valida e quella riga è il controesempio.
+> 4. Se le richieste si contraddicono, è valida. Per mostrarlo passo per passo si usa una catena di regole di inferenza.
+>
+> Le sette regole e le due fallacie sono nella [lezione 08](08_argomentazioni_regole_inferenza.html).
+
+> [!ESEMPIO] · Domanda 9 dell'autoverifica: gli Skyscrapers
+> **Situazione:** «Se gli Skyscrapers vincono, mi mangio il cappello. Se mi mangio il cappello, sarò bello pieno. Quindi, se sono bello pieno, gli Skyscrapers hanno vinto.»
+>
+> **Passo 1: le formule.** $p$ = «gli Skyscrapers vincono», $q$ = «mi mangio il cappello», $r$ = «sarò bello pieno». Premesse $p \to q$ e $q \to r$; conclusione $r \to p$.
+>
+> **Passo 2: la conclusione falsa.** $r \to p$ è falsa solo con $r$ vera e $p$ falsa.
+>
+> **Passo 3: le premesse vere.** Con $p$ falsa, $p \to q$ è vera comunque. Con $r$ vera, $q \to r$ è vera comunque. Scelgo $q$ falsa.
+>
+> **Passo 4.** Con $p$ e $q$ false ed $r$ vera le premesse sono vere e la conclusione falsa: **non valida**. È la soluzione del libro. Il sillogismo ipotetico darebbe $p \to r$, non $r \to p$: si può essere pieni per aver mangiato altro.
+
+> [!ESEMPIO] · Domanda 21 dell'autoverifica: le Olimpiadi
+> **Situazione:** «Se il Consiglio approva i fondi, New Atlantic avrà le Olimpiadi. Se New Atlantic avrà le Olimpiadi, costruirà un nuovo stadio. New Atlantic non costruisce un nuovo stadio. Quindi il Consiglio non approva i fondi, oppure le Olimpiadi sono annullate.»
+>
+> **Passo 1: le formule.** $p$ = «il Consiglio approva i fondi», $q$ = «New Atlantic ha le Olimpiadi», $r$ = «costruisce un nuovo stadio», $s$ = «le Olimpiadi sono annullate». Premesse: $p \to q$, $q \to r$, $\neg r$. Conclusione: $\neg p \vee s$.
+>
+> **Passo 2: sillogismo ipotetico.** Da $p \to q$ e $q \to r$ segue $p \to r$.
+>
+> **Passo 3: modus tollens.** Da $p \to r$ e $\neg r$ segue $\neg p$.
+>
+> **Passo 4: addizione.** Da $\neg p$ segue $\neg p \vee s$, qualunque cosa sia $s$. L'argomentazione è **valida**: è la catena della soluzione del libro.
+
+```widget logica
+titolo: L'argomentazione delle Olimpiadi
+modo: argomento
+premesse: p → q; q → r; ¬r
+conclusione: ¬p ∨ s
+```
+
+::: prova Valida o no: «Se studio passo l'esame. Non ho studiato. Quindi non passo l'esame.»
+Non valida: è la fallacia della negazione dell'antecedente, $p \to q, \neg p \;/\; \therefore \neg q$. Controesempio: $p$ falsa e $q$ vera, cioè non ho studiato e passo lo stesso.
+:::
+
+> [!RICORDA]
+> - Il controesempio si costruisce partendo dalla conclusione falsa.
+> - Le due fallacie: affermare il conseguente e negare l'antecedente.
+
+## Quantificatori (lezioni 09 e 10)
+
+Con i quantificatori le domande sono di tre tipi: dire se una frase è vera su un dominio, tradurre dall'italiano, negare. Il dominio va sempre guardato: la stessa frase può essere vera sui reali e falsa sugli interi.
+
+> [!METODO] Frasi con un quantificatore (lezioni 09 e 10)
+> 1. **Vero o falso**: per un «per ogni» cerca un controesempio, per un «esiste» un testimone.
+> 2. **Tradurre**: «ogni A è B» diventa $\forall x\,(A(x) \to B(x))$, con la freccia; «qualche A è B» diventa $\exists x\,(A(x) \wedge B(x))$, con l'«e».
+> 3. **Negare**: $\neg\,\forall x\, P(x) \equiv \exists x\, \neg P(x)$ e $\neg\,\exists x\, P(x) \equiv \forall x\, \neg P(x)$; poi si nega la parte interna con le regole delle sezioni sopra.
+
+> [!ESEMPIO] · Domande 18 e 19 dell'autoverifica: i primi gemelli
+> **Situazione:** il dominio sono gli interi positivi, e la frase interna è «$n$ e $n + 2$ sono primi».
+>
+> **Con «per ogni».** «Per ogni intero positivo $n$, $n$ e $n + 2$ sono primi» è falsa: il controesempio del libro è $n = 7$, perché 9 non è primo. Basterebbe anche $n = 1$, che non è primo.
+>
+> **Con «esiste».** «Per qualche intero positivo $n$, $n$ e $n + 2$ sono primi» è vera: il testimone del libro è $n = 5$, con 5 e 7 primi.
+
+> [!ESEMPIO] · Negare «qualche» e «tutti» (Cardone, canale A)
+> **«Qualche numero primo è pari».** In formula $\exists x\,(\mathrm{Primo}(x) \wedge \mathrm{Pari}(x))$. Negazione: $\forall x\,\neg(\mathrm{Primo}(x) \wedge \mathrm{Pari}(x))$, cioè $\forall x\,(\mathrm{Primo}(x) \to \neg\mathrm{Pari}(x))$: «nessun primo è pari». La frase di partenza è vera, per il 2, quindi la negazione è falsa.
+>
+> **«Tutti i numeri maggiori di 5 sono maggiori di 3».** In formula $\forall x\,(x > 5 \to x > 3)$. Negazione: $\exists x\,\neg(x > 5 \to x > 3)$, e con la negazione della freccia $\exists x\,(x > 5 \wedge x \le 3)$: «c'è un numero maggiore di 5 e non maggiore di 3». È falsa, come deve essere.
+
+> [!TRAPPOLA] Negare «tutti i numeri maggiori di 5…»
+> La negazione non è $\exists x\,(x > 5 \to x \le 3)$: con la freccia dentro un «esiste» la frase diventa vera per ogni $x \le 5$, a vuoto. Negando una freccia esce un «e».
+
+::: prova Nega e traduci a parole: «ogni studente del corso ha superato almeno un esame», con $E(x, y)$ = «$x$ ha superato $y$».
+La frase è $\forall x\, \exists y\, E(x, y)$, con $x$ tra gli studenti e $y$ tra gli esami. Negazione: $\exists x\, \forall y\, \neg E(x, y)$, «c'è uno studente che non ha superato nessun esame».
+:::
+
+> [!RICORDA]
+> - «Ogni» con la freccia, «qualche» con l'«e».
+> - Negando un quantificatore si gira il quantificatore; negando una freccia esce un «e».
+
+## Quantificatori annidati e ristretti (lezione 11)
+
+Nelle note di Cardone compaiono i quantificatori **ristretti**: «per ogni $x$ in $A$» e «esiste $y$ in $B$», scritti $\forall x \in A$ ed $\exists y \in B$. Non sono un simbolo nuovo, ma un'abbreviazione delle traduzioni della sezione prima: $\forall x \in A\; P(x)$ vuol dire $\forall x\,(x \in A \to P(x))$, ed $\exists x \in B\; P(x)$ vuol dire $\exists x\,(x \in B \wedge P(x))$.
+
+> [!METODO] Negare con i quantificatori ristretti
+> 1. Si gira ogni quantificatore, **lasciando la stessa restrizione**: $\neg\,\forall x \in A\; P(x) \equiv \exists x \in A\; \neg P(x)$.
+> 2. Si va avanti verso destra, un quantificatore alla volta, come nella [lezione 11](11_quantificatori_annidati.html).
+> 3. Alla fine si nega la frase interna.
+
+> [!ESEMPIO] · Ogni elemento di A ha un elemento di B più grande (Cardone)
+> **Situazione:** $A$ e $B$ sono insiemi di numeri. La frase «per ogni elemento $x$ di $A$ esiste almeno un elemento $y$ di $B$ con $x < y$» si scrive $\forall x \in A\; \exists y \in B\; (x < y)$.
+>
+> **Passo 1: girare i quantificatori.** $\neg\,\forall x \in A\; \exists y \in B\; (x < y) \equiv \exists x \in A\; \forall y \in B\; \neg(x < y)$.
+>
+> **Passo 2: la frase interna.** $\neg(x < y)$ è $x \ge y$: $\exists x \in A\; \forall y \in B\; (x \ge y)$.
+>
+> **Passo 3: a parole.** «C'è un elemento di $A$ maggiore o uguale a ogni elemento di $B$». Cardone arriva allo stesso risultato scrivendo per esteso le frecce e gli «e» delle restrizioni.
+>
+> **Passo 4: un caso concreto.** Con $A = \{1, 5\}$ e $B = \{2, 3\}$ la frase di partenza è falsa: per $x = 5$ nessun $y$ di $B$ è più grande. Infatti la negazione è vera, con il testimone $x = 5$, che è maggiore di 2 e di 3.
+
+::: prova Nega «c'è un elemento di $A$ minore di ogni elemento di $B$», cioè $\exists x \in A\; \forall y \in B\; (x < y)$, e leggila a parole.
+$\forall x \in A\; \exists y \in B\; (x \ge y)$: «ogni elemento di $A$ è maggiore o uguale a qualche elemento di $B$». È il secondo esempio di Cardone.
+:::
+
+> [!RICORDA]
+> - $\forall x \in A$ è un «per ogni» con la freccia, $\exists x \in B$ un «esiste» con l'«e».
+> - Negando, la restrizione resta: cambia solo il tipo del quantificatore.
+
+## Come affrontare i quiz di logica
+
+All'esame i quiz di logica sono di solito a menù o a più voci vero/falso, e ogni voce conta. Con 45 minuti per 9 quiz ci sono circa 5 minuti a domanda: le tavole complete da 8 righe vanno fatte solo se il ragionamento sui casi non basta.
+
+| Domanda | Prima mossa | Controllo |
+|---|---|---|
+| valore di una formula in alcune righe | sostituisci e calcola dall'interno | rileggi le righe nell'ordine del quiz, che può non essere quello solito |
+| formule equivalenti? | cerca una riga che le distingua | se non la trovi, fai la tavola |
+| argomentazione valida? | conclusione falsa, premesse vere | se ti servono richieste contraddittorie, è valida |
+| traduzione | trova «solo se», «ogni», «qualche» | rileggi la formula a voce alta |
+| negazione | gira ogni quantificatore, poi nega dentro | la negazione di una freccia è un «e» |
+
+**Gli errori più frequenti**
+
+- Leggere l'«o» come esclusivo: $p \vee q$ è vera anche con tutte e due vere.
+- Credere che una freccia con l'ipotesi falsa sia falsa: è vera.
+- Girare la freccia nelle frasi con «solo se».
+- Negare «minore» con «maggiore», dimenticando l'uguale.
+- Scambiare l'ordine dei quantificatori, o girarne solo uno.
+
+::: prova Hai un quiz con tre voci: (1) $p \wedge \neg p$ è una contraddizione; (2) $p \to q$ e $q \to p$ sono equivalenti; (3) $\neg\,\exists x\,(x < 0)$ equivale a $\forall x\,(x > 0)$. Quali sono vere, e qual è la prima mossa per ognuna?
+(1) Vera: nessuna riga rende vere insieme $p$ e $\neg p$. (2) Falsa: la riga $p$ = V, $q$ = F le distingue. (3) Falsa: la negazione è $\forall x\,(x \ge 0)$, con l'uguale; lo 0 le distingue.
+:::
+
+> [!RICORDA]
+> - Circa 5 minuti a quiz: prima il ragionamento sui casi, la tavola solo se serve.
+> - Ogni voce conta: controllala con un caso concreto prima di passare alla successiva.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\models$ | «ha come conseguenza logica» | in ogni riga con le premesse vere è vera anche la conclusione (notazione del canale A) | $p \to q,\ p \models q$ |
+| $\forall x \in A$ | «per ogni x in A» | $\forall x\,(x \in A \to \dots)$ | $\forall x \in A\; (x > 0)$ |
+| $\exists y \in B$ | «esiste y in B» | $\exists y\,(y \in B \wedge \dots)$ | $\exists y \in B\; (y < 3)$ |
+| $\equiv$ | «è equivalente a» | stesso valore in ogni riga | $p \to q \equiv \neg p \vee q$ |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser, da 3 punti l'uno; servono almeno 18 punti.
+
+**Le domande di logica delle simulazioni 2023/24**
+
+1. **Simulazione 1, domanda 3**: il valore di $(A \to B) \leftrightarrow (B \to A)$ in quattro righe. Svolta nella [lezione 07](07_condizionali_equivalenza_logica.html).
+2. **Simulazione 1, domanda 6**: formule equivalenti a quella di un circuito, con De Morgan. Svolta qui sopra.
+3. **Simulazione 2, domanda 2**: quali affermazioni sulle algebre booleane sono valide. Svolta qui sotto.
+4. **Simulazione 2, domanda 6**: la negazione di quattro frasi con due quantificatori. Svolta nella [lezione 11](11_quantificatori_annidati.html).
+
+### Una domanda vera, letta insieme
+
+**Simulazione d'esame 2 del 2023/24, domanda 2.** Il testo: «Quali tra le seguenti affermazioni sono valide per le algebre booleane?» Le voci, ognuna con un menù sì/no: «Le algebre booleane sono definite solo su insiemi che contengono esattamente due elementi (come vero e falso)?»; «$x + (y \cdot z) = (x \cdot y) + (x \cdot z)$ è una proprietà valida per tutte le algebre booleane?»; la stessa domanda per $x + (y \cdot z) = (y + x) \cdot (z + x)$, per $x + x = x$, e per $x + x' = 1$ e $x \cdot x' = 0$. Nelle algebre booleane $+$ è l'«o», $\cdot$ è l'«e» e $x'$ è il «non»; 1 è il vero e 0 il falso.
+
+**In pratica chiede:** quali sono equivalenze logiche vere. Le algebre booleane arrivano nel capitolo 11 del libro, ma con la traduzione in «e», «o», «non» le ultime quattro voci sono equivalenze del capitolo 1.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: tradurre.** $x + (y \cdot z) = (x \cdot y) + (x \cdot z)$ diventa $p \vee (q \wedge r) \equiv (p \wedge q) \vee (p \wedge r)$.
+>
+> **Passo 2: cercare una riga che la smentisca.** Con $p$ vera, $q$ e $r$ false: a sinistra $p \vee \dots$ è vera; a destra tutti e due i pezzi contengono un $\wedge$ con una lettera falsa, quindi la destra è falsa. **Non vale.**
+>
+> **Passo 3: le altre.** $x + (y \cdot z) = (y + x) \cdot (z + x)$ è $p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$: la distributiva dell'«o» sull'«e», che **vale**, anche se con i numeri sembrerebbe strana. $x + x = x$ è $p \vee p \equiv p$, **vale**. $x + x' = 1$ e $x \cdot x' = 0$ dicono che $p \vee \neg p$ è sempre vera e $p \wedge \neg p$ sempre falsa: **valgono**.
+>
+> **Passo 4: la prima voce.** No: un'algebra booleana può avere più di due elementi. Per esempio i sottoinsiemi di un insieme, con unione, intersezione e complementare, ne formano una; con un insieme di 2 elementi i sottoinsiemi sono 4.
+>
+> Le risposte, nell'ordine: **no, no, sì, sì, sì**. Nella simulazione svolta a mano che circola tra gli studenti le prime quattro sono le stesse; sull'ultima lo studente ha esitato, ma $x + x' = 1$ e $x \cdot x' = 0$ sono proprio le regole che definiscono il «non» in un'algebra booleana.
+
+> [!METODO] Le domande «vale sempre?»
+> 1. Traduci in «e», «o», «non», frecce.
+> 2. Cerca una riga che smentisca: prova prima le righe con una sola lettera vera, o una sola falsa.
+> 3. Se non la trovi in due o tre tentativi, controlla con la tavola o con le equivalenze note.
+
+## Quiz
+
+```quiz
+D: Simulazione d'esame 2 del 2023/24, domanda 2, con le voci in forma di scelta. Quale di queste affermazioni sulle algebre booleane è valida? ($+$ è l'«o», $\cdot$ l'«e», $x'$ il «non».)
++ $x + (y \cdot z) = (y + x) \cdot (z + x)$ vale in tutte le algebre booleane
+- $x + (y \cdot z) = (x \cdot y) + (x \cdot z)$ vale in tutte le algebre booleane
+- le algebre booleane sono definite solo su insiemi con esattamente due elementi
+- $x + x = 1$ vale in tutte le algebre booleane
+- $x \cdot x' = 1$ vale in tutte le algebre booleane
+= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è la seconda, che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0. La terza è falsa: i sottoinsiemi di un insieme formano un'algebra booleana con più di due elementi. Le ultime due cambiano le voci vere $x + x = x$ e $x \cdot x' = 0$.
+
+D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \wedge A) \vee (\neg C \wedge B)$. Quale formula ha la stessa tavola?
++ $\neg((C \vee \neg A) \wedge (C \vee \neg B))$
+- $(\neg C \vee A) \wedge (\neg C \vee B)$
+- $\neg C \wedge A \wedge B$
+- $\neg(C \wedge (A \vee B))$
+- $\neg C \vee A \vee B$
+= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è la seconda, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
+
+D: Simulazione d'esame 2 del 2023/24, domanda 6. Qual è la negazione di «Tutti gli uomini hanno ballato con qualche donna»?
++ Qualche uomo non ha ballato con nessuna donna
+- Nessun uomo ha ballato con qualche donna
+- Tutti gli uomini non hanno ballato con qualche donna
+- Qualche donna non ha ballato con nessun uomo
+- Qualche uomo ha ballato con tutte le donne
+= $\neg\,\forall u\, \exists d\, B(d, u) \equiv \exists u\, \forall d\, \neg B(d, u)$. La risposta più insidiosa è la quarta, che scambia i ruoli di uomini e donne. Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
+
+D: Domanda 15 dell'autoverifica del capitolo 1. Quante righe della tavola di $\neg(p \wedge q) \vee (p \vee \neg r)$ hanno il valore falso?
+N: 0
+= Per essere falsa servirebbero $p$ vera (perché $\neg(p \wedge q)$ sia falsa) e $p$ falsa (perché $p \vee \neg r$ sia falsa): impossibile. È una tautologia.
+
+D: Domanda 9 dell'autoverifica. L'argomentazione $p \to q,\ q \to r \;/\; \therefore r \to p$ è valida?
++ No: con $p$ e $q$ false ed $r$ vera le premesse sono vere e la conclusione falsa
+- Sì, è il sillogismo ipotetico
+- Sì, è il modus ponens
+- No: con $p$, $q$, $r$ tutte vere la conclusione è falsa
+- Non si può dire senza sapere che cosa sono $p$, $q$, $r$
+= Il sillogismo ipotetico darebbe $p \to r$, non $r \to p$. La risposta più insidiosa è la quarta: con tutte vere la conclusione è vera, quindi non è un controesempio.
+
+D: «Tutti sono protestanti tranne gli svedesi», nel senso di Cardone. Quale formula la traduce?
++ $\forall x\,(P(x) \leftrightarrow \neg S(x))$
+- $\forall x\,(\neg S(x) \to P(x))$
+- $\forall x\,(P(x) \wedge \neg S(x))$
+- $\exists x\,(P(x) \wedge \neg S(x))$
+- $\forall x\,(S(x) \to P(x))$
+= «Tranne» dice due cose: chi non è svedese è protestante, e nessuno svedese è protestante. Insieme fanno un «se e solo se». La risposta più insidiosa è la seconda, che dice solo la prima delle due e permetterebbe uno svedese protestante.
+
+D: Qual è la negazione di $\forall x\,(x > 5 \to x > 3)$?
++ $\exists x\,(x > 5 \wedge x \le 3)$
+- $\exists x\,(x > 5 \to x \le 3)$
+- $\forall x\,(x \le 5 \to x \le 3)$
+- $\exists x\,(x \le 5 \wedge x > 3)$
+- $\forall x\,(x > 5 \wedge x \le 3)$
+= Si gira il quantificatore e si nega la freccia, che diventa un «e». La risposta più insidiosa è la seconda: lascia la freccia, e una freccia dentro un «esiste» è vera a vuoto per ogni $x \le 5$.
+
+D: Con $A = \{1, 5\}$ e $B = \{2, 3\}$, quale frase è vera?
++ $\exists x \in A\; \forall y \in B\; (x \ge y)$
+- $\forall x \in A\; \exists y \in B\; (x < y)$
+- $\forall x \in A\; \forall y \in B\; (x < y)$
+- $\exists x \in A\; \forall y \in B\; (x < y \wedge x > 1)$
+- $\forall y \in B\; \exists x \in A\; (x = y)$
+= Il testimone è $x = 5$, maggiore di 2 e di 3. La risposta più insidiosa è la seconda, che è la negazione della prima: fallisce proprio con $x = 5$. L'ultima chiede che 2 e 3 stiano in $A$.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: valori
+Con $p$ vera, $q$ falsa, $r$ vera, calcola: (a) $p \wedge (q \vee r)$; (b) $(p \to q) \vee \neg r$; (c) $\neg(p \leftrightarrow r)$; (d) $(q \to p) \wedge (r \to q)$.
+::: soluzione
+(a) V: $q \vee r$ è vera. (b) F: $p \to q$ è falsa e $\neg r$ è falsa. (c) F: $p$ e $r$ hanno lo stesso valore, quindi $p \leftrightarrow r$ è vera. (d) F: $r \to q$ è falsa.
+:::
+
+::: esercizio base Riscaldamento: proposizione o no
+Quali sono proposizioni? (a) «La squadra ha vinto la serie.» (b) «$2 + 2 = 5$.» (c) «$x + 2 = 5$.» (d) «Chiudi la porta.»
+::: soluzione
+(a) Non è una proposizione finché non è chiaro di quale squadra si parla: è una funzione proposizionale con la variabile «la squadra». Sono le domande 10 e 11 dell'autoverifica. (b) Sì, falsa. (c) No: dipende da $x$, è una funzione proposizionale. (d) No: è un ordine, non è vera né falsa.
+:::
+
+::: esercizio medio Tradurre con «a meno che» e «solo se»
+Con $p$ = «c'è sciopero», $t$ = «prendo il treno», $a$ = «arrivo in tempo», traduci: (a) «prendo il treno a meno che ci sia sciopero»; (b) «arrivo in tempo solo se prendo il treno»; (c) nega la (b) e dilla a parole.
+::: soluzione
+(a) $\neg p \to t$, equivalente a $p \vee t$. (b) $a \to t$. (c) $\neg(a \to t) \equiv a \wedge \neg t$: «arrivo in tempo e non prendo il treno».
+:::
+
+::: esercizio medio Una catena di regole
+Mostra con le regole di inferenza che da $p \vee q$, $p \to r$, $\neg r$ segue $q$.
+::: soluzione
+Da $p \to r$ e $\neg r$, per modus tollens, $\neg p$. Da $p \vee q$ e $\neg p$, per sillogismo disgiuntivo, $q$. L'argomentazione è valida.
+:::
+
+::: esercizio esame Vero o falso sul dominio
+Sugli interi positivi, di' se sono vere: (a) $\forall n\, \exists m\,(m = n + 2 \wedge m \text{ è primo})$; (b) $\exists n\,(n \text{ è primo} \wedge n + 2 \text{ è primo} \wedge n + 4 \text{ è primo})$; (c) nega la (a) e dilla a parole.
+::: soluzione
+(a) Falsa: per $n = 2$, $m = 4$ non è primo. (b) Vera: $n = 3$, con 3, 5 e 7 primi. (c) $\exists n\, \forall m\, \neg(m = n + 2 \wedge m \text{ è primo})$, cioè «c'è un $n$ tale che $n + 2$ non è primo». Il testimone è $n = 2$.
+:::
+
+::: esercizio esame Negare con le restrizioni
+Nega spostando il $\neg$ fino in fondo e dilla a parole: «in ogni classe $c$ c'è uno studente $s$ che ha preso tutti voti sopra il 25», cioè $\forall c\; \exists s \in c\; \forall v\; (V(s, v) \to v > 25)$, dove $V(s, v)$ = «$s$ ha preso il voto $v$».
+::: soluzione
+$\exists c\; \forall s \in c\; \exists v\; (V(s, v) \wedge v \le 25)$: «c'è una classe in cui ogni studente ha preso almeno un voto non sopra il 25». Ogni quantificatore è girato, la restrizione $s \in c$ è rimasta, e la freccia negata è diventata un «e».
+:::
+
+## Domande di ripasso
+
+::: domanda Come si decide in fretta se una formula è una tautologia?
+Si cerca una riga che la renda falsa; se le richieste per farla falsa si contraddicono, è una tautologia.
+:::
+
+::: domanda Come si traduce «p solo se q»?
+$p \to q$: quello che segue «solo se» va a destra della freccia.
+:::
+
+::: domanda Qual è la negazione di una freccia?
+$\neg(p \to q) \equiv p \wedge \neg q$: l'ipotesi vera e la conclusione falsa.
+:::
+
+::: domanda Come si cerca il controesempio di un'argomentazione?
+Si parte dalla conclusione falsa, che fissa alcune lettere, e si cercano valori delle altre che rendano vere tutte le premesse.
+:::
+
+::: domanda Che cosa vuol dire $\forall x \in A\; P(x)$?
+$\forall x\,(x \in A \to P(x))$: per ogni elemento di $A$ vale $P$. La versione con «esiste» usa l'«e».
+:::
+
+## Glossario
+
+```glossario
+Tautologia | Formula vera in tutte le righe della tavola.
+Contraddizione | Formula falsa in tutte le righe della tavola.
+Conseguenza logica | p₁, …, pₙ ⊨ p: in ogni riga con le premesse vere è vera anche p. È un'argomentazione valida.
+Controesempio di un'argomentazione | Riga con le premesse vere e la conclusione falsa.
+Quantificatore ristretto | ∀x ∈ A e ∃x ∈ B: abbreviano ∀x (x ∈ A → …) e ∃x (x ∈ B ∧ …).
+«Tranne» | Nel parlare comune indica spesso un «se e solo se»: tutti tranne gli svedesi.
+```
+
+## Checklist
+
+```checklist
+- So decidere se una formula è una tautologia cercando la riga che la rende falsa.
+- So tradurre frasi con «se», «solo se», «a meno che», «tranne».
+- So negare frecce, «e», «o» e confronti come «minore».
+- So decidere se un'argomentazione è valida e trovare il controesempio.
+- So costruire una catena di regole di inferenza.
+- So decidere frasi con quantificatori su un dominio, con testimoni e controesempi.
+- So negare frasi con quantificatori ristretti e annidati.
+- So risolvere le domande di logica delle simulazioni 2023/24.
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 1), autoverifica del capitolo 1, domande 3, 4, 9, 10, 11, 15, 18, 19 e 21, con le soluzioni pubblicate sul Moodle del canale A ([id 3851](https://informatica.i-learn.unito.it/course/view.php?id=3851), aperto agli ospiti). Il libro non è disponibile: i testi delle domande li ho ricostruiti dalle soluzioni e tradotti.
+- F. Cardone, note sul Moodle del canale A: «Alcuni esempi relativi a formalizzazione, connettivi proposizionali e quantificatori» (negazioni con i quantificatori ristretti, $2 < 5$ e $3 > 1$, i numeri primi pari), «La relazione di conseguenza per la logica proposizionale» (la notazione $\models$) e «Svedesi e Protestanti» (appunto scritto a mano).
+- Simulazioni d'esame 1 e 2 del 2023/24 della pagina d'esame comune (simulazione 1, domande 3 e 6; simulazione 2, domande 2 e 6), dalla «Guida degli studenti» del gruppo TSI, e la versione svolta a mano che circola tra gli studenti.
+- Diario del canale B: «Lezione 13. Lunedì 26 Ottobre ore 09-11. Fine Capitolo 1, Parte 2. Esercizi sulle lezioni 07-12: Connettivi booleani, quantificatori, Regole Logiche». Appunti scritti dopo la lezione, senza sapere quali esercizi ha fatto il docente.
+- Gli esercizi senza indicazione e i quiz sono di questi appunti. Le tavole le ho controllate con un programma su tutte le righe.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/13_dimostrazioni_dirette_controesempi.md -->
+> File: `contesto_ai/FDA/lezioni/13_dimostrazioni_dirette_controesempi.md`
+
+```yaml
+corso: FDA
+lezione: "13"
+titolo: Metodi di prova, dimostrazioni dirette e controesempi
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 13 · Libro, parte 2, §2.1
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 13 di Fondamenti dell'Informatica (canale B): che cos'è un sistema matematico (assiomi,
+  definizioni, termini non definiti, teoremi, lemmi), le definizioni di pari e dispari, la dimostrazione diretta e la
+  sua struttura, esempi con i numeri interi e razionali, usare un teorema già dimostrato, i controesempi per smentire un
+  «per ogni», le dimostrazioni sugli insiemi con le due inclusioni, con quiz ed esercizi.
+lede: >-
+  Una frase come «la somma di due numeri pari è pari» non si può controllare provando dei casi: i numeri pari sono
+  infiniti. Serve una dimostrazione, una catena di passi che parte dalle definizioni. Qui si vede come si scrive la più
+  comune, quella diretta, e come si smentisce una frase falsa con un solo controesempio.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 2), §2.1
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2–3 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 2), §2.1 «Mathematical Systems, Direct
+  Proofs, and Counterexamples», con le domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale
+  A; F. Cardone, «Tecniche di dimostrazione» (Moodle del canale A); diario del canale B
+appunti_html: appunti/FDA/13_dimostrazioni_dirette_controesempi.html
+genera_html: true
+```
+
+## In breve
+
+- Un **sistema matematico** ha tre ingredienti: gli **assiomi**, frasi che si accettano vere senza dimostrarle; le **definizioni**, che costruiscono concetti nuovi da quelli già noti; i **termini non definiti**, come «punto» e «retta» in geometria, il cui senso è fissato dagli assiomi.
+- Un **teorema** è una frase dimostrata vera. Un **lemma** è un teorema che serve soprattutto a dimostrarne altri; un **corollario** segue subito da un teorema.
+- Le dimostrazioni partono dalle definizioni. Un intero è pari se è il doppio di un intero, $n = 2k$; è dispari se è un doppio più uno, $n = 2k + 1$.
+- Una **dimostrazione diretta** di «se… allora…» suppone vera l'ipotesi e, passo dopo passo, arriva alla conclusione. Per un «per ogni» si prende un elemento **qualsiasi**, senza sceglierlo.
+- Per mostrare che un «per ogni» è **falso** basta un **controesempio**: un solo elemento che non va. Invece nessun numero di esempi dimostra un «per ogni».
+- Per dimostrare che un insieme è contenuto in un altro si prende un elemento qualsiasi del primo e si mostra che sta nel secondo. Per l'uguaglianza servono le due inclusioni.
+- All'esame le dimostrazioni servono soprattutto nella domanda aperta facoltativa; nei quiz tornano come «vero o falso» da decidere con un controesempio.
+
+> [!CANALI]
+> Nel canale B è la lezione di giovedì 29/10, dalle 9 alle 11. Per il docente è la lezione 14, perché la prima è stata un'introduzione: qui è la 13. Il diario del canale B la annuncia così: «Capitolo 2.1 (Metodi di Prova)». **Ho scritto questi appunti prima della lezione**, sul §2.1 dell'edizione originale di Johnsonbaugh, sulle domande di ripasso e sulle soluzioni degli esercizi pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti): il libro non è disponibile. Gli esempi con pari e dispari sono anche nelle note «Tecniche di dimostrazione» di Felice Cardone, sullo stesso Moodle.
+>
+> Le dimostrazioni sugli insiemi usano unione, intersezione e sottoinsiemi, che il docente ha rimandato (§1.1): sono spiegati nelle lezioni [D01](../MDAG/D01_insiemi_induzione.html) e [D02](../MDAG/D02_complementare_induzione_partizioni.html) di Matematica Discreta. Servono anche la [lezione 09](09_quantificatori.html) (controesempi e testimoni) e la [10](10_quantificatori_e_connettivi.html) (generalizzazione universale). La lezione dopo, la [14](14_altri_metodi_di_prova.html), completa i metodi di prova.
+
+## Assiomi, definizioni e teoremi (libro, §2.1)
+
+In geometria si impara che per due punti passa una sola retta. Nessuno lo dimostra: lo si accetta come punto di partenza. Da frasi come questa, e da poche altre, si ricava tutto il resto, per esempio che la somma degli angoli di un triangolo è un angolo piatto. Le domande di ripasso 1–7 del §2.1 danno un nome a ogni pezzo.
+
+| Nome | Che cos'è | Esempio |
+|---|---|---|
+| **assioma** | frase che si accetta vera senza dimostrarla | per due punti distinti passa una e una sola retta |
+| **termine non definito** | parola usata senza definirla: il suo senso viene dagli assiomi | «punto», «retta» |
+| **definizione** | concetto nuovo costruito con quelli già noti | un intero è pari se è il doppio di un intero |
+| **teorema** | frase dimostrata vera | la somma di due pari è pari |
+| **dimostrazione** | ragionamento che stabilisce che un teorema è vero | i passi della prossima sezione |
+| **lemma** | teorema poco interessante da solo, utile per dimostrarne altri | un conto che serve in più dimostrazioni |
+| **corollario** | teorema che segue subito da un altro | |
+
+Un **sistema matematico** è l'insieme di assiomi, definizioni e termini non definiti da cui si parte. Gli esercizi 1 e 4 del libro chiedono altri esempi. Un assioma della geometria nello spazio: «per tre punti non allineati passa uno e un solo piano». Una definizione sui reali: «se $x \ge 0$ e $n$ è un intero positivo, $x^{1/n}$ è il numero $y \ge 0$ con $y^n = x$».
+
+::: prova «Ogni numero reale moltiplicato per 0 dà 0» è un assioma, una definizione o un teorema, nella costruzione usuale dei reali?
+Un teorema: si dimostra a partire dagli assiomi della somma e del prodotto. Gli assiomi sono frasi come «$x \cdot y = y \cdot x$ per ogni $x$ e $y$».
+:::
+
+> [!RICORDA]
+> - Assiomi e termini non definiti sono il punto di partenza; le definizioni aggiungono concetti; i teoremi si dimostrano.
+> - Lemma e corollario sono teoremi anche loro: cambia solo il ruolo.
+
+## Pari e dispari: le definizioni che si usano
+
+Le dimostrazioni di questa lezione lavorano sui numeri interi e usano due definizioni. Sono le domande di ripasso 9 e 10 del libro.
+
+> [!DEF] Pari e dispari
+> Un intero $n$ è **pari** se esiste un intero $k$ con $n = 2k$. È **dispari** se esiste un intero $k$ con $n = 2k + 1$.
+
+**Come si legge.** 14 è pari perché $14 = 2 \cdot 7$: il $k$ è 7. 15 è dispari perché $15 = 2 \cdot 7 + 1$. Anche $-3$ è dispari, con $k = -2$: $2 \cdot (-2) + 1 = -3$. La definizione è un «esiste», come nella [lezione 09](09_quantificatori.html): per **usarla** si prende il $k$ che c'è; per **dimostrarla** bisogna trovarne uno.
+
+Ogni intero è pari o dispari, e non tutte e due le cose. Questo fatto lo usiamo senza dimostrarlo, come fa il libro.
+
+::: prova Trova il $k$ che mostra che 0 è pari e quello che mostra che $-7$ è dispari.
+$0 = 2 \cdot 0$, quindi $k = 0$. $-7 = 2 \cdot (-4) + 1$, quindi $k = -4$.
+:::
+
+> [!RICORDA]
+> - Pari: $n = 2k$ per qualche intero $k$. Dispari: $n = 2k + 1$ per qualche intero $k$.
+> - Per usare la definizione si prende il $k$; per dimostrarla si trova il $k$.
+
+## La dimostrazione diretta (libro, §2.1)
+
+Vogliamo convincerci che **la somma di un dispari e di un pari è dispari**. Le prove 3 + 4 = 7 e 11 + 2 = 13 vanno bene, ma non bastano: i casi sono infiniti. Serve un ragionamento che valga per tutti i numeri insieme. Lo si costruisce prendendo due numeri qualsiasi, uno dispari e uno pari, senza dire quali, e usando solo le definizioni.
+
+> [!ESEMPIO] · Dispari più pari (Cardone, «Tecniche di dimostrazione»)
+> **La frase.** Per tutti gli interi $n$ ed $m$, se $n$ è dispari e $m$ è pari, allora $n + m$ è dispari.
+>
+> **Passo 1: prendo due interi qualsiasi e assumo l'ipotesi.** Siano $n$ ed $m$ interi, con $n$ dispari ed $m$ pari.
+>
+> **Passo 2: uso le definizioni.** Esiste un intero $\ell$ con $n = 2\ell + 1$, ed esiste un intero $k$ con $m = 2k$.
+>
+> **Passo 3: calcolo.** $n + m = (2\ell + 1) + 2k = 2(\ell + k) + 1$.
+>
+> **Passo 4: riconosco la definizione.** $\ell + k$ è un intero: chiamandolo $j$, $n + m = 2j + 1$. Quindi $n + m$ è dispari.
+
+È una **dimostrazione diretta**: per dimostrare «se $P$ allora $Q$» si **suppone** che $P$ sia vera e, usando le definizioni, gli assiomi e i teoremi già dimostrati, si arriva a $Q$. È la domanda di ripasso 8 del libro. Le note di Cardone la disegnano con una barra: tutto quello che sta dentro la barra dipende dall'ipotesi, e la conclusione finale, la freccia, sta fuori.
+
+```grafico
+titolo: La forma di una dimostrazione diretta di «se P allora Q». Dentro il riquadro si lavora supponendo P; quando si arriva a Q il riquadro si chiude, e fuori resta la freccia, che non dipende più dall'ipotesi.
+x: 0 12
+y: 0.4 6.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 1 1.8 11 1.8 11 6.2 1 6.2 | blu
+testo: 6 5.7 | blu | "suppongo P (n dispari, m pari)"
+testo: 6 4.8 | grigio | "uso le definizioni: n = 2ℓ + 1, m = 2k"
+testo: 6 3.9 | grigio | "calcolo: n + m = 2(ℓ + k) + 1"
+testo: 6 3 | verde | "arrivo a Q: n + m è dispari"
+freccia: 6 1.8 6 1.25 | grigio
+testo: 6 0.85 | ambra | "quindi: se P allora Q, per tutti gli n e m"
+```
+
+Il passo 1 è la **generalizzazione universale** della [lezione 10](10_quantificatori_e_connettivi.html): siccome $n$ ed $m$ sono qualsiasi, quello che vale per loro vale per tutti. Per questo non si possono scegliere valori particolari: «prendo $n = 3$» dimostrerebbe la frase solo per il 3.
+
+> [!TRAPPOLA] Lo stesso $k$ per due numeri
+> Scrivere $n = 2k + 1$ ed $m = 2k$ con **lo stesso** $k$ vorrebbe dire che $m = n - 1$: si dimostrerebbe la frase solo per due numeri vicini, come 7 e 6. Ogni numero ha il suo intero: $\ell$ per $n$, $k$ per $m$.
+
+::: prova Dimostra in modo diretto che la somma di due pari è pari (esercizio 7 del libro).
+Siano $m$ ed $n$ pari: esistono $k_1$ e $k_2$ con $m = 2k_1$ e $n = 2k_2$. Allora $m + n = 2k_1 + 2k_2 = 2(k_1 + k_2)$, e $k_1 + k_2$ è un intero: $m + n$ è pari.
+:::
+
+> [!RICORDA]
+> - Dimostrazione diretta di «se $P$ allora $Q$»: suppongo $P$ e arrivo a $Q$.
+> - Per un «per ogni», gli elementi si prendono qualsiasi, e ognuno con il suo $k$.
+
+## Altri esempi con i numeri (libro, §2.1, esercizi)
+
+Lo schema è sempre lo stesso: scrivere le ipotesi con le definizioni, fare il conto, riconoscere nel risultato la forma della definizione della conclusione. Cambia solo il conto.
+
+> [!ESEMPIO] · Il prodotto di due dispari è dispari (esercizio 10)
+> Siano $m$ ed $n$ dispari: $m = 2k_1 + 1$ e $n = 2k_2 + 1$. Allora
+> $$mn = (2k_1 + 1)(2k_2 + 1) = 4k_1k_2 + 2k_1 + 2k_2 + 1 = 2(2k_1k_2 + k_1 + k_2) + 1.$$
+> Il numero tra parentesi è un intero, quindi $mn$ è dispari.
+
+> [!ESEMPIO] · Se $n$ è pari, $n^2$ è divisibile per 4 (Cardone, esercizio 1)
+> Sia $n$ pari: $n = 2k$. Allora $n^2 = 4k^2$, e $k^2$ è un intero. «Divisibile per 4» vuol dire «uguale a 4 per un intero»: fatto.
+
+> [!ESEMPIO] · La somma di due razionali è razionale (esercizio 13)
+> Un numero è **razionale** se è una frazione di due interi, con il denominatore diverso da 0. Siano $x = \frac{m_1}{n_1}$ e $y = \frac{m_2}{n_2}$. Allora
+> $$x + y = \frac{m_1 n_2 + m_2 n_1}{n_1 n_2},$$
+> con numeratore e denominatore interi e $n_1 n_2 \neq 0$. Quindi $x + y$ è razionale.
+
+Con l'esercizio 16 lo schema funziona anche con il 3 al posto del 2: se $m = 3k_1 + 1$ e $n = 3k_2 + 1$, il prodotto è $mn = 3(3k_1k_2 + k_1 + k_2) + 1$, ancora della forma «3 per un intero, più 1».
+
+::: prova Dimostra che se $n$ è dispari, $n^2$ è dispari.
+$n = 2k + 1$, quindi $n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$: dispari. È il conto che Cardone usa nella dimostrazione per contrapposizione della [lezione 14](14_altri_metodi_di_prova.html).
+:::
+
+> [!RICORDA]
+> - Ipotesi con le definizioni, conto, conclusione nella forma della definizione.
+> - L'ultimo passo va scritto: «il numero tra parentesi è un intero».
+
+## Usare un teorema già dimostrato
+
+Le dimostrazioni non ripartono ogni volta dagli assiomi: usano i teoremi già dimostrati come regole pronte. Sui numeri reali, per esempio, si sa che se $x \ge y$ e $y \ge z$ allora $x \ge z$: è un teorema del libro (esempio 2.1.5). La soluzione dell'esercizio 18 lo usa due volte.
+
+> [!ESEMPIO] · Il massimo (esercizio 18 del libro)
+> **La frase.** Sia $d = \max\{d_1, d_2\}$, il più grande tra $d_1$ e $d_2$. Se $x \ge d$, allora $x \ge d_1$ e $x \ge d_2$.
+>
+> **Passo 1: la definizione di massimo.** $d$ è il più grande dei due, quindi $d \ge d_1$ e $d \ge d_2$.
+>
+> **Passo 2: il teorema già dimostrato.** Da $x \ge d$ e $d \ge d_1$ segue $x \ge d_1$. Da $x \ge d$ e $d \ge d_2$ segue $x \ge d_2$.
+>
+> **Passo 3.** Le due conclusioni insieme danno la tesi.
+
+Il libro chiama **sottodimostrazione** la dimostrazione di un risultato intermedio fatta dentro un'altra dimostrazione, quando quel risultato non è un teorema già noto (domanda di ripasso 11). Se il risultato intermedio serve spesso, lo si dimostra a parte e diventa un lemma.
+
+::: prova Con il minimo: se $x \le \min(a, b)$, allora $x \le a$ e $x \le b$ (Cardone, esercizio 3). Che cosa ti serve?
+La definizione di minimo, $\min(a, b) \le a$ e $\min(a, b) \le b$, e la stessa proprietà: da $x \le \min(a, b)$ e $\min(a, b) \le a$ segue $x \le a$; allo stesso modo $x \le b$.
+:::
+
+> [!RICORDA]
+> - I teoremi già dimostrati si usano come regole.
+> - Un risultato intermedio dimostrato dentro la dimostrazione è una sottodimostrazione.
+
+## Controesempi: smentire un «per ogni» (libro, §2.1)
+
+Ecco una frase che sembra vera e non lo è. «Per ogni intero positivo $n$, il numero $n^2 + n + 41$ è primo»: con $n$ = 1, 2, 3 escono 43, 47, 53, tutti primi, e si continua così fino a $n = 39$. Sembrerebbe vera. Con $n = 40$ invece esce $1681 = 41 \cdot 41$, che non è primo. Basta questo caso per dire che la frase è **falsa**.
+
+Per smentire $\forall x\, P(x)$ basta **un** elemento del dominio che rende $P(x)$ falsa: è la domanda di ripasso 12 del libro, ed è la negazione $\exists x\, \neg P(x)$ della lezione 09. Quell'elemento si chiama **controesempio**.
+
+> [!TRAPPOLA] Gli esempi non dimostrano un «per ogni»
+> I 39 casi giusti di $n^2 + n + 41$ non dimostrano niente. Al contrario, un solo caso sbagliato basta a smentire. Quando una frase con «per ogni» ti sembra falsa, cerca il controesempio; quando ti sembra vera, serve una dimostrazione.
+
+> [!ESEMPIO] · Due sottoinsiemi (esercizio 33 del libro)
+> **La frase.** Per tutti gli insiemi $X$ e $Y$, $X \subseteq Y$ oppure $Y \subseteq X$.
+>
+> **Il controesempio.** $X = \{1, 2\}$ e $Y = \{2, 3\}$. $X$ non è contenuto in $Y$, perché $1 \in X$ ma $1 \notin Y$; $Y$ non è contenuto in $X$, perché $3 \in Y$ ma $3 \notin X$. La frase è falsa.
+
+Un controesempio va **verificato** fino in fondo: bisogna controllare che l'elemento stia nel dominio e che la frase sia davvero falsa per lui, scrivendo i conti.
+
+::: prova «Per ogni intero positivo $n$, $2^n + 1$ è primo.» Vera o falsa?
+Falsa: con $n = 3$, $2^3 + 1 = 9 = 3 \cdot 3$. Con $n = 1$ e $n = 2$ escono 3 e 5, primi: gli esempi giusti non bastano.
+:::
+
+> [!RICORDA]
+> - Un controesempio basta a smentire un «per ogni»; nessun numero di esempi lo dimostra.
+> - Il controesempio va controllato con i conti.
+
+## Dimostrazioni con gli insiemi (libro, §2.1)
+
+Per dimostrare che un insieme è contenuto in un altro non si possono controllare gli elementi uno per uno: gli insiemi sono qualsiasi, e possono essere infiniti. Si usa lo schema della dimostrazione diretta, partendo dalla definizione di sottoinsieme: $X \subseteq Y$ vuol dire che **ogni** elemento di $X$ sta in $Y$.
+
+> [!METODO] Inclusioni e uguaglianze tra insiemi
+> 1. Per $X \subseteq Y$: «sia $x$ un elemento qualsiasi di $X$». Poi, con le definizioni di intersezione, unione e differenza, si arriva a «$x \in Y$».
+> 2. Per $X = Y$: si dimostrano le due inclusioni, $X \subseteq Y$ e $Y \subseteq X$.
+> 3. Per smentire un'uguaglianza: un controesempio con insiemi piccoli, di uno o due elementi.
+
+> [!ESEMPIO] · $X \cap Y \subseteq X$ (esercizio 21)
+> Sia $x \in X \cap Y$. Per la definizione di intersezione, $x \in X$ e $x \in Y$; in particolare $x \in X$. Quindi $X \cap Y \subseteq X$.
+
+> [!ESEMPIO] · Se $X \subseteq Y$, allora $X \cap Z \subseteq Y \cap Z$ (esercizio 24)
+> **Passo 1.** Suppongo $X \subseteq Y$ e prendo $x \in X \cap Z$ qualsiasi.
+>
+> **Passo 2.** Per la definizione di intersezione, $x \in X$ e $x \in Z$.
+>
+> **Passo 3.** Siccome $X \subseteq Y$ e $x \in X$, anche $x \in Y$.
+>
+> **Passo 4.** $x \in Y$ e $x \in Z$: per la definizione di intersezione, $x \in Y \cap Z$.
+
+```grafico
+titolo: L'esercizio 24. X è dentro Y. Un elemento x che sta in X e in Z (il punto verde) sta per forza anche in Y e in Z.
+x: 0 12
+y: 0 6
+assi: no
+griglia: no
+proporzioni: libere
+cerchio: 4.5 3 2.6 | blu
+cerchio: 4 3 1.3 | ambra
+cerchio: 6.4 3 2.2 | rosa
+testo: 2.3 5.1 | blu | "Y"
+testo: 3.2 3 | ambra | "X"
+testo: 8.9 4.9 | rosa | "Z"
+punto: 4.8 3 | verde
+testo: 4.8 2.5 | verde | "x"
+```
+
+> [!ESEMPIO] · Un'uguaglianza falsa (esercizio 36)
+> **La frase.** Per tutti gli insiemi, $(X \cup Y) - (X \cup Z) = Y - Z$.
+>
+> **Il controesempio del libro.** $X = \{1, a\}$, $Y = \{1, 2, 3\}$, $Z = \{3\}$. A destra $Y - Z = \{1, 2\}$. A sinistra $X \cup Y = \{1, 2, 3, a\}$ e $X \cup Z = \{1, 3, a\}$, quindi la differenza è $\{2\}$. Gli insiemi sono diversi: l'1 sta in $Y - Z$, ma a sinistra viene tolto, perché sta in $X$.
+
+::: prova Dimostra che $X \subseteq X \cup Y$ per tutti gli insiemi $X$ e $Y$.
+Sia $x \in X$. Allora «$x \in X$ oppure $x \in Y$» è vera, perché la prima parte è vera: è l'addizione della lezione 08. Per la definizione di unione, $x \in X \cup Y$.
+:::
+
+> [!RICORDA]
+> - Inclusione: un elemento qualsiasi del primo insieme sta nel secondo.
+> - Uguaglianza: le due inclusioni. Per smentirla basta un controesempio piccolo.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $n = 2k$ | «n uguale due k» | $n$ è pari, con $k$ intero | $14 = 2 \cdot 7$ |
+| $n = 2k + 1$ | «n uguale due k più uno» | $n$ è dispari | $15 = 2 \cdot 7 + 1$ |
+| $\max\{a, b\}$ | «massimo di a e b» | il più grande dei due | $\max\{3, 8\} = 8$ |
+| $X \subseteq Y$ | «X è contenuto in Y» | ogni elemento di $X$ sta in $Y$ | $\{1\} \subseteq \{1, 2\}$ |
+| $X - Y$ | «X meno Y» | gli elementi di $X$ che non stanno in $Y$ | $\{1, 2\} - \{2\} = \{1\}$ |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser, da 3 punti l'uno; servono almeno 18 punti. Chi arriva a 24 nei quiz può fare la **domanda aperta** facoltativa, da −1 a 6 punti.
+
+**Che cosa serve di questa lezione**
+
+1. **La domanda aperta.** Il programma comune elenca le tecniche di dimostrazione e le «equivalenze insiemistiche e la loro dimostrazione»: una dimostrazione diretta scritta bene, con le definizioni, è il tipo di risposta che serve. Nelle due simulazioni 2023/24 che ho non ci sono domande aperte, quindi non ho una domanda vera da mostrarti.
+2. **I quiz vero/falso.** Le frasi con «per ogni» si smentiscono con un controesempio; quelle sugli insiemi si controllano prima con insiemi piccoli.
+
+### Una domanda sul modello, letta insieme
+
+**Il testo**, inventato sul modello degli esercizi del §2.1: «Dire quali affermazioni sono vere per tutti gli insiemi $A$, $B$, $C$: (1) $A \cap B \subseteq A \cup B$; (2) $A - B = B - A$; (3) se $A \subseteq B$ allora $A \cup C \subseteq B \cup C$.»
+
+**In pratica chiede:** per ogni voce, una dimostrazione breve o un controesempio.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **(1) Vera.** Sia $x \in A \cap B$: allora $x \in A$, e quindi $x \in A \cup B$.
+>
+> **(2) Falsa.** Controesempio: $A = \{1\}$, $B = \varnothing$. $A - B = \{1\}$ e $B - A = \varnothing$.
+>
+> **(3) Vera.** Sia $x \in A \cup C$. Se $x \in A$, allora $x \in B$ perché $A \subseteq B$, e quindi $x \in B \cup C$. Se $x \in C$, allora $x \in B \cup C$ direttamente. In tutti e due i casi $x \in B \cup C$.
+>
+> Nella (3) la dimostrazione si divide in due casi: è la dimostrazione per casi della [lezione 14](14_altri_metodi_di_prova.html).
+
+> [!METODO] Vero o falso su una frase con «per ogni»
+> 1. Prova due o tre casi piccoli, scelti apposta per rompere la frase: lo zero, l'insieme vuoto, numeri negativi, insiemi disgiunti.
+> 2. Se un caso la rompe, quello è il controesempio: controllalo con i conti.
+> 3. Se nessun caso la rompe, cerca la dimostrazione diretta partendo dalle definizioni.
+
+## Quiz
+
+```quiz
+D: Che cos'è un assioma?
++ Una frase che si accetta vera senza dimostrarla
+- Una frase dimostrata vera
+- Un teorema che serve a dimostrarne altri
+- Una parola usata senza definirla
+- Una frase vera in tutte le righe della tavola
+= È la domanda di ripasso 2 del libro. La risposta più insidiosa è la terza, che descrive un lemma; la quarta è un termine non definito; l'ultima è una tautologia.
+
+D: Per dimostrare in modo diretto «se $n$ è dispari ed $m$ è pari, allora $n + m$ è dispari», come si comincia?
++ Siano $n = 2\ell + 1$ e $m = 2k$, con $\ell$ e $k$ interi qualsiasi
+- Siano $n = 2k + 1$ e $m = 2k$, con lo stesso $k$
+- Prendo $n = 3$ e $m = 4$
+- Suppongo che $n + m$ sia pari
+- Provo tutti i numeri da 1 a 100
+= Ogni numero ha il suo intero. La risposta più insidiosa è la seconda: con lo stesso $k$ si dimostra la frase solo per $m = n - 1$. La quarta comincerebbe una dimostrazione per assurdo, della lezione 14.
+
+D: «Per ogni intero positivo $n$, $n^2 + n + 41$ è primo.» Quale valore di $n$ è un controesempio?
++ 40
+- 1
+- 39
+- 41, e nessun altro
+- non ci sono controesempi
+= Con $n = 40$ si ottiene $1681 = 41^2$. La risposta più insidiosa è 39: dà 1601, che è primo. Anche 41 è un controesempio, ma non l'unico.
+
+D: Per mostrare che un «per ogni» è falso, che cosa serve?
++ Un solo elemento del dominio che la rende falsa
+- Almeno due elementi che la rendono falsa
+- Che sia falsa per tutti gli elementi
+- Una dimostrazione diretta della sua negazione per ogni elemento
+- Un elemento che la rende vera
+= È la domanda di ripasso 12 del libro: $\neg\,\forall x\, P(x) \equiv \exists x\, \neg P(x)$. La risposta più insidiosa è la terza, che confonde «non tutti» con «nessuno».
+
+D: Quale frase sugli insiemi è falsa?
++ Per tutti gli insiemi $X$ e $Y$, $X \subseteq Y$ oppure $Y \subseteq X$
+- Per tutti gli insiemi $X$ e $Y$, $X \cap Y \subseteq X$
+- Per tutti gli insiemi $X$ e $Y$, $X \subseteq X \cup Y$
+- Se $X \subseteq Y$, allora $X \cap Z \subseteq Y \cap Z$
+- Per tutti gli insiemi $X$, $X \cap X = X$
+= Controesempio dell'esercizio 33: $X = \{1, 2\}$, $Y = \{2, 3\}$. Le altre sono gli esercizi 21 e 24 e due fatti diretti dalle definizioni.
+
+D: Come si dimostra che due insiemi $X$ e $Y$ sono uguali?
++ Dimostrando $X \subseteq Y$ e $Y \subseteq X$
+- Mostrando un elemento che sta in tutti e due
+- Dimostrando $X \subseteq Y$ e basta
+- Disegnando il diagramma di Venn
+- Contando gli elementi
+= Servono le due inclusioni. La risposta più insidiosa è la quarta: il disegno aiuta a capire, ma non è una dimostrazione. Contare gli elementi non basta: $\{1\}$ e $\{2\}$ hanno lo stesso numero di elementi.
+
+D: Che cos'è un corollario?
++ Un teorema che segue subito da un altro teorema
+- Un assioma secondario
+- Un teorema non ancora dimostrato
+- Una definizione che usa un teorema
+- Un controesempio
+= Lemma e corollario sono teoremi: il lemma prepara, il corollario segue. La risposta più insidiosa è la terza: un teorema è per definizione dimostrato.
+
+D: Nella dimostrazione che il prodotto di due dispari è dispari, a che cosa si arriva?
++ $mn = 2(2k_1k_2 + k_1 + k_2) + 1$
+- $mn = 4k_1k_2 + 1$
+- $mn = 2(k_1 + k_2)$
+- $mn = (2k + 1)^2$
+- $mn = 2k_1k_2 + 1$
+= Sviluppando $(2k_1 + 1)(2k_2 + 1)$ e raccogliendo il 2. La risposta più insidiosa è la quarta: usa lo stesso $k$, e varrebbe solo per $m = n$.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: assioma, definizione, teorema
+Classifica: (a) «un triangolo è isoscele se ha due lati uguali»; (b) «per due punti distinti passa una sola retta»; (c) «la somma di due pari è pari»; (d) «retta».
+::: soluzione
+(a) Definizione. (b) Assioma. (c) Teorema: si dimostra. (d) Termine non definito.
+:::
+
+::: esercizio base Riscaldamento: pari e dispari
+Dimostra in modo diretto: (a) la somma di due dispari è pari; (b) il prodotto di un pari e di un intero qualsiasi è pari. Sono i punti 2 e 5 dell'esercizio 2 delle note di Cardone; nel punto 5 il secondo numero è dispari, qui è qualsiasi.
+::: soluzione
+(a) $n = 2k_1 + 1$, $m = 2k_2 + 1$: $n + m = 2k_1 + 2k_2 + 2 = 2(k_1 + k_2 + 1)$, pari. (b) $n = 2k$ e $m$ intero: $nm = 2(km)$, pari.
+:::
+
+::: esercizio medio Il resto 1 nella divisione per 3 (esercizio 16 del libro)
+Dimostra che se $m$ ed $n$ hanno resto 1 nella divisione per 3, anche $mn$ ha resto 1.
+::: soluzione
+$m = 3k_1 + 1$ e $n = 3k_2 + 1$. Allora $mn = 9k_1k_2 + 3k_1 + 3k_2 + 1 = 3(3k_1k_2 + k_1 + k_2) + 1$. Il numero tra parentesi è un intero: il resto è 1.
+:::
+
+::: esercizio medio Controesempi
+Trova un controesempio: (a) «per ogni reale $x$, $x^2 > x$»; (b) «per tutti gli insiemi, $X \cup Y = X \cup Z$ implica $Y = Z$»; (c) «ogni numero primo è dispari».
+::: soluzione
+(a) $x = 1$: $1 > 1$ è falso; anche $x = \frac{1}{2}$, con $\frac{1}{4} < \frac{1}{2}$. (b) $X = \{1\}$, $Y = \{1\}$, $Z = \varnothing$: le unioni sono tutte e due $\{1\}$, ma $Y \neq Z$. (c) 2.
+:::
+
+::: esercizio esame Un'inclusione con l'unione
+Dimostra che per tutti gli insiemi $X$, $Y$, $Z$: se $X \subseteq Z$ e $Y \subseteq Z$, allora $X \cup Y \subseteq Z$.
+::: soluzione
+Sia $x \in X \cup Y$: allora $x \in X$ oppure $x \in Y$. Se $x \in X$, siccome $X \subseteq Z$, $x \in Z$. Se $x \in Y$, siccome $Y \subseteq Z$, $x \in Z$. In tutti e due i casi $x \in Z$.
+:::
+
+::: esercizio difficile L'esercizio 27 del libro
+Dimostra che se $X \cup Y = X \cup Z$ e $X \cap Y = X \cap Z$, allora $Y = Z$.
+::: soluzione
+Mostro $Y \subseteq Z$. Sia $x \in Y$: allora $x \in X \cup Y = X \cup Z$, quindi $x \in X$ oppure $x \in Z$. Se $x \in Z$ ho finito. Se $x \in X$, allora $x \in X \cap Y = X \cap Z$, quindi $x \in Z$. L'inclusione $Z \subseteq Y$ si dimostra allo stesso modo scambiando $Y$ e $Z$. Le due ipotesi servono tutte e due: l'esercizio precedente mostra che la sola unione non basta.
+:::
+
+## Domande di ripasso
+
+::: domanda Di che cosa è fatto un sistema matematico?
+Di assiomi, definizioni e termini non definiti.
+:::
+
+::: domanda Che cos'è una dimostrazione diretta?
+Una dimostrazione di «se $P$ allora $Q$» che suppone $P$ e, con definizioni, assiomi e teoremi già dimostrati, arriva a $Q$.
+:::
+
+::: domanda Quando un intero è pari, e quando è dispari?
+Pari se esiste un intero $k$ con $n = 2k$; dispari se esiste $k$ con $n = 2k + 1$.
+:::
+
+::: domanda Come si smentisce un «per ogni»?
+Con un controesempio: un elemento del dominio per cui la frase è falsa.
+:::
+
+::: domanda Come si dimostra che $X \subseteq Y$?
+Si prende un elemento qualsiasi di $X$ e si mostra, con le definizioni, che sta in $Y$.
+:::
+
+## Glossario
+
+```glossario
+Sistema matematico | Assiomi, definizioni e termini non definiti da cui si parte.
+Assioma | Frase accettata vera senza dimostrazione.
+Termine non definito | Parola usata senza definirla, il cui senso è fissato dagli assiomi.
+Teorema | Frase dimostrata vera.
+Lemma | Teorema che serve soprattutto a dimostrarne altri.
+Corollario | Teorema che segue subito da un altro.
+Dimostrazione diretta | Si suppone l'ipotesi e si arriva alla conclusione.
+Sottodimostrazione | Dimostrazione di un risultato intermedio dentro un'altra dimostrazione.
+Controesempio | Elemento del dominio che rende falsa una frase con «per ogni».
+```
+
+## Checklist
+
+```checklist
+- So distinguere assioma, definizione, termine non definito, teorema, lemma e corollario.
+- So usare le definizioni di pari e dispari, dando a ogni numero il suo k.
+- So scrivere una dimostrazione diretta di «se P allora Q».
+- So dimostrare fatti su somme e prodotti di pari, dispari e razionali.
+- So usare un teorema già dimostrato in una dimostrazione.
+- So smentire un «per ogni» con un controesempio controllato.
+- So dimostrare un'inclusione e un'uguaglianza tra insiemi.
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 2), §2.1 «Mathematical Systems, Direct Proofs, and Counterexamples»: domande di ripasso 1–12 ed esercizi 1, 4, 7, 10, 13, 16, 18, 21, 24, 27, 33 e 36, con le soluzioni pubblicate sul Moodle del canale A ([id 3851](https://informatica.i-learn.unito.it/course/view.php?id=3851), aperto agli ospiti). Il libro non è disponibile: i testi degli esercizi li ho ricostruiti dalle soluzioni e tradotti.
+- F. Cardone, «Tecniche di dimostrazione» (Moodle del canale A): esempio 1 (dimostrazione diretta, con il disegno della barra) ed esercizi 1, 2 e 3.
+- Diario del canale B: «Lezione 14. Giovedì 29 Ottobre ore 09-11. Capitolo 2.1 (Metodi di Prova)». Appunti scritti prima della lezione.
+- Gli esempi $n^2 + n + 41$ e $2^n + 1$, la domanda sul modello, i quiz e gli esercizi senza indicazione sono di questi appunti. I conti li ho controllati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/14_altri_metodi_di_prova.md -->
+> File: `contesto_ai/FDA/lezioni/14_altri_metodi_di_prova.md`
+
+```yaml
+corso: FDA
+lezione: "14"
+titolo: Altri metodi di prova e il paradosso del bevitore
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 14 · Libro, parte 2, §2.1–2.2
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 14 di Fondamenti dell'Informatica (canale B): la dimostrazione per assurdo (radice di 2
+  irrazionale, principio dei piccioni), la dimostrazione per contrapposizione, la dimostrazione per casi, le
+  dimostrazioni di equivalenza, le dimostrazioni di esistenza costruttive e non costruttive, il paradosso del bevitore
+  con la sua dimostrazione per casi, ed esercizi.
+lede: >-
+  «In ogni bar c'è qualcuno per cui vale questo: se beve lui, bevono tutti.» Sembra falso, ed è un teorema. Per dimostrarlo
+  servono due metodi nuovi: ragionare per casi, e dimostrare che qualcosa esiste senza dire chi è. Prima, il metodo
+  per assurdo e quello per contrapposizione.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 2), §2.1–2.2
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2–3 ore, anche in più volte
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 2), §2.2 «More Methods of Proof», con
+  le domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A; F. Cardone, «Tecniche di
+  dimostrazione» (Moodle del canale A); diario del canale B
+appunti_html: appunti/FDA/14_altri_metodi_di_prova.html
+genera_html: true
+```
+
+## In breve
+
+- **Per assurdo**: si suppone vera l'ipotesi e **falsa** la conclusione, e si arriva a una contraddizione, cioè a una frase e alla sua negazione. Allora la conclusione non può essere falsa.
+- **Per contrapposizione**: invece della freccia si dimostra in modo diretto la sua contronominale, con le due parti negate e scambiate, che è equivalente.
+- **Per casi**: se l'ipotesi è un «o», si dimostra la conclusione in ogni caso separatamente.
+- Per dimostrare che più frasi sono **equivalenti** basta un giro di frecce: dalla prima alla seconda, dalla seconda alla terza, dalla terza alla prima.
+- Una dimostrazione di **esistenza** è **costruttiva** se mostra l'elemento, **non costruttiva** se dimostra che esiste senza dire quale sia.
+- **Il paradosso del bevitore**: in ogni bar non vuoto c'è una persona con questa proprietà: se lei beve, bevono tutti. Si dimostra per casi, ed è non costruttiva.
+- Il «paradosso» viene dal leggere il «se… allora» come causa ed effetto: la freccia della logica dice solo che non succede «lei beve e qualcuno no».
+
+> [!CANALI]
+> Nel canale B è la lezione di venerdì 30/10, dalle 11 alle 13. Per il docente è la lezione 15, perché la prima è stata un'introduzione: qui è la 14. Il diario del canale B la annuncia così: «Fine Capitolo 2.1 (Metodi di Prova). Il paradosso del bevitore. Esercizi». **Ho scritto questi appunti prima della lezione.** Nell'edizione originale di Johnsonbaugh, che uso perché il libro del corso non è disponibile, i metodi per assurdo, per contrapposizione, per casi e di esistenza sono nel §2.2 «More Methods of Proof»: li metto qui perché il paradosso del bevitore si dimostra proprio con questi metodi. Se il docente li fa in un'altra lezione, sposto le sezioni. Domande di ripasso e soluzioni degli esercizi sono quelle pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti), dove ci sono anche le note «Tecniche di dimostrazione» di Felice Cardone.
+>
+> Servono la [lezione 13](13_dimostrazioni_dirette_controesempi.html) (dimostrazione diretta, pari e dispari), la [07](07_condizionali_equivalenza_logica.html) (freccia e contronominale) e la [11](11_quantificatori_annidati.html) (il gioco con i quantificatori).
+
+## Per assurdo (libro, §2.2)
+
+Un detective sospetta il maggiordomo e ragiona così: «Se fosse innocente, sarebbe stato in giardino alle dieci. Ma alle dieci il giardino era chiuso a chiave, e lui non ha la chiave: non poteva esserci. Quindi non è innocente.» Ha supposto il contrario di quello che vuole dimostrare ed è arrivato a una cosa impossibile.
+
+Una **dimostrazione per assurdo** di «se $P$ allora $Q$» suppone vera $P$ e **falsa** $Q$, e da queste ipotesi ricava una **contraddizione**: una frase e la sua negazione insieme. È la domanda di ripasso 1 del §2.2; il libro la chiama anche **dimostrazione indiretta**.
+
+> [!ESEMPIO] · Una somma almeno 2 (Cardone, esempio 2)
+> **La frase.** Per tutti i reali $x$ e $y$, se $x + y \ge 2$, allora $x \ge 1$ oppure $y \ge 1$.
+>
+> **Passo 1: suppongo l'ipotesi e il contrario della tesi.** La negazione di «$x \ge 1$ oppure $y \ge 1$» è, con De Morgan, «$x < 1$ e $y < 1$». Suppongo quindi $x + y \ge 2$, $x < 1$ e $y < 1$.
+>
+> **Passo 2: ricavo una contraddizione.** Sommando le ultime due, $x + y < 1 + 1 = 2$. Ma l'ipotesi dice $x + y \ge 2$.
+>
+> **Passo 3.** Ho sia $x + y \ge 2$ sia $x + y < 2$: è impossibile. Quindi la tesi non può essere falsa.
+
+```grafico
+titolo: La forma di una dimostrazione per assurdo. Si aggiunge alle ipotesi il contrario della tesi, nel riquadro rosa; quando dentro si trovano una frase e la sua negazione, il riquadro si chiude e fuori resta la tesi.
+x: 0 12
+y: 0.4 6.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 1 1.8 11 1.8 11 6.2 1 6.2 | rosa
+testo: 6 5.7 | blu | "suppongo P (l'ipotesi)"
+testo: 6 4.9 | rosa | "e suppongo non Q (il contrario della tesi)"
+testo: 6 4 | grigio | "ragiono e arrivo a una frase C ..."
+testo: 6 3.1 | grigio | "... e anche a non C"
+testo: 6 2.3 | rosa | "contraddizione"
+freccia: 6 1.8 6 1.25 | grigio
+testo: 6 0.85 | verde | "quindi Q"
+```
+
+Il metodo funziona perché una contraddizione non può essere vera: se ci si arriva senza errori, una delle supposizioni era falsa, e l'unica aggiunta è «non $Q$».
+
+### Radice di 2 è irrazionale
+
+L'esempio più famoso di dimostrazione per assurdo è quello che dice che $\sqrt{2}$ non è una frazione. Usa un fatto che si dimostra prima, nella sezione sulla contrapposizione qui sotto: se $n^2$ è pari, anche $n$ è pari.
+
+> [!ESEMPIO] · $\sqrt{2}$ non è razionale
+> **Passo 1: suppongo il contrario.** $\sqrt{2} = \frac{p}{q}$ con $p$ e $q$ interi, $q \neq 0$, e la frazione **ridotta ai minimi termini**: $p$ e $q$ non sono tutti e due pari.
+>
+> **Passo 2: elevo al quadrato.** $2 = \frac{p^2}{q^2}$, cioè $p^2 = 2q^2$. Quindi $p^2$ è pari, e allora anche $p$ è pari: $p = 2k$.
+>
+> **Passo 3: sostituisco.** $4k^2 = 2q^2$, cioè $q^2 = 2k^2$. Quindi $q^2$ è pari, e anche $q$ è pari.
+>
+> **Passo 4: la contraddizione.** $p$ e $q$ sono tutti e due pari, ma la frazione era ridotta. Quindi $\sqrt{2}$ non è razionale.
+
+L'esercizio 7 del libro ripete lo stesso ragionamento per $\sqrt[3]{2}$, con i cubi.
+
+::: prova Dimostra per assurdo: se $x^2$ è irrazionale, allora $x$ è irrazionale (esercizio 1 del libro).
+Suppongo $x^2$ irrazionale e $x$ razionale: $x = \frac{p}{q}$. Allora $x^2 = \frac{p^2}{q^2}$ è una frazione di interi, quindi razionale. Contraddizione con l'ipotesi.
+:::
+
+> [!RICORDA]
+> - Per assurdo: suppongo l'ipotesi e il contrario della tesi, arrivo a una frase e alla sua negazione.
+> - Il contrario della tesi va scritto bene, con De Morgan se la tesi è un «o» o un «e».
+
+## Il principio dei piccioni, per assurdo
+
+Se 10 piccioni entrano in 9 buche, almeno una buca ne ha due: è il principio dei piccioni della [lezione D06 di Matematica Discreta](../MDAG/D06_insiemi_finiti_inclusione_esclusione.html). Le dimostrazioni di questo tipo si fanno naturalmente per assurdo: si suppone che la cosa non succeda e si contano gli oggetti.
+
+> [!ESEMPIO] · 40 monete in 9 borse (esercizio 22 del libro, esercizio 5 di Cardone)
+> **La frase.** Se 40 monete sono distribuite in 9 borse, nessuna vuota, almeno due borse hanno lo stesso numero di monete.
+>
+> **Passo 1: suppongo il contrario.** Le 9 borse hanno numeri di monete tutti diversi.
+>
+> **Passo 2: le ordino.** In ordine crescente, la prima ha almeno 1 moneta, la seconda almeno 2, e così via fino alla nona, con almeno 9.
+>
+> **Passo 3: conto.** In tutto almeno $1 + 2 + \dots + 9 = 45$ monete. Ma le monete sono 40: contraddizione.
+
+::: prova Dimostra per assurdo che se 100 palline sono distribuite in 9 scatole, almeno una ne contiene 12 o più (esercizio 4 di Cardone).
+Suppongo che ogni scatola ne contenga al massimo 11. Allora in tutto sono al massimo $9 \cdot 11 = 99$, meno di 100: contraddizione.
+:::
+
+> [!RICORDA]
+> - «Almeno uno…» si dimostra bene per assurdo: si suppone «nessuno…» e si conta.
+
+## Per contrapposizione (libro, §2.2)
+
+Nella [lezione 07](07_condizionali_equivalenza_logica.html) abbiamo visto che «se piove, la strada è bagnata» è equivalente a «se la strada non è bagnata, non piove»: è la **contronominale**. Quindi, per dimostrare $P \to Q$, si può dimostrare in modo diretto $\neg Q \to \neg P$. È la **dimostrazione per contrapposizione**, domanda di ripasso 4 del §2.2.
+
+> [!ESEMPIO] · Se $n^2$ è pari, $n$ è pari (Cardone, esempio 3)
+> **La contronominale.** «Se $n$ non è pari, $n^2$ non è pari», cioè «se $n$ è dispari, $n^2$ è dispari».
+>
+> **La dimostrazione diretta della contronominale.** Sia $n$ dispari: $n = 2k + 1$. Allora $n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$, che è dispari.
+>
+> **Conclusione.** La contronominale è vera, quindi è vera anche la frase di partenza.
+
+La stessa frase si può dimostrare per assurdo: suppongo $n^2$ pari e $n$ dispari, calcolo $n^2$ dispari, e ho una contraddizione con $n^2$ pari. Cardone mostra tutte e due le versioni: con la contrapposizione il ragionamento è più corto, perché non serve arrivare a una contraddizione.
+
+> [!TRAPPOLA] Contronominale, non inversa
+> La contronominale di $P \to Q$ è $\neg Q \to \neg P$. Dimostrare $Q \to P$, l'inversa, oppure $\neg P \to \neg Q$ non serve: non sono equivalenti alla frase di partenza.
+
+::: prova Dimostra per contrapposizione: se $3n + 2$ è dispari, allora $n$ è dispari.
+La contronominale: se $n$ è pari, $3n + 2$ è pari. Sia $n = 2k$: $3n + 2 = 6k + 2 = 2(3k + 1)$, pari.
+:::
+
+> [!RICORDA]
+> - Per contrapposizione: dimostro in modo diretto «se non $Q$ allora non $P$».
+> - Conviene quando «non $Q$» dà un'informazione più facile da usare di $P$, come «$n$ è dispari» rispetto a «$n^2$ è pari».
+
+## Per casi (libro, §2.2)
+
+Per dimostrare che il valore assoluto di un numero è sempre almeno il numero stesso, conviene guardare separatamente i numeri negativi e quelli non negativi: in ognuno dei due casi la verifica è immediata. Quando l'ipotesi si spezza in alternative, si dimostra la tesi in ogni alternativa. È la **dimostrazione per casi**: invece di $(P_1 \vee P_2) \to Q$ si dimostrano $P_1 \to Q$ e $P_2 \to Q$ (domanda di ripasso 6 del §2.2; è la regola «per casi» della lezione 10).
+
+> [!ESEMPIO] · $x \le \lvert x \rvert$ (Cardone, esempio 4)
+> Ogni reale è negativo oppure non negativo.
+>
+> **Caso $x < 0$.** $\lvert x \rvert = -x$, che è positivo: $\lvert x \rvert > 0 > x$.
+>
+> **Caso $x \ge 0$.** $\lvert x \rvert = x$, quindi $x \le \lvert x \rvert$.
+>
+> In tutti e due i casi $x \le \lvert x \rvert$.
+
+> [!ESEMPIO] · $n^2 + n$ è sempre pari
+> Ogni intero è pari o dispari.
+>
+> **Caso $n$ pari**, $n = 2k$: $n^2 + n = 4k^2 + 2k = 2(2k^2 + k)$, pari.
+>
+> **Caso $n$ dispari**, $n = 2k + 1$: $n^2 + n = (2k+1)^2 + (2k + 1) = 4k^2 + 6k + 2 = 2(2k^2 + 3k + 1)$, pari.
+
+> [!TRAPPOLA] I casi devono coprire tutto
+> I casi vanno scelti in modo che ogni situazione cada in almeno uno: «negativo» e «positivo» lasciano fuori lo 0. Prima di cominciare, controlla che la loro unione sia tutto il dominio.
+
+::: prova Dimostra per casi che $\min(x, y) + \max(x, y) = x + y$ per tutti i reali $x$ e $y$ (esercizio 6 di Cardone).
+Caso $x \le y$: $\min = x$ e $\max = y$, la somma è $x + y$. Caso $x > y$: $\min = y$ e $\max = x$, la somma è $y + x = x + y$.
+:::
+
+> [!RICORDA]
+> - Per casi: una dimostrazione per ogni alternativa, e le alternative coprono tutto il dominio.
+
+## Equivalenze e dimostrazioni di esistenza (libro, §2.2)
+
+Il libro aggiunge due tipi di frase con un metodo proprio. Il primo: «le frasi $P$, $Q$, $R$ sono **equivalenti**», cioè sono tutte vere o tutte false. Invece di sei frecce basta un giro: $P \to Q$, $Q \to R$, $R \to P$ (domande di ripasso 8–10). Da ogni frase si arriva a ogni altra seguendo il giro.
+
+Il secondo: le frasi con «esiste», $\exists x\, P(x)$. Una dimostrazione di esistenza è **costruttiva** se mostra un elemento $a$ con $P(a)$ vera; è **non costruttiva** se dimostra l'esistenza in un altro modo, per esempio per assurdo o per casi, senza dire quale sia l'elemento (domande di ripasso 11–15).
+
+> [!ESEMPIO] · Costruttiva: esistono razionali $a$ e $b$ con $a^b$ razionale (esercizio 13)
+> $a = b = 2$: $2^2 = 4$ è razionale. Ho mostrato l'elemento.
+
+> [!ESEMPIO] · Non costruttiva: esistono irrazionali $a$ e $b$ con $a^b$ razionale
+> Considero il numero $\sqrt{2}^{\sqrt{2}}$. È razionale oppure no: due casi.
+>
+> **Caso razionale.** Basta $a = b = \sqrt{2}$, irrazionali.
+>
+> **Caso irrazionale.** Prendo $a = \sqrt{2}^{\sqrt{2}}$ e $b = \sqrt{2}$. Allora $a^b = \sqrt{2}^{\sqrt{2} \cdot \sqrt{2}} = \sqrt{2}^2 = 2$, razionale.
+>
+> In tutti e due i casi la coppia esiste, ma la dimostrazione **non dice** quale delle due coppie è quella giusta.
+
+::: prova Dimostra in modo costruttivo che esiste un intero $n$ con $n^2 = n$. E in modo costruttivo che esistono due dispari con somma 10?
+$n = 0$, o $n = 1$. Per la seconda: $3 + 7 = 10$.
+:::
+
+> [!RICORDA]
+> - Equivalenza di più frasi: un giro di frecce.
+> - Costruttiva: mostra l'elemento. Non costruttiva: dimostra che c'è, senza dire quale.
+
+## Il paradosso del bevitore
+
+In un bar ci sono dei clienti, almeno uno. La frase è questa: **c'è un cliente con questa proprietà: se lui beve, allora bevono tutti**. Sembra assurda: nessun cliente ha il potere di far bere gli altri. Eppure è un teorema, e il motivo sta nella freccia della [lezione 07](07_condizionali_equivalenza_logica.html).
+
+Con $B(x)$ = «$x$ beve» e il dominio dei clienti del bar, non vuoto, la frase è
+
+$$\exists x\,\bigl(B(x) \to \forall y\, B(y)\bigr).$$
+
+La freccia $B(x) \to \forall y\, B(y)$ non dice che il bere di $x$ **causa** il bere degli altri. Dice solo che non succede «$x$ beve e qualcuno non beve». È vera in due modi: se bevono tutti, oppure se $x$ non beve.
+
+> [!TEOREMA] Il paradosso del bevitore
+> In ogni bar con almeno un cliente esiste un cliente $x$ per cui vale: se $x$ beve, allora bevono tutti i clienti.
+
+**Come si legge.** La dimostrazione è per casi, sulla frase «bevono tutti».
+
+- **Caso 1: bevono tutti.** Si prende un cliente **qualsiasi**: ce n'è almeno uno. La parte dopo la freccia, «bevono tutti», è vera, quindi la freccia è vera.
+- **Caso 2: non bevono tutti.** Allora c'è un cliente $d$ che non beve. Si prende proprio lui: $B(d)$ è falsa, e una freccia con l'ipotesi falsa è vera.
+
+In tutti e due i casi il cliente esiste, quindi la frase è vera.
+
+```grafico
+titolo: I due casi della dimostrazione. A sinistra bevono tutti (pallini verdi): va bene un cliente qualsiasi. A destra almeno uno non beve (pallino rosa): si sceglie proprio lui, e la freccia è vera perché la sua ipotesi è falsa.
+x: 0 12
+y: 0 5.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.4 0.6 5.6 0.6 5.6 4.2 0.4 4.2 | grigio
+testo: 3 4.8 | verde | "caso 1: tutti bevono"
+punto: 1.4 3.2 | verde
+punto: 2.7 3.2 | verde
+punto: 4 3.2 | verde
+punto: 2 1.8 | verde
+punto: 3.4 1.8 | verde
+testo: 3 1 | grigio | "x = uno qualsiasi"
+poligono: 6.4 0.6 11.6 0.6 11.6 4.2 6.4 4.2 | grigio
+testo: 9 4.8 | rosa | "caso 2: non tutti"
+punto: 7.4 3.2 | verde
+punto: 8.7 3.2 | rosa
+punto: 10 3.2 | verde
+punto: 8 1.8 | verde
+punto: 9.4 1.8 | verde
+testo: 8.7 2.55 | rosa | "x"
+testo: 9 1 | grigio | "x = chi non beve"
+```
+
+La dimostrazione è **non costruttiva**: non dice chi è il cliente, perché per saperlo bisognerebbe sapere in quale dei due casi siamo. Il dominio non vuoto serve nel caso 1: in un bar vuoto non c'è nessuno da scegliere, e la frase è falsa.
+
+> [!ESEMPIO] · Il paradosso come gioco (lezione 11)
+> **La frase come gioco.** Portando il $\forall y$ fuori dalla freccia, la frase diventa $\exists x\, \forall y\,\bigl(B(x) \to B(y)\bigr)$: è equivalente perché $x$ non dipende da $y$.
+>
+> **La partita.** Tu scegli il cliente $x$, poi l'avversario sceglie un cliente $y$ cercando di farti perdere, cioè cercando $B(x)$ vera e $B(y)$ falsa.
+>
+> **La strategia vincente.** Se c'è un cliente che non beve, scegli lui: $B(x)$ è falsa e l'avversario non può vincere. Se bevono tutti, qualunque $y$ scelga l'avversario $B(y)$ è vera. In tutti e due i casi vinci: la frase è vera. Ma per giocare bene devi sapere se qualcuno non beve.
+
+> [!APPROFONDIMENTO] Il terzo escluso e la logica costruttiva
+> Il passo decisivo è «bevono tutti oppure no»: si usa il **terzo escluso**, $A \vee \neg A$, senza sapere quale delle due sia vera. Nella logica costruttiva, che chiede di dimostrare un «esiste» mostrando l'elemento, il paradosso del bevitore non si può dimostrare. Per questo è un esempio classico per distinguere la logica classica, quella del libro e dell'esame, dalla logica costruttiva, studiata anche in informatica perché le sue dimostrazioni si possono trasformare in programmi.
+
+::: prova Dimostra la versione «al contrario»: in ogni bar non vuoto c'è un cliente con questa proprietà: se qualcuno beve, beve anche lui. In formula, $\exists x\,\bigl(\exists y\, B(y) \to B(x)\bigr)$.
+Per casi. Se qualcuno beve, scelgo proprio uno che beve: $B(x)$ è vera, quindi la freccia è vera. Se nessuno beve, scelgo un cliente qualsiasi: l'ipotesi $\exists y\, B(y)$ è falsa, quindi la freccia è vera.
+:::
+
+> [!RICORDA]
+> - Il bevitore: $\exists x\,(B(x) \to \forall y\, B(y))$, vera in ogni dominio non vuoto.
+> - Si dimostra per casi: se bevono tutti, va bene chiunque; se no, si sceglie chi non beve.
+> - La freccia non è una causa: è falsa solo con l'ipotesi vera e la conclusione falsa.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\lvert x \rvert$ | «valore assoluto di x» | $x$ se $x \ge 0$, $-x$ se $x < 0$ | $\lvert -3 \rvert = 3$ |
+| $\sqrt{2}$ | «radice di 2» | il numero positivo che al quadrato dà 2 | non è razionale |
+| $\min(x, y)$, $\max(x, y)$ | «minimo», «massimo» | il più piccolo e il più grande dei due | $\min(3, 8) = 3$ |
+| $\exists x\,(B(x) \to \forall y\, B(y))$ | «esiste x tale che, se x beve, bevono tutti» | il paradosso del bevitore | |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser, da 3 punti l'uno; servono almeno 18 punti. Chi arriva a 24 nei quiz può fare la **domanda aperta** facoltativa, da −1 a 6 punti.
+
+**Che cosa serve di questa lezione**
+
+1. **Riconoscere il metodo.** Il programma comune cita la dimostrazione diretta, per assurdo e per contrapposizione. Nei quiz può servire dire quale metodo usa una dimostrazione, o qual è la frase da dimostrare per contrapposizione.
+2. **Scrivere una dimostrazione corta** nella domanda aperta: ipotesi, metodo dichiarato, passi con le definizioni, conclusione. Nelle simulazioni 2023/24 che ho non ci sono domande aperte: le domande qui sotto sono sul modello degli esercizi del libro.
+3. **Il bevitore** è un buon esercizio sulla freccia e sui quantificatori, come le domande delle simulazioni sulle negazioni.
+
+### Una domanda sul modello, letta insieme
+
+**Il testo**, inventato sul modello degli esercizi del §2.2: «Per dimostrare per contrapposizione che, per ogni intero $n$, se $n^2$ è dispari allora $n$ è dispari, quale frase si dimostra? Scrivi la dimostrazione.»
+
+**In pratica chiede:** la contronominale giusta e la sua dimostrazione diretta.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: la contronominale.** Con $P$ = «$n^2$ è dispari» e $Q$ = «$n$ è dispari», si dimostra $\neg Q \to \neg P$: «se $n$ è pari, allora $n^2$ è pari».
+>
+> **Passo 2: la dimostrazione diretta.** Sia $n$ pari: $n = 2k$. Allora $n^2 = 4k^2 = 2(2k^2)$, pari.
+>
+> **Passo 3.** La contronominale è vera, quindi lo è anche la frase di partenza.
+
+> [!METODO] Quale metodo usare
+> 1. L'ipotesi dà una forma da usare, come $n = 2k$? **Diretta.**
+> 2. È più facile usare il contrario della tesi che l'ipotesi? **Contrapposizione.**
+> 3. La tesi dice che qualcosa **non** succede, o «almeno uno…»? **Per assurdo.**
+> 4. L'ipotesi o il dominio si spezzano in pochi casi, come pari e dispari? **Per casi.**
+> 5. Si chiede che qualcosa esista? Se puoi, mostralo: **costruttiva**.
+
+## Quiz
+
+```quiz
+D: In una dimostrazione per assurdo di «se $P$ allora $Q$», che cosa si suppone?
++ $P$ vera e $Q$ falsa
+- $P$ falsa e $Q$ vera
+- $Q$ vera
+- $P$ falsa
+- $P$ e $Q$ tutte e due false
+= È la domanda di ripasso 1 del §2.2: si suppongono l'ipotesi e il contrario della tesi, e si cerca una contraddizione. La risposta più insidiosa è «$P$ falsa»: con l'ipotesi falsa la freccia è già vera, non c'è niente da dimostrare.
+
+D: Per contrapposizione, che cosa si dimostra al posto di «se $n^2$ è pari, $n$ è pari»?
++ Se $n$ è dispari, $n^2$ è dispari
+- Se $n$ è pari, $n^2$ è pari
+- Se $n^2$ è dispari, $n$ è dispari
+- $n^2$ è pari e $n$ è dispari
+- Se $n$ è pari, $n^2$ è dispari
+= La contronominale nega e scambia: $\neg Q \to \neg P$. La risposta più insidiosa è la seconda, che è l'inversa: vera anche lei, ma non equivalente.
+
+D: Qual è la negazione della tesi «$x \ge 1$ oppure $y \ge 1$», da supporre in una dimostrazione per assurdo?
++ $x < 1$ e $y < 1$
+- $x < 1$ oppure $y < 1$
+- $x \le 1$ e $y \le 1$
+- $x > 1$ e $y > 1$
+- $x + y < 2$
+= De Morgan: la negazione di un «o» è un «e», e il contrario di $\ge$ è $<$. La risposta più insidiosa è la terza: con $\le$ include $x = 1$, che non nega $x \ge 1$.
+
+D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, dove sta la contraddizione?
++ $p$ e $q$ risultano tutti e due pari, ma la frazione era ridotta ai minimi termini
+- $p^2 = 2q^2$ è impossibile
+- $\sqrt{2}$ risulta negativo
+- $q$ risulta 0
+- $p$ risulta dispari
+= Si suppone la frazione ridotta, poi si dimostra che numeratore e denominatore sono pari. La risposta più insidiosa è la seconda: $p^2 = 2q^2$ è il passaggio da cui si parte; la contraddizione arriva solo confrontando quello che se ne ricava con l'ipotesi della frazione ridotta.
+
+D: 40 monete in 9 borse non vuote. Quante monete servirebbero almeno se le borse avessero numeri di monete tutti diversi?
+N: 45
+= $1 + 2 + \dots + 9 = 45$, più di 40: per questo due borse hanno lo stesso numero di monete (esercizio 22 del libro).
+
+D: Che cos'è una dimostrazione di esistenza non costruttiva?
++ Dimostra che l'elemento esiste senza dire quale sia
+- Dimostra che l'elemento non esiste
+- Mostra un elemento esplicito
+- Dimostra un «per ogni»
+- Usa solo esempi
+= È la domanda di ripasso 14 del §2.2. La risposta più insidiosa è la terza, che è la definizione di costruttiva.
+
+D: Nel paradosso del bevitore, chi si sceglie se almeno un cliente non beve?
++ Proprio un cliente che non beve
+- Un cliente che beve
+- Nessuno: in quel caso la frase è falsa
+- Un cliente qualsiasi
+- Il cliente che beve di più
+= Con un cliente che non beve, l'ipotesi della freccia è falsa e la freccia è vera. La risposta più insidiosa è «un cliente qualsiasi»: se scegli uno che beve mentre qualcun altro non beve, la freccia è falsa.
+
+D: Il paradosso del bevitore $\exists x\,(B(x) \to \forall y\, B(y))$ è vero:
++ in ogni dominio con almeno un elemento
+- solo se tutti bevono
+- solo se nessuno beve
+- in ogni dominio, anche vuoto
+- solo nei domini con almeno due elementi
+= La dimostrazione per casi funziona con qualunque dominio non vuoto. La risposta più insidiosa è «anche vuoto»: nel dominio vuoto ogni «esiste» è falso, perché non c'è nessuno da scegliere.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: quale metodo
+Per ognuna, che metodo usi? (a) «Il prodotto di due pari è pari.» (b) «Se $n^2$ è dispari, $n$ è dispari.» (c) «Non esiste un intero più grande di tutti.» (d) «Per ogni intero $n$, $n^3 - n$ è pari.»
+::: soluzione
+(a) Diretta: $n = 2k_1$, $m = 2k_2$, $nm = 2(2k_1k_2)$. (b) Contrapposizione: se $n$ è pari, $n^2$ è pari. (c) Per assurdo: se $M$ fosse il più grande, $M + 1$ sarebbe più grande di $M$. (d) Per casi, pari e dispari; oppure diretta, con $n^3 - n = (n - 1)n(n + 1)$, che contiene due numeri consecutivi.
+:::
+
+::: esercizio base Riscaldamento: la contronominale
+Scrivi la frase da dimostrare per contrapposizione: (a) se $mn$ è dispari, $m$ e $n$ sono dispari; (b) se $x^2 < 1$, allora $x < 1$.
+::: soluzione
+(a) Se $m$ è pari oppure $n$ è pari, allora $mn$ è pari. La negazione di «$m$ e $n$ dispari» è un «o», per De Morgan. (b) Se $x \ge 1$, allora $x^2 \ge 1$.
+:::
+
+::: esercizio medio Radice cubica di 2 (esercizio 7 del libro)
+Dimostra per assurdo che $\sqrt[3]{2}$ è irrazionale. Puoi usare che se $p^3$ è pari, $p$ è pari.
+::: soluzione
+Suppongo $\sqrt[3]{2} = \frac{p}{q}$ ridotta. Allora $p^3 = 2q^3$: $p^3$ è pari, quindi $p$ è pari, $p = 2k$. Sostituendo, $8k^3 = 2q^3$, cioè $q^3 = 4k^3$: $q^3$ è pari, quindi $q$ è pari. $p$ e $q$ pari contro la frazione ridotta: contraddizione.
+:::
+
+::: esercizio medio Il resto nella divisione per 3
+Dimostra per casi che per ogni intero $n$, $n^2$ ha resto 0 o 1 nella divisione per 3.
+::: soluzione
+Ogni intero ha resto 0, 1 o 2: tre casi. $n = 3k$: $n^2 = 3(3k^2)$, resto 0. $n = 3k + 1$: $n^2 = 9k^2 + 6k + 1 = 3(3k^2 + 2k) + 1$, resto 1. $n = 3k + 2$: $n^2 = 9k^2 + 12k + 4 = 3(3k^2 + 4k + 1) + 1$, resto 1.
+:::
+
+::: esercizio esame Il bevitore negato
+Scrivi la negazione di $\exists x\,(B(x) \to \forall y\, B(y))$ spingendo il $\neg$ fino in fondo, e spiega perché in un dominio non vuoto è falsa.
+::: soluzione
+$\neg\,\exists x\,(B(x) \to \forall y\, B(y)) \equiv \forall x\, \neg(B(x) \to \forall y\, B(y)) \equiv \forall x\,(B(x) \wedge \neg\,\forall y\, B(y)) \equiv \forall x\,(B(x) \wedge \exists y\, \neg B(y))$. A parole: «tutti bevono, e qualcuno non beve». In un dominio non vuoto è una contraddizione: dice insieme che tutti bevono e che qualcuno no. Per questo la frase di partenza è vera.
+:::
+
+::: esercizio difficile La successione che passa per 0 (esercizio 25 del libro, esercizio 7 di Cardone)
+Una successione di interi $s_1, \dots, s_n$, con $n \ge 2$, ha $s_1$ positivo, $s_n$ negativo, e ogni termine differisce dal precedente di 1 in più o in meno. Dimostra che qualche $s_i$ vale 0.
+::: soluzione
+Sia $i$ il più grande indice con $s_i$ positivo: esiste, perché $s_1$ è positivo, ed è minore di $n$, perché $s_n$ è negativo. Allora $s_{i+1}$ vale $s_i + 1$ oppure $s_i - 1$. Se valesse $s_i + 1$ sarebbe positivo, contro la scelta di $i$ come ultimo positivo: assurdo. Quindi $s_{i+1} = s_i - 1$, e $s_{i+1}$ non è positivo. Siccome $s_i \ge 1$, $s_{i+1} \ge 0$: l'unica possibilità è $s_{i+1} = 0$. È la soluzione del libro, che mescola un caso e un assurdo.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è una dimostrazione per assurdo?
+Si suppongono vere le ipotesi e falsa la conclusione, e se ne ricava una contraddizione: una frase e la sua negazione.
+:::
+
+::: domanda Che cosa si dimostra in una dimostrazione per contrapposizione di $P \to Q$?
+La contronominale $\neg Q \to \neg P$, in modo diretto.
+:::
+
+::: domanda Quando si usa la dimostrazione per casi?
+Quando l'ipotesi o il dominio si spezzano in alternative, come pari e dispari: si dimostra la tesi in ogni alternativa.
+:::
+
+::: domanda Che differenza c'è tra una dimostrazione di esistenza costruttiva e una non costruttiva?
+La costruttiva mostra l'elemento; la non costruttiva dimostra che esiste senza dire quale sia.
+:::
+
+::: domanda Come si dimostra il paradosso del bevitore?
+Per casi: se bevono tutti, va bene un cliente qualsiasi; se qualcuno non beve, si sceglie lui, e la freccia è vera perché la sua ipotesi è falsa.
+:::
+
+## Glossario
+
+```glossario
+Dimostrazione per assurdo | Si suppongono l'ipotesi e il contrario della tesi e si arriva a una contraddizione. Si chiama anche indiretta.
+Contraddizione | Una frase e la sua negazione insieme, C ∧ ¬C.
+Dimostrazione per contrapposizione | Per P → Q si dimostra in modo diretto ¬Q → ¬P.
+Dimostrazione per casi | Per (P₁ ∨ P₂) → Q si dimostrano P₁ → Q e P₂ → Q.
+Dimostrazione di equivalenza | Mostra che più frasi sono tutte vere o tutte false, per esempio con un giro di frecce.
+Dimostrazione di esistenza costruttiva | Dimostra ∃x P(x) mostrando un elemento a con P(a).
+Dimostrazione di esistenza non costruttiva | Dimostra ∃x P(x) senza indicare l'elemento.
+Paradosso del bevitore | ∃x (B(x) → ∀y B(y)): vero in ogni dominio non vuoto, dimostrato per casi.
+```
+
+## Checklist
+
+```checklist
+- So scrivere una dimostrazione per assurdo, negando bene la tesi.
+- So dimostrare che la radice di 2 è irrazionale.
+- So usare il principio dei piccioni con una dimostrazione per assurdo.
+- So scrivere la contronominale e dimostrarla.
+- So dimostrare per casi, con casi che coprono tutto.
+- So distinguere una dimostrazione di esistenza costruttiva da una non costruttiva.
+- So dimostrare il paradosso del bevitore e spiegare perché non è davvero un paradosso.
+- So scegliere il metodo adatto a una frase.
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 2), §2.2 «More Methods of Proof»: domande di ripasso 1–15 ed esercizi 1, 7, 13, 22 e 25, con le soluzioni pubblicate sul Moodle del canale A ([id 3851](https://informatica.i-learn.unito.it/course/view.php?id=3851), aperto agli ospiti). Il libro non è disponibile: i testi degli esercizi li ho ricostruiti dalle soluzioni e tradotti.
+- F. Cardone, «Tecniche di dimostrazione» (Moodle del canale A): esempi 2, 3 e 4 (per assurdo, per contrapposizione, per casi) ed esercizi 4, 5, 6 e 7.
+- Diario del canale B: «Lezione 15. Venerdì 30 Ottobre ore 11-13. Fine Capitolo 2.1 (Metodi di Prova). Il paradosso del bevitore. Esercizi». Appunti scritti prima della lezione: il diario non dice come il docente presenta il paradosso.
+- Il paradosso del bevitore è un risultato classico della logica; la dimostrazione per casi, la versione come gioco, il detective, gli esempi $n^2 + n$ e $\sqrt{2}^{\sqrt{2}}$, la domanda sul modello, i quiz e gli esercizi senza indicazione sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/riassunti/settimana_01.md -->
 > File: `contesto_ai/FDA/riassunti/settimana_01.md`
 
@@ -23324,6 +25664,7 @@ Le lezioni seguono il libro di Andrea Mori e gli argomenti indicati per il canal
 | D07 | Parole, ordinamenti, anagrammi e disposizioni | cap. 3, pp. 48–55; esercizi 3.8, 3.9 | `lezioni/D07_parole_anagrammi_disposizioni.md` · HTML: `appunti/MDAG/D07_parole_anagrammi_disposizioni.html` | metodo delle scelte successive (albero), parole su un alfabeto e disposizioni con ripetizione $n^k$, ordinamenti e fattoriale, disposizioni semplici $\frac{n!}{(n-k)!}$, anagrammi con lettere ripetute, combinazioni semplici (solo l'enunciato, Def 3.27); domanda 4 del quiz 2025–2026, problemi 03/02/2026 e 2023/24; sviste: targhe a p. 50 del libro, SILLOGISMO nella soluzione «17 riepilogo» |
 | D08 | Combinazioni semplici e con ripetizione | cap. 3, pp. 55–58 e 62–64; esercizi 3.8, 3.10–3.12 | `lezioni/D08_combinazioni.md` · HTML: `appunti/MDAG/D08_combinazioni.html` | combinazioni semplici come disposizioni diviso $k!$, coefficiente binomiale $\binom{n}{k}$, simmetria, scelte da moltiplicare o da sommare, combinazioni con ripetizione con caselle e separatori, «almeno uno per tipo», la tabella delle quattro formule; domanda 4 del 04/02/2025, 06/06/2025, 13/01/2026, 10/09/2026, problemi 14/01/2025, 08/09/2025, 03/02/2026 e 01/07/2026; sviste a p. 57 del libro (scuola di ballo, gelateria, $C_{100,4}$). Argomenti ricostruiti dal libro e dal diario 2025/26 |
 | D09 | Problemi di combinatoria, coefficienti binomiali e formula di Stiefel | cap. 3, pp. 57–61; esercizi 3.13, 3.15, 3.17–3.19 | `lezioni/D09_coefficienti_binomiali_stiefel.md` · HTML: `appunti/MDAG/D09_coefficienti_binomiali_stiefel.html` | spezzare un problema in scelte (prova scritta del 12/02/2020: sedie, allenatore, monete nei salvadanai; 14/07/2020: circolo di tennis), analisi dei casi (semifinali dell'esercizio 3.13, 12 348), proposizione 3.33: bordi, simmetria e formula di Stiefel con le due dimostrazioni, triangolo di Tartaglia, somma di una riga uguale a $2^n$ (proposizione 3.35 e nota 3.36); problema 2 della prova del 22 e 23/02/2021 (carte di cuori). Argomenti ricostruiti dal diario 2025/26 (lezione 9, più il triangolo della lezione 10); il binomio di Newton resta per la D10 |
+| D10 | Binomio di Newton e permutazioni | cap. 3, pp. 60–61; cap. 5, pp. 83–85; esercizi 3.16, 3.19 | `lezioni/D10_binomio_newton_permutazioni.md` · HTML: `appunti/MDAG/D10_binomio_newton_permutazioni.html` | sviluppo di $(x + y)^n$ con il triangolo, perché i coefficienti sono binomiali (teorema 3.34, con la dimostrazione per induzione dell'esercizio 3.16), coefficiente di un termine in $(A + B)^n$ con numeri e segni, somme di una riga con $x = y = 1$ e con $x = 1$, $y = -1$ (esercizio 3.19 anche per $n$ pari); permutazioni come biezioni di un insieme in sé (definizione 5.1), $S_X$ e $S_n$, tabella a due righe, punti fissi, $\lvert S_n \rvert = n!$ (proposizione 5.2), composizione, inversa girando le frecce, non commutatività da 3 elementi; appello del 14/01/2025, problema 1 ($\tau^{-1}$). Argomenti ricostruiti dal diario 2025/26 (lezione 10) |
 
 ## Algebra lineare e Geometria (parte 2, modB)
 
@@ -30330,6 +32671,517 @@ Somma di una riga | La somma dei coefficienti binomiali di n è 2 alla n, il num
 - Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 9 (risoluzione di problemi di combinatoria, proprietà dei coefficienti binomiali, formula di Stiefel) e lezione 10 (triangolo di Tartaglia-Pascal, binomio di Newton). Gli argomenti della lezione del 23/10/2026 non erano pubblicati quando ho scritto questi appunti.
 - Problemi delle prove scritte di Matematica Discreta del 12/02/2020 (esercizio 1), 14/07/2020 (esercizio 1) e 22 e 23/02/2021 (problema 2), con le soluzioni ufficiali; domande 4 dei quiz degli appelli del 14/01/2025, 07/07/2025, 13/01/2026, 03/02/2026 e 10/09/2026.
 - Tutti i numeri li ho controllati con Python (`math.comb`), e i conti dell'esercizio 3.13 e delle carte di cuori con il mazzo da 20 anche provando tutte le possibilità.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D10_binomio_newton_permutazioni.md -->
+> File: `contesto_ai/MDAG/lezioni/D10_binomio_newton_permutazioni.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D10
+titolo: Binomio di Newton e permutazioni
+data: 2026-10-26
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D10
+descrizione: >-
+  Appunti della lezione D10 di Matematica Discreta (MDAG, parte 1, canali A, B e C): lo sviluppo di (x + y)^n, perché i
+  coefficienti sono i coefficienti binomiali (teorema 3.34), come si trova il coefficiente di un termine, le somme di
+  una riga del triangolo ricavate dal binomio, poi le permutazioni: definizione, notazione a due righe, quante sono,
+  composizione e non commutatività, con il problema d'esame del 14/01/2025.
+lede: >-
+  Il triangolo di Tartaglia della lezione scorsa serve anche a sviluppare le potenze di una somma, e il motivo è un
+  conteggio. Poi si comincia il capitolo sulle permutazioni: i modi di rimescolare gli elementi di un insieme, che
+  all'esame hanno sempre una domanda e un problema.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 3, pp. 60–61, e cap. 5, pp. 83–85
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2–3 ore, anche in più volte
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 3 «Combinatorica», pp. 60–61 (teorema 3.34,
+  proposizione 3.35, esercizi 3.16 e 3.19), e cap. 5 «Permutazioni», pp. 83–85 (definizione 5.1, proposizione 5.2,
+  notazione a due righe); diario delle lezioni del canale B 2025/26; appello di Matematica Discreta del 14/01/2025,
+  problema 1
+appunti_html: appunti/MDAG/D10_binomio_newton_permutazioni.html
+genera_html: true
+```
+
+## In breve
+
+- Le potenze di una somma hanno per coefficienti le righe del triangolo di Tartaglia: $(x + y)^3 = x^3 + 3x^2y + 3xy^2 + y^3$, con 1, 3, 3, 1.
+- Il motivo è un conteggio: ogni termine dello sviluppo nasce scegliendo in ogni fattore la prima o la seconda lettera, e i modi di scegliere i fattori da cui prendere la seconda sono un coefficiente binomiale. È il **binomio di Newton**.
+- Per il **coefficiente di un termine**, come quello di $x^3$ in $(2x - 3)^5$, si scrive il termine generale e si tiene conto dei numeri e dei segni dentro le parentesi.
+- Mettendo dei numeri al posto delle due lettere si ottengono le somme di una riga del triangolo: con 1 e 1 viene $2^n$, con 1 e −1 viene 0.
+- Una **permutazione** di un insieme è una funzione biettiva dall'insieme in sé stesso: un modo di rimescolare gli elementi, in cui ognuno va in un posto e ogni posto è occupato da uno solo.
+- Si scrive con una **tabella a due righe**: sopra gli elementi, sotto dove vanno. Ogni numero compare una volta sola nella riga sotto.
+- Le permutazioni di $\{1, \dots, n\}$ sono $n!$, e si compongono come le funzioni. L'ordine della composizione conta: già con 3 elementi i due ordini danno risultati diversi.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di lunedì 26/10/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la decima lezione era «Triangolo di Tartaglia-Pascal. Teorema del binomio di Newton. Permutazioni: definizione ed esempi». Il triangolo è già nella [D09](D09_coefficienti_binomiali_stiefel.html). Nel libro il binomio è alle pp. 60–61 e le permutazioni cominciano a p. 83, nel capitolo 5: il capitolo 4, sui numeri interi, il docente lo fa dopo. Il calcolo con le tabelle di composizioni e inverse e i cicli, nel diario, sono la lezione successiva. Quando il docente pubblica gli argomenti, controllo e aggiorno.
+
+## Sviluppare una potenza a mano
+
+Il quadrato di una somma lo conosci: $(x + y)^2 = x^2 + 2xy + y^2$. Per il cubo si moltiplica ancora per $(x + y)$:
+
+$$(x + y)^3 = (x^2 + 2xy + y^2)(x + y) = x^3 + 3x^2y + 3xy^2 + y^3.$$
+
+I coefficienti sono 1, 2, 1 per il quadrato e 1, 3, 3, 1 per il cubo: le righe 2 e 3 del triangolo di Tartaglia della [D09](D09_coefficienti_binomiali_stiefel.html). Moltiplicando ancora per $(x + y)$ esce la riga 4:
+
+$$(x + y)^4 = x^4 + 4x^3y + 6x^2y^2 + 4xy^3 + y^4.$$
+
+Guardando gli esponenti: quello di $x$ scende da $n$ a 0, quello di $y$ sale da 0 a $n$, e in ogni termine sommano a $n$. I termini sono $n + 1$.
+
+::: prova Scrivi $(x + y)^5$ usando la riga 5 del triangolo, 1, 5, 10, 10, 5, 1.
+$x^5 + 5x^4y + 10x^3y^2 + 10x^2y^3 + 5xy^4 + y^5$.
+:::
+
+> [!RICORDA]
+> - I coefficienti di $(x + y)^n$ sono la riga $n$ del triangolo di Tartaglia.
+> - Gli esponenti di $x$ e $y$ sommano sempre a $n$; i termini sono $n + 1$.
+
+## Perché escono i coefficienti binomiali
+
+Per vedere da dove vengono i coefficienti conviene non moltiplicare un fattore alla volta, ma guardare tutti i fattori insieme. Il cubo è il prodotto di tre fattori uguali, $(x + y)(x + y)(x + y)$. Sviluppare il prodotto vuol dire scegliere in ogni fattore una delle due lettere, moltiplicare le tre scelte e sommare su tutti i modi di scegliere. I modi sono $2 \cdot 2 \cdot 2 = 8$, e ognuno si può scrivere come una parola di tre lettere: xxy vuol dire x dal primo fattore, x dal secondo, y dal terzo.
+
+```grafico
+titolo: Le 8 scelte per sviluppare $(x + y)^3$, raggruppate secondo quante $y$ contengono. Le scelte con due $y$ sono 3, quante i modi di scegliere 2 fattori su 3: per questo $xy^2$ ha coefficiente $\binom{3}{2} = 3$.
+x: 0 12
+y: 0 6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.5 5.4 | grigio | "0 volte y"
+testo: 4.5 5.4 | grigio | "1 volta y"
+testo: 7.5 5.4 | grigio | "2 volte y"
+testo: 10.5 5.4 | grigio | "3 volte y"
+testo: 1.5 4.3 | blu | "xxx"
+testo: 4.5 4.3 | blu | "yxx"
+testo: 4.5 3.5 | blu | "xyx"
+testo: 4.5 2.7 | blu | "xxy"
+testo: 7.5 4.3 | ambra | "yyx"
+testo: 7.5 3.5 | ambra | "yxy"
+testo: 7.5 2.7 | ambra | "xyy"
+testo: 10.5 4.3 | blu | "yyy"
+testo: 1.5 1.3 | rosa | "1 · x³"
+testo: 4.5 1.3 | rosa | "3 · x²y"
+testo: 7.5 1.3 | rosa | "3 · xy²"
+testo: 10.5 1.3 | rosa | "1 · y³"
+segmento: 0.3 2 11.7 2 | grigio
+```
+
+Ogni parola con due y e una x dà lo stesso prodotto, $xy^2$. Le parole di questo tipo sono tante quante le scelte dei **2 posti** su 3 in cui mettere la y: $\binom{3}{2} = 3$. Lo stesso vale per ogni potenza.
+
+> [!TEOREMA] 3.34 · Binomio di Newton
+> Per ogni intero $n \ge 1$:
+> $$(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k}y^k = x^n + \binom{n}{1}x^{n-1}y + \binom{n}{2}x^{n-2}y^2 + \dots + y^n.$$
+
+**Come si legge.** Il simbolo $\sum_{k=0}^{n}$ vuol dire «somma per k che va da 0 a n»: si scrive un termine per ogni valore di k e si sommano. Nel termine numero k la y compare k volte, la x le altre volte, e davanti c'è il coefficiente binomiale. La dimostrazione del libro è il ragionamento del disegno. Un termine con k volte la y si ottiene prendendo la y da k fattori e la x dagli altri. I modi di scegliere quei fattori sono le combinazioni della [D08](D08_combinazioni.html). Il nome «coefficiente binomiale» viene da qui: è il coefficiente nello sviluppo di un binomio.
+
+> [!DIM] La dimostrazione per induzione (esercizio 3.16 del libro)
+> Si può dimostrare il teorema anche per induzione su $n$, usando la formula di Stiefel della D09.
+>
+> **Base**, $n = 1$: $(x + y)^1 = x + y = \binom{1}{0}x + \binom{1}{1}y$.
+>
+> **Passo.** Supponi la formula vera per $n$ e moltiplica tutti e due i lati per $(x + y)$:
+> $$(x + y)^{n+1} = \sum_{k=0}^{n} \binom{n}{k} x^{n+1-k}y^k + \sum_{k=0}^{n} \binom{n}{k} x^{n-k}y^{k+1}.$$
+> Nella prima somma il termine $x^{n+1-k}y^k$ ha coefficiente $\binom{n}{k}$; nella seconda, spostando l'indice di uno, lo stesso termine ha coefficiente $\binom{n}{k-1}$. Sommando, il coefficiente di $x^{n+1-k}y^k$ è $\binom{n}{k-1} + \binom{n}{k} = \binom{n+1}{k}$ per Stiefel. Ai due estremi, $x^{n+1}$ e $y^{n+1}$, il coefficiente è 1. È la formula per $n + 1$.
+
+::: prova Nello sviluppo di $(x + y)^{10}$, qual è il coefficiente di $x^5y^5$?
+$\binom{10}{5} = 252$: si sceglie $y$ da 5 dei 10 fattori.
+:::
+
+> [!RICORDA]
+> - Il termine con $y^k$ ha coefficiente $\binom{n}{k}$: i modi di scegliere i $k$ fattori da cui prendere $y$.
+> - È la stessa formula del triangolo: il binomio di Newton spiega perché.
+
+## Il coefficiente di un termine
+
+Gli esercizi chiedono spesso un solo coefficiente, in un binomio con numeri e segni: per esempio quello di $x^3$ in $(2x - 3)^5$. Lo sviluppo intero ha sei termini, ma non serve scriverli tutti. Basta pensare che il binomio è $(A + B)^5$ con $A = 2x$ e $B = -3$, e che i numeri e i segni stanno **dentro** $A$ e $B$.
+
+> [!METODO] Il coefficiente di un termine in $(A + B)^n$
+> 1. Riconosci $A$ e $B$, con il loro numero e il loro segno.
+> 2. Scrivi il termine generale: $\binom{n}{k} A^{n-k}B^k$.
+> 3. Trova il $k$ che dà la potenza di $x$ cercata.
+> 4. Calcola, elevando anche i numeri e i segni.
+
+> [!ESEMPIO] · Il coefficiente di $x^3$ in $(2x - 3)^5$
+> **Passo 1.** $A = 2x$, $B = -3$, $n = 5$.
+>
+> **Passo 2.** Il termine generale è $\binom{5}{k}(2x)^{5-k}(-3)^k$.
+>
+> **Passo 3.** La $x$ è solo in $A$, con esponente $5 - k$. Per avere $x^3$ serve $5 - k = 3$, cioè $k = 2$.
+>
+> **Passo 4.** $\binom{5}{2} \cdot 2^3 \cdot (-3)^2 = 10 \cdot 8 \cdot 9 = 720$. Il termine è $720x^3$.
+
+Con un segno meno i coefficienti si alternano: un esponente dispari di $-3$ dà un numero negativo. Per esempio $(a - b)^4 = a^4 - 4a^3b + 6a^2b^2 - 4ab^3 + b^4$.
+
+> [!TRAPPOLA] Il numero dentro la parentesi va elevato
+> Il coefficiente di $x^3$ in $(2x - 3)^5$ non è $\binom{5}{2} = 10$: quello è il coefficiente in $(x + y)^5$. Il 2 e il $-3$ vanno elevati alle loro potenze, $2^3$ e $(-3)^2$. Un altro errore è prendere $k = 3$ perché si cerca $x^3$: il $k$ conta le volte del **secondo** termine, qui il $-3$.
+
+::: prova Qual è il coefficiente di $x^4$ in $(x - 2)^6$?
+$A = x$, $B = -2$. Serve $6 - k = 4$, cioè $k = 2$: $\binom{6}{2}(-2)^2 = 15 \cdot 4 = 60$.
+:::
+
+> [!RICORDA]
+> - Il termine generale è $\binom{n}{k}A^{n-k}B^k$, con numeri e segni dentro $A$ e $B$.
+> - Il $k$ è l'esponente del secondo termine, non per forza quello della $x$.
+
+## Le somme di una riga (proposizione 3.35)
+
+La formula di Newton vale qualunque numero si metta al posto delle due lettere. Scegliendo bene i numeri, si ottengono somme di coefficienti binomiali. Con 1 al posto di tutte e due ogni termine diventa solo il suo coefficiente:
+
+$$2^n = (1 + 1)^n = \binom{n}{0} + \binom{n}{1} + \dots + \binom{n}{n}.$$
+
+È la proposizione 3.35, la somma di una riga, che nella [D09](D09_coefficienti_binomiali_stiefel.html) avevamo visto contando i sottoinsiemi. Il libro la dimostra proprio così.
+
+Con 1 al posto della x e −1 al posto della y, i termini di posto dispari cambiano segno. La potenza vale 0, purché l'esponente sia almeno 1:
+
+$$0 = (1 - 1)^n = \binom{n}{0} - \binom{n}{1} + \binom{n}{2} - \dots$$
+
+Si portano i termini negativi dall'altra parte. Risultato: in ogni riga la somma dei coefficienti di posto pari è uguale a quella dei coefficienti di posto dispari, e ognuna vale metà della riga, $2^{n-1}$. È l'esercizio 3.19 del libro, che nella D09 avevamo dimostrato con la simmetria solo per le righe dispari. Con Newton la risposta alla domanda del libro, «è vero anche per le righe pari?», è sì: per esempio nella riga 4, $1 + 6 + 1 = 8 = 4 + 4$.
+
+::: prova Quanto vale $\sum_{k=0}^{4} \binom{4}{k} 2^k$, cioè $1 + 4 \cdot 2 + 6 \cdot 4 + 4 \cdot 8 + 16$?
+È il binomio con $x = 1$ e $y = 2$: $(1 + 2)^4 = 3^4 = 81$. Facendo la somma: $1 + 8 + 24 + 32 + 16 = 81$.
+:::
+
+> [!RICORDA]
+> - Con $x = y = 1$ il binomio dà la somma della riga, $2^n$.
+> - Con $x = 1$, $y = -1$ dà la somma a segni alterni, 0: i $k$ pari e i $k$ dispari sommano a $2^{n-1}$ ciascuno.
+
+## Che cos'è una permutazione (definizione 5.1)
+
+Mescolare un mazzo di carte, far cambiare posto a tre persone sedute in fila, riordinare i file di una cartella: in tutti i casi gli stessi elementi finiscono in posti diversi, ognuno in un posto e ogni posto con un solo elemento. Detto con le funzioni della [D04](D04_funzioni_immagini_controimmagini.html): a ogni elemento si associa l'elemento al cui posto va, senza ripetizioni e senza lasciare posti vuoti. È una funzione da un insieme in sé stesso che è iniettiva e suriettiva.
+
+> [!DEF] 5.1 · Permutazione
+> Sia $X$ un insieme non vuoto. Una **permutazione** di $X$ è una funzione biettiva $f: X \to X$. L'insieme di tutte le permutazioni di $X$ si indica con $S_X$.
+
+**Come si legge.** «Biettiva» vuol dire che ogni elemento di $X$ è immagine di **uno e un solo** elemento: nessuno è lasciato fuori, nessuno è preso due volte. Quando $X = \{1, 2, \dots, n\}$, che il libro chiama $I_n$, l'insieme delle permutazioni si scrive $S_n$. La funzione identità, che lascia ogni elemento dov'è, è sempre una permutazione: per questo $S_X$ non è mai vuoto.
+
+Per scrivere una permutazione di $I_n$ bisogna dire dove va ogni numero. Il libro usa una **tabella a due righe**: sopra i numeri da 1 a $n$ in ordine, sotto le loro immagini.
+
+$$\pi = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 \\ 3 & 2 & 6 & 1 & 5 & 7 & 4 \end{pmatrix}$$
+
+Si legge per colonne: $\pi(1) = 3$, $\pi(2) = 2$, $\pi(3) = 6$, e così via. È l'esempio di p. 85 del libro. I numeri 2 e 5 stanno sotto sé stessi: sono i **punti fissi** di $\pi$, gli elementi che non si muovono.
+
+```grafico
+titolo: A sinistra una permutazione di $\{1, 2, 3, 4, 5\}$: ogni numero a destra riceve esattamente una freccia. A destra una funzione che non è una permutazione: il 4 riceve due frecce e il 3 nessuna.
+x: 0 12
+y: 0 6.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.5 6 | verde | "permutazione"
+testo: 1 5 | blu | "1"
+testo: 1 4 | blu | "2"
+testo: 1 3 | blu | "3"
+testo: 1 2 | blu | "4"
+testo: 1 1 | blu | "5"
+testo: 4 5 | ambra | "1"
+testo: 4 4 | ambra | "2"
+testo: 4 3 | ambra | "3"
+testo: 4 2 | ambra | "4"
+testo: 4 1 | ambra | "5"
+freccia: 1.3 5 3.7 3.1 | grigio
+freccia: 1.3 4 3.7 5 | grigio
+freccia: 1.3 3 3.7 4 | grigio
+freccia: 1.3 2 3.7 1.1 | grigio
+freccia: 1.3 1 3.7 1.9 | grigio
+testo: 9.5 6 | rosa | "non è biettiva"
+testo: 8 5 | blu | "1"
+testo: 8 4 | blu | "2"
+testo: 8 3 | blu | "3"
+testo: 8 2 | blu | "4"
+testo: 8 1 | blu | "5"
+testo: 11 5 | ambra | "1"
+testo: 11 4 | ambra | "2"
+testo: 11 3 | ambra | "3"
+testo: 11 2 | ambra | "4"
+testo: 11 1 | ambra | "5"
+freccia: 8.3 5 10.7 2.1 | rosa
+freccia: 8.3 4 10.7 5 | grigio
+freccia: 8.3 3 10.7 4 | grigio
+freccia: 8.3 2 10.7 1 | grigio
+freccia: 8.3 1 10.7 1.95 | rosa
+```
+
+Nella figura, la permutazione di sinistra in tabella è $\begin{pmatrix} 1 & 2 & 3 & 4 & 5 \\ 3 & 1 & 2 & 5 & 4 \end{pmatrix}$. Il controllo si fa sulla riga sotto: in una permutazione **ogni numero da 1 a $n$ compare una e una sola volta**. La tabella $\begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 \\ 4 & 1 & 2 & 5 & 4 & 6 \end{pmatrix}$ del libro non è una permutazione: il 4 compare due volte, quindi la funzione non è iniettiva, e il 3 manca, quindi non è suriettiva.
+
+::: prova La tabella $\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2 & 4 & 1 & 3 \end{pmatrix}$ è una permutazione? Ha punti fissi?
+Sì: nella riga sotto ci sono 1, 2, 3, 4, una volta ciascuno. Non ha punti fissi: nessun numero sta sotto sé stesso.
+:::
+
+> [!RICORDA]
+> - Una permutazione di $X$ è una funzione biettiva da $X$ in $X$; le permutazioni di $\{1, \dots, n\}$ formano $S_n$.
+> - Nella tabella a due righe, ogni numero compare una volta sola nella riga sotto.
+
+## Quante sono (proposizione 5.2)
+
+Una permutazione si costruisce con scelte successive, come gli ordinamenti della [D07](D07_parole_anagrammi_disposizioni.html): si decide dove va ogni numero, uno alla volta. L'immagine dell'1 si sceglie tra tutti gli n numeri. Per quella del 2 ne restano $n - 1$, perché l'immagine dell'1 non si può ripetere. Si va avanti così fino all'ultimo numero, che ha una sola possibilità. Il totale è $n \cdot (n-1) \cdots 1 = n!$. In effetti la riga sotto della tabella è proprio un ordinamento dei numeri da 1 a n.
+
+| $n$ | 1 | 2 | 3 | 4 | 5 | 10 |
+|---|---|---|---|---|---|---|
+| $\lvert S_n \rvert = n!$ | 1 | 2 | 6 | 24 | 120 | 3 628 800 |
+
+Le 6 permutazioni di $S_3$, scritte con la sola riga sotto, sono 123, 132, 213, 231, 312, 321: la prima è l'identità.
+
+E se l'insieme non è fatto di numeri? Le permutazioni dei colori rosso, verde e blu sono 6 anche loro: basta numerare gli elementi, rosso = 1, verde = 2, blu = 3, e ogni permutazione dei colori diventa una permutazione di $\{1, 2, 3\}$. Il libro lo dice in modo preciso.
+
+> [!PROP] 5.2 · Contare le permutazioni
+> Se $X$ è un insieme finito con $\lvert X \rvert = n$, c'è una biezione $f: S_X \to S_n$ che rispetta la composizione: $f(\sigma \circ \pi) = f(\sigma) \circ f(\pi)$. In particolare $\lvert S_X \rvert = n!$.
+
+**Come si legge.** Si numerano gli elementi dell'insieme. Ogni sua permutazione diventa una permutazione dei numeri, e comporre prima o dopo aver numerato dà lo stesso risultato. Per questo da qui in avanti si studiano solo le $S_n$: quello che vale per loro vale per qualunque insieme con n elementi. Nel libro la numerazione è una biezione $\alpha$ dai numeri all'insieme. Una permutazione $\pi$ dell'insieme diventa $\alpha^{-1} \circ \pi \circ \alpha$: dal numero si passa all'elemento, si permuta, si torna al numero.
+
+::: prova Quante permutazioni di $\{1, 2, 3, 4, 5\}$ lasciano fermo l'1?
+Se $\pi(1) = 1$, restano da permutare liberamente gli altri 4 numeri: $4! = 24$.
+:::
+
+> [!RICORDA]
+> - $\lvert S_n \rvert = n!$: la riga sotto della tabella è un ordinamento di $\{1, \dots, n\}$.
+> - Numerando gli elementi, le permutazioni di un insieme con $n$ elementi diventano quelle di $S_n$.
+
+## Comporre permutazioni: l'ordine conta (pp. 83–84)
+
+Due rimescolamenti fatti uno dopo l'altro sono ancora un rimescolamento. In termini di funzioni, la composizione di due funzioni biettive è biettiva (proposizione 2.17, nella [D05](D05_composizione_funzioni_inverse.html)): comporre due permutazioni dà una permutazione. La composizione $\sigma \circ \pi$ si legge «prima $\pi$, poi $\sigma$». Il libro elenca le sue proprietà:
+
+1. è **associativa**: $(\tau \circ \sigma) \circ \pi = \tau \circ (\sigma \circ \pi)$;
+2. l'identità $\mathrm{id}_X$ non cambia niente: $\pi \circ \mathrm{id}_X = \mathrm{id}_X \circ \pi = \pi$;
+3. ogni permutazione ha un'**inversa** $\pi^{-1}$, che è ancora una permutazione: se $\pi(a) = b$, allora $\pi^{-1}(b) = a$. Si ottiene girando le frecce.
+
+Manca la proprietà commutativa, e il libro lo mostra con tre elementi. Prendi $X = \{1, 2, 3\}$, la permutazione $\pi$ che scambia 1 e 2 e lascia fermo il 3, e la permutazione $\sigma$ che scambia 1 e 3 e lascia fermo il 2. Segui il numero 1 nei due ordini:
+
+- $(\sigma \circ \pi)(1) = \sigma(\pi(1)) = \sigma(2) = 2$;
+- $(\pi \circ \sigma)(1) = \pi(\sigma(1)) = \pi(3) = 3$.
+
+Il risultato è diverso, quindi $\sigma \circ \pi \neq \pi \circ \sigma$.
+
+```grafico
+titolo: Il numero 1 seguito nei due ordini. Sopra si applica prima π (scambia 1 e 2) e poi σ (scambia 1 e 3): l'1 arriva in 2. Sotto prima σ e poi π: l'1 arriva in 3.
+x: 0 12
+y: 0.4 6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1 5.4 | grigio | "σ ∘ π"
+testo: 2 4.5 | blu | "1"
+freccia: 2.4 4.5 5.1 4.5 | ambra
+testo: 3.75 4.95 | ambra | "π"
+testo: 5.6 4.5 | blu | "2"
+freccia: 6 4.5 8.7 4.5 | verde
+testo: 7.35 4.95 | verde | "σ"
+testo: 9.2 4.5 | rosa | "2"
+testo: 1 2.6 | grigio | "π ∘ σ"
+testo: 2 1.7 | blu | "1"
+freccia: 2.4 1.7 5.1 1.7 | verde
+testo: 3.75 2.15 | verde | "σ"
+testo: 5.6 1.7 | blu | "3"
+freccia: 6 1.7 8.7 1.7 | ambra
+testo: 7.35 2.15 | ambra | "π"
+testo: 9.2 1.7 | rosa | "3"
+```
+
+Con uno o due elementi invece la composizione è commutativa: con $X = \{a\}$ c'è solo l'identità, con $X = \{a, b\}$ ci sono l'identità e lo scambio di $a$ e $b$, e comporle in un ordine o nell'altro dà lo stesso risultato. Da 3 elementi in su, l'ordine conta. Come nella D05, $\sigma \circ \pi$ si legge **da destra**: si applica prima $\pi$.
+
+::: prova Con le stesse $\pi$ e $\sigma$, quanto valgono $(\sigma \circ \pi)(2)$ e $(\pi \circ \sigma)(2)$?
+$(\sigma \circ \pi)(2) = \sigma(1) = 3$ e $(\pi \circ \sigma)(2) = \pi(2) = 1$. Di nuovo diversi.
+:::
+
+> [!RICORDA]
+> - La composizione di due permutazioni è una permutazione; è associativa, ha l'identità e ogni permutazione ha l'inversa.
+> - Non è commutativa da 3 elementi in su: $\sigma \circ \pi$ e $\pi \circ \sigma$ possono essere diverse.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\sum_{k=0}^{n}$ | «somma per $k$ da 0 a $n$» | si somma il termine per ogni $k$ da 0 a $n$ | $\sum_{k=0}^{3} \binom{3}{k} = 8$ |
+| $S_X$ | «S di X» | l'insieme delle permutazioni di $X$ | $S_{\{a, b\}}$ ha 2 elementi |
+| $S_n$ | «S n» | le permutazioni di $\{1, \dots, n\}$ | $\lvert S_4 \rvert = 24$ |
+| $I_n$ | «I n» | l'insieme $\{1, 2, \dots, n\}$ | $I_3 = \{1, 2, 3\}$ |
+| $\mathrm{id}_X$ | «identità di X» | la permutazione che lascia tutto fermo | $\mathrm{id}_X(a) = a$ |
+| $\pi^{-1}$ | «pi alla meno uno» | la permutazione inversa | se $\pi(1) = 3$, $\pi^{-1}(3) = 1$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Al 26/10/2026 le regole del 2026/27 non sono ancora uscite; quelle del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)).
+
+**Che cosa serve di questa lezione**
+
+1. **Il binomio di Newton** non compare in nessuno degli appelli 2021–2026 che ho. Serve per dimostrare formule come $\sum \binom{n}{k} = 2^n$, e i coefficienti di un binomio sono un esercizio classico.
+2. **Le permutazioni** invece ci sono **in tutti gli appelli del 2025 e del 2026**: di solito le domande 5 e 6 del quiz e uno dei due problemi. Chiedono cicli, tipo, periodo e parità, che arrivano nelle prossime lezioni. Quello che serve già da ora è leggere e scrivere la tabella a due righe, sapere che $\lvert S_n \rvert = n!$ e calcolare un'inversa girando le frecce.
+
+### Una domanda vera, letta insieme
+
+**Appello del 14/01/2025, problema 1, versione A.** Il testo: «Si considerino le due permutazioni in $S_6$: $\sigma = (1\,3)(2\,4\,3)(3\,5\,1)$, $\tau = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 \\ 3 & 1 & 4 & 2 & 6 & 5 \end{pmatrix}$. a) Scrivere $\sigma$ e $\tau$ come prodotti di cicli disgiunti, calcolarne il tipo, il periodo e la parità. b) Determinare una permutazione $\nu \in S_6$ tale che $\sigma^{15041}\nu = \tau^{-1}$, e scriverla in notazione matriciale (a due righe). c) Dimostrare che la funzione $f: \mathbb{Z} \to S_6$, $n \mapsto \sigma^n$, è un omomorfismo, e calcolarne nucleo e immagine.»
+
+**In pratica chiede:** quasi tutto quello che si fa sulle permutazioni nel corso. La $\sigma$ è scritta con i cicli, che arrivano nella prossima lezione; il punto c) è della fine del corso. Con questa lezione si può già leggere $\tau$ e calcolarne l'inversa, che serve nel punto b).
+
+> [!ESEMPIO] · la parte che si fa già, passo per passo
+> **Passo 1: leggere $\tau$.** Per colonne: $\tau(1) = 3$, $\tau(2) = 1$, $\tau(3) = 4$, $\tau(4) = 2$, $\tau(5) = 6$, $\tau(6) = 5$. Nella riga sotto ci sono 1, …, 6 una volta ciascuno: è una permutazione.
+>
+> **Passo 2: girare le frecce.** Se $\tau(a) = b$, allora $\tau^{-1}(b) = a$. Si cerca nella riga sotto il numero 1: sta sotto il 2, quindi $\tau^{-1}(1) = 2$. Il 2 sta sotto il 4: $\tau^{-1}(2) = 4$. Poi $\tau^{-1}(3) = 1$, $\tau^{-1}(4) = 3$, $\tau^{-1}(5) = 6$, $\tau^{-1}(6) = 5$.
+>
+> **Passo 3: la tabella.** $\tau^{-1} = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 \\ 2 & 4 & 1 & 3 & 6 & 5 \end{pmatrix}$. È la stessa della soluzione ufficiale.
+>
+> **Il resto.** La soluzione ufficiale scrive $\sigma = (1\,2\,4)(3\,5)$, di tipo $(3, 2)$, periodo 6, dispari, e $\tau = (1\,3\,4\,2)(5\,6)$, di tipo $(4, 2)$, periodo 4, pari; poi trova $\nu = \sigma\tau^{-1}$. Sono le cose delle prossime lezioni.
+
+**Errori da evitare**
+
+- Leggere la tabella per righe invece che per colonne: $\tau(2)$ è il numero **sotto** il 2, non il secondo numero da sinistra della riga sopra.
+- Per l'inversa, scambiare solo le righe e dimenticare di riordinare la tabella secondo la riga sopra.
+- Nei coefficienti di un binomio, dimenticare di elevare i numeri e i segni dentro le parentesi.
+
+## Quiz
+
+```quiz
+D: Appello del 14/01/2025, problema 1 (versione A). Con $\tau = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 \\ 3 & 1 & 4 & 2 & 6 & 5 \end{pmatrix}$, qual è la riga sotto di $\tau^{-1}$?
++ 2 4 1 3 6 5
+- 3 1 4 2 6 5
+- 5 6 2 4 1 3
+- 2 1 4 3 5 6
+- 3 4 1 2 6 5
+= Si gira ogni freccia: l'1 sta sotto il 2, quindi $\tau^{-1}(1) = 2$, e così via. È la tabella della soluzione ufficiale. La risposta più insidiosa è la seconda, che è $\tau$ stessa: si sono scambiate le righe senza riordinare.
+
+D: Sul modello degli esercizi sul binomio: qual è il coefficiente di $x^3$ in $(2x - 3)^5$?
++ 720
+- 10
+- 80
+- −720
+- 1080
+= $k = 2$: $\binom{5}{2} \cdot 2^3 \cdot (-3)^2 = 10 \cdot 8 \cdot 9 = 720$, controllato sviluppando con un programma. La risposta più insidiosa è 10, il solo coefficiente binomiale; 80 dimentica il $(-3)^2$; −720 sbaglia il segno: $(-3)^2$ è positivo.
+
+D: Quanti termini ha lo sviluppo di $(x + y)^{12}$?
+N: 13
+= I termini sono $x^{12-k}y^k$ per $k$ da 0 a 12: sono 13. L'errore tipico è rispondere 12.
+
+D: Quanto vale $\binom{6}{0} - \binom{6}{1} + \binom{6}{2} - \binom{6}{3} + \binom{6}{4} - \binom{6}{5} + \binom{6}{6}$?
++ 0
+- 64
+- 32
+- 1
+- −1
+= È il binomio di Newton con $x = 1$, $y = -1$: $(1 - 1)^6 = 0$. La risposta più insidiosa è 32: è la somma dei soli termini con $k$ pari, $1 + 15 + 15 + 1$.
+
+D: Quante sono le permutazioni di un insieme con 5 elementi?
+N: 120
+= Sono $5! = 120$: la riga sotto della tabella è un ordinamento dei 5 elementi.
+
+D: Quale di queste tabelle è una permutazione di $\{1, 2, 3, 4, 5\}$? (Si scrive solo la riga sotto.)
++ 5 3 1 4 2
+- 1 2 3 4 4
+- 2 3 4 5 6
+- 3 1 2 5 3
+- 1 2 3 4
+= Nella riga sotto devono comparire 1, 2, 3, 4, 5 una volta ciascuno. La risposta più insidiosa è «2 3 4 5 6»: i valori sono tutti diversi, ma il 6 non è nell'insieme e l'1 manca. L'ultima ha solo 4 numeri: manca l'immagine del 5.
+
+D: $\pi$ scambia 1 e 2, $\sigma$ scambia 1 e 3, ed entrambe lasciano fermo il terzo numero. Quanto vale $(\pi \circ \sigma)(1)$?
++ 3
+- 2
+- 1
+- dipende dall'ordine in cui le scrivo
+- non è definito
+= Si applica prima $\sigma$: $\sigma(1) = 3$; poi $\pi(3) = 3$. La risposta più insidiosa è 2, che è $(\sigma \circ \pi)(1)$: l'ordine si legge da destra.
+
+D: Quante permutazioni di $\{1, 2, 3, 4, 5, 6\}$ mandano l'1 nel 2 e il 2 nell'1?
+N: 24
+= Fissate le immagini di 1 e 2, i numeri da 3 a 6 si permutano liberamente: $4! = 24$. L'ho contato anche provando tutte le 720 permutazioni.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: sviluppare
+Sviluppa con il triangolo: (a) $(x + y)^5$; (b) $(a - b)^4$; (c) $(2x + 1)^4$.
+::: soluzione
+(a) $x^5 + 5x^4y + 10x^3y^2 + 10x^2y^3 + 5xy^4 + y^5$. (b) $a^4 - 4a^3b + 6a^2b^2 - 4ab^3 + b^4$: i segni si alternano. (c) $16x^4 + 32x^3 + 24x^2 + 8x + 1$: ogni coefficiente della riga 4 va moltiplicato per la potenza di 2 che accompagna $x$, per esempio $4 \cdot 2^3 = 32$.
+:::
+
+::: esercizio base Riscaldamento: è una permutazione?
+Per ogni riga sotto (sopra c'è $1, 2, \dots$) di' se è una permutazione e trova i punti fissi: (a) 2 1 3; (b) 1 1 2; (c) 4 3 2 1; (d) 1 2 3 4 5.
+::: soluzione
+(a) Sì, punto fisso 3. (b) No: l'1 compare due volte e il 3 manca. (c) Sì, nessun punto fisso. (d) Sì, è l'identità: tutti i numeri sono fissi.
+:::
+
+::: esercizio medio Coefficienti
+Trova: (a) il coefficiente di $x^2$ in $(1 + x)^7$; (b) il coefficiente di $x^6$ in $(x^2 + 1)^5$; (c) il coefficiente di $x^2y$ in $(3x + y)^3$.
+::: soluzione
+(a) $\binom{7}{2} = 21$. (b) $A = x^2$, $B = 1$: il termine generale è $\binom{5}{k}x^{2(5-k)}$, e $2(5 - k) = 6$ dà $k = 2$: $\binom{5}{2} = 10$. (c) $k = 1$: $\binom{3}{1} \cdot 3^2 = 27$. Tutti controllati sviluppando con un programma.
+:::
+
+::: esercizio medio Permutazioni con un vincolo
+In $S_5$, quante permutazioni hanno $\pi(1) < \pi(2)$?
+::: soluzione
+Metà di tutte: 60. Scambiando i valori di $\pi(1)$ e $\pi(2)$ si passa da una permutazione con $\pi(1) < \pi(2)$ a una con $\pi(1) > \pi(2)$, e viceversa: è una biezione tra i due gruppi, che quindi hanno lo stesso numero di elementi, $120 / 2 = 60$.
+:::
+
+::: esercizio esame Permutazioni senza punti fissi
+Quante permutazioni di $\{1, 2, 3, 4\}$ non lasciano fermo nessun numero? Usa il principio di inclusione-esclusione della [D06](D06_insiemi_finiti_inclusione_esclusione.html).
+::: soluzione
+Sia $A_i$ l'insieme delle permutazioni con $\pi(i) = i$. Una permutazione che fissa $j$ numeri dati permuta liberamente gli altri: ce ne sono $(4 - j)!$, e i modi di scegliere i $j$ numeri sono $\binom{4}{j}$. Le permutazioni che fissano almeno un numero sono
+$$\binom{4}{1}3! - \binom{4}{2}2! + \binom{4}{3}1! - \binom{4}{4}0! = 24 - 12 + 4 - 1 = 15.$$
+Quelle senza punti fissi sono $24 - 15 = 9$. L'ho controllato provando tutte le 24 permutazioni.
+:::
+
+::: esercizio difficile Esercizio 3.16 del libro: Newton per induzione
+Dimostra il binomio di Newton per induzione su $n$, usando la formula di Stiefel.
+::: soluzione
+È la dimostrazione nel riquadro chiuso della sezione «Perché escono i coefficienti binomiali». In breve: si moltiplica lo sviluppo di $(x + y)^n$ per $x$ e per $y$, si raccolgono i termini con la stessa potenza, e il coefficiente di $x^{n+1-k}y^k$ viene $\binom{n}{k-1} + \binom{n}{k}$, che per Stiefel è $\binom{n+1}{k}$.
+:::
+
+## Domande di ripasso
+
+::: domanda Perché i coefficienti di $(x + y)^n$ sono coefficienti binomiali?
+Perché il termine $x^{n-k}y^k$ si ottiene scegliendo $y$ da $k$ degli $n$ fattori, e i modi di sceglierli sono $\binom{n}{k}$.
+:::
+
+::: domanda Come si trova il coefficiente di una potenza di $x$ in $(A + B)^n$?
+Si scrive il termine generale $\binom{n}{k}A^{n-k}B^k$, si trova il $k$ che dà la potenza cercata e si calcola elevando anche numeri e segni.
+:::
+
+::: domanda Che cos'è una permutazione?
+Una funzione biettiva da un insieme in sé stesso: ogni elemento va in un posto, e ogni posto è occupato da un solo elemento.
+:::
+
+::: domanda Quante sono le permutazioni di un insieme con $n$ elementi, e perché?
+$n!$: l'immagine del primo elemento si sceglie in $n$ modi, quella del secondo in $n - 1$, e così via.
+:::
+
+::: domanda La composizione di permutazioni è commutativa?
+No, da 3 elementi in su: scambiare 1 e 2 e poi 1 e 3 manda l'1 in 2, mentre nell'altro ordine lo manda in 3.
+:::
+
+## Glossario
+
+```glossario
+Binomio di Newton | (x + y)^n = somma per k da 0 a n di C(n, k) x^(n-k) y^k (teorema 3.34).
+Termine generale | Il termine con indice k nello sviluppo di (A + B)^n: C(n, k) A^(n-k) B^k.
+Permutazione | Funzione biettiva da un insieme X in sé stesso (definizione 5.1).
+S_X, S_n | L'insieme delle permutazioni di X; S_n quello delle permutazioni di {1, ..., n}, con n! elementi.
+Tabella a due righe | Notazione di una permutazione: sopra 1, ..., n, sotto le immagini.
+Punto fisso | Elemento che una permutazione lascia dov'è: π(a) = a.
+Permutazione inversa | La permutazione che gira le frecce: se π(a) = b, allora π⁻¹(b) = a.
+```
+
+## Checklist
+
+```checklist
+- So sviluppare (x + y)^n con il triangolo di Tartaglia.
+- So spiegare perché il coefficiente di x^(n-k) y^k è C(n, k).
+- So trovare il coefficiente di un termine in un binomio con numeri e segni.
+- So ricavare dal binomio la somma di una riga e la somma a segni alterni.
+- So dire quando una tabella a due righe è una permutazione e trovarne i punti fissi.
+- So perché |S_n| = n!.
+- So comporre due permutazioni su un elemento e mostrare che l'ordine conta.
+- So calcolare l'inversa di una permutazione girando le frecce.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 3 «Combinatorica», pp. 60–61 (teorema 3.34 con la dimostrazione, proposizione 3.35 con la dimostrazione dal binomio), esercizi 3.16 e 3.19 (p. 66); capitolo 5 «Permutazioni», pp. 83–85 (definizione 5.1, le proprietà della composizione in $S_X$, l'esempio della non commutatività, proposizione 5.2, la tabella a due righe con gli esempi in $S_7$ e $I_6$). Le parti del libro sono riassunte con parole mie.
+- Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 10 (triangolo di Tartaglia-Pascal, teorema del binomio di Newton, permutazioni: definizione ed esempi) e lezione 11 (composizioni e inverse di permutazioni, cicli).
+- Appello di Matematica Discreta del 14/01/2025, problema 1, versione A, con la soluzione ufficiale, dal Moodle MDAG1 2025/26 (id 3501, aperto agli ospiti).
+- Gli sviluppi e i coefficienti li ho controllati con sympy; i conteggi sulle permutazioni ($S_5$ con $\pi(1) < \pi(2)$, $S_6$ con 1 e 2 scambiati, $S_4$ senza punti fissi) provando tutte le permutazioni con un programma. Gli esempi senza indicazione, i quiz e gli esercizi sono di questi appunti.
 
 
 ---

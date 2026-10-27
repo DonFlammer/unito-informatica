@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab04 · Laboratorio 04: iterazioni</title>
+<meta name="lezione" content="Lab04">
+<meta name="data" content="2026-10-26">
+<meta name="description" content="Appunti del quarto laboratorio di Programmazione I (canale B, Lab04): quando usare for e quando while, i sei cicli for della slide 4, la somma dei pari, numeri da 0 a n e fattoriale, sequenze terminate da 0 con il valore restituito da scanf, la media di una sequenza e l'input da file, divisori, triangolo di Floyd, il quadrato di caratteri, «per ogni» ed «esiste» su una sequenza, Fibonacci con la variabile temporanea, il gioco dell'indovina il numero e la strategia per dimezzamento, con tutti i programmi provati.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/Lab04_iterazioni.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#for-o-while"><span class="n">§1</span><span>for o while</span></a></li>
+<li><a href="#la-somma-dei-numeri-pari"><span class="n">§2</span><span>La somma dei numeri pari</span></a></li>
+<li><a href="#primi-esercizi-iterazioni-n-c"><span class="n">§3</span><span>Primi esercizi: iterazioni_n.c</span></a></li>
+<li><a href="#sequenze-terminate-da-0"><span class="n">§4</span><span>Sequenze terminate da 0</span></a></li>
+<li><a href="#la-media-di-una-sequenza-media-seq-c"><span class="n">§5</span><span>La media di una sequenza: media_seq.c</span></a></li>
+<li><a href="#divisori-interi"><span class="n">§6</span><span>Divisori interi</span></a></li>
+<li><a href="#cicli-annidati-floyd-e-il-quadrato"><span class="n">§7</span><span>Cicli annidati: Floyd e il quadrato</span></a></li>
+<li><a href="#per-ogni-ed-esiste-su-una-sequenza"><span class="n">§8</span><span>«Per ogni» ed «esiste» su una sequenza</span></a></li>
+<li><a href="#fibonacci"><span class="n">§9</span><span>Fibonacci</span></a></li>
+<li><a href="#indovinare-un-numero"><span class="n">§10</span><span>Indovinare un numero</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§11</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§12</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§13</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§14</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§15</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§16</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§17</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione Lab04</nav>
+      <p class="eyebrow">Canale B · Laboratorio 04 · Programmazione I</p>
+      <h1>Laboratorio 04: iterazioni</h1>
+      <p class="lede">Il quarto laboratorio mette in pratica la lezione 04A sui cicli: si sceglie il ciclo adatto, si leggono sequenze di lunghezza sconosciuta, si annidano due cicli per disegnare figure e si scrive un programma che indovina un numero dimezzando ogni volta l&#39;intervallo. Qui trovi ogni esercizio risolto e provato, e due sviste delle slide.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>Lab04 «Iterazioni», laboratorio canale B · 25 pagine, esercizi anche su CodeRunner</dd></div><div><dt>Laboratorio</dt><dd>Elisa Marengo (turno B2, lun 26/10) e Valerio Basile (turno B1, mar 27/10) · 14–17 · laboratorio Turing</dd></div><div><dt>Tempo di studio</dt><dd>2–3 ore, davanti a un computer</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:770px">
+<h2 id="tldr-title">La lezione in 8 punti</h2>
+<ul>
+<li>Si usa il <strong><code>for</code></strong> quando il numero di giri è noto prima di partire, il <strong><code>while</code></strong> quando lo decide quello che succede durante i giri, per esempio un numero letto da tastiera.</li>
+<li>Una <strong>sequenza terminata da 0</strong> si legge con <code>while (1 == scanf(&quot;%d&quot;, &amp;x) &amp;&amp; x != 0)</code>: <code>scanf</code> restituisce quante variabili ha letto, e l&#39;<code>&amp;&amp;</code> non guarda <code>x</code> se la lettura è fallita.</li>
+<li>Per una <strong>media</strong> servono un accumulatore e un contatore; prima di dividere si controlla che il contatore non sia 0.</li>
+<li>Con <code>programma &lt; file.txt</code> il programma legge dal file invece che dalla tastiera. Funziona su Linux, macOS e nel Prompt dei comandi di Windows, ma non in PowerShell.</li>
+<li>Le figure (il triangolo di Floyd, il quadrato) si disegnano con <strong>due cicli annidati</strong>: quello esterno per le righe, quelli interni per i caratteri di una riga.</li>
+<li><strong>«Per ogni»</strong> su una sequenza: una variabile che parte da <code>true</code> e diventa <code>false</code> al primo controesempio. <strong>«Esiste»</strong>: parte da <code>false</code> e diventa <code>true</code> al primo esempio.</li>
+<li>Nella successione di Fibonacci l&#39;aggiornamento di due variabili insieme richiede una <strong>variabile temporanea</strong>.</li>
+<li>Per indovinare un numero tra 0 e 99 provando sempre il <strong>punto medio</strong> bastano al massimo 7 tentativi; provandoli tutti in fila ne possono servire 100.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È il quarto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno <strong>B2</strong> lunedì 26/10 con <strong>Elisa Marengo</strong>, turno <strong>B1</strong> martedì 27/10 con <strong>Valerio Basile</strong>. Gli esercizi riprendono la lezione <a href="04A_iterazioni.html">04A</a> sui cicli; l&#39;ultimo esempio usa gli array della <a href="05A_array_stringhe.html">05A</a>. Gli appunti del laboratorio 03 non ci sono ancora: non ho le slide.</p>
+<p><strong>Canali A e C.</strong> Secondo la scheda del corso i laboratori hanno la stessa sequenza nei tre canali e gli stessi esercizi su CodeRunner. Le slide 2026/27 dei canali A e C per questo laboratorio non le ho viste: controlla il giorno del tuo turno su Moodle.</p>
+<p>I tre esercizi su CodeRunner (Lab04-Es1, Es2 ed Es3) e il codice di partenza (la cartella <code>input_media_seq</code> e <code>fai_indovinare_numero.c</code>) sono su Moodle e non li ho: qui ci sono soluzioni mie degli stessi problemi, da adattare al testo esatto. Tutti i programmi li ho compilati con <code>gcc -Wall -Werror</code> (gcc 16.1, Windows 11 a 64 bit) ed eseguiti.</p>
+</div>
+
+
+<section id="for-o-while" aria-labelledby="h-for-o-while" style="--h:1570px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-for-o-while">for o while</h2><span class="slides">slide 2–5</span></div>
+<p>Le slide danno una regola pratica per scegliere il ciclo. Il <strong><code>for</code></strong> va bene quando si sa già quanti giri fare: «stampa i numeri da 1 a 100», «scorri un array di <code>n</code> elementi». La variabile di controllo nasce nel <code>for</code>, cambia solo nell&#39;aggiornamento e il corpo la usa senza modificarla:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt; n; i++) {
+    <span class="cm">// codice che usa ma non cambia i</span>
+}</code></pre>
+<p>Il <strong><code>while</code></strong> va bene quando la fine si scopre solo durante i giri: «leggi numeri finché non arriva lo 0». Spesso la condizione è una variabile booleana che il corpo mette a <code>false</code> quando è ora di smettere, oppure un indice che avanza di passi non fissi.</p>
+<p>La slide 4 chiede come cambia la variabile <code>i</code> in sei cicli. Le risposte della slide 5, con i valori che ho fatto stampare:</p>
+<div class="table-wrap"><table><thead><tr><th>Ciclo</th><th>Valori di <code>i</code></th><th>Giri</th></tr></thead><tbody><tr><td><code>for (int i = 1; i &lt;= 100; ++i)</code></td><td>1, 2, …, 100</td><td>100</td></tr>
+<tr><td><code>for (int i = 100; i &gt;= 1; --i)</code></td><td>100, 99, …, 1</td><td>100</td></tr>
+<tr><td><code>for (int i = 7; i &lt;= 77; i += 7)</code></td><td>7, 14, …, 77</td><td>11</td></tr>
+<tr><td><code>for (int i = 20; i &gt;= 2; i -= 7)</code></td><td>20, 13, 6</td><td>3</td></tr>
+<tr><td><code>for (size_t i = 0; i &lt; 10; ++i)</code></td><td>0, 1, …, 9: l&#39;intervallo <span class="katex" role="math" aria-label="[0, 10)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">10</span><span class="mclose">)</span></span></span></span></td><td>10</td></tr>
+<tr><td><code>for (ptrdiff_t i = 100; i &gt;= 0; --i)</code></td><td>100, 99, …, 0</td><td>101</td></tr></tbody></table></div>
+<div class="box trap"><p class="box-label"><span>Trappola · Il quarto ciclo non arriva a 2</span></p><p>La slide 5 dice che <code>i</code> «varia da 20 a 2 inclusi». Non è così: dopo 6 il valore successivo è <span class="katex" role="math" aria-label="-1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>, che non soddisfa <code>i &gt;= 2</code>. Il 2 compare nella condizione, ma <code>i</code> ci arriva solo se la distanza tra 20 e 2, cioè 18, è un multiplo del passo. Qui il passo è 7. Nel terzo ciclo invece 77 c&#39;è: <span class="katex" role="math" aria-label="77 - 7 = 70"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">77</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">70</span></span></span></span> è un multiplo di 7.</p>
+</div>
+<p>L&#39;ultimo ciclo conta all&#39;indietro fino a 0 compreso e per questo usa <code>ptrdiff_t</code>, il tipo con il segno che fa coppia con <code>size_t</code> (si dichiara in <code>&lt;stddef.h&gt;</code> e si stampa con <code>%td</code>). Con <code>size_t i</code> la condizione <code>i &gt;= 0</code> sarebbe sempre vera e il ciclo non finirebbe: è la trappola vista nella <a href="05A_array_stringhe.html">05A</a>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quante volte gira <code>for (int i = 3; i &lt; 30; i += 5)</code>, e qual è l&#39;ultimo valore di <code>i</code> dentro il ciclo?</span></summary><div class="ans"><p>I valori sono 3, 8, 13, 18, 23, 28: 6 giri, l&#39;ultimo è 28. Il successivo, 33, non soddisfa <code>i &lt; 30</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>for</code> quando il numero di giri si sa prima, <code>while</code> quando si scopre durante.</li>
+<li>Il valore scritto nella condizione non è per forza raggiunto: dipende dal passo.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-somma-dei-numeri-pari" aria-labelledby="h-la-somma-dei-numeri-pari" style="--h:960px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-la-somma-dei-numeri-pari">La somma dei numeri pari</h2><span class="slides">slide 6–7</span></div>
+<p>Il primo esempio somma i pari da 2 a 100. La versione della slide 6 scorre tutti i numeri da 0 a 100 e somma solo quelli con resto 0 nella divisione per 2; quella della slide 7 fa partire il ciclo da 2 e avanza di 2, così ogni giro trova un pari e non serve l&#39;<code>if</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> sum = 0;                                  <span class="cm">// accumulatore</span>
+<span class="kw">for</span> (<span class="kw">int</span> number = 2; number &lt;= 100; number += 2) {
+    sum += number;
+}
+printf(<span class="str">&quot;La somma è %d\n&quot;</span>, sum);</code></pre>
+<p>Tutte e due stampano <code>La somma è 2550</code>. La seconda fa 50 giri invece di 101: quando il passo si conosce, conviene metterlo nell&#39;aggiornamento invece di filtrare con un <code>if</code>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Le virgolette delle slide</span></p><p>Nelle slide le stringhe sono scritte con le virgolette tipografiche, “ e ”, che PowerPoint mette al posto di quelle dritte. Il C accetta solo <code>&quot;</code>. Se copi il codice dalla slide, gcc risponde con <code>error: stray '\342' in program</code> (342 è il primo byte di “ in UTF-8) e poi con una serie di errori che non c&#39;entrano. Si correggono riscrivendo le virgolette a mano.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Come cambia il ciclo della slide 7 per sommare i dispari da 1 a 99? Quanto viene?</span></summary><div class="ans"><p><code>for (int number = 1; number &lt;= 99; number += 2)</code>. La somma è 2500: i primi 50 dispari sommano <span class="katex" role="math" aria-label="50^2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">5</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Un accumulatore si inizializza prima del ciclo, a 0 per una somma.</li>
+<li>Se i valori da visitare hanno un passo fisso, il passo va nell&#39;aggiornamento del <code>for</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="primi-esercizi-iterazioni-n-c" aria-labelledby="h-primi-esercizi-iterazioni-n-c" style="--h:1230px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-primi-esercizi-iterazioni-n-c">Primi esercizi: iterazioni_n.c</h2><span class="slides">slide 8</span></div>
+<p>L&#39;esercizio chiede tre cose su un intero positivo <code>n</code> letto con <code>scanf</code>: stampare i numeri da 0 a <code>n</code> e poi da <code>n</code> a 0, poi i dispari fino a <code>n</code>, poi il fattoriale <span class="katex" role="math" aria-label="n! = 1 \cdot 2 \cdots n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">n</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span></span></span></span>. La domanda della slide è quale ciclo usare: il <code>for</code>, perché in tutti e tre i casi il numero di giri dipende solo da <code>n</code>, che si conosce prima di cominciare.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n;
+    printf(<span class="str">&quot;Inserisci un intero positivo: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;n);
+
+    <span class="cm">// 1. da 0 a n e poi da n a 0</span>
+    <span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt;= n; i++) {
+        printf(<span class="str">&quot;%d &quot;</span>, i);
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+    <span class="kw">for</span> (<span class="kw">int</span> i = n; i &gt;= 0; i--) {
+        printf(<span class="str">&quot;%d &quot;</span>, i);
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+
+    <span class="cm">// 2. i dispari da 0 a n</span>
+    <span class="kw">for</span> (<span class="kw">int</span> i = 1; i &lt;= n; i += 2) {
+        printf(<span class="str">&quot;%d &quot;</span>, i);
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+
+    <span class="cm">// 3. il fattoriale di n</span>
+    <span class="kw">unsigned</span> <span class="kw">long</span> <span class="kw">long</span> fatt = 1;
+    <span class="kw">for</span> (<span class="kw">int</span> i = 2; i &lt;= n; i++) {
+        fatt = fatt * i;
+    }
+    printf(<span class="str">&quot;%d! = %llu\n&quot;</span>, n, fatt);
+}</code></pre>
+<p>Con l&#39;input 6 stampa <code>0 1 2 3 4 5 6</code>, poi <code>6 5 4 3 2 1 0</code>, poi <code>1 3 5</code> e infine <code>6! = 720</code>. Il fattoriale parte da 1, non da 0: è un accumulatore di prodotti, e moltiplicare per 0 darebbe sempre 0. Con <span class="katex" role="math" aria-label="n = 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> o <span class="katex" role="math" aria-label="n = 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> il ciclo non gira e il risultato resta 1, che è il valore giusto di <span class="katex" role="math" aria-label="0!"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">0</span><span class="mclose">!</span></span></span></span> e <span class="katex" role="math" aria-label="1!"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">1</span><span class="mclose">!</span></span></span></span>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Il fattoriale cresce in fretta</span></p><p>Con un <code>int</code> il risultato è giusto solo fino a <span class="katex" role="math" aria-label="12! = 479\,001\,600"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">12</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">479</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">001</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">600</span></span></span></span>: per 13 il mio programma stampa 1932053504, mentre <span class="katex" role="math" aria-label="13! = 6\,227\,020\,800"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">13</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">227</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">020</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">800</span></span></span></span> supera il massimo di un <code>int</code>, 2 147 483 647. Con <code>unsigned long long</code> (specificatore <code>%llu</code>) si arriva a <span class="katex" role="math" aria-label="20! = 2\,432\,902\,008\,176\,640\,000"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">20</span><span class="mclose">!</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">432</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">902</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">008</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">176</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">640</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">000</span></span></span></span>; con 21 il risultato ricomincia da capo e il programma stampa un numero sbagliato senza nessun avviso.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa la seconda parte con l&#39;input 1? E con l&#39;input 0?</span></summary><div class="ans"><p>Con 1 stampa <code>1</code>: il ciclo parte da 1 e <span class="katex" role="math" aria-label="1 \le 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>. Con 0 non stampa niente, solo l&#39;a capo: la condizione <span class="katex" role="math" aria-label="1 \le 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> è falsa subito e il ciclo fa zero giri.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Un prodotto si accumula partendo da 1.</li>
+<li>Prima di usare un tipo, chiediti fino a dove arriva il risultato.</li>
+</ul>
+</div>
+</section>
+
+<section id="sequenze-terminate-da-0" aria-labelledby="h-sequenze-terminate-da-0" style="--h:1610px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-sequenze-terminate-da-0">Sequenze terminate da 0</h2><span class="slides">slide 9–11</span></div>
+<p>Ora il programma deve sommare dei numeri letti da tastiera, e non sa quanti sono: la sequenza finisce quando arriva uno 0, che fa da <strong>terminatore</strong> e non fa parte dei dati. Il numero di giri si scopre solo leggendo, quindi serve un <code>while</code>. La prima versione della slide 10 usa una variabile booleana:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> sum = 0;
+<span class="kw">bool</span> continua = <span class="kw">true</span>;
+<span class="kw">while</span> (continua) {
+    <span class="kw">int</span> number;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;number);           <span class="cm">// legge il prossimo numero</span>
+    <span class="kw">if</span> (number == 0)
+        continua = <span class="kw">false</span>;           <span class="cm">// sequenza terminata</span>
+    <span class="kw">else</span>
+        sum += number;
+}
+printf(<span class="str">&quot;La somma è %d\n&quot;</span>, sum);</code></pre>
+<p>La seconda versione, della slide 11, mette la lettura direttamente nella condizione:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> sum = 0;
+<span class="kw">int</span> number;
+<span class="kw">while</span> (1 == scanf(<span class="str">&quot;%d&quot;</span>, &amp;number) &amp;&amp; number != 0) {
+    sum += number;
+}
+printf(<span class="str">&quot;La somma è %d\n&quot;</span>, sum);</code></pre>
+<p>Funziona per due motivi. Il primo: <code>scanf</code> <strong>restituisce un numero</strong>, quante variabili è riuscita a leggere. Con <code>&quot;%d&quot;</code> restituisce 1 se ha letto un intero, e un altro valore se l&#39;input non è un numero o è finito. Il secondo: l&#39;<code>&amp;&amp;</code> valuta la parte destra solo se la sinistra è vera. Se la lettura fallisce, <code>number != 0</code> non viene nemmeno guardato, e meno male: <code>number</code> non conterrebbe niente di sensato. È la valutazione cortocircuitata vista nella <a href="03C_booleani.html">03C</a>.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/538"><svg viewBox="0 0 560 538" role="img" aria-label="Il ciclo della slide 11. La condizione fa due cose in ordine, da sinistra: prima legge un numero, poi lo confronta con 0. Se la lettura fallisce si esce subito dal ramo in basso a destra, senza guardare il numero." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-rosa" d="M190.4 56.04L369.6 56.04L369.6 16.81L190.4 16.81Z"/><path class="g-linea g-grigio" d="M280 56.04L280 92.47" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-verde" d="M280 95.27L414.4 140.1L280 184.94L145.6 140.1Z"/><path class="g-linea g-grigio" d="M280 184.94L280 226.97" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-verde" d="M280 229.77L414.4 274.6L280 319.44L145.6 274.6Z"/><path class="g-linea g-grigio" d="M280 319.44L280 361.47" marker-end="url(#g-freccia-1-grigio)"/><path class="g-poligono g-ambra" d="M190.4 403.5L369.6 403.5L369.6 364.27L190.4 364.27Z"/><path class="g-linea g-grigio" d="M190.4 383.89L72.8 383.89"/><path class="g-linea g-grigio" d="M72.8 383.89L72.8 140.1"/><path class="g-linea g-grigio" d="M72.8 140.1L142.8 140.1" marker-end="url(#g-freccia-1-grigio)"/><path class="g-linea g-rosa" d="M414.4 140.1L492.8 140.1"/><path class="g-linea g-rosa" d="M414.4 274.6L492.8 274.6"/><path class="g-linea g-rosa" d="M492.8 140.1L492.8 495.97"/><path class="g-linea g-rosa" d="M492.8 495.97L372.4 495.97" marker-end="url(#g-freccia-1-rosa)"/><path class="g-poligono g-blu" d="M190.4 515.58L369.6 515.58L369.6 476.35L190.4 476.35Z"/></svg><span class="g-et g-c g-testo g-rosa" style="left:50.00%;top:6.77%">sum = 0</span><span class="g-et g-c g-testo g-verde" style="left:50.00%;top:26.04%">scanf letto 1?</span><span class="g-et g-c g-testo g-verde" style="left:56.00%;top:38.54%">sì</span><span class="g-et g-c g-testo g-verde" style="left:50.00%;top:51.04%">number != 0 ?</span><span class="g-et g-c g-testo g-verde" style="left:56.00%;top:63.54%">sì</span><span class="g-et g-c g-testo g-ambra" style="left:50.00%;top:71.36%">sum += number</span><span class="g-et g-c g-testo g-rosa" style="left:81.00%;top:21.88%">no</span><span class="g-et g-c g-testo g-rosa" style="left:81.00%;top:46.88%">no</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:92.19%">stampa sum</span></div><figcaption>Il ciclo della slide 11. La condizione fa due cose in ordine, da sinistra: prima legge un numero, poi lo confronta con 0. Se la lettura fallisce si esce subito dal ramo in basso a destra, senza guardare il numero.</figcaption></figure>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con l&#39;input <code>5 7 abc 3 0</code>, che cosa stampa la versione della slide 11?</span></summary><div class="ans"><p><code>La somma è 12</code>. Letti 5 e 7, la terza <code>scanf</code> trova <code>abc</code>, non legge niente e restituisce 0: il ciclo finisce senza arrivare né al 3 né allo 0.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Quando la fine si scopre leggendo, serve un <code>while</code>.</li>
+<li><code>scanf</code> restituisce quante variabili ha letto: <code>1 == scanf(&quot;%d&quot;, &amp;x)</code> controlla che la lettura sia riuscita.</li>
+<li>L&#39;<code>&amp;&amp;</code> valuta la destra solo se la sinistra è vera.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-media-di-una-sequenza-media-seq-c" aria-labelledby="h-la-media-di-una-sequenza-media-seq-c" style="--h:1520px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-la-media-di-una-sequenza-media-seq-c">La media di una sequenza: media_seq.c</h2><span class="slides">slide 12–13</span></div>
+<p>Stessa sequenza terminata da 0, ma ora si vuole la <strong>media</strong>, con la virgola. Con l&#39;input <code>4 8 10 2 0</code> deve uscire 6. Come suggerisce la slide servono due variabili: un accumulatore per la somma e un contatore dei numeri letti. La media si calcola dopo il ciclo.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> somma = 0;      <span class="cm">// accumulatore</span>
+    <span class="kw">int</span> quanti = 0;     <span class="cm">// contatore</span>
+    <span class="kw">int</span> numero;
+    <span class="kw">while</span> (1 == scanf(<span class="str">&quot;%d&quot;</span>, &amp;numero) &amp;&amp; numero != 0) {
+        somma += numero;
+        quanti++;
+    }
+    <span class="kw">if</span> (quanti &gt; 0) {
+        printf(<span class="str">&quot;%f\n&quot;</span>, (<span class="kw">double</span>)somma / quanti);
+    } <span class="kw">else</span> {
+        printf(<span class="str">&quot;Sequenza vuota\n&quot;</span>);
+    }
+}</code></pre>
+<p>Con <code>4 8 10 2 0</code> stampa <code>6.000000</code>, con <code>1 2 0</code> stampa <code>1.500000</code>. Due dettagli contano. Il <strong>cast</strong> <code>(double)somma</code> rende reale la divisione: senza, <code>3 / 2</code> farebbe 1, come nel <a href="Lab02_operatori_tipi.html">Lab02</a>. Il <strong>controllo su <code>quanti</code></strong> serve perché se la sequenza è vuota, cioè il primo numero è già 0, la divisione sarebbe per zero: sul mio Windows la stampa è <code>-nan(ind)</code>, su Linux <code>-nan</code>, cioè «non è un numero».</p>
+<h3 id="leggere-l-input-da-un-file">Leggere l&#39;input da un file</h3>
+<p>La slide 13 propone di non digitare ogni volta la sequenza: il codice di partenza ha una cartella <code>input_media_seq</code> con un file per sequenza. Il simbolo <code>&lt;</code> sulla riga di comando collega il file al posto della tastiera, e <code>scanf</code> legge dal file:</p>
+<pre class="code"><code>./media_seq &lt; input01.txt          (Linux e macOS)
+media_seq.exe &lt; input01.txt        (Windows, nel Prompt dei comandi)</code></pre>
+<div class="box trap"><p class="box-label"><span>Trappola · In PowerShell il &lt; non funziona</span></p><p>Il terminale di Windows apre spesso PowerShell, non il Prompt dei comandi. Lì <code>.\media_seq.exe &lt; input01.txt</code> dà l&#39;errore <code>The '&lt;' operator is reserved for future use</code> (in italiano: «L&#39;operatore &#39;&lt;&#39; è riservato per un utilizzo futuro»). In PowerShell si scrive <code>Get-Content input01.txt | .\media_seq.exe</code>, che passa il contenuto del file al programma; oppure si apre il Prompt dei comandi con <code>cmd</code>. Al laboratorio Turing, su Linux, il <code>&lt;</code> funziona.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa il programma se il file contiene solo <code>0</code>? E se contiene <code>7</code> senza lo 0 finale?</span></summary><div class="ans"><p>Con <code>0</code> stampa <code>Sequenza vuota</code>. Con <code>7</code> stampa <code>7.000000</code>: dopo il 7 il file finisce, la seconda <code>scanf</code> non legge niente e il ciclo si chiude anche senza lo 0.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Media: accumulatore e contatore nel ciclo, divisione dopo, con un cast a <code>double</code>.</li>
+<li>Prima di dividere per un contatore, controlla che non sia 0.</li>
+<li><code>programma &lt; file</code> legge dal file; in PowerShell si usa <code>Get-Content file | programma</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="divisori-interi" aria-labelledby="h-divisori-interi" style="--h:760px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-divisori-interi">Divisori interi</h2><span class="slides">slide 14, Lab04-Es1 su CodeRunner</span></div>
+<p>Il primo esercizio su CodeRunner si chiama «Divisori Interi» e chiede di completare un programma finché passa tutti i test. Il testo esatto è su Moodle e non l&#39;ho. Il problema di fondo è trovare i divisori di un intero <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>: i numeri <span class="katex" role="math" aria-label="d"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span> tra 1 e <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> per cui la divisione <span class="katex" role="math" aria-label="n / d"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord">/</span><span class="mord mathnormal">d</span></span></span></span> ha resto 0. I candidati sono un numero fisso, da 1 a <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>, quindi la risposta alla domanda della slide è il <strong><code>for</code></strong>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> n;
+scanf(<span class="str">&quot;%d&quot;</span>, &amp;n);                 <span class="cm">// si assume n &gt;= 1</span>
+<span class="kw">int</span> quanti = 0;
+<span class="kw">for</span> (<span class="kw">int</span> d = 1; d &lt;= n; d++) {
+    <span class="kw">if</span> (n % d == 0) {            <span class="cm">// d divide n</span>
+        printf(<span class="str">&quot;%d &quot;</span>, d);
+        quanti++;
+    }
+}
+printf(<span class="str">&quot;\n%d ha %d divisori\n&quot;</span>, n, quanti);</code></pre>
+<p>Con 12 stampa <code>1 2 3 4 6 12</code> e <code>12 ha 6 divisori</code>. Un numero maggiore di 1 è <strong>primo</strong> se ha esattamente due divisori, 1 e sé stesso: basta controllare <code>quanti == 2</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanti giri fa il ciclo con <span class="katex" role="math" aria-label="n = 100"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span>, e quanti divisori trova?</span></summary><div class="ans"><p>Fa 100 giri e trova 9 divisori: 1, 2, 4, 5, 10, 20, 25, 50, 100.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>«<span class="katex" role="math" aria-label="d"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span> divide <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>» in C si scrive <code>n % d == 0</code>.</li>
+<li>Se i candidati sono un intervallo noto, il ciclo è un <code>for</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="cicli-annidati-floyd-e-il-quadrato" aria-labelledby="h-cicli-annidati-floyd-e-il-quadrato" style="--h:1560px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-cicli-annidati-floyd-e-il-quadrato">Cicli annidati: Floyd e il quadrato</h2><span class="slides">slide 15–16</span></div>
+<p>Per stampare una figura si usano due cicli uno dentro l&#39;altro: quello <strong>esterno</strong> fa un giro per riga, quello <strong>interno</strong> stampa i caratteri della riga. A ogni giro esterno il ciclo interno riparte da capo.</p>
+<h3 id="il-triangolo-di-floyd">Il triangolo di Floyd</h3>
+<p>Il triangolo di Floyd scrive i numeri naturali in fila, uno nella prima riga, due nella seconda, tre nella terza. Con <span class="katex" role="math" aria-label="n = 5"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span>:</p>
+<pre class="code"><code>1
+2 3
+4 5 6
+7 8 9 10
+11 12 13 14 15</code></pre>
+<p>La riga numero <code>riga</code> contiene <code>riga</code> numeri, e il numero da scrivere non dipende dalla posizione nella riga: continua dalla riga prima. Per questo si tiene un contatore <code>prossimo</code>, dichiarato <strong>fuori</strong> da tutti e due i cicli.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> n;
+scanf(<span class="str">&quot;%d&quot;</span>, &amp;n);
+<span class="kw">int</span> prossimo = 1;                       <span class="cm">// il numero da scrivere</span>
+<span class="kw">for</span> (<span class="kw">int</span> riga = 1; riga &lt;= n; riga++) {
+    <span class="kw">for</span> (<span class="kw">int</span> k = 1; k &lt;= riga; k++) {   <span class="cm">// la riga r ha r numeri</span>
+        printf(<span class="str">&quot;%d &quot;</span>, prossimo);
+        prossimo++;
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+}</code></pre>
+<p>Se <code>prossimo</code> fosse dichiarato dentro il ciclo esterno, ripartirebbe da 1 a ogni riga e il programma stamperebbe <code>1</code>, <code>1 2</code>, <code>1 2 3</code>.</p>
+<h3 id="il-quadrato">Il quadrato</h3>
+<p>Il quadrato di lato <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> ha nella riga <span class="katex" role="math" aria-label="i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> (contando da 0) prima <span class="katex" role="math" aria-label="i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> asterischi, poi una barra rovesciata sulla diagonale, poi <span class="katex" role="math" aria-label="n - 1 - i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> volte i due punti. Con <span class="katex" role="math" aria-label="n = 6"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span>:</p>
+<pre class="code"><code>\:::::
+*\::::
+**\:::
+***\::
+****\:
+*****\</code></pre>
+<p>Ogni riga ha tre pezzi, quindi dentro il ciclo esterno ci sono due cicli interni e una <code>printf</code> in mezzo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt; n; i++) {            <span class="cm">// una riga per giro</span>
+    <span class="kw">for</span> (<span class="kw">int</span> j = 0; j &lt; i; j++) {        <span class="cm">// i asterischi</span>
+        printf(<span class="str">&quot;*&quot;</span>);
+    }
+    printf(<span class="str">&quot;\\&quot;</span>);                        <span class="cm">// la diagonale</span>
+    <span class="kw">for</span> (<span class="kw">int</span> j = i + 1; j &lt; n; j++) {    <span class="cm">// n - 1 - i due punti</span>
+        printf(<span class="str">&quot;:&quot;</span>);
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+}</code></pre>
+<div class="box trap"><p class="box-label"><span>Trappola · La barra rovesciata si scrive doppia</span></p><p>Nelle stringhe del C la barra <code>\</code> comincia una sequenza speciale, come <code>\n</code>. Per stampare una barra vera si scrive <code>&quot;\\&quot;</code>. Con <code>printf(&quot;\&quot;)</code> la barra si mangia la virgoletta di chiusura e gcc risponde <code>missing terminating &quot; character</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nel triangolo di Floyd con <span class="katex" role="math" aria-label="n = 10"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span>, qual è l&#39;ultimo numero stampato?</span></summary><div class="ans"><p>55: le righe contengono <span class="katex" role="math" aria-label="1 + 2 + \dots + 10 = 55"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">55</span></span></span></span> numeri, e si parte da 1.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Ciclo esterno per le righe, cicli interni per i caratteri di una riga, <code>\n</code> alla fine di ogni riga.</li>
+<li>Un contatore che deve continuare da una riga all&#39;altra si dichiara fuori dai cicli.</li>
+</ul>
+</div>
+</section>
+
+<section id="per-ogni-ed-esiste-su-una-sequenza" aria-labelledby="h-per-ogni-ed-esiste-su-una-sequenza" style="--h:2160px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-per-ogni-ed-esiste-su-una-sequenza">«Per ogni» ed «esiste» su una sequenza</h2><span class="slides">slide 17–20</span></div>
+<p>Molte domande su una sequenza hanno la forma «tutti i numeri soddisfano una condizione?» oppure «c&#39;è almeno un numero che la soddisfa?». Sono i due quantificatori della logica, ∀ ed ∃, visti nella <a href="../FDA/09_quantificatori.html">lezione 09 di Fondamenti</a>. In C si risponde con una variabile booleana che accumula la risposta, come un accumulatore accumula una somma.</p>
+<p>Per <strong>«per ogni»</strong> la variabile parte da <code>true</code>: finché non si trova un controesempio, la risposta è sì. Al primo numero che non va bene diventa <code>false</code>, e non torna più indietro:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> tutti = <span class="kw">true</span>;
+<span class="kw">while</span> (1 == scanf(<span class="str">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n != 0) {
+    <span class="kw">if</span> (!(n &gt; 0))                <span class="cm">// un controesempio</span>
+        tutti = <span class="kw">false</span>;
+}</code></pre>
+<p>Per <strong>«esiste»</strong> è il contrario: parte da <code>false</code>, e al primo numero che va bene diventa <code>true</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> esiste = <span class="kw">false</span>;
+<span class="kw">while</span> (1 == scanf(<span class="str">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n != 0) {
+    <span class="kw">if</span> (n % 2 == 0)              <span class="cm">// un esempio</span>
+        esiste = <span class="kw">true</span>;
+}</code></pre>
+<p>Su una sequenza vuota, cioè con lo 0 subito, «per ogni» risponde sì e «esiste» risponde no. È la stessa regola della logica: un «per ogni» su un insieme vuoto è vero, un «esiste» è falso.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Non rimettere mai la variabile al valore iniziale</span></p><p>Se scrivi <code>tutti = (n &gt; 0);</code> invece di <code>if (!(n &gt; 0)) tutti = false;</code>, la variabile alla fine dice solo se l&#39;<strong>ultimo</strong> numero va bene. Con <code>-3 5 0</code> risponderebbe «tutti positivi»: il 5 ha cancellato il controesempio.</p>
+</div>
+<h3 id="fermarsi-presto-slide-19">Fermarsi presto (slide 19)</h3>
+<p>Quando i dati sono già in memoria, per esempio in un array, non serve guardarli tutti: «per ogni» si può fermare al primo controesempio, «esiste» al primo esempio. Basta mettere la variabile booleana nella condizione del ciclo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> v[] = {4, 7, -2, 9, 5};
+<span class="kw">size_t</span> n = 5;
+<span class="kw">bool</span> tutti = <span class="kw">true</span>;
+<span class="kw">size_t</span> i = 0;
+<span class="kw">while</span> (i &lt; n &amp;&amp; tutti) {
+    <span class="kw">if</span> (!(v[i] &gt; 0))
+        tutti = <span class="kw">false</span>;
+    i++;
+}</code></pre>
+<p>Il ciclo guarda 4, 7 e −2, poi si ferma: <code>tutti</code> è <code>false</code> e <code>i</code> vale 3. È lo schema che all&#39;esame sostituisce il <code>break</code>, che non si può usare. Le slide lo riprendono in un prossimo laboratorio.</p>
+<h3 id="lab04-es2-su-coderunner">Lab04-Es2 su CodeRunner</h3>
+<p>Il secondo esercizio su Moodle, «Condizioni su sequenza», chiede di scrivere correttamente diverse condizioni «esiste» e «per ogni» su una sequenza. Il testo non l&#39;ho; ecco tre condizioni dello stesso tipo in un solo ciclo, compresa una che confronta ogni numero con il precedente:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> tutti_positivi = <span class="kw">true</span>;      <span class="cm">// per ogni: parte vero</span>
+<span class="kw">bool</span> esiste_pari = <span class="kw">false</span>;        <span class="cm">// esiste: parte falso</span>
+<span class="kw">bool</span> crescente = <span class="kw">true</span>;           <span class="cm">// ogni numero maggiore del precedente</span>
+<span class="kw">bool</span> primo = <span class="kw">true</span>;               <span class="cm">// stiamo leggendo il primo numero?</span>
+<span class="kw">int</span> precedente = 0;
+<span class="kw">int</span> n;
+<span class="kw">while</span> (1 == scanf(<span class="str">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n != 0) {
+    <span class="kw">if</span> (!(n &gt; 0))
+        tutti_positivi = <span class="kw">false</span>;
+    <span class="kw">if</span> (n % 2 == 0)
+        esiste_pari = <span class="kw">true</span>;
+    <span class="kw">if</span> (!primo &amp;&amp; !(n &gt; precedente))
+        crescente = <span class="kw">false</span>;
+    precedente = n;
+    primo = <span class="kw">false</span>;
+}</code></pre>
+<p>Con <code>3 5 8 11 0</code> le tre risposte sono sì; con <code>3 -1 0</code> sono tutte e tre no. La variabile <code>primo</code> serve perché il primo numero non ha un precedente con cui confrontarsi.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Scrivi la variabile e l&#39;<code>if</code> per «esiste un multiplo di 5 maggiore di 100».</span></summary><div class="ans"><p><code>bool esiste = false;</code> prima del ciclo, e nel ciclo <code>if (n % 5 == 0 &amp;&amp; n &gt; 100) esiste = true;</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>«Per ogni» parte da <code>true</code> e diventa <code>false</code> al primo controesempio; «esiste» parte da <code>false</code> e diventa <code>true</code> al primo esempio.</li>
+<li>Per fermarsi presto, la variabile booleana va nella condizione del ciclo, non serve il <code>break</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="fibonacci" aria-labelledby="h-fibonacci" style="--h:1450px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-fibonacci">Fibonacci</h2><span class="slides">slide 21</span></div>
+<p>La successione di Fibonacci comincia con 0 e 1, e ogni numero dopo è la somma dei due precedenti: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34. Il programma tiene in due variabili gli ultimi due numeri, <code>n</code> e <code>m</code>, e a ogni giro le fa avanzare di un posto: la nuova <code>n</code> è la vecchia <code>m</code>, la nuova <code>m</code> è la somma delle vecchie.</p>
+<p>La domanda della slide è se per questo aggiornamento serve una variabile temporanea. Sì: se scrivi prima <code>n = m;</code>, il vecchio valore di <code>n</code> è perso e la somma viene sbagliata; se scrivi prima <code>m = n + m;</code>, è perso il vecchio <code>m</code>. È lo stesso problema dello scambio di variabili della <a href="03A_scambio_variabili.html">03A</a>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> k;
+scanf(<span class="str">&quot;%d&quot;</span>, &amp;k);                 <span class="cm">// si assume k &gt;= 2</span>
+<span class="kw">int</span> n = 0, m = 1;
+printf(<span class="str">&quot;%d  %d&quot;</span>, n, m);
+<span class="kw">for</span> (<span class="kw">int</span> i = 3; i &lt;= k; i++) {
+    <span class="kw">int</span> somma = n + m;           <span class="cm">// la variabile temporanea</span>
+    n = m;
+    m = somma;
+    printf(<span class="str">&quot;  %d&quot;</span>, m);
+}
+printf(<span class="str">&quot;\n&quot;</span>);</code></pre>
+<p>Con <span class="katex" role="math" aria-label="k = 10"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span></span></span></span> stampa <code>0  1  1  2  3  5  8  13  21  34</code>. Il ciclo parte da 3 perché i primi due numeri sono già stampati.</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Un giro del ciclo, con n = 3 e m = 5. Prima si salva la somma, 8, nella temporanea; poi n prende il valore di m e m quello della temporanea. Senza la temporanea uno dei due valori vecchi andrebbe perso prima di essere usato." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M37.33 117.69L149.33 117.69L149.33 65.38L37.33 65.38Z"/><path class="g-poligono g-ambra" d="M37.33 196.15L149.33 196.15L149.33 143.85L37.33 143.85Z"/><path class="g-poligono g-rosa" d="M224 274.62L336 274.62L336 222.31L224 222.31Z"/><path class="g-poligono g-blu" d="M410.67 117.69L522.67 117.69L522.67 65.38L410.67 65.38Z"/><path class="g-poligono g-ambra" d="M410.67 196.15L522.67 196.15L522.67 143.85L410.67 143.85Z"/><path class="g-linea g-grigio" d="M154 170L406 91.54" marker-end="url(#g-freccia-2-grigio)"/><path class="g-linea g-rosa" d="M340.67 248.46L406 189.62" marker-end="url(#g-freccia-2-rosa)"/></svg><span class="g-et g-c g-testo g-grigio" style="left:16.67%;top:7.69%">prima del giro</span><span class="g-et g-c g-testo g-blu" style="left:16.67%;top:26.92%">n = 3</span><span class="g-et g-c g-testo g-ambra" style="left:16.67%;top:50.00%">m = 5</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:55.77%">somma = n + m</span><span class="g-et g-c g-testo g-rosa" style="left:50.00%;top:73.08%">somma = 8</span><span class="g-et g-c g-testo g-grigio" style="left:83.33%;top:7.69%">dopo il giro</span><span class="g-et g-c g-testo g-blu" style="left:83.33%;top:26.92%">n = 5</span><span class="g-et g-c g-testo g-ambra" style="left:83.33%;top:50.00%">m = 8</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:94.23%">n = m;   poi   m = somma;</span></div><figcaption>Un giro del ciclo, con n = 3 e m = 5. Prima si salva la somma, 8, nella temporanea; poi n prende il valore di m e m quello della temporanea. Senza la temporanea uno dei due valori vecchi andrebbe perso prima di essere usato.</figcaption></figure>
+<details class="dim approfondimento"><summary><span>Approfondimento · Si può fare senza temporanea</span></summary><div class="dim-corpo"><p>Con gli interi esiste un trucco: <code>m = n + m; n = m - n;</code>. Dopo la prima istruzione <code>m</code> contiene la somma; nella seconda, la somma meno il vecchio <code>n</code> dà il vecchio <code>m</code>. Funziona, ma è meno leggibile e va in overflow prima: all&#39;esame conviene la temporanea.</p>
+</div></details>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa il programma se al posto delle tre righe nel ciclo scrivi <code>n = m; m = n + m;</code>, con <span class="katex" role="math" aria-label="k = 6"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span></span></span></span>?</span></summary><div class="ans"><p><code>0  1  2  4  8  16</code>: dopo <code>n = m</code> le due variabili sono uguali, e <code>m = n + m</code> raddoppia. Sono le potenze di 2, non Fibonacci.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Per aggiornare due variabili che dipendono una dall&#39;altra, salva prima il valore che verrebbe perso.</li>
+</ul>
+</div>
+</section>
+
+<section id="indovinare-un-numero" aria-labelledby="h-indovinare-un-numero" style="--h:2780px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-indovinare-un-numero">Indovinare un numero</h2><span class="slides">slide 22–25</span></div>
+<p>L&#39;ultimo blocco è un gioco. Nella prima parte il computer sceglie un numero a caso tra 0 e 99 e tu provi a indovinarlo: a ogni tentativo il programma risponde «maggiore» o «minore». Il codice di partenza <code>fai_indovinare_numero.c</code> è su Moodle; questa è una versione mia, con <code>rand()</code> per il numero a caso:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdlib.h&gt;
+<span class="kw">#include</span> &lt;time.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    srand(time(<span class="kw">NULL</span>));                  <span class="cm">// semina il generatore con l'ora</span>
+    <span class="kw">int</span> segreto = rand() % 100;         <span class="cm">// un numero in [0, 100)</span>
+    <span class="kw">int</span> tentativi = 0;
+    <span class="kw">bool</span> indovinato = <span class="kw">false</span>;
+    <span class="kw">while</span> (!indovinato) {
+        <span class="kw">int</span> t;
+        printf(<span class="str">&quot;Tentativo: &quot;</span>);
+        scanf(<span class="str">&quot;%d&quot;</span>, &amp;t);
+        tentativi++;
+        <span class="kw">if</span> (t &lt; segreto)
+            printf(<span class="str">&quot;Il numero e' maggiore di %d!\n&quot;</span>, t);
+        <span class="kw">else</span> <span class="kw">if</span> (t &gt; segreto)
+            printf(<span class="str">&quot;Il numero e' minore di %d!\n&quot;</span>, t);
+        <span class="kw">else</span>
+            indovinato = <span class="kw">true</span>;
+    }
+    printf(<span class="str">&quot;Indovinato in %d tentativi\n&quot;</span>, tentativi);
+}</code></pre>
+<p><code>rand()</code> restituisce un intero grande e <code>% 100</code> lo riduce a un numero da 0 a 99. <code>srand(time(NULL))</code> cambia il punto di partenza dei numeri a caso con l&#39;ora: senza, il programma sceglierebbe lo stesso numero a ogni esecuzione. Il ciclo è un <code>while</code>, perché non si sa quanti tentativi serviranno.</p>
+<h3 id="due-strategie">Due strategie</h3>
+<p>La slide 22 chiede che strategia usa una persona per indovinare. Le slide 23 e 24 ne confrontano due, con il numero segreto 62. La prima prova i numeri in fila, 0, 1, 2, …: a ogni risposta «maggiore» l&#39;intervallo possibile perde un solo numero, e nel caso peggiore, con il 99, servono 100 tentativi. La seconda prova sempre il <strong>punto medio</strong> dell&#39;intervallo possibile <span class="katex" role="math" aria-label="[basso, alto)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">ba</span><span class="mord mathnormal">sso</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mclose">)</span></span></span></span>: a ogni risposta l&#39;intervallo si dimezza.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Un conto sbagliato nella slide 24</span></p><p>La slide scrive «tentativo: 62 = (51+75) / 2». Ma <span class="katex" role="math" aria-label="51 + 75 = 126"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">51</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">75</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">126</span></span></span></span> e <span class="katex" role="math" aria-label="126 / 2 = 63"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">126/2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">63</span></span></span></span>. Con il segreto 62 il terzo tentativo è 63, la risposta è «minore», e servono altri tre tentativi: 57, 60, 62. In tutto 6, non 3. L&#39;ho controllato con il programma qui sotto.</p>
+</div>
+<figure class="grafico" id="grafico-3"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La ricerca per dimezzamento del numero 62. Ogni barra è l'intervallo ancora possibile, il punto è il tentativo. Dopo ogni risposta l'intervallo si riduce a circa la metà, e al sesto tentativo resta solo il 62." preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-3-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-3-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-3-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-3-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-3-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-3-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-3-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-3-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-linea g-blu" d="M20.74 42.5L539.26 42.5"/><circle class="g-punto g-rosa" cx="280" cy="42.5" r="4.5"/><path class="g-linea g-blu" d="M285.19 85L539.26 85"/><circle class="g-punto g-rosa" cx="409.63" cy="85" r="4.5"/><path class="g-linea g-blu" d="M285.19 127.5L409.63 127.5"/><circle class="g-punto g-rosa" cx="347.41" cy="127.5" r="4.5"/><path class="g-linea g-blu" d="M285.19 170L347.41 170"/><circle class="g-punto g-rosa" cx="316.3" cy="170" r="4.5"/><path class="g-linea g-blu" d="M321.48 212.5L347.41 212.5"/><circle class="g-punto g-rosa" cx="331.85" cy="212.5" r="4.5"/><path class="g-linea g-blu" d="M337.04 255L347.41 255"/><circle class="g-punto g-verde" cx="342.22" cy="255" r="4.5"/></svg><span class="g-et g-c g-testo g-grigio" style="left:1.85%;top:12.50%">1</span><span class="g-et g-c g-testo g-grigio" style="left:1.85%;top:25.00%">2</span><span class="g-et g-c g-testo g-grigio" style="left:1.85%;top:37.50%">3</span><span class="g-et g-c g-testo g-grigio" style="left:1.85%;top:50.00%">4</span><span class="g-et g-c g-testo g-grigio" style="left:1.85%;top:62.50%">5</span><span class="g-et g-c g-testo g-grigio" style="left:1.85%;top:75.00%">6</span><span class="g-et g-c g-testo g-grigio" style="left:3.70%;top:87.50%">0</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:87.50%">50</span><span class="g-et g-c g-testo g-grigio" style="left:96.30%;top:87.50%">100</span></div><figcaption>La ricerca per dimezzamento del numero 62. Ogni barra è l&#39;intervallo ancora possibile, il punto è il tentativo. Dopo ogni risposta l&#39;intervallo si riduce a circa la metà, e al sesto tentativo resta solo il 62.</figcaption></figure>
+<h3 id="indovina-tu-il-numero-lab04-es3-su-coderunner">Indovina tu il numero (Lab04-Es3 su CodeRunner)</h3>
+<p>L&#39;esercizio extra rovescia il gioco: è il programma che deve indovinare, nel numero massimo di tentativi concessi. Il testo e i test sono su Moodle; questa versione mia prende il numero segreto da input, così si possono provare tutti i casi:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> segreto;
+scanf(<span class="str">&quot;%d&quot;</span>, &amp;segreto);
+<span class="kw">int</span> basso = 0, alto = 100;          <span class="cm">// intervallo possibile [basso, alto)</span>
+<span class="kw">int</span> tentativi = 0;
+<span class="kw">bool</span> trovato = <span class="kw">false</span>;
+<span class="kw">while</span> (!trovato) {
+    <span class="kw">int</span> t = (basso + alto) / 2;
+    tentativi++;
+    printf(<span class="str">&quot;tentativo: %d&quot;</span>, t);
+    <span class="kw">if</span> (t &lt; segreto) {
+        printf(<span class="str">&quot; -&gt; maggiore, [%d, %d)\n&quot;</span>, t + 1, alto);
+        basso = t + 1;
+    } <span class="kw">else</span> <span class="kw">if</span> (t &gt; segreto) {
+        printf(<span class="str">&quot; -&gt; minore, [%d, %d)\n&quot;</span>, basso, t);
+        alto = t;
+    } <span class="kw">else</span> {
+        printf(<span class="str">&quot; -&gt; trovato\n&quot;</span>);
+        trovato = <span class="kw">true</span>;
+    }
+}
+printf(<span class="str">&quot;%d tentativi\n&quot;</span>, tentativi);</code></pre>
+<p>L&#39;ho fatto girare su tutti i segreti da 0 a 99: non servono mai più di <strong>7 tentativi</strong>. Un solo numero si trova al primo, 2 al secondo, 4 al terzo, poi 8, 16, 32, e i 37 che restano al settimo. Il motivo: dopo <span class="katex" role="math" aria-label="k"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> risposte l&#39;intervallo è diviso per 2 circa <span class="katex" role="math" aria-label="k"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span></span></span></span> volte, e <span class="katex" role="math" aria-label="2^7 = 128"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">128</span></span></span></span> è la prima potenza di 2 che supera 100. Il ciclo adatto è il <code>while</code>: il numero di tentativi dipende dalle risposte.</p>
+<p>La stessa idea, dimezzare l&#39;intervallo, torna all&#39;esame nella <strong>ricorsione dicotomica</strong>, con un intervallo <span class="katex" role="math" aria-label="[l, r)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0197em;">l</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mclose">)</span></span></span></span> diviso nel punto medio (esercizio D2 del pre-esame 2023/24 nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a>).</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con la ricerca per dimezzamento tra 0 e 99, quali sono i tentativi per il segreto 10?</span></summary><div class="ans"><p>50 (minore, <span class="katex" role="math" aria-label="[0, 50)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">50</span><span class="mclose">)</span></span></span></span>), 25 (minore, <span class="katex" role="math" aria-label="[0, 25)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">25</span><span class="mclose">)</span></span></span></span>), 12 (minore, <span class="katex" role="math" aria-label="[0, 12)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">12</span><span class="mclose">)</span></span></span></span>), 6 (maggiore, <span class="katex" role="math" aria-label="[7, 12)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">7</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">12</span><span class="mclose">)</span></span></span></span>), 9 (maggiore, <span class="katex" role="math" aria-label="[10, 12)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">10</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">12</span><span class="mclose">)</span></span></span></span>), 11 (minore, <span class="katex" role="math" aria-label="[10, 11)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">10</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">11</span><span class="mclose">)</span></span></span></span>), 10: sette tentativi.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>rand() % 100</code> dà un numero da 0 a 99; <code>srand(time(NULL))</code> cambia i numeri a ogni esecuzione.</li>
+<li>Dimezzando l&#39;intervallo, con 100 numeri bastano 7 tentativi; provandoli in fila ne servono fino a 100.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:620px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Scrittura</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>1 == scanf(&quot;%d&quot;, &amp;x)</code></td><td>«scanf ha letto un numero»</td><td><code>scanf</code> restituisce quante variabili ha letto</td><td>condizione del ciclo di lettura</td></tr>
+<tr><td><code>%llu</code></td><td>«per cento elle elle u»</td><td>specificatore di <code>unsigned long long</code></td><td><code>printf(&quot;%llu&quot;, fatt)</code></td></tr>
+<tr><td><code>ptrdiff_t</code>, <code>%td</code></td><td>«ptrdiff t»</td><td>intero con segno che fa coppia con <code>size_t</code></td><td><code>for (ptrdiff_t i = 100; i &gt;= 0; --i)</code></td></tr>
+<tr><td><code>&quot;\\&quot;</code></td><td>«barra rovesciata»</td><td>stampa una sola <code>\</code></td><td>la diagonale del quadrato</td></tr>
+<tr><td><code>rand() % 100</code></td><td>«rand modulo 100»</td><td>numero a caso da 0 a 99</td><td>il segreto del gioco</td></tr>
+<tr><td><code>programma &lt; file</code></td><td>«programma con input dal file»</td><td><code>scanf</code> legge dal file</td><td><code>./media_seq &lt; input01.txt</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:790px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>L&#39;esame è al PC, con <strong>CodeRunner</strong>: il codice viene compilato con <code>-Wall -Werror</code> e le sue stampe confrontate con quelle attese. L&#39;esercizio iterativo, <code>e1</code>, è una funzione con uno o due cicli, e spesso è proprio un «per ogni» con dentro un «esiste» (un esempio vero del pre-esame 2023/24 è nella <a href="04A_iterazioni.html">04A</a>). Questo laboratorio allena:</p>
+<ol>
+<li><strong>scegliere il ciclo</strong>: <code>for</code> con un numero di giri noto, <code>while</code> quando la fine dipende dai dati;</li>
+<li><strong>le sentinelle booleane</strong>: «per ogni» da <code>true</code>, «esiste» da <code>false</code>, nella condizione del ciclo per fermarsi presto, perché <code>break</code> è vietato;</li>
+<li><strong>i casi limite</strong>: sequenza vuota, un solo elemento, divisione per un contatore che vale 0;</li>
+<li><strong>i tipi</strong>: un risultato che cresce in fretta, come il fattoriale, non sta in un <code>int</code>;</li>
+<li><strong>il formato delle stampe</strong>: CodeRunner confronta anche spazi e a capo, come in Fibonacci con due spazi tra i numeri.</li>
+</ol>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Prima di consegnare un esercizio con un ciclo</span></p><ol>
+<li>Compila con <code>gcc -Wall -Werror</code>.</li>
+<li>Segui a mano i primi due giri e l&#39;ultimo: valori delle variabili, condizione, stampa.</li>
+<li>Prova i casi limite: zero giri, un giro, il valore più grande.</li>
+<li>Se leggi una sequenza, prova anche la sequenza vuota e una senza il terminatore.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2260px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Quanti giri fa <code>for (int i = 20; i &gt;= 2; i -= 7)</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il ciclo non finisce</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">18</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>I valori sono 20, 13 e 6; il successivo, −1, non soddisfa <code>i &gt;= 2</code>. La risposta più insidiosa è 4: si conta anche il 2, che <code>i</code> non raggiunge mai perché 18 non è un multiplo di 7.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa restituisce <code>scanf(&quot;%d&quot;, &amp;x)</code> se l&#39;input è <code>ciao</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">1, perché ha letto una parola</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">−1, sempre</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il numero di caratteri letti</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il valore di <code>x</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0, perché non ha letto nessun intero</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>scanf</code> restituisce quante variabili ha riempito: qui nessuna. La risposta più insidiosa è «−1, sempre»: <code>scanf</code> restituisce −1 (<code>EOF</code>) solo quando l&#39;input è finito, non quando c&#39;è qualcosa che non è un numero.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Nel ciclo <code>while (1 == scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n != 0)</code>, perché l&#39;ordine delle due condizioni conta?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Non conta: le due condizioni si possono scambiare</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Perché <code>&amp;&amp;</code> valuta prima la parte destra</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Se la lettura fallisce, <code>n != 0</code> non viene valutato, e <code>n</code> non contiene un valore letto</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Perché <code>scanf</code> va chiamata dopo il confronto</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">Perché <code>n != 0</code> modifica <code>n</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>L&#39;<code>&amp;&amp;</code> valuta la parte destra solo se la sinistra è vera. Scambiandole si confronterebbe <code>n</code> prima di averlo letto: al primo giro <code>n</code> non è inizializzata. La risposta più insidiosa è «non conta»: logicamente l&#39;«e» è simmetrico, ma in C l&#39;ordine decide che cosa viene eseguito.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Una variabile <code>tutti</code> deve dire se tutti i numeri letti sono positivi. Quale codice è giusto?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>bool tutti = false;</code> e nel ciclo <code>tutti = (n &gt; 0);</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>bool tutti = true;</code> e nel ciclo <code>if (!(n &gt; 0)) tutti = false;</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>bool tutti = false;</code> e nel ciclo <code>if (n &gt; 0) tutti = true;</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>bool tutti = true;</code> e nel ciclo <code>if (n &gt; 0) tutti = true;</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>bool tutti = true;</code> e nel ciclo <code>tutti = (n &gt; 0);</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>«Per ogni» parte da vero e diventa falso al primo controesempio. La risposta più insidiosa è <code>tutti = (n &gt; 0);</code>: alla fine dice solo se l&#39;ultimo numero è positivo. La seconda risponde a «esiste un positivo».</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa il programma della media con l&#39;input <code>0</code> se manca il controllo <code>quanti &gt; 0</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il programma non compila</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>0.000000</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>Sequenza vuota</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>-nan</code> o <code>-nan(ind)</code>: è una divisione 0.0 / 0, il risultato non è un numero</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un errore di compilazione per divisione per zero</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Senza il controllo si calcola <code>(double)0 / 0</code>, che con i <code>double</code> dà un valore «non numero», stampato come <code>-nan</code> o <code>nan</code>. La risposta più insidiosa è <code>0.000000</code>: sembra ragionevole, ma la media di nessun numero non esiste.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Nell&#39;aggiornamento di Fibonacci, quale sequenza di istruzioni è giusta?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>n = m; m = n + m;</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>n = n + m; m = n;</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int somma = n + m; n = m; m = somma;</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int somma = n + m; m = somma; n = m;</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>m = n + m; n = m;</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Si salva la somma, poi <code>n</code> prende il vecchio <code>m</code> e <code>m</code> la somma. La risposta più insidiosa è l&#39;ultima: aggiorna <code>m</code> prima di copiarlo in <code>n</code>, così <code>n</code> e <code>m</code> diventano uguali.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Con la ricerca per dimezzamento tra 0 e 99, quanti tentativi servono al massimo?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="7" data-toll="1e-9"><span class="q-giusto" hidden>7</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Ogni risposta dimezza l&#39;intervallo, e <span class="katex" role="math" aria-label="2^7 = 128"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">128</span></span></span></span> è la prima potenza di 2 più grande di 100. L&#39;ho controllato provando tutti i 100 segreti.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Come si stampa una sola barra rovesciata con <code>printf</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf('\');</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;%\&quot;);</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;\&quot;);</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;/&quot;);</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>printf(&quot;\\&quot;);</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Nelle stringhe <code>\</code> comincia una sequenza speciale, come <code>\n</code>: la barra vera si scrive <code>\\</code>. La risposta più insidiosa è <code>printf(&quot;\&quot;);</code>: la barra si mangia la virgoletta e gcc dice <code>missing terminating &quot; character</code>.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1270px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: i valori di i <span class="lvl">base</span></h3><p>Scrivi i valori che prende <code>i</code> e conta i giri: (a) <code>for (int i = 0; i &lt; 12; i += 4)</code>; (b) <code>for (int i = 10; i &gt; 0; i -= 3)</code>; (c) <code>for (int i = 1; i &lt;= 64; i *= 2)</code>; (d) <code>for (int i = 5; i &lt; 5; i++)</code>.</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) 0, 4, 8: 3 giri. (b) 10, 7, 4, 1: 4 giri. (c) 1, 2, 4, 8, 16, 32, 64: 7 giri; l&#39;aggiornamento può essere qualsiasi assegnamento. (d) Nessun giro: <span class="katex" role="math" aria-label="5 &lt; 5"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span></span></span></span> è falso subito.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: for o while <span class="lvl">base</span></h3><p>Che ciclo usi per: (a) stampare la tabellina del 7; (b) leggere voti finché non arriva un voto negativo; (c) contare le cifre di un numero dividendo per 10 finché diventa 0; (d) sommare gli elementi di un array di 20 numeri?</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) <code>for</code>: 10 giri. (b) <code>while</code>: la fine dipende dall&#39;input. (c) <code>while</code>: il numero di cifre non si sa prima. (d) <code>for</code>: 20 giri.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Il massimo di una sequenza <span class="lvl">medio</span></h3><p>Leggi una sequenza di interi terminata da 0 e stampa il più grande. Se la sequenza è vuota, stampa <code>Sequenza vuota</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> massimo = 0;
+    <span class="kw">bool</span> vuota = <span class="kw">true</span>;
+    <span class="kw">int</span> n;
+    <span class="kw">while</span> (1 == scanf(<span class="str">&quot;%d&quot;</span>, &amp;n) &amp;&amp; n != 0) {
+        <span class="kw">if</span> (vuota || n &gt; massimo) {
+            massimo = n;
+        }
+        vuota = <span class="kw">false</span>;
+    }
+    <span class="kw">if</span> (vuota) {
+        printf(<span class="str">&quot;Sequenza vuota\n&quot;</span>);
+    } <span class="kw">else</span> {
+        printf(<span class="str">&quot;%d\n&quot;</span>, massimo);
+    }
+}</code></pre>
+<p>Il massimo non si può inizializzare a 0: con <code>-5 -2 0</code> il risultato sarebbe 0, che non è nella sequenza. Per questo il primo numero letto diventa il massimo, riconosciuto con <code>vuota</code>. Con <code>-5 -2 0</code> stampa <code>-2</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · La piramide di asterischi <span class="lvl">medio</span></h3><p>Leggi <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> e stampa una piramide di <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> righe, centrata: la riga <span class="katex" role="math" aria-label="i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> (da 1 a <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>) ha <span class="katex" role="math" aria-label="n - i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> spazi e <span class="katex" role="math" aria-label="2i - 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7429em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> asterischi. Con <span class="katex" role="math" aria-label="n = 3"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>: <code>*</code>, <code>***</code>, <code>*****</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;n);
+    <span class="kw">for</span> (<span class="kw">int</span> i = 1; i &lt;= n; i++) {
+        <span class="kw">for</span> (<span class="kw">int</span> j = 0; j &lt; n - i; j++) {
+            printf(<span class="str">&quot; &quot;</span>);
+        }
+        <span class="kw">for</span> (<span class="kw">int</span> j = 0; j &lt; 2 * i - 1; j++) {
+            printf(<span class="str">&quot;*&quot;</span>);
+        }
+        printf(<span class="str">&quot;\n&quot;</span>);
+    }
+}</code></pre>
+<p>Come il quadrato: un ciclo esterno per le righe, due cicli interni per i due pezzi della riga.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Primo, senza break <span class="lvl">tipo esame</span></h3><p>Leggi un intero <span class="katex" role="math" aria-label="n \ge 2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span> e stampa <code>primo</code> o <code>non primo</code>. Il ciclo deve fermarsi al primo divisore trovato, senza <code>break</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;n);
+    <span class="kw">bool</span> trovato = <span class="kw">false</span>;            <span class="cm">// esiste un divisore tra 2 e n-1?</span>
+    <span class="kw">int</span> d = 2;
+    <span class="kw">while</span> (d &lt; n &amp;&amp; !trovato) {
+        <span class="kw">if</span> (n % d == 0) {
+            trovato = <span class="kw">true</span>;
+        }
+        d++;
+    }
+    printf(trovato ? <span class="str">&quot;non primo\n&quot;</span> : <span class="str">&quot;primo\n&quot;</span>);
+}</code></pre>
+<p>È un «esiste» con la sentinella nella condizione: con 91 si ferma dopo aver provato 7, perché <span class="katex" role="math" aria-label="91 = 7 \cdot 13"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">91</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">13</span></span></span></span>. Si potrebbe fermare anche a <span class="katex" role="math" aria-label="d \cdot d \le n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8304em;vertical-align:-0.136em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>: se <span class="katex" role="math" aria-label="n"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> ha un divisore, ne ha uno non più grande della sua radice.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Tutte le cifre pari <span class="lvl">tipo esame</span></h3><p>Leggi un intero positivo e stampa <code>si</code> se tutte le sue cifre sono pari, <code>no</code> altrimenti. Le cifre si ottengono con <code>% 10</code> e <code>/ 10</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> n;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;n);
+    <span class="kw">bool</span> tutte_pari = <span class="kw">true</span>;          <span class="cm">// per ogni cifra: parte da true</span>
+    <span class="kw">while</span> (n &gt; 0 &amp;&amp; tutte_pari) {
+        <span class="kw">int</span> cifra = n % 10;          <span class="cm">// l'ultima cifra</span>
+        <span class="kw">if</span> (cifra % 2 != 0) {
+            tutte_pari = <span class="kw">false</span>;
+        }
+        n = n / 10;                  <span class="cm">// toglie l'ultima cifra</span>
+    }
+    printf(tutte_pari ? <span class="str">&quot;si\n&quot;</span> : <span class="str">&quot;no\n&quot;</span>);
+}</code></pre>
+<p>Con 2486 stampa <code>si</code>, con 2476 stampa <code>no</code> e si ferma alla cifra 7, la seconda guardata. Il ciclo è un <code>while</code>: il numero di cifre non si sa prima.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:570px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Quando conviene un for e quando un while?</span></summary><div class="ans"><p>Il <code>for</code> quando il numero di giri si conosce prima di cominciare; il <code>while</code> quando la fine si scopre durante i giri, per esempio leggendo l&#39;input.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa restituisce scanf?</span></summary><div class="ans"><p>Il numero di variabili che è riuscita a leggere: 1 con <code>&quot;%d&quot;</code> se ha letto un intero, 0 se ha trovato altro, −1 (<code>EOF</code>) se l&#39;input è finito.</p>
+</div></details>
+<details class="qa"><summary><span>Come si calcola la media di una sequenza terminata da 0?</span></summary><div class="ans"><p>Con un accumulatore e un contatore aggiornati nel ciclo; dopo il ciclo, se il contatore non è 0, si divide la somma convertita in <code>double</code> per il contatore.</p>
+</div></details>
+<details class="qa"><summary><span>Come si controlla un «per ogni» su una sequenza?</span></summary><div class="ans"><p>Con una variabile booleana che parte da <code>true</code> e diventa <code>false</code> al primo controesempio. Per «esiste», parte da <code>false</code> e diventa <code>true</code> al primo esempio.</p>
+</div></details>
+<details class="qa"><summary><span>Perché nell&#39;aggiornamento di Fibonacci serve una variabile temporanea?</span></summary><div class="ans"><p>Perché le due variabili si aggiornano a vicenda: la prima assegnazione cancellerebbe un valore che serve ancora alla seconda.</p>
+</div></details>
+<details class="qa"><summary><span>Perché la ricerca per dimezzamento è più veloce?</span></summary><div class="ans"><p>Ogni tentativo scarta metà dell&#39;intervallo invece di un solo numero: con 100 numeri bastano 7 tentativi invece di 100.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:610px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Terminatore</dt><dd>Valore speciale che segna la fine di una sequenza e non fa parte dei dati, come lo 0 delle slide.</dd></div>
+<div><dt>Valore restituito da scanf</dt><dd>Il numero di variabili lette con successo; 1 con &quot;%d&quot; se è stato letto un intero.</dd></div>
+<div><dt>Accumulatore</dt><dd>Variabile che raccoglie un risultato giro dopo giro: una somma parte da 0, un prodotto da 1.</dd></div>
+<div><dt>Contatore</dt><dd>Variabile che conta quante volte succede qualcosa nel ciclo.</dd></div>
+<div><dt>Cicli annidati</dt><dd>Un ciclo dentro un altro: quello interno riparte da capo a ogni giro di quello esterno.</dd></div>
+<div><dt>Sentinella booleana</dt><dd>Variabile bool che accumula la risposta a un «per ogni» (da true) o a un «esiste» (da false).</dd></div>
+<div><dt>Variabile temporanea</dt><dd>Variabile che conserva un valore che un assegnamento cancellerebbe.</dd></div>
+<div><dt>Ricerca per dimezzamento</dt><dd>Strategia che prova il punto medio dell&#39;intervallo e ne scarta metà a ogni passo.</dd></div>
+<div><dt>Redirezione dell&#39;input</dt><dd>Con programma &lt; file il programma legge dal file invece che dalla tastiera.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:470px">
+<div class="sec-head"><span class="sec-num">§17</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 8</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-Lab04-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So scegliere tra for e while e contare i giri di un for con un passo qualsiasi.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So leggere una sequenza terminata da 0 con il valore restituito da scanf.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So calcolare una media senza dividere per zero.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So dare l&#39;input da file con &lt; e so che in PowerShell serve Get-Content.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So stampare figure con due cicli annidati.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So scrivere «per ogni» ed «esiste» con una variabile booleana, anche fermandomi presto senza break.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So aggiornare due variabili che dipendono una dall&#39;altra.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So spiegare perché dimezzando l&#39;intervallo bastano 7 tentativi su 100 numeri.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Iterazioni» (Lezione nº 4 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27: for e while (slide 2–5), sommatoria (slide 6–7), iterazioni_n.c (slide 8), sequenze (slide 9–11), media_seq.c (slide 12–13), Lab04-Es1 Divisori Interi (slide 14), Floyd (slide 15), quadrato (slide 16), quantificazione universale ed esistenziale (slide 17–19), Lab04-Es2 Condizioni su sequenza (slide 20), Fibonacci (slide 21), indovina il numero (slide 22–25).</li>
+<li>I testi degli esercizi su CodeRunner e il codice di partenza (<code>input_media_seq</code>, <code>fai_indovinare_numero.c</code>) sono sul Moodle del laboratorio: non li ho visti, le soluzioni qui sono mie.</li>
+<li>Lezioni <a href="04A_iterazioni.html">04A</a> e <a href="05A_array_stringhe.html">05A</a> di Amparore; esercizi <code>e1</code> e D2 del pre-esame 2023/24 dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a>.</li>
+<li>Tutti i programmi li ho compilati con gcc 16.1 su Windows 11 a 64 bit, con <code>-Wall -Werror</code>, ed eseguiti; le stampe e gli errori citati sono quelli veri, compreso il messaggio di PowerShell sul <code>&lt;</code>. La ricerca per dimezzamento l&#39;ho provata su tutti i segreti da 0 a 99. Le soluzioni, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

@@ -2,25 +2,26 @@
 corso: PROG1
 lezione: S5
 tipo: riassunto
-titolo: "Settimana 5: array, stringhe e il laboratorio sui cicli"
-data: 2026-10-27
+titolo: "Settimana 5: array, stringhe, funzioni e il laboratorio sui cicli"
+data: 2026-10-28
 docenti: Elvio Amparore
 sopratitolo: Riassunto settimanale · Programmazione I · Canale B · 26/10 – 30/10/2026
 descrizione: >-
   Riassunto della settimana 5 di Programmazione I (canale B): la seconda parte della lezione 05A, con somma,
   conteggio e massimo, array e puntatori, VLA, gli errori con gli indici, ASCII e Unicode, le stringhe con il
   terminatore e la loro lettura; il Laboratorio 04 sui cicli, con le sequenze terminate da 0, le medie, i cicli
-  annidati, le sentinelle per «per ogni» ed «esiste», Fibonacci e la ricerca per dimezzamento.
+  annidati, le sentinelle per «per ogni» ed «esiste», Fibonacci e la ricerca per dimezzamento; la lezione 06A sulle
+  funzioni, con prototipo, definizione e chiamata, passaggio per valore, una sola return e divide et impera.
 lede: >-
-  La lezione e il laboratorio della settimana in poche pagine: come si scorre un array e una stringa senza uscire dai
-  limiti, come si legge una sequenza di lunghezza sconosciuta, come si esce da un ciclo senza break, e le domande per
-  controllarti.
+  Le due lezioni e il laboratorio della settimana in poche pagine: come si scorre un array e una stringa senza uscire
+  dai limiti, come si legge una sequenza di lunghezza sconosciuta, come si esce da un ciclo senza break, come si scrive
+  una funzione, e le domande per controllarti.
 materiale: slide
 scheda:
-  Lezioni: "[05A](05A_array_stringhe.html) mar 27/10, slide 9–35 · [Lab04](Lab04_iterazioni.html) lun 26/10 (B2)"
+  Lezioni: "[Lab04](Lab04_iterazioni.html) lun 26/10 (B2) · [05A](05A_array_stringhe.html) mar 27/10, slide 9–35 · [06A](06A_funzioni.html) mer 28/10"
   Tempo di ripasso: 40 minuti
 fonte: >-
-  Gli appunti della lezione 05A e del Laboratorio 04 di Programmazione I (canale B), scritti sulle slide di
+  Gli appunti delle lezioni 05A e 06A e del Laboratorio 04 di Programmazione I (canale B), scritti sulle slide di
   E. G. Amparore e del laboratorio
 appunti_html: appunti/PROG1/riassunto_settimana_05.html
 genera_html: true
@@ -35,9 +36,10 @@ genera_html: true
 - Nel laboratorio, una **sequenza terminata da 0** si legge con `while (1 == scanf("%d", &x) && x != 0)`.
 - **«Per ogni»** e **«esiste»** su una sequenza si fanno con una variabile `bool` che parte da `true` o da `false`, messa nella condizione del ciclo al posto del `break`.
 - Indovinare un numero tra 0 e 99 provando il **punto medio** richiede al massimo 7 tentativi.
+- Mercoledì 28/10, la 06A: una **funzione** ha prototipo, definizione e chiamata; i parametri passano **per valore**, cioè come copie, e all'esame la `return` è una sola.
 
 > [!NOTA] Le altre lezioni della settimana
-> Il Laboratorio 04 il turno B2 l'ha fatto lunedì 26/10 con Elisa Marengo; il turno B1 lo fa martedì 03/11 con Valerio Basile. Della lezione di mercoledì 28/10 non ho né slide né video: quando arrivano, la scrivo.
+> Il Laboratorio 04 il turno B2 l'ha fatto lunedì 26/10 con Elisa Marengo; il turno B1 lo fa martedì 03/11 con Valerio Basile. Le slide della lezione di mercoledì 28/10, la 06A sulle funzioni, sono arrivate il 01/11.
 
 ## 05A · Array e stringhe, seconda parte (mar 27/10)
 
@@ -142,10 +144,65 @@ testo: 99 0.6 | grigio | "99"
 > - «Per ogni» parte da `true`, «esiste» da `false`; la sentinella va nella condizione.
 > - Media: niente divisione per zero.
 
+## 06A · Funzioni (mer 28/10)
+
+Una funzione dà un nome a un calcolo: si scrive una volta e si chiama dove serve. In C ha tre parti.
+
+- **Prototipo**: `float square(float x);`, con il punto e virgola, annuncia nome e tipi. Serve se la funzione è definita dopo il punto in cui si usa: altrimenti gcc 16 si ferma con `implicit declaration of function`.
+- **Definizione**: `float square(float x) { return x * x; }`. Il tipo del parametro fa da dominio, il tipo di ritorno da codominio, il corpo da regola.
+- **Chiamata**: `square(a)`. Gli argomenti vanno ai parametri in ordine, e le conversioni avvengono in silenzio: `max(2, 3.5)` con parametri `int` vale 3.
+
+Le forme sono quattro, con o senza parametri e con o senza risultato (`void`). A differenza di una funzione matematica, una funzione C può avere **effetti collaterali**, come leggere l'input o stampare, e quindi dare risultati diversi con gli stessi argomenti.
+
+Il passaggio è **per valore**: il parametro è una copia. `incr(a)` non cambia `a`; `incrPtr(&a)` sì, perché riceve una copia dell'indirizzo e con `*p` arriva alla variabile.
+
+```grafico
+titolo: A sinistra `incr(a)`: `x` riceve una copia di `a`, e l'incremento cambia solo la copia. A destra `incrPtr(&a)`: `p` riceve una copia dell'indirizzo di `a`, e con `*p` la funzione arriva alla variabile di `main`
+x: 0 12.4
+y: 0 5.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.2 3.0 5.8 3.0 5.8 4.9 0.2 4.9 | blu
+testo: 1.1 4.5 | blu | "main"
+poligono: 2.0 3.25 4.6 3.25 4.6 4.15 2.0 4.15 | blu | pieno
+testo: 3.3 3.7 | blu | "a = 5"
+poligono: 0.2 0.2 5.8 0.2 5.8 2.1 0.2 2.1 | ambra
+testo: 1.1 1.7 | ambra | "incr"
+poligono: 2.0 0.45 4.6 0.45 4.6 1.35 2.0 1.35 | ambra | pieno
+testo: 3.3 0.9 | ambra | "x = 5 → 6"
+freccia: 3.3 3.2 3.3 1.4 | verde
+testo: 4.4 2.5 | verde | "copia"
+poligono: 6.6 3.0 12.2 3.0 12.2 4.9 6.6 4.9 | blu
+testo: 7.5 4.5 | blu | "main"
+poligono: 8.4 3.25 11.0 3.25 11.0 4.15 8.4 4.15 | blu | pieno
+testo: 9.7 3.7 | blu | "a = 5 → 6"
+poligono: 6.6 0.2 12.2 0.2 12.2 2.1 6.6 2.1 | ambra
+testo: 7.6 1.7 | ambra | "incrPtr"
+poligono: 8.4 0.45 11.0 0.45 11.0 1.35 8.4 1.35 | ambra | pieno
+testo: 9.7 0.9 | ambra | "p = &a"
+freccia: 9.7 1.4 9.7 3.2 | rosa
+testo: 10.6 2.5 | rosa | "*p"
+```
+
+- **Un solo valore di ritorno**; gli altri risultati passano per puntatore. Ogni percorso deve arrivare a una `return`, altrimenti gcc dà `control reaches end of non-void function`.
+- **Divide et impera**: il programma del cerchio si divide in `leggiRaggio`, `circonferenza`, `area` e `stampaRisultati`, e `main` le chiama in ordine.
+- **Una svista delle slide**: la `leggiRaggio` della slide 25 con un input come `abc` stampa l'errore all'infinito, perché `scanf` lascia `abc` nell'input. Va scartato con `scanf("%*[^\n]")`, e l'`EOF` va gestito: la versione corretta è negli appunti.
+
+::: prova Perché `float media(int a, int b) { return (a + b) / 2; }` con `media(3, 4)` dà 3?
+`a + b` e `2` sono interi: la divisione è intera. Serve `/ 2.0f`.
+:::
+
+> [!RICORDA]
+> - Prototipo con `;`, definizione con il corpo, chiamata con gli argomenti in ordine.
+> - Per valore: la funzione lavora su copie. Per cambiare una variabile del chiamante, il suo indirizzo.
+> - Una sola `return`, alla fine.
+
 ## Verso l'esame
 
 - **Programmazione**: l'esercizio iterativo è una funzione con un ciclo su un array; una sola `return`, niente `break`, la sentinella nella condizione del ciclo.
 - **Stato della memoria**: array e stringhe sono celle consecutive; dopo una stringa c'è il terminatore, e le celle mai scritte di un array locale valgono «?».
+- **Funzioni**: ogni esercizio di programmazione chiede una funzione con un'intestazione data. Va copiata al carattere, con una sola `return` e senza stampe non richieste.
 - **Casi limite** da provare sempre: array vuoto, un elemento, l'ultimo indice, la stringa vuota, l'input che finisce subito.
 - Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.
 
@@ -165,6 +222,10 @@ Perché il nome dell'array, nelle espressioni, è già l'indirizzo del primo ele
 
 ::: domanda Che cosa restituisce `scanf`, e perché si confronta con 1?
 Il numero di variabili lette. Con una sola variabile, 1 vuol dire che la lettura è riuscita; 0 o `EOF` che l'input non va bene o è finito.
+:::
+
+::: domanda Perché `incr(a)` non cambia `a`, e come si fa a cambiarlo?
+Perché il parametro è una copia di `a`. Si passa l'indirizzo: `incrPtr(&a)`, e nella funzione si scrive `(*p)++`.
 :::
 
 ::: domanda Come si esce da un ciclo «per ogni» senza `break`?
@@ -220,6 +281,22 @@ D: Sul modello degli esercizi del Lab04. Provando sempre il punto medio, quanti 
 N: 7
 = Ogni tentativo dimezza l'intervallo: 100, 50, 25, 12, 6, 3, 1. Con $2^7 = 128 \ge 100$ bastano 7 tentativi, e c'è un numero che li richiede tutti.
 
+D: Sul modello della correttezza. Che cosa stampa `void incr(int x) { x++; }` chiamata con `int a = 5; incr(a); printf("%d", a);`?
++ 5
+- 6
+- 0
+- non compila: `incr` non restituisce niente
+- un valore a caso
+= `x` è una copia di `a`, e l'incremento cambia solo la copia. La più insidiosa è 6, che sarebbe giusta con `incrPtr(&a)`.
+
+D: Sul modello degli errori di compilazione. `main` chiama `square(3)`, e `square` è definita più in basso nel file, senza prototipo. Che cosa fa gcc 16?
++ si ferma con `implicit declaration of function 'square'`
+- compila senza avvisi
+- compila con un avviso, e il programma funziona
+- compila, ma `square` restituisce sempre 0
+- chiede di spostare `main` in fondo
+= Da gcc 14 la dichiarazione implicita è un errore anche senza `-Wall`. Serve il prototipo in cima, o la definizione prima di `main`. La più insidiosa è «compila con un avviso»: era vero con i gcc più vecchi.
+
 D: Sul modello degli errori della 05A. In una funzione con i parametri `const char *a` e `const char *b`, quale di queste condizioni confronta davvero il contenuto delle due stringhe?
 + nessuna: per il contenuto serve un ciclo carattere per carattere
 - `a == b`
@@ -231,6 +308,6 @@ D: Sul modello degli errori della 05A. In una funzione con i parametri `const ch
 
 ## Fonti
 
-- Le lezioni complete: [05A · Array e stringhe](05A_array_stringhe.html), [Lab04 · Iterazioni](Lab04_iterazioni.html), con i programmi provati, i quiz e gli esercizi.
-- Slide del canale B: 05A_array_stringhe (E. G. Amparore) e Lab04 - Iterazioni; video della lezione del 27/10.
+- Le lezioni complete: [05A · Array e stringhe](05A_array_stringhe.html), [06A · Funzioni](06A_funzioni.html), [Lab04 · Iterazioni](Lab04_iterazioni.html), con i programmi provati, i quiz e gli esercizi.
+- Slide del canale B: 05A_array_stringhe e 06A_funzioni (E. G. Amparore) e Lab04 - Iterazioni; video della lezione del 27/10.
 - Regole d'esame dalla [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md) e dalla [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md).

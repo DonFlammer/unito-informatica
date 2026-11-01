@@ -99,8 +99,8 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - gio 22/10: analogie tra quantificatore universale e congiunzione, esistenziale e disgiunzione; quiz sulle regole di inferenza (sì/no) e sui quantificatori. Negli appunti è la lezione 10, scritta prima della lezione.
 - ven 23/10: §1.6, quantificatori annidati. Negli appunti è la lezione 11, scritta prima della lezione.
 - lun 26/10: fine del capitolo 1 della parte 2, esercizi sulle lezioni del docente 07–12: connettivi booleani, quantificatori, regole logiche. Negli appunti è la lezione 12.
-- gio 29/10: capitolo 2.1, metodi di prova. Negli appunti è la lezione 13, scritta prima della lezione.
-- ven 30/10: fine del capitolo 2.1 (metodi di prova), il paradosso del bevitore, esercizi. Negli appunti è la lezione 14, scritta prima della lezione.
+- gio 29/10: capitolo 2.1, metodi di prova. Negli appunti è la lezione 13, scritta prima della lezione; il diario aggiornato dopo la lezione conferma gli argomenti.
+- ven 30/10: fine del capitolo 2.1 (metodi di prova), il paradosso del bevitore, esercizi. Negli appunti è la lezione 14, scritta prima della lezione; il diario aggiornato dopo la lezione conferma gli argomenti. Per assurdo, contrapposizione, casi ed esistenza, che nell'edizione originale sono il §2.2, il diario non dice se sono stati fatti.
 
 ## Materiale
 

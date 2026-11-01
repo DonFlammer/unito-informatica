@@ -476,6 +476,34 @@ def barre_lezioni():
             pagina.write_text(nuovo, encoding="utf-8", newline="\n")
 
 
+def link_vicini(elenco, riassunti=False):
+    """In cima a ogni pagina, la lezione precedente a sinistra e la successiva a destra (richiesta dell'utente, 27/10/2026).
+    L'ordine è quello delle date, dentro la stessa parte del corso (MD e AG separate); le lezioni scritte in anticipo,
+    ancora senza data, vengono dopo, in ordine di codice. Così dopo la 05A di Programmazione I viene il Lab04, non il Lab01."""
+    nome = "Riassunto" if riassunti else "Lezione"
+    prec_s, succ_s = ("precedente", "successivo") if riassunti else ("precedente", "successiva")
+    for modulo in sorted({l["modulo"] for l in elenco}):
+        fila = sorted((l for l in elenco if l["modulo"] == modulo), key=lambda l: (l["data"] or "9999-12-31", l["codice"]))
+        for i, l in enumerate(fila):
+            pagina = APPUNTI / l["sigla"] / l["file"]
+            testo = pagina.read_text(encoding="utf-8")
+            if "<!-- VICINE:INIZIO" not in testo:
+                continue
+            link = []
+            for vicina, verso, classe, rel in ((fila[i - 1] if i else None, f"← {nome} {prec_s}", "prec", "prev"),
+                                               (fila[i + 1] if i + 1 < len(fila) else None, f"{nome} {succ_s} →", "succ", "next")):
+                if vicina:
+                    testo_link = vicina["titolo"] if riassunti else f'{vicina["codice"]} · {vicina["titolo"]}'
+                    link.append(f'  <a class="vicina {classe}" href="{e(vicina["file"])}" rel="{rel}" title="{e(testo_link)}">'
+                                f'<span class="dir">{verso}</span><span class="vt">{e(testo_link)}</span></a>')
+            blocco = (f'<nav class="vicine" aria-label="{"Riassunti vicini" if riassunti else "Lezioni vicine"}">\n'
+                      + "\n".join(link) + "\n</nav>\n") if link else ""
+            nuovo = sostituisci(testo, "<!-- VICINE:INIZIO", "<!-- VICINE:FINE -->",
+                                f"<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->\n{blocco}<!-- VICINE:FINE -->")
+            if nuovo != testo:
+                pagina.write_text(nuovo, encoding="utf-8", newline="\n")
+
+
 def main():
     lezioni_markdown()
     barre_lezioni()
@@ -486,6 +514,8 @@ def main():
         cartella = APPUNTI / m["sigla"]
         cartella.mkdir(parents=True, exist_ok=True)
         ries = lezioni(m["sigla"], riassunti=True)
+        link_vicini(lez)
+        link_vicini(ries, riassunti=True)
         (cartella / "index.html").write_text(pagina_materia(m, lez, ries), encoding="utf-8", newline="\n")
         print(f"appunti/{m['sigla']}/index.html - {len(lez)} lezioni" + (f", {len(ries)} riassunti" if ries else ""))
 

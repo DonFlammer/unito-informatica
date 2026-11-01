@@ -40,7 +40,7 @@ genera_html: true
 - Le permutazioni di $\{1, \dots, n\}$ sono $n!$, e si compongono come le funzioni. L'ordine della composizione conta: già con 3 elementi i due ordini danno risultati diversi.
 
 > [!CANALI]
-> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di lunedì 26/10/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la decima lezione era «Triangolo di Tartaglia-Pascal. Teorema del binomio di Newton. Permutazioni: definizione ed esempi». Il triangolo è già nella [D09](D09_coefficienti_binomiali_stiefel.html). Nel libro il binomio è alle pp. 60–61 e le permutazioni cominciano a p. 83, nel capitolo 5: il capitolo 4, sui numeri interi, il docente lo fa dopo. Il calcolo con le tabelle di composizioni e inverse e i cicli, nel diario, sono la lezione successiva. Quando il docente pubblica gli argomenti, controllo e aggiorno.
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di lunedì 26/10/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la decima lezione era «Triangolo di Tartaglia-Pascal. Teorema del binomio di Newton. Permutazioni: definizione ed esempi». Il triangolo è già nella [D09](D09_coefficienti_binomiali_stiefel.html). Nel libro il binomio è alle pp. 60–61 e le permutazioni cominciano a p. 83, nel capitolo 5: il capitolo 4, sui numeri interi, il docente lo fa dopo. Il calcolo con le tabelle di composizioni e inverse e i cicli, nel diario, sono la lezione successiva: la [D11](D11_cicli_disgiunti.html). Quando il docente pubblica gli argomenti, controllo e aggiorno.
 
 ## Sviluppare una potenza a mano
 
@@ -330,13 +330,13 @@ La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la ste
 **Che cosa serve di questa lezione**
 
 1. **Il binomio di Newton** non compare in nessuno degli appelli 2021–2026 che ho. Serve per dimostrare formule come $\sum \binom{n}{k} = 2^n$, e i coefficienti di un binomio sono un esercizio classico.
-2. **Le permutazioni** invece ci sono **in tutti gli appelli del 2025 e del 2026**: di solito le domande 5 e 6 del quiz e uno dei due problemi. Chiedono cicli, tipo, periodo e parità, che arrivano nelle prossime lezioni. Quello che serve già da ora è leggere e scrivere la tabella a due righe, sapere che $\lvert S_n \rvert = n!$ e calcolare un'inversa girando le frecce.
+2. **Le permutazioni** invece ci sono **in tutti gli appelli del 2025 e del 2026**: di solito le domande 5 e 6 del quiz e uno dei due problemi. Chiedono cicli, tipo, periodo e parità, che arrivano nelle prossime lezioni: i cicli nella [D11](D11_cicli_disgiunti.html), tipo e periodo nella [D12](D12_tipo_periodo_permutazioni.html). Quello che serve già da ora è leggere e scrivere la tabella a due righe, sapere che $\lvert S_n \rvert = n!$ e calcolare un'inversa girando le frecce.
 
 ### Una domanda vera, letta insieme
 
 **Appello del 14/01/2025, problema 1, versione A.** Il testo: «Si considerino le due permutazioni in $S_6$: $\sigma = (1\,3)(2\,4\,3)(3\,5\,1)$, $\tau = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 \\ 3 & 1 & 4 & 2 & 6 & 5 \end{pmatrix}$. a) Scrivere $\sigma$ e $\tau$ come prodotti di cicli disgiunti, calcolarne il tipo, il periodo e la parità. b) Determinare una permutazione $\nu \in S_6$ tale che $\sigma^{15041}\nu = \tau^{-1}$, e scriverla in notazione matriciale (a due righe). c) Dimostrare che la funzione $f: \mathbb{Z} \to S_6$, $n \mapsto \sigma^n$, è un omomorfismo, e calcolarne nucleo e immagine.»
 
-**In pratica chiede:** quasi tutto quello che si fa sulle permutazioni nel corso. La $\sigma$ è scritta con i cicli, che arrivano nella prossima lezione; il punto c) è della fine del corso. Con questa lezione si può già leggere $\tau$ e calcolarne l'inversa, che serve nel punto b).
+**In pratica chiede:** quasi tutto quello che si fa sulle permutazioni nel corso. La $\sigma$ è scritta con i cicli, che arrivano nella [D11](D11_cicli_disgiunti.html); il punto c) è della fine del corso. Con questa lezione si può già leggere $\tau$ e calcolarne l'inversa, che serve nel punto b).
 
 > [!ESEMPIO] · la parte che si fa già, passo per passo
 > **Passo 1: leggere $\tau$.** Per colonne: $\tau(1) = 3$, $\tau(2) = 1$, $\tau(3) = 4$, $\tau(4) = 2$, $\tau(5) = 6$, $\tau(6) = 5$. Nella riga sotto ci sono 1, …, 6 una volta ciascuno: è una permutazione.

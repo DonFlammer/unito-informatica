@@ -1,6 +1,7 @@
 ---
 corso: FDA
 lezione: "13"
+data: 2026-10-29
 titolo: Metodi di prova, dimostrazioni dirette e controesempi
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 13 · Libro, parte 2, §2.1

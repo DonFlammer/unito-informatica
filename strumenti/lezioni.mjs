@@ -45,7 +45,7 @@ const L = {
   it: {
     contesto: 'contesto_ai', lezioni: 'lezioni', riassunti: 'riassunti', appunti: 'appunti', lang: 'it', altraLang: 'en',
     altroSito: 'https://donflammer.github.io/unito-computer-science/notes/', genera: 'strumenti/genera_materie.py',
-    marcatori: ['TESTATA:INIZIO', 'TESTATA:FINE', 'PIEDE:INIZIO', 'PIEDE:FINE'],
+    marcatori: ['TESTATA:INIZIO', 'TESTATA:FINE', 'PIEDE:INIZIO', 'PIEDE:FINE', 'VICINE:INIZIO', 'VICINE:FINE'],
     corsi: { PROG1: 'Programmazione I', FDA: "Fondamenti dell'Informatica", MDAG: 'Matematica Discreta, Algebra e Geometria',
       ANMAT: 'Analisi Matematica', ARCH: 'Architettura degli Elaboratori', PROG2: 'Programmazione II', RO: 'Ricerca Operativa', INGLESE: 'Lingua Inglese I' },
     moduli: { MD: 'Matematica Discreta', AG: 'Algebra lineare e Geometria' }, parti: { MD: 'Parte 1 (modA)', AG: 'Parte 2 (modB)' },
@@ -74,7 +74,7 @@ const L = {
   en: {
     contesto: 'ai_context', lezioni: 'lessons', riassunti: 'summaries', appunti: 'notes', lang: 'en', altraLang: 'it',
     altroSito: 'https://donflammer.github.io/unito-informatica/appunti/', genera: 'tools/generate_courses.py',
-    marcatori: ['BAR:START', 'BAR:END', 'FOOTER:START', 'FOOTER:END'],
+    marcatori: ['BAR:START', 'BAR:END', 'FOOTER:START', 'FOOTER:END', 'NEIGHBOURS:START', 'NEIGHBOURS:END'],
     corsi: { PROG1: 'Programming I', FDA: 'Foundations of Computer Science', MDAG: 'Discrete Mathematics, Algebra and Geometry',
       ANMAT: 'Mathematical Analysis', ARCH: 'Computer Architecture', PROG2: 'Programming II', RO: 'Operational Research', ENGLISH: 'English I' },
     moduli: { MD: 'Discrete Mathematics', AG: 'Linear Algebra and Geometry' }, parti: { MD: 'Part 1 (modA)', AG: 'Part 2 (modB)' },
@@ -755,7 +755,7 @@ function compila(file) {
     const altro = `${L.altroSito}${corsoAltro}/${existsSync(localeAltro) ? meta.file_altro : ''}`;
     linkAltro = `<link rel="alternate" hreflang="${L.altraLang}" href="${esc(altro)}">\n`;
   }
-  const [m1, m2, m3, m4] = L.marcatori;
+  const [m1, m2, m3, m4, m5, m6] = L.marcatori;
   const indice = toc.map(t => `<li><a href="#${t.id}"><span class="n">${t.n}</span><span>${t.titolo}</span></a></li>`).join('\n');
   const rielab = L.rielaborati[ctx.materiale] || L.rielaborati.slide;
   const titoloPagina = `${lezione} · ${String(meta.titolo || '').replace(/\$/g, '')}`;
@@ -797,6 +797,8 @@ ${indice}
 
   <main id="contenuto" class="foglio">
     <header>
+<!-- ${m5} -->
+<!-- ${m6} -->
       <nav class="crumbs" aria-label="${T.percorso}"><a href="../../index.html">${T.appunti}</a> › <a href="index.html">${esc(nomeCorso)}</a> › ${parte ? `${esc(parte)} · ` : ''}${riassunto ? T.riassunto : `${T.lezione} ${esc(lezione)}`}</nav>
       <p class="eyebrow">${inLinea(sopratitolo, ctx)}</p>
       <h1>${inLinea(String(meta.titolo || ''), ctx)}</h1>
@@ -853,11 +855,12 @@ for (const file of scelti.length ? scelti : sorgenti()) {
   errori += ctx.errori.length;
   if (ctx.errori.length || soloControllo || !uscita) continue;
   if (!existsSync(dirname(uscita))) { console.error(`ERRORE: ${ctx.file}: la cartella di ${relative(RADICE, uscita)} non esiste`); errori++; continue; }
-  // la barra in alto e il piede li inserisce il generatore delle pagine dei corsi: se la pagina li ha già, li conservo
+  // la barra in alto, il piede e i link alla lezione precedente e alla successiva li inserisce il generatore delle pagine
+  // dei corsi (strumenti/genera_materie.py): se la pagina li ha già, li conservo
   let finale = pagina;
   if (existsSync(uscita)) {
     const vecchia = readFileSync(uscita, 'utf8');
-    for (const [a, b] of [[L.marcatori[0], L.marcatori[1]], [L.marcatori[2], L.marcatori[3]]]) {
+    for (const [a, b] of [[L.marcatori[0], L.marcatori[1]], [L.marcatori[2], L.marcatori[3]], [L.marcatori[4], L.marcatori[5]]]) {
       const i = vecchia.indexOf(`<!-- ${a}`), j = vecchia.indexOf(`<!-- ${b} -->`);
       const x = finale.indexOf(`<!-- ${a} -->`), y = finale.indexOf(`<!-- ${b} -->`);
       if (i >= 0 && j > i && x >= 0 && y > x) finale = finale.slice(0, x) + vecchia.slice(i, j) + finale.slice(y);

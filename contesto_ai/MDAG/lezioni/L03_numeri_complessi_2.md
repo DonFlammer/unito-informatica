@@ -9,7 +9,7 @@ sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C ·
 descrizione: >-
   Appunti della lezione L03 di Algebra lineare e Geometria (MDAG, parte 2): coordinate polari, forma esponenziale,
   modulo e argomento di un numero complesso, prodotto e inverso in forma polare, identità di Eulero, potenze e
-  radici n-esime, con un ripasso di seno e coseno, quiz nello stile dell'esame ed esercizi svolti.
+  radici n-esime, con un ripasso di seno e coseno, le domande degli appelli dal 2024 al 2026, quiz ed esercizi svolti.
 lede: >-
   Un altro modo di dire dove sta un numero complesso: invece di «quanto a destra e quanto in su», una distanza e una
   direzione. Scritti così, i prodotti diventano giri e allungamenti, e le potenze alte e le radici si calcolano in
@@ -28,36 +28,31 @@ genera_html: true
 
 ## In breve
 
-- Un punto del piano si può indicare in due modi: «3 passi a destra e 4 in su», oppure «guarda in quella direzione e fai 5 passi». Il secondo modo usa una **distanza** e un **angolo**: sono le **coordinate polari**.
-- Un numero complesso scritto con distanza e angolo è in **forma polare**. La distanza si chiama **modulo**, l'angolo si chiama **argomento**.
-- Le dispense usano un'abbreviazione: $e^{i\vartheta}$ vuol dire «il punto sul cerchio di raggio 1 all'angolo $\vartheta$».
-- Per **moltiplicare** due numeri complessi in forma polare: le distanze si moltiplicano, gli angoli si sommano. Moltiplicare per $i$ vuol dire girare di un quarto di giro.
-- Una **potenza** è un prodotto ripetuto: la distanza si eleva, l'angolo si moltiplica. Le **radici** $n$-esime di un numero sono sempre $n$ punti, messi in cerchio a distanze uguali.
+- Un punto del piano diverso dall'origine si individua anche con la **distanza** dall'origine e l'**angolo** con l'asse orizzontale: sono le **coordinate polari**.
+- Un numero complesso scritto così è in **forma polare**: la distanza è il **modulo**, l'angolo l'**argomento**. Le dispense abbreviano il punto della circonferenza di raggio 1 all'angolo dato con un esponenziale complesso.
+- Nel **prodotto** i moduli si moltiplicano e gli angoli si sommano: moltiplicare per un numero vuol dire ruotare e allungare.
+- Nella **potenza** il modulo si eleva e l'angolo si moltiplica per l'esponente; gli angoli si accorciano togliendo giri interi.
+- Le **radici** $n$-esime di un numero non nullo sono sempre $n$, sui vertici di un poligono regolare centrato nell'origine.
 - All'esame: potenze alte, prodotti in forma polare e radici sono stati la domanda sui complessi in 9 appelli su 15 dal 2024 al 2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di mercoledì 07/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di mercoledì 07/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 3. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Ripasso: angoli, seno e coseno (oltre le dispense)
 
-Le dispense usano angoli, seno e coseno senza spiegarli: li danno per noti dalla scuola. Qui c'è tutto quello che serve per questa lezione, e niente di più. Se li ricordi bene, salta alla sezione dopo.
+Le dispense usano angoli, seno e coseno come noti dalla scuola. Qui c'è quello che serve per questa lezione; se lo ricordi bene, passa alla sezione dopo.
 
 ### Gli angoli in radianti
 
-Immagina una pista circolare con il raggio lungo 1 metro. Parti da un punto e cammini lungo la pista. Quanta strada fai in un giro completo?
+Una circonferenza di raggio 1 è lunga $2\pi$, circa 6,28.
 
-La lunghezza di una circonferenza è $2\pi$ volte il raggio. Qui il raggio è 1, quindi un giro completo è lungo $2\pi$ metri, circa 6,28.
-
-> [!RIPASSO] il numero $\pi$
-> $\pi$ si legge «pi greco». È il numero che dice quante volte il diametro di un cerchio ci sta nella sua circonferenza: circa $3{,}14$. Una circonferenza di raggio $r$ è lunga $2\pi r$.
-
-L'idea dei **radianti** è misurare un angolo con la **strada fatta sulla pista**:
+I **radianti** misurano un angolo con la lunghezza dell'arco che taglia su questa circonferenza:
 
 - un giro intero è lungo $2\pi$, quindi l'angolo giro misura $2\pi$;
 - mezzo giro è lungo la metà, $\pi$, quindi l'angolo piatto misura $\pi$;
 - un quarto di giro, cioè l'angolo retto, misura $\frac\pi2$.
 
-I gradi e i radianti sono due unità di misura per la stessa cosa, come i chilometri e le miglia. La regola per passare dagli uni agli altri: $180°$ corrisponde a $\pi$. Quindi un grado vale $\frac{\pi}{180}$, e per passare da gradi a radianti si moltiplica per $\frac{\pi}{180}$.
+Gradi e radianti sono due unità di misura per la stessa cosa. La regola per passare dagli uni agli altri: $180°$ corrisponde a $\pi$. Quindi un grado vale $\frac{\pi}{180}$, e per passare da gradi a radianti si moltiplica per $\frac{\pi}{180}$.
 
 Un esempio: $60°$.
 
@@ -82,9 +77,7 @@ $270 \cdot \frac{\pi}{180} = \frac{270\pi}{180} = \frac{3\pi}2$, dividendo sopra
 
 ### Seno e coseno sul cerchio
 
-Torna sulla pista. Mettila su un foglio a quadretti, con il centro nell'origine degli assi. La pista è la **circonferenza unitaria**: il cerchio con centro nell'origine e raggio 1.
-
-Parti dal punto $(1, 0)$, quello più a destra, e cammina in senso antiorario per un angolo $\vartheta$. Ti fermi in un punto della pista. Quel punto ha due coordinate:
+La **circonferenza unitaria** è quella con centro nell'origine e raggio 1. Partendo dal punto $(1, 0)$ e percorrendo in senso antiorario un arco di angolo $\vartheta$ si arriva a un punto con due coordinate:
 
 - la prima (quanto sei a destra) si chiama **coseno** di $\vartheta$, e si scrive $\cos\vartheta$;
 - la seconda (quanto sei in alto) si chiama **seno** di $\vartheta$, e si scrive $\sin\vartheta$.
@@ -169,14 +162,7 @@ $\frac{3\pi}4 = \pi - \frac\pi4$: tre quarti di mezzo giro, nel secondo quadrant
 
 ## Due modi per dire dove sta un punto (pp. 10–11)
 
-Sei in una piazza e devi spiegare a un amico dove trovarti. Puoi dirlo in due modi:
-
-- «da dove sei, fai 3 passi verso est e 4 verso nord»;
-- «guarda in quella direzione e fai 5 passi dritto».
-
-Il primo modo sono le **coordinate cartesiane** della lezione L02: quanto ti sposti in orizzontale, quanto in verticale. Il secondo usa una **direzione** e una **distanza**.
-
-Perché proprio 5 passi? Gli spostamenti di 3 e di 4 sono i due lati di un triangolo rettangolo, e la strada dritta è il terzo lato. Per Pitagora la sua lunghezza è $\sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$.
+Le **coordinate cartesiane** della lezione L02 dicono quanto ci si sposta in orizzontale e quanto in verticale. Lo stesso punto si individua anche con una **direzione** e una **distanza**. Il punto $(3, 4)$, per esempio, sta a distanza $\sqrt{3^2 + 4^2} = 5$ dall'origine, per il teorema di Pitagora.
 
 ### Il nome e i simboli
 
@@ -525,7 +511,7 @@ $\bar z = 4e^{-i\pi/2}$: stessa distanza, angolo opposto. In forma $a + bi$: $z 
 
 ## Quando due angoli indicano lo stesso punto (p. 11)
 
-Un orologio segna le 3. Dopo un giro completo della lancetta segna ancora le 3: la lancetta è nello stesso posto. Con gli angoli succede lo stesso. L'angolo $\frac\pi2$ e l'angolo $\frac\pi2 + 2\pi = \frac{5\pi}2$ indicano la stessa direzione: il secondo ha solo fatto un giro in più.
+Un giro completo riporta nella stessa direzione. Per esempio l'angolo $\frac\pi2$ e l'angolo $\frac\pi2 + 2\pi = \frac{5\pi}2$ indicano la stessa direzione: il secondo ha solo fatto un giro in più.
 
 Per questo lo stesso numero complesso ha tante forme polari diverse:
 
@@ -574,9 +560,9 @@ Un giro in terzi è $\frac 63\pi$. Divido 17 per 6: $17 = 6 \cdot 2 + 5$. Quindi
 
 ## Il giro completo e l'identità di Eulero (p. 12)
 
-Torna sulla pista circolare del ripasso, quella con il raggio lungo 1. Ogni abbreviazione $e^{i\vartheta}$ è un punto della pista, e ogni punto della pista è uno di questi numeri: basta prendere il suo angolo.
+Gli esponenziali complessi sono esattamente i punti della circonferenza unitaria. Ogni $e^{i\vartheta}$ è un suo punto, e ogni suo punto è uno di questi numeri.
 
-Tre posti sulla pista sono da sapere a memoria, perché tornano in quasi tutti gli esercizi:
+Tre punti sono da sapere a memoria, perché tornano in quasi tutti gli esercizi:
 
 - un quarto di giro, $\vartheta = \frac\pi2$: $e^{i\pi/2} = \cos\frac\pi2 + i\sin\frac\pi2 = 0 + i \cdot 1 = i$;
 - mezzo giro, $\vartheta = \pi$: $e^{i\pi} = \cos\pi + i\sin\pi = -1 + 0 = -1$;
@@ -864,7 +850,7 @@ $-9 = 9e^{i\pi}$. Distanza $\sqrt 9 = 3$, angoli $\frac\pi2$ e $\frac{3\pi}2$. L
 
 **Appello del 15/01/2026, domanda 5.** Il testo: «Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, allora $z^9$ è uguale a: (a) $1$; (b) $\frac 12 - \frac{\sqrt 3}2 i$; (c) $-\frac{9\sqrt 3}2 + \frac 92 i$; (d) $i$; (e) $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$».
 
-**In pratica chiede:** prendi questo numero, moltiplicalo per sé stesso nove volte. Che cosa viene? Nove moltiplicazioni nella forma $a + bi$ sono troppe: si passa alla forma polare.
+**In pratica chiede:** la potenza nona di un numero dato in forma $a + bi$. Nove moltiplicazioni sono troppe: si passa alla forma polare.
 
 > [!ESEMPIO] · la soluzione, passo per passo
 > **Passo 1: la distanza.** $|z| = \sqrt{\left(\frac{\sqrt 3}2\right)^2 + \left(\frac 12\right)^2} = \sqrt{\frac 34 + \frac 14} = \sqrt 1 = 1$. Il numero sta sul cerchio di raggio 1.
@@ -930,6 +916,38 @@ $-9 = 9e^{i\pi}$. Distanza $\sqrt 9 = 3$, angoli $\frac\pi2$ e $\frac{3\pi}2$. L
 ## Quiz
 
 ```quiz
+D: Appello del 15/01/2026, domanda 5. Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, allora $z^9$ è uguale a:
+- $1$
+- $\frac 12 - \frac{\sqrt 3}2 i$
+- $-\frac{9\sqrt 3}2 + \frac 92 i$
++ $i$
+- $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$
+= $z = e^{-i\pi/6}$, quindi $z^9 = e^{-3\pi i/2} = e^{i\pi/2} = i$: la risposta (d) della soluzione ufficiale. La risposta più insidiosa è l'ultima, che eleva alla nona le due parti separatamente: per i complessi non si fa.
+
+D: Appello del 16/01/2025, domanda 1. Dato $z = 2\cos\frac\pi4 + 2i\sin\frac\pi4$, allora $-3iz$ in coordinate polari è uguale a:
+- $-6i\cos\frac\pi4 - 6i\sin\frac\pi4$
+- $-6e^{3\pi i/4}$
+- $-6i\cos\frac\pi4 + 6i\sin\frac\pi4$
++ $6e^{7\pi i/4}$
+- $0$
+= $z = 2e^{i\pi/4}$ e $-3i = 3e^{3\pi i/2}$: moduli moltiplicati, $6$; angoli sommati, $\frac{7\pi}4$. È la (d) della soluzione ufficiale. La risposta più insidiosa è $-6e^{3\pi i/4}$: indica lo stesso numero, ma con il modulo negativo non è una forma polare.
+
+D: Appello del 02/09/2025, domanda 2. Quale dei seguenti è una radice terza di $z = 8e^{3\pi i/5}$?
+- $4e^{\pi i/5}$
++ $2e^{\pi i/5 + 2\pi i/3}$
+- $8e^{\pi i/3 + 2\pi ik}$
+- $2e^{3\pi i/5}$
+- $2e^{3\pi i/5 + \pi i/3}$
+= Le radici terze hanno modulo $\sqrt[3]8 = 2$ e angoli $\frac\pi5 + \frac{2k\pi}3$: con $k = 1$ è la (b), quella della soluzione ufficiale. La risposta più insidiosa è $2e^{3\pi i/5}$, che ha il modulo giusto ma non divide l'angolo per 3: il suo cubo è $8e^{9\pi i/5}$.
+
+D: Appello del 24/01/2024, domanda 2. Dato $z = -\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$, allora $z^{12}$ è uguale a:
++ $-1$
+- $-2i$
+- $\frac 1{2^6}(1 - i)$
+- $\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$
+- $2^{12} i$
+= $z$ ha modulo 1 e angolo $\frac{3\pi}4$, quindi $z^{12} = e^{9\pi i} = e^{i\pi} = -1$: la (a) della soluzione ufficiale. La risposta più insidiosa è $2^{12}i$, che sbaglia il modulo: $\left(\frac{\sqrt 2}2\right)^2 + \left(\frac{\sqrt 2}2\right)^2 = 1$, non 2.
+
 D: Dato $z = 1 + i$, allora $z^{10}$ è uguale a:
 + $32i$
 - $-32i$

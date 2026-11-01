@@ -3,12 +3,13 @@ corso: MDAG
 modulo: AG
 lezione: L11
 titolo: Sistemi lineari I
+data: 2026-10-29
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L11
 descrizione: >-
   Appunti della lezione L11 di Algebra lineare e Geometria (MDAG, parte 2): sistemi lineari e matrice completa,
   mosse di Gauss, pivot e matrici a scalini, algoritmi di Gauss e di Gauss–Jordan, come si scrivono tutte le
-  soluzioni di un sistema, con quiz nello stile dell'esame ed esercizi svolti.
+  soluzioni di un sistema, con domande vere degli appelli, quiz ed esercizi svolti.
 lede: >-
   Un metodo che risolve qualsiasi sistema di equazioni, con qualunque numero di equazioni e di incognite. Si
   scrivono i numeri in una tabella, la si riordina con tre mosse e alla fine la risposta si legge: una soluzione,
@@ -27,7 +28,7 @@ genera_html: true
 
 ## In breve
 
-- Un **sistema lineare** è un indovinello con più indizi: cerchi dei numeri che rispettano tutte le condizioni insieme. Ogni indizio è un'**equazione**. I numeri da trovare si chiamano **incognite**.
+- Un **sistema lineare** è un elenco di **equazioni** da rispettare tutte insieme: si cercano i numeri che le soddisfano tutte. I numeri da trovare si chiamano **incognite**.
 - Per fare i conti si scrivono solo i numeri, in una tabella: la **matrice completa**. Ogni riga della tabella è un'equazione.
 - Tre **mosse di Gauss** cambiano le righe senza cambiare le soluzioni: scambiare due righe, moltiplicare una riga per un numero diverso da zero, sommare a una riga un multiplo di un'altra riga.
 - Con le mosse si porta la tabella **a scalini**: una forma a scala in cui il sistema si risolve dal basso. Il primo numero diverso da zero di ogni riga si chiama **pivot**.
@@ -35,21 +36,21 @@ genera_html: true
 - All'esame il quiz «quante soluzioni ha il sistema?» è uscito in 9 appelli su 15, e quasi ogni problema aperto finisce con questi conti.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 29/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 11. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
-## Un indovinello con più indizi: il sistema (p. 50)
+## Che cos'è un sistema lineare (p. 50)
 
-Partiamo da un indovinello: penso a due numeri, la loro somma fa 5 e la loro differenza fa 1. Quali sono?
+Un esempio: due numeri hanno somma 5 e differenza 1. Quali sono?
 
-Ci sono due numeri da trovare e due **indizi**. La risposta deve rispettare tutti e due gli indizi insieme.
+Ci sono due numeri da trovare e due **condizioni**. La risposta deve rispettare tutte e due le condizioni insieme.
 
 ### Dare un nome ai numeri da trovare
 
 Un numero che non conosci ancora si chiama **incognita**. Per poterne parlare gli si dà un nome: una lettera. Qui i numeri da trovare sono due, quindi servono due lettere. Chiamiamo $x$ il primo numero e $y$ il secondo.
 
-Adesso ogni indizio si scrive in breve.
+Adesso ogni condizione si scrive in breve.
 
-| L'indizio a parole | Scritto con le lettere |
+| La condizione a parole | Scritto con le lettere |
 |---|---|
 | la somma dei due numeri fa 5 | $x + y = 5$ |
 | il primo meno il secondo fa 1 | $x - y = 1$ |
@@ -73,7 +74,7 @@ $$\begin{cases} x + y = 5 \\ x - y = 1 \end{cases}$$
 
 La graffa si legge «tutte insieme». Un gruppo di equazioni da rispettare tutte insieme si chiama **sistema**.
 
-### Risolvere l'indovinello ragionando
+### Risolverlo ragionando
 
 Proviamo a trovare i due numeri senza andare a tentativi.
 
@@ -84,7 +85,7 @@ La prima equazione dice che $x + y$ e 5 sono lo stesso numero. La seconda dice c
 3. **L'equazione nuova** è $2x = 6$. Dividi per 2 i due lati: $x = 3$.
 4. **Il secondo numero.** Torna alla prima equazione e metti 3 al posto di $x$. Diventa $3 + y = 5$. Togli 3 dai due lati: $y = 2$.
 
-I due numeri sono 3 e 2. Controlliamo con gli indizi di partenza.
+I due numeri sono 3 e 2. Controlliamo con le condizioni di partenza.
 
 - La somma: $3 + 2 = 5$. Giusto.
 - La differenza: $3 - 2 = 1$. Giusto.
@@ -100,9 +101,9 @@ Proviamo un'altra lista: $(4, 1)$.
 - Prima equazione: $4 + 1 = 5$. Vera.
 - Seconda equazione: $4 - 1 = 3$, ma doveva fare 1. Falsa.
 
-Quindi $(4, 1)$ **non** è una soluzione. Basta un solo indizio non rispettato per scartare una lista.
+Quindi $(4, 1)$ **non** è una soluzione. Basta una sola condizione non rispettata per scartare una lista.
 
-Tutte le soluzioni di un sistema, messe insieme, formano un insieme. Le dispense lo chiamano $S$, come «soluzioni». L'indovinello ha una soluzione sola, quindi il suo insieme $S$ ha un solo elemento:
+Tutte le soluzioni di un sistema, messe insieme, formano un insieme. Le dispense lo chiamano $S$, come «soluzioni». Il sistema di partenza ha una soluzione sola, quindi il suo insieme $S$ ha un solo elemento:
 
 $$S = \{(3, 2)\}$$
 
@@ -132,7 +133,7 @@ Si legge «ics uno», «ics due», «ics tre». Il numerino si chiama **indice**
 
 ### Che cosa vuol dire «lineare»
 
-Gli indizi di questa lezione sono tutti dello stesso tipo. Ogni incognita può essere solo **moltiplicata per un numero**. Poi i pezzi si **sommano**. Nient'altro. Un'equazione fatta così si chiama **lineare**.
+Le equazioni di questa lezione sono tutte dello stesso tipo. Ogni incognita può essere solo **moltiplicata per un numero**. Poi i pezzi si **sommano**. Nient'altro. Un'equazione fatta così si chiama **lineare**.
 
 Non sono permesse tre cose: un'incognita moltiplicata per sé stessa, due incognite moltiplicate tra loro, un'incognita chiusa dentro un'altra operazione.
 
@@ -147,8 +148,8 @@ Non sono permesse tre cose: un'incognita moltiplicata per sé stessa, due incogn
 
 Un **sistema lineare** è un sistema in cui tutte le equazioni sono lineari. Il metodo di questa lezione funziona solo per questi sistemi.
 
-::: prova La lista $(1, 4)$ è una soluzione del sistema dell'indovinello?
-No. Prima equazione: $1 + 4 = 5$, vera. Seconda equazione: $1 - 4 = -3$, ma doveva fare 1. Un indizio non è rispettato, quindi la lista si scarta.
+::: prova La lista $(1, 4)$ è una soluzione del sistema di partenza?
+No. Prima equazione: $1 + 4 = 5$, vera. Seconda equazione: $1 - 4 = -3$, ma doveva fare 1. Una condizione non è rispettata, quindi la lista si scarta.
 :::
 
 ::: prova Quali di queste equazioni sono lineari? (a) $3x - y = 2$; (b) $x \cdot y = 1$; (c) $x + y + z = 0$; (d) $x^2 = 9$.
@@ -173,7 +174,7 @@ I coefficienti sono 5, $-1$ e 2. Davanti a $y$ c'è solo il segno meno, quindi i
 
 ## Una, nessuna, infinite: tre finali in un disegno (oltre le dispense)
 
-Un indovinello può finire in tre modi: con una risposta sola, con nessuna risposta, con infinite risposte. Quando le incognite sono due, i tre finali si vedono in un disegno.
+Un sistema può finire in tre modi: con una risposta sola, con nessuna risposta, con infinite risposte. Quando le incognite sono due, i tre finali si vedono in un disegno.
 
 > [!RIPASSO] punti e rette sul foglio a quadretti
 > Prendi un foglio a quadretti e disegna due righe numerate che si incrociano: una orizzontale e una verticale. Si chiamano **assi**. Il punto in cui si incrociano è lo zero di tutti e due.
@@ -188,7 +189,7 @@ Un sistema di due equazioni è fatto di due rette. Una soluzione deve rispettare
 
 Due rette sullo stesso foglio possono stare in tre modi.
 
-**Primo finale: le rette si incrociano.** È il caso dell'indovinello. Guarda la figura: le due rette hanno un solo punto in comune, quello della soluzione $(3, 2)$. Il sistema ha **una sola soluzione**.
+**Primo finale: le rette si incrociano.** È il caso del sistema di partenza. Guarda la figura: le due rette hanno un solo punto in comune, quello della soluzione $(3, 2)$. Il sistema ha **una sola soluzione**.
 
 ```grafico
 titolo: $x + y = 5$ e $x - y = 1$ si incontrano in un punto: una sola soluzione, $(3, 2)$
@@ -199,7 +200,7 @@ retta: 1 0 4 3 | blu | $x - y = 1$ | se
 punto: 3 2 | ambra | $(3, 2)$ | e
 ```
 
-**Secondo finale: le rette sono parallele.** Prendi questi due indizi: «la somma fa 2» e «la somma fa 4». La somma di due numeri non può fare 2 e 4 nello stesso momento. I due indizi si contraddicono. Guarda la figura: le due rette non si toccano mai. Il sistema **non ha nessuna soluzione**.
+**Secondo finale: le rette sono parallele.** Prendi queste due condizioni: «la somma fa 2» e «la somma fa 4». La somma di due numeri non può fare 2 e 4 nello stesso momento. I due condizioni si contraddicono. Guarda la figura: le due rette non si toccano mai. Il sistema **non ha nessuna soluzione**.
 
 ```grafico
 titolo: $x + y = 2$ e $x + y = 4$ sono parallele: nessun punto comune, nessuna soluzione
@@ -209,7 +210,7 @@ retta: 2 0 0 2 | accento | $x + y = 2$ | ne
 retta: 4 0 0.5 3.5 | blu | $x + y = 4$ | ne
 ```
 
-**Terzo finale: le rette coincidono.** Prendi «la somma fa 2» e «il doppio della somma fa 4». Il secondo indizio ripete il primo con altre parole: non aggiunge niente. Guarda la figura: le due rette stanno una sopra l'altra. Ogni punto della retta è una soluzione: $(2, 0)$, poi $(1, 1)$, poi $(0, 2)$ e tutti gli altri. Il sistema ha **infinite soluzioni**.
+**Terzo finale: le rette coincidono.** Prendi «la somma fa 2» e «il doppio della somma fa 4». La seconda condizione ripete la prima con altre parole: non aggiunge niente. Guarda la figura: le due rette stanno una sopra l'altra. Ogni punto della retta è una soluzione: $(2, 0)$, poi $(1, 1)$, poi $(0, 2)$ e tutti gli altri. Il sistema ha **infinite soluzioni**.
 
 ```grafico
 titolo: $x + y = 2$ e $2x + 2y = 4$ sono la stessa retta: infinite soluzioni
@@ -223,24 +224,24 @@ Con due rette non esistono altri casi. Per esempio le soluzioni non sono mai esa
 
 Con tre o più incognite il disegno non si riesce più a fare. Ma i finali restano questi tre: nessuna soluzione, una sola, infinite. Lo dimostra il teorema di Rouché–Capelli, nella lezione L12. Il metodo di questa lezione dice ogni volta in quale dei tre finali sei.
 
-::: prova Senza fare conti: quante soluzioni ha il sistema con gli indizi «la somma fa 3» e «la somma fa 7»?
+::: prova Senza fare conti: quante soluzioni ha il sistema con le condizioni «la somma fa 3» e «la somma fa 7»?
 Nessuna. La somma di due numeri non può fare 3 e 7 nello stesso momento. Nel disegno sono due rette parallele.
 :::
 
 ::: prova Quante soluzioni ha il sistema $x + y = 3$, $3x + 3y = 9$?
 Infinite. La seconda equazione è la prima moltiplicata per 3: a sinistra $3 \cdot (x + y)$ fa $3x + 3y$, a destra $3 \cdot 3$ fa 9. Non dice niente di nuovo.
 
-Resta un solo indizio, $x + y = 3$. Le coppie che lo rispettano sono infinite: $(0, 3)$, $(1, 2)$, $(3, 0)$ e così via. Nel disegno le due rette coincidono.
+Resta una sola condizione, $x + y = 3$. Le coppie che lo rispettano sono infinite: $(0, 3)$, $(1, 2)$, $(3, 0)$ e così via. Nel disegno le due rette coincidono.
 :::
 
 > [!RICORDA]
 > - Un sistema lineare può avere **una** soluzione, **nessuna** oppure **infinite**. Con i numeri reali non ne ha mai esattamente due o tre (lezione L12).
-> - Nessuna soluzione: due indizi si contraddicono.
-> - Infinite soluzioni: un indizio ripete gli altri, e qualcosa resta libero.
+> - Nessuna soluzione: due condizioni si contraddicono.
+> - Infinite soluzioni: una condizione ripete le altre, e qualcosa resta libero.
 
 ## Scrivere solo i numeri: la matrice completa (p. 50)
 
-Rileggi come abbiamo risolto l'indovinello: le lettere non hanno fatto nessun lavoro. I conti li hanno fatti i numeri: quelli davanti alle incognite e quelli a destra dell'uguale. Le lettere servivano solo a tenere ogni numero al suo posto.
+Rileggi come abbiamo risolto il sistema di partenza: le lettere non hanno fatto nessun lavoro. I conti li hanno fatti i numeri: quelli davanti alle incognite e quelli a destra dell'uguale. Le lettere servivano solo a tenere ogni numero al suo posto.
 
 Allora conviene scrivere **solo i numeri**, in una tabella. Sarà il posto nella tabella a dire a quale incognita appartiene ogni numero.
 
@@ -251,9 +252,9 @@ Allora conviene scrivere **solo i numeri**, in una tabella. Sarà il posto nella
 >
 > Questa matrice ha 2 righe e 3 colonne. Si scrive «matrice $2 \times 3$» e si legge «due per tre»: prima le righe, poi le colonne. La riga 2 è fatta dei numeri 4, 5 e 6. La colonna 3 è fatta dei numeri 3 e 6. Il numero nella riga 2 e nella colonna 1 è il 4.
 
-### Dall'indovinello alla tabella
+### Dal sistema alla tabella
 
-Il sistema dell'indovinello è questo:
+Il sistema di partenza è questo:
 
 $$\begin{cases} x + y = 5 \\ x - y = 1 \end{cases}$$
 
@@ -286,7 +287,7 @@ Le dispense danno un nome a ogni pezzo della tabella.
 - La colonna a destra della barra è il **vettore dei termini noti**. Si indica con la lettera $b$. È un vettore scritto in verticale: un **vettore colonna**.
 - La tabella intera è la **matrice completa**. Si indica con la lettera $C$.
 
-Per l'indovinello:
+Per il sistema di partenza:
 
 $$A = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \qquad b = \begin{pmatrix} 5 \\ 1 \end{pmatrix} \qquad C = \left(\begin{array}{cc|c} 1 & 1 & 5 \\ 1 & -1 & 1 \end{array}\right)$$
 
@@ -325,7 +326,7 @@ Un sistema può avere un numero qualsiasi di equazioni e di incognite. I due num
 - La lettera $k$ è il numero di **equazioni**.
 - La lettera $n$ è il numero di **incognite**.
 
-Nell'indovinello le equazioni sono 2 e le incognite sono 2. Nell'esempio qui sopra sono 3 e 3.
+Nel sistema di partenza le equazioni sono 2 e le incognite sono 2. Nell'esempio qui sopra sono 3 e 3.
 
 Anche i coefficienti sono tanti, e serve un modo per indicarli tutti. Le dispense li chiamano tutti $a$, con **due** numerini in basso. Il primo dice la riga, cioè l'equazione. Il secondo dice la colonna, cioè l'incognita.
 
@@ -382,11 +383,11 @@ Le equazioni sono 2, una per riga. Le colonne sono 4, ma l'ultima è quella dei 
 > - Prima di scriverla metti in ordine il sistema: incognite nello stesso ordine, 0 per quelle che mancano, numeri senza incognita a destra.
 > - Le incognite sono le colonne **prima** della barra. L'ultima colonna non è un'incognita.
 
-## Riscrivere gli indizi: le mosse di Gauss (pp. 50–51)
+## Riscrivere le equazioni: le mosse di Gauss (pp. 50–51)
 
-Per risolvere l'indovinello hai sommato le due equazioni. In pratica hai **riscritto gli indizi** in un'altra forma, più comoda, e la risposta è rimasta la stessa.
+Per risolvere il sistema di partenza hai sommato le due equazioni. In pratica hai **riscritto le condizioni** in un'altra forma, più comoda, e la risposta è rimasta la stessa.
 
-Questa è l'idea di tutta la lezione. La soluzione non si cerca a tentativi. Si riscrivono gli indizi, un passo alla volta, finché la soluzione si legge. L'importante è usare solo riscritture che **non cambiano le soluzioni**.
+Questa è l'idea di tutta la lezione. La soluzione non si cerca a tentativi. Si riscrivono le equazioni, un passo alla volta, finché la soluzione si legge. L'importante è usare solo riscritture che **non cambiano le soluzioni**.
 
 Le riscritture sicure sono tre. Si chiamano **mosse di Gauss**, dal nome del matematico tedesco Carl Friedrich Gauss. Le hai già incontrate nella lezione L10, dove servivano per calcolare i determinanti. Qui servono per risolvere i sistemi.
 
@@ -394,7 +395,7 @@ Ogni mossa lavora sulle **righe** della matrice completa, cioè sulle equazioni.
 
 ### Prima mossa: scambiare due righe
 
-Dire gli indizi in un altro ordine non cambia l'indovinello. «La somma fa 5 e la differenza fa 1» è lo stesso di «la differenza fa 1 e la somma fa 5».
+Scrivere le equazioni in un altro ordine non cambia il sistema. «La somma fa 5 e la differenza fa 1» è lo stesso di «la differenza fa 1 e la somma fa 5».
 
 Sulla matrice completa vuol dire scambiare di posto due righe intere:
 
@@ -406,26 +407,26 @@ La mossa si scrive $R_1 \leftrightarrow R_2$. La freccia a due punte si legge «
 
 «La somma fa 5» e «il doppio della somma fa 10» dicono la stessa cosa. Chi conosce una delle due frasi conosce anche l'altra.
 
-Sulla matrice vuol dire moltiplicare per lo stesso numero **tutti** i numeri di una riga, compreso quello dopo la barra. Moltiplichiamo per 2 la prima riga dell'indovinello.
+Sulla matrice vuol dire moltiplicare per lo stesso numero **tutti** i numeri di una riga, compreso quello dopo la barra. Moltiplichiamo per 2 la prima riga del sistema di partenza.
 
 | | colonna di $x$ | colonna di $y$ | termine noto |
 |---|---|---|---|
 | riga 1 | $1$ | $1$ | $5$ |
 | 2 volte la riga 1 | $2 \cdot 1 = 2$ | $2 \cdot 1 = 2$ | $2 \cdot 5 = 10$ |
 
-La nuova riga 1 è $(2, 2 \mid 10)$: i due coefficienti, la barra e il termine noto. È l'equazione $2x + 2y = 10$. La soluzione dell'indovinello la rispetta ancora:
+La nuova riga 1 è $(2, 2 \mid 10)$: i due coefficienti, la barra e il termine noto. È l'equazione $2x + 2y = 10$. La soluzione del sistema di partenza la rispetta ancora:
 
 $$2 \cdot 3 + 2 \cdot 2 = 6 + 4 = 10$$
 
 La mossa si scrive $R_1 \to 2R_1$. La freccia si legge «diventa»: «la riga 1 diventa 2 volte la riga 1».
 
-C'è un solo divieto: il numero non può essere **zero**. Prova a moltiplicare per 0 la riga dell'indizio «la somma fa 5». Tutti i suoi numeri diventano 0, e la riga diventa l'equazione $0 = 0$. È vera, ma non dice più niente. L'indizio è andato perso, e non c'è modo di recuperarlo.
+C'è un solo divieto: il numero non può essere **zero**. Prova a moltiplicare per 0 la riga della condizione «la somma fa 5». Tutti i suoi numeri diventano 0, e la riga diventa l'equazione $0 = 0$. È vera, ma non dice più niente. L'informazione è andata persa, e non c'è modo di recuperarlo.
 
 Si può invece moltiplicare per una frazione. Moltiplicare per $\frac 12$ vuol dire dividere per 2: serve a rimpicciolire i numeri di una riga.
 
 ### Terza mossa: sommare a una riga un multiplo di un'altra
 
-È la mossa dell'indovinello, ed è quella che fa quasi tutto il lavoro. Hai due indizi veri. Ne sommi uno all'altro, e ottieni un indizio nuovo, vero anche lui.
+È la mossa usata per il sistema di partenza, ed è quella che fa quasi tutto il lavoro. Se due equazioni sono vere, anche la loro somma è vera: è un'equazione nuova, rispettata dalle stesse soluzioni.
 
 Prima di usarla conviene ricordare come si fanno i conti con il segno meno, perché qui compaiono di continuo.
 
@@ -435,7 +436,7 @@ Prima di usarla conviene ricordare come si fanno i conti con il segno meno, perc
 > - **Sottrarre un numero negativo** è come sommare: $5 - (-2) = 5 + 2 = 7$. Togliere un debito è un guadagno.
 > - **Nei prodotti e nelle divisioni** contano i segni. Segni uguali danno più: $(-2) \cdot (-3) = 6$. Segni diversi danno meno: $2 \cdot (-3) = -6$.
 
-Sulla matrice dell'indovinello facciamo questa mossa: alla riga 2 **togliamo** la riga 1. Togliere è un caso della terza mossa: è come sommare la riga 1 moltiplicata per $-1$.
+Sulla matrice del sistema di partenza facciamo questa mossa: alla riga 2 **togliamo** la riga 1. Togliere è un caso della terza mossa: è come sommare la riga 1 moltiplicata per $-1$.
 
 Perché proprio questa mossa? Perché in tutte e due le righe il primo numero è 1. Se li sottrai viene $1 - 1 = 0$. Uno zero nella colonna di $x$ vuol dire che l'incognita $x$ sparisce dalla riga 2.
 
@@ -451,7 +452,7 @@ La nuova riga 2 è $(0, -2 \mid -4)$. La riga 1 **non cambia**: è servita per i
 
 $$\left(\begin{array}{cc|c} 1 & 1 & 5 \\ 1 & -1 & 1 \end{array}\right) \longrightarrow \left(\begin{array}{cc|c} 1 & 1 & 5 \\ 0 & -2 & -4 \end{array}\right)$$
 
-La nuova riga 2 è l'equazione $-2y = -4$. Dentro c'è una sola incognita. Dividi i due lati per $-2$ e ottieni $y = 2$: è il secondo numero dell'indovinello.
+La nuova riga 2 è l'equazione $-2y = -4$. Dentro c'è una sola incognita. Dividi i due lati per $-2$ e ottieni $y = 2$: è il secondo numero del sistema di partenza.
 
 La mossa si scrive $R_2 \to R_2 - R_1$. Si legge: «la riga 2 diventa la riga 2 meno la riga 1».
 
@@ -511,7 +512,7 @@ Nella terza mossa le due righe devono essere **diverse**. Cambia solo la riga sc
 
 ### Perché le mosse non cambiano le soluzioni
 
-Tutto il metodo si regge su una promessa: dopo una mossa le soluzioni sono **le stesse** di prima. Nessuna in più, nessuna in meno. Nell'indovinello l'hai visto con la riga moltiplicata per 2: la soluzione la rispettava ancora. Il motivo per cui succede sempre è questo.
+Tutto il metodo si regge su una promessa: dopo una mossa le soluzioni sono **le stesse** di prima. Nessuna in più, nessuna in meno. Nel sistema di partenza l'hai visto con la riga moltiplicata per 2: la soluzione la rispettava ancora. Il motivo per cui succede sempre è questo.
 
 > [!IDEA] ogni mossa si può disfare
 > Ogni mossa di Gauss ha una mossa che la annulla e rimette la matrice com'era.
@@ -544,11 +545,11 @@ Le dispense lo scrivono così.
 >    Se una lista risolve le due vecchie, risolve anche la loro somma: quindi risolve la nuova riga $i$. Se una lista risolve le due nuove, togli dalla nuova riga $i$ la riga $j$ moltiplicata per $\lambda$: ritrovi la vecchia riga $i$. Funziona perché la riga $j$ è rimasta intatta. Per questo le due righe devono essere diverse.
 > 4. In tutti e tre i casi le liste che risolvono il sistema sono le stesse prima e dopo la mossa. Quindi $S$ non cambia.
 
-### L'indovinello risolto solo con le mosse
+### Il sistema di partenza risolto solo con le mosse
 
-Adesso rifacciamo l'indovinello dall'inizio alla fine, senza scrivere nessuna lettera: solo mosse sulla matrice completa.
+Adesso rifacciamo il sistema di partenza dall'inizio alla fine, senza scrivere nessuna lettera: solo mosse sulla matrice completa.
 
-> [!ESEMPIO] L'indovinello risolto con le mosse
+> [!ESEMPIO] Il sistema di partenza risolto con le mosse
 > $$\left(\begin{array}{cc|c} 1 & 1 & 5 \\ 1 & -1 & 1 \end{array}\right) \xrightarrow{R_2 \to R_2 - R_1} \left(\begin{array}{cc|c} 1 & 1 & 5 \\ 0 & -2 & -4 \end{array}\right)$$
 > $$\xrightarrow{R_2 \to -\frac 12 R_2} \left(\begin{array}{cc|c} 1 & 1 & 5 \\ 0 & 1 & 2 \end{array}\right) \xrightarrow{R_1 \to R_1 - R_2} \left(\begin{array}{cc|c} 1 & 0 & 3 \\ 0 & 1 & 2 \end{array}\right)$$
 > 1. **La riga 2 diventa la riga 2 meno la riga 1.** È il conto già fatto sopra: la riga 2 diventa $(0, -2 \mid -4)$.
@@ -560,20 +561,20 @@ Adesso rifacciamo l'indovinello dall'inizio alla fine, senza scrivere nessuna le
 > [!TRAPPOLA] Una mossa alla volta
 > Non fare due mosse **insieme** usando per tutte e due le righe vecchie.
 >
-> Parti dalla matrice dell'indovinello. Fai nello stesso momento due mosse: «riga 1 meno riga 2» e «riga 2 meno riga 1», tutte e due con le righe di partenza.
+> Parti dalla matrice del sistema di partenza. Fai nello stesso momento due mosse: «riga 1 meno riga 2» e «riga 2 meno riga 1», tutte e due con le righe di partenza.
 >
 > - Nuova riga 1: $(1 - 1,\ 1 - (-1) \mid 5 - 1)$, cioè $(0, 2 \mid 4)$.
 > - Nuova riga 2: $(1 - 1,\ -1 - 1 \mid 1 - 5)$, cioè $(0, -2 \mid -4)$.
 >
 > $$\left(\begin{array}{cc|c} 0 & 2 & 4 \\ 0 & -2 & -4 \end{array}\right)$$
-> Adesso le due righe dicono la stessa cosa: che $y$ vale 2. Di $x$ non si sa più niente: può valere qualsiasi numero. Sembrano infinite soluzioni. Ma l'indovinello ne aveva **una sola**: un indizio è andato perso.
+> Adesso le due righe dicono la stessa cosa: che $y$ vale 2. Di $x$ non si sa più niente: può valere qualsiasi numero. Sembrano infinite soluzioni. Ma il sistema di partenza ne aveva **una sola**: una condizione è andata persa.
 >
 > La regola: dopo ogni mossa, la mossa seguente usa le righe **nuove**. Più mosse nello stesso passaggio vanno bene solo se la riga usata per cambiare le altre resta ferma.
 
 > [!TRAPPOLA] Solo righe, mai colonne
-> Per risolvere un sistema le mosse si fanno sulle **righe**. Una riga è un'equazione, e un'equazione si può riscrivere. Una colonna invece è un'incognita, oppure è la lista dei termini noti. Mescolare due colonne cambia l'indovinello.
+> Per risolvere un sistema le mosse si fanno sulle **righe**. Una riga è un'equazione, e un'equazione si può riscrivere. Una colonna invece è un'incognita, oppure è la lista dei termini noti. Mescolare due colonne cambia il sistema.
 >
-> Un esempio. Nella matrice dell'indovinello somma la prima colonna all'ultima. Il 5 diventa $5 + 1 = 6$ e l'1 diventa $1 + 1 = 2$. Il sistema nuovo ha gli indizi «la somma fa 6» e «la differenza fa 2». La sua soluzione è $(4, 2)$, non più $(3, 2)$.
+> Un esempio. Nella matrice del sistema di partenza somma la prima colonna all'ultima. Il 5 diventa $5 + 1 = 6$ e l'1 diventa $1 + 1 = 2$. Il sistema nuovo ha le condizioni «la somma fa 6» e «la differenza fa 2». La sua soluzione è $(4, 2)$, non più $(3, 2)$.
 
 ::: prova Nella matrice $\left(\begin{array}{cc|c} 1 & 3 & 2 \\ 2 & 7 & 5 \end{array}\right)$ fai la mossa $R_2 \to R_2 - 2R_1$. Quale diventa la riga 2?
 Due volte la riga 1 fa $(2, 6 \mid 4)$. Poi sottrai un numero alla volta: $2 - 2 = 0$, poi $7 - 6 = 1$, poi $5 - 4 = 1$.
@@ -595,7 +596,7 @@ Cinque volte la riga 1 fa $(5, 20 \mid 15)$. La riga 2 diventa $(5 - 5,\ 2 - 20 
 
 ## La forma che si risolve dal basso: gli scalini (pp. 51–52)
 
-Adesso sai riscrivere gli indizi. Resta da decidere **verso quale forma** riscriverli. La risposta: verso una forma a scala, perché un sistema fatto a scala si risolve quasi da solo.
+Adesso sai riscrivere le equazioni. Resta da decidere **verso quale forma** riscriverli. La risposta: verso una forma a scala, perché un sistema fatto a scala si risolve quasi da solo.
 
 ### Un sistema già pronto
 
@@ -713,7 +714,7 @@ Controllo: $4 + 3 = 7$ e $2 \cdot 3 = 6$.
 
 Hai le mosse, e hai la forma a cui arrivare. Manca la strada: quali mosse fare, e in quale ordine.
 
-Un **algoritmo** è una ricetta: un elenco di passi precisi che, eseguiti in ordine, portano sempre al risultato. L'**algoritmo di Gauss** è la ricetta che porta a scalini una matrice qualsiasi, usando solo le tre mosse.
+Un **algoritmo** è un elenco di passi precisi che, eseguiti in ordine, portano sempre al risultato. L'**algoritmo di Gauss** è il procedimento che porta a scalini una matrice qualsiasi, usando solo le tre mosse.
 
 ### L'idea: una colonna alla volta
 
@@ -758,7 +759,7 @@ Nel passo 1 possono capitare due imprevisti.
 
 **Tutta la colonna è fatta di zeri.** Allora in quella colonna non c'è niente da fare: resta senza pivot. Passi alla colonna dopo, restando sulla stessa riga.
 
-### La ricetta completa
+### L'algoritmo completo
 
 > [!METODO] L'algoritmo di Gauss, a parole
 > Parti dalla prima riga e dalla prima colonna.
@@ -833,7 +834,7 @@ Una colonna può restare senza pivot anche a metà del lavoro. Prova a scrivere 
 > Il libro di Martelli (§3.1.3) osserva che non serve seguire l'algoritmo alla lettera. Va bene **qualsiasi** sequenza di mosse di Gauss che arrivi a una matrice a scalini. Senza calcolatrice aiutano tre trucchi.
 >
 > 1. **Un 1 in cima.** Se nella prima colonna c'è un 1, oppure un $-1$, porta quella riga in alto con uno scambio. Dividere per 1 non crea frazioni.
-> 2. **Evitare le frazioni.** Il pivot è 2 e sotto c'è 3. La ricetta direbbe di togliere la riga 1 per $\frac 32$ volte. Puoi invece moltiplicare prima la riga 2 per 2, e poi togliere 3 volte la riga 1. In una scrittura sola: $R_2 \to 2R_2 - 3R_1$. Nella prima colonna viene $2 \cdot 3 - 3 \cdot 2 = 0$, senza frazioni. Sono una mossa (II) e una mossa (III), una dopo l'altra. L'esercizio 6 usa questo trucco.
+> 2. **Evitare le frazioni.** Il pivot è 2 e sotto c'è 3. L'algoritmo direbbe di togliere la riga 1 per $\frac 32$ volte. Puoi invece moltiplicare prima la riga 2 per 2, e poi togliere 3 volte la riga 1. In una scrittura sola: $R_2 \to 2R_2 - 3R_1$. Nella prima colonna viene $2 \cdot 3 - 3 \cdot 2 = 0$, senza frazioni. Sono una mossa (II) e una mossa (III), una dopo l'altra. L'esercizio 6 usa questo trucco.
 > 3. **Rimpicciolire.** Se tutti i numeri di una riga si dividono per lo stesso intero, dividi subito la riga: è una mossa (II). La riga $(2, 4 \mid 6)$ diventa $(1, 2 \mid 3)$, e i conti dopo sono più piccoli.
 
 ::: prova Porta a scalini la matrice $\left(\begin{array}{cc|c} 1 & 2 & 3 \\ 2 & 5 & 8 \end{array}\right)$ e risolvi il sistema.
@@ -860,7 +861,7 @@ Dopo lo scambio la matrice è $\begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$, ch
 
 Una matrice a scalini si risolve già, dal basso. Ma resta ancora un po' di lavoro: le sostituzioni. Con qualche mossa in più si arriva a una forma in cui non resta nessun conto, e la soluzione si legge.
 
-L'hai già visto con l'indovinello. La matrice finale era questa:
+L'hai già visto con il sistema di partenza. La matrice finale era questa:
 
 $$\left(\begin{array}{cc|c} 1 & 0 & 3 \\ 0 & 1 & 2 \end{array}\right)$$
 
@@ -973,7 +974,7 @@ Vediamo i tre finali uno alla volta, ognuno su una matrice che hai già visto ri
 > $$\left(\begin{array}{ccc|c} 1 & 0 & 1 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{array}\right)$$
 > Guarda l'ultima riga. Tradotta in equazione dice $0x + 0y + 0z = 1$. A sinistra viene 0, qualunque numero tu metta al posto delle tre incognite. Quindi la riga dice $0 = 1$, che è falsa sempre.
 >
-> Un indizio impossibile rende impossibile tutto l'indovinello: il sistema **non ha soluzioni**.
+> Una condizione impossibile rende impossibile tutto il sistema: il sistema **non ha soluzioni**.
 
 Il segnale è questo: un **pivot nell'ultima colonna**, quella dopo la barra. Vuol dire che una riga ha tutti zeri prima della barra e un numero diverso da zero dopo.
 
@@ -1001,7 +1002,7 @@ Attenzione a due righe che si assomigliano e dicono cose opposte.
 >
 > La soluzione è **una sola**: $(4, 1)$. Controllo nelle equazioni di partenza: $4 - 1 = 3$, poi $2 \cdot 1 = 2$, poi $x = 4$. Tutte vere.
 >
-> Tre indizi per due numeri non sono troppi, se vanno d'accordo. Qui il terzo indizio non dice niente che non si sapesse già dai primi due.
+> Tre condizioni per due numeri non sono troppe, se vanno d'accordo. Qui la terza non dice niente che non si sapesse già dai primi due.
 
 Il segnale è questo: nessun pivot dopo la barra, e **ogni colonna prima della barra ha il suo pivot**. Ogni incognita è fissata da una riga, e la soluzione si legge nell'ultima colonna.
 
@@ -1085,9 +1086,9 @@ $$\text{numero di parametri} = \text{numero di incognite} - \text{numero di pivo
 > $$\begin{cases} x_1 = t_1 \\ x_2 = b_1 - a_{13}t_2 - a_{16}t_3 \\ x_3 = t_2 \\ x_4 = b_2 - a_{26}t_3 \\ x_5 = b_3 - a_{36}t_3 \\ x_6 = t_3 \end{cases}$$
 > I parametri sono liberi: possono assumere qualsiasi valore in $\K$.
 >
-> **Come si legge.** È l'esempio con sei incognite, con le lettere al posto dei numeri. Per esempio al posto di 2 e 3 ci sono $a_{13}$ e $a_{16}$, e al posto di 4 c'è $b_1$. Le lettere dicono che la ricetta vale con qualsiasi numero.
+> **Come si legge.** È l'esempio con sei incognite, con le lettere al posto dei numeri. Per esempio al posto di 2 e 3 ci sono $a_{13}$ e $a_{16}$, e al posto di 4 c'è $b_1$. Le lettere dicono che il metodo vale con qualsiasi numero.
 
-### La ricetta per leggere le soluzioni
+### Il metodo per leggere le soluzioni
 
 > [!METODO] Leggere le soluzioni dalla forma ridotta
 > 1. **Guarda l'ultima colonna.** Se c'è un pivot dopo la barra, il sistema non ha soluzioni. Hai finito.
@@ -1161,14 +1162,14 @@ $5 - 2 = 3$ parametri. Le soluzioni sono infinite.
 | $2x$ | «due ics» | 2 per $x$: il segno «per» non si scrive | $2x = 6$ |
 | $\cdot$ | «per» | il segno della moltiplicazione | $2 \cdot 3 = 6$ |
 | $x_1, x_2, \dots, x_n$ | «ics uno, ics due, …, ics enne» | le incognite, quando sono tante | $x_1 + x_4 = 0$ |
-| $\begin{cases} \dots \\ \dots \end{cases}$ | «sistema» | le equazioni dentro la graffa valgono tutte insieme | il sistema dell'indovinello |
-| $k$ | «cappa» | quante sono le equazioni | nell'indovinello $k = 2$ |
-| $n$ | «enne» | quante sono le incognite | nell'indovinello $n = 2$ |
+| $\begin{cases} \dots \\ \dots \end{cases}$ | «sistema» | le equazioni dentro la graffa valgono tutte insieme | il sistema di partenza |
+| $k$ | «cappa» | quante sono le equazioni | nel sistema di partenza $k = 2$ |
+| $n$ | «enne» | quante sono le incognite | nel sistema di partenza $n = 2$ |
 | $a_{ij}$ | «a i gei» | il coefficiente nella riga $i$ e nella colonna $j$ | $a_{23}$: riga 2, colonna 3 |
 | $b_i$ | «bi i» | il termine noto dell'equazione numero $i$ | $b_2$: seconda equazione |
 | $A$ | «a» | la matrice dei coefficienti | $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ |
 | $b$ | «bi» | il vettore dei termini noti, scritto in colonna | $\begin{pmatrix} 5 \\ 1 \end{pmatrix}$ |
-| $C = (A \mid b)$ | «ci uguale a barra bi» | la matrice completa: i coefficienti e, dopo la barra, i termini noti | $(1, 1 \mid 5)$ è la sua prima riga nell'indovinello |
+| $C = (A \mid b)$ | «ci uguale a barra bi» | la matrice completa: i coefficienti e, dopo la barra, i termini noti | $(1, 1 \mid 5)$ è la sua prima riga nel sistema di partenza |
 | $k \times n$ | «cappa per enne» | una matrice con $k$ righe e $n$ colonne | $2 \times 3$: 2 righe, 3 colonne |
 | $C_{ij}$ | «ci i gei» | il numero di $C$ nella riga $i$ e nella colonna $j$ | $C_{11}$: in alto a sinistra |
 | $S$ | «esse» | l'insieme di tutte le soluzioni | $S = \{(3, 2)\}$ |
@@ -1192,7 +1193,7 @@ $5 - 2 = 3$ parametri. Le soluzioni sono infinite.
 
 La prova scritta di Algebra lineare ha 10 quiz a 5 risposte e 2 problemi da 11 punti. I problemi vengono corretti solo a chi fa giusti almeno 6 quiz. Dura 2 ore, senza calcolatrice, con solo 4 facciate di appunti scritti a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
-**Che cosa di questa lezione viene chiesto**
+### Che cosa di questa lezione viene chiesto
 
 1. **Il quiz «quante soluzioni?».** Il testo è quasi sempre lo stesso: «Il sistema lineare con matrice completa … ha un numero di soluzioni pari a». Nei 15 appelli dal 2023/24 al 2025/26 è uscito 9 volte: trovi l'elenco nella tabella qui sotto.
 2. **Trovare tutte le soluzioni.** Nell'appello del 10/07/2024 (domanda 6) bisognava scegliere, tra cinque, la descrizione giusta di tutte le soluzioni di un sistema con 3 equazioni e 3 incognite. È lo stesso sistema dell'Esercizio 12.11 delle dispense, nella lezione L12.
@@ -1266,6 +1267,30 @@ La risposta giusta è la **(b)**: infinite soluzioni, che dipendono da 2 paramet
 ## Quiz
 
 ```quiz
+D: Appello del 16/01/2025, domanda 10. Il sistema lineare con matrice completa $\left(\begin{array}{cccc|c} 2 & 0 & 1 & 4 & 3 \\ 1 & -1 & 0 & 2 & 1 \\ 1 & 1 & 1 & 2 & 2 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Zero.
++ Infinite, che dipendono da 2 parametri.
+- Infinite, che dipendono da 1 parametro.
+- Un numero finito, maggiore di 1.
+- Una.
+= Dopo lo scambio delle prime due righe e due mosse, la terza riga diventa nulla e restano 2 pivot, nessuno dopo la barra (i passaggi sono in «Verso l'esame»). Le incognite sono 4, quindi i parametri sono $4 - 2 = 2$: è la (b) della soluzione ufficiale. La risposta più insidiosa è la (c), di chi conta le righe, 3, al posto delle incognite.
+
+D: Appello del 15/01/2026, domanda 6. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 0 & 1 & 2 & 3 \\ 4 & 5 & 6 & 7 \\ 8 & 9 & 10 & 11 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Un numero finito, maggiore di 1.
+- Zero.
+- Infinite, che dipendono da 2 parametri.
++ Infinite, che dipendono da 1 parametro.
+- Una.
+= Si scambiano le prime due righe, poi $R_3 \to R_3 - 2R_1$ dà $(0, -1, -2 \mid -3)$, e $R_3 \to R_3 + R_2$ la rende nulla. Restano 2 pivot, nessuno dopo la barra, con 3 incognite: un parametro. È la (d) della soluzione ufficiale. La risposta più insidiosa è «Una», perché equazioni e incognite sono tante uguali; la risposta «un numero finito, maggiore di 1» con i numeri reali è sempre sbagliata.
+
+D: Appello del 10/06/2024, domanda 7. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 3 & 5 & 2 \\ 3 & 3 & 2 & 2 \\ 5 & 3 & -1 & 0 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Una.
+- Infinite, che dipendono da 2 parametri.
+- Un numero finito, maggiore di 1.
++ Zero.
+- Infinite, che dipendono da 1 parametro.
+= $R_2 - 3R_1$ dà $(0, -6, -13 \mid -4)$ e $R_3 - 5R_1$ dà $(0, -12, -26 \mid -10)$. Togliendo dalla terza il doppio della seconda resta $(0, 0, 0 \mid -2)$: un pivot dopo la barra, cioè l'equazione impossibile $0 = -2$. È la (d) della soluzione ufficiale. La risposta più insidiosa è «Infinite, che dipendono da 1 parametro», di chi vede la riga di zeri prima della barra e non guarda il termine noto.
+
 D: Quale di queste è una mossa di Gauss sulla matrice completa di un sistema lineare?
 + La mossa $R_2 \to R_2 - 3R_1$.
 - La mossa $R_2 \to 0 \cdot R_2$.
@@ -1296,7 +1321,7 @@ D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 3 & 12 & 
 - Un numero finito, maggiore di 1.
 - Una.
 - Infinite, che dipendono da 1 parametro.
-= È la domanda 1 dell'appello del 02/09/2025. Prima di fare conti guarda le righe. La prima è 3 volte $(1, 4, 2 \mid 7)$, la seconda è 5 volte la stessa riga, la terza è 4 volte. Sono tre volte lo stesso indizio. Dopo Gauss resta una sola riga non nulla, con un solo pivot, e nessun pivot dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 1 = 2$. La risposta con 1 parametro è sbagliata perché qui il pivot è uno solo, non due.
+= È la domanda 1 dell'appello del 02/09/2025. Prima di fare conti guarda le righe. La prima è 3 volte $(1, 4, 2 \mid 7)$, la seconda è 5 volte la stessa riga, la terza è 4 volte. Sono tre volte la stessa condizione. Dopo Gauss resta una sola riga non nulla, con un solo pivot, e nessun pivot dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 1 = 2$. La risposta con 1 parametro è sbagliata perché qui il pivot è uno solo, non due.
 
 D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 2 & 3 & 4 \\ 2 & 3 & 4 & 5 \\ 3 & 4 & 5 & 7 \end{array}\right)$ ha un numero di soluzioni pari a:
 + Zero.
@@ -1358,7 +1383,7 @@ Una lista è una soluzione solo se rende vere **tutte e due** le equazioni. In o
 | $(3, 4)$ | $3 + 4 = 7$, vera | $2 \cdot 3 - 4 = 2$, vera | sì |
 | $(5, 2)$ | $5 + 2 = 7$, vera | $2 \cdot 5 - 2 = 8$, doveva fare 2: falsa | no |
 
-L'unica soluzione tra le tre è $(3, 4)$. Le altre due rispettano il primo indizio ma non il secondo, e un solo indizio falso basta per scartarle.
+L'unica soluzione tra le tre è $(3, 4)$. Le altre due rispettano la prima condizione ma non la seconda, e una sola condizione falsa basta per scartarle.
 :::
 
 ::: esercizio base Una mossa sola
@@ -1446,7 +1471,7 @@ $$\begin{cases} x + y + 2z = 9 \\ 2x + 4y - 3z = 1 \\ 3x + 6y - 5z = 0 \end{case
 2. **Zeri sotto il primo pivot.** Il pivot è l'1 in alto a sinistra. Sotto ci sono 2 e 3. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - 3R_1$. La riga 1 resta ferma.
    - Riga 2 meno 2 volte la riga 1: $(2 - 2,\ 4 - 2,\ -3 - 4 \mid 1 - 18) = (0, 2, -7 \mid -17)$.
    - Riga 3 meno 3 volte la riga 1: $(3 - 3,\ 6 - 3,\ -5 - 6 \mid 0 - 27) = (0, 3, -11 \mid -27)$.
-3. **Zero sotto il secondo pivot.** Il secondo pivot è il 2 della riga 2. Sotto c'è 3. La ricetta direbbe di togliere la riga 2 per $\frac 32$ volte. Per non avere frazioni uso il trucco: prima raddoppio la riga 3, poi tolgo 3 volte la riga 2. La mossa è $R_3 \to 2R_3 - 3R_2$.
+3. **Zero sotto il secondo pivot.** Il secondo pivot è il 2 della riga 2. Sotto c'è 3. L'algoritmo direbbe di togliere la riga 2 per $\frac 32$ volte. Per non avere frazioni uso il trucco: prima raddoppio la riga 3, poi tolgo 3 volte la riga 2. La mossa è $R_3 \to 2R_3 - 3R_2$.
    - 2 volte la riga 3: $(0, 6, -22 \mid -54)$.
    - 3 volte la riga 2: $(0, 6, -21 \mid -51)$.
    - Differenza: $(0,\ 6 - 6,\ -22 + 21 \mid -54 + 51) = (0, 0, -1 \mid -3)$.
@@ -1721,7 +1746,7 @@ Le due righe nuove vengono una l'opposto dell'altra: dicono la stessa cosa, e un
 ## Glossario
 
 ```glossario
-Sistema lineare | Un gruppo di equazioni lineari nelle stesse incognite, da rispettare tutte insieme. È un indovinello con più indizi.
+Sistema lineare | Un gruppo di equazioni lineari nelle stesse incognite, da rispettare tutte insieme.
 Incognita | Un numero da trovare, indicato con una lettera: $x$, $y$, oppure $x_1$, $x_2$ e così via.
 Equazione lineare | Un'equazione in cui le incognite sono solo moltiplicate per numeri e poi sommate, come $2x - 3y = 7$.
 Coefficiente $a_{ij}$ | Il numero che moltiplica un'incognita. $a_{ij}$ è quello dell'equazione numero $i$ davanti all'incognita numero $j$.
@@ -1736,7 +1761,7 @@ Pivot | Il primo numero diverso da zero di una riga, leggendo da sinistra. Una r
 Riga nulla | Una riga fatta solo di zeri. Come equazione dice $0 = 0$.
 Matrice a scalini | Una matrice con le righe nulle in fondo e ogni pivot più a destra del pivot della riga sopra.
 Sostituzione all'indietro | Risolvere un sistema a scalini partendo dall'ultima equazione e risalendo.
-Algoritmo di Gauss | La ricetta che porta a scalini qualsiasi matrice: una colonna alla volta, un pivot in alto e zeri sotto.
+Algoritmo di Gauss | Il procedimento che porta a scalini qualsiasi matrice: una colonna alla volta, un pivot in alto e zeri sotto.
 Algoritmo di Gauss–Jordan | L'algoritmo di Gauss, e poi due ritocchi: zeri anche sopra i pivot, e pivot uguali a 1.
 Forma a scalini ridotta | Il risultato di Gauss–Jordan: ogni pivot vale 1 ed è l'unico numero diverso da zero della sua colonna.
 Variabile libera (parametro) | Un'incognita la cui colonna non ha pivot. Il suo valore lo scegli tu: le si dà un parametro, come $t$.

@@ -30,14 +30,14 @@ genera_html: true
 
 - Una **matrice** è una tabella di numeri. La sua **taglia** si scrive mettendo prima il numero delle righe e poi quello delle colonne: una matrice «2 per 3» ha 2 righe e 3 colonne.
 - La **trasposta** è la stessa tabella girata: le righe diventano colonne e le colonne diventano righe. Una matrice quadrata che girata resta uguale si chiama **simmetrica**.
-- Il **rango** conta quante colonne dicono davvero qualcosa di nuovo, cioè non si ottengono mescolando le altre. Se conti le righe al posto delle colonne viene lo stesso numero.
-- Il **prodotto riga per colonna** funziona come il conto della spesa: quantità per prezzi, poi si somma. Si può fare solo se le colonne della prima matrice sono tante quante le righe della seconda.
+- Il **rango** conta le colonne indipendenti: quante ne restano togliendo quelle che sono combinazioni delle altre. Se conti le righe al posto delle colonne viene lo stesso numero.
+- Il **prodotto riga per colonna** moltiplica ogni riga della prima matrice per ogni colonna della seconda: numero per numero, poi la somma. Si può fare solo se le colonne della prima matrice sono tante quante le righe della seconda.
 - Nel prodotto **l'ordine conta**: se scambi le due matrici, di solito il risultato cambia. E un prodotto può dare una tabella di soli zeri anche se nessuna delle due matrici è fatta di soli zeri.
 - La **traccia** di una matrice quadrata è la somma dei numeri sulla diagonale. Se scambi le due matrici di un prodotto, la traccia resta la stessa.
 - All'esame trovi quasi sempre tre domande su questa lezione: «quale identità vale?» tra due prodotti, la traccia di un prodotto e un rango da calcolare.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di mercoledì 21/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di mercoledì 21/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 8. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Le matrici: tabelle di numeri (p. 36)
 
@@ -481,19 +481,19 @@ Adesso guarda le colonne. In ogni confezione le penne sono il doppio dei quadern
 In questa tabella c'è **un solo** pezzo di informazione, sia guardando le righe sia guardando le colonne. Il numero che conta i pezzi di informazione di una matrice si chiama **rango**. Il rango di questa tabella è 1.
 
 > [!IDEA]
-> Il **rango** di una matrice è il numero di colonne che dicono davvero qualcosa di nuovo: quelle che non si possono ottenere mescolando le altre. Se al posto delle colonne conti le righe, viene lo stesso numero.
+> Il **rango** di una matrice è il numero di colonne indipendenti: quante ne restano togliendo quelle che sono combinazioni delle altre. Se al posto delle colonne conti le righe, viene lo stesso numero.
 
 Il rango serve in quasi tutto il resto del corso. Nelle lezioni L11 e L12 dice quante soluzioni ha un sistema di equazioni. Nella lezione L14 dice quanto «spazio» riesce a produrre una macchina che trasforma vettori. All'esame c'è quasi sempre una domanda che chiede il rango di una matrice.
 
-Per dire in modo preciso che cosa vuol dire «mescolare» e «qualcosa di nuovo» servono quattro parole delle lezioni precedenti.
+Per dirlo in modo preciso servono quattro parole delle lezioni precedenti.
 
 > [!RIPASSO] quattro parole delle lezioni L06 e L07
-> **Combinazione lineare** (lezione L06). È una ricetta: prendi dei vettori, moltiplichi ognuno per un numero e sommi i risultati. Per esempio «2 parti del primo vettore più 3 parti del secondo»:
+> **Combinazione lineare** (lezione L06). Si prendono dei vettori, si moltiplica ognuno per un numero, il suo coefficiente, e si sommano i risultati. Per esempio due volte il primo vettore più tre volte il secondo:
 > $$2 \cdot (1, 0) + 3 \cdot (0, 1) = (2, 0) + (0, 3) = (2, 3)$$
 >
-> **Span** (lezione L06). Lo Span di alcuni vettori è l'insieme di tutto quello che si ottiene con le loro ricette. Lo Span di un solo vettore, che non sia fatto di soli zeri, contiene tutti i suoi multipli: è una retta. Lo Span di due vettori che non stanno sulla stessa retta è un piano.
+> **Span** (lezione L06). Lo Span di alcuni vettori è l'insieme di tutte le loro combinazioni lineari. Lo Span di un solo vettore, che non sia fatto di soli zeri, contiene tutti i suoi multipli: è una retta. Lo Span di due vettori che non stanno sulla stessa retta è un piano.
 >
-> **Dipendenti e indipendenti** (lezione L07). Dei vettori sono **dipendenti** quando almeno uno è un doppione: si ottiene con una ricetta fatta con gli altri. Sono **indipendenti** quando nessuno è un doppione. Per due vettori il controllo è rapido: sono dipendenti esattamente quando uno è un multiplo dell'altro.
+> **Dipendenti e indipendenti** (lezione L07). Dei vettori sono **dipendenti** quando almeno uno è di troppo, cioè è una combinazione degli altri. Sono **indipendenti** quando nessuno è di troppo. Per due vettori il controllo è rapido: sono dipendenti esattamente quando uno è un multiplo dell'altro.
 >
 > **Dimensione** (lezione L07). È il numero di vettori indipendenti che servono per ottenere tutto uno spazio. Una retta ha dimensione 1, un piano ha dimensione 2, lo spazio in cui viviamo ha dimensione 3.
 
@@ -523,7 +523,7 @@ vettore: 2 1 | accento | spesso | $A^1$ | no
 vettore: -2 -1 | viola | $A^3$ | so
 ```
 
-Che cosa si ottiene con le ricette fatte con queste tre colonne? Solo multipli della prima, cioè punti di quella retta. Lo Span delle tre colonne è la retta tratteggiata. Una retta ha dimensione 1. Quindi il rango di $A$ è 1: tre colonne, ma un solo pezzo di informazione.
+Che cosa si ottiene combinando queste tre colonne? Solo multipli della prima, cioè punti di quella retta. Lo Span delle tre colonne è la retta tratteggiata. Una retta ha dimensione 1. Quindi il rango di $A$ è 1: tre colonne, ma un solo pezzo di informazione.
 
 Per confronto, guarda una matrice con due colonne che **non** stanno sulla stessa retta:
 
@@ -537,7 +537,7 @@ vettore: 2 1 | accento | spesso | $B^1$ | ne
 vettore: -1 2 | blu | $B^2$ | no
 ```
 
-Qui nessuna delle due colonne è un multiplo dell'altra. Con le ricette fatte con queste due frecce si raggiunge ogni punto del piano. Lo Span delle colonne è tutto il piano, che ha dimensione 2. Quindi il rango di $B$ è 2.
+Qui nessuna delle due colonne è un multiplo dell'altra. Combinando queste due frecce si raggiunge ogni punto del piano. Lo Span delle colonne è tutto il piano, che ha dimensione 2. Quindi il rango di $B$ è 2.
 
 ### Come lo scrivono le dispense
 
@@ -552,7 +552,7 @@ Le dispense dicono la stessa cosa con i simboli.
 
 - $A^1, \dots, A^n$ è l'elenco delle colonne. La prima si chiama $A^1$, l'ultima $A^n$, e sono $n$ in tutto. I numeri in alto sono indici, non potenze.
 - «Ciascun $A^i$ è un vettore in $\K^m$»: ogni colonna ha $m$ numeri, uno per ogni riga della matrice.
-- $\Span(A^1, \dots, A^n)$ è l'insieme di tutto quello che si ottiene mescolando le colonne con delle ricette.
+- $\Span(A^1, \dots, A^n)$ è l'insieme di tutte le combinazioni lineari delle colonne.
 - Il simbolo $\subset$ si legge «è contenuto in». Lo Span delle colonne è un pezzo di $\K^m$: può essere una retta, un piano, oppure tutto.
 - $\rk(A)$ si legge «rango di $A$». Le due lettere vengono dall'inglese *rank*.
 
@@ -567,15 +567,15 @@ Nella matrice $B$ le due colonne sono indipendenti, e il rango era 2. Non è un 
 > [!PROP] 8.4
 > Il rango di $A$ è il massimo numero di colonne linearmente indipendenti di $A$.
 
-**Come si legge.** «Linearmente indipendenti» è il nome completo di «indipendenti»: nessuna colonna è un doppione delle altre. Guarda tutti i gruppi di colonne indipendenti che puoi scegliere, e prendi il gruppo più numeroso. Il numero delle sue colonne è il rango.
+**Come si legge.** «Linearmente indipendenti» è il nome completo di «indipendenti»: nessuna colonna è combinazione delle altre. Guarda tutti i gruppi di colonne indipendenti che puoi scegliere, e prendi il gruppo più numeroso. Il numero delle sue colonne è il rango.
 
-Il perché, a parole. Se tra le colonne c'è un doppione, puoi toglierlo senza perdere niente: tutto quello che si otteneva usandolo si ottiene anche con le altre colonne. Togli un doppione alla volta. Quando non ce ne sono più, le colonne rimaste sono indipendenti e riempiono ancora lo stesso spazio di prima. Il loro numero è la dimensione di quello spazio, cioè il rango.
+Il perché, a parole. Se tra le colonne ce n'è una di troppo, puoi toglierla senza perdere niente: tutto quello che si otteneva usandola si ottiene anche con le altre colonne. Togli una colonna di troppo alla volta. Quando non ce ne sono più, le colonne rimaste sono indipendenti e riempiono ancora lo stesso spazio di prima. Il loro numero è la dimensione di quello spazio, cioè il rango.
 
 > [!DIM] della Proposizione 8.4
 > Le dispense la ricavano «con un'osservazione della lezione 7». Ecco i passi.
 >
 > 1. Chiamiamo $W$ lo Span delle colonne. Le colonne **generano** $W$: ogni vettore di $W$ è una loro combinazione lineare, per come è fatto lo Span.
-> 2. Se le colonne sono dipendenti, una di loro è combinazione lineare delle altre (Proposizione 7.2). La togliamo. Lo Span non cambia: ogni ricetta che usava quella colonna si riscrive usando le altre.
+> 2. Se le colonne sono dipendenti, una di loro è combinazione lineare delle altre (Proposizione 7.2). La togliamo. Lo Span non cambia: ogni combinazione che usava quella colonna si riscrive usando le altre.
 > 3. Ripetiamo il passo 2 finché le colonne rimaste sono indipendenti.
 > 4. Le colonne rimaste sono indipendenti e generano $W$. Quindi sono una **base** di $W$ (lezione L07), e il loro numero è la dimensione di $W$, cioè $\rk(A)$.
 > 5. Un gruppo di colonne indipendenti più numeroso non esiste: in uno spazio di dimensione $d$, più di $d$ vettori sono sempre dipendenti (Martelli, §2.3).
@@ -644,7 +644,7 @@ Per le matrici piccole, come quelle del quiz, spesso basta guardare bene.
 > 1. Guarda se la matrice è fatta di soli zeri. Se sì, il rango è 0. Se c'è almeno un numero diverso da zero, il rango è almeno 1.
 > 2. Scrivi il tetto: il rango non supera il più piccolo tra il numero delle righe e quello delle colonne.
 > 3. Scegli se guardare le righe o le colonne. Il rango è lo stesso: prendi le più comode.
-> 4. Cerca i doppioni: una riga di soli zeri, due righe uguali, una riga multipla di un'altra, una riga che è la somma di altre. Toglili: il rango non cambia.
+> 4. Cerca le righe di troppo: una riga di soli zeri, due righe uguali, una riga multipla di un'altra, una riga che è la somma di altre. Toglili: il rango non cambia.
 > 5. Controlla che le righe rimaste siano indipendenti. Se sono due, basta che non siano una il multiplo dell'altra. Se sono tre o più, serve il controllo della lezione L07.
 > 6. Conta le righe rimaste: è il rango.
 
@@ -661,7 +661,7 @@ Per le matrici piccole, come quelle del quiz, spesso basta guardare bene.
 > $$\begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 2 \end{pmatrix}$$
 > La terza colonna è la somma delle prime due:
 > $$\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 + 0 \\ 0 + 1 \\ 1 + 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \\ 2 \end{pmatrix}$$
-> Quindi è un doppione, e la tolgo. Le prime due colonne non sono una il multiplo dell'altra: in alto la prima ha 1 e la seconda ha 0, nel mezzo la prima ha 0 e la seconda ha 1. Restano 2 colonne indipendenti. Il rango è 2.
+> Quindi è di troppo, e la tolgo. Le prime due colonne non sono una il multiplo dell'altra: in alto la prima ha 1 e la seconda ha 0, nel mezzo la prima ha 0 e la seconda ha 1. Restano 2 colonne indipendenti. Il rango è 2.
 >
 > **Quarta matrice.**
 > $$\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$$
@@ -673,7 +673,7 @@ Per le matrici piccole, come quelle del quiz, spesso basta guardare bene.
 > | riga 1 | $1$ | $2$ | $3$ |
 > | differenza | $8 - 1 = 7$ | $10 - 2 = 8$ | $12 - 3 = 9$ |
 >
-> Viene $(7, 8, 9)$, che è proprio la terza riga: è un doppione, e la tolgo. Le prime due righe non sono una il multiplo dell'altra: per passare da 1 a 4 devo moltiplicare per 4, ma allora al secondo posto verrebbe $2 \cdot 4 = 8$, e invece c'è 5. Restano 2 righe indipendenti. Il rango è 2.
+> Viene $(7, 8, 9)$, che è proprio la terza riga: è di troppo, e la tolgo. Le prime due righe non sono una il multiplo dell'altra: per passare da 1 a 4 devo moltiplicare per 4, ma allora al secondo posto verrebbe $2 \cdot 4 = 8$, e invece c'è 5. Restano 2 righe indipendenti. Il rango è 2.
 
 Nello strumento qui sotto trovi la quarta matrice. Premi «Calcola». Lo strumento la trasforma con le mosse di Gauss, che vedrai nelle lezioni L10 e L11, e conta le righe che alla fine non sono fatte di soli zeri. Poi prova a scrivere altre matrici. Con `1 0 0; 0 1 0; 0 0 1` deve venire rango 3. Con `1 2; 2 4` deve venire rango 1.
 
@@ -690,7 +690,7 @@ modi: rango
 > - Il controllo «non sono multipli» basta solo per **due** vettori. Tre vettori possono essere dipendenti anche se, presi a due a due, non sono multipli (lezione L07, Esempio 7.4). Succede nella terza e nella quarta matrice dell'esempio: non fermarti ai controlli a coppie.
 
 ::: prova Qual è il rango di $\begin{pmatrix} 1 & 3 \\ 2 & 6 \end{pmatrix}$?
-La seconda colonna è la prima moltiplicata per 3: $3 \cdot 1 = 3$ e $3 \cdot 2 = 6$. È un doppione. Resta una colonna sola, che non è fatta di zeri. Il rango è 1.
+La seconda colonna è la prima moltiplicata per 3: $3 \cdot 1 = 3$ e $3 \cdot 2 = 6$. È di troppo. Resta una colonna sola, che non è fatta di zeri. Il rango è 1.
 :::
 
 ::: prova Qual è il rango di $\begin{pmatrix} 1 & 1 & 0 \\ 2 & 2 & 0 \end{pmatrix}$?
@@ -704,18 +704,18 @@ No. Il rango è al massimo il più piccolo tra 4 e 3, cioè 3.
 :::
 
 ::: prova Qual è il rango di $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 1 \\ 1 & 3 & 4 \end{pmatrix}$?
-La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $2 + 1 = 3$, poi $3 + 1 = 4$. È un doppione. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1, la seconda con 0. Il rango è 2.
+La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $2 + 1 = 3$, poi $3 + 1 = 4$. È di troppo. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1, la seconda con 0. Il rango è 2.
 :::
 
 > [!RICORDA]
 > - Il **rango** $\rk(A)$ è il massimo numero di colonne indipendenti. È la dimensione dello spazio che le colonne riempiono.
 > - Con le righe viene lo stesso numero: $\rk({}^tA) = \rk(A)$.
 > - Il rango è al massimo il più piccolo tra il numero delle righe e quello delle colonne.
-> - In pratica: togli i doppioni e conta quello che resta.
+> - In pratica: togli le righe o le colonne di troppo e conta quelle che restano.
 
 ## Il prodotto riga per colonna (pp. 37–38)
 
-Moltiplicare due matrici è come fare il conto della spesa.
+Il prodotto di matrici si capisce bene con un conto di spesa: quantità per prezzi, poi la somma.
 
 È l'operazione più importante della lezione, e quella che all'esame compare più spesso. Non si fa casella per casella, come la somma. Si fa incrociando le righe della prima matrice con le colonne della seconda.
 
@@ -806,6 +806,43 @@ Se i due numeri interni sono diversi, il prodotto **non esiste**.
 | $3 \times 2$ | $2 \times 4$ | 2 e 2 | sì | $3 \times 4$ |
 | $2 \times 4$ | $3 \times 2$ | 4 e 3 | no | |
 | $2 \times 3$ | $3 \times 1$ | 3 e 3 | sì | $2 \times 1$ |
+
+```grafico
+titolo: La casella nella riga 1 e colonna 2 di $AB$ (in rosa) viene dalla riga 1 di $A$ (in blu) e dalla colonna 2 di $B$ (in ambra): i tre numeri della riga per i tre numeri della colonna, poi la somma. I numeri interni delle taglie, 3 e 3, devono essere uguali; quelli esterni danno la taglia del prodotto, $2 \times 2$
+proporzioni: libere
+assi: no
+griglia: no
+x: -0.3 9.8
+y: -1 3.3
+poligono: 0 2 3 2 3 3 0 3 | blu | pieno
+poligono: 5 0 6 0 6 3 5 3 | ambra | pieno
+poligono: 8.5 2 9.5 2 9.5 3 8.5 3 | rosa | pieno
+segmento: 0 1 3 1 | grigio | sottile
+segmento: 0 2 3 2 | grigio | sottile
+segmento: 0 3 3 3 | grigio | sottile
+segmento: 0 1 0 3 | grigio | sottile
+segmento: 1 1 1 3 | grigio | sottile
+segmento: 2 1 2 3 | grigio | sottile
+segmento: 3 1 3 3 | grigio | sottile
+segmento: 4 0 6 0 | grigio | sottile
+segmento: 4 1 6 1 | grigio | sottile
+segmento: 4 2 6 2 | grigio | sottile
+segmento: 4 3 6 3 | grigio | sottile
+segmento: 4 0 4 3 | grigio | sottile
+segmento: 5 0 5 3 | grigio | sottile
+segmento: 6 0 6 3 | grigio | sottile
+segmento: 7.5 1 9.5 1 | grigio | sottile
+segmento: 7.5 2 9.5 2 | grigio | sottile
+segmento: 7.5 3 9.5 3 | grigio | sottile
+segmento: 7.5 1 7.5 3 | grigio | sottile
+segmento: 8.5 1 8.5 3 | grigio | sottile
+segmento: 9.5 1 9.5 3 | grigio | sottile
+testo: 3.5 1.5 | grigio | "·"
+testo: 6.75 1.5 | grigio | "="
+testo: 1.5 0.4 | blu | "A: 2 × 3"
+testo: 5 -0.6 | ambra | "B: 3 × 2"
+testo: 8.5 0.4 | rosa | "AB: 2 × 2"
+```
 
 ### Come lo scrivono le dispense
 
@@ -907,14 +944,14 @@ Le taglie dicono subito che cosa viene fuori. Una matrice $3 \times 2$ per un ve
 >
 > La matrice ha 3 righe, quindi il risultato ha 3 numeri. Il vettore di partenza ne aveva 2.
 
-> [!OLTRE] · una matrice per un vettore è una ricetta fatta con le colonne
+> [!OLTRE] · una matrice per un vettore è una combinazione delle colonne
 > Guarda di nuovo l'Esempio 8.9, questa volta **per colonne**. Prendi 1 volta la prima colonna della matrice e $-1$ volte la seconda:
 > $$1 \cdot \begin{pmatrix} 1 \\ -1 \\ 0 \end{pmatrix} + (-1) \cdot \begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{pmatrix} 1 - 2 \\ -1 - 1 \\ 0 - 3 \end{pmatrix} = \begin{pmatrix} -1 \\ -2 \\ -3 \end{pmatrix}.$$
-> Viene lo stesso vettore di prima. Succede sempre: il prodotto di una matrice per un vettore è la **combinazione lineare delle colonne** della matrice, e le quantità della ricetta sono i numeri del vettore. Con le lettere:
+> Viene lo stesso vettore di prima. Succede sempre: il prodotto di una matrice per un vettore è la **combinazione lineare delle colonne** della matrice, e i coefficienti sono i numeri del vettore. Con le lettere:
 > $$Ax = x_1 A^1 + x_2 A^2 + \dots + x_n A^n.$$
 > Qui $x_1, \dots, x_n$ sono i numeri del vettore $x$, e $A^1, \dots, A^n$ sono le colonne di $A$.
 >
-> Questo spiega due cose. La prima riguarda il rango: i vettori che si possono ottenere come $Ax$ sono tutte le ricette fatte con le colonne, cioè lo Span delle colonne. Il rango è la dimensione di questo Span.
+> Questo spiega due cose. La prima riguarda il rango: i vettori che si possono ottenere come $Ax$ sono tutte le combinazioni delle colonne, cioè lo Span delle colonne. Il rango è la dimensione di questo Span.
 >
 > La seconda riguarda i sistemi di equazioni. Prendi il sistema
 > $$\begin{cases} 2x + 3y = 5 \\ x - y = 1 \end{cases}$$
@@ -1296,7 +1333,7 @@ No. La traccia esiste solo per le matrici quadrate.
 | ${}^t(x, y, z)$ | «il trasposto di x, y, z» | il vettore colonna con quei numeri | ${}^t(1, 2, 3)$ |
 | $-A$ | «meno A» | la matrice con tutti i segni cambiati | |
 | $\iff$ | «se e solo se» | esattamente quando | simmetrica $\iff {}^tA = A$ |
-| $\Span(\dots)$ | «Span di…» | tutto quello che si ottiene con le ricette fatte con quei vettori | lo Span di un vettore è una retta |
+| $\Span(\dots)$ | «Span di…» | tutte le combinazioni lineari di quei vettori | lo Span di un vettore è una retta |
 | $\subset$ | «è contenuto in» | sta dentro, come insieme | una retta del piano $\subset \R^2$ |
 | $\rk(A)$ | «rango di A» | il massimo numero di colonne (o di righe) indipendenti | $\rk(I_3) = 3$ |
 | $\min(m, n)$ | «il minimo tra emme ed enne» | il più piccolo dei due numeri | $\min(3, 5) = 3$ |
@@ -1325,10 +1362,10 @@ Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 
 | «Quale identità vale?» tra $AB$, $BA$, $A$, $B$ | 24/01/2024 (6), 10/06/2024 (5), 10/07/2024 (3), 15/01/2026 (1), 03/06/2026 (5) | il prodotto riga per colonna, e ricordare che l'ordine conta |
 | traccia di un prodotto | 08/02/2024 (4), 06/09/2024 (8), 16/01/2025 (3), 10/07/2025 (9), 05/02/2026 (3), 03/07/2026 (9), 07/09/2026 (8) | solo la diagonale del prodotto |
 | prodotto di tre matrici $2 \times 2$ | 07/02/2025 (3) | associatività, ordine dei fattori |
-| rango di una matrice $3 \times 3$, $4 \times 4$ o $5 \times 5$ | 10/06/2024 (10), 16/01/2025 (6), 07/02/2025 (4), 05/02/2026 (4), 07/09/2026 (9) | doppioni tra righe o colonne, poi Gauss (lezioni L11–L12) |
+| rango di una matrice $3 \times 3$, $4 \times 4$ o $5 \times 5$ | 10/06/2024 (10), 16/01/2025 (6), 07/02/2025 (4), 05/02/2026 (4), 07/09/2026 (9) | righe o colonne di troppo, poi Gauss (lezioni L11–L12) |
 | calcolare ${}^tA - A$ in un problema | 24/01/2024 (11), 15/01/2026 (11) | trasposta, matrici simmetriche |
 
-**Una domanda vera, letta insieme**
+### Una domanda vera, letta insieme
 
 È la domanda 1 dell'appello del 15/01/2026. Il testo dice:
 
@@ -1363,7 +1400,7 @@ Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 
 >
 > Di solito $AB$ e $BA$ sono diversi. Qui sono uguali perché le due matrici sono una l'*inversa* dell'altra: un'idea che arriva nella lezione L10.
 
-**Una traccia con il tranello**
+### Una traccia con il tranello
 
 È la domanda 9 dell'appello del 10/07/2025. Il testo dice:
 
@@ -1388,7 +1425,7 @@ Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 
 > $${}^tA\,A = \begin{pmatrix} 2 & 0 & 0 \\ 1 & 1 & 1 \end{pmatrix} \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 2 \cdot 2 + 0 \cdot 0 + 0 \cdot 0 & 2 \cdot 1 + 0 \cdot 1 + 0 \cdot 1 \\ 1 \cdot 2 + 1 \cdot 0 + 1 \cdot 0 & 1 \cdot 1 + 1 \cdot 1 + 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 4 & 2 \\ 2 & 3 \end{pmatrix}$$
 > La sua traccia è $4 + 3 = 7$. Torna.
 
-**Una trasposta dentro un problema**
+### Una trasposta dentro un problema
 
 È la prima parte del punto (2) del problema 11 dell'appello del 15/01/2026. Il testo dice:
 
@@ -1414,13 +1451,13 @@ Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 
 >
 > **Controllo.** Il risultato del passo 2 è una matrice antisimmetrica, come deve essere: la diagonale è fatta di zeri, e le due caselle $k - k^2$ e $k^2 - k$ sono una l'opposto dell'altra.
 
-**I metodi**
+### I metodi
 
 Per la domanda «quale identità vale?» il metodo è nel riquadro alla fine della sezione sull'ordine nel prodotto. Per il rango e per la traccia eccone altri due.
 
 > [!METODO] Il rango nel quiz
-> 1. Cerca i doppioni a occhio: due colonne uguali, una riga multipla di un'altra, una riga che è la somma di altre due.
-> 2. Se non ne vedi, prova una combinazione con numeri piccoli, come $-2$ e $3$. Nei quiz degli ultimi anni un doppione c'era quasi sempre. Nelle matrici $3 \times 3$: una colonna doppia di un'altra, oppure una riga somma delle altre due. Nella $4 \times 4$ del 05/02/2026 due righe erano combinazioni delle prime due.
+> 1. Cerca a occhio righe o colonne di troppo: due colonne uguali, una riga multipla di un'altra, una riga che è la somma di altre due.
+> 2. Se non ne vedi, prova una combinazione con numeri piccoli, come $-2$ e $3$. Nei quiz degli ultimi anni ce n'era quasi sempre una. Nelle matrici $3 \times 3$: una colonna doppia di un'altra, oppure una riga somma delle altre due. Nella $4 \times 4$ del 05/02/2026 due righe erano combinazioni delle prime due.
 > 3. Controlla che le righe rimaste siano indipendenti.
 > 4. Se non trovi niente, riduci la matrice a scalini con Gauss (lezioni L11–L12). Per una matrice quadrata puoi anche calcolare il determinante (lezioni L09–L10): se è diverso da zero, il rango è il più grande possibile.
 
@@ -1431,7 +1468,7 @@ Per la domanda «quale identità vale?» il metodo è nel riquadro alla fine del
 > 4. Con tre fattori, come in $\tr(ABC)$: calcola per intero il prodotto delle prime due, poi solo la diagonale del prodotto con la terza. Se conviene, prima fai girare i fattori: $\tr(ABC) = \tr(CAB)$.
 > 5. Nelle domande con radici e $\pi$ (appelli dell'08/02/2024 e del 07/09/2026) i numeri scomodi quasi sempre si cancellano: fidati del conto.
 
-**Gli errori da evitare**
+### Gli errori da evitare
 
 - Moltiplicare colonna per riga al posto di riga per colonna, oppure scambiare l'ordine dei due fattori.
 - Dare per scontato che $AB$ e $BA$ siano uguali.
@@ -1454,6 +1491,46 @@ Per la domanda «quale identità vale?» il metodo è nel riquadro alla fine del
 ## Quiz
 
 ```quiz
+D: Appello del 15/01/2026, domanda 1. Siano $A = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix}$. Quale identità vale?
++ $AB = BA$
+- $BA = B$
+- $AB = B$
+- $AB = A$
+- $BA = A$
+= I due prodotti sono tutti e due la matrice identità $I_3$ (i conti sono in «Verso l'esame»), quindi sono uguali tra loro e diversi da $A$ e da $B$. È la (a) della soluzione ufficiale. La risposta più insidiosa è $AB = A$: viene a chi calcola solo la prima riga, che in $A$ e in $AB$ comincia con 1.
+
+D: Appello del 24/01/2024, domanda 6. Siano $A = \begin{pmatrix} 1 & -1 & 1 \\ 0 & 1 & 0 \\ 0 & -1 & 2 \end{pmatrix}$ e $B = \begin{pmatrix} 0 & 0 & -1 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \end{pmatrix}$. Quale identità vale?
+- $BA = A$
+- $AB = BA$
+- $BA = B$
++ $AB = B$
+- $AB = A$
+= Riga per colonna: la riga 1 di $A$, $(1, -1, 1)$, con le colonne di $B$ dà $0 - 1 + 1 = 0$, poi $0$, poi $-1$. La riga 2, $(0, 1, 0)$, dà $1$, $0$, $0$; la riga 3, $(0, -1, 2)$, dà $-1 + 2 = 1$, $0$, $0$. Quindi $AB = B$: è la (d) della soluzione ufficiale. Invece $BA$ ha la prima riga $(0, 1, -2)$, diversa da quelle di $A$, di $B$ e di $AB$. La risposta più insidiosa è $AB = BA$, che tenta chi dimentica che l'ordine conta.
+
+D: Appello del 16/01/2025, domanda 6. Determinare il rango della matrice $\begin{pmatrix} 1 & 1 & 2 \\ 2 & 3 & 4 \\ 3 & 5 & 6 \end{pmatrix}$.
+- 3
+- 1
++ 2
+- 0
+- 4
+= La terza colonna è il doppio della prima, quindi è di troppo. Le prime due colonne, $(1, 2, 3)$ e $(1, 3, 5)$, non sono una multipla dell'altra: restano 2 colonne indipendenti. È la (c) della soluzione ufficiale, che ci arriva con le mosse di Gauss. La risposta più insidiosa è 3, che conta le colonne senza cercare quelle di troppo; 4 è impossibile, perché il rango non supera 3.
+
+D: Appello del 07/09/2026, domanda 8. Date $A = \begin{pmatrix} \sqrt 2 & 0 & -2\pi \\ 0 & \sqrt 3 & \sqrt 3 \\ 2\pi & \sqrt 2 & 0 \end{pmatrix}$ e $B = \begin{pmatrix} \sqrt 2 & 2\pi & \sqrt 2 \\ 2\pi & 0 & -2\pi \\ 0 & \sqrt 3 & \sqrt 3 \end{pmatrix}$, il valore di $\tr(AB)$ è:
+- $2\pi$
++ $5$
+- $(\sqrt 2 + \sqrt 3)^2$
+- $\sqrt 5$
+- $2\pi\sqrt 2$
+= Servono solo le tre caselle diagonali di $AB$: $\sqrt 2 \cdot \sqrt 2 + 0 + 0 = 2$, poi $0 + 0 + \sqrt 3 \cdot \sqrt 3 = 3$, poi $2\pi\sqrt 2 - 2\pi\sqrt 2 + 0 = 0$. La traccia è $2 + 3 + 0 = 5$: è la (b) del foglio d'esame. La risposta più insidiosa è $(\sqrt 2 + \sqrt 3)^2$, che somma le radici prima di moltiplicarle; i termini con $\pi$ si cancellano.
+
+D: Appello del 10/07/2025, domanda 9. Data la matrice $A = \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 1 \end{pmatrix}$, la traccia di $A \cdot {}^tA$ è:
++ 7
+- 9
+- non si può calcolare, poiché $A$ non è una matrice quadrata
+- 6
+- 0
+= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata, e ogni casella diagonale è una riga di $A$ per sé stessa: $4 + 1 = 5$, poi $1$, poi $1$. La traccia è 7: è la (a) della soluzione ufficiale. La risposta più insidiosa è la (c): a non essere quadrata è $A$, non il prodotto.
+
 D: Siano $A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix}$. Quale identità vale?
 + $AB = BA$
 - $AB = A$
@@ -1492,7 +1569,7 @@ D: Qual è il rango della matrice $\begin{pmatrix} 2 & 1 & 3 \\ 1 & 1 & 2 \\ 3 &
 - $1$
 - $0$
 - $5$
-= La domanda chiede quante righe indipendenti ha la matrice. Si cercano i doppioni. La terza riga è la somma delle prime due: $2 + 1 = 3$, poi $1 + 1 = 2$, poi $3 + 2 = 5$. Quindi si può togliere. Le prime due righe non sono una il multiplo dell'altra: al primo posto, per passare da $1$ a $2$ si moltiplica per 2, ma al secondo posto $1 \cdot 2$ fa $2$ e non $1$. Restano 2 righe indipendenti: il rango è 2. La risposta $3$ è la trappola: tre righe piene di numeri non vogliono dire rango 3. È simile alle domande 9 del 07/09/2026 e 6 del 16/01/2025.
+= La domanda chiede quante righe indipendenti ha la matrice. Si cercano le righe di troppo. La terza riga è la somma delle prime due: $2 + 1 = 3$, poi $1 + 1 = 2$, poi $3 + 2 = 5$. Quindi si può togliere. Le prime due righe non sono una il multiplo dell'altra: al primo posto, per passare da $1$ a $2$ si moltiplica per 2, ma al secondo posto $1 \cdot 2$ fa $2$ e non $1$. Restano 2 righe indipendenti: il rango è 2. La risposta $3$ è la trappola: tre righe piene di numeri non vogliono dire rango 3. È simile alle domande 9 del 07/09/2026 e 6 del 16/01/2025.
 
 D: $A$ è una matrice $2 \times 3$ e $B$ è una matrice $3 \times 4$. Quale affermazione è vera?
 + $AB$ è una matrice $2 \times 4$ e $BA$ non è definito.
@@ -1677,7 +1754,7 @@ $$BA = \begin{pmatrix} 22 & 28 \\ 49 & 64 \end{pmatrix}, \qquad \tr(BA) = 22 + 6
 Determina il rango delle matrici
 $$A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 0 \\ 0 & 3 & 6 \end{pmatrix}, \quad B = \begin{pmatrix} 1 & -1 & 2 \\ -2 & 2 & -4 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 0 & 2 & 1 \\ 0 & 1 & 1 & 1 \\ 1 & 1 & 3 & 2 \end{pmatrix}, \quad D = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}.$$
 ::: soluzione
-Per ogni matrice cerco i doppioni tra le righe (o tra le colonne), li tolgo e conto quello che resta.
+Per ogni matrice cerco le righe (o le colonne) di troppo, le tolgo e conto quelle che restano.
 
 **La matrice $A$** (dal Foglio di esercizi 2 del tutorato 2025). Provo a ottenere la terza riga dalle prime due: due volte la prima, meno la seconda.
 
@@ -1691,9 +1768,9 @@ Viene $(0, 3, 6)$, che è la terza riga: è un doppione. Le prime due righe sono
 
 **La matrice $B$.** La seconda riga è la prima moltiplicata per $-2$:
 $$-2 \cdot (1, -1, 2) = (-2, 2, -4).$$
-È un doppione. Resta una riga sola, che non è fatta di zeri: $\rk(B) = 1$.
+È di troppo. Resta una riga sola, che non è fatta di zeri: $\rk(B) = 1$.
 
-**La matrice $C$.** La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $0 + 1 = 1$, poi $2 + 1 = 3$, poi $1 + 1 = 2$. È un doppione. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1 e la seconda con 0, e al secondo posto succede il contrario. Restano 2 righe: $\rk(C) = 2$, anche se le colonne sono quattro.
+**La matrice $C$.** La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $0 + 1 = 1$, poi $2 + 1 = 3$, poi $1 + 1 = 2$. È di troppo. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1 e la seconda con 0, e al secondo posto succede il contrario. Restano 2 righe: $\rk(C) = 2$, anche se le colonne sono quattro.
 
 **La matrice $D$.** Ha 3 righe e 2 colonne, quindi il rango è al massimo 2. Guardo le due colonne: contengono $1, 3, 5$ e $2, 4, 6$. In alto si passa da 1 a 2 moltiplicando per 2. Ma nel mezzo $3 \cdot 2 = 6$ e non 4. Le colonne non sono una il multiplo dell'altra, quindi sono indipendenti: $\rk(D) = 2$, il più grande possibile per questa taglia.
 :::
@@ -1713,7 +1790,7 @@ $$BA = \begin{pmatrix} 2 \cdot 1 + (-4) \cdot 2 & 2 \cdot 2 + (-4) \cdot 4 \\ (-
 2. $AB$ è la matrice nulla e $BA$ no. Quindi $AB \neq BA$.
 3. Non si può «semplificare». Anche $A$ per la matrice nulla dà la matrice nulla. Quindi $A$ per $B$ e $A$ per la matrice nulla danno lo stesso risultato, ma $B$ non è la matrice nulla.
 
-**Perché succede.** La seconda colonna di $A$ è il doppio della prima: $A$ ha rango 1. Ogni colonna di $AB$ è una ricetta fatta con le colonne di $A$, e le quantità sono i numeri di una colonna di $B$. La prima colonna di $B$ contiene 2 e $-1$: la ricetta è «due volte la prima colonna di $A$, meno la seconda». Viene $(2 - 2,\ 4 - 4)$, cioè zero. La seconda colonna di $B$ contiene $-4$ e 2: la ricetta è «$-4$ volte la prima colonna di $A$, più due volte la seconda». Viene $(-4 + 4,\ -8 + 8)$, di nuovo zero.
+**Perché succede.** La seconda colonna di $A$ è il doppio della prima: $A$ ha rango 1. Ogni colonna di $AB$ è una combinazione delle colonne di $A$, e i coefficienti sono i numeri di una colonna di $B$. La prima colonna di $B$ contiene 2 e $-1$: la combinazione è «due volte la prima colonna di $A$, meno la seconda». Viene $(2 - 2,\ 4 - 4)$, cioè zero. La seconda colonna di $B$ contiene $-4$ e 2: la combinazione è «$-4$ volte la prima colonna di $A$, più due volte la seconda». Viene $(-4 + 4,\ -8 + 8)$, di nuovo zero.
 :::
 
 ::: esercizio medio Potenze e il quadrato di una somma
@@ -1884,7 +1961,7 @@ $$XA = \begin{pmatrix} a \cdot 1 + b \cdot 0 & a \cdot 1 + b \cdot 1 \\ c \cdot 
 
 **4. La risposta.** Serve $c = 0$ e $d = a$. I numeri $a$ e $b$ restano liberi: puoi sceglierli come vuoi. Le matrici cercate sono
 $$X = \begin{pmatrix} a & b \\ 0 & a \end{pmatrix} = a \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + b \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \qquad a, b \in \R.$$
-Sono tutte le ricette fatte con due matrici fisse. Per questo formano un sottospazio di $M(2, \R)$ di dimensione 2.
+Sono tutte le combinazioni di due matrici fisse. Per questo formano un sottospazio di $M(2, \R)$ di dimensione 2.
 
 **Controllo** con $a = 2$ e $b = 3$, cioè $X = \begin{pmatrix} 2 & 3 \\ 0 & 2 \end{pmatrix}$:
 $$AX = \begin{pmatrix} 1 \cdot 2 + 1 \cdot 0 & 1 \cdot 3 + 1 \cdot 2 \\ 0 \cdot 2 + 1 \cdot 0 & 0 \cdot 3 + 1 \cdot 2 \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ 0 & 2 \end{pmatrix} \qquad XA = \begin{pmatrix} 2 \cdot 1 + 3 \cdot 0 & 2 \cdot 1 + 3 \cdot 1 \\ 0 \cdot 1 + 2 \cdot 0 & 0 \cdot 1 + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ 0 & 2 \end{pmatrix}$$
@@ -1974,7 +2051,7 @@ Quindi $\tr(ACB) = 0 + (-2) = -2$.
 
 **5. Il confronto.** Le due tracce sono diverse: $-1$ e $-2$. Far girare i fattori ($BCA$, $CAB$) non cambia la traccia. Scambiare due fattori vicini, come $B$ e $C$, può cambiarla.
 
-(b) Cerco i doppioni tra le righe. Le chiamo riga 1, riga 2, riga 3 e riga 4.
+(b) Cerco le righe di troppo. Le chiamo riga 1, riga 2, riga 3 e riga 4.
 
 **La riga 3 è la riga 1 più due volte la riga 2.**
 
@@ -1996,7 +2073,7 @@ Viene $(1, 6, 1, 4)$: è la riga 3.
 
 Viene $(2, 3, 2, 5)$: è la riga 4.
 
-Le righe 3 e 4 sono doppioni, e le tolgo. Restano la riga 1 e la riga 2. Non sono una il multiplo dell'altra: la riga 1 ha 0 al secondo posto, dove la riga 2 ha 3. La riga 2 ha 0 al primo posto, dove la riga 1 ha 1. Quindi sono indipendenti, e $\rk(M) = 2$.
+Le righe 3 e 4 sono di troppo, e le tolgo. Restano la riga 1 e la riga 2. Non sono una il multiplo dell'altra: la riga 1 ha 0 al secondo posto, dove la riga 2 ha 3. La riga 2 ha 0 al primo posto, dove la riga 1 ha 1. Quindi sono indipendenti, e $\rk(M) = 2$.
 
 Si poteva notare anche che la terza colonna è uguale alla prima. Ma questo dice solo che il rango è al massimo 3: per arrivare a 2 servono le relazioni tra le righe.
 :::
@@ -2058,7 +2135,7 @@ Una casella della diagonale, ribaltata, resta sé stessa. In una matrice antisim
 :::
 
 ::: domanda Perché il rango è il massimo numero di colonne indipendenti?
-Le colonne generano il loro Span. Se una colonna è un doppione, cioè una combinazione lineare delle altre, si può togliere: lo Span non cambia. Togliendo un doppione alla volta restano colonne indipendenti che generano lo stesso spazio. Sono una base, e il loro numero è la dimensione. Un gruppo più numeroso sarebbe dipendente.
+Le colonne generano il loro Span. Se una colonna è di troppo, cioè è una combinazione lineare delle altre, si può togliere: lo Span non cambia. Togliendo una colonna di troppo alla volta restano colonne indipendenti che generano lo stesso spazio. Sono una base, e il loro numero è la dimensione. Un gruppo più numeroso sarebbe dipendente.
 :::
 
 ::: domanda Che relazione c'è tra rango per righe e rango per colonne?
@@ -2132,7 +2209,7 @@ Matrice identità $I_n$ | La matrice quadrata con 1 sulla diagonale e 0 altrove.
 - So leggere la scrittura ${}^t(x, y, z)$ per i vettori colonna.
 - So dire che cos'è il rango e perché è il massimo numero di colonne indipendenti.
 - So che con le righe e con le colonne viene lo stesso rango, e che $\rk(A) \le \min(m, n)$.
-- So trovare il rango di una matrice piccola cercando i doppioni tra le righe o tra le colonne.
+- So trovare il rango di una matrice piccola cercando le righe o le colonne di troppo.
 - So dire se un prodotto $AB$ si può fare, di che taglia viene, e calcolarlo riga per colonna senza errori.
 - So mostrare con un esempio che $AB \neq BA$, e che un prodotto può essere nullo senza che lo sia un fattore.
 - So enunciare associatività e distributività e usare ${}^t(AB) = {}^tB\,{}^tA$.

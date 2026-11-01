@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06A · Funzioni</title>
+<meta name="lezione" content="06A">
+<meta name="data" content="2026-10-28">
+<meta name="description" content="Appunti della lezione 06A di Programmazione I (canale B): che cos'è una funzione in C, il parallelo con le funzioni della matematica e dove finisce, prototipo, definizione e chiamata, le quattro forme con e senza parametri e valore di ritorno, le funzioni in memoria, più parametri e un solo valore di ritorno, le regole del return, il passaggio per valore, gli errori più comuni, la divisione di un programma in funzioni con l'esempio del cerchio, con tutti i programmi delle slide provati, quiz ed esercizi.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/06A_funzioni.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#perche-servono-le-funzioni"><span class="n">§1</span><span>Perché servono le funzioni</span></a></li>
+<li><a href="#dalla-matematica-al-c"><span class="n">§2</span><span>Dalla matematica al C</span></a></li>
+<li><a href="#prototipo-definizione-e-chiamata"><span class="n">§3</span><span>Prototipo, definizione e chiamata</span></a></li>
+<li><a href="#quattro-forme-di-funzione"><span class="n">§4</span><span>Quattro forme di funzione</span></a></li>
+<li><a href="#dove-il-paragone-si-ferma"><span class="n">§5</span><span>Dove il paragone si ferma</span></a></li>
+<li><a href="#le-funzioni-stanno-in-memoria"><span class="n">§6</span><span>Le funzioni stanno in memoria</span></a></li>
+<li><a href="#piu-parametri-un-solo-risultato"><span class="n">§7</span><span>Più parametri, un solo risultato</span></a></li>
+<li><a href="#il-passaggio-per-valore"><span class="n">§8</span><span>Il passaggio per valore</span></a></li>
+<li><a href="#gli-errori-piu-comuni"><span class="n">§9</span><span>Gli errori più comuni</span></a></li>
+<li><a href="#dividere-un-programma-in-funzioni"><span class="n">§10</span><span>Dividere un programma in funzioni</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§11</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§12</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§13</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§14</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§15</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§16</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§17</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
+<nav class="vicine" aria-label="Lezioni vicine">
+  <a class="vicina prec" href="Lab04_iterazioni.html" rel="prev" title="Lab04 · Laboratorio 04: iterazioni"><span class="dir">← Lezione precedente</span><span class="vt">Lab04 · Laboratorio 04: iterazioni</span></a>
+</nav>
+<!-- VICINE:FINE -->
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 06A</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 06A</p>
+      <h1>Funzioni</h1>
+      <p class="lede">Finora tutto il programma stava dentro main. Una funzione è un pezzo di codice con un nome, che riceve dei valori, fa un lavoro e restituisce un risultato: si scrive una volta e si usa quante volte serve. All&#39;esame ogni esercizio di programmazione chiede proprio di scrivere una funzione.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>06A_funzioni («Funzioni») · 28 pagine</dd></div><div><dt>Lezione</dt><dd>mercoledì 28/10</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>90 minuti, meglio con gcc a portata di mano</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:590px">
+<h2 id="tldr-title">La lezione in 6 punti</h2>
+<ul>
+<li>Una <strong>funzione</strong> è un blocco di codice con un nome: riceve dei valori (i <strong>parametri</strong>), esegue delle istruzioni e può restituire un risultato con <code>return</code>.</li>
+<li>Il <strong>prototipo</strong> annuncia nome, tipi dei parametri e tipo del risultato; la <strong>definizione</strong> contiene il codice; la <strong>chiamata</strong> la usa, per esempio <code>square(3.14f)</code>.</li>
+<li>Una funzione C somiglia a una funzione della matematica, ma può non restituire niente (<code>void</code>), leggere l&#39;input, stampare: con gli stessi argomenti può comportarsi in modo diverso.</li>
+<li>Una funzione restituisce <strong>al massimo un valore</strong>. All&#39;esame, nelle funzioni iterative, la <code>return</code> è <strong>una sola</strong>, alla fine.</li>
+<li>I parametri passano <strong>per valore</strong>: la funzione riceve una copia e non può cambiare le variabili di chi la chiama. Per cambiarle si passa il loro indirizzo.</li>
+<li>Un programma si divide in funzioni piccole, una per compito: leggere, calcolare, stampare. È il <strong>divide et impera</strong>.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Le slide sono arrivate il 01/11. Le metto alla lezione di mercoledì 28/10, dalle 9 alle 11: è la prima dopo la fine della <a href="05A_array_stringhe.html">05A</a>, il 27/10, e le funzioni nel programma del corso stanno proprio in questa settimana. Se Amparore le ha finite nella lezione dopo, aggiorno la data. Usa le variabili e la memoria della <a href="02B_assegnamento_memory_model.html">02B</a>, i puntatori della <a href="02C_referenziamento_scanf_puntatori.html">02C</a> e l&#39;operatore <code>? :</code> della <a href="03C_booleani.html">03C</a>.</p>
+<p><strong>Canali A e C.</strong> Secondo l&#39;elenco delle lezioni 2025/26 nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>, nel canale A le funzioni arrivano dopo array e matrici, nel canale C subito dopo i cicli. Le slide 2026/27 dei canali A e C non le ho viste. L&#39;esame è unico.</p>
+<p><strong>Due avvisi sulle slide.</strong> Il programma del cerchio (slide 24–26) con un input che non è un numero, per esempio <code>abc</code>, stampa l&#39;errore all&#39;infinito: la correzione è nella sezione sull&#39;esempio. E <code>M_PI</code> non fa parte dello standard del C: con le opzioni predefinite di gcc c&#39;è, con <code>-std=c17</code> no.</p>
+<p>Tutti i programmi li ho compilati con gcc 16.1, con <code>-Wall -Werror</code>, ed eseguiti.</p>
+</div>
+
+
+<section id="perche-servono-le-funzioni" aria-labelledby="h-perche-servono-le-funzioni" style="--h:860px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-perche-servono-le-funzioni">Perché servono le funzioni</h2><span class="slides">slide 2–3</span></div>
+<p>Un programma che calcola tre volte il massimo tra due numeri, senza funzioni, ripete tre volte lo stesso <code>if</code>. Ogni copia è un&#39;occasione per sbagliare, e se un giorno il calcolo cambia bisogna correggerlo in tre punti. Con una funzione il calcolo si scrive una volta sola, con un nome, e si usa dove serve:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> max(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> (a &gt; b) ? a : b;
+}</code></pre>
+<p>Da qui in poi basta scrivere <code>max(x, y)</code>. Le slide citano Gerald Weinberg (1971): «il segreto per scrivere programmi grandi è non scrivere mai programmi grandi», cioè spezzarli in pezzi piccoli.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Funzione (slide 3)</span></p><p>In C una <strong>funzione</strong> è un blocco di codice con un nome, che può ricevere dati in ingresso (i <strong>parametri</strong>), eseguire istruzioni e restituire un risultato (il <strong>valore di ritorno</strong>). In altri linguaggi si chiamano anche metodi, procedure o subroutine.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa vale <code>max(3, 8)</code>? E <code>max(-1, -5)</code>?</span></summary><div class="ans"><p>8 e −1. Il <code>? :</code> della <a href="03C_booleani.html">03C</a> sceglie <code>a</code> se la condizione <code>a &gt; b</code> è vera, altrimenti <code>b</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Una funzione dà un nome a un calcolo e lo rende riutilizzabile.</li>
+<li>Se lo stesso codice compare più volte, è il segnale che serve una funzione.</li>
+</ul>
+</div>
+</section>
+
+<section id="dalla-matematica-al-c" aria-labelledby="h-dalla-matematica-al-c" style="--h:1440px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-dalla-matematica-al-c">Dalla matematica al C</h2><span class="slides">slide 4–6, 9</span></div>
+<p>Le funzioni del C prendono il nome da quelle della matematica, e il paragone aiuta a leggerne la sintassi. In matematica <span class="katex" role="math" aria-label="f : \mathbb{R} \to \mathbb{R}"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord mathbb">R</span></span></span></span>, <span class="katex" role="math" aria-label="f(x) = x^2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> dice tre cose: da dove vengono gli argomenti (il <strong>dominio</strong>), dove stanno i risultati (il <strong>codominio</strong>) e la regola che lega i due. Scrivere <span class="katex" role="math" aria-label="f(3) = 9"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord">3</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span></span></span></span> vuol dire <strong>valutare</strong> la funzione in 3. In C le stesse tre cose si scrivono così:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">float</span> square(<span class="kw">float</span> x) {
+    <span class="kw">return</span> x * x;
+}</code></pre>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La funzione matematica a sinistra e la funzione C a destra. I tipi fanno da dominio e codominio, il corpo realizza la regola, la chiamata corrisponde alla valutazione" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-linea g-grigio" d="M194.19 95.2L248.39 95.2" marker-end="url(#g-freccia-1-grigio)"/><path class="g-linea g-grigio" d="M194.19 183.6L248.39 183.6" marker-end="url(#g-freccia-1-grigio)"/><path class="g-linea g-grigio" d="M194.19 272L248.39 272" marker-end="url(#g-freccia-1-grigio)"/></svg><span class="g-et g-c g-testo g-grigio" style="left:18.55%;top:8.00%">matematica</span><span class="g-et g-c g-testo g-grigio" style="left:71.78%;top:8.00%">C</span><span class="g-et g-c g-testo g-blu" style="left:18.55%;top:28.00%">f : ℝ → ℝ</span><span class="g-et g-c g-testo g-blu" style="left:71.78%;top:28.00%">float square(float x)</span><span class="g-et g-c g-testo g-ambra" style="left:18.55%;top:54.00%">f(x) = x²</span><span class="g-et g-c g-testo g-ambra" style="left:71.78%;top:54.00%">return x * x;</span><span class="g-et g-c g-testo g-verde" style="left:18.55%;top:80.00%">y = f(3)</span><span class="g-et g-c g-testo g-verde" style="left:71.78%;top:80.00%">y = square(3);</span></div><figcaption>La funzione matematica a sinistra e la funzione C a destra. I tipi fanno da dominio e codominio, il corpo realizza la regola, la chiamata corrisponde alla valutazione</figcaption></figure>
+<ul>
+<li>Il <strong>tipo del parametro</strong>, <code>float</code>, fa da dominio: dice quali valori la funzione accetta.</li>
+<li>Il <strong>tipo di ritorno</strong>, il primo <code>float</code>, fa da codominio: dice che tipo di valore esce.</li>
+<li>Il <strong>corpo</strong> tra le graffe realizza la regola.</li>
+<li>La <strong>chiamata</strong> <code>square(3)</code> corrisponde alla valutazione <span class="katex" role="math" aria-label="f(3)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord">3</span><span class="mclose">)</span></span></span></span>.</li>
+</ul>
+<div class="box def"><p class="box-label"><span>Definizione · Sintassi di una funzione (slide 5)</span></p><p><code>&lt;tipo_ritorno&gt; nomeFunzione(&lt;lista_parametri&gt;) { istruzioni; return valore; }</code>. Il tipo di ritorno è <code>int</code>, <code>float</code>… oppure <code>void</code> se la funzione non restituisce niente. Ogni parametro ha tipo e nome. La <code>return</code> è obbligatoria se il tipo non è <code>void</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Scrivi l&#39;intestazione di una funzione <code>cubo</code> che riceve un <code>int</code> e restituisce un <code>int</code>.</span></summary><div class="ans"><p><code>int cubo(int x)</code>. Il corpo sarà <code>{ return x * x * x; }</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Tipo del parametro = dominio, tipo di ritorno = codominio, corpo = regola, chiamata = valutazione.</li>
+<li><code>void</code> vuol dire «nessun valore».</li>
+</ul>
+</div>
+</section>
+
+<section id="prototipo-definizione-e-chiamata" aria-labelledby="h-prototipo-definizione-e-chiamata" style="--h:2030px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-prototipo-definizione-e-chiamata">Prototipo, definizione e chiamata</h2><span class="slides">slide 6–8</span></div>
+<p>Le parti di una funzione in un programma sono tre.</p>
+<div class="table-wrap"><table><thead><tr><th>Parte</th><th>Che cosa contiene</th><th>Esempio</th></tr></thead><tbody><tr><td><strong>prototipo</strong> (facoltativo)</td><td>nome, tipo di ritorno e tipi dei parametri, senza codice, con il punto e virgola</td><td><code>float square(float x);</code></td></tr>
+<tr><td><strong>definizione</strong></td><td>lo stesso, più il corpo con le istruzioni</td><td><code>float square(float x) { return x * x; }</code></td></tr>
+<tr><td><strong>chiamata</strong></td><td>l&#39;uso della funzione in un&#39;espressione, con gli argomenti</td><td><code>float r = square(a);</code></td></tr></tbody></table></div>
+<p>Il primo esempio delle slide mette il prototipo prima di <code>main</code> e la definizione dopo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="cm">// PROTOTIPO (dichiarazione)</span>
+<span class="kw">float</span> square(<span class="kw">float</span> x);
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+   <span class="kw">float</span> a = 3.14f;
+   <span class="kw">float</span> risultato = square(a);   <span class="cm">// CHIAMATA alla funzione</span>
+   printf(<span class="str">&quot;%f al quadrato = %f\n&quot;</span>, a, risultato);
+}
+
+<span class="cm">// DEFINIZIONE (implementazione)</span>
+<span class="kw">float</span> square(<span class="kw">float</span> x) {
+   <span class="kw">return</span> x * x;   <span class="cm">// RETURN: restituisce un float al chiamante</span>
+}</code></pre>
+<p>Stampa <code>3.140000 al quadrato = 9.859601</code>. Il <code>main</code> senza <code>return</code> va bene: per <code>main</code>, e solo per <code>main</code>, il C restituisce 0 da solo alla fine.</p>
+<p>Durante la chiamata il programma salta dentro la funzione, dove <code>x</code> vale una copia di <code>a</code>. Esegue il corpo e torna nel punto di partenza con il valore della <code>return</code>.</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Che cosa succede nella chiamata `square(a)`. Il valore di `a` viene copiato in `x` (freccia in alto), la funzione esegue il corpo, e la `return` riporta il risultato nel punto della chiamata (freccia in basso), dove finisce in `risultato`" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M9.03 316.82L216.77 316.82L216.77 38.64L9.03 38.64Z"/><path class="g-poligono g-ambra" d="M352.26 270.45L550.97 270.45L550.97 85L352.26 85Z"/><path class="g-linea g-verde" d="M221.29 185.45L347.74 146.82" marker-end="url(#g-freccia-2-verde)"/><path class="g-linea g-rosa" d="M347.74 231.82L221.29 224.09" marker-end="url(#g-freccia-2-rosa)"/></svg><span class="g-et g-c g-testo g-blu" style="left:20.16%;top:21.59%">main</span><span class="g-et g-c g-testo g-grigio" style="left:20.16%;top:37.50%">a = 3.14</span><span class="g-et g-c g-testo g-accento" style="left:20.16%;top:53.41%">risultato =</span><span class="g-et g-c g-testo g-accento" style="left:20.16%;top:65.91%">square(a)</span><span class="g-et g-c g-testo g-grigio" style="left:20.16%;top:81.82%">printf(...)</span><span class="g-et g-c g-testo g-ambra" style="left:80.64%;top:35.23%">square</span><span class="g-et g-c g-testo g-grigio" style="left:80.64%;top:52.27%">x = 3.14</span><span class="g-et g-c g-testo g-grigio" style="left:80.64%;top:68.18%">return x * x</span><span class="g-et g-c g-testo g-verde" style="left:50.81%;top:37.50%">copia</span><span class="g-et g-c g-testo g-rosa" style="left:50.81%;top:78.41%">9.8596</span></div><figcaption>Che cosa succede nella chiamata <code>square(a)</code>. Il valore di <code>a</code> viene copiato in <code>x</code> (freccia in alto), la funzione esegue il corpo, e la <code>return</code> riporta il risultato nel punto della chiamata (freccia in basso), dove finisce in <code>risultato</code></figcaption></figure>
+<p>Il prototipo serve perché il compilatore legge il file dall&#39;alto in basso. Se <code>main</code> usa <code>square</code> prima di averla vista, gcc 16 si ferma con <code>error: implicit declaration of function 'square'</code>, anche senza <code>-Wall</code>. Le soluzioni sono due: il prototipo in cima, oppure la definizione intera prima di <code>main</code>. Il prototipo deve corrispondere alla definizione in tutto: nome, tipo di ritorno, numero e tipi dei parametri.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Il punto e virgola</span></p><p>Il prototipo finisce con <code>;</code>, la definizione no: dopo la parentesi tonda della definizione vengono subito le graffe.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>In un file <code>main</code> viene prima e chiama <code>media(a, b)</code>, definita più in basso come <code>float media(int x, int y)</code>. Che riga serve in cima perché compili?</span></summary><div class="ans"><p>Il prototipo <code>float media(int x, int y);</code>, con il punto e virgola.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Prototipo: l&#39;annuncio, con <code>;</code>. Definizione: il codice. Chiamata: l&#39;uso.</li>
+<li>Una funzione va dichiarata prima di essere chiamata.</li>
+</ul>
+</div>
+</section>
+
+<section id="quattro-forme-di-funzione" aria-labelledby="h-quattro-forme-di-funzione" style="--h:930px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-quattro-forme-di-funzione">Quattro forme di funzione</h2><span class="slides">slide 11</span></div>
+<p>Parametri e valore di ritorno sono tutti e due facoltativi, quindi le combinazioni sono quattro.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>con valore di ritorno</th><th>senza (<code>void</code>)</th></tr></thead><tbody><tr><td><strong>con parametri</strong></td><td><code>int max(int a, int b)</code>: riceve e restituisce</td><td><code>void stampaQuadrato(float x)</code>: riceve e fa un&#39;azione</td></tr>
+<tr><td><strong>senza parametri</strong></td><td><code>int leggiNumero(void)</code>: legge e restituisce</td><td><code>void saluto(void)</code>: fa un&#39;azione e basta</td></tr></tbody></table></div>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> leggiNumero(<span class="kw">void</span>) {
+    <span class="kw">int</span> x;
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;x);
+    <span class="kw">return</span> x;
+}
+
+<span class="kw">void</span> stampaQuadrato(<span class="kw">float</span> x) {
+    printf(<span class="str">&quot;%f\n&quot;</span>, x * x);
+}
+
+<span class="kw">void</span> saluto(<span class="kw">void</span>) {
+    printf(<span class="str">&quot;Ciao!\n&quot;</span>);
+}</code></pre>
+<p>Il <code>void</code> tra le parentesi dice che la funzione non vuole argomenti; il <code>void</code> davanti dice che non restituisce niente. Una funzione <code>void</code> si chiama come un&#39;istruzione, <code>saluto();</code>. Non si può usare il suo risultato: <code>int x = saluto();</code> non compila (<code>void value not ignored as it ought to be</code>), e nemmeno <code>return 1;</code> dentro una funzione <code>void</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Di che forma è <code>float leggiPrezzo(void)</code>? E <code>void stampaRiga(int n)</code>?</span></summary><div class="ans"><p>La prima non ha parametri e restituisce un <code>float</code>. La seconda riceve un <code>int</code> e non restituisce niente: stamperà qualcosa.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>void</code> davanti: nessun risultato. <code>void</code> tra le parentesi: nessun parametro.</li>
+<li>Il risultato di una funzione <code>void</code> non si può usare.</li>
+</ul>
+</div>
+</section>
+
+<section id="dove-il-paragone-si-ferma" aria-labelledby="h-dove-il-paragone-si-ferma" style="--h:760px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-dove-il-paragone-si-ferma">Dove il paragone si ferma</h2><span class="slides">slide 10</span></div>
+<p>Una funzione matematica è una relazione: a ogni argomento associa un solo risultato, sempre lo stesso. Una funzione C invece è un <strong>comportamento</strong> eseguito da una macchina, e qui le due cose si separano.</p>
+<ul>
+<li>Può <strong>non restituire niente</strong> (<code>void</code>).</li>
+<li>Può <strong>leggere o cambiare lo stato</strong> del programma: leggere l&#39;input, stampare, scrivere in memoria attraverso un puntatore. Questi effetti si chiamano <strong>effetti collaterali</strong>.</li>
+<li>Quindi <strong>con gli stessi argomenti può dare risultati diversi</strong>: <code>leggiNumero()</code> restituisce ogni volta quello che l&#39;utente scrive.</li>
+</ul>
+<p>Una funzione come <code>square</code>, che calcola solo dai parametri e non tocca altro, si comporta invece proprio come una funzione matematica.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span><code>int conta(void)</code> legge numeri finché arriva 0 e restituisce quanti erano. Chiamata due volte di fila, dà sempre lo stesso risultato?</span></summary><div class="ans"><p>No: ogni chiamata legge una sequenza diversa dall&#39;input. È un effetto collaterale, la lettura, che la matematica non ha.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Effetto collaterale: tutto quello che una funzione fa oltre a calcolare il risultato (input, output, scritture in memoria).</li>
+<li>Senza effetti collaterali, stessi argomenti, stesso risultato.</li>
+</ul>
+</div>
+</section>
+
+<section id="le-funzioni-stanno-in-memoria" aria-labelledby="h-le-funzioni-stanno-in-memoria" style="--h:880px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-le-funzioni-stanno-in-memoria">Le funzioni stanno in memoria</h2><span class="slides">slide 12</span></div>
+<p>Dopo la compilazione anche il codice delle funzioni sta in memoria, nella <strong>sezione del codice</strong> del programma. Il nome di una funzione rappresenta l&#39;indirizzo della sua prima istruzione: è un <strong>puntatore a funzione</strong>. Le slide lo mostrano stampando con <code>%p</code> gli indirizzi di <code>main</code> e di <code>square</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> square(<span class="kw">int</span> x);
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    printf(<span class="str">&quot;main addr %p\n&quot;</span>, main);
+    printf(<span class="str">&quot;square addr %p\n&quot;</span>, square);
+}
+
+<span class="kw">int</span> square(<span class="kw">int</span> x) {
+ <span class="kw">return</span> x * x;
+}</code></pre>
+<p>Gli indirizzi delle slide, <code>0x0010</code> e <code>0x004B</code>, sono un esempio. Sul mio PC, con Windows, il programma stampa <code>main addr 00007FF62EA81760</code> e <code>square addr 00007FF62EA817A4</code>, e a ogni avvio gli indirizzi cambiano. Con <code>-Wall -Werror</code> compila; con <code>-Wpedantic</code> gcc avvisa che <code>%p</code> vorrebbe un <code>void *</code> e non un puntatore a funzione, perché lo standard del C non garantisce questa conversione. All&#39;esame non serve: basta sapere che una funzione ha un indirizzo come le variabili.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nel programma, <code>square</code> è scritta dopo <code>main</code>. Il suo indirizzo è più alto o più basso di quello di <code>main</code>?</span></summary><div class="ans"><p>Sul mio PC più alto: <code>…17A4</code> contro <code>…1760</code>, 0x44 byte dopo. Il compilatore ha messo il codice nell&#39;ordine del file, ma lo standard non lo garantisce.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Il codice delle funzioni sta nella sezione del codice; il nome della funzione è il suo indirizzo.</li>
+</ul>
+</div>
+</section>
+
+<section id="piu-parametri-un-solo-risultato" aria-labelledby="h-piu-parametri-un-solo-risultato" style="--h:1440px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-piu-parametri-un-solo-risultato">Più parametri, un solo risultato</h2><span class="slides">slide 13–14</span></div>
+<p>Una funzione può avere più parametri, separati da virgole, ognuno con il suo tipo. Nella chiamata gli argomenti si assegnano <strong>in ordine</strong>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">float</span> potenza(<span class="kw">float</span> base, <span class="kw">int</span> exp);   <span class="cm">// prototipo</span>
+
+<span class="kw">float</span> risultato = potenza(10, 3);     <span class="cm">// base = 10, exp = 3</span></code></pre>
+<p>Una definizione possibile, con un ciclo della <a href="04A_iterazioni.html">04A</a>:</p>
+<pre class="code" data-lingua="c"><code><span class="cm">// base elevato a exp, con exp &gt;= 0</span>
+<span class="kw">float</span> potenza(<span class="kw">float</span> base, <span class="kw">int</span> exp) {
+    <span class="kw">float</span> p = 1;
+    <span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt; exp; i++) {
+        p = p * base;
+    }
+    <span class="kw">return</span> p;
+}</code></pre>
+<p><code>potenza(10, 3)</code> vale 1000, <code>potenza(2.5f, 2)</code> vale 6.25, <code>potenza(7, 0)</code> vale 1. Nel prototipo i nomi dei parametri si possono omettere, <code>float potenza(float, int);</code>, ma con i nomi si capisce meglio che cosa sono.</p>
+<p>Il <strong>valore di ritorno è uno solo</strong>. Se una funzione deve dare più risultati, le strade sono due: i parametri di uscita con i puntatori, che vedi più sotto, oppure le <code>struct</code>, che nel corso non si fanno.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Regole per la return (slide 14)</span></p><ol>
+<li>In una funzione con un tipo di ritorno, <strong>ogni percorso</strong> dell&#39;esecuzione deve arrivare a una <code>return</code> con un valore di quel tipo. Buona pratica: <strong>una sola <code>return</code>, alla fine</strong>.</li>
+<li>In una funzione <code>void</code> la <code>return</code> si può omettere; se c&#39;è, è senza valore: <code>return;</code>.</li>
+</ol>
+</div>
+<p><strong>Come si legge.</strong> Se un <code>if</code> ha la <code>return</code> solo in un ramo, quando si passa dall&#39;altro ramo la funzione arriva alla fine senza valore. gcc lo segnala con <code>control reaches end of non-void function</code>, che con <code>-Werror</code> è un errore.</p>
+<div class="box exam"><p class="box-label"><span>Conta all'esame · Una sola return</span></p><p>All&#39;esame, nelle funzioni <strong>iterative</strong>, la <code>return</code> deve essere <strong>una sola</strong> (regola d&#39;esame, nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>). Il risultato si tiene in una variabile, che il ciclo aggiorna, e si restituisce alla fine, come <code>p</code> in <code>potenza</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa non va in <code>int segno(int x) { if (x &gt; 0) { return 1; } if (x &lt; 0) { return -1; } }</code>?</span></summary><div class="ans"><p>Con <code>x == 0</code> non si incontra nessuna <code>return</code>: gcc dà <code>control reaches end of non-void function</code>. Con una sola <code>return</code>: <code>int s = 0; if (x &gt; 0) { s = 1; } else if (x &lt; 0) { s = -1; } return s;</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Gli argomenti vanno ai parametri in ordine.</li>
+<li>Un solo valore di ritorno; per altri risultati, i puntatori.</li>
+<li>Ogni percorso arriva a una <code>return</code>; all&#39;esame, una sola, alla fine.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-passaggio-per-valore" aria-labelledby="h-il-passaggio-per-valore" style="--h:1890px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-il-passaggio-per-valore">Il passaggio per valore</h2><span class="slides">slide 15–17</span></div>
+<p>Due nomi da non confondere:</p>
+<ul>
+<li>il <strong>parametro formale</strong> è la variabile scritta nella definizione, come <code>x</code> in <code>int square(int x)</code>: è una variabile locale della funzione, che all&#39;inizio della chiamata contiene il valore passato;</li>
+<li>l&#39;<strong>argomento</strong>, o parametro attuale, è il valore scritto nella chiamata, come <code>5</code> in <code>square(5)</code> o <code>y</code> in <code>square(y)</code>.</li>
+</ul>
+<p>In C il passaggio è sempre <strong>per valore</strong>: il valore dell&#39;argomento viene <strong>copiato</strong> nel parametro formale. La funzione lavora sulla copia e non può cambiare le variabili di chi l&#39;ha chiamata.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> incr(<span class="kw">int</span> x) { x++; }              <span class="cm">// non modifica il chiamante</span>
+<span class="kw">void</span> incrPtr(<span class="kw">int</span> *p) { (*p)++; }       <span class="cm">// modifica la variabile del chiamante</span>
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a = 5;
+    incr(a);
+    printf(<span class="str">&quot;dopo incr: a = %d\n&quot;</span>, a);        <span class="cm">// 5</span>
+    incrPtr(&amp;a);
+    printf(<span class="str">&quot;dopo incrPtr: a = %d\n&quot;</span>, a);     <span class="cm">// 6</span>
+    <span class="kw">return</span> 0;
+}</code></pre>
+<figure class="grafico" id="grafico-3"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="A sinistra `incr(a)`: `x` riceve una copia di `a`, e l'incremento cambia solo la copia. A destra `incrPtr(&amp;a)`: `p` riceve una copia dell'indirizzo di `a`, e con `*p` la funzione arriva alla variabile di `main`" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-3-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-3-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-3-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-3-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-3-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-3-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-3-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-3-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M9.03 143.85L261.94 143.85L261.94 19.62L9.03 19.62Z"/><path class="g-poligono g-blu g-pieno" d="M90.32 127.5L207.74 127.5L207.74 68.65L90.32 68.65Z"/><path class="g-poligono g-ambra" d="M9.03 326.92L261.94 326.92L261.94 202.69L9.03 202.69Z"/><path class="g-poligono g-ambra g-pieno" d="M90.32 310.58L207.74 310.58L207.74 251.73L90.32 251.73Z"/><path class="g-linea g-verde" d="M149.03 130.77L149.03 248.46" marker-end="url(#g-freccia-3-verde)"/><path class="g-poligono g-blu" d="M298.06 143.85L550.97 143.85L550.97 19.62L298.06 19.62Z"/><path class="g-poligono g-blu g-pieno" d="M379.35 127.5L496.77 127.5L496.77 68.65L379.35 68.65Z"/><path class="g-poligono g-ambra" d="M298.06 326.92L550.97 326.92L550.97 202.69L298.06 202.69Z"/><path class="g-poligono g-ambra g-pieno" d="M379.35 310.58L496.77 310.58L496.77 251.73L379.35 251.73Z"/><path class="g-linea g-rosa" d="M438.06 248.46L438.06 130.77" marker-end="url(#g-freccia-3-rosa)"/></svg><span class="g-et g-c g-testo g-blu" style="left:8.87%;top:13.46%">main</span><span class="g-et g-c g-testo g-blu" style="left:26.61%;top:28.85%">a = 5</span><span class="g-et g-c g-testo g-ambra" style="left:8.87%;top:67.31%">incr</span><span class="g-et g-c g-testo g-ambra" style="left:26.61%;top:82.69%">x = 5 → 6</span><span class="g-et g-c g-testo g-verde" style="left:35.48%;top:51.92%">copia</span><span class="g-et g-c g-testo g-blu" style="left:60.48%;top:13.46%">main</span><span class="g-et g-c g-testo g-blu" style="left:78.22%;top:28.85%">a = 5 → 6</span><span class="g-et g-c g-testo g-ambra" style="left:61.29%;top:67.31%">incrPtr</span><span class="g-et g-c g-testo g-ambra" style="left:78.22%;top:82.69%">p = &amp;a</span><span class="g-et g-c g-testo g-rosa" style="left:85.48%;top:51.92%">*p</span></div><figcaption>A sinistra <code>incr(a)</code>: <code>x</code> riceve una copia di <code>a</code>, e l&#39;incremento cambia solo la copia. A destra <code>incrPtr(&amp;a)</code>: <code>p</code> riceve una copia dell&#39;indirizzo di <code>a</code>, e con <code>*p</code> la funzione arriva alla variabile di <code>main</code></figcaption></figure>
+<p>Il passaggio resta per valore anche nel secondo caso: quello che si copia è l&#39;<strong>indirizzo</strong> di <code>a</code>. È lo stesso meccanismo di <code>scanf(&quot;%d&quot;, &amp;x)</code>, che nella <a href="02C_referenziamento_scanf_puntatori.html">02C</a> riceveva l&#39;indirizzo per scriverci dentro. Le slide dicono che questo schema si vede in dettaglio più avanti.</p>
+<div class="table-wrap"><table><thead><tr><th>Termine</th><th>Dove si trova</th><th>Che cosa è</th><th>Esempio</th></tr></thead><tbody><tr><td>parametro formale</td><td>nella definizione</td><td>variabile locale che riceve il valore</td><td><code>x</code> in <code>int square(int x)</code></td></tr>
+<tr><td>argomento (parametro attuale)</td><td>nella chiamata</td><td>il valore passato</td><td><code>5</code> in <code>square(5)</code></td></tr>
+<tr><td>passaggio per valore</td><td>sempre, in C</td><td>l&#39;argomento è copiato, il chiamante non cambia</td><td><code>incr(a)</code> non cambia <code>a</code></td></tr>
+<tr><td>passaggio di un indirizzo</td><td>con i puntatori</td><td>si copia un puntatore, e con <code>*</code> si arriva alla variabile del chiamante</td><td><code>incrPtr(&amp;a)</code> cambia <code>a</code></td></tr></tbody></table></div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa <code>int doppio(int x) { x = x * 2; return x; }</code> chiamata così: <code>int a = 4; int b = doppio(a); printf(&quot;%d %d&quot;, a, b);</code>?</span></summary><div class="ans"><p><code>4 8</code>. La funzione raddoppia la sua copia <code>x</code> e la restituisce; <code>a</code> resta 4.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Parametro formale nella definizione, argomento nella chiamata.</li>
+<li>Si copia sempre il valore. Per cambiare una variabile del chiamante si passa il suo indirizzo.</li>
+</ul>
+</div>
+</section>
+
+<section id="gli-errori-piu-comuni" aria-labelledby="h-gli-errori-piu-comuni" style="--h:1120px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-gli-errori-piu-comuni">Gli errori più comuni</h2><span class="slides">slide 18–20</span></div>
+<p>Le slide elencano gli errori tipici. Li ho provati tutti con gcc 16.1 e <code>-Wall -Werror</code>.</p>
+<div class="table-wrap"><table><thead><tr><th>Errore</th><th>Codice</th><th>Che cosa dice gcc</th></tr></thead><tbody><tr><td>manca la <code>return</code></td><td><code>int square(int x) { x * x; }</code></td><td><code>statement with no effect</code> e <code>control reaches end of non-void function</code>: con <code>-Werror</code> non compila</td></tr>
+<tr><td>prototipo e definizione diversi</td><td><code>float square(float x);</code> e poi <code>int square(int x) { … }</code></td><td><code>conflicting types for 'square'</code></td></tr>
+<tr><td>manca un argomento</td><td><code>int m = max(10);</code></td><td><code>too few arguments to function 'max'; expected 2, have 1</code></td></tr>
+<tr><td>argomento del tipo sbagliato</td><td><code>int n = max(10, 3.5);</code></td><td>niente: 3.5 diventa 3 in silenzio</td></tr></tbody></table></div>
+<p>L&#39;ultima riga è la più pericolosa: la conversione da <code>double</code> a <code>int</code> avviene senza avvisi, perché <code>-Wall</code> non la controlla (servirebbe <code>-Wconversion</code>). <code>max(2, 3.5)</code> vale 3, non 3.5. Un dettaglio sugli esempi della slide 19: le variabili <code>m</code> e <code>n</code> non vengono mai usate, quindi con <code>-Wall -Werror</code> quel <code>main</code> non compila comunque (<code>unused variable</code>).</p>
+<p>Le slide 19–20 aggiungono due consigli di stile:</p>
+<ul>
+<li><strong>una funzione, un compito</strong>: una <code>gestisciTutto</code> che legge, calcola, stampa e scrive su file va spezzata;</li>
+<li><strong>nomi chiari</strong>: <code>int f(int a, int b, int c)</code> non dice niente, <code>int calcolaPrezzo(int quantita, int sconto, int iva)</code> sì.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Perché <code>float media(int a, int b) { return (a + b) / 2; }</code> con <code>media(3, 4)</code> restituisce 3 e non 3.5?</span></summary><div class="ans"><p><code>a + b</code> e <code>2</code> sono <code>int</code>, quindi la divisione è intera e dà 3; poi il 3 diventa <code>3.0f</code>. Serve <code>(a + b) / 2.0f</code>. È la divisione intera della <a href="03B_floats.html">03B</a>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Le conversioni negli argomenti avvengono in silenzio.</li>
+<li>Una funzione, un compito; nomi che dicono che cosa fa.</li>
+</ul>
+</div>
+</section>
+
+<section id="dividere-un-programma-in-funzioni" aria-labelledby="h-dividere-un-programma-in-funzioni" style="--h:3430px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-dividere-un-programma-in-funzioni">Dividere un programma in funzioni</h2><span class="slides">slide 21–28</span></div>
+<p>Un programma lungo scritto in un solo blocco è difficile da leggere e da correggere. La strategia delle slide è il <strong>divide et impera</strong>:</p>
+<ol>
+<li>si individua il problema principale;</li>
+<li>lo si divide in sottoproblemi;</li>
+<li>si scrive una funzione per ogni sottoproblema;</li>
+<li>si combinano le funzioni.</li>
+</ol>
+<p>Ogni sottoproblema si può dividere ancora, finché i pezzi sono piccoli.</p>
+<h3 id="l-esempio-del-cerchio">L&#39;esempio del cerchio</h3>
+<p>Il problema: leggere il raggio <span class="katex" role="math" aria-label="r \ge 0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> di un cerchio, ripetendo la lettura se l&#39;input non va bene, e stampare circonferenza <span class="katex" role="math" aria-label="2\pi r"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mord mathnormal" style="margin-right:0.0278em;">r</span></span></span></span> e area <span class="katex" role="math" aria-label="\pi r^2"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>. I sottoproblemi sono quattro: leggere e controllare l&#39;input, calcolare la circonferenza, calcolare l&#39;area, stampare.</p>
+<figure class="grafico" id="grafico-4"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Il programma del cerchio diviso in funzioni: `main` chiama in ordine una funzione di input, due di calcolo e una di output, e da solo non fa nessun conto" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-4-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-4-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-4-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-4-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-4-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-4-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-4-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-4-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-accento" d="M9.03 202.69L135.48 202.69L135.48 137.31L9.03 137.31Z"/><path class="g-poligono g-blu" d="M225.81 78.46L550.97 78.46L550.97 19.62L225.81 19.62Z"/><path class="g-poligono g-ambra" d="M225.81 156.92L550.97 156.92L550.97 98.08L225.81 98.08Z"/><path class="g-poligono g-ambra" d="M225.81 235.38L550.97 235.38L550.97 176.54L225.81 176.54Z"/><path class="g-poligono g-verde" d="M225.81 313.85L550.97 313.85L550.97 255L225.81 255Z"/><path class="g-linea g-grigio" d="M140 150.38L221.29 52.31" marker-end="url(#g-freccia-4-grigio)"/><path class="g-linea g-grigio" d="M140 160.19L221.29 127.5" marker-end="url(#g-freccia-4-grigio)"/><path class="g-linea g-grigio" d="M140 179.81L221.29 205.96" marker-end="url(#g-freccia-4-grigio)"/><path class="g-linea g-grigio" d="M140 189.62L221.29 284.42" marker-end="url(#g-freccia-4-grigio)"/></svg><span class="g-et g-c g-testo g-accento" style="left:12.90%;top:50.00%">main</span><span class="g-et g-c g-testo g-blu" style="left:69.36%;top:14.42%">leggiRaggio · input</span><span class="g-et g-c g-testo g-ambra" style="left:69.36%;top:37.50%">circonferenza · calcolo</span><span class="g-et g-c g-testo g-ambra" style="left:69.36%;top:60.58%">area · calcolo</span><span class="g-et g-c g-testo g-verde" style="left:69.36%;top:83.65%">stampaRisultati · output</span></div><figcaption>Il programma del cerchio diviso in funzioni: <code>main</code> chiama in ordine una funzione di input, due di calcolo e una di output, e da solo non fa nessun conto</figcaption></figure>
+<p>Il <code>main</code> delle slide legge come un riassunto del programma:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+<span class="kw">#include</span> &lt;math.h&gt;     <span class="cm">// per M_PI</span>
+<span class="cm">// --- Prototipi ---</span>
+<span class="kw">float</span> leggiRaggio(<span class="kw">void</span>);
+<span class="kw">float</span> circonferenza(<span class="kw">float</span> r);
+<span class="kw">float</span> area(<span class="kw">float</span> r);
+<span class="kw">void</span> stampaRisultati(<span class="kw">float</span> r, <span class="kw">float</span> c, <span class="kw">float</span> a);
+<span class="cm">// --- Main ---</span>
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">float</span> r = leggiRaggio();
+    <span class="kw">float</span> c = circonferenza(r);
+    <span class="kw">float</span> a = area(r);
+    stampaRisultati(r, c, a);
+}</code></pre>
+<p>Le funzioni di calcolo e di stampa sono di una riga o due:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">float</span> circonferenza(<span class="kw">float</span> r) {
+    <span class="kw">return</span> 2 * M_PI * r;
+}
+
+<span class="kw">float</span> area(<span class="kw">float</span> r) {
+    <span class="kw">return</span> M_PI * r * r;
+}
+
+<span class="kw">void</span> stampaRisultati(<span class="kw">float</span> r, <span class="kw">float</span> c, <span class="kw">float</span> a) {
+    printf(<span class="str">&quot;Raggio = %.2f\n&quot;</span>, r);
+    printf(<span class="str">&quot;Circonferenza = %.2f\n&quot;</span>, c);
+    printf(<span class="str">&quot;Area = %.2f\n&quot;</span>, a);
+}</code></pre>
+<p>Con raggio 2 stampa circonferenza 12.57 e area 12.57; con <span class="katex" role="math" aria-label="-1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span> e poi 3 stampa prima l&#39;errore e poi 18.85 e 28.27. <code>M_PI</code> è la costante <span class="katex" role="math" aria-label="\pi"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">π</span></span></span></span> di <code>math.h</code>. Non fa parte dello standard: gcc la definisce con le opzioni predefinite, ma con <code>-std=c17</code> dà <code>'M_PI' undeclared</code>. Se serve, si definisce a mano, per esempio <code>#define PI 3.14159265358979f</code>.</p>
+<h3 id="la-lettura-dell-input-e-un-errore-delle-slide">La lettura dell&#39;input, e un errore delle slide</h3>
+<p>La funzione di input delle slide (slide 25) ripete la lettura con un <code>do-while</code> finché il valore non va bene:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">float</span> leggiRaggio(<span class="kw">void</span>) {
+    <span class="kw">float</span> r;
+    <span class="kw">bool</span> ripeti;
+    <span class="kw">do</span> {
+        printf(<span class="str">&quot;Inserisci il raggio (&gt;= 0): &quot;</span>);
+        <span class="kw">int</span> esito = scanf(<span class="str">&quot;%f&quot;</span>, &amp;r);
+        ripeti = <span class="kw">false</span>;
+        <span class="kw">if</span> (esito != 1) {
+            printf(<span class="str">&quot;Errore: inserisci un numero reale.\n&quot;</span>);
+            ripeti = <span class="kw">true</span>;
+        }
+        <span class="kw">else</span> <span class="kw">if</span> (r &lt; 0) {
+            printf(<span class="str">&quot;Errore: il raggio deve essere non negativo.\n&quot;</span>);
+            ripeti = <span class="kw">true</span>;
+        }
+    } <span class="kw">while</span> (ripeti);
+    <span class="kw">return</span> r;
+}</code></pre>
+<div class="box trap"><p class="box-label"><span>Trappola · Con un input non numerico il ciclo non finisce</span></p><p>Se l&#39;utente scrive <code>abc</code>, <code>scanf</code> non riesce a leggere un <code>float</code>, restituisce 0 e <strong>lascia <code>abc</code> nell&#39;input</strong>. Al giro dopo trova di nuovo <code>abc</code>, fallisce di nuovo, e così per sempre: il programma stampa «Errore: inserisci un numero reale.» all&#39;infinito. Succede lo stesso se l&#39;input finisce: <code>scanf</code> restituisce <code>EOF</code> a ogni giro. L&#39;ho provato, con un tempo massimo per fermarlo.</p>
+</div>
+<p>La correzione: quando la lettura fallisce si butta via il resto della riga con <code>scanf(&quot;%*[^\n]&quot;)</code>, e quando l&#39;input è finito si smette. Il <code>*</code> nella maschera della <a href="05A_array_stringhe.html">05A</a> vuol dire «leggi e non salvare».</p>
+<pre class="code" data-lingua="c"><code><span class="kw">float</span> leggiRaggio(<span class="kw">void</span>) {
+    <span class="kw">float</span> r = 0;
+    <span class="kw">bool</span> ripeti = <span class="kw">true</span>;
+    <span class="kw">while</span> (ripeti) {
+        printf(<span class="str">&quot;Inserisci il raggio (&gt;= 0): &quot;</span>);
+        <span class="kw">int</span> esito = scanf(<span class="str">&quot;%f&quot;</span>, &amp;r);
+        <span class="kw">if</span> (esito == EOF) {
+            printf(<span class="str">&quot;\nInput finito: uso il raggio 0.\n&quot;</span>);
+            r = 0;
+            ripeti = <span class="kw">false</span>;
+        } <span class="kw">else</span> <span class="kw">if</span> (esito != 1) {
+            printf(<span class="str">&quot;Errore: inserisci un numero reale.\n&quot;</span>);
+            scanf(<span class="str">&quot;%*[^\n]&quot;</span>);   <span class="cm">// butta via il resto della riga sbagliata</span>
+        } <span class="kw">else</span> <span class="kw">if</span> (r &lt; 0) {
+            printf(<span class="str">&quot;Errore: il raggio deve essere non negativo.\n&quot;</span>);
+        } <span class="kw">else</span> {
+            ripeti = <span class="kw">false</span>;
+        }
+    }
+    <span class="kw">return</span> r;
+}</code></pre>
+<p>L&#39;ho provata in tre modi. Con <code>abc</code> e poi 5 dà un errore e poi i risultati; con l&#39;input vuoto si ferma con raggio 0; con −2, <code>x y</code> e 4 dà due errori e poi i risultati. Ha una sola <code>return</code>, come all&#39;esame.</p>
+<h3 id="che-cosa-si-guadagna">Che cosa si guadagna</h3>
+<p>Le slide 27–28 elencano i vantaggi e qualche regola.</p>
+<ul>
+<li><strong>Leggibilità</strong>: <code>main</code> mostra solo la logica generale.</li>
+<li><strong>Riutilizzo</strong>: <code>area</code> serve anche in un altro programma.</li>
+<li><strong>Manutenzione</strong>: si corregge una funzione senza toccare il resto, come <code>leggiRaggio</code> qui sopra.</li>
+<li><strong>Verifica</strong>: una funzione piccola si prova da sola, con pochi casi.</li>
+<li><strong>Top-down</strong> si parte da <code>main</code> e poi si scrivono le funzioni; <strong>bottom-up</strong> si parte dalle funzioni elementari. In pratica si usano tutti e due.</li>
+<li><strong>Una funzione, un compito</strong>: è il <em>Single Responsibility Principle</em>. Poi nomi coerenti (verbi per le azioni, come <code>stampaRisultati</code>), funzioni di input, di calcolo e di output separate, commenti sul «che cosa» e non sul «come». Questi principi tornano nel corso di Ingegneria del Software.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nel programma del cerchio, quali funzioni hanno effetti collaterali?</span></summary><div class="ans"><p><code>leggiRaggio</code> (legge l&#39;input e stampa i messaggi) e <code>stampaRisultati</code> (stampa). <code>circonferenza</code> e <code>area</code> calcolano solo dai parametri: con lo stesso raggio danno sempre lo stesso risultato.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Divide et impera: un sottoproblema, una funzione.</li>
+<li>Dopo una <code>scanf</code> fallita, il testo sbagliato resta nell&#39;input: va scartato, e l&#39;<code>EOF</code> va gestito.</li>
+<li><code>M_PI</code> non è standard.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:680px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>float f(int x);</code></td><td>«prototipo di f»</td><td>annuncia nome, tipi dei parametri e del risultato</td><td><code>float square(float x);</code></td></tr>
+<tr><td><code>return e;</code></td><td>«restituisci e»</td><td>esce dalla funzione con il valore <code>e</code></td><td><code>return x * x;</code></td></tr>
+<tr><td><code>void</code></td><td>«vuoto»</td><td>nessun risultato, o nessun parametro</td><td><code>void saluto(void)</code></td></tr>
+<tr><td><code>f(a, b)</code></td><td>«f di a e b»</td><td>chiamata: gli argomenti vanno ai parametri in ordine</td><td><code>potenza(10, 3)</code></td></tr>
+<tr><td><code>int *p</code> come parametro</td><td>«puntatore a int»</td><td>la funzione riceve un indirizzo e con <code>*p</code> arriva alla variabile</td><td><code>void incrPtr(int *p)</code></td></tr>
+<tr><td><code>%*[^\n]</code></td><td>«salta il resto della riga»</td><td>maschera di <code>scanf</code> che legge senza salvare</td><td><code>scanf(&quot;%*[^\n]&quot;);</code></td></tr>
+<tr><td><code>M_PI</code></td><td>«pi greco»</td><td>costante di <code>math.h</code>, non standard</td><td><code>2 * M_PI * r</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:1010px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>All&#39;esame di Programmazione I gli esercizi di programmazione sono tutti <strong>funzioni con un&#39;intestazione data</strong>: la funzione iterativa <code>e1</code>, quella ricorsiva <code>e2</code> e quella sullo heap. CodeRunner chiama la tua funzione con vari argomenti e confronta i risultati. Di questa lezione servono:</p>
+<ol>
+<li><strong>rispettare l&#39;intestazione</strong> al carattere: nome, tipo di ritorno, tipi e ordine dei parametri. Se cambia, i test non compilano;</li>
+<li><strong>una sola <code>return</code></strong> nelle funzioni iterative, con il risultato tenuto in una variabile;</li>
+<li><strong>non stampare</strong> dentro una funzione che deve restituire un valore, se la consegna non lo chiede: i test controllano il valore restituito, e le stampe in più fanno fallire il confronto;</li>
+<li><strong>i risultati in più passano per puntatore</strong>, come <code>incrPtr</code>: nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a> l&#39;esercizio iterativo ha a volte un «risultato extra via puntatore».</li>
+</ol>
+<p>Negli esercizi sullo <strong>stato della memoria</strong> ogni chiamata di funzione ha le sue variabili, separate da quelle di <code>main</code>: i parametri sono copie. Nell&#39;elenco del corso la lezione successiva è proprio sulla chiamata di funzione: lì si vede come stanno in memoria.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Scrivere una funzione da una consegna</span></p><ol>
+<li>Copia l&#39;intestazione esatta e scrivi sotto, a parole, che cosa deve restituire.</li>
+<li>Prova a mano due casi normali e un caso limite (0, un valore negativo, l&#39;input vuoto).</li>
+<li>Dichiara una variabile per il risultato, con il valore giusto per il caso limite.</li>
+<li>Scrivi il ciclo che la aggiorna; alla fine, una sola <code>return</code>.</li>
+<li>Scrivi un <code>main</code> di prova con i casi del punto 2, compila con <code>-Wall -Werror</code> e controlla.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2200px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Quale riga è un <strong>prototipo</strong>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>float square(float x) { return x * x; }</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>float square(float x);</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>square(float x);</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>float r = square(2.0f);</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>return square;</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il prototipo ha tipo di ritorno, nome e parametri, e finisce con il punto e virgola, senza corpo. La più insidiosa è la seconda: è la definizione, che contiene anche il codice.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>void incr(int x) { x++; }</code> chiamata con <code>int a = 5; incr(a); printf(&quot;%d&quot;, a);</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un valore a caso</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">5</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">6</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila: <code>incr</code> non restituisce niente</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>x</code> è una copia di <code>a</code>: l&#39;incremento cambia la copia, non <code>a</code>. La più insidiosa è 6, che sarebbe giusta con <code>incrPtr(&amp;a)</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quanto vale <code>max(2, 3.5)</code> con <code>int max(int a, int b) { return (a &gt; b) ? a : b; }</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3.5</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila con <code>-Wall -Werror</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>3.5 viene convertito in <code>int</code>, cioè 3, senza avvisi; poi il massimo tra 2 e 3 è 3. La più insidiosa è «non compila»: <code>-Wall</code> non controlla questa conversione.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa dice gcc 16 con <code>-Wall -Werror</code> per <code>int square(int x) { x * x; }</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">solo un avviso, e il programma si compila lo stesso</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">niente: compila e restituisce <code>x * x</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>implicit declaration of function 'square'</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">due errori: l&#39;istruzione non ha effetto e la funzione arriva alla fine senza <code>return</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>conflicting types for 'square'</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Senza <code>return</code> il valore calcolato si perde, e la funzione <code>int</code> finisce senza risultato: <code>statement with no effect</code> e <code>control reaches end of non-void function</code>, errori con <code>-Werror</code>. La più insidiosa è la seconda: in C l&#39;ultimo valore calcolato non viene restituito da solo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale intestazione va bene per una funzione che stampa una riga di <code>n</code> asterischi e non restituisce niente?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int stampaRiga(int n);</code> senza corpo</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void stampaRiga(int n)</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>stampaRiga(int n) void</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void stampaRiga(void n)</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int stampaRiga(void)</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Riceve un intero e non restituisce niente: <code>void</code> davanti, <code>int n</code> tra le parentesi. La più insidiosa è l&#39;ultima, che è un prototipo con il tipo di ritorno sbagliato.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Una funzione deve calcolare quoziente e resto di una divisione. Come restituisce i due valori?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non si può fare in C</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">con due <code>return</code> di seguito</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">con <code>return q, r;</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampandoli tutti e due</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">ne restituisce uno con <code>return</code> e scrive l&#39;altro attraverso un parametro puntatore</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Una funzione restituisce al massimo un valore; il secondo passa per puntatore, come in <code>int divisione(int a, int b, int *resto)</code>. La più insidiosa è <code>return q, r;</code>: senza opzioni gcc la compila e l&#39;operatore virgola restituisce solo <code>r</code>; con <code>-Wall -Werror</code> si ferma (<code>left-hand operand of comma expression has no effect</code>).</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Il programma del cerchio delle slide riceve <code>abc</code> come raggio. Che cosa succede?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa il messaggio d&#39;errore all&#39;infinito</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">termina con un errore di esecuzione</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">usa il raggio 0</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa l&#39;errore una volta e chiede di nuovo il raggio</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>scanf</code> legge <code>abc</code> come 0 e stampa i risultati</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>scanf</code> fallisce, restituisce 0 e lascia <code>abc</code> nell&#39;input, che al giro dopo fa fallire di nuovo la lettura. La più insidiosa è la seconda: è quello che il programma vorrebbe fare, ma senza scartare <code>abc</code> non ci riesce.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Quante funzioni del programma del cerchio hanno effetti collaterali?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="2" data-toll="1e-9"><span class="q-giusto" hidden>2</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>leggiRaggio</code> legge e stampa, <code>stampaRisultati</code> stampa. <code>circonferenza</code> e <code>area</code> calcolano soltanto.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1450px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: che cosa stampa? <span class="lvl">base</span></h3><pre class="code" data-lingua="c"><code><span class="kw">int</span> doppio(<span class="kw">int</span> x) {
+    x = x * 2;
+    <span class="kw">return</span> x;
+}</code></pre>
+<p>con <code>int a = 4; int b = doppio(a); printf(&quot;%d %d\n&quot;, a, b);</code></p>
+<details class="sol"><summary>Soluzione</summary><p><code>4 8</code>. <code>x</code> è una copia di <code>a</code>: raddoppiarla non cambia <code>a</code>. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: trova l&#39;errore <span class="lvl">base</span></h3><p>Ogni riga ha un errore. (a) <code>float media(int a, int b)</code> usata in <code>main</code> senza prototipo e definita dopo <code>main</code>; (b) <code>void saluto(void) { return 1; }</code>; (c) <code>int segno(int x) { if (x &gt; 0) { return 1; } }</code>; (d) prototipo <code>int somma(int a, int b);</code> e chiamata <code>somma(3);</code>.</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) <code>implicit declaration of function 'media'</code>: serve il prototipo in cima. (b) <code>'return' with a value, in function returning void</code>. (c) Con <code>x &lt;= 0</code> la funzione arriva alla fine senza <code>return</code>: <code>control reaches end of non-void function</code>, errore con <code>-Werror</code>. (d) <code>too few arguments to function 'somma'</code>. Tutti gli errori sono quelli veri di gcc 16.1.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Somma delle cifre <span class="lvl">medio</span></h3><p>Scrivi <code>int sommaCifre(int n)</code> che, per <code>n &gt;= 0</code>, restituisce la somma delle cifre di <code>n</code>, con una sola <code>return</code>. Per esempio <code>sommaCifre(1234)</code> vale 10.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="cm">// somma delle cifre di n, con n &gt;= 0</span>
+<span class="kw">int</span> sommaCifre(<span class="kw">int</span> n) {
+    <span class="kw">int</span> somma = 0;
+    <span class="kw">while</span> (n &gt; 0) {
+        somma = somma + n % 10;
+        n = n / 10;
+    }
+    <span class="kw">return</span> somma;
+}</code></pre>
+<p><code>n % 10</code> è l&#39;ultima cifra, <code>n / 10</code> la toglie. Provata: 0 dà 0, 7 dà 7, 1234 dà 10, 2026 dà 10. Cambiare <code>n</code> dentro la funzione non cambia la variabile del chiamante, perché <code>n</code> è una copia.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Il massimo comun divisore <span class="lvl">medio</span></h3><p>Scrivi <code>int mcd(int a, int b)</code> con l&#39;algoritmo di Euclide, per <code>a &gt; 0</code> e <code>b &gt;= 0</code>: finché <code>b</code> non è 0, si sostituisce la coppia <code>(a, b)</code> con <code>(b, a % b)</code>; alla fine il risultato è <code>a</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">int</span> mcd(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">while</span> (b != 0) {
+        <span class="kw">int</span> resto = a % b;
+        a = b;
+        b = resto;
+    }
+    <span class="kw">return</span> a;
+}</code></pre>
+<p>Provata: <code>mcd(12, 8)</code> vale 4, <code>mcd(8, 12)</code> vale 4 (il primo giro scambia i due numeri), <code>mcd(7, 0)</code> vale 7, <code>mcd(35, 64)</code> vale 1. Serve una variabile temporanea, come nello scambio della <a href="03A_scambio_variabili.html">03A</a>.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Quoziente e resto, sul modello dei «risultati extra via puntatore» <span class="lvl">tipo esame</span></h3><p>Scrivi <code>int divisione(int a, int b, int *resto)</code> che, per <code>b != 0</code>, restituisce il quoziente di <code>a</code> diviso <code>b</code> e scrive il resto nella variabile puntata da <code>resto</code>. Scrivi anche il <code>main</code> che la usa con 17 e 5.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> divisione(<span class="kw">int</span> a, <span class="kw">int</span> b, <span class="kw">int</span> *resto) {
+    *resto = a % b;
+    <span class="kw">return</span> a / b;
+}
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> r;
+    <span class="kw">int</span> q = divisione(17, 5, &amp;r);
+    printf(<span class="str">&quot;17 = 5 * %d + %d\n&quot;</span>, q, r);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa <code>17 = 5 * 3 + 2</code>; con 20 e 4 dà quoziente 5 e resto 0. Il chiamante passa <code>&amp;r</code>, l&#39;indirizzo della sua variabile, come con <code>scanf</code>. Compilato con <code>-Wall -Werror</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Una lettura che non si blocca <span class="lvl">difficile</span></h3><p>Scrivi <code>int leggiIntero(int min, int max)</code> che chiede un intero finché ne arriva uno tra <code>min</code> e <code>max</code>. Deve sopravvivere a un input non numerico e all&#39;input finito (in quel caso restituisce <code>min</code>), con una sola <code>return</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">int</span> leggiIntero(<span class="kw">int</span> min, <span class="kw">int</span> max) {
+    <span class="kw">int</span> x = min;
+    <span class="kw">bool</span> ripeti = <span class="kw">true</span>;
+    <span class="kw">while</span> (ripeti) {
+        printf(<span class="str">&quot;Numero tra %d e %d: &quot;</span>, min, max);
+        <span class="kw">int</span> esito = scanf(<span class="str">&quot;%d&quot;</span>, &amp;x);
+        <span class="kw">if</span> (esito == EOF) {
+            x = min;
+            ripeti = <span class="kw">false</span>;
+        } <span class="kw">else</span> <span class="kw">if</span> (esito != 1) {
+            printf(<span class="str">&quot;Non è un numero.\n&quot;</span>);
+            scanf(<span class="str">&quot;%*[^\n]&quot;</span>);
+        } <span class="kw">else</span> <span class="kw">if</span> (x &lt; min || x &gt; max) {
+            printf(<span class="str">&quot;Fuori dall'intervallo.\n&quot;</span>);
+        } <span class="kw">else</span> {
+            ripeti = <span class="kw">false</span>;
+        }
+    }
+    <span class="kw">return</span> x;
+}</code></pre>
+<p>Provata con <code>leggiIntero(18, 30)</code>: con <code>ciao</code>, 35 e 27 dà due messaggi e poi 27; con l&#39;input vuoto restituisce 18; con <code>12x</code> legge 12 (fuori dall&#39;intervallo), poi scarta <code>x</code>, poi trova l&#39;input finito e restituisce 18. È lo schema della <code>leggiRaggio</code> corretta.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:510px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che differenza c&#39;è tra prototipo, definizione e chiamata?</span></summary><div class="ans"><p>Il prototipo annuncia nome e tipi, con il punto e virgola. La definizione contiene anche il codice. La chiamata usa la funzione con degli argomenti.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>incr(a)</code> non cambia <code>a</code>?</span></summary><div class="ans"><p>Perché in C gli argomenti si passano per valore: <code>incr</code> lavora su una copia. Per cambiare <code>a</code> serve l&#39;indirizzo, <code>incrPtr(&amp;a)</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Quanti valori può restituire una funzione con <code>return</code>, e come se ne ottengono altri?</span></summary><div class="ans"><p>Al massimo uno. Gli altri si scrivono attraverso parametri puntatore.</p>
+</div></details>
+<details class="qa"><summary><span>Che cos&#39;è un effetto collaterale?</span></summary><div class="ans"><p>Tutto quello che una funzione fa oltre a calcolare il risultato: leggere l&#39;input, stampare, scrivere in memoria attraverso un puntatore. Per questo una funzione C può dare risultati diversi con gli stessi argomenti.</p>
+</div></details>
+<details class="qa"><summary><span>Perché il programma del cerchio delle slide si blocca con <code>abc</code>?</span></summary><div class="ans"><p>Perché <code>scanf</code> fallisce e lascia <code>abc</code> nell&#39;input, e il ciclo la ritrova a ogni giro. Va scartata, per esempio con <code>scanf(&quot;%*[^\n]&quot;)</code>.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:610px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Funzione</dt><dd>Blocco di codice con un nome, che riceve parametri, esegue istruzioni e può restituire un valore.</dd></div>
+<div><dt>Prototipo</dt><dd>Dichiarazione della funzione: tipo di ritorno, nome e tipi dei parametri, senza corpo, con il punto e virgola.</dd></div>
+<div><dt>Definizione</dt><dd>La funzione completa, con il corpo.</dd></div>
+<div><dt>Chiamata</dt><dd>Uso della funzione con degli argomenti, per esempio square(3).</dd></div>
+<div><dt>Parametro formale</dt><dd>Variabile della definizione che riceve il valore passato.</dd></div>
+<div><dt>Argomento</dt><dd>Valore passato nella chiamata (detto anche parametro attuale).</dd></div>
+<div><dt>Passaggio per valore</dt><dd>L&#39;argomento è copiato nel parametro: la funzione non cambia le variabili del chiamante.</dd></div>
+<div><dt>Valore di ritorno</dt><dd>Il risultato restituito con return; al massimo uno.</dd></div>
+<div><dt>void</dt><dd>Nessun valore di ritorno, o nessun parametro.</dd></div>
+<div><dt>Effetto collaterale</dt><dd>Azione di una funzione oltre al risultato: input, output, scritture in memoria.</dd></div>
+<div><dt>Divide et impera</dt><dd>Dividere un problema in sottoproblemi, una funzione per ognuno.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:550px">
+<div class="sec-head"><span class="sec-num">§17</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 9</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-06A-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So scrivere prototipo, definizione e chiamata di una funzione.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So riconoscere le quattro forme, con e senza parametri e valore di ritorno.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So spiegare in che cosa una funzione C somiglia a una funzione matematica e in che cosa no.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So che una funzione va dichiarata prima di essere chiamata.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So che gli argomenti si passano per valore, e come si cambia una variabile del chiamante con un puntatore.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So scrivere una funzione con una sola return, con il risultato in una variabile.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So riconoscere gli errori di gcc su return mancante, tipi in conflitto e argomenti mancanti.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So dividere un problema in funzioni di input, calcolo e output.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So scartare l&#39;input sbagliato dopo una scanf fallita.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Funzioni. Strumenti per organizzare e riutilizzare il codice, definizione e realizzazione delle funzioni» (06A_funzioni), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: perché le funzioni (slide 2–3), funzione matematica e funzione C (4–6, 9–10), prototipo, definizione e chiamata (7–8), le quattro forme (11), funzioni in memoria (12), più parametri e return (13–14), passaggio dei parametri (15–17), errori comuni e nomi (18–20), divide et impera e l&#39;esempio del cerchio (21–26), vantaggi e buone regole (27–28).</li>
+<li>G. M. Weinberg, <em>The Psychology of Computer Programming</em>, 1971, citato nella slide 2.</li>
+<li>Regole d&#39;esame dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a> e dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a>.</li>
+<li>Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con <code>-Wall -Werror</code> (alcuni anche con <code>-std=c17</code> o <code>-Wpedantic</code>, dove lo dico), ed eseguiti; quelli che non finiscono, con un tempo massimo. Gli errori e le stampe citati sono quelli veri. La correzione di <code>leggiRaggio</code>, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

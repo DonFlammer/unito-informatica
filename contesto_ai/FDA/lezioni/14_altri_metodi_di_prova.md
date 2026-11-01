@@ -1,6 +1,7 @@
 ---
 corso: FDA
 lezione: "14"
+data: 2026-10-30
 titolo: Altri metodi di prova e il paradosso del bevitore
 docenti: Stefano Berardi
 sopratitolo: Canale B · Lezione 14 · Libro, parte 2, §2.1–2.2

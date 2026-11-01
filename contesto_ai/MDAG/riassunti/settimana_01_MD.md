@@ -206,7 +206,7 @@ D: Appello del 03/02/2026, domanda 1. Siano $X = \{a, b, f, h, r, s, t, v, z\}$ 
 - $s \subset X \cap Y$
 = $X \cap Y = \{h, s, t\}$, e $f$ sta solo in $X$. La risposta più insidiosa è $\{h, t\} = X \cap Y$: dimentica la $s$. $b$ non sta in $Y$; $\{h, s\}$ è un sottoinsieme, non un elemento; $s$ è una lettera, non un insieme.
 
-D: Appello del 06/06/2026, domanda 1. Ricordando che $n\Z = \{nk \mid k \in \Z\}$, cioè i multipli di $n$, quale affermazione è vera?
+D: Appello del 08/06/2026, domanda 1. Ricordando che $n\Z = \{nk \mid k \in \Z\}$, cioè i multipli di $n$, quale affermazione è vera?
 - $7 \in 3\Z \cup 5\Z$
 - $\{12, 20\} \subset 3\Z \cap 4\Z$
 - $4\Z \cap 5\Z = \emptyset$

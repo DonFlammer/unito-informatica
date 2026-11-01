@@ -231,7 +231,7 @@ D: Appello del 14/01/2025. Quanti modi ci sono per far sedere 6 persone in una f
 - $10!$
 = Conta chi sta su quale sedia, e ogni sedia ha al massimo una persona: disposizioni semplici, $10 \cdot 9 \cdot 8 \cdot 7 \cdot 6 \cdot 5 = \frac{10!}{4!}$. La risposta più insidiosa è $\frac{10!}{6!}$, che divide per il fattoriale delle persone invece che delle 4 sedie vuote.
 
-D: Appello del 06/06/2026. Quante parole di lunghezza 4 si possono formare con un alfabeto di 16 simboli?
+D: Appello del 08/06/2026. Quante parole di lunghezza 4 si possono formare con un alfabeto di 16 simboli?
 + $16^4$
 - $4^{16}$
 - $\frac{16!}{4!}$
@@ -260,4 +260,4 @@ D: Dall'esercizio 1 della prova scritta del 12/02/2020. In quanti modi si posson
 
 - Le lezioni complete: [D08 · Combinazioni semplici e con ripetizione](D08_combinazioni.html), [D09 · Problemi di combinatoria, coefficienti binomiali e formula di Stiefel](D09_coefficienti_binomiali_stiefel.html), con gli esempi, i quiz e gli esercizi.
 - A. Mori, *Lezioni di Matematica Discreta*, cap. 3, pp. 55–64.
-- Quiz degli appelli del 14/01/2025, 04/02/2025, 06/06/2025, 13/01/2026, 06/06/2026 e 10/09/2026 (domanda 4); problemi dell'appello del 14/01/2025 e della prova scritta del 12/02/2020, con le soluzioni ufficiali.
+- Quiz degli appelli del 14/01/2025, 04/02/2025, 06/06/2025, 13/01/2026, 08/06/2026 e 10/09/2026 (domanda 4); problemi dell'appello del 14/01/2025 e della prova scritta del 12/02/2020, con le soluzioni ufficiali.

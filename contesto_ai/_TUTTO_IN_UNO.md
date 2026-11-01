@@ -14229,6 +14229,249 @@ D: Sul modello dello stato della memoria. Dopo `int x = 1, y = 0; do { y += x; x
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/riassunti/settimana_05.md -->
+> File: `contesto_ai/PROG1/riassunti/settimana_05.md`
+
+```yaml
+corso: PROG1
+lezione: S5
+tipo: riassunto
+titolo: "Settimana 5: array, stringhe e il laboratorio sui cicli"
+data: 2026-10-27
+docenti: Elvio Amparore
+sopratitolo: Riassunto settimanale · Programmazione I · Canale B · 26/10 – 30/10/2026
+descrizione: >-
+  Riassunto della settimana 5 di Programmazione I (canale B): la seconda parte della lezione 05A, con somma,
+  conteggio e massimo, array e puntatori, VLA, gli errori con gli indici, ASCII e Unicode, le stringhe con il
+  terminatore e la loro lettura; il Laboratorio 04 sui cicli, con le sequenze terminate da 0, le medie, i cicli
+  annidati, le sentinelle per «per ogni» ed «esiste», Fibonacci e la ricerca per dimezzamento.
+lede: >-
+  La lezione e il laboratorio della settimana in poche pagine: come si scorre un array e una stringa senza uscire dai
+  limiti, come si legge una sequenza di lunghezza sconosciuta, come si esce da un ciclo senza break, e le domande per
+  controllarti.
+materiale: slide
+scheda:
+  Lezioni: "[05A](05A_array_stringhe.html) mar 27/10, slide 9–35 · [Lab04](Lab04_iterazioni.html) lun 26/10 (B2)"
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti della lezione 05A e del Laboratorio 04 di Programmazione I (canale B), scritti sulle slide di
+  E. G. Amparore e del laboratorio
+appunti_html: appunti/PROG1/riassunto_settimana_05.html
+genera_html: true
+```
+
+## In breve
+
+- Martedì 27/10 Amparore ha finito le slide 05A: dopo la scansione, somma, conteggio e massimo, array e puntatori, VLA, errori, caratteri e stringhe.
+- `v[i]` è la stessa cosa di `*(v + i)`: il nome dell'array diventa il puntatore al primo elemento.
+- Il C **non controlla gli indici**: `v[n]` compila e legge memoria che non è dell'array.
+- Una **stringa** è un array di `char` che finisce con `'\0'`; si scorre finché non si trova il terminatore.
+- Nel laboratorio, una **sequenza terminata da 0** si legge con `while (1 == scanf("%d", &x) && x != 0)`.
+- **«Per ogni»** e **«esiste»** su una sequenza si fanno con una variabile `bool` che parte da `true` o da `false`, messa nella condizione del ciclo al posto del `break`.
+- Indovinare un numero tra 0 e 99 provando il **punto medio** richiede al massimo 7 tentativi.
+
+> [!NOTA] Le altre lezioni della settimana
+> Il Laboratorio 04 il turno B2 l'ha fatto lunedì 26/10 con Elisa Marengo; il turno B1 lo fa martedì 03/11 con Valerio Basile. Della lezione di mercoledì 28/10 non ho né slide né video: quando arrivano, la scrivo.
+
+## 05A · Array e stringhe, seconda parte (mar 27/10)
+
+Dopo un ripasso veloce delle slide 3–9, la lezione riparte dalla scansione con un accumulatore.
+
+- **Somma, conteggio, massimo**: un ciclo `for (size_t i = 0; i < n; i++)` con una variabile che accumula. Il massimo parte dal primo elemento, non da 0, altrimenti un array di soli negativi dà 0.
+- **Array e puntatori**: nelle espressioni il nome dell'array è l'indirizzo del primo elemento, e `v[i]` vuol dire `*(v + i)`. Con `int *p = v + 1;`, `p[0]` è `v[1]` e `p[-1]` è `v[0]`.
+- **VLA**: `int v[n];` con `n` letto da tastiera. Non si inizializza con una lista di valori: gcc 16 accetta solo `= {}`, che lo azzera. Un `n` troppo grande esaurisce lo stack.
+- **Errori**: `v[5]` in un array di 5 elementi compila, e gcc avvisa solo con le ottimizzazioni (`-O2`). Gli array non si assegnano con `=` e non si confrontano con `==`.
+- **Caratteri**: un `char` è un numero, il suo codice ASCII: `'A'` è 65, `'a'` è 97, `'0'` è 48. Quindi `c - '0'` trasforma la cifra `'7'` nel numero 7.
+- **Stringhe**: un array di `char` con il terminatore `'\0'` dopo l'ultimo carattere. `"ciao"` occupa 5 byte. Durante la spiegazione Amparore ha aperto il manuale con `man 3 printf`: la sezione 3 è quella delle funzioni della libreria del C.
+
+```grafico
+titolo: La memoria di `char s[6] = "ciao";`. I quattro caratteri, poi il terminatore. L'ultima cella non è nella stringa ma vale anch'essa 0, perché un array inizializzato in parte ha il resto a zero
+x: -0.2 6.4
+y: -0.2 2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0 0.6 1 0.6 1 1.6 0 1.6 | blu
+testo: 0.5 1.1 | blu | "'c'"
+poligono: 1 0.6 2 0.6 2 1.6 1 1.6 | blu
+testo: 1.5 1.1 | blu | "'i'"
+poligono: 2 0.6 3 0.6 3 1.6 2 1.6 | blu
+testo: 2.5 1.1 | blu | "'a'"
+poligono: 3 0.6 4 0.6 4 1.6 3 1.6 | blu
+testo: 3.5 1.1 | blu | "'o'"
+poligono: 4 0.6 5 0.6 5 1.6 4 1.6 | rosa | pieno
+testo: 4.5 1.1 | rosa | "'\0'"
+poligono: 5 0.6 6 0.6 6 1.6 5 1.6 | grigio
+testo: 5.5 1.1 | grigio | "0"
+testo: 0.5 0.25 | grigio | "0"
+testo: 1.5 0.25 | grigio | "1"
+testo: 2.5 0.25 | grigio | "2"
+testo: 3.5 0.25 | grigio | "3"
+testo: 4.5 0.25 | grigio | "4"
+testo: 5.5 0.25 | grigio | "5"
+```
+
+- **Scorrere una stringa**: `for (size_t i = 0; s[i] != '\0'; i++)`. Non serve sapere la lunghezza: ci si ferma al terminatore.
+- **Leggere stringhe**: `scanf("%19s", nome)` legge una parola in un array di 20, senza `&`, perché il nome dell'array è già un indirizzo. Per una riga con gli spazi: `scanf(" %49[^\n]", frase)`.
+- **Errori con le stringhe**: dimenticare lo spazio per `'\0'`, leggere senza limite di lunghezza, confrontare due stringhe con `==`, che confronta gli indirizzi.
+
+::: prova Con `int v[4] = {10, 20, 30, 40};` e `int *p = v + 1;`, quanto vale `*(p + 2)`?
+`p` punta a `v[1]`, quindi `p + 2` punta a `v[3]`: vale 40.
+:::
+
+> [!RICORDA]
+> - `v[i]` è `*(v + i)`; gli indici validi sono da 0 a `n - 1`, e il C non li controlla.
+> - Una stringa finisce con `'\0'`: servono `n + 1` byte per `n` caratteri.
+> - `scanf("%19s", nome)` senza `&`, con il limite.
+
+## Lab04 · Iterazioni (lun 26/10)
+
+Il laboratorio mette in pratica i cicli della 04A con esercizi su CodeRunner.
+
+- **`for` o `while`**: il `for` quando il numero di giri è noto prima di partire, il `while` quando lo decide l'input.
+- **Sequenze terminate da 0**: `while (1 == scanf("%d", &x) && x != 0)`. `scanf` restituisce quante variabili ha letto; se l'input finisce o non è un numero, il ciclo si ferma e l'`&&` non guarda `x`.
+- **Media**: accumulatore e contatore; prima di dividere si controlla che il contatore non sia 0. Con `programma < file.txt` l'input arriva da un file; in PowerShell serve `Get-Content file.txt | .\programma`.
+- **Cicli annidati**: il triangolo di Floyd e il quadrato, con un ciclo per le righe e uno per i caratteri della riga.
+- **«Per ogni» ed «esiste»**: una variabile `bool` che parte da `true` («per ogni») o da `false` («esiste») e cambia al primo controesempio o esempio. Va nella condizione del ciclo: all'esame niente `break`.
+- **Fibonacci**: per aggiornare due variabili insieme serve una variabile temporanea.
+- **Indovina il numero**: provando sempre il punto medio dell'intervallo rimasto, l'intervallo si dimezza a ogni tentativo.
+
+```grafico
+titolo: La ricerca per dimezzamento del numero 70 tra 0 e 99. A ogni tentativo si prova il punto medio (in rosa) e si tiene solo la metà giusta: al quinto tentativo il numero è trovato. Su tutti i numeri da 0 a 99 non servono mai più di 7 tentativi
+x: -12 106
+y: 0.3 6
+assi: no
+griglia: no
+proporzioni: libere
+segmento: 0 5.2 99 5.2 | blu | spesso
+punto: 49 5.2 | rosa
+testo: 49 5.65 | rosa | "49"
+testo: -6 5.2 | grigio | "1"
+segmento: 50 4.2 99 4.2 | blu | spesso
+punto: 74 4.2 | rosa
+testo: 74 4.65 | rosa | "74"
+testo: -6 4.2 | grigio | "2"
+segmento: 50 3.2 73 3.2 | blu | spesso
+punto: 61 3.2 | rosa
+testo: 61 3.65 | rosa | "61"
+testo: -6 3.2 | grigio | "3"
+segmento: 62 2.2 73 2.2 | blu | spesso
+punto: 67 2.2 | rosa
+testo: 67 2.65 | rosa | "67"
+testo: -6 2.2 | grigio | "4"
+segmento: 68 1.2 73 1.2 | blu | spesso
+punto: 70 1.2 | verde
+testo: 70 1.65 | verde | "70"
+testo: -6 1.2 | grigio | "5"
+testo: 0 0.6 | grigio | "0"
+testo: 99 0.6 | grigio | "99"
+```
+
+::: prova Con l'input `3 5 a 7 0`, che somma stampa il ciclo `while (1 == scanf("%d", &x) && x != 0) { somma += x; }`?
+8. Quando arriva `a`, `scanf` non riesce a leggere un intero e restituisce 0: il ciclo si ferma prima del 7.
+:::
+
+> [!RICORDA]
+> - Sequenze: `1 == scanf(...)` e il valore di fine nella stessa condizione.
+> - «Per ogni» parte da `true`, «esiste» da `false`; la sentinella va nella condizione.
+> - Media: niente divisione per zero.
+
+## Verso l'esame
+
+- **Programmazione**: l'esercizio iterativo è una funzione con un ciclo su un array; una sola `return`, niente `break`, la sentinella nella condizione del ciclo.
+- **Stato della memoria**: array e stringhe sono celle consecutive; dopo una stringa c'è il terminatore, e le celle mai scritte di un array locale valgono «?».
+- **Casi limite** da provare sempre: array vuoto, un elemento, l'ultimo indice, la stringa vuota, l'input che finisce subito.
+- Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Perché `v[n]` è un errore anche se compila?
+Gli indici validi vanno da 0 a `n - 1`: `v[n]` legge la cella dopo l'array, che appartiene ad altro. Il C non controlla.
+:::
+
+::: domanda Quanti byte servono per una stringa di 10 caratteri?
+11: uno in più per il terminatore `'\0'`.
+:::
+
+::: domanda Perché `scanf("%19s", nome)` non ha la `&`?
+Perché il nome dell'array, nelle espressioni, è già l'indirizzo del primo elemento.
+:::
+
+::: domanda Che cosa restituisce `scanf`, e perché si confronta con 1?
+Il numero di variabili lette. Con una sola variabile, 1 vuol dire che la lettura è riuscita; 0 o `EOF` che l'input non va bene o è finito.
+:::
+
+::: domanda Come si esce da un ciclo «per ogni» senza `break`?
+Con una variabile `bool` nella condizione: `while (i < n && tutti)`, e nel corpo `tutti = false` al primo controesempio.
+:::
+
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono **sul modello** di questi esercizi, con gli argomenti della settimana. Ho compilato e provato tutto il codice con gcc 16.1 e `-Wall -Werror`.
+
+```quiz
+D: Sul modello dello stato della memoria. Dopo `char s[6] = "ciao";`, quanto valgono `s[4]` e `s[5]`?
++ tutti e due 0
+- `s[4]` è `'o'` e `s[5]` è 0
+- `s[4]` è 0 e `s[5]` è indeterminato
+- tutti e due indeterminati
+- il codice non compila: la stringa ha 4 caratteri e l'array 6
+= `s[4]` è il terminatore. `s[5]` vale 0 perché un array inizializzato in parte ha il resto a zero. La più insidiosa è la terza: le celle mai scritte sono indeterminate solo se l'array non è inizializzato affatto.
+
+D: Sul modello dello stato della memoria. Con `int v[4] = {10, 20, 30, 40};` e `int *p = v + 1;`, quanto vale `p[-1]`?
++ 10
+- 20
+- 40
+- non compila: gli indici negativi sono vietati
+- un valore fuori dall'array
+= `p` punta a `v[1]`, quindi `p[-1]` è `*(p - 1)`, cioè `v[0]`. La più insidiosa è «fuori dall'array»: lo sarebbe `v[-1]`, ma `p` parte da una cella più avanti.
+
+D: Sul modello della correttezza. Con `int w[3] = {3, -1, 4};`, quanto vale `i` alla fine di `size_t i = 0; bool tutti = true; while (i < 3 && tutti) { if (w[i] <= 0) { tutti = false; } i++; }`?
++ 2
+- 1
+- 3
+- 0
+- il ciclo non finisce
+= Al primo giro `w[0] = 3` va bene e `i` diventa 1; al secondo `w[1] = -1` mette `tutti` a `false` e `i` diventa 2; poi la condizione è falsa. La più insidiosa è 1, di chi dimentica che l'`i++` si esegue anche nel giro del controesempio.
+
+D: Sul modello della correttezza. Con l'input `4 -2 0 9`, che cosa vale `somma` dopo `while (1 == scanf("%d", &x) && x != 0) { somma += x; }`, partendo da 0?
++ 2
+- 11
+- 4
+- 0
+- il programma si blocca
+= Si leggono 4 e −2, poi lo 0 ferma il ciclo, e il 9 non viene letto. La più insidiosa è 11, di chi somma tutto l'input.
+
+D: Sul modello della correttezza. Dopo `int a = 0, b = 1; for (int k = 0; k < 5; k++) { int t = a + b; a = b; b = t; }`, quanto vale `a`?
+N: 5
+= I valori di `a` dopo ogni giro sono 1, 1, 2, 3, 5: i numeri di Fibonacci.
+
+D: Sul modello degli esercizi del Lab04. Quanti numeri stampa un triangolo di Floyd di 4 righe, con $r$ numeri nella riga $r$?
+N: 10
+= $1 + 2 + 3 + 4 = 10$: il ciclo interno fa $r$ giri per ogni riga $r$.
+
+D: Sul modello degli esercizi del Lab04. Provando sempre il punto medio, quanti tentativi servono al massimo per indovinare un numero tra 0 e 99?
+N: 7
+= Ogni tentativo dimezza l'intervallo: 100, 50, 25, 12, 6, 3, 1. Con $2^7 = 128 \ge 100$ bastano 7 tentativi, e c'è un numero che li richiede tutti.
+
+D: Sul modello degli errori della 05A. In una funzione con i parametri `const char *a` e `const char *b`, quale di queste condizioni confronta davvero il contenuto delle due stringhe?
++ nessuna: per il contenuto serve un ciclo carattere per carattere
+- `a == b`
+- `*a == *b`
+- `a[0] == b[0]`
+- `&a == &b`
+= `a == b` confronta gli indirizzi, che sono diversi anche con lo stesso testo. Con due array gcc lo ferma (`comparison between two arrays`), ma con due puntatori `char *`, per esempio i parametri di una funzione, compila senza avvisi e dà sempre «diversi». `*a == *b` e `a[0] == b[0]` guardano solo il primo carattere. La più insidiosa è proprio `a == b`.
+```
+
+## Fonti
+
+- Le lezioni complete: [05A · Array e stringhe](05A_array_stringhe.html), [Lab04 · Iterazioni](Lab04_iterazioni.html), con i programmi provati, i quiz e gli esercizi.
+- Slide del canale B: 05A_array_stringhe (E. G. Amparore) e Lab04 - Iterazioni; video della lezione del 27/10.
+- Regole d'esame dalla [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md) e dalla [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md).
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/corso.md -->
 > File: `contesto_ai/FDA/corso.md`
 
@@ -26239,6 +26482,273 @@ D: Sul modello della simulazione 2. Sul dominio delle persone, con $A(x, y)$ = �
 
 ---
 
+<!-- FILE: contesto_ai/FDA/riassunti/settimana_05.md -->
+> File: `contesto_ai/FDA/riassunti/settimana_05.md`
+
+```yaml
+corso: FDA
+lezione: S5
+tipo: riassunto
+titolo: "Settimana 5: esercizi di logica e tecniche di dimostrazione"
+data: 2026-10-30
+docenti: Stefano Berardi
+sopratitolo: Riassunto settimanale · Fondamenti dell'Informatica · Canale B · 26/10 – 30/10/2026
+descrizione: >-
+  Riassunto della settimana 5 di Fondamenti dell'Informatica (canale B, libro parte 2, fine del cap. 1 e §2.1–2.2):
+  esercizi su tavole di verità, traduzioni, equivalenze, argomentazioni e quantificatori; sistemi matematici,
+  dimostrazione diretta, pari e dispari, controesempi, dimostrazioni con gli insiemi; dimostrazioni per assurdo, per
+  contrapposizione e per casi, esistenza costruttiva e non costruttiva, il paradosso del bevitore.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: come si cerca il caso che rende falsa una formula, come si scrive una
+  dimostrazione diretta partendo dalle definizioni, quale metodo di prova scegliere, e perché il paradosso del
+  bevitore non è un paradosso.
+materiale: libro
+simboli_logici: quantificatori
+scheda:
+  Lezioni: "[12](12_esercizi_logica.html) lun 26/10, esercizi · [13](13_dimostrazioni_dirette_controesempi.html) gio 29/10, §2.1 · [14](14_altri_metodi_di_prova.html) ven 30/10, §2.2"
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni 12, 13 e 14 di Fondamenti dell'Informatica (canale B), scritti sul libro di testo, parte 2
+  (Johnsonbaugh, cap. 1 e 2), e sulle note di F. Cardone (canale A)
+appunti_html: appunti/FDA/riassunto_settimana_05.html
+genera_html: true
+```
+
+## In breve
+
+- La lezione 12 è di **esercizi** su tutta la logica: tavole di verità, traduzioni con «solo se» e «tranne», equivalenze, argomentazioni, quantificatori.
+- Per decidere se una formula è sempre vera, o un'argomentazione valida, si **cerca il caso che la rende falsa**: se non c'è, hai finito.
+- Una **dimostrazione diretta** suppone vera l'ipotesi e arriva alla tesi passo per passo, usando le definizioni: pari vuol dire $2k$, dispari $2k + 1$.
+- Un «per ogni» falso si smentisce con **un solo controesempio**; nessun numero di esempi lo dimostra vero.
+- **Per assurdo** si suppone falsa la tesi e si arriva a una contraddizione; **per contrapposizione** si dimostra la contronominale; **per casi** si divide l'ipotesi in pezzi.
+- Un'esistenza è **costruttiva** se mostra l'elemento, **non costruttiva** se dimostra solo che c'è. Il **paradosso del bevitore** è un esempio non costruttivo.
+
+> [!NOTA] Le lezioni 13 e 14
+> Le ho scritte prima delle lezioni del 29 e del 30/10, seguendo il libro: il diario del docente per questi due giorni non l'ho ancora. Se in aula l'ordine è stato diverso, lo sistemo.
+
+## 12 · Esercizi di logica (lun 26/10)
+
+Niente argomenti nuovi: è il ripasso delle lezioni 06–11, con esercizi dall'autoverifica del capitolo 1 e dalle note di Cardone. Le idee che tornano in quasi tutti gli esercizi sono quattro.
+
+- **Cercare il caso falso.** Una formula con «o» è falsa solo se tutti i pezzi sono falsi, una freccia solo se la premessa è vera e la conclusione falsa. Si parte da lì invece di scrivere tutta la tavola.
+- **«Solo se»** mette a destra della freccia quello che lo segue: «prendo A solo se studio» è «se prendo A, allora studio».
+- **«Tranne»** dice due cose insieme. «Tutti sono protestanti tranne gli svedesi» è un se e solo se: ognuno è protestante esattamente quando non è svedese.
+- **Negare una freccia** dà un «e»: il contrario di «se piove, prendo l'ombrello» è «piove e non prendo l'ombrello».
+
+```grafico
+titolo: A sinistra c'è solo «nessuno svedese è protestante»: S e P non si toccano, ma qualcuno può stare fuori da tutti e due. A destra «tutti sono protestanti tranne gli svedesi»: il rettangolo delle persone è diviso in due, e ognuno sta in una sola delle due parti.
+x: 0 12
+y: 0 5.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.3 0.6 5.6 0.6 5.6 4.6 0.3 4.6 | grigio
+cerchio: 1.8 2.6 1 | blu
+testo: 1.8 2.6 | blu | "S"
+cerchio: 4.1 2.6 1 | ambra
+testo: 4.1 2.6 | ambra | "P"
+punto: 3 1 | rosa
+testo: 3 5.1 | grigio | "∀x (S(x) → ¬P(x))"
+poligono: 6.4 0.6 9 0.6 9 4.6 6.4 4.6 | blu
+poligono: 9 0.6 11.7 0.6 11.7 4.6 9 4.6 | ambra
+testo: 7.7 2.6 | blu | "S"
+testo: 10.35 2.6 | ambra | "P"
+testo: 9 5.1 | grigio | "∀x (P(x) ↔ ¬S(x))"
+```
+
+Con i **quantificatori ristretti**, «ogni elemento di $A$» si scrive con la freccia e «qualche elemento di $B$» con l'«e». Negandoli, il «per ogni» diventa «esiste» e viceversa, e la freccia diventa un «e».
+
+::: prova Nega «ogni studente ha superato qualche esame».
+«Qualche studente non ha superato nessun esame»: il «per ogni» diventa «esiste», e l'«esiste» diventa «per nessuno».
+:::
+
+> [!RICORDA]
+> - Si cerca il caso falso; se non c'è, la formula è una tautologia o l'argomentazione è valida.
+> - «Solo se»: a destra della freccia. «Tranne»: se e solo se.
+> - La negazione di una freccia è un «e».
+
+## 13 · Dimostrazioni dirette (gio 29/10)
+
+Un **sistema matematico** ha assiomi, accettati senza dimostrazione, definizioni e termini non definiti. Un **teorema** è una frase dimostrata; un **lemma** serve a dimostrarne altri; un **corollario** segue subito da un teorema.
+
+Le dimostrazioni partono dalle definizioni. Un intero è **pari** se è $2k$ per qualche intero $k$, **dispari** se è $2k + 1$.
+
+> [!ESEMPIO] · dispari più pari è dispari
+> Sia $n$ dispari e $m$ pari: $n = 2k + 1$ e $m = 2h$. Allora $n + m = 2k + 2h + 1 = 2(k + h) + 1$, che è dispari perché $k + h$ è un intero. I numeri $n$ e $m$ sono qualsiasi: per un «per ogni» non si sceglie un esempio.
+
+- **Controesempi.** «Per ogni intero positivo $n$, $n^2 + n + 41$ è primo» è vera per $n$ da 1 a 39, ma è falsa: con $n = 40$ viene $1681 = 41^2$. Un solo controesempio basta.
+- **Insiemi.** Per dimostrare $X \subseteq Y$ si prende un elemento qualsiasi di $X$ e si mostra che sta in $Y$. Per $X = Y$ servono le due inclusioni. Per smentire un'uguaglianza basta un esempio con insiemi piccoli.
+
+```grafico
+titolo: Per dimostrare che $X \cap Y$ è contenuto in $X$ si prende un elemento qualsiasi dell'intersezione (il punto): sta in tutti e due i cerchi, quindi in particolare in $X$
+x: -2.4 4.4
+y: -2 2.2
+assi: no
+griglia: no
+cerchio: 0 0 1.6 | blu | pieno
+cerchio: 2 0 1.6 | ambra
+testo: -0.9 1.75 | blu | "X"
+testo: 2.9 1.75 | ambra | "Y"
+punto: 1 0 | rosa
+testo: 1 -0.5 | rosa | "x"
+```
+
+::: prova Dimostra che il prodotto di due dispari è dispari.
+$(2k + 1)(2h + 1) = 4kh + 2k + 2h + 1 = 2(2kh + k + h) + 1$: è un doppio più uno, quindi dispari.
+:::
+
+> [!RICORDA]
+> - Diretta: ipotesi, definizioni, passi, tesi.
+> - Un controesempio smentisce un «per ogni»; gli esempi non lo dimostrano.
+> - Inclusione: un elemento qualsiasi del primo insieme sta nel secondo.
+
+## 14 · Altri metodi di prova (ven 30/10)
+
+Quando la dimostrazione diretta non parte, ci sono altre strade.
+
+- **Per assurdo**: si suppone vera l'ipotesi e falsa la tesi, e si arriva a una contraddizione. È il metodo per dire che $\sqrt{2}$ non è una frazione: se fosse $\frac{a}{b}$ ridotta ai minimi termini, $a$ e $b$ verrebbero tutti e due pari.
+- **Piccioni**: 40 monete in 9 borse non vuote. Se le borse avessero numeri tutti diversi, servirebbero almeno $1 + 2 + \cdots + 9 = 45$ monete; quindi due borse hanno lo stesso numero.
+- **Per contrapposizione**: invece di «se $n^2$ è pari, $n$ è pari» si dimostra «se $n$ è dispari, $n^2$ è dispari», che è equivalente e si fa in modo diretto.
+- **Per casi**: $n^2 + n$ è sempre pari, perché si divide in due casi. Se $n$ è pari, lo sono tutti e due i termini; se $n$ è dispari, i due termini sono dispari e la loro somma è pari.
+- **Equivalenze**: per mostrare che tre frasi sono equivalenti basta un giro di frecce, dalla prima alla seconda, alla terza, e di nuovo alla prima.
+- **Esistenza**: costruttiva se mostra l'elemento, non costruttiva se dimostra che c'è senza dire quale.
+
+Il **paradosso del bevitore**: in ogni bar non vuoto c'è una persona con questa proprietà: se lei beve, bevono tutti. Si dimostra per casi.
+
+```grafico
+titolo: Il paradosso del bevitore si dimostra per casi. Se bevono tutti, va bene chiunque, perché la conclusione è vera. Se qualcuno non beve, si sceglie lui, perché la premessa «lui beve» è falsa e la freccia è vera
+x: 0 12
+y: 0 5.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 3.9 4 8.1 4 8.1 5.2 3.9 5.2 | grigio
+testo: 6 4.6 | accento | "bevono tutti?"
+freccia: 5 4 2.8 2.7 | verde
+testo: 3.1 3.5 | verde | "sì"
+freccia: 7 4 9.2 2.7 | rosa
+testo: 8.9 3.5 | rosa | "no"
+poligono: 0.2 0.3 5.4 0.3 5.4 2.6 0.2 2.6 | verde
+testo: 2.8 1.9 | verde | "va bene chiunque"
+testo: 2.8 1.0 | verde | "la conclusione è vera"
+poligono: 6.6 0.3 11.8 0.3 11.8 2.6 6.6 2.6 | rosa
+testo: 9.2 1.9 | rosa | "uno che non beve"
+testo: 9.2 1.0 | rosa | "la premessa è falsa"
+```
+
+La dimostrazione è non costruttiva: dice che la persona c'è, ma per trovarla bisogna sapere chi beve. Il «paradosso» nasce dal leggere la freccia come causa ed effetto; la freccia della logica dice solo che non succede «lei beve e qualcuno no».
+
+::: prova Per contrapposizione, che cosa si dimostra al posto di «se $n^2$ è multiplo di 3, $n$ è multiplo di 3»?
+«Se $n$ non è multiplo di 3, allora $n^2$ non è multiplo di 3»: le due parti negate e scambiate.
+:::
+
+> [!RICORDA]
+> - Assurdo: tesi falsa, poi contraddizione. Contrapposizione: la contronominale, in modo diretto. Casi: un pezzo alla volta.
+> - Costruttiva mostra l'elemento; non costruttiva no.
+
+## Verso l'esame
+
+- **I quiz**: 9 domande in 45 minuti al computer, con Safe Exam Browser, da 3 punti l'uno; servono almeno 18 punti. Nelle simulazioni 2023/24 la logica compare con formule da valutare, formule con la stessa tavola, negazioni con i quantificatori.
+- **La domanda aperta**, facoltativa per chi fa almeno 24 nei quiz: il programma comune cita le tecniche di dimostrazione e le uguaglianze tra insiemi. Una dimostrazione corta scritta bene è il tipo di risposta che serve.
+- Appelli 2026/27: venerdì 29/01/2027 e giovedì 18/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Come si decide in fretta se una formula è una tautologia?
+Si cerca un'assegnazione che la rende falsa, partendo dal connettivo principale. Se non c'è, è una tautologia.
+:::
+
+::: domanda Qual è la negazione di «se piove, prendo l'ombrello»?
+«Piove e non prendo l'ombrello».
+:::
+
+::: domanda Come si comincia una dimostrazione diretta di «se $n$ è dispari, $n^2$ è dispari»?
+Si suppone $n$ dispari e lo si scrive come $2k + 1$, poi si calcola $n^2$.
+:::
+
+::: domanda Perché un esempio non basta a dimostrare un «per ogni», mentre un controesempio basta a smentirlo?
+Perché il «per ogni» deve valere per tutti gli elementi, e un esempio ne controlla uno solo; un controesempio mostra un elemento per cui è falso.
+:::
+
+::: domanda Che differenza c'è tra contrapposizione e assurdo?
+Nella contrapposizione si dimostra in modo diretto la contronominale. Nell'assurdo si suppongono insieme l'ipotesi e la tesi falsa, e si cerca una contraddizione qualsiasi.
+:::
+
+## Quiz d'esame
+
+Le prime due sono domande vere delle simulazioni d'esame 2023/24, dalla «Guida degli studenti» del gruppo TSI: le opzioni del menù non si vedono nella schermata, quindi le risposte sbagliate sono ricostruite. Sulle dimostrazioni nelle simulazioni che ho non ci sono domande, quindi le altre sono **sul modello** dei quiz e degli esercizi del libro. Tutte le risposte le ho controllate con un programma.
+
+```quiz
+D: Simulazione d'esame 2 del 2023/24, domanda 2, con le voci in forma di scelta. Quale di queste affermazioni sulle algebre booleane è valida? ($+$ è l'«o», $\cdot$ l'«e», $x'$ il «non».)
++ $x + (y \cdot z) = (y + x) \cdot (z + x)$ vale in tutte le algebre booleane
+- $x + (y \cdot z) = (x \cdot y) + (x \cdot z)$ vale in tutte le algebre booleane
+- le algebre booleane sono definite solo su insiemi con esattamente due elementi
+- $x + x = 1$ vale in tutte le algebre booleane
+- $x \cdot x' = 1$ vale in tutte le algebre booleane
+= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è la seconda, che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0.
+
+D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \wedge A) \vee (\neg C \wedge B)$. Quale formula ha la stessa tavola?
++ $\neg((C \vee \neg A) \wedge (C \vee \neg B))$
+- $(\neg C \vee A) \wedge (\neg C \vee B)$
+- $\neg C \wedge A \wedge B$
+- $\neg(C \wedge (A \vee B))$
+- $\neg C \vee A \vee B$
+= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è la seconda, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
+
+D: Sul modello dei quiz di logica. Quale di queste formule è una tautologia?
++ $(p \to q) \vee (q \to p)$
+- $(p \to q) \to (q \to p)$
+- $(p \vee q) \to p$
+- $(p \to q) \wedge (q \to p)$
+- $\neg p \to (p \wedge q)$
+= Per rendere falsa la prima servirebbero $p \to q$ e $q \to p$ tutte e due false, cioè $p$ vera e $q$ falsa e insieme il contrario: impossibile. La più insidiosa è la seconda, che passa dalla freccia alla sua inversa: con $p$ falsa e $q$ vera è falsa.
+
+D: Sul modello degli esercizi del §2.1. «Per ogni intero $n \ge 0$, $n^2 - n + 11$ è primo.» Qual è il più piccolo controesempio?
+- $n = 1$
+- $n = 5$
+- $n = 10$
++ $n = 11$
+- non ce ne sono: la frase è vera
+= Per $n$ da 0 a 10 i valori sono 11, 11, 13, 17, 23, 31, 41, 53, 67, 83 e 101, tutti primi. Con $n = 11$ viene $121 - 11 + 11 = 121 = 11^2$. La più insidiosa è l'ultima: tanti esempi giusti non dimostrano un «per ogni».
+
+D: Sul modello degli esercizi del §2.1. Quale frase vale per tutti gli insiemi $A$ e $B$?
++ $A - B \subseteq A$
+- $A \cup B \subseteq A \cap B$
+- $A - B = B - A$
+- $A \subseteq A \cap B$
+- $(A \cap B) \cup A = B$
+= Un elemento di $A - B$ sta in $A$ per definizione. Le altre si smentiscono con $A = \{1\}$ e $B = \varnothing$. La più insidiosa è la terza, che è vera solo quando $A = B$.
+
+D: Sul modello delle domande sulla contrapposizione. Per dimostrare per contrapposizione «se $n^2$ è multiplo di 3, allora $n$ è multiplo di 3», che cosa si dimostra?
++ se $n$ non è multiplo di 3, allora $n^2$ non è multiplo di 3
+- se $n$ è multiplo di 3, allora $n^2$ è multiplo di 3
+- se $n^2$ non è multiplo di 3, allora $n$ non è multiplo di 3
+- $n^2$ è multiplo di 3 e $n$ non lo è
+- $n$ è multiplo di 3 oppure $n^2$ non lo è
+= La contronominale nega le due parti e le scambia. La più insidiosa è la seconda: è l'inversa, che è vera ma non equivalente alla frase di partenza. La quarta è la negazione, da supporre in una dimostrazione per assurdo.
+
+D: Sul modello del paradosso del bevitore. In un bar dove **nessuno** beve, chi rende vera la frase «se lui beve, allora bevono tutti»?
++ chiunque
+- nessuno
+- solo chi beve
+- la frase è falsa per tutti
+- dipende da quanti clienti ci sono
+= Per ogni cliente la premessa «lui beve» è falsa, quindi la freccia è vera. La più insidiosa è «nessuno», di chi legge la freccia come causa ed effetto.
+
+D: Sul modello degli esercizi sui piccioni. Quante persone servono, come minimo, per essere sicuri che due siano nate nello stesso mese?
+N: 13
+= Con 12 persone ognuna può essere nata in un mese diverso; con 13 i mesi non bastano e due persone finiscono nello stesso mese.
+```
+
+## Fonti
+
+- Le lezioni complete: [12 · Esercizi di logica, connettivi, regole e quantificatori](12_esercizi_logica.html), [13 · Metodi di prova, dimostrazioni dirette e controesempi](13_dimostrazioni_dirette_controesempi.html), [14 · Altri metodi di prova e il paradosso del bevitore](14_altri_metodi_di_prova.html), con gli esempi, i quiz e gli esercizi.
+- Libro di testo, parte 2 (Johnsonbaugh), cap. 1, autoverifica, e §2.1–2.2; note di F. Cardone, «Tecniche di dimostrazione» (canale A).
+- Simulazioni d'esame 1 e 2 del 2023/24 (domande 6 e 2), dalla «Guida degli studenti» del gruppo TSI.
+
+
+---
+
 <!-- FILE: contesto_ai/MDAG/corso.md -->
 > File: `contesto_ai/MDAG/corso.md`
 
@@ -27570,7 +28080,7 @@ Ipotesi induttiva | La frase «la proprietà vale per $n$», che nel passo indut
 
 - A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 1 «Insiemi», pp. 1–8 (definizioni 1.1 e 1.5–1.8, note 1.2–1.4, 1.11 e 1.12, proposizione 1.9, teorema 1.10 e i due esempi che lo seguono) ed esercizi 1.1, 1.3 e 1.19 (pp. 14–16). Le definizioni e gli enunciati nei riquadri sono citati dal libro.
 - Diario delle lezioni del canale B 2025/26, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): argomenti della lezione 1. Sulla stessa pagina gli appunti a mano della prima lezione del canale A e le regole d'esame 2025/26.
-- Quiz e problemi degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla stessa pagina: 18/01/2023 (domanda 1), 09/06/2023 (problema 1), 05/02/2024, 14/01/2025, 04/02/2025, 06/06/2025 (domanda 2 e problema 1), 07/07/2025, 13/01/2026 (domanda 1), 03/02/2026, 06/06/2026, 01/07/2026 e 10/09/2026 (domanda 1).
+- Quiz e problemi degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla stessa pagina: 18/01/2023 (domanda 1), 09/06/2023 (problema 1), 05/02/2024, 14/01/2025, 04/02/2025, 06/06/2025 (domanda 2 e problema 1), 07/07/2025, 13/01/2026 (domanda 1), 03/02/2026, 08/06/2026, 01/07/2026 e 10/09/2026 (domanda 1).
 - Calendario degli appelli 2026/27 e regole d'esame: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (febbraio 2026, licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): usati come controllo. Le sue soluzioni degli esercizi 1.1 e 1.3 coincidono con quelle di questi appunti.
 - Le spiegazioni a parole, gli esempi con i numeri, i riquadri «Ripasso» e «Prova tu», i quiz senza data e gli esercizi senza il numero del libro sono di questi appunti.
@@ -27966,7 +28476,7 @@ Per esempio $2\Z$ sono gli interi moltiplicati per 2, cioè i pari: $\dots, -4, 
 
 $$\Z = (2\Z) \cup (2\Z + 1).$$
 
-In generale $n\Z$ sono i multipli di $n$: $3\Z$ sono i multipli di 3. Questa scrittura compare nella domanda 1 dell'appello del 06/06/2026.
+In generale $n\Z$ sono i multipli di $n$: $3\Z$ sono i multipli di 3. Questa scrittura compare nella domanda 1 dell'appello del 08/06/2026.
 
 ::: prova Le parti $\{a, b\}$, $\{b, c\}$ e $\{d\}$ sono un ricoprimento di $\{a, b, c, d\}$?
 Sì: messe insieme danno $\{a, b, c, d\}$. Che la $b$ stia in due parti non importa.
@@ -28315,7 +28825,7 @@ Dettagli e fonti nella [scheda del corso](https://github.com/DonFlammer/unito-in
 
 **Che cosa serve di questa lezione**
 
-1. **Domanda 1 del quiz: unione e intersezione.** È la domanda sugli insiemi che apre quasi ogni appello. Con due insiemi: 14/01/2025, 04/02/2025 e 03/02/2026. Con tre insiemi: 06/06/2025. Con un insieme in più da intersecare, «quale è un sottoinsieme di $(A \cup B) \cap X$?»: 01/07/2026. Con i multipli, $n\Z$: 06/06/2026. Le risposte sbagliate confondono quasi sempre $\in$ e $\subset$.
+1. **Domanda 1 del quiz: unione e intersezione.** È la domanda sugli insiemi che apre quasi ogni appello. Con due insiemi: 14/01/2025, 04/02/2025 e 03/02/2026. Con tre insiemi: 06/06/2025. Con un insieme in più da intersecare, «quale è un sottoinsieme di $(A \cup B) \cap X$?»: 01/07/2026. Con i multipli, $n\Z$: 08/06/2026. Le risposte sbagliate confondono quasi sempre $\in$ e $\subset$.
 2. **Domanda 2 del quiz: partizioni e ricoprimenti.** «Quale di queste è una partizione?» nella prova del 10/07/2023 e nell'appello del 04/02/2025. «Quale è un ricoprimento ma non una partizione?» nell'appello del 07/07/2025. Si risolvono con il metodo dei tre controlli.
 3. **Il complementare per contare.** Nei problemi di combinatoria, «almeno uno» si conta spesso come «tutti meno nessuno»: è il complementare. Lo usa la soluzione ufficiale dell'appello dell'08/09/2025, problema 2, punto (b). La combinatoria arriva più avanti nel corso.
 4. **Induzione e assiomi di Peano.** Negli appelli di Matematica Discreta dal 2021 al 2026 non ho trovato domande che chiedano una dimostrazione per induzione. Il principio di induzione è invece tra gli argomenti dei quiz di Fondamenti dell'Informatica.
@@ -28386,7 +28896,7 @@ D: (Appello del 06/06/2025, domanda 1) Siano $A = \{3, 4, 7, 9\}$, $B = \{1, 3, 
 + $A \cap B \cap C \neq \emptyset$
 = Calcola un pezzo alla volta. $A \cap B = \{3, 9\}$, e di questi sta in $C$ solo il 9, quindi $A \cap B \cap C = \{9\}$, che non è vuoto: la risposta giusta è l'ultima. Il 4 non sta in $B$, quindi non sta nell'intersezione dei tre. $A \subset B \cup C$ è falsa per il 7, che non sta né in $B$ né in $C$. $B \cap C = \{5, 8, 9\}$ non è contenuto in $A$, perché 5 e 8 non stanno in $A$. La più tentatrice è $A \cap B \subset C$: il 9 sta in $C$, ma il 3 no.
 
-D: (Appello del 06/06/2026, domanda 1) Ricordando che $n\Z = \{nk \mid k \in \Z\}$, dire quale delle seguenti affermazioni è vera.
+D: (Appello del 08/06/2026, domanda 1) Ricordando che $n\Z = \{nk \mid k \in \Z\}$, dire quale delle seguenti affermazioni è vera.
 - $7 \in 3\Z \cup 5\Z$
 - $\{12, 20\} \subset 3\Z \cap 4\Z$
 - $4\Z \cap 5\Z = \emptyset$
@@ -28659,7 +29169,7 @@ Rappresentante | Un elemento qualunque di una parte; la parte si scrive $[x]$, �
 
 - A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 1 «Insiemi», pp. 5–13 (assiomi di Peano, teorema 1.10 ed esempi di p. 7, definizioni 1.13, 1.14, 1.16, 1.17, 1.19, 1.21 e 1.22, proposizione 1.15, teorema 1.18, nota 1.20) ed esercizi 1.4–1.7, 1.9, 1.11, 1.12, 1.14–1.16 (pp. 14–15). Le definizioni e gli enunciati nei riquadri sono citati dal libro. I due refusi degli esempi di ricoprimento (p. 11 e p. 12) sono segnalati nel riquadro sui ricoprimenti.
 - Argomenti della lezione del 02/10/2026 sul Moodle del canale B: complementare di un sottoinsieme, leggi di De Morgan, i naturali e gli assiomi di Peano, il principio di induzione come metodo dimostrativo, l'insieme delle parti e la sua cardinalità, ricoprimenti e partizioni.
-- Quiz e problemi degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti) e nella raccolta dei quiz 2021–2025: prova del 10/07/2023 (domanda 2); appelli del 14/01/2025, 04/02/2025 (domande 1 e 2), 06/06/2025 (domanda 1), 07/07/2025 (domanda 2), 08/09/2025 (problema 2), 03/02/2026, 06/06/2026 e 01/07/2026 (domanda 1).
+- Quiz e problemi degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti) e nella raccolta dei quiz 2021–2025: prova del 10/07/2023 (domanda 2); appelli del 14/01/2025, 04/02/2025 (domande 1 e 2), 06/06/2025 (domanda 1), 07/07/2025 (domanda 2), 08/09/2025 (problema 2), 03/02/2026, 08/06/2026 e 01/07/2026 (domanda 1).
 - Calendario degli appelli 2026/27 e regole d'esame: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): un riepilogo già pronto, non ufficiale.
 - Le spiegazioni a parole, gli esempi con le tessere, i riquadri «Ripasso» e «Prova tu», i quiz senza data e gli esercizi senza il numero del libro sono di questi appunti.
@@ -29360,7 +29870,7 @@ Dettagli e fonti nella [scheda del corso](https://github.com/DonFlammer/unito-in
 
 **Che cosa serve di questa lezione**
 
-1. **Domanda 2 del quiz: il prodotto cartesiano.** È una delle domande più regolari: nei quiz degli appelli del 14/01/2025 (in quale prodotto sta una terna), 07/07/2025 (domanda 1), 13/01/2026, 03/02/2026 (quale insieme non è un sottoinsieme di $P \times Q$), 06/06/2026 e 01/07/2026. Si risolve con il metodo della sezione «Elemento, coppia o sacchetto di coppie». Sono punti sicuri, se non ti fai ingannare dalle graffe e dall'ordine dei fattori.
+1. **Domanda 2 del quiz: il prodotto cartesiano.** È una delle domande più regolari: nei quiz degli appelli del 14/01/2025 (in quale prodotto sta una terna), 07/07/2025 (domanda 1), 13/01/2026, 03/02/2026 (quale insieme non è un sottoinsieme di $P \times Q$), 08/06/2026 e 01/07/2026. Si risolve con il metodo della sezione «Elemento, coppia o sacchetto di coppie». Sono punti sicuri, se non ti fai ingannare dalle graffe e dall'ordine dei fattori.
 2. **Relazioni di equivalenza.** Negli appelli dal 2021 al 2026 non ho trovato domande che chiedano direttamente le proprietà di una relazione. Ma le classi di equivalenza della congruenza modulo $N$ sono le **classi di resto**, che sono in ogni appello: inversi in $\Z_n$, congruenze lineari, gruppi $\Z_n$. Capire adesso che $[4] = [1]$ modulo 3 rende molto più facile la seconda metà del corso.
 3. **Il conto $|A \times B| = |A| \cdot |B|$** è la base della combinatoria, che occupa una domanda o due del quiz in ogni appello.
 
@@ -29423,7 +29933,7 @@ D: (Appello del 03/02/2026, domanda 2) Siano $P = \{1, 3, 4, 7, 8\}$ e $Q = \{2,
 - $\{(4, 6), (1, 9), (7, 5)\}$
 = La coppia $(6, 7)$ non sta in $P \times Q$: 6 non sta in $P$. Basta una coppia fuori perché il sacchetto non sia un sottoinsieme. In tutte le altre risposte ogni coppia ha il primo pezzo in $P$ e il secondo in $Q$. La più tentatrice è $\emptyset$: sembra un intruso, ma il vuoto è un sottoinsieme di qualunque insieme.
 
-D: (Appello del 06/06/2026, domanda 2) Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora
+D: (Appello del 08/06/2026, domanda 2) Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora
 - $(6, \rho) \in X \times Y$
 + $(\omega, 4) \notin X \times Y$
 - $\emptyset \in X \times Y$
@@ -29702,7 +30212,7 @@ Insieme quoziente | L'insieme delle classi di un'equivalenza, $X/\!\sim$. Modulo
 
 - A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 1 «Insiemi», pp. 13–14 (definizione 1.23, proposizione 1.24 con la dimostrazione, prodotto di $n$ insiemi, piano cartesiano), esercizi 1.13 e 1.17 (pp. 15); appendice A «Gli insiemi numerici», pp. 153–155 (definizione A.1 ed esempi, le quattro proprietà, nota 1 sulla divisibilità negli interi, definizione A.2, la relazione $M_N$, classi di equivalenza, teorema A.3 con la dimostrazione). Le definizioni e gli enunciati nei riquadri sono citati dal libro. Le tabelle con i pallini riprendono quelle di p. 18.
 - Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 2 (prodotto cartesiano) e lezione 3 (relazioni, relazioni di equivalenza e partizioni). Gli argomenti della lezione del 05/10/2026 non erano ancora pubblicati sul Moodle del canale B quando ho scritto questi appunti.
-- Quiz degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): appelli del 14/01/2025 (domanda 2), 07/07/2025 (domanda 1), 13/01/2026, 03/02/2026, 06/06/2026 e 01/07/2026 (domanda 2), prima versione di ogni quiz.
+- Quiz degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): appelli del 14/01/2025 (domanda 2), 07/07/2025 (domanda 1), 13/01/2026, 03/02/2026, 08/06/2026 e 01/07/2026 (domanda 2), prima versione di ogni quiz.
 - Programma del corso: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md), voce «Relazioni e funzioni».
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): sezioni 2.6 e 2.7 su prodotto cartesiano e relazioni, un riepilogo già pronto, non ufficiale.
 - Le spiegazioni a parole, gli esempi della battaglia navale e dei mesi di nascita, i riquadri «Prova tu», i quiz senza data e gli esercizi senza il numero del libro sono di questi appunti.
@@ -30950,7 +31460,7 @@ Tutte le risposte giuste qui sotto le ho ricontrollate con un programma.
 >
 > Nella versione 2, con $f(n) = -2n + 1$ e $g(n) = n + 4$, la giusta era $f \circ g(x + 1) = -2x - 9$.
 
-> [!ESAME] Tre funzioni: appello del 06/06/2026
+> [!ESAME] Tre funzioni: appello del 08/06/2026
 > $f(x) = 3x$, $g(x) = -x - 1$, $h(x) = x + 2$. Giusta: $(g \circ f \circ h)(x) = -3x - 7$. Si parte da $h$: $x + 2$; poi $f$: $3x + 6$; poi $g$: $-(3x + 6) - 1 = -3x - 7$. Le trappole erano tutte della forma $-3x + \text{qualcosa}$: cambiare l'ordine cambia solo il numero finale, quindi bisogna fare i conti per bene.
 
 > [!ESAME] Trovare una funzione dalla composta: appello del 07/07/2025
@@ -31019,7 +31529,7 @@ D: (Appello del 10/09/2026, versione 2) Siano $f, g \colon \Z \to \Z$ le funzion
 - $f \circ g \circ f(0) = 4$
 = $g(0) = 1$, $f(1) = 1$, $g(1) = 0$. La risposta più insidiosa è $f \circ f \circ g(0) = 2$: il valore giusto è $g(0) = 1$, $f(1) = 1$, $f(1) = 1$. Le altre: $g \circ f \circ f(0) = 4$, $g \circ g \circ f(0) = -1$, $f \circ g \circ f(0) = 3$.
 
-D: (Appello del 06/06/2026, versione 2) Siano $f(x) = x + 3$, $g(x) = -x + 1$ e $h(x) = 2x$. Allora
+D: (Appello del 08/06/2026, versione 2) Siano $f(x) = x + 3$, $g(x) = -x + 1$ e $h(x) = 2x$. Allora
 + $(h \circ f \circ g)(x) = -2x + 8$
 - $(g \circ f \circ h)(x) = -2x + 2$
 - $(f \circ h \circ g)(x) = -2x + 3$
@@ -31128,7 +31638,7 @@ Ogni volta si parte da destra e si guarda quale pezzo della formula usare.
 Conti controllati con un programma.
 :::
 
-::: esercizio medio Le versioni dell'appello del 06/06/2026
+::: esercizio medio Le versioni dell'appello del 08/06/2026
 Con $f(x) = x - 1$, $g(x) = -3x$ e $h(x) = x + 2$ (versione 3), calcola $(g \circ f \circ h)(x)$, $(h \circ f \circ g)(x)$, $(f \circ h \circ g)(x)$, $(f \circ g \circ h)(x)$ e $(g \circ h \circ f)(x)$. Quale vale $-3x - 7$?
 ::: soluzione
 1. $g \circ f \circ h$: $x + 2$, poi $x + 1$, poi $-3x - 3$.
@@ -31260,7 +31770,7 @@ Cancellazione | Una funzione biettiva si può togliere da tutte e due le parti d
 
 - A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 2 «Funzioni», pp. 23–29 (definizioni 2.13, 2.19, 2.21, proposizioni 2.14, 2.16, 2.17, 2.24, 2.25, corollario 2.18, teorema 2.20 con le dimostrazioni, note 2.15, 2.22, 2.23 e gli esempi delle pp. 24–27); esercizi 2.10, 2.11, 2.12, 2.14 e 2.15 (p. 36). Le definizioni e gli enunciati nei riquadri sono citati dal libro. Due refusi del libro sono segnalati nel testo: $\operatorname{id}_B$ al posto di $\operatorname{id}_{A \times B}$ a p. 27 e di $\operatorname{id}_A$ a p. 29.
 - Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 5 (composizione di funzioni e sue proprietà, composizione e iniettività o suriettività, funzioni invertibili). Gli argomenti della lezione del 12/10/2026 non erano ancora pubblicati sul Moodle del canale B quando ho scritto questi appunti.
-- Quiz degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): domanda 3 degli appelli del 04/02/2025, 06/06/2025, 07/07/2025, 13/01/2026, 03/02/2026, 06/06/2026 e 10/09/2026 (tutte le versioni, risposte ricontrollate con un programma), e la domanda sulla funzione inversa di un quiz degli anni 2021–2025.
+- Quiz degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): domanda 3 degli appelli del 04/02/2025, 06/06/2025, 07/07/2025, 13/01/2026, 03/02/2026, 08/06/2026 e 10/09/2026 (tutte le versioni, risposte ricontrollate con un programma), e la domanda sulla funzione inversa di un quiz degli anni 2021–2025.
 - Programma del corso: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md), voce «Relazioni e funzioni».
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): un riepilogo già pronto, non ufficiale.
 - Le spiegazioni a parole, la mensa con la cassa e le tessere, gli uffici dei pacchi, le calze e le scarpe, i riquadri «Prova tu», i quiz senza data, gli esercizi di riscaldamento e gli esercizi sulle versioni d'esame sono di questi appunti.
@@ -32178,7 +32688,7 @@ Tutte le risposte giuste le ho ricontrollate con un programma.
 > [!ESAME] Le palline: appello del 03/02/2026
 > «Da una scatola che contiene palline bianche e nere ne vengono estratte, in successione, 12. Quante sono le estrazioni che iniziano con 3 palline bianche?» Risposte: $\frac{12!}{3!}$; $9^2$; $9!$; $\frac{12!}{9!}$; $2^9$. Giusta: $2^9$. Le prime 3 sono fissate, e per le altre 9 ci sono 2 colori ciascuna. La trappola è $9^2$, con base ed esponente scambiati.
 
-> [!ESAME] Le parole: appello del 06/06/2026
+> [!ESAME] Le parole: appello del 08/06/2026
 > «Quante parole di lunghezza 6 si possono formare con un alfabeto di 15 simboli?» Risposte: $6! \cdot 15!$; $6 \cdot 15$; $\frac{15!}{6!}$; $15^6$; $6^{15}$. Giusta: $15^6$. Nell'altra versione, lunghezza 4 e 16 simboli: $16^4$.
 
 > [!ESAME] La griglia di palline: quiz 2021–2025
@@ -32206,7 +32716,7 @@ Tutte le risposte giuste le ho ricontrollate con un programma.
 ## Quiz
 
 ```quiz
-D: Appello del 06/06/2026, domanda 4. Quante parole di lunghezza 4 si possono formare con un alfabeto di 16 simboli?
+D: Appello del 08/06/2026, domanda 4. Quante parole di lunghezza 4 si possono formare con un alfabeto di 16 simboli?
 - $4! \cdot 16!$
 - $4 \cdot 16$
 - $\frac{16!}{4!}$
@@ -32385,7 +32895,7 @@ Combinazione semplice | Un sottoinsieme di k elementi: l'ordine non conta.
 
 - A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 3 «Combinatorica», pp. 48–55 (Proposizione 3.16, Nota 3.17, definizioni 3.18, 3.19, 3.21, 3.23, 3.25, 3.27, proposizioni 3.20, 3.22, 3.24, 3.26, esempi delle pp. 49–55); esercizi 3.8 e 3.9 (pp. 64–65). Le definizioni e gli enunciati nei riquadri riprendono il libro. Segnalato nel testo il risultato dell'esempio delle targhe a p. 50.
 - Diario delle lezioni del canale B 2026/27 (Mori), lezione del 16/10/2026: «Alfabeti, parole ed anagrammi. Disposizioni semplici e con ripetizione: formule ed esempi. Combinazioni semplici: enunciato del problema».
-- Quiz di Matematica Discreta, domanda 4: appelli del 14/01/2025, 07/07/2025, 03/02/2026, 06/06/2026, 01/07/2026, e quiz 2021–2025; problemi: appello del 03/02/2026 (problema 1), Problemi 2023/24 (problema 1), «17 riepilogo» e «19 riepilogo» degli anni precedenti al 2021, con le soluzioni ufficiali.
+- Quiz di Matematica Discreta, domanda 4: appelli del 14/01/2025, 07/07/2025, 03/02/2026, 08/06/2026, 01/07/2026, e quiz 2021–2025; problemi: appello del 03/02/2026 (problema 1), Problemi 2023/24 (problema 1), «17 riepilogo» e «19 riepilogo» degli anni precedenti al 2021, con le soluzioni ufficiali.
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): un riepilogo già pronto, non ufficiale.
 - Tutti i conteggi, degli esempi, degli esercizi e delle domande d'esame, li ho ricontrollati con un programma.
 
@@ -69732,7 +70242,7 @@ D: Appello del 03/02/2026, domanda 1. Siano $X = \{a, b, f, h, r, s, t, v, z\}$ 
 - $s \subset X \cap Y$
 = $X \cap Y = \{h, s, t\}$, e $f$ sta solo in $X$. La risposta più insidiosa è $\{h, t\} = X \cap Y$: dimentica la $s$. $b$ non sta in $Y$; $\{h, s\}$ è un sottoinsieme, non un elemento; $s$ è una lettera, non un insieme.
 
-D: Appello del 06/06/2026, domanda 1. Ricordando che $n\Z = \{nk \mid k \in \Z\}$, cioè i multipli di $n$, quale affermazione è vera?
+D: Appello del 08/06/2026, domanda 1. Ricordando che $n\Z = \{nk \mid k \in \Z\}$, cioè i multipli di $n$, quale affermazione è vera?
 - $7 \in 3\Z \cup 5\Z$
 - $\{12, 20\} \subset 3\Z \cap 4\Z$
 - $4\Z \cap 5\Z = \emptyset$
@@ -70274,7 +70784,7 @@ D: Appello del 03/02/2026, domanda 2. Siano $P = \{1, 3, 4, 7, 8\}$ e $Q = \{2, 
 - $\{(4, 6), (1, 9), (7, 5)\}$
 = Nella coppia $(6, 7)$ il 6 non sta in $P$ e il 7 non sta in $Q$: basta una coppia sbagliata. La risposta più insidiosa è $\emptyset$: il vuoto è un sottoinsieme di ogni insieme, quindi va bene. $(3, 3)$ va bene perché 3 sta in tutti e due.
 
-D: Appello del 06/06/2026, domanda 2. Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora:
+D: Appello del 08/06/2026, domanda 2. Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora:
 - $(6, \rho) \in X \times Y$
 + $(\omega, 4) \notin X \times Y$
 - $\emptyset \in X \times Y$
@@ -70829,7 +71339,7 @@ D: Appello del 03/02/2026, domanda 3, versione 3. Siano $f, g \colon \Z \to \Z$ 
 - $g \circ f(-x) = -4x + 11$
 = $g(-x) = x + 3$, poi $f(x + 3) = 4x + 12 - 1 = 4x + 11$. La risposta più insidiosa è $f \circ g(x + 1) = 4x + 7$: il valore vero è $f(-x + 2) = -4x + 7$, con il segno cambiato. Gli altri valori veri sono $-4x + 15$, $-8x + 4$ e $4x + 4$.
 
-D: Appello del 06/06/2026, domanda 3, versione 2. Siano $f(x) = x + 3$, $g(x) = -x + 1$ e $h(x) = 2x$. Allora:
+D: Appello del 08/06/2026, domanda 3, versione 2. Siano $f(x) = x + 3$, $g(x) = -x + 1$ e $h(x) = 2x$. Allora:
 - $(g \circ f \circ h)(x) = -2x + 2$
 + $(h \circ f \circ g)(x) = -2x + 8$
 - $(f \circ h \circ g)(x) = -2x + 3$
@@ -71406,7 +71916,7 @@ D: Appello del 14/01/2025. Quanti modi ci sono per far sedere 6 persone in una f
 - $10!$
 = Conta chi sta su quale sedia, e ogni sedia ha al massimo una persona: disposizioni semplici, $10 \cdot 9 \cdot 8 \cdot 7 \cdot 6 \cdot 5 = \frac{10!}{4!}$. La risposta più insidiosa è $\frac{10!}{6!}$, che divide per il fattoriale delle persone invece che delle 4 sedie vuote.
 
-D: Appello del 06/06/2026. Quante parole di lunghezza 4 si possono formare con un alfabeto di 16 simboli?
+D: Appello del 08/06/2026. Quante parole di lunghezza 4 si possono formare con un alfabeto di 16 simboli?
 + $16^4$
 - $4^{16}$
 - $\frac{16!}{4!}$
@@ -71435,7 +71945,538 @@ D: Dall'esercizio 1 della prova scritta del 12/02/2020. In quanti modi si posson
 
 - Le lezioni complete: [D08 · Combinazioni semplici e con ripetizione](D08_combinazioni.html), [D09 · Problemi di combinatoria, coefficienti binomiali e formula di Stiefel](D09_coefficienti_binomiali_stiefel.html), con gli esempi, i quiz e gli esercizi.
 - A. Mori, *Lezioni di Matematica Discreta*, cap. 3, pp. 55–64.
-- Quiz degli appelli del 14/01/2025, 04/02/2025, 06/06/2025, 13/01/2026, 06/06/2026 e 10/09/2026 (domanda 4); problemi dell'appello del 14/01/2025 e della prova scritta del 12/02/2020, con le soluzioni ufficiali.
+- Quiz degli appelli del 14/01/2025, 04/02/2025, 06/06/2025, 13/01/2026, 08/06/2026 e 10/09/2026 (domanda 4); problemi dell'appello del 14/01/2025 e della prova scritta del 12/02/2020, con le soluzioni ufficiali.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_05_AG.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_05_AG.md`
+
+```yaml
+corso: MDAG
+modulo: AG
+lezione: S5
+tipo: riassunto
+titolo: "Settimana 5: mosse di Gauss, inversa e sistemi lineari"
+data: 2026-10-29
+docenti: Reto Buzano e Marco Radeschi
+sopratitolo: Riassunto settimanale · Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · 26/10 – 30/10/2026
+descrizione: >-
+  Riassunto della settimana 5 di Algebra lineare e Geometria (MDAG, parte 2): le mosse di Gauss e il determinante,
+  il determinante zero, il teorema di Binet, la matrice inversa con i cofattori e la formula per le 2 × 2; i sistemi
+  lineari, la matrice completa, la riduzione a scalini, i pivot e i tre finali possibili.
+lede: >-
+  Le due lezioni della settimana in poche pagine: come si calcola un determinante grande con le mosse sulle righe,
+  quando una matrice ha l'inversa, come si risolve un sistema a scalini e come si capisce subito quante soluzioni ha,
+  con le domande vere degli appelli.
+materiale: dispense
+scheda:
+  Lezioni: "[L10](L10_matrici_3.html) mar 27/10 · [L11](L11_sistemi_lineari_1.html) gio 29/10, nel canale B"
+  Dispense: Buzano e Radeschi 2026, pp. 46–55
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni L10 e L11 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso
+  (R. Buzano, M. Radeschi)
+appunti_html: appunti/MDAG/riassunto_settimana_05_AG.html
+genera_html: true
+```
+
+## In breve
+
+- Le tre **mosse di Gauss** sulle righe cambiano il determinante in modo prevedibile: lo scambio cambia il segno, moltiplicare una riga per un numero moltiplica il determinante, sommare a una riga un multiplo di un'altra non lo cambia.
+- Per un determinante grande: con le mosse si arriva a una matrice **triangolare**, poi si moltiplica la diagonale.
+- Il determinante è **zero** esattamente quando una riga è combinazione lineare delle altre.
+- **Binet**: il determinante di un prodotto è il prodotto dei determinanti. Quindi il determinante di $A^3$ è il cubo di quello di $A$.
+- Una matrice è **invertibile** esattamente quando il determinante non è zero. L'inversa si calcola con i cofattori; per le $2 \times 2$ c'è una formula da sapere a memoria.
+- Un **sistema lineare** si scrive come **matrice completa** e si porta a scalini con le stesse mosse, che non cambiano le soluzioni.
+- I finali sono tre: **nessuna** soluzione, **una**, **infinite**. Le incognite senza pivot sono i **parametri**.
+
+## L10 · Mosse di Gauss, Binet e inversa (mar 27/10)
+
+Il determinante di una matrice grande si calcola senza sviluppi lunghi, usando le mosse sulle righe.
+
+| mossa sulle righe | effetto sul determinante |
+|---|---|
+| scambiare due righe | cambia segno |
+| moltiplicare una riga per $c \neq 0$ | si moltiplica per $c$ |
+| sommare a una riga un multiplo di un'altra | non cambia |
+
+Per esempio, con $A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 5 & 7 \\ 1 & 3 & 5 \end{pmatrix}$:
+
+1. $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - R_1$ danno le righe $(0, 1, 1)$ e $(0, 1, 2)$;
+2. $R_3 \to R_3 - R_2$ dà $(0, 0, 1)$;
+3. la matrice è triangolare con diagonale 1, 1, 1, e nessuna mossa ha cambiato il determinante: $\det A = 1$.
+
+- **Determinante zero**: due righe uguali o proporzionali, una riga nulla, o in generale una riga che è combinazione delle altre. Nel disegno, due colonne sulla stessa retta non chiudono nessuna area.
+- **Teorema di Binet**: $\det(AB) = \det A \cdot \det B$. Da qui $\det(A^n) = (\det A)^n$, il trucco delle domande «il determinante di $A^3$ è».
+- **Inversa**: $A^{-1}$ è la matrice con $A A^{-1} = A^{-1} A = I$. Esiste esattamente quando $\det A \neq 0$. Si calcola con i **cofattori**: la trasposta della matrice dei cofattori, divisa per il determinante.
+
+```grafico
+titolo: Le colonne $(1, 2)$ e $(2, 1)$ formano un parallelogramma di area 3 (in blu): il determinante $1 \cdot 1 - 2 \cdot 2 = -3$ non è zero. Le colonne $(1, 2)$ e $(2, 4)$ stanno sulla stessa retta (tratteggiata): l'area è zero, come il determinante, e la matrice non è invertibile
+x: -0.6 3.4
+y: -0.5 4.5
+poligono: 0 0 1 2 3 3 2 1 | blu | pieno
+retta: 0 0 1.5 3 | rosa | tratteggio
+vettore: 2 4 | rosa | spesso | $(2, 4)$ | e
+vettore: 1 2 | accento | spesso | $(1, 2)$ | o
+vettore: 2 1 | blu | spesso | $(2, 1)$ | se
+```
+
+Per le $2 \times 2$ la formula è: si scambiano i due numeri sulla diagonale, si cambia segno agli altri due, si divide per il determinante.
+
+$$\begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = \frac{1}{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.$$
+
+::: prova Calcola l'inversa di $\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ e controlla il risultato.
+Il determinante è $2 - 1 = 1$, quindi l'inversa è $\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$. Controllo: la prima riga della matrice per la prima colonna dell'inversa fa $2 \cdot 1 + 1 \cdot (-1) = 1$, la prima riga per la seconda colonna $2 \cdot (-1) + 1 \cdot 2 = 0$. Allo stesso modo la seconda riga dà 0 e 1: il prodotto è $I$.
+:::
+
+> [!RICORDA]
+> - Scambio: segno opposto. Riga per $c$: determinante per $c$. Riga più multiplo di un'altra: niente.
+> - Binet: $\det(A^n) = (\det A)^n$.
+> - Invertibile esattamente quando il determinante non è zero.
+
+## L11 · Sistemi lineari (gio 29/10)
+
+Un sistema lineare è un elenco di equazioni di primo grado da rispettare tutte insieme. Due numeri con somma 5 e differenza 1 sono le soluzioni di $x + y = 5$ e $x - y = 1$: sommando le equazioni viene $2x = 6$, quindi $x = 3$ e $y = 2$.
+
+Per i conti si scrive solo la **matrice completa**: una riga per equazione, i coefficienti e poi, dopo la barra, il termine noto. Le tre mosse di Gauss sulle righe non cambiano le soluzioni, e con loro si arriva alla forma **a scalini**: ogni riga comincia più a destra di quella sopra. Il primo numero diverso da zero di ogni riga è il **pivot**.
+
+> [!ESEMPIO] · un sistema con infinite soluzioni
+> $$\left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 1 & 2 & 3 & 14 \\ 2 & 3 & 4 & 20 \end{array}\right) \xrightarrow{R_2 - R_1,\ R_3 - 2R_1} \left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 0 & 1 & 2 & 8 \\ 0 & 1 & 2 & 8 \end{array}\right) \xrightarrow{R_3 - R_2} \left(\begin{array}{ccc|c} 1 & 1 & 1 & 6 \\ 0 & 1 & 2 & 8 \\ 0 & 0 & 0 & 0 \end{array}\right)$$
+> Due pivot e tre incognite: la $z$ resta libera. Con $z = t$, dal basso: $y = 8 - 2t$, poi $x = 6 - y - z = t - 2$. Le soluzioni sono $(t - 2,\ 8 - 2t,\ t)$ con $t$ qualsiasi: infinite, con un parametro.
+
+I finali possibili sono tre, e si leggono dalla forma a scalini.
+
+| a scalini compare… | soluzioni |
+|---|---|
+| una riga $(0 \cdots 0 \mid b)$ con $b \neq 0$, cioè l'equazione impossibile $0 = b$ | nessuna |
+| un pivot per ogni incognita, e nessuna riga impossibile | una sola |
+| meno pivot che incognite, e nessuna riga impossibile | infinite, con tanti parametri quante le incognite senza pivot |
+
+```grafico
+titolo: I tre finali con due incognite, dove ogni equazione è una retta. A sinistra le rette si incontrano in un punto: una soluzione. Al centro sono parallele: nessuna. A destra sono la stessa retta: infinite
+x: -0.4 12.8
+y: -1.1 3.6
+assi: no
+griglia: no
+proporzioni: libere
+segmento: 0.2 3.2 3.2 0.2 | accento | spesso
+segmento: 0.2 0.2 3.2 3.2 | blu | spesso
+punto: 1.7 1.7 | ambra
+testo: 1.7 -0.6 | grigio | "una soluzione"
+segmento: 4.6 2.6 7.0 0.2 | accento | spesso
+segmento: 5.4 3.4 7.8 1.0 | blu | spesso
+testo: 6.2 -0.6 | grigio | "nessuna"
+segmento: 9.2 3.2 12.2 0.2 | accento | spesso
+segmento: 9.2 3.2 12.2 0.2 | blu | tratteggio
+testo: 10.7 -0.6 | grigio | "infinite"
+```
+
+Con il metodo di **Gauss–Jordan** si continua oltre gli scalini: si rendono 1 i pivot e si azzera anche sopra di loro, e le soluzioni si leggono senza sostituire all'indietro.
+
+::: prova Quante soluzioni ha il sistema con matrice completa $\left(\begin{array}{cc|c} 1 & 2 & 3 \\ 2 & 4 & 7 \end{array}\right)$?
+$R_2 \to R_2 - 2R_1$ dà $(0, 0 \mid 1)$, cioè $0 = 1$: nessuna soluzione. Le due equazioni sono rette parallele.
+:::
+
+> [!RICORDA]
+> - Matrice completa, mosse di Gauss, scalini, poi si legge dal basso.
+> - Riga $(0 \cdots 0 \mid b)$ con $b \neq 0$: nessuna soluzione.
+> - Parametri = incognite − pivot, se il sistema ha soluzioni.
+
+## Verso l'esame
+
+- **Quante soluzioni ha il sistema**: è la domanda di quiz più frequente di questa parte, uscita in 9 appelli su 15 tra il 2024 e il 2026. Le risposte sono sempre le stesse cinque: zero, una, infinite con 1 o 2 parametri, «un numero finito maggiore di 1», che con i numeri reali non succede mai.
+- **Il determinante di una potenza** con Binet: 06/09/2024, 07/02/2025, 05/02/2026, 03/07/2026. Si calcola $\det A$ una volta, poi si eleva.
+- **Problemi**: «per quali valori di $k$ la matrice è invertibile» chiede proprio $\det A \neq 0$; la discussione dei sistemi con un parametro arriva con la L12.
+- Appelli 2026/27: venerdì 22/01/2027 e venerdì 05/02/2027, alle 14:00; 4 facciate di appunti scritti a mano, niente calcolatrice.
+
+## Domande di ripasso
+
+::: domanda Che cosa fanno al determinante le tre mosse di Gauss?
+Lo scambio di due righe cambia il segno; moltiplicare una riga per $c$ moltiplica il determinante per $c$; sommare a una riga un multiplo di un'altra non lo cambia.
+:::
+
+::: domanda Quanto vale il determinante di $A^3$ se $\det A = -2$?
+Per Binet, $(-2)^3 = -8$.
+:::
+
+::: domanda Quando una matrice quadrata è invertibile?
+Esattamente quando il suo determinante non è zero.
+:::
+
+::: domanda Come si riconosce, dalla forma a scalini, che un sistema non ha soluzioni?
+Compare una riga di zeri prima della barra e un numero diverso da zero dopo: l'equazione impossibile $0 = b$.
+:::
+
+::: domanda Da che cosa dipende il numero dei parametri?
+Dal numero di incognite senza pivot: incognite meno pivot, quando il sistema ha soluzioni.
+:::
+
+## Quiz d'esame
+
+Sono tutte domande vere degli appelli, diverse da quelle già nelle lezioni L10 e L11, tranne l'ultima, sul modello delle domande sull'inversa. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma.
+
+```quiz
+D: Appello del 07/02/2025, domanda 5. Sia $A = \begin{pmatrix} 0 & 1 & 2 \\ 2 & 1 & 6 \\ 1 & 1 & 1 \end{pmatrix}$. Il determinante di $A^3$ è:
+- 111.
+- 12.
+- 21.
++ 216.
+- 261.
+= Sviluppando lungo la prima riga, $\det A = -1 \cdot (2 - 6) + 2 \cdot (2 - 1) = 6$. Per Binet $\det(A^3) = 6^3 = 216$: è la (d) della soluzione ufficiale. La più insidiosa è 21, che viene sommando invece di elevare.
+
+D: Appello del 05/02/2026, domanda 5. Sia $A = \begin{pmatrix} 2 & 0 & 2 \\ 6 & -1 & 2 \\ 0 & 2 & 6 \end{pmatrix}$. Il determinante di $A^3$ è:
+- 27.
+- −1.
+- 4.
++ 64.
+- 9.
+= Con $R_2 \to R_2 - 3R_1$, che non cambia il determinante, la seconda riga diventa $(0, -1, -4)$. Sviluppando lungo la prima colonna, $\det A = 2 \cdot (-6 + 8) = 4$, e $\det(A^3) = 4^3 = 64$: è la (d) della soluzione ufficiale. La più insidiosa è 4, che è $\det A$ e non il determinante del cubo.
+
+D: Appello del 24/01/2024, domanda 10. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 2 & 3 & 10 \\ 4 & 5 & 6 & 11 \\ 7 & 8 & 9 & 12 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Una.
++ Infinite, che dipendono da 1 parametro.
+- Zero.
+- Infinite, che dipendono da 2 parametri.
+- Un numero finito, maggiore di 1.
+= $R_2 - 4R_1$ e $R_3 - 7R_1$ danno $(0, -3, -6 \mid -29)$ e $(0, -6, -12 \mid -58)$; la terza è il doppio della seconda e si azzera tutta. Restano 2 pivot su 3 incognite, nessuna riga impossibile: un parametro, la (b) della soluzione ufficiale. La più insidiosa è «Una», perché equazioni e incognite sono tante uguali.
+
+D: Appello del 10/07/2024, domanda 5. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 3 & 5 & 2 \\ 7 & 9 & 11 & 2 \\ 6 & 6 & 6 & -2 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Una.
++ Zero.
+- Un numero finito, maggiore di 1.
+- Infinite, che dipendono da 1 parametro.
+- Infinite, che dipendono da 2 parametri.
+= $R_2 - 7R_1$ e $R_3 - 6R_1$ danno $(0, -12, -24 \mid -12)$ e $(0, -12, -24 \mid -14)$; sottraendole resta $(0, 0, 0 \mid -2)$, l'equazione impossibile $0 = -2$. È la (b) della soluzione ufficiale. La più insidiosa è «Infinite, che dipendono da 1 parametro», di chi vede la riga di zeri e non guarda dopo la barra.
+
+D: Appello del 10/07/2025, domanda 5. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 3 & 12 & 15 & 6 \\ 2 & 8 & 10 & 4 \\ 4 & 16 & 20 & 8 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Una.
+- Infinite, che dipendono da 1 parametro.
++ Infinite, che dipendono da 2 parametri.
+- Zero.
+- Un numero finito, maggiore di 1.
+= Dividendo le righe per 3, 2 e 4 vengono tre righe uguali $(1, 4, 5 \mid 2)$: resta una sola equazione con 3 incognite, quindi 2 parametri. È la (c) della soluzione ufficiale. La più insidiosa è «1 parametro», di chi conta le righe nulle invece delle incognite senza pivot.
+
+D: Appello del 03/06/2026, domanda 7. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 3 & 9 & 6 & 12 \\ 4 & 12 & 8 & 16 \\ 2 & 6 & 4 & 8 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Infinite, che dipendono da 1 parametro.
+- Zero.
+- Un numero finito, maggiore di 1.
++ Infinite, che dipendono da 2 parametri.
+- Una.
+= Dividendo per 3, 4 e 2, le tre righe diventano $(1, 3, 2 \mid 4)$: un solo pivot su 3 incognite, 2 parametri. È la (d) della soluzione ufficiale. La più insidiosa è «Zero», di chi si spaventa per le due righe nulle: senza un numero dopo la barra non sono impossibili.
+
+D: Appello del 10/07/2024, domanda 6. Trovare tutte le soluzioni del sistema lineare $2x - y - z = 3$, $x - y + z = 2$, $3x - y - 3z = 4$.
+- $x = -1$, $y = -4$, $z = -1$.
+- $x = 1 - t$, $y = 2 - 2t$, $z = -3$, con $t$ reale.
+- $x = 1 - 2s$, $y = 2t - s - 1$, $z = -s$, con $t$ e $s$ reali.
++ $x = 2t + 1$, $y = 3t - 1$, $z = t$, con $t$ reale.
+- Il sistema non ha soluzioni.
+= A scalini restano 2 pivot su 3 incognite: con $z = t$ vengono $y = 3t - 1$ e $x = 2t + 1$. È la (d) della soluzione ufficiale. La più insidiosa è la (a): è davvero una soluzione, quella con $t = -1$, ma la domanda chiede **tutte** le soluzioni.
+
+D: Sul modello delle domande sull'inversa. L'inversa di $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}$ è:
++ $\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}$
+- $\begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}$
+- $\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$
+- $\begin{pmatrix} 1/3 & 1 \\ 1/5 & 1/2 \end{pmatrix}$
+- non esiste
+= Il determinante è $6 - 5 = 1$: si scambiano 3 e 2, si cambia segno a 1 e 5, si divide per 1. La più insidiosa è la terza, che cambia i segni ma non scambia la diagonale; la quarta fa l'inverso di ogni numero, che non è l'inversa di una matrice.
+```
+
+## Fonti
+
+- Le lezioni complete: [L10 · Matrici III](L10_matrici_3.html), [L11 · Sistemi lineari I](L11_sistemi_lineari_1.html), con gli esempi, i quiz e gli esercizi.
+- R. Buzano e M. Radeschi, dispense di Algebra lineare e Geometria 2026, pp. 46–55.
+- Appelli del 24/01/2024 (domanda 10), 10/07/2024 (domande 5 e 6), 07/02/2025 (domanda 5), 10/07/2025 (domanda 5), 05/02/2026 (domanda 5) e 03/06/2026 (domanda 7), con le soluzioni ufficiali.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_05_MD.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_05_MD.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: S5
+tipo: riassunto
+titolo: "Settimana 5: binomio di Newton e permutazioni"
+data: 2026-10-30
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Riassunto settimanale · Parte 1 (modA) · Matematica Discreta · Canali A, B e C · 26/10 – 30/10/2026
+descrizione: >-
+  Riassunto della settimana 5 di Matematica Discreta (MDAG, parte 1): il binomio di Newton e le somme di una riga
+  del triangolo; le permutazioni, la tabella a due righe, composizione e inversa; i cicli, i cicli disgiunti e la
+  decomposizione; il tipo, il conteggio delle permutazioni di un tipo, le partizioni, le potenze e il periodo.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: come si sviluppa una potenza di una somma, come si scrive una
+  permutazione in cicli disgiunti, come si leggono tipo e periodo, e le domande 5 e 6 del quiz degli appelli
+  2025–2026.
+materiale: libro
+scheda:
+  Lezioni: "[D10](D10_binomio_newton_permutazioni.html) lun 26/10 · [D11](D11_cicli_disgiunti.html) mer 28/10 · [D12](D12_tipo_periodo_permutazioni.html) ven 30/10"
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 3, pp. 60–61; cap. 5, pp. 83–95 e 101–103
+  Tempo di ripasso: 45 minuti
+fonte: >-
+  Gli appunti delle lezioni D10, D11 e D12 di Matematica Discreta, scritti sul libro di A. Mori
+appunti_html: appunti/MDAG/riassunto_settimana_05_MD.html
+genera_html: true
+```
+
+## In breve
+
+- Il **binomio di Newton** sviluppa $(x + y)^n$: i coefficienti sono i coefficienti binomiali, cioè la riga $n$ del triangolo di Tartaglia.
+- Una **permutazione** rimescola gli elementi di un insieme: è una funzione biettiva dall'insieme in sé. Le permutazioni di $\{1, \dots, n\}$ sono $n!$.
+- Si compongono come le funzioni, **da destra a sinistra**, e l'ordine conta. L'inversa si trova girando le frecce, o scambiando le righe della tabella.
+- Un **ciclo** sposta alcuni numeri in giro e lascia fermi gli altri. Ogni permutazione è un prodotto di **cicli disgiunti**, sempre gli stessi.
+- Il **tipo** è l'elenco delle lunghezze dei cicli disgiunti; il **periodo** è il loro minimo comune multiplo.
+- Le potenze si calcolano ciclo per ciclo, e gli esponenti si riducono con il periodo, anche quelli negativi.
+
+## D10 · Binomio di Newton e permutazioni (lun 26/10)
+
+La potenza di una somma si sviluppa contando. Moltiplicando $(x + y)$ per sé stesso $n$ volte, ogni termine nasce scegliendo in ogni fattore la $x$ o la $y$. I modi di scegliere da quali $k$ fattori prendere la $y$ sono $\binom{n}{k}$, e da qui il **teorema 3.34**:
+
+$$(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k.$$
+
+- Per $n = 3$: $(x + y)^3 = x^3 + 3x^2y + 3xy^2 + y^3$, con la riga 1, 3, 3, 1.
+- **Coefficiente di un termine**: in $(2x - 3)^5$ il termine con $x^3$ è $\binom{5}{3} (2x)^3 (-3)^2 = 10 \cdot 8 \cdot 9 \, x^3 = 720\, x^3$. Numeri e segni dentro le parentesi vanno elevati anche loro.
+- **Somme di una riga**: con $x = y = 1$ viene $2^n$; con $x = 1$ e $y = -1$ viene 0, cioè i termini di posto pari e di posto dispari si equivalgono.
+
+Poi le **permutazioni** (cap. 5). Una permutazione di $\{1, \dots, n\}$ si scrive con la tabella a due righe: sopra i numeri, sotto dove vanno. L'insieme di tutte si chiama $S_n$ e ha $n!$ elementi (proposizione 5.2). Due permutazioni si compongono come funzioni: in $\sigma \circ \tau$ lavora prima $\tau$. Già in $S_3$ i due ordini danno risultati diversi.
+
+::: prova Qual è il coefficiente di $x^2$ in $(x + 2)^4$?
+$\binom{4}{2} \cdot 2^2 = 6 \cdot 4 = 24$.
+:::
+
+> [!RICORDA]
+> - I coefficienti di $(x + y)^n$ sono la riga $n$ di Tartaglia; con numeri e segni nelle parentesi, si elevano anche quelli.
+> - $S_n$ ha $n!$ permutazioni; la composizione si legge da destra.
+
+## D11 · Cicli e cicli disgiunti (mer 28/10)
+
+Con la tabella, l'**inversa** si ottiene scambiando le righe e riordinando le colonne; la **composizione** $\sigma \circ \pi$ con una terza riga, le immagini secondo $\sigma$ della riga di $\pi$.
+
+Un **ciclo** $(t_1\ t_2\ \cdots\ t_\ell)$ manda ogni numero nel successivo e l'ultimo nel primo. Lo stesso ciclo si può cominciare da qualunque numero; l'inverso è il ciclo letto al contrario. Due cicli **disgiunti**, senza numeri in comune, commutano.
+
+Il **teorema 5.8**: ogni permutazione diversa dall'identità è un prodotto di cicli disgiunti, unici a meno dell'ordine. Si trovano seguendo un numero finché torna al punto di partenza.
+
+```grafico
+titolo: La permutazione di $S_{13}$ dell'esempio del libro è fatta di tre giri che non si toccano: $(1\ 8\ 2\ 5\ 7\ 9)$, $(3\ 11\ 6\ 10)$ e $(12\ 13)$. Il 4 resta fermo e non si scrive
+x: -2.6 10.6
+y: -2.7 2.7
+assi: no
+griglia: no
+cerchio: 0 0 1.7 | grigio | sottile
+punto: 0.00 1.70 | blu
+testo: 0.00 2.26 | blu | "1"
+punto: 1.47 0.85 | blu
+testo: 1.96 1.13 | blu | "8"
+punto: 1.47 -0.85 | blu
+testo: 1.96 -1.13 | blu | "2"
+punto: 0.00 -1.70 | blu
+testo: 0.00 -2.26 | blu | "5"
+punto: -1.47 -0.85 | blu
+testo: -1.96 -1.13 | blu | "7"
+punto: -1.47 0.85 | blu
+testo: -1.96 1.13 | blu | "9"
+freccia: 0.27 1.55 1.21 1.00 | blu
+freccia: 1.47 0.54 1.47 -0.54 | blu
+freccia: 1.21 -1.00 0.27 -1.55 | blu
+freccia: -0.27 -1.55 -1.21 -1.00 | blu
+freccia: -1.47 -0.54 -1.47 0.54 | blu
+freccia: -1.21 1.00 -0.27 1.55 | blu
+cerchio: 5 0 1.4 | grigio | sottile
+punto: 5.00 1.40 | ambra
+testo: 5.00 1.93 | ambra | "3"
+punto: 6.40 0.00 | ambra
+testo: 6.93 0.00 | ambra | "11"
+punto: 5.00 -1.40 | ambra
+testo: 5.00 -1.93 | ambra | "6"
+punto: 3.60 0.00 | ambra
+testo: 3.07 0.00 | ambra | "10"
+freccia: 5.25 1.15 6.15 0.25 | ambra
+freccia: 6.15 -0.25 5.25 -1.15 | ambra
+freccia: 4.75 -1.15 3.85 -0.25 | ambra
+freccia: 3.85 0.25 4.75 1.15 | ambra
+punto: 9.30 0.90 | verde
+testo: 9.30 1.44 | verde | "12"
+punto: 9.30 -0.90 | verde
+testo: 9.30 -1.44 | verde | "13"
+freccia: 9.10 0.60 9.10 -0.60 | verde
+freccia: 9.50 -0.60 9.50 0.60 | verde
+```
+
+Quando la permutazione è data come prodotto di cicli **non** disgiunti, si segue ogni numero attraverso i cicli **da destra a sinistra**. Per esempio, nell'appello del 13/01/2026, $(1\ 2)(5\ 9\ 4)(4\ 2\ 7)(9\ 5\ 6\ 2\ 3) = (1\ 2\ 3\ 4)(5\ 6\ 7)$, e il 9 torna fermo.
+
+::: prova Scrivi in cicli disgiunti $(1\ 2\ 3)(2\ 4)$.
+Da destra: $1 \mapsto 2$, $2 \mapsto 4$, $4 \mapsto 2 \mapsto 3$, $3 \mapsto 1$. È il ciclo $(1\ 2\ 4\ 3)$.
+:::
+
+> [!RICORDA]
+> - Prima di tutto, i cicli disgiunti: da destra, un numero alla volta.
+> - L'inverso di un ciclo è il ciclo al contrario; i cicli disgiunti commutano.
+
+## D12 · Tipo e periodo (ven 30/10)
+
+Il **tipo** è l'elenco delle lunghezze dei cicli disgiunti, in ordine decrescente: $(1\ 2\ 3\ 4)(5\ 6\ 7)$ ha tipo $(4, 3)$. Completato con degli 1, un tipo è una **partizione** di $n$; per esempio $S_5$ ha 7 tipi, quante le partizioni di 5.
+
+- **Quante permutazioni hanno un tipo**: un ciclo alla volta. I cicli di lunghezza $\ell$ con $n$ numeri sono $\frac{1}{\ell} \cdot \frac{n!}{(n - \ell)!}$; si moltiplica, e per ogni lunghezza che compare $k$ volte si divide per $k!$. Tipo $(4, 3)$ in $S_9$: $756 \cdot 20 = 15120$.
+- **Periodo**: il primo esponente positivo che dà l'identità. Un ciclo di lunghezza $\ell$ ha periodo $\ell$; in generale il periodo è il **minimo comune multiplo** delle lunghezze del tipo (proposizione 5.26).
+- **Ridurre gli esponenti**: con periodo $p$, $\pi^a = \pi^b$ quando $a - b$ è un multiplo di $p$. Con periodo 14, $\pi^{-3} = \pi^{11} = \pi^{25}$.
+- **Il tipo delle potenze**: la potenza $k$-esima di un ciclo di lunghezza $\ell$ si spezza in $\mathrm{mcd}(\ell, k)$ cicli uguali; se $\ell$ divide $k$, sparisce.
+
+```grafico
+titolo: Il quadrato del ciclo $(1\ 2\ 3\ 4\ 5\ 6)$ salta di due posti: i dispari formano il giro $(1\ 3\ 5)$, in blu, i pari il giro $(2\ 4\ 6)$, in ambra. Un ciclo di lunghezza 6 al quadrato ha tipo $(3, 3)$
+x: -2.5 2.5
+y: -2.5 2.5
+assi: no
+griglia: no
+cerchio: 0 0 1.6 | grigio | sottile
+punto: 0.00 1.60 | grigio
+testo: 0.00 2.08 | grigio | "1"
+punto: 1.39 0.80 | grigio
+testo: 1.80 1.04 | grigio | "2"
+punto: 1.39 -0.80 | grigio
+testo: 1.80 -1.04 | grigio | "3"
+punto: 0.00 -1.60 | grigio
+testo: 0.00 -2.08 | grigio | "4"
+punto: -1.39 -0.80 | grigio
+testo: -1.80 -1.04 | grigio | "5"
+punto: -1.39 0.80 | grigio
+testo: -1.80 1.04 | grigio | "6"
+freccia: 0.14 1.36 1.25 -0.56 | blu
+freccia: 1.11 -0.80 -1.11 -0.80 | blu
+freccia: -1.25 -0.56 -0.14 1.36 | blu
+freccia: 1.25 0.56 0.14 -1.36 | ambra
+freccia: -0.14 -1.36 -1.25 0.56 | ambra
+freccia: -1.11 0.80 1.11 0.80 | ambra
+```
+
+::: prova Una permutazione ha tipo $(6, 4, 2)$. Che periodo ha, e che tipo ha il suo quadrato?
+Periodo $\mathrm{mcm}(6, 4, 2) = 12$. Al quadrato: il ciclo di 6 diventa due cicli di 3, quello di 4 due scambi, lo scambio sparisce. Tipo $(3, 3, 2, 2)$.
+:::
+
+> [!RICORDA]
+> - Tipo dai cicli disgiunti; periodo = mcm del tipo.
+> - Conteggi: un ciclo alla volta, e $k!$ per le lunghezze ripetute.
+> - Potenze ciclo per ciclo, con il mcd.
+
+## Verso l'esame
+
+- **Domande 5 e 6 del quiz**: in tutti gli appelli del 2025 e del 2026 sono sulle permutazioni. Decomposizione in cicli disgiunti (06/06/2025), tipo di una potenza (04/02/2025, 03/02/2026, 08/06/2026), esponenti ridotti con il periodo (06/06/2025, 13/01/2026, 03/02/2026), periodo che non può essere (08/06/2026).
+- **Problema sulle permutazioni**: cicli disgiunti, inversa, potenze con tipo e periodo, quante permutazioni hanno quel tipo (13/01/2026, 01/07/2026, 10/09/2026). La parità, che compare negli stessi esercizi, è la prossima lezione.
+- Il **binomio di Newton** negli appelli 2021–2026 non è mai uscito; serve per capire i coefficienti binomiali.
+- Appelli 2026/27: martedì 19/01/2027 e mercoledì 03/02/2027, alle 14:00, con libro e appunti.
+
+## Domande di ripasso
+
+::: domanda Perché i coefficienti di $(x + y)^n$ sono coefficienti binomiali?
+Perché il termine con $y^k$ nasce scegliendo la $y$ in $k$ fattori su $n$, e i modi sono $\binom{n}{k}$.
+:::
+
+::: domanda In $\sigma \circ \tau$, quale permutazione lavora per prima?
+$\tau$, quella a destra, come in ogni composizione di funzioni.
+:::
+
+::: domanda Come si scrive in cicli disgiunti un prodotto di cicli qualsiasi?
+Si segue un numero attraverso i cicli da destra a sinistra, poi il risultato, finché si torna all'inizio; poi si riparte da un numero non usato.
+:::
+
+::: domanda Come si calcola il periodo di una permutazione?
+Dai cicli disgiunti si legge il tipo, e il periodo è il minimo comune multiplo delle lunghezze.
+:::
+
+::: domanda Che tipo ha il cubo di un ciclo di lunghezza 6?
+$\mathrm{mcd}(6, 3) = 3$: tre cicli di lunghezza 2, cioè tipo $(2, 2, 2)$.
+:::
+
+## Quiz d'esame
+
+Le prime otto sono domande vere: le domande 5 e 6 dei quiz degli appelli 2025–2026, in versioni diverse da quelle che ci sono già nelle lezioni. L'ultima viene dal problema 1 del 14/01/2025. Il binomio di Newton non ha domande d'esame, quindi la domanda su di lui è sul modello degli esercizi del libro. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma.
+
+```quiz
+D: Appello del 06/06/2025, quiz versione 4, domanda 5. La decomposizione della permutazione $(2\ 5\ 3\ 7\ 6)(1\ 4)(1\ 2\ 7\ 5)$ in cicli disgiunti è:
+- $(1\ 5\ 4)(2\ 3)(7\ 6)$
+- $(1\ 4\ 5)(3\ 7)$
+- $(1\ 5\ 4)(2\ 6)$
++ $(1\ 5\ 4)(3\ 7)(2\ 6)$
+- $(1\ 4\ 5)(3\ 7\ 2\ 6)$
+= Da destra: l'1 va nel 2, poi resta, poi nel 5; il 5 va nell'1, poi nel 4; il 4 resta, va nell'1, poi resta. Poi $2 \mapsto 6 \mapsto 2$ e $3 \mapsto 7 \mapsto 3$. È la risposta 4 della soluzione ufficiale. La più insidiosa è $(1\ 4\ 5)(3\ 7)$: primo ciclo al contrario, e manca $(2\ 6)$.
+
+D: Appello del 13/01/2026, quiz versione 3, domanda 5. Una permutazione $\pi$ ha periodo 12. Quale delle seguenti relazioni è vera?
+- $\pi^{-1} = \pi^{13}$
+- $\pi^{-3} = \pi^{15}$
+- $\pi^{-3} = \pi^{3}$
+- $\pi^{-2} = \pi^{18}$
++ $\pi^{-2} = \pi^{22}$
+= $22 - (-2) = 24$, un multiplo di 12. È la risposta 5 della soluzione ufficiale. La più insidiosa è $\pi^{-1} = \pi^{13}$: in realtà $\pi^{13} = \pi$, mentre $\pi^{-1} = \pi^{11}$.
+
+D: Appello del 03/02/2026, quiz versione 2, domanda 5. Una permutazione $\pi$ ha tipo $(5, 4, 2)$. Allora il tipo di $\pi^{-2}$ è:
+- $(5, 4)$
+- $(5, 4, 2)$
+- $(4, 3, 2, 2)$
++ $(5, 2, 2)$
+- $(5, 2)$
+= $\pi^{-2}$ ha il tipo di $\pi^2$: il ciclo di lunghezza 5 resta, quello di lunghezza 4 diventa due scambi, lo scambio sparisce. È la risposta 4 della soluzione ufficiale. La più insidiosa è $(5, 2)$, di chi dimentica che il ciclo di 4 si spezza in **due** scambi.
+
+D: Appello del 03/02/2026, quiz versione 2, domanda 6. Una permutazione $\tau$ ha periodo 10. Allora:
++ $\tau^{-5} = \tau^{5}$
+- $\tau^{-1} = \tau^{11}$
+- $\tau^{-3} = \tau^{13}$
+- $\tau^{-4} = \tau^{4}$
+- $\tau^{-2} = \tau^{6}$
+= $5 - (-5) = 10$, il periodo. È la risposta 1 della soluzione ufficiale. La più insidiosa è $\tau^{-1} = \tau^{11}$: $\tau^{11} = \tau$, mentre $\tau^{-1} = \tau^9$.
+
+D: Appello del 04/02/2025, quiz versione 4, domanda 6. Sia $\pi \in S_9$ una permutazione di tipo $(4, 3, 2)$. Allora $\pi^2$ ha tipo:
+- $(4, 3)$
++ $(3, 2, 2)$
+- $(3, 2, 2, 2)$
+- $(2, 2)$
+- $(4, 3, 2)$
+= Al quadrato il ciclo di 4 diventa due scambi, quello di 3 resta, lo scambio sparisce. È la risposta 2 della soluzione ufficiale. La più insidiosa è $(3, 2, 2, 2)$, di chi tiene anche lo scambio di partenza.
+
+D: Appello del 08/06/2026, quiz versione 4, domanda 5. Sia $\tau$ una permutazione di tipo $(4, 3, 3, 2)$. Allora $\tau^3$ ha tipo:
+- $(3, 3)$
+- è un 4-ciclo
++ $(4, 2)$
+- $(2, 2, 2)$
+- $(4, 3, 3, 2)$
+= Al cubo i due cicli di lunghezza 3 spariscono, mentre 4 e 2 non hanno divisori comuni con 3 e restano interi. È la risposta 3 della soluzione ufficiale. La più insidiosa è «è un 4-ciclo», di chi fa sparire anche lo scambio.
+
+D: Appello del 08/06/2026, quiz versione 3, domanda 6. Sia $\sigma$ una permutazione tale che $\sigma^{14} = \sigma^{-6}$. Allora il periodo di $\sigma$ NON può essere:
+- 10
+- 5
++ 6
+- 2
+- 4
+= $\sigma^{14} = \sigma^{-6}$ vuol dire $\sigma^{20} = \mathrm{id}$, quindi il periodo divide 20. Il 6 non lo divide: è la risposta 3 della soluzione ufficiale. La più insidiosa è il 4, che non divide né 14 né 6 ma divide 20.
+
+D: Appello del 04/02/2025, quiz versione 2, domanda 5. Sia $\pi = (2\ 5)(1\ 3\ 6\ 7) \in S_7$. Allora $\pi^6(3)$ è:
+- 2
+- 1
++ 7
+- 6
+- 3
+= Il 3 sta in un ciclo di lunghezza 4 e $6 = 4 + 2$: contano 2 passi, $3 \mapsto 6 \mapsto 7$. È la risposta 3 della soluzione ufficiale. La più insidiosa è 6, che viene con un passo solo.
+
+D: Dal problema 1 dell'appello del 14/01/2025. Sia $\tau = \begin{pmatrix} 1 & 2 & 3 & 4 & 5 & 6 \\ 3 & 1 & 4 & 2 & 6 & 5 \end{pmatrix}$. Qual è la riga sotto della tabella di $\tau^{-1}$?
++ $2\ 4\ 1\ 3\ 6\ 5$
+- $3\ 1\ 4\ 2\ 6\ 5$
+- $4\ 2\ 1\ 3\ 5\ 6$
+- $2\ 4\ 1\ 3\ 5\ 6$
+- $5\ 6\ 2\ 4\ 1\ 3$
+= Girando le frecce: $\tau(2) = 1$, quindi $\tau^{-1}(1) = 2$; $\tau(4) = 2$, quindi $\tau^{-1}(2) = 4$; e così via. È la $\tau^{-1}$ della soluzione ufficiale. La più insidiosa è $2\ 4\ 1\ 3\ 5\ 6$, che sbaglia solo lo scambio di 5 e 6, che è l'inverso di sé stesso.
+
+D: Sul modello degli esercizi 3.16–3.19 del libro. Qual è il coefficiente di $x^3$ in $(2x - 3)^5$?
+N: 720
+= Il termine è $\binom{5}{3} (2x)^3 (-3)^2 = 10 \cdot 8 \cdot 9 \, x^3$: il $-3$ al quadrato è positivo.
+```
+
+## Fonti
+
+- Le lezioni complete: [D10 · Binomio di Newton e permutazioni](D10_binomio_newton_permutazioni.html), [D11 · Cicli e cicli disgiunti](D11_cicli_disgiunti.html), [D12 · Tipo e periodo di una permutazione](D12_tipo_periodo_permutazioni.html), con gli esempi, i quiz e gli esercizi.
+- A. Mori, *Lezioni di Matematica Discreta*, cap. 3, pp. 60–61; cap. 5, pp. 83–95 e 101–103.
+- Quiz degli appelli del 04/02/2025, 06/06/2025, 13/01/2026, 03/02/2026 e 08/06/2026 (domande 5 e 6); problema 1 dell'appello del 14/01/2025, con le soluzioni ufficiali.
 
 
 ---

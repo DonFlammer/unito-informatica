@@ -517,7 +517,7 @@ Tutte le risposte giuste qui sotto le ho ricontrollate con un programma.
 >
 > Nella versione 2, con $f(n) = -2n + 1$ e $g(n) = n + 4$, la giusta era $f \circ g(x + 1) = -2x - 9$.
 
-> [!ESAME] Tre funzioni: appello del 06/06/2026
+> [!ESAME] Tre funzioni: appello del 08/06/2026
 > $f(x) = 3x$, $g(x) = -x - 1$, $h(x) = x + 2$. Giusta: $(g \circ f \circ h)(x) = -3x - 7$. Si parte da $h$: $x + 2$; poi $f$: $3x + 6$; poi $g$: $-(3x + 6) - 1 = -3x - 7$. Le trappole erano tutte della forma $-3x + \text{qualcosa}$: cambiare l'ordine cambia solo il numero finale, quindi bisogna fare i conti per bene.
 
 > [!ESAME] Trovare una funzione dalla composta: appello del 07/07/2025
@@ -586,7 +586,7 @@ D: (Appello del 10/09/2026, versione 2) Siano $f, g \colon \Z \to \Z$ le funzion
 - $f \circ g \circ f(0) = 4$
 = $g(0) = 1$, $f(1) = 1$, $g(1) = 0$. La risposta più insidiosa è $f \circ f \circ g(0) = 2$: il valore giusto è $g(0) = 1$, $f(1) = 1$, $f(1) = 1$. Le altre: $g \circ f \circ f(0) = 4$, $g \circ g \circ f(0) = -1$, $f \circ g \circ f(0) = 3$.
 
-D: (Appello del 06/06/2026, versione 2) Siano $f(x) = x + 3$, $g(x) = -x + 1$ e $h(x) = 2x$. Allora
+D: (Appello del 08/06/2026, versione 2) Siano $f(x) = x + 3$, $g(x) = -x + 1$ e $h(x) = 2x$. Allora
 + $(h \circ f \circ g)(x) = -2x + 8$
 - $(g \circ f \circ h)(x) = -2x + 2$
 - $(f \circ h \circ g)(x) = -2x + 3$
@@ -695,7 +695,7 @@ Ogni volta si parte da destra e si guarda quale pezzo della formula usare.
 Conti controllati con un programma.
 :::
 
-::: esercizio medio Le versioni dell'appello del 06/06/2026
+::: esercizio medio Le versioni dell'appello del 08/06/2026
 Con $f(x) = x - 1$, $g(x) = -3x$ e $h(x) = x + 2$ (versione 3), calcola $(g \circ f \circ h)(x)$, $(h \circ f \circ g)(x)$, $(f \circ h \circ g)(x)$, $(f \circ g \circ h)(x)$ e $(g \circ h \circ f)(x)$. Quale vale $-3x - 7$?
 ::: soluzione
 1. $g \circ f \circ h$: $x + 2$, poi $x + 1$, poi $-3x - 3$.
@@ -827,7 +827,7 @@ Cancellazione | Una funzione biettiva si può togliere da tutte e due le parti d
 
 - A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 2 «Funzioni», pp. 23–29 (definizioni 2.13, 2.19, 2.21, proposizioni 2.14, 2.16, 2.17, 2.24, 2.25, corollario 2.18, teorema 2.20 con le dimostrazioni, note 2.15, 2.22, 2.23 e gli esempi delle pp. 24–27); esercizi 2.10, 2.11, 2.12, 2.14 e 2.15 (p. 36). Le definizioni e gli enunciati nei riquadri sono citati dal libro. Due refusi del libro sono segnalati nel testo: $\operatorname{id}_B$ al posto di $\operatorname{id}_{A \times B}$ a p. 27 e di $\operatorname{id}_A$ a p. 29.
 - Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 5 (composizione di funzioni e sue proprietà, composizione e iniettività o suriettività, funzioni invertibili). Gli argomenti della lezione del 12/10/2026 non erano ancora pubblicati sul Moodle del canale B quando ho scritto questi appunti.
-- Quiz degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): domanda 3 degli appelli del 04/02/2025, 06/06/2025, 07/07/2025, 13/01/2026, 03/02/2026, 06/06/2026 e 10/09/2026 (tutte le versioni, risposte ricontrollate con un programma), e la domanda sulla funzione inversa di un quiz degli anni 2021–2025.
+- Quiz degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): domanda 3 degli appelli del 04/02/2025, 06/06/2025, 07/07/2025, 13/01/2026, 03/02/2026, 08/06/2026 e 10/09/2026 (tutte le versioni, risposte ricontrollate con un programma), e la domanda sulla funzione inversa di un quiz degli anni 2021–2025.
 - Programma del corso: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md), voce «Relazioni e funzioni».
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): un riepilogo già pronto, non ufficiale.
 - Le spiegazioni a parole, la mensa con la cassa e le tessere, gli uffici dei pacchi, le calze e le scarpe, i riquadri «Prova tu», i quiz senza data, gli esercizi di riscaldamento e gli esercizi sulle versioni d'esame sono di questi appunti.

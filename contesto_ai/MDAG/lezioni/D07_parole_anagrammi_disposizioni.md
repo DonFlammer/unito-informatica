@@ -326,7 +326,7 @@ Tutte le risposte giuste le ho ricontrollate con un programma.
 > [!ESAME] Le palline: appello del 03/02/2026
 > «Da una scatola che contiene palline bianche e nere ne vengono estratte, in successione, 12. Quante sono le estrazioni che iniziano con 3 palline bianche?» Risposte: $\frac{12!}{3!}$; $9^2$; $9!$; $\frac{12!}{9!}$; $2^9$. Giusta: $2^9$. Le prime 3 sono fissate, e per le altre 9 ci sono 2 colori ciascuna. La trappola è $9^2$, con base ed esponente scambiati.
 
-> [!ESAME] Le parole: appello del 06/06/2026
+> [!ESAME] Le parole: appello del 08/06/2026
 > «Quante parole di lunghezza 6 si possono formare con un alfabeto di 15 simboli?» Risposte: $6! \cdot 15!$; $6 \cdot 15$; $\frac{15!}{6!}$; $15^6$; $6^{15}$. Giusta: $15^6$. Nell'altra versione, lunghezza 4 e 16 simboli: $16^4$.
 
 > [!ESAME] La griglia di palline: quiz 2021–2025
@@ -354,7 +354,7 @@ Tutte le risposte giuste le ho ricontrollate con un programma.
 ## Quiz
 
 ```quiz
-D: Appello del 06/06/2026, domanda 4. Quante parole di lunghezza 4 si possono formare con un alfabeto di 16 simboli?
+D: Appello del 08/06/2026, domanda 4. Quante parole di lunghezza 4 si possono formare con un alfabeto di 16 simboli?
 - $4! \cdot 16!$
 - $4 \cdot 16$
 - $\frac{16!}{4!}$
@@ -533,6 +533,6 @@ Combinazione semplice | Un sottoinsieme di k elementi: l'ordine non conta.
 
 - A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 3 «Combinatorica», pp. 48–55 (Proposizione 3.16, Nota 3.17, definizioni 3.18, 3.19, 3.21, 3.23, 3.25, 3.27, proposizioni 3.20, 3.22, 3.24, 3.26, esempi delle pp. 49–55); esercizi 3.8 e 3.9 (pp. 64–65). Le definizioni e gli enunciati nei riquadri riprendono il libro. Segnalato nel testo il risultato dell'esempio delle targhe a p. 50.
 - Diario delle lezioni del canale B 2026/27 (Mori), lezione del 16/10/2026: «Alfabeti, parole ed anagrammi. Disposizioni semplici e con ripetizione: formule ed esempi. Combinazioni semplici: enunciato del problema».
-- Quiz di Matematica Discreta, domanda 4: appelli del 14/01/2025, 07/07/2025, 03/02/2026, 06/06/2026, 01/07/2026, e quiz 2021–2025; problemi: appello del 03/02/2026 (problema 1), Problemi 2023/24 (problema 1), «17 riepilogo» e «19 riepilogo» degli anni precedenti al 2021, con le soluzioni ufficiali.
+- Quiz di Matematica Discreta, domanda 4: appelli del 14/01/2025, 07/07/2025, 03/02/2026, 08/06/2026, 01/07/2026, e quiz 2021–2025; problemi: appello del 03/02/2026 (problema 1), Problemi 2023/24 (problema 1), «17 riepilogo» e «19 riepilogo» degli anni precedenti al 2021, con le soluzioni ufficiali.
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): un riepilogo già pronto, non ufficiale.
 - Tutti i conteggi, degli esempi, degli esercizi e delle domande d'esame, li ho ricontrollati con un programma.

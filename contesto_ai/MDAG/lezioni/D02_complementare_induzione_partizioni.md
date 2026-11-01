@@ -383,7 +383,7 @@ Per esempio $2\Z$ sono gli interi moltiplicati per 2, cioè i pari: $\dots, -4, 
 
 $$\Z = (2\Z) \cup (2\Z + 1).$$
 
-In generale $n\Z$ sono i multipli di $n$: $3\Z$ sono i multipli di 3. Questa scrittura compare nella domanda 1 dell'appello del 06/06/2026.
+In generale $n\Z$ sono i multipli di $n$: $3\Z$ sono i multipli di 3. Questa scrittura compare nella domanda 1 dell'appello del 08/06/2026.
 
 ::: prova Le parti $\{a, b\}$, $\{b, c\}$ e $\{d\}$ sono un ricoprimento di $\{a, b, c, d\}$?
 Sì: messe insieme danno $\{a, b, c, d\}$. Che la $b$ stia in due parti non importa.
@@ -732,7 +732,7 @@ Dettagli e fonti nella [scheda del corso](https://github.com/DonFlammer/unito-in
 
 **Che cosa serve di questa lezione**
 
-1. **Domanda 1 del quiz: unione e intersezione.** È la domanda sugli insiemi che apre quasi ogni appello. Con due insiemi: 14/01/2025, 04/02/2025 e 03/02/2026. Con tre insiemi: 06/06/2025. Con un insieme in più da intersecare, «quale è un sottoinsieme di $(A \cup B) \cap X$?»: 01/07/2026. Con i multipli, $n\Z$: 06/06/2026. Le risposte sbagliate confondono quasi sempre $\in$ e $\subset$.
+1. **Domanda 1 del quiz: unione e intersezione.** È la domanda sugli insiemi che apre quasi ogni appello. Con due insiemi: 14/01/2025, 04/02/2025 e 03/02/2026. Con tre insiemi: 06/06/2025. Con un insieme in più da intersecare, «quale è un sottoinsieme di $(A \cup B) \cap X$?»: 01/07/2026. Con i multipli, $n\Z$: 08/06/2026. Le risposte sbagliate confondono quasi sempre $\in$ e $\subset$.
 2. **Domanda 2 del quiz: partizioni e ricoprimenti.** «Quale di queste è una partizione?» nella prova del 10/07/2023 e nell'appello del 04/02/2025. «Quale è un ricoprimento ma non una partizione?» nell'appello del 07/07/2025. Si risolvono con il metodo dei tre controlli.
 3. **Il complementare per contare.** Nei problemi di combinatoria, «almeno uno» si conta spesso come «tutti meno nessuno»: è il complementare. Lo usa la soluzione ufficiale dell'appello dell'08/09/2025, problema 2, punto (b). La combinatoria arriva più avanti nel corso.
 4. **Induzione e assiomi di Peano.** Negli appelli di Matematica Discreta dal 2021 al 2026 non ho trovato domande che chiedano una dimostrazione per induzione. Il principio di induzione è invece tra gli argomenti dei quiz di Fondamenti dell'Informatica.
@@ -803,7 +803,7 @@ D: (Appello del 06/06/2025, domanda 1) Siano $A = \{3, 4, 7, 9\}$, $B = \{1, 3, 
 + $A \cap B \cap C \neq \emptyset$
 = Calcola un pezzo alla volta. $A \cap B = \{3, 9\}$, e di questi sta in $C$ solo il 9, quindi $A \cap B \cap C = \{9\}$, che non è vuoto: la risposta giusta è l'ultima. Il 4 non sta in $B$, quindi non sta nell'intersezione dei tre. $A \subset B \cup C$ è falsa per il 7, che non sta né in $B$ né in $C$. $B \cap C = \{5, 8, 9\}$ non è contenuto in $A$, perché 5 e 8 non stanno in $A$. La più tentatrice è $A \cap B \subset C$: il 9 sta in $C$, ma il 3 no.
 
-D: (Appello del 06/06/2026, domanda 1) Ricordando che $n\Z = \{nk \mid k \in \Z\}$, dire quale delle seguenti affermazioni è vera.
+D: (Appello del 08/06/2026, domanda 1) Ricordando che $n\Z = \{nk \mid k \in \Z\}$, dire quale delle seguenti affermazioni è vera.
 - $7 \in 3\Z \cup 5\Z$
 - $\{12, 20\} \subset 3\Z \cap 4\Z$
 - $4\Z \cap 5\Z = \emptyset$
@@ -1076,7 +1076,7 @@ Rappresentante | Un elemento qualunque di una parte; la parte si scrive $[x]$, �
 
 - A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 1 «Insiemi», pp. 5–13 (assiomi di Peano, teorema 1.10 ed esempi di p. 7, definizioni 1.13, 1.14, 1.16, 1.17, 1.19, 1.21 e 1.22, proposizione 1.15, teorema 1.18, nota 1.20) ed esercizi 1.4–1.7, 1.9, 1.11, 1.12, 1.14–1.16 (pp. 14–15). Le definizioni e gli enunciati nei riquadri sono citati dal libro. I due refusi degli esempi di ricoprimento (p. 11 e p. 12) sono segnalati nel riquadro sui ricoprimenti.
 - Argomenti della lezione del 02/10/2026 sul Moodle del canale B: complementare di un sottoinsieme, leggi di De Morgan, i naturali e gli assiomi di Peano, il principio di induzione come metodo dimostrativo, l'insieme delle parti e la sua cardinalità, ricoprimenti e partizioni.
-- Quiz e problemi degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti) e nella raccolta dei quiz 2021–2025: prova del 10/07/2023 (domanda 2); appelli del 14/01/2025, 04/02/2025 (domande 1 e 2), 06/06/2025 (domanda 1), 07/07/2025 (domanda 2), 08/09/2025 (problema 2), 03/02/2026, 06/06/2026 e 01/07/2026 (domanda 1).
+- Quiz e problemi degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti) e nella raccolta dei quiz 2021–2025: prova del 10/07/2023 (domanda 2); appelli del 14/01/2025, 04/02/2025 (domande 1 e 2), 06/06/2025 (domanda 1), 07/07/2025 (domanda 2), 08/09/2025 (problema 2), 03/02/2026, 08/06/2026 e 01/07/2026 (domanda 1).
 - Calendario degli appelli 2026/27 e regole d'esame: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md).
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): un riepilogo già pronto, non ufficiale.
 - Le spiegazioni a parole, gli esempi con le tessere, i riquadri «Ripasso» e «Prova tu», i quiz senza data e gli esercizi senza il numero del libro sono di questi appunti.

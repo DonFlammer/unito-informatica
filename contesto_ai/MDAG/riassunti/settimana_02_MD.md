@@ -205,7 +205,7 @@ D: Appello del 03/02/2026, domanda 2. Siano $P = \{1, 3, 4, 7, 8\}$ e $Q = \{2, 
 - $\{(4, 6), (1, 9), (7, 5)\}$
 = Nella coppia $(6, 7)$ il 6 non sta in $P$ e il 7 non sta in $Q$: basta una coppia sbagliata. La risposta più insidiosa è $\emptyset$: il vuoto è un sottoinsieme di ogni insieme, quindi va bene. $(3, 3)$ va bene perché 3 sta in tutti e due.
 
-D: Appello del 06/06/2026, domanda 2. Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora:
+D: Appello del 08/06/2026, domanda 2. Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora:
 - $(6, \rho) \in X \times Y$
 + $(\omega, 4) \notin X \times Y$
 - $\emptyset \in X \times Y$

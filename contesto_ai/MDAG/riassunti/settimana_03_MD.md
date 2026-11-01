@@ -243,7 +243,7 @@ D: Appello del 03/02/2026, domanda 3, versione 3. Siano $f, g \colon \Z \to \Z$ 
 - $g \circ f(-x) = -4x + 11$
 = $g(-x) = x + 3$, poi $f(x + 3) = 4x + 12 - 1 = 4x + 11$. La risposta più insidiosa è $f \circ g(x + 1) = 4x + 7$: il valore vero è $f(-x + 2) = -4x + 7$, con il segno cambiato. Gli altri valori veri sono $-4x + 15$, $-8x + 4$ e $4x + 4$.
 
-D: Appello del 06/06/2026, domanda 3, versione 2. Siano $f(x) = x + 3$, $g(x) = -x + 1$ e $h(x) = 2x$. Allora:
+D: Appello del 08/06/2026, domanda 3, versione 2. Siano $f(x) = x + 3$, $g(x) = -x + 1$ e $h(x) = 2x$. Allora:
 - $(g \circ f \circ h)(x) = -2x + 2$
 + $(h \circ f \circ g)(x) = -2x + 8$
 - $(f \circ h \circ g)(x) = -2x + 3$

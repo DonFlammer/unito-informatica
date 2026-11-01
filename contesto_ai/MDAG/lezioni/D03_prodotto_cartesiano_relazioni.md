@@ -688,7 +688,7 @@ Dettagli e fonti nella [scheda del corso](https://github.com/DonFlammer/unito-in
 
 **Che cosa serve di questa lezione**
 
-1. **Domanda 2 del quiz: il prodotto cartesiano.** È una delle domande più regolari: nei quiz degli appelli del 14/01/2025 (in quale prodotto sta una terna), 07/07/2025 (domanda 1), 13/01/2026, 03/02/2026 (quale insieme non è un sottoinsieme di $P \times Q$), 06/06/2026 e 01/07/2026. Si risolve con il metodo della sezione «Elemento, coppia o sacchetto di coppie». Sono punti sicuri, se non ti fai ingannare dalle graffe e dall'ordine dei fattori.
+1. **Domanda 2 del quiz: il prodotto cartesiano.** È una delle domande più regolari: nei quiz degli appelli del 14/01/2025 (in quale prodotto sta una terna), 07/07/2025 (domanda 1), 13/01/2026, 03/02/2026 (quale insieme non è un sottoinsieme di $P \times Q$), 08/06/2026 e 01/07/2026. Si risolve con il metodo della sezione «Elemento, coppia o sacchetto di coppie». Sono punti sicuri, se non ti fai ingannare dalle graffe e dall'ordine dei fattori.
 2. **Relazioni di equivalenza.** Negli appelli dal 2021 al 2026 non ho trovato domande che chiedano direttamente le proprietà di una relazione. Ma le classi di equivalenza della congruenza modulo $N$ sono le **classi di resto**, che sono in ogni appello: inversi in $\Z_n$, congruenze lineari, gruppi $\Z_n$. Capire adesso che $[4] = [1]$ modulo 3 rende molto più facile la seconda metà del corso.
 3. **Il conto $|A \times B| = |A| \cdot |B|$** è la base della combinatoria, che occupa una domanda o due del quiz in ogni appello.
 
@@ -751,7 +751,7 @@ D: (Appello del 03/02/2026, domanda 2) Siano $P = \{1, 3, 4, 7, 8\}$ e $Q = \{2,
 - $\{(4, 6), (1, 9), (7, 5)\}$
 = La coppia $(6, 7)$ non sta in $P \times Q$: 6 non sta in $P$. Basta una coppia fuori perché il sacchetto non sia un sottoinsieme. In tutte le altre risposte ogni coppia ha il primo pezzo in $P$ e il secondo in $Q$. La più tentatrice è $\emptyset$: sembra un intruso, ma il vuoto è un sottoinsieme di qualunque insieme.
 
-D: (Appello del 06/06/2026, domanda 2) Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora
+D: (Appello del 08/06/2026, domanda 2) Siano $X = \{\beta, \delta, \rho, \omega\}$ e $Y = \{2, 3, 6, 8, 9\}$. Allora
 - $(6, \rho) \in X \times Y$
 + $(\omega, 4) \notin X \times Y$
 - $\emptyset \in X \times Y$
@@ -1030,7 +1030,7 @@ Insieme quoziente | L'insieme delle classi di un'equivalenza, $X/\!\sim$. Modulo
 
 - A. Mori, *Lezioni di Matematica Discreta*, 2ª edizione, testo del canale B: capitolo 1 «Insiemi», pp. 13–14 (definizione 1.23, proposizione 1.24 con la dimostrazione, prodotto di $n$ insiemi, piano cartesiano), esercizi 1.13 e 1.17 (pp. 15); appendice A «Gli insiemi numerici», pp. 153–155 (definizione A.1 ed esempi, le quattro proprietà, nota 1 sulla divisibilità negli interi, definizione A.2, la relazione $M_N$, classi di equivalenza, teorema A.3 con la dimostrazione). Le definizioni e gli enunciati nei riquadri sono citati dal libro. Le tabelle con i pallini riprendono quelle di p. 18.
 - Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori): lezione 2 (prodotto cartesiano) e lezione 3 (relazioni, relazioni di equivalenza e partizioni). Gli argomenti della lezione del 05/10/2026 non erano ancora pubblicati sul Moodle del canale B quando ho scritto questi appunti.
-- Quiz degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): appelli del 14/01/2025 (domanda 2), 07/07/2025 (domanda 1), 13/01/2026, 03/02/2026, 06/06/2026 e 01/07/2026 (domanda 2), prima versione di ogni quiz.
+- Quiz degli appelli di Matematica Discreta, con le soluzioni ufficiali, sulla pagina Moodle MDAG1 2025/26 ([id 3501](https://informatica.i-learn.unito.it/course/view.php?id=3501), aperta agli ospiti): appelli del 14/01/2025 (domanda 2), 07/07/2025 (domanda 1), 13/01/2026, 03/02/2026, 08/06/2026 e 01/07/2026 (domanda 2), prima versione di ogni quiz.
 - Programma del corso: [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md), voce «Relazioni e funzioni».
 - V. Bocchino, *Rigurgiti di Unicorno*, appunti di Matematica Discreta scritti da uno studente sul libro di Mori (licenza CC BY-NC-SA 4.0, [GitHub](https://github.com/bocchinovalentino/rigurgiti_di_unicorno)): sezioni 2.6 e 2.7 su prodotto cartesiano e relazioni, un riepilogo già pronto, non ufficiale.
 - Le spiegazioni a parole, gli esempi della battaglia navale e dei mesi di nascita, i riquadri «Prova tu», i quiz senza data e gli esercizi senza il numero del libro sono di questi appunti.

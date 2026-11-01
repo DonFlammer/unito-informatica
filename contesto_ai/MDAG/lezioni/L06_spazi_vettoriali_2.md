@@ -9,11 +9,11 @@ sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C ·
 descrizione: >-
   Appunti della lezione L06 di Algebra lineare e Geometria (MDAG, parte 2): lo spazio delle matrici, i sottospazi
   vettoriali, le matrici diagonali, triangolari, simmetriche e antisimmetriche, le combinazioni lineari e il
-  sottospazio generato (Span), con quiz nello stile dell'esame ed esercizi svolti.
+  sottospazio generato (Span), con domande vere degli appelli, quiz ed esercizi svolti.
 lede: >-
-  Dentro uno spazio vettoriale ci sono spazi più piccoli, come stanze dentro una casa: i sottospazi. Qui impari a
-  riconoscerli con tre controlli, a fare i conti con le tabelle di numeri chiamate matrici e a costruire sottospazi
-  mescolando alcuni vettori come gli ingredienti di una ricetta. La domanda «è un sottospazio?» esce quasi a ogni appello.
+  Le matrici come spazio vettoriale, i sottospazi e i tre controlli per riconoscerli, le matrici diagonali,
+  triangolari, simmetriche e antisimmetriche, le combinazioni lineari e lo Span. La domanda «è un sottospazio?» esce
+  quasi a ogni appello.
 materiale: dispense
 scheda:
   Dispense: lezione 6 · pp. 26–30
@@ -33,11 +33,11 @@ genera_html: true
 - Nel piano, una retta che passa per l'origine è un sottospazio; una retta che non ci passa no.
 - Tra le matrici quadrate ci sono cinque sottospazi da conoscere: le **diagonali**, le **triangolari superiori**, le **triangolari inferiori**, le **simmetriche** e le **antisimmetriche**.
 - Per dire che un insieme **non** è un sottospazio basta un esempio che non funziona. Il controllo più veloce: manca lo zero.
-- Una **combinazione lineare** è una ricetta: alcuni vettori, ciascuno moltiplicato per un numero, poi sommati. Lo **Span** di alcuni vettori è tutto quello che si ottiene con tutte le ricette possibili, ed è sempre un sottospazio.
+- Una **combinazione lineare** di alcuni vettori si ottiene moltiplicando ciascuno per un numero, il suo coefficiente, e sommando. Lo **Span** di alcuni vettori è l'insieme di tutte le loro combinazioni lineari, ed è sempre un sottospazio.
 - All'esame «quale di questi insiemi è (o non è) un sottospazio?» esce quasi a ogni appello: 08/02/2024, 03/06/2025, 05/02/2026, 07/09/2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di giovedì 15/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 15/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 6. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Tabelle di numeri: le matrici (p. 26)
 
@@ -95,7 +95,7 @@ $a_{12}$ è nella riga 1 e nella colonna 2: vale $-1$. $a_{21}$ è nella riga 2 
 
 ### Somma e moltiplicazione per un numero
 
-Il negozio ha due negozi uguali. Le vendite totali si ottengono sommando le due tabelle **casella per casella**: il pane di lunedì del primo negozio più il pane di lunedì del secondo, e così via. Se le vendite raddoppiano, si moltiplica **ogni casella** per 2.
+Se un secondo negozio ha una tabella con la stessa forma, le vendite totali si ottengono sommando le due tabelle **casella per casella**: il pane di lunedì del primo negozio più il pane di lunedì del secondo, e così via. Se le vendite raddoppiano, si moltiplica **ogni casella** per 2.
 
 > [!ESEMPIO] · somma e multiplo di matrici
 > $$\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix} + \begin{pmatrix} 0 & -1 & 2 \\ 1 & 1 & -3 \end{pmatrix} = \begin{pmatrix} 1 + 0 & 2 - 1 & 3 + 2 \\ 4 + 1 & 5 + 1 & 6 - 3 \end{pmatrix} = \begin{pmatrix} 1 & 1 & 5 \\ 5 & 6 & 3 \end{pmatrix},$$
@@ -132,9 +132,9 @@ Prima il multiplo: $3\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} = \begin{pmatr
 > - Si sommano e si moltiplicano per un numero casella per casella, solo con la stessa forma.
 > - Le matrici $m \times n$ formano lo spazio vettoriale $M(m, n, \K)$.
 
-## Stanze da cui non si esce: i sottospazi (pp. 26–27)
+## I sottospazi (pp. 26–27)
 
-Immagina lo spazio vettoriale come una casa. Dentro ci sono delle stanze speciali: in una stanza così, se prendi due vettori e li sommi, resti nella stanza; se prendi un vettore e lo moltiplichi per un numero, resti nella stanza. Una stanza così si chiama **sottospazio**.
+Dentro uno spazio vettoriale ci sono parti da cui somme e multipli non fanno uscire: se due vettori stanno nella parte ci sta anche la loro somma, e se un vettore ci sta ci stanno anche tutti i suoi multipli. Una parte così si chiama **sottospazio**.
 
 ### Una retta che funziona
 
@@ -144,7 +144,7 @@ Guarda nel piano la retta dei punti con la seconda coordinata doppia della prima
 2. Sommo due suoi punti: $(1, 2) + (-3, -6) = (-2, -4)$. Anche qui la seconda coordinata è il doppio della prima: resto sulla retta.
 3. Moltiplico un suo punto per un numero: $5 \cdot (1, 2) = (5, 10)$. Resto sulla retta.
 
-Con somme e moltiplicazioni per un numero non si esce mai dalla retta. È una stanza.
+Con somme e moltiplicazioni per un numero non si esce mai dalla retta: è un sottospazio.
 
 ### Una retta che non funziona
 
@@ -179,19 +179,19 @@ Le dispense mettono in fila i tre controlli che hai appena fatto.
 
 **Come si legge.**
 
-- $V$ è la casa: uno spazio vettoriale che conosci già. $W$ è la stanza: una parte dei vettori di $V$. Il simbolo $W \subset V$ si legge «$W$ è contenuto in $V$».
+- $V$ è uno spazio vettoriale che conosci già, $W$ una parte dei suoi vettori. Il simbolo $W \subset V$ si legge «$W$ è contenuto in $V$».
 - **Controllo 1**: lo zero di $V$ sta in $W$. Il simbolo $\in$ si legge «appartiene a». È il controllo più veloce.
 - **Controllo 2**: se $v$ e $v'$ («v primo», un altro vettore) stanno in $W$, anche la loro somma sta in $W$. In questo caso $W$ si chiama **chiuso rispetto alla somma**.
 - **Controllo 3**: se $v$ sta in $W$ e $\lambda$ è un numero **qualsiasi** (anche negativo o zero), anche $\lambda v$ sta in $W$. In questo caso $W$ si chiama **chiuso rispetto alla moltiplicazione per un numero**.
 
-Un sottospazio è a sua volta uno spazio vettoriale, con le stesse operazioni della casa. Il motivo, con i dettagli che le dispense lasciano sottintesi:
+Un sottospazio è a sua volta uno spazio vettoriale, con le stesse operazioni di $V$. Il motivo, con i dettagli che le dispense lasciano sottintesi:
 
 1. le operazioni non fanno uscire da $W$, per i controlli 2 e 3;
 2. le regole di calcolo della lezione L05 valgono per tutti i vettori di $V$, quindi anche per quelli di $W$;
 3. lo zero sta in $W$, per il controllo 1;
 4. l'opposto di un vettore $v$ di $W$ sta in $W$: l'opposto è $(-1)v$ (lezione L05, esercizio 11 (b)), che sta in $W$ per il controllo 3.
 
-### La stanza vuota e la casa intera (p. 27)
+### Il sottospazio banale e quello totale (p. 27)
 
 Ogni spazio vettoriale $V$ ha sempre due sottospazi:
 
@@ -217,6 +217,28 @@ Un esempio già incontrato: i polinomi di grado al massimo $k$, $\K_k[x]$, dentr
 > - **Il primo quadrante**, cioè i punti con le due coordinate positive o zero: contiene l'origine, e la somma di due suoi punti ci resta. Ma $(-1) \cdot (1, 1) = (-1, -1)$ esce. Fallisce il controllo 3.
 > - **I due assi messi insieme**, cioè i punti con $xy = 0$: contiene l'origine, e i multipli di un punto di un asse restano su quell'asse. Ma $(1, 0) + (0, 1) = (1, 1)$ esce, perché $1 \cdot 1$ non è 0. Fallisce il controllo 2.
 
+```grafico
+titolo: Il primo quadrante contiene l'origine e le somme dei suoi punti, ma non i multipli negativi: $(1, 1)$ ci sta, $-1 \cdot (1, 1) = (-1, -1)$ no
+x: -2.5 3
+y: -2.5 3
+poligono: 0 0 3 0 3 3 0 3 | ambra | tenue
+vettore: 1 1 | accento | spesso | $(1, 1)$ | ne
+vettore: -1 -1 | rosa | spesso | $(-1, -1)$ | so
+```
+
+```grafico
+titolo: I due assi messi insieme (in blu) contengono $(1, 0)$ e $(0, 1)$, ma non la loro somma $(1, 1)$
+x: -1.3 2.2
+y: -1.3 2.2
+segmento: -1.3 0 2.2 0 | blu | spesso
+segmento: 0 -1.3 0 2.2 | blu | spesso
+segmento: 1 0 1 1 | grigio | tratteggio
+segmento: 0 1 1 1 | grigio | tratteggio
+vettore: 1 0 | accento | spesso | $(1, 0)$ | se
+vettore: 0 1 | accento | spesso | $(0, 1)$ | no
+punto: 1 1 | rosa | $(1, 1)$ | ne
+```
+
 > [!TRAPPOLA] Un solo controllo non basta
 > Il primo quadrante supera il controllo della somma ma non quello dei multipli. I due assi superano quello dei multipli ma non quello della somma. Per dire **sì** servono tutti e tre i controlli. Per dire **no** ne basta uno che fallisce, con un esempio concreto.
 
@@ -238,7 +260,7 @@ $x = 3y$: sì. È una retta per l'origine. L'origine c'è; sommando due punti co
 
 ## Matrici con una forma speciale (pp. 27–28)
 
-Dentro lo spazio delle matrici ci sono tante stanze. Si ottengono chiedendo che certe caselle siano zero, o che certe caselle siano uguali. Le più importanti riguardano le matrici **quadrate**, quelle con tante righe quante colonne.
+Dentro lo spazio delle matrici ci sono molti sottospazi. Si ottengono chiedendo che certe caselle siano zero, o che certe caselle siano uguali. Le più importanti riguardano le matrici **quadrate**, quelle con tante righe quante colonne.
 
 ### La diagonale principale
 
@@ -279,6 +301,65 @@ La forma di ciascuna classe per le matrici $3 \times 3$. Le lettere sono numeri 
 | diagonale | triangolare superiore | triangolare inferiore | simmetrica | antisimmetrica |
 |---|---|---|---|---|
 | $\begin{pmatrix} a & 0 & 0 \\ 0 & b & 0 \\ 0 & 0 & c \end{pmatrix}$ | $\begin{pmatrix} a & b & c \\ 0 & d & e \\ 0 & 0 & f \end{pmatrix}$ | $\begin{pmatrix} a & 0 & 0 \\ b & c & 0 \\ d & e & f \end{pmatrix}$ | $\begin{pmatrix} a & b & c \\ b & d & e \\ c & e & f \end{pmatrix}$ | $\begin{pmatrix} 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \end{pmatrix}$ |
+
+```grafico
+titolo: Tre forme di matrici $3 \times 3$. Diagonale: fuori dalla diagonale solo zeri. Triangolare superiore: zeri sotto la diagonale, numeri qualsiasi nella parte colorata. Simmetrica: ogni casella è uguale alla sua immagine allo specchio rispetto alla diagonale (tratteggio)
+proporzioni: libere
+assi: no
+griglia: no
+x: -0.3 11.3
+y: -1 3.3
+poligono: 0 2 1 2 1 3 0 3 | ambra | pieno
+poligono: 1 1 2 1 2 2 1 2 | ambra | pieno
+poligono: 2 0 3 0 3 1 2 1 | ambra | pieno
+poligono: 4 3 7 3 7 0 6 0 6 1 5 1 5 2 4 2 | blu | pieno
+segmento: 0 0 3 0 | grigio | sottile
+segmento: 0 0 0 3 | grigio | sottile
+segmento: 0 1 3 1 | grigio | sottile
+segmento: 1 0 1 3 | grigio | sottile
+segmento: 0 2 3 2 | grigio | sottile
+segmento: 2 0 2 3 | grigio | sottile
+segmento: 0 3 3 3 | grigio | sottile
+segmento: 3 0 3 3 | grigio | sottile
+segmento: 4 0 7 0 | grigio | sottile
+segmento: 4 0 4 3 | grigio | sottile
+segmento: 4 1 7 1 | grigio | sottile
+segmento: 5 0 5 3 | grigio | sottile
+segmento: 4 2 7 2 | grigio | sottile
+segmento: 6 0 6 3 | grigio | sottile
+segmento: 4 3 7 3 | grigio | sottile
+segmento: 7 0 7 3 | grigio | sottile
+segmento: 8 0 11 0 | grigio | sottile
+segmento: 8 0 8 3 | grigio | sottile
+segmento: 8 1 11 1 | grigio | sottile
+segmento: 9 0 9 3 | grigio | sottile
+segmento: 8 2 11 2 | grigio | sottile
+segmento: 10 0 10 3 | grigio | sottile
+segmento: 8 3 11 3 | grigio | sottile
+segmento: 11 0 11 3 | grigio | sottile
+testo: 1.5 2.5 | grigio | "0"
+testo: 2.5 2.5 | grigio | "0"
+testo: 0.5 1.5 | grigio | "0"
+testo: 4.5 1.5 | grigio | "0"
+testo: 2.5 1.5 | grigio | "0"
+testo: 0.5 0.5 | grigio | "0"
+testo: 4.5 0.5 | grigio | "0"
+testo: 1.5 0.5 | grigio | "0"
+testo: 5.5 0.5 | grigio | "0"
+testo: 8.5 2.5 | accento | "a"
+testo: 9.5 1.5 | accento | "d"
+testo: 10.5 0.5 | accento | "f"
+testo: 9.5 2.5 | accento | "b"
+testo: 8.5 1.5 | accento | "b"
+testo: 10.5 2.5 | blu | "c"
+testo: 8.5 0.5 | blu | "c"
+testo: 10.5 1.5 | ambra | "e"
+testo: 9.5 0.5 | ambra | "e"
+segmento: 8 3 11 0 | grigio | tratteggio
+testo: 1.5 -0.6 | grigio | "diagonale"
+testo: 5.5 -0.6 | grigio | "triangolare superiore"
+testo: 9.5 -0.6 | grigio | "simmetrica"
+```
 
 > [!ESEMPIO] 6.4 · Una matrice per ogni classe
 > Le matrici seguenti sono, nell'ordine, diagonale, triangolare superiore, triangolare inferiore, simmetrica e antisimmetrica:
@@ -324,7 +405,7 @@ Le dispense dicono che succede sempre.
 > [!PROP] 6.5
 > I sottoinsiemi $D(n)$, $T^s(n)$, $T^i(n)$, $S(n)$, $A(n)$ sono tutti sottospazi vettoriali di $M(n)$.
 
-**Come si legge.** Ognuna delle cinque classi è una stanza dentro lo spazio delle matrici quadrate: la matrice nulla ci sta, e sommando o moltiplicando per un numero matrici della classe si resta nella classe.
+**Come si legge.** Ognuna delle cinque classi è un sottospazio dello spazio delle matrici quadrate: la matrice nulla ci sta, e sommando o moltiplicando per un numero matrici della classe si resta nella classe.
 
 La spiegazione delle dispense: per ciascuna classe la matrice nulla ne fa parte, e la somma e la moltiplicazione per un numero conservano la proprietà che la definisce. Eccola per esteso.
 
@@ -358,11 +439,11 @@ Sì. $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} -1 & 0 \\ 0
 > - Simmetrica: uguale allo specchio sulla diagonale. Antisimmetrica: opposta allo specchio, con la diagonale di zeri.
 > - Le cinque classi sono sottospazi; «triangolari» tutte insieme no.
 
-## Ricette con i vettori: combinazioni lineari (p. 28)
+## Le combinazioni lineari (p. 28)
 
-In cucina una ricetta dice quanto prendere di ogni ingrediente: «2 parti di farina e 3 parti di zucchero». Con i vettori si fa lo stesso: si prendono alcuni vettori, si moltiplica ciascuno per un numero, e si sommano i risultati.
+Con le due operazioni di uno spazio vettoriale si costruiscono vettori nuovi a partire da alcuni vettori dati: si moltiplica ciascuno per un numero e si sommano i risultati.
 
-Un esempio nello spazio a tre coordinate. Gli ingredienti sono $(1, 0, 1)$ e $(0, 1, 1)$; la ricetta è «2 volte il primo, meno 1 volta il secondo»:
+Un esempio nello spazio a tre coordinate, con i vettori $(1, 0, 1)$ e $(0, 1, 1)$: due volte il primo, meno una volta il secondo.
 
 $$2\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} - \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 - 0 \\ 0 - 1 \\ 2 - 1 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}.$$
 
@@ -375,28 +456,40 @@ Il risultato si chiama **combinazione lineare** dei due vettori. Le dispense lo 
 
 **Come si legge.**
 
-- $v_1, \dots, v_k$ è un elenco di vettori: gli ingredienti. Il primo si chiama $v_1$, l'ultimo $v_k$, e $k$ è quanti sono.
-- $\lambda_1, \dots, \lambda_k$ sono numeri, uno per ingrediente: le dosi della ricetta. Si chiamano **coefficienti** della combinazione. Possono essere positivi, negativi, frazioni, anche zero.
+- $v_1, \dots, v_k$ è un elenco di vettori. Il primo si chiama $v_1$, l'ultimo $v_k$, e $k$ è quanti sono.
+- $\lambda_1, \dots, \lambda_k$ sono numeri, uno per vettore: si chiamano **coefficienti** della combinazione. Possono essere positivi, negativi, frazioni, anche zero.
 - «Lineare» vuol dire che si usano **solo** le due operazioni dello spazio vettoriale: somma e moltiplicazione per un numero. Niente prodotti tra vettori, niente quadrati.
-- Con tutte le dosi uguali a 0 viene il vettore zero. Con la dose di $v_1$ uguale a 1 e le altre 0 viene $v_1$ stesso.
+- Con tutti i coefficienti uguali a 0 viene il vettore zero. Con il coefficiente di $v_1$ uguale a 1 e gli altri 0 viene $v_1$ stesso.
+
+```grafico
+titolo: La combinazione $2u - v$ con $u = (1, 2)$ e $v = (3, 1)$: prima $2u$, poi $-v$ a partire dalla sua punta; si arriva in $(-1, 3)$
+x: -2 4
+y: -1 5
+vettore: 3 1 | grigio | $v$ | e
+vettore: 2 4 | blu | tratteggio | $2u$ | e
+vettore: 1 2 | accento | spesso | $u$ | o
+freccia: 2 4 -1 3 | rosa | spesso
+testo: 0.6 4.1 | rosa | $-v$
+vettore: -1 3 | ambra | spesso | $2u - v$ | o
+```
 
 > [!ESEMPIO] · combinazioni in tre spazi diversi
 > - Nello spazio: $2\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} - \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}$, il conto di prima.
 > - Tra i polinomi: $3(x^2 + 1) - 2(x - 1) = 3x^2 + 3 - 2x + 2 = 3x^2 - 2x + 5$.
 > - Tra le matrici: $a\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + b\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} a & b \\ b & a \end{pmatrix}$, che è la forma delle matrici dell'Esercizio 6.9.
 
-### Tutte le ricette di due vettori
+### Tutte le combinazioni di due vettori
 
-L'esempio delle dispense è nello spazio a tre coordinate, con due ingredienti:
+L'esempio delle dispense è nello spazio a tre coordinate, con due vettori:
 
 $$v_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \qquad v_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \qquad \lambda_1 v_1 + \lambda_2 v_2 = \begin{pmatrix} \lambda_1 \\ \lambda_2 \\ 0 \end{pmatrix}.$$
 
-Cambiando le dosi si ottiene **esattamente** il piano «pavimento», quello con la terza coordinata zero. «Esattamente» vuol dire due cose:
+Al variare dei coefficienti si ottiene **esattamente** il piano orizzontale, quello con la terza coordinata zero. «Esattamente» vuol dire due cose:
 
-1. ogni ricetta ha la terza coordinata uguale a 0, quindi sta nel pavimento;
-2. al contrario, ogni punto del pavimento $(a, b, 0)$ si ottiene con una ricetta: dose $a$ del primo, dose $b$ del secondo.
+1. ogni combinazione ha la terza coordinata uguale a 0, quindi sta in quel piano;
+2. al contrario, ogni punto $(a, b, 0)$ del piano si ottiene con i coefficienti $a$ e $b$.
 
-Nello strumento qui sotto $u$ e $v$ sono due vettori del piano e il punto giallo è la ricetta $\lambda u + \mu v$ ($\mu$ si legge «mi»). Muovi i cursori: con $u = (1, 2)$ e $v = (3, 1)$ il punto raggiunge qualsiasi posizione del piano. Poi trascina $v$ sulla retta di $u$, per esempio in $(2, 4)$: da quel momento le ricette restano sulla retta rossa, qualunque siano le dosi.
+Nello strumento qui sotto $u$ e $v$ sono due vettori del piano e il punto giallo è la combinazione $\lambda u + \mu v$ ($\mu$ si legge «mi»). Muovi i cursori: con $u = (1, 2)$ e $v = (3, 1)$ il punto raggiunge qualsiasi posizione del piano. Poi trascina $v$ sulla retta di $u$, per esempio in $(2, 4)$: da quel momento le combinazioni restano sulla retta rossa, qualunque siano i coefficienti.
 
 ```widget vettori
 titolo: Le combinazioni lineari $\lambda u + \mu v$
@@ -415,12 +508,12 @@ $(1, 1) - (0, 1) = (1, 0)$.
 :::
 
 > [!RICORDA]
-> - Una combinazione lineare è una ricetta: ogni vettore moltiplicato per una dose, poi tutto sommato.
-> - Le dosi sono numeri qualsiasi e si chiamano coefficienti.
+> - In una combinazione lineare ogni vettore è moltiplicato per un numero, poi si somma tutto.
+> - I numeri sono qualsiasi e si chiamano coefficienti.
 
-## Tutto quello che si può cucinare: lo Span (pp. 28–29)
+## Lo Span (pp. 28–29)
 
-Nella sezione di prima, con due ingredienti si poteva cucinare tutto il pavimento, e niente fuori. Conviene dare un nome all'insieme di **tutte** le ricette possibili con certi ingredienti. Le dispense lo scrivono così.
+Nella sezione di prima le combinazioni di due vettori riempivano esattamente un piano, e niente fuori. L'insieme di **tutte** le combinazioni lineari di certi vettori ha un nome. Le dispense lo scrivono così.
 
 > [!DEF] 6.6 · Sottospazio generato
 > Sia $V$ uno spazio vettoriale e $v_1, \dots, v_k \in V$ dei vettori arbitrari. Il **sottospazio generato** da $v_1, \dots, v_k$ è il sottoinsieme di $V$ formato da tutte le loro combinazioni lineari e viene indicato con $\Span(v_1, \dots, v_k)$. In simboli:
@@ -428,10 +521,10 @@ Nella sezione di prima, con due ingredienti si poteva cucinare tutto il paviment
 
 **Come si legge.**
 
-- *Span* è una parola inglese, «span» o «spen»: in questo senso vuol dire «generare», «coprire». È tutto quello che si può cucinare con quegli ingredienti.
-- È un **insieme**, e di solito infinito: c'è un risultato per ogni scelta delle dosi.
-- Contiene gli ingredienti stessi (dose 1 per uno, 0 per gli altri) e il vettore zero (tutte le dosi 0).
-- La barretta $\mid$ qui si legge «al variare di»: le dosi prendono tutti i valori possibili.
+- *Span* è una parola inglese, «span» o «spen»: in questo senso vuol dire «generare», «coprire». È tutto quello che si ottiene combinando quei vettori.
+- È un **insieme**, e di solito infinito: c'è un risultato per ogni scelta dei coefficienti.
+- Contiene i vettori stessi (coefficiente 1 per uno, 0 per gli altri) e il vettore zero (tutti i coefficienti 0).
+- La barretta $\mid$ qui si legge «al variare di»: i coefficienti prendono tutti i valori possibili.
 - I vettori $v_1, \dots, v_k$ si chiamano **generatori** dello Span: si usa anche dire che lo **generano**.
 
 Il nome «sottospazio generato» anticipa un fatto da controllare: lo Span è davvero un sottospazio.
@@ -439,25 +532,25 @@ Il nome «sottospazio generato» anticipa un fatto da controllare: lo Span è da
 > [!PROP] 6.7
 > Il sottoinsieme $\Span(v_1, \dots, v_k)$ è un sottospazio vettoriale di $V$.
 
-**Come si legge.** Tutto quello che si può cucinare con certi ingredienti forma sempre una stanza: sommando due piatti o moltiplicando un piatto per un numero si ottiene un altro piatto della stessa cucina.
+**Come si legge.** L'insieme di tutte le combinazioni lineari di certi vettori è sempre un sottospazio: la somma di due combinazioni, o un multiplo di una combinazione, è ancora una combinazione degli stessi vettori.
 
-Il motivo, a parole: sommare due ricette dà ancora una ricetta, con le dosi sommate; moltiplicare una ricetta per un numero dà ancora una ricetta, con tutte le dosi moltiplicate.
+Il motivo, a parole: nella somma di due combinazioni i coefficienti si sommano, e in un multiplo vengono tutti moltiplicati per lo stesso numero.
 
 > [!DIM] della Proposizione 6.7
 > Dalle dispense, con le giustificazioni. Chiamiamo $W$ lo Span e controlliamo i tre assiomi della Definizione 6.2.
-> 1. **Lo zero.** Con tutte le dosi uguali a 0 si ottiene $0v_1 + \dots + 0v_k = 0 + \dots + 0 = 0$, per la Proposizione 5.5. Quindi lo zero è una ricetta: sta in $W$.
-> 2. **La somma.** Se $v$ e $w$ stanno in $W$, sono due ricette:
+> 1. **Lo zero.** Con tutti i coefficienti uguali a 0 si ottiene $0v_1 + \dots + 0v_k = 0 + \dots + 0 = 0$, per la Proposizione 5.5. Quindi lo zero è una combinazione: sta in $W$.
+> 2. **La somma.** Se $v$ e $w$ stanno in $W$, sono due combinazioni:
 >    $$v = \lambda_1 v_1 + \dots + \lambda_k v_k, \qquad w = \mu_1 v_1 + \dots + \mu_k v_k.$$
->    Sommo e metto insieme i pezzi con lo stesso ingrediente (proprietà associativa e commutativa della somma e assioma 3):
+>    Sommo e metto insieme i pezzi con lo stesso vettore (proprietà associativa e commutativa della somma e assioma 3):
 >    $$v + w = (\lambda_1 + \mu_1)v_1 + \dots + (\lambda_k + \mu_k)v_k.$$
->    È ancora una ricetta, con le dosi sommate. Quindi $v + w$ sta in $W$.
+>    È ancora una combinazione, con i coefficienti sommati. Quindi $v + w$ sta in $W$.
 > 3. **I multipli.** Se $v$ sta in $W$ e $\lambda$ è un numero, per gli assiomi 2 e 4:
 >    $$\lambda v = \lambda(\lambda_1 v_1 + \dots + \lambda_k v_k) = (\lambda\lambda_1)v_1 + \dots + (\lambda\lambda_k)v_k.$$
->    È una ricetta con tutte le dosi moltiplicate per $\lambda$: sta in $W$. $\square$
+>    È una combinazione con tutti i coefficienti moltiplicati per $\lambda$: sta in $W$. $\square$
 
 ### Lo Span di un solo vettore
 
-Con un solo ingrediente le ricette sono solo i suoi multipli. Le dispense fanno l'esempio nel piano.
+Con un solo vettore le combinazioni sono i suoi multipli. Le dispense fanno l'esempio nel piano.
 
 > [!ESEMPIO] 6.8 · Lo Span di un solo vettore
 > Se $v$ è un singolo vettore, allora $\Span(v) = \{\lambda v \mid \lambda \in \K\}$: sono tutti i multipli di $v$. Per esempio, in $\R^2$,
@@ -468,7 +561,7 @@ Perché proprio la retta $y = 2x$? I multipli di $(1, 2)$ sono $(1, 2)$, $(2, 4)
 
 Che forma può avere uno Span nel piano e nello spazio? Una tabella per orientarsi; il perché preciso arriva con la dimensione, nella lezione L07.
 
-| Ingredienti | Span nel piano | Span nello spazio |
+| Vettori | Span nel piano | Span nello spazio |
 |---|---|---|
 | solo il vettore zero | solo lo zero | solo lo zero |
 | un vettore diverso da zero | la retta per l'origine nella sua direzione | la retta per l'origine nella sua direzione |
@@ -476,23 +569,23 @@ Che forma può avere uno Span nel piano e nello spazio? Una tabella per orientar
 | due vettori uno multiplo dell'altro (non tutti e due zero) | una retta | una retta |
 
 > [!TRAPPOLA] Lo Span di due vettori non è l'insieme dei due vettori
-> L'insieme $\{v_1, v_2\}$ ha **due** elementi. $\Span(v_1, v_2)$ contiene **tutte** le ricette: infinite, se i vettori non sono zero. E ingredienti diversi possono dare lo stesso Span: $\Span\big((1, 2)\big) = \Span\big((2, 4)\big) = \Span\big((-1, -2)\big)$, sempre la retta $y = 2x$.
+> L'insieme $\{v_1, v_2\}$ ha **due** elementi. $\Span(v_1, v_2)$ contiene **tutte** le combinazioni: infinite, se i vettori non sono zero. E vettori diversi possono dare lo stesso Span: $\Span\big((1, 2)\big) = \Span\big((2, 4)\big) = \Span\big((-1, -2)\big)$, sempre la retta $y = 2x$.
 
 ::: prova Il vettore $(4, 6)$ sta in $\Span\big((2, 3)\big)$? E il vettore $(4, 5)$?
 $(4, 6) = 2 \cdot (2, 3)$: sì, è un multiplo.
 
-Per $(4, 5)$ servirebbe una dose $t$ con $2t = 4$ e $3t = 5$. La prima dà $t = 2$, ma allora $3t = 6$, non 5: no.
+Per $(4, 5)$ servirebbe un numero $t$ con $2t = 4$ e $3t = 5$. La prima dà $t = 2$, ma allora $3t = 6$, non 5: no.
 :::
 
 > [!OLTRE] · lo Span è il più piccolo sottospazio che contiene i vettori
-> Se un sottospazio $U$ contiene $v_1, \dots, v_k$, contiene anche tutti i loro multipli (assioma 3) e tutte le somme di multipli (assioma 2): quindi tutto $\Span(v_1, \dots, v_k)$ sta dentro $U$. Conseguenza pratica, utilissima nei quiz: **per mostrare che uno Span sta dentro un sottospazio basta controllare che ci stiano gli ingredienti**. Per mostrare che sono uguali serve anche il contrario: ogni vettore del sottospazio è una ricetta con quegli ingredienti.
+> Se un sottospazio $U$ contiene $v_1, \dots, v_k$, contiene anche tutti i loro multipli (assioma 3) e tutte le somme di multipli (assioma 2): quindi tutto $\Span(v_1, \dots, v_k)$ sta dentro $U$. Conseguenza pratica, utilissima nei quiz: **per mostrare che uno Span sta dentro un sottospazio basta controllare che ci stiano i generatori**. Per mostrare che sono uguali serve anche il contrario: ogni vettore del sottospazio è una combinazione dei generatori.
 
 ### Un vettore sta nello Span? (pp. 29–30)
 
-È la domanda dell'Esercizio 6.10, e una delle più frequenti di tutto il corso: si può cucinare questo piatto con questi ingredienti? Si cercano le dosi.
+È la domanda dell'Esercizio 6.10, e una delle più frequenti di tutto il corso: questo vettore è una combinazione di quelli? Si cercano i coefficienti.
 
 > [!ESEMPIO] · un polinomio nello Span di altri due
-> Il polinomio $x^2 + 2x + 3$ sta in $\Span(x^2 + 1,\ x + 1)$? Cerchiamo due dosi $a$ e $b$ con
+> Il polinomio $x^2 + 2x + 3$ sta in $\Span(x^2 + 1,\ x + 1)$? Cerchiamo due coefficienti $a$ e $b$ con
 > $$a(x^2 + 1) + b(x + 1) = ax^2 + bx + (a + b) = x^2 + 2x + 3.$$
 > Due polinomi sono uguali quando hanno gli stessi numeri davanti a ogni potenza. Quindi:
 > 1. davanti a $x^2$: $a = 1$;
@@ -504,12 +597,12 @@ Per $(4, 5)$ servirebbe una dose $t$ con $2t = 4$ e $3t = 5$. La prima dà $t = 
 > Con $x^2 + 2x + 4$ invece la terza condizione diventerebbe $1 + 2 = 4$, falsa: quel polinomio **non** sta nello Span.
 
 > [!METODO] · «Il vettore sta nello Span?»
-> 1. Chiama con delle lettere le dosi che cerchi, una per ingrediente.
-> 2. Scrivi la ricetta con le lettere e mettila uguale al vettore dato, coordinata per coordinata (o potenza per potenza, per i polinomi): ottieni un **sistema lineare** nelle dosi.
+> 1. Chiama con delle lettere i coefficienti che cerchi, uno per generatore.
+> 2. Scrivi la combinazione con le lettere e mettila uguale al vettore dato, coordinata per coordinata (o potenza per potenza, per i polinomi): ottieni un **sistema lineare** nei coefficienti.
 > 3. Risolvi il sistema. Per ora con le sostituzioni; dalla lezione L11 con il metodo di Gauss.
-> 4. Se trovi le dosi, il vettore sta nello Span: rimettile nella ricetta e controlla. Se arrivi a una cosa impossibile, come $3 = 4$, il vettore non sta nello Span.
+> 4. Se trovi i coefficienti, il vettore sta nello Span: rimettili nella combinazione e controlla. Se arrivi a una cosa impossibile, come $3 = 4$, il vettore non sta nello Span.
 
-Per i sistemi più grandi lo strumento qui sotto fa i passaggi di Gauss al posto tuo (il metodo si impara nella lezione L11). Scrivi nelle colonne gli ingredienti e, nell'ultima colonna, il vettore da provare. La matrice già inserita è quella dell'Esercizio 6.10 con il vettore $(1, 2, 3)$: lo strumento trova una sola soluzione, $x_1 = 1$ e $x_2 = 2$ (sono le due dosi). Poi cambia l'ultimo numero da 3 a 4, cioè prova il vettore $(1, 2, 4)$, e premi «Calcola»: nessuna soluzione.
+Per i sistemi più grandi lo strumento qui sotto fa i passaggi di Gauss al posto tuo (il metodo si impara nella lezione L11). Scrivi nelle colonne i generatori e, nell'ultima colonna, il vettore da provare. La matrice già inserita è quella dell'Esercizio 6.10 con il vettore $(1, 2, 3)$: lo strumento trova una sola soluzione, $x_1 = 1$ e $x_2 = 2$ (sono i due coefficienti). Poi cambia l'ultimo numero da 3 a 4, cioè prova il vettore $(1, 2, 4)$, e premi «Calcola»: nessuna soluzione.
 
 ```widget gauss
 titolo: Il vettore dell'ultima colonna sta nello Span delle altre colonne?
@@ -525,9 +618,9 @@ modi: sistema
 > Nel libro di Martelli: le matrici e lo spazio $M(m, n, \K)$ nel **§2.2.5** (pp. 49–50); sottospazi, sottospazio «banale» e totale nei **§2.2.6–2.2.7** (pp. 50–51); sistemi omogenei nel **§2.2.8** (pp. 51–52); combinazioni lineari e Span nei **§2.2.9–2.2.10** (pp. 52–54, Proposizione 2.2.4 = Proposizione 6.7); forma cartesiana e parametrica e polinomi con restrizioni nei **§2.2.11–2.2.12** (pp. 54–55); matrici diagonali, triangolari, simmetriche e antisimmetriche nel **§2.2.14** (pp. 56–57, Proposizione 2.2.10 = Proposizione 6.5); intersezione e unione nei **§2.2.15–2.2.16** (pp. 57–58).
 
 > [!RICORDA]
-> - Lo Span di alcuni vettori è l'insieme di tutte le loro combinazioni lineari: tutto quello che si può cucinare.
+> - Lo Span di alcuni vettori è l'insieme di tutte le loro combinazioni lineari.
 > - Lo Span è sempre un sottospazio. Lo Span di un vettore diverso da zero è la retta dei suoi multipli.
-> - Per sapere se un vettore sta nello Span si cercano le dosi: è un sistema lineare.
+> - Per sapere se un vettore sta nello Span si cercano i coefficienti: è un sistema lineare.
 
 ## I simboli di questa lezione
 
@@ -545,7 +638,7 @@ modi: sistema
 | $v \in W$ | «v appartiene a W» | $v$ è uno dei vettori di $W$ | $(1, 2) \in \Span((1, 2))$ |
 | $\{0\}$ | «l'insieme con solo lo zero» | il sottospazio banale | |
 | $\forall$ | «per ogni» | vale per tutti i valori | $a_{ij} = 0\ \forall i \neq j$ |
-| $\lambda$, $\mu$ | «lambda», «mi» | numeri, di solito le dosi di una ricetta | $\lambda u + \mu v$ |
+| $\lambda$, $\mu$ | «lambda», «mi» | numeri, di solito i coefficienti di una combinazione | $\lambda u + \mu v$ |
 | $v_1, \dots, v_k$ | «v uno, …, v kappa» | un elenco di $k$ vettori | |
 | $\Span(v_1, \dots, v_k)$ | «span di v uno, …, v kappa» | tutte le combinazioni lineari dei vettori | $\Span((1, 2))$ è la retta $y = 2x$ |
 | $\{\ldots \mid \ldots\}$ | «l'insieme di … per cui …» | un insieme descritto con una condizione | $\{(x, y) \mid y = 2x\}$ |
@@ -565,12 +658,12 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 
 **Appello dell'08/02/2024, domanda 2.** Il testo: «Quale dei seguenti insiemi **non** è un sottospazio di $\R_2[x]$? (a) $\{p(x) \in \R_2[x] \mid p(0) = 0\}$; (b) $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$; (c) $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 0\}$; (d) $\{(1 + t)x^2 + tx \mid t \in \R\}$; (e) $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$».
 
-**In pratica chiede:** tra cinque gruppi di polinomi di grado al massimo 2, quale non è una stanza? Si parte dal controllo più veloce: c'è il polinomio zero?
+**In pratica chiede:** tra cinque gruppi di polinomi di grado al massimo 2, quale non è un sottospazio? Si parte dal controllo più veloce: c'è il polinomio zero?
 
 > [!ESEMPIO] · la soluzione, passo per passo
 > **Passo 1: (a) ed (e).** Sono i polinomi che fanno zero in certi numeri. Il polinomio zero fa zero dappertutto, quindi c'è. E sommando o moltiplicando polinomi che fanno zero in un numero, si ottiene ancora zero in quel numero. Sono sottospazi.
 >
-> **Passo 2: (b).** Metto insieme i pezzi con $t$ e quelli con $s$: $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$. Sono tutte le ricette con gli ingredienti $x^2 - x$ e $x^2 - 1$: è uno Span, quindi è un sottospazio.
+> **Passo 2: (b).** Metto insieme i pezzi con $t$ e quelli con $s$: $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$. Sono tutte le combinazioni di $x^2 - x$ e $x^2 - 1$: è uno Span, quindi è un sottospazio.
 >
 > **Passo 3: (c).** Le condizioni $a = 2c$ e $b = 0$ sono equazioni senza termine noto. Il polinomio zero ($a = b = c = 0$) le rispetta; somme e multipli anche. Sottospazio.
 >
@@ -583,7 +676,7 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 > [!ESAME] Appello del 03/06/2025, domanda 2
 > **Testo.** Quale dei seguenti insiemi di punti $(x, y, z) \in \R^3$ è un sottospazio vettoriale di $\R^3$? (a) $x^2 - 2x + 1 = 0$; (b) $x + 2yz + 3z = 7$; (c) $-x + 7y + z = 5$; (d) $x + \frac y2 - 5\pi z = 0$; (e) $x + 3iy + 5z = 0$.
 >
-> **In pratica chiede:** quale di queste equazioni descrive una stanza dello spazio?
+> **In pratica chiede:** quale di queste equazioni descrive un sottospazio?
 >
 > **Soluzione.** È la (d): un'equazione con le lettere solo alla prima potenza, numeri reali e niente termine noto. Le altre:
 > - in (a) l'equazione è $(x - 1)^2 = 0$, cioè $x = 1$, e l'origine non la rispetta;
@@ -595,12 +688,12 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 > $$a(x) = x - 1, \quad b(x) = x + 2, \quad c(x) = 2x^2 - 2, \quad d(x) = x^2 - x, \quad e(x) = 2x^3 + 1, \quad f(x) = x^3 - x^2,$$
 > e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale: (a) $U = \Span(a, c)$; (b) $U = \Span(a, c, f)$; (c) $U = \Span(c, d, e, f)$; (d) $U = \Span(b, e, f)$; (e) $U = \Span(a, c, d)$.
 >
-> **In pratica chiede:** $U$ sono i polinomi di grado al massimo 3 che fanno zero in 1. Con quali ingredienti si cucina esattamente $U$?
+> **In pratica chiede:** $U$ sono i polinomi di grado al massimo 3 che fanno zero in 1. Quale elenco di polinomi genera esattamente $U$?
 >
 > **Soluzione.** È la (b), e la si può dimostrare con gli strumenti di questa lezione.
 > - Scarto (c) e (d): $e(1) = 3$ e $b(1) = 3$, non zero. Quindi $e$ e $b$ non stanno in $U$, e quegli Span escono da $U$.
-> - Scarto (a) ed (e): i loro ingredienti hanno grado al massimo 2, quindi ogni ricetta ha grado al massimo 2. Ma $U$ contiene $x^3 - 1$, di grado 3.
-> - Confermo (b). Da un lato $a(1) = c(1) = f(1) = 0$, quindi lo Span di $a$, $c$, $f$ sta dentro $U$ (riquadro sullo Span più piccolo). Dall'altro, se $p(1) = 0$ allora $p(x) = (x - 1)q(x)$ con $q$ di grado al massimo 2 (lezione L04). Quindi $p$ è una ricetta con $x - 1$, $x(x - 1) = x^2 - x$ e $x^2(x - 1) = x^3 - x^2$. E questi tre si cucinano con $a$, $c$, $f$: $x - 1 = a$, $x^2 - x = \frac 12 c - a$, $x^3 - x^2 = f$.
+> - Scarto (a) ed (e): i loro generatori hanno grado al massimo 2, quindi ogni combinazione ha grado al massimo 2. Ma $U$ contiene $x^3 - 1$, di grado 3.
+> - Confermo (b). Da un lato $a(1) = c(1) = f(1) = 0$, quindi lo Span di $a$, $c$, $f$ sta dentro $U$ (riquadro sullo Span più piccolo). Dall'altro, se $p(1) = 0$ allora $p(x) = (x - 1)q(x)$ con $q$ di grado al massimo 2 (lezione L04). Quindi $p$ è una combinazione di $x - 1$, $x(x - 1) = x^2 - x$ e $x^2(x - 1) = x^3 - x^2$. E questi tre sono combinazioni di $a$, $c$, $f$: $x - 1 = a$, $x^2 - x = \frac 12 c - a$, $x^3 - x^2 = f$.
 
 ### I segnali da riconoscere
 
@@ -629,13 +722,37 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 ## Quiz
 
 ```quiz
+D: Appello del 15/01/2026, domanda 7. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) = x + 1$, $c(x) = x^3 - x$, $d(x) = x^3 + x$, $e(x) = x^2 - 1$, $f(x) = x^2 + 1$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = p(-1)\}$. Allora vale:
+- $U = \Span(a, b)$
+- $U = \Span(a, b, c, d)$
+- $U = \Span(e, f)$
++ $U = \Span(c, e, f)$
+- $U = \Span(c, d, e, f)$
+= Con $p(x) = qx^3 + rx^2 + sx + t$ la condizione $p(1) = p(-1)$ diventa $q + s = 0$. Quindi $U$ è fatto dei polinomi $q(x^3 - x) + rx^2 + t$, cioè $U = \Span(x^3 - x,\ x^2,\ 1)$. Anche $\Span(c, e, f)$ è questo, perché $x^2 = \frac{e + f}2$ e $1 = \frac{f - e}2$: è la (d) della soluzione ufficiale. (a), (b) ed (e) escono da $U$, perché $a(1) = 0$ ma $a(-1) = -2$, e $d(1) = 2$ ma $d(-1) = -2$. La risposta più insidiosa è la (c): $e$ e $f$ stanno in $U$, ma le loro combinazioni hanno grado al massimo 2 e manca $x^3 - x$.
+
+D: Appello del 24/01/2024, domanda 1. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) = x + 2$, $c(x) = 2x^2 - 2$, $d(x) = x^2 - x$, $e(x) = 2x^3 + 1$, $f(x) = x^3 - x^2$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale:
+- $U = \Span(a, c)$
++ $U = \Span(a, c, f)$
+- $U = \Span(c, d, e, f)$
+- $U = \Span(b, e, f)$
+- $U = \Span(a, c, d)$
+= È la (b) della soluzione ufficiale; lo svolgimento completo è in «Verso l'esame». La (c) e la (d) contengono $e$ o $b$, che in 1 valgono 3. La (a) e la (e) hanno solo generatori di grado al massimo 2, mentre $U$ contiene $x^3 - 1$. La risposta più insidiosa è la (e): $a$, $c$, $d$ stanno tutti in $U$, ma non bastano per i polinomi di grado 3.
+
+D: Appello del 03/06/2025, domanda 2. Quale dei seguenti insiemi è un sottospazio vettoriale di $\R^3$?
+- $\{(x, y, z) \in \R^3 \mid x^2 - 2x + 1 = 0\}$
+- $\{(x, y, z) \in \R^3 \mid x + 2yz + 3z = 7\}$
+- $\{(x, y, z) \in \R^3 \mid -x + 7y + z = 5\}$
++ $\{(x, y, z) \in \R^3 \mid x + \frac y2 - 5\pi z = 0\}$
+- $\{(x, y, z) \in \R^3 \mid x + 3iy + 5z = 0\}$
+= La (d) è un'equazione lineare a coefficienti reali senza termine noto: è la risposta della soluzione ufficiale. La (a) è $(x - 1)^2 = 0$, cioè $x = 1$; la (b) e la (c) hanno un termine noto diverso da zero: nessuna delle tre contiene l'origine. La risposta più insidiosa è la (e), che la soluzione scarta perché ha un coefficiente non reale. A rigore, per punti reali equivale a $x + 5z = 0$ e $y = 0$, una retta per l'origine; ma la risposta attesa è la (d).
+
 D: Quale di questi insiemi **non** è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(2) = 0\}$
 - $\{p(x) \in \R_2[x] \mid p(0) = p(1)\}$
 - $\Span(x,\ x^2 + 1)$
 + $\{x^2 + t \mid t \in \R\}$
 - $\{ax^2 + bx + c \mid a = b = c\}$
-= La domanda cerca l'insieme che non è una stanza, e il controllo più veloce è lo zero. Nei polinomi $x^2 + t$ il numero davanti a $x^2$ è sempre 1, quindi nessuno di loro è il polinomio zero: è la risposta. Gli altri sono sottospazi: «$p(2) = 0$» e «$p(0) = p(1)$» sono condizioni senza termine noto, uno Span è sempre un sottospazio, e i polinomi con $a = b = c$ sono i multipli di $x^2 + x + 1$, cioè uno Span. La risposta più insidiosa è $\{p(0) = p(1)\}$, che sembra strana; ma riscritta diventa $p(0) - p(1) = 0$, senza termine noto. Simile agli appelli dell'08/02/2024 e del 05/02/2026 (domanda 2).
+= La domanda cerca l'insieme che non è un sottospazio, e il controllo più veloce è lo zero. Nei polinomi $x^2 + t$ il numero davanti a $x^2$ è sempre 1, quindi nessuno di loro è il polinomio zero: è la risposta. Gli altri sono sottospazi: «$p(2) = 0$» e «$p(0) = p(1)$» sono condizioni senza termine noto, uno Span è sempre un sottospazio, e i polinomi con $a = b = c$ sono i multipli di $x^2 + x + 1$, cioè uno Span. La risposta più insidiosa è $\{p(0) = p(1)\}$, che sembra strana; ma riscritta diventa $p(0) - p(1) = 0$, senza termine noto. Simile agli appelli dell'08/02/2024 e del 05/02/2026 (domanda 2).
 
 D: Quale di questi insiemi è un sottospazio vettoriale di $\R^3$?
 + $\{(x, y, z) \mid x - 2y + 3z = 0\}$
@@ -659,7 +776,7 @@ D: Quale di questi vettori appartiene a $\Span\big((1, 0, 1),\ (0, 1, 1)\big)$?
 - $(2, 1, 1)$
 - $(0, 0, 1)$
 - $(1, -1, 1)$
-= Una ricetta con dosi $a$ e $b$ dà $a(1, 0, 1) + b(0, 1, 1) = (a, b, a + b)$: la terza coordinata è sempre la somma delle prime due. Si controllano le risposte: solo $(1, 1, 2)$ lo rispetta, con $a = b = 1$. Negli altri la terza coordinata dovrebbe essere $2$, $3$, $0$ e $0$. La risposta più insidiosa è $(1, 1, 1)$, che somiglia ai due ingredienti; ma sommati danno $(1, 1, 2)$.
+= La combinazione con coefficienti $a$ e $b$ dà $a(1, 0, 1) + b(0, 1, 1) = (a, b, a + b)$: la terza coordinata è sempre la somma delle prime due. Si controllano le risposte: solo $(1, 1, 2)$ lo rispetta, con $a = b = 1$. Negli altri la terza coordinata dovrebbe essere $2$, $3$, $0$ e $0$. La risposta più insidiosa è $(1, 1, 1)$, che somiglia ai due generatori; ma sommati danno $(1, 1, 2)$.
 
 D: In $\R^2$, che cos'è $\Span\big((1, 2)\big)$?
 + La retta $y = 2x$.
@@ -667,7 +784,7 @@ D: In $\R^2$, che cos'è $\Span\big((1, 2)\big)$?
 - La retta $y = x + 2$.
 - Tutto il piano $\R^2$.
 - L'insieme $\{(1, 2)\}$, con un solo elemento.
-= Lo Span di un solo vettore sono tutti i suoi multipli $(t, 2t)$ (Esempio 6.8): i punti con la seconda coordinata doppia della prima, cioè la retta $y = 2x$. La retta $x = 2y$ non contiene nemmeno $(1, 2)$. $y = x + 2$ non passa per l'origine, quindi non è un sottospazio. Un solo vettore diverso da zero dà una retta, non tutto il piano. La risposta più insidiosa è l'insieme con il solo $(1, 2)$: confonde lo Span con l'insieme degli ingredienti.
+= Lo Span di un solo vettore sono tutti i suoi multipli $(t, 2t)$ (Esempio 6.8): i punti con la seconda coordinata doppia della prima, cioè la retta $y = 2x$. La retta $x = 2y$ non contiene nemmeno $(1, 2)$. $y = x + 2$ non passa per l'origine, quindi non è un sottospazio. Un solo vettore diverso da zero dà una retta, non tutto il piano. La risposta più insidiosa è l'insieme con il solo $(1, 2)$: confonde lo Span con l'insieme dei generatori.
 
 D: L'insieme delle matrici $A \in M(2, \R)$ con $a_{11} = 1$ è:
 - un sottospazio, perché è definito da un'equazione lineare
@@ -679,7 +796,7 @@ D: L'insieme delle matrici $A \in M(2, \R)$ con $a_{11} = 1$ è:
 
 D: Per quale valore di $k$ il vettore $(1, k, 3)$ appartiene a $\Span\big((1, 0, 1),\ (0, 1, 1)\big)$?
 N: 2
-= Una ricetta con dosi $a$ e $b$ dà $(a, b, a + b)$. Deve essere uguale a $(1, k, 3)$: la prima coordinata dà $a = 1$, la seconda $b = k$, la terza $a + b = 3$. Quindi $1 + k = 3$, cioè $k = 2$. Controllo: $(1, 0, 1) + 2(0, 1, 1) = (1, 2, 3)$.
+= La combinazione con coefficienti $a$ e $b$ dà $(a, b, a + b)$. Deve essere uguale a $(1, k, 3)$: la prima coordinata dà $a = 1$, la seconda $b = k$, la terza $a + b = 3$. Quindi $1 + k = 3$, cioè $k = 2$. Controllo: $(1, 0, 1) + 2(0, 1, 1) = (1, 2, 3)$.
 
 D: Sia $U = \{p(x) \in \R_2[x] \mid p(1) = 0\}$. Quale uguaglianza è vera?
 + $U = \Span(x - 1,\ x^2 - 1)$
@@ -687,7 +804,7 @@ D: Sia $U = \{p(x) \in \R_2[x] \mid p(1) = 0\}$. Quale uguaglianza è vera?
 - $U = \Span(x + 1,\ x^2 - 1)$
 - $U = \Span(x^2 - 1,\ x^2 - x,\ x^2 + x)$
 - $U = \Span(1,\ x,\ x^2)$
-= $U$ sono i polinomi di grado al massimo 2 che fanno zero in 1. Gli ingredienti $x - 1$ e $x^2 - 1$ fanno zero in 1, quindi tutte le loro ricette stanno in $U$. Al contrario, se $p(1) = 0$ allora $p(x) = (x - 1)(ax + b) = a(x^2 - x) + b(x - 1) = a(x^2 - 1) + (b - a)(x - 1)$: è una ricetta con i due ingredienti. Le altre risposte: $\Span(x - 1)$ non contiene $x^2 - 1$; $x + 1$ e $x^2 + x$ valgono 2 in 1, quindi escono da $U$; $\Span(1, x, x^2)$ è tutto $\R_2[x]$. La risposta più insidiosa è $\Span(x - 1)$, che contiene polinomi giusti ma non tutti. Simile agli appelli del 24/01/2024 (domanda 1) e del 15/01/2026 (domanda 7).
+= $U$ sono i polinomi di grado al massimo 2 che fanno zero in 1. I generatori $x - 1$ e $x^2 - 1$ fanno zero in 1, quindi tutte le loro combinazioni stanno in $U$. Al contrario, se $p(1) = 0$ allora $p(x) = (x - 1)(ax + b) = a(x^2 - x) + b(x - 1) = a(x^2 - 1) + (b - a)(x - 1)$: è una combinazione dei due generatori. Le altre risposte: $\Span(x - 1)$ non contiene $x^2 - 1$; $x + 1$ e $x^2 + x$ valgono 2 in 1, quindi escono da $U$; $\Span(1, x, x^2)$ è tutto $\R_2[x]$. La risposta più insidiosa è $\Span(x - 1)$, che contiene polinomi giusti ma non tutti. Simile agli appelli del 24/01/2024 (domanda 1) e del 15/01/2026 (domanda 7).
 
 D: Quale affermazione è vera?
 + Ogni sottospazio di $V$ contiene il vettore nullo di $V$.
@@ -695,7 +812,7 @@ D: Quale affermazione è vera?
 - $\Span(v)$ contiene solo il vettore $v$.
 - $\{0\}$ non è un sottospazio, perché ha un solo elemento.
 - In $\R^2$ una retta che non passa per l'origine può essere un sottospazio.
-= È il primo dei tre controlli della Definizione 6.2: ogni stanza contiene lo zero. Le altre sono false: i due assi del piano messi insieme non sono un sottospazio; lo Span di un vettore contiene tutti i suoi multipli; l'insieme con il solo zero è un sottospazio, quello più piccolo; una retta che non passa per l'origine non contiene lo zero. La risposta più insidiosa è quella sull'unione, perché l'intersezione di due sottospazi invece è sempre un sottospazio.
+= È il primo dei tre controlli della Definizione 6.2: ogni sottospazio contiene lo zero. Le altre sono false: i due assi del piano messi insieme non sono un sottospazio; lo Span di un vettore contiene tutti i suoi multipli; l'insieme con il solo zero è un sottospazio, quello più piccolo; una retta che non passa per l'origine non contiene lo zero. La risposta più insidiosa è quella sull'unione, perché l'intersezione di due sottospazi invece è sempre un sottospazio.
 
 D: L'insieme delle matrici $A \in M(2, \R)$ tali che $A + {}^tA = 0$ (dove ${}^tA$ è la trasposta, $({}^tA)_{ij} = a_{ji}$) è:
 + lo spazio $A(2)$ delle matrici antisimmetriche
@@ -734,11 +851,11 @@ Quali di questi insiemi del piano contengono l'origine? Quali possono essere sot
 4. (d) l'origine ha $x = 0$, non 1: manca. Non è un sottospazio.
 :::
 
-::: esercizio base Riscaldamento: una ricetta
+::: esercizio base Riscaldamento: una combinazione
 Calcola $3(1, 2) - 2(0, 1)$. Poi di' se $(3, 4)$ sta in $\Span\big((1, 2),\ (0, 1)\big)$.
 ::: soluzione
 1. $3(1, 2) - 2(0, 1) = (3, 6) - (0, 2) = (3, 4)$.
-2. Il conto appena fatto è una ricetta con quegli ingredienti che dà $(3, 4)$, con dosi 3 e $-2$. Quindi sì, $(3, 4)$ sta nello Span.
+2. Il conto appena fatto è una combinazione di quei vettori che dà $(3, 4)$, con coefficienti 3 e $-2$. Quindi sì, $(3, 4)$ sta nello Span.
 :::
 
 ::: esercizio base Conti con le matrici
@@ -775,15 +892,15 @@ $$M_1 = \begin{pmatrix} 3 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}, \qua
 ::: soluzione
 (a) I multipli di $(2, -1)$ sono $(2t, -t)$. Da $y = -t$ viene $t = -y$, e allora $x = 2t = -2y$. È la retta $x + 2y = 0$.
 
-(b) $(2, 4) = 2 \cdot (1, 2)$, quindi ogni ricetta $\lambda(1, 2) + \mu(2, 4) = (\lambda + 2\mu)(1, 2)$ è un multiplo di $(1, 2)$. Lo Span è la retta $y = 2x$, come lo Span di $(1, 2)$ da solo: il secondo vettore non aggiunge niente.
+(b) $(2, 4) = 2 \cdot (1, 2)$, quindi ogni combinazione $\lambda(1, 2) + \mu(2, 4) = (\lambda + 2\mu)(1, 2)$ è un multiplo di $(1, 2)$. Lo Span è la retta $y = 2x$, come lo Span di $(1, 2)$ da solo: il secondo vettore non aggiunge niente.
 
-(c) Cerco le dosi $\lambda$ e $\mu$ con $\lambda(1, 0) + \mu(1, 1) = (\lambda + \mu, \mu) = (a, b)$.
+(c) Cerco i coefficienti $\lambda$ e $\mu$ con $\lambda(1, 0) + \mu(1, 1) = (\lambda + \mu, \mu) = (a, b)$.
 1. Dalla seconda coordinata: $\mu = b$.
 2. Dalla prima: $\lambda + b = a$, quindi $\lambda = a - b$.
 
 Quindi
 $$(a, b) = (a - b)(1, 0) + b(1, 1)$$
-per ogni $a$ e $b$: ogni vettore del piano è una ricetta, e lo Span è tutto il piano. Controllo con $(3, 5)$: $-2 \cdot (1, 0) + 5 \cdot (1, 1) = (-2 + 5, 5) = (3, 5)$.
+per ogni $a$ e $b$: ogni vettore del piano è una combinazione dei due, e lo Span è tutto il piano. Controllo con $(3, 5)$: $-2 \cdot (1, 0) + 5 \cdot (1, 1) = (-2 + 5, 5) = (3, 5)$.
 :::
 
 ::: esercizio medio Esercizio 6.9 delle dispense: le matrici del tipo $\begin{pmatrix} a & b \\ b & a \end{pmatrix}$
@@ -799,7 +916,7 @@ $$W = \Span\left(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \begin{pmatrix} 0
 
 **$W$ è lo Span delle due matrici.** Chiamo $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ e $J = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. Per ogni $a$ e $b$:
 $$aI + bJ = \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} + \begin{pmatrix} 0 & b \\ b & 0 \end{pmatrix} = \begin{pmatrix} a & b \\ b & a \end{pmatrix}.$$
-Letta da sinistra a destra, l'uguaglianza dice che ogni ricetta con $I$ e $J$ sta in $W$. Letta da destra a sinistra, dice che ogni matrice di $W$ è una ricetta con $I$ e $J$. Quindi $W = \Span(I, J)$.
+Letta da sinistra a destra, l'uguaglianza dice che ogni combinazione di $I$ e $J$ sta in $W$. Letta da destra a sinistra, dice che ogni matrice di $W$ è una combinazione di $I$ e $J$. Quindi $W = \Span(I, J)$.
 
 Nota: con questa seconda parte il primo punto diventa automatico, perché ogni Span è un sottospazio (Proposizione 6.7). È il modo più veloce per dimostrare che un insieme è un sottospazio: riscriverlo come Span.
 :::
@@ -811,11 +928,11 @@ Descrivi esplicitamente $\Span(v_1, v_2)$ e determina quali dei vettori
 $$u = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}, \qquad w = \begin{pmatrix} 1 \\ 2 \\ 4 \end{pmatrix}$$
 appartengono a questo sottospazio.
 ::: soluzione
-**Descrizione.** Una ricetta qualsiasi, con dosi $a$ e $b$, è
+**Descrizione.** Una combinazione qualsiasi, con coefficienti $a$ e $b$, è
 $$a v_1 + b v_2 = \begin{pmatrix} a \\ 0 \\ a \end{pmatrix} + \begin{pmatrix} 0 \\ b \\ b \end{pmatrix} = \begin{pmatrix} a \\ b \\ a + b \end{pmatrix}.$$
 Quindi lo Span è fatto dai vettori in cui la terza coordinata è la somma delle prime due. Con un'equazione è il **piano** $z = x + y$, cioè $x + y - z = 0$, che passa per l'origine. Infatti un punto $(x, y, z)$ ha la forma $(a, b, a + b)$ esattamente quando $z = x + y$: basta prendere $a = x$ e $b = y$.
 
-**Il vettore $u$.** Cerco le dosi con $(a, b, a + b) = (1, 2, 3)$.
+**Il vettore $u$.** Cerco i coefficienti con $(a, b, a + b) = (1, 2, 3)$.
 1. Dalle prime due coordinate: $a = 1$ e $b = 2$.
 2. La terza chiede $a + b = 3$, e infatti $1 + 2 = 3$.
 
@@ -846,7 +963,7 @@ Di' quali dei seguenti sottoinsiemi di $\R^3$ sono sottospazi. Se sì, dimostral
 ::: esercizio medio Uno Span con un parametro
 Per quali valori di $k \in \R$ il vettore $u_k = (1, 2, k)$ appartiene a $\Span\big((1, 1, 0),\ (0, 1, 1)\big)$? Per quei valori scrivi $u_k$ come combinazione lineare.
 ::: soluzione
-Cerco le dosi $a$ e $b$ con $a(1, 1, 0) + b(0, 1, 1) = (a,\ a + b,\ b) = (1, 2, k)$. Coordinata per coordinata:
+Cerco i coefficienti $a$ e $b$ con $a(1, 1, 0) + b(0, 1, 1) = (a,\ a + b,\ b) = (1, 2, k)$. Coordinata per coordinata:
 1. prima coordinata: $a = 1$;
 2. seconda: $a + b = 2$, quindi $b = 1$;
 3. terza: $b = k$, quindi $k = 1$.
@@ -861,7 +978,7 @@ Dimostra che $A(3)$, le matrici antisimmetriche $3 \times 3$, è lo Span di tre 
 ::: soluzione
 Una matrice antisimmetrica $3 \times 3$ ha la diagonale di zeri, e sotto la diagonale ci sono gli opposti dei numeri sopra. Quindi basta conoscere i tre numeri sopra la diagonale: chiamo $a = a_{12}$, $b = a_{13}$, $c = a_{23}$.
 $$\begin{pmatrix} 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \end{pmatrix} = a\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} + b\begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ -1 & 0 & 0 \end{pmatrix} + c\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0 \end{pmatrix}.$$
-Chiamo $F_1$, $F_2$, $F_3$ le tre matrici a destra. Ogni matrice antisimmetrica è una loro ricetta, e ogni loro ricetta è antisimmetrica: $A(3) = \Span(F_1, F_2, F_3)$. Per la Proposizione 6.7 è un sottospazio.
+Chiamo $F_1$, $F_2$, $F_3$ le tre matrici a destra. Ogni matrice antisimmetrica è una loro combinazione, e ogni loro combinazione è antisimmetrica: $A(3) = \Span(F_1, F_2, F_3)$. Per la Proposizione 6.7 è un sottospazio.
 
 La somma: con i numeri $a, b, c$ e $a', b', c'$ si ottiene la matrice con $a + a'$, $b + b'$, $c + c'$ sopra la diagonale e i loro opposti sotto. Ha ancora la forma antisimmetrica. Nella lezione L07 vedrai che $F_1$, $F_2$, $F_3$ sono una base, quindi lo spazio ha dimensione 3 (è l'Esercizio 1 del Foglio 2 del tutorato 2025).
 :::
@@ -930,7 +1047,7 @@ Sia $U = \{p(x) \in \R_3[x] \mid p(1) = p(-1)\}$.
 2. La condizione $p(1) = p(-1)$ diventa $a + c = -a - c$, cioè $2a + 2c = 0$, cioè $c = -a$.
 3. Quindi i polinomi di $U$ sono
    $$ax^3 + bx^2 - ax + d = a(x^3 - x) + b\,x^2 + d \cdot 1,$$
-   con $a$, $b$, $d$ qualsiasi: esattamente le ricette con $x^3 - x$, $x^2$ e 1.
+   con $a$, $b$, $d$ qualsiasi: esattamente le combinazioni di $x^3 - x$, $x^2$ e 1.
 
 Quindi $U = \Span(1, x^2, x^3 - x)$.
 
@@ -1001,19 +1118,19 @@ No: la somma di una triangolare superiore e di una inferiore può non essere tri
 :::
 
 ::: domanda Che cos'è una combinazione lineare? Che cos'è lo Span di alcuni vettori?
-Una combinazione lineare è una ricetta: ogni vettore moltiplicato per un numero, poi tutto sommato. Lo Span è l'insieme di **tutte** le ricette possibili con quei vettori, cambiando le dosi in tutti i modi.
+Una combinazione lineare si ottiene moltiplicando ogni vettore per un numero e sommando. Lo Span è l'insieme di **tutte** le combinazioni lineari di quei vettori, con i coefficienti scelti in tutti i modi.
 :::
 
 ::: domanda Perché lo Span è un sottospazio?
-Con tutte le dosi uguali a zero viene lo zero. La somma di due ricette è la ricetta con le dosi sommate. Il multiplo di una ricetta è la ricetta con tutte le dosi moltiplicate.
+Con tutti i coefficienti uguali a zero viene lo zero. La somma di due combinazioni è la combinazione con i coefficienti sommati. Il multiplo di una combinazione è la combinazione con tutti i coefficienti moltiplicati.
 :::
 
 ::: domanda Come si decide se un vettore sta nello Span di altri vettori?
-Si cercano le dosi: si scrive la ricetta con delle lettere, la si mette uguale al vettore coordinata per coordinata e si risolve il sistema. Se ha soluzione il vettore sta nello Span, altrimenti no.
+Si cercano i coefficienti: si scrive la combinazione con delle lettere, la si mette uguale al vettore coordinata per coordinata e si risolve il sistema. Se ha soluzione il vettore sta nello Span, altrimenti no.
 :::
 
 ::: domanda Come si dimostra in fretta che un insieme è un sottospazio?
-Riscrivendolo come Span di alcuni vettori: ogni Span è un sottospazio per la Proposizione 6.7. Per esempio i polinomi $(t + s)x^2 - tx - s$ sono le ricette con $x^2 - x$ e $x^2 - 1$.
+Riscrivendolo come Span di alcuni vettori: ogni Span è un sottospazio per la Proposizione 6.7. Per esempio i polinomi $(t + s)x^2 - tx - s$ sono le combinazioni di $x^2 - x$ e $x^2 - 1$.
 :::
 
 ## Glossario
@@ -1031,10 +1148,10 @@ Matrice antisimmetrica | Ogni casella è l'opposto della sua immagine allo specc
 Sottospazio vettoriale | Una parte di uno spazio vettoriale che contiene lo zero ed è chiusa rispetto alla somma e alla moltiplicazione per un numero.
 Chiuso rispetto a un'operazione | Facendo l'operazione con elementi dell'insieme si resta nell'insieme.
 Sottospazio banale e totale | Quello fatto solo dallo zero, e lo spazio intero. Ogni sottospazio sta in mezzo.
-Combinazione lineare | Una ricetta con dei vettori: ciascuno moltiplicato per un numero, poi tutto sommato. Per esempio $2(1, 0) + 3(0, 1)$.
-Coefficienti | Le dosi di una combinazione lineare: i numeri che moltiplicano i vettori.
-Span, sottospazio generato | Tutte le combinazioni lineari di alcuni vettori: tutto quello che si può cucinare con quegli ingredienti. È sempre un sottospazio.
-Generatori | Gli ingredienti di uno Span: i vettori con cui si ottiene tutto il sottospazio.
+Combinazione lineare | Una somma di vettori, ciascuno moltiplicato per un numero. Per esempio $2(1, 0) + 3(0, 1)$.
+Coefficienti | I numeri che moltiplicano i vettori in una combinazione lineare.
+Span, sottospazio generato | Tutte le combinazioni lineari di alcuni vettori. È sempre un sottospazio.
+Generatori | I vettori di cui si prendono tutte le combinazioni: con loro si ottiene tutto lo Span.
 Trasposta ${}^tA$ | La matrice con righe e colonne scambiate (lezione L08). $A$ è simmetrica quando è uguale alla sua trasposta.
 Forma parametrica e cartesiana | Due modi di descrivere un sottospazio: come Span di alcuni vettori, oppure con equazioni lineari senza termine noto.
 ```
@@ -1051,7 +1168,7 @@ Forma parametrica e cartesiana | Due modi di descrivere un sottospazio: come Spa
 - So spiegare perché le simmetriche e le antisimmetriche sono sottospazi, e perché «triangolari» tutte insieme no.
 - So calcolare una combinazione lineare di vettori, polinomi e matrici.
 - So dire che cos'è lo Span di alcuni vettori e perché è un sottospazio.
-- So decidere se un vettore sta in uno Span cercando le dosi con un sistema.
+- So decidere se un vettore sta in uno Span cercando i coefficienti con un sistema.
 - So riscrivere un sottospazio definito da condizioni come Span di pochi vettori.
 ```
 

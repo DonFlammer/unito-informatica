@@ -36406,7 +36406,7 @@ sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C ·
 descrizione: >-
   Appunti della lezione L03 di Algebra lineare e Geometria (MDAG, parte 2): coordinate polari, forma esponenziale,
   modulo e argomento di un numero complesso, prodotto e inverso in forma polare, identità di Eulero, potenze e
-  radici n-esime, con un ripasso di seno e coseno, quiz nello stile dell'esame ed esercizi svolti.
+  radici n-esime, con un ripasso di seno e coseno, le domande degli appelli dal 2024 al 2026, quiz ed esercizi svolti.
 lede: >-
   Un altro modo di dire dove sta un numero complesso: invece di «quanto a destra e quanto in su», una distanza e una
   direzione. Scritti così, i prodotti diventano giri e allungamenti, e le potenze alte e le radici si calcolano in
@@ -36425,36 +36425,31 @@ genera_html: true
 
 ## In breve
 
-- Un punto del piano si può indicare in due modi: «3 passi a destra e 4 in su», oppure «guarda in quella direzione e fai 5 passi». Il secondo modo usa una **distanza** e un **angolo**: sono le **coordinate polari**.
-- Un numero complesso scritto con distanza e angolo è in **forma polare**. La distanza si chiama **modulo**, l'angolo si chiama **argomento**.
-- Le dispense usano un'abbreviazione: $e^{i\vartheta}$ vuol dire «il punto sul cerchio di raggio 1 all'angolo $\vartheta$».
-- Per **moltiplicare** due numeri complessi in forma polare: le distanze si moltiplicano, gli angoli si sommano. Moltiplicare per $i$ vuol dire girare di un quarto di giro.
-- Una **potenza** è un prodotto ripetuto: la distanza si eleva, l'angolo si moltiplica. Le **radici** $n$-esime di un numero sono sempre $n$ punti, messi in cerchio a distanze uguali.
+- Un punto del piano diverso dall'origine si individua anche con la **distanza** dall'origine e l'**angolo** con l'asse orizzontale: sono le **coordinate polari**.
+- Un numero complesso scritto così è in **forma polare**: la distanza è il **modulo**, l'angolo l'**argomento**. Le dispense abbreviano il punto della circonferenza di raggio 1 all'angolo dato con un esponenziale complesso.
+- Nel **prodotto** i moduli si moltiplicano e gli angoli si sommano: moltiplicare per un numero vuol dire ruotare e allungare.
+- Nella **potenza** il modulo si eleva e l'angolo si moltiplica per l'esponente; gli angoli si accorciano togliendo giri interi.
+- Le **radici** $n$-esime di un numero non nullo sono sempre $n$, sui vertici di un poligono regolare centrato nell'origine.
 - All'esame: potenze alte, prodotti in forma polare e radici sono stati la domanda sui complessi in 9 appelli su 15 dal 2024 al 2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di mercoledì 07/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di mercoledì 07/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 3. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Ripasso: angoli, seno e coseno (oltre le dispense)
 
-Le dispense usano angoli, seno e coseno senza spiegarli: li danno per noti dalla scuola. Qui c'è tutto quello che serve per questa lezione, e niente di più. Se li ricordi bene, salta alla sezione dopo.
+Le dispense usano angoli, seno e coseno come noti dalla scuola. Qui c'è quello che serve per questa lezione; se lo ricordi bene, passa alla sezione dopo.
 
 ### Gli angoli in radianti
 
-Immagina una pista circolare con il raggio lungo 1 metro. Parti da un punto e cammini lungo la pista. Quanta strada fai in un giro completo?
+Una circonferenza di raggio 1 è lunga $2\pi$, circa 6,28.
 
-La lunghezza di una circonferenza è $2\pi$ volte il raggio. Qui il raggio è 1, quindi un giro completo è lungo $2\pi$ metri, circa 6,28.
-
-> [!RIPASSO] il numero $\pi$
-> $\pi$ si legge «pi greco». È il numero che dice quante volte il diametro di un cerchio ci sta nella sua circonferenza: circa $3{,}14$. Una circonferenza di raggio $r$ è lunga $2\pi r$.
-
-L'idea dei **radianti** è misurare un angolo con la **strada fatta sulla pista**:
+I **radianti** misurano un angolo con la lunghezza dell'arco che taglia su questa circonferenza:
 
 - un giro intero è lungo $2\pi$, quindi l'angolo giro misura $2\pi$;
 - mezzo giro è lungo la metà, $\pi$, quindi l'angolo piatto misura $\pi$;
 - un quarto di giro, cioè l'angolo retto, misura $\frac\pi2$.
 
-I gradi e i radianti sono due unità di misura per la stessa cosa, come i chilometri e le miglia. La regola per passare dagli uni agli altri: $180°$ corrisponde a $\pi$. Quindi un grado vale $\frac{\pi}{180}$, e per passare da gradi a radianti si moltiplica per $\frac{\pi}{180}$.
+Gradi e radianti sono due unità di misura per la stessa cosa. La regola per passare dagli uni agli altri: $180°$ corrisponde a $\pi$. Quindi un grado vale $\frac{\pi}{180}$, e per passare da gradi a radianti si moltiplica per $\frac{\pi}{180}$.
 
 Un esempio: $60°$.
 
@@ -36479,9 +36474,7 @@ $270 \cdot \frac{\pi}{180} = \frac{270\pi}{180} = \frac{3\pi}2$, dividendo sopra
 
 ### Seno e coseno sul cerchio
 
-Torna sulla pista. Mettila su un foglio a quadretti, con il centro nell'origine degli assi. La pista è la **circonferenza unitaria**: il cerchio con centro nell'origine e raggio 1.
-
-Parti dal punto $(1, 0)$, quello più a destra, e cammina in senso antiorario per un angolo $\vartheta$. Ti fermi in un punto della pista. Quel punto ha due coordinate:
+La **circonferenza unitaria** è quella con centro nell'origine e raggio 1. Partendo dal punto $(1, 0)$ e percorrendo in senso antiorario un arco di angolo $\vartheta$ si arriva a un punto con due coordinate:
 
 - la prima (quanto sei a destra) si chiama **coseno** di $\vartheta$, e si scrive $\cos\vartheta$;
 - la seconda (quanto sei in alto) si chiama **seno** di $\vartheta$, e si scrive $\sin\vartheta$.
@@ -36566,14 +36559,7 @@ $\frac{3\pi}4 = \pi - \frac\pi4$: tre quarti di mezzo giro, nel secondo quadrant
 
 ## Due modi per dire dove sta un punto (pp. 10–11)
 
-Sei in una piazza e devi spiegare a un amico dove trovarti. Puoi dirlo in due modi:
-
-- «da dove sei, fai 3 passi verso est e 4 verso nord»;
-- «guarda in quella direzione e fai 5 passi dritto».
-
-Il primo modo sono le **coordinate cartesiane** della lezione L02: quanto ti sposti in orizzontale, quanto in verticale. Il secondo usa una **direzione** e una **distanza**.
-
-Perché proprio 5 passi? Gli spostamenti di 3 e di 4 sono i due lati di un triangolo rettangolo, e la strada dritta è il terzo lato. Per Pitagora la sua lunghezza è $\sqrt{3^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5$.
+Le **coordinate cartesiane** della lezione L02 dicono quanto ci si sposta in orizzontale e quanto in verticale. Lo stesso punto si individua anche con una **direzione** e una **distanza**. Il punto $(3, 4)$, per esempio, sta a distanza $\sqrt{3^2 + 4^2} = 5$ dall'origine, per il teorema di Pitagora.
 
 ### Il nome e i simboli
 
@@ -36922,7 +36908,7 @@ $\bar z = 4e^{-i\pi/2}$: stessa distanza, angolo opposto. In forma $a + bi$: $z 
 
 ## Quando due angoli indicano lo stesso punto (p. 11)
 
-Un orologio segna le 3. Dopo un giro completo della lancetta segna ancora le 3: la lancetta è nello stesso posto. Con gli angoli succede lo stesso. L'angolo $\frac\pi2$ e l'angolo $\frac\pi2 + 2\pi = \frac{5\pi}2$ indicano la stessa direzione: il secondo ha solo fatto un giro in più.
+Un giro completo riporta nella stessa direzione. Per esempio l'angolo $\frac\pi2$ e l'angolo $\frac\pi2 + 2\pi = \frac{5\pi}2$ indicano la stessa direzione: il secondo ha solo fatto un giro in più.
 
 Per questo lo stesso numero complesso ha tante forme polari diverse:
 
@@ -36971,9 +36957,9 @@ Un giro in terzi è $\frac 63\pi$. Divido 17 per 6: $17 = 6 \cdot 2 + 5$. Quindi
 
 ## Il giro completo e l'identità di Eulero (p. 12)
 
-Torna sulla pista circolare del ripasso, quella con il raggio lungo 1. Ogni abbreviazione $e^{i\vartheta}$ è un punto della pista, e ogni punto della pista è uno di questi numeri: basta prendere il suo angolo.
+Gli esponenziali complessi sono esattamente i punti della circonferenza unitaria. Ogni $e^{i\vartheta}$ è un suo punto, e ogni suo punto è uno di questi numeri.
 
-Tre posti sulla pista sono da sapere a memoria, perché tornano in quasi tutti gli esercizi:
+Tre punti sono da sapere a memoria, perché tornano in quasi tutti gli esercizi:
 
 - un quarto di giro, $\vartheta = \frac\pi2$: $e^{i\pi/2} = \cos\frac\pi2 + i\sin\frac\pi2 = 0 + i \cdot 1 = i$;
 - mezzo giro, $\vartheta = \pi$: $e^{i\pi} = \cos\pi + i\sin\pi = -1 + 0 = -1$;
@@ -37261,7 +37247,7 @@ $-9 = 9e^{i\pi}$. Distanza $\sqrt 9 = 3$, angoli $\frac\pi2$ e $\frac{3\pi}2$. L
 
 **Appello del 15/01/2026, domanda 5.** Il testo: «Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, allora $z^9$ è uguale a: (a) $1$; (b) $\frac 12 - \frac{\sqrt 3}2 i$; (c) $-\frac{9\sqrt 3}2 + \frac 92 i$; (d) $i$; (e) $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$».
 
-**In pratica chiede:** prendi questo numero, moltiplicalo per sé stesso nove volte. Che cosa viene? Nove moltiplicazioni nella forma $a + bi$ sono troppe: si passa alla forma polare.
+**In pratica chiede:** la potenza nona di un numero dato in forma $a + bi$. Nove moltiplicazioni sono troppe: si passa alla forma polare.
 
 > [!ESEMPIO] · la soluzione, passo per passo
 > **Passo 1: la distanza.** $|z| = \sqrt{\left(\frac{\sqrt 3}2\right)^2 + \left(\frac 12\right)^2} = \sqrt{\frac 34 + \frac 14} = \sqrt 1 = 1$. Il numero sta sul cerchio di raggio 1.
@@ -37327,6 +37313,38 @@ $-9 = 9e^{i\pi}$. Distanza $\sqrt 9 = 3$, angoli $\frac\pi2$ e $\frac{3\pi}2$. L
 ## Quiz
 
 ```quiz
+D: Appello del 15/01/2026, domanda 5. Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, allora $z^9$ è uguale a:
+- $1$
+- $\frac 12 - \frac{\sqrt 3}2 i$
+- $-\frac{9\sqrt 3}2 + \frac 92 i$
++ $i$
+- $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$
+= $z = e^{-i\pi/6}$, quindi $z^9 = e^{-3\pi i/2} = e^{i\pi/2} = i$: la risposta (d) della soluzione ufficiale. La risposta più insidiosa è l'ultima, che eleva alla nona le due parti separatamente: per i complessi non si fa.
+
+D: Appello del 16/01/2025, domanda 1. Dato $z = 2\cos\frac\pi4 + 2i\sin\frac\pi4$, allora $-3iz$ in coordinate polari è uguale a:
+- $-6i\cos\frac\pi4 - 6i\sin\frac\pi4$
+- $-6e^{3\pi i/4}$
+- $-6i\cos\frac\pi4 + 6i\sin\frac\pi4$
++ $6e^{7\pi i/4}$
+- $0$
+= $z = 2e^{i\pi/4}$ e $-3i = 3e^{3\pi i/2}$: moduli moltiplicati, $6$; angoli sommati, $\frac{7\pi}4$. È la (d) della soluzione ufficiale. La risposta più insidiosa è $-6e^{3\pi i/4}$: indica lo stesso numero, ma con il modulo negativo non è una forma polare.
+
+D: Appello del 02/09/2025, domanda 2. Quale dei seguenti è una radice terza di $z = 8e^{3\pi i/5}$?
+- $4e^{\pi i/5}$
++ $2e^{\pi i/5 + 2\pi i/3}$
+- $8e^{\pi i/3 + 2\pi ik}$
+- $2e^{3\pi i/5}$
+- $2e^{3\pi i/5 + \pi i/3}$
+= Le radici terze hanno modulo $\sqrt[3]8 = 2$ e angoli $\frac\pi5 + \frac{2k\pi}3$: con $k = 1$ è la (b), quella della soluzione ufficiale. La risposta più insidiosa è $2e^{3\pi i/5}$, che ha il modulo giusto ma non divide l'angolo per 3: il suo cubo è $8e^{9\pi i/5}$.
+
+D: Appello del 24/01/2024, domanda 2. Dato $z = -\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$, allora $z^{12}$ è uguale a:
++ $-1$
+- $-2i$
+- $\frac 1{2^6}(1 - i)$
+- $\frac{\sqrt 2}2 + \frac{\sqrt 2}2 i$
+- $2^{12} i$
+= $z$ ha modulo 1 e angolo $\frac{3\pi}4$, quindi $z^{12} = e^{9\pi i} = e^{i\pi} = -1$: la (a) della soluzione ufficiale. La risposta più insidiosa è $2^{12}i$, che sbaglia il modulo: $\left(\frac{\sqrt 2}2\right)^2 + \left(\frac{\sqrt 2}2\right)^2 = 1$, non 2.
+
 D: Dato $z = 1 + i$, allora $z^{10}$ è uguale a:
 + $32i$
 - $-32i$
@@ -37784,8 +37802,8 @@ descrizione: >-
   dell'algebra, equazioni di secondo grado nei complessi e polinomi a coefficienti reali, con quiz nello stile
   dell'esame ed esercizi svolti.
 lede: >-
-  Un polinomio è una macchina che prende un numero e ne restituisce un altro. Qui impari a dividere i polinomi con il
-  resto, come i numeri alle elementari, e a trovare i numeri che fanno uscire zero: le radici. Servono in tutto il
+  I polinomi in una lettera: grado, divisione con resto, regola di Ruffini e radici, cioè i numeri in cui il
+  polinomio si annulla. Servono in tutto il
   corso, dagli autovalori ai determinanti con un parametro.
 materiale: dispense
 scheda:
@@ -37801,24 +37819,24 @@ genera_html: true
 
 ## In breve
 
-- Un **polinomio** è un'espressione come $x^2 - 3$, fatta di numeri e di potenze di una lettera, messi insieme con più, meno e per. Funziona come una macchina: metti un numero al posto della lettera ed esce un numero. Il **grado** è l'esponente più alto.
-- I polinomi si **dividono con il resto**, come i numeri alle elementari: 17 diviso 5 fa 3 con il resto di 2. Se il resto è zero, il divisore **divide** il polinomio.
-- Una **radice** è un numero che, messo nella macchina, fa uscire zero. Il numero $a$ è una radice esattamente quando il polinomio si divide per $x - a$ senza resto.
+- Un **polinomio** è una somma di numeri per potenze di una lettera, come $x^2 - 3$; sostituendo un numero alla lettera si ottiene un numero. Il **grado** è l'esponente più alto, letto dopo aver ridotto.
+- I polinomi si **dividono con il resto**, come gli interi, con il resto di grado minore del divisore. Se il resto è zero, il divisore **divide** il polinomio.
+- Una **radice** è un numero in cui il polinomio vale zero. Il numero $a$ è una radice esattamente quando il polinomio è divisibile per $x - a$; il resto di quella divisione è il valore del polinomio in quel numero.
 - La **molteplicità** di una radice dice quante volte il fattore $x - a$ «ci sta» nel polinomio.
 - Un polinomio ha al massimo tante radici quanto è il suo grado. Tra i numeri complessi ne ha **esattamente** tante quanto il grado, contate con la molteplicità: è il **teorema fondamentale dell'algebra**.
 - Se i numeri del polinomio sono reali, le radici complesse vengono a coppie: una e il suo coniugato.
 - All'esame: «quale di questi numeri è una radice?» è stata la domanda sui complessi in tre appelli, e le radici dei polinomi servono in quasi ogni problema sugli autovalori.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di giovedì 08/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 08/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 4. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Che cos'è un polinomio (p. 15)
 
-Prendi questa regola: «prendi un numero, moltiplicalo per sé stesso e togli 3». Si scrive così:
+La regola «eleva al quadrato e togli 3» si scrive con una lettera al posto del numero:
 
 $$x^2 - 3.$$
 
-La lettera $x$ è un posto vuoto in cui mettere un numero. Proviamo con qualche numero:
+Sostituendo dei numeri alla lettera si ottengono dei numeri:
 
 | Metto | Conto | Esce |
 |---|---|---|
@@ -37826,9 +37844,7 @@ La lettera $x$ è un posto vuoto in cui mettere un numero. Proviamo con qualche 
 | $0$ | $0^2 - 3 = 0 - 3$ | $-3$ |
 | $-2$ | $(-2)^2 - 3 = 4 - 3$ | $1$ |
 
-Un'espressione così è un **polinomio**: una macchina che prende un numero e ne restituisce un altro.
-
-Le dispense descrivono i polinomi come le funzioni più semplici che ci siano. Si costruiscono con numeri e lettere usando solo tre operazioni: più, meno e per. Niente divisioni per una lettera, niente radici di una lettera, niente esponenti negativi. Per esempio $x^2 + 3$ è un polinomio; $\frac 1x$ e $\sqrt x$ no.
+Un'espressione così è un **polinomio**. Le dispense descrivono i polinomi come le funzioni più semplici che ci siano. Si costruiscono con numeri e lettere usando solo tre operazioni: più, meno e per. Niente divisioni per una lettera, niente radici di una lettera, niente esponenti negativi. Per esempio $x^2 + 3$ è un polinomio; $\frac 1x$ e $\sqrt x$ no.
 
 ### I mattoni: i monomi
 
@@ -37946,13 +37962,11 @@ Tre cose da notare:
 > - $p(x) = a_nx^n + \dots + a_1x + a_0$: il numerino dice a quale potenza appartiene il numero; $a_0$ è il termine noto.
 > - $\R[x]$ e $\C[x]$: polinomi con numeri reali o complessi. $\R_k[x]$: polinomi reali di grado al massimo $k$.
 
-## Dividere con il resto, come alle elementari (pp. 15–16)
+## La divisione con resto (pp. 15–16)
 
-Alle elementari hai imparato la divisione con il resto. Hai 44 caramelle e 6 sacchetti: in ogni sacchetto ne metti 7 e ne avanzano 2.
+Tra gli interi, 44 diviso 6 dà quoziente 7 e resto 2, e il resto è minore del divisore:
 
 $$44 = 7 \cdot 6 + 2.$$
-
-Il 7 è il **quoziente**, il 2 è il **resto**. E il resto è più piccolo del divisore 6: se ne avanzassero 6 o più, potresti mettere un'altra caramella in ogni sacchetto.
 
 I polinomi si dividono nello stesso modo. Al posto di «più piccolo» si usa «di grado più basso». Le dispense lo scrivono così.
 
@@ -38074,17 +38088,15 @@ a: 2
 > - Ruffini divide per $x - a$ con i soli coefficienti: abbassa, moltiplica per $a$, somma.
 > - L'ultimo numero è il resto; gli altri sono il quoziente, di un grado in meno.
 
-## Le radici: i numeri che fanno uscire zero (p. 16)
+## Le radici (p. 16)
 
-Torna alla macchina dell'inizio, quella che eleva al quadrato e toglie 3. Con il polinomio $x^2 - 3$: mettendo 2 esce 1, mettendo 0 esce $-3$. C'è un numero che fa uscire zero? Sì: $\sqrt 3$, perché $(\sqrt 3)^2 - 3 = 3 - 3 = 0$. E anche $-\sqrt 3$.
-
-Mettere un numero $a$ al posto di $x$ si scrive $p(a)$, «pi di a». Per esempio, con $p(x) = x^2 - 3$:
+Il polinomio dell'inizio si annulla in due numeri reali. Infatti $x^2 - 3$ vale 1 in 2 e $-3$ in 0, e vale zero in $\sqrt 3$ e in $-\sqrt 3$. Il valore in un numero $a$ si scrive $p(a)$, «pi di a». Per esempio, con $p(x) = x^2 - 3$:
 
 - $p(-2) = (-2)^2 - 3 = 4 - 3 = 1$;
 - $p(0) = 0 - 3 = -3$;
 - $p(\sqrt 3) = 3 - 3 = 0$.
 
-I numeri che fanno uscire zero sono speciali, e hanno un nome. Le dispense lo scrivono così.
+I numeri in cui il polinomio si annulla hanno un nome.
 
 > [!DEF] 4.1
 > Un numero $a$ è **radice** di un polinomio $p(x)$ se $p(a) = 0$.
@@ -38319,6 +38331,61 @@ Tre esempi, uno per caso:
 | $x^2 - 4x + 4$ | $16 - 16 = 0$ | $\frac 42 = 2$, doppia | $(x - 2)^2$ |
 | $x^2 + x + 1$ | $1 - 4 = -3 < 0$ | nessuna | non si scompone in $\R$ |
 
+```grafico
+titolo: I tre casi del discriminante. A sinistra la parabola taglia l'asse in due punti, $\Delta > 0$; al centro lo tocca in un punto, radice doppia, $\Delta = 0$; a destra non lo incontra, $\Delta < 0$: nessuna radice reale
+proporzioni: libere
+x: -5.6 5.6
+y: -1.5 3.8
+segmento: -5.30 2.240 -5.04 1.380 | accento | spesso
+segmento: -5.04 1.380 -4.79 0.653 | accento | spesso
+segmento: -4.79 0.653 -4.53 0.058 | accento | spesso
+segmento: -4.53 0.058 -4.27 -0.405 | accento | spesso
+segmento: -4.27 -0.405 -4.01 -0.736 | accento | spesso
+segmento: -4.01 -0.736 -3.76 -0.934 | accento | spesso
+segmento: -3.76 -0.934 -3.50 -1.000 | accento | spesso
+segmento: -3.50 -1.000 -3.24 -0.934 | accento | spesso
+segmento: -3.24 -0.934 -2.99 -0.736 | accento | spesso
+segmento: -2.99 -0.736 -2.73 -0.405 | accento | spesso
+segmento: -2.73 -0.405 -2.47 0.058 | accento | spesso
+segmento: -2.47 0.058 -2.21 0.653 | accento | spesso
+segmento: -2.21 0.653 -1.96 1.380 | accento | spesso
+segmento: -1.96 1.380 -1.70 2.240 | accento | spesso
+segmento: -1.60 2.560 -1.37 1.881 | ambra | spesso
+segmento: -1.37 1.881 -1.14 1.306 | ambra | spesso
+segmento: -1.14 1.306 -0.91 0.836 | ambra | spesso
+segmento: -0.91 0.836 -0.69 0.470 | ambra | spesso
+segmento: -0.69 0.470 -0.46 0.209 | ambra | spesso
+segmento: -0.46 0.209 -0.23 0.052 | ambra | spesso
+segmento: -0.23 0.052 0.00 0.000 | ambra | spesso
+segmento: 0.00 0.000 0.23 0.052 | ambra | spesso
+segmento: 0.23 0.052 0.46 0.209 | ambra | spesso
+segmento: 0.46 0.209 0.69 0.470 | ambra | spesso
+segmento: 0.69 0.470 0.91 0.836 | ambra | spesso
+segmento: 0.91 0.836 1.14 1.306 | ambra | spesso
+segmento: 1.14 1.306 1.37 1.881 | ambra | spesso
+segmento: 1.37 1.881 1.60 2.560 | ambra | spesso
+segmento: 1.90 3.560 2.13 2.881 | blu | spesso
+segmento: 2.13 2.881 2.36 2.306 | blu | spesso
+segmento: 2.36 2.306 2.59 1.836 | blu | spesso
+segmento: 2.59 1.836 2.81 1.470 | blu | spesso
+segmento: 2.81 1.470 3.04 1.209 | blu | spesso
+segmento: 3.04 1.209 3.27 1.052 | blu | spesso
+segmento: 3.27 1.052 3.50 1.000 | blu | spesso
+segmento: 3.50 1.000 3.73 1.052 | blu | spesso
+segmento: 3.73 1.052 3.96 1.209 | blu | spesso
+segmento: 3.96 1.209 4.19 1.470 | blu | spesso
+segmento: 4.19 1.470 4.41 1.836 | blu | spesso
+segmento: 4.41 1.836 4.64 2.306 | blu | spesso
+segmento: 4.64 2.306 4.87 2.881 | blu | spesso
+segmento: 4.87 2.881 5.10 3.560 | blu | spesso
+punto: -4.5 0 | accento
+punto: -2.5 0 | accento
+punto: 0 0 | ambra
+testo: -3.5 3.3 | accento | "Δ > 0"
+testo: 1.5 3.3 | ambra | "Δ = 0"
+testo: 3.5 3.3 | blu | "Δ < 0"
+```
+
 ::: prova Quante radici reali ha $x^2 - 6x + 9$? Con che molteplicità?
 $\Delta = 36 - 36 = 0$: una sola radice, $\frac 62 = 3$, con molteplicità 2. Infatti $x^2 - 6x + 9 = (x - 3)^2$.
 :::
@@ -38437,6 +38504,20 @@ Il motivo, a parole: coniugare non cambia i numeri reali, e il coniugato di una 
 > [!ESEMPIO] · $x^3 - 1$ e le radici terze dell'unità
 > $x^3 - 1 = (x - 1)(x^2 + x + 1)$ (Esempio 4.4). Il fattore $x^2 + x + 1$ ha $\Delta = 1 - 4 = -3$, con radici quadrate $\pm i\sqrt 3$, quindi le sue radici sono $\frac{-1 \pm i\sqrt 3}2$. Le tre radici di $x^3 - 1$ sono 1 e la coppia coniugata $-\frac 12 \pm \frac{\sqrt 3}2 i$. Sono le tre radici terze dell'unità della lezione L03, e il triangolo che formano è simmetrico rispetto all'asse orizzontale.
 
+```grafico
+titolo: Le radici di due polinomi a coefficienti reali. In blu quelle di $x^3 - 1$: la radice reale $1$ e una coppia coniugata. In ambra quelle di $x^2 + 2x + 5$: $-1 \pm 2i$. Ogni coppia è simmetrica rispetto all'asse reale (tratteggio)
+x: -2.6 2.4
+y: -2.6 2.6
+nomi: $\operatorname{Re}$ $\operatorname{Im}$
+segmento: -0.5 0.75 -0.5 -0.75 | grigio | tratteggio
+segmento: -1 1.85 -1 -1.85 | grigio | tratteggio
+punto: 1 0 | blu | $1$ | ne
+punto: -0.5 0.866 | blu | $-\frac 12 + \frac{\sqrt 3}2 i$ | e
+punto: -0.5 -0.866 | blu | $-\frac 12 - \frac{\sqrt 3}2 i$ | e
+punto: -1 2 | ambra | $-1 + 2i$ | no
+punto: -1 -2 | ambra | $-1 - 2i$ | so
+```
+
 ::: prova Un polinomio con numeri reali ha la radice $2 - 3i$. Quale altra radice ha di sicuro?
 Il coniugato: $2 + 3i$.
 :::
@@ -38543,6 +38624,30 @@ Il coniugato: $2 + 3i$.
 ## Quiz
 
 ```quiz
+D: Appello del 07/09/2026, domanda 1. Quale dei seguenti è una radice del polinomio $p(z) = z^4 + 5z^2 + 4$?
+- $z = -3 + i$
+- $z = 1 - i$
+- $z = -1$
++ $z = -2i$
+- il polinomio non ha radici
+= Con $t = z^2$ il polinomio è $t^2 + 5t + 4 = (t + 1)(t + 4)$, quindi $z^2 = -1$ o $z^2 = -4$: le radici sono $\pm i$ e $\pm 2i$. È la (d) della soluzione ufficiale; controllo: $p(-2i) = 16 - 20 + 4 = 0$. La risposta più insidiosa è «non ha radici»: vale per i reali, non per i complessi.
+
+D: Appello del 10/07/2025, domanda 1. Quale dei seguenti è una radice di $p(z) = z^4 + 7z^2 + 12$?
++ $z = -2i$
+- $z = -2$
+- il polinomio non ha radici
+- $z = 3 + 4i$
+- $z = 4$
+= Con $w = z^2$: $(w + 3)(w + 4) = 0$, quindi $z = \pm i\sqrt 3$ oppure $z = \pm 2i$. È la (a) della soluzione ufficiale. La risposta più insidiosa è $-2$: è $-2i$ senza la $i$, e per $z$ reale il polinomio vale almeno 12.
+
+D: Appello del 03/07/2026, domanda 7. Quale dei seguenti è una radice del polinomio $p(z) = z^3 + 2z^2 + z + 2$?
+- $z = 0$
++ $z = i$
+- $z = 1 + i$
+- $z = 1$
+- $z^3 + 2z^2 + z + 2 = 0$
+= Raccogliendo, $p(z) = (z^2 + 1)(z + 2)$: radici $-2$, $i$, $-i$. È la (b) della soluzione ufficiale; controllo $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è l'ultima, che non è un numero ma l'equazione stessa.
+
 D: Quale dei seguenti è una radice di $p(z) = z^4 + 10z^2 + 9$?
 + $z = 3i$
 - $z = 3$
@@ -38888,7 +38993,7 @@ Perché ha in tutto un numero dispari di radici complesse, e quelle non reali ve
 
 ```glossario
 Monomio | Un numero moltiplicato per delle lettere con esponenti interi, come $-2xy$. Il grado è la somma degli esponenti.
-Polinomio | Una somma di monomi, come $x^2 - 3$. Funziona come una macchina: metti un numero al posto della lettera ed esce un numero.
+Polinomio | Una somma di monomi, come $x^2 - 3$. Sostituendo un numero alla lettera si ottiene un numero.
 Forma normale | La scrittura di un polinomio con ogni parte letterale una volta sola e nessun coefficiente zero, oppure il polinomio 0.
 Grado | L'esponente più alto di un polinomio in forma normale. $x^3 - 2x + 5$ ha grado 3.
 Termine noto | Il numero da solo, senza lettera: in $x^2 - 3$ è $-3$.
@@ -38946,11 +39051,11 @@ sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C ·
 descrizione: >-
   Appunti della lezione L05 di Algebra lineare e Geometria (MDAG, parte 2): lo spazio euclideo, somma di vettori e
   prodotto per scalare, gruppi, campi, definizione di spazio vettoriale ed esempi (polinomi, funzioni, successioni),
-  con quiz nello stile dell'esame ed esercizi svolti.
+  con domande vere degli appelli su spazi e sottospazi, quiz ed esercizi svolti.
 lede: >-
-  Che cos'è un vettore: una lista di numeri, da leggere come uno spostamento su una mappa a quadretti. Impari a
-  sommare due vettori e a moltiplicarli per un numero. Poi vedi che le stesse regole valgono anche per i polinomi e
-  per le funzioni: ogni posto in cui valgono si chiama spazio vettoriale.
+  Che cos'è un vettore: una lista di numeri, che nel piano è uno spostamento. La somma, il prodotto per uno scalare
+  e le otto regole che seguono; poi gli altri insiemi in cui valgono le stesse regole, come i polinomi e le
+  funzioni: gli spazi vettoriali.
 materiale: dispense
 scheda:
   Dispense: lezione 5 · pp. 20–25
@@ -38965,22 +39070,20 @@ genera_html: true
 
 ## In breve
 
-- Un **vettore** è una lista ordinata di numeri, come $(3, 2)$. Puoi leggerlo come uno spostamento su una mappa a quadretti: 3 passi a destra e 2 in su.
-- I vettori si **sommano** numero per numero: è come fare uno spostamento dopo l'altro. Si **moltiplicano per un numero** moltiplicando ogni numero della lista: è come ripetere lo stesso spostamento, oppure farlo al contrario.
+- Un **vettore** è una lista ordinata di numeri, come $(3, 2)$. Nel piano si disegna come una freccia che parte dall'origine: questa va di 3 in orizzontale e di 2 in verticale.
+- I vettori si **sommano** coordinata per coordinata, e nel piano la somma è la diagonale del parallelogramma. Si **moltiplicano per un numero**, lo scalare, moltiplicando ogni coordinata: la freccia si allunga, si accorcia o si gira.
 - Queste due operazioni seguono otto regole, simili a quelle dei conti con i numeri. Un insieme in cui si può sommare e moltiplicare per un numero con queste regole, senza mai uscire, si chiama **spazio vettoriale**.
 - Anche i polinomi, le funzioni e le liste infinite di numeri formano spazi vettoriali. Per questo in matematica si chiamano «vettori» anche loro.
-- Ci sono **due zeri** diversi: il numero zero e il vettore zero, quello che non sposta niente. Qualunque vettore moltiplicato per il numero zero dà il vettore zero.
+- Ci sono **due zeri** diversi: il numero zero e il vettore nullo. Qualunque vettore moltiplicato per il numero zero dà il vettore nullo.
 - **Gruppo** e **campo** sono i nomi di due liste di regole. Servono a scrivere la definizione in modo preciso: è la parte più teorica della lezione.
 - All'esame devi saper dire se un insieme è uno spazio vettoriale. Per dire di no basta un esempio: manca il vettore zero, oppure una somma o un multiplo escono dall'insieme.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di martedì 13/10/2026, dalle 9 alle 11: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 13/10/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 5. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Un vettore è una lista di numeri (pp. 20–21)
 
-Immagina una mappa a quadretti, come un foglio di quaderno. Sei fermo su un incrocio e devi spiegare a un amico dove andare.
-
-Gli dici: «3 quadretti a destra e 2 in su». Bastano due numeri: il 3 e il 2. In matematica si scrivono tra parentesi tonde, separati da una virgola:
+Nel piano uno spostamento si descrive con due numeri: di quanto ci si sposta in orizzontale e di quanto in verticale. Lo spostamento «3 a destra e 2 in su» si scrive con i due numeri tra parentesi tonde, separati da una virgola:
 
 $$(3, 2)$$
 
@@ -38997,7 +39100,7 @@ testo: 1.5 -0.4 | blu | "3 a destra"
 testo: 3.8 1 | blu | "2 in su"
 ```
 
-Guarda la figura. I due tratti blu sono i passi: prima 3 a destra, poi 2 in su. La freccia va dritta dalla partenza all'arrivo. È il disegno del vettore.
+Nella figura i due tratti blu sono le due parti dello spostamento, 3 in orizzontale e 2 in verticale. La freccia va dalla partenza all'arrivo: è il disegno del vettore.
 
 ### L'ordine conta
 
@@ -39016,11 +39119,9 @@ I numeri possono essere anche negativi, oppure zero. Un numero negativo al primo
 | $(0, 0)$ | resti dove sei |
 
 > [!RIPASSO] il piano cartesiano
-> Il **piano cartesiano** è la mappa a quadretti con due righe di riferimento. Una è orizzontale e si chiama *asse $x$*. L'altra è verticale e si chiama *asse $y$*. Il punto in cui si incrociano si chiama **origine**.
+> Il **piano cartesiano** è il piano con due rette di riferimento perpendicolari. Una è orizzontale e si chiama *asse $x$*. L'altra è verticale e si chiama *asse $y$*. Il punto in cui si incrociano si chiama **origine**.
 >
-> Ogni punto della mappa si indica con due numeri. Il primo dice quanti passi fare dall'origine in orizzontale. Il secondo dice quanti passi fare in verticale.
->
-> Per esempio il punto $(2, 3)$ si raggiunge così: dall'origine fai 2 passi a destra e 3 passi in su.
+> Ogni punto del piano si indica con due numeri: lo spostamento dall'origine in orizzontale e quello in verticale. Per esempio il punto $(2, 3)$ si raggiunge dall'origine andando di 2 a destra e di 3 in su.
 
 ### I nomi: coordinate e spazio euclideo
 
@@ -39037,7 +39138,7 @@ $$(3, 2) \in \R^2$$
 
 Vuol dire: «tre, due» è una lista di 2 numeri reali.
 
-Una lista può avere anche tre numeri, come $(1, 4, 2)$. Serve per muoversi in una stanza invece che su un foglio: 1 passo a destra, 4 passi in avanti, 2 passi verso l'alto. L'insieme delle liste di tre numeri si chiama $\R^3$, «erre tre».
+Una lista può avere anche tre numeri, come $(1, 4, 2)$: descrive uno spostamento nello spazio, dove alle due direzioni del piano si aggiunge l'altezza. L'insieme delle liste di tre numeri si chiama $\R^3$, «erre tre».
 
 Il simbolo di prima con una sbarra sopra, $\notin$, si legge «non appartiene a». Per esempio $(3, 2) \notin \R^3$: la lista ha due numeri, non tre.
 
@@ -39058,7 +39159,7 @@ Le coordinate prendono il nome del vettore, con un numerino in basso che dice il
 
 Per un vettore con $n$ coordinate le dispense scrivono $(x_1, \dots, x_n)$. Vuol dire: una lista di numeri. Il primo si chiama $x_1$ e l'ultimo $x_n$. I tre puntini stanno per tutti quelli in mezzo.
 
-Il vettore fatto di soli zeri ha un nome: **origine**. Sulla mappa è lo spostamento «resta dove sei». Si indica con $0$, oppure con la lettera $O$.
+Il vettore fatto di soli zeri ha un nome: **origine**. Come spostamento, è quello nullo. Si indica con $0$, oppure con la lettera $O$.
 
 ### Come lo scrivono le dispense
 
@@ -39083,7 +39184,7 @@ Tutta insieme: «$\R^n$ è l'insieme delle liste ordinate di $n$ numeri reali».
 
 La stessa lista di numeri si può disegnare in due modi.
 
-- Come un **punto**: il posto della mappa in cui arrivi.
+- Come un **punto**: il posto del piano in cui si arriva.
 - Come un **vettore**: la freccia che parte dall'origine e arriva in quel posto. È lo spostamento.
 
 Sono due disegni della stessa lista. Di solito si usano le lettere maiuscole $P$ e $Q$ quando si pensa ai punti, e le minuscole $v$ e $w$ quando si pensa ai vettori.
@@ -39138,7 +39239,7 @@ $x_1 = 7$: è la prima coordinata. $x_3 = -2$: è la terza.
 
 ## Sommare: uno spostamento dopo l'altro (pp. 20–21)
 
-Fai due spostamenti di fila sulla mappa.
+Due spostamenti fatti uno dopo l'altro:
 
 - Primo spostamento: 1 a destra e 2 in su. È il vettore $(1, 2)$.
 - Secondo spostamento: 3 a destra e 1 in su. È il vettore $(3, 1)$.
@@ -39241,7 +39342,7 @@ $(1 + 2,\ 0 + 2,\ 4 - 4) = (3, 2, 0)$.
 :::
 
 ::: prova Parti dall'origine. Fai lo spostamento $(2, 1)$ e poi lo spostamento $(-2, 3)$. Dove arrivi?
-Sommi i due vettori: $(2 - 2,\ 1 + 3) = (0, 4)$. Sei 4 quadretti sopra il punto di partenza: i passi a destra e quelli a sinistra si sono annullati.
+Sommi i due vettori: $(2 - 2,\ 1 + 3) = (0, 4)$. Arrivi 4 unità sopra il punto di partenza: i due spostamenti in orizzontale si sono annullati.
 :::
 
 > [!RICORDA]
@@ -39269,7 +39370,7 @@ Il puntino $\cdot$ è il segno «per». Lo stesso si può fare con altri numeri.
 
 ### I nomi: scalare e multiplo
 
-Il numero che moltiplica il vettore si chiama **scalare**. Uno scalare è un numero normale, come 2 o $-3$: la parola serve solo a distinguerlo dai vettori. Viene da «scala»: cambia la scala del disegno, come lo zoom di una mappa.
+Il numero che moltiplica il vettore si chiama **scalare**. Uno scalare è un numero normale, come 2 o $-3$: la parola serve solo a distinguerlo dai vettori. Viene da «scala»: cambia la scala della freccia.
 
 L'operazione si chiama **prodotto per scalare**. Il risultato si chiama **multiplo** del vettore.
 
@@ -39655,7 +39756,7 @@ In tutti e due i casi succedono tre cose.
 > [!IDEA]
 > Uno **spazio vettoriale** è un insieme in cui puoi sommare due elementi e moltiplicare un elemento per un numero, senza mai uscire dall'insieme e con le otto regole.
 
-Gli elementi di uno spazio vettoriale si chiamano **vettori**, qualunque cosa siano. Qui l'immagine della freccia non regge più: un polinomio non è uno spostamento su una mappa. Da questo punto in poi «vettore» vuol dire solo «elemento di uno spazio vettoriale».
+Gli elementi di uno spazio vettoriale si chiamano **vettori**, qualunque cosa siano. Qui l'immagine della freccia non regge più: un polinomio non è uno spostamento nel piano. Da questo punto in poi «vettore» vuol dire solo «elemento di uno spazio vettoriale».
 
 ### A che cosa serve un'idea così generale
 
@@ -39724,7 +39825,7 @@ No. Per esempio $\frac 12 \cdot (1, 2) = (\frac 12, 1)$, e $\frac 12$ non è un 
 
 In ogni spazio vettoriale c'è un vettore speciale: quello che, sommato a un altro, non cambia niente.
 
-Sulla mappa è lo spostamento «resta dove sei», cioè $(0, 0)$. Tra i polinomi è il polinomio $0$.
+Nel piano è $(0, 0)$. Tra i polinomi è il polinomio $0$.
 
 Questo vettore si chiama **vettore nullo**, oppure **origine** dello spazio. Le dispense lo scrivono $0$. Quando serve ricordare che è un vettore dell'insieme $V$, scrivono $0_V$, che si legge «zero di $V$».
 
@@ -39806,7 +39907,7 @@ Per ognuno bisogna dire tre cose: chi sono i vettori, come si sommano e come si 
 
 Il primo esempio è il più piccolo: i numeri reali, senza liste.
 
-Un numero è come una lista con una sola coordinata. Sommare due vettori vuol dire sommare due numeri. Moltiplicare per uno scalare vuol dire moltiplicare due numeri. Sulla mappa è come muoversi avanti e indietro lungo una sola riga: la retta dei numeri.
+Un numero è come una lista con una sola coordinata. Sommare due vettori vuol dire sommare due numeri. Moltiplicare per uno scalare vuol dire moltiplicare due numeri. Il disegno è la retta dei numeri.
 
 Le dispense lo dicono per un campo qualsiasi: un campo è uno spazio vettoriale **su se stesso**. «Su se stesso» vuol dire che i vettori e gli scalari sono presi dallo stesso insieme.
 
@@ -40093,7 +40194,7 @@ Resta una sola cosa da controllare: che facendo somme e multipli **non si esca**
 
 ### Primo modo: manca il vettore nullo
 
-Prendi le liste di due numeri la cui somma fa 1, come $(1, 0)$, $(0, 1)$ e $(3, -2)$. Sulla mappa formano una retta.
+Prendi le liste di due numeri la cui somma fa 1, come $(1, 0)$, $(0, 1)$ e $(3, -2)$. Nel piano formano una retta.
 
 Negli appelli un insieme così è scritto con le graffe e con una condizione:
 
@@ -40129,7 +40230,7 @@ Succede lo stesso con i polinomi di grado esattamente 2, visti nella sezione pre
 
 ### Terzo modo: un multiplo esce
 
-Prendi le liste di due numeri in cui il primo numero non è negativo, come $(1, 0)$ e $(2, 5)$. Sulla mappa è la metà di destra.
+Prendi le liste di due numeri in cui il primo numero non è negativo, come $(1, 0)$ e $(2, 5)$. Nel piano è il semipiano di destra, asse verticale compreso.
 
 Qui il vettore nullo c'è. E la somma di due elementi resta dentro: due numeri non negativi sommati danno un numero non negativo. Ma moltiplica per $-1$:
 
@@ -40230,7 +40331,7 @@ I simboli di queste tre frasi si spiegano nella lezione L06. I primi due sono in
 >
 > Per rispondere **no** basta **un** esempio che non torna. Per rispondere **sì** serve un ragionamento che valga per tutti i vettori e per tutti gli scalari.
 
-**Una domanda vera, letta insieme**
+### Una domanda vera, letta insieme
 
 > [!ESAME] Appello del 07/02/2025, domanda 2
 > «Identificate la risposta corretta alla domanda “$\C$ ammette una struttura di spazio vettoriale su $\R$?”»
@@ -40266,6 +40367,17 @@ Quindi la risposta è sì. Restano la (b) e la (e): per scegliere bisogna guarda
 
 La risposta giusta è la **(e)**. La soluzione ufficiale dice lo stesso: (a) e (d) sono affermazioni vere che non rispondono alla domanda, (b) e (c) danno motivazioni false.
 
+### Un'altra domanda vera
+
+> [!ESEMPIO] · Appello del 07/09/2026, domanda 6
+> Quale dei seguenti insiemi è un sottospazio di $\R_2[x]$? (a) $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(-1)\}$; (b) $\{(1 + t)x^2 + tx \mid t \in \R\}$; (c) $\{tx^2 + sx + 1 \mid s, t \in \R\}$; (d) $\{p(x) \in \R_2[x] \mid p(0) = 1\}$; (e) $\{ax^2 + bx + c \mid a = 2c,\ b = 2\}$.
+>
+> Un **sottospazio** è un pezzo di $\R_2[x]$ che, con le stesse operazioni, è a sua volta uno spazio vettoriale (lezione L06). Bastano i tre controlli dell'ultima sezione.
+>
+> **Soluzione.** Il primo controllo è il vettore nullo, cioè il polinomio con tutti i coefficienti uguali a 0. In (b) servirebbero insieme $1 + t = 0$ e $t = 0$; in (c) e in (d) il termine noto vale sempre 1; in (e) il coefficiente di $x$ vale sempre 2. Quattro insiemi su cinque non contengono il vettore nullo.
+>
+> Resta la (a). Il polinomio nullo vale 0 in 1 e in $-1$, quindi c'è. Se due polinomi valgono 0 in quei due numeri, la loro somma ci vale $0 + 0 = 0$, e un multiplo ci vale $\lambda \cdot 0 = 0$. La risposta è la (a) del foglio d'esame; nel file delle soluzioni la domanda è la 3, con le risposte in un altro ordine.
+
 > [!TRAPPOLA] Gli errori più comuni
 > - Confondere il numero zero con il vettore nullo.
 > - Dimenticare di controllare che somme e multipli restino nell'insieme.
@@ -40284,6 +40396,38 @@ La risposta giusta è la **(e)**. La soluzione ufficiale dice lo stesso: (a) e (
 ## Quiz
 
 ```quiz
+D: Appello del 07/02/2025, domanda 2. Identificate la risposta corretta alla domanda «$\C$ ammette una struttura di spazio vettoriale su $\R$?»
+- No, poiché $\C$ è già uno spazio vettoriale su $\C$ stesso.
+- Sì, perché ogni campo è uno spazio vettoriale su $\R$.
+- No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.
+- No, in quanto $\C$ e $\R$ sono campi diversi.
++ Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$, $\cdot$ su $\R$ sono le stesse che in $\C$.
+= Sommando due complessi, o moltiplicando un complesso per un reale, si resta tra i complessi, e le regole sono quelle dei conti tra complessi: la risposta è sì, con il motivo della (e), come nella soluzione ufficiale. La risposta più insidiosa è la (b): dice sì, ma con un motivo falso, perché $\Q$ non è uno spazio vettoriale su $\R$ ($\sqrt 2 \cdot 1$ non è razionale). La (a) e la (d) dicono cose vere che non rispondono alla domanda; la (c) è falsa, perché $i \cdot 1 = i$ non è reale.
+
+D: Appello dell'08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
+- $\{p(x) \in \R_2[x] \mid p(0) = 0\}$
+- $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$
+- $\{ax^2 + bx + c \mid a = 2c,\ b = 0\}$
++ $\{(1 + t)x^2 + tx \mid t \in \R\}$
+- $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$
+= «Sottospazio» vuol dire un pezzo di $\R_2[x]$ che con le stesse operazioni è uno spazio vettoriale (lezione L06): bastano i tre controlli. Nella (d) il polinomio nullo manca, perché servirebbero insieme $1 + t = 0$ e $t = 0$; anche la somma esce, perché il coefficiente di $x^2$ diventa $2 + t + s$. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (b), che sembra strana ma con $s = t = 0$ dà il polinomio nullo, e la somma di due suoi elementi ha ancora la stessa forma.
+
+D: Appello del 07/09/2026, domanda 6. Quale dei seguenti insiemi è un sottospazio di $\R_2[x]$?
++ $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(-1)\}$
+- $\{(1 + t)x^2 + tx \mid t \in \R\}$
+- $\{tx^2 + sx + 1 \mid s, t \in \R\}$
+- $\{p(x) \in \R_2[x] \mid p(0) = 1\}$
+- $\{ax^2 + bx + c \mid a = 2c,\ b = 2\}$
+= Le ultime quattro non contengono il polinomio nullo: la (b) come nell'appello dell'08/02/2024, la (c) e la (d) perché il termine noto è 1, la (e) perché il coefficiente di $x$ è 2. Nella (a) il polinomio nullo c'è, e se due polinomi valgono 0 in 1 e in $-1$, lì valgono 0 anche la somma e i multipli. È la (a) del foglio d'esame; nel file delle soluzioni la domanda è la 3, con le risposte in un altro ordine. La risposta più insidiosa è la (c): due parametri liberi fanno pensare a uno spazio, ma il termine noto fisso esclude lo zero.
+
+D: Appello del 05/02/2026, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
+- $\{p(x) \in \R_2[x] \mid p(1) = p(2)\}$
+- $\Span(x + 1,\ x^2 - 1)$
++ $\{x^2 + tx \mid t \in \R\}$
+- $\{ax^2 + bx + c \mid a + b - c = 0\}$
+- $\R_1[x]^\perp$
+= Nella (c) tutti i polinomi hanno il coefficiente di $x^2$ uguale a 1, quindi il polinomio nullo manca: è la (c) della soluzione ufficiale. Lo $\Span$ della (b) (lezione L06) e il complemento ortogonale della (e) (lezione L19) sono sempre sottospazi. La risposta più insidiosa è la (a): la condizione non è «uguale a zero», ma si riscrive $p(1) - p(2) = 0$, e il polinomio nullo la rispetta.
+
 D: Con la somma e il prodotto per scalare usuali (coordinata per coordinata), $\R^2$ è uno spazio vettoriale sul campo $\C$?
 - Sì, perché $\R \subset \C$.
 + No: per esempio $i \cdot (1, 0) = (i, 0)$ non sta in $\R^2$.
@@ -40929,11 +41073,11 @@ sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C ·
 descrizione: >-
   Appunti della lezione L06 di Algebra lineare e Geometria (MDAG, parte 2): lo spazio delle matrici, i sottospazi
   vettoriali, le matrici diagonali, triangolari, simmetriche e antisimmetriche, le combinazioni lineari e il
-  sottospazio generato (Span), con quiz nello stile dell'esame ed esercizi svolti.
+  sottospazio generato (Span), con domande vere degli appelli, quiz ed esercizi svolti.
 lede: >-
-  Dentro uno spazio vettoriale ci sono spazi più piccoli, come stanze dentro una casa: i sottospazi. Qui impari a
-  riconoscerli con tre controlli, a fare i conti con le tabelle di numeri chiamate matrici e a costruire sottospazi
-  mescolando alcuni vettori come gli ingredienti di una ricetta. La domanda «è un sottospazio?» esce quasi a ogni appello.
+  Le matrici come spazio vettoriale, i sottospazi e i tre controlli per riconoscerli, le matrici diagonali,
+  triangolari, simmetriche e antisimmetriche, le combinazioni lineari e lo Span. La domanda «è un sottospazio?» esce
+  quasi a ogni appello.
 materiale: dispense
 scheda:
   Dispense: lezione 6 · pp. 26–30
@@ -40953,11 +41097,11 @@ genera_html: true
 - Nel piano, una retta che passa per l'origine è un sottospazio; una retta che non ci passa no.
 - Tra le matrici quadrate ci sono cinque sottospazi da conoscere: le **diagonali**, le **triangolari superiori**, le **triangolari inferiori**, le **simmetriche** e le **antisimmetriche**.
 - Per dire che un insieme **non** è un sottospazio basta un esempio che non funziona. Il controllo più veloce: manca lo zero.
-- Una **combinazione lineare** è una ricetta: alcuni vettori, ciascuno moltiplicato per un numero, poi sommati. Lo **Span** di alcuni vettori è tutto quello che si ottiene con tutte le ricette possibili, ed è sempre un sottospazio.
+- Una **combinazione lineare** di alcuni vettori si ottiene moltiplicando ciascuno per un numero, il suo coefficiente, e sommando. Lo **Span** di alcuni vettori è l'insieme di tutte le loro combinazioni lineari, ed è sempre un sottospazio.
 - All'esame «quale di questi insiemi è (o non è) un sottospazio?» esce quasi a ogni appello: 08/02/2024, 03/06/2025, 05/02/2026, 07/09/2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di giovedì 15/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 15/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 6. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Tabelle di numeri: le matrici (p. 26)
 
@@ -41015,7 +41159,7 @@ $a_{12}$ è nella riga 1 e nella colonna 2: vale $-1$. $a_{21}$ è nella riga 2 
 
 ### Somma e moltiplicazione per un numero
 
-Il negozio ha due negozi uguali. Le vendite totali si ottengono sommando le due tabelle **casella per casella**: il pane di lunedì del primo negozio più il pane di lunedì del secondo, e così via. Se le vendite raddoppiano, si moltiplica **ogni casella** per 2.
+Se un secondo negozio ha una tabella con la stessa forma, le vendite totali si ottengono sommando le due tabelle **casella per casella**: il pane di lunedì del primo negozio più il pane di lunedì del secondo, e così via. Se le vendite raddoppiano, si moltiplica **ogni casella** per 2.
 
 > [!ESEMPIO] · somma e multiplo di matrici
 > $$\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix} + \begin{pmatrix} 0 & -1 & 2 \\ 1 & 1 & -3 \end{pmatrix} = \begin{pmatrix} 1 + 0 & 2 - 1 & 3 + 2 \\ 4 + 1 & 5 + 1 & 6 - 3 \end{pmatrix} = \begin{pmatrix} 1 & 1 & 5 \\ 5 & 6 & 3 \end{pmatrix},$$
@@ -41052,9 +41196,9 @@ Prima il multiplo: $3\begin{pmatrix} 0 & 1 \\ 1 & 1 \end{pmatrix} = \begin{pmatr
 > - Si sommano e si moltiplicano per un numero casella per casella, solo con la stessa forma.
 > - Le matrici $m \times n$ formano lo spazio vettoriale $M(m, n, \K)$.
 
-## Stanze da cui non si esce: i sottospazi (pp. 26–27)
+## I sottospazi (pp. 26–27)
 
-Immagina lo spazio vettoriale come una casa. Dentro ci sono delle stanze speciali: in una stanza così, se prendi due vettori e li sommi, resti nella stanza; se prendi un vettore e lo moltiplichi per un numero, resti nella stanza. Una stanza così si chiama **sottospazio**.
+Dentro uno spazio vettoriale ci sono parti da cui somme e multipli non fanno uscire: se due vettori stanno nella parte ci sta anche la loro somma, e se un vettore ci sta ci stanno anche tutti i suoi multipli. Una parte così si chiama **sottospazio**.
 
 ### Una retta che funziona
 
@@ -41064,7 +41208,7 @@ Guarda nel piano la retta dei punti con la seconda coordinata doppia della prima
 2. Sommo due suoi punti: $(1, 2) + (-3, -6) = (-2, -4)$. Anche qui la seconda coordinata è il doppio della prima: resto sulla retta.
 3. Moltiplico un suo punto per un numero: $5 \cdot (1, 2) = (5, 10)$. Resto sulla retta.
 
-Con somme e moltiplicazioni per un numero non si esce mai dalla retta. È una stanza.
+Con somme e moltiplicazioni per un numero non si esce mai dalla retta: è un sottospazio.
 
 ### Una retta che non funziona
 
@@ -41099,19 +41243,19 @@ Le dispense mettono in fila i tre controlli che hai appena fatto.
 
 **Come si legge.**
 
-- $V$ è la casa: uno spazio vettoriale che conosci già. $W$ è la stanza: una parte dei vettori di $V$. Il simbolo $W \subset V$ si legge «$W$ è contenuto in $V$».
+- $V$ è uno spazio vettoriale che conosci già, $W$ una parte dei suoi vettori. Il simbolo $W \subset V$ si legge «$W$ è contenuto in $V$».
 - **Controllo 1**: lo zero di $V$ sta in $W$. Il simbolo $\in$ si legge «appartiene a». È il controllo più veloce.
 - **Controllo 2**: se $v$ e $v'$ («v primo», un altro vettore) stanno in $W$, anche la loro somma sta in $W$. In questo caso $W$ si chiama **chiuso rispetto alla somma**.
 - **Controllo 3**: se $v$ sta in $W$ e $\lambda$ è un numero **qualsiasi** (anche negativo o zero), anche $\lambda v$ sta in $W$. In questo caso $W$ si chiama **chiuso rispetto alla moltiplicazione per un numero**.
 
-Un sottospazio è a sua volta uno spazio vettoriale, con le stesse operazioni della casa. Il motivo, con i dettagli che le dispense lasciano sottintesi:
+Un sottospazio è a sua volta uno spazio vettoriale, con le stesse operazioni di $V$. Il motivo, con i dettagli che le dispense lasciano sottintesi:
 
 1. le operazioni non fanno uscire da $W$, per i controlli 2 e 3;
 2. le regole di calcolo della lezione L05 valgono per tutti i vettori di $V$, quindi anche per quelli di $W$;
 3. lo zero sta in $W$, per il controllo 1;
 4. l'opposto di un vettore $v$ di $W$ sta in $W$: l'opposto è $(-1)v$ (lezione L05, esercizio 11 (b)), che sta in $W$ per il controllo 3.
 
-### La stanza vuota e la casa intera (p. 27)
+### Il sottospazio banale e quello totale (p. 27)
 
 Ogni spazio vettoriale $V$ ha sempre due sottospazi:
 
@@ -41137,6 +41281,28 @@ Un esempio già incontrato: i polinomi di grado al massimo $k$, $\K_k[x]$, dentr
 > - **Il primo quadrante**, cioè i punti con le due coordinate positive o zero: contiene l'origine, e la somma di due suoi punti ci resta. Ma $(-1) \cdot (1, 1) = (-1, -1)$ esce. Fallisce il controllo 3.
 > - **I due assi messi insieme**, cioè i punti con $xy = 0$: contiene l'origine, e i multipli di un punto di un asse restano su quell'asse. Ma $(1, 0) + (0, 1) = (1, 1)$ esce, perché $1 \cdot 1$ non è 0. Fallisce il controllo 2.
 
+```grafico
+titolo: Il primo quadrante contiene l'origine e le somme dei suoi punti, ma non i multipli negativi: $(1, 1)$ ci sta, $-1 \cdot (1, 1) = (-1, -1)$ no
+x: -2.5 3
+y: -2.5 3
+poligono: 0 0 3 0 3 3 0 3 | ambra | tenue
+vettore: 1 1 | accento | spesso | $(1, 1)$ | ne
+vettore: -1 -1 | rosa | spesso | $(-1, -1)$ | so
+```
+
+```grafico
+titolo: I due assi messi insieme (in blu) contengono $(1, 0)$ e $(0, 1)$, ma non la loro somma $(1, 1)$
+x: -1.3 2.2
+y: -1.3 2.2
+segmento: -1.3 0 2.2 0 | blu | spesso
+segmento: 0 -1.3 0 2.2 | blu | spesso
+segmento: 1 0 1 1 | grigio | tratteggio
+segmento: 0 1 1 1 | grigio | tratteggio
+vettore: 1 0 | accento | spesso | $(1, 0)$ | se
+vettore: 0 1 | accento | spesso | $(0, 1)$ | no
+punto: 1 1 | rosa | $(1, 1)$ | ne
+```
+
 > [!TRAPPOLA] Un solo controllo non basta
 > Il primo quadrante supera il controllo della somma ma non quello dei multipli. I due assi superano quello dei multipli ma non quello della somma. Per dire **sì** servono tutti e tre i controlli. Per dire **no** ne basta uno che fallisce, con un esempio concreto.
 
@@ -41158,7 +41324,7 @@ $x = 3y$: sì. È una retta per l'origine. L'origine c'è; sommando due punti co
 
 ## Matrici con una forma speciale (pp. 27–28)
 
-Dentro lo spazio delle matrici ci sono tante stanze. Si ottengono chiedendo che certe caselle siano zero, o che certe caselle siano uguali. Le più importanti riguardano le matrici **quadrate**, quelle con tante righe quante colonne.
+Dentro lo spazio delle matrici ci sono molti sottospazi. Si ottengono chiedendo che certe caselle siano zero, o che certe caselle siano uguali. Le più importanti riguardano le matrici **quadrate**, quelle con tante righe quante colonne.
 
 ### La diagonale principale
 
@@ -41199,6 +41365,65 @@ La forma di ciascuna classe per le matrici $3 \times 3$. Le lettere sono numeri 
 | diagonale | triangolare superiore | triangolare inferiore | simmetrica | antisimmetrica |
 |---|---|---|---|---|
 | $\begin{pmatrix} a & 0 & 0 \\ 0 & b & 0 \\ 0 & 0 & c \end{pmatrix}$ | $\begin{pmatrix} a & b & c \\ 0 & d & e \\ 0 & 0 & f \end{pmatrix}$ | $\begin{pmatrix} a & 0 & 0 \\ b & c & 0 \\ d & e & f \end{pmatrix}$ | $\begin{pmatrix} a & b & c \\ b & d & e \\ c & e & f \end{pmatrix}$ | $\begin{pmatrix} 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \end{pmatrix}$ |
+
+```grafico
+titolo: Tre forme di matrici $3 \times 3$. Diagonale: fuori dalla diagonale solo zeri. Triangolare superiore: zeri sotto la diagonale, numeri qualsiasi nella parte colorata. Simmetrica: ogni casella è uguale alla sua immagine allo specchio rispetto alla diagonale (tratteggio)
+proporzioni: libere
+assi: no
+griglia: no
+x: -0.3 11.3
+y: -1 3.3
+poligono: 0 2 1 2 1 3 0 3 | ambra | pieno
+poligono: 1 1 2 1 2 2 1 2 | ambra | pieno
+poligono: 2 0 3 0 3 1 2 1 | ambra | pieno
+poligono: 4 3 7 3 7 0 6 0 6 1 5 1 5 2 4 2 | blu | pieno
+segmento: 0 0 3 0 | grigio | sottile
+segmento: 0 0 0 3 | grigio | sottile
+segmento: 0 1 3 1 | grigio | sottile
+segmento: 1 0 1 3 | grigio | sottile
+segmento: 0 2 3 2 | grigio | sottile
+segmento: 2 0 2 3 | grigio | sottile
+segmento: 0 3 3 3 | grigio | sottile
+segmento: 3 0 3 3 | grigio | sottile
+segmento: 4 0 7 0 | grigio | sottile
+segmento: 4 0 4 3 | grigio | sottile
+segmento: 4 1 7 1 | grigio | sottile
+segmento: 5 0 5 3 | grigio | sottile
+segmento: 4 2 7 2 | grigio | sottile
+segmento: 6 0 6 3 | grigio | sottile
+segmento: 4 3 7 3 | grigio | sottile
+segmento: 7 0 7 3 | grigio | sottile
+segmento: 8 0 11 0 | grigio | sottile
+segmento: 8 0 8 3 | grigio | sottile
+segmento: 8 1 11 1 | grigio | sottile
+segmento: 9 0 9 3 | grigio | sottile
+segmento: 8 2 11 2 | grigio | sottile
+segmento: 10 0 10 3 | grigio | sottile
+segmento: 8 3 11 3 | grigio | sottile
+segmento: 11 0 11 3 | grigio | sottile
+testo: 1.5 2.5 | grigio | "0"
+testo: 2.5 2.5 | grigio | "0"
+testo: 0.5 1.5 | grigio | "0"
+testo: 4.5 1.5 | grigio | "0"
+testo: 2.5 1.5 | grigio | "0"
+testo: 0.5 0.5 | grigio | "0"
+testo: 4.5 0.5 | grigio | "0"
+testo: 1.5 0.5 | grigio | "0"
+testo: 5.5 0.5 | grigio | "0"
+testo: 8.5 2.5 | accento | "a"
+testo: 9.5 1.5 | accento | "d"
+testo: 10.5 0.5 | accento | "f"
+testo: 9.5 2.5 | accento | "b"
+testo: 8.5 1.5 | accento | "b"
+testo: 10.5 2.5 | blu | "c"
+testo: 8.5 0.5 | blu | "c"
+testo: 10.5 1.5 | ambra | "e"
+testo: 9.5 0.5 | ambra | "e"
+segmento: 8 3 11 0 | grigio | tratteggio
+testo: 1.5 -0.6 | grigio | "diagonale"
+testo: 5.5 -0.6 | grigio | "triangolare superiore"
+testo: 9.5 -0.6 | grigio | "simmetrica"
+```
 
 > [!ESEMPIO] 6.4 · Una matrice per ogni classe
 > Le matrici seguenti sono, nell'ordine, diagonale, triangolare superiore, triangolare inferiore, simmetrica e antisimmetrica:
@@ -41244,7 +41469,7 @@ Le dispense dicono che succede sempre.
 > [!PROP] 6.5
 > I sottoinsiemi $D(n)$, $T^s(n)$, $T^i(n)$, $S(n)$, $A(n)$ sono tutti sottospazi vettoriali di $M(n)$.
 
-**Come si legge.** Ognuna delle cinque classi è una stanza dentro lo spazio delle matrici quadrate: la matrice nulla ci sta, e sommando o moltiplicando per un numero matrici della classe si resta nella classe.
+**Come si legge.** Ognuna delle cinque classi è un sottospazio dello spazio delle matrici quadrate: la matrice nulla ci sta, e sommando o moltiplicando per un numero matrici della classe si resta nella classe.
 
 La spiegazione delle dispense: per ciascuna classe la matrice nulla ne fa parte, e la somma e la moltiplicazione per un numero conservano la proprietà che la definisce. Eccola per esteso.
 
@@ -41278,11 +41503,11 @@ Sì. $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} -1 & 0 \\ 0
 > - Simmetrica: uguale allo specchio sulla diagonale. Antisimmetrica: opposta allo specchio, con la diagonale di zeri.
 > - Le cinque classi sono sottospazi; «triangolari» tutte insieme no.
 
-## Ricette con i vettori: combinazioni lineari (p. 28)
+## Le combinazioni lineari (p. 28)
 
-In cucina una ricetta dice quanto prendere di ogni ingrediente: «2 parti di farina e 3 parti di zucchero». Con i vettori si fa lo stesso: si prendono alcuni vettori, si moltiplica ciascuno per un numero, e si sommano i risultati.
+Con le due operazioni di uno spazio vettoriale si costruiscono vettori nuovi a partire da alcuni vettori dati: si moltiplica ciascuno per un numero e si sommano i risultati.
 
-Un esempio nello spazio a tre coordinate. Gli ingredienti sono $(1, 0, 1)$ e $(0, 1, 1)$; la ricetta è «2 volte il primo, meno 1 volta il secondo»:
+Un esempio nello spazio a tre coordinate, con i vettori $(1, 0, 1)$ e $(0, 1, 1)$: due volte il primo, meno una volta il secondo.
 
 $$2\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} - \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 - 0 \\ 0 - 1 \\ 2 - 1 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}.$$
 
@@ -41295,28 +41520,40 @@ Il risultato si chiama **combinazione lineare** dei due vettori. Le dispense lo 
 
 **Come si legge.**
 
-- $v_1, \dots, v_k$ è un elenco di vettori: gli ingredienti. Il primo si chiama $v_1$, l'ultimo $v_k$, e $k$ è quanti sono.
-- $\lambda_1, \dots, \lambda_k$ sono numeri, uno per ingrediente: le dosi della ricetta. Si chiamano **coefficienti** della combinazione. Possono essere positivi, negativi, frazioni, anche zero.
+- $v_1, \dots, v_k$ è un elenco di vettori. Il primo si chiama $v_1$, l'ultimo $v_k$, e $k$ è quanti sono.
+- $\lambda_1, \dots, \lambda_k$ sono numeri, uno per vettore: si chiamano **coefficienti** della combinazione. Possono essere positivi, negativi, frazioni, anche zero.
 - «Lineare» vuol dire che si usano **solo** le due operazioni dello spazio vettoriale: somma e moltiplicazione per un numero. Niente prodotti tra vettori, niente quadrati.
-- Con tutte le dosi uguali a 0 viene il vettore zero. Con la dose di $v_1$ uguale a 1 e le altre 0 viene $v_1$ stesso.
+- Con tutti i coefficienti uguali a 0 viene il vettore zero. Con il coefficiente di $v_1$ uguale a 1 e gli altri 0 viene $v_1$ stesso.
+
+```grafico
+titolo: La combinazione $2u - v$ con $u = (1, 2)$ e $v = (3, 1)$: prima $2u$, poi $-v$ a partire dalla sua punta; si arriva in $(-1, 3)$
+x: -2 4
+y: -1 5
+vettore: 3 1 | grigio | $v$ | e
+vettore: 2 4 | blu | tratteggio | $2u$ | e
+vettore: 1 2 | accento | spesso | $u$ | o
+freccia: 2 4 -1 3 | rosa | spesso
+testo: 0.6 4.1 | rosa | $-v$
+vettore: -1 3 | ambra | spesso | $2u - v$ | o
+```
 
 > [!ESEMPIO] · combinazioni in tre spazi diversi
 > - Nello spazio: $2\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} - \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 2 \\ -1 \\ 1 \end{pmatrix}$, il conto di prima.
 > - Tra i polinomi: $3(x^2 + 1) - 2(x - 1) = 3x^2 + 3 - 2x + 2 = 3x^2 - 2x + 5$.
 > - Tra le matrici: $a\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + b\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} a & b \\ b & a \end{pmatrix}$, che è la forma delle matrici dell'Esercizio 6.9.
 
-### Tutte le ricette di due vettori
+### Tutte le combinazioni di due vettori
 
-L'esempio delle dispense è nello spazio a tre coordinate, con due ingredienti:
+L'esempio delle dispense è nello spazio a tre coordinate, con due vettori:
 
 $$v_1 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}, \qquad v_2 = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \qquad \lambda_1 v_1 + \lambda_2 v_2 = \begin{pmatrix} \lambda_1 \\ \lambda_2 \\ 0 \end{pmatrix}.$$
 
-Cambiando le dosi si ottiene **esattamente** il piano «pavimento», quello con la terza coordinata zero. «Esattamente» vuol dire due cose:
+Al variare dei coefficienti si ottiene **esattamente** il piano orizzontale, quello con la terza coordinata zero. «Esattamente» vuol dire due cose:
 
-1. ogni ricetta ha la terza coordinata uguale a 0, quindi sta nel pavimento;
-2. al contrario, ogni punto del pavimento $(a, b, 0)$ si ottiene con una ricetta: dose $a$ del primo, dose $b$ del secondo.
+1. ogni combinazione ha la terza coordinata uguale a 0, quindi sta in quel piano;
+2. al contrario, ogni punto $(a, b, 0)$ del piano si ottiene con i coefficienti $a$ e $b$.
 
-Nello strumento qui sotto $u$ e $v$ sono due vettori del piano e il punto giallo è la ricetta $\lambda u + \mu v$ ($\mu$ si legge «mi»). Muovi i cursori: con $u = (1, 2)$ e $v = (3, 1)$ il punto raggiunge qualsiasi posizione del piano. Poi trascina $v$ sulla retta di $u$, per esempio in $(2, 4)$: da quel momento le ricette restano sulla retta rossa, qualunque siano le dosi.
+Nello strumento qui sotto $u$ e $v$ sono due vettori del piano e il punto giallo è la combinazione $\lambda u + \mu v$ ($\mu$ si legge «mi»). Muovi i cursori: con $u = (1, 2)$ e $v = (3, 1)$ il punto raggiunge qualsiasi posizione del piano. Poi trascina $v$ sulla retta di $u$, per esempio in $(2, 4)$: da quel momento le combinazioni restano sulla retta rossa, qualunque siano i coefficienti.
 
 ```widget vettori
 titolo: Le combinazioni lineari $\lambda u + \mu v$
@@ -41335,12 +41572,12 @@ $(1, 1) - (0, 1) = (1, 0)$.
 :::
 
 > [!RICORDA]
-> - Una combinazione lineare è una ricetta: ogni vettore moltiplicato per una dose, poi tutto sommato.
-> - Le dosi sono numeri qualsiasi e si chiamano coefficienti.
+> - In una combinazione lineare ogni vettore è moltiplicato per un numero, poi si somma tutto.
+> - I numeri sono qualsiasi e si chiamano coefficienti.
 
-## Tutto quello che si può cucinare: lo Span (pp. 28–29)
+## Lo Span (pp. 28–29)
 
-Nella sezione di prima, con due ingredienti si poteva cucinare tutto il pavimento, e niente fuori. Conviene dare un nome all'insieme di **tutte** le ricette possibili con certi ingredienti. Le dispense lo scrivono così.
+Nella sezione di prima le combinazioni di due vettori riempivano esattamente un piano, e niente fuori. L'insieme di **tutte** le combinazioni lineari di certi vettori ha un nome. Le dispense lo scrivono così.
 
 > [!DEF] 6.6 · Sottospazio generato
 > Sia $V$ uno spazio vettoriale e $v_1, \dots, v_k \in V$ dei vettori arbitrari. Il **sottospazio generato** da $v_1, \dots, v_k$ è il sottoinsieme di $V$ formato da tutte le loro combinazioni lineari e viene indicato con $\Span(v_1, \dots, v_k)$. In simboli:
@@ -41348,10 +41585,10 @@ Nella sezione di prima, con due ingredienti si poteva cucinare tutto il paviment
 
 **Come si legge.**
 
-- *Span* è una parola inglese, «span» o «spen»: in questo senso vuol dire «generare», «coprire». È tutto quello che si può cucinare con quegli ingredienti.
-- È un **insieme**, e di solito infinito: c'è un risultato per ogni scelta delle dosi.
-- Contiene gli ingredienti stessi (dose 1 per uno, 0 per gli altri) e il vettore zero (tutte le dosi 0).
-- La barretta $\mid$ qui si legge «al variare di»: le dosi prendono tutti i valori possibili.
+- *Span* è una parola inglese, «span» o «spen»: in questo senso vuol dire «generare», «coprire». È tutto quello che si ottiene combinando quei vettori.
+- È un **insieme**, e di solito infinito: c'è un risultato per ogni scelta dei coefficienti.
+- Contiene i vettori stessi (coefficiente 1 per uno, 0 per gli altri) e il vettore zero (tutti i coefficienti 0).
+- La barretta $\mid$ qui si legge «al variare di»: i coefficienti prendono tutti i valori possibili.
 - I vettori $v_1, \dots, v_k$ si chiamano **generatori** dello Span: si usa anche dire che lo **generano**.
 
 Il nome «sottospazio generato» anticipa un fatto da controllare: lo Span è davvero un sottospazio.
@@ -41359,25 +41596,25 @@ Il nome «sottospazio generato» anticipa un fatto da controllare: lo Span è da
 > [!PROP] 6.7
 > Il sottoinsieme $\Span(v_1, \dots, v_k)$ è un sottospazio vettoriale di $V$.
 
-**Come si legge.** Tutto quello che si può cucinare con certi ingredienti forma sempre una stanza: sommando due piatti o moltiplicando un piatto per un numero si ottiene un altro piatto della stessa cucina.
+**Come si legge.** L'insieme di tutte le combinazioni lineari di certi vettori è sempre un sottospazio: la somma di due combinazioni, o un multiplo di una combinazione, è ancora una combinazione degli stessi vettori.
 
-Il motivo, a parole: sommare due ricette dà ancora una ricetta, con le dosi sommate; moltiplicare una ricetta per un numero dà ancora una ricetta, con tutte le dosi moltiplicate.
+Il motivo, a parole: nella somma di due combinazioni i coefficienti si sommano, e in un multiplo vengono tutti moltiplicati per lo stesso numero.
 
 > [!DIM] della Proposizione 6.7
 > Dalle dispense, con le giustificazioni. Chiamiamo $W$ lo Span e controlliamo i tre assiomi della Definizione 6.2.
-> 1. **Lo zero.** Con tutte le dosi uguali a 0 si ottiene $0v_1 + \dots + 0v_k = 0 + \dots + 0 = 0$, per la Proposizione 5.5. Quindi lo zero è una ricetta: sta in $W$.
-> 2. **La somma.** Se $v$ e $w$ stanno in $W$, sono due ricette:
+> 1. **Lo zero.** Con tutti i coefficienti uguali a 0 si ottiene $0v_1 + \dots + 0v_k = 0 + \dots + 0 = 0$, per la Proposizione 5.5. Quindi lo zero è una combinazione: sta in $W$.
+> 2. **La somma.** Se $v$ e $w$ stanno in $W$, sono due combinazioni:
 >    $$v = \lambda_1 v_1 + \dots + \lambda_k v_k, \qquad w = \mu_1 v_1 + \dots + \mu_k v_k.$$
->    Sommo e metto insieme i pezzi con lo stesso ingrediente (proprietà associativa e commutativa della somma e assioma 3):
+>    Sommo e metto insieme i pezzi con lo stesso vettore (proprietà associativa e commutativa della somma e assioma 3):
 >    $$v + w = (\lambda_1 + \mu_1)v_1 + \dots + (\lambda_k + \mu_k)v_k.$$
->    È ancora una ricetta, con le dosi sommate. Quindi $v + w$ sta in $W$.
+>    È ancora una combinazione, con i coefficienti sommati. Quindi $v + w$ sta in $W$.
 > 3. **I multipli.** Se $v$ sta in $W$ e $\lambda$ è un numero, per gli assiomi 2 e 4:
 >    $$\lambda v = \lambda(\lambda_1 v_1 + \dots + \lambda_k v_k) = (\lambda\lambda_1)v_1 + \dots + (\lambda\lambda_k)v_k.$$
->    È una ricetta con tutte le dosi moltiplicate per $\lambda$: sta in $W$. $\square$
+>    È una combinazione con tutti i coefficienti moltiplicati per $\lambda$: sta in $W$. $\square$
 
 ### Lo Span di un solo vettore
 
-Con un solo ingrediente le ricette sono solo i suoi multipli. Le dispense fanno l'esempio nel piano.
+Con un solo vettore le combinazioni sono i suoi multipli. Le dispense fanno l'esempio nel piano.
 
 > [!ESEMPIO] 6.8 · Lo Span di un solo vettore
 > Se $v$ è un singolo vettore, allora $\Span(v) = \{\lambda v \mid \lambda \in \K\}$: sono tutti i multipli di $v$. Per esempio, in $\R^2$,
@@ -41388,7 +41625,7 @@ Perché proprio la retta $y = 2x$? I multipli di $(1, 2)$ sono $(1, 2)$, $(2, 4)
 
 Che forma può avere uno Span nel piano e nello spazio? Una tabella per orientarsi; il perché preciso arriva con la dimensione, nella lezione L07.
 
-| Ingredienti | Span nel piano | Span nello spazio |
+| Vettori | Span nel piano | Span nello spazio |
 |---|---|---|
 | solo il vettore zero | solo lo zero | solo lo zero |
 | un vettore diverso da zero | la retta per l'origine nella sua direzione | la retta per l'origine nella sua direzione |
@@ -41396,23 +41633,23 @@ Che forma può avere uno Span nel piano e nello spazio? Una tabella per orientar
 | due vettori uno multiplo dell'altro (non tutti e due zero) | una retta | una retta |
 
 > [!TRAPPOLA] Lo Span di due vettori non è l'insieme dei due vettori
-> L'insieme $\{v_1, v_2\}$ ha **due** elementi. $\Span(v_1, v_2)$ contiene **tutte** le ricette: infinite, se i vettori non sono zero. E ingredienti diversi possono dare lo stesso Span: $\Span\big((1, 2)\big) = \Span\big((2, 4)\big) = \Span\big((-1, -2)\big)$, sempre la retta $y = 2x$.
+> L'insieme $\{v_1, v_2\}$ ha **due** elementi. $\Span(v_1, v_2)$ contiene **tutte** le combinazioni: infinite, se i vettori non sono zero. E vettori diversi possono dare lo stesso Span: $\Span\big((1, 2)\big) = \Span\big((2, 4)\big) = \Span\big((-1, -2)\big)$, sempre la retta $y = 2x$.
 
 ::: prova Il vettore $(4, 6)$ sta in $\Span\big((2, 3)\big)$? E il vettore $(4, 5)$?
 $(4, 6) = 2 \cdot (2, 3)$: sì, è un multiplo.
 
-Per $(4, 5)$ servirebbe una dose $t$ con $2t = 4$ e $3t = 5$. La prima dà $t = 2$, ma allora $3t = 6$, non 5: no.
+Per $(4, 5)$ servirebbe un numero $t$ con $2t = 4$ e $3t = 5$. La prima dà $t = 2$, ma allora $3t = 6$, non 5: no.
 :::
 
 > [!OLTRE] · lo Span è il più piccolo sottospazio che contiene i vettori
-> Se un sottospazio $U$ contiene $v_1, \dots, v_k$, contiene anche tutti i loro multipli (assioma 3) e tutte le somme di multipli (assioma 2): quindi tutto $\Span(v_1, \dots, v_k)$ sta dentro $U$. Conseguenza pratica, utilissima nei quiz: **per mostrare che uno Span sta dentro un sottospazio basta controllare che ci stiano gli ingredienti**. Per mostrare che sono uguali serve anche il contrario: ogni vettore del sottospazio è una ricetta con quegli ingredienti.
+> Se un sottospazio $U$ contiene $v_1, \dots, v_k$, contiene anche tutti i loro multipli (assioma 3) e tutte le somme di multipli (assioma 2): quindi tutto $\Span(v_1, \dots, v_k)$ sta dentro $U$. Conseguenza pratica, utilissima nei quiz: **per mostrare che uno Span sta dentro un sottospazio basta controllare che ci stiano i generatori**. Per mostrare che sono uguali serve anche il contrario: ogni vettore del sottospazio è una combinazione dei generatori.
 
 ### Un vettore sta nello Span? (pp. 29–30)
 
-È la domanda dell'Esercizio 6.10, e una delle più frequenti di tutto il corso: si può cucinare questo piatto con questi ingredienti? Si cercano le dosi.
+È la domanda dell'Esercizio 6.10, e una delle più frequenti di tutto il corso: questo vettore è una combinazione di quelli? Si cercano i coefficienti.
 
 > [!ESEMPIO] · un polinomio nello Span di altri due
-> Il polinomio $x^2 + 2x + 3$ sta in $\Span(x^2 + 1,\ x + 1)$? Cerchiamo due dosi $a$ e $b$ con
+> Il polinomio $x^2 + 2x + 3$ sta in $\Span(x^2 + 1,\ x + 1)$? Cerchiamo due coefficienti $a$ e $b$ con
 > $$a(x^2 + 1) + b(x + 1) = ax^2 + bx + (a + b) = x^2 + 2x + 3.$$
 > Due polinomi sono uguali quando hanno gli stessi numeri davanti a ogni potenza. Quindi:
 > 1. davanti a $x^2$: $a = 1$;
@@ -41424,12 +41661,12 @@ Per $(4, 5)$ servirebbe una dose $t$ con $2t = 4$ e $3t = 5$. La prima dà $t = 
 > Con $x^2 + 2x + 4$ invece la terza condizione diventerebbe $1 + 2 = 4$, falsa: quel polinomio **non** sta nello Span.
 
 > [!METODO] · «Il vettore sta nello Span?»
-> 1. Chiama con delle lettere le dosi che cerchi, una per ingrediente.
-> 2. Scrivi la ricetta con le lettere e mettila uguale al vettore dato, coordinata per coordinata (o potenza per potenza, per i polinomi): ottieni un **sistema lineare** nelle dosi.
+> 1. Chiama con delle lettere i coefficienti che cerchi, uno per generatore.
+> 2. Scrivi la combinazione con le lettere e mettila uguale al vettore dato, coordinata per coordinata (o potenza per potenza, per i polinomi): ottieni un **sistema lineare** nei coefficienti.
 > 3. Risolvi il sistema. Per ora con le sostituzioni; dalla lezione L11 con il metodo di Gauss.
-> 4. Se trovi le dosi, il vettore sta nello Span: rimettile nella ricetta e controlla. Se arrivi a una cosa impossibile, come $3 = 4$, il vettore non sta nello Span.
+> 4. Se trovi i coefficienti, il vettore sta nello Span: rimettili nella combinazione e controlla. Se arrivi a una cosa impossibile, come $3 = 4$, il vettore non sta nello Span.
 
-Per i sistemi più grandi lo strumento qui sotto fa i passaggi di Gauss al posto tuo (il metodo si impara nella lezione L11). Scrivi nelle colonne gli ingredienti e, nell'ultima colonna, il vettore da provare. La matrice già inserita è quella dell'Esercizio 6.10 con il vettore $(1, 2, 3)$: lo strumento trova una sola soluzione, $x_1 = 1$ e $x_2 = 2$ (sono le due dosi). Poi cambia l'ultimo numero da 3 a 4, cioè prova il vettore $(1, 2, 4)$, e premi «Calcola»: nessuna soluzione.
+Per i sistemi più grandi lo strumento qui sotto fa i passaggi di Gauss al posto tuo (il metodo si impara nella lezione L11). Scrivi nelle colonne i generatori e, nell'ultima colonna, il vettore da provare. La matrice già inserita è quella dell'Esercizio 6.10 con il vettore $(1, 2, 3)$: lo strumento trova una sola soluzione, $x_1 = 1$ e $x_2 = 2$ (sono i due coefficienti). Poi cambia l'ultimo numero da 3 a 4, cioè prova il vettore $(1, 2, 4)$, e premi «Calcola»: nessuna soluzione.
 
 ```widget gauss
 titolo: Il vettore dell'ultima colonna sta nello Span delle altre colonne?
@@ -41445,9 +41682,9 @@ modi: sistema
 > Nel libro di Martelli: le matrici e lo spazio $M(m, n, \K)$ nel **§2.2.5** (pp. 49–50); sottospazi, sottospazio «banale» e totale nei **§2.2.6–2.2.7** (pp. 50–51); sistemi omogenei nel **§2.2.8** (pp. 51–52); combinazioni lineari e Span nei **§2.2.9–2.2.10** (pp. 52–54, Proposizione 2.2.4 = Proposizione 6.7); forma cartesiana e parametrica e polinomi con restrizioni nei **§2.2.11–2.2.12** (pp. 54–55); matrici diagonali, triangolari, simmetriche e antisimmetriche nel **§2.2.14** (pp. 56–57, Proposizione 2.2.10 = Proposizione 6.5); intersezione e unione nei **§2.2.15–2.2.16** (pp. 57–58).
 
 > [!RICORDA]
-> - Lo Span di alcuni vettori è l'insieme di tutte le loro combinazioni lineari: tutto quello che si può cucinare.
+> - Lo Span di alcuni vettori è l'insieme di tutte le loro combinazioni lineari.
 > - Lo Span è sempre un sottospazio. Lo Span di un vettore diverso da zero è la retta dei suoi multipli.
-> - Per sapere se un vettore sta nello Span si cercano le dosi: è un sistema lineare.
+> - Per sapere se un vettore sta nello Span si cercano i coefficienti: è un sistema lineare.
 
 ## I simboli di questa lezione
 
@@ -41465,7 +41702,7 @@ modi: sistema
 | $v \in W$ | «v appartiene a W» | $v$ è uno dei vettori di $W$ | $(1, 2) \in \Span((1, 2))$ |
 | $\{0\}$ | «l'insieme con solo lo zero» | il sottospazio banale | |
 | $\forall$ | «per ogni» | vale per tutti i valori | $a_{ij} = 0\ \forall i \neq j$ |
-| $\lambda$, $\mu$ | «lambda», «mi» | numeri, di solito le dosi di una ricetta | $\lambda u + \mu v$ |
+| $\lambda$, $\mu$ | «lambda», «mi» | numeri, di solito i coefficienti di una combinazione | $\lambda u + \mu v$ |
 | $v_1, \dots, v_k$ | «v uno, …, v kappa» | un elenco di $k$ vettori | |
 | $\Span(v_1, \dots, v_k)$ | «span di v uno, …, v kappa» | tutte le combinazioni lineari dei vettori | $\Span((1, 2))$ è la retta $y = 2x$ |
 | $\{\ldots \mid \ldots\}$ | «l'insieme di … per cui …» | un insieme descritto con una condizione | $\{(x, y) \mid y = 2x\}$ |
@@ -41485,12 +41722,12 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 
 **Appello dell'08/02/2024, domanda 2.** Il testo: «Quale dei seguenti insiemi **non** è un sottospazio di $\R_2[x]$? (a) $\{p(x) \in \R_2[x] \mid p(0) = 0\}$; (b) $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$; (c) $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 0\}$; (d) $\{(1 + t)x^2 + tx \mid t \in \R\}$; (e) $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$».
 
-**In pratica chiede:** tra cinque gruppi di polinomi di grado al massimo 2, quale non è una stanza? Si parte dal controllo più veloce: c'è il polinomio zero?
+**In pratica chiede:** tra cinque gruppi di polinomi di grado al massimo 2, quale non è un sottospazio? Si parte dal controllo più veloce: c'è il polinomio zero?
 
 > [!ESEMPIO] · la soluzione, passo per passo
 > **Passo 1: (a) ed (e).** Sono i polinomi che fanno zero in certi numeri. Il polinomio zero fa zero dappertutto, quindi c'è. E sommando o moltiplicando polinomi che fanno zero in un numero, si ottiene ancora zero in quel numero. Sono sottospazi.
 >
-> **Passo 2: (b).** Metto insieme i pezzi con $t$ e quelli con $s$: $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$. Sono tutte le ricette con gli ingredienti $x^2 - x$ e $x^2 - 1$: è uno Span, quindi è un sottospazio.
+> **Passo 2: (b).** Metto insieme i pezzi con $t$ e quelli con $s$: $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$. Sono tutte le combinazioni di $x^2 - x$ e $x^2 - 1$: è uno Span, quindi è un sottospazio.
 >
 > **Passo 3: (c).** Le condizioni $a = 2c$ e $b = 0$ sono equazioni senza termine noto. Il polinomio zero ($a = b = c = 0$) le rispetta; somme e multipli anche. Sottospazio.
 >
@@ -41503,7 +41740,7 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 > [!ESAME] Appello del 03/06/2025, domanda 2
 > **Testo.** Quale dei seguenti insiemi di punti $(x, y, z) \in \R^3$ è un sottospazio vettoriale di $\R^3$? (a) $x^2 - 2x + 1 = 0$; (b) $x + 2yz + 3z = 7$; (c) $-x + 7y + z = 5$; (d) $x + \frac y2 - 5\pi z = 0$; (e) $x + 3iy + 5z = 0$.
 >
-> **In pratica chiede:** quale di queste equazioni descrive una stanza dello spazio?
+> **In pratica chiede:** quale di queste equazioni descrive un sottospazio?
 >
 > **Soluzione.** È la (d): un'equazione con le lettere solo alla prima potenza, numeri reali e niente termine noto. Le altre:
 > - in (a) l'equazione è $(x - 1)^2 = 0$, cioè $x = 1$, e l'origine non la rispetta;
@@ -41515,12 +41752,12 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 > $$a(x) = x - 1, \quad b(x) = x + 2, \quad c(x) = 2x^2 - 2, \quad d(x) = x^2 - x, \quad e(x) = 2x^3 + 1, \quad f(x) = x^3 - x^2,$$
 > e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale: (a) $U = \Span(a, c)$; (b) $U = \Span(a, c, f)$; (c) $U = \Span(c, d, e, f)$; (d) $U = \Span(b, e, f)$; (e) $U = \Span(a, c, d)$.
 >
-> **In pratica chiede:** $U$ sono i polinomi di grado al massimo 3 che fanno zero in 1. Con quali ingredienti si cucina esattamente $U$?
+> **In pratica chiede:** $U$ sono i polinomi di grado al massimo 3 che fanno zero in 1. Quale elenco di polinomi genera esattamente $U$?
 >
 > **Soluzione.** È la (b), e la si può dimostrare con gli strumenti di questa lezione.
 > - Scarto (c) e (d): $e(1) = 3$ e $b(1) = 3$, non zero. Quindi $e$ e $b$ non stanno in $U$, e quegli Span escono da $U$.
-> - Scarto (a) ed (e): i loro ingredienti hanno grado al massimo 2, quindi ogni ricetta ha grado al massimo 2. Ma $U$ contiene $x^3 - 1$, di grado 3.
-> - Confermo (b). Da un lato $a(1) = c(1) = f(1) = 0$, quindi lo Span di $a$, $c$, $f$ sta dentro $U$ (riquadro sullo Span più piccolo). Dall'altro, se $p(1) = 0$ allora $p(x) = (x - 1)q(x)$ con $q$ di grado al massimo 2 (lezione L04). Quindi $p$ è una ricetta con $x - 1$, $x(x - 1) = x^2 - x$ e $x^2(x - 1) = x^3 - x^2$. E questi tre si cucinano con $a$, $c$, $f$: $x - 1 = a$, $x^2 - x = \frac 12 c - a$, $x^3 - x^2 = f$.
+> - Scarto (a) ed (e): i loro generatori hanno grado al massimo 2, quindi ogni combinazione ha grado al massimo 2. Ma $U$ contiene $x^3 - 1$, di grado 3.
+> - Confermo (b). Da un lato $a(1) = c(1) = f(1) = 0$, quindi lo Span di $a$, $c$, $f$ sta dentro $U$ (riquadro sullo Span più piccolo). Dall'altro, se $p(1) = 0$ allora $p(x) = (x - 1)q(x)$ con $q$ di grado al massimo 2 (lezione L04). Quindi $p$ è una combinazione di $x - 1$, $x(x - 1) = x^2 - x$ e $x^2(x - 1) = x^3 - x^2$. E questi tre sono combinazioni di $a$, $c$, $f$: $x - 1 = a$, $x^2 - x = \frac 12 c - a$, $x^3 - x^2 = f$.
 
 ### I segnali da riconoscere
 
@@ -41549,13 +41786,37 @@ La prova scritta di Algebra lineare e Geometria ha 10 domande a risposta multipl
 ## Quiz
 
 ```quiz
+D: Appello del 15/01/2026, domanda 7. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) = x + 1$, $c(x) = x^3 - x$, $d(x) = x^3 + x$, $e(x) = x^2 - 1$, $f(x) = x^2 + 1$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = p(-1)\}$. Allora vale:
+- $U = \Span(a, b)$
+- $U = \Span(a, b, c, d)$
+- $U = \Span(e, f)$
++ $U = \Span(c, e, f)$
+- $U = \Span(c, d, e, f)$
+= Con $p(x) = qx^3 + rx^2 + sx + t$ la condizione $p(1) = p(-1)$ diventa $q + s = 0$. Quindi $U$ è fatto dei polinomi $q(x^3 - x) + rx^2 + t$, cioè $U = \Span(x^3 - x,\ x^2,\ 1)$. Anche $\Span(c, e, f)$ è questo, perché $x^2 = \frac{e + f}2$ e $1 = \frac{f - e}2$: è la (d) della soluzione ufficiale. (a), (b) ed (e) escono da $U$, perché $a(1) = 0$ ma $a(-1) = -2$, e $d(1) = 2$ ma $d(-1) = -2$. La risposta più insidiosa è la (c): $e$ e $f$ stanno in $U$, ma le loro combinazioni hanno grado al massimo 2 e manca $x^3 - x$.
+
+D: Appello del 24/01/2024, domanda 1. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) = x + 2$, $c(x) = 2x^2 - 2$, $d(x) = x^2 - x$, $e(x) = 2x^3 + 1$, $f(x) = x^3 - x^2$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale:
+- $U = \Span(a, c)$
++ $U = \Span(a, c, f)$
+- $U = \Span(c, d, e, f)$
+- $U = \Span(b, e, f)$
+- $U = \Span(a, c, d)$
+= È la (b) della soluzione ufficiale; lo svolgimento completo è in «Verso l'esame». La (c) e la (d) contengono $e$ o $b$, che in 1 valgono 3. La (a) e la (e) hanno solo generatori di grado al massimo 2, mentre $U$ contiene $x^3 - 1$. La risposta più insidiosa è la (e): $a$, $c$, $d$ stanno tutti in $U$, ma non bastano per i polinomi di grado 3.
+
+D: Appello del 03/06/2025, domanda 2. Quale dei seguenti insiemi è un sottospazio vettoriale di $\R^3$?
+- $\{(x, y, z) \in \R^3 \mid x^2 - 2x + 1 = 0\}$
+- $\{(x, y, z) \in \R^3 \mid x + 2yz + 3z = 7\}$
+- $\{(x, y, z) \in \R^3 \mid -x + 7y + z = 5\}$
++ $\{(x, y, z) \in \R^3 \mid x + \frac y2 - 5\pi z = 0\}$
+- $\{(x, y, z) \in \R^3 \mid x + 3iy + 5z = 0\}$
+= La (d) è un'equazione lineare a coefficienti reali senza termine noto: è la risposta della soluzione ufficiale. La (a) è $(x - 1)^2 = 0$, cioè $x = 1$; la (b) e la (c) hanno un termine noto diverso da zero: nessuna delle tre contiene l'origine. La risposta più insidiosa è la (e), che la soluzione scarta perché ha un coefficiente non reale. A rigore, per punti reali equivale a $x + 5z = 0$ e $y = 0$, una retta per l'origine; ma la risposta attesa è la (d).
+
 D: Quale di questi insiemi **non** è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(2) = 0\}$
 - $\{p(x) \in \R_2[x] \mid p(0) = p(1)\}$
 - $\Span(x,\ x^2 + 1)$
 + $\{x^2 + t \mid t \in \R\}$
 - $\{ax^2 + bx + c \mid a = b = c\}$
-= La domanda cerca l'insieme che non è una stanza, e il controllo più veloce è lo zero. Nei polinomi $x^2 + t$ il numero davanti a $x^2$ è sempre 1, quindi nessuno di loro è il polinomio zero: è la risposta. Gli altri sono sottospazi: «$p(2) = 0$» e «$p(0) = p(1)$» sono condizioni senza termine noto, uno Span è sempre un sottospazio, e i polinomi con $a = b = c$ sono i multipli di $x^2 + x + 1$, cioè uno Span. La risposta più insidiosa è $\{p(0) = p(1)\}$, che sembra strana; ma riscritta diventa $p(0) - p(1) = 0$, senza termine noto. Simile agli appelli dell'08/02/2024 e del 05/02/2026 (domanda 2).
+= La domanda cerca l'insieme che non è un sottospazio, e il controllo più veloce è lo zero. Nei polinomi $x^2 + t$ il numero davanti a $x^2$ è sempre 1, quindi nessuno di loro è il polinomio zero: è la risposta. Gli altri sono sottospazi: «$p(2) = 0$» e «$p(0) = p(1)$» sono condizioni senza termine noto, uno Span è sempre un sottospazio, e i polinomi con $a = b = c$ sono i multipli di $x^2 + x + 1$, cioè uno Span. La risposta più insidiosa è $\{p(0) = p(1)\}$, che sembra strana; ma riscritta diventa $p(0) - p(1) = 0$, senza termine noto. Simile agli appelli dell'08/02/2024 e del 05/02/2026 (domanda 2).
 
 D: Quale di questi insiemi è un sottospazio vettoriale di $\R^3$?
 + $\{(x, y, z) \mid x - 2y + 3z = 0\}$
@@ -41579,7 +41840,7 @@ D: Quale di questi vettori appartiene a $\Span\big((1, 0, 1),\ (0, 1, 1)\big)$?
 - $(2, 1, 1)$
 - $(0, 0, 1)$
 - $(1, -1, 1)$
-= Una ricetta con dosi $a$ e $b$ dà $a(1, 0, 1) + b(0, 1, 1) = (a, b, a + b)$: la terza coordinata è sempre la somma delle prime due. Si controllano le risposte: solo $(1, 1, 2)$ lo rispetta, con $a = b = 1$. Negli altri la terza coordinata dovrebbe essere $2$, $3$, $0$ e $0$. La risposta più insidiosa è $(1, 1, 1)$, che somiglia ai due ingredienti; ma sommati danno $(1, 1, 2)$.
+= La combinazione con coefficienti $a$ e $b$ dà $a(1, 0, 1) + b(0, 1, 1) = (a, b, a + b)$: la terza coordinata è sempre la somma delle prime due. Si controllano le risposte: solo $(1, 1, 2)$ lo rispetta, con $a = b = 1$. Negli altri la terza coordinata dovrebbe essere $2$, $3$, $0$ e $0$. La risposta più insidiosa è $(1, 1, 1)$, che somiglia ai due generatori; ma sommati danno $(1, 1, 2)$.
 
 D: In $\R^2$, che cos'è $\Span\big((1, 2)\big)$?
 + La retta $y = 2x$.
@@ -41587,7 +41848,7 @@ D: In $\R^2$, che cos'è $\Span\big((1, 2)\big)$?
 - La retta $y = x + 2$.
 - Tutto il piano $\R^2$.
 - L'insieme $\{(1, 2)\}$, con un solo elemento.
-= Lo Span di un solo vettore sono tutti i suoi multipli $(t, 2t)$ (Esempio 6.8): i punti con la seconda coordinata doppia della prima, cioè la retta $y = 2x$. La retta $x = 2y$ non contiene nemmeno $(1, 2)$. $y = x + 2$ non passa per l'origine, quindi non è un sottospazio. Un solo vettore diverso da zero dà una retta, non tutto il piano. La risposta più insidiosa è l'insieme con il solo $(1, 2)$: confonde lo Span con l'insieme degli ingredienti.
+= Lo Span di un solo vettore sono tutti i suoi multipli $(t, 2t)$ (Esempio 6.8): i punti con la seconda coordinata doppia della prima, cioè la retta $y = 2x$. La retta $x = 2y$ non contiene nemmeno $(1, 2)$. $y = x + 2$ non passa per l'origine, quindi non è un sottospazio. Un solo vettore diverso da zero dà una retta, non tutto il piano. La risposta più insidiosa è l'insieme con il solo $(1, 2)$: confonde lo Span con l'insieme dei generatori.
 
 D: L'insieme delle matrici $A \in M(2, \R)$ con $a_{11} = 1$ è:
 - un sottospazio, perché è definito da un'equazione lineare
@@ -41599,7 +41860,7 @@ D: L'insieme delle matrici $A \in M(2, \R)$ con $a_{11} = 1$ è:
 
 D: Per quale valore di $k$ il vettore $(1, k, 3)$ appartiene a $\Span\big((1, 0, 1),\ (0, 1, 1)\big)$?
 N: 2
-= Una ricetta con dosi $a$ e $b$ dà $(a, b, a + b)$. Deve essere uguale a $(1, k, 3)$: la prima coordinata dà $a = 1$, la seconda $b = k$, la terza $a + b = 3$. Quindi $1 + k = 3$, cioè $k = 2$. Controllo: $(1, 0, 1) + 2(0, 1, 1) = (1, 2, 3)$.
+= La combinazione con coefficienti $a$ e $b$ dà $(a, b, a + b)$. Deve essere uguale a $(1, k, 3)$: la prima coordinata dà $a = 1$, la seconda $b = k$, la terza $a + b = 3$. Quindi $1 + k = 3$, cioè $k = 2$. Controllo: $(1, 0, 1) + 2(0, 1, 1) = (1, 2, 3)$.
 
 D: Sia $U = \{p(x) \in \R_2[x] \mid p(1) = 0\}$. Quale uguaglianza è vera?
 + $U = \Span(x - 1,\ x^2 - 1)$
@@ -41607,7 +41868,7 @@ D: Sia $U = \{p(x) \in \R_2[x] \mid p(1) = 0\}$. Quale uguaglianza è vera?
 - $U = \Span(x + 1,\ x^2 - 1)$
 - $U = \Span(x^2 - 1,\ x^2 - x,\ x^2 + x)$
 - $U = \Span(1,\ x,\ x^2)$
-= $U$ sono i polinomi di grado al massimo 2 che fanno zero in 1. Gli ingredienti $x - 1$ e $x^2 - 1$ fanno zero in 1, quindi tutte le loro ricette stanno in $U$. Al contrario, se $p(1) = 0$ allora $p(x) = (x - 1)(ax + b) = a(x^2 - x) + b(x - 1) = a(x^2 - 1) + (b - a)(x - 1)$: è una ricetta con i due ingredienti. Le altre risposte: $\Span(x - 1)$ non contiene $x^2 - 1$; $x + 1$ e $x^2 + x$ valgono 2 in 1, quindi escono da $U$; $\Span(1, x, x^2)$ è tutto $\R_2[x]$. La risposta più insidiosa è $\Span(x - 1)$, che contiene polinomi giusti ma non tutti. Simile agli appelli del 24/01/2024 (domanda 1) e del 15/01/2026 (domanda 7).
+= $U$ sono i polinomi di grado al massimo 2 che fanno zero in 1. I generatori $x - 1$ e $x^2 - 1$ fanno zero in 1, quindi tutte le loro combinazioni stanno in $U$. Al contrario, se $p(1) = 0$ allora $p(x) = (x - 1)(ax + b) = a(x^2 - x) + b(x - 1) = a(x^2 - 1) + (b - a)(x - 1)$: è una combinazione dei due generatori. Le altre risposte: $\Span(x - 1)$ non contiene $x^2 - 1$; $x + 1$ e $x^2 + x$ valgono 2 in 1, quindi escono da $U$; $\Span(1, x, x^2)$ è tutto $\R_2[x]$. La risposta più insidiosa è $\Span(x - 1)$, che contiene polinomi giusti ma non tutti. Simile agli appelli del 24/01/2024 (domanda 1) e del 15/01/2026 (domanda 7).
 
 D: Quale affermazione è vera?
 + Ogni sottospazio di $V$ contiene il vettore nullo di $V$.
@@ -41615,7 +41876,7 @@ D: Quale affermazione è vera?
 - $\Span(v)$ contiene solo il vettore $v$.
 - $\{0\}$ non è un sottospazio, perché ha un solo elemento.
 - In $\R^2$ una retta che non passa per l'origine può essere un sottospazio.
-= È il primo dei tre controlli della Definizione 6.2: ogni stanza contiene lo zero. Le altre sono false: i due assi del piano messi insieme non sono un sottospazio; lo Span di un vettore contiene tutti i suoi multipli; l'insieme con il solo zero è un sottospazio, quello più piccolo; una retta che non passa per l'origine non contiene lo zero. La risposta più insidiosa è quella sull'unione, perché l'intersezione di due sottospazi invece è sempre un sottospazio.
+= È il primo dei tre controlli della Definizione 6.2: ogni sottospazio contiene lo zero. Le altre sono false: i due assi del piano messi insieme non sono un sottospazio; lo Span di un vettore contiene tutti i suoi multipli; l'insieme con il solo zero è un sottospazio, quello più piccolo; una retta che non passa per l'origine non contiene lo zero. La risposta più insidiosa è quella sull'unione, perché l'intersezione di due sottospazi invece è sempre un sottospazio.
 
 D: L'insieme delle matrici $A \in M(2, \R)$ tali che $A + {}^tA = 0$ (dove ${}^tA$ è la trasposta, $({}^tA)_{ij} = a_{ji}$) è:
 + lo spazio $A(2)$ delle matrici antisimmetriche
@@ -41654,11 +41915,11 @@ Quali di questi insiemi del piano contengono l'origine? Quali possono essere sot
 4. (d) l'origine ha $x = 0$, non 1: manca. Non è un sottospazio.
 :::
 
-::: esercizio base Riscaldamento: una ricetta
+::: esercizio base Riscaldamento: una combinazione
 Calcola $3(1, 2) - 2(0, 1)$. Poi di' se $(3, 4)$ sta in $\Span\big((1, 2),\ (0, 1)\big)$.
 ::: soluzione
 1. $3(1, 2) - 2(0, 1) = (3, 6) - (0, 2) = (3, 4)$.
-2. Il conto appena fatto è una ricetta con quegli ingredienti che dà $(3, 4)$, con dosi 3 e $-2$. Quindi sì, $(3, 4)$ sta nello Span.
+2. Il conto appena fatto è una combinazione di quei vettori che dà $(3, 4)$, con coefficienti 3 e $-2$. Quindi sì, $(3, 4)$ sta nello Span.
 :::
 
 ::: esercizio base Conti con le matrici
@@ -41695,15 +41956,15 @@ $$M_1 = \begin{pmatrix} 3 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & -1 \end{pmatrix}, \qua
 ::: soluzione
 (a) I multipli di $(2, -1)$ sono $(2t, -t)$. Da $y = -t$ viene $t = -y$, e allora $x = 2t = -2y$. È la retta $x + 2y = 0$.
 
-(b) $(2, 4) = 2 \cdot (1, 2)$, quindi ogni ricetta $\lambda(1, 2) + \mu(2, 4) = (\lambda + 2\mu)(1, 2)$ è un multiplo di $(1, 2)$. Lo Span è la retta $y = 2x$, come lo Span di $(1, 2)$ da solo: il secondo vettore non aggiunge niente.
+(b) $(2, 4) = 2 \cdot (1, 2)$, quindi ogni combinazione $\lambda(1, 2) + \mu(2, 4) = (\lambda + 2\mu)(1, 2)$ è un multiplo di $(1, 2)$. Lo Span è la retta $y = 2x$, come lo Span di $(1, 2)$ da solo: il secondo vettore non aggiunge niente.
 
-(c) Cerco le dosi $\lambda$ e $\mu$ con $\lambda(1, 0) + \mu(1, 1) = (\lambda + \mu, \mu) = (a, b)$.
+(c) Cerco i coefficienti $\lambda$ e $\mu$ con $\lambda(1, 0) + \mu(1, 1) = (\lambda + \mu, \mu) = (a, b)$.
 1. Dalla seconda coordinata: $\mu = b$.
 2. Dalla prima: $\lambda + b = a$, quindi $\lambda = a - b$.
 
 Quindi
 $$(a, b) = (a - b)(1, 0) + b(1, 1)$$
-per ogni $a$ e $b$: ogni vettore del piano è una ricetta, e lo Span è tutto il piano. Controllo con $(3, 5)$: $-2 \cdot (1, 0) + 5 \cdot (1, 1) = (-2 + 5, 5) = (3, 5)$.
+per ogni $a$ e $b$: ogni vettore del piano è una combinazione dei due, e lo Span è tutto il piano. Controllo con $(3, 5)$: $-2 \cdot (1, 0) + 5 \cdot (1, 1) = (-2 + 5, 5) = (3, 5)$.
 :::
 
 ::: esercizio medio Esercizio 6.9 delle dispense: le matrici del tipo $\begin{pmatrix} a & b \\ b & a \end{pmatrix}$
@@ -41719,7 +41980,7 @@ $$W = \Span\left(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \begin{pmatrix} 0
 
 **$W$ è lo Span delle due matrici.** Chiamo $I = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ e $J = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$. Per ogni $a$ e $b$:
 $$aI + bJ = \begin{pmatrix} a & 0 \\ 0 & a \end{pmatrix} + \begin{pmatrix} 0 & b \\ b & 0 \end{pmatrix} = \begin{pmatrix} a & b \\ b & a \end{pmatrix}.$$
-Letta da sinistra a destra, l'uguaglianza dice che ogni ricetta con $I$ e $J$ sta in $W$. Letta da destra a sinistra, dice che ogni matrice di $W$ è una ricetta con $I$ e $J$. Quindi $W = \Span(I, J)$.
+Letta da sinistra a destra, l'uguaglianza dice che ogni combinazione di $I$ e $J$ sta in $W$. Letta da destra a sinistra, dice che ogni matrice di $W$ è una combinazione di $I$ e $J$. Quindi $W = \Span(I, J)$.
 
 Nota: con questa seconda parte il primo punto diventa automatico, perché ogni Span è un sottospazio (Proposizione 6.7). È il modo più veloce per dimostrare che un insieme è un sottospazio: riscriverlo come Span.
 :::
@@ -41731,11 +41992,11 @@ Descrivi esplicitamente $\Span(v_1, v_2)$ e determina quali dei vettori
 $$u = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}, \qquad w = \begin{pmatrix} 1 \\ 2 \\ 4 \end{pmatrix}$$
 appartengono a questo sottospazio.
 ::: soluzione
-**Descrizione.** Una ricetta qualsiasi, con dosi $a$ e $b$, è
+**Descrizione.** Una combinazione qualsiasi, con coefficienti $a$ e $b$, è
 $$a v_1 + b v_2 = \begin{pmatrix} a \\ 0 \\ a \end{pmatrix} + \begin{pmatrix} 0 \\ b \\ b \end{pmatrix} = \begin{pmatrix} a \\ b \\ a + b \end{pmatrix}.$$
 Quindi lo Span è fatto dai vettori in cui la terza coordinata è la somma delle prime due. Con un'equazione è il **piano** $z = x + y$, cioè $x + y - z = 0$, che passa per l'origine. Infatti un punto $(x, y, z)$ ha la forma $(a, b, a + b)$ esattamente quando $z = x + y$: basta prendere $a = x$ e $b = y$.
 
-**Il vettore $u$.** Cerco le dosi con $(a, b, a + b) = (1, 2, 3)$.
+**Il vettore $u$.** Cerco i coefficienti con $(a, b, a + b) = (1, 2, 3)$.
 1. Dalle prime due coordinate: $a = 1$ e $b = 2$.
 2. La terza chiede $a + b = 3$, e infatti $1 + 2 = 3$.
 
@@ -41766,7 +42027,7 @@ Di' quali dei seguenti sottoinsiemi di $\R^3$ sono sottospazi. Se sì, dimostral
 ::: esercizio medio Uno Span con un parametro
 Per quali valori di $k \in \R$ il vettore $u_k = (1, 2, k)$ appartiene a $\Span\big((1, 1, 0),\ (0, 1, 1)\big)$? Per quei valori scrivi $u_k$ come combinazione lineare.
 ::: soluzione
-Cerco le dosi $a$ e $b$ con $a(1, 1, 0) + b(0, 1, 1) = (a,\ a + b,\ b) = (1, 2, k)$. Coordinata per coordinata:
+Cerco i coefficienti $a$ e $b$ con $a(1, 1, 0) + b(0, 1, 1) = (a,\ a + b,\ b) = (1, 2, k)$. Coordinata per coordinata:
 1. prima coordinata: $a = 1$;
 2. seconda: $a + b = 2$, quindi $b = 1$;
 3. terza: $b = k$, quindi $k = 1$.
@@ -41781,7 +42042,7 @@ Dimostra che $A(3)$, le matrici antisimmetriche $3 \times 3$, è lo Span di tre 
 ::: soluzione
 Una matrice antisimmetrica $3 \times 3$ ha la diagonale di zeri, e sotto la diagonale ci sono gli opposti dei numeri sopra. Quindi basta conoscere i tre numeri sopra la diagonale: chiamo $a = a_{12}$, $b = a_{13}$, $c = a_{23}$.
 $$\begin{pmatrix} 0 & a & b \\ -a & 0 & c \\ -b & -c & 0 \end{pmatrix} = a\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} + b\begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ -1 & 0 & 0 \end{pmatrix} + c\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & -1 & 0 \end{pmatrix}.$$
-Chiamo $F_1$, $F_2$, $F_3$ le tre matrici a destra. Ogni matrice antisimmetrica è una loro ricetta, e ogni loro ricetta è antisimmetrica: $A(3) = \Span(F_1, F_2, F_3)$. Per la Proposizione 6.7 è un sottospazio.
+Chiamo $F_1$, $F_2$, $F_3$ le tre matrici a destra. Ogni matrice antisimmetrica è una loro combinazione, e ogni loro combinazione è antisimmetrica: $A(3) = \Span(F_1, F_2, F_3)$. Per la Proposizione 6.7 è un sottospazio.
 
 La somma: con i numeri $a, b, c$ e $a', b', c'$ si ottiene la matrice con $a + a'$, $b + b'$, $c + c'$ sopra la diagonale e i loro opposti sotto. Ha ancora la forma antisimmetrica. Nella lezione L07 vedrai che $F_1$, $F_2$, $F_3$ sono una base, quindi lo spazio ha dimensione 3 (è l'Esercizio 1 del Foglio 2 del tutorato 2025).
 :::
@@ -41850,7 +42111,7 @@ Sia $U = \{p(x) \in \R_3[x] \mid p(1) = p(-1)\}$.
 2. La condizione $p(1) = p(-1)$ diventa $a + c = -a - c$, cioè $2a + 2c = 0$, cioè $c = -a$.
 3. Quindi i polinomi di $U$ sono
    $$ax^3 + bx^2 - ax + d = a(x^3 - x) + b\,x^2 + d \cdot 1,$$
-   con $a$, $b$, $d$ qualsiasi: esattamente le ricette con $x^3 - x$, $x^2$ e 1.
+   con $a$, $b$, $d$ qualsiasi: esattamente le combinazioni di $x^3 - x$, $x^2$ e 1.
 
 Quindi $U = \Span(1, x^2, x^3 - x)$.
 
@@ -41921,19 +42182,19 @@ No: la somma di una triangolare superiore e di una inferiore può non essere tri
 :::
 
 ::: domanda Che cos'è una combinazione lineare? Che cos'è lo Span di alcuni vettori?
-Una combinazione lineare è una ricetta: ogni vettore moltiplicato per un numero, poi tutto sommato. Lo Span è l'insieme di **tutte** le ricette possibili con quei vettori, cambiando le dosi in tutti i modi.
+Una combinazione lineare si ottiene moltiplicando ogni vettore per un numero e sommando. Lo Span è l'insieme di **tutte** le combinazioni lineari di quei vettori, con i coefficienti scelti in tutti i modi.
 :::
 
 ::: domanda Perché lo Span è un sottospazio?
-Con tutte le dosi uguali a zero viene lo zero. La somma di due ricette è la ricetta con le dosi sommate. Il multiplo di una ricetta è la ricetta con tutte le dosi moltiplicate.
+Con tutti i coefficienti uguali a zero viene lo zero. La somma di due combinazioni è la combinazione con i coefficienti sommati. Il multiplo di una combinazione è la combinazione con tutti i coefficienti moltiplicati.
 :::
 
 ::: domanda Come si decide se un vettore sta nello Span di altri vettori?
-Si cercano le dosi: si scrive la ricetta con delle lettere, la si mette uguale al vettore coordinata per coordinata e si risolve il sistema. Se ha soluzione il vettore sta nello Span, altrimenti no.
+Si cercano i coefficienti: si scrive la combinazione con delle lettere, la si mette uguale al vettore coordinata per coordinata e si risolve il sistema. Se ha soluzione il vettore sta nello Span, altrimenti no.
 :::
 
 ::: domanda Come si dimostra in fretta che un insieme è un sottospazio?
-Riscrivendolo come Span di alcuni vettori: ogni Span è un sottospazio per la Proposizione 6.7. Per esempio i polinomi $(t + s)x^2 - tx - s$ sono le ricette con $x^2 - x$ e $x^2 - 1$.
+Riscrivendolo come Span di alcuni vettori: ogni Span è un sottospazio per la Proposizione 6.7. Per esempio i polinomi $(t + s)x^2 - tx - s$ sono le combinazioni di $x^2 - x$ e $x^2 - 1$.
 :::
 
 ## Glossario
@@ -41951,10 +42212,10 @@ Matrice antisimmetrica | Ogni casella è l'opposto della sua immagine allo specc
 Sottospazio vettoriale | Una parte di uno spazio vettoriale che contiene lo zero ed è chiusa rispetto alla somma e alla moltiplicazione per un numero.
 Chiuso rispetto a un'operazione | Facendo l'operazione con elementi dell'insieme si resta nell'insieme.
 Sottospazio banale e totale | Quello fatto solo dallo zero, e lo spazio intero. Ogni sottospazio sta in mezzo.
-Combinazione lineare | Una ricetta con dei vettori: ciascuno moltiplicato per un numero, poi tutto sommato. Per esempio $2(1, 0) + 3(0, 1)$.
-Coefficienti | Le dosi di una combinazione lineare: i numeri che moltiplicano i vettori.
-Span, sottospazio generato | Tutte le combinazioni lineari di alcuni vettori: tutto quello che si può cucinare con quegli ingredienti. È sempre un sottospazio.
-Generatori | Gli ingredienti di uno Span: i vettori con cui si ottiene tutto il sottospazio.
+Combinazione lineare | Una somma di vettori, ciascuno moltiplicato per un numero. Per esempio $2(1, 0) + 3(0, 1)$.
+Coefficienti | I numeri che moltiplicano i vettori in una combinazione lineare.
+Span, sottospazio generato | Tutte le combinazioni lineari di alcuni vettori. È sempre un sottospazio.
+Generatori | I vettori di cui si prendono tutte le combinazioni: con loro si ottiene tutto lo Span.
 Trasposta ${}^tA$ | La matrice con righe e colonne scambiate (lezione L08). $A$ è simmetrica quando è uguale alla sua trasposta.
 Forma parametrica e cartesiana | Due modi di descrivere un sottospazio: come Span di alcuni vettori, oppure con equazioni lineari senza termine noto.
 ```
@@ -41971,7 +42232,7 @@ Forma parametrica e cartesiana | Due modi di descrivere un sottospazio: come Spa
 - So spiegare perché le simmetriche e le antisimmetriche sono sottospazi, e perché «triangolari» tutte insieme no.
 - So calcolare una combinazione lineare di vettori, polinomi e matrici.
 - So dire che cos'è lo Span di alcuni vettori e perché è un sottospazio.
-- So decidere se un vettore sta in uno Span cercando le dosi con un sistema.
+- So decidere se un vettore sta in uno Span cercando i coefficienti con un sistema.
 - So riscrivere un sottospazio definito da condizioni come Span di pochi vettori.
 ```
 
@@ -41999,12 +42260,12 @@ docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L07
 descrizione: >-
   Appunti della lezione L07 di Algebra lineare e Geometria (MDAG, parte 2): dipendenza e indipendenza lineare,
-  basi, base canonica di K^n e dei polinomi, dimensione di uno spazio vettoriale e teorema sulle basi, con quiz
-  nello stile dell'esame ed esercizi svolti.
+  basi, base canonica di K^n e dei polinomi, dimensione di uno spazio vettoriale e teorema sulle basi, con domande
+  vere degli appelli, quiz ed esercizi svolti.
 lede: >-
-  Quando un vettore è di troppo? Quando si ottiene mescolando gli altri, come un ingrediente doppione. Da qui nascono
-  le basi, gli ingredienti giusti per fare tutto senza sprechi, e la dimensione: quanti numeri servono per dire dove
-  sei. Basi e dimensioni sono tra le domande più frequenti del quiz.
+  Quando un vettore è di troppo? Quando è una combinazione degli altri. Da qui nascono le basi, liste di vettori che
+  generano tutto senza vettori di troppo, e la dimensione: quanti numeri servono per descrivere un vettore. Basi e
+  dimensioni sono tra le domande più frequenti del quiz.
 materiale: dispense
 scheda:
   Dispense: lezione 7 · pp. 31–35
@@ -42019,16 +42280,16 @@ genera_html: true
 
 ## In breve
 
-- Dei vettori sono **linearmente dipendenti** quando uno di loro è di troppo: si ottiene mescolando gli altri, come un ingrediente doppione. Sono **linearmente indipendenti** quando nessuno è di troppo.
-- Il controllo: se l'unica ricetta che dà il vettore zero è quella con tutte le dosi uguali a zero, i vettori sono indipendenti.
+- Dei vettori sono **linearmente dipendenti** quando uno di loro è di troppo, perché è una combinazione lineare degli altri. Sono **linearmente indipendenti** quando nessuno è di troppo.
+- Il controllo: se l'unica combinazione che dà il vettore zero è quella con tutti i coefficienti uguali a zero, i vettori sono indipendenti.
 - Un vettore da solo è dipendente solo se è lo zero. Due vettori sono dipendenti solo se uno è multiplo dell'altro. Con tre o più vettori guardarli a coppie non basta.
-- Una **base** è una lista di vettori indipendenti con cui si cucina tutto lo spazio. Ogni vettore ha una sola ricetta con gli ingredienti di una base.
+- Una **base** è una lista di vettori indipendenti che generano tutto lo spazio. Ogni vettore si scrive in un solo modo come combinazione dei vettori di una base.
 - Tutte le basi di uno spazio hanno lo stesso numero di vettori: questo numero è la **dimensione**. Il piano ha dimensione 2, lo spazio 3, i polinomi di grado al massimo 2 hanno dimensione 3.
 - Se hai tanti vettori quanta è la dimensione, per sapere se sono una base basta controllare una cosa sola: che siano indipendenti.
 - All'esame escono domande su dimensioni, su «generatori e/o indipendenti» e su quale insieme è una base: per esempio negli appelli del 24/01/2024, 16/01/2025, 15/01/2026 e 07/09/2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di martedì 20/10/2026, dalle 9 alle 11: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 20/10/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 7. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Che cosa vuol dire «dimensione» (p. 31)
 
@@ -42036,7 +42297,7 @@ Dalla scuola sai che un punto ha dimensione 0, una retta dimensione 1, un piano 
 
 In questa lezione la parola «dimensione» diventa una definizione precisa, che vale per ogni spazio vettoriale: anche per le matrici $2 \times 3$ o per i polinomi, che non si possono disegnare.
 
-L'idea è contare **quanti vettori servono** per cucinare tutto lo spazio, senza sprechi. Ricorda dalla lezione L06: lo Span di alcuni vettori è tutto quello che si ottiene con le loro ricette. Guarda questi due casi nel piano:
+L'idea è contare **quanti vettori servono** per generare tutto lo spazio, senza vettori di troppo. Ricorda dalla lezione L06: lo Span di alcuni vettori è l'insieme delle loro combinazioni lineari. Guarda questi due casi nel piano:
 
 - Lo Span di $(1, 2)$ e $(2, 4)$ è una **retta**: il secondo vettore è il doppio del primo e non aggiunge niente. Uno dei due è di troppo.
 - Lo Span di $(1, 2)$ e $(2, 1)$ è **tutto il piano**: servono tutti e due, nessuno è di troppo.
@@ -42063,17 +42324,15 @@ Una retta, l'asse orizzontale: $(3, 0)$ è il triplo di $(1, 0)$ e non aggiunge 
 > - La dimensione conta quanti vettori servono per ottenere tutto lo spazio, senza vettori di troppo.
 > - Un vettore che è multiplo di un altro non aggiunge niente allo Span.
 
-## Ingredienti doppioni: la dipendenza lineare (pp. 31–33)
+## Vettori di troppo: la dipendenza lineare (pp. 31–33)
 
-In cucina hai tre ingredienti: farina, zucchero e un preparato già pronto fatto da 2 parti di farina e 1 di zucchero. Il preparato è un doppione: lo puoi rifare mescolando gli altri due. Toglierlo non cambia quello che puoi cucinare.
-
-Con i vettori succede lo stesso. Prendi $(1, 2)$ e $(2, 4)$. Il secondo è il doppio del primo: $(2, 4) = 2 \cdot (1, 2)$. Porto tutto da una parte:
+Un vettore è di troppo quando si ottiene combinando gli altri: toglierlo non cambia lo Span. Prendi $(1, 2)$ e $(2, 4)$. Il secondo è il doppio del primo: $(2, 4) = 2 \cdot (1, 2)$. Porto tutto da una parte:
 
 $$2 \cdot (1, 2) - 1 \cdot (2, 4) = (2 - 2,\ 4 - 4) = (0, 0).$$
 
-Una ricetta con dosi 2 e $-1$, cioè con dosi **non tutte zero**, dà il vettore zero. È il segnale che c'è un doppione.
+Una combinazione con coefficienti 2 e $-1$, cioè con coefficienti **non tutti zero**, dà il vettore zero. È il segnale che c'è un vettore di troppo.
 
-La ricetta con **tutte** le dosi uguali a zero dà sempre il vettore zero, con qualsiasi vettore: $0 \cdot (1, 2) + 0 \cdot (2, 4) = (0, 0)$. Non dice niente. La domanda interessante è se c'è un'**altra** ricetta che dà zero.
+La combinazione con **tutti** i coefficienti uguali a zero dà sempre il vettore zero, con qualsiasi vettore: $0 \cdot (1, 2) + 0 \cdot (2, 4) = (0, 0)$. Non dice niente. La domanda interessante è se c'è un'**altra** combinazione che dà zero.
 
 ### Il nome e la definizione
 
@@ -42088,52 +42347,52 @@ Le dispense lo scrivono così.
 
 **Come si legge.**
 
-- $v_1, \dots, v_k$ sono gli ingredienti; $\lambda_1, \dots, \lambda_k$ sono le dosi, cioè i coefficienti (lezione L06). $\K$ sono i numeri usati, reali o complessi.
-- **Non tutti nulli** vuol dire: almeno una dose diversa da zero. Le altre possono anche essere zero.
-- **Dipendenti**: c'è una ricetta con almeno una dose diversa da zero che dà il vettore zero.
-- **Indipendenti**: l'unica ricetta che dà zero è quella con tutte le dosi zero. Le dispense la chiamano combinazione «banale».
-- La freccia $\implies$ si legge «allora»: «se la ricetta dà zero, allora tutte le dosi sono zero».
+- $v_1, \dots, v_k$ sono i vettori; $\lambda_1, \dots, \lambda_k$ sono i coefficienti della combinazione (lezione L06). $\K$ sono i numeri usati, reali o complessi.
+- **Non tutti nulli** vuol dire: almeno un coefficiente diverso da zero. Gli altri possono anche essere zero.
+- **Dipendenti**: c'è una combinazione con almeno un coefficiente diverso da zero che dà il vettore zero.
+- **Indipendenti**: l'unica combinazione che dà zero è quella con tutti i coefficienti zero. Le dispense la chiamano combinazione «banale».
+- La freccia $\implies$ si legge «allora»: «se la combinazione dà zero, allora tutti i coefficienti sono zero».
 - Dipendenza e indipendenza riguardano **tutta la lista** di vettori insieme, non un vettore da solo.
 
 ### Come si controlla
 
-**Per dire «dipendenti»** basta mostrare una ricetta con dosi non tutte zero che dà zero. Per esempio $2 \cdot (1, 2) - (2, 4) = (0, 0)$.
+**Per dire «dipendenti»** basta mostrare una combinazione con coefficienti non tutti zero che dà zero. Per esempio $2 \cdot (1, 2) - (2, 4) = (0, 0)$.
 
-**Per dire «indipendenti»** si parte da una ricetta con le dosi sconosciute, la si mette uguale a zero e si dimostra che le dosi devono essere tutte zero. Di solito si risolve un sistema.
+**Per dire «indipendenti»** si parte da una combinazione con i coefficienti sconosciuti, la si mette uguale a zero e si dimostra che i coefficienti devono essere tutti zero. Di solito si risolve un sistema.
 
 > [!ESEMPIO] · la verifica con le incognite, nel piano
-> **$(1, 2)$ e $(2, 1)$ sono indipendenti.** Chiamo $a$ e $b$ le dosi e chiedo $a(1, 2) + b(2, 1) = (0, 0)$, cioè $(a + 2b,\ 2a + b) = (0, 0)$:
+> **$(1, 2)$ e $(2, 1)$ sono indipendenti.** Chiamo $a$ e $b$ i coefficienti e chiedo $a(1, 2) + b(2, 1) = (0, 0)$, cioè $(a + 2b,\ 2a + b) = (0, 0)$:
 > $$\begin{cases} a + 2b = 0 \\ 2a + b = 0 \end{cases}$$
 > 1. Dalla prima: $a = -2b$.
 > 2. Sostituisco nella seconda: $2 \cdot (-2b) + b = -4b + b = -3b = 0$, quindi $b = 0$.
 > 3. Allora $a = -2 \cdot 0 = 0$.
 >
-> L'unica ricetta che dà zero ha tutte le dosi zero: indipendenti.
+> L'unica combinazione che dà zero ha tutti i coefficienti zero: indipendenti.
 >
-> **$(1, 2)$ e $(2, 4)$ sono dipendenti.** Lo stesso sistema diventa $a + 2b = 0$ e $2a + 4b = 0$. La seconda equazione è il doppio della prima, e va bene ogni coppia con $a = -2b$. Per esempio $b = -1$ e $a = 2$: $2(1, 2) - (2, 4) = (0, 0)$, con dosi diverse da zero.
+> **$(1, 2)$ e $(2, 4)$ sono dipendenti.** Lo stesso sistema diventa $a + 2b = 0$ e $2a + 4b = 0$. La seconda equazione è il doppio della prima, e va bene ogni coppia con $a = -2b$. Per esempio $b = -1$ e $a = 2$: $2(1, 2) - (2, 4) = (0, 0)$, con coefficienti diversi da zero.
 
 ::: prova I vettori $(1, 0)$ e $(0, 1)$ sono indipendenti?
 Sì. $a(1, 0) + b(0, 1) = (a, b)$, e questo è $(0, 0)$ solo se $a = 0$ e $b = 0$.
 :::
 
-### Il doppione si ricostruisce dagli altri (p. 31)
+### Il vettore di troppo si ricava dagli altri (p. 31)
 
 Se dei vettori sono dipendenti, uno di loro si ricostruisce dagli altri. Ecco perché, con l'esempio di prima: da $2 \cdot (1, 2) - (2, 4) = 0$ sposto $(2, 4)$ dall'altra parte e ottengo $(2, 4) = 2 \cdot (1, 2)$.
 
-In generale si fa così. C'è almeno una dose diversa da zero, diciamo quella del vettore $v_i$, cioè $\lambda_i$. Lascio $\lambda_i v_i$ da una parte, sposto tutto il resto dall'altra e divido per $\lambda_i$ (si può, perché non è zero):
+In generale si fa così. C'è almeno un coefficiente diverso da zero, diciamo quello del vettore $v_i$, cioè $\lambda_i$. Lascio $\lambda_i v_i$ da una parte, sposto tutto il resto dall'altra e divido per $\lambda_i$ (si può, perché non è zero):
 
 $$v_i = -\frac{\lambda_1}{\lambda_i} v_1 - \dots - \frac{\lambda_k}{\lambda_i} v_k,$$
 
-dove a destra **non** compare $v_i$. Quindi $v_i$ è una ricetta con gli altri vettori: è il doppione.
+dove a destra **non** compare $v_i$. Quindi $v_i$ è una combinazione degli altri vettori: è quello di troppo.
 
-Vale anche al contrario. Se un vettore è una ricetta con gli altri, per esempio $v_1 = 3v_2 + v_3$, porto tutto da una parte: $v_1 - 3v_2 - v_3 = 0$. È una ricetta che dà zero con la dose di $v_1$ uguale a 1, non zero: i vettori sono dipendenti.
+Vale anche al contrario. Se un vettore è una combinazione degli altri, per esempio $v_1 = 3v_2 + v_3$, porto tutto da una parte: $v_1 - 3v_2 - v_3 = 0$. È una combinazione che dà zero con il coefficiente di $v_1$ uguale a 1, non zero: i vettori sono dipendenti.
 
 Le dispense lo scrivono così.
 
 > [!PROP] 7.2
 > I vettori $v_1, \dots, v_k$ sono dipendenti $\iff$ uno di loro è esprimibile come combinazione lineare degli altri.
 
-**Come si legge.** Il simbolo $\iff$ si legge «se e solo se»: le due cose vanno sempre insieme. Dipendenti vuol dire: c'è un doppione, un vettore che si ottiene mescolando gli altri.
+**Come si legge.** Il simbolo $\iff$ si legge «se e solo se»: le due cose vanno sempre insieme. Dipendenti vuol dire: c'è un vettore di troppo, che si ottiene combinando gli altri.
 
 > [!IDEA] · che cosa vuol dire «dipendenti»
 > Dei vettori sono dipendenti quando **uno è di troppo**: si può ricostruire dagli altri, e toglierlo non cambia lo Span. Sono indipendenti quando **ognuno porta una direzione nuova**, che gli altri non sanno produrre.
@@ -42142,8 +42401,8 @@ Le dispense lo scrivono così.
 
 Con pochi vettori la Proposizione 7.2 si legge subito.
 
-- **Un vettore da solo è dipendente solo se è lo zero.** Lo zero lo è: $1 \cdot 0 = 0$, con la dose 1. Un vettore diverso da zero no: se $\lambda v = 0$ con $v$ diverso da zero, allora $\lambda = 0$ (lezione L05, esercizio 11 (c)).
-- **Due vettori sono dipendenti solo se uno è multiplo dell'altro.** «Uno è una ricetta con l'altro» vuol dire proprio «uno è un multiplo dell'altro».
+- **Un vettore da solo è dipendente solo se è lo zero.** Lo zero lo è: $1 \cdot 0 = 0$, con il coefficiente 1. Un vettore diverso da zero no: se $\lambda v = 0$ con $v$ diverso da zero, allora $\lambda = 0$ (lezione L05, esercizio 11 (c)).
+- **Due vettori sono dipendenti solo se uno è multiplo dell'altro.** «Uno è una combinazione dell'altro» vuol dire proprio «uno è un multiplo dell'altro».
 
 > [!ESEMPIO] 7.3 · Due vettori di $\R^2$
 > I vettori $v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ e $v_2 = \begin{pmatrix} -2 \\ -2 \end{pmatrix}$ di $\R^2$ sono dipendenti; $w_1 = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$ e $w_2 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$ sono indipendenti perché non sono multipli.
@@ -42154,9 +42413,9 @@ Il perché, con i numeri:
 2. Perché $w_2$ sia un multiplo di $w_1$ servirebbe un numero $k$ con $2 = k \cdot 1$ (prima coordinata) e $1 = k \cdot 2$ (seconda). La prima dà $k = 2$, la seconda $k = \frac 12$: impossibile. Per lo stesso motivo nemmeno $w_1$ è un multiplo di $w_2$.
 
 > [!TRAPPOLA] Lo zero rende tutto dipendente
-> Se nella lista c'è il vettore zero, i vettori sono **sempre** dipendenti. Basta dare dose 1 allo zero e dose 0 a tutti gli altri: la ricetta dà zero, e una dose non è zero.
+> Se nella lista c'è il vettore zero, i vettori sono **sempre** dipendenti. Basta dare coefficiente 1 allo zero e 0 a tutti gli altri: la combinazione dà zero, e un coefficiente non è zero.
 
-Nello strumento qui sotto $u = (1, 2)$ e $v = (2, 1)$ sono indipendenti: con le ricette $\lambda u + \mu v$ si raggiunge ogni punto del piano. Trascina $v$ in $(2, 4)$ oppure in $(-1, -2)$: diventa un multiplo di $u$, lo strumento lo segnala e le ricette restano sulla retta rossa.
+Nello strumento qui sotto $u = (1, 2)$ e $v = (2, 1)$ sono indipendenti: con le combinazioni $\lambda u + \mu v$ si raggiunge ogni punto del piano. Trascina $v$ in $(2, 4)$ oppure in $(-1, -2)$: diventa un multiplo di $u$, lo strumento lo segnala e le combinazioni restano sulla retta rossa.
 
 ```widget vettori
 titolo: Due vettori del piano: indipendenti o multipli?
@@ -42185,7 +42444,7 @@ Il conto, coordinata per coordinata:
 
 $$v_1 - v_2 - v_3 = \begin{pmatrix} 1 - 0 - 1 \\ 1 - 1 - 0 \\ 0 - 1 - (-1) \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}.$$
 
-Come si **trova** una ricetta così, invece di indovinarla? Si chiamano $a$, $b$, $c$ le dosi e si chiede $a v_1 + b v_2 + c v_3 = 0$, coordinata per coordinata:
+Come si **trova** una combinazione così, invece di indovinarla? Si chiamano $a$, $b$, $c$ i coefficienti e si chiede $a v_1 + b v_2 + c v_3 = 0$, coordinata per coordinata:
 
 $$\begin{cases} a + c = 0 \\ a + b = 0 \\ b - c = 0 \end{cases}$$
 
@@ -42193,9 +42452,21 @@ $$\begin{cases} a + c = 0 \\ a + b = 0 \\ b - c = 0 \end{cases}$$
 2. Dalla seconda: $b = -a$.
 3. La terza diventa $-a - (-a) = 0$: è sempre vera, qualunque sia $a$.
 
-Quindi $a$ si può scegliere come si vuole. Con $a = 1$ vengono $b = -1$ e $c = -1$: proprio $v_1 - v_2 - v_3 = 0$. Una dose libera vuol dire infinite ricette che danno zero, anche con dosi diverse da zero: i vettori sono dipendenti.
+Quindi $a$ si può scegliere come si vuole. Con $a = 1$ vengono $b = -1$ e $c = -1$: proprio $v_1 - v_2 - v_3 = 0$. Un coefficiente libero vuol dire infinite combinazioni che danno zero, anche con coefficienti diversi da zero: i vettori sono dipendenti.
 
 Nel disegno i tre vettori stanno in uno **stesso piano per l'origine**, il piano $x - y + z = 0$. Controllo: $1 - 1 + 0 = 0$, $0 - 1 + 1 = 0$, $1 - 0 - 1 = 0$.
+
+Nel piano succede con tre vettori qualsiasi. Per esempio $(1, 0)$, $(0, 1)$ e $(1, 1)$ non sono multipli a due a due, ma il terzo è la somma dei primi due: $(1, 0) + (0, 1) - (1, 1) = (0, 0)$.
+
+```grafico
+titolo: $(1, 0)$, $(0, 1)$ e $(1, 1)$ non sono multipli a due a due, ma $(1, 1)$ è la diagonale del parallelogramma costruito sugli altri due, cioè la loro somma: i tre vettori sono dipendenti
+x: -0.8 2
+y: -0.8 2
+poligono: 0 0 1 0 1 1 0 1 | ambra | tenue
+vettore: 1 0 | accento | spesso | $(1, 0)$ | se
+vettore: 0 1 | blu | spesso | $(0, 1)$ | o
+vettore: 1 1 | ambra | spesso | $(1, 1)$ | ne
+```
 
 > [!ESEMPIO] 7.5 · La base canonica di $\R^3$ è indipendente
 > I vettori
@@ -42204,23 +42475,23 @@ Nel disegno i tre vettori stanno in uno **stesso piano per l'origine**, il piano
 > $$\lambda_1 \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + \lambda_2 \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + \lambda_3 \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} \lambda_1 \\ \lambda_2 \\ \lambda_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}.$$
 > Da questo si deduce $\lambda_1 = \lambda_2 = \lambda_3 = 0$: l'unica combinazione lineare di $e_1, e_2, e_3$ che dà il vettore nullo è quella «banale», quindi i tre vettori sono indipendenti.
 
-Qui il conto è immediato perché ogni vettore ha un 1 in un posto dove gli altri hanno 0: la ricetta mette ogni dose in una coordinata diversa.
+Qui il conto è immediato perché ogni vettore ha un 1 in un posto dove gli altri hanno 0: la combinazione mette ogni coefficiente in una coordinata diversa.
 
 ### Una parte di una lista indipendente (pp. 32–33)
 
-Se nessun ingrediente di una lista è un doppione, nessuno lo è nemmeno in una parte della lista. Le dispense lo scrivono così.
+Se in una lista nessun vettore è di troppo, nessuno lo è nemmeno in una parte della lista. Le dispense lo scrivono così.
 
 > [!PROP] 7.6
 > Se $v_1, \dots, v_k$ sono indipendenti, allora qualsiasi sottoinsieme di $\{v_1, \dots, v_k\}$ è anch'esso formato da vettori indipendenti.
 
 **Come si legge.** Togliendo vettori da una lista indipendente si ottiene ancora una lista indipendente.
 
-Il motivo, a parole: una ricetta che dà zero con una parte dei vettori diventa una ricetta con tutti i vettori, dando dose zero a quelli tolti. Se la prima avesse una dose diversa da zero, l'avrebbe anche la seconda.
+Il motivo, a parole: una combinazione che dà zero con una parte dei vettori diventa una combinazione di tutti i vettori, dando coefficiente zero a quelli tolti. Se la prima avesse un coefficiente diverso da zero, l'avrebbe anche la seconda.
 
 > [!DIM] della Proposizione 7.6
-> La spiegazione delle dispense, con i passaggi. Supponi per assurdo che alcuni di loro, per comodità i primi $h$, siano dipendenti: esiste una ricetta $\lambda_1 v_1 + \dots + \lambda_h v_h = 0$ con dosi non tutte zero. Aggiungo gli altri vettori con dose zero:
+> La spiegazione delle dispense, con i passaggi. Supponi per assurdo che alcuni di loro, per comodità i primi $h$, siano dipendenti: esiste una combinazione $\lambda_1 v_1 + \dots + \lambda_h v_h = 0$ con coefficienti non tutti zero. Aggiungo gli altri vettori con coefficiente zero:
 > $$\lambda_1 v_1 + \dots + \lambda_h v_h + 0 v_{h+1} + \dots + 0 v_k = 0.$$
-> È una ricetta con **tutti** i vettori che dà zero, e ha ancora una dose diversa da zero. Questo contraddice l'indipendenza di $v_1, \dots, v_k$.
+> È una combinazione di **tutti** i vettori che dà zero, e ha ancora un coefficiente diverso da zero. Questo contraddice l'indipendenza di $v_1, \dots, v_k$.
 
 Due conseguenze. Se dei vettori sono indipendenti, allora:
 
@@ -42228,7 +42499,7 @@ Due conseguenze. Se dei vettori sono indipendenti, allora:
 - **a due a due non sono multipli** (guardando due vettori alla volta).
 
 > [!TRAPPOLA] Necessarie, ma non bastano
-> L'Esempio 7.4 mostra che con tre o più vettori queste due condizioni **non bastano**: $v_1, v_2, v_3$ sono diversi da zero e a coppie non multipli, eppure sono dipendenti. Con tre o più vettori bisogna scrivere la ricetta con le dosi sconosciute e risolvere il sistema.
+> L'Esempio 7.4 mostra che con tre o più vettori queste due condizioni **non bastano**: $v_1, v_2, v_3$ sono diversi da zero e a coppie non multipli, eppure sono dipendenti. Con tre o più vettori bisogna scrivere la combinazione con i coefficienti sconosciuti e risolvere il sistema.
 
 > [!OLTRE] · quanti vettori indipendenti ci sono in una lista: il metodo di Gauss
 > Per liste lunghe il sistema diventa pesante. Nella lezione L13 le dispense usano il **metodo di Gauss** (lezione L11) e il **rango** (lezione L08): si scrivono i vettori come righe di una matrice e si fanno mosse come «la riga 2 diventa la riga 2 meno la riga 1». Ogni mossa sostituisce un vettore con la sua differenza con un multiplo di un altro, e lo Span non cambia. Alla fine le righe diverse da zero sono indipendenti, e il loro numero, il rango, dice quanti vettori indipendenti c'erano. Nello strumento la matrice ha per righe i tre vettori dell'Esempio 7.4: esce una riga di zeri e il rango è 2. Prova poi le righe `1 1 2`, `-1 1 -1`, `0 1 1` (i vettori $v_1, v_2, v_4$ dell'Esercizio 7.15): il rango è 3, indipendenti.
@@ -42241,21 +42512,21 @@ modi: rango
 ```
 
 ::: prova I vettori $(1, 2, 3)$, $(0, 0, 0)$ e $(4, 5, 6)$ sono indipendenti?
-No: c'è il vettore zero, quindi sono dipendenti. Una ricetta che dà zero: $0 \cdot (1, 2, 3) + 1 \cdot (0, 0, 0) + 0 \cdot (4, 5, 6)$.
+No: c'è il vettore zero, quindi sono dipendenti. Una combinazione che dà zero: $0 \cdot (1, 2, 3) + 1 \cdot (0, 0, 0) + 0 \cdot (4, 5, 6)$.
 :::
 
 > [!RICORDA]
-> - Dipendenti: una ricetta con dosi non tutte zero dà il vettore zero; cioè un vettore è un doppione degli altri.
-> - Indipendenti: l'unica ricetta che dà zero ha tutte le dosi zero.
+> - Dipendenti: una combinazione con coefficienti non tutti zero dà il vettore zero; cioè un vettore è combinazione degli altri.
+> - Indipendenti: l'unica combinazione che dà zero ha tutti i coefficienti zero.
 > - Uno da solo è dipendente solo se è zero; due sono dipendenti solo se multipli; con tre o più si risolve il sistema.
 
-## Gli ingredienti giusti: le basi (pp. 33–34)
+## Le basi (pp. 33–34)
 
 Nel piano ogni vettore si scrive con due numeri. Per esempio
 
 $$(5, 3) = 5 \cdot (1, 0) + 3 \cdot (0, 1).$$
 
-I due vettori $(1, 0)$ e $(0, 1)$ bastano per cucinare tutto il piano, e nessuno dei due è di troppo. Una lista di ingredienti così si chiama **base**: abbastanza per fare tutto, e nessuno sprecato. Le dispense la presentano come una delle definizioni più importanti del corso.
+I due vettori $(1, 0)$ e $(0, 1)$ generano tutto il piano, e nessuno dei due è di troppo. Una lista di vettori così si chiama **base**: genera tutto, senza vettori di troppo. Le dispense la presentano come una delle definizioni più importanti del corso.
 
 > [!DEF] 7.7 · Base
 > Sia $V$ uno spazio vettoriale. Una sequenza $v_1, \dots, v_n \in V$ di vettori è una **base** se sono soddisfatte entrambe queste condizioni:
@@ -42264,7 +42535,7 @@ I due vettori $(1, 0)$ e $(0, 1)$ bastano per cucinare tutto il piano, e nessuno
 
 **Come si legge.**
 
-- **Generano $V$** vuol dire che lo Span dei vettori è tutto $V$: ogni vettore di $V$ si ottiene con una ricetta. Nessun vettore resta fuori.
+- **Generano $V$** vuol dire che lo Span dei vettori è tutto $V$: ogni vettore di $V$ è una loro combinazione. Nessun vettore resta fuori.
 - **Indipendenti**: nessuno dei vettori è di troppo.
 - Servono **tutte e due** le condizioni. Pochi vettori possono essere indipendenti senza generare tutto; tanti vettori possono generare tutto senza essere indipendenti.
 - È una **sequenza**: conta anche l'ordine, che diventerà importante con le coordinate (lezione L13).
@@ -42281,8 +42552,21 @@ Una tabella con cinque liste di vettori del piano:
 
 Nella quarta riga c'è un'altra base del piano: le basi di uno spazio sono infinite.
 
+Con una base diversa da quella solita, i numeri che descrivono un vettore cambiano. Rispetto alla base $u = (1, 2)$, $v = (2, 1)$ il vettore $(4, 5)$ si scrive $2u + v$: i suoi numeri in questa base sono 2 e 1 (sono le coordinate della lezione L13).
+
+```grafico
+titolo: Con la base $u = (1, 2)$, $v = (2, 1)$ il vettore $(4, 5)$ è $2u + v$: si va di $2u$ (tratteggio) e poi di $v$
+x: -0.5 6
+y: -0.5 6
+vettore: 2 1 | blu | spesso | $v$ | se
+vettore: 2 4 | accento | tratteggio | $2u$ | o
+vettore: 1 2 | accento | spesso | $u$ | o
+freccia: 2 4 4 5 | blu | spesso
+vettore: 4 5 | ambra | spesso | $(4, 5) = 2u + v$ | n
+```
+
 ::: prova I vettori $(1, 0)$, $(0, 1)$ e $(2, 3)$ sono una base del piano? Perché?
-No. Generano il piano, ma non sono indipendenti: $(2, 3) = 2 \cdot (1, 0) + 3 \cdot (0, 1)$ è un doppione.
+No. Generano il piano, ma non sono indipendenti: $(2, 3) = 2 \cdot (1, 0) + 3 \cdot (0, 1)$ è di troppo.
 :::
 
 ### La base canonica
@@ -42305,7 +42589,7 @@ Il vettore $e_i$ ha un 1 al posto numero $i$ e zeri altrove. Per esempio, con tr
 
 $$\begin{pmatrix} 5 \\ -2 \\ 7 \end{pmatrix} = 5e_1 - 2e_2 + 7e_3.$$
 
-Le dosi rispetto alla base canonica sono proprio le coordinate del vettore.
+I coefficienti rispetto alla base canonica sono proprio le coordinate del vettore.
 
 Lo stesso vale per i polinomi: la base più comoda è fatta dalle potenze della lettera.
 
@@ -42316,13 +42600,13 @@ Lo stesso vale per i polinomi: la base più comoda è fatta dalle potenze della 
 >
 > **Generano $\K_n[x]$**: ciascun polinomio di grado minore o uguale a $n$ si scrive come $p(x) = a_n x^n + \dots + a_1 x + a_0$, e questa scrittura è già una combinazione lineare dei vettori $1, x, \dots, x^n$, con coefficienti $a_0, a_1, \dots, a_n$.
 
-Perché vale l'indipendenza? A destra dell'uguale c'è il **polinomio zero**, quello con tutti i coefficienti uguali a 0. Due polinomi sono uguali quando hanno gli stessi coefficienti, quindi $\lambda_0 + \lambda_1 x + \dots + \lambda_n x^n$ è il polinomio zero solo se ogni dose è zero. Un esempio: $3 + 0x - 2x^2$ non è il polinomio zero, perché ha dei coefficienti diversi da zero.
+Perché vale l'indipendenza? A destra dell'uguale c'è il **polinomio zero**, quello con tutti i coefficienti uguali a 0. Due polinomi sono uguali quando hanno gli stessi coefficienti, quindi $\lambda_0 + \lambda_1 x + \dots + \lambda_n x^n$ è il polinomio zero solo se ogni $\lambda_i$ è zero. Un esempio: $3 + 0x - 2x^2$ non è il polinomio zero, perché ha dei coefficienti diversi da zero.
 
 > [!TRAPPOLA] I polinomi di grado al massimo $n$ hanno $n + 1$ vettori di base, non $n$
 > La base canonica dei polinomi di grado al massimo 2 è $1, x, x^2$: **tre** polinomi, perché c'è anche il numero 1. Per il grado al massimo $n$ i vettori sono $1, x, \dots, x^n$: $n + 1$ in tutto.
 
 > [!OLTRE] · a che cosa serve una base: le coordinate
-> Il libro di Martelli (Proposizione 2.3.11) mostra che, fissata una base, **ogni vettore si scrive in un solo modo** come ricetta con i suoi vettori. Se ci fossero due ricette diverse per lo stesso vettore, sottraendole si otterrebbe una ricetta che dà zero con dosi non tutte zero, contro l'indipendenza. Le dosi di quella ricetta si chiamano **coordinate** del vettore rispetto alla base. Per esempio, rispetto alla base $(1, 1), (-1, 1)$ del piano, il vettore $(2, 0) = 1 \cdot (1, 1) - 1 \cdot (-1, 1)$ ha coordinate $1$ e $-1$. Le coordinate si studiano nella lezione L13.
+> Il libro di Martelli (Proposizione 2.3.11) mostra che, fissata una base, **ogni vettore si scrive in un solo modo** come combinazione dei suoi vettori. Se ci fossero due combinazioni diverse per lo stesso vettore, sottraendole si otterrebbe una combinazione che dà zero con coefficienti non tutti zero, contro l'indipendenza. I coefficienti di quella combinazione si chiamano **coordinate** del vettore rispetto alla base. Per esempio, rispetto alla base $(1, 1), (-1, 1)$ del piano, il vettore $(2, 0) = 1 \cdot (1, 1) - 1 \cdot (-1, 1)$ ha coordinate $1$ e $-1$. Le coordinate si studiano nella lezione L13.
 
 > [!RICORDA]
 > - Una base è una lista di vettori indipendenti che generano tutto lo spazio.
@@ -42337,7 +42621,7 @@ Una retta per l'origine del piano ha basi fatte da un vettore: $(1, 2)$, oppure 
 > [!TEOREMA] 7.10
 > Se uno spazio vettoriale $V$ ha una base formata da $n$ vettori, allora ogni base di $V$ contiene $n$ vettori.
 
-**Come si legge.** Tutte le basi di uno stesso spazio hanno lo stesso numero di vettori. Cambiano gli ingredienti, non quanti ne servono.
+**Come si legge.** Tutte le basi di uno stesso spazio hanno lo stesso numero di vettori. Cambiano i vettori, non quanti ne servono.
 
 Questo teorema permette di dare un nome preciso a un'idea che conosci da sempre.
 
@@ -42362,7 +42646,7 @@ Con le basi già trovate:
 | $\K[x]$, tutti i polinomi | nessuna base finita | $\infty$ |
 | solo lo zero | la lista vuota | $0$ |
 
-**Perché tutti i polinomi insieme hanno dimensione infinita.** Prendi una lista finita di polinomi qualsiasi e chiama $N$ il grado più alto tra loro. Ogni ricetta con quei polinomi ha grado al massimo $N$, quindi il polinomio $x^{N+1}$ non si ottiene. Nessuna lista finita genera tutti i polinomi: non c'è una base finita.
+**Perché tutti i polinomi insieme hanno dimensione infinita.** Prendi una lista finita di polinomi qualsiasi e chiama $N$ il grado più alto tra loro. Ogni combinazione di quei polinomi ha grado al massimo $N$, quindi il polinomio $x^{N+1}$ non si ottiene. Nessuna lista finita genera tutti i polinomi: non c'è una base finita.
 
 > [!ESEMPIO] · la dimensione di alcuni sottospazi
 > - La retta $y = 2x$ del piano è lo Span di $(1, 2)$, e un vettore diverso da zero è indipendente: una base con un vettore, **dimensione 1**.
@@ -42412,7 +42696,7 @@ Le dispense lo scrivono così.
 > $(1, 2)$ e $(2, 1)$ non sono multipli, quindi sono indipendenti (Esempio 7.3). Sono 2 vettori e il piano ha dimensione 2: per il Teorema 7.12 sono una base, senza controllare che generino.
 
 > [!TRAPPOLA] Il teorema vale solo con il numero giusto di vettori
-> Due vettori indipendenti dello spazio a tre coordinate **non** sono una base: sono 2, non 3. Quattro vettori che generano lo spazio a tre coordinate **non** sono una base: sono troppi, e per forza c'è un doppione (riquadro qui sotto).
+> Due vettori indipendenti dello spazio a tre coordinate **non** sono una base: sono 2, non 3. Quattro vettori che generano lo spazio a tre coordinate **non** sono una base: sono troppi, e per forza ce n'è uno di troppo (riquadro qui sotto).
 
 ::: prova In $\R^3$, i vettori $(1, 0, 0)$, $(1, 1, 0)$ e $(1, 1, 1)$ sono indipendenti. Sono una base?
 Sì: sono 3 vettori indipendenti e $\R^3$ ha dimensione 3. Per il Teorema 7.12 generano anche tutto lo spazio.
@@ -42420,8 +42704,8 @@ Sì: sono 3 vettori indipendenti e $\R^3$ ha dimensione 3. Per il Teorema 7.12 g
 
 > [!OLTRE] · le conseguenze da usare nei quiz
 > Dal libro di Martelli (Proposizioni 2.3.23 e 2.3.25 e gli algoritmi dei §2.3.5–2.3.6), in uno spazio di dimensione $n$:
-> - **più di $n$ vettori sono sempre dipendenti**: se fossero indipendenti, i primi $n$ sarebbero una base (Teorema 7.12) e gli altri sarebbero loro ricette;
-> - **meno di $n$ vettori non generano mai tutto**: da una lista che genera si possono togliere uno alla volta i doppioni (Proposizione 7.2) fino a restare con una base, che avrebbe meno di $n$ vettori;
+> - **più di $n$ vettori sono sempre dipendenti**: se fossero indipendenti, i primi $n$ sarebbero una base (Teorema 7.12) e gli altri sarebbero loro combinazioni;
+> - **meno di $n$ vettori non generano mai tutto**: da una lista che genera si possono togliere uno alla volta i vettori di troppo (Proposizione 7.2) fino a restare con una base, che avrebbe meno di $n$ vettori;
 > - **lo Span di $k$ vettori ha dimensione al massimo $k$**, uguale al numero massimo di vettori indipendenti tra loro (è l'osservazione che la lezione L08 usa per il rango);
 > - **ogni sottospazio ha dimensione al massimo $n$**, e ha dimensione $n$ solo se è tutto lo spazio;
 > - **vettori indipendenti si completano a una base**: finché non generano tutto, si aggiunge un vettore fuori dal loro Span, e la lista resta indipendente (esercizio 12).
@@ -42443,10 +42727,10 @@ Sì: sono 3 vettori indipendenti e $\R^3$ ha dimensione 3. Per il Teorema 7.12 g
 | Simbolo | Si legge | Vuol dire | Esempio |
 |---|---|---|---|
 | $v_1, \dots, v_k$ | «v uno, …, v kappa» | un elenco di $k$ vettori | $(1, 2), (2, 1)$ |
-| $\lambda_1, \dots, \lambda_k$ | «lambda uno, …» | le dosi di una ricetta | $2(1, 2) - (2, 4)$ ha dosi $2$ e $-1$ |
+| $\lambda_1, \dots, \lambda_k$ | «lambda uno, …» | i coefficienti di una combinazione | $2(1, 2) - (2, 4)$ ha coefficienti $2$ e $-1$ |
 | $\implies$ | «allora» | se vale la prima cosa, vale la seconda | |
 | $\iff$ | «se e solo se» | le due cose vanno sempre insieme | |
-| $\Span(\ldots)$ | «span di …» | tutte le ricette con quei vettori (lezione L06) | $\Span((1, 2))$ |
+| $\Span(\ldots)$ | «span di …» | tutte le combinazioni di quei vettori (lezione L06) | $\Span((1, 2))$ |
 | $e_1, \dots, e_n$ | «e uno, …, e enne» | la base canonica: un 1 e tutti zeri | $e_2 = (0, 1, 0)$ |
 | $e_{ij}$ | «e i j» | la matrice con 1 nella riga $i$ e colonna $j$, zeri altrove | $e_{12} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ |
 | $\dim V$ | «dimensione di V» | il numero di vettori di una base | $\dim \R^3 = 3$ |
@@ -42477,14 +42761,14 @@ Nei problemi da 11 punti le basi servono sempre: «trovare una base del nucleo e
 
 **Appello del 16/01/2025, domanda 2.** Il testo: «I polinomi $1$, $x$, $x^2$ e $1 + 2x + x^2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti? (a) Sono linearmente indipendenti, ma non generatori. (b) Non sono né linearmente indipendenti né generatori. (c) La domanda è mal posta: i polinomi non sono vettori. (d) Sono generatori, ma non linearmente indipendenti. (e) Sono sia generatori che linearmente indipendenti».
 
-**In pratica chiede:** con questi quattro polinomi si cucinano tutti i polinomi di grado al massimo 2? E c'è un doppione?
+**In pratica chiede:** questi quattro polinomi generano tutti i polinomi di grado al massimo 2? E ce n'è uno di troppo?
 
 > [!ESEMPIO] · la soluzione, passo per passo
-> **Passo 1: conto.** Sono 4 polinomi. I polinomi di grado al massimo 2 hanno dimensione 3. Più vettori della dimensione: per forza c'è un doppione. Quindi **non** sono indipendenti.
+> **Passo 1: conto.** Sono 4 polinomi. I polinomi di grado al massimo 2 hanno dimensione 3. Più vettori della dimensione: per forza ce n'è uno di troppo. Quindi **non** sono indipendenti.
 >
-> **Passo 2: trovo il doppione.** $1 + 2x + x^2 = 1 \cdot 1 + 2 \cdot x + 1 \cdot x^2$: è una ricetta con gli altri tre.
+> **Passo 2: trovo quello di troppo.** $1 + 2x + x^2 = 1 \cdot 1 + 2 \cdot x + 1 \cdot x^2$: è una combinazione degli altri tre.
 >
-> **Passo 3: generano?** I primi tre, $1$, $x$, $x^2$, sono la base canonica (Esempio 7.9): da soli già cucinano tutto. Aggiungendo un polinomio si cucina ancora tutto. Quindi **generano**.
+> **Passo 3: generano?** I primi tre, $1$, $x$, $x^2$, sono la base canonica (Esempio 7.9): da soli generano già tutto. Aggiungendo un polinomio si genera ancora tutto. Quindi **generano**.
 >
 > **La risposta** è la (d).
 >
@@ -42499,31 +42783,31 @@ Nei problemi da 11 punti le basi servono sempre: «trovare una base del nucleo e
 >
 > **Soluzione.** È la (c).
 > 1. **Conto.** Le matrici $2 \times 2$ hanno dimensione 4: una base ha esattamente 4 elementi. Restano solo (b) e (c).
-> 2. **(b).** $C + D = A$: c'è un doppione, quindi non è una base.
+> 2. **(b).** $C + D = A$: c'è una matrice di troppo, quindi non è una base.
 > 3. **(c).** Per il Teorema 7.12 basta controllare l'indipendenza. Chiedo $x_1 A + x_2 B + x_3 E + x_4 F = 0$:
 >    $$\begin{pmatrix} x_2 + x_3 + x_4 & x_1 + x_3 + x_4 \\ x_1 + x_3 & x_3 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}.$$
->    La casella in basso a destra dà $x_3 = 0$. Poi quella in basso a sinistra dà $x_1 = 0$, quella in alto a destra $x_4 = 0$, quella in alto a sinistra $x_2 = 0$. Tutte le dosi sono zero: è una base.
+>    La casella in basso a destra dà $x_3 = 0$. Poi quella in basso a sinistra dà $x_1 = 0$, quella in alto a destra $x_4 = 0$, quella in alto a sinistra $x_2 = 0$. Tutti i coefficienti sono zero: è una base.
 
 > [!ESAME] Appello del 15/01/2026, domanda 4
 > **Testo.** La dimensione dello spazio $S(3)$ delle matrici $3 \times 3$ simmetriche è: (a) nove; (b) zero; (c) tre; (d) sei; (e) $S(3)$ non ha una dimensione perché non è uno spazio vettoriale.
 >
 > **Soluzione.** È la (d). Una matrice simmetrica $3 \times 3$ è decisa dai 6 numeri sulla diagonale e sopra di essa: quelli sotto sono copie allo specchio.
 > $$\begin{pmatrix} a & b & c \\ b & d & e \\ c & e & f \end{pmatrix} = a e_{11} + d e_{22} + f e_{33} + b(e_{12} + e_{21}) + c(e_{13} + e_{31}) + e(e_{23} + e_{32}).$$
-> Le sei matrici a destra generano $S(3)$ e sono indipendenti: se la ricetta dà la matrice nulla, ogni dose compare da sola in qualche casella, quindi è zero. La (e) è falsa per la Proposizione 6.5. Con lo stesso ragionamento le triangolari superiori $3 \times 3$ hanno dimensione 6 (appello del 24/01/2024, domanda 5) e le antisimmetriche $3 \times 3$ hanno dimensione 3.
+> Le sei matrici a destra generano $S(3)$ e sono indipendenti: se la combinazione dà la matrice nulla, ogni coefficiente compare da solo in qualche casella, quindi è zero. La (e) è falsa per la Proposizione 6.5. Con lo stesso ragionamento le triangolari superiori $3 \times 3$ hanno dimensione 6 (appello del 24/01/2024, domanda 5) e le antisimmetriche $3 \times 3$ hanno dimensione 3.
 
 ### I metodi
 
 > [!METODO] · «Sono generatori e/o indipendenti?»
 > Hai $k$ vettori in uno spazio di dimensione $n$.
 > 1. **Conta.** Se $k$ è più grande di $n$, sono sicuramente dipendenti. Se è più piccolo, sicuramente non generano tutto.
-> 2. **Trova i doppioni.** Scrivi la ricetta con le dosi sconosciute uguale a zero e risolvi, oppure cerca un vettore che sia ricetta degli altri. Togliendo i doppioni restano $r$ vettori indipendenti, e $r$ è la dimensione dello Span.
+> 2. **Trova i vettori di troppo.** Scrivi la combinazione con i coefficienti sconosciuti uguale a zero e risolvi, oppure cerca un vettore che sia combinazione degli altri. Togliendo i vettori di troppo restano $r$ vettori indipendenti, e $r$ è la dimensione dello Span.
 > 3. **Concludi.** Sono indipendenti quando $r = k$; generano tutto quando $r = n$; sono una base quando $r = k = n$.
 >
 > Le risposte del tipo «la domanda è mal posta» (i vettori sono troppi, i polinomi non sono vettori) sono trappole: la domanda ha sempre senso.
 
 > [!METODO] · la dimensione di un sottospazio
 > 1. Scrivi l'elemento generico del sottospazio, usando le condizioni per eliminare le lettere che dipendono dalle altre: restano alcune **lettere libere**.
-> 2. Raccogli le lettere libere: l'elemento generico diventa una ricetta, con un vettore per ogni lettera. Il sottospazio è lo Span di quei vettori.
+> 2. Raccogli le lettere libere: l'elemento generico diventa una combinazione lineare, con un vettore per ogni lettera. Il sottospazio è lo Span di quei vettori.
 > 3. Controlla che siano indipendenti (di solito lo sono: ogni lettera compare da sola in qualche posto).
 > 4. La dimensione è il numero di vettori, cioè il numero di lettere libere.
 >
@@ -42538,7 +42822,7 @@ Nei problemi da 11 punti le basi servono sempre: «trovare una base del nucleo e
 
 > [!ESAME] Il foglio da 4 facciate
 > Da questa lezione:
-> - la definizione di indipendenza («se la ricetta dà zero, tutte le dosi sono zero») e la Proposizione 7.2;
+> - la definizione di indipendenza («se la combinazione dà zero, tutti i coefficienti sono zero») e la Proposizione 7.2;
 > - i casi con uno e due vettori, e la definizione di base;
 > - la tabella delle dimensioni: $\K^n$, $\K_n[x]$, $M(m, n)$;
 > - le matrici speciali: $D(n) = n$, $T^s(n) = S(n) = \frac{n(n+1)}2$, $A(n) = \frac{n(n-1)}2$;
@@ -42547,13 +42831,61 @@ Nei problemi da 11 punti le basi servono sempre: «trovare una base del nucleo e
 ## Quiz
 
 ```quiz
+D: Appello del 16/01/2025, domanda 2. I polinomi $1$, $x$, $x^2$ e $1 + 2x + x^2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti?
+- Sono linearmente indipendenti, ma non generatori.
+- Non sono né linearmente indipendenti né generatori.
+- La domanda è mal posta: i polinomi non sono vettori.
++ Sono generatori, ma non linearmente indipendenti.
+- Sono sia generatori che linearmente indipendenti.
+= Quattro polinomi in uno spazio di dimensione 3 sono per forza dipendenti, e infatti $1 + 2x + x^2$ è combinazione degli altri tre. I primi tre sono la base canonica, quindi generano. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (c): i polinomi sono vettori dello spazio $\R_2[x]$ (lezione L05).
+
+D: Appello del 15/01/2026, domanda 4. La dimensione dello spazio $S(3)$ delle matrici $3 \times 3$ simmetriche è:
+- nove
+- zero
+- tre
++ sei
+- $S(3)$ non ha una dimensione perché non è uno spazio vettoriale
+= Una matrice simmetrica $3 \times 3$ è decisa dai 3 numeri sulla diagonale e dai 3 sopra: sei lettere libere, sei matrici indipendenti. È la (d) della soluzione ufficiale. La risposta più insidiosa è nove, la dimensione di tutte le matrici $3 \times 3$; la (e) è falsa per la Proposizione 6.5.
+
+D: Appello del 10/07/2025, domanda 2. Sia $V = \R_3[x]$ e sia $W$ il sottoinsieme dei polinomi $p(x) \in V$ con $p(6) = 0$. La dimensione di $W$ è:
++ tre
+- due
+- quattro
+- uno
+- $W$ non ha una dimensione perché non è un sottospazio vettoriale
+= Se $p(6) = 0$ allora $p(x) = (x - 6)q(x)$ con $q$ di grado al massimo 2 (lezione L04). Quindi $W = \Span\big(x - 6,\ x(x - 6),\ x^2(x - 6)\big)$, tre polinomi di gradi diversi e quindi indipendenti. È la (a) della soluzione ufficiale. La risposta più insidiosa è quattro, la dimensione di tutto $\R_3[x]$: la condizione toglie una lettera libera.
+
+D: Appello del 03/07/2026, domanda 1. Sia $V = \R_3[x]$ e $W = \{p(x) \in V \mid p(2) = 0,\ p(-2) = 0\}$. La dimensione di $W$ è:
++ 2
+- $W$ non è sottospazio di $V$
+- 1
+- 4
+- 3
+= $p$ ha i fattori $x - 2$ e $x + 2$, quindi $p(x) = (x^2 - 4)(ax + b)$: due lettere libere, e $x^2 - 4$ e $x(x^2 - 4)$ sono indipendenti. È la (a) della soluzione ufficiale. La risposta più insidiosa è 3, che conta una condizione sola, come nell'appello del 10/07/2025.
+
+D: Appello del 07/09/2026, domanda 2. Siano $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $B = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$, $C = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, $D = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$, $E = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, $F = \begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}$. Quale insieme forma una base di $M(2, \R)$?
+- $\{A, B, F\}$
+- $\{A, C, D, E\}$
++ $\{A, B, E, F\}$
+- $\{B, C, D, E, F\}$
+- $\{B, C, F\}$
+= Le matrici $2 \times 2$ hanno dimensione 4, quindi restano solo la (b) e la (c). Nella (b) $C + D = A$: dipendenti. Nella (c) la combinazione $x_1 A + x_2 B + x_3 E + x_4 F$ è nulla solo con tutti i coefficienti zero, quindi per il Teorema 7.12 è una base: è la (c) della soluzione ufficiale. La risposta più insidiosa è la (b), che ha il numero giusto di matrici.
+
+D: Appello del 15/01/2026, domanda 3. Dato uno spazio vettoriale $V$ e vettori $v_1, v_2, v_3 \in V$, sia $X = \Span(v_1, v_2, v_3)$. Quale delle seguenti affermazioni è vera?
+- $\dim X = 3$
+- $\dim X = \{v_1, v_2, v_3\}$
+- $\dim X \ge 3$
++ $\dim X \le 3$
+- $\dim X$ non è ben definito: $X$ non è necessariamente uno spazio vettoriale
+= Togliendo i vettori di troppo da $v_1, v_2, v_3$ resta una base di $X$ con al massimo 3 vettori. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (a): vale solo se i tre vettori sono indipendenti, e con $v_1 = v_2 = v_3$ diverso da zero $X$ è una retta. La (e) è falsa per la Proposizione 6.7, la (b) confronta un numero con un insieme.
+
 D: I vettori $(1, 0, 1)$, $(0, 1, 1)$, $(1, 1, 2)$, $(0, 0, 1)$ di $\R^3$ sono generatori e/o linearmente indipendenti?
 - Sono linearmente indipendenti, ma non generatori.
 - Non sono né linearmente indipendenti né generatori.
 - La domanda è mal posta: i vettori sono 4 e non 3.
 + Sono generatori, ma non linearmente indipendenti.
 - Sono sia generatori che linearmente indipendenti.
-= Si conta per primo: 4 vettori in uno spazio di dimensione 3 sono sempre dipendenti, e infatti $(1, 1, 2) = (1, 0, 1) + (0, 1, 1)$ è un doppione. Poi si guarda se generano: $(1, 0, 1)$, $(0, 1, 1)$ e $(0, 0, 1)$ sono indipendenti (dalla ricetta $a(1, 0, 1) + b(0, 1, 1) + c(0, 0, 1) = 0$ viene $a = 0$, $b = 0$ e poi $c = 0$), quindi per il Teorema 7.12 sono già una base, e generano. La risposta più insidiosa è «mal posta»: avere più vettori della dimensione è permesso, vuol dire solo che c'è un doppione. Simile all'appello del 06/09/2024, domanda 2.
+= Si conta per primo: 4 vettori in uno spazio di dimensione 3 sono sempre dipendenti, e infatti $(1, 1, 2) = (1, 0, 1) + (0, 1, 1)$: il terzo vettore è di troppo. Poi si guarda se generano: $(1, 0, 1)$, $(0, 1, 1)$ e $(0, 0, 1)$ sono indipendenti (dalla combinazione $a(1, 0, 1) + b(0, 1, 1) + c(0, 0, 1) = 0$ viene $a = 0$, $b = 0$ e poi $c = 0$), quindi per il Teorema 7.12 sono già una base, e generano. La risposta più insidiosa è «mal posta»: avere più vettori della dimensione è permesso, vuol dire solo che ce n'è uno di troppo. Simile all'appello del 06/09/2024, domanda 2.
 
 D: I polinomi $1 + x$, $1 - x$ e $2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti?
 - Sono linearmente indipendenti, ma non generatori.
@@ -42561,7 +42893,7 @@ D: I polinomi $1 + x$, $1 - x$ e $2$ di $\R_2[x]$ sono generatori e/o linearment
 - Sono generatori, ma non linearmente indipendenti.
 - Sono sia generatori che linearmente indipendenti, cioè una base.
 - La domanda è mal posta: $2$ è un numero, non un polinomio.
-= Si cerca un doppione: $(1 + x) + (1 - x) = 2$, quindi sono dipendenti. Poi si guarda se generano: ogni ricetta con questi polinomi ha grado al massimo 1, quindi $x^2$ non si ottiene. Non generano. Lo Span è fatto dai polinomi di grado al massimo 1, di dimensione 2. La risposta più insidiosa è «una base»: sono 3 polinomi, quanti la dimensione, ma il Teorema 7.12 vale solo se una delle due condizioni è vera, e qui non lo è nessuna. E il numero 2 è un polinomio di grado 0. Simile all'appello del 16/01/2025, domanda 2.
+= Si cerca un vettore di troppo: $(1 + x) + (1 - x) = 2$, quindi sono dipendenti. Poi si guarda se generano: ogni combinazione di questi polinomi ha grado al massimo 1, quindi $x^2$ non si ottiene. Non generano. Lo Span è fatto dai polinomi di grado al massimo 1, di dimensione 2. La risposta più insidiosa è «una base»: sono 3 polinomi, quanti la dimensione, ma il Teorema 7.12 vale solo se una delle due condizioni è vera, e qui non lo è nessuna. E il numero 2 è un polinomio di grado 0. Simile all'appello del 16/01/2025, domanda 2.
 
 D: Qual è la dimensione di $\Span\big((1, 1, 0),\ (0, 1, 1),\ (1, 2, 1)\big)$?
 - $0$
@@ -42569,7 +42901,7 @@ D: Qual è la dimensione di $\Span\big((1, 1, 0),\ (0, 1, 1),\ (1, 2, 1)\big)$?
 + $2$
 - $3$
 - $4$
-= Si cercano i doppioni: $(1, 2, 1) = (1, 1, 0) + (0, 1, 1)$, quindi il terzo vettore è di troppo. I primi due non sono multipli, quindi sono indipendenti: sono una base dello Span, che ha dimensione 2 (un piano). La risposta più insidiosa è 3, che conta i vettori senza controllare i doppioni. Simile all'appello del 02/09/2025, domanda 10.
+= Si cercano i vettori di troppo: $(1, 2, 1) = (1, 1, 0) + (0, 1, 1)$, quindi il terzo vettore è di troppo. I primi due non sono multipli, quindi sono indipendenti: sono una base dello Span, che ha dimensione 2 (un piano). La risposta più insidiosa è 3, che conta i vettori senza controllare i vettori di troppo. Simile all'appello del 02/09/2025, domanda 10.
 
 D: Qual è la dimensione dello spazio $A(3)$ delle matrici $3 \times 3$ antisimmetriche?
 - Nove.
@@ -42577,7 +42909,7 @@ D: Qual è la dimensione dello spazio $A(3)$ delle matrici $3 \times 3$ antisimm
 + Tre.
 - Zero.
 - $A(3)$ non ha una dimensione perché non è uno spazio vettoriale.
-= Una matrice antisimmetrica $3 \times 3$ ha la diagonale di zeri, e sotto la diagonale ci sono gli opposti dei numeri sopra. Quindi è decisa dai 3 numeri sopra la diagonale: è una ricetta con tre matrici indipendenti (lezione L06, esercizio 12). La risposta più insidiosa è sei, la dimensione delle simmetriche, che hanno anche la diagonale libera. $A(3)$ è un sottospazio per la Proposizione 6.5, quindi ha una dimensione. Simile agli appelli del 24/01/2024 (domanda 5) e del 15/01/2026 (domanda 4), su $T^s(3)$ e $S(3)$, tutte e due di dimensione 6.
+= Una matrice antisimmetrica $3 \times 3$ ha la diagonale di zeri, e sotto la diagonale ci sono gli opposti dei numeri sopra. Quindi è decisa dai 3 numeri sopra la diagonale: è una combinazione di tre matrici indipendenti (lezione L06, esercizio 12). La risposta più insidiosa è sei, la dimensione delle simmetriche, che hanno anche la diagonale libera. $A(3)$ è un sottospazio per la Proposizione 6.5, quindi ha una dimensione. Simile agli appelli del 24/01/2024 (domanda 5) e del 15/01/2026 (domanda 4), su $T^s(3)$ e $S(3)$, tutte e due di dimensione 6.
 
 D: Siano $v_1, \dots, v_5$ cinque vettori di $\R^3$ e sia $X = \Span(v_1, \dots, v_5)$. Quale affermazione è sempre vera?
 - $\dim X = 5$
@@ -42593,7 +42925,7 @@ D: Siano $A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$, $B = \begin{pmatrix
 - $\{A, C, D, E\}$
 - $\{A, B, C, D, E\}$
 - $\{B, D, E\}$
-= Si conta per primo: le matrici $2 \times 2$ hanno dimensione 4, quindi una base ha 4 elementi, e le liste da tre o da cinque sono escluse. Per $\{A, B, C, D\}$ si controlla l'indipendenza: $aA + bB + cC + dD = \begin{pmatrix} a + b & c + d \\ c - d & a - b \end{pmatrix}$ è zero solo se $a + b = a - b = 0$ e $c + d = c - d = 0$, cioè tutte le dosi zero. Per il Teorema 7.12 è una base. La risposta più insidiosa è $\{A, C, D, E\}$, che ha 4 elementi: ma $E = A + C$ è un doppione. Simile all'appello del 07/09/2026, domanda 2.
+= Si conta per primo: le matrici $2 \times 2$ hanno dimensione 4, quindi una base ha 4 elementi, e le liste da tre o da cinque sono escluse. Per $\{A, B, C, D\}$ si controlla l'indipendenza: $aA + bB + cC + dD = \begin{pmatrix} a + b & c + d \\ c - d & a - b \end{pmatrix}$ è zero solo se $a + b = a - b = 0$ e $c + d = c - d = 0$, cioè tutti i coefficienti zero. Per il Teorema 7.12 è una base. La risposta più insidiosa è $\{A, C, D, E\}$, che ha 4 elementi: ma $E = A + C$, quindi $E$ è di troppo. Simile all'appello del 07/09/2026, domanda 2.
 
 D: Quale polinomio $s(x)$ si può aggiungere a $1 + x$ e $x + x^2$ per ottenere una base di $\R_2[x]$?
 + $s(x) = 1$
@@ -42601,7 +42933,7 @@ D: Quale polinomio $s(x)$ si può aggiungere a $1 + x$ e $x + x^2$ per ottenere 
 - $s(x) = 1 - x^2$
 - $s(x) = x^3$
 - $s(x) = 0$
-= Servono 3 polinomi indipendenti, perché la dimensione è 3. Con $s = 1$: la ricetta $a(1 + x) + b(x + x^2) + c = (a + c) + (a + b)x + bx^2$ è zero solo se $b = 0$, poi $a = 0$, poi $c = 0$; tre polinomi indipendenti sono una base. Le altre: $1 + 2x + x^2 = (1 + x) + (x + x^2)$ e $1 - x^2 = (1 + x) - (x + x^2)$ sono doppioni dei primi due; $x^3$ ha grado 3 e non sta nemmeno nello spazio; il polinomio zero rende sempre la lista dipendente. La risposta più insidiosa è $1 + 2x + x^2$, che sembra nuovo ma è la somma degli altri due. Simile all'appello del 10/06/2024, domanda 3.
+= Servono 3 polinomi indipendenti, perché la dimensione è 3. Con $s = 1$: la combinazione $a(1 + x) + b(x + x^2) + c = (a + c) + (a + b)x + bx^2$ è zero solo se $b = 0$, poi $a = 0$, poi $c = 0$; tre polinomi indipendenti sono una base. Le altre: $1 + 2x + x^2 = (1 + x) + (x + x^2)$ e $1 - x^2 = (1 + x) - (x + x^2)$ sono combinazioni dei primi due; $x^3$ ha grado 3 e non sta nemmeno nello spazio; il polinomio zero rende sempre la lista dipendente. La risposta più insidiosa è $1 + 2x + x^2$, che sembra nuovo ma è la somma degli altri due. Simile all'appello del 10/06/2024, domanda 3.
 
 D: In $\R^3$, tre vettori linearmente indipendenti:
 + sono sempre una base di $\R^3$.
@@ -42629,14 +42961,14 @@ D: Per quali valori di $k \in \R$ i vettori $(1, k)$ e $(k, 4)$ di $\R^2$ sono l
 ::: esercizio base Riscaldamento: multipli o no
 I vettori $(2, -4)$ e $(-1, 2)$ sono dipendenti? E $(2, 4)$ e $(1, 3)$?
 ::: soluzione
-1. $(2, -4) = -2 \cdot (-1, 2)$: uno è multiplo dell'altro, quindi sono **dipendenti**. Una ricetta che dà zero: $(2, -4) + 2 \cdot (-1, 2) = (0, 0)$.
+1. $(2, -4) = -2 \cdot (-1, 2)$: uno è multiplo dell'altro, quindi sono **dipendenti**. Una combinazione che dà zero: $(2, -4) + 2 \cdot (-1, 2) = (0, 0)$.
 2. Perché $(2, 4)$ sia $k$ volte $(1, 3)$ servirebbero $k = 2$ (prima coordinata) e $4 = 3k$ (seconda), cioè $k = \frac 43$. Impossibile: sono **indipendenti**.
 :::
 
 ::: esercizio base Riscaldamento: c'è lo zero
-La lista $(1, 1)$, $(0, 0)$ è indipendente? Scrivi una ricetta che lo dimostra.
+La lista $(1, 1)$, $(0, 0)$ è indipendente? Scrivi una combinazione che lo dimostra.
 ::: soluzione
-No: c'è il vettore zero. La ricetta $0 \cdot (1, 1) + 5 \cdot (0, 0) = (0, 0)$ dà zero con una dose, 5, diversa da zero. Quindi i vettori sono dipendenti.
+No: c'è il vettore zero. La combinazione $0 \cdot (1, 1) + 5 \cdot (0, 0) = (0, 0)$ dà zero con un coefficiente, 5, diverso da zero. Quindi i vettori sono dipendenti.
 :::
 
 ::: esercizio base Riscaldamento: quanti vettori in una base
@@ -42649,12 +42981,12 @@ Quanti vettori ha una base di: (a) $\R^4$; (b) i polinomi di grado al massimo 3;
 :::
 
 ::: esercizio base Riscaldamento: la base canonica
-Scrivi $(4, -3)$ e $(0, 7, -1)$ come ricette con la base canonica.
+Scrivi $(4, -3)$ e $(0, 7, -1)$ come combinazioni della base canonica.
 ::: soluzione
 1. $(4, -3) = 4e_1 - 3e_2$, con $e_1 = (1, 0)$ ed $e_2 = (0, 1)$.
 2. $(0, 7, -1) = 0e_1 + 7e_2 - e_3$, con $e_1, e_2, e_3$ della base canonica a tre coordinate.
 
-Le dosi sono le coordinate del vettore.
+I coefficienti sono le coordinate del vettore.
 :::
 
 ::: esercizio base Esercizio 7.14 delle dispense: una base di $\R^2$
@@ -42662,12 +42994,12 @@ Dimostra che i vettori $\begin{pmatrix} -1 \\ 1 \end{pmatrix}$ e $\begin{pmatrix
 ::: soluzione
 **Con il Teorema 7.12.** Sono due vettori e il piano ha dimensione 2, quindi basta l'indipendenza. Due vettori sono dipendenti solo se sono multipli: $(2, 1) = k(-1, 1)$ chiederebbe $k = -2$ (prima coordinata) e $k = 1$ (seconda), impossibile. Quindi sono indipendenti, e sono una base.
 
-**Direttamente, controllando anche che generino.** Cerco le dosi $t$ e $u$ con $t(-1, 1) + u(2, 1) = (x, y)$, per un vettore qualsiasi $(x, y)$:
+**Direttamente, controllando anche che generino.** Cerco i coefficienti $t$ e $u$ con $t(-1, 1) + u(2, 1) = (x, y)$, per un vettore qualsiasi $(x, y)$:
 $$\begin{cases} -t + 2u = x \\ t + u = y \end{cases}$$
 1. Sommo le due equazioni: $3u = x + y$, quindi $u = \frac{x + y}3$.
 2. Dalla seconda: $t = y - u = \frac{-x + 2y}3$.
 
-Le dosi ci sono sempre, quindi i vettori generano il piano. E sono di un solo tipo: per $(x, y) = (0, 0)$ vengono $t = u = 0$, quindi sono indipendenti.
+I coefficienti ci sono sempre, quindi i vettori generano il piano. E sono unici: per $(x, y) = (0, 0)$ vengono $t = u = 0$, quindi sono indipendenti.
 
 Controllo con $(x, y) = (1, 2)$: $u = 1$ e $t = 1$, e infatti $(-1, 1) + (2, 1) = (1, 2)$.
 :::
@@ -42684,7 +43016,7 @@ Per ciascuna lista di' se i vettori sono dipendenti o indipendenti. Se sono dipe
 
 (b) **Indipendenti**: sono due vettori non multipli. Perché $(2, 0, 1)$ sia $k$ volte $(1, 0, 2)$ servirebbero $k = 2$ e $1 = 2k$, cioè $k = \frac 12$: impossibile.
 
-(c) **Dipendenti**: sono tre vettori nel piano, che ha dimensione 2. Una ricetta che dà zero (dal libro di Martelli, Esempio 2.3.2): $-2(1, 2) + 4(1, 1) - (2, 0) = (-2 + 4 - 2,\ -4 + 4 - 0) = (0, 0)$.
+(c) **Dipendenti**: sono tre vettori nel piano, che ha dimensione 2. Una combinazione che dà zero (dal libro di Martelli, Esempio 2.3.2): $-2(1, 2) + 4(1, 1) - (2, 0) = (-2 + 4 - 2,\ -4 + 4 - 0) = (0, 0)$.
 
 (d) **Dipendenti**: c'è il vettore zero, e $0 \cdot (1, 2, 3) + 1 \cdot (0, 0, 0) + 0 \cdot (4, 5, 6) = 0$.
 
@@ -42703,15 +43035,15 @@ Dimostra che le matrici $e_{ij}$, con $1 \le i \le m$ e $1 \le j \le n$, formano
 ::: soluzione
 È la stessa dimostrazione della base canonica di $\K^n$ (Esempio 7.8), con due numerini invece di uno.
 
-**Generano.** Ogni matrice è una ricetta con le $e_{ij}$, con dosi uguali ai suoi numeri. Un esempio:
+**Generano.** Ogni matrice è una combinazione delle $e_{ij}$, con coefficienti uguali ai suoi numeri. Un esempio:
 $$\begin{pmatrix} 3 & -1 \\ 0 & 5 \end{pmatrix} = 3e_{11} - e_{12} + 0e_{21} + 5e_{22}.$$
 In generale $a_{ij} e_{ij}$ è la matrice con il numero $a_{ij}$ nella casella $(i, j)$ e zeri altrove; sommando tutte queste matrici si riempiono tutte le caselle:
 $$A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix} = \sum_{i, j} a_{ij} e_{ij}.$$
 Il simbolo $\sum$ si legge «somma»: qui vuol dire «la somma dei pezzi $a_{ij} e_{ij}$, per tutte le righe $i$ e tutte le colonne $j$».
 
-**Sono indipendenti.** Se la ricetta $\sum_{i, j} \lambda_{ij} e_{ij}$ dà la matrice nulla, scrivendola per esteso
+**Sono indipendenti.** Se la combinazione $\sum_{i, j} \lambda_{ij} e_{ij}$ dà la matrice nulla, scrivendola per esteso
 $$\begin{pmatrix} \lambda_{11} & \cdots & \lambda_{1n} \\ \vdots & & \vdots \\ \lambda_{m1} & \cdots & \lambda_{mn} \end{pmatrix} = \begin{pmatrix} 0 & \cdots & 0 \\ \vdots & & \vdots \\ 0 & \cdots & 0 \end{pmatrix},$$
-quindi ogni dose $\lambda_{ij}$ è zero.
+quindi ogni coefficiente $\lambda_{ij}$ è zero.
 
 **Dimensione.** C'è una matrice $e_{ij}$ per ogni casella: $m$ righe per $n$ colonne, cioè $mn$ matrici. Quindi $\dim M(m, n, \K) = mn$; per esempio $\dim M(2, 3) = 6$ e $\dim M(3) = 9$.
 :::
@@ -42721,13 +43053,13 @@ Considera i vettori di $\R^3$
 $$v_1 = \begin{pmatrix} 1 \\ 1 \\ 2 \end{pmatrix}, \quad v_2 = \begin{pmatrix} -1 \\ 1 \\ -1 \end{pmatrix}, \quad v_3 = \begin{pmatrix} 1 \\ 5 \\ 4 \end{pmatrix}, \quad v_4 = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}.$$
 Mostra che $v_1, v_2, v_3$ sono dipendenti e $v_1, v_2, v_4$ indipendenti.
 ::: soluzione
-**$v_1, v_2, v_3$ sono dipendenti.** Provo a scrivere $v_3$ come ricetta con $v_1$ e $v_2$ (Proposizione 7.2): cerco $a$ e $b$ con $a v_1 + b v_2 = v_3$, cioè
+**$v_1, v_2, v_3$ sono dipendenti.** Provo a scrivere $v_3$ come combinazione di $v_1$ e $v_2$ (Proposizione 7.2): cerco $a$ e $b$ con $a v_1 + b v_2 = v_3$, cioè
 $$\begin{cases} a - b = 1 \\ a + b = 5 \\ 2a - b = 4 \end{cases}$$
 1. Sommo le prime due: $2a = 6$, quindi $a = 3$.
 2. Dalla seconda: $b = 5 - 3 = 2$.
 3. Controllo la terza: $2 \cdot 3 - 2 = 4$. Vera.
 
-Quindi $v_3 = 3v_1 + 2v_2$, cioè $3v_1 + 2v_2 - v_3 = 0$: una ricetta che dà zero con dosi diverse da zero.
+Quindi $v_3 = 3v_1 + 2v_2$, cioè $3v_1 + 2v_2 - v_3 = 0$: una combinazione che dà zero con coefficienti diversi da zero.
 
 Controllo: $3(1, 1, 2) + 2(-1, 1, -1) = (3 - 2,\ 3 + 2,\ 6 - 2) = (1, 5, 4) = v_3$.
 
@@ -42737,7 +43069,7 @@ $$\begin{cases} a - b = 0 \\ a + b + c = 0 \\ 2a - b + c = 0 \end{cases}$$
 2. Sostituisco: la seconda diventa $2a + c = 0$, la terza $a + c = 0$.
 3. Tolgo la terza dalla seconda: $a = 0$. Quindi $c = 0$ e $b = 0$.
 
-Solo la ricetta con tutte le dosi zero: indipendenti. Sono tre vettori indipendenti nello spazio a tre coordinate, quindi sono anche una base (Teorema 7.12).
+Solo la combinazione con tutti i coefficienti zero: indipendenti. Sono tre vettori indipendenti nello spazio a tre coordinate, quindi sono anche una base (Teorema 7.12).
 :::
 
 ::: esercizio medio Polinomi indipendenti e basi di $\R_3[x]$
@@ -42745,10 +43077,10 @@ Solo la ricetta con tutte le dosi zero: indipendenti. Sono tre vettori indipende
 (b) I polinomi $f = x^3 + x$, $g = x^2 - 1$, $h = x^3 + x^2 + x - 1$ sono indipendenti?
 (c) I polinomi $f = x^3 + x$, $g = x^2 - 1$, $k = x^3 - x$ sono indipendenti? Sono una base di $\R_3[x]$? Se no, completali a una base.
 ::: soluzione
-(a) Ordino i polinomi dal grado più basso al più alto. Prendo una ricetta che dà il polinomio zero.
-1. La potenza più alta compare solo nell'ultimo polinomio. Nella ricetta, il numero davanti a quella potenza è la dose dell'ultimo polinomio per un numero diverso da zero. Deve essere zero, quindi la dose dell'ultimo polinomio è zero.
-2. Resta una ricetta con gli altri polinomi che dà zero, e si ripete: anche la dose del penultimo è zero.
-3. Si continua fino al primo: tutte le dosi sono zero.
+(a) Ordino i polinomi dal grado più basso al più alto. Prendo una combinazione che dà il polinomio zero.
+1. La potenza più alta compare solo nell'ultimo polinomio. Nella combinazione, il numero davanti a quella potenza è il coefficiente dell'ultimo polinomio per un numero diverso da zero. Deve essere zero, quindi il coefficiente dell'ultimo polinomio è zero.
+2. Resta una combinazione degli altri polinomi che dà zero, e si ripete: anche il coefficiente del penultimo è zero.
+3. Si continua fino al primo: tutti i coefficienti sono zero.
 
 (b) **No**: $h = f + g$, perché $(x^3 + x) + (x^2 - 1) = x^3 + x^2 + x - 1$. Quindi $f + g - h = 0$.
 
@@ -42756,7 +43088,7 @@ Solo la ricetta con tutte le dosi zero: indipendenti. Sono tre vettori indipende
 $$a(x^3 + x) + b(x^2 - 1) + c(x^3 - x) = (a + c)x^3 + bx^2 + (a - c)x - b = 0.$$
 Tutti i numeri davanti alle potenze devono essere zero: $b = 0$, $a + c = 0$, $a - c = 0$, quindi $a = c = 0$. Sono **indipendenti**.
 
-Non sono una base: sono 3 polinomi e lo spazio ha dimensione 4, quindi non generano. Per esempio ogni ricetta ha il termine noto uguale a $-b$ e il numero davanti a $x^2$ uguale a $b$: il polinomio 1, con termine noto 1 e niente $x^2$, non si ottiene.
+Non sono una base: sono 3 polinomi e lo spazio ha dimensione 4, quindi non generano. Per esempio ogni combinazione ha il termine noto uguale a $-b$ e il numero davanti a $x^2$ uguale a $b$: il polinomio 1, con termine noto 1 e niente $x^2$, non si ottiene.
 
 Completamento: aggiungo il polinomio 1. Chiedo $af + bg + ck + d \cdot 1 = 0$:
 $$(a + c)x^3 + bx^2 + (a - c)x + (d - b) = 0,$$
@@ -42787,7 +43119,7 @@ Con $k = -1$ si ritrovano i vettori dell'Esempio 7.4 (con $u_3 = v_3$). Nella le
 $$\begin{cases} a - b + c = 0 \\ a = 0 \\ b = 0 \end{cases}$$
 quindi $a = b = 0$ e poi $c = 0$. Tre vettori indipendenti nello spazio a tre coordinate: $w_1, w_2, e_1$ è una base.
 
-(b) Cerco i doppioni.
+(b) Cerco i vettori di troppo.
 1. $v_3 = v_1 + v_2$, perché $(1, 0, 1) + (0, 1, 1) = (1, 1, 2)$.
 2. $v_4 = v_1 - v_2$, perché $(1, 0, 1) - (0, 1, 1) = (1, -1, 0)$.
 3. Tolgo $v_3$ e $v_4$: lo Span non cambia (Proposizione 7.2). Restano $v_1$ e $v_2$, che non sono multipli, quindi sono indipendenti.
@@ -42802,10 +43134,10 @@ Deduci che, in uno spazio di dimensione $n$, ogni lista di vettori indipendenti 
 ::: soluzione
 Il simbolo $\notin$ si legge «non appartiene a».
 
-**Primo verso: se sono indipendenti, il nuovo vettore sta fuori dallo Span.** Se invece stesse dentro, cioè $v_{k+1} = \lambda_1 v_1 + \dots + \lambda_k v_k$, allora $\lambda_1 v_1 + \dots + \lambda_k v_k - v_{k+1} = 0$ sarebbe una ricetta che dà zero con la dose $-1$: i vettori sarebbero dipendenti.
+**Primo verso: se sono indipendenti, il nuovo vettore sta fuori dallo Span.** Se invece stesse dentro, cioè $v_{k+1} = \lambda_1 v_1 + \dots + \lambda_k v_k$, allora $\lambda_1 v_1 + \dots + \lambda_k v_k - v_{k+1} = 0$ sarebbe una combinazione che dà zero con il coefficiente $-1$: i vettori sarebbero dipendenti.
 
-**Secondo verso: se il nuovo vettore sta fuori dallo Span, sono indipendenti.** Prendo una ricetta $\lambda_1 v_1 + \dots + \lambda_k v_k + \lambda_{k+1} v_{k+1} = 0$.
-- Se la dose $\lambda_{k+1}$ non fosse zero, dividendo per lei ricaverei $v_{k+1}$ come ricetta con $v_1, \dots, v_k$: contro l'ipotesi che stia fuori dallo Span.
+**Secondo verso: se il nuovo vettore sta fuori dallo Span, sono indipendenti.** Prendo una combinazione $\lambda_1 v_1 + \dots + \lambda_k v_k + \lambda_{k+1} v_{k+1} = 0$.
+- Se il coefficiente $\lambda_{k+1}$ non fosse zero, dividendo per lui ricaverei $v_{k+1}$ come combinazione di $v_1, \dots, v_k$: contro l'ipotesi che stia fuori dallo Span.
 - Quindi $\lambda_{k+1} = 0$, e resta $\lambda_1 v_1 + \dots + \lambda_k v_k = 0$. I primi $k$ vettori sono indipendenti, quindi anche $\lambda_1 = \dots = \lambda_k = 0$.
 
 **Completamento.** Lo spazio ha dimensione $n$ e i vettori indipendenti sono $k$, meno di $n$. Allora non generano tutto (meno di $n$ vettori non generano), quindi c'è un vettore $v_{k+1}$ fuori dal loro Span. Per quanto appena dimostrato, $v_1, \dots, v_{k+1}$ sono ancora indipendenti. Si ripete finché i vettori sono $n$: a quel punto sono $n$ vettori indipendenti, cioè una base per il Teorema 7.12. È l'algoritmo di completamento del libro di Martelli (§2.3.5).
@@ -42814,7 +43146,7 @@ Il simbolo $\notin$ si legge «non appartiene a».
 ::: esercizio esame Come all'esame: basi e dimensioni degli spazi di matrici
 Trova una base e la dimensione di ciascuno dei sottospazi $D(3)$, $T^s(3)$, $S(3)$ e $A(3)$ di $M(3)$. Poi di' quanto valgono in generale $\dim D(n)$, $\dim T^s(n)$, $\dim S(n)$ e $\dim A(n)$.
 ::: soluzione
-Uso le matrici $e_{ij}$ dell'Esercizio 7.13. In ogni caso scrivo la matrice generica, la riscrivo come ricetta e controllo l'indipendenza: ogni lettera libera compare da sola in una casella in cui le altre matrici hanno 0, quindi una ricetta che dà la matrice nulla ha tutte le dosi zero.
+Uso le matrici $e_{ij}$ dell'Esercizio 7.13. In ogni caso scrivo la matrice generica, la riscrivo come combinazione e controllo l'indipendenza: ogni lettera libera compare da sola in una casella in cui le altre matrici hanno 0, quindi una combinazione che dà la matrice nulla ha tutti i coefficienti zero.
 
 - **$D(3)$**: $\begin{pmatrix} a & 0 & 0 \\ 0 & b & 0 \\ 0 & 0 & c \end{pmatrix} = a e_{11} + b e_{22} + c e_{33}$. Base $e_{11}, e_{22}, e_{33}$: **dimensione 3**.
 - **$T^s(3)$**: $\begin{pmatrix} a & b & c \\ 0 & d & e \\ 0 & 0 & f \end{pmatrix} = a e_{11} + b e_{12} + c e_{13} + d e_{22} + e\, e_{23} + f e_{33}$. Base $e_{11}, e_{12}, e_{13}, e_{22}, e_{23}, e_{33}$: **dimensione 6**. È la risposta dell'appello del 24/01/2024, domanda 5.
@@ -42861,9 +43193,9 @@ Per ciascuna lista stabilisci se i vettori sono linearmente indipendenti, se gen
 (b) $(1, 0, 2)$, $(0, 1, -1)$, $(2, 1, 3)$ in $\R^3$.
 (c) $(1, 1, 0, 0)$, $(0, 1, 1, 0)$, $(0, 0, 1, 1)$ in $\R^4$.
 ::: soluzione
-(a) Tre vettori nel piano: **dipendenti**. Generano: $(1, -1)$ e $(2, 1)$ non sono multipli, quindi sono già una base del piano, e aggiungendo $(0, 3)$ si genera ancora. **Generatori, non base.** Il doppione: cerco $a$ e $b$ con $a(1, -1) + b(2, 1) = (0, 3)$, cioè $a + 2b = 0$ e $-a + b = 3$. Sommando, $3b = 3$, quindi $b = 1$ e $a = -2$: $(0, 3) = -2(1, -1) + (2, 1)$.
+(a) Tre vettori nel piano: **dipendenti**. Generano: $(1, -1)$ e $(2, 1)$ non sono multipli, quindi sono già una base del piano, e aggiungendo $(0, 3)$ si genera ancora. **Generatori, non base.** Il vettore di troppo: cerco $a$ e $b$ con $a(1, -1) + b(2, 1) = (0, 3)$, cioè $a + 2b = 0$ e $-a + b = 3$. Sommando, $3b = 3$, quindi $b = 1$ e $a = -2$: $(0, 3) = -2(1, -1) + (2, 1)$.
 
-(b) $2(1, 0, 2) + (0, 1, -1) = (2, 1, 3)$: il terzo è un doppione dei primi due, **dipendenti**. I primi due non sono multipli, quindi lo Span ha dimensione 2: è un piano, **non generano** lo spazio. **Non è una base.**
+(b) $2(1, 0, 2) + (0, 1, -1) = (2, 1, 3)$: il terzo è combinazione dei primi due, **dipendenti**. I primi due non sono multipli, quindi lo Span ha dimensione 2: è un piano, **non generano** lo spazio. **Non è una base.**
 
 (c) Chiedo $a(1, 1, 0, 0) + b(0, 1, 1, 0) + c(0, 0, 1, 1) = 0$.
 1. Prima coordinata: $a = 0$.
@@ -42876,11 +43208,11 @@ Per ciascuna lista stabilisci se i vettori sono linearmente indipendenti, se gen
 ## Domande di ripasso
 
 ::: domanda Quando dei vettori sono linearmente dipendenti? E indipendenti?
-Dipendenti: c'è una ricetta con dosi non tutte zero che dà il vettore zero. Indipendenti: l'unica ricetta che dà zero è quella con tutte le dosi zero.
+Dipendenti: c'è una combinazione con coefficienti non tutti zero che dà il vettore zero. Indipendenti: l'unica combinazione che dà zero è quella con tutti i coefficienti zero.
 :::
 
 ::: domanda Che cosa dice la Proposizione 7.2, e perché è vera?
-Dei vettori sono dipendenti esattamente quando uno di loro è una ricetta con gli altri, cioè un doppione. Se una ricetta che dà zero ha una dose diversa da zero, si divide per quella dose e si ricava quel vettore dagli altri. Al contrario, se un vettore è una ricetta con gli altri, portando tutto da una parte si ottiene una ricetta che dà zero con la dose $-1$.
+Dei vettori sono dipendenti esattamente quando uno di loro è una combinazione degli altri, cioè è di troppo. Se una combinazione che dà zero ha un coefficiente diverso da zero, si divide per quel coefficiente e si ricava quel vettore dagli altri. Al contrario, se un vettore è una combinazione degli altri, portando tutto da una parte si ottiene una combinazione che dà zero con il coefficiente $-1$.
 :::
 
 ::: domanda Quando un solo vettore è dipendente? E due vettori?
@@ -42892,7 +43224,7 @@ No. Nell'Esempio 7.4, $(1, 1, 0)$, $(0, 1, 1)$ e $(1, 0, -1)$ sono diversi da ze
 :::
 
 ::: domanda Perché una lista che contiene il vettore zero è sempre dipendente?
-Perché dando dose 1 al vettore zero e dose 0 a tutti gli altri si ottiene zero, con una dose diversa da zero.
+Perché dando coefficiente 1 al vettore zero e 0 a tutti gli altri si ottiene zero, con un coefficiente diverso da zero.
 :::
 
 ::: domanda Che cos'è una base? Fai un esempio nel piano diverso dalla base canonica.
@@ -42920,7 +43252,7 @@ No in tutti e due i casi. In uno spazio di dimensione $n$, più di $n$ vettori s
 :::
 
 ::: domanda Come si calcola la dimensione di un sottospazio definito da condizioni?
-Si scrive l'elemento generico con le lettere libere, lo si riscrive come ricetta con un vettore per lettera, si controlla che quei vettori siano indipendenti e si contano. Per esempio i polinomi di grado al massimo 3 che fanno zero in 2 hanno dimensione 3.
+Si scrive l'elemento generico con le lettere libere, lo si riscrive come combinazione, con un vettore per lettera, si controlla che quei vettori siano indipendenti e si contano. Per esempio i polinomi di grado al massimo 3 che fanno zero in 2 hanno dimensione 3.
 :::
 
 ::: domanda Quanto valgono $\dim S(3)$, $\dim T^s(3)$ e $\dim A(3)$?
@@ -42930,22 +43262,22 @@ Si scrive l'elemento generico con le lettere libere, lo si riscrive come ricetta
 ## Glossario
 
 ```glossario
-Combinazione banale | La ricetta con tutte le dosi uguali a zero. Dà sempre il vettore zero, con qualsiasi vettori.
-Linearmente dipendenti | Vettori con un doppione: una ricetta con dosi non tutte zero dà il vettore zero. Per esempio $(1, 2)$ e $(2, 4)$.
-Linearmente indipendenti | Vettori senza doppioni: l'unica ricetta che dà zero ha tutte le dosi zero. Per esempio $(1, 2)$ e $(2, 1)$.
+Combinazione banale | La combinazione con tutti i coefficienti uguali a zero. Dà sempre il vettore zero, con qualsiasi vettori.
+Linearmente dipendenti | Vettori di cui uno è di troppo: una combinazione con coefficienti non tutti zero dà il vettore zero. Per esempio $(1, 2)$ e $(2, 4)$.
+Linearmente indipendenti | Vettori di cui nessuno è di troppo: l'unica combinazione che dà zero ha tutti i coefficienti zero. Per esempio $(1, 2)$ e $(2, 1)$.
 Vettori multipli | Due vettori uno uguale all'altro moltiplicato per un numero. Per due vettori, essere multipli vuol dire essere dipendenti.
-Generatori | Vettori con cui si ottiene tutto lo spazio: ogni vettore è una loro ricetta.
-Base | Una lista di vettori indipendenti che generano tutto lo spazio: gli ingredienti giusti, nessuno sprecato.
+Generatori | Vettori con cui si ottiene tutto lo spazio: ogni vettore è una loro combinazione.
+Base | Una lista di vettori indipendenti che generano tutto lo spazio: nessuno di troppo.
 Base canonica di $\K^n$ | I vettori $e_1, \dots, e_n$, ciascuno con un 1 in un posto e zeri altrove.
 Base canonica di $\K_n[x]$ | I polinomi $1, x, x^2, \dots, x^n$: sono $n + 1$.
 Matrici $e_{ij}$ | La matrice con un 1 nella riga $i$ e colonna $j$, e zeri altrove. Formano la base canonica delle matrici.
 Dimensione | Il numero di vettori di una base. Si scrive $\dim V$; è infinita se nessuna lista finita genera lo spazio.
 Definizione ben posta | Una definizione che non dipende dalle scelte fatte. Per la dimensione lo garantisce il Teorema 7.10.
 Dimensione infinita | Quella di uno spazio che nessuna lista finita genera, come tutti i polinomi insieme.
-Coordinate rispetto a una base | Le dosi dell'unica ricetta che dà un vettore con gli ingredienti di una base (lezione L13).
+Coordinate rispetto a una base | I coefficienti dell'unica combinazione dei vettori di una base che dà quel vettore (lezione L13).
 Lemma di scambio | Se $n$ vettori generano lo spazio, altri $n$ vettori indipendenti lo generano anche loro. È la chiave del Teorema 7.10.
 Completamento a una base | Aggiungere a vettori indipendenti vettori fuori dal loro Span, finché sono tanti quanta è la dimensione.
-Estrazione di una base | Togliere da una lista che genera i doppioni, finché restano vettori indipendenti.
+Estrazione di una base | Togliere da una lista che genera i vettori di troppo, finché restano vettori indipendenti.
 Rango (anticipo) | Il numero massimo di righe, o colonne, indipendenti di una matrice (lezione L08).
 ```
 
@@ -42953,14 +43285,14 @@ Rango (anticipo) | Il numero massimo di righe, o colonne, indipendenti di una ma
 
 ```checklist
 - So dire a parole e con la formula quando dei vettori sono indipendenti.
-- So dimostrare che dei vettori sono indipendenti scrivendo la ricetta con le dosi sconosciute e risolvendo il sistema.
-- So dimostrare che dei vettori sono dipendenti mostrando una ricetta con dosi non tutte zero che dà zero.
+- So dimostrare che dei vettori sono indipendenti scrivendo la combinazione con i coefficienti sconosciuti e risolvendo il sistema.
+- So dimostrare che dei vettori sono dipendenti mostrando una combinazione con coefficienti non tutti zero che dà zero.
 - So spiegare la Proposizione 7.2 e riconoscere i casi con uno e due vettori.
 - So spiegare con l'Esempio 7.4 perché con tre vettori non basta guardarli a coppie.
 - So dire che cos'è una base e perché $e_1, \dots, e_n$ e $1, x, \dots, x^n$ sono basi.
 - So le dimensioni di $\K^n$, dei polinomi di grado al massimo $n$, delle matrici e di tutti i polinomi, senza sbagliare il $+1$ dei polinomi.
 - So usare il Teorema 7.12 per dimostrare che dei vettori sono una base controllando solo l'indipendenza.
-- So rispondere a «generatori e/o indipendenti?» contando i vettori e cercando i doppioni.
+- So rispondere a «generatori e/o indipendenti?» contando i vettori e cercando i vettori di troppo.
 - So calcolare base e dimensione di sottospazi di matrici e di polinomi definiti da condizioni.
 - So completare dei vettori indipendenti a una base ed estrarre una base da una lista che genera.
 ```
@@ -43011,14 +43343,14 @@ genera_html: true
 
 - Una **matrice** è una tabella di numeri. La sua **taglia** si scrive mettendo prima il numero delle righe e poi quello delle colonne: una matrice «2 per 3» ha 2 righe e 3 colonne.
 - La **trasposta** è la stessa tabella girata: le righe diventano colonne e le colonne diventano righe. Una matrice quadrata che girata resta uguale si chiama **simmetrica**.
-- Il **rango** conta quante colonne dicono davvero qualcosa di nuovo, cioè non si ottengono mescolando le altre. Se conti le righe al posto delle colonne viene lo stesso numero.
-- Il **prodotto riga per colonna** funziona come il conto della spesa: quantità per prezzi, poi si somma. Si può fare solo se le colonne della prima matrice sono tante quante le righe della seconda.
+- Il **rango** conta le colonne indipendenti: quante ne restano togliendo quelle che sono combinazioni delle altre. Se conti le righe al posto delle colonne viene lo stesso numero.
+- Il **prodotto riga per colonna** moltiplica ogni riga della prima matrice per ogni colonna della seconda: numero per numero, poi la somma. Si può fare solo se le colonne della prima matrice sono tante quante le righe della seconda.
 - Nel prodotto **l'ordine conta**: se scambi le due matrici, di solito il risultato cambia. E un prodotto può dare una tabella di soli zeri anche se nessuna delle due matrici è fatta di soli zeri.
 - La **traccia** di una matrice quadrata è la somma dei numeri sulla diagonale. Se scambi le due matrici di un prodotto, la traccia resta la stessa.
 - All'esame trovi quasi sempre tre domande su questa lezione: «quale identità vale?» tra due prodotti, la traccia di un prodotto e un rango da calcolare.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di mercoledì 21/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di mercoledì 21/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 8. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Le matrici: tabelle di numeri (p. 36)
 
@@ -43462,19 +43794,19 @@ Adesso guarda le colonne. In ogni confezione le penne sono il doppio dei quadern
 In questa tabella c'è **un solo** pezzo di informazione, sia guardando le righe sia guardando le colonne. Il numero che conta i pezzi di informazione di una matrice si chiama **rango**. Il rango di questa tabella è 1.
 
 > [!IDEA]
-> Il **rango** di una matrice è il numero di colonne che dicono davvero qualcosa di nuovo: quelle che non si possono ottenere mescolando le altre. Se al posto delle colonne conti le righe, viene lo stesso numero.
+> Il **rango** di una matrice è il numero di colonne indipendenti: quante ne restano togliendo quelle che sono combinazioni delle altre. Se al posto delle colonne conti le righe, viene lo stesso numero.
 
 Il rango serve in quasi tutto il resto del corso. Nelle lezioni L11 e L12 dice quante soluzioni ha un sistema di equazioni. Nella lezione L14 dice quanto «spazio» riesce a produrre una macchina che trasforma vettori. All'esame c'è quasi sempre una domanda che chiede il rango di una matrice.
 
-Per dire in modo preciso che cosa vuol dire «mescolare» e «qualcosa di nuovo» servono quattro parole delle lezioni precedenti.
+Per dirlo in modo preciso servono quattro parole delle lezioni precedenti.
 
 > [!RIPASSO] quattro parole delle lezioni L06 e L07
-> **Combinazione lineare** (lezione L06). È una ricetta: prendi dei vettori, moltiplichi ognuno per un numero e sommi i risultati. Per esempio «2 parti del primo vettore più 3 parti del secondo»:
+> **Combinazione lineare** (lezione L06). Si prendono dei vettori, si moltiplica ognuno per un numero, il suo coefficiente, e si sommano i risultati. Per esempio due volte il primo vettore più tre volte il secondo:
 > $$2 \cdot (1, 0) + 3 \cdot (0, 1) = (2, 0) + (0, 3) = (2, 3)$$
 >
-> **Span** (lezione L06). Lo Span di alcuni vettori è l'insieme di tutto quello che si ottiene con le loro ricette. Lo Span di un solo vettore, che non sia fatto di soli zeri, contiene tutti i suoi multipli: è una retta. Lo Span di due vettori che non stanno sulla stessa retta è un piano.
+> **Span** (lezione L06). Lo Span di alcuni vettori è l'insieme di tutte le loro combinazioni lineari. Lo Span di un solo vettore, che non sia fatto di soli zeri, contiene tutti i suoi multipli: è una retta. Lo Span di due vettori che non stanno sulla stessa retta è un piano.
 >
-> **Dipendenti e indipendenti** (lezione L07). Dei vettori sono **dipendenti** quando almeno uno è un doppione: si ottiene con una ricetta fatta con gli altri. Sono **indipendenti** quando nessuno è un doppione. Per due vettori il controllo è rapido: sono dipendenti esattamente quando uno è un multiplo dell'altro.
+> **Dipendenti e indipendenti** (lezione L07). Dei vettori sono **dipendenti** quando almeno uno è di troppo, cioè è una combinazione degli altri. Sono **indipendenti** quando nessuno è di troppo. Per due vettori il controllo è rapido: sono dipendenti esattamente quando uno è un multiplo dell'altro.
 >
 > **Dimensione** (lezione L07). È il numero di vettori indipendenti che servono per ottenere tutto uno spazio. Una retta ha dimensione 1, un piano ha dimensione 2, lo spazio in cui viviamo ha dimensione 3.
 
@@ -43504,7 +43836,7 @@ vettore: 2 1 | accento | spesso | $A^1$ | no
 vettore: -2 -1 | viola | $A^3$ | so
 ```
 
-Che cosa si ottiene con le ricette fatte con queste tre colonne? Solo multipli della prima, cioè punti di quella retta. Lo Span delle tre colonne è la retta tratteggiata. Una retta ha dimensione 1. Quindi il rango di $A$ è 1: tre colonne, ma un solo pezzo di informazione.
+Che cosa si ottiene combinando queste tre colonne? Solo multipli della prima, cioè punti di quella retta. Lo Span delle tre colonne è la retta tratteggiata. Una retta ha dimensione 1. Quindi il rango di $A$ è 1: tre colonne, ma un solo pezzo di informazione.
 
 Per confronto, guarda una matrice con due colonne che **non** stanno sulla stessa retta:
 
@@ -43518,7 +43850,7 @@ vettore: 2 1 | accento | spesso | $B^1$ | ne
 vettore: -1 2 | blu | $B^2$ | no
 ```
 
-Qui nessuna delle due colonne è un multiplo dell'altra. Con le ricette fatte con queste due frecce si raggiunge ogni punto del piano. Lo Span delle colonne è tutto il piano, che ha dimensione 2. Quindi il rango di $B$ è 2.
+Qui nessuna delle due colonne è un multiplo dell'altra. Combinando queste due frecce si raggiunge ogni punto del piano. Lo Span delle colonne è tutto il piano, che ha dimensione 2. Quindi il rango di $B$ è 2.
 
 ### Come lo scrivono le dispense
 
@@ -43533,7 +43865,7 @@ Le dispense dicono la stessa cosa con i simboli.
 
 - $A^1, \dots, A^n$ è l'elenco delle colonne. La prima si chiama $A^1$, l'ultima $A^n$, e sono $n$ in tutto. I numeri in alto sono indici, non potenze.
 - «Ciascun $A^i$ è un vettore in $\K^m$»: ogni colonna ha $m$ numeri, uno per ogni riga della matrice.
-- $\Span(A^1, \dots, A^n)$ è l'insieme di tutto quello che si ottiene mescolando le colonne con delle ricette.
+- $\Span(A^1, \dots, A^n)$ è l'insieme di tutte le combinazioni lineari delle colonne.
 - Il simbolo $\subset$ si legge «è contenuto in». Lo Span delle colonne è un pezzo di $\K^m$: può essere una retta, un piano, oppure tutto.
 - $\rk(A)$ si legge «rango di $A$». Le due lettere vengono dall'inglese *rank*.
 
@@ -43548,15 +43880,15 @@ Nella matrice $B$ le due colonne sono indipendenti, e il rango era 2. Non è un 
 > [!PROP] 8.4
 > Il rango di $A$ è il massimo numero di colonne linearmente indipendenti di $A$.
 
-**Come si legge.** «Linearmente indipendenti» è il nome completo di «indipendenti»: nessuna colonna è un doppione delle altre. Guarda tutti i gruppi di colonne indipendenti che puoi scegliere, e prendi il gruppo più numeroso. Il numero delle sue colonne è il rango.
+**Come si legge.** «Linearmente indipendenti» è il nome completo di «indipendenti»: nessuna colonna è combinazione delle altre. Guarda tutti i gruppi di colonne indipendenti che puoi scegliere, e prendi il gruppo più numeroso. Il numero delle sue colonne è il rango.
 
-Il perché, a parole. Se tra le colonne c'è un doppione, puoi toglierlo senza perdere niente: tutto quello che si otteneva usandolo si ottiene anche con le altre colonne. Togli un doppione alla volta. Quando non ce ne sono più, le colonne rimaste sono indipendenti e riempiono ancora lo stesso spazio di prima. Il loro numero è la dimensione di quello spazio, cioè il rango.
+Il perché, a parole. Se tra le colonne ce n'è una di troppo, puoi toglierla senza perdere niente: tutto quello che si otteneva usandola si ottiene anche con le altre colonne. Togli una colonna di troppo alla volta. Quando non ce ne sono più, le colonne rimaste sono indipendenti e riempiono ancora lo stesso spazio di prima. Il loro numero è la dimensione di quello spazio, cioè il rango.
 
 > [!DIM] della Proposizione 8.4
 > Le dispense la ricavano «con un'osservazione della lezione 7». Ecco i passi.
 >
 > 1. Chiamiamo $W$ lo Span delle colonne. Le colonne **generano** $W$: ogni vettore di $W$ è una loro combinazione lineare, per come è fatto lo Span.
-> 2. Se le colonne sono dipendenti, una di loro è combinazione lineare delle altre (Proposizione 7.2). La togliamo. Lo Span non cambia: ogni ricetta che usava quella colonna si riscrive usando le altre.
+> 2. Se le colonne sono dipendenti, una di loro è combinazione lineare delle altre (Proposizione 7.2). La togliamo. Lo Span non cambia: ogni combinazione che usava quella colonna si riscrive usando le altre.
 > 3. Ripetiamo il passo 2 finché le colonne rimaste sono indipendenti.
 > 4. Le colonne rimaste sono indipendenti e generano $W$. Quindi sono una **base** di $W$ (lezione L07), e il loro numero è la dimensione di $W$, cioè $\rk(A)$.
 > 5. Un gruppo di colonne indipendenti più numeroso non esiste: in uno spazio di dimensione $d$, più di $d$ vettori sono sempre dipendenti (Martelli, §2.3).
@@ -43625,7 +43957,7 @@ Per le matrici piccole, come quelle del quiz, spesso basta guardare bene.
 > 1. Guarda se la matrice è fatta di soli zeri. Se sì, il rango è 0. Se c'è almeno un numero diverso da zero, il rango è almeno 1.
 > 2. Scrivi il tetto: il rango non supera il più piccolo tra il numero delle righe e quello delle colonne.
 > 3. Scegli se guardare le righe o le colonne. Il rango è lo stesso: prendi le più comode.
-> 4. Cerca i doppioni: una riga di soli zeri, due righe uguali, una riga multipla di un'altra, una riga che è la somma di altre. Toglili: il rango non cambia.
+> 4. Cerca le righe di troppo: una riga di soli zeri, due righe uguali, una riga multipla di un'altra, una riga che è la somma di altre. Toglili: il rango non cambia.
 > 5. Controlla che le righe rimaste siano indipendenti. Se sono due, basta che non siano una il multiplo dell'altra. Se sono tre o più, serve il controllo della lezione L07.
 > 6. Conta le righe rimaste: è il rango.
 
@@ -43642,7 +43974,7 @@ Per le matrici piccole, come quelle del quiz, spesso basta guardare bene.
 > $$\begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 2 \end{pmatrix}$$
 > La terza colonna è la somma delle prime due:
 > $$\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 + 0 \\ 0 + 1 \\ 1 + 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \\ 2 \end{pmatrix}$$
-> Quindi è un doppione, e la tolgo. Le prime due colonne non sono una il multiplo dell'altra: in alto la prima ha 1 e la seconda ha 0, nel mezzo la prima ha 0 e la seconda ha 1. Restano 2 colonne indipendenti. Il rango è 2.
+> Quindi è di troppo, e la tolgo. Le prime due colonne non sono una il multiplo dell'altra: in alto la prima ha 1 e la seconda ha 0, nel mezzo la prima ha 0 e la seconda ha 1. Restano 2 colonne indipendenti. Il rango è 2.
 >
 > **Quarta matrice.**
 > $$\begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$$
@@ -43654,7 +43986,7 @@ Per le matrici piccole, come quelle del quiz, spesso basta guardare bene.
 > | riga 1 | $1$ | $2$ | $3$ |
 > | differenza | $8 - 1 = 7$ | $10 - 2 = 8$ | $12 - 3 = 9$ |
 >
-> Viene $(7, 8, 9)$, che è proprio la terza riga: è un doppione, e la tolgo. Le prime due righe non sono una il multiplo dell'altra: per passare da 1 a 4 devo moltiplicare per 4, ma allora al secondo posto verrebbe $2 \cdot 4 = 8$, e invece c'è 5. Restano 2 righe indipendenti. Il rango è 2.
+> Viene $(7, 8, 9)$, che è proprio la terza riga: è di troppo, e la tolgo. Le prime due righe non sono una il multiplo dell'altra: per passare da 1 a 4 devo moltiplicare per 4, ma allora al secondo posto verrebbe $2 \cdot 4 = 8$, e invece c'è 5. Restano 2 righe indipendenti. Il rango è 2.
 
 Nello strumento qui sotto trovi la quarta matrice. Premi «Calcola». Lo strumento la trasforma con le mosse di Gauss, che vedrai nelle lezioni L10 e L11, e conta le righe che alla fine non sono fatte di soli zeri. Poi prova a scrivere altre matrici. Con `1 0 0; 0 1 0; 0 0 1` deve venire rango 3. Con `1 2; 2 4` deve venire rango 1.
 
@@ -43671,7 +44003,7 @@ modi: rango
 > - Il controllo «non sono multipli» basta solo per **due** vettori. Tre vettori possono essere dipendenti anche se, presi a due a due, non sono multipli (lezione L07, Esempio 7.4). Succede nella terza e nella quarta matrice dell'esempio: non fermarti ai controlli a coppie.
 
 ::: prova Qual è il rango di $\begin{pmatrix} 1 & 3 \\ 2 & 6 \end{pmatrix}$?
-La seconda colonna è la prima moltiplicata per 3: $3 \cdot 1 = 3$ e $3 \cdot 2 = 6$. È un doppione. Resta una colonna sola, che non è fatta di zeri. Il rango è 1.
+La seconda colonna è la prima moltiplicata per 3: $3 \cdot 1 = 3$ e $3 \cdot 2 = 6$. È di troppo. Resta una colonna sola, che non è fatta di zeri. Il rango è 1.
 :::
 
 ::: prova Qual è il rango di $\begin{pmatrix} 1 & 1 & 0 \\ 2 & 2 & 0 \end{pmatrix}$?
@@ -43685,18 +44017,18 @@ No. Il rango è al massimo il più piccolo tra 4 e 3, cioè 3.
 :::
 
 ::: prova Qual è il rango di $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 1 \\ 1 & 3 & 4 \end{pmatrix}$?
-La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $2 + 1 = 3$, poi $3 + 1 = 4$. È un doppione. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1, la seconda con 0. Il rango è 2.
+La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $2 + 1 = 3$, poi $3 + 1 = 4$. È di troppo. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1, la seconda con 0. Il rango è 2.
 :::
 
 > [!RICORDA]
 > - Il **rango** $\rk(A)$ è il massimo numero di colonne indipendenti. È la dimensione dello spazio che le colonne riempiono.
 > - Con le righe viene lo stesso numero: $\rk({}^tA) = \rk(A)$.
 > - Il rango è al massimo il più piccolo tra il numero delle righe e quello delle colonne.
-> - In pratica: togli i doppioni e conta quello che resta.
+> - In pratica: togli le righe o le colonne di troppo e conta quelle che restano.
 
 ## Il prodotto riga per colonna (pp. 37–38)
 
-Moltiplicare due matrici è come fare il conto della spesa.
+Il prodotto di matrici si capisce bene con un conto di spesa: quantità per prezzi, poi la somma.
 
 È l'operazione più importante della lezione, e quella che all'esame compare più spesso. Non si fa casella per casella, come la somma. Si fa incrociando le righe della prima matrice con le colonne della seconda.
 
@@ -43787,6 +44119,43 @@ Se i due numeri interni sono diversi, il prodotto **non esiste**.
 | $3 \times 2$ | $2 \times 4$ | 2 e 2 | sì | $3 \times 4$ |
 | $2 \times 4$ | $3 \times 2$ | 4 e 3 | no | |
 | $2 \times 3$ | $3 \times 1$ | 3 e 3 | sì | $2 \times 1$ |
+
+```grafico
+titolo: La casella nella riga 1 e colonna 2 di $AB$ (in rosa) viene dalla riga 1 di $A$ (in blu) e dalla colonna 2 di $B$ (in ambra): i tre numeri della riga per i tre numeri della colonna, poi la somma. I numeri interni delle taglie, 3 e 3, devono essere uguali; quelli esterni danno la taglia del prodotto, $2 \times 2$
+proporzioni: libere
+assi: no
+griglia: no
+x: -0.3 9.8
+y: -1 3.3
+poligono: 0 2 3 2 3 3 0 3 | blu | pieno
+poligono: 5 0 6 0 6 3 5 3 | ambra | pieno
+poligono: 8.5 2 9.5 2 9.5 3 8.5 3 | rosa | pieno
+segmento: 0 1 3 1 | grigio | sottile
+segmento: 0 2 3 2 | grigio | sottile
+segmento: 0 3 3 3 | grigio | sottile
+segmento: 0 1 0 3 | grigio | sottile
+segmento: 1 1 1 3 | grigio | sottile
+segmento: 2 1 2 3 | grigio | sottile
+segmento: 3 1 3 3 | grigio | sottile
+segmento: 4 0 6 0 | grigio | sottile
+segmento: 4 1 6 1 | grigio | sottile
+segmento: 4 2 6 2 | grigio | sottile
+segmento: 4 3 6 3 | grigio | sottile
+segmento: 4 0 4 3 | grigio | sottile
+segmento: 5 0 5 3 | grigio | sottile
+segmento: 6 0 6 3 | grigio | sottile
+segmento: 7.5 1 9.5 1 | grigio | sottile
+segmento: 7.5 2 9.5 2 | grigio | sottile
+segmento: 7.5 3 9.5 3 | grigio | sottile
+segmento: 7.5 1 7.5 3 | grigio | sottile
+segmento: 8.5 1 8.5 3 | grigio | sottile
+segmento: 9.5 1 9.5 3 | grigio | sottile
+testo: 3.5 1.5 | grigio | "·"
+testo: 6.75 1.5 | grigio | "="
+testo: 1.5 0.4 | blu | "A: 2 × 3"
+testo: 5 -0.6 | ambra | "B: 3 × 2"
+testo: 8.5 0.4 | rosa | "AB: 2 × 2"
+```
 
 ### Come lo scrivono le dispense
 
@@ -43888,14 +44257,14 @@ Le taglie dicono subito che cosa viene fuori. Una matrice $3 \times 2$ per un ve
 >
 > La matrice ha 3 righe, quindi il risultato ha 3 numeri. Il vettore di partenza ne aveva 2.
 
-> [!OLTRE] · una matrice per un vettore è una ricetta fatta con le colonne
+> [!OLTRE] · una matrice per un vettore è una combinazione delle colonne
 > Guarda di nuovo l'Esempio 8.9, questa volta **per colonne**. Prendi 1 volta la prima colonna della matrice e $-1$ volte la seconda:
 > $$1 \cdot \begin{pmatrix} 1 \\ -1 \\ 0 \end{pmatrix} + (-1) \cdot \begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{pmatrix} 1 - 2 \\ -1 - 1 \\ 0 - 3 \end{pmatrix} = \begin{pmatrix} -1 \\ -2 \\ -3 \end{pmatrix}.$$
-> Viene lo stesso vettore di prima. Succede sempre: il prodotto di una matrice per un vettore è la **combinazione lineare delle colonne** della matrice, e le quantità della ricetta sono i numeri del vettore. Con le lettere:
+> Viene lo stesso vettore di prima. Succede sempre: il prodotto di una matrice per un vettore è la **combinazione lineare delle colonne** della matrice, e i coefficienti sono i numeri del vettore. Con le lettere:
 > $$Ax = x_1 A^1 + x_2 A^2 + \dots + x_n A^n.$$
 > Qui $x_1, \dots, x_n$ sono i numeri del vettore $x$, e $A^1, \dots, A^n$ sono le colonne di $A$.
 >
-> Questo spiega due cose. La prima riguarda il rango: i vettori che si possono ottenere come $Ax$ sono tutte le ricette fatte con le colonne, cioè lo Span delle colonne. Il rango è la dimensione di questo Span.
+> Questo spiega due cose. La prima riguarda il rango: i vettori che si possono ottenere come $Ax$ sono tutte le combinazioni delle colonne, cioè lo Span delle colonne. Il rango è la dimensione di questo Span.
 >
 > La seconda riguarda i sistemi di equazioni. Prendi il sistema
 > $$\begin{cases} 2x + 3y = 5 \\ x - y = 1 \end{cases}$$
@@ -44277,7 +44646,7 @@ No. La traccia esiste solo per le matrici quadrate.
 | ${}^t(x, y, z)$ | «il trasposto di x, y, z» | il vettore colonna con quei numeri | ${}^t(1, 2, 3)$ |
 | $-A$ | «meno A» | la matrice con tutti i segni cambiati | |
 | $\iff$ | «se e solo se» | esattamente quando | simmetrica $\iff {}^tA = A$ |
-| $\Span(\dots)$ | «Span di…» | tutto quello che si ottiene con le ricette fatte con quei vettori | lo Span di un vettore è una retta |
+| $\Span(\dots)$ | «Span di…» | tutte le combinazioni lineari di quei vettori | lo Span di un vettore è una retta |
 | $\subset$ | «è contenuto in» | sta dentro, come insieme | una retta del piano $\subset \R^2$ |
 | $\rk(A)$ | «rango di A» | il massimo numero di colonne (o di righe) indipendenti | $\rk(I_3) = 3$ |
 | $\min(m, n)$ | «il minimo tra emme ed enne» | il più piccolo dei due numeri | $\min(3, 5) = 3$ |
@@ -44306,10 +44675,10 @@ Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 
 | «Quale identità vale?» tra $AB$, $BA$, $A$, $B$ | 24/01/2024 (6), 10/06/2024 (5), 10/07/2024 (3), 15/01/2026 (1), 03/06/2026 (5) | il prodotto riga per colonna, e ricordare che l'ordine conta |
 | traccia di un prodotto | 08/02/2024 (4), 06/09/2024 (8), 16/01/2025 (3), 10/07/2025 (9), 05/02/2026 (3), 03/07/2026 (9), 07/09/2026 (8) | solo la diagonale del prodotto |
 | prodotto di tre matrici $2 \times 2$ | 07/02/2025 (3) | associatività, ordine dei fattori |
-| rango di una matrice $3 \times 3$, $4 \times 4$ o $5 \times 5$ | 10/06/2024 (10), 16/01/2025 (6), 07/02/2025 (4), 05/02/2026 (4), 07/09/2026 (9) | doppioni tra righe o colonne, poi Gauss (lezioni L11–L12) |
+| rango di una matrice $3 \times 3$, $4 \times 4$ o $5 \times 5$ | 10/06/2024 (10), 16/01/2025 (6), 07/02/2025 (4), 05/02/2026 (4), 07/09/2026 (9) | righe o colonne di troppo, poi Gauss (lezioni L11–L12) |
 | calcolare ${}^tA - A$ in un problema | 24/01/2024 (11), 15/01/2026 (11) | trasposta, matrici simmetriche |
 
-**Una domanda vera, letta insieme**
+### Una domanda vera, letta insieme
 
 È la domanda 1 dell'appello del 15/01/2026. Il testo dice:
 
@@ -44344,7 +44713,7 @@ Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 
 >
 > Di solito $AB$ e $BA$ sono diversi. Qui sono uguali perché le due matrici sono una l'*inversa* dell'altra: un'idea che arriva nella lezione L10.
 
-**Una traccia con il tranello**
+### Una traccia con il tranello
 
 È la domanda 9 dell'appello del 10/07/2025. Il testo dice:
 
@@ -44369,7 +44738,7 @@ Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 
 > $${}^tA\,A = \begin{pmatrix} 2 & 0 & 0 \\ 1 & 1 & 1 \end{pmatrix} \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 1 \end{pmatrix} = \begin{pmatrix} 2 \cdot 2 + 0 \cdot 0 + 0 \cdot 0 & 2 \cdot 1 + 0 \cdot 1 + 0 \cdot 1 \\ 1 \cdot 2 + 1 \cdot 0 + 1 \cdot 0 & 1 \cdot 1 + 1 \cdot 1 + 1 \cdot 1 \end{pmatrix} = \begin{pmatrix} 4 & 2 \\ 2 & 3 \end{pmatrix}$$
 > La sua traccia è $4 + 3 = 7$. Torna.
 
-**Una trasposta dentro un problema**
+### Una trasposta dentro un problema
 
 È la prima parte del punto (2) del problema 11 dell'appello del 15/01/2026. Il testo dice:
 
@@ -44395,13 +44764,13 @@ Le operazioni di questa lezione compaiono in **quasi ogni appello** dal 2023 al 
 >
 > **Controllo.** Il risultato del passo 2 è una matrice antisimmetrica, come deve essere: la diagonale è fatta di zeri, e le due caselle $k - k^2$ e $k^2 - k$ sono una l'opposto dell'altra.
 
-**I metodi**
+### I metodi
 
 Per la domanda «quale identità vale?» il metodo è nel riquadro alla fine della sezione sull'ordine nel prodotto. Per il rango e per la traccia eccone altri due.
 
 > [!METODO] Il rango nel quiz
-> 1. Cerca i doppioni a occhio: due colonne uguali, una riga multipla di un'altra, una riga che è la somma di altre due.
-> 2. Se non ne vedi, prova una combinazione con numeri piccoli, come $-2$ e $3$. Nei quiz degli ultimi anni un doppione c'era quasi sempre. Nelle matrici $3 \times 3$: una colonna doppia di un'altra, oppure una riga somma delle altre due. Nella $4 \times 4$ del 05/02/2026 due righe erano combinazioni delle prime due.
+> 1. Cerca a occhio righe o colonne di troppo: due colonne uguali, una riga multipla di un'altra, una riga che è la somma di altre due.
+> 2. Se non ne vedi, prova una combinazione con numeri piccoli, come $-2$ e $3$. Nei quiz degli ultimi anni ce n'era quasi sempre una. Nelle matrici $3 \times 3$: una colonna doppia di un'altra, oppure una riga somma delle altre due. Nella $4 \times 4$ del 05/02/2026 due righe erano combinazioni delle prime due.
 > 3. Controlla che le righe rimaste siano indipendenti.
 > 4. Se non trovi niente, riduci la matrice a scalini con Gauss (lezioni L11–L12). Per una matrice quadrata puoi anche calcolare il determinante (lezioni L09–L10): se è diverso da zero, il rango è il più grande possibile.
 
@@ -44412,7 +44781,7 @@ Per la domanda «quale identità vale?» il metodo è nel riquadro alla fine del
 > 4. Con tre fattori, come in $\tr(ABC)$: calcola per intero il prodotto delle prime due, poi solo la diagonale del prodotto con la terza. Se conviene, prima fai girare i fattori: $\tr(ABC) = \tr(CAB)$.
 > 5. Nelle domande con radici e $\pi$ (appelli dell'08/02/2024 e del 07/09/2026) i numeri scomodi quasi sempre si cancellano: fidati del conto.
 
-**Gli errori da evitare**
+### Gli errori da evitare
 
 - Moltiplicare colonna per riga al posto di riga per colonna, oppure scambiare l'ordine dei due fattori.
 - Dare per scontato che $AB$ e $BA$ siano uguali.
@@ -44435,6 +44804,46 @@ Per la domanda «quale identità vale?» il metodo è nel riquadro alla fine del
 ## Quiz
 
 ```quiz
+D: Appello del 15/01/2026, domanda 1. Siano $A = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & -1 & 0 \\ 0 & 1 & -1 \\ 0 & 0 & 1 \end{pmatrix}$. Quale identità vale?
++ $AB = BA$
+- $BA = B$
+- $AB = B$
+- $AB = A$
+- $BA = A$
+= I due prodotti sono tutti e due la matrice identità $I_3$ (i conti sono in «Verso l'esame»), quindi sono uguali tra loro e diversi da $A$ e da $B$. È la (a) della soluzione ufficiale. La risposta più insidiosa è $AB = A$: viene a chi calcola solo la prima riga, che in $A$ e in $AB$ comincia con 1.
+
+D: Appello del 24/01/2024, domanda 6. Siano $A = \begin{pmatrix} 1 & -1 & 1 \\ 0 & 1 & 0 \\ 0 & -1 & 2 \end{pmatrix}$ e $B = \begin{pmatrix} 0 & 0 & -1 \\ 1 & 0 & 0 \\ 1 & 0 & 0 \end{pmatrix}$. Quale identità vale?
+- $BA = A$
+- $AB = BA$
+- $BA = B$
++ $AB = B$
+- $AB = A$
+= Riga per colonna: la riga 1 di $A$, $(1, -1, 1)$, con le colonne di $B$ dà $0 - 1 + 1 = 0$, poi $0$, poi $-1$. La riga 2, $(0, 1, 0)$, dà $1$, $0$, $0$; la riga 3, $(0, -1, 2)$, dà $-1 + 2 = 1$, $0$, $0$. Quindi $AB = B$: è la (d) della soluzione ufficiale. Invece $BA$ ha la prima riga $(0, 1, -2)$, diversa da quelle di $A$, di $B$ e di $AB$. La risposta più insidiosa è $AB = BA$, che tenta chi dimentica che l'ordine conta.
+
+D: Appello del 16/01/2025, domanda 6. Determinare il rango della matrice $\begin{pmatrix} 1 & 1 & 2 \\ 2 & 3 & 4 \\ 3 & 5 & 6 \end{pmatrix}$.
+- 3
+- 1
++ 2
+- 0
+- 4
+= La terza colonna è il doppio della prima, quindi è di troppo. Le prime due colonne, $(1, 2, 3)$ e $(1, 3, 5)$, non sono una multipla dell'altra: restano 2 colonne indipendenti. È la (c) della soluzione ufficiale, che ci arriva con le mosse di Gauss. La risposta più insidiosa è 3, che conta le colonne senza cercare quelle di troppo; 4 è impossibile, perché il rango non supera 3.
+
+D: Appello del 07/09/2026, domanda 8. Date $A = \begin{pmatrix} \sqrt 2 & 0 & -2\pi \\ 0 & \sqrt 3 & \sqrt 3 \\ 2\pi & \sqrt 2 & 0 \end{pmatrix}$ e $B = \begin{pmatrix} \sqrt 2 & 2\pi & \sqrt 2 \\ 2\pi & 0 & -2\pi \\ 0 & \sqrt 3 & \sqrt 3 \end{pmatrix}$, il valore di $\tr(AB)$ è:
+- $2\pi$
++ $5$
+- $(\sqrt 2 + \sqrt 3)^2$
+- $\sqrt 5$
+- $2\pi\sqrt 2$
+= Servono solo le tre caselle diagonali di $AB$: $\sqrt 2 \cdot \sqrt 2 + 0 + 0 = 2$, poi $0 + 0 + \sqrt 3 \cdot \sqrt 3 = 3$, poi $2\pi\sqrt 2 - 2\pi\sqrt 2 + 0 = 0$. La traccia è $2 + 3 + 0 = 5$: è la (b) del foglio d'esame. La risposta più insidiosa è $(\sqrt 2 + \sqrt 3)^2$, che somma le radici prima di moltiplicarle; i termini con $\pi$ si cancellano.
+
+D: Appello del 10/07/2025, domanda 9. Data la matrice $A = \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 1 \end{pmatrix}$, la traccia di $A \cdot {}^tA$ è:
++ 7
+- 9
+- non si può calcolare, poiché $A$ non è una matrice quadrata
+- 6
+- 0
+= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata, e ogni casella diagonale è una riga di $A$ per sé stessa: $4 + 1 = 5$, poi $1$, poi $1$. La traccia è 7: è la (a) della soluzione ufficiale. La risposta più insidiosa è la (c): a non essere quadrata è $A$, non il prodotto.
+
 D: Siano $A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix}$. Quale identità vale?
 + $AB = BA$
 - $AB = A$
@@ -44473,7 +44882,7 @@ D: Qual è il rango della matrice $\begin{pmatrix} 2 & 1 & 3 \\ 1 & 1 & 2 \\ 3 &
 - $1$
 - $0$
 - $5$
-= La domanda chiede quante righe indipendenti ha la matrice. Si cercano i doppioni. La terza riga è la somma delle prime due: $2 + 1 = 3$, poi $1 + 1 = 2$, poi $3 + 2 = 5$. Quindi si può togliere. Le prime due righe non sono una il multiplo dell'altra: al primo posto, per passare da $1$ a $2$ si moltiplica per 2, ma al secondo posto $1 \cdot 2$ fa $2$ e non $1$. Restano 2 righe indipendenti: il rango è 2. La risposta $3$ è la trappola: tre righe piene di numeri non vogliono dire rango 3. È simile alle domande 9 del 07/09/2026 e 6 del 16/01/2025.
+= La domanda chiede quante righe indipendenti ha la matrice. Si cercano le righe di troppo. La terza riga è la somma delle prime due: $2 + 1 = 3$, poi $1 + 1 = 2$, poi $3 + 2 = 5$. Quindi si può togliere. Le prime due righe non sono una il multiplo dell'altra: al primo posto, per passare da $1$ a $2$ si moltiplica per 2, ma al secondo posto $1 \cdot 2$ fa $2$ e non $1$. Restano 2 righe indipendenti: il rango è 2. La risposta $3$ è la trappola: tre righe piene di numeri non vogliono dire rango 3. È simile alle domande 9 del 07/09/2026 e 6 del 16/01/2025.
 
 D: $A$ è una matrice $2 \times 3$ e $B$ è una matrice $3 \times 4$. Quale affermazione è vera?
 + $AB$ è una matrice $2 \times 4$ e $BA$ non è definito.
@@ -44658,7 +45067,7 @@ $$BA = \begin{pmatrix} 22 & 28 \\ 49 & 64 \end{pmatrix}, \qquad \tr(BA) = 22 + 6
 Determina il rango delle matrici
 $$A = \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 0 \\ 0 & 3 & 6 \end{pmatrix}, \quad B = \begin{pmatrix} 1 & -1 & 2 \\ -2 & 2 & -4 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 0 & 2 & 1 \\ 0 & 1 & 1 & 1 \\ 1 & 1 & 3 & 2 \end{pmatrix}, \quad D = \begin{pmatrix} 1 & 2 \\ 3 & 4 \\ 5 & 6 \end{pmatrix}.$$
 ::: soluzione
-Per ogni matrice cerco i doppioni tra le righe (o tra le colonne), li tolgo e conto quello che resta.
+Per ogni matrice cerco le righe (o le colonne) di troppo, le tolgo e conto quelle che restano.
 
 **La matrice $A$** (dal Foglio di esercizi 2 del tutorato 2025). Provo a ottenere la terza riga dalle prime due: due volte la prima, meno la seconda.
 
@@ -44672,9 +45081,9 @@ Viene $(0, 3, 6)$, che è la terza riga: è un doppione. Le prime due righe sono
 
 **La matrice $B$.** La seconda riga è la prima moltiplicata per $-2$:
 $$-2 \cdot (1, -1, 2) = (-2, 2, -4).$$
-È un doppione. Resta una riga sola, che non è fatta di zeri: $\rk(B) = 1$.
+È di troppo. Resta una riga sola, che non è fatta di zeri: $\rk(B) = 1$.
 
-**La matrice $C$.** La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $0 + 1 = 1$, poi $2 + 1 = 3$, poi $1 + 1 = 2$. È un doppione. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1 e la seconda con 0, e al secondo posto succede il contrario. Restano 2 righe: $\rk(C) = 2$, anche se le colonne sono quattro.
+**La matrice $C$.** La terza riga è la somma delle prime due: $1 + 0 = 1$, poi $0 + 1 = 1$, poi $2 + 1 = 3$, poi $1 + 1 = 2$. È di troppo. Le prime due righe non sono una il multiplo dell'altra: la prima comincia con 1 e la seconda con 0, e al secondo posto succede il contrario. Restano 2 righe: $\rk(C) = 2$, anche se le colonne sono quattro.
 
 **La matrice $D$.** Ha 3 righe e 2 colonne, quindi il rango è al massimo 2. Guardo le due colonne: contengono $1, 3, 5$ e $2, 4, 6$. In alto si passa da 1 a 2 moltiplicando per 2. Ma nel mezzo $3 \cdot 2 = 6$ e non 4. Le colonne non sono una il multiplo dell'altra, quindi sono indipendenti: $\rk(D) = 2$, il più grande possibile per questa taglia.
 :::
@@ -44694,7 +45103,7 @@ $$BA = \begin{pmatrix} 2 \cdot 1 + (-4) \cdot 2 & 2 \cdot 2 + (-4) \cdot 4 \\ (-
 2. $AB$ è la matrice nulla e $BA$ no. Quindi $AB \neq BA$.
 3. Non si può «semplificare». Anche $A$ per la matrice nulla dà la matrice nulla. Quindi $A$ per $B$ e $A$ per la matrice nulla danno lo stesso risultato, ma $B$ non è la matrice nulla.
 
-**Perché succede.** La seconda colonna di $A$ è il doppio della prima: $A$ ha rango 1. Ogni colonna di $AB$ è una ricetta fatta con le colonne di $A$, e le quantità sono i numeri di una colonna di $B$. La prima colonna di $B$ contiene 2 e $-1$: la ricetta è «due volte la prima colonna di $A$, meno la seconda». Viene $(2 - 2,\ 4 - 4)$, cioè zero. La seconda colonna di $B$ contiene $-4$ e 2: la ricetta è «$-4$ volte la prima colonna di $A$, più due volte la seconda». Viene $(-4 + 4,\ -8 + 8)$, di nuovo zero.
+**Perché succede.** La seconda colonna di $A$ è il doppio della prima: $A$ ha rango 1. Ogni colonna di $AB$ è una combinazione delle colonne di $A$, e i coefficienti sono i numeri di una colonna di $B$. La prima colonna di $B$ contiene 2 e $-1$: la combinazione è «due volte la prima colonna di $A$, meno la seconda». Viene $(2 - 2,\ 4 - 4)$, cioè zero. La seconda colonna di $B$ contiene $-4$ e 2: la combinazione è «$-4$ volte la prima colonna di $A$, più due volte la seconda». Viene $(-4 + 4,\ -8 + 8)$, di nuovo zero.
 :::
 
 ::: esercizio medio Potenze e il quadrato di una somma
@@ -44865,7 +45274,7 @@ $$XA = \begin{pmatrix} a \cdot 1 + b \cdot 0 & a \cdot 1 + b \cdot 1 \\ c \cdot 
 
 **4. La risposta.** Serve $c = 0$ e $d = a$. I numeri $a$ e $b$ restano liberi: puoi sceglierli come vuoi. Le matrici cercate sono
 $$X = \begin{pmatrix} a & b \\ 0 & a \end{pmatrix} = a \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + b \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}, \qquad a, b \in \R.$$
-Sono tutte le ricette fatte con due matrici fisse. Per questo formano un sottospazio di $M(2, \R)$ di dimensione 2.
+Sono tutte le combinazioni di due matrici fisse. Per questo formano un sottospazio di $M(2, \R)$ di dimensione 2.
 
 **Controllo** con $a = 2$ e $b = 3$, cioè $X = \begin{pmatrix} 2 & 3 \\ 0 & 2 \end{pmatrix}$:
 $$AX = \begin{pmatrix} 1 \cdot 2 + 1 \cdot 0 & 1 \cdot 3 + 1 \cdot 2 \\ 0 \cdot 2 + 1 \cdot 0 & 0 \cdot 3 + 1 \cdot 2 \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ 0 & 2 \end{pmatrix} \qquad XA = \begin{pmatrix} 2 \cdot 1 + 3 \cdot 0 & 2 \cdot 1 + 3 \cdot 1 \\ 0 \cdot 1 + 2 \cdot 0 & 0 \cdot 1 + 2 \cdot 1 \end{pmatrix} = \begin{pmatrix} 2 & 5 \\ 0 & 2 \end{pmatrix}$$
@@ -44955,7 +45364,7 @@ Quindi $\tr(ACB) = 0 + (-2) = -2$.
 
 **5. Il confronto.** Le due tracce sono diverse: $-1$ e $-2$. Far girare i fattori ($BCA$, $CAB$) non cambia la traccia. Scambiare due fattori vicini, come $B$ e $C$, può cambiarla.
 
-(b) Cerco i doppioni tra le righe. Le chiamo riga 1, riga 2, riga 3 e riga 4.
+(b) Cerco le righe di troppo. Le chiamo riga 1, riga 2, riga 3 e riga 4.
 
 **La riga 3 è la riga 1 più due volte la riga 2.**
 
@@ -44977,7 +45386,7 @@ Viene $(1, 6, 1, 4)$: è la riga 3.
 
 Viene $(2, 3, 2, 5)$: è la riga 4.
 
-Le righe 3 e 4 sono doppioni, e le tolgo. Restano la riga 1 e la riga 2. Non sono una il multiplo dell'altra: la riga 1 ha 0 al secondo posto, dove la riga 2 ha 3. La riga 2 ha 0 al primo posto, dove la riga 1 ha 1. Quindi sono indipendenti, e $\rk(M) = 2$.
+Le righe 3 e 4 sono di troppo, e le tolgo. Restano la riga 1 e la riga 2. Non sono una il multiplo dell'altra: la riga 1 ha 0 al secondo posto, dove la riga 2 ha 3. La riga 2 ha 0 al primo posto, dove la riga 1 ha 1. Quindi sono indipendenti, e $\rk(M) = 2$.
 
 Si poteva notare anche che la terza colonna è uguale alla prima. Ma questo dice solo che il rango è al massimo 3: per arrivare a 2 servono le relazioni tra le righe.
 :::
@@ -45039,7 +45448,7 @@ Una casella della diagonale, ribaltata, resta sé stessa. In una matrice antisim
 :::
 
 ::: domanda Perché il rango è il massimo numero di colonne indipendenti?
-Le colonne generano il loro Span. Se una colonna è un doppione, cioè una combinazione lineare delle altre, si può togliere: lo Span non cambia. Togliendo un doppione alla volta restano colonne indipendenti che generano lo stesso spazio. Sono una base, e il loro numero è la dimensione. Un gruppo più numeroso sarebbe dipendente.
+Le colonne generano il loro Span. Se una colonna è di troppo, cioè è una combinazione lineare delle altre, si può togliere: lo Span non cambia. Togliendo una colonna di troppo alla volta restano colonne indipendenti che generano lo stesso spazio. Sono una base, e il loro numero è la dimensione. Un gruppo più numeroso sarebbe dipendente.
 :::
 
 ::: domanda Che relazione c'è tra rango per righe e rango per colonne?
@@ -45113,7 +45522,7 @@ Matrice identità $I_n$ | La matrice quadrata con 1 sulla diagonale e 0 altrove.
 - So leggere la scrittura ${}^t(x, y, z)$ per i vettori colonna.
 - So dire che cos'è il rango e perché è il massimo numero di colonne indipendenti.
 - So che con le righe e con le colonne viene lo stesso rango, e che $\rk(A) \le \min(m, n)$.
-- So trovare il rango di una matrice piccola cercando i doppioni tra le righe o tra le colonne.
+- So trovare il rango di una matrice piccola cercando le righe o le colonne di troppo.
 - So dire se un prodotto $AB$ si può fare, di che taglia viene, e calcolarlo riga per colonna senza errori.
 - So mostrare con un esempio che $AB \neq BA$, e che un prodotto può essere nullo senza che lo sia un fattore.
 - So enunciare associatività e distributività e usare ${}^t(AB) = {}^tB\,{}^tA$.
@@ -45145,7 +45554,7 @@ sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C ·
 descrizione: >-
   Appunti della lezione L09 di Algebra lineare e Geometria (MDAG, parte 2): il determinante di una matrice quadrata
   definito con le permutazioni, le formule per le matrici 2×2 e 3×3, matrici triangolari e matrice identità, lo
-  sviluppo di Laplace e le prime proprietà del determinante, con quiz nello stile dell'esame ed esercizi svolti.
+  sviluppo di Laplace e le prime proprietà del determinante, con domande vere degli appelli, quiz ed esercizi svolti.
 lede: >-
   Il determinante è un numero che si calcola da una tabella quadrata e dice di quanto la matrice ingrandisce le aree.
   Qui impari a calcolarlo in tutti i modi che servono all'esame: la formula per le tabelle piccole, il caso facile
@@ -45173,7 +45582,7 @@ genera_html: true
 - All'esame: «il determinante di questa matrice è…», con matrici grandi piene di zeri, con $\pi$ ed $e$ da tirare fuori, oppure con il tranello della matrice non quadrata.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di giovedì 22/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 22/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 9. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Un numero che misura un'area (pp. 41–42)
 
@@ -45225,7 +45634,7 @@ Diagonale principale: $4 \cdot 3 = 12$. Altra diagonale: $1 \cdot 2 = 2$. Determ
 > Si toglie il prodotto dell'**altra** diagonale, con i suoi segni. Per esempio $\det \begin{pmatrix} 1 & 2 \\ -1 & 4 \end{pmatrix} = 1 \cdot 4 - 2 \cdot (-1) = 4 + 2 = 6$, non $4 - 2 = 2$. Metti sempre le parentesi attorno ai numeri negativi.
 
 > [!OLTRE] · il determinante misura aree e volumi
-> Martelli (§3.3.10) mostra che per una matrice $2 \times 2$ reale il determinante senza segno è l'area del parallelogramma che ha per lati le due colonne. Per una $3 \times 3$ è il volume della «scatola storta» (il parallelepipedo) che ha per spigoli le tre colonne. Ne riparliamo alla fine della lezione, con uno strumento interattivo.
+> Martelli (§3.3.10) mostra che per una matrice $2 \times 2$ reale il determinante senza segno è l'area del parallelogramma che ha per lati le due colonne. Per una $3 \times 3$ è il volume delil parallelepipedo che ha per spigoli le tre colonne. Ne riparliamo alla fine della lezione, con uno strumento interattivo.
 
 > [!RICORDA]
 > - Il determinante esiste solo per le matrici quadrate.
@@ -45444,6 +45853,38 @@ $$\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix} \qquad \begi
 
 Il segno della casella nella riga $i$ e nella colonna $j$ è $(-1)^{i+j}$: più se $i + j$ è pari, meno se è dispari. Per esempio la casella $(2, 3)$ ha $2 + 3 = 5$, dispari: segno meno.
 
+```grafico
+titolo: I segni dello sviluppo di Laplace per una matrice $3 \times 3$: più (in ambra) dove il numero di riga più il numero di colonna è pari, meno (in blu) dove è dispari. La casella in alto a sinistra ha sempre il più
+assi: no
+griglia: no
+x: -0.6 3.3
+y: -0.3 3.6
+poligono: 0 2 1 2 1 3 0 3 | ambra | pieno
+testo: 0.5 2.5 | ambra | "+"
+poligono: 1 2 2 2 2 3 1 3 | blu | pieno
+testo: 1.5 2.5 | blu | "−"
+poligono: 2 2 3 2 3 3 2 3 | ambra | pieno
+testo: 2.5 2.5 | ambra | "+"
+poligono: 0 1 1 1 1 2 0 2 | blu | pieno
+testo: 0.5 1.5 | blu | "−"
+poligono: 1 1 2 1 2 2 1 2 | ambra | pieno
+testo: 1.5 1.5 | ambra | "+"
+poligono: 2 1 3 1 3 2 2 2 | blu | pieno
+testo: 2.5 1.5 | blu | "−"
+poligono: 0 0 1 0 1 1 0 1 | ambra | pieno
+testo: 0.5 0.5 | ambra | "+"
+poligono: 1 0 2 0 2 1 1 1 | blu | pieno
+testo: 1.5 0.5 | blu | "−"
+poligono: 2 0 3 0 3 1 2 1 | ambra | pieno
+testo: 2.5 0.5 | ambra | "+"
+testo: 0.5 3.3 | grigio | "1"
+testo: -0.3 2.5 | grigio | "1"
+testo: 1.5 3.3 | grigio | "2"
+testo: -0.3 1.5 | grigio | "2"
+testo: 2.5 3.3 | grigio | "3"
+testo: -0.3 0.5 | grigio | "3"
+```
+
 ### Il metodo
 
 Ecco lo sviluppo lungo la prima riga della matrice $A$, passo per passo.
@@ -45572,6 +46013,18 @@ Il determinante è stato moltiplicato per 5. Le dispense lo scrivono così.
 
 **Come si legge.** $A'$, «a primo», è la matrice nuova. Se una sola riga, o una sola colonna, viene moltiplicata per un numero, il determinante viene moltiplicato per lo stesso numero.
 
+```grafico
+titolo: Raddoppiando la prima colonna, da $(2, 0)$ a $(4, 0)$, raddoppia anche il parallelogramma costruito sulle colonne: l'area passa da 2 a 4, come il determinante. Vale anche per le righe, perché la trasposta ha lo stesso determinante
+proporzioni: libere
+x: -1.2 5.8
+y: -0.7 1.8
+poligono: 0 0 4 0 5 1 1 1 | ambra | tenue
+poligono: 0 0 2 0 3 1 1 1 | blu | pieno
+vettore: 4 0 | ambra | spesso | $(4, 0)$ | se
+vettore: 2 0 | blu | spesso | $(2, 0)$ | se
+vettore: 1 1 | accento | spesso | $(1, 1)$ | n
+```
+
 Il perché: sviluppo il determinante lungo la riga moltiplicata. Le sottomatrici non contengono quella riga, quindi sono le stesse di prima; cambiano solo i numeri davanti, tutti moltiplicati per $c$. Ogni pezzo è moltiplicato per $c$, e quindi anche la somma.
 
 Letta al contrario, la regola permette di **tirare fuori** un numero che compare in tutta una riga o in tutta una colonna:
@@ -45620,7 +46073,7 @@ Nella prima sezione il determinante era un'area. Ecco il quadro completo, dal li
 > - il **segno** dice l'orientazione: positivo se, girando da $v_1$ verso $v_2$ per l'angolo più piccolo, si va in senso antiorario (come da $e_1$ a $e_2$), negativo se si va in senso orario;
 > - il determinante è zero esattamente quando $v_1$ e $v_2$ sono paralleli: il parallelogramma è schiacciato.
 >
-> Per una $3 \times 3$, il determinante senza segno è il **volume** della scatola storta che ha per spigoli le tre colonne (lo ritroverai con il prodotto vettoriale, lezione L22). Per esempio $\det \begin{pmatrix} 3 & -1 & 0 \\ 1 & 3 & 0 \\ 0 & 0 & 4 \end{pmatrix} = 4 \cdot (9 + 1) = 40$: una scatola con la base di area 10 e l'altezza 4.
+> Per una $3 \times 3$, il determinante senza segno è il **volume** del parallelepipedo che ha per spigoli le tre colonne (lo ritroverai con il prodotto vettoriale, lezione L22). Per esempio $\det \begin{pmatrix} 3 & -1 & 0 \\ 1 & 3 & 0 \\ 0 & 0 & 4 \end{pmatrix} = 4 \cdot (9 + 1) = 40$: una scatola con la base di area 10 e l'altezza 4.
 
 Nello strumento qui sotto la matrice $A$ trasforma il quadrato di lati $e_1$ ed $e_2$ nel parallelogramma colorato, che ha per lati le colonne $Ae_1$ e $Ae_2$. Cambia i quattro numeri e guarda come cambiano l'area e il colore: verde se il determinante è positivo, rosa se è negativo, giallo se è zero. Prova i pulsanti: «taglio» (determinante 1: la forma cambia, l'area no), «riflessione» (determinante $-1$: stessa area, orientazione girata), «proiezione» (determinante 0: il quadrato si schiaccia su un segmento). Le righe sugli autovalori riguardano la lezione L17: per ora ignorale.
 
@@ -45728,7 +46181,7 @@ Negli altri due appelli del primo tipo (10/07/2024 e 10/06/2024) le matrici avev
 >
 > Senza calcolatrice conviene sempre rimpicciolire i numeri prima di moltiplicare.
 
-**Errori da evitare.**
+### Errori da evitare
 
 - Dimenticare il segno della scacchiera, soprattutto nelle caselle «dispari» come $(1, 2)$, $(2, 3)$, $(5, 4)$.
 - Usare Sarrus su una $4 \times 4$.
@@ -45741,6 +46194,38 @@ Negli altri due appelli del primo tipo (10/07/2024 e 10/06/2024) le matrici avev
 ## Quiz
 
 ```quiz
+D: Appello del 02/09/2025, domanda 3. Calcolare il determinante di $A = \begin{pmatrix} 1 & 2 & 0 & 0 & 0 \\ 0 & 1 & 3 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 2 \\ 1 & 0 & 0 & 0 & 1 \end{pmatrix}$.
+- 12
++ 13
+- 0
+- 11
+- 1
+= Sviluppo lungo la prima colonna, che ha solo due numeri diversi da zero, tutti e due con segno più. La sottomatrice senza riga 1 e colonna 1 è triangolare superiore con diagonale di 1: vale 1. Quella senza riga 5 e colonna 1 è triangolare inferiore con diagonale $2, 3, 1, 2$: vale 12. Il totale è $1 + 12 = 13$: è la (b) della soluzione ufficiale. La risposta più insidiosa è 12, di chi dimentica il primo pezzo.
+
+D: Appello del 10/07/2025, domanda 4. Sia $A = \begin{pmatrix} 1 & -1 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 2 & -1 & 0 \end{pmatrix}$. Qual è il determinante di $A$?
+- $1$
+- $0$
++ $\det(A)$ non è definito
+- $2$
+- $-1$
+= $A$ ha 3 righe e 4 colonne: non è quadrata, quindi il determinante non esiste. È la (c) della soluzione ufficiale. La risposta più insidiosa è $-1$, il determinante della parte $3 \times 3$ a sinistra: è un numero plausibile, ma non è il determinante di $A$.
+
+D: Appello del 03/06/2026, domanda 2. Il determinante di $\begin{pmatrix} 1 & e & 1 & 1 \\ \pi & 2\pi e & 3\pi & \pi \\ 1 & e & 2 & 0 \\ 0 & e & 0 & 3 \end{pmatrix}$ è uguale a:
+- $1$
+- $0$
++ $\pi e$
+- $\pi + e$
+- $6 + 2\pi e$
+= Si tira fuori $\pi$ dalla seconda riga ed $e$ dalla seconda colonna (Proposizione 9.11); il determinante che resta, sviluppato lungo la quarta riga, vale $1 \cdot (-2) + 3 \cdot 1 = 1$ (i conti sono in «Verso l'esame»). Il totale è $\pi e$: è la (c) della soluzione ufficiale. La risposta più insidiosa è $1$, di chi dimentica di rimettere davanti i numeri tirati fuori.
+
+D: Appello del 10/07/2024, domanda 4. Sia $A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$. Il determinante di $A$ è:
+- $\det(A)$ non è definito
+- 1
+- $9!$
++ 0
+- 10
+= Con Sarrus: $(1 \cdot 5 \cdot 9 + 2 \cdot 6 \cdot 7 + 3 \cdot 4 \cdot 8) - (3 \cdot 5 \cdot 7 + 1 \cdot 6 \cdot 8 + 2 \cdot 4 \cdot 9) = 225 - 225 = 0$. È la (d) della soluzione ufficiale, che lo vede anche senza conti: la prima riga più la terza è il doppio della seconda (lezione L10). La risposta più insidiosa è $9!$, il prodotto di tutti i numeri, che non c'entra.
+
 D: Sia $A = \begin{pmatrix} 2 & 0 & 1 \\ -1 & 3 & 0 \end{pmatrix}$. Qual è il determinante di $A$?
 + $\det(A)$ non è definito.
 - $0$
@@ -45803,7 +46288,7 @@ D: Il determinante di $\begin{pmatrix} 2 & 3 & 4 \\ 5 & 6 & 7 \\ 8 & 9 & 10 \end
 - $1$
 - $-3$
 - $10!$
-= Con Sarrus: le diagonali che scendono danno $2 \cdot 6 \cdot 10 + 3 \cdot 7 \cdot 8 + 4 \cdot 5 \cdot 9 = 120 + 168 + 180 = 468$, quelle che salgono $4 \cdot 6 \cdot 8 + 2 \cdot 7 \cdot 9 + 3 \cdot 5 \cdot 10 = 192 + 126 + 150 = 468$. La differenza è 0. Il motivo profondo: la terza riga è $2 \cdot (5, 6, 7) - (2, 3, 4)$, una ricetta con le altre due, e nella lezione L10 vedrai che allora il determinante è sempre zero. La risposta «non è definito» è sbagliata: la matrice è quadrata. Simile all'appello del 10/07/2024, domanda 4.
+= Con Sarrus: le diagonali che scendono danno $2 \cdot 6 \cdot 10 + 3 \cdot 7 \cdot 8 + 4 \cdot 5 \cdot 9 = 120 + 168 + 180 = 468$, quelle che salgono $4 \cdot 6 \cdot 8 + 2 \cdot 7 \cdot 9 + 3 \cdot 5 \cdot 10 = 192 + 126 + 150 = 468$. La differenza è 0. Il motivo profondo: la terza riga è $2 \cdot (5, 6, 7) - (2, 3, 4)$, una combinazione delle altre due, e nella lezione L10 vedrai che allora il determinante è sempre zero. La risposta «non è definito» è sbagliata: la matrice è quadrata. Simile all'appello del 10/07/2024, domanda 4.
 
 D: Quale di queste affermazioni è **falsa** per matrici quadrate reali?
 + $\det(A + B) = \det A + \det B$ per ogni $A, B \in M(2)$.
@@ -46148,12 +46633,13 @@ corso: MDAG
 modulo: AG
 lezione: L10
 titolo: Matrici III
+data: 2026-10-27
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L10
 descrizione: >-
   Appunti della lezione L10 di Algebra lineare e Geometria (MDAG, parte 2): come cambia il determinante con le mosse
   di Gauss, determinante nullo e righe dipendenti, teorema di Binet, cofattori, matrice inversa e criterio di
-  invertibilità, con quiz nello stile dell'esame ed esercizi svolti.
+  invertibilità, con domande vere degli appelli, quiz ed esercizi svolti.
 lede: >-
   Come si calcola in fretta un determinante grande, quando vale zero, quanto vale il determinante di un prodotto e
   come si disfa quello che fa una matrice, trovando la sua inversa. Alla fine sai rispondere alla domanda che apre
@@ -46174,14 +46660,14 @@ genera_html: true
 
 - Ci sono tre **mosse sulle righe**, le mosse di Gauss. Scambiare due righe cambia il segno del determinante. Moltiplicare una riga per un numero moltiplica il determinante per quel numero. Aggiungere a una riga un multiplo di un'altra non lo cambia.
 - Il metodo pratico per i determinanti grandi: con le mosse si rende la matrice triangolare, poi si moltiplica la diagonale, cambiando segno per ogni scambio.
-- Il determinante è zero esattamente quando una riga è un doppione delle altre, cioè si ottiene mescolandole. Due righe uguali o proporzionali danno subito zero.
+- Il determinante è zero esattamente quando una riga è combinazione lineare delle altre. Due righe uguali o proporzionali danno subito zero.
 - **Teorema di Binet**: il determinante di un prodotto di matrici è il prodotto dei determinanti. Per esempio il determinante del cubo di una matrice è il cubo del determinante.
 - Una matrice è **invertibile** quando un'altra matrice disfa quello che fa lei. Succede esattamente quando il determinante non è zero.
 - L'inversa si calcola con i **cofattori**. Per le $2 \times 2$: scambia la diagonale, cambia segno agli altri due numeri, dividi per il determinante.
 - All'esame: «per quali valori di $k$ la matrice è invertibile?» nei problemi; il determinante delle potenze con Binet e i tranelli sulle mosse di Gauss nei quiz.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 27/10/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 10. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Tre mosse sulle righe (p. 46)
 
@@ -46246,6 +46732,27 @@ La freccia $\to$ si legge «diventa»: $R_2 \to R_2 - 3R_1$ vuol dire «la secon
 Dopo lo scambio: $-7$. Togliere un multiplo di un'altra riga non cambia niente: resta $-7$.
 :::
 
+```grafico
+titolo: Le tre mosse sulle righe e che cosa fanno al determinante
+proporzioni: libere
+assi: no
+griglia: no
+x: 0 10.4
+y: 0 6.4
+poligono: 0.1 4.5 10.3 4.5 10.3 6.3 0.1 6.3 | blu | tenue
+poligono: 0.1 2.3 10.3 2.3 10.3 4.1 0.1 4.1 | ambra | tenue
+poligono: 0.1 0.1 10.3 0.1 10.3 1.9 0.1 1.9 | verde | tenue
+testo: 2.9 5.4 | blu | "scambio di due righe"
+freccia: 5.9 5.4 6.9 5.4 | grigio
+testo: 8.6 5.4 | blu | "det × (−1)"
+testo: 2.9 3.2 | ambra | "riga per c, con c ≠ 0"
+freccia: 5.9 3.2 6.9 3.2 | grigio
+testo: 8.6 3.2 | ambra | "det × c"
+testo: 2.9 1 | verde | "riga + k · altra riga"
+freccia: 5.9 1 6.9 1 | grigio
+testo: 8.6 1 | verde | "det uguale"
+```
+
 ### Il metodo di Gauss per i determinanti
 
 Ecco l'esempio delle dispense: un determinante calcolato con due mosse.
@@ -46268,7 +46775,7 @@ L'idea generale: con le mosse del terzo tipo si creano zeri sotto la diagonale, 
 > 4. Quando la matrice è triangolare, il determinante è il prodotto della diagonale (Proposizione 9.3), con un segno meno per ogni scambio.
 > 5. Se a metà strada compare una riga di zeri, il determinante è 0 e puoi fermarti.
 >
-> Si può anche mescolare con Laplace: dopo aver creato zeri in una colonna, sviluppa lungo quella colonna.
+> Si può anche combinare con Laplace: dopo aver creato zeri in una colonna, sviluppa lungo quella colonna.
 
 > [!ESEMPIO] · Una $3 \times 3$ che richiede uno scambio
 > $$B = \begin{pmatrix} 0 & 2 & 1 \\ 1 & 1 & 1 \\ 2 & 4 & 5 \end{pmatrix}$$
@@ -46313,16 +46820,27 @@ Nell'Esempio 10.2 il determinante è venuto zero. Guarda le righe: la terza si o
 
 $$(7, 8, 9) = 2 \cdot (4, 5, 6) - (1, 2, 3).$$
 
-Con le parole della lezione L07: la terza riga è un **doppione**, una ricetta con le altre due. Non è un caso. Le dispense lo scrivono così.
+Con le parole della lezione L07: la terza riga è **di troppo**, una combinazione delle altre due. Non è un caso. Le dispense lo scrivono così.
 
 > [!PROP] 10.3 · Determinante nullo
 > $\det(A) = 0$ se e solo se una riga (o una colonna) di $A$ è combinazione lineare delle altre.
 
-**Come si legge.** Il determinante è zero esattamente quando una riga è un doppione delle altre, cioè si ottiene mescolandole. Lo stesso con le colonne. «Se e solo se» vuol dire che vale in tutti e due i sensi.
+**Come si legge.** Il determinante è zero esattamente quando una riga è combinazione lineare delle altre. Lo stesso con le colonne. «Se e solo se» vuol dire che vale in tutti e due i sensi.
 
-Nel disegno della lezione L09: se una colonna è un doppione, il parallelogramma, o la scatola, si schiaccia. L'area, o il volume, è zero.
+Nel disegno della lezione L09: se una colonna è combinazione delle altre, il parallelogramma, o il parallelepipedo, si schiaccia. L'area, o il volume, è zero.
 
-Le dispense spiegano un senso: se una riga è un doppione, il determinante è zero. L'idea: con mosse del terzo tipo, che non cambiano il determinante, si toglie il doppione e resta una riga di zeri. Ecco i passaggi, quando il doppione è la prima riga.
+```grafico
+titolo: Le colonne $(1, 2)$ e $(2, 1)$ formano un parallelogramma di area 3 (in blu): il determinante $1 \cdot 1 - 2 \cdot 2 = -3$ non è zero. Le colonne $(1, 2)$ e $(2, 4)$ stanno sulla stessa retta (tratteggio): il parallelogramma è schiacciato e il determinante $1 \cdot 4 - 2 \cdot 2$ vale zero
+x: -0.6 3.4
+y: -0.5 4.5
+poligono: 0 0 1 2 3 3 2 1 | blu | pieno
+retta: 0 0 1.5 3 | rosa | tratteggio
+vettore: 2 4 | rosa | spesso | $(2, 4)$ | e
+vettore: 1 2 | accento | spesso | $(1, 2)$ | o
+vettore: 2 1 | blu | spesso | $(2, 1)$ | se
+```
+
+Le dispense spiegano un senso: se una riga è combinazione delle altre, il determinante è zero. L'idea: con mosse del terzo tipo, che non cambiano il determinante, si toglie quella combinazione e resta una riga di zeri. Ecco i passaggi, quando la riga di troppo è la prima.
 
 Supponiamo che esistano numeri $c_2, \dots, c_n$ con
 
@@ -46335,26 +46853,26 @@ dove $A_1, \dots, A_n$ sono le righe di $A$.
 3. Alla fine la prima riga è $0 + c_2A_2 + \dots + c_nA_n = A_1$: la matrice finale è esattamente $A$.
 4. Quindi $\det(A) = \det(A') = 0$.
 
-Le dispense non dimostrano l'altro senso: se il determinante è zero, allora qualche riga è un doppione.
+Le dispense non dimostrano l'altro senso: se il determinante è zero, allora qualche riga è combinazione delle altre.
 
 > [!NOTA] Quale «Proprietà 1»?
 > Nelle dispense, a p. 47, il passaggio 1 è giustificato con «per la Proprietà 1»: si tratta della prima proprietà della sezione 9.C, cioè della Proposizione 9.10 (una riga nulla dà determinante nullo), non del punto (1) della Proposizione 10.1 (lo scambio di due righe).
 
 > [!OLTRE] · l'altra direzione, e il collegamento con il rango
-> Martelli (Proposizione 3.3.12) dimostra che per una matrice quadrata $n \times n$ il determinante è diverso da zero esattamente quando il rango è $n$ (lezione L08). Usa le mosse di Gauss: le mosse non cambiano il rango e cambiano il determinante solo per numeri diversi da zero. Per una matrice a scalini le due condizioni dicono la stessa cosa: tutti i numeri sulla diagonale sono diversi da zero. Da qui segue l'altro senso della Proposizione 10.3. Se il determinante è zero, il rango è minore di $n$; il rango per righe è lo stesso (Proposizione 8.6), quindi le righe sono dipendenti, e una di loro è un doppione (Proposizione 7.2). Un'altra conseguenza (Martelli, Proposizione 3.3.15): **$n$ vettori di $\K^n$ formano una base esattamente quando la matrice che li ha come colonne ha determinante diverso da zero.**
+> Martelli (Proposizione 3.3.12) dimostra che per una matrice quadrata $n \times n$ il determinante è diverso da zero esattamente quando il rango è $n$ (lezione L08). Usa le mosse di Gauss: le mosse non cambiano il rango e cambiano il determinante solo per numeri diversi da zero. Per una matrice a scalini le due condizioni dicono la stessa cosa: tutti i numeri sulla diagonale sono diversi da zero. Da qui segue l'altro senso della Proposizione 10.3. Se il determinante è zero, il rango è minore di $n$; il rango per righe è lo stesso (Proposizione 8.6), quindi le righe sono dipendenti, e una di loro è combinazione delle altre (Proposizione 7.2). Un'altra conseguenza (Martelli, Proposizione 3.3.15): **$n$ vettori di $\K^n$ formano una base esattamente quando la matrice che li ha come colonne ha determinante diverso da zero.**
 
 > [!ESEMPIO] · Determinanti nulli a colpo d'occhio
 > $$\det \begin{pmatrix} 1 & 5 & 1 \\ 2 & 7 & 2 \\ 3 & 0 & 3 \end{pmatrix} = 0, \qquad \det \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 5 & 1 & 9 \end{pmatrix} = 0, \qquad \det \begin{pmatrix} 1 & 2 & 3 & 4 \\ 5 & 6 & 7 & 8 \\ 9 & 10 & 11 & 12 \\ 13 & 14 & 15 & 16 \end{pmatrix} = 0.$$
 > - Nella prima la prima e la terza **colonna** sono uguali.
 > - Nella seconda la seconda riga è il doppio della prima.
-> - Nella terza ogni riga supera la precedente di $(4, 4, 4, 4)$. Quindi $R_2 - R_1 = R_3 - R_2$, cioè $R_3 = 2R_2 - R_1$: la terza riga è un doppione.
+> - Nella terza ogni riga supera la precedente di $(4, 4, 4, 4)$. Quindi $R_2 - R_1 = R_3 - R_2$, cioè $R_3 = 2R_2 - R_1$: la terza riga è di troppo.
 
-::: prova Il determinante di $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 1 & 3 & 7 \end{pmatrix}$ è zero? Cerca un doppione.
-Sì: la terza riga è la somma delle prime due, $(1 + 0,\ 2 + 1,\ 3 + 4) = (1, 3, 7)$. È un doppione, quindi il determinante è zero.
+::: prova Il determinante di $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 1 & 3 & 7 \end{pmatrix}$ è zero? Cerca una riga di troppo.
+Sì: la terza riga è la somma delle prime due, $(1 + 0,\ 2 + 1,\ 3 + 4) = (1, 3, 7)$. È di troppo, quindi il determinante è zero.
 :::
 
 > [!RICORDA]
-> - Determinante zero esattamente quando una riga, o una colonna, è un doppione delle altre.
+> - Determinante zero esattamente quando una riga, o una colonna, è combinazione delle altre.
 > - Righe uguali, proporzionali o somme di altre righe: determinante zero senza conti.
 
 ## Il determinante di un prodotto: il teorema di Binet (p. 47)
@@ -46419,6 +46937,18 @@ Con le matrici succede lo stesso. Il ruolo del numero 1 lo fa la matrice identit
 >
 > $N = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ invece **non** è invertibile, anche se non è la matrice nulla. Per ogni matrice $B$, il prodotto $NB$ ha la seconda riga di zeri: è 0 volte la prima riga di $B$ più 0 volte la seconda. Quindi non può essere l'identità.
 
+```grafico
+titolo: $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ manda $v = (1, 1)$ in $Av = (3, 2)$; l'inversa $A^{-1} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$ riporta $(3, 2)$ in $(1, 1)$
+x: -0.5 3.8
+y: -0.5 3
+vettore: 1 1 | accento | spesso | $v$ | o
+vettore: 3 2 | ambra | spesso | $Av$ | ne
+freccia: 1.1 1.15 2.85 2.2 | blu
+freccia: 2.95 1.75 1.3 0.75 | rosa
+testo: 1.8 1.95 | blu | $A$
+testo: 2.45 0.95 | rosa | $A^{-1}$
+```
+
 Nel disegno, $N$ schiaccia tutto il piano sull'asse orizzontale: due punti con la stessa prima coordinata finiscono nello stesso posto. Una volta schiacciati, non si può più tornare indietro.
 
 Binet dice subito quanto vale il determinante dell'inversa.
@@ -46436,7 +46966,7 @@ $$1 = \det(I_n) = \det(AA^{-1}) = \det(A) \det(A^{-1}),$$
 e da qui la formula. In particolare una matrice invertibile ha determinante **diverso da zero**: se fosse zero, il prodotto $\det(A) \det(A^{-1})$ varrebbe 0 e non 1.
 
 > [!TRAPPOLA] Binet vale solo per matrici quadrate
-> Se $A$ è $3 \times 2$, scrivere $\det(A\,{}^tA) = \det A \cdot \det({}^tA)$ non ha senso: $A$ non è quadrata, e il suo determinante non esiste. Il prodotto $A\,{}^tA$ invece è $3 \times 3$ e ha un determinante. Per esempio con $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$ si trova $\det(A\,{}^tA) = 0$: le sue colonne sono ricette con le due colonne di $A$, quindi il rango è al massimo 2. Invece ${}^tA\,A = \begin{pmatrix} 2 & 2 \\ 2 & 5 \end{pmatrix}$ ha determinante $6$.
+> Se $A$ è $3 \times 2$, scrivere $\det(A\,{}^tA) = \det A \cdot \det({}^tA)$ non ha senso: $A$ non è quadrata, e il suo determinante non esiste. Il prodotto $A\,{}^tA$ invece è $3 \times 3$ e ha un determinante. Per esempio con $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$ si trova $\det(A\,{}^tA) = 0$: le sue colonne sono combinazioni delle due colonne di $A$, quindi il rango è al massimo 2. Invece ${}^tA\,A = \begin{pmatrix} 2 & 2 \\ 2 & 5 \end{pmatrix}$ ha determinante $6$.
 
 ::: prova Una matrice ha determinante 4. Quanto vale il determinante della sua inversa?
 $\frac 14$: l'inverso del determinante.
@@ -46599,7 +47129,7 @@ modi: inversa
 > Per una matrice quadrata $A \in M(n, \K)$ queste frasi dicono tutte la stessa cosa:
 > - $A$ è invertibile;
 > - il determinante di $A$ non è zero (Proposizione 10.8);
-> - nessuna riga, e nessuna colonna, è un doppione delle altre (Proposizione 10.3);
+> - nessuna riga, e nessuna colonna, è combinazione delle altre (Proposizione 10.3);
 > - il rango di $A$ è $n$ (Martelli, Proposizione 3.3.12);
 > - le colonne di $A$ formano una base di $\K^n$ (Martelli, Proposizione 3.3.15);
 > - per ogni $b \in \K^n$ il sistema $Ax = b$ ha una e una sola soluzione, $x = A^{-1}b$ (Martelli, §3.4.8; lezioni L11–L13).
@@ -46669,7 +47199,7 @@ Questa lezione è tra le più presenti all'esame:
 >
 > **La risposta:** $A$ è invertibile per tutti i valori di $k$ **tranne** $k = 1$ e $k = -1$.
 >
-> **Controllo con $k = 1$.** La matrice diventa $\begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{pmatrix}$, e la seconda riga è la somma delle altre due: un doppione, quindi determinante zero.
+> **Controllo con $k = 1$.** La matrice diventa $\begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{pmatrix}$, e la seconda riga è la somma delle altre due, quindi il determinante è zero.
 
 ### Altre due domande vere
 
@@ -46707,7 +47237,7 @@ Questa lezione è tra le più presenti all'esame:
 >
 > Per esempio, se $A$ è $3 \times 3$ con determinante 4: $\det(2A^{-1}) = 2^3 \cdot \frac 14 = 2$.
 
-**Errori da evitare.**
+### Errori da evitare
 
 - Scrivere che il determinante di $A^3$ è 3 volte quello di $A$: è il cubo.
 - Credere che la matrice a scalini abbia lo stesso determinante della matrice di partenza.
@@ -46721,6 +47251,46 @@ Questa lezione è tra le più presenti all'esame:
 ## Quiz
 
 ```quiz
+D: Appello del 03/07/2026, domanda 6. Sia $A = \begin{pmatrix} 1 & 0 & 2 \\ 3 & -1 & 1 \\ 2 & 0 & 5 \end{pmatrix}$. Il determinante di $A^3$ è:
+- $-8$
++ $-1$
+- $0$
+- $1$
+- $8$
+= Sviluppo lungo la seconda colonna, che ha solo il $-1$ in posizione $(2, 2)$, con segno più: $\det A = -1 \cdot (1 \cdot 5 - 2 \cdot 2) = -1$. Per Binet $\det(A^3) = (-1)^3 = -1$: è la (b) della soluzione ufficiale. La risposta più insidiosa è $1$, di chi perde il segno nella potenza dispari.
+
+D: Appello del 06/09/2024, domanda 4. Sia $A = \begin{pmatrix} 0 & 1 & 2 \\ 2 & 2 & 0 \\ 1 & 1 & 1 \end{pmatrix}$. Il determinante di $A^4$ è:
+- 0
+- 8
+- $-8$
++ 16
+- $-16$
+= Lungo la prima riga: $\det A = 0 - 1 \cdot (2 - 0) + 2 \cdot (2 - 2) = -2$. Per Binet $\det(A^4) = (-2)^4 = 16$: è la (d) della soluzione ufficiale. La risposta più insidiosa è $-16$: con una potenza pari il segno meno sparisce.
+
+D: Appello del 03/06/2025, domanda 9. Data la matrice $A = \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 0 \end{pmatrix}$, il determinante di $A \cdot {}^tA$ è:
++ 0
+- 9
+- non si può calcolare, poiché $A$ non è una matrice quadrata
+- 3
+- 2
+= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata. La sua terza riga è la terza riga di $A$, fatta di zeri, per le colonne di ${}^tA$: è nulla, e il determinante è 0. È la (a) della soluzione ufficiale. La risposta più insidiosa è la (c): a non essere quadrata è $A$, non il prodotto; e Binet qui non si usa, perché $\det A$ non esiste.
+
+D: Appello del 16/01/2025, domanda 3. Date $A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 1 & 2 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$, calcolare traccia e determinante di $AB$.
+- $\det(AB) = 1$, $\tr(AB) = 9$
+- $\det(AB) = 2$, $\tr(AB) = 6$
++ $\det(AB) = 1$, $\tr(AB) = 4$
+- $\det(AB) = 3$, $\tr(AB) = 36$
+- $\det(AB) = 3$, $\tr(AB) = 3$
+= $A$ e $B$ sono triangolari con diagonale di 1, quindi per Binet $\det(AB) = 1 \cdot 1 = 1$. La diagonale di $AB$ è $1$, $1$ e $(1, 2, 1) \cdot (1, 0, 1) = 2$: la traccia è 4. È la (c) della soluzione ufficiale. La risposta più insidiosa è la (a), che moltiplica le tracce: per la traccia non c'è una regola come Binet.
+
+D: Appello del 10/06/2024, domanda 2. Sia $A = \begin{pmatrix} 11 & 12 & 13 & 14 \\ 21 & 22 & 23 & 24 \\ 31 & 32 & 33 & 34 \\ 41 & 42 & 43 & 44 \end{pmatrix}$. Il determinante di $A$ è:
+- $24 \cdot 10^3$
++ 0
+- $-24$
+- 1716
+- 1
+= Ogni riga supera la precedente di $(10, 10, 10, 10)$, quindi $R_3 = 2R_2 - R_1$: la terza riga è combinazione delle altre e il determinante è zero (Proposizione 10.3). È la (b) della soluzione ufficiale, che ci arriva togliendo la prima riga dalle altre. La risposta più insidiosa è $24 \cdot 10^3$, che fa sembrare il conto lungo: qui non serve nessun conto.
+
 D: Sia $A$ una matrice quadrata che, ridotta a scalini con l'algoritmo di Gauss, diventa $\begin{pmatrix} 2 & 1 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 3 \end{pmatrix}$. Quale delle seguenti affermazioni **non** è necessariamente vera?
 + $\det A = 6$.
 - $\det A \neq 0$.
@@ -46791,7 +47361,7 @@ D: Data $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$, il determin
 - Non si può calcolare, poiché $A$ non è quadrata.
 - $36$
 - $1$
-= Il prodotto $A\,{}^tA$ è $3 \times 3$, quindi il suo determinante esiste, anche se $A$ non è quadrata: per questo «non si può calcolare» è la risposta più insidiosa. Ogni colonna di $A\,{}^tA$ è $A$ per un vettore, cioè una ricetta con le due colonne di $A$. Quindi tre colonne vivono in un piano: sono dipendenti, e il determinante è 0 (Proposizione 10.3). Il 6 è il determinante di ${}^tA\,A$, il prodotto nell'altro ordine, che è $2 \times 2$. Simile all'appello del 03/06/2025, domanda 9.
+= Il prodotto $A\,{}^tA$ è $3 \times 3$, quindi il suo determinante esiste, anche se $A$ non è quadrata: per questo «non si può calcolare» è la risposta più insidiosa. Ogni colonna di $A\,{}^tA$ è $A$ per un vettore, cioè una combinazione delle due colonne di $A$. Quindi tre colonne vivono in un piano: sono dipendenti, e il determinante è 0 (Proposizione 10.3). Il 6 è il determinante di ${}^tA\,A$, il prodotto nell'altro ordine, che è $2 \times 2$. Simile all'appello del 03/06/2025, domanda 9.
 
 D: Sia $A = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix}$. Quanto vale l'elemento di posto $(1, 3)$ di $A^{-1}$? Scrivi una frazione.
 N: 1/3
@@ -46850,9 +47420,9 @@ Triangolare con diagonale 1, 1, 1, 2: il determinante è 2.
 Spiega perché queste matrici hanno determinante nullo, senza calcolarlo:
 $$A = \begin{pmatrix} 3 & 1 & 4 \\ 1 & 5 & 9 \\ 3 & 1 & 4 \end{pmatrix}, \quad B = \begin{pmatrix} 2 & -6 & 1 \\ 1 & -3 & 7 \\ 0 & 0 & 2 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 0 & 1 \\ 2 & 1 & 3 \\ 3 & 1 & 4 \end{pmatrix}.$$
 ::: soluzione
-- $A$: la prima e la terza riga sono uguali. La prima è un doppione della terza, quindi il determinante è zero (Proposizione 10.3). Oppure: $R_3 \to R_3 - R_1$ crea una riga di zeri senza cambiare il determinante.
-- $B$: la seconda colonna è $-3$ volte la prima, perché $(-6, -3, 0) = -3 \cdot (2, 1, 0)$. Una colonna doppione: determinante zero.
-- $C$: la terza riga è la somma delle prime due, $(1 + 2,\ 0 + 1,\ 1 + 3) = (3, 1, 4)$. Quindi il determinante è zero. Qui anche la terza colonna è la somma delle prime due. In generale, se le righe di una matrice quadrata sono dipendenti lo sono anche le colonne, perché rango per righe e rango per colonne coincidono (Proposizione 8.6). La ricetta tra le colonne però può avere dosi diverse.
+- $A$: la prima e la terza riga sono uguali. La prima è una copia della terza, quindi il determinante è zero (Proposizione 10.3). Oppure: $R_3 \to R_3 - R_1$ crea una riga di zeri senza cambiare il determinante.
+- $B$: la seconda colonna è $-3$ volte la prima, perché $(-6, -3, 0) = -3 \cdot (2, 1, 0)$. Una colonna è multipla di un'altra: determinante zero.
+- $C$: la terza riga è la somma delle prime due, $(1 + 2,\ 0 + 1,\ 1 + 3) = (3, 1, 4)$. Quindi il determinante è zero. Qui anche la terza colonna è la somma delle prime due. In generale, se le righe di una matrice quadrata sono dipendenti lo sono anche le colonne, perché rango per righe e rango per colonne coincidono (Proposizione 8.6). La combinazione tra le colonne però può avere coefficienti diversi.
 :::
 
 ::: esercizio medio Esercizio 10.9 delle dispense: un'inversa con parametro
@@ -47046,7 +47616,7 @@ Si rende la matrice triangolare con mosse del terzo tipo, e scambi se serve. Poi
 :::
 
 ::: domanda Che cosa dice la Proposizione 10.3?
-Il determinante è zero esattamente quando una riga, o una colonna, è un doppione delle altre, cioè si ottiene mescolandole.
+Il determinante è zero esattamente quando una riga, o una colonna, è combinazione lineare delle altre.
 :::
 
 ::: domanda Enuncia il teorema di Binet e due sue conseguenze.
@@ -47091,7 +47661,7 @@ Si calcola il determinante con $k$ dentro, lo si scompone in fattori, si trovano
 Mossa di Gauss | Una delle tre operazioni sulle righe: scambiare due righe, moltiplicare una riga per un numero diverso da zero, aggiungere a una riga un multiplo di un'altra.
 Effetto sul determinante | Scambio: cambia segno. Riga per un numero: determinante per quel numero. Riga più un multiplo di un'altra: invariato.
 Metodo di Gauss per il determinante | Rendere la matrice triangolare con le mosse e moltiplicare la diagonale, contando gli scambi.
-Righe dipendenti | Righe tra cui una è un doppione delle altre. Succede esattamente quando il determinante è zero.
+Righe dipendenti | Righe tra cui una è combinazione delle altre. Succede esattamente quando il determinante è zero.
 Teorema di Binet | Il determinante di un prodotto di matrici quadrate è il prodotto dei determinanti.
 Matrice invertibile | Una matrice quadrata che ha un'inversa: un'altra matrice che la disfa.
 Matrice inversa $A^{-1}$ | L'unica matrice con $AA^{-1} = A^{-1}A = I_n$. Il suo determinante è $1/\det A$.
@@ -47138,12 +47708,13 @@ corso: MDAG
 modulo: AG
 lezione: L11
 titolo: Sistemi lineari I
+data: 2026-10-29
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L11
 descrizione: >-
   Appunti della lezione L11 di Algebra lineare e Geometria (MDAG, parte 2): sistemi lineari e matrice completa,
   mosse di Gauss, pivot e matrici a scalini, algoritmi di Gauss e di Gauss–Jordan, come si scrivono tutte le
-  soluzioni di un sistema, con quiz nello stile dell'esame ed esercizi svolti.
+  soluzioni di un sistema, con domande vere degli appelli, quiz ed esercizi svolti.
 lede: >-
   Un metodo che risolve qualsiasi sistema di equazioni, con qualunque numero di equazioni e di incognite. Si
   scrivono i numeri in una tabella, la si riordina con tre mosse e alla fine la risposta si legge: una soluzione,
@@ -47162,7 +47733,7 @@ genera_html: true
 
 ## In breve
 
-- Un **sistema lineare** è un indovinello con più indizi: cerchi dei numeri che rispettano tutte le condizioni insieme. Ogni indizio è un'**equazione**. I numeri da trovare si chiamano **incognite**.
+- Un **sistema lineare** è un elenco di **equazioni** da rispettare tutte insieme: si cercano i numeri che le soddisfano tutte. I numeri da trovare si chiamano **incognite**.
 - Per fare i conti si scrivono solo i numeri, in una tabella: la **matrice completa**. Ogni riga della tabella è un'equazione.
 - Tre **mosse di Gauss** cambiano le righe senza cambiare le soluzioni: scambiare due righe, moltiplicare una riga per un numero diverso da zero, sommare a una riga un multiplo di un'altra riga.
 - Con le mosse si porta la tabella **a scalini**: una forma a scala in cui il sistema si risolve dal basso. Il primo numero diverso da zero di ogni riga si chiama **pivot**.
@@ -47170,21 +47741,21 @@ genera_html: true
 - All'esame il quiz «quante soluzioni ha il sistema?» è uscito in 9 appelli su 15, e quasi ogni problema aperto finisce con questi conti.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 29/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 11. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
-## Un indovinello con più indizi: il sistema (p. 50)
+## Che cos'è un sistema lineare (p. 50)
 
-Partiamo da un indovinello: penso a due numeri, la loro somma fa 5 e la loro differenza fa 1. Quali sono?
+Un esempio: due numeri hanno somma 5 e differenza 1. Quali sono?
 
-Ci sono due numeri da trovare e due **indizi**. La risposta deve rispettare tutti e due gli indizi insieme.
+Ci sono due numeri da trovare e due **condizioni**. La risposta deve rispettare tutte e due le condizioni insieme.
 
 ### Dare un nome ai numeri da trovare
 
 Un numero che non conosci ancora si chiama **incognita**. Per poterne parlare gli si dà un nome: una lettera. Qui i numeri da trovare sono due, quindi servono due lettere. Chiamiamo $x$ il primo numero e $y$ il secondo.
 
-Adesso ogni indizio si scrive in breve.
+Adesso ogni condizione si scrive in breve.
 
-| L'indizio a parole | Scritto con le lettere |
+| La condizione a parole | Scritto con le lettere |
 |---|---|
 | la somma dei due numeri fa 5 | $x + y = 5$ |
 | il primo meno il secondo fa 1 | $x - y = 1$ |
@@ -47208,7 +47779,7 @@ $$\begin{cases} x + y = 5 \\ x - y = 1 \end{cases}$$
 
 La graffa si legge «tutte insieme». Un gruppo di equazioni da rispettare tutte insieme si chiama **sistema**.
 
-### Risolvere l'indovinello ragionando
+### Risolverlo ragionando
 
 Proviamo a trovare i due numeri senza andare a tentativi.
 
@@ -47219,7 +47790,7 @@ La prima equazione dice che $x + y$ e 5 sono lo stesso numero. La seconda dice c
 3. **L'equazione nuova** è $2x = 6$. Dividi per 2 i due lati: $x = 3$.
 4. **Il secondo numero.** Torna alla prima equazione e metti 3 al posto di $x$. Diventa $3 + y = 5$. Togli 3 dai due lati: $y = 2$.
 
-I due numeri sono 3 e 2. Controlliamo con gli indizi di partenza.
+I due numeri sono 3 e 2. Controlliamo con le condizioni di partenza.
 
 - La somma: $3 + 2 = 5$. Giusto.
 - La differenza: $3 - 2 = 1$. Giusto.
@@ -47235,9 +47806,9 @@ Proviamo un'altra lista: $(4, 1)$.
 - Prima equazione: $4 + 1 = 5$. Vera.
 - Seconda equazione: $4 - 1 = 3$, ma doveva fare 1. Falsa.
 
-Quindi $(4, 1)$ **non** è una soluzione. Basta un solo indizio non rispettato per scartare una lista.
+Quindi $(4, 1)$ **non** è una soluzione. Basta una sola condizione non rispettata per scartare una lista.
 
-Tutte le soluzioni di un sistema, messe insieme, formano un insieme. Le dispense lo chiamano $S$, come «soluzioni». L'indovinello ha una soluzione sola, quindi il suo insieme $S$ ha un solo elemento:
+Tutte le soluzioni di un sistema, messe insieme, formano un insieme. Le dispense lo chiamano $S$, come «soluzioni». Il sistema di partenza ha una soluzione sola, quindi il suo insieme $S$ ha un solo elemento:
 
 $$S = \{(3, 2)\}$$
 
@@ -47267,7 +47838,7 @@ Si legge «ics uno», «ics due», «ics tre». Il numerino si chiama **indice**
 
 ### Che cosa vuol dire «lineare»
 
-Gli indizi di questa lezione sono tutti dello stesso tipo. Ogni incognita può essere solo **moltiplicata per un numero**. Poi i pezzi si **sommano**. Nient'altro. Un'equazione fatta così si chiama **lineare**.
+Le equazioni di questa lezione sono tutte dello stesso tipo. Ogni incognita può essere solo **moltiplicata per un numero**. Poi i pezzi si **sommano**. Nient'altro. Un'equazione fatta così si chiama **lineare**.
 
 Non sono permesse tre cose: un'incognita moltiplicata per sé stessa, due incognite moltiplicate tra loro, un'incognita chiusa dentro un'altra operazione.
 
@@ -47282,8 +47853,8 @@ Non sono permesse tre cose: un'incognita moltiplicata per sé stessa, due incogn
 
 Un **sistema lineare** è un sistema in cui tutte le equazioni sono lineari. Il metodo di questa lezione funziona solo per questi sistemi.
 
-::: prova La lista $(1, 4)$ è una soluzione del sistema dell'indovinello?
-No. Prima equazione: $1 + 4 = 5$, vera. Seconda equazione: $1 - 4 = -3$, ma doveva fare 1. Un indizio non è rispettato, quindi la lista si scarta.
+::: prova La lista $(1, 4)$ è una soluzione del sistema di partenza?
+No. Prima equazione: $1 + 4 = 5$, vera. Seconda equazione: $1 - 4 = -3$, ma doveva fare 1. Una condizione non è rispettata, quindi la lista si scarta.
 :::
 
 ::: prova Quali di queste equazioni sono lineari? (a) $3x - y = 2$; (b) $x \cdot y = 1$; (c) $x + y + z = 0$; (d) $x^2 = 9$.
@@ -47308,7 +47879,7 @@ I coefficienti sono 5, $-1$ e 2. Davanti a $y$ c'è solo il segno meno, quindi i
 
 ## Una, nessuna, infinite: tre finali in un disegno (oltre le dispense)
 
-Un indovinello può finire in tre modi: con una risposta sola, con nessuna risposta, con infinite risposte. Quando le incognite sono due, i tre finali si vedono in un disegno.
+Un sistema può finire in tre modi: con una risposta sola, con nessuna risposta, con infinite risposte. Quando le incognite sono due, i tre finali si vedono in un disegno.
 
 > [!RIPASSO] punti e rette sul foglio a quadretti
 > Prendi un foglio a quadretti e disegna due righe numerate che si incrociano: una orizzontale e una verticale. Si chiamano **assi**. Il punto in cui si incrociano è lo zero di tutti e due.
@@ -47323,7 +47894,7 @@ Un sistema di due equazioni è fatto di due rette. Una soluzione deve rispettare
 
 Due rette sullo stesso foglio possono stare in tre modi.
 
-**Primo finale: le rette si incrociano.** È il caso dell'indovinello. Guarda la figura: le due rette hanno un solo punto in comune, quello della soluzione $(3, 2)$. Il sistema ha **una sola soluzione**.
+**Primo finale: le rette si incrociano.** È il caso del sistema di partenza. Guarda la figura: le due rette hanno un solo punto in comune, quello della soluzione $(3, 2)$. Il sistema ha **una sola soluzione**.
 
 ```grafico
 titolo: $x + y = 5$ e $x - y = 1$ si incontrano in un punto: una sola soluzione, $(3, 2)$
@@ -47334,7 +47905,7 @@ retta: 1 0 4 3 | blu | $x - y = 1$ | se
 punto: 3 2 | ambra | $(3, 2)$ | e
 ```
 
-**Secondo finale: le rette sono parallele.** Prendi questi due indizi: «la somma fa 2» e «la somma fa 4». La somma di due numeri non può fare 2 e 4 nello stesso momento. I due indizi si contraddicono. Guarda la figura: le due rette non si toccano mai. Il sistema **non ha nessuna soluzione**.
+**Secondo finale: le rette sono parallele.** Prendi queste due condizioni: «la somma fa 2» e «la somma fa 4». La somma di due numeri non può fare 2 e 4 nello stesso momento. I due condizioni si contraddicono. Guarda la figura: le due rette non si toccano mai. Il sistema **non ha nessuna soluzione**.
 
 ```grafico
 titolo: $x + y = 2$ e $x + y = 4$ sono parallele: nessun punto comune, nessuna soluzione
@@ -47344,7 +47915,7 @@ retta: 2 0 0 2 | accento | $x + y = 2$ | ne
 retta: 4 0 0.5 3.5 | blu | $x + y = 4$ | ne
 ```
 
-**Terzo finale: le rette coincidono.** Prendi «la somma fa 2» e «il doppio della somma fa 4». Il secondo indizio ripete il primo con altre parole: non aggiunge niente. Guarda la figura: le due rette stanno una sopra l'altra. Ogni punto della retta è una soluzione: $(2, 0)$, poi $(1, 1)$, poi $(0, 2)$ e tutti gli altri. Il sistema ha **infinite soluzioni**.
+**Terzo finale: le rette coincidono.** Prendi «la somma fa 2» e «il doppio della somma fa 4». La seconda condizione ripete la prima con altre parole: non aggiunge niente. Guarda la figura: le due rette stanno una sopra l'altra. Ogni punto della retta è una soluzione: $(2, 0)$, poi $(1, 1)$, poi $(0, 2)$ e tutti gli altri. Il sistema ha **infinite soluzioni**.
 
 ```grafico
 titolo: $x + y = 2$ e $2x + 2y = 4$ sono la stessa retta: infinite soluzioni
@@ -47358,24 +47929,24 @@ Con due rette non esistono altri casi. Per esempio le soluzioni non sono mai esa
 
 Con tre o più incognite il disegno non si riesce più a fare. Ma i finali restano questi tre: nessuna soluzione, una sola, infinite. Lo dimostra il teorema di Rouché–Capelli, nella lezione L12. Il metodo di questa lezione dice ogni volta in quale dei tre finali sei.
 
-::: prova Senza fare conti: quante soluzioni ha il sistema con gli indizi «la somma fa 3» e «la somma fa 7»?
+::: prova Senza fare conti: quante soluzioni ha il sistema con le condizioni «la somma fa 3» e «la somma fa 7»?
 Nessuna. La somma di due numeri non può fare 3 e 7 nello stesso momento. Nel disegno sono due rette parallele.
 :::
 
 ::: prova Quante soluzioni ha il sistema $x + y = 3$, $3x + 3y = 9$?
 Infinite. La seconda equazione è la prima moltiplicata per 3: a sinistra $3 \cdot (x + y)$ fa $3x + 3y$, a destra $3 \cdot 3$ fa 9. Non dice niente di nuovo.
 
-Resta un solo indizio, $x + y = 3$. Le coppie che lo rispettano sono infinite: $(0, 3)$, $(1, 2)$, $(3, 0)$ e così via. Nel disegno le due rette coincidono.
+Resta una sola condizione, $x + y = 3$. Le coppie che lo rispettano sono infinite: $(0, 3)$, $(1, 2)$, $(3, 0)$ e così via. Nel disegno le due rette coincidono.
 :::
 
 > [!RICORDA]
 > - Un sistema lineare può avere **una** soluzione, **nessuna** oppure **infinite**. Con i numeri reali non ne ha mai esattamente due o tre (lezione L12).
-> - Nessuna soluzione: due indizi si contraddicono.
-> - Infinite soluzioni: un indizio ripete gli altri, e qualcosa resta libero.
+> - Nessuna soluzione: due condizioni si contraddicono.
+> - Infinite soluzioni: una condizione ripete le altre, e qualcosa resta libero.
 
 ## Scrivere solo i numeri: la matrice completa (p. 50)
 
-Rileggi come abbiamo risolto l'indovinello: le lettere non hanno fatto nessun lavoro. I conti li hanno fatti i numeri: quelli davanti alle incognite e quelli a destra dell'uguale. Le lettere servivano solo a tenere ogni numero al suo posto.
+Rileggi come abbiamo risolto il sistema di partenza: le lettere non hanno fatto nessun lavoro. I conti li hanno fatti i numeri: quelli davanti alle incognite e quelli a destra dell'uguale. Le lettere servivano solo a tenere ogni numero al suo posto.
 
 Allora conviene scrivere **solo i numeri**, in una tabella. Sarà il posto nella tabella a dire a quale incognita appartiene ogni numero.
 
@@ -47386,9 +47957,9 @@ Allora conviene scrivere **solo i numeri**, in una tabella. Sarà il posto nella
 >
 > Questa matrice ha 2 righe e 3 colonne. Si scrive «matrice $2 \times 3$» e si legge «due per tre»: prima le righe, poi le colonne. La riga 2 è fatta dei numeri 4, 5 e 6. La colonna 3 è fatta dei numeri 3 e 6. Il numero nella riga 2 e nella colonna 1 è il 4.
 
-### Dall'indovinello alla tabella
+### Dal sistema alla tabella
 
-Il sistema dell'indovinello è questo:
+Il sistema di partenza è questo:
 
 $$\begin{cases} x + y = 5 \\ x - y = 1 \end{cases}$$
 
@@ -47421,7 +47992,7 @@ Le dispense danno un nome a ogni pezzo della tabella.
 - La colonna a destra della barra è il **vettore dei termini noti**. Si indica con la lettera $b$. È un vettore scritto in verticale: un **vettore colonna**.
 - La tabella intera è la **matrice completa**. Si indica con la lettera $C$.
 
-Per l'indovinello:
+Per il sistema di partenza:
 
 $$A = \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \qquad b = \begin{pmatrix} 5 \\ 1 \end{pmatrix} \qquad C = \left(\begin{array}{cc|c} 1 & 1 & 5 \\ 1 & -1 & 1 \end{array}\right)$$
 
@@ -47460,7 +48031,7 @@ Un sistema può avere un numero qualsiasi di equazioni e di incognite. I due num
 - La lettera $k$ è il numero di **equazioni**.
 - La lettera $n$ è il numero di **incognite**.
 
-Nell'indovinello le equazioni sono 2 e le incognite sono 2. Nell'esempio qui sopra sono 3 e 3.
+Nel sistema di partenza le equazioni sono 2 e le incognite sono 2. Nell'esempio qui sopra sono 3 e 3.
 
 Anche i coefficienti sono tanti, e serve un modo per indicarli tutti. Le dispense li chiamano tutti $a$, con **due** numerini in basso. Il primo dice la riga, cioè l'equazione. Il secondo dice la colonna, cioè l'incognita.
 
@@ -47517,11 +48088,11 @@ Le equazioni sono 2, una per riga. Le colonne sono 4, ma l'ultima è quella dei 
 > - Prima di scriverla metti in ordine il sistema: incognite nello stesso ordine, 0 per quelle che mancano, numeri senza incognita a destra.
 > - Le incognite sono le colonne **prima** della barra. L'ultima colonna non è un'incognita.
 
-## Riscrivere gli indizi: le mosse di Gauss (pp. 50–51)
+## Riscrivere le equazioni: le mosse di Gauss (pp. 50–51)
 
-Per risolvere l'indovinello hai sommato le due equazioni. In pratica hai **riscritto gli indizi** in un'altra forma, più comoda, e la risposta è rimasta la stessa.
+Per risolvere il sistema di partenza hai sommato le due equazioni. In pratica hai **riscritto le condizioni** in un'altra forma, più comoda, e la risposta è rimasta la stessa.
 
-Questa è l'idea di tutta la lezione. La soluzione non si cerca a tentativi. Si riscrivono gli indizi, un passo alla volta, finché la soluzione si legge. L'importante è usare solo riscritture che **non cambiano le soluzioni**.
+Questa è l'idea di tutta la lezione. La soluzione non si cerca a tentativi. Si riscrivono le equazioni, un passo alla volta, finché la soluzione si legge. L'importante è usare solo riscritture che **non cambiano le soluzioni**.
 
 Le riscritture sicure sono tre. Si chiamano **mosse di Gauss**, dal nome del matematico tedesco Carl Friedrich Gauss. Le hai già incontrate nella lezione L10, dove servivano per calcolare i determinanti. Qui servono per risolvere i sistemi.
 
@@ -47529,7 +48100,7 @@ Ogni mossa lavora sulle **righe** della matrice completa, cioè sulle equazioni.
 
 ### Prima mossa: scambiare due righe
 
-Dire gli indizi in un altro ordine non cambia l'indovinello. «La somma fa 5 e la differenza fa 1» è lo stesso di «la differenza fa 1 e la somma fa 5».
+Scrivere le equazioni in un altro ordine non cambia il sistema. «La somma fa 5 e la differenza fa 1» è lo stesso di «la differenza fa 1 e la somma fa 5».
 
 Sulla matrice completa vuol dire scambiare di posto due righe intere:
 
@@ -47541,26 +48112,26 @@ La mossa si scrive $R_1 \leftrightarrow R_2$. La freccia a due punte si legge «
 
 «La somma fa 5» e «il doppio della somma fa 10» dicono la stessa cosa. Chi conosce una delle due frasi conosce anche l'altra.
 
-Sulla matrice vuol dire moltiplicare per lo stesso numero **tutti** i numeri di una riga, compreso quello dopo la barra. Moltiplichiamo per 2 la prima riga dell'indovinello.
+Sulla matrice vuol dire moltiplicare per lo stesso numero **tutti** i numeri di una riga, compreso quello dopo la barra. Moltiplichiamo per 2 la prima riga del sistema di partenza.
 
 | | colonna di $x$ | colonna di $y$ | termine noto |
 |---|---|---|---|
 | riga 1 | $1$ | $1$ | $5$ |
 | 2 volte la riga 1 | $2 \cdot 1 = 2$ | $2 \cdot 1 = 2$ | $2 \cdot 5 = 10$ |
 
-La nuova riga 1 è $(2, 2 \mid 10)$: i due coefficienti, la barra e il termine noto. È l'equazione $2x + 2y = 10$. La soluzione dell'indovinello la rispetta ancora:
+La nuova riga 1 è $(2, 2 \mid 10)$: i due coefficienti, la barra e il termine noto. È l'equazione $2x + 2y = 10$. La soluzione del sistema di partenza la rispetta ancora:
 
 $$2 \cdot 3 + 2 \cdot 2 = 6 + 4 = 10$$
 
 La mossa si scrive $R_1 \to 2R_1$. La freccia si legge «diventa»: «la riga 1 diventa 2 volte la riga 1».
 
-C'è un solo divieto: il numero non può essere **zero**. Prova a moltiplicare per 0 la riga dell'indizio «la somma fa 5». Tutti i suoi numeri diventano 0, e la riga diventa l'equazione $0 = 0$. È vera, ma non dice più niente. L'indizio è andato perso, e non c'è modo di recuperarlo.
+C'è un solo divieto: il numero non può essere **zero**. Prova a moltiplicare per 0 la riga della condizione «la somma fa 5». Tutti i suoi numeri diventano 0, e la riga diventa l'equazione $0 = 0$. È vera, ma non dice più niente. L'informazione è andata persa, e non c'è modo di recuperarlo.
 
 Si può invece moltiplicare per una frazione. Moltiplicare per $\frac 12$ vuol dire dividere per 2: serve a rimpicciolire i numeri di una riga.
 
 ### Terza mossa: sommare a una riga un multiplo di un'altra
 
-È la mossa dell'indovinello, ed è quella che fa quasi tutto il lavoro. Hai due indizi veri. Ne sommi uno all'altro, e ottieni un indizio nuovo, vero anche lui.
+È la mossa usata per il sistema di partenza, ed è quella che fa quasi tutto il lavoro. Se due equazioni sono vere, anche la loro somma è vera: è un'equazione nuova, rispettata dalle stesse soluzioni.
 
 Prima di usarla conviene ricordare come si fanno i conti con il segno meno, perché qui compaiono di continuo.
 
@@ -47570,7 +48141,7 @@ Prima di usarla conviene ricordare come si fanno i conti con il segno meno, perc
 > - **Sottrarre un numero negativo** è come sommare: $5 - (-2) = 5 + 2 = 7$. Togliere un debito è un guadagno.
 > - **Nei prodotti e nelle divisioni** contano i segni. Segni uguali danno più: $(-2) \cdot (-3) = 6$. Segni diversi danno meno: $2 \cdot (-3) = -6$.
 
-Sulla matrice dell'indovinello facciamo questa mossa: alla riga 2 **togliamo** la riga 1. Togliere è un caso della terza mossa: è come sommare la riga 1 moltiplicata per $-1$.
+Sulla matrice del sistema di partenza facciamo questa mossa: alla riga 2 **togliamo** la riga 1. Togliere è un caso della terza mossa: è come sommare la riga 1 moltiplicata per $-1$.
 
 Perché proprio questa mossa? Perché in tutte e due le righe il primo numero è 1. Se li sottrai viene $1 - 1 = 0$. Uno zero nella colonna di $x$ vuol dire che l'incognita $x$ sparisce dalla riga 2.
 
@@ -47586,7 +48157,7 @@ La nuova riga 2 è $(0, -2 \mid -4)$. La riga 1 **non cambia**: è servita per i
 
 $$\left(\begin{array}{cc|c} 1 & 1 & 5 \\ 1 & -1 & 1 \end{array}\right) \longrightarrow \left(\begin{array}{cc|c} 1 & 1 & 5 \\ 0 & -2 & -4 \end{array}\right)$$
 
-La nuova riga 2 è l'equazione $-2y = -4$. Dentro c'è una sola incognita. Dividi i due lati per $-2$ e ottieni $y = 2$: è il secondo numero dell'indovinello.
+La nuova riga 2 è l'equazione $-2y = -4$. Dentro c'è una sola incognita. Dividi i due lati per $-2$ e ottieni $y = 2$: è il secondo numero del sistema di partenza.
 
 La mossa si scrive $R_2 \to R_2 - R_1$. Si legge: «la riga 2 diventa la riga 2 meno la riga 1».
 
@@ -47646,7 +48217,7 @@ Nella terza mossa le due righe devono essere **diverse**. Cambia solo la riga sc
 
 ### Perché le mosse non cambiano le soluzioni
 
-Tutto il metodo si regge su una promessa: dopo una mossa le soluzioni sono **le stesse** di prima. Nessuna in più, nessuna in meno. Nell'indovinello l'hai visto con la riga moltiplicata per 2: la soluzione la rispettava ancora. Il motivo per cui succede sempre è questo.
+Tutto il metodo si regge su una promessa: dopo una mossa le soluzioni sono **le stesse** di prima. Nessuna in più, nessuna in meno. Nel sistema di partenza l'hai visto con la riga moltiplicata per 2: la soluzione la rispettava ancora. Il motivo per cui succede sempre è questo.
 
 > [!IDEA] ogni mossa si può disfare
 > Ogni mossa di Gauss ha una mossa che la annulla e rimette la matrice com'era.
@@ -47679,11 +48250,11 @@ Le dispense lo scrivono così.
 >    Se una lista risolve le due vecchie, risolve anche la loro somma: quindi risolve la nuova riga $i$. Se una lista risolve le due nuove, togli dalla nuova riga $i$ la riga $j$ moltiplicata per $\lambda$: ritrovi la vecchia riga $i$. Funziona perché la riga $j$ è rimasta intatta. Per questo le due righe devono essere diverse.
 > 4. In tutti e tre i casi le liste che risolvono il sistema sono le stesse prima e dopo la mossa. Quindi $S$ non cambia.
 
-### L'indovinello risolto solo con le mosse
+### Il sistema di partenza risolto solo con le mosse
 
-Adesso rifacciamo l'indovinello dall'inizio alla fine, senza scrivere nessuna lettera: solo mosse sulla matrice completa.
+Adesso rifacciamo il sistema di partenza dall'inizio alla fine, senza scrivere nessuna lettera: solo mosse sulla matrice completa.
 
-> [!ESEMPIO] L'indovinello risolto con le mosse
+> [!ESEMPIO] Il sistema di partenza risolto con le mosse
 > $$\left(\begin{array}{cc|c} 1 & 1 & 5 \\ 1 & -1 & 1 \end{array}\right) \xrightarrow{R_2 \to R_2 - R_1} \left(\begin{array}{cc|c} 1 & 1 & 5 \\ 0 & -2 & -4 \end{array}\right)$$
 > $$\xrightarrow{R_2 \to -\frac 12 R_2} \left(\begin{array}{cc|c} 1 & 1 & 5 \\ 0 & 1 & 2 \end{array}\right) \xrightarrow{R_1 \to R_1 - R_2} \left(\begin{array}{cc|c} 1 & 0 & 3 \\ 0 & 1 & 2 \end{array}\right)$$
 > 1. **La riga 2 diventa la riga 2 meno la riga 1.** È il conto già fatto sopra: la riga 2 diventa $(0, -2 \mid -4)$.
@@ -47695,20 +48266,20 @@ Adesso rifacciamo l'indovinello dall'inizio alla fine, senza scrivere nessuna le
 > [!TRAPPOLA] Una mossa alla volta
 > Non fare due mosse **insieme** usando per tutte e due le righe vecchie.
 >
-> Parti dalla matrice dell'indovinello. Fai nello stesso momento due mosse: «riga 1 meno riga 2» e «riga 2 meno riga 1», tutte e due con le righe di partenza.
+> Parti dalla matrice del sistema di partenza. Fai nello stesso momento due mosse: «riga 1 meno riga 2» e «riga 2 meno riga 1», tutte e due con le righe di partenza.
 >
 > - Nuova riga 1: $(1 - 1,\ 1 - (-1) \mid 5 - 1)$, cioè $(0, 2 \mid 4)$.
 > - Nuova riga 2: $(1 - 1,\ -1 - 1 \mid 1 - 5)$, cioè $(0, -2 \mid -4)$.
 >
 > $$\left(\begin{array}{cc|c} 0 & 2 & 4 \\ 0 & -2 & -4 \end{array}\right)$$
-> Adesso le due righe dicono la stessa cosa: che $y$ vale 2. Di $x$ non si sa più niente: può valere qualsiasi numero. Sembrano infinite soluzioni. Ma l'indovinello ne aveva **una sola**: un indizio è andato perso.
+> Adesso le due righe dicono la stessa cosa: che $y$ vale 2. Di $x$ non si sa più niente: può valere qualsiasi numero. Sembrano infinite soluzioni. Ma il sistema di partenza ne aveva **una sola**: una condizione è andata persa.
 >
 > La regola: dopo ogni mossa, la mossa seguente usa le righe **nuove**. Più mosse nello stesso passaggio vanno bene solo se la riga usata per cambiare le altre resta ferma.
 
 > [!TRAPPOLA] Solo righe, mai colonne
-> Per risolvere un sistema le mosse si fanno sulle **righe**. Una riga è un'equazione, e un'equazione si può riscrivere. Una colonna invece è un'incognita, oppure è la lista dei termini noti. Mescolare due colonne cambia l'indovinello.
+> Per risolvere un sistema le mosse si fanno sulle **righe**. Una riga è un'equazione, e un'equazione si può riscrivere. Una colonna invece è un'incognita, oppure è la lista dei termini noti. Mescolare due colonne cambia il sistema.
 >
-> Un esempio. Nella matrice dell'indovinello somma la prima colonna all'ultima. Il 5 diventa $5 + 1 = 6$ e l'1 diventa $1 + 1 = 2$. Il sistema nuovo ha gli indizi «la somma fa 6» e «la differenza fa 2». La sua soluzione è $(4, 2)$, non più $(3, 2)$.
+> Un esempio. Nella matrice del sistema di partenza somma la prima colonna all'ultima. Il 5 diventa $5 + 1 = 6$ e l'1 diventa $1 + 1 = 2$. Il sistema nuovo ha le condizioni «la somma fa 6» e «la differenza fa 2». La sua soluzione è $(4, 2)$, non più $(3, 2)$.
 
 ::: prova Nella matrice $\left(\begin{array}{cc|c} 1 & 3 & 2 \\ 2 & 7 & 5 \end{array}\right)$ fai la mossa $R_2 \to R_2 - 2R_1$. Quale diventa la riga 2?
 Due volte la riga 1 fa $(2, 6 \mid 4)$. Poi sottrai un numero alla volta: $2 - 2 = 0$, poi $7 - 6 = 1$, poi $5 - 4 = 1$.
@@ -47730,7 +48301,7 @@ Cinque volte la riga 1 fa $(5, 20 \mid 15)$. La riga 2 diventa $(5 - 5,\ 2 - 20 
 
 ## La forma che si risolve dal basso: gli scalini (pp. 51–52)
 
-Adesso sai riscrivere gli indizi. Resta da decidere **verso quale forma** riscriverli. La risposta: verso una forma a scala, perché un sistema fatto a scala si risolve quasi da solo.
+Adesso sai riscrivere le equazioni. Resta da decidere **verso quale forma** riscriverli. La risposta: verso una forma a scala, perché un sistema fatto a scala si risolve quasi da solo.
 
 ### Un sistema già pronto
 
@@ -47848,7 +48419,7 @@ Controllo: $4 + 3 = 7$ e $2 \cdot 3 = 6$.
 
 Hai le mosse, e hai la forma a cui arrivare. Manca la strada: quali mosse fare, e in quale ordine.
 
-Un **algoritmo** è una ricetta: un elenco di passi precisi che, eseguiti in ordine, portano sempre al risultato. L'**algoritmo di Gauss** è la ricetta che porta a scalini una matrice qualsiasi, usando solo le tre mosse.
+Un **algoritmo** è un elenco di passi precisi che, eseguiti in ordine, portano sempre al risultato. L'**algoritmo di Gauss** è il procedimento che porta a scalini una matrice qualsiasi, usando solo le tre mosse.
 
 ### L'idea: una colonna alla volta
 
@@ -47893,7 +48464,7 @@ Nel passo 1 possono capitare due imprevisti.
 
 **Tutta la colonna è fatta di zeri.** Allora in quella colonna non c'è niente da fare: resta senza pivot. Passi alla colonna dopo, restando sulla stessa riga.
 
-### La ricetta completa
+### L'algoritmo completo
 
 > [!METODO] L'algoritmo di Gauss, a parole
 > Parti dalla prima riga e dalla prima colonna.
@@ -47968,7 +48539,7 @@ Una colonna può restare senza pivot anche a metà del lavoro. Prova a scrivere 
 > Il libro di Martelli (§3.1.3) osserva che non serve seguire l'algoritmo alla lettera. Va bene **qualsiasi** sequenza di mosse di Gauss che arrivi a una matrice a scalini. Senza calcolatrice aiutano tre trucchi.
 >
 > 1. **Un 1 in cima.** Se nella prima colonna c'è un 1, oppure un $-1$, porta quella riga in alto con uno scambio. Dividere per 1 non crea frazioni.
-> 2. **Evitare le frazioni.** Il pivot è 2 e sotto c'è 3. La ricetta direbbe di togliere la riga 1 per $\frac 32$ volte. Puoi invece moltiplicare prima la riga 2 per 2, e poi togliere 3 volte la riga 1. In una scrittura sola: $R_2 \to 2R_2 - 3R_1$. Nella prima colonna viene $2 \cdot 3 - 3 \cdot 2 = 0$, senza frazioni. Sono una mossa (II) e una mossa (III), una dopo l'altra. L'esercizio 6 usa questo trucco.
+> 2. **Evitare le frazioni.** Il pivot è 2 e sotto c'è 3. L'algoritmo direbbe di togliere la riga 1 per $\frac 32$ volte. Puoi invece moltiplicare prima la riga 2 per 2, e poi togliere 3 volte la riga 1. In una scrittura sola: $R_2 \to 2R_2 - 3R_1$. Nella prima colonna viene $2 \cdot 3 - 3 \cdot 2 = 0$, senza frazioni. Sono una mossa (II) e una mossa (III), una dopo l'altra. L'esercizio 6 usa questo trucco.
 > 3. **Rimpicciolire.** Se tutti i numeri di una riga si dividono per lo stesso intero, dividi subito la riga: è una mossa (II). La riga $(2, 4 \mid 6)$ diventa $(1, 2 \mid 3)$, e i conti dopo sono più piccoli.
 
 ::: prova Porta a scalini la matrice $\left(\begin{array}{cc|c} 1 & 2 & 3 \\ 2 & 5 & 8 \end{array}\right)$ e risolvi il sistema.
@@ -47995,7 +48566,7 @@ Dopo lo scambio la matrice è $\begin{pmatrix} 3 & 1 \\ 0 & 2 \end{pmatrix}$, ch
 
 Una matrice a scalini si risolve già, dal basso. Ma resta ancora un po' di lavoro: le sostituzioni. Con qualche mossa in più si arriva a una forma in cui non resta nessun conto, e la soluzione si legge.
 
-L'hai già visto con l'indovinello. La matrice finale era questa:
+L'hai già visto con il sistema di partenza. La matrice finale era questa:
 
 $$\left(\begin{array}{cc|c} 1 & 0 & 3 \\ 0 & 1 & 2 \end{array}\right)$$
 
@@ -48108,7 +48679,7 @@ Vediamo i tre finali uno alla volta, ognuno su una matrice che hai già visto ri
 > $$\left(\begin{array}{ccc|c} 1 & 0 & 1 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{array}\right)$$
 > Guarda l'ultima riga. Tradotta in equazione dice $0x + 0y + 0z = 1$. A sinistra viene 0, qualunque numero tu metta al posto delle tre incognite. Quindi la riga dice $0 = 1$, che è falsa sempre.
 >
-> Un indizio impossibile rende impossibile tutto l'indovinello: il sistema **non ha soluzioni**.
+> Una condizione impossibile rende impossibile tutto il sistema: il sistema **non ha soluzioni**.
 
 Il segnale è questo: un **pivot nell'ultima colonna**, quella dopo la barra. Vuol dire che una riga ha tutti zeri prima della barra e un numero diverso da zero dopo.
 
@@ -48136,7 +48707,7 @@ Attenzione a due righe che si assomigliano e dicono cose opposte.
 >
 > La soluzione è **una sola**: $(4, 1)$. Controllo nelle equazioni di partenza: $4 - 1 = 3$, poi $2 \cdot 1 = 2$, poi $x = 4$. Tutte vere.
 >
-> Tre indizi per due numeri non sono troppi, se vanno d'accordo. Qui il terzo indizio non dice niente che non si sapesse già dai primi due.
+> Tre condizioni per due numeri non sono troppe, se vanno d'accordo. Qui la terza non dice niente che non si sapesse già dai primi due.
 
 Il segnale è questo: nessun pivot dopo la barra, e **ogni colonna prima della barra ha il suo pivot**. Ogni incognita è fissata da una riga, e la soluzione si legge nell'ultima colonna.
 
@@ -48220,9 +48791,9 @@ $$\text{numero di parametri} = \text{numero di incognite} - \text{numero di pivo
 > $$\begin{cases} x_1 = t_1 \\ x_2 = b_1 - a_{13}t_2 - a_{16}t_3 \\ x_3 = t_2 \\ x_4 = b_2 - a_{26}t_3 \\ x_5 = b_3 - a_{36}t_3 \\ x_6 = t_3 \end{cases}$$
 > I parametri sono liberi: possono assumere qualsiasi valore in $\K$.
 >
-> **Come si legge.** È l'esempio con sei incognite, con le lettere al posto dei numeri. Per esempio al posto di 2 e 3 ci sono $a_{13}$ e $a_{16}$, e al posto di 4 c'è $b_1$. Le lettere dicono che la ricetta vale con qualsiasi numero.
+> **Come si legge.** È l'esempio con sei incognite, con le lettere al posto dei numeri. Per esempio al posto di 2 e 3 ci sono $a_{13}$ e $a_{16}$, e al posto di 4 c'è $b_1$. Le lettere dicono che il metodo vale con qualsiasi numero.
 
-### La ricetta per leggere le soluzioni
+### Il metodo per leggere le soluzioni
 
 > [!METODO] Leggere le soluzioni dalla forma ridotta
 > 1. **Guarda l'ultima colonna.** Se c'è un pivot dopo la barra, il sistema non ha soluzioni. Hai finito.
@@ -48296,14 +48867,14 @@ $5 - 2 = 3$ parametri. Le soluzioni sono infinite.
 | $2x$ | «due ics» | 2 per $x$: il segno «per» non si scrive | $2x = 6$ |
 | $\cdot$ | «per» | il segno della moltiplicazione | $2 \cdot 3 = 6$ |
 | $x_1, x_2, \dots, x_n$ | «ics uno, ics due, …, ics enne» | le incognite, quando sono tante | $x_1 + x_4 = 0$ |
-| $\begin{cases} \dots \\ \dots \end{cases}$ | «sistema» | le equazioni dentro la graffa valgono tutte insieme | il sistema dell'indovinello |
-| $k$ | «cappa» | quante sono le equazioni | nell'indovinello $k = 2$ |
-| $n$ | «enne» | quante sono le incognite | nell'indovinello $n = 2$ |
+| $\begin{cases} \dots \\ \dots \end{cases}$ | «sistema» | le equazioni dentro la graffa valgono tutte insieme | il sistema di partenza |
+| $k$ | «cappa» | quante sono le equazioni | nel sistema di partenza $k = 2$ |
+| $n$ | «enne» | quante sono le incognite | nel sistema di partenza $n = 2$ |
 | $a_{ij}$ | «a i gei» | il coefficiente nella riga $i$ e nella colonna $j$ | $a_{23}$: riga 2, colonna 3 |
 | $b_i$ | «bi i» | il termine noto dell'equazione numero $i$ | $b_2$: seconda equazione |
 | $A$ | «a» | la matrice dei coefficienti | $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$ |
 | $b$ | «bi» | il vettore dei termini noti, scritto in colonna | $\begin{pmatrix} 5 \\ 1 \end{pmatrix}$ |
-| $C = (A \mid b)$ | «ci uguale a barra bi» | la matrice completa: i coefficienti e, dopo la barra, i termini noti | $(1, 1 \mid 5)$ è la sua prima riga nell'indovinello |
+| $C = (A \mid b)$ | «ci uguale a barra bi» | la matrice completa: i coefficienti e, dopo la barra, i termini noti | $(1, 1 \mid 5)$ è la sua prima riga nel sistema di partenza |
 | $k \times n$ | «cappa per enne» | una matrice con $k$ righe e $n$ colonne | $2 \times 3$: 2 righe, 3 colonne |
 | $C_{ij}$ | «ci i gei» | il numero di $C$ nella riga $i$ e nella colonna $j$ | $C_{11}$: in alto a sinistra |
 | $S$ | «esse» | l'insieme di tutte le soluzioni | $S = \{(3, 2)\}$ |
@@ -48327,7 +48898,7 @@ $5 - 2 = 3$ parametri. Le soluzioni sono infinite.
 
 La prova scritta di Algebra lineare ha 10 quiz a 5 risposte e 2 problemi da 11 punti. I problemi vengono corretti solo a chi fa giusti almeno 6 quiz. Dura 2 ore, senza calcolatrice, con solo 4 facciate di appunti scritti a mano. Gli appelli 2026/27 sono il 22/01 e il 05/02/2027 alle 14:00. Tutti i dettagli sono nella lezione L01.
 
-**Che cosa di questa lezione viene chiesto**
+### Che cosa di questa lezione viene chiesto
 
 1. **Il quiz «quante soluzioni?».** Il testo è quasi sempre lo stesso: «Il sistema lineare con matrice completa … ha un numero di soluzioni pari a». Nei 15 appelli dal 2023/24 al 2025/26 è uscito 9 volte: trovi l'elenco nella tabella qui sotto.
 2. **Trovare tutte le soluzioni.** Nell'appello del 10/07/2024 (domanda 6) bisognava scegliere, tra cinque, la descrizione giusta di tutte le soluzioni di un sistema con 3 equazioni e 3 incognite. È lo stesso sistema dell'Esercizio 12.11 delle dispense, nella lezione L12.
@@ -48401,6 +48972,30 @@ La risposta giusta è la **(b)**: infinite soluzioni, che dipendono da 2 paramet
 ## Quiz
 
 ```quiz
+D: Appello del 16/01/2025, domanda 10. Il sistema lineare con matrice completa $\left(\begin{array}{cccc|c} 2 & 0 & 1 & 4 & 3 \\ 1 & -1 & 0 & 2 & 1 \\ 1 & 1 & 1 & 2 & 2 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Zero.
++ Infinite, che dipendono da 2 parametri.
+- Infinite, che dipendono da 1 parametro.
+- Un numero finito, maggiore di 1.
+- Una.
+= Dopo lo scambio delle prime due righe e due mosse, la terza riga diventa nulla e restano 2 pivot, nessuno dopo la barra (i passaggi sono in «Verso l'esame»). Le incognite sono 4, quindi i parametri sono $4 - 2 = 2$: è la (b) della soluzione ufficiale. La risposta più insidiosa è la (c), di chi conta le righe, 3, al posto delle incognite.
+
+D: Appello del 15/01/2026, domanda 6. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 0 & 1 & 2 & 3 \\ 4 & 5 & 6 & 7 \\ 8 & 9 & 10 & 11 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Un numero finito, maggiore di 1.
+- Zero.
+- Infinite, che dipendono da 2 parametri.
++ Infinite, che dipendono da 1 parametro.
+- Una.
+= Si scambiano le prime due righe, poi $R_3 \to R_3 - 2R_1$ dà $(0, -1, -2 \mid -3)$, e $R_3 \to R_3 + R_2$ la rende nulla. Restano 2 pivot, nessuno dopo la barra, con 3 incognite: un parametro. È la (d) della soluzione ufficiale. La risposta più insidiosa è «Una», perché equazioni e incognite sono tante uguali; la risposta «un numero finito, maggiore di 1» con i numeri reali è sempre sbagliata.
+
+D: Appello del 10/06/2024, domanda 7. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 3 & 5 & 2 \\ 3 & 3 & 2 & 2 \\ 5 & 3 & -1 & 0 \end{array}\right)$ ha un numero di soluzioni pari a:
+- Una.
+- Infinite, che dipendono da 2 parametri.
+- Un numero finito, maggiore di 1.
++ Zero.
+- Infinite, che dipendono da 1 parametro.
+= $R_2 - 3R_1$ dà $(0, -6, -13 \mid -4)$ e $R_3 - 5R_1$ dà $(0, -12, -26 \mid -10)$. Togliendo dalla terza il doppio della seconda resta $(0, 0, 0 \mid -2)$: un pivot dopo la barra, cioè l'equazione impossibile $0 = -2$. È la (d) della soluzione ufficiale. La risposta più insidiosa è «Infinite, che dipendono da 1 parametro», di chi vede la riga di zeri prima della barra e non guarda il termine noto.
+
 D: Quale di queste è una mossa di Gauss sulla matrice completa di un sistema lineare?
 + La mossa $R_2 \to R_2 - 3R_1$.
 - La mossa $R_2 \to 0 \cdot R_2$.
@@ -48431,7 +49026,7 @@ D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 3 & 12 & 
 - Un numero finito, maggiore di 1.
 - Una.
 - Infinite, che dipendono da 1 parametro.
-= È la domanda 1 dell'appello del 02/09/2025. Prima di fare conti guarda le righe. La prima è 3 volte $(1, 4, 2 \mid 7)$, la seconda è 5 volte la stessa riga, la terza è 4 volte. Sono tre volte lo stesso indizio. Dopo Gauss resta una sola riga non nulla, con un solo pivot, e nessun pivot dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 1 = 2$. La risposta con 1 parametro è sbagliata perché qui il pivot è uno solo, non due.
+= È la domanda 1 dell'appello del 02/09/2025. Prima di fare conti guarda le righe. La prima è 3 volte $(1, 4, 2 \mid 7)$, la seconda è 5 volte la stessa riga, la terza è 4 volte. Sono tre volte la stessa condizione. Dopo Gauss resta una sola riga non nulla, con un solo pivot, e nessun pivot dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 1 = 2$. La risposta con 1 parametro è sbagliata perché qui il pivot è uno solo, non due.
 
 D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 2 & 3 & 4 \\ 2 & 3 & 4 & 5 \\ 3 & 4 & 5 & 7 \end{array}\right)$ ha un numero di soluzioni pari a:
 + Zero.
@@ -48493,7 +49088,7 @@ Una lista è una soluzione solo se rende vere **tutte e due** le equazioni. In o
 | $(3, 4)$ | $3 + 4 = 7$, vera | $2 \cdot 3 - 4 = 2$, vera | sì |
 | $(5, 2)$ | $5 + 2 = 7$, vera | $2 \cdot 5 - 2 = 8$, doveva fare 2: falsa | no |
 
-L'unica soluzione tra le tre è $(3, 4)$. Le altre due rispettano il primo indizio ma non il secondo, e un solo indizio falso basta per scartarle.
+L'unica soluzione tra le tre è $(3, 4)$. Le altre due rispettano la prima condizione ma non la seconda, e una sola condizione falsa basta per scartarle.
 :::
 
 ::: esercizio base Una mossa sola
@@ -48581,7 +49176,7 @@ $$\begin{cases} x + y + 2z = 9 \\ 2x + 4y - 3z = 1 \\ 3x + 6y - 5z = 0 \end{case
 2. **Zeri sotto il primo pivot.** Il pivot è l'1 in alto a sinistra. Sotto ci sono 2 e 3. Le mosse sono $R_2 \to R_2 - 2R_1$ e $R_3 \to R_3 - 3R_1$. La riga 1 resta ferma.
    - Riga 2 meno 2 volte la riga 1: $(2 - 2,\ 4 - 2,\ -3 - 4 \mid 1 - 18) = (0, 2, -7 \mid -17)$.
    - Riga 3 meno 3 volte la riga 1: $(3 - 3,\ 6 - 3,\ -5 - 6 \mid 0 - 27) = (0, 3, -11 \mid -27)$.
-3. **Zero sotto il secondo pivot.** Il secondo pivot è il 2 della riga 2. Sotto c'è 3. La ricetta direbbe di togliere la riga 2 per $\frac 32$ volte. Per non avere frazioni uso il trucco: prima raddoppio la riga 3, poi tolgo 3 volte la riga 2. La mossa è $R_3 \to 2R_3 - 3R_2$.
+3. **Zero sotto il secondo pivot.** Il secondo pivot è il 2 della riga 2. Sotto c'è 3. L'algoritmo direbbe di togliere la riga 2 per $\frac 32$ volte. Per non avere frazioni uso il trucco: prima raddoppio la riga 3, poi tolgo 3 volte la riga 2. La mossa è $R_3 \to 2R_3 - 3R_2$.
    - 2 volte la riga 3: $(0, 6, -22 \mid -54)$.
    - 3 volte la riga 2: $(0, 6, -21 \mid -51)$.
    - Differenza: $(0,\ 6 - 6,\ -22 + 21 \mid -54 + 51) = (0, 0, -1 \mid -3)$.
@@ -48856,7 +49451,7 @@ Le due righe nuove vengono una l'opposto dell'altra: dicono la stessa cosa, e un
 ## Glossario
 
 ```glossario
-Sistema lineare | Un gruppo di equazioni lineari nelle stesse incognite, da rispettare tutte insieme. È un indovinello con più indizi.
+Sistema lineare | Un gruppo di equazioni lineari nelle stesse incognite, da rispettare tutte insieme.
 Incognita | Un numero da trovare, indicato con una lettera: $x$, $y$, oppure $x_1$, $x_2$ e così via.
 Equazione lineare | Un'equazione in cui le incognite sono solo moltiplicate per numeri e poi sommate, come $2x - 3y = 7$.
 Coefficiente $a_{ij}$ | Il numero che moltiplica un'incognita. $a_{ij}$ è quello dell'equazione numero $i$ davanti all'incognita numero $j$.
@@ -48871,7 +49466,7 @@ Pivot | Il primo numero diverso da zero di una riga, leggendo da sinistra. Una r
 Riga nulla | Una riga fatta solo di zeri. Come equazione dice $0 = 0$.
 Matrice a scalini | Una matrice con le righe nulle in fondo e ogni pivot più a destra del pivot della riga sopra.
 Sostituzione all'indietro | Risolvere un sistema a scalini partendo dall'ultima equazione e risalendo.
-Algoritmo di Gauss | La ricetta che porta a scalini qualsiasi matrice: una colonna alla volta, un pivot in alto e zeri sotto.
+Algoritmo di Gauss | Il procedimento che porta a scalini qualsiasi matrice: una colonna alla volta, un pivot in alto e zeri sotto.
 Algoritmo di Gauss–Jordan | L'algoritmo di Gauss, e poi due ritocchi: zeri anche sopra i pivot, e pivot uguali a 1.
 Forma a scalini ridotta | Il risultato di Gauss–Jordan: ogni pivot vale 1 ed è l'unico numero diverso da zero della sua colonna.
 Variabile libera (parametro) | Un'incognita la cui colonna non ha pivot. Il suo valore lo scegli tu: le si dà un parametro, come $t$.

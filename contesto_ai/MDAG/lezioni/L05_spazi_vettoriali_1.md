@@ -9,11 +9,11 @@ sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C ·
 descrizione: >-
   Appunti della lezione L05 di Algebra lineare e Geometria (MDAG, parte 2): lo spazio euclideo, somma di vettori e
   prodotto per scalare, gruppi, campi, definizione di spazio vettoriale ed esempi (polinomi, funzioni, successioni),
-  con quiz nello stile dell'esame ed esercizi svolti.
+  con domande vere degli appelli su spazi e sottospazi, quiz ed esercizi svolti.
 lede: >-
-  Che cos'è un vettore: una lista di numeri, da leggere come uno spostamento su una mappa a quadretti. Impari a
-  sommare due vettori e a moltiplicarli per un numero. Poi vedi che le stesse regole valgono anche per i polinomi e
-  per le funzioni: ogni posto in cui valgono si chiama spazio vettoriale.
+  Che cos'è un vettore: una lista di numeri, che nel piano è uno spostamento. La somma, il prodotto per uno scalare
+  e le otto regole che seguono; poi gli altri insiemi in cui valgono le stesse regole, come i polinomi e le
+  funzioni: gli spazi vettoriali.
 materiale: dispense
 scheda:
   Dispense: lezione 5 · pp. 20–25
@@ -28,22 +28,20 @@ genera_html: true
 
 ## In breve
 
-- Un **vettore** è una lista ordinata di numeri, come $(3, 2)$. Puoi leggerlo come uno spostamento su una mappa a quadretti: 3 passi a destra e 2 in su.
-- I vettori si **sommano** numero per numero: è come fare uno spostamento dopo l'altro. Si **moltiplicano per un numero** moltiplicando ogni numero della lista: è come ripetere lo stesso spostamento, oppure farlo al contrario.
+- Un **vettore** è una lista ordinata di numeri, come $(3, 2)$. Nel piano si disegna come una freccia che parte dall'origine: questa va di 3 in orizzontale e di 2 in verticale.
+- I vettori si **sommano** coordinata per coordinata, e nel piano la somma è la diagonale del parallelogramma. Si **moltiplicano per un numero**, lo scalare, moltiplicando ogni coordinata: la freccia si allunga, si accorcia o si gira.
 - Queste due operazioni seguono otto regole, simili a quelle dei conti con i numeri. Un insieme in cui si può sommare e moltiplicare per un numero con queste regole, senza mai uscire, si chiama **spazio vettoriale**.
 - Anche i polinomi, le funzioni e le liste infinite di numeri formano spazi vettoriali. Per questo in matematica si chiamano «vettori» anche loro.
-- Ci sono **due zeri** diversi: il numero zero e il vettore zero, quello che non sposta niente. Qualunque vettore moltiplicato per il numero zero dà il vettore zero.
+- Ci sono **due zeri** diversi: il numero zero e il vettore nullo. Qualunque vettore moltiplicato per il numero zero dà il vettore nullo.
 - **Gruppo** e **campo** sono i nomi di due liste di regole. Servono a scrivere la definizione in modo preciso: è la parte più teorica della lezione.
 - All'esame devi saper dire se un insieme è uno spazio vettoriale. Per dire di no basta un esempio: manca il vettore zero, oppure una somma o un multiplo escono dall'insieme.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di martedì 13/10/2026, dalle 9 alle 11: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 13/10/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 5. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Un vettore è una lista di numeri (pp. 20–21)
 
-Immagina una mappa a quadretti, come un foglio di quaderno. Sei fermo su un incrocio e devi spiegare a un amico dove andare.
-
-Gli dici: «3 quadretti a destra e 2 in su». Bastano due numeri: il 3 e il 2. In matematica si scrivono tra parentesi tonde, separati da una virgola:
+Nel piano uno spostamento si descrive con due numeri: di quanto ci si sposta in orizzontale e di quanto in verticale. Lo spostamento «3 a destra e 2 in su» si scrive con i due numeri tra parentesi tonde, separati da una virgola:
 
 $$(3, 2)$$
 
@@ -60,7 +58,7 @@ testo: 1.5 -0.4 | blu | "3 a destra"
 testo: 3.8 1 | blu | "2 in su"
 ```
 
-Guarda la figura. I due tratti blu sono i passi: prima 3 a destra, poi 2 in su. La freccia va dritta dalla partenza all'arrivo. È il disegno del vettore.
+Nella figura i due tratti blu sono le due parti dello spostamento, 3 in orizzontale e 2 in verticale. La freccia va dalla partenza all'arrivo: è il disegno del vettore.
 
 ### L'ordine conta
 
@@ -79,11 +77,9 @@ I numeri possono essere anche negativi, oppure zero. Un numero negativo al primo
 | $(0, 0)$ | resti dove sei |
 
 > [!RIPASSO] il piano cartesiano
-> Il **piano cartesiano** è la mappa a quadretti con due righe di riferimento. Una è orizzontale e si chiama *asse $x$*. L'altra è verticale e si chiama *asse $y$*. Il punto in cui si incrociano si chiama **origine**.
+> Il **piano cartesiano** è il piano con due rette di riferimento perpendicolari. Una è orizzontale e si chiama *asse $x$*. L'altra è verticale e si chiama *asse $y$*. Il punto in cui si incrociano si chiama **origine**.
 >
-> Ogni punto della mappa si indica con due numeri. Il primo dice quanti passi fare dall'origine in orizzontale. Il secondo dice quanti passi fare in verticale.
->
-> Per esempio il punto $(2, 3)$ si raggiunge così: dall'origine fai 2 passi a destra e 3 passi in su.
+> Ogni punto del piano si indica con due numeri: lo spostamento dall'origine in orizzontale e quello in verticale. Per esempio il punto $(2, 3)$ si raggiunge dall'origine andando di 2 a destra e di 3 in su.
 
 ### I nomi: coordinate e spazio euclideo
 
@@ -100,7 +96,7 @@ $$(3, 2) \in \R^2$$
 
 Vuol dire: «tre, due» è una lista di 2 numeri reali.
 
-Una lista può avere anche tre numeri, come $(1, 4, 2)$. Serve per muoversi in una stanza invece che su un foglio: 1 passo a destra, 4 passi in avanti, 2 passi verso l'alto. L'insieme delle liste di tre numeri si chiama $\R^3$, «erre tre».
+Una lista può avere anche tre numeri, come $(1, 4, 2)$: descrive uno spostamento nello spazio, dove alle due direzioni del piano si aggiunge l'altezza. L'insieme delle liste di tre numeri si chiama $\R^3$, «erre tre».
 
 Il simbolo di prima con una sbarra sopra, $\notin$, si legge «non appartiene a». Per esempio $(3, 2) \notin \R^3$: la lista ha due numeri, non tre.
 
@@ -121,7 +117,7 @@ Le coordinate prendono il nome del vettore, con un numerino in basso che dice il
 
 Per un vettore con $n$ coordinate le dispense scrivono $(x_1, \dots, x_n)$. Vuol dire: una lista di numeri. Il primo si chiama $x_1$ e l'ultimo $x_n$. I tre puntini stanno per tutti quelli in mezzo.
 
-Il vettore fatto di soli zeri ha un nome: **origine**. Sulla mappa è lo spostamento «resta dove sei». Si indica con $0$, oppure con la lettera $O$.
+Il vettore fatto di soli zeri ha un nome: **origine**. Come spostamento, è quello nullo. Si indica con $0$, oppure con la lettera $O$.
 
 ### Come lo scrivono le dispense
 
@@ -146,7 +142,7 @@ Tutta insieme: «$\R^n$ è l'insieme delle liste ordinate di $n$ numeri reali».
 
 La stessa lista di numeri si può disegnare in due modi.
 
-- Come un **punto**: il posto della mappa in cui arrivi.
+- Come un **punto**: il posto del piano in cui si arriva.
 - Come un **vettore**: la freccia che parte dall'origine e arriva in quel posto. È lo spostamento.
 
 Sono due disegni della stessa lista. Di solito si usano le lettere maiuscole $P$ e $Q$ quando si pensa ai punti, e le minuscole $v$ e $w$ quando si pensa ai vettori.
@@ -201,7 +197,7 @@ $x_1 = 7$: è la prima coordinata. $x_3 = -2$: è la terza.
 
 ## Sommare: uno spostamento dopo l'altro (pp. 20–21)
 
-Fai due spostamenti di fila sulla mappa.
+Due spostamenti fatti uno dopo l'altro:
 
 - Primo spostamento: 1 a destra e 2 in su. È il vettore $(1, 2)$.
 - Secondo spostamento: 3 a destra e 1 in su. È il vettore $(3, 1)$.
@@ -304,7 +300,7 @@ $(1 + 2,\ 0 + 2,\ 4 - 4) = (3, 2, 0)$.
 :::
 
 ::: prova Parti dall'origine. Fai lo spostamento $(2, 1)$ e poi lo spostamento $(-2, 3)$. Dove arrivi?
-Sommi i due vettori: $(2 - 2,\ 1 + 3) = (0, 4)$. Sei 4 quadretti sopra il punto di partenza: i passi a destra e quelli a sinistra si sono annullati.
+Sommi i due vettori: $(2 - 2,\ 1 + 3) = (0, 4)$. Arrivi 4 unità sopra il punto di partenza: i due spostamenti in orizzontale si sono annullati.
 :::
 
 > [!RICORDA]
@@ -332,7 +328,7 @@ Il puntino $\cdot$ è il segno «per». Lo stesso si può fare con altri numeri.
 
 ### I nomi: scalare e multiplo
 
-Il numero che moltiplica il vettore si chiama **scalare**. Uno scalare è un numero normale, come 2 o $-3$: la parola serve solo a distinguerlo dai vettori. Viene da «scala»: cambia la scala del disegno, come lo zoom di una mappa.
+Il numero che moltiplica il vettore si chiama **scalare**. Uno scalare è un numero normale, come 2 o $-3$: la parola serve solo a distinguerlo dai vettori. Viene da «scala»: cambia la scala della freccia.
 
 L'operazione si chiama **prodotto per scalare**. Il risultato si chiama **multiplo** del vettore.
 
@@ -718,7 +714,7 @@ In tutti e due i casi succedono tre cose.
 > [!IDEA]
 > Uno **spazio vettoriale** è un insieme in cui puoi sommare due elementi e moltiplicare un elemento per un numero, senza mai uscire dall'insieme e con le otto regole.
 
-Gli elementi di uno spazio vettoriale si chiamano **vettori**, qualunque cosa siano. Qui l'immagine della freccia non regge più: un polinomio non è uno spostamento su una mappa. Da questo punto in poi «vettore» vuol dire solo «elemento di uno spazio vettoriale».
+Gli elementi di uno spazio vettoriale si chiamano **vettori**, qualunque cosa siano. Qui l'immagine della freccia non regge più: un polinomio non è uno spostamento nel piano. Da questo punto in poi «vettore» vuol dire solo «elemento di uno spazio vettoriale».
 
 ### A che cosa serve un'idea così generale
 
@@ -787,7 +783,7 @@ No. Per esempio $\frac 12 \cdot (1, 2) = (\frac 12, 1)$, e $\frac 12$ non è un 
 
 In ogni spazio vettoriale c'è un vettore speciale: quello che, sommato a un altro, non cambia niente.
 
-Sulla mappa è lo spostamento «resta dove sei», cioè $(0, 0)$. Tra i polinomi è il polinomio $0$.
+Nel piano è $(0, 0)$. Tra i polinomi è il polinomio $0$.
 
 Questo vettore si chiama **vettore nullo**, oppure **origine** dello spazio. Le dispense lo scrivono $0$. Quando serve ricordare che è un vettore dell'insieme $V$, scrivono $0_V$, che si legge «zero di $V$».
 
@@ -869,7 +865,7 @@ Per ognuno bisogna dire tre cose: chi sono i vettori, come si sommano e come si 
 
 Il primo esempio è il più piccolo: i numeri reali, senza liste.
 
-Un numero è come una lista con una sola coordinata. Sommare due vettori vuol dire sommare due numeri. Moltiplicare per uno scalare vuol dire moltiplicare due numeri. Sulla mappa è come muoversi avanti e indietro lungo una sola riga: la retta dei numeri.
+Un numero è come una lista con una sola coordinata. Sommare due vettori vuol dire sommare due numeri. Moltiplicare per uno scalare vuol dire moltiplicare due numeri. Il disegno è la retta dei numeri.
 
 Le dispense lo dicono per un campo qualsiasi: un campo è uno spazio vettoriale **su se stesso**. «Su se stesso» vuol dire che i vettori e gli scalari sono presi dallo stesso insieme.
 
@@ -1156,7 +1152,7 @@ Resta una sola cosa da controllare: che facendo somme e multipli **non si esca**
 
 ### Primo modo: manca il vettore nullo
 
-Prendi le liste di due numeri la cui somma fa 1, come $(1, 0)$, $(0, 1)$ e $(3, -2)$. Sulla mappa formano una retta.
+Prendi le liste di due numeri la cui somma fa 1, come $(1, 0)$, $(0, 1)$ e $(3, -2)$. Nel piano formano una retta.
 
 Negli appelli un insieme così è scritto con le graffe e con una condizione:
 
@@ -1192,7 +1188,7 @@ Succede lo stesso con i polinomi di grado esattamente 2, visti nella sezione pre
 
 ### Terzo modo: un multiplo esce
 
-Prendi le liste di due numeri in cui il primo numero non è negativo, come $(1, 0)$ e $(2, 5)$. Sulla mappa è la metà di destra.
+Prendi le liste di due numeri in cui il primo numero non è negativo, come $(1, 0)$ e $(2, 5)$. Nel piano è il semipiano di destra, asse verticale compreso.
 
 Qui il vettore nullo c'è. E la somma di due elementi resta dentro: due numeri non negativi sommati danno un numero non negativo. Ma moltiplica per $-1$:
 
@@ -1293,7 +1289,7 @@ I simboli di queste tre frasi si spiegano nella lezione L06. I primi due sono in
 >
 > Per rispondere **no** basta **un** esempio che non torna. Per rispondere **sì** serve un ragionamento che valga per tutti i vettori e per tutti gli scalari.
 
-**Una domanda vera, letta insieme**
+### Una domanda vera, letta insieme
 
 > [!ESAME] Appello del 07/02/2025, domanda 2
 > «Identificate la risposta corretta alla domanda “$\C$ ammette una struttura di spazio vettoriale su $\R$?”»
@@ -1329,6 +1325,17 @@ Quindi la risposta è sì. Restano la (b) e la (e): per scegliere bisogna guarda
 
 La risposta giusta è la **(e)**. La soluzione ufficiale dice lo stesso: (a) e (d) sono affermazioni vere che non rispondono alla domanda, (b) e (c) danno motivazioni false.
 
+### Un'altra domanda vera
+
+> [!ESEMPIO] · Appello del 07/09/2026, domanda 6
+> Quale dei seguenti insiemi è un sottospazio di $\R_2[x]$? (a) $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(-1)\}$; (b) $\{(1 + t)x^2 + tx \mid t \in \R\}$; (c) $\{tx^2 + sx + 1 \mid s, t \in \R\}$; (d) $\{p(x) \in \R_2[x] \mid p(0) = 1\}$; (e) $\{ax^2 + bx + c \mid a = 2c,\ b = 2\}$.
+>
+> Un **sottospazio** è un pezzo di $\R_2[x]$ che, con le stesse operazioni, è a sua volta uno spazio vettoriale (lezione L06). Bastano i tre controlli dell'ultima sezione.
+>
+> **Soluzione.** Il primo controllo è il vettore nullo, cioè il polinomio con tutti i coefficienti uguali a 0. In (b) servirebbero insieme $1 + t = 0$ e $t = 0$; in (c) e in (d) il termine noto vale sempre 1; in (e) il coefficiente di $x$ vale sempre 2. Quattro insiemi su cinque non contengono il vettore nullo.
+>
+> Resta la (a). Il polinomio nullo vale 0 in 1 e in $-1$, quindi c'è. Se due polinomi valgono 0 in quei due numeri, la loro somma ci vale $0 + 0 = 0$, e un multiplo ci vale $\lambda \cdot 0 = 0$. La risposta è la (a) del foglio d'esame; nel file delle soluzioni la domanda è la 3, con le risposte in un altro ordine.
+
 > [!TRAPPOLA] Gli errori più comuni
 > - Confondere il numero zero con il vettore nullo.
 > - Dimenticare di controllare che somme e multipli restino nell'insieme.
@@ -1347,6 +1354,38 @@ La risposta giusta è la **(e)**. La soluzione ufficiale dice lo stesso: (a) e (
 ## Quiz
 
 ```quiz
+D: Appello del 07/02/2025, domanda 2. Identificate la risposta corretta alla domanda «$\C$ ammette una struttura di spazio vettoriale su $\R$?»
+- No, poiché $\C$ è già uno spazio vettoriale su $\C$ stesso.
+- Sì, perché ogni campo è uno spazio vettoriale su $\R$.
+- No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.
+- No, in quanto $\C$ e $\R$ sono campi diversi.
++ Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$, $\cdot$ su $\R$ sono le stesse che in $\C$.
+= Sommando due complessi, o moltiplicando un complesso per un reale, si resta tra i complessi, e le regole sono quelle dei conti tra complessi: la risposta è sì, con il motivo della (e), come nella soluzione ufficiale. La risposta più insidiosa è la (b): dice sì, ma con un motivo falso, perché $\Q$ non è uno spazio vettoriale su $\R$ ($\sqrt 2 \cdot 1$ non è razionale). La (a) e la (d) dicono cose vere che non rispondono alla domanda; la (c) è falsa, perché $i \cdot 1 = i$ non è reale.
+
+D: Appello dell'08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
+- $\{p(x) \in \R_2[x] \mid p(0) = 0\}$
+- $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$
+- $\{ax^2 + bx + c \mid a = 2c,\ b = 0\}$
++ $\{(1 + t)x^2 + tx \mid t \in \R\}$
+- $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$
+= «Sottospazio» vuol dire un pezzo di $\R_2[x]$ che con le stesse operazioni è uno spazio vettoriale (lezione L06): bastano i tre controlli. Nella (d) il polinomio nullo manca, perché servirebbero insieme $1 + t = 0$ e $t = 0$; anche la somma esce, perché il coefficiente di $x^2$ diventa $2 + t + s$. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (b), che sembra strana ma con $s = t = 0$ dà il polinomio nullo, e la somma di due suoi elementi ha ancora la stessa forma.
+
+D: Appello del 07/09/2026, domanda 6. Quale dei seguenti insiemi è un sottospazio di $\R_2[x]$?
++ $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(-1)\}$
+- $\{(1 + t)x^2 + tx \mid t \in \R\}$
+- $\{tx^2 + sx + 1 \mid s, t \in \R\}$
+- $\{p(x) \in \R_2[x] \mid p(0) = 1\}$
+- $\{ax^2 + bx + c \mid a = 2c,\ b = 2\}$
+= Le ultime quattro non contengono il polinomio nullo: la (b) come nell'appello dell'08/02/2024, la (c) e la (d) perché il termine noto è 1, la (e) perché il coefficiente di $x$ è 2. Nella (a) il polinomio nullo c'è, e se due polinomi valgono 0 in 1 e in $-1$, lì valgono 0 anche la somma e i multipli. È la (a) del foglio d'esame; nel file delle soluzioni la domanda è la 3, con le risposte in un altro ordine. La risposta più insidiosa è la (c): due parametri liberi fanno pensare a uno spazio, ma il termine noto fisso esclude lo zero.
+
+D: Appello del 05/02/2026, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
+- $\{p(x) \in \R_2[x] \mid p(1) = p(2)\}$
+- $\Span(x + 1,\ x^2 - 1)$
++ $\{x^2 + tx \mid t \in \R\}$
+- $\{ax^2 + bx + c \mid a + b - c = 0\}$
+- $\R_1[x]^\perp$
+= Nella (c) tutti i polinomi hanno il coefficiente di $x^2$ uguale a 1, quindi il polinomio nullo manca: è la (c) della soluzione ufficiale. Lo $\Span$ della (b) (lezione L06) e il complemento ortogonale della (e) (lezione L19) sono sempre sottospazi. La risposta più insidiosa è la (a): la condizione non è «uguale a zero», ma si riscrive $p(1) - p(2) = 0$, e il polinomio nullo la rispetta.
+
 D: Con la somma e il prodotto per scalare usuali (coordinata per coordinata), $\R^2$ è uno spazio vettoriale sul campo $\C$?
 - Sì, perché $\R \subset \C$.
 + No: per esempio $i \cdot (1, 0) = (i, 0)$ non sta in $\R^2$.

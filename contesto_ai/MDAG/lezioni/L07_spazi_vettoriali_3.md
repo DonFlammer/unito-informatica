@@ -8,12 +8,12 @@ docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L07
 descrizione: >-
   Appunti della lezione L07 di Algebra lineare e Geometria (MDAG, parte 2): dipendenza e indipendenza lineare,
-  basi, base canonica di K^n e dei polinomi, dimensione di uno spazio vettoriale e teorema sulle basi, con quiz
-  nello stile dell'esame ed esercizi svolti.
+  basi, base canonica di K^n e dei polinomi, dimensione di uno spazio vettoriale e teorema sulle basi, con domande
+  vere degli appelli, quiz ed esercizi svolti.
 lede: >-
-  Quando un vettore è di troppo? Quando si ottiene mescolando gli altri, come un ingrediente doppione. Da qui nascono
-  le basi, gli ingredienti giusti per fare tutto senza sprechi, e la dimensione: quanti numeri servono per dire dove
-  sei. Basi e dimensioni sono tra le domande più frequenti del quiz.
+  Quando un vettore è di troppo? Quando è una combinazione degli altri. Da qui nascono le basi, liste di vettori che
+  generano tutto senza vettori di troppo, e la dimensione: quanti numeri servono per descrivere un vettore. Basi e
+  dimensioni sono tra le domande più frequenti del quiz.
 materiale: dispense
 scheda:
   Dispense: lezione 7 · pp. 31–35
@@ -28,16 +28,16 @@ genera_html: true
 
 ## In breve
 
-- Dei vettori sono **linearmente dipendenti** quando uno di loro è di troppo: si ottiene mescolando gli altri, come un ingrediente doppione. Sono **linearmente indipendenti** quando nessuno è di troppo.
-- Il controllo: se l'unica ricetta che dà il vettore zero è quella con tutte le dosi uguali a zero, i vettori sono indipendenti.
+- Dei vettori sono **linearmente dipendenti** quando uno di loro è di troppo, perché è una combinazione lineare degli altri. Sono **linearmente indipendenti** quando nessuno è di troppo.
+- Il controllo: se l'unica combinazione che dà il vettore zero è quella con tutti i coefficienti uguali a zero, i vettori sono indipendenti.
 - Un vettore da solo è dipendente solo se è lo zero. Due vettori sono dipendenti solo se uno è multiplo dell'altro. Con tre o più vettori guardarli a coppie non basta.
-- Una **base** è una lista di vettori indipendenti con cui si cucina tutto lo spazio. Ogni vettore ha una sola ricetta con gli ingredienti di una base.
+- Una **base** è una lista di vettori indipendenti che generano tutto lo spazio. Ogni vettore si scrive in un solo modo come combinazione dei vettori di una base.
 - Tutte le basi di uno spazio hanno lo stesso numero di vettori: questo numero è la **dimensione**. Il piano ha dimensione 2, lo spazio 3, i polinomi di grado al massimo 2 hanno dimensione 3.
 - Se hai tanti vettori quanta è la dimensione, per sapere se sono una base basta controllare una cosa sola: che siano indipendenti.
 - All'esame escono domande su dimensioni, su «generatori e/o indipendenti» e su quale insieme è una base: per esempio negli appelli del 24/01/2024, 16/01/2025, 15/01/2026 e 07/09/2026.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di martedì 20/10/2026, dalle 9 alle 11: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 20/10/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 7. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Che cosa vuol dire «dimensione» (p. 31)
 
@@ -45,7 +45,7 @@ Dalla scuola sai che un punto ha dimensione 0, una retta dimensione 1, un piano 
 
 In questa lezione la parola «dimensione» diventa una definizione precisa, che vale per ogni spazio vettoriale: anche per le matrici $2 \times 3$ o per i polinomi, che non si possono disegnare.
 
-L'idea è contare **quanti vettori servono** per cucinare tutto lo spazio, senza sprechi. Ricorda dalla lezione L06: lo Span di alcuni vettori è tutto quello che si ottiene con le loro ricette. Guarda questi due casi nel piano:
+L'idea è contare **quanti vettori servono** per generare tutto lo spazio, senza vettori di troppo. Ricorda dalla lezione L06: lo Span di alcuni vettori è l'insieme delle loro combinazioni lineari. Guarda questi due casi nel piano:
 
 - Lo Span di $(1, 2)$ e $(2, 4)$ è una **retta**: il secondo vettore è il doppio del primo e non aggiunge niente. Uno dei due è di troppo.
 - Lo Span di $(1, 2)$ e $(2, 1)$ è **tutto il piano**: servono tutti e due, nessuno è di troppo.
@@ -72,17 +72,15 @@ Una retta, l'asse orizzontale: $(3, 0)$ è il triplo di $(1, 0)$ e non aggiunge 
 > - La dimensione conta quanti vettori servono per ottenere tutto lo spazio, senza vettori di troppo.
 > - Un vettore che è multiplo di un altro non aggiunge niente allo Span.
 
-## Ingredienti doppioni: la dipendenza lineare (pp. 31–33)
+## Vettori di troppo: la dipendenza lineare (pp. 31–33)
 
-In cucina hai tre ingredienti: farina, zucchero e un preparato già pronto fatto da 2 parti di farina e 1 di zucchero. Il preparato è un doppione: lo puoi rifare mescolando gli altri due. Toglierlo non cambia quello che puoi cucinare.
-
-Con i vettori succede lo stesso. Prendi $(1, 2)$ e $(2, 4)$. Il secondo è il doppio del primo: $(2, 4) = 2 \cdot (1, 2)$. Porto tutto da una parte:
+Un vettore è di troppo quando si ottiene combinando gli altri: toglierlo non cambia lo Span. Prendi $(1, 2)$ e $(2, 4)$. Il secondo è il doppio del primo: $(2, 4) = 2 \cdot (1, 2)$. Porto tutto da una parte:
 
 $$2 \cdot (1, 2) - 1 \cdot (2, 4) = (2 - 2,\ 4 - 4) = (0, 0).$$
 
-Una ricetta con dosi 2 e $-1$, cioè con dosi **non tutte zero**, dà il vettore zero. È il segnale che c'è un doppione.
+Una combinazione con coefficienti 2 e $-1$, cioè con coefficienti **non tutti zero**, dà il vettore zero. È il segnale che c'è un vettore di troppo.
 
-La ricetta con **tutte** le dosi uguali a zero dà sempre il vettore zero, con qualsiasi vettore: $0 \cdot (1, 2) + 0 \cdot (2, 4) = (0, 0)$. Non dice niente. La domanda interessante è se c'è un'**altra** ricetta che dà zero.
+La combinazione con **tutti** i coefficienti uguali a zero dà sempre il vettore zero, con qualsiasi vettore: $0 \cdot (1, 2) + 0 \cdot (2, 4) = (0, 0)$. Non dice niente. La domanda interessante è se c'è un'**altra** combinazione che dà zero.
 
 ### Il nome e la definizione
 
@@ -97,52 +95,52 @@ Le dispense lo scrivono così.
 
 **Come si legge.**
 
-- $v_1, \dots, v_k$ sono gli ingredienti; $\lambda_1, \dots, \lambda_k$ sono le dosi, cioè i coefficienti (lezione L06). $\K$ sono i numeri usati, reali o complessi.
-- **Non tutti nulli** vuol dire: almeno una dose diversa da zero. Le altre possono anche essere zero.
-- **Dipendenti**: c'è una ricetta con almeno una dose diversa da zero che dà il vettore zero.
-- **Indipendenti**: l'unica ricetta che dà zero è quella con tutte le dosi zero. Le dispense la chiamano combinazione «banale».
-- La freccia $\implies$ si legge «allora»: «se la ricetta dà zero, allora tutte le dosi sono zero».
+- $v_1, \dots, v_k$ sono i vettori; $\lambda_1, \dots, \lambda_k$ sono i coefficienti della combinazione (lezione L06). $\K$ sono i numeri usati, reali o complessi.
+- **Non tutti nulli** vuol dire: almeno un coefficiente diverso da zero. Gli altri possono anche essere zero.
+- **Dipendenti**: c'è una combinazione con almeno un coefficiente diverso da zero che dà il vettore zero.
+- **Indipendenti**: l'unica combinazione che dà zero è quella con tutti i coefficienti zero. Le dispense la chiamano combinazione «banale».
+- La freccia $\implies$ si legge «allora»: «se la combinazione dà zero, allora tutti i coefficienti sono zero».
 - Dipendenza e indipendenza riguardano **tutta la lista** di vettori insieme, non un vettore da solo.
 
 ### Come si controlla
 
-**Per dire «dipendenti»** basta mostrare una ricetta con dosi non tutte zero che dà zero. Per esempio $2 \cdot (1, 2) - (2, 4) = (0, 0)$.
+**Per dire «dipendenti»** basta mostrare una combinazione con coefficienti non tutti zero che dà zero. Per esempio $2 \cdot (1, 2) - (2, 4) = (0, 0)$.
 
-**Per dire «indipendenti»** si parte da una ricetta con le dosi sconosciute, la si mette uguale a zero e si dimostra che le dosi devono essere tutte zero. Di solito si risolve un sistema.
+**Per dire «indipendenti»** si parte da una combinazione con i coefficienti sconosciuti, la si mette uguale a zero e si dimostra che i coefficienti devono essere tutti zero. Di solito si risolve un sistema.
 
 > [!ESEMPIO] · la verifica con le incognite, nel piano
-> **$(1, 2)$ e $(2, 1)$ sono indipendenti.** Chiamo $a$ e $b$ le dosi e chiedo $a(1, 2) + b(2, 1) = (0, 0)$, cioè $(a + 2b,\ 2a + b) = (0, 0)$:
+> **$(1, 2)$ e $(2, 1)$ sono indipendenti.** Chiamo $a$ e $b$ i coefficienti e chiedo $a(1, 2) + b(2, 1) = (0, 0)$, cioè $(a + 2b,\ 2a + b) = (0, 0)$:
 > $$\begin{cases} a + 2b = 0 \\ 2a + b = 0 \end{cases}$$
 > 1. Dalla prima: $a = -2b$.
 > 2. Sostituisco nella seconda: $2 \cdot (-2b) + b = -4b + b = -3b = 0$, quindi $b = 0$.
 > 3. Allora $a = -2 \cdot 0 = 0$.
 >
-> L'unica ricetta che dà zero ha tutte le dosi zero: indipendenti.
+> L'unica combinazione che dà zero ha tutti i coefficienti zero: indipendenti.
 >
-> **$(1, 2)$ e $(2, 4)$ sono dipendenti.** Lo stesso sistema diventa $a + 2b = 0$ e $2a + 4b = 0$. La seconda equazione è il doppio della prima, e va bene ogni coppia con $a = -2b$. Per esempio $b = -1$ e $a = 2$: $2(1, 2) - (2, 4) = (0, 0)$, con dosi diverse da zero.
+> **$(1, 2)$ e $(2, 4)$ sono dipendenti.** Lo stesso sistema diventa $a + 2b = 0$ e $2a + 4b = 0$. La seconda equazione è il doppio della prima, e va bene ogni coppia con $a = -2b$. Per esempio $b = -1$ e $a = 2$: $2(1, 2) - (2, 4) = (0, 0)$, con coefficienti diversi da zero.
 
 ::: prova I vettori $(1, 0)$ e $(0, 1)$ sono indipendenti?
 Sì. $a(1, 0) + b(0, 1) = (a, b)$, e questo è $(0, 0)$ solo se $a = 0$ e $b = 0$.
 :::
 
-### Il doppione si ricostruisce dagli altri (p. 31)
+### Il vettore di troppo si ricava dagli altri (p. 31)
 
 Se dei vettori sono dipendenti, uno di loro si ricostruisce dagli altri. Ecco perché, con l'esempio di prima: da $2 \cdot (1, 2) - (2, 4) = 0$ sposto $(2, 4)$ dall'altra parte e ottengo $(2, 4) = 2 \cdot (1, 2)$.
 
-In generale si fa così. C'è almeno una dose diversa da zero, diciamo quella del vettore $v_i$, cioè $\lambda_i$. Lascio $\lambda_i v_i$ da una parte, sposto tutto il resto dall'altra e divido per $\lambda_i$ (si può, perché non è zero):
+In generale si fa così. C'è almeno un coefficiente diverso da zero, diciamo quello del vettore $v_i$, cioè $\lambda_i$. Lascio $\lambda_i v_i$ da una parte, sposto tutto il resto dall'altra e divido per $\lambda_i$ (si può, perché non è zero):
 
 $$v_i = -\frac{\lambda_1}{\lambda_i} v_1 - \dots - \frac{\lambda_k}{\lambda_i} v_k,$$
 
-dove a destra **non** compare $v_i$. Quindi $v_i$ è una ricetta con gli altri vettori: è il doppione.
+dove a destra **non** compare $v_i$. Quindi $v_i$ è una combinazione degli altri vettori: è quello di troppo.
 
-Vale anche al contrario. Se un vettore è una ricetta con gli altri, per esempio $v_1 = 3v_2 + v_3$, porto tutto da una parte: $v_1 - 3v_2 - v_3 = 0$. È una ricetta che dà zero con la dose di $v_1$ uguale a 1, non zero: i vettori sono dipendenti.
+Vale anche al contrario. Se un vettore è una combinazione degli altri, per esempio $v_1 = 3v_2 + v_3$, porto tutto da una parte: $v_1 - 3v_2 - v_3 = 0$. È una combinazione che dà zero con il coefficiente di $v_1$ uguale a 1, non zero: i vettori sono dipendenti.
 
 Le dispense lo scrivono così.
 
 > [!PROP] 7.2
 > I vettori $v_1, \dots, v_k$ sono dipendenti $\iff$ uno di loro è esprimibile come combinazione lineare degli altri.
 
-**Come si legge.** Il simbolo $\iff$ si legge «se e solo se»: le due cose vanno sempre insieme. Dipendenti vuol dire: c'è un doppione, un vettore che si ottiene mescolando gli altri.
+**Come si legge.** Il simbolo $\iff$ si legge «se e solo se»: le due cose vanno sempre insieme. Dipendenti vuol dire: c'è un vettore di troppo, che si ottiene combinando gli altri.
 
 > [!IDEA] · che cosa vuol dire «dipendenti»
 > Dei vettori sono dipendenti quando **uno è di troppo**: si può ricostruire dagli altri, e toglierlo non cambia lo Span. Sono indipendenti quando **ognuno porta una direzione nuova**, che gli altri non sanno produrre.
@@ -151,8 +149,8 @@ Le dispense lo scrivono così.
 
 Con pochi vettori la Proposizione 7.2 si legge subito.
 
-- **Un vettore da solo è dipendente solo se è lo zero.** Lo zero lo è: $1 \cdot 0 = 0$, con la dose 1. Un vettore diverso da zero no: se $\lambda v = 0$ con $v$ diverso da zero, allora $\lambda = 0$ (lezione L05, esercizio 11 (c)).
-- **Due vettori sono dipendenti solo se uno è multiplo dell'altro.** «Uno è una ricetta con l'altro» vuol dire proprio «uno è un multiplo dell'altro».
+- **Un vettore da solo è dipendente solo se è lo zero.** Lo zero lo è: $1 \cdot 0 = 0$, con il coefficiente 1. Un vettore diverso da zero no: se $\lambda v = 0$ con $v$ diverso da zero, allora $\lambda = 0$ (lezione L05, esercizio 11 (c)).
+- **Due vettori sono dipendenti solo se uno è multiplo dell'altro.** «Uno è una combinazione dell'altro» vuol dire proprio «uno è un multiplo dell'altro».
 
 > [!ESEMPIO] 7.3 · Due vettori di $\R^2$
 > I vettori $v_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ e $v_2 = \begin{pmatrix} -2 \\ -2 \end{pmatrix}$ di $\R^2$ sono dipendenti; $w_1 = \begin{pmatrix} 1 \\ 2 \end{pmatrix}$ e $w_2 = \begin{pmatrix} 2 \\ 1 \end{pmatrix}$ sono indipendenti perché non sono multipli.
@@ -163,9 +161,9 @@ Il perché, con i numeri:
 2. Perché $w_2$ sia un multiplo di $w_1$ servirebbe un numero $k$ con $2 = k \cdot 1$ (prima coordinata) e $1 = k \cdot 2$ (seconda). La prima dà $k = 2$, la seconda $k = \frac 12$: impossibile. Per lo stesso motivo nemmeno $w_1$ è un multiplo di $w_2$.
 
 > [!TRAPPOLA] Lo zero rende tutto dipendente
-> Se nella lista c'è il vettore zero, i vettori sono **sempre** dipendenti. Basta dare dose 1 allo zero e dose 0 a tutti gli altri: la ricetta dà zero, e una dose non è zero.
+> Se nella lista c'è il vettore zero, i vettori sono **sempre** dipendenti. Basta dare coefficiente 1 allo zero e 0 a tutti gli altri: la combinazione dà zero, e un coefficiente non è zero.
 
-Nello strumento qui sotto $u = (1, 2)$ e $v = (2, 1)$ sono indipendenti: con le ricette $\lambda u + \mu v$ si raggiunge ogni punto del piano. Trascina $v$ in $(2, 4)$ oppure in $(-1, -2)$: diventa un multiplo di $u$, lo strumento lo segnala e le ricette restano sulla retta rossa.
+Nello strumento qui sotto $u = (1, 2)$ e $v = (2, 1)$ sono indipendenti: con le combinazioni $\lambda u + \mu v$ si raggiunge ogni punto del piano. Trascina $v$ in $(2, 4)$ oppure in $(-1, -2)$: diventa un multiplo di $u$, lo strumento lo segnala e le combinazioni restano sulla retta rossa.
 
 ```widget vettori
 titolo: Due vettori del piano: indipendenti o multipli?
@@ -194,7 +192,7 @@ Il conto, coordinata per coordinata:
 
 $$v_1 - v_2 - v_3 = \begin{pmatrix} 1 - 0 - 1 \\ 1 - 1 - 0 \\ 0 - 1 - (-1) \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}.$$
 
-Come si **trova** una ricetta così, invece di indovinarla? Si chiamano $a$, $b$, $c$ le dosi e si chiede $a v_1 + b v_2 + c v_3 = 0$, coordinata per coordinata:
+Come si **trova** una combinazione così, invece di indovinarla? Si chiamano $a$, $b$, $c$ i coefficienti e si chiede $a v_1 + b v_2 + c v_3 = 0$, coordinata per coordinata:
 
 $$\begin{cases} a + c = 0 \\ a + b = 0 \\ b - c = 0 \end{cases}$$
 
@@ -202,9 +200,21 @@ $$\begin{cases} a + c = 0 \\ a + b = 0 \\ b - c = 0 \end{cases}$$
 2. Dalla seconda: $b = -a$.
 3. La terza diventa $-a - (-a) = 0$: è sempre vera, qualunque sia $a$.
 
-Quindi $a$ si può scegliere come si vuole. Con $a = 1$ vengono $b = -1$ e $c = -1$: proprio $v_1 - v_2 - v_3 = 0$. Una dose libera vuol dire infinite ricette che danno zero, anche con dosi diverse da zero: i vettori sono dipendenti.
+Quindi $a$ si può scegliere come si vuole. Con $a = 1$ vengono $b = -1$ e $c = -1$: proprio $v_1 - v_2 - v_3 = 0$. Un coefficiente libero vuol dire infinite combinazioni che danno zero, anche con coefficienti diversi da zero: i vettori sono dipendenti.
 
 Nel disegno i tre vettori stanno in uno **stesso piano per l'origine**, il piano $x - y + z = 0$. Controllo: $1 - 1 + 0 = 0$, $0 - 1 + 1 = 0$, $1 - 0 - 1 = 0$.
+
+Nel piano succede con tre vettori qualsiasi. Per esempio $(1, 0)$, $(0, 1)$ e $(1, 1)$ non sono multipli a due a due, ma il terzo è la somma dei primi due: $(1, 0) + (0, 1) - (1, 1) = (0, 0)$.
+
+```grafico
+titolo: $(1, 0)$, $(0, 1)$ e $(1, 1)$ non sono multipli a due a due, ma $(1, 1)$ è la diagonale del parallelogramma costruito sugli altri due, cioè la loro somma: i tre vettori sono dipendenti
+x: -0.8 2
+y: -0.8 2
+poligono: 0 0 1 0 1 1 0 1 | ambra | tenue
+vettore: 1 0 | accento | spesso | $(1, 0)$ | se
+vettore: 0 1 | blu | spesso | $(0, 1)$ | o
+vettore: 1 1 | ambra | spesso | $(1, 1)$ | ne
+```
 
 > [!ESEMPIO] 7.5 · La base canonica di $\R^3$ è indipendente
 > I vettori
@@ -213,23 +223,23 @@ Nel disegno i tre vettori stanno in uno **stesso piano per l'origine**, il piano
 > $$\lambda_1 \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} + \lambda_2 \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} + \lambda_3 \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} = \begin{pmatrix} \lambda_1 \\ \lambda_2 \\ \lambda_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}.$$
 > Da questo si deduce $\lambda_1 = \lambda_2 = \lambda_3 = 0$: l'unica combinazione lineare di $e_1, e_2, e_3$ che dà il vettore nullo è quella «banale», quindi i tre vettori sono indipendenti.
 
-Qui il conto è immediato perché ogni vettore ha un 1 in un posto dove gli altri hanno 0: la ricetta mette ogni dose in una coordinata diversa.
+Qui il conto è immediato perché ogni vettore ha un 1 in un posto dove gli altri hanno 0: la combinazione mette ogni coefficiente in una coordinata diversa.
 
 ### Una parte di una lista indipendente (pp. 32–33)
 
-Se nessun ingrediente di una lista è un doppione, nessuno lo è nemmeno in una parte della lista. Le dispense lo scrivono così.
+Se in una lista nessun vettore è di troppo, nessuno lo è nemmeno in una parte della lista. Le dispense lo scrivono così.
 
 > [!PROP] 7.6
 > Se $v_1, \dots, v_k$ sono indipendenti, allora qualsiasi sottoinsieme di $\{v_1, \dots, v_k\}$ è anch'esso formato da vettori indipendenti.
 
 **Come si legge.** Togliendo vettori da una lista indipendente si ottiene ancora una lista indipendente.
 
-Il motivo, a parole: una ricetta che dà zero con una parte dei vettori diventa una ricetta con tutti i vettori, dando dose zero a quelli tolti. Se la prima avesse una dose diversa da zero, l'avrebbe anche la seconda.
+Il motivo, a parole: una combinazione che dà zero con una parte dei vettori diventa una combinazione di tutti i vettori, dando coefficiente zero a quelli tolti. Se la prima avesse un coefficiente diverso da zero, l'avrebbe anche la seconda.
 
 > [!DIM] della Proposizione 7.6
-> La spiegazione delle dispense, con i passaggi. Supponi per assurdo che alcuni di loro, per comodità i primi $h$, siano dipendenti: esiste una ricetta $\lambda_1 v_1 + \dots + \lambda_h v_h = 0$ con dosi non tutte zero. Aggiungo gli altri vettori con dose zero:
+> La spiegazione delle dispense, con i passaggi. Supponi per assurdo che alcuni di loro, per comodità i primi $h$, siano dipendenti: esiste una combinazione $\lambda_1 v_1 + \dots + \lambda_h v_h = 0$ con coefficienti non tutti zero. Aggiungo gli altri vettori con coefficiente zero:
 > $$\lambda_1 v_1 + \dots + \lambda_h v_h + 0 v_{h+1} + \dots + 0 v_k = 0.$$
-> È una ricetta con **tutti** i vettori che dà zero, e ha ancora una dose diversa da zero. Questo contraddice l'indipendenza di $v_1, \dots, v_k$.
+> È una combinazione di **tutti** i vettori che dà zero, e ha ancora un coefficiente diverso da zero. Questo contraddice l'indipendenza di $v_1, \dots, v_k$.
 
 Due conseguenze. Se dei vettori sono indipendenti, allora:
 
@@ -237,7 +247,7 @@ Due conseguenze. Se dei vettori sono indipendenti, allora:
 - **a due a due non sono multipli** (guardando due vettori alla volta).
 
 > [!TRAPPOLA] Necessarie, ma non bastano
-> L'Esempio 7.4 mostra che con tre o più vettori queste due condizioni **non bastano**: $v_1, v_2, v_3$ sono diversi da zero e a coppie non multipli, eppure sono dipendenti. Con tre o più vettori bisogna scrivere la ricetta con le dosi sconosciute e risolvere il sistema.
+> L'Esempio 7.4 mostra che con tre o più vettori queste due condizioni **non bastano**: $v_1, v_2, v_3$ sono diversi da zero e a coppie non multipli, eppure sono dipendenti. Con tre o più vettori bisogna scrivere la combinazione con i coefficienti sconosciuti e risolvere il sistema.
 
 > [!OLTRE] · quanti vettori indipendenti ci sono in una lista: il metodo di Gauss
 > Per liste lunghe il sistema diventa pesante. Nella lezione L13 le dispense usano il **metodo di Gauss** (lezione L11) e il **rango** (lezione L08): si scrivono i vettori come righe di una matrice e si fanno mosse come «la riga 2 diventa la riga 2 meno la riga 1». Ogni mossa sostituisce un vettore con la sua differenza con un multiplo di un altro, e lo Span non cambia. Alla fine le righe diverse da zero sono indipendenti, e il loro numero, il rango, dice quanti vettori indipendenti c'erano. Nello strumento la matrice ha per righe i tre vettori dell'Esempio 7.4: esce una riga di zeri e il rango è 2. Prova poi le righe `1 1 2`, `-1 1 -1`, `0 1 1` (i vettori $v_1, v_2, v_4$ dell'Esercizio 7.15): il rango è 3, indipendenti.
@@ -250,21 +260,21 @@ modi: rango
 ```
 
 ::: prova I vettori $(1, 2, 3)$, $(0, 0, 0)$ e $(4, 5, 6)$ sono indipendenti?
-No: c'è il vettore zero, quindi sono dipendenti. Una ricetta che dà zero: $0 \cdot (1, 2, 3) + 1 \cdot (0, 0, 0) + 0 \cdot (4, 5, 6)$.
+No: c'è il vettore zero, quindi sono dipendenti. Una combinazione che dà zero: $0 \cdot (1, 2, 3) + 1 \cdot (0, 0, 0) + 0 \cdot (4, 5, 6)$.
 :::
 
 > [!RICORDA]
-> - Dipendenti: una ricetta con dosi non tutte zero dà il vettore zero; cioè un vettore è un doppione degli altri.
-> - Indipendenti: l'unica ricetta che dà zero ha tutte le dosi zero.
+> - Dipendenti: una combinazione con coefficienti non tutti zero dà il vettore zero; cioè un vettore è combinazione degli altri.
+> - Indipendenti: l'unica combinazione che dà zero ha tutti i coefficienti zero.
 > - Uno da solo è dipendente solo se è zero; due sono dipendenti solo se multipli; con tre o più si risolve il sistema.
 
-## Gli ingredienti giusti: le basi (pp. 33–34)
+## Le basi (pp. 33–34)
 
 Nel piano ogni vettore si scrive con due numeri. Per esempio
 
 $$(5, 3) = 5 \cdot (1, 0) + 3 \cdot (0, 1).$$
 
-I due vettori $(1, 0)$ e $(0, 1)$ bastano per cucinare tutto il piano, e nessuno dei due è di troppo. Una lista di ingredienti così si chiama **base**: abbastanza per fare tutto, e nessuno sprecato. Le dispense la presentano come una delle definizioni più importanti del corso.
+I due vettori $(1, 0)$ e $(0, 1)$ generano tutto il piano, e nessuno dei due è di troppo. Una lista di vettori così si chiama **base**: genera tutto, senza vettori di troppo. Le dispense la presentano come una delle definizioni più importanti del corso.
 
 > [!DEF] 7.7 · Base
 > Sia $V$ uno spazio vettoriale. Una sequenza $v_1, \dots, v_n \in V$ di vettori è una **base** se sono soddisfatte entrambe queste condizioni:
@@ -273,7 +283,7 @@ I due vettori $(1, 0)$ e $(0, 1)$ bastano per cucinare tutto il piano, e nessuno
 
 **Come si legge.**
 
-- **Generano $V$** vuol dire che lo Span dei vettori è tutto $V$: ogni vettore di $V$ si ottiene con una ricetta. Nessun vettore resta fuori.
+- **Generano $V$** vuol dire che lo Span dei vettori è tutto $V$: ogni vettore di $V$ è una loro combinazione. Nessun vettore resta fuori.
 - **Indipendenti**: nessuno dei vettori è di troppo.
 - Servono **tutte e due** le condizioni. Pochi vettori possono essere indipendenti senza generare tutto; tanti vettori possono generare tutto senza essere indipendenti.
 - È una **sequenza**: conta anche l'ordine, che diventerà importante con le coordinate (lezione L13).
@@ -290,8 +300,21 @@ Una tabella con cinque liste di vettori del piano:
 
 Nella quarta riga c'è un'altra base del piano: le basi di uno spazio sono infinite.
 
+Con una base diversa da quella solita, i numeri che descrivono un vettore cambiano. Rispetto alla base $u = (1, 2)$, $v = (2, 1)$ il vettore $(4, 5)$ si scrive $2u + v$: i suoi numeri in questa base sono 2 e 1 (sono le coordinate della lezione L13).
+
+```grafico
+titolo: Con la base $u = (1, 2)$, $v = (2, 1)$ il vettore $(4, 5)$ è $2u + v$: si va di $2u$ (tratteggio) e poi di $v$
+x: -0.5 6
+y: -0.5 6
+vettore: 2 1 | blu | spesso | $v$ | se
+vettore: 2 4 | accento | tratteggio | $2u$ | o
+vettore: 1 2 | accento | spesso | $u$ | o
+freccia: 2 4 4 5 | blu | spesso
+vettore: 4 5 | ambra | spesso | $(4, 5) = 2u + v$ | n
+```
+
 ::: prova I vettori $(1, 0)$, $(0, 1)$ e $(2, 3)$ sono una base del piano? Perché?
-No. Generano il piano, ma non sono indipendenti: $(2, 3) = 2 \cdot (1, 0) + 3 \cdot (0, 1)$ è un doppione.
+No. Generano il piano, ma non sono indipendenti: $(2, 3) = 2 \cdot (1, 0) + 3 \cdot (0, 1)$ è di troppo.
 :::
 
 ### La base canonica
@@ -314,7 +337,7 @@ Il vettore $e_i$ ha un 1 al posto numero $i$ e zeri altrove. Per esempio, con tr
 
 $$\begin{pmatrix} 5 \\ -2 \\ 7 \end{pmatrix} = 5e_1 - 2e_2 + 7e_3.$$
 
-Le dosi rispetto alla base canonica sono proprio le coordinate del vettore.
+I coefficienti rispetto alla base canonica sono proprio le coordinate del vettore.
 
 Lo stesso vale per i polinomi: la base più comoda è fatta dalle potenze della lettera.
 
@@ -325,13 +348,13 @@ Lo stesso vale per i polinomi: la base più comoda è fatta dalle potenze della 
 >
 > **Generano $\K_n[x]$**: ciascun polinomio di grado minore o uguale a $n$ si scrive come $p(x) = a_n x^n + \dots + a_1 x + a_0$, e questa scrittura è già una combinazione lineare dei vettori $1, x, \dots, x^n$, con coefficienti $a_0, a_1, \dots, a_n$.
 
-Perché vale l'indipendenza? A destra dell'uguale c'è il **polinomio zero**, quello con tutti i coefficienti uguali a 0. Due polinomi sono uguali quando hanno gli stessi coefficienti, quindi $\lambda_0 + \lambda_1 x + \dots + \lambda_n x^n$ è il polinomio zero solo se ogni dose è zero. Un esempio: $3 + 0x - 2x^2$ non è il polinomio zero, perché ha dei coefficienti diversi da zero.
+Perché vale l'indipendenza? A destra dell'uguale c'è il **polinomio zero**, quello con tutti i coefficienti uguali a 0. Due polinomi sono uguali quando hanno gli stessi coefficienti, quindi $\lambda_0 + \lambda_1 x + \dots + \lambda_n x^n$ è il polinomio zero solo se ogni $\lambda_i$ è zero. Un esempio: $3 + 0x - 2x^2$ non è il polinomio zero, perché ha dei coefficienti diversi da zero.
 
 > [!TRAPPOLA] I polinomi di grado al massimo $n$ hanno $n + 1$ vettori di base, non $n$
 > La base canonica dei polinomi di grado al massimo 2 è $1, x, x^2$: **tre** polinomi, perché c'è anche il numero 1. Per il grado al massimo $n$ i vettori sono $1, x, \dots, x^n$: $n + 1$ in tutto.
 
 > [!OLTRE] · a che cosa serve una base: le coordinate
-> Il libro di Martelli (Proposizione 2.3.11) mostra che, fissata una base, **ogni vettore si scrive in un solo modo** come ricetta con i suoi vettori. Se ci fossero due ricette diverse per lo stesso vettore, sottraendole si otterrebbe una ricetta che dà zero con dosi non tutte zero, contro l'indipendenza. Le dosi di quella ricetta si chiamano **coordinate** del vettore rispetto alla base. Per esempio, rispetto alla base $(1, 1), (-1, 1)$ del piano, il vettore $(2, 0) = 1 \cdot (1, 1) - 1 \cdot (-1, 1)$ ha coordinate $1$ e $-1$. Le coordinate si studiano nella lezione L13.
+> Il libro di Martelli (Proposizione 2.3.11) mostra che, fissata una base, **ogni vettore si scrive in un solo modo** come combinazione dei suoi vettori. Se ci fossero due combinazioni diverse per lo stesso vettore, sottraendole si otterrebbe una combinazione che dà zero con coefficienti non tutti zero, contro l'indipendenza. I coefficienti di quella combinazione si chiamano **coordinate** del vettore rispetto alla base. Per esempio, rispetto alla base $(1, 1), (-1, 1)$ del piano, il vettore $(2, 0) = 1 \cdot (1, 1) - 1 \cdot (-1, 1)$ ha coordinate $1$ e $-1$. Le coordinate si studiano nella lezione L13.
 
 > [!RICORDA]
 > - Una base è una lista di vettori indipendenti che generano tutto lo spazio.
@@ -346,7 +369,7 @@ Una retta per l'origine del piano ha basi fatte da un vettore: $(1, 2)$, oppure 
 > [!TEOREMA] 7.10
 > Se uno spazio vettoriale $V$ ha una base formata da $n$ vettori, allora ogni base di $V$ contiene $n$ vettori.
 
-**Come si legge.** Tutte le basi di uno stesso spazio hanno lo stesso numero di vettori. Cambiano gli ingredienti, non quanti ne servono.
+**Come si legge.** Tutte le basi di uno stesso spazio hanno lo stesso numero di vettori. Cambiano i vettori, non quanti ne servono.
 
 Questo teorema permette di dare un nome preciso a un'idea che conosci da sempre.
 
@@ -371,7 +394,7 @@ Con le basi già trovate:
 | $\K[x]$, tutti i polinomi | nessuna base finita | $\infty$ |
 | solo lo zero | la lista vuota | $0$ |
 
-**Perché tutti i polinomi insieme hanno dimensione infinita.** Prendi una lista finita di polinomi qualsiasi e chiama $N$ il grado più alto tra loro. Ogni ricetta con quei polinomi ha grado al massimo $N$, quindi il polinomio $x^{N+1}$ non si ottiene. Nessuna lista finita genera tutti i polinomi: non c'è una base finita.
+**Perché tutti i polinomi insieme hanno dimensione infinita.** Prendi una lista finita di polinomi qualsiasi e chiama $N$ il grado più alto tra loro. Ogni combinazione di quei polinomi ha grado al massimo $N$, quindi il polinomio $x^{N+1}$ non si ottiene. Nessuna lista finita genera tutti i polinomi: non c'è una base finita.
 
 > [!ESEMPIO] · la dimensione di alcuni sottospazi
 > - La retta $y = 2x$ del piano è lo Span di $(1, 2)$, e un vettore diverso da zero è indipendente: una base con un vettore, **dimensione 1**.
@@ -421,7 +444,7 @@ Le dispense lo scrivono così.
 > $(1, 2)$ e $(2, 1)$ non sono multipli, quindi sono indipendenti (Esempio 7.3). Sono 2 vettori e il piano ha dimensione 2: per il Teorema 7.12 sono una base, senza controllare che generino.
 
 > [!TRAPPOLA] Il teorema vale solo con il numero giusto di vettori
-> Due vettori indipendenti dello spazio a tre coordinate **non** sono una base: sono 2, non 3. Quattro vettori che generano lo spazio a tre coordinate **non** sono una base: sono troppi, e per forza c'è un doppione (riquadro qui sotto).
+> Due vettori indipendenti dello spazio a tre coordinate **non** sono una base: sono 2, non 3. Quattro vettori che generano lo spazio a tre coordinate **non** sono una base: sono troppi, e per forza ce n'è uno di troppo (riquadro qui sotto).
 
 ::: prova In $\R^3$, i vettori $(1, 0, 0)$, $(1, 1, 0)$ e $(1, 1, 1)$ sono indipendenti. Sono una base?
 Sì: sono 3 vettori indipendenti e $\R^3$ ha dimensione 3. Per il Teorema 7.12 generano anche tutto lo spazio.
@@ -429,8 +452,8 @@ Sì: sono 3 vettori indipendenti e $\R^3$ ha dimensione 3. Per il Teorema 7.12 g
 
 > [!OLTRE] · le conseguenze da usare nei quiz
 > Dal libro di Martelli (Proposizioni 2.3.23 e 2.3.25 e gli algoritmi dei §2.3.5–2.3.6), in uno spazio di dimensione $n$:
-> - **più di $n$ vettori sono sempre dipendenti**: se fossero indipendenti, i primi $n$ sarebbero una base (Teorema 7.12) e gli altri sarebbero loro ricette;
-> - **meno di $n$ vettori non generano mai tutto**: da una lista che genera si possono togliere uno alla volta i doppioni (Proposizione 7.2) fino a restare con una base, che avrebbe meno di $n$ vettori;
+> - **più di $n$ vettori sono sempre dipendenti**: se fossero indipendenti, i primi $n$ sarebbero una base (Teorema 7.12) e gli altri sarebbero loro combinazioni;
+> - **meno di $n$ vettori non generano mai tutto**: da una lista che genera si possono togliere uno alla volta i vettori di troppo (Proposizione 7.2) fino a restare con una base, che avrebbe meno di $n$ vettori;
 > - **lo Span di $k$ vettori ha dimensione al massimo $k$**, uguale al numero massimo di vettori indipendenti tra loro (è l'osservazione che la lezione L08 usa per il rango);
 > - **ogni sottospazio ha dimensione al massimo $n$**, e ha dimensione $n$ solo se è tutto lo spazio;
 > - **vettori indipendenti si completano a una base**: finché non generano tutto, si aggiunge un vettore fuori dal loro Span, e la lista resta indipendente (esercizio 12).
@@ -452,10 +475,10 @@ Sì: sono 3 vettori indipendenti e $\R^3$ ha dimensione 3. Per il Teorema 7.12 g
 | Simbolo | Si legge | Vuol dire | Esempio |
 |---|---|---|---|
 | $v_1, \dots, v_k$ | «v uno, …, v kappa» | un elenco di $k$ vettori | $(1, 2), (2, 1)$ |
-| $\lambda_1, \dots, \lambda_k$ | «lambda uno, …» | le dosi di una ricetta | $2(1, 2) - (2, 4)$ ha dosi $2$ e $-1$ |
+| $\lambda_1, \dots, \lambda_k$ | «lambda uno, …» | i coefficienti di una combinazione | $2(1, 2) - (2, 4)$ ha coefficienti $2$ e $-1$ |
 | $\implies$ | «allora» | se vale la prima cosa, vale la seconda | |
 | $\iff$ | «se e solo se» | le due cose vanno sempre insieme | |
-| $\Span(\ldots)$ | «span di …» | tutte le ricette con quei vettori (lezione L06) | $\Span((1, 2))$ |
+| $\Span(\ldots)$ | «span di …» | tutte le combinazioni di quei vettori (lezione L06) | $\Span((1, 2))$ |
 | $e_1, \dots, e_n$ | «e uno, …, e enne» | la base canonica: un 1 e tutti zeri | $e_2 = (0, 1, 0)$ |
 | $e_{ij}$ | «e i j» | la matrice con 1 nella riga $i$ e colonna $j$, zeri altrove | $e_{12} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$ |
 | $\dim V$ | «dimensione di V» | il numero di vettori di una base | $\dim \R^3 = 3$ |
@@ -486,14 +509,14 @@ Nei problemi da 11 punti le basi servono sempre: «trovare una base del nucleo e
 
 **Appello del 16/01/2025, domanda 2.** Il testo: «I polinomi $1$, $x$, $x^2$ e $1 + 2x + x^2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti? (a) Sono linearmente indipendenti, ma non generatori. (b) Non sono né linearmente indipendenti né generatori. (c) La domanda è mal posta: i polinomi non sono vettori. (d) Sono generatori, ma non linearmente indipendenti. (e) Sono sia generatori che linearmente indipendenti».
 
-**In pratica chiede:** con questi quattro polinomi si cucinano tutti i polinomi di grado al massimo 2? E c'è un doppione?
+**In pratica chiede:** questi quattro polinomi generano tutti i polinomi di grado al massimo 2? E ce n'è uno di troppo?
 
 > [!ESEMPIO] · la soluzione, passo per passo
-> **Passo 1: conto.** Sono 4 polinomi. I polinomi di grado al massimo 2 hanno dimensione 3. Più vettori della dimensione: per forza c'è un doppione. Quindi **non** sono indipendenti.
+> **Passo 1: conto.** Sono 4 polinomi. I polinomi di grado al massimo 2 hanno dimensione 3. Più vettori della dimensione: per forza ce n'è uno di troppo. Quindi **non** sono indipendenti.
 >
-> **Passo 2: trovo il doppione.** $1 + 2x + x^2 = 1 \cdot 1 + 2 \cdot x + 1 \cdot x^2$: è una ricetta con gli altri tre.
+> **Passo 2: trovo quello di troppo.** $1 + 2x + x^2 = 1 \cdot 1 + 2 \cdot x + 1 \cdot x^2$: è una combinazione degli altri tre.
 >
-> **Passo 3: generano?** I primi tre, $1$, $x$, $x^2$, sono la base canonica (Esempio 7.9): da soli già cucinano tutto. Aggiungendo un polinomio si cucina ancora tutto. Quindi **generano**.
+> **Passo 3: generano?** I primi tre, $1$, $x$, $x^2$, sono la base canonica (Esempio 7.9): da soli generano già tutto. Aggiungendo un polinomio si genera ancora tutto. Quindi **generano**.
 >
 > **La risposta** è la (d).
 >
@@ -508,31 +531,31 @@ Nei problemi da 11 punti le basi servono sempre: «trovare una base del nucleo e
 >
 > **Soluzione.** È la (c).
 > 1. **Conto.** Le matrici $2 \times 2$ hanno dimensione 4: una base ha esattamente 4 elementi. Restano solo (b) e (c).
-> 2. **(b).** $C + D = A$: c'è un doppione, quindi non è una base.
+> 2. **(b).** $C + D = A$: c'è una matrice di troppo, quindi non è una base.
 > 3. **(c).** Per il Teorema 7.12 basta controllare l'indipendenza. Chiedo $x_1 A + x_2 B + x_3 E + x_4 F = 0$:
 >    $$\begin{pmatrix} x_2 + x_3 + x_4 & x_1 + x_3 + x_4 \\ x_1 + x_3 & x_3 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}.$$
->    La casella in basso a destra dà $x_3 = 0$. Poi quella in basso a sinistra dà $x_1 = 0$, quella in alto a destra $x_4 = 0$, quella in alto a sinistra $x_2 = 0$. Tutte le dosi sono zero: è una base.
+>    La casella in basso a destra dà $x_3 = 0$. Poi quella in basso a sinistra dà $x_1 = 0$, quella in alto a destra $x_4 = 0$, quella in alto a sinistra $x_2 = 0$. Tutti i coefficienti sono zero: è una base.
 
 > [!ESAME] Appello del 15/01/2026, domanda 4
 > **Testo.** La dimensione dello spazio $S(3)$ delle matrici $3 \times 3$ simmetriche è: (a) nove; (b) zero; (c) tre; (d) sei; (e) $S(3)$ non ha una dimensione perché non è uno spazio vettoriale.
 >
 > **Soluzione.** È la (d). Una matrice simmetrica $3 \times 3$ è decisa dai 6 numeri sulla diagonale e sopra di essa: quelli sotto sono copie allo specchio.
 > $$\begin{pmatrix} a & b & c \\ b & d & e \\ c & e & f \end{pmatrix} = a e_{11} + d e_{22} + f e_{33} + b(e_{12} + e_{21}) + c(e_{13} + e_{31}) + e(e_{23} + e_{32}).$$
-> Le sei matrici a destra generano $S(3)$ e sono indipendenti: se la ricetta dà la matrice nulla, ogni dose compare da sola in qualche casella, quindi è zero. La (e) è falsa per la Proposizione 6.5. Con lo stesso ragionamento le triangolari superiori $3 \times 3$ hanno dimensione 6 (appello del 24/01/2024, domanda 5) e le antisimmetriche $3 \times 3$ hanno dimensione 3.
+> Le sei matrici a destra generano $S(3)$ e sono indipendenti: se la combinazione dà la matrice nulla, ogni coefficiente compare da solo in qualche casella, quindi è zero. La (e) è falsa per la Proposizione 6.5. Con lo stesso ragionamento le triangolari superiori $3 \times 3$ hanno dimensione 6 (appello del 24/01/2024, domanda 5) e le antisimmetriche $3 \times 3$ hanno dimensione 3.
 
 ### I metodi
 
 > [!METODO] · «Sono generatori e/o indipendenti?»
 > Hai $k$ vettori in uno spazio di dimensione $n$.
 > 1. **Conta.** Se $k$ è più grande di $n$, sono sicuramente dipendenti. Se è più piccolo, sicuramente non generano tutto.
-> 2. **Trova i doppioni.** Scrivi la ricetta con le dosi sconosciute uguale a zero e risolvi, oppure cerca un vettore che sia ricetta degli altri. Togliendo i doppioni restano $r$ vettori indipendenti, e $r$ è la dimensione dello Span.
+> 2. **Trova i vettori di troppo.** Scrivi la combinazione con i coefficienti sconosciuti uguale a zero e risolvi, oppure cerca un vettore che sia combinazione degli altri. Togliendo i vettori di troppo restano $r$ vettori indipendenti, e $r$ è la dimensione dello Span.
 > 3. **Concludi.** Sono indipendenti quando $r = k$; generano tutto quando $r = n$; sono una base quando $r = k = n$.
 >
 > Le risposte del tipo «la domanda è mal posta» (i vettori sono troppi, i polinomi non sono vettori) sono trappole: la domanda ha sempre senso.
 
 > [!METODO] · la dimensione di un sottospazio
 > 1. Scrivi l'elemento generico del sottospazio, usando le condizioni per eliminare le lettere che dipendono dalle altre: restano alcune **lettere libere**.
-> 2. Raccogli le lettere libere: l'elemento generico diventa una ricetta, con un vettore per ogni lettera. Il sottospazio è lo Span di quei vettori.
+> 2. Raccogli le lettere libere: l'elemento generico diventa una combinazione lineare, con un vettore per ogni lettera. Il sottospazio è lo Span di quei vettori.
 > 3. Controlla che siano indipendenti (di solito lo sono: ogni lettera compare da sola in qualche posto).
 > 4. La dimensione è il numero di vettori, cioè il numero di lettere libere.
 >
@@ -547,7 +570,7 @@ Nei problemi da 11 punti le basi servono sempre: «trovare una base del nucleo e
 
 > [!ESAME] Il foglio da 4 facciate
 > Da questa lezione:
-> - la definizione di indipendenza («se la ricetta dà zero, tutte le dosi sono zero») e la Proposizione 7.2;
+> - la definizione di indipendenza («se la combinazione dà zero, tutti i coefficienti sono zero») e la Proposizione 7.2;
 > - i casi con uno e due vettori, e la definizione di base;
 > - la tabella delle dimensioni: $\K^n$, $\K_n[x]$, $M(m, n)$;
 > - le matrici speciali: $D(n) = n$, $T^s(n) = S(n) = \frac{n(n+1)}2$, $A(n) = \frac{n(n-1)}2$;
@@ -556,13 +579,61 @@ Nei problemi da 11 punti le basi servono sempre: «trovare una base del nucleo e
 ## Quiz
 
 ```quiz
+D: Appello del 16/01/2025, domanda 2. I polinomi $1$, $x$, $x^2$ e $1 + 2x + x^2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti?
+- Sono linearmente indipendenti, ma non generatori.
+- Non sono né linearmente indipendenti né generatori.
+- La domanda è mal posta: i polinomi non sono vettori.
++ Sono generatori, ma non linearmente indipendenti.
+- Sono sia generatori che linearmente indipendenti.
+= Quattro polinomi in uno spazio di dimensione 3 sono per forza dipendenti, e infatti $1 + 2x + x^2$ è combinazione degli altri tre. I primi tre sono la base canonica, quindi generano. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (c): i polinomi sono vettori dello spazio $\R_2[x]$ (lezione L05).
+
+D: Appello del 15/01/2026, domanda 4. La dimensione dello spazio $S(3)$ delle matrici $3 \times 3$ simmetriche è:
+- nove
+- zero
+- tre
++ sei
+- $S(3)$ non ha una dimensione perché non è uno spazio vettoriale
+= Una matrice simmetrica $3 \times 3$ è decisa dai 3 numeri sulla diagonale e dai 3 sopra: sei lettere libere, sei matrici indipendenti. È la (d) della soluzione ufficiale. La risposta più insidiosa è nove, la dimensione di tutte le matrici $3 \times 3$; la (e) è falsa per la Proposizione 6.5.
+
+D: Appello del 10/07/2025, domanda 2. Sia $V = \R_3[x]$ e sia $W$ il sottoinsieme dei polinomi $p(x) \in V$ con $p(6) = 0$. La dimensione di $W$ è:
++ tre
+- due
+- quattro
+- uno
+- $W$ non ha una dimensione perché non è un sottospazio vettoriale
+= Se $p(6) = 0$ allora $p(x) = (x - 6)q(x)$ con $q$ di grado al massimo 2 (lezione L04). Quindi $W = \Span\big(x - 6,\ x(x - 6),\ x^2(x - 6)\big)$, tre polinomi di gradi diversi e quindi indipendenti. È la (a) della soluzione ufficiale. La risposta più insidiosa è quattro, la dimensione di tutto $\R_3[x]$: la condizione toglie una lettera libera.
+
+D: Appello del 03/07/2026, domanda 1. Sia $V = \R_3[x]$ e $W = \{p(x) \in V \mid p(2) = 0,\ p(-2) = 0\}$. La dimensione di $W$ è:
++ 2
+- $W$ non è sottospazio di $V$
+- 1
+- 4
+- 3
+= $p$ ha i fattori $x - 2$ e $x + 2$, quindi $p(x) = (x^2 - 4)(ax + b)$: due lettere libere, e $x^2 - 4$ e $x(x^2 - 4)$ sono indipendenti. È la (a) della soluzione ufficiale. La risposta più insidiosa è 3, che conta una condizione sola, come nell'appello del 10/07/2025.
+
+D: Appello del 07/09/2026, domanda 2. Siano $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, $B = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$, $C = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, $D = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$, $E = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$, $F = \begin{pmatrix} 1 & 1 \\ 0 & 0 \end{pmatrix}$. Quale insieme forma una base di $M(2, \R)$?
+- $\{A, B, F\}$
+- $\{A, C, D, E\}$
++ $\{A, B, E, F\}$
+- $\{B, C, D, E, F\}$
+- $\{B, C, F\}$
+= Le matrici $2 \times 2$ hanno dimensione 4, quindi restano solo la (b) e la (c). Nella (b) $C + D = A$: dipendenti. Nella (c) la combinazione $x_1 A + x_2 B + x_3 E + x_4 F$ è nulla solo con tutti i coefficienti zero, quindi per il Teorema 7.12 è una base: è la (c) della soluzione ufficiale. La risposta più insidiosa è la (b), che ha il numero giusto di matrici.
+
+D: Appello del 15/01/2026, domanda 3. Dato uno spazio vettoriale $V$ e vettori $v_1, v_2, v_3 \in V$, sia $X = \Span(v_1, v_2, v_3)$. Quale delle seguenti affermazioni è vera?
+- $\dim X = 3$
+- $\dim X = \{v_1, v_2, v_3\}$
+- $\dim X \ge 3$
++ $\dim X \le 3$
+- $\dim X$ non è ben definito: $X$ non è necessariamente uno spazio vettoriale
+= Togliendo i vettori di troppo da $v_1, v_2, v_3$ resta una base di $X$ con al massimo 3 vettori. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (a): vale solo se i tre vettori sono indipendenti, e con $v_1 = v_2 = v_3$ diverso da zero $X$ è una retta. La (e) è falsa per la Proposizione 6.7, la (b) confronta un numero con un insieme.
+
 D: I vettori $(1, 0, 1)$, $(0, 1, 1)$, $(1, 1, 2)$, $(0, 0, 1)$ di $\R^3$ sono generatori e/o linearmente indipendenti?
 - Sono linearmente indipendenti, ma non generatori.
 - Non sono né linearmente indipendenti né generatori.
 - La domanda è mal posta: i vettori sono 4 e non 3.
 + Sono generatori, ma non linearmente indipendenti.
 - Sono sia generatori che linearmente indipendenti.
-= Si conta per primo: 4 vettori in uno spazio di dimensione 3 sono sempre dipendenti, e infatti $(1, 1, 2) = (1, 0, 1) + (0, 1, 1)$ è un doppione. Poi si guarda se generano: $(1, 0, 1)$, $(0, 1, 1)$ e $(0, 0, 1)$ sono indipendenti (dalla ricetta $a(1, 0, 1) + b(0, 1, 1) + c(0, 0, 1) = 0$ viene $a = 0$, $b = 0$ e poi $c = 0$), quindi per il Teorema 7.12 sono già una base, e generano. La risposta più insidiosa è «mal posta»: avere più vettori della dimensione è permesso, vuol dire solo che c'è un doppione. Simile all'appello del 06/09/2024, domanda 2.
+= Si conta per primo: 4 vettori in uno spazio di dimensione 3 sono sempre dipendenti, e infatti $(1, 1, 2) = (1, 0, 1) + (0, 1, 1)$: il terzo vettore è di troppo. Poi si guarda se generano: $(1, 0, 1)$, $(0, 1, 1)$ e $(0, 0, 1)$ sono indipendenti (dalla combinazione $a(1, 0, 1) + b(0, 1, 1) + c(0, 0, 1) = 0$ viene $a = 0$, $b = 0$ e poi $c = 0$), quindi per il Teorema 7.12 sono già una base, e generano. La risposta più insidiosa è «mal posta»: avere più vettori della dimensione è permesso, vuol dire solo che ce n'è uno di troppo. Simile all'appello del 06/09/2024, domanda 2.
 
 D: I polinomi $1 + x$, $1 - x$ e $2$ di $\R_2[x]$ sono generatori e/o linearmente indipendenti?
 - Sono linearmente indipendenti, ma non generatori.
@@ -570,7 +641,7 @@ D: I polinomi $1 + x$, $1 - x$ e $2$ di $\R_2[x]$ sono generatori e/o linearment
 - Sono generatori, ma non linearmente indipendenti.
 - Sono sia generatori che linearmente indipendenti, cioè una base.
 - La domanda è mal posta: $2$ è un numero, non un polinomio.
-= Si cerca un doppione: $(1 + x) + (1 - x) = 2$, quindi sono dipendenti. Poi si guarda se generano: ogni ricetta con questi polinomi ha grado al massimo 1, quindi $x^2$ non si ottiene. Non generano. Lo Span è fatto dai polinomi di grado al massimo 1, di dimensione 2. La risposta più insidiosa è «una base»: sono 3 polinomi, quanti la dimensione, ma il Teorema 7.12 vale solo se una delle due condizioni è vera, e qui non lo è nessuna. E il numero 2 è un polinomio di grado 0. Simile all'appello del 16/01/2025, domanda 2.
+= Si cerca un vettore di troppo: $(1 + x) + (1 - x) = 2$, quindi sono dipendenti. Poi si guarda se generano: ogni combinazione di questi polinomi ha grado al massimo 1, quindi $x^2$ non si ottiene. Non generano. Lo Span è fatto dai polinomi di grado al massimo 1, di dimensione 2. La risposta più insidiosa è «una base»: sono 3 polinomi, quanti la dimensione, ma il Teorema 7.12 vale solo se una delle due condizioni è vera, e qui non lo è nessuna. E il numero 2 è un polinomio di grado 0. Simile all'appello del 16/01/2025, domanda 2.
 
 D: Qual è la dimensione di $\Span\big((1, 1, 0),\ (0, 1, 1),\ (1, 2, 1)\big)$?
 - $0$
@@ -578,7 +649,7 @@ D: Qual è la dimensione di $\Span\big((1, 1, 0),\ (0, 1, 1),\ (1, 2, 1)\big)$?
 + $2$
 - $3$
 - $4$
-= Si cercano i doppioni: $(1, 2, 1) = (1, 1, 0) + (0, 1, 1)$, quindi il terzo vettore è di troppo. I primi due non sono multipli, quindi sono indipendenti: sono una base dello Span, che ha dimensione 2 (un piano). La risposta più insidiosa è 3, che conta i vettori senza controllare i doppioni. Simile all'appello del 02/09/2025, domanda 10.
+= Si cercano i vettori di troppo: $(1, 2, 1) = (1, 1, 0) + (0, 1, 1)$, quindi il terzo vettore è di troppo. I primi due non sono multipli, quindi sono indipendenti: sono una base dello Span, che ha dimensione 2 (un piano). La risposta più insidiosa è 3, che conta i vettori senza controllare i vettori di troppo. Simile all'appello del 02/09/2025, domanda 10.
 
 D: Qual è la dimensione dello spazio $A(3)$ delle matrici $3 \times 3$ antisimmetriche?
 - Nove.
@@ -586,7 +657,7 @@ D: Qual è la dimensione dello spazio $A(3)$ delle matrici $3 \times 3$ antisimm
 + Tre.
 - Zero.
 - $A(3)$ non ha una dimensione perché non è uno spazio vettoriale.
-= Una matrice antisimmetrica $3 \times 3$ ha la diagonale di zeri, e sotto la diagonale ci sono gli opposti dei numeri sopra. Quindi è decisa dai 3 numeri sopra la diagonale: è una ricetta con tre matrici indipendenti (lezione L06, esercizio 12). La risposta più insidiosa è sei, la dimensione delle simmetriche, che hanno anche la diagonale libera. $A(3)$ è un sottospazio per la Proposizione 6.5, quindi ha una dimensione. Simile agli appelli del 24/01/2024 (domanda 5) e del 15/01/2026 (domanda 4), su $T^s(3)$ e $S(3)$, tutte e due di dimensione 6.
+= Una matrice antisimmetrica $3 \times 3$ ha la diagonale di zeri, e sotto la diagonale ci sono gli opposti dei numeri sopra. Quindi è decisa dai 3 numeri sopra la diagonale: è una combinazione di tre matrici indipendenti (lezione L06, esercizio 12). La risposta più insidiosa è sei, la dimensione delle simmetriche, che hanno anche la diagonale libera. $A(3)$ è un sottospazio per la Proposizione 6.5, quindi ha una dimensione. Simile agli appelli del 24/01/2024 (domanda 5) e del 15/01/2026 (domanda 4), su $T^s(3)$ e $S(3)$, tutte e due di dimensione 6.
 
 D: Siano $v_1, \dots, v_5$ cinque vettori di $\R^3$ e sia $X = \Span(v_1, \dots, v_5)$. Quale affermazione è sempre vera?
 - $\dim X = 5$
@@ -602,7 +673,7 @@ D: Siano $A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$, $B = \begin{pmatrix
 - $\{A, C, D, E\}$
 - $\{A, B, C, D, E\}$
 - $\{B, D, E\}$
-= Si conta per primo: le matrici $2 \times 2$ hanno dimensione 4, quindi una base ha 4 elementi, e le liste da tre o da cinque sono escluse. Per $\{A, B, C, D\}$ si controlla l'indipendenza: $aA + bB + cC + dD = \begin{pmatrix} a + b & c + d \\ c - d & a - b \end{pmatrix}$ è zero solo se $a + b = a - b = 0$ e $c + d = c - d = 0$, cioè tutte le dosi zero. Per il Teorema 7.12 è una base. La risposta più insidiosa è $\{A, C, D, E\}$, che ha 4 elementi: ma $E = A + C$ è un doppione. Simile all'appello del 07/09/2026, domanda 2.
+= Si conta per primo: le matrici $2 \times 2$ hanno dimensione 4, quindi una base ha 4 elementi, e le liste da tre o da cinque sono escluse. Per $\{A, B, C, D\}$ si controlla l'indipendenza: $aA + bB + cC + dD = \begin{pmatrix} a + b & c + d \\ c - d & a - b \end{pmatrix}$ è zero solo se $a + b = a - b = 0$ e $c + d = c - d = 0$, cioè tutti i coefficienti zero. Per il Teorema 7.12 è una base. La risposta più insidiosa è $\{A, C, D, E\}$, che ha 4 elementi: ma $E = A + C$, quindi $E$ è di troppo. Simile all'appello del 07/09/2026, domanda 2.
 
 D: Quale polinomio $s(x)$ si può aggiungere a $1 + x$ e $x + x^2$ per ottenere una base di $\R_2[x]$?
 + $s(x) = 1$
@@ -610,7 +681,7 @@ D: Quale polinomio $s(x)$ si può aggiungere a $1 + x$ e $x + x^2$ per ottenere 
 - $s(x) = 1 - x^2$
 - $s(x) = x^3$
 - $s(x) = 0$
-= Servono 3 polinomi indipendenti, perché la dimensione è 3. Con $s = 1$: la ricetta $a(1 + x) + b(x + x^2) + c = (a + c) + (a + b)x + bx^2$ è zero solo se $b = 0$, poi $a = 0$, poi $c = 0$; tre polinomi indipendenti sono una base. Le altre: $1 + 2x + x^2 = (1 + x) + (x + x^2)$ e $1 - x^2 = (1 + x) - (x + x^2)$ sono doppioni dei primi due; $x^3$ ha grado 3 e non sta nemmeno nello spazio; il polinomio zero rende sempre la lista dipendente. La risposta più insidiosa è $1 + 2x + x^2$, che sembra nuovo ma è la somma degli altri due. Simile all'appello del 10/06/2024, domanda 3.
+= Servono 3 polinomi indipendenti, perché la dimensione è 3. Con $s = 1$: la combinazione $a(1 + x) + b(x + x^2) + c = (a + c) + (a + b)x + bx^2$ è zero solo se $b = 0$, poi $a = 0$, poi $c = 0$; tre polinomi indipendenti sono una base. Le altre: $1 + 2x + x^2 = (1 + x) + (x + x^2)$ e $1 - x^2 = (1 + x) - (x + x^2)$ sono combinazioni dei primi due; $x^3$ ha grado 3 e non sta nemmeno nello spazio; il polinomio zero rende sempre la lista dipendente. La risposta più insidiosa è $1 + 2x + x^2$, che sembra nuovo ma è la somma degli altri due. Simile all'appello del 10/06/2024, domanda 3.
 
 D: In $\R^3$, tre vettori linearmente indipendenti:
 + sono sempre una base di $\R^3$.
@@ -638,14 +709,14 @@ D: Per quali valori di $k \in \R$ i vettori $(1, k)$ e $(k, 4)$ di $\R^2$ sono l
 ::: esercizio base Riscaldamento: multipli o no
 I vettori $(2, -4)$ e $(-1, 2)$ sono dipendenti? E $(2, 4)$ e $(1, 3)$?
 ::: soluzione
-1. $(2, -4) = -2 \cdot (-1, 2)$: uno è multiplo dell'altro, quindi sono **dipendenti**. Una ricetta che dà zero: $(2, -4) + 2 \cdot (-1, 2) = (0, 0)$.
+1. $(2, -4) = -2 \cdot (-1, 2)$: uno è multiplo dell'altro, quindi sono **dipendenti**. Una combinazione che dà zero: $(2, -4) + 2 \cdot (-1, 2) = (0, 0)$.
 2. Perché $(2, 4)$ sia $k$ volte $(1, 3)$ servirebbero $k = 2$ (prima coordinata) e $4 = 3k$ (seconda), cioè $k = \frac 43$. Impossibile: sono **indipendenti**.
 :::
 
 ::: esercizio base Riscaldamento: c'è lo zero
-La lista $(1, 1)$, $(0, 0)$ è indipendente? Scrivi una ricetta che lo dimostra.
+La lista $(1, 1)$, $(0, 0)$ è indipendente? Scrivi una combinazione che lo dimostra.
 ::: soluzione
-No: c'è il vettore zero. La ricetta $0 \cdot (1, 1) + 5 \cdot (0, 0) = (0, 0)$ dà zero con una dose, 5, diversa da zero. Quindi i vettori sono dipendenti.
+No: c'è il vettore zero. La combinazione $0 \cdot (1, 1) + 5 \cdot (0, 0) = (0, 0)$ dà zero con un coefficiente, 5, diverso da zero. Quindi i vettori sono dipendenti.
 :::
 
 ::: esercizio base Riscaldamento: quanti vettori in una base
@@ -658,12 +729,12 @@ Quanti vettori ha una base di: (a) $\R^4$; (b) i polinomi di grado al massimo 3;
 :::
 
 ::: esercizio base Riscaldamento: la base canonica
-Scrivi $(4, -3)$ e $(0, 7, -1)$ come ricette con la base canonica.
+Scrivi $(4, -3)$ e $(0, 7, -1)$ come combinazioni della base canonica.
 ::: soluzione
 1. $(4, -3) = 4e_1 - 3e_2$, con $e_1 = (1, 0)$ ed $e_2 = (0, 1)$.
 2. $(0, 7, -1) = 0e_1 + 7e_2 - e_3$, con $e_1, e_2, e_3$ della base canonica a tre coordinate.
 
-Le dosi sono le coordinate del vettore.
+I coefficienti sono le coordinate del vettore.
 :::
 
 ::: esercizio base Esercizio 7.14 delle dispense: una base di $\R^2$
@@ -671,12 +742,12 @@ Dimostra che i vettori $\begin{pmatrix} -1 \\ 1 \end{pmatrix}$ e $\begin{pmatrix
 ::: soluzione
 **Con il Teorema 7.12.** Sono due vettori e il piano ha dimensione 2, quindi basta l'indipendenza. Due vettori sono dipendenti solo se sono multipli: $(2, 1) = k(-1, 1)$ chiederebbe $k = -2$ (prima coordinata) e $k = 1$ (seconda), impossibile. Quindi sono indipendenti, e sono una base.
 
-**Direttamente, controllando anche che generino.** Cerco le dosi $t$ e $u$ con $t(-1, 1) + u(2, 1) = (x, y)$, per un vettore qualsiasi $(x, y)$:
+**Direttamente, controllando anche che generino.** Cerco i coefficienti $t$ e $u$ con $t(-1, 1) + u(2, 1) = (x, y)$, per un vettore qualsiasi $(x, y)$:
 $$\begin{cases} -t + 2u = x \\ t + u = y \end{cases}$$
 1. Sommo le due equazioni: $3u = x + y$, quindi $u = \frac{x + y}3$.
 2. Dalla seconda: $t = y - u = \frac{-x + 2y}3$.
 
-Le dosi ci sono sempre, quindi i vettori generano il piano. E sono di un solo tipo: per $(x, y) = (0, 0)$ vengono $t = u = 0$, quindi sono indipendenti.
+I coefficienti ci sono sempre, quindi i vettori generano il piano. E sono unici: per $(x, y) = (0, 0)$ vengono $t = u = 0$, quindi sono indipendenti.
 
 Controllo con $(x, y) = (1, 2)$: $u = 1$ e $t = 1$, e infatti $(-1, 1) + (2, 1) = (1, 2)$.
 :::
@@ -693,7 +764,7 @@ Per ciascuna lista di' se i vettori sono dipendenti o indipendenti. Se sono dipe
 
 (b) **Indipendenti**: sono due vettori non multipli. Perché $(2, 0, 1)$ sia $k$ volte $(1, 0, 2)$ servirebbero $k = 2$ e $1 = 2k$, cioè $k = \frac 12$: impossibile.
 
-(c) **Dipendenti**: sono tre vettori nel piano, che ha dimensione 2. Una ricetta che dà zero (dal libro di Martelli, Esempio 2.3.2): $-2(1, 2) + 4(1, 1) - (2, 0) = (-2 + 4 - 2,\ -4 + 4 - 0) = (0, 0)$.
+(c) **Dipendenti**: sono tre vettori nel piano, che ha dimensione 2. Una combinazione che dà zero (dal libro di Martelli, Esempio 2.3.2): $-2(1, 2) + 4(1, 1) - (2, 0) = (-2 + 4 - 2,\ -4 + 4 - 0) = (0, 0)$.
 
 (d) **Dipendenti**: c'è il vettore zero, e $0 \cdot (1, 2, 3) + 1 \cdot (0, 0, 0) + 0 \cdot (4, 5, 6) = 0$.
 
@@ -712,15 +783,15 @@ Dimostra che le matrici $e_{ij}$, con $1 \le i \le m$ e $1 \le j \le n$, formano
 ::: soluzione
 È la stessa dimostrazione della base canonica di $\K^n$ (Esempio 7.8), con due numerini invece di uno.
 
-**Generano.** Ogni matrice è una ricetta con le $e_{ij}$, con dosi uguali ai suoi numeri. Un esempio:
+**Generano.** Ogni matrice è una combinazione delle $e_{ij}$, con coefficienti uguali ai suoi numeri. Un esempio:
 $$\begin{pmatrix} 3 & -1 \\ 0 & 5 \end{pmatrix} = 3e_{11} - e_{12} + 0e_{21} + 5e_{22}.$$
 In generale $a_{ij} e_{ij}$ è la matrice con il numero $a_{ij}$ nella casella $(i, j)$ e zeri altrove; sommando tutte queste matrici si riempiono tutte le caselle:
 $$A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix} = \sum_{i, j} a_{ij} e_{ij}.$$
 Il simbolo $\sum$ si legge «somma»: qui vuol dire «la somma dei pezzi $a_{ij} e_{ij}$, per tutte le righe $i$ e tutte le colonne $j$».
 
-**Sono indipendenti.** Se la ricetta $\sum_{i, j} \lambda_{ij} e_{ij}$ dà la matrice nulla, scrivendola per esteso
+**Sono indipendenti.** Se la combinazione $\sum_{i, j} \lambda_{ij} e_{ij}$ dà la matrice nulla, scrivendola per esteso
 $$\begin{pmatrix} \lambda_{11} & \cdots & \lambda_{1n} \\ \vdots & & \vdots \\ \lambda_{m1} & \cdots & \lambda_{mn} \end{pmatrix} = \begin{pmatrix} 0 & \cdots & 0 \\ \vdots & & \vdots \\ 0 & \cdots & 0 \end{pmatrix},$$
-quindi ogni dose $\lambda_{ij}$ è zero.
+quindi ogni coefficiente $\lambda_{ij}$ è zero.
 
 **Dimensione.** C'è una matrice $e_{ij}$ per ogni casella: $m$ righe per $n$ colonne, cioè $mn$ matrici. Quindi $\dim M(m, n, \K) = mn$; per esempio $\dim M(2, 3) = 6$ e $\dim M(3) = 9$.
 :::
@@ -730,13 +801,13 @@ Considera i vettori di $\R^3$
 $$v_1 = \begin{pmatrix} 1 \\ 1 \\ 2 \end{pmatrix}, \quad v_2 = \begin{pmatrix} -1 \\ 1 \\ -1 \end{pmatrix}, \quad v_3 = \begin{pmatrix} 1 \\ 5 \\ 4 \end{pmatrix}, \quad v_4 = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}.$$
 Mostra che $v_1, v_2, v_3$ sono dipendenti e $v_1, v_2, v_4$ indipendenti.
 ::: soluzione
-**$v_1, v_2, v_3$ sono dipendenti.** Provo a scrivere $v_3$ come ricetta con $v_1$ e $v_2$ (Proposizione 7.2): cerco $a$ e $b$ con $a v_1 + b v_2 = v_3$, cioè
+**$v_1, v_2, v_3$ sono dipendenti.** Provo a scrivere $v_3$ come combinazione di $v_1$ e $v_2$ (Proposizione 7.2): cerco $a$ e $b$ con $a v_1 + b v_2 = v_3$, cioè
 $$\begin{cases} a - b = 1 \\ a + b = 5 \\ 2a - b = 4 \end{cases}$$
 1. Sommo le prime due: $2a = 6$, quindi $a = 3$.
 2. Dalla seconda: $b = 5 - 3 = 2$.
 3. Controllo la terza: $2 \cdot 3 - 2 = 4$. Vera.
 
-Quindi $v_3 = 3v_1 + 2v_2$, cioè $3v_1 + 2v_2 - v_3 = 0$: una ricetta che dà zero con dosi diverse da zero.
+Quindi $v_3 = 3v_1 + 2v_2$, cioè $3v_1 + 2v_2 - v_3 = 0$: una combinazione che dà zero con coefficienti diversi da zero.
 
 Controllo: $3(1, 1, 2) + 2(-1, 1, -1) = (3 - 2,\ 3 + 2,\ 6 - 2) = (1, 5, 4) = v_3$.
 
@@ -746,7 +817,7 @@ $$\begin{cases} a - b = 0 \\ a + b + c = 0 \\ 2a - b + c = 0 \end{cases}$$
 2. Sostituisco: la seconda diventa $2a + c = 0$, la terza $a + c = 0$.
 3. Tolgo la terza dalla seconda: $a = 0$. Quindi $c = 0$ e $b = 0$.
 
-Solo la ricetta con tutte le dosi zero: indipendenti. Sono tre vettori indipendenti nello spazio a tre coordinate, quindi sono anche una base (Teorema 7.12).
+Solo la combinazione con tutti i coefficienti zero: indipendenti. Sono tre vettori indipendenti nello spazio a tre coordinate, quindi sono anche una base (Teorema 7.12).
 :::
 
 ::: esercizio medio Polinomi indipendenti e basi di $\R_3[x]$
@@ -754,10 +825,10 @@ Solo la ricetta con tutte le dosi zero: indipendenti. Sono tre vettori indipende
 (b) I polinomi $f = x^3 + x$, $g = x^2 - 1$, $h = x^3 + x^2 + x - 1$ sono indipendenti?
 (c) I polinomi $f = x^3 + x$, $g = x^2 - 1$, $k = x^3 - x$ sono indipendenti? Sono una base di $\R_3[x]$? Se no, completali a una base.
 ::: soluzione
-(a) Ordino i polinomi dal grado più basso al più alto. Prendo una ricetta che dà il polinomio zero.
-1. La potenza più alta compare solo nell'ultimo polinomio. Nella ricetta, il numero davanti a quella potenza è la dose dell'ultimo polinomio per un numero diverso da zero. Deve essere zero, quindi la dose dell'ultimo polinomio è zero.
-2. Resta una ricetta con gli altri polinomi che dà zero, e si ripete: anche la dose del penultimo è zero.
-3. Si continua fino al primo: tutte le dosi sono zero.
+(a) Ordino i polinomi dal grado più basso al più alto. Prendo una combinazione che dà il polinomio zero.
+1. La potenza più alta compare solo nell'ultimo polinomio. Nella combinazione, il numero davanti a quella potenza è il coefficiente dell'ultimo polinomio per un numero diverso da zero. Deve essere zero, quindi il coefficiente dell'ultimo polinomio è zero.
+2. Resta una combinazione degli altri polinomi che dà zero, e si ripete: anche il coefficiente del penultimo è zero.
+3. Si continua fino al primo: tutti i coefficienti sono zero.
 
 (b) **No**: $h = f + g$, perché $(x^3 + x) + (x^2 - 1) = x^3 + x^2 + x - 1$. Quindi $f + g - h = 0$.
 
@@ -765,7 +836,7 @@ Solo la ricetta con tutte le dosi zero: indipendenti. Sono tre vettori indipende
 $$a(x^3 + x) + b(x^2 - 1) + c(x^3 - x) = (a + c)x^3 + bx^2 + (a - c)x - b = 0.$$
 Tutti i numeri davanti alle potenze devono essere zero: $b = 0$, $a + c = 0$, $a - c = 0$, quindi $a = c = 0$. Sono **indipendenti**.
 
-Non sono una base: sono 3 polinomi e lo spazio ha dimensione 4, quindi non generano. Per esempio ogni ricetta ha il termine noto uguale a $-b$ e il numero davanti a $x^2$ uguale a $b$: il polinomio 1, con termine noto 1 e niente $x^2$, non si ottiene.
+Non sono una base: sono 3 polinomi e lo spazio ha dimensione 4, quindi non generano. Per esempio ogni combinazione ha il termine noto uguale a $-b$ e il numero davanti a $x^2$ uguale a $b$: il polinomio 1, con termine noto 1 e niente $x^2$, non si ottiene.
 
 Completamento: aggiungo il polinomio 1. Chiedo $af + bg + ck + d \cdot 1 = 0$:
 $$(a + c)x^3 + bx^2 + (a - c)x + (d - b) = 0,$$
@@ -796,7 +867,7 @@ Con $k = -1$ si ritrovano i vettori dell'Esempio 7.4 (con $u_3 = v_3$). Nella le
 $$\begin{cases} a - b + c = 0 \\ a = 0 \\ b = 0 \end{cases}$$
 quindi $a = b = 0$ e poi $c = 0$. Tre vettori indipendenti nello spazio a tre coordinate: $w_1, w_2, e_1$ è una base.
 
-(b) Cerco i doppioni.
+(b) Cerco i vettori di troppo.
 1. $v_3 = v_1 + v_2$, perché $(1, 0, 1) + (0, 1, 1) = (1, 1, 2)$.
 2. $v_4 = v_1 - v_2$, perché $(1, 0, 1) - (0, 1, 1) = (1, -1, 0)$.
 3. Tolgo $v_3$ e $v_4$: lo Span non cambia (Proposizione 7.2). Restano $v_1$ e $v_2$, che non sono multipli, quindi sono indipendenti.
@@ -811,10 +882,10 @@ Deduci che, in uno spazio di dimensione $n$, ogni lista di vettori indipendenti 
 ::: soluzione
 Il simbolo $\notin$ si legge «non appartiene a».
 
-**Primo verso: se sono indipendenti, il nuovo vettore sta fuori dallo Span.** Se invece stesse dentro, cioè $v_{k+1} = \lambda_1 v_1 + \dots + \lambda_k v_k$, allora $\lambda_1 v_1 + \dots + \lambda_k v_k - v_{k+1} = 0$ sarebbe una ricetta che dà zero con la dose $-1$: i vettori sarebbero dipendenti.
+**Primo verso: se sono indipendenti, il nuovo vettore sta fuori dallo Span.** Se invece stesse dentro, cioè $v_{k+1} = \lambda_1 v_1 + \dots + \lambda_k v_k$, allora $\lambda_1 v_1 + \dots + \lambda_k v_k - v_{k+1} = 0$ sarebbe una combinazione che dà zero con il coefficiente $-1$: i vettori sarebbero dipendenti.
 
-**Secondo verso: se il nuovo vettore sta fuori dallo Span, sono indipendenti.** Prendo una ricetta $\lambda_1 v_1 + \dots + \lambda_k v_k + \lambda_{k+1} v_{k+1} = 0$.
-- Se la dose $\lambda_{k+1}$ non fosse zero, dividendo per lei ricaverei $v_{k+1}$ come ricetta con $v_1, \dots, v_k$: contro l'ipotesi che stia fuori dallo Span.
+**Secondo verso: se il nuovo vettore sta fuori dallo Span, sono indipendenti.** Prendo una combinazione $\lambda_1 v_1 + \dots + \lambda_k v_k + \lambda_{k+1} v_{k+1} = 0$.
+- Se il coefficiente $\lambda_{k+1}$ non fosse zero, dividendo per lui ricaverei $v_{k+1}$ come combinazione di $v_1, \dots, v_k$: contro l'ipotesi che stia fuori dallo Span.
 - Quindi $\lambda_{k+1} = 0$, e resta $\lambda_1 v_1 + \dots + \lambda_k v_k = 0$. I primi $k$ vettori sono indipendenti, quindi anche $\lambda_1 = \dots = \lambda_k = 0$.
 
 **Completamento.** Lo spazio ha dimensione $n$ e i vettori indipendenti sono $k$, meno di $n$. Allora non generano tutto (meno di $n$ vettori non generano), quindi c'è un vettore $v_{k+1}$ fuori dal loro Span. Per quanto appena dimostrato, $v_1, \dots, v_{k+1}$ sono ancora indipendenti. Si ripete finché i vettori sono $n$: a quel punto sono $n$ vettori indipendenti, cioè una base per il Teorema 7.12. È l'algoritmo di completamento del libro di Martelli (§2.3.5).
@@ -823,7 +894,7 @@ Il simbolo $\notin$ si legge «non appartiene a».
 ::: esercizio esame Come all'esame: basi e dimensioni degli spazi di matrici
 Trova una base e la dimensione di ciascuno dei sottospazi $D(3)$, $T^s(3)$, $S(3)$ e $A(3)$ di $M(3)$. Poi di' quanto valgono in generale $\dim D(n)$, $\dim T^s(n)$, $\dim S(n)$ e $\dim A(n)$.
 ::: soluzione
-Uso le matrici $e_{ij}$ dell'Esercizio 7.13. In ogni caso scrivo la matrice generica, la riscrivo come ricetta e controllo l'indipendenza: ogni lettera libera compare da sola in una casella in cui le altre matrici hanno 0, quindi una ricetta che dà la matrice nulla ha tutte le dosi zero.
+Uso le matrici $e_{ij}$ dell'Esercizio 7.13. In ogni caso scrivo la matrice generica, la riscrivo come combinazione e controllo l'indipendenza: ogni lettera libera compare da sola in una casella in cui le altre matrici hanno 0, quindi una combinazione che dà la matrice nulla ha tutti i coefficienti zero.
 
 - **$D(3)$**: $\begin{pmatrix} a & 0 & 0 \\ 0 & b & 0 \\ 0 & 0 & c \end{pmatrix} = a e_{11} + b e_{22} + c e_{33}$. Base $e_{11}, e_{22}, e_{33}$: **dimensione 3**.
 - **$T^s(3)$**: $\begin{pmatrix} a & b & c \\ 0 & d & e \\ 0 & 0 & f \end{pmatrix} = a e_{11} + b e_{12} + c e_{13} + d e_{22} + e\, e_{23} + f e_{33}$. Base $e_{11}, e_{12}, e_{13}, e_{22}, e_{23}, e_{33}$: **dimensione 6**. È la risposta dell'appello del 24/01/2024, domanda 5.
@@ -870,9 +941,9 @@ Per ciascuna lista stabilisci se i vettori sono linearmente indipendenti, se gen
 (b) $(1, 0, 2)$, $(0, 1, -1)$, $(2, 1, 3)$ in $\R^3$.
 (c) $(1, 1, 0, 0)$, $(0, 1, 1, 0)$, $(0, 0, 1, 1)$ in $\R^4$.
 ::: soluzione
-(a) Tre vettori nel piano: **dipendenti**. Generano: $(1, -1)$ e $(2, 1)$ non sono multipli, quindi sono già una base del piano, e aggiungendo $(0, 3)$ si genera ancora. **Generatori, non base.** Il doppione: cerco $a$ e $b$ con $a(1, -1) + b(2, 1) = (0, 3)$, cioè $a + 2b = 0$ e $-a + b = 3$. Sommando, $3b = 3$, quindi $b = 1$ e $a = -2$: $(0, 3) = -2(1, -1) + (2, 1)$.
+(a) Tre vettori nel piano: **dipendenti**. Generano: $(1, -1)$ e $(2, 1)$ non sono multipli, quindi sono già una base del piano, e aggiungendo $(0, 3)$ si genera ancora. **Generatori, non base.** Il vettore di troppo: cerco $a$ e $b$ con $a(1, -1) + b(2, 1) = (0, 3)$, cioè $a + 2b = 0$ e $-a + b = 3$. Sommando, $3b = 3$, quindi $b = 1$ e $a = -2$: $(0, 3) = -2(1, -1) + (2, 1)$.
 
-(b) $2(1, 0, 2) + (0, 1, -1) = (2, 1, 3)$: il terzo è un doppione dei primi due, **dipendenti**. I primi due non sono multipli, quindi lo Span ha dimensione 2: è un piano, **non generano** lo spazio. **Non è una base.**
+(b) $2(1, 0, 2) + (0, 1, -1) = (2, 1, 3)$: il terzo è combinazione dei primi due, **dipendenti**. I primi due non sono multipli, quindi lo Span ha dimensione 2: è un piano, **non generano** lo spazio. **Non è una base.**
 
 (c) Chiedo $a(1, 1, 0, 0) + b(0, 1, 1, 0) + c(0, 0, 1, 1) = 0$.
 1. Prima coordinata: $a = 0$.
@@ -885,11 +956,11 @@ Per ciascuna lista stabilisci se i vettori sono linearmente indipendenti, se gen
 ## Domande di ripasso
 
 ::: domanda Quando dei vettori sono linearmente dipendenti? E indipendenti?
-Dipendenti: c'è una ricetta con dosi non tutte zero che dà il vettore zero. Indipendenti: l'unica ricetta che dà zero è quella con tutte le dosi zero.
+Dipendenti: c'è una combinazione con coefficienti non tutti zero che dà il vettore zero. Indipendenti: l'unica combinazione che dà zero è quella con tutti i coefficienti zero.
 :::
 
 ::: domanda Che cosa dice la Proposizione 7.2, e perché è vera?
-Dei vettori sono dipendenti esattamente quando uno di loro è una ricetta con gli altri, cioè un doppione. Se una ricetta che dà zero ha una dose diversa da zero, si divide per quella dose e si ricava quel vettore dagli altri. Al contrario, se un vettore è una ricetta con gli altri, portando tutto da una parte si ottiene una ricetta che dà zero con la dose $-1$.
+Dei vettori sono dipendenti esattamente quando uno di loro è una combinazione degli altri, cioè è di troppo. Se una combinazione che dà zero ha un coefficiente diverso da zero, si divide per quel coefficiente e si ricava quel vettore dagli altri. Al contrario, se un vettore è una combinazione degli altri, portando tutto da una parte si ottiene una combinazione che dà zero con il coefficiente $-1$.
 :::
 
 ::: domanda Quando un solo vettore è dipendente? E due vettori?
@@ -901,7 +972,7 @@ No. Nell'Esempio 7.4, $(1, 1, 0)$, $(0, 1, 1)$ e $(1, 0, -1)$ sono diversi da ze
 :::
 
 ::: domanda Perché una lista che contiene il vettore zero è sempre dipendente?
-Perché dando dose 1 al vettore zero e dose 0 a tutti gli altri si ottiene zero, con una dose diversa da zero.
+Perché dando coefficiente 1 al vettore zero e 0 a tutti gli altri si ottiene zero, con un coefficiente diverso da zero.
 :::
 
 ::: domanda Che cos'è una base? Fai un esempio nel piano diverso dalla base canonica.
@@ -929,7 +1000,7 @@ No in tutti e due i casi. In uno spazio di dimensione $n$, più di $n$ vettori s
 :::
 
 ::: domanda Come si calcola la dimensione di un sottospazio definito da condizioni?
-Si scrive l'elemento generico con le lettere libere, lo si riscrive come ricetta con un vettore per lettera, si controlla che quei vettori siano indipendenti e si contano. Per esempio i polinomi di grado al massimo 3 che fanno zero in 2 hanno dimensione 3.
+Si scrive l'elemento generico con le lettere libere, lo si riscrive come combinazione, con un vettore per lettera, si controlla che quei vettori siano indipendenti e si contano. Per esempio i polinomi di grado al massimo 3 che fanno zero in 2 hanno dimensione 3.
 :::
 
 ::: domanda Quanto valgono $\dim S(3)$, $\dim T^s(3)$ e $\dim A(3)$?
@@ -939,22 +1010,22 @@ Si scrive l'elemento generico con le lettere libere, lo si riscrive come ricetta
 ## Glossario
 
 ```glossario
-Combinazione banale | La ricetta con tutte le dosi uguali a zero. Dà sempre il vettore zero, con qualsiasi vettori.
-Linearmente dipendenti | Vettori con un doppione: una ricetta con dosi non tutte zero dà il vettore zero. Per esempio $(1, 2)$ e $(2, 4)$.
-Linearmente indipendenti | Vettori senza doppioni: l'unica ricetta che dà zero ha tutte le dosi zero. Per esempio $(1, 2)$ e $(2, 1)$.
+Combinazione banale | La combinazione con tutti i coefficienti uguali a zero. Dà sempre il vettore zero, con qualsiasi vettori.
+Linearmente dipendenti | Vettori di cui uno è di troppo: una combinazione con coefficienti non tutti zero dà il vettore zero. Per esempio $(1, 2)$ e $(2, 4)$.
+Linearmente indipendenti | Vettori di cui nessuno è di troppo: l'unica combinazione che dà zero ha tutti i coefficienti zero. Per esempio $(1, 2)$ e $(2, 1)$.
 Vettori multipli | Due vettori uno uguale all'altro moltiplicato per un numero. Per due vettori, essere multipli vuol dire essere dipendenti.
-Generatori | Vettori con cui si ottiene tutto lo spazio: ogni vettore è una loro ricetta.
-Base | Una lista di vettori indipendenti che generano tutto lo spazio: gli ingredienti giusti, nessuno sprecato.
+Generatori | Vettori con cui si ottiene tutto lo spazio: ogni vettore è una loro combinazione.
+Base | Una lista di vettori indipendenti che generano tutto lo spazio: nessuno di troppo.
 Base canonica di $\K^n$ | I vettori $e_1, \dots, e_n$, ciascuno con un 1 in un posto e zeri altrove.
 Base canonica di $\K_n[x]$ | I polinomi $1, x, x^2, \dots, x^n$: sono $n + 1$.
 Matrici $e_{ij}$ | La matrice con un 1 nella riga $i$ e colonna $j$, e zeri altrove. Formano la base canonica delle matrici.
 Dimensione | Il numero di vettori di una base. Si scrive $\dim V$; è infinita se nessuna lista finita genera lo spazio.
 Definizione ben posta | Una definizione che non dipende dalle scelte fatte. Per la dimensione lo garantisce il Teorema 7.10.
 Dimensione infinita | Quella di uno spazio che nessuna lista finita genera, come tutti i polinomi insieme.
-Coordinate rispetto a una base | Le dosi dell'unica ricetta che dà un vettore con gli ingredienti di una base (lezione L13).
+Coordinate rispetto a una base | I coefficienti dell'unica combinazione dei vettori di una base che dà quel vettore (lezione L13).
 Lemma di scambio | Se $n$ vettori generano lo spazio, altri $n$ vettori indipendenti lo generano anche loro. È la chiave del Teorema 7.10.
 Completamento a una base | Aggiungere a vettori indipendenti vettori fuori dal loro Span, finché sono tanti quanta è la dimensione.
-Estrazione di una base | Togliere da una lista che genera i doppioni, finché restano vettori indipendenti.
+Estrazione di una base | Togliere da una lista che genera i vettori di troppo, finché restano vettori indipendenti.
 Rango (anticipo) | Il numero massimo di righe, o colonne, indipendenti di una matrice (lezione L08).
 ```
 
@@ -962,14 +1033,14 @@ Rango (anticipo) | Il numero massimo di righe, o colonne, indipendenti di una ma
 
 ```checklist
 - So dire a parole e con la formula quando dei vettori sono indipendenti.
-- So dimostrare che dei vettori sono indipendenti scrivendo la ricetta con le dosi sconosciute e risolvendo il sistema.
-- So dimostrare che dei vettori sono dipendenti mostrando una ricetta con dosi non tutte zero che dà zero.
+- So dimostrare che dei vettori sono indipendenti scrivendo la combinazione con i coefficienti sconosciuti e risolvendo il sistema.
+- So dimostrare che dei vettori sono dipendenti mostrando una combinazione con coefficienti non tutti zero che dà zero.
 - So spiegare la Proposizione 7.2 e riconoscere i casi con uno e due vettori.
 - So spiegare con l'Esempio 7.4 perché con tre vettori non basta guardarli a coppie.
 - So dire che cos'è una base e perché $e_1, \dots, e_n$ e $1, x, \dots, x^n$ sono basi.
 - So le dimensioni di $\K^n$, dei polinomi di grado al massimo $n$, delle matrici e di tutti i polinomi, senza sbagliare il $+1$ dei polinomi.
 - So usare il Teorema 7.12 per dimostrare che dei vettori sono una base controllando solo l'indipendenza.
-- So rispondere a «generatori e/o indipendenti?» contando i vettori e cercando i doppioni.
+- So rispondere a «generatori e/o indipendenti?» contando i vettori e cercando i vettori di troppo.
 - So calcolare base e dimensione di sottospazi di matrici e di polinomi definiti da condizioni.
 - So completare dei vettori indipendenti a una base ed estrarre una base da una lista che genera.
 ```

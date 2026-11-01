@@ -9,7 +9,7 @@ sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C ·
 descrizione: >-
   Appunti della lezione L09 di Algebra lineare e Geometria (MDAG, parte 2): il determinante di una matrice quadrata
   definito con le permutazioni, le formule per le matrici 2×2 e 3×3, matrici triangolari e matrice identità, lo
-  sviluppo di Laplace e le prime proprietà del determinante, con quiz nello stile dell'esame ed esercizi svolti.
+  sviluppo di Laplace e le prime proprietà del determinante, con domande vere degli appelli, quiz ed esercizi svolti.
 lede: >-
   Il determinante è un numero che si calcola da una tabella quadrata e dice di quanto la matrice ingrandisce le aree.
   Qui impari a calcolarlo in tutti i modi che servono all'esame: la formula per le tabelle piccole, il caso facile
@@ -37,7 +37,7 @@ genera_html: true
 - All'esame: «il determinante di questa matrice è…», con matrici grandi piene di zeri, con $\pi$ ed $e$ da tirare fuori, oppure con il tranello della matrice non quadrata.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di giovedì 22/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 22/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 9. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Un numero che misura un'area (pp. 41–42)
 
@@ -89,7 +89,7 @@ Diagonale principale: $4 \cdot 3 = 12$. Altra diagonale: $1 \cdot 2 = 2$. Determ
 > Si toglie il prodotto dell'**altra** diagonale, con i suoi segni. Per esempio $\det \begin{pmatrix} 1 & 2 \\ -1 & 4 \end{pmatrix} = 1 \cdot 4 - 2 \cdot (-1) = 4 + 2 = 6$, non $4 - 2 = 2$. Metti sempre le parentesi attorno ai numeri negativi.
 
 > [!OLTRE] · il determinante misura aree e volumi
-> Martelli (§3.3.10) mostra che per una matrice $2 \times 2$ reale il determinante senza segno è l'area del parallelogramma che ha per lati le due colonne. Per una $3 \times 3$ è il volume della «scatola storta» (il parallelepipedo) che ha per spigoli le tre colonne. Ne riparliamo alla fine della lezione, con uno strumento interattivo.
+> Martelli (§3.3.10) mostra che per una matrice $2 \times 2$ reale il determinante senza segno è l'area del parallelogramma che ha per lati le due colonne. Per una $3 \times 3$ è il volume delil parallelepipedo che ha per spigoli le tre colonne. Ne riparliamo alla fine della lezione, con uno strumento interattivo.
 
 > [!RICORDA]
 > - Il determinante esiste solo per le matrici quadrate.
@@ -308,6 +308,38 @@ $$\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix} \qquad \begi
 
 Il segno della casella nella riga $i$ e nella colonna $j$ è $(-1)^{i+j}$: più se $i + j$ è pari, meno se è dispari. Per esempio la casella $(2, 3)$ ha $2 + 3 = 5$, dispari: segno meno.
 
+```grafico
+titolo: I segni dello sviluppo di Laplace per una matrice $3 \times 3$: più (in ambra) dove il numero di riga più il numero di colonna è pari, meno (in blu) dove è dispari. La casella in alto a sinistra ha sempre il più
+assi: no
+griglia: no
+x: -0.6 3.3
+y: -0.3 3.6
+poligono: 0 2 1 2 1 3 0 3 | ambra | pieno
+testo: 0.5 2.5 | ambra | "+"
+poligono: 1 2 2 2 2 3 1 3 | blu | pieno
+testo: 1.5 2.5 | blu | "−"
+poligono: 2 2 3 2 3 3 2 3 | ambra | pieno
+testo: 2.5 2.5 | ambra | "+"
+poligono: 0 1 1 1 1 2 0 2 | blu | pieno
+testo: 0.5 1.5 | blu | "−"
+poligono: 1 1 2 1 2 2 1 2 | ambra | pieno
+testo: 1.5 1.5 | ambra | "+"
+poligono: 2 1 3 1 3 2 2 2 | blu | pieno
+testo: 2.5 1.5 | blu | "−"
+poligono: 0 0 1 0 1 1 0 1 | ambra | pieno
+testo: 0.5 0.5 | ambra | "+"
+poligono: 1 0 2 0 2 1 1 1 | blu | pieno
+testo: 1.5 0.5 | blu | "−"
+poligono: 2 0 3 0 3 1 2 1 | ambra | pieno
+testo: 2.5 0.5 | ambra | "+"
+testo: 0.5 3.3 | grigio | "1"
+testo: -0.3 2.5 | grigio | "1"
+testo: 1.5 3.3 | grigio | "2"
+testo: -0.3 1.5 | grigio | "2"
+testo: 2.5 3.3 | grigio | "3"
+testo: -0.3 0.5 | grigio | "3"
+```
+
 ### Il metodo
 
 Ecco lo sviluppo lungo la prima riga della matrice $A$, passo per passo.
@@ -436,6 +468,18 @@ Il determinante è stato moltiplicato per 5. Le dispense lo scrivono così.
 
 **Come si legge.** $A'$, «a primo», è la matrice nuova. Se una sola riga, o una sola colonna, viene moltiplicata per un numero, il determinante viene moltiplicato per lo stesso numero.
 
+```grafico
+titolo: Raddoppiando la prima colonna, da $(2, 0)$ a $(4, 0)$, raddoppia anche il parallelogramma costruito sulle colonne: l'area passa da 2 a 4, come il determinante. Vale anche per le righe, perché la trasposta ha lo stesso determinante
+proporzioni: libere
+x: -1.2 5.8
+y: -0.7 1.8
+poligono: 0 0 4 0 5 1 1 1 | ambra | tenue
+poligono: 0 0 2 0 3 1 1 1 | blu | pieno
+vettore: 4 0 | ambra | spesso | $(4, 0)$ | se
+vettore: 2 0 | blu | spesso | $(2, 0)$ | se
+vettore: 1 1 | accento | spesso | $(1, 1)$ | n
+```
+
 Il perché: sviluppo il determinante lungo la riga moltiplicata. Le sottomatrici non contengono quella riga, quindi sono le stesse di prima; cambiano solo i numeri davanti, tutti moltiplicati per $c$. Ogni pezzo è moltiplicato per $c$, e quindi anche la somma.
 
 Letta al contrario, la regola permette di **tirare fuori** un numero che compare in tutta una riga o in tutta una colonna:
@@ -484,7 +528,7 @@ Nella prima sezione il determinante era un'area. Ecco il quadro completo, dal li
 > - il **segno** dice l'orientazione: positivo se, girando da $v_1$ verso $v_2$ per l'angolo più piccolo, si va in senso antiorario (come da $e_1$ a $e_2$), negativo se si va in senso orario;
 > - il determinante è zero esattamente quando $v_1$ e $v_2$ sono paralleli: il parallelogramma è schiacciato.
 >
-> Per una $3 \times 3$, il determinante senza segno è il **volume** della scatola storta che ha per spigoli le tre colonne (lo ritroverai con il prodotto vettoriale, lezione L22). Per esempio $\det \begin{pmatrix} 3 & -1 & 0 \\ 1 & 3 & 0 \\ 0 & 0 & 4 \end{pmatrix} = 4 \cdot (9 + 1) = 40$: una scatola con la base di area 10 e l'altezza 4.
+> Per una $3 \times 3$, il determinante senza segno è il **volume** del parallelepipedo che ha per spigoli le tre colonne (lo ritroverai con il prodotto vettoriale, lezione L22). Per esempio $\det \begin{pmatrix} 3 & -1 & 0 \\ 1 & 3 & 0 \\ 0 & 0 & 4 \end{pmatrix} = 4 \cdot (9 + 1) = 40$: una scatola con la base di area 10 e l'altezza 4.
 
 Nello strumento qui sotto la matrice $A$ trasforma il quadrato di lati $e_1$ ed $e_2$ nel parallelogramma colorato, che ha per lati le colonne $Ae_1$ e $Ae_2$. Cambia i quattro numeri e guarda come cambiano l'area e il colore: verde se il determinante è positivo, rosa se è negativo, giallo se è zero. Prova i pulsanti: «taglio» (determinante 1: la forma cambia, l'area no), «riflessione» (determinante $-1$: stessa area, orientazione girata), «proiezione» (determinante 0: il quadrato si schiaccia su un segmento). Le righe sugli autovalori riguardano la lezione L17: per ora ignorale.
 
@@ -592,7 +636,7 @@ Negli altri due appelli del primo tipo (10/07/2024 e 10/06/2024) le matrici avev
 >
 > Senza calcolatrice conviene sempre rimpicciolire i numeri prima di moltiplicare.
 
-**Errori da evitare.**
+### Errori da evitare
 
 - Dimenticare il segno della scacchiera, soprattutto nelle caselle «dispari» come $(1, 2)$, $(2, 3)$, $(5, 4)$.
 - Usare Sarrus su una $4 \times 4$.
@@ -605,6 +649,38 @@ Negli altri due appelli del primo tipo (10/07/2024 e 10/06/2024) le matrici avev
 ## Quiz
 
 ```quiz
+D: Appello del 02/09/2025, domanda 3. Calcolare il determinante di $A = \begin{pmatrix} 1 & 2 & 0 & 0 & 0 \\ 0 & 1 & 3 & 0 & 0 \\ 0 & 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 1 & 2 \\ 1 & 0 & 0 & 0 & 1 \end{pmatrix}$.
+- 12
++ 13
+- 0
+- 11
+- 1
+= Sviluppo lungo la prima colonna, che ha solo due numeri diversi da zero, tutti e due con segno più. La sottomatrice senza riga 1 e colonna 1 è triangolare superiore con diagonale di 1: vale 1. Quella senza riga 5 e colonna 1 è triangolare inferiore con diagonale $2, 3, 1, 2$: vale 12. Il totale è $1 + 12 = 13$: è la (b) della soluzione ufficiale. La risposta più insidiosa è 12, di chi dimentica il primo pezzo.
+
+D: Appello del 10/07/2025, domanda 4. Sia $A = \begin{pmatrix} 1 & -1 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 2 & -1 & 0 \end{pmatrix}$. Qual è il determinante di $A$?
+- $1$
+- $0$
++ $\det(A)$ non è definito
+- $2$
+- $-1$
+= $A$ ha 3 righe e 4 colonne: non è quadrata, quindi il determinante non esiste. È la (c) della soluzione ufficiale. La risposta più insidiosa è $-1$, il determinante della parte $3 \times 3$ a sinistra: è un numero plausibile, ma non è il determinante di $A$.
+
+D: Appello del 03/06/2026, domanda 2. Il determinante di $\begin{pmatrix} 1 & e & 1 & 1 \\ \pi & 2\pi e & 3\pi & \pi \\ 1 & e & 2 & 0 \\ 0 & e & 0 & 3 \end{pmatrix}$ è uguale a:
+- $1$
+- $0$
++ $\pi e$
+- $\pi + e$
+- $6 + 2\pi e$
+= Si tira fuori $\pi$ dalla seconda riga ed $e$ dalla seconda colonna (Proposizione 9.11); il determinante che resta, sviluppato lungo la quarta riga, vale $1 \cdot (-2) + 3 \cdot 1 = 1$ (i conti sono in «Verso l'esame»). Il totale è $\pi e$: è la (c) della soluzione ufficiale. La risposta più insidiosa è $1$, di chi dimentica di rimettere davanti i numeri tirati fuori.
+
+D: Appello del 10/07/2024, domanda 4. Sia $A = \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{pmatrix}$. Il determinante di $A$ è:
+- $\det(A)$ non è definito
+- 1
+- $9!$
++ 0
+- 10
+= Con Sarrus: $(1 \cdot 5 \cdot 9 + 2 \cdot 6 \cdot 7 + 3 \cdot 4 \cdot 8) - (3 \cdot 5 \cdot 7 + 1 \cdot 6 \cdot 8 + 2 \cdot 4 \cdot 9) = 225 - 225 = 0$. È la (d) della soluzione ufficiale, che lo vede anche senza conti: la prima riga più la terza è il doppio della seconda (lezione L10). La risposta più insidiosa è $9!$, il prodotto di tutti i numeri, che non c'entra.
+
 D: Sia $A = \begin{pmatrix} 2 & 0 & 1 \\ -1 & 3 & 0 \end{pmatrix}$. Qual è il determinante di $A$?
 + $\det(A)$ non è definito.
 - $0$
@@ -667,7 +743,7 @@ D: Il determinante di $\begin{pmatrix} 2 & 3 & 4 \\ 5 & 6 & 7 \\ 8 & 9 & 10 \end
 - $1$
 - $-3$
 - $10!$
-= Con Sarrus: le diagonali che scendono danno $2 \cdot 6 \cdot 10 + 3 \cdot 7 \cdot 8 + 4 \cdot 5 \cdot 9 = 120 + 168 + 180 = 468$, quelle che salgono $4 \cdot 6 \cdot 8 + 2 \cdot 7 \cdot 9 + 3 \cdot 5 \cdot 10 = 192 + 126 + 150 = 468$. La differenza è 0. Il motivo profondo: la terza riga è $2 \cdot (5, 6, 7) - (2, 3, 4)$, una ricetta con le altre due, e nella lezione L10 vedrai che allora il determinante è sempre zero. La risposta «non è definito» è sbagliata: la matrice è quadrata. Simile all'appello del 10/07/2024, domanda 4.
+= Con Sarrus: le diagonali che scendono danno $2 \cdot 6 \cdot 10 + 3 \cdot 7 \cdot 8 + 4 \cdot 5 \cdot 9 = 120 + 168 + 180 = 468$, quelle che salgono $4 \cdot 6 \cdot 8 + 2 \cdot 7 \cdot 9 + 3 \cdot 5 \cdot 10 = 192 + 126 + 150 = 468$. La differenza è 0. Il motivo profondo: la terza riga è $2 \cdot (5, 6, 7) - (2, 3, 4)$, una combinazione delle altre due, e nella lezione L10 vedrai che allora il determinante è sempre zero. La risposta «non è definito» è sbagliata: la matrice è quadrata. Simile all'appello del 10/07/2024, domanda 4.
 
 D: Quale di queste affermazioni è **falsa** per matrici quadrate reali?
 + $\det(A + B) = \det A + \det B$ per ogni $A, B \in M(2)$.

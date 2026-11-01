@@ -3,12 +3,13 @@ corso: MDAG
 modulo: AG
 lezione: L10
 titolo: Matrici III
+data: 2026-10-27
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L10
 descrizione: >-
   Appunti della lezione L10 di Algebra lineare e Geometria (MDAG, parte 2): come cambia il determinante con le mosse
   di Gauss, determinante nullo e righe dipendenti, teorema di Binet, cofattori, matrice inversa e criterio di
-  invertibilità, con quiz nello stile dell'esame ed esercizi svolti.
+  invertibilità, con domande vere degli appelli, quiz ed esercizi svolti.
 lede: >-
   Come si calcola in fretta un determinante grande, quando vale zero, quanto vale il determinante di un prodotto e
   come si disfa quello che fa una matrice, trovando la sua inversa. Alla fine sai rispondere alla domanda che apre
@@ -29,14 +30,14 @@ genera_html: true
 
 - Ci sono tre **mosse sulle righe**, le mosse di Gauss. Scambiare due righe cambia il segno del determinante. Moltiplicare una riga per un numero moltiplica il determinante per quel numero. Aggiungere a una riga un multiplo di un'altra non lo cambia.
 - Il metodo pratico per i determinanti grandi: con le mosse si rende la matrice triangolare, poi si moltiplica la diagonale, cambiando segno per ogni scambio.
-- Il determinante è zero esattamente quando una riga è un doppione delle altre, cioè si ottiene mescolandole. Due righe uguali o proporzionali danno subito zero.
+- Il determinante è zero esattamente quando una riga è combinazione lineare delle altre. Due righe uguali o proporzionali danno subito zero.
 - **Teorema di Binet**: il determinante di un prodotto di matrici è il prodotto dei determinanti. Per esempio il determinante del cubo di una matrice è il cubo del determinante.
 - Una matrice è **invertibile** quando un'altra matrice disfa quello che fa lei. Succede esattamente quando il determinante non è zero.
 - L'inversa si calcola con i **cofattori**. Per le $2 \times 2$: scambia la diagonale, cambia segno agli altri due numeri, dividi per il determinante.
 - All'esame: «per quali valori di $k$ la matrice è invertibile?» nei problemi; il determinante delle potenze con Binet e i tranelli sulle mosse di Gauss nei quiz.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 27/10/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 10. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Tre mosse sulle righe (p. 46)
 
@@ -101,6 +102,27 @@ La freccia $\to$ si legge «diventa»: $R_2 \to R_2 - 3R_1$ vuol dire «la secon
 Dopo lo scambio: $-7$. Togliere un multiplo di un'altra riga non cambia niente: resta $-7$.
 :::
 
+```grafico
+titolo: Le tre mosse sulle righe e che cosa fanno al determinante
+proporzioni: libere
+assi: no
+griglia: no
+x: 0 10.4
+y: 0 6.4
+poligono: 0.1 4.5 10.3 4.5 10.3 6.3 0.1 6.3 | blu | tenue
+poligono: 0.1 2.3 10.3 2.3 10.3 4.1 0.1 4.1 | ambra | tenue
+poligono: 0.1 0.1 10.3 0.1 10.3 1.9 0.1 1.9 | verde | tenue
+testo: 2.9 5.4 | blu | "scambio di due righe"
+freccia: 5.9 5.4 6.9 5.4 | grigio
+testo: 8.6 5.4 | blu | "det × (−1)"
+testo: 2.9 3.2 | ambra | "riga per c, con c ≠ 0"
+freccia: 5.9 3.2 6.9 3.2 | grigio
+testo: 8.6 3.2 | ambra | "det × c"
+testo: 2.9 1 | verde | "riga + k · altra riga"
+freccia: 5.9 1 6.9 1 | grigio
+testo: 8.6 1 | verde | "det uguale"
+```
+
 ### Il metodo di Gauss per i determinanti
 
 Ecco l'esempio delle dispense: un determinante calcolato con due mosse.
@@ -123,7 +145,7 @@ L'idea generale: con le mosse del terzo tipo si creano zeri sotto la diagonale, 
 > 4. Quando la matrice è triangolare, il determinante è il prodotto della diagonale (Proposizione 9.3), con un segno meno per ogni scambio.
 > 5. Se a metà strada compare una riga di zeri, il determinante è 0 e puoi fermarti.
 >
-> Si può anche mescolare con Laplace: dopo aver creato zeri in una colonna, sviluppa lungo quella colonna.
+> Si può anche combinare con Laplace: dopo aver creato zeri in una colonna, sviluppa lungo quella colonna.
 
 > [!ESEMPIO] · Una $3 \times 3$ che richiede uno scambio
 > $$B = \begin{pmatrix} 0 & 2 & 1 \\ 1 & 1 & 1 \\ 2 & 4 & 5 \end{pmatrix}$$
@@ -168,16 +190,27 @@ Nell'Esempio 10.2 il determinante è venuto zero. Guarda le righe: la terza si o
 
 $$(7, 8, 9) = 2 \cdot (4, 5, 6) - (1, 2, 3).$$
 
-Con le parole della lezione L07: la terza riga è un **doppione**, una ricetta con le altre due. Non è un caso. Le dispense lo scrivono così.
+Con le parole della lezione L07: la terza riga è **di troppo**, una combinazione delle altre due. Non è un caso. Le dispense lo scrivono così.
 
 > [!PROP] 10.3 · Determinante nullo
 > $\det(A) = 0$ se e solo se una riga (o una colonna) di $A$ è combinazione lineare delle altre.
 
-**Come si legge.** Il determinante è zero esattamente quando una riga è un doppione delle altre, cioè si ottiene mescolandole. Lo stesso con le colonne. «Se e solo se» vuol dire che vale in tutti e due i sensi.
+**Come si legge.** Il determinante è zero esattamente quando una riga è combinazione lineare delle altre. Lo stesso con le colonne. «Se e solo se» vuol dire che vale in tutti e due i sensi.
 
-Nel disegno della lezione L09: se una colonna è un doppione, il parallelogramma, o la scatola, si schiaccia. L'area, o il volume, è zero.
+Nel disegno della lezione L09: se una colonna è combinazione delle altre, il parallelogramma, o il parallelepipedo, si schiaccia. L'area, o il volume, è zero.
 
-Le dispense spiegano un senso: se una riga è un doppione, il determinante è zero. L'idea: con mosse del terzo tipo, che non cambiano il determinante, si toglie il doppione e resta una riga di zeri. Ecco i passaggi, quando il doppione è la prima riga.
+```grafico
+titolo: Le colonne $(1, 2)$ e $(2, 1)$ formano un parallelogramma di area 3 (in blu): il determinante $1 \cdot 1 - 2 \cdot 2 = -3$ non è zero. Le colonne $(1, 2)$ e $(2, 4)$ stanno sulla stessa retta (tratteggio): il parallelogramma è schiacciato e il determinante $1 \cdot 4 - 2 \cdot 2$ vale zero
+x: -0.6 3.4
+y: -0.5 4.5
+poligono: 0 0 1 2 3 3 2 1 | blu | pieno
+retta: 0 0 1.5 3 | rosa | tratteggio
+vettore: 2 4 | rosa | spesso | $(2, 4)$ | e
+vettore: 1 2 | accento | spesso | $(1, 2)$ | o
+vettore: 2 1 | blu | spesso | $(2, 1)$ | se
+```
+
+Le dispense spiegano un senso: se una riga è combinazione delle altre, il determinante è zero. L'idea: con mosse del terzo tipo, che non cambiano il determinante, si toglie quella combinazione e resta una riga di zeri. Ecco i passaggi, quando la riga di troppo è la prima.
 
 Supponiamo che esistano numeri $c_2, \dots, c_n$ con
 
@@ -190,26 +223,26 @@ dove $A_1, \dots, A_n$ sono le righe di $A$.
 3. Alla fine la prima riga è $0 + c_2A_2 + \dots + c_nA_n = A_1$: la matrice finale è esattamente $A$.
 4. Quindi $\det(A) = \det(A') = 0$.
 
-Le dispense non dimostrano l'altro senso: se il determinante è zero, allora qualche riga è un doppione.
+Le dispense non dimostrano l'altro senso: se il determinante è zero, allora qualche riga è combinazione delle altre.
 
 > [!NOTA] Quale «Proprietà 1»?
 > Nelle dispense, a p. 47, il passaggio 1 è giustificato con «per la Proprietà 1»: si tratta della prima proprietà della sezione 9.C, cioè della Proposizione 9.10 (una riga nulla dà determinante nullo), non del punto (1) della Proposizione 10.1 (lo scambio di due righe).
 
 > [!OLTRE] · l'altra direzione, e il collegamento con il rango
-> Martelli (Proposizione 3.3.12) dimostra che per una matrice quadrata $n \times n$ il determinante è diverso da zero esattamente quando il rango è $n$ (lezione L08). Usa le mosse di Gauss: le mosse non cambiano il rango e cambiano il determinante solo per numeri diversi da zero. Per una matrice a scalini le due condizioni dicono la stessa cosa: tutti i numeri sulla diagonale sono diversi da zero. Da qui segue l'altro senso della Proposizione 10.3. Se il determinante è zero, il rango è minore di $n$; il rango per righe è lo stesso (Proposizione 8.6), quindi le righe sono dipendenti, e una di loro è un doppione (Proposizione 7.2). Un'altra conseguenza (Martelli, Proposizione 3.3.15): **$n$ vettori di $\K^n$ formano una base esattamente quando la matrice che li ha come colonne ha determinante diverso da zero.**
+> Martelli (Proposizione 3.3.12) dimostra che per una matrice quadrata $n \times n$ il determinante è diverso da zero esattamente quando il rango è $n$ (lezione L08). Usa le mosse di Gauss: le mosse non cambiano il rango e cambiano il determinante solo per numeri diversi da zero. Per una matrice a scalini le due condizioni dicono la stessa cosa: tutti i numeri sulla diagonale sono diversi da zero. Da qui segue l'altro senso della Proposizione 10.3. Se il determinante è zero, il rango è minore di $n$; il rango per righe è lo stesso (Proposizione 8.6), quindi le righe sono dipendenti, e una di loro è combinazione delle altre (Proposizione 7.2). Un'altra conseguenza (Martelli, Proposizione 3.3.15): **$n$ vettori di $\K^n$ formano una base esattamente quando la matrice che li ha come colonne ha determinante diverso da zero.**
 
 > [!ESEMPIO] · Determinanti nulli a colpo d'occhio
 > $$\det \begin{pmatrix} 1 & 5 & 1 \\ 2 & 7 & 2 \\ 3 & 0 & 3 \end{pmatrix} = 0, \qquad \det \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 5 & 1 & 9 \end{pmatrix} = 0, \qquad \det \begin{pmatrix} 1 & 2 & 3 & 4 \\ 5 & 6 & 7 & 8 \\ 9 & 10 & 11 & 12 \\ 13 & 14 & 15 & 16 \end{pmatrix} = 0.$$
 > - Nella prima la prima e la terza **colonna** sono uguali.
 > - Nella seconda la seconda riga è il doppio della prima.
-> - Nella terza ogni riga supera la precedente di $(4, 4, 4, 4)$. Quindi $R_2 - R_1 = R_3 - R_2$, cioè $R_3 = 2R_2 - R_1$: la terza riga è un doppione.
+> - Nella terza ogni riga supera la precedente di $(4, 4, 4, 4)$. Quindi $R_2 - R_1 = R_3 - R_2$, cioè $R_3 = 2R_2 - R_1$: la terza riga è di troppo.
 
-::: prova Il determinante di $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 1 & 3 & 7 \end{pmatrix}$ è zero? Cerca un doppione.
-Sì: la terza riga è la somma delle prime due, $(1 + 0,\ 2 + 1,\ 3 + 4) = (1, 3, 7)$. È un doppione, quindi il determinante è zero.
+::: prova Il determinante di $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 1 & 3 & 7 \end{pmatrix}$ è zero? Cerca una riga di troppo.
+Sì: la terza riga è la somma delle prime due, $(1 + 0,\ 2 + 1,\ 3 + 4) = (1, 3, 7)$. È di troppo, quindi il determinante è zero.
 :::
 
 > [!RICORDA]
-> - Determinante zero esattamente quando una riga, o una colonna, è un doppione delle altre.
+> - Determinante zero esattamente quando una riga, o una colonna, è combinazione delle altre.
 > - Righe uguali, proporzionali o somme di altre righe: determinante zero senza conti.
 
 ## Il determinante di un prodotto: il teorema di Binet (p. 47)
@@ -274,6 +307,18 @@ Con le matrici succede lo stesso. Il ruolo del numero 1 lo fa la matrice identit
 >
 > $N = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ invece **non** è invertibile, anche se non è la matrice nulla. Per ogni matrice $B$, il prodotto $NB$ ha la seconda riga di zeri: è 0 volte la prima riga di $B$ più 0 volte la seconda. Quindi non può essere l'identità.
 
+```grafico
+titolo: $A = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ manda $v = (1, 1)$ in $Av = (3, 2)$; l'inversa $A^{-1} = \begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$ riporta $(3, 2)$ in $(1, 1)$
+x: -0.5 3.8
+y: -0.5 3
+vettore: 1 1 | accento | spesso | $v$ | o
+vettore: 3 2 | ambra | spesso | $Av$ | ne
+freccia: 1.1 1.15 2.85 2.2 | blu
+freccia: 2.95 1.75 1.3 0.75 | rosa
+testo: 1.8 1.95 | blu | $A$
+testo: 2.45 0.95 | rosa | $A^{-1}$
+```
+
 Nel disegno, $N$ schiaccia tutto il piano sull'asse orizzontale: due punti con la stessa prima coordinata finiscono nello stesso posto. Una volta schiacciati, non si può più tornare indietro.
 
 Binet dice subito quanto vale il determinante dell'inversa.
@@ -291,7 +336,7 @@ $$1 = \det(I_n) = \det(AA^{-1}) = \det(A) \det(A^{-1}),$$
 e da qui la formula. In particolare una matrice invertibile ha determinante **diverso da zero**: se fosse zero, il prodotto $\det(A) \det(A^{-1})$ varrebbe 0 e non 1.
 
 > [!TRAPPOLA] Binet vale solo per matrici quadrate
-> Se $A$ è $3 \times 2$, scrivere $\det(A\,{}^tA) = \det A \cdot \det({}^tA)$ non ha senso: $A$ non è quadrata, e il suo determinante non esiste. Il prodotto $A\,{}^tA$ invece è $3 \times 3$ e ha un determinante. Per esempio con $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$ si trova $\det(A\,{}^tA) = 0$: le sue colonne sono ricette con le due colonne di $A$, quindi il rango è al massimo 2. Invece ${}^tA\,A = \begin{pmatrix} 2 & 2 \\ 2 & 5 \end{pmatrix}$ ha determinante $6$.
+> Se $A$ è $3 \times 2$, scrivere $\det(A\,{}^tA) = \det A \cdot \det({}^tA)$ non ha senso: $A$ non è quadrata, e il suo determinante non esiste. Il prodotto $A\,{}^tA$ invece è $3 \times 3$ e ha un determinante. Per esempio con $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$ si trova $\det(A\,{}^tA) = 0$: le sue colonne sono combinazioni delle due colonne di $A$, quindi il rango è al massimo 2. Invece ${}^tA\,A = \begin{pmatrix} 2 & 2 \\ 2 & 5 \end{pmatrix}$ ha determinante $6$.
 
 ::: prova Una matrice ha determinante 4. Quanto vale il determinante della sua inversa?
 $\frac 14$: l'inverso del determinante.
@@ -454,7 +499,7 @@ modi: inversa
 > Per una matrice quadrata $A \in M(n, \K)$ queste frasi dicono tutte la stessa cosa:
 > - $A$ è invertibile;
 > - il determinante di $A$ non è zero (Proposizione 10.8);
-> - nessuna riga, e nessuna colonna, è un doppione delle altre (Proposizione 10.3);
+> - nessuna riga, e nessuna colonna, è combinazione delle altre (Proposizione 10.3);
 > - il rango di $A$ è $n$ (Martelli, Proposizione 3.3.12);
 > - le colonne di $A$ formano una base di $\K^n$ (Martelli, Proposizione 3.3.15);
 > - per ogni $b \in \K^n$ il sistema $Ax = b$ ha una e una sola soluzione, $x = A^{-1}b$ (Martelli, §3.4.8; lezioni L11–L13).
@@ -524,7 +569,7 @@ Questa lezione è tra le più presenti all'esame:
 >
 > **La risposta:** $A$ è invertibile per tutti i valori di $k$ **tranne** $k = 1$ e $k = -1$.
 >
-> **Controllo con $k = 1$.** La matrice diventa $\begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{pmatrix}$, e la seconda riga è la somma delle altre due: un doppione, quindi determinante zero.
+> **Controllo con $k = 1$.** La matrice diventa $\begin{pmatrix} 1 & 1 & 0 \\ 1 & 2 & 1 \\ 0 & 1 & 1 \end{pmatrix}$, e la seconda riga è la somma delle altre due, quindi il determinante è zero.
 
 ### Altre due domande vere
 
@@ -562,7 +607,7 @@ Questa lezione è tra le più presenti all'esame:
 >
 > Per esempio, se $A$ è $3 \times 3$ con determinante 4: $\det(2A^{-1}) = 2^3 \cdot \frac 14 = 2$.
 
-**Errori da evitare.**
+### Errori da evitare
 
 - Scrivere che il determinante di $A^3$ è 3 volte quello di $A$: è il cubo.
 - Credere che la matrice a scalini abbia lo stesso determinante della matrice di partenza.
@@ -576,6 +621,46 @@ Questa lezione è tra le più presenti all'esame:
 ## Quiz
 
 ```quiz
+D: Appello del 03/07/2026, domanda 6. Sia $A = \begin{pmatrix} 1 & 0 & 2 \\ 3 & -1 & 1 \\ 2 & 0 & 5 \end{pmatrix}$. Il determinante di $A^3$ è:
+- $-8$
++ $-1$
+- $0$
+- $1$
+- $8$
+= Sviluppo lungo la seconda colonna, che ha solo il $-1$ in posizione $(2, 2)$, con segno più: $\det A = -1 \cdot (1 \cdot 5 - 2 \cdot 2) = -1$. Per Binet $\det(A^3) = (-1)^3 = -1$: è la (b) della soluzione ufficiale. La risposta più insidiosa è $1$, di chi perde il segno nella potenza dispari.
+
+D: Appello del 06/09/2024, domanda 4. Sia $A = \begin{pmatrix} 0 & 1 & 2 \\ 2 & 2 & 0 \\ 1 & 1 & 1 \end{pmatrix}$. Il determinante di $A^4$ è:
+- 0
+- 8
+- $-8$
++ 16
+- $-16$
+= Lungo la prima riga: $\det A = 0 - 1 \cdot (2 - 0) + 2 \cdot (2 - 2) = -2$. Per Binet $\det(A^4) = (-2)^4 = 16$: è la (d) della soluzione ufficiale. La risposta più insidiosa è $-16$: con una potenza pari il segno meno sparisce.
+
+D: Appello del 03/06/2025, domanda 9. Data la matrice $A = \begin{pmatrix} 2 & 1 \\ 0 & 1 \\ 0 & 0 \end{pmatrix}$, il determinante di $A \cdot {}^tA$ è:
++ 0
+- 9
+- non si può calcolare, poiché $A$ non è una matrice quadrata
+- 3
+- 2
+= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata. La sua terza riga è la terza riga di $A$, fatta di zeri, per le colonne di ${}^tA$: è nulla, e il determinante è 0. È la (a) della soluzione ufficiale. La risposta più insidiosa è la (c): a non essere quadrata è $A$, non il prodotto; e Binet qui non si usa, perché $\det A$ non esiste.
+
+D: Appello del 16/01/2025, domanda 3. Date $A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 1 & 2 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$, calcolare traccia e determinante di $AB$.
+- $\det(AB) = 1$, $\tr(AB) = 9$
+- $\det(AB) = 2$, $\tr(AB) = 6$
++ $\det(AB) = 1$, $\tr(AB) = 4$
+- $\det(AB) = 3$, $\tr(AB) = 36$
+- $\det(AB) = 3$, $\tr(AB) = 3$
+= $A$ e $B$ sono triangolari con diagonale di 1, quindi per Binet $\det(AB) = 1 \cdot 1 = 1$. La diagonale di $AB$ è $1$, $1$ e $(1, 2, 1) \cdot (1, 0, 1) = 2$: la traccia è 4. È la (c) della soluzione ufficiale. La risposta più insidiosa è la (a), che moltiplica le tracce: per la traccia non c'è una regola come Binet.
+
+D: Appello del 10/06/2024, domanda 2. Sia $A = \begin{pmatrix} 11 & 12 & 13 & 14 \\ 21 & 22 & 23 & 24 \\ 31 & 32 & 33 & 34 \\ 41 & 42 & 43 & 44 \end{pmatrix}$. Il determinante di $A$ è:
+- $24 \cdot 10^3$
++ 0
+- $-24$
+- 1716
+- 1
+= Ogni riga supera la precedente di $(10, 10, 10, 10)$, quindi $R_3 = 2R_2 - R_1$: la terza riga è combinazione delle altre e il determinante è zero (Proposizione 10.3). È la (b) della soluzione ufficiale, che ci arriva togliendo la prima riga dalle altre. La risposta più insidiosa è $24 \cdot 10^3$, che fa sembrare il conto lungo: qui non serve nessun conto.
+
 D: Sia $A$ una matrice quadrata che, ridotta a scalini con l'algoritmo di Gauss, diventa $\begin{pmatrix} 2 & 1 & 3 \\ 0 & 1 & 4 \\ 0 & 0 & 3 \end{pmatrix}$. Quale delle seguenti affermazioni **non** è necessariamente vera?
 + $\det A = 6$.
 - $\det A \neq 0$.
@@ -646,7 +731,7 @@ D: Data $A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \\ 1 & 0 \end{pmatrix}$, il determin
 - Non si può calcolare, poiché $A$ non è quadrata.
 - $36$
 - $1$
-= Il prodotto $A\,{}^tA$ è $3 \times 3$, quindi il suo determinante esiste, anche se $A$ non è quadrata: per questo «non si può calcolare» è la risposta più insidiosa. Ogni colonna di $A\,{}^tA$ è $A$ per un vettore, cioè una ricetta con le due colonne di $A$. Quindi tre colonne vivono in un piano: sono dipendenti, e il determinante è 0 (Proposizione 10.3). Il 6 è il determinante di ${}^tA\,A$, il prodotto nell'altro ordine, che è $2 \times 2$. Simile all'appello del 03/06/2025, domanda 9.
+= Il prodotto $A\,{}^tA$ è $3 \times 3$, quindi il suo determinante esiste, anche se $A$ non è quadrata: per questo «non si può calcolare» è la risposta più insidiosa. Ogni colonna di $A\,{}^tA$ è $A$ per un vettore, cioè una combinazione delle due colonne di $A$. Quindi tre colonne vivono in un piano: sono dipendenti, e il determinante è 0 (Proposizione 10.3). Il 6 è il determinante di ${}^tA\,A$, il prodotto nell'altro ordine, che è $2 \times 2$. Simile all'appello del 03/06/2025, domanda 9.
 
 D: Sia $A = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \end{pmatrix}$. Quanto vale l'elemento di posto $(1, 3)$ di $A^{-1}$? Scrivi una frazione.
 N: 1/3
@@ -705,9 +790,9 @@ Triangolare con diagonale 1, 1, 1, 2: il determinante è 2.
 Spiega perché queste matrici hanno determinante nullo, senza calcolarlo:
 $$A = \begin{pmatrix} 3 & 1 & 4 \\ 1 & 5 & 9 \\ 3 & 1 & 4 \end{pmatrix}, \quad B = \begin{pmatrix} 2 & -6 & 1 \\ 1 & -3 & 7 \\ 0 & 0 & 2 \end{pmatrix}, \quad C = \begin{pmatrix} 1 & 0 & 1 \\ 2 & 1 & 3 \\ 3 & 1 & 4 \end{pmatrix}.$$
 ::: soluzione
-- $A$: la prima e la terza riga sono uguali. La prima è un doppione della terza, quindi il determinante è zero (Proposizione 10.3). Oppure: $R_3 \to R_3 - R_1$ crea una riga di zeri senza cambiare il determinante.
-- $B$: la seconda colonna è $-3$ volte la prima, perché $(-6, -3, 0) = -3 \cdot (2, 1, 0)$. Una colonna doppione: determinante zero.
-- $C$: la terza riga è la somma delle prime due, $(1 + 2,\ 0 + 1,\ 1 + 3) = (3, 1, 4)$. Quindi il determinante è zero. Qui anche la terza colonna è la somma delle prime due. In generale, se le righe di una matrice quadrata sono dipendenti lo sono anche le colonne, perché rango per righe e rango per colonne coincidono (Proposizione 8.6). La ricetta tra le colonne però può avere dosi diverse.
+- $A$: la prima e la terza riga sono uguali. La prima è una copia della terza, quindi il determinante è zero (Proposizione 10.3). Oppure: $R_3 \to R_3 - R_1$ crea una riga di zeri senza cambiare il determinante.
+- $B$: la seconda colonna è $-3$ volte la prima, perché $(-6, -3, 0) = -3 \cdot (2, 1, 0)$. Una colonna è multipla di un'altra: determinante zero.
+- $C$: la terza riga è la somma delle prime due, $(1 + 2,\ 0 + 1,\ 1 + 3) = (3, 1, 4)$. Quindi il determinante è zero. Qui anche la terza colonna è la somma delle prime due. In generale, se le righe di una matrice quadrata sono dipendenti lo sono anche le colonne, perché rango per righe e rango per colonne coincidono (Proposizione 8.6). La combinazione tra le colonne però può avere coefficienti diversi.
 :::
 
 ::: esercizio medio Esercizio 10.9 delle dispense: un'inversa con parametro
@@ -901,7 +986,7 @@ Si rende la matrice triangolare con mosse del terzo tipo, e scambi se serve. Poi
 :::
 
 ::: domanda Che cosa dice la Proposizione 10.3?
-Il determinante è zero esattamente quando una riga, o una colonna, è un doppione delle altre, cioè si ottiene mescolandole.
+Il determinante è zero esattamente quando una riga, o una colonna, è combinazione lineare delle altre.
 :::
 
 ::: domanda Enuncia il teorema di Binet e due sue conseguenze.
@@ -946,7 +1031,7 @@ Si calcola il determinante con $k$ dentro, lo si scompone in fattori, si trovano
 Mossa di Gauss | Una delle tre operazioni sulle righe: scambiare due righe, moltiplicare una riga per un numero diverso da zero, aggiungere a una riga un multiplo di un'altra.
 Effetto sul determinante | Scambio: cambia segno. Riga per un numero: determinante per quel numero. Riga più un multiplo di un'altra: invariato.
 Metodo di Gauss per il determinante | Rendere la matrice triangolare con le mosse e moltiplicare la diagonale, contando gli scambi.
-Righe dipendenti | Righe tra cui una è un doppione delle altre. Succede esattamente quando il determinante è zero.
+Righe dipendenti | Righe tra cui una è combinazione delle altre. Succede esattamente quando il determinante è zero.
 Teorema di Binet | Il determinante di un prodotto di matrici quadrate è il prodotto dei determinanti.
 Matrice invertibile | Una matrice quadrata che ha un'inversa: un'altra matrice che la disfa.
 Matrice inversa $A^{-1}$ | L'unica matrice con $AA^{-1} = A^{-1}A = I_n$. Il suo determinante è $1/\det A$.

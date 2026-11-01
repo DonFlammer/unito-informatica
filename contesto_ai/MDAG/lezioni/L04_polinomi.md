@@ -12,8 +12,8 @@ descrizione: >-
   dell'algebra, equazioni di secondo grado nei complessi e polinomi a coefficienti reali, con quiz nello stile
   dell'esame ed esercizi svolti.
 lede: >-
-  Un polinomio è una macchina che prende un numero e ne restituisce un altro. Qui impari a dividere i polinomi con il
-  resto, come i numeri alle elementari, e a trovare i numeri che fanno uscire zero: le radici. Servono in tutto il
+  I polinomi in una lettera: grado, divisione con resto, regola di Ruffini e radici, cioè i numeri in cui il
+  polinomio si annulla. Servono in tutto il
   corso, dagli autovalori ai determinanti con un parametro.
 materiale: dispense
 scheda:
@@ -29,24 +29,24 @@ genera_html: true
 
 ## In breve
 
-- Un **polinomio** è un'espressione come $x^2 - 3$, fatta di numeri e di potenze di una lettera, messi insieme con più, meno e per. Funziona come una macchina: metti un numero al posto della lettera ed esce un numero. Il **grado** è l'esponente più alto.
-- I polinomi si **dividono con il resto**, come i numeri alle elementari: 17 diviso 5 fa 3 con il resto di 2. Se il resto è zero, il divisore **divide** il polinomio.
-- Una **radice** è un numero che, messo nella macchina, fa uscire zero. Il numero $a$ è una radice esattamente quando il polinomio si divide per $x - a$ senza resto.
+- Un **polinomio** è una somma di numeri per potenze di una lettera, come $x^2 - 3$; sostituendo un numero alla lettera si ottiene un numero. Il **grado** è l'esponente più alto, letto dopo aver ridotto.
+- I polinomi si **dividono con il resto**, come gli interi, con il resto di grado minore del divisore. Se il resto è zero, il divisore **divide** il polinomio.
+- Una **radice** è un numero in cui il polinomio vale zero. Il numero $a$ è una radice esattamente quando il polinomio è divisibile per $x - a$; il resto di quella divisione è il valore del polinomio in quel numero.
 - La **molteplicità** di una radice dice quante volte il fattore $x - a$ «ci sta» nel polinomio.
 - Un polinomio ha al massimo tante radici quanto è il suo grado. Tra i numeri complessi ne ha **esattamente** tante quanto il grado, contate con la molteplicità: è il **teorema fondamentale dell'algebra**.
 - Se i numeri del polinomio sono reali, le radici complesse vengono a coppie: una e il suo coniugato.
 - All'esame: «quale di questi numeri è una radice?» è stata la domanda sui complessi in tre appelli, e le radici dei polinomi servono in quasi ogni problema sugli autovalori.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni. Nel canale B corrisponde all'incontro di giovedì 08/10/2026, dalle 11 alle 13: le dispense hanno una lezione per incontro, e la data viene dal calendario del canale B.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 08/10/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi. Le dispense hanno una lezione per incontro, e questa è la lezione 4. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Che cos'è un polinomio (p. 15)
 
-Prendi questa regola: «prendi un numero, moltiplicalo per sé stesso e togli 3». Si scrive così:
+La regola «eleva al quadrato e togli 3» si scrive con una lettera al posto del numero:
 
 $$x^2 - 3.$$
 
-La lettera $x$ è un posto vuoto in cui mettere un numero. Proviamo con qualche numero:
+Sostituendo dei numeri alla lettera si ottengono dei numeri:
 
 | Metto | Conto | Esce |
 |---|---|---|
@@ -54,9 +54,7 @@ La lettera $x$ è un posto vuoto in cui mettere un numero. Proviamo con qualche 
 | $0$ | $0^2 - 3 = 0 - 3$ | $-3$ |
 | $-2$ | $(-2)^2 - 3 = 4 - 3$ | $1$ |
 
-Un'espressione così è un **polinomio**: una macchina che prende un numero e ne restituisce un altro.
-
-Le dispense descrivono i polinomi come le funzioni più semplici che ci siano. Si costruiscono con numeri e lettere usando solo tre operazioni: più, meno e per. Niente divisioni per una lettera, niente radici di una lettera, niente esponenti negativi. Per esempio $x^2 + 3$ è un polinomio; $\frac 1x$ e $\sqrt x$ no.
+Un'espressione così è un **polinomio**. Le dispense descrivono i polinomi come le funzioni più semplici che ci siano. Si costruiscono con numeri e lettere usando solo tre operazioni: più, meno e per. Niente divisioni per una lettera, niente radici di una lettera, niente esponenti negativi. Per esempio $x^2 + 3$ è un polinomio; $\frac 1x$ e $\sqrt x$ no.
 
 ### I mattoni: i monomi
 
@@ -174,13 +172,11 @@ Tre cose da notare:
 > - $p(x) = a_nx^n + \dots + a_1x + a_0$: il numerino dice a quale potenza appartiene il numero; $a_0$ è il termine noto.
 > - $\R[x]$ e $\C[x]$: polinomi con numeri reali o complessi. $\R_k[x]$: polinomi reali di grado al massimo $k$.
 
-## Dividere con il resto, come alle elementari (pp. 15–16)
+## La divisione con resto (pp. 15–16)
 
-Alle elementari hai imparato la divisione con il resto. Hai 44 caramelle e 6 sacchetti: in ogni sacchetto ne metti 7 e ne avanzano 2.
+Tra gli interi, 44 diviso 6 dà quoziente 7 e resto 2, e il resto è minore del divisore:
 
 $$44 = 7 \cdot 6 + 2.$$
-
-Il 7 è il **quoziente**, il 2 è il **resto**. E il resto è più piccolo del divisore 6: se ne avanzassero 6 o più, potresti mettere un'altra caramella in ogni sacchetto.
 
 I polinomi si dividono nello stesso modo. Al posto di «più piccolo» si usa «di grado più basso». Le dispense lo scrivono così.
 
@@ -302,17 +298,15 @@ a: 2
 > - Ruffini divide per $x - a$ con i soli coefficienti: abbassa, moltiplica per $a$, somma.
 > - L'ultimo numero è il resto; gli altri sono il quoziente, di un grado in meno.
 
-## Le radici: i numeri che fanno uscire zero (p. 16)
+## Le radici (p. 16)
 
-Torna alla macchina dell'inizio, quella che eleva al quadrato e toglie 3. Con il polinomio $x^2 - 3$: mettendo 2 esce 1, mettendo 0 esce $-3$. C'è un numero che fa uscire zero? Sì: $\sqrt 3$, perché $(\sqrt 3)^2 - 3 = 3 - 3 = 0$. E anche $-\sqrt 3$.
-
-Mettere un numero $a$ al posto di $x$ si scrive $p(a)$, «pi di a». Per esempio, con $p(x) = x^2 - 3$:
+Il polinomio dell'inizio si annulla in due numeri reali. Infatti $x^2 - 3$ vale 1 in 2 e $-3$ in 0, e vale zero in $\sqrt 3$ e in $-\sqrt 3$. Il valore in un numero $a$ si scrive $p(a)$, «pi di a». Per esempio, con $p(x) = x^2 - 3$:
 
 - $p(-2) = (-2)^2 - 3 = 4 - 3 = 1$;
 - $p(0) = 0 - 3 = -3$;
 - $p(\sqrt 3) = 3 - 3 = 0$.
 
-I numeri che fanno uscire zero sono speciali, e hanno un nome. Le dispense lo scrivono così.
+I numeri in cui il polinomio si annulla hanno un nome.
 
 > [!DEF] 4.1
 > Un numero $a$ è **radice** di un polinomio $p(x)$ se $p(a) = 0$.
@@ -547,6 +541,61 @@ Tre esempi, uno per caso:
 | $x^2 - 4x + 4$ | $16 - 16 = 0$ | $\frac 42 = 2$, doppia | $(x - 2)^2$ |
 | $x^2 + x + 1$ | $1 - 4 = -3 < 0$ | nessuna | non si scompone in $\R$ |
 
+```grafico
+titolo: I tre casi del discriminante. A sinistra la parabola taglia l'asse in due punti, $\Delta > 0$; al centro lo tocca in un punto, radice doppia, $\Delta = 0$; a destra non lo incontra, $\Delta < 0$: nessuna radice reale
+proporzioni: libere
+x: -5.6 5.6
+y: -1.5 3.8
+segmento: -5.30 2.240 -5.04 1.380 | accento | spesso
+segmento: -5.04 1.380 -4.79 0.653 | accento | spesso
+segmento: -4.79 0.653 -4.53 0.058 | accento | spesso
+segmento: -4.53 0.058 -4.27 -0.405 | accento | spesso
+segmento: -4.27 -0.405 -4.01 -0.736 | accento | spesso
+segmento: -4.01 -0.736 -3.76 -0.934 | accento | spesso
+segmento: -3.76 -0.934 -3.50 -1.000 | accento | spesso
+segmento: -3.50 -1.000 -3.24 -0.934 | accento | spesso
+segmento: -3.24 -0.934 -2.99 -0.736 | accento | spesso
+segmento: -2.99 -0.736 -2.73 -0.405 | accento | spesso
+segmento: -2.73 -0.405 -2.47 0.058 | accento | spesso
+segmento: -2.47 0.058 -2.21 0.653 | accento | spesso
+segmento: -2.21 0.653 -1.96 1.380 | accento | spesso
+segmento: -1.96 1.380 -1.70 2.240 | accento | spesso
+segmento: -1.60 2.560 -1.37 1.881 | ambra | spesso
+segmento: -1.37 1.881 -1.14 1.306 | ambra | spesso
+segmento: -1.14 1.306 -0.91 0.836 | ambra | spesso
+segmento: -0.91 0.836 -0.69 0.470 | ambra | spesso
+segmento: -0.69 0.470 -0.46 0.209 | ambra | spesso
+segmento: -0.46 0.209 -0.23 0.052 | ambra | spesso
+segmento: -0.23 0.052 0.00 0.000 | ambra | spesso
+segmento: 0.00 0.000 0.23 0.052 | ambra | spesso
+segmento: 0.23 0.052 0.46 0.209 | ambra | spesso
+segmento: 0.46 0.209 0.69 0.470 | ambra | spesso
+segmento: 0.69 0.470 0.91 0.836 | ambra | spesso
+segmento: 0.91 0.836 1.14 1.306 | ambra | spesso
+segmento: 1.14 1.306 1.37 1.881 | ambra | spesso
+segmento: 1.37 1.881 1.60 2.560 | ambra | spesso
+segmento: 1.90 3.560 2.13 2.881 | blu | spesso
+segmento: 2.13 2.881 2.36 2.306 | blu | spesso
+segmento: 2.36 2.306 2.59 1.836 | blu | spesso
+segmento: 2.59 1.836 2.81 1.470 | blu | spesso
+segmento: 2.81 1.470 3.04 1.209 | blu | spesso
+segmento: 3.04 1.209 3.27 1.052 | blu | spesso
+segmento: 3.27 1.052 3.50 1.000 | blu | spesso
+segmento: 3.50 1.000 3.73 1.052 | blu | spesso
+segmento: 3.73 1.052 3.96 1.209 | blu | spesso
+segmento: 3.96 1.209 4.19 1.470 | blu | spesso
+segmento: 4.19 1.470 4.41 1.836 | blu | spesso
+segmento: 4.41 1.836 4.64 2.306 | blu | spesso
+segmento: 4.64 2.306 4.87 2.881 | blu | spesso
+segmento: 4.87 2.881 5.10 3.560 | blu | spesso
+punto: -4.5 0 | accento
+punto: -2.5 0 | accento
+punto: 0 0 | ambra
+testo: -3.5 3.3 | accento | "Δ > 0"
+testo: 1.5 3.3 | ambra | "Δ = 0"
+testo: 3.5 3.3 | blu | "Δ < 0"
+```
+
 ::: prova Quante radici reali ha $x^2 - 6x + 9$? Con che molteplicità?
 $\Delta = 36 - 36 = 0$: una sola radice, $\frac 62 = 3$, con molteplicità 2. Infatti $x^2 - 6x + 9 = (x - 3)^2$.
 :::
@@ -665,6 +714,20 @@ Il motivo, a parole: coniugare non cambia i numeri reali, e il coniugato di una 
 > [!ESEMPIO] · $x^3 - 1$ e le radici terze dell'unità
 > $x^3 - 1 = (x - 1)(x^2 + x + 1)$ (Esempio 4.4). Il fattore $x^2 + x + 1$ ha $\Delta = 1 - 4 = -3$, con radici quadrate $\pm i\sqrt 3$, quindi le sue radici sono $\frac{-1 \pm i\sqrt 3}2$. Le tre radici di $x^3 - 1$ sono 1 e la coppia coniugata $-\frac 12 \pm \frac{\sqrt 3}2 i$. Sono le tre radici terze dell'unità della lezione L03, e il triangolo che formano è simmetrico rispetto all'asse orizzontale.
 
+```grafico
+titolo: Le radici di due polinomi a coefficienti reali. In blu quelle di $x^3 - 1$: la radice reale $1$ e una coppia coniugata. In ambra quelle di $x^2 + 2x + 5$: $-1 \pm 2i$. Ogni coppia è simmetrica rispetto all'asse reale (tratteggio)
+x: -2.6 2.4
+y: -2.6 2.6
+nomi: $\operatorname{Re}$ $\operatorname{Im}$
+segmento: -0.5 0.75 -0.5 -0.75 | grigio | tratteggio
+segmento: -1 1.85 -1 -1.85 | grigio | tratteggio
+punto: 1 0 | blu | $1$ | ne
+punto: -0.5 0.866 | blu | $-\frac 12 + \frac{\sqrt 3}2 i$ | e
+punto: -0.5 -0.866 | blu | $-\frac 12 - \frac{\sqrt 3}2 i$ | e
+punto: -1 2 | ambra | $-1 + 2i$ | no
+punto: -1 -2 | ambra | $-1 - 2i$ | so
+```
+
 ::: prova Un polinomio con numeri reali ha la radice $2 - 3i$. Quale altra radice ha di sicuro?
 Il coniugato: $2 + 3i$.
 :::
@@ -771,6 +834,30 @@ Il coniugato: $2 + 3i$.
 ## Quiz
 
 ```quiz
+D: Appello del 07/09/2026, domanda 1. Quale dei seguenti è una radice del polinomio $p(z) = z^4 + 5z^2 + 4$?
+- $z = -3 + i$
+- $z = 1 - i$
+- $z = -1$
++ $z = -2i$
+- il polinomio non ha radici
+= Con $t = z^2$ il polinomio è $t^2 + 5t + 4 = (t + 1)(t + 4)$, quindi $z^2 = -1$ o $z^2 = -4$: le radici sono $\pm i$ e $\pm 2i$. È la (d) della soluzione ufficiale; controllo: $p(-2i) = 16 - 20 + 4 = 0$. La risposta più insidiosa è «non ha radici»: vale per i reali, non per i complessi.
+
+D: Appello del 10/07/2025, domanda 1. Quale dei seguenti è una radice di $p(z) = z^4 + 7z^2 + 12$?
++ $z = -2i$
+- $z = -2$
+- il polinomio non ha radici
+- $z = 3 + 4i$
+- $z = 4$
+= Con $w = z^2$: $(w + 3)(w + 4) = 0$, quindi $z = \pm i\sqrt 3$ oppure $z = \pm 2i$. È la (a) della soluzione ufficiale. La risposta più insidiosa è $-2$: è $-2i$ senza la $i$, e per $z$ reale il polinomio vale almeno 12.
+
+D: Appello del 03/07/2026, domanda 7. Quale dei seguenti è una radice del polinomio $p(z) = z^3 + 2z^2 + z + 2$?
+- $z = 0$
++ $z = i$
+- $z = 1 + i$
+- $z = 1$
+- $z^3 + 2z^2 + z + 2 = 0$
+= Raccogliendo, $p(z) = (z^2 + 1)(z + 2)$: radici $-2$, $i$, $-i$. È la (b) della soluzione ufficiale; controllo $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è l'ultima, che non è un numero ma l'equazione stessa.
+
 D: Quale dei seguenti è una radice di $p(z) = z^4 + 10z^2 + 9$?
 + $z = 3i$
 - $z = 3$
@@ -1116,7 +1203,7 @@ Perché ha in tutto un numero dispari di radici complesse, e quelle non reali ve
 
 ```glossario
 Monomio | Un numero moltiplicato per delle lettere con esponenti interi, come $-2xy$. Il grado è la somma degli esponenti.
-Polinomio | Una somma di monomi, come $x^2 - 3$. Funziona come una macchina: metti un numero al posto della lettera ed esce un numero.
+Polinomio | Una somma di monomi, come $x^2 - 3$. Sostituendo un numero alla lettera si ottiene un numero.
 Forma normale | La scrittura di un polinomio con ogni parte letterale una volta sola e nessun coefficiente zero, oppure il polinomio 0.
 Grado | L'esponente più alto di un polinomio in forma normale. $x^3 - 2x + 5$ ha grado 3.
 Termine noto | Il numero da solo, senza lettera: in $x^2 - 3$ è $-3$.

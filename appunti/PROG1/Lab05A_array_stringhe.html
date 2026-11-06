@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab05A · Laboratorio 05: array e stringhe</title>
+<meta name="lezione" content="Lab05A">
+<meta name="data" content="2026-11-02">
+<meta name="description" content="Appunti del quinto laboratorio di Programmazione I (canale B, Lab05A): array con size_t e #define, la somma di un array letto da tastiera, le frequenze delle risposte a un questionario, la somma selettiva, stringhe e terminatore, l'alfabeto in un array, la montagna più alta, «per ogni» ed «esiste» su un array, le funzioni di ctype.h, le proprietà di una password e Indovina chi?, con tutti i programmi provati.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/Lab05A_array_stringhe.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#array-size-t-e-la-somma"><span class="n">§1</span><span>Array, size_t e la somma</span></a></li>
+<li><a href="#questionari-contare-le-frequenze"><span class="n">§2</span><span>Questionari: contare le frequenze</span></a></li>
+<li><a href="#somma-selettiva"><span class="n">§3</span><span>Somma selettiva</span></a></li>
+<li><a href="#le-stringhe"><span class="n">§4</span><span>Le stringhe</span></a></li>
+<li><a href="#montagne"><span class="n">§5</span><span>Montagne</span></a></li>
+<li><a href="#per-ogni-ed-esiste-sugli-array"><span class="n">§6</span><span>«Per ogni» ed «esiste» sugli array</span></a></li>
+<li><a href="#le-funzioni-di-ctype-h"><span class="n">§7</span><span>Le funzioni di ctype.h</span></a></li>
+<li><a href="#passwords"><span class="n">§8</span><span>Passwords</span></a></li>
+<li><a href="#indovina-chi"><span class="n">§9</span><span>Indovina chi?</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§10</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§11</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§12</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§13</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§14</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§15</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§16</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
+<nav class="vicine" aria-label="Lezioni vicine">
+  <a class="vicina prec" href="06A_funzioni.html" rel="prev" title="06A · Funzioni"><span class="dir">← Lezione precedente</span><span class="vt">06A · Funzioni</span></a>
+  <a class="vicina succ" href="06B_chiamata_funzioni.html" rel="next" title="06B · Chiamata di funzione e ritorno"><span class="dir">Lezione successiva →</span><span class="vt">06B · Chiamata di funzione e ritorno</span></a>
+</nav>
+<!-- VICINE:FINE -->
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione Lab05A</nav>
+      <p class="eyebrow">Canale B · Laboratorio 05 · Programmazione I</p>
+      <h1>Laboratorio 05: array e stringhe</h1>
+      <p class="lede">Il quinto laboratorio mette in pratica la lezione 05A: array di numeri e di caratteri, riempiti con un ciclo, contati, filtrati, confrontati. Qui trovi ogni esercizio risolto e provato, i tre esercizi CodeRunner con il testo dell&#39;anno scorso, e una trappola delle funzioni sui caratteri che la slide non dice.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>Lab05A «Array e stringhe», laboratorio canale B · 18 pagine, esercizi anche su CodeRunner</dd></div><div><dt>Laboratorio</dt><dd>Elisa Marengo (turno B2, lun 02/11) e Valerio Basile (turno B1) · 14–17 · laboratorio Turing</dd></div><div><dt>Tempo di studio</dt><dd>2–3 ore, davanti a un computer</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:660px">
+<h2 id="tldr-title">La lezione in 7 punti</h2>
+<ul>
+<li>Un array si scorre con un indice <code>size_t</code> da 0 a <code>n</code> escluso, e la lunghezza sta in una <code>#define</code> o in una variabile: a una funzione si passa la coppia «lunghezza, puntatore ai dati».</li>
+<li>Per <strong>contare quante volte compare ogni valore</strong> si usa un array di contatori: <code>frequenze[v - 1]++</code> per un valore <code>v</code> tra 1 e 5.</li>
+<li>Se il risultato dipende da un valore che si conosce solo alla fine (il minimo di tutta la sequenza), i dati vanno <strong>memorizzati</strong> in un array e scorsi una seconda volta.</li>
+<li>Una <strong>stringa</strong> è un array di <code>char</code> che finisce con <code>'\0'</code>. Si riempie a mano con un ciclo e poi si aggiunge il terminatore; si legge con <code>%20s</code>, senza <code>&amp;</code>.</li>
+<li>Per <strong>copiare una stringa</strong> si copia carattere per carattere fino al terminatore, e poi il terminatore.</li>
+<li><strong>«Per ogni»</strong> su un array: sentinella da <code>true</code>; <strong>«esiste»</strong>: sentinella da <code>false</code>. Le stesse della <a href="07A_algoritmi_su_array.html">07A</a>.</li>
+<li>Le funzioni di <code>ctype.h</code> (<code>isdigit</code>, <code>isupper</code>…) dicono che tipo di carattere è. Restituiscono un <code>int</code> <strong>diverso da zero</strong> per vero, non per forza 1: per stamparle con 0 e 1 si passa da un <code>bool</code>.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È il quinto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno <strong>B2</strong> lunedì 02/11 con <strong>Elisa Marengo</strong>. Il turno <strong>B1</strong> con <strong>Valerio Basile</strong> il 03/11 ha fatto il <a href="Lab04_iterazioni.html">Lab04</a>, recuperando la settimana del 27/10; il calendario ha il prossimo laboratorio B1 martedì 10/11, quindi il Lab05A dovrebbe toccargli lì. Gli esercizi riprendono la <a href="05A_array_stringhe.html">05A</a> su array e stringhe; i quantificatori delle slide 14–15 sono spiegati per intero nella <a href="07A_algoritmi_su_array.html">07A</a>.</p>
+<p><strong>Canali A e C.</strong> Nel 2025/26 il Lab05 era uguale nei tre canali, con gli stessi esercizi CodeRunner. Le slide 2026/27 dei canali A e C non le ho viste.</p>
+<p><strong>Il materiale che ho e quello che non ho.</strong> Il codice di partenza 2026/27 è su Moodle e non l&#39;ho visto; uso quello del 2025/26 (canale B: <code>array.c</code>, <code>questionari.c</code>, <code>stringhe.c</code>), che ha gli stessi nomi delle slide. I testi dei quattro esercizi CodeRunner 2026/27 non li ho: quelli del 2025/26, con gli stessi nomi, li ho ricostruiti dalle soluzioni pubblicate sul Moodle del canale A e dagli appunti di uno studente. Le soluzioni qui sono mie, provate sugli esempi; confrontale con il testo esatto su Moodle. Tutti i programmi li ho compilati con <code>gcc -Wall -Werror</code> (gcc 16.1, Windows 11 a 64 bit) ed eseguiti.</p>
+</div>
+
+
+<section id="array-size-t-e-la-somma" aria-labelledby="h-array-size-t-e-la-somma" style="--h:1250px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-array-size-t-e-la-somma">Array, size_t e la somma</h2><span class="slides">slide 2–4</span></div>
+<p>La slide 2 ripete le regole della <a href="05A_array_stringhe.html">05A</a>: un array è una sequenza di variabili dello stesso tipo, con indici interi non negativi da 0. Il tipo dell&#39;indice è <strong><code>size_t</code></strong>, che lo standard raccomanda per le dimensioni e gli indici degli array (Deitel, p. 247), e si stampa e si legge con <strong><code>%zu</code></strong>. Per ora gli array stanno sullo stack e hanno una dimensione fissata; più avanti nel corso arriveranno gli array sullo heap.</p>
+<p>Per usare un array serve sempre sapere quanto è lungo. Le strade, per ora, sono due:</p>
+<ul>
+<li>una <strong><code>#define</code></strong> con la dimensione, usata ovunque compare l&#39;array;</li>
+<li>una <strong>variabile</strong> con la dimensione. Allora l&#39;array viaggia in coppia: «numero di elementi, puntatore all&#39;inizio dei dati», proprio come nei parametri della <a href="06B_chiamata_funzioni.html">06B</a>.</li>
+</ul>
+<h3 id="array-c">array.c</h3>
+<p>Il programma di partenza <code>array.c</code> riassume le dichiarazioni della 05A: un array azzerato con un ciclo, una lista di inizializzazione <code>{23, 56, 12, -6, 31}</code>, una lista corta <code>{100}</code> che completa con zeri, un array senza dimensione <code>int values3[] = {0, 1, 2, 3}</code> che ne prende 4 dalla lista, e un VLA <code>int inseriti[sz]</code> con la dimensione letta da tastiera. Manca la fine: calcolare e stampare la somma degli elementi di <code>inseriti</code>. È un accumulatore che parte da 0:</p>
+<pre class="code" data-lingua="c"><code>    <span class="kw">int</span> somma = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; sz; i++) {
+        somma = somma + inseriti[i];
+    }
+    printf(<span class="str">&quot;La somma degli elementi e' %d\n&quot;</span>, somma);</code></pre>
+<p>Con dimensione 3 e valori 4, −1, 10 stampa <code>La somma degli elementi e' 13</code>. Due dettagli del programma di partenza: con dimensione 0 il VLA <code>int inseriti[0]</code> non è valido in C (la 05A diceva lunghezza almeno 1); e il valore letto non viene controllato, quindi un numero enorme fa esaurire lo stack.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa contiene <code>values2</code> dopo <code>int values2[5] = {100};</code>?</span></summary><div class="ans"><p><code>{100, 0, 0, 0, 0}</code>: gli elementi non scritti nella lista valgono 0.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Indici <code>size_t</code>, da stampare con <code>%zu</code>. La lunghezza sta in una <code>#define</code> o in una variabile che viaggia con l&#39;array.</li>
+</ul>
+</div>
+</section>
+
+<section id="questionari-contare-le-frequenze" aria-labelledby="h-questionari-contare-le-frequenze" style="--h:1670px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-questionari-contare-le-frequenze">Questionari: contare le frequenze</h2><span class="slides">slide 5</span></div>
+<p>Venti persone hanno dato un voto da 1 a 5 stelle:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#define</span> NUM_RISP 20
+<span class="kw">int</span> risposte[NUM_RISP] = {
+    1, 2, 5, 4, 3,  5, 2, 1, 3, 1,
+    4, 3, 3, 3, 2,  3, 3, 2, 2, 5
+};</code></pre>
+<p>Bisogna contare quante risposte hanno 1 stella, quante 2, e così via, e stampare un istogramma. L&#39;idea: un array di 5 contatori, uno per voto. Il voto <code>v</code> va nel contatore <code>frequenze[v - 1]</code>, perché gli indici partono da 0 e le stelle da 1. Un solo ciclo sulle risposte basta:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">#define</span> NUM_RISP 20   <span class="cm">// numero di risposte al questionario</span>
+<span class="kw">#define</span> MAX_STELLE 5  <span class="cm">// le risposte vanno da 1 a 5</span>
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">const</span> <span class="kw">int</span> risposte[NUM_RISP] = {
+        1, 2, 5, 4, 3,  5, 2, 1, 3, 1,
+        4, 3, 3, 3, 2,  3, 3, 2, 2, 5
+    };
+
+    <span class="cm">// frequenze[s - 1] conta le risposte con s stelle</span>
+    <span class="kw">int</span> frequenze[MAX_STELLE] = {0};
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; NUM_RISP; i++) {
+        frequenze[risposte[i] - 1]++;
+    }
+
+    printf(<span class="str">&quot;Stelle  Frequenza\n&quot;</span>);
+    <span class="kw">for</span> (<span class="kw">size_t</span> s = 0; s &lt; MAX_STELLE; s++) {
+        printf(<span class="str">&quot;%zu %10d   &quot;</span>, s + 1, frequenze[s]);
+        <span class="kw">for</span> (<span class="kw">int</span> k = 0; k &lt; frequenze[s]; k++) {
+            printf(<span class="str">&quot;#&quot;</span>);
+        }
+        printf(<span class="str">&quot;\n&quot;</span>);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa esattamente l&#39;istogramma della slide: 3, 5, 7, 2, 3, che sommati fanno 20.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Come lavora `frequenze[risposte[i] - 1]++`. Ogni risposta sceglie con il suo valore quale contatore incrementare: un 3 incrementa la casella 2, un 1 la casella 0. Alla fine le caselle contengono 3, 5, 7, 2, 3" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M18.06 108.18L63.23 108.18L63.23 46.36L18.06 46.36Z"/><path class="g-poligono g-blu g-pieno" d="M63.23 108.18L108.39 108.18L108.39 46.36L63.23 46.36Z"/><path class="g-poligono g-blu g-pieno" d="M108.39 108.18L153.55 108.18L153.55 46.36L108.39 46.36Z"/><path class="g-poligono g-blu g-pieno" d="M153.55 108.18L198.71 108.18L198.71 46.36L153.55 46.36Z"/><path class="g-poligono g-blu g-pieno" d="M198.71 108.18L243.87 108.18L243.87 46.36L198.71 46.36Z"/><path class="g-poligono g-verde g-pieno" d="M153.55 293.64L207.74 293.64L207.74 231.82L153.55 231.82Z"/><path class="g-poligono g-verde g-pieno" d="M207.74 293.64L261.94 293.64L261.94 231.82L207.74 231.82Z"/><path class="g-poligono g-verde g-pieno" d="M261.94 293.64L316.13 293.64L316.13 231.82L261.94 231.82Z"/><path class="g-poligono g-verde g-pieno" d="M316.13 293.64L370.32 293.64L370.32 231.82L316.13 231.82Z"/><path class="g-poligono g-verde g-pieno" d="M370.32 293.64L424.52 293.64L424.52 231.82L370.32 231.82Z"/><path class="g-linea g-grigio" d="M40.65 115.91L176.13 224.09" marker-end="url(#g-freccia-1-grigio)"/><path class="g-linea g-grigio" d="M221.29 115.91L284.52 224.09" marker-end="url(#g-freccia-1-grigio)"/></svg><span class="g-et g-c g-testo g-blu" style="left:7.26%;top:22.73%">1</span><span class="g-et g-c g-testo g-blu" style="left:15.32%;top:22.73%">2</span><span class="g-et g-c g-testo g-blu" style="left:23.39%;top:22.73%">5</span><span class="g-et g-c g-testo g-blu" style="left:31.45%;top:22.73%">4</span><span class="g-et g-c g-testo g-blu" style="left:39.52%;top:22.73%">3</span><span class="g-et g-c g-testo g-grigio" style="left:53.23%;top:22.73%">… risposte</span><span class="g-et g-c g-testo g-verde" style="left:32.26%;top:77.27%">3</span><span class="g-et g-c g-testo g-verde" style="left:41.94%;top:77.27%">5</span><span class="g-et g-c g-testo g-verde" style="left:51.61%;top:77.27%">7</span><span class="g-et g-c g-testo g-verde" style="left:61.29%;top:77.27%">2</span><span class="g-et g-c g-testo g-verde" style="left:70.97%;top:77.27%">3</span><span class="g-et g-c g-testo g-grigio" style="left:32.26%;top:94.32%">[0]</span><span class="g-et g-c g-testo g-grigio" style="left:41.94%;top:94.32%">[1]</span><span class="g-et g-c g-testo g-grigio" style="left:51.61%;top:94.32%">[2]</span><span class="g-et g-c g-testo g-grigio" style="left:61.29%;top:94.32%">[3]</span><span class="g-et g-c g-testo g-grigio" style="left:70.97%;top:94.32%">[4]</span><span class="g-et g-c g-testo g-verde" style="left:87.90%;top:77.27%">frequenze</span><span class="g-et g-c g-testo g-grigio" style="left:12.90%;top:50.00%">1 → [0]</span><span class="g-et g-c g-testo g-grigio" style="left:50.81%;top:45.46%">3 → [2]</span></div><figcaption>Come lavora <code>frequenze[risposte[i] - 1]++</code>. Ogni risposta sceglie con il suo valore quale contatore incrementare: un 3 incrementa la casella 2, un 1 la casella 0. Alla fine le caselle contengono 3, 5, 7, 2, 3</figcaption></figure>
+<div class="box trap"><p class="box-label"><span>Trappola · Un voto fuori da 1–5</span></p><p>Se nelle risposte ci fosse un 0 o un 6, <code>frequenze[risposte[i] - 1]</code> scriverebbe fuori dall&#39;array, senza nessun errore del compilatore. Con dati letti da tastiera, prima di incrementare si controlla <code>1 &lt;= v &amp;&amp; v &lt;= 5</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Come cambia il programma se le risposte vanno da 0 a 10?</span></summary><div class="ans"><p>Servono 11 contatori, <code>int frequenze[11] = {0};</code>, e l&#39;indice è il voto stesso: <code>frequenze[risposte[i]]++</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Contare per categorie: un array di contatori, indicizzato dal valore.</li>
+</ul>
+</div>
+</section>
+
+<section id="somma-selettiva" aria-labelledby="h-somma-selettiva" style="--h:1490px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-somma-selettiva">Somma selettiva</h2><span class="slides">slide 6, Lab05-Es1</span></div>
+<p>Il testo dell&#39;esercizio CodeRunner del 2025/26, con lo stesso nome:</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Lab05-Es1 Somma selettiva (testo 2025/26)</span></p><p>Leggere un intero non negativo <code>N</code>, poi una sequenza di <code>N</code> interi da memorizzare in un array; <code>N</code> non supera <code>MAX_N = 20</code>. Stampare <code>Vuoto.</code> se la sequenza non ha elementi, <code>Errore: numero di elementi non valido.</code> se <code>N</code> non è valido, altrimenti la somma degli elementi <strong>maggiori o uguali al quadrato del minimo</strong> della sequenza. Esempio: con <code>4</code> e poi <code>2 3 4 6</code> stampa <code>10</code>.</p>
+</div>
+<p>Nell&#39;esempio il minimo è 2, il quadrato 4, e gli elementi da 4 in su sono 4 e 6: somma 10.</p>
+<p>La domanda della slide: <strong>si può fare a meno di memorizzare la sequenza in un array?</strong> No. Se la sequenza è <code>3 4</code>, il minimo è 3, la soglia 9, e la somma è 0. Se dopo arriva un <code>1</code>, il minimo diventa 1, la soglia 1, e la somma diventa 8: il 3 e il 4 ora contano. Finché non si è letta tutta la sequenza non si sa quali elementi sommare, quindi bisogna tenerli. Si fanno due passate sull&#39;array: la prima trova il minimo, la seconda somma.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">#define</span> MAX_N 20
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">size_t</span> n = 0;
+    scanf(<span class="str">&quot;%zu&quot;</span>, &amp;n);
+    <span class="kw">if</span> (n == 0) {
+        printf(<span class="str">&quot;Vuoto.\n&quot;</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> (n &gt; MAX_N) {
+        printf(<span class="str">&quot;Errore: numero di elementi non valido.\n&quot;</span>);
+    } <span class="kw">else</span> {
+        <span class="kw">int</span> a[MAX_N];
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+            scanf(<span class="str">&quot;%d&quot;</span>, &amp;a[i]);
+        }
+        <span class="cm">// primo passaggio: il minimo</span>
+        <span class="kw">int</span> min = a[0];
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt; n; i++) {
+            <span class="kw">if</span> (a[i] &lt; min) {
+                min = a[i];
+            }
+        }
+        <span class="cm">// secondo passaggio: la somma selettiva</span>
+        <span class="kw">int</span> soglia = min * min;
+        <span class="kw">int</span> somma = 0;
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+            <span class="kw">if</span> (a[i] &gt;= soglia) {
+                somma = somma + a[i];
+            }
+        }
+        printf(<span class="str">&quot;%d\n&quot;</span>, somma);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato: <code>4</code> e <code>2 3 4 6</code> dà 10; <code>3</code> e <code>3 4 1</code> dà 8; <code>2</code> e <code>3 4</code> dà 0; <code>3</code> e <code>-2 1 7</code> dà 7 (minimo −2, soglia 4); <code>0</code> dà <code>Vuoto.</code>; <code>25</code> dà l&#39;errore. Con <code>-3</code> dà l&#39;errore anche lui: <code>%zu</code> legge il segno meno e il numero diventa enorme, maggiore di 20.</p>
+<p>Il minimo si inizializza con <code>a[0]</code>, non con 0: con tutti elementi positivi, partire da 0 darebbe minimo 0. È la precondizione «non vuoto» della <a href="05A_array_stringhe.html">05A</a>, garantita qui dal ramo <code>n == 0</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con la sequenza <code>5 6 7</code>, che cosa stampa?</span></summary><div class="ans"><ol start="0">
+<li>Il minimo è 5, la soglia 25, e nessun elemento arriva a 25.</li>
+</ol>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Se la decisione dipende da un dato che arriva alla fine, si memorizza tutto e si fanno due passate.</li>
+</ul>
+</div>
+</section>
+
+<section id="le-stringhe" aria-labelledby="h-le-stringhe" style="--h:2410px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-le-stringhe">Le stringhe</h2><span class="slides">slide 7–11</span></div>
+<p>Nel C il testo è un array di <code>char</code>. Un <code>char</code> contiene il codice numerico di un carattere, secondo la tabella <strong>ASCII</strong> (si legge «àski»): la slide 8 la mostra intera, 128 caratteri. Da ricordare i caratteri di controllo che compaiono nel codice:</p>
+<div class="table-wrap"><table><thead><tr><th>Codice</th><th>Nome</th><th>Nel codice C</th></tr></thead><tbody><tr><td>0</td><td>NUL, il terminatore</td><td><code>'\0'</code></td></tr>
+<tr><td>9</td><td>tabulazione</td><td><code>'\t'</code></td></tr>
+<tr><td>10</td><td>a capo (line feed)</td><td><code>'\n'</code></td></tr>
+<tr><td>13</td><td>ritorno carrello</td><td><code>'\r'</code></td></tr></tbody></table></div>
+<p>e le tre file consecutive: cifre da 48 (<code>'0'</code>), maiuscole da 65 (<code>'A'</code>), minuscole da 97 (<code>'a'</code>). Nel corso si usa solo il testo <strong>a un byte per carattere</strong>, adatto ad ASCII e Latin-1; il C conosce anche i caratteri larghi (<code>wchar_t</code>) e le codifiche a più byte, che qui non si vedono.</p>
+<p>Una stringa ha in più, rispetto a un array qualunque, il <strong>terminatore</strong> <code>'\0'</code> alla fine. <code>&quot;ciao&quot;</code> occupa 5 <code>char</code>: <code>'c'</code>, <code>'i'</code>, <code>'a'</code>, <code>'o'</code>, <code>'\0'</code>. Si dichiara in tre modi:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">char</span> txt1[] = { <span class="str">'c'</span>, <span class="str">'i'</span>, <span class="str">'a'</span>, <span class="str">'o'</span>, <span class="str">'\0'</span> };   <span class="cm">// array, terminatore scritto a mano</span>
+<span class="kw">char</span> txt2[] = <span class="str">&quot;ciao&quot;</span>;                         <span class="cm">// array, terminatore aggiunto dal compilatore</span>
+<span class="kw">const</span> <span class="kw">char</span>* txt3 = <span class="str">&quot;ciao&quot;</span>;                    <span class="cm">// puntatore a un letterale, in sola lettura</span></code></pre>
+<h3 id="stringhe-c">stringhe.c</h3>
+<p>Il programma di partenza fa vedere le stringhe come array. Le parti da capire:</p>
+<ol>
+<li><code>char testoA[] = &quot;testo&quot;;</code> poi <code>testoA[1] = 'E'</code>, <code>testoA[4] = 'A'</code>, <code>testoA[3] = '\0'</code>. La <code>printf</code> stampa <strong><code>tEs</code></strong>: si ferma al primo terminatore, in posizione 3. La <code>'A'</code> in posizione 4 è ancora lì in memoria, ma non fa più parte della stringa.</li>
+<li><code>scanf(&quot;%20s&quot;, testo_input)</code> con <code>char testo_input[21]</code>: legge al massimo 20 caratteri e si ferma al primo spazio. Con <code>due parole</code> legge solo <code>due</code>; con una parola di 26 lettere ne legge 20, e le altre restano nell&#39;input.</li>
+<li>Il ciclo stampa ogni carattere con il suo codice, terminatore compreso: <code>'d' ha valore 100</code>, <code>'u' ha valore 117</code>, <code>'e' ha valore 101</code>, e per ultimo il terminatore, che vale 0.</li>
+<li><code>'7' - '0'</code> vale 7: le cifre sono consecutive nella tabella, quindi la differenza dal carattere <code>'0'</code> è il valore della cifra. Al contrario, <code>'0' + i</code> è il carattere della cifra <code>i</code>.</li>
+</ol>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Che cosa c'è in `testoA` dopo le tre modifiche. La stringa finisce al primo `'\0'`, nella casella 3: `printf` stampa `tEs`. La `'A'` nella casella 4 e il terminatore originale nella 5 restano in memoria, ma fuori dalla stringa" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M45.16 201.88L117.42 201.88L117.42 95.63L45.16 95.63Z"/><path class="g-poligono g-blu g-pieno" d="M117.42 201.88L189.68 201.88L189.68 95.63L117.42 95.63Z"/><path class="g-poligono g-blu g-pieno" d="M189.68 201.88L261.94 201.88L261.94 95.63L189.68 95.63Z"/><path class="g-poligono g-rosa g-pieno" d="M261.94 201.88L334.19 201.88L334.19 95.63L261.94 95.63Z"/><path class="g-poligono g-grigio g-tratteggio" d="M334.19 201.88L406.45 201.88L406.45 95.63L334.19 95.63Z"/><path class="g-poligono g-grigio g-tratteggio" d="M406.45 201.88L478.71 201.88L478.71 95.63L406.45 95.63Z"/></svg><span class="g-et g-c g-testo g-blu" style="left:14.52%;top:43.75%">'t'</span><span class="g-et g-c g-testo g-blu" style="left:27.42%;top:43.75%">'E'</span><span class="g-et g-c g-testo g-blu" style="left:40.32%;top:43.75%">'s'</span><span class="g-et g-c g-testo g-rosa" style="left:53.23%;top:43.75%">'\0'</span><span class="g-et g-c g-testo g-grigio" style="left:66.13%;top:43.75%">'A'</span><span class="g-et g-c g-testo g-grigio" style="left:79.03%;top:43.75%">'\0'</span><span class="g-et g-c g-testo g-grigio" style="left:14.52%;top:71.88%">0</span><span class="g-et g-c g-testo g-grigio" style="left:27.42%;top:71.88%">1</span><span class="g-et g-c g-testo g-grigio" style="left:40.32%;top:71.88%">2</span><span class="g-et g-c g-testo g-grigio" style="left:53.23%;top:71.88%">3</span><span class="g-et g-c g-testo g-grigio" style="left:66.13%;top:71.88%">4</span><span class="g-et g-c g-testo g-grigio" style="left:79.03%;top:71.88%">5</span><span class="g-et g-c g-testo g-blu" style="left:27.42%;top:12.50%">la stringa: tEs</span></div><figcaption>Che cosa c&#39;è in <code>testoA</code> dopo le tre modifiche. La stringa finisce al primo <code>'\0'</code>, nella casella 3: <code>printf</code> stampa <code>tEs</code>. La <code>'A'</code> nella casella 4 e il terminatore originale nella 5 restano in memoria, ma fuori dalla stringa</figcaption></figure>
+<h3 id="alfabeto-slide-12">Alfabeto (slide 12)</h3>
+<p>Un array di 27 <code>char</code>: le 26 lettere dalla <code>'A'</code> alla <code>'Z'</code> riempite con un ciclo, più il terminatore.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">#define</span> LETTERE 26
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> alfabeto[LETTERE + 1];          <span class="cm">// 26 lettere + il terminatore</span>
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; LETTERE; i++) {
+        alfabeto[i] = <span class="str">'A'</span> + i;
+    }
+    alfabeto[LETTERE] = <span class="str">'\0'</span>;
+    printf(<span class="str">&quot;%s\n&quot;</span>, alfabeto);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa <code>ABCDEFGHIJKLMNOPQRSTUVWXYZ</code>. Senza la riga del terminatore, <code>printf</code> continuerebbe a leggere la memoria dopo l&#39;array finché non trova per caso uno 0.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanti <code>char</code> servono per memorizzare <code>&quot;Monviso&quot;</code>? E che cosa vale <code>sizeof(&quot;Monviso&quot;)</code>?</span></summary><div class="ans"><p>8 tutti e due: 7 lettere più il terminatore.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Stringa = array di <code>char</code> + <code>'\0'</code>. Riempita a mano, il terminatore va aggiunto a mano.</li>
+<li><code>printf(&quot;%s&quot;)</code> si ferma al primo <code>'\0'</code>. <code>'7' - '0'</code> vale 7.</li>
+</ul>
+</div>
+</section>
+
+<section id="montagne" aria-labelledby="h-montagne" style="--h:1310px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-montagne">Montagne</h2><span class="slides">slide 13, Lab05-Es2</span></div>
+<p>Il secondo esercizio CodeRunner chiede il massimo di una sequenza, ma il risultato è un nome. Il testo del 2025/26:</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Lab05-Es2 Montagne (testo 2025/26)</span></p><p>Leggere una sequenza di coppie <code>&lt;nome_montagna&gt; &lt;altezza&gt;</code>, con il nome di al massimo 50 caratteri e l&#39;altezza intera maggiore di 0. La sequenza finisce quando non si riesce più a leggere. Alla fine stampare il nome della montagna più alta. Suggerimenti: leggere una coppia con una sola <code>scanf</code>, che deve restituire 2; usare un secondo array per il nome della più alta trovata fin lì.</p>
+</div>
+<p>È il massimo della <a href="05A_array_stringhe.html">05A</a>, con una differenza: insieme al numero bisogna ricordare un <strong>nome</strong>, e un array non si copia con <code>=</code> (05A: <code>b = a</code> non compila). Si copia carattere per carattere:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">#define</span> MAX_S 50
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> nome[MAX_S + 1];
+    <span class="kw">char</span> piuAlta[MAX_S + 1] = <span class="str">&quot;&quot;</span>;   <span class="cm">// stringa vuota se non arriva niente</span>
+    <span class="kw">int</span> altezza = 0;
+    <span class="kw">int</span> altezzaMax = 0;             <span class="cm">// le altezze sono maggiori di 0</span>
+
+    <span class="kw">while</span> (2 == scanf(<span class="str">&quot;%50s %d&quot;</span>, nome, &amp;altezza)) {
+        <span class="kw">if</span> (altezza &gt; altezzaMax) {
+            altezzaMax = altezza;
+            <span class="cm">// copia nome in piuAlta, terminatore compreso</span>
+            <span class="kw">size_t</span> i = 0;
+            <span class="kw">while</span> (nome[i] != <span class="str">'\0'</span>) {
+                piuAlta[i] = nome[i];
+                i++;
+            }
+            piuAlta[i] = <span class="str">'\0'</span>;
+        }
+    }
+    printf(<span class="str">&quot;%s\n&quot;</span>, piuAlta);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Con l&#39;esempio del testo, <code>Corno_Nero 4222</code>, <code>Rocciamelone 3538</code>, <code>Punta_Nordend 4609</code>, <code>Monviso 3841</code>, stampa <code>Punta_Nordend</code>. I nomi non hanno spazi perché <code>%50s</code> si ferma al primo spazio. Il massimo può partire da 0 perché le altezze sono maggiori di 0, ed è la risposta giusta anche per la sequenza vuota. Ho inizializzato <code>piuAlta</code> con <code>&quot;&quot;</code>: la soluzione del 2025/26 non lo fa, e con l&#39;input vuoto stamperebbe memoria a caso.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Due montagne hanno la stessa altezza massima. Quale nome stampa il programma?</span></summary><div class="ans"><p>La prima letta: il confronto è <code>&gt;</code>, quindi la seconda, uguale, non la sostituisce. Con <code>&gt;=</code> stamperebbe l&#39;ultima.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Leggere coppie: <code>while (2 == scanf(...))</code>.</li>
+<li>Una stringa si copia carattere per carattere, poi il terminatore.</li>
+</ul>
+</div>
+</section>
+
+<section id="per-ogni-ed-esiste-sugli-array" aria-labelledby="h-per-ogni-ed-esiste-sugli-array" style="--h:800px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-per-ogni-ed-esiste-sugli-array">«Per ogni» ed «esiste» sugli array</h2><span class="slides">slide 14–15</span></div>
+<p>Le slide 14–15 riprendono le sentinelle del <a href="Lab04_iterazioni.html">Lab04</a>, su un array:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> tutti = <span class="kw">true</span>;                         <span class="cm">// per ogni</span>
+<span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; len &amp;&amp; tutti; i++) {
+    <span class="kw">if</span> (!Cond(a[i])) {
+        tutti = <span class="kw">false</span>;
+    }
+}
+
+<span class="kw">bool</span> esiste = <span class="kw">false</span>;                       <span class="cm">// esiste</span>
+<span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; len &amp;&amp; !esiste; i++) {
+    <span class="kw">if</span> (Cond(a[i])) {
+        esiste = <span class="kw">true</span>;
+    }
+}</code></pre>
+<p>Il ciclo finisce o perché <code>i == len</code> (per ogni: tutti soddisfano; esiste: nessuno soddisfa) o perché la sentinella è cambiata. La slide dice che in quel caso «<code>a[i]</code> è il primo che soddisfa» (o non soddisfa). Attenzione: con il <code>for</code> non è così. Quando la sentinella cambia, il <code>for</code> esegue comunque l&#39;incremento <code>i++</code> prima di ricontrollare la condizione, quindi all&#39;uscita <code>i</code> indica l&#39;elemento <strong>dopo</strong>. Se serve la posizione, si usa il <code>while</code> con <code>i++</code> solo nel ramo <code>else</code>, come nella <a href="07A_algoritmi_su_array.html">07A</a>, oppure si usa <code>i - 1</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>a = {3, 8, 5}</code>, il <code>for</code> di «esiste un pari» finisce con <code>i</code> uguale a quanto?</span></summary><div class="ans"><ol start="2">
+<li>Il pari è <code>a[1] = 8</code>: la sentinella diventa vera con <code>i == 1</code>, poi il <code>for</code> incrementa a 2 e la condizione lo ferma.</li>
+</ol>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Con il <code>for</code>, all&#39;uscita <code>i</code> è uno dopo l&#39;elemento trovato. Per la posizione esatta, il <code>while</code> della 07A.</li>
+</ul>
+</div>
+</section>
+
+<section id="le-funzioni-di-ctype-h" aria-labelledby="h-le-funzioni-di-ctype-h" style="--h:1170px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-le-funzioni-di-ctype-h">Le funzioni di ctype.h</h2><span class="slides">slide 16</span></div>
+<p><code>ctype.h</code> contiene funzioni che classificano un carattere:</p>
+<div class="table-wrap"><table><thead><tr><th>Funzione</th><th>Vero se il carattere è</th></tr></thead><tbody><tr><td><code>isalpha(c)</code></td><td>una lettera</td></tr>
+<tr><td><code>isdigit(c)</code></td><td>una cifra</td></tr>
+<tr><td><code>isalnum(c)</code></td><td>una lettera o una cifra</td></tr>
+<tr><td><code>islower(c)</code>, <code>isupper(c)</code></td><td>una minuscola, una maiuscola</td></tr>
+<tr><td><code>isspace(c)</code></td><td>uno spazio, una tabulazione, un a capo</td></tr>
+<tr><td><code>ispunct(c)</code></td><td>un segno di punteggiatura: `<code>!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_</code>{</td></tr></tbody></table></div>
+<p>più <code>tolower(c)</code> e <code>toupper(c)</code>, che restituiscono la lettera minuscola o maiuscola, e il carattere invariato se non è una lettera: <code>toupper('q')</code> è <code>'Q'</code>, <code>toupper('7')</code> è <code>'7'</code>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Non restituiscono true e false</span></p><p>La slide le scrive come <code>bool isalpha(char ch)</code>. Le intestazioni vere sono <code>int isalpha(int c)</code>: restituiscono <strong>0 per falso e un numero diverso da 0 per vero</strong>, non per forza 1. Sul mio PC <code>isdigit('7')</code> vale 1 ma <code>islower('q')</code> vale 2, <code>isspace(' ')</code> 8, <code>ispunct('!')</code> 16. Dentro un <code>if</code> non cambia niente; ma un <code>printf(&quot;%d&quot;, ispunct(c))</code> stampa 16 dove CodeRunner si aspetta 1. Si passa da un <code>bool</code>: <code>bool p = ispunct(c);</code> vale 1. E per i caratteri con codice oltre 127 (le lettere accentate in Latin-1) il <code>char</code> può essere negativo, e passarlo a queste funzioni è un comportamento indefinito: si scrive <code>isalpha((unsigned char)c)</code>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa <code>printf(&quot;%d %d&quot;, isupper('A') != 0, isupper('a') != 0);</code>?</span></summary><div class="ans"><p><code>1 0</code>. Il confronto <code>!= 0</code> trasforma qualunque valore diverso da zero in 1.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>ctype.h</code>: vero = diverso da 0. Per stampare 0 e 1, passare da un <code>bool</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="passwords" aria-labelledby="h-passwords" style="--h:2080px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-passwords">Passwords</h2><span class="slides">slide 17, Lab05-Es3</span></div>
+<p>Il terzo esercizio CodeRunner controlla cinque proprietà di una stringa. Il testo del 2025/26:</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Lab05-Es3 Passwords (testo 2025/26)</span></p><p>Leggere una stringa di al massimo 20 caratteri e stampare <code>&lt;password&gt; P1 P2 P3 P4 P5</code>, con 1 o 0 per ogni proprietà. P1: esiste almeno una cifra. P2: tutti i caratteri sono lettere. P3: ci sono almeno due lettere maiuscole. P4: ci sono almeno due cifre consecutive. P5: gli ultimi due caratteri sono segni di punteggiatura. Esempio: <code>pippo12345!</code> dà <code>pippo12345! 1 0 0 1 0</code>.</p>
+</div>
+<p>Cinque proprietà, cinque schemi già visti:</p>
+<div class="table-wrap"><table><thead><tr><th>Proprietà</th><th>Schema</th><th>Sentinella o contatore</th></tr></thead><tbody><tr><td>P1 esiste una cifra</td><td>esiste</td><td><code>false</code>, poi <code>true</code></td></tr>
+<tr><td>P2 tutte lettere</td><td>per ogni</td><td><code>true</code>, poi <code>false</code></td></tr>
+<tr><td>P3 almeno due maiuscole</td><td>conteggio, ci si ferma a 2</td><td>contatore da 0</td></tr>
+<tr><td>P4 due cifre consecutive</td><td>esiste, sulle coppie <code>(i-1, i)</code></td><td><code>false</code>, poi <code>true</code></td></tr>
+<tr><td>P5 ultimi due punteggiatura</td><td>controllo diretto, se la lunghezza è almeno 2</td><td>nessuna</td></tr></tbody></table></div>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+<span class="kw">#include</span> &lt;ctype.h&gt;
+
+<span class="kw">#define</span> MAX_STR 20
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> pwd[MAX_STR + 1] = <span class="str">&quot;&quot;</span>;
+    scanf(<span class="str">&quot;%20s&quot;</span>, pwd);
+
+    <span class="cm">// lunghezza: si conta fino al terminatore</span>
+    <span class="kw">size_t</span> len = 0;
+    <span class="kw">while</span> (pwd[len] != <span class="str">'\0'</span>) {
+        len++;
+    }
+
+    <span class="cm">// P1: esiste una cifra</span>
+    <span class="kw">bool</span> p1 = <span class="kw">false</span>;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; len &amp;&amp; !p1; i++) {
+        <span class="kw">if</span> (isdigit((<span class="kw">unsigned</span> <span class="kw">char</span>)pwd[i])) {
+            p1 = <span class="kw">true</span>;
+        }
+    }
+    <span class="cm">// P2: tutti i caratteri sono lettere</span>
+    <span class="kw">bool</span> p2 = <span class="kw">true</span>;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; len &amp;&amp; p2; i++) {
+        <span class="kw">if</span> (!isalpha((<span class="kw">unsigned</span> <span class="kw">char</span>)pwd[i])) {
+            p2 = <span class="kw">false</span>;
+        }
+    }
+    <span class="cm">// P3: almeno due maiuscole</span>
+    <span class="kw">int</span> maiuscole = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; len &amp;&amp; maiuscole &lt; 2; i++) {
+        <span class="kw">if</span> (isupper((<span class="kw">unsigned</span> <span class="kw">char</span>)pwd[i])) {
+            maiuscole++;
+        }
+    }
+    <span class="kw">bool</span> p3 = (maiuscole &gt;= 2);
+    <span class="cm">// P4: esistono due cifre consecutive (coppie i-1, i con i in [1, len))</span>
+    <span class="kw">bool</span> p4 = <span class="kw">false</span>;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt; len &amp;&amp; !p4; i++) {
+        <span class="kw">if</span> (isdigit((<span class="kw">unsigned</span> <span class="kw">char</span>)pwd[i - 1]) &amp;&amp; isdigit((<span class="kw">unsigned</span> <span class="kw">char</span>)pwd[i])) {
+            p4 = <span class="kw">true</span>;
+        }
+    }
+    <span class="cm">// P5: gli ultimi due caratteri sono segni di punteggiatura</span>
+    <span class="kw">bool</span> p5 = (len &gt;= 2)
+              &amp;&amp; ispunct((<span class="kw">unsigned</span> <span class="kw">char</span>)pwd[len - 1])
+              &amp;&amp; ispunct((<span class="kw">unsigned</span> <span class="kw">char</span>)pwd[len - 2]);
+
+    printf(<span class="str">&quot;%s %d %d %d %d %d\n&quot;</span>, pwd, p1, p2, p3, p4, p5);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato: <code>pippo12345!</code> dà <code>1 0 0 1 0</code> come nel testo; <code>CiaoMondo</code> dà <code>0 1 1 0 0</code>; <code>Ab12..</code> dà <code>1 0 0 1 1</code>; <code>x</code> dà <code>0 1 0 0 0</code>; <code>A1b2C3!?</code> dà <code>1 0 1 0 1</code>.</p>
+<ul>
+<li>In P5 il <code>len &gt;= 2</code> viene <strong>prima</strong>: con una stringa di un carattere, <code>pwd[len - 2]</code> sarebbe fuori dall&#39;array, e il cortocircuito dell&#39;<code>&amp;&amp;</code> evita di calcolarlo.</li>
+<li>In P2, la stringa vuota darebbe 1, «tutti lettere» per vacuità, come nella <a href="07A_algoritmi_su_array.html">07A</a>. Con <code>scanf(&quot;%20s&quot;)</code> non può capitare, perché <code>%s</code> salta gli spazi e legge almeno un carattere.</li>
+<li>Gli appunti di uno studente riportano P5 come «gli ultimi due <strong>non</strong> sono punteggiatura»; la soluzione ufficiale e l&#39;esempio vanno con «sono». Controlla il testo su Moodle.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa il programma con <code>Ciao2026!!</code>?</span></summary><div class="ans"><p><code>Ciao2026!! 1 0 0 1 1</code>: c&#39;è una cifra, non sono tutte lettere, una sola maiuscola, cifre consecutive, e gli ultimi due sono <code>!</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Una proprietà, uno schema: esiste, per ogni, conteggio, coppie adiacenti.</li>
+<li>Controllare la lunghezza <strong>prima</strong> di guardare <code>pwd[len - 2]</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="indovina-chi" aria-labelledby="h-indovina-chi" style="--h:1260px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-indovina-chi">Indovina chi?</h2><span class="slides">slide 18, Lab05-Es4, extra</span></div>
+<p>Il gioco da tavolo: 24 personaggi, ognuno con degli attributi codificati da lettere (nel codice dell&#39;esercizio, un array <code>nomi</code> e un array <code>attributi</code> di stringhe, per esempio <code>&quot;drco&quot;</code> per Claire). Si legge una stringa di indizi: una lettera <strong>minuscola</strong> vuol dire «ha questo attributo», una <strong>maiuscola</strong> «non ce l&#39;ha». Si stampano i personaggi che rispettano tutti gli indizi, uno per riga, e alla fine quanti sono.</p>
+<p>Sono due quantificatori annidati: un personaggio è sospetto se <strong>per ogni</strong> indizio vale la condizione, e la condizione è «<strong>esiste</strong> quella lettera tra i suoi attributi» (o «non esiste»). Il pezzo «esiste la lettera nella stringa» va bene in una funzione, come nella <a href="06A_funzioni.html">06A</a>:</p>
+<pre class="code" data-lingua="c"><code><span class="cm">// true se il carattere c compare nella stringa s</span>
+<span class="kw">bool</span> contiene(<span class="kw">const</span> <span class="kw">char</span>* s, <span class="kw">char</span> c) {
+    <span class="kw">bool</span> trovato = <span class="kw">false</span>;
+    <span class="kw">size_t</span> k = 0;
+    <span class="kw">while</span> (s[k] != <span class="str">'\0'</span> &amp;&amp; !trovato) {
+        <span class="kw">if</span> (s[k] == c) {
+            trovato = <span class="kw">true</span>;
+        } <span class="kw">else</span> {
+            k++;
+        }
+    }
+    <span class="kw">return</span> trovato;
+}</code></pre>
+<p>e nel <code>main</code>, per ogni personaggio <code>p</code>:</p>
+<pre class="code" data-lingua="c"><code>        <span class="kw">bool</span> tuttiOk = <span class="kw">true</span>;
+        <span class="kw">size_t</span> j = 0;
+        <span class="kw">while</span> (indizi[j] != <span class="str">'\0'</span> &amp;&amp; tuttiOk) {
+            <span class="kw">char</span> ch = indizi[j];
+            <span class="kw">bool</span> ce = contiene(attributi[p], (<span class="kw">char</span>)tolower((<span class="kw">unsigned</span> <span class="kw">char</span>)ch));
+            <span class="kw">if</span> (isupper((<span class="kw">unsigned</span> <span class="kw">char</span>)ch)) {
+                tuttiOk = !ce;        <span class="cm">// maiuscola: non deve averlo</span>
+            } <span class="kw">else</span> {
+                tuttiOk = ce;         <span class="cm">// minuscola: deve averlo</span>
+            }
+            j++;
+        }</code></pre>
+<p>con un contatore dei sospetti e la stampa del nome se <code>tuttiOk</code>. Con gli indizi <code>dc</code> stampa Claire, Maria e 2; con <code>bO</code> stampa Eric, Anita, David, Charles e 4. Ho confrontato il programma intero con la soluzione ufficiale del 2025/26 su cinque input: risultati uguali.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con gli indizi <code>dc</code>, perché Claire (<code>&quot;drco&quot;</code>) è tra i sospetti e Eric (<code>&quot;bc&quot;</code>) no?</span></summary><div class="ans"><p>Claire ha sia la <code>d</code> sia la <code>c</code>. Eric ha la <code>c</code> ma non la <code>d</code>: il primo indizio lo esclude, e il ciclo sugli indizi si ferma lì.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>«Per ogni indizio, esiste (o non esiste) l&#39;attributo»: due sentinelle annidate. Il pezzo interno sta bene in una funzione.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:640px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>%zu</code></td><td>«zeta u»</td><td>formato di <code>size_t</code> in <code>printf</code> e <code>scanf</code></td><td><code>printf(&quot;%zu&quot;, i)</code></td></tr>
+<tr><td><code>frequenze[v - 1]++</code></td><td>«incrementa il contatore di v»</td><td>conteggio per categorie</td><td>voti da 1 a 5</td></tr>
+<tr><td><code>'\0'</code></td><td>«terminatore»</td><td>carattere di codice 0 che chiude una stringa</td><td><code>alfabeto[26] = '\0'</code></td></tr>
+<tr><td><code>%50s</code></td><td>«stringa di al massimo 50 caratteri»</td><td>legge una parola, senza <code>&amp;</code></td><td><code>scanf(&quot;%50s&quot;, nome)</code></td></tr>
+<tr><td><code>c - '0'</code></td><td>«valore della cifra»</td><td>da carattere cifra a numero</td><td><code>'7' - '0'</code> vale 7</td></tr>
+<tr><td><code>isdigit(c)</code></td><td>«è una cifra»</td><td>diverso da 0 se vero</td><td><code>isdigit('7')</code></td></tr>
+<tr><td><code>(unsigned char)c</code></td><td>«c senza segno»</td><td>conversione da fare prima di <code>ctype.h</code></td><td><code>isalpha((unsigned char)c)</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:850px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>All&#39;esame si programma al PC con CodeRunner, che confronta l&#39;output con quello atteso carattere per carattere e compila con <code>-Wall -Werror</code>. Da questo laboratorio servono:</p>
+<ol>
+<li><strong>le sentinelle</strong> per «per ogni» ed «esiste», con il valore iniziale giusto, senza <code>break</code>;</li>
+<li><strong>i contatori per categoria</strong> e le <strong>due passate</strong> quando serve un dato che arriva alla fine;</li>
+<li><strong>le stringhe</strong>: terminatore, <code>%Ns</code> con la dimensione giusta, copia a mano;</li>
+<li><strong>l&#39;output esatto</strong>: 0 e 1 dove il testo li chiede, quindi <code>bool</code> e non il valore grezzo di <code>ctype.h</code>; niente stampe in più.</li>
+</ol>
+<p>Questi esercizi chiedono un programma intero con <code>main</code>; all&#39;esame la consegna è quasi sempre una <strong>funzione</strong> con l&#39;intestazione data. Conviene riscriverli così: per esempio <code>int sommaSelettiva(size_t n, const int a[])</code> per l&#39;Es1 e <code>bool tutteLettere(const char* s)</code> per P2, con un <code>main</code> di prova.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Un esercizio CodeRunner su stringhe</span></p><ol>
+<li>Scrivi l&#39;array con un posto in più per il terminatore, e la <code>scanf</code> con la larghezza giusta: <code>char s[21]</code> e <code>%20s</code>.</li>
+<li>Trova la lunghezza con un ciclo fino a <code>'\0'</code>, se serve.</li>
+<li>Per ogni proprietà scegli lo schema: esiste, per ogni, conteggio, coppie adiacenti.</li>
+<li>Prova i casi limite: un solo carattere, nessuna cifra, tutte cifre.</li>
+<li>Stampa esattamente il formato richiesto, spazi e a capo compresi.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:1860px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Con <code>int risposte[] = {2, 2, 5}</code> e <code>int frequenze[5] = {0}</code>, che cosa contiene <code>frequenze</code> dopo <code>frequenze[risposte[i] - 1]++</code> per ogni <code>i</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>{0, 2, 0, 0, 1}</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>{0, 0, 2, 0, 0}</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>{0, 2, 0, 1, 0}</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>{1, 1, 1, 0, 0}</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>{2, 2, 5, 0, 0}</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il voto 2 va nella casella 1 (due volte), il voto 5 nella casella 4. La più insidiosa è la quarta: dimentica che anche il 5 va spostato di uno.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>printf(&quot;%s&quot;, t)</code> dopo <code>char t[] = &quot;testo&quot;; t[3] = '\0';</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>test</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">niente</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>tes</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>testo</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>tes o</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La stringa finisce al primo terminatore, in posizione 3. La più insidiosa è <code>test</code>: la casella 3 è la quarta lettera, che viene sostituita.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Perché la somma selettiva deve memorizzare la sequenza in un array?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché la somma di più di 20 numeri va in overflow</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché <code>scanf</code> non può leggere numeri dentro un ciclo</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché CodeRunner lo richiede</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non serve: si può fare con una passata sola</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché quali elementi sommare dipende dal minimo, che si conosce solo alla fine</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Un elemento escluso con il minimo attuale può diventare buono quando arriva un minimo più piccolo. La più insidiosa è l&#39;ultima: con una passata sola non si può decidere elemento per elemento.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quanto vale <code>'9' - '0'</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">9</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">57</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>'9'</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">48</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Le cifre sono consecutive in ASCII, da 48 a 57: la differenza è il valore della cifra. La più insidiosa è 57, il codice di <code>'9'</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa può stampare <code>printf(&quot;%d&quot;, islower('q'))</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">sempre <code>true</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>'q'</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">sempre 1</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un numero diverso da zero, non per forza 1</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Le funzioni di <code>ctype.h</code> restituiscono un <code>int</code>: 0 per falso, un valore qualunque diverso da 0 per vero. Sul mio PC stampa 2. La più insidiosa è «sempre 1», che è quello che suggerisce la slide.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Nel programma Passwords, perché <code>len &gt;= 2</code> va scritto prima di <code>ispunct(pwd[len - 2])</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché <code>len</code> potrebbe essere negativo</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">per una regola di stile senza effetti</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché con una stringa di un carattere <code>pwd[len - 2]</code> sarebbe fuori dall&#39;array, e l&#39;<code>&amp;&amp;</code> non lo calcola se la prima condizione è falsa</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché altrimenti non compila</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché <code>ispunct</code> richiede almeno due caratteri</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Cortocircuito: l&#39;<code>&amp;&amp;</code> si ferma al primo falso. La più insidiosa è l&#39;ultima: <code>len</code> è <code>size_t</code>, mai negativo; il problema è che <code>len - 2</code> con <code>len == 1</code> dà un numero enorme.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Qual è la dichiarazione giusta per leggere con <code>scanf</code> una parola di al massimo 50 caratteri?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char nome[51];</code> e <code>scanf(&quot;%51s&quot;, nome);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char nome[51];</code> e <code>scanf(&quot;%50s&quot;, &amp;nome);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char nome[51];</code> e <code>scanf(&quot;%50s&quot;, nome);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char nome[50];</code> e <code>scanf(&quot;%50s&quot;, nome);</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>char nome;</code> e <code>scanf(&quot;%s&quot;, &amp;nome);</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>50 caratteri più il terminatore fanno 51 posti, e la larghezza in <code>%50s</code> non conta il terminatore. La più insidiosa è la seconda: 50 posti lasciano fuori il terminatore.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1320px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: frequenze delle cifre <span class="lvl">base</span></h3><p>Scrivi un programma che legge una parola di al massimo 30 caratteri e stampa quante volte compare ogni cifra da 0 a 9 (solo quelle che compaiono).</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;ctype.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> s[31] = <span class="str">&quot;&quot;</span>;
+    scanf(<span class="str">&quot;%30s&quot;</span>, s);
+    <span class="kw">int</span> conta[10] = {0};
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; s[i] != <span class="str">'\0'</span>; i++) {
+        <span class="kw">if</span> (isdigit((<span class="kw">unsigned</span> <span class="kw">char</span>)s[i])) {
+            conta[s[i] - <span class="str">'0'</span>]++;
+        }
+    }
+    <span class="kw">for</span> (<span class="kw">int</span> c = 0; c &lt; 10; c++) {
+        <span class="kw">if</span> (conta[c] &gt; 0) {
+            printf(<span class="str">&quot;%d: %d\n&quot;</span>, c, conta[c]);
+        }
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Con <code>a1b22c333</code> stampa <code>1: 1</code>, <code>2: 2</code>, <code>3: 3</code>. È lo schema dei questionari, con <code>s[i] - '0'</code> come indice. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: maiuscole <span class="lvl">base</span></h3><p>Scrivi un programma che legge una parola e la stampa tutta in maiuscolo, modificando l&#39;array.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;ctype.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> s[31] = <span class="str">&quot;&quot;</span>;
+    scanf(<span class="str">&quot;%30s&quot;</span>, s);
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; s[i] != <span class="str">'\0'</span>; i++) {
+        s[i] = (<span class="kw">char</span>)toupper((<span class="kw">unsigned</span> <span class="kw">char</span>)s[i]);
+    }
+    printf(<span class="str">&quot;%s\n&quot;</span>, s);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Con <code>Ciao2026!</code> stampa <code>CIAO2026!</code>: cifre e punteggiatura restano come sono. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Somma selettiva come funzione <span class="lvl">medio</span></h3><p>Riscrivi la somma selettiva come funzione <code>int sommaSelettiva(size_t n, const int a[])</code>, per <code>n &gt;= 1</code>, con una sola <code>return</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">int</span> sommaSelettiva(<span class="kw">size_t</span> n, <span class="kw">const</span> <span class="kw">int</span> a[]) {
+    <span class="kw">int</span> min = a[0];
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt; n; i++) {
+        <span class="kw">if</span> (a[i] &lt; min) {
+            min = a[i];
+        }
+    }
+    <span class="kw">int</span> soglia = min * min;
+    <span class="kw">int</span> somma = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+        <span class="kw">if</span> (a[i] &gt;= soglia) {
+            somma = somma + a[i];
+        }
+    }
+    <span class="kw">return</span> somma;
+}</code></pre>
+<p><code>sommaSelettiva(4, (int[]){2, 3, 4, 6})</code> vale 10. L&#39;array è <code>const</code> perché la funzione lo legge soltanto (06B). Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · È palindroma? <span class="lvl">medio</span></h3><p>Scrivi <code>bool palindroma(const char* s)</code> che dice se una parola si legge uguale nei due versi, con due indici che si vengono incontro e una sentinella.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdbool.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;
+
+<span class="kw">bool</span> palindroma(<span class="kw">const</span> <span class="kw">char</span>* s) {
+    <span class="kw">size_t</span> len = 0;
+    <span class="kw">while</span> (s[len] != <span class="str">'\0'</span>) {
+        len++;
+    }
+    <span class="kw">bool</span> ok = <span class="kw">true</span>;                 <span class="cm">// per ogni coppia simmetrica i, len-1-i</span>
+    <span class="kw">size_t</span> i = 0;
+    <span class="kw">while</span> (i &lt; len / 2 &amp;&amp; ok) {
+        <span class="kw">if</span> (s[i] != s[len - 1 - i]) {
+            ok = <span class="kw">false</span>;
+        } <span class="kw">else</span> {
+            i++;
+        }
+    }
+    <span class="kw">return</span> ok;
+}</code></pre>
+<p><code>radar</code>, <code>osso</code> e la stringa vuota danno <code>true</code>; <code>ciao</code> dà <code>false</code>. È un «per ogni» sulle coppie simmetriche, che sono <code>len / 2</code>. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Tutte cifre e almeno una pari, nello stile di <code>e1</code> <span class="lvl">tipo esame</span></h3><p>Scrivi una funzione iterativa <code>bool e1(const char* s)</code> che restituisce <code>true</code> se <code>s</code> non è vuota, tutti i suoi caratteri sono cifre <strong>ed</strong> esiste una cifra pari. Niente <code>break</code>, una sola <code>return</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdbool.h&gt;
+<span class="kw">#include</span> &lt;ctype.h&gt;
+
+<span class="kw">bool</span> e1(<span class="kw">const</span> <span class="kw">char</span>* s) {
+    <span class="kw">bool</span> tutteCifre = <span class="kw">true</span>;     <span class="cm">// per ogni carattere: è una cifra</span>
+    <span class="kw">bool</span> esistePari = <span class="kw">false</span>;    <span class="cm">// esiste una cifra pari</span>
+    <span class="kw">size_t</span> i = 0;
+    <span class="kw">while</span> (s[i] != <span class="str">'\0'</span> &amp;&amp; tutteCifre) {
+        <span class="kw">if</span> (!isdigit((<span class="kw">unsigned</span> <span class="kw">char</span>)s[i])) {
+            tutteCifre = <span class="kw">false</span>;
+        } <span class="kw">else</span> {
+            <span class="kw">if</span> ((s[i] - <span class="str">'0'</span>) % 2 == 0) {
+                esistePari = <span class="kw">true</span>;
+            }
+            i++;
+        }
+    }
+    <span class="kw">return</span> i &gt; 0 &amp;&amp; tutteCifre &amp;&amp; esistePari;
+}</code></pre>
+<p><code>&quot;1357&quot;</code> dà <code>false</code> (nessuna pari), <code>&quot;1352&quot;</code> <code>true</code>, <code>&quot;12a4&quot;</code> <code>false</code>, <code>&quot;&quot;</code> <code>false</code> (il testo chiede una stringa non vuota: <code>i &gt; 0</code>). Il ciclo del «per ogni» non si ferma al primo pari, perché deve controllare ancora che le cifre siano tutte cifre. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Copia di una stringa senza le vocali <span class="lvl">difficile</span></h3><p>Scrivi <code>void senzaVocali(const char* src, char dst[], size_t dstCap)</code> che copia in <code>dst</code> i caratteri di <code>src</code> che non sono vocali (maiuscole o minuscole), senza superare la capacità e chiudendo sempre con il terminatore. Precondizione: <code>dstCap &gt;= 1</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdbool.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;
+<span class="kw">#include</span> &lt;ctype.h&gt;
+
+<span class="kw">bool</span> vocale(<span class="kw">char</span> c) {
+    <span class="kw">char</span> m = (<span class="kw">char</span>)tolower((<span class="kw">unsigned</span> <span class="kw">char</span>)c);
+    <span class="kw">return</span> m == <span class="str">'a'</span> || m == <span class="str">'e'</span> || m == <span class="str">'i'</span> || m == <span class="str">'o'</span> || m == <span class="str">'u'</span>;
+}
+
+<span class="kw">void</span> senzaVocali(<span class="kw">const</span> <span class="kw">char</span>* src, <span class="kw">char</span> dst[], <span class="kw">size_t</span> dstCap) {
+    <span class="kw">size_t</span> j = 0;                          <span class="cm">// dimensione di dst</span>
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; src[i] != <span class="str">'\0'</span> &amp;&amp; j &lt; dstCap - 1; i++) {
+        <span class="kw">if</span> (!vocale(src[i])) {
+            dst[j] = src[i];
+            j++;
+        }
+    }
+    dst[j] = <span class="str">'\0'</span>;
+}</code></pre>
+<p>È la selezione della <a href="07A_algoritmi_su_array.html">07A</a> su una stringa: <code>j</code> è la dimensione, e il posto <code>dstCap - 1</code> resta per il terminatore. <code>Programmazione</code> con capacità 20 dà <code>Prgrmmzn</code>; con capacità 5 dà <code>Prgr</code>. Provato.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:540px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Come si contano le frequenze di valori da 1 a 5?</span></summary><div class="ans"><p>Con un array di 5 contatori a zero e <code>frequenze[v - 1]++</code> per ogni valore <code>v</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Quando bisogna memorizzare una sequenza invece di elaborarla mentre la si legge?</span></summary><div class="ans"><p>Quando la decisione su ogni elemento dipende da un dato che si conosce solo alla fine, come il minimo nella somma selettiva.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>char nome[50]</code> non basta per un nome di 50 caratteri?</span></summary><div class="ans"><p>Perché serve un posto in più per il terminatore <code>'\0'</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Come si copia una stringa in un altro array senza <code>strcpy</code>?</span></summary><div class="ans"><p>Carattere per carattere finché non si trova <code>'\0'</code>, e poi si scrive il terminatore nella destinazione.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa restituisce <code>isupper('Q')</code>, e come lo si trasforma in 1?</span></summary><div class="ans"><p>Un <code>int</code> diverso da zero. Assegnandolo a un <code>bool</code>, oppure con <code>isupper('Q') != 0</code>.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:480px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>size_t</dt><dd>Tipo intero senza segno per dimensioni e indici degli array; si stampa con %zu.</dd></div>
+<div><dt>Contatori per categoria</dt><dd>Array di contatori, uno per ogni valore possibile, incrementati con il valore come indice.</dd></div>
+<div><dt>ASCII</dt><dd>Tabella di 128 codici per lettere, cifre, simboli e caratteri di controllo.</dd></div>
+<div><dt>Terminatore</dt><dd>Il carattere &#39;\0&#39;, di codice 0, che chiude una stringa.</dd></div>
+<div><dt>%Ns</dt><dd>Formato di scanf che legge una parola di al massimo N caratteri.</dd></div>
+<div><dt>ctype.h</dt><dd>Libreria con le funzioni che classificano e convertono i caratteri.</dd></div>
+<div><dt>Cortocircuito</dt><dd>L&#39;operatore &amp;&amp; non calcola la seconda condizione se la prima è falsa.</dd></div>
+<div><dt>CodeRunner</dt><dd>Il sistema di Moodle che compila il programma e confronta l&#39;output con quello atteso.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:450px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 9</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-Lab05A-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So dichiarare, riempire e sommare un array con indici size_t.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So contare le frequenze con un array di contatori.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So quando servono due passate su un array.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So dichiarare e riempire una stringa, con il terminatore.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So leggere una parola con %Ns e la dimensione giusta.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So copiare una stringa carattere per carattere.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So usare le funzioni di ctype.h e stamparne il risultato come 0 o 1.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So scrivere «per ogni» ed «esiste» su un array e su una stringa.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So riconoscere lo schema giusto per ogni proprietà di una password.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Array e stringhe» (Lezione nº 5 di laboratorio, Lab05A), Programmazione I – Laboratorio, canale B, A.A. 2026/27: array e <code>size_t</code> (slide 2–4), questionari (5), somma selettiva (6), stringhe, ASCII e terminatore (7–11), alfabeto (12), montagne (13), quantificatori (14–15), <code>ctype.h</code> (16), passwords (17), Indovina chi? (18).</li>
+<li>Codice di partenza del Lab05 2025/26 (Moodle canale B, <code>codice_iniziale05</code>) e soluzioni del canale A 2025/26: i testi degli esercizi CodeRunner riportati qui vengono da quelle soluzioni e dagli appunti di uno studente; i testi 2026/27 su Moodle possono essere diversi.</li>
+<li>P. Deitel, H. Deitel, <em>C: How to Program</em>, p. 247, citato nella slide 2.</li>
+<li>Tutti i programmi li ho compilati con gcc 16.1 su Windows 11, con <code>-Wall -Werror</code>, ed eseguiti sugli esempi citati. Le soluzioni, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>07A · Algoritmi su array</title>
+<meta name="lezione" content="07A">
+<meta name="data" content="2026-11-04">
+<meta name="description" content="Appunti della lezione 07A di Programmazione I (canale B): ricerca lineare, la ricerca come test d'ipotesi con il quantificatore esistenziale, la verifica di una proprietà con il quantificatore universale, il caso dell'array vuoto, la selezione con il modello dimensione-capacità, il test di ordinamento sulle coppie adiacenti e il bubble sort, con tutti i programmi provati, quiz ed esercizi.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/07A_algoritmi_su_array.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#la-ricerca-lineare"><span class="n">§1</span><span>La ricerca lineare</span></a></li>
+<li><a href="#cercare-vuol-dire-esiste"><span class="n">§2</span><span>Cercare vuol dire «esiste»</span></a></li>
+<li><a href="#il-codice-non-dice-perche-funziona"><span class="n">§3</span><span>Il codice non dice perché funziona</span></a></li>
+<li><a href="#verificare-una-proprieta-per-ogni"><span class="n">§4</span><span>Verificare una proprietà: «per ogni»</span></a></li>
+<li><a href="#l-array-vuoto"><span class="n">§5</span><span>L&#39;array vuoto</span></a></li>
+<li><a href="#due-funzioni-con-il-risultato-in-piu"><span class="n">§6</span><span>Due funzioni con il risultato in più</span></a></li>
+<li><a href="#selezione-dimensione-e-capacita"><span class="n">§7</span><span>Selezione, dimensione e capacità</span></a></li>
+<li><a href="#il-test-di-ordinamento"><span class="n">§8</span><span>Il test di ordinamento</span></a></li>
+<li><a href="#bubble-sort"><span class="n">§9</span><span>Bubble sort</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§10</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§11</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§12</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§13</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§14</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§15</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§16</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
+<nav class="vicine" aria-label="Lezioni vicine">
+  <a class="vicina prec" href="06B_chiamata_funzioni.html" rel="prev" title="06B · Chiamata di funzione e ritorno"><span class="dir">← Lezione precedente</span><span class="vt">06B · Chiamata di funzione e ritorno</span></a>
+</nav>
+<!-- VICINE:FINE -->
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 07A</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 07A</p>
+      <h1>Algoritmi su array</h1>
+      <p class="lede">Cercare un elemento, controllare che tutti gli elementi rispettino una condizione, copiare quelli che la rispettano, ordinare: quasi ogni esercizio d&#39;esame su array è fatto di questi pezzi. Amparore li ricava dalla logica, «esiste» e «per ogni», e da lì vengono le variabili sentinella, il valore iniziale giusto e il comportamento con l&#39;array vuoto.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>07A_algoritmi_su_array («Algoritmi su array. Ricerca, filtro e ordinamento») · 84 pagine</dd></div><div><dt>Lezione</dt><dd>mercoledì 04/11</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>110 minuti, con gcc a portata di mano</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:780px">
+<h2 id="tldr-title">La lezione in 7 punti</h2>
+<ul>
+<li><strong>Ricerca lineare</strong>: si scorre l&#39;array finché si trova <code>key</code> o finché l&#39;array finisce. Una variabile sentinella <code>trovato</code> parte da <code>false</code> e ferma il ciclo; alla fine <code>i</code> è la posizione trovata, oppure <code>aLen</code> se <code>key</code> non c&#39;è.</li>
+<li>Cercare è rispondere a «<strong>esiste</strong> un <code>i</code> con <code>a[i] == key</code>?». Controllare una proprietà è rispondere a «<strong>per ogni</strong> <code>i</code> vale <code>Cond(a[i])</code>?». Si parte dall&#39;ipotesi più comoda e si cerca un esempio che la smentisce.</li>
+<li><strong>Esiste</strong>: la sentinella parte da <code>false</code> e diventa <code>true</code> al primo testimone. <strong>Per ogni</strong>: parte da <code>true</code> e diventa <code>false</code> al primo controesempio. In tutti e due i casi il ciclo si ferma subito, e <code>i</code> indica l&#39;elemento trovato.</li>
+<li>Con l&#39;<strong>array vuoto</strong> il ciclo non fa nessun giro: «per ogni» resta vero, «esiste» resta falso. Sono le risposte giuste, senza casi speciali.</li>
+<li><strong>Selezione</strong>: si copiano in un altro array gli elementi che rispettano una condizione. Servono due indici, e il <strong>modello dimensione-capacità</strong>: capacità = posti disponibili, dimensione = posti usati.</li>
+<li><strong>Ordinato</strong> vuol dire che ogni <strong>coppia adiacente</strong> è in ordine: per ogni <code>i</code> in <code>[1, aLen)</code>, <code>a[i-1] &lt;= a[i]</code>.</li>
+<li><strong>Bubble sort</strong>: si scorrono le coppie adiacenti e si scambiano quelle in ordine sbagliato; si ripete finché una passata non fa scambi.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Lezione di mercoledì 04/11, dalle 9 alle 11, dopo la <a href="06B_chiamata_funzioni.html">06B</a> del 03/11. Le slide sono molte (84, ma tante sono animazioni): se Amparore non le ha finite, la parte che manca andrà alla lezione di martedì 10/11, e aggiorno qui. Usa i cicli e le sentinelle della <a href="04A_iterazioni.html">04A</a>, gli array della <a href="05A_array_stringhe.html">05A</a>, i puntatori come parametri della <a href="06B_chiamata_funzioni.html">06B</a> e i quantificatori di <a href="../FDA/09_quantificatori.html">Fondamenti</a>.</p>
+<p><strong>Canali A e C.</strong> Le slide 2026/27 dei canali A e C su questi algoritmi non le ho viste. L&#39;esame è unico.</p>
+<p><strong>Due avvisi sulle slide.</strong> Il primo codice di ricerca (slide 7) non è solo «migliorabile»: se <code>key</code> è nell&#39;array <strong>non termina</strong>, perché quando lo trova non incrementa più <code>i</code> e il ciclo continua a controllare la stessa casella. L&#39;ho provato con un tempo massimo. Nella slide 49 <code>int b[bLen] = ...</code> è uno schema: un array a lunghezza variabile non si può inizializzare con una lista, e gcc dà <code>variable-sized object may not be initialized except with an empty initializer</code>.</p>
+<p>Tutti i programmi li ho compilati con gcc 16.1, con <code>-Wall -Werror</code>, ed eseguiti; quelli con i test <code>assert</code> delle slide passano tutti.</p>
+</div>
+
+
+<section id="la-ricerca-lineare" aria-labelledby="h-la-ricerca-lineare" style="--h:1410px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-la-ricerca-lineare">La ricerca lineare</h2><span class="slides">slide 3–9</span></div>
+<p>Uno sgabuzzino con gli scatoloni numerati da 0 a <code>aLen - 1</code>, e un disco in vinile da ritrovare. La strategia: si aprono gli scatoloni in ordine, finché si trova il disco oppure finché sono finiti.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Ricerca lineare (slide 5)</span></p><p>Dato un array <code>a</code> di lunghezza <code>aLen</code> e un valore <code>key</code>, alla fine la variabile <code>i</code> contiene un indice valido, in <code>[0, aLen)</code>, con <code>a[i] == key</code>, oppure il <strong>valore sentinella</strong> <code>i == aLen</code> se e solo se <code>key</code> non c&#39;è.</p>
+</div>
+<p><strong>Come si legge.</strong> <code>i</code> fa due lavori: durante la ricerca scorre l&#39;array, alla fine dice dove si è fermata. Con <code>a = {6, 12, 4, 9, -1}</code>: cercando 4 si ferma con <code>i == 2</code>; cercando 20 arriva a <code>i == 5</code>, che non è un indice valido e quindi vuol dire «non c&#39;è».</p>
+<p>Il codice ha bisogno di una seconda variabile, la sentinella <code>trovato</code>, che ferma il ciclo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> trovato = <span class="kw">false</span>;   <span class="cm">// ipotesi iniziale: key non c'è</span>
+<span class="kw">size_t</span> i = 0;           <span class="cm">// indice della scansione</span>
+<span class="kw">while</span> (i &lt; aLen &amp;&amp; !trovato) {
+    <span class="kw">if</span> (a[i] == key) {
+        trovato = <span class="kw">true</span>; <span class="cm">// trovato: il ciclo si ferma con i sulla casella giusta</span>
+    } <span class="kw">else</span> {
+        i++;
+    }
+}
+<span class="cm">// trovato == true: i è l'indice della prima occorrenza</span>
+<span class="cm">// trovato == false: i == aLen, nessuna occorrenza</span></code></pre>
+<p>La condizione <code>i &lt; aLen &amp;&amp; !trovato</code> si legge: «finché <code>i</code> è un indice valido e non ho ancora trovato, continua». Il ciclo si ferma per uno dei due motivi, e la variabile <code>trovato</code> dice quale.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Il ciclo della slide 7 non finisce</span></p><p>Nella slide 7 la condizione è solo <code>i &lt; aLen</code>. Quando trova <code>key</code>, il codice mette <code>trovato = true</code> ma non incrementa <code>i</code>: al giro dopo ricontrolla la stessa casella, la ritrova, e così per sempre. Con <code>key = 4</code> e l&#39;array sopra, l&#39;ho fermato dopo due miliardi di giri con <code>i == 2</code>. La versione giusta è quella della slide 8, con <code>!trovato</code> nella condizione.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>a = {6, 12, 4, 9, 4}</code>, dove si ferma la ricerca di 4? E quella di 7?</span></summary><div class="ans"><p>4: si ferma con <code>i == 2</code>, la <strong>prima</strong> occorrenza. 7: arriva a <code>i == 5</code>, cioè <code>aLen</code>, e <code>trovato</code> resta <code>false</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Ricerca lineare: sentinella <code>trovato</code> da <code>false</code>, condizione <code>i &lt; aLen &amp;&amp; !trovato</code>.</li>
+<li>Alla fine <code>i</code> è la prima occorrenza, oppure <code>aLen</code> se non c&#39;è.</li>
+</ul>
+</div>
+</section>
+
+<section id="cercare-vuol-dire-esiste" aria-labelledby="h-cercare-vuol-dire-esiste" style="--h:1800px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-cercare-vuol-dire-esiste">Cercare vuol dire «esiste»</h2><span class="slides">slide 9–18</span></div>
+<p>La ricerca risponde alla domanda: esiste un indice <code>i</code> con <code>a[i] == key</code>? Nella notazione di Fondamenti:</p>
+<div class="formula"><span class="katex-display"><span class="katex" role="math" aria-label="\exists\, i \in [0, aLen) : a[i] = key"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord">∃</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">L</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mord mathnormal" style="margin-right:0.0359em;">ey</span></span></span></span></span></div>
+<p>Si legge «esiste un <code>i</code> tra 0 e <code>aLen</code> escluso tale che <code>a[i]</code> è uguale a <code>key</code>». La ricerca lineare è la versione in codice del quantificatore «esiste» su un array. Al posto di <code>a[i] == key</code> si può mettere qualunque condizione <code>Cond(a[i])</code>: «esiste un elemento pari», «esiste un negativo».</p>
+<h3 id="il-ragionamento-come-test-d-ipotesi">Il ragionamento come test d&#39;ipotesi</h3>
+<p>Amparore ricava il codice dalla formula, con un ragionamento in due ipotesi che si escludono:</p>
+<ul>
+<li><strong>ipotesi iniziale</strong> <span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: nessun elemento soddisfa la condizione. In codice: <code>esiste = false</code>;</li>
+<li><strong>ipotesi alternativa</strong> <span class="katex" role="math" aria-label="H_1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: almeno un elemento la soddisfa.</li>
+</ul>
+<p>Si parte da <span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> e si cerca un <strong>controesempio</strong> a <span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, cioè un elemento che soddisfa <code>Cond</code>. Appena lo si trova, <span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> è falsa e vale <span class="katex" role="math" aria-label="H_1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: <code>esiste = true</code>. Se si arriva in fondo senza trovarlo, si accetta <span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</p>
+<h3 id="dal-quantificatore-al-codice">Dal quantificatore al codice</h3>
+<p>Il C non ha un&#39;operazione «esiste». Ma «esiste un elemento che soddisfa <code>Cond</code>» è un <strong>OR</strong> di tutte le condizioni, una per elemento:</p>
+<div class="formula"><span class="katex-display"><span class="katex" role="math" aria-label="Cond(a[0]) \lor Cond(a[1]) \lor \dots \lor Cond(a[aLen-1])"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">0</span><span class="mclose">])</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord">1</span><span class="mclose">])</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.5556em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mord mathnormal">L</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">])</span></span></span></span></span></div>
+<p>Le slide lo scrivono <span class="katex" role="math" aria-label="\bigvee_{i \in [0, aLen)} Cond(a[i])"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2247em;vertical-align:-0.4747em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋁</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2253em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">∈</span><span class="mopen mtight">[</span><span class="mord mtight">0</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">a</span><span class="mord mathnormal mtight">L</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">n</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4747em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">])</span></span></span></span>, «OR aggregativo». Un OR si calcola con un accumulatore che parte da <code>false</code>, il valore che non cambia il risultato:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> esiste = <span class="kw">false</span>;           <span class="cm">// H0: nessun elemento soddisfa Cond</span>
+<span class="kw">size_t</span> i = 0;
+<span class="kw">while</span> (i &lt; aLen) {
+    esiste = esiste || Cond(a[i]);
+    i++;
+}</code></pre>
+<p>È giusto, ma guarda sempre tutto l&#39;array. Un OR diventa vero al primo termine vero, e da lì non cambia più. Quindi ci si può fermare al primo indice che soddisfa <code>Cond</code>: è il <strong>cortocircuito</strong>, e porta alla versione con la sentinella nella condizione:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> esiste = <span class="kw">false</span>;           <span class="cm">// H0: nessun elemento soddisfa Cond</span>
+<span class="kw">size_t</span> i = 0;
+<span class="kw">while</span> (i &lt; aLen &amp;&amp; !esiste) {  <span class="cm">// finché H0 regge e l'array non è finito</span>
+    <span class="kw">if</span> (Cond(a[i])) {
+        esiste = <span class="kw">true</span>;         <span class="cm">// controesempio a H0: vale H1, e i è il primo indice buono</span>
+    } <span class="kw">else</span> {
+        i++;
+    }
+}</code></pre>
+<p>È la ricerca lineare della sezione prima, con <code>Cond(a[i])</code> al posto di <code>a[i] == key</code>. Per esempio, «esiste un elemento pari»:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> esistePari = <span class="kw">false</span>;
+<span class="kw">size_t</span> i = 0;
+<span class="kw">while</span> (i &lt; aLen &amp;&amp; !esistePari) {
+    <span class="kw">if</span> (a[i] % 2 == 0) {
+        esistePari = <span class="kw">true</span>;     <span class="cm">// a[i] è il primo elemento pari</span>
+    } <span class="kw">else</span> {
+        i++;
+    }
+}</code></pre>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Perché l&#39;accumulatore dell&#39;OR parte da <code>false</code> e non da <code>true</code>?</span></summary><div class="ans"><p>Perché <code>false || x</code> vale <code>x</code>: <code>false</code> non cambia il risultato. Partendo da <code>true</code> l&#39;OR sarebbe vero comunque, anche con un array senza elementi buoni.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>«Esiste» = OR di tutte le condizioni. Sentinella da <code>false</code>, diventa <code>true</code> al primo testimone.</li>
+<li>Cortocircuito: ci si ferma al primo testimone, e <code>i</code> lo indica.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-codice-non-dice-perche-funziona" aria-labelledby="h-il-codice-non-dice-perche-funziona" style="--h:1060px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-il-codice-non-dice-perche-funziona">Il codice non dice perché funziona</h2><span class="slides">slide 19–22</span></div>
+<p>Il codice della ricerca è corto, ma dietro c&#39;è un ragionamento che nel codice non si vede. Le slide lo dividono in quattro livelli:</p>
+<div class="table-wrap"><table><thead><tr><th>Livello</th><th>Domanda</th><th>Per la ricerca</th></tr></thead><tbody><tr><td>specifica</td><td>che cosa deve fare il programma?</td><td>dire se esiste un elemento che soddisfa <code>Cond</code></td></tr>
+<tr><td>strategia</td><td>come raggiungere l&#39;obiettivo?</td><td>supporre che non ci sia, poi scorrere finché se ne trova uno</td></tr>
+<tr><td>ragionamento</td><td>perché la strategia è corretta?</td><td><code>esiste</code> diventa <code>true</code> esattamente quando esiste un <code>i</code> con <code>Cond(a[i])</code></td></tr>
+<tr><td>codice</td><td>come si esegue?</td><td>le sei righe del ciclo</td></tr></tbody></table></div>
+<p>Il ragionamento si appoggia a un <strong>invariante</strong>, una proprietà che vale a ogni giro: se <code>esiste</code> è vero, allora esiste già un <span class="katex" role="math" aria-label="j"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span></span></span></span> in <span class="katex" role="math" aria-label="[0, i]"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mclose">]</span></span></span></span> con <span class="katex" role="math" aria-label="Cond(a[j])"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.0572em;">j</span><span class="mclose">])</span></span></span></span>. In parole: quando la sentinella è vera, un testimone c&#39;è davvero, tra le caselle guardate fin qui. Da questo invariante viene la correttezza; la terminazione (il ciclo finisce perché <code>i</code> cresce o <code>esiste</code> diventa vero) completa il discorso. È la «scomoda verità» della slide 22: il codice mostra come fare, non perché funziona. Commenti, <code>assert</code> e specifiche servono a scriverlo.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nella ricerca di <code>key</code>, qual è la specifica e qual è la strategia?</span></summary><div class="ans"><p>Specifica: alla fine <code>i</code> è la prima posizione di <code>key</code>, oppure <code>aLen</code> se non c&#39;è. Strategia: supporre che non ci sia e guardare le caselle in ordine finché lo si trova o finiscono.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Specifica, strategia, ragionamento, codice: il codice è solo l&#39;ultimo livello.</li>
+<li>L&#39;invariante è il pezzo di ragionamento che vale a ogni giro.</li>
+</ul>
+</div>
+</section>
+
+<section id="verificare-una-proprieta-per-ogni" aria-labelledby="h-verificare-una-proprieta-per-ogni" style="--h:1240px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-verificare-una-proprieta-per-ogni">Verificare una proprietà: «per ogni»</h2><span class="slides">slide 23–28</span></div>
+<p>Il problema gemello: tutti gli elementi soddisfano <code>Cond</code>?</p>
+<div class="formula"><span class="katex-display"><span class="katex" role="math" aria-label="\forall\, i \in [0, aLen) : Cond(a[i])"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord">∀</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">L</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">])</span></span></span></span></span></div>
+<p>«Per ogni» è un <strong>AND</strong> di tutte le condizioni. Le ipotesi si scelgono in modo da poter smentire subito l&#39;iniziale:</p>
+<ul>
+<li><strong>ipotesi iniziale</strong> <span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: tutti soddisfano <code>Cond</code>. In codice: <code>tutti = true</code>;</li>
+<li><strong>ipotesi alternativa</strong> <span class="katex" role="math" aria-label="H_1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>: esiste un elemento che <strong>non</strong> soddisfa <code>Cond</code>.</li>
+</ul>
+<p>Al primo controesempio, <span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> cade. L&#39;accumulatore di un AND parte da <code>true</code>, il valore che non cambia il risultato, e con il cortocircuito ci si ferma al primo <code>false</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> tuttiPositivi = <span class="kw">true</span>;     <span class="cm">// H0: tutti gli elementi sono positivi</span>
+<span class="kw">size_t</span> i = 0;
+<span class="kw">while</span> (i &lt; aLen &amp;&amp; tuttiPositivi) {
+    <span class="kw">if</span> (a[i] &lt;= 0) {
+        tuttiPositivi = <span class="kw">false</span>; <span class="cm">// basta un elemento &lt;= 0 per smentire H0</span>
+    } <span class="kw">else</span> {
+        i++;
+    }
+}
+<span class="cm">// tuttiPositivi == true: tutti &gt; 0, e i == aLen</span>
+<span class="cm">// tuttiPositivi == false: i è l'indice del primo elemento &lt;= 0</span></code></pre>
+<div class="table-wrap"><table><thead><tr><th></th><th>«esiste»</th><th>«per ogni»</th></tr></thead><tbody><tr><td>formula</td><td><span class="katex" role="math" aria-label="\exists\, i : Cond(a[i])"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">∃</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">])</span></span></span></span></td><td><span class="katex" role="math" aria-label="\forall\, i : Cond(a[i])"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">∀</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mord mathnormal">d</span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">])</span></span></span></span></td></tr>
+<tr><td>operazione</td><td>OR di tutte le condizioni</td><td>AND di tutte le condizioni</td></tr>
+<tr><td>sentinella iniziale</td><td><code>false</code></td><td><code>true</code></td></tr>
+<tr><td>il ciclo continua finché</td><td><code>!esiste</code></td><td><code>tutti</code></td></tr>
+<tr><td>si ferma su</td><td>il primo elemento che soddisfa</td><td>il primo elemento che <strong>non</strong> soddisfa</td></tr></tbody></table></div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Scrivi la condizione del ciclo e il test dentro il ciclo per «tutti gli elementi sono minori di 100».</span></summary><div class="ans"><p>Condizione <code>i &lt; aLen &amp;&amp; tutti</code>; dentro, <code>if (a[i] &gt;= 100) { tutti = false; } else { i++; }</code>. Si cerca il controesempio, cioè la negazione di <code>a[i] &lt; 100</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>«Per ogni» = AND. Sentinella da <code>true</code>, diventa <code>false</code> al primo controesempio.</li>
+<li>Dentro il ciclo si controlla la condizione <strong>negata</strong>.</li>
+</ul>
+</div>
+</section>
+
+<section id="l-array-vuoto" aria-labelledby="h-l-array-vuoto" style="--h:1510px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-l-array-vuoto">L&#39;array vuoto</h2><span class="slides">slide 29–36</span></div>
+<p>Una funzione deve dare una risposta per tutti gli input ammessi, anche quelli limite. Che cosa vuol dire «tutti gli elementi soddisfano <code>Cond</code>» quando gli elementi non ci sono?</p>
+<ul>
+<li>«Per ogni» è falso solo se c&#39;è un <strong>controesempio</strong>. In un array vuoto non ce ne sono. Quindi «per ogni» sul dominio vuoto è <strong>vero</strong>: si chiama <strong>vero per vacuità</strong>.</li>
+<li>«Esiste» è vero solo se c&#39;è un <strong>testimone</strong>. In un array vuoto non ce ne sono. Quindi «esiste» sul dominio vuoto è <strong>falso</strong>.</li>
+</ul>
+<p>Il codice dà già le risposte giuste: con <code>aLen == 0</code> il ciclo non fa nessun giro, e la sentinella resta al valore iniziale.</p>
+<div class="table-wrap"><table><thead><tr><th>Quantificatore</th><th>Sul dominio vuoto</th><th>Perché</th><th>Valore iniziale della sentinella</th></tr></thead><tbody><tr><td>per ogni, AND</td><td>vero</td><td>nessun controesempio</td><td><code>true</code></td></tr>
+<tr><td>esiste, OR</td><td>falso</td><td>nessun testimone</td><td><code>false</code></td></tr></tbody></table></div>
+<p>Questo è il motivo profondo per cui le sentinelle partono da quei valori: <strong>il valore iniziale è la risposta giusta per l&#39;array vuoto</strong>. Se lo è, il caso vuoto non richiede un <code>if</code> a parte.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Le due sentinelle. In alto «esiste»: parte da false e diventa true al primo testimone (in verde). In basso «per ogni»: parte da true e diventa false al primo controesempio (in rosa). In tutti e due i casi il ciclo si ferma lì, e con l'array vuoto la sentinella resta com'era" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-grigio" d="M135.48 88.4L198.71 88.4L198.71 34L135.48 34Z"/><path class="g-poligono g-grigio" d="M198.71 88.4L261.94 88.4L261.94 34L198.71 34Z"/><path class="g-poligono g-verde g-pieno" d="M261.94 88.4L325.16 88.4L325.16 34L261.94 34Z"/><path class="g-poligono g-grigio g-tratteggio" d="M325.16 88.4L388.39 88.4L388.39 34L325.16 34Z"/><path class="g-poligono g-grigio" d="M135.48 238L198.71 238L198.71 183.6L135.48 183.6Z"/><path class="g-poligono g-rosa g-pieno" d="M198.71 238L261.94 238L261.94 183.6L198.71 183.6Z"/><path class="g-poligono g-grigio g-tratteggio" d="M261.94 238L325.16 238L325.16 183.6L261.94 183.6Z"/><path class="g-poligono g-grigio g-tratteggio" d="M325.16 238L388.39 238L388.39 183.6L325.16 183.6Z"/></svg><span class="g-et g-c g-testo g-blu" style="left:10.48%;top:18.00%">esiste pari?</span><span class="g-et g-c g-testo g-grigio" style="left:29.84%;top:18.00%">7</span><span class="g-et g-c g-testo g-grigio" style="left:41.13%;top:18.00%">3</span><span class="g-et g-c g-testo g-verde" style="left:52.42%;top:18.00%">8</span><span class="g-et g-c g-testo g-grigio" style="left:63.71%;top:18.00%">5</span><span class="g-et g-c g-testo g-verde" style="left:84.68%;top:18.00%">true, i = 2</span><span class="g-et g-c g-testo g-grigio" style="left:10.48%;top:38.00%">false → false → true: stop</span><span class="g-et g-c g-testo g-blu" style="left:10.48%;top:62.00%">tutti positivi?</span><span class="g-et g-c g-testo g-grigio" style="left:29.84%;top:62.00%">5</span><span class="g-et g-c g-testo g-rosa" style="left:41.13%;top:62.00%">-1</span><span class="g-et g-c g-testo g-grigio" style="left:52.42%;top:62.00%">4</span><span class="g-et g-c g-testo g-grigio" style="left:63.71%;top:62.00%">9</span><span class="g-et g-c g-testo g-rosa" style="left:84.68%;top:62.00%">false, i = 1</span><span class="g-et g-c g-testo g-grigio" style="left:10.48%;top:82.00%">true → false: stop</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:95.00%">tratteggiate: caselle mai guardate</span></div><figcaption>Le due sentinelle. In alto «esiste»: parte da false e diventa true al primo testimone (in verde). In basso «per ogni»: parte da true e diventa false al primo controesempio (in rosa). In tutti e due i casi il ciclo si ferma lì, e con l&#39;array vuoto la sentinella resta com&#39;era</figcaption></figure>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Un array è vuoto. Che cosa rispondono «tutti gli elementi sono pari» ed «esiste un elemento pari»?</span></summary><div class="ans"><p>Il primo <strong>vero</strong> (nessun controesempio), il secondo <strong>falso</strong> (nessun testimone). Il codice con le sentinelle lo fa da solo.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Dominio vuoto: «per ogni» vero, «esiste» falso.</li>
+<li>La sentinella parte dalla risposta giusta per il caso vuoto.</li>
+</ul>
+</div>
+</section>
+
+<section id="due-funzioni-con-il-risultato-in-piu" aria-labelledby="h-due-funzioni-con-il-risultato-in-piu" style="--h:1360px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-due-funzioni-con-il-risultato-in-piu">Due funzioni con il risultato in più</h2><span class="slides">slide 37–39</span></div>
+<p>Le slide chiedono di trasformare i due cicli in funzioni che restituiscono la risposta con <code>return</code> e l&#39;indice trovato attraverso un puntatore, come nella <a href="06B_chiamata_funzioni.html">06B</a>. Le precondizioni: se <code>aLen &gt; 0</code> allora <code>a != NULL</code>, e il puntatore per l&#39;indice non è <code>NULL</code>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdbool.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;
+
+<span class="cm">// true se e solo se a[i] &gt; 0 per ogni i in [0, aLen);</span>
+<span class="cm">// in *firstBad il primo indice con a[i] &lt;= 0, oppure aLen</span>
+<span class="kw">bool</span> tuttiPositivi(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span> aLen, <span class="kw">size_t</span> *firstBad) {
+    <span class="kw">bool</span> tutti = <span class="kw">true</span>;
+    <span class="kw">size_t</span> i = 0;
+    <span class="kw">while</span> (i &lt; aLen &amp;&amp; tutti) {
+        <span class="kw">if</span> (a[i] &lt;= 0) {
+            tutti = <span class="kw">false</span>;
+        } <span class="kw">else</span> {
+            i++;
+        }
+    }
+    *firstBad = i;
+    <span class="kw">return</span> tutti;
+}
+
+<span class="cm">// true se e solo se esiste i in [0, aLen) con a[i] pari;</span>
+<span class="cm">// in *firstEven il primo indice pari, oppure aLen</span>
+<span class="kw">bool</span> esistePari(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span> aLen, <span class="kw">size_t</span> *firstEven) {
+    <span class="kw">bool</span> esiste = <span class="kw">false</span>;
+    <span class="kw">size_t</span> i = 0;
+    <span class="kw">while</span> (i &lt; aLen &amp;&amp; !esiste) {
+        <span class="kw">if</span> (a[i] % 2 == 0) {
+            esiste = <span class="kw">true</span>;
+        } <span class="kw">else</span> {
+            i++;
+        }
+    }
+    *firstEven = i;
+    <span class="kw">return</span> esiste;
+}</code></pre>
+<p>Le slide danno anche i test, con <code>assert</code>. Li ho eseguiti tutti e passano:</p>
+<div class="table-wrap"><table><thead><tr><th>Chiamata</th><th>Risultato</th><th>Indice</th></tr></thead><tbody><tr><td><code>tuttiPositivi(NULL, 0, &amp;idx)</code></td><td><code>true</code></td><td>0</td></tr>
+<tr><td><code>tuttiPositivi({1, 2, 3}, 3, &amp;idx)</code></td><td><code>true</code></td><td>3</td></tr>
+<tr><td><code>tuttiPositivi({5, 4, -1, 7}, 4, &amp;idx)</code></td><td><code>false</code></td><td>2</td></tr>
+<tr><td><code>esistePari(NULL, 0, &amp;idx)</code></td><td><code>false</code></td><td>0</td></tr>
+<tr><td><code>esistePari({1, 3, 5, 7}, 4, &amp;idx)</code></td><td><code>false</code></td><td>4</td></tr>
+<tr><td><code>esistePari({1, 3, -6}, 3, &amp;idx)</code></td><td><code>true</code></td><td>2</td></tr></tbody></table></div>
+<p>Nell&#39;ultima riga, <code>-6 % 2</code> vale 0: anche i negativi pari passano il test <code>% 2 == 0</code>. Attenzione invece a <code>x % 2 == 1</code> per i dispari: con <code>-7</code> vale <code>-1</code>, come nella <a href="03C_booleani.html">03C</a>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Come si chiama <code>tuttiPositivi</code> su un array <code>v</code> di 4 elementi, e dove si legge l&#39;indice del primo elemento non positivo?</span></summary><div class="ans"><p><code>size_t idx; bool ok = tuttiPositivi(v, 4, &amp;idx);</code>: la risposta è in <code>ok</code>, l&#39;indice in <code>idx</code>. Si passa <code>&amp;idx</code> perché la funzione deve scriverci.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Risposta con <code>return</code>, indice con un puntatore. Una sola <code>return</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="selezione-dimensione-e-capacita" aria-labelledby="h-selezione-dimensione-e-capacita" style="--h:2470px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-selezione-dimensione-e-capacita">Selezione, dimensione e capacità</h2><span class="slides">slide 40–54</span></div>
+<p><strong>Selezione</strong> (o filtro, o copia con filtro): da un array <code>b</code> si copiano in un altro array <code>a</code> tutti e soli gli elementi che soddisfano <code>Cond</code>, nello stesso ordine.</p>
+<p>L&#39;esempio delle slide: <code>b = {18, 9, 30}</code>, e si copiano gli elementi maggiori o uguali a 18.</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Selezione con il modello dimensione-capacità: da `b = {18, 9, 30}` si copiano in `a` gli elementi maggiori o uguali a 18. Due indici: `i` scorre `b`, `aLen` dice dove scrivere in `a`. Alla fine `aLen` vale 2: le celle `[0, 2)` sono valide, la cella 2 resta libera" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M72.26 115.91L135.48 115.91L135.48 54.09L72.26 54.09Z"/><path class="g-poligono g-verde g-pieno" d="M72.26 293.64L135.48 293.64L135.48 231.82L72.26 231.82Z"/><path class="g-poligono g-blu" d="M135.48 115.91L198.71 115.91L198.71 54.09L135.48 54.09Z"/><path class="g-poligono g-verde g-pieno" d="M135.48 293.64L198.71 293.64L198.71 231.82L135.48 231.82Z"/><path class="g-poligono g-blu g-pieno" d="M198.71 115.91L261.94 115.91L261.94 54.09L198.71 54.09Z"/><path class="g-poligono g-grigio" d="M198.71 293.64L261.94 293.64L261.94 231.82L198.71 231.82Z"/><path class="g-linea g-verde" d="M103.87 119.77L103.87 227.95" marker-end="url(#g-freccia-2-verde)"/><path class="g-linea g-verde" d="M230.32 119.77L167.1 227.95" marker-end="url(#g-freccia-2-verde)"/></svg><span class="g-et g-c g-testo g-blu" style="left:18.55%;top:25.00%">18</span><span class="g-et g-c g-testo g-grigio" style="left:18.55%;top:10.23%">b[0]</span><span class="g-et g-c g-testo g-verde" style="left:18.55%;top:77.27%">18</span><span class="g-et g-c g-testo g-grigio" style="left:18.55%;top:93.18%">a[0]</span><span class="g-et g-c g-testo g-blu" style="left:29.84%;top:25.00%">9</span><span class="g-et g-c g-testo g-grigio" style="left:29.84%;top:10.23%">b[1]</span><span class="g-et g-c g-testo g-verde" style="left:29.84%;top:77.27%">30</span><span class="g-et g-c g-testo g-grigio" style="left:29.84%;top:93.18%">a[1]</span><span class="g-et g-c g-testo g-blu" style="left:41.13%;top:25.00%">30</span><span class="g-et g-c g-testo g-grigio" style="left:41.13%;top:10.23%">b[2]</span><span class="g-et g-c g-testo g-grigio" style="left:41.13%;top:77.27%">?</span><span class="g-et g-c g-testo g-grigio" style="left:41.13%;top:93.18%">a[2]</span><span class="g-et g-c g-testo g-blu" style="left:5.64%;top:25.00%">b</span><span class="g-et g-c g-testo g-verde" style="left:5.64%;top:77.27%">a</span><span class="g-et g-e g-testo g-grigio" style="left:59.68%;top:25.00%">9 &lt; 18: non passa il filtro</span><span class="g-et g-e g-testo g-grigio" style="left:59.68%;top:77.27%">aLen = 2, aCap = 3</span></div><figcaption>Selezione con il modello dimensione-capacità: da <code>b = {18, 9, 30}</code> si copiano in <code>a</code> gli elementi maggiori o uguali a 18. Due indici: <code>i</code> scorre <code>b</code>, <code>aLen</code> dice dove scrivere in <code>a</code>. Alla fine <code>aLen</code> vale 2: le celle <code>[0, 2)</code> sono valide, la cella 2 resta libera</figcaption></figure>
+<p>Gli elementi copiati <strong>non hanno lo stesso indice</strong> in <code>a</code> e in <code>b</code>: il 30 è <code>b[2]</code> ma diventa <code>a[1]</code>. Servono due indici: <code>i</code> scorre <code>b</code>, un secondo indice dice dove scrivere in <code>a</code>. Alla fine quel secondo indice è proprio il numero di elementi copiati.</p>
+<h3 id="capacita-e-dimensione">Capacità e dimensione</h3>
+<p><code>a</code> deve avere posto per il caso peggiore, in cui tutti passano il filtro: qui 3. Dopo la selezione ne sono usati solo 2. Due concetti diversi:</p>
+<ul>
+<li><strong>capacità</strong>: quanti elementi l&#39;array può contenere (<code>AMAX</code> o <code>aCap</code>);</li>
+<li><strong>dimensione</strong>: quanti elementi validi contiene ora (<code>aLen</code>).</li>
+</ul>
+<p>Gli indici <code>[0, aLen)</code> sono gli elementi validi, <code>[aLen, aCap)</code> i posti liberi, e sempre <span class="katex" role="math" aria-label="0 \le aLen \le aCap"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">L</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">a</span><span class="mord mathnormal">p</span></span></span></span>. <code>aLen</code> fa da cursore: si aggiunge un elemento in fondo scrivendo in <code>a[aLen]</code> e incrementando <code>aLen</code>.</p>
+<pre class="code" data-lingua="c"><code><span class="cm">// a ha capacità aCap e all'inizio è vuoto</span>
+<span class="kw">size_t</span> aLen = 0;
+<span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; bLen &amp;&amp; aLen &lt; aCap; i++) {
+    <span class="kw">if</span> (Cond(b[i])) {
+        a[aLen] = b[i];   <span class="cm">// copia nel primo posto libero</span>
+        aLen++;
+    }
+}
+<span class="cm">// aLen è il numero di elementi copiati</span></code></pre>
+<p>La capacità si può fissare con <code>#define AMAX ...</code> e <code>int a[AMAX]</code>, oppure tenere in una variabile <code>aCap</code> con un VLA <code>int a[aCap]</code>.</p>
+<h3 id="passare-a-una-funzione-un-array-con-dimensione-e">Passare a una funzione un array con dimensione e capacità</h3>
+<ul>
+<li>Se la funzione <strong>non cambia</strong> la dimensione, basta <code>size_t aLen, int a[]</code>, come un array normale.</li>
+<li>Se la funzione <strong>cambia</strong> la dimensione, riceve <code>size_t *p_aLen, size_t aCap, int a[]</code>: la capacità per sapere fin dove può scrivere, e la dimensione <strong>per puntatore</strong>, per comunicarla al chiamante.</li>
+</ul>
+<h3 id="l-esercizio-selectinrange-slide-51-54">L&#39;esercizio selectInRange (slide 51–54)</h3>
+<p>Copiare in <code>a</code> gli elementi di <code>b</code> compresi in <code>[minVal, maxVal]</code>; restituire <code>false</code> se la capacità non basta (copiando comunque quello che ci sta), <code>true</code> altrimenti.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> selectInRange(<span class="kw">size_t</span> bLen, <span class="kw">const</span> <span class="kw">int</span> b[],
+                   <span class="kw">size_t</span> aCap, <span class="kw">size_t</span> *p_aLen, <span class="kw">int</span> a[],
+                   <span class="kw">int</span> minVal, <span class="kw">int</span> maxVal) {
+    <span class="kw">size_t</span> aLen = 0;
+    <span class="kw">bool</span> overflow = <span class="kw">false</span>;
+    <span class="kw">size_t</span> i = 0;
+    <span class="kw">while</span> (i &lt; bLen &amp;&amp; !overflow) {
+        <span class="kw">if</span> (minVal &lt;= b[i] &amp;&amp; b[i] &lt;= maxVal) {
+            <span class="kw">if</span> (aLen &lt; aCap) {
+                a[aLen] = b[i];
+                aLen++;
+            } <span class="kw">else</span> {
+                overflow = <span class="kw">true</span>;   <span class="cm">// un elemento buono che non ci sta</span>
+            }
+        }
+        i++;
+    }
+    *p_aLen = aLen;
+    <span class="kw">return</span> !overflow;
+}</code></pre>
+<p>Passa tutti i test della slide 54: intervallo che non seleziona niente (<code>aLen == 0</code>), selezione di <code>{0, 2, 2}</code> da <code>{-3, 0, 2, 2, 8}</code>, overflow con capacità 2 (copia <code>{1, 2}</code> e restituisce <code>false</code>), array vuoto. Ho aggiunto un caso limite: capacità piena esattamente, <code>{1, 50, 2}</code> con capacità 2 e intervallo <code>[0, 10]</code>, che deve dare <code>true</code>. Lo dà, perché <code>overflow</code> diventa vero solo se arriva un elemento buono quando non c&#39;è più posto.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Perché nel ciclo della selezione la condizione contiene anche <code>aLen &lt; aCap</code>?</span></summary><div class="ans"><p>Per non scrivere oltre la fine di <code>a</code>: con <code>aLen == aCap</code> l&#39;array è pieno, e <code>a[aLen]</code> sarebbe fuori dai limiti.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Selezione: due indici, <code>i</code> su <code>b</code> e <code>aLen</code> su <code>a</code>.</li>
+<li>Capacità = posti, dimensione = posti usati, <span class="katex" role="math" aria-label="0 \le aLen \le aCap"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">L</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">a</span><span class="mord mathnormal">p</span></span></span></span>.</li>
+<li>Se una funzione cambia la dimensione, la riceve per puntatore.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-test-di-ordinamento" aria-labelledby="h-il-test-di-ordinamento" style="--h:1800px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-il-test-di-ordinamento">Il test di ordinamento</h2><span class="slides">slide 55–64</span></div>
+<p><code>a = {2, 4, 4, 6, 9}</code> è ordinato in modo <strong>non decrescente</strong>: <span class="katex" role="math" aria-label="2 \le 4 \le 4 \le 6 \le 9"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span></span></span></span>. «Non decrescente» e non «crescente» perché ci sono due 4. Ordinato non è una proprietà di un elemento da solo: è una proprietà delle <strong>coppie adiacenti</strong>.</p>
+<p>Per le coppie si usa l&#39;indice del secondo elemento: la coppia <code>i</code> è <code>(a[i-1], a[i])</code>, con <code>i</code> in <code>[1, aLen)</code>.</p>
+<figure class="grafico" id="grafico-3"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Indici degli elementi e indici delle coppie. Con 5 elementi le coppie adiacenti sono 4, e la coppia numero `i` è `(a[i-1], a[i])`: gli indici delle coppie vanno da 1 a `aLen - 1`, cioè l'intervallo `[1, aLen)`" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-3-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-3-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-3-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-3-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-3-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-3-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-3-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-3-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M72.26 170L144.52 170L144.52 94.44L72.26 94.44Z"/><path class="g-poligono g-blu g-pieno" d="M144.52 170L216.77 170L216.77 94.44L144.52 94.44Z"/><path class="g-poligono g-blu g-pieno" d="M216.77 170L289.03 170L289.03 94.44L216.77 94.44Z"/><path class="g-poligono g-blu g-pieno" d="M289.03 170L361.29 170L361.29 94.44L289.03 94.44Z"/><path class="g-poligono g-blu g-pieno" d="M361.29 170L433.55 170L433.55 94.44L361.29 94.44Z"/><path class="g-linea g-ambra" d="M108.39 188.89L108.39 217.22"/><path class="g-linea g-ambra" d="M180.65 188.89L180.65 217.22"/><path class="g-linea g-ambra" d="M108.39 217.22L180.65 217.22"/><path class="g-linea g-ambra" d="M180.65 188.89L180.65 217.22"/><path class="g-linea g-ambra" d="M252.9 188.89L252.9 217.22"/><path class="g-linea g-ambra" d="M180.65 217.22L252.9 217.22"/><path class="g-linea g-ambra" d="M252.9 188.89L252.9 217.22"/><path class="g-linea g-ambra" d="M325.16 188.89L325.16 217.22"/><path class="g-linea g-ambra" d="M252.9 217.22L325.16 217.22"/><path class="g-linea g-ambra" d="M325.16 188.89L325.16 217.22"/><path class="g-linea g-ambra" d="M397.42 188.89L397.42 217.22"/><path class="g-linea g-ambra" d="M325.16 217.22L397.42 217.22"/></svg><span class="g-et g-c g-testo g-blu" style="left:19.36%;top:38.89%">2</span><span class="g-et g-c g-testo g-grigio" style="left:19.36%;top:18.06%">0</span><span class="g-et g-c g-testo g-blu" style="left:32.26%;top:38.89%">4</span><span class="g-et g-c g-testo g-grigio" style="left:32.26%;top:18.06%">1</span><span class="g-et g-c g-testo g-blu" style="left:45.16%;top:38.89%">4</span><span class="g-et g-c g-testo g-grigio" style="left:45.16%;top:18.06%">2</span><span class="g-et g-c g-testo g-blu" style="left:58.06%;top:38.89%">6</span><span class="g-et g-c g-testo g-grigio" style="left:58.06%;top:18.06%">3</span><span class="g-et g-c g-testo g-blu" style="left:70.97%;top:38.89%">9</span><span class="g-et g-c g-testo g-grigio" style="left:70.97%;top:18.06%">4</span><span class="g-et g-c g-testo g-ambra" style="left:25.81%;top:75.00%">1</span><span class="g-et g-c g-testo g-ambra" style="left:38.71%;top:75.00%">2</span><span class="g-et g-c g-testo g-ambra" style="left:51.61%;top:75.00%">3</span><span class="g-et g-c g-testo g-ambra" style="left:64.52%;top:75.00%">4</span><span class="g-et g-c g-testo g-grigio" style="left:4.84%;top:18.06%">elementi</span><span class="g-et g-c g-testo g-ambra" style="left:4.84%;top:75.00%">coppie</span></div><figcaption>Indici degli elementi e indici delle coppie. Con 5 elementi le coppie adiacenti sono 4, e la coppia numero <code>i</code> è <code>(a[i-1], a[i])</code>: gli indici delle coppie vanno da 1 a <code>aLen - 1</code>, cioè l&#39;intervallo <code>[1, aLen)</code></figcaption></figure>
+<p>Con <span class="katex" role="math" aria-label="N \ge 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span> elementi le coppie sono <span class="katex" role="math" aria-label="N - 1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>; con 0 o 1 elemento non ce ne sono. Ordinato diventa una proprietà «per ogni»:</p>
+<div class="formula"><span class="katex-display"><span class="katex" role="math" aria-label="\forall\, i \in [1, aLen) : a[i-1] \le a[i]"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord">∀</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">L</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">a</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span></span></span></span></span></div>
+<p>e non ordinato vuol dire che esiste un controesempio, una coppia con <code>a[i-1] &gt; a[i]</code>. Con 0 o 1 elemento non ci sono coppie, quindi niente controesempi: <strong>un array vuoto o di un elemento è ordinato</strong>, per vacuità, senza casi speciali.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> ordinatoNonDecr(<span class="kw">size_t</span> aLen, <span class="kw">const</span> <span class="kw">int</span> a[]) {
+    <span class="kw">bool</span> ordinato = <span class="kw">true</span>;          <span class="cm">// all'inizio supponiamo che sia ordinato</span>
+    <span class="kw">size_t</span> i = 1;                  <span class="cm">// i indica la coppia (a[i-1], a[i])</span>
+    <span class="kw">while</span> (i &lt; aLen &amp;&amp; ordinato) {
+        <span class="kw">if</span> (a[i - 1] &gt; a[i]) {
+            ordinato = <span class="kw">false</span>;      <span class="cm">// coppia fuori ordine: controesempio</span>
+        } <span class="kw">else</span> {
+            i++;
+        }
+    }
+    <span class="kw">return</span> ordinato;
+}</code></pre>
+<p><code>{2, 4, 4, 7}</code> dà <code>true</code> (tre coppie in ordine); <code>{2, 5, 3, 7}</code> dà <code>false</code> alla seconda coppia, 5 &gt; 3; l&#39;array vuoto dà <code>true</code>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · i &lt;= aLen - 1 con size_t</span></p><p>L&#39;intervallo <code>[1, aLen)</code> diventa <code>for (size_t i = 1; i &lt; aLen; i++)</code>, che va bene anche con <code>aLen</code> pari a 0 o 1. Scrivere invece <code>i &lt;= aLen - 1</code> è un errore: <code>aLen</code> è <code>size_t</code>, senza segno, e con <code>aLen == 0</code> il conto <code>aLen - 1</code> non dà −1 ma <strong>18446744073709551615</strong> (l&#39;ho stampato). Il ciclo partirebbe e leggerebbe fuori dall&#39;array. Gli intervalli semiaperti con <code>&lt;</code> evitano il problema.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span><code>{3, 3, 3}</code> è ordinato in modo non decrescente? E in modo crescente?</span></summary><div class="ans"><p>Non decrescente sì: ogni coppia ha <code>a[i-1] &lt;= a[i]</code>. Crescente, cioè con <code>&lt;</code>, no: <span class="katex" role="math" aria-label="3 &lt; 3"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> è falso.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Ordinato = per ogni coppia adiacente <code>a[i-1] &lt;= a[i]</code>, con <code>i</code> in <code>[1, aLen)</code>.</li>
+<li>Vuoto e un elemento: ordinati. Mai <code>i &lt;= aLen - 1</code> con <code>size_t</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="bubble-sort" aria-labelledby="h-bubble-sort" style="--h:2680px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-bubble-sort">Bubble sort</h2><span class="slides">slide 64–84</span></div>
+<p>Il test di ordinamento trova la prima coppia fuori ordine e si ferma. Il <strong>bubble sort</strong>, ordinamento a bolle, usa la stessa coppia in modo diverso: quando la trova, la <strong>corregge</strong> scambiando i due elementi, e va avanti.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Bubble sort (slide 66–68)</span></p><p>Algoritmo di ordinamento <strong>sul posto</strong> (modifica l&#39;array, senza copiarlo in un altro) fatto di <strong>fasi</strong>. In ogni fase, per ogni <code>i</code> in <code>[1, aLen)</code>, si confronta la coppia <code>(a[i-1], a[i])</code> e la si scambia se <code>a[i-1] &gt; a[i]</code>. Se una fase ha fatto almeno uno scambio, si fa un&#39;altra fase; se non ne ha fatto nessuno, l&#39;array è ordinato e l&#39;algoritmo termina.</p>
+</div>
+<p><strong>Come si legge.</strong> Una fase senza scambi è un test di ordinamento che non ha trovato controesempi: tutte le coppie sono in ordine. Una fase con scambi ha trovato e corretto almeno un controesempio, quindi l&#39;array è cambiato e va ricontrollato.</p>
+<p>L&#39;esempio della slide 69, con <code>{6, 2, -8, 10, 4}</code>:</p>
+<figure class="grafico" id="grafico-4"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Il bubble sort della slide 69 su `{6, 2, -8, 10, 4}`, una riga per fase. In ogni fase si confrontano le coppie adiacenti da sinistra a destra e si scambiano quelle in ordine sbagliato. Alla fine di ogni fase il più grande dei rimasti è arrivato in fondo (in verde). Nella terza fase non c'è nessuno scambio: l'array è ordinato" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-4-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-4-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-4-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-4-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-4-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-4-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-4-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-4-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu" d="M252.9 77.27L302.58 77.27L302.58 23.18L252.9 23.18Z"/><path class="g-poligono g-blu" d="M302.58 77.27L352.26 77.27L352.26 23.18L302.58 23.18Z"/><path class="g-poligono g-blu" d="M352.26 77.27L401.94 77.27L401.94 23.18L352.26 23.18Z"/><path class="g-poligono g-blu" d="M401.94 77.27L451.61 77.27L451.61 23.18L401.94 23.18Z"/><path class="g-poligono g-blu" d="M451.61 77.27L501.29 77.27L501.29 23.18L451.61 23.18Z"/><path class="g-poligono g-blu" d="M252.9 154.55L302.58 154.55L302.58 100.45L252.9 100.45Z"/><path class="g-poligono g-blu" d="M302.58 154.55L352.26 154.55L352.26 100.45L302.58 100.45Z"/><path class="g-poligono g-blu" d="M352.26 154.55L401.94 154.55L401.94 100.45L352.26 100.45Z"/><path class="g-poligono g-blu" d="M401.94 154.55L451.61 154.55L451.61 100.45L401.94 100.45Z"/><path class="g-poligono g-verde g-pieno" d="M451.61 154.55L501.29 154.55L501.29 100.45L451.61 100.45Z"/><path class="g-poligono g-blu" d="M252.9 231.82L302.58 231.82L302.58 177.73L252.9 177.73Z"/><path class="g-poligono g-blu" d="M302.58 231.82L352.26 231.82L352.26 177.73L302.58 177.73Z"/><path class="g-poligono g-blu" d="M352.26 231.82L401.94 231.82L401.94 177.73L352.26 177.73Z"/><path class="g-poligono g-verde g-pieno" d="M401.94 231.82L451.61 231.82L451.61 177.73L401.94 177.73Z"/><path class="g-poligono g-verde g-pieno" d="M451.61 231.82L501.29 231.82L501.29 177.73L451.61 177.73Z"/><path class="g-poligono g-verde g-pieno" d="M252.9 309.09L302.58 309.09L302.58 255L252.9 255Z"/><path class="g-poligono g-verde g-pieno" d="M302.58 309.09L352.26 309.09L352.26 255L302.58 255Z"/><path class="g-poligono g-verde g-pieno" d="M352.26 309.09L401.94 309.09L401.94 255L352.26 255Z"/><path class="g-poligono g-verde g-pieno" d="M401.94 309.09L451.61 309.09L451.61 255L401.94 255Z"/><path class="g-poligono g-verde g-pieno" d="M451.61 309.09L501.29 309.09L501.29 255L451.61 255Z"/></svg><span class="g-et g-c g-testo g-blu" style="left:49.60%;top:14.77%">6</span><span class="g-et g-c g-testo g-blu" style="left:58.47%;top:14.77%">2</span><span class="g-et g-c g-testo g-blu" style="left:67.34%;top:14.77%">-8</span><span class="g-et g-c g-testo g-blu" style="left:76.21%;top:14.77%">10</span><span class="g-et g-c g-testo g-blu" style="left:85.08%;top:14.77%">4</span><span class="g-et g-o g-testo g-grigio" style="left:42.74%;top:14.77%">inizio</span><span class="g-et g-c g-testo g-blu" style="left:49.60%;top:37.50%">2</span><span class="g-et g-c g-testo g-blu" style="left:58.47%;top:37.50%">-8</span><span class="g-et g-c g-testo g-blu" style="left:67.34%;top:37.50%">6</span><span class="g-et g-c g-testo g-blu" style="left:76.21%;top:37.50%">4</span><span class="g-et g-c g-testo g-verde" style="left:85.08%;top:37.50%">10</span><span class="g-et g-o g-testo g-grigio" style="left:42.74%;top:37.50%">dopo la fase 1</span><span class="g-et g-c g-testo g-blu" style="left:49.60%;top:60.23%">-8</span><span class="g-et g-c g-testo g-blu" style="left:58.47%;top:60.23%">2</span><span class="g-et g-c g-testo g-blu" style="left:67.34%;top:60.23%">4</span><span class="g-et g-c g-testo g-verde" style="left:76.21%;top:60.23%">6</span><span class="g-et g-c g-testo g-verde" style="left:85.08%;top:60.23%">10</span><span class="g-et g-o g-testo g-grigio" style="left:42.74%;top:60.23%">dopo la fase 2</span><span class="g-et g-c g-testo g-verde" style="left:49.60%;top:82.96%">-8</span><span class="g-et g-c g-testo g-verde" style="left:58.47%;top:82.96%">2</span><span class="g-et g-c g-testo g-verde" style="left:67.34%;top:82.96%">4</span><span class="g-et g-c g-testo g-verde" style="left:76.21%;top:82.96%">6</span><span class="g-et g-c g-testo g-verde" style="left:85.08%;top:82.96%">10</span><span class="g-et g-o g-testo g-grigio" style="left:42.74%;top:82.96%">fase 3: nessuno scambio</span></div><figcaption>Il bubble sort della slide 69 su <code>{6, 2, -8, 10, 4}</code>, una riga per fase. In ogni fase si confrontano le coppie adiacenti da sinistra a destra e si scambiano quelle in ordine sbagliato. Alla fine di ogni fase il più grande dei rimasti è arrivato in fondo (in verde). Nella terza fase non c&#39;è nessuno scambio: l&#39;array è ordinato</figcaption></figure>
+<ol>
+<li><strong>Fase 1</strong>: 6 e 2 si scambiano, poi 6 e −8, poi 6 e 10 restano, poi 10 e 4 si scambiano: <code>{2, -8, 6, 4, 10}</code>. Il 10, il più grande, è «salito» in fondo come una bolla.</li>
+<li><strong>Fase 2</strong>: 2 e −8 si scambiano, 6 e 4 si scambiano: <code>{-8, 2, 4, 6, 10}</code>.</li>
+<li><strong>Fase 3</strong>: nessuno scambio. Ordinato.</li>
+</ol>
+<p>Lo scambio è la <code>swap</code> con i puntatori della <a href="06B_chiamata_funzioni.html">06B</a>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">void</span> swap(<span class="kw">int</span> *x, <span class="kw">int</span> *y) {
+    <span class="kw">int</span> temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+<span class="kw">void</span> bubbleSort(<span class="kw">const</span> <span class="kw">size_t</span> aLen, <span class="kw">int</span> a[]) {
+    <span class="kw">bool</span> ordinato = <span class="kw">false</span>;
+    <span class="kw">while</span> (!ordinato) {
+        ordinato = <span class="kw">true</span>;                 <span class="cm">// nuova fase: ipotesi «è ordinato»</span>
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt; aLen; i++) {
+            <span class="kw">if</span> (a[i-1] &gt; a[i]) {
+                swap(&amp;a[i-1], &amp;a[i]);    <span class="cm">// controesempio trovato e corretto</span>
+                ordinato = <span class="kw">false</span>;        <span class="cm">// servirà un'altra fase</span>
+            }
+        }
+    }
+}
+
+<span class="kw">#define</span> LEN 5
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> v[LEN] = {6, 2, -8, 10, 4};
+    bubbleSort(LEN, v);
+    printf(<span class="str">&quot;Array ordinato:\n&quot;</span>);
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; LEN; i++) {
+        printf(<span class="str">&quot;%d &quot;</span>, v[i]);
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+}</code></pre>
+<p>Stampa <code>-8 2 4 6 10</code>. La variabile <code>ordinato</code> è una sentinella per l&#39;<strong>uscita anticipata</strong>: senza, bisognerebbe fare sempre <code>aLen - 1</code> fasi, che bastano sempre. Con la sentinella, un array già ordinato richiede una fase sola; il caso peggiore, un array decrescente, ne richiede <code>aLen</code> (con <code>{6, 5, 4, 3, 2, 1}</code> ne ho contate 6: cinque con scambi e l&#39;ultima di controllo).</p>
+<h3 id="il-bubble-sort-in-memoria-slide-74-82">Il bubble sort in memoria (slide 74–82)</h3>
+<p>Le slide seguono la prima fase su <code>{6, 2, -8}</code> con lo stack della 06B. Le cose da notare:</p>
+<ul>
+<li><code>bubbleSort</code> riceve in <code>a</code> l&#39;<strong>indirizzo</strong> di <code>v</code>, non una copia: gli scambi cambiano proprio <code>v</code> nel frame di <code>main</code>;</li>
+<li><code>swap(&amp;a[0], &amp;a[1])</code> crea un terzo frame, con <code>x</code> e <code>y</code> che puntano a due celle di <code>v</code>, e <code>temp = 6</code>;</li>
+<li>dopo <code>*x = *y</code> e <code>*y = temp</code>, <code>v</code> diventa <code>{2, 6, -8}</code>; il frame di <code>swap</code> sparisce e <code>bubbleSort</code> mette <code>ordinato = false</code>.</li>
+</ul>
+<h3 id="il-test-d-ipotesi-dentro-il-bubble-sort-slide-83">Il test d&#39;ipotesi dentro il bubble sort (slide 83)</h3>
+<p>Ogni fase è un test d&#39;ipotesi: <span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> = «ogni coppia è in ordine», cioè <code>ordinato = true</code> all&#39;inizio della fase; <span class="katex" role="math" aria-label="H_1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> = «esiste una coppia fuori ordine», che la scansione cerca. La differenza con <code>ordinatoNonDecr</code>: la fase non si ferma al primo controesempio, lo corregge e continua.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quante fasi fa il bubble sort su <code>{1, 2, 3, 4}</code>? E su <code>{2, 1, 3, 4}</code>?</span></summary><div class="ans"><p>Su <code>{1, 2, 3, 4}</code> una: nessuno scambio, ordinato subito. Su <code>{2, 1, 3, 4}</code> due: la prima scambia 2 e 1, la seconda non trova niente.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Bubble sort: fasi di confronti e scambi tra coppie adiacenti, finché una fase non scambia niente.</li>
+<li>Dopo ogni fase il più grande dei rimasti è in fondo.</li>
+<li>La sentinella <code>ordinato</code> permette di fermarsi appena l&#39;array è ordinato.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:670px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><span class="katex" role="math" aria-label="\exists\, i \in [0, n) : C"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord">∃</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span></td><td>«esiste un <code>i</code> tra 0 e <code>n</code> escluso per cui vale C»</td><td>almeno un elemento soddisfa C</td><td>ricerca lineare</td></tr>
+<tr><td><span class="katex" role="math" aria-label="\forall\, i \in [0, n) : C"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord">∀</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span></span></span></span></td><td>«per ogni <code>i</code> tra 0 e <code>n</code> escluso vale C»</td><td>tutti gli elementi soddisfano C</td><td><code>tuttiPositivi</code></td></tr>
+<tr><td><span class="katex" role="math" aria-label="\bigvee_i C_i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0497em;vertical-align:-0.2997em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋁</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.162em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td><td>«OR di tutte le <span class="katex" role="math" aria-label="C_i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>»</td><td>vero se almeno una è vera</td><td>sentinella da <code>false</code></td></tr>
+<tr><td><span class="katex" role="math" aria-label="\bigwedge_i C_i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0497em;vertical-align:-0.2997em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋀</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.162em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td><td>«AND di tutte le <span class="katex" role="math" aria-label="C_i"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>»</td><td>vero se tutte sono vere</td><td>sentinella da <code>true</code></td></tr>
+<tr><td><span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, <span class="katex" role="math" aria-label="H_1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td><td>«acca zero», «acca uno»</td><td>ipotesi iniziale e alternativa</td><td><code>esiste = false</code> è <span class="katex" role="math" aria-label="H_0"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0813em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></td></tr>
+<tr><td><code>aLen</code>, <code>aCap</code></td><td>«dimensione», «capacità»</td><td>posti usati e posti disponibili</td><td><span class="katex" role="math" aria-label="0 \le aLen \le aCap"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7804em;vertical-align:-0.136em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8193em;vertical-align:-0.136em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">L</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.0715em;">C</span><span class="mord mathnormal">a</span><span class="mord mathnormal">p</span></span></span></span></td></tr>
+<tr><td><code>[1, aLen)</code></td><td>«da 1 ad <code>aLen</code> escluso»</td><td>indici delle coppie adiacenti</td><td><code>for (size_t i = 1; i &lt; aLen; i++)</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:1900px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>All&#39;esame, l&#39;esercizio di programmazione iterativa (<code>e1</code>) chiede quasi sempre di controllare una proprietà con «per ogni» ed «esiste», a volte annidati, e di restituire un risultato. Le regole d&#39;esame vietano <code>break</code>: il ciclo si ferma con la sentinella nella condizione, come in tutta questa lezione. Di questa lezione servono:</p>
+<ol>
+<li><strong>tradurre la consegna in una formula</strong> con «per ogni» ed «esiste», prima di scrivere il codice;</li>
+<li><strong>il valore iniziale delle sentinelle</strong>: <code>true</code> per «per ogni», <code>false</code> per «esiste», che danno da sole la risposta giusta sull&#39;array vuoto;</li>
+<li><strong>la sentinella nella condizione del ciclo</strong>, niente <code>break</code>, una sola <code>return</code>;</li>
+<li><strong>gli intervalli semiaperti</strong> <code>[0, aLen)</code> e <code>[1, aLen)</code> con <code>&lt;</code>;</li>
+<li><strong>dimensione e capacità</strong> quando la funzione riempie un array.</li>
+</ol>
+<h3 id="una-domanda-vera-letta-insieme">Una domanda vera, letta insieme</h3>
+<p><em>Pre-esame 2023/24, esercizio iterativo.</em> «Scrivere una funzione iterativa <code>e1</code> che riceve una matrice irregolare (<code>rows</code>, <code>cols</code>, <code>mat</code>, <code>rags</code>) di interi; <code>e1</code> determina se le righe sono tutte lunghe almeno quanto <code>rows</code> e se in ciascuna riga esiste un elemento multiplo di 7. In questo caso ritorna la somma dei primi multipli di 7 (quelli più a sinistra) di ciascuna riga, altrimenti ritorna 0.» <code>rags[i]</code> è la lunghezza della riga <code>i</code>.</p>
+<p><strong>In pratica chiede</strong>: per ogni riga, la riga è lunga almeno <code>rows</code> <strong>ed</strong> esiste un multiplo di 7. Un «per ogni» con dentro un «esiste»: le due sentinelle di questa lezione, una dentro l&#39;altra.</p>
+<p><strong>Soluzione.</strong></p>
+<ol>
+<li>Sentinella esterna <code>ok = true</code> («per ogni riga»), condizione <code>i &lt; rows &amp;&amp; ok</code>.</li>
+<li>Per ogni riga, <code>ok = rags[i] &gt;= rows</code>, poi la sentinella interna <code>found = false</code> («esiste un multiplo di 7»), condizione <code>j &lt; rags[i] &amp;&amp; ok &amp;&amp; !found</code>.</li>
+<li>Al primo multiplo di 7 lo si somma e si mette <code>found = true</code>: è il più a sinistra.</li>
+<li>Dopo la riga, <code>ok = ok &amp;&amp; found</code>.</li>
+<li>Alla fine, se <code>ok</code> è falso il risultato è 0. Una sola <code>return</code>.</li>
+</ol>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> e1(<span class="kw">size_t</span> rows, <span class="kw">size_t</span> cols, <span class="kw">const</span> <span class="kw">int</span> mat[rows][cols], <span class="kw">const</span> <span class="kw">size_t</span> rags[rows]) {
+    <span class="kw">int</span> sum = 0;
+    <span class="kw">bool</span> ok = <span class="kw">true</span>;                        <span class="cm">// &quot;per ogni riga&quot;: parte da true</span>
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; rows &amp;&amp; ok; i++) {
+        ok = rags[i] &gt;= rows;
+        <span class="kw">bool</span> found = <span class="kw">false</span>;                <span class="cm">// &quot;esiste un multiplo di 7&quot;: parte da false</span>
+        <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; rags[i] &amp;&amp; ok &amp;&amp; !found; j++) {
+            <span class="kw">if</span> (mat[i][j] % 7 == 0) {
+                sum = sum + mat[i][j];
+                found = <span class="kw">true</span>;
+            }
+        }
+        ok = ok &amp;&amp; found;
+    }
+    <span class="kw">if</span> (!ok) {
+        sum = 0;
+    }
+    <span class="kw">return</span> sum;                            <span class="cm">// una sola return</span>
+}</code></pre>
+<p>La soluzione viene dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a>, dove è provata: con <code>rows == 0</code> dà 0, perché «per ogni» è vero sul vuoto e la somma vuota è 0. Le matrici si fanno più avanti nel corso; lo schema delle sentinelle è già tutto qui.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Da «per ogni» ed «esiste» al ciclo</span></p><ol>
+<li>Scrivi la proprietà con le parole «per ogni» ed «esiste», e l&#39;intervallo degli indici.</li>
+<li>Per ogni quantificatore una sentinella: <code>true</code> per «per ogni», <code>false</code> per «esiste».</li>
+<li>Condizione del ciclo: <code>i &lt; n &amp;&amp;</code> sentinella (<code>tutti</code>, oppure <code>!esiste</code>).</li>
+<li>Nel corpo: per «per ogni» cerca la condizione <strong>negata</strong>, per «esiste» la condizione; quando la trovi, cambia la sentinella e non incrementare <code>i</code>, se ti serve la posizione.</li>
+<li>Controlla a mano il caso vuoto: la sentinella deve già essere la risposta giusta.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2060px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Che valore iniziale deve avere la sentinella per «tutti gli elementi sono pari»?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>false</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>true</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">dipende dal primo elemento</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>aLen</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>«Per ogni» è un AND, e si cerca un controesempio: si parte da vero. Sull&#39;array vuoto la risposta giusta è proprio vero. La più insidiosa è «dipende dal primo elemento»: inizializzare con <code>a[0] % 2 == 0</code> rompe il caso vuoto.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con <code>a = {6, 12, 4, 9, -1}</code> e <code>key = 20</code>, quanto vale <code>i</code> alla fine della ricerca lineare?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">5</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non è definito</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">-1</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>key</code> non c&#39;è: il ciclo arriva a <code>i == aLen</code>, il valore sentinella. La più insidiosa è −1, che altri linguaggi usano per «non trovato»: qui <code>i</code> è <code>size_t</code> e il segnale è <code>aLen</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa risponde «esiste un elemento negativo» su un array vuoto?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">vero, per vacuità</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non si può dire</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">falso, perché non c&#39;è nessun testimone</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">dipende da come è scritto il ciclo</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">la funzione deve segnalare un errore</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>«Esiste» è vero solo con un testimone. La più insidiosa è «vero, per vacuità»: la verità per vacuità vale per «per ogni».</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Perché il ciclo della slide 7 (condizione solo <code>i &lt; aLen</code>, e <code>i++</code> solo nel ramo <code>else</code>) è sbagliato?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">se trova <code>key</code> non termina più</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non trova mai l&#39;ultima occorrenza</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">restituisce sempre <code>aLen</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">legge fuori dall&#39;array</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Quando trova <code>key</code> mette <code>trovato = true</code> ma non avanza, e la condizione resta vera: ricontrolla la stessa casella all&#39;infinito. La più insidiosa è «legge fuori dall&#39;array»: <code>i</code> non supera mai <code>aLen - 1</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa succede con <code>for (size_t i = 1; i &lt;= aLen - 1; i++)</code> e <code>aLen == 0</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il ciclo non fa nessun giro</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il ciclo fa un giro solo</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>aLen - 1</code> vale un numero enorme e il ciclo legge fuori dall&#39;array</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>aLen - 1</code> vale −1 e il ciclo si ferma</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila con <code>-Wall -Werror</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>size_t</code> non ha segno: 0 − 1 dà 18446744073709551615. La più insidiosa è l&#39;ultima, che sarebbe vera con un <code>int</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quante fasi fa il bubble sort con la sentinella su <code>{6, 2, -8, 10, 4}</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">5</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">2</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">3</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">1</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Due fasi con scambi e una senza, che conferma l&#39;ordine. La più insidiosa è 2: dopo la seconda fase l&#39;array è ordinato, ma l&#39;algoritmo lo scopre solo con la terza.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Una funzione riempie un array <code>a</code> con dimensione e capacità. Quale intestazione permette al chiamante di conoscere la nuova dimensione?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void f(size_t *p_aLen, size_t aCap, int a[])</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void f(size_t aCap, int a[])</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void f(const size_t *p_aLen, size_t aCap, int a[])</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void f(size_t aLen, const int a[])</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void f(size_t aLen, size_t aCap, int a[])</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La dimensione cambia, quindi passa per puntatore. La più insidiosa è la quarta: con <code>const</code> la funzione non potrebbe scrivere in <code>*p_aLen</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Dopo la prima fase del bubble sort, quale elemento è sicuramente al suo posto finale?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">quello che era nella prima casella</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il più piccolo, nella prima casella</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il più grande, nell&#39;ultima casella</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">tutti quelli già scambiati</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">nessuno</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il più grande vince tutti i confronti e viene spinto fino in fondo. La più insidiosa è la seconda: il più piccolo scende di una sola casella per fase.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1490px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: quale sentinella? <span class="lvl">base</span></h3><p>Per ognuna, di&#39; se è un «per ogni» o un «esiste», il valore iniziale della sentinella e la risposta sull&#39;array vuoto: (a) c&#39;è uno zero; (b) sono tutti minori di 10; (c) nessun elemento è negativo; (d) c&#39;è un elemento uguale al successivo.</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) esiste, <code>false</code>, falso. (b) per ogni, <code>true</code>, vero. (c) «nessuno è negativo» = per ogni elemento, non negativo: per ogni, <code>true</code>, vero. (d) esiste una coppia <code>i</code> in <code>[1, aLen)</code> con <code>a[i-1] == a[i]</code>: esiste, <code>false</code>, falso (anche con un elemento solo, perché non ci sono coppie).</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: bubble sort a mano <span class="lvl">base</span></h3><p>Scrivi l&#39;array dopo ogni fase del bubble sort su <code>{5, 1, 4, 2}</code>, e conta le fasi.</p>
+<details class="sol"><summary>Soluzione</summary><p>Fase 1: <code>{1, 4, 2, 5}</code>. Fase 2: <code>{1, 2, 4, 5}</code>. Fase 3: nessuno scambio. <strong>3 fasi</strong>. Controllato con il programma.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Ultima occorrenza <span class="lvl">medio</span></h3><p>Scrivi <code>bool ultimaOccorrenza(size_t aLen, const int a[], int key, size_t *pos)</code> che cerca <code>key</code> partendo dal fondo, con una sola <code>return</code>. In <code>*pos</code> va l&#39;indice dell&#39;ultima occorrenza, oppure <code>aLen</code> se <code>key</code> non c&#39;è.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">bool</span> ultimaOccorrenza(<span class="kw">size_t</span> aLen, <span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">int</span> key, <span class="kw">size_t</span> *pos) {
+    <span class="kw">bool</span> trovato = <span class="kw">false</span>;
+    <span class="kw">size_t</span> i = aLen;               <span class="cm">// i - 1 è la casella da guardare</span>
+    <span class="kw">while</span> (i &gt; 0 &amp;&amp; !trovato) {
+        <span class="kw">if</span> (a[i - 1] == key) {
+            trovato = <span class="kw">true</span>;
+        } <span class="kw">else</span> {
+            i--;
+        }
+    }
+    *pos = trovato ? i - 1 : aLen;
+    <span class="kw">return</span> trovato;
+}</code></pre>
+<p>Con <code>{4, 7, 4, 1}</code> e <code>key = 4</code> dà <code>true</code> e 2; con <code>key = 9</code> dà <code>false</code> e 4; con l&#39;array vuoto <code>false</code> e 0. Si guarda la casella <code>i - 1</code> e si confronta <code>i &gt; 0</code>, perché con <code>size_t</code> la condizione <code>i &gt;= 0</code> sarebbe sempre vera (05A). Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Conta e copia i pari <span class="lvl">medio</span></h3><p>Scrivi <code>size_t copiaPari(size_t bLen, const int b[], size_t aCap, int a[])</code> che copia in <code>a</code> gli elementi pari di <code>b</code>, fino a riempire la capacità, e restituisce quanti ne ha copiati.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">size_t</span> copiaPari(<span class="kw">size_t</span> bLen, <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">size_t</span> aCap, <span class="kw">int</span> a[]) {
+    <span class="kw">size_t</span> aLen = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; bLen &amp;&amp; aLen &lt; aCap; i++) {
+        <span class="kw">if</span> (b[i] % 2 == 0) {
+            a[aLen] = b[i];
+            aLen++;
+        }
+    }
+    <span class="kw">return</span> aLen;
+}</code></pre>
+<p>Con <code>{3, 8, -2, 7, 10}</code> e capacità 5 copia <code>{8, -2, 10}</code> e restituisce 3; con capacità 2 copia <code>{8, -2}</code> e restituisce 2. Qui la dimensione esce con <code>return</code>, perché è l&#39;unico risultato. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Tutti distinti dal precedente, nello stile di <code>e1</code> <span class="lvl">tipo esame</span></h3><p>Scrivi una funzione iterativa <code>bool e1(size_t aLen, const int a[], size_t *firstEq)</code> che restituisce <code>true</code> se nessuna coppia di elementi adiacenti è uguale. In <code>*firstEq</code> va l&#39;indice <code>i</code> della prima coppia <code>(a[i-1], a[i])</code> con elementi uguali, oppure <code>aLen</code> se non ce ne sono. Niente <code>break</code>, una sola <code>return</code>.</p>
+<details class="sol"><summary>Soluzione</summary><p>Formula: per ogni <code>i</code> in <code>[1, aLen)</code>, <code>a[i-1] != a[i]</code>. Sentinella da <code>true</code>, si cerca il controesempio <code>a[i-1] == a[i]</code>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> e1(<span class="kw">size_t</span> aLen, <span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span> *firstEq) {
+    <span class="kw">bool</span> distinti = <span class="kw">true</span>;
+    <span class="kw">size_t</span> i = 1;
+    <span class="kw">while</span> (i &lt; aLen &amp;&amp; distinti) {
+        <span class="kw">if</span> (a[i - 1] == a[i]) {
+            distinti = <span class="kw">false</span>;
+        } <span class="kw">else</span> {
+            i++;
+        }
+    }
+    *firstEq = distinti ? aLen : i;
+    <span class="kw">return</span> distinti;
+}</code></pre>
+<p>Attenzione al caso <code>aLen == 0</code>: il ciclo non parte e <code>i</code> vale 1, non <code>aLen</code>; per questo <code>*firstEq</code> si calcola alla fine con il <code>? :</code>. Con <code>{1, 2, 2, 3}</code> dà <code>false</code> e 2; con <code>{1, 2, 1}</code> dà <code>true</code> e 3; con l&#39;array vuoto <code>true</code> e 0. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Bubble sort che si accorcia (slide 84) <span class="lvl">difficile</span></h3><p>Dopo ogni fase gli elementi oltre l&#39;ultimo scambio sono già al loro posto. Scrivi una versione del bubble sort che ricorda la posizione dell&#39;ultimo scambio, <code>newLast</code>, e nella fase successiva confronta solo le coppie fino a lì. Niente <code>break</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">void</span> bubbleSortLast(<span class="kw">const</span> <span class="kw">size_t</span> aLen, <span class="kw">int</span> a[]) {
+    <span class="kw">size_t</span> last = aLen;            <span class="cm">// si controllano le coppie i in [1, last)</span>
+    <span class="kw">while</span> (last &gt; 1) {
+        <span class="kw">size_t</span> newLast = 0;        <span class="cm">// se non ci sono scambi resta 0 e il ciclo finisce</span>
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt; last; i++) {
+            <span class="kw">if</span> (a[i-1] &gt; a[i]) {
+                swap(&amp;a[i-1], &amp;a[i]);
+                newLast = i;       <span class="cm">// da a[i] in poi è tutto al suo posto</span>
+            }
+        }
+        last = newLast;
+    }
+}</code></pre>
+<p><code>newLast</code> fa anche da sentinella: una fase senza scambi lo lascia a 0, e <code>last &gt; 1</code> diventa falsa. Su <code>{6, 2, -8, 10, 4}</code> fa 3 fasi come l&#39;originale, ma la seconda e la terza controllano meno coppie. L&#39;ho confrontata con <code>qsort</code> della libreria su 20 000 array casuali, da 0 a 11 elementi: stesso risultato ogni volta.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:510px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che cosa contiene <code>i</code> alla fine di una ricerca lineare?</span></summary><div class="ans"><p>L&#39;indice della prima occorrenza, se l&#39;elemento c&#39;è; altrimenti <code>aLen</code>, il valore sentinella.</p>
+</div></details>
+<details class="qa"><summary><span>Perché la sentinella di «esiste» parte da <code>false</code> e quella di «per ogni» da <code>true</code>?</span></summary><div class="ans"><p>Perché sono i valori che non cambiano un OR e un AND, e sono anche le risposte giuste sull&#39;array vuoto: nessun testimone, nessun controesempio.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra capacità e dimensione?</span></summary><div class="ans"><p>La capacità è il numero di posti dell&#39;array, la dimensione il numero di elementi validi, sempre tra 0 e la capacità.</p>
+</div></details>
+<details class="qa"><summary><span>Perché un array di un solo elemento è ordinato?</span></summary><div class="ans"><p>Perché non ha coppie adiacenti, quindi non ci sono controesempi alla proprietà «per ogni coppia».</p>
+</div></details>
+<details class="qa"><summary><span>Quando si ferma il bubble sort?</span></summary><div class="ans"><p>Dopo la prima fase senza scambi: vuol dire che ogni coppia adiacente è in ordine.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:720px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Ricerca lineare</dt><dd>Scansione dell&#39;array in ordine finché si trova l&#39;elemento o l&#39;array finisce.</dd></div>
+<div><dt>Valore sentinella</dt><dd>Valore che segnala un caso speciale, come i == aLen per «non trovato».</dd></div>
+<div><dt>Variabile sentinella</dt><dd>Variabile booleana che registra un evento e ferma il ciclo, come trovato o tutti.</dd></div>
+<div><dt>Ipotesi iniziale (H0)</dt><dd>L&#39;ipotesi da cui parte il ciclo, che si cerca di smentire.</dd></div>
+<div><dt>Controesempio</dt><dd>Elemento che smentisce un «per ogni».</dd></div>
+<div><dt>Testimone</dt><dd>Elemento che rende vero un «esiste».</dd></div>
+<div><dt>Cortocircuito</dt><dd>Fermarsi appena il risultato di un OR o di un AND è deciso.</dd></div>
+<div><dt>Vero per vacuità</dt><dd>Un «per ogni» su un dominio vuoto è vero, perché non ci sono controesempi.</dd></div>
+<div><dt>Invariante</dt><dd>Proprietà che vale a ogni giro del ciclo.</dd></div>
+<div><dt>Selezione</dt><dd>Copia in un altro array degli elementi che soddisfano una condizione.</dd></div>
+<div><dt>Capacità</dt><dd>Numero massimo di elementi che un array può contenere.</dd></div>
+<div><dt>Dimensione</dt><dd>Numero di elementi validi in un array.</dd></div>
+<div><dt>Ordinamento non decrescente</dt><dd>Ogni elemento è minore o uguale al successivo.</dd></div>
+<div><dt>Bubble sort</dt><dd>Ordinamento per fasi di confronti e scambi tra elementi adiacenti.</dd></div>
+<div><dt>Sul posto</dt><dd>Detto di un algoritmo che modifica l&#39;array stesso, senza copiarlo.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:530px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 9</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-07A-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So scrivere la ricerca lineare con la sentinella nella condizione, senza break.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So tradurre «esiste» e «per ogni» in un ciclo con il giusto valore iniziale della sentinella.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So che cosa rispondono «esiste» e «per ogni» sull&#39;array vuoto, e perché.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So restituire un risultato con return e un indice con un puntatore.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So scrivere una selezione con dimensione e capacità.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So passare a una funzione la dimensione per puntatore quando la funzione la cambia.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So controllare se un array è ordinato sulle coppie adiacenti, con l&#39;intervallo [1, aLen).</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So perché i &lt;= aLen - 1 è pericoloso con size_t.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So eseguire a mano il bubble sort fase per fase e scriverlo in C.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Algoritmi su array. Ricerca, filtro e ordinamento» (07A_algoritmi_su_array), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: ricerca lineare (slide 3–9), quantificazione esistenziale come test d&#39;ipotesi (10–18), specifica, strategia e invarianti (19–22), verifica di proprietà e quantificazione universale (23–28), casi limite e dominio vuoto (29–36), esercizi <code>tuttiPositivi</code> ed <code>esistePari</code> con i test (37–39), selezione e modello dimensione-capacità (40–50), esercizio <code>selectInRange</code> (51–54), test di ordinamento (55–64), bubble sort, esecuzione nello stack e test d&#39;ipotesi (65–83), esercizio su <code>new_last</code> (84).</li>
+<li>Esercizio <code>e1</code> del pre-esame 2023/24: <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a>; regole d&#39;esame dalla <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+<li>Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con <code>-Wall -Werror</code>, ed eseguiti; il ciclo della slide 7 con un tempo massimo. Gli errori e le stampe citati sono quelli veri. Quiz, esercizi e figure sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

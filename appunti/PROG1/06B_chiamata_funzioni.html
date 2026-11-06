@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>06B · Chiamata di funzione e ritorno</title>
+<meta name="lezione" content="06B">
+<meta name="data" content="2026-11-03">
+<meta name="description" content="Appunti della lezione 06B di Programmazione I (canale B): lo stack delle chiamate nel modello di Von Neumann esteso, stack frame, SP e FP, la chiamata e il ritorno passo per passo, record di attivazione, il passaggio per valore e lo scambio che non scambia, lo scambio con i puntatori, array e stringhe come parametri, const, le funzioni di string.h, le asserzioni con assert, con tutti i programmi provati, quiz ed esercizi.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/06B_chiamata_funzioni.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#lo-stack-delle-chiamate"><span class="n">§1</span><span>Lo stack delle chiamate</span></a></li>
+<li><a href="#un-esempio-frame-per-frame"><span class="n">§2</span><span>Un esempio, frame per frame</span></a></li>
+<li><a href="#la-chiamata-passo-per-passo"><span class="n">§3</span><span>La chiamata, passo per passo</span></a></li>
+<li><a href="#il-ritorno-passo-per-passo"><span class="n">§4</span><span>Il ritorno, passo per passo</span></a></li>
+<li><a href="#record-di-attivazione-e-stack-frame"><span class="n">§5</span><span>Record di attivazione e stack frame</span></a></li>
+<li><a href="#lo-scambio-che-non-scambia"><span class="n">§6</span><span>Lo scambio che non scambia</span></a></li>
+<li><a href="#lo-scambio-con-i-puntatori"><span class="n">§7</span><span>Lo scambio con i puntatori</span></a></li>
+<li><a href="#array-e-stringhe-come-parametri"><span class="n">§8</span><span>Array e stringhe come parametri</span></a></li>
+<li><a href="#le-asserzioni"><span class="n">§9</span><span>Le asserzioni</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§10</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§11</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§12</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§13</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§14</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§15</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§16</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
+<nav class="vicine" aria-label="Lezioni vicine">
+  <a class="vicina prec" href="Lab05A_array_stringhe.html" rel="prev" title="Lab05A · Laboratorio 05: array e stringhe"><span class="dir">← Lezione precedente</span><span class="vt">Lab05A · Laboratorio 05: array e stringhe</span></a>
+  <a class="vicina succ" href="07A_algoritmi_su_array.html" rel="next" title="07A · Algoritmi su array"><span class="dir">Lezione successiva →</span><span class="vt">07A · Algoritmi su array</span></a>
+</nav>
+<!-- VICINE:FINE -->
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 06B</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 06B</p>
+      <h1>Chiamata di funzione e ritorno</h1>
+      <p class="lede">Dove stanno parametri e variabili locali durante una chiamata, come fa il programma a tornare nel punto giusto, e perché una funzione non può cambiare le variabili di chi la chiama, a meno di riceverne l&#39;indirizzo. All&#39;esame c&#39;è un esercizio proprio su questo: disegnare lo stack.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>06B_chiamata_funzioni («Chiamata a funzione e ritorno») · 66 pagine</dd></div><div><dt>Lezione</dt><dd>martedì 03/11</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>100 minuti, con carta e penna per disegnare lo stack</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:830px">
+<h2 id="tldr-title">La lezione in 7 punti</h2>
+<ul>
+<li>Ogni chiamata di funzione riserva sullo <strong>stack</strong> una zona tutta sua, lo <strong>stack frame</strong>, con le sue variabili locali. Quando la funzione finisce, la zona viene liberata.</li>
+<li>Lo stack cresce verso gli indirizzi più bassi. Due registri lo tengono in ordine: <strong>SP</strong> segna il limite dello stack, <strong>FP</strong> l&#39;inizio del frame della funzione attiva. FP resta fermo durante la chiamata, SP si sposta.</li>
+<li>La <strong>chiamata</strong>: il chiamante copia i parametri e lascia il posto per il risultato, salva l&#39;indirizzo dell&#39;istruzione successiva e salta alla funzione; il <strong>prologo</strong> salva il vecchio FP, pone FP = SP e riserva le variabili locali.</li>
+<li>Il <strong>ritorno</strong>: si scrive il risultato; l&#39;<strong>epilogo</strong> pone SP = FP, ripristina FP e il PC; il chiamante toglie i parametri e legge il risultato.</li>
+<li>In C il passaggio è <strong>sempre per valore</strong>: <code>swapSbagliato(x, y)</code> scambia due copie e lascia <code>x</code> e <code>y</code> come erano. Per cambiarle si passano gli <strong>indirizzi</strong>, <code>swap(&amp;x, &amp;y)</code>, e si scrive con <code>*pA</code> e <code>*pB</code>.</li>
+<li>Un array passato a una funzione arriva come <strong>puntatore al primo elemento</strong>: la lunghezza va passata a parte. Con <code>const</code> la funzione promette di non modificarlo. Le stringhe non hanno bisogno della lunghezza, perché finiscono con <code>'\0'</code>.</li>
+<li><code>assert(condizione)</code> ferma il programma se la condizione è falsa: serve a controllare le ipotesi del programmatore, non l&#39;input dell&#39;utente.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Lezione di martedì 03/11, dalle 11 alle 13, subito dopo la <a href="06A_funzioni.html">06A</a>. Il calendario ufficiale ha Programmazione I anche mercoledì 04/11, che metto alla <a href="07A_algoritmi_su_array.html">07A</a>: se Amparore ha finito queste slide il 04/11, aggiorno la data. Usa il modello della memoria della <a href="02B_assegnamento_memory_model.html">02B</a> (stack, FP e SP), i puntatori della <a href="02C_referenziamento_scanf_puntatori.html">02C</a>, lo scambio della <a href="03A_scambio_variabili.html">03A</a> e gli array e le stringhe della <a href="05A_array_stringhe.html">05A</a>.</p>
+<p><strong>Canali A e C.</strong> Le slide 2026/27 dei canali A e C su questo argomento non le ho viste. L&#39;esame è unico, e l&#39;esercizio sullo stato della memoria c&#39;è per tutti.</p>
+<p><strong>Un avviso sulle slide.</strong> Gli offset di esempio cambiano tra la slide 7 (parametri in FP+8, FP+12, variabili locali in FP−4, FP−8) e la slide 14 ([FP+4], [FP+8] e [FP−0], [FP−4]). Negli appunti uso quelli della slide 7, che tornano con la figura; all&#39;esame conta il segno: sopra FP i parametri, sotto le variabili locali.</p>
+<p>Tutti i programmi li ho compilati con gcc 16.1, con <code>-Wall -Werror</code>, ed eseguiti; gli errori del compilatore citati sono quelli veri.</p>
+</div>
+
+
+<section id="lo-stack-delle-chiamate" aria-labelledby="h-lo-stack-delle-chiamate" style="--h:1980px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-lo-stack-delle-chiamate">Lo stack delle chiamate</h2><span class="slides">slide 2–7</span></div>
+<p>Una funzione si può chiamare da più punti, anche mentre è già in corso (succederà con la ricorsione). Se le sue variabili stessero a indirizzi fissi, come nei primi compilatori, due chiamate attive nello stesso momento si rovinerebbero le variabili a vicenda. La soluzione, usata dalla fine degli anni &#39;50 (Bauer e Samelson, poi Dijkstra nel 1958, e il Burroughs B5000 nel 1961 in hardware), è lo <strong>stack</strong>: ogni chiamata prende una zona nuova in cima alla pila, e la restituisce quando finisce.</p>
+<p>Il modello è quello della <a href="02B_assegnamento_memory_model.html">02B</a>, con qualche dettaglio in più:</p>
+<ul>
+<li>lo stack cresce verso gli <strong>indirizzi decrescenti</strong>: nei disegni, con gli indirizzi alti in alto, cresce verso il basso;</li>
+<li><strong>SP</strong> (<em>stack pointer</em>) indica il limite dello stack. Si sposta quando si riserva o si libera spazio: nel modello delle slide, quando una variabile locale entra o esce di visibilità;</li>
+<li><strong>FP</strong> (<em>frame pointer</em>) indica l&#39;inizio del frame della funzione attiva, e <strong>resta fermo</strong> per tutta la chiamata.</li>
+</ul>
+<p>Siccome FP non si muove, ogni dato del frame ha una posizione fissa rispetto a lui, un <strong>offset</strong> (una distanza in byte): i parametri stanno sopra, a offset positivi, le variabili locali sotto, a offset negativi.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Lo stack durante una chiamata, nel modello delle slide. In alto gli indirizzi più alti. Sopra la linea di FP stanno le cose preparate dal chiamante (posto per il risultato, parametri, indirizzo di ritorno) e l'FP salvato; sotto, le variabili locali della funzione chiamata, fino a SP. Il codice sta in basso, lontano" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M144.52 42.5L307.1 42.5L307.1 17.89L144.52 17.89Z"/><path class="g-poligono g-verde g-pieno" d="M144.52 67.11L307.1 67.11L307.1 42.5L144.52 42.5Z"/><path class="g-poligono g-rosa g-pieno" d="M144.52 91.71L307.1 91.71L307.1 67.11L144.52 67.11Z"/><path class="g-poligono g-ambra g-pieno" d="M144.52 116.32L307.1 116.32L307.1 91.71L144.52 91.71Z"/><path class="g-poligono g-accento g-pieno" d="M144.52 140.92L307.1 140.92L307.1 116.32L144.52 116.32Z"/><path class="g-poligono g-blu g-pieno" d="M144.52 165.53L307.1 165.53L307.1 140.92L144.52 140.92Z"/><path class="g-poligono g-blu g-pieno" d="M144.52 190.13L307.1 190.13L307.1 165.53L144.52 165.53Z"/><path class="g-poligono g-grigio" d="M144.52 281.84L307.1 281.84L307.1 190.13L144.52 190.13Z"/><path class="g-poligono g-ambra" d="M144.52 322.11L307.1 322.11L307.1 286.32L144.52 286.32Z"/><path class="g-linea g-accento" d="M63.23 140.92L142.26 140.92" marker-end="url(#g-freccia-1-accento)"/><path class="g-linea g-blu" d="M63.23 190.13L142.26 190.13" marker-end="url(#g-freccia-1-blu)"/><path class="g-linea g-blu" d="M318.39 17.89L318.39 42.5"/><path class="g-linea g-rosa" d="M318.39 42.5L318.39 140.92"/><path class="g-linea g-blu" d="M318.39 140.92L318.39 190.13"/></svg><span class="g-et g-c g-testo g-blu" style="left:40.32%;top:8.81%">variabili locali del chiamante</span><span class="g-et g-c g-testo g-verde" style="left:40.32%;top:16.05%">posto per il risultato</span><span class="g-et g-c g-testo g-rosa" style="left:40.32%;top:23.29%">parametri</span><span class="g-et g-c g-testo g-ambra" style="left:40.32%;top:30.53%">indirizzo di ritorno</span><span class="g-et g-c g-testo g-accento" style="left:40.32%;top:37.76%">FP salvato</span><span class="g-et g-c g-testo g-blu" style="left:40.32%;top:45.00%">variabili locali</span><span class="g-et g-c g-testo g-blu" style="left:40.32%;top:52.24%">del chiamato</span><span class="g-et g-c g-testo g-grigio" style="left:40.32%;top:69.34%">libero</span><span class="g-et g-c g-testo g-ambra" style="left:40.32%;top:89.47%">codice</span><span class="g-et g-c g-testo g-accento" style="left:7.26%;top:41.45%">FP</span><span class="g-et g-c g-testo g-blu" style="left:7.26%;top:55.92%">SP</span><span class="g-et g-e g-testo g-blu" style="left:58.47%;top:8.81%">frame del chiamante</span><span class="g-et g-e g-testo g-rosa" style="left:58.47%;top:23.69%">preparato nella chiamata</span><span class="g-et g-e g-testo g-grigio" style="left:58.47%;top:30.26%">offset positivi: FP+4, FP+8, …</span><span class="g-et g-e g-testo g-blu" style="left:58.47%;top:45.39%">frame del chiamato</span><span class="g-et g-e g-testo g-grigio" style="left:58.47%;top:51.97%">offset negativi: FP−4, FP−8</span></div><figcaption>Lo stack durante una chiamata, nel modello delle slide. In alto gli indirizzi più alti. Sopra la linea di FP stanno le cose preparate dal chiamante (posto per il risultato, parametri, indirizzo di ritorno) e l&#39;FP salvato; sotto, le variabili locali della funzione chiamata, fino a SP. Il codice sta in basso, lontano</figcaption></figure>
+<div class="box def"><p class="box-label"><span>Definizione · Stack frame (slide 5–6)</span></p><p>Lo <strong>stack frame</strong> è la zona dello stack riservata a una chiamata di funzione. Ogni chiamata ne crea uno nuovo, anche se la funzione è sempre la stessa; quando la funzione finisce, il frame viene rilasciato e la memoria torna disponibile.</p>
+</div>
+<p><strong>Come si legge.</strong> Una funzione chiamata tre volte ha tre frame diversi, uno per volta o anche insieme. Le variabili locali vivono nel frame: nascono con la chiamata e spariscono con il ritorno.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Perché con le variabili a indirizzi fissi una funzione non può essere ricorsiva?</span></summary><div class="ans"><p>Perché una seconda chiamata, partita mentre la prima è ancora in corso, scriverebbe nelle stesse celle e cancellerebbe i valori della prima. Con lo stack ogni chiamata ha le sue celle.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Ogni chiamata ha il suo frame; il frame nasce con la chiamata e muore con il ritorno.</li>
+<li>SP si muove, FP sta fermo. Sopra FP i parametri, sotto le variabili locali.</li>
+</ul>
+</div>
+</section>
+
+<section id="un-esempio-frame-per-frame" aria-labelledby="h-un-esempio-frame-per-frame" style="--h:2330px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-un-esempio-frame-per-frame">Un esempio, frame per frame</h2><span class="slides">slide 8–12</span></div>
+<p>Il programma delle slide 8–10:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">int</span> square(<span class="kw">int</span> x) {
+    <span class="kw">return</span> x * x;
+}
+<span class="kw">int</span> sumSquares(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">return</span> square(a) + square(b);
+}
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> res = sumSquares(2, 3);
+    printf(<span class="str">&quot;Risultato: %d\n&quot;</span>, res);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Stampa <code>Risultato: 13</code>. <code>main</code> chiama <code>sumSquares</code>, che chiama <code>square</code> due volte, prima con 2 e poi con 3. Lo stack passa per sette stati:</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Lo stack di `main → sumSquares → square`, istante per istante, da sinistra a destra. Ogni chiamata aggiunge un frame in fondo, ogni ritorno lo toglie. Il frame più in basso è quello attivo; gli altri sono sospesi e aspettano" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M9.03 103.48L79.03 103.48L79.03 44.35L9.03 44.35Z"/><path class="g-poligono g-blu" d="M88.06 103.48L158.06 103.48L158.06 44.35L88.06 44.35Z"/><path class="g-poligono g-viola g-pieno" d="M88.06 162.61L158.06 162.61L158.06 103.48L88.06 103.48Z"/><path class="g-poligono g-blu" d="M167.1 103.48L237.1 103.48L237.1 44.35L167.1 44.35Z"/><path class="g-poligono g-viola" d="M167.1 162.61L237.1 162.61L237.1 103.48L167.1 103.48Z"/><path class="g-poligono g-ambra g-pieno" d="M167.1 221.74L237.1 221.74L237.1 162.61L167.1 162.61Z"/><path class="g-poligono g-blu" d="M246.13 103.48L316.13 103.48L316.13 44.35L246.13 44.35Z"/><path class="g-poligono g-viola g-pieno" d="M246.13 162.61L316.13 162.61L316.13 103.48L246.13 103.48Z"/><path class="g-poligono g-blu" d="M325.16 103.48L395.16 103.48L395.16 44.35L325.16 44.35Z"/><path class="g-poligono g-viola" d="M325.16 162.61L395.16 162.61L395.16 103.48L325.16 103.48Z"/><path class="g-poligono g-ambra g-pieno" d="M325.16 221.74L395.16 221.74L395.16 162.61L325.16 162.61Z"/><path class="g-poligono g-blu" d="M404.19 103.48L474.19 103.48L474.19 44.35L404.19 44.35Z"/><path class="g-poligono g-viola g-pieno" d="M404.19 162.61L474.19 162.61L474.19 103.48L404.19 103.48Z"/><path class="g-poligono g-blu g-pieno" d="M483.23 103.48L553.23 103.48L553.23 44.35L483.23 44.35Z"/></svg><span class="g-et g-c g-testo g-blu" style="left:7.90%;top:21.74%">main</span><span class="g-et g-c g-testo g-grigio" style="left:7.90%;top:6.52%">1</span><span class="g-et g-c g-testo g-blu" style="left:22.02%;top:21.74%">main</span><span class="g-et g-c g-testo g-viola" style="left:22.02%;top:39.13%">sumSq</span><span class="g-et g-c g-testo g-grigio" style="left:22.02%;top:6.52%">2</span><span class="g-et g-c g-testo g-blu" style="left:36.13%;top:21.74%">main</span><span class="g-et g-c g-testo g-viola" style="left:36.13%;top:39.13%">sumSq</span><span class="g-et g-c g-testo g-ambra" style="left:36.13%;top:56.52%">square(2)</span><span class="g-et g-c g-testo g-grigio" style="left:36.13%;top:6.52%">3</span><span class="g-et g-c g-testo g-blu" style="left:50.24%;top:21.74%">main</span><span class="g-et g-c g-testo g-viola" style="left:50.24%;top:39.13%">sumSq</span><span class="g-et g-c g-testo g-grigio" style="left:50.24%;top:6.52%">4</span><span class="g-et g-c g-testo g-blu" style="left:64.36%;top:21.74%">main</span><span class="g-et g-c g-testo g-viola" style="left:64.36%;top:39.13%">sumSq</span><span class="g-et g-c g-testo g-ambra" style="left:64.36%;top:56.52%">square(3)</span><span class="g-et g-c g-testo g-grigio" style="left:64.36%;top:6.52%">5</span><span class="g-et g-c g-testo g-blu" style="left:78.39%;top:21.74%">main</span><span class="g-et g-c g-testo g-viola" style="left:78.39%;top:39.13%">sumSq</span><span class="g-et g-c g-testo g-grigio" style="left:78.39%;top:6.52%">6</span><span class="g-et g-c g-testo g-blu" style="left:92.50%;top:21.74%">main</span><span class="g-et g-c g-testo g-grigio" style="left:92.50%;top:6.52%">7</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:92.39%">pieno = frame attivo · vuoto = sospeso</span></div><figcaption>Lo stack di <code>main → sumSquares → square</code>, istante per istante, da sinistra a destra. Ogni chiamata aggiunge un frame in fondo, ogni ritorno lo toglie. Il frame più in basso è quello attivo; gli altri sono sospesi e aspettano</figcaption></figure>
+<p>In ogni istante c&#39;è <strong>una sola funzione attiva</strong>, quella con il frame in fondo alla pila, e una fila di funzioni <strong>sospese</strong>, che aspettano che la chiamata sotto di loro finisca. Al passo 3, per esempio, <code>square(2)</code> è attiva, mentre <code>sumSquares</code> e <code>main</code> sono sospese a metà di un&#39;istruzione.</p>
+<p>La slide 12 mostra che cosa c&#39;è dentro i frame, con un programma che ha parametri, variabili locali e risultato:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span> sommaProdotto(<span class="kw">int</span> a, <span class="kw">int</span> b, <span class="kw">int</span> c) {
+    <span class="kw">int</span> somma = a + b + c;
+    <span class="kw">int</span> prodotto = a * b * c;
+    <span class="kw">int</span> risultato = somma + prodotto;
+    <span class="kw">return</span> risultato;
+}
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 2, y = 3, z = 4;
+    <span class="kw">int</span> r = sommaProdotto(x, y, z);
+    printf(<span class="str">&quot;Risultato: %d\n&quot;</span>, r);
+}</code></pre>
+<p>Stampa <code>Risultato: 33</code>, cioè <span class="katex" role="math" aria-label="9 + 24"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">24</span></span></span></span>. Con l&#39;esecuzione ferma alla riga di <code>risultato</code>, lo stack è questo:</p>
+<figure class="grafico" id="grafico-3"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Lo stack della slide 12, con l'esecuzione ferma alla riga 6 di `sommaProdotto(2, 3, 4)`. In alto il frame di `main` con il posto per `r`, poi le copie dei parametri, i dati di controllo, e sotto FP le variabili locali di `sommaProdotto`. `x, y, z` e `a, b, c` hanno gli stessi valori ma sono celle diverse" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-3-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-3-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-3-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-3-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-3-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-3-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-3-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-3-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M135.48 42.5L298.06 42.5L298.06 18.89L135.48 18.89Z"/><path class="g-poligono g-blu g-pieno" d="M135.48 66.11L298.06 66.11L298.06 42.5L135.48 42.5Z"/><path class="g-poligono g-blu g-pieno" d="M135.48 89.72L298.06 89.72L298.06 66.11L135.48 66.11Z"/><path class="g-poligono g-verde g-pieno" d="M135.48 113.33L298.06 113.33L298.06 89.72L135.48 89.72Z"/><path class="g-poligono g-rosa g-pieno" d="M135.48 136.94L298.06 136.94L298.06 113.33L135.48 113.33Z"/><path class="g-poligono g-rosa g-pieno" d="M135.48 160.56L298.06 160.56L298.06 136.94L135.48 136.94Z"/><path class="g-poligono g-rosa g-pieno" d="M135.48 184.17L298.06 184.17L298.06 160.56L135.48 160.56Z"/><path class="g-poligono g-grigio g-pieno" d="M135.48 207.78L298.06 207.78L298.06 184.17L135.48 184.17Z"/><path class="g-poligono g-blu g-pieno" d="M135.48 231.39L298.06 231.39L298.06 207.78L135.48 207.78Z"/><path class="g-poligono g-blu g-pieno" d="M135.48 255L298.06 255L298.06 231.39L135.48 231.39Z"/><path class="g-poligono g-blu g-pieno" d="M135.48 278.61L298.06 278.61L298.06 255L135.48 255Z"/><path class="g-linea g-accento" d="M63.23 207.78L133.23 207.78" marker-end="url(#g-freccia-3-accento)"/><path class="g-linea g-blu" d="M63.23 278.61L133.23 278.61" marker-end="url(#g-freccia-3-blu)"/><path class="g-linea g-blu" d="M309.35 18.89L309.35 207.78"/><path class="g-linea g-ambra" d="M309.35 207.78L309.35 278.61"/></svg><span class="g-et g-c g-testo g-blu" style="left:38.71%;top:9.03%">int x = 2</span><span class="g-et g-c g-testo g-blu" style="left:38.71%;top:15.97%">int y = 3</span><span class="g-et g-c g-testo g-blu" style="left:38.71%;top:22.92%">int z = 4</span><span class="g-et g-c g-testo g-verde" style="left:38.71%;top:29.86%">int r = ?</span><span class="g-et g-c g-testo g-rosa" style="left:38.71%;top:36.81%">int a = 2</span><span class="g-et g-c g-testo g-rosa" style="left:38.71%;top:43.75%">int b = 3</span><span class="g-et g-c g-testo g-rosa" style="left:38.71%;top:50.69%">int c = 4</span><span class="g-et g-c g-testo g-grigio" style="left:38.71%;top:57.64%">dati di controllo</span><span class="g-et g-c g-testo g-blu" style="left:38.71%;top:64.58%">int somma = 9</span><span class="g-et g-c g-testo g-blu" style="left:38.71%;top:71.53%">int prodotto = 24</span><span class="g-et g-c g-testo g-blu" style="left:38.71%;top:78.47%">int risultato = 33</span><span class="g-et g-c g-testo g-accento" style="left:7.26%;top:61.11%">FP</span><span class="g-et g-c g-testo g-blu" style="left:7.26%;top:81.94%">SP</span><span class="g-et g-e g-testo g-blu" style="left:56.86%;top:33.33%">frame di main (fino a FP)</span><span class="g-et g-e g-testo g-ambra" style="left:56.86%;top:71.53%">frame di sommaProdotto</span><span class="g-et g-e g-testo g-verde" style="left:56.86%;top:29.86%">qui finirà il 33</span></div><figcaption>Lo stack della slide 12, con l&#39;esecuzione ferma alla riga 6 di <code>sommaProdotto(2, 3, 4)</code>. In alto il frame di <code>main</code> con il posto per <code>r</code>, poi le copie dei parametri, i dati di controllo, e sotto FP le variabili locali di <code>sommaProdotto</code>. <code>x, y, z</code> e <code>a, b, c</code> hanno gli stessi valori ma sono celle diverse</figcaption></figure>
+<ul>
+<li><code>a</code>, <code>b</code>, <code>c</code> sono <strong>copie</strong> di <code>x</code>, <code>y</code>, <code>z</code>: celle diverse con gli stessi valori.</li>
+<li>La cella di <code>r</code> fa da posto per il risultato: ci finirà il 33 al ritorno.</li>
+<li><code>somma</code>, <code>prodotto</code>, <code>risultato</code> stanno sotto FP; SP è sotto l&#39;ultima.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Al passo 5 del disegno con <code>sumSquares</code>, quali frame ci sono e quale è attivo?</span></summary><div class="ans"><p><code>main</code>, <code>sumSquares</code> e <code>square(3)</code>; attivo <code>square(3)</code>. Il frame di <code>square(2)</code> è già stato rilasciato al passo 4.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Una sola funzione attiva, quella del frame in fondo; le altre sono sospese.</li>
+<li>I parametri sono copie degli argomenti, in celle diverse.</li>
+</ul>
+</div>
+</section>
+
+<section id="la-chiamata-passo-per-passo" aria-labelledby="h-la-chiamata-passo-per-passo" style="--h:1270px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-la-chiamata-passo-per-passo">La chiamata, passo per passo</h2><span class="slides">slide 13–21</span></div>
+<p>Una chiamata di funzione non è un&#39;istruzione sola della macchina: è una sequenza di operazioni. Si divide in due fasi, la chiamata con il <strong>prologo</strong> e il ritorno con l&#39;<strong>epilogo</strong>. Ecco la chiamata, nell&#39;ordine delle slide.</p>
+<ol>
+<li><strong>Il chiamante prepara</strong>: lascia sullo stack il posto per il valore di ritorno e copia i parametri (nelle CPU vere, spesso nei registri).</li>
+<li><strong>Salva l&#39;indirizzo di ritorno</strong>, cioè l&#39;indirizzo dell&#39;istruzione successiva alla chiamata, <code>next(PC)</code>, e mette nel PC l&#39;indirizzo della prima istruzione della funzione. Da qui esegue la funzione.</li>
+<li><strong>Prologo</strong>: la funzione chiamata salva sullo stack il valore attuale di FP, quello del chiamante.</li>
+<li><strong>FP = SP</strong>: comincia il nuovo frame.</li>
+<li><strong>Riserva le variabili locali</strong>, spostando SP verso il basso.</li>
+</ol>
+<p>Da questo momento la funzione arriva ai suoi dati con offset fissi da FP: i parametri e il posto per il risultato sopra, le variabili locali sotto. È il disegno della sezione precedente.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Il ruolo del frame pointer (slide 21)</span></p><p>FP sta alla base del frame della funzione attiva. Grazie a lui parametri e variabili locali si raggiungono con offset da FP, senza conoscere il loro indirizzo assoluto; gli offset restano validi anche quando SP cambia; e la funzione può girare in qualunque posizione dello stack.</p>
+</div>
+<p><strong>Come si legge.</strong> Il codice di <code>square</code> dice «il mio parametro è in FP+8», non «il mio parametro è all&#39;indirizzo 1000». Così lo stesso codice funziona sia quando <code>square</code> è chiamata da <code>main</code> sia quando è chiamata da <code>sumSquares</code>, con il frame in un punto diverso. È questo che permette più chiamate attive della stessa funzione: la <strong>rientranza</strong>, e più avanti la ricorsione.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Perché il prologo salva il vecchio FP prima di cambiarlo?</span></summary><div class="ans"><p>Perché al ritorno il chiamante deve ritrovare il suo FP, per raggiungere di nuovo i suoi dati. Se non fosse salvato, dopo <code>FP = SP</code> andrebbe perso.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Chiamata: posto per il risultato e parametri, indirizzo di ritorno, salto.</li>
+<li>Prologo: salva FP, FP = SP, riserva le variabili locali.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-ritorno-passo-per-passo" aria-labelledby="h-il-ritorno-passo-per-passo" style="--h:1370px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-il-ritorno-passo-per-passo">Il ritorno, passo per passo</h2><span class="slides">slide 22–29</span></div>
+<p>Il ritorno disfa la chiamata in ordine inverso.</p>
+<ol>
+<li><strong>Si scrive il valore di ritorno</strong> nel posto preparato dal chiamante.</li>
+<li><strong>Epilogo</strong>: si rilasciano tutte le variabili locali ponendo <strong>SP = FP</strong>.</li>
+<li><strong>Si ripristina FP</strong> prendendo dallo stack il valore salvato nel prologo.</li>
+<li><strong>Si ripristina il PC</strong> con l&#39;indirizzo di ritorno: l&#39;esecuzione riprende nel chiamante, subito dopo la chiamata.</li>
+<li><strong>Si tolgono i parametri.</strong></li>
+<li>Lo stato è come prima della chiamata, e il chiamante legge il valore di ritorno.</li>
+</ol>
+<figure class="grafico" id="grafico-4"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Chiamata e ritorno come due sequenze speculari. A sinistra quello che succede scendendo nella funzione, a destra quello che succede risalendo, dal basso verso l'alto. Ogni passo del ritorno disfa un passo della chiamata" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-4-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-4-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-4-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-4-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-4-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-4-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-4-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-4-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-rosa g-pieno" d="M13.55 90.67L266.45 90.67L266.45 51L13.55 51Z"/><path class="g-poligono g-ambra g-pieno" d="M13.55 147.33L266.45 147.33L266.45 107.67L13.55 107.67Z"/><path class="g-poligono g-accento g-pieno" d="M13.55 204L266.45 204L266.45 164.33L13.55 164.33Z"/><path class="g-poligono g-blu g-pieno" d="M13.55 260.67L266.45 260.67L266.45 221L13.55 221Z"/><path class="g-poligono g-rosa g-pieno" d="M293.55 90.67L546.45 90.67L546.45 51L293.55 51Z"/><path class="g-poligono g-ambra g-pieno" d="M293.55 147.33L546.45 147.33L546.45 107.67L293.55 107.67Z"/><path class="g-poligono g-accento g-pieno" d="M293.55 204L546.45 204L546.45 164.33L293.55 164.33Z"/><path class="g-poligono g-blu g-pieno" d="M293.55 260.67L546.45 260.67L546.45 221L293.55 221Z"/><path class="g-linea g-grigio" d="M140 266.33L140 306" marker-end="url(#g-freccia-4-grigio)"/><path class="g-linea g-grigio" d="M140 306L420 306" marker-end="url(#g-freccia-4-grigio)"/><path class="g-linea g-grigio" d="M420 306L420 266.33" marker-end="url(#g-freccia-4-grigio)"/></svg><span class="g-et g-c g-testo g-rosa" style="left:25.00%;top:6.67%">chiamata</span><span class="g-et g-c g-testo g-verde" style="left:75.00%;top:6.67%">ritorno</span><span class="g-et g-c g-testo g-rosa" style="left:25.00%;top:20.83%">posto per il risultato, parametri</span><span class="g-et g-c g-testo g-ambra" style="left:25.00%;top:37.50%">indirizzo di ritorno, salto</span><span class="g-et g-c g-testo g-accento" style="left:25.00%;top:54.17%">salva FP, poi FP = SP</span><span class="g-et g-c g-testo g-blu" style="left:25.00%;top:70.83%">riserva le variabili locali</span><span class="g-et g-c g-testo g-rosa" style="left:75.00%;top:20.83%">toglie i parametri, legge il risultato</span><span class="g-et g-c g-testo g-ambra" style="left:75.00%;top:37.50%">ripristina il PC</span><span class="g-et g-c g-testo g-accento" style="left:75.00%;top:54.17%">ripristina FP</span><span class="g-et g-c g-testo g-blu" style="left:75.00%;top:70.83%">scrive il risultato, SP = FP</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:95.00%">corpo della funzione</span></div><figcaption>Chiamata e ritorno come due sequenze speculari. A sinistra quello che succede scendendo nella funzione, a destra quello che succede risalendo, dal basso verso l&#39;alto. Ogni passo del ritorno disfa un passo della chiamata</figcaption></figure>
+<p>La slide 29 riassume: la chiamata rende espliciti il contesto della funzione, l&#39;indirizzo di ritorno, i dati locali e il ripristino del chiamante. Nelle CPU vere i dettagli cambiano (in x86 il risultato di solito passa in un registro, non sullo stack), ma la logica è la stessa.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Dopo il passo 2 del ritorno, le variabili locali della funzione sono ancora scritte in memoria?</span></summary><div class="ans"><p>I bit restano lì finché qualcuno non li sovrascrive, ma la zona è sotto SP, quindi libera: la prossima chiamata la riuserà. Per il programma quelle variabili non esistono più.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Ritorno: scrive il risultato, SP = FP, ripristina FP, ripristina il PC, toglie i parametri.</li>
+<li>Il ritorno disfa la chiamata in ordine inverso.</li>
+</ul>
+</div>
+</section>
+
+<section id="record-di-attivazione-e-stack-frame" aria-labelledby="h-record-di-attivazione-e-stack-frame" style="--h:1140px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-record-di-attivazione-e-stack-frame">Record di attivazione e stack frame</h2><span class="slides">slide 30–34</span></div>
+<p>Le slide distinguono due nomi per due livelli.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Record di attivazione (slide 31)</span></p><p>Il <strong>record di attivazione</strong> è l&#39;insieme logico dei dati che servono a una singola chiamata: i parametri, le variabili locali, l&#39;eventuale valore di ritorno, i dati di controllo (indirizzo di ritorno, FP precedente) e altri registri salvati. Non dipende dalla macchina né da dove i dati stanno fisicamente.</p>
+</div>
+<div class="box def"><p class="box-label"><span>Definizione · Stack frame, in senso stretto (slide 32)</span></p><p>Lo <strong>stack frame</strong> è la parte del record che sta nello stack tra FP e SP ed è gestita dalla funzione attiva: le variabili locali, a offset negativi. Parametri, dati di controllo e valore di ritorno, a offset positivi, stanno subito sopra, in una zona gestita dal chiamante.</p>
+</div>
+<p><strong>Come si legge.</strong> Il record di attivazione è «tutto quello che serve alla chiamata»; lo stack frame è il pezzo di memoria delle variabili locali. Il libro di Deitel non fa questa distinzione e dice sempre «stack frame» (p. 192). Nell&#39;uso comune, e all&#39;esame, «frame» indica di solito tutto il blocco di una chiamata.</p>
+<div class="box exam"><p class="box-label"><span>Conta all'esame · Esercizio tipico (slide 34)</span></p><p>«Rappresentare lo stato dello stack e dei registri prima del ritorno di una funzione.» Lo svolgo nella sezione «Verso l&#39;esame».</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nel disegno di <code>sommaProdotto</code>, quali celle fanno parte dello stack frame in senso stretto, e quali solo del record di attivazione?</span></summary><div class="ans"><p>Stack frame in senso stretto: <code>somma</code>, <code>prodotto</code>, <code>risultato</code>, tra FP e SP. Del record fanno parte anche i parametri <code>a</code>, <code>b</code>, <code>c</code>, i dati di controllo e il posto per il risultato, che stanno sopra FP.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Record di attivazione: l&#39;insieme logico. Stack frame: la zona tra FP e SP.</li>
+</ul>
+</div>
+</section>
+
+<section id="lo-scambio-che-non-scambia" aria-labelledby="h-lo-scambio-che-non-scambia" style="--h:890px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-lo-scambio-che-non-scambia">Lo scambio che non scambia</h2><span class="slides">slide 35–43</span></div>
+<p>Una funzione che scambia due variabili del chiamante, scritta come nella <a href="03A_scambio_variabili.html">03A</a>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">void</span> swapSbagliato(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">int</span> tmp = a;
+    a = b;
+    b = tmp;
+}
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 10, y = 20;
+    swapSbagliato(x, y);
+    printf(<span class="str">&quot;x = %d, y = %d\n&quot;</span>, x, y);
+}</code></pre>
+<p>Stampa <code>x = 10, y = 20</code>: niente è cambiato. Lo stack spiega perché.</p>
+<ol>
+<li>Alla chiamata i valori di <code>x</code> e <code>y</code> vengono <strong>copiati</strong> in <code>a</code> e <code>b</code>, nel record di <code>swapSbagliato</code>.</li>
+<li>La funzione scambia <code>a</code> e <code>b</code>: <code>a</code> diventa 20, <code>b</code> diventa 10.</li>
+<li>Al ritorno il record viene liberato, con le copie scambiate dentro. <code>x</code> e <code>y</code>, nel frame di <code>main</code>, non sono mai stati toccati.</li>
+</ol>
+<p>In più <code>swapSbagliato</code> non può nominare <code>x</code> e <code>y</code>: sono variabili di <code>main</code>, fuori dalla sua visibilità.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Passaggio per valore (slide 43)</span></p><p>In C i parametri attuali (gli argomenti della chiamata) vengono sempre <strong>copiati</strong> nei parametri formali. La funzione lavora sulle copie.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa <code>void azzera(int n) { n = 0; }</code> chiamata con <code>int k = 7; azzera(k); printf(&quot;%d&quot;, k);</code>?</span></summary><div class="ans"><p><code>7</code>. <code>n</code> è una copia di <code>k</code>: azzerarla non cambia <code>k</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Gli argomenti si copiano. Cambiare un parametro non cambia la variabile del chiamante.</li>
+</ul>
+</div>
+</section>
+
+<section id="lo-scambio-con-i-puntatori" aria-labelledby="h-lo-scambio-con-i-puntatori" style="--h:2020px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-lo-scambio-con-i-puntatori">Lo scambio con i puntatori</h2><span class="slides">slide 44–52</span></div>
+<p>Il rimedio: invece dei valori, si passano gli <strong>indirizzi</strong> delle variabili da modificare. Il ripasso dei puntatori della <a href="02C_referenziamento_scanf_puntatori.html">02C</a>, in tre righe:</p>
+<ul>
+<li><code>int* p;</code> dichiara un puntatore a <code>int</code>, che contiene un indirizzo;</li>
+<li><code>p = &amp;x;</code> mette in <code>p</code> l&#39;indirizzo di <code>x</code>;</li>
+<li><code>*p</code> è la variabile a cui <code>p</code> punta: <code>*p = 42;</code> scrive 42 in <code>x</code>. Mai dereferenziare un puntatore non inizializzato o <code>NULL</code>.</li>
+</ul>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">void</span> swap(<span class="kw">int</span>* pA, <span class="kw">int</span>* pB) {
+    <span class="kw">int</span> tmp = *pA;  <span class="cm">// legge il valore puntato da pA</span>
+    *pA = *pB;      <span class="cm">// scrive nella variabile puntata da pA</span>
+    *pB = tmp;      <span class="cm">// scrive nella variabile puntata da pB</span>
+}
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 10, y = 20;
+    swap(&amp;x, &amp;y);   <span class="cm">// passo gli INDIRIZZI di x e y</span>
+    printf(<span class="str">&quot;x = %d, y = %d\n&quot;</span>, x, y);
+}</code></pre>
+<p>Stampa <code>x = 20, y = 10</code>.</p>
+<figure class="grafico" id="grafico-5"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Lo scambio della slide 47: nel frame di `swap` i parametri `pA` e `pB` contengono gli indirizzi di `x` e `y`, che stanno nel frame di `main`. Con `*pA` e `*pB` la funzione legge e scrive proprio quelle celle" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-5-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-5-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-5-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-5-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-5-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-5-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-5-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-5-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M144.52 59.81L298.06 59.81L298.06 25.19L144.52 25.19Z"/><path class="g-poligono g-blu g-pieno" d="M144.52 94.44L298.06 94.44L298.06 59.81L144.52 59.81Z"/><path class="g-poligono g-rosa g-pieno" d="M144.52 129.07L298.06 129.07L298.06 94.44L144.52 94.44Z"/><path class="g-poligono g-rosa g-pieno" d="M144.52 163.7L298.06 163.7L298.06 129.07L144.52 129.07Z"/><path class="g-poligono g-grigio g-pieno" d="M144.52 198.33L298.06 198.33L298.06 163.7L144.52 163.7Z"/><path class="g-poligono g-ambra g-pieno" d="M144.52 232.96L298.06 232.96L298.06 198.33L144.52 198.33Z"/><path class="g-linea g-rosa" d="M300.32 111.44L356.77 92.56" marker-end="url(#g-freccia-5-rosa)"/><path class="g-linea g-rosa" d="M356.77 92.56L302.58 42.19" marker-end="url(#g-freccia-5-rosa)"/><path class="g-linea g-viola" d="M300.32 146.07L397.42 120.89" marker-end="url(#g-freccia-5-viola)"/><path class="g-linea g-viola" d="M397.42 120.89L302.58 76.81" marker-end="url(#g-freccia-5-viola)"/></svg><span class="g-et g-c g-testo g-blu" style="left:39.52%;top:12.41%">int x = 10</span><span class="g-et g-c g-testo g-blu" style="left:39.52%;top:22.59%">int y = 20</span><span class="g-et g-c g-testo g-rosa" style="left:39.52%;top:32.78%">int* pA = &amp;x</span><span class="g-et g-c g-testo g-rosa" style="left:39.52%;top:42.96%">int* pB = &amp;y</span><span class="g-et g-c g-testo g-grigio" style="left:39.52%;top:53.15%">dati di controllo</span><span class="g-et g-c g-testo g-ambra" style="left:39.52%;top:63.33%">int tmp = 10</span><span class="g-et g-e g-testo g-grigio" style="left:72.58%;top:36.11%">*pA è x, *pB è y</span><span class="g-et g-c g-testo g-blu" style="left:12.90%;top:17.59%">main</span><span class="g-et g-c g-testo g-ambra" style="left:12.90%;top:58.33%">swap</span></div><figcaption>Lo scambio della slide 47: nel frame di <code>swap</code> i parametri <code>pA</code> e <code>pB</code> contengono gli indirizzi di <code>x</code> e <code>y</code>, che stanno nel frame di <code>main</code>. Con <code>*pA</code> e <code>*pB</code> la funzione legge e scrive proprio quelle celle</figcaption></figure>
+<p>Il passaggio è ancora per valore: quello che viene copiato è l&#39;<strong>indirizzo</strong>. Ma con l&#39;indirizzo in mano, <code>swap</code> legge e scrive direttamente nelle celle di <code>x</code> e <code>y</code>.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Passaggio per riferimento, simulato (slide 51)</span></p><p>In Pascal o in C++ esiste il passaggio <strong>per riferimento</strong>: la funzione riceve un riferimento alla variabile del chiamante e può modificarla. In C no, tutto passa per valore. Per avere lo stesso effetto si passa l&#39;indirizzo della variabile, cioè un puntatore, e dentro la funzione si usa <code>*</code>.</p>
+</div>
+<p><strong>Come si legge.</strong> È il meccanismo di <code>scanf(&quot;%d&quot;, &amp;x)</code>: <code>scanf</code> deve scrivere in una variabile di <code>main</code>, quindi riceve il suo indirizzo. Con un indirizzo una funzione può arrivare a qualunque zona di memoria raggiungibile (stack, variabili globali, heap), non solo al suo record: è un modo di scavalcare le regole di visibilità imposte dallo stack, da usare con attenzione.</p>
+<div class="table-wrap"><table><thead><tr><th>Chiamata</th><th>Che cosa riceve la funzione</th><th>Cambia la variabile del chiamante?</th></tr></thead><tbody><tr><td><code>swapSbagliato(x, y)</code></td><td>copie di 10 e 20</td><td>no</td></tr>
+<tr><td><code>swap(&amp;x, &amp;y)</code></td><td>copie degli indirizzi di <code>x</code> e <code>y</code></td><td>sì, con <code>*pA</code> e <code>*pB</code></td></tr></tbody></table></div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa succede se in <code>main</code> si scrive <code>swap(x, y);</code>, senza <code>&amp;</code>?</span></summary><div class="ans"><p>Non compila: gcc 16 dà <code>passing argument 1 of 'swap' makes pointer from integer without a cast</code>, che è un errore anche senza <code>-Werror</code>. Un <code>int</code> non è un indirizzo.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Per modificare una variabile del chiamante: si passa <code>&amp;x</code>, si riceve <code>int* p</code>, si scrive <code>*p</code>.</li>
+<li>Anche l&#39;indirizzo passa per valore: si copia l&#39;indirizzo, non la variabile.</li>
+</ul>
+</div>
+</section>
+
+<section id="array-e-stringhe-come-parametri" aria-labelledby="h-array-e-stringhe-come-parametri" style="--h:2790px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-array-e-stringhe-come-parametri">Array e stringhe come parametri</h2><span class="slides">slide 53–59</span></div>
+<p>Fin qui i parametri erano numeri e puntatori a una variabile. Con gli array e le stringhe cambiano due cose: la funzione lavora sui dati del chiamante, e la lunghezza va gestita a parte.</p>
+<h3 id="un-array-arriva-come-puntatore">Un array arriva come puntatore</h3>
+<p>Nella <a href="05A_array_stringhe.html">05A</a> un array «si comportava anche come un puntatore al suo primo elemento». Passandolo a una funzione arriva proprio così: un puntatore. Le due intestazioni <code>void fn(int* dati)</code> e <code>void fn(int dati[])</code> sono la stessa cosa. Quindi:</p>
+<ul>
+<li>la funzione lavora sull&#39;array <strong>del chiamante</strong>, non su una copia: se scrive in <code>dati[i]</code>, cambia l&#39;array originale;</li>
+<li>la funzione <strong>non conosce la lunghezza</strong>. Dentro la funzione <code>sizeof(dati)</code> è la dimensione di un puntatore, 8 byte, non dell&#39;array. gcc lo segnala: <code>'sizeof' on array function parameter 'v' will return size of 'int *'</code>, un errore con <code>-Werror</code>.</li>
+</ul>
+<p>Per questo un array si passa <strong>con la sua lunghezza</strong>, due parametri:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> fn(<span class="kw">size_t</span> datiLen, <span class="kw">int</span> dati[]) {
+    <span class="cm">// posso usare dati[i] con i in [0, datiLen)</span>
+}</code></pre>
+<h3 id="const-sola-lettura">const: sola lettura</h3>
+<p>Se la funzione deve solo leggere l&#39;array, lo dichiara <code>const</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> quanti(<span class="kw">size_t</span> datiLen, <span class="kw">const</span> <span class="kw">int</span> dati[]) {
+    <span class="kw">size_t</span> n = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; datiLen; i++) {
+        <span class="kw">if</span> (dati[i] &gt; 0) {
+            n++;
+        }
+    }
+    <span class="kw">return</span> n;
+}</code></pre>
+<p>Con <code>{3, -1, 4, 0, 5, -9}</code> restituisce 3. Il compilatore fa rispettare la promessa, in due modi:</p>
+<div class="table-wrap"><table><thead><tr><th>Errore</th><th>gcc 16 con <code>-Wall -Werror</code></th></tr></thead><tbody><tr><td>scrivere in un array <code>const</code>: <code>v[i] = 0;</code></td><td><code>assignment of read-only location '*(v + (sizetype)(i * 4))'</code></td></tr>
+<tr><td>passare un array <code>const</code> a una funzione che lo vuole modificabile</td><td><code>passing argument 2 of 'raddoppia' discards 'const' qualifier from pointer target type</code></td></tr></tbody></table></div>
+<p>Si può dichiarare <code>const</code> anche un parametro normale che non cambia mai, come <code>const size_t datiLen</code> (slide 57): rende chiaro il contratto della funzione, cioè che cosa modifica e che cosa no.</p>
+<h3 id="le-stringhe">Le stringhe</h3>
+<p>Una stringa è un array di <code>char</code> che finisce con <code>'\0'</code>. Anche lei arriva come <code>char*</code>, ma <strong>la lunghezza non serve</strong>: la funzione può scorrere fino al terminatore.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> stampa(<span class="kw">const</span> <span class="kw">char</span>* s) {
+    printf(<span class="str">&quot;%s\n&quot;</span>, s);
+}</code></pre>
+<p>Funziona con un letterale, <code>stampa(&quot;ciao&quot;)</code>, e con un array di <code>char</code>, <code>stampa(buffer)</code>. Il <code>const</code> qui è necessario per i letterali, che sono in sola lettura (05A).</p>
+<h3 id="tre-funzioni-di-string-h">Tre funzioni di string.h</h3>
+<div class="table-wrap"><table><thead><tr><th>Funzione</th><th>Che cosa fa</th><th>Esempio provato</th></tr></thead><tbody><tr><td><code>size_t strlen(const char* s)</code></td><td>lunghezza, senza contare <code>'\0'</code></td><td><code>strlen(&quot;ciao&quot;)</code> vale 4, mentre <code>sizeof(&quot;ciao&quot;)</code> vale 5</td></tr>
+<tr><td><code>int strcmp(const char* s1, const char* s2)</code></td><td>confronto in ordine di dizionario: negativo se <code>s1</code> viene prima, 0 se uguali, positivo se viene dopo</td><td><code>strcmp(&quot;albero&quot;, &quot;alce&quot;)</code> è negativo (b viene prima di c)</td></tr>
+<tr><td><code>char* strncpy(char* dest, const char* src, size_t n)</code></td><td>copia al più <code>n</code> caratteri da <code>src</code> a <code>dest</code></td><td>vedi la trappola qui sotto</td></tr></tbody></table></div>
+<p><code>strcmp</code> confronta i codici ASCII: <code>strcmp(&quot;Zeta&quot;, &quot;alfa&quot;)</code> è negativo, perché <code>'Z'</code> vale 90 e <code>'a'</code> 97. Tutte le maiuscole vengono prima delle minuscole. Lo standard garantisce solo il segno del risultato: sul mio PC è −1 o 1, su altri sistemi può essere un altro numero.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · strncpy non sempre termina la stringa</span></p><p>La slide 59 dice che <code>strncpy</code> copia al più <code>n</code> caratteri «incluso terminatore». Ma se <code>src</code> ha <code>n</code> caratteri o più, il terminatore <strong>non</strong> viene copiato: <code>dest</code> resta senza <code>'\0'</code>, e una <code>printf(&quot;%s&quot;)</code> successiva continua a leggere oltre. Con <code>char corto[4]</code> e <code>strncpy(corto, &quot;ciao&quot;, 4)</code> l&#39;ultimo carattere è <code>'o'</code>, non <code>'\0'</code>. Quando i valori sono costanti gcc se ne accorge: <code>'strncpy' output truncated before terminating nul copying 4 bytes from a string of the same length</code>. Regola: destinazione di almeno <code>strlen(src) + 1</code> caratteri, oppure <code>dest[n - 1] = '\0'</code> dopo la copia.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Una funzione ha l&#39;intestazione <code>double media(size_t n, const double v[])</code>. Che cosa puoi dire senza leggere il corpo?</span></summary><div class="ans"><p>Riceve un array di <code>double</code> con la sua lunghezza <code>n</code> e <strong>non lo modifica</strong>: lo garantisce il <code>const</code>, controllato dal compilatore.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Un array arriva come puntatore: lunghezza a parte, e <code>sizeof</code> dentro la funzione non dà la lunghezza.</li>
+<li><code>const</code> = sola lettura, controllata dal compilatore.</li>
+<li>Le stringhe si fermano a <code>'\0'</code>, senza lunghezza. <code>strncpy</code> può lasciarle senza terminatore.</li>
+</ul>
+</div>
+</section>
+
+<section id="le-asserzioni" aria-labelledby="h-le-asserzioni" style="--h:1450px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-le-asserzioni">Le asserzioni</h2><span class="slides">slide 60–66</span></div>
+<p>Un&#39;<strong>asserzione</strong> è una condizione che deve essere sempre vera, se il programma è corretto. Serve a scrivere nel codice le ipotesi che il programmatore fa sullo stato delle variabili. In C c&#39;è <code>assert</code>, in <code>&lt;assert.h&gt;</code>:</p>
+<ul>
+<li>se la condizione è vera, non succede niente;</li>
+<li>se è falsa, il programma si ferma e stampa la condizione violata, il file e la riga.</li>
+</ul>
+<p>Con un errore voluto in una funzione che dovrebbe calcolare il massimo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;assert.h&gt;
+
+<span class="kw">int</span> massimoSbagliato(<span class="kw">int</span> a, <span class="kw">int</span> b) {
+    <span class="kw">int</span> m;
+    <span class="kw">if</span> (a &lt; b) {      <span class="cm">// errore voluto: sceglie il minimo</span>
+        m = a;
+    } <span class="kw">else</span> {
+        m = b;
+    }
+    assert(m &gt;= a &amp;&amp; m &gt;= b);
+    <span class="kw">return</span> m;
+}</code></pre>
+<p><code>massimoSbagliato(3, 8)</code> ferma il programma con <code>Assertion failed: m &gt;= a &amp;&amp; m &gt;= b, file asserzioni.c, line 12</code> (il formato del messaggio cambia da un sistema all&#39;altro). Compilando con <strong><code>-DNDEBUG</code></strong> le asserzioni spariscono: lo stesso programma restituisce 3 senza fermarsi.</p>
+<p>Gli usi delle slide:</p>
+<div class="table-wrap"><table><thead><tr><th>Uso</th><th>Esempio</th></tr></thead><tbody><tr><td><strong>precondizione</strong> su puntatori e lunghezze</td><td><code>assert(aLen == 0 \|\| a != NULL);</code></td></tr>
+<tr><td><strong>invariante</strong> dentro un ciclo</td><td><code>assert(i &lt; aLen);</code></td></tr>
+<tr><td><strong>postcondizione</strong> alla fine</td><td><code>assert(*a &lt;= *b);</code> dopo aver ordinato una coppia</td></tr>
+<tr><td><strong>coerenza</strong> tra argomenti</td><td><code>assert((haveStr &amp;&amp; str != NULL) \|\| (!haveStr &amp;&amp; str == NULL));</code></td></tr></tbody></table></div>
+<div class="box trap"><p class="box-label"><span>Trappola · Le asserzioni non controllano l&#39;input</span></p><p>Un&#39;asserzione falsa vuol dire <strong>errore nel programma</strong>. Un numero sbagliato scritto dall&#39;utente non è un errore del programma: va gestito con un controllo normale, un messaggio e una nuova lettura, come la <code>leggiRaggio</code> della <a href="06A_funzioni.html">06A</a>. E dentro <code>assert</code> niente effetti collaterali: con <code>-DNDEBUG</code> l&#39;espressione non viene nemmeno calcolata.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quale asserzione esprime «la funzione ha restituito uno dei due numeri» per un massimo <code>m</code> di <code>a</code> e <code>b</code>?</span></summary><div class="ans"><p><code>assert(m == a || m == b);</code>. Insieme a <code>assert(m &gt;= a &amp;&amp; m &gt;= b);</code> dice tutto quello che un massimo deve soddisfare (slide 65).</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>assert(c)</code>: se <code>c</code> è falsa il programma si ferma con file e riga.</li>
+<li>Per le ipotesi del programmatore, mai per l&#39;input dell&#39;utente. <code>-DNDEBUG</code> le spegne.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:720px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td>SP</td><td>«stack pointer»</td><td>registro che segna il limite dello stack</td><td>si sposta quando si riserva spazio</td></tr>
+<tr><td>FP</td><td>«frame pointer»</td><td>registro che segna l&#39;inizio del frame attivo</td><td>parametri in FP+8, locali in FP−4</td></tr>
+<tr><td><code>next(PC)</code></td><td>«successore del PC»</td><td>indirizzo di ritorno, salvato nella chiamata</td><td>l&#39;esecuzione riprende da lì</td></tr>
+<tr><td><code>int* p</code> come parametro</td><td>«puntatore a int»</td><td>la funzione riceve un indirizzo</td><td><code>void swap(int* pA, int* pB)</code></td></tr>
+<tr><td><code>const int v[]</code></td><td>«array di int costanti»</td><td>la funzione non può modificare l&#39;array</td><td><code>size_t quanti(size_t n, const int v[])</code></td></tr>
+<tr><td><code>assert(c)</code></td><td>«asserisci c»</td><td>ferma il programma se <code>c</code> è falsa</td><td><code>assert(m &gt;= a &amp;&amp; m &gt;= b);</code></td></tr>
+<tr><td><code>-DNDEBUG</code></td><td>«senza debug»</td><td>opzione di gcc che spegne le asserzioni</td><td><code>gcc -Wall -Werror -DNDEBUG p.c</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:1520px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>All&#39;esame di Programmazione I c&#39;è un esercizio sullo <strong>stato della memoria</strong>: si dà un programma, di solito con funzioni e array, e si chiede che cosa c&#39;è nello stack in un certo istante, quanti frame ci sono, che valore ha una variabile, in che riga riprende una funzione. Nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a> lo stack si disegna a righe: per ogni frame i parametri, le variabili locali, la riga di rientro e il valore restituito. Di questa lezione servono:</p>
+<ol>
+<li><strong>un frame per ogni chiamata</strong>, con le copie dei parametri;</li>
+<li><strong>la riga di rientro</strong>: il chiamante riprende dall&#39;istruzione dopo la chiamata, a metà della riga se la chiamata è dentro un&#39;espressione;</li>
+<li><strong>gli array non si copiano</strong>: tutti i frame vedono e modificano l&#39;array del chiamante;</li>
+<li><strong>una funzione <code>void</code> con parametri puntatore</strong> cambia le variabili del chiamante, una con parametri normali no.</li>
+</ol>
+<h3 id="una-domanda-nello-stile-dell-esame-svolta">Una domanda nello stile dell&#39;esame, svolta</h3>
+<p><em>Nel programma <code>sommaProdotto</code> della sezione «Un esempio, frame per frame», disegna lo stack un attimo prima che <code>return risultato;</code> venga eseguita, e di&#39; che cosa vale <code>r</code> subito dopo la riga della chiamata.</em></p>
+<p><strong>In pratica chiede</strong>: quali frame esistono durante la <code>return</code>, che cosa contengono, e che cosa cambia al ritorno.</p>
+<p><strong>Soluzione.</strong></p>
+<ol>
+<li>I frame sono due: <code>main</code> (sospeso nella riga della chiamata) e <code>sommaProdotto</code> (attivo).</li>
+<li>Nel frame di <code>main</code>: <code>x = 2</code>, <code>y = 3</code>, <code>z = 4</code>, <code>r</code> non ancora assegnata (<code>?</code>).</li>
+<li>Nel record di <code>sommaProdotto</code>: i parametri <code>a = 2</code>, <code>b = 3</code>, <code>c = 4</code>, i dati di controllo (indirizzo di ritorno nella riga della chiamata, FP di <code>main</code>), e sotto FP le variabili locali <code>somma = 9</code>, <code>prodotto = 24</code>, <code>risultato = 33</code>. SP sotto <code>risultato</code>.</li>
+<li>La <code>return</code> scrive 33 nel posto del risultato; l&#39;epilogo libera le variabili locali, ripristina FP e il PC, il chiamante toglie i parametri. Dopo la riga della chiamata <code>r</code> vale <strong>33</strong>, e lo stack contiene solo il frame di <code>main</code>.</li>
+</ol>
+<p>Il disegno è quello della slide 12, nella sezione citata.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Disegnare lo stack in un istante dato</span></p><ol>
+<li>Segui l&#39;esecuzione da <code>main</code>, riga per riga, e fermati all&#39;istante chiesto.</li>
+<li>Per ogni chiamata in corso disegna un frame sotto il precedente: parametri (copie degli argomenti), poi le variabili locali dichiarate fin lì, con <code>?</code> per quelle non ancora assegnate.</li>
+<li>Segna accanto a ogni frame sospeso la riga in cui riprenderà.</li>
+<li>Per i puntatori, disegna una freccia verso la cella puntata, anche se sta in un altro frame.</li>
+<li>Per gli array passati, ricorda che la funzione lavora sull&#39;array del chiamante: scrivi le modifiche lì.</li>
+</ol>
+</div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2470px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Che cosa stampa <code>swapSbagliato(x, y)</code> seguita da <code>printf(&quot;x = %d, y = %d&quot;, x, y)</code>, con <code>x = 10</code> e <code>y = 20</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x = 20, y = 10</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x = 10, y = 20</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>x = 20, y = 20</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un comportamento indefinito</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La funzione scambia le copie <code>a</code> e <code>b</code>, che spariscono al ritorno. La più insidiosa è <code>x = 20, y = 10</code>: è quello che fa <code>swap(&amp;x, &amp;y)</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Nel modello delle slide, dove stanno le variabili locali della funzione attiva?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">in un&#39;area fissa, uguale per tutte le chiamate</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">sotto FP, fino a SP, a offset negativi da FP</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">nel codice del programma</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">nei registri SP e FP</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">sopra FP, a offset positivi</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il frame della funzione attiva va da FP a SP, e lo stack cresce verso il basso. La più insidiosa è la seconda: sopra FP ci sono i parametri e i dati di controllo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Qual è l&#39;ordine giusto del ritorno da funzione?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">toglie i parametri, ripristina FP, SP = FP, scrive il risultato</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">ripristina FP, ripristina il PC, SP = FP, scrive il risultato</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">scrive il risultato, SP = FP, ripristina FP, ripristina il PC, toglie i parametri</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">SP = FP, scrive il risultato, ripristina il PC, ripristina FP</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">ripristina il PC, scrive il risultato, SP = FP, ripristina FP</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il ritorno disfa la chiamata in ordine inverso. La più insidiosa è la quarta: se si libera il frame prima di scrivere il risultato, la funzione perde accesso alle sue variabili locali.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Perché il prologo salva il valore di FP sullo stack?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché al ritorno il chiamante deve riavere il suo FP</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché FP contiene l&#39;indirizzo di ritorno</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">per liberare le variabili locali</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">per passare i parametri alla funzione</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché SP non può essere salvato</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Subito dopo il salvataggio il prologo pone FP = SP: senza la copia, il FP del chiamante andrebbe perso. La più insidiosa è l&#39;ultima: l&#39;indirizzo di ritorno è un dato diverso, salvato prima, al momento del salto.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa restituisce <code>sizeof(v)</code> dentro <code>size_t lunghezza(int v[])</code>, compilata su un PC a 64 bit senza <code>-Werror</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8, la dimensione di un puntatore</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il numero di elementi dell&#39;array</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4, la dimensione di un <code>int</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il numero di byte dell&#39;array</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Un array passato a funzione arriva come puntatore. gcc lo segnala con <code>sizeof-array-argument</code>, che con <code>-Werror</code> è un errore. La più insidiosa è la terza: è quello che dà <code>sizeof</code> in <code>main</code>, dove l&#39;array è dichiarato.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Una funzione ha il parametro <code>const int dati[]</code> e contiene <code>dati[0] = 5;</code>. Che cosa succede con <code>-Wall -Werror</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">compila e modifica solo una copia dell&#39;array</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">compila e modifica l&#39;array del chiamante</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">compila, ma al momento dell&#39;esecuzione il programma si ferma</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">compila con un avviso</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila: assegnamento a una zona in sola lettura</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>const</code> è un vincolo controllato dal compilatore: <code>assignment of read-only location</code>. La più insidiosa è la quarta: gli array non vengono mai copiati quando si passano.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Con <code>char d[4];</code>, che cosa contiene <code>d[3]</code> dopo <code>strncpy(d, s, 4)</code>, se <code>s</code> è <code>&quot;ciao&quot;</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>strncpy</code> si ferma a 3 caratteri e mette <code>'\0'</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila mai</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il terminatore <code>'\0'</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il carattere <code>'o'</code>: la stringa resta senza terminatore</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il carattere <code>'a'</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>strncpy</code> copia 4 caratteri e il terminatore non ci sta. La più insidiosa è la seconda, che segue alla lettera la slide 59.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale uso di <code>assert</code> è sbagliato?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">controllare che due argomenti siano coerenti tra loro</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">controllare dentro un ciclo che l&#39;indice sia nell&#39;array</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">controllare alla fine che il risultato rispetti la specifica</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">controllare che il numero scritto dall&#39;utente sia positivo</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">controllare all&#39;inizio di una funzione che il puntatore ricevuto non sia <code>NULL</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>L&#39;input sbagliato non è un errore del programma: va gestito con un controllo e un messaggio. Le altre sono precondizioni, postcondizioni e invarianti, gli usi delle slide.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1590px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: che cosa stampa? <span class="lvl">base</span></h3><pre class="code" data-lingua="c"><code><span class="kw">void</span> cambia(<span class="kw">int</span> a, <span class="kw">int</span>* b) {
+    a = a + 1;
+    *b = *b + 1;
+}</code></pre>
+<p>con <code>int x = 1, y = 1; cambia(x, &amp;y); printf(&quot;%d %d\n&quot;, x, y);</code></p>
+<details class="sol"><summary>Soluzione</summary><p><code>1 2</code>. <code>a</code> è una copia di <code>x</code>; <code>b</code> è una copia dell&#39;indirizzo di <code>y</code>, e <code>*b</code> è proprio <code>y</code>. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: quanti frame? <span class="lvl">base</span></h3><p>Nel programma <code>main → sumSquares(2, 3) → square</code>, quanti frame ci sono al massimo nello stack nello stesso momento, <code>main</code> compreso? E quante chiamate di funzione avvengono in tutto, <code>main</code> escluso?</p>
+<details class="sol"><summary>Soluzione</summary><p>Al massimo <strong>3</strong> frame (<code>main</code>, <code>sumSquares</code>, una <code>square</code>). Le chiamate sono <strong>3</strong>: <code>sumSquares</code> una volta, <code>square</code> due volte, una dopo l&#39;altra, mai insieme.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Ordinare una coppia <span class="lvl">medio</span></h3><p>Scrivi <code>void ordinaCoppia(int* a, int* b)</code> che scambia i valori puntati se <code>*a &gt; *b</code>, con un&#39;asserzione finale che controlla il risultato.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;assert.h&gt;
+
+<span class="kw">void</span> ordinaCoppia(<span class="kw">int</span>* a, <span class="kw">int</span>* b) {
+    <span class="kw">if</span> (*a &gt; *b) {
+        <span class="kw">int</span> temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+    assert(*a &lt;= *b);   <span class="cm">// postcondizione: la coppia è ordinata</span>
+}</code></pre>
+<p>È l&#39;esempio della slide 64. Con <code>x = 9, y = 4</code>, dopo <code>ordinaCoppia(&amp;x, &amp;y)</code> diventano <code>x = 4, y = 9</code>; con <code>x = 2, y = 5</code> non cambia niente. Compilato con <code>-Wall -Werror</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Minimo e massimo in una volta <span class="lvl">medio</span></h3><p>Scrivi <code>void minMax(size_t n, const int v[], int* min, int* max)</code> che, per <code>n &gt;= 1</code>, scrive nelle variabili puntate il minimo e il massimo dell&#39;array. Scrivi anche una chiamata.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;assert.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;
+
+<span class="kw">void</span> minMax(<span class="kw">size_t</span> n, <span class="kw">const</span> <span class="kw">int</span> v[], <span class="kw">int</span>* min, <span class="kw">int</span>* max) {
+    assert(n &gt;= 1 &amp;&amp; v != <span class="kw">NULL</span>);   <span class="cm">// precondizione</span>
+    <span class="kw">int</span> mi = v[0], ma = v[0];
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt; n; i++) {
+        <span class="kw">if</span> (v[i] &lt; mi) {
+            mi = v[i];
+        }
+        <span class="kw">if</span> (v[i] &gt; ma) {
+            ma = v[i];
+        }
+    }
+    *min = mi;
+    *max = ma;
+}</code></pre>
+<p>Chiamata: <code>int a[5] = {4, -2, 9, 0, 9}; int lo, hi; minMax(5, a, &amp;lo, &amp;hi);</code> dà <code>lo = -2</code>, <code>hi = 9</code>. Due risultati, nessuno con <code>return</code>: passano per i puntatori. L&#39;array è <code>const</code> perché la funzione lo legge soltanto. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Stato della memoria, nello stile dell&#39;esame <span class="lvl">tipo esame</span></h3><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">void</span> f(<span class="kw">int</span> a, <span class="kw">int</span>* p) {
+    a = a * 2;
+    *p = *p + a;      <span class="cm">// (B)</span>
+}
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> x = 3, y = 10;
+    f(x, &amp;y);         <span class="cm">// (A)</span>
+    f(y, &amp;x);
+    printf(<span class="str">&quot;%d %d\n&quot;</span>, x, y);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>(1) Nel frame della prima chiamata di <code>f</code>, quanto valgono <code>a</code> e <code>*p</code> subito dopo la riga (B)? (2) In che punto riprende <code>main</code> dopo la prima chiamata? (3) Che cosa stampa il programma?</p>
+<details class="sol"><summary>Soluzione</summary><p>(1) Prima chiamata: <code>a</code> parte da 3 e diventa 6; <code>p</code> punta a <code>y</code>, e dopo (B) <code>*p</code> vale 10 + 6 = <strong>16</strong>. Quindi <code>a = 6</code>, <code>*p = 16</code>. (2) Subito dopo la riga (A), alla seconda chiamata. (3) Seconda chiamata: <code>a</code> è una copia di <code>y</code>, cioè 16, e diventa 32; <code>p</code> punta a <code>x</code>, che diventa 3 + 32 = 35. Stampa <strong><code>35 16</code></strong>. Provato con gcc.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Una lunghezza di stringa con asserzioni <span class="lvl">difficile</span></h3><p>Scrivi <code>size_t lunghezza(const char* s)</code> che conta i caratteri prima del terminatore, senza usare <code>strlen</code>, con una precondizione su <code>s</code> e una postcondizione che controlla che in posizione <code>n</code> ci sia proprio il terminatore. Poi spiega perché non serve passare la lunghezza, a differenza degli array di <code>int</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;assert.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;
+
+<span class="kw">size_t</span> lunghezza(<span class="kw">const</span> <span class="kw">char</span>* s) {
+    assert(s != <span class="kw">NULL</span>);           <span class="cm">// precondizione</span>
+    <span class="kw">size_t</span> n = 0;
+    <span class="kw">while</span> (s[n] != <span class="str">'\0'</span>) {
+        n++;
+    }
+    assert(s[n] == <span class="str">'\0'</span>);        <span class="cm">// postcondizione</span>
+    <span class="kw">return</span> n;
+}</code></pre>
+<p><code>lunghezza(&quot;ciao&quot;)</code> vale 4, <code>lunghezza(&quot;&quot;)</code> vale 0, come <code>strlen</code>. La lunghezza non serve perché la stringa porta con sé la sua fine, il carattere <code>'\0'</code>; un array di <code>int</code> non ha un valore riservato per «fine», quindi la lunghezza va passata a parte. Provato.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:560px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che cosa contengono SP e FP, e quale dei due resta fermo durante una chiamata?</span></summary><div class="ans"><p>SP il limite dello stack, FP l&#39;inizio del frame della funzione attiva. FP resta fermo, e per questo i dati del frame si raggiungono con offset fissi da FP.</p>
+</div></details>
+<details class="qa"><summary><span>Elenca i passi della chiamata e del ritorno.</span></summary><div class="ans"><p>Chiamata: posto per il risultato e parametri, salvataggio dell&#39;indirizzo di ritorno e salto, salvataggio di FP, FP = SP, variabili locali. Ritorno: scrittura del risultato, SP = FP, ripristino di FP, ripristino del PC, rimozione dei parametri.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>swapSbagliato</code> non scambia, e come si corregge?</span></summary><div class="ans"><p>Perché riceve copie di <code>x</code> e <code>y</code>. Si corregge passando gli indirizzi, <code>swap(&amp;x, &amp;y)</code>, e scrivendo con <code>*pA</code> e <code>*pB</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Perché una funzione che riceve un array ha bisogno anche della lunghezza, e una che riceve una stringa no?</span></summary><div class="ans"><p>L&#39;array arriva come puntatore al primo elemento, senza informazioni sulla lunghezza. La stringa finisce con <code>'\0'</code>, che la funzione può cercare.</p>
+</div></details>
+<details class="qa"><summary><span>A che cosa serve <code>assert</code>, e perché non va usata per l&#39;input?</span></summary><div class="ans"><p>A fermare il programma quando un&#39;ipotesi del programmatore è falsa, cioè quando c&#39;è un errore nel codice. L&#39;input sbagliato è un caso previsto, da gestire con un messaggio; e con <code>-DNDEBUG</code> le asserzioni spariscono.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:780px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Stack</dt><dd>Zona della memoria dove si impilano i frame delle chiamate; cresce verso gli indirizzi bassi.</dd></div>
+<div><dt>Stack frame</dt><dd>Zona dello stack di una chiamata: nel modello delle slide, le variabili locali tra FP e SP.</dd></div>
+<div><dt>Record di attivazione</dt><dd>Insieme logico dei dati di una chiamata: parametri, variabili locali, valore di ritorno, dati di controllo.</dd></div>
+<div><dt>SP</dt><dd>Stack pointer: registro che segna il limite dello stack.</dd></div>
+<div><dt>FP</dt><dd>Frame pointer: registro che segna l&#39;inizio del frame attivo, fermo durante la chiamata.</dd></div>
+<div><dt>Offset</dt><dd>Distanza in byte da un indirizzo di riferimento, per esempio FP+8.</dd></div>
+<div><dt>Prologo</dt><dd>Inizio della funzione chiamata: salva FP, pone FP = SP, riserva le variabili locali.</dd></div>
+<div><dt>Epilogo</dt><dd>Fine della funzione: SP = FP, ripristina FP e il PC.</dd></div>
+<div><dt>Indirizzo di ritorno</dt><dd>Indirizzo dell&#39;istruzione dopo la chiamata, da cui il chiamante riprende.</dd></div>
+<div><dt>Rientranza</dt><dd>Proprietà di una funzione che può avere più chiamate attive insieme, ognuna con il suo frame.</dd></div>
+<div><dt>Passaggio per valore</dt><dd>Gli argomenti sono copiati nei parametri.</dd></div>
+<div><dt>Passaggio per riferimento</dt><dd>In C si simula passando l&#39;indirizzo della variabile.</dd></div>
+<div><dt>const</dt><dd>Qualificatore di sola lettura, controllato dal compilatore.</dd></div>
+<div><dt>Asserzione</dt><dd>Condizione che deve essere sempre vera; assert ferma il programma se è falsa.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:480px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 9</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-06B-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So disegnare lo stack con i frame di più chiamate annidate.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So dire che cosa indicano SP e FP e quale dei due resta fermo.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So elencare in ordine i passi della chiamata e del ritorno.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So distinguere record di attivazione e stack frame.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So spiegare perché swapSbagliato non scambia e scrivere swap con i puntatori.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So passare un array a una funzione con la sua lunghezza, e so perché sizeof non basta.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So usare const per gli array in sola lettura.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So usare strlen e strcmp, e conosco la trappola di strncpy.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So scrivere precondizioni, invarianti e postcondizioni con assert.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Chiamata a funzione e ritorno. Chiamata di funzione nel modello di Von Neumann esteso» (06B_chiamata_funzioni), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: storia dello stack (slide 2–3), modello, stack frame, SP e FP (4–7), l&#39;esempio <code>sumSquares</code> e <code>sommaProdotto</code> (8–12), chiamata e prologo (13–21), ritorno ed epilogo (22–29), record di attivazione e stack frame (30–34), passaggio per valore e scambio (35–43), puntatori e scambio riuscito (44–52), array, <code>const</code> e stringhe (53–59), asserzioni (60–66).</li>
+<li>A. V. Aho, R. Sethi, J. D. Ullman, <em>Compilers</em>, 1986, e la System V ABI per x86, citati nella slide 33; P. Deitel, H. Deitel, <em>C: How to Program</em>, p. 192, citato nella stessa slide.</li>
+<li>Esercizi sullo stato della memoria: <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a> e <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md" target="_blank" rel="noopener">scheda del corso</a>.</li>
+<li>Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con <code>-Wall -Werror</code>, ed eseguiti; per l&#39;asserzione che fallisce ho usato un programma di prova a parte. Gli errori e le stampe citati sono quelli veri. Quiz, esercizi e figure sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

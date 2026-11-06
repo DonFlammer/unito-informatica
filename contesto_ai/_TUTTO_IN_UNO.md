@@ -492,6 +492,9 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 | 05A | 21/10/2026 e 27/10 | Array e stringhe | `lezioni/05A_array_stringhe.md` · HTML: `appunti/PROG1/05A_array_stringhe.html` | array statici, indici `[0, n)`, `size_t` e `%zu`, liste di inizializzazione (mancanti a 0), `#define`; scansione in avanti e all'indietro (`size_t i >= 0` compila con `-Wall` e non finisce; `ptrdiff_t` e `%td`); media, conteggio, massimo con invariante e precondizione «non vuoto»; `v[i]` ≡ `*(v + i)`, `sizeof` dell'array (20 byte) e aritmetica dei puntatori; VLA (niente `{0}`, lunghezza ≥ 1); `b = a` e `a == b` non compilano, `v[5]` compila (errore solo con `-O2`); `char` e ASCII (48, 65, 97, +32), da ASCII a Unicode con le correzioni alle slide 24–25, `sizeof("è")` = 3; stringhe e `'\0'`, `char nome[4] = "Anna"` senza terminatore; scansione con indice e puntatore; `%19s` senza `&`, maschera `" %49[^\n]"`; letterali in sola lettura e `const char*`; `&parola` con `%s` non compila |
 | Lab04 | 26/10/2026 (B2), 03/11 (B1) | Laboratorio 04: iterazioni | `lezioni/Lab04_iterazioni.md` · HTML: `appunti/PROG1/Lab04_iterazioni.html` | `for` o `while` e i sei cicli della slide 4 (il ciclo da 20 a 2 con passo 7 non arriva a 2); somma dei pari (2550) e virgolette tipografiche delle slide (`stray '\342'`); iterazioni_n.c e fattoriale (`int` fino a 12!, `unsigned long long` fino a 20!); sequenze terminate da 0 con `1 == scanf(...)` e cortocircuito; media con controllo del contatore (`-nan(ind)`), input da file con `<` (in PowerShell `Get-Content`); divisori; cicli annidati: Floyd e quadrato (`"\\"`); «per ogni» ed «esiste» con sentinelle booleane, anche nella condizione del ciclo; Fibonacci con la variabile temporanea; indovina il numero con `rand`, ricerca per dimezzamento (al massimo 7 tentativi su 100, provato su tutti i segreti; conto sbagliato nella slide 24: 63, non 62). Esercizi CodeRunner Lab04-Es1–Es3 e codice di partenza non visti: soluzioni mie |
 | 06A | 28/10/2026 | Funzioni | `lezioni/06A_funzioni.md` · HTML: `appunti/PROG1/06A_funzioni.html` | che cos'è una funzione, parallelo con le funzioni matematiche e dove finisce (effetti collaterali), prototipo, definizione e chiamata, le quattro forme con e senza parametri e `void`, funzioni in memoria (puntatore a funzione), più parametri e un solo valore di ritorno, regole della `return` (una sola all'esame), passaggio per valore e di un indirizzo (`incr` e `incrPtr`), errori comuni con i messaggi veri di gcc 16, divide et impera con il programma del cerchio. **Svista delle slide**: la `leggiRaggio` della slide 25 gira all'infinito con un input non numerico o finito (corretta negli appunti); `M_PI` non è standard. Slide arrivate il 01/11, messe al 28/10 |
+| Lab05A | 02/11/2026 (B2); B1 probabilmente 10/11 | Laboratorio 05: array e stringhe | `lezioni/Lab05A_array_stringhe.md` · HTML: `appunti/PROG1/Lab05A_array_stringhe.html` | `size_t` e `%zu`, `array.c` (somma del VLA), frequenze del questionario con `frequenze[v - 1]++`, somma selettiva (Lab05-Es1: due passate, perché serve memorizzare), stringhe e ASCII (`tEs` di `stringhe.c`, `%20s`, `'7' - '0'`), alfabeto, montagne (Lab05-Es2: copia a mano del nome, `piuAlta` inizializzata), «per ogni»/«esiste» con il `for` (all'uscita `i` è uno dopo), `ctype.h` (**restituiscono un `int` diverso da 0, non 1**: `islower('q')` vale 2; `(unsigned char)`), passwords (Lab05-Es3), Indovina chi? (Lab05-Es4, confrontata con la soluzione ufficiale 2025/26). Testi CodeRunner 2025/26 ricostruiti dalle soluzioni del canale A; codice di partenza 2025/26 |
+| 06B | 03/11/2026 | Chiamata di funzione e ritorno | `lezioni/06B_chiamata_funzioni.md` · HTML: `appunti/PROG1/06B_chiamata_funzioni.html` | stack delle chiamate (Bauer e Samelson, Dijkstra, B5000), stack frame, SP e FP, offset positivi e negativi, `sumSquares`/`square` frame per frame, `sommaProdotto` con lo stack della slide 12, chiamata e prologo, ritorno ed epilogo in 5 passi, record di attivazione e stack frame, `swapSbagliato` e `swap` con i puntatori, passaggio per riferimento simulato, array come puntatore (`sizeof-array-argument`), `const` (errori veri di gcc 16), stringhe, `strlen`/`strcmp`/`strncpy` (**`strncpy` può lasciare la stringa senza terminatore**), `assert`, `-DNDEBUG`; esercizio d'esame sullo stato dello stack; 5 disegni. Offset di esempio diversi tra le slide 7 e 14 |
+| 07A | 04/11/2026 | Algoritmi su array | `lezioni/07A_algoritmi_su_array.md` · HTML: `appunti/PROG1/07A_algoritmi_su_array.html` | ricerca lineare con sentinella (**il ciclo della slide 7 non termina se trova `key`**), «esiste» come OR e «per ogni» come AND, test d'ipotesi $H_0$/$H_1$, cortocircuito, invariante, dominio vuoto (vero per vacuità / falso), `tuttiPositivi` ed `esistePari` con i test della slide, selezione e modello dimensione-capacità, `selectInRange`, ordinamento sulle coppie `[1, aLen)`, `aLen - 1` con `size_t` = 18446744073709551615, bubble sort con uscita anticipata e la versione con `newLast` (provata contro `qsort` su 20 000 array), `e1` del pre-esame 2023/24; 4 disegni. Slide 49: `int b[bLen] = ...` non compila |
 
 ## Fili conduttori (da ricollegare nelle prossime lezioni)
 
@@ -10059,6 +10062,1832 @@ Divide et impera | Dividere un problema in sottoproblemi, una funzione per ognun
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/lezioni/06B_chiamata_funzioni.md -->
+> File: `contesto_ai/PROG1/lezioni/06B_chiamata_funzioni.md`
+
+```yaml
+corso: PROG1
+lezione: 06B
+titolo: Chiamata di funzione e ritorno
+data: 2026-11-03
+docenti: Elvio Amparore
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 06B
+descrizione: >-
+  Appunti della lezione 06B di Programmazione I (canale B): lo stack delle chiamate nel modello di Von Neumann esteso,
+  stack frame, SP e FP, la chiamata e il ritorno passo per passo, record di attivazione, il passaggio per valore e lo
+  scambio che non scambia, lo scambio con i puntatori, array e stringhe come parametri, const, le funzioni di string.h,
+  le asserzioni con assert, con tutti i programmi provati, quiz ed esercizi.
+lede: >-
+  Dove stanno parametri e variabili locali durante una chiamata, come fa il programma a tornare nel punto giusto, e
+  perché una funzione non può cambiare le variabili di chi la chiama, a meno di riceverne l'indirizzo. All'esame c'è
+  un esercizio proprio su questo: disegnare lo stack.
+materiale: slide
+scheda:
+  Slide: 06B_chiamata_funzioni («Chiamata a funzione e ritorno») · 66 pagine
+  Lezione: martedì 03/11
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 100 minuti, con carta e penna per disegnare lo stack
+fonte: >-
+  Slide «Chiamata a funzione e ritorno. Chiamata di funzione nel modello di Von Neumann esteso» (06B_chiamata_funzioni),
+  Programmazione I – Teoria, canale B, A.A. 2026/27
+appunti_html: appunti/PROG1/06B_chiamata_funzioni.html
+genera_html: true
+```
+
+## In breve
+
+- Ogni chiamata di funzione riserva sullo **stack** una zona tutta sua, lo **stack frame**, con le sue variabili locali. Quando la funzione finisce, la zona viene liberata.
+- Lo stack cresce verso gli indirizzi più bassi. Due registri lo tengono in ordine: **SP** segna il limite dello stack, **FP** l'inizio del frame della funzione attiva. FP resta fermo durante la chiamata, SP si sposta.
+- La **chiamata**: il chiamante copia i parametri e lascia il posto per il risultato, salva l'indirizzo dell'istruzione successiva e salta alla funzione; il **prologo** salva il vecchio FP, pone FP = SP e riserva le variabili locali.
+- Il **ritorno**: si scrive il risultato; l'**epilogo** pone SP = FP, ripristina FP e il PC; il chiamante toglie i parametri e legge il risultato.
+- In C il passaggio è **sempre per valore**: `swapSbagliato(x, y)` scambia due copie e lascia `x` e `y` come erano. Per cambiarle si passano gli **indirizzi**, `swap(&x, &y)`, e si scrive con `*pA` e `*pB`.
+- Un array passato a una funzione arriva come **puntatore al primo elemento**: la lunghezza va passata a parte. Con `const` la funzione promette di non modificarlo. Le stringhe non hanno bisogno della lunghezza, perché finiscono con `'\0'`.
+- `assert(condizione)` ferma il programma se la condizione è falsa: serve a controllare le ipotesi del programmatore, non l'input dell'utente.
+
+> [!CANALI]
+> **Canale B.** Lezione di martedì 03/11, dalle 11 alle 13, subito dopo la [06A](06A_funzioni.html). Il calendario ufficiale ha Programmazione I anche mercoledì 04/11, che metto alla [07A](07A_algoritmi_su_array.html): se Amparore ha finito queste slide il 04/11, aggiorno la data. Usa il modello della memoria della [02B](02B_assegnamento_memory_model.html) (stack, FP e SP), i puntatori della [02C](02C_referenziamento_scanf_puntatori.html), lo scambio della [03A](03A_scambio_variabili.html) e gli array e le stringhe della [05A](05A_array_stringhe.html).
+>
+> **Canali A e C.** Le slide 2026/27 dei canali A e C su questo argomento non le ho viste. L'esame è unico, e l'esercizio sullo stato della memoria c'è per tutti.
+>
+> **Un avviso sulle slide.** Gli offset di esempio cambiano tra la slide 7 (parametri in FP+8, FP+12, variabili locali in FP−4, FP−8) e la slide 14 ([FP+4], [FP+8] e [FP−0], [FP−4]). Negli appunti uso quelli della slide 7, che tornano con la figura; all'esame conta il segno: sopra FP i parametri, sotto le variabili locali.
+>
+> Tutti i programmi li ho compilati con gcc 16.1, con `-Wall -Werror`, ed eseguiti; gli errori del compilatore citati sono quelli veri.
+
+## Lo stack delle chiamate (slide 2–7)
+
+Una funzione si può chiamare da più punti, anche mentre è già in corso (succederà con la ricorsione). Se le sue variabili stessero a indirizzi fissi, come nei primi compilatori, due chiamate attive nello stesso momento si rovinerebbero le variabili a vicenda. La soluzione, usata dalla fine degli anni '50 (Bauer e Samelson, poi Dijkstra nel 1958, e il Burroughs B5000 nel 1961 in hardware), è lo **stack**: ogni chiamata prende una zona nuova in cima alla pila, e la restituisce quando finisce.
+
+Il modello è quello della [02B](02B_assegnamento_memory_model.html), con qualche dettaglio in più:
+
+- lo stack cresce verso gli **indirizzi decrescenti**: nei disegni, con gli indirizzi alti in alto, cresce verso il basso;
+- **SP** (*stack pointer*) indica il limite dello stack. Si sposta quando si riserva o si libera spazio: nel modello delle slide, quando una variabile locale entra o esce di visibilità;
+- **FP** (*frame pointer*) indica l'inizio del frame della funzione attiva, e **resta fermo** per tutta la chiamata.
+
+Siccome FP non si muove, ogni dato del frame ha una posizione fissa rispetto a lui, un **offset** (una distanza in byte): i parametri stanno sopra, a offset positivi, le variabili locali sotto, a offset negativi.
+
+```grafico
+titolo: Lo stack durante una chiamata, nel modello delle slide. In alto gli indirizzi più alti. Sopra la linea di FP stanno le cose preparate dal chiamante (posto per il risultato, parametri, indirizzo di ritorno) e l'FP salvato; sotto, le variabili locali della funzione chiamata, fino a SP. Il codice sta in basso, lontano
+x: 0 12.4
+y: 0 7.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 3.20 6.65 6.80 6.65 6.80 7.20 3.20 7.20 | blu | pieno
+testo: 5.00 6.93 | blu | "variabili locali del chiamante"
+poligono: 3.20 6.10 6.80 6.10 6.80 6.65 3.20 6.65 | verde | pieno
+testo: 5.00 6.38 | verde | "posto per il risultato"
+poligono: 3.20 5.55 6.80 5.55 6.80 6.10 3.20 6.10 | rosa | pieno
+testo: 5.00 5.83 | rosa | "parametri"
+poligono: 3.20 5.00 6.80 5.00 6.80 5.55 3.20 5.55 | ambra | pieno
+testo: 5.00 5.28 | ambra | "indirizzo di ritorno"
+poligono: 3.20 4.45 6.80 4.45 6.80 5.00 3.20 5.00 | accento | pieno
+testo: 5.00 4.73 | accento | "FP salvato"
+poligono: 3.20 3.90 6.80 3.90 6.80 4.45 3.20 4.45 | blu | pieno
+testo: 5.00 4.18 | blu | "variabili locali"
+poligono: 3.20 3.35 6.80 3.35 6.80 3.90 3.20 3.90 | blu | pieno
+testo: 5.00 3.63 | blu | "del chiamato"
+poligono: 3.20 1.30 6.80 1.30 6.80 3.35 3.20 3.35 | grigio
+testo: 5.00 2.33 | grigio | "libero"
+poligono: 3.20 0.40 6.80 0.40 6.80 1.20 3.20 1.20 | ambra
+testo: 5.00 0.80 | ambra | "codice"
+freccia: 1.4 4.45 3.15 4.45 | accento
+testo: 0.9 4.45 | accento | "FP"
+freccia: 1.4 3.35 3.15 3.35 | blu
+testo: 0.9 3.35 | blu | "SP"
+segmento: 7.05 7.20 7.05 6.65 | blu
+testo: 7.25 6.93 | blu | e | "frame del chiamante"
+segmento: 7.05 6.65 7.05 4.45 | rosa
+testo: 7.25 5.80 | rosa | e | "preparato nella chiamata"
+testo: 7.25 5.30 | grigio | e | "offset positivi: FP+4, FP+8, …"
+segmento: 7.05 4.45 7.05 3.35 | blu
+testo: 7.25 4.15 | blu | e | "frame del chiamato"
+testo: 7.25 3.65 | grigio | e | "offset negativi: FP−4, FP−8"
+```
+
+> [!DEF] Stack frame (slide 5–6)
+> Lo **stack frame** è la zona dello stack riservata a una chiamata di funzione. Ogni chiamata ne crea uno nuovo, anche se la funzione è sempre la stessa; quando la funzione finisce, il frame viene rilasciato e la memoria torna disponibile.
+
+**Come si legge.** Una funzione chiamata tre volte ha tre frame diversi, uno per volta o anche insieme. Le variabili locali vivono nel frame: nascono con la chiamata e spariscono con il ritorno.
+
+::: prova Perché con le variabili a indirizzi fissi una funzione non può essere ricorsiva?
+Perché una seconda chiamata, partita mentre la prima è ancora in corso, scriverebbe nelle stesse celle e cancellerebbe i valori della prima. Con lo stack ogni chiamata ha le sue celle.
+:::
+
+> [!RICORDA]
+> - Ogni chiamata ha il suo frame; il frame nasce con la chiamata e muore con il ritorno.
+> - SP si muove, FP sta fermo. Sopra FP i parametri, sotto le variabili locali.
+
+## Un esempio, frame per frame (slide 8–12)
+
+Il programma delle slide 8–10:
+
+```c
+#include <stdio.h>
+int square(int x) {
+    return x * x;
+}
+int sumSquares(int a, int b) {
+    return square(a) + square(b);
+}
+int main(void) {
+    int res = sumSquares(2, 3);
+    printf("Risultato: %d\n", res);
+    return 0;
+}
+```
+
+Stampa `Risultato: 13`. `main` chiama `sumSquares`, che chiama `square` due volte, prima con 2 e poi con 3. Lo stack passa per sette stati:
+
+```grafico
+titolo: Lo stack di `main → sumSquares → square`, istante per istante, da sinistra a destra. Ogni chiamata aggiunge un frame in fondo, ogni ritorno lo toglie. Il frame più in basso è quello attivo; gli altri sono sospesi e aspettano
+x: 0 12.4
+y: 0 4.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.20 3.20 1.75 3.20 1.75 4.00 0.20 4.00 | blu | pieno
+testo: 0.98 3.60 | blu | "main"
+testo: 0.98 4.3 | grigio | "1"
+poligono: 1.95 3.20 3.50 3.20 3.50 4.00 1.95 4.00 | blu
+testo: 2.73 3.60 | blu | "main"
+poligono: 1.95 2.40 3.50 2.40 3.50 3.20 1.95 3.20 | viola | pieno
+testo: 2.73 2.80 | viola | "sumSq"
+testo: 2.73 4.3 | grigio | "2"
+poligono: 3.70 3.20 5.25 3.20 5.25 4.00 3.70 4.00 | blu
+testo: 4.48 3.60 | blu | "main"
+poligono: 3.70 2.40 5.25 2.40 5.25 3.20 3.70 3.20 | viola
+testo: 4.48 2.80 | viola | "sumSq"
+poligono: 3.70 1.60 5.25 1.60 5.25 2.40 3.70 2.40 | ambra | pieno
+testo: 4.48 2.00 | ambra | "square(2)"
+testo: 4.48 4.3 | grigio | "3"
+poligono: 5.45 3.20 7.00 3.20 7.00 4.00 5.45 4.00 | blu
+testo: 6.23 3.60 | blu | "main"
+poligono: 5.45 2.40 7.00 2.40 7.00 3.20 5.45 3.20 | viola | pieno
+testo: 6.23 2.80 | viola | "sumSq"
+testo: 6.23 4.3 | grigio | "4"
+poligono: 7.20 3.20 8.75 3.20 8.75 4.00 7.20 4.00 | blu
+testo: 7.98 3.60 | blu | "main"
+poligono: 7.20 2.40 8.75 2.40 8.75 3.20 7.20 3.20 | viola
+testo: 7.98 2.80 | viola | "sumSq"
+poligono: 7.20 1.60 8.75 1.60 8.75 2.40 7.20 2.40 | ambra | pieno
+testo: 7.98 2.00 | ambra | "square(3)"
+testo: 7.98 4.3 | grigio | "5"
+poligono: 8.95 3.20 10.50 3.20 10.50 4.00 8.95 4.00 | blu
+testo: 9.72 3.60 | blu | "main"
+poligono: 8.95 2.40 10.50 2.40 10.50 3.20 8.95 3.20 | viola | pieno
+testo: 9.72 2.80 | viola | "sumSq"
+testo: 9.72 4.3 | grigio | "6"
+poligono: 10.70 3.20 12.25 3.20 12.25 4.00 10.70 4.00 | blu | pieno
+testo: 11.47 3.60 | blu | "main"
+testo: 11.47 4.3 | grigio | "7"
+testo: 6.2 0.35 | grigio | "pieno = frame attivo · vuoto = sospeso"
+```
+
+In ogni istante c'è **una sola funzione attiva**, quella con il frame in fondo alla pila, e una fila di funzioni **sospese**, che aspettano che la chiamata sotto di loro finisca. Al passo 3, per esempio, `square(2)` è attiva, mentre `sumSquares` e `main` sono sospese a metà di un'istruzione.
+
+La slide 12 mostra che cosa c'è dentro i frame, con un programma che ha parametri, variabili locali e risultato:
+
+```c
+#include <stdio.h>
+
+int sommaProdotto(int a, int b, int c) {
+    int somma = a + b + c;
+    int prodotto = a * b * c;
+    int risultato = somma + prodotto;
+    return risultato;
+}
+
+int main(void) {
+    int x = 2, y = 3, z = 4;
+    int r = sommaProdotto(x, y, z);
+    printf("Risultato: %d\n", r);
+}
+```
+
+Stampa `Risultato: 33`, cioè $9 + 24$. Con l'esecuzione ferma alla riga di `risultato`, lo stack è questo:
+
+```grafico
+titolo: Lo stack della slide 12, con l'esecuzione ferma alla riga 6 di `sommaProdotto(2, 3, 4)`. In alto il frame di `main` con il posto per `r`, poi le copie dei parametri, i dati di controllo, e sotto FP le variabili locali di `sommaProdotto`. `x, y, z` e `a, b, c` hanno gli stessi valori ma sono celle diverse
+x: 0 12.4
+y: 0 7.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 3.00 6.30 6.60 6.30 6.60 6.80 3.00 6.80 | blu | pieno
+testo: 4.80 6.55 | blu | "int x = 2"
+poligono: 3.00 5.80 6.60 5.80 6.60 6.30 3.00 6.30 | blu | pieno
+testo: 4.80 6.05 | blu | "int y = 3"
+poligono: 3.00 5.30 6.60 5.30 6.60 5.80 3.00 5.80 | blu | pieno
+testo: 4.80 5.55 | blu | "int z = 4"
+poligono: 3.00 4.80 6.60 4.80 6.60 5.30 3.00 5.30 | verde | pieno
+testo: 4.80 5.05 | verde | "int r = ?"
+poligono: 3.00 4.30 6.60 4.30 6.60 4.80 3.00 4.80 | rosa | pieno
+testo: 4.80 4.55 | rosa | "int a = 2"
+poligono: 3.00 3.80 6.60 3.80 6.60 4.30 3.00 4.30 | rosa | pieno
+testo: 4.80 4.05 | rosa | "int b = 3"
+poligono: 3.00 3.30 6.60 3.30 6.60 3.80 3.00 3.80 | rosa | pieno
+testo: 4.80 3.55 | rosa | "int c = 4"
+poligono: 3.00 2.80 6.60 2.80 6.60 3.30 3.00 3.30 | grigio | pieno
+testo: 4.80 3.05 | grigio | "dati di controllo"
+poligono: 3.00 2.30 6.60 2.30 6.60 2.80 3.00 2.80 | blu | pieno
+testo: 4.80 2.55 | blu | "int somma = 9"
+poligono: 3.00 1.80 6.60 1.80 6.60 2.30 3.00 2.30 | blu | pieno
+testo: 4.80 2.05 | blu | "int prodotto = 24"
+poligono: 3.00 1.30 6.60 1.30 6.60 1.80 3.00 1.80 | blu | pieno
+testo: 4.80 1.55 | blu | "int risultato = 33"
+freccia: 1.4 2.80 2.95 2.80 | accento
+testo: 0.9 2.80 | accento | "FP"
+freccia: 1.4 1.30 2.95 1.30 | blu
+testo: 0.9 1.30 | blu | "SP"
+segmento: 6.85 6.80 6.85 2.80 | blu
+testo: 7.05 4.80 | blu | e | "frame di main (fino a FP)"
+segmento: 6.85 2.80 6.85 1.30 | ambra
+testo: 7.05 2.05 | ambra | e | "frame di sommaProdotto"
+testo: 7.05 5.05 | verde | e | "qui finirà il 33"
+```
+
+- `a`, `b`, `c` sono **copie** di `x`, `y`, `z`: celle diverse con gli stessi valori.
+- La cella di `r` fa da posto per il risultato: ci finirà il 33 al ritorno.
+- `somma`, `prodotto`, `risultato` stanno sotto FP; SP è sotto l'ultima.
+
+::: prova Al passo 5 del disegno con `sumSquares`, quali frame ci sono e quale è attivo?
+`main`, `sumSquares` e `square(3)`; attivo `square(3)`. Il frame di `square(2)` è già stato rilasciato al passo 4.
+:::
+
+> [!RICORDA]
+> - Una sola funzione attiva, quella del frame in fondo; le altre sono sospese.
+> - I parametri sono copie degli argomenti, in celle diverse.
+
+## La chiamata, passo per passo (slide 13–21)
+
+Una chiamata di funzione non è un'istruzione sola della macchina: è una sequenza di operazioni. Si divide in due fasi, la chiamata con il **prologo** e il ritorno con l'**epilogo**. Ecco la chiamata, nell'ordine delle slide.
+
+1. **Il chiamante prepara**: lascia sullo stack il posto per il valore di ritorno e copia i parametri (nelle CPU vere, spesso nei registri).
+2. **Salva l'indirizzo di ritorno**, cioè l'indirizzo dell'istruzione successiva alla chiamata, `next(PC)`, e mette nel PC l'indirizzo della prima istruzione della funzione. Da qui esegue la funzione.
+3. **Prologo**: la funzione chiamata salva sullo stack il valore attuale di FP, quello del chiamante.
+4. **FP = SP**: comincia il nuovo frame.
+5. **Riserva le variabili locali**, spostando SP verso il basso.
+
+Da questo momento la funzione arriva ai suoi dati con offset fissi da FP: i parametri e il posto per il risultato sopra, le variabili locali sotto. È il disegno della sezione precedente.
+
+> [!DEF] Il ruolo del frame pointer (slide 21)
+> FP sta alla base del frame della funzione attiva. Grazie a lui parametri e variabili locali si raggiungono con offset da FP, senza conoscere il loro indirizzo assoluto; gli offset restano validi anche quando SP cambia; e la funzione può girare in qualunque posizione dello stack.
+
+**Come si legge.** Il codice di `square` dice «il mio parametro è in FP+8», non «il mio parametro è all'indirizzo 1000». Così lo stesso codice funziona sia quando `square` è chiamata da `main` sia quando è chiamata da `sumSquares`, con il frame in un punto diverso. È questo che permette più chiamate attive della stessa funzione: la **rientranza**, e più avanti la ricorsione.
+
+::: prova Perché il prologo salva il vecchio FP prima di cambiarlo?
+Perché al ritorno il chiamante deve ritrovare il suo FP, per raggiungere di nuovo i suoi dati. Se non fosse salvato, dopo `FP = SP` andrebbe perso.
+:::
+
+> [!RICORDA]
+> - Chiamata: posto per il risultato e parametri, indirizzo di ritorno, salto.
+> - Prologo: salva FP, FP = SP, riserva le variabili locali.
+
+## Il ritorno, passo per passo (slide 22–29)
+
+Il ritorno disfa la chiamata in ordine inverso.
+
+1. **Si scrive il valore di ritorno** nel posto preparato dal chiamante.
+2. **Epilogo**: si rilasciano tutte le variabili locali ponendo **SP = FP**.
+3. **Si ripristina FP** prendendo dallo stack il valore salvato nel prologo.
+4. **Si ripristina il PC** con l'indirizzo di ritorno: l'esecuzione riprende nel chiamante, subito dopo la chiamata.
+5. **Si tolgono i parametri.**
+6. Lo stato è come prima della chiamata, e il chiamante legge il valore di ritorno.
+
+```grafico
+titolo: Chiamata e ritorno come due sequenze speculari. A sinistra quello che succede scendendo nella funzione, a destra quello che succede risalendo, dal basso verso l'alto. Ogni passo del ritorno disfa un passo della chiamata
+x: 0 12.4
+y: 0 6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 3.1 5.6 | rosa | "chiamata"
+testo: 9.3 5.6 | verde | "ritorno"
+poligono: 0.3 4.4 5.9 4.4 5.9 5.1 0.3 5.1 | rosa | pieno
+testo: 3.1 4.75 | rosa | "posto per il risultato, parametri"
+poligono: 0.3 3.4 5.9 3.4 5.9 4.1 0.3 4.1 | ambra | pieno
+testo: 3.1 3.75 | ambra | "indirizzo di ritorno, salto"
+poligono: 0.3 2.4 5.9 2.4 5.9 3.1 0.3 3.1 | accento | pieno
+testo: 3.1 2.75 | accento | "salva FP, poi FP = SP"
+poligono: 0.3 1.4 5.9 1.4 5.9 2.1 0.3 2.1 | blu | pieno
+testo: 3.1 1.75 | blu | "riserva le variabili locali"
+poligono: 6.5 4.4 12.1 4.4 12.1 5.1 6.5 5.1 | rosa | pieno
+testo: 9.3 4.75 | rosa | "toglie i parametri, legge il risultato"
+poligono: 6.5 3.4 12.1 3.4 12.1 4.1 6.5 4.1 | ambra | pieno
+testo: 9.3 3.75 | ambra | "ripristina il PC"
+poligono: 6.5 2.4 12.1 2.4 12.1 3.1 6.5 3.1 | accento | pieno
+testo: 9.3 2.75 | accento | "ripristina FP"
+poligono: 6.5 1.4 12.1 1.4 12.1 2.1 6.5 2.1 | blu | pieno
+testo: 9.3 1.75 | blu | "scrive il risultato, SP = FP"
+freccia: 3.1 1.3 3.1 0.6 | grigio
+freccia: 3.1 0.6 9.3 0.6 | grigio
+freccia: 9.3 0.6 9.3 1.3 | grigio
+testo: 6.2 0.3 | grigio | "corpo della funzione"
+```
+
+La slide 29 riassume: la chiamata rende espliciti il contesto della funzione, l'indirizzo di ritorno, i dati locali e il ripristino del chiamante. Nelle CPU vere i dettagli cambiano (in x86 il risultato di solito passa in un registro, non sullo stack), ma la logica è la stessa.
+
+::: prova Dopo il passo 2 del ritorno, le variabili locali della funzione sono ancora scritte in memoria?
+I bit restano lì finché qualcuno non li sovrascrive, ma la zona è sotto SP, quindi libera: la prossima chiamata la riuserà. Per il programma quelle variabili non esistono più.
+:::
+
+> [!RICORDA]
+> - Ritorno: scrive il risultato, SP = FP, ripristina FP, ripristina il PC, toglie i parametri.
+> - Il ritorno disfa la chiamata in ordine inverso.
+
+## Record di attivazione e stack frame (slide 30–34)
+
+Le slide distinguono due nomi per due livelli.
+
+> [!DEF] Record di attivazione (slide 31)
+> Il **record di attivazione** è l'insieme logico dei dati che servono a una singola chiamata: i parametri, le variabili locali, l'eventuale valore di ritorno, i dati di controllo (indirizzo di ritorno, FP precedente) e altri registri salvati. Non dipende dalla macchina né da dove i dati stanno fisicamente.
+
+> [!DEF] Stack frame, in senso stretto (slide 32)
+> Lo **stack frame** è la parte del record che sta nello stack tra FP e SP ed è gestita dalla funzione attiva: le variabili locali, a offset negativi. Parametri, dati di controllo e valore di ritorno, a offset positivi, stanno subito sopra, in una zona gestita dal chiamante.
+
+**Come si legge.** Il record di attivazione è «tutto quello che serve alla chiamata»; lo stack frame è il pezzo di memoria delle variabili locali. Il libro di Deitel non fa questa distinzione e dice sempre «stack frame» (p. 192). Nell'uso comune, e all'esame, «frame» indica di solito tutto il blocco di una chiamata.
+
+> [!ESAME] Esercizio tipico (slide 34)
+> «Rappresentare lo stato dello stack e dei registri prima del ritorno di una funzione.» Lo svolgo nella sezione «Verso l'esame».
+
+::: prova Nel disegno di `sommaProdotto`, quali celle fanno parte dello stack frame in senso stretto, e quali solo del record di attivazione?
+Stack frame in senso stretto: `somma`, `prodotto`, `risultato`, tra FP e SP. Del record fanno parte anche i parametri `a`, `b`, `c`, i dati di controllo e il posto per il risultato, che stanno sopra FP.
+:::
+
+> [!RICORDA]
+> - Record di attivazione: l'insieme logico. Stack frame: la zona tra FP e SP.
+
+## Lo scambio che non scambia (slide 35–43)
+
+Una funzione che scambia due variabili del chiamante, scritta come nella [03A](03A_scambio_variabili.html):
+
+```c
+#include <stdio.h>
+
+void swapSbagliato(int a, int b) {
+    int tmp = a;
+    a = b;
+    b = tmp;
+}
+
+int main(void) {
+    int x = 10, y = 20;
+    swapSbagliato(x, y);
+    printf("x = %d, y = %d\n", x, y);
+}
+```
+
+Stampa `x = 10, y = 20`: niente è cambiato. Lo stack spiega perché.
+
+1. Alla chiamata i valori di `x` e `y` vengono **copiati** in `a` e `b`, nel record di `swapSbagliato`.
+2. La funzione scambia `a` e `b`: `a` diventa 20, `b` diventa 10.
+3. Al ritorno il record viene liberato, con le copie scambiate dentro. `x` e `y`, nel frame di `main`, non sono mai stati toccati.
+
+In più `swapSbagliato` non può nominare `x` e `y`: sono variabili di `main`, fuori dalla sua visibilità.
+
+> [!DEF] Passaggio per valore (slide 43)
+> In C i parametri attuali (gli argomenti della chiamata) vengono sempre **copiati** nei parametri formali. La funzione lavora sulle copie.
+
+::: prova Che cosa stampa `void azzera(int n) { n = 0; }` chiamata con `int k = 7; azzera(k); printf("%d", k);`?
+`7`. `n` è una copia di `k`: azzerarla non cambia `k`.
+:::
+
+> [!RICORDA]
+> - Gli argomenti si copiano. Cambiare un parametro non cambia la variabile del chiamante.
+
+## Lo scambio con i puntatori (slide 44–52)
+
+Il rimedio: invece dei valori, si passano gli **indirizzi** delle variabili da modificare. Il ripasso dei puntatori della [02C](02C_referenziamento_scanf_puntatori.html), in tre righe:
+
+- `int* p;` dichiara un puntatore a `int`, che contiene un indirizzo;
+- `p = &x;` mette in `p` l'indirizzo di `x`;
+- `*p` è la variabile a cui `p` punta: `*p = 42;` scrive 42 in `x`. Mai dereferenziare un puntatore non inizializzato o `NULL`.
+
+```c
+#include <stdio.h>
+
+void swap(int* pA, int* pB) {
+    int tmp = *pA;  // legge il valore puntato da pA
+    *pA = *pB;      // scrive nella variabile puntata da pA
+    *pB = tmp;      // scrive nella variabile puntata da pB
+}
+
+int main(void) {
+    int x = 10, y = 20;
+    swap(&x, &y);   // passo gli INDIRIZZI di x e y
+    printf("x = %d, y = %d\n", x, y);
+}
+```
+
+Stampa `x = 20, y = 10`.
+
+```grafico
+titolo: Lo scambio della slide 47: nel frame di `swap` i parametri `pA` e `pB` contengono gli indirizzi di `x` e `y`, che stanno nel frame di `main`. Con `*pA` e `*pB` la funzione legge e scrive proprio quelle celle
+x: 0 12.4
+y: 0 5.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 3.20 4.45 6.60 4.45 6.60 5.00 3.20 5.00 | blu | pieno
+testo: 4.90 4.73 | blu | "int x = 10"
+poligono: 3.20 3.90 6.60 3.90 6.60 4.45 3.20 4.45 | blu | pieno
+testo: 4.90 4.18 | blu | "int y = 20"
+poligono: 3.20 3.35 6.60 3.35 6.60 3.90 3.20 3.90 | rosa | pieno
+testo: 4.90 3.63 | rosa | "int* pA = &x"
+poligono: 3.20 2.80 6.60 2.80 6.60 3.35 3.20 3.35 | rosa | pieno
+testo: 4.90 3.08 | rosa | "int* pB = &y"
+poligono: 3.20 2.25 6.60 2.25 6.60 2.80 3.20 2.80 | grigio | pieno
+testo: 4.90 2.53 | grigio | "dati di controllo"
+poligono: 3.20 1.70 6.60 1.70 6.60 2.25 3.20 2.25 | ambra | pieno
+testo: 4.90 1.98 | ambra | "int tmp = 10"
+freccia: 6.65 3.63 7.90 3.93 | rosa
+freccia: 7.90 3.93 6.70 4.73 | rosa
+freccia: 6.65 3.08 8.80 3.48 | viola
+freccia: 8.80 3.48 6.70 4.18 | viola
+testo: 9.00 3.45 | grigio | e | "*pA è x, *pB è y"
+testo: 1.6 4.45 | blu | "main"
+testo: 1.6 2.25 | ambra | "swap"
+```
+
+Il passaggio è ancora per valore: quello che viene copiato è l'**indirizzo**. Ma con l'indirizzo in mano, `swap` legge e scrive direttamente nelle celle di `x` e `y`.
+
+> [!DEF] Passaggio per riferimento, simulato (slide 51)
+> In Pascal o in C++ esiste il passaggio **per riferimento**: la funzione riceve un riferimento alla variabile del chiamante e può modificarla. In C no, tutto passa per valore. Per avere lo stesso effetto si passa l'indirizzo della variabile, cioè un puntatore, e dentro la funzione si usa `*`.
+
+**Come si legge.** È il meccanismo di `scanf("%d", &x)`: `scanf` deve scrivere in una variabile di `main`, quindi riceve il suo indirizzo. Con un indirizzo una funzione può arrivare a qualunque zona di memoria raggiungibile (stack, variabili globali, heap), non solo al suo record: è un modo di scavalcare le regole di visibilità imposte dallo stack, da usare con attenzione.
+
+| Chiamata | Che cosa riceve la funzione | Cambia la variabile del chiamante? |
+|---|---|---|
+| `swapSbagliato(x, y)` | copie di 10 e 20 | no |
+| `swap(&x, &y)` | copie degli indirizzi di `x` e `y` | sì, con `*pA` e `*pB` |
+
+::: prova Che cosa succede se in `main` si scrive `swap(x, y);`, senza `&`?
+Non compila: gcc 16 dà `passing argument 1 of 'swap' makes pointer from integer without a cast`, che è un errore anche senza `-Werror`. Un `int` non è un indirizzo.
+:::
+
+> [!RICORDA]
+> - Per modificare una variabile del chiamante: si passa `&x`, si riceve `int* p`, si scrive `*p`.
+> - Anche l'indirizzo passa per valore: si copia l'indirizzo, non la variabile.
+
+## Array e stringhe come parametri (slide 53–59)
+
+Fin qui i parametri erano numeri e puntatori a una variabile. Con gli array e le stringhe cambiano due cose: la funzione lavora sui dati del chiamante, e la lunghezza va gestita a parte.
+
+### Un array arriva come puntatore
+
+Nella [05A](05A_array_stringhe.html) un array «si comportava anche come un puntatore al suo primo elemento». Passandolo a una funzione arriva proprio così: un puntatore. Le due intestazioni `void fn(int* dati)` e `void fn(int dati[])` sono la stessa cosa. Quindi:
+
+- la funzione lavora sull'array **del chiamante**, non su una copia: se scrive in `dati[i]`, cambia l'array originale;
+- la funzione **non conosce la lunghezza**. Dentro la funzione `sizeof(dati)` è la dimensione di un puntatore, 8 byte, non dell'array. gcc lo segnala: `'sizeof' on array function parameter 'v' will return size of 'int *'`, un errore con `-Werror`.
+
+Per questo un array si passa **con la sua lunghezza**, due parametri:
+
+```c
+void fn(size_t datiLen, int dati[]) {
+    // posso usare dati[i] con i in [0, datiLen)
+}
+```
+
+### const: sola lettura
+
+Se la funzione deve solo leggere l'array, lo dichiara `const`:
+
+```c
+size_t quanti(size_t datiLen, const int dati[]) {
+    size_t n = 0;
+    for (size_t i = 0; i < datiLen; i++) {
+        if (dati[i] > 0) {
+            n++;
+        }
+    }
+    return n;
+}
+```
+
+Con `{3, -1, 4, 0, 5, -9}` restituisce 3. Il compilatore fa rispettare la promessa, in due modi:
+
+| Errore | gcc 16 con `-Wall -Werror` |
+|---|---|
+| scrivere in un array `const`: `v[i] = 0;` | `assignment of read-only location '*(v + (sizetype)(i * 4))'` |
+| passare un array `const` a una funzione che lo vuole modificabile | `passing argument 2 of 'raddoppia' discards 'const' qualifier from pointer target type` |
+
+Si può dichiarare `const` anche un parametro normale che non cambia mai, come `const size_t datiLen` (slide 57): rende chiaro il contratto della funzione, cioè che cosa modifica e che cosa no.
+
+### Le stringhe
+
+Una stringa è un array di `char` che finisce con `'\0'`. Anche lei arriva come `char*`, ma **la lunghezza non serve**: la funzione può scorrere fino al terminatore.
+
+```c
+void stampa(const char* s) {
+    printf("%s\n", s);
+}
+```
+
+Funziona con un letterale, `stampa("ciao")`, e con un array di `char`, `stampa(buffer)`. Il `const` qui è necessario per i letterali, che sono in sola lettura (05A).
+
+### Tre funzioni di string.h
+
+| Funzione | Che cosa fa | Esempio provato |
+|---|---|---|
+| `size_t strlen(const char* s)` | lunghezza, senza contare `'\0'` | `strlen("ciao")` vale 4, mentre `sizeof("ciao")` vale 5 |
+| `int strcmp(const char* s1, const char* s2)` | confronto in ordine di dizionario: negativo se `s1` viene prima, 0 se uguali, positivo se viene dopo | `strcmp("albero", "alce")` è negativo (b viene prima di c) |
+| `char* strncpy(char* dest, const char* src, size_t n)` | copia al più `n` caratteri da `src` a `dest` | vedi la trappola qui sotto |
+
+`strcmp` confronta i codici ASCII: `strcmp("Zeta", "alfa")` è negativo, perché `'Z'` vale 90 e `'a'` 97. Tutte le maiuscole vengono prima delle minuscole. Lo standard garantisce solo il segno del risultato: sul mio PC è −1 o 1, su altri sistemi può essere un altro numero.
+
+> [!TRAPPOLA] strncpy non sempre termina la stringa
+> La slide 59 dice che `strncpy` copia al più `n` caratteri «incluso terminatore». Ma se `src` ha `n` caratteri o più, il terminatore **non** viene copiato: `dest` resta senza `'\0'`, e una `printf("%s")` successiva continua a leggere oltre. Con `char corto[4]` e `strncpy(corto, "ciao", 4)` l'ultimo carattere è `'o'`, non `'\0'`. Quando i valori sono costanti gcc se ne accorge: `'strncpy' output truncated before terminating nul copying 4 bytes from a string of the same length`. Regola: destinazione di almeno `strlen(src) + 1` caratteri, oppure `dest[n - 1] = '\0'` dopo la copia.
+
+::: prova Una funzione ha l'intestazione `double media(size_t n, const double v[])`. Che cosa puoi dire senza leggere il corpo?
+Riceve un array di `double` con la sua lunghezza `n` e **non lo modifica**: lo garantisce il `const`, controllato dal compilatore.
+:::
+
+> [!RICORDA]
+> - Un array arriva come puntatore: lunghezza a parte, e `sizeof` dentro la funzione non dà la lunghezza.
+> - `const` = sola lettura, controllata dal compilatore.
+> - Le stringhe si fermano a `'\0'`, senza lunghezza. `strncpy` può lasciarle senza terminatore.
+
+## Le asserzioni (slide 60–66)
+
+Un'**asserzione** è una condizione che deve essere sempre vera, se il programma è corretto. Serve a scrivere nel codice le ipotesi che il programmatore fa sullo stato delle variabili. In C c'è `assert`, in `<assert.h>`:
+
+- se la condizione è vera, non succede niente;
+- se è falsa, il programma si ferma e stampa la condizione violata, il file e la riga.
+
+Con un errore voluto in una funzione che dovrebbe calcolare il massimo:
+
+```c
+#include <assert.h>
+
+int massimoSbagliato(int a, int b) {
+    int m;
+    if (a < b) {      // errore voluto: sceglie il minimo
+        m = a;
+    } else {
+        m = b;
+    }
+    assert(m >= a && m >= b);
+    return m;
+}
+```
+
+`massimoSbagliato(3, 8)` ferma il programma con `Assertion failed: m >= a && m >= b, file asserzioni.c, line 12` (il formato del messaggio cambia da un sistema all'altro). Compilando con **`-DNDEBUG`** le asserzioni spariscono: lo stesso programma restituisce 3 senza fermarsi.
+
+Gli usi delle slide:
+
+| Uso | Esempio |
+|---|---|
+| **precondizione** su puntatori e lunghezze | `assert(aLen == 0 \|\| a != NULL);` |
+| **invariante** dentro un ciclo | `assert(i < aLen);` |
+| **postcondizione** alla fine | `assert(*a <= *b);` dopo aver ordinato una coppia |
+| **coerenza** tra argomenti | `assert((haveStr && str != NULL) \|\| (!haveStr && str == NULL));` |
+
+> [!TRAPPOLA] Le asserzioni non controllano l'input
+> Un'asserzione falsa vuol dire **errore nel programma**. Un numero sbagliato scritto dall'utente non è un errore del programma: va gestito con un controllo normale, un messaggio e una nuova lettura, come la `leggiRaggio` della [06A](06A_funzioni.html). E dentro `assert` niente effetti collaterali: con `-DNDEBUG` l'espressione non viene nemmeno calcolata.
+
+::: prova Quale asserzione esprime «la funzione ha restituito uno dei due numeri» per un massimo `m` di `a` e `b`?
+`assert(m == a || m == b);`. Insieme a `assert(m >= a && m >= b);` dice tutto quello che un massimo deve soddisfare (slide 65).
+:::
+
+> [!RICORDA]
+> - `assert(c)`: se `c` è falsa il programma si ferma con file e riga.
+> - Per le ipotesi del programmatore, mai per l'input dell'utente. `-DNDEBUG` le spegne.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| SP | «stack pointer» | registro che segna il limite dello stack | si sposta quando si riserva spazio |
+| FP | «frame pointer» | registro che segna l'inizio del frame attivo | parametri in FP+8, locali in FP−4 |
+| `next(PC)` | «successore del PC» | indirizzo di ritorno, salvato nella chiamata | l'esecuzione riprende da lì |
+| `int* p` come parametro | «puntatore a int» | la funzione riceve un indirizzo | `void swap(int* pA, int* pB)` |
+| `const int v[]` | «array di int costanti» | la funzione non può modificare l'array | `size_t quanti(size_t n, const int v[])` |
+| `assert(c)` | «asserisci c» | ferma il programma se `c` è falsa | `assert(m >= a && m >= b);` |
+| `-DNDEBUG` | «senza debug» | opzione di gcc che spegne le asserzioni | `gcc -Wall -Werror -DNDEBUG p.c` |
+
+## Verso l'esame
+
+All'esame di Programmazione I c'è un esercizio sullo **stato della memoria**: si dà un programma, di solito con funzioni e array, e si chiede che cosa c'è nello stack in un certo istante, quanti frame ci sono, che valore ha una variabile, in che riga riprende una funzione. Nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md) lo stack si disegna a righe: per ogni frame i parametri, le variabili locali, la riga di rientro e il valore restituito. Di questa lezione servono:
+
+1. **un frame per ogni chiamata**, con le copie dei parametri;
+2. **la riga di rientro**: il chiamante riprende dall'istruzione dopo la chiamata, a metà della riga se la chiamata è dentro un'espressione;
+3. **gli array non si copiano**: tutti i frame vedono e modificano l'array del chiamante;
+4. **una funzione `void` con parametri puntatore** cambia le variabili del chiamante, una con parametri normali no.
+
+### Una domanda nello stile dell'esame, svolta
+
+*Nel programma `sommaProdotto` della sezione «Un esempio, frame per frame», disegna lo stack un attimo prima che `return risultato;` venga eseguita, e di' che cosa vale `r` subito dopo la riga della chiamata.*
+
+**In pratica chiede**: quali frame esistono durante la `return`, che cosa contengono, e che cosa cambia al ritorno.
+
+**Soluzione.**
+
+1. I frame sono due: `main` (sospeso nella riga della chiamata) e `sommaProdotto` (attivo).
+2. Nel frame di `main`: `x = 2`, `y = 3`, `z = 4`, `r` non ancora assegnata (`?`).
+3. Nel record di `sommaProdotto`: i parametri `a = 2`, `b = 3`, `c = 4`, i dati di controllo (indirizzo di ritorno nella riga della chiamata, FP di `main`), e sotto FP le variabili locali `somma = 9`, `prodotto = 24`, `risultato = 33`. SP sotto `risultato`.
+4. La `return` scrive 33 nel posto del risultato; l'epilogo libera le variabili locali, ripristina FP e il PC, il chiamante toglie i parametri. Dopo la riga della chiamata `r` vale **33**, e lo stack contiene solo il frame di `main`.
+
+Il disegno è quello della slide 12, nella sezione citata.
+
+> [!METODO] Disegnare lo stack in un istante dato
+> 1. Segui l'esecuzione da `main`, riga per riga, e fermati all'istante chiesto.
+> 2. Per ogni chiamata in corso disegna un frame sotto il precedente: parametri (copie degli argomenti), poi le variabili locali dichiarate fin lì, con `?` per quelle non ancora assegnate.
+> 3. Segna accanto a ogni frame sospeso la riga in cui riprenderà.
+> 4. Per i puntatori, disegna una freccia verso la cella puntata, anche se sta in un altro frame.
+> 5. Per gli array passati, ricorda che la funzione lavora sull'array del chiamante: scrivi le modifiche lì.
+
+## Quiz
+
+```quiz
+D: Che cosa stampa `swapSbagliato(x, y)` seguita da `printf("x = %d, y = %d", x, y)`, con `x = 10` e `y = 20`?
++ `x = 10, y = 20`
+- `x = 20, y = 10`
+- `x = 20, y = 20`
+- non compila
+- un comportamento indefinito
+= La funzione scambia le copie `a` e `b`, che spariscono al ritorno. La più insidiosa è `x = 20, y = 10`: è quello che fa `swap(&x, &y)`.
+
+D: Nel modello delle slide, dove stanno le variabili locali della funzione attiva?
++ sotto FP, fino a SP, a offset negativi da FP
+- sopra FP, a offset positivi
+- in un'area fissa, uguale per tutte le chiamate
+- nel codice del programma
+- nei registri SP e FP
+= Il frame della funzione attiva va da FP a SP, e lo stack cresce verso il basso. La più insidiosa è la seconda: sopra FP ci sono i parametri e i dati di controllo.
+
+D: Qual è l'ordine giusto del ritorno da funzione?
++ scrive il risultato, SP = FP, ripristina FP, ripristina il PC, toglie i parametri
+- ripristina il PC, scrive il risultato, SP = FP, ripristina FP
+- toglie i parametri, ripristina FP, SP = FP, scrive il risultato
+- SP = FP, scrive il risultato, ripristina il PC, ripristina FP
+- ripristina FP, ripristina il PC, SP = FP, scrive il risultato
+= Il ritorno disfa la chiamata in ordine inverso. La più insidiosa è la quarta: se si libera il frame prima di scrivere il risultato, la funzione perde accesso alle sue variabili locali.
+
+D: Perché il prologo salva il valore di FP sullo stack?
++ perché al ritorno il chiamante deve riavere il suo FP
+- perché SP non può essere salvato
+- per liberare le variabili locali
+- per passare i parametri alla funzione
+- perché FP contiene l'indirizzo di ritorno
+= Subito dopo il salvataggio il prologo pone FP = SP: senza la copia, il FP del chiamante andrebbe perso. La più insidiosa è l'ultima: l'indirizzo di ritorno è un dato diverso, salvato prima, al momento del salto.
+
+D: Che cosa restituisce `sizeof(v)` dentro `size_t lunghezza(int v[])`, compilata su un PC a 64 bit senza `-Werror`?
++ 8, la dimensione di un puntatore
+- il numero di elementi dell'array
+- il numero di byte dell'array
+- 0
+- 4, la dimensione di un `int`
+= Un array passato a funzione arriva come puntatore. gcc lo segnala con `sizeof-array-argument`, che con `-Werror` è un errore. La più insidiosa è la terza: è quello che dà `sizeof` in `main`, dove l'array è dichiarato.
+
+D: Una funzione ha il parametro `const int dati[]` e contiene `dati[0] = 5;`. Che cosa succede con `-Wall -Werror`?
++ non compila: assegnamento a una zona in sola lettura
+- compila, ma al momento dell'esecuzione il programma si ferma
+- compila e modifica l'array del chiamante
+- compila e modifica solo una copia dell'array
+- compila con un avviso
+= `const` è un vincolo controllato dal compilatore: `assignment of read-only location`. La più insidiosa è la quarta: gli array non vengono mai copiati quando si passano.
+
+D: Con `char d[4];`, che cosa contiene `d[3]` dopo `strncpy(d, s, 4)`, se `s` è `"ciao"`?
++ il carattere `'o'`: la stringa resta senza terminatore
+- il terminatore `'\0'`
+- il carattere `'a'`
+- non compila mai
+- `strncpy` si ferma a 3 caratteri e mette `'\0'`
+= `strncpy` copia 4 caratteri e il terminatore non ci sta. La più insidiosa è la seconda, che segue alla lettera la slide 59.
+
+D: Quale uso di `assert` è sbagliato?
++ controllare che il numero scritto dall'utente sia positivo
+- controllare all'inizio di una funzione che il puntatore ricevuto non sia `NULL`
+- controllare alla fine che il risultato rispetti la specifica
+- controllare dentro un ciclo che l'indice sia nell'array
+- controllare che due argomenti siano coerenti tra loro
+= L'input sbagliato non è un errore del programma: va gestito con un controllo e un messaggio. Le altre sono precondizioni, postcondizioni e invarianti, gli usi delle slide.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: che cosa stampa?
+```c
+void cambia(int a, int* b) {
+    a = a + 1;
+    *b = *b + 1;
+}
+```
+con `int x = 1, y = 1; cambia(x, &y); printf("%d %d\n", x, y);`
+::: soluzione
+`1 2`. `a` è una copia di `x`; `b` è una copia dell'indirizzo di `y`, e `*b` è proprio `y`. Provato.
+:::
+
+::: esercizio base Riscaldamento: quanti frame?
+Nel programma `main → sumSquares(2, 3) → square`, quanti frame ci sono al massimo nello stack nello stesso momento, `main` compreso? E quante chiamate di funzione avvengono in tutto, `main` escluso?
+::: soluzione
+Al massimo **3** frame (`main`, `sumSquares`, una `square`). Le chiamate sono **3**: `sumSquares` una volta, `square` due volte, una dopo l'altra, mai insieme.
+:::
+
+::: esercizio medio Ordinare una coppia
+Scrivi `void ordinaCoppia(int* a, int* b)` che scambia i valori puntati se `*a > *b`, con un'asserzione finale che controlla il risultato.
+::: soluzione
+```c
+#include <assert.h>
+
+void ordinaCoppia(int* a, int* b) {
+    if (*a > *b) {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
+    assert(*a <= *b);   // postcondizione: la coppia è ordinata
+}
+```
+È l'esempio della slide 64. Con `x = 9, y = 4`, dopo `ordinaCoppia(&x, &y)` diventano `x = 4, y = 9`; con `x = 2, y = 5` non cambia niente. Compilato con `-Wall -Werror`.
+:::
+
+::: esercizio medio Minimo e massimo in una volta
+Scrivi `void minMax(size_t n, const int v[], int* min, int* max)` che, per `n >= 1`, scrive nelle variabili puntate il minimo e il massimo dell'array. Scrivi anche una chiamata.
+::: soluzione
+```c
+#include <assert.h>
+#include <stddef.h>
+
+void minMax(size_t n, const int v[], int* min, int* max) {
+    assert(n >= 1 && v != NULL);   // precondizione
+    int mi = v[0], ma = v[0];
+    for (size_t i = 1; i < n; i++) {
+        if (v[i] < mi) {
+            mi = v[i];
+        }
+        if (v[i] > ma) {
+            ma = v[i];
+        }
+    }
+    *min = mi;
+    *max = ma;
+}
+```
+Chiamata: `int a[5] = {4, -2, 9, 0, 9}; int lo, hi; minMax(5, a, &lo, &hi);` dà `lo = -2`, `hi = 9`. Due risultati, nessuno con `return`: passano per i puntatori. L'array è `const` perché la funzione lo legge soltanto. Provato.
+:::
+
+::: esercizio esame Stato della memoria, nello stile dell'esame
+```c
+#include <stdio.h>
+
+void f(int a, int* p) {
+    a = a * 2;
+    *p = *p + a;      // (B)
+}
+
+int main(void) {
+    int x = 3, y = 10;
+    f(x, &y);         // (A)
+    f(y, &x);
+    printf("%d %d\n", x, y);
+    return 0;
+}
+```
+(1) Nel frame della prima chiamata di `f`, quanto valgono `a` e `*p` subito dopo la riga (B)? (2) In che punto riprende `main` dopo la prima chiamata? (3) Che cosa stampa il programma?
+::: soluzione
+(1) Prima chiamata: `a` parte da 3 e diventa 6; `p` punta a `y`, e dopo (B) `*p` vale 10 + 6 = **16**. Quindi `a = 6`, `*p = 16`. (2) Subito dopo la riga (A), alla seconda chiamata. (3) Seconda chiamata: `a` è una copia di `y`, cioè 16, e diventa 32; `p` punta a `x`, che diventa 3 + 32 = 35. Stampa **`35 16`**. Provato con gcc.
+:::
+
+::: esercizio difficile Una lunghezza di stringa con asserzioni
+Scrivi `size_t lunghezza(const char* s)` che conta i caratteri prima del terminatore, senza usare `strlen`, con una precondizione su `s` e una postcondizione che controlla che in posizione `n` ci sia proprio il terminatore. Poi spiega perché non serve passare la lunghezza, a differenza degli array di `int`.
+::: soluzione
+```c
+#include <assert.h>
+#include <stddef.h>
+
+size_t lunghezza(const char* s) {
+    assert(s != NULL);           // precondizione
+    size_t n = 0;
+    while (s[n] != '\0') {
+        n++;
+    }
+    assert(s[n] == '\0');        // postcondizione
+    return n;
+}
+```
+`lunghezza("ciao")` vale 4, `lunghezza("")` vale 0, come `strlen`. La lunghezza non serve perché la stringa porta con sé la sua fine, il carattere `'\0'`; un array di `int` non ha un valore riservato per «fine», quindi la lunghezza va passata a parte. Provato.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa contengono SP e FP, e quale dei due resta fermo durante una chiamata?
+SP il limite dello stack, FP l'inizio del frame della funzione attiva. FP resta fermo, e per questo i dati del frame si raggiungono con offset fissi da FP.
+:::
+
+::: domanda Elenca i passi della chiamata e del ritorno.
+Chiamata: posto per il risultato e parametri, salvataggio dell'indirizzo di ritorno e salto, salvataggio di FP, FP = SP, variabili locali. Ritorno: scrittura del risultato, SP = FP, ripristino di FP, ripristino del PC, rimozione dei parametri.
+:::
+
+::: domanda Perché `swapSbagliato` non scambia, e come si corregge?
+Perché riceve copie di `x` e `y`. Si corregge passando gli indirizzi, `swap(&x, &y)`, e scrivendo con `*pA` e `*pB`.
+:::
+
+::: domanda Perché una funzione che riceve un array ha bisogno anche della lunghezza, e una che riceve una stringa no?
+L'array arriva come puntatore al primo elemento, senza informazioni sulla lunghezza. La stringa finisce con `'\0'`, che la funzione può cercare.
+:::
+
+::: domanda A che cosa serve `assert`, e perché non va usata per l'input?
+A fermare il programma quando un'ipotesi del programmatore è falsa, cioè quando c'è un errore nel codice. L'input sbagliato è un caso previsto, da gestire con un messaggio; e con `-DNDEBUG` le asserzioni spariscono.
+:::
+
+## Glossario
+
+```glossario
+Stack | Zona della memoria dove si impilano i frame delle chiamate; cresce verso gli indirizzi bassi.
+Stack frame | Zona dello stack di una chiamata: nel modello delle slide, le variabili locali tra FP e SP.
+Record di attivazione | Insieme logico dei dati di una chiamata: parametri, variabili locali, valore di ritorno, dati di controllo.
+SP | Stack pointer: registro che segna il limite dello stack.
+FP | Frame pointer: registro che segna l'inizio del frame attivo, fermo durante la chiamata.
+Offset | Distanza in byte da un indirizzo di riferimento, per esempio FP+8.
+Prologo | Inizio della funzione chiamata: salva FP, pone FP = SP, riserva le variabili locali.
+Epilogo | Fine della funzione: SP = FP, ripristina FP e il PC.
+Indirizzo di ritorno | Indirizzo dell'istruzione dopo la chiamata, da cui il chiamante riprende.
+Rientranza | Proprietà di una funzione che può avere più chiamate attive insieme, ognuna con il suo frame.
+Passaggio per valore | Gli argomenti sono copiati nei parametri.
+Passaggio per riferimento | In C si simula passando l'indirizzo della variabile.
+const | Qualificatore di sola lettura, controllato dal compilatore.
+Asserzione | Condizione che deve essere sempre vera; assert ferma il programma se è falsa.
+```
+
+## Checklist
+
+```checklist
+- So disegnare lo stack con i frame di più chiamate annidate.
+- So dire che cosa indicano SP e FP e quale dei due resta fermo.
+- So elencare in ordine i passi della chiamata e del ritorno.
+- So distinguere record di attivazione e stack frame.
+- So spiegare perché swapSbagliato non scambia e scrivere swap con i puntatori.
+- So passare un array a una funzione con la sua lunghezza, e so perché sizeof non basta.
+- So usare const per gli array in sola lettura.
+- So usare strlen e strcmp, e conosco la trappola di strncpy.
+- So scrivere precondizioni, invarianti e postcondizioni con assert.
+```
+
+## Fonti
+
+- Slide «Chiamata a funzione e ritorno. Chiamata di funzione nel modello di Von Neumann esteso» (06B_chiamata_funzioni), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: storia dello stack (slide 2–3), modello, stack frame, SP e FP (4–7), l'esempio `sumSquares` e `sommaProdotto` (8–12), chiamata e prologo (13–21), ritorno ed epilogo (22–29), record di attivazione e stack frame (30–34), passaggio per valore e scambio (35–43), puntatori e scambio riuscito (44–52), array, `const` e stringhe (53–59), asserzioni (60–66).
+- A. V. Aho, R. Sethi, J. D. Ullman, *Compilers*, 1986, e la System V ABI per x86, citati nella slide 33; P. Deitel, H. Deitel, *C: How to Program*, p. 192, citato nella stessa slide.
+- Esercizi sullo stato della memoria: [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md) e [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+- Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con `-Wall -Werror`, ed eseguiti; per l'asserzione che fallisce ho usato un programma di prova a parte. Gli errori e le stampe citati sono quelli veri. Quiz, esercizi e figure sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/lezioni/07A_algoritmi_su_array.md -->
+> File: `contesto_ai/PROG1/lezioni/07A_algoritmi_su_array.md`
+
+```yaml
+corso: PROG1
+lezione: 07A
+titolo: Algoritmi su array
+data: 2026-11-04
+docenti: Elvio Amparore
+simboli_logici: quantificatori
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 07A
+descrizione: >-
+  Appunti della lezione 07A di Programmazione I (canale B): ricerca lineare, la ricerca come test d'ipotesi con il
+  quantificatore esistenziale, la verifica di una proprietà con il quantificatore universale, il caso dell'array
+  vuoto, la selezione con il modello dimensione-capacità, il test di ordinamento sulle coppie adiacenti e il bubble
+  sort, con tutti i programmi provati, quiz ed esercizi.
+lede: >-
+  Cercare un elemento, controllare che tutti gli elementi rispettino una condizione, copiare quelli che la rispettano,
+  ordinare: quasi ogni esercizio d'esame su array è fatto di questi pezzi. Amparore li ricava dalla logica, «esiste»
+  e «per ogni», e da lì vengono le variabili sentinella, il valore iniziale giusto e il comportamento con l'array vuoto.
+materiale: slide
+scheda:
+  Slide: 07A_algoritmi_su_array («Algoritmi su array. Ricerca, filtro e ordinamento») · 84 pagine
+  Lezione: mercoledì 04/11
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 110 minuti, con gcc a portata di mano
+fonte: >-
+  Slide «Algoritmi su array. Ricerca, filtro e ordinamento» (07A_algoritmi_su_array), Programmazione I – Teoria,
+  canale B, A.A. 2026/27
+appunti_html: appunti/PROG1/07A_algoritmi_su_array.html
+genera_html: true
+```
+
+## In breve
+
+- **Ricerca lineare**: si scorre l'array finché si trova `key` o finché l'array finisce. Una variabile sentinella `trovato` parte da `false` e ferma il ciclo; alla fine `i` è la posizione trovata, oppure `aLen` se `key` non c'è.
+- Cercare è rispondere a «**esiste** un `i` con `a[i] == key`?». Controllare una proprietà è rispondere a «**per ogni** `i` vale `Cond(a[i])`?». Si parte dall'ipotesi più comoda e si cerca un esempio che la smentisce.
+- **Esiste**: la sentinella parte da `false` e diventa `true` al primo testimone. **Per ogni**: parte da `true` e diventa `false` al primo controesempio. In tutti e due i casi il ciclo si ferma subito, e `i` indica l'elemento trovato.
+- Con l'**array vuoto** il ciclo non fa nessun giro: «per ogni» resta vero, «esiste» resta falso. Sono le risposte giuste, senza casi speciali.
+- **Selezione**: si copiano in un altro array gli elementi che rispettano una condizione. Servono due indici, e il **modello dimensione-capacità**: capacità = posti disponibili, dimensione = posti usati.
+- **Ordinato** vuol dire che ogni **coppia adiacente** è in ordine: per ogni `i` in `[1, aLen)`, `a[i-1] <= a[i]`.
+- **Bubble sort**: si scorrono le coppie adiacenti e si scambiano quelle in ordine sbagliato; si ripete finché una passata non fa scambi.
+
+> [!CANALI]
+> **Canale B.** Lezione di mercoledì 04/11, dalle 9 alle 11, dopo la [06B](06B_chiamata_funzioni.html) del 03/11. Le slide sono molte (84, ma tante sono animazioni): se Amparore non le ha finite, la parte che manca andrà alla lezione di martedì 10/11, e aggiorno qui. Usa i cicli e le sentinelle della [04A](04A_iterazioni.html), gli array della [05A](05A_array_stringhe.html), i puntatori come parametri della [06B](06B_chiamata_funzioni.html) e i quantificatori di [Fondamenti](../FDA/09_quantificatori.html).
+>
+> **Canali A e C.** Le slide 2026/27 dei canali A e C su questi algoritmi non le ho viste. L'esame è unico.
+>
+> **Due avvisi sulle slide.** Il primo codice di ricerca (slide 7) non è solo «migliorabile»: se `key` è nell'array **non termina**, perché quando lo trova non incrementa più `i` e il ciclo continua a controllare la stessa casella. L'ho provato con un tempo massimo. Nella slide 49 `int b[bLen] = ...` è uno schema: un array a lunghezza variabile non si può inizializzare con una lista, e gcc dà `variable-sized object may not be initialized except with an empty initializer`.
+>
+> Tutti i programmi li ho compilati con gcc 16.1, con `-Wall -Werror`, ed eseguiti; quelli con i test `assert` delle slide passano tutti.
+
+## La ricerca lineare (slide 3–9)
+
+Uno sgabuzzino con gli scatoloni numerati da 0 a `aLen - 1`, e un disco in vinile da ritrovare. La strategia: si aprono gli scatoloni in ordine, finché si trova il disco oppure finché sono finiti.
+
+> [!DEF] Ricerca lineare (slide 5)
+> Dato un array `a` di lunghezza `aLen` e un valore `key`, alla fine la variabile `i` contiene un indice valido, in `[0, aLen)`, con `a[i] == key`, oppure il **valore sentinella** `i == aLen` se e solo se `key` non c'è.
+
+**Come si legge.** `i` fa due lavori: durante la ricerca scorre l'array, alla fine dice dove si è fermata. Con `a = {6, 12, 4, 9, -1}`: cercando 4 si ferma con `i == 2`; cercando 20 arriva a `i == 5`, che non è un indice valido e quindi vuol dire «non c'è».
+
+Il codice ha bisogno di una seconda variabile, la sentinella `trovato`, che ferma il ciclo:
+
+```c
+bool trovato = false;   // ipotesi iniziale: key non c'è
+size_t i = 0;           // indice della scansione
+while (i < aLen && !trovato) {
+    if (a[i] == key) {
+        trovato = true; // trovato: il ciclo si ferma con i sulla casella giusta
+    } else {
+        i++;
+    }
+}
+// trovato == true: i è l'indice della prima occorrenza
+// trovato == false: i == aLen, nessuna occorrenza
+```
+
+La condizione `i < aLen && !trovato` si legge: «finché `i` è un indice valido e non ho ancora trovato, continua». Il ciclo si ferma per uno dei due motivi, e la variabile `trovato` dice quale.
+
+> [!TRAPPOLA] Il ciclo della slide 7 non finisce
+> Nella slide 7 la condizione è solo `i < aLen`. Quando trova `key`, il codice mette `trovato = true` ma non incrementa `i`: al giro dopo ricontrolla la stessa casella, la ritrova, e così per sempre. Con `key = 4` e l'array sopra, l'ho fermato dopo due miliardi di giri con `i == 2`. La versione giusta è quella della slide 8, con `!trovato` nella condizione.
+
+::: prova Con `a = {6, 12, 4, 9, 4}`, dove si ferma la ricerca di 4? E quella di 7?
+4: si ferma con `i == 2`, la **prima** occorrenza. 7: arriva a `i == 5`, cioè `aLen`, e `trovato` resta `false`.
+:::
+
+> [!RICORDA]
+> - Ricerca lineare: sentinella `trovato` da `false`, condizione `i < aLen && !trovato`.
+> - Alla fine `i` è la prima occorrenza, oppure `aLen` se non c'è.
+
+## Cercare vuol dire «esiste» (slide 9–18)
+
+La ricerca risponde alla domanda: esiste un indice `i` con `a[i] == key`? Nella notazione di Fondamenti:
+
+$$\exists\, i \in [0, aLen) : a[i] = key$$
+
+Si legge «esiste un `i` tra 0 e `aLen` escluso tale che `a[i]` è uguale a `key`». La ricerca lineare è la versione in codice del quantificatore «esiste» su un array. Al posto di `a[i] == key` si può mettere qualunque condizione `Cond(a[i])`: «esiste un elemento pari», «esiste un negativo».
+
+### Il ragionamento come test d'ipotesi
+
+Amparore ricava il codice dalla formula, con un ragionamento in due ipotesi che si escludono:
+
+- **ipotesi iniziale** $H_0$: nessun elemento soddisfa la condizione. In codice: `esiste = false`;
+- **ipotesi alternativa** $H_1$: almeno un elemento la soddisfa.
+
+Si parte da $H_0$ e si cerca un **controesempio** a $H_0$, cioè un elemento che soddisfa `Cond`. Appena lo si trova, $H_0$ è falsa e vale $H_1$: `esiste = true`. Se si arriva in fondo senza trovarlo, si accetta $H_0$.
+
+### Dal quantificatore al codice
+
+Il C non ha un'operazione «esiste». Ma «esiste un elemento che soddisfa `Cond`» è un **OR** di tutte le condizioni, una per elemento:
+
+$$Cond(a[0]) \lor Cond(a[1]) \lor \dots \lor Cond(a[aLen-1])$$
+
+Le slide lo scrivono $\bigvee_{i \in [0, aLen)} Cond(a[i])$, «OR aggregativo». Un OR si calcola con un accumulatore che parte da `false`, il valore che non cambia il risultato:
+
+```c
+bool esiste = false;           // H0: nessun elemento soddisfa Cond
+size_t i = 0;
+while (i < aLen) {
+    esiste = esiste || Cond(a[i]);
+    i++;
+}
+```
+
+È giusto, ma guarda sempre tutto l'array. Un OR diventa vero al primo termine vero, e da lì non cambia più. Quindi ci si può fermare al primo indice che soddisfa `Cond`: è il **cortocircuito**, e porta alla versione con la sentinella nella condizione:
+
+```c
+bool esiste = false;           // H0: nessun elemento soddisfa Cond
+size_t i = 0;
+while (i < aLen && !esiste) {  // finché H0 regge e l'array non è finito
+    if (Cond(a[i])) {
+        esiste = true;         // controesempio a H0: vale H1, e i è il primo indice buono
+    } else {
+        i++;
+    }
+}
+```
+
+È la ricerca lineare della sezione prima, con `Cond(a[i])` al posto di `a[i] == key`. Per esempio, «esiste un elemento pari»:
+
+```c
+bool esistePari = false;
+size_t i = 0;
+while (i < aLen && !esistePari) {
+    if (a[i] % 2 == 0) {
+        esistePari = true;     // a[i] è il primo elemento pari
+    } else {
+        i++;
+    }
+}
+```
+
+::: prova Perché l'accumulatore dell'OR parte da `false` e non da `true`?
+Perché `false || x` vale `x`: `false` non cambia il risultato. Partendo da `true` l'OR sarebbe vero comunque, anche con un array senza elementi buoni.
+:::
+
+> [!RICORDA]
+> - «Esiste» = OR di tutte le condizioni. Sentinella da `false`, diventa `true` al primo testimone.
+> - Cortocircuito: ci si ferma al primo testimone, e `i` lo indica.
+
+## Il codice non dice perché funziona (slide 19–22)
+
+Il codice della ricerca è corto, ma dietro c'è un ragionamento che nel codice non si vede. Le slide lo dividono in quattro livelli:
+
+| Livello | Domanda | Per la ricerca |
+|---|---|---|
+| specifica | che cosa deve fare il programma? | dire se esiste un elemento che soddisfa `Cond` |
+| strategia | come raggiungere l'obiettivo? | supporre che non ci sia, poi scorrere finché se ne trova uno |
+| ragionamento | perché la strategia è corretta? | `esiste` diventa `true` esattamente quando esiste un `i` con `Cond(a[i])` |
+| codice | come si esegue? | le sei righe del ciclo |
+
+Il ragionamento si appoggia a un **invariante**, una proprietà che vale a ogni giro: se `esiste` è vero, allora esiste già un $j$ in $[0, i]$ con $Cond(a[j])$. In parole: quando la sentinella è vera, un testimone c'è davvero, tra le caselle guardate fin qui. Da questo invariante viene la correttezza; la terminazione (il ciclo finisce perché `i` cresce o `esiste` diventa vero) completa il discorso. È la «scomoda verità» della slide 22: il codice mostra come fare, non perché funziona. Commenti, `assert` e specifiche servono a scriverlo.
+
+::: prova Nella ricerca di `key`, qual è la specifica e qual è la strategia?
+Specifica: alla fine `i` è la prima posizione di `key`, oppure `aLen` se non c'è. Strategia: supporre che non ci sia e guardare le caselle in ordine finché lo si trova o finiscono.
+:::
+
+> [!RICORDA]
+> - Specifica, strategia, ragionamento, codice: il codice è solo l'ultimo livello.
+> - L'invariante è il pezzo di ragionamento che vale a ogni giro.
+
+## Verificare una proprietà: «per ogni» (slide 23–28)
+
+Il problema gemello: tutti gli elementi soddisfano `Cond`?
+
+$$\forall\, i \in [0, aLen) : Cond(a[i])$$
+
+«Per ogni» è un **AND** di tutte le condizioni. Le ipotesi si scelgono in modo da poter smentire subito l'iniziale:
+
+- **ipotesi iniziale** $H_0$: tutti soddisfano `Cond`. In codice: `tutti = true`;
+- **ipotesi alternativa** $H_1$: esiste un elemento che **non** soddisfa `Cond`.
+
+Al primo controesempio, $H_0$ cade. L'accumulatore di un AND parte da `true`, il valore che non cambia il risultato, e con il cortocircuito ci si ferma al primo `false`:
+
+```c
+bool tuttiPositivi = true;     // H0: tutti gli elementi sono positivi
+size_t i = 0;
+while (i < aLen && tuttiPositivi) {
+    if (a[i] <= 0) {
+        tuttiPositivi = false; // basta un elemento <= 0 per smentire H0
+    } else {
+        i++;
+    }
+}
+// tuttiPositivi == true: tutti > 0, e i == aLen
+// tuttiPositivi == false: i è l'indice del primo elemento <= 0
+```
+
+| | «esiste» | «per ogni» |
+|---|---|---|
+| formula | $\exists\, i : Cond(a[i])$ | $\forall\, i : Cond(a[i])$ |
+| operazione | OR di tutte le condizioni | AND di tutte le condizioni |
+| sentinella iniziale | `false` | `true` |
+| il ciclo continua finché | `!esiste` | `tutti` |
+| si ferma su | il primo elemento che soddisfa | il primo elemento che **non** soddisfa |
+
+::: prova Scrivi la condizione del ciclo e il test dentro il ciclo per «tutti gli elementi sono minori di 100».
+Condizione `i < aLen && tutti`; dentro, `if (a[i] >= 100) { tutti = false; } else { i++; }`. Si cerca il controesempio, cioè la negazione di `a[i] < 100`.
+:::
+
+> [!RICORDA]
+> - «Per ogni» = AND. Sentinella da `true`, diventa `false` al primo controesempio.
+> - Dentro il ciclo si controlla la condizione **negata**.
+
+## L'array vuoto (slide 29–36)
+
+Una funzione deve dare una risposta per tutti gli input ammessi, anche quelli limite. Che cosa vuol dire «tutti gli elementi soddisfano `Cond`» quando gli elementi non ci sono?
+
+- «Per ogni» è falso solo se c'è un **controesempio**. In un array vuoto non ce ne sono. Quindi «per ogni» sul dominio vuoto è **vero**: si chiama **vero per vacuità**.
+- «Esiste» è vero solo se c'è un **testimone**. In un array vuoto non ce ne sono. Quindi «esiste» sul dominio vuoto è **falso**.
+
+Il codice dà già le risposte giuste: con `aLen == 0` il ciclo non fa nessun giro, e la sentinella resta al valore iniziale.
+
+| Quantificatore | Sul dominio vuoto | Perché | Valore iniziale della sentinella |
+|---|---|---|---|
+| per ogni, AND | vero | nessun controesempio | `true` |
+| esiste, OR | falso | nessun testimone | `false` |
+
+Questo è il motivo profondo per cui le sentinelle partono da quei valori: **il valore iniziale è la risposta giusta per l'array vuoto**. Se lo è, il caso vuoto non richiede un `if` a parte.
+
+```grafico
+titolo: Le due sentinelle. In alto «esiste»: parte da false e diventa true al primo testimone (in verde). In basso «per ogni»: parte da true e diventa false al primo controesempio (in rosa). In tutti e due i casi il ciclo si ferma lì, e con l'array vuoto la sentinella resta com'era
+x: 0 12.4
+y: 0 5
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.3 4.1 | blu | "esiste pari?"
+poligono: 3.0 3.7 4.4 3.7 4.4 4.5 3.0 4.5 | grigio
+testo: 3.7 4.1 | grigio | "7"
+poligono: 4.4 3.7 5.8 3.7 5.8 4.5 4.4 4.5 | grigio
+testo: 5.1 4.1 | grigio | "3"
+poligono: 5.8 3.7 7.2 3.7 7.2 4.5 5.8 4.5 | verde | pieno
+testo: 6.5 4.1 | verde | "8"
+poligono: 7.2 3.7 8.6 3.7 8.6 4.5 7.2 4.5 | grigio | tratteggio
+testo: 7.9 4.1 | grigio | "5"
+testo: 10.5 4.1 | verde | "true, i = 2"
+testo: 1.3 3.1 | grigio | "false → false → true: stop"
+testo: 1.3 1.9 | blu | "tutti positivi?"
+poligono: 3.0 1.5 4.4 1.5 4.4 2.3 3.0 2.3 | grigio
+testo: 3.7 1.9 | grigio | "5"
+poligono: 4.4 1.5 5.8 1.5 5.8 2.3 4.4 2.3 | rosa | pieno
+testo: 5.1 1.9 | rosa | "-1"
+poligono: 5.8 1.5 7.2 1.5 7.2 2.3 5.8 2.3 | grigio | tratteggio
+testo: 6.5 1.9 | grigio | "4"
+poligono: 7.2 1.5 8.6 1.5 8.6 2.3 7.2 2.3 | grigio | tratteggio
+testo: 7.9 1.9 | grigio | "9"
+testo: 10.5 1.9 | rosa | "false, i = 1"
+testo: 1.3 0.9 | grigio | "true → false: stop"
+testo: 6.2 0.25 | grigio | "tratteggiate: caselle mai guardate"
+```
+
+::: prova Un array è vuoto. Che cosa rispondono «tutti gli elementi sono pari» ed «esiste un elemento pari»?
+Il primo **vero** (nessun controesempio), il secondo **falso** (nessun testimone). Il codice con le sentinelle lo fa da solo.
+:::
+
+> [!RICORDA]
+> - Dominio vuoto: «per ogni» vero, «esiste» falso.
+> - La sentinella parte dalla risposta giusta per il caso vuoto.
+
+## Due funzioni con il risultato in più (slide 37–39)
+
+Le slide chiedono di trasformare i due cicli in funzioni che restituiscono la risposta con `return` e l'indice trovato attraverso un puntatore, come nella [06B](06B_chiamata_funzioni.html). Le precondizioni: se `aLen > 0` allora `a != NULL`, e il puntatore per l'indice non è `NULL`.
+
+```c
+#include <stdbool.h>
+#include <stddef.h>
+
+// true se e solo se a[i] > 0 per ogni i in [0, aLen);
+// in *firstBad il primo indice con a[i] <= 0, oppure aLen
+bool tuttiPositivi(const int a[], size_t aLen, size_t *firstBad) {
+    bool tutti = true;
+    size_t i = 0;
+    while (i < aLen && tutti) {
+        if (a[i] <= 0) {
+            tutti = false;
+        } else {
+            i++;
+        }
+    }
+    *firstBad = i;
+    return tutti;
+}
+
+// true se e solo se esiste i in [0, aLen) con a[i] pari;
+// in *firstEven il primo indice pari, oppure aLen
+bool esistePari(const int a[], size_t aLen, size_t *firstEven) {
+    bool esiste = false;
+    size_t i = 0;
+    while (i < aLen && !esiste) {
+        if (a[i] % 2 == 0) {
+            esiste = true;
+        } else {
+            i++;
+        }
+    }
+    *firstEven = i;
+    return esiste;
+}
+```
+
+Le slide danno anche i test, con `assert`. Li ho eseguiti tutti e passano:
+
+| Chiamata | Risultato | Indice |
+|---|---|---|
+| `tuttiPositivi(NULL, 0, &idx)` | `true` | 0 |
+| `tuttiPositivi({1, 2, 3}, 3, &idx)` | `true` | 3 |
+| `tuttiPositivi({5, 4, -1, 7}, 4, &idx)` | `false` | 2 |
+| `esistePari(NULL, 0, &idx)` | `false` | 0 |
+| `esistePari({1, 3, 5, 7}, 4, &idx)` | `false` | 4 |
+| `esistePari({1, 3, -6}, 3, &idx)` | `true` | 2 |
+
+Nell'ultima riga, `-6 % 2` vale 0: anche i negativi pari passano il test `% 2 == 0`. Attenzione invece a `x % 2 == 1` per i dispari: con `-7` vale `-1`, come nella [03C](03C_booleani.html).
+
+::: prova Come si chiama `tuttiPositivi` su un array `v` di 4 elementi, e dove si legge l'indice del primo elemento non positivo?
+`size_t idx; bool ok = tuttiPositivi(v, 4, &idx);`: la risposta è in `ok`, l'indice in `idx`. Si passa `&idx` perché la funzione deve scriverci.
+:::
+
+> [!RICORDA]
+> - Risposta con `return`, indice con un puntatore. Una sola `return`.
+
+## Selezione, dimensione e capacità (slide 40–54)
+
+**Selezione** (o filtro, o copia con filtro): da un array `b` si copiano in un altro array `a` tutti e soli gli elementi che soddisfano `Cond`, nello stesso ordine.
+
+L'esempio delle slide: `b = {18, 9, 30}`, e si copiano gli elementi maggiori o uguali a 18.
+
+```grafico
+titolo: Selezione con il modello dimensione-capacità: da `b = {18, 9, 30}` si copiano in `a` gli elementi maggiori o uguali a 18. Due indici: `i` scorre `b`, `aLen` dice dove scrivere in `a`. Alla fine `aLen` vale 2: le celle `[0, 2)` sono valide, la cella 2 resta libera
+x: 0 12.4
+y: 0 4.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 1.60 2.90 3.00 2.90 3.00 3.70 1.60 3.70 | blu | pieno
+testo: 2.30 3.30 | blu | "18"
+testo: 2.30 3.95 | grigio | "b[0]"
+poligono: 1.60 0.60 3.00 0.60 3.00 1.40 1.60 1.40 | verde | pieno
+testo: 2.30 1.00 | verde | "18"
+testo: 2.30 0.3 | grigio | "a[0]"
+poligono: 3.00 2.90 4.40 2.90 4.40 3.70 3.00 3.70 | blu
+testo: 3.70 3.30 | blu | "9"
+testo: 3.70 3.95 | grigio | "b[1]"
+poligono: 3.00 0.60 4.40 0.60 4.40 1.40 3.00 1.40 | verde | pieno
+testo: 3.70 1.00 | verde | "30"
+testo: 3.70 0.3 | grigio | "a[1]"
+poligono: 4.40 2.90 5.80 2.90 5.80 3.70 4.40 3.70 | blu | pieno
+testo: 5.10 3.30 | blu | "30"
+testo: 5.10 3.95 | grigio | "b[2]"
+poligono: 4.40 0.60 5.80 0.60 5.80 1.40 4.40 1.40 | grigio
+testo: 5.10 1.00 | grigio | "?"
+testo: 5.10 0.3 | grigio | "a[2]"
+testo: 0.7 3.3 | blu | "b"
+testo: 0.7 1.0 | verde | "a"
+freccia: 2.30 2.85 2.30 1.45 | verde
+freccia: 5.10 2.85 3.70 1.45 | verde
+testo: 7.4 3.3 | grigio | e | "9 < 18: non passa il filtro"
+testo: 7.4 1.0 | grigio | e | "aLen = 2, aCap = 3"
+```
+
+Gli elementi copiati **non hanno lo stesso indice** in `a` e in `b`: il 30 è `b[2]` ma diventa `a[1]`. Servono due indici: `i` scorre `b`, un secondo indice dice dove scrivere in `a`. Alla fine quel secondo indice è proprio il numero di elementi copiati.
+
+### Capacità e dimensione
+
+`a` deve avere posto per il caso peggiore, in cui tutti passano il filtro: qui 3. Dopo la selezione ne sono usati solo 2. Due concetti diversi:
+
+- **capacità**: quanti elementi l'array può contenere (`AMAX` o `aCap`);
+- **dimensione**: quanti elementi validi contiene ora (`aLen`).
+
+Gli indici `[0, aLen)` sono gli elementi validi, `[aLen, aCap)` i posti liberi, e sempre $0 \le aLen \le aCap$. `aLen` fa da cursore: si aggiunge un elemento in fondo scrivendo in `a[aLen]` e incrementando `aLen`.
+
+```c
+// a ha capacità aCap e all'inizio è vuoto
+size_t aLen = 0;
+for (size_t i = 0; i < bLen && aLen < aCap; i++) {
+    if (Cond(b[i])) {
+        a[aLen] = b[i];   // copia nel primo posto libero
+        aLen++;
+    }
+}
+// aLen è il numero di elementi copiati
+```
+
+La capacità si può fissare con `#define AMAX ...` e `int a[AMAX]`, oppure tenere in una variabile `aCap` con un VLA `int a[aCap]`.
+
+### Passare a una funzione un array con dimensione e capacità
+
+- Se la funzione **non cambia** la dimensione, basta `size_t aLen, int a[]`, come un array normale.
+- Se la funzione **cambia** la dimensione, riceve `size_t *p_aLen, size_t aCap, int a[]`: la capacità per sapere fin dove può scrivere, e la dimensione **per puntatore**, per comunicarla al chiamante.
+
+### L'esercizio selectInRange (slide 51–54)
+
+Copiare in `a` gli elementi di `b` compresi in `[minVal, maxVal]`; restituire `false` se la capacità non basta (copiando comunque quello che ci sta), `true` altrimenti.
+
+```c
+bool selectInRange(size_t bLen, const int b[],
+                   size_t aCap, size_t *p_aLen, int a[],
+                   int minVal, int maxVal) {
+    size_t aLen = 0;
+    bool overflow = false;
+    size_t i = 0;
+    while (i < bLen && !overflow) {
+        if (minVal <= b[i] && b[i] <= maxVal) {
+            if (aLen < aCap) {
+                a[aLen] = b[i];
+                aLen++;
+            } else {
+                overflow = true;   // un elemento buono che non ci sta
+            }
+        }
+        i++;
+    }
+    *p_aLen = aLen;
+    return !overflow;
+}
+```
+
+Passa tutti i test della slide 54: intervallo che non seleziona niente (`aLen == 0`), selezione di `{0, 2, 2}` da `{-3, 0, 2, 2, 8}`, overflow con capacità 2 (copia `{1, 2}` e restituisce `false`), array vuoto. Ho aggiunto un caso limite: capacità piena esattamente, `{1, 50, 2}` con capacità 2 e intervallo `[0, 10]`, che deve dare `true`. Lo dà, perché `overflow` diventa vero solo se arriva un elemento buono quando non c'è più posto.
+
+::: prova Perché nel ciclo della selezione la condizione contiene anche `aLen < aCap`?
+Per non scrivere oltre la fine di `a`: con `aLen == aCap` l'array è pieno, e `a[aLen]` sarebbe fuori dai limiti.
+:::
+
+> [!RICORDA]
+> - Selezione: due indici, `i` su `b` e `aLen` su `a`.
+> - Capacità = posti, dimensione = posti usati, $0 \le aLen \le aCap$.
+> - Se una funzione cambia la dimensione, la riceve per puntatore.
+
+## Il test di ordinamento (slide 55–64)
+
+`a = {2, 4, 4, 6, 9}` è ordinato in modo **non decrescente**: $2 \le 4 \le 4 \le 6 \le 9$. «Non decrescente» e non «crescente» perché ci sono due 4. Ordinato non è una proprietà di un elemento da solo: è una proprietà delle **coppie adiacenti**.
+
+Per le coppie si usa l'indice del secondo elemento: la coppia `i` è `(a[i-1], a[i])`, con `i` in `[1, aLen)`.
+
+```grafico
+titolo: Indici degli elementi e indici delle coppie. Con 5 elementi le coppie adiacenti sono 4, e la coppia numero `i` è `(a[i-1], a[i])`: gli indici delle coppie vanno da 1 a `aLen - 1`, cioè l'intervallo `[1, aLen)`
+x: 0 12.4
+y: 0 3.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 1.60 1.80 3.20 1.80 3.20 2.60 1.60 2.60 | blu | pieno
+testo: 2.40 2.20 | blu | "2"
+testo: 2.40 2.95 | grigio | "0"
+poligono: 3.20 1.80 4.80 1.80 4.80 2.60 3.20 2.60 | blu | pieno
+testo: 4.00 2.20 | blu | "4"
+testo: 4.00 2.95 | grigio | "1"
+poligono: 4.80 1.80 6.40 1.80 6.40 2.60 4.80 2.60 | blu | pieno
+testo: 5.60 2.20 | blu | "4"
+testo: 5.60 2.95 | grigio | "2"
+poligono: 6.40 1.80 8.00 1.80 8.00 2.60 6.40 2.60 | blu | pieno
+testo: 7.20 2.20 | blu | "6"
+testo: 7.20 2.95 | grigio | "3"
+poligono: 8.00 1.80 9.60 1.80 9.60 2.60 8.00 2.60 | blu | pieno
+testo: 8.80 2.20 | blu | "9"
+testo: 8.80 2.95 | grigio | "4"
+segmento: 2.40 1.6 2.40 1.3 | ambra
+segmento: 4.00 1.6 4.00 1.3 | ambra
+segmento: 2.40 1.3 4.00 1.3 | ambra
+testo: 3.20 0.9 | ambra | "1"
+segmento: 4.00 1.6 4.00 1.3 | ambra
+segmento: 5.60 1.6 5.60 1.3 | ambra
+segmento: 4.00 1.3 5.60 1.3 | ambra
+testo: 4.80 0.9 | ambra | "2"
+segmento: 5.60 1.6 5.60 1.3 | ambra
+segmento: 7.20 1.6 7.20 1.3 | ambra
+segmento: 5.60 1.3 7.20 1.3 | ambra
+testo: 6.40 0.9 | ambra | "3"
+segmento: 7.20 1.6 7.20 1.3 | ambra
+segmento: 8.80 1.6 8.80 1.3 | ambra
+segmento: 7.20 1.3 8.80 1.3 | ambra
+testo: 8.00 0.9 | ambra | "4"
+testo: 0.6 2.95 | grigio | "elementi"
+testo: 0.6 0.9 | ambra | "coppie"
+```
+
+Con $N \ge 1$ elementi le coppie sono $N - 1$; con 0 o 1 elemento non ce ne sono. Ordinato diventa una proprietà «per ogni»:
+
+$$\forall\, i \in [1, aLen) : a[i-1] \le a[i]$$
+
+e non ordinato vuol dire che esiste un controesempio, una coppia con `a[i-1] > a[i]`. Con 0 o 1 elemento non ci sono coppie, quindi niente controesempi: **un array vuoto o di un elemento è ordinato**, per vacuità, senza casi speciali.
+
+```c
+bool ordinatoNonDecr(size_t aLen, const int a[]) {
+    bool ordinato = true;          // all'inizio supponiamo che sia ordinato
+    size_t i = 1;                  // i indica la coppia (a[i-1], a[i])
+    while (i < aLen && ordinato) {
+        if (a[i - 1] > a[i]) {
+            ordinato = false;      // coppia fuori ordine: controesempio
+        } else {
+            i++;
+        }
+    }
+    return ordinato;
+}
+```
+
+`{2, 4, 4, 7}` dà `true` (tre coppie in ordine); `{2, 5, 3, 7}` dà `false` alla seconda coppia, 5 > 3; l'array vuoto dà `true`.
+
+> [!TRAPPOLA] i <= aLen - 1 con size_t
+> L'intervallo `[1, aLen)` diventa `for (size_t i = 1; i < aLen; i++)`, che va bene anche con `aLen` pari a 0 o 1. Scrivere invece `i <= aLen - 1` è un errore: `aLen` è `size_t`, senza segno, e con `aLen == 0` il conto `aLen - 1` non dà −1 ma **18446744073709551615** (l'ho stampato). Il ciclo partirebbe e leggerebbe fuori dall'array. Gli intervalli semiaperti con `<` evitano il problema.
+
+::: prova `{3, 3, 3}` è ordinato in modo non decrescente? E in modo crescente?
+Non decrescente sì: ogni coppia ha `a[i-1] <= a[i]`. Crescente, cioè con `<`, no: $3 < 3$ è falso.
+:::
+
+> [!RICORDA]
+> - Ordinato = per ogni coppia adiacente `a[i-1] <= a[i]`, con `i` in `[1, aLen)`.
+> - Vuoto e un elemento: ordinati. Mai `i <= aLen - 1` con `size_t`.
+
+## Bubble sort (slide 64–84)
+
+Il test di ordinamento trova la prima coppia fuori ordine e si ferma. Il **bubble sort**, ordinamento a bolle, usa la stessa coppia in modo diverso: quando la trova, la **corregge** scambiando i due elementi, e va avanti.
+
+> [!DEF] Bubble sort (slide 66–68)
+> Algoritmo di ordinamento **sul posto** (modifica l'array, senza copiarlo in un altro) fatto di **fasi**. In ogni fase, per ogni `i` in `[1, aLen)`, si confronta la coppia `(a[i-1], a[i])` e la si scambia se `a[i-1] > a[i]`. Se una fase ha fatto almeno uno scambio, si fa un'altra fase; se non ne ha fatto nessuno, l'array è ordinato e l'algoritmo termina.
+
+**Come si legge.** Una fase senza scambi è un test di ordinamento che non ha trovato controesempi: tutte le coppie sono in ordine. Una fase con scambi ha trovato e corretto almeno un controesempio, quindi l'array è cambiato e va ricontrollato.
+
+L'esempio della slide 69, con `{6, 2, -8, 10, 4}`:
+
+```grafico
+titolo: Il bubble sort della slide 69 su `{6, 2, -8, 10, 4}`, una riga per fase. In ogni fase si confrontano le coppie adiacenti da sinistra a destra e si scambiano quelle in ordine sbagliato. Alla fine di ogni fase il più grande dei rimasti è arrivato in fondo (in verde). Nella terza fase non c'è nessuno scambio: l'array è ordinato
+x: 0 12.4
+y: 0 4.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 5.60 3.40 6.70 3.40 6.70 4.10 5.60 4.10 | blu
+testo: 6.15 3.75 | blu | "6"
+poligono: 6.70 3.40 7.80 3.40 7.80 4.10 6.70 4.10 | blu
+testo: 7.25 3.75 | blu | "2"
+poligono: 7.80 3.40 8.90 3.40 8.90 4.10 7.80 4.10 | blu
+testo: 8.35 3.75 | blu | "-8"
+poligono: 8.90 3.40 10.00 3.40 10.00 4.10 8.90 4.10 | blu
+testo: 9.45 3.75 | blu | "10"
+poligono: 10.00 3.40 11.10 3.40 11.10 4.10 10.00 4.10 | blu
+testo: 10.55 3.75 | blu | "4"
+testo: 5.3 3.75 | grigio | o | "inizio"
+poligono: 5.60 2.40 6.70 2.40 6.70 3.10 5.60 3.10 | blu
+testo: 6.15 2.75 | blu | "2"
+poligono: 6.70 2.40 7.80 2.40 7.80 3.10 6.70 3.10 | blu
+testo: 7.25 2.75 | blu | "-8"
+poligono: 7.80 2.40 8.90 2.40 8.90 3.10 7.80 3.10 | blu
+testo: 8.35 2.75 | blu | "6"
+poligono: 8.90 2.40 10.00 2.40 10.00 3.10 8.90 3.10 | blu
+testo: 9.45 2.75 | blu | "4"
+poligono: 10.00 2.40 11.10 2.40 11.10 3.10 10.00 3.10 | verde | pieno
+testo: 10.55 2.75 | verde | "10"
+testo: 5.3 2.75 | grigio | o | "dopo la fase 1"
+poligono: 5.60 1.40 6.70 1.40 6.70 2.10 5.60 2.10 | blu
+testo: 6.15 1.75 | blu | "-8"
+poligono: 6.70 1.40 7.80 1.40 7.80 2.10 6.70 2.10 | blu
+testo: 7.25 1.75 | blu | "2"
+poligono: 7.80 1.40 8.90 1.40 8.90 2.10 7.80 2.10 | blu
+testo: 8.35 1.75 | blu | "4"
+poligono: 8.90 1.40 10.00 1.40 10.00 2.10 8.90 2.10 | verde | pieno
+testo: 9.45 1.75 | verde | "6"
+poligono: 10.00 1.40 11.10 1.40 11.10 2.10 10.00 2.10 | verde | pieno
+testo: 10.55 1.75 | verde | "10"
+testo: 5.3 1.75 | grigio | o | "dopo la fase 2"
+poligono: 5.60 0.40 6.70 0.40 6.70 1.10 5.60 1.10 | verde | pieno
+testo: 6.15 0.75 | verde | "-8"
+poligono: 6.70 0.40 7.80 0.40 7.80 1.10 6.70 1.10 | verde | pieno
+testo: 7.25 0.75 | verde | "2"
+poligono: 7.80 0.40 8.90 0.40 8.90 1.10 7.80 1.10 | verde | pieno
+testo: 8.35 0.75 | verde | "4"
+poligono: 8.90 0.40 10.00 0.40 10.00 1.10 8.90 1.10 | verde | pieno
+testo: 9.45 0.75 | verde | "6"
+poligono: 10.00 0.40 11.10 0.40 11.10 1.10 10.00 1.10 | verde | pieno
+testo: 10.55 0.75 | verde | "10"
+testo: 5.3 0.75 | grigio | o | "fase 3: nessuno scambio"
+```
+
+1. **Fase 1**: 6 e 2 si scambiano, poi 6 e −8, poi 6 e 10 restano, poi 10 e 4 si scambiano: `{2, -8, 6, 4, 10}`. Il 10, il più grande, è «salito» in fondo come una bolla.
+2. **Fase 2**: 2 e −8 si scambiano, 6 e 4 si scambiano: `{-8, 2, 4, 6, 10}`.
+3. **Fase 3**: nessuno scambio. Ordinato.
+
+Lo scambio è la `swap` con i puntatori della [06B](06B_chiamata_funzioni.html):
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void bubbleSort(const size_t aLen, int a[]) {
+    bool ordinato = false;
+    while (!ordinato) {
+        ordinato = true;                 // nuova fase: ipotesi «è ordinato»
+        for (size_t i = 1; i < aLen; i++) {
+            if (a[i-1] > a[i]) {
+                swap(&a[i-1], &a[i]);    // controesempio trovato e corretto
+                ordinato = false;        // servirà un'altra fase
+            }
+        }
+    }
+}
+
+#define LEN 5
+int main(void) {
+    int v[LEN] = {6, 2, -8, 10, 4};
+    bubbleSort(LEN, v);
+    printf("Array ordinato:\n");
+    for (size_t i = 0; i < LEN; i++) {
+        printf("%d ", v[i]);
+    }
+    printf("\n");
+}
+```
+
+Stampa `-8 2 4 6 10`. La variabile `ordinato` è una sentinella per l'**uscita anticipata**: senza, bisognerebbe fare sempre `aLen - 1` fasi, che bastano sempre. Con la sentinella, un array già ordinato richiede una fase sola; il caso peggiore, un array decrescente, ne richiede `aLen` (con `{6, 5, 4, 3, 2, 1}` ne ho contate 6: cinque con scambi e l'ultima di controllo).
+
+### Il bubble sort in memoria (slide 74–82)
+
+Le slide seguono la prima fase su `{6, 2, -8}` con lo stack della 06B. Le cose da notare:
+
+- `bubbleSort` riceve in `a` l'**indirizzo** di `v`, non una copia: gli scambi cambiano proprio `v` nel frame di `main`;
+- `swap(&a[0], &a[1])` crea un terzo frame, con `x` e `y` che puntano a due celle di `v`, e `temp = 6`;
+- dopo `*x = *y` e `*y = temp`, `v` diventa `{2, 6, -8}`; il frame di `swap` sparisce e `bubbleSort` mette `ordinato = false`.
+
+### Il test d'ipotesi dentro il bubble sort (slide 83)
+
+Ogni fase è un test d'ipotesi: $H_0$ = «ogni coppia è in ordine», cioè `ordinato = true` all'inizio della fase; $H_1$ = «esiste una coppia fuori ordine», che la scansione cerca. La differenza con `ordinatoNonDecr`: la fase non si ferma al primo controesempio, lo corregge e continua.
+
+::: prova Quante fasi fa il bubble sort su `{1, 2, 3, 4}`? E su `{2, 1, 3, 4}`?
+Su `{1, 2, 3, 4}` una: nessuno scambio, ordinato subito. Su `{2, 1, 3, 4}` due: la prima scambia 2 e 1, la seconda non trova niente.
+:::
+
+> [!RICORDA]
+> - Bubble sort: fasi di confronti e scambi tra coppie adiacenti, finché una fase non scambia niente.
+> - Dopo ogni fase il più grande dei rimasti è in fondo.
+> - La sentinella `ordinato` permette di fermarsi appena l'array è ordinato.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\exists\, i \in [0, n) : C$ | «esiste un `i` tra 0 e `n` escluso per cui vale C» | almeno un elemento soddisfa C | ricerca lineare |
+| $\forall\, i \in [0, n) : C$ | «per ogni `i` tra 0 e `n` escluso vale C» | tutti gli elementi soddisfano C | `tuttiPositivi` |
+| $\bigvee_i C_i$ | «OR di tutte le $C_i$» | vero se almeno una è vera | sentinella da `false` |
+| $\bigwedge_i C_i$ | «AND di tutte le $C_i$» | vero se tutte sono vere | sentinella da `true` |
+| $H_0$, $H_1$ | «acca zero», «acca uno» | ipotesi iniziale e alternativa | `esiste = false` è $H_0$ |
+| `aLen`, `aCap` | «dimensione», «capacità» | posti usati e posti disponibili | $0 \le aLen \le aCap$ |
+| `[1, aLen)` | «da 1 ad `aLen` escluso» | indici delle coppie adiacenti | `for (size_t i = 1; i < aLen; i++)` |
+
+## Verso l'esame
+
+All'esame, l'esercizio di programmazione iterativa (`e1`) chiede quasi sempre di controllare una proprietà con «per ogni» ed «esiste», a volte annidati, e di restituire un risultato. Le regole d'esame vietano `break`: il ciclo si ferma con la sentinella nella condizione, come in tutta questa lezione. Di questa lezione servono:
+
+1. **tradurre la consegna in una formula** con «per ogni» ed «esiste», prima di scrivere il codice;
+2. **il valore iniziale delle sentinelle**: `true` per «per ogni», `false` per «esiste», che danno da sole la risposta giusta sull'array vuoto;
+3. **la sentinella nella condizione del ciclo**, niente `break`, una sola `return`;
+4. **gli intervalli semiaperti** `[0, aLen)` e `[1, aLen)` con `<`;
+5. **dimensione e capacità** quando la funzione riempie un array.
+
+### Una domanda vera, letta insieme
+
+*Pre-esame 2023/24, esercizio iterativo.* «Scrivere una funzione iterativa `e1` che riceve una matrice irregolare (`rows`, `cols`, `mat`, `rags`) di interi; `e1` determina se le righe sono tutte lunghe almeno quanto `rows` e se in ciascuna riga esiste un elemento multiplo di 7. In questo caso ritorna la somma dei primi multipli di 7 (quelli più a sinistra) di ciascuna riga, altrimenti ritorna 0.» `rags[i]` è la lunghezza della riga `i`.
+
+**In pratica chiede**: per ogni riga, la riga è lunga almeno `rows` **ed** esiste un multiplo di 7. Un «per ogni» con dentro un «esiste»: le due sentinelle di questa lezione, una dentro l'altra.
+
+**Soluzione.**
+
+1. Sentinella esterna `ok = true` («per ogni riga»), condizione `i < rows && ok`.
+2. Per ogni riga, `ok = rags[i] >= rows`, poi la sentinella interna `found = false` («esiste un multiplo di 7»), condizione `j < rags[i] && ok && !found`.
+3. Al primo multiplo di 7 lo si somma e si mette `found = true`: è il più a sinistra.
+4. Dopo la riga, `ok = ok && found`.
+5. Alla fine, se `ok` è falso il risultato è 0. Una sola `return`.
+
+```c
+int e1(size_t rows, size_t cols, const int mat[rows][cols], const size_t rags[rows]) {
+    int sum = 0;
+    bool ok = true;                        // "per ogni riga": parte da true
+    for (size_t i = 0; i < rows && ok; i++) {
+        ok = rags[i] >= rows;
+        bool found = false;                // "esiste un multiplo di 7": parte da false
+        for (size_t j = 0; j < rags[i] && ok && !found; j++) {
+            if (mat[i][j] % 7 == 0) {
+                sum = sum + mat[i][j];
+                found = true;
+            }
+        }
+        ok = ok && found;
+    }
+    if (!ok) {
+        sum = 0;
+    }
+    return sum;                            // una sola return
+}
+```
+
+La soluzione viene dalla [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md), dove è provata: con `rows == 0` dà 0, perché «per ogni» è vero sul vuoto e la somma vuota è 0. Le matrici si fanno più avanti nel corso; lo schema delle sentinelle è già tutto qui.
+
+> [!METODO] Da «per ogni» ed «esiste» al ciclo
+> 1. Scrivi la proprietà con le parole «per ogni» ed «esiste», e l'intervallo degli indici.
+> 2. Per ogni quantificatore una sentinella: `true` per «per ogni», `false` per «esiste».
+> 3. Condizione del ciclo: `i < n &&` sentinella (`tutti`, oppure `!esiste`).
+> 4. Nel corpo: per «per ogni» cerca la condizione **negata**, per «esiste» la condizione; quando la trovi, cambia la sentinella e non incrementare `i`, se ti serve la posizione.
+> 5. Controlla a mano il caso vuoto: la sentinella deve già essere la risposta giusta.
+
+## Quiz
+
+```quiz
+D: Che valore iniziale deve avere la sentinella per «tutti gli elementi sono pari»?
++ `true`
+- `false`
+- 0
+- `aLen`
+- dipende dal primo elemento
+= «Per ogni» è un AND, e si cerca un controesempio: si parte da vero. Sull'array vuoto la risposta giusta è proprio vero. La più insidiosa è «dipende dal primo elemento»: inizializzare con `a[0] % 2 == 0` rompe il caso vuoto.
+
+D: Con `a = {6, 12, 4, 9, -1}` e `key = 20`, quanto vale `i` alla fine della ricerca lineare?
++ 5
+- 4
+- -1
+- 0
+- non è definito
+= `key` non c'è: il ciclo arriva a `i == aLen`, il valore sentinella. La più insidiosa è −1, che altri linguaggi usano per «non trovato»: qui `i` è `size_t` e il segnale è `aLen`.
+
+D: Che cosa risponde «esiste un elemento negativo» su un array vuoto?
++ falso, perché non c'è nessun testimone
+- vero, per vacuità
+- dipende da come è scritto il ciclo
+- la funzione deve segnalare un errore
+- non si può dire
+= «Esiste» è vero solo con un testimone. La più insidiosa è «vero, per vacuità»: la verità per vacuità vale per «per ogni».
+
+D: Perché il ciclo della slide 7 (condizione solo `i < aLen`, e `i++` solo nel ramo `else`) è sbagliato?
++ se trova `key` non termina più
+- non trova mai l'ultima occorrenza
+- legge fuori dall'array
+- non compila
+- restituisce sempre `aLen`
+= Quando trova `key` mette `trovato = true` ma non avanza, e la condizione resta vera: ricontrolla la stessa casella all'infinito. La più insidiosa è «legge fuori dall'array»: `i` non supera mai `aLen - 1`.
+
+D: Che cosa succede con `for (size_t i = 1; i <= aLen - 1; i++)` e `aLen == 0`?
++ `aLen - 1` vale un numero enorme e il ciclo legge fuori dall'array
+- il ciclo non fa nessun giro
+- il ciclo fa un giro solo
+- non compila con `-Wall -Werror`
+- `aLen - 1` vale −1 e il ciclo si ferma
+= `size_t` non ha segno: 0 − 1 dà 18446744073709551615. La più insidiosa è l'ultima, che sarebbe vera con un `int`.
+
+D: Quante fasi fa il bubble sort con la sentinella su `{6, 2, -8, 10, 4}`?
++ 3
+- 2
+- 4
+- 5
+- 1
+= Due fasi con scambi e una senza, che conferma l'ordine. La più insidiosa è 2: dopo la seconda fase l'array è ordinato, ma l'algoritmo lo scopre solo con la terza.
+
+D: Una funzione riempie un array `a` con dimensione e capacità. Quale intestazione permette al chiamante di conoscere la nuova dimensione?
++ `void f(size_t *p_aLen, size_t aCap, int a[])`
+- `void f(size_t aLen, size_t aCap, int a[])`
+- `void f(size_t aCap, int a[])`
+- `void f(const size_t *p_aLen, size_t aCap, int a[])`
+- `void f(size_t aLen, const int a[])`
+= La dimensione cambia, quindi passa per puntatore. La più insidiosa è la quarta: con `const` la funzione non potrebbe scrivere in `*p_aLen`.
+
+D: Dopo la prima fase del bubble sort, quale elemento è sicuramente al suo posto finale?
++ il più grande, nell'ultima casella
+- il più piccolo, nella prima casella
+- nessuno
+- quello che era nella prima casella
+- tutti quelli già scambiati
+= Il più grande vince tutti i confronti e viene spinto fino in fondo. La più insidiosa è la seconda: il più piccolo scende di una sola casella per fase.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: quale sentinella?
+Per ognuna, di' se è un «per ogni» o un «esiste», il valore iniziale della sentinella e la risposta sull'array vuoto: (a) c'è uno zero; (b) sono tutti minori di 10; (c) nessun elemento è negativo; (d) c'è un elemento uguale al successivo.
+::: soluzione
+(a) esiste, `false`, falso. (b) per ogni, `true`, vero. (c) «nessuno è negativo» = per ogni elemento, non negativo: per ogni, `true`, vero. (d) esiste una coppia `i` in `[1, aLen)` con `a[i-1] == a[i]`: esiste, `false`, falso (anche con un elemento solo, perché non ci sono coppie).
+:::
+
+::: esercizio base Riscaldamento: bubble sort a mano
+Scrivi l'array dopo ogni fase del bubble sort su `{5, 1, 4, 2}`, e conta le fasi.
+::: soluzione
+Fase 1: `{1, 4, 2, 5}`. Fase 2: `{1, 2, 4, 5}`. Fase 3: nessuno scambio. **3 fasi**. Controllato con il programma.
+:::
+
+::: esercizio medio Ultima occorrenza
+Scrivi `bool ultimaOccorrenza(size_t aLen, const int a[], int key, size_t *pos)` che cerca `key` partendo dal fondo, con una sola `return`. In `*pos` va l'indice dell'ultima occorrenza, oppure `aLen` se `key` non c'è.
+::: soluzione
+```c
+bool ultimaOccorrenza(size_t aLen, const int a[], int key, size_t *pos) {
+    bool trovato = false;
+    size_t i = aLen;               // i - 1 è la casella da guardare
+    while (i > 0 && !trovato) {
+        if (a[i - 1] == key) {
+            trovato = true;
+        } else {
+            i--;
+        }
+    }
+    *pos = trovato ? i - 1 : aLen;
+    return trovato;
+}
+```
+Con `{4, 7, 4, 1}` e `key = 4` dà `true` e 2; con `key = 9` dà `false` e 4; con l'array vuoto `false` e 0. Si guarda la casella `i - 1` e si confronta `i > 0`, perché con `size_t` la condizione `i >= 0` sarebbe sempre vera (05A). Provato.
+:::
+
+::: esercizio medio Conta e copia i pari
+Scrivi `size_t copiaPari(size_t bLen, const int b[], size_t aCap, int a[])` che copia in `a` gli elementi pari di `b`, fino a riempire la capacità, e restituisce quanti ne ha copiati.
+::: soluzione
+```c
+size_t copiaPari(size_t bLen, const int b[], size_t aCap, int a[]) {
+    size_t aLen = 0;
+    for (size_t i = 0; i < bLen && aLen < aCap; i++) {
+        if (b[i] % 2 == 0) {
+            a[aLen] = b[i];
+            aLen++;
+        }
+    }
+    return aLen;
+}
+```
+Con `{3, 8, -2, 7, 10}` e capacità 5 copia `{8, -2, 10}` e restituisce 3; con capacità 2 copia `{8, -2}` e restituisce 2. Qui la dimensione esce con `return`, perché è l'unico risultato. Provato.
+:::
+
+::: esercizio esame Tutti distinti dal precedente, nello stile di `e1`
+Scrivi una funzione iterativa `bool e1(size_t aLen, const int a[], size_t *firstEq)` che restituisce `true` se nessuna coppia di elementi adiacenti è uguale. In `*firstEq` va l'indice `i` della prima coppia `(a[i-1], a[i])` con elementi uguali, oppure `aLen` se non ce ne sono. Niente `break`, una sola `return`.
+::: soluzione
+Formula: per ogni `i` in `[1, aLen)`, `a[i-1] != a[i]`. Sentinella da `true`, si cerca il controesempio `a[i-1] == a[i]`.
+```c
+bool e1(size_t aLen, const int a[], size_t *firstEq) {
+    bool distinti = true;
+    size_t i = 1;
+    while (i < aLen && distinti) {
+        if (a[i - 1] == a[i]) {
+            distinti = false;
+        } else {
+            i++;
+        }
+    }
+    *firstEq = distinti ? aLen : i;
+    return distinti;
+}
+```
+Attenzione al caso `aLen == 0`: il ciclo non parte e `i` vale 1, non `aLen`; per questo `*firstEq` si calcola alla fine con il `? :`. Con `{1, 2, 2, 3}` dà `false` e 2; con `{1, 2, 1}` dà `true` e 3; con l'array vuoto `true` e 0. Provato.
+:::
+
+::: esercizio difficile Bubble sort che si accorcia (slide 84)
+Dopo ogni fase gli elementi oltre l'ultimo scambio sono già al loro posto. Scrivi una versione del bubble sort che ricorda la posizione dell'ultimo scambio, `newLast`, e nella fase successiva confronta solo le coppie fino a lì. Niente `break`.
+::: soluzione
+```c
+void bubbleSortLast(const size_t aLen, int a[]) {
+    size_t last = aLen;            // si controllano le coppie i in [1, last)
+    while (last > 1) {
+        size_t newLast = 0;        // se non ci sono scambi resta 0 e il ciclo finisce
+        for (size_t i = 1; i < last; i++) {
+            if (a[i-1] > a[i]) {
+                swap(&a[i-1], &a[i]);
+                newLast = i;       // da a[i] in poi è tutto al suo posto
+            }
+        }
+        last = newLast;
+    }
+}
+```
+`newLast` fa anche da sentinella: una fase senza scambi lo lascia a 0, e `last > 1` diventa falsa. Su `{6, 2, -8, 10, 4}` fa 3 fasi come l'originale, ma la seconda e la terza controllano meno coppie. L'ho confrontata con `qsort` della libreria su 20 000 array casuali, da 0 a 11 elementi: stesso risultato ogni volta.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa contiene `i` alla fine di una ricerca lineare?
+L'indice della prima occorrenza, se l'elemento c'è; altrimenti `aLen`, il valore sentinella.
+:::
+
+::: domanda Perché la sentinella di «esiste» parte da `false` e quella di «per ogni» da `true`?
+Perché sono i valori che non cambiano un OR e un AND, e sono anche le risposte giuste sull'array vuoto: nessun testimone, nessun controesempio.
+:::
+
+::: domanda Che differenza c'è tra capacità e dimensione?
+La capacità è il numero di posti dell'array, la dimensione il numero di elementi validi, sempre tra 0 e la capacità.
+:::
+
+::: domanda Perché un array di un solo elemento è ordinato?
+Perché non ha coppie adiacenti, quindi non ci sono controesempi alla proprietà «per ogni coppia».
+:::
+
+::: domanda Quando si ferma il bubble sort?
+Dopo la prima fase senza scambi: vuol dire che ogni coppia adiacente è in ordine.
+:::
+
+## Glossario
+
+```glossario
+Ricerca lineare | Scansione dell'array in ordine finché si trova l'elemento o l'array finisce.
+Valore sentinella | Valore che segnala un caso speciale, come i == aLen per «non trovato».
+Variabile sentinella | Variabile booleana che registra un evento e ferma il ciclo, come trovato o tutti.
+Ipotesi iniziale (H0) | L'ipotesi da cui parte il ciclo, che si cerca di smentire.
+Controesempio | Elemento che smentisce un «per ogni».
+Testimone | Elemento che rende vero un «esiste».
+Cortocircuito | Fermarsi appena il risultato di un OR o di un AND è deciso.
+Vero per vacuità | Un «per ogni» su un dominio vuoto è vero, perché non ci sono controesempi.
+Invariante | Proprietà che vale a ogni giro del ciclo.
+Selezione | Copia in un altro array degli elementi che soddisfano una condizione.
+Capacità | Numero massimo di elementi che un array può contenere.
+Dimensione | Numero di elementi validi in un array.
+Ordinamento non decrescente | Ogni elemento è minore o uguale al successivo.
+Bubble sort | Ordinamento per fasi di confronti e scambi tra elementi adiacenti.
+Sul posto | Detto di un algoritmo che modifica l'array stesso, senza copiarlo.
+```
+
+## Checklist
+
+```checklist
+- So scrivere la ricerca lineare con la sentinella nella condizione, senza break.
+- So tradurre «esiste» e «per ogni» in un ciclo con il giusto valore iniziale della sentinella.
+- So che cosa rispondono «esiste» e «per ogni» sull'array vuoto, e perché.
+- So restituire un risultato con return e un indice con un puntatore.
+- So scrivere una selezione con dimensione e capacità.
+- So passare a una funzione la dimensione per puntatore quando la funzione la cambia.
+- So controllare se un array è ordinato sulle coppie adiacenti, con l'intervallo [1, aLen).
+- So perché i <= aLen - 1 è pericoloso con size_t.
+- So eseguire a mano il bubble sort fase per fase e scriverlo in C.
+```
+
+## Fonti
+
+- Slide «Algoritmi su array. Ricerca, filtro e ordinamento» (07A_algoritmi_su_array), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: ricerca lineare (slide 3–9), quantificazione esistenziale come test d'ipotesi (10–18), specifica, strategia e invarianti (19–22), verifica di proprietà e quantificazione universale (23–28), casi limite e dominio vuoto (29–36), esercizi `tuttiPositivi` ed `esistePari` con i test (37–39), selezione e modello dimensione-capacità (40–50), esercizio `selectInRange` (51–54), test di ordinamento (55–64), bubble sort, esecuzione nello stack e test d'ipotesi (65–83), esercizio su `new_last` (84).
+- Esercizio `e1` del pre-esame 2023/24: [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md); regole d'esame dalla [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
+- Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con `-Wall -Werror`, ed eseguiti; il ciclo della slide 7 con un tempo massimo. Gli errori e le stampe citati sono quelli veri. Quiz, esercizi e figure sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/PROG1/lezioni/Lab01_introduzione.md -->
 > File: `contesto_ai/PROG1/lezioni/Lab01_introduzione.md`
 
@@ -13990,6 +15819,867 @@ Redirezione dell'input | Con programma < file il programma legge dal file invece
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/lezioni/Lab05A_array_stringhe.md -->
+> File: `contesto_ai/PROG1/lezioni/Lab05A_array_stringhe.md`
+
+```yaml
+corso: PROG1
+lezione: Lab05A
+titolo: "Laboratorio 05: array e stringhe"
+data: 2026-11-02
+docenti: Elisa Marengo (turno B2) e Valerio Basile (turno B1); teoria Elvio Amparore
+sopratitolo: Canale B · Laboratorio 05 · Programmazione I
+descrizione: >-
+  Appunti del quinto laboratorio di Programmazione I (canale B, Lab05A): array con size_t e #define, la somma di un
+  array letto da tastiera, le frequenze delle risposte a un questionario, la somma selettiva, stringhe e terminatore,
+  l'alfabeto in un array, la montagna più alta, «per ogni» ed «esiste» su un array, le funzioni di ctype.h, le
+  proprietà di una password e Indovina chi?, con tutti i programmi provati.
+lede: >-
+  Il quinto laboratorio mette in pratica la lezione 05A: array di numeri e di caratteri, riempiti con un ciclo,
+  contati, filtrati, confrontati. Qui trovi ogni esercizio risolto e provato, i tre esercizi CodeRunner con il testo
+  dell'anno scorso, e una trappola delle funzioni sui caratteri che la slide non dice.
+materiale: slide
+scheda:
+  Slide: Lab05A «Array e stringhe», laboratorio canale B · 18 pagine, esercizi anche su CodeRunner
+  Laboratorio: Elisa Marengo (turno B2, lun 02/11) e Valerio Basile (turno B1) · 14–17 · laboratorio Turing
+  Tempo di studio: 2–3 ore, davanti a un computer
+fonte: >-
+  Slide «Array e stringhe» (Lezione nº 5 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27;
+  codice di partenza e soluzioni del Lab05 2025/26 dai Moodle dei canali A e B
+appunti_html: appunti/PROG1/Lab05A_array_stringhe.html
+genera_html: true
+```
+
+## In breve
+
+- Un array si scorre con un indice `size_t` da 0 a `n` escluso, e la lunghezza sta in una `#define` o in una variabile: a una funzione si passa la coppia «lunghezza, puntatore ai dati».
+- Per **contare quante volte compare ogni valore** si usa un array di contatori: `frequenze[v - 1]++` per un valore `v` tra 1 e 5.
+- Se il risultato dipende da un valore che si conosce solo alla fine (il minimo di tutta la sequenza), i dati vanno **memorizzati** in un array e scorsi una seconda volta.
+- Una **stringa** è un array di `char` che finisce con `'\0'`. Si riempie a mano con un ciclo e poi si aggiunge il terminatore; si legge con `%20s`, senza `&`.
+- Per **copiare una stringa** si copia carattere per carattere fino al terminatore, e poi il terminatore.
+- **«Per ogni»** su un array: sentinella da `true`; **«esiste»**: sentinella da `false`. Le stesse della [07A](07A_algoritmi_su_array.html).
+- Le funzioni di `ctype.h` (`isdigit`, `isupper`…) dicono che tipo di carattere è. Restituiscono un `int` **diverso da zero** per vero, non per forza 1: per stamparle con 0 e 1 si passa da un `bool`.
+
+> [!CANALI]
+> **Canale B.** È il quinto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 02/11 con **Elisa Marengo**. Il turno **B1** con **Valerio Basile** il 03/11 ha fatto il [Lab04](Lab04_iterazioni.html), recuperando la settimana del 27/10; il calendario ha il prossimo laboratorio B1 martedì 10/11, quindi il Lab05A dovrebbe toccargli lì. Gli esercizi riprendono la [05A](05A_array_stringhe.html) su array e stringhe; i quantificatori delle slide 14–15 sono spiegati per intero nella [07A](07A_algoritmi_su_array.html).
+>
+> **Canali A e C.** Nel 2025/26 il Lab05 era uguale nei tre canali, con gli stessi esercizi CodeRunner. Le slide 2026/27 dei canali A e C non le ho viste.
+>
+> **Il materiale che ho e quello che non ho.** Il codice di partenza 2026/27 è su Moodle e non l'ho visto; uso quello del 2025/26 (canale B: `array.c`, `questionari.c`, `stringhe.c`), che ha gli stessi nomi delle slide. I testi dei quattro esercizi CodeRunner 2026/27 non li ho: quelli del 2025/26, con gli stessi nomi, li ho ricostruiti dalle soluzioni pubblicate sul Moodle del canale A e dagli appunti di uno studente. Le soluzioni qui sono mie, provate sugli esempi; confrontale con il testo esatto su Moodle. Tutti i programmi li ho compilati con `gcc -Wall -Werror` (gcc 16.1, Windows 11 a 64 bit) ed eseguiti.
+
+## Array, size_t e la somma (slide 2–4)
+
+La slide 2 ripete le regole della [05A](05A_array_stringhe.html): un array è una sequenza di variabili dello stesso tipo, con indici interi non negativi da 0. Il tipo dell'indice è **`size_t`**, che lo standard raccomanda per le dimensioni e gli indici degli array (Deitel, p. 247), e si stampa e si legge con **`%zu`**. Per ora gli array stanno sullo stack e hanno una dimensione fissata; più avanti nel corso arriveranno gli array sullo heap.
+
+Per usare un array serve sempre sapere quanto è lungo. Le strade, per ora, sono due:
+
+- una **`#define`** con la dimensione, usata ovunque compare l'array;
+- una **variabile** con la dimensione. Allora l'array viaggia in coppia: «numero di elementi, puntatore all'inizio dei dati», proprio come nei parametri della [06B](06B_chiamata_funzioni.html).
+
+### array.c
+
+Il programma di partenza `array.c` riassume le dichiarazioni della 05A: un array azzerato con un ciclo, una lista di inizializzazione `{23, 56, 12, -6, 31}`, una lista corta `{100}` che completa con zeri, un array senza dimensione `int values3[] = {0, 1, 2, 3}` che ne prende 4 dalla lista, e un VLA `int inseriti[sz]` con la dimensione letta da tastiera. Manca la fine: calcolare e stampare la somma degli elementi di `inseriti`. È un accumulatore che parte da 0:
+
+```c
+    int somma = 0;
+    for (size_t i = 0; i < sz; i++) {
+        somma = somma + inseriti[i];
+    }
+    printf("La somma degli elementi e' %d\n", somma);
+```
+
+Con dimensione 3 e valori 4, −1, 10 stampa `La somma degli elementi e' 13`. Due dettagli del programma di partenza: con dimensione 0 il VLA `int inseriti[0]` non è valido in C (la 05A diceva lunghezza almeno 1); e il valore letto non viene controllato, quindi un numero enorme fa esaurire lo stack.
+
+::: prova Che cosa contiene `values2` dopo `int values2[5] = {100};`?
+`{100, 0, 0, 0, 0}`: gli elementi non scritti nella lista valgono 0.
+:::
+
+> [!RICORDA]
+> - Indici `size_t`, da stampare con `%zu`. La lunghezza sta in una `#define` o in una variabile che viaggia con l'array.
+
+## Questionari: contare le frequenze (slide 5)
+
+Venti persone hanno dato un voto da 1 a 5 stelle:
+
+```c
+#define NUM_RISP 20
+int risposte[NUM_RISP] = {
+    1, 2, 5, 4, 3,  5, 2, 1, 3, 1,
+    4, 3, 3, 3, 2,  3, 3, 2, 2, 5
+};
+```
+
+Bisogna contare quante risposte hanno 1 stella, quante 2, e così via, e stampare un istogramma. L'idea: un array di 5 contatori, uno per voto. Il voto `v` va nel contatore `frequenze[v - 1]`, perché gli indici partono da 0 e le stelle da 1. Un solo ciclo sulle risposte basta:
+
+```c
+#include <stdio.h>
+
+#define NUM_RISP 20   // numero di risposte al questionario
+#define MAX_STELLE 5  // le risposte vanno da 1 a 5
+
+int main(void) {
+    const int risposte[NUM_RISP] = {
+        1, 2, 5, 4, 3,  5, 2, 1, 3, 1,
+        4, 3, 3, 3, 2,  3, 3, 2, 2, 5
+    };
+
+    // frequenze[s - 1] conta le risposte con s stelle
+    int frequenze[MAX_STELLE] = {0};
+    for (size_t i = 0; i < NUM_RISP; i++) {
+        frequenze[risposte[i] - 1]++;
+    }
+
+    printf("Stelle  Frequenza\n");
+    for (size_t s = 0; s < MAX_STELLE; s++) {
+        printf("%zu %10d   ", s + 1, frequenze[s]);
+        for (int k = 0; k < frequenze[s]; k++) {
+            printf("#");
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+
+Stampa esattamente l'istogramma della slide: 3, 5, 7, 2, 3, che sommati fanno 20.
+
+```grafico
+titolo: Come lavora `frequenze[risposte[i] - 1]++`. Ogni risposta sceglie con il suo valore quale contatore incrementare: un 3 incrementa la casella 2, un 1 la casella 0. Alla fine le caselle contengono 3, 5, 7, 2, 3
+x: 0 12.4
+y: 0 4.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.4 3.0 1.4 3.0 1.4 3.8 0.4 3.8 | blu | pieno
+testo: 0.9 3.4 | blu | "1"
+poligono: 1.4 3.0 2.4 3.0 2.4 3.8 1.4 3.8 | blu | pieno
+testo: 1.9 3.4 | blu | "2"
+poligono: 2.4 3.0 3.4 3.0 3.4 3.8 2.4 3.8 | blu | pieno
+testo: 2.9 3.4 | blu | "5"
+poligono: 3.4 3.0 4.4 3.0 4.4 3.8 3.4 3.8 | blu | pieno
+testo: 3.9 3.4 | blu | "4"
+poligono: 4.4 3.0 5.4 3.0 5.4 3.8 4.4 3.8 | blu | pieno
+testo: 4.9 3.4 | blu | "3"
+testo: 6.6 3.4 | grigio | "… risposte"
+poligono: 3.4 0.6 4.6 0.6 4.6 1.4 3.4 1.4 | verde | pieno
+testo: 4.0 1.0 | verde | "3"
+poligono: 4.6 0.6 5.8 0.6 5.8 1.4 4.6 1.4 | verde | pieno
+testo: 5.2 1.0 | verde | "5"
+poligono: 5.8 0.6 7.0 0.6 7.0 1.4 5.8 1.4 | verde | pieno
+testo: 6.4 1.0 | verde | "7"
+poligono: 7.0 0.6 8.2 0.6 8.2 1.4 7.0 1.4 | verde | pieno
+testo: 7.6 1.0 | verde | "2"
+poligono: 8.2 0.6 9.4 0.6 9.4 1.4 8.2 1.4 | verde | pieno
+testo: 8.8 1.0 | verde | "3"
+testo: 4.0 0.25 | grigio | "[0]"
+testo: 5.2 0.25 | grigio | "[1]"
+testo: 6.4 0.25 | grigio | "[2]"
+testo: 7.6 0.25 | grigio | "[3]"
+testo: 8.8 0.25 | grigio | "[4]"
+testo: 10.9 1.0 | verde | "frequenze"
+freccia: 0.9 2.9 3.9 1.5 | grigio
+freccia: 4.9 2.9 6.3 1.5 | grigio
+testo: 1.6 2.2 | grigio | "1 → [0]"
+testo: 6.3 2.4 | grigio | "3 → [2]"
+```
+
+> [!TRAPPOLA] Un voto fuori da 1–5
+> Se nelle risposte ci fosse un 0 o un 6, `frequenze[risposte[i] - 1]` scriverebbe fuori dall'array, senza nessun errore del compilatore. Con dati letti da tastiera, prima di incrementare si controlla `1 <= v && v <= 5`.
+
+::: prova Come cambia il programma se le risposte vanno da 0 a 10?
+Servono 11 contatori, `int frequenze[11] = {0};`, e l'indice è il voto stesso: `frequenze[risposte[i]]++`.
+:::
+
+> [!RICORDA]
+> - Contare per categorie: un array di contatori, indicizzato dal valore.
+
+## Somma selettiva (slide 6, Lab05-Es1)
+
+Il testo dell'esercizio CodeRunner del 2025/26, con lo stesso nome:
+
+> [!NOTA] Lab05-Es1 Somma selettiva (testo 2025/26)
+> Leggere un intero non negativo `N`, poi una sequenza di `N` interi da memorizzare in un array; `N` non supera `MAX_N = 20`. Stampare `Vuoto.` se la sequenza non ha elementi, `Errore: numero di elementi non valido.` se `N` non è valido, altrimenti la somma degli elementi **maggiori o uguali al quadrato del minimo** della sequenza. Esempio: con `4` e poi `2 3 4 6` stampa `10`.
+
+Nell'esempio il minimo è 2, il quadrato 4, e gli elementi da 4 in su sono 4 e 6: somma 10.
+
+La domanda della slide: **si può fare a meno di memorizzare la sequenza in un array?** No. Se la sequenza è `3 4`, il minimo è 3, la soglia 9, e la somma è 0. Se dopo arriva un `1`, il minimo diventa 1, la soglia 1, e la somma diventa 8: il 3 e il 4 ora contano. Finché non si è letta tutta la sequenza non si sa quali elementi sommare, quindi bisogna tenerli. Si fanno due passate sull'array: la prima trova il minimo, la seconda somma.
+
+```c
+#include <stdio.h>
+
+#define MAX_N 20
+
+int main(void) {
+    size_t n = 0;
+    scanf("%zu", &n);
+    if (n == 0) {
+        printf("Vuoto.\n");
+    } else if (n > MAX_N) {
+        printf("Errore: numero di elementi non valido.\n");
+    } else {
+        int a[MAX_N];
+        for (size_t i = 0; i < n; i++) {
+            scanf("%d", &a[i]);
+        }
+        // primo passaggio: il minimo
+        int min = a[0];
+        for (size_t i = 1; i < n; i++) {
+            if (a[i] < min) {
+                min = a[i];
+            }
+        }
+        // secondo passaggio: la somma selettiva
+        int soglia = min * min;
+        int somma = 0;
+        for (size_t i = 0; i < n; i++) {
+            if (a[i] >= soglia) {
+                somma = somma + a[i];
+            }
+        }
+        printf("%d\n", somma);
+    }
+    return 0;
+}
+```
+
+Provato: `4` e `2 3 4 6` dà 10; `3` e `3 4 1` dà 8; `2` e `3 4` dà 0; `3` e `-2 1 7` dà 7 (minimo −2, soglia 4); `0` dà `Vuoto.`; `25` dà l'errore. Con `-3` dà l'errore anche lui: `%zu` legge il segno meno e il numero diventa enorme, maggiore di 20.
+
+Il minimo si inizializza con `a[0]`, non con 0: con tutti elementi positivi, partire da 0 darebbe minimo 0. È la precondizione «non vuoto» della [05A](05A_array_stringhe.html), garantita qui dal ramo `n == 0`.
+
+::: prova Con la sequenza `5 6 7`, che cosa stampa?
+0. Il minimo è 5, la soglia 25, e nessun elemento arriva a 25.
+:::
+
+> [!RICORDA]
+> - Se la decisione dipende da un dato che arriva alla fine, si memorizza tutto e si fanno due passate.
+
+## Le stringhe (slide 7–11)
+
+Nel C il testo è un array di `char`. Un `char` contiene il codice numerico di un carattere, secondo la tabella **ASCII** (si legge «àski»): la slide 8 la mostra intera, 128 caratteri. Da ricordare i caratteri di controllo che compaiono nel codice:
+
+| Codice | Nome | Nel codice C |
+|---|---|---|
+| 0 | NUL, il terminatore | `'\0'` |
+| 9 | tabulazione | `'\t'` |
+| 10 | a capo (line feed) | `'\n'` |
+| 13 | ritorno carrello | `'\r'` |
+
+e le tre file consecutive: cifre da 48 (`'0'`), maiuscole da 65 (`'A'`), minuscole da 97 (`'a'`). Nel corso si usa solo il testo **a un byte per carattere**, adatto ad ASCII e Latin-1; il C conosce anche i caratteri larghi (`wchar_t`) e le codifiche a più byte, che qui non si vedono.
+
+Una stringa ha in più, rispetto a un array qualunque, il **terminatore** `'\0'` alla fine. `"ciao"` occupa 5 `char`: `'c'`, `'i'`, `'a'`, `'o'`, `'\0'`. Si dichiara in tre modi:
+
+```c
+char txt1[] = { 'c', 'i', 'a', 'o', '\0' };   // array, terminatore scritto a mano
+char txt2[] = "ciao";                         // array, terminatore aggiunto dal compilatore
+const char* txt3 = "ciao";                    // puntatore a un letterale, in sola lettura
+```
+
+### stringhe.c
+
+Il programma di partenza fa vedere le stringhe come array. Le parti da capire:
+
+1. `char testoA[] = "testo";` poi `testoA[1] = 'E'`, `testoA[4] = 'A'`, `testoA[3] = '\0'`. La `printf` stampa **`tEs`**: si ferma al primo terminatore, in posizione 3. La `'A'` in posizione 4 è ancora lì in memoria, ma non fa più parte della stringa.
+2. `scanf("%20s", testo_input)` con `char testo_input[21]`: legge al massimo 20 caratteri e si ferma al primo spazio. Con `due parole` legge solo `due`; con una parola di 26 lettere ne legge 20, e le altre restano nell'input.
+3. Il ciclo stampa ogni carattere con il suo codice, terminatore compreso: `'d' ha valore 100`, `'u' ha valore 117`, `'e' ha valore 101`, e per ultimo il terminatore, che vale 0.
+4. `'7' - '0'` vale 7: le cifre sono consecutive nella tabella, quindi la differenza dal carattere `'0'` è il valore della cifra. Al contrario, `'0' + i` è il carattere della cifra `i`.
+
+```grafico
+titolo: Che cosa c'è in `testoA` dopo le tre modifiche. La stringa finisce al primo `'\0'`, nella casella 3: `printf` stampa `tEs`. La `'A'` nella casella 4 e il terminatore originale nella 5 restano in memoria, ma fuori dalla stringa
+x: 0 12.4
+y: 0 3.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 1.0 1.3 2.6 1.3 2.6 2.3 1.0 2.3 | blu | pieno
+testo: 1.8 1.8 | blu | "'t'"
+poligono: 2.6 1.3 4.2 1.3 4.2 2.3 2.6 2.3 | blu | pieno
+testo: 3.4 1.8 | blu | "'E'"
+poligono: 4.2 1.3 5.8 1.3 5.8 2.3 4.2 2.3 | blu | pieno
+testo: 5.0 1.8 | blu | "'s'"
+poligono: 5.8 1.3 7.4 1.3 7.4 2.3 5.8 2.3 | rosa | pieno
+testo: 6.6 1.8 | rosa | "'\0'"
+poligono: 7.4 1.3 9.0 1.3 9.0 2.3 7.4 2.3 | grigio | tratteggio
+testo: 8.2 1.8 | grigio | "'A'"
+poligono: 9.0 1.3 10.6 1.3 10.6 2.3 9.0 2.3 | grigio | tratteggio
+testo: 9.8 1.8 | grigio | "'\0'"
+testo: 1.8 0.9 | grigio | "0"
+testo: 3.4 0.9 | grigio | "1"
+testo: 5.0 0.9 | grigio | "2"
+testo: 6.6 0.9 | grigio | "3"
+testo: 8.2 0.9 | grigio | "4"
+testo: 9.8 0.9 | grigio | "5"
+testo: 3.4 2.8 | blu | "la stringa: tEs"
+```
+
+### Alfabeto (slide 12)
+
+Un array di 27 `char`: le 26 lettere dalla `'A'` alla `'Z'` riempite con un ciclo, più il terminatore.
+
+```c
+#include <stdio.h>
+
+#define LETTERE 26
+
+int main(void) {
+    char alfabeto[LETTERE + 1];          // 26 lettere + il terminatore
+    for (size_t i = 0; i < LETTERE; i++) {
+        alfabeto[i] = 'A' + i;
+    }
+    alfabeto[LETTERE] = '\0';
+    printf("%s\n", alfabeto);
+    return 0;
+}
+```
+
+Stampa `ABCDEFGHIJKLMNOPQRSTUVWXYZ`. Senza la riga del terminatore, `printf` continuerebbe a leggere la memoria dopo l'array finché non trova per caso uno 0.
+
+::: prova Quanti `char` servono per memorizzare `"Monviso"`? E che cosa vale `sizeof("Monviso")`?
+8 tutti e due: 7 lettere più il terminatore.
+:::
+
+> [!RICORDA]
+> - Stringa = array di `char` + `'\0'`. Riempita a mano, il terminatore va aggiunto a mano.
+> - `printf("%s")` si ferma al primo `'\0'`. `'7' - '0'` vale 7.
+
+## Montagne (slide 13, Lab05-Es2)
+
+Il secondo esercizio CodeRunner chiede il massimo di una sequenza, ma il risultato è un nome. Il testo del 2025/26:
+
+> [!NOTA] Lab05-Es2 Montagne (testo 2025/26)
+> Leggere una sequenza di coppie `<nome_montagna> <altezza>`, con il nome di al massimo 50 caratteri e l'altezza intera maggiore di 0. La sequenza finisce quando non si riesce più a leggere. Alla fine stampare il nome della montagna più alta. Suggerimenti: leggere una coppia con una sola `scanf`, che deve restituire 2; usare un secondo array per il nome della più alta trovata fin lì.
+
+È il massimo della [05A](05A_array_stringhe.html), con una differenza: insieme al numero bisogna ricordare un **nome**, e un array non si copia con `=` (05A: `b = a` non compila). Si copia carattere per carattere:
+
+```c
+#include <stdio.h>
+
+#define MAX_S 50
+
+int main(void) {
+    char nome[MAX_S + 1];
+    char piuAlta[MAX_S + 1] = "";   // stringa vuota se non arriva niente
+    int altezza = 0;
+    int altezzaMax = 0;             // le altezze sono maggiori di 0
+
+    while (2 == scanf("%50s %d", nome, &altezza)) {
+        if (altezza > altezzaMax) {
+            altezzaMax = altezza;
+            // copia nome in piuAlta, terminatore compreso
+            size_t i = 0;
+            while (nome[i] != '\0') {
+                piuAlta[i] = nome[i];
+                i++;
+            }
+            piuAlta[i] = '\0';
+        }
+    }
+    printf("%s\n", piuAlta);
+    return 0;
+}
+```
+
+Con l'esempio del testo, `Corno_Nero 4222`, `Rocciamelone 3538`, `Punta_Nordend 4609`, `Monviso 3841`, stampa `Punta_Nordend`. I nomi non hanno spazi perché `%50s` si ferma al primo spazio. Il massimo può partire da 0 perché le altezze sono maggiori di 0, ed è la risposta giusta anche per la sequenza vuota. Ho inizializzato `piuAlta` con `""`: la soluzione del 2025/26 non lo fa, e con l'input vuoto stamperebbe memoria a caso.
+
+::: prova Due montagne hanno la stessa altezza massima. Quale nome stampa il programma?
+La prima letta: il confronto è `>`, quindi la seconda, uguale, non la sostituisce. Con `>=` stamperebbe l'ultima.
+:::
+
+> [!RICORDA]
+> - Leggere coppie: `while (2 == scanf(...))`.
+> - Una stringa si copia carattere per carattere, poi il terminatore.
+
+## «Per ogni» ed «esiste» sugli array (slide 14–15)
+
+Le slide 14–15 riprendono le sentinelle del [Lab04](Lab04_iterazioni.html), su un array:
+
+```c
+bool tutti = true;                         // per ogni
+for (size_t i = 0; i < len && tutti; i++) {
+    if (!Cond(a[i])) {
+        tutti = false;
+    }
+}
+
+bool esiste = false;                       // esiste
+for (size_t i = 0; i < len && !esiste; i++) {
+    if (Cond(a[i])) {
+        esiste = true;
+    }
+}
+```
+
+Il ciclo finisce o perché `i == len` (per ogni: tutti soddisfano; esiste: nessuno soddisfa) o perché la sentinella è cambiata. La slide dice che in quel caso «`a[i]` è il primo che soddisfa» (o non soddisfa). Attenzione: con il `for` non è così. Quando la sentinella cambia, il `for` esegue comunque l'incremento `i++` prima di ricontrollare la condizione, quindi all'uscita `i` indica l'elemento **dopo**. Se serve la posizione, si usa il `while` con `i++` solo nel ramo `else`, come nella [07A](07A_algoritmi_su_array.html), oppure si usa `i - 1`.
+
+::: prova Con `a = {3, 8, 5}`, il `for` di «esiste un pari» finisce con `i` uguale a quanto?
+2. Il pari è `a[1] = 8`: la sentinella diventa vera con `i == 1`, poi il `for` incrementa a 2 e la condizione lo ferma.
+:::
+
+> [!RICORDA]
+> - Con il `for`, all'uscita `i` è uno dopo l'elemento trovato. Per la posizione esatta, il `while` della 07A.
+
+## Le funzioni di ctype.h (slide 16)
+
+`ctype.h` contiene funzioni che classificano un carattere:
+
+| Funzione | Vero se il carattere è |
+|---|---|
+| `isalpha(c)` | una lettera |
+| `isdigit(c)` | una cifra |
+| `isalnum(c)` | una lettera o una cifra |
+| `islower(c)`, `isupper(c)` | una minuscola, una maiuscola |
+| `isspace(c)` | uno spazio, una tabulazione, un a capo |
+| `ispunct(c)` | un segno di punteggiatura: ``!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~`` |
+
+più `tolower(c)` e `toupper(c)`, che restituiscono la lettera minuscola o maiuscola, e il carattere invariato se non è una lettera: `toupper('q')` è `'Q'`, `toupper('7')` è `'7'`.
+
+> [!TRAPPOLA] Non restituiscono true e false
+> La slide le scrive come `bool isalpha(char ch)`. Le intestazioni vere sono `int isalpha(int c)`: restituiscono **0 per falso e un numero diverso da 0 per vero**, non per forza 1. Sul mio PC `isdigit('7')` vale 1 ma `islower('q')` vale 2, `isspace(' ')` 8, `ispunct('!')` 16. Dentro un `if` non cambia niente; ma un `printf("%d", ispunct(c))` stampa 16 dove CodeRunner si aspetta 1. Si passa da un `bool`: `bool p = ispunct(c);` vale 1. E per i caratteri con codice oltre 127 (le lettere accentate in Latin-1) il `char` può essere negativo, e passarlo a queste funzioni è un comportamento indefinito: si scrive `isalpha((unsigned char)c)`.
+
+::: prova Che cosa stampa `printf("%d %d", isupper('A') != 0, isupper('a') != 0);`?
+`1 0`. Il confronto `!= 0` trasforma qualunque valore diverso da zero in 1.
+:::
+
+> [!RICORDA]
+> - `ctype.h`: vero = diverso da 0. Per stampare 0 e 1, passare da un `bool`.
+
+## Passwords (slide 17, Lab05-Es3)
+
+Il terzo esercizio CodeRunner controlla cinque proprietà di una stringa. Il testo del 2025/26:
+
+> [!NOTA] Lab05-Es3 Passwords (testo 2025/26)
+> Leggere una stringa di al massimo 20 caratteri e stampare `<password> P1 P2 P3 P4 P5`, con 1 o 0 per ogni proprietà. P1: esiste almeno una cifra. P2: tutti i caratteri sono lettere. P3: ci sono almeno due lettere maiuscole. P4: ci sono almeno due cifre consecutive. P5: gli ultimi due caratteri sono segni di punteggiatura. Esempio: `pippo12345!` dà `pippo12345! 1 0 0 1 0`.
+
+Cinque proprietà, cinque schemi già visti:
+
+| Proprietà | Schema | Sentinella o contatore |
+|---|---|---|
+| P1 esiste una cifra | esiste | `false`, poi `true` |
+| P2 tutte lettere | per ogni | `true`, poi `false` |
+| P3 almeno due maiuscole | conteggio, ci si ferma a 2 | contatore da 0 |
+| P4 due cifre consecutive | esiste, sulle coppie `(i-1, i)` | `false`, poi `true` |
+| P5 ultimi due punteggiatura | controllo diretto, se la lunghezza è almeno 2 | nessuna |
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+#include <ctype.h>
+
+#define MAX_STR 20
+
+int main(void) {
+    char pwd[MAX_STR + 1] = "";
+    scanf("%20s", pwd);
+
+    // lunghezza: si conta fino al terminatore
+    size_t len = 0;
+    while (pwd[len] != '\0') {
+        len++;
+    }
+
+    // P1: esiste una cifra
+    bool p1 = false;
+    for (size_t i = 0; i < len && !p1; i++) {
+        if (isdigit((unsigned char)pwd[i])) {
+            p1 = true;
+        }
+    }
+    // P2: tutti i caratteri sono lettere
+    bool p2 = true;
+    for (size_t i = 0; i < len && p2; i++) {
+        if (!isalpha((unsigned char)pwd[i])) {
+            p2 = false;
+        }
+    }
+    // P3: almeno due maiuscole
+    int maiuscole = 0;
+    for (size_t i = 0; i < len && maiuscole < 2; i++) {
+        if (isupper((unsigned char)pwd[i])) {
+            maiuscole++;
+        }
+    }
+    bool p3 = (maiuscole >= 2);
+    // P4: esistono due cifre consecutive (coppie i-1, i con i in [1, len))
+    bool p4 = false;
+    for (size_t i = 1; i < len && !p4; i++) {
+        if (isdigit((unsigned char)pwd[i - 1]) && isdigit((unsigned char)pwd[i])) {
+            p4 = true;
+        }
+    }
+    // P5: gli ultimi due caratteri sono segni di punteggiatura
+    bool p5 = (len >= 2)
+              && ispunct((unsigned char)pwd[len - 1])
+              && ispunct((unsigned char)pwd[len - 2]);
+
+    printf("%s %d %d %d %d %d\n", pwd, p1, p2, p3, p4, p5);
+    return 0;
+}
+```
+
+Provato: `pippo12345!` dà `1 0 0 1 0` come nel testo; `CiaoMondo` dà `0 1 1 0 0`; `Ab12..` dà `1 0 0 1 1`; `x` dà `0 1 0 0 0`; `A1b2C3!?` dà `1 0 1 0 1`.
+
+- In P5 il `len >= 2` viene **prima**: con una stringa di un carattere, `pwd[len - 2]` sarebbe fuori dall'array, e il cortocircuito dell'`&&` evita di calcolarlo.
+- In P2, la stringa vuota darebbe 1, «tutti lettere» per vacuità, come nella [07A](07A_algoritmi_su_array.html). Con `scanf("%20s")` non può capitare, perché `%s` salta gli spazi e legge almeno un carattere.
+- Gli appunti di uno studente riportano P5 come «gli ultimi due **non** sono punteggiatura»; la soluzione ufficiale e l'esempio vanno con «sono». Controlla il testo su Moodle.
+
+::: prova Che cosa stampa il programma con `Ciao2026!!`?
+`Ciao2026!! 1 0 0 1 1`: c'è una cifra, non sono tutte lettere, una sola maiuscola, cifre consecutive, e gli ultimi due sono `!`.
+:::
+
+> [!RICORDA]
+> - Una proprietà, uno schema: esiste, per ogni, conteggio, coppie adiacenti.
+> - Controllare la lunghezza **prima** di guardare `pwd[len - 2]`.
+
+## Indovina chi? (slide 18, Lab05-Es4, extra)
+
+Il gioco da tavolo: 24 personaggi, ognuno con degli attributi codificati da lettere (nel codice dell'esercizio, un array `nomi` e un array `attributi` di stringhe, per esempio `"drco"` per Claire). Si legge una stringa di indizi: una lettera **minuscola** vuol dire «ha questo attributo», una **maiuscola** «non ce l'ha». Si stampano i personaggi che rispettano tutti gli indizi, uno per riga, e alla fine quanti sono.
+
+Sono due quantificatori annidati: un personaggio è sospetto se **per ogni** indizio vale la condizione, e la condizione è «**esiste** quella lettera tra i suoi attributi» (o «non esiste»). Il pezzo «esiste la lettera nella stringa» va bene in una funzione, come nella [06A](06A_funzioni.html):
+
+```c
+// true se il carattere c compare nella stringa s
+bool contiene(const char* s, char c) {
+    bool trovato = false;
+    size_t k = 0;
+    while (s[k] != '\0' && !trovato) {
+        if (s[k] == c) {
+            trovato = true;
+        } else {
+            k++;
+        }
+    }
+    return trovato;
+}
+```
+
+e nel `main`, per ogni personaggio `p`:
+
+```c
+        bool tuttiOk = true;
+        size_t j = 0;
+        while (indizi[j] != '\0' && tuttiOk) {
+            char ch = indizi[j];
+            bool ce = contiene(attributi[p], (char)tolower((unsigned char)ch));
+            if (isupper((unsigned char)ch)) {
+                tuttiOk = !ce;        // maiuscola: non deve averlo
+            } else {
+                tuttiOk = ce;         // minuscola: deve averlo
+            }
+            j++;
+        }
+```
+
+con un contatore dei sospetti e la stampa del nome se `tuttiOk`. Con gli indizi `dc` stampa Claire, Maria e 2; con `bO` stampa Eric, Anita, David, Charles e 4. Ho confrontato il programma intero con la soluzione ufficiale del 2025/26 su cinque input: risultati uguali.
+
+::: prova Con gli indizi `dc`, perché Claire (`"drco"`) è tra i sospetti e Eric (`"bc"`) no?
+Claire ha sia la `d` sia la `c`. Eric ha la `c` ma non la `d`: il primo indizio lo esclude, e il ciclo sugli indizi si ferma lì.
+:::
+
+> [!RICORDA]
+> - «Per ogni indizio, esiste (o non esiste) l'attributo»: due sentinelle annidate. Il pezzo interno sta bene in una funzione.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `%zu` | «zeta u» | formato di `size_t` in `printf` e `scanf` | `printf("%zu", i)` |
+| `frequenze[v - 1]++` | «incrementa il contatore di v» | conteggio per categorie | voti da 1 a 5 |
+| `'\0'` | «terminatore» | carattere di codice 0 che chiude una stringa | `alfabeto[26] = '\0'` |
+| `%50s` | «stringa di al massimo 50 caratteri» | legge una parola, senza `&` | `scanf("%50s", nome)` |
+| `c - '0'` | «valore della cifra» | da carattere cifra a numero | `'7' - '0'` vale 7 |
+| `isdigit(c)` | «è una cifra» | diverso da 0 se vero | `isdigit('7')` |
+| `(unsigned char)c` | «c senza segno» | conversione da fare prima di `ctype.h` | `isalpha((unsigned char)c)` |
+
+## Verso l'esame
+
+All'esame si programma al PC con CodeRunner, che confronta l'output con quello atteso carattere per carattere e compila con `-Wall -Werror`. Da questo laboratorio servono:
+
+1. **le sentinelle** per «per ogni» ed «esiste», con il valore iniziale giusto, senza `break`;
+2. **i contatori per categoria** e le **due passate** quando serve un dato che arriva alla fine;
+3. **le stringhe**: terminatore, `%Ns` con la dimensione giusta, copia a mano;
+4. **l'output esatto**: 0 e 1 dove il testo li chiede, quindi `bool` e non il valore grezzo di `ctype.h`; niente stampe in più.
+
+Questi esercizi chiedono un programma intero con `main`; all'esame la consegna è quasi sempre una **funzione** con l'intestazione data. Conviene riscriverli così: per esempio `int sommaSelettiva(size_t n, const int a[])` per l'Es1 e `bool tutteLettere(const char* s)` per P2, con un `main` di prova.
+
+> [!METODO] Un esercizio CodeRunner su stringhe
+> 1. Scrivi l'array con un posto in più per il terminatore, e la `scanf` con la larghezza giusta: `char s[21]` e `%20s`.
+> 2. Trova la lunghezza con un ciclo fino a `'\0'`, se serve.
+> 3. Per ogni proprietà scegli lo schema: esiste, per ogni, conteggio, coppie adiacenti.
+> 4. Prova i casi limite: un solo carattere, nessuna cifra, tutte cifre.
+> 5. Stampa esattamente il formato richiesto, spazi e a capo compresi.
+
+## Quiz
+
+```quiz
+D: Con `int risposte[] = {2, 2, 5}` e `int frequenze[5] = {0}`, che cosa contiene `frequenze` dopo `frequenze[risposte[i] - 1]++` per ogni `i`?
++ `{0, 2, 0, 0, 1}`
+- `{0, 0, 2, 0, 0}`
+- `{2, 2, 5, 0, 0}`
+- `{0, 2, 0, 1, 0}`
+- `{1, 1, 1, 0, 0}`
+= Il voto 2 va nella casella 1 (due volte), il voto 5 nella casella 4. La più insidiosa è la quarta: dimentica che anche il 5 va spostato di uno.
+
+D: Che cosa stampa `printf("%s", t)` dopo `char t[] = "testo"; t[3] = '\0';`?
++ `tes`
+- `testo`
+- `tes o`
+- `test`
+- niente
+= La stringa finisce al primo terminatore, in posizione 3. La più insidiosa è `test`: la casella 3 è la quarta lettera, che viene sostituita.
+
+D: Perché la somma selettiva deve memorizzare la sequenza in un array?
++ perché quali elementi sommare dipende dal minimo, che si conosce solo alla fine
+- perché `scanf` non può leggere numeri dentro un ciclo
+- perché la somma di più di 20 numeri va in overflow
+- perché CodeRunner lo richiede
+- non serve: si può fare con una passata sola
+= Un elemento escluso con il minimo attuale può diventare buono quando arriva un minimo più piccolo. La più insidiosa è l'ultima: con una passata sola non si può decidere elemento per elemento.
+
+D: Quanto vale `'9' - '0'`?
++ 9
+- 57
+- 48
+- `'9'`
+- non compila
+= Le cifre sono consecutive in ASCII, da 48 a 57: la differenza è il valore della cifra. La più insidiosa è 57, il codice di `'9'`.
+
+D: Che cosa può stampare `printf("%d", islower('q'))`?
++ un numero diverso da zero, non per forza 1
+- sempre 1
+- sempre `true`
+- 0
+- `'q'`
+= Le funzioni di `ctype.h` restituiscono un `int`: 0 per falso, un valore qualunque diverso da 0 per vero. Sul mio PC stampa 2. La più insidiosa è «sempre 1», che è quello che suggerisce la slide.
+
+D: Nel programma Passwords, perché `len >= 2` va scritto prima di `ispunct(pwd[len - 2])`?
++ perché con una stringa di un carattere `pwd[len - 2]` sarebbe fuori dall'array, e l'`&&` non lo calcola se la prima condizione è falsa
+- perché `ispunct` richiede almeno due caratteri
+- per una regola di stile senza effetti
+- perché altrimenti non compila
+- perché `len` potrebbe essere negativo
+= Cortocircuito: l'`&&` si ferma al primo falso. La più insidiosa è l'ultima: `len` è `size_t`, mai negativo; il problema è che `len - 2` con `len == 1` dà un numero enorme.
+
+D: Qual è la dichiarazione giusta per leggere con `scanf` una parola di al massimo 50 caratteri?
++ `char nome[51];` e `scanf("%50s", nome);`
+- `char nome[50];` e `scanf("%50s", nome);`
+- `char nome[51];` e `scanf("%50s", &nome);`
+- `char nome[51];` e `scanf("%51s", nome);`
+- `char nome;` e `scanf("%s", &nome);`
+= 50 caratteri più il terminatore fanno 51 posti, e la larghezza in `%50s` non conta il terminatore. La più insidiosa è la seconda: 50 posti lasciano fuori il terminatore.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: frequenze delle cifre
+Scrivi un programma che legge una parola di al massimo 30 caratteri e stampa quante volte compare ogni cifra da 0 a 9 (solo quelle che compaiono).
+::: soluzione
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+int main(void) {
+    char s[31] = "";
+    scanf("%30s", s);
+    int conta[10] = {0};
+    for (size_t i = 0; s[i] != '\0'; i++) {
+        if (isdigit((unsigned char)s[i])) {
+            conta[s[i] - '0']++;
+        }
+    }
+    for (int c = 0; c < 10; c++) {
+        if (conta[c] > 0) {
+            printf("%d: %d\n", c, conta[c]);
+        }
+    }
+    return 0;
+}
+```
+Con `a1b22c333` stampa `1: 1`, `2: 2`, `3: 3`. È lo schema dei questionari, con `s[i] - '0'` come indice. Provato.
+:::
+
+::: esercizio base Riscaldamento: maiuscole
+Scrivi un programma che legge una parola e la stampa tutta in maiuscolo, modificando l'array.
+::: soluzione
+```c
+#include <stdio.h>
+#include <ctype.h>
+
+int main(void) {
+    char s[31] = "";
+    scanf("%30s", s);
+    for (size_t i = 0; s[i] != '\0'; i++) {
+        s[i] = (char)toupper((unsigned char)s[i]);
+    }
+    printf("%s\n", s);
+    return 0;
+}
+```
+Con `Ciao2026!` stampa `CIAO2026!`: cifre e punteggiatura restano come sono. Provato.
+:::
+
+::: esercizio medio Somma selettiva come funzione
+Riscrivi la somma selettiva come funzione `int sommaSelettiva(size_t n, const int a[])`, per `n >= 1`, con una sola `return`.
+::: soluzione
+```c
+int sommaSelettiva(size_t n, const int a[]) {
+    int min = a[0];
+    for (size_t i = 1; i < n; i++) {
+        if (a[i] < min) {
+            min = a[i];
+        }
+    }
+    int soglia = min * min;
+    int somma = 0;
+    for (size_t i = 0; i < n; i++) {
+        if (a[i] >= soglia) {
+            somma = somma + a[i];
+        }
+    }
+    return somma;
+}
+```
+`sommaSelettiva(4, (int[]){2, 3, 4, 6})` vale 10. L'array è `const` perché la funzione lo legge soltanto (06B). Provato.
+:::
+
+::: esercizio medio È palindroma?
+Scrivi `bool palindroma(const char* s)` che dice se una parola si legge uguale nei due versi, con due indici che si vengono incontro e una sentinella.
+::: soluzione
+```c
+#include <stdbool.h>
+#include <stddef.h>
+
+bool palindroma(const char* s) {
+    size_t len = 0;
+    while (s[len] != '\0') {
+        len++;
+    }
+    bool ok = true;                 // per ogni coppia simmetrica i, len-1-i
+    size_t i = 0;
+    while (i < len / 2 && ok) {
+        if (s[i] != s[len - 1 - i]) {
+            ok = false;
+        } else {
+            i++;
+        }
+    }
+    return ok;
+}
+```
+`radar`, `osso` e la stringa vuota danno `true`; `ciao` dà `false`. È un «per ogni» sulle coppie simmetriche, che sono `len / 2`. Provato.
+:::
+
+::: esercizio esame Tutte cifre e almeno una pari, nello stile di `e1`
+Scrivi una funzione iterativa `bool e1(const char* s)` che restituisce `true` se `s` non è vuota, tutti i suoi caratteri sono cifre **ed** esiste una cifra pari. Niente `break`, una sola `return`.
+::: soluzione
+```c
+#include <stdbool.h>
+#include <ctype.h>
+
+bool e1(const char* s) {
+    bool tutteCifre = true;     // per ogni carattere: è una cifra
+    bool esistePari = false;    // esiste una cifra pari
+    size_t i = 0;
+    while (s[i] != '\0' && tutteCifre) {
+        if (!isdigit((unsigned char)s[i])) {
+            tutteCifre = false;
+        } else {
+            if ((s[i] - '0') % 2 == 0) {
+                esistePari = true;
+            }
+            i++;
+        }
+    }
+    return i > 0 && tutteCifre && esistePari;
+}
+```
+`"1357"` dà `false` (nessuna pari), `"1352"` `true`, `"12a4"` `false`, `""` `false` (il testo chiede una stringa non vuota: `i > 0`). Il ciclo del «per ogni» non si ferma al primo pari, perché deve controllare ancora che le cifre siano tutte cifre. Provato.
+:::
+
+::: esercizio difficile Copia di una stringa senza le vocali
+Scrivi `void senzaVocali(const char* src, char dst[], size_t dstCap)` che copia in `dst` i caratteri di `src` che non sono vocali (maiuscole o minuscole), senza superare la capacità e chiudendo sempre con il terminatore. Precondizione: `dstCap >= 1`.
+::: soluzione
+```c
+#include <stdbool.h>
+#include <stddef.h>
+#include <ctype.h>
+
+bool vocale(char c) {
+    char m = (char)tolower((unsigned char)c);
+    return m == 'a' || m == 'e' || m == 'i' || m == 'o' || m == 'u';
+}
+
+void senzaVocali(const char* src, char dst[], size_t dstCap) {
+    size_t j = 0;                          // dimensione di dst
+    for (size_t i = 0; src[i] != '\0' && j < dstCap - 1; i++) {
+        if (!vocale(src[i])) {
+            dst[j] = src[i];
+            j++;
+        }
+    }
+    dst[j] = '\0';
+}
+```
+È la selezione della [07A](07A_algoritmi_su_array.html) su una stringa: `j` è la dimensione, e il posto `dstCap - 1` resta per il terminatore. `Programmazione` con capacità 20 dà `Prgrmmzn`; con capacità 5 dà `Prgr`. Provato.
+:::
+
+## Domande di ripasso
+
+::: domanda Come si contano le frequenze di valori da 1 a 5?
+Con un array di 5 contatori a zero e `frequenze[v - 1]++` per ogni valore `v`.
+:::
+
+::: domanda Quando bisogna memorizzare una sequenza invece di elaborarla mentre la si legge?
+Quando la decisione su ogni elemento dipende da un dato che si conosce solo alla fine, come il minimo nella somma selettiva.
+:::
+
+::: domanda Perché `char nome[50]` non basta per un nome di 50 caratteri?
+Perché serve un posto in più per il terminatore `'\0'`.
+:::
+
+::: domanda Come si copia una stringa in un altro array senza `strcpy`?
+Carattere per carattere finché non si trova `'\0'`, e poi si scrive il terminatore nella destinazione.
+:::
+
+::: domanda Che cosa restituisce `isupper('Q')`, e come lo si trasforma in 1?
+Un `int` diverso da zero. Assegnandolo a un `bool`, oppure con `isupper('Q') != 0`.
+:::
+
+## Glossario
+
+```glossario
+size_t | Tipo intero senza segno per dimensioni e indici degli array; si stampa con %zu.
+Contatori per categoria | Array di contatori, uno per ogni valore possibile, incrementati con il valore come indice.
+ASCII | Tabella di 128 codici per lettere, cifre, simboli e caratteri di controllo.
+Terminatore | Il carattere '\0', di codice 0, che chiude una stringa.
+%Ns | Formato di scanf che legge una parola di al massimo N caratteri.
+ctype.h | Libreria con le funzioni che classificano e convertono i caratteri.
+Cortocircuito | L'operatore && non calcola la seconda condizione se la prima è falsa.
+CodeRunner | Il sistema di Moodle che compila il programma e confronta l'output con quello atteso.
+```
+
+## Checklist
+
+```checklist
+- So dichiarare, riempire e sommare un array con indici size_t.
+- So contare le frequenze con un array di contatori.
+- So quando servono due passate su un array.
+- So dichiarare e riempire una stringa, con il terminatore.
+- So leggere una parola con %Ns e la dimensione giusta.
+- So copiare una stringa carattere per carattere.
+- So usare le funzioni di ctype.h e stamparne il risultato come 0 o 1.
+- So scrivere «per ogni» ed «esiste» su un array e su una stringa.
+- So riconoscere lo schema giusto per ogni proprietà di una password.
+```
+
+## Fonti
+
+- Slide «Array e stringhe» (Lezione nº 5 di laboratorio, Lab05A), Programmazione I – Laboratorio, canale B, A.A. 2026/27: array e `size_t` (slide 2–4), questionari (5), somma selettiva (6), stringhe, ASCII e terminatore (7–11), alfabeto (12), montagne (13), quantificatori (14–15), `ctype.h` (16), passwords (17), Indovina chi? (18).
+- Codice di partenza del Lab05 2025/26 (Moodle canale B, `codice_iniziale05`) e soluzioni del canale A 2025/26: i testi degli esercizi CodeRunner riportati qui vengono da quelle soluzioni e dagli appunti di uno studente; i testi 2026/27 su Moodle possono essere diversi.
+- P. Deitel, H. Deitel, *C: How to Program*, p. 247, citato nella slide 2.
+- Tutti i programmi li ho compilati con gcc 16.1 su Windows 11, con `-Wall -Werror`, ed eseguiti sugli esempi citati. Le soluzioni, i quiz e gli esercizi sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/PROG1/riassunti/settimana_01.md -->
 > File: `contesto_ai/PROG1/riassunti/settimana_01.md`
 
@@ -15481,7 +18171,9 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - ven 23/10: §1.6, quantificatori annidati. Negli appunti è la lezione 11, scritta prima della lezione.
 - lun 26/10: fine del capitolo 1 della parte 2, esercizi sulle lezioni del docente 07–12: connettivi booleani, quantificatori, regole logiche. Negli appunti è la lezione 12.
 - gio 29/10: capitolo 2.1, metodi di prova. Negli appunti è la lezione 13, scritta prima della lezione; il diario aggiornato dopo la lezione conferma gli argomenti.
-- ven 30/10: fine del capitolo 2.1 (metodi di prova), il paradosso del bevitore, esercizi. Negli appunti è la lezione 14, scritta prima della lezione; il diario aggiornato dopo la lezione conferma gli argomenti. Per assurdo, contrapposizione, casi ed esistenza, che nell'edizione originale sono il §2.2, il diario non dice se sono stati fatti.
+- ven 30/10: fine del capitolo 2.1 (metodi di prova), il paradosso del bevitore, esercizi. Negli appunti è la lezione 14, scritta prima della lezione; il diario aggiornato dopo la lezione conferma gli argomenti. Per assurdo, contrapposizione, casi ed esistenza, che nell'edizione originale sono il §2.2, il docente li comincia il 05/11 (lezione 16).
+- lun 02/11: esercizi riassuntivi su regole proposizionali e dimostrazioni dirette (quiz). Negli appunti è la lezione 15, scritta dopo la lezione senza sapere quali esercizi ha usato il docente.
+- gio 05/11: capitolo 2.2, prove per contraddizione, esempi da 2.2.1 a 2.2.4. Negli appunti è la lezione 16.
 
 ## Materiale
 
@@ -25907,7 +28599,7 @@ genera_html: true
 - Il «paradosso» viene dal leggere il «se… allora» come causa ed effetto: la freccia della logica dice solo che non succede «lei beve e qualcuno no».
 
 > [!CANALI]
-> Nel canale B è la lezione di venerdì 30/10, dalle 11 alle 13. Per il docente è la lezione 15, perché la prima è stata un'introduzione: qui è la 14. Il diario del canale B, aggiornato dopo la lezione, la descrive così: «Fine Capitolo 2.1 (Metodi di Prova). Il paradosso del bevitore. Esercizi». **Ho scritto questi appunti prima della lezione**, e il diario conferma il paradosso del bevitore e gli esercizi. Nell'edizione originale di Johnsonbaugh, che uso perché il libro del corso non è disponibile, i metodi per assurdo, per contrapposizione, per casi e di esistenza sono nel §2.2 «More Methods of Proof»: li metto qui perché il paradosso del bevitore si dimostra proprio con questi metodi. Se il docente li fa in un'altra lezione, sposto le sezioni. Domande di ripasso e soluzioni degli esercizi sono quelle pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti), dove ci sono anche le note «Tecniche di dimostrazione» di Felice Cardone.
+> Nel canale B è la lezione di venerdì 30/10, dalle 11 alle 13. Per il docente è la lezione 15, perché la prima è stata un'introduzione: qui è la 14. Il diario del canale B, aggiornato dopo la lezione, la descrive così: «Fine Capitolo 2.1 (Metodi di Prova). Il paradosso del bevitore. Esercizi». **Ho scritto questi appunti prima della lezione**, e il diario conferma il paradosso del bevitore e gli esercizi. Nell'edizione originale di Johnsonbaugh, che uso perché il libro del corso non è disponibile, i metodi per assurdo, per contrapposizione, per casi e di esistenza sono nel §2.2 «More Methods of Proof»: li metto qui perché il paradosso del bevitore si dimostra proprio con questi metodi. Il docente ha cominciato il §2.2 giovedì 05/11, con le dimostrazioni per assurdo (esempi 2.2.1–2.2.4): sono trattate per intero, con altri esempi, nella [lezione 16](16_dimostrazioni_per_assurdo.html). Contrapposizione, casi ed esistenza restano qui finché il docente non li fa. Domande di ripasso e soluzioni degli esercizi sono quelle pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti), dove ci sono anche le note «Tecniche di dimostrazione» di Felice Cardone.
 >
 > Servono la [lezione 13](13_dimostrazioni_dirette_controesempi.html) (dimostrazione diretta, pari e dispari), la [07](07_condizionali_equivalenza_logica.html) (freccia e contronominale) e la [11](11_quantificatori_annidati.html) (il gioco con i quantificatori).
 
@@ -26330,6 +29022,995 @@ Paradosso del bevitore | ∃x (B(x) → ∀y B(y)): vero in ogni dominio non vuo
 - F. Cardone, «Tecniche di dimostrazione» (Moodle del canale A): esempi 2, 3 e 4 (per assurdo, per contrapposizione, per casi) ed esercizi 4, 5, 6 e 7.
 - Diario del canale B: «Lezione 15. Venerdì 30 Ottobre ore 11-13. Fine Capitolo 2.1 (Metodi di Prova). Il paradosso del bevitore. Esercizi». Appunti scritti prima della lezione: il diario non dice come il docente presenta il paradosso.
 - Il paradosso del bevitore è un risultato classico della logica; la dimostrazione per casi, la versione come gioco, il detective, gli esempi $n^2 + n$ e $\sqrt{2}^{\sqrt{2}}$, la domanda sul modello, i quiz e gli esercizi senza indicazione sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/15_esercizi_regole_dimostrazioni_dirette.md -->
+> File: `contesto_ai/FDA/lezioni/15_esercizi_regole_dimostrazioni_dirette.md`
+
+```yaml
+corso: FDA
+lezione: "15"
+data: 2026-11-02
+titolo: Esercizi su regole di inferenza e dimostrazioni dirette
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 15 · Libro, parte 2, §1.4 e §2.1 (esercizi)
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 15 di Fondamenti dell'Informatica (canale B), di esercizi riassuntivi: riconoscere le regole di
+  inferenza e le due fallacie, trovare il controesempio di un'argomentazione non valida, catene di regole, lo schema
+  della dimostrazione diretta con i numeri e con gli insiemi, controesempi, e quiz nello stile dell'esame.
+lede: >-
+  Una lezione di esercizi, in forma di quiz, sulle regole della logica proposizionale e sulle dimostrazioni dirette.
+  Le due abilità sono le stesse: sapere quali passaggi sono permessi, e scriverli in ordine, ognuno con la sua
+  giustificazione.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh), §1.4 e §2.1, esercizi
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 90 minuti, con carta e penna
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 1 e 2), autoverifiche dei capitoli 1
+  e 2 ed esercizi del §2.1, con le soluzioni pubblicate sul Moodle del canale A; diario del canale B
+appunti_html: appunti/FDA/15_esercizi_regole_dimostrazioni_dirette.html
+genera_html: true
+```
+
+## In breve
+
+- Le **sette regole di inferenza** della [lezione 08](08_argomentazioni_regole_inferenza.html) sono argomentazioni valide corte: modus ponens, modus tollens, addizione, semplificazione, congiunzione, sillogismo ipotetico, sillogismo disgiuntivo. Le due **fallacie** le imitano ma non sono valide.
+- Un'argomentazione **non è valida** se c'è almeno una riga della tavola con tutte le premesse vere e la conclusione falsa: quella riga è il **controesempio**.
+- Le argomentazioni lunghe si dimostrano con una **catena di regole**: ogni passo usa una regola su premesse o passi precedenti.
+- La **dimostrazione diretta** suppone l'ipotesi, la riscrive con le definizioni (pari = $2k$, razionale = frazione), fa i conti e arriva alla tesi.
+- Con gli insiemi: per dimostrare un'inclusione si prende un elemento qualsiasi del primo insieme e si mostra che sta nel secondo; per un'uguaglianza servono le due inclusioni.
+- Un **per ogni** falso si smentisce con un solo controesempio.
+
+> [!CANALI]
+> Nel canale B è la lezione di lunedì 02/11, dalle 9 alle 11. Per il docente è la lezione 16, perché la prima è stata un'introduzione: qui è la 15. Il diario del canale B: «Esercizi riassuntivi su regole proposizionali e dimostrazioni dirette (Quiz)». **Ho scritto questi appunti dopo la lezione, senza sapere quali esercizi e quali quiz ha usato il docente.** Gli esercizi del libro della [lezione 08](08_argomentazioni_regole_inferenza.html) (§1.4) e della [lezione 13](13_dimostrazioni_dirette_controesempi.html) (§2.1) sono già svolti lì: qui uso quelli che restano, le domande delle autoverifiche dei capitoli 1 e 2, ed esercizi miei nello stile dei quiz d'esame.
+>
+> Servono la [lezione 08](08_argomentazioni_regole_inferenza.html) (regole e fallacie), la [07](07_condizionali_equivalenza_logica.html) (freccia, De Morgan) e la [13](13_dimostrazioni_dirette_controesempi.html) (dimostrazione diretta, pari e dispari, insiemi).
+
+## Le regole, in una tabella
+
+Il ripasso della [lezione 08](08_argomentazioni_regole_inferenza.html), con un esempio a parole per ognuna. Le premesse stanno sopra la riga, la conclusione sotto.
+
+| Regola | Dalle premesse | Segue | A parole |
+|---|---|---|---|
+| **modus ponens** | $p \to q$, $p$ | $q$ | se piove la strada è bagnata; piove; quindi la strada è bagnata |
+| **modus tollens** | $p \to q$, $\neg q$ | $\neg p$ | se piove la strada è bagnata; non è bagnata; quindi non piove |
+| addizione | $p$ | $p \vee q$ | piove; quindi piove o nevica |
+| semplificazione | $p \wedge q$ | $p$ | piove e fa freddo; quindi piove |
+| congiunzione | $p$, $q$ | $p \wedge q$ | piove; fa freddo; quindi piove e fa freddo |
+| sillogismo ipotetico | $p \to q$, $q \to r$ | $p \to r$ | se piove esco con l'ombrello; se esco con l'ombrello lo perdo; quindi se piove lo perdo |
+| sillogismo disgiuntivo | $p \vee q$, $\neg p$ | $q$ | è a casa o in biblioteca; non è a casa; quindi è in biblioteca |
+
+E le due **fallacie**, che non sono valide:
+
+| Fallacia | Forma | Perché non vale |
+|---|---|---|
+| affermazione del conseguente | $p \to q$, $q$, quindi $p$ | la strada può essere bagnata per un altro motivo |
+| negazione dell'antecedente | $p \to q$, $\neg p$, quindi $\neg q$ | anche se non piove, la strada può essere bagnata |
+
+Per tutte e due il controesempio è la stessa riga: $p$ falsa e $q$ vera.
+
+::: prova Quale regola usa: «Se il treno è in ritardo, perdo la coincidenza. Non ho perso la coincidenza. Quindi il treno non era in ritardo»?
+Modus tollens: $p \to q,\ \neg q \;\therefore\; \neg p$.
+:::
+
+> [!RICORDA]
+> - Modus ponens afferma l'ipotesi, modus tollens nega la conclusione.
+> - Le fallacie affermano la conclusione o negano l'ipotesi: controesempio $p$ falsa, $q$ vera.
+
+## Riconoscere la regola
+
+Nei quiz capita di dover dire quale regola usa un ragionamento scritto a parole, o se è una fallacia. Il metodo: si dà una lettera a ogni frase semplice, si scrive la forma, e la si confronta con le due tabelle.
+
+> [!ESEMPIO] · Sei ragionamenti da classificare
+> 1. «Se Luca studia, passa l'esame. Luca non ha passato l'esame. Quindi Luca non ha studiato.» Con $p$ = «Luca studia», $q$ = «passa»: La forma è $p \to q,\ \neg q \;\therefore\; \neg p$. **Modus tollens.**
+> 2. «Oggi c'è lezione o c'è laboratorio. Oggi non c'è lezione. Quindi c'è laboratorio.» La forma è $p \vee q,\ \neg p \;\therefore\; q$. **Sillogismo disgiuntivo.**
+> 3. «Se Anna vince, festeggia. Anna festeggia. Quindi Anna ha vinto.» La forma è $p \to q,\ q \;\therefore\; p$. **Affermazione del conseguente**, non valida: può festeggiare per un altro motivo.
+> 4. «Piove e fa freddo. Quindi fa freddo.» La forma è $p \wedge q \;\therefore\; q$. **Semplificazione.**
+> 5. «Se compro il libro, studio. Se studio, passo. Quindi, se compro il libro, passo.» **Sillogismo ipotetico.** È la regola dell'autoverifica del capitolo 1, domanda 20.
+> 6. «Se nevica, la scuola chiude. Non nevica. Quindi la scuola non chiude.» La forma è $p \to q,\ \neg p \;\therefore\; \neg q$. **Negazione dell'antecedente**, non valida: la scuola può chiudere per uno sciopero.
+
+> [!TRAPPOLA] L'ordine delle premesse non conta
+> «Luca non ha passato l'esame. Se Luca studia, passa. Quindi non ha studiato» è sempre modus tollens. Si guarda la forma, non l'ordine in cui le frasi sono scritte.
+
+::: prova Quale regola usa: «Ho preso 30. Quindi ho preso 30 oppure 29»?
+Addizione: $p \;\therefore\; p \vee q$, con una $q$ qualunque.
+:::
+
+> [!RICORDA]
+> - Lettere alle frasi semplici, forma, confronto con le tabelle. L'ordine delle premesse non conta.
+
+## Quando un'argomentazione non è valida
+
+Un'argomentazione è **valida** se, ogni volta che le premesse sono tutte vere, anche la conclusione è vera. Per dire che **non** lo è basta una riga della tavola con le premesse vere e la conclusione falsa. Le righe in cui le premesse sono tutte vere si chiamano **righe critiche** ([lezione 08](08_argomentazioni_regole_inferenza.html)).
+
+> [!ESEMPIO] · Gli Skyscrapers (autoverifica del capitolo 1, domanda 9)
+> **Il testo.** «Se gli Skyscrapers vincono, mangio il cappello. Se mangio il cappello, sarò sazio. Quindi, se sono sazio, gli Skyscrapers hanno vinto.»
+>
+> **Le lettere.** $p$ = «gli Skyscrapers vincono», $q$ = «mangio il cappello», $r$ = «sono sazio». La forma: $p \to q,\ q \to r \;\therefore\; r \to p$.
+>
+> **Il controesempio.** Perché la conclusione sia falsa servono $r$ vera e $p$ falsa. Con $p$ falsa la prima premessa è vera; con $r$ vera la seconda è vera, qualunque sia $q$. La riga con $p$ e $q$ false e $r$ vera ha le premesse vere e la conclusione falsa: **non valida**. È la riga della soluzione ufficiale.
+
+La strada più corta, come qui, è partire dalla **conclusione falsa**: si fissano le lettere che la rendono falsa, poi si prova a rendere vere tutte le premesse con le lettere che restano. Se ci si riesce, è un controesempio.
+
+```widget logica
+titolo: Gli Skyscrapers: le righe critiche e il controesempio
+modo: argomento
+premesse: p → q; q → r
+conclusione: r → p
+```
+
+Il controllo trova due controesempi: oltre a quello del libro, anche la riga con $p$ falsa e le altre due vere. Ne basta uno.
+
+::: prova Valida o no: «Se studio, passo. Se passo, festeggio. Non festeggio. Quindi non studio»?
+Valida. Per la conclusione falsa servirebbe «studio» vero; allora per la prima premessa «passo» è vero, per la seconda «festeggio» è vero, e la terza premessa è falsa. Non c'è controesempio.
+:::
+
+> [!RICORDA]
+> - Non valida = esiste una riga con premesse vere e conclusione falsa.
+> - Si parte dalla conclusione falsa e si cerca di rendere vere le premesse.
+
+## Catene di regole
+
+Un'argomentazione lunga si dimostra valida anche senza tavola, con una **catena** di passi: ognuno applica una regola alle premesse o ai passi già ottenuti. È la stessa cosa che fa una dimostrazione, in piccolo.
+
+> [!ESEMPIO] · Quattro premesse
+> **Premesse.** (1) $p \vee q$; (2) $p \to r$; (3) $\neg r$; (4) $q \to s$. **Conclusione** da ottenere: $s$.
+>
+> **Passo 5.** Da (2) e (3), modus tollens: $\neg p$.
+>
+> **Passo 6.** Da (1) e (5), sillogismo disgiuntivo: $q$.
+>
+> **Passo 7.** Da (4) e (6), modus ponens: $s$.
+
+A parole: il bug è nel ciclo ($p$) o nella lettura ($q$); se fosse nel ciclo il contatore sarebbe sbagliato; il contatore è giusto; quindi è nella lettura, e allora `scanf` restituisce 0.
+
+> [!METODO] Costruire una catena
+> 1. Dai una lettera a ogni frase semplice e numera le premesse.
+> 2. Parti dalle premesse più corte, come una lettera da sola o la sua negazione: sono quelle che sbloccano le frecce.
+> 3. Cerca una freccia che le usa: con la parte sinistra vera, modus ponens; con la destra falsa, modus tollens.
+> 4. Scrivi ogni passo con il numero delle righe usate e il nome della regola.
+> 5. Fermati quando ottieni la conclusione.
+
+::: prova Dalle premesse $p \to q,\ q \to r,\ p$ ottieni $r$ in due passi.
+Sillogismo ipotetico da $p \to q$ e $q \to r$: $p \to r$. Poi modus ponens con $p$: $r$. Oppure modus ponens due volte: $q$, poi $r$.
+:::
+
+> [!RICORDA]
+> - Catena: un passo per riga, ognuno con le righe usate e la regola.
+
+## La dimostrazione diretta con i numeri
+
+Lo schema della [lezione 13](13_dimostrazioni_dirette_controesempi.html), in quattro mosse: suppongo l'ipotesi; la riscrivo con la definizione; faccio i conti; riconosco la forma della tesi. Tre esempi nuovi.
+
+> [!ESEMPIO] · Il quoziente di due razionali (autoverifica del capitolo 2, domanda 4)
+> **La frase.** Il quoziente di due razionali, con il divisore diverso da zero, è razionale.
+>
+> **Suppongo e riscrivo.** I due razionali sono frazioni di interi, $x = \frac{m_1}{n_1}$ e $y = \frac{m_2}{n_2}$, con i denominatori diversi da zero. Siccome $y \neq 0$, anche $m_2 \neq 0$.
+>
+> **Conti.** $\frac{x}{y} = \frac{m_1}{n_1} \cdot \frac{n_2}{m_2} = \frac{m_1 n_2}{n_1 m_2}$.
+>
+> **Riconosco la tesi.** Sopra e sotto ci sono interi, e il denominatore non è zero: è una frazione di interi, quindi un razionale.
+
+> [!ESEMPIO] · Due multipli di 3
+> **La frase.** Il prodotto di due multipli di 3 è multiplo di 9.
+>
+> **Suppongo e riscrivo.** I due numeri sono $n = 3a$ e $m = 3b$, con due interi diversi, perché i due multipli possono essere diversi.
+>
+> **Conti.** $nm = 9ab$.
+>
+> **Riconosco la tesi.** $ab$ è un intero, quindi $nm$ è 9 per un intero: multiplo di 9.
+
+> [!ESEMPIO] · Tre interi consecutivi
+> **La frase.** La somma di tre interi consecutivi è un multiplo di 3.
+>
+> **Riscrivo.** Qui non c'è un «se»: tre interi consecutivi qualsiasi sono $n,\ n + 1,\ n + 2$.
+>
+> **Conti.** $n + (n + 1) + (n + 2) = 3n + 3 = 3(n + 1)$: un multiplo di 3.
+
+> [!TRAPPOLA] Una lettera sola per due numeri
+> Usare la stessa $k$ per due numeri pari diversi vuol dire supporre che siano uguali. La dimostrazione varrebbe solo per due numeri uguali. Ogni numero ha la sua lettera.
+
+::: prova Dimostra in modo diretto: se $n$ è pari, allora $n^2$ è multiplo di 4 (esercizio 1 di Cardone).
+$n = 2k$, quindi $n^2 = 4k^2$: 4 per l'intero $k^2$.
+:::
+
+> [!RICORDA]
+> - Suppongo, riscrivo con la definizione, conti, riconosco la forma della tesi.
+> - Una lettera diversa per ogni numero.
+
+## La dimostrazione diretta con gli insiemi
+
+Con gli insiemi la definizione da usare è quella di **sottoinsieme**: $A \subseteq B$ vuol dire che ogni elemento del primo insieme sta nel secondo. Quindi la dimostrazione comincia sempre prendendo un elemento qualsiasi del primo, e finisce dicendo che sta nel secondo. Per un'uguaglianza si fanno le due inclusioni.
+
+> [!ESEMPIO] · $A \cup \varnothing = A$ (esercizio 49 del libro)
+> **Prima inclusione.** Sia $x$ in $A \cup \varnothing$. Allora $x$ sta in $A$ oppure nel vuoto; nel vuoto non ci sta niente, quindi $x$ sta in $A$.
+>
+> **Seconda inclusione.** Sia $x$ in $A$. Allora sta in $A$ oppure nel vuoto, cioè nell'unione.
+
+> [!ESEMPIO] · Dall'insieme delle parti (esercizio 30 del libro)
+> **La frase.** Se $\mathcal{P}(X) \subseteq \mathcal{P}(Y)$, allora $X \subseteq Y$.
+>
+> **La dimostrazione.** Ogni insieme è sottoinsieme di sé stesso, quindi $X$ è un elemento di $\mathcal{P}(X)$. Per l'ipotesi è anche un elemento di $\mathcal{P}(Y)$, cioè un sottoinsieme di $Y$.
+
+Qui l'elemento da usare è l'insieme $X$ stesso: gli elementi di $\mathcal{P}(X)$ sono insiemi.
+
+> [!ESEMPIO] · Una frase falsa (esercizio 60 del libro)
+> **La frase.** Per tutti gli insiemi, $A \triangle (B \cup C) = (A \triangle B) \cup (A \triangle C)$, dove $\triangle$ è la differenza simmetrica: gli elementi che stanno in uno solo dei due insiemi.
+>
+> **Il controesempio.** Prendo $A = \{1, 2, 3\}$, $B = \{2, 3, 4\}$ e $C = \{1, 2, 4\}$. A sinistra $B \cup C = \{1, 2, 3, 4\}$, e $A \triangle \{1, 2, 3, 4\} = \{4\}$. A destra le due differenze simmetriche sono $\{1, 4\}$ e $\{3, 4\}$, e la loro unione è $\{1, 3, 4\}$. I due insiemi sono diversi.
+
+```grafico
+titolo: Lo schema della dimostrazione di un'inclusione. Si prende un elemento qualsiasi di A (il punto), si usano le definizioni per spostarlo passo per passo, e si arriva a dire che sta in B. Siccome x era qualsiasi, vale per tutti gli elementi di A
+x: 0 12.4
+y: 0 4.6
+assi: no
+griglia: no
+proporzioni: libere
+cerchio: 3.2 2.3 1.7 | blu
+cerchio: 9.2 2.3 1.9 | verde
+punto: 3.2 2.3 | accento
+testo: 3.2 2.9 | accento | "x qualsiasi"
+testo: 3.2 4.3 | blu | "A"
+testo: 9.2 4.4 | verde | "B"
+freccia: 4.3 2.3 8.0 2.3 | grigio
+testo: 6.2 2.75 | grigio | "definizioni, ipotesi"
+punto: 9.2 2.3 | accento
+testo: 9.2 2.9 | accento | "x"
+```
+
+::: prova Dimostra che $A \cap B \subseteq A \cup B$.
+Sia $x$ in $A \cap B$. Allora sta in $A$, e anche in $B$. Quindi sta in uno dei due, cioè nell'unione.
+:::
+
+> [!RICORDA]
+> - Inclusione: si prende un elemento qualsiasi del primo insieme e si mostra che sta nel secondo. Uguaglianza: le due inclusioni.
+> - Una frase falsa sugli insiemi si smentisce con insiemi concreti e piccoli.
+
+## Controesempi
+
+Un «per ogni» falso si smentisce con **un solo** esempio che non funziona: è un controesempio ([lezione 13](13_dimostrazioni_dirette_controesempi.html)). Gli esempi che funzionano, anche tanti, non dimostrano niente.
+
+> [!ESEMPIO] · I numeri $2^n - 1$
+> **La frase.** Per ogni primo $n$, $2^n - 1$ è primo.
+>
+> **Gli esempi che funzionano.** $n = 2, 3, 5, 7$ danno 3, 7, 31, 127: tutti primi.
+>
+> **Il controesempio.** $n = 11$ dà $2047 = 23 \cdot 89$. La frase è falsa.
+
+::: prova La frase «per ogni intero $n$, $n^2 \ge n$» è vera o falsa?
+Vera per gli interi: per $n \le 0$ il quadrato è almeno 0, quindi almeno $n$; per $n \ge 1$, $n^2 = n \cdot n \ge n$. Con i reali sarebbe falsa: $n = \frac{1}{2}$ dà $\frac{1}{4} < \frac{1}{2}$.
+:::
+
+> [!RICORDA]
+> - Un controesempio basta per smentire un «per ogni». Gli esempi non bastano mai per dimostrarlo.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\therefore$ | «quindi» | introduce la conclusione | $p \to q,\ p\ \therefore\ q$ |
+| $p \to q$ | «se p allora q» | freccia, falsa solo con p vera e q falsa | modus ponens |
+| $A \subseteq B$ | «A contenuto in B» | ogni elemento di A sta in B | $A \cap B \subseteq A$ |
+| $\mathcal{P}(X)$ | «insieme delle parti di X» | l'insieme dei sottoinsiemi di X | $X \in \mathcal{P}(X)$ |
+| $A \triangle B$ | «differenza simmetrica» | elementi in uno solo dei due | $\{1,2\} \triangle \{2,3\} = \{1,3\}$ |
+
+## Verso l'esame
+
+Le regole dell'esame sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; la domanda aperta è facoltativa. Nelle simulazioni 2023/24 le domande di logica chiedono di valutare formule e argomentazioni: le abilità di questa lezione. Di questa lezione servono:
+
+1. **riconoscere le regole e le fallacie** in un ragionamento scritto a parole;
+2. **trovare in fretta un controesempio**, partendo dalla conclusione falsa;
+3. **scrivere una dimostrazione diretta corta**, con le definizioni, per la domanda aperta.
+
+### Una domanda sul modello, letta insieme
+
+**Il testo**, sul modello delle domande sulle argomentazioni delle simulazioni 2023/24: «Quale di queste argomentazioni è valida? (A) $p \to q,\ q \;\therefore\; p$. (B) $p \vee q,\ q \to r,\ \neg p \;\therefore\; r$. (C) $p \to q,\ \neg p \;\therefore\; \neg q$. (D) $p \to (q \vee r),\ p \;\therefore\; q$. (E) $(p \wedge q) \to r,\ p \;\therefore\; r$.»
+
+**In pratica chiede:** per ogni opzione, se c'è una riga con le premesse vere e la conclusione falsa.
+
+> [!ESEMPIO] · la soluzione, opzione per opzione
+> **(A)** È l'affermazione del conseguente: controesempio $p$ falsa, $q$ vera.
+>
+> **(B)** Da $p \vee q$ e $\neg p$, sillogismo disgiuntivo: $q$. Da $q \to r$ e $q$, modus ponens: $r$. **Valida.**
+>
+> **(C)** È la negazione dell'antecedente: controesempio $p$ falsa, $q$ vera.
+>
+> **(D)** Con $p$ e $r$ vere e $q$ falsa le premesse sono vere, perché $q \vee r$ è vera, e la conclusione è falsa.
+>
+> **(E)** Con $p$ vera e $q$ falsa la prima premessa è vera comunque, e la conclusione può essere falsa.
+>
+> La risposta è **(B)**. L'ho controllato con un programma su tutte le 8 righe.
+
+## Quiz
+
+```quiz
+D: Da $p \to q$ e $\neg q$, quale regola permette di concludere $\neg p$?
++ modus tollens
+- modus ponens
+- sillogismo disgiuntivo
+- negazione dell'antecedente
+- sillogismo ipotetico
+= Si nega la conclusione della freccia e si ricava la negazione dell'ipotesi. La risposta più insidiosa è la quarta: è il nome di una fallacia, con $\neg p$ tra le premesse e non nella conclusione.
+
+D: Quale di questi ragionamenti **non** è valido?
++ «Se Anna vince, festeggia. Festeggia. Quindi ha vinto.»
+- «Se Anna vince, festeggia. Vince. Quindi festeggia.»
+- «Se Anna vince, festeggia. Non festeggia. Quindi non ha vinto.»
+- «Anna vince o pareggia. Non vince. Quindi pareggia.»
+- «Anna vince e festeggia. Quindi festeggia.»
+= È l'affermazione del conseguente: può festeggiare per un altro motivo. Le altre sono, in ordine, modus ponens, modus tollens, sillogismo disgiuntivo e semplificazione.
+
+D: L'argomentazione $p \to q$, $q \to r$, quindi $r \to p$ non è valida. Quale riga lo mostra?
++ $p$ falsa, $q$ falsa, $r$ vera
+- $p$ vera, $q$ vera, $r$ vera
+- $p$ vera, $q$ falsa, $r$ falsa
+- $p$ falsa, $q$ falsa, $r$ falsa
+- nessuna: è valida
+= È la soluzione ufficiale della domanda 9 dell'autoverifica del capitolo 1: premesse vere, conclusione $r \to p$ falsa. La risposta più insidiosa è la terza: con $p$ vera e $q$ falsa la prima premessa è falsa, quindi la riga non è critica.
+
+D: Con le premesse $p \to q$, $q \to r$, $\neg r$, quali due regole portano a $\neg p$?
++ sillogismo ipotetico, poi modus tollens
+- modus ponens, poi sillogismo disgiuntivo
+- addizione, poi modus tollens
+- semplificazione, poi modus ponens
+- non si può ottenere
+= Dal sillogismo ipotetico $p \to r$, poi con $\neg r$ il modus tollens dà $\neg p$. La risposta più insidiosa è l'ultima: l'argomentazione è valida, come quella delle Olimpiadi della lezione 12.
+
+D: Come comincia la dimostrazione diretta di «se $n$ è dispari, allora $n^2$ è dispari»?
++ Supponiamo $n$ dispari: $n = 2k + 1$ per un intero $k$.
+- Supponiamo $n^2$ dispari: $n^2 = 2k + 1$.
+- Supponiamo $n$ pari: $n = 2k$.
+- Proviamo con $n = 3$: $n^2 = 9$ è dispari.
+- Supponiamo $n^2$ pari e cerchiamo una contraddizione.
+= Si suppone l'ipotesi e la si riscrive con la definizione. La risposta più insidiosa è la quarta: un esempio non dimostra un «per ogni».
+
+D: Per dimostrare $A \subseteq B$ in modo diretto, da dove si parte?
++ da un elemento qualsiasi di $A$, per mostrare che sta in $B$
+- da un elemento qualsiasi di $B$, per mostrare che sta in $A$
+- da un elemento che sta in tutti e due
+- dall'insieme vuoto
+- da un esempio concreto di $A$ e $B$
+= È la definizione di sottoinsieme. La risposta più insidiosa è la seconda, che dimostra l'inclusione al contrario.
+
+D: Quale frase è smentita dal controesempio $n = 11$?
++ per ogni primo $n$, $2^n - 1$ è primo
+- per ogni primo $n$, $n + 2$ è primo
+- per ogni intero $n$, $n^2 \ge n$
+- per ogni primo $n$, $2^n$ è pari
+- esiste un primo $n$ con $2^n - 1$ primo
+= $2^{11} - 1 = 2047 = 23 \cdot 89$. La risposta più insidiosa è l'ultima: è un «esiste», vero (con $n = 2$), e un controesempio non smentisce un «esiste».
+
+D: Quante righe ha la tavola di verità di un'argomentazione con le lettere $p$, $q$, $r$?
+N: 8
+= Ogni lettera raddoppia le righe: $2^3 = 8$.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: dai un nome alla regola
+(a) «Ho studiato e ho dormito. Quindi ho studiato.» (b) «Il file è sul desktop o nei download. Non è sul desktop. Quindi è nei download.» (c) «Se il codice compila, lo consegno. Il codice compila. Quindi lo consegno.» (d) «Se il codice compila, lo consegno. Non compila. Quindi non lo consegno.»
+::: soluzione
+(a) Semplificazione. (b) Sillogismo disgiuntivo. (c) Modus ponens. (d) Negazione dell'antecedente: **non valida**, potrei consegnarlo lo stesso.
+:::
+
+::: esercizio base Riscaldamento: il controesempio
+Trova una riga che mostra che $p \to q,\ \neg p \to r \;\therefore\; q$ non è valida.
+::: soluzione
+Conclusione falsa: $q$ falsa. Per la prima premessa serve allora $p$ falsa; per la seconda, con $p$ falsa, serve $r$ vera. La riga con $p$ e $q$ false e $r$ vera ha le premesse vere e la conclusione falsa.
+:::
+
+::: esercizio medio Una catena
+Premesse: (1) $p \to q$; (2) $r \to \neg q$; (3) $r$. Dimostra $\neg p$ con una catena, nominando le regole.
+::: soluzione
+(4) Da (2) e (3), modus ponens: $\neg q$. (5) Da (1) e (4), modus tollens: $\neg p$.
+:::
+
+::: esercizio medio Dimostrazioni dirette
+Dimostra in modo diretto: (a) se $n$ è dispari e $m$ è pari, allora $n + m$ è dispari (Cardone, esempio 1); (b) se $n$ è dispari, allora $n^2 - 1$ è multiplo di 4.
+::: soluzione
+(a) $n = 2\ell + 1$, $m = 2k$: $n + m = 2(\ell + k) + 1$, dispari. (b) $n = 2k + 1$: $n^2 - 1 = 4k^2 + 4k = 4(k^2 + k)$, multiplo di 4. In realtà è anche multiplo di 8, perché $k^2 + k = k(k + 1)$ è pari: ho controllato con un programma tutti i dispari da −999 a 999.
+:::
+
+::: esercizio esame Un'uguaglianza di insiemi, per la domanda aperta
+Dimostra che $A \cap (A \cup B) = A$ per tutti gli insiemi $A$ e $B$, con le due inclusioni.
+::: soluzione
+**Prima inclusione.** Sia $x$ in $A \cap (A \cup B)$. Per la definizione di intersezione $x$ sta in $A$, ed è quello che serviva.
+
+**Seconda inclusione.** Sia $x$ in $A$. Allora sta in $A$ oppure in $B$, cioè nell'unione (addizione). Sta in $A$ e in $A \cup B$, quindi nell'intersezione (congiunzione).
+
+Le due inclusioni danno l'uguaglianza. Nota le regole usate: le stesse della logica, applicate a «$x$ sta in…».
+:::
+
+::: esercizio difficile Vero o falso, con dimostrazione o controesempio
+(a) Per tutti gli insiemi, $A - (B \cup C) = (A - B) \cap (A - C)$. (b) Per tutti gli insiemi, $A - (B \cap C) = (A - B) \cap (A - C)$.
+::: soluzione
+(a) **Vera.** Un elemento sta a sinistra se sta in $A$ e non sta nell'unione, cioè (De Morgan) non sta in $B$ **e** non sta in $C$. Questo vuol dire stare in $A - B$ e in $A - C$, cioè a destra. I passaggi valgono in tutti e due i versi.
+
+(b) **Falsa.** Con $A = \{1, 2\}$, $B = \{1\}$, $C = \{2\}$: $B \cap C$ è vuoto, quindi a sinistra c'è $A = \{1, 2\}$; a destra $\{2\} \cap \{1\} = \varnothing$. La versione giusta ha l'unione: $(A - B) \cup (A - C)$.
+:::
+
+## Domande di ripasso
+
+::: domanda Quali sono le sette regole di inferenza, e quali le due fallacie?
+Modus ponens, modus tollens, addizione, semplificazione, congiunzione, sillogismo ipotetico, sillogismo disgiuntivo. Fallacie: affermazione del conseguente e negazione dell'antecedente.
+:::
+
+::: domanda Come si dimostra che un'argomentazione non è valida?
+Con una riga in cui tutte le premesse sono vere e la conclusione è falsa. Conviene partire dalla conclusione falsa.
+:::
+
+::: domanda Quali sono le quattro mosse di una dimostrazione diretta?
+Suppongo l'ipotesi, la riscrivo con la definizione, faccio i conti, riconosco la forma della tesi.
+:::
+
+::: domanda Come si dimostra un'uguaglianza tra insiemi?
+Con le due inclusioni: ogni elemento del primo sta nel secondo, e viceversa.
+:::
+
+::: domanda Perché un esempio non dimostra un «per ogni», mentre un controesempio lo smentisce?
+Perché il «per ogni» deve valere per tutti, e un caso solo non dice niente sugli altri; ma un caso solo in cui è falso basta a renderlo falso.
+:::
+
+## Glossario
+
+```glossario
+Regola di inferenza | Argomentazione valida corta, usata come passo nelle dimostrazioni.
+Fallacia | Ragionamento che sembra una regola ma non è valido.
+Argomentazione valida | Ogni volta che le premesse sono vere, la conclusione è vera.
+Riga critica | Riga della tavola in cui tutte le premesse sono vere.
+Controesempio | Caso che rende vere le premesse e falsa la conclusione, o che smentisce un «per ogni».
+Catena di regole | Sequenza di passi, ognuno ottenuto con una regola da premesse o passi precedenti.
+Dimostrazione diretta | Si suppone l'ipotesi e, con definizioni e teoremi, si arriva alla tesi.
+Differenza simmetrica | Gli elementi che stanno in uno solo dei due insiemi.
+```
+
+## Checklist
+
+```checklist
+- So riconoscere le sette regole di inferenza e le due fallacie in un ragionamento a parole.
+- So trovare il controesempio di un'argomentazione non valida partendo dalla conclusione falsa.
+- So scrivere una catena di regole con i numeri delle righe e i nomi delle regole.
+- So scrivere una dimostrazione diretta con pari, dispari, multipli e razionali.
+- So dimostrare un'inclusione e un'uguaglianza tra insiemi.
+- So smentire una frase falsa con un controesempio concreto.
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*): autoverifica del capitolo 1, domande 9 e 20; autoverifica del capitolo 2, domanda 4; §2.1, esercizi 30, 49 e 60; con le soluzioni pubblicate sul Moodle del canale A ([id 3851](https://informatica.i-learn.unito.it/course/view.php?id=3851), aperto agli ospiti). Il libro non è disponibile: i testi li ho ricostruiti dalle soluzioni e tradotti.
+- F. Cardone, «Tecniche di dimostrazione» (Moodle del canale A): esempio 1 ed esercizio 1.
+- Diario del canale B: «Lezione 16. Lunedì 02 Novembre ore 09-11. Esercizi riassuntivi su regole proposizionali e dimostrazioni dirette (Quiz)». Appunti scritti dopo la lezione, senza sapere quali esercizi ha usato il docente.
+- I sei ragionamenti da classificare, gli esempi con i multipli e con $2^n - 1$, la domanda sul modello, i quiz e gli esercizi senza indicazione sono di questi appunti. Le argomentazioni e i conti li ho controllati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/16_dimostrazioni_per_assurdo.md -->
+> File: `contesto_ai/FDA/lezioni/16_dimostrazioni_per_assurdo.md`
+
+```yaml
+corso: FDA
+lezione: "16"
+data: 2026-11-05
+titolo: Dimostrazioni per assurdo
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 16 · Libro, parte 2, §2.2
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 16 di Fondamenti dell'Informatica (canale B): la dimostrazione per assurdo del §2.2, perché
+  funziona (con la tavola di verità), come si nega la tesi, gli esempi del libro (se n² è pari allora n è pari, radice
+  di 2 irrazionale, una somma almeno 2), dimostrazioni per assurdo con gli insiemi e con i conteggi, la differenza con
+  la contrapposizione, gli errori tipici, ed esercizi.
+lede: >-
+  Per dimostrare che una cosa è vera, a volte conviene supporre che sia falsa e vedere che cosa succede. Se da quella
+  supposizione si arriva a una frase e alla sua negazione insieme, la supposizione era sbagliata. È il metodo più usato
+  quando la tesi dice che qualcosa non esiste o non succede.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 2), §2.2, esempi 2.2.1–2.2.4
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 90 minuti
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 2), §2.2 «More Methods of Proof», con
+  le domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A; F. Cardone, «Tecniche di
+  dimostrazione» (Moodle del canale A); diario del canale B
+appunti_html: appunti/FDA/16_dimostrazioni_per_assurdo.html
+genera_html: true
+```
+
+## In breve
+
+- Una **dimostrazione per assurdo** di «se $P$ allora $Q$» suppone vera l'ipotesi e **falsa** la tesi, e da lì ricava una **contraddizione**: una frase insieme alla sua negazione. Allora la tesi non poteva essere falsa.
+- Funziona perché «dall'ipotesi e dal contrario della tesi segue una cosa impossibile» è equivalente a «se ipotesi, allora tesi»: lo dice la tavola di verità.
+- Il passo delicato è **negare bene la tesi**: un «o» diventa un «e», un «per ogni» diventa un «esiste… non», «è irrazionale» diventa «è una frazione».
+- Gli esempi del libro: se $n^2$ è pari allora $n$ è pari; la radice di 2 non è una frazione; se la somma di due numeri è almeno 2, uno dei due è almeno 1.
+- Il metodo va bene soprattutto quando la tesi dice che qualcosa **non** succede (un insieme è vuoto, un numero non è una frazione) o che **almeno uno** ha una proprietà.
+- **Per contrapposizione** si deve arrivare proprio al contrario dell'ipotesi; **per assurdo** basta una contraddizione qualsiasi. La contrapposizione è un caso particolare.
+
+> [!CANALI]
+> Nel canale B è la lezione di giovedì 05/11, dalle 9 alle 11. Per il docente è la lezione 17, perché la prima è stata un'introduzione: qui è la 16. Il diario del canale B: «Capitolo 2.2. Prove per contraddizione: esempi da 2.2.1 a 2.2.4».
+>
+> **Gli esempi del libro.** Il libro del corso non ce l'ho; ho le soluzioni ufficiali delle domande e degli esercizi. Lì l'esempio 2.2.1 è la risposta a «dai un esempio di dimostrazione per assurdo», e l'esercizio 7 lo usa per dire che se $p^3$ è pari allora $p$ è pari, «con un ragionamento come quello dell'esempio 2.2.1»: quindi il 2.2.1 è «se $n^2$ è pari allora $n$ è pari», per assurdo. Il primo esempio per contrapposizione è il 2.2.5, quindi i 2.2.1–2.2.4 sono tutti per assurdo. Nell'edizione originale di Johnsonbaugh gli altri sono $\sqrt{2}$ irrazionale e la somma almeno 2, che metto qui. Quale sia esattamente il 2.2.4 non posso controllarlo: aggiungo gli esempi per assurdo degli esercizi del §2.2 e dell'autoverifica del capitolo 2, con le soluzioni ufficiali.
+>
+> **Con la lezione 14.** La [lezione 14](14_altri_metodi_di_prova.html), scritta prima del 30/10, anticipava una parte di questo metodo insieme alla contrapposizione, ai casi e all'esistenza. Qui il metodo per assurdo è trattato per intero, con esempi diversi dove si può. Contrapposizione, casi ed esistenza (dal 2.2.5 in poi) restano nella 14 finché il docente non li fa.
+>
+> Servono la [lezione 13](13_dimostrazioni_dirette_controesempi.html) (dimostrazione diretta, pari e dispari), la [07](07_condizionali_equivalenza_logica.html) (freccia, De Morgan, contronominale) e la [10](10_quantificatori_e_connettivi.html) (negare un quantificatore).
+
+## Il metodo, e perché funziona (libro, §2.2)
+
+Il metodo diretto della [lezione 13](13_dimostrazioni_dirette_controesempi.html) parte dall'ipotesi e cammina verso la tesi. Il metodo per assurdo fa una cosa diversa: aggiunge alle ipotesi il **contrario della tesi**, e cerca un guaio.
+
+> [!DEF] Dimostrazione per assurdo (libro, §2.2, domanda di ripasso 1)
+> Una **dimostrazione per assurdo** di una freccia «se $P$ allora $Q$» suppone che le ipotesi siano vere e che la conclusione sia falsa; poi, usando queste supposizioni, gli assiomi, le definizioni e i teoremi già dimostrati, ricava una **contraddizione**. Si chiama anche **dimostrazione indiretta** (domanda di ripasso 3).
+
+**Come si legge.** Una contraddizione è una frase insieme alla sua negazione, per esempio «$n^2$ è pari e $n^2$ è dispari». Non può essere vera. Se ci si arriva con passaggi corretti, una delle supposizioni era falsa; l'ipotesi $P$ è data, quindi la falsa è «non $Q$». Allora vale $Q$.
+
+La differenza con la dimostrazione diretta, nelle parole dell'autoverifica del capitolo 2 (domanda 2): nella diretta la negazione della tesi non si suppone mai, in quella per assurdo sì.
+
+### Perché è corretto: la tavola
+
+Il metodo dimostra la frase «se $p$ e non $q$, allora una contraddizione». Una contraddizione è sempre falsa, e una freccia verso il falso è vera solo quando la sua premessa è falsa. Quindi la frase dice: «non succede che $p$ sia vera e $q$ falsa», che è proprio il significato di $p \to q$.
+
+| $p$ | $q$ | $p \wedge \neg q$ | $(p \wedge \neg q) \to \text{falso}$ | $p \to q$ |
+|---|---|---|---|---|
+| V | V | F | V | V |
+| V | F | V | F | F |
+| F | V | F | V | V |
+| F | F | F | V | V |
+
+Le ultime due colonne sono uguali riga per riga: le due frasi sono **equivalenti**. Puoi controllarlo qui, anche con la $c$:
+
+```widget logica
+titolo: La forma della dimostrazione per assurdo e la freccia
+modo: equivalenza
+a: (p ∧ ¬q) → (c ∧ ¬c)
+b: p → q
+```
+
+```grafico
+titolo: La forma di una dimostrazione per assurdo. Nel riquadro rosa si aggiunge il contrario della tesi; quando dentro compaiono una frase e la sua negazione, il riquadro si chiude e fuori resta la tesi
+x: 0 12.4
+y: 0.3 6.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 6.2 6.0 | blu | "ipotesi P"
+poligono: 1.2 1.6 11.2 1.6 11.2 5.5 1.2 5.5 | rosa
+testo: 6.2 5.0 | rosa | "suppongo non Q"
+testo: 6.2 4.2 | grigio | "passi corretti, con P, definizioni e teoremi"
+testo: 6.2 3.4 | grigio | "arrivo a C"
+testo: 6.2 2.6 | grigio | "e arrivo anche a non C"
+testo: 6.2 1.95 | rosa | "contraddizione: «non Q» era falsa"
+freccia: 6.2 1.55 6.2 1.0 | grigio
+testo: 6.2 0.65 | verde | "quindi Q"
+```
+
+::: prova Una dimostrazione per assurdo arriva al contrario dell'ipotesi: «l'ipotesi è vera, e anche falsa». È un errore?
+No: anche quella è una contraddizione. Se dalla supposizione «non $Q$» si ricava il contrario dell'ipotesi, si è finito. È la forma che diventa la contrapposizione (sezione «Per assurdo o per contrapposizione?»).
+:::
+
+> [!RICORDA]
+> - Per assurdo: suppongo $P$ e non $Q$, arrivo a $C$ e non $C$, concludo $Q$.
+> - Funziona perché $(p \wedge \neg q) \to \text{falso}$ è equivalente a $p \to q$.
+
+## Negare bene la tesi
+
+Tutto il metodo regge sul primo passo: scrivere il contrario esatto della tesi. Se la negazione è sbagliata, la contraddizione che si trova non dimostra niente. Le regole sono quelle della [lezione 07](07_condizionali_equivalenza_logica.html) (De Morgan) e della [lezione 10](10_quantificatori_e_connettivi.html) (quantificatori).
+
+| La tesi | Il suo contrario, da supporre | Regola |
+|---|---|---|
+| $x \ge 1$ oppure $y \ge 1$ | $x < 1$ **e** $y < 1$ | De Morgan: un «o» diventa «e» |
+| $n$ è pari | $n$ è dispari | per gli interi, non pari = dispari |
+| $\sqrt{2}$ è irrazionale | $\sqrt{2} = \frac{p}{q}$ con $p$, $q$ interi | irrazionale = non è una frazione |
+| $X \cap Y = \varnothing$ | esiste un $x$ in $X \cap Y$ | vuoto = nessun elemento |
+| esiste un $i$ con $s_i \le A$ | per ogni $i$, $s_i > A$ | «esiste» diventa «per ogni… non» |
+| almeno due borse hanno lo stesso numero di monete | tutte le borse hanno numeri diversi | «almeno due uguali» = non «tutti diversi» |
+
+> [!TRAPPOLA] Il contrario non è l'opposto
+> Il contrario di «$x \ge 1$» è «$x < 1$», non «$x \le -1$». Il contrario di «tutti gli studenti hanno passato l'esame» è «**almeno uno** non l'ha passato», non «nessuno l'ha passato». Si nega la frase intera, e si ottiene il caso minimo che la rende falsa.
+
+::: prova Scrivi il contrario di «per ogni intero $n$, $n^2 + n$ è pari».
+«Esiste un intero $n$ tale che $n^2 + n$ è dispari.» Il «per ogni» diventa «esiste», e «pari» diventa «non pari», cioè dispari.
+:::
+
+> [!RICORDA]
+> - Prima di tutto, scrivi il contrario della tesi con De Morgan e le regole dei quantificatori.
+> - «O» diventa «e», «per ogni» diventa «esiste… non», «vuoto» diventa «c'è un elemento».
+
+## Se $n^2$ è pari, $n$ è pari (libro, esempio 2.2.1)
+
+È l'esempio che apre il §2.2, e lo stesso che usa Cardone. Serve poi per $\sqrt{2}$.
+
+> [!ESEMPIO] · Per ogni intero $n$, se $n^2$ è pari allora $n$ è pari
+> **Passo 1: suppongo l'ipotesi e il contrario della tesi.** $n^2$ è pari, e $n$ **non** è pari, cioè è dispari: $n = 2m + 1$ per un intero $m$.
+>
+> **Passo 2: calcolo.** $n^2 = (2m + 1)^2 = 4m^2 + 4m + 1 = 2(2m^2 + 2m) + 1$.
+>
+> **Passo 3: la contraddizione.** $n^2$ ha la forma $2j + 1$ con $j = 2m^2 + 2m$: è dispari. Ma per ipotesi è pari. «$n^2$ è pari e $n^2$ è dispari» è una contraddizione.
+>
+> **Passo 4.** Quindi $n$ non può essere dispari: $n$ è pari.
+
+Perché non si fa diretta? Partendo da «$n^2 = 2k$» bisognerebbe ricavare qualcosa su $n$ da una radice quadrata, e non c'è un modo pulito. Partendo invece da «$n$ dispari» c'è una formula da usare, $2m + 1$, e il conto va da solo. È il motivo tipico per scegliere l'assurdo: **il contrario della tesi dà più informazioni dell'ipotesi**.
+
+Cardone disegna la struttura con due riquadri uno dentro l'altro: quello esterno è la dimostrazione diretta della freccia, quello interno l'assurdo.
+
+```grafico
+titolo: La struttura della dimostrazione di Cardone. Il riquadro esterno (blu) è la dimostrazione diretta: suppone «n² pari» e alla fine scarica la supposizione. Quello interno (rosa) è l'assurdo: suppone «n dispari», trova la contraddizione e conclude «n pari»
+x: 0 12.4
+y: 0 7
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.6 1.3 11.8 1.3 11.8 6.6 0.6 6.6 | blu
+testo: 6.2 6.2 | blu | "suppongo n² pari"
+poligono: 1.4 2.4 11.0 2.4 11.0 5.7 1.4 5.7 | rosa
+testo: 6.2 5.25 | rosa | "suppongo n dispari: n = 2m + 1"
+testo: 6.2 4.5 | grigio | "n² = 2(2m² + 2m) + 1"
+testo: 6.2 3.75 | grigio | "quindi n² dispari, ma n² pari: contraddizione"
+testo: 6.2 1.85 | rosa | "quindi n pari"
+testo: 6.2 0.55 | verde | "se n² è pari, allora n è pari"
+freccia: 6.2 2.35 6.2 2.1 | grigio
+```
+
+Nelle note di Cardone, alla fine dell'esempio 3, c'è un refuso: dopo aver mostrato $n^2 = 2(2k^2 + 2k) + 1$ scrive «quindi $n^2$ è pari»; il conto dice **dispari**.
+
+::: prova Dimostra per assurdo: se $n^2$ è dispari, allora $n$ è dispari (esercizio 4 del libro).
+Suppongo $n^2$ dispari e $n$ pari: $n = 2k$. Allora $n^2 = 4k^2 = 2(2k^2)$ è pari. «$n^2$ dispari e $n^2$ pari» è una contraddizione, quindi $n$ è dispari.
+:::
+
+> [!RICORDA]
+> - Si sceglie l'assurdo quando il contrario della tesi dà una formula da usare, come $n = 2m + 1$.
+
+## $\sqrt{2}$ non è una frazione
+
+Il secondo esempio classico del §2.2. Qui la tesi non è una freccia ma una frase sola, «$\sqrt{2}$ è irrazionale»: si suppone il contrario e si cerca la contraddizione, senza ipotesi da aggiungere.
+
+> [!ESEMPIO] · $\sqrt{2}$ è irrazionale
+> **Passo 1: suppongo il contrario.** $\sqrt{2} = \frac{p}{q}$ con $p$, $q$ interi, $q \neq 0$. Posso prendere la frazione **ridotta ai minimi termini**: semplifico finché $p$ e $q$ non sono più tutti e due pari.
+>
+> **Passo 2.** Elevo al quadrato: $2 = \frac{p^2}{q^2}$, cioè $p^2 = 2q^2$. Quindi $p^2$ è pari, e per l'esempio 2.2.1 anche $p$ è pari: $p = 2k$.
+>
+> **Passo 3.** Sostituisco: $4k^2 = 2q^2$, cioè $q^2 = 2k^2$. Quindi $q^2$ è pari, e anche $q$ è pari.
+>
+> **Passo 4: la contraddizione.** $p$ e $q$ sono tutti e due pari, ma la frazione era ridotta: «$p$ e $q$ non sono entrambi pari» e «$p$ e $q$ sono entrambi pari».
+
+**Perché serve «ridotta».** Senza quella condizione non c'è contraddizione: una frazione con numeratore e denominatore pari si può sempre semplificare per 2, e scoprire che sono pari non impedirebbe niente. La riduzione è una supposizione **lecita** (ogni frazione si può ridurre) che prepara la contraddizione.
+
+Lo stesso ragionamento, con i cubi, dimostra che $\sqrt[3]{2}$ è irrazionale (esercizio 7 del libro). Elevando al cubo si trova che $p^3$ è pari, quindi $p$ è pari; sostituendo si trova che anche $q^3$ è pari, quindi $q$ è pari.
+
+::: prova Perché lo stesso ragionamento **non** dimostra che $\sqrt{4}$ è irrazionale?
+Perché da $p^2 = 4q^2$ viene solo che $p$ è il doppio di $q$, senza nessuna contraddizione: la frazione 2 su 1 è ridotta. Infatti $\sqrt{4}$ vale 2, che è razionale.
+:::
+
+> [!RICORDA]
+> - $\sqrt{2}$: suppongo $\frac{p}{q}$ ridotta, ricavo $p$ e $q$ pari, contraddizione con «ridotta».
+> - Si possono aggiungere supposizioni lecite, come «ridotta ai minimi termini», se preparano la contraddizione.
+
+## Una somma almeno 2
+
+Il terzo esempio dell'edizione originale, che Cardone usa come esempio 2. È già svolto nella [lezione 14](14_altri_metodi_di_prova.html): qui lo riprendo per il passo che conta, la negazione con De Morgan.
+
+**La frase.** Se la somma di due numeri reali è almeno 2, almeno uno dei due è almeno 1.
+
+1. Chiamo i due numeri $x$ e $y$. Suppongo che la somma sia almeno 2, e il contrario della tesi: tutti e due minori di 1, cioè $x < 1$ **e** $y < 1$.
+2. Sommo le due disuguaglianze: $x + y < 2$.
+3. «$x + y \ge 2$ e $x + y < 2$» è una contraddizione. Quindi vale la tesi.
+
+Con un «oppure» nella tesi, la dimostrazione diretta dovrebbe scegliere quale dei due vale, senza sapere quale. Il contrario invece è un «e», che dà **due** fatti da usare insieme.
+
+::: prova Dimostra per assurdo: se due numeri hanno somma maggiore di 10, almeno uno dei due è maggiore di 5.
+Suppongo la somma maggiore di 10 e tutti e due al massimo 5: $a \le 5$ e $b \le 5$. Sommando, $a + b \le 10$: contraddizione con l'ipotesi.
+:::
+
+> [!RICORDA]
+> - Tesi con «oppure»: il contrario è un «e», e dà due fatti da usare.
+
+## Per assurdo con gli insiemi
+
+Per dimostrare che un insieme è **vuoto** la via è quasi sempre l'assurdo: si suppone che abbia un elemento e si guarda che cosa deve soddisfare.
+
+> [!ESEMPIO] · $(X - Y) \cap (Y - X) = \varnothing$ (esercizio 19 del libro)
+> **Passo 1: suppongo il contrario.** L'insieme non è vuoto: esiste un $x$ in $(X - Y) \cap (Y - X)$.
+>
+> **Passo 2: uso le definizioni.** Per la definizione di differenza, $x$ sta in $X$ ma non in $Y$. Per lo stesso motivo, $x$ sta in $Y$ ma non in $X$.
+>
+> **Passo 3: la contraddizione.** $x$ sta in $X$ e non sta in $X$.
+
+```grafico
+titolo: Perché `(X − Y) ∩ (Y − X)` è vuoto. `X − Y` è la parte di X fuori da Y (blu), `Y − X` la parte di Y fuori da X (ambra). Le due zone non si toccano: un elemento comune dovrebbe stare sia dentro sia fuori da X
+x: 0 12.4
+y: 0 5
+assi: no
+griglia: no
+proporzioni: libere
+cerchio: 4.8 2.5 2.0 | blu
+cerchio: 7.6 2.5 2.0 | ambra
+testo: 3.6 2.5 | blu | "X − Y"
+testo: 8.8 2.5 | ambra | "Y − X"
+testo: 6.2 2.5 | grigio | "X ∩ Y"
+testo: 2.3 4.4 | blu | "X"
+testo: 10.1 4.4 | ambra | "Y"
+```
+
+::: prova Dimostra per assurdo che un insieme $X$ e il suo complementare $\overline{X}$ non hanno elementi in comune.
+Suppongo che un elemento $x$ stia in tutti e due. Allora $x$ sta in $X$ e nel complementare, cioè non sta in $X$: contraddizione.
+:::
+
+> [!RICORDA]
+> - «È vuoto» si dimostra supponendo un elemento e trovando che deve stare dentro e fuori lo stesso insieme.
+
+## Per assurdo con i conteggi
+
+Le frasi «almeno uno…» e «almeno due uguali» si dimostrano bene per assurdo: si suppone «nessuno…» o «tutti diversi» e si conta. Nella [lezione 14](14_altri_metodi_di_prova.html) c'è l'esempio delle 40 monete in 9 borse; qui altri due, con le soluzioni ufficiali.
+
+> [!ESEMPIO] · Quattro squadre, sette partite (autoverifica del capitolo 2, domanda 3)
+> **La frase.** Se quattro squadre giocano sette partite, due squadre si sono incontrate almeno due volte.
+>
+> **Passo 1: suppongo il contrario.** Ogni coppia di squadre ha giocato al massimo una volta.
+>
+> **Passo 2: conto.** Con le squadre A, B, C, D le coppie possibili sono AB, AC, AD, BC, BD, CD: sei. Quindi le partite sono al massimo 6.
+>
+> **Passo 3: la contraddizione.** Le partite sono 7.
+
+> [!ESEMPIO] · Sotto la media (esercizio 27 del libro)
+> **La frase.** Almeno uno dei numeri $s_1, \dots, s_n$ è minore o uguale alla loro media $A$.
+>
+> **Passo 1: suppongo il contrario.** Tutti i numeri sono maggiori della media: $s_i > A$ per ogni $i$.
+>
+> **Passo 2: sommo.** Sommando tutte queste disuguaglianze, la somma dei numeri supera $nA$. Dividendo per $n$, la media supera $A$.
+>
+> **Passo 3: la contraddizione.** La media è $A$, e $A > A$ è falso.
+
+Questa è una dimostrazione di **esistenza non costruttiva**, come quelle della [lezione 14](14_altri_metodi_di_prova.html): dimostra che un $s_i$ sotto la media c'è, senza dire quale.
+
+::: prova Dimostra per assurdo che se 13 persone sono in una stanza, almeno due sono nate nello stesso mese.
+Suppongo che i mesi siano tutti diversi. Allora servono 13 mesi diversi, ma i mesi sono 12: contraddizione.
+:::
+
+> [!RICORDA]
+> - «Almeno uno», «almeno due uguali»: suppongo «nessuno» o «tutti diversi» e conto.
+
+## Per assurdo o per contrapposizione?
+
+Le due tecniche si somigliano, e il libro le mette una dopo l'altra (esempi 2.2.1–2.2.4 e 2.2.5).
+
+| | per assurdo | per contrapposizione |
+|---|---|---|
+| suppone | $P$ e non $Q$ | solo non $Q$ |
+| deve arrivare a | una contraddizione qualsiasi, $C$ e non $C$ | proprio non $P$ |
+| si può usare anche | quando la tesi non è una freccia, come per $\sqrt{2}$ | solo per una freccia $P \to Q$ |
+
+Se in una dimostrazione per assurdo la contraddizione è proprio il contrario dell'ipotesi, quella dimostrazione è in realtà una contrapposizione. Si poteva saltare l'ipotesi e dimostrare in modo diretto «se non $Q$ allora non $P$». Nell'esempio 2.2.1 succede proprio così: da «$n$ dispari» si arriva a «$n^2$ dispari», il contrario dell'ipotesi. Cardone infatti la rifà per contrapposizione nell'esempio 3 delle sue note.
+
+> [!ESEMPIO] · la stessa frase con i due metodi
+> **Per assurdo.** Suppongo $n^2$ pari e $n$ dispari. Ricavo che $n^2$ è dispari, contro l'ipotesi.
+>
+> **Per contrapposizione.** Dimostro in modo diretto «se $n$ è dispari, allora $n^2$ è dispari», con lo stesso conto. La contronominale è equivalente alla frase di partenza.
+
+::: prova In una dimostrazione per assurdo la contraddizione trovata è «$n > 5$ e $n \le 5$», che non è il contrario dell'ipotesi. Si può riscrivere per contrapposizione?
+Non direttamente: la contraddizione non è «non $P$». Si usa l'assurdo, che accetta una contraddizione qualsiasi.
+:::
+
+> [!RICORDA]
+> - Contrapposizione: da non $Q$ a non $P$. Assurdo: da $P$ e non $Q$ a una contraddizione qualunque.
+
+## Gli errori tipici
+
+Quattro errori capitano spesso, e rovinano la dimostrazione anche quando il conto finale sembra giusto.
+
+1. **Negare male la tesi.** Supporre «$x \le -1$» invece di «$x < 1$», o «nessuno» invece di «almeno uno no». La contraddizione che segue non dimostra la tesi giusta.
+2. **Una contraddizione che viene da un errore di conto.** Se ci si arriva sbagliando un passaggio, non dimostra niente. Ogni passo va giustificato come nella dimostrazione diretta.
+3. **Supporre la tesi invece del contrario.** Partire da «$\sqrt{2}$ è irrazionale» e arrivare a qualcosa di vero non dimostra niente: si deve partire dal **contrario**.
+4. **Dimenticare di dire dove sta la contraddizione.** La dimostrazione finisce indicando le due frasi opposte e da dove viene ciascuna.
+
+::: prova Per dimostrare per assurdo «tutti gli studenti hanno passato l'esame», uno studente suppone «nessuno ha passato l'esame». Che cosa non va?
+La negazione è sbagliata. Il contrario di «tutti l'hanno passato» è «**almeno uno** non l'ha passato». Supponendo «nessuno», una contraddizione dimostrerebbe solo che almeno uno l'ha passato.
+:::
+
+> [!RICORDA]
+> - Contrario esatto, passi giustificati, e alla fine le due frasi opposte con la loro origine.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $C \wedge \neg C$ | «C e non C» | contraddizione, sempre falsa | «$n^2$ pari e $n^2$ dispari» |
+| $\neg Q$ | «non Q» | il contrario della tesi, da supporre | «$n$ è dispari» |
+| $\frac{p}{q}$ ridotta | «p su q ai minimi termini» | $p$ e $q$ senza fattori comuni | $\frac{3}{4}$ sì, $\frac{6}{8}$ no |
+| $\sqrt[3]{2}$ | «radice cubica di 2» | il numero il cui cubo è 2 | esercizio 7 |
+| $X - Y$ | «X meno Y» | elementi di X che non stanno in Y | $\{1,2\} - \{2\} = \{1\}$ |
+| $\varnothing$ | «insieme vuoto» | l'insieme senza elementi | $(X - Y) \cap (Y - X) = \varnothing$ |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Riconoscere il metodo**: nei quiz può servire dire se una dimostrazione è diretta, per assurdo o per contrapposizione, e quale supposizione fa.
+2. **Scrivere il contrario della tesi**: è la stessa abilità delle domande sulle negazioni delle simulazioni 2023/24.
+3. **Scrivere una dimostrazione corta** nella domanda aperta: metodo dichiarato, supposizione, passi, contraddizione indicata.
+
+Nelle simulazioni 2023/24 che ho non ci sono domande sulle dimostrazioni: la domanda qui sotto è sul modello degli esercizi del §2.2.
+
+### Una domanda sul modello, letta insieme
+
+**Il testo**, sul modello dell'esercizio 4 del §2.2: «Dimostra per assurdo che, per ogni intero $n$, se $3n + 2$ è dispari, anche $n$ lo è. Qual è la supposizione da cui parti?»
+
+**In pratica chiede:** il contrario della tesi, e una dimostrazione che arrivi a una contraddizione.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: la supposizione.** L'ipotesi ($3n + 2$ dispari) e il contrario della tesi: $n$ è **pari**. Quindi $n = 2k$ per un intero $k$.
+>
+> **Passo 2: calcolo.** $3n + 2 = 6k + 2 = 2(3k + 1)$, quindi $3n + 2$ è pari.
+>
+> **Passo 3: la contraddizione.** «$3n + 2$ dispari» (ipotesi) e «$3n + 2$ pari» (passo 2). Quindi $n$ è dispari.
+
+La contraddizione è «non $P$», quindi la stessa dimostrazione si poteva scrivere per contrapposizione, come nella [lezione 14](14_altri_metodi_di_prova.html).
+
+> [!METODO] Scrivere una dimostrazione per assurdo
+> 1. Scrivi la frase nella forma «se ipotesi, allora tesi», o solo la tesi se non c'è ipotesi.
+> 2. Scrivi il contrario esatto di $Q$, con De Morgan e le regole dei quantificatori.
+> 3. Comincia con «Supponiamo per assurdo che…», e metti insieme $P$ e non $Q$.
+> 4. Usa le definizioni (pari, dispari, frazione, intersezione) per ricavare fatti nuovi.
+> 5. Fermati quando trovi una frase e la sua negazione; scrivi da dove viene ciascuna, e concludi «quindi $Q$».
+
+## Quiz
+
+```quiz
+D: Che cosa si suppone in una dimostrazione per assurdo di «se $P$ allora $Q$»?
++ $P$ vera e $Q$ falsa
+- $P$ falsa e $Q$ vera
+- solo $Q$ falsa, senza usare $P$
+- $Q$ vera, per vedere se segue $P$
+- $P$ e $Q$ tutte e due false
+= È la domanda di ripasso 1 del §2.2: le ipotesi vere e la conclusione falsa. La risposta più insidiosa è la terza, che è la contrapposizione: lì si suppone solo non $Q$ e si deve arrivare a non $P$.
+
+D: Qual è il contrario di «$x \ge 1$ oppure $y \ge 1$», da supporre in una dimostrazione per assurdo?
++ $x < 1$ e $y < 1$
+- $x < 1$ oppure $y < 1$
+- $x \le 1$ e $y \le 1$
+- $x \le -1$ e $y \le -1$
+- $x + y < 2$
+= De Morgan: la negazione di un «oppure» è un «e» delle negazioni, e la negazione di $\ge$ è $<$. La risposta più insidiosa è la seconda: nega le due parti ma dimentica di cambiare il connettivo.
+
+D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, a che cosa serve supporre la frazione $\frac{p}{q}$ ridotta ai minimi termini?
++ a ottenere la contraddizione, quando si scopre che $p$ e $q$ sono tutti e due pari
+- a far sì che $q$ sia diverso da zero
+- a far sì che $p$ sia dispari
+- a poter elevare al quadrato
+- non serve, è una precisione di stile
+= La contraddizione è proprio «ridotta» contro «$p$ e $q$ pari». La risposta più insidiosa è la terza: «ridotta» vuol dire che $p$ e $q$ non sono **tutti e due** pari, non che $p$ è dispari.
+
+D: Qual è il contrario di «per ogni $i$, $s_i > A$»?
++ esiste un $i$ con $s_i \le A$
+- per ogni $i$, $s_i \le A$
+- esiste un $i$ con $s_i < A$
+- per ogni $i$, $s_i < A$
+- nessun $s_i$ è maggiore di $A$
+= Il «per ogni» diventa «esiste», e $>$ diventa $\le$. La risposta più insidiosa è la terza, che dimentica il caso $s_i = A$.
+
+D: Una dimostrazione suppone «$n^2$ pari e $n$ dispari» e arriva a «$n^2$ dispari». Che cosa ha dimostrato?
++ se $n^2$ è pari allora $n$ è pari
+- se $n$ è dispari allora $n^2$ è pari
+- se $n^2$ è dispari allora $n$ è dispari
+- che non esistono interi dispari
+- niente, perché non ha usato l'ipotesi
+= È l'esempio 2.2.1: «$n^2$ dispari» contraddice l'ipotesi «$n^2$ pari». La risposta più insidiosa è la terza, che è un'altra frase vera (esercizio 4) ma non è quella dimostrata.
+
+D: Quale frase si dimostra meglio per assurdo che in modo diretto?
++ $(X - Y) \cap (Y - X) = \varnothing$
+- la somma di due pari è pari
+- $X \cap Y \subseteq X$
+- se $x$ e $y$ sono razionali, $x + y$ è razionale
+- il prodotto di due dispari è dispari
+= Dire che un insieme è vuoto vuol dire che un elemento non esiste: si suppone che esista e si trova la contraddizione (esercizio 19). Le altre partono da un'ipotesi che dà una formula, e la diretta basta (lezione 13).
+
+D: Che differenza c'è tra dimostrazione diretta e per assurdo, secondo l'autoverifica del capitolo 2?
++ nella diretta non si suppone la negazione della tesi, in quella per assurdo sì
+- la diretta usa le definizioni, quella per assurdo no
+- la diretta vale solo per i numeri, quella per assurdo per gli insiemi
+- quella per assurdo non ha ipotesi
+- non c'è differenza: sono due nomi dello stesso metodo
+= È la risposta ufficiale alla domanda 2. La risposta più insidiosa è la quarta: per assurdo si usano sia le ipotesi sia la negazione della tesi.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: il contrario della tesi
+Scrivi la supposizione iniziale di una dimostrazione per assurdo per: (a) $n$ è dispari; (b) $x > 0$ e $y > 0$; (c) l'insieme $A$ è vuoto; (d) ogni studente ha un voto almeno 18.
+::: soluzione
+(a) $n$ è pari. (b) $x \le 0$ oppure $y \le 0$ (De Morgan). (c) Esiste un elemento in $A$. (d) Esiste uno studente con voto minore di 18.
+:::
+
+::: esercizio base Riscaldamento: quale metodo?
+Per ognuna, di' se è diretta, per assurdo o per contrapposizione. (a) «Sia $n = 2k$; allora $n + 4 = 2(k + 2)$, pari.» (b) «Supponiamo che esista $x$ in $A \cap \varnothing$; allora $x \in \varnothing$, impossibile.» (c) «Dimostro che se $n$ è pari allora $n^2$ è pari, quindi se $n^2$ è dispari allora $n$ è dispari.»
+::: soluzione
+(a) Diretta. (b) Per assurdo: suppone un elemento in un insieme che deve essere vuoto. (c) Per contrapposizione: dimostra la contronominale.
+:::
+
+::: esercizio medio $\sqrt{3}$ è irrazionale
+Dimostra per assurdo che $\sqrt{3}$ è irrazionale. Ti serve il fatto «se $n^2$ è multiplo di 3, allora $n$ è multiplo di 3», che puoi usare.
+::: soluzione
+Suppongo $\sqrt{3} = \frac{p}{q}$ ridotta: $p$ e $q$ non sono tutti e due multipli di 3. Allora $p^2 = 3q^2$: $p^2$ è multiplo di 3, quindi lo è $p$: $p = 3k$. Sostituisco: $9k^2 = 3q^2$, cioè $q^2 = 3k^2$, quindi anche $q$ è multiplo di 3. Contraddizione con «ridotta». Il fatto usato vale perché 3 è primo; con 4 al posto di 3 non varrebbe ($n = 2$, $n^2 = 4$).
+:::
+
+::: esercizio medio Non c'è un intero più grande di tutti
+Dimostra per assurdo che non esiste un intero maggiore o uguale a tutti gli interi.
+::: soluzione
+Suppongo che esista un intero $M$ con $M \ge n$ per ogni intero $n$. Allora in particolare $M \ge M + 1$, perché anche $M + 1$ è un intero. Sottraendo $M$: $0 \ge 1$, falso. Contraddizione.
+:::
+
+::: esercizio esame Una dimostrazione da completare, sul modello del §2.2
+«Per ogni intero $n$, se $n^2 + 3$ è pari, allora $n$ è dispari.» Scrivi la supposizione, la dimostrazione e la contraddizione, poi di' se la stessa dimostrazione si poteva fare per contrapposizione.
+::: soluzione
+Suppongo $n^2 + 3$ pari e il contrario della tesi, $n = 2k$. Allora $n^2 + 3 = 4k^2 + 3 = 2(2k^2 + 1) + 1$, dispari. Contraddizione con l'ipotesi, quindi $n$ è dispari. La contraddizione è proprio la negazione dell'ipotesi, quindi sì: per contrapposizione si dimostra «se $n$ è pari allora $n^2 + 3$ è dispari», con lo stesso conto. Controllato con un programma per $n$ da −1000 a 1000.
+:::
+
+::: esercizio difficile Cinque punti in un quadrato
+In un quadrato di lato 2 ci sono 5 punti. Dimostra per assurdo che almeno due di loro sono a distanza al massimo $\sqrt{2}$.
+::: soluzione
+Divido il quadrato in 4 quadratini di lato 1. Suppongo per assurdo che ogni coppia di punti sia a distanza maggiore di $\sqrt{2}$. Due punti nello stesso quadratino sono a distanza al massimo $\sqrt{2}$, la sua diagonale: quindi ogni quadratino contiene al massimo un punto, e i punti sono al massimo 4. Ma sono 5: contraddizione. È il principio dei piccioni della [D06 di Matematica Discreta](../MDAG/D06_insiemi_finiti_inclusione_esclusione.html), con i quadratini come buche.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa si suppone e a che cosa si deve arrivare in una dimostrazione per assurdo?
+Si suppongono le ipotesi e il contrario della tesi, e si deve arrivare a una contraddizione, una frase e la sua negazione.
+:::
+
+::: domanda Perché il metodo per assurdo è corretto?
+Perché $(P \wedge \neg Q) \to \text{falso}$ è equivalente a $P \to Q$: la tavola di verità ha le stesse colonne.
+:::
+
+::: domanda Perché nella dimostrazione su $\sqrt{2}$ la frazione va presa ridotta?
+Perché la contraddizione finale è proprio «$p$ e $q$ sono tutti e due pari», che contrasta con «ridotta». Senza quella supposizione non ci sarebbe contraddizione.
+:::
+
+::: domanda Quando conviene la dimostrazione per assurdo?
+Quando la tesi dice che qualcosa non esiste o non succede (un insieme vuoto, un numero irrazionale), quando dice «almeno uno», o quando il contrario della tesi dà una formula da usare.
+:::
+
+::: domanda Che differenza c'è tra per assurdo e per contrapposizione?
+La contrapposizione suppone solo non $Q$ e deve arrivare a non $P$; l'assurdo suppone $P$ e non $Q$ e può arrivare a una contraddizione qualsiasi.
+:::
+
+## Glossario
+
+```glossario
+Dimostrazione per assurdo | Si suppongono le ipotesi e il contrario della tesi, e si ricava una contraddizione; detta anche indiretta.
+Contraddizione | Una frase e la sua negazione insieme, C e non C: sempre falsa.
+Contrario della tesi | La negazione esatta della conclusione, scritta con De Morgan e le regole dei quantificatori.
+Frazione ridotta | Frazione di interi senza fattori comuni tra numeratore e denominatore.
+Numero irrazionale | Numero reale che non si può scrivere come frazione di interi, come la radice di 2.
+Dimostrazione per contrapposizione | Si dimostra in modo diretto la contronominale, da non Q a non P.
+Esistenza non costruttiva | Dimostrazione che qualcosa esiste senza dire quale sia, spesso per assurdo.
+```
+
+## Checklist
+
+```checklist
+- So scrivere lo schema di una dimostrazione per assurdo.
+- So spiegare con la tavola di verità perché il metodo è corretto.
+- So scrivere il contrario di una tesi con «o», «e», «per ogni» ed «esiste».
+- So dimostrare per assurdo che se n² è pari allora n è pari.
+- So dimostrare che la radice di 2 è irrazionale e spiegare a che cosa serve «ridotta».
+- So dimostrare per assurdo che un insieme è vuoto.
+- So usare l'assurdo nei problemi di conteggio («almeno due uguali»).
+- So distinguere una dimostrazione per assurdo da una per contrapposizione.
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 2), §2.2 «More Methods of Proof»: domande di ripasso 1–3, esercizi 4, 7, 19 e 27; autoverifica del capitolo 2, domande 2 e 3; con le soluzioni pubblicate sul Moodle del canale A ([id 3851](https://informatica.i-learn.unito.it/course/view.php?id=3851), aperto agli ospiti). Il libro non è disponibile: i testi li ho ricostruiti dalle soluzioni e tradotti, e il contenuto degli esempi 2.2.1–2.2.4 l'ho ricavato dai rimandi delle soluzioni e dall'edizione originale.
+- F. Cardone, «Tecniche di dimostrazione» (Moodle del canale A): esempio 2 (somma almeno 2), la dimostrazione di «se $n^2$ è pari allora $n$ è pari» con lo schema dei riquadri, esempio 3 (la stessa per contrapposizione, con il refuso «pari» al posto di «dispari»).
+- Diario del canale B: «Lezione 17. Giovedì 05 Novembre ore 09-11. Capitolo 2.2. Prove per contraddizione: esempi da 2.2.1 a 2.2.4». Appunti scritti dopo la lezione, senza sapere come il docente ha presentato gli esempi.
+- La tavola del metodo, gli esempi $\sqrt{4}$, $\sqrt{3}$, i 13 mesi, i 5 punti nel quadrato, la domanda sul modello, i quiz e gli esercizi senza indicazione sono di questi appunti. I conti con i numeri li ho controllati con un programma.
 
 
 ---
@@ -27797,6 +31478,7 @@ Le lezioni seguono il libro di Andrea Mori e gli argomenti indicati per il canal
 | D10 | Binomio di Newton e permutazioni | cap. 3, pp. 60–61; cap. 5, pp. 83–85; esercizi 3.16, 3.19 | `lezioni/D10_binomio_newton_permutazioni.md` · HTML: `appunti/MDAG/D10_binomio_newton_permutazioni.html` | sviluppo di $(x + y)^n$ con il triangolo, perché i coefficienti sono binomiali (teorema 3.34, con la dimostrazione per induzione dell'esercizio 3.16), coefficiente di un termine in $(A + B)^n$ con numeri e segni, somme di una riga con $x = y = 1$ e con $x = 1$, $y = -1$ (esercizio 3.19 anche per $n$ pari); permutazioni come biezioni di un insieme in sé (definizione 5.1), $S_X$ e $S_n$, tabella a due righe, punti fissi, $\lvert S_n \rvert = n!$ (proposizione 5.2), composizione, inversa girando le frecce, non commutatività da 3 elementi; appello del 14/01/2025, problema 1 ($\tau^{-1}$). Argomenti ricostruiti dal diario 2025/26 (lezione 10) |
 | D11 | Cicli e cicli disgiunti | cap. 5, pp. 86–92; esercizi 5.1, 5.2 | `lezioni/D11_cicli_disgiunti.md` · HTML: `appunti/MDAG/D11_cicli_disgiunti.html` | inversa scambiando le righe della tabella, composizione con la tabella a tre righe, cicli e loro notazione (definizione 5.3), lo stesso ciclo scritto in più modi (nota 5.4), inverso di un ciclo (proposizione 5.5), cicli disgiunti (definizione 5.6) che commutano (proposizione 5.7), ogni permutazione è un prodotto di cicli disgiunti (teorema 5.8, con la dimostrazione), da un prodotto di cicli qualsiasi ai cicli disgiunti leggendo da destra (pp. 91–92); appelli del 06/06/2025 (quiz, domanda 5) e del 13/01/2026 (problema 1). Argomenti ricostruiti dal diario 2025/26 (lezione 11) |
 | D12 | Tipo e periodo di una permutazione | cap. 5, pp. 92–95 e 101–103; esercizi 5.5, 5.7, 5.10 | `lezioni/D12_tipo_periodo_permutazioni.md` · HTML: `appunti/MDAG/D12_tipo_periodo_permutazioni.html` | tipo (definizione 5.12), quante permutazioni hanno un tipo dato (cicli di lunghezza $\ell$, scelte successive, divisione per $k!$ con lunghezze ripetute), tipi e partizioni di $n$, potenze e periodo (proposizione 5.23, definizione 5.25), riduzione degli esponenti anche negativi, periodo = mcm delle lunghezze (proposizione 5.26), tipo delle potenze con il mcd; quiz 2025 e 2026 (domande 5 e 6), problemi del 13/01/2026, 01/07/2026 e 10/09/2026. Argomenti ricostruiti dal diario 2025/26 (lezione 12); scambi e parità nella lezione successiva |
+| D13 | Scambi e parità di una permutazione | cap. 5, pp. 95–101 | `lezioni/D13_scambi_parita.md` · HTML: `appunti/MDAG/D13_scambi_parita.html` | ogni ciclo di lunghezza $\ell$ è composizione di $\ell - 1$ scambi (proposizione 5.13), ogni permutazione è composizione di scambi (teorema 5.14), scrittura non unica e scambi che non commutano, gli scambi generano $S_n$ (nota 5.15), la parità è ben definita (teorema 5.16, con la dimostrazione per assurdo), pari e dispari (definizione 5.17), parità di un ciclo (5.18) e di un prodotto (5.19), parità dal tipo e da cicli non disgiunti (5.20, nota 5.21), $\frac{n!}{2}$ pari (5.22); quiz del 14/01/2025, 13/01/2026, 10/09/2026; problemi del 25/01/2022, 14/01/2025, 2023/24, 01/07/2026, riepiloghi 2018 e 2019. Argomenti ricostruiti dal diario 2025/26 (lezione 13); refuso a p. 98 |
 
 ## Algebra lineare e Geometria (parte 2, modB)
 
@@ -36429,6 +40111,525 @@ Massimo comun divisore (mcd) | Il più grande intero che divide tutti i numeri d
 - Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori), lezione 12: «Tipo di una permutazione. Partizioni di n. Struttura ciclica della successione delle potenze di una permutazione e calcolo del periodo. Esempi»; lezione 13 per scambi e parità.
 - Appelli di Matematica Discreta con le soluzioni ufficiali, dal Moodle MDAG1 2025/26 (id 3501, aperto agli ospiti): quiz del 04/02/2025 (domande 5 e 6), 06/06/2025 (domanda 6), 13/01/2026 (domanda 5), 03/02/2026 (domanda 5), 08/06/2026 (domande 5 e 6); problemi del 13/01/2026 (problema 1), 01/07/2026 (problema 2), 10/09/2026 (problema 1).
 - La regola sulle potenze di un ciclo, tutti i conteggi, i periodi e le risposte dei quiz li ho controllati con un programma. Gli esempi senza indicazione e i quiz senza data sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D13_scambi_parita.md -->
+> File: `contesto_ai/MDAG/lezioni/D13_scambi_parita.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D13
+titolo: Scambi e parità di una permutazione
+data: 2026-11-02
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D13
+descrizione: >-
+  Appunti della lezione D13 di Matematica Discreta (MDAG, parte 1, canali A, B e C): ogni ciclo e ogni permutazione
+  sono composizioni di scambi, la scrittura non è unica, ma il numero di scambi è sempre pari o sempre dispari; la
+  parità di una permutazione, di un ciclo e di un prodotto, la parità letta dal tipo, quante sono le permutazioni
+  pari, con le domande d'esame degli appelli 2022–2026.
+lede: >-
+  Ogni permutazione si ottiene scambiando due numeri alla volta. Gli scambi necessari si possono scegliere in tanti
+  modi, ma una cosa non cambia mai: se il loro numero è pari o dispari. È la parità, che l'esame chiede in quasi ogni
+  problema sulle permutazioni, accanto a tipo e periodo.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 5, pp. 95–101
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 5 «Permutazioni», sezione «Scambi e parità»,
+  pp. 95–101 (proposizione 5.13, teorema 5.14, nota 5.15, teorema 5.16, definizione 5.17, proposizioni 5.18–5.20,
+  nota 5.21, proposizione 5.22); diario delle lezioni del canale B 2025/26, lezione 13; appelli di Matematica Discreta
+  2022–2026
+appunti_html: appunti/MDAG/D13_scambi_parita.html
+genera_html: true
+```
+
+## In breve
+
+- Uno **scambio** è un ciclo di lunghezza 2, $(a\ b)$: scambia due numeri e lascia fermi gli altri.
+- Ogni **ciclo** si scrive con tanti scambi quanta è la sua lunghezza meno uno, per esempio $(1\ 2\ 3\ 4\ 5) = (1\ 5)(1\ 4)(1\ 3)(1\ 2)$. Quindi ogni **permutazione** è composizione di scambi.
+- La scrittura con gli scambi **non è unica**: $(1\ 2\ 3) = (1\ 2)(2\ 3) = (1\ 3)(1\ 2)$. Ma il numero di scambi di due scritture della stessa permutazione è sempre tutti e due pari o tutti e due dispari (teorema 5.16).
+- Una permutazione è **pari** se si scrive con un numero pari di scambi, **dispari** altrimenti. L'identità è pari.
+- Un ciclo di lunghezza $\ell$ ha la parità di $\ell - 1$: i cicli di lunghezza **dispari** sono **pari**, e viceversa.
+- La parità di un prodotto si calcola come per le somme di interi: pari con pari dà pari, dispari con dispari dà pari, pari con dispari dà dispari.
+- Dal tipo: la permutazione è pari se i cicli di lunghezza pari sono in numero pari.
+- Con almeno due numeri, metà delle permutazioni sono pari e metà dispari: in $S_n$ sono $\frac{n!}{2}$ ciascuna.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di lunedì 02/11/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la tredicesima lezione era «Ogni ciclo è composizione di scambi. Ogni permutazione è composizione di scambi. Mancanza di unicità nella scrittura di una permutazione come composizione di scambi. Concetto di parità di una permutazione. La parità di una permutazione è ben definita. Esempi». Nel libro sono le pp. 95–101, subito dopo la [D12](D12_tipo_periodo_permutazioni.html). Quando il docente pubblica gli argomenti, controllo e aggiorno.
+>
+> Come nella [D11](D11_cicli_disgiunti.html), un prodotto di cicli si legge **da destra a sinistra**: ogni numero attraversa per primo il ciclo più a destra. La dimostrazione del teorema 5.16 è per assurdo, come quelle della [lezione 16 di Fondamenti](../FDA/16_dimostrazioni_per_assurdo.html).
+
+## Gli scambi
+
+Per mettere in ordine un mazzo di carte, si può prendere due carte alla volta e scambiarle di posto, finché il mazzo è ordinato. Ogni riordino si ottiene così. Lo stesso vale per le permutazioni: gli **scambi**, già incontrati nella [D11](D11_cicli_disgiunti.html), bastano a costruirle tutte.
+
+> [!DEF] Scambio (D11, definizione 5.3)
+> Uno **scambio**, o **trasposizione**, è un ciclo di lunghezza 2, $(a\ b)$ con $a \ne b$: manda $a$ in $b$, $b$ in $a$, e lascia fermi tutti gli altri numeri.
+
+**Come si legge.** Uno scambio è l'inverso di sé stesso: fatto due volte, rimette tutto a posto. In formule $(a\ b)(a\ b) = \mathrm{id}$, cioè $(a\ b)^{-1} = (a\ b)$.
+
+::: prova Quanti scambi diversi ci sono in $S_4$?
+Uno per ogni coppia di numeri tra 1 e 4: $\binom{4}{2} = 6$. Sono $(1\ 2)$, $(1\ 3)$, $(1\ 4)$, $(2\ 3)$, $(2\ 4)$, $(3\ 4)$.
+:::
+
+> [!RICORDA]
+> - Scambio = ciclo di lunghezza 2. Fatto due volte, dà l'identità.
+
+## Ogni ciclo è composizione di scambi (proposizione 5.13)
+
+Un esempio prima della regola. Il ciclo $(1\ 2\ 3\ 4\ 5)$ manda $1 \mapsto 2 \mapsto 3 \mapsto 4 \mapsto 5 \mapsto 1$. Lo stesso effetto si ottiene con quattro scambi che hanno tutti l'1:
+
+$$(1\ 2\ 3\ 4\ 5) = (1\ 5)(1\ 4)(1\ 3)(1\ 2).$$
+
+Per controllare, si segue ogni numero da destra a sinistra:
+
+1. **l'1**: $(1\ 2)$ lo manda nel 2, e gli scambi a sinistra non contengono il 2. Risultato: $1 \mapsto 2$.
+2. **il 2**: $(1\ 2)$ lo manda nell'1, poi $(1\ 3)$ manda l'1 nel 3, e gli scambi a sinistra non contengono il 3. Risultato: $2 \mapsto 3$.
+3. **il 3 e il 4** fanno lo stesso: arrivano nell'1 con il loro scambio e ne escono con quello subito a sinistra, quindi $3 \mapsto 4$ e $4 \mapsto 5$.
+4. **il 5** compare solo nell'ultimo scambio a sinistra, $(1\ 5)$, che lo manda nell'1. Risultato: $5 \mapsto 1$.
+
+È proprio il ciclo. Gli scambi sono 4, uno in meno della lunghezza.
+
+```grafico
+titolo: Il ciclo (1 2 3 4 5) come quattro scambi, tutti con l'1, letti da destra: (1 2), poi (1 3), poi (1 4), poi (1 5). Ogni numero entra nell'1 con il suo scambio ed esce verso il successivo con lo scambio seguente
+x: 0 12.4
+y: 0 5.2
+assi: no
+griglia: no
+proporzioni: libere
+punto: 6.2 4.4 | accento
+testo: 6.2 4.85 | accento | "1"
+punto: 9.4 3.0 | blu
+testo: 9.9 3.0 | blu | "2"
+punto: 8.4 0.8 | blu
+testo: 8.9 0.5 | blu | "3"
+punto: 4.0 0.8 | blu
+testo: 3.5 0.5 | blu | "4"
+punto: 3.0 3.0 | blu
+testo: 2.5 3.0 | blu | "5"
+segmento: 6.2 4.4 9.4 3.0 | ambra
+segmento: 6.2 4.4 8.4 0.8 | ambra
+segmento: 6.2 4.4 4.0 0.8 | ambra
+segmento: 6.2 4.4 3.0 3.0 | ambra
+testo: 8.4 4.0 | ambra | "(1 2)"
+testo: 7.9 2.3 | ambra | "(1 3)"
+testo: 4.5 2.3 | ambra | "(1 4)"
+testo: 4.0 4.0 | ambra | "(1 5)"
+```
+
+> [!PROP] Proposizione 5.13
+> Ogni ciclo di lunghezza $\ell$ è composizione di $\ell - 1$ scambi:
+> $$(m_1\ m_2\ \dots\ m_\ell) = (m_1\ m_\ell)(m_1\ m_{\ell-1}) \cdots (m_1\ m_3)(m_1\ m_2).$$
+
+**Come si legge.** Tutti gli scambi contengono il primo numero del ciclo, $m_1$; gli altri numeri compaiono da destra in ordine, dal secondo all'ultimo. La verifica è quella dell'esempio: ogni $m_i$ entra in $m_1$ con il suo scambio ed esce in $m_{i+1}$ con quello subito a sinistra.
+
+> [!TRAPPOLA] L'ordine conta
+> Gli scambi di un ciclo hanno numeri in comune, quindi **non commutano**. $(1\ 2)(1\ 3)$ è $(1\ 3\ 2)$, mentre $(1\ 3)(1\ 2)$ è $(1\ 2\ 3)$.
+
+::: prova Scrivi $(4\ 7\ 2\ 9)$ come composizione di scambi.
+$(4\ 9)(4\ 2)(4\ 7)$: tre scambi, tutti con il 4, con gli altri numeri da destra nell'ordine del ciclo.
+:::
+
+> [!RICORDA]
+> - Ciclo di lunghezza $\ell$ = $\ell - 1$ scambi, tutti con il primo numero.
+
+## Ogni permutazione è composizione di scambi (teorema 5.14)
+
+Una permutazione qualsiasi si scrive come prodotto di cicli disgiunti (teorema 5.8, [D11](D11_cicli_disgiunti.html)), e ogni ciclo si scrive con gli scambi. Basta mettere insieme le due cose.
+
+> [!ESEMPIO] · Da cicli a scambi
+> $\tau = (1\ 5\ 2)(3\ 4\ 6\ 7) \in S_7$.
+>
+> **Il primo ciclo.** $(1\ 5\ 2) = (1\ 2)(1\ 5)$: due scambi.
+>
+> **Il secondo ciclo.** $(3\ 4\ 6\ 7) = (3\ 7)(3\ 6)(3\ 4)$: tre scambi.
+>
+> **Insieme.** $\tau = (1\ 2)(1\ 5)(3\ 7)(3\ 6)(3\ 4)$: cinque scambi. L'ho ricontrollato con un programma.
+
+> [!TEOREMA] Teorema 5.14
+> Ogni permutazione è composizione di scambi.
+
+### La scrittura non è unica
+
+Con i cicli disgiunti la scrittura era unica e i cicli commutavano. Con gli scambi si perdono tutte e due le cose. Lo stesso ciclo ha più scritture:
+
+$$(a\ b\ c) = (a\ b)(b\ c) = (a\ c)(a\ b),$$
+
+e lo stesso scambio si può scrivere anche con tre scambi: $(1\ 3) = (1\ 2)(2\ 3)(1\ 2)$. Anche il numero di scambi cambia: 1 nella prima scrittura, 3 nella seconda.
+
+> [!OSSERVAZIONE] Gli scambi generano $S_n$ (nota 5.15)
+> Componendo scambi in tutti i modi possibili si ottengono tutte le permutazioni: gli scambi **generano** $S_n$. Sono solo $\binom{n}{2} = \frac{n(n-1)}{2}$, molti meno dei cicli, e più facili da descrivere: per questo sono comodi anche nel calcolo delle permutazioni con un computer.
+
+::: prova Scrivi $(1\ 4)(2\ 6\ 3)$ come composizione di scambi. Quanti sono?
+$(1\ 4)(2\ 3)(2\ 6)$: tre scambi. Il primo ciclo è già uno scambio; il secondo, di lunghezza 3, ne richiede 2.
+:::
+
+> [!RICORDA]
+> - Ogni permutazione = cicli disgiunti = scambi, ciclo per ciclo.
+> - La scrittura con gli scambi non è unica, e gli scambi non commutano.
+
+## La parità non dipende dalla scrittura (teorema 5.16)
+
+Negli esempi qui sopra il numero di scambi cambia, ma cambia sempre **di 2**: $(1\ 3)$ con 1 scambio o con 3; $(a\ b\ c)$ con 2 scambi in tutte e due le scritture. Non è un caso.
+
+> [!TEOREMA] Teorema 5.16
+> Ogni due scritture di una permutazione $\pi \in S_n$ come composizione di scambi hanno la stessa **parità**: i numeri di scambi sono tutti e due pari o tutti e due dispari.
+
+**Come si legge.** Se una permutazione si scrive con 5 scambi, ogni altra sua scrittura ne usa un numero dispari: 3, 7, 11, mai 4 o 6. Il numero di scambi non è fissato, la sua parità sì.
+
+L'idea della dimostrazione, che nel libro è per assurdo, ha due passi.
+
+1. **Ridursi all'identità.** Se $\pi$ si scrivesse con $j$ scambi e con $k$ scambi, con $j$ pari e $k$ dispari, componendo l'inversa della prima scrittura con la seconda si otterrebbe l'identità come composizione di $j + k$ scambi, un numero dispari.
+2. **L'identità non si scrive con un numero dispari di scambi.** Si prende una scrittura qualsiasi dell'identità e la si semplifica con due regole: $(a\ b)(a\ c) = (a\ c)(b\ c)$, che sposta gli scambi senza cambiarne il numero, e $(a\ b)(a\ b) = \mathrm{id}$, che ne toglie due. Alla fine non resta nessuno scambio, e ogni volta se ne sono tolti due: il numero di partenza era pari.
+
+> [!DIM] La dimostrazione del libro, passo per passo (pp. 97–99)
+> **Passo 1.** Se $\pi = s_1 s_2 \cdots s_j = s'_1 s'_2 \cdots s'_k$, allora $\pi^{-1} = s_j \cdots s_2 s_1$: l'inversa di un prodotto è il prodotto delle inverse in ordine inverso, e ogni scambio è l'inverso di sé stesso. Quindi $\mathrm{id} = \pi^{-1} \circ \pi = (s_j \cdots s_1)(s'_1 \cdots s'_k)$, con $j + k$ scambi.
+>
+> **Passo 2.** Sia $\mathrm{id} = s_1 \cdots s_m$. Un numero $i$ non può comparire in un solo scambio: se ci fosse un solo $(i\ x)$, la composizione manderebbe $i$ in $x$ e non sarebbe l'identità. Si guarda l'1. Gli scambi che lo contengono si avvicinano spostandoli verso destra: con uno scambio disgiunto si commuta, e $(a\ 1)(a\ c)$ si sostituisce con $(a\ c)(1\ c)$. Quando gli scambi con l'1 sono vicini, un segmento $(1\ b)(1\ c)$ con $b \ne c$ diventa $(1\ c)(b\ c)$, e gli scambi con l'1 scendono di uno; un segmento $(1\ b)(1\ b)$ si cancella, e il totale scende di due. Siccome non può restare un solo scambio con l'1, prima o poi l'1 sparisce. Poi si fa lo stesso con il 2, il 3, e così via fino a $n$, senza reintrodurre i numeri già eliminati. Alla fine non resta niente, e il totale è sceso solo di due alla volta: $m$ è pari.
+>
+> **Conclusione.** $j + k$ dovrebbe essere dispari (passo 1) e pari (passo 2): contraddizione.
+>
+> A p. 98 il libro ha un piccolo refuso: «della forma della forma $(i\ x)$».
+
+::: prova Con il teorema, $(1\ 3)$ si può scrivere con 4 scambi?
+No: si scrive con 1 scambio, quindi ogni sua scrittura ne usa un numero dispari.
+:::
+
+> [!RICORDA]
+> - Le scritture con gli scambi cambiano, ma il numero di scambi resta sempre pari o sempre dispari.
+
+## Permutazioni pari e dispari (definizione 5.17, proposizione 5.18)
+
+Il teorema permette di dare un nome alle due famiglie.
+
+> [!DEF] Parità (definizione 5.17)
+> Una permutazione $\pi \in S_n$ è **pari** se si scrive come composizione di un numero pari di scambi, **dispari** se si scrive con un numero dispari di scambi.
+
+**Come si legge.** Il teorema 5.16 garantisce che la definizione ha senso: una permutazione non può essere pari e dispari insieme. L'identità è pari: si scrive con zero scambi, oppure come $(1\ 2)(1\ 2)$.
+
+Per i cicli la parità viene subito dalla proposizione 5.13: un ciclo di lunghezza $\ell$ si scrive con $\ell - 1$ scambi.
+
+> [!PROP] Proposizione 5.18
+> Un ciclo di lunghezza $\ell$ è **pari** se $\ell$ è dispari, **dispari** se $\ell$ è pari.
+
+**Come si legge.** Si guarda la lunghezza meno uno: un ciclo di lunghezza 3 costa 2 scambi, quindi è pari; uno di lunghezza 4 ne costa 3, quindi è dispari.
+
+| Ciclo | Lunghezza | Scambi | Parità |
+|---|---|---|---|
+| $(2\ 5)$ | 2 | 1 | dispari |
+| $(1\ 4\ 6)$ | 3 | 2 | pari |
+| $(1\ 2\ 3\ 4)$ | 4 | 3 | dispari |
+| $(1\ 2\ 3\ 4\ 5)$ | 5 | 4 | pari |
+
+> [!TRAPPOLA] Lunghezza e parità sono al contrario
+> Un ciclo di lunghezza 3 è **pari**, uno di lunghezza 4 è **dispari**. Conta il numero di scambi, $\ell - 1$, non la lunghezza.
+
+::: prova $(3\ 8\ 1\ 6\ 2\ 7)$ è pari o dispari?
+Lunghezza 6, quindi 5 scambi: dispari.
+:::
+
+> [!RICORDA]
+> - Pari = numero pari di scambi. Un ciclo di lunghezza $\ell$ ha la parità di $\ell - 1$.
+
+## La parità di un prodotto (proposizione 5.19)
+
+Due permutazioni fatte una dopo l'altra si comportano come due numeri sommati: pari più pari fa pari, dispari più dispari fa pari, pari più dispari fa dispari. Il motivo: se $\pi$ si scrive con $j$ scambi e $\sigma$ con $k$, la composizione $\sigma \circ \pi$ si scrive mettendo le due scritture una dopo l'altra, con $j + k$ scambi.
+
+> [!PROP] Proposizione 5.19
+> La composizione $\sigma \circ \pi$ è **pari** se $\pi$ e $\sigma$ hanno la stessa parità, **dispari** se hanno parità diverse.
+
+**Come si legge.** Si pensa a «pari» come 0 e a «dispari» come 1, e si sommano: 0 + 0 e 1 + 1 danno un numero pari, 0 + 1 un numero dispari.
+
+| $\circ$ | pari | dispari |
+|---|---|---|
+| **pari** | pari | dispari |
+| **dispari** | dispari | pari |
+
+Con più fattori si conta: un prodotto è pari se il numero di fattori dispari è pari. Per le potenze, $\sigma^k$ è un prodotto di $k$ copie di $\sigma$: se $\sigma$ è pari, tutte le sue potenze sono pari; se $\sigma$ è dispari, $\sigma^k$ ha la parità di $k$. E l'inversa ha la stessa parità, perché $\sigma^{-1}$ si scrive con gli stessi scambi in ordine inverso.
+
+> [!ESEMPIO] · Appello del 10/09/2026, quiz, domanda 5 (prima versione)
+> «Siano $\tau$ una permutazione pari e $\sigma$ una permutazione dispari. Dire quale delle seguenti affermazioni è vera. 1. $\tau \circ \sigma^4$ è dispari. 2. $\tau^5 \circ \sigma^3$ è pari. 3. $\sigma \circ \tau \circ \sigma \circ \tau^2$ è dispari. 4. $\sigma^3 \circ \tau \circ \sigma^2$ è pari. 5. $\sigma \circ \tau^3 \circ \sigma$ è pari.»
+>
+> **Soluzione.** Conto le $\sigma$, le uniche dispari: nella 1 sono 4 (pari, non dispari); nella 2 sono 3 (dispari, non pari); nella 3 sono 2 (pari, non dispari); nella 4 sono 5 (dispari, non pari); nella 5 sono 2: **pari**. La risposta è la 5, come nella soluzione ufficiale.
+
+::: prova $\pi$ e $\sigma$ sono dispari, $\tau$ è pari. Di che parità è $\tau^3 \circ \pi \circ \sigma^2$?
+Le permutazioni dispari nel prodotto sono una $\pi$ e due $\sigma$: tre, un numero dispari. Quindi dispari. È la risposta giusta della domanda 6 del quiz del 13/01/2026.
+:::
+
+> [!RICORDA]
+> - Prodotto: si contano i fattori dispari. Pari tanti, pari; dispari tanti, dispari.
+> - $\sigma^{-1}$ ha la parità di $\sigma$; $\sigma^k$ di una dispari ha la parità di $k$.
+
+## La parità dal tipo (proposizione 5.20, nota 5.21)
+
+Mettendo insieme le due proposizioni, la parità si legge dai cicli disgiunti, cioè dal tipo, senza scrivere gli scambi.
+
+> [!PROP] Proposizione 5.20
+> Sia $\pi$ di tipo $(\ell_1, \ell_2, \dots, \ell_r)$ e sia $p = (\ell_1 - 1) + (\ell_2 - 1) + \dots + (\ell_r - 1)$. Allora $\pi$ è pari se e solo se $p$ è pari.
+
+**Come si legge.** Ogni ciclo di lunghezza $\ell_i$ costa $\ell_i - 1$ scambi, e $p$ è il totale. In pratica basta contare i cicli di lunghezza **pari**: sono loro i fattori dispari. La permutazione è pari se i cicli di lunghezza pari sono in numero pari.
+
+> [!ESEMPIO] · L'esempio del libro (p. 100)
+> $(1\ 4\ 9)(2\ 11\ 5\ 7\ 3)(8\ 12)(6\ 10\ 13) \in S_{13}$ ha tipo $(5, 3, 3, 2)$. Allora $p = 4 + 2 + 2 + 1 = 9$, dispari: la permutazione è **dispari**. Con la scorciatoia: c'è un solo ciclo di lunghezza pari, lo scambio $(8\ 12)$.
+
+La nota 5.21 aggiunge una comodità: la proposizione 5.19 vale per qualsiasi prodotto di cicli, anche **non disgiunti**. Quindi per la parità non serve nemmeno la scrittura in cicli disgiunti.
+
+> [!ESEMPIO] · Cicli non disgiunti (nota 5.21)
+> $(2\ 4\ 7)(1\ 4\ 5\ 8\ 2)(5\ 2\ 7\ 6)(6\ 9\ 4\ 8\ 1\ 5) \in S_9$ ha cicli di lunghezze 3, 5, 4 e 6: due pari (quelli di lunghezza 3 e 5) e due dispari (quelli di lunghezza 4 e 6). Due fattori dispari: la permutazione è **pari**. Con un programma ho calcolato i cicli disgiunti: è $(5\ 8\ 7\ 6\ 9)$, un ciclo di lunghezza 5, pari, come previsto.
+
+```grafico
+titolo: Due strade per la parità di σ = (1 3)(2 4 3)(3 5 1), del problema del 14/01/2025. In alto: si contano gli scambi dei cicli così come sono scritti, 1 + 2 + 2 = 5. In basso: si passa ai cicli disgiunti (1 2 4)(3 5) e si conta 2 + 1 = 3. Tutte e due danno un numero dispari
+x: 0 12.4
+y: 0 4.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.3 2.6 12.1 2.6 12.1 4.3 0.3 4.3 | blu
+testo: 6.2 3.85 | blu | "(1 3) · (2 4 3) · (3 5 1)"
+testo: 6.2 3.05 | grigio | "scambi: 1 + 2 + 2 = 5, dispari"
+poligono: 0.3 0.3 12.1 0.3 12.1 2.0 0.3 2.0 | verde
+testo: 6.2 1.55 | verde | "(1 2 4) · (3 5)"
+testo: 6.2 0.75 | grigio | "scambi: 2 + 1 = 3, dispari"
+```
+
+::: prova Una permutazione ha tipo $(6, 4, 2)$. È pari o dispari?
+Tre cicli di lunghezza pari, quindi tre fattori dispari: **dispari**. Con la formula, $p = 5 + 3 + 1 = 9$. È la domanda 5 del quiz del 14/01/2025, in una delle versioni: dispari, con periodo 12.
+:::
+
+> [!RICORDA]
+> - Dal tipo: conta i cicli di lunghezza pari. Se sono in numero pari, la permutazione è pari.
+> - Per la parità vanno bene anche cicli non disgiunti.
+
+## Quante sono le permutazioni pari (proposizione 5.22)
+
+Con tre numeri ci sono 6 permutazioni. Pari: l'identità, $(1\ 2\ 3)$ e $(1\ 3\ 2)$. Dispari: i tre scambi $(1\ 2)$, $(1\ 3)$, $(2\ 3)$. Metà e metà, e non è un caso.
+
+> [!PROP] Proposizione 5.22
+> Per $n \ge 2$, in $S_n$ ci sono $\frac{n!}{2}$ permutazioni pari e $\frac{n!}{2}$ permutazioni dispari.
+
+**Come si legge.** L'idea della dimostrazione: si fissa uno scambio $s$, per esempio $(1\ 2)$. Comporre con $s$ aggiunge uno scambio e cambia la parità, quindi manda le pari nelle dispari e le dispari nelle pari. Facendolo due volte si torna indietro, perché $s \circ s = \mathrm{id}$. Allora «comporre con $s$» è una biiezione tra le pari e le dispari ([D05](D05_composizione_funzioni_inverse.html)), e le due famiglie hanno lo stesso numero di elementi. Insieme fanno tutte le $n!$ permutazioni: metà ciascuna.
+
+Per $n = 1$ c'è solo l'identità, pari: l'enunciato vale da $n = 2$ in su. Ho controllato con un programma che in $S_2, \dots, S_6$ le pari sono esattamente la metà.
+
+::: prova Quante sono le permutazioni dispari in $S_5$?
+$\frac{5!}{2} = 60$.
+:::
+
+> [!RICORDA]
+> - In $S_n$, con $n \ge 2$: $\frac{n!}{2}$ pari e $\frac{n!}{2}$ dispari.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $(a\ b)$ | «lo scambio di a e b» | ciclo di lunghezza 2 | $(1\ 3)$ |
+| $s_1 s_2 \cdots s_t$ | «composizione di scambi» | si applica per primo $s_t$, a destra | $(1\ 2)(2\ 3)$ |
+| $\mathrm{id}$ | «identità» | la permutazione che non muove niente; è pari | $(1\ 2)(1\ 2) = \mathrm{id}$ |
+| $p = \sum (\ell_i - 1)$ | «somma delle lunghezze meno uno» | numero di scambi letto dal tipo | tipo $(5, 3, 3, 2)$: $p = 9$ |
+| $\binom{n}{2}$ | «n su 2» | numero degli scambi di $S_n$ | 6 in $S_4$ |
+| $\frac{n!}{2}$ | «n fattoriale mezzi» | numero delle pari, e delle dispari | 60 in $S_5$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Le regole del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)).
+
+**Che cosa serve di questa lezione**
+
+1. **La domanda 5 o 6 del quiz**: la parità di un prodotto di permutazioni pari e dispari (13/01/2026, 10/09/2026), oppure parità e periodo dato il tipo (14/01/2025).
+2. **Il problema sulle permutazioni**: dopo i cicli disgiunti chiede quasi sempre «tipo, periodo e parità» (14/01/2025, 25/01/2022, 2023/24, 01/07/2026).
+3. **Il conto giusto**: si contano i cicli di lunghezza pari, non i cicli di lunghezza dispari.
+
+### Una domanda vera, letta insieme
+
+**Appello del 14/01/2025, problema 1, versione A, punto a.** Il testo: «Si considerino le due permutazioni in $S_6$ $\sigma = (1\ 3)(2\ 4\ 3)(3\ 5\ 1)$ e $\tau$, che manda 1, 2, 3, 4, 5, 6 in 3, 1, 4, 2, 6, 5. Scrivere $\sigma$ e $\tau$ come prodotti di cicli disgiunti, calcolarne il tipo, il periodo e la parità.»
+
+**In pratica chiede:** i cicli disgiunti come nella D11, il tipo e il periodo della D12, e la parità di questa lezione.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: $\sigma$ in cicli disgiunti.** Da destra: l'1 va nel 3 con $(3\ 5\ 1)$, il 3 va nel 2 con $(2\ 4\ 3)$, il 2 resta 2 con $(1\ 3)$: $1 \mapsto 2$. Continuando, $2 \mapsto 4$, $4 \mapsto 1$, poi $3 \mapsto 5$ e $5 \mapsto 3$. Quindi $\sigma = (1\ 2\ 4)(3\ 5)$.
+>
+> **Passo 2: tipo, periodo, parità di $\sigma$.** Tipo $(3, 2)$, periodo $\mathrm{mcm}(3, 2) = 6$. Un solo ciclo di lunghezza pari, lo scambio: **dispari**. Controllo con i cicli di partenza: $1 + 2 + 2 = 5$ scambi, dispari.
+>
+> **Passo 3: $\tau$.** $1 \mapsto 3 \mapsto 4 \mapsto 2 \mapsto 1$ e $5 \mapsto 6 \mapsto 5$: $\tau = (1\ 3\ 4\ 2)(5\ 6)$. Tipo $(4, 2)$, periodo 4. Due cicli di lunghezza pari: **pari**.
+>
+> Sono i risultati della soluzione ufficiale, e li ho ricontrollati con un programma.
+
+### Un'altra domanda vera
+
+> [!ESEMPIO] · Appello del 25–26/01/2022, problema 1, punto 1
+> «Si consideri la permutazione $\pi = (2\ 9\ 1\ 3\ 5\ 6)(4\ 8\ 7)(1\ 4\ 3\ 8\ 6) \in S_9$. Calcolare il periodo e determinare la parità di $\pi$.»
+>
+> **La parità, subito.** I cicli scritti hanno lunghezze 6, 3 e 5: uno solo di lunghezza pari. Quindi $\pi$ è **dispari**, senza calcolare i cicli disgiunti (nota 5.21).
+>
+> **Il periodo** invece richiede i cicli disgiunti: $\pi = (1\ 8\ 2\ 9)(3\ 7\ 4\ 5\ 6)$, tipo $(5, 4)$, periodo 20. Controllo della parità: $4 + 3 = 7$, dispari.
+
+### Errori da evitare
+
+- Dire che un ciclo di lunghezza 3 è dispari: è **pari**, perché sono 2 scambi.
+- Contare i cicli di lunghezza dispari invece di quelli di lunghezza pari.
+- Dimenticare che l'identità è pari, e che i punti fissi non contano.
+- Pensare che serva sempre la scrittura in cicli disgiunti: per la parità no, per tipo e periodo sì.
+
+## Quiz
+
+```quiz
+D: Appello del 14/01/2025, quiz versione 1, domanda 5. Una permutazione $\pi$ ha tipo $(4, 4, 3)$. Allora $\pi$:
++ è pari ed ha periodo 12
+- è dispari ed ha periodo 12
+- è pari ed ha periodo 8
+- è pari ed ha periodo 4
+- è dispari ed ha periodo 10
+= Due cicli di lunghezza pari: pari ($p = 3 + 3 + 2 = 8$). Periodo $\mathrm{mcm}(4, 4, 3) = 12$. È la risposta 1 della soluzione ufficiale. La più insidiosa è «dispari ed ha periodo 12», di chi conta i cicli di lunghezza dispari.
+
+D: Appello del 14/01/2025, quiz, un'altra versione della domanda 5. Una permutazione $\pi$ ha tipo $(8, 3, 2)$. Allora $\pi$:
++ è pari ed ha periodo 24
+- è pari ed ha periodo 8
+- è dispari ed ha periodo 8
+- è pari ed ha periodo 48
+- è dispari ed ha periodo 24
+= Cicli di lunghezza pari: 8 e 2, due, quindi pari ($p = 7 + 2 + 1 = 10$). Periodo $\mathrm{mcm}(8, 3, 2) = 24$. È la risposta giusta della soluzione ufficiale. La più insidiosa è il periodo 48, il prodotto invece del mcm.
+
+D: Appello del 13/01/2026, quiz, domanda 6. Siano $\pi$ e $\sigma$ permutazioni pari e $\tau$ una permutazione dispari. Quale delle seguenti è una permutazione pari?
++ $\pi^2 \circ \sigma^3 \circ \tau^4$
+- $\sigma^3 \circ \tau^3 \circ \sigma^2$
+- $\tau^4 \circ \pi^5 \circ \tau$
+- $\pi \circ \sigma \circ \tau^5$
+- $\sigma \circ \tau^5 \circ \pi^3$
+= Si contano le $\tau$, le uniche dispari: 4 nella prima (pari), 3, 5, 5 e 5 nelle altre (dispari). È la risposta giusta della soluzione ufficiale. La più insidiosa è la terza: $\tau^4$ è pari, ma c'è un'altra $\tau$ a destra.
+
+D: Quanti scambi servono per scrivere il ciclo $(2\ 7\ 5\ 1\ 9)$ con la proposizione 5.13?
++ 4
+- 5
+- 2
+- 10
+- dipende dalla scrittura, quindi non si può dire
+= Un ciclo di lunghezza $\ell$ si scrive con $\ell - 1$ scambi: $(2\ 9)(2\ 1)(2\ 5)(2\ 7)$. La più insidiosa è l'ultima: altre scritture possono usare più scambi (6, 8…), ma la proposizione ne usa 4, e il numero resta comunque pari.
+
+D: Quale delle seguenti è una permutazione **pari**?
++ $(1\ 2\ 3)(4\ 5\ 6\ 7\ 8)$
+- $(1\ 2)$
+- $(1\ 2\ 3\ 4)$
+- $(1\ 2\ 3)(4\ 5)$
+- $(1\ 2\ 3\ 4\ 5\ 6)$
+= Lunghezze 3 e 5, nessun ciclo di lunghezza pari: $p = 2 + 4 = 6$, pari. Le altre hanno un ciclo di lunghezza pari ciascuna. La più insidiosa è la terza: lunghezza 4, ma 3 scambi.
+
+D: Quante sono le permutazioni pari in $S_4$?
+N: 12
+= $\frac{4!}{2} = 12$ (proposizione 5.22).
+
+D: $(1\ 3)$ si scrive anche come $(1\ 2)(2\ 3)(1\ 2)$. Che cosa dice questo esempio?
++ che la scrittura con gli scambi non è unica, ma il numero di scambi ha sempre la stessa parità
+- che uno scambio è pari
+- che gli scambi commutano
+- che il teorema 5.16 è falso
+- che $(1\ 3)$ ha periodo 3
+= 1 scambio e 3 scambi: numeri diversi, ma tutti e due dispari. La più insidiosa è la terza: proprio perché gli scambi non commutano, $(1\ 2)$ non si può semplificare con l'altro $(1\ 2)$.
+
+D: Una permutazione dispari $\sigma$ ha periodo 8. Di che parità è $\sigma^{-3}$?
++ dispari
+- pari
+- dipende da $\sigma$
+- non è definita, perché l'esponente è negativo
+- è l'identità
+= $\sigma^{-1}$ ha la parità di $\sigma$, e il cubo di una dispari è dispari. Con il periodo: $\sigma^{-3} = \sigma^5$, potenza dispari di una dispari. La più insidiosa è «non è definita»: l'inversa di una permutazione esiste sempre.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: pari o dispari?
+(a) $(1\ 5)$; (b) $(2\ 4\ 6)$; (c) $(1\ 2)(3\ 4)$; (d) $(1\ 2\ 3\ 4)(5\ 6)$; (e) l'identità di $S_7$.
+::: soluzione
+(a) dispari, 1 scambio. (b) pari, 2. (c) pari, 2. (d) pari: due cicli di lunghezza pari, $3 + 1 = 4$ scambi. (e) pari, 0 scambi.
+:::
+
+::: esercizio base Riscaldamento: da ciclo a scambi
+Scrivi come composizione di scambi $(1\ 6\ 3\ 4)$ e $(2\ 5\ 7)(1\ 8)$, e verifica il primo seguendo l'1 e il 4.
+::: soluzione
+$(1\ 6\ 3\ 4) = (1\ 4)(1\ 3)(1\ 6)$. L'1, da destra: $(1\ 6)$ lo manda nel 6, gli altri due non toccano il 6: $1 \mapsto 6$. Il 4: entra solo in $(1\ 4)$, che lo manda nell'1: $4 \mapsto 1$. Il secondo: $(2\ 7)(2\ 5)(1\ 8)$.
+:::
+
+::: esercizio medio Problemi 2023/24, problema 1, versione A, punto a
+In $S_{10}$ si consideri $\sigma = (1\ 3\ 5\ 7\ 9)(1\ 2\ 3\ 4)$. Scrivere $\sigma$ come prodotto di cicli disgiunti, determinarne il tipo, il periodo e la parità.
+::: soluzione
+Da destra: $1 \mapsto 2$, $2 \mapsto 3 \mapsto 5$, $5 \mapsto 7$, $7 \mapsto 9$, $9 \mapsto 1$; poi $3 \mapsto 4$, $4 \mapsto 1 \mapsto 3$. Quindi $\sigma = (1\ 2\ 5\ 7\ 9)(3\ 4)$, tipo $(5, 2)$, periodo 10, **dispari** (un ciclo di lunghezza pari). Anche dai cicli scritti: lunghezze 5 e 4, un solo ciclo di lunghezza pari. Controllato con un programma.
+:::
+
+::: esercizio medio Esame 2019 (riepilogo), esercizio 2, punto 1
+Sia $\sigma = (1\ 3)(7\ 5\ 1)(4\ 7)(1\ 5\ 7)(3\ 1\ 2\ 9)(1\ 3)(6\ 7\ 8) \in S_9$. Calcolarne la decomposizione in cicli disgiunti, il tipo, la parità e il periodo.
+::: soluzione
+**Parità, subito.** Lunghezze 2, 3, 2, 3, 4, 2, 3: i cicli di lunghezza pari sono 4, quindi $\sigma$ è **pari**. **Cicli disgiunti**, seguendo ogni numero da destra: $\sigma = (1\ 3\ 2\ 9)(4\ 5)(6\ 7\ 8)$, tipo $(4, 3, 2)$, periodo 12. Controllo: $3 + 2 + 1 = 6$, pari. Controllato con un programma.
+:::
+
+::: esercizio esame Appello del 01/07/2026, problema 1, versione A, punto a (la parità)
+Sia $\sigma = (1\ 3\ 5)(1\ 2\ 4)(1\ 6\ 7\ 8) \in S_8$. Le sue potenze $\sigma^0, \dots, \sigma^7$ sono già nella [D12](D12_tipo_periodo_permutazioni.html). Determina la parità di ognuna, senza riscrivere gli scambi.
+::: soluzione
+$\sigma = (1\ 6\ 7\ 8\ 2\ 4\ 3\ 5)$ è un ciclo di lunghezza 8: **dispari**. Allora $\sigma^k$ ha la parità di $k$: pari per $k = 0, 2, 4, 6$ e dispari per $k = 1, 3, 5, 7$. Controllo sui tipi: $\sigma^2$ e $\sigma^6$ hanno tipo $(4, 4)$, due cicli di lunghezza pari, pari; $\sigma^4$ ha tipo $(2, 2, 2, 2)$, pari; le potenze dispari sono cicli di lunghezza 8, dispari. È la tabella della soluzione ufficiale.
+:::
+
+::: esercizio difficile Esame 2018 (riepilogo), esercizio 2, punto b
+In $S_9$ siano $\alpha = (3\ 7\ 6\ 9\ 5)(2\ 8\ 4)$ e $\beta = (1\ 3\ 7\ 9\ 8\ 4)^2$. Calcolare la parità di $\alpha$, di $\beta$ e di $\alpha^3 \circ \beta^{-1}$.
+::: soluzione
+$\alpha$: lunghezze 5 e 3, nessun ciclo di lunghezza pari: **pari**. $\beta$ è il quadrato di un ciclo: qualunque permutazione al quadrato è pari, perché ha due fattori della stessa parità. Infatti $\beta = (1\ 7\ 8)(3\ 9\ 4)$, due cicli di lunghezza 3: **pari**. Allora $\alpha^3 \circ \beta^{-1}$ è prodotto di pari: **pari**. Controllato con un programma: è il ciclo $(1\ 8\ 5\ 6\ 3\ 4\ 7)$, di lunghezza 7.
+:::
+
+## Domande di ripasso
+
+::: domanda Quanti scambi servono per un ciclo di lunghezza $\ell$, e come si scrivono?
+$\ell - 1$, tutti con il primo numero: $(m_1\ m_\ell) \cdots (m_1\ m_3)(m_1\ m_2)$.
+:::
+
+::: domanda La scrittura di una permutazione con gli scambi è unica? Che cosa resta uguale?
+No: cambiano gli scambi e il loro numero. Resta uguale la parità del numero di scambi (teorema 5.16).
+:::
+
+::: domanda Perché un ciclo di lunghezza 5 è pari?
+Perché si scrive con 4 scambi.
+:::
+
+::: domanda Come si legge la parità dal tipo?
+Si contano i cicli di lunghezza pari: se sono in numero pari, la permutazione è pari. Equivale a guardare se $p = \sum (\ell_i - 1)$ è pari.
+:::
+
+::: domanda Perché in $S_n$ le pari sono metà?
+Perché comporre con uno scambio fisso è una biiezione tra pari e dispari, quindi le due famiglie hanno lo stesso numero di elementi.
+:::
+
+## Glossario
+
+```glossario
+Scambio | Ciclo di lunghezza 2, che scambia due numeri e lascia fermi gli altri; detto anche trasposizione.
+Composizione di scambi | Scrittura di una permutazione come prodotto di scambi, letto da destra.
+Parità | Il fatto che una permutazione si scriva con un numero pari o dispari di scambi.
+Permutazione pari | Composizione di un numero pari di scambi; l'identità è pari.
+Permutazione dispari | Composizione di un numero dispari di scambi.
+Generatori | Insieme di permutazioni da cui, componendo, si ottengono tutte le altre: gli scambi generano Sn.
+```
+
+## Checklist
+
+```checklist
+- So scrivere un ciclo come composizione di scambi e verificarlo seguendo i numeri.
+- So scrivere una permutazione qualsiasi come composizione di scambi.
+- So spiegare perché la scrittura con gli scambi non è unica.
+- So che cosa dice il teorema 5.16 e qual è l'idea della dimostrazione.
+- So la parità di un ciclo dalla sua lunghezza.
+- So la parità di un prodotto e di una potenza.
+- So leggere la parità dal tipo, e anche da cicli non disgiunti.
+- So quante sono le permutazioni pari in Sn.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta* (testo del canale B), cap. 5 «Permutazioni», sezione «Scambi e parità», pp. 95–101: proposizione 5.13, teorema 5.14, nota 5.15, teorema 5.16 con la dimostrazione, definizione 5.17, proposizioni 5.18, 5.19, 5.20, nota 5.21 con i due esempi, proposizione 5.22. Refuso a p. 98 («della forma della forma»).
+- Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori), lezione 13: «Ogni ciclo è composizione di scambi. Ogni permutazione è composizione di scambi. Mancanza di unicità nella scrittura di una permutazione come composizione di scambi. Concetto di parità di una permutazione. La parità di una permutazione è ben definita. Esempi».
+- Appelli di Matematica Discreta (Moodle MDAG1 2025/26, aperto agli ospiti), con le soluzioni ufficiali: quiz del 14/01/2025 (domanda 5), del 13/01/2026 (domanda 6) e del 10/09/2026 (domanda 5); problemi del 25–26/01/2022, del 14/01/2025, dei problemi 2023/24 (versione A) e del 01/07/2026; esercizi di riepilogo 2018 e 2019.
+- Gli esempi $(1\ 5\ 2)(3\ 4\ 6\ 7)$, $(1\ 3) = (1\ 2)(2\ 3)(1\ 2)$, il ragionamento sulle potenze, i quiz senza data e gli esercizi di riscaldamento sono di questi appunti. Tutti i cicli disgiunti, i tipi, i periodi e le parità li ho controllati con un programma.
 
 
 ---
@@ -52039,6 +56240,7 @@ corso: MDAG
 modulo: AG
 lezione: L12
 titolo: Sistemi lineari II
+data: 2026-11-03
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L12
 descrizione: >-
@@ -52073,7 +56275,7 @@ genera_html: true
 - Nei sistemi con un parametro si cercano i valori speciali della lettera e si studiano a parte.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 03/11/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 12. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Gli indizi che finiscono con zero (p. 56)
 
@@ -52937,6 +57139,7 @@ corso: MDAG
 modulo: AG
 lezione: L13
 titolo: Sistemi lineari III
+data: 2026-11-04
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L13
 descrizione: >-
@@ -52971,7 +57174,7 @@ genera_html: true
 - All'esame: «generatori e/o linearmente indipendenti?», «il vettore delle coordinate è…», «il rango della matrice è…».
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di mercoledì 04/11/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 13. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## C'è un doppione? Un sistema lo dice (pp. 62–63)
 
@@ -53777,6 +57980,7 @@ corso: MDAG
 modulo: AG
 lezione: L14
 titolo: Applicazioni lineari I
+data: 2026-11-05
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L14
 descrizione: >-
@@ -53810,7 +58014,7 @@ genera_html: true
 - All'esame servono tre cose: riconoscere se una formula è lineare, trovare nucleo e immagine con Gauss, usare il teorema della dimensione per rispondere senza fare conti.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 05/11/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 14. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Macchine che rispettano somme e multipli (p. 68)
 

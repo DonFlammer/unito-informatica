@@ -37,7 +37,7 @@ genera_html: true
 - Le funzioni di `ctype.h` (`isdigit`, `isupper`…) dicono che tipo di carattere è. Restituiscono un `int` **diverso da zero** per vero, non per forza 1: per stamparle con 0 e 1 si passa da un `bool`.
 
 > [!CANALI]
-> **Canale B.** È il quinto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 02/11 con **Elisa Marengo**. Il turno **B1** con **Valerio Basile** il 03/11 ha fatto il [Lab04](Lab04_iterazioni.html), recuperando la settimana del 27/10; il calendario ha il prossimo laboratorio B1 martedì 10/11, quindi il Lab05A dovrebbe toccargli lì. Gli esercizi riprendono la [05A](05A_array_stringhe.html) su array e stringhe; i quantificatori delle slide 14–15 sono spiegati per intero nella [07A](07A_algoritmi_su_array.html).
+> **Canale B.** È il quinto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 02/11 con **Elisa Marengo**. Il turno **B1** con **Valerio Basile** il 03/11 ha fatto il [Lab04](Lab04_iterazioni.html), recuperando la settimana del 27/10; il laboratorio B1 successivo è stato martedì 10/11, e il Lab05A dovrebbe averlo fatto lì. Gli esercizi riprendono la [05A](05A_array_stringhe.html) su array e stringhe; i quantificatori delle slide 14–15 sono spiegati per intero nella [07A](07A_algoritmi_su_array.html).
 >
 > **Canali A e C.** Nel 2025/26 il Lab05 era uguale nei tre canali, con gli stessi esercizi CodeRunner. Le slide 2026/27 dei canali A e C non le ho viste.
 >

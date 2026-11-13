@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>07A · Algoritmi su array</title>
 <meta name="lezione" content="07A">
-<meta name="data" content="2026-11-04">
+<meta name="data" content="2026-11-10">
 <meta name="description" content="Appunti della lezione 07A di Programmazione I (canale B): ricerca lineare, la ricerca come test d'ipotesi con il quantificatore esistenziale, la verifica di una proprietà con il quantificatore universale, il caso dell'array vuoto, la selezione con il modello dimensione-capacità, il test di ordinamento sulle coppie adiacenti e il bubble sort, con tutti i programmi provati, quiz ed esercizi.">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
@@ -75,14 +75,14 @@
     <header>
 <!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
 <nav class="vicine" aria-label="Lezioni vicine">
-  <a class="vicina prec" href="06B_chiamata_funzioni.html" rel="prev" title="06B · Chiamata di funzione e ritorno"><span class="dir">← Lezione precedente</span><span class="vt">06B · Chiamata di funzione e ritorno</span></a>
+  <a class="vicina prec" href="Lab06_funzioni.html" rel="prev" title="Lab06 · Laboratorio 06: funzioni"><span class="dir">← Lezione precedente</span><span class="vt">Lab06 · Laboratorio 06: funzioni</span></a>
 </nav>
 <!-- VICINE:FINE -->
       <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 07A</nav>
       <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 07A</p>
       <h1>Algoritmi su array</h1>
       <p class="lede">Cercare un elemento, controllare che tutti gli elementi rispettino una condizione, copiare quelli che la rispettano, ordinare: quasi ogni esercizio d&#39;esame su array è fatto di questi pezzi. Amparore li ricava dalla logica, «esiste» e «per ogni», e da lì vengono le variabili sentinella, il valore iniziale giusto e il comportamento con l&#39;array vuoto.</p>
-      <dl class="meta"><div><dt>Slide</dt><dd>07A_algoritmi_su_array («Algoritmi su array. Ricerca, filtro e ordinamento») · 84 pagine</dd></div><div><dt>Lezione</dt><dd>mercoledì 04/11</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>110 minuti, con gcc a portata di mano</dd></div></dl>
+      <dl class="meta"><div><dt>Slide</dt><dd>07A_algoritmi_su_array («Algoritmi su array. Ricerca, filtro e ordinamento») · 84 pagine</dd></div><div><dt>Lezione</dt><dd>martedì 10/11</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>110 minuti, con gcc a portata di mano</dd></div></dl>
       <ul class="legend" aria-label="Legenda dei riquadri">
         <li class="l-def"><i></i>Definizione o risultato da sapere</li>
         <li class="l-trap"><i></i>Trappola / errore tipico</li>
@@ -106,7 +106,7 @@
 </ul>
 </section>
 
-<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Lezione di mercoledì 04/11, dalle 9 alle 11, dopo la <a href="06B_chiamata_funzioni.html">06B</a> del 03/11. Le slide sono molte (84, ma tante sono animazioni): se Amparore non le ha finite, la parte che manca andrà alla lezione di martedì 10/11, e aggiorno qui. Usa i cicli e le sentinelle della <a href="04A_iterazioni.html">04A</a>, gli array della <a href="05A_array_stringhe.html">05A</a>, i puntatori come parametri della <a href="06B_chiamata_funzioni.html">06B</a> e i quantificatori di <a href="../FDA/09_quantificatori.html">Fondamenti</a>.</p>
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Lezione di martedì 10/11, dalle 11 alle 13, dopo la <a href="06B_chiamata_funzioni.html">06B</a> del 03 e 04/11: sul Moodle del corso queste slide sono nella settimana del 9 novembre, con la registrazione del 10. La lezione di mercoledì 11/11 è stata annullata e sarà recuperata venerdì 04/12, dalle 15 alle 17, in Aula C. Le slide sono molte (84, ma tante sono animazioni): se Amparore non le ha finite, la parte che manca va alla lezione successiva, e aggiorno qui. Usa i cicli e le sentinelle della <a href="04A_iterazioni.html">04A</a>, gli array della <a href="05A_array_stringhe.html">05A</a>, i puntatori come parametri della <a href="06B_chiamata_funzioni.html">06B</a> e i quantificatori di <a href="../FDA/09_quantificatori.html">Fondamenti</a>.</p>
 <p><strong>Canali A e C.</strong> Le slide 2026/27 dei canali A e C su questi algoritmi non le ho viste. L&#39;esame è unico.</p>
 <p><strong>Due avvisi sulle slide.</strong> Il primo codice di ricerca (slide 7) non è solo «migliorabile»: se <code>key</code> è nell&#39;array <strong>non termina</strong>, perché quando lo trova non incrementa più <code>i</code> e il ciclo continua a controllare la stessa casella. L&#39;ho provato con un tempo massimo. Nella slide 49 <code>int b[bLen] = ...</code> è uno schema: un array a lunghezza variabile non si può inizializzare con una lista, e gcc dà <code>variable-sized object may not be initialized except with an empty initializer</code>.</p>
 <p>Tutti i programmi li ho compilati con gcc 16.1, con <code>-Wall -Werror</code>, ed eseguiti; quelli con i test <code>assert</code> delle slide passano tutti.</p>

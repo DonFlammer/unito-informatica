@@ -2,7 +2,7 @@
 corso: PROG1
 lezione: 07A
 titolo: Algoritmi su array
-data: 2026-11-04
+data: 2026-11-10
 docenti: Elvio Amparore
 simboli_logici: quantificatori
 sopratitolo: Programmazione I · Teoria · Canale B · Lezione 07A
@@ -18,7 +18,7 @@ lede: >-
 materiale: slide
 scheda:
   Slide: 07A_algoritmi_su_array («Algoritmi su array. Ricerca, filtro e ordinamento») · 84 pagine
-  Lezione: mercoledì 04/11
+  Lezione: martedì 10/11
   Corso: Prof. Elvio Amparore · A.A. 2026/27
   Tempo di studio: 110 minuti, con gcc a portata di mano
 fonte: >-
@@ -39,7 +39,7 @@ genera_html: true
 - **Bubble sort**: si scorrono le coppie adiacenti e si scambiano quelle in ordine sbagliato; si ripete finché una passata non fa scambi.
 
 > [!CANALI]
-> **Canale B.** Lezione di mercoledì 04/11, dalle 9 alle 11, dopo la [06B](06B_chiamata_funzioni.html) del 03/11. Le slide sono molte (84, ma tante sono animazioni): se Amparore non le ha finite, la parte che manca andrà alla lezione di martedì 10/11, e aggiorno qui. Usa i cicli e le sentinelle della [04A](04A_iterazioni.html), gli array della [05A](05A_array_stringhe.html), i puntatori come parametri della [06B](06B_chiamata_funzioni.html) e i quantificatori di [Fondamenti](../FDA/09_quantificatori.html).
+> **Canale B.** Lezione di martedì 10/11, dalle 11 alle 13, dopo la [06B](06B_chiamata_funzioni.html) del 03 e 04/11: sul Moodle del corso queste slide sono nella settimana del 9 novembre, con la registrazione del 10. La lezione di mercoledì 11/11 è stata annullata e sarà recuperata venerdì 04/12, dalle 15 alle 17, in Aula C. Le slide sono molte (84, ma tante sono animazioni): se Amparore non le ha finite, la parte che manca va alla lezione successiva, e aggiorno qui. Usa i cicli e le sentinelle della [04A](04A_iterazioni.html), gli array della [05A](05A_array_stringhe.html), i puntatori come parametri della [06B](06B_chiamata_funzioni.html) e i quantificatori di [Fondamenti](../FDA/09_quantificatori.html).
 >
 > **Canali A e C.** Le slide 2026/27 dei canali A e C su questi algoritmi non le ho viste. L'esame è unico.
 >

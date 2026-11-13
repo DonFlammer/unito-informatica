@@ -103,6 +103,9 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - ven 30/10: fine del capitolo 2.1 (metodi di prova), il paradosso del bevitore, esercizi. Negli appunti è la lezione 14, scritta prima della lezione; il diario aggiornato dopo la lezione conferma gli argomenti. Per assurdo, contrapposizione, casi ed esistenza, che nell'edizione originale sono il §2.2, il docente li comincia il 05/11 (lezione 16).
 - lun 02/11: esercizi riassuntivi su regole proposizionali e dimostrazioni dirette (quiz). Negli appunti è la lezione 15, scritta dopo la lezione senza sapere quali esercizi ha usato il docente.
 - gio 05/11: capitolo 2.2, prove per contraddizione, esempi da 2.2.1 a 2.2.4. Negli appunti è la lezione 16.
+- lun 09/11: fine del capitolo 2.2: altri 4 esempi, ancora prove per contraddizione. Omessi l'esempio 2.2.8 e gli esempi dal 2.2.10 in poi; omesso il capitolo 2.3 (risoluzione). Negli appunti è la lezione 17: contrapposizione, casi ed equivalenze.
+- gio 12/11: capitolo 2.4, induzione. Esempio 2.4.8: invariante di ciclo per il fattoriale, svolto sia informalmente sia come quiz. Omessi l'equazione 2.4.4 (somma dei primi n interi positivi) e gli esempi 2.4.4 e 2.4.6 (somma di potenze, numero di elementi dell'insieme delle parti). Negli appunti è la lezione 18, scritta prima della lezione.
+- ven 13/11: invariante del ciclo che calcola la potenza (ris = a^i, i <= n) e correttezza del risultato; capitolo 2.5, induzione in forma forte; esempio 2.5.1 (francobolli da 2 e 5 centesimi); esempio 2.5.4 (n − 1 prodotti per n fattori); esercizio 39 a pagina 98 (forma a L ricoperta di tromini). Negli appunti è la lezione 19, scritta prima della lezione.
 
 ## Materiale
 

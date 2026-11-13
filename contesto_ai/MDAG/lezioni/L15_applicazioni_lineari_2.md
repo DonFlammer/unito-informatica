@@ -3,6 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L15
 titolo: Applicazioni lineari II
+data: 2026-11-10
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L15
 descrizione: >-
@@ -37,7 +38,7 @@ genera_html: true
 - All'esame la matrice associata è una delle domande più frequenti del quiz.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 10/11/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 15. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Lo stesso spazio con nomi diversi: gli isomorfismi (p. 74)
 

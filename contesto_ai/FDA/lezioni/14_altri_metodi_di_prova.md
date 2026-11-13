@@ -41,6 +41,8 @@ genera_html: true
 > [!CANALI]
 > Nel canale B è la lezione di venerdì 30/10, dalle 11 alle 13. Per il docente è la lezione 15, perché la prima è stata un'introduzione: qui è la 14. Il diario del canale B, aggiornato dopo la lezione, la descrive così: «Fine Capitolo 2.1 (Metodi di Prova). Il paradosso del bevitore. Esercizi». **Ho scritto questi appunti prima della lezione**, e il diario conferma il paradosso del bevitore e gli esercizi. Nell'edizione originale di Johnsonbaugh, che uso perché il libro del corso non è disponibile, i metodi per assurdo, per contrapposizione, per casi e di esistenza sono nel §2.2 «More Methods of Proof»: li metto qui perché il paradosso del bevitore si dimostra proprio con questi metodi. Il docente ha cominciato il §2.2 giovedì 05/11, con le dimostrazioni per assurdo (esempi 2.2.1–2.2.4): sono trattate per intero, con altri esempi, nella [lezione 16](16_dimostrazioni_per_assurdo.html). Contrapposizione, casi ed esistenza restano qui finché il docente non li fa. Domande di ripasso e soluzioni degli esercizi sono quelle pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti), dove ci sono anche le note «Tecniche di dimostrazione» di Felice Cardone.
 >
+> Lunedì 09/11 il docente ha finito il §2.2 con contrapposizione, casi ed equivalenze, che sono anche nella [lezione 17](17_contrapposizione_casi_equivalenze.html). Le dimostrazioni di esistenza, che qui ci sono, il diario le dà tra gli esempi omessi (dal 2.2.10 in poi).
+>
 > Servono la [lezione 13](13_dimostrazioni_dirette_controesempi.html) (dimostrazione diretta, pari e dispari), la [07](07_condizionali_equivalenza_logica.html) (freccia e contronominale) e la [11](11_quantificatori_annidati.html) (il gioco con i quantificatori).
 
 ## Per assurdo (libro, §2.2)

@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S6 · Settimana 6: chiamata di funzione, puntatori come parametri e il laboratorio sulle stringhe</title>
+<meta name="lezione" content="S6">
+<meta name="data" content="2026-11-04">
+<meta name="tipo" content="riassunto">
+<meta name="description" content="Riassunto della settimana 6 di Programmazione I (canale B): il Laboratorio 05 su array e stringhe, con i contatori per categoria, le due passate, le stringhe e ctype.h; le due lezioni sulla 06B, con lo stack delle chiamate, i frame, il passaggio per valore, lo scambio con i puntatori, array e stringhe come parametri, const, strncpy e le asserzioni.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/riassunti/settimana_06.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#lab05a-array-e-stringhe-lun-02-11"><span class="n">§1</span><span>Lab05A · Array e stringhe (lun 02/11)</span></a></li>
+<li><a href="#06b-chiamata-e-ritorno-mar-03-11-e-mer-04-11"><span class="n">§2</span><span>06B · Chiamata e ritorno (mar 03/11 e mer 04/11)</span></a></li>
+<li><a href="#06b-puntatori-array-e-asserzioni"><span class="n">§3</span><span>06B · Puntatori, array e asserzioni</span></a></li>
+<li><a href="#esame"><span class="n">§4</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#domande"><span class="n">§5</span><span>Domande di ripasso</span></a></li>
+<li><a href="#quiz"><span class="n">§6</span><span>Quiz d&#39;esame</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
+<nav class="vicine" aria-label="Riassunti vicini">
+  <a class="vicina prec" href="riassunto_settimana_05.html" rel="prev" title="Settimana 5: array, stringhe, funzioni e il laboratorio sui cicli"><span class="dir">← Riassunto precedente</span><span class="vt">Settimana 5: array, stringhe, funzioni e il laboratorio sui cicli</span></a>
+</nav>
+<!-- VICINE:FINE -->
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Riassunto settimanale</nav>
+      <p class="eyebrow">Riassunto settimanale · Programmazione I · Canale B · 02/11 – 06/11/2026</p>
+      <h1>Settimana 6: chiamata di funzione, puntatori come parametri e il laboratorio sulle stringhe</h1>
+      <p class="lede">Le due lezioni e il laboratorio della settimana in poche pagine: che cosa succede in memoria quando si chiama una funzione, perché per cambiare una variabile del chiamante serve un puntatore, come si passa un array, e a che cosa servono le asserzioni.</p>
+      <dl class="meta"><div><dt>Lezioni</dt><dd><a href="Lab05A_array_stringhe.html">Lab05A</a> lun 02/11 (B2) · <a href="06B_chiamata_funzioni.html">06B</a> mar 03/11 e mer 04/11</dd></div><div><dt>Tempo di ripasso</dt><dd>30 minuti</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:620px">
+<h2 id="tldr-title">La settimana in 6 punti</h2>
+<ul>
+<li>Ogni chiamata di funzione crea sullo <strong>stack</strong> un <strong>frame</strong> con i parametri e le variabili locali; al ritorno il frame viene tolto.</li>
+<li>I parametri sono <strong>copie</strong>: una funzione che scambia i suoi due parametri non scambia le variabili del chiamante. Per farlo riceve i loro <strong>indirizzi</strong>.</li>
+<li>Un <strong>array</strong> passato a una funzione arriva come puntatore al primo elemento: la lunghezza va passata a parte. Con <code>const</code> la funzione promette di non modificarlo.</li>
+<li>Le <strong>stringhe</strong> arrivano come <code>const char *</code> e finiscono a <code>'\0'</code>: <code>strlen</code> e <code>strcmp</code> contano su quello, e <code>strncpy</code> può lasciare una stringa senza terminatore.</li>
+<li>Un&#39;<strong>asserzione</strong>, <code>assert(condizione)</code>, ferma il programma quando una cosa che deve essere vera non lo è: serve per gli errori del programmatore, non per l&#39;input.</li>
+<li>Nel laboratorio: contatori per categoria con <code>frequenze[v - 1]++</code>, stringhe con il terminatore, e le funzioni di <code>ctype.h</code>, che restituiscono un valore diverso da zero, non per forza 1.</li>
+</ul>
+</section>
+
+<div class="box neutro"><p class="box-label"><span>Nota · Le lezioni della settimana</span></p><p>Amparore ha usato le slide 06B in tutte e due le lezioni, martedì 03/11 e mercoledì 04/11: sul Moodle del corso ci sono le due registrazioni. Le slide 07A sugli algoritmi su array sono della settimana dopo (10/11). Il Laboratorio 05 il turno B2 l&#39;ha fatto lunedì 02/11 con Elisa Marengo; il turno B1, che il 03/11 ha recuperato il Lab04, una settimana dopo.</p>
+</div>
+
+
+<section id="lab05a-array-e-stringhe-lun-02-11" aria-labelledby="h-lab05a-array-e-stringhe-lun-02-11" style="--h:800px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-lab05a-array-e-stringhe-lun-02-11">Lab05A · Array e stringhe (lun 02/11)</h2></div>
+<p>Il laboratorio mette in pratica la 05A. Le idee che restano:</p>
+<ul>
+<li><strong>Contare per categoria.</strong> Per sapere quante volte compare ogni voto da 1 a 5 si usa un array di 5 contatori a zero, e per ogni voto <code>v</code> si fa <code>frequenze[v - 1]++</code>. Il valore sceglie il contatore.</li>
+<li><strong>Due passate.</strong> Se la decisione su ogni elemento dipende da un dato che si conosce solo alla fine, come il minimo di tutta la sequenza, i dati vanno memorizzati in un array e scorsi una seconda volta.</li>
+<li><strong>Stringhe.</strong> Una stringa è un array di <code>char</code> chiuso da <code>'\0'</code>. Per 20 caratteri servono 21 posti, e si legge con <code>%20s</code>, senza <code>&amp;</code>. Si copia carattere per carattere, e poi si scrive il terminatore.</li>
+<li><strong><code>ctype.h</code>.</strong> <code>isdigit</code>, <code>isupper</code>, <code>isalpha</code> dicono che tipo di carattere è. Restituiscono un <code>int</code> <strong>diverso da zero</strong>: con gcc 16 su Windows <code>islower('q')</code> vale 2. Per stampare 0 o 1 si passa da un <code>bool</code>.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con i voti <code>1 3 3 5 1 3</code>, che cosa contiene <code>frequenze</code> alla fine?</span></summary><div class="ans"><p><code>{2, 0, 3, 0, 1}</code>: due 1, tre 3, un 5.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>frequenze[v - 1]++</code>: il valore fa da indice.</li>
+<li>Stringa: un posto in più per <code>'\0'</code>, e chi la costruisce scrive il terminatore.</li>
+<li><code>ctype.h</code>: diverso da zero, non 1.</li>
+</ul>
+</div>
+</section>
+
+<section id="06b-chiamata-e-ritorno-mar-03-11-e-mer-04-11" aria-labelledby="h-06b-chiamata-e-ritorno-mar-03-11-e-mer-04-11" style="--h:760px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-06b-chiamata-e-ritorno-mar-03-11-e-mer-04-11">06B · Chiamata e ritorno (mar 03/11 e mer 04/11)</h2></div>
+<p>Quando un programma chiama una funzione, deve ricordare dove tornare e dove tenere parametri e variabili locali. Lo fa con lo <strong>stack delle chiamate</strong>: una pila in cui ogni chiamata aggiunge un blocco, il <strong>frame</strong>, e ogni ritorno lo toglie. In cima alla pila c&#39;è sempre la funzione in esecuzione.</p>
+<ul>
+<li><strong>La chiamata</strong>: si calcolano gli argomenti, si crea il frame della funzione chiamata, si copiano i valori nei parametri, e l&#39;esecuzione salta al suo codice.</li>
+<li><strong>Il ritorno</strong>: il valore restituito viene consegnato al chiamante, il frame viene tolto, e si riprende dall&#39;istruzione dopo la chiamata. Le variabili locali della funzione non esistono più.</li>
+<li><strong>Passaggio per valore</strong>: nei parametri finiscono <strong>copie</strong>. Modificare un parametro non tocca la variabile del chiamante.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span><code>main</code> chiama <code>f</code>, e <code>f</code> chiama <code>g</code>. Mentre gira <code>g</code>, quanti frame ci sono sullo stack, e in che ordine vengono tolti?</span></summary><div class="ans"><p>Tre: <code>main</code> sotto, poi <code>f</code>, poi <code>g</code> in cima. Si toglie prima quello di <code>g</code>, poi quello di <code>f</code>: l&#39;ultimo arrivato è il primo ad andarsene.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Una chiamata, un frame; al ritorno il frame sparisce con le sue variabili.</li>
+<li>Nei parametri finiscono copie dei valori.</li>
+</ul>
+</div>
+</section>
+
+<section id="06b-puntatori-array-e-asserzioni" aria-labelledby="h-06b-puntatori-array-e-asserzioni" style="--h:1400px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-06b-puntatori-array-e-asserzioni">06B · Puntatori, array e asserzioni</h2></div>
+<p>Una funzione che scambia i suoi due parametri non scambia niente per chi l&#39;ha chiamata. <code>swapSbagliato(int a, int b)</code> scambia le sue copie e poi sparisce con il suo frame. <code>swap(int *a, int *b)</code> riceve gli indirizzi e scrive, con l&#39;asterisco, nelle variabili del chiamante.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Lo stack durante `swap(&amp;x, &amp;y)`. In basso il frame di `main`, con x e y. In alto il frame di `swap`: a e b non contengono numeri ma gli indirizzi di x e y (frecce). Scrivendo in `*a` e `*b` la funzione cambia le caselle di `main`" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-tenue" d="M135.48 312.8L424.52 312.8L424.52 204L135.48 204Z"/><path class="g-poligono g-blu g-pieno" d="M180.65 285.6L252.9 285.6L252.9 231.2L180.65 231.2Z"/><path class="g-poligono g-blu g-pieno" d="M307.1 285.6L379.35 285.6L379.35 231.2L307.1 231.2Z"/><path class="g-poligono g-ambra g-tenue" d="M135.48 149.6L424.52 149.6L424.52 40.8L135.48 40.8Z"/><path class="g-poligono g-ambra g-pieno" d="M180.65 122.4L252.9 122.4L252.9 68L180.65 68Z"/><path class="g-poligono g-ambra g-pieno" d="M307.1 122.4L379.35 122.4L379.35 68L307.1 68Z"/><path class="g-linea g-ambra" d="M216.77 129.2L216.77 224.4" marker-end="url(#g-freccia-1-ambra)"/><path class="g-linea g-ambra" d="M343.23 129.2L343.23 224.4" marker-end="url(#g-freccia-1-ambra)"/></svg><span class="g-et g-c g-testo g-blu" style="left:12.90%;top:76.00%">main</span><span class="g-et g-c g-testo g-blu" style="left:38.71%;top:76.00%">x: 3</span><span class="g-et g-c g-testo g-blu" style="left:61.29%;top:76.00%">y: 8</span><span class="g-et g-c g-testo g-ambra" style="left:12.90%;top:28.00%">swap</span><span class="g-et g-c g-testo g-ambra" style="left:38.71%;top:28.00%">a</span><span class="g-et g-c g-testo g-ambra" style="left:61.29%;top:28.00%">b</span><span class="g-et g-c g-testo g-grigio" style="left:88.71%;top:28.00%">in cima</span></div><figcaption>Lo stack durante <code>swap(&amp;x, &amp;y)</code>. In basso il frame di <code>main</code>, con x e y. In alto il frame di <code>swap</code>: a e b non contengono numeri ma gli indirizzi di x e y (frecce). Scrivendo in <code>*a</code> e <code>*b</code> la funzione cambia le caselle di <code>main</code></figcaption></figure>
+<ul>
+<li><strong>Array come parametri</strong>: il nome dell&#39;array diventa un puntatore al primo elemento. Dentro la funzione <code>sizeof</code> dà la dimensione del puntatore, quindi la lunghezza si passa in un altro parametro.</li>
+<li><strong><code>const</code></strong>: <code>const int v[]</code> rende l&#39;array di sola lettura dentro la funzione; un tentativo di scrivere è un errore di compilazione.</li>
+<li><strong>Stringhe</strong>: <code>strlen</code> dà la lunghezza senza il terminatore, <code>strcmp</code> confronta nell&#39;ordine del dizionario, <code>strncpy</code> copia al massimo un certo numero di caratteri e può lasciare la stringa <strong>senza terminatore</strong>.</li>
+<li><strong>Asserzioni</strong>: <code>assert(condizione)</code> ferma il programma se la condizione è falsa, e dice file e riga. Serve a controllare quello che deve essere vero in quel punto; con <code>-DNDEBUG</code> sparisce.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Dopo <code>int x = 3, y = 8; swapSbagliato(x, y); swap(&amp;x, &amp;y);</code>, quanto valgono <code>x</code> e <code>y</code>?</span></summary><div class="ans"><p>8 e 3. La prima chiamata non cambia niente, la seconda scambia.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Per modificare una variabile del chiamante: indirizzo nella chiamata, asterisco nella funzione.</li>
+<li>Array: puntatore più lunghezza, <code>const</code> se si legge soltanto.</li>
+<li><code>assert</code> per le ipotesi del programmatore; <code>-DNDEBUG</code> le spegne.</li>
+</ul>
+</div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:450px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<ul>
+<li><strong>Stato della memoria</strong>: è uno dei due esercizi di teoria. Si disegnano i frame con parametri e variabili locali, e si seguono i puntatori: è la 06B.</li>
+<li><strong>Programmazione</strong>: le funzioni d&#39;esame ricevono array e stringhe come parametri, e restituiscono più risultati attraverso i puntatori.</li>
+<li><strong>Intestazioni</strong>: la lunghezza prima dell&#39;array, come in <code>bool f(size_t n, const int a[])</code>, e <code>const</code> dove si legge soltanto. Vanno copiate dal testo.</li>
+<li><strong>Stringhe</strong>: il posto per il terminatore si conta sempre; dopo una copia fatta a mano o con <code>strncpy</code> il terminatore va scritto.</li>
+<li>Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.</li>
+</ul>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:610px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che cosa contiene un frame, e quando viene tolto?</span></summary><div class="ans"><p>I parametri e le variabili locali di una chiamata, con le informazioni per tornare al chiamante. Viene tolto al ritorno della funzione.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>swapSbagliato(x, y)</code> non scambia <code>x</code> e <code>y</code>?</span></summary><div class="ans"><p>Perché riceve copie dei due valori: scambia le copie nel suo frame, che al ritorno sparisce.</p>
+</div></details>
+<details class="qa"><summary><span>Perché dentro una funzione non si può usare <code>sizeof</code> per sapere la lunghezza di un array ricevuto?</span></summary><div class="ans"><p>Perché il parametro è un puntatore: <code>sizeof</code> dà la dimensione del puntatore.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>strncpy</code> può lasciare una stringa senza terminatore?</span></summary><div class="ans"><p>Perché copia al massimo il numero di caratteri indicato: se la sorgente è lunga almeno quanto quel numero, il <code>'\0'</code> non viene copiato.</p>
+</div></details>
+<details class="qa"><summary><span>A che cosa serve <code>assert</code>, e a che cosa non serve?</span></summary><div class="ans"><p>A fermare il programma quando un&#39;ipotesi del programmatore è falsa, cioè quando c&#39;è un errore nel codice. Non serve per l&#39;input sbagliato dell&#39;utente, che va gestito con un controllo normale.</p>
+</div></details>
+<details class="qa"><summary><span>Come si contano le occorrenze di ogni voto da 1 a 5?</span></summary><div class="ans"><p>Con un array di 5 contatori a zero e, per ogni voto <code>v</code>, <code>frequenze[v - 1]++</code>.</p>
+</div></details></div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2590px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-quiz">Quiz d&#39;esame</h2><span class="slides">come all'esame</span></div>
+<p>L&#39;esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono <strong>sul modello</strong> di questi esercizi, con gli argomenti della settimana. Ho compilato e provato tutto il codice con gcc 16.1 e <code>-Wall -Werror</code>.</p>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Sul modello dello stato della memoria. Con <code>int f(int a, int *p) { a = a + 1; *p = *p + a; return a * 2; }</code> e, nel <code>main</code>, <code>int u = 4, w = 10; int r = f(u, &amp;w);</code>, quanto valgono <code>u</code>, <code>w</code> e <code>r</code> alla fine?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4, 10, 10</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4, 15, 10</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">5, 15, 10</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">5, 10, 8</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4, 15, 8</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>a</code> è una copia di <code>u</code>: diventa 5 nel frame di <code>f</code>, e <code>u</code> resta 4. <code>*p</code> è <code>w</code>: diventa 10 + 5. Il ritorno è 5 · 2. La più insidiosa è la seconda, che fa cambiare anche <code>u</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello dello stato della memoria. Mentre è in esecuzione <code>swap</code>, chiamata da <code>main</code> con <code>swap(&amp;x, &amp;y)</code>, quanti frame ci sono sullo stack e quale è in cima?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">due, e in cima c&#39;è quello di <code>main</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">tre: <code>main</code>, <code>swap</code> e uno per i puntatori</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">due, e in cima c&#39;è quello di <code>swap</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">uno solo, quello di <code>swap</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">uno solo, quello di <code>main</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il frame di <code>main</code> resta sotto, quello di <code>swap</code> viene aggiunto sopra e tolto al ritorno. La più insidiosa è la terza: il frame del chiamante non sparisce durante la chiamata.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello della correttezza. Dopo <code>int x = 3, y = 8; swapSbagliato(x, y);</code>, dove <code>void swapSbagliato(int a, int b) { int t = a; a = b; b = t; }</code>, che cosa stampa <code>printf(&quot;%d %d&quot;, x, y)</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 3</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>8 3</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>3 8</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>8 8</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La funzione scambia le sue copie. La più insidiosa è <code>8 3</code>: è quello che farebbe la versione con i puntatori.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Sul modello degli esercizi del Lab05A. Con <code>int risposte[] = {1, 3, 3, 5, 1, 3}</code> e <code>int freq[5] = {0}</code>, dopo <code>freq[risposte[i] - 1]++</code> per ogni <code>i</code>, quanto vale <code>freq[2]</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="3" data-toll="1e-9"><span class="q-giusto" hidden>3</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>freq[2]</code> conta i voti uguali a 3, che sono tre.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello degli errori della 06B. Dopo <code>char t[6] = &quot;cane&quot;; t[2] = '\0';</code>, che cosa stampa <code>printf(&quot;%s&quot;, t)</code> e quanto vale <code>strlen(t)</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa <code>ca e</code>, e <code>strlen</code> vale 4</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa <code>can</code>, e <code>strlen</code> vale 3</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa <code>cane</code>, e <code>strlen</code> vale 4</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa <code>ca</code>, e <code>strlen</code> vale 6</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa <code>ca</code>, e <code>strlen</code> vale 2</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La stringa finisce al primo terminatore, nella casella 2. La più insidiosa è l&#39;ultima: il terminatore sostituisce la <code>n</code>, non viene dopo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello degli errori della 06B. Con <code>char d[4];</code> e <code>const char *s = &quot;ciao&quot;;</code>, che cosa c&#39;è in <code>d</code> dopo <code>strncpy(d, s, 4)</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>ciao</code> seguito da <code>'\0'</code></span></label><label class="opz"><input type="radio" name="q1-5" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">i quattro caratteri <code>c</code>, <code>i</code>, <code>a</code>, <code>o</code>, senza terminatore</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">niente: <code>strncpy</code> non copia se non c&#39;è posto</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">quattro terminatori</span></label><label class="opz"><input type="radio" name="q1-5" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>cia</code> seguito da <code>'\0'</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>strncpy</code> copia al massimo 4 caratteri, e il terminatore sarebbe il quinto. La più insidiosa è la seconda: sarebbe comodo, ma <code>strncpy</code> non accorcia la copia per fare posto al terminatore.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello degli errori del Lab05A. Con gcc 16 su Windows <code>islower('q')</code> vale 2. Quale condizione è scritta bene per «<code>c</code> è una lettera minuscola»?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (islower(c))</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (islower(c) == 'q')</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (islower(c) == true)</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (!islower(c))</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>if (islower(c) == 1)</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Le funzioni di <code>ctype.h</code> restituiscono zero oppure un numero diverso da zero, non per forza 1. La più insidiosa è la terza: <code>true</code> vale 1, quindi è lo stesso errore della seconda.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Sul modello degli esercizi del Lab05A. Quanti elementi deve avere, come minimo, l&#39;array <code>nome</code> per leggere con <code>scanf(&quot;%20s&quot;, nome)</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="21" data-toll="1e-9"><span class="q-giusto" hidden>21</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Venti caratteri più il terminatore.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello delle intestazioni d&#39;esame. Quale intestazione va bene per una funzione che conta gli elementi pari di un array senza modificarlo?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void contaPari(size_t n, int a[])</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>size_t contaPari(const int a[])</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>size_t contaPari(int n, int *a[])</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>size_t contaPari(size_t n, const int a[])</code></span></label><label class="opz"><input type="radio" name="q1-8" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>bool contaPari(size_t n, const int a[])</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Servono la lunghezza e l&#39;array in sola lettura, e il risultato è un conteggio. La più insidiosa è la seconda: senza la lunghezza la funzione non sa dove fermarsi.</div></li></ol></div>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Le lezioni complete: <a href="Lab05A_array_stringhe.html">Lab05A · Array e stringhe</a>, <a href="06B_chiamata_funzioni.html">06B · Chiamata di funzione e ritorno</a>, con gli esempi, i disegni e gli esercizi.</li>
+<li>Slide di E. G. Amparore «06B Chiamata di funzione», e slide del laboratorio «Array e stringhe» (Lab05A), canale B, A.A. 2026/27.</li>
+<li>Le domande del quiz sono di questi appunti, sul modello degli esercizi d&#39;esame; il codice è compilato con gcc 16.1 e <code>-Wall -Werror</code> ed eseguito.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

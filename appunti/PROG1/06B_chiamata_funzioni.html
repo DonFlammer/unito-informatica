@@ -76,14 +76,14 @@
 <!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
 <nav class="vicine" aria-label="Lezioni vicine">
   <a class="vicina prec" href="Lab05A_array_stringhe.html" rel="prev" title="Lab05A · Laboratorio 05: array e stringhe"><span class="dir">← Lezione precedente</span><span class="vt">Lab05A · Laboratorio 05: array e stringhe</span></a>
-  <a class="vicina succ" href="07A_algoritmi_su_array.html" rel="next" title="07A · Algoritmi su array"><span class="dir">Lezione successiva →</span><span class="vt">07A · Algoritmi su array</span></a>
+  <a class="vicina succ" href="Lab06_funzioni.html" rel="next" title="Lab06 · Laboratorio 06: funzioni"><span class="dir">Lezione successiva →</span><span class="vt">Lab06 · Laboratorio 06: funzioni</span></a>
 </nav>
 <!-- VICINE:FINE -->
       <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 06B</nav>
       <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 06B</p>
       <h1>Chiamata di funzione e ritorno</h1>
       <p class="lede">Dove stanno parametri e variabili locali durante una chiamata, come fa il programma a tornare nel punto giusto, e perché una funzione non può cambiare le variabili di chi la chiama, a meno di riceverne l&#39;indirizzo. All&#39;esame c&#39;è un esercizio proprio su questo: disegnare lo stack.</p>
-      <dl class="meta"><div><dt>Slide</dt><dd>06B_chiamata_funzioni («Chiamata a funzione e ritorno») · 66 pagine</dd></div><div><dt>Lezione</dt><dd>martedì 03/11</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>100 minuti, con carta e penna per disegnare lo stack</dd></div></dl>
+      <dl class="meta"><div><dt>Slide</dt><dd>06B_chiamata_funzioni («Chiamata a funzione e ritorno») · 66 pagine</dd></div><div><dt>Lezione</dt><dd>martedì 03/11 e mercoledì 04/11</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>100 minuti, con carta e penna per disegnare lo stack</dd></div></dl>
       <ul class="legend" aria-label="Legenda dei riquadri">
         <li class="l-def"><i></i>Definizione o risultato da sapere</li>
         <li class="l-trap"><i></i>Trappola / errore tipico</li>
@@ -107,7 +107,7 @@
 </ul>
 </section>
 
-<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Lezione di martedì 03/11, dalle 11 alle 13, subito dopo la <a href="06A_funzioni.html">06A</a>. Il calendario ufficiale ha Programmazione I anche mercoledì 04/11, che metto alla <a href="07A_algoritmi_su_array.html">07A</a>: se Amparore ha finito queste slide il 04/11, aggiorno la data. Usa il modello della memoria della <a href="02B_assegnamento_memory_model.html">02B</a> (stack, FP e SP), i puntatori della <a href="02C_referenziamento_scanf_puntatori.html">02C</a>, lo scambio della <a href="03A_scambio_variabili.html">03A</a> e gli array e le stringhe della <a href="05A_array_stringhe.html">05A</a>.</p>
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Due lezioni: martedì 03/11, dalle 11 alle 13, e mercoledì 04/11, dalle 9 alle 11, subito dopo la <a href="06A_funzioni.html">06A</a>. Sul Moodle del corso queste slide sono nella settimana del 2 novembre, con le registrazioni di tutti e due i giorni; dove si è fermato il primo giorno non lo so. La lezione dopo è la <a href="07A_algoritmi_su_array.html">07A</a>, del 10/11. Usa il modello della memoria della <a href="02B_assegnamento_memory_model.html">02B</a> (stack, FP e SP), i puntatori della <a href="02C_referenziamento_scanf_puntatori.html">02C</a>, lo scambio della <a href="03A_scambio_variabili.html">03A</a> e gli array e le stringhe della <a href="05A_array_stringhe.html">05A</a>.</p>
 <p><strong>Canali A e C.</strong> Le slide 2026/27 dei canali A e C su questo argomento non le ho viste. L&#39;esame è unico, e l&#39;esercizio sullo stato della memoria c&#39;è per tutti.</p>
 <p><strong>Un avviso sulle slide.</strong> Gli offset di esempio cambiano tra la slide 7 (parametri in FP+8, FP+12, variabili locali in FP−4, FP−8) e la slide 14 ([FP+4], [FP+8] e [FP−0], [FP−4]). Negli appunti uso quelli della slide 7, che tornano con la figura; all&#39;esame conta il segno: sopra FP i parametri, sotto le variabili locali.</p>
 <p>Tutti i programmi li ho compilati con gcc 16.1, con <code>-Wall -Werror</code>, ed eseguiti; gli errori del compilatore citati sono quelli veri.</p>

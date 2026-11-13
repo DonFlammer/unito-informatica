@@ -492,9 +492,10 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 | 05A | 21/10/2026 e 27/10 | Array e stringhe | `lezioni/05A_array_stringhe.md` · HTML: `appunti/PROG1/05A_array_stringhe.html` | array statici, indici `[0, n)`, `size_t` e `%zu`, liste di inizializzazione (mancanti a 0), `#define`; scansione in avanti e all'indietro (`size_t i >= 0` compila con `-Wall` e non finisce; `ptrdiff_t` e `%td`); media, conteggio, massimo con invariante e precondizione «non vuoto»; `v[i]` ≡ `*(v + i)`, `sizeof` dell'array (20 byte) e aritmetica dei puntatori; VLA (niente `{0}`, lunghezza ≥ 1); `b = a` e `a == b` non compilano, `v[5]` compila (errore solo con `-O2`); `char` e ASCII (48, 65, 97, +32), da ASCII a Unicode con le correzioni alle slide 24–25, `sizeof("è")` = 3; stringhe e `'\0'`, `char nome[4] = "Anna"` senza terminatore; scansione con indice e puntatore; `%19s` senza `&`, maschera `" %49[^\n]"`; letterali in sola lettura e `const char*`; `&parola` con `%s` non compila |
 | Lab04 | 26/10/2026 (B2), 03/11 (B1) | Laboratorio 04: iterazioni | `lezioni/Lab04_iterazioni.md` · HTML: `appunti/PROG1/Lab04_iterazioni.html` | `for` o `while` e i sei cicli della slide 4 (il ciclo da 20 a 2 con passo 7 non arriva a 2); somma dei pari (2550) e virgolette tipografiche delle slide (`stray '\342'`); iterazioni_n.c e fattoriale (`int` fino a 12!, `unsigned long long` fino a 20!); sequenze terminate da 0 con `1 == scanf(...)` e cortocircuito; media con controllo del contatore (`-nan(ind)`), input da file con `<` (in PowerShell `Get-Content`); divisori; cicli annidati: Floyd e quadrato (`"\\"`); «per ogni» ed «esiste» con sentinelle booleane, anche nella condizione del ciclo; Fibonacci con la variabile temporanea; indovina il numero con `rand`, ricerca per dimezzamento (al massimo 7 tentativi su 100, provato su tutti i segreti; conto sbagliato nella slide 24: 63, non 62). Esercizi CodeRunner Lab04-Es1–Es3 e codice di partenza non visti: soluzioni mie |
 | 06A | 28/10/2026 | Funzioni | `lezioni/06A_funzioni.md` · HTML: `appunti/PROG1/06A_funzioni.html` | che cos'è una funzione, parallelo con le funzioni matematiche e dove finisce (effetti collaterali), prototipo, definizione e chiamata, le quattro forme con e senza parametri e `void`, funzioni in memoria (puntatore a funzione), più parametri e un solo valore di ritorno, regole della `return` (una sola all'esame), passaggio per valore e di un indirizzo (`incr` e `incrPtr`), errori comuni con i messaggi veri di gcc 16, divide et impera con il programma del cerchio. **Svista delle slide**: la `leggiRaggio` della slide 25 gira all'infinito con un input non numerico o finito (corretta negli appunti); `M_PI` non è standard. Slide arrivate il 01/11, messe al 28/10 |
-| Lab05A | 02/11/2026 (B2); B1 probabilmente 10/11 | Laboratorio 05: array e stringhe | `lezioni/Lab05A_array_stringhe.md` · HTML: `appunti/PROG1/Lab05A_array_stringhe.html` | `size_t` e `%zu`, `array.c` (somma del VLA), frequenze del questionario con `frequenze[v - 1]++`, somma selettiva (Lab05-Es1: due passate, perché serve memorizzare), stringhe e ASCII (`tEs` di `stringhe.c`, `%20s`, `'7' - '0'`), alfabeto, montagne (Lab05-Es2: copia a mano del nome, `piuAlta` inizializzata), «per ogni»/«esiste» con il `for` (all'uscita `i` è uno dopo), `ctype.h` (**restituiscono un `int` diverso da 0, non 1**: `islower('q')` vale 2; `(unsigned char)`), passwords (Lab05-Es3), Indovina chi? (Lab05-Es4, confrontata con la soluzione ufficiale 2025/26). Testi CodeRunner 2025/26 ricostruiti dalle soluzioni del canale A; codice di partenza 2025/26 |
-| 06B | 03/11/2026 | Chiamata di funzione e ritorno | `lezioni/06B_chiamata_funzioni.md` · HTML: `appunti/PROG1/06B_chiamata_funzioni.html` | stack delle chiamate (Bauer e Samelson, Dijkstra, B5000), stack frame, SP e FP, offset positivi e negativi, `sumSquares`/`square` frame per frame, `sommaProdotto` con lo stack della slide 12, chiamata e prologo, ritorno ed epilogo in 5 passi, record di attivazione e stack frame, `swapSbagliato` e `swap` con i puntatori, passaggio per riferimento simulato, array come puntatore (`sizeof-array-argument`), `const` (errori veri di gcc 16), stringhe, `strlen`/`strcmp`/`strncpy` (**`strncpy` può lasciare la stringa senza terminatore**), `assert`, `-DNDEBUG`; esercizio d'esame sullo stato dello stack; 5 disegni. Offset di esempio diversi tra le slide 7 e 14 |
-| 07A | 04/11/2026 | Algoritmi su array | `lezioni/07A_algoritmi_su_array.md` · HTML: `appunti/PROG1/07A_algoritmi_su_array.html` | ricerca lineare con sentinella (**il ciclo della slide 7 non termina se trova `key`**), «esiste» come OR e «per ogni» come AND, test d'ipotesi $H_0$/$H_1$, cortocircuito, invariante, dominio vuoto (vero per vacuità / falso), `tuttiPositivi` ed `esistePari` con i test della slide, selezione e modello dimensione-capacità, `selectInRange`, ordinamento sulle coppie `[1, aLen)`, `aLen - 1` con `size_t` = 18446744073709551615, bubble sort con uscita anticipata e la versione con `newLast` (provata contro `qsort` su 20 000 array), `e1` del pre-esame 2023/24; 4 disegni. Slide 49: `int b[bLen] = ...` non compila |
+| Lab05A | 02/11/2026 (B2); 10/11 (B1, dal calendario) | Laboratorio 05: array e stringhe | `lezioni/Lab05A_array_stringhe.md` · HTML: `appunti/PROG1/Lab05A_array_stringhe.html` | `size_t` e `%zu`, `array.c` (somma del VLA), frequenze del questionario con `frequenze[v - 1]++`, somma selettiva (Lab05-Es1: due passate, perché serve memorizzare), stringhe e ASCII (`tEs` di `stringhe.c`, `%20s`, `'7' - '0'`), alfabeto, montagne (Lab05-Es2: copia a mano del nome, `piuAlta` inizializzata), «per ogni»/«esiste» con il `for` (all'uscita `i` è uno dopo), `ctype.h` (**restituiscono un `int` diverso da 0, non 1**: `islower('q')` vale 2; `(unsigned char)`), passwords (Lab05-Es3), Indovina chi? (Lab05-Es4, confrontata con la soluzione ufficiale 2025/26). Testi CodeRunner 2025/26 ricostruiti dalle soluzioni del canale A; codice di partenza 2025/26 |
+| 06B | 03/11 e 04/11/2026 | Chiamata di funzione e ritorno | `lezioni/06B_chiamata_funzioni.md` · HTML: `appunti/PROG1/06B_chiamata_funzioni.html` | stack delle chiamate (Bauer e Samelson, Dijkstra, B5000), stack frame, SP e FP, offset positivi e negativi, `sumSquares`/`square` frame per frame, `sommaProdotto` con lo stack della slide 12, chiamata e prologo, ritorno ed epilogo in 5 passi, record di attivazione e stack frame, `swapSbagliato` e `swap` con i puntatori, passaggio per riferimento simulato, array come puntatore (`sizeof-array-argument`), `const` (errori veri di gcc 16), stringhe, `strlen`/`strcmp`/`strncpy` (**`strncpy` può lasciare la stringa senza terminatore**), `assert`, `-DNDEBUG`; esercizio d'esame sullo stato dello stack; 5 disegni. Offset di esempio diversi tra le slide 7 e 14 |
+| Lab06 | 09/11/2026 (B2); B1 probabilmente 17/11 | Laboratorio 06: funzioni | `lezioni/Lab06_funzioni.md` · HTML: `appunti/PROG1/Lab06_funzioni.html` | progettare una funzione (nome, parametri, tipo restituito; quattro intestazioni a confronto), `verifica_primalita` con `d * d <= n` e sentinella, funzioni iterative su interi, cambio delle monete (`cambio_taglio`, `ptrdiff_t`; **`size_t i >= 0` non finisce**), statistiche su sequenze (Lab06-Es1; il `while (scanf(...) && n != 0)` ufficiale non termina a fine input), passaggio di array (slide 14–15), Lab06-Es2 (`leggi_array`, `conta_univoci`, `stampa_elementi_ripetuti`; `%zu` e non `%lu`), vocali, palindroma (Lab06-Es3), Scale e serpi (Lab06-Es4); 3 disegni. Testi CodeRunner 2025/26 dalle soluzioni del canale A (su Moodle 2026/27 gli esercizi hanno gli stessi nomi); codice di partenza 2025/26 |
+| 07A | 10/11/2026 | Algoritmi su array | `lezioni/07A_algoritmi_su_array.md` · HTML: `appunti/PROG1/07A_algoritmi_su_array.html` | ricerca lineare con sentinella (**il ciclo della slide 7 non termina se trova `key`**), «esiste» come OR e «per ogni» come AND, test d'ipotesi $H_0$/$H_1$, cortocircuito, invariante, dominio vuoto (vero per vacuità / falso), `tuttiPositivi` ed `esistePari` con i test della slide, selezione e modello dimensione-capacità, `selectInRange`, ordinamento sulle coppie `[1, aLen)`, `aLen - 1` con `size_t` = 18446744073709551615, bubble sort con uscita anticipata e la versione con `newLast` (provata contro `qsort` su 20 000 array), `e1` del pre-esame 2023/24; 4 disegni. Slide 49: `int b[bLen] = ...` non compila |
 
 ## Fili conduttori (da ricollegare nelle prossime lezioni)
 
@@ -10084,7 +10085,7 @@ lede: >-
 materiale: slide
 scheda:
   Slide: 06B_chiamata_funzioni («Chiamata a funzione e ritorno») · 66 pagine
-  Lezione: martedì 03/11
+  Lezione: martedì 03/11 e mercoledì 04/11
   Corso: Prof. Elvio Amparore · A.A. 2026/27
   Tempo di studio: 100 minuti, con carta e penna per disegnare lo stack
 fonte: >-
@@ -10105,7 +10106,7 @@ genera_html: true
 - `assert(condizione)` ferma il programma se la condizione è falsa: serve a controllare le ipotesi del programmatore, non l'input dell'utente.
 
 > [!CANALI]
-> **Canale B.** Lezione di martedì 03/11, dalle 11 alle 13, subito dopo la [06A](06A_funzioni.html). Il calendario ufficiale ha Programmazione I anche mercoledì 04/11, che metto alla [07A](07A_algoritmi_su_array.html): se Amparore ha finito queste slide il 04/11, aggiorno la data. Usa il modello della memoria della [02B](02B_assegnamento_memory_model.html) (stack, FP e SP), i puntatori della [02C](02C_referenziamento_scanf_puntatori.html), lo scambio della [03A](03A_scambio_variabili.html) e gli array e le stringhe della [05A](05A_array_stringhe.html).
+> **Canale B.** Due lezioni: martedì 03/11, dalle 11 alle 13, e mercoledì 04/11, dalle 9 alle 11, subito dopo la [06A](06A_funzioni.html). Sul Moodle del corso queste slide sono nella settimana del 2 novembre, con le registrazioni di tutti e due i giorni; dove si è fermato il primo giorno non lo so. La lezione dopo è la [07A](07A_algoritmi_su_array.html), del 10/11. Usa il modello della memoria della [02B](02B_assegnamento_memory_model.html) (stack, FP e SP), i puntatori della [02C](02C_referenziamento_scanf_puntatori.html), lo scambio della [03A](03A_scambio_variabili.html) e gli array e le stringhe della [05A](05A_array_stringhe.html).
 >
 > **Canali A e C.** Le slide 2026/27 dei canali A e C su questo argomento non le ho viste. L'esame è unico, e l'esercizio sullo stato della memoria c'è per tutti.
 >
@@ -10941,7 +10942,7 @@ Asserzione | Condizione che deve essere sempre vera; assert ferma il programma s
 corso: PROG1
 lezione: 07A
 titolo: Algoritmi su array
-data: 2026-11-04
+data: 2026-11-10
 docenti: Elvio Amparore
 simboli_logici: quantificatori
 sopratitolo: Programmazione I · Teoria · Canale B · Lezione 07A
@@ -10957,7 +10958,7 @@ lede: >-
 materiale: slide
 scheda:
   Slide: 07A_algoritmi_su_array («Algoritmi su array. Ricerca, filtro e ordinamento») · 84 pagine
-  Lezione: mercoledì 04/11
+  Lezione: martedì 10/11
   Corso: Prof. Elvio Amparore · A.A. 2026/27
   Tempo di studio: 110 minuti, con gcc a portata di mano
 fonte: >-
@@ -10978,7 +10979,7 @@ genera_html: true
 - **Bubble sort**: si scorrono le coppie adiacenti e si scambiano quelle in ordine sbagliato; si ripete finché una passata non fa scambi.
 
 > [!CANALI]
-> **Canale B.** Lezione di mercoledì 04/11, dalle 9 alle 11, dopo la [06B](06B_chiamata_funzioni.html) del 03/11. Le slide sono molte (84, ma tante sono animazioni): se Amparore non le ha finite, la parte che manca andrà alla lezione di martedì 10/11, e aggiorno qui. Usa i cicli e le sentinelle della [04A](04A_iterazioni.html), gli array della [05A](05A_array_stringhe.html), i puntatori come parametri della [06B](06B_chiamata_funzioni.html) e i quantificatori di [Fondamenti](../FDA/09_quantificatori.html).
+> **Canale B.** Lezione di martedì 10/11, dalle 11 alle 13, dopo la [06B](06B_chiamata_funzioni.html) del 03 e 04/11: sul Moodle del corso queste slide sono nella settimana del 9 novembre, con la registrazione del 10. La lezione di mercoledì 11/11 è stata annullata e sarà recuperata venerdì 04/12, dalle 15 alle 17, in Aula C. Le slide sono molte (84, ma tante sono animazioni): se Amparore non le ha finite, la parte che manca va alla lezione successiva, e aggiorno qui. Usa i cicli e le sentinelle della [04A](04A_iterazioni.html), gli array della [05A](05A_array_stringhe.html), i puntatori come parametri della [06B](06B_chiamata_funzioni.html) e i quantificatori di [Fondamenti](../FDA/09_quantificatori.html).
 >
 > **Canali A e C.** Le slide 2026/27 dei canali A e C su questi algoritmi non le ho viste. L'esame è unico.
 >
@@ -15861,7 +15862,7 @@ genera_html: true
 - Le funzioni di `ctype.h` (`isdigit`, `isupper`…) dicono che tipo di carattere è. Restituiscono un `int` **diverso da zero** per vero, non per forza 1: per stamparle con 0 e 1 si passa da un `bool`.
 
 > [!CANALI]
-> **Canale B.** È il quinto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 02/11 con **Elisa Marengo**. Il turno **B1** con **Valerio Basile** il 03/11 ha fatto il [Lab04](Lab04_iterazioni.html), recuperando la settimana del 27/10; il calendario ha il prossimo laboratorio B1 martedì 10/11, quindi il Lab05A dovrebbe toccargli lì. Gli esercizi riprendono la [05A](05A_array_stringhe.html) su array e stringhe; i quantificatori delle slide 14–15 sono spiegati per intero nella [07A](07A_algoritmi_su_array.html).
+> **Canale B.** È il quinto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 02/11 con **Elisa Marengo**. Il turno **B1** con **Valerio Basile** il 03/11 ha fatto il [Lab04](Lab04_iterazioni.html), recuperando la settimana del 27/10; il laboratorio B1 successivo è stato martedì 10/11, e il Lab05A dovrebbe averlo fatto lì. Gli esercizi riprendono la [05A](05A_array_stringhe.html) su array e stringhe; i quantificatori delle slide 14–15 sono spiegati per intero nella [07A](07A_algoritmi_su_array.html).
 >
 > **Canali A e C.** Nel 2025/26 il Lab05 era uguale nei tre canali, con gli stessi esercizi CodeRunner. Le slide 2026/27 dei canali A e C non le ho viste.
 >
@@ -16676,6 +16677,975 @@ CodeRunner | Il sistema di Moodle che compila il programma e confronta l'output 
 - Codice di partenza del Lab05 2025/26 (Moodle canale B, `codice_iniziale05`) e soluzioni del canale A 2025/26: i testi degli esercizi CodeRunner riportati qui vengono da quelle soluzioni e dagli appunti di uno studente; i testi 2026/27 su Moodle possono essere diversi.
 - P. Deitel, H. Deitel, *C: How to Program*, p. 247, citato nella slide 2.
 - Tutti i programmi li ho compilati con gcc 16.1 su Windows 11, con `-Wall -Werror`, ed eseguiti sugli esempi citati. Le soluzioni, i quiz e gli esercizi sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/lezioni/Lab06_funzioni.md -->
+> File: `contesto_ai/PROG1/lezioni/Lab06_funzioni.md`
+
+```yaml
+corso: PROG1
+lezione: Lab06
+titolo: "Laboratorio 06: funzioni"
+data: 2026-11-09
+docenti: Elisa Marengo (turno B2) e Valerio Basile (turno B1); teoria Elvio Amparore
+sopratitolo: Canale B · Laboratorio 06 · Programmazione I
+descrizione: >-
+  Appunti del sesto laboratorio di Programmazione I (canale B, Lab06): come si progetta una funzione (nome, parametri,
+  tipo di ritorno), numeri primi, funzioni iterative, cambio in monete con ptrdiff_t, statistiche su sequenze con i
+  puntatori, passaggio di array con la lunghezza, funzioni su stringhe, vocali, palindroma e Scale e serpi, con tutti i
+  programmi provati.
+lede: >-
+  Il sesto laboratorio è tutto sulle funzioni delle lezioni 06A e 06B: decidere nome, parametri e tipo di ritorno,
+  restituire più risultati con i puntatori, passare un array insieme alla sua lunghezza. Qui trovi ogni esercizio
+  risolto e provato, con i testi CodeRunner dell'anno scorso.
+materiale: slide
+scheda:
+  Slide: Lab06 «Funzioni», laboratorio canale B · 20 pagine, quattro esercizi su CodeRunner
+  Laboratorio: Elisa Marengo (turno B2, lun 09/11) e Valerio Basile (turno B1) · 14–17 · laboratorio Turing
+  Tempo di studio: 2–3 ore, davanti a un computer
+fonte: >-
+  Slide «Funzioni» (Lezione nº 6 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27; codice di
+  partenza e soluzioni del Lab06 2025/26 dai Moodle dei canali A e B
+appunti_html: appunti/PROG1/Lab06_funzioni.html
+genera_html: true
+```
+
+## In breve
+
+- Per ogni compito del programma si scrive una **funzione**, e prima di scriverla si decidono tre cose: un **nome** chiaro, i **parametri** che le servono, il **tipo di ritorno**.
+- Una funzione che risponde sì o no restituisce un `bool`; una che fa solo stampe restituisce `void`.
+- Una funzione restituisce **un solo valore**. Se i risultati sono di più, gli altri tornano al chiamante attraverso **puntatori** ricevuti come parametri.
+- A una funzione un **array** arriva come puntatore al primo elemento: la **lunghezza** va passata a parte, in un secondo parametro.
+- Per le **stringhe** la lunghezza non serve: la fine la segna il terminatore.
+- Un indice `size_t` non scende mai sotto zero: per un ciclo all'indietro fino a 0 si usa `ptrdiff_t`, oppure si conta da `n` a 1 e si usa `i - 1`.
+- All'esame la consegna è quasi sempre una funzione con l'intestazione data: una sola `return`, niente `break`.
+
+> [!CANALI]
+> **Canale B.** È il sesto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 09/11 con **Elisa Marengo**. Il turno **B1** con **Valerio Basile** è indietro di un laboratorio dalla settimana del 27/10, quindi dovrebbe farlo martedì 17/11. Il laboratorio B2 di lunedì 16/11 è annullato (avviso sul Moodle del corso del 13/11). Gli esercizi usano le funzioni della [06A](06A_funzioni.html), il passaggio di puntatori e di array della [06B](06B_chiamata_funzioni.html) e gli schemi «esiste» e «per ogni» della [07A](07A_algoritmi_su_array.html).
+>
+> **Canali A e C.** Nel 2025/26 il Lab06 era uguale nei tre canali, con gli stessi esercizi CodeRunner. Le slide 2026/27 dei canali A e C non le ho viste.
+>
+> **Il materiale che ho e quello che non ho.** Le slide 2026/27 sono uguali a quelle del 2025/26 del canale B, con due pagine in più sul passaggio di array (slide 14–15). Il codice di partenza 2026/27 è su Moodle e non l'ho visto: uso quello del 2025/26 (`primi.c`, `funzioni_iterative.c`, `monete.c`). I testi dei quattro esercizi CodeRunner sono quelli del 2025/26, presi dalle soluzioni pubblicate sul Moodle del canale A; sul Moodle 2026/27 i quattro esercizi hanno gli stessi nomi (Statistiche sequenze, Funzioni su arrays, Palindroma, Scale e Serpi), ma i testi possono essere diversi. Le soluzioni qui sono mie, confrontate con quelle ufficiali. Tutti i programmi li ho compilati con `gcc -Wall -Werror` (gcc 16.1, Windows 11 a 64 bit) ed eseguiti.
+
+## Progettare una funzione: nome, parametri, ritorno (slide 2–6)
+
+Una funzione isola un compito del programma in un blocco con un nome. La slide 2 dà le tre domande da farsi prima di scrivere una riga di codice: come si chiama, che cosa le serve in ingresso, che cosa restituisce. La forma è quella della [06A](06A_funzioni.html):
+
+```c
+tipo_di_ritorno nome_funzione(parametro1, parametro2, ...) {
+    // codice della funzione
+}
+```
+
+Le slide 3–6 fanno le tre domande su quattro compiti. Le mie risposte:
+
+| Compito | Intestazione | Perché |
+|---|---|---|
+| scrivere «Buongiorno!» sul terminale | `void saluta(void)` | non le serve niente e non calcola niente: stampa e basta |
+| dire se un numero positivo è primo | `bool verifica_primalita(int n)` | la risposta è sì o no |
+| contare le occorrenze di `x` in un array | `size_t conta_occorrenze(const int a[], size_t n, int x)` | servono l'array, **la sua lunghezza** e il numero cercato; un conteggio è un `size_t` |
+| leggere una sequenza e restituire media e varianza, se non ci sono errori | `bool leggi_media_varianza(double *media, double *varianza)` | i risultati sono tre: «è andata bene?», media, varianza |
+
+L'ultima riga è il caso che conta di più. Una funzione ha **un solo** valore di ritorno ([06A](06A_funzioni.html)). Qui i risultati sono tre, quindi uno torna con la `return` e gli altri due passano per **puntatori**: il chiamante dà alla funzione gli indirizzi di due sue variabili, e la funzione ci scrive dentro ([06B](06B_chiamata_funzioni.html), `incrPtr` e `swap`). Di solito con la `return` si restituisce l'esito, così il chiamante può scrivere `if (leggi_media_varianza(&m, &v))`.
+
+La parola `const` davanti a `int a[]` promette che la funzione non modifica l'array: se ci prova, il compilatore dà errore.
+
+> [!METODO] Le tre domande
+> 1. **Nome.** Un verbo che dice che cosa fa: `conta_occorrenze`, non `funzione1`.
+> 2. **Parametri.** Tutto quello che alla funzione serve e che non può calcolare da sola. Per un array: i dati **e** la lunghezza.
+> 3. **Ritorno.** Niente: `void`. Sì o no: `bool`. Un numero: il suo tipo. Più risultati: uno con la `return`, gli altri con i puntatori.
+
+::: prova Che intestazione dai a una funzione che riceve due interi e restituisce il maggiore?
+`int massimo(int a, int b)`. Due parametri, un risultato intero: nessun puntatore.
+:::
+
+> [!RICORDA]
+> - Prima il nome, i parametri e il tipo di ritorno, poi il corpo.
+> - Più di un risultato: gli altri tornano attraverso puntatori.
+
+## Numeri primi (slide 7–8)
+
+Un numero maggiore di 1 è primo se lo dividono solo 1 e lui stesso. La slide 7 lo traduce in una ricerca: si cerca se **esiste** un divisore `d` con `2 ≤ d < n`. Per 7 si provano 2, 3, 4, 5, 6: nessuno lo divide, quindi è primo. Per 9 ci si ferma al 3, che lo divide: non è primo, e gli altri controlli non servono.
+
+È lo schema «esiste» della [07A](07A_algoritmi_su_array.html): una sentinella che parte da `false` e ferma il ciclo al primo divisore trovato.
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+bool verifica_primalita(int n);
+
+int main(void) {
+    // stampa i numeri primi minori di 100
+    for (int n = 2; n < 100; n++) {
+        if (verifica_primalita(n)) {
+            printf("%d ", n);
+        }
+    }
+    printf("\n");
+    return 0;
+}
+
+// true se n e' primo, false altrimenti (false per ogni n < 2)
+bool verifica_primalita(int n) {
+    bool esiste_divisore = false;
+    for (int d = 2; d * d <= n && !esiste_divisore; d++) {
+        if (n % d == 0) {
+            esiste_divisore = true;
+        }
+    }
+    return n >= 2 && !esiste_divisore;
+}
+```
+
+Stampa `2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97`, come nella slide 8.
+
+Due cose sul codice:
+
+- **Il tipo di ritorno è `bool`**, la risposta alla domanda della slide. Il prototipo sta prima del `main`, la definizione dopo.
+- **La condizione `d * d <= n`** ferma la ricerca alla radice di `n`. Se `n = a · b`, uno dei due fattori è al massimo la radice: per 97 bastano i divisori fino a 9, invece di 95 controlli. La versione della slide, con `d < n`, è giusta lo stesso, solo più lenta. La soluzione ufficiale del 2025/26 scrive `i <= sqrt(n)`, che richiede `math.h` e ricalcola la radice a ogni giro: con il prodotto non serve.
+
+> [!TRAPPOLA] Due `return` nel ciclo
+> La versione che viene spontanea è `if (n % d == 0) return false;` dentro il ciclo e `return true;` alla fine. Funziona, ma all'esame le funzioni iterative devono avere **una sola `return`**: si usa la sentinella nella condizione del ciclo, come qui.
+
+::: prova Con `verifica_primalita(1)`, quante volte gira il ciclo e che cosa restituisce?
+Zero volte, perché `2 * 2 <= 1` è falso. Restituisce `false`: `n >= 2` è falso.
+:::
+
+> [!RICORDA]
+> - «È primo?» è un «esiste un divisore?» negato: sentinella da `false`, una sola `return`.
+
+## Funzioni iterative (slide 9)
+
+Il file `funzioni_iterative.c` ha un `main` già scritto, da non toccare, che chiama tre funzioni e stampa accanto il risultato atteso. Vanno scritti i prototipi e i corpi.
+
+```c
+int esponenziale(int b, int e);
+int prodotto_multipli(int n, int m, int q);
+void stampa_al_rovescio(int n);
+
+// b elevato a e, con e >= 0
+int esponenziale(int b, int e) {
+    int risultato = 1;
+    for (int i = 0; i < e; i++) {
+        risultato = risultato * b;
+    }
+    return risultato;
+}
+
+// prodotto degli interi tra n e m (inclusi) multipli di q
+int prodotto_multipli(int n, int m, int q) {
+    int prodotto = 1;
+    for (int i = n; i <= m; i++) {
+        if (i % q == 0) {
+            prodotto = prodotto * i;
+        }
+    }
+    return prodotto;
+}
+
+// stampa n, n-1, ..., 0
+void stampa_al_rovescio(int n) {
+    for (int i = n; i >= 0; i--) {
+        printf("%d ", i);
+    }
+    printf("\n");
+}
+```
+
+Con il `main` del codice di partenza tutti i risultati coincidono con quelli attesi: `esponenziale(3, 6)` dà 729, `esponenziale(0, 0)` dà 1, `prodotto_multipli(1, 30, 10)` dà 6000 (10 · 20 · 30), `prodotto_multipli(27, 42, 8)` dà 1280 (32 · 40), `stampa_al_rovescio(5)` stampa `5 4 3 2 1 0`.
+
+I tipi si leggono dal `main`: le prime due sono stampate con `%d`, quindi restituiscono `int`; la terza è chiamata da sola su una riga, quindi è `void`.
+
+L'accumulatore di un prodotto parte da **1**, non da 0 ([04A](04A_iterazioni.html)). Così `esponenziale(3, 0)` e `esponenziale(0, 0)` danno 1 senza casi speciali: il ciclo non gira.
+
+In `stampa_al_rovescio` l'indice è un `int`, e la condizione `i >= 0` diventa falsa quando `i` arriva a −1. Con un indice `size_t` non succederebbe: è il tema della prossima sezione.
+
+::: prova Che cosa restituisce `prodotto_multipli(3, 6, 2)`?
+24: i multipli di 2 tra 3 e 6 sono 4 e 6.
+:::
+
+> [!RICORDA]
+> - I tipi di parametri e ritorno si ricavano da come il `main` usa la funzione.
+> - Un prodotto si accumula partendo da 1.
+
+## Cambio monete (slide 10–12)
+
+Il programma `monete.c` legge una somma in centesimi e stampa il cambio con il minor numero di monete, con i tagli da 1, 2, 5, 10, 20 e 50. Si parte dal taglio più grande: se ne prendono quante ce ne stanno, e con quello che resta si passa al taglio successivo. Per 95: una da 50 (restano 45), due da 20 (restano 5), una da 5.
+
+```grafico
+titolo: Il cambio di 95 centesimi. A ogni passo `cambio_taglio` toglie quante monete può del taglio corrente e restituisce il resto, che diventa la somma del passo dopo. I tagli da 10, 2 e 1 non stampano niente
+x: 0 12.4
+y: 0 3.0
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.3 1.0 2.3 1.0 2.3 2.0 0.3 2.0 | blu | pieno
+testo: 1.3 1.5 | blu | "95"
+freccia: 2.4 1.5 4.0 1.5 | ambra
+testo: 3.2 2.0 | ambra | "1 da 50"
+poligono: 4.1 1.0 6.1 1.0 6.1 2.0 4.1 2.0 | blu | pieno
+testo: 5.1 1.5 | blu | "45"
+freccia: 6.2 1.5 7.8 1.5 | ambra
+testo: 7.0 2.0 | ambra | "2 da 20"
+poligono: 7.9 1.0 9.9 1.0 9.9 2.0 7.9 2.0 | blu | pieno
+testo: 8.9 1.5 | blu | "5"
+freccia: 10.0 1.5 11.3 1.5 | ambra
+testo: 10.65 2.0 | ambra | "1 da 5"
+testo: 11.8 1.5 | verde | "0"
+testo: 6.2 0.4 | grigio | "resto restituito = somma del passo dopo"
+```
+
+La slide 11 suggerisce la funzione: `cambio_taglio` riceve la somma e un taglio, stampa quante monete di quel taglio servono e **restituisce il resto**. Il `main` la chiama una volta per taglio, aggiornando la somma.
+
+```c
+#include <stdio.h>
+#include <stddef.h>
+
+#define NUM_TAGLI 6
+
+// stampa "x da t cent" se x > 0 e restituisce quello che resta
+int cambio_taglio(int ammontare, int taglio) {
+    int quante = ammontare / taglio;
+    if (quante > 0) {
+        printf("%d da %d cent\n", quante, taglio);
+    }
+    return ammontare - quante * taglio;
+}
+
+int main(void) {
+    int cent;
+    printf("Scrivere l'ammontare da convertire in monete: ");
+    scanf("%d", &cent);
+
+    const int tagli_monete[NUM_TAGLI] = {1, 2, 5, 10, 20, 50};
+
+    // dal taglio piu' grande al piu' piccolo: l'indice deve poter scendere sotto 0
+    for (ptrdiff_t i = NUM_TAGLI - 1; i >= 0; i--) {
+        cent = cambio_taglio(cent, tagli_monete[i]);
+    }
+    return 0;
+}
+```
+
+Provato sugli esempi della slide 12: 120 dà `2 da 50` e `1 da 20`; 367 dà `7 da 50`, `1 da 10`, `1 da 5`, `1 da 2`; 473 dà `9 da 50`, `1 da 20`, `1 da 2`, `1 da 1`. Con 0 non stampa niente.
+
+La divisione tra interi `ammontare / taglio` dà già il numero di monete, senza sottrazioni ripetute. Il resto si può scrivere anche `ammontare % taglio`.
+
+> [!TRAPPOLA] `size_t` non scende sotto zero
+> L'array dei tagli è crescente, quindi va scorso all'indietro. Con `for (size_t i = NUM_TAGLI - 1; i >= 0; i--)` il ciclo **non finisce**: `size_t` è senza segno, e dopo lo 0 non viene −1 ma il numero più grande possibile. Con un array di 3 elementi ho fatto stampare l'indice: `2`, `1`, `0`, `18446744073709551615`, e poi il programma legge fuori dall'array. Con `-Wall -Werror` **compila senza avvisi**; solo aggiungendo `-Wextra` gcc dice `comparison of unsigned expression in '>= 0' is always true`.
+
+Le soluzioni sono due:
+
+- **`ptrdiff_t`**, come dice la slide: un tipo intero **con segno**, grande come `size_t` (8 byte su questo PC), definito in `stddef.h`. Si stampa con `%td`.
+- restare con `size_t` e contare da `NUM_TAGLI` a 1, usando `i - 1` come indice: `for (size_t i = NUM_TAGLI; i > 0; i--)` con `tagli_monete[i - 1]`. È la strada della soluzione ufficiale del 2025/26, e della [05A](05A_array_stringhe.html).
+
+::: prova Che cosa stampa il programma con 8 centesimi?
+`1 da 5 cent`, `1 da 2 cent`, `1 da 1 cent`.
+:::
+
+> [!RICORDA]
+> - Ciclo all'indietro fino a 0: `ptrdiff_t`, oppure `size_t` da `n` a 1 con `i - 1`.
+> - Una funzione può stampare **e** restituire un valore: qui restituisce il resto.
+
+## Statistiche su sequenze (slide 13, Lab06-Es1)
+
+È il primo esercizio su CodeRunner. Il testo del 2025/26, con lo stesso nome:
+
+> [!NOTA] Lab06-Es1 Statistiche sequenze (testo 2025/26)
+> Leggere una serie di sequenze di interi positivi, ognuna terminata dallo zero. Per ogni sequenza stampare su una riga: la somma degli elementi, la somma dei quadrati, il massimo. Se una sequenza non ha elementi, cioè comincia subito con lo zero, il programma termina. Suggerimento: una funzione `leggi_sequenza` che legge una sequenza, restituisce al `main` le tre quantità e restituisce `true` se la sequenza non è vuota.
+
+La slide chiede quali parametri ha `leggi_sequenza` e che cosa restituisce. I risultati sono quattro: tre numeri e un sì o no. Il sì o no torna con la `return`; i tre numeri attraverso tre puntatori. La slide aggiunge che gli array non servono: somma, somma dei quadrati e massimo si aggiornano mentre si legge.
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+// legge una sequenza terminata da 0; restituisce false se e' vuota
+bool leggi_sequenza(int *somma, int *somma_quadrati, int *massimo) {
+    int n, quanti = 0;
+    *somma = 0;
+    *somma_quadrati = 0;
+    *massimo = 0;
+    while (scanf("%d", &n) == 1 && n != 0) {
+        quanti++;
+        *somma += n;
+        *somma_quadrati += n * n;
+        if (n > *massimo) {
+            *massimo = n;
+        }
+    }
+    return quanti > 0;
+}
+
+int main(void) {
+    int somma, somma_quadrati, massimo;
+    while (leggi_sequenza(&somma, &somma_quadrati, &massimo)) {
+        printf("%d %d %d\n", somma, somma_quadrati, massimo);
+    }
+    return 0;
+}
+```
+
+Con l'input `3 4 5 0 7 0 1 2 0 0` stampa tre righe: `12 50 5`, `7 49 7`, `3 5 2`. Poi legge la sequenza vuota e termina. La soluzione ufficiale dà lo stesso output.
+
+Come si legge il codice:
+
+- nel `main` le tre variabili sono normali `int`; alla funzione si passano i loro **indirizzi**, con `&`;
+- nella funzione i parametri sono `int *`, e ogni accesso passa per l'asterisco: `*somma += n` aggiunge `n` alla variabile del `main`;
+- la chiamata sta nella condizione del `while`: a ogni giro si legge una sequenza, e si esce quando è vuota;
+- il massimo può partire da 0 perché gli elementi sono positivi.
+
+> [!TRAPPOLA] `scanf(...) == 1`, non `scanf(...)` da solo
+> La soluzione ufficiale del 2025/26 scrive `while (scanf("%d", &n) && n != 0)`. Se l'input finisce senza lo zero finale, `scanf` restituisce `EOF`, che vale −1: è diverso da zero, quindi «vero», e il ciclo **non termina**. L'ho provato con l'input `3 4 5`: il programma ufficiale va avanti finché non lo si ferma, quello qui sopra stampa `12 50 5` ed esce. I test di CodeRunner hanno sempre lo zero finale, ma il confronto con 1 costa poco.
+
+::: prova Con l'input `2 2 0 0`, che cosa stampa?
+Una riga: `4 8 2`. Somma 4, quadrati 4 + 4, massimo 2. Poi trova la sequenza vuota e termina.
+:::
+
+> [!RICORDA]
+> - Tre risultati più un esito: l'esito con la `return`, i tre numeri con tre puntatori.
+> - Nel chiamante `&variabile`, nella funzione `*parametro`.
+
+## Passare un array a una funzione (slide 14–16, Lab06-Es2)
+
+Un array si passa a una funzione scrivendo solo il suo nome, perché il nome di un array vale come puntatore al primo elemento ([06B](06B_chiamata_funzioni.html)). Il parametro si scrive in due modi equivalenti: `void fn(int *dati)` oppure `void fn(int dati[])`.
+
+La slide 14 chiede: qual è il problema? La slide 15 risponde: la funzione riceve il puntatore al primo elemento, ma **non riceve la dimensione**. Dentro la funzione `sizeof(dati)` dà la dimensione di un puntatore, 8 byte, non quella dell'array. Quindi la lunghezza va passata in un secondo parametro.
+
+```grafico
+titolo: Che cosa arriva alla funzione. Nel `main` l'array `dati` ha 4 caselle. La funzione riceve solo una copia dell'indirizzo della prima (freccia) e, a parte, il numero 4: senza quel numero non saprebbe dove fermarsi
+x: 0 12.4
+y: 0 4.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.2 3.9 | grigio | "main"
+poligono: 2.2 3.0 3.6 3.0 3.6 3.8 2.2 3.8 | blu | pieno
+testo: 2.9 3.4 | blu | "7"
+poligono: 3.6 3.0 5.0 3.0 5.0 3.8 3.6 3.8 | blu | pieno
+testo: 4.3 3.4 | blu | "2"
+poligono: 5.0 3.0 6.4 3.0 6.4 3.8 5.0 3.8 | blu | pieno
+testo: 5.7 3.4 | blu | "9"
+poligono: 6.4 3.0 7.8 3.0 7.8 3.8 6.4 3.8 | blu | pieno
+testo: 7.1 3.4 | blu | "2"
+testo: 9.2 3.4 | blu | "dati"
+testo: 1.2 1.5 | grigio | "fn"
+poligono: 2.2 0.6 4.6 0.6 4.6 1.4 2.2 1.4 | ambra | pieno
+testo: 3.4 1.0 | ambra | "dati (indirizzo)"
+freccia: 2.9 1.5 2.9 2.9 | ambra
+poligono: 5.6 0.6 7.0 0.6 7.0 1.4 5.6 1.4 | verde | pieno
+testo: 6.3 1.0 | verde | "4"
+testo: 8.6 1.0 | verde | "n (lunghezza)"
+```
+
+Il secondo esercizio su CodeRunner, testo del 2025/26:
+
+> [!NOTA] Lab06-Es2 Funzioni su arrays (testo 2025/26)
+> 1. Una funzione `leggi_array` che legge un naturale N, con 0 ≤ N ≤ 20, seguito da N interi, e li scrive in un array ricevuto in ingresso. 2. Una funzione `conta_univoci` che, dato un array, restituisce il numero di elementi che compaiono **una sola volta**. 3. Una funzione `stampa_elementi_ripetuti` che riceve due array e stampa su una riga gli elementi del primo che compaiono anche nel secondo; se un elemento compare più volte nel primo, viene stampato più volte. 4. Un programma che legge due array, stampa i due risultati di `conta_univoci` e poi, su una nuova riga, gli elementi ripetuti.
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+#define NMAX 20
+
+// legge N (0 <= N <= 20) e poi N interi nell'array; restituisce N
+size_t leggi_array(int *a) {
+    size_t n;
+    scanf("%zu", &n);
+    for (size_t i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+    return n;
+}
+
+// quanti elementi compaiono una volta sola
+size_t conta_univoci(const int *a, size_t n) {
+    size_t univoci = 0;
+    for (size_t i = 0; i < n; i++) {
+        bool ripetuto = false;
+        for (size_t j = 0; j < n && !ripetuto; j++) {
+            if (j != i && a[j] == a[i]) {
+                ripetuto = true;
+            }
+        }
+        if (!ripetuto) {
+            univoci++;
+        }
+    }
+    return univoci;
+}
+
+// stampa gli elementi di a che compaiono anche in b
+void stampa_elementi_ripetuti(const int *a, size_t na, const int *b, size_t nb) {
+    for (size_t i = 0; i < na; i++) {
+        bool trovato = false;
+        for (size_t j = 0; j < nb && !trovato; j++) {
+            if (a[i] == b[j]) {
+                trovato = true;
+            }
+        }
+        if (trovato) {
+            printf("%d ", a[i]);
+        }
+    }
+    printf("\n");
+}
+
+int main(void) {
+    int a[NMAX], b[NMAX];
+    size_t na = leggi_array(a);
+    size_t nb = leggi_array(b);
+    printf("%zu %zu\n", conta_univoci(a, na), conta_univoci(b, nb));
+    stampa_elementi_ripetuti(a, na, b, nb);
+    return 0;
+}
+```
+
+Con `5 1 2 2 3 4` e poi `4 2 4 9 9` stampa `3 2` e, sotto, `2 2 4`. Nel primo array compaiono una volta sola 1, 3 e 4; nel secondo 2 e 4. Gli elementi del primo che stanno anche nel secondo sono i due 2 e il 4. Con due array vuoti stampa `0 0` e una riga vuota.
+
+Come si legge il codice:
+
+- **Gli array si creano nel `main`** con la dimensione massima, e si passano alle funzioni. `leggi_array` li riempie e **restituisce la lunghezza vera**: il `main` la conserva in `na` e la ripassa a tutte le altre funzioni.
+- `leggi_array` riceve `int *a` senza `const`, perché deve scrivere nell'array. Le altre due ricevono `const int *`, perché lo leggono soltanto.
+- `conta_univoci` è un «esiste» dentro un «per ogni»: per ogni elemento si cerca se esiste **un altro** elemento uguale. La condizione `j != i` evita di confrontare un elemento con sé stesso.
+- `stampa_elementi_ripetuti` ha quattro parametri: due coppie «puntatore, lunghezza».
+
+> [!TRAPPOLA] `%zu` per leggere un `size_t`
+> La soluzione ufficiale del 2025/26 legge la lunghezza con `scanf("%lu", &sz)`. Su Linux a 64 bit funziona. Con gcc 16 su Windows non compila: `format '%lu' expects argument of type 'long unsigned int *', but argument 2 has type 'size_t *' {aka 'long long unsigned int *'}`. Il formato giusto ovunque è **`%zu`**.
+
+::: prova Quanto vale `conta_univoci` sull'array `{5, 5, 5}`?
+0: ogni 5 ha un altro elemento uguale.
+:::
+
+> [!RICORDA]
+> - Un array si passa come coppia: puntatore ai dati e lunghezza.
+> - `const` sul parametro se la funzione legge soltanto.
+> - Una funzione che riempie un array restituisce quanti elementi ha scritto.
+
+## Funzioni su stringhe e vocali (slide 17–18)
+
+La slide 17 ripete le tre funzioni di `string.h` della [06B](06B_chiamata_funzioni.html): `strlen` dà la lunghezza senza il terminatore; `strcmp` confronta due stringhe nell'ordine del dizionario e dà un valore negativo, zero o positivo; `strncpy` copia al massimo `count` caratteri. Nella slide la destinazione è chiamata una volta `dest` e una volta `dst`: è lo stesso parametro.
+
+L'esercizio `vocali.c` chiede tre funzioni: `is_vowel` dice se un carattere è una vocale tra `AEIOUaeiou`; `esistono_vocali` dice se una stringa ne contiene almeno una; `stampa_vocali` stampa solo le vocali. Il programma stampa 1 o 0, e poi le vocali.
+
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_LEN 100
+
+bool is_vowel(char c);
+bool esistono_vocali(const char *s);
+void stampa_vocali(const char *s);
+
+int main(void) {
+    char parola[MAX_LEN + 1];
+    scanf("%100s", parola);
+    printf("%d\n", esistono_vocali(parola));
+    stampa_vocali(parola);
+    return 0;
+}
+
+// true se c e' una delle lettere AEIOUaeiou
+bool is_vowel(char c) {
+    const char *vocali = "AEIOUaeiou";
+    bool trovata = false;
+    for (size_t i = 0; vocali[i] != '\0' && !trovata; i++) {
+        if (c == vocali[i]) {
+            trovata = true;
+        }
+    }
+    return trovata;
+}
+
+// true se nella stringa c'e' almeno una vocale
+bool esistono_vocali(const char *s) {
+    bool trovata = false;
+    for (size_t i = 0; s[i] != '\0' && !trovata; i++) {
+        if (is_vowel(s[i])) {
+            trovata = true;
+        }
+    }
+    return trovata;
+}
+
+// stampa solo le vocali, nell'ordine in cui compaiono
+void stampa_vocali(const char *s) {
+    for (size_t i = 0; s[i] != '\0'; i++) {
+        if (is_vowel(s[i])) {
+            printf("%c", s[i]);
+        }
+    }
+    printf("\n");
+}
+```
+
+Con `Programmazione` stampa `1` e `oaaioe`; con `xyz` stampa `0` e una riga vuota; con `AEIOU` stampa `1` e `AEIOU`.
+
+La domanda della slide: **serve ancora passare la dimensione, come per gli array?** No. Una stringa finisce con il terminatore `'\0'`, quindi la funzione scopre da sola dove fermarsi: la condizione del ciclo è `s[i] != '\0'`. È la differenza tra un array qualsiasi e una stringa.
+
+Le funzioni si chiamano a catena: `esistono_vocali` e `stampa_vocali` usano `is_vowel`, che a sua volta scorre la stringa `"AEIOUaeiou"`. Ogni funzione fa una cosa sola. Stampare un `bool` con `%d` dà 1 o 0, perché in C `true` vale 1.
+
+::: prova Che cosa stampa il programma con `Rhythm`?
+`0` e poi una riga vuota: la `y` non è nell'elenco delle vocali.
+:::
+
+> [!RICORDA]
+> - Stringa: basta il puntatore, la fine è il terminatore.
+> - Una funzione piccola (`is_vowel`) usata da altre due evita di ripetere il confronto.
+
+## Palindroma (slide 19, Lab06-Es3)
+
+Una parola è palindroma se letta al contrario resta uguale, come `radar`. Il terzo esercizio su CodeRunner, testo del 2025/26:
+
+> [!NOTA] Lab06-Es3 Palindroma (testo 2025/26)
+> Leggere una parola di al massimo 50 caratteri (con `%s`) e determinare con una funzione se è palindroma. Se lo è, stampare `PALINDROMA`. Se non lo è, copiarla al contrario con una funzione `capovolgi`, che riceve una stringa `src` e un array di caratteri `dst`, e stampare la parola originale e quella capovolta.
+
+Per controllare basta confrontare il primo carattere con l'ultimo, il secondo con il penultimo, e così via fino a metà parola.
+
+```grafico
+titolo: I confronti per la parola `radar`, di lunghezza 5. Si confronta la casella `i` con la casella `n - 1 - i`: la 0 con la 4, la 1 con la 3. La casella centrale non ha bisogno di confronti, quindi bastano `n / 2 = 2` giri
+x: 0 12.4
+y: 0 3.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 2.2 1.2 3.8 1.2 3.8 2.2 2.2 2.2 | blu | pieno
+testo: 3.0 1.7 | blu | "r"
+poligono: 3.8 1.2 5.4 1.2 5.4 2.2 3.8 2.2 | ambra | pieno
+testo: 4.6 1.7 | ambra | "a"
+poligono: 5.4 1.2 7.0 1.2 7.0 2.2 5.4 2.2 | grigio | tratteggio
+testo: 6.2 1.7 | grigio | "d"
+poligono: 7.0 1.2 8.6 1.2 8.6 2.2 7.0 2.2 | ambra | pieno
+testo: 7.8 1.7 | ambra | "a"
+poligono: 8.6 1.2 10.2 1.2 10.2 2.2 8.6 2.2 | blu | pieno
+testo: 9.4 1.7 | blu | "r"
+testo: 3.0 0.8 | grigio | "0"
+testo: 4.6 0.8 | grigio | "1"
+testo: 6.2 0.8 | grigio | "2"
+testo: 7.8 0.8 | grigio | "3"
+testo: 9.4 0.8 | grigio | "4"
+segmento: 3.0 2.3 3.0 3.1 | blu
+segmento: 3.0 3.1 9.4 3.1 | blu
+segmento: 9.4 3.1 9.4 2.3 | blu
+segmento: 4.6 2.3 4.6 2.7 | ambra
+segmento: 4.6 2.7 7.8 2.7 | ambra
+segmento: 7.8 2.7 7.8 2.3 | ambra
+testo: 6.2 3.35 | blu | "i = 0"
+```
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+#define WORD_MAX 50
+
+bool palindroma(const char *s);
+void capovolgi(char *dst, const char *src);
+
+int main(void) {
+    char parola[WORD_MAX + 1], rovescia[WORD_MAX + 1];
+    scanf("%50s", parola);
+    if (palindroma(parola)) {
+        printf("PALINDROMA\n");
+    } else {
+        capovolgi(rovescia, parola);
+        printf("%s %s\n", parola, rovescia);
+    }
+    return 0;
+}
+
+// confronta il primo con l'ultimo, il secondo con il penultimo, ...
+bool palindroma(const char *s) {
+    size_t n = strlen(s);
+    bool uguali = true;
+    for (size_t i = 0; i < n / 2 && uguali; i++) {
+        if (s[i] != s[n - 1 - i]) {
+            uguali = false;
+        }
+    }
+    return uguali;
+}
+
+// copia src in dst al contrario, terminatore compreso
+void capovolgi(char *dst, const char *src) {
+    size_t n = strlen(src);
+    for (size_t i = 0; i < n; i++) {
+        dst[i] = src[n - 1 - i];
+    }
+    dst[n] = '\0';
+}
+```
+
+Provato: `anna`, `radar`, `abba` e `a` danno `PALINDROMA`; `ciao` dà `ciao oaic`; `ab` dà `ab ba`.
+
+`palindroma` è un «per ogni»: tutte le coppie devono essere uguali, quindi la sentinella parte da `true` e il ciclo si ferma alla prima coppia diversa. `capovolgi` scrive in `dst`, che quindi non è `const`, e legge da `src`, che lo è. L'ultima riga è quella che si dimentica: **senza `dst[n] = '\0'` la copia non è una stringa**, e `printf` va avanti a stampare quello che trova in memoria.
+
+Nel `main` servono due array da 51 caratteri: 50 più il terminatore, con `%50s` nella `scanf`.
+
+::: prova Quanti confronti fa `palindroma` sulla parola `abcba`, e quanti su `abxya`?
+Due su `abcba`, lunga 5: le coppie (0, 4) e (1, 3). Due anche su `abxya`: la prima coppia è uguale, la seconda no, e il ciclo si ferma.
+:::
+
+> [!RICORDA]
+> - Simmetria: casella `i` contro casella `n - 1 - i`, fino a metà.
+> - Chi costruisce una stringa scrive anche il terminatore.
+
+## Scale e serpi (slide 20, Lab06-Es4)
+
+Scale e serpi è un gioco di percorso con i dadi, simile al Gioco dell'Oca. Nel quarto esercizio su CodeRunner il codice del gioco è già scritto in parte, e va scritta una sola funzione. Il testo del 2025/26:
+
+> [!NOTA] Lab06-Es4 Scale e serpi (testo 2025/26)
+> Due giocatori partono dalla casella 1 di un tabellone 10 × 10 e giocano a turni. Chi ha il turno lancia un dado e avanza. Se arriva sulla **base di una scala**, sale alla casella in cima; se arriva sulla **testa di una serpe**, scende alla coda. Chi fa 6 gioca anche il turno successivo. Vince chi per primo raggiunge o supera la casella 100. Le scale (base, cima): (1, 38) (4, 14) (8, 30) (21, 42) (28, 76) (50, 67) (71, 92) (80, 99). Le serpi (testa, coda): (32, 10) (36, 6) (48, 26) (62, 18) (88, 24) (95, 56) (97, 78). Scrivere `muovi_giocatore(int dado, int *pos)`: aggiorna la casella del giocatore e restituisce `true` se gioca ancora.
+
+La funzione ha di nuovo due risultati: la nuova posizione e «gioca ancora?». La posizione torna attraverso il puntatore `pos`; il sì o no con la `return`.
+
+```c
+#define NUM_SCALE 8
+const int scala_base[NUM_SCALE] = {  1,  4,  8, 21, 28, 50, 71, 80 };
+const int scala_cima[NUM_SCALE] = { 38, 14, 30, 42, 76, 67, 92, 99 };
+
+#define NUM_SERPI 7
+const int serpe_testa[NUM_SERPI] = { 32, 36, 48, 62, 88, 95, 97 };
+const int serpe_coda[NUM_SERPI]  = { 10,  6, 26, 18, 24, 56, 78 };
+
+// se *pos e' una partenza (base di scala o testa di serpe), salta all'arrivo
+void segui(int *pos, const int *da, const int *a, size_t n) {
+    for (size_t i = 0; i < n; i++) {
+        if (*pos == da[i]) {
+            *pos = a[i];
+        }
+    }
+}
+
+bool muovi_giocatore(int dado, int *pos) {
+    *pos += dado;
+    segui(pos, scala_base, scala_cima, NUM_SCALE);
+    segui(pos, serpe_testa, serpe_coda, NUM_SERPI);
+    return dado == 6;
+}
+```
+
+Le scale e le serpi sono quattro **array paralleli**: `scala_base[i]` e `scala_cima[i]` descrivono la stessa scala. Scale e serpi fanno la stessa cosa, «se sei qui, vai là», quindi basta una funzione sola, `segui`, chiamata due volte con array diversi: è il passaggio di array con la lunghezza della sezione precedente. A `segui` si passa `pos` senza `&`, perché in `muovi_giocatore` è già un puntatore.
+
+L'ho provata dentro il codice del gioco del 2025/26, con cinque semi diversi del generatore di numeri casuali: la partita finisce sempre con un giocatore a 100 o più, per esempio `1 53 100` o `2 104 99` (turno, posizione del primo, posizione del secondo). Nessuna cima di scala è una testa di serpe, e nessuna coda è una base, quindi l'ordine delle due chiamate non cambia il risultato.
+
+::: prova Un giocatore è sulla casella 2 e fa 6. Dove finisce, e gioca ancora?
+Arriva sulla 8, base di una scala: sale alla 30. Ha fatto 6, quindi gioca ancora: la funzione restituisce `true`.
+:::
+
+> [!RICORDA]
+> - Posizione con il puntatore, «gioca ancora» con la `return`.
+> - Due compiti uguali su dati diversi: una funzione sola, chiamata due volte.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `bool f(int n)` | «f restituisce un booleano» | funzione che risponde sì o no | `verifica_primalita(7)` |
+| `void f(void)` | «f non riceve e non restituisce niente» | funzione che fa solo un'azione | `saluta()` |
+| `int *p` nei parametri | «puntatore a intero» | la funzione scrive nella variabile del chiamante | `leggi_sequenza(&somma, ...)` |
+| `const int *a` | «puntatore a interi che non modifico» | array in sola lettura | `conta_univoci(a, n)` |
+| `size_t n` accanto all'array | «lunghezza» | quanti elementi ha l'array | `fn(dati, 4)` |
+| `ptrdiff_t` | «intero con segno, grande come un indice» | per indici che scendono sotto 0 | `for (ptrdiff_t i = n - 1; i >= 0; i--)` |
+| `%zu`, `%td` | «zeta u», «ti di» | formati di `size_t` e di `ptrdiff_t` | `printf("%zu", n)` |
+
+## Verso l'esame
+
+All'esame si programma al PC con CodeRunner, che compila con `-Wall -Werror` e confronta l'output carattere per carattere. La consegna tipica è proprio quella di questo laboratorio: **una funzione con l'intestazione data**, da completare. Da qui servono:
+
+1. **scegliere il tipo di ritorno e i parametri**, e leggerli dal `main` quando è già scritto;
+2. **i risultati multipli**: esito con la `return`, valori con i puntatori;
+3. **gli array come coppia** puntatore e lunghezza, con `const` dove si legge soltanto;
+4. **le regole**: una sola `return` nelle funzioni iterative, niente `break`, quindi sentinelle nelle condizioni dei cicli.
+
+### Una domanda sul modello, letta insieme
+
+Non è un testo d'esame: è sul modello delle funzioni `e1` degli appelli, come quella del pre-esame 2023/24 svolta nella [07A](07A_algoritmi_su_array.html).
+
+«Scrivere una funzione iterativa `conta_comuni` che riceve due array di interi con le loro lunghezze e restituisce quanti elementi del primo compaiono anche nel secondo.»
+
+**In pratica chiede:** per ogni elemento del primo array, un «esiste» sul secondo, e un contatore.
+
+```c
+size_t conta_comuni(const int a[], size_t na, const int b[], size_t nb) {
+    size_t comuni = 0;
+    for (size_t i = 0; i < na; i++) {
+        bool trovato = false;
+        for (size_t j = 0; j < nb && !trovato; j++) {
+            if (a[i] == b[j]) {
+                trovato = true;
+            }
+        }
+        if (trovato) {
+            comuni++;
+        }
+    }
+    return comuni;
+}
+```
+
+Con `{1, 2, 2, 3, 4}` e `{2, 4, 9, 9}` restituisce 3; a ruoli scambiati 2; con il primo array vuoto 0. È `stampa_elementi_ripetuti` con un contatore al posto della stampa: una sola `return`, nessun `break`, sentinella nel ciclo interno.
+
+> [!METODO] Una funzione su array all'esame
+> 1. Leggi l'intestazione: quali array, quali lunghezze, che cosa restituisce.
+> 2. Traduci la richiesta in schemi: conteggio, «esiste», «per ogni», massimo.
+> 3. Dichiara il risultato in cima, con il valore giusto per l'array vuoto.
+> 4. Scrivi i cicli con le sentinelle nella condizione.
+> 5. Una sola `return`, in fondo.
+
+### Errori da evitare
+
+- Usare `sizeof` dentro la funzione per sapere quanto è lungo l'array ricevuto.
+- Dimenticare `&` nella chiamata, o l'asterisco dentro la funzione, quando il risultato torna per puntatore.
+- Scrivere due `return` in un ciclo per uscire prima.
+- Scendere con un indice `size_t` fino a `i >= 0`.
+- Costruire una stringa senza il terminatore.
+
+## Quiz
+
+```quiz
+D: Una funzione deve leggere una sequenza e restituire al chiamante somma, massimo e l'informazione «la sequenza era vuota?». Quale intestazione va bene?
++ `bool leggi(int *somma, int *massimo)`
+- `int leggi(int somma, int massimo)`
+- `bool leggi(int somma, int massimo)`
+- `void leggi(void)`
+- `int, int, bool leggi(void)`
+= I risultati sono tre: uno torna con la `return`, gli altri due attraverso puntatori. La più insidiosa è la terza: con parametri `int` la funzione riceve copie, e le variabili del chiamante non cambiano.
+
+D: Dentro `void fn(int dati[])`, chiamata con un array di 10 `int`, quanto vale `sizeof(dati)` su questo PC a 64 bit?
++ 8
+- 40
+- 10
+- 4
+- dipende dal contenuto dell'array
+= Il parametro è un puntatore, e un puntatore occupa 8 byte. La più insidiosa è 40, che è la dimensione dell'array nel `main`: per questo la lunghezza si passa a parte.
+
+D: Che cosa fa `for (size_t i = 2; i >= 0; i--) { printf("%zu ", i); }`?
++ stampa 2 1 0 e poi continua con numeri enormi, senza fermarsi
+- stampa 2 1 0 e si ferma
+- stampa 2 1 e si ferma
+- non compila con `-Wall -Werror`
+- non stampa niente
+= `size_t` è senza segno: dopo 0 viene 18446744073709551615, e `i >= 0` è sempre vero. La più insidiosa è «non compila»: l'avviso arriva solo con `-Wextra`.
+
+D: Nella funzione `bool muovi_giocatore(int dado, int *pos)`, quale istruzione fa avanzare il giocatore?
++ `*pos += dado;`
+- `pos += dado;`
+- `&pos += dado;`
+- `pos = dado;`
+- `return pos + dado;`
+= Con l'asterisco si modifica la variabile del chiamante. La più insidiosa è la seconda: `pos += dado` sposta il puntatore, non il giocatore, e compila.
+
+D: Perché a `esistono_vocali(const char *s)` non serve la lunghezza della stringa?
++ perché la stringa finisce con il terminatore, e il ciclo si ferma lì
+- perché `sizeof(s)` dà la lunghezza
+- perché le stringhe hanno sempre 100 caratteri
+- perché `const` contiene la lunghezza
+- perché `scanf` la salva in una variabile globale
+= La fine di una stringa è segnata da `'\0'`. La più insidiosa è la seconda: `sizeof(s)` è la dimensione del puntatore, 8.
+
+D: Quante volte gira il ciclo di `palindroma` sulla parola `anna`?
+N: 2
+= La lunghezza è 4, quindi `n / 2` vale 2: si confrontano le coppie (0, 3) e (1, 2), tutte uguali.
+
+D: `cambio_taglio(45, 20)` che cosa stampa e che cosa restituisce?
++ stampa `2 da 20 cent` e restituisce 5
+- stampa `2 da 20 cent` e restituisce 2
+- stampa `5 da 20 cent` e restituisce 2
+- non stampa niente e restituisce 45
+- stampa `2 da 20 cent` e restituisce 40
+= 45 / 20 fa 2 tra interi, e restano 45 − 40 = 5. La più insidiosa è la seconda: la funzione restituisce il resto, non il numero di monete.
+
+D: Quale intestazione promette di non modificare l'array ricevuto?
++ `size_t conta(const int *a, size_t n)`
+- `size_t conta(int *a, size_t n)`
+- `size_t conta(int a[], const size_t n)`
+- `const size_t conta(int *a, size_t n)`
+- `size_t conta(int *const a, size_t n)`
+= `const int *a` vuol dire «puntatore a interi che non cambio». La più insidiosa è l'ultima: `int *const a` blocca il puntatore, non i dati.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: contare le occorrenze (slide 5)
+Scrivi la funzione della slide 5: conta quante volte il numero `x` compare in un array di interi.
+::: soluzione
+```c
+size_t conta_occorrenze(const int a[], size_t n, int x) {
+    size_t quante = 0;
+    for (size_t i = 0; i < n; i++) {
+        if (a[i] == x) {
+            quante++;
+        }
+    }
+    return quante;
+}
+```
+Con `{3, 7, 3, 1, 3}` e `x = 3` dà 3; con `x = 9` dà 0; con lunghezza 0 dà 0. Tre parametri: i dati, la lunghezza, il numero cercato. Provato.
+:::
+
+::: esercizio base Riscaldamento: ordinato?
+Scrivi `bool ordinato(const int a[], size_t n)`, che dice se l'array è in ordine crescente (elementi uguali ammessi).
+::: soluzione
+```c
+bool ordinato(const int a[], size_t n) {
+    bool ok = true;
+    for (size_t i = 1; i < n && ok; i++) {
+        if (a[i - 1] > a[i]) {
+            ok = false;
+        }
+    }
+    return ok;
+}
+```
+È un «per ogni» sulle coppie vicine, come nella [07A](07A_algoritmi_su_array.html). `{1, 3, 3, 8}` dà vero, `{2, 1, 5}` falso, l'array vuoto vero. Il ciclo parte da 1, così `i - 1` non scende mai sotto zero. Provato.
+:::
+
+::: esercizio medio Minimo e massimo insieme
+Scrivi una funzione che trova il minimo e il massimo di un array non vuoto e li restituisce tutti e due al chiamante.
+::: soluzione
+```c
+void min_max(const int a[], size_t n, int *min, int *max) {
+    *min = a[0];
+    *max = a[0];
+    for (size_t i = 1; i < n; i++) {
+        if (a[i] < *min) {
+            *min = a[i];
+        }
+        if (a[i] > *max) {
+            *max = a[i];
+        }
+    }
+}
+```
+Si chiama con `min_max(c, 4, &mn, &mx)`. Con `{4, -2, 9, 0}` dà −2 e 9. Due risultati, nessun esito da comunicare: la funzione è `void` e tutti e due passano per puntatore. Provato.
+:::
+
+::: esercizio medio Media e varianza (slide 6)
+Scrivi la funzione della slide 6: legge una sequenza di interi positivi terminata da 0 e, se non ci sono errori, restituisce media e varianza.
+::: soluzione
+```c
+bool leggi_media_varianza(double *media, double *varianza) {
+    int n, quanti = 0;
+    double somma = 0.0, somma_quadrati = 0.0;
+    bool errore = false;
+    bool finita = false;
+    while (!finita && !errore) {
+        if (scanf("%d", &n) != 1 || n < 0) {
+            errore = true;
+        } else if (n == 0) {
+            finita = true;
+        } else {
+            quanti++;
+            somma += n;
+            somma_quadrati += (double)n * n;
+        }
+    }
+    bool ok = !errore && quanti > 0;
+    if (ok) {
+        *media = somma / quanti;
+        *varianza = somma_quadrati / quanti - (*media) * (*media);
+    }
+    return ok;
+}
+```
+Con `2 4 4 4 5 5 7 9 0` dà media 5.00 e varianza 4.00. Restituisce falso con la sequenza vuota, con un numero negativo, con un carattere non numerico e se l'input finisce senza lo zero. La varianza è la media dei quadrati meno il quadrato della media. Le due sentinelle `finita` ed `errore` sostituiscono il `break`. Provato.
+:::
+
+::: esercizio medio Capovolgere sul posto
+Scrivi `void capovolgi_sul_posto(char *s)`, che capovolge la stringa senza usare un secondo array.
+::: soluzione
+```c
+void capovolgi_sul_posto(char *s) {
+    size_t n = strlen(s);
+    for (size_t i = 0; i < n / 2; i++) {
+        char t = s[i];
+        s[i] = s[n - 1 - i];
+        s[n - 1 - i] = t;
+    }
+}
+```
+`funzione` diventa `enoiznuf`; la stringa vuota resta vuota. È lo scambio con la variabile temporanea della [03A](03A_scambio_variabili.html), sulle stesse coppie di `palindroma`. Il terminatore non si tocca: resta dov'era. Provato.
+:::
+
+::: esercizio esame Stampare un array al contrario, con `size_t`
+Scrivi `void stampa_al_contrario(const int a[], size_t n)`, che stampa gli elementi dall'ultimo al primo, usando solo indici `size_t`.
+::: soluzione
+```c
+void stampa_al_contrario(const int a[], size_t n) {
+    for (size_t i = n; i > 0; i--) {
+        printf("%d ", a[i - 1]);
+    }
+    printf("\n");
+}
+```
+Con `{4, -2, 9, 0}` stampa `0 9 -2 4`; con l'array vuoto solo l'a capo. L'indice va da `n` a 1 e si usa `a[i - 1]`: la condizione `i > 0` diventa falsa a zero, senza mai sottrarre sotto lo zero. Provato.
+:::
+
+## Domande di ripasso
+
+::: domanda Quali tre cose si decidono prima di scrivere una funzione?
+Il nome, i parametri in ingresso e il tipo di ritorno.
+:::
+
+::: domanda Come fa una funzione a restituire più di un risultato?
+Uno con la `return`; gli altri scrivendo, attraverso puntatori ricevuti come parametri, in variabili del chiamante.
+:::
+
+::: domanda Perché a una funzione che riceve un array va passata anche la lunghezza?
+Perché riceve solo il puntatore al primo elemento: da quello non può sapere quanti elementi ci sono.
+:::
+
+::: domanda Perché per le stringhe la lunghezza non serve?
+Perché finiscono con il terminatore `'\0'`, che la funzione trova scorrendo.
+:::
+
+::: domanda Che cosa succede in un ciclo `for (size_t i = n - 1; i >= 0; i--)`?
+Non termina: `size_t` è senza segno e `i >= 0` è sempre vero. Si usa `ptrdiff_t`, o si conta da `n` a 1 con `i - 1`.
+:::
+
+::: domanda Quando si mette `const` davanti a un parametro array?
+Quando la funzione legge l'array senza modificarlo.
+:::
+
+## Glossario
+
+```glossario
+Prototipo | La riga con tipo di ritorno, nome e parametri di una funzione, seguita dal punto e virgola.
+Tipo di ritorno | Il tipo del valore che la funzione restituisce; void se non restituisce niente.
+Parametro puntatore | Parametro che contiene l'indirizzo di una variabile del chiamante, per poterla modificare.
+ptrdiff_t | Tipo intero con segno grande come size_t, definito in stddef.h; si stampa con %td.
+Array paralleli | Due array della stessa lunghezza in cui gli elementi con lo stesso indice vanno insieme.
+Sentinella | Variabile booleana nella condizione di un ciclo, che lo ferma senza break.
+Palindroma | Parola che letta al contrario resta uguale.
+CodeRunner | Il sistema di Moodle che compila il programma e confronta l'output con quello atteso.
+```
+
+## Checklist
+
+```checklist
+- So scegliere nome, parametri e tipo di ritorno di una funzione.
+- So ricavare i tipi di una funzione da come il main la usa.
+- So scrivere una funzione che risponde sì o no con una sola return.
+- So restituire più risultati con i puntatori, e chiamare la funzione con &.
+- So passare un array con la sua lunghezza, con const dove serve.
+- So perché per una stringa la lunghezza non va passata.
+- So scrivere un ciclo all'indietro senza sbagliare con size_t.
+- So costruire una stringa in un array di destinazione, terminatore compreso.
+- So usare la stessa funzione su dati diversi invece di copiarla.
+```
+
+## Fonti
+
+- Slide «Funzioni» (Lezione nº 6 di laboratorio, Lab06), Programmazione I – Laboratorio, canale B, A.A. 2026/27: come definire le funzioni (slide 2), i quattro compiti da progettare (3–6), verifica di primalità e `primi.c` (7–8), funzioni iterative (9), cambio monete (10–12), statistiche su sequenze (13), passaggio di array (14–16), funzioni su stringhe e vocali (17–18), palindroma (19), Scale e serpi (20).
+- Codice di partenza del Lab06 2025/26 (Moodle dei canali A e B: `primi.c`, `funzioni_iterative.c`, `monete.c`) e soluzioni del canale A 2025/26: i testi degli esercizi CodeRunner riportati qui vengono da quelle soluzioni; i testi 2026/27 su Moodle possono essere diversi.
+- Tutti i programmi li ho compilati con gcc 16.1 su Windows 11, con `-Wall -Werror`, ed eseguiti sugli esempi citati; i messaggi del compilatore riportati sono quelli veri. Le soluzioni, la domanda sul modello, i quiz e gli esercizi sono di questi appunti.
 
 
 ---
@@ -18066,6 +19036,238 @@ D: Sul modello degli errori della 05A. In una funzione con i parametri `const ch
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/riassunti/settimana_06.md -->
+> File: `contesto_ai/PROG1/riassunti/settimana_06.md`
+
+```yaml
+corso: PROG1
+lezione: S6
+tipo: riassunto
+titolo: "Settimana 6: chiamata di funzione, puntatori come parametri e il laboratorio sulle stringhe"
+data: 2026-11-04
+docenti: Elvio Amparore
+sopratitolo: Riassunto settimanale · Programmazione I · Canale B · 02/11 – 06/11/2026
+descrizione: >-
+  Riassunto della settimana 6 di Programmazione I (canale B): il Laboratorio 05 su array e stringhe, con i contatori
+  per categoria, le due passate, le stringhe e ctype.h; le due lezioni sulla 06B, con lo stack delle chiamate, i
+  frame, il passaggio per valore, lo scambio con i puntatori, array e stringhe come parametri, const, strncpy e le
+  asserzioni.
+lede: >-
+  Le due lezioni e il laboratorio della settimana in poche pagine: che cosa succede in memoria quando si chiama una
+  funzione, perché per cambiare una variabile del chiamante serve un puntatore, come si passa un array, e a che cosa
+  servono le asserzioni.
+materiale: slide
+scheda:
+  Lezioni: "[Lab05A](Lab05A_array_stringhe.html) lun 02/11 (B2) · [06B](06B_chiamata_funzioni.html) mar 03/11 e mer 04/11"
+  Tempo di ripasso: 30 minuti
+fonte: >-
+  Gli appunti della lezione 06B e del Laboratorio 05 di Programmazione I (canale B), scritti sulle slide di
+  E. G. Amparore e del laboratorio
+appunti_html: appunti/PROG1/riassunto_settimana_06.html
+genera_html: true
+```
+
+## In breve
+
+- Ogni chiamata di funzione crea sullo **stack** un **frame** con i parametri e le variabili locali; al ritorno il frame viene tolto.
+- I parametri sono **copie**: una funzione che scambia i suoi due parametri non scambia le variabili del chiamante. Per farlo riceve i loro **indirizzi**.
+- Un **array** passato a una funzione arriva come puntatore al primo elemento: la lunghezza va passata a parte. Con `const` la funzione promette di non modificarlo.
+- Le **stringhe** arrivano come `const char *` e finiscono a `'\0'`: `strlen` e `strcmp` contano su quello, e `strncpy` può lasciare una stringa senza terminatore.
+- Un'**asserzione**, `assert(condizione)`, ferma il programma quando una cosa che deve essere vera non lo è: serve per gli errori del programmatore, non per l'input.
+- Nel laboratorio: contatori per categoria con `frequenze[v - 1]++`, stringhe con il terminatore, e le funzioni di `ctype.h`, che restituiscono un valore diverso da zero, non per forza 1.
+
+> [!NOTA] Le lezioni della settimana
+> Amparore ha usato le slide 06B in tutte e due le lezioni, martedì 03/11 e mercoledì 04/11: sul Moodle del corso ci sono le due registrazioni. Le slide 07A sugli algoritmi su array sono della settimana dopo (10/11). Il Laboratorio 05 il turno B2 l'ha fatto lunedì 02/11 con Elisa Marengo; il turno B1, che il 03/11 ha recuperato il Lab04, una settimana dopo.
+
+## Lab05A · Array e stringhe (lun 02/11)
+
+Il laboratorio mette in pratica la 05A. Le idee che restano:
+
+- **Contare per categoria.** Per sapere quante volte compare ogni voto da 1 a 5 si usa un array di 5 contatori a zero, e per ogni voto `v` si fa `frequenze[v - 1]++`. Il valore sceglie il contatore.
+- **Due passate.** Se la decisione su ogni elemento dipende da un dato che si conosce solo alla fine, come il minimo di tutta la sequenza, i dati vanno memorizzati in un array e scorsi una seconda volta.
+- **Stringhe.** Una stringa è un array di `char` chiuso da `'\0'`. Per 20 caratteri servono 21 posti, e si legge con `%20s`, senza `&`. Si copia carattere per carattere, e poi si scrive il terminatore.
+- **`ctype.h`.** `isdigit`, `isupper`, `isalpha` dicono che tipo di carattere è. Restituiscono un `int` **diverso da zero**: con gcc 16 su Windows `islower('q')` vale 2. Per stampare 0 o 1 si passa da un `bool`.
+
+::: prova Con i voti `1 3 3 5 1 3`, che cosa contiene `frequenze` alla fine?
+`{2, 0, 3, 0, 1}`: due 1, tre 3, un 5.
+:::
+
+> [!RICORDA]
+> - `frequenze[v - 1]++`: il valore fa da indice.
+> - Stringa: un posto in più per `'\0'`, e chi la costruisce scrive il terminatore.
+> - `ctype.h`: diverso da zero, non 1.
+
+## 06B · Chiamata e ritorno (mar 03/11 e mer 04/11)
+
+Quando un programma chiama una funzione, deve ricordare dove tornare e dove tenere parametri e variabili locali. Lo fa con lo **stack delle chiamate**: una pila in cui ogni chiamata aggiunge un blocco, il **frame**, e ogni ritorno lo toglie. In cima alla pila c'è sempre la funzione in esecuzione.
+
+- **La chiamata**: si calcolano gli argomenti, si crea il frame della funzione chiamata, si copiano i valori nei parametri, e l'esecuzione salta al suo codice.
+- **Il ritorno**: il valore restituito viene consegnato al chiamante, il frame viene tolto, e si riprende dall'istruzione dopo la chiamata. Le variabili locali della funzione non esistono più.
+- **Passaggio per valore**: nei parametri finiscono **copie**. Modificare un parametro non tocca la variabile del chiamante.
+
+::: prova `main` chiama `f`, e `f` chiama `g`. Mentre gira `g`, quanti frame ci sono sullo stack, e in che ordine vengono tolti?
+Tre: `main` sotto, poi `f`, poi `g` in cima. Si toglie prima quello di `g`, poi quello di `f`: l'ultimo arrivato è il primo ad andarsene.
+:::
+
+> [!RICORDA]
+> - Una chiamata, un frame; al ritorno il frame sparisce con le sue variabili.
+> - Nei parametri finiscono copie dei valori.
+
+## 06B · Puntatori, array e asserzioni
+
+Una funzione che scambia i suoi due parametri non scambia niente per chi l'ha chiamata. `swapSbagliato(int a, int b)` scambia le sue copie e poi sparisce con il suo frame. `swap(int *a, int *b)` riceve gli indirizzi e scrive, con l'asterisco, nelle variabili del chiamante.
+
+```grafico
+titolo: Lo stack durante `swap(&x, &y)`. In basso il frame di `main`, con x e y. In alto il frame di `swap`: a e b non contengono numeri ma gli indirizzi di x e y (frecce). Scrivendo in `*a` e `*b` la funzione cambia le caselle di `main`
+x: 0 12.4
+y: 0 5.0
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 3.0 0.4 9.4 0.4 9.4 2.0 3.0 2.0 | blu | tenue
+testo: 1.6 1.2 | blu | "main"
+poligono: 4.0 0.8 5.6 0.8 5.6 1.6 4.0 1.6 | blu | pieno
+testo: 4.8 1.2 | blu | "x: 3"
+poligono: 6.8 0.8 8.4 0.8 8.4 1.6 6.8 1.6 | blu | pieno
+testo: 7.6 1.2 | blu | "y: 8"
+poligono: 3.0 2.8 9.4 2.8 9.4 4.4 3.0 4.4 | ambra | tenue
+testo: 1.6 3.6 | ambra | "swap"
+poligono: 4.0 3.2 5.6 3.2 5.6 4.0 4.0 4.0 | ambra | pieno
+testo: 4.8 3.6 | ambra | "a"
+poligono: 6.8 3.2 8.4 3.2 8.4 4.0 6.8 4.0 | ambra | pieno
+testo: 7.6 3.6 | ambra | "b"
+freccia: 4.8 3.1 4.8 1.7 | ambra
+freccia: 7.6 3.1 7.6 1.7 | ambra
+testo: 11.0 3.6 | grigio | "in cima"
+```
+
+- **Array come parametri**: il nome dell'array diventa un puntatore al primo elemento. Dentro la funzione `sizeof` dà la dimensione del puntatore, quindi la lunghezza si passa in un altro parametro.
+- **`const`**: `const int v[]` rende l'array di sola lettura dentro la funzione; un tentativo di scrivere è un errore di compilazione.
+- **Stringhe**: `strlen` dà la lunghezza senza il terminatore, `strcmp` confronta nell'ordine del dizionario, `strncpy` copia al massimo un certo numero di caratteri e può lasciare la stringa **senza terminatore**.
+- **Asserzioni**: `assert(condizione)` ferma il programma se la condizione è falsa, e dice file e riga. Serve a controllare quello che deve essere vero in quel punto; con `-DNDEBUG` sparisce.
+
+::: prova Dopo `int x = 3, y = 8; swapSbagliato(x, y); swap(&x, &y);`, quanto valgono `x` e `y`?
+8 e 3. La prima chiamata non cambia niente, la seconda scambia.
+:::
+
+> [!RICORDA]
+> - Per modificare una variabile del chiamante: indirizzo nella chiamata, asterisco nella funzione.
+> - Array: puntatore più lunghezza, `const` se si legge soltanto.
+> - `assert` per le ipotesi del programmatore; `-DNDEBUG` le spegne.
+
+## Verso l'esame
+
+- **Stato della memoria**: è uno dei due esercizi di teoria. Si disegnano i frame con parametri e variabili locali, e si seguono i puntatori: è la 06B.
+- **Programmazione**: le funzioni d'esame ricevono array e stringhe come parametri, e restituiscono più risultati attraverso i puntatori.
+- **Intestazioni**: la lunghezza prima dell'array, come in `bool f(size_t n, const int a[])`, e `const` dove si legge soltanto. Vanno copiate dal testo.
+- **Stringhe**: il posto per il terminatore si conta sempre; dopo una copia fatta a mano o con `strncpy` il terminatore va scritto.
+- Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Che cosa contiene un frame, e quando viene tolto?
+I parametri e le variabili locali di una chiamata, con le informazioni per tornare al chiamante. Viene tolto al ritorno della funzione.
+:::
+
+::: domanda Perché `swapSbagliato(x, y)` non scambia `x` e `y`?
+Perché riceve copie dei due valori: scambia le copie nel suo frame, che al ritorno sparisce.
+:::
+
+::: domanda Perché dentro una funzione non si può usare `sizeof` per sapere la lunghezza di un array ricevuto?
+Perché il parametro è un puntatore: `sizeof` dà la dimensione del puntatore.
+:::
+
+::: domanda Perché `strncpy` può lasciare una stringa senza terminatore?
+Perché copia al massimo il numero di caratteri indicato: se la sorgente è lunga almeno quanto quel numero, il `'\0'` non viene copiato.
+:::
+
+::: domanda A che cosa serve `assert`, e a che cosa non serve?
+A fermare il programma quando un'ipotesi del programmatore è falsa, cioè quando c'è un errore nel codice. Non serve per l'input sbagliato dell'utente, che va gestito con un controllo normale.
+:::
+
+::: domanda Come si contano le occorrenze di ogni voto da 1 a 5?
+Con un array di 5 contatori a zero e, per ogni voto `v`, `frequenze[v - 1]++`.
+:::
+
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono **sul modello** di questi esercizi, con gli argomenti della settimana. Ho compilato e provato tutto il codice con gcc 16.1 e `-Wall -Werror`.
+
+```quiz
+D: Sul modello dello stato della memoria. Con `int f(int a, int *p) { a = a + 1; *p = *p + a; return a * 2; }` e, nel `main`, `int u = 4, w = 10; int r = f(u, &w);`, quanto valgono `u`, `w` e `r` alla fine?
++ 4, 15, 10
+- 5, 15, 10
+- 4, 10, 10
+- 5, 10, 8
+- 4, 15, 8
+= `a` è una copia di `u`: diventa 5 nel frame di `f`, e `u` resta 4. `*p` è `w`: diventa 10 + 5. Il ritorno è 5 · 2. La più insidiosa è la seconda, che fa cambiare anche `u`.
+
+D: Sul modello dello stato della memoria. Mentre è in esecuzione `swap`, chiamata da `main` con `swap(&x, &y)`, quanti frame ci sono sullo stack e quale è in cima?
++ due, e in cima c'è quello di `swap`
+- due, e in cima c'è quello di `main`
+- uno solo, quello di `swap`
+- uno solo, quello di `main`
+- tre: `main`, `swap` e uno per i puntatori
+= Il frame di `main` resta sotto, quello di `swap` viene aggiunto sopra e tolto al ritorno. La più insidiosa è la terza: il frame del chiamante non sparisce durante la chiamata.
+
+D: Sul modello della correttezza. Dopo `int x = 3, y = 8; swapSbagliato(x, y);`, dove `void swapSbagliato(int a, int b) { int t = a; a = b; b = t; }`, che cosa stampa `printf("%d %d", x, y)`?
++ `3 8`
+- `8 3`
+- `3 3`
+- `8 8`
+- non compila
+= La funzione scambia le sue copie. La più insidiosa è `8 3`: è quello che farebbe la versione con i puntatori.
+
+D: Sul modello degli esercizi del Lab05A. Con `int risposte[] = {1, 3, 3, 5, 1, 3}` e `int freq[5] = {0}`, dopo `freq[risposte[i] - 1]++` per ogni `i`, quanto vale `freq[2]`?
+N: 3
+= `freq[2]` conta i voti uguali a 3, che sono tre.
+
+D: Sul modello degli errori della 06B. Dopo `char t[6] = "cane"; t[2] = '\0';`, che cosa stampa `printf("%s", t)` e quanto vale `strlen(t)`?
++ stampa `ca`, e `strlen` vale 2
+- stampa `cane`, e `strlen` vale 4
+- stampa `ca e`, e `strlen` vale 4
+- stampa `ca`, e `strlen` vale 6
+- stampa `can`, e `strlen` vale 3
+= La stringa finisce al primo terminatore, nella casella 2. La più insidiosa è l'ultima: il terminatore sostituisce la `n`, non viene dopo.
+
+D: Sul modello degli errori della 06B. Con `char d[4];` e `const char *s = "ciao";`, che cosa c'è in `d` dopo `strncpy(d, s, 4)`?
++ i quattro caratteri `c`, `i`, `a`, `o`, senza terminatore
+- `cia` seguito da `'\0'`
+- `ciao` seguito da `'\0'`
+- niente: `strncpy` non copia se non c'è posto
+- quattro terminatori
+= `strncpy` copia al massimo 4 caratteri, e il terminatore sarebbe il quinto. La più insidiosa è la seconda: sarebbe comodo, ma `strncpy` non accorcia la copia per fare posto al terminatore.
+
+D: Sul modello degli errori del Lab05A. Con gcc 16 su Windows `islower('q')` vale 2. Quale condizione è scritta bene per «`c` è una lettera minuscola»?
++ `if (islower(c))`
+- `if (islower(c) == 1)`
+- `if (islower(c) == true)`
+- `if (islower(c) == 'q')`
+- `if (!islower(c))`
+= Le funzioni di `ctype.h` restituiscono zero oppure un numero diverso da zero, non per forza 1. La più insidiosa è la terza: `true` vale 1, quindi è lo stesso errore della seconda.
+
+D: Sul modello degli esercizi del Lab05A. Quanti elementi deve avere, come minimo, l'array `nome` per leggere con `scanf("%20s", nome)`?
+N: 21
+= Venti caratteri più il terminatore.
+
+D: Sul modello delle intestazioni d'esame. Quale intestazione va bene per una funzione che conta gli elementi pari di un array senza modificarlo?
++ `size_t contaPari(size_t n, const int a[])`
+- `size_t contaPari(const int a[])`
+- `void contaPari(size_t n, int a[])`
+- `size_t contaPari(int n, int *a[])`
+- `bool contaPari(size_t n, const int a[])`
+= Servono la lunghezza e l'array in sola lettura, e il risultato è un conteggio. La più insidiosa è la seconda: senza la lunghezza la funzione non sa dove fermarsi.
+```
+
+## Fonti
+
+- Le lezioni complete: [Lab05A · Array e stringhe](Lab05A_array_stringhe.html), [06B · Chiamata di funzione e ritorno](06B_chiamata_funzioni.html), con gli esempi, i disegni e gli esercizi.
+- Slide di E. G. Amparore «06B Chiamata di funzione», e slide del laboratorio «Array e stringhe» (Lab05A), canale B, A.A. 2026/27.
+- Le domande del quiz sono di questi appunti, sul modello degli esercizi d'esame; il codice è compilato con gcc 16.1 e `-Wall -Werror` ed eseguito.
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/corso.md -->
 > File: `contesto_ai/FDA/corso.md`
 
@@ -18174,6 +19376,9 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - ven 30/10: fine del capitolo 2.1 (metodi di prova), il paradosso del bevitore, esercizi. Negli appunti è la lezione 14, scritta prima della lezione; il diario aggiornato dopo la lezione conferma gli argomenti. Per assurdo, contrapposizione, casi ed esistenza, che nell'edizione originale sono il §2.2, il docente li comincia il 05/11 (lezione 16).
 - lun 02/11: esercizi riassuntivi su regole proposizionali e dimostrazioni dirette (quiz). Negli appunti è la lezione 15, scritta dopo la lezione senza sapere quali esercizi ha usato il docente.
 - gio 05/11: capitolo 2.2, prove per contraddizione, esempi da 2.2.1 a 2.2.4. Negli appunti è la lezione 16.
+- lun 09/11: fine del capitolo 2.2: altri 4 esempi, ancora prove per contraddizione. Omessi l'esempio 2.2.8 e gli esempi dal 2.2.10 in poi; omesso il capitolo 2.3 (risoluzione). Negli appunti è la lezione 17: contrapposizione, casi ed equivalenze.
+- gio 12/11: capitolo 2.4, induzione. Esempio 2.4.8: invariante di ciclo per il fattoriale, svolto sia informalmente sia come quiz. Omessi l'equazione 2.4.4 (somma dei primi n interi positivi) e gli esempi 2.4.4 e 2.4.6 (somma di potenze, numero di elementi dell'insieme delle parti). Negli appunti è la lezione 18, scritta prima della lezione.
+- ven 13/11: invariante del ciclo che calcola la potenza (ris = a^i, i <= n) e correttezza del risultato; capitolo 2.5, induzione in forma forte; esempio 2.5.1 (francobolli da 2 e 5 centesimi); esempio 2.5.4 (n − 1 prodotti per n fattori); esercizio 39 a pagina 98 (forma a L ricoperta di tromini). Negli appunti è la lezione 19, scritta prima della lezione.
 
 ## Materiale
 
@@ -28601,6 +29806,8 @@ genera_html: true
 > [!CANALI]
 > Nel canale B è la lezione di venerdì 30/10, dalle 11 alle 13. Per il docente è la lezione 15, perché la prima è stata un'introduzione: qui è la 14. Il diario del canale B, aggiornato dopo la lezione, la descrive così: «Fine Capitolo 2.1 (Metodi di Prova). Il paradosso del bevitore. Esercizi». **Ho scritto questi appunti prima della lezione**, e il diario conferma il paradosso del bevitore e gli esercizi. Nell'edizione originale di Johnsonbaugh, che uso perché il libro del corso non è disponibile, i metodi per assurdo, per contrapposizione, per casi e di esistenza sono nel §2.2 «More Methods of Proof»: li metto qui perché il paradosso del bevitore si dimostra proprio con questi metodi. Il docente ha cominciato il §2.2 giovedì 05/11, con le dimostrazioni per assurdo (esempi 2.2.1–2.2.4): sono trattate per intero, con altri esempi, nella [lezione 16](16_dimostrazioni_per_assurdo.html). Contrapposizione, casi ed esistenza restano qui finché il docente non li fa. Domande di ripasso e soluzioni degli esercizi sono quelle pubblicate sul Moodle del canale A (id 3851, aperto agli ospiti), dove ci sono anche le note «Tecniche di dimostrazione» di Felice Cardone.
 >
+> Lunedì 09/11 il docente ha finito il §2.2 con contrapposizione, casi ed equivalenze, che sono anche nella [lezione 17](17_contrapposizione_casi_equivalenze.html). Le dimostrazioni di esistenza, che qui ci sono, il diario le dà tra gli esempi omessi (dal 2.2.10 in poi).
+>
 > Servono la [lezione 13](13_dimostrazioni_dirette_controesempi.html) (dimostrazione diretta, pari e dispari), la [07](07_condizionali_equivalenza_logica.html) (freccia e contronominale) e la [11](11_quantificatori_annidati.html) (il gioco con i quantificatori).
 
 ## Per assurdo (libro, §2.2)
@@ -30015,6 +31222,1590 @@ Esistenza non costruttiva | Dimostrazione che qualcosa esiste senza dire quale s
 
 ---
 
+<!-- FILE: contesto_ai/FDA/lezioni/17_contrapposizione_casi_equivalenze.md -->
+> File: `contesto_ai/FDA/lezioni/17_contrapposizione_casi_equivalenze.md`
+
+```yaml
+corso: FDA
+lezione: "17"
+data: 2026-11-09
+titolo: Contrapposizione, casi ed equivalenze
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 17 · Libro, parte 2, fine del §2.2
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 17 di Fondamenti dell'Informatica (canale B): la fine del §2.2, con la dimostrazione per
+  contrapposizione e il suo legame con l'assurdo, la dimostrazione per casi, le dimostrazioni di «se e solo se», come
+  scegliere il metodo, che cosa è stato omesso (esempio 2.2.8, esempi dal 2.2.10, §2.3 sulla risoluzione), ed esercizi
+  del libro con le soluzioni ufficiali.
+lede: >-
+  Il §2.2 finisce con tre metodi che completano la dimostrazione per assurdo: per contrapposizione, per casi, e la
+  dimostrazione di un «se e solo se» nelle due direzioni. Qui ognuno ha i suoi esempi, diversi da quelli della
+  lezione 14, e una tabella per scegliere il metodo davanti a una frase nuova.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 2), §2.2, esempi 2.2.5–2.2.7 e 2.2.9
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 90 minuti
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 2), §2.2 «More Methods of Proof», con
+  le domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A; F. Cardone, «Tecniche di
+  dimostrazione» (Moodle del canale A); diario del canale B
+appunti_html: appunti/FDA/17_contrapposizione_casi_equivalenze.html
+genera_html: true
+```
+
+## In breve
+
+- **Per contrapposizione**: invece della frase «se $P$ allora $Q$» si dimostra in modo diretto la sua **contronominale**, che scambia le due parti e le nega. Le due frasi sono equivalenti.
+- Conviene quando il contrario della tesi dà una formula da usare, come «$x$ è una frazione» al posto di «$x$ è irrazionale».
+- Contrapposizione e assurdo sono parenti stretti: ogni dimostrazione per contrapposizione si riscrive per assurdo, con una riga in più.
+- **Per casi**: se le situazioni possibili sono alcune alternative, si dimostra la tesi in ognuna. I casi devono coprire tutto.
+- Quando i casi sono pochi numeri da controllare uno per uno, la dimostrazione è **esaustiva**.
+- **«Se e solo se»**: sono due frasi «se… allora», una per direzione, e vanno dimostrate tutte e due.
+- Il docente ha omesso l'esempio 2.2.8, gli esempi dal 2.2.10 in poi (tra cui le dimostrazioni di esistenza) e tutto il §2.3 sulla risoluzione.
+
+> [!CANALI]
+> Nel canale B è la lezione di lunedì 09/11, dalle 9 alle 11. Per il docente è la lezione 18: qui è la 17. Il diario del canale B: «Fine Capitolo 2.2: altri 4 esempi, ancora prove per contraddizione. Omessi: esempio 2.2.8 e esempi a partire dall'esempio 2.2.10 ($\lvert x \rvert < d$ if and only if $-d < x < d$). Omesso capitolo 2.3: Risoluzione».
+>
+> **Quali sono i quattro esempi.** Tolti il 2.2.8 e quelli dal 2.2.10, restano il 2.2.5, il 2.2.6, il 2.2.7 e il 2.2.9. Il libro non ce l'ho; dalle risposte ufficiali alle domande di ripasso so che il 2.2.5 è l'esempio di dimostrazione **per contrapposizione** e il 2.2.6 quello **per casi**. Le dimostrazioni di equivalenza vengono subito dopo: il 2.2.10, omesso, è un «se e solo se», quindi il 2.2.9 con ogni probabilità è il primo di quel tipo. Nell'edizione originale di Johnsonbaugh gli esempi di questi tre metodi sono:
+>
+> - per contrapposizione: «se $x^2$ è irrazionale allora $x$ è irrazionale»;
+> - per casi: «$2m^2 + 3n^2 = 40$ non ha soluzioni intere positive»;
+> - equivalenza: «$n$ è dispari se e solo se $n - 1$ è pari».
+>
+> Li metto qui, ma non posso controllare che numeri abbiano nel nostro libro. Gli altri esempi vengono dagli esercizi del §2.2, con le soluzioni ufficiali.
+>
+> **«Ancora prove per contraddizione».** Il diario chiama così anche questi esempi. Contrapposizione e assurdo sono molto vicini, e la seconda sezione spiega perché.
+>
+> **Con la lezione 14.** La [lezione 14](14_altri_metodi_di_prova.html), scritta prima del 30/10, anticipava questi metodi con altri esempi. Lì ci sono anche le dimostrazioni di esistenza, costruttive e non: sono tra gli esempi **omessi** dal docente, quindi quella sezione è un di più. Il §2.3, la risoluzione, non lo tratto.
+>
+> Servono la [lezione 16](16_dimostrazioni_per_assurdo.html) (per assurdo), la [13](13_dimostrazioni_dirette_controesempi.html) (dimostrazione diretta) e la [07](07_condizionali_equivalenza_logica.html) (contronominale, «se e solo se»).
+
+## Per contrapposizione (libro, esempio 2.2.5)
+
+Certe frasi sono scomode da dimostrare in modo diretto, perché l'ipotesi dà solo un'informazione negativa. Un esempio: «se $x^2$ è irrazionale, allora $x$ è irrazionale». L'ipotesi dice che $x^2$ **non** è una frazione, e da lì non parte nessun conto. Girando la frase le negazioni spariscono.
+
+La **contronominale** di una frase «se… allora…» si ottiene scambiando le due parti e negandole tutte e due. In simboli: da $P \to Q$ a $\neg Q \to \neg P$. È equivalente alla frase di partenza ([lezione 07](07_condizionali_equivalenza_logica.html)), quindi dimostrare l'una è dimostrare l'altra.
+
+```widget logica
+titolo: Una frase e la sua contronominale hanno la stessa tavola
+modo: equivalenza
+a: p → q
+b: ¬q → ¬p
+```
+
+> [!DEF] Dimostrazione per contrapposizione (libro, §2.2, domanda di ripasso 4)
+> Per dimostrare $P \to Q$, la dimostrazione per contrapposizione dimostra la frase equivalente $\neg Q \to \neg P$.
+
+**Come si legge.** Si scrive la contronominale e la si dimostra in modo diretto, come nella [lezione 13](13_dimostrazioni_dirette_controesempi.html): si suppone «non $Q$» e si arriva a «non $P$».
+
+> [!ESEMPIO] · Se $x^2$ è irrazionale, allora $x$ è irrazionale
+> **Passo 1: la contronominale.** «Se $x$ **non** è irrazionale, allora $x^2$ non è irrazionale», cioè: «se $x$ è razionale, allora $x^2$ è razionale».
+>
+> **Passo 2: dimostrazione diretta.** Suppongo $x$ razionale: $x = \frac{p}{q}$ con $p$ e $q$ interi e $q \ne 0$. Allora $x^2 = \frac{p^2}{q^2}$, che è un rapporto di interi con denominatore diverso da zero: è razionale.
+>
+> **Passo 3.** La contronominale è vera, quindi è vera la frase di partenza.
+
+Un secondo esempio, con un «oppure» nella tesi. La frase: se il prodotto di due interi è pari, allora almeno uno dei due è pari. Chiamo i due interi $m$ e $n$.
+
+1. **La contronominale.** Il contrario di «il primo è pari **oppure** il secondo è pari» è, per De Morgan, «il primo è dispari **e** il secondo è dispari». Quindi: «se due interi sono tutti e due dispari, il loro prodotto è dispari».
+2. **La dimostrazione diretta.** $m = 2a + 1$ e $n = 2b + 1$. Allora $mn = 4ab + 2a + 2b + 1 = 2(2ab + a + b) + 1$, che è dispari.
+
+```grafico
+titolo: La frase (in alto) e la sua contronominale (in basso). Le due parti si scambiano di posto e si negano. Chi dimostra la riga in basso ha dimostrato quella in alto
+x: 0 12.4
+y: 0 4.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.6 2.7 4.8 2.7 4.8 3.7 0.6 3.7 | blu | pieno
+testo: 2.7 3.2 | blu | "P: x² irrazionale"
+freccia: 4.9 3.2 7.5 3.2 | blu
+poligono: 7.6 2.7 11.8 2.7 11.8 3.7 7.6 3.7 | ambra | pieno
+testo: 9.7 3.2 | ambra | "Q: x irrazionale"
+poligono: 0.6 0.5 4.8 0.5 4.8 1.5 0.6 1.5 | ambra | pieno
+testo: 2.7 1.0 | ambra | "non Q: x razionale"
+freccia: 4.9 1.0 7.5 1.0 | verde
+poligono: 7.6 0.5 11.8 0.5 11.8 1.5 7.6 1.5 | blu | pieno
+testo: 9.7 1.0 | blu | "non P: x² razionale"
+testo: 6.2 2.1 | grigio | "equivalenti"
+testo: 6.2 0.2 | verde | "questa si dimostra in modo diretto"
+```
+
+> [!TRAPPOLA] Scambiare **e** negare
+> La contronominale scambia le due parti e le nega. Negare senza scambiare dà «se non $P$ allora non $Q$»; scambiare senza negare dà «se $Q$ allora $P$». Nessuna delle due è equivalente alla frase di partenza: dimostrarle non serve.
+
+::: prova Scrivi la contronominale di «se $n^2$ è multiplo di 3, allora $n$ è multiplo di 3».
+«Se $n$ non è multiplo di 3, allora $n^2$ non è multiplo di 3.»
+:::
+
+> [!RICORDA]
+> - Contronominale: scambio e nego. È equivalente alla frase di partenza.
+> - Per contrapposizione: suppongo non $Q$, arrivo a non $P$, in modo diretto.
+
+## Contrapposizione e assurdo sono parenti
+
+Il diario chiama anche questi esempi «prove per contraddizione». Il motivo è che una dimostrazione per contrapposizione si trasforma in una per assurdo aggiungendo una riga, e spesso è questione di gusto.
+
+| | Per contrapposizione | Per assurdo |
+|---|---|---|
+| suppongo | $x$ razionale | $x^2$ irrazionale **e** $x$ razionale |
+| ricavo | $x^2$ razionale | $x^2$ razionale |
+| concludo | ho dimostrato la contronominale | $x^2$ è irrazionale e razionale: contraddizione |
+
+Il conto in mezzo è lo stesso. Per assurdo si tiene anche l'ipotesi, e alla fine la si usa solo per dire «contraddizione». La soluzione ufficiale dell'esercizio 1 del §2.2 scrive proprio questa frase per assurdo.
+
+Il contrario non vale sempre. In una dimostrazione per assurdo la contraddizione può essere una frase qualsiasi con la sua negazione, non per forza il contrario dell'ipotesi: per $\sqrt{2}$, nella [lezione 16](16_dimostrazioni_per_assurdo.html), era «la frazione è ridotta e non è ridotta». Lì la contrapposizione non c'è.
+
+::: prova Una dimostrazione comincia con «supponiamo che $n$ sia pari» e finisce con «quindi $3n + 2$ è pari». Quale frase ha dimostrato, e con che metodo?
+«Se $3n + 2$ è dispari, allora $n$ è dispari», per contrapposizione: ha dimostrato la contronominale in modo diretto.
+:::
+
+> [!RICORDA]
+> - Contrapposizione: arrivo a non $P$. Assurdo: tengo anche $P$ e arrivo a una contraddizione qualunque.
+
+## Per casi (libro, esempi 2.2.6 e 2.2.7)
+
+Il valore assoluto non ha una formula unica: è il numero stesso se non è negativo, il suo opposto se lo è. Per dimostrare una proprietà come $\lvert xy \rvert = \lvert x \rvert \cdot \lvert y \rvert$ bisogna quindi distinguere i segni. Quando le situazioni possibili sono alcune alternative, si dimostra la tesi in **ogni** alternativa.
+
+> [!DEF] Dimostrazione per casi (libro, §2.2, domanda di ripasso 6)
+> Invece di dimostrare $(p_1 \vee p_2 \vee \dots \vee p_n) \to q$, nella dimostrazione per casi si dimostrano $p_1 \to q$, $p_2 \to q$, …, $p_n \to q$.
+
+**Come si legge.** Le $p_i$ sono i casi. Se ogni caso porta alla tesi, e i casi insieme coprono tutte le possibilità, la tesi vale sempre.
+
+> [!ESEMPIO] · $\lvert xy \rvert = \lvert x \rvert \cdot \lvert y \rvert$ (esercizio 37 del libro)
+> I casi sono quattro, secondo il segno di $x$ e di $y$.
+>
+> **$x \ge 0$ e $y \ge 0$.** Allora $xy \ge 0$: $\lvert xy \rvert = xy = \lvert x \rvert \lvert y \rvert$.
+>
+> **$x < 0$ e $y \ge 0$.** Allora $xy \le 0$: $\lvert xy \rvert = -xy = (-x)(y) = \lvert x \rvert \lvert y \rvert$.
+>
+> **$x \ge 0$ e $y < 0$.** Allora $xy \le 0$: $\lvert xy \rvert = -xy = (x)(-y) = \lvert x \rvert \lvert y \rvert$.
+>
+> **$x < 0$ e $y < 0$.** Allora $xy > 0$: $\lvert xy \rvert = xy = (-x)(-y) = \lvert x \rvert \lvert y \rvert$.
+>
+> È la soluzione ufficiale. I quattro casi coprono tutto: ogni numero è negativo oppure no.
+
+```grafico
+titolo: I quattro casi per il valore assoluto di un prodotto, uno per ogni combinazione di segni. In ogni riquadro c'è il segno del prodotto xy e che cosa diventa il suo valore assoluto. Lo zero sta nei casi «≥ 0», così non resta fuori niente
+x: 0 12.4
+y: 0 5.0
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 6.2 2.5 11.8 2.5 11.8 4.6 6.2 4.6 | verde | pieno
+testo: 9.0 3.9 | verde | "x ≥ 0, y ≥ 0"
+testo: 9.0 3.1 | grigio | "xy ≥ 0: resta xy"
+poligono: 0.6 2.5 6.2 2.5 6.2 4.6 0.6 4.6 | ambra | pieno
+testo: 3.4 3.9 | ambra | "x < 0, y ≥ 0"
+testo: 3.4 3.1 | grigio | "xy ≤ 0: diventa −xy"
+poligono: 0.6 0.4 6.2 0.4 6.2 2.5 0.6 2.5 | verde | pieno
+testo: 3.4 1.8 | verde | "x < 0, y < 0"
+testo: 3.4 1.0 | grigio | "xy > 0: resta xy"
+poligono: 6.2 0.4 11.8 0.4 11.8 2.5 6.2 2.5 | ambra | pieno
+testo: 9.0 1.8 | ambra | "x ≥ 0, y < 0"
+testo: 9.0 1.0 | grigio | "xy ≤ 0: diventa −xy"
+```
+
+### Quando i casi sono pochi numeri
+
+A volte i casi sono un elenco finito di valori da provare uno per uno: è una **dimostrazione esaustiva**. La frase, dall'edizione originale del libro: l'equazione $2m^2 + 3n^2 = 40$ non ha soluzioni intere positive.
+
+1. **Si restringe il campo.** Il termine $2m^2$ non può superare 40, quindi $m$ è al massimo 4. Allo stesso modo $3n^2$ non può superare 40, quindi $n$ è al massimo 3.
+2. **Si provano i casi.** Per ogni $m$ da 1 a 4 si calcola quanto resta per $3n^2$:
+
+| $m$ | $2m^2$ | resta $40 - 2m^2$ | è 3 per un quadrato? |
+|---|---|---|---|
+| 1 | 2 | 38 | no, non è multiplo di 3 |
+| 2 | 8 | 32 | no, non è multiplo di 3 |
+| 3 | 18 | 22 | no, non è multiplo di 3 |
+| 4 | 32 | 8 | no, non è multiplo di 3 |
+
+Nessun caso funziona: non ci sono soluzioni. L'ho ricontrollato con un programma su tutte le coppie.
+
+> [!TRAPPOLA] I casi devono coprire tutto
+> «$x$ positivo» e «$x$ negativo» lasciano fuori lo 0. Prima di cominciare va controllato che ogni situazione cada in almeno un caso: «$x \ge 0$» e «$x < 0$», oppure «pari» e «dispari». Un caso dimenticato rende la dimostrazione incompleta, anche se tutti gli altri sono giusti.
+
+::: prova Dimostra per casi che il prodotto di due interi consecutivi, $n(n + 1)$, è pari (esercizio 35 del libro).
+Se $n$ è pari, $n = 2k$ e il prodotto è $2k(n + 1)$, pari. Se $n$ è dispari, $n = 2k + 1$, quindi $n + 1 = 2(k + 1)$ e il prodotto è $2n(k + 1)$, pari. In tutti e due i casi uno dei due fattori è pari.
+:::
+
+> [!RICORDA]
+> - Per casi: una dimostrazione per ogni alternativa, e le alternative coprono tutto.
+> - Pochi valori possibili: si restringe il campo e si provano tutti.
+
+## «Se e solo se»: due direzioni (libro, esempio 2.2.9)
+
+Una frase con «se e solo se» ne contiene due, una per direzione. Per esempio «$n$ è dispari se e solo se $n - 1$ è pari» dice: se un intero è dispari, quello prima è pari; e se quello prima è pari, l'intero è dispari. Un «se e solo se» è vero quando sono vere **tutte e due** ([lezione 07](07_condizionali_equivalenza_logica.html)).
+
+```widget logica
+titolo: Un «se e solo se» è la congiunzione delle due frecce
+modo: equivalenza
+a: p ↔ q
+b: (p → q) ∧ (q → p)
+```
+
+> [!DEF] Dimostrazione di equivalenza (libro, §2.2, domanda di ripasso 8)
+> Una dimostrazione di equivalenza mostra che due o più frasi sono tutte vere o tutte false.
+
+**Come si legge.** Per due frasi si dimostrano le due frecce, $P \to Q$ e $Q \to P$. Sono due dimostrazioni separate, e ognuna può usare un metodo diverso: diretta, per assurdo, per contrapposizione.
+
+> [!ESEMPIO] · $n$ è dispari se e solo se $n - 1$ è pari
+> **Da sinistra a destra.** Suppongo $n$ dispari: $n = 2k + 1$. Allora $n - 1 = 2k$, che è pari.
+>
+> **Da destra a sinistra.** Suppongo $n - 1$ pari: $n - 1 = 2k$. Allora $n = 2k + 1$, che è dispari.
+>
+> Le due direzioni sono dimostrate: la frase è vera per ogni intero $n$.
+
+> [!ESEMPIO] · $A \subseteq B$ se e solo se $\overline{B} \subseteq \overline{A}$ (esercizio 48 del libro)
+> $\overline{A}$ è il complementare di $A$: gli elementi che non stanno in $A$.
+>
+> **Da sinistra a destra.** Suppongo $A \subseteq B$ e prendo un $x$ in $\overline{B}$, cioè $x \notin B$. Se $x$ fosse in $A$, starebbe anche in $B$, perché $A \subseteq B$: non è così. Quindi $x \notin A$, cioè $x \in \overline{A}$.
+>
+> **Da destra a sinistra.** Suppongo $\overline{B} \subseteq \overline{A}$. Per la prima parte, applicata ai due complementari, il complementare di $\overline{A}$ è contenuto nel complementare di $\overline{B}$. Il complementare del complementare è l'insieme di partenza: $A \subseteq B$.
+>
+> È la soluzione ufficiale. La frase è la contronominale scritta con gli insiemi: «se sta in $A$ sta in $B$» equivale a «se non sta in $B$ non sta in $A$».
+
+Con **tre** frasi equivalenti non servono sei dimostrazioni: basta un giro, dalla prima alla seconda, dalla seconda alla terza, dalla terza alla prima (domanda di ripasso 10). L'esempio del libro su tre frasi è tra quelli omessi; un esercizio è in fondo.
+
+> [!TRAPPOLA] Una direzione sola non basta
+> Chi dimostra solo «se $n$ è dispari allora $n - 1$ è pari» ha dimostrato una freccia, non il «se e solo se». L'altra direzione può essere falsa: «se $n$ è multiplo di 4 allora $n$ è pari» è vera, il viceversa no.
+
+::: prova Dimostra: $n$ è pari se e solo se $n + 2$ è pari (esercizio 46 del libro).
+Se $n$ è pari, $n = 2k$ e $n + 2 = 2(k + 1)$, pari. Se $n + 2$ è pari, $n + 2 = 2k$ e $n = 2(k - 1)$, pari. È la soluzione ufficiale.
+:::
+
+> [!RICORDA]
+> - «Se e solo se» = due frecce, due dimostrazioni.
+> - Tre frasi equivalenti: basta dimostrare un giro di tre frecce.
+
+## Quale metodo scegliere
+
+Davanti a una frase nuova il metodo si sceglie guardando la **forma** della frase e quale delle sue parti dà più informazioni. Questa tabella mette insieme le lezioni 13, 16 e questa.
+
+| Metodo | Che cosa suppongo | Dove devo arrivare | Quando conviene |
+|---|---|---|---|
+| diretta | $P$ | $Q$ | l'ipotesi dà una formula: «$n$ è pari» |
+| per assurdo | $P$ e non $Q$ | una contraddizione qualunque | la tesi dice «non esiste», «è vuoto», «almeno uno» |
+| per contrapposizione | non $Q$ | non $P$ | il contrario della tesi dà una formula e l'ipotesi no |
+| per casi | un caso alla volta | $Q$ in ogni caso | valore assoluto, pari o dispari, massimo e minimo |
+| equivalenza | prima $P$, poi $Q$ | $Q$, poi $P$ | la frase dice «se e solo se» |
+| controesempio | niente | un caso che smentisce | la frase «per ogni» è **falsa** |
+
+I metodi si combinano: una direzione di un «se e solo se» può essere per contrapposizione, e un caso di una dimostrazione per casi può chiudersi per assurdo.
+
+::: prova Che metodo provi per primo su «per ogni reale $x$, $x \le \lvert x \rvert$»? E su «se $n^2$ non è multiplo di 5, allora $n$ non è multiplo di 5»?
+La prima per casi, sul segno di $x$. La seconda per contrapposizione: la contronominale è «se $n$ è multiplo di 5, allora $n^2$ è multiplo di 5», che è un conto diretto.
+:::
+
+> [!RICORDA]
+> - Guarda la forma: «se e solo se», valore assoluto, negazioni nella tesi.
+> - Parti dalla parte della frase che dà una formula.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\neg Q \to \neg P$ | «se non Q allora non P» | la contronominale di $P \to Q$ | «se $x$ è razionale, $x^2$ è razionale» |
+| $P \leftrightarrow Q$ | «P se e solo se Q» | $P \to Q$ e $Q \to P$ insieme | $n$ dispari $\leftrightarrow$ $n - 1$ pari |
+| $\lvert x \rvert$ | «valore assoluto di x» | $x$ se $x \ge 0$, $-x$ se $x < 0$ | $\lvert -3 \rvert = 3$ |
+| $\overline{A}$ | «complementare di A» | gli elementi che non stanno in $A$ | $x \in \overline{A}$ vuol dire $x \notin A$ |
+| $p_1 \vee \dots \vee p_n$ | «p uno oppure … oppure p enne» | i casi, che insieme coprono tutto | «$n$ pari» $\vee$ «$n$ dispari» |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Riconoscere il metodo** dalla prima riga di una dimostrazione: che cosa suppone e dove vuole arrivare.
+2. **Scrivere la contronominale** senza confonderla con l'inversa: è la stessa abilità dei quiz sulla freccia della lezione 07.
+3. **Sapere che un «se e solo se» chiede due direzioni**, e che i casi devono coprire tutto.
+
+Nelle simulazioni 2023/24 che ho non ci sono domande sulle dimostrazioni: la domanda qui sotto è sul modello degli esercizi del §2.2.
+
+### Una domanda sul modello, letta insieme
+
+**Il testo.** «Si vuole dimostrare: per ogni intero $n$, se $n^2 + 1$ è pari allora $n$ è dispari. Quale di queste prime righe comincia una dimostrazione per contrapposizione? (A) Supponiamo che $n^2 + 1$ sia pari. (B) Supponiamo che $n$ sia pari. (C) Supponiamo che $n$ sia dispari. (D) Supponiamo che $n^2 + 1$ sia dispari.»
+
+**In pratica chiede:** qual è «non $Q$», la cosa da supporre.
+
+> [!ESEMPIO] · la soluzione, opzione per opzione
+> **$P$ e $Q$.** $P$ è «$n^2 + 1$ è pari», $Q$ è «$n$ è dispari». Per contrapposizione si suppone non $Q$: «$n$ è pari».
+>
+> **(A)** suppone $P$: è l'inizio di una dimostrazione diretta. **(B)** suppone non $Q$: **è quella giusta**. **(C)** suppone $Q$: dimostrerebbe l'inversa. **(D)** suppone non $P$: porta a «se non $P$ allora non $Q$», che non è equivalente.
+>
+> **Come continua.** $n = 2k$, quindi $n^2 + 1 = 4k^2 + 1 = 2(2k^2) + 1$, dispari: è non $P$. È il passo «(c) implica (a)» della soluzione ufficiale dell'esercizio 52.
+
+> [!METODO] Scrivere una dimostrazione per contrapposizione
+> 1. Individua $P$ e $Q$ nella frase «se $P$ allora $Q$».
+> 2. Scrivi non $Q$ e non $P$, con De Morgan se ci sono «e» e «oppure».
+> 3. Dichiara il metodo: «Dimostriamo la contronominale: se non $Q$ allora non $P$».
+> 4. Supponi non $Q$ e procedi in modo diretto fino a non $P$.
+
+### Errori da evitare
+
+- Dimostrare l'inversa, «se $Q$ allora $P$», credendo di aver dimostrato la frase.
+- Negare un «oppure» lasciando «oppure».
+- Dimenticare un caso, di solito lo zero o l'uguaglianza.
+- Dimostrare una sola direzione di un «se e solo se».
+
+## Quiz
+
+```quiz
+D: Qual è la contronominale di «se $x^2$ è irrazionale, allora $x$ è irrazionale»?
++ se $x$ è razionale, allora $x^2$ è razionale
+- se $x$ è irrazionale, allora $x^2$ è irrazionale
+- se $x^2$ è razionale, allora $x$ è razionale
+- se $x$ è razionale, allora $x^2$ è irrazionale
+- $x^2$ è irrazionale e $x$ è razionale
+= Si scambiano le due parti e si negano tutte e due. La più insidiosa è la terza: nega senza scambiare, e non è equivalente alla frase di partenza. L'ultima è la supposizione di una dimostrazione per assurdo.
+
+D: Una dimostrazione di «se $P$ allora $Q$» comincia con «supponiamo non $Q$» e finisce con «quindi non $P$». Che metodo è?
++ per contrapposizione
+- diretta
+- per casi
+- per assurdo
+- per controesempio
+= Da non $Q$ a non $P$ è la dimostrazione diretta della contronominale. La più insidiosa è «per assurdo»: lì si suppone anche $P$ e si chiude con una contraddizione.
+
+D: Qual è il contrario di «$m$ è pari oppure $n$ è pari», da usare in una contronominale?
++ $m$ è dispari e $n$ è dispari
+- $m$ è dispari oppure $n$ è dispari
+- $m$ è pari e $n$ è pari
+- $mn$ è dispari
+- $m$ è dispari e $n$ è pari
+= De Morgan: il contrario di un «oppure» è un «e» dei contrari. La più insidiosa è la seconda, che nega le parti ma tiene «oppure».
+
+D: Per dimostrare per casi una proprietà di tutti i reali $x$, quale coppia di casi va bene?
++ $x \ge 0$ e $x < 0$
+- $x > 0$ e $x < 0$
+- $x \ge 1$ e $x \le -1$
+- $x$ intero e $x$ irrazionale
+- $x > 0$ e $x \ge 1$
+= I casi devono coprire tutti i reali. La più insidiosa è la seconda, che dimentica lo 0.
+
+D: Quanti casi ha la dimostrazione di $\lvert xy \rvert = \lvert x \rvert \cdot \lvert y \rvert$ nella soluzione del libro?
+N: 4
+= Uno per ogni combinazione dei segni di $x$ e di $y$.
+
+D: Che cosa bisogna dimostrare per provare «$P$ se e solo se $Q$»?
++ «se $P$ allora $Q$» e «se $Q$ allora $P$»
+- solo «se $P$ allora $Q$»
+- «se $P$ allora $Q$» e la sua contronominale
+- che $P$ e $Q$ sono tutte e due vere
+- «se $P$ allora $Q$» oppure «se $Q$ allora $P$»
+= Servono le due direzioni. La più insidiosa è la terza: la contronominale è equivalente alla prima freccia, quindi si dimostrerebbe due volte la stessa direzione.
+
+D: Tre frasi $P$, $Q$, $R$ sono equivalenti. Quale gruppo di dimostrazioni basta?
++ $P \to Q$, $Q \to R$, $R \to P$
+- $P \to Q$, $Q \to R$
+- $P \to Q$, $P \to R$
+- $P \to Q$, $Q \to P$
+- $Q \to P$, $R \to P$
+= Il giro chiuso permette di andare da ognuna a ogni altra. La più insidiosa è la seconda: senza $R \to P$ non si torna indietro.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: contronominali
+Scrivi la contronominale di: (a) «se $n$ è multiplo di 6, allora $n$ è pari»; (b) «se $a + b$ è dispari, allora $a$ è dispari oppure $b$ è dispari»; (c) «se $A \cap B = \varnothing$, allora $A \ne B$ oppure $A = \varnothing$».
+::: soluzione
+(a) «Se $n$ è dispari, allora $n$ non è multiplo di 6.» (b) «Se $a$ e $b$ sono tutti e due pari, allora $a + b$ è pari.» (c) «Se $A = B$ e $A \ne \varnothing$, allora $A \cap B \ne \varnothing$.» Nella (b) e nella (c) l'«oppure» è diventato «e».
+:::
+
+::: esercizio base Riscaldamento: una contrapposizione
+Dimostra per contrapposizione: per ogni intero $n$, se $n^2$ è dispari, allora $n$ è dispari.
+::: soluzione
+La contronominale: se $n$ è pari, allora $n^2$ è pari. Suppongo $n = 2k$: allora $n^2 = 4k^2 = 2(2k^2)$, pari. La soluzione ufficiale dell'esercizio 4 del §2.2 fa lo stesso conto, scritto per assurdo.
+:::
+
+::: esercizio medio Esercizio 39 del libro: il segno
+La funzione $\mathrm{sgn}(x)$ vale 1 se $x > 0$, 0 se $x = 0$, $-1$ se $x < 0$. Dimostra che $\lvert x \rvert = \mathrm{sgn}(x) \cdot x$ per ogni reale $x$.
+::: soluzione
+Per casi, tre. Se $x > 0$: $\lvert x \rvert = x = 1 \cdot x$. Se $x = 0$: $\lvert x \rvert = 0 = 0 \cdot 0$. Se $x < 0$: $\lvert x \rvert = -x = (-1) \cdot x$. In ogni caso vale l'uguaglianza. È la soluzione ufficiale; i casi sono tre perché la funzione ha tre righe.
+:::
+
+::: esercizio medio Esercizio 32 del libro: nessuna soluzione
+Dimostra che $2m + 5n^2 = 20$ non ha soluzioni con $m$ e $n$ interi positivi.
+::: soluzione
+Se $n \ge 2$, allora $5n^2 \ge 20$ e con $m \ge 1$ la somma supera 20. Resta $n = 1$: la somma è $2m + 5$, un numero pari più uno dispari, quindi dispari, e non può fare 20. È la soluzione ufficiale: due casi su $n$, e nel secondo un argomento di parità. Ricontrollato con un programma.
+:::
+
+::: esercizio esame Autoverifica del capitolo 2, domanda 5
+Dimostra che $\min\{\min\{a, b\}, c\} = \min\{a, \min\{b, c\}\}$ per tutti i reali $a$, $b$, $c$.
+::: soluzione
+Per casi: prima $a \le b$ oppure $a > b$, e in ognuno $b \le c$ oppure $b > c$. **$a \le b$ e $b \le c$:** a sinistra $\min\{a, c\} = a$, a destra $\min\{a, b\} = a$. **$a \le b$ e $b > c$:** a sinistra $\min\{a, c\}$, a destra $\min\{a, c\}$. **$a > b$ e $b \le c$:** a sinistra $\min\{b, c\} = b$, a destra $\min\{a, b\} = b$. **$a > b$ e $b > c$:** a sinistra $\min\{b, c\} = c$, a destra $\min\{a, c\} = c$, perché $a > b > c$. In tutti e quattro i casi i due lati coincidono: è la soluzione ufficiale. I due lati sono il minimo dei tre numeri.
+:::
+
+::: esercizio difficile Esercizio 52 del libro: tre frasi equivalenti
+Dimostra che per ogni intero $n$ sono equivalenti: (a) $n$ è dispari; (b) esiste un intero $k$ con $n = 2k - 1$; (c) $n^2 + 1$ è pari.
+::: soluzione
+Un giro di tre frecce. **(a) implica (b):** $n = 2k' + 1 = 2(k' + 1) - 1$, quindi va bene $k = k' + 1$. **(b) implica (c):** $n^2 + 1 = (2k - 1)^2 + 1 = 4k^2 - 4k + 2 = 2(2k^2 - 2k + 1)$, pari. **(c) implica (a):** per contrapposizione. Se $n$ è pari, $n = 2k$ e $n^2 + 1 = 2(2k^2) + 1$ è dispari. È la soluzione ufficiale: tre dimostrazioni, due dirette e una per contrapposizione.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa dimostra, di fatto, una dimostrazione per contrapposizione di «se $P$ allora $Q$»?
+La frase equivalente «se non $Q$ allora non $P$», in modo diretto.
+:::
+
+::: domanda Che differenza c'è tra contrapposizione e assurdo?
+Per contrapposizione si suppone solo non $Q$ e si arriva a non $P$. Per assurdo si suppongono $P$ e non $Q$ e si arriva a una contraddizione qualunque.
+:::
+
+::: domanda Che cosa si dimostra in una dimostrazione per casi?
+La tesi in ognuno dei casi, dopo aver controllato che i casi coprano tutte le possibilità.
+:::
+
+::: domanda Come si dimostra un «se e solo se»?
+Con due dimostrazioni, una per direzione.
+:::
+
+::: domanda Quali parti del §2.2 e del capitolo ha omesso il docente?
+L'esempio 2.2.8, gli esempi dal 2.2.10 in poi (tra cui le dimostrazioni di esistenza) e il §2.3 sulla risoluzione.
+:::
+
+## Glossario
+
+```glossario
+Contronominale | La frase «se non Q allora non P», equivalente a «se P allora Q».
+Inversa | La frase «se Q allora P»: non è equivalente a «se P allora Q».
+Dimostrazione per contrapposizione | Dimostrazione diretta della contronominale.
+Dimostrazione per casi | Dimostrazione che prova la tesi separatamente in ogni alternativa possibile.
+Dimostrazione esaustiva | Dimostrazione per casi in cui i casi sono un elenco finito di valori, provati uno per uno.
+Dimostrazione di equivalenza | Dimostrazione di un «se e solo se», con le due direzioni.
+Valore assoluto | Il numero senza segno: x se x ≥ 0, −x se x < 0.
+```
+
+## Checklist
+
+```checklist
+- So scrivere la contronominale di una frase, anche con «e» e «oppure».
+- So distinguere la contronominale dall'inversa.
+- So scrivere una dimostrazione per contrapposizione, dichiarando il metodo.
+- So spiegare che cosa cambia tra contrapposizione e assurdo.
+- So scegliere casi che coprono tutto, senza dimenticare lo zero.
+- So fare una dimostrazione per casi con il valore assoluto.
+- So che un «se e solo se» chiede due direzioni.
+- So scegliere il metodo guardando la forma della frase.
+- So quali parti del §2.2 e il §2.3 sono state omesse.
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 2), §2.2 «More Methods of Proof». Il libro non ce l'ho: uso le risposte ufficiali alle domande di ripasso del §2.2 (4–10) e le soluzioni degli esercizi 1, 4, 32, 35, 37, 39, 42, 46, 48 e 52 e dell'autoverifica del capitolo 2 (domanda 5), pubblicate sul Moodle del canale A. Gli enunciati «se $x^2$ è irrazionale…», «$2m^2 + 3n^2 = 40$…» e «$n$ dispari se e solo se $n - 1$ pari» sono quelli dell'edizione originale, con dimostrazioni scritte da me.
+- F. Cardone, «Appunti sulle tecniche di dimostrazione» (Moodle del canale A, aperto agli ospiti).
+- Diario delle lezioni del canale B (Berardi), lezione 18 del docente, 09/11/2026.
+- L'esempio del prodotto pari, la tabella dei metodi, la domanda sul modello, i quiz e gli esercizi di riscaldamento sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/18_induzione.md -->
+> File: `contesto_ai/FDA/lezioni/18_induzione.md`
+
+```yaml
+corso: FDA
+lezione: "18"
+titolo: Il principio di induzione e gli invarianti di ciclo
+data: 2026-11-12
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 18 · Libro, parte 2, §2.4
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 18 di Fondamenti dell'Informatica (canale B): il principio di induzione del §2.4, passo base e
+  passo induttivo, una disuguaglianza con il fattoriale, una divisibilità, la scacchiera con un quadretto mancante
+  ricoperta di tromini, l'invariante di ciclo per il fattoriale (esempio 2.4.8) e il quiz sugli invarianti della
+  simulazione 2 del 2023/24.
+lede: >-
+  L'induzione dimostra una frase per tutti i numeri naturali con due sole verifiche: il primo caso, e il passaggio da
+  un caso al successivo. È anche il modo in cui si dimostra che un ciclo calcola quello che deve: si trova una
+  proprietà che resta vera a ogni giro, l'invariante, e la si dimostra per induzione sul numero di giri.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 2), §2.4, fino all'esempio 2.4.8
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 2), §2.4 «Mathematical Induction», con
+  le domande di ripasso e le soluzioni degli esercizi pubblicate sul Moodle del canale A; F. Cardone, lucidi
+  «Introduzione alla correttezza dei programmi: il principio di induzione» e «Induzione e ricorsione» (Moodle del
+  canale A); simulazione d'esame 2 del 2023/24, quiz 7; diario del canale B
+appunti_html: appunti/FDA/18_induzione.html
+genera_html: true
+```
+
+## In breve
+
+- Il **principio di induzione** serve a dimostrare che una frase $S(n)$ vale per **ogni** intero positivo $n$.
+- Si fanno due verifiche. Il **passo base**: $S(1)$ è vera. Il **passo induttivo**: se la frase vale per un numero, vale anche per il successivo.
+- Nel passo induttivo si suppone $S(n)$, che si chiama **ipotesi induttiva**, e si dimostra $S(n + 1)$. Non si suppone quello che si vuole dimostrare: si suppone il caso prima.
+- La base può partire da un numero diverso da 1: allora la frase è dimostrata da lì in poi.
+- L'induzione non riguarda solo le formule: dimostra anche che una scacchiera con un quadretto mancante si ricopre con pezzi da tre quadretti.
+- Un **invariante di ciclo** è una frase vera prima del ciclo e dopo ogni giro. Si dimostra per induzione sul numero di giri.
+- Invariante più condizione di uscita danno il risultato del ciclo: per il fattoriale, l'invariante `fact == i!` e l'uscita con `i == n` danno `fact == n!`.
+- Il docente ha omesso la formula della somma dei primi $n$ interi e gli esempi 2.4.4 e 2.4.6.
+
+> [!CANALI]
+> Nel canale B è la lezione di giovedì 12/11, dalle 9 alle 11. Per il docente è la lezione 19: qui è la 18. **L'ho scritta prima della lezione**, sul diario del canale B: «Capitolo 2.4 Induzione. Esempio 2.4.8: invariante di ciclo per il fattoriale, svolto sia informalmente che come quiz. Omessi: equazione 2.4.4 (somma primi n interi positivi) e esempi 2.4.4, 2.4.6 (Somma di potenze, Numero elementi insieme delle parti)». Quali esempi abbia svolto davvero in aula non lo so.
+>
+> **Gli esempi del libro.** Il libro non ce l'ho; ho le soluzioni ufficiali degli esercizi e delle domande di ripasso. I numeri del diario coincidono con quelli dell'edizione originale di Johnsonbaugh, dove gli esempi non omessi sono: la disuguaglianza $n! \ge 2^{n-1}$, la divisibilità di $5^n - 1$ per 4, la scacchiera con i tromini (la soluzione dell'esercizio 40 cita la sua figura 2.4.6) e l'invariante del fattoriale. Li metto tutti e quattro, con le dimostrazioni scritte da me.
+>
+> **Che cosa è omesso.** La formula $1 + 2 + \dots + n = \frac{n(n + 1)}{2}$, la somma di potenze (somma geometrica) e il numero di elementi dell'insieme delle parti. Il numero dei sottoinsiemi, dimostrato per induzione, è nella [lezione D02 di Matematica Discreta](../MDAG/D02_complementare_induzione_partizioni.html), che spiega l'induzione con altri esempi. Qui queste tre cose non le uso; una somma compare solo in un esercizio del libro, in fondo.
+>
+> **L'invariante.** Per il fattoriale seguo lo schema dei lucidi di Cardone (canale A, aperti agli ospiti), che dimostrano l'invariante per induzione sul numero di giri del ciclo. Il docente lo ha svolto «anche come quiz»: i suoi quiz non li ho, e al loro posto c'è il quiz 7 della simulazione 2 del 2023/24, che è proprio «seleziona gli invarianti».
+>
+> Servono la [lezione 09](09_quantificatori.html) (funzioni proposizionali, «per ogni»), la [08](08_argomentazioni_regole_inferenza.html) (modus ponens) e la [13](13_dimostrazioni_dirette_controesempi.html) (dimostrazione diretta).
+
+## L'idea: una fila di frasi
+
+Una frase che comincia con «per ogni numero» non è una frase sola: è una fila infinita di frasi, una per ogni numero. Prendo «$5^n - 1$ è divisibile per 4». Per $n = 1$ dice che 4 è divisibile per 4; per $n = 2$ che lo è 24; per $n = 3$ che lo è 124. Si possono controllare le prime dieci o le prime mille, ma non tutte.
+
+Nella [lezione 09](09_quantificatori.html) una frase con una variabile si chiamava **funzione proposizionale**: la scrivo $S(n)$, e $S(1)$, $S(2)$, $S(3)$ sono le frasi della fila. L'induzione le dimostra tutte con due verifiche:
+
+1. la **prima** frase della fila è vera;
+2. ogni frase **passa la verità alla successiva**: se una è vera, lo è anche quella dopo.
+
+È una fila di tessere del domino. La prima cade perché la si spinge; ogni tessera, cadendo, fa cadere la successiva. Allora cadono tutte, per quanto lunga sia la fila.
+
+```grafico
+titolo: Le frasi S(1), S(2), S(3)… in fila. Il passo base dimostra la prima (in verde). Il passo induttivo è la freccia: da ogni frase si passa alla successiva. Con la prima frase e tutte le frecce si raggiunge qualunque frase della fila
+x: 0 12.4
+y: 0 3.0
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.4 1.0 2.2 1.0 2.2 2.0 0.4 2.0 | verde | pieno
+testo: 1.3 1.5 | verde | "S(1)"
+freccia: 2.3 1.5 3.1 1.5 | ambra
+poligono: 3.2 1.0 5.0 1.0 5.0 2.0 3.2 2.0 | blu | pieno
+testo: 4.1 1.5 | blu | "S(2)"
+freccia: 5.1 1.5 5.9 1.5 | ambra
+poligono: 6.0 1.0 7.8 1.0 7.8 2.0 6.0 2.0 | blu | pieno
+testo: 6.9 1.5 | blu | "S(3)"
+freccia: 7.9 1.5 8.7 1.5 | ambra
+poligono: 8.8 1.0 10.6 1.0 10.6 2.0 8.8 2.0 | blu | pieno
+testo: 9.7 1.5 | blu | "S(4)"
+freccia: 10.7 1.5 11.5 1.5 | ambra
+testo: 11.9 1.5 | grigio | "…"
+testo: 1.3 0.5 | verde | "passo base"
+testo: 6.9 2.5 | ambra | "passo induttivo: da ognuna alla successiva"
+```
+
+::: prova Se si dimostra solo che ogni frase passa la verità alla successiva, senza la prima, che cosa si sa?
+Niente: nessuna tessera è stata spinta. Tutte le frasi potrebbero essere false.
+:::
+
+> [!RICORDA]
+> - Una frase «per ogni $n$» è una fila infinita di frasi.
+> - Servono tutte e due le verifiche: la prima frase, e il passaggio alla successiva.
+
+## Il principio di induzione (libro, §2.4)
+
+Il principio dice in forma precisa quello che fanno le tessere. È la risposta ufficiale alla domanda di ripasso 1 del §2.4.
+
+> [!TEOREMA] Principio di induzione
+> Sia $S(n)$ una funzione proposizionale il cui dominio sono gli interi positivi. Supponiamo che:
+> 1. $S(1)$ sia vera (**passo base**);
+> 2. per ogni $n \ge 1$, se $S(n)$ è vera allora $S(n + 1)$ è vera (**passo induttivo**).
+>
+> Allora $S(n)$ è vera per ogni intero positivo $n$.
+
+**Come si legge.** Il passo base è una verifica su un numero solo. Il passo induttivo è una frase «se… allora», da dimostrare per un $n$ generico: si **suppone** $S(n)$ e si dimostra $S(n + 1)$. La supposizione $S(n)$ si chiama **ipotesi induttiva**. In simboli il passo induttivo è $\forall n\,(S(n) \to S(n + 1))$ e la conclusione è $\forall n\,S(n)$.
+
+Perché funziona: è il modus ponens della [lezione 08](08_argomentazioni_regole_inferenza.html), ripetuto. Da $S(1)$ e da «se $S(1)$ allora $S(2)$» segue $S(2)$. Da $S(2)$ e da «se $S(2)$ allora $S(3)$» segue $S(3)$. Per arrivare a $S(100)$ bastano 99 applicazioni: il principio le riassume tutte.
+
+> [!TRAPPOLA] Non si suppone quello che si vuole dimostrare
+> Nel passo induttivo si suppone $S(n)$ per **un** numero $n$, e si dimostra il caso dopo. Non si suppone «$S(n)$ vale per ogni $n$»: quella è la conclusione. È come dire «se questa tessera cade, cade la prossima», senza dire che cadono tutte.
+
+La base non deve essere per forza 1. Se si dimostra $S(4)$ e il passo induttivo per ogni $n \ge 4$, la conclusione vale per ogni $n \ge 4$. Cardone, nel canale A, parte da 0: per le proprietà dei programmi è comodo, perché «dopo 0 giri» vuol dire «prima del ciclo».
+
+::: prova In una dimostrazione per induzione di «$2^n > n$ per ogni $n \ge 1$», qual è l'ipotesi induttiva e che cosa bisogna dimostrare nel passo?
+L'ipotesi induttiva è $2^n > n$, per un $n$ fissato. Va dimostrato $2^{n+1} > n + 1$.
+:::
+
+> [!RICORDA]
+> - Passo base: $S(1)$. Passo induttivo: suppongo $S(n)$, dimostro $S(n + 1)$.
+> - L'ipotesi induttiva è $S(n)$ per un $n$ generico, non per tutti.
+
+## Una disuguaglianza con il fattoriale
+
+Il **fattoriale** di un numero è il prodotto di tutti i numeri da 1 fino a lui, e si scrive con il punto esclamativo: $n!$. Quindi $4! = 1 \cdot 2 \cdot 3 \cdot 4 = 24$. Per convenzione $0! = 1$. La proprietà che serve: per passare da un fattoriale al successivo si moltiplica per il numero nuovo, $(n + 1)! = (n + 1) \cdot n!$.
+
+La frase da dimostrare: $n! \ge 2^{n-1}$ per ogni $n \ge 1$. Prima i numeri:
+
+| $n$ | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| $n!$ | 1 | 2 | 6 | 24 | 120 |
+| $2^{n-1}$ | 1 | 2 | 4 | 8 | 16 |
+
+Nella tabella la frase è vera, ma cinque casi non sono una dimostrazione.
+
+> [!ESEMPIO] · $n! \ge 2^{n-1}$ per ogni $n \ge 1$
+> **Passo base.** Per $n = 1$: $1! = 1$ e $2^0 = 1$. Vero, $1 \ge 1$.
+>
+> **Passo induttivo.** Suppongo $n! \ge 2^{n-1}$ (ipotesi induttiva). Devo dimostrare $(n + 1)! \ge 2^n$.
+>
+> $(n + 1)! = (n + 1) \cdot n!$, per la proprietà del fattoriale.
+>
+> $(n + 1) \cdot n! \ge (n + 1) \cdot 2^{n-1}$, per l'ipotesi induttiva.
+>
+> $(n + 1) \cdot 2^{n-1} \ge 2 \cdot 2^{n-1} = 2^n$, perché $n + 1 \ge 2$ quando $n \ge 1$.
+>
+> Mettendo in fila: $(n + 1)! \ge 2^n$. Per il principio di induzione la frase vale per ogni $n \ge 1$.
+
+Lo schema è sempre questo: si scrive il caso $n + 1$, lo si spezza in modo che **compaia il caso $n$**, e lì si usa l'ipotesi induttiva. Qui il caso $n$ compare perché $(n + 1)!$ contiene $n!$.
+
+::: prova Nel passo induttivo qui sopra, in quale riga si usa l'ipotesi induttiva?
+Nella seconda: è lì che $n!$ viene sostituito con $2^{n-1}$, che è più piccolo o uguale.
+:::
+
+> [!RICORDA]
+> - Nel caso $n + 1$ va fatto comparire il caso $n$: lì entra l'ipotesi induttiva.
+> - Se l'ipotesi induttiva non viene mai usata, qualcosa non va.
+
+## Una divisibilità
+
+La frase dell'inizio: $5^n - 1$ è divisibile per 4, per ogni $n \ge 1$. I primi casi: 4, 24, 124, 624. Sono tutti multipli di 4.
+
+> [!ESEMPIO] · $5^n - 1$ è divisibile per 4, per ogni $n \ge 1$
+> **Passo base.** Per $n = 1$: $5^1 - 1 = 4$, divisibile per 4.
+>
+> **Passo induttivo.** Suppongo che $5^n - 1$ sia divisibile per 4 (ipotesi induttiva). Devo dimostrare che lo è $5^{n+1} - 1$.
+>
+> Faccio comparire il caso $n$:
+> $$5^{n+1} - 1 = 5 \cdot 5^n - 1 = 5 \cdot (5^n - 1) + 4.$$
+>
+> Il primo addendo è divisibile per 4, perché lo è $5^n - 1$ per l'ipotesi induttiva. Il secondo è 4. La somma di due multipli di 4 è un multiplo di 4.
+>
+> Per il principio di induzione la frase vale per ogni $n \ge 1$.
+
+Il passaggio che va trovato è la riscrittura con $5^n - 1$ dentro. Il controllo: $5 \cdot (5^n - 1) + 4 = 5^{n+1} - 5 + 4 = 5^{n+1} - 1$.
+
+::: prova Riscrivi $7^{n+1} - 1$ in modo che compaia $7^n - 1$ (serve per l'esercizio 22 del libro).
+$7^{n+1} - 1 = 7 \cdot (7^n - 1) + 6$. La soluzione ufficiale scrive la stessa cosa così: $7^n - 1 + 6 \cdot 7^n$.
+:::
+
+> [!RICORDA]
+> - Divisibilità per induzione: si riscrive il caso $n + 1$ come multiplo del caso $n$ più un multiplo evidente.
+
+## Una scacchiera e i tromini
+
+L'induzione non riguarda solo le formule. Un **tromino** è un pezzo a forma di L fatto di tre quadretti. Una scacchiera **difettosa** è una scacchiera a cui manca un quadretto. La domanda: una scacchiera difettosa $2^n \times 2^n$ si può ricoprire con i tromini, senza sovrapposizioni e senza uscire dai bordi, qualunque sia il quadretto mancante?
+
+Per $n = 1$ la scacchiera è $2 \times 2$, e senza un quadretto restano tre quadretti a L: è un tromino. Per $n = 2$ è una $4 \times 4$ con un buco, e il disegno mostra l'idea che vale in generale.
+
+```grafico
+titolo: Il passo induttivo su una scacchiera 4 × 4 a cui manca un quadretto (rosa). Si divide in quattro scacchiere 2 × 2 (linee blu). Si mette un tromino al centro (ambra), che prende un quadretto da ciascuna delle tre scacchiere senza buco. Ora a ognuna delle quattro manca un quadretto: sono casi più piccoli
+x: 0 12.4
+y: 0 4.8
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 4.2 3.4 5.2 3.4 5.2 4.4 4.2 4.4 | rosa | pieno
+poligono: 5.2 3.4 6.2 3.4 6.2 1.4 4.2 1.4 4.2 2.4 5.2 2.4 | ambra | pieno
+segmento: 3.2 0.4 3.2 4.4 | grigio
+segmento: 4.2 0.4 4.2 4.4 | grigio | sottile
+segmento: 6.2 0.4 6.2 4.4 | grigio | sottile
+segmento: 7.2 0.4 7.2 4.4 | grigio
+segmento: 3.2 0.4 7.2 0.4 | grigio
+segmento: 3.2 1.4 7.2 1.4 | grigio | sottile
+segmento: 3.2 3.4 7.2 3.4 | grigio | sottile
+segmento: 3.2 4.4 7.2 4.4 | grigio
+segmento: 5.2 0.4 5.2 4.4 | blu | spesso
+segmento: 3.2 2.4 7.2 2.4 | blu | spesso
+testo: 1.6 3.9 | rosa | "quadretto mancante"
+testo: 9.4 2.4 | ambra | "tromino al centro"
+testo: 9.4 0.9 | blu | "quattro scacchiere 2 × 2"
+```
+
+> [!ESEMPIO] · Ogni scacchiera difettosa $2^n \times 2^n$ si ricopre con i tromini
+> **Passo base.** Per $n = 1$ la scacchiera difettosa è un tromino.
+>
+> **Passo induttivo.** Suppongo che ogni scacchiera difettosa $2^n \times 2^n$ si possa ricoprire (ipotesi induttiva). Prendo una scacchiera difettosa $2^{n+1} \times 2^{n+1}$.
+>
+> La divido in quattro scacchiere $2^n \times 2^n$. Il quadretto mancante sta in una delle quattro. Metto un tromino al centro, in modo che copra un quadretto in ciascuna delle altre tre.
+>
+> Ora ognuna delle quattro scacchiere ha un quadretto «fuori gioco»: quello mancante, oppure quello già coperto dal tromino centrale. Sono quattro scacchiere difettose $2^n \times 2^n$, e per l'ipotesi induttiva ognuna si ricopre.
+>
+> Tromino centrale più le quattro coperture: tutta la scacchiera è ricoperta.
+
+Qui l'ipotesi induttiva si usa quattro volte, e per scacchiere con il buco in posti diversi: per questo la frase $S(n)$ dice «**ogni** scacchiera difettosa», qualunque sia il quadretto mancante. La dimostrazione è anche un algoritmo: l'ho scritto come programma e provato fino alla $32 \times 32$, che usa 341 tromini.
+
+Un controllo sui numeri: i quadretti da coprire sono $4^n - 1$, e devono essere un multiplo di 3. Lo sono: $4 - 1 = 3$, $16 - 1 = 15$, $64 - 1 = 63$.
+
+::: prova Quanti tromini servono per una scacchiera difettosa $8 \times 8$?
+$\frac{64 - 1}{3} = 21$.
+:::
+
+> [!RICORDA]
+> - L'induzione funziona anche su oggetti: si riduce un caso grande a casi più piccoli dello stesso tipo.
+> - La frase da dimostrare deve valere per **ogni** posizione del buco, altrimenti l'ipotesi non si può usare.
+
+## L'invariante di ciclo (libro, esempio 2.4.8)
+
+Un ciclo ripete le stesse istruzioni un numero di volte che non si conosce in anticipo. Per dire con certezza che cosa calcola serve una frase sulle variabili che resti vera **a ogni giro**: si chiama **invariante di ciclo**. Il ciclo dell'esempio calcola il fattoriale di un intero `n` positivo:
+
+```c
+i = 1;
+fact = 1;
+while (i < n) {
+    i = i + 1;
+    fact = fact * i;
+}
+```
+
+Prima i numeri, con `n = 4`. La tabella dice quanto valgono le variabili prima del ciclo e dopo ogni giro:
+
+| Giri fatti | `i` | `fact` | $i!$ |
+|---|---|---|---|
+| 0 | 1 | 1 | 1 |
+| 1 | 2 | 2 | 2 |
+| 2 | 3 | 6 | 6 |
+| 3 | 4 | 24 | 24 |
+
+In ogni riga `fact` è il fattoriale di `i`. Le variabili cambiano, ma la relazione tra loro no: `fact == i!` è l'invariante.
+
+> [!DEF] Invariante di ciclo
+> Un **invariante** di un ciclo è un'affermazione sulle variabili del programma che è vera prima che il ciclo cominci e resta vera dopo ogni esecuzione del corpo del ciclo.
+
+**Come si legge.** «Dopo ogni numero di esecuzioni del corpo», zero compreso, come dice il testo del quiz d'esame. Un invariante non è una frase vera solo alla fine, e non è una frase vera solo finché il ciclo gira.
+
+### La dimostrazione, per induzione sul numero di giri
+
+La frase $S(k)$ è: «dopo $k$ giri, `fact == i!`». La base è $k = 0$, cioè prima del ciclo.
+
+> [!ESEMPIO] · `fact == i!` è un invariante
+> **Passo base: dopo 0 giri.** Le due assegnazioni iniziali danno `i = 1` e `fact = 1`, e $1! = 1$. Vero.
+>
+> **Passo induttivo.** Suppongo che dopo $k$ giri valga `fact == i!` (ipotesi induttiva), e che il ciclo faccia un altro giro. Chiamo $i'$ e $fact'$ i valori nuovi.
+>
+> La prima istruzione dà $i' = i + 1$.
+>
+> La seconda dà $fact' = fact \cdot i' = i! \cdot (i + 1)$, usando l'ipotesi induttiva al posto di $fact$.
+>
+> E $i! \cdot (i + 1) = (i + 1)! = i'!$. Quindi dopo $k + 1$ giri vale ancora `fact == i!`, con i valori nuovi.
+
+### Dall'invariante al risultato
+
+L'invariante da solo non dice che il programma è giusto. Serve anche guardare **quando il ciclo finisce**.
+
+1. Il ciclo finisce quando la condizione `i < n` è falsa, cioè quando `i >= n`.
+2. `i` parte da 1 e cresce di uno alla volta finché è minore di `n`: quindi non supera mai `n`. Anche `i <= n` è un invariante, se `n` è almeno 1.
+3. All'uscita valgono insieme `i >= n` e `i <= n`: quindi `i == n`.
+4. Per l'invariante `fact == i!`, e `i` è `n`: quindi **`fact == n!`**.
+
+Lo schema vale per ogni ciclo: **invariante più condizione di uscita dà il risultato**.
+
+Ho trascritto il ciclo in C con un `assert` dell'invariante prima del ciclo e dopo ogni giro, e l'ho provato per `n` da 1 a 15: nessun `assert` fallisce, e il risultato è sempre il fattoriale. Con `n = 0` il ciclo non parte e `fact` vale 1, che è $0!$; ma `i <= n` è falsa, perché `i` vale 1: per questo l'esempio chiede `n` positivo.
+
+Nei lucidi di Cardone il ciclo è scritto con altre variabili e parte da zero: `x = 0; y = 1; while (x < n) { x = x + 1; y = x * y; }`. L'invariante è `y == x!`, e la dimostrazione è la stessa. Ho provato anche questa.
+
+### Come quiz: è un invariante o no?
+
+Per ogni affermazione si controllano la riga 0 della tabella e una riga qualsiasi dopo. Se fallisce anche solo in una, non è un invariante.
+
+| Affermazione | Invariante? | Perché |
+|---|---|---|
+| `fact == i!` | sì | dimostrato qui sopra |
+| `i >= 1` | sì | parte da 1 e cresce |
+| `i <= n` | sì, se `n >= 1` | cresce di uno solo finché è minore di `n` |
+| `i < n` | no | è falsa dopo l'ultimo giro, quando `i == n` |
+| `fact == n!` | no | è vera solo alla fine: con `n = 4`, dopo 1 giro `fact` vale 2 |
+| `i == n` | no | all'inizio `i` vale 1 |
+| `fact >= 1` | sì | ma non serve: non dice che cosa calcola il ciclo |
+
+> [!TRAPPOLA] «Vero alla fine» non è «invariante»
+> `fact == n!` è quello che si vuole ottenere, ed è vero all'uscita. Non è un invariante, perché durante il ciclo è falso. L'invariante è la versione «in corso d'opera» del risultato: ha `i` al posto di `n`.
+
+::: prova Nel ciclo `i = 0; s = 0; while (i < n) { s = s + 2 * i + 1; i = i + 1; }`, quanto valgono `i` e `s` dopo 0, 1, 2 e 3 giri? Quale invariante li lega?
+`i`: 0, 1, 2, 3. `s`: 0, 1, 4, 9. L'invariante è `s == i * i`: il ciclo somma i primi numeri dispari e ottiene un quadrato. All'uscita `i == n`, quindi `s` è il quadrato di `n`. Provato con un programma per `n` da 0 a 15.
+:::
+
+> [!RICORDA]
+> - Invariante: vero prima del ciclo e dopo ogni giro. Si dimostra per induzione sul numero di giri.
+> - Base = prima del ciclo. Passo = un giro, con i valori vecchi e quelli nuovi.
+> - Invariante più condizione di uscita: il risultato.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $S(n)$ | «esse di enne» | la frase su $n$ da dimostrare | $S(n)$: «$5^n - 1$ è divisibile per 4» |
+| $S(n) \to S(n + 1)$ | «se vale per n, vale per n più 1» | il passo induttivo | da $S(3)$ a $S(4)$ |
+| $n!$ | «enne fattoriale» | il prodotto dei numeri da 1 a $n$ | $4! = 24$ |
+| $2^n \times 2^n$ | «due alla enne per due alla enne» | il lato della scacchiera | $n = 2$: $4 \times 4$ |
+| $i'$, $fact'$ | «i primo», «fact primo» | i valori delle variabili dopo un giro | $i' = i + 1$ |
+| `fact == i!` | «fact uguale a i fattoriale» | l'invariante del ciclo | riga 2: `6 == 3!` |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Il quiz «seleziona gli invarianti»**: c'era nella simulazione 2 del 2023/24 (quiz 7). Si risolve con la tabella dei valori.
+2. **Domande sul principio**: che cosa si suppone nel passo induttivo, da dove parte la base. Il quiz sul principio di induzione della simulazione 1 riguarda la forma forte, della prossima lezione.
+3. **Una dimostrazione per induzione** nella domanda aperta: base, ipotesi induttiva scritta, passo con l'ipotesi usata in modo esplicito.
+
+### Una domanda vera, letta insieme
+
+**Simulazione 2 del 2023/24, quiz 7.** Il testo: «Sia `n >= 0` un intero. Considera il seguente frammento di programma. Seleziona gli invarianti (= "loop invariant"), cioè le affermazioni vere dopo ogni numero di esecuzioni del corpo del while.»
+
+```c
+i = 1;
+s = 0;
+while (i < n) {
+    s = s + i;
+    i++;
+}
+s = s + i;
+```
+
+Le affermazioni: `s == 1 + … + i`; `i == n`; `s == 1 + … + n`; `i >= 1`; `i < n`; `s == 1 + … + (i - 1)`.
+
+**In pratica chiede:** per ognuna, se è vera prima del ciclo e dopo ogni giro.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: la tabella**, con `n = 4`. Dopo 0 giri: `i = 1`, `s = 0`. Dopo 1: `i = 2`, `s = 1`. Dopo 2: `i = 3`, `s = 3`. Dopo 3: `i = 4`, `s = 6`, e il ciclo si ferma.
+>
+> **Passo 2: la riga 0 scarta subito tre affermazioni.** `s == 1 + … + i` direbbe $0 = 1$: no. `i == n` direbbe $1 = 4$: no. `s == 1 + … + n` direbbe $0 = 10$: no.
+>
+> **Passo 3: l'ultima riga ne scarta un'altra.** `i < n` direbbe $4 < 4$: no.
+>
+> **Passo 4: le due rimaste.** `i >= 1`: `i` parte da 1 e cresce, sì. `s == 1 + … + (i - 1)`: nella riga 0 la somma è vuota e vale 0; nelle altre $1 = 1$, $3 = 1 + 2$, $6 = 1 + 2 + 3$. Sì.
+>
+> **Il passo induttivo della seconda.** Se $s = 1 + \dots + (i - 1)$, dopo un giro $s' = s + i = 1 + \dots + i$ e $i' = i + 1$: quindi $s' = 1 + \dots + (i' - 1)$.
+>
+> Gli invarianti sono `i >= 1` e `s == 1 + … + (i - 1)`: le stesse risposte segnate nella copia della simulazione che ho.
+
+L'ultima istruzione, fuori dal ciclo, aggiunge l'ultimo numero: all'uscita `i == n`, quindi `s` passa da $1 + \dots + (n - 1)$ a $1 + \dots + n$. Ho provato il frammento: con `n = 4` dà 10, con `n = 10` dà 55. Con `n = 0` dà 1 e non 0: il frammento è giusto solo da 1 in su.
+
+> [!METODO] Il quiz «seleziona gli invarianti»
+> 1. Scegli un `n` piccolo, 3 o 4, e scrivi la tabella: una riga prima del ciclo e una dopo ogni giro.
+> 2. Controlla ogni affermazione sulla **riga 0**: molte cadono lì.
+> 3. Controlla le rimaste sull'**ultima riga**: cadono quelle che ripetono la condizione del ciclo.
+> 4. Per quelle che restano, guarda il passo: da una riga alla successiva la relazione si conserva?
+
+### Errori da evitare
+
+- Dimenticare il passo base, o farlo per il numero sbagliato.
+- Nel passo induttivo, supporre $S(n + 1)$ invece di dimostrarla.
+- Non usare mai l'ipotesi induttiva.
+- Scambiare l'invariante con il risultato finale, o con la condizione del ciclo.
+- Dimenticare la riga «dopo 0 giri» nella tabella.
+
+## Quiz
+
+```quiz
+D: Simulazione 2 del 2023/24, quiz 7. Nel frammento `i = 1; s = 0; while (i < n) { s = s + i; i++; } s = s + i;`, quale di queste affermazioni è un invariante del ciclo?
++ `s == 1 + … + (i - 1)`
+- `s == 1 + … + i`
+- `s == 1 + … + n`
+- `i == n`
+- `i < n`
+= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Nella simulazione è invariante anche `i >= 1`. La più insidiosa è la seconda: prima del ciclo direbbe $0 = 1$.
+
+D: Che cosa si suppone nel passo induttivo di una dimostrazione di «$S(n)$ per ogni $n \ge 1$»?
++ che $S(n)$ sia vera per un $n$ generico
+- che $S(n)$ sia vera per ogni $n$
+- che $S(n + 1)$ sia vera
+- che $S(1)$ sia falsa
+- niente: si dimostra $S(n + 1)$ da zero
+= È l'ipotesi induttiva. La più insidiosa è la seconda: supporre $S(n)$ per ogni $n$ vuol dire supporre la conclusione.
+
+D: Si dimostrano $S(4)$ e, per ogni $n \ge 4$, «se $S(n)$ allora $S(n + 1)$». Che cosa si può concludere?
++ $S(n)$ è vera per ogni $n \ge 4$
+- $S(n)$ è vera per ogni $n \ge 1$
+- $S(n)$ è vera solo per $n = 4$ e $n = 5$
+- niente, perché la base deve essere $S(1)$
+- $S(n)$ è falsa per $n < 4$
+= La fila di tessere comincia da 4. La più insidiosa è l'ultima: sui casi prima della base il principio non dice niente, né vero né falso.
+
+D: Nel passo induttivo di «$5^n - 1$ è divisibile per 4», quale riscrittura fa comparire il caso $n$?
++ $5^{n+1} - 1 = 5 \cdot (5^n - 1) + 4$
+- $5^{n+1} - 1 = 5^n + 5 - 1$
+- $5^{n+1} - 1 = (5^n - 1) + 5$
+- $5^{n+1} - 1 = 5 \cdot (5^n - 1)$
+- $5^{n+1} - 1 = 4 \cdot 5^n$
+= Sviluppando: $5^{n+1} - 5 + 4$. La più insidiosa è la quarta, che dimentica il $+4$: $5 \cdot (5^n - 1)$ fa $5^{n+1} - 5$.
+
+D: Nel ciclo del fattoriale `i = 1; fact = 1; while (i < n) { i = i + 1; fact = fact * i; }`, con `n = 5`, quanto vale `fact` dopo 2 giri?
+N: 6
+= Dopo 2 giri `i` vale 3, e per l'invariante `fact == i!`, cioè 6.
+
+D: Nello stesso ciclo, quale affermazione **non** è un invariante?
++ `fact == n!`
+- `fact == i!`
+- `i >= 1`
+- `fact >= 1`
+- `i <= n`, con `n >= 1`
+= `fact == n!` è vera solo all'uscita. La più insidiosa è `fact >= 1`: è un invariante, anche se non serve a niente.
+
+D: Quanti tromini servono per ricoprire una scacchiera $16 \times 16$ a cui manca un quadretto?
+N: 85
+= I quadretti da coprire sono $256 - 1 = 255$, e ogni tromino ne copre 3.
+
+D: Che cosa dà il risultato di un ciclo, una volta trovato l'invariante?
++ l'invariante insieme alla condizione di uscita dal ciclo
+- l'invariante da solo
+- la condizione del ciclo da sola
+- il passo base dell'induzione
+- il numero di giri
+= All'uscita la condizione del ciclo è falsa: nel fattoriale `i == n`, e con `fact == i!` si ottiene `fact == n!`. La più insidiosa è «l'invariante da solo»: l'invariante vale anche a metà ciclo, quando il risultato non c'è ancora.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: i primi casi
+Per la frase «$n! \ge 2^{n-1}$» scrivi $S(1)$, $S(2)$ e $S(6)$, e controlla che siano vere.
+::: soluzione
+$S(1)$: $1 \ge 1$. $S(2)$: $2 \ge 2$. $S(6)$: $720 \ge 32$. Tutte vere. Controllare dei casi non è una dimostrazione, ma serve a capire la frase e a non sbagliare la base.
+:::
+
+::: esercizio base Riscaldamento: la tabella di un ciclo
+Nel ciclo `i = 0; p = 1; while (i < n) { p = p * 2; i = i + 1; }` scrivi `i` e `p` dopo 0, 1, 2, 3 giri, e trova l'invariante.
+::: soluzione
+`i`: 0, 1, 2, 3. `p`: 1, 2, 4, 8. L'invariante è $p = 2^i$. Base: $1 = 2^0$. Passo: $p' = 2p = 2 \cdot 2^i = 2^{i+1} = 2^{i'}$. All'uscita `i == n`, quindi $p = 2^n$.
+:::
+
+::: esercizio medio Esercizio 22 del libro
+Dimostra per induzione che $7^n - 1$ è divisibile per 6, per ogni $n \ge 1$.
+::: soluzione
+**Base.** $7^1 - 1 = 6$. **Passo.** Suppongo che 6 divida $7^n - 1$. Allora $7^{n+1} - 1 = 7 \cdot 7^n - 1 = (7^n - 1) + 6 \cdot 7^n$. Il primo addendo è divisibile per 6 per l'ipotesi induttiva, il secondo perché ha il fattore 6: lo è anche la somma. È la soluzione ufficiale. Controllato con un programma fino a $n = 59$.
+:::
+
+::: esercizio medio Esercizio 1 del libro
+Dimostra per induzione che $1 + 3 + 5 + \dots + (2n - 1) = n^2$ per ogni $n \ge 1$.
+::: soluzione
+**Base.** $1 = 1^2$. **Passo.** Suppongo vera la formula per $n$. Il termine successivo è $2n + 1$, quindi $1 + \dots + (2n - 1) + (2n + 1) = n^2 + 2n + 1 = (n + 1)^2$. È la soluzione ufficiale. È la stessa proprietà dell'invariante `s == i * i` del «Prova tu» sugli invarianti.
+:::
+
+::: esercizio esame Esercizio 16 del libro: la base non è 1
+Dimostra per induzione che $2^n \ge n^2$ per ogni $n \ge 4$. Puoi usare che $2n + 1 \le 2^n$ per $n \ge 3$ (esercizio 15).
+::: soluzione
+**Base, $n = 4$.** $2^4 = 16 \ge 16 = 4^2$. **Passo.** Suppongo $2^n \ge n^2$ con $n \ge 4$. Allora $(n + 1)^2 = n^2 + 2n + 1 \le 2^n + 2n + 1 \le 2^n + 2^n = 2^{n+1}$. La prima disuguaglianza è l'ipotesi induttiva, la seconda l'esercizio 15. È la soluzione ufficiale. La base non può essere 3: $2^3 = 8$ è minore di 9.
+:::
+
+::: esercizio difficile Un passo induttivo che funziona, per una frase falsa
+Considera la frase $S(n)$: «$n + 1 < n$». Mostra che il passo induttivo si dimostra, e spiega perché la frase non è dimostrata.
+::: soluzione
+**Il passo.** Suppongo $n + 1 < n$. Aggiungendo 1 ai due lati: $n + 2 < n + 1$, che è $S(n + 1)$. Il passo induttivo è corretto. **Ma la base è falsa**: $S(1)$ direbbe $2 < 1$. Senza la base non si conclude niente, e infatti $S(n)$ è falsa per ogni $n$. Il passo induttivo dice solo «se una tessera cade, cade la prossima»: qui non ne cade nessuna.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa dice il principio di induzione?
+Se $S(1)$ è vera e, per ogni $n \ge 1$, da $S(n)$ segue $S(n + 1)$, allora $S(n)$ è vera per ogni intero positivo.
+:::
+
+::: domanda Quali sono le due parti di una dimostrazione per induzione?
+Il passo base, che verifica il primo caso, e il passo induttivo, che suppone $S(n)$ e dimostra $S(n + 1)$.
+:::
+
+::: domanda Che cos'è l'ipotesi induttiva?
+La supposizione che $S(n)$ sia vera per un $n$ generico, usata nel passo induttivo.
+:::
+
+::: domanda Che cos'è un invariante di ciclo?
+Un'affermazione sulle variabili vera prima del ciclo e dopo ogni esecuzione del corpo.
+:::
+
+::: domanda Come si dimostra un invariante?
+Per induzione sul numero di giri: base prima del ciclo, passo su un giro.
+:::
+
+::: domanda Come si passa dall'invariante al risultato del ciclo?
+Si unisce l'invariante alla negazione della condizione del ciclo, vera all'uscita.
+:::
+
+## Glossario
+
+```glossario
+Principio di induzione | Se S(1) è vera e da S(n) segue S(n+1) per ogni n, allora S(n) è vera per ogni intero positivo.
+Passo base | La verifica del primo caso, di solito S(1).
+Passo induttivo | La dimostrazione che da S(n) segue S(n+1), per un n generico.
+Ipotesi induttiva | La supposizione S(n) usata nel passo induttivo.
+Fattoriale | Il prodotto dei numeri da 1 a n; si scrive n!, e 0! vale 1.
+Tromino | Pezzo a forma di L fatto di tre quadretti.
+Scacchiera difettosa | Scacchiera a cui manca un quadretto.
+Invariante di ciclo | Affermazione vera prima del ciclo e dopo ogni giro.
+Condizione di uscita | La negazione della condizione del ciclo, vera quando il ciclo termina.
+```
+
+## Checklist
+
+```checklist
+- So enunciare il principio di induzione, con passo base e passo induttivo.
+- So dire qual è l'ipotesi induttiva e dove la uso.
+- So dimostrare per induzione una disuguaglianza come n! ≥ 2^(n−1).
+- So dimostrare per induzione una divisibilità come 5^n − 1 per 4.
+- So spiegare il passo induttivo della scacchiera con i tromini.
+- So scrivere la tabella dei valori di un ciclo, riga 0 compresa.
+- So riconoscere se un'affermazione è un invariante.
+- So dimostrare l'invariante del fattoriale e ricavare il risultato all'uscita.
+- So quali esempi del §2.4 sono stati omessi.
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 2), §2.4 «Mathematical Induction». Il libro non ce l'ho: uso le risposte ufficiali alle domande di ripasso 1 e 2 e le soluzioni degli esercizi 1, 16, 22 e 40, pubblicate sul Moodle del canale A. Gli enunciati degli esempi (fattoriale e potenza di 2, $5^n - 1$, scacchiera difettosa, invariante del fattoriale) sono quelli dell'edizione originale; le dimostrazioni sono scritte da me.
+- F. Cardone, lucidi «Introduzione alla correttezza dei programmi: il principio di induzione» e appunti «Induzione e ricorsione» (Moodle del canale A, aperto agli ospiti): la dimostrazione dell'invariante per induzione sul numero di iterazioni.
+- Simulazione d'esame 2 del 2023/24, quiz 7 (testo dalla trascrizione delle schermate, con le risposte segnate da uno studente, che ho ricontrollato).
+- Diario delle lezioni del canale B (Berardi), lezione 19 del docente, 12/11/2026.
+- Le tabelle, i disegni, i quiz senza indicazione e gli esercizi di riscaldamento sono di questi appunti. I cicli li ho trascritti in C, compilati con `gcc -Wall -Werror` e provati con gli invarianti controllati da `assert`; le formule e la copertura con i tromini le ho controllate con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/19_induzione_forte.md -->
+> File: `contesto_ai/FDA/lezioni/19_induzione_forte.md`
+
+```yaml
+corso: FDA
+lezione: "19"
+titolo: Induzione forte, invariante della potenza e tromini
+data: 2026-11-13
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 19 · Libro, parte 2, §2.4 (fine) e §2.5
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 19 di Fondamenti dell'Informatica (canale B): l'invariante del ciclo che calcola la potenza e la
+  correttezza del risultato, il principio di induzione forte del §2.5, i francobolli da 2 e 5 centesimi (esempio 2.5.1),
+  gli n − 1 prodotti per n fattori (esempio 2.5.4), la forma a L ricoperta di tromini (esercizio 39) e il quiz
+  sull'induzione forte della simulazione 1 del 2023/24.
+lede: >-
+  A volte per dimostrare un caso non basta il caso subito prima: ne serve uno più indietro, o più di uno. L'induzione
+  forte permette di usare tutti i casi precedenti. Prima c'è un secondo invariante di ciclo, quello della potenza, e
+  alla fine una figura a L che si ricopre di pezzi a L.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, Brookshear, Brylow, Fondamenti dell'Informatica, parte 2 (Johnsonbaugh, cap. 2), §2.4 (esercizio 39) e §2.5, esempi 2.5.1 e 2.5.4
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  Libro di testo del corso, parte 2 (R. Johnsonbaugh, Discrete Mathematics, cap. 2), §2.4 e §2.5 «Strong Form of
+  Induction and the Well-Ordering Property», con le domande di ripasso e le soluzioni degli esercizi pubblicate sul
+  Moodle del canale A; F. Cardone, «Induzione e ricorsione» (Moodle del canale A); simulazione d'esame 1 del 2023/24,
+  quiz 9; diario del canale B
+appunti_html: appunti/FDA/19_induzione_forte.html
+genera_html: true
+```
+
+## In breve
+
+- Il ciclo della **potenza** ha un invariante in due parti: `ris == a^i` e `i <= n`. La seconda serve per dire che all'uscita `i` vale proprio `n`.
+- **Correttezza del risultato**: all'uscita la condizione `i < n` è falsa; con `i <= n` dà `i == n`, e con la prima parte dà `ris == a^n`.
+- Nell'**induzione forte** l'ipotesi induttiva non è solo il caso prima: sono **tutti** i casi precedenti, dalla base in su.
+- Serve quando il caso $n$ si costruisce da un caso più indietro: per i francobolli, dal caso $n - 2$.
+- Quando il passo torna indietro di più di uno, servono **più casi base**: per i francobolli, 4 e 5.
+- **Francobolli**: ogni affrancatura da 4 centesimi in su si ottiene con francobolli da 2 e da 5.
+- **Prodotti**: per moltiplicare $n$ fattori servono sempre $n - 1$ prodotti, comunque si mettano le parentesi.
+- Una **forma a L** di lato $2^n$ si ricopre con i tromini: si divide in quattro forme a L di lato metà.
+
+> [!CANALI]
+> Nel canale B è la lezione di venerdì 13/11, dalle 11 alle 13. Per il docente è la lezione 20: qui è la 19. **L'ho scritta prima della lezione**, sul diario del canale B: «Invariante del ciclo che calcola la potenza: ris=a^i, i<=n. Correttezza del risultato. Capitolo 2.5 Induzione in forma forte. Esempio 2.5.1 (francobolli da 2 e 5 cents). Esempio 2.5.4: occorrono n-1 prodotti per n fattori. Esercizio 39 pagina 98: tassellazione L-shape con tromini». Quali passaggi abbia svolto davvero in aula non lo so.
+>
+> **Che cosa ho del libro.** Il libro non ce l'ho; ho le soluzioni ufficiali. Per il ciclo della potenza c'è la soluzione dell'esercizio 45 del §2.4, che usa un indice che parte da 1: la riporto accanto alla versione del diario. Per i francobolli c'è la soluzione dell'esercizio 4 del §2.5, che rifà lo stesso risultato con l'induzione ordinaria. L'esercizio 39 non ha una soluzione pubblicata, ma la soluzione del 40 dice che cosa afferma: una forma a L di lato $2^n$ si ricopre con i tromini. Gli enunciati degli esempi 2.5.1 e 2.5.4 sono quelli dell'edizione originale di Johnsonbaugh; le dimostrazioni sono scritte da me.
+>
+> **Che cosa non c'è.** Nel §2.5 il libro ha anche il principio del buon ordinamento e il teorema di quoziente e resto (domande di ripasso 2 e 3). Il diario non li nomina e qui non li tratto. La divisione con il resto è nella [lezione D14 di Matematica Discreta](../MDAG/D14_interi_divisibilita_divisione_euclidea.html).
+>
+> Serve la [lezione 18](18_induzione.html): principio di induzione, invariante del fattoriale, scacchiera con i tromini.
+
+## L'invariante del ciclo della potenza
+
+Il ciclo calcola una potenza moltiplicando la base per sé stessa `n` volte. È lo stesso schema del fattoriale della [lezione 18](18_induzione.html), con un invariante che questa volta scrivo in **due parti**.
+
+```c
+i = 0;
+ris = 1;
+while (i < n) {
+    ris = ris * a;
+    i = i + 1;
+}
+```
+
+Prima i numeri, con `a = 3` e `n = 4`:
+
+| Giri fatti | `i` | `ris` | $3^i$ |
+|---|---|---|---|
+| 0 | 0 | 1 | 1 |
+| 1 | 1 | 3 | 3 |
+| 2 | 2 | 9 | 9 |
+| 3 | 3 | 27 | 27 |
+| 4 | 4 | 81 | 81 |
+
+In ogni riga `ris` è `a` elevato a `i`, e `i` non supera `n`. L'invariante del diario è: **`ris == a^i` e `i <= n`**.
+
+> [!ESEMPIO] · L'invariante, per induzione sul numero di giri
+> **Passo base: dopo 0 giri.** `i = 0` e `ris = 1`. Vale $1 = a^0$, e $0 \le n$ perché `n` non è negativo.
+>
+> **Passo induttivo.** Suppongo che dopo $k$ giri valgano $ris = a^i$ e $i \le n$ (ipotesi induttiva), e che il ciclo faccia un altro giro. Se il giro si fa, la condizione era vera: $i < n$.
+>
+> I valori nuovi: $ris' = ris \cdot a = a^i \cdot a = a^{i+1}$, usando l'ipotesi induttiva. E $i' = i + 1$.
+>
+> Prima parte: $ris' = a^{i'}$. Seconda parte: da $i < n$ segue $i + 1 \le n$, cioè $i' \le n$. L'invariante vale ancora.
+
+Nel passo induttivo la seconda parte usa un fatto in più: **il giro si fa solo se la condizione del ciclo è vera**. È da $i < n$ che si ricava $i' \le n$.
+
+### La correttezza del risultato
+
+1. Il ciclo finisce quando `i < n` è falsa: all'uscita `i >= n`.
+2. Per la seconda parte dell'invariante, `i <= n`.
+3. Insieme: `i == n`.
+4. Per la prima parte, `ris == a^i`: quindi **`ris == a^n`**.
+
+Senza la seconda parte il punto 3 non si potrebbe scrivere. Sapendo solo `i >= n` non si esclude che `i` abbia saltato oltre `n`: è vero che cresce di uno alla volta, ma questo va detto, e `i <= n` lo dice.
+
+Ho trascritto il ciclo in C con gli `assert` dell'invariante, e l'ho provato per `a` da 0 a 6 e `n` da 0 a 12: nessun `assert` fallisce.
+
+> [!NOTA] La versione dell'esercizio 45 del libro
+> Nella soluzione ufficiale l'indice parte da 1: `i = 1; pow = 1; while (i <= n) { pow = pow * a; i = i + 1; }`. L'invariante è `pow == a^(i-1)`: prima del ciclo $1 = a^0$, e a ogni giro `pow` guadagna un fattore mentre `i` cresce di uno. Il ciclo finisce con `i == n + 1`, e allora `pow == a^n`. È lo stesso ragionamento con l'indice spostato di uno. Provata anche questa.
+
+::: prova Con `a = 2` e `n = 5`, quanto valgono `i` e `ris` dopo 3 giri? L'invariante è vero?
+`i = 3` e `ris = 8`. Sì: $8 = 2^3$ e $3 \le 5$.
+:::
+
+> [!RICORDA]
+> - Invariante della potenza: `ris == a^i` e `i <= n`.
+> - Nel passo induttivo si può usare che la condizione del ciclo era vera.
+> - All'uscita: condizione falsa più `i <= n` danno `i == n`, quindi `ris == a^n`.
+
+## I francobolli da 2 e da 5 (esempio 2.5.1)
+
+Con francobolli da 2 e da 5 centesimi si vuole comporre un'affrancatura di un certo numero di centesimi. Per alcuni valori piccoli non si può: 1 e 3. Da 4 in su sembra che si possa sempre:
+
+| Centesimi | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 |
+|---|---|---|---|---|---|---|---|---|
+| da 2 | 2 | 0 | 3 | 1 | 4 | 2 | 5 | 3 |
+| da 5 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+
+Guardando la tabella si vede come nasce ogni colonna: è quella **di due posti prima**, con un francobollo da 2 in più. Per fare 9 si prende la soluzione di 7 e si aggiunge un 2. Per fare $n$ serve il caso $n - 2$.
+
+Con l'induzione della [lezione 18](18_induzione.html) l'ipotesi induttiva è solo il caso subito prima, $n - 1$. Qui serve quello di due posti prima. E servono **due** punti di partenza: 4 e 5. Da 4 si raggiungono 6, 8, 10…; da 5 si raggiungono 7, 9, 11…
+
+```grafico
+titolo: I francobolli sulla retta dei numeri. I due casi base, 4 e 5, sono in verde. Ogni altro numero si raggiunge con un salto di 2 (un francobollo da 2 in più) da un numero già raggiunto: i pari partono dal 4, i dispari dal 5
+x: 0 12.4
+y: 0 3.6
+assi: no
+griglia: no
+proporzioni: libere
+segmento: 0.6 1.4 11.8 1.4 | grigio
+punto: 1.2 1.4 | verde
+testo: 1.2 0.8 | verde | "4"
+punto: 2.6 1.4 | verde
+testo: 2.6 0.8 | verde | "5"
+punto: 4.0 1.4 | blu
+testo: 4.0 0.8 | blu | "6"
+punto: 5.4 1.4 | ambra
+testo: 5.4 0.8 | ambra | "7"
+punto: 6.8 1.4 | blu
+testo: 6.8 0.8 | blu | "8"
+punto: 8.2 1.4 | ambra
+testo: 8.2 0.8 | ambra | "9"
+punto: 9.6 1.4 | blu
+testo: 9.6 0.8 | blu | "10"
+punto: 11.0 1.4 | ambra
+testo: 11.0 0.8 | ambra | "11"
+freccia: 1.2 1.6 4.0 2.6 | blu
+freccia: 4.0 2.6 6.8 1.6 | blu | sottile
+freccia: 6.8 1.6 9.6 2.6 | blu
+freccia: 2.6 1.6 5.4 3.2 | ambra
+freccia: 5.4 3.2 8.2 1.6 | ambra | sottile
+freccia: 8.2 1.6 11.0 3.2 | ambra
+testo: 1.9 0.25 | verde | "casi base"
+testo: 9.0 0.25 | grigio | "ogni salto: + 2 centesimi"
+```
+
+> [!ESEMPIO] · Ogni affrancatura da 4 centesimi in su si fa con francobolli da 2 e da 5
+> **Passi base, $n = 4$ e $n = 5$.** 4 centesimi: due francobolli da 2. 5 centesimi: uno da 5.
+>
+> **Passo induttivo.** Prendo $n \ge 6$ e suppongo che **ogni** affrancatura da 4 a $n - 1$ centesimi si possa fare (ipotesi induttiva forte).
+>
+> Il numero $n - 2$ è almeno 4, perché $n \ge 6$, ed è minore di $n$: sta tra i casi dell'ipotesi. Quindi $n - 2$ centesimi si fanno.
+>
+> Aggiungo un francobollo da 2: ottengo $n$ centesimi.
+>
+> Per l'induzione forte, la frase vale per ogni $n \ge 4$.
+
+Il passo induttivo comincia da 6 e non da 5 per un motivo preciso: deve essere $n - 2 \ge 4$. Per questo il 5 non si ricava dal passo e va verificato a mano, come secondo caso base.
+
+::: prova Con lo stesso ragionamento, come si ottengono 13 centesimi a partire dai casi base?
+Dal 5, aggiungendo quattro francobolli da 2: 5, 7, 9, 11, 13. Un 5 e quattro 2.
+:::
+
+> [!RICORDA]
+> - Se il caso $n$ viene dal caso $n - 2$, l'ipotesi «solo il caso prima» non basta.
+> - Tanti casi base quanti ne servono perché il passo non esca dalla zona già dimostrata.
+
+## Il principio di induzione forte (libro, §2.5)
+
+Il principio che giustifica il ragionamento dei francobolli è la risposta ufficiale alla domanda di ripasso 1 del §2.5.
+
+> [!TEOREMA] Principio di induzione forte
+> Sia $S(n)$ una funzione proposizionale il cui dominio sono gli interi da $n_0$ in su. Supponiamo che:
+> 1. $S(n_0)$ sia vera;
+> 2. per ogni $n > n_0$, se $S(k)$ è vera per tutti i $k$ con $n_0 \le k < n$, allora $S(n)$ è vera.
+>
+> Allora $S(n)$ è vera per ogni intero $n \ge n_0$.
+
+**Come si legge.** $n_0$ è il punto di partenza: per i francobolli è 4. La differenza con l'induzione ordinaria sta nel punto 2: per dimostrare il caso $n$ si possono usare **tutti i casi prima**, da $n_0$ a $n - 1$, non solo l'ultimo. Con le tessere del domino: per far cadere una tessera si può contare sul fatto che sono già cadute tutte quelle prima.
+
+| | Induzione ordinaria | Induzione forte |
+|---|---|---|
+| ipotesi induttiva | il caso $n$ | tutti i casi da $n_0$ a $n - 1$ |
+| si dimostra | il caso $n + 1$ | il caso $n$ |
+| quando serve | il caso nuovo viene da quello subito prima | il caso nuovo viene da uno o più casi più indietro |
+
+Tre cose da sapere, che sono anche quelle del quiz d'esame:
+
+- **Riguarda gli interi**, come l'induzione ordinaria. Non si usa per frasi sui numeri reali: tra un reale e l'altro non c'è un «successivo».
+- **Può sempre sostituire l'induzione ordinaria.** Tra tutti i casi precedenti c'è anche quello subito prima: chi ha un'ipotesi più ricca può usarne solo un pezzo.
+- **Non dimostra più cose.** Tutto quello che si dimostra con la forma forte si dimostra anche con quella ordinaria, cambiando la frase $S(n)$. Cardone lo dimostra nei suoi appunti; qui non serve.
+
+> [!ESEMPIO] · I francobolli con l'induzione ordinaria (esercizio 4 del §2.5)
+> La soluzione ufficiale rifà il risultato senza la forma forte, con un passo più furbo.
+>
+> **Passo base.** 4 centesimi: due francobolli da 2.
+>
+> **Passo induttivo.** Suppongo di saper fare $n$ centesimi, e faccio $n + 1$. Se tra i francobolli c'è almeno un 5, lo tolgo e metto tre francobolli da 2: da 5 a 6, un centesimo in più. Se non c'è nessun 5, ci sono almeno due francobolli da 2, perché $n \ge 4$: ne tolgo due e metto un 5: da 4 a 5, un centesimo in più.
+>
+> Qui basta il caso subito prima, ma il passo ha due casi. Con la forma forte il passo è una riga, e i casi base sono due.
+
+::: prova Nell'induzione forte dei francobolli, quali casi si possono usare per dimostrare $S(10)$? Quale si usa davvero?
+Tutti quelli da $S(4)$ a $S(9)$. Si usa solo $S(8)$.
+:::
+
+> [!RICORDA]
+> - Induzione forte: nel passo si suppongono veri tutti i casi da $n_0$ a $n - 1$.
+> - Vale per gli interi, può sempre sostituire l'induzione ordinaria.
+
+## Quanti prodotti per n fattori (esempio 2.5.4)
+
+Un prodotto di quattro numeri si può calcolare in ordini diversi, secondo dove si mettono le parentesi. Con $(a_1 a_2)(a_3 a_4)$ si fanno due prodotti dentro le parentesi e uno tra i risultati: tre. Con $((a_1 a_2) a_3) a_4$ si moltiplica un fattore alla volta: di nuovo tre. La frase da dimostrare: per moltiplicare $n$ numeri servono **sempre $n - 1$ prodotti**, comunque si mettano le parentesi.
+
+```grafico
+titolo: Due modi di moltiplicare quattro fattori. A sinistra (a1·a2)·(a3·a4): due prodotti in basso e uno in cima. A destra ((a1·a2)·a3)·a4: tre prodotti in fila. Ogni cerchio è un prodotto: sono 3 in tutti e due i modi
+x: 0 12.4
+y: 0 4.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.8 0.5 | grigio | "a1"
+testo: 2.0 0.5 | grigio | "a2"
+testo: 3.4 0.5 | grigio | "a3"
+testo: 4.6 0.5 | grigio | "a4"
+cerchio: 1.4 2.0 0.35 | blu
+cerchio: 4.0 2.0 0.35 | blu
+cerchio: 2.7 3.6 0.35 | ambra
+segmento: 0.8 0.8 1.3 1.7 | grigio
+segmento: 2.0 0.8 1.5 1.7 | grigio
+segmento: 3.4 0.8 3.9 1.7 | grigio
+segmento: 4.6 0.8 4.1 1.7 | grigio
+segmento: 1.6 2.3 2.5 3.3 | grigio
+segmento: 3.8 2.3 2.9 3.3 | grigio
+testo: 7.0 0.5 | grigio | "a1"
+testo: 8.2 0.5 | grigio | "a2"
+testo: 9.6 0.5 | grigio | "a3"
+testo: 11.0 0.5 | grigio | "a4"
+cerchio: 7.6 1.7 0.35 | blu
+cerchio: 8.8 2.8 0.35 | blu
+cerchio: 10.0 3.9 0.35 | ambra
+segmento: 7.0 0.8 7.5 1.4 | grigio
+segmento: 8.2 0.8 7.7 1.4 | grigio
+segmento: 7.8 2.0 8.6 2.5 | grigio
+segmento: 9.6 0.8 8.9 2.5 | grigio
+segmento: 9.0 3.1 9.8 3.6 | grigio
+segmento: 11.0 0.8 10.2 3.6 | grigio
+testo: 2.7 4.3 | ambra | "3 prodotti"
+testo: 10.0 4.5 | ambra | "3 prodotti"
+```
+
+L'idea: in qualunque modo si mettano le parentesi, c'è un **ultimo prodotto**, quello fatto per ultimo, che unisce due blocchi. Nel disegno è il cerchio in cima. Il blocco di sinistra ha un certo numero $k$ di fattori, quello di destra gli altri $n - k$. Quanti siano non si sa: può essere 1 e 3, o 2 e 2, o 3 e 1. Per questo serve l'ipotesi su **tutti** i casi più piccoli.
+
+> [!ESEMPIO] · Per moltiplicare $n$ fattori servono $n - 1$ prodotti
+> **Passo base, $n = 1$.** Un solo numero: non c'è niente da moltiplicare, 0 prodotti. E $1 - 1 = 0$.
+>
+> **Passo induttivo.** Prendo $n \ge 2$ e suppongo la frase vera per ogni numero di fattori da 1 a $n - 1$ (ipotesi induttiva forte).
+>
+> L'ultimo prodotto unisce un blocco di $k$ fattori e uno di $n - k$ fattori, con $k$ tra 1 e $n - 1$. Tutti e due i blocchi hanno meno di $n$ fattori.
+>
+> Per l'ipotesi, il primo blocco costa $k - 1$ prodotti e il secondo $n - k - 1$.
+>
+> In tutto: $(k - 1) + (n - k - 1) + 1 = n - 1$. Il $+1$ è l'ultimo prodotto. Il risultato non dipende da $k$.
+
+Ho contato con un programma i prodotti di tutte le disposizioni di parentesi fino a 11 fattori: sono sempre $n - 1$.
+
+Lo stesso ragionamento risponde a una domanda che sembra diversa: quanti tagli servono per dividere una tavoletta di cioccolato da $n$ quadretti nei singoli quadretti, spezzando un pezzo alla volta? Sempre $n - 1$, in qualunque ordine si spezzi.
+
+::: prova Nella dimostrazione, con $n = 7$ e l'ultimo prodotto che unisce un blocco da 3 e uno da 4, quanti prodotti servono in tutto?
+$2 + 3 + 1 = 6$, cioè $7 - 1$.
+:::
+
+> [!RICORDA]
+> - Se il caso $n$ si spezza in due casi più piccoli di grandezza non nota, serve l'induzione forte.
+> - $n$ fattori: $n - 1$ prodotti, comunque si mettano le parentesi.
+
+## La forma a L e i tromini (esercizio 39 del §2.4)
+
+Nella [lezione 18](18_induzione.html) una scacchiera con un quadretto mancante si ricopriva di tromini, i pezzi a L da tre quadretti. Qui la figura da ricoprire è lei stessa a L. Una **forma a L di lato $2^n$** è fatta di tre quadrati $2^n \times 2^n$ disposti a L: è una scacchiera di lato doppio a cui manca un intero quarto.
+
+La frase: per ogni $n \ge 0$, una forma a L di lato $2^n$ si ricopre con i tromini.
+
+Per $n = 0$ i tre quadrati hanno lato 1: la forma a L **è** un tromino. Per $n = 1$ ha 12 quadretti, e il disegno mostra come si divide.
+
+```grafico
+titolo: Una forma a L di lato 2 (tre quadrati 2 × 2) divisa in quattro forme a L di lato 1, cioè quattro tromini: una al centro, attorno all'angolo interno (ambra), e una in ciascuna delle tre punte (blu, verde, viola). La stessa divisione vale per ogni lato: quattro forme a L di lato metà
+x: 0 12.4
+y: 0 4.8
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 4.2 4.4 6.2 4.4 6.2 3.4 5.2 3.4 5.2 2.4 4.2 2.4 | blu | pieno
+poligono: 5.2 3.4 6.2 3.4 6.2 2.4 7.2 2.4 7.2 1.4 5.2 1.4 | ambra | pieno
+poligono: 4.2 0.4 6.2 0.4 6.2 1.4 5.2 1.4 5.2 2.4 4.2 2.4 | verde | pieno
+poligono: 6.2 0.4 8.2 0.4 8.2 2.4 7.2 2.4 7.2 1.4 6.2 1.4 | viola | pieno
+segmento: 4.2 0.4 8.2 0.4 | grigio | spesso
+segmento: 8.2 0.4 8.2 2.4 | grigio | spesso
+segmento: 8.2 2.4 6.2 2.4 | grigio | spesso
+segmento: 6.2 2.4 6.2 4.4 | grigio | spesso
+segmento: 6.2 4.4 4.2 4.4 | grigio | spesso
+segmento: 4.2 4.4 4.2 0.4 | grigio | spesso
+testo: 2.4 3.4 | blu | "punta in alto"
+testo: 9.9 1.9 | viola | "punta a destra"
+testo: 2.4 0.9 | verde | "angolo"
+testo: 8.6 3.4 | ambra | "al centro"
+```
+
+> [!ESEMPIO] · Ogni forma a L di lato $2^n$ si ricopre con i tromini
+> **Passo base, $n = 0$.** La forma a L di lato 1 è un tromino.
+>
+> **Passo induttivo.** Suppongo che ogni forma a L di lato $2^n$ si ricopra (ipotesi induttiva). Prendo una forma a L di lato $2^{n+1}$.
+>
+> La divido in quattro forme a L di lato $2^n$, come nel disegno: una al centro, girata come quella grande, e una in ciascuna delle due punte e nell'angolo.
+>
+> Per l'ipotesi induttiva ognuna delle quattro si ricopre con i tromini. Insieme ricoprono tutta la forma grande.
+
+Questa è un'induzione **ordinaria**: il caso di lato $2^{n+1}$ viene dal caso subito prima. L'ipotesi si usa quattro volte, su forme girate in modi diversi: per questo la frase dice «ogni forma a L», in qualunque orientazione. Ho scritto la divisione come programma e l'ho provata fino al lato 16, che usa 256 tromini.
+
+Con questo esercizio la scacchiera difettosa della lezione 18 ha una seconda dimostrazione, quella della soluzione ufficiale dell'esercizio 40. Si divide la scacchiera in quattro; il quarto con il buco si ricopre per ipotesi induttiva; gli altri tre quarti formano una forma a L, che si ricopre per l'esercizio 39.
+
+::: prova Quanti tromini servono per una forma a L di lato 4?
+La forma ha $3 \cdot 16 = 48$ quadretti: 16 tromini. In generale sono $4^n$ per il lato $2^n$.
+:::
+
+> [!RICORDA]
+> - Forma a L di lato $2^n$: quattro forme a L di lato metà. Per $n = 0$ è un tromino.
+> - Tre quarti di una scacchiera sono una forma a L: così si ricopre anche la scacchiera con un buco.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `ris == a^i` | «ris uguale ad a alla i» | prima parte dell'invariante della potenza | riga 2: `9 == 3^2` |
+| `i <= n` | «i minore o uguale a n» | seconda parte: l'indice non supera `n` | serve per l'uscita |
+| $n_0$ | «enne zero» | il primo caso, da cui parte l'induzione | $n_0 = 4$ per i francobolli |
+| $n_0 \le k < n$ | «k da enne zero a n meno 1» | tutti i casi prima di $n$ | per $n = 10$: da 4 a 9 |
+| $a_1 a_2 \cdots a_n$ | «prodotto di n fattori» | i numeri da moltiplicare | $(a_1 a_2)(a_3 a_4)$ |
+| $2^n$ (lato) | «due alla enne» | il lato dei tre quadrati della forma a L | $n = 1$: lato 2 |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Il quiz sul principio di induzione forte**: c'era nella simulazione 1 del 2023/24 (quiz 9).
+2. **Gli invarianti**: riconoscerli, e sapere che per il risultato serve anche la condizione di uscita (quiz 7 della simulazione 2, nella lezione 18).
+3. **Scegliere quanti casi base servono** in una dimostrazione con la forma forte.
+
+### Una domanda vera, letta insieme
+
+**Simulazione 1 del 2023/24, quiz 9.** Il testo: «Quali tra le seguenti affermazioni valgono per il principio di induzione forte. a. L'induzione forte serve nei casi in cui l'enunciato non riguarda i numeri interi. b. Il principio di induzione forte può essere sempre usato in sostituzione dell'induzione semplice. c. Il principio di induzione forte può essere usato per svolgere dimostrazioni sui numeri reali. d. Il principio di induzione forte può essere usato quando è necessario usare l'ipotesi induttiva non solo per il caso immediatamente precedente quello considerato.»
+
+**In pratica chiede:** su che cosa lavora l'induzione forte, e che cosa ha in più di quella ordinaria.
+
+> [!ESEMPIO] · la soluzione, affermazione per affermazione
+> **a. Falsa.** L'induzione forte riguarda proprio gli interi: il dominio di $S(n)$ sono gli interi da $n_0$ in su.
+>
+> **b. Vera.** L'ipotesi forte contiene tutti i casi precedenti, compreso quello subito prima: ogni dimostrazione per induzione ordinaria si riscrive con la forma forte.
+>
+> **c. Falsa.** Sui reali non c'è un primo caso seguito da un successivo: il principio non si applica.
+>
+> **d. Vera.** È il caso dei francobolli, dove serve $n - 2$, e dei prodotti, dove servono due casi più piccoli qualsiasi.
+>
+> Le affermazioni vere sono **b** e **d**. Sono anche le due segnate nella copia della simulazione che ho, compilata da uno studente; le soluzioni ufficiali non le ho.
+
+> [!METODO] Scrivere una dimostrazione per induzione forte
+> 1. Scrivi $S(n)$ e il punto di partenza $n_0$.
+> 2. Guarda da quali casi precedenti viene il caso $n$: uno più indietro, o due blocchi più piccoli.
+> 3. Verifica a mano tutti i casi che il passo non riesce a raggiungere: sono i casi base.
+> 4. Nel passo, scrivi da quale $n$ in poi vale, e l'ipotesi: «la frase è vera per ogni $k$ con $n_0 \le k < n$».
+> 5. Controlla che i casi che usi stiano davvero tra $n_0$ e $n - 1$.
+
+### Errori da evitare
+
+- Usare il caso $n - 2$ con un solo caso base.
+- Scrivere un invariante con una parte sola e poi dire «all'uscita `i == n`» senza giustificarlo.
+- Dire che l'induzione forte dimostra frasi sui numeri reali.
+- Nel passo forte, usare un caso che sta prima di $n_0$.
+
+## Quiz
+
+```quiz
+D: Dalla simulazione 1 del 2023/24, quiz 9, adattata a una risposta sola. Quale di queste affermazioni vale per il principio di induzione forte?
++ può essere usato quando serve l'ipotesi induttiva non solo per il caso immediatamente precedente
+- serve nei casi in cui l'enunciato non riguarda i numeri interi
+- può essere usato per svolgere dimostrazioni sui numeri reali
+- non può mai sostituire l'induzione semplice
+- non ha bisogno di un caso base
+= È l'affermazione d del quiz; le prime tre sono del quiz, le ultime due le ho aggiunte io. Nel quiz vero è giusta anche la b: la forma forte può sempre sostituire quella semplice. La più insidiosa è quella sui numeri reali: l'induzione, in tutte e due le forme, lavora sugli interi.
+
+D: Nel ciclo `i = 0; ris = 1; while (i < n) { ris = ris * a; i = i + 1; }`, a che cosa serve la parte `i <= n` dell'invariante?
++ a concludere che all'uscita `i == n`
+- a dimostrare che `ris == a^i`
+- a far terminare il ciclo
+- a evitare che `ris` diventi negativo
+- a niente: è vera ma inutile
+= All'uscita si sa `i >= n`; con `i <= n` si ottiene `i == n`, e quindi `ris == a^n`. La più insidiosa è l'ultima: senza quella parte il risultato non si può scrivere.
+
+D: Nello stesso ciclo, con `a = 2` e `n = 6`, quanto vale `ris` dopo 4 giri?
+N: 16
+= Dopo 4 giri `i` vale 4, e per l'invariante `ris` è 2 alla quarta.
+
+D: Nella dimostrazione dei francobolli da 2 e da 5, perché servono due casi base?
++ perché il passo usa il caso $n - 2$, e dal 4 non si arriva al 5
+- perché i francobolli sono di due tipi
+- perché l'induzione forte chiede sempre due casi base
+- perché 4 e 5 sono gli unici casi veri
+- perché il passo usa il caso $n - 1$
+= Il passo vale da 6 in su, perché deve essere $n - 2 \ge 4$: il 5 resta fuori e va verificato a mano. La più insidiosa è la terza: il numero di casi base dipende dal passo, non dal principio.
+
+D: Con l'induzione forte, quali casi si possono usare per dimostrare $S(12)$, se si parte da $n_0 = 4$?
++ tutti quelli da $S(4)$ a $S(11)$
+- solo $S(11)$
+- solo $S(4)$
+- quelli da $S(1)$ a $S(11)$
+- quelli da $S(4)$ a $S(12)$
+= L'ipotesi forte copre i $k$ con $n_0 \le k < n$. La più insidiosa è l'ultima: $S(12)$ è quella da dimostrare.
+
+D: Quanti prodotti servono per moltiplicare 10 fattori, mettendo le parentesi nel modo più conveniente?
+N: 9
+= Sono sempre $n - 1$, in qualunque modo si mettano le parentesi: non esiste un modo più conveniente.
+
+D: In quante forme a L di lato $2^n$ si divide una forma a L di lato $2^{n+1}$?
+N: 4
+= Una al centro e tre nelle punte. È il passo induttivo dell'esercizio 39.
+
+D: Quali francobolli compongono 11 centesimi, seguendo la dimostrazione con la forma forte a partire dai casi base?
++ uno da 5 e tre da 2
+- cinque da 2 e uno da 1
+- due da 5 e uno da 1
+- undici da 1
+- uno da 5 e due da 3
+= Dal caso base 5 si aggiungono tre francobolli da 2: 7, 9, 11. La più insidiosa è «due da 5 e uno da 1»: i francobolli da 1 non ci sono.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: la tabella della potenza
+Per il ciclo della potenza con `a = 5` e `n = 3`, scrivi `i` e `ris` prima del ciclo e dopo ogni giro, e controlla le due parti dell'invariante.
+::: soluzione
+Giri 0: `i = 0`, `ris = 1`. Giri 1: `1`, `5`. Giri 2: `2`, `25`. Giri 3: `3`, `125`. In ogni riga `ris` è 5 elevato a `i`, e `i` è al massimo 3. Dopo il terzo giro `i < n` è falsa e il ciclo esce con `ris == 125`.
+:::
+
+::: esercizio base Esercizio 1 del §2.5
+Dimostra con l'induzione forte che ogni affrancatura da 6 centesimi in su si ottiene con francobolli da 2 e da 7.
+::: soluzione
+**Passi base, 6 e 7.** 6: tre francobolli da 2. 7: uno da 7. **Passo.** Prendo $n \ge 8$ e suppongo che si possano fare tutte le affrancature da 6 a $n - 1$. Allora $n - 2$ è almeno 6 e si può fare: aggiungo un francobollo da 2. È la soluzione ufficiale. Con un programma: i soli valori che non si ottengono sono 1, 3 e 5.
+:::
+
+::: esercizio medio Francobolli da 3 e da 5
+Dimostra che ogni affrancatura da 8 centesimi in su si ottiene con francobolli da 3 e da 5. Quanti casi base servono?
+::: soluzione
+Il passo aggiunge un francobollo da 3, quindi usa il caso $n - 3$: servono **tre** casi base. $8 = 3 + 5$, $9 = 3 + 3 + 3$, $10 = 5 + 5$. **Passo.** Per $n \ge 11$, $n - 3$ è almeno 8 e si può fare per ipotesi forte: aggiungo un 3. Con un programma: i valori che non si ottengono sono 1, 2, 4 e 7.
+:::
+
+::: esercizio medio Esercizio 45 del §2.4
+Dimostra che `pow == a^(i-1)` è un invariante del ciclo `i = 1; pow = 1; while (i <= n) { pow = pow * a; i = i + 1; }`, e ricava il valore di `pow` all'uscita.
+::: soluzione
+**Base.** Prima del ciclo `i = 1` e `pow = 1`: $1 = a^{1-1}$. **Passo.** Se $pow = a^{i-1}$ e il ciclo fa un giro, $pow' = pow \cdot a = a^i$ e $i' = i + 1$, quindi $pow' = a^{i'-1}$. **Uscita.** Il ciclo termina con `i == n + 1`, e per l'invariante `pow == a^n`. È la soluzione ufficiale. Per scrivere `i == n + 1` con rigore serve una seconda parte dell'invariante, `i <= n + 1`.
+:::
+
+::: esercizio esame Esercizio 40 del §2.4: la scacchiera con un buco, usando la forma a L
+Dimostra che ogni scacchiera $2^n \times 2^n$ a cui manca un quadretto si ricopre con i tromini, usando il risultato sulla forma a L.
+::: soluzione
+**Base, $n = 1$.** La scacchiera è un tromino. **Passo.** Suppongo che ogni scacchiera difettosa $2^n \times 2^n$ si ricopra. Divido una scacchiera difettosa $2^{n+1} \times 2^{n+1}$ in quattro scacchiere $2^n \times 2^n$. Quella con il quadretto mancante si ricopre per ipotesi induttiva. Le altre tre formano una forma a L di lato $2^n$, che si ricopre per l'esercizio 39. È la soluzione ufficiale. Rispetto alla lezione 18 non serve il tromino al centro: l'ipotesi si usa una volta sola.
+:::
+
+::: esercizio difficile Trova l'errore
+«Ogni affrancatura da 4 centesimi in su si fa con francobolli da 2 e da 5. Base: 4 = 2 + 2. Passo: suppongo vera la frase fino a $n - 1$; allora $n - 2$ si può fare, e aggiungo un francobollo da 2.» La frase è vera, ma la dimostrazione ha un buco. Quale?
+::: soluzione
+Per $n = 5$ il passo usa il caso $n - 2 = 3$, che sta **prima** del caso base e non è vero: 3 centesimi non si fanno. Il passo vale solo da 6 in su, e il 5 non è dimostrato. Va aggiunto il secondo caso base, $5 = 5$. Con una base sola questa «dimostrazione» proverebbe la frase solo per i numeri pari.
+:::
+
+## Domande di ripasso
+
+::: domanda Qual è l'invariante del ciclo della potenza, e perché ha due parti?
+`ris == a^i` e `i <= n`. La prima dice che cosa contiene `ris`; la seconda permette di concludere che all'uscita `i == n`.
+:::
+
+::: domanda Che cosa cambia nell'ipotesi induttiva tra induzione ordinaria e forte?
+In quella ordinaria si suppone solo il caso prima. In quella forte tutti i casi dal primo fino a quello prima.
+:::
+
+::: domanda Quando servono più casi base?
+Quando il passo usa un caso più indietro di uno: i primi casi non si ricavano dal passo e vanno verificati a mano.
+:::
+
+::: domanda Perché nei prodotti di $n$ fattori serve la forma forte?
+Perché l'ultimo prodotto divide i fattori in due blocchi di grandezza non nota, tutti e due più piccoli di $n$.
+:::
+
+::: domanda Come si divide una forma a L nel passo induttivo?
+In quattro forme a L di lato metà: una al centro e tre nelle punte.
+:::
+
+## Glossario
+
+```glossario
+Induzione forte | Forma del principio di induzione in cui nel passo si suppongono veri tutti i casi precedenti.
+Ipotesi induttiva forte | La supposizione che S(k) sia vera per ogni k dal primo caso fino a n − 1.
+Casi base | I casi verificati a mano, da cui parte l'induzione; possono essere più di uno.
+Invariante di ciclo | Affermazione vera prima del ciclo e dopo ogni giro.
+Correttezza | Il fatto che all'uscita del ciclo le variabili contengano il risultato voluto.
+Tromino | Pezzo a forma di L fatto di tre quadretti.
+Forma a L | Figura fatta di tre quadrati uguali disposti a L: una scacchiera senza un quarto.
+```
+
+## Checklist
+
+```checklist
+- So scrivere l'invariante del ciclo della potenza, con le due parti.
+- So ricavare il risultato del ciclo dall'invariante e dalla condizione di uscita.
+- So enunciare il principio di induzione forte.
+- So dire la differenza tra ipotesi induttiva ordinaria e forte.
+- So dimostrare il risultato dei francobolli da 2 e da 5, con due casi base.
+- So decidere quanti casi base servono guardando il passo.
+- So dimostrare che n fattori richiedono n − 1 prodotti.
+- So spiegare come una forma a L si divide in quattro forme a L.
+- So rispondere al quiz sull'induzione forte della simulazione 1.
+```
+
+## Fonti
+
+- Libro di testo del corso, parte 2 (R. Johnsonbaugh, *Discrete Mathematics*, cap. 2), §2.4 (esercizi 39, 40, 45) e §2.5 «Strong Form of Induction and the Well-Ordering Property». Il libro non ce l'ho: uso la risposta ufficiale alla domanda di ripasso 1 del §2.5 e le soluzioni degli esercizi 40 e 45 del §2.4 e 1 e 4 del §2.5, pubblicate sul Moodle del canale A. Gli enunciati degli esempi 2.5.1 e 2.5.4 sono quelli dell'edizione originale; le dimostrazioni sono scritte da me.
+- F. Cardone, appunti «Induzione e ricorsione» (Moodle del canale A, aperto agli ospiti): principio di induzione forte e suo legame con l'induzione ordinaria.
+- Simulazione d'esame 1 del 2023/24, quiz 9 (testo dalla trascrizione delle schermate, con le risposte segnate da uno studente).
+- Diario delle lezioni del canale B (Berardi), lezione 20 del docente, 13/11/2026.
+- Le tabelle, i disegni, i quiz senza indicazione e gli esercizi sui francobolli da 3 e da 5 e «trova l'errore» sono di questi appunti. Il ciclo della potenza l'ho trascritto in C, compilato con `gcc -Wall -Werror` e provato con gli invarianti controllati da `assert`; francobolli, prodotti e coperture con i tromini li ho controllati con un programma.
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/riassunti/settimana_01.md -->
 > File: `contesto_ai/FDA/riassunti/settimana_01.md`
 
@@ -31334,6 +34125,250 @@ N: 13
 
 ---
 
+<!-- FILE: contesto_ai/FDA/riassunti/settimana_06.md -->
+> File: `contesto_ai/FDA/riassunti/settimana_06.md`
+
+```yaml
+corso: FDA
+lezione: S6
+tipo: riassunto
+titolo: "Settimana 6: esercizi su regole e dimostrazioni, e dimostrazioni per assurdo"
+data: 2026-11-05
+docenti: Stefano Berardi
+sopratitolo: Riassunto settimanale · Fondamenti dell'Informatica · Canale B · 02/11 – 06/11/2026
+descrizione: >-
+  Riassunto della settimana 6 di Fondamenti dell'Informatica (canale B, libro parte 2, §1.4, §2.1 e §2.2): le sette
+  regole di inferenza e le due fallacie, come si trova il controesempio di un'argomentazione, le catene di regole, la
+  dimostrazione diretta con numeri e insiemi; la dimostrazione per assurdo, come si nega la tesi, gli esempi del
+  libro, insiemi e conteggi, il confronto con la contrapposizione.
+lede: >-
+  Le due lezioni della settimana in poche pagine: come si riconosce una regola e come si smonta un ragionamento
+  sbagliato, come comincia una dimostrazione diretta, e come funziona una dimostrazione per assurdo, dal contrario
+  della tesi alla contraddizione.
+materiale: libro
+simboli_logici: quantificatori
+scheda:
+  Lezioni: "[15](15_esercizi_regole_dimostrazioni_dirette.html) lun 02/11, esercizi · [16](16_dimostrazioni_per_assurdo.html) gio 05/11, §2.2"
+  Tempo di ripasso: 35 minuti
+fonte: >-
+  Gli appunti delle lezioni 15 e 16 di Fondamenti dell'Informatica (canale B), scritti sul libro di testo, parte 2
+  (Johnsonbaugh, cap. 1 e 2), e sulle note di F. Cardone (canale A)
+appunti_html: appunti/FDA/riassunto_settimana_06.html
+genera_html: true
+```
+
+## In breve
+
+- Le **regole di inferenza** sono argomentazioni valide corte: modus ponens, modus tollens, addizione, semplificazione, congiunzione, sillogismo ipotetico e disgiuntivo.
+- Le due **fallacie** le imitano: affermare il conseguente e negare l'antecedente. Hanno lo stesso controesempio: ipotesi falsa, conclusione vera.
+- Un'argomentazione **non è valida** se in almeno un caso le premesse sono tutte vere e la conclusione falsa. Si cerca partendo dalla conclusione falsa.
+- La **dimostrazione diretta** parte dall'ipotesi, la riscrive con le definizioni e fa i conti fino alla tesi.
+- La **dimostrazione per assurdo** suppone l'ipotesi e il **contrario della tesi**, e arriva a una contraddizione.
+- Il passo delicato è negare bene la tesi: «oppure» diventa «e», «per ogni» diventa «esiste… non».
+- Per contrapposizione si arriva proprio al contrario dell'ipotesi; per assurdo basta una contraddizione qualsiasi.
+
+> [!NOTA] Le altre lezioni della settimana
+> Venerdì 06/11 non c'è stata lezione di Fondamenti: il diario passa dalla lezione del 05/11 a quella di lunedì 09/11.
+
+## 15 · Regole e dimostrazioni dirette (lun 02/11)
+
+La lezione è di esercizi su due cose che i quiz chiedono: riconoscere se un ragionamento è valido, e scrivere una dimostrazione diretta.
+
+Le regole da riconoscere a colpo d'occhio:
+
+| Regola | Premesse | Conclusione |
+|---|---|---|
+| modus ponens | $p \to q$, $p$ | $q$ |
+| modus tollens | $p \to q$, $\neg q$ | $\neg p$ |
+| sillogismo ipotetico | $p \to q$, $q \to r$ | $p \to r$ |
+| sillogismo disgiuntivo | $p \vee q$, $\neg p$ | $q$ |
+
+Le due **fallacie**: da $p \to q$ e $q$ concludere $p$; da $p \to q$ e $\neg p$ concludere $\neg q$. In tutte e due il controesempio è $p$ falsa e $q$ vera: la strada è bagnata, ma non piove.
+
+- **Non valida**: si parte dalla conclusione falsa, si fissano le lettere che la rendono falsa, e si prova a rendere vere tutte le premesse. Se ci si riesce, quella riga è il controesempio.
+- **Valida**: si scrive una **catena di regole**, in cui ogni passo usa una regola sulle premesse o sui passi già fatti.
+- **Dimostrazione diretta**: l'ipotesi si riscrive con la definizione. Pari è $2k$, dispari $2k + 1$, multiplo di 3 è $3k$, razionale è una frazione di interi. Per due numeri diversi servono due lettere diverse.
+- **Con gli insiemi**: per dimostrare $A \subseteq B$ si prende un elemento qualsiasi di $A$ e si mostra che sta in $B$. Per un'uguaglianza, le due inclusioni.
+- **Controesempio**: un «per ogni» falso si smentisce con un caso solo. $2^{11} - 1 = 2047 = 23 \cdot 89$ smentisce «$2^n - 1$ è primo per ogni $n$ primo».
+
+::: prova «Se studio, passo. Ho passato l'esame. Quindi ho studiato.» È valida?
+No: è la fallacia dell'affermazione del conseguente. Controesempio: non ho studiato e ho passato lo stesso.
+:::
+
+> [!RICORDA]
+> - Modus ponens afferma l'ipotesi, modus tollens nega la conclusione. Le fallacie fanno il contrario.
+> - Non valida: conclusione falsa, premesse vere. Valida: catena di regole.
+> - Diretta: ipotesi, definizioni, conti, tesi.
+
+## 16 · Dimostrazioni per assurdo (gio 05/11)
+
+A volte la dimostrazione diretta non parte, perché l'ipotesi non dà una formula da usare. Si prova allora a supporre che la tesi sia **falsa**, e si guarda che cosa succede.
+
+Per dimostrare «se $P$ allora $Q$» per assurdo:
+
+1. si suppongono $P$ e **non $Q$**;
+2. si ragiona con le definizioni, come in una dimostrazione diretta;
+3. ci si ferma a una **contraddizione**, una frase insieme alla sua negazione;
+4. si conclude che non $Q$ era impossibile: vale $Q$.
+
+```grafico
+titolo: La forma di una dimostrazione per assurdo. Si mettono insieme l'ipotesi e il contrario della tesi (riquadro rosa). Da lì si ricavano una frase C e la sua negazione: la supposizione rosa era impossibile, quindi vale la tesi
+x: 0 12.4
+y: 0 4.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.5 2.6 3.7 2.6 3.7 3.8 0.5 3.8 | blu | pieno
+testo: 2.1 3.2 | blu | "ipotesi P"
+poligono: 0.5 0.8 3.7 0.8 3.7 2.0 0.5 2.0 | rosa | pieno
+testo: 2.1 1.4 | rosa | "suppongo non Q"
+freccia: 3.8 3.2 5.5 2.5 | grigio
+freccia: 3.8 1.4 5.5 2.1 | grigio
+poligono: 5.6 1.7 8.4 1.7 8.4 2.9 5.6 2.9 | ambra | pieno
+testo: 7.0 2.3 | ambra | "C e non C"
+freccia: 8.5 2.3 9.7 2.3 | verde
+poligono: 9.8 1.7 11.9 1.7 11.9 2.9 9.8 2.9 | verde | pieno
+testo: 10.85 2.3 | verde | "quindi Q"
+testo: 7.0 3.4 | ambra | "contraddizione"
+```
+
+Il primo passo regge tutto: **il contrario della tesi va scritto giusto**.
+
+| La tesi | Il suo contrario |
+|---|---|
+| $x \ge 1$ oppure $y \ge 1$ | $x < 1$ **e** $y < 1$ |
+| $n$ è pari | $n$ è dispari |
+| $\sqrt{2}$ è irrazionale | $\sqrt{2}$ è una frazione di interi |
+| l'insieme è vuoto | c'è almeno un elemento |
+| esiste un $i$ con $s_i \le A$ | per ogni $i$, $s_i > A$ |
+
+Gli esempi del libro:
+
+- **Se $n^2$ è pari, $n$ è pari.** Suppongo $n^2$ pari e $n$ dispari, $n = 2m + 1$. Allora $n^2 = 2(2m^2 + 2m) + 1$ è dispari: contraddizione.
+- **$\sqrt{2}$ non è una frazione.** Suppongo $\sqrt{2} = \frac{p}{q}$ ridotta ai minimi termini. Da $p^2 = 2q^2$ si ricava che $p$ è pari, e poi che anche $q$ lo è: la frazione non era ridotta.
+- **Somma almeno 2.** Se $x + y \ge 2$, uno dei due è almeno 1. Suppongo $x < 1$ e $y < 1$: sommando, $x + y < 2$.
+- **Insiemi e conteggi.** Per «è vuoto» si suppone che ci sia un elemento; per «almeno due uguali» si suppone «tutti diversi» e si conta.
+
+Si sceglie l'assurdo quando il contrario della tesi dà **più informazioni** dell'ipotesi: «$n$ dispari» ha una formula, «$n^2$ pari» no.
+
+::: prova Qual è il contrario di «tutti gli studenti hanno passato l'esame»?
+«Almeno uno studente non l'ha passato». Non «nessuno l'ha passato».
+:::
+
+> [!RICORDA]
+> - Per assurdo: ipotesi più contrario della tesi, fino a una frase con la sua negazione.
+> - Il contrario si scrive con De Morgan e le regole dei quantificatori: è il caso minimo che rende falsa la tesi.
+> - Contrapposizione: da non $Q$ a non $P$. Assurdo: da $P$ e non $Q$ a una contraddizione qualunque.
+
+## Verso l'esame
+
+- **Quiz**: riconoscere una regola o una fallacia, trovare la riga che smentisce un'argomentazione, scrivere la negazione di una frase con connettivi e quantificatori.
+- **Riconoscere il metodo** di una dimostrazione dalla prima riga: che cosa suppone.
+- **Domanda aperta facoltativa**: una dimostrazione corta, con il metodo dichiarato, le definizioni usate e la conclusione.
+- Le simulazioni 2023/24 che ho non hanno domande sulle dimostrazioni; ne hanno sui valori di verità e sulla formalizzazione con i quantificatori.
+- Appelli 2026/27: venerdì 29/01/2027 e giovedì 18/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra modus tollens e negazione dell'antecedente?
+Il modus tollens nega la conclusione e ricava la negazione dell'ipotesi: è valido. La fallacia nega l'ipotesi e pretende la negazione della conclusione.
+:::
+
+::: domanda Come si mostra che un'argomentazione non è valida?
+Con un controesempio: valori delle lettere che rendono vere tutte le premesse e falsa la conclusione.
+:::
+
+::: domanda Come comincia una dimostrazione diretta di «se $n$ è dispari, allora $n^2$ è dispari»?
+«Sia $n$ dispari: allora $n = 2k + 1$ per un intero $k$.»
+:::
+
+::: domanda Che cosa si suppone in una dimostrazione per assurdo di «se $P$ allora $Q$»?
+$P$ vera e $Q$ falsa.
+:::
+
+::: domanda Qual è il contrario di «$x \ge 1$ oppure $y \ge 1$»?
+«$x < 1$ e $y < 1$»: l'«oppure» diventa «e».
+:::
+
+::: domanda Perché nella dimostrazione su $\sqrt{2}$ si prende la frazione ridotta ai minimi termini?
+Perché la contraddizione è proprio con quello: si scopre che numeratore e denominatore sono tutti e due pari.
+:::
+
+## Quiz d'esame
+
+Su questi argomenti nelle simulazioni d'esame 2023/24 che ho non ci sono domande. Le domande qui sotto sono **sul modello** dei quiz di logica dell'esame e delle domande di autoverifica del libro; la terza usa la domanda 2 dell'autoverifica del capitolo 2. Le risposte sulle argomentazioni le ho controllate con un programma, su tutte le righe della tavola.
+
+```quiz
+D: Sul modello dei quiz sulle regole. Quale di queste argomentazioni è valida?
++ $p \vee q$, $p \to r$, $q \to r$, quindi $r$
+- $p \to q$, $r \to q$, $q$, quindi $p \vee r$
+- $p \to q$, $q$, quindi $p$
+- $p \to q$, $\neg p$, quindi $\neg q$
+- $p \vee q$, $p$, quindi $\neg q$
+= È la dimostrazione per casi: uno dei due vale, e tutti e due portano a $r$. La più insidiosa è la seconda: con $p$ e $r$ false e $q$ vera le premesse sono vere e la conclusione falsa.
+
+D: Sul modello dei quiz sulle regole. L'argomentazione «$p \to q$, $\neg q \vee r$, $\neg r$, quindi $\neg p$» è valida. Con quali regole si dimostra?
++ sillogismo disgiuntivo, poi modus tollens
+- modus ponens, poi addizione
+- due volte modus ponens
+- sillogismo ipotetico, poi modus ponens
+- non si può: non è valida
+= Da $\neg q \vee r$ e $\neg r$ segue $\neg q$; da $p \to q$ e $\neg q$ segue $\neg p$. La più insidiosa è l'ultima: l'ho controllata su tutte le otto righe, è valida.
+
+D: Dall'autoverifica del capitolo 2, domanda 2. Che differenza c'è tra una dimostrazione diretta e una per assurdo?
++ in quella per assurdo si suppone anche la negazione della conclusione, in quella diretta no
+- in quella diretta non si usano le ipotesi
+- quella per assurdo vale solo per i numeri interi
+- in quella per assurdo si suppone la negazione delle ipotesi
+- nessuna: sono due nomi dello stesso metodo
+= È la risposta ufficiale. La più insidiosa è la quarta: si nega la conclusione, non l'ipotesi.
+
+D: Sul modello delle domande sulle negazioni. Qual è il contrario di «per ogni $x$ esiste un $y$ con $x < y$»?
++ esiste un $x$ per cui, per ogni $y$, $x \ge y$
+- per ogni $x$ esiste un $y$ con $x \ge y$
+- esiste un $x$ ed esiste un $y$ con $x \ge y$
+- per ogni $x$ e per ogni $y$, $x \ge y$
+- esiste un $x$ per cui, per ogni $y$, $x < y$
+= Negando si scambiano i quantificatori e si nega la frase finale. La più insidiosa è la seconda, che nega solo la disuguaglianza.
+
+D: Sul modello degli esercizi del §2.1. «Per ogni intero $n \ge 0$, $n^2 + n + 17$ è primo.» Qual è il più piccolo controesempio?
+N: 16
+= $16^2 + 16 + 17 = 289 = 17^2$. Per $n$ da 0 a 15 il numero è primo: controllato con un programma.
+
+D: Sul modello degli esercizi del §2.2. Una dimostrazione suppone «$a + b > 10$, $a \le 5$ e $b \le 5$» e arriva a «$a + b \le 10$». Che cosa ha dimostrato?
++ se $a + b > 10$, allora $a > 5$ oppure $b > 5$
+- se $a + b > 10$, allora $a > 5$ e $b > 5$
+- se $a \le 5$ e $b \le 5$, allora $a + b > 10$
+- che $a + b = 10$
+- niente: è arrivata a una contraddizione
+= Ha supposto l'ipotesi e il contrario della tesi: la tesi è il contrario di «$a \le 5$ e $b \le 5$», cioè un «oppure». La più insidiosa è la seconda, con «e» al posto di «oppure».
+
+D: Sul modello degli esercizi del §2.1. Per dimostrare in modo diretto che $A \cap B \subseteq A$, come si comincia?
++ sia $x$ un elemento di $A \cap B$
+- sia $x$ un elemento di $A$
+- supponiamo che $A \cap B$ non sia contenuto in $A$
+- sia $A = \{1, 2\}$ e $B = \{2, 3\}$
+- supponiamo che $A \cap B = A$
+= Per un'inclusione si prende un elemento qualsiasi del primo insieme. La più insidiosa è la quarta: un esempio non è una dimostrazione. La terza sarebbe l'inizio di una dimostrazione per assurdo.
+
+D: Sul modello degli esercizi sui conteggi. Quattro squadre giocano sette partite. Perché almeno una coppia di squadre si è incontrata due volte?
++ perché le coppie di squadre sono solo 6
+- perché 7 è dispari
+- perché ogni squadra gioca contro tutte le altre due volte
+- perché le squadre sono pari
+- non è detto che sia successo
+= È la domanda 3 dell'autoverifica del capitolo 2: se ogni coppia giocasse al massimo una volta, le partite sarebbero al massimo 6. La più insidiosa è l'ultima: 7 partite in 6 coppie obbligano a una ripetizione.
+```
+
+## Fonti
+
+- Le lezioni complete: [15 · Esercizi su regole di inferenza e dimostrazioni dirette](15_esercizi_regole_dimostrazioni_dirette.html) e [16 · Dimostrazioni per assurdo](16_dimostrazioni_per_assurdo.html), con gli esempi, i disegni e gli esercizi.
+- Libro di testo del corso, parte 2 (Johnsonbaugh, cap. 1 e 2), §1.4, §2.1 e §2.2, con le soluzioni ufficiali degli esercizi e delle autoverifiche pubblicate sul Moodle del canale A; F. Cardone, «Appunti sulle tecniche di dimostrazione».
+- Diario delle lezioni del canale B (Berardi).
+
+
+---
+
 <!-- FILE: contesto_ai/MDAG/corso.md -->
 > File: `contesto_ai/MDAG/corso.md`
 
@@ -31479,6 +34514,9 @@ Le lezioni seguono il libro di Andrea Mori e gli argomenti indicati per il canal
 | D11 | Cicli e cicli disgiunti | cap. 5, pp. 86–92; esercizi 5.1, 5.2 | `lezioni/D11_cicli_disgiunti.md` · HTML: `appunti/MDAG/D11_cicli_disgiunti.html` | inversa scambiando le righe della tabella, composizione con la tabella a tre righe, cicli e loro notazione (definizione 5.3), lo stesso ciclo scritto in più modi (nota 5.4), inverso di un ciclo (proposizione 5.5), cicli disgiunti (definizione 5.6) che commutano (proposizione 5.7), ogni permutazione è un prodotto di cicli disgiunti (teorema 5.8, con la dimostrazione), da un prodotto di cicli qualsiasi ai cicli disgiunti leggendo da destra (pp. 91–92); appelli del 06/06/2025 (quiz, domanda 5) e del 13/01/2026 (problema 1). Argomenti ricostruiti dal diario 2025/26 (lezione 11) |
 | D12 | Tipo e periodo di una permutazione | cap. 5, pp. 92–95 e 101–103; esercizi 5.5, 5.7, 5.10 | `lezioni/D12_tipo_periodo_permutazioni.md` · HTML: `appunti/MDAG/D12_tipo_periodo_permutazioni.html` | tipo (definizione 5.12), quante permutazioni hanno un tipo dato (cicli di lunghezza $\ell$, scelte successive, divisione per $k!$ con lunghezze ripetute), tipi e partizioni di $n$, potenze e periodo (proposizione 5.23, definizione 5.25), riduzione degli esponenti anche negativi, periodo = mcm delle lunghezze (proposizione 5.26), tipo delle potenze con il mcd; quiz 2025 e 2026 (domande 5 e 6), problemi del 13/01/2026, 01/07/2026 e 10/09/2026. Argomenti ricostruiti dal diario 2025/26 (lezione 12); scambi e parità nella lezione successiva |
 | D13 | Scambi e parità di una permutazione | cap. 5, pp. 95–101 | `lezioni/D13_scambi_parita.md` · HTML: `appunti/MDAG/D13_scambi_parita.html` | ogni ciclo di lunghezza $\ell$ è composizione di $\ell - 1$ scambi (proposizione 5.13), ogni permutazione è composizione di scambi (teorema 5.14), scrittura non unica e scambi che non commutano, gli scambi generano $S_n$ (nota 5.15), la parità è ben definita (teorema 5.16, con la dimostrazione per assurdo), pari e dispari (definizione 5.17), parità di un ciclo (5.18) e di un prodotto (5.19), parità dal tipo e da cicli non disgiunti (5.20, nota 5.21), $\frac{n!}{2}$ pari (5.22); quiz del 14/01/2025, 13/01/2026, 10/09/2026; problemi del 25/01/2022, 14/01/2025, 2023/24, 01/07/2026, riepiloghi 2018 e 2019. Argomenti ricostruiti dal diario 2025/26 (lezione 13); refuso a p. 98 |
+| D14 | Numeri interi, divisibilità e divisione euclidea | cap. 4, pp. 67–73 | `lezioni/D14_interi_divisibilita_divisione_euclidea.md` · HTML: `appunti/MDAG/D14_interi_divisibilita_divisione_euclidea.html` | somma e prodotto tra interi, invertibili, divisibilità (definizione 4.1, proposizione 4.2), irriducibili, riducibili e primi (definizione 4.3), massimo comun divisore (definizione 4.4), divisione euclidea con resto mai negativo (teorema 4.5, esempi con i numeri negativi, confronto con `/` e `%` del C), notazione posizionale e cambi di base (definizione 4.6); quiz del 06/06/2025 e 07/07/2025, quiz 2021–25, prove del 2021/22 ($\mathrm{MCD}(n, n + 3)$, $\mathrm{MCD}(n, n^2 + 1)$), riepilogo 2018; 3 disegni. Lezione del 09/11/2026; argomenti ricostruiti dal diario 2025/26 (lezione 14) |
+| D15 | L'algoritmo di Euclide e l'identità di Bézout | cap. 4, pp. 73–76 | `lezioni/D15_algoritmo_euclide_bezout.md` · HTML: `appunti/MDAG/D15_algoritmo_euclide_bezout.html` | $\mathrm{MCD}(a, b) = \mathrm{MCD}(b, r)$ (proposizione 4.9), algoritmo di Euclide e perché finisce, ultimo resto non nullo, coprimi, identità di Bézout (teorema 4.10) e risalita delle divisioni, combinazioni e multipli del massimo comun divisore (nota 4.11), quando $ax + by = c$ ha soluzioni intere, coppie non uniche (nota 4.12); problema 1 dell'08/06/2026 (versioni A–D), 08/09/2025, prove 2022/23, riepilogo 2019, quiz 2021–25; 2 disegni. Lezione dell'11/11/2026; argomenti ricostruiti dal diario 2025/26 (lezione 15). Refuso del libro a p. 74 |
+| D16 | Numeri primi e teorema fondamentale dell'aritmetica | cap. 4, pp. 76–80 | `lezioni/D16_primi_teorema_fondamentale_aritmetica.md` · HTML: `appunti/MDAG/D16_primi_teorema_fondamentale_aritmetica.html` | irriducibile se e solo se primo (teorema 4.13, con Bézout), teorema fondamentale dell'aritmetica (4.14: esistenza per induzione forte, unicità), come si fattorizza e il controllo fino alla radice quadrata, infiniti primi (teorema 4.15) e il numero $30031 = 59 \cdot 509$, perché 1 non è primo, massimo comun divisore e minimo comune multiplo dalle fattorizzazioni (nota 4.16); problema 1 del 01/07/2026 (versioni A, B, C); 2 disegni. Lezione del 13/11/2026; argomenti ricostruiti dal diario 2025/26 (lezione 16) |
 
 ## Algebra lineare e Geometria (parte 2, modB)
 
@@ -40630,6 +43668,1564 @@ Generatori | Insieme di permutazioni da cui, componendo, si ottengono tutte le a
 - Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori), lezione 13: «Ogni ciclo è composizione di scambi. Ogni permutazione è composizione di scambi. Mancanza di unicità nella scrittura di una permutazione come composizione di scambi. Concetto di parità di una permutazione. La parità di una permutazione è ben definita. Esempi».
 - Appelli di Matematica Discreta (Moodle MDAG1 2025/26, aperto agli ospiti), con le soluzioni ufficiali: quiz del 14/01/2025 (domanda 5), del 13/01/2026 (domanda 6) e del 10/09/2026 (domanda 5); problemi del 25–26/01/2022, del 14/01/2025, dei problemi 2023/24 (versione A) e del 01/07/2026; esercizi di riepilogo 2018 e 2019.
 - Gli esempi $(1\ 5\ 2)(3\ 4\ 6\ 7)$, $(1\ 3) = (1\ 2)(2\ 3)(1\ 2)$, il ragionamento sulle potenze, i quiz senza data e gli esercizi di riscaldamento sono di questi appunti. Tutti i cicli disgiunti, i tipi, i periodi e le parità li ho controllati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D14_interi_divisibilita_divisione_euclidea.md -->
+> File: `contesto_ai/MDAG/lezioni/D14_interi_divisibilita_divisione_euclidea.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D14
+titolo: Numeri interi, divisibilità e divisione euclidea
+data: 2026-11-09
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D14
+descrizione: >-
+  Appunti della lezione D14 di Matematica Discreta (MDAG, parte 1, canali A, B e C): somma e prodotto tra interi, la
+  divisibilità e le sue proprietà, numeri invertibili, irriducibili e primi, il massimo comun divisore, la divisione
+  euclidea anche con numeri negativi, la notazione posizionale e i cambi di base, con le domande d'esame degli appelli
+  2018–2025.
+lede: >-
+  Con questa lezione finisce la parte sul contare e comincia l'aritmetica degli interi, che occupa il resto del corso.
+  Si parte da tre idee: che cosa vuol dire «divide», che cos'è il massimo comun divisore, e la divisione con il resto,
+  che deve funzionare anche con i numeri negativi. Subito un'applicazione da quiz: scrivere un numero in un'altra base.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 4, pp. 67–73
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 4 «I numeri interi», pp. 67–73 (definizione 4.1,
+  proposizione 4.2, definizioni 4.3 e 4.4, teorema 4.5 con la dimostrazione, notazione posizionale: definizione 4.6,
+  note 4.7 e 4.8, cambi di base); diario delle lezioni del canale B 2025/26, lezione 14; appelli di Matematica
+  Discreta 2018–2025
+appunti_html: appunti/MDAG/D14_interi_divisibilita_divisione_euclidea.html
+genera_html: true
+```
+
+## In breve
+
+- Tra gli interi ci sono due operazioni, somma e prodotto. Per la somma ogni numero ha un opposto; per il prodotto hanno un inverso intero solo 1 e −1, che si chiamano **invertibili**.
+- Un intero ne **divide** un altro se il secondo è il primo moltiplicato per un intero: 4 divide 20. Ogni intero divide 0; lo 0 divide solo sé stesso.
+- Un divisore comune di due numeri divide anche la loro somma e la loro differenza.
+- Un intero è **irriducibile** se non si spezza in un prodotto, a parte i prodotti con 1 e −1. È **primo** se, quando divide un prodotto, divide almeno uno dei fattori.
+- Il **massimo comun divisore** di due interi non tutti e due nulli è il più grande intero che li divide entrambi. È sempre positivo.
+- **Divisione euclidea**: dividendo un intero per un altro diverso da zero si trovano un quoziente e un resto, e sono unici. Il resto **non è mai negativo**, anche con numeri negativi: $-17 = (-4) \cdot 5 + 3$.
+- Le **cifre** di un numero in una base sono i resti di divisioni successive per la base. Così si passa dalla base 10 a un'altra base; per tornare indietro si sommano le cifre per le potenze della base.
+- All'esame: una domanda del quiz sui cambi di base in molti appelli, e la divisione euclidea dentro ogni esercizio sul massimo comun divisore.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di lunedì 09/11/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la quattordicesima lezione era «Struttura additiva dei numeri interi. Divisibilità e divisori. Massimo comun divisore. Numeri invertibili, irriducibili e primi. Divisione euclidea». Nel libro sono le pp. 67–71. Quando il docente pubblica gli argomenti, controllo e aggiorno.
+>
+> **La notazione posizionale.** Il libro la mette subito dopo la divisione euclidea, come sua prima applicazione (pp. 71–73). Il diario dell'anno scorso non la nomina in nessuna lezione, ma i quiz d'esame la chiedono: la metto qui. La lezione successiva del diario è l'algoritmo per il massimo comun divisore e l'identità di Bézout (da p. 73).
+>
+> È la lezione dopo la [D13](D13_scambi_parita.html) del 02/11: nella settimana del 2 novembre il calendario del canale B aveva Matematica Discreta solo il lunedì.
+
+## Somma e prodotto tra interi (pp. 67–68)
+
+Gli interi sono i numeri …, −2, −1, 0, 1, 2, … con il segno. Il loro insieme si scrive $\mathbb{Z}$. Hanno due operazioni, la **somma** e il **prodotto**, tutte e due commutative e associative. Ognuna ha un **elemento neutro**, cioè un numero che non cambia niente: 0 per la somma, 1 per il prodotto. Le lega la **proprietà distributiva**: $a(x + y) = ax + ay$.
+
+La differenza tra le due operazioni sta negli inversi.
+
+- **Per la somma** ogni intero ha un inverso: l'**opposto**. L'opposto di 5 è −5, perché sommati danno 0.
+- **Per il prodotto** quasi nessun intero ha un inverso intero. L'inverso di 5 sarebbe $\frac{1}{5}$, che non è un intero. Gli unici interi con un inverso intero sono 1 e −1, ognuno inverso di sé stesso: si chiamano **invertibili**.
+
+Per la somma la struttura è tutta qui: partendo da 1 e sommandolo a sé stesso si ottengono tutti i naturali, e con gli opposti tutti gli interi. Per il prodotto non funziona così: le potenze di un numero non danno tutti gli interi. Per capire come gli interi si costruiscono con il prodotto serve la divisibilità.
+
+::: prova Quali sono gli interi $x$ per cui esiste un intero $y$ con $xy = 1$?
+Solo 1 e −1: $1 \cdot 1 = 1$ e $(-1) \cdot (-1) = 1$. Per ogni altro intero l'inverso sarebbe una frazione, o non esiste, come per lo 0.
+:::
+
+> [!RICORDA]
+> - Opposto: inverso per la somma, c'è sempre. Invertibili per il prodotto: solo 1 e −1.
+
+## La divisibilità (definizione 4.1, proposizione 4.2)
+
+Dire che 4 divide 20 vuol dire che 20 sta nella tabellina del 4: $20 = 4 \cdot 5$. Dire che 3 non divide 10 vuol dire che nessun intero moltiplicato per 3 dà 10. Con i numeri negativi non cambia niente: −4 divide 20, perché $(-4) \cdot (-5) = 20$.
+
+> [!DEF] Divisibilità (definizione 4.1)
+> Siano $a$ e $b$ due interi. Diciamo che $a$ **divide** $b$, o che $a$ è un **divisore** di $b$, o che $b$ è **divisibile** per $a$, se esiste un intero $k$ con $b = ka$. Si scrive $a \mid b$.
+
+**Come si legge.** La barra verticale si legge «divide»: $4 \mid 20$ è una frase, vera o falsa, non un'operazione. Non va confusa con la barra di frazione: $\frac{20}{4}$ è il numero 5, mentre $4 \mid 20$ dice che quel numero è intero. Il segno non conta: se 4 divide 20, anche −4 divide 20, e 4 divide −20.
+
+Due casi limite, che i quiz usano volentieri:
+
+1. **Ogni intero divide 0**, perché $n \cdot 0 = 0$. Invece **0 divide solo 0**: $0 \cdot k$ fa sempre 0, mai un altro numero.
+2. **1 e −1 dividono ogni intero**, perché $1 \cdot n = n$ e $(-1) \cdot (-n) = n$. Sono gli unici con questa proprietà, e i loro soli divisori sono 1 e −1.
+
+I divisori di un intero diverso da 0 sono in numero finito, perché un divisore non può superare in valore assoluto il numero. Per esempio i divisori di 12 sono 1, 2, 3, 4, 6, 12 e i loro opposti.
+
+La proprietà che si usa più spesso riguarda le somme. Se 6 e 15 sono tutti e due multipli di 3, anche la loro somma 21 lo è: $6 + 15 = 3 \cdot 2 + 3 \cdot 5 = 3 \cdot 7$. E al contrario: se 3 divide 21 e divide 6, deve dividere anche l'altro addendo, 15.
+
+> [!PROP] Proposizione 4.2
+> Siano $a$ e $b$ interi e sia $s = a + b$. Allora:
+> 1. un divisore di $a$ e di $b$ è anche un divisore di $s$;
+> 2. un divisore di $s$ e di uno dei due addendi è un divisore anche dell'altro addendo.
+
+**Come si legge.** Tra i tre numeri $a$, $b$ e $a + b$, chi ne divide due divide anche il terzo. Vale lo stesso per la differenza, che è una somma con l'opposto. La dimostrazione è la proprietà distributiva: se $a = dj$ e $b = dk$, allora $a + b = d(j + k)$.
+
+> [!ESEMPIO] · Prova scritta del 2021/22, problema 2, punto 3
+> «Sia $n > 0$ un numero intero. Spiegare perché $\mathrm{MCD}(n, n + 3)$ può essere solo 1 o 3.»
+>
+> **Soluzione.** Un divisore comune di $n$ e di $n + 3$ divide anche la loro differenza, che è 3 (proposizione 4.2). I divisori positivi di 3 sono 1 e 3. Quindi ogni divisore comune positivo, e in particolare il più grande, è 1 oppure 3. È il ragionamento della soluzione ufficiale. Il massimo comun divisore è definito due sezioni più avanti; qui serve solo sapere che è un divisore comune.
+
+::: prova Vero o falso: se 7 divide $a + b$ e 7 divide $a$, allora 7 divide $b$?
+Vero, per il punto 2 della proposizione: $b = (a + b) - a$ è differenza di due multipli di 7.
+:::
+
+> [!RICORDA]
+> - $a \mid b$: esiste un intero $k$ con $b = ka$.
+> - Ogni intero divide 0; 0 divide solo 0; 1 e −1 dividono tutto.
+> - Chi divide due tra $a$, $b$ e $a + b$ divide anche il terzo.
+
+## Irriducibili, riducibili e primi (definizione 4.3)
+
+Il numero 12 si spezza in un prodotto di numeri più piccoli, per esempio 3 per 4. Il numero 7 no: gli unici modi di scriverlo come prodotto sono $7 \cdot 1$ e $(-7) \cdot (-1)$, che non lo spezzano davvero perché usano un invertibile. A scuola un numero così si chiama «primo». Il libro avverte che la sua classificazione «apparirà strana»: usa **due** parole, per due proprietà diverse.
+
+> [!DEF] Irriducibile, riducibile, primo (definizione 4.3)
+> Sia $n$ un intero diverso da 0, 1 e −1.
+> 1. $n$ è **irriducibile** se ogni volta che $n = ab$, uno dei due fattori è invertibile.
+> 2. $n$ è **riducibile** se non è irriducibile, cioè se si può scrivere $n = ab$ con $a$ e $b$ non invertibili.
+> 3. $n$ è **primo** se ogni volta che $n$ divide un prodotto $ab$, allora $n$ divide $a$ oppure divide $b$.
+
+**Come si legge.**
+
+- **Irriducibile** è la proprietà di scuola: non si spezza. I suoi divisori sono solo 1, −1, sé stesso e il suo opposto.
+- **Primo** è un'altra proprietà: guarda che cosa succede quando il numero **divide un prodotto**. Un primo non può dividere un prodotto «a pezzi», un po' con un fattore e un po' con l'altro.
+
+Tre esempi del libro:
+
+1. **7 è irriducibile**: i soli modi di scriverlo come prodotto sono $7 \cdot 1$ e $(-7)(-1)$, con un invertibile.
+2. **−10 è riducibile**: $-10 = 2 \cdot (-5)$, e nessuno dei due fattori è invertibile. La definizione vale anche per i negativi: −7 è irriducibile.
+3. **6 non è primo**: 6 divide $30 = 3 \cdot 10$, ma non divide 3 e non divide 10. Il 6 divide il prodotto prendendo un 3 da un fattore e un 2 dall'altro.
+
+Per gli interi le due proprietà finiscono per coincidere: un intero è primo esattamente quando è irriducibile. Si dimostra tra due lezioni, e da lì viene la scomposizione in fattori primi. Fino ad allora vanno tenute distinte: nelle definizioni e nelle dimostrazioni si usa quella che il testo nomina.
+
+> [!TRAPPOLA] 0, 1 e −1 restano fuori
+> La definizione esclude 0, 1 e −1: non sono né irriducibili, né riducibili, né primi. 1 e −1 sono gli invertibili; lo 0 è un caso a parte.
+
+::: prova 15 è primo? Trova un prodotto che lo smentisce.
+No: 15 divide $3 \cdot 10 = 30$, ma non divide 3 e non divide 10. Un altro: $6 \cdot 5 = 30$.
+:::
+
+> [!RICORDA]
+> - Irriducibile: non si scrive come prodotto di due non invertibili.
+> - Primo: se divide un prodotto, divide un fattore.
+> - Per gli interi coincidono, ma lo si dimostra più avanti.
+
+## Il massimo comun divisore (definizione 4.4)
+
+Due interi hanno sempre almeno due divisori in comune, 1 e −1. Per questo ha senso cercare il più grande dei divisori comuni. Con numeri piccoli basta elencarli: i divisori positivi di 12 sono 1, 2, 3, 4, 6, 12; quelli di 18 sono 1, 2, 3, 6, 9, 18. In comune hanno 1, 2, 3 e 6: il massimo è 6.
+
+```grafico
+titolo: I divisori positivi di 12 (cerchio blu) e di 18 (cerchio ambra). Nella zona in comune ci sono i divisori comuni 1, 2, 3 e 6: il più grande, 6, è il massimo comun divisore
+x: 0 12.4
+y: 0 5.0
+assi: no
+griglia: no
+proporzioni: libere
+cerchio: 4.6 2.5 2.3 | blu
+cerchio: 7.8 2.5 2.3 | ambra
+testo: 3.4 3.2 | blu | "4"
+testo: 3.4 1.8 | blu | "12"
+testo: 9.0 3.2 | ambra | "9"
+testo: 9.0 1.8 | ambra | "18"
+testo: 5.8 3.4 | grigio | "1"
+testo: 6.6 3.4 | grigio | "2"
+testo: 5.8 2.5 | grigio | "3"
+testo: 6.6 2.4 | verde | "6"
+testo: 6.2 1.4 | verde | "MCD = 6"
+testo: 2.6 4.7 | blu | "divisori di 12"
+testo: 9.8 4.7 | ambra | "divisori di 18"
+```
+
+> [!DEF] Massimo comun divisore (definizione 4.4)
+> Siano $a$ e $b$ due interi **non entrambi nulli**. Il **massimo comun divisore** di $a$ e $b$ è
+> $$\mathrm{MCD}(a, b) = \max\{d \in \mathbb{Z} \text{ con } d \mid a \text{ e } d \mid b\}.$$
+
+**Come si legge.** Si prendono tutti gli interi che dividono sia $a$ sia $b$, e si sceglie il più grande. Tre conseguenze:
+
+- **È sempre positivo**, qualunque sia il segno dei due numeri, perché tra i divisori comuni c'è sempre 1. Per esempio $\mathrm{MCD}(15, -40) = 5$ e $\mathrm{MCD}(28, 100) = 4$.
+- **Con lo zero**: $\mathrm{MCD}(0, b) = \lvert b \rvert$ per ogni $b \ne 0$. Ogni intero divide 0, quindi i divisori comuni sono i divisori di $b$, e il più grande è il valore assoluto di $b$.
+- **Tutti e due nulli no**: ogni intero divide 0, quindi i divisori comuni di 0 e 0 sarebbero tutti gli interi, e un massimo non c'è.
+
+Elencare i divisori va bene con numeri piccoli. Con numeri grandi è troppo lento: serve un algoritmo che non passi dai divisori. È l'algoritmo di Euclide della prossima lezione, e il suo ingrediente è la divisione con il resto.
+
+::: prova Calcola $\mathrm{MCD}(24, 36)$ e $\mathrm{MCD}(0, -9)$.
+12, il più grande tra i divisori comuni 1, 2, 3, 4, 6, 12. E 9: i divisori comuni sono i divisori di −9, e il più grande è 9.
+:::
+
+> [!RICORDA]
+> - MCD: il più grande divisore comune. Sempre positivo.
+> - $\mathrm{MCD}(0, b) = \lvert b \rvert$; con due zeri non è definito.
+
+## La divisione euclidea (teorema 4.5)
+
+Dividere 17 per 5 con il resto vuol dire che il 5 ci sta 3 volte e avanza 2. In formula: $17 = 3 \cdot 5 + 2$. Il resto è più piccolo del divisore, altrimenti il 5 ci starebbe un'altra volta. Il teorema dice che questa scrittura esiste sempre ed è una sola, **anche quando i numeri sono negativi**.
+
+> [!TEOREMA] Divisione euclidea (teorema 4.5)
+> Siano $a$ e $b$ interi con $b \ne 0$. Allora esistono e sono unici due interi $q$ e $r$, con $0 \le r < \lvert b \rvert$, per cui
+> $$a = qb + r.$$
+
+**Come si legge.** $a$ è il **dividendo**, $b$ il **divisore**, $q$ il **quoziente**, $r$ il **resto**. La condizione sul resto è quella che rende unica la risposta: il resto sta tra 0 e $\lvert b \rvert - 1$, quindi **non è mai negativo**. Il resto è 0 esattamente quando $b$ divide $a$.
+
+Due esempi del libro con numeri positivi: $1903 = 26 \cdot 72 + 31$ e $811 = 7 \cdot 104 + 83$.
+
+### Con i numeri negativi
+
+Per dividere −17 per 5 la tentazione è cambiare il segno al conto di prima: $-17 = (-3) \cdot 5 - 2$. L'uguaglianza è vera, ma il resto −2 è negativo e il teorema non lo accetta. Bisogna scendere di un multiplo in più: $-17 = (-4) \cdot 5 + 3$. Il resto è 3.
+
+```grafico
+titolo: La divisione euclidea di −17 per 5 sulla retta dei numeri. I multipli di 5 sono segnati in blu. Il quoziente indica il multiplo subito a sinistra di −17, cioè −20 = (−4)·5; il resto è la distanza da lì a −17, cioè 3. Partendo da −15 il resto sarebbe −2, negativo
+x: 0 12.4
+y: 0 3.4
+assi: no
+griglia: no
+proporzioni: libere
+segmento: 0.6 1.5 11.8 1.5 | grigio
+punto: 1.6 1.5 | blu
+testo: 1.6 0.9 | blu | "−20"
+punto: 4.1 1.5 | blu
+testo: 4.1 0.9 | blu | "−15"
+punto: 6.6 1.5 | blu
+testo: 6.6 0.9 | blu | "−10"
+punto: 9.1 1.5 | blu
+testo: 9.1 0.9 | blu | "−5"
+punto: 11.6 1.5 | blu
+testo: 11.6 0.9 | blu | "0"
+punto: 3.1 1.5 | accento
+testo: 3.1 0.9 | accento | "−17"
+freccia: 1.6 2.1 3.1 2.1 | verde
+testo: 2.35 2.6 | verde | "resto 3"
+testo: 1.6 0.35 | grigio | "(−4)·5"
+freccia: 4.1 2.9 3.2 2.9 | rosa | tratteggio
+testo: 5.3 2.9 | rosa | "−2: no"
+```
+
+La regola: il quoziente porta al multiplo di $b$ **subito a sinistra** di $a$ sulla retta dei numeri, o proprio su $a$ se è un multiplo; il resto è il tratto che manca, percorso verso destra.
+
+> [!METODO] Divisione euclidea con il dividendo negativo
+> Per dividere $-a$ per $b$, con $a$ e $b$ positivi:
+> 1. dividi $a$ per $b$: $a = qb + r$;
+> 2. se $r = 0$, allora $-a = (-q) \cdot b$, con resto 0;
+> 3. se $r \ne 0$, allora $-a = (-q - 1) \cdot b + (b - r)$: il quoziente scende di uno e il resto diventa $b - r$.
+
+> [!ESEMPIO] · I due esempi del libro (p. 71)
+> **$-827$ diviso 11.** Prima i positivi: $827 = 75 \cdot 11 + 2$. Il resto non è 0, quindi il quoziente è $-75 - 1 = -76$ e il resto $11 - 2 = 9$:
+> $$-827 = (-76) \cdot 11 + 9.$$
+>
+> **$-391$ diviso $-24$.** Prima i positivi: $391 = 16 \cdot 24 + 7$. Con il divisore negativo il quoziente diventa positivo e sale di uno, e il resto è $24 - 7 = 17$:
+> $$-391 = 17 \cdot (-24) + 17.$$
+>
+> Controllo: $(-76) \cdot 11 = -836$, più 9 fa $-827$; $17 \cdot (-24) = -408$, più 17 fa $-391$. I due resti, 9 e 17, sono tra 0 e il valore assoluto del divisore meno uno.
+
+Se è negativo solo il divisore basta cambiare il segno al quoziente: da $17 = 3 \cdot 5 + 2$ viene $17 = (-3) \cdot (-5) + 2$.
+
+> [!TRAPPOLA] In C la divisione tra interi fa un'altra cosa
+> In C `-827 / 11` vale **−75** e `-827 % 11` vale **−2**: il C tronca verso lo zero, e il resto prende il segno del dividendo. L'ho provato con gcc. È la scrittura $-827 = (-75) \cdot 11 - 2$, che il teorema non accetta. All'esame di Matematica Discreta il resto è quello del teorema: mai negativo.
+
+> [!DIM] Perché $q$ e $r$ esistono e sono unici (pp. 70–71)
+> **Esistenza, con $a \ge 0$ e $b > 0$.** Per induzione su $a$. Se $a < b$ si prende $q = 0$ e $r = a$. Se $a \ge b$, il numero $a - b$ è più piccolo e non negativo, quindi per ipotesi induttiva $a - b = q'b + r'$ con $0 \le r' < b$. Allora $a = (q' + 1)b + r'$. È la divisione fatta togliendo $b$ una volta alla volta.
+>
+> **Gli altri segni** si riconducono a questo caso, come nel metodo qui sopra.
+>
+> **Unicità.** Se $a = qb + r = q'b + r'$, con i due resti tra 0 e $b - 1$ e $r \ge r'$, allora $(q' - q)b = r - r'$. Quindi $r - r'$ è un multiplo di $b$ compreso tra 0 e $b - 1$: può essere solo 0. Allora $r = r'$, e di conseguenza $q = q'$.
+>
+> A p. 70, nel terzo caso dei segni, il libro scrive «$(q + 1) + (-b - r)$»: manca una $b$, va letto $(q + 1)b + (-b - r)$.
+
+::: prova Trova quoziente e resto della divisione euclidea di $-23$ per 6.
+$23 = 3 \cdot 6 + 5$, quindi $-23 = (-4) \cdot 6 + 1$: quoziente −4, resto 1. Controllo: $-24 + 1 = -23$.
+:::
+
+> [!RICORDA]
+> - $a = qb + r$ con $0 \le r < \lvert b \rvert$: $q$ e $r$ esistono e sono unici.
+> - Il resto non è mai negativo. Con dividendo negativo: quoziente giù di uno, resto $b - r$.
+
+## Le cifre sono resti: la notazione posizionale (pp. 71–73)
+
+Scrivere 24075 vuol dire: 5 unità, 7 decine, 0 centinaia, 4 migliaia, 2 decine di migliaia. Ogni cifra moltiplica una potenza di 10. Le cifre si ritrovano con la divisione euclidea: dividendo per 10 il resto è l'ultima cifra, e il quoziente è il numero senza l'ultima cifra. Ripetendo sul quoziente escono tutte le cifre, **da destra a sinistra**:
+
+| Divisione | Resto = cifra |
+|---|---|
+| $24075 = 2407 \cdot 10 + 5$ | 5 |
+| $2407 = 240 \cdot 10 + 7$ | 7 |
+| $240 = 24 \cdot 10 + 0$ | 0 |
+| $24 = 2 \cdot 10 + 4$ | 4 |
+| $2 = 0 \cdot 10 + 2$ | 2 |
+
+Il 10 non ha niente di speciale. Al suo posto va bene qualunque intero da 2 in su: è la **base**. In informatica si usano le basi 2, 8 e 16.
+
+> [!DEF] Notazione posizionale in base $b$ (definizione 4.6)
+> Sia $b \ge 2$ un intero, la **base**, e siano date $b$ **cifre** che rappresentano i numeri da 0 a $b - 1$. La **notazione posizionale** in base $b$ di un intero $N \ge 0$ è la successione di cifre $c_n \cdots c_2 c_1 c_0$ con
+> $$N = c_0 + c_1 b + c_2 b^2 + \dots + c_n b^n.$$
+
+**Come si legge.** La cifra più a destra moltiplica 1, quella prima moltiplica la base, quella prima ancora il quadrato della base, e così via. In base $b$ le cifre vanno da 0 a $b - 1$: in base 2 sono 0 e 1, in base 8 da 0 a 7. Oltre la base 10 le cifre non bastano e si usano le lettere: A vale 10, B vale 11, C vale 12 (nota 4.7). Per dire in che base è scritto un numero si mette la base tra parentesi quadre in basso: $442_{[8]}$ (nota 4.8).
+
+I numeri naturali in base 2 cominciano così: 0, 1, 10, 11, 100, 101, 110, 111, 1000. In base 3: 0, 1, 2, 10, 11, 12, 20, 21, 22, 100.
+
+### Dalla base $b$ alla base 10
+
+Si applica la definizione: ogni cifra per la sua potenza della base, e si somma.
+
+> [!ESEMPIO] · Due esempi del libro (p. 73)
+> $31057_{[8]} = 7 \cdot 1 + 5 \cdot 8 + 0 \cdot 8^2 + 1 \cdot 8^3 + 3 \cdot 8^4 = 7 + 40 + 0 + 512 + 12288 = 12847$.
+>
+> $\mathrm{6A3B}_{[12]} = 11 \cdot 1 + 3 \cdot 12 + 10 \cdot 12^2 + 6 \cdot 12^3 = 11 + 36 + 1440 + 10368 = 11855$. Qui B vale 11 e A vale 10.
+
+### Dalla base 10 alla base $b$
+
+Si fanno le divisioni successive per $b$, come con il 24075, finché il quoziente è 0. I resti, letti **dall'ultimo al primo**, sono le cifre da sinistra a destra.
+
+```grafico
+titolo: Il numero 78 in base 2. A ogni riga si divide per 2 il quoziente della riga sopra, e si mette da parte il resto. Quando il quoziente arriva a 0 ci si ferma. I resti si leggono dal basso verso l'alto: 1001110
+x: 0 12.4
+y: 0 6.0
+assi: no
+griglia: no
+proporzioni: libere
+testo: 4.2 5.5 | grigio | "78 = 39 · 2 + 0"
+testo: 4.2 4.8 | grigio | "39 = 19 · 2 + 1"
+testo: 4.2 4.1 | grigio | "19 = 9 · 2 + 1"
+testo: 4.2 3.4 | grigio | "9 = 4 · 2 + 1"
+testo: 4.2 2.7 | grigio | "4 = 2 · 2 + 0"
+testo: 4.2 2.0 | grigio | "2 = 1 · 2 + 0"
+testo: 4.2 1.3 | grigio | "1 = 0 · 2 + 1"
+testo: 7.6 5.5 | accento | "0"
+testo: 7.6 4.8 | accento | "1"
+testo: 7.6 4.1 | accento | "1"
+testo: 7.6 3.4 | accento | "1"
+testo: 7.6 2.7 | accento | "0"
+testo: 7.6 2.0 | accento | "0"
+testo: 7.6 1.3 | accento | "1"
+freccia: 8.6 1.3 8.6 5.5 | verde
+testo: 10.4 3.4 | verde | "si legge dal basso"
+testo: 6.2 0.5 | verde | "78 = 1001110 in base 2"
+```
+
+Il controllo si fa tornando indietro: $1001110_{[2]} = 64 + 8 + 4 + 2 = 78$.
+
+Altri due esempi del libro: $6342 = 45210_{[6]}$ e $45138 = \mathrm{30A05}_{[11]}$. Nella tabella di p. 73 ci sono due refusi: «$1057 = 17 \cdot 6 + 1$» va letto $176 \cdot 6 + 1$, e nell'ultima riga della base 11 «$3 = 0 \cdot 6 + 3$» va letto $0 \cdot 11 + 3$.
+
+Per passare da una base a un'altra, tutte e due diverse da 10, il libro consiglia di fare due passi: prima alla base 10, poi alla base di arrivo.
+
+> [!TRAPPOLA] L'ordine dei resti
+> Il primo resto che si trova è la cifra **più a destra**. Scrivere i resti nell'ordine in cui escono dà il numero rovesciato: per 78 verrebbe 0111001, che è 57.
+
+::: prova Scrivi 100 in base 3, e controlla.
+$100 = 33 \cdot 3 + 1$, $33 = 11 \cdot 3 + 0$, $11 = 3 \cdot 3 + 2$, $3 = 1 \cdot 3 + 0$, $1 = 0 \cdot 3 + 1$. Dal basso: $10201_{[3]}$. Controllo: $81 + 0 + 18 + 0 + 1 = 100$.
+:::
+
+> [!RICORDA]
+> - Da base $b$ a base 10: cifre per potenze di $b$, e si somma.
+> - Da base 10 a base $b$: divisioni successive per $b$; i resti si leggono dall'ultimo al primo.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\mathbb{Z}$ | «zeta» | l'insieme dei numeri interi | $-3 \in \mathbb{Z}$ |
+| $a \mid b$ | «a divide b» | esiste un intero $k$ con $b = ka$ | $4 \mid 20$ |
+| $\mathrm{MCD}(a, b)$ | «massimo comun divisore» | il più grande divisore comune | $\mathrm{MCD}(12, 18) = 6$ |
+| $\lvert b \rvert$ | «valore assoluto di b» | $b$ senza il segno | $\lvert -24 \rvert = 24$ |
+| $a = qb + r$ | «a uguale q per b più r» | divisione euclidea, con $0 \le r < \lvert b \rvert$ | $-17 = (-4) \cdot 5 + 3$ |
+| $c_n \cdots c_1 c_{0\,[b]}$ | «in base b» | notazione posizionale | $442_{[8]} = 290$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Le regole del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)).
+
+**Che cosa serve di questa lezione**
+
+1. **Una domanda del quiz sui cambi di base**: «qual è la scrittura in base 2 di…» (quiz 2021–25, domanda 6), «di quale numero è la scrittura in base 8, o in base 6» (06/06/2025 e 07/07/2025, domanda 7).
+2. **La divisione euclidea** è il passo che si ripete nell'algoritmo di Euclide: il problema su massimo comun divisore e identità di Bézout c'è in quasi tutti gli appelli, ed è della prossima lezione.
+3. **La proposizione 4.2** nelle domande che chiedono di spiegare: un divisore comune divide la differenza (prove scritte del 2021/22).
+4. Più avanti il resto della divisione diventa il centro del corso, con le congruenze.
+
+### Una domanda vera, letta insieme
+
+**Appello del 06/06/2025, quiz, domanda 7 (una delle versioni).** Il testo: «Di quale numero intero $442_{[8]}$ è la scrittura in base 8? 1. 222; 2. 241; 3. 290; 4. 307; 5. 315.»
+
+**In pratica chiede:** passare dalla base 8 alla base 10.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Passo 1: le potenze di 8.** Da destra: 1, 8, 64.
+>
+> **Passo 2: cifre per potenze.** $2 \cdot 1 + 4 \cdot 8 + 4 \cdot 64 = 2 + 32 + 256 = 290$.
+>
+> **Passo 3: controllo all'indietro.** $290 = 36 \cdot 8 + 2$, $36 = 4 \cdot 8 + 4$, $4 = 0 \cdot 8 + 4$: dal basso, 442.
+>
+> La risposta è la 3, come nella soluzione ufficiale. Nelle altre versioni: $473_{[8]} = 315$, $336_{[8]} = 222$, $361_{[8]} = 241$.
+
+### Un'altra domanda vera
+
+> [!ESEMPIO] · Esame del 2018 (riepilogo), esercizio 3, punto a
+> «Scrivere il numero 15497 in base 8.»
+>
+> **Soluzione.** Divisioni successive per 8, fino al quoziente 0:
+>
+> $15497 = 1937 \cdot 8 + 1$
+>
+> $1937 = 242 \cdot 8 + 1$
+>
+> $242 = 30 \cdot 8 + 2$
+>
+> $30 = 3 \cdot 8 + 6$
+>
+> $3 = 0 \cdot 8 + 3$
+>
+> Dal basso: $15497 = 36211_{[8]}$, come nella soluzione ufficiale.
+
+### Errori da evitare
+
+- Dare un resto negativo con un dividendo negativo.
+- Leggere i resti dall'alto invece che dal basso.
+- Usare in una base una cifra che non esiste: in base 6 non c'è il 6.
+- Dire che 0 divide un numero diverso da 0, o che 1 è primo.
+- Confondere $a \mid b$ con la frazione.
+
+## Quiz
+
+```quiz
+D: Appello del 07/07/2025, quiz, domanda 7 (una delle versioni). Di quale dei numeri seguenti $2023_{[6]}$ è la scrittura in base 6?
+- 308
+- 391
+- 425
++ 447
+- 470
+= $3 + 2 \cdot 6 + 0 \cdot 36 + 2 \cdot 216 = 3 + 12 + 432 = 447$. È la risposta 4 della soluzione ufficiale. La più insidiosa è 470, che è $2102_{[6]}$, la domanda di un'altra versione.
+
+D: Quiz 2021–25, domanda 6 (una delle versioni). La scrittura in base 2 di 78 è:
+- 1010100
+- 1011010
++ 1001110
+- 1101000
+- 1100010
+= Divisioni per 2: resti 0, 1, 1, 1, 0, 0, 1, letti dal basso 1001110. Controllo: $64 + 8 + 4 + 2 = 78$. È la risposta 3 della soluzione ufficiale. Le altre sono 84, 90, 104 e 98, le domande delle altre versioni.
+
+D: Appello del 06/06/2025, quiz, domanda 7 (una delle versioni). Di quale numero intero $473_{[8]}$ è la scrittura in base 8?
+- 222
+- 241
+- 290
+- 307
++ 315
+= $3 + 7 \cdot 8 + 4 \cdot 64 = 3 + 56 + 256 = 315$. È la risposta 5 della soluzione ufficiale. La più insidiosa è 307, che viene contando $7 \cdot 8$ come 48.
+
+D: Quali sono il quoziente e il resto della divisione euclidea di $-17$ per 5?
++ quoziente $-4$, resto 3
+- quoziente $-3$, resto $-2$
+- quoziente $-3$, resto 2
+- quoziente $-4$, resto $-3$
+- quoziente 3, resto $-2$
+= $(-4) \cdot 5 + 3 = -17$, con il resto tra 0 e 4. La più insidiosa è la seconda: l'uguaglianza $(-3) \cdot 5 - 2 = -17$ è vera, ma il resto è negativo. È quello che calcola il C.
+
+D: Quale affermazione è vera?
++ ogni intero divide 0
+- 0 divide ogni intero
+- 1 è un numero primo
+- $\mathrm{MCD}(0, 0) = 0$
+- se $a$ divide $b$, allora $b$ divide $a$
+= $n \cdot 0 = 0$ per ogni $n$. La più insidiosa è la seconda, che scambia i ruoli: 0 divide solo 0. 1 è escluso dalla definizione di primo, e il MCD di due zeri non è definito.
+
+D: Quanto vale $\mathrm{MCD}(0, -9)$?
+N: 9
+= I divisori comuni sono i divisori di $-9$, e il più grande è 9: il MCD è sempre positivo.
+
+D: Perché 6 non è primo, secondo la definizione 4.3?
++ perché divide $3 \cdot 10$ senza dividere né 3 né 10
+- perché è pari
+- perché $6 = 6 \cdot 1$
+- perché non divide 30
+- perché ha un divisore negativo
+= Primo vuol dire: se divide un prodotto, divide un fattore. La più insidiosa è la terza: $6 \cdot 1$ usa un invertibile e non dice niente; per mostrare che 6 è **riducibile** servirebbe $6 = 2 \cdot 3$.
+
+D: Un intero $d$ divide $n$ e divide $n + 5$. Che cosa si può concludere?
++ $d$ divide 5
+- $d = 5$
+- $d$ divide $n^2 + 5$
+- $d = 1$
+- $d$ è primo
+= Per la proposizione 4.2 un divisore comune divide la differenza, che è 5. Quindi $d$ è 1, −1, 5 o −5. La più insidiosa è «$d = 5$»: può anche essere 1.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: divisori e MCD
+Elenca i divisori positivi di 28 e di 100, e calcola $\mathrm{MCD}(28, 100)$ e $\mathrm{MCD}(15, -40)$.
+::: soluzione
+Divisori di 28: 1, 2, 4, 7, 14, 28. Di 100: 1, 2, 4, 5, 10, 20, 25, 50, 100. In comune 1, 2, 4: il MCD è 4. Per 15 e −40 il segno non conta: i divisori comuni positivi sono 1 e 5, quindi 5. Sono i due esempi del libro.
+:::
+
+::: esercizio base Riscaldamento: divisioni euclidee
+Trova quoziente e resto di: (a) 100 per 7; (b) $-100$ per 7; (c) 23 per $-6$; (d) $-45$ per 9.
+::: soluzione
+(a) $100 = 14 \cdot 7 + 2$. (b) Il resto di prima non è 0: quoziente $-15$, resto $7 - 2 = 5$; controllo $-105 + 5 = -100$. (c) $23 = 3 \cdot 6 + 5$, quindi $23 = (-3) \cdot (-6) + 5$. (d) $-45 = (-5) \cdot 9 + 0$: resto 0, perché 9 divide 45. Controllati con un programma.
+:::
+
+::: esercizio base Riscaldamento: cambi di base
+(a) Scrivi 156 in base 5. (b) Scrivi 300 in base 7. (c) Quanto vale $2143_{[5]}$ in base 10?
+::: soluzione
+(a) $156 = 31 \cdot 5 + 1$, $31 = 6 \cdot 5 + 1$, $6 = 1 \cdot 5 + 1$, $1 = 0 \cdot 5 + 1$: $1111_{[5]}$. (b) $300 = 42 \cdot 7 + 6$, $42 = 6 \cdot 7 + 0$, $6 = 0 \cdot 7 + 6$: $606_{[7]}$. (c) $3 + 4 \cdot 5 + 1 \cdot 25 + 2 \cdot 125 = 298$. Controllati con un programma.
+:::
+
+::: esercizio medio Una base con le lettere
+Scrivi 2026 in base 16, e $\mathrm{1A5}_{[12]}$ in base 10.
+::: soluzione
+$2026 = 126 \cdot 16 + 10$, $126 = 7 \cdot 16 + 14$, $7 = 0 \cdot 16 + 7$. I resti 10 e 14 sono le cifre A ed E: $\mathrm{7EA}_{[16]}$. Poi $\mathrm{1A5}_{[12]} = 5 + 10 \cdot 12 + 1 \cdot 144 = 269$.
+:::
+
+::: esercizio esame Prova scritta del 2021/22, problema 2, punto 2
+Dimostrare che per ogni intero $n \ge 1$ si ha $\mathrm{MCD}(n, n^2 + 1) = 1$.
+::: soluzione
+Prendo un divisore comune positivo $d$ di $n$ e di $n^2 + 1$. Se $d$ divide $n$, divide anche $n^2 = n \cdot n$. Allora $d$ divide $n^2 + 1$ e uno dei due addendi, $n^2$: per la proposizione 4.2 divide anche l'altro, che è 1. L'unico divisore positivo di 1 è 1, quindi $d = 1$. La soluzione ufficiale usa la divisione euclidea di $n^2 + 1$ per $n$, che ha quoziente $n$ e resto 1: è lo stesso fatto, visto con l'algoritmo della prossima lezione.
+:::
+
+::: esercizio difficile Gli unici che dividono tutto
+Dimostra che se un intero $n$ divide ogni intero, allora $n = 1$ oppure $n = -1$.
+::: soluzione
+Se $n$ divide ogni intero, in particolare divide 1: esiste $k$ con $nk = 1$. Quindi $n$ è invertibile, e gli unici invertibili sono 1 e −1. Il libro lo dice in un altro modo: se $n$ non è 1 né −1, allora $n$ non divide $n + 1$. Infatti se dividesse $n$ e $n + 1$ dividerebbe la differenza, 1.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa vuol dire che $a$ divide $b$?
+Che esiste un intero $k$ con $b = ka$.
+:::
+
+::: domanda Quali interi sono invertibili per il prodotto?
+Solo 1 e −1.
+:::
+
+::: domanda Che differenza c'è tra irriducibile e primo, nelle definizioni?
+Irriducibile: non si scrive come prodotto di due non invertibili. Primo: se divide un prodotto, divide almeno un fattore.
+:::
+
+::: domanda Perché il MCD di due interi non entrambi nulli è sempre positivo?
+Perché 1 è sempre un divisore comune, e il MCD è il più grande dei divisori comuni.
+:::
+
+::: domanda Che condizione ha il resto nella divisione euclidea?
+È compreso tra 0 e il valore assoluto del divisore meno uno: mai negativo.
+:::
+
+::: domanda Come si trovano le cifre di un numero in base $b$?
+Con divisioni successive per $b$, fino al quoziente 0: i resti, letti dall'ultimo al primo, sono le cifre.
+:::
+
+## Glossario
+
+```glossario
+Opposto | L'inverso di un intero rispetto alla somma: l'opposto di a è −a.
+Invertibile | Intero che ha un inverso intero rispetto al prodotto: solo 1 e −1.
+Divisore | a è un divisore di b se b è a per un intero; si scrive a | b.
+Irriducibile | Intero diverso da 0, 1, −1 che non è prodotto di due interi non invertibili.
+Primo | Intero diverso da 0, 1, −1 che, se divide un prodotto, divide almeno un fattore.
+Massimo comun divisore | Il più grande intero che divide due interi dati, non entrambi nulli.
+Divisione euclidea | La scrittura a = qb + r con resto r tra 0 e |b| − 1.
+Quoziente e resto | I numeri q e r della divisione euclidea.
+Base | L'intero b ≥ 2 le cui potenze danno il peso delle cifre nella notazione posizionale.
+Notazione posizionale | Scrittura di un numero come successione di cifre, ognuna moltiplicata per una potenza della base.
+```
+
+## Checklist
+
+```checklist
+- So che cosa vuol dire «a divide b» e so i casi con 0, 1 e −1.
+- So usare la proposizione 4.2: un divisore comune divide somma e differenza.
+- So le definizioni di irriducibile, riducibile e primo, con un esempio per ognuna.
+- So calcolare il MCD elencando i divisori, e so quanto vale con lo zero.
+- So fare la divisione euclidea anche con dividendo o divisore negativi.
+- So perché il resto è unico e non è mai negativo.
+- So passare da una base qualsiasi alla base 10.
+- So passare dalla base 10 a un'altra base con le divisioni successive.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta* (testo del canale B), cap. 4 «I numeri interi», pp. 67–73: operazioni e divisibilità (definizione 4.1, proposizione 4.2), definizione 4.3 con i tre esempi, definizione 4.4, sezione «La divisione euclidea» (teorema 4.5 con la dimostrazione e gli esempi con i numeri negativi), notazione posizionale (definizione 4.6, note 4.7 e 4.8, cambi di base con le tabelle). Refusi alle pp. 70 e 73.
+- Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori), lezione 14: «Struttura additiva dei numeri interi. Divisibilità e divisori. Massimo comun divisore. Numeri invertibili, irriducibili e primi. Divisione euclidea»; lezione 15 per l'algoritmo del massimo comun divisore.
+- Appelli di Matematica Discreta (Moodle MDAG1 2025/26, aperto agli ospiti), con le soluzioni ufficiali: quiz 2021–25 (domanda 6), del 06/06/2025 e del 07/07/2025 (domanda 7); prove scritte del 2021/22 (problema 2: $\mathrm{MCD}(n, n + 3)$ e $\mathrm{MCD}(n, n^2 + 1)$); riepilogo degli esami del 2018 (esercizio 3).
+- Gli esempi con 17 e 5, con 12 e 18, il confronto con il C, i quiz senza data e gli esercizi di riscaldamento sono di questi appunti. Divisioni, massimi comun divisori e cambi di base li ho controllati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D15_algoritmo_euclide_bezout.md -->
+> File: `contesto_ai/MDAG/lezioni/D15_algoritmo_euclide_bezout.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D15
+titolo: L'algoritmo di Euclide e l'identità di Bézout
+data: 2026-11-11
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D15
+descrizione: >-
+  Appunti della lezione D15 di Matematica Discreta (MDAG, parte 1, canali A, B e C): la proposizione 4.9 sui divisori
+  comuni, l'algoritmo di Euclide per il massimo comun divisore, l'identità di Bézout e il modo di ricavarla risalendo
+  le divisioni, quali numeri si scrivono come combinazione di due interi, con i problemi d'esame degli appelli
+  2019–2026.
+lede: >-
+  Il massimo comun divisore di due numeri grandi non si trova elencando i divisori: si trova con una catena di
+  divisioni con il resto. La stessa catena, letta al contrario, scrive il massimo comun divisore come combinazione
+  dei due numeri. È il conto più richiesto nei problemi d'esame di questa parte del corso.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 4, pp. 73–76
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 4 «I numeri interi», pp. 73–76 (proposizione 4.9
+  con la dimostrazione, algoritmo per il massimo comun divisore con i due esempi, teorema 4.10 con la dimostrazione,
+  note 4.11 e 4.12, esercizio 4.2); diario delle lezioni del canale B 2025/26, lezione 15; appelli di Matematica
+  Discreta 2019–2026
+appunti_html: appunti/MDAG/D15_algoritmo_euclide_bezout.html
+genera_html: true
+```
+
+## In breve
+
+- Se si divide un numero per un altro, i **divisori comuni** dei due numeri sono gli stessi del divisore e del resto. Quindi anche il massimo comun divisore è lo stesso.
+- **Algoritmo di Euclide**: si divide, poi si divide il divisore per il resto, e così via. I resti calano a ogni passo, quindi prima o poi arriva il resto zero.
+- Il massimo comun divisore è l'**ultimo resto diverso da zero**.
+- **Identità di Bézout**: il massimo comun divisore di due interi si scrive sempre come un multiplo intero del primo più un multiplo intero del secondo. Per 84 e 30: $6 = 3 \cdot 30 - 84$.
+- I due moltiplicatori si trovano **risalendo** le divisioni dell'algoritmo, dall'ultima alla prima. Di solito uno dei due è negativo.
+- Le combinazioni di due interi sono esattamente i multipli del loro massimo comun divisore. Per questo un'equazione $ax + by = c$ ha soluzioni intere solo quando il massimo comun divisore divide il termine noto.
+- I due moltiplicatori non sono unici: ce ne sono infinite coppie.
+- All'esame: «calcolare il massimo comun divisore ed esprimerlo con l'identità di Bézout» è il primo punto di un problema in molti appelli. Lo stesso conto servirà per gli inversi modulo $N$.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di mercoledì 11/11/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la quindicesima lezione era «Algoritmo per il calcolo del MCD. Esempi. Identità di Bezout. Esempi». Nel libro sono le pp. 73–76. Quando il docente pubblica gli argomenti, controllo e aggiorno.
+>
+> Serve la [D14](D14_interi_divisibilita_divisione_euclidea.html): divisibilità, massimo comun divisore e divisione euclidea. La lezione successiva del diario è il teorema fondamentale dell'aritmetica, nella [D16](D16_primi_teorema_fondamentale_aritmetica.html).
+>
+> **Un refuso del libro.** A p. 74, nella dimostrazione della proposizione 4.9, c'è scritto «$\delta\alpha = qd\beta + r$»: la $d$ è una $\delta$.
+
+## I divisori comuni dopo una divisione (prop. 4.9)
+
+Per trovare il massimo comun divisore di 84 e 30 si possono elencare i divisori dei due numeri e cercare il più grande in comune. Con numeri di quattro cifre questa strada è troppo lunga. Ce n'è un'altra, che parte da una divisione.
+
+Divido 84 per 30: $84 = 2 \cdot 30 + 24$. Ora confronto due coppie di numeri.
+
+| Coppia | Divisori comuni positivi |
+|---|---|
+| 84 e 30 | 1, 2, 3, 6 |
+| 30 e 24 | 1, 2, 3, 6 |
+
+Sono gli stessi. Non è un caso: un numero che divide 84 e 30 divide anche $84 - 2 \cdot 30 = 24$, perché un divisore comune divide differenze e multipli (proposizione 4.2 della [D14](D14_interi_divisibilita_divisione_euclidea.html)). E un numero che divide 30 e 24 divide anche $2 \cdot 30 + 24 = 84$.
+
+Il guadagno: al posto della coppia 84 e 30 c'è la coppia 30 e 24, con numeri più piccoli, e il massimo comun divisore è lo stesso.
+
+> [!PROP] Proposizione 4.9
+> Siano $a$ e $b$ due numeri interi con $b \ne 0$, e sia $a = qb + r$. Allora i divisori comuni di $a$ e $b$ sono gli stessi di $b$ e $r$. In particolare
+> $$\mathrm{MCD}(a, b) = \mathrm{MCD}(b, r).$$
+
+**Come si legge.** $a$ è il dividendo, $b$ il divisore, $q$ il quoziente, $r$ il resto. La proposizione dice che nel calcolo del massimo comun divisore si può buttare via il dividendo e tenere divisore e resto. Vale per qualunque uguaglianza $a = qb + r$: non serve nemmeno che $r$ sia il resto «giusto», tra 0 e $\lvert b \rvert$.
+
+> [!DIM]- Perché vale
+> **Da $a$ e $b$ a $r$.** Prendo un divisore comune $\delta$ di $a$ e $b$: $a = \delta\alpha$ e $b = \delta\beta$, con $\alpha$ e $\beta$ interi. Allora $r = a - qb = \delta\alpha - q\delta\beta = \delta(\alpha - q\beta)$, e $\delta$ divide $r$.
+>
+> **Da $b$ e $r$ ad $a$.** Prendo un divisore comune $\delta$ di $b$ e $r$: $b = \delta\beta$ e $r = \delta\rho$. Allora $a = qb + r = \delta(q\beta + \rho)$, e $\delta$ divide $a$.
+>
+> I due insiemi di divisori comuni coincidono, quindi hanno lo stesso massimo.
+
+> [!ESAME] Quiz 2021–25, primo quiz
+> «Posto che $111268 = 256 \cdot 434 + 164$, si ha: a. $\mathrm{MCD}(111268, 434) = 256$; b. $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(434, 164)$; c. $\mathrm{MCD}(111268, 434) = 164$; d. $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(111268, 164)$; e. $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(256, 164)$.»
+>
+> È la proposizione 4.9 con $a = 111268$, $b = 434$, $r = 164$: si tengono **divisore e resto**. La risposta è la **b**. Il quoziente 256 non c'entra. Controllo con un programma: tutti e due i massimi comun divisori valgono 2.
+
+::: prova Sapendo che $1000 = 3 \cdot 320 + 40$, a quale massimo comun divisore con numeri più piccoli è uguale $\mathrm{MCD}(1000, 320)$? Quanto vale?
+A $\mathrm{MCD}(320, 40)$, che vale 40, perché 40 divide 320.
+:::
+
+> [!RICORDA]
+> - Da $a = qb + r$: $\mathrm{MCD}(a, b) = \mathrm{MCD}(b, r)$.
+> - Si tengono divisore e resto; dividendo e quoziente si lasciano.
+
+## L'algoritmo di Euclide (pp. 74–75)
+
+La proposizione 4.9 si può usare più volte di fila. Dopo la prima divisione restano divisore e resto: si divide il primo per il secondo, e si va avanti così.
+
+Con 84 e 30:
+
+$$\begin{aligned} 84 &= 2 \cdot 30 + 24 \\ 30 &= 1 \cdot 24 + 6 \\ 24 &= 4 \cdot 6 + 0 \end{aligned}$$
+
+A ogni riga la proposizione 4.9 dà un'uguaglianza: $\mathrm{MCD}(84, 30) = \mathrm{MCD}(30, 24) = \mathrm{MCD}(24, 6) = \mathrm{MCD}(6, 0) = 6$. L'ultimo passaggio viene dalla [D14](D14_interi_divisibilita_divisione_euclidea.html): il massimo comun divisore di un numero e di 0 è il numero stesso.
+
+```grafico
+titolo: Le divisioni dell'algoritmo di Euclide per 84 e 30. A ogni riga il divisore scende al posto del dividendo (frecce blu) e il resto scende al posto del divisore (frecce ambra). L'ultimo resto diverso da zero, 6 (in verde), è il massimo comun divisore
+x: 0 12.4
+y: 0 4.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.6 3.8 | grigio | "84"
+testo: 4.0 3.8 | grigio | "= 2 ·"
+testo: 5.4 3.8 | blu | "30"
+testo: 6.5 3.8 | grigio | "+"
+testo: 7.6 3.8 | ambra | "24"
+testo: 2.6 2.3 | blu | "30"
+testo: 4.0 2.3 | grigio | "= 1 ·"
+testo: 5.4 2.3 | ambra | "24"
+testo: 6.5 2.3 | grigio | "+"
+testo: 7.6 2.3 | verde | "6"
+testo: 2.6 0.8 | ambra | "24"
+testo: 4.0 0.8 | grigio | "= 4 ·"
+testo: 5.4 0.8 | verde | "6"
+testo: 6.5 0.8 | grigio | "+"
+testo: 7.6 0.8 | grigio | "0"
+freccia: 5.2 3.5 2.9 2.6 | blu
+freccia: 7.4 3.5 5.7 2.6 | ambra
+freccia: 5.2 2.0 2.9 1.1 | ambra
+freccia: 7.4 2.0 5.7 1.1 | verde
+testo: 10.2 2.3 | verde | "ultimo resto non nullo"
+testo: 10.2 0.8 | grigio | "resto 0: fine"
+```
+
+**Perché finisce sempre.** I resti di una divisione euclidea sono minori del divisore e non negativi. Nella catena ogni resto diventa il divisore della riga dopo, quindi i resti calano: $24 > 6 > 0$. Una fila di interi non negativi che cala a ogni passo arriva a zero.
+
+> [!METODO] L'algoritmo di Euclide per $\mathrm{MCD}(a, b)$
+> 1. Dividi $a$ per $b$: $a = q_1 b + r_1$.
+> 2. Dividi il divisore per il resto: $b = q_2 r_1 + r_2$. Poi $r_1 = q_3 r_2 + r_3$, e così via.
+> 3. Fermati quando il resto è 0.
+> 4. Il massimo comun divisore è il resto della riga **prima**: l'ultimo diverso da zero.
+> 5. Tieni scritte tutte le righe: servono per l'identità di Bézout.
+
+I due esempi del libro, uno con massimo comun divisore 21 e uno con massimo comun divisore 1:
+
+$$\begin{aligned} 5355 &= 8 \cdot 651 + 147 \\ 651 &= 4 \cdot 147 + 63 \\ 147 &= 2 \cdot 63 + 21 \\ 63 &= 3 \cdot 21 + 0 \end{aligned} \qquad\qquad \begin{aligned} 3575 &= 5 \cdot 654 + 305 \\ 654 &= 2 \cdot 305 + 44 \\ 305 &= 6 \cdot 44 + 41 \\ 44 &= 1 \cdot 41 + 3 \\ 41 &= 13 \cdot 3 + 2 \\ 3 &= 1 \cdot 2 + 1 \\ 2 &= 2 \cdot 1 + 0 \end{aligned}$$
+
+Quindi $\mathrm{MCD}(5355, 651) = 21$ e $\mathrm{MCD}(3575, 654) = 1$. Due numeri con massimo comun divisore 1 si chiamano **coprimi**, o primi tra loro: non hanno divisori comuni a parte 1 e $-1$. Nei testi d'esame il massimo comun divisore è scritto anche $(a, b)$, senza la sigla.
+
+> [!TRAPPOLA] Il massimo comun divisore non è l'ultima riga
+> Nell'ultima riga il resto è 0. Il massimo comun divisore è il resto della riga prima, che nell'ultima riga compare come divisore. Se la prima divisione ha già resto 0, il massimo comun divisore è il divisore: $\mathrm{MCD}(320, 40) = 40$.
+
+::: prova Calcola $\mathrm{MCD}(252, 198)$ con l'algoritmo di Euclide.
+$252 = 1 \cdot 198 + 54$, $198 = 3 \cdot 54 + 36$, $54 = 1 \cdot 36 + 18$, $36 = 2 \cdot 18 + 0$. Il massimo comun divisore è 18.
+:::
+
+> [!RICORDA]
+> - Dividi, poi dividi il divisore per il resto, fino al resto 0.
+> - Il massimo comun divisore è l'ultimo resto diverso da zero.
+> - Massimo comun divisore 1: numeri coprimi.
+
+## L'identità di Bézout (teorema 4.10)
+
+Le righe dell'algoritmo contengono un'informazione in più. Ogni riga si può girare per isolare il resto, e così il massimo comun divisore si scrive usando i due numeri di partenza.
+
+Con 84 e 30 le righe con resto diverso da zero sono due:
+
+$$24 = 84 - 2 \cdot 30, \qquad 6 = 30 - 1 \cdot 24.$$
+
+Parto dalla seconda, quella che ha il massimo comun divisore a sinistra, e al posto di 24 metto quello che dice la prima:
+
+$$6 = 30 - (84 - 2 \cdot 30) = 3 \cdot 30 - 84.$$
+
+Il 6 è scritto come «tre volte 30, meno una volta 84». Controllo: $90 - 84 = 6$.
+
+> [!TEOREMA] Teorema 4.10 (identità di Bézout)
+> Siano $a$ e $b$ due numeri interi e sia $d = \mathrm{MCD}(a, b)$. Allora esistono numeri interi $A$ e $B$ con
+> $$d = aA + bB.$$
+
+**Come si legge.** $A$ e $B$ sono i due moltiplicatori: quante volte prendere $a$ e quante volte prendere $b$. Sono interi, e quasi sempre uno dei due è negativo. Per 84 e 30: $A = -1$ e $B = 3$. Il teorema dice che esistono; l'algoritmo dice come trovarli.
+
+Il procedimento si chiama **risalire** le divisioni, e nel libro è «procedere a ritroso». Con il primo esempio del libro, $\mathrm{MCD}(5355, 651) = 21$, i resti isolati sono:
+
+$$147 = 5355 - 8 \cdot 651, \qquad 63 = 651 - 4 \cdot 147, \qquad 21 = 147 - 2 \cdot 63.$$
+
+> [!ESEMPIO] · L'identità di Bézout per 5355 e 651 (libro, p. 76)
+> **Parto dall'ultima riga con resto non nullo.** $21 = 147 - 2 \cdot 63$.
+>
+> **Sostituisco il resto più piccolo, 63.** $21 = 147 - 2 \cdot (651 - 4 \cdot 147)$. Raccolgo i 147: sono $1 + 8 = 9$. Quindi $21 = 9 \cdot 147 - 2 \cdot 651$.
+>
+> **Sostituisco 147.** $21 = 9 \cdot (5355 - 8 \cdot 651) - 2 \cdot 651$. Raccolgo i 651: sono $-72 - 2 = -74$.
+>
+> **Risultato.** $21 = 9 \cdot 5355 - 74 \cdot 651$, cioè $A = 9$ e $B = -74$.
+>
+> **Controllo.** $9 \cdot 5355 = 48195$ e $74 \cdot 651 = 48174$: la differenza è 21.
+
+> [!METODO] Risalire le divisioni
+> 1. Riscrivi ogni riga dell'algoritmo, tranne l'ultima, con il resto isolato: resto = dividendo − quoziente · divisore.
+> 2. Parti dalla riga che ha il massimo comun divisore a sinistra.
+> 3. Sostituisci il resto **più piccolo** che compare a destra con la sua riga.
+> 4. Raccogli: a destra devono restare sempre e solo due numeri della catena, ognuno con il suo coefficiente.
+> 5. Ripeti fino a quando a destra ci sono $a$ e $b$.
+> 6. Controlla il risultato facendo il conto.
+
+> [!TRAPPOLA] Non fare le moltiplicazioni per strada
+> Se in $9 \cdot 147 - 2 \cdot 651$ calcoli $9 \cdot 147 = 1323$, il 147 sparisce e non si può più sostituire. I numeri della catena vanno lasciati scritti come sono: si lavora solo sui coefficienti. L'altro errore frequente è un segno perso davanti a una parentesi.
+
+Il secondo esempio del libro ha più righe, ma il procedimento è lo stesso. Il risultato è $1 = 1219 \cdot 654 - 223 \cdot 3575$; i passaggi sono nell'esercizio 3.
+
+::: prova Scrivi l'identità di Bézout per 252 e 198, usando le divisioni del «Prova tu» di prima.
+$18 = 54 - 36 = 54 - (198 - 3 \cdot 54) = 4 \cdot 54 - 198 = 4 \cdot (252 - 198) - 198 = 4 \cdot 252 - 5 \cdot 198$. Controllo: $1008 - 990 = 18$.
+:::
+
+> [!RICORDA]
+> - $d = aA + bB$ con $A$ e $B$ interi: esistono sempre.
+> - Si trovano risalendo le divisioni, sostituendo un resto alla volta.
+> - Mai svolgere i prodotti durante la risalita; alla fine, il controllo.
+
+## Le combinazioni di due interi (note 4.11 e 4.12)
+
+Un multiplo intero di un numero più un multiplo intero di un altro si chiama **combinazione** dei due numeri: in simboli $aA + bB$, con $A$ e $B$ interi. L'identità di Bézout dice che il massimo comun divisore è una combinazione. Quali altri numeri lo sono?
+
+Prendo 9 e 6, che hanno massimo comun divisore 3. Qualunque combinazione $9A + 6B$ è un multiplo di 3, perché 3 divide tutti e due gli addendi: non si otterrà mai 4 o 7. Nell'altro verso, da $3 = 9 - 6$ si ottiene ogni multiplo di 3 moltiplicando: $12 = 4 \cdot 9 - 4 \cdot 6$.
+
+```grafico
+titolo: Le combinazioni di 9 e 6 sulla retta. Con un salto di 9 in avanti (blu) e uno di 6 indietro (ambra) si arriva a 3, il massimo comun divisore. Ripetendo si raggiungono tutti i multipli di 3 (in verde) e nessun altro numero (in grigio)
+x: -0.8 13
+y: 0 3.4
+assi: no
+griglia: no
+proporzioni: libere
+segmento: -0.4 1.0 12.6 1.0 | grigio
+punto: 0 1.0 | verde
+testo: 0 0.45 | verde | "0"
+punto: 1 1.0 | grigio
+punto: 2 1.0 | grigio
+punto: 3 1.0 | verde
+testo: 3 0.45 | verde | "3"
+punto: 4 1.0 | grigio
+punto: 5 1.0 | grigio
+punto: 6 1.0 | verde
+testo: 6 0.45 | verde | "6"
+punto: 7 1.0 | grigio
+punto: 8 1.0 | grigio
+punto: 9 1.0 | verde
+testo: 9 0.45 | verde | "9"
+punto: 10 1.0 | grigio
+punto: 11 1.0 | grigio
+punto: 12 1.0 | verde
+testo: 12 0.45 | verde | "12"
+freccia: 0 1.3 9 1.3 | blu
+testo: 4.5 1.75 | blu | "+ 9"
+freccia: 9 2.3 3 2.3 | ambra
+testo: 6 2.75 | ambra | "− 6"
+```
+
+In generale, con $d = \mathrm{MCD}(a, b)$:
+
+- **ogni combinazione è un multiplo di $d$** (nota 4.11): $d$ divide $a$ e $b$, quindi divide $aA + bB$;
+- **ogni multiplo di $d$ è una combinazione**: se $d = aA + bB$, allora $kd = a(kA) + b(kB)$.
+
+Da qui la regola che all'esame serve subito.
+
+> [!PROP] Quando $ax + by = c$ ha soluzioni intere
+> Siano $a$, $b$, $c$ interi, con $a$ e $b$ non tutti e due nulli, e sia $d = \mathrm{MCD}(a, b)$. L'equazione $ax + by = c$ ha soluzioni intere $x$, $y$ esattamente quando $d$ divide $c$.
+
+**Come si legge.** Si calcola il massimo comun divisore e si guarda se divide il termine noto. Se non lo divide, niente soluzioni, e non serve altro. Se lo divide, una soluzione si ottiene dall'identità di Bézout moltiplicata per $\frac{c}{d}$. Nel libro questa regola non ha un numero: è la nota 4.11 più la moltiplicazione scritta sopra.
+
+**Le coppie non sono uniche** (nota 4.12). L'algoritmo dà una coppia $A$, $B$, ma ce ne sono infinite. Per 3 e 2, che hanno massimo comun divisore 1:
+
+$$1 = 3 - 2 = 3 \cdot 3 - 4 \cdot 2 = 5 \cdot 3 - 7 \cdot 2 = 7 \cdot 3 - 10 \cdot 2.$$
+
+Ogni volta si aggiungono due 3 e si tolgono tre 2: si aggiunge e si toglie 6. All'esame va bene qualunque coppia giusta, quindi il tuo risultato può essere diverso da quello della soluzione ufficiale: conta il controllo.
+
+> [!TRAPPOLA] Una combinazione che dà $c$ non dice che $c$ è il massimo comun divisore
+> $12 = 4 \cdot 9 - 4 \cdot 6$, ma il massimo comun divisore di 9 e 6 è 3. Da $aA + bB = c$ si ricava solo che il massimo comun divisore **divide** $c$. C'è un caso in cui si conclude di più: se $aA + bB = 1$, il massimo comun divisore divide 1, quindi è 1, e i due numeri sono coprimi.
+
+::: prova L'equazione $84x + 30y = 15$ ha soluzioni intere? E $84x + 30y = 18$?
+$\mathrm{MCD}(84, 30) = 6$. Il 6 non divide 15: nessuna soluzione. Divide 18: da $6 = 3 \cdot 30 - 84$, moltiplicando per 3, $18 = 9 \cdot 30 - 3 \cdot 84$, cioè $x = -3$, $y = 9$.
+:::
+
+> [!RICORDA]
+> - Le combinazioni di $a$ e $b$ sono esattamente i multipli del loro massimo comun divisore.
+> - $ax + by = c$ ha soluzioni intere quando il massimo comun divisore divide $c$.
+> - $aA + bB = 1$ vuol dire coprimi.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\mathrm{MCD}(a, b)$, $(a, b)$ | «massimo comun divisore di a e b» | il più grande divisore comune | $\mathrm{MCD}(84, 30) = 6$ |
+| $a = qb + r$ | «a uguale q per b più r» | divisione di $a$ per $b$, con quoziente $q$ e resto $r$ | $84 = 2 \cdot 30 + 24$ |
+| $r_1, r_2, \dots$ | «erre uno, erre due» | i resti delle divisioni successive | 24, 6, 0 |
+| $d = aA + bB$ | «d uguale a per A più b per B» | identità di Bézout | $6 = 84 \cdot (-1) + 30 \cdot 3$ |
+| $A$, $B$ | «A grande, B grande» | i moltiplicatori interi, non unici | $A = 9$, $B = -74$ |
+| $d \mid c$ | «d divide c» | $c$ è un multiplo di $d$ | $6 \mid 18$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Le regole del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)).
+
+**Che cosa serve di questa lezione**
+
+1. **«Calcolare il massimo comun divisore ed esprimerlo con l'identità di Bézout»**: primo punto di un problema nell'appello dell'08/06/2026, nelle prove del 2022/23 e nei riepiloghi 2019.
+2. **«L'equazione ha soluzioni intere?»**: secondo punto dello stesso problema dell'08/06/2026.
+3. **L'inverso modulo $N$**, che arriva tra qualche lezione, si calcola con un'identità di Bézout: appelli del 04/02/2025, 07/07/2025 e 08/09/2025.
+4. **La proposizione 4.9** in una domanda del quiz 2021–25.
+
+### Una domanda vera, letta insieme
+
+**Appello dell'08/06/2026, problema 1, versione A, punti 1 e 2.** Il testo: «1. Calcolare il massimo comun divisore di 1392 e 120 e esprimerlo con l'identità di Bézout. 2. Dire se le equazioni $1392x + 120y = 10$ e $1392x + 120y = 72$ ammettono soluzioni intere, e in caso affermativo determinarne una.»
+
+**In pratica chiede:** l'algoritmo di Euclide, la risalita, e poi di controllare se il massimo comun divisore divide 10 e 72.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Euclide.** $1392 = 11 \cdot 120 + 72$, $120 = 1 \cdot 72 + 48$, $72 = 1 \cdot 48 + 24$, $48 = 2 \cdot 24 + 0$. Il massimo comun divisore è **24**.
+>
+> **Risalita.** $24 = 72 - 48$. Sostituisco $48 = 120 - 72$: $24 = 2 \cdot 72 - 120$. Sostituisco $72 = 1392 - 11 \cdot 120$: $24 = 2 \cdot 1392 - 22 \cdot 120 - 120$.
+>
+> **Identità.** $24 = 2 \cdot 1392 - 23 \cdot 120$. Controllo: $2784 - 2760 = 24$.
+>
+> **Prima equazione.** 24 non divide 10: nessuna soluzione intera.
+>
+> **Seconda equazione.** 24 divide 72, e $72 = 3 \cdot 24$. Moltiplico l'identità per 3: $72 = 6 \cdot 1392 - 69 \cdot 120$. Una soluzione è $x = 6$, $y = -69$.
+>
+> È la soluzione ufficiale, ricontrollata con un programma. Il punto 3 del problema è una congruenza, che arriva più avanti.
+
+### Errori da evitare
+
+- Prendere come massimo comun divisore l'ultimo quoziente, o lo 0 dell'ultima riga.
+- Svolgere i prodotti durante la risalita.
+- Perdere il segno meno davanti a una parentesi.
+- Dire che un'equazione non ha soluzioni «perché i numeri sono grandi»: conta solo se il massimo comun divisore divide il termine noto.
+- Consegnare l'identità senza averla controllata con il conto.
+
+## Quiz
+
+```quiz
+D: Quiz 2021–25, primo quiz. Posto che $111268 = 256 \cdot 434 + 164$, si ha:
+- $\mathrm{MCD}(111268, 434) = 256$
++ $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(434, 164)$
+- $\mathrm{MCD}(111268, 434) = 164$
+- $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(111268, 164)$
+- $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(256, 164)$
+= È la proposizione 4.9: si tengono divisore e resto. La più insidiosa è la terza: il resto 164 non è ancora il massimo comun divisore, perché l'algoritmo non è finito (il valore vero è 2).
+
+D: Dal problema 1 dell'appello dell'08/06/2026, versione B. Quanto vale il massimo comun divisore di 1008 e 132?
+N: 12
+= $1008 = 7 \cdot 132 + 84$, $132 = 84 + 48$, $84 = 48 + 36$, $48 = 36 + 12$, $36 = 3 \cdot 12$. L'ultimo resto non nullo è 12.
+
+D: Dal problema 1 dell'appello dell'08/06/2026, versione C. $\mathrm{MCD}(936, 168) = 24$. Quale di queste equazioni ha soluzioni intere?
++ $936x + 168y = 72$
+- $936x + 168y = 18$
+- $936x + 168y = 12$
+- $936x + 168y = 100$
+- $936x + 168y = 1$
+= Servono i multipli di 24, e $72 = 3 \cdot 24$. Le prime due sono le equazioni del testo d'esame. La più insidiosa è 12: divide 24, ma è 24 che deve dividere il termine noto.
+
+D: Dal problema 1 dell'appello dell'08/06/2026, versione D. Quanto vale il massimo comun divisore di 1287 e 165?
+N: 33
+= $1287 = 7 \cdot 165 + 132$, $165 = 132 + 33$, $132 = 4 \cdot 33$. Poi $33 = 165 - 132 = 8 \cdot 165 - 1287$.
+
+D: Dalle prove del 2022/23. L'algoritmo di Euclide dà $\mathrm{MCD}(231, 143) = 11$. Quale di queste è un'identità di Bézout corretta?
++ $11 = 5 \cdot 231 - 8 \cdot 143$
+- $11 = 8 \cdot 231 - 5 \cdot 143$
+- $11 = 5 \cdot 231 + 8 \cdot 143$
+- $11 = 3 \cdot 231 - 5 \cdot 143$
+- $11 = 2 \cdot 143 - 231$
+= $1155 - 1144 = 11$: è l'identità della soluzione ufficiale. La più insidiosa è la seconda, con i coefficienti scambiati: dà $1848 - 715 = 1133$.
+
+D: Dal riepilogo degli esami 2019, esercizio 3. Risalendo le divisioni per 57 e 25 si trova $1 = B \cdot 25 - 7 \cdot 57$. Quanto vale $B$?
+N: 16
+= $57 = 2 \cdot 25 + 7$, $25 = 3 \cdot 7 + 4$, $7 = 4 + 3$, $4 = 3 + 1$. Risalendo: $1 = 2 \cdot 4 - 7 = 2 \cdot 25 - 7 \cdot 7 = 16 \cdot 25 - 7 \cdot 57$. Controllo: $400 - 399$.
+
+D: Nell'algoritmo di Euclide per due interi positivi, che cosa succede ai resti da una riga all'altra?
++ calano sempre, fino a 0
+- crescono fino al massimo comun divisore
+- restano uguali
+- si dimezzano a ogni riga
+- possono diventare negativi
+= Ogni resto è minore del divisore, che è il resto della riga prima: per questo l'algoritmo finisce. La più insidiosa è «si dimezzano»: calano, ma non di una quantità fissa.
+
+D: Due interi $a$ e $b$ verificano $5a - 3b = 1$. Che cosa si può dire?
++ $a$ e $b$ sono coprimi
+- il massimo comun divisore di $a$ e $b$ è 5
+- il massimo comun divisore di $a$ e $b$ è 3
+- $a$ divide $b$
+- niente: dipende dai numeri
+= Il massimo comun divisore divide ogni combinazione, quindi divide 1. La più insidiosa è l'ultima: con un termine noto diverso da 1 sarebbe vera, con 1 no.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: un massimo comun divisore
+Calcola $\mathrm{MCD}(391, 221)$ con l'algoritmo di Euclide.
+::: soluzione
+$391 = 1 \cdot 221 + 170$, $221 = 1 \cdot 170 + 51$, $170 = 3 \cdot 51 + 17$, $51 = 3 \cdot 17 + 0$. Il massimo comun divisore è 17. Infatti $391 = 17 \cdot 23$ e $221 = 17 \cdot 13$.
+:::
+
+::: esercizio base Riscaldamento: la risalita
+Scrivi l'identità di Bézout per 391 e 221.
+::: soluzione
+$17 = 170 - 3 \cdot 51$. Sostituisco $51 = 221 - 170$: $17 = 4 \cdot 170 - 3 \cdot 221$. Sostituisco $170 = 391 - 221$: $17 = 4 \cdot 391 - 7 \cdot 221$. Controllo: $1564 - 1547 = 17$.
+:::
+
+::: esercizio medio Il secondo esempio del libro (p. 76)
+Dalle sette divisioni di 3575 e 654 scritte nella lezione, ricava $1 = 1219 \cdot 654 - 223 \cdot 3575$.
+::: soluzione
+$1 = 3 - 2$. Con $2 = 41 - 13 \cdot 3$: $1 = 14 \cdot 3 - 41$. Con $3 = 44 - 41$: $1 = 14 \cdot 44 - 15 \cdot 41$. Con $41 = 305 - 6 \cdot 44$: $1 = 104 \cdot 44 - 15 \cdot 305$. Con $44 = 654 - 2 \cdot 305$: $1 = 104 \cdot 654 - 223 \cdot 305$. Con $305 = 3575 - 5 \cdot 654$: $1 = 1219 \cdot 654 - 223 \cdot 3575$. Controllo: $797226 - 797225 = 1$.
+:::
+
+::: esercizio medio Esercizio 4.2 del libro, punti 1 e 2
+Calcola $\mathrm{MCD}(1156, 75)$ e $\mathrm{MCD}(1377, 1071)$, e scrivi le due identità di Bézout.
+::: soluzione
+**Primo.** $1156 = 15 \cdot 75 + 31$, $75 = 2 \cdot 31 + 13$, $31 = 2 \cdot 13 + 5$, $13 = 2 \cdot 5 + 3$, $5 = 3 + 2$, $3 = 2 + 1$: il massimo comun divisore è 1. Risalendo: $1 = 447 \cdot 75 - 29 \cdot 1156$ (controllo: $33525 - 33524$). **Secondo.** $1377 = 1071 + 306$, $1071 = 3 \cdot 306 + 153$, $306 = 2 \cdot 153$: il massimo comun divisore è 153. $153 = 1071 - 3 \cdot 306 = 4 \cdot 1071 - 3 \cdot 1377$ (controllo: $4284 - 4131$). Nel testo del libro c'è scritto «massimi comuni denominatori»: sono divisori.
+:::
+
+::: esercizio esame Appello dell'08/06/2026, problema 1, versione B, punti 1 e 2
+Calcolare il massimo comun divisore di 1008 e 132 ed esprimerlo con l'identità di Bézout. Dire se le equazioni $1008x + 132y = 15$ e $1008x + 132y = 36$ ammettono soluzioni intere, e in caso affermativo determinarne una.
+::: soluzione
+**Euclide.** $1008 = 7 \cdot 132 + 84$, $132 = 84 + 48$, $84 = 48 + 36$, $48 = 36 + 12$, $36 = 3 \cdot 12$: il massimo comun divisore è 12. **Risalita.** $12 = 48 - 36 = 2 \cdot 48 - 84 = 2 \cdot 132 - 3 \cdot 84 = 23 \cdot 132 - 3 \cdot 1008$. Controllo: $3036 - 3024 = 12$. **Equazioni.** 12 non divide 15: nessuna soluzione. 12 divide 36: moltiplicando per 3, $36 = 69 \cdot 132 - 9 \cdot 1008$, cioè $x = -9$, $y = 69$. Della versione B ho solo il testo: i conti sono miei, controllati con un programma.
+:::
+
+::: esercizio esame Appello dell'08/09/2025, problema 1, punto b (prima parte)
+Con l'algoritmo di Euclide mostra che 352 e 533 sono coprimi, e scrivi l'identità di Bézout.
+::: soluzione
+$533 = 352 + 181$, $352 = 181 + 171$, $181 = 171 + 10$, $171 = 17 \cdot 10 + 1$: il massimo comun divisore è 1. Risalendo: $1 = 171 - 17 \cdot 10 = 18 \cdot 171 - 17 \cdot 181 = 18 \cdot 352 - 35 \cdot 181 = 53 \cdot 352 - 35 \cdot 533$. Controllo: $18656 - 18655 = 1$. È l'identità della soluzione ufficiale, $352 \cdot 53 + 533 \cdot (-35) = 1$. Il testo chiede poi l'inverso di 352 modulo 533, che è 53: si legge dall'identità, e si vedrà con le classi di resto.
+:::
+
+::: esercizio difficile Se una combinazione dà 1
+Dimostra che se $aA + bB = 1$ per certi interi $A$ e $B$, allora $\mathrm{MCD}(a, b) = 1$. Poi usa questo fatto per mostrare che due interi consecutivi sono sempre coprimi.
+::: soluzione
+Chiamo $d$ il massimo comun divisore. $d$ divide $a$ e $b$, quindi divide $aA + bB$, che è 1. Un intero positivo che divide 1 è 1. Per due consecutivi $n$ e $n + 1$: $1 \cdot (n + 1) - 1 \cdot n = 1$ è una combinazione che dà 1, quindi sono coprimi.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa dice la proposizione 4.9?
+Se $a = qb + r$, i divisori comuni di $a$ e $b$ sono quelli di $b$ e $r$, e quindi $\mathrm{MCD}(a, b) = \mathrm{MCD}(b, r)$.
+:::
+
+::: domanda Come funziona l'algoritmo di Euclide, e perché finisce?
+Si divide, poi si divide il divisore per il resto, e così via fino al resto 0. Finisce perché i resti sono interi non negativi che calano a ogni riga.
+:::
+
+::: domanda Dove si legge il massimo comun divisore alla fine dell'algoritmo?
+È l'ultimo resto diverso da zero, cioè il divisore dell'ultima riga.
+:::
+
+::: domanda Che cosa dice l'identità di Bézout?
+Che il massimo comun divisore $d$ di $a$ e $b$ si scrive come $d = aA + bB$, con $A$ e $B$ interi.
+:::
+
+::: domanda Come si trovano $A$ e $B$?
+Risalendo le divisioni dell'algoritmo: si parte dalla riga con $d$ come resto e si sostituisce un resto alla volta, senza svolgere i prodotti.
+:::
+
+::: domanda Quando l'equazione $ax + by = c$ ha soluzioni intere?
+Quando il massimo comun divisore di $a$ e $b$ divide $c$.
+:::
+
+## Glossario
+
+```glossario
+Algoritmo di Euclide | Catena di divisioni con il resto che calcola il massimo comun divisore di due interi.
+Ultimo resto non nullo | Il resto della penultima riga dell'algoritmo: è il massimo comun divisore.
+Identità di Bézout | Scrittura del massimo comun divisore come aA + bB, con A e B interi.
+Combinazione | Un numero della forma aA + bB, con A e B interi.
+Risalire | Ricavare l'identità di Bézout sostituendo i resti dall'ultima divisione alla prima.
+Coprimi | Due interi con massimo comun divisore 1.
+```
+
+## Checklist
+
+```checklist
+- So enunciare la proposizione 4.9 e usarla in una domanda di quiz.
+- So calcolare un massimo comun divisore con l'algoritmo di Euclide.
+- So spiegare perché l'algoritmo finisce.
+- So enunciare l'identità di Bézout.
+- So ricavare A e B risalendo le divisioni, e controllo sempre il risultato.
+- So dire quando ax + by = c ha soluzioni intere, e trovarne una.
+- So che A e B non sono unici.
+- So che una combinazione uguale a 1 vuol dire coprimi.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta* (testo del canale B), cap. 4 «I numeri interi», pp. 73–76: proposizione 4.9 con la dimostrazione, algoritmo per il massimo comun divisore con gli esempi $\mathrm{MCD}(5355, 651)$ e $\mathrm{MCD}(3575, 654)$, teorema 4.10 con la dimostrazione, note 4.11 e 4.12, esercizio 4.2.
+- Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori), lezione 15: «Algoritmo per il calcolo del MCD. Esempi. Identità di Bezout. Esempi».
+- Appelli di Matematica Discreta (Moodle MDAG1 2025/26, aperto agli ospiti), con le soluzioni ufficiali: quiz 2021–25; riepilogo degli esami 2019 (esercizio 3); prove del 2022/23; appelli dell'08/09/2025 (problema 1) e dell'08/06/2026 (problema 1, versioni A, B, C e D).
+- Gli esempi con 84 e 30, con 252 e 198, con 9 e 6, i disegni, i quiz senza data e gli esercizi di riscaldamento sono di questi appunti. Tutte le divisioni e tutte le identità le ho controllate con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D16_primi_teorema_fondamentale_aritmetica.md -->
+> File: `contesto_ai/MDAG/lezioni/D16_primi_teorema_fondamentale_aritmetica.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D16
+titolo: Numeri primi e teorema fondamentale dell'aritmetica
+data: 2026-11-13
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D16
+descrizione: >-
+  Appunti della lezione D16 di Matematica Discreta (MDAG, parte 1, canali A, B e C): irriducibili e primi sono la
+  stessa cosa, il teorema fondamentale dell'aritmetica con esistenza e unicità della fattorizzazione, come si
+  fattorizza un numero, i primi sono infiniti, massimo comun divisore dalle fattorizzazioni, con il problema d'esame
+  del 01/07/2026.
+lede: >-
+  Ogni intero si scompone in un prodotto di numeri primi, e in un modo solo. È il risultato su cui si appoggia tutta
+  l'aritmetica del corso. Per dimostrarlo serve l'identità di Bézout della lezione scorsa, e alla fine si scopre con
+  un ragionamento di poche righe che i numeri primi non finiscono mai.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 4, pp. 76–80
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 4 «I numeri interi», sezione «Il teorema
+  fondamentale dell'aritmetica», pp. 76–80 (teoremi 4.13, 4.14 e 4.15 con le dimostrazioni, nota 4.16); diario delle
+  lezioni del canale B 2025/26, lezione 16; appello di Matematica Discreta del 01/07/2026
+appunti_html: appunti/MDAG/D16_primi_teorema_fondamentale_aritmetica.html
+genera_html: true
+```
+
+## In breve
+
+- Per gli interi **irriducibile** e **primo** sono la stessa cosa (teorema 4.13). La dimostrazione usa l'identità di Bézout.
+- La proprietà che serve nei conti: se un primo divide un prodotto, divide almeno uno dei fattori. Per i numeri non primi è falsa: 6 divide $4 \cdot 9$, ma non divide né 4 né 9.
+- **Teorema fondamentale dell'aritmetica**: ogni intero diverso da 0, 1 e −1 è, a parte il segno, un prodotto di primi positivi, e la fattorizzazione è **unica**.
+- L'esistenza si dimostra per induzione forte: un numero o è primo, o si spezza in due numeri più piccoli.
+- Per fattorizzare si provano i primi uno dopo l'altro; per sapere se un numero è primo basta provare i primi fino alla sua radice quadrata.
+- I **primi sono infiniti**: preso un elenco finito di primi, il loro prodotto più 1 ha un fattore primo che nell'elenco non c'è.
+- Il numero 1 non è primo per convenzione: altrimenti la fattorizzazione non sarebbe unica.
+- Il massimo comun divisore si legge dalle fattorizzazioni: i primi comuni, con l'esponente più piccolo.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di venerdì 13/11/2026, dalle 9 alle 11, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la sedicesima lezione era «Equivalenza primo/irriducibile. Il teorema fondamentale dell'aritmetica. Esistenza di infiniti primi». Nel libro sono le pp. 76–80, la fine del capitolo 4. Quando il docente pubblica gli argomenti, controllo e aggiorno.
+>
+> Servono le definizioni di irriducibile e primo della [D14](D14_interi_divisibilita_divisione_euclidea.html) e l'identità di Bézout della [D15](D15_algoritmo_euclide_bezout.html). L'induzione forte usata qui è quella della [lezione 19 di Fondamenti](../FDA/19_induzione_forte.html). La lezione successiva del diario sono le congruenze modulo $N$ (capitolo 6 del libro).
+>
+> **Che cosa ho aggiunto.** La sezione su come si fattorizza un numero non è nel libro, che dice solo che il problema è difficile per numeri grandi: l'ho messa perché serve per fare gli esercizi. Anche il minimo comune multiplo dalle fattorizzazioni è un'aggiunta mia.
+
+## Irriducibili e primi coincidono (teorema 4.13)
+
+Nella [D14](D14_interi_divisibilita_divisione_euclidea.html) c'erano due definizioni che sembravano dire la stessa cosa. Riguardano un intero $n$ diverso da 0, 1 e −1.
+
+- $n$ è **irriducibile** se non si spezza: quando $n = ab$, uno dei due fattori è 1 o −1. I suoi soli divisori sono 1, −1, $n$ e $-n$.
+- $n$ è **primo** se, ogni volta che divide un prodotto $ab$, divide $a$ oppure divide $b$.
+
+La prima parla di come $n$ si scompone. La seconda parla di come $n$ si comporta quando divide. Un esempio che le distingue: il 6.
+
+- 6 non è irriducibile: $6 = 2 \cdot 3$.
+- 6 non è primo: divide $4 \cdot 9 = 36$, ma non divide 4 e non divide 9. I suoi due «pezzi», 2 e 3, sono finiti uno in un fattore e uno nell'altro.
+
+Con il 7 questo non può succedere: 7 non ha pezzi da distribuire. Se 7 divide un prodotto, deve stare tutto in uno dei fattori.
+
+> [!TEOREMA] Teorema 4.13
+> Sia $n$ un numero intero, diverso da 0, 1 e −1. Allora $n$ è irriducibile se e soltanto se $n$ è primo.
+
+**Come si legge.** Sugli interi le due definizioni individuano gli stessi numeri: 2, 3, 5, 7, 11… e i loro opposti. Da qui in poi uso «primo» per tutti e due i significati, e si usa la proprietà che serve in quel momento: «non si spezza» per fattorizzare, «se divide un prodotto divide un fattore» nelle dimostrazioni.
+
+> [!DIM]- Perché vale: è qui che serve Bézout
+> **Da irriducibile a primo.** Suppongo $n$ irriducibile, e che $n$ divida $ab$ ma non divida $a$. Devo mostrare che divide $b$. Scrivo $ab = nk$.
+>
+> I divisori di $n$ sono solo 1, −1, $n$, $-n$, e $n$ non divide $a$: l'unico divisore comune positivo di $a$ e $n$ è 1, cioè $\mathrm{MCD}(a, n) = 1$.
+>
+> Per l'identità di Bézout esistono interi $A$ e $B$ con $1 = Aa + Bn$. Moltiplico per $b$: $b = Aab + Bbn = Ank + Bbn = n(Ak + Bb)$. Quindi $n$ divide $b$.
+>
+> **Da primo a irriducibile.** Suppongo $n$ primo e $n = ab$. Allora $n$ divide $ab$, quindi divide $a$ o $b$: diciamo $a = nk$. Sostituendo, $n = nkb$, e cancellando $n$ resta $1 = kb$. Un prodotto di interi vale 1 solo come $1 \cdot 1$ o $(-1)(-1)$: quindi $b$ è 1 o −1, e $n$ è irriducibile.
+
+La proprietà «primo» si estende a prodotti con più fattori: se un primo divide $a_1 a_2 \cdots a_k$, divide almeno uno degli $a_i$. Basta applicarla più volte.
+
+> [!NOTA] Perché due nomi, allora
+> Il libro lo spiega nella nota 4.16: in altri insiemi di numeri, diversi dagli interi, le due nozioni **non** coincidono. Per questo corso non serve altro: sugli interi sono la stessa cosa.
+
+::: prova Il 10 divide $4 \cdot 15 = 60$. Divide 4 o 15? Che cosa se ne conclude?
+Non divide né 4 né 15. Quindi 10 non è primo, e infatti si spezza: $10 = 2 \cdot 5$.
+:::
+
+> [!RICORDA]
+> - Sugli interi: irriducibile = primo.
+> - Se un primo divide un prodotto, divide almeno uno dei fattori. Per i non primi è falso.
+
+## Ogni intero è un prodotto di primi (teorema 4.14)
+
+Un numero che non è primo si spezza in due fattori più piccoli. Se uno dei due non è primo, si spezza anche lui. Andando avanti si arriva a soli primi, perché i fattori diventano sempre più piccoli.
+
+```grafico
+titolo: Un albero di fattori per 360. Ogni numero non primo si spezza in due più piccoli; i rami finiscono quando si arriva a un primo (in verde). Le foglie sono 2, 3, 2, 3, 2, 5: quindi 360 = 2³ · 3² · 5. Spezzando in un altro modo, per esempio 360 = 8 · 45, le foglie sarebbero le stesse
+x: 0 12.4
+y: 0 5.2
+assi: no
+griglia: no
+proporzioni: libere
+testo: 6.2 4.7 | blu | "360"
+segmento: 5.9 4.4 3.9 3.6 | grigio
+segmento: 6.5 4.4 8.7 3.6 | grigio
+testo: 3.7 3.3 | blu | "36"
+testo: 8.9 3.3 | blu | "10"
+segmento: 3.5 3.0 2.4 2.3 | grigio
+segmento: 3.9 3.0 5.0 2.3 | grigio
+testo: 2.2 2.0 | blu | "6"
+testo: 5.2 2.0 | blu | "6"
+segmento: 8.7 3.0 8.0 2.3 | grigio
+segmento: 9.1 3.0 9.8 2.3 | grigio
+testo: 7.9 2.0 | verde | "2"
+testo: 9.9 2.0 | verde | "5"
+segmento: 2.0 1.7 1.5 1.0 | grigio
+segmento: 2.4 1.7 2.9 1.0 | grigio
+testo: 1.4 0.7 | verde | "2"
+testo: 3.0 0.7 | verde | "3"
+segmento: 5.0 1.7 4.5 1.0 | grigio
+segmento: 5.4 1.7 5.9 1.0 | grigio
+testo: 4.4 0.7 | verde | "2"
+testo: 6.0 0.7 | verde | "3"
+```
+
+Il teorema dice due cose: che una scomposizione in primi **c'è** sempre, e che è **una sola**. La seconda è quella che va dimostrata con più cura: l'albero di 360 si può disegnare in molti modi, ma le foglie sono sempre tre 2, due 3 e un 5.
+
+> [!TEOREMA] Teorema 4.14 (teorema fondamentale dell'aritmetica)
+> Sia $n$ un numero intero, diverso da 0, 1 e −1. Allora esiste un'unica fattorizzazione
+> $$n = \pm\, p_1 p_2 \cdots p_s,$$
+> dove i $p_i$ sono numeri primi positivi.
+
+**Come si legge.** Il segno davanti è quello di $n$. I $p_i$ possono ripetersi, e di solito i primi uguali si raccolgono in potenze: $360 = 2^3 \cdot 3^2 \cdot 5$ e $-84 = -2^2 \cdot 3 \cdot 7$. «Unica» vuol dire a meno dell'ordine dei fattori: $2 \cdot 3 \cdot 5$ e $5 \cdot 2 \cdot 3$ contano come la stessa. Un primo è la fattorizzazione di sé stesso, con $s = 1$.
+
+**L'esistenza, per induzione forte.** Basta considerare $n \ge 2$: per i negativi si mette il segno meno davanti.
+
+1. **Passo base.** $n = 2$ è primo: è già fattorizzato.
+2. **Passo induttivo.** Suppongo che tutti gli interi da 2 a $n - 1$ abbiano una fattorizzazione. Se $n$ è primo, è fatto. Se non lo è, $n = ab$ con $a$ e $b$ tutti e due tra 2 e $n - 1$. Per ipotesi $a$ e $b$ si fattorizzano, e mettendo insieme le due fattorizzazioni si ottiene quella di $n$.
+
+Serve la forma **forte** dell'induzione perché i due fattori $a$ e $b$ sono più piccoli di $n$, ma non si sa di quanto: non sono il caso «subito prima».
+
+> [!DIM]- L'unicità: è qui che serve «primo»
+> Suppongo due fattorizzazioni dello stesso numero: $p_1 p_2 \cdots p_s = q_1 q_2 \cdots q_t$, con $s \le t$.
+>
+> Il primo $p_1$ divide il prodotto di destra. Per il teorema 4.13 divide uno dei fattori $q_i$. Ma $q_i$ è irriducibile, e i suoi soli divisori positivi sono 1 e $q_i$: quindi $p_1 = q_i$. Riordinando, $p_1 = q_1$.
+>
+> Cancello $p_1$ dai due lati: $p_2 \cdots p_s = q_2 \cdots q_t$. Ripeto con $p_2$, poi con $p_3$, e così via.
+>
+> Dopo $s$ passaggi a sinistra resta 1: $1 = q_{s+1} \cdots q_t$. Un prodotto di primi non può valere 1, quindi a destra non resta niente: $s = t$, e i fattori erano gli stessi.
+
+> [!TRAPPOLA] Il numero 1 non è primo
+> Non è una dimenticanza: è una scelta, spiegata nella nota 4.16. Se 1 fosse primo, $6 = 2 \cdot 3 = 1 \cdot 2 \cdot 3 = 1 \cdot 1 \cdot 2 \cdot 3$ sarebbero fattorizzazioni diverse, e l'unicità cadrebbe. Lo stesso vale per −1.
+
+::: prova Fattorizza 84 e 180.
+$84 = 2^2 \cdot 3 \cdot 7$ e $180 = 2^2 \cdot 3^2 \cdot 5$.
+:::
+
+> [!RICORDA]
+> - Ogni intero diverso da 0, 1, −1 è, a parte il segno, un prodotto di primi positivi.
+> - La fattorizzazione è unica, a meno dell'ordine.
+> - 1 non è primo, proprio per non perdere l'unicità.
+
+## Come si fattorizza un numero
+
+Il teorema garantisce che la fattorizzazione esiste, ma non dice come trovarla. Per i numeri degli esercizi basta provare i primi in ordine: 2, 3, 5, 7, 11…
+
+> [!METODO] Fattorizzare provando i primi
+> 1. Prova a dividere per 2. Finché la divisione è esatta, segna un 2 e continua con il quoziente.
+> 2. Passa al primo successivo e fai lo stesso.
+> 3. Fermati quando il primo che stai provando, elevato al quadrato, supera il numero che resta: quello che resta, se non è 1, è primo.
+
+Con 360: $360 = 2 \cdot 180 = 2 \cdot 2 \cdot 90 = 2 \cdot 2 \cdot 2 \cdot 45$. Il 45 non è pari; per 3: $45 = 3 \cdot 15 = 3 \cdot 3 \cdot 5$. Resta 5, che è primo. Quindi $360 = 2^3 \cdot 3^2 \cdot 5$.
+
+**Perché ci si può fermare alla radice.** Se un numero $m$ non è primo, $m = ab$ con $a \le b$. Allora $a \cdot a \le a \cdot b = m$: il fattore più piccolo, elevato al quadrato, non supera $m$. Quindi un numero che non ha divisori primi fino alla sua radice quadrata è primo.
+
+> [!ESEMPIO] · 97 è primo? E 91?
+> **97.** La radice quadrata è meno di 10, perché $10^2 = 100$. Provo i primi fino a 7. Non è pari; la somma delle cifre è 16, quindi non è multiplo di 3; non finisce per 0 o 5; $97 = 13 \cdot 7 + 6$. Nessuno lo divide: **97 è primo**.
+>
+> **91.** Stessi primi da provare. Non è multiplo di 2, 3, 5; ma $91 = 7 \cdot 13$. **Non è primo.**
+
+I criteri che si usano più spesso sono tre. Un numero è multiplo di 2 se finisce con una cifra pari, e di 5 se finisce per 0 o 5. È multiplo di 3 se la somma delle sue cifre è un multiplo di 3.
+
+> [!OLTRE]- Con i numeri grandi
+> Il libro avverte che per numeri molto grandi non si conoscono metodi rapidi per fattorizzare. Decidere se un numero è primo si può fare in un tempo ragionevole (test AKS, 2002); trovarne i fattori no. Su questa difficoltà si basano i sistemi crittografici usati in rete, in cui la chiave è il prodotto di due primi di centinaia di cifre: se ne parlerà alla fine del corso, con l'algoritmo RSA. All'esame non è richiesto.
+
+::: prova 143 è primo?
+La radice è meno di 12, perché $12^2 = 144$. Provo 2, 3, 5, 7, 11: i primi quattro no, ma $143 = 11 \cdot 13$. Non è primo.
+:::
+
+> [!RICORDA]
+> - Si provano i primi in ordine, dividendo finché si può.
+> - Per decidere se un numero è primo bastano i primi fino alla sua radice quadrata.
+
+## I primi sono infiniti (teorema 4.15)
+
+L'elenco dei primi comincia con 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41. Andando avanti si diradano, e ci si può chiedere se a un certo punto finiscano. Non finiscono: lo sapeva già Euclide.
+
+L'idea è una costruzione. Prendo alcuni primi, per esempio 2, 3 e 5. Li moltiplico e aggiungo 1: $2 \cdot 3 \cdot 5 + 1 = 31$. Questo numero diviso per 2, per 3 o per 5 dà sempre resto 1: nessuno dei tre lo divide. Ma un fattore primo ce l'ha, per il teorema fondamentale. Quel fattore è un primo **nuovo**, che non era nell'elenco.
+
+> [!TEOREMA] Teorema 4.15
+> Esistono infiniti numeri primi.
+
+**Come si legge.** Nessun elenco finito di primi li contiene tutti: per qualsiasi elenco se ne può sempre trovare uno che manca.
+
+> [!ESEMPIO] · La dimostrazione, passo per passo
+> **Parto da un elenco finito** di primi positivi qualsiasi: $p_1, p_2, \dots, p_r$.
+>
+> **Costruisco** $n = p_1 p_2 \cdots p_r + 1$. È maggiore di 1.
+>
+> **$n$ ha un fattore primo** $p$, per il teorema 4.14.
+>
+> **$p$ non è nell'elenco.** Se fosse uno dei $p_i$, dividerebbe il prodotto $p_1 \cdots p_r$ e dividerebbe $n$. Allora dividerebbe la differenza, che è 1 (proposizione 4.2). Ma nessun primo divide 1.
+>
+> **Conclusione.** Ogni elenco finito di primi ne lascia fuori almeno uno. Quindi i primi sono infiniti.
+
+> [!TRAPPOLA] Il numero costruito non è per forza primo
+> La dimostrazione dice che $n$ ha un fattore primo nuovo, non che $n$ è primo. Con i primi fino a 13: $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 + 1 = 30031 = 59 \cdot 509$. Non è primo, ma 59 e 509 non sono nell'elenco. E l'elenco di partenza può essere qualsiasi: con 3 e 5 viene $16 = 2^4$, e il primo nuovo è 2.
+
+> [!OLTRE]- Quanti sono i primi fino a un certo numero
+> Il libro cita un risultato più preciso, il teorema dei numeri primi: i primi tra 1 e $n$ sono circa $\frac{n}{\log n}$, con il logaritmo naturale, e la stima migliora al crescere di $n$. Fino a 100 i primi sono 25; la formula dà circa 22. La dimostrazione è molto oltre il corso, e all'esame non è richiesta.
+
+::: prova Applica la costruzione di Euclide all'elenco 2, 3, 5, 7. Che numero viene? È primo?
+$2 \cdot 3 \cdot 5 \cdot 7 + 1 = 211$. È primo: la sua radice è meno di 15, e nessuno tra 2, 3, 5, 7, 11, 13 lo divide.
+:::
+
+> [!RICORDA]
+> - Prodotto dei primi dell'elenco, più 1: un numero che nessun primo dell'elenco divide.
+> - Il suo fattore primo è nuovo. Il numero stesso può non essere primo.
+
+## Il MCD dalle fattorizzazioni (nota 4.16)
+
+Con le fattorizzazioni in mano i divisori di un numero si vedono: sono i prodotti fatti con i suoi primi, presi al massimo quante volte compaiono. Un divisore comune di due numeri usa solo i primi che stanno in tutte e due le fattorizzazioni.
+
+Per 84 e 360: $84 = 2^2 \cdot 3 \cdot 7$ e $360 = 2^3 \cdot 3^2 \cdot 5$. In comune ci sono due 2 e un 3. Quindi $\mathrm{MCD}(84, 360) = 2^2 \cdot 3 = 12$.
+
+```grafico
+titolo: I fattori primi di 84 (cerchio blu) e di 360 (cerchio ambra), ognuno scritto tante volte quante compare. Nella parte comune ci sono 2, 2 e 3: il massimo comun divisore è 2 · 2 · 3 = 12. Tutti i fattori insieme, contati una volta, danno il minimo comune multiplo: 7 · 12 · 30 = 2520
+x: 0 12.4
+y: 0 5.0
+assi: no
+griglia: no
+cerchio: 4.7 2.4 2.2 | blu
+cerchio: 7.7 2.4 2.2 | ambra
+testo: 3.6 4.8 | blu | "84"
+testo: 8.8 4.8 | ambra | "360"
+testo: 3.5 2.4 | blu | "7"
+testo: 5.85 3.0 | verde | "2"
+testo: 6.55 3.0 | verde | "2"
+testo: 6.2 1.9 | verde | "3"
+testo: 8.55 3.0 | ambra | "2"
+testo: 9.25 3.0 | ambra | "3"
+testo: 8.9 1.9 | ambra | "5"
+```
+
+La regola: **il massimo comun divisore è il prodotto dei primi comuni, ciascuno con l'esponente più piccolo dei due**.
+
+L'esempio del libro: $32775 = 3 \cdot 5^2 \cdot 19 \cdot 23$ e $6120 = 2^3 \cdot 3^2 \cdot 5 \cdot 17$. I primi comuni sono 3 e 5, con esponente più piccolo 1 per tutti e due: $\mathrm{MCD}(32775, 6120) = 3 \cdot 5 = 15$.
+
+Per il **minimo comune multiplo** si fa il contrario: tutti i primi che compaiono, ciascuno con l'esponente più grande. Per 84 e 360: $2^3 \cdot 3^2 \cdot 5 \cdot 7 = 2520$.
+
+| Metodo | Quando conviene |
+|---|---|
+| fattorizzazioni | numeri piccoli, che si fattorizzano a mente |
+| algoritmo di Euclide | numeri grandi, o quando serve l'identità di Bézout |
+
+Il libro lo scrive nella stessa nota: fattorizzare numeri grandi è difficile, mentre l'algoritmo di Euclide resta veloce. Per questo i calcolatori usano Euclide.
+
+::: prova Calcola $\mathrm{MCD}(180, 84)$ dalle fattorizzazioni.
+$180 = 2^2 \cdot 3^2 \cdot 5$ e $84 = 2^2 \cdot 3 \cdot 7$. Primi comuni: 2 con esponente 2, 3 con esponente 1. Il massimo comun divisore è 12.
+:::
+
+> [!RICORDA]
+> - Massimo comun divisore: primi comuni, esponente più piccolo.
+> - Minimo comune multiplo: tutti i primi, esponente più grande.
+> - Numeri grandi: Euclide, non le fattorizzazioni.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $n \mid ab$ | «n divide a per b» | $ab$ è un multiplo di $n$ | $6 \mid 4 \cdot 9$ |
+| $p$, $p_i$, $q_i$ | «pi», «pi con i» | numeri primi positivi | 2, 3, 5, 7 |
+| $n = \pm\, p_1 p_2 \cdots p_s$ | «n uguale più o meno il prodotto dei pi» | fattorizzazione in primi | $-84 = -2 \cdot 2 \cdot 3 \cdot 7$ |
+| $2^3 \cdot 3^2 \cdot 5$ | «due alla terza per tre alla seconda per cinque» | fattorizzazione con i primi uguali raccolti | 360 |
+| $p_1 \cdots p_r + 1$ | «il prodotto più uno» | il numero della dimostrazione di Euclide | $2 \cdot 3 \cdot 5 + 1 = 31$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Le regole del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)).
+
+**Che cosa serve di questa lezione**
+
+1. **Le fattorizzazioni** sono uno strumento di quasi tutti gli esercizi che seguono: funzione di Eulero, numero di soluzioni di una congruenza, generatori di un gruppo. Vanno fatte in fretta e senza errori.
+2. **L'unicità della fattorizzazione** dentro un problema di conteggio: appello del 01/07/2026, problema 1.
+3. **«Coprimo con»** si traduce con i primi: un numero è coprimo con 1000 quando non è multiplo né di 2 né di 5 (stesso problema).
+4. Le **dimostrazioni** dei tre teoremi negli appelli 2021–2026 non sono state chieste; possono servire all'orale, se c'è.
+
+### Una domanda vera, letta insieme
+
+**Appello del 01/07/2026, problema 1, versione A, punto c.** Il testo: «Sia $P$ l'insieme dei numeri primi minori o uguali a 100. Sapendo che $\lvert P \rvert = 25$, quanti sono i numeri naturali maggiori di 1 la cui fattorizzazione è il prodotto di primi distinti appartenenti a $P$? Quanti di essi sono il prodotto di esattamente quattro primi distinti?»
+
+**In pratica chiede:** quanti numeri si costruiscono scegliendo alcuni dei 25 primi e moltiplicandoli, ognuno al massimo una volta.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Un numero, un insieme di primi.** Per l'unicità della fattorizzazione, due scelte diverse di primi danno due numeri diversi. Quindi contare i numeri è contare i sottoinsiemi di $P$.
+>
+> **Il numero deve essere maggiore di 1**, quindi serve almeno un primo: il sottoinsieme vuoto si scarta.
+>
+> **Prima risposta.** I sottoinsiemi di un insieme con 25 elementi sono $2^{25}$ ([D02](D02_complementare_induzione_partizioni.html)): quelli non vuoti sono $2^{25} - 1$.
+>
+> **Seconda risposta.** Esattamente quattro primi: i sottoinsiemi con 4 elementi, $\binom{25}{4} = 12650$ ([D08](D08_combinazioni.html)).
+>
+> Sono le risposte della soluzione ufficiale. Il passaggio che dà i punti è il primo: senza l'unicità, due prodotti diversi potrebbero dare lo stesso numero.
+
+### Errori da evitare
+
+- Contare 1 tra i primi.
+- Fermarsi a una scomposizione con fattori non primi: $360 = 4 \cdot 9 \cdot 10$ non è la fattorizzazione.
+- Per il massimo comun divisore prendere l'esponente più grande: quello è il minimo comune multiplo.
+- Dire che nella dimostrazione di Euclide il numero costruito è primo.
+- Dichiarare primo un numero dopo aver provato solo 2, 3 e 5.
+
+## Quiz
+
+```quiz
+D: Dal problema 1 dell'appello del 01/07/2026, versione A. $P$ è l'insieme dei 25 primi minori o uguali a 100. Quanti sono i numeri naturali maggiori di 1 che sono prodotto di primi distinti di $P$?
++ $2^{25} - 1$
+- $2^{25}$
+- $25!$
+- $\binom{25}{2}$
+- $25^2$
+= Ogni numero corrisponde a un sottoinsieme non vuoto di $P$, per l'unicità della fattorizzazione. È la risposta della soluzione ufficiale. La più insidiosa è $2^{25}$, che conta anche il sottoinsieme vuoto, cioè il numero 1.
+
+D: Dal problema 1 dell'appello del 01/07/2026, versione C. $P$ è l'insieme dei 24 primi minori o uguali a 90. Quanti numeri sono il prodotto di esattamente cinque primi distinti di $P$?
+N: 42504
+= Sono i sottoinsiemi di 5 elementi: $\binom{24}{5} = 42504$.
+
+D: Il numero 6 divide $4 \cdot 9$, ma non divide né 4 né 9. Che cosa mostra questo esempio?
++ che 6 non è primo
+- che 6 è irriducibile
+- che 4 e 9 non sono coprimi
+- che il teorema 4.13 è falso
+- che 36 non ha una fattorizzazione unica
+= Un primo che divide un prodotto divide uno dei fattori: 6 non lo fa. La più insidiosa è la quarta: il teorema dice che irriducibile e primo coincidono, e 6 non è né l'uno né l'altro.
+
+D: Qual è la fattorizzazione in primi di 360?
++ $2^3 \cdot 3^2 \cdot 5$
+- $4 \cdot 9 \cdot 10$
+- $2^2 \cdot 3^2 \cdot 10$
+- $2^3 \cdot 45$
+- $1 \cdot 2^3 \cdot 3^2 \cdot 5$
+= Tutti i fattori devono essere primi. La più insidiosa è l'ultima: il prodotto è giusto, ma 1 non è primo e non compare nelle fattorizzazioni.
+
+D: Dall'esempio del libro (nota 4.16). Con $32775 = 3 \cdot 5^2 \cdot 19 \cdot 23$ e $6120 = 2^3 \cdot 3^2 \cdot 5 \cdot 17$, quanto vale il massimo comun divisore?
+N: 15
+= I primi comuni sono 3 e 5, ognuno con l'esponente più piccolo, che è 1.
+
+D: $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 + 1 = 30031 = 59 \cdot 509$. Che cosa dice questo conto sulla dimostrazione di Euclide?
++ che il numero costruito può non essere primo, ma i suoi fattori primi non sono nell'elenco
+- che la dimostrazione è sbagliata
+- che 59 era nell'elenco di partenza
+- che i primi finiscono a 13
+- che 30031 è primo
+= La dimostrazione usa solo il fatto che il numero ha un fattore primo nuovo. La più insidiosa è la seconda: chi ricorda «prodotto più uno è primo» pensa a un controesempio, ma il teorema non lo afferma.
+
+D: Perché 1 non si considera primo?
++ perché altrimenti la fattorizzazione non sarebbe unica
+- perché è dispari
+- perché non ha divisori
+- perché è troppo piccolo
+- perché divide tutti i numeri
+= Con 1 tra i primi, $6 = 2 \cdot 3 = 1 \cdot 2 \cdot 3$ avrebbe più fattorizzazioni. La più insidiosa è l'ultima: è vero che 1 divide tutto, ma il motivo della convenzione è l'unicità.
+
+D: Per controllare che 97 è primo provando i primi in ordine, qual è l'ultimo primo che serve provare?
+N: 7
+= $10^2 = 100$ supera 97, quindi bastano i primi minori di 10: 2, 3, 5 e 7.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: tre fattorizzazioni
+Fattorizza 1001, 4620 e 1843.
+::: soluzione
+$1001 = 7 \cdot 11 \cdot 13$. $4620 = 2^2 \cdot 3 \cdot 5 \cdot 7 \cdot 11$. $1843 = 19 \cdot 97$: non è multiplo di 2, 3, 5, 7, 11, 13, 17, e $1843 = 19 \cdot 97$. Il 1843 è il modulo del problema 1 dell'appello del 07/07/2025, che lo presenta come prodotto «dei due numeri primi 19, 97».
+:::
+
+::: esercizio base Riscaldamento: primo o no
+Decidi se 101, 119 e 221 sono primi.
+::: soluzione
+**101**: la radice è poco più di 10; 2, 3, 5 e 7 non lo dividono ($101 = 14 \cdot 7 + 3$): è primo. **119** $= 7 \cdot 17$: non è primo. **221**: la radice è meno di 15; 2, 3, 5, 7, 11 no, ma $221 = 13 \cdot 17$: non è primo.
+:::
+
+::: esercizio medio Massimo comun divisore e minimo comune multiplo
+Calcola massimo comun divisore e minimo comune multiplo di 4620 e 360 dalle fattorizzazioni.
+::: soluzione
+$4620 = 2^2 \cdot 3 \cdot 5 \cdot 7 \cdot 11$ e $360 = 2^3 \cdot 3^2 \cdot 5$. Massimo comun divisore: $2^2 \cdot 3 \cdot 5 = 60$. Minimo comune multiplo: $2^3 \cdot 3^2 \cdot 5 \cdot 7 \cdot 11 = 27720$. Controllo: $60 \cdot 27720 = 4620 \cdot 360$.
+:::
+
+::: esercizio medio La costruzione di Euclide
+Applica la costruzione della dimostrazione agli elenchi (a) 2, 3; (b) 3, 5; (c) 2, 3, 5, 7, 11. In ogni caso trova un primo che non è nell'elenco.
+::: soluzione
+(a) $2 \cdot 3 + 1 = 7$, primo. (b) $3 \cdot 5 + 1 = 16 = 2^4$: il primo nuovo è 2. (c) $2310 + 1 = 2311$, che è primo (controllato con un programma; a mano servono i primi fino a 47).
+:::
+
+::: esercizio esame Appello del 01/07/2026, problema 1, versione B, punto c
+Sia $P$ l'insieme dei numeri primi minori o uguali a 80. Sapendo che $\lvert P \rvert = 22$, quanti sono i numeri naturali maggiori di 1 la cui fattorizzazione è il prodotto di primi distinti appartenenti a $P$? Quanti di essi sono il prodotto di esattamente tre primi distinti?
+::: soluzione
+Per l'unicità della fattorizzazione ogni numero corrisponde a un sottoinsieme non vuoto di $P$: sono $2^{22} - 1$. Con esattamente tre primi: $\binom{22}{3} = 1540$. Della versione B ho solo il testo: il ragionamento è quello della soluzione ufficiale della versione A.
+:::
+
+::: esercizio esame Appello del 01/07/2026, problema 1, versione A, punto b
+Quanti sono i numeri tra 1 e 500 che sono coprimi con 1000?
+::: soluzione
+$1000 = 2^3 \cdot 5^3$: un numero è coprimo con 1000 quando non è multiplo di 2 e non è multiplo di 5. Tra 1 e 500 i multipli di 2 sono 250, quelli di 5 sono 100, quelli di 10 sono 50. Per il principio di inclusione-esclusione ([D06](D06_insiemi_finiti_inclusione_esclusione.html)) i multipli di 2 o di 5 sono $250 + 100 - 50 = 300$, e i coprimi sono $500 - 300 = 200$. È la soluzione ufficiale; ricontato con un programma.
+:::
+
+::: esercizio difficile Quanti divisori ha 360
+Usando l'unicità della fattorizzazione, conta i divisori positivi di 360.
+::: soluzione
+$360 = 2^3 \cdot 3^2 \cdot 5$. Un divisore positivo è un prodotto $2^a \cdot 3^b \cdot 5^c$ con $a$ da 0 a 3, $b$ da 0 a 2, $c$ da 0 a 1. Per l'unicità, scelte diverse danno divisori diversi. Le scelte sono $4 \cdot 3 \cdot 2 = 24$ (scelte successive, [D07](D07_parole_anagrammi_disposizioni.html)). Contati con un programma: 24.
+:::
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra le definizioni di irriducibile e di primo?
+Irriducibile: non si scrive come prodotto di due fattori, a parte quelli con 1 e −1. Primo: se divide un prodotto, divide almeno uno dei fattori. Sugli interi individuano gli stessi numeri.
+:::
+
+::: domanda Dove serve l'identità di Bézout in questa lezione?
+Nel teorema 4.13, per mostrare che un irriducibile che divide un prodotto e non divide il primo fattore divide il secondo.
+:::
+
+::: domanda Che cosa dice il teorema fondamentale dell'aritmetica?
+Ogni intero diverso da 0, 1 e −1 si scrive in un solo modo, a parte l'ordine, come più o meno un prodotto di primi positivi.
+:::
+
+::: domanda Perché nell'esistenza serve l'induzione forte?
+Perché un numero non primo si spezza in due fattori più piccoli di grandezza non nota, e l'ipotesi deve valere per tutti e due.
+:::
+
+::: domanda Come si dimostra che i primi sono infiniti?
+Preso un elenco finito di primi, il loro prodotto più 1 ha un fattore primo che non può essere nell'elenco, perché dividerebbe 1.
+:::
+
+::: domanda Come si trova il massimo comun divisore dalle fattorizzazioni?
+Si prendono i primi comuni, ciascuno con l'esponente più piccolo, e si moltiplicano.
+:::
+
+## Glossario
+
+```glossario
+Irriducibile | Intero diverso da 0, 1, −1 che non si scrive come prodotto di due fattori, a parte quelli con 1 e −1.
+Primo | Intero diverso da 0, 1, −1 che, quando divide un prodotto, divide almeno uno dei fattori. Sugli interi coincide con irriducibile.
+Fattorizzazione | Scrittura di un intero come più o meno un prodotto di primi positivi.
+Teorema fondamentale dell'aritmetica | Ogni intero diverso da 0, 1, −1 ha una fattorizzazione, ed è unica a meno dell'ordine.
+Coprimi | Due interi senza primi in comune, cioè con massimo comun divisore 1.
+Minimo comune multiplo | Il più piccolo multiplo positivo comune a due interi.
+```
+
+## Checklist
+
+```checklist
+- So dire le definizioni di irriducibile e di primo, e che sugli interi coincidono.
+- So mostrare con un esempio che un numero non primo può dividere un prodotto senza dividere i fattori.
+- So enunciare il teorema fondamentale dell'aritmetica.
+- So spiegare l'idea dell'esistenza con l'induzione forte.
+- So fattorizzare un numero provando i primi in ordine.
+- So decidere se un numero è primo fermandomi alla radice quadrata.
+- So ripetere la dimostrazione che i primi sono infiniti.
+- So perché 1 non è primo.
+- So calcolare massimo comun divisore e minimo comune multiplo dalle fattorizzazioni.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta* (testo del canale B), cap. 4 «I numeri interi», sezione «Il teorema fondamentale dell'aritmetica», pp. 76–80: teorema 4.13 con la dimostrazione, teorema 4.14 con esistenza e unicità, elenco dei primi, teorema 4.15, cenni al teorema dei numeri primi e al test AKS, nota 4.16 con l'esempio $\mathrm{MCD}(32775, 6120)$.
+- Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori), lezione 16: «Equivalenza primo/irriducibile. Il teorema fondamentale dell'aritmetica. Esistenza di infiniti primi».
+- Appelli di Matematica Discreta (Moodle MDAG1 2025/26, aperto agli ospiti): appello del 01/07/2026, problema 1, versioni A, B e C, con la soluzione ufficiale della versione A; appello del 07/07/2025, problema 1 (il modulo 1843).
+- L'esempio del 6, l'albero di 360, il metodo per fattorizzare, il minimo comune multiplo, i disegni, i quiz senza data e gli esercizi di riscaldamento sono di questi appunti. Fattorizzazioni, conteggi e numeri primi li ho controllati con un programma.
 
 
 ---
@@ -59673,6 +64269,7 @@ corso: MDAG
 modulo: AG
 lezione: L15
 titolo: Applicazioni lineari II
+data: 2026-11-10
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L15
 descrizione: >-
@@ -59707,7 +64304,7 @@ genera_html: true
 - All'esame la matrice associata è una delle domande più frequenti del quiz.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 10/11/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 15. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Lo stesso spazio con nomi diversi: gli isomorfismi (p. 74)
 
@@ -60646,6 +65243,7 @@ corso: MDAG
 modulo: AG
 lezione: L16
 titolo: Applicazioni lineari III
+data: 2026-11-12
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L16
 descrizione: >-
@@ -60679,7 +65277,7 @@ genera_html: true
 - All'esame: matrici di cambiamento di base, matrici di una composizione e matrici in una base data sono tra le domande più frequenti.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 12/11/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 16. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Il traduttore tra due basi (pp. 79–80)
 
@@ -77585,6 +82183,543 @@ N: 720
 - Le lezioni complete: [D10 · Binomio di Newton e permutazioni](D10_binomio_newton_permutazioni.html), [D11 · Cicli e cicli disgiunti](D11_cicli_disgiunti.html), [D12 · Tipo e periodo di una permutazione](D12_tipo_periodo_permutazioni.html), con gli esempi, i quiz e gli esercizi.
 - A. Mori, *Lezioni di Matematica Discreta*, cap. 3, pp. 60–61; cap. 5, pp. 83–95 e 101–103.
 - Quiz degli appelli del 04/02/2025, 06/06/2025, 13/01/2026, 03/02/2026 e 08/06/2026 (domande 5 e 6); problema 1 dell'appello del 14/01/2025, con le soluzioni ufficiali.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_06_AG.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_06_AG.md`
+
+```yaml
+corso: MDAG
+modulo: AG
+lezione: S6
+tipo: riassunto
+titolo: "Settimana 6: Rouché–Capelli, basi e coordinate, applicazioni lineari"
+data: 2026-11-05
+docenti: Reto Buzano e Marco Radeschi
+sopratitolo: Riassunto settimanale · Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · 02/11 – 06/11/2026
+descrizione: >-
+  Riassunto della settimana 6 di Algebra lineare e Geometria (MDAG, parte 2): il sistema omogeneo associato, la
+  struttura delle soluzioni, il rango e il teorema di Rouché–Capelli, i sistemi con un parametro; indipendenza,
+  generatori e basi con i pivot, le coordinate rispetto a una base; le applicazioni lineari, nucleo e immagine,
+  iniettività e suriettività, il teorema della dimensione.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: come si sa quante soluzioni ha un sistema contando i pivot, come
+  si decide se dei vettori sono una base e come si trovano le coordinate, che cosa sono nucleo e immagine di
+  un'applicazione lineare, con le domande vere degli appelli.
+materiale: dispense
+scheda:
+  Lezioni: "[L12](L12_sistemi_lineari_2.html) mar 03/11 · [L13](L13_sistemi_lineari_3.html) mer 04/11 · [L14](L14_applicazioni_lineari_1.html) gio 05/11, nel canale B"
+  Dispense: Buzano e Radeschi 2026, pp. 56–73
+  Tempo di ripasso: 45 minuti
+fonte: >-
+  Gli appunti delle lezioni L12, L13 e L14 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso
+  (R. Buzano, M. Radeschi)
+appunti_html: appunti/MDAG/riassunto_settimana_06_AG.html
+genera_html: true
+```
+
+## In breve
+
+- Le soluzioni di un sistema sono **una soluzione particolare più tutte le soluzioni del sistema omogeneo associato**, quello con gli stessi coefficienti e i termini noti a zero.
+- Il **rango** è il numero di pivot di una forma a scalini.
+- **Rouché–Capelli**: il sistema ha soluzioni quando la matrice dei coefficienti e la matrice completa hanno lo stesso rango. I parametri liberi sono le incognite meno il rango.
+- Le soluzioni sono zero, una o infinite. Mai due.
+- Per i vettori si fa lo stesso conto: messi **in colonna**, sono indipendenti con un pivot in ogni colonna, generano lo spazio con un pivot in ogni riga.
+- Le **coordinate** di un vettore rispetto a una base sono i coefficienti con cui lo si scrive: si trovano risolvendo un sistema.
+- Un'**applicazione lineare** rispetta somme e multipli. Il **nucleo** è quello che manda a zero, l'**immagine** quello che produce.
+- **Teorema della dimensione**: la dimensione dello spazio di partenza è la somma di quelle del nucleo e dell'immagine.
+
+## L12 · Rouché–Capelli (mar 03/11)
+
+Due sistemi con gli stessi coefficienti e termini noti diversi hanno soluzioni che si somigliano: hanno la stessa forma, spostata. Il sistema con tutti i termini noti a zero si chiama **omogeneo associato**. Ha sempre la soluzione zero, e le sue soluzioni formano un sottospazio.
+
+Tutte le soluzioni del sistema di partenza si ottengono così: **una soluzione qualsiasi, più tutte quelle dell'omogeneo**. Per $x + y = 2$: la soluzione $(2, 0)$ più i multipli di $(1, -1)$, che risolvono $x + y = 0$. È una retta che non passa per l'origine: un **sottospazio affine**.
+
+Per sapere quante soluzioni ci sono non serve risolvere: basta contare i pivot.
+
+```grafico
+titolo: Rouché–Capelli in due domande. Prima: i due ranghi sono uguali? Se no, nessuna soluzione. Se sì, seconda domanda: il rango è uguale al numero delle incognite? Se sì la soluzione è una sola, se no sono infinite, con tanti parametri quante sono le incognite meno il rango
+x: 0 12.4
+y: 0 5.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.4 3.6 4.6 3.6 4.6 4.8 0.4 4.8 | blu | pieno
+testo: 2.5 4.2 | blu | "i due ranghi sono uguali?"
+freccia: 4.7 4.2 7.3 4.2 | rosa
+testo: 6.0 4.55 | rosa | "no"
+poligono: 7.4 3.6 11.9 3.6 11.9 4.8 7.4 4.8 | rosa | pieno
+testo: 9.65 4.2 | rosa | "nessuna soluzione"
+freccia: 2.5 3.5 2.5 2.5 | verde
+testo: 2.9 3.0 | verde | "sì"
+poligono: 0.4 1.2 4.6 1.2 4.6 2.4 0.4 2.4 | blu | pieno
+testo: 2.5 1.8 | blu | "rango = incognite?"
+freccia: 4.7 2.1 7.3 2.6 | verde
+testo: 6.0 2.75 | verde | "sì"
+poligono: 7.4 2.2 11.9 2.2 11.9 3.2 7.4 3.2 | verde | pieno
+testo: 9.65 2.7 | verde | "una sola soluzione"
+freccia: 4.7 1.5 7.3 1.0 | ambra
+testo: 6.0 0.85 | ambra | "no"
+poligono: 7.4 0.4 11.9 0.4 11.9 1.5 7.4 1.5 | ambra | pieno
+testo: 9.65 1.15 | ambra | "infinite soluzioni"
+testo: 9.65 0.7 | ambra | "parametri: incognite − rango"
+```
+
+Un esempio con tre incognite. Il sistema $x + y + z = 3$, $x + 2y + 3z = 6$, $2x + 3y + 4z = 9$ ha la terza equazione uguale alla somma delle prime due. Riducendo a scalini restano 2 pivot, e nessuno nell'ultima colonna: i due ranghi valgono 2, le incognite sono 3, quindi infinite soluzioni con $3 - 2 = 1$ parametro. Cambiando il 9 in 10 la terza riga diventa $0 = 1$: il rango della matrice completa sale a 3, e non ci sono soluzioni.
+
+- **Matrice quadrata**: una sola soluzione esattamente quando il determinante non è zero. Con il determinante zero le soluzioni sono zero oppure infinite, e lo decide il termine noto.
+- **Sistemi con un parametro**: si cercano i valori della lettera che cambiano il rango, di solito quelli che annullano un determinante, e si studiano uno per uno.
+
+::: prova Un sistema ha 4 incognite, e i due ranghi valgono 2. Quante soluzioni ha?
+Infinite, con $4 - 2 = 2$ parametri.
+:::
+
+> [!RICORDA]
+> - Soluzioni = una particolare + quelle dell'omogeneo.
+> - Ranghi diversi: nessuna soluzione. Ranghi uguali: una se il rango è il numero di incognite, altrimenti infinite.
+> - Parametri = incognite − rango.
+
+## L13 · Indipendenza, basi e coordinate (mer 04/11)
+
+Le domande sui vettori diventano sistemi. Si mettono i vettori **in colonna** in una matrice, si riduce a scalini e si guardano i pivot.
+
+| Domanda | Che cosa si guarda | Con il rango |
+|---|---|---|
+| sono **indipendenti**? | un pivot in ogni colonna | rango = numero di vettori |
+| **generano** tutto lo spazio? | un pivot in ogni riga | rango = numero di coordinate |
+| sono una **base**? | tutte e due le cose | matrice quadrata con determinante diverso da zero |
+
+Da qui due fatti che rispondono a molti quiz senza conti: in $\R^3$ quattro vettori non sono mai indipendenti, e due vettori non generano mai tutto lo spazio. La dimensione dello spazio generato da alcuni vettori è il rango della loro matrice.
+
+Rispetto a una base ogni vettore si scrive in **un solo modo**. I coefficienti di questa scrittura sono le sue **coordinate**. Per trovarle si risolve il sistema che ha per colonne i vettori della base e per termine noto il vettore.
+
+```grafico
+titolo: Le coordinate di $(3, 1)$ nella base $v_1 = (1, 1)$, $v_2 = (1, -1)$. Per arrivarci si fanno due passi lungo $v_1$ (blu) e uno lungo $v_2$ (ambra): le coordinate sono $(2, 1)$, diverse dalle coordinate solite
+x: -0.6 4.2
+y: -1.4 2.8
+freccia: 0 0 1 1 | blu
+freccia: 1 1 2 2 | blu
+freccia: 2 2 3 1 | ambra
+freccia: 0 0 3 1 | verde
+punto: 3 1 | verde
+testo: 3.45 0.75 | verde | "(3, 1)"
+testo: 0.55 1.35 | blu | "2 passi di v1"
+testo: 3.3 1.9 | ambra | "1 passo di v2"
+freccia: 0 0 1 -1 | grigio | tratteggio
+testo: 1.35 -1.1 | grigio | "v2"
+```
+
+Il conto del disegno: cerco $a$ e $b$ con $a(1, 1) + b(1, -1) = (3, 1)$. Le due equazioni sono $a + b = 3$ e $a - b = 1$: sommandole, $a = 2$, e poi $b = 1$.
+
+Con i polinomi si fa lo stesso: le coordinate di $(x + 2)^2$ nella base $(x + 1)^2$, $x + 1$, $1$ si trovano scrivendo $(x + 2)^2 = ((x + 1) + 1)^2 = (x + 1)^2 + 2(x + 1) + 1$: sono $(1, 2, 1)$ (appello del 06/09/2024).
+
+::: prova I vettori $(1, 2)$, $(3, 1)$ e $(0, 5)$ di $\R^2$ sono indipendenti? Generano $\R^2$?
+Non sono indipendenti: sono tre vettori in uno spazio di dimensione 2. Generano $\R^2$: i primi due hanno determinante $1 - 6 = -5$, diverso da zero.
+:::
+
+> [!RICORDA]
+> - Vettori in colonna, Gauss, pivot.
+> - Indipendenti: pivot in ogni colonna. Generatori: pivot in ogni riga.
+> - Coordinate: i coefficienti rispetto alla base, da un sistema.
+
+## L14 · Nucleo e immagine (gio 05/11)
+
+Un'**applicazione lineare** trasforma vettori in vettori rispettando le due operazioni: l'immagine di una somma è la somma delle immagini, e l'immagine di un multiplo è il multiplo dell'immagine. In particolare lo zero va nello zero.
+
+- **Non è lineare** una formula con un numero fisso aggiunto ($x + 1$), un quadrato ($x^2$), un prodotto tra le variabili ($xy$). Per dimostrarlo basta un esempio con i numeri.
+- **È lineare** ogni formula fatta solo di somme di multipli delle variabili. Lo sono anche il valore di un polinomio in un punto, $p \mapsto p(7)$, e la derivata.
+- **Ogni matrice** dà un'applicazione lineare, $v \mapsto Av$. Le colonne della matrice sono le immagini dei vettori della base canonica.
+
+Di un'applicazione lineare $T$ interessano due insiemi:
+
+- il **nucleo**, $\Ker T$: i vettori di partenza che vanno nello zero. Si trova risolvendo il sistema omogeneo $T(v) = 0$;
+- l'**immagine**, $\Im T$: i vettori di arrivo che si ottengono davvero. È generata dalle immagini dei vettori di una base, cioè dalle colonne della matrice.
+
+Per $T(x, y) = (x + y,\ 2x + 2y)$: il nucleo è la retta $y = -x$, generata da $(1, -1)$; l'immagine è la retta generata da $(1, 2)$.
+
+$T$ è **iniettiva** quando nel nucleo c'è solo lo zero, ed è **suriettiva** quando l'immagine è tutto lo spazio di arrivo.
+
+Il **teorema della dimensione** lega i due insiemi: per $T \colon V \to W$,
+
+$$\dim V = \dim \Ker T + \dim \Im T.$$
+
+```grafico
+titolo: Il teorema della dimensione come conto. Entra uno spazio di dimensione 5; l'immagine ha dimensione 3 (ambra), quindi il nucleo ha dimensione 2 (blu). Conta sempre lo spazio di partenza, non quello di arrivo
+x: 0 12.4
+y: 0 3.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 1.2 1.2 5.2 1.2 5.2 2.2 1.2 2.2 | blu | pieno
+poligono: 5.2 1.2 11.2 1.2 11.2 2.2 5.2 2.2 | ambra | pieno
+segmento: 3.2 1.2 3.2 2.2 | blu | sottile
+segmento: 7.2 1.2 7.2 2.2 | ambra | sottile
+segmento: 9.2 1.2 9.2 2.2 | ambra | sottile
+testo: 3.2 2.6 | blu | "nucleo: 2"
+testo: 8.2 2.6 | ambra | "immagine: 3"
+testo: 6.2 0.6 | grigio | "spazio di partenza: 5 = 2 + 3"
+testo: 3.2 3.2 | blu | "va nello zero"
+testo: 8.2 3.2 | ambra | "esce"
+```
+
+Con questo teorema molte domande si risolvono senza conti. Se $T \colon \R^6 \to \R_3[x]$ è suriettiva, l'immagine ha dimensione 4 e il nucleo $6 - 4 = 2$ (appello del 06/09/2024). Se lo spazio di partenza ha dimensione più grande di quello di arrivo, $T$ non può essere iniettiva.
+
+::: prova $T \colon \R^3 \to \R^3$ è data da $T(a, b, c) = (a - b,\ b - c,\ c - a)$. Qual è il nucleo, e che dimensione ha l'immagine?
+Nel nucleo $a = b = c$: è la retta generata da $(1, 1, 1)$, di dimensione 1. L'immagine ha dimensione $3 - 1 = 2$. È la domanda 7 dell'appello del 03/06/2025.
+:::
+
+> [!RICORDA]
+> - Lineare: rispetta somme e multipli, manda lo zero nello zero.
+> - Nucleo: sistema omogeneo. Immagine: generata dalle colonne.
+> - Iniettiva: nucleo zero. Suriettiva: immagine tutto l'arrivo.
+> - $\dim V = \dim \Ker T + \dim \Im T$.
+
+## Verso l'esame
+
+- **Quante soluzioni ha il sistema**: resta la domanda più frequente, anche nella forma con un parametro (07/09/2026, domanda 3). Si riduce a scalini e si usa Rouché–Capelli.
+- **Il rango di una matrice**: 10/06/2024, 16/01/2025, 07/02/2025, 05/02/2026, 07/09/2026.
+- **Coordinate rispetto a una base**: con vettori (16/01/2025, 03/07/2026), con polinomi (08/02/2024, 06/09/2024), con matrici (03/06/2026).
+- **Nucleo e immagine**: una domanda in quasi ogni appello, spesso con i polinomi di $\R_2[x]$. «È lineare?» il 10/07/2024 e il 10/07/2025; il teorema della dimensione senza conti il 06/09/2024 e il 02/09/2025.
+- **Problemi**: il sistema al variare di $k$ è il problema 11 di più appelli (07/02/2025, 05/02/2026, 03/07/2026).
+- Appelli 2026/27: venerdì 22/01/2027 e venerdì 05/02/2027, alle 14:00; 4 facciate di appunti scritti a mano, niente calcolatrice.
+
+## Domande di ripasso
+
+::: domanda Che cosa dice il teorema di Rouché–Capelli?
+Il sistema ha soluzioni quando il rango della matrice dei coefficienti è uguale a quello della matrice completa. In quel caso i parametri liberi sono le incognite meno il rango.
+:::
+
+::: domanda Perché un sistema lineare non può avere esattamente due soluzioni?
+Perché le soluzioni sono una particolare più quelle dell'omogeneo, che formano un sottospazio: o c'è solo lo zero, o ce ne sono infinite.
+:::
+
+::: domanda Come si controlla se tre vettori di $\R^3$ sono una base?
+Si mettono in colonna in una matrice 3 × 3: sono una base quando il determinante non è zero.
+:::
+
+::: domanda Che cosa sono le coordinate di un vettore rispetto a una base?
+I coefficienti dell'unica combinazione lineare dei vettori della base che dà quel vettore.
+:::
+
+::: domanda Come si trovano nucleo e immagine di $v \mapsto Av$?
+Il nucleo risolvendo $Av = 0$; l'immagine è generata dalle colonne di $A$, e una sua base sono le colonne con i pivot.
+:::
+
+::: domanda Quando un'applicazione lineare è iniettiva?
+Quando il nucleo contiene solo il vettore zero.
+:::
+
+## Quiz d'esame
+
+Sono tutte domande vere degli appelli, diverse da quelle già nelle lezioni L12, L13 e L14. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma.
+
+```quiz
+D: Appello del 03/06/2025, domanda 4. Il sistema con matrice completa $\left(\begin{array}{ccc|c} 1 & 4 & 7 & 0 \\ 2 & 5 & 8 & 1 \\ 3 & 6 & 9 & 2 \end{array}\right)$ ammette:
+- una soluzione
+- zero soluzioni
++ infinite soluzioni, che dipendono da 1 parametro
+- infinite soluzioni, che dipendono da 2 parametri
+- due soluzioni
+= Riducendo a scalini la terza riga diventa tutta zero: i due ranghi valgono 2, le incognite sono 3, quindi $3 - 2 = 1$ parametro. È la risposta (c) della soluzione ufficiale. La più insidiosa è «zero soluzioni», di chi vede il determinante zero e conclude che il sistema è impossibile.
+
+D: Appello del 02/09/2025, domanda 1. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 3 & 12 & 6 & 21 \\ 5 & 20 & 10 & 35 \\ 4 & 16 & 8 & 28 \end{array}\right)$ ha un numero di soluzioni pari a:
+- zero
++ infinite, che dipendono da 2 parametri
+- un numero finito, maggiore di 1
+- una
+- infinite, che dipendono da 1 parametro
+= Le tre righe sono multipli di $(1, 4, 2 \mid 7)$: i due ranghi valgono 1, e i parametri sono $3 - 1 = 2$. È la risposta (b) della soluzione ufficiale. La più insidiosa è «1 parametro», di chi conta le righe che spariscono invece delle incognite meno il rango.
+
+D: Appello del 07/09/2026, domanda 9. Determinare il rango della matrice $\begin{pmatrix} 3 & 5 & 2 \\ 2 & 3 & 1 \\ 1 & 2 & 1 \end{pmatrix}$.
++ 2
+- 3
+- 5
+- 1
+- 0
+= La prima riga è la somma delle altre due, che non sono una multipla dell'altra: restano 2 pivot. È la risposta (a) della soluzione ufficiale. La più insidiosa è 3, di chi non riduce a scalini.
+
+D: Appello del 02/09/2025, domanda 10. Lo spazio generato dai vettori $\begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix}$, $\begin{pmatrix} -1 \\ -1 \\ -1 \end{pmatrix}$, $\begin{pmatrix} 2 \\ 5 \\ 8 \end{pmatrix}$ ha dimensione:
+- quattro
+- uno
+- tre
+- zero
++ due
+= La dimensione è il rango della matrice con i tre vettori in colonna, che è 2: il terzo vettore è tre volte il primo più il secondo. È la risposta (e) della soluzione ufficiale. La più insidiosa è «tre», di chi conta i vettori.
+
+D: Appello del 06/09/2024, domanda 9. I polinomi $p_1(x) = (x + 1)^2$, $p_2(x) = x + 1$, $p_3(x) = 1$ formano una base di $\R_2[x]$. Il vettore delle coordinate di $q(x) = (x + 2)^2$ in questa base è:
+- $(p_1, p_2, p_3)$
+- $(1, 0, 1)$
+- $(p_1, 2p_2, p_3)$
++ $(1, 2, 1)$
+- $(1, -2, 1)$
+= $(x + 2)^2 = ((x + 1) + 1)^2 = p_1 + 2p_2 + p_3$. È la risposta (d) della soluzione ufficiale. La più insidiosa è $(p_1, 2p_2, p_3)$: le coordinate sono numeri, non polinomi.
+
+D: Appello del 03/07/2026, domanda 10. In $\R^2$ si consideri la base $B = \left\{ \begin{pmatrix} 2 \\ 1 \end{pmatrix}, \begin{pmatrix} 1 \\ 1 \end{pmatrix} \right\}$. Il vettore delle coordinate di $w = \begin{pmatrix} 5 \\ 1 \end{pmatrix}$ rispetto alla base $B$ è:
++ $\begin{pmatrix} 4 \\ -3 \end{pmatrix}$
+- $\begin{pmatrix} 2 \\ 1 \end{pmatrix}$
+- $\begin{pmatrix} 5 \\ 1 \end{pmatrix}$
+- $\begin{pmatrix} 3 \\ 2 \end{pmatrix}$
+- $\begin{pmatrix} 1 \\ 1 \end{pmatrix}$
+= Da $2\alpha + \beta = 5$ e $\alpha + \beta = 1$ viene $\alpha = 4$ e $\beta = -3$. È la risposta (a) della soluzione ufficiale. La più insidiosa è $(5, 1)$: sono le coordinate nella base canonica, non in $B$.
+
+D: Appello del 10/07/2025, domanda 3. Sia $T \colon \R_3[x] \to \R$ la funzione $T(p(x)) = p(7)$. La mappa $T$ è lineare?
+- No, perché $(c \cdot p)(7) \neq c \cdot p(7)$ per qualche $c \in \R$ e qualche $p(x)$
+- No, perché $(p + q)(7) \neq p(7) + q(7)$ per qualche $p(x)$, $q(x)$
+- No, perché $p(7) \neq 0$ per qualche $p(x)$
++ Sì
+- No, perché il polinomio zero non vale 0 in 7
+= Il valore in 7 di una somma è la somma dei valori, e lo stesso per i multipli. È la risposta (d) della soluzione ufficiale. La più insidiosa è la terza: una mappa lineare manda lo zero nello zero, ma può benissimo mandare altri polinomi in numeri diversi da zero.
+
+D: Appello del 03/06/2025, domanda 7. Il rango dell'applicazione lineare $T \colon \R^3 \to \R^3$, data da $T(a, b, c) = (a - b,\ b - c,\ c - a)$, è:
++ 2
+- 3
+- 1
+- 4
+- 0
+= Il nucleo è fatto dei vettori con $a = b = c$ e ha dimensione 1: per il teorema della dimensione l'immagine ha dimensione $3 - 1 = 2$. È la risposta (a) della soluzione ufficiale. La più insidiosa è 3, di chi non si accorge che le tre componenti sommate danno zero.
+
+D: Appello del 07/02/2025, domanda 7. L'immagine dell'applicazione lineare $T \colon \R_2[x] \to \R_2[x]$, data da $T(ax^2 + bx + c) = (a - b)x^2 + (a + b)x - c$, è:
++ $\R_2[x]$
+- $\Span(x^2, x)$
+- $\R_1[x]$
+- $\{ax^2 + bx + c \in \R_2[x] : a + b = 0\}$
+- $\R_1[x]^\perp$
+= Il nucleo chiede $a - b = 0$, $a + b = 0$ e $c = 0$: solo il polinomio zero. Per il teorema della dimensione l'immagine ha dimensione 3, cioè è tutto lo spazio. È la risposta (a) della soluzione ufficiale. La più insidiosa è $\Span(x^2, x)$, di chi dimentica il termine $-c$.
+
+D: Appello del 05/02/2026, domanda 7. L'immagine dell'applicazione lineare $T \colon \R_2[x] \to \R_2[x]$, data da $T(ax^2 + bx + c) = (a - b)x^2 - cx + c$, è:
+- $\R_2[x]$
+- $\Span(2 + x^2, x)$
+- $\R_1[x]^\perp$
++ $\Span(1 - x, x^2)$
+- $\{ax^2 + bx + c \in \R_2[x] : a - b = 0\}$
+= L'immagine è generata da $T(1) = 1 - x$, $T(x) = -x^2$ e $T(x^2) = x^2$, cioè da $1 - x$ e $x^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è l'ultima, che descrive una condizione sul polinomio di partenza, non sull'immagine.
+```
+
+## Fonti
+
+- Le lezioni complete: [L12 · Sistemi lineari II](L12_sistemi_lineari_2.html), [L13 · Sistemi lineari III](L13_sistemi_lineari_3.html), [L14 · Applicazioni lineari I](L14_applicazioni_lineari_1.html), con gli esempi, i disegni e gli esercizi.
+- Dispense 2026 del corso (R. Buzano, M. Radeschi), lezioni 12, 13 e 14, pp. 56–73.
+- Appelli del 06/09/2024, 07/02/2025, 03/06/2025, 10/07/2025, 02/09/2025, 05/02/2026, 03/07/2026 e 07/09/2026, con le soluzioni ufficiali.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_06_MD.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_06_MD.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: S6
+tipo: riassunto
+titolo: "Settimana 6: scambi e parità"
+data: 2026-11-02
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Riassunto settimanale · Parte 1 (modA) · Matematica Discreta · Canali A, B e C · 02/11 – 06/11/2026
+descrizione: >-
+  Riassunto della settimana 6 di Matematica Discreta (MDAG, parte 1): ogni ciclo e ogni permutazione sono
+  composizioni di scambi, la scrittura non è unica ma la parità sì, permutazioni pari e dispari, parità di un ciclo,
+  di un prodotto e dal tipo, quante sono le pari, con le domande 5 e 6 dei quiz e i problemi degli appelli 2025–2026.
+lede: >-
+  La lezione della settimana in poche pagine: come si scrive una permutazione con gli scambi, perché si può dire se è
+  pari o dispari, e come si legge la parità dal tipo in pochi secondi. Con tipo e periodo della settimana scorsa, è
+  tutto quello che serve per il problema sulle permutazioni.
+materiale: libro
+scheda:
+  Lezioni: "[D13](D13_scambi_parita.html) lun 02/11"
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 5, pp. 95–101
+  Tempo di ripasso: 30 minuti
+fonte: >-
+  Gli appunti della lezione D13 di Matematica Discreta, scritti sul libro di A. Mori
+appunti_html: appunti/MDAG/riassunto_settimana_06_MD.html
+genera_html: true
+```
+
+## In breve
+
+- Uno **scambio** è un ciclo di lunghezza 2. Ogni ciclo di lunghezza $\ell$ è composizione di $\ell - 1$ scambi, e quindi ogni permutazione è composizione di scambi.
+- La scrittura con gli scambi **non è unica**, ma il numero di scambi è sempre pari o sempre dispari: è la **parità** della permutazione.
+- Un ciclo di lunghezza **dispari** è **pari**, uno di lunghezza pari è dispari: conta $\ell - 1$.
+- In un **prodotto** si contano i fattori dispari: se sono in numero pari, il prodotto è pari.
+- Dal **tipo**: la permutazione è pari quando i cicli di lunghezza pari sono in numero pari.
+- In $S_n$, da $n = 2$ in su, metà delle permutazioni sono pari.
+
+> [!NOTA] Le altre lezioni della settimana
+> Questa settimana il calendario del canale B aveva una sola lezione di Matematica Discreta, quella di lunedì 02/11. Gli argomenti sono ricostruiti dal diario dell'anno scorso.
+
+## D13 · Dagli scambi alle permutazioni (lun 02/11)
+
+Ogni permutazione si ottiene scambiando due numeri alla volta. Per un ciclo c'è una ricetta fissa: tutti gli scambi contengono il primo numero del ciclo, e gli altri numeri compaiono da destra nell'ordine del giro (proposizione 5.13).
+
+$$(1\ 2\ 3\ 4\ 5) = (1\ 5)(1\ 4)(1\ 3)(1\ 2).$$
+
+Come sempre il prodotto si legge **da destra**: l'1 entra in $(1\ 2)$ e va nel 2; il 2 va nell'1 e poi, con $(1\ 3)$, nel 3; e così via. Una permutazione qualsiasi si scrive prima in cicli disgiunti, poi ogni ciclo con i suoi scambi (teorema 5.14).
+
+**La scrittura non è unica.** $(1\ 3)$ è uno scambio, ma è anche $(1\ 2)(2\ 3)(1\ 2)$, tre scambi. E gli scambi non commutano.
+
+::: prova Scrivi il ciclo $(2\ 5\ 3\ 7)$ come composizione di scambi.
+$(2\ 7)(2\ 3)(2\ 5)$: tre scambi, tutti con il 2, e gli altri numeri da destra nell'ordine del giro.
+:::
+
+> [!RICORDA]
+> - Ciclo di lunghezza $\ell$: $\ell - 1$ scambi, tutti con il primo numero.
+> - Ogni permutazione è composizione di scambi, in più modi.
+
+## D13 · Pari e dispari
+
+Gli scambi che servono per scrivere una permutazione possono essere tre o cinque, ma non tre o quattro: il loro numero è sempre pari o sempre dispari. Da qui la divisione delle permutazioni in **pari** e **dispari**.
+
+```grafico
+titolo: Dal tipo alla parità. Ogni ciclo vale tanti scambi quanta è la sua lunghezza meno uno. Per il tipo (5, 3, 3, 2): 4 + 2 + 2 + 1 = 9 scambi, dispari. La scorciatoia: contano solo i cicli di lunghezza pari, qui uno solo
+x: 0 12.4
+y: 0 4.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.5 2.4 3.1 2.4 3.1 3.6 0.5 3.6 | verde | pieno
+testo: 1.8 3.2 | verde | "ciclo di 5"
+testo: 1.8 2.7 | grigio | "4 scambi"
+poligono: 3.5 2.4 6.1 2.4 6.1 3.6 3.5 3.6 | verde | pieno
+testo: 4.8 3.2 | verde | "ciclo di 3"
+testo: 4.8 2.7 | grigio | "2 scambi"
+poligono: 6.5 2.4 9.1 2.4 9.1 3.6 6.5 3.6 | verde | pieno
+testo: 7.8 3.2 | verde | "ciclo di 3"
+testo: 7.8 2.7 | grigio | "2 scambi"
+poligono: 9.5 2.4 12.0 2.4 12.0 3.6 9.5 3.6 | rosa | pieno
+testo: 10.75 3.2 | rosa | "ciclo di 2"
+testo: 10.75 2.7 | grigio | "1 scambio"
+testo: 5.0 1.4 | verde | "lunghezza dispari: ciclo pari"
+testo: 10.4 1.4 | rosa | "lunghezza pari: ciclo dispari"
+testo: 6.2 0.5 | grigio | "4 + 2 + 2 + 1 = 9: permutazione dispari"
+```
+
+- **La parità è ben definita** (teorema 5.16): due scritture della stessa permutazione hanno numeri di scambi tutti e due pari o tutti e due dispari. Una permutazione è **pari** o **dispari** secondo quel numero. L'identità è pari.
+- **Un ciclo** di lunghezza $\ell$ ha la parità di $\ell - 1$ (proposizione 5.18): lunghezza 3 pari, lunghezza 4 dispari.
+- **Un prodotto** ha la parità della somma: pari con pari e dispari con dispari danno pari, pari con dispari dà dispari (proposizione 5.19). L'inversa ha la parità della permutazione; una potenza $\sigma^k$ di una dispari ha la parità di $k$.
+- **Dal tipo** (proposizione 5.20): si sommano le lunghezze meno uno. In pratica si contano i cicli di lunghezza pari.
+- **Anche con cicli non disgiunti** (nota 5.21): per la parità basta contare i cicli di lunghezza pari così come sono scritti. Per tipo e periodo invece servono i cicli disgiunti.
+- **Metà e metà** (proposizione 5.22): in $S_n$ ci sono $\frac{n!}{2}$ pari e altrettante dispari.
+
+> [!ESEMPIO] · Appello del 14/01/2025, problema 1, versione B, punto a
+> «$\sigma = (1\ 3)(2\ 5\ 3)(3\ 6\ 1)$ e $\tau$, che manda 1, 2, 3, 4, 5, 6 in 2, 1, 6, 5, 3, 4. Scrivere $\sigma$ e $\tau$ come prodotti di cicli disgiunti, calcolarne il tipo, il periodo e la parità.»
+>
+> **$\sigma$.** Da destra: $1 \mapsto 3 \mapsto 2$, $2 \mapsto 5$, $5 \mapsto 3 \mapsto 1$; poi $3 \mapsto 6$ e $6 \mapsto 1 \mapsto 3$. Quindi $\sigma = (1\ 2\ 5)(3\ 6)$: tipo $(3, 2)$, periodo 6, **dispari**.
+>
+> **$\tau$.** $1 \mapsto 2 \mapsto 1$ e $3 \mapsto 6 \mapsto 4 \mapsto 5 \mapsto 3$: $\tau = (1\ 2)(3\ 6\ 4\ 5)$, tipo $(4, 2)$, periodo 4, **pari**, perché i cicli di lunghezza pari sono due.
+>
+> Controllo veloce su $\sigma$ dai cicli del testo: lunghezze 2, 3, 3, un solo ciclo di lunghezza pari, quindi dispari. Ricontrollato con un programma.
+
+::: prova $\pi$ è dispari. Di che parità sono $\pi^2$, $\pi^{-1}$ e $\pi^7$?
+$\pi^2$ è pari, $\pi^{-1}$ dispari, $\pi^7$ dispari: una potenza di una dispari ha la parità dell'esponente, e l'inversa ha la parità della permutazione.
+:::
+
+> [!RICORDA]
+> - Lunghezza dispari, ciclo pari: conta la lunghezza meno uno.
+> - Prodotto: conta i fattori dispari. Tipo: conta i cicli di lunghezza pari.
+> - Per la parità vanno bene anche cicli non disgiunti; per tipo e periodo no.
+
+## Verso l'esame
+
+- **Domanda 5 o 6 del quiz**: la parità di un prodotto di permutazioni pari e dispari (13/01/2026, 10/09/2026) o parità e periodo dal tipo (14/01/2025).
+- **Problema sulle permutazioni**: «cicli disgiunti, tipo, periodo e parità» è il punto a di quasi tutti gli appelli (25/01/2022, 14/01/2025, 01/07/2026).
+- L'errore più comune: dire che un ciclo di lunghezza 3 è dispari.
+- Appelli 2026/27: martedì 19/01/2027 e mercoledì 03/02/2027, alle 14:00, con libro e appunti.
+
+## Domande di ripasso
+
+::: domanda Come si scrive un ciclo di lunghezza $\ell$ con gli scambi?
+Con $\ell - 1$ scambi, tutti con il primo numero: $(m_1\ m_\ell) \cdots (m_1\ m_3)(m_1\ m_2)$.
+:::
+
+::: domanda Che cosa dice il teorema 5.16?
+Che due scritture della stessa permutazione come composizione di scambi hanno numeri di scambi con la stessa parità.
+:::
+
+::: domanda Come si calcola la parità di un prodotto di più permutazioni?
+Si contano i fattori dispari: se sono in numero pari, il prodotto è pari.
+:::
+
+::: domanda Come si legge la parità dal tipo?
+Si contano i cicli di lunghezza pari: in numero pari, permutazione pari.
+:::
+
+::: domanda Quante sono le permutazioni pari di $S_6$?
+$\frac{6!}{2} = 360$.
+:::
+
+## Quiz d'esame
+
+Le prime quattro sono domande vere: le domande 5 e 6 dei quiz degli appelli 2025–2026, in versioni diverse da quelle che ci sono già nella lezione. Le tre successive vengono dal problema 1 dell'appello del 14/01/2025, versioni C e D. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma.
+
+```quiz
+D: Appello del 10/09/2026, quiz, domanda 5 (un'altra versione). Siano $\tau$ una permutazione dispari e $\sigma$ una permutazione pari. Quale delle seguenti affermazioni è vera?
++ $\tau \circ \sigma^4$ è dispari
+- $\tau^5 \circ \sigma^3$ è pari
+- $\sigma \circ \tau \circ \sigma \circ \tau^2$ è pari
+- $\sigma^3 \circ \tau \circ \sigma^2$ è pari
+- $\sigma \circ \tau^3 \circ \sigma$ è pari
+= Si contano le $\tau$, le uniche dispari: una nella prima, quindi dispari. Nelle altre sono 5, 3, 1 e 3, sempre in numero dispari, e l'affermazione «pari» è falsa. È la risposta 1 della soluzione ufficiale. La più insidiosa è la terza: $\tau$ e $\tau^2$ insieme fanno tre $\tau$.
+
+D: Appello del 13/01/2026, quiz, domanda 6 (un'altra versione). Siano $\pi$ e $\sigma$ permutazioni dispari e $\tau$ una permutazione pari. Quale delle seguenti è una permutazione dispari?
++ $\tau^3 \circ \pi \circ \sigma^2$
+- $\pi^3 \circ \tau \circ \sigma^3$
+- $\pi \circ \sigma^5 \circ \pi^2$
+- $\pi \circ \sigma \circ \tau^5$
+- $\sigma^2 \circ \tau \circ \pi^4$
+= Si contano $\pi$ e $\sigma$: nella prima sono $1 + 2 = 3$, dispari. Nelle altre 6, 8, 2 e 6. È la risposta 1 della soluzione ufficiale. La più insidiosa è la quarta: $\pi \circ \sigma$ sono due dispari, e insieme danno una pari.
+
+D: Appello del 14/01/2025, quiz, domanda 5 (una delle versioni). Una permutazione $\pi$ ha tipo $(6, 3, 2)$. Allora $\pi$:
+- è pari ed ha periodo 12
+- è dispari ed ha periodo 6
++ è pari ed ha periodo 6
+- è pari ed ha periodo 18
+- è dispari ed ha periodo 12
+= I cicli di lunghezza pari sono due, quindi pari; il periodo è $\mathrm{mcm}(6, 3, 2) = 6$. È la risposta 3 della soluzione ufficiale. La più insidiosa è «pari ed ha periodo 12», di chi somma o moltiplica le lunghezze invece del mcm.
+
+D: Appello del 14/01/2025, quiz, domanda 5 (un'altra versione). Una permutazione $\pi$ ha tipo $(6, 4, 2)$. Allora $\pi$:
+- è pari ed ha periodo 6
+- è dispari ed ha periodo 24
+- è pari ed ha periodo 24
++ è dispari ed ha periodo 12
+- è pari ed ha periodo 12
+= Tre cicli di lunghezza pari: dispari. Periodo $\mathrm{mcm}(6, 4, 2) = 12$. È la risposta 4 della soluzione ufficiale. La più insidiosa è «pari ed ha periodo 12», di chi pensa che tre cicli pari diano una permutazione pari.
+
+D: Dal problema 1 dell'appello del 14/01/2025, versione C. Sia $\sigma = (2\ 3)(1\ 4\ 3)(3\ 5\ 2) \in S_6$. Qual è la sua scrittura in cicli disgiunti?
++ $(1\ 4\ 2)(3\ 5)$
+- $(1\ 4\ 3)(2\ 5)$
+- $(1\ 2\ 4)(3\ 5)$
+- $(1\ 4\ 2\ 3\ 5)$
+- $(1\ 4)(2\ 3\ 5)$
+= Da destra: $1 \mapsto 4$, $4 \mapsto 3 \mapsto 2$, $2 \mapsto 3 \mapsto 1$; poi $3 \mapsto 5$ e $5 \mapsto 2 \mapsto 3$. Ricontrollato con un programma. La più insidiosa è $(1\ 2\ 4)(3\ 5)$: è il primo ciclo percorso al contrario, cioè letto da sinistra.
+
+D: Dal problema 1 dell'appello del 14/01/2025, versione C. Per la stessa $\sigma = (2\ 3)(1\ 4\ 3)(3\ 5\ 2)$, quali sono periodo e parità?
++ periodo 6, dispari
+- periodo 6, pari
+- periodo 5, pari
+- periodo 3, dispari
+- periodo 12, dispari
+= Tipo $(3, 2)$: periodo $\mathrm{mcm}(3, 2) = 6$, e un solo ciclo di lunghezza pari. Si vede anche dai cicli del testo, di lunghezze 2, 3 e 3. La più insidiosa è «periodo 6, pari».
+
+D: Dal problema 1 dell'appello del 14/01/2025, versione D. Sia $\tau$ la permutazione di $S_6$ che manda 1, 2, 3, 4, 5, 6 in 3, 4, 2, 1, 6, 5. Quali sono tipo e parità?
++ tipo $(4, 2)$, pari
+- tipo $(4, 2)$, dispari
+- tipo $(3, 2)$, dispari
+- tipo $(6)$, dispari
+- tipo $(2, 2, 2)$, dispari
+= $1 \mapsto 3 \mapsto 2 \mapsto 4 \mapsto 1$ e $5 \mapsto 6 \mapsto 5$: $\tau = (1\ 3\ 2\ 4)(5\ 6)$. Due cicli di lunghezza pari: pari. La più insidiosa è la seconda: ogni ciclo è dispari, ma due dispari danno una pari.
+
+D: Sul modello della proposizione 5.22. Quante sono le permutazioni dispari di $S_5$?
+N: 60
+= Metà di $5! = 120$.
+```
+
+## Fonti
+
+- La lezione completa: [D13 · Scambi e parità di una permutazione](D13_scambi_parita.html), con gli esempi, i quiz e gli esercizi.
+- A. Mori, *Lezioni di Matematica Discreta*, cap. 5, pp. 95–101.
+- Quiz degli appelli del 14/01/2025, 13/01/2026 e 10/09/2026 (domande 5 e 6); problema 1 dell'appello del 14/01/2025, versioni B, C e D, con le soluzioni ufficiali.
 
 
 ---

@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab06 · Laboratorio 06: funzioni</title>
+<meta name="lezione" content="Lab06">
+<meta name="data" content="2026-11-09">
+<meta name="description" content="Appunti del sesto laboratorio di Programmazione I (canale B, Lab06): come si progetta una funzione (nome, parametri, tipo di ritorno), numeri primi, funzioni iterative, cambio in monete con ptrdiff_t, statistiche su sequenze con i puntatori, passaggio di array con la lunghezza, funzioni su stringhe, vocali, palindroma e Scale e serpi, con tutti i programmi provati.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/Lab06_funzioni.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#progettare-una-funzione-nome-parametri-ritorno"><span class="n">§1</span><span>Progettare una funzione: nome, parametri, ritorno</span></a></li>
+<li><a href="#numeri-primi"><span class="n">§2</span><span>Numeri primi</span></a></li>
+<li><a href="#funzioni-iterative"><span class="n">§3</span><span>Funzioni iterative</span></a></li>
+<li><a href="#cambio-monete"><span class="n">§4</span><span>Cambio monete</span></a></li>
+<li><a href="#statistiche-su-sequenze"><span class="n">§5</span><span>Statistiche su sequenze</span></a></li>
+<li><a href="#passare-un-array-a-una-funzione"><span class="n">§6</span><span>Passare un array a una funzione</span></a></li>
+<li><a href="#funzioni-su-stringhe-e-vocali"><span class="n">§7</span><span>Funzioni su stringhe e vocali</span></a></li>
+<li><a href="#palindroma"><span class="n">§8</span><span>Palindroma</span></a></li>
+<li><a href="#scale-e-serpi"><span class="n">§9</span><span>Scale e serpi</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§10</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§11</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§12</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§13</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§14</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§15</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§16</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
+<nav class="vicine" aria-label="Lezioni vicine">
+  <a class="vicina prec" href="06B_chiamata_funzioni.html" rel="prev" title="06B · Chiamata di funzione e ritorno"><span class="dir">← Lezione precedente</span><span class="vt">06B · Chiamata di funzione e ritorno</span></a>
+  <a class="vicina succ" href="07A_algoritmi_su_array.html" rel="next" title="07A · Algoritmi su array"><span class="dir">Lezione successiva →</span><span class="vt">07A · Algoritmi su array</span></a>
+</nav>
+<!-- VICINE:FINE -->
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione Lab06</nav>
+      <p class="eyebrow">Canale B · Laboratorio 06 · Programmazione I</p>
+      <h1>Laboratorio 06: funzioni</h1>
+      <p class="lede">Il sesto laboratorio è tutto sulle funzioni delle lezioni 06A e 06B: decidere nome, parametri e tipo di ritorno, restituire più risultati con i puntatori, passare un array insieme alla sua lunghezza. Qui trovi ogni esercizio risolto e provato, con i testi CodeRunner dell&#39;anno scorso.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>Lab06 «Funzioni», laboratorio canale B · 20 pagine, quattro esercizi su CodeRunner</dd></div><div><dt>Laboratorio</dt><dd>Elisa Marengo (turno B2, lun 09/11) e Valerio Basile (turno B1) · 14–17 · laboratorio Turing</dd></div><div><dt>Tempo di studio</dt><dd>2–3 ore, davanti a un computer</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:580px">
+<h2 id="tldr-title">La lezione in 7 punti</h2>
+<ul>
+<li>Per ogni compito del programma si scrive una <strong>funzione</strong>, e prima di scriverla si decidono tre cose: un <strong>nome</strong> chiaro, i <strong>parametri</strong> che le servono, il <strong>tipo di ritorno</strong>.</li>
+<li>Una funzione che risponde sì o no restituisce un <code>bool</code>; una che fa solo stampe restituisce <code>void</code>.</li>
+<li>Una funzione restituisce <strong>un solo valore</strong>. Se i risultati sono di più, gli altri tornano al chiamante attraverso <strong>puntatori</strong> ricevuti come parametri.</li>
+<li>A una funzione un <strong>array</strong> arriva come puntatore al primo elemento: la <strong>lunghezza</strong> va passata a parte, in un secondo parametro.</li>
+<li>Per le <strong>stringhe</strong> la lunghezza non serve: la fine la segna il terminatore.</li>
+<li>Un indice <code>size_t</code> non scende mai sotto zero: per un ciclo all&#39;indietro fino a 0 si usa <code>ptrdiff_t</code>, oppure si conta da <code>n</code> a 1 e si usa <code>i - 1</code>.</li>
+<li>All&#39;esame la consegna è quasi sempre una funzione con l&#39;intestazione data: una sola <code>return</code>, niente <code>break</code>.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È il sesto laboratorio, al laboratorio Turing, dalle 14 alle 17: turno <strong>B2</strong> lunedì 09/11 con <strong>Elisa Marengo</strong>. Il turno <strong>B1</strong> con <strong>Valerio Basile</strong> è indietro di un laboratorio dalla settimana del 27/10, quindi dovrebbe farlo martedì 17/11. Il laboratorio B2 di lunedì 16/11 è annullato (avviso sul Moodle del corso del 13/11). Gli esercizi usano le funzioni della <a href="06A_funzioni.html">06A</a>, il passaggio di puntatori e di array della <a href="06B_chiamata_funzioni.html">06B</a> e gli schemi «esiste» e «per ogni» della <a href="07A_algoritmi_su_array.html">07A</a>.</p>
+<p><strong>Canali A e C.</strong> Nel 2025/26 il Lab06 era uguale nei tre canali, con gli stessi esercizi CodeRunner. Le slide 2026/27 dei canali A e C non le ho viste.</p>
+<p><strong>Il materiale che ho e quello che non ho.</strong> Le slide 2026/27 sono uguali a quelle del 2025/26 del canale B, con due pagine in più sul passaggio di array (slide 14–15). Il codice di partenza 2026/27 è su Moodle e non l&#39;ho visto: uso quello del 2025/26 (<code>primi.c</code>, <code>funzioni_iterative.c</code>, <code>monete.c</code>). I testi dei quattro esercizi CodeRunner sono quelli del 2025/26, presi dalle soluzioni pubblicate sul Moodle del canale A; sul Moodle 2026/27 i quattro esercizi hanno gli stessi nomi (Statistiche sequenze, Funzioni su arrays, Palindroma, Scale e Serpi), ma i testi possono essere diversi. Le soluzioni qui sono mie, confrontate con quelle ufficiali. Tutti i programmi li ho compilati con <code>gcc -Wall -Werror</code> (gcc 16.1, Windows 11 a 64 bit) ed eseguiti.</p>
+</div>
+
+
+<section id="progettare-una-funzione-nome-parametri-ritorno" aria-labelledby="h-progettare-una-funzione-nome-parametri-ritorno" style="--h:1630px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-progettare-una-funzione-nome-parametri-ritorno">Progettare una funzione: nome, parametri, ritorno</h2><span class="slides">slide 2–6</span></div>
+<p>Una funzione isola un compito del programma in un blocco con un nome. La slide 2 dà le tre domande da farsi prima di scrivere una riga di codice: come si chiama, che cosa le serve in ingresso, che cosa restituisce. La forma è quella della <a href="06A_funzioni.html">06A</a>:</p>
+<pre class="code" data-lingua="c"><code>tipo_di_ritorno nome_funzione(parametro1, parametro2, ...) {
+    <span class="cm">// codice della funzione</span>
+}</code></pre>
+<p>Le slide 3–6 fanno le tre domande su quattro compiti. Le mie risposte:</p>
+<div class="table-wrap"><table><thead><tr><th>Compito</th><th>Intestazione</th><th>Perché</th></tr></thead><tbody><tr><td>scrivere «Buongiorno!» sul terminale</td><td><code>void saluta(void)</code></td><td>non le serve niente e non calcola niente: stampa e basta</td></tr>
+<tr><td>dire se un numero positivo è primo</td><td><code>bool verifica_primalita(int n)</code></td><td>la risposta è sì o no</td></tr>
+<tr><td>contare le occorrenze di <code>x</code> in un array</td><td><code>size_t conta_occorrenze(const int a[], size_t n, int x)</code></td><td>servono l&#39;array, <strong>la sua lunghezza</strong> e il numero cercato; un conteggio è un <code>size_t</code></td></tr>
+<tr><td>leggere una sequenza e restituire media e varianza, se non ci sono errori</td><td><code>bool leggi_media_varianza(double *media, double *varianza)</code></td><td>i risultati sono tre: «è andata bene?», media, varianza</td></tr></tbody></table></div>
+<p>L&#39;ultima riga è il caso che conta di più. Una funzione ha <strong>un solo</strong> valore di ritorno (<a href="06A_funzioni.html">06A</a>). Qui i risultati sono tre, quindi uno torna con la <code>return</code> e gli altri due passano per <strong>puntatori</strong>: il chiamante dà alla funzione gli indirizzi di due sue variabili, e la funzione ci scrive dentro (<a href="06B_chiamata_funzioni.html">06B</a>, <code>incrPtr</code> e <code>swap</code>). Di solito con la <code>return</code> si restituisce l&#39;esito, così il chiamante può scrivere <code>if (leggi_media_varianza(&amp;m, &amp;v))</code>.</p>
+<p>La parola <code>const</code> davanti a <code>int a[]</code> promette che la funzione non modifica l&#39;array: se ci prova, il compilatore dà errore.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Le tre domande</span></p><ol>
+<li><strong>Nome.</strong> Un verbo che dice che cosa fa: <code>conta_occorrenze</code>, non <code>funzione1</code>.</li>
+<li><strong>Parametri.</strong> Tutto quello che alla funzione serve e che non può calcolare da sola. Per un array: i dati <strong>e</strong> la lunghezza.</li>
+<li><strong>Ritorno.</strong> Niente: <code>void</code>. Sì o no: <code>bool</code>. Un numero: il suo tipo. Più risultati: uno con la <code>return</code>, gli altri con i puntatori.</li>
+</ol>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che intestazione dai a una funzione che riceve due interi e restituisce il maggiore?</span></summary><div class="ans"><p><code>int massimo(int a, int b)</code>. Due parametri, un risultato intero: nessun puntatore.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Prima il nome, i parametri e il tipo di ritorno, poi il corpo.</li>
+<li>Più di un risultato: gli altri tornano attraverso puntatori.</li>
+</ul>
+</div>
+</section>
+
+<section id="numeri-primi" aria-labelledby="h-numeri-primi" style="--h:1410px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-numeri-primi">Numeri primi</h2><span class="slides">slide 7–8</span></div>
+<p>Un numero maggiore di 1 è primo se lo dividono solo 1 e lui stesso. La slide 7 lo traduce in una ricerca: si cerca se <strong>esiste</strong> un divisore <code>d</code> con <code>2 ≤ d &lt; n</code>. Per 7 si provano 2, 3, 4, 5, 6: nessuno lo divide, quindi è primo. Per 9 ci si ferma al 3, che lo divide: non è primo, e gli altri controlli non servono.</p>
+<p>È lo schema «esiste» della <a href="07A_algoritmi_su_array.html">07A</a>: una sentinella che parte da <code>false</code> e ferma il ciclo al primo divisore trovato.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">bool</span> verifica_primalita(<span class="kw">int</span> n);
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="cm">// stampa i numeri primi minori di 100</span>
+    <span class="kw">for</span> (<span class="kw">int</span> n = 2; n &lt; 100; n++) {
+        <span class="kw">if</span> (verifica_primalita(n)) {
+            printf(<span class="str">&quot;%d &quot;</span>, n);
+        }
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+    <span class="kw">return</span> 0;
+}
+
+<span class="cm">// true se n e' primo, false altrimenti (false per ogni n &lt; 2)</span>
+<span class="kw">bool</span> verifica_primalita(<span class="kw">int</span> n) {
+    <span class="kw">bool</span> esiste_divisore = <span class="kw">false</span>;
+    <span class="kw">for</span> (<span class="kw">int</span> d = 2; d * d &lt;= n &amp;&amp; !esiste_divisore; d++) {
+        <span class="kw">if</span> (n % d == 0) {
+            esiste_divisore = <span class="kw">true</span>;
+        }
+    }
+    <span class="kw">return</span> n &gt;= 2 &amp;&amp; !esiste_divisore;
+}</code></pre>
+<p>Stampa <code>2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97</code>, come nella slide 8.</p>
+<p>Due cose sul codice:</p>
+<ul>
+<li><strong>Il tipo di ritorno è <code>bool</code></strong>, la risposta alla domanda della slide. Il prototipo sta prima del <code>main</code>, la definizione dopo.</li>
+<li><strong>La condizione <code>d * d &lt;= n</code></strong> ferma la ricerca alla radice di <code>n</code>. Se <code>n = a · b</code>, uno dei due fattori è al massimo la radice: per 97 bastano i divisori fino a 9, invece di 95 controlli. La versione della slide, con <code>d &lt; n</code>, è giusta lo stesso, solo più lenta. La soluzione ufficiale del 2025/26 scrive <code>i &lt;= sqrt(n)</code>, che richiede <code>math.h</code> e ricalcola la radice a ogni giro: con il prodotto non serve.</li>
+</ul>
+<div class="box trap"><p class="box-label"><span>Trappola · Due <code>return</code> nel ciclo</span></p><p>La versione che viene spontanea è <code>if (n % d == 0) return false;</code> dentro il ciclo e <code>return true;</code> alla fine. Funziona, ma all&#39;esame le funzioni iterative devono avere <strong>una sola <code>return</code></strong>: si usa la sentinella nella condizione del ciclo, come qui.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>verifica_primalita(1)</code>, quante volte gira il ciclo e che cosa restituisce?</span></summary><div class="ans"><p>Zero volte, perché <code>2 * 2 &lt;= 1</code> è falso. Restituisce <code>false</code>: <code>n &gt;= 2</code> è falso.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>«È primo?» è un «esiste un divisore?» negato: sentinella da <code>false</code>, una sola <code>return</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="funzioni-iterative" aria-labelledby="h-funzioni-iterative" style="--h:1200px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-funzioni-iterative">Funzioni iterative</h2><span class="slides">slide 9</span></div>
+<p>Il file <code>funzioni_iterative.c</code> ha un <code>main</code> già scritto, da non toccare, che chiama tre funzioni e stampa accanto il risultato atteso. Vanno scritti i prototipi e i corpi.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> esponenziale(<span class="kw">int</span> b, <span class="kw">int</span> e);
+<span class="kw">int</span> prodotto_multipli(<span class="kw">int</span> n, <span class="kw">int</span> m, <span class="kw">int</span> q);
+<span class="kw">void</span> stampa_al_rovescio(<span class="kw">int</span> n);
+
+<span class="cm">// b elevato a e, con e &gt;= 0</span>
+<span class="kw">int</span> esponenziale(<span class="kw">int</span> b, <span class="kw">int</span> e) {
+    <span class="kw">int</span> risultato = 1;
+    <span class="kw">for</span> (<span class="kw">int</span> i = 0; i &lt; e; i++) {
+        risultato = risultato * b;
+    }
+    <span class="kw">return</span> risultato;
+}
+
+<span class="cm">// prodotto degli interi tra n e m (inclusi) multipli di q</span>
+<span class="kw">int</span> prodotto_multipli(<span class="kw">int</span> n, <span class="kw">int</span> m, <span class="kw">int</span> q) {
+    <span class="kw">int</span> prodotto = 1;
+    <span class="kw">for</span> (<span class="kw">int</span> i = n; i &lt;= m; i++) {
+        <span class="kw">if</span> (i % q == 0) {
+            prodotto = prodotto * i;
+        }
+    }
+    <span class="kw">return</span> prodotto;
+}
+
+<span class="cm">// stampa n, n-1, ..., 0</span>
+<span class="kw">void</span> stampa_al_rovescio(<span class="kw">int</span> n) {
+    <span class="kw">for</span> (<span class="kw">int</span> i = n; i &gt;= 0; i--) {
+        printf(<span class="str">&quot;%d &quot;</span>, i);
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+}</code></pre>
+<p>Con il <code>main</code> del codice di partenza tutti i risultati coincidono con quelli attesi: <code>esponenziale(3, 6)</code> dà 729, <code>esponenziale(0, 0)</code> dà 1, <code>prodotto_multipli(1, 30, 10)</code> dà 6000 (10 · 20 · 30), <code>prodotto_multipli(27, 42, 8)</code> dà 1280 (32 · 40), <code>stampa_al_rovescio(5)</code> stampa <code>5 4 3 2 1 0</code>.</p>
+<p>I tipi si leggono dal <code>main</code>: le prime due sono stampate con <code>%d</code>, quindi restituiscono <code>int</code>; la terza è chiamata da sola su una riga, quindi è <code>void</code>.</p>
+<p>L&#39;accumulatore di un prodotto parte da <strong>1</strong>, non da 0 (<a href="04A_iterazioni.html">04A</a>). Così <code>esponenziale(3, 0)</code> e <code>esponenziale(0, 0)</code> danno 1 senza casi speciali: il ciclo non gira.</p>
+<p>In <code>stampa_al_rovescio</code> l&#39;indice è un <code>int</code>, e la condizione <code>i &gt;= 0</code> diventa falsa quando <code>i</code> arriva a −1. Con un indice <code>size_t</code> non succederebbe: è il tema della prossima sezione.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa restituisce <code>prodotto_multipli(3, 6, 2)</code>?</span></summary><div class="ans"><p>24: i multipli di 2 tra 3 e 6 sono 4 e 6.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>I tipi di parametri e ritorno si ricavano da come il <code>main</code> usa la funzione.</li>
+<li>Un prodotto si accumula partendo da 1.</li>
+</ul>
+</div>
+</section>
+
+<section id="cambio-monete" aria-labelledby="h-cambio-monete" style="--h:2250px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-cambio-monete">Cambio monete</h2><span class="slides">slide 10–12</span></div>
+<p>Il programma <code>monete.c</code> legge una somma in centesimi e stampa il cambio con il minor numero di monete, con i tagli da 1, 2, 5, 10, 20 e 50. Si parte dal taglio più grande: se ne prendono quante ce ne stanno, e con quello che resta si passa al taglio successivo. Per 95: una da 50 (restano 45), due da 20 (restano 5), una da 5.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Il cambio di 95 centesimi. A ogni passo `cambio_taglio` toglie quante monete può del taglio corrente e restituisce il resto, che diventa la somma del passo dopo. I tagli da 10, 2 e 1 non stampano niente" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M13.55 226.67L103.87 226.67L103.87 113.33L13.55 113.33Z"/><path class="g-linea g-ambra" d="M108.39 170L180.65 170" marker-end="url(#g-freccia-1-ambra)"/><path class="g-poligono g-blu g-pieno" d="M185.16 226.67L275.48 226.67L275.48 113.33L185.16 113.33Z"/><path class="g-linea g-ambra" d="M280 170L352.26 170" marker-end="url(#g-freccia-1-ambra)"/><path class="g-poligono g-blu g-pieno" d="M356.77 226.67L447.1 226.67L447.1 113.33L356.77 113.33Z"/><path class="g-linea g-ambra" d="M451.61 170L510.32 170" marker-end="url(#g-freccia-1-ambra)"/></svg><span class="g-et g-c g-testo g-blu" style="left:10.48%;top:50.00%">95</span><span class="g-et g-c g-testo g-ambra" style="left:25.81%;top:33.33%">1 da 50</span><span class="g-et g-c g-testo g-blu" style="left:41.13%;top:50.00%">45</span><span class="g-et g-c g-testo g-ambra" style="left:56.45%;top:33.33%">2 da 20</span><span class="g-et g-c g-testo g-blu" style="left:71.78%;top:50.00%">5</span><span class="g-et g-c g-testo g-ambra" style="left:85.89%;top:33.33%">1 da 5</span><span class="g-et g-c g-testo g-verde" style="left:95.16%;top:50.00%">0</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:86.67%">resto restituito = somma del passo dopo</span></div><figcaption>Il cambio di 95 centesimi. A ogni passo <code>cambio_taglio</code> toglie quante monete può del taglio corrente e restituisce il resto, che diventa la somma del passo dopo. I tagli da 10, 2 e 1 non stampano niente</figcaption></figure>
+<p>La slide 11 suggerisce la funzione: <code>cambio_taglio</code> riceve la somma e un taglio, stampa quante monete di quel taglio servono e <strong>restituisce il resto</strong>. Il <code>main</code> la chiama una volta per taglio, aggiornando la somma.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stddef.h&gt;
+
+<span class="kw">#define</span> NUM_TAGLI 6
+
+<span class="cm">// stampa &quot;x da t cent&quot; se x &gt; 0 e restituisce quello che resta</span>
+<span class="kw">int</span> cambio_taglio(<span class="kw">int</span> ammontare, <span class="kw">int</span> taglio) {
+    <span class="kw">int</span> quante = ammontare / taglio;
+    <span class="kw">if</span> (quante &gt; 0) {
+        printf(<span class="str">&quot;%d da %d cent\n&quot;</span>, quante, taglio);
+    }
+    <span class="kw">return</span> ammontare - quante * taglio;
+}
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> cent;
+    printf(<span class="str">&quot;Scrivere l'ammontare da convertire in monete: &quot;</span>);
+    scanf(<span class="str">&quot;%d&quot;</span>, &amp;cent);
+
+    <span class="kw">const</span> <span class="kw">int</span> tagli_monete[NUM_TAGLI] = {1, 2, 5, 10, 20, 50};
+
+    <span class="cm">// dal taglio piu' grande al piu' piccolo: l'indice deve poter scendere sotto 0</span>
+    <span class="kw">for</span> (ptrdiff_t i = NUM_TAGLI - 1; i &gt;= 0; i--) {
+        cent = cambio_taglio(cent, tagli_monete[i]);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Provato sugli esempi della slide 12: 120 dà <code>2 da 50</code> e <code>1 da 20</code>; 367 dà <code>7 da 50</code>, <code>1 da 10</code>, <code>1 da 5</code>, <code>1 da 2</code>; 473 dà <code>9 da 50</code>, <code>1 da 20</code>, <code>1 da 2</code>, <code>1 da 1</code>. Con 0 non stampa niente.</p>
+<p>La divisione tra interi <code>ammontare / taglio</code> dà già il numero di monete, senza sottrazioni ripetute. Il resto si può scrivere anche <code>ammontare % taglio</code>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · <code>size_t</code> non scende sotto zero</span></p><p>L&#39;array dei tagli è crescente, quindi va scorso all&#39;indietro. Con <code>for (size_t i = NUM_TAGLI - 1; i &gt;= 0; i--)</code> il ciclo <strong>non finisce</strong>: <code>size_t</code> è senza segno, e dopo lo 0 non viene −1 ma il numero più grande possibile. Con un array di 3 elementi ho fatto stampare l&#39;indice: <code>2</code>, <code>1</code>, <code>0</code>, <code>18446744073709551615</code>, e poi il programma legge fuori dall&#39;array. Con <code>-Wall -Werror</code> <strong>compila senza avvisi</strong>; solo aggiungendo <code>-Wextra</code> gcc dice <code>comparison of unsigned expression in '&gt;= 0' is always true</code>.</p>
+</div>
+<p>Le soluzioni sono due:</p>
+<ul>
+<li><strong><code>ptrdiff_t</code></strong>, come dice la slide: un tipo intero <strong>con segno</strong>, grande come <code>size_t</code> (8 byte su questo PC), definito in <code>stddef.h</code>. Si stampa con <code>%td</code>.</li>
+<li>restare con <code>size_t</code> e contare da <code>NUM_TAGLI</code> a 1, usando <code>i - 1</code> come indice: <code>for (size_t i = NUM_TAGLI; i &gt; 0; i--)</code> con <code>tagli_monete[i - 1]</code>. È la strada della soluzione ufficiale del 2025/26, e della <a href="05A_array_stringhe.html">05A</a>.</li>
+</ul>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa il programma con 8 centesimi?</span></summary><div class="ans"><p><code>1 da 5 cent</code>, <code>1 da 2 cent</code>, <code>1 da 1 cent</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Ciclo all&#39;indietro fino a 0: <code>ptrdiff_t</code>, oppure <code>size_t</code> da <code>n</code> a 1 con <code>i - 1</code>.</li>
+<li>Una funzione può stampare <strong>e</strong> restituire un valore: qui restituisce il resto.</li>
+</ul>
+</div>
+</section>
+
+<section id="statistiche-su-sequenze" aria-labelledby="h-statistiche-su-sequenze" style="--h:1840px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-statistiche-su-sequenze">Statistiche su sequenze</h2><span class="slides">slide 13, Lab06-Es1</span></div>
+<p>È il primo esercizio su CodeRunner. Il testo del 2025/26, con lo stesso nome:</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Lab06-Es1 Statistiche sequenze (testo 2025/26)</span></p><p>Leggere una serie di sequenze di interi positivi, ognuna terminata dallo zero. Per ogni sequenza stampare su una riga: la somma degli elementi, la somma dei quadrati, il massimo. Se una sequenza non ha elementi, cioè comincia subito con lo zero, il programma termina. Suggerimento: una funzione <code>leggi_sequenza</code> che legge una sequenza, restituisce al <code>main</code> le tre quantità e restituisce <code>true</code> se la sequenza non è vuota.</p>
+</div>
+<p>La slide chiede quali parametri ha <code>leggi_sequenza</code> e che cosa restituisce. I risultati sono quattro: tre numeri e un sì o no. Il sì o no torna con la <code>return</code>; i tre numeri attraverso tre puntatori. La slide aggiunge che gli array non servono: somma, somma dei quadrati e massimo si aggiornano mentre si legge.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="cm">// legge una sequenza terminata da 0; restituisce false se e' vuota</span>
+<span class="kw">bool</span> leggi_sequenza(<span class="kw">int</span> *somma, <span class="kw">int</span> *somma_quadrati, <span class="kw">int</span> *massimo) {
+    <span class="kw">int</span> n, quanti = 0;
+    *somma = 0;
+    *somma_quadrati = 0;
+    *massimo = 0;
+    <span class="kw">while</span> (scanf(<span class="str">&quot;%d&quot;</span>, &amp;n) == 1 &amp;&amp; n != 0) {
+        quanti++;
+        *somma += n;
+        *somma_quadrati += n * n;
+        <span class="kw">if</span> (n &gt; *massimo) {
+            *massimo = n;
+        }
+    }
+    <span class="kw">return</span> quanti &gt; 0;
+}
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> somma, somma_quadrati, massimo;
+    <span class="kw">while</span> (leggi_sequenza(&amp;somma, &amp;somma_quadrati, &amp;massimo)) {
+        printf(<span class="str">&quot;%d %d %d\n&quot;</span>, somma, somma_quadrati, massimo);
+    }
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Con l&#39;input <code>3 4 5 0 7 0 1 2 0 0</code> stampa tre righe: <code>12 50 5</code>, <code>7 49 7</code>, <code>3 5 2</code>. Poi legge la sequenza vuota e termina. La soluzione ufficiale dà lo stesso output.</p>
+<p>Come si legge il codice:</p>
+<ul>
+<li>nel <code>main</code> le tre variabili sono normali <code>int</code>; alla funzione si passano i loro <strong>indirizzi</strong>, con <code>&amp;</code>;</li>
+<li>nella funzione i parametri sono <code>int *</code>, e ogni accesso passa per l&#39;asterisco: <code>*somma += n</code> aggiunge <code>n</code> alla variabile del <code>main</code>;</li>
+<li>la chiamata sta nella condizione del <code>while</code>: a ogni giro si legge una sequenza, e si esce quando è vuota;</li>
+<li>il massimo può partire da 0 perché gli elementi sono positivi.</li>
+</ul>
+<div class="box trap"><p class="box-label"><span>Trappola · <code>scanf(...) == 1</code>, non <code>scanf(...)</code> da solo</span></p><p>La soluzione ufficiale del 2025/26 scrive <code>while (scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n != 0)</code>. Se l&#39;input finisce senza lo zero finale, <code>scanf</code> restituisce <code>EOF</code>, che vale −1: è diverso da zero, quindi «vero», e il ciclo <strong>non termina</strong>. L&#39;ho provato con l&#39;input <code>3 4 5</code>: il programma ufficiale va avanti finché non lo si ferma, quello qui sopra stampa <code>12 50 5</code> ed esce. I test di CodeRunner hanno sempre lo zero finale, ma il confronto con 1 costa poco.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con l&#39;input <code>2 2 0 0</code>, che cosa stampa?</span></summary><div class="ans"><p>Una riga: <code>4 8 2</code>. Somma 4, quadrati 4 + 4, massimo 2. Poi trova la sequenza vuota e termina.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Tre risultati più un esito: l&#39;esito con la <code>return</code>, i tre numeri con tre puntatori.</li>
+<li>Nel chiamante <code>&amp;variabile</code>, nella funzione <code>*parametro</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="passare-un-array-a-una-funzione" aria-labelledby="h-passare-un-array-a-una-funzione" style="--h:2980px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-passare-un-array-a-una-funzione">Passare un array a una funzione</h2><span class="slides">slide 14–16, Lab06-Es2</span></div>
+<p>Un array si passa a una funzione scrivendo solo il suo nome, perché il nome di un array vale come puntatore al primo elemento (<a href="06B_chiamata_funzioni.html">06B</a>). Il parametro si scrive in due modi equivalenti: <code>void fn(int *dati)</code> oppure <code>void fn(int dati[])</code>.</p>
+<p>La slide 14 chiede: qual è il problema? La slide 15 risponde: la funzione riceve il puntatore al primo elemento, ma <strong>non riceve la dimensione</strong>. Dentro la funzione <code>sizeof(dati)</code> dà la dimensione di un puntatore, 8 byte, non quella dell&#39;array. Quindi la lunghezza va passata in un secondo parametro.</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Che cosa arriva alla funzione. Nel `main` l'array `dati` ha 4 caselle. La funzione riceve solo una copia dell'indirizzo della prima (freccia) e, a parte, il numero 4: senza quel numero non saprebbe dove fermarsi" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M99.35 108.18L162.58 108.18L162.58 46.36L99.35 46.36Z"/><path class="g-poligono g-blu g-pieno" d="M162.58 108.18L225.81 108.18L225.81 46.36L162.58 46.36Z"/><path class="g-poligono g-blu g-pieno" d="M225.81 108.18L289.03 108.18L289.03 46.36L225.81 46.36Z"/><path class="g-poligono g-blu g-pieno" d="M289.03 108.18L352.26 108.18L352.26 46.36L289.03 46.36Z"/><path class="g-poligono g-ambra g-pieno" d="M99.35 293.64L207.74 293.64L207.74 231.82L99.35 231.82Z"/><path class="g-linea g-ambra" d="M130.97 224.09L130.97 115.91" marker-end="url(#g-freccia-2-ambra)"/><path class="g-poligono g-verde g-pieno" d="M252.9 293.64L316.13 293.64L316.13 231.82L252.9 231.82Z"/></svg><span class="g-et g-c g-testo g-grigio" style="left:9.68%;top:11.36%">main</span><span class="g-et g-c g-testo g-blu" style="left:23.39%;top:22.73%">7</span><span class="g-et g-c g-testo g-blu" style="left:34.68%;top:22.73%">2</span><span class="g-et g-c g-testo g-blu" style="left:45.97%;top:22.73%">9</span><span class="g-et g-c g-testo g-blu" style="left:57.26%;top:22.73%">2</span><span class="g-et g-c g-testo g-blu" style="left:74.19%;top:22.73%">dati</span><span class="g-et g-c g-testo g-grigio" style="left:9.68%;top:65.91%">fn</span><span class="g-et g-c g-testo g-ambra" style="left:27.42%;top:77.27%">dati (indirizzo)</span><span class="g-et g-c g-testo g-verde" style="left:50.81%;top:77.27%">4</span><span class="g-et g-c g-testo g-verde" style="left:69.36%;top:77.27%">n (lunghezza)</span></div><figcaption>Che cosa arriva alla funzione. Nel <code>main</code> l&#39;array <code>dati</code> ha 4 caselle. La funzione riceve solo una copia dell&#39;indirizzo della prima (freccia) e, a parte, il numero 4: senza quel numero non saprebbe dove fermarsi</figcaption></figure>
+<p>Il secondo esercizio su CodeRunner, testo del 2025/26:</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Lab06-Es2 Funzioni su arrays (testo 2025/26)</span></p><ol>
+<li>Una funzione <code>leggi_array</code> che legge un naturale N, con 0 ≤ N ≤ 20, seguito da N interi, e li scrive in un array ricevuto in ingresso. 2. Una funzione <code>conta_univoci</code> che, dato un array, restituisce il numero di elementi che compaiono <strong>una sola volta</strong>. 3. Una funzione <code>stampa_elementi_ripetuti</code> che riceve due array e stampa su una riga gli elementi del primo che compaiono anche nel secondo; se un elemento compare più volte nel primo, viene stampato più volte. 4. Un programma che legge due array, stampa i due risultati di <code>conta_univoci</code> e poi, su una nuova riga, gli elementi ripetuti.</li>
+</ol>
+</div>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">#define</span> NMAX 20
+
+<span class="cm">// legge N (0 &lt;= N &lt;= 20) e poi N interi nell'array; restituisce N</span>
+<span class="kw">size_t</span> leggi_array(<span class="kw">int</span> *a) {
+    <span class="kw">size_t</span> n;
+    scanf(<span class="str">&quot;%zu&quot;</span>, &amp;n);
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+        scanf(<span class="str">&quot;%d&quot;</span>, &amp;a[i]);
+    }
+    <span class="kw">return</span> n;
+}
+
+<span class="cm">// quanti elementi compaiono una volta sola</span>
+<span class="kw">size_t</span> conta_univoci(<span class="kw">const</span> <span class="kw">int</span> *a, <span class="kw">size_t</span> n) {
+    <span class="kw">size_t</span> univoci = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+        <span class="kw">bool</span> ripetuto = <span class="kw">false</span>;
+        <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; n &amp;&amp; !ripetuto; j++) {
+            <span class="kw">if</span> (j != i &amp;&amp; a[j] == a[i]) {
+                ripetuto = <span class="kw">true</span>;
+            }
+        }
+        <span class="kw">if</span> (!ripetuto) {
+            univoci++;
+        }
+    }
+    <span class="kw">return</span> univoci;
+}
+
+<span class="cm">// stampa gli elementi di a che compaiono anche in b</span>
+<span class="kw">void</span> stampa_elementi_ripetuti(<span class="kw">const</span> <span class="kw">int</span> *a, <span class="kw">size_t</span> na, <span class="kw">const</span> <span class="kw">int</span> *b, <span class="kw">size_t</span> nb) {
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; na; i++) {
+        <span class="kw">bool</span> trovato = <span class="kw">false</span>;
+        <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; nb &amp;&amp; !trovato; j++) {
+            <span class="kw">if</span> (a[i] == b[j]) {
+                trovato = <span class="kw">true</span>;
+            }
+        }
+        <span class="kw">if</span> (trovato) {
+            printf(<span class="str">&quot;%d &quot;</span>, a[i]);
+        }
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+}
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">int</span> a[NMAX], b[NMAX];
+    <span class="kw">size_t</span> na = leggi_array(a);
+    <span class="kw">size_t</span> nb = leggi_array(b);
+    printf(<span class="str">&quot;%zu %zu\n&quot;</span>, conta_univoci(a, na), conta_univoci(b, nb));
+    stampa_elementi_ripetuti(a, na, b, nb);
+    <span class="kw">return</span> 0;
+}</code></pre>
+<p>Con <code>5 1 2 2 3 4</code> e poi <code>4 2 4 9 9</code> stampa <code>3 2</code> e, sotto, <code>2 2 4</code>. Nel primo array compaiono una volta sola 1, 3 e 4; nel secondo 2 e 4. Gli elementi del primo che stanno anche nel secondo sono i due 2 e il 4. Con due array vuoti stampa <code>0 0</code> e una riga vuota.</p>
+<p>Come si legge il codice:</p>
+<ul>
+<li><strong>Gli array si creano nel <code>main</code></strong> con la dimensione massima, e si passano alle funzioni. <code>leggi_array</code> li riempie e <strong>restituisce la lunghezza vera</strong>: il <code>main</code> la conserva in <code>na</code> e la ripassa a tutte le altre funzioni.</li>
+<li><code>leggi_array</code> riceve <code>int *a</code> senza <code>const</code>, perché deve scrivere nell&#39;array. Le altre due ricevono <code>const int *</code>, perché lo leggono soltanto.</li>
+<li><code>conta_univoci</code> è un «esiste» dentro un «per ogni»: per ogni elemento si cerca se esiste <strong>un altro</strong> elemento uguale. La condizione <code>j != i</code> evita di confrontare un elemento con sé stesso.</li>
+<li><code>stampa_elementi_ripetuti</code> ha quattro parametri: due coppie «puntatore, lunghezza».</li>
+</ul>
+<div class="box trap"><p class="box-label"><span>Trappola · <code>%zu</code> per leggere un <code>size_t</code></span></p><p>La soluzione ufficiale del 2025/26 legge la lunghezza con <code>scanf(&quot;%lu&quot;, &amp;sz)</code>. Su Linux a 64 bit funziona. Con gcc 16 su Windows non compila: <code>format '%lu' expects argument of type 'long unsigned int *', but argument 2 has type 'size_t *' {aka 'long long unsigned int *'}</code>. Il formato giusto ovunque è <strong><code>%zu</code></strong>.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanto vale <code>conta_univoci</code> sull&#39;array <code>{5, 5, 5}</code>?</span></summary><div class="ans"><p>0: ogni 5 ha un altro elemento uguale.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Un array si passa come coppia: puntatore ai dati e lunghezza.</li>
+<li><code>const</code> sul parametro se la funzione legge soltanto.</li>
+<li>Una funzione che riempie un array restituisce quanti elementi ha scritto.</li>
+</ul>
+</div>
+</section>
+
+<section id="funzioni-su-stringhe-e-vocali" aria-labelledby="h-funzioni-su-stringhe-e-vocali" style="--h:1560px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-funzioni-su-stringhe-e-vocali">Funzioni su stringhe e vocali</h2><span class="slides">slide 17–18</span></div>
+<p>La slide 17 ripete le tre funzioni di <code>string.h</code> della <a href="06B_chiamata_funzioni.html">06B</a>: <code>strlen</code> dà la lunghezza senza il terminatore; <code>strcmp</code> confronta due stringhe nell&#39;ordine del dizionario e dà un valore negativo, zero o positivo; <code>strncpy</code> copia al massimo <code>count</code> caratteri. Nella slide la destinazione è chiamata una volta <code>dest</code> e una volta <code>dst</code>: è lo stesso parametro.</p>
+<p>L&#39;esercizio <code>vocali.c</code> chiede tre funzioni: <code>is_vowel</code> dice se un carattere è una vocale tra <code>AEIOUaeiou</code>; <code>esistono_vocali</code> dice se una stringa ne contiene almeno una; <code>stampa_vocali</code> stampa solo le vocali. Il programma stampa 1 o 0, e poi le vocali.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">#define</span> MAX_LEN 100
+
+<span class="kw">bool</span> is_vowel(<span class="kw">char</span> c);
+<span class="kw">bool</span> esistono_vocali(<span class="kw">const</span> <span class="kw">char</span> *s);
+<span class="kw">void</span> stampa_vocali(<span class="kw">const</span> <span class="kw">char</span> *s);
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> parola[MAX_LEN + 1];
+    scanf(<span class="str">&quot;%100s&quot;</span>, parola);
+    printf(<span class="str">&quot;%d\n&quot;</span>, esistono_vocali(parola));
+    stampa_vocali(parola);
+    <span class="kw">return</span> 0;
+}
+
+<span class="cm">// true se c e' una delle lettere AEIOUaeiou</span>
+<span class="kw">bool</span> is_vowel(<span class="kw">char</span> c) {
+    <span class="kw">const</span> <span class="kw">char</span> *vocali = <span class="str">&quot;AEIOUaeiou&quot;</span>;
+    <span class="kw">bool</span> trovata = <span class="kw">false</span>;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; vocali[i] != <span class="str">'\0'</span> &amp;&amp; !trovata; i++) {
+        <span class="kw">if</span> (c == vocali[i]) {
+            trovata = <span class="kw">true</span>;
+        }
+    }
+    <span class="kw">return</span> trovata;
+}
+
+<span class="cm">// true se nella stringa c'e' almeno una vocale</span>
+<span class="kw">bool</span> esistono_vocali(<span class="kw">const</span> <span class="kw">char</span> *s) {
+    <span class="kw">bool</span> trovata = <span class="kw">false</span>;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; s[i] != <span class="str">'\0'</span> &amp;&amp; !trovata; i++) {
+        <span class="kw">if</span> (is_vowel(s[i])) {
+            trovata = <span class="kw">true</span>;
+        }
+    }
+    <span class="kw">return</span> trovata;
+}
+
+<span class="cm">// stampa solo le vocali, nell'ordine in cui compaiono</span>
+<span class="kw">void</span> stampa_vocali(<span class="kw">const</span> <span class="kw">char</span> *s) {
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; s[i] != <span class="str">'\0'</span>; i++) {
+        <span class="kw">if</span> (is_vowel(s[i])) {
+            printf(<span class="str">&quot;%c&quot;</span>, s[i]);
+        }
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+}</code></pre>
+<p>Con <code>Programmazione</code> stampa <code>1</code> e <code>oaaioe</code>; con <code>xyz</code> stampa <code>0</code> e una riga vuota; con <code>AEIOU</code> stampa <code>1</code> e <code>AEIOU</code>.</p>
+<p>La domanda della slide: <strong>serve ancora passare la dimensione, come per gli array?</strong> No. Una stringa finisce con il terminatore <code>'\0'</code>, quindi la funzione scopre da sola dove fermarsi: la condizione del ciclo è <code>s[i] != '\0'</code>. È la differenza tra un array qualsiasi e una stringa.</p>
+<p>Le funzioni si chiamano a catena: <code>esistono_vocali</code> e <code>stampa_vocali</code> usano <code>is_vowel</code>, che a sua volta scorre la stringa <code>&quot;AEIOUaeiou&quot;</code>. Ogni funzione fa una cosa sola. Stampare un <code>bool</code> con <code>%d</code> dà 1 o 0, perché in C <code>true</code> vale 1.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa il programma con <code>Rhythm</code>?</span></summary><div class="ans"><p><code>0</code> e poi una riga vuota: la <code>y</code> non è nell&#39;elenco delle vocali.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Stringa: basta il puntatore, la fine è il terminatore.</li>
+<li>Una funzione piccola (<code>is_vowel</code>) usata da altre due evita di ripetere il confronto.</li>
+</ul>
+</div>
+</section>
+
+<section id="palindroma" aria-labelledby="h-palindroma" style="--h:1990px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-palindroma">Palindroma</h2><span class="slides">slide 19, Lab06-Es3</span></div>
+<p>Una parola è palindroma se letta al contrario resta uguale, come <code>radar</code>. Il terzo esercizio su CodeRunner, testo del 2025/26:</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Lab06-Es3 Palindroma (testo 2025/26)</span></p><p>Leggere una parola di al massimo 50 caratteri (con <code>%s</code>) e determinare con una funzione se è palindroma. Se lo è, stampare <code>PALINDROMA</code>. Se non lo è, copiarla al contrario con una funzione <code>capovolgi</code>, che riceve una stringa <code>src</code> e un array di caratteri <code>dst</code>, e stampare la parola originale e quella capovolta.</p>
+</div>
+<p>Per controllare basta confrontare il primo carattere con l&#39;ultimo, il secondo con il penultimo, e così via fino a metà parola.</p>
+<figure class="grafico" id="grafico-3"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="I confronti per la parola `radar`, di lunghezza 5. Si confronta la casella `i` con la casella `n - 1 - i`: la 0 con la 4, la 1 con la 3. La casella centrale non ha bisogno di confronti, quindi bastano `n / 2 = 2` giri" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-3-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-3-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-3-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-3-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-3-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-3-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-3-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-3-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-pieno" d="M99.35 226.67L171.61 226.67L171.61 132.22L99.35 132.22Z"/><path class="g-poligono g-ambra g-pieno" d="M171.61 226.67L243.87 226.67L243.87 132.22L171.61 132.22Z"/><path class="g-poligono g-grigio g-tratteggio" d="M243.87 226.67L316.13 226.67L316.13 132.22L243.87 132.22Z"/><path class="g-poligono g-ambra g-pieno" d="M316.13 226.67L388.39 226.67L388.39 132.22L316.13 132.22Z"/><path class="g-poligono g-blu g-pieno" d="M388.39 226.67L460.65 226.67L460.65 132.22L388.39 132.22Z"/><path class="g-linea g-blu" d="M135.48 122.78L135.48 47.22"/><path class="g-linea g-blu" d="M135.48 47.22L424.52 47.22"/><path class="g-linea g-blu" d="M424.52 47.22L424.52 122.78"/><path class="g-linea g-ambra" d="M207.74 122.78L207.74 85"/><path class="g-linea g-ambra" d="M207.74 85L352.26 85"/><path class="g-linea g-ambra" d="M352.26 85L352.26 122.78"/></svg><span class="g-et g-c g-testo g-blu" style="left:24.19%;top:52.78%">r</span><span class="g-et g-c g-testo g-ambra" style="left:37.10%;top:52.78%">a</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:52.78%">d</span><span class="g-et g-c g-testo g-ambra" style="left:62.90%;top:52.78%">a</span><span class="g-et g-c g-testo g-blu" style="left:75.81%;top:52.78%">r</span><span class="g-et g-c g-testo g-grigio" style="left:24.19%;top:77.78%">0</span><span class="g-et g-c g-testo g-grigio" style="left:37.10%;top:77.78%">1</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:77.78%">2</span><span class="g-et g-c g-testo g-grigio" style="left:62.90%;top:77.78%">3</span><span class="g-et g-c g-testo g-grigio" style="left:75.81%;top:77.78%">4</span><span class="g-et g-c g-testo g-blu" style="left:50.00%;top:6.94%">i = 0</span></div><figcaption>I confronti per la parola <code>radar</code>, di lunghezza 5. Si confronta la casella <code>i</code> con la casella <code>n - 1 - i</code>: la 0 con la 4, la 1 con la 3. La casella centrale non ha bisogno di confronti, quindi bastano <code>n / 2 = 2</code> giri</figcaption></figure>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;string.h&gt;
+<span class="kw">#include</span> &lt;stdbool.h&gt;
+
+<span class="kw">#define</span> WORD_MAX 50
+
+<span class="kw">bool</span> palindroma(<span class="kw">const</span> <span class="kw">char</span> *s);
+<span class="kw">void</span> capovolgi(<span class="kw">char</span> *dst, <span class="kw">const</span> <span class="kw">char</span> *src);
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">char</span> parola[WORD_MAX + 1], rovescia[WORD_MAX + 1];
+    scanf(<span class="str">&quot;%50s&quot;</span>, parola);
+    <span class="kw">if</span> (palindroma(parola)) {
+        printf(<span class="str">&quot;PALINDROMA\n&quot;</span>);
+    } <span class="kw">else</span> {
+        capovolgi(rovescia, parola);
+        printf(<span class="str">&quot;%s %s\n&quot;</span>, parola, rovescia);
+    }
+    <span class="kw">return</span> 0;
+}
+
+<span class="cm">// confronta il primo con l'ultimo, il secondo con il penultimo, ...</span>
+<span class="kw">bool</span> palindroma(<span class="kw">const</span> <span class="kw">char</span> *s) {
+    <span class="kw">size_t</span> n = strlen(s);
+    <span class="kw">bool</span> uguali = <span class="kw">true</span>;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n / 2 &amp;&amp; uguali; i++) {
+        <span class="kw">if</span> (s[i] != s[n - 1 - i]) {
+            uguali = <span class="kw">false</span>;
+        }
+    }
+    <span class="kw">return</span> uguali;
+}
+
+<span class="cm">// copia src in dst al contrario, terminatore compreso</span>
+<span class="kw">void</span> capovolgi(<span class="kw">char</span> *dst, <span class="kw">const</span> <span class="kw">char</span> *src) {
+    <span class="kw">size_t</span> n = strlen(src);
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+        dst[i] = src[n - 1 - i];
+    }
+    dst[n] = <span class="str">'\0'</span>;
+}</code></pre>
+<p>Provato: <code>anna</code>, <code>radar</code>, <code>abba</code> e <code>a</code> danno <code>PALINDROMA</code>; <code>ciao</code> dà <code>ciao oaic</code>; <code>ab</code> dà <code>ab ba</code>.</p>
+<p><code>palindroma</code> è un «per ogni»: tutte le coppie devono essere uguali, quindi la sentinella parte da <code>true</code> e il ciclo si ferma alla prima coppia diversa. <code>capovolgi</code> scrive in <code>dst</code>, che quindi non è <code>const</code>, e legge da <code>src</code>, che lo è. L&#39;ultima riga è quella che si dimentica: <strong>senza <code>dst[n] = '\0'</code> la copia non è una stringa</strong>, e <code>printf</code> va avanti a stampare quello che trova in memoria.</p>
+<p>Nel <code>main</code> servono due array da 51 caratteri: 50 più il terminatore, con <code>%50s</code> nella <code>scanf</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quanti confronti fa <code>palindroma</code> sulla parola <code>abcba</code>, e quanti su <code>abxya</code>?</span></summary><div class="ans"><p>Due su <code>abcba</code>, lunga 5: le coppie (0, 4) e (1, 3). Due anche su <code>abxya</code>: la prima coppia è uguale, la seconda no, e il ciclo si ferma.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Simmetria: casella <code>i</code> contro casella <code>n - 1 - i</code>, fino a metà.</li>
+<li>Chi costruisce una stringa scrive anche il terminatore.</li>
+</ul>
+</div>
+</section>
+
+<section id="scale-e-serpi" aria-labelledby="h-scale-e-serpi" style="--h:1820px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-scale-e-serpi">Scale e serpi</h2><span class="slides">slide 20, Lab06-Es4</span></div>
+<p>Scale e serpi è un gioco di percorso con i dadi, simile al Gioco dell&#39;Oca. Nel quarto esercizio su CodeRunner il codice del gioco è già scritto in parte, e va scritta una sola funzione. Il testo del 2025/26:</p>
+<div class="box neutro"><p class="box-label"><span>Nota · Lab06-Es4 Scale e serpi (testo 2025/26)</span></p><p>Due giocatori partono dalla casella 1 di un tabellone 10 × 10 e giocano a turni. Chi ha il turno lancia un dado e avanza. Se arriva sulla <strong>base di una scala</strong>, sale alla casella in cima; se arriva sulla <strong>testa di una serpe</strong>, scende alla coda. Chi fa 6 gioca anche il turno successivo. Vince chi per primo raggiunge o supera la casella 100. Le scale (base, cima): (1, 38) (4, 14) (8, 30) (21, 42) (28, 76) (50, 67) (71, 92) (80, 99). Le serpi (testa, coda): (32, 10) (36, 6) (48, 26) (62, 18) (88, 24) (95, 56) (97, 78). Scrivere <code>muovi_giocatore(int dado, int *pos)</code>: aggiorna la casella del giocatore e restituisce <code>true</code> se gioca ancora.</p>
+</div>
+<p>La funzione ha di nuovo due risultati: la nuova posizione e «gioca ancora?». La posizione torna attraverso il puntatore <code>pos</code>; il sì o no con la <code>return</code>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#define</span> NUM_SCALE 8
+<span class="kw">const</span> <span class="kw">int</span> scala_base[NUM_SCALE] = {  1,  4,  8, 21, 28, 50, 71, 80 };
+<span class="kw">const</span> <span class="kw">int</span> scala_cima[NUM_SCALE] = { 38, 14, 30, 42, 76, 67, 92, 99 };
+
+<span class="kw">#define</span> NUM_SERPI 7
+<span class="kw">const</span> <span class="kw">int</span> serpe_testa[NUM_SERPI] = { 32, 36, 48, 62, 88, 95, 97 };
+<span class="kw">const</span> <span class="kw">int</span> serpe_coda[NUM_SERPI]  = { 10,  6, 26, 18, 24, 56, 78 };
+
+<span class="cm">// se *pos e' una partenza (base di scala o testa di serpe), salta all'arrivo</span>
+<span class="kw">void</span> segui(<span class="kw">int</span> *pos, <span class="kw">const</span> <span class="kw">int</span> *da, <span class="kw">const</span> <span class="kw">int</span> *a, <span class="kw">size_t</span> n) {
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+        <span class="kw">if</span> (*pos == da[i]) {
+            *pos = a[i];
+        }
+    }
+}
+
+<span class="kw">bool</span> muovi_giocatore(<span class="kw">int</span> dado, <span class="kw">int</span> *pos) {
+    *pos += dado;
+    segui(pos, scala_base, scala_cima, NUM_SCALE);
+    segui(pos, serpe_testa, serpe_coda, NUM_SERPI);
+    <span class="kw">return</span> dado == 6;
+}</code></pre>
+<p>Le scale e le serpi sono quattro <strong>array paralleli</strong>: <code>scala_base[i]</code> e <code>scala_cima[i]</code> descrivono la stessa scala. Scale e serpi fanno la stessa cosa, «se sei qui, vai là», quindi basta una funzione sola, <code>segui</code>, chiamata due volte con array diversi: è il passaggio di array con la lunghezza della sezione precedente. A <code>segui</code> si passa <code>pos</code> senza <code>&amp;</code>, perché in <code>muovi_giocatore</code> è già un puntatore.</p>
+<p>L&#39;ho provata dentro il codice del gioco del 2025/26, con cinque semi diversi del generatore di numeri casuali: la partita finisce sempre con un giocatore a 100 o più, per esempio <code>1 53 100</code> o <code>2 104 99</code> (turno, posizione del primo, posizione del secondo). Nessuna cima di scala è una testa di serpe, e nessuna coda è una base, quindi l&#39;ordine delle due chiamate non cambia il risultato.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Un giocatore è sulla casella 2 e fa 6. Dove finisce, e gioca ancora?</span></summary><div class="ans"><p>Arriva sulla 8, base di una scala: sale alla 30. Ha fatto 6, quindi gioca ancora: la funzione restituisce <code>true</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Posizione con il puntatore, «gioca ancora» con la <code>return</code>.</li>
+<li>Due compiti uguali su dati diversi: una funzione sola, chiamata due volte.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:710px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>bool f(int n)</code></td><td>«f restituisce un booleano»</td><td>funzione che risponde sì o no</td><td><code>verifica_primalita(7)</code></td></tr>
+<tr><td><code>void f(void)</code></td><td>«f non riceve e non restituisce niente»</td><td>funzione che fa solo un&#39;azione</td><td><code>saluta()</code></td></tr>
+<tr><td><code>int *p</code> nei parametri</td><td>«puntatore a intero»</td><td>la funzione scrive nella variabile del chiamante</td><td><code>leggi_sequenza(&amp;somma, ...)</code></td></tr>
+<tr><td><code>const int *a</code></td><td>«puntatore a interi che non modifico»</td><td>array in sola lettura</td><td><code>conta_univoci(a, n)</code></td></tr>
+<tr><td><code>size_t n</code> accanto all&#39;array</td><td>«lunghezza»</td><td>quanti elementi ha l&#39;array</td><td><code>fn(dati, 4)</code></td></tr>
+<tr><td><code>ptrdiff_t</code></td><td>«intero con segno, grande come un indice»</td><td>per indici che scendono sotto 0</td><td><code>for (ptrdiff_t i = n - 1; i &gt;= 0; i--)</code></td></tr>
+<tr><td><code>%zu</code>, <code>%td</code></td><td>«zeta u», «ti di»</td><td>formati di <code>size_t</code> e di <code>ptrdiff_t</code></td><td><code>printf(&quot;%zu&quot;, n)</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:1440px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>All&#39;esame si programma al PC con CodeRunner, che compila con <code>-Wall -Werror</code> e confronta l&#39;output carattere per carattere. La consegna tipica è proprio quella di questo laboratorio: <strong>una funzione con l&#39;intestazione data</strong>, da completare. Da qui servono:</p>
+<ol>
+<li><strong>scegliere il tipo di ritorno e i parametri</strong>, e leggerli dal <code>main</code> quando è già scritto;</li>
+<li><strong>i risultati multipli</strong>: esito con la <code>return</code>, valori con i puntatori;</li>
+<li><strong>gli array come coppia</strong> puntatore e lunghezza, con <code>const</code> dove si legge soltanto;</li>
+<li><strong>le regole</strong>: una sola <code>return</code> nelle funzioni iterative, niente <code>break</code>, quindi sentinelle nelle condizioni dei cicli.</li>
+</ol>
+<h3 id="una-domanda-sul-modello-letta-insieme">Una domanda sul modello, letta insieme</h3>
+<p>Non è un testo d&#39;esame: è sul modello delle funzioni <code>e1</code> degli appelli, come quella del pre-esame 2023/24 svolta nella <a href="07A_algoritmi_su_array.html">07A</a>.</p>
+<p>«Scrivere una funzione iterativa <code>conta_comuni</code> che riceve due array di interi con le loro lunghezze e restituisce quanti elementi del primo compaiono anche nel secondo.»</p>
+<p><strong>In pratica chiede:</strong> per ogni elemento del primo array, un «esiste» sul secondo, e un contatore.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> conta_comuni(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span> na, <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">size_t</span> nb) {
+    <span class="kw">size_t</span> comuni = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; na; i++) {
+        <span class="kw">bool</span> trovato = <span class="kw">false</span>;
+        <span class="kw">for</span> (<span class="kw">size_t</span> j = 0; j &lt; nb &amp;&amp; !trovato; j++) {
+            <span class="kw">if</span> (a[i] == b[j]) {
+                trovato = <span class="kw">true</span>;
+            }
+        }
+        <span class="kw">if</span> (trovato) {
+            comuni++;
+        }
+    }
+    <span class="kw">return</span> comuni;
+}</code></pre>
+<p>Con <code>{1, 2, 2, 3, 4}</code> e <code>{2, 4, 9, 9}</code> restituisce 3; a ruoli scambiati 2; con il primo array vuoto 0. È <code>stampa_elementi_ripetuti</code> con un contatore al posto della stampa: una sola <code>return</code>, nessun <code>break</code>, sentinella nel ciclo interno.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Una funzione su array all&#39;esame</span></p><ol>
+<li>Leggi l&#39;intestazione: quali array, quali lunghezze, che cosa restituisce.</li>
+<li>Traduci la richiesta in schemi: conteggio, «esiste», «per ogni», massimo.</li>
+<li>Dichiara il risultato in cima, con il valore giusto per l&#39;array vuoto.</li>
+<li>Scrivi i cicli con le sentinelle nella condizione.</li>
+<li>Una sola <code>return</code>, in fondo.</li>
+</ol>
+</div>
+<h3 id="errori-da-evitare">Errori da evitare</h3>
+<ul>
+<li>Usare <code>sizeof</code> dentro la funzione per sapere quanto è lungo l&#39;array ricevuto.</li>
+<li>Dimenticare <code>&amp;</code> nella chiamata, o l&#39;asterisco dentro la funzione, quando il risultato torna per puntatore.</li>
+<li>Scrivere due <code>return</code> in un ciclo per uscire prima.</li>
+<li>Scendere con un indice <code>size_t</code> fino a <code>i &gt;= 0</code>.</li>
+<li>Costruire una stringa senza il terminatore.</li>
+</ul>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2070px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Una funzione deve leggere una sequenza e restituire al chiamante somma, massimo e l&#39;informazione «la sequenza era vuota?». Quale intestazione va bene?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void leggi(void)</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>bool leggi(int *somma, int *massimo)</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>bool leggi(int somma, int massimo)</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int, int, bool leggi(void)</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int leggi(int somma, int massimo)</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>I risultati sono tre: uno torna con la <code>return</code>, gli altri due attraverso puntatori. La più insidiosa è la terza: con parametri <code>int</code> la funzione riceve copie, e le variabili del chiamante non cambiano.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Dentro <code>void fn(int dati[])</code>, chiamata con un array di 10 <code>int</code>, quanto vale <code>sizeof(dati)</code> su questo PC a 64 bit?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">8</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">40</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">dipende dal contenuto dell&#39;array</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">10</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il parametro è un puntatore, e un puntatore occupa 8 byte. La più insidiosa è 40, che è la dimensione dell&#39;array nel <code>main</code>: per questo la lunghezza si passa a parte.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa fa <code>for (size_t i = 2; i &gt;= 0; i--) { printf(&quot;%zu &quot;, i); }</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa 2 1 0 e si ferma</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila con <code>-Wall -Werror</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa 2 1 0 e poi continua con numeri enormi, senza fermarsi</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa 2 1 e si ferma</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non stampa niente</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>size_t</code> è senza segno: dopo 0 viene 18446744073709551615, e <code>i &gt;= 0</code> è sempre vero. La più insidiosa è «non compila»: l&#39;avviso arriva solo con <code>-Wextra</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Nella funzione <code>bool muovi_giocatore(int dado, int *pos)</code>, quale istruzione fa avanzare il giocatore?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>*pos += dado;</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>pos = dado;</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>&amp;pos += dado;</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>pos += dado;</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>return pos + dado;</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Con l&#39;asterisco si modifica la variabile del chiamante. La più insidiosa è la seconda: <code>pos += dado</code> sposta il puntatore, non il giocatore, e compila.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Perché a <code>esistono_vocali(const char *s)</code> non serve la lunghezza della stringa?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché la stringa finisce con il terminatore, e il ciclo si ferma lì</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché <code>const</code> contiene la lunghezza</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché le stringhe hanno sempre 100 caratteri</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché <code>sizeof(s)</code> dà la lunghezza</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">perché <code>scanf</code> la salva in una variabile globale</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La fine di una stringa è segnata da <code>'\0'</code>. La più insidiosa è la seconda: <code>sizeof(s)</code> è la dimensione del puntatore, 8.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Quante volte gira il ciclo di <code>palindroma</code> sulla parola <code>anna</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="2" data-toll="1e-9"><span class="q-giusto" hidden>2</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La lunghezza è 4, quindi <code>n / 2</code> vale 2: si confrontano le coppie (0, 3) e (1, 2), tutte uguali.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo"><code>cambio_taglio(45, 20)</code> che cosa stampa e che cosa restituisce?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa <code>5 da 20 cent</code> e restituisce 2</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa <code>2 da 20 cent</code> e restituisce 5</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa <code>2 da 20 cent</code> e restituisce 40</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non stampa niente e restituisce 45</span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa <code>2 da 20 cent</code> e restituisce 2</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>45 / 20 fa 2 tra interi, e restano 45 − 40 = 5. La più insidiosa è la seconda: la funzione restituisce il resto, non il numero di monete.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale intestazione promette di non modificare l&#39;array ricevuto?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>size_t conta(int *const a, size_t n)</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>size_t conta(const int *a, size_t n)</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>size_t conta(int *a, size_t n)</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>const size_t conta(int *a, size_t n)</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>size_t conta(int a[], const size_t n)</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>const int *a</code> vuol dire «puntatore a interi che non cambio». La più insidiosa è l&#39;ultima: <code>int *const a</code> blocca il puntatore, non i dati.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1180px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: contare le occorrenze (slide 5) <span class="lvl">base</span></h3><p>Scrivi la funzione della slide 5: conta quante volte il numero <code>x</code> compare in un array di interi.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">size_t</span> conta_occorrenze(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span> n, <span class="kw">int</span> x) {
+    <span class="kw">size_t</span> quante = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+        <span class="kw">if</span> (a[i] == x) {
+            quante++;
+        }
+    }
+    <span class="kw">return</span> quante;
+}</code></pre>
+<p>Con <code>{3, 7, 3, 1, 3}</code> e <code>x = 3</code> dà 3; con <code>x = 9</code> dà 0; con lunghezza 0 dà 0. Tre parametri: i dati, la lunghezza, il numero cercato. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: ordinato? <span class="lvl">base</span></h3><p>Scrivi <code>bool ordinato(const int a[], size_t n)</code>, che dice se l&#39;array è in ordine crescente (elementi uguali ammessi).</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">bool</span> ordinato(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span> n) {
+    <span class="kw">bool</span> ok = <span class="kw">true</span>;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt; n &amp;&amp; ok; i++) {
+        <span class="kw">if</span> (a[i - 1] &gt; a[i]) {
+            ok = <span class="kw">false</span>;
+        }
+    }
+    <span class="kw">return</span> ok;
+}</code></pre>
+<p>È un «per ogni» sulle coppie vicine, come nella <a href="07A_algoritmi_su_array.html">07A</a>. <code>{1, 3, 3, 8}</code> dà vero, <code>{2, 1, 5}</code> falso, l&#39;array vuoto vero. Il ciclo parte da 1, così <code>i - 1</code> non scende mai sotto zero. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Minimo e massimo insieme <span class="lvl">medio</span></h3><p>Scrivi una funzione che trova il minimo e il massimo di un array non vuoto e li restituisce tutti e due al chiamante.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">void</span> min_max(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span> n, <span class="kw">int</span> *min, <span class="kw">int</span> *max) {
+    *min = a[0];
+    *max = a[0];
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 1; i &lt; n; i++) {
+        <span class="kw">if</span> (a[i] &lt; *min) {
+            *min = a[i];
+        }
+        <span class="kw">if</span> (a[i] &gt; *max) {
+            *max = a[i];
+        }
+    }
+}</code></pre>
+<p>Si chiama con <code>min_max(c, 4, &amp;mn, &amp;mx)</code>. Con <code>{4, -2, 9, 0}</code> dà −2 e 9. Due risultati, nessun esito da comunicare: la funzione è <code>void</code> e tutti e due passano per puntatore. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Media e varianza (slide 6) <span class="lvl">medio</span></h3><p>Scrivi la funzione della slide 6: legge una sequenza di interi positivi terminata da 0 e, se non ci sono errori, restituisce media e varianza.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">bool</span> leggi_media_varianza(<span class="kw">double</span> *media, <span class="kw">double</span> *varianza) {
+    <span class="kw">int</span> n, quanti = 0;
+    <span class="kw">double</span> somma = 0.0, somma_quadrati = 0.0;
+    <span class="kw">bool</span> errore = <span class="kw">false</span>;
+    <span class="kw">bool</span> finita = <span class="kw">false</span>;
+    <span class="kw">while</span> (!finita &amp;&amp; !errore) {
+        <span class="kw">if</span> (scanf(<span class="str">&quot;%d&quot;</span>, &amp;n) != 1 || n &lt; 0) {
+            errore = <span class="kw">true</span>;
+        } <span class="kw">else</span> <span class="kw">if</span> (n == 0) {
+            finita = <span class="kw">true</span>;
+        } <span class="kw">else</span> {
+            quanti++;
+            somma += n;
+            somma_quadrati += (<span class="kw">double</span>)n * n;
+        }
+    }
+    <span class="kw">bool</span> ok = !errore &amp;&amp; quanti &gt; 0;
+    <span class="kw">if</span> (ok) {
+        *media = somma / quanti;
+        *varianza = somma_quadrati / quanti - (*media) * (*media);
+    }
+    <span class="kw">return</span> ok;
+}</code></pre>
+<p>Con <code>2 4 4 4 5 5 7 9 0</code> dà media 5.00 e varianza 4.00. Restituisce falso con la sequenza vuota, con un numero negativo, con un carattere non numerico e se l&#39;input finisce senza lo zero. La varianza è la media dei quadrati meno il quadrato della media. Le due sentinelle <code>finita</code> ed <code>errore</code> sostituiscono il <code>break</code>. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Capovolgere sul posto <span class="lvl">medio</span></h3><p>Scrivi <code>void capovolgi_sul_posto(char *s)</code>, che capovolge la stringa senza usare un secondo array.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">void</span> capovolgi_sul_posto(<span class="kw">char</span> *s) {
+    <span class="kw">size_t</span> n = strlen(s);
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n / 2; i++) {
+        <span class="kw">char</span> t = s[i];
+        s[i] = s[n - 1 - i];
+        s[n - 1 - i] = t;
+    }
+}</code></pre>
+<p><code>funzione</code> diventa <code>enoiznuf</code>; la stringa vuota resta vuota. È lo scambio con la variabile temporanea della <a href="03A_scambio_variabili.html">03A</a>, sulle stesse coppie di <code>palindroma</code>. Il terminatore non si tocca: resta dov&#39;era. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Stampare un array al contrario, con <code>size_t</code> <span class="lvl">tipo esame</span></h3><p>Scrivi <code>void stampa_al_contrario(const int a[], size_t n)</code>, che stampa gli elementi dall&#39;ultimo al primo, usando solo indici <code>size_t</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">void</span> stampa_al_contrario(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span> n) {
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = n; i &gt; 0; i--) {
+        printf(<span class="str">&quot;%d &quot;</span>, a[i - 1]);
+    }
+    printf(<span class="str">&quot;\n&quot;</span>);
+}</code></pre>
+<p>Con <code>{4, -2, 9, 0}</code> stampa <code>0 9 -2 4</code>; con l&#39;array vuoto solo l&#39;a capo. L&#39;indice va da <code>n</code> a 1 e si usa <code>a[i - 1]</code>: la condizione <code>i &gt; 0</code> diventa falsa a zero, senza mai sottrarre sotto lo zero. Provato.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:600px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Quali tre cose si decidono prima di scrivere una funzione?</span></summary><div class="ans"><p>Il nome, i parametri in ingresso e il tipo di ritorno.</p>
+</div></details>
+<details class="qa"><summary><span>Come fa una funzione a restituire più di un risultato?</span></summary><div class="ans"><p>Uno con la <code>return</code>; gli altri scrivendo, attraverso puntatori ricevuti come parametri, in variabili del chiamante.</p>
+</div></details>
+<details class="qa"><summary><span>Perché a una funzione che riceve un array va passata anche la lunghezza?</span></summary><div class="ans"><p>Perché riceve solo il puntatore al primo elemento: da quello non può sapere quanti elementi ci sono.</p>
+</div></details>
+<details class="qa"><summary><span>Perché per le stringhe la lunghezza non serve?</span></summary><div class="ans"><p>Perché finiscono con il terminatore <code>'\0'</code>, che la funzione trova scorrendo.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa succede in un ciclo <code>for (size_t i = n - 1; i &gt;= 0; i--)</code>?</span></summary><div class="ans"><p>Non termina: <code>size_t</code> è senza segno e <code>i &gt;= 0</code> è sempre vero. Si usa <code>ptrdiff_t</code>, o si conta da <code>n</code> a 1 con <code>i - 1</code>.</p>
+</div></details>
+<details class="qa"><summary><span>Quando si mette <code>const</code> davanti a un parametro array?</span></summary><div class="ans"><p>Quando la funzione legge l&#39;array senza modificarlo.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:520px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Prototipo</dt><dd>La riga con tipo di ritorno, nome e parametri di una funzione, seguita dal punto e virgola.</dd></div>
+<div><dt>Tipo di ritorno</dt><dd>Il tipo del valore che la funzione restituisce; void se non restituisce niente.</dd></div>
+<div><dt>Parametro puntatore</dt><dd>Parametro che contiene l&#39;indirizzo di una variabile del chiamante, per poterla modificare.</dd></div>
+<div><dt>ptrdiff_t</dt><dd>Tipo intero con segno grande come size_t, definito in stddef.h; si stampa con %td.</dd></div>
+<div><dt>Array paralleli</dt><dd>Due array della stessa lunghezza in cui gli elementi con lo stesso indice vanno insieme.</dd></div>
+<div><dt>Sentinella</dt><dd>Variabile booleana nella condizione di un ciclo, che lo ferma senza break.</dd></div>
+<div><dt>Palindroma</dt><dd>Parola che letta al contrario resta uguale.</dd></div>
+<div><dt>CodeRunner</dt><dd>Il sistema di Moodle che compila il programma e confronta l&#39;output con quello atteso.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:490px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 9</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-Lab06-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So scegliere nome, parametri e tipo di ritorno di una funzione.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So ricavare i tipi di una funzione da come il main la usa.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So scrivere una funzione che risponde sì o no con una sola return.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So restituire più risultati con i puntatori, e chiamare la funzione con &amp;.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So passare un array con la sua lunghezza, con const dove serve.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So perché per una stringa la lunghezza non va passata.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So scrivere un ciclo all&#39;indietro senza sbagliare con size_t.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So costruire una stringa in un array di destinazione, terminatore compreso.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So usare la stessa funzione su dati diversi invece di copiarla.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Funzioni» (Lezione nº 6 di laboratorio, Lab06), Programmazione I – Laboratorio, canale B, A.A. 2026/27: come definire le funzioni (slide 2), i quattro compiti da progettare (3–6), verifica di primalità e <code>primi.c</code> (7–8), funzioni iterative (9), cambio monete (10–12), statistiche su sequenze (13), passaggio di array (14–16), funzioni su stringhe e vocali (17–18), palindroma (19), Scale e serpi (20).</li>
+<li>Codice di partenza del Lab06 2025/26 (Moodle dei canali A e B: <code>primi.c</code>, <code>funzioni_iterative.c</code>, <code>monete.c</code>) e soluzioni del canale A 2025/26: i testi degli esercizi CodeRunner riportati qui vengono da quelle soluzioni; i testi 2026/27 su Moodle possono essere diversi.</li>
+<li>Tutti i programmi li ho compilati con gcc 16.1 su Windows 11, con <code>-Wall -Werror</code>, ed eseguiti sugli esempi citati; i messaggi del compilatore riportati sono quelli veri. Le soluzioni, la domanda sul modello, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

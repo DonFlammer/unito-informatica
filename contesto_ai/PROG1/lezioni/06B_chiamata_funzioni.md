@@ -17,7 +17,7 @@ lede: >-
 materiale: slide
 scheda:
   Slide: 06B_chiamata_funzioni («Chiamata a funzione e ritorno») · 66 pagine
-  Lezione: martedì 03/11
+  Lezione: martedì 03/11 e mercoledì 04/11
   Corso: Prof. Elvio Amparore · A.A. 2026/27
   Tempo di studio: 100 minuti, con carta e penna per disegnare lo stack
 fonte: >-
@@ -38,7 +38,7 @@ genera_html: true
 - `assert(condizione)` ferma il programma se la condizione è falsa: serve a controllare le ipotesi del programmatore, non l'input dell'utente.
 
 > [!CANALI]
-> **Canale B.** Lezione di martedì 03/11, dalle 11 alle 13, subito dopo la [06A](06A_funzioni.html). Il calendario ufficiale ha Programmazione I anche mercoledì 04/11, che metto alla [07A](07A_algoritmi_su_array.html): se Amparore ha finito queste slide il 04/11, aggiorno la data. Usa il modello della memoria della [02B](02B_assegnamento_memory_model.html) (stack, FP e SP), i puntatori della [02C](02C_referenziamento_scanf_puntatori.html), lo scambio della [03A](03A_scambio_variabili.html) e gli array e le stringhe della [05A](05A_array_stringhe.html).
+> **Canale B.** Due lezioni: martedì 03/11, dalle 11 alle 13, e mercoledì 04/11, dalle 9 alle 11, subito dopo la [06A](06A_funzioni.html). Sul Moodle del corso queste slide sono nella settimana del 2 novembre, con le registrazioni di tutti e due i giorni; dove si è fermato il primo giorno non lo so. La lezione dopo è la [07A](07A_algoritmi_su_array.html), del 10/11. Usa il modello della memoria della [02B](02B_assegnamento_memory_model.html) (stack, FP e SP), i puntatori della [02C](02C_referenziamento_scanf_puntatori.html), lo scambio della [03A](03A_scambio_variabili.html) e gli array e le stringhe della [05A](05A_array_stringhe.html).
 >
 > **Canali A e C.** Le slide 2026/27 dei canali A e C su questo argomento non le ho viste. L'esame è unico, e l'esercizio sullo stato della memoria c'è per tutti.
 >

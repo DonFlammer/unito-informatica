@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S7 · Settimana 7: algoritmi su array e il laboratorio sulle funzioni</title>
+<meta name="lezione" content="S7">
+<meta name="data" content="2026-11-10">
+<meta name="tipo" content="riassunto">
+<meta name="description" content="Riassunto della settimana 7 di Programmazione I (canale B): il Laboratorio 06 sulle funzioni, con il progetto dell'intestazione, la verifica di primalità, più risultati con i puntatori, gli array e le stringhe come parametri, i cicli all'indietro con size_t; la lezione 07A, con la ricerca lineare, «esiste» e «per ogni», l'array vuoto, la selezione con dimensione e capacità e il bubble sort.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/riassunti/settimana_07.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#lab06-funzioni-lun-09-11"><span class="n">§1</span><span>Lab06 · Funzioni (lun 09/11)</span></a></li>
+<li><a href="#07a-algoritmi-su-array-mar-10-11"><span class="n">§2</span><span>07A · Algoritmi su array (mar 10/11)</span></a></li>
+<li><a href="#esame"><span class="n">§3</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#domande"><span class="n">§4</span><span>Domande di ripasso</span></a></li>
+<li><a href="#quiz"><span class="n">§5</span><span>Quiz d&#39;esame</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
+<nav class="vicine" aria-label="Riassunti vicini">
+  <a class="vicina prec" href="riassunto_settimana_06.html" rel="prev" title="Settimana 6: chiamata di funzione, puntatori come parametri e il laboratorio sulle stringhe"><span class="dir">← Riassunto precedente</span><span class="vt">Settimana 6: chiamata di funzione, puntatori come parametri e il laboratorio sulle stringhe</span></a>
+</nav>
+<!-- VICINE:FINE -->
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Riassunto settimanale</nav>
+      <p class="eyebrow">Riassunto settimanale · Programmazione I · Canale B · 09/11 – 13/11/2026</p>
+      <h1>Settimana 7: algoritmi su array e il laboratorio sulle funzioni</h1>
+      <p class="lede">Il laboratorio e la lezione della settimana in poche pagine: come si decide l&#39;intestazione di una funzione, come si restituiscono due risultati, come si scrivono «esiste» e «per ogni» su un array senza break, e come lavora il bubble sort.</p>
+      <dl class="meta"><div><dt>Lezioni</dt><dd><a href="Lab06_funzioni.html">Lab06</a> lun 09/11 (B2) · <a href="07A_algoritmi_su_array.html">07A</a> mar 10/11</dd></div><div><dt>Tempo di ripasso</dt><dd>35 minuti</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:670px">
+<h2 id="tldr-title">La settimana in 8 punti</h2>
+<ul>
+<li>Prima di scrivere una <strong>funzione</strong> si decidono tre cose: il nome, i parametri che le servono, il tipo di ritorno. Una funzione che risponde sì o no restituisce un <code>bool</code>.</li>
+<li>Una funzione restituisce <strong>un solo valore</strong>: gli altri risultati tornano al chiamante attraverso <strong>puntatori</strong> ricevuti come parametri.</li>
+<li>Un <strong>array</strong> arriva come puntatore al primo elemento, con la lunghezza in un altro parametro. Una <strong>stringa</strong> arriva senza lunghezza: la fine la segna il terminatore.</li>
+<li>Un indice <code>size_t</code> non scende mai sotto zero: un ciclo all&#39;indietro con <code>i &gt;= 0</code> non finisce.</li>
+<li>Cercare un valore in un array è un <strong>«esiste»</strong>: sentinella che parte da <code>false</code>. Controllare una proprietà di tutti gli elementi è un <strong>«per ogni»</strong>: sentinella che parte da <code>true</code>.</li>
+<li>Sull&#39;<strong>array vuoto</strong> «per ogni» è vero e «esiste» è falso.</li>
+<li>Per <strong>selezionare</strong> elementi in un secondo array servono la <strong>capacità</strong>, quanti posti ci sono, e la <strong>dimensione</strong>, quanti sono usati.</li>
+<li>Il <strong>bubble sort</strong> ripete fasi che scambiano le coppie vicine fuori ordine, finché una fase non scambia niente.</li>
+</ul>
+</section>
+
+<div class="box neutro"><p class="box-label"><span>Nota · Le lezioni della settimana</span></p><p>Questa settimana c&#39;è stata una sola lezione di teoria, martedì 10/11: quella di mercoledì 11/11 è stata annullata e sarà recuperata venerdì 04/12, dalle 15 alle 17, in Aula C. Il Laboratorio 06 il turno B2 l&#39;ha fatto lunedì 09/11 con Elisa Marengo; il turno B1 è indietro di un laboratorio. Il laboratorio B2 di lunedì 16/11 è annullato.</p>
+</div>
+
+
+<section id="lab06-funzioni-lun-09-11" aria-labelledby="h-lab06-funzioni-lun-09-11" style="--h:1760px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-lab06-funzioni-lun-09-11">Lab06 · Funzioni (lun 09/11)</h2></div>
+<p>Il laboratorio fa scrivere funzioni partendo dalla domanda giusta: che cosa deve sapere la funzione, e che cosa deve dare indietro. Le idee che restano:</p>
+<ul>
+<li><strong>L&#39;intestazione prima del corpo.</strong> Una funzione che decide se un numero è primo riceve un <code>int</code> e risponde sì o no: <code>bool verifica_primalita(int n)</code>. Una che fa solo stampe è <code>void</code>.</li>
+<li><strong>Primalità con la sentinella.</strong> Si cerca un divisore, che è un «esiste»: <code>for (int d = 2; d * d &lt;= n &amp;&amp; !esiste_divisore; d++)</code>. Basta arrivare fino alla radice di <code>n</code>, e il ciclo si ferma al primo divisore trovato.</li>
+<li><strong>Più risultati.</strong> Minimo e massimo insieme non si possono restituire con una <code>return</code>: la funzione riceve due puntatori e scrive lì, come in <code>void minmax(size_t n, const int a[], int *p_min, int *p_max)</code>.</li>
+<li><strong>Array e stringhe.</strong> Per un array servono puntatore e lunghezza; per una stringa basta il puntatore, e <code>strlen</code> trova la fine. Con <code>const</code> la funzione promette di non modificare.</li>
+<li><strong>Leggere una sequenza.</strong> La condizione sicura è <code>1 == scanf(&quot;%d&quot;, &amp;x) &amp;&amp; x != 0</code>. Scrivendo solo <code>scanf(...) &amp;&amp; x != 0</code>, a fine input <code>scanf</code> restituisce <code>EOF</code>, che è diverso da zero, e il ciclo non finisce.</li>
+<li><strong><code>size_t</code> e <code>%zu</code>.</strong> Le lunghezze sono <code>size_t</code> e si stampano con <code>%zu</code>. Con <code>%lu</code>, su Windows a 64 bit e <code>-Werror</code>, non compila.</li>
+</ul>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Due risultati da una funzione. `minmax` riceve gli indirizzi di `mn` e `mx`, che stanno nel frame di `main`, e scrive i risultati attraverso i due puntatori. La `return` non serve: la funzione è `void`" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-tenue" d="M117.42 312.8L442.58 312.8L442.58 204L117.42 204Z"/><path class="g-poligono g-blu g-pieno" d="M162.58 285.6L252.9 285.6L252.9 231.2L162.58 231.2Z"/><path class="g-poligono g-blu g-pieno" d="M307.1 285.6L397.42 285.6L397.42 231.2L307.1 231.2Z"/><path class="g-poligono g-ambra g-tenue" d="M117.42 149.6L442.58 149.6L442.58 40.8L117.42 40.8Z"/><path class="g-poligono g-ambra g-pieno" d="M162.58 122.4L252.9 122.4L252.9 68L162.58 68Z"/><path class="g-poligono g-ambra g-pieno" d="M307.1 122.4L397.42 122.4L397.42 68L307.1 68Z"/><path class="g-linea g-ambra" d="M207.74 129.2L207.74 224.4" marker-end="url(#g-freccia-1-ambra)"/><path class="g-linea g-ambra" d="M352.26 129.2L352.26 224.4" marker-end="url(#g-freccia-1-ambra)"/></svg><span class="g-et g-c g-testo g-blu" style="left:11.29%;top:76.00%">main</span><span class="g-et g-c g-testo g-blu" style="left:37.10%;top:76.00%">mn: -2</span><span class="g-et g-c g-testo g-blu" style="left:62.90%;top:76.00%">mx: 9</span><span class="g-et g-c g-testo g-ambra" style="left:11.29%;top:28.00%">minmax</span><span class="g-et g-c g-testo g-ambra" style="left:37.10%;top:28.00%">p_min</span><span class="g-et g-c g-testo g-ambra" style="left:62.90%;top:28.00%">p_max</span><span class="g-et g-c g-testo g-grigio" style="left:89.52%;top:28.00%">in cima</span></div><figcaption>Due risultati da una funzione. <code>minmax</code> riceve gli indirizzi di <code>mn</code> e <code>mx</code>, che stanno nel frame di <code>main</code>, e scrive i risultati attraverso i due puntatori. La <code>return</code> non serve: la funzione è <code>void</code></figcaption></figure>
+<div class="box trap"><p class="box-label"><span>Trappola · Il ciclo all&#39;indietro con size_t</span></p><p><code>for (size_t i = n - 1; i &gt;= 0; i--)</code> compila con <code>-Wall -Werror</code> e non finisce: quando <code>i</code> vale 0, <code>i--</code> lo porta a 18446744073709551615, che è ancora maggiore o uguale a zero. Si usa <code>ptrdiff_t</code>, oppure si conta da <code>n</code> a 1 e si usa <code>i - 1</code> come indice.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che intestazione daresti a una funzione che conta quante volte un carattere compare in una stringa, senza modificarla?</span></summary><div class="ans"><p><code>size_t conta(const char *s, char c)</code>: la stringa in sola lettura, il carattere da cercare, e un conteggio come risultato. La lunghezza non serve.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Intestazione: nome, parametri, tipo di ritorno. Sì o no: <code>bool</code>.</li>
+<li>Due risultati: due puntatori tra i parametri.</li>
+<li>Array: puntatore più lunghezza. Stringa: solo il puntatore.</li>
+<li><code>size_t</code> non va sotto zero; si stampa con <code>%zu</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="07a-algoritmi-su-array-mar-10-11" aria-labelledby="h-07a-algoritmi-su-array-mar-10-11" style="--h:1780px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-07a-algoritmi-su-array-mar-10-11">07A · Algoritmi su array (mar 10/11)</h2></div>
+<p>Cercare un valore in un array vuol dire rispondere a una domanda con «esiste»: esiste un indice in cui c&#39;è quel valore? Controllare che un array sia tutto positivo è una domanda con «per ogni». Le due domande hanno lo stesso schema, con i valori rovesciati.</p>
+<div class="table-wrap"><table><thead><tr><th></th><th>«Esiste»</th><th>«Per ogni»</th></tr></thead><tbody><tr><td>come un lungo…</td><td>OR</td><td>AND</td></tr>
+<tr><td>la sentinella parte da</td><td><code>false</code></td><td><code>true</code></td></tr>
+<tr><td>cambia quando si trova</td><td>un elemento che va bene</td><td>un controesempio</td></tr>
+<tr><td>sull&#39;array vuoto</td><td>falso</td><td>vero</td></tr></tbody></table></div>
+<p>In tutti e due i casi la sentinella sta <strong>nella condizione del ciclo</strong>: <code>for (size_t i = 0; i &lt; n &amp;&amp; !trovato; i++)</code>. Il ciclo si ferma appena la risposta è certa, senza <code>break</code>, e la funzione ha una sola <code>return</code>.</p>
+<ul>
+<li><strong>Invariante</strong>: una frase vera a ogni giro, che spiega perché il ciclo funziona. Per la ricerca: «nei posti già visti il valore non c&#39;è».</li>
+<li><strong>Selezione</strong>: per copiare in un array <code>a</code> gli elementi di <code>b</code> che rispettano una condizione, <code>a</code> ha una <strong>capacità</strong> fissa e una <strong>dimensione</strong> che cresce. Il nuovo elemento va in <code>a[aLen]</code>, poi <code>aLen++</code>; se la capacità è finita, la funzione lo segnala.</li>
+<li><strong>Ordinato?</strong> È un «per ogni» sulle coppie vicine: <code>a[i-1] &lt;= a[i]</code> per ogni <code>i</code> da 1. Con <code>size_t</code>, attenzione a <code>aLen - 1</code>: se <code>aLen</code> è 0 diventa un numero enorme.</li>
+<li><strong>Bubble sort</strong>: ogni fase scorre le coppie vicine e scambia quelle fuori ordine. Se una fase non fa scambi, l&#39;array è ordinato e si esce.</li>
+</ul>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Il bubble sort su 3, 1, 2. Nella prima fase due scambi portano il 3 in fondo. Nella seconda fase nessuna coppia è fuori ordine: l'ipotesi «è ordinato» resta vera e il ciclo esce. Due fasi in tutto" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-rosa g-pieno" d="M117.42 103.48L162.58 103.48L162.58 44.35L117.42 44.35Z"/><path class="g-poligono g-rosa g-pieno" d="M162.58 103.48L207.74 103.48L207.74 44.35L162.58 44.35Z"/><path class="g-poligono g-blu g-pieno" d="M207.74 103.48L252.9 103.48L252.9 44.35L207.74 44.35Z"/><path class="g-linea g-grigio" d="M261.94 73.91L307.1 73.91" marker-end="url(#g-freccia-2-grigio)"/><path class="g-poligono g-blu g-pieno" d="M316.13 103.48L361.29 103.48L361.29 44.35L316.13 44.35Z"/><path class="g-poligono g-rosa g-pieno" d="M361.29 103.48L406.45 103.48L406.45 44.35L361.29 44.35Z"/><path class="g-poligono g-rosa g-pieno" d="M406.45 103.48L451.61 103.48L451.61 44.35L406.45 44.35Z"/><path class="g-poligono g-verde g-pieno" d="M117.42 251.3L162.58 251.3L162.58 192.17L117.42 192.17Z"/><path class="g-poligono g-verde g-pieno" d="M162.58 251.3L207.74 251.3L207.74 192.17L162.58 192.17Z"/><path class="g-poligono g-verde g-pieno" d="M207.74 251.3L252.9 251.3L252.9 192.17L207.74 192.17Z"/></svg><span class="g-et g-c g-testo g-grigio" style="left:11.29%;top:21.74%">inizio</span><span class="g-et g-c g-testo g-rosa" style="left:25.00%;top:21.74%">3</span><span class="g-et g-c g-testo g-rosa" style="left:33.06%;top:21.74%">1</span><span class="g-et g-c g-testo g-blu" style="left:41.13%;top:21.74%">2</span><span class="g-et g-c g-testo g-blu" style="left:60.48%;top:21.74%">1</span><span class="g-et g-c g-testo g-rosa" style="left:68.55%;top:21.74%">3</span><span class="g-et g-c g-testo g-rosa" style="left:76.61%;top:21.74%">2</span><span class="g-et g-c g-testo g-grigio" style="left:90.32%;top:21.74%">fase 1</span><span class="g-et g-c g-testo g-grigio" style="left:11.29%;top:65.22%">poi</span><span class="g-et g-c g-testo g-verde" style="left:25.00%;top:65.22%">1</span><span class="g-et g-c g-testo g-verde" style="left:33.06%;top:65.22%">2</span><span class="g-et g-c g-testo g-verde" style="left:41.13%;top:65.22%">3</span><span class="g-et g-c g-testo g-verde" style="left:69.36%;top:65.22%">fase 2: nessuno scambio, fine</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:89.13%">in rosa la coppia da scambiare</span></div><figcaption>Il bubble sort su 3, 1, 2. Nella prima fase due scambi portano il 3 in fondo. Nella seconda fase nessuna coppia è fuori ordine: l&#39;ipotesi «è ordinato» resta vera e il ciclo esce. Due fasi in tutto</figcaption></figure>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Quante fasi fa il bubble sort della lezione su un array già ordinato di 4 elementi?</span></summary><div class="ans"><p>Una: la fase serve a controllare che non ci siano coppie fuori ordine, e poi il ciclo esce.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>«Esiste»: sentinella da <code>false</code>. «Per ogni»: sentinella da <code>true</code>. Nella condizione del ciclo.</li>
+<li>Array vuoto: «per ogni» vero, «esiste» falso.</li>
+<li>Selezione: capacità fissa, dimensione che cresce.</li>
+<li>Bubble sort: fasi di scambi tra vicini, finché una fase non scambia.</li>
+</ul>
+</div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:450px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<ul>
+<li><strong>Programmazione iterativa</strong>: una funzione su un array con «esiste» e «per ogni», anche uno dentro l&#39;altro, come l&#39;<code>e1</code> del pre-esame 2023/24 svolto nella 07A. Una sola <code>return</code>, niente <code>break</code>.</li>
+<li><strong>Intestazioni</strong>: la lunghezza prima dell&#39;array, come in <code>bool f(size_t n, const int a[])</code>, e <code>const</code> dove si legge soltanto. Vanno copiate dal testo.</li>
+<li><strong>Più risultati</strong>: un valore con la <code>return</code>, gli altri con i puntatori. È la forma di molte funzioni d&#39;esame.</li>
+<li><strong>Casi limite</strong>: array vuoto, un elemento, valore cercato all&#39;ultimo posto, array di destinazione pieno, stringa vuota.</li>
+<li>Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.</li>
+</ul>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:590px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che cosa si decide prima di scrivere il corpo di una funzione?</span></summary><div class="ans"><p>Il nome, i parametri che le servono e il tipo di ritorno.</p>
+</div></details>
+<details class="qa"><summary><span>Come fa una funzione a dare due risultati?</span></summary><div class="ans"><p>Riceve due puntatori tra i parametri e scrive i risultati attraverso di loro; oppure ne restituisce uno con la <code>return</code> e l&#39;altro con un puntatore.</p>
+</div></details>
+<details class="qa"><summary><span>Perché <code>while (scanf(&quot;%d&quot;, &amp;x) &amp;&amp; x != 0)</code> può non finire?</span></summary><div class="ans"><p>Perché a fine input <code>scanf</code> restituisce <code>EOF</code>, che è diverso da zero e quindi vale come vero, e <code>x</code> non cambia più.</p>
+</div></details>
+<details class="qa"><summary><span>Con quale valore parte la sentinella di un «per ogni», e perché?</span></summary><div class="ans"><p>Da <code>true</code>: finché non si trova un controesempio, la proprietà vale. Così sull&#39;array vuoto la risposta è vero.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra capacità e dimensione di un array?</span></summary><div class="ans"><p>La capacità è il numero di posti disponibili; la dimensione è quanti ne sono usati.</p>
+</div></details>
+<details class="qa"><summary><span>Quando si ferma il bubble sort della lezione?</span></summary><div class="ans"><p>Quando una fase intera non fa nessuno scambio.</p>
+</div></details></div>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2260px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-quiz">Quiz d&#39;esame</h2><span class="slides">come all'esame</span></div>
+<p>L&#39;esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono <strong>sul modello</strong> di questi esercizi, con gli argomenti della settimana. Ho compilato e provato tutto il codice con gcc 16.1 e <code>-Wall -Werror</code>.</p>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="numerica"><div class="q-testo">Sul modello della correttezza. In <code>bool verifica_primalita(int n)</code> il ciclo è <code>for (int d = 2; d * d &lt;= n &amp;&amp; !esiste_divisore; d++)</code>. Con <code>n = 97</code>, qual è l&#39;ultimo valore di <code>d</code> per cui viene eseguito il corpo?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="9" data-toll="1e-9"><span class="q-giusto" hidden>9</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><span class="katex" role="math" aria-label="9 \cdot 9 = 81"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">81</span></span></span></span> non supera 97, <span class="katex" role="math" aria-label="10 \cdot 10 = 100"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">100</span></span></span></span> sì. Nessun <code>d</code> da 2 a 9 divide 97, quindi il ciclo li prova tutti e 97 è primo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello dello stato della memoria. Con <code>int v[] = {4, -2, 9, 0}, mn, mx;</code> e la chiamata <code>minmax(4, v, &amp;mn, &amp;mx);</code>, dove <code>minmax</code> scrive il minimo in <code>*p_min</code> e il massimo in <code>*p_max</code>, quanto valgono <code>mn</code> e <code>mx</code> dopo la chiamata?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">restano non inizializzate</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">-2 e 9</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0 e 9</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">4 e 4</span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">-2 e 4</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La funzione scrive nelle variabili del <code>main</code> attraverso i due puntatori. La più insidiosa è la seconda: sarebbe vera se i parametri fossero <code>int</code> e non <code>int *</code>.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Sul modello degli esercizi del Lab06. <code>conta_univoci</code> conta gli elementi che compaiono una volta sola. Che cosa restituisce su <code>{1, 2, 2, 3, 3, 3, 7}</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="2" data-toll="1e-9"><span class="q-giusto" hidden>2</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Compaiono una volta sola l&#39;1 e il 7. Provato.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello della correttezza. Che cosa succede con <code>for (size_t i = 2; i &gt;= 0; i--) { printf(&quot;%zu &quot;, i); }</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa 2 1 0 e si ferma</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa 2 1 0 e poi continua con numeri enormi, senza fermarsi</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non compila con <code>-Wall -Werror</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non stampa niente</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">stampa 2 1 e si ferma</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Un <code>size_t</code> non è mai negativo: dopo lo 0 viene 18446744073709551615. La più insidiosa è la quarta: con <code>-Wall -Werror</code> compila, l&#39;avviso arriva solo con <code>-Wextra</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello della programmazione iterativa. <code>bool tuttiPositivi(size_t n, const int a[])</code> usa una sentinella che parte da <code>true</code>. Che cosa restituisce con <code>n == 0</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">dipende dal contenuto di <code>a</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non termina</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un valore non definito</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>false</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>true</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il ciclo non gira e la sentinella resta <code>true</code>: sull&#39;array vuoto «per ogni» è vero. La più insidiosa è <code>false</code>, che è la risposta giusta per «esiste».</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Sul modello della correttezza. Quante fasi fa il bubble sort della lezione, con l&#39;uscita quando una fase non scambia, sull&#39;array <code>{4, 3, 2, 1}</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="4" data-toll="1e-9"><span class="q-giusto" hidden>4</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Ogni fase porta in fondo il più grande rimasto: dopo tre fasi l&#39;array è ordinato, e la quarta serve a scoprirlo. Provato.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello della programmazione iterativa. In una selezione, <code>a</code> ha capacità <code>aCap</code> e dimensione <code>aLen</code>. Che cosa si fa quando arriva un elemento da copiare e <code>aLen == aCap</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">si copia in <code>a[aLen]</code> e si incrementa <code>aLen</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">si copia in <code>a[aCap]</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">si sovrascrive <code>a[0]</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">si incrementa <code>aCap</code></span></label><label class="opz"><input type="radio" name="q1-6" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non si copia, e si segnala che non c&#39;è posto</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>L&#39;array è pieno: scrivere in <code>a[aLen]</code> sarebbe fuori dai limiti. La più insidiosa è la seconda, che è il caso normale, con <code>aLen &lt; aCap</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Sul modello degli esercizi del Lab06. <code>bool palindroma(const char *s)</code> confronta il primo carattere con l&#39;ultimo, il secondo con il penultimo, e così via, con <code>i &lt; n / 2</code>. Che cosa restituisce sulla stringa vuota?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">dipende dal compilatore</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>true</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">non termina</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>false</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un errore in esecuzione</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Con <code>n == 0</code> il ciclo non gira e la sentinella resta <code>true</code>: è un «per ogni» su zero coppie. La più insidiosa è <code>false</code>.</div></li></ol></div>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Le lezioni complete: <a href="Lab06_funzioni.html">Lab06 · Funzioni</a> e <a href="07A_algoritmi_su_array.html">07A · Algoritmi su array</a>, con gli esempi, i disegni e gli esercizi.</li>
+<li>Slide di E. G. Amparore «07A Algoritmi su array» e slide del laboratorio «Funzioni» (Lab06), canale B, A.A. 2026/27; pagina Moodle del corso per le date e gli avvisi.</li>
+<li>Le domande del quiz sono di questi appunti, sul modello degli esercizi d&#39;esame; il codice è compilato con gcc 16.1 e <code>-Wall -Werror</code> ed eseguito.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

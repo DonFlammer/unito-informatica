@@ -19268,6 +19268,261 @@ D: Sul modello delle intestazioni d'esame. Quale intestazione va bene per una fu
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/riassunti/settimana_07.md -->
+> File: `contesto_ai/PROG1/riassunti/settimana_07.md`
+
+```yaml
+corso: PROG1
+lezione: S7
+tipo: riassunto
+titolo: "Settimana 7: algoritmi su array e il laboratorio sulle funzioni"
+data: 2026-11-10
+docenti: Elvio Amparore
+sopratitolo: Riassunto settimanale · Programmazione I · Canale B · 09/11 – 13/11/2026
+descrizione: >-
+  Riassunto della settimana 7 di Programmazione I (canale B): il Laboratorio 06 sulle funzioni, con il progetto
+  dell'intestazione, la verifica di primalità, più risultati con i puntatori, gli array e le stringhe come parametri,
+  i cicli all'indietro con size_t; la lezione 07A, con la ricerca lineare, «esiste» e «per ogni», l'array vuoto, la
+  selezione con dimensione e capacità e il bubble sort.
+lede: >-
+  Il laboratorio e la lezione della settimana in poche pagine: come si decide l'intestazione di una funzione, come si
+  restituiscono due risultati, come si scrivono «esiste» e «per ogni» su un array senza break, e come lavora il
+  bubble sort.
+materiale: slide
+scheda:
+  Lezioni: "[Lab06](Lab06_funzioni.html) lun 09/11 (B2) · [07A](07A_algoritmi_su_array.html) mar 10/11"
+  Tempo di ripasso: 35 minuti
+fonte: >-
+  Gli appunti della lezione 07A e del Laboratorio 06 di Programmazione I (canale B), scritti sulle slide di
+  E. G. Amparore e del laboratorio
+appunti_html: appunti/PROG1/riassunto_settimana_07.html
+genera_html: true
+```
+
+## In breve
+
+- Prima di scrivere una **funzione** si decidono tre cose: il nome, i parametri che le servono, il tipo di ritorno. Una funzione che risponde sì o no restituisce un `bool`.
+- Una funzione restituisce **un solo valore**: gli altri risultati tornano al chiamante attraverso **puntatori** ricevuti come parametri.
+- Un **array** arriva come puntatore al primo elemento, con la lunghezza in un altro parametro. Una **stringa** arriva senza lunghezza: la fine la segna il terminatore.
+- Un indice `size_t` non scende mai sotto zero: un ciclo all'indietro con `i >= 0` non finisce.
+- Cercare un valore in un array è un **«esiste»**: sentinella che parte da `false`. Controllare una proprietà di tutti gli elementi è un **«per ogni»**: sentinella che parte da `true`.
+- Sull'**array vuoto** «per ogni» è vero e «esiste» è falso.
+- Per **selezionare** elementi in un secondo array servono la **capacità**, quanti posti ci sono, e la **dimensione**, quanti sono usati.
+- Il **bubble sort** ripete fasi che scambiano le coppie vicine fuori ordine, finché una fase non scambia niente.
+
+> [!NOTA] Le lezioni della settimana
+> Questa settimana c'è stata una sola lezione di teoria, martedì 10/11: quella di mercoledì 11/11 è stata annullata e sarà recuperata venerdì 04/12, dalle 15 alle 17, in Aula C. Il Laboratorio 06 il turno B2 l'ha fatto lunedì 09/11 con Elisa Marengo; il turno B1 è indietro di un laboratorio. Il laboratorio B2 di lunedì 16/11 è annullato.
+
+## Lab06 · Funzioni (lun 09/11)
+
+Il laboratorio fa scrivere funzioni partendo dalla domanda giusta: che cosa deve sapere la funzione, e che cosa deve dare indietro. Le idee che restano:
+
+- **L'intestazione prima del corpo.** Una funzione che decide se un numero è primo riceve un `int` e risponde sì o no: `bool verifica_primalita(int n)`. Una che fa solo stampe è `void`.
+- **Primalità con la sentinella.** Si cerca un divisore, che è un «esiste»: `for (int d = 2; d * d <= n && !esiste_divisore; d++)`. Basta arrivare fino alla radice di `n`, e il ciclo si ferma al primo divisore trovato.
+- **Più risultati.** Minimo e massimo insieme non si possono restituire con una `return`: la funzione riceve due puntatori e scrive lì, come in `void minmax(size_t n, const int a[], int *p_min, int *p_max)`.
+- **Array e stringhe.** Per un array servono puntatore e lunghezza; per una stringa basta il puntatore, e `strlen` trova la fine. Con `const` la funzione promette di non modificare.
+- **Leggere una sequenza.** La condizione sicura è `1 == scanf("%d", &x) && x != 0`. Scrivendo solo `scanf(...) && x != 0`, a fine input `scanf` restituisce `EOF`, che è diverso da zero, e il ciclo non finisce.
+- **`size_t` e `%zu`.** Le lunghezze sono `size_t` e si stampano con `%zu`. Con `%lu`, su Windows a 64 bit e `-Werror`, non compila.
+
+```grafico
+titolo: Due risultati da una funzione. `minmax` riceve gli indirizzi di `mn` e `mx`, che stanno nel frame di `main`, e scrive i risultati attraverso i due puntatori. La `return` non serve: la funzione è `void`
+x: 0 12.4
+y: 0 5.0
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 2.6 0.4 9.8 0.4 9.8 2.0 2.6 2.0 | blu | tenue
+testo: 1.4 1.2 | blu | "main"
+poligono: 3.6 0.8 5.6 0.8 5.6 1.6 3.6 1.6 | blu | pieno
+testo: 4.6 1.2 | blu | "mn: -2"
+poligono: 6.8 0.8 8.8 0.8 8.8 1.6 6.8 1.6 | blu | pieno
+testo: 7.8 1.2 | blu | "mx: 9"
+poligono: 2.6 2.8 9.8 2.8 9.8 4.4 2.6 4.4 | ambra | tenue
+testo: 1.4 3.6 | ambra | "minmax"
+poligono: 3.6 3.2 5.6 3.2 5.6 4.0 3.6 4.0 | ambra | pieno
+testo: 4.6 3.6 | ambra | "p_min"
+poligono: 6.8 3.2 8.8 3.2 8.8 4.0 6.8 4.0 | ambra | pieno
+testo: 7.8 3.6 | ambra | "p_max"
+freccia: 4.6 3.1 4.6 1.7 | ambra
+freccia: 7.8 3.1 7.8 1.7 | ambra
+testo: 11.1 3.6 | grigio | "in cima"
+```
+
+> [!TRAPPOLA] Il ciclo all'indietro con size_t
+> `for (size_t i = n - 1; i >= 0; i--)` compila con `-Wall -Werror` e non finisce: quando `i` vale 0, `i--` lo porta a 18446744073709551615, che è ancora maggiore o uguale a zero. Si usa `ptrdiff_t`, oppure si conta da `n` a 1 e si usa `i - 1` come indice.
+
+::: prova Che intestazione daresti a una funzione che conta quante volte un carattere compare in una stringa, senza modificarla?
+`size_t conta(const char *s, char c)`: la stringa in sola lettura, il carattere da cercare, e un conteggio come risultato. La lunghezza non serve.
+:::
+
+> [!RICORDA]
+> - Intestazione: nome, parametri, tipo di ritorno. Sì o no: `bool`.
+> - Due risultati: due puntatori tra i parametri.
+> - Array: puntatore più lunghezza. Stringa: solo il puntatore.
+> - `size_t` non va sotto zero; si stampa con `%zu`.
+
+## 07A · Algoritmi su array (mar 10/11)
+
+Cercare un valore in un array vuol dire rispondere a una domanda con «esiste»: esiste un indice in cui c'è quel valore? Controllare che un array sia tutto positivo è una domanda con «per ogni». Le due domande hanno lo stesso schema, con i valori rovesciati.
+
+| | «Esiste» | «Per ogni» |
+|---|---|---|
+| come un lungo… | OR | AND |
+| la sentinella parte da | `false` | `true` |
+| cambia quando si trova | un elemento che va bene | un controesempio |
+| sull'array vuoto | falso | vero |
+
+In tutti e due i casi la sentinella sta **nella condizione del ciclo**: `for (size_t i = 0; i < n && !trovato; i++)`. Il ciclo si ferma appena la risposta è certa, senza `break`, e la funzione ha una sola `return`.
+
+- **Invariante**: una frase vera a ogni giro, che spiega perché il ciclo funziona. Per la ricerca: «nei posti già visti il valore non c'è».
+- **Selezione**: per copiare in un array `a` gli elementi di `b` che rispettano una condizione, `a` ha una **capacità** fissa e una **dimensione** che cresce. Il nuovo elemento va in `a[aLen]`, poi `aLen++`; se la capacità è finita, la funzione lo segnala.
+- **Ordinato?** È un «per ogni» sulle coppie vicine: `a[i-1] <= a[i]` per ogni `i` da 1. Con `size_t`, attenzione a `aLen - 1`: se `aLen` è 0 diventa un numero enorme.
+- **Bubble sort**: ogni fase scorre le coppie vicine e scambia quelle fuori ordine. Se una fase non fa scambi, l'array è ordinato e si esce.
+
+```grafico
+titolo: Il bubble sort su 3, 1, 2. Nella prima fase due scambi portano il 3 in fondo. Nella seconda fase nessuna coppia è fuori ordine: l'ipotesi «è ordinato» resta vera e il ciclo esce. Due fasi in tutto
+x: 0 12.4
+y: 0 4.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.4 3.6 | grigio | "inizio"
+poligono: 2.6 3.2 3.6 3.2 3.6 4.0 2.6 4.0 | rosa | pieno
+testo: 3.1 3.6 | rosa | "3"
+poligono: 3.6 3.2 4.6 3.2 4.6 4.0 3.6 4.0 | rosa | pieno
+testo: 4.1 3.6 | rosa | "1"
+poligono: 4.6 3.2 5.6 3.2 5.6 4.0 4.6 4.0 | blu | pieno
+testo: 5.1 3.6 | blu | "2"
+freccia: 5.8 3.6 6.8 3.6 | grigio
+poligono: 7.0 3.2 8.0 3.2 8.0 4.0 7.0 4.0 | blu | pieno
+testo: 7.5 3.6 | blu | "1"
+poligono: 8.0 3.2 9.0 3.2 9.0 4.0 8.0 4.0 | rosa | pieno
+testo: 8.5 3.6 | rosa | "3"
+poligono: 9.0 3.2 10.0 3.2 10.0 4.0 9.0 4.0 | rosa | pieno
+testo: 9.5 3.6 | rosa | "2"
+testo: 11.2 3.6 | grigio | "fase 1"
+testo: 1.4 1.6 | grigio | "poi"
+poligono: 2.6 1.2 3.6 1.2 3.6 2.0 2.6 2.0 | verde | pieno
+testo: 3.1 1.6 | verde | "1"
+poligono: 3.6 1.2 4.6 1.2 4.6 2.0 3.6 2.0 | verde | pieno
+testo: 4.1 1.6 | verde | "2"
+poligono: 4.6 1.2 5.6 1.2 5.6 2.0 4.6 2.0 | verde | pieno
+testo: 5.1 1.6 | verde | "3"
+testo: 8.6 1.6 | verde | "fase 2: nessuno scambio, fine"
+testo: 6.2 0.5 | grigio | "in rosa la coppia da scambiare"
+```
+
+::: prova Quante fasi fa il bubble sort della lezione su un array già ordinato di 4 elementi?
+Una: la fase serve a controllare che non ci siano coppie fuori ordine, e poi il ciclo esce.
+:::
+
+> [!RICORDA]
+> - «Esiste»: sentinella da `false`. «Per ogni»: sentinella da `true`. Nella condizione del ciclo.
+> - Array vuoto: «per ogni» vero, «esiste» falso.
+> - Selezione: capacità fissa, dimensione che cresce.
+> - Bubble sort: fasi di scambi tra vicini, finché una fase non scambia.
+
+## Verso l'esame
+
+- **Programmazione iterativa**: una funzione su un array con «esiste» e «per ogni», anche uno dentro l'altro, come l'`e1` del pre-esame 2023/24 svolto nella 07A. Una sola `return`, niente `break`.
+- **Intestazioni**: la lunghezza prima dell'array, come in `bool f(size_t n, const int a[])`, e `const` dove si legge soltanto. Vanno copiate dal testo.
+- **Più risultati**: un valore con la `return`, gli altri con i puntatori. È la forma di molte funzioni d'esame.
+- **Casi limite**: array vuoto, un elemento, valore cercato all'ultimo posto, array di destinazione pieno, stringa vuota.
+- Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Che cosa si decide prima di scrivere il corpo di una funzione?
+Il nome, i parametri che le servono e il tipo di ritorno.
+:::
+
+::: domanda Come fa una funzione a dare due risultati?
+Riceve due puntatori tra i parametri e scrive i risultati attraverso di loro; oppure ne restituisce uno con la `return` e l'altro con un puntatore.
+:::
+
+::: domanda Perché `while (scanf("%d", &x) && x != 0)` può non finire?
+Perché a fine input `scanf` restituisce `EOF`, che è diverso da zero e quindi vale come vero, e `x` non cambia più.
+:::
+
+::: domanda Con quale valore parte la sentinella di un «per ogni», e perché?
+Da `true`: finché non si trova un controesempio, la proprietà vale. Così sull'array vuoto la risposta è vero.
+:::
+
+::: domanda Che differenza c'è tra capacità e dimensione di un array?
+La capacità è il numero di posti disponibili; la dimensione è quanti ne sono usati.
+:::
+
+::: domanda Quando si ferma il bubble sort della lezione?
+Quando una fase intera non fa nessuno scambio.
+:::
+
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono **sul modello** di questi esercizi, con gli argomenti della settimana. Ho compilato e provato tutto il codice con gcc 16.1 e `-Wall -Werror`.
+
+```quiz
+D: Sul modello della correttezza. In `bool verifica_primalita(int n)` il ciclo è `for (int d = 2; d * d <= n && !esiste_divisore; d++)`. Con `n = 97`, qual è l'ultimo valore di `d` per cui viene eseguito il corpo?
+N: 9
+= $9 \cdot 9 = 81$ non supera 97, $10 \cdot 10 = 100$ sì. Nessun `d` da 2 a 9 divide 97, quindi il ciclo li prova tutti e 97 è primo.
+
+D: Sul modello dello stato della memoria. Con `int v[] = {4, -2, 9, 0}, mn, mx;` e la chiamata `minmax(4, v, &mn, &mx);`, dove `minmax` scrive il minimo in `*p_min` e il massimo in `*p_max`, quanto valgono `mn` e `mx` dopo la chiamata?
++ -2 e 9
+- restano non inizializzate
+- 4 e 4
+- 0 e 9
+- -2 e 4
+= La funzione scrive nelle variabili del `main` attraverso i due puntatori. La più insidiosa è la seconda: sarebbe vera se i parametri fossero `int` e non `int *`.
+
+D: Sul modello degli esercizi del Lab06. `conta_univoci` conta gli elementi che compaiono una volta sola. Che cosa restituisce su `{1, 2, 2, 3, 3, 3, 7}`?
+N: 2
+= Compaiono una volta sola l'1 e il 7. Provato.
+
+D: Sul modello della correttezza. Che cosa succede con `for (size_t i = 2; i >= 0; i--) { printf("%zu ", i); }`?
++ stampa 2 1 0 e poi continua con numeri enormi, senza fermarsi
+- stampa 2 1 0 e si ferma
+- stampa 2 1 e si ferma
+- non compila con `-Wall -Werror`
+- non stampa niente
+= Un `size_t` non è mai negativo: dopo lo 0 viene 18446744073709551615. La più insidiosa è la quarta: con `-Wall -Werror` compila, l'avviso arriva solo con `-Wextra`.
+
+D: Sul modello della programmazione iterativa. `bool tuttiPositivi(size_t n, const int a[])` usa una sentinella che parte da `true`. Che cosa restituisce con `n == 0`?
++ `true`
+- `false`
+- dipende dal contenuto di `a`
+- un valore non definito
+- non termina
+= Il ciclo non gira e la sentinella resta `true`: sull'array vuoto «per ogni» è vero. La più insidiosa è `false`, che è la risposta giusta per «esiste».
+
+D: Sul modello della correttezza. Quante fasi fa il bubble sort della lezione, con l'uscita quando una fase non scambia, sull'array `{4, 3, 2, 1}`?
+N: 4
+= Ogni fase porta in fondo il più grande rimasto: dopo tre fasi l'array è ordinato, e la quarta serve a scoprirlo. Provato.
+
+D: Sul modello della programmazione iterativa. In una selezione, `a` ha capacità `aCap` e dimensione `aLen`. Che cosa si fa quando arriva un elemento da copiare e `aLen == aCap`?
++ non si copia, e si segnala che non c'è posto
+- si copia in `a[aLen]` e si incrementa `aLen`
+- si copia in `a[aCap]`
+- si sovrascrive `a[0]`
+- si incrementa `aCap`
+= L'array è pieno: scrivere in `a[aLen]` sarebbe fuori dai limiti. La più insidiosa è la seconda, che è il caso normale, con `aLen < aCap`.
+
+D: Sul modello degli esercizi del Lab06. `bool palindroma(const char *s)` confronta il primo carattere con l'ultimo, il secondo con il penultimo, e così via, con `i < n / 2`. Che cosa restituisce sulla stringa vuota?
++ `true`
+- `false`
+- dipende dal compilatore
+- un errore in esecuzione
+- non termina
+= Con `n == 0` il ciclo non gira e la sentinella resta `true`: è un «per ogni» su zero coppie. La più insidiosa è `false`.
+```
+
+## Fonti
+
+- Le lezioni complete: [Lab06 · Funzioni](Lab06_funzioni.html) e [07A · Algoritmi su array](07A_algoritmi_su_array.html), con gli esempi, i disegni e gli esercizi.
+- Slide di E. G. Amparore «07A Algoritmi su array» e slide del laboratorio «Funzioni» (Lab06), canale B, A.A. 2026/27; pagina Moodle del corso per le date e gli avvisi.
+- Le domande del quiz sono di questi appunti, sul modello degli esercizi d'esame; il codice è compilato con gcc 16.1 e `-Wall -Werror` ed eseguito.
+
+
+---
+
 <!-- FILE: contesto_ai/FDA/corso.md -->
 > File: `contesto_ai/FDA/corso.md`
 
@@ -34365,6 +34620,268 @@ D: Sul modello degli esercizi sui conteggi. Quattro squadre giocano sette partit
 - Le lezioni complete: [15 · Esercizi su regole di inferenza e dimostrazioni dirette](15_esercizi_regole_dimostrazioni_dirette.html) e [16 · Dimostrazioni per assurdo](16_dimostrazioni_per_assurdo.html), con gli esempi, i disegni e gli esercizi.
 - Libro di testo del corso, parte 2 (Johnsonbaugh, cap. 1 e 2), §1.4, §2.1 e §2.2, con le soluzioni ufficiali degli esercizi e delle autoverifiche pubblicate sul Moodle del canale A; F. Cardone, «Appunti sulle tecniche di dimostrazione».
 - Diario delle lezioni del canale B (Berardi).
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/riassunti/settimana_07.md -->
+> File: `contesto_ai/FDA/riassunti/settimana_07.md`
+
+```yaml
+corso: FDA
+lezione: S7
+tipo: riassunto
+titolo: "Settimana 7: contrapposizione e casi, induzione, invarianti di ciclo"
+data: 2026-11-13
+docenti: Stefano Berardi
+sopratitolo: Riassunto settimanale · Fondamenti dell'Informatica · Canale B · 09/11 – 13/11/2026
+descrizione: >-
+  Riassunto della settimana 7 di Fondamenti dell'Informatica (canale B, libro parte 2, §2.2, §2.4 e §2.5): le
+  dimostrazioni per contrapposizione, per casi e di «se e solo se»; il principio di induzione, con gli esempi del
+  libro; gli invarianti di ciclo del fattoriale e della potenza e la correttezza del risultato; l'induzione forte,
+  con i francobolli, i prodotti e la forma a L.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: gli ultimi metodi di prova del §2.2, l'induzione nelle sue due
+  forme, e gli invarianti di ciclo, che nelle simulazioni d'esame hanno un quiz tutto loro.
+materiale: libro
+simboli_logici: quantificatori
+scheda:
+  Lezioni: "[17](17_contrapposizione_casi_equivalenze.html) lun 09/11, §2.2 · [18](18_induzione.html) gio 12/11, §2.4 · [19](19_induzione_forte.html) ven 13/11, §2.5"
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni 17, 18 e 19 di Fondamenti dell'Informatica (canale B), scritti sul diario del docente,
+  sul libro di testo, parte 2 (Johnsonbaugh, cap. 2), e sulle note di F. Cardone (canale A)
+appunti_html: appunti/FDA/riassunto_settimana_07.html
+genera_html: true
+```
+
+## In breve
+
+- **Per contrapposizione**: al posto di una frase «se… allora…» si dimostra la sua contronominale, con le due parti scambiate e negate, che è equivalente.
+- **Per casi**: si divide in situazioni che coprono tutto, e si dimostra la tesi in ognuna.
+- **«Se e solo se»**: due frecce, due dimostrazioni.
+- **Induzione**: passo base per il primo numero, passo induttivo da $n$ a $n + 1$. Insieme danno la frase per tutti i numeri.
+- Un **invariante di ciclo** è una frase vera prima del ciclo e dopo ogni giro. Si dimostra per induzione sul numero di giri.
+- Il **risultato** di un ciclo viene dall'invariante più la condizione di uscita.
+- **Induzione forte**: nel passo si possono usare tutti i casi precedenti, non solo l'ultimo. Può servire più di un caso base.
+
+> [!NOTA] Le lezioni della settimana
+> Il docente ha finito il §2.2 lunedì 09/11, ha saltato il §2.3 sulla risoluzione, e ha fatto il §2.4 giovedì 12/11 e il §2.5 venerdì 13/11. Le lezioni 18 e 19 le ho scritte sul diario, prima delle lezioni.
+
+## 17 · Contrapposizione, casi, equivalenze (lun 09/11)
+
+Tre modi di organizzare una dimostrazione, da scegliere guardando la frase.
+
+| Metodo | Che cosa si suppone | Dove si arriva | Quando conviene |
+|---|---|---|---|
+| diretta | $P$ | $Q$ | l'ipotesi dà una formula da usare |
+| contrapposizione | non $Q$ | non $P$ | è il contrario della tesi a dare una formula |
+| assurdo | $P$ e non $Q$ | una contraddizione | servono tutte e due le informazioni |
+| casi | $P$, in ogni caso | $Q$, in ogni caso | l'ipotesi si divide in situazioni diverse |
+
+- **Contrapposizione.** «Se $x^2$ è irrazionale, allora $x$ è irrazionale»: «irrazionale» non dà formule. La contronominale sì: se $x$ è una frazione di interi, il suo quadrato è una frazione di interi. Le due parti si **scambiano** e si **negano**, e negando un «e» diventa «oppure».
+- **Casi.** Per $\lvert xy \rvert = \lvert x \rvert \cdot \lvert y \rvert$ si guardano i segni: quattro casi. I casi devono coprire **tutte** le possibilità; un caso dimenticato lascia la dimostrazione incompleta.
+- **Equivalenze.** «$n$ è dispari se e solo se $n - 1$ è pari» vuol dire due frasi: da sinistra a destra e da destra a sinistra. Una direzione sola non basta.
+
+::: prova Qual è la contronominale di «se $mn$ è pari, allora $m$ è pari oppure $n$ è pari»?
+«Se $m$ è dispari e $n$ è dispari, allora $mn$ è dispari.» L'«oppure» negato diventa «e».
+:::
+
+> [!RICORDA]
+> - Contrapposizione: da non $Q$ a non $P$, in modo diretto.
+> - Casi: coprono tutto, e la tesi va dimostrata in ognuno.
+> - Se e solo se: due direzioni.
+
+## 18 · Induzione e invarianti (gio 12/11)
+
+Una frase su tutti i numeri è una fila di frasi, una per ogni numero. Per dimostrarle tutte bastano due passi.
+
+1. **Passo base**: la frase è vera per il primo numero.
+2. **Passo induttivo**: suppongo la frase per $n$ (ipotesi induttiva) e la dimostro per $n + 1$.
+
+Nel passo induttivo si cerca di far comparire il caso $n$ dentro il caso $n + 1$. Per «$5^n - 1$ è divisibile per 4»: $5^{n+1} - 1 = 5 \cdot (5^n - 1) + 4$. Il primo addendo è divisibile per 4 per ipotesi induttiva, il secondo è 4.
+
+Lo stesso schema si applica ai cicli. Un **invariante** è una frase sulle variabili che è vera prima del ciclo e resta vera dopo ogni giro. Per il fattoriale:
+
+```c
+i = 1; fact = 1;
+while (i < n) { i = i + 1; fact = fact * i; }
+```
+
+l'invariante è `fact == i!`. Prima del ciclo $1 = 1!$; se vale prima di un giro, dopo il giro `i` è cresciuto di uno e `fact` è stato moltiplicato per il nuovo `i`, quindi vale ancora. All'uscita `i == n`, e allora `fact == n!`.
+
+Nel quiz «seleziona gli invarianti» si controlla ogni affermazione in due momenti: **prima del ciclo** e **dopo un giro qualsiasi**. Un'affermazione vera solo alla fine, come `i == n`, non è un invariante.
+
+::: prova Nel ciclo del fattoriale con `n = 4`, quanto valgono `i` e `fact` dopo 2 giri? L'invariante vale?
+`i = 3` e `fact = 6`. Sì: $6 = 3!$.
+:::
+
+> [!RICORDA]
+> - Induzione: passo base, poi da $n$ a $n + 1$ usando l'ipotesi induttiva.
+> - Invariante: vero prima del ciclo e dopo ogni giro.
+> - Risultato = invariante + condizione di uscita.
+
+## 19 · Induzione forte (ven 13/11)
+
+Il ciclo della potenza ha un invariante in due parti.
+
+```c
+i = 0; ris = 1;
+while (i < n) { ris = ris * a; i = i + 1; }
+```
+
+L'invariante è `ris == a^i` **e** `i <= n`. La seconda parte serve all'uscita: la condizione falsa dà `i >= n`, l'invariante dà `i <= n`, quindi `i == n` e `ris == a^n`.
+
+Poi l'**induzione forte**. Con francobolli da 2 e da 5 centesimi si fa ogni affrancatura da 4 in su: ogni caso viene da quello di due posti prima, con un francobollo da 2 in più. L'ipotesi «solo il caso prima» non basta.
+
+```grafico
+titolo: Le due forme dell'induzione per dimostrare S(10). Sopra, la forma ordinaria: si usa solo il caso subito prima, S(9). Sotto, la forma forte: sono disponibili tutti i casi da quello di partenza in su, e nei francobolli si usa S(8)
+x: 0 12.4
+y: 0 4.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.3 3.6 | grigio | "ordinaria"
+poligono: 2.6 3.2 3.8 3.2 3.8 4.0 2.6 4.0 | grigio | tenue
+testo: 3.2 3.6 | grigio | "S(4)"
+testo: 4.6 3.6 | grigio | "…"
+poligono: 5.4 3.2 6.6 3.2 6.6 4.0 5.4 4.0 | grigio | tenue
+testo: 6.0 3.6 | grigio | "S(8)"
+poligono: 7.2 3.2 8.4 3.2 8.4 4.0 7.2 4.0 | blu | pieno
+testo: 7.8 3.6 | blu | "S(9)"
+freccia: 8.5 3.6 9.5 3.6 | blu
+poligono: 9.6 3.2 10.9 3.2 10.9 4.0 9.6 4.0 | verde | pieno
+testo: 10.25 3.6 | verde | "S(10)"
+testo: 1.3 1.4 | grigio | "forte"
+poligono: 2.6 1.0 3.8 1.0 3.8 1.8 2.6 1.8 | ambra | pieno
+testo: 3.2 1.4 | ambra | "S(4)"
+testo: 4.6 1.4 | ambra | "…"
+poligono: 5.4 1.0 6.6 1.0 6.6 1.8 5.4 1.8 | ambra | pieno
+testo: 6.0 1.4 | ambra | "S(8)"
+poligono: 7.2 1.0 8.4 1.0 8.4 1.8 7.2 1.8 | ambra | pieno
+testo: 7.8 1.4 | ambra | "S(9)"
+freccia: 8.5 1.4 9.5 1.4 | ambra
+poligono: 9.6 1.0 10.9 1.0 10.9 1.8 9.6 1.8 | verde | pieno
+testo: 10.25 1.4 | verde | "S(10)"
+testo: 5.5 0.4 | ambra | "tutti disponibili come ipotesi"
+```
+
+- **Principio di induzione forte**: si dimostra la frase per il primo numero $n_0$. Poi, per ogni $n$ più grande, si dimostra $S(n)$ supponendo vere tutte le frasi precedenti, da $S(n_0)$ a $S(n - 1)$. Allora la frase vale per ogni $n \ge n_0$.
+- **Più casi base**: nei francobolli il passo usa $n - 2$ e vale da 6 in su, quindi 4 e 5 si verificano a mano.
+- **Prodotti**: per moltiplicare $n$ fattori servono $n - 1$ prodotti. L'ultimo prodotto unisce due blocchi più piccoli di grandezza non nota: serve la forma forte.
+- **Forma a L**: una forma a L di lato $2^n$ si divide in quattro forme a L di lato metà, e così si ricopre di tromini. Qui basta l'induzione ordinaria.
+- Tre fatti da quiz: l'induzione forte riguarda gli **interi**; può **sempre sostituire** quella ordinaria; serve quando l'ipotesi va usata **non solo sul caso subito prima**.
+
+::: prova Con francobolli da 3 e da 5 si fa ogni affrancatura da 8 in su. Quanti casi base servono, e perché?
+Tre: 8, 9 e 10. Il passo aggiunge un francobollo da 3, quindi usa il caso $n - 3$ e vale da 11 in su.
+:::
+
+> [!RICORDA]
+> - Potenza: `ris == a^i` e `i <= n`; la seconda parte serve per l'uscita.
+> - Induzione forte: nel passo valgono tutti i casi precedenti.
+> - Tanti casi base quanti ne servono al passo per non uscire dalla zona dimostrata.
+
+## Verso l'esame
+
+- **Quiz sugli invarianti**: simulazione 2 del 2023/24, quiz 7. Si controlla ogni affermazione prima del ciclo e dopo un giro.
+- **Quiz sull'induzione forte**: simulazione 1 del 2023/24, quiz 9.
+- **Riconoscere il metodo** di una dimostrazione da che cosa suppone all'inizio.
+- **Domanda aperta facoltativa**: una dimostrazione per induzione corta, con passo base, ipotesi induttiva scritta e punto in cui la si usa.
+- Appelli 2026/27: venerdì 29/01/2027 e giovedì 18/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra contrapposizione e assurdo?
+Per contrapposizione si suppone solo non $Q$ e si arriva a non $P$. Per assurdo si suppongono $P$ e non $Q$ e si arriva a una contraddizione qualsiasi.
+:::
+
+::: domanda Che cosa si suppone nel passo induttivo?
+Che la frase valga per un certo $n$, l'ipotesi induttiva. Non la frase per $n + 1$, che è quella da dimostrare.
+:::
+
+::: domanda Come si controlla se un'affermazione è un invariante di un ciclo?
+Si guarda se è vera prima del ciclo, e se da «vera prima di un giro» segue «vera dopo il giro».
+:::
+
+::: domanda Da dove viene il risultato di un ciclo?
+Dall'invariante insieme alla condizione di uscita: quando la condizione del `while` diventa falsa.
+:::
+
+::: domanda Quando serve l'induzione forte?
+Quando il caso $n$ si ricava da un caso più indietro di $n - 1$, o da più casi precedenti.
+:::
+
+::: domanda Perché nei francobolli da 2 e da 5 servono due casi base?
+Perché il passo usa il caso $n - 2$: dal 4 si raggiungono solo i pari, e il 5 va verificato a mano.
+:::
+
+## Quiz d'esame
+
+Le prime tre vengono dalle due domande vere delle simulazioni d'esame 2023/24 su questi argomenti: il quiz 7 della simulazione 2 e il quiz 9 della simulazione 1, messi in forma di scelta singola. Le risposte giuste sono quelle segnate nella copia compilata da uno studente, ricontrollate con un programma. Le altre sono **sul modello** dei quiz e degli esercizi del libro.
+
+```quiz
+D: Simulazione 2 del 2023/24, quiz 7. Nel frammento `i=1; s=0; while (i < n) { s = s + i; i++; } s = s + i;`, con `n >= 0`, quale coppia è fatta di due invarianti del ciclo?
++ `i >= 1` e `s == 1 + … + (i - 1)`
+- `i < n` e `s == 1 + … + i`
+- `i == n` e `s == 1 + … + n`
+- `i >= 1` e `s == 1 + … + i`
+- `i < n` e `s == 1 + … + (i - 1)`
+= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Sono le due affermazioni segnate «sì» nella simulazione. La più insidiosa è la quarta: `s == 1 + … + i` è falsa già prima del ciclo, dove darebbe 1.
+
+D: Dalla stessa domanda della simulazione 2. Con `n = 5`, quanto vale `s` dopo l'ultima istruzione `s = s + i`?
+N: 15
+= All'uscita `i == 5` e, per l'invariante, `s == 1 + 2 + 3 + 4 = 10`. L'ultima istruzione aggiunge 5. Per `n >= 1` il frammento calcola la somma da 1 a `n`.
+
+D: Simulazione 1 del 2023/24, quiz 9, adattata a una risposta sola. Quale di queste affermazioni vale per il principio di induzione forte?
++ può essere sempre usato in sostituzione dell'induzione semplice
+- serve nei casi in cui l'enunciato non riguarda i numeri interi
+- può essere usato per svolgere dimostrazioni sui numeri reali
+- richiede sempre almeno due casi base
+- dimostra frasi che con l'induzione semplice non si possono dimostrare
+= È l'affermazione b del quiz; le prime due sbagliate sono del quiz, le ultime due le ho aggiunte io. Nel quiz vero è giusta anche la d. La più insidiosa è l'ultima: le due forme dimostrano le stesse cose.
+
+D: Sul modello delle domande sui metodi. Una dimostrazione di «se $P$ allora $Q$» comincia con «supponiamo $P$ e non $Q$» e finisce con «$0 = 1$». Che metodo è?
++ per assurdo
+- per contrapposizione
+- diretta
+- per casi
+- per induzione
+= Si suppongono l'ipotesi e il contrario della tesi, e si arriva a una contraddizione. La più insidiosa è la contrapposizione, che suppone solo non $Q$ e arriva a non $P$.
+
+D: Sul modello degli esercizi del §2.2. Per dimostrare per casi una proprietà di tutti gli interi $n$, quale divisione **non** va bene?
++ $n > 0$ e $n < 0$
+- $n$ pari e $n$ dispari
+- $n \ge 0$ e $n < 0$
+- $n = 3k$, $n = 3k + 1$ e $n = 3k + 2$
+- $n \le 5$ e $n > 5$
+= Manca lo zero: i casi non coprono tutto. La più insidiosa è la quarta, che sembra strana ma copre tutti gli interi, uno per ogni resto della divisione per 3.
+
+D: Sul modello degli esercizi del §2.4. Nel passo induttivo di «$7^n - 1$ è divisibile per 6», quale riscrittura fa comparire l'ipotesi induttiva?
++ $7^{n+1} - 1 = 7 \cdot (7^n - 1) + 6$
+- $7^{n+1} - 1 = 7^n + 7 - 1$
+- $7^{n+1} - 1 = (7^n - 1)^2$
+- $7^{n+1} - 1 = 7 \cdot 7^n - 7$
+- $7^{n+1} - 1 = 6 \cdot 7^n$
+= $7 \cdot (7^n - 1) + 6 = 7^{n+1} - 7 + 6$. Il primo addendo è divisibile per 6 per ipotesi, il secondo è 6. La più insidiosa è la quarta: vale $7^{n+1} - 7$, non $7^{n+1} - 1$.
+
+D: Sul modello del quiz sugli invarianti. Nel ciclo `i = 0; ris = 1; while (i < n) { ris = ris * a; i = i + 1; }`, quale affermazione **non** è un invariante?
++ `i < n`
+- `i <= n`
+- `ris == a^i`
+- `i >= 0`
+- `ris == a^i` e `i <= n`
+= `i < n` è la condizione del ciclo: dopo l'ultimo giro è falsa. La più insidiosa è `i <= n`, che le somiglia ma resta vera anche all'uscita, ed è proprio quella che serve.
+
+D: Sul modello dell'esempio 2.5.1. Con francobolli da 3 e da 5 centesimi, quante affrancature da 1 a 10 centesimi **non** si possono comporre?
+N: 4
+= Non si fanno 1, 2, 4 e 7. Da 8 in su si fanno tutte: 8, 9 e 10 a mano, poi aggiungendo francobolli da 3.
+```
+
+## Fonti
+
+- Le lezioni complete: [17 · Contrapposizione, casi ed equivalenze](17_contrapposizione_casi_equivalenze.html), [18 · Il principio di induzione e gli invarianti di ciclo](18_induzione.html), [19 · Induzione forte, invariante della potenza e tromini](19_induzione_forte.html), con gli esempi, i disegni e gli esercizi.
+- Libro di testo del corso, parte 2 (Johnsonbaugh, cap. 2), §2.2, §2.4 e §2.5, con le soluzioni ufficiali pubblicate sul Moodle del canale A; F. Cardone, «Induzione e ricorsione».
+- Simulazioni d'esame 1 e 2 del 2023/24 (quiz 9 e quiz 7), dalla trascrizione delle schermate con le risposte di uno studente; diario delle lezioni del canale B (Berardi).
 
 
 ---
@@ -82720,6 +83237,539 @@ N: 60
 - La lezione completa: [D13 · Scambi e parità di una permutazione](D13_scambi_parita.html), con gli esempi, i quiz e gli esercizi.
 - A. Mori, *Lezioni di Matematica Discreta*, cap. 5, pp. 95–101.
 - Quiz degli appelli del 14/01/2025, 13/01/2026 e 10/09/2026 (domande 5 e 6); problema 1 dell'appello del 14/01/2025, versioni B, C e D, con le soluzioni ufficiali.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_07_AG.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_07_AG.md`
+
+```yaml
+corso: MDAG
+modulo: AG
+lezione: S7
+tipo: riassunto
+titolo: "Settimana 7: matrice associata, cambio di base, matrici simili"
+data: 2026-11-12
+docenti: Reto Buzano e Marco Radeschi
+sopratitolo: Riassunto settimanale · Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · 09/11 – 13/11/2026
+descrizione: >-
+  Riassunto della settimana 7 di Algebra lineare e Geometria (MDAG, parte 2): isomorfismi e spazi isomorfi, la
+  matrice associata a un'applicazione lineare rispetto a due basi e come si usa; la matrice di cambiamento di base,
+  la matrice di una composizione, il cambio di base per un endomorfismo e le matrici simili.
+lede: >-
+  Le due lezioni della settimana in poche pagine: come un'applicazione lineare diventa una matrice una volta scelte
+  le basi, come si traducono le coordinate da una base a un'altra, e come cambia la matrice di un endomorfismo
+  quando si cambia base, con le domande vere degli appelli.
+materiale: dispense
+scheda:
+  Lezioni: "[L15](L15_applicazioni_lineari_2.html) mar 10/11 · [L16](L16_applicazioni_lineari_3.html) gio 12/11, nel canale B"
+  Dispense: Buzano e Radeschi 2026, pp. 74–84
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni L15 e L16 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso
+  (R. Buzano, M. Radeschi)
+appunti_html: appunti/MDAG/riassunto_settimana_07_AG.html
+genera_html: true
+```
+
+## In breve
+
+- Un **isomorfismo** è un'applicazione lineare biettiva. Due spazi sono **isomorfi** esattamente quando hanno la stessa dimensione.
+- Scelte una base in partenza e una in arrivo, ogni applicazione lineare ha una **matrice associata**: nella colonna $j$ ci sono le coordinate, nella base di arrivo, dell'immagine del vettore $j$ della base di partenza.
+- Con la matrice associata l'applicazione diventa un prodotto: coordinate dell'uscita = matrice per coordinate dell'entrata.
+- La **matrice di cambiamento di base** è la matrice associata all'identità con due basi diverse: traduce le coordinate da una base all'altra.
+- La matrice di una **composizione** è il prodotto delle matrici, con quella che agisce per prima **a destra**.
+- Per un **endomorfismo**, cambiando base la matrice $A$ diventa $M^{-1}AM$. Due matrici legate così si chiamano **simili**.
+- Matrici simili hanno lo stesso rango, lo stesso determinante e la stessa traccia; il viceversa non vale.
+
+## L15 · La matrice associata (mar 10/11)
+
+Un'applicazione lineare che non perde niente e produce tutto mette in corrispondenza perfetta due spazi: è un **isomorfismo**. Per il teorema della dimensione può esistere solo tra spazi della stessa dimensione, e tra due spazi della stessa dimensione esiste sempre. Per esempio i polinomi di grado al massimo 2 e $\R^3$: a $ax^2 + bx + c$ corrisponde $(a, b, c)$.
+
+Per fare i conti con un'applicazione lineare $f \colon V \to W$ servono i numeri. Si sceglie una base $\mathcal B$ di $V$ e una base $\mathcal C$ di $W$, e si costruisce la **matrice associata** $[f]^{\mathcal B}_{\mathcal C}$ in tre passi:
+
+1. si calcola l'immagine di ogni vettore di $\mathcal B$;
+2. si scrive ogni immagine in **coordinate** rispetto a $\mathcal C$, risolvendo un sistema se la base non è quella canonica;
+3. si mettono le coordinate **in colonna**, nell'ordine dei vettori di $\mathcal B$.
+
+Con $T(x, y) = (x + y,\ 2x)$ e le basi canoniche il conto è immediato: $T(1, 0) = (1, 2)$ e $T(0, 1) = (1, 0)$, quindi la matrice è $\begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix}$. Con la base $\mathcal B = \{v_1 = (1, 0),\ v_2 = (1, 1)\}$ in partenza e in arrivo:
+
+- $T(v_1) = (1, 2) = -1 \cdot v_1 + 2 \cdot v_2$, coordinate $(-1, 2)$;
+- $T(v_2) = (2, 2) = 0 \cdot v_1 + 2 \cdot v_2$, coordinate $(0, 2)$.
+
+La matrice è $[T]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} -1 & 0 \\ 2 & 2 \end{pmatrix}$: la stessa applicazione, scritta con altri numeri.
+
+```grafico
+titolo: Due strade che danno lo stesso risultato. In alto si applica f ai vettori. In basso si lavora con le coordinate: la matrice associata moltiplica le coordinate dell'entrata e dà quelle dell'uscita. Le frecce verticali sono il passaggio alle coordinate, nella base di partenza B a sinistra e in quella di arrivo C a destra
+x: 0 12.4
+y: 0 4.8
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 1.6 3.4 4.6 3.4 4.6 4.4 1.6 4.4 | blu | pieno
+testo: 3.1 3.9 | blu | "vettore v"
+poligono: 7.8 3.4 10.8 3.4 10.8 4.4 7.8 4.4 | blu | pieno
+testo: 9.3 3.9 | blu | "f(v)"
+freccia: 4.7 3.9 7.7 3.9 | blu
+testo: 6.2 4.25 | blu | "f"
+poligono: 1.6 0.6 4.6 0.6 4.6 1.6 1.6 1.6 | ambra | pieno
+testo: 3.1 1.1 | ambra | "coordinate di v"
+poligono: 7.8 0.6 10.8 0.6 10.8 1.6 7.8 1.6 | ambra | pieno
+testo: 9.3 1.1 | ambra | "coordinate di f(v)"
+freccia: 4.7 1.1 7.7 1.1 | ambra
+testo: 6.2 1.45 | ambra | "matrice associata"
+freccia: 3.1 3.3 3.1 1.7 | grigio
+freccia: 9.3 3.3 9.3 1.7 | grigio
+testo: 2.2 2.5 | grigio | "base B"
+testo: 10.2 2.5 | grigio | "base C"
+```
+
+In formule (proposizione 15.9): $[f(v)]_{\mathcal C} = [f]^{\mathcal B}_{\mathcal C} \cdot [v]_{\mathcal B}$. Il risultato del prodotto sono **coordinate**, non ancora il vettore.
+
+L'**identità** ha la matrice identità quando la base è la stessa in partenza e in arrivo (proposizione 15.11). Con due basi diverse no: diventa la matrice di cambiamento di base della lezione dopo.
+
+::: prova Qual è la matrice della derivata $D(p) = p'$ da $\R_2[x]$ a $\R_1[x]$, rispetto alle basi $\{1, x, x^2\}$ e $\{1, x\}$?
+$D(1) = 0$, $D(x) = 1$, $D(x^2) = 2x$: le colonne sono $(0, 0)$, $(1, 0)$, $(0, 2)$. La matrice è $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$.
+:::
+
+> [!RICORDA]
+> - Isomorfi: stessa dimensione.
+> - Colonna $j$ della matrice associata: coordinate dell'immagine del vettore $j$ della base di partenza.
+> - Coordinate dell'uscita = matrice per coordinate dell'entrata.
+
+## L16 · Cambio di base e matrici simili (gio 12/11)
+
+Le coordinate di un vettore dipendono dalla base. La **matrice di cambiamento di base** da $\mathcal B$ a $\mathcal C$ è $[\id]^{\mathcal B}_{\mathcal C}$: nelle colonne ci sono i vettori di $\mathcal B$ scritti in coordinate rispetto a $\mathcal C$, e moltiplicandola per le coordinate in $\mathcal B$ si ottengono quelle in $\mathcal C$.
+
+- **Verso la base canonica** non c'è niente da calcolare: i vettori di $\mathcal B$ in colonna.
+- **Nel verso opposto** si prende l'inversa.
+- **Tra due basi qualsiasi** si passa dalla canonica: prima da $\mathcal B$ alla canonica, poi dalla canonica a $\mathcal C$.
+
+Per la **composizione** vale la proposizione 16.6:
+
+$$[g \circ f]^{\mathcal B}_{\mathcal D} = [g]^{\mathcal C}_{\mathcal D}\,[f]^{\mathcal B}_{\mathcal C}.$$
+
+L'applicazione che agisce per prima sta a destra, come nella scrittura $g \circ f$. La base «in mezzo» deve essere la stessa: quella di arrivo di $f$ e di partenza di $g$.
+
+Un **endomorfismo** parte e arriva nello stesso spazio. Se $A$ è la sua matrice nella base canonica e $M$ ha in colonna i vettori di una base nuova $\mathcal B$, la matrice nella base nuova è $M^{-1}AM$.
+
+```grafico
+titolo: Perché la formula è M⁻¹AM. Si parte dalle coordinate nella base nuova (a sinistra). M le traduce nella base canonica, A applica l'endomorfismo, M⁻¹ riporta il risultato nella base nuova. Nel prodotto le matrici si scrivono da destra a sinistra
+x: 0 12.4
+y: 0 3.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.3 1.2 2.7 1.2 2.7 2.4 0.3 2.4 | ambra | pieno
+testo: 1.5 2.0 | ambra | "coordinate"
+testo: 1.5 1.55 | ambra | "base nuova"
+freccia: 2.8 1.8 3.8 1.8 | grigio
+testo: 3.3 2.2 | grigio | "M"
+poligono: 3.9 1.2 5.9 1.2 5.9 2.4 3.9 2.4 | blu | pieno
+testo: 4.9 1.8 | blu | "canonica"
+freccia: 6.0 1.8 7.0 1.8 | grigio
+testo: 6.5 2.2 | grigio | "A"
+poligono: 7.1 1.2 9.1 1.2 9.1 2.4 7.1 2.4 | blu | pieno
+testo: 8.1 1.8 | blu | "canonica"
+freccia: 9.2 1.8 10.2 1.8 | grigio
+testo: 9.7 2.2 | grigio | "M⁻¹"
+poligono: 10.3 1.2 12.2 1.2 12.2 2.4 10.3 2.4 | ambra | pieno
+testo: 11.25 2.0 | ambra | "coordinate"
+testo: 11.25 1.55 | ambra | "base nuova"
+testo: 6.2 0.5 | grigio | "prima M, poi A, poi M⁻¹"
+```
+
+Con l'esempio di prima: $A = \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix}$ e $M = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, con $M^{-1} = \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix}$. Il prodotto $M^{-1}AM$ dà $\begin{pmatrix} -1 & 0 \\ 2 & 2 \end{pmatrix}$, la stessa matrice trovata colonna per colonna nella L15.
+
+Due matrici $A$ e $B$ sono **simili** se $A = M^{-1}BM$ per una matrice invertibile $M$: descrivono lo stesso endomorfismo in due basi. Hanno lo stesso rango, lo stesso determinante e la stessa traccia. Nell'esempio: traccia 1 e determinante $-2$ per tutte e due. Ma due matrici con queste tre cose uguali possono non essere simili: l'identità è simile solo a sé stessa, perché $M^{-1} I M = I$.
+
+::: prova Qual è la matrice di cambiamento di base dalla base $\{(2, 1), (1, 1)\}$ alla base canonica? E dalla canonica a questa base?
+$\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$, con i vettori in colonna. Nel verso opposto l'inversa: $\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$.
+:::
+
+> [!RICORDA]
+> - Cambiamento di base verso la canonica: vettori in colonna. Verso opposto: inversa.
+> - Composizione: prodotto delle matrici, la prima che agisce a destra.
+> - Endomorfismo in una base nuova: $M^{-1}AM$. Simili: stesso rango, determinante e traccia, ma non basta.
+
+## Verso l'esame
+
+- **La matrice associata** in una base data: appelli del 24/01/2024, 03/06/2025, 15/01/2026, 05/02/2026.
+- **La matrice di cambiamento di base**: 10/06/2024, 06/09/2024, 10/07/2025, 02/09/2025.
+- **La composizione**: 08/02/2024, 16/01/2025, 03/06/2025, 03/07/2026.
+- **Nei problemi** la matrice in una base nuova prepara la diagonalizzazione, che arriva con gli autovalori: per esempio il problema 11 del 07/09/2026.
+- Nelle 4 facciate di appunti conviene avere: i tre passi della matrice associata, la formula della composizione con le basi scritte, e $M^{-1}AM$ con «vettori nuovi in colonna».
+- Appelli 2026/27: venerdì 22/01/2027 e venerdì 05/02/2027, alle 14:00; 4 facciate di appunti scritti a mano, niente calcolatrice.
+
+## Domande di ripasso
+
+::: domanda Quando due spazi vettoriali sono isomorfi?
+Quando hanno la stessa dimensione.
+:::
+
+::: domanda Come si costruisce la matrice associata a un'applicazione lineare?
+Si calcolano le immagini dei vettori della base di partenza, si scrivono in coordinate rispetto alla base di arrivo, e si mettono in colonna.
+:::
+
+::: domanda Che cosa fa la matrice di cambiamento di base da $\mathcal B$ a $\mathcal C$?
+Moltiplicata per le coordinate di un vettore in $\mathcal B$, dà le sue coordinate in $\mathcal C$.
+:::
+
+::: domanda Nella matrice di $g \circ f$, quale matrice sta a destra?
+Quella di $f$, che agisce per prima.
+:::
+
+::: domanda Come cambia la matrice di un endomorfismo passando a una base nuova?
+Diventa $M^{-1}AM$, dove $M$ ha in colonna i vettori della base nuova.
+:::
+
+::: domanda Due matrici con stesso rango, determinante e traccia sono simili?
+Non per forza: sono condizioni necessarie, non sufficienti.
+:::
+
+## Quiz d'esame
+
+Le prime sette sono domande vere degli appelli, che nelle lezioni L15 e L16 sono solo citate o riprese con altri numeri; l'ultima è sul modello delle domande sugli isomorfismi. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma.
+
+```quiz
+D: Appello del 10/06/2024, domanda 8. Nello spazio $\R_1[x]$, la matrice del cambiamento di base da $\mathcal B = \{2x, 3\}$ a $\mathcal C = \{x + 1, x - 1\}$ è:
++ $\begin{pmatrix} 1 & 3/2 \\ 1 & -3/2 \end{pmatrix}$
+- $\begin{pmatrix} 2 & 2 \\ 1 & -1 \end{pmatrix}$
+- $\begin{pmatrix} 1 & 2/3 \\ 1/3 & -1 \end{pmatrix}$
+- $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
+- $\begin{pmatrix} 1 & 0 \\ 0 & 3/2 \end{pmatrix}$
+= Si scrivono i vettori di $\mathcal B$ nella base $\mathcal C$: $2x = 1 \cdot (x + 1) + 1 \cdot (x - 1)$ e $3 = \frac{3}{2}(x + 1) - \frac{3}{2}(x - 1)$. Le coordinate vanno in colonna. È la risposta (a) della soluzione ufficiale. La più insidiosa è la quarta, che ha in colonna i vettori di $\mathcal C$ nella base $\{x, 1\}$: è il cambiamento da $\mathcal C$ alla canonica.
+
+D: Appello del 10/07/2025, domanda 6. La matrice associata all'identità $\mathrm{Id} \colon \R^3 \to \R^3$ dalla base $\mathcal B = \{e_2, e_3, e_1\}$ alla base $\mathcal C = \{e_3, e_2, e_1\}$ è:
+- $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
+- il problema non è ben definito
++ $\begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
+- $\begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$
+- $\begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}$
+= Prima colonna: $e_2$ è il secondo vettore di $\mathcal C$, coordinate $(0, 1, 0)$. Seconda: $e_3$ è il primo, $(1, 0, 0)$. Terza: $e_1$ è il terzo, $(0, 0, 1)$. È la risposta (c) della soluzione ufficiale. La più insidiosa è la matrice identità: l'identità ha la matrice identità solo con la stessa base, nello stesso ordine.
+
+D: Appello del 02/09/2025, domanda 8. Siano date tre basi $\mathcal A, \mathcal B, \mathcal C$ di $\R^2$, con $[\mathrm{Id}]^{\mathcal A}_{\mathcal B} = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$ e $[\mathrm{Id}]^{\mathcal C}_{\mathcal B} = \begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix}$. Quale delle seguenti è $[\mathrm{Id}]^{\mathcal A}_{\mathcal C}$?
+- $\begin{pmatrix} -1 & 2 \\ -1 & 1 \end{pmatrix}$
+- $\begin{pmatrix} 3 & 2 \\ 1 & 1 \end{pmatrix}$
+- $\begin{pmatrix} 1 & 2 \\ -1 & -1 \end{pmatrix}$
+- $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
++ $\begin{pmatrix} 1 & 2 \\ 1 & 3 \end{pmatrix}$
+= Da $\mathcal A$ a $\mathcal C$ si passa per $\mathcal B$: $[\mathrm{Id}]^{\mathcal A}_{\mathcal C} = \left([\mathrm{Id}]^{\mathcal C}_{\mathcal B}\right)^{-1} [\mathrm{Id}]^{\mathcal A}_{\mathcal B}$. L'inversa della seconda matrice ha $+1$ al posto di $-1$, e il prodotto dà la risposta (e) della soluzione ufficiale. La più insidiosa è la terza, che viene moltiplicando senza invertire.
+
+D: Appello del 03/06/2025, domanda 5. Sia $L_A \colon \R^2 \to \R^2$ la moltiplicazione a sinistra per una matrice $A$. Rispetto alla base $\mathcal B = \{(1, 0), (1, 1)\}$, $L_A$ ha matrice associata $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$. La matrice $A$ è:
+- $\begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix}$
+- $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$
++ $\begin{pmatrix} 3 & 0 \\ 2 & -1 \end{pmatrix}$
+- $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
+- $\begin{pmatrix} 2 & 3 \\ 2 & 1 \end{pmatrix}$
+= Qui si torna dalla base $\mathcal B$ alla canonica: $A = M \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix} M^{-1}$, con $M = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$. È la risposta (c) della soluzione ufficiale. La più insidiosa è la seconda: la matrice nella base $\mathcal B$ non è la matrice $A$.
+
+D: Appello dell'08/02/2024, domanda 5. La composizione $S \circ T$ di $S \colon \R^3 \to \R^2$, $S(x, y, z) = (x + y, 2z)$, e $T \colon \R^2 \to \R^3$, $T(x, y) = (x + y, x - y, y)$, è:
+- $(x, y, z) \mapsto (2x, 2y, 2z)$
+- $(x, y) \mapsto (x + 2y, 2x - 2y)$
+- $(x, y, z) \mapsto (x + y + 2z, x + y - 2z, 2z)$
++ $(x, y) \mapsto (2x, 2y)$
+- non è ben definita
+= Agisce prima $T$: $S(x + y, x - y, y) = ((x + y) + (x - y),\ 2y) = (2x, 2y)$. Parte da $\R^2$ e arriva in $\R^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è la terza, che è $T \circ S$.
+
+D: Appello del 03/07/2026, domanda 5. Dati spazi vettoriali $U, V, W$, siano $S \colon U \to V$ e $T \colon V \to W$ applicazioni lineari con $T \circ S(u) = 0_W$ per ogni $u \in U$. Quale informazione si può dedurre?
+- $\ker(T) \subseteq \mathrm{Im}(S)$
+- $\mathrm{Im}(S) = \ker(T)$
+- $\mathrm{Im}(S) = V$
++ $\mathrm{Im}(S) \subseteq \ker(T)$
+- $\ker(S) \subseteq \mathrm{Im}(T)$
+= Ogni vettore $S(u)$ dell'immagine di $S$ viene mandato da $T$ nello zero, quindi sta nel nucleo di $T$. È la risposta (d) della soluzione ufficiale. La più insidiosa è l'uguaglianza: nel nucleo di $T$ possono esserci anche vettori che $S$ non produce.
+
+D: Appello del 03/06/2025, domanda 3. Sugli spazi dei polinomi siano $L(p(x)) = \frac{p(x) - p(0)}{x}$ e $R(p(x)) = x\,p(x)$. L'operatore $C = L \circ R - R \circ L$ soddisfa:
+- $C(a + bx + cx^2 + dx^3) = 0$
+- $C(a + bx + cx^2 + dx^3) = 1$
+- $C(a + bx + cx^2 + dx^3) = a + bx + cx^2 + dx^3$
++ $C(a + bx + cx^2 + dx^3) = a$
+- $C(a + bx + cx^2 + dx^3) = bx + cx^2 + dx^3$
+= $L(R(p)) = \frac{x\,p(x) - 0}{x} = p(x)$, mentre $R(L(p)) = p(x) - p(0)$. La differenza è $p(0)$, cioè $a$. È la risposta (d) della soluzione ufficiale. La più insidiosa è 0, di chi pensa che le due composizioni siano uguali: l'ordine conta.
+
+D: Sul modello delle domande sugli isomorfismi. Quale coppia è fatta di due spazi vettoriali reali isomorfi?
++ $\R_3[x]$ e le matrici $2 \times 2$
+- $\R_2[x]$ e $\R^2$
+- $\R^3$ e le matrici $2 \times 2$
+- $\R_3[x]$ e $\R^3$
+- $\R^2$ e $\R^3$
+= Conta solo la dimensione: i polinomi di grado al massimo 3 hanno dimensione 4, come le matrici $2 \times 2$. La più insidiosa è la quarta: il 3 di $\R_3[x]$ è il grado massimo, e la dimensione è 4.
+```
+
+## Fonti
+
+- Le lezioni complete: [L15 · Applicazioni lineari II](L15_applicazioni_lineari_2.html) e [L16 · Applicazioni lineari III](L16_applicazioni_lineari_3.html), con gli esempi, i disegni e gli esercizi.
+- Dispense 2026 del corso (R. Buzano, M. Radeschi), lezioni 15 e 16, pp. 74–84.
+- Appelli dell'08/02/2024, 10/06/2024, 03/06/2025, 10/07/2025, 02/09/2025 e 03/07/2026, con le soluzioni ufficiali.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_07_MD.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_07_MD.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: S7
+tipo: riassunto
+titolo: "Settimana 7: divisione euclidea, Euclide e Bézout, numeri primi"
+data: 2026-11-13
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Riassunto settimanale · Parte 1 (modA) · Matematica Discreta · Canali A, B e C · 09/11 – 13/11/2026
+descrizione: >-
+  Riassunto della settimana 7 di Matematica Discreta (MDAG, parte 1): divisibilità, massimo comun divisore, divisione
+  euclidea e cambi di base; l'algoritmo di Euclide, l'identità di Bézout e le equazioni ax + by = c; irriducibili e
+  primi, il teorema fondamentale dell'aritmetica, i primi sono infiniti; con le domande dei quiz e dei problemi degli
+  appelli 2020–2026.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: la divisione con il resto e i cambi di base, il massimo comun
+  divisore con le divisioni successive e la sua scrittura come combinazione, la fattorizzazione in primi. È tutto il
+  capitolo 4 del libro, e la base delle congruenze che cominciano adesso.
+materiale: libro
+scheda:
+  Lezioni: "[D14](D14_interi_divisibilita_divisione_euclidea.html) lun 09/11 · [D15](D15_algoritmo_euclide_bezout.html) mer 11/11 · [D16](D16_primi_teorema_fondamentale_aritmetica.html) ven 13/11"
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 4, pp. 67–80
+  Tempo di ripasso: 45 minuti
+fonte: >-
+  Gli appunti delle lezioni D14, D15 e D16 di Matematica Discreta, scritti sul libro di A. Mori
+appunti_html: appunti/MDAG/riassunto_settimana_07_MD.html
+genera_html: true
+```
+
+## In breve
+
+- Un intero ne **divide** un altro se il secondo è un suo multiplo. Un divisore comune di due numeri divide anche somme, differenze e multipli.
+- **Divisione euclidea**: quoziente e resto esistono e sono unici, e il resto non è mai negativo, anche con numeri negativi.
+- Le **cifre** di un numero in una base sono i resti di divisioni successive per la base, letti dall'ultimo al primo.
+- **Algoritmo di Euclide**: si divide, poi si divide il divisore per il resto, fino al resto zero. Il massimo comun divisore è l'ultimo resto diverso da zero.
+- **Identità di Bézout**: il massimo comun divisore si scrive come combinazione intera dei due numeri, e i coefficienti si trovano risalendo le divisioni.
+- Un'equazione $ax + by = c$ ha soluzioni intere esattamente quando il massimo comun divisore dei due coefficienti divide il termine noto.
+- Sugli interi **irriducibile** e **primo** coincidono, e ogni intero diverso da 0, 1 e −1 ha una **fattorizzazione in primi unica**.
+- I primi sono infiniti; 1 non è primo.
+
+> [!NOTA] Le lezioni della settimana
+> Tre lezioni nel canale B: lunedì 09/11, mercoledì 11/11 e venerdì 13/11. Gli argomenti sono ricostruiti dal diario dell'anno scorso (lezioni 14, 15 e 16) e dal libro.
+
+## D14 · Divisibilità e divisione euclidea (lun 09/11)
+
+Con questa lezione comincia l'aritmetica degli interi. Le definizioni di partenza sono tre.
+
+- **Divide**: $a \mid b$ se $b = ka$ con $k$ intero. Se $d$ divide $a$ e $b$, divide anche $a + b$, $a - b$ e ogni multiplo (proposizione 4.2). Da qui, per esempio, $\mathrm{MCD}(n, n + 3)$ può essere solo 1 o 3.
+- **Massimo comun divisore**: il più grande intero che divide tutti e due. È sempre positivo, e $\mathrm{MCD}(0, b) = \lvert b \rvert$.
+- **Divisione euclidea** (teorema 4.5): dividendo un intero $a$ per un intero $b \ne 0$ si trovano un quoziente $q$ e un resto $r$, e sono unici. Valgono $a = qb + r$ e $0 \le r < \lvert b \rvert$.
+
+Con il dividendo negativo il resto resta positivo: $-17 = (-4) \cdot 5 + 3$, non $(-3) \cdot 5 - 2$. In C, invece, `-17 / 5` dà $-3$ e `-17 % 5` dà $-2$: non è la divisione euclidea.
+
+**I cambi di base** sono la prima applicazione. Verso la base 10 si sommano le cifre per le potenze della base: $336_{[8]} = 3 \cdot 64 + 3 \cdot 8 + 6 = 222$. Dalla base 10 si divide più volte per la base.
+
+```grafico
+titolo: Il numero 45 in base 2. A ogni riga si divide per 2 il quoziente della riga sopra; ci si ferma al quoziente 0. I resti (in verde), letti dal basso verso l'alto, sono le cifre: 101101
+x: 0 12.4
+y: 0 6.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 3.0 5.9 | grigio | "45 = 22 · 2 +"
+testo: 5.6 5.9 | verde | "1"
+testo: 3.0 4.9 | grigio | "22 = 11 · 2 +"
+testo: 5.6 4.9 | verde | "0"
+testo: 3.0 3.9 | grigio | "11 = 5 · 2 +"
+testo: 5.6 3.9 | verde | "1"
+testo: 3.0 2.9 | grigio | "5 = 2 · 2 +"
+testo: 5.6 2.9 | verde | "1"
+testo: 3.0 1.9 | grigio | "2 = 1 · 2 +"
+testo: 5.6 1.9 | verde | "0"
+testo: 3.0 0.9 | grigio | "1 = 0 · 2 +"
+testo: 5.6 0.9 | verde | "1"
+freccia: 6.6 0.9 6.6 5.9 | verde
+testo: 9.2 3.9 | verde | "si legge dal basso"
+testo: 9.2 2.9 | verde | "101101"
+```
+
+::: prova Fai la divisione euclidea di $-23$ per 4, e scrivi 13 in base 2.
+$-23 = (-6) \cdot 4 + 1$. E $13 = 6 \cdot 2 + 1$, $6 = 3 \cdot 2 + 0$, $3 = 1 \cdot 2 + 1$, $1 = 0 \cdot 2 + 1$: dal basso, $1101$.
+:::
+
+> [!RICORDA]
+> - $a = qb + r$ con $0 \le r < \lvert b \rvert$: il resto non è mai negativo.
+> - Verso la base 10: cifre per potenze. Dalla base 10: resti, letti al contrario.
+
+## D15 · Euclide e Bézout (mer 11/11)
+
+Dopo una divisione, i divisori comuni di dividendo e divisore sono gli stessi di divisore e resto (proposizione 4.9): da $a = qb + r$ segue $\mathrm{MCD}(a, b) = \mathrm{MCD}(b, r)$. Quindi si può sostituire la coppia con una più piccola, e ripetere.
+
+```grafico
+titolo: L'algoritmo di Euclide per 126 e 90. A ogni riga il divisore scende al posto del dividendo (frecce blu) e il resto al posto del divisore (frecce ambra). L'ultimo resto diverso da zero, 18 (in verde), è il massimo comun divisore
+x: 0 12.4
+y: 0 4.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.6 3.8 | grigio | "126"
+testo: 4.0 3.8 | grigio | "= 1 ·"
+testo: 5.4 3.8 | blu | "90"
+testo: 6.5 3.8 | grigio | "+"
+testo: 7.6 3.8 | ambra | "36"
+testo: 2.6 2.3 | blu | "90"
+testo: 4.0 2.3 | grigio | "= 2 ·"
+testo: 5.4 2.3 | ambra | "36"
+testo: 6.5 2.3 | grigio | "+"
+testo: 7.6 2.3 | verde | "18"
+testo: 2.6 0.8 | ambra | "36"
+testo: 4.0 0.8 | grigio | "= 2 ·"
+testo: 5.4 0.8 | verde | "18"
+testo: 6.5 0.8 | grigio | "+"
+testo: 7.6 0.8 | grigio | "0"
+freccia: 5.2 3.5 2.9 2.6 | blu
+freccia: 7.4 3.5 5.7 2.6 | ambra
+freccia: 5.2 2.0 2.9 1.1 | ambra
+freccia: 7.4 2.0 5.7 1.1 | verde
+testo: 10.2 2.3 | verde | "ultimo resto non nullo"
+```
+
+**Identità di Bézout** (teorema 4.10): se $d = \mathrm{MCD}(a, b)$, esistono interi $A$ e $B$ con $d = aA + bB$. Si trovano **risalendo**: si parte dalla riga che ha $d$ come resto e si sostituisce un resto alla volta, senza svolgere i prodotti.
+
+$$18 = 90 - 2 \cdot 36 = 90 - 2 \cdot (126 - 90) = 3 \cdot 90 - 2 \cdot 126.$$
+
+- **Controllo**, sempre: $270 - 252 = 18$.
+- I coefficienti **non sono unici**: l'algoritmo ne dà una coppia, ma ce ne sono infinite.
+- **Le combinazioni** $aA + bB$ sono esattamente i multipli di $d$. Quindi $ax + by = c$ ha soluzioni intere quando $d$ divide $c$, e una soluzione si ottiene moltiplicando l'identità di Bézout per $\frac{c}{d}$.
+- Due numeri con massimo comun divisore 1 si chiamano **coprimi**; se una combinazione dà 1, lo sono.
+
+::: prova $126x + 90y = 54$ ha soluzioni intere? E $126x + 90y = 30$?
+La prima sì: 18 divide 54, e moltiplicando l'identità per 3 viene $x = -6$, $y = 9$. La seconda no: 18 non divide 30.
+:::
+
+> [!RICORDA]
+> - Massimo comun divisore: l'ultimo resto diverso da zero.
+> - Bézout: si risale un resto alla volta, poi si controlla.
+> - $ax + by = c$ ha soluzioni intere quando il massimo comun divisore divide $c$.
+
+## D16 · Primi e fattorizzazione (ven 13/11)
+
+Un intero diverso da 0, 1 e −1 è **irriducibile** se non si spezza in un prodotto, ed è **primo** se quando divide un prodotto divide uno dei fattori. Il teorema 4.13 dice che sugli interi sono la stessa cosa; la dimostrazione usa Bézout. Un numero non primo si comporta diversamente: 6 divide $4 \cdot 9$ senza dividere né 4 né 9.
+
+- **Teorema fondamentale dell'aritmetica** (4.14): ogni intero diverso da 0, 1 e −1 è, a parte il segno, un prodotto di primi positivi, in un modo solo. L'esistenza si dimostra per induzione forte, l'unicità con la proprietà dei primi.
+- **1 non è primo**: altrimenti $6 = 2 \cdot 3 = 1 \cdot 2 \cdot 3$ avrebbe più fattorizzazioni.
+- **Fattorizzare**: si provano i primi in ordine. Per decidere se un numero è primo bastano i primi fino alla sua radice quadrata: per 97 si provano 2, 3, 5 e 7.
+- **I primi sono infiniti** (4.15): il prodotto dei primi di un elenco, più 1, non è divisibile per nessuno di loro, quindi ha un fattore primo nuovo. Il numero costruito può non essere primo: $30031 = 59 \cdot 509$.
+- **Dalle fattorizzazioni**: il massimo comun divisore prende i primi comuni con l'esponente più piccolo, il minimo comune multiplo tutti i primi con l'esponente più grande. Con $126 = 2 \cdot 3^2 \cdot 7$ e $90 = 2 \cdot 3^2 \cdot 5$: massimo comun divisore 18, minimo comune multiplo 630.
+
+Un uso tipico all'esame: «coprimo con 1000» vuol dire «né multiplo di 2 né multiplo di 5», perché $1000 = 2^3 \cdot 5^3$. Poi si conta con l'inclusione-esclusione.
+
+::: prova Fattorizza 252 e trova il massimo comun divisore con 90.
+$252 = 2^2 \cdot 3^2 \cdot 7$ e $90 = 2 \cdot 3^2 \cdot 5$: in comune $2 \cdot 3^2 = 18$.
+:::
+
+> [!RICORDA]
+> - Irriducibile = primo. Fattorizzazione in primi: esiste ed è unica.
+> - Primo o no: si provano i primi fino alla radice quadrata.
+> - Massimo comun divisore: primi comuni, esponente più piccolo.
+
+## Verso l'esame
+
+- **Quiz, domanda 7**: un cambio di base negli appelli del 04/02/2025, 06/06/2025, 07/07/2025 e 10/09/2026.
+- **Problema su massimo comun divisore e Bézout**: 15/06/2020, prove del 2022/23, 08/06/2026. Il secondo punto chiede spesso se un'equazione $ax + by = c$ ha soluzioni intere.
+- **L'identità di Bézout serve per gli inversi modulo $N$**: appelli del 04/02/2025, 07/07/2025 e 08/09/2025. Arriva tra poche lezioni.
+- **Fattorizzazioni e «coprimo con»** nel problema 1 del 01/07/2026.
+- Appelli 2026/27: martedì 19/01/2027 e mercoledì 03/02/2027, alle 14:00, con libro e appunti.
+
+## Domande di ripasso
+
+::: domanda Che cosa dice il teorema della divisione euclidea?
+Per $a$ e $b \ne 0$ esistono unici $q$ e $r$ con $a = qb + r$ e $0 \le r < \lvert b \rvert$.
+:::
+
+::: domanda Come si scrive un numero in base 2?
+Si divide per 2 più volte, fino al quoziente 0; i resti, letti dall'ultimo al primo, sono le cifre.
+:::
+
+::: domanda Perché l'algoritmo di Euclide finisce?
+Perché i resti sono interi non negativi che calano a ogni riga.
+:::
+
+::: domanda Come si trova l'identità di Bézout?
+Risalendo le divisioni dell'algoritmo, sostituendo un resto alla volta senza svolgere i prodotti.
+:::
+
+::: domanda Quando $ax + by = c$ ha soluzioni intere?
+Quando il massimo comun divisore di $a$ e $b$ divide $c$.
+:::
+
+::: domanda Perché 1 non è primo?
+Per non perdere l'unicità della fattorizzazione.
+:::
+
+## Quiz d'esame
+
+Sono domande vere degli appelli, diverse da quelle già nelle lezioni: le domande 7 dei quiz e i primi punti di tre problemi, messi in forma di scelta. Le risposte giuste sono quelle delle soluzioni ufficiali, ricontrollate con un programma.
+
+```quiz
+D: Appello del 10/09/2026, quiz, domanda 7 (una delle versioni). Qual è la scrittura binaria (base 2) di 322?
+- 100111010
++ 101000010
+- 101001010
+- 101011000
+- 101100100
+= $322 = 256 + 64 + 2$: le cifre 1 stanno ai posti di $2^8$, $2^6$ e $2^1$. È la risposta 2 della soluzione ufficiale. La più insidiosa è 101001010, che vale 330: le altre opzioni sono le risposte giuste delle altre versioni.
+
+D: Appello del 10/09/2026, quiz, domanda 7 (un'altra versione). Qual è la scrittura binaria (base 2) di 356?
+- 100111010
+- 101000010
+- 101001010
+- 101011000
++ 101100100
+= $356 = 256 + 64 + 32 + 4$. È la risposta 5 della soluzione ufficiale. La più insidiosa è 101011000, che vale 344: stesso numero di cifre 1, in posti diversi.
+
+D: Appello del 04/02/2025, quiz, domanda 7 (una delle versioni). Il numero scritto in notazione binaria (base 2) 1010111 è:
+- 79
++ 87
+- 101
+- 103
+- 105
+= $64 + 16 + 4 + 2 + 1 = 87$. È la risposta 2 della soluzione ufficiale. La più insidiosa è 103, che viene contando un 32 al posto del 16.
+
+D: Appello del 06/06/2025, quiz, domanda 7 (una delle versioni). Di quale numero intero $336_{[8]}$ è la scrittura in base 8?
++ 222
+- 241
+- 290
+- 307
+- 315
+= $3 \cdot 64 + 3 \cdot 8 + 6 = 222$. È la risposta 1 della soluzione ufficiale. La più insidiosa è 241, che è $361_{[8]}$: le stesse cifre in un altro ordine.
+
+D: Dalla prova scritta del 15/06/2020, esercizio 1. L'algoritmo di Euclide dà $\mathrm{MCD}(142, 112) = 2$. Quale di queste è un'identità di Bézout corretta?
++ $2 = 15 \cdot 142 - 19 \cdot 112$
+- $2 = 19 \cdot 142 - 15 \cdot 112$
+- $2 = 15 \cdot 142 + 19 \cdot 112$
+- $2 = 4 \cdot 142 - 5 \cdot 112$
+- $2 = 142 - 112$
+= $2130 - 2128 = 2$. Nella soluzione ufficiale c'è una svista di stampa, «$19 \cdot 56$» al posto di $19 \cdot 112$: il conto giusto è questo. La più insidiosa è la quarta, che dà $568 - 560 = 8$.
+
+D: Dalle prove scritte del 2022/23, problema 2. $\mathrm{MCD}(3522, 321) = 3$. Quale affermazione è vera?
++ $3522x + 321y = 12$ ha soluzioni intere, $3522x + 321y = 10$ no
+- hanno soluzioni intere tutte e due
+- non ne ha nessuna delle due
+- $3522x + 321y = 10$ ha soluzioni intere, $3522x + 321y = 12$ no
+- dipende dal segno di $x$ e $y$
+= Il 3 divide 12 e non divide 10. È la soluzione ufficiale, che dà anche una soluzione: $x = -144$, $y = 1580$. La più insidiosa è «tutte e due»: 10 non è un multiplo di 3, e questo basta per escluderla.
+
+D: Dal problema 1 dell'appello del 01/07/2026, versione B, punto b. Quanti sono i numeri tra 1 e 600 che sono coprimi con 900?
+N: 160
+= $900 = 2^2 \cdot 3^2 \cdot 5^2$: servono i numeri che non sono multipli di 2, di 3 o di 5. Per inclusione-esclusione: $600 - 300 - 200 - 120 + 100 + 60 + 40 - 20 = 160$. Della versione B ho solo il testo: il conto è mio, ricontato con un programma.
+
+D: Dal problema 1 dell'appello del 01/07/2026, versione C, punto b. Quanti sono i numeri tra 1 e 450 che sono coprimi con 750?
+N: 120
+= $750 = 2 \cdot 3 \cdot 5^3$: $450 - 225 - 150 - 90 + 75 + 45 + 30 - 15 = 120$. Conto mio, ricontato con un programma.
+```
+
+## Fonti
+
+- Le lezioni complete: [D14 · Numeri interi, divisibilità e divisione euclidea](D14_interi_divisibilita_divisione_euclidea.html), [D15 · L'algoritmo di Euclide e l'identità di Bézout](D15_algoritmo_euclide_bezout.html), [D16 · Numeri primi e teorema fondamentale dell'aritmetica](D16_primi_teorema_fondamentale_aritmetica.html), con gli esempi, i quiz e gli esercizi.
+- A. Mori, *Lezioni di Matematica Discreta*, cap. 4, pp. 67–80.
+- Quiz degli appelli del 04/02/2025, 06/06/2025 e 10/09/2026 (domanda 7); prova scritta del 15/06/2020 (esercizio 1); prove scritte del 2022/23 (problema 2); appello del 01/07/2026 (problema 1, versioni B e C), con le soluzioni ufficiali dove ci sono.
 
 
 ---

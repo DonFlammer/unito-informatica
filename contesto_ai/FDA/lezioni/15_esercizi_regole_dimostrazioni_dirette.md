@@ -304,7 +304,7 @@ D: Da $p \to q$ e $\neg q$, quale regola permette di concludere $\neg p$?
 - sillogismo disgiuntivo
 - negazione dell'antecedente
 - sillogismo ipotetico
-= Si nega la conclusione della freccia e si ricava la negazione dell'ipotesi. La risposta più insidiosa è la quarta: è il nome di una fallacia, con $\neg p$ tra le premesse e non nella conclusione.
+= Si nega la conclusione della freccia e si ricava la negazione dell'ipotesi. La risposta più insidiosa è «negazione dell'antecedente»: è il nome di una fallacia, con $\neg p$ tra le premesse e non nella conclusione.
 
 D: Quale di questi ragionamenti **non** è valido?
 + «Se Anna vince, festeggia. Festeggia. Quindi ha vinto.»
@@ -320,7 +320,7 @@ D: L'argomentazione $p \to q$, $q \to r$, quindi $r \to p$ non è valida. Quale 
 - $p$ vera, $q$ falsa, $r$ falsa
 - $p$ falsa, $q$ falsa, $r$ falsa
 - nessuna: è valida
-= È la soluzione ufficiale della domanda 9 dell'autoverifica del capitolo 1: premesse vere, conclusione $r \to p$ falsa. La risposta più insidiosa è la terza: con $p$ vera e $q$ falsa la prima premessa è falsa, quindi la riga non è critica.
+= È la soluzione ufficiale della domanda 9 dell'autoverifica del capitolo 1: premesse vere, conclusione $r \to p$ falsa. La risposta più insidiosa è «$p$ vera, $q$ falsa, $r$ falsa»: con $p$ vera e $q$ falsa la prima premessa è falsa, quindi la riga non è critica.
 
 D: Con le premesse $p \to q$, $q \to r$, $\neg r$, quali due regole portano a $\neg p$?
 + sillogismo ipotetico, poi modus tollens
@@ -328,7 +328,7 @@ D: Con le premesse $p \to q$, $q \to r$, $\neg r$, quali due regole portano a $\
 - addizione, poi modus tollens
 - semplificazione, poi modus ponens
 - non si può ottenere
-= Dal sillogismo ipotetico $p \to r$, poi con $\neg r$ il modus tollens dà $\neg p$. La risposta più insidiosa è l'ultima: l'argomentazione è valida, come quella delle Olimpiadi della lezione 12.
+= Dal sillogismo ipotetico $p \to r$, poi con $\neg r$ il modus tollens dà $\neg p$. La risposta più insidiosa è «non si può ottenere»: l'argomentazione è valida, come quella delle Olimpiadi della lezione 12.
 
 D: Come comincia la dimostrazione diretta di «se $n$ è dispari, allora $n^2$ è dispari»?
 + Supponiamo $n$ dispari: $n = 2k + 1$ per un intero $k$.
@@ -336,7 +336,7 @@ D: Come comincia la dimostrazione diretta di «se $n$ è dispari, allora $n^2$ �
 - Supponiamo $n$ pari: $n = 2k$.
 - Proviamo con $n = 3$: $n^2 = 9$ è dispari.
 - Supponiamo $n^2$ pari e cerchiamo una contraddizione.
-= Si suppone l'ipotesi e la si riscrive con la definizione. La risposta più insidiosa è la quarta: un esempio non dimostra un «per ogni».
+= Si suppone l'ipotesi e la si riscrive con la definizione. La risposta più insidiosa è «Proviamo con $n = 3$: $n^2 = 9$ è dispari»: un esempio non dimostra un «per ogni».
 
 D: Per dimostrare $A \subseteq B$ in modo diretto, da dove si parte?
 + da un elemento qualsiasi di $A$, per mostrare che sta in $B$
@@ -344,7 +344,7 @@ D: Per dimostrare $A \subseteq B$ in modo diretto, da dove si parte?
 - da un elemento che sta in tutti e due
 - dall'insieme vuoto
 - da un esempio concreto di $A$ e $B$
-= È la definizione di sottoinsieme. La risposta più insidiosa è la seconda, che dimostra l'inclusione al contrario.
+= È la definizione di sottoinsieme. La risposta più insidiosa è «da un elemento qualsiasi di $B$, per mostrare che sta in $A$», che dimostra l'inclusione al contrario.
 
 D: Quale frase è smentita dal controesempio $n = 11$?
 + per ogni primo $n$, $2^n - 1$ è primo
@@ -352,7 +352,7 @@ D: Quale frase è smentita dal controesempio $n = 11$?
 - per ogni intero $n$, $n^2 \ge n$
 - per ogni primo $n$, $2^n$ è pari
 - esiste un primo $n$ con $2^n - 1$ primo
-= $2^{11} - 1 = 2047 = 23 \cdot 89$. La risposta più insidiosa è l'ultima: è un «esiste», vero (con $n = 2$), e un controesempio non smentisce un «esiste».
+= $2^{11} - 1 = 2047 = 23 \cdot 89$. La risposta più insidiosa è «esiste un primo $n$ con $2^n - 1$ primo»: è un «esiste», vero (con $n = 2$), e un controesempio non smentisce un «esiste».
 
 D: Quante righe ha la tavola di verità di un'argomentazione con le lettere $p$, $q$, $r$?
 N: 8

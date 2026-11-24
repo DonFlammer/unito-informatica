@@ -305,7 +305,7 @@ D: Sul dominio $\{1, 2, 3\}$, a che cosa equivale $\exists x\, P(x)$?
 - $P(1)$
 - $\neg P(1) \vee \neg P(2) \vee \neg P(3)$
 - $P(1) \to P(2) \to P(3)$
-= «Esiste» vuol dire che almeno una delle tre è vera: una disgiunzione. La risposta più insidiosa è la congiunzione, che corrisponde a $\forall x\, P(x)$. La quarta è $\exists x\,\neg P(x)$.
+= «Esiste» vuol dire che almeno una delle tre è vera: una disgiunzione. La risposta più insidiosa è la congiunzione, che corrisponde a $\forall x\, P(x)$. La risposta $\neg P(1) \vee \neg P(2) \vee \neg P(3)$ è $\exists x\,\neg P(x)$.
 
 D: Quale equivalenza è **sempre** vera?
 + $\forall x\,(P(x) \wedge Q(x)) \equiv \forall x\, P(x) \wedge \forall x\, Q(x)$
@@ -313,7 +313,7 @@ D: Quale equivalenza è **sempre** vera?
 - $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$
 - $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$
 - $\exists x\, P(x) \equiv \forall x\, P(x)$
-= $\forall$ si distribuisce su $\wedge$. La risposta più insidiosa è la terza: «esiste un pari ed esiste un dispari» è vera, «esiste un numero pari e dispari» no. La quarta confonde «non tutti» con «nessuno».
+= $\forall$ si distribuisce su $\wedge$. La risposta più insidiosa è $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$: «esiste un pari ed esiste un dispari» è vera, «esiste un numero pari e dispari» no. La risposta $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$ confonde «non tutti» con «nessuno».
 
 D: Da $\forall x\,(U(x) \to M(x))$ e $U(\text{Socrate})$, quali regole danno $M(\text{Socrate})$?
 + particolarizzazione universale, poi modus ponens
@@ -329,7 +329,7 @@ D: Quale passaggio è **sbagliato**?
 - da $\forall x\, P(x)$ dedurre $P(2)$
 - da $\forall x\, P(x)$ dedurre $\exists x\, P(x)$, su un dominio non vuoto
 - da $\neg\,\exists x\, P(x)$ dedurre $\neg P(2)$
-= La generalizzazione universale chiede un elemento qualsiasi, non il 2. La risposta più insidiosa è l'ultima, che è corretta: $\neg\,\exists x\, P(x)$ equivale a $\forall x\,\neg P(x)$, e da lì si passa al caso del 2.
+= La generalizzazione universale chiede un elemento qualsiasi, non il 2. La risposta più insidiosa è «da $\neg\,\exists x\, P(x)$ dedurre $\neg P(2)$», che è corretta: $\neg\,\exists x\, P(x)$ equivale a $\forall x\,\neg P(x)$, e da lì si passa al caso del 2.
 
 D: L'argomentazione $p \vee q,\ p \;/\; \therefore \neg q$ è valida?
 + No: con $p$ e $q$ vere le premesse sono vere e la conclusione falsa

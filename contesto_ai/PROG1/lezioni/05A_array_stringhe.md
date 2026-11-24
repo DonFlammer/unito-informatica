@@ -928,7 +928,7 @@ D: Quale di queste dichiarazioni crea una stringa **non** terminata?
 - `char n[5] = "Anna";`
 - `char n[5] = {'A', 'n', 'n', 'a', '\0'};`
 - `char n[10] = "Anna";`
-= `"Anna"` vuole 5 byte; con 4 il C lascia fuori il `'\0'` senza avvisi. La risposta più insidiosa è l'ultima: 10 posti sono troppi, ma gli avanzati valgono 0, quindi la stringa è terminata.
+= `"Anna"` vuole 5 byte; con 4 il C lascia fuori il `'\0'` senza avvisi. La risposta più insidiosa è `char n[10] = "Anna";`: 10 posti sono troppi, ma gli avanzati valgono 0, quindi la stringa è terminata.
 ```
 
 ## Esercizi

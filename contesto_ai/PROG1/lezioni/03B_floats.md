@@ -444,7 +444,7 @@ D: Come si legge un `double` chiamato `d` con `scanf`?
 - `scanf("%d", &d);`
 - `scanf("%lf", d);`
 - `scanf("%e", d);`
-= Per un `double` serve `%lf`, e `scanf` vuole l'indirizzo. La risposta più insidiosa è `scanf("%f", &d);`: `%f` va bene in `printf`, ma in `scanf` è per i `float`, e con `-Wall -Werror` non compila. Le ultime due passano il valore invece dell'indirizzo.
+= Per un `double` serve `%lf`, e `scanf` vuole l'indirizzo. La risposta più insidiosa è `scanf("%f", &d);`: `%f` va bene in `printf`, ma in `scanf` è per i `float`, e con `-Wall -Werror` non compila. Le risposte `scanf("%lf", d);` e `scanf("%e", d);` passano il valore invece dell'indirizzo.
 
 D: Che cosa stampa `printf("%.2f\n", 2.0 / 3);`?
 + `0.67`

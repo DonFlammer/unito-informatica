@@ -149,7 +149,7 @@ D: Appello del 10/09/2026, quiz, domanda 5 (un'altra versione). Siano $\tau$ una
 - $\sigma \circ \tau \circ \sigma \circ \tau^2$ è pari
 - $\sigma^3 \circ \tau \circ \sigma^2$ è pari
 - $\sigma \circ \tau^3 \circ \sigma$ è pari
-= Si contano le $\tau$, le uniche dispari: una nella prima, quindi dispari. Nelle altre sono 5, 3, 1 e 3, sempre in numero dispari, e l'affermazione «pari» è falsa. È la risposta 1 della soluzione ufficiale. La più insidiosa è la terza: $\tau$ e $\tau^2$ insieme fanno tre $\tau$.
+= Si contano le $\tau$, le uniche dispari: una in $\tau \circ \sigma^4$, quindi dispari. Nelle altre sono 1, 3 oppure 5, sempre in numero dispari, e l'affermazione «pari» è falsa. È la risposta 1 della soluzione ufficiale. La più insidiosa è «$\sigma \circ \tau \circ \sigma \circ \tau^2$ è pari»: $\tau$ e $\tau^2$ insieme fanno tre $\tau$.
 
 D: Appello del 13/01/2026, quiz, domanda 6 (un'altra versione). Siano $\pi$ e $\sigma$ permutazioni dispari e $\tau$ una permutazione pari. Quale delle seguenti è una permutazione dispari?
 + $\tau^3 \circ \pi \circ \sigma^2$
@@ -157,7 +157,7 @@ D: Appello del 13/01/2026, quiz, domanda 6 (un'altra versione). Siano $\pi$ e $\
 - $\pi \circ \sigma^5 \circ \pi^2$
 - $\pi \circ \sigma \circ \tau^5$
 - $\sigma^2 \circ \tau \circ \pi^4$
-= Si contano $\pi$ e $\sigma$: nella prima sono $1 + 2 = 3$, dispari. Nelle altre 6, 8, 2 e 6. È la risposta 1 della soluzione ufficiale. La più insidiosa è la quarta: $\pi \circ \sigma$ sono due dispari, e insieme danno una pari.
+= Si contano $\pi$ e $\sigma$: in $\tau^3 \circ \pi \circ \sigma^2$ sono $1 + 2 = 3$, dispari. Nelle altre sono 2, 6 oppure 8, sempre pari. È la risposta 1 della soluzione ufficiale. La più insidiosa è $\pi \circ \sigma \circ \tau^5$: $\pi \circ \sigma$ sono due dispari, e insieme danno una pari.
 
 D: Appello del 14/01/2025, quiz, domanda 5 (una delle versioni). Una permutazione $\pi$ ha tipo $(6, 3, 2)$. Allora $\pi$:
 - è pari ed ha periodo 12
@@ -197,7 +197,7 @@ D: Dal problema 1 dell'appello del 14/01/2025, versione D. Sia $\tau$ la permuta
 - tipo $(3, 2)$, dispari
 - tipo $(6)$, dispari
 - tipo $(2, 2, 2)$, dispari
-= $1 \mapsto 3 \mapsto 2 \mapsto 4 \mapsto 1$ e $5 \mapsto 6 \mapsto 5$: $\tau = (1\ 3\ 2\ 4)(5\ 6)$. Due cicli di lunghezza pari: pari. La più insidiosa è la seconda: ogni ciclo è dispari, ma due dispari danno una pari.
+= $1 \mapsto 3 \mapsto 2 \mapsto 4 \mapsto 1$ e $5 \mapsto 6 \mapsto 5$: $\tau = (1\ 3\ 2\ 4)(5\ 6)$. Due cicli di lunghezza pari: pari. La più insidiosa è «tipo $(4, 2)$, dispari»: ogni ciclo è dispari, ma due dispari danno una pari.
 
 D: Sul modello della proposizione 5.22. Quante sono le permutazioni dispari di $S_5$?
 N: 60

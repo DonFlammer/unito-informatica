@@ -223,7 +223,7 @@ D: Simulazione d'esame 2, 2023/24, domanda 2, con una risposta cambiata. Quale d
 - $x + x = x$
 - $x + x' = 1$ e $x \cdot x' = 0$
 - $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$
-= Con $x = 1$, $y = 0$, $z = 0$ la sinistra vale 1 e la destra 0. La risposta più insidiosa è la seconda, che con i numeri sembra sbagliata: in logica però l'«o» si distribuisce sull'«e», $p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$. Le altre sono l'idempotenza, il complemento e la distributiva dell'«e» sull'«o». L'ultima risposta l'ho messa io al posto di un'affermazione sugli insiemi con due elementi, falsa anche lei.
+= Con $x = 1$, $y = 0$, $z = 0$ la sinistra vale 1 e la destra 0. La risposta più insidiosa è $x + (y \cdot z) = (y + x) \cdot (z + x)$, che con i numeri sembra sbagliata: in logica però l'«o» si distribuisce sull'«e», $p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$. Le altre sono l'idempotenza, il complemento e la distributiva dell'«e» sull'«o». La risposta $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$ l'ho messa io al posto di un'affermazione sugli insiemi con due elementi, falsa anche lei.
 
 D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola $(A \wedge \neg C) \vee (\neg C \wedge B)$. Quale formula descrive la stessa funzione?
 - $(\neg C \vee A) \wedge (\neg C \vee B)$
@@ -231,7 +231,7 @@ D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola $(A \wedge \ne
 - $\neg C \wedge A \wedge B$
 - $\neg(C \wedge (A \vee B))$
 - $\neg C \vee A \vee B$
-= Con De Morgan sulla parentesi grande: $\neg(C \vee \neg A) \vee \neg(C \vee \neg B)$, e di nuovo: $(\neg C \wedge A) \vee (\neg C \wedge B)$. La risposta più insidiosa è la prima, che scambia «e» e «o»: con $A$, $B$ e $C$ tutte false vale V, mentre il circuito dà F. La terza vuole $A$ e $B$ vere tutte e due; la quarta e la quinta sono vere anche con le tre lettere false.
+= Con De Morgan sulla parentesi grande: $\neg(C \vee \neg A) \vee \neg(C \vee \neg B)$, e di nuovo: $(\neg C \wedge A) \vee (\neg C \wedge B)$. La risposta più insidiosa è $(\neg C \vee A) \wedge (\neg C \vee B)$, che scambia «e» e «o»: con $A$, $B$ e $C$ tutte false vale V, mentre il circuito dà F. La risposta $\neg C \wedge A \wedge B$ vuole $A$ e $B$ vere tutte e due; la risposta $\neg(C \wedge (A \vee B))$ e la risposta $\neg C \vee A \vee B$ sono vere anche con le tre lettere false.
 
 D: Sul modello degli esercizi del §1.3. Con $p$ = «passo l'esame» e $q$ = «studio», come si scrive «passo l'esame solo se studio»?
 + $p \to q$
@@ -247,7 +247,7 @@ D: Sul modello della simulazione 2, domanda 6, che chiede le negazioni di frasi.
 + Il treno è in ritardo e non perdo la coincidenza.
 - Il treno non è in ritardo e perdo la coincidenza.
 - Il treno non è in ritardo o non perdo la coincidenza.
-= $\neg(p \to q) \equiv p \wedge \neg q$: la promessa è smentita solo se il treno è in ritardo e la coincidenza non si perde. La risposta più insidiosa è la prima, l'opposta: è un'altra promessa, non la negazione, e con il treno in ritardo e la coincidenza persa è vera come la frase di partenza.
+= $\neg(p \to q) \equiv p \wedge \neg q$: la promessa è smentita solo se il treno è in ritardo e la coincidenza non si perde. La risposta più insidiosa è «Se il treno non è in ritardo, non perdo la coincidenza», l'opposta: è un'altra promessa, non la negazione, e con il treno in ritardo e la coincidenza persa è vera come la frase di partenza.
 
 D: Sul modello degli esercizi del §1.4. L'argomentazione «se piove, la strada è bagnata; la strada è bagnata; quindi piove» è:
 - valida, per il modus ponens

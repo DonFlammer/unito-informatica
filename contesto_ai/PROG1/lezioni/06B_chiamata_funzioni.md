@@ -646,7 +646,7 @@ D: Nel modello delle slide, dove stanno le variabili locali della funzione attiv
 - in un'area fissa, uguale per tutte le chiamate
 - nel codice del programma
 - nei registri SP e FP
-= Il frame della funzione attiva va da FP a SP, e lo stack cresce verso il basso. La più insidiosa è la seconda: sopra FP ci sono i parametri e i dati di controllo.
+= Il frame della funzione attiva va da FP a SP, e lo stack cresce verso il basso. La più insidiosa è «sopra FP, a offset positivi»: sopra FP ci sono i parametri e i dati di controllo.
 
 D: Qual è l'ordine giusto del ritorno da funzione?
 + scrive il risultato, SP = FP, ripristina FP, ripristina il PC, toglie i parametri
@@ -654,7 +654,7 @@ D: Qual è l'ordine giusto del ritorno da funzione?
 - toglie i parametri, ripristina FP, SP = FP, scrive il risultato
 - SP = FP, scrive il risultato, ripristina il PC, ripristina FP
 - ripristina FP, ripristina il PC, SP = FP, scrive il risultato
-= Il ritorno disfa la chiamata in ordine inverso. La più insidiosa è la quarta: se si libera il frame prima di scrivere il risultato, la funzione perde accesso alle sue variabili locali.
+= Il ritorno disfa la chiamata in ordine inverso. La più insidiosa è «SP = FP, scrive il risultato, ripristina il PC, ripristina FP»: se si libera il frame prima di scrivere il risultato, la funzione perde accesso alle sue variabili locali.
 
 D: Perché il prologo salva il valore di FP sullo stack?
 + perché al ritorno il chiamante deve riavere il suo FP
@@ -662,7 +662,7 @@ D: Perché il prologo salva il valore di FP sullo stack?
 - per liberare le variabili locali
 - per passare i parametri alla funzione
 - perché FP contiene l'indirizzo di ritorno
-= Subito dopo il salvataggio il prologo pone FP = SP: senza la copia, il FP del chiamante andrebbe perso. La più insidiosa è l'ultima: l'indirizzo di ritorno è un dato diverso, salvato prima, al momento del salto.
+= Subito dopo il salvataggio il prologo pone FP = SP: senza la copia, il FP del chiamante andrebbe perso. La più insidiosa è «perché FP contiene l'indirizzo di ritorno»: l'indirizzo di ritorno è un dato diverso, salvato prima, al momento del salto.
 
 D: Che cosa restituisce `sizeof(v)` dentro `size_t lunghezza(int v[])`, compilata su un PC a 64 bit senza `-Werror`?
 + 8, la dimensione di un puntatore
@@ -670,7 +670,7 @@ D: Che cosa restituisce `sizeof(v)` dentro `size_t lunghezza(int v[])`, compilat
 - il numero di byte dell'array
 - 0
 - 4, la dimensione di un `int`
-= Un array passato a funzione arriva come puntatore. gcc lo segnala con `sizeof-array-argument`, che con `-Werror` è un errore. La più insidiosa è la terza: è quello che dà `sizeof` in `main`, dove l'array è dichiarato.
+= Un array passato a funzione arriva come puntatore. gcc lo segnala con `sizeof-array-argument`, che con `-Werror` è un errore. La più insidiosa è «il numero di byte dell'array»: è quello che dà `sizeof` in `main`, dove l'array è dichiarato.
 
 D: Una funzione ha il parametro `const int dati[]` e contiene `dati[0] = 5;`. Che cosa succede con `-Wall -Werror`?
 + non compila: assegnamento a una zona in sola lettura
@@ -678,7 +678,7 @@ D: Una funzione ha il parametro `const int dati[]` e contiene `dati[0] = 5;`. Ch
 - compila e modifica l'array del chiamante
 - compila e modifica solo una copia dell'array
 - compila con un avviso
-= `const` è un vincolo controllato dal compilatore: `assignment of read-only location`. La più insidiosa è la quarta: gli array non vengono mai copiati quando si passano.
+= `const` è un vincolo controllato dal compilatore: `assignment of read-only location`. La più insidiosa è «compila e modifica solo una copia dell'array»: gli array non vengono mai copiati quando si passano.
 
 D: Con `char d[4];`, che cosa contiene `d[3]` dopo `strncpy(d, s, 4)`, se `s` è `"ciao"`?
 + il carattere `'o'`: la stringa resta senza terminatore
@@ -686,7 +686,7 @@ D: Con `char d[4];`, che cosa contiene `d[3]` dopo `strncpy(d, s, 4)`, se `s` è
 - il carattere `'a'`
 - non compila mai
 - `strncpy` si ferma a 3 caratteri e mette `'\0'`
-= `strncpy` copia 4 caratteri e il terminatore non ci sta. La più insidiosa è la seconda, che segue alla lettera la slide 59.
+= `strncpy` copia 4 caratteri e il terminatore non ci sta. La più insidiosa è «il terminatore `'\0'`», che segue alla lettera la slide 59.
 
 D: Quale uso di `assert` è sbagliato?
 + controllare che il numero scritto dall'utente sia positivo

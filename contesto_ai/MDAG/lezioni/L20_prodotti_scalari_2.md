@@ -3,6 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L20
 titolo: Prodotti scalari II
+data: 2026-11-24
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L20
 descrizione: >-
@@ -38,7 +39,7 @@ genera_html: true
 - All'esame: norme e angoli con un prodotto scalare dato, la matrice di una forma quadratica, il cambiamento di base. Tutto senza calcolatrice: servono i coseni degli angoli notevoli.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 24/11/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 20. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## La stessa misura in un'altra base (p. 100)
 
@@ -514,7 +515,7 @@ D: La forma quadratica $q(x) = x_1^2 - 4x_1x_2 + 3x_3^2$ si scrive come $q_S(x) 
 - $\begin{pmatrix} 1 & -4 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & -2 & 0 \\ -2 & 3 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 & 0 \\ 2 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$
-= Sulla diagonale i numeri dei quadrati: 1 per $x_1^2$, 0 per $x_2^2$, 3 per $x_3^2$. Il $-4$ di $x_1x_2$ si divide: $-2$ ai posti $(1, 2)$ e $(2, 1)$. La risposta più insidiosa è la seconda, che non dimezza e quindi dà $-8x_1x_2$. La terza dà la forma giusta ma non è simmetrica; la quarta mette il 3 su $x_2^2$; l'ultima ha il segno sbagliato. Simile all'appello dell'08/02/2024, domanda 7.
+= Sulla diagonale i numeri dei quadrati: 1 per $x_1^2$, 0 per $x_2^2$, 3 per $x_3^2$. Il $-4$ di $x_1x_2$ si divide: $-2$ ai posti $(1, 2)$ e $(2, 1)$. La risposta più insidiosa è $\begin{pmatrix} 1 & -4 & 0 \\ -4 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$, che non dimezza e quindi dà $-8x_1x_2$. La risposta $\begin{pmatrix} 1 & -4 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$ dà la forma giusta ma non è simmetrica; la risposta $\begin{pmatrix} 1 & -2 & 0 \\ -2 & 3 & 0 \\ 0 & 0 & 0 \end{pmatrix}$ mette il 3 su $x_2^2$; la risposta $\begin{pmatrix} 1 & 2 & 0 \\ 2 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$ ha il segno sbagliato. Simile all'appello dell'08/02/2024, domanda 7.
 
 D: Quale forma quadratica è definita dalla matrice $S = \begin{pmatrix} 0 & 1 & -1 \\ 1 & 2 & 0 \\ -1 & 0 & 0 \end{pmatrix}$?
 + $2x_2^2 + 2x_1x_2 - 2x_1x_3$
@@ -522,7 +523,7 @@ D: Quale forma quadratica è definita dalla matrice $S = \begin{pmatrix} 0 & 1 &
 - $2x_2^2 + 2x_1x_2 + 2x_1x_3$
 - $x_1^2 + 2x_2^2 + 2x_1x_2 - 2x_1x_3$
 - $2x_2^2 + 4x_1x_2 - 4x_1x_3$
-= Dalla diagonale viene solo $2x_2^2$. Fuori dalla diagonale ogni numero si raddoppia: $2 \cdot 1 \cdot x_1x_2$ e $2 \cdot (-1) \cdot x_1x_3$; il posto $(2, 3)$ ha 0. La risposta più insidiosa è la seconda, di chi dimentica di raddoppiare. L'ultima raddoppia due volte; la terza sbaglia un segno; la quarta inventa un $x_1^2$.
+= Dalla diagonale viene solo $2x_2^2$. Fuori dalla diagonale ogni numero si raddoppia: $2 \cdot 1 \cdot x_1x_2$ e $2 \cdot (-1) \cdot x_1x_3$; il posto $(2, 3)$ ha 0. La risposta più insidiosa è $2x_2^2 + x_1x_2 - x_1x_3$, di chi dimentica di raddoppiare. La risposta $2x_2^2 + 4x_1x_2 - 4x_1x_3$ raddoppia due volte; la risposta $2x_2^2 + 2x_1x_2 + 2x_1x_3$ sbaglia un segno; la risposta $x_1^2 + 2x_2^2 + 2x_1x_2 - 2x_1x_3$ inventa un $x_1^2$.
 
 D: Su $\R^3$ sia $g_S$ il prodotto scalare con $S = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 3 & 1 \\ 0 & 1 & 2 \end{pmatrix}$. Qual è la norma di $v = {}^t(1, 1, 1)$ rispetto a $g_S$?
 + $\sqrt{10}$
@@ -562,7 +563,7 @@ D: Siano $S = [g]_{\mathcal B}$ e $S' = [g]_{\mathcal B'}$ le matrici dello stes
 - $S' = M\,S\,{}^tM$
 - $S' = {}^tM\,S$
 - $S' = S$
-= È la Proposizione 20.1: la casella $(i, j)$ di $S'$ è il prodotto dei vettori nuovi $i$ e $j$, cioè la riga $i$ di ${}^tM$ per $S$ per la colonna $j$ di $M$. La risposta più insidiosa è la seconda, che è la formula delle macchine lineari. La matrice di un prodotto scalare cambia con la base, quindi $S' = S$ è falsa in generale. Serve negli appelli del 10/06/2024 e del 03/06/2026, domanda 4.
+= È la Proposizione 20.1: la casella $(i, j)$ di $S'$ è il prodotto dei vettori nuovi $i$ e $j$, cioè la riga $i$ di ${}^tM$ per $S$ per la colonna $j$ di $M$. La risposta più insidiosa è $S' = M^{-1}S\,M$, che è la formula delle macchine lineari. La matrice di un prodotto scalare cambia con la base, quindi $S' = S$ è falsa in generale. Serve negli appelli del 10/06/2024 e del 03/06/2026, domanda 4.
 
 D: Quale affermazione è vera per ogni coppia di vettori $v, w$ di uno spazio con prodotto scalare definito positivo?
 + $|\langle v, w\rangle| \le \|v\|\,\|w\|$
@@ -570,7 +571,7 @@ D: Quale affermazione è vera per ogni coppia di vettori $v, w$ di uno spazio co
 - $\|v + w\|^2 = \|v\|^2 + \|w\|^2$
 - $\|\lambda v\| = \lambda\,\|v\|$ per ogni $\lambda \in \R$
 - $\langle v, w\rangle \ge 0$
-= È Cauchy–Schwarz. La più insidiosa è la quarta: sembra giusta, ma con un numero negativo darebbe una lunghezza negativa, e serve il valore assoluto. La seconda vale solo per vettori paralleli con lo stesso verso; la terza, Pitagora, solo se il prodotto scalare è zero; l'ultima è falsa con $w = -v$.
+= È Cauchy–Schwarz. La più insidiosa è «$\|\lambda v\| = \lambda\,\|v\|$ per ogni $\lambda \in \R$»: sembra giusta, ma con un numero negativo darebbe una lunghezza negativa, e serve il valore assoluto. La risposta $\|v + w\| = \|v\| + \|w\|$ vale solo per vettori paralleli con lo stesso verso; la risposta $\|v + w\|^2 = \|v\|^2 + \|w\|^2$, Pitagora, solo se il prodotto scalare è zero; la risposta $\langle v, w\rangle \ge 0$ è falsa con $w = -v$.
 
 D: Quanto vale la distanza euclidea tra i punti $P = (1, 2, 3)$ e $Q = (3, 3, 5)$?
 N: 3

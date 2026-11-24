@@ -323,7 +323,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Una donn
 - Una donna non ha ballato con nessun uomo
 - Ogni uomo ha ballato con qualche donna
 - Qualche donna non ha ballato con qualche uomo
-= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è l'ultima, $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo». Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
+= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è «Qualche donna non ha ballato con qualche uomo», $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo». Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Qualche donna ha ballato con qualche uomo»?
 + Nessuna donna ha ballato con nessun uomo
@@ -331,7 +331,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Qualche 
 - Ogni donna non ha ballato con qualche uomo
 - Ogni donna ha ballato con ogni uomo
 - Qualche donna non ha ballato con nessun uomo
-= $\neg\,\exists d\, \exists u\, B \equiv \forall d\, \forall u\, \neg B$: nessuna coppia ha ballato. La risposta più insidiosa è la seconda, che nega solo la frase interna e lascia i due «qualche».
+= $\neg\,\exists d\, \exists u\, B \equiv \forall d\, \forall u\, \neg B$: nessuna coppia ha ballato. La risposta più insidiosa è «Qualche donna non ha ballato con qualche uomo», che nega solo la frase interna e lascia i due «qualche».
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gli uomini hanno ballato con qualche donna»?
 + Qualche uomo non ha ballato con nessuna donna
@@ -339,7 +339,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gl
 - Tutti gli uomini non hanno ballato con qualche donna
 - Qualche donna non ha ballato con nessun uomo
 - Qualche uomo ha ballato con tutte le donne
-= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è la quarta, che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
+= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è «Qualche donna non ha ballato con nessun uomo», che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Ogni donna ha ballato con ogni uomo»?
 + Qualche donna non ha ballato con qualche uomo
@@ -355,7 +355,7 @@ D: Sugli interi, quale frase è vera?
 - $\exists x\, \forall y\,(x \le y)$
 - $\forall x\, \forall y\,(x < y)$
 - $\exists x\, \forall y\,(x \ge y)$
-= Per ogni intero c'è un intero più grande, per esempio $x + 1$. La risposta più insidiosa è la seconda: direbbe che c'è un intero più grande di tutti. La terza e l'ultima chiedono un minimo o un massimo degli interi, che non esistono.
+= Per ogni intero c'è un intero più grande, per esempio $x + 1$. La risposta più insidiosa è $\exists y\, \forall x\,(x < y)$: direbbe che c'è un intero più grande di tutti. La risposta $\exists x\, \forall y\,(x \le y)$ e la risposta $\exists x\, \forall y\,(x \ge y)$ chiedono un minimo o un massimo degli interi, che non esistono.
 
 D: Qual è la negazione di $\forall x\, \exists y\, \forall z\, P(x, y, z)$?
 + $\exists x\, \forall y\, \exists z\, \neg P(x, y, z)$
@@ -363,7 +363,7 @@ D: Qual è la negazione di $\forall x\, \exists y\, \forall z\, P(x, y, z)$?
 - $\forall x\, \exists y\, \forall z\, \neg P(x, y, z)$
 - $\exists z\, \forall y\, \exists x\, \neg P(x, y, z)$
 - $\exists x\, \forall y\, \forall z\, \neg P(x, y, z)$
-= Si gira ogni quantificatore nell'ordine: è la domanda 23 dell'autoverifica del libro. La risposta più insidiosa è la quarta, che gira i quantificatori ma inverte anche l'ordine delle variabili.
+= Si gira ogni quantificatore nell'ordine: è la domanda 23 dell'autoverifica del libro. La risposta più insidiosa è $\exists z\, \forall y\, \exists x\, \neg P(x, y, z)$, che gira i quantificatori ma inverte anche l'ordine delle variabili.
 
 D: Sui numeri reali, chi vince il gioco per $\exists y\, \forall x\,(x + y = 0)$?
 + L'avversario: per qualunque $y$, sceglie un $x$ diverso da $-y$

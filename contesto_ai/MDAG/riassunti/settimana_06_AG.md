@@ -278,7 +278,7 @@ D: Appello del 10/07/2025, domanda 3. Sia $T \colon \R_3[x] \to \R$ la funzione 
 - No, perché $p(7) \neq 0$ per qualche $p(x)$
 + Sì
 - No, perché il polinomio zero non vale 0 in 7
-= Il valore in 7 di una somma è la somma dei valori, e lo stesso per i multipli. È la risposta (d) della soluzione ufficiale. La più insidiosa è la terza: una mappa lineare manda lo zero nello zero, ma può benissimo mandare altri polinomi in numeri diversi da zero.
+= Il valore in 7 di una somma è la somma dei valori, e lo stesso per i multipli. È la risposta (d) della soluzione ufficiale. La più insidiosa è «No, perché $p(7) \neq 0$ per qualche $p(x)$»: una mappa lineare manda lo zero nello zero, ma può benissimo mandare altri polinomi in numeri diversi da zero.
 
 D: Appello del 03/06/2025, domanda 7. Il rango dell'applicazione lineare $T \colon \R^3 \to \R^3$, data da $T(a, b, c) = (a - b,\ b - c,\ c - a)$, è:
 + 2
@@ -302,7 +302,7 @@ D: Appello del 05/02/2026, domanda 7. L'immagine dell'applicazione lineare $T \c
 - $\R_1[x]^\perp$
 + $\Span(1 - x, x^2)$
 - $\{ax^2 + bx + c \in \R_2[x] : a - b = 0\}$
-= L'immagine è generata da $T(1) = 1 - x$, $T(x) = -x^2$ e $T(x^2) = x^2$, cioè da $1 - x$ e $x^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è l'ultima, che descrive una condizione sul polinomio di partenza, non sull'immagine.
+= L'immagine è generata da $T(1) = 1 - x$, $T(x) = -x^2$ e $T(x^2) = x^2$, cioè da $1 - x$ e $x^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è $\{ax^2 + bx + c \in \R_2[x] : a - b = 0\}$, che descrive una condizione sul polinomio di partenza, non sull'immagine.
 ```
 
 ## Fonti

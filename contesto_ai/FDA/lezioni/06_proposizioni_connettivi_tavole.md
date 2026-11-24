@@ -490,7 +490,7 @@ D: Quale di queste frasi è una proposizione?
 - «Studia il capitolo 1.»
 - «$x$ è un numero pari.»
 - «Speriamo che il concerto cominci presto!»
-= Una proposizione è vera o falsa: la prima lo è, ed è vera. La risposta più insidiosa è «$x$ è un numero pari»: sembra una frase di matematica, ma finché non sai chi è $x$ non è né vera né falsa. Una domanda, un ordine e un augurio non sono proposizioni.
+= Una proposizione è vera o falsa: «Il 2 è l'unico numero primo pari» lo è, ed è vera. La risposta più insidiosa è «$x$ è un numero pari»: sembra una frase di matematica, ma finché non sai chi è $x$ non è né vera né falsa. Una domanda, un ordine e un augurio non sono proposizioni.
 
 D: Con $p$ falsa e $q$ vera, quale formula è vera?
 + $p \vee q$
@@ -530,7 +530,7 @@ D: Qual è la negazione di «Tutti gli spettatori hanno il biglietto»?
 - «Tutti gli spettatori non hanno il biglietto.»
 - «Almeno uno spettatore ha il biglietto.»
 - «Qualche spettatore ha due biglietti.»
-= La negazione deve essere vera in tutti i casi in cui la frase è falsa: basta uno senza biglietto. La risposta più insidiosa è «Nessuno spettatore ha il biglietto»: è l'opposto, ma resta falsa quando metà degli spettatori ha il biglietto e metà no. La terza dice la stessa cosa della seconda.
+= La negazione deve essere vera in tutti i casi in cui la frase è falsa: basta uno senza biglietto. La risposta più insidiosa è «Nessuno spettatore ha il biglietto»: è l'opposto, ma resta falsa quando metà degli spettatori ha il biglietto e metà no. La risposta «Tutti gli spettatori non hanno il biglietto.» dice la stessa cosa.
 
 D: Quale formula traduce «Non ho né contanti né la carta», con $p$: «ho contanti» e $q$: «ho la carta»?
 + $\neg p \wedge \neg q$

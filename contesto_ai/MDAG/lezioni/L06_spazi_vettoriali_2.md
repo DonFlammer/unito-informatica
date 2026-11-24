@@ -728,7 +728,7 @@ D: Appello del 15/01/2026, domanda 7. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) =
 - $U = \Span(e, f)$
 + $U = \Span(c, e, f)$
 - $U = \Span(c, d, e, f)$
-= Con $p(x) = qx^3 + rx^2 + sx + t$ la condizione $p(1) = p(-1)$ diventa $q + s = 0$. Quindi $U$ è fatto dei polinomi $q(x^3 - x) + rx^2 + t$, cioè $U = \Span(x^3 - x,\ x^2,\ 1)$. Anche $\Span(c, e, f)$ è questo, perché $x^2 = \frac{e + f}2$ e $1 = \frac{f - e}2$: è la (d) della soluzione ufficiale. (a), (b) ed (e) escono da $U$, perché $a(1) = 0$ ma $a(-1) = -2$, e $d(1) = 2$ ma $d(-1) = -2$. La risposta più insidiosa è la (c): $e$ e $f$ stanno in $U$, ma le loro combinazioni hanno grado al massimo 2 e manca $x^3 - x$.
+= Con $p(x) = qx^3 + rx^2 + sx + t$ la condizione $p(1) = p(-1)$ diventa $q + s = 0$. Quindi $U$ è fatto dei polinomi $q(x^3 - x) + rx^2 + t$, cioè $U = \Span(x^3 - x,\ x^2,\ 1)$. Anche $\Span(c, e, f)$ è questo, perché $x^2 = \frac{e + f}2$ e $1 = \frac{f - e}2$: è la (d) della soluzione ufficiale. Le risposte che contengono $a$ oppure $d$ escono da $U$, perché $a(1) = 0$ ma $a(-1) = -2$, e $d(1) = 2$ ma $d(-1) = -2$. La risposta più insidiosa è $\Span(e, f)$: $e$ e $f$ stanno in $U$, ma le loro combinazioni hanno grado al massimo 2 e manca $x^3 - x$.
 
 D: Appello del 24/01/2024, domanda 1. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) = x + 2$, $c(x) = 2x^2 - 2$, $d(x) = x^2 - x$, $e(x) = 2x^3 + 1$, $f(x) = x^3 - x^2$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale:
 - $U = \Span(a, c)$
@@ -736,7 +736,7 @@ D: Appello del 24/01/2024, domanda 1. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) =
 - $U = \Span(c, d, e, f)$
 - $U = \Span(b, e, f)$
 - $U = \Span(a, c, d)$
-= È la (b) della soluzione ufficiale; lo svolgimento completo è in «Verso l'esame». La (c) e la (d) contengono $e$ o $b$, che in 1 valgono 3. La (a) e la (e) hanno solo generatori di grado al massimo 2, mentre $U$ contiene $x^3 - 1$. La risposta più insidiosa è la (e): $a$, $c$, $d$ stanno tutti in $U$, ma non bastano per i polinomi di grado 3.
+= È la (b) della soluzione ufficiale; lo svolgimento completo è in «Verso l'esame». Le risposte che contengono $e$ oppure $b$ escono da $U$, perché in 1 valgono 3. $\Span(a, c)$ e $\Span(a, c, d)$ hanno solo generatori di grado al massimo 2, mentre $U$ contiene $x^3 - 1$. La risposta più insidiosa è $\Span(a, c, d)$: $a$, $c$, $d$ stanno tutti in $U$, ma non bastano per i polinomi di grado 3.
 
 D: Appello del 03/06/2025, domanda 2. Quale dei seguenti insiemi è un sottospazio vettoriale di $\R^3$?
 - $\{(x, y, z) \in \R^3 \mid x^2 - 2x + 1 = 0\}$
@@ -744,7 +744,7 @@ D: Appello del 03/06/2025, domanda 2. Quale dei seguenti insiemi è un sottospaz
 - $\{(x, y, z) \in \R^3 \mid -x + 7y + z = 5\}$
 + $\{(x, y, z) \in \R^3 \mid x + \frac y2 - 5\pi z = 0\}$
 - $\{(x, y, z) \in \R^3 \mid x + 3iy + 5z = 0\}$
-= La (d) è un'equazione lineare a coefficienti reali senza termine noto: è la risposta della soluzione ufficiale. La (a) è $(x - 1)^2 = 0$, cioè $x = 1$; la (b) e la (c) hanno un termine noto diverso da zero: nessuna delle tre contiene l'origine. La risposta più insidiosa è la (e), che la soluzione scarta perché ha un coefficiente non reale. A rigore, per punti reali equivale a $x + 5z = 0$ e $y = 0$, una retta per l'origine; ma la risposta attesa è la (d).
+= $x + \frac y2 - 5\pi z = 0$ è un'equazione lineare a coefficienti reali senza termine noto: è la risposta della soluzione ufficiale. $x^2 - 2x + 1 = 0$ è $(x - 1)^2 = 0$, cioè $x = 1$; le equazioni con 7 e con 5 hanno un termine noto diverso da zero: nessuna delle tre contiene l'origine. La risposta più insidiosa è quella con $3iy$, che la soluzione scarta perché ha un coefficiente non reale. A rigore, per punti reali equivale a $x + 5z = 0$ e $y = 0$, una retta per l'origine; ma la risposta attesa resta quella con coefficienti reali e senza termine noto.
 
 D: Quale di questi insiemi **non** è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(2) = 0\}$
@@ -760,7 +760,7 @@ D: Quale di questi insiemi è un sottospazio vettoriale di $\R^3$?
 - $\{(x, y, z) \mid xyz = 0\}$
 - $\{(x, y, z) \mid x \ge 0\}$
 - $\{(x, y, z) \mid x = y^2\}$
-= La prima è un'equazione con le lettere alla prima potenza e senza termine noto: se due punti la rispettano, la rispettano anche la somma e i multipli. Per le altre basta un esempio che non funziona: l'origine non rispetta $x + y + z = 1$; $(1, 1, 0)$ e $(0, 0, 1)$ hanno prodotto delle coordinate zero, ma la loro somma $(1, 1, 1)$ no; $(1, 0, 0)$ ha $x \ge 0$, ma moltiplicato per $-1$ no. La risposta più insidiosa è $x = y^2$, che contiene l'origine: però $(1, 1, 0)$ la rispetta e il suo doppio $(2, 2, 0)$ no, perché $2$ non è $4$. Simile all'appello del 03/06/2025, domanda 2.
+= $x - 2y + 3z = 0$ è un'equazione con le lettere alla prima potenza e senza termine noto: se due punti la rispettano, la rispettano anche la somma e i multipli. Per le altre basta un esempio che non funziona: l'origine non rispetta $x + y + z = 1$; $(1, 1, 0)$ e $(0, 0, 1)$ hanno prodotto delle coordinate zero, ma la loro somma $(1, 1, 1)$ no; $(1, 0, 0)$ ha $x \ge 0$, ma moltiplicato per $-1$ no. La risposta più insidiosa è $x = y^2$, che contiene l'origine: però $(1, 1, 0)$ la rispetta e il suo doppio $(2, 2, 0)$ no, perché $2$ non è $4$. Simile all'appello del 03/06/2025, domanda 2.
 
 D: La matrice $\begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix}$ è:
 + antisimmetrica, e di nessuna delle altre quattro classi
@@ -792,7 +792,7 @@ D: L'insieme delle matrici $A \in M(2, \R)$ con $a_{11} = 1$ è:
 + non un sottospazio: per esempio non contiene la matrice nulla
 - un sottospazio, perché è chiuso rispetto al prodotto per scalare
 - uguale a tutto $M(2, \R)$
-= Si fa il controllo dello zero: la matrice nulla ha la prima casella uguale a 0, non a 1, quindi non c'è. La risposta più insidiosa è la prima: l'equazione $a_{11} = 1$ è lineare, ma ha un termine noto diverso da zero, e allora lo zero manca. Contenere l'identità non basta; e l'insieme non è nemmeno chiuso rispetto ai multipli, perché $2A$ ha la prima casella uguale a 2. Simile all'appello del 10/07/2024, domanda 2 ($O(2)$ non è un sottospazio perché non contiene la matrice nulla).
+= Si fa il controllo dello zero: la matrice nulla ha la prima casella uguale a 0, non a 1, quindi non c'è. La risposta più insidiosa è «un sottospazio, perché è definito da un'equazione lineare»: l'equazione $a_{11} = 1$ è lineare, ma ha un termine noto diverso da zero, e allora lo zero manca. Contenere l'identità non basta; e l'insieme non è nemmeno chiuso rispetto ai multipli, perché $2A$ ha la prima casella uguale a 2. Simile all'appello del 10/07/2024, domanda 2 ($O(2)$ non è un sottospazio perché non contiene la matrice nulla).
 
 D: Per quale valore di $k$ il vettore $(1, k, 3)$ appartiene a $\Span\big((1, 0, 1),\ (0, 1, 1)\big)$?
 N: 2

@@ -106,6 +106,10 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - lun 09/11: fine del capitolo 2.2: altri 4 esempi, ancora prove per contraddizione. Omessi l'esempio 2.2.8 e gli esempi dal 2.2.10 in poi; omesso il capitolo 2.3 (risoluzione). Negli appunti è la lezione 17: contrapposizione, casi ed equivalenze.
 - gio 12/11: capitolo 2.4, induzione. Esempio 2.4.8: invariante di ciclo per il fattoriale, svolto sia informalmente sia come quiz. Omessi l'equazione 2.4.4 (somma dei primi n interi positivi) e gli esempi 2.4.4 e 2.4.6 (somma di potenze, numero di elementi dell'insieme delle parti). Negli appunti è la lezione 18, scritta prima della lezione.
 - ven 13/11: invariante del ciclo che calcola la potenza (ris = a^i, i <= n) e correttezza del risultato; capitolo 2.5, induzione in forma forte; esempio 2.5.1 (francobolli da 2 e 5 centesimi); esempio 2.5.4 (n − 1 prodotti per n fattori); esercizio 39 a pagina 98 (forma a L ricoperta di tromini). Negli appunti è la lezione 19, scritta prima della lezione.
+- lun 16/11: esercizi su invarianti: la potenza veloce, svolta informalmente e come quiz. Negli appunti è la lezione 20.
+- gio 19/11: invariante di ciclo per la ricerca degli 0 in un vettore e per la somma di un vettore. Negli appunti è la lezione 21.
+- ven 20/11: ripasso delle funzioni (funzioni come relazioni, funzioni iniettive, suriettive, biiettive, funzione inversa); esercizio su funzione caratteristica e unione (Problem Solving Corner del capitolo 3.1); sezione 3.2, sequenze, esempi dal 3.2.1 al 3.2.19 (omessi 3.2.20, 21 e 22); stringhe, dalla definizione 3.2.23 all'esempio 3.2.25 (lunghezza di una stringa); esercizi 5–9 di pagina 137. Negli appunti è la lezione 22.
+- lun 23/11: lezione svolta; non ho ancora il diario, quindi negli appunti manca.
 
 ## Materiale
 

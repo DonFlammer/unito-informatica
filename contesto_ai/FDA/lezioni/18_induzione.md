@@ -398,7 +398,7 @@ D: Simulazione 2 del 2023/24, quiz 7. Nel frammento `i = 1; s = 0; while (i < n)
 - `s == 1 + … + n`
 - `i == n`
 - `i < n`
-= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Nella simulazione è invariante anche `i >= 1`. La più insidiosa è la seconda: prima del ciclo direbbe $0 = 1$.
+= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Nella simulazione è invariante anche `i >= 1`. La più insidiosa è `s == 1 + … + i`: prima del ciclo direbbe $0 = 1$.
 
 D: Che cosa si suppone nel passo induttivo di una dimostrazione di «$S(n)$ per ogni $n \ge 1$»?
 + che $S(n)$ sia vera per un $n$ generico
@@ -406,7 +406,7 @@ D: Che cosa si suppone nel passo induttivo di una dimostrazione di «$S(n)$ per 
 - che $S(n + 1)$ sia vera
 - che $S(1)$ sia falsa
 - niente: si dimostra $S(n + 1)$ da zero
-= È l'ipotesi induttiva. La più insidiosa è la seconda: supporre $S(n)$ per ogni $n$ vuol dire supporre la conclusione.
+= È l'ipotesi induttiva. La più insidiosa è «che $S(n)$ sia vera per ogni $n$»: supporre $S(n)$ per ogni $n$ vuol dire supporre la conclusione.
 
 D: Si dimostrano $S(4)$ e, per ogni $n \ge 4$, «se $S(n)$ allora $S(n + 1)$». Che cosa si può concludere?
 + $S(n)$ è vera per ogni $n \ge 4$
@@ -414,7 +414,7 @@ D: Si dimostrano $S(4)$ e, per ogni $n \ge 4$, «se $S(n)$ allora $S(n + 1)$». 
 - $S(n)$ è vera solo per $n = 4$ e $n = 5$
 - niente, perché la base deve essere $S(1)$
 - $S(n)$ è falsa per $n < 4$
-= La fila di tessere comincia da 4. La più insidiosa è l'ultima: sui casi prima della base il principio non dice niente, né vero né falso.
+= La fila di tessere comincia da 4. La più insidiosa è «$S(n)$ è falsa per $n < 4$»: sui casi prima della base il principio non dice niente, né vero né falso.
 
 D: Nel passo induttivo di «$5^n - 1$ è divisibile per 4», quale riscrittura fa comparire il caso $n$?
 + $5^{n+1} - 1 = 5 \cdot (5^n - 1) + 4$
@@ -422,7 +422,7 @@ D: Nel passo induttivo di «$5^n - 1$ è divisibile per 4», quale riscrittura f
 - $5^{n+1} - 1 = (5^n - 1) + 5$
 - $5^{n+1} - 1 = 5 \cdot (5^n - 1)$
 - $5^{n+1} - 1 = 4 \cdot 5^n$
-= Sviluppando: $5^{n+1} - 5 + 4$. La più insidiosa è la quarta, che dimentica il $+4$: $5 \cdot (5^n - 1)$ fa $5^{n+1} - 5$.
+= Sviluppando: $5^{n+1} - 5 + 4$. La più insidiosa è $5^{n+1} - 1 = 5 \cdot (5^n - 1)$, che dimentica il $+4$: $5 \cdot (5^n - 1)$ fa $5^{n+1} - 5$.
 
 D: Nel ciclo del fattoriale `i = 1; fact = 1; while (i < n) { i = i + 1; fact = fact * i; }`, con `n = 5`, quanto vale `fact` dopo 2 giri?
 N: 6

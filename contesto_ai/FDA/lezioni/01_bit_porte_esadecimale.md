@@ -655,7 +655,7 @@ D: Il flip-flop della figura 1.3 ha uscita 1. Arriva un impulso sull'ingresso in
 - $0$, perché ogni impulso scambia l'uscita.
 - Dipende da quanto è durato l'impulso.
 - Non si può sapere senza conoscere l'ingresso in basso.
-= L'uscita valeva già 1. Durante l'impulso l'OR riceve 1, il NOT dà 1 perché l'ingresso in basso vale 0, e l'AND dà 1. Quando l'impulso finisce, l'OR riceve ancora l'uscita, che vale 1, e l'uscita resta 1. La prima risposta è la più tentatrice: varrebbe per una porta normale, che non ricorda, ma non per un flip-flop. L'ingresso in basso è fermo a 0, come in tutti gli esempi del libro.
+= L'uscita valeva già 1. Durante l'impulso l'OR riceve 1, il NOT dà 1 perché l'ingresso in basso vale 0, e l'AND dà 1. Quando l'impulso finisce, l'OR riceve ancora l'uscita, che vale 1, e l'uscita resta 1. La risposta «$0$, perché l'ingresso in alto è tornato a 0» è la più tentatrice: varrebbe per una porta normale, che non ricorda, ma non per un flip-flop. L'ingresso in basso è fermo a 0, come in tutti gli esempi del libro.
 
 D: Come si scrive in notazione esadecimale la fila di bit 11010011?
 - $\text{C}3$
@@ -691,7 +691,7 @@ D: Le celle 2 e 3 contengono due valori diversi. Quale sequenza di passi scambia
 + Copia la cella 2 nella 1, poi la cella 3 nella 2, poi la cella 1 nella 3.
 - Copia la cella 2 nella 1, poi la cella 1 nella 3, poi la cella 3 nella 2.
 - Non si può fare: copiare una cella cancella sempre quella di partenza.
-= Serve una cella di appoggio, qui la 1. Si mette da parte il valore della cella 2, poi si copia la 3 nella 2, infine si porta nella 3 il valore messo da parte. Le prime due risposte perdono un valore al primo passo: alla fine le due celle contengono lo stesso valore. La quarta copia nella 3 il valore della 2 prima di aver salvato quello della 3, che va perso. L'ultima è falsa: copiare legge la cella di partenza senza cambiarla.
+= Serve una cella di appoggio, qui la 1. Si mette da parte il valore della cella 2, poi si copia la 3 nella 2, infine si porta nella 3 il valore messo da parte. Le risposte «Copia la cella 2 nella 3, poi copia la cella 3 nella 2» e «Copia la cella 3 nella 2, poi copia la cella 2 nella 3» perdono un valore al primo passo: alla fine le due celle contengono lo stesso valore. La risposta «Copia la cella 2 nella 1, poi la cella 1 nella 3, poi la cella 3 nella 2» copia nella 3 il valore della 2 prima di aver salvato quello della 3, che va perso. La risposta «Non si può fare: copiare una cella cancella sempre quella di partenza» è falsa: copiare legge la cella di partenza senza cambiarla.
 
 D: Un disco magnetico deve leggere un settore che sta su un'altra traccia. Che cosa si somma per avere il tempo di accesso?
 + Il tempo di ricerca e il ritardo di rotazione.

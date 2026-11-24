@@ -730,7 +730,7 @@ D: Una funzione deve leggere una sequenza e restituire al chiamante somma, massi
 - `bool leggi(int somma, int massimo)`
 - `void leggi(void)`
 - `int, int, bool leggi(void)`
-= I risultati sono tre: uno torna con la `return`, gli altri due attraverso puntatori. La più insidiosa è la terza: con parametri `int` la funzione riceve copie, e le variabili del chiamante non cambiano.
+= I risultati sono tre: uno torna con la `return`, gli altri due attraverso puntatori. La più insidiosa è `bool leggi(int somma, int massimo)`: con parametri `int` la funzione riceve copie, e le variabili del chiamante non cambiano.
 
 D: Dentro `void fn(int dati[])`, chiamata con un array di 10 `int`, quanto vale `sizeof(dati)` su questo PC a 64 bit?
 + 8
@@ -754,7 +754,7 @@ D: Nella funzione `bool muovi_giocatore(int dado, int *pos)`, quale istruzione f
 - `&pos += dado;`
 - `pos = dado;`
 - `return pos + dado;`
-= Con l'asterisco si modifica la variabile del chiamante. La più insidiosa è la seconda: `pos += dado` sposta il puntatore, non il giocatore, e compila.
+= Con l'asterisco si modifica la variabile del chiamante. La più insidiosa è `pos += dado;`: `pos += dado` sposta il puntatore, non il giocatore, e compila.
 
 D: Perché a `esistono_vocali(const char *s)` non serve la lunghezza della stringa?
 + perché la stringa finisce con il terminatore, e il ciclo si ferma lì
@@ -762,7 +762,7 @@ D: Perché a `esistono_vocali(const char *s)` non serve la lunghezza della strin
 - perché le stringhe hanno sempre 100 caratteri
 - perché `const` contiene la lunghezza
 - perché `scanf` la salva in una variabile globale
-= La fine di una stringa è segnata da `'\0'`. La più insidiosa è la seconda: `sizeof(s)` è la dimensione del puntatore, 8.
+= La fine di una stringa è segnata da `'\0'`. La più insidiosa è «perché `sizeof(s)` dà la lunghezza»: `sizeof(s)` è la dimensione del puntatore, 8.
 
 D: Quante volte gira il ciclo di `palindroma` sulla parola `anna`?
 N: 2
@@ -774,7 +774,7 @@ D: `cambio_taglio(45, 20)` che cosa stampa e che cosa restituisce?
 - stampa `5 da 20 cent` e restituisce 2
 - non stampa niente e restituisce 45
 - stampa `2 da 20 cent` e restituisce 40
-= 45 / 20 fa 2 tra interi, e restano 45 − 40 = 5. La più insidiosa è la seconda: la funzione restituisce il resto, non il numero di monete.
+= 45 / 20 fa 2 tra interi, e restano 45 − 40 = 5. La più insidiosa è «stampa `2 da 20 cent` e restituisce 2»: la funzione restituisce il resto, non il numero di monete.
 
 D: Quale intestazione promette di non modificare l'array ricevuto?
 + `size_t conta(const int *a, size_t n)`
@@ -782,7 +782,7 @@ D: Quale intestazione promette di non modificare l'array ricevuto?
 - `size_t conta(int a[], const size_t n)`
 - `const size_t conta(int *a, size_t n)`
 - `size_t conta(int *const a, size_t n)`
-= `const int *a` vuol dire «puntatore a interi che non cambio». La più insidiosa è l'ultima: `int *const a` blocca il puntatore, non i dati.
+= `const int *a` vuol dire «puntatore a interi che non cambio». La più insidiosa è `size_t conta(int *const a, size_t n)`: `int *const a` blocca il puntatore, non i dati.
 ```
 
 ## Esercizi

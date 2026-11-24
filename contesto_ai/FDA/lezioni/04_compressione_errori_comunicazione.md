@@ -767,7 +767,7 @@ D: Il codice ASCII di C è 01000011. Che cosa si spedisce con il bit di parità 
 - 010000110
 - 010000111
 - 01000011
-= Il byte ha tre 1, già un numero dispari: il bit di parità è 0, e si mette davanti. Si spedisce 001000011. La risposta 101000011 usa la parità pari, perché porta gli 1 a quattro. Le risposte 010000110 e 010000111 mettono il bit in fondo invece che a sinistra. L'ultima dimentica il bit di parità.
+= Il byte ha tre 1, già un numero dispari: il bit di parità è 0, e si mette davanti. Si spedisce 001000011. La risposta 101000011 usa la parità pari, perché porta gli 1 a quattro. Le risposte 010000110 e 010000111 mettono il bit in fondo invece che a sinistra. La risposta «01000011» dimentica il bit di parità.
 
 D: Con il codice del libro (A 000000, B 001111, C 010011, D 011100, E 100110, F 101001, G 110101, H 111010) arriva 101011. Come si decodifica?
 - A
@@ -799,7 +799,7 @@ D: Quale caratteristica dell'occhio sfrutta lo standard di base di JPEG?
 - L'occhio vede solo 256 colori.
 - L'occhio non nota i fotogrammi che cambiano poco.
 - L'occhio vede meglio i colori della luminosità.
-= È la domanda 5 del §1.9. JPEG tiene la luminosità di ogni pixel e solo la media del colore, perché l'occhio è più sensibile alla luminosità. L'ultima risposta dice il contrario. I 256 colori sono di GIF, i fotogrammi di MPEG. I blocchi di 8 × 8 sono un passo del procedimento, non un limite dell'occhio.
+= È la domanda 5 del §1.9. JPEG tiene la luminosità di ogni pixel e solo la media del colore, perché l'occhio è più sensibile alla luminosità. La risposta «L'occhio vede meglio i colori della luminosità» dice il contrario. I 256 colori sono di GIF, i fotogrammi di MPEG. I blocchi di 8 × 8 sono un passo del procedimento, non un limite dell'occhio.
 
 D: Che cosa sfrutta MP3?
 - Il fatto che l'orecchio non sente i suoni sopra i 128 000 bit al secondo.
@@ -823,7 +823,7 @@ D: Con LZW come nel libro, partendo da x = 1, y = 2, spazio = 3, come si comprim
 - 113213434
 - 1121345
 - 445566
-= La parola xx è nuova: si scrive 1 1, poi lo spazio 3, e xx diventa la voce 4. Anche yx è nuova: 2 1, poi 3, e yx diventa la voce 5. Poi xx è già la 4, poi 3, poi yx è già la 5. Il risultato è 113213435. La prima risposta non usa il dizionario. La terza scrive 4 anche al posto di yx. Le ultime due saltano gli spazi o le parole nuove.
+= La parola xx è nuova: si scrive 1 1, poi lo spazio 3, e xx diventa la voce 4. Anche yx è nuova: 2 1, poi 3, e yx diventa la voce 5. Poi xx è già la 4, poi 3, poi yx è già la 5. Il risultato è 113213435. La risposta «113213113» non usa il dizionario. La risposta «113213434» scrive 4 anche al posto di yx. Le risposte «1121345» e «445566» saltano gli spazi o le parole nuove.
 
 D: Con un codice di Huffman, quanti bit occupa la parola BANANA?
 - $6$

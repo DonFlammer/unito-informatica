@@ -374,7 +374,7 @@ D: Che cosa si suppone in una dimostrazione per assurdo di «se $P$ allora $Q$»
 - solo $Q$ falsa, senza usare $P$
 - $Q$ vera, per vedere se segue $P$
 - $P$ e $Q$ tutte e due false
-= È la domanda di ripasso 1 del §2.2: le ipotesi vere e la conclusione falsa. La risposta più insidiosa è la terza, che è la contrapposizione: lì si suppone solo non $Q$ e si deve arrivare a non $P$.
+= È la domanda di ripasso 1 del §2.2: le ipotesi vere e la conclusione falsa. La risposta più insidiosa è «solo $Q$ falsa, senza usare $P$», che è la contrapposizione: lì si suppone solo non $Q$ e si deve arrivare a non $P$.
 
 D: Qual è il contrario di «$x \ge 1$ oppure $y \ge 1$», da supporre in una dimostrazione per assurdo?
 + $x < 1$ e $y < 1$
@@ -382,7 +382,7 @@ D: Qual è il contrario di «$x \ge 1$ oppure $y \ge 1$», da supporre in una di
 - $x \le 1$ e $y \le 1$
 - $x \le -1$ e $y \le -1$
 - $x + y < 2$
-= De Morgan: la negazione di un «oppure» è un «e» delle negazioni, e la negazione di $\ge$ è $<$. La risposta più insidiosa è la seconda: nega le due parti ma dimentica di cambiare il connettivo.
+= De Morgan: la negazione di un «oppure» è un «e» delle negazioni, e la negazione di $\ge$ è $<$. La risposta più insidiosa è «$x < 1$ oppure $y < 1$»: nega le due parti ma dimentica di cambiare il connettivo.
 
 D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, a che cosa serve supporre la frazione $\frac{p}{q}$ ridotta ai minimi termini?
 + a ottenere la contraddizione, quando si scopre che $p$ e $q$ sono tutti e due pari
@@ -390,7 +390,7 @@ D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, a che cosa serve supporre 
 - a far sì che $p$ sia dispari
 - a poter elevare al quadrato
 - non serve, è una precisione di stile
-= La contraddizione è proprio «ridotta» contro «$p$ e $q$ pari». La risposta più insidiosa è la terza: «ridotta» vuol dire che $p$ e $q$ non sono **tutti e due** pari, non che $p$ è dispari.
+= La contraddizione è proprio «ridotta» contro «$p$ e $q$ pari». La risposta più insidiosa è «a far sì che $p$ sia dispari»: «ridotta» vuol dire che $p$ e $q$ non sono **tutti e due** pari, non che $p$ è dispari.
 
 D: Qual è il contrario di «per ogni $i$, $s_i > A$»?
 + esiste un $i$ con $s_i \le A$
@@ -398,7 +398,7 @@ D: Qual è il contrario di «per ogni $i$, $s_i > A$»?
 - esiste un $i$ con $s_i < A$
 - per ogni $i$, $s_i < A$
 - nessun $s_i$ è maggiore di $A$
-= Il «per ogni» diventa «esiste», e $>$ diventa $\le$. La risposta più insidiosa è la terza, che dimentica il caso $s_i = A$.
+= Il «per ogni» diventa «esiste», e $>$ diventa $\le$. La risposta più insidiosa è «esiste un $i$ con $s_i < A$», che dimentica il caso $s_i = A$.
 
 D: Una dimostrazione suppone «$n^2$ pari e $n$ dispari» e arriva a «$n^2$ dispari». Che cosa ha dimostrato?
 + se $n^2$ è pari allora $n$ è pari
@@ -406,7 +406,7 @@ D: Una dimostrazione suppone «$n^2$ pari e $n$ dispari» e arriva a «$n^2$ dis
 - se $n^2$ è dispari allora $n$ è dispari
 - che non esistono interi dispari
 - niente, perché non ha usato l'ipotesi
-= È l'esempio 2.2.1: «$n^2$ dispari» contraddice l'ipotesi «$n^2$ pari». La risposta più insidiosa è la terza, che è un'altra frase vera (esercizio 4) ma non è quella dimostrata.
+= È l'esempio 2.2.1: «$n^2$ dispari» contraddice l'ipotesi «$n^2$ pari». La risposta più insidiosa è «se $n^2$ è dispari allora $n$ è dispari», che è un'altra frase vera (esercizio 4) ma non è quella dimostrata.
 
 D: Quale frase si dimostra meglio per assurdo che in modo diretto?
 + $(X - Y) \cap (Y - X) = \varnothing$
@@ -422,7 +422,7 @@ D: Che differenza c'è tra dimostrazione diretta e per assurdo, secondo l'autove
 - la diretta vale solo per i numeri, quella per assurdo per gli insiemi
 - quella per assurdo non ha ipotesi
 - non c'è differenza: sono due nomi dello stesso metodo
-= È la risposta ufficiale alla domanda 2. La risposta più insidiosa è la quarta: per assurdo si usano sia le ipotesi sia la negazione della tesi.
+= È la risposta ufficiale alla domanda 2. La risposta più insidiosa è «quella per assurdo non ha ipotesi»: per assurdo si usano sia le ipotesi sia la negazione della tesi.
 ```
 
 ## Esercizi

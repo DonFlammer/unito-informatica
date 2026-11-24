@@ -201,7 +201,7 @@ D: Simulazioni d'esame 1 (domanda 2) e 2 (domanda 1), 2023/24. Il numero 3,625 n
 + In virgola fissa è 11.101; in virgola mobile è 01101110, e c'è troncamento solo in virgola mobile.
 - In virgola fissa è 111.01, e c'è troncamento in tutte e due.
 - In virgola mobile è 01101110, senza troncamento.
-= 3,625 = 11,101. Spostando la virgola di due posti a sinistra viene 0,11101: esponente 2, cioè 110 in eccesso 4, e cinque cifre. La mantissa tiene 1110 e perde l'ultimo 1: il byte 01101110 vale 3,5, quindi c'è troncamento. La risposta più insidiosa è l'ultima: il byte è giusto, ma il troncamento c'è.
+= 3,625 = 11,101. Spostando la virgola di due posti a sinistra viene 0,11101: esponente 2, cioè 110 in eccesso 4, e cinque cifre. La mantissa tiene 1110 e perde l'ultimo 1: il byte 01101110 vale 3,5, quindi c'è troncamento. La risposta più insidiosa è «In virgola mobile è 01101110, senza troncamento»: il byte è giusto, ma il troncamento c'è.
 
 D: Simulazione d'esame 2, 2023/24, domanda 8. Quanto vale 10000001 in complemento a 2 su 8 bit?
 - $-1$
@@ -217,7 +217,7 @@ D: Simulazione d'esame 2, 2023/24, domanda 8. Quale riga dà i valori giusti di 
 - $-1$, $-85$, $-15$
 - $-127$, $85$, $15$
 - $-1$, $-43$, $15$
-= 11111111 vale $-128 + 127 = -1$. Gli altri due cominciano con 0, quindi si leggono come senza segno: 85 e 15. La risposta più insidiosa è la prima: legge tutto senza segno. $-127$ sarebbe 10000001.
+= 11111111 vale $-128 + 127 = -1$. Gli altri due cominciano con 0, quindi si leggono come senza segno: 85 e 15. La risposta più insidiosa è «$255$, $85$, $15$»: legge tutto senza segno. $-127$ sarebbe 10000001.
 ```
 
 ## Fonti

@@ -1096,7 +1096,7 @@ D: Sei in `C:\Users\jon_snow\Documenti`. In quale cartella arriva il percorso `.
 + `C:\Users`
 - `C:\`
 - `C:\Users\jon_snow\Documenti\..\..`
-= Ogni `..` sale di un gradino nell'albero. Il primo porta da Documenti a jon_snow, il secondo da jon_snow a Users. Con un solo `..` saresti in jon_snow; per arrivare alla radice C:\ ne servono tre. L'ultima risposta è il percorso scritto per intero, non la cartella in cui arriva.
+= Ogni `..` sale di un gradino nell'albero. Il primo porta da Documenti a jon_snow, il secondo da jon_snow a Users. Con un solo `..` saresti in jon_snow; per arrivare alla radice C:\ ne servono tre. La risposta `C:\Users\jon_snow\Documenti\..\..` è il percorso scritto per intero, non la cartella in cui arriva.
 
 D: Su Linux scrivi `rmdir PROVA`, e `PROVA` contiene un file. Che cosa succede?
 - PROVA viene cancellata con il file dentro.
@@ -1144,7 +1144,7 @@ D: Che cosa stampa `echo 7 | ./scrivi_intero`, con il programma della slide 48?
 - `Hai scritto: 7`
 - `7`
 - Il programma resta fermo ad aspettare il numero.
-= Il programma stampa la domanda senza andare a capo. Il 7 arriva dalla pipe, non dalla tastiera, quindi non viene scritto sul terminale e `Hai scritto: 7` segue la domanda sulla stessa riga. La prima risposta è quello che vedi scrivendo 7 a mano. La domanda viene stampata comunque, prima della lettura. Il programma non aspetta, perché il numero è già arrivato.
+= Il programma stampa la domanda senza andare a capo. Il 7 arriva dalla pipe, non dalla tastiera, quindi non viene scritto sul terminale e `Hai scritto: 7` segue la domanda sulla stessa riga. La risposta «`Scrivi un numero intero: 7`, poi a capo `Hai scritto: 7`» è quello che vedi scrivendo 7 a mano. La domanda viene stampata comunque, prima della lettura. Il programma non aspetta, perché il numero è già arrivato.
 
 D: Quale riga legge correttamente un intero nella variabile `n`?
 - `scanf("%d", n);`

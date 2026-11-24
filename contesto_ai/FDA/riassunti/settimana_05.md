@@ -198,7 +198,7 @@ D: Simulazione d'esame 2 del 2023/24, domanda 2, con le voci in forma di scelta.
 - le algebre booleane sono definite solo su insiemi con esattamente due elementi
 - $x + x = 1$ vale in tutte le algebre booleane
 - $x \cdot x' = 1$ vale in tutte le algebre booleane
-= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è la seconda, che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0.
+= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è «$x + (y \cdot z) = (x \cdot y) + (x \cdot z)$ vale in tutte le algebre booleane», che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0.
 
 D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \wedge A) \vee (\neg C \wedge B)$. Quale formula ha la stessa tavola?
 + $\neg((C \vee \neg A) \wedge (C \vee \neg B))$
@@ -206,7 +206,7 @@ D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \w
 - $\neg C \wedge A \wedge B$
 - $\neg(C \wedge (A \vee B))$
 - $\neg C \vee A \vee B$
-= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è la seconda, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
+= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è $(\neg C \vee A) \wedge (\neg C \vee B)$, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
 
 D: Sul modello dei quiz di logica. Quale di queste formule è una tautologia?
 + $(p \to q) \vee (q \to p)$
@@ -214,7 +214,7 @@ D: Sul modello dei quiz di logica. Quale di queste formule è una tautologia?
 - $(p \vee q) \to p$
 - $(p \to q) \wedge (q \to p)$
 - $\neg p \to (p \wedge q)$
-= Per rendere falsa la prima servirebbero $p \to q$ e $q \to p$ tutte e due false, cioè $p$ vera e $q$ falsa e insieme il contrario: impossibile. La più insidiosa è la seconda, che passa dalla freccia alla sua inversa: con $p$ falsa e $q$ vera è falsa.
+= Per rendere falsa $(p \to q) \vee (q \to p)$ servirebbero $p \to q$ e $q \to p$ tutte e due false, cioè $p$ vera e $q$ falsa e insieme il contrario: impossibile. La più insidiosa è $(p \to q) \to (q \to p)$, che passa dalla freccia alla sua inversa: con $p$ falsa e $q$ vera è falsa.
 
 D: Sul modello degli esercizi del §2.1. «Per ogni intero $n \ge 0$, $n^2 - n + 11$ è primo.» Qual è il più piccolo controesempio?
 - $n = 1$
@@ -222,7 +222,7 @@ D: Sul modello degli esercizi del §2.1. «Per ogni intero $n \ge 0$, $n^2 - n +
 - $n = 10$
 + $n = 11$
 - non ce ne sono: la frase è vera
-= Per $n$ da 0 a 10 i valori sono 11, 11, 13, 17, 23, 31, 41, 53, 67, 83 e 101, tutti primi. Con $n = 11$ viene $121 - 11 + 11 = 121 = 11^2$. La più insidiosa è l'ultima: tanti esempi giusti non dimostrano un «per ogni».
+= Per $n$ da 0 a 10 i valori sono 11, 11, 13, 17, 23, 31, 41, 53, 67, 83 e 101, tutti primi. Con $n = 11$ viene $121 - 11 + 11 = 121 = 11^2$. La più insidiosa è «non ce ne sono: la frase è vera»: tanti esempi giusti non dimostrano un «per ogni».
 
 D: Sul modello degli esercizi del §2.1. Quale frase vale per tutti gli insiemi $A$ e $B$?
 + $A - B \subseteq A$
@@ -230,7 +230,7 @@ D: Sul modello degli esercizi del §2.1. Quale frase vale per tutti gli insiemi 
 - $A - B = B - A$
 - $A \subseteq A \cap B$
 - $(A \cap B) \cup A = B$
-= Un elemento di $A - B$ sta in $A$ per definizione. Le altre si smentiscono con $A = \{1\}$ e $B = \varnothing$. La più insidiosa è la terza, che è vera solo quando $A = B$.
+= Un elemento di $A - B$ sta in $A$ per definizione. Le altre si smentiscono con $A = \{1\}$ e $B = \varnothing$. La più insidiosa è $A - B = B - A$, che è vera solo quando $A = B$.
 
 D: Sul modello delle domande sulla contrapposizione. Per dimostrare per contrapposizione «se $n^2$ è multiplo di 3, allora $n$ è multiplo di 3», che cosa si dimostra?
 + se $n$ non è multiplo di 3, allora $n^2$ non è multiplo di 3
@@ -238,7 +238,7 @@ D: Sul modello delle domande sulla contrapposizione. Per dimostrare per contrapp
 - se $n^2$ non è multiplo di 3, allora $n$ non è multiplo di 3
 - $n^2$ è multiplo di 3 e $n$ non lo è
 - $n$ è multiplo di 3 oppure $n^2$ non lo è
-= La contronominale nega le due parti e le scambia. La più insidiosa è la seconda: è l'inversa, che è vera ma non equivalente alla frase di partenza. La quarta è la negazione, da supporre in una dimostrazione per assurdo.
+= La contronominale nega le due parti e le scambia. La più insidiosa è «se $n$ è multiplo di 3, allora $n^2$ è multiplo di 3»: è l'inversa, che è vera ma non equivalente alla frase di partenza. La risposta «$n^2$ è multiplo di 3 e $n$ non lo è» è la negazione, da supporre in una dimostrazione per assurdo.
 
 D: Sul modello del paradosso del bevitore. In un bar dove **nessuno** beve, chi rende vera la frase «se lui beve, allora bevono tutti»?
 + chiunque

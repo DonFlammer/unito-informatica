@@ -193,7 +193,7 @@ D: Appello del 10/06/2024, domanda 8. Nello spazio $\R_1[x]$, la matrice del cam
 - $\begin{pmatrix} 1 & 2/3 \\ 1/3 & -1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 0 & 3/2 \end{pmatrix}$
-= Si scrivono i vettori di $\mathcal B$ nella base $\mathcal C$: $2x = 1 \cdot (x + 1) + 1 \cdot (x - 1)$ e $3 = \frac{3}{2}(x + 1) - \frac{3}{2}(x - 1)$. Le coordinate vanno in colonna. È la risposta (a) della soluzione ufficiale. La più insidiosa è la quarta, che ha in colonna i vettori di $\mathcal C$ nella base $\{x, 1\}$: è il cambiamento da $\mathcal C$ alla canonica.
+= Si scrivono i vettori di $\mathcal B$ nella base $\mathcal C$: $2x = 1 \cdot (x + 1) + 1 \cdot (x - 1)$ e $3 = \frac{3}{2}(x + 1) - \frac{3}{2}(x - 1)$. Le coordinate vanno in colonna. È la risposta (a) della soluzione ufficiale. La più insidiosa è $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$, che ha in colonna i vettori di $\mathcal C$ nella base $\{x, 1\}$: è il cambiamento da $\mathcal C$ alla canonica.
 
 D: Appello del 10/07/2025, domanda 6. La matrice associata all'identità $\mathrm{Id} \colon \R^3 \to \R^3$ dalla base $\mathcal B = \{e_2, e_3, e_1\}$ alla base $\mathcal C = \{e_3, e_2, e_1\}$ è:
 - $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
@@ -209,7 +209,7 @@ D: Appello del 02/09/2025, domanda 8. Siano date tre basi $\mathcal A, \mathcal 
 - $\begin{pmatrix} 1 & 2 \\ -1 & -1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 + $\begin{pmatrix} 1 & 2 \\ 1 & 3 \end{pmatrix}$
-= Da $\mathcal A$ a $\mathcal C$ si passa per $\mathcal B$: $[\mathrm{Id}]^{\mathcal A}_{\mathcal C} = \left([\mathrm{Id}]^{\mathcal C}_{\mathcal B}\right)^{-1} [\mathrm{Id}]^{\mathcal A}_{\mathcal B}$. L'inversa della seconda matrice ha $+1$ al posto di $-1$, e il prodotto dà la risposta (e) della soluzione ufficiale. La più insidiosa è la terza, che viene moltiplicando senza invertire.
+= Da $\mathcal A$ a $\mathcal C$ si passa per $\mathcal B$: $[\mathrm{Id}]^{\mathcal A}_{\mathcal C} = \left([\mathrm{Id}]^{\mathcal C}_{\mathcal B}\right)^{-1} [\mathrm{Id}]^{\mathcal A}_{\mathcal B}$. L'inversa della seconda matrice ha $+1$ al posto di $-1$, e il prodotto dà la risposta (e) della soluzione ufficiale. La più insidiosa è $\begin{pmatrix} 1 & 2 \\ -1 & -1 \end{pmatrix}$, che viene moltiplicando senza invertire.
 
 D: Appello del 03/06/2025, domanda 5. Sia $L_A \colon \R^2 \to \R^2$ la moltiplicazione a sinistra per una matrice $A$. Rispetto alla base $\mathcal B = \{(1, 0), (1, 1)\}$, $L_A$ ha matrice associata $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$. La matrice $A$ è:
 - $\begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix}$
@@ -217,7 +217,7 @@ D: Appello del 03/06/2025, domanda 5. Sia $L_A \colon \R^2 \to \R^2$ la moltipli
 + $\begin{pmatrix} 3 & 0 \\ 2 & -1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 3 \\ 2 & 1 \end{pmatrix}$
-= Qui si torna dalla base $\mathcal B$ alla canonica: $A = M \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix} M^{-1}$, con $M = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$. È la risposta (c) della soluzione ufficiale. La più insidiosa è la seconda: la matrice nella base $\mathcal B$ non è la matrice $A$.
+= Qui si torna dalla base $\mathcal B$ alla canonica: $A = M \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix} M^{-1}$, con $M = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$. È la risposta (c) della soluzione ufficiale. La più insidiosa è $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$: la matrice nella base $\mathcal B$ non è la matrice $A$.
 
 D: Appello dell'08/02/2024, domanda 5. La composizione $S \circ T$ di $S \colon \R^3 \to \R^2$, $S(x, y, z) = (x + y, 2z)$, e $T \colon \R^2 \to \R^3$, $T(x, y) = (x + y, x - y, y)$, è:
 - $(x, y, z) \mapsto (2x, 2y, 2z)$
@@ -225,7 +225,7 @@ D: Appello dell'08/02/2024, domanda 5. La composizione $S \circ T$ di $S \colon 
 - $(x, y, z) \mapsto (x + y + 2z, x + y - 2z, 2z)$
 + $(x, y) \mapsto (2x, 2y)$
 - non è ben definita
-= Agisce prima $T$: $S(x + y, x - y, y) = ((x + y) + (x - y),\ 2y) = (2x, 2y)$. Parte da $\R^2$ e arriva in $\R^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è la terza, che è $T \circ S$.
+= Agisce prima $T$: $S(x + y, x - y, y) = ((x + y) + (x - y),\ 2y) = (2x, 2y)$. Parte da $\R^2$ e arriva in $\R^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è $(x, y, z) \mapsto (x + y + 2z, x + y - 2z, 2z)$, che è $T \circ S$.
 
 D: Appello del 03/07/2026, domanda 5. Dati spazi vettoriali $U, V, W$, siano $S \colon U \to V$ e $T \colon V \to W$ applicazioni lineari con $T \circ S(u) = 0_W$ per ogni $u \in U$. Quale informazione si può dedurre?
 - $\ker(T) \subseteq \mathrm{Im}(S)$
@@ -249,7 +249,7 @@ D: Sul modello delle domande sugli isomorfismi. Quale coppia è fatta di due spa
 - $\R^3$ e le matrici $2 \times 2$
 - $\R_3[x]$ e $\R^3$
 - $\R^2$ e $\R^3$
-= Conta solo la dimensione: i polinomi di grado al massimo 3 hanno dimensione 4, come le matrici $2 \times 2$. La più insidiosa è la quarta: il 3 di $\R_3[x]$ è il grado massimo, e la dimensione è 4.
+= Conta solo la dimensione: i polinomi di grado al massimo 3 hanno dimensione 4, come le matrici $2 \times 2$. La più insidiosa è «$\R_3[x]$ e $\R^3$»: il 3 di $\R_3[x]$ è il grado massimo, e la dimensione è 4.
 ```
 
 ## Fonti

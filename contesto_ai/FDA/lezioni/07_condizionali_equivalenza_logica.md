@@ -480,7 +480,7 @@ D: (Simulazione d'esame 1 del 2023/24, domanda 3) Qual è il valore di $(A \to B
 - dipende dall'ordine delle righe
 - non si può calcolare senza tutta la tavola
 - V, perché $A \to B$ è vera a vuoto
-= $A \to B$ è vera, a vuoto; $B \to A$ è falsa, ipotesi vera e conclusione falsa. I due pezzi hanno valori diversi, quindi il «se e solo se» è falso. La risposta più insidiosa è l'ultima: guarda solo il primo pezzo. Nel quiz era l'ultima riga.
+= $A \to B$ è vera, a vuoto; $B \to A$ è falsa, ipotesi vera e conclusione falsa. I due pezzi hanno valori diversi, quindi il «se e solo se» è falso. La risposta più insidiosa è «V, perché $A \to B$ è vera a vuoto»: guarda solo il primo pezzo. Nel quiz era l'ultima riga.
 
 D: Quale di queste formule **non** è una tautologia?
 + $(p \to q) \to (q \to p)$
@@ -488,7 +488,7 @@ D: Quale di queste formule **non** è una tautologia?
 - $p \to (p \vee q)$
 - $(p \to q) \vee (q \to p)$
 - $p \vee \neg p$
-= Con $p$ = F e $q$ = V, $p \to q$ è vera e $q \to p$ è falsa: la formula è falsa. Dall'implicazione non segue l'inversa. La risposta più insidiosa è $(p \to q) \vee (q \to p)$, che sembra strana ma è sempre vera: se $q$ è vera è vera la prima, se $q$ è falsa è vera la seconda.
+= Con $p$ = F e $q$ = V, $p \to q$ è vera e $q \to p$ è falsa: la formula è falsa. Dall'implicazione non segue l'inversa. La risposta più insidiosa è $(p \to q) \vee (q \to p)$, che sembra strana ma è sempre vera: se $q$ è vera è vera la prima freccia, se $q$ è falsa è vera la seconda freccia.
 
 D: In quante righe della sua tavola è vera la formula $(p \to q) \wedge (q \to r)$?
 N: 4

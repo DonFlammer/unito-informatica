@@ -592,7 +592,7 @@ D: Con `int risposte[] = {2, 2, 5}` e `int frequenze[5] = {0}`, che cosa contien
 - `{2, 2, 5, 0, 0}`
 - `{0, 2, 0, 1, 0}`
 - `{1, 1, 1, 0, 0}`
-= Il voto 2 va nella casella 1 (due volte), il voto 5 nella casella 4. La più insidiosa è la quarta: dimentica che anche il 5 va spostato di uno.
+= Il voto 2 va nella casella 1 (due volte), il voto 5 nella casella 4. La più insidiosa è `{0, 2, 0, 1, 0}`: dimentica che anche il 5 va spostato di uno.
 
 D: Che cosa stampa `printf("%s", t)` dopo `char t[] = "testo"; t[3] = '\0';`?
 + `tes`
@@ -608,7 +608,7 @@ D: Perché la somma selettiva deve memorizzare la sequenza in un array?
 - perché la somma di più di 20 numeri va in overflow
 - perché CodeRunner lo richiede
 - non serve: si può fare con una passata sola
-= Un elemento escluso con il minimo attuale può diventare buono quando arriva un minimo più piccolo. La più insidiosa è l'ultima: con una passata sola non si può decidere elemento per elemento.
+= Un elemento escluso con il minimo attuale può diventare buono quando arriva un minimo più piccolo. La più insidiosa è «non serve: si può fare con una passata sola»: con una passata sola non si può decidere elemento per elemento.
 
 D: Quanto vale `'9' - '0'`?
 + 9
@@ -632,7 +632,7 @@ D: Nel programma Passwords, perché `len >= 2` va scritto prima di `ispunct(pwd[
 - per una regola di stile senza effetti
 - perché altrimenti non compila
 - perché `len` potrebbe essere negativo
-= Cortocircuito: l'`&&` si ferma al primo falso. La più insidiosa è l'ultima: `len` è `size_t`, mai negativo; il problema è che `len - 2` con `len == 1` dà un numero enorme.
+= Cortocircuito: l'`&&` si ferma al primo falso. La più insidiosa è «perché `len` potrebbe essere negativo»: `len` è `size_t`, mai negativo; il problema è che `len - 2` con `len == 1` dà un numero enorme.
 
 D: Qual è la dichiarazione giusta per leggere con `scanf` una parola di al massimo 50 caratteri?
 + `char nome[51];` e `scanf("%50s", nome);`
@@ -640,7 +640,7 @@ D: Qual è la dichiarazione giusta per leggere con `scanf` una parola di al mass
 - `char nome[51];` e `scanf("%50s", &nome);`
 - `char nome[51];` e `scanf("%51s", nome);`
 - `char nome;` e `scanf("%s", &nome);`
-= 50 caratteri più il terminatore fanno 51 posti, e la larghezza in `%50s` non conta il terminatore. La più insidiosa è la seconda: 50 posti lasciano fuori il terminatore.
+= 50 caratteri più il terminatore fanno 51 posti, e la larghezza in `%50s` non conta il terminatore. La più insidiosa è «`char nome[50];` e `scanf("%50s", nome);`»: 50 posti lasciano fuori il terminatore.
 ```
 
 ## Esercizi

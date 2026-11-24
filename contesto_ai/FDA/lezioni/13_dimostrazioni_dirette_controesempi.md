@@ -305,7 +305,7 @@ D: Che cos'è un assioma?
 - Un teorema che serve a dimostrarne altri
 - Una parola usata senza definirla
 - Una frase vera in tutte le righe della tavola
-= È la domanda di ripasso 2 del libro. La risposta più insidiosa è la terza, che descrive un lemma; la quarta è un termine non definito; l'ultima è una tautologia.
+= È la domanda di ripasso 2 del libro. La risposta più insidiosa è «Un teorema che serve a dimostrarne altri», che descrive un lemma; la risposta «Una parola usata senza definirla» è un termine non definito; la risposta «Una frase vera in tutte le righe della tavola» è una tautologia.
 
 D: Per dimostrare in modo diretto «se $n$ è dispari ed $m$ è pari, allora $n + m$ è dispari», come si comincia?
 + Siano $n = 2\ell + 1$ e $m = 2k$, con $\ell$ e $k$ interi qualsiasi
@@ -313,7 +313,7 @@ D: Per dimostrare in modo diretto «se $n$ è dispari ed $m$ è pari, allora $n 
 - Prendo $n = 3$ e $m = 4$
 - Suppongo che $n + m$ sia pari
 - Provo tutti i numeri da 1 a 100
-= Ogni numero ha il suo intero. La risposta più insidiosa è la seconda: con lo stesso $k$ si dimostra la frase solo per $m = n - 1$. La quarta comincerebbe una dimostrazione per assurdo, della lezione 14.
+= Ogni numero ha il suo intero. La risposta più insidiosa è «Siano $n = 2k + 1$ e $m = 2k$, con lo stesso $k$»: con lo stesso $k$ si dimostra la frase solo per $m = n - 1$. La risposta «Suppongo che $n + m$ sia pari» comincerebbe una dimostrazione per assurdo, della lezione 14.
 
 D: «Per ogni intero positivo $n$, $n^2 + n + 41$ è primo.» Quale valore di $n$ è un controesempio?
 + 40
@@ -329,7 +329,7 @@ D: Per mostrare che un «per ogni» è falso, che cosa serve?
 - Che sia falsa per tutti gli elementi
 - Una dimostrazione diretta della sua negazione per ogni elemento
 - Un elemento che la rende vera
-= È la domanda di ripasso 12 del libro: $\neg\,\forall x\, P(x) \equiv \exists x\, \neg P(x)$. La risposta più insidiosa è la terza, che confonde «non tutti» con «nessuno».
+= È la domanda di ripasso 12 del libro: $\neg\,\forall x\, P(x) \equiv \exists x\, \neg P(x)$. La risposta più insidiosa è «Che sia falsa per tutti gli elementi», che confonde «non tutti» con «nessuno».
 
 D: Quale frase sugli insiemi è falsa?
 + Per tutti gli insiemi $X$ e $Y$, $X \subseteq Y$ oppure $Y \subseteq X$
@@ -345,7 +345,7 @@ D: Come si dimostra che due insiemi $X$ e $Y$ sono uguali?
 - Dimostrando $X \subseteq Y$ e basta
 - Disegnando il diagramma di Venn
 - Contando gli elementi
-= Servono le due inclusioni. La risposta più insidiosa è la quarta: il disegno aiuta a capire, ma non è una dimostrazione. Contare gli elementi non basta: $\{1\}$ e $\{2\}$ hanno lo stesso numero di elementi.
+= Servono le due inclusioni. La risposta più insidiosa è «Disegnando il diagramma di Venn»: il disegno aiuta a capire, ma non è una dimostrazione. Contare gli elementi non basta: $\{1\}$ e $\{2\}$ hanno lo stesso numero di elementi.
 
 D: Che cos'è un corollario?
 + Un teorema che segue subito da un altro teorema
@@ -353,7 +353,7 @@ D: Che cos'è un corollario?
 - Un teorema non ancora dimostrato
 - Una definizione che usa un teorema
 - Un controesempio
-= Lemma e corollario sono teoremi: il lemma prepara, il corollario segue. La risposta più insidiosa è la terza: un teorema è per definizione dimostrato.
+= Lemma e corollario sono teoremi: il lemma prepara, il corollario segue. La risposta più insidiosa è «Un teorema non ancora dimostrato»: un teorema è per definizione dimostrato.
 
 D: Nella dimostrazione che il prodotto di due dispari è dispari, a che cosa si arriva?
 + $mn = 2(2k_1k_2 + k_1 + k_2) + 1$
@@ -361,7 +361,7 @@ D: Nella dimostrazione che il prodotto di due dispari è dispari, a che cosa si 
 - $mn = 2(k_1 + k_2)$
 - $mn = (2k + 1)^2$
 - $mn = 2k_1k_2 + 1$
-= Sviluppando $(2k_1 + 1)(2k_2 + 1)$ e raccogliendo il 2. La risposta più insidiosa è la quarta: usa lo stesso $k$, e varrebbe solo per $m = n$.
+= Sviluppando $(2k_1 + 1)(2k_2 + 1)$ e raccogliendo il 2. La risposta più insidiosa è $mn = (2k + 1)^2$: usa lo stesso $k$, e varrebbe solo per $m = n$.
 ```
 
 ## Esercizi

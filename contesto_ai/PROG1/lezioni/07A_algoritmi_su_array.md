@@ -761,7 +761,7 @@ D: Che cosa succede con `for (size_t i = 1; i <= aLen - 1; i++)` e `aLen == 0`?
 - il ciclo fa un giro solo
 - non compila con `-Wall -Werror`
 - `aLen - 1` vale −1 e il ciclo si ferma
-= `size_t` non ha segno: 0 − 1 dà 18446744073709551615. La più insidiosa è l'ultima, che sarebbe vera con un `int`.
+= `size_t` non ha segno: 0 − 1 dà 18446744073709551615. La più insidiosa è «`aLen - 1` vale −1 e il ciclo si ferma», che sarebbe vera con un `int`.
 
 D: Quante fasi fa il bubble sort con la sentinella su `{6, 2, -8, 10, 4}`?
 + 3
@@ -777,7 +777,7 @@ D: Una funzione riempie un array `a` con dimensione e capacità. Quale intestazi
 - `void f(size_t aCap, int a[])`
 - `void f(const size_t *p_aLen, size_t aCap, int a[])`
 - `void f(size_t aLen, const int a[])`
-= La dimensione cambia, quindi passa per puntatore. La più insidiosa è la quarta: con `const` la funzione non potrebbe scrivere in `*p_aLen`.
+= La dimensione cambia, quindi passa per puntatore. La più insidiosa è `void f(const size_t *p_aLen, size_t aCap, int a[])`: con `const` la funzione non potrebbe scrivere in `*p_aLen`.
 
 D: Dopo la prima fase del bubble sort, quale elemento è sicuramente al suo posto finale?
 + il più grande, nell'ultima casella
@@ -785,7 +785,7 @@ D: Dopo la prima fase del bubble sort, quale elemento è sicuramente al suo post
 - nessuno
 - quello che era nella prima casella
 - tutti quelli già scambiati
-= Il più grande vince tutti i confronti e viene spinto fino in fondo. La più insidiosa è la seconda: il più piccolo scende di una sola casella per fase.
+= Il più grande vince tutti i confronti e viene spinto fino in fondo. La più insidiosa è «il più piccolo, nella prima casella»: il più piccolo scende di una sola casella per fase.
 ```
 
 ## Esercizi

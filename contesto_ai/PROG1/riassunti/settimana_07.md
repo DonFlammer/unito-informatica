@@ -198,7 +198,7 @@ D: Sul modello dello stato della memoria. Con `int v[] = {4, -2, 9, 0}, mn, mx;`
 - 4 e 4
 - 0 e 9
 - -2 e 4
-= La funzione scrive nelle variabili del `main` attraverso i due puntatori. La più insidiosa è la seconda: sarebbe vera se i parametri fossero `int` e non `int *`.
+= La funzione scrive nelle variabili del `main` attraverso i due puntatori. La più insidiosa è «restano non inizializzate»: sarebbe vera se i parametri fossero `int` e non `int *`.
 
 D: Sul modello degli esercizi del Lab06. `conta_univoci` conta gli elementi che compaiono una volta sola. Che cosa restituisce su `{1, 2, 2, 3, 3, 3, 7}`?
 N: 2
@@ -210,7 +210,7 @@ D: Sul modello della correttezza. Che cosa succede con `for (size_t i = 2; i >= 
 - stampa 2 1 e si ferma
 - non compila con `-Wall -Werror`
 - non stampa niente
-= Un `size_t` non è mai negativo: dopo lo 0 viene 18446744073709551615. La più insidiosa è la quarta: con `-Wall -Werror` compila, l'avviso arriva solo con `-Wextra`.
+= Un `size_t` non è mai negativo: dopo lo 0 viene 18446744073709551615. La più insidiosa è «non compila con `-Wall -Werror`»: con `-Wall -Werror` compila, l'avviso arriva solo con `-Wextra`.
 
 D: Sul modello della programmazione iterativa. `bool tuttiPositivi(size_t n, const int a[])` usa una sentinella che parte da `true`. Che cosa restituisce con `n == 0`?
 + `true`
@@ -230,7 +230,7 @@ D: Sul modello della programmazione iterativa. In una selezione, `a` ha capacit�
 - si copia in `a[aCap]`
 - si sovrascrive `a[0]`
 - si incrementa `aCap`
-= L'array è pieno: scrivere in `a[aLen]` sarebbe fuori dai limiti. La più insidiosa è la seconda, che è il caso normale, con `aLen < aCap`.
+= L'array è pieno: scrivere in `a[aLen]` sarebbe fuori dai limiti. La più insidiosa è «si copia in `a[aLen]` e si incrementa `aLen`», che è il caso normale, con `aLen < aCap`.
 
 D: Sul modello degli esercizi del Lab06. `bool palindroma(const char *s)` confronta il primo carattere con l'ultimo, il secondo con il penultimo, e così via, con `i < n / 2`. Che cosa restituisce sulla stringa vuota?
 + `true`

@@ -42,7 +42,7 @@ genera_html: true
 > [!CANALI]
 > Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di venerdì 13/11/2026, dalle 9 alle 11, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la sedicesima lezione era «Equivalenza primo/irriducibile. Il teorema fondamentale dell'aritmetica. Esistenza di infiniti primi». Nel libro sono le pp. 76–80, la fine del capitolo 4. Quando il docente pubblica gli argomenti, controllo e aggiorno.
 >
-> Servono le definizioni di irriducibile e primo della [D14](D14_interi_divisibilita_divisione_euclidea.html) e l'identità di Bézout della [D15](D15_algoritmo_euclide_bezout.html). L'induzione forte usata qui è quella della [lezione 19 di Fondamenti](../FDA/19_induzione_forte.html). La lezione successiva del diario sono le congruenze modulo $N$ (capitolo 6 del libro).
+> Servono le definizioni di irriducibile e primo della [D14](D14_interi_divisibilita_divisione_euclidea.html) e l'identità di Bézout della [D15](D15_algoritmo_euclide_bezout.html). L'induzione forte usata qui è quella della [lezione 19 di Fondamenti](../FDA/19_induzione_forte.html). La lezione successiva del diario sono le congruenze modulo $N$ (capitolo 7 del libro): è la [D17](D17_congruenze_classi_resto.html).
 >
 > **Che cosa ho aggiunto.** La sezione su come si fattorizza un numero non è nel libro, che dice solo che il problema è difficile per numeri grandi: l'ho messa perché serve per fare gli esercizi. Anche il minimo comune multiplo dalle fattorizzazioni è un'aggiunta mia.
 
@@ -339,7 +339,7 @@ D: Il numero 6 divide $4 \cdot 9$, ma non divide né 4 né 9. Che cosa mostra qu
 - che 4 e 9 non sono coprimi
 - che il teorema 4.13 è falso
 - che 36 non ha una fattorizzazione unica
-= Un primo che divide un prodotto divide uno dei fattori: 6 non lo fa. La più insidiosa è la quarta: il teorema dice che irriducibile e primo coincidono, e 6 non è né l'uno né l'altro.
+= Un primo che divide un prodotto divide uno dei fattori: 6 non lo fa. La più insidiosa è «che il teorema 4.13 è falso»: il teorema dice che irriducibile e primo coincidono, e 6 non è né l'uno né l'altro.
 
 D: Qual è la fattorizzazione in primi di 360?
 + $2^3 \cdot 3^2 \cdot 5$
@@ -347,7 +347,7 @@ D: Qual è la fattorizzazione in primi di 360?
 - $2^2 \cdot 3^2 \cdot 10$
 - $2^3 \cdot 45$
 - $1 \cdot 2^3 \cdot 3^2 \cdot 5$
-= Tutti i fattori devono essere primi. La più insidiosa è l'ultima: il prodotto è giusto, ma 1 non è primo e non compare nelle fattorizzazioni.
+= Tutti i fattori devono essere primi. La più insidiosa è $1 \cdot 2^3 \cdot 3^2 \cdot 5$: il prodotto è giusto, ma 1 non è primo e non compare nelle fattorizzazioni.
 
 D: Dall'esempio del libro (nota 4.16). Con $32775 = 3 \cdot 5^2 \cdot 19 \cdot 23$ e $6120 = 2^3 \cdot 3^2 \cdot 5 \cdot 17$, quanto vale il massimo comun divisore?
 N: 15
@@ -359,7 +359,7 @@ D: $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 + 1 = 30031 = 59 \cdot 509$. Che
 - che 59 era nell'elenco di partenza
 - che i primi finiscono a 13
 - che 30031 è primo
-= La dimostrazione usa solo il fatto che il numero ha un fattore primo nuovo. La più insidiosa è la seconda: chi ricorda «prodotto più uno è primo» pensa a un controesempio, ma il teorema non lo afferma.
+= La dimostrazione usa solo il fatto che il numero ha un fattore primo nuovo. La più insidiosa è «che la dimostrazione è sbagliata»: chi ricorda «prodotto più uno è primo» pensa a un controesempio, ma il teorema non lo afferma.
 
 D: Perché 1 non si considera primo?
 + perché altrimenti la fattorizzazione non sarebbe unica
@@ -367,7 +367,7 @@ D: Perché 1 non si considera primo?
 - perché non ha divisori
 - perché è troppo piccolo
 - perché divide tutti i numeri
-= Con 1 tra i primi, $6 = 2 \cdot 3 = 1 \cdot 2 \cdot 3$ avrebbe più fattorizzazioni. La più insidiosa è l'ultima: è vero che 1 divide tutto, ma il motivo della convenzione è l'unicità.
+= Con 1 tra i primi, $6 = 2 \cdot 3 = 1 \cdot 2 \cdot 3$ avrebbe più fattorizzazioni. La più insidiosa è «perché divide tutti i numeri»: è vero che 1 divide tutto, ma il motivo della convenzione è l'unicità.
 
 D: Per controllare che 97 è primo provando i primi in ordine, qual è l'ultimo primo che serve provare?
 N: 7

@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>08A · Memoria dinamica</title>
+<meta name="lezione" content="08A">
+<meta name="data" content="2026-11-17">
+<meta name="description" content="Appunti della lezione 08A di Programmazione I (canale B): perché lo stack non basta, il puntatore appeso, lo heap, malloc e free nel modello della memoria, l'array allocato nello heap, gli errori tipici (memory leak, uso dopo la free, doppia free, memoria non inizializzata), la selezione con copia in tre fasi e la responsabilità della memoria, con tutti i programmi provati, quiz ed esercizi.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/08A_memoria_dinamica.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#perche-lo-stack-non-basta"><span class="n">§1</span><span>Perché lo stack non basta</span></a></li>
+<li><a href="#lo-heap-malloc-e-free"><span class="n">§2</span><span>Lo heap, malloc e free</span></a></li>
+<li><a href="#i-blocchi-nello-heap-passo-per-passo"><span class="n">§3</span><span>I blocchi nello heap, passo per passo</span></a></li>
+<li><a href="#leggiarray-con-lo-heap"><span class="n">§4</span><span>leggiArray con lo heap</span></a></li>
+<li><a href="#gli-errori-tipici"><span class="n">§5</span><span>Gli errori tipici</span></a></li>
+<li><a href="#stack-o-heap"><span class="n">§6</span><span>Stack o heap?</span></a></li>
+<li><a href="#selezione-con-copia-in-tre-fasi"><span class="n">§7</span><span>Selezione con copia in tre fasi</span></a></li>
+<li><a href="#di-chi-e-il-blocco-la-responsabilita"><span class="n">§8</span><span>Di chi è il blocco: la responsabilità</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§9</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§10</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§11</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§12</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§13</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§14</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§15</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
+<nav class="vicine" aria-label="Lezioni vicine">
+  <a class="vicina prec" href="07A_algoritmi_su_array.html" rel="prev" title="07A · Algoritmi su array"><span class="dir">← Lezione precedente</span><span class="vt">07A · Algoritmi su array</span></a>
+  <a class="vicina succ" href="09A_matrici.html" rel="next" title="09A · Matrici"><span class="dir">Lezione successiva →</span><span class="vt">09A · Matrici</span></a>
+</nav>
+<!-- VICINE:FINE -->
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione 08A</nav>
+      <p class="eyebrow">Programmazione I · Teoria · Canale B · Lezione 08A</p>
+      <h1>Memoria dinamica</h1>
+      <p class="lede">Finora ogni variabile nasceva e spariva da sola, insieme alla funzione che la dichiarava. Per restituire un array costruito dentro una funzione questo non basta: serve memoria che resti viva finché lo decidi tu. Si chiede con malloc, si restituisce con free, e da quel momento gli errori di memoria sono affare tuo.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>08A_memoria_dinamica («Memoria Dinamica. Gestione non automatica della memoria, lo heap e le funzioni malloc/free») · 50 pagine</dd></div><div><dt>Lezione</dt><dd>martedì 17/11 e mercoledì 18/11</dd></div><div><dt>Corso</dt><dd>Prof. Elvio Amparore · A.A. 2026/27</dd></div><div><dt>Tempo di studio</dt><dd>100 minuti, con carta e penna per disegnare stack e heap</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:750px">
+<h2 id="tldr-title">La lezione in 8 punti</h2>
+<ul>
+<li>Le variabili locali stanno nello <strong>stack</strong> e spariscono quando la funzione ritorna. Un puntatore a una di loro, restituito al chiamante, è un <strong>puntatore appeso</strong> (<em>dangling pointer</em>): l&#39;indirizzo c&#39;è ancora, la variabile no.</li>
+<li>Lo <strong>heap</strong> è una zona di memoria che gestisci a mano: un blocco esiste da quando lo chiedi a quando lo restituisci, in qualunque funzione tu sia.</li>
+<li><code>malloc(n * sizeof(int))</code> chiede un blocco di <code>n</code> interi <strong>contigui</strong> e <strong>non inizializzati</strong>, e ritorna l&#39;indirizzo del primo; ritorna <code>NULL</code> se la memoria non c&#39;è.</li>
+<li><code>free(p)</code> restituisce il blocco. Dopo, <code>p</code> non si può più usare: si scrive <code>free(p); p = NULL;</code>.</li>
+<li><strong>Ogni <code>malloc</code> ha la sua <code>free</code></strong>. Un blocco mai liberato è un <strong>memory leak</strong>.</li>
+<li>Gli errori tipici: dimenticare la <code>free</code>, usare il puntatore dopo la <code>free</code>, fare due <code>free</code>, perdere l&#39;indirizzo del blocco, leggere memoria non inizializzata, credere che due blocchi siano vicini.</li>
+<li><strong>Selezione con copia in tre fasi</strong>: conta quanti elementi servono, alloca un array di quella misura, copia.</li>
+<li><strong>Responsabilità</strong> (<em>ownership</em>): per ogni blocco c&#39;è un punto del programma che deve liberarlo. Una funzione che ritorna un blocco allocato passa la responsabilità a chi la chiama.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> Lezioni di martedì 17/11, dalle 11 alle 13, e di mercoledì 18/11, dalle 9 alle 11: sul Moodle del corso queste slide sono nella settimana del 16 novembre, «Memoria Dinamica», con le registrazioni dei due giorni. Dove sia finita la prima lezione non lo so: gli appunti seguono le slide dall&#39;inizio alla fine. Il laboratorio del turno B2 di lunedì 16/11 è stato annullato. Servono lo stack e i frame della <a href="06B_chiamata_funzioni.html">06B</a>, i puntatori come parametri di uscita della stessa lezione, gli array e i VLA della <a href="05A_array_stringhe.html">05A</a> e la selezione con dimensione e capacità della <a href="07A_algoritmi_su_array.html">07A</a>.</p>
+<p><strong>Canali A e C.</strong> Le slide 2026/27 dei canali A e C su questo argomento non le ho viste. L&#39;esame è unico.</p>
+<p><strong>Tre avvisi sulle slide.</strong></p>
+<ul>
+<li>Il programma <code>leggiArraySbagliato</code> (slide 3–12) con le opzioni d&#39;esame <strong>non si compila</strong>: gcc si accorge che la funzione ritorna l&#39;indirizzo di una variabile locale. Lo stesso vale per tre degli «errori comuni». I messaggi sono riportati sotto.</li>
+<li>Il programma con <code>strdup</code> (slide 49) usa <code>assert</code> senza <code>#include &lt;assert.h&gt;</code>: così non si compila.</li>
+<li><code>leggiArray</code> (slide 21) non controlla il risultato di <code>malloc</code>. Va bene per seguire la memoria passo per passo; negli esercizi il controllo va messo, come fa <code>selectCopy</code>.</li>
+</ul>
+<p>Tutti i programmi li ho compilati con gcc 16.1, con <code>-Wall -Werror</code>, ed eseguiti.</p>
+</div>
+
+
+<section id="perche-lo-stack-non-basta" aria-labelledby="h-perche-lo-stack-non-basta" style="--h:2320px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-perche-lo-stack-non-basta">Perché lo stack non basta</h2><span class="slides">slide 2–13</span></div>
+<p>Il problema di partenza sembra innocuo: una funzione <code>leggiArray</code> che legge un numero <code>n</code>, poi <code>n</code> interi, e restituisce al chiamante la sequenza letta.</p>
+<p>Il chiamante non può preparare l&#39;array, perché non sa quanto è lungo: <code>n</code> lo conosce solo la funzione, dopo averlo letto. Quindi l&#39;array deve crearlo la funzione. Il primo tentativo usa un array a lunghezza variabile, un VLA:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* leggiArraySbagliato(<span class="kw">size_t</span>* out_n) {
+    <span class="kw">size_t</span> n;
+    scanf(<span class="str">&quot;%zu&quot;</span>, &amp;n);
+    <span class="kw">int</span> a[n];    <span class="cm">// VLA su stack (vita limitata al frame)</span>
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; ++i)
+        scanf(<span class="str">&quot;%d&quot;</span>, &amp;a[i]);
+    *out_n = n;
+    <span class="kw">return</span> a;    <span class="cm">// ERRORE: l'array a sparisce al ritorno</span>
+}</code></pre>
+<p>La lunghezza esce da un parametro puntatore, come nella <a href="06B_chiamata_funzioni.html">06B</a>. L&#39;errore è nell&#39;ultima riga. <code>a</code> è una variabile locale: sta nel frame di <code>leggiArraySbagliato</code>, e il frame viene tolto dallo stack al momento del <code>return</code>. La funzione restituisce l&#39;indirizzo di una zona che un istante dopo non le appartiene più.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Lo stack prima e dopo il ritorno di leggiArraySbagliato. A sinistra il frame della funzione esiste e contiene l'array. A destra il frame è stato tolto: il puntatore a di main contiene ancora quell'indirizzo, ma lì non c'è più niente di valido" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-tenue" d="M28 123.64L214.67 123.64L214.67 51.52L28 51.52Z"/><path class="g-poligono g-viola g-tenue" d="M28 288.48L214.67 288.48L214.67 123.64L28 123.64Z"/><path class="g-poligono g-verde g-tenue" d="M46.67 273.03L196 273.03L196 211.21L46.67 211.21Z"/><path class="g-poligono g-blu g-tenue" d="M322 123.64L508.67 123.64L508.67 51.52L322 51.52Z"/><path class="g-poligono g-grigio g-tratteggio" d="M322 288.48L508.67 288.48L508.67 123.64L322 123.64Z"/><path class="g-linea g-rosa g-tratteggio" d="M485.33 113.33L466.67 200.91" marker-end="url(#g-freccia-1-rosa)"/></svg><span class="g-et g-c g-testo g-grigio" style="left:21.67%;top:6.06%">durante la chiamata</span><span class="g-et g-c g-testo g-blu" style="left:21.67%;top:21.21%">main</span><span class="g-et g-c g-testo g-blu" style="left:21.67%;top:30.30%">aLen: ?   a: ?</span><span class="g-et g-c g-testo g-viola" style="left:21.67%;top:43.94%">la funzione</span><span class="g-et g-c g-testo g-viola" style="left:21.67%;top:53.03%">n: 3</span><span class="g-et g-c g-testo g-verde" style="left:21.67%;top:71.21%">a: 10 20 30</span><span class="g-et g-c g-testo g-grigio" style="left:74.17%;top:6.06%">dopo il return</span><span class="g-et g-c g-testo g-blu" style="left:74.17%;top:21.21%">main</span><span class="g-et g-c g-testo g-blu" style="left:74.17%;top:30.30%">aLen: 3   a: •</span><span class="g-et g-c g-testo g-grigio" style="left:71.67%;top:45.46%">frame tolto</span><span class="g-et g-c g-testo g-rosa" style="left:74.17%;top:65.15%">?? ?? ??</span><span class="g-et g-c g-testo g-rosa" style="left:74.17%;top:77.27%">a è appeso</span></div><figcaption>Lo stack prima e dopo il ritorno di leggiArraySbagliato. A sinistra il frame della funzione esiste e contiene l&#39;array. A destra il frame è stato tolto: il puntatore a di main contiene ancora quell&#39;indirizzo, ma lì non c&#39;è più niente di valido</figcaption></figure>
+<div class="box def"><p class="box-label"><span>Definizione · Puntatore appeso (slide 12–13)</span></p><p>Un <strong>puntatore appeso</strong> (<em>dangling pointer</em>) è un puntatore che contiene l&#39;indirizzo di una zona di memoria che non è più valida.</p>
+</div>
+<p><strong>Come si legge.</strong> Il puntatore non cambia: il numero che contiene è lo stesso di prima. È cambiato quello che c&#39;è a quell&#39;indirizzo. Lo spazio del frame tolto verrà riusato dalla prossima chiamata di funzione, e già la <code>printf</code> del <code>main</code> ci scrive sopra. Usare quel puntatore è un comportamento indefinito: può stampare i numeri giusti, numeri a caso, o far terminare il programma.</p>
+<p>Con le opzioni d&#39;esame il programma non arriva nemmeno a partire. Questo è il messaggio vero di gcc:</p>
+<pre class="code" data-lingua="text"><code>sbagliato.c: In function 'leggiArraySbagliato':
+sbagliato.c:11:12: error: function returns address of local variable [-Werror=return-local-addr]
+   11 |     return a;    // ERRORE
+      |            ^</code></pre>
+<p>La regola che ne esce vale per ogni variabile locale, non solo per i VLA:</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Mai ritornare l&#39;indirizzo di una variabile locale</span></p><p>Non si ritorna un array locale, e non si ritorna <code>&amp;x</code> con <code>x</code> variabile locale. Il compilatore se ne accorge solo nei casi più diretti: se l&#39;indirizzo passa prima per un&#39;altra variabile o per un&#39;altra funzione, non avvisa, e l&#39;errore resta.</p>
+</div>
+<p>Serve una zona di memoria che non segua le regole dello stack.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Una funzione dichiara <code>int x = 5;</code> e fa <code>return &amp;x;</code>. Che cosa riceve il chiamante? E se la funzione facesse <code>return x;</code>?</span></summary><div class="ans"><p>Con <code>return &amp;x</code> riceve un puntatore appeso: l&#39;indirizzo di una variabile che non esiste più. Con <code>return x</code> riceve il valore 5, copiato: quello va benissimo, perché i valori si copiano e gli indirizzi no.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Le variabili locali, VLA compresi, vivono quanto il frame della loro funzione.</li>
+<li>Ritornare il loro indirizzo dà un puntatore appeso.</li>
+<li>gcc: <code>function returns address of local variable</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="lo-heap-malloc-e-free" aria-labelledby="h-lo-heap-malloc-e-free" style="--h:2690px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-lo-heap-malloc-e-free">Lo heap, malloc e free</h2><span class="slides">slide 14–17</span></div>
+<p>Lo <strong>heap</strong> è una zona di memoria gestita dal programmatore, non dal meccanismo delle chiamate. Un blocco nello heap comincia a esistere quando lo chiedi e smette quando lo restituisci: i ritorni delle funzioni non lo toccano.</p>
+<p>Si chiama memoria <strong>dinamica</strong> perché non è fissata alla compilazione, come le variabili globali, e non è creata in automatico durante l&#39;esecuzione, come lo stack: viene chiesta e restituita dal programma mentre gira.</p>
+<p>Nel modello della memoria di Amparore i segmenti sono quattro:</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Il modello della memoria, con gli indirizzi che crescono verso l'alto. Codice e dati hanno dimensione fissa. Heap e stack si dividono lo spazio libero in mezzo: lo heap cresce verso l'alto, lo stack verso il basso" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-grigio g-tenue" d="M140 323.41L364 323.41L364 281.95L140 281.95Z"/><path class="g-poligono g-grigio g-tenue" d="M140 281.95L364 281.95L364 240.49L140 240.49Z"/><path class="g-poligono g-verde g-tenue" d="M140 240.49L364 240.49L364 182.44L140 182.44Z"/><path class="g-poligono g-grigio g-tratteggio" d="M140 182.44L364 182.44L364 91.22L140 91.22Z"/><path class="g-poligono g-blu g-tenue" d="M140 91.22L364 91.22L364 24.88L140 24.88Z"/><path class="g-linea g-verde" d="M392 219.76L392 182.44" marker-end="url(#g-freccia-2-verde)"/><path class="g-linea g-blu" d="M392 49.76L392 87.07" marker-end="url(#g-freccia-2-blu)"/><path class="g-linea g-grigio g-sottile" d="M84 315.12L84 33.17" marker-end="url(#g-freccia-2-grigio)"/></svg><span class="g-et g-c g-testo g-grigio" style="left:45.00%;top:89.02%">codice</span><span class="g-et g-c g-testo g-grigio" style="left:45.00%;top:76.83%">dati</span><span class="g-et g-c g-testo g-verde" style="left:45.00%;top:62.19%">heap</span><span class="g-et g-c g-testo g-grigio" style="left:45.00%;top:40.24%">memoria libera</span><span class="g-et g-c g-testo g-blu" style="left:45.00%;top:17.07%">stack</span><span class="g-et g-c g-testo g-verde" style="left:84.00%;top:59.76%">malloc</span><span class="g-et g-c g-testo g-blu" style="left:84.00%;top:19.51%">chiamate</span><span class="g-et g-c g-testo g-grigio" style="left:9.00%;top:51.22%">↑</span></div><figcaption>Il modello della memoria, con gli indirizzi che crescono verso l&#39;alto. Codice e dati hanno dimensione fissa. Heap e stack si dividono lo spazio libero in mezzo: lo heap cresce verso l&#39;alto, lo stack verso il basso</figcaption></figure>
+<ul>
+<li><strong>codice</strong>: le istruzioni del programma;</li>
+<li><strong>dati</strong>: le variabili globali e statiche;</li>
+<li><strong>heap</strong>: la memoria dinamica;</li>
+<li><strong>stack</strong>: i frame, con le variabili automatiche.</li>
+</ul>
+<h3 id="chiedere-memoria-malloc">Chiedere memoria: malloc</h3>
+<p>Per avere un blocco nello heap si chiama una funzione di libreria, dicendole quanti byte servono. Per tre interi da 4 byte si chiedono 12 byte, e si riceve l&#39;indirizzo del primo.</p>
+<div class="box def"><p class="box-label"><span>Definizione · malloc (slide 16)</span></p><p><code>void* malloc(size_t sz);</code>, dichiarata in <code>&lt;stdlib.h&gt;</code>, riserva nello heap <code>sz</code> byte <strong>contigui</strong> e ritorna un puntatore al primo byte del blocco. Se la memoria non è disponibile ritorna <code>NULL</code>. I byte <strong>non sono inizializzati</strong>.</p>
+</div>
+<p><strong>Come si legge.</strong> <code>malloc</code> ragiona in byte e non sa che cosa metterai nel blocco. Per questo il tipo di ritorno è <code>void*</code>: un indirizzo a cui non è ancora stato dato un tipo. Il tipo arriva con l&#39;assegnamento a un puntatore.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* a = malloc(n * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+<span class="kw">if</span> (a == <span class="kw">NULL</span>) {
+    printf(<span class="str">&quot;Memoria insufficiente\n&quot;</span>);
+}</code></pre>
+<p>Tre cose in due righe:</p>
+<ol>
+<li><strong>La misura.</strong> Un array è una fila di valori dello stesso tipo in posizioni contigue. <code>n</code> interi occupano <code>n * sizeof(int)</code> byte: su questo PC <code>sizeof(int)</code> vale 4, quindi tre interi sono 12 byte. Non si scrive il 4 a mano: <code>sizeof</code> lo calcola il compilatore, ed è giusto su ogni macchina.</li>
+<li><strong>Il tipo.</strong> L&#39;assegnamento a un <code>int*</code> dice che quel blocco verrà letto come interi. Da qui in poi <code>a[0]</code>, <code>a[1]</code>, … funzionano come per un array: l&#39;operatore <code>[]</code> lavora su un puntatore al primo elemento, come nella <a href="06B_chiamata_funzioni.html">06B</a>.</li>
+<li><strong>Il controllo.</strong> Se <code>malloc</code> ritorna <code>NULL</code>, usare <code>a[0]</code> fa terminare il programma. Prima di usare il blocco si controlla.</li>
+</ol>
+<h3 id="restituire-memoria-free">Restituire memoria: free</h3>
+<p>Quando il blocco non serve più lo si restituisce allo heap, che potrà darlo a una <code>malloc</code> successiva. Nessuno lo fa al posto tuo.</p>
+<div class="box def"><p class="box-label"><span>Definizione · free (slide 17)</span></p><p><code>void free(void* ptr);</code>, dichiarata in <code>&lt;stdlib.h&gt;</code>, libera il blocco che era stato ottenuto con <code>malloc</code> e di cui <code>ptr</code> è l&#39;indirizzo.</p>
+</div>
+<p><strong>Come si legge.</strong> <code>free</code> vuole <strong>lo stesso indirizzo</strong> che aveva dato <code>malloc</code>: quello del primo byte. Non serve dire quanto è lungo il blocco, lo heap lo sa. Dopo la <code>free</code> la variabile <code>ptr</code> contiene ancora il vecchio indirizzo, ma è diventata un puntatore appeso. Per questo Amparore scrive sempre le due istruzioni insieme:</p>
+<pre class="code" data-lingua="c"><code>free(a);
+a = <span class="kw">NULL</span>;</code></pre>
+<p>Con <code>NULL</code> dentro, un uso sbagliato fa fermare subito il programma invece di lavorare in silenzio su memoria non sua. E <code>free(NULL)</code> è permesso: non fa niente.</p>
+<p><strong>Regola: ogni <code>malloc</code> deve avere una <code>free</code> corrispondente.</strong></p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa chiede <code>malloc(10 * sizeof(double))</code>? Di che tipo dev&#39;essere la variabile che riceve il risultato?</span></summary><div class="ans"><p>Un blocco per 10 <code>double</code> contigui: 80 byte, perché su questo PC <code>sizeof(double)</code> vale 8. La variabile dev&#39;essere un <code>double*</code>.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>malloc(n * sizeof(T))</code>: <code>n</code> elementi di tipo <code>T</code>, contigui, non inizializzati. Ritorna <code>NULL</code> se non c&#39;è memoria.</li>
+<li>Dopo <code>malloc</code> si controlla il risultato.</li>
+<li><code>free(p); p = NULL;</code>, sempre insieme.</li>
+<li>Ogni <code>malloc</code> ha la sua <code>free</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-blocchi-nello-heap-passo-per-passo" aria-labelledby="h-i-blocchi-nello-heap-passo-per-passo" style="--h:1300px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-i-blocchi-nello-heap-passo-per-passo">I blocchi nello heap, passo per passo</h2><span class="slides">slide 18–19</span></div>
+<p>Le slide seguono sei istruzioni guardando che cosa succede nello heap:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* p1 = malloc(20);
+<span class="kw">int</span>* p2 = malloc(32);
+<span class="kw">double</span>* p3 = malloc(16);
+free(p2); p2 = <span class="kw">NULL</span>;
+<span class="kw">char</span>* p4 = malloc(20);
+free(p1); p1 = <span class="kw">NULL</span>;</code></pre>
+<div class="table-wrap"><table><thead><tr><th>Dopo l&#39;istruzione</th><th>Blocchi nello heap</th><th><code>p1</code></th><th><code>p2</code></th><th><code>p3</code></th><th><code>p4</code></th></tr></thead><tbody><tr><td><code>p1 = malloc(20)</code></td><td>1</td><td>blocco 1</td><td>??</td><td>??</td><td>??</td></tr>
+<tr><td><code>p2 = malloc(32)</code></td><td>1, 2</td><td>blocco 1</td><td>blocco 2</td><td>??</td><td>??</td></tr>
+<tr><td><code>p3 = malloc(16)</code></td><td>1, 2, 3</td><td>blocco 1</td><td>blocco 2</td><td>blocco 3</td><td>??</td></tr>
+<tr><td><code>free(p2); p2 = NULL</code></td><td>1, 3</td><td>blocco 1</td><td><code>NULL</code></td><td>blocco 3</td><td>??</td></tr>
+<tr><td><code>p4 = malloc(20)</code></td><td>1, 3, 4</td><td>blocco 1</td><td><code>NULL</code></td><td>blocco 3</td><td>blocco 4</td></tr>
+<tr><td><code>free(p1); p1 = NULL</code></td><td>3, 4</td><td><code>NULL</code></td><td><code>NULL</code></td><td>blocco 3</td><td>blocco 4</td></tr></tbody></table></div>
+<p>Che cosa mostra:</p>
+<ul>
+<li>le variabili <code>p1</code>, …, <code>p4</code> stanno nello <strong>stack</strong>, nel frame di <code>main</code>; i blocchi stanno nello <strong>heap</strong>. Sono due cose diverse: il puntatore è la maniglia, il blocco è l&#39;oggetto;</li>
+<li>ogni blocco vive per conto suo. Liberare il 2 non tocca l&#39;1 e il 3;</li>
+<li>lo spazio liberato può essere riusato: nelle slide il blocco 4 finisce dove stava il 2. È una possibilità, non una garanzia: sul mio PC è finito da un&#39;altra parte;</li>
+<li>alla fine il blocco 3 e il blocco 4 sono ancora allocati. Se il programma finisse così, sarebbero due blocchi mai liberati.</li>
+</ul>
+<p>Lo stesso blocco di 20 byte è usato una volta come interi (<code>p1</code>, cinque <code>int</code>) e una volta come caratteri (<code>p4</code>): <code>malloc</code> dà byte, il tipo lo decide il puntatore.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nella tabella, dopo la quarta istruzione, che cosa succede se scrivi <code>p2[0] = 7;</code>?</span></summary><div class="ans"><p><code>p2</code> vale <code>NULL</code>: il programma termina con un errore di accesso alla memoria. Senza il <code>p2 = NULL</code>, la stessa istruzione avrebbe scritto in un blocco già restituito, senza nessun segnale.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Il puntatore sta nello stack, il blocco nello heap.</li>
+<li>Un blocco resta allocato finché non lo liberi, qualunque cosa succeda agli altri.</li>
+<li>Dove finisce un blocco nuovo lo decide lo heap: non ci si conta.</li>
+</ul>
+</div>
+</section>
+
+<section id="leggiarray-con-lo-heap" aria-labelledby="h-leggiarray-con-lo-heap" style="--h:2260px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-leggiarray-con-lo-heap">leggiArray con lo heap</h2><span class="slides">slide 20–32</span></div>
+<p>Con <code>malloc</code> il problema iniziale si risolve cambiando una riga: l&#39;array non è più una variabile locale, è un blocco nello heap.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdlib.h&gt;
+<span class="kw">#include</span> &lt;stdio.h&gt;
+
+<span class="kw">int</span>* leggiArray(<span class="kw">size_t</span>* out_n) {
+    <span class="kw">size_t</span> n;
+    scanf(<span class="str">&quot;%zu&quot;</span>, &amp;n);
+    <span class="kw">int</span>* a = malloc(n * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++)
+        scanf(<span class="str">&quot;%d&quot;</span>, &amp;a[i]);
+    *out_n = n;
+    <span class="kw">return</span> a;
+}
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">size_t</span> aLen;
+    <span class="kw">int</span>* a = leggiArray(&amp;aLen);
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; aLen; i++)
+        printf(<span class="str">&quot;a[%zu] = %d\n&quot;</span>, i, a[i]);
+    free(a); a = <span class="kw">NULL</span>;
+}</code></pre>
+<p>Scrivendo <code>3</code> e poi <code>10 20 30</code>, stampa:</p>
+<pre class="code" data-lingua="text"><code>a[0] = 10
+a[1] = 20
+a[2] = 30</code></pre>
+<p>Ora <code>return a</code> è corretto. La variabile <code>a</code> di <code>leggiArray</code> è locale e sparisce, ma quello che viene ritornato è il suo <strong>valore</strong>, cioè l&#39;indirizzo del blocco. Il blocco sta nello heap e il ritorno della funzione non lo tocca.</p>
+<figure class="grafico" id="grafico-3"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La memoria dopo il ritorno di leggiArray. Il frame della funzione non c'è più, ma il blocco nello heap sì. La variabile a di main contiene il suo indirizzo: il puntatore è valido" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-3-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-3-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-3-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-3-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-3-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-3-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-3-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-3-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-tenue" d="M28 242.86L196 242.86L196 60.71L28 60.71Z"/><path class="g-poligono g-blu" d="M46.67 163.93L177.33 163.93L177.33 115.36L46.67 115.36Z"/><path class="g-poligono g-blu" d="M46.67 224.64L177.33 224.64L177.33 176.07L46.67 176.07Z"/><path class="g-poligono g-verde g-tenue" d="M317.33 224.64L378 224.64L378 176.07L317.33 176.07Z"/><path class="g-poligono g-verde g-tenue" d="M378 224.64L438.67 224.64L438.67 176.07L378 176.07Z"/><path class="g-poligono g-verde g-tenue" d="M438.67 224.64L499.33 224.64L499.33 176.07L438.67 176.07Z"/><path class="g-linea g-ambra" d="M149.33 200.36L312.67 200.36" marker-end="url(#g-freccia-3-ambra)"/></svg><span class="g-et g-c g-testo g-blu" style="left:20.00%;top:7.14%">stack</span><span class="g-et g-c g-testo g-blu" style="left:20.00%;top:26.79%">main</span><span class="g-et g-c g-testo g-blu" style="left:20.00%;top:41.07%">aLen: 3</span><span class="g-et g-c g-testo g-blu" style="left:20.00%;top:58.93%">a: •</span><span class="g-et g-c g-testo g-verde" style="left:73.33%;top:7.14%">heap</span><span class="g-et g-c g-testo g-verde" style="left:62.08%;top:58.93%">10</span><span class="g-et g-c g-testo g-verde" style="left:72.92%;top:58.93%">20</span><span class="g-et g-c g-testo g-verde" style="left:83.75%;top:58.93%">30</span><span class="g-et g-c g-testo g-grigio" style="left:62.08%;top:75.00%">a[0]</span><span class="g-et g-c g-testo g-grigio" style="left:72.92%;top:75.00%">a[1]</span><span class="g-et g-c g-testo g-grigio" style="left:83.75%;top:75.00%">a[2]</span><span class="g-et g-c g-testo g-verde" style="left:72.92%;top:41.07%">3 * sizeof(int) byte</span></div><figcaption>La memoria dopo il ritorno di leggiArray. Il frame della funzione non c&#39;è più, ma il blocco nello heap sì. La variabile a di main contiene il suo indirizzo: il puntatore è valido</figcaption></figure>
+<p>Seguendo le slide, la memoria passa per questi stati:</p>
+<div class="table-wrap"><table><thead><tr><th>Momento</th><th>Stack</th><th>Heap</th></tr></thead><tbody><tr><td>in <code>main</code>, prima della chiamata</td><td><code>aLen: ??</code>, <code>a: ??</code></td><td>vuoto</td></tr>
+<tr><td>in <code>leggiArray</code>, dopo <code>malloc</code></td><td>in più il frame con <code>n: 3</code>, <code>a:</code> indirizzo</td><td>un blocco di 3 interi, <code>?? ?? ??</code></td></tr>
+<tr><td>dopo il ciclo di lettura</td><td>uguale</td><td><code>10 20 30</code></td></tr>
+<tr><td>dopo il <code>return</code></td><td>solo <code>main</code>: <code>aLen: 3</code>, <code>a:</code> indirizzo</td><td><code>10 20 30</code></td></tr>
+<tr><td>dopo <code>free(a); a = NULL</code></td><td><code>aLen: 3</code>, <code>a: NULL</code></td><td>vuoto</td></tr></tbody></table></div>
+<p>La <code>malloc</code> è in una funzione e la <code>free</code> in un&#39;altra. È normale, ed è il motivo per cui lo heap esiste: il blocco deve vivere più a lungo della funzione che lo crea.</p>
+<div class="box neutro"><p class="box-label"><span>Nota · La versione con i controlli</span></p><p>Il codice delle slide è ridotto al minimo per seguire la memoria. Una versione da esercizio controlla la lettura, il caso <code>n == 0</code> e il risultato di <code>malloc</code>, con una sola <code>return</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* leggiArray(<span class="kw">size_t</span>* out_n) {
+    <span class="kw">size_t</span> n = 0;
+    <span class="kw">int</span>* a = <span class="kw">NULL</span>;
+    *out_n = 0;
+    <span class="kw">if</span> (scanf(<span class="str">&quot;%zu&quot;</span>, &amp;n) == 1 &amp;&amp; n &gt; 0) {
+        a = malloc(n * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+        <span class="kw">if</span> (a != <span class="kw">NULL</span>) {
+            <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+                scanf(<span class="str">&quot;%d&quot;</span>, &amp;a[i]);
+            }
+            *out_n = n;
+        }
+    }
+    <span class="kw">return</span> a;
+}</code></pre>
+<p>Se qualcosa va storto ritorna <code>NULL</code> con lunghezza 0, e il <code>main</code> di prima funziona lo stesso: il ciclo non fa giri e <code>free(NULL)</code> non fa niente.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nel <code>main</code>, che cosa succede se togli la riga <code>free(a); a = NULL;</code>? Il programma stampa cose diverse?</span></summary><div class="ans"><p>Stampa le stesse cose. Ma il blocco resta allocato fino alla fine del programma: è un memory leak. In un programma così corto non si nota; in uno che gira a lungo sì.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Si ritorna l&#39;indirizzo del blocco: il blocco è nello heap e sopravvive al ritorno.</li>
+<li><code>malloc</code> in una funzione, <code>free</code> in un&#39;altra: è il caso normale.</li>
+<li>Negli esercizi: controllo di <code>malloc</code>, una sola <code>return</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="gli-errori-tipici" aria-labelledby="h-gli-errori-tipici" style="--h:2680px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-gli-errori-tipici">Gli errori tipici</h2><span class="slides">slide 33–38</span></div>
+<p>La memoria dinamica si gestisce solo attraverso i puntatori, e niente controlla che lo si faccia bene. Amparore lo riassume così: «Chi semina <code>malloc</code>, raccoglie memory leaks», intendendo le <code>malloc</code> senza la loro <code>free</code>.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Memory leak (slide 33)</span></p><p>Un <strong>memory leak</strong>, o perdita di memoria, è un blocco allocato che non viene mai liberato. Il caso peggiore è il blocco di cui si è perso l&#39;indirizzo: non è più raggiungibile, e non si può più liberare.</p>
+</div>
+<p><strong>Come si legge.</strong> Il blocco resta occupato fino alla fine del programma. Non c&#39;è nessun errore visibile: il programma usa solo più memoria del necessario. Se la perdita è dentro un ciclo, la memoria usata cresce a ogni giro finché finisce.</p>
+<p>I sei errori delle slide, con quello che dice gcc quando dice qualcosa:</p>
+<p><strong>1. Allocare senza liberare.</strong></p>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> f(<span class="kw">void</span>) {
+    <span class="kw">int</span>* a = malloc(100 * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+    <span class="cm">// uso dell'array</span>
+} <span class="cm">// MEMORY LEAK: manca free(a)</span></code></pre>
+<p>Al ritorno di <code>f</code> la variabile <code>a</code> sparisce, ed era l&#39;unica a contenere l&#39;indirizzo. Il blocco resta nello heap, irraggiungibile. gcc non dice niente. Per trovare questi errori esistono strumenti appositi, come Valgrind.</p>
+<p><strong>2. Perdere l&#39;indirizzo prima di liberare.</strong></p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* p = malloc(10 * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+p = malloc(20 * <span class="kw">sizeof</span>(<span class="kw">int</span>)); <span class="cm">// MEMORY LEAK: il primo blocco è perso per sempre</span></code></pre>
+<p>Il secondo assegnamento sovrascrive l&#39;unico indirizzo del primo blocco. Anche qui gcc non dice niente.</p>
+<p><strong>3. Usare un puntatore dopo la free.</strong></p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* p = malloc(<span class="kw">sizeof</span>(<span class="kw">int</span>));
+*p = 5;
+free(p);
+printf(<span class="str">&quot;%d\n&quot;</span>, *p); <span class="cm">// ERRORE: uso di memoria già liberata</span></code></pre>
+<p>Dopo la <code>free</code>, <code>p</code> è un puntatore appeso. Il comportamento è indefinito: può sembrare che funzioni. In questo caso diretto gcc se ne accorge:</p>
+<pre class="code" data-lingua="text"><code>uaf.c:8:5: error: pointer 'p' used after 'free' [-Werror=use-after-free]
+    8 |     printf(&quot;%d\n&quot;, *p); // ERRORE: uso di memoria gia' liberata
+      |     ^~~~~~~~~~~~~~~~~~
+uaf.c:7:5: note: call to 'free' here</code></pre>
+<p><strong>4. Liberare due volte lo stesso blocco.</strong></p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* p = malloc(<span class="kw">sizeof</span>(<span class="kw">int</span>));
+free(p);
+free(p); <span class="cm">// ERRORE: doppia free</span></code></pre>
+<p>La seconda <code>free</code> restituisce una zona già restituita: il programma può terminare subito o rovinare la struttura interna dello heap. gcc dà lo stesso messaggio di prima, <code>pointer 'p' used after 'free'</code>. Con <code>p = NULL</code> dopo la prima, la seconda sarebbe una <code>free(NULL)</code>, che non fa danni.</p>
+<p><strong>5. Leggere memoria non inizializzata.</strong></p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* a = malloc(5 * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+printf(<span class="str">&quot;%d&quot;</span>, a[0]); <span class="cm">// ERRORE: a[0] non è stato inizializzato</span></code></pre>
+<p><code>malloc</code> riserva il blocco ma non ci scrive niente: finché non assegni un valore, quello che leggi è indeterminato. gcc, in questo caso diretto:</p>
+<pre class="code" data-lingua="text"><code>noninit.c:6:5: error: '*a' is used uninitialized [-Werror=uninitialized]</code></pre>
+<p><strong>6. Fare ipotesi sugli indirizzi.</strong></p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* p1 = malloc(<span class="kw">sizeof</span>(<span class="kw">int</span>));
+<span class="kw">int</span>* p2 = malloc(<span class="kw">sizeof</span>(<span class="kw">int</span>));
+p1[0] = 10;
+p1[1] = 20; <span class="cm">// ERRORE: non sto accedendo a p2</span></code></pre>
+<p>La contiguità è garantita <strong>dentro</strong> un blocco, non tra due blocchi. Sul mio PC, in una prova, i due blocchi sono finiti a quasi 26 000 byte di distanza. <code>p1[1]</code> scrive fuori dal blocco di <code>p1</code>, in memoria che non è sua.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · Il compilatore vede solo i casi diretti</span></p><p>I messaggi di sopra compaiono perché <code>free</code> e uso sbagliato sono nella stessa funzione, uno sotto l&#39;altro. Appena il puntatore passa per un&#39;altra funzione o per un <code>if</code>, gcc non riesce più a seguirlo e non avvisa. E sui memory leak non avvisa mai. Che il programma si compili non dice niente sulla gestione della memoria.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che errore c&#39;è in <code>int* a = malloc(4 * sizeof(int)); a = a + 1; free(a);</code>?</span></summary><div class="ans"><p><code>free</code> riceve un indirizzo che non è quello dato da <code>malloc</code>: è spostato di un elemento. Il comportamento è indefinito. A <code>free</code> va passato l&#39;indirizzo del primo byte del blocco, quindi il puntatore originale va conservato.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Leak: blocco mai liberato, o indirizzo perso.</li>
+<li>Dopo <code>free</code>: niente uso, niente seconda <code>free</code>. <code>p = NULL</code> protegge da tutti e due.</li>
+<li>La memoria di <code>malloc</code> va inizializzata prima di leggerla.</li>
+<li>Due blocchi diversi non sono vicini.</li>
+</ul>
+</div>
+</section>
+
+<section id="stack-o-heap" aria-labelledby="h-stack-o-heap" style="--h:890px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-stack-o-heap">Stack o heap?</h2><span class="slides">slide 39</span></div>
+<p>Con due posti dove mettere i dati serve un criterio. Quello delle slide:</p>
+<div class="table-wrap"><table><thead><tr><th>Nello heap</th><th>Nello stack</th></tr></thead><tbody><tr><td>i dati di dimensione non nota in anticipo: array, matrici, strutture</td><td>le variabili locali piccole</td></tr>
+<tr><td>i dati che devono sopravvivere alla funzione che li crea</td><td>puntatori, indici, contatori</td></tr>
+<tr><td></td><td>gli array di dimensione fissa o limitata</td></tr></tbody></table></div>
+<p>Lo stack è comodo perché si gestisce da solo, ma è piccolo, di solito pochi megabyte, e ogni cosa ci vive solo quanto il suo blocco. Lo heap è grande e i suoi blocchi vivono quanto vuoi, ma ogni blocco è una responsabilità.</p>
+<p>Prima dello standard C99 i VLA non esistevano: anche per un piccolo array di dimensione decisa durante l&#39;esecuzione bisognava usare lo heap.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Dove metti: (a) un contatore <code>size_t i</code>; (b) un array la cui lunghezza viene letta da tastiera e che va restituito al chiamante; (c) un array di 7 temperature usato solo dentro la funzione?</span></summary><div class="ans"><p>(a) Stack. (b) Heap: la dimensione non è nota e deve sopravvivere al ritorno. (c) Stack: dimensione fissa e piccola, vita limitata alla funzione.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Heap: dimensione non nota in anticipo, o vita più lunga della funzione.</li>
+<li>Stack: variabili piccole e array di dimensione fissa.</li>
+</ul>
+</div>
+</section>
+
+<section id="selezione-con-copia-in-tre-fasi" aria-labelledby="h-selezione-con-copia-in-tre-fasi" style="--h:2440px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-selezione-con-copia-in-tre-fasi">Selezione con copia in tre fasi</h2><span class="slides">slide 40–47</span></div>
+<p>La selezione della <a href="07A_algoritmi_su_array.html">07A</a> copia in un secondo array gli elementi che rispettano una condizione. Lì il secondo array aveva una capacità fissata prima, e bisognava controllare di non superarla. Con lo heap l&#39;array del risultato si può creare <strong>della misura esatta</strong>.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Selezione (slide 42)</span></p><p>Presi un array <code>b</code> di lunghezza <code>bLen</code> e una condizione <code>Cond</code>, la <strong>selezione</strong> copia in un altro array <code>a</code> tutti e soli gli elementi <code>b[i]</code> per cui <code>Cond(b[i])</code> è vera, nello stesso ordine.</p>
+</div>
+<p><strong>Come si legge.</strong> «Tutti e soli»: nessuno di quelli che rispettano la condizione resta fuori, e nessun altro entra. La lunghezza di <code>a</code> non si conosce finché non si è guardato tutto <code>b</code>: per questo le fasi sono tre.</p>
+<ol>
+<li><strong>Calcolo della dimensione.</strong> Si scorre <code>b</code> senza copiare niente, contando quanti elementi rispettano la condizione. Il risultato <code>count</code> è la lunghezza esatta del nuovo array.</li>
+<li><strong>Allocazione.</strong> Si chiede allo heap un array di <code>count</code> elementi.</li>
+<li><strong>Selezione e copia.</strong> Si scorre <code>b</code> una seconda volta e si copia ogni elemento buono nel primo posto libero di <code>a</code>. Servono due indici: <code>i</code> per <code>b</code>, <code>j</code> per <code>a</code>.</li>
+</ol>
+<figure class="grafico" id="grafico-4"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La selezione dei numeri pari da b verso un array nuovo nello heap. Prima si conta: i pari sono 3. Poi si alloca un blocco di 3 interi. Poi si copia: l'indice i scorre tutto b, l'indice j avanza solo quando si copia" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-4-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-4-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-4-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-4-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-4-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-4-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-4-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-4-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-ambra g-tenue" d="M71.27 109.29L142.55 109.29L142.55 48.57L71.27 48.57Z"/><path class="g-poligono g-grigio g-tenue" d="M142.55 109.29L213.82 109.29L213.82 48.57L142.55 48.57Z"/><path class="g-poligono g-grigio g-tenue" d="M213.82 109.29L285.09 109.29L285.09 48.57L213.82 48.57Z"/><path class="g-poligono g-ambra g-tenue" d="M285.09 109.29L356.36 109.29L356.36 48.57L285.09 48.57Z"/><path class="g-poligono g-ambra g-tenue" d="M356.36 109.29L427.64 109.29L427.64 48.57L356.36 48.57Z"/><path class="g-poligono g-verde g-tenue" d="M71.27 291.43L142.55 291.43L142.55 230.71L71.27 230.71Z"/><path class="g-poligono g-verde g-tenue" d="M142.55 291.43L213.82 291.43L213.82 230.71L142.55 230.71Z"/><path class="g-poligono g-verde g-tenue" d="M213.82 291.43L285.09 291.43L285.09 230.71L213.82 230.71Z"/><path class="g-linea g-ambra" d="M106.91 115.36L106.91 224.64" marker-end="url(#g-freccia-4-ambra)"/><path class="g-linea g-ambra" d="M320.73 115.36L183.27 224.64" marker-end="url(#g-freccia-4-ambra)"/><path class="g-linea g-ambra" d="M392 115.36L254.55 224.64" marker-end="url(#g-freccia-4-ambra)"/></svg><span class="g-et g-c g-testo g-blu" style="left:6.36%;top:23.21%">b</span><span class="g-et g-c g-testo g-ambra" style="left:19.09%;top:23.21%">12</span><span class="g-et g-c g-testo g-grigio" style="left:31.82%;top:23.21%">1</span><span class="g-et g-c g-testo g-grigio" style="left:44.54%;top:23.21%">3</span><span class="g-et g-c g-testo g-ambra" style="left:57.27%;top:23.21%">4</span><span class="g-et g-c g-testo g-ambra" style="left:70.00%;top:23.21%">8</span><span class="g-et g-c g-testo g-blu" style="left:87.27%;top:23.21%">stack</span><span class="g-et g-c g-testo g-verde" style="left:6.36%;top:76.79%">a</span><span class="g-et g-c g-testo g-verde" style="left:19.09%;top:76.79%">12</span><span class="g-et g-c g-testo g-verde" style="left:31.82%;top:76.79%">4</span><span class="g-et g-c g-testo g-verde" style="left:44.54%;top:76.79%">8</span><span class="g-et g-c g-testo g-verde" style="left:61.82%;top:76.79%">heap</span><span class="g-et g-c g-testo g-grigio" style="left:81.82%;top:51.79%">count = 3</span></div><figcaption>La selezione dei numeri pari da b verso un array nuovo nello heap. Prima si conta: i pari sono 3. Poi si alloca un blocco di 3 interi. Poi si copia: l&#39;indice i scorre tutto b, l&#39;indice j avanza solo quando si copia</figcaption></figure>
+<p>La funzione delle slide, <code>selectCopy</code>:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* selectCopy(<span class="kw">size_t</span> bLen, <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">size_t</span>* out_len) {
+    assert(bLen == 0 || b != <span class="kw">NULL</span>);
+    assert(out_len != <span class="kw">NULL</span>);
+    *out_len = 0;
+    <span class="kw">int</span>* a = <span class="kw">NULL</span>;
+
+    <span class="cm">// 1) Calcolo della dimensione</span>
+    <span class="kw">size_t</span> count = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; bLen; i++)
+        <span class="kw">if</span> (Cond(b[i]))
+            count++;
+
+    <span class="cm">// 2) Allocazione</span>
+    <span class="kw">if</span> (count &gt; 0) {
+        a = malloc(count * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+        <span class="kw">if</span> (a != <span class="kw">NULL</span>) {
+            <span class="cm">// 3) Selezione e copia</span>
+            <span class="kw">size_t</span> j = 0;
+            <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; bLen; i++) {
+                <span class="kw">if</span> (Cond(b[i])) {
+                    a[j] = b[i];
+                    j++;
+                }
+            }
+            assert(count == j);
+            *out_len = count;
+        }
+    }
+    <span class="kw">return</span> a;
+}</code></pre>
+<p>Con <code>Cond(x)</code> uguale a <code>x % 2 == 0</code> e <code>b = {12, 1, 3, 4, 8}</code>, il programma delle slide stampa:</p>
+<pre class="code" data-lingua="text"><code>Selezionati 3 elementi:
+a[0] = 12
+a[1] = 4
+a[2] = 8</code></pre>
+<p>Come è costruita:</p>
+<ul>
+<li><strong>I valori di partenza sono già la risposta del caso peggiore</strong>: <code>*out_len = 0</code> e <code>a = NULL</code>. Se niente va a buon fine, non serve toccarli. È lo stesso modo di ragionare delle sentinelle della 07A.</li>
+<li><strong>Il caso limite</strong>: se nessun elemento è selezionato, <code>count</code> è 0, non si alloca niente e la funzione ritorna <code>NULL</code> con lunghezza 0. L&#39;ho provato con <code>{1, 3, 5}</code> e con l&#39;array vuoto.</li>
+<li><strong>Il controllo di <code>malloc</code></strong>: la copia si fa solo se <code>a != NULL</code>.</li>
+<li><strong><code>assert(count == j)</code></strong>: le due scansioni devono aver trovato lo stesso numero di elementi. È un controllo sul programma, non sui dati: se fallisse, ci sarebbe un errore nel codice.</li>
+<li><strong>Una sola <code>return</code></strong>, alla fine: va bene per le regole d&#39;esame.</li>
+<li><strong><code>const int b[]</code></strong>: la funzione legge <code>b</code> e non lo modifica.</li>
+</ul>
+<p>Nel <code>main</code> delle slide, dopo la stampa, c&#39;è <code>free(a); a = NULL;</code>. Funziona anche quando <code>a</code> è <code>NULL</code>.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con <code>b = {5, 6, 7, 8, 10}</code> e la stessa condizione, quanto vale <code>count</code> dopo la prima fase? Che cosa contiene <code>a</code> alla fine, e quanto vale <code>j</code>?</span></summary><div class="ans"><p><code>count</code> vale 3. <code>a</code> contiene 6, 8, 10 e <code>j</code> vale 3: per questo l&#39;<code>assert</code> passa.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Tre fasi: conta, alloca, copia.</li>
+<li>Due scansioni di <code>b</code>, due indici nella copia.</li>
+<li>Nessun elemento selezionato: <code>NULL</code> e lunghezza 0.</li>
+<li>Il chiamante deve fare la <code>free</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="di-chi-e-il-blocco-la-responsabilita" aria-labelledby="h-di-chi-e-il-blocco-la-responsabilita" style="--h:1620px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-di-chi-e-il-blocco-la-responsabilita">Di chi è il blocco: la responsabilità</h2><span class="slides">slide 48–50</span></div>
+<p><code>selectCopy</code> alloca un blocco e non lo libera. Non è un leak, perché lo consegna a qualcuno: chi l&#39;ha chiamata.</p>
+<div class="box def"><p class="box-label"><span>Definizione · Responsabilità della memoria (slide 48)</span></p><p>Per ogni blocco allocato c&#39;è un punto del programma che ha la <strong>responsabilità</strong> (<em>ownership</em>) di liberarlo. Chi chiama <code>malloc</code> ce l&#39;ha per primo; ritornando il puntatore la <strong>trasferisce</strong> al chiamante, che può trasferirla ancora. L&#39;ultimo che usa il blocco chiama <code>free</code>.</p>
+</div>
+<p><strong>Come si legge.</strong> È una convenzione tra chi scrive una funzione e chi la usa, e il linguaggio non la controlla. Per questo va scritta nel commento della funzione: «ritorna un array allocato nello heap; il chiamante deve liberarlo con <code>free</code>». In ogni momento un blocco ha un solo responsabile: così non viene liberato due volte e non viene dimenticato.</p>
+<p>Lo fa anche la libreria standard. <code>strdup</code>, in <code>&lt;string.h&gt;</code>, crea nello heap una copia di una stringa, terminatore compreso, e ne ritorna l&#39;indirizzo: chi la chiama deve fare la <code>free</code>.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#include</span> &lt;stdio.h&gt;
+<span class="kw">#include</span> &lt;string.h&gt;
+<span class="kw">#include</span> &lt;stdlib.h&gt;
+<span class="kw">#include</span> &lt;assert.h&gt;
+
+<span class="kw">int</span> main(<span class="kw">void</span>) {
+    <span class="kw">const</span> <span class="kw">char</span>* src = <span class="str">&quot;Programmazione 1&quot;</span>;
+    <span class="kw">char</span>* copy = strdup(src);  <span class="cm">// copia nello heap</span>
+    assert(copy != <span class="kw">NULL</span>);
+    printf(<span class="str">&quot;Originale: %s\nCopia: %s\n&quot;</span>, src, copy);
+    free(copy); copy = <span class="kw">NULL</span>; <span class="cm">// il chiamante è responsabile della deallocazione</span>
+}</code></pre>
+<p>Stampa due volte <code>Programmazione 1</code>. La copia è un blocco diverso dall&#39;originale: ho controllato che i due indirizzi sono diversi, e cambiando <code>copy[0]</code> l&#39;originale resta com&#39;era.</p>
+<p>Nelle slide manca la riga <code>#include &lt;assert.h&gt;</code>. Senza, gcc dice:</p>
+<pre class="code" data-lingua="text"><code>strdup_slide.c:8:5: error: implicit declaration of function 'assert' [-Wimplicit-function-declaration]
+strdup_slide.c:4:1: note: 'assert' is defined in header '&lt;assert.h&gt;'; this is probably fixable by adding '#include &lt;assert.h&gt;'</code></pre>
+<p>In Programmazione II e in Algoritmi la memoria dinamica servirà per le strutture dati che cambiano dimensione e non sono contigue: liste, alberi, grafi.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Una funzione <code>int* creaTabella(size_t n)</code> ritorna un array allocato con <code>malloc</code>. Chi la chiama la usa così: <code>stampa(n, creaTabella(n));</code>. Che cosa non va?</span></summary><div class="ans"><p>L&#39;indirizzo ritornato viene passato a <code>stampa</code> e non viene salvato da nessuna parte: dopo la chiamata nessuno può più fare la <code>free</code>. È un memory leak. Bisogna salvare il puntatore in una variabile, usarlo, e poi liberarlo.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Ogni blocco ha un responsabile, che deve liberarlo.</li>
+<li>Ritornare il puntatore trasferisce la responsabilità al chiamante.</li>
+<li>Va scritto nel commento della funzione.</li>
+<li><code>strdup</code> alloca: dopo serve una <code>free</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:670px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>malloc(sz)</code></td><td>«malloc di sz»</td><td>chiede <code>sz</code> byte contigui nello heap; ritorna l&#39;indirizzo o <code>NULL</code></td><td><code>malloc(3 * sizeof(int))</code></td></tr>
+<tr><td><code>free(p)</code></td><td>«free di p»</td><td>restituisce il blocco di indirizzo <code>p</code></td><td><code>free(a); a = NULL;</code></td></tr>
+<tr><td><code>sizeof(T)</code></td><td>«sizeof di T»</td><td>quanti byte occupa un valore di tipo <code>T</code></td><td><code>sizeof(int)</code> vale 4 su questo PC</td></tr>
+<tr><td><code>void*</code></td><td>«puntatore a void»</td><td>un indirizzo senza un tipo</td><td>il risultato di <code>malloc</code></td></tr>
+<tr><td><code>NULL</code></td><td>«null»</td><td>il puntatore che non indica niente</td><td><code>if (a == NULL)</code></td></tr>
+<tr><td><code>size_t* out_len</code></td><td>«puntatore a size_t»</td><td>parametro di uscita per una lunghezza</td><td><code>*out_len = count;</code></td></tr>
+<tr><td><code>??</code></td><td>«valore sconosciuto»</td><td>memoria non inizializzata, nei disegni</td><td>il blocco appena allocato</td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:1820px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>All&#39;esame si scrive al PC con CodeRunner, e le funzioni vengono compilate con <code>-Wall -Werror</code>. Le regole restano quelle di sempre: una sola <code>return</code> nelle funzioni iterative, niente <code>break</code>. Di questa lezione servono:</p>
+<ol>
+<li><strong>lo schema a tre fasi</strong> per restituire un array nuovo: conta, alloca, copia, con la lunghezza in un parametro di uscita;</li>
+<li><strong>il controllo di <code>malloc</code></strong> e il caso in cui non c&#39;è niente da restituire;</li>
+<li><strong>non ritornare mai l&#39;indirizzo di una variabile locale</strong>: con <code>-Werror</code> è un errore di compilazione, e l&#39;esercizio vale zero;</li>
+<li><strong>disegnare stack e heap</strong> dopo una serie di istruzioni: è il modo più sicuro per trovare leak e puntatori appesi, ed era un esercizio fisso negli esami degli anni in cui il corso si faceva in Java.</li>
+</ol>
+<h3 id="una-domanda-sul-modello-letta-insieme">Una domanda sul modello, letta insieme</h3>
+<p>Nella <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">raccolta di esercizi d&#39;esame</a> questa tipologia c&#39;è per il canale C del 2025/26: una funzione che restituisce un array allocato e la lunghezza in un parametro di uscita. Un testo d&#39;esame vero non ce l&#39;ho; questo è nello stesso stile.</p>
+<p>«Scrivere una funzione <code>e3</code> che riceve un array di interi (<code>aLen</code>, <code>a</code>) e restituisce un nuovo array, allocato nello heap, con gli elementi strettamente positivi di <code>a</code>, nell&#39;ordine in cui compaiono. La lunghezza del nuovo array va scritta in <code>*out_len</code>. Se non ci sono elementi positivi, <code>e3</code> restituisce <code>NULL</code> e scrive 0.»</p>
+<p><strong>In pratica chiede:</strong> <code>selectCopy</code> con la condizione <code>x &gt; 0</code>.</p>
+<p><strong>Soluzione.</strong></p>
+<ol>
+<li>Valori di partenza: risultato <code>NULL</code>, <code>*out_len = 0</code>.</li>
+<li>Prima scansione: conto i positivi.</li>
+<li>Se ce ne sono, alloco <code>count * sizeof(int)</code> byte e controllo il risultato.</li>
+<li>Seconda scansione: copio con un secondo indice.</li>
+<li>Una sola <code>return</code>.</li>
+</ol>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* e3(<span class="kw">size_t</span> aLen, <span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span>* out_len) {
+    <span class="kw">int</span>* p = <span class="kw">NULL</span>;
+    <span class="kw">size_t</span> count = 0;
+    *out_len = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; aLen; i++) {
+        <span class="kw">if</span> (a[i] &gt; 0) {
+            count++;
+        }
+    }
+    <span class="kw">if</span> (count &gt; 0) {
+        p = malloc(count * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+        <span class="kw">if</span> (p != <span class="kw">NULL</span>) {
+            <span class="kw">size_t</span> j = 0;
+            <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; aLen; i++) {
+                <span class="kw">if</span> (a[i] &gt; 0) {
+                    p[j] = a[i];
+                    j++;
+                }
+            }
+            *out_len = count;
+        }
+    }
+    <span class="kw">return</span> p;
+}</code></pre>
+<p>Provata: con <code>{7, -2, 0, 9}</code> ritorna un array di 2 elementi, 7 e 9. Lo zero non è strettamente positivo.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Una funzione che restituisce un array nuovo</span></p><ol>
+<li>Prototipo: ritorna <code>int*</code>, riceve la lunghezza di uscita come <code>size_t* out_len</code>.</li>
+<li>Parti dal caso peggiore: puntatore <code>NULL</code>, lunghezza 0.</li>
+<li>Calcola quanti elementi servono.</li>
+<li><code>malloc(count * sizeof(int))</code>, e continua solo se il risultato non è <code>NULL</code>.</li>
+<li>Riempi <strong>tutte</strong> le caselle: quello che <code>malloc</code> dà non è inizializzato.</li>
+<li>Scrivi la lunghezza, ritorna il puntatore, e nel commento di&#39; che il chiamante deve fare la <code>free</code>.</li>
+</ol>
+</div>
+<h3 id="errori-da-evitare">Errori da evitare</h3>
+<ul>
+<li>Ritornare un array locale o un VLA.</li>
+<li>Scrivere <code>malloc(n)</code> invece di <code>malloc(n * sizeof(int))</code>: alloca <code>n</code> byte, non <code>n</code> interi.</li>
+<li>Dimenticare la <code>free</code>, o farla nella funzione che deve restituire l&#39;array.</li>
+<li>Usare il puntatore dopo la <code>free</code>.</li>
+<li>Passare a <code>free</code> un puntatore spostato rispetto a quello dato da <code>malloc</code>.</li>
+<li>Leggere il blocco prima di averci scritto.</li>
+</ul>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2110px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Che cosa ritorna al chiamante una funzione che fa <code>int a[n]; ... return a;</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un puntatore appeso: l&#39;indirizzo di un array che dopo il ritorno non esiste più</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>NULL</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un puntatore a un blocco nello heap</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">una copia dell&#39;array</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">l&#39;array stesso, che resta valido finché il chiamante lo usa</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>L&#39;array è nel frame della funzione, che viene tolto dallo stack al ritorno. La più insidiosa è «una copia dell&#39;array»: in C un array non si copia con <code>return</code>; quello che viaggia è l&#39;indirizzo del primo elemento.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale istruzione alloca un array di 10 interi nello heap?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int* a = malloc(sizeof(10));</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int a = malloc(10 * sizeof(int));</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int* a = malloc(10);</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int* a = malloc(10 * sizeof(int));</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int a[10] = malloc(sizeof(int));</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>malloc</code> vuole il numero di byte: 10 volte la misura di un intero. La più insidiosa è <code>malloc(10)</code>: si compila, ma alloca 10 byte, che bastano per due interi e mezzo.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Che cosa contiene il blocco subito dopo <code>int* a = malloc(5 * sizeof(int));</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">cinque volte <code>NULL</code></span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">i valori dell&#39;ultimo array liberato</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">cinque zeri</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">valori indeterminati</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">niente: il blocco è vuoto finché non ci si scrive</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>malloc</code> riserva la memoria e non la inizializza. La più insidiosa è «cinque zeri»: a volte succede davvero, per caso, e il programma sembra funzionare.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Dopo <code>free(p);</code>, che cosa vale <code>p</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">l&#39;indirizzo del prossimo blocco libero</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>NULL</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">un valore indeterminato</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">0</span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">lo stesso indirizzo di prima, che ora non è più valido</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>free</code> riceve una copia dell&#39;indirizzo e non può cambiare la variabile. Per questo si scrive <code>p = NULL</code> subito dopo. La più insidiosa è <code>NULL</code>: è quello che vorresti, ma devi farlo tu.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Quale di questi frammenti produce un memory leak?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int* p = malloc(8); int* q = p; free(q);</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int* p = malloc(8); free(p); p = NULL;</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int* p = malloc(8); p = malloc(16); free(p);</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int* p = NULL; free(p);</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>int x = 3; int* p = &amp;x;</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Il primo blocco perde il suo unico indirizzo quando <code>p</code> viene riassegnato. La più insidiosa è <code>int* p = malloc(8); int* q = p; free(q);</code>: <code>q</code> e <code>p</code> contengono lo stesso indirizzo, e una sola <code>free</code> basta, con uno qualunque dei due.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Nel programma <code>int* p1 = malloc(20); int* p2 = malloc(32); double* p3 = malloc(16); free(p2); char* p4 = malloc(20); free(p1);</code>, quanti blocchi sono ancora allocati alla fine?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="2" data-toll="1e-9"><span class="q-giusto" hidden>2</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Quattro <code>malloc</code> e due <code>free</code>: restano i blocchi di <code>p3</code> e di <code>p4</code>.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">In <code>selectCopy</code>, con <code>b = {12, 1, 3, 4, 8}</code> e la condizione «pari», quanti byte chiede la <code>malloc</code>, se <code>sizeof(int)</code> vale 4?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="12" data-toll="1e-9"><span class="q-giusto" hidden>12</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>I pari sono tre: 12, 4 e 8. Tre interi da 4 byte.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Una funzione ritorna un array allocato con <code>malloc</code>. Chi deve chiamare <code>free</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">nessuno: lo heap si libera da solo al ritorno</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il chiamante, quando l&#39;array non gli serve più</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il sistema operativo, a ogni chiamata</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">la funzione stessa, prima della <code>return</code></span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">chiunque, anche più volte</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La funzione trasferisce la responsabilità del blocco a chi la chiama. La più insidiosa è «la funzione stessa, prima della <code>return</code>»: se la funzione liberasse il blocco prima di ritornarlo, il chiamante riceverebbe un puntatore appeso.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1430px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: stack o heap <span class="lvl">base</span></h3><p>Per ogni riga di&#39; dove sta l&#39;oggetto nominato: (a) la variabile <code>p</code> in <code>int* p = malloc(4 * sizeof(int));</code> dentro <code>main</code>; (b) i quattro interi; (c) <code>size_t n</code> dichiarata in una funzione; (d) l&#39;array <code>int v[3]</code> dichiarato in una funzione.</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) Nello stack, nel frame di <code>main</code>: è una variabile locale, anche se contiene un indirizzo dello heap. (b) Nello heap. (c) Nello stack. (d) Nello stack.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: segui i blocchi <span class="lvl">base</span></h3><p>Per <code>int* a = malloc(8); int* b = malloc(8); int* c = a; free(a); a = NULL; b = malloc(8);</code> di&#39; quanti blocchi sono allocati alla fine, quali sono persi e quali puntatori sono appesi.</p>
+<details class="sol"><summary>Soluzione</summary><p>Tre <code>malloc</code> e una <code>free</code>: due blocchi allocati. Il secondo, quello che era di <code>b</code>, è <strong>perso</strong>: <code>b</code> è stato riassegnato senza liberarlo. <code>c</code> è <strong>appeso</strong>: contiene l&#39;indirizzo del primo blocco, che è stato liberato attraverso <code>a</code>. Mettere <code>a = NULL</code> non ha protetto <code>c</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Copia di un array <span class="lvl">medio</span></h3><p>Scrivi <code>int* copiaArray(size_t aLen, const int a[])</code>, che ritorna una copia di <code>a</code> nello heap, oppure <code>NULL</code> se <code>aLen</code> è 0 o manca la memoria.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">int</span>* copiaArray(<span class="kw">size_t</span> aLen, <span class="kw">const</span> <span class="kw">int</span> a[]) {
+    <span class="kw">int</span>* c = <span class="kw">NULL</span>;
+    <span class="kw">if</span> (aLen &gt; 0) {
+        c = malloc(aLen * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+        <span class="kw">if</span> (c != <span class="kw">NULL</span>) {
+            <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; aLen; i++) {
+                c[i] = a[i];
+            }
+        }
+    }
+    <span class="kw">return</span> c;
+}</code></pre>
+<p>Qui la lunghezza del risultato è quella di partenza: non serve la fase di conteggio. Provata: cambiando <code>c[0]</code> l&#39;originale non cambia, perché sono due blocchi diversi.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Concatenare due array <span class="lvl">medio</span></h3><p>Scrivi <code>int* concatena(size_t aLen, const int a[], size_t bLen, const int b[], size_t* out_len)</code>: ritorna un array nuovo con gli elementi di <code>a</code> seguiti da quelli di <code>b</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">int</span>* concatena(<span class="kw">size_t</span> aLen, <span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">size_t</span> bLen, <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">size_t</span>* out_len) {
+    <span class="kw">int</span>* c = <span class="kw">NULL</span>;
+    *out_len = 0;
+    <span class="kw">if</span> (aLen + bLen &gt; 0) {
+        c = malloc((aLen + bLen) * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+        <span class="kw">if</span> (c != <span class="kw">NULL</span>) {
+            <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; aLen; i++) {
+                c[i] = a[i];
+            }
+            <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; bLen; i++) {
+                c[aLen + i] = b[i];
+            }
+            *out_len = aLen + bLen;
+        }
+    }
+    <span class="kw">return</span> c;
+}</code></pre>
+<p>Il secondo ciclo scrive a partire dal posto <code>aLen</code>. Provata con <code>{7, -2, 0, 9}</code> e <code>{5, 6}</code>: dà 7, −2, 0, 9, 5, 6.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Trova gli errori <span class="lvl">tipo esame</span></h3><p>Di&#39; tutti gli errori di memoria di questa funzione, e riscrivila.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* doppi(<span class="kw">size_t</span> n, <span class="kw">const</span> <span class="kw">int</span> a[]) {
+    <span class="kw">int</span>* d = malloc(n);
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt;= n; i++)
+        d[i] = 2 * a[i];
+    free(d);
+    <span class="kw">return</span> d;
+}</code></pre>
+<details class="sol"><summary>Soluzione</summary><p>Quattro errori. <strong>(1)</strong> <code>malloc(n)</code> alloca <code>n</code> byte, non <code>n</code> interi. <strong>(2)</strong> Manca il controllo del risultato. <strong>(3)</strong> <code>i &lt;= n</code> scrive <code>d[n]</code> e legge <code>a[n]</code>, fuori dai due array. <strong>(4)</strong> <code>free(d)</code> prima della <code>return</code>: il chiamante riceve un puntatore appeso. La <code>free</code> spetta al chiamante.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* doppi(<span class="kw">size_t</span> n, <span class="kw">const</span> <span class="kw">int</span> a[]) {
+    <span class="kw">int</span>* d = <span class="kw">NULL</span>;
+    <span class="kw">if</span> (n &gt; 0) {
+        d = malloc(n * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+        <span class="kw">if</span> (d != <span class="kw">NULL</span>) {
+            <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; n; i++) {
+                d[i] = 2 * a[i];
+            }
+        }
+    }
+    <span class="kw">return</span> d;
+}</code></pre>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · Rovesciare in un array nuovo <span class="lvl">difficile</span></h3><p>Scrivi <code>int* rovescia(size_t aLen, const int a[])</code>, che ritorna un array nuovo con gli elementi di <code>a</code> in ordine inverso. Poi scrivi il <code>main</code> che la usa su <code>{7, -2, 0, 9}</code>, stampa il risultato e non perde memoria.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">int</span>* rovescia(<span class="kw">size_t</span> aLen, <span class="kw">const</span> <span class="kw">int</span> a[]) {
+    <span class="kw">int</span>* r = <span class="kw">NULL</span>;
+    <span class="kw">if</span> (aLen &gt; 0) {
+        r = malloc(aLen * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+        <span class="kw">if</span> (r != <span class="kw">NULL</span>) {
+            <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; aLen; i++) {
+                r[i] = a[aLen - 1 - i];
+            }
+        }
+    }
+    <span class="kw">return</span> r;
+}</code></pre>
+<p>Nel <code>main</code>: <code>int* r = rovescia(4, a);</code>, poi, se <code>r != NULL</code>, il ciclo di stampa, e alla fine <code>free(r); r = NULL;</code>. Provata: stampa 9, 0, −2, 7. L&#39;indice <code>aLen - 1 - i</code> è sicuro perché si calcola solo con <code>i &lt; aLen</code>: con <code>size_t</code> una sottrazione che va sotto zero darebbe un numero enorme.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:560px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Perché non si può ritornare un array locale?</span></summary><div class="ans"><p>Perché sta nel frame della funzione, che viene tolto dallo stack al ritorno: il chiamante riceverebbe un puntatore appeso.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa fa <code>malloc</code>, e che cosa ritorna?</span></summary><div class="ans"><p>Riserva nello heap il numero di byte chiesto, contigui e non inizializzati, e ritorna l&#39;indirizzo del primo. Ritorna <code>NULL</code> se la memoria non c&#39;è.</p>
+</div></details>
+<details class="qa"><summary><span>Perché dopo <code>free(p)</code> si scrive <code>p = NULL</code>?</span></summary><div class="ans"><p>Perché <code>p</code> contiene ancora il vecchio indirizzo. Con <code>NULL</code>, un uso sbagliato ferma subito il programma e una seconda <code>free</code> non fa danni.</p>
+</div></details>
+<details class="qa"><summary><span>Che cos&#39;è un memory leak?</span></summary><div class="ans"><p>Un blocco allocato e mai liberato, per esempio perché si è perso il suo indirizzo.</p>
+</div></details>
+<details class="qa"><summary><span>Quali sono le tre fasi della selezione con copia?</span></summary><div class="ans"><p>Contare gli elementi da selezionare, allocare un array di quella misura, copiare gli elementi con un secondo indice.</p>
+</div></details>
+<details class="qa"><summary><span>Che cosa vuol dire che il chiamante ha la responsabilità del blocco?</span></summary><div class="ans"><p>Che la funzione gli ha consegnato il puntatore a un blocco allocato, e tocca a lui chiamare <code>free</code> quando non gli serve più.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:530px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Heap</dt><dd>Zona di memoria gestita a mano dal programma, con malloc e free.</dd></div>
+<div><dt>Memoria dinamica</dt><dd>Memoria chiesta e restituita dal programma durante l&#39;esecuzione.</dd></div>
+<div><dt>malloc</dt><dd>Funzione di &lt;stdlib.h&gt; che riserva un blocco di byte contigui nello heap.</dd></div>
+<div><dt>free</dt><dd>Funzione di &lt;stdlib.h&gt; che restituisce allo heap un blocco ottenuto con malloc.</dd></div>
+<div><dt>Blocco</dt><dd>Una zona contigua dello heap ottenuta con una chiamata a malloc.</dd></div>
+<div><dt>Puntatore appeso (dangling pointer)</dt><dd>Puntatore che contiene l&#39;indirizzo di memoria non più valida.</dd></div>
+<div><dt>Memory leak</dt><dd>Blocco allocato e mai liberato.</dd></div>
+<div><dt>Doppia free</dt><dd>Liberare due volte lo stesso blocco: comportamento indefinito.</dd></div>
+<div><dt>void*</dt><dd>Puntatore a una zona di memoria senza un tipo assegnato.</dd></div>
+<div><dt>Responsabilità (ownership)</dt><dd>Il dovere di liberare un blocco; passa a chi riceve il puntatore.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:530px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 10</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-08A-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So spiegare perché un array locale non si può ritornare.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So che cos&#39;è un puntatore appeso e riconosco i due modi in cui nasce.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So disegnare codice, dati, heap e stack nel modello della memoria.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So scrivere una malloc per n elementi di un tipo, con sizeof e con il controllo del risultato.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So che la memoria di malloc non è inizializzata.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So scrivere free seguita da NULL, e so perché.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So riconoscere i sei errori tipici in un frammento di codice.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So seguire una serie di malloc e free dicendo quali blocchi restano.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So scrivere la selezione con copia in tre fasi, con una sola return.</span></label></li>
+<li><label><input type="checkbox" id="chk-10"><span>So dire chi deve liberare un blocco ritornato da una funzione.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Memoria Dinamica. Gestione non automatica della memoria, lo heap e le funzioni malloc/free» (08A_memoria_dinamica), Programmazione I – Teoria, canale B, prof. Elvio Amparore, A.A. 2026/27: 50 pagine. Sul Moodle del corso sono nella settimana del 16 novembre.</li>
+<li>Tutti i programmi sono stati compilati con gcc 16.1 (<code>-Wall -Werror</code>) ed eseguiti; i messaggi di errore riportati sono quelli veri del compilatore.</li>
+<li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md" target="_blank" rel="noopener">Raccolta di esercizi d&#39;esame</a>, tipologia «heap».</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

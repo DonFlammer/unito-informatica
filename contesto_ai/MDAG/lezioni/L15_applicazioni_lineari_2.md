@@ -591,7 +591,7 @@ D: La matrice associata a $f : \R^3 \to \R^2$, $f(x, y, z) = (x - z,\ 2y + z)$, 
 - $\begin{pmatrix} 1 & -1 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & -1 \end{pmatrix}$
-= Le colonne sono le uscite della base canonica: $f(e_1) = (1, 0)$, $f(e_2) = (0, 2)$, $f(e_3) = (-1, 1)$. La matrice è $2 \times 3$, perché si arriva nel piano partendo dallo spazio, e si legge dai numeri davanti alle lettere riga per riga. La risposta più insidiosa è la seconda, la trasposta, con le uscite messe in riga. La quarta sbaglia il segno di $-z$.
+= Le colonne sono le uscite della base canonica: $f(e_1) = (1, 0)$, $f(e_2) = (0, 2)$, $f(e_3) = (-1, 1)$. La matrice è $2 \times 3$, perché si arriva nel piano partendo dallo spazio, e si legge dai numeri davanti alle lettere riga per riga. La risposta più insidiosa è $\begin{pmatrix} 1 & 0 \\ 0 & 2 \\ -1 & 1 \end{pmatrix}$, la trasposta, con le uscite messe in riga. La risposta $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 1 \end{pmatrix}$ sbaglia il segno di $-z$.
 
 D: La matrice della derivata $D : \R_2[x] \to \R_1[x]$, $D(p) = p'$, rispetto alle basi $\{1, x, x^2\}$ e $\{1, x\}$ è:
 + $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$
@@ -599,7 +599,7 @@ D: La matrice della derivata $D : \R_2[x] \to \R_1[x]$, $D(p) = p'$, rispetto al
 - $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
-= $D(1) = 0$ ha coordinate $(0, 0)$, $D(x) = 1$ ha coordinate $(1, 0)$, $D(x^2) = 2x$ ha coordinate $(0, 2)$: sono le tre colonne. La taglia è $2 \times 3$, perché l'arrivo ha dimensione 2 e la partenza 3. La seconda risposta è la trasposta; la terza, la più insidiosa, ha la taglia di una macchina che arriva nei polinomi di grado al massimo 2, non 1.
+= $D(1) = 0$ ha coordinate $(0, 0)$, $D(x) = 1$ ha coordinate $(1, 0)$, $D(x^2) = 2x$ ha coordinate $(0, 2)$: sono le tre colonne. La taglia è $2 \times 3$, perché l'arrivo ha dimensione 2 e la partenza 3. La risposta $\begin{pmatrix} 0 & 0 \\ 1 & 0 \\ 0 & 2 \end{pmatrix}$ è la trasposta; la risposta $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}$, la più insidiosa, ha la taglia di una macchina che arriva nei polinomi di grado al massimo 2, non 1.
 
 D: Sia $T : \R^2 \to \R^2$, $T(x, y) = (x + y,\ 2x)$, e sia $\mathcal B = \{v_1 = (1, 0),\ v_2 = (1, 1)\}$. Il vettore di coordinate $[T(v_1)]_{\mathcal B}$ è:
 + $(-1, 2)$
@@ -615,7 +615,7 @@ D: Sia $T(x, y) = (y, x)$ e sia $\mathcal B = \{(1, 2), (0, 1)\}$. La matrice $[
 - $\begin{pmatrix} 2 & -3 \\ 1 & -2 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix}$
-= $T(1, 2) = (2, 1) = 2(1, 2) - 3(0, 1)$ e $T(0, 1) = (1, 0) = 1(1, 2) - 2(0, 1)$: le colonne sono $(2, -3)$ e $(1, -2)$. La risposta più insidiosa è la seconda, la matrice nella base canonica. La terza è la trasposta; la quinta mette le uscite senza passare alle coordinate; la quarta ha i vettori della base. Simile agli appelli del 24/01/2024 (domanda 3) e del 15/01/2026 (domanda 8).
+= $T(1, 2) = (2, 1) = 2(1, 2) - 3(0, 1)$ e $T(0, 1) = (1, 0) = 1(1, 2) - 2(0, 1)$: le colonne sono $(2, -3)$ e $(1, -2)$. La risposta più insidiosa è $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, la matrice nella base canonica. La risposta $\begin{pmatrix} 2 & -3 \\ 1 & -2 \end{pmatrix}$ è la trasposta; la risposta $\begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix}$ mette le uscite senza passare alle coordinate; la risposta $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$ ha i vettori della base. Simile agli appelli del 24/01/2024 (domanda 3) e del 15/01/2026 (domanda 8).
 
 D: Sia $f(p) = (p(2), p(-2))$ con matrice $\begin{pmatrix} 1 & 2 & 4 \\ 1 & -2 & 4 \end{pmatrix}$ rispetto a $\{1, x, x^2\}$ e alla base canonica. Quanto vale $f(1 - x + x^2)$?
 + $(3, 7)$
@@ -639,7 +639,7 @@ D: La matrice associata all'inversa di $f = L_A : \R^2 \to \R^2$, con $A = \begi
 - $\begin{pmatrix} 2 & -1 \\ -1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1/2 & 1 \\ 1 & 1 \end{pmatrix}$
 - $f$ non è invertibile.
-= Il determinante è $2 - 1 = 1$, non zero: $f$ è un isomorfismo, e la sua inversa è la macchina della matrice inversa. Con la regola delle $2 \times 2$ (lezione L10): scambio la diagonale, cambio segno agli altri due, divido per 1. Viene $\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$; controllo: $A A^{-1} = I_2$. La risposta più insidiosa è la terza, che cambia i segni ma non scambia la diagonale. La quarta inverte casella per casella. Simile all'appello del 10/07/2024, problema 11, punto 2.
+= Il determinante è $2 - 1 = 1$, non zero: $f$ è un isomorfismo, e la sua inversa è la macchina della matrice inversa. Con la regola delle $2 \times 2$ (lezione L10): scambio la diagonale, cambio segno agli altri due, divido per 1. Viene $\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$; controllo: $A A^{-1} = I_2$. La risposta più insidiosa è $\begin{pmatrix} 2 & -1 \\ -1 & 1 \end{pmatrix}$, che cambia i segni ma non scambia la diagonale. La risposta $\begin{pmatrix} 1/2 & 1 \\ 1 & 1 \end{pmatrix}$ inverte casella per casella. Simile all'appello del 10/07/2024, problema 11, punto 2.
 
 D: Qual è la dimensione dello spazio vettoriale di tutte le applicazioni lineari $\R^3 \to \R^2$?
 N: 6

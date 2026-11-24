@@ -362,7 +362,7 @@ D: Appello del 14/01/2025, problema 1 (versione A). Con $\tau = \begin{pmatrix} 
 - 5 6 2 4 1 3
 - 2 1 4 3 5 6
 - 3 4 1 2 6 5
-= Si gira ogni freccia: l'1 sta sotto il 2, quindi $\tau^{-1}(1) = 2$, e così via. È la tabella della soluzione ufficiale. La risposta più insidiosa è la seconda, che è $\tau$ stessa: si sono scambiate le righe senza riordinare.
+= Si gira ogni freccia: l'1 sta sotto il 2, quindi $\tau^{-1}(1) = 2$, e così via. È la tabella della soluzione ufficiale. La risposta più insidiosa è «3 1 4 2 6 5», che è $\tau$ stessa: si sono scambiate le righe senza riordinare.
 
 D: Sul modello degli esercizi sul binomio: qual è il coefficiente di $x^3$ in $(2x - 3)^5$?
 + 720
@@ -394,7 +394,7 @@ D: Quale di queste tabelle è una permutazione di $\{1, 2, 3, 4, 5\}$? (Si scriv
 - 2 3 4 5 6
 - 3 1 2 5 3
 - 1 2 3 4
-= Nella riga sotto devono comparire 1, 2, 3, 4, 5 una volta ciascuno. La risposta più insidiosa è «2 3 4 5 6»: i valori sono tutti diversi, ma il 6 non è nell'insieme e l'1 manca. L'ultima ha solo 4 numeri: manca l'immagine del 5.
+= Nella riga sotto devono comparire 1, 2, 3, 4, 5 una volta ciascuno. La risposta più insidiosa è «2 3 4 5 6»: i valori sono tutti diversi, ma il 6 non è nell'insieme e l'1 manca. La risposta «1 2 3 4» ha solo 4 numeri: manca l'immagine del 5.
 
 D: $\pi$ scambia 1 e 2, $\sigma$ scambia 1 e 3, ed entrambe lasciano fermo il terzo numero. Quanto vale $(\pi \circ \sigma)(1)$?
 + 3

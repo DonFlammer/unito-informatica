@@ -856,7 +856,7 @@ D: Appello del 03/07/2026, domanda 7. Quale dei seguenti è una radice del polin
 - $z = 1 + i$
 - $z = 1$
 - $z^3 + 2z^2 + z + 2 = 0$
-= Raccogliendo, $p(z) = (z^2 + 1)(z + 2)$: radici $-2$, $i$, $-i$. È la (b) della soluzione ufficiale; controllo $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è l'ultima, che non è un numero ma l'equazione stessa.
+= Raccogliendo, $p(z) = (z^2 + 1)(z + 2)$: radici $-2$, $i$, $-i$. È la (b) della soluzione ufficiale; controllo $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è $z^3 + 2z^2 + z + 2 = 0$, che non è un numero ma l'equazione stessa.
 
 D: Quale dei seguenti è una radice di $p(z) = z^4 + 10z^2 + 9$?
 + $z = 3i$
@@ -892,7 +892,7 @@ D: Quoziente e resto della divisione di $x^3 + 2x^2 - x + 3$ per $x^2 + 1$ sono:
 - $q(x) = x + 2$ e $r(x) = -2x + 5$
 - $q(x) = x$ e $r(x) = 2x^2 - 2x + 3$
 - $q(x) = x + 2$ e $r(x) = -2x - 1$
-= Primo passo: $x^3$ diviso $x^2$ fa $x$; togliendo $x(x^2 + 1) = x^3 + x$ resta $2x^2 - 2x + 3$. Secondo passo: $2x^2$ diviso $x^2$ fa 2; togliendo $2(x^2 + 1) = 2x^2 + 2$ resta $-2x + 1$, di grado 1, più basso di 2: fine. La risposta più insidiosa è la quarta: $x \cdot (x^2 + 1) + (2x^2 - 2x + 3)$ ridà davvero il dividendo, ma quel «resto» ha grado 2, uguale al divisore, quindi la divisione non è finita. Le altre hanno sbagliato un segno nelle sottrazioni.
+= Primo passo: $x^3$ diviso $x^2$ fa $x$; togliendo $x(x^2 + 1) = x^3 + x$ resta $2x^2 - 2x + 3$. Secondo passo: $2x^2$ diviso $x^2$ fa 2; togliendo $2(x^2 + 1) = 2x^2 + 2$ resta $-2x + 1$, di grado 1, più basso di 2: fine. La risposta più insidiosa è «$q(x) = x$ e $r(x) = 2x^2 - 2x + 3$»: $x \cdot (x^2 + 1) + (2x^2 - 2x + 3)$ ridà davvero il dividendo, ma quel «resto» ha grado 2, uguale al divisore, quindi la divisione non è finita. Le altre hanno sbagliato un segno nelle sottrazioni.
 
 D: Un polinomio a coefficienti **reali** di grado $4$ ha le radici $1 + i$ e $2i$. Quali sono le altre due radici?
 + $1 - i$ e $-2i$
@@ -916,7 +916,7 @@ D: Quale di questi polinomi appartiene a $\R_2[x]$?
 - $ix + 1$
 - $(x - 1)(x^2 + 1)$
 - $\frac 1x + x$
-= $\R_2[x]$ sono i polinomi con numeri reali e grado al massimo 2. La prima risposta sembra di grado 2, ma svolgendo diventa $2x + 1$, di grado 1: va bene. $x^3 - 1$ e $(x - 1)(x^2 + 1)$ hanno grado 3. $ix + 1$ ha un numero non reale, quindi sta in $\C_1[x]$ ma non in $\R_2[x]$. $\frac 1x + x$ non è nemmeno un polinomio, perché divide per la lettera. Lo spazio $\R_2[x]$ compare in molte domande sui sottospazi, per esempio negli appelli del 08/02/2024 e del 05/02/2026 (domanda 2).
+= $\R_2[x]$ sono i polinomi con numeri reali e grado al massimo 2. $(x + 1)^2 - x^2$ sembra di grado 2, ma svolgendo diventa $2x + 1$, di grado 1: va bene. $x^3 - 1$ e $(x - 1)(x^2 + 1)$ hanno grado 3. $ix + 1$ ha un numero non reale, quindi sta in $\C_1[x]$ ma non in $\R_2[x]$. $\frac 1x + x$ non è nemmeno un polinomio, perché divide per la lettera. Lo spazio $\R_2[x]$ compare in molte domande sui sottospazi, per esempio negli appelli del 08/02/2024 e del 05/02/2026 (domanda 2).
 
 D: Le radici complesse di $z^2 - 2z + 5$ sono:
 + $1 \pm 2i$
@@ -932,7 +932,7 @@ D: Il polinomio $x^2 - (1 + i)x + i$ ha la radice $i$. Quale affermazione è ver
 - $i$ è una radice doppia.
 - Ha tre radici, contate con molteplicità.
 - Non ha altre radici oltre a $i$.
-= Il prodotto delle due radici è il termine noto diviso il primo coefficiente, cioè $i$. Una radice è $i$, quindi l'altra è 1; infatti $(x - i)(x - 1) = x^2 - (1 + i)x + i$. La risposta più insidiosa è la seconda: la Proposizione 4.11 vale solo con numeri reali, e qui il coefficiente $1 + i$ non lo è. Infatti in $-i$ il polinomio vale $-2 + 2i$, non zero. Il grado è 2, quindi le radici contate con molteplicità sono esattamente due, non tre e non una. Anche nel problema 11 dell'appello del 03/06/2026 un polinomio a coefficienti complessi aveva $i$ e $-i$ come radici con molteplicità diverse.
+= Il prodotto delle due radici è il termine noto diviso il primo coefficiente, cioè $i$. Una radice è $i$, quindi l'altra è 1; infatti $(x - i)(x - 1) = x^2 - (1 + i)x + i$. La risposta più insidiosa è «Anche $-i$ è radice, per la Proposizione 4.11»: la Proposizione 4.11 vale solo con numeri reali, e qui il coefficiente $1 + i$ non lo è. Infatti in $-i$ il polinomio vale $-2 + 2i$, non zero. Il grado è 2, quindi le radici contate con molteplicità sono esattamente due, non tre e non una. Anche nel problema 11 dell'appello del 03/06/2026 un polinomio a coefficienti complessi aveva $i$ e $-i$ come radici con molteplicità diverse.
 ```
 
 ## Esercizi

@@ -333,7 +333,7 @@ D: Qual è la contronominale di «se $x^2$ è irrazionale, allora $x$ è irrazio
 - se $x^2$ è razionale, allora $x$ è razionale
 - se $x$ è razionale, allora $x^2$ è irrazionale
 - $x^2$ è irrazionale e $x$ è razionale
-= Si scambiano le due parti e si negano tutte e due. La più insidiosa è la terza: nega senza scambiare, e non è equivalente alla frase di partenza. L'ultima è la supposizione di una dimostrazione per assurdo.
+= Si scambiano le due parti e si negano tutte e due. La più insidiosa è «se $x^2$ è razionale, allora $x$ è razionale»: nega senza scambiare, e non è equivalente alla frase di partenza. La risposta «$x^2$ è irrazionale e $x$ è razionale» è la supposizione di una dimostrazione per assurdo.
 
 D: Una dimostrazione di «se $P$ allora $Q$» comincia con «supponiamo non $Q$» e finisce con «quindi non $P$». Che metodo è?
 + per contrapposizione
@@ -349,7 +349,7 @@ D: Qual è il contrario di «$m$ è pari oppure $n$ è pari», da usare in una c
 - $m$ è pari e $n$ è pari
 - $mn$ è dispari
 - $m$ è dispari e $n$ è pari
-= De Morgan: il contrario di un «oppure» è un «e» dei contrari. La più insidiosa è la seconda, che nega le parti ma tiene «oppure».
+= De Morgan: il contrario di un «oppure» è un «e» dei contrari. La più insidiosa è «$m$ è dispari oppure $n$ è dispari», che nega le parti ma tiene «oppure».
 
 D: Per dimostrare per casi una proprietà di tutti i reali $x$, quale coppia di casi va bene?
 + $x \ge 0$ e $x < 0$
@@ -357,7 +357,7 @@ D: Per dimostrare per casi una proprietà di tutti i reali $x$, quale coppia di 
 - $x \ge 1$ e $x \le -1$
 - $x$ intero e $x$ irrazionale
 - $x > 0$ e $x \ge 1$
-= I casi devono coprire tutti i reali. La più insidiosa è la seconda, che dimentica lo 0.
+= I casi devono coprire tutti i reali. La più insidiosa è «$x > 0$ e $x < 0$», che dimentica lo 0.
 
 D: Quanti casi ha la dimostrazione di $\lvert xy \rvert = \lvert x \rvert \cdot \lvert y \rvert$ nella soluzione del libro?
 N: 4
@@ -369,7 +369,7 @@ D: Che cosa bisogna dimostrare per provare «$P$ se e solo se $Q$»?
 - «se $P$ allora $Q$» e la sua contronominale
 - che $P$ e $Q$ sono tutte e due vere
 - «se $P$ allora $Q$» oppure «se $Q$ allora $P$»
-= Servono le due direzioni. La più insidiosa è la terza: la contronominale è equivalente alla prima freccia, quindi si dimostrerebbe due volte la stessa direzione.
+= Servono le due direzioni. La più insidiosa è ««se $P$ allora $Q$» e la sua contronominale»: la contronominale è equivalente alla prima freccia, quindi si dimostrerebbe due volte la stessa direzione.
 
 D: Tre frasi $P$, $Q$, $R$ sono equivalenti. Quale gruppo di dimostrazioni basta?
 + $P \to Q$, $Q \to R$, $R \to P$
@@ -377,7 +377,7 @@ D: Tre frasi $P$, $Q$, $R$ sono equivalenti. Quale gruppo di dimostrazioni basta
 - $P \to Q$, $P \to R$
 - $P \to Q$, $Q \to P$
 - $Q \to P$, $R \to P$
-= Il giro chiuso permette di andare da ognuna a ogni altra. La più insidiosa è la seconda: senza $R \to P$ non si torna indietro.
+= Il giro chiuso permette di andare da ognuna a ogni altra. La più insidiosa è «$P \to Q$, $Q \to R$»: senza $R \to P$ non si torna indietro.
 ```
 
 ## Esercizi

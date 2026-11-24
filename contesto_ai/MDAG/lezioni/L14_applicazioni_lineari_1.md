@@ -1174,7 +1174,7 @@ D: Quale delle funzioni sotto definisce un'applicazione lineare $T: \R^3 \to \R^
 - $T(x, y, z) = (x^2 + y,\ x - 2z^2)$
 - $T(x, y, z) = (2x + 1,\ y + z)$
 - $T(x, y) = (x + 2y,\ y + 2z,\ x - 3z)$
-= Appello del 10/07/2024, domanda 7. Servono due cose insieme: la macchina deve prendere tre numeri e restituirne due, e deve essere lineare. La prima formula lo fa, e in uscita ha solo multipli delle entrate sommati: è la macchina della matrice $\begin{pmatrix} 2 & 3 & 0 \\ 1 & 0 & 2 \end{pmatrix}$. La risposta più tentatrice è la seconda: è lineare, ma prende solo due numeri, quindi parte da $\R^2$. La terza ha dei quadrati. La quarta ha un numero fisso aggiunto: manda lo zero in $(1, 0)$. L'ultima prende due numeri ma usa anche $z$, e restituisce tre numeri.
+= Appello del 10/07/2024, domanda 7. Servono due cose insieme: la macchina deve prendere tre numeri e restituirne due, e deve essere lineare. La formula $T(x, y, z) = (2x + 3y,\ x + 2z)$ lo fa, e in uscita ha solo multipli delle entrate sommati: è la macchina della matrice $\begin{pmatrix} 2 & 3 & 0 \\ 1 & 0 & 2 \end{pmatrix}$. La risposta più tentatrice è $T(x, y) = (2x - 3y,\ x + 2y)$: è lineare, ma prende solo due numeri, quindi parte da $\R^2$. La risposta $T(x, y, z) = (x^2 + y,\ x - 2z^2)$ ha dei quadrati. La risposta $T(x, y, z) = (2x + 1,\ y + z)$ ha un numero fisso aggiunto: manda lo zero in $(1, 0)$. La risposta $T(x, y) = (x + 2y,\ y + 2z,\ x - 3z)$ prende due numeri ma usa anche $z$, e restituisce tre numeri.
 
 D: Sia $f: V \to W$ una mappa lineare, con $\dim V = 4$ e $\dim W = 2$. Quale delle seguenti è necessariamente vera?
 - $f$ deve essere suriettiva.
@@ -1198,7 +1198,7 @@ D: L'immagine dell'applicazione lineare $T: \R_2[x] \to \R_2[x]$, $T(ax^2 + bx +
 - $\Span(x^2,\ x)$
 - $\R_1[x]$
 - $\{p \in \R_2[x] \mid p(0) = 0\}$
-= Simile all'appello del 07/09/2026, domanda 4. La domanda chiede quali polinomi possono uscire. Si raccoglie: $(b - a)x$ è lo stesso di $-(a - b)x$, quindi l'uscita è $(a - b)(x^2 - x) + c \cdot 1$. Ogni uscita è una ricetta dei polinomi $x^2 - x$ e $1$, con coefficienti qualsiasi: l'immagine è il loro Span, di dimensione 2. La risposta tentatrice è $\R_2[x]$, che però ha dimensione 3. La terza e la quinta risposta non contengono il polinomio $1$. La quarta non contiene $x^2 - x$.
+= Simile all'appello del 07/09/2026, domanda 4. La domanda chiede quali polinomi possono uscire. Si raccoglie: $(b - a)x$ è lo stesso di $-(a - b)x$, quindi l'uscita è $(a - b)(x^2 - x) + c \cdot 1$. Ogni uscita è una ricetta dei polinomi $x^2 - x$ e $1$, con coefficienti qualsiasi: l'immagine è il loro Span, di dimensione 2. La risposta tentatrice è $\R_2[x]$, che però ha dimensione 3. La risposta $\Span(x^2,\ x)$ e la risposta $\{p \in \R_2[x] \mid p(0) = 0\}$ non contengono il polinomio $1$. La risposta $\R_1[x]$ non contiene $x^2 - x$.
 
 D: Sia $T: \R^5 \to \R_2[x]$ un'applicazione lineare suriettiva. Allora $\Ker T$ ha dimensione:
 - $1$

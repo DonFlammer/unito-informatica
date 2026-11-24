@@ -514,7 +514,7 @@ D: Che cosa stampa questo codice con `x = -3`? `if (x > 0) printf("P"); printf("
 - niente
 - `P`
 - non compila mai
-= Senza graffe l'`if` comanda solo la prima `printf`. La seconda si esegue sempre. La risposta più insidiosa è «niente»: il rientro e la riga sotto fanno credere che anche `Q` dipenda dall'`if`. Scritto su due righe rientrate, gcc con `-Wall -Werror` lo ferma.
+= Senza graffe l'`if` comanda solo la prima `printf`. La seconda `printf` si esegue sempre. La risposta più insidiosa è «niente»: il rientro e la riga sotto fanno credere che anche `Q` dipenda dall'`if`. Scritto su due righe rientrate, gcc con `-Wall -Werror` lo ferma.
 
 D: Con `int a = 0;`, che cosa stampa `if (a = 7) { printf("%d", a); }` compilato senza opzioni?
 + `7`
@@ -546,7 +546,7 @@ D: Quale catena dà il prezzo giusto per ogni età: gratis sotto i 6, ridotto da
 - `if (eta < 6) … if (eta < 18) … else …`
 - `if (eta <= 6) … else if (eta <= 18) … else …`
 - `if (eta < 6) … else if (eta > 18) … else …`
-= Le domande vanno dalla più specifica. La risposta più insidiosa è la seconda: con 3 anni `eta < 18` è già vera, e il caso gratuito non arriva mai. La terza, con due `if` separati, a 3 anni stampa due messaggi; la quarta sbaglia i confini 6 e 18; la quinta dà il ridotto a 18 anni.
+= Le domande vanno dalla più specifica. La risposta più insidiosa è `if (eta < 18) … else if (eta < 6) … else …`: con 3 anni `eta < 18` è già vera, e il caso gratuito non arriva mai. La risposta `if (eta < 6) … if (eta < 18) … else …`, con due `if` separati, a 3 anni stampa due messaggi; la risposta `if (eta <= 6) … else if (eta <= 18) … else …` sbaglia i confini 6 e 18; la risposta `if (eta < 6) … else if (eta > 18) … else …` dà il ridotto a 18 anni.
 
 D: Con `int x = 7, y = 3, z;` e poi `if (x > y) { z = x - y; } else { z = y - x; }`, quanto vale `z`?
 N: 4
@@ -558,7 +558,7 @@ D: Quale riga legge un intero e lo usa solo se la lettura è riuscita?
 - `if (scanf("%d", v) == 1) { … }`
 - `if (v == scanf("%d", &v)) { … }`
 - `if (scanf("%d", &v) = 1) { … }`
-= `scanf` restituisce quanti valori ha letto, e serve la `&`. La risposta più insidiosa è quella con `= 1`: è un assegnamento, e non compila nemmeno, perché non si può assegnare al risultato di una funzione. La seconda ha le parentesi nel posto sbagliato.
+= `scanf` restituisce quanti valori ha letto, e serve la `&`. La risposta più insidiosa è quella con `= 1`: è un assegnamento, e non compila nemmeno, perché non si può assegnare al risultato di una funzione. La risposta `if (scanf("%d", &v)) == 1 { … }` ha le parentesi nel posto sbagliato.
 ```
 
 ## Esercizi

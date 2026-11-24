@@ -381,7 +381,7 @@ D: Appello del 13/01/2026, quiz, domanda 6. Siano $\pi$ e $\sigma$ permutazioni 
 - $\tau^4 \circ \pi^5 \circ \tau$
 - $\pi \circ \sigma \circ \tau^5$
 - $\sigma \circ \tau^5 \circ \pi^3$
-= Si contano le $\tau$, le uniche dispari: 4 nella prima (pari), 3, 5, 5 e 5 nelle altre (dispari). È la risposta giusta della soluzione ufficiale. La più insidiosa è la terza: $\tau^4$ è pari, ma c'è un'altra $\tau$ a destra.
+= Si contano le $\tau$, le uniche dispari: 4 in $\pi^2 \circ \sigma^3 \circ \tau^4$ (pari); nelle altre sono 3 oppure 5 (dispari). È la risposta giusta della soluzione ufficiale. La più insidiosa è $\tau^4 \circ \pi^5 \circ \tau$: $\tau^4$ è pari, ma c'è un'altra $\tau$ a destra.
 
 D: Quanti scambi servono per scrivere il ciclo $(2\ 7\ 5\ 1\ 9)$ con la proposizione 5.13?
 + 4
@@ -389,7 +389,7 @@ D: Quanti scambi servono per scrivere il ciclo $(2\ 7\ 5\ 1\ 9)$ con la proposiz
 - 2
 - 10
 - dipende dalla scrittura, quindi non si può dire
-= Un ciclo di lunghezza $\ell$ si scrive con $\ell - 1$ scambi: $(2\ 9)(2\ 1)(2\ 5)(2\ 7)$. La più insidiosa è l'ultima: altre scritture possono usare più scambi (6, 8…), ma la proposizione ne usa 4, e il numero resta comunque pari.
+= Un ciclo di lunghezza $\ell$ si scrive con $\ell - 1$ scambi: $(2\ 9)(2\ 1)(2\ 5)(2\ 7)$. La più insidiosa è «dipende dalla scrittura, quindi non si può dire»: altre scritture possono usare più scambi (6, 8…), ma la proposizione ne usa 4, e il numero resta comunque pari.
 
 D: Quale delle seguenti è una permutazione **pari**?
 + $(1\ 2\ 3)(4\ 5\ 6\ 7\ 8)$
@@ -397,7 +397,7 @@ D: Quale delle seguenti è una permutazione **pari**?
 - $(1\ 2\ 3\ 4)$
 - $(1\ 2\ 3)(4\ 5)$
 - $(1\ 2\ 3\ 4\ 5\ 6)$
-= Lunghezze 3 e 5, nessun ciclo di lunghezza pari: $p = 2 + 4 = 6$, pari. Le altre hanno un ciclo di lunghezza pari ciascuna. La più insidiosa è la terza: lunghezza 4, ma 3 scambi.
+= Lunghezze 3 e 5, nessun ciclo di lunghezza pari: $p = 2 + 4 = 6$, pari. Le altre hanno un ciclo di lunghezza pari ciascuna. La più insidiosa è $(1\ 2\ 3\ 4)$: lunghezza 4, ma 3 scambi.
 
 D: Quante sono le permutazioni pari in $S_4$?
 N: 12
@@ -409,7 +409,7 @@ D: $(1\ 3)$ si scrive anche come $(1\ 2)(2\ 3)(1\ 2)$. Che cosa dice questo esem
 - che gli scambi commutano
 - che il teorema 5.16 è falso
 - che $(1\ 3)$ ha periodo 3
-= 1 scambio e 3 scambi: numeri diversi, ma tutti e due dispari. La più insidiosa è la terza: proprio perché gli scambi non commutano, $(1\ 2)$ non si può semplificare con l'altro $(1\ 2)$.
+= 1 scambio e 3 scambi: numeri diversi, ma tutti e due dispari. La più insidiosa è «che gli scambi commutano»: proprio perché gli scambi non commutano, $(1\ 2)$ non si può semplificare con l'altro $(1\ 2)$.
 
 D: Una permutazione dispari $\sigma$ ha periodo 8. Di che parità è $\sigma^{-3}$?
 + dispari

@@ -676,7 +676,7 @@ D: Quale di queste rette interseca il piano $\pi = \{2x - y + 2z = 3\}$ **perpen
 - $(2, -1, 2) + t\,(1, 1, 1)$
 - $\{2x - y + 2z = 0\}$
 - $(0, 3, 0) + t\,(2, 1, 2)$
-= Una retta è perpendicolare al piano quando la sua direzione è proporzionale al vettore normale $(2, -1, 2)$. La risposta più insidiosa è la terza, che usa la normale come **punto** invece che come direzione. $(1, 2, 0)$ è perpendicolare alla normale, quindi quella retta è parallela al piano; $\{2x - y + 2z = 0\}$ è un piano; $(2, 1, 2)$ ha un segno diverso. Simile all'appello del 02/09/2025 (domanda 9).
+= Una retta è perpendicolare al piano quando la sua direzione è proporzionale al vettore normale $(2, -1, 2)$. La risposta più insidiosa è $(2, -1, 2) + t\,(1, 1, 1)$, che usa la normale come **punto** invece che come direzione. $(1, 2, 0)$ è perpendicolare alla normale, quindi quella retta è parallela al piano; $\{2x - y + 2z = 0\}$ è un piano; $(2, 1, 2)$ ha un segno diverso. Simile all'appello del 02/09/2025 (domanda 9).
 
 D: Qual è la distanza fra i piani paralleli $\{x + 2y + 2z = 1\}$ e $\{x + 2y + 2z = 7\}$?
 N: 2

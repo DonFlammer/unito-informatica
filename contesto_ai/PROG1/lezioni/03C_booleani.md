@@ -449,7 +449,7 @@ D: Quale espressione dice se `x` è tra 1 e 10, estremi compresi?
 - `1 <= x || x <= 10`
 - `x >= 1 && x < 10`
 - `!(x < 1 && x > 10)`
-= Servono due confronti uniti da `&&`. La risposta più insidiosa è `1 <= x <= 10`: si calcola da sinistra e vale sempre 1. Con `||` è vera per ogni numero; con `x < 10` il 10 resta fuori; l'ultima nega una condizione che non è mai vera.
+= Servono due confronti uniti da `&&`. La risposta più insidiosa è `1 <= x <= 10`: si calcola da sinistra e vale sempre 1. Con `||` è vera per ogni numero; con `x < 10` il 10 resta fuori; la risposta `!(x < 1 && x > 10)` nega una condizione che non è mai vera.
 
 D: Con `int d = 0, n = 10;`, che cosa succede con `bool c = (d != 0) && (n / d > 2);`?
 + `c` vale 0 e la divisione non viene fatta

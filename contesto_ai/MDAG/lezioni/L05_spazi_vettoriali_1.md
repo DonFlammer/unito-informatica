@@ -1360,7 +1360,7 @@ D: Appello del 07/02/2025, domanda 2. Identificate la risposta corretta alla dom
 - No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.
 - No, in quanto $\C$ e $\R$ sono campi diversi.
 + Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$, $\cdot$ su $\R$ sono le stesse che in $\C$.
-= Sommando due complessi, o moltiplicando un complesso per un reale, si resta tra i complessi, e le regole sono quelle dei conti tra complessi: la risposta è sì, con il motivo della (e), come nella soluzione ufficiale. La risposta più insidiosa è la (b): dice sì, ma con un motivo falso, perché $\Q$ non è uno spazio vettoriale su $\R$ ($\sqrt 2 \cdot 1$ non è razionale). La (a) e la (d) dicono cose vere che non rispondono alla domanda; la (c) è falsa, perché $i \cdot 1 = i$ non è reale.
+= Sommando due complessi, o moltiplicando un complesso per un reale, si resta tra i complessi, e le regole sono quelle dei conti tra complessi: la risposta è sì, con il motivo che $\R$ sta dentro $\C$ con le stesse operazioni: è la (e) della soluzione ufficiale. La risposta più insidiosa è «Sì, perché ogni campo è uno spazio vettoriale su $\R$»: dice sì, ma con un motivo falso, perché $\Q$ non è uno spazio vettoriale su $\R$ ($\sqrt 2 \cdot 1$ non è razionale). Le due risposte «No» che parlano di $\C$ su sé stesso e di campi diversi dicono cose vere che non rispondono alla domanda; quella con «$\R$ è uno spazio vettoriale su $\C$» è falsa, perché $i \cdot 1 = i$ non è reale.
 
 D: Appello dell'08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(0) = 0\}$
@@ -1368,7 +1368,7 @@ D: Appello dell'08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sott
 - $\{ax^2 + bx + c \mid a = 2c,\ b = 0\}$
 + $\{(1 + t)x^2 + tx \mid t \in \R\}$
 - $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$
-= «Sottospazio» vuol dire un pezzo di $\R_2[x]$ che con le stesse operazioni è uno spazio vettoriale (lezione L06): bastano i tre controlli. Nella (d) il polinomio nullo manca, perché servirebbero insieme $1 + t = 0$ e $t = 0$; anche la somma esce, perché il coefficiente di $x^2$ diventa $2 + t + s$. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (b), che sembra strana ma con $s = t = 0$ dà il polinomio nullo, e la somma di due suoi elementi ha ancora la stessa forma.
+= «Sottospazio» vuol dire un pezzo di $\R_2[x]$ che con le stesse operazioni è uno spazio vettoriale (lezione L06): bastano i tre controlli. In $\{(1 + t)x^2 + tx \mid t \in \R\}$ il polinomio nullo manca, perché servirebbero insieme $1 + t = 0$ e $t = 0$; anche la somma esce, perché il coefficiente di $x^2$ diventa $2 + t + s$. È la (d) della soluzione ufficiale. La risposta più insidiosa è $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$, che sembra strana ma con $s = t = 0$ dà il polinomio nullo, e la somma di due suoi elementi ha ancora la stessa forma.
 
 D: Appello del 07/09/2026, domanda 6. Quale dei seguenti insiemi è un sottospazio di $\R_2[x]$?
 + $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(-1)\}$
@@ -1376,7 +1376,7 @@ D: Appello del 07/09/2026, domanda 6. Quale dei seguenti insiemi è un sottospaz
 - $\{tx^2 + sx + 1 \mid s, t \in \R\}$
 - $\{p(x) \in \R_2[x] \mid p(0) = 1\}$
 - $\{ax^2 + bx + c \mid a = 2c,\ b = 2\}$
-= Le ultime quattro non contengono il polinomio nullo: la (b) come nell'appello dell'08/02/2024, la (c) e la (d) perché il termine noto è 1, la (e) perché il coefficiente di $x$ è 2. Nella (a) il polinomio nullo c'è, e se due polinomi valgono 0 in 1 e in $-1$, lì valgono 0 anche la somma e i multipli. È la (a) del foglio d'esame; nel file delle soluzioni la domanda è la 3, con le risposte in un altro ordine. La risposta più insidiosa è la (c): due parametri liberi fanno pensare a uno spazio, ma il termine noto fisso esclude lo zero.
+= Quattro insiemi non contengono il polinomio nullo: quello con $(1 + t)x^2 + tx$ come nell'appello dell'08/02/2024, quelli con $tx^2 + sx + 1$ e con $p(0) = 1$ perché il termine noto è 1, quello con $b = 2$ perché il coefficiente di $x$ è 2. Nell'insieme con $p(1) = 0 = p(-1)$ il polinomio nullo c'è, e se due polinomi valgono 0 in 1 e in $-1$, lì valgono 0 anche la somma e i multipli. È la (a) del foglio d'esame; nel file delle soluzioni la domanda è la 3, con le risposte in un altro ordine. La risposta più insidiosa è $\{tx^2 + sx + 1 \mid s, t \in \R\}$: due parametri liberi fanno pensare a uno spazio, ma il termine noto fisso esclude lo zero.
 
 D: Appello del 05/02/2026, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(1) = p(2)\}$
@@ -1384,7 +1384,7 @@ D: Appello del 05/02/2026, domanda 2. Quale dei seguenti insiemi non è un sotto
 + $\{x^2 + tx \mid t \in \R\}$
 - $\{ax^2 + bx + c \mid a + b - c = 0\}$
 - $\R_1[x]^\perp$
-= Nella (c) tutti i polinomi hanno il coefficiente di $x^2$ uguale a 1, quindi il polinomio nullo manca: è la (c) della soluzione ufficiale. Lo $\Span$ della (b) (lezione L06) e il complemento ortogonale della (e) (lezione L19) sono sempre sottospazi. La risposta più insidiosa è la (a): la condizione non è «uguale a zero», ma si riscrive $p(1) - p(2) = 0$, e il polinomio nullo la rispetta.
+= In $\{x^2 + tx \mid t \in \R\}$ tutti i polinomi hanno il coefficiente di $x^2$ uguale a 1, quindi il polinomio nullo manca: è la (c) della soluzione ufficiale. Uno $\Span$ (lezione L06) e un complemento ortogonale come $\R_1[x]^\perp$ (lezione L19) sono sempre sottospazi. La risposta più insidiosa è quella con $p(1) = p(2)$: la condizione non è «uguale a zero», ma si riscrive $p(1) - p(2) = 0$, e il polinomio nullo la rispetta.
 
 D: Con la somma e il prodotto per scalare usuali (coordinata per coordinata), $\R^2$ è uno spazio vettoriale sul campo $\C$?
 - Sì, perché $\R \subset \C$.

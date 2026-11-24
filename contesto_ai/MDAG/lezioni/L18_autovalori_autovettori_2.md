@@ -3,6 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L18
 titolo: Autovalori e autovettori II
+data: 2026-11-18
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L18
 descrizione: >-
@@ -36,7 +37,7 @@ genera_html: true
 - Con un parametro: si trovano gli autovalori in funzione del parametro. Dove sono tutti diversi la matrice è diagonalizzabile; nei valori in cui due autovalori coincidono si calcola un rango.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di mercoledì 18/11/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 18. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Autovalori diversi, autovettori indipendenti (p. 90)
 
@@ -475,7 +476,7 @@ D: La matrice $A = \begin{pmatrix} 1 & 2 & -2 \\ 0 & 3 & 0 \\ 0 & 0 & 3 \end{pma
 - $\Span\big((1, 0, 0)\big)$
 - $\Span\big((1, 1, 0), (1, 0, 1)\big)$
 - $\Span\big((1, 0, 0), (0, 1, 1)\big)$
-= $A - 3I_3 = \begin{pmatrix} -2 & 2 & -2 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$ ha rango 1, quindi l'autospazio ha dimensione 2 e l'unica equazione è $x = y - z$. I vettori $(1, 1, 0)$ e $(-1, 0, 1)$ la soddisfano e sono indipendenti. La risposta più insidiosa è la quarta: $(1, 1, 0)$ va bene, ma $(1, 0, 1)$ dà $1 = 0 - 1$, falso. La seconda ha il vettore giusto ma una retta sola, e ne servono due. $(1, 0, 0)$ è un autovettore, ma di autovalore 1. Simile all'appello del 24/01/2024, domanda 9.
+= $A - 3I_3 = \begin{pmatrix} -2 & 2 & -2 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$ ha rango 1, quindi l'autospazio ha dimensione 2 e l'unica equazione è $x = y - z$. I vettori $(1, 1, 0)$ e $(-1, 0, 1)$ la soddisfano e sono indipendenti. La risposta più insidiosa è $\Span\big((1, 1, 0), (1, 0, 1)\big)$: $(1, 1, 0)$ va bene, ma $(1, 0, 1)$ dà $1 = 0 - 1$, falso. La risposta $\Span\big((1, 1, 0)\big)$ ha il vettore giusto ma una retta sola, e ne servono due. $(1, 0, 0)$ è un autovettore, ma di autovalore 1. Simile all'appello del 24/01/2024, domanda 9.
 
 D: L'endomorfismo $T : \R_2[x] \to \R_2[x]$, $T(a + bx + cx^2) = (a + c) + 2bx + (a + c)x^2$, ha autovalore $2$. Qual è l'autospazio $V_2$?
 + $\Span(x,\ 1 + x^2)$
@@ -483,7 +484,7 @@ D: L'endomorfismo $T : \R_2[x] \to \R_2[x]$, $T(a + bx + cx^2) = (a + c) + 2bx +
 - $\Span(x,\ 1 - x^2)$
 - $\Span(1,\ x^2)$
 - $\Span(x)$
-= Nella base $\{1, x, x^2\}$ la matrice è $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}$, e $A - 2I_3 = \begin{pmatrix} -1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & -1 \end{pmatrix}$ dà l'equazione $a = c$, con $b$ libero. Le soluzioni $(0, 1, 0)$ e $(1, 0, 1)$ sono i polinomi $x$ e $1 + x^2$. Controllo: $T(x) = 2x$ e $T(1 + x^2) = 2 + 2x^2$. La risposta più insidiosa è la terza: $T(1 - x^2) = 0$, quindi $1 - x^2$ è un autovettore, ma di autovalore 0. Simile agli appelli del 10/06/2024 (domanda 6), del 07/02/2025 (domanda 9) e del 05/02/2026 (domanda 9).
+= Nella base $\{1, x, x^2\}$ la matrice è $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}$, e $A - 2I_3 = \begin{pmatrix} -1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & -1 \end{pmatrix}$ dà l'equazione $a = c$, con $b$ libero. Le soluzioni $(0, 1, 0)$ e $(1, 0, 1)$ sono i polinomi $x$ e $1 + x^2$. Controllo: $T(x) = 2x$ e $T(1 + x^2) = 2 + 2x^2$. La risposta più insidiosa è $\Span(x,\ 1 - x^2)$: $T(1 - x^2) = 0$, quindi $1 - x^2$ è un autovettore, ma di autovalore 0. Simile agli appelli del 10/06/2024 (domanda 6), del 07/02/2025 (domanda 9) e del 05/02/2026 (domanda 9).
 
 D: Una matrice $A$ ha polinomio caratteristico $p_A(\lambda) = (\lambda - 2)^2(\lambda + 1)(\lambda - 3)$. Quale affermazione **non** è necessariamente vera?
 + $A$ è diagonalizzabile.
@@ -519,7 +520,7 @@ D: Quale di queste affermazioni è vera?
 - La molteplicità geometrica di un autovalore può essere 0.
 - Può capitare che $m_g(\lambda) > m_a(\lambda)$.
 - Gli autospazi di un endomorfismo $T : V \to V$ hanno sempre somma uguale a $V$.
-= La prima è il Corollario 18.2. La più insidiosa è la seconda, che è il corollario letto al contrario: la matrice identità è diagonale e ha un solo autovalore. Per il Teorema 18.9 la molteplicità geometrica è almeno 1 e non supera quella algebrica. E per $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ l'unico autospazio è una retta del piano.
+= La frase giusta è il Corollario 18.2. La più insidiosa è «Se $A \in M(n, \R)$ è diagonalizzabile, allora ha $n$ autovalori distinti», che è il corollario letto al contrario: la matrice identità è diagonale e ha un solo autovalore. Per il Teorema 18.9 la molteplicità geometrica è almeno 1 e non supera quella algebrica. E per $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ l'unico autospazio è una retta del piano.
 
 D: Quale di queste matrici è diagonalizzabile su $\C$ ma **non** su $\R$?
 + $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$
@@ -527,7 +528,7 @@ D: Quale di queste matrici è diagonalizzabile su $\C$ ma **non** su $\R$?
 - $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
-= Il polinomio della prima è $\lambda^2 + 1$, con radici $\pm i$ diverse: diagonalizzabile sui complessi, e sui reali manca la condizione 1. La più insidiosa è la seconda, che non è diagonalizzabile sui reali ma nemmeno sui complessi: il suo autovalore doppio occupa un posto solo, e lo stesso vale per la quarta. La terza (autovalori 1 e 2) e la quinta (autovalori 1 e 3) lo sono su tutti e due i campi.
+= Il polinomio di $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ è $\lambda^2 + 1$, con radici $\pm i$ diverse: diagonalizzabile sui complessi, e sui reali manca la condizione 1. La più insidiosa è $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, che non è diagonalizzabile sui reali ma nemmeno sui complessi: il suo autovalore doppio occupa un posto solo, e lo stesso vale per $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$. La risposta $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$ (autovalori 1 e 2) e la risposta $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$ (autovalori 1 e 3) lo sono su tutti e due i campi.
 
 D: Sia $A = \begin{pmatrix} k & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0 \end{pmatrix}$ con $k \in \C$. Per quali $k$ la matrice è diagonalizzabile su $\C$?
 + Per ogni $k \in \C$.

@@ -599,7 +599,7 @@ D: Quale riga è un **prototipo**?
 - `float r = square(2.0f);`
 - `square(float x);`
 - `return square;`
-= Il prototipo ha tipo di ritorno, nome e parametri, e finisce con il punto e virgola, senza corpo. La più insidiosa è la seconda: è la definizione, che contiene anche il codice.
+= Il prototipo ha tipo di ritorno, nome e parametri, e finisce con il punto e virgola, senza corpo. La più insidiosa è `float square(float x) { return x * x; }`: è la definizione, che contiene anche il codice.
 
 D: Che cosa stampa `void incr(int x) { x++; }` chiamata con `int a = 5; incr(a); printf("%d", a);`?
 + 5
@@ -623,7 +623,7 @@ D: Che cosa dice gcc 16 con `-Wall -Werror` per `int square(int x) { x * x; }`?
 - solo un avviso, e il programma si compila lo stesso
 - `conflicting types for 'square'`
 - `implicit declaration of function 'square'`
-= Senza `return` il valore calcolato si perde, e la funzione `int` finisce senza risultato: `statement with no effect` e `control reaches end of non-void function`, errori con `-Werror`. La più insidiosa è la seconda: in C l'ultimo valore calcolato non viene restituito da solo.
+= Senza `return` il valore calcolato si perde, e la funzione `int` finisce senza risultato: `statement with no effect` e `control reaches end of non-void function`, errori con `-Werror`. La più insidiosa è «niente: compila e restituisce `x * x`»: in C l'ultimo valore calcolato non viene restituito da solo.
 
 D: Quale intestazione va bene per una funzione che stampa una riga di `n` asterischi e non restituisce niente?
 + `void stampaRiga(int n)`
@@ -631,7 +631,7 @@ D: Quale intestazione va bene per una funzione che stampa una riga di `n` asteri
 - `void stampaRiga(void n)`
 - `stampaRiga(int n) void`
 - `int stampaRiga(int n);` senza corpo
-= Riceve un intero e non restituisce niente: `void` davanti, `int n` tra le parentesi. La più insidiosa è l'ultima, che è un prototipo con il tipo di ritorno sbagliato.
+= Riceve un intero e non restituisce niente: `void` davanti, `int n` tra le parentesi. La più insidiosa è «`int stampaRiga(int n);` senza corpo», che è un prototipo con il tipo di ritorno sbagliato.
 
 D: Una funzione deve calcolare quoziente e resto di una divisione. Come restituisce i due valori?
 + ne restituisce uno con `return` e scrive l'altro attraverso un parametro puntatore
@@ -647,7 +647,7 @@ D: Il programma del cerchio delle slide riceve `abc` come raggio. Che cosa succe
 - usa il raggio 0
 - termina con un errore di esecuzione
 - `scanf` legge `abc` come 0 e stampa i risultati
-= `scanf` fallisce, restituisce 0 e lascia `abc` nell'input, che al giro dopo fa fallire di nuovo la lettura. La più insidiosa è la seconda: è quello che il programma vorrebbe fare, ma senza scartare `abc` non ci riesce.
+= `scanf` fallisce, restituisce 0 e lascia `abc` nell'input, che al giro dopo fa fallire di nuovo la lettura. La più insidiosa è «stampa l'errore una volta e chiede di nuovo il raggio»: è quello che il programma vorrebbe fare, ma senza scartare `abc` non ci riesce.
 
 D: Quante funzioni del programma del cerchio hanno effetti collaterali?
 N: 2

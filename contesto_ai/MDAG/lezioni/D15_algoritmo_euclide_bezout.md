@@ -338,7 +338,7 @@ D: Quiz 2021–25, primo quiz. Posto che $111268 = 256 \cdot 434 + 164$, si ha:
 - $\mathrm{MCD}(111268, 434) = 164$
 - $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(111268, 164)$
 - $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(256, 164)$
-= È la proposizione 4.9: si tengono divisore e resto. La più insidiosa è la terza: il resto 164 non è ancora il massimo comun divisore, perché l'algoritmo non è finito (il valore vero è 2).
+= È la proposizione 4.9: si tengono divisore e resto. La più insidiosa è $\mathrm{MCD}(111268, 434) = 164$: il resto 164 non è ancora il massimo comun divisore, perché l'algoritmo non è finito (il valore vero è 2).
 
 D: Dal problema 1 dell'appello dell'08/06/2026, versione B. Quanto vale il massimo comun divisore di 1008 e 132?
 N: 12
@@ -350,7 +350,7 @@ D: Dal problema 1 dell'appello dell'08/06/2026, versione C. $\mathrm{MCD}(936, 1
 - $936x + 168y = 12$
 - $936x + 168y = 100$
 - $936x + 168y = 1$
-= Servono i multipli di 24, e $72 = 3 \cdot 24$. Le prime due sono le equazioni del testo d'esame. La più insidiosa è 12: divide 24, ma è 24 che deve dividere il termine noto.
+= Servono i multipli di 24, e $72 = 3 \cdot 24$. Le equazioni con 72 e con 18 sono quelle del testo d'esame. La più insidiosa è 12: divide 24, ma è 24 che deve dividere il termine noto.
 
 D: Dal problema 1 dell'appello dell'08/06/2026, versione D. Quanto vale il massimo comun divisore di 1287 e 165?
 N: 33
@@ -362,7 +362,7 @@ D: Dalle prove del 2022/23. L'algoritmo di Euclide dà $\mathrm{MCD}(231, 143) =
 - $11 = 5 \cdot 231 + 8 \cdot 143$
 - $11 = 3 \cdot 231 - 5 \cdot 143$
 - $11 = 2 \cdot 143 - 231$
-= $1155 - 1144 = 11$: è l'identità della soluzione ufficiale. La più insidiosa è la seconda, con i coefficienti scambiati: dà $1848 - 715 = 1133$.
+= $1155 - 1144 = 11$: è l'identità della soluzione ufficiale. La più insidiosa è $11 = 8 \cdot 231 - 5 \cdot 143$, con i coefficienti scambiati: dà $1848 - 715 = 1133$.
 
 D: Dal riepilogo degli esami 2019, esercizio 3. Risalendo le divisioni per 57 e 25 si trova $1 = B \cdot 25 - 7 \cdot 57$. Quanto vale $B$?
 N: 16
@@ -382,7 +382,7 @@ D: Due interi $a$ e $b$ verificano $5a - 3b = 1$. Che cosa si può dire?
 - il massimo comun divisore di $a$ e $b$ è 3
 - $a$ divide $b$
 - niente: dipende dai numeri
-= Il massimo comun divisore divide ogni combinazione, quindi divide 1. La più insidiosa è l'ultima: con un termine noto diverso da 1 sarebbe vera, con 1 no.
+= Il massimo comun divisore divide ogni combinazione, quindi divide 1. La più insidiosa è «niente: dipende dai numeri»: con un termine noto diverso da 1 sarebbe vera, con 1 no.
 ```
 
 ## Esercizi

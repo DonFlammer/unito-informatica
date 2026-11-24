@@ -495,7 +495,7 @@ D: In $\R_1[x]$, la matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal
 - $\begin{pmatrix} 1/3 & 1/3 \\ 1/2 & -1/2 \end{pmatrix}$
 - $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$
 - $\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$
-= Nelle colonne vanno le coordinate dei vettori di $\mathcal B$ rispetto a $\mathcal C$. Per $3x = a(x + 1) + b(x - 1)$ servono $a + b = 3$ e $a - b = 0$, cioè $a = b = \frac 32$. Per $2 = a(x + 1) + b(x - 1)$ servono $a + b = 0$ e $a - b = 2$, cioè $a = 1$ e $b = -1$. La risposta più insidiosa è la seconda, la trasposta, con le coordinate in riga. La terza è il traduttore nel verso opposto, $[\id]^{\mathcal C}_{\mathcal B}$. Simile all'appello del 10/06/2024, domanda 8.
+= Nelle colonne vanno le coordinate dei vettori di $\mathcal B$ rispetto a $\mathcal C$. Per $3x = a(x + 1) + b(x - 1)$ servono $a + b = 3$ e $a - b = 0$, cioè $a = b = \frac 32$. Per $2 = a(x + 1) + b(x - 1)$ servono $a + b = 0$ e $a - b = 2$, cioè $a = 1$ e $b = -1$. La risposta più insidiosa è $\begin{pmatrix} 3/2 & 3/2 \\ 1 & -1 \end{pmatrix}$, la trasposta, con le coordinate in riga. La risposta $\begin{pmatrix} 1/3 & 1/3 \\ 1/2 & -1/2 \end{pmatrix}$ è il traduttore nel verso opposto, $[\id]^{\mathcal C}_{\mathcal B}$. Simile all'appello del 10/06/2024, domanda 8.
 
 D: La matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal C}$ da $\mathcal B = \{e_3, e_1, e_2\}$ a $\mathcal C = \{e_1, e_2, e_3\}$ in $\R^3$ è:
 + $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}$
@@ -503,7 +503,7 @@ D: La matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal C}$ da $\math
 - $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}$
 - Il problema non è ben definito.
-= La colonna $j$ contiene le coordinate del vettore $j$ di $\mathcal B$ nella base canonica: $e_3$ dà $(0, 0, 1)$, $e_1$ dà $(1, 0, 0)$, $e_2$ dà $(0, 1, 0)$. La risposta più insidiosa è la seconda, la trasposta, che è il traduttore nel verso opposto. L'identità sarebbe giusta solo con le due basi nello stesso ordine. Simile all'appello del 10/07/2025, domanda 6.
+= La colonna $j$ contiene le coordinate del vettore $j$ di $\mathcal B$ nella base canonica: $e_3$ dà $(0, 0, 1)$, $e_1$ dà $(1, 0, 0)$, $e_2$ dà $(0, 1, 0)$. La risposta più insidiosa è $\begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$, la trasposta, che è il traduttore nel verso opposto. L'identità sarebbe giusta solo con le due basi nello stesso ordine. Simile all'appello del 10/07/2025, domanda 6.
 
 D: Siano $\mathcal A, \mathcal B, \mathcal C$ tre basi di $\R^2$ con $[\id]^{\mathcal A}_{\mathcal B} = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ e $[\id]^{\mathcal C}_{\mathcal B} = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$. Allora $[\id]^{\mathcal A}_{\mathcal C}$ è:
 + $\begin{pmatrix} 1 & 1 \\ -2 & -1 \end{pmatrix}$
@@ -511,7 +511,7 @@ D: Siano $\mathcal A, \mathcal B, \mathcal C$ tre basi di $\R^2$ con $[\id]^{\ma
 - $\begin{pmatrix} -1 & 1 \\ -2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} -1 & -1 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
-= Le basi si incastrano come nel domino: $[\id]^{\mathcal A}_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[\id]^{\mathcal A}_{\mathcal B}$. Il primo fattore è il traduttore inverso di quello dato: $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}^{-1} = \begin{pmatrix} 1 & 0 \\ -2 & 1 \end{pmatrix}$. Il prodotto è $\begin{pmatrix} 1 & 1 \\ -2 & -1 \end{pmatrix}$. La risposta più insidiosa è la seconda: è il prodotto delle due matrici date, senza invertire. Le altre vengono da prodotti nell'ordine sbagliato. Simile all'appello del 02/09/2025, domanda 8.
+= Le basi si incastrano come nel domino: $[\id]^{\mathcal A}_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[\id]^{\mathcal A}_{\mathcal B}$. Il primo fattore è il traduttore inverso di quello dato: $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}^{-1} = \begin{pmatrix} 1 & 0 \\ -2 & 1 \end{pmatrix}$. Il prodotto è $\begin{pmatrix} 1 & 1 \\ -2 & -1 \end{pmatrix}$. La risposta più insidiosa è $\begin{pmatrix} 1 & 1 \\ 2 & 3 \end{pmatrix}$: è il prodotto delle due matrici date, senza invertire. Le altre vengono da prodotti nell'ordine sbagliato. Simile all'appello del 02/09/2025, domanda 8.
 
 D: Siano $f : \R^2 \to \R_2[x]$, $f(u, v) = ux^2 + v$, e $g : \R_2[x] \to \R^2$, $g(p) = (p(1),\ p(2))$. La matrice di $g \circ f$ rispetto alla base canonica di $\R^2$ è:
 + $\begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix}$
@@ -519,7 +519,7 @@ D: Siano $f : \R^2 \to \R_2[x]$, $f(u, v) = ux^2 + v$, e $g : \R_2[x] \to \R^2$,
 - $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix}$
 - $\begin{pmatrix} u & 1 \\ v & 4 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 5 & 2 \end{pmatrix}$
-= Le due macchine in fila sui vettori della base: $(g \circ f)(e_1) = g(x^2) = (1, 4)$ e $(g \circ f)(e_2) = g(1) = (1, 1)$. Sono le due colonne. La risposta più insidiosa è la seconda, la trasposta. In una matrice associata non compaiono le lettere $u$ e $v$; la terza risposta è la sola matrice di $g$, che è $2 \times 3$. Simile all'appello del 16/01/2025, domanda 5.
+= Le due macchine in fila sui vettori della base: $(g \circ f)(e_1) = g(x^2) = (1, 4)$ e $(g \circ f)(e_2) = g(1) = (1, 1)$. Sono le due colonne. La risposta più insidiosa è $\begin{pmatrix} 1 & 4 \\ 1 & 1 \end{pmatrix}$, la trasposta. In una matrice associata non compaiono le lettere $u$ e $v$; la risposta $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix}$ è la sola matrice di $g$, che è $2 \times 3$. Simile all'appello del 16/01/2025, domanda 5.
 
 D: Sia $\mathcal B = \{(1, 1), (0, 1)\}$ e sia $A \in M(2, \R)$ tale che $[L_A]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$. Allora $A$ è:
 + $\begin{pmatrix} -1 & 2 \\ -2 & 3 \end{pmatrix}$
@@ -527,7 +527,7 @@ D: Sia $\mathcal B = \{(1, 1), (0, 1)\}$ e sia $A \in M(2, \R)$ tale che $[L_A]^
 - $\begin{pmatrix} 3 & 2 \\ -2 & -1 \end{pmatrix}$
 - $\begin{pmatrix} -1 & -2 \\ 2 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 1 & 3 \end{pmatrix}$
-= Il traduttore ha i vettori di $\mathcal B$ in colonna, $M = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$, e vale $[L_A]^{\mathcal B}_{\mathcal B} = M^{-1}AM$. Per ricavare $A$ si gira la formula: $A = M\,[L_A]^{\mathcal B}_{\mathcal B}\,M^{-1} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} -1 & 2 \\ -2 & 3 \end{pmatrix}$. Controllo: $A(1, 1) = (1, 1)$, con coordinate $(1, 0)$ nella base $\mathcal B$, la prima colonna data. La risposta più insidiosa è la terza, che usa la formula al contrario, $M^{-1}\,[L_A]^{\mathcal B}_{\mathcal B}\,M$. Simile all'appello del 03/06/2025, domanda 5.
+= Il traduttore ha i vettori di $\mathcal B$ in colonna, $M = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$, e vale $[L_A]^{\mathcal B}_{\mathcal B} = M^{-1}AM$. Per ricavare $A$ si gira la formula: $A = M\,[L_A]^{\mathcal B}_{\mathcal B}\,M^{-1} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} -1 & 2 \\ -2 & 3 \end{pmatrix}$. Controllo: $A(1, 1) = (1, 1)$, con coordinate $(1, 0)$ nella base $\mathcal B$, la prima colonna data. La risposta più insidiosa è $\begin{pmatrix} 3 & 2 \\ -2 & -1 \end{pmatrix}$, che usa la formula al contrario, $M^{-1}\,[L_A]^{\mathcal B}_{\mathcal B}\,M$. Simile all'appello del 03/06/2025, domanda 5.
 
 D: Se $A, B \in M(2, \R)$ sono simili, quale affermazione è necessariamente vera?
 + $\det A = \det B$
@@ -535,7 +535,7 @@ D: Se $A, B \in M(2, \R)$ sono simili, quale affermazione è necessariamente ver
 - $AB = BA$
 - $A$ e $B$ hanno la stessa prima riga.
 - $\rk(A) = \rk(B) + 1$
-= Per la Proposizione 16.13 matrici simili hanno lo stesso determinante e lo stesso rango; quindi l'ultima risposta è sempre falsa. Le altre tre non sono obbligatorie: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ e $\begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$ sono simili (Esempio 16.10), ma sono diverse, non si scambiano nel prodotto e hanno prima riga diversa. La più insidiosa è $A = B$: simili vuol dire stessa macchina, non stessa matrice.
+= Per la Proposizione 16.13 matrici simili hanno lo stesso determinante e lo stesso rango; quindi la risposta $\rk(A) = \rk(B) + 1$ è sempre falsa. Le altre tre non sono obbligatorie: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ e $\begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$ sono simili (Esempio 16.10), ma sono diverse, non si scambiano nel prodotto e hanno prima riga diversa. La più insidiosa è $A = B$: simili vuol dire stessa macchina, non stessa matrice.
 
 D: Quale di queste matrici è simile alla matrice identità $I_2$?
 + $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
@@ -559,7 +559,7 @@ D: Siano $T : \R^2 \to \R^3$, $T(x, y) = (x,\ x + y,\ y)$, e $S : \R^3 \to \R^2$
 - $(x, y) \mapsto (x - y,\ 2y)$
 - $(x, y, z) \mapsto (x - y,\ x + z,\ y + z)$
 - Non è ben definita.
-= Prima agisce $T$, poi $S$: $S(T(x, y)) = S(x,\ x + y,\ y) = \big(x - (x + y),\ (x + y) + y\big) = (-y,\ x + 2y)$. È una macchina dal piano al piano, quindi le risposte con tre lettere in entrata sono sbagliate già per la partenza. La più insidiosa è la seconda, che è $S$ da sola. Simile all'appello dell'08/02/2024, domanda 5.
+= Prima agisce $T$, poi $S$: $S(T(x, y)) = S(x,\ x + y,\ y) = \big(x - (x + y),\ (x + y) + y\big) = (-y,\ x + 2y)$. È una macchina dal piano al piano, quindi le risposte con tre lettere in entrata sono sbagliate già per la partenza. La più insidiosa è $(x, y, z) \mapsto (x - y,\ y + z)$, che è $S$ da sola. Simile all'appello dell'08/02/2024, domanda 5.
 
 D: Sia $T(x, y) = (4x - 2y,\ x + y)$ e sia $\mathcal B = \{(1, 1), (2, 1)\}$. La matrice $[T]^{\mathcal B}_{\mathcal B}$ è:
 + $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$
@@ -567,7 +567,7 @@ D: Sia $T(x, y) = (4x - 2y,\ x + y)$ e sia $\mathcal B = \{(1, 1), (2, 1)\}$. La
 - $\begin{pmatrix} 4 & -2 \\ 1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 6 \\ 2 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}$
-= $T(1, 1) = (2, 2) = 2 \cdot (1, 1)$ e $T(2, 1) = (6, 3) = 3 \cdot (2, 1)$: le coordinate sono $(2, 0)$ e $(0, 3)$. La risposta più insidiosa è $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$: i numeri giusti, ma l'ordine sulla diagonale segue l'ordine della base. La quarta mette le uscite senza passare alle coordinate; la terza è la matrice nella base canonica.
+= $T(1, 1) = (2, 2) = 2 \cdot (1, 1)$ e $T(2, 1) = (6, 3) = 3 \cdot (2, 1)$: le coordinate sono $(2, 0)$ e $(0, 3)$. La risposta più insidiosa è $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$: i numeri giusti, ma l'ordine sulla diagonale segue l'ordine della base. La risposta $\begin{pmatrix} 2 & 6 \\ 2 & 3 \end{pmatrix}$ mette le uscite senza passare alle coordinate; la risposta $\begin{pmatrix} 4 & -2 \\ 1 & 1 \end{pmatrix}$ è la matrice nella base canonica.
 ```
 
 ## Esercizi

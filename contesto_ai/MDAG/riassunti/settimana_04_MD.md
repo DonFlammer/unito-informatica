@@ -221,7 +221,7 @@ D: Appello del 06/06/2025. Quanti sono i modi di scegliere due numeri divisibili
 - $\frac{20!}{14!}$
 - $4! \cdot 16!$
 - $\frac{4!}{2!} \cdot \frac{16!}{12!}$
-= Tra 1 e 20 i multipli di 5 sono 4 e gli altri 16: $6 \cdot 1820 = 10\,920$. La risposta più insidiosa è l'ultima: sono le stesse scelte, ma con l'ordine.
+= Tra 1 e 20 i multipli di 5 sono 4 e gli altri 16: $6 \cdot 1820 = 10\,920$. La risposta più insidiosa è $\frac{4!}{2!} \cdot \frac{16!}{12!}$: sono le stesse scelte, ma con l'ordine.
 
 D: Appello del 14/01/2025. Quanti modi ci sono per far sedere 6 persone in una fila di 10 sedie?
 + $\frac{10!}{4!}$

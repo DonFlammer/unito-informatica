@@ -405,7 +405,7 @@ D: Con il prodotto scalare euclideo di $\R^2$, quale di queste matrici ha **sicu
 - $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$
-= Per il Corollario 26.2 le matrici reali con una base ortonormale di autovettori sono esattamente le simmetriche: solo la prima. La risposta più insidiosa è la quarta: è diagonalizzabile, ma i suoi autovettori $(1, 0)$ e $(1, 1)$ non sono perpendicolari. La seconda ha autovalori non reali, $1 \pm 3i$; la terza non è diagonalizzabile; la quinta non è simmetrica. Simile all'appello del 15/01/2026 (problema 11, punto 2).
+= Per il Corollario 26.2 le matrici reali con una base ortonormale di autovettori sono esattamente le simmetriche: solo $\begin{pmatrix} 1 & 3 \\ 3 & -2 \end{pmatrix}$. La risposta più insidiosa è $\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}$: è diagonalizzabile, ma i suoi autovettori $(1, 0)$ e $(1, 1)$ non sono perpendicolari. La risposta $\begin{pmatrix} 1 & 3 \\ -3 & 1 \end{pmatrix}$ ha autovalori non reali, $1 \pm 3i$; la risposta $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ non è diagonalizzabile; la risposta $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ non è simmetrica. Simile all'appello del 15/01/2026 (problema 11, punto 2).
 
 D: Sia $A \in M(3, \R)$ simmetrica con esattamente due autovalori distinti. Quale affermazione è vera?
 + Uno dei due autospazi ha dimensione 2.
@@ -413,7 +413,7 @@ D: Sia $A \in M(3, \R)$ simmetrica con esattamente due autovalori distinti. Qual
 - $A$ non è diagonalizzabile.
 - $A$ ha un autovalore non reale.
 - Ogni base di autovettori di $A$ è ortonormale.
-= $A$ è diagonalizzabile per il teorema spettrale, quindi le dimensioni dei due autospazi sommano a 3: una è 2 e l'altra 1. La risposta più insidiosa è l'ultima: una base ortonormale di autovettori **esiste**, ma non tutte lo sono, per esempio $e_1, 2e_2, e_3$ con $\operatorname{diag}(1, 1, 2)$. La stessa matrice mostra che $A$ può non essere ortogonale. Simile all'appello del 16/01/2025 (domanda 7).
+= $A$ è diagonalizzabile per il teorema spettrale, quindi le dimensioni dei due autospazi sommano a 3: una è 2 e l'altra 1. La risposta più insidiosa è «Ogni base di autovettori di $A$ è ortonormale»: una base ortonormale di autovettori **esiste**, ma non tutte lo sono, per esempio $e_1, 2e_2, e_3$ con $\operatorname{diag}(1, 1, 2)$. La stessa matrice mostra che $A$ può non essere ortogonale. Simile all'appello del 16/01/2025 (domanda 7).
 
 D: Gli autovalori di una matrice reale simmetrica sono:
 + sempre reali
@@ -445,7 +445,7 @@ D: Quale matrice $M$ è ortogonale e rende ${}^tM A M$ diagonale per $A = \begin
 - $\frac 12\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
 - $\frac{1}{\sqrt 2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$
 - $\frac{1}{\sqrt 5}\begin{pmatrix} 1 & 2 \\ 2 & -1 \end{pmatrix}$
-= Le colonne devono essere autovettori lunghi 1 e perpendicolari: $\frac{1}{\sqrt 2}(1, 1)$ e $\frac{1}{\sqrt 2}(1, -1)$. La risposta più insidiosa è la seconda: le colonne sono gli autovettori giusti, ma non sono lunghe 1, quindi la matrice non è ortogonale. Con $\frac 12$ succede lo stesso; con due colonne uguali $M$ non è invertibile; l'ultima è ortogonale, ma le sue colonne non sono autovettori. Simile agli appelli del 15/01/2026 e del 02/09/2025 (problema 11).
+= Le colonne devono essere autovettori lunghi 1 e perpendicolari: $\frac{1}{\sqrt 2}(1, 1)$ e $\frac{1}{\sqrt 2}(1, -1)$. La risposta più insidiosa è $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$: le colonne sono gli autovettori giusti, ma non sono lunghe 1, quindi la matrice non è ortogonale. Con $\frac 12$ succede lo stesso; con due colonne uguali $M$ non è invertibile; la risposta $\frac{1}{\sqrt 5}\begin{pmatrix} 1 & 2 \\ 2 & -1 \end{pmatrix}$ è ortogonale, ma le sue colonne non sono autovettori. Simile agli appelli del 15/01/2026 e del 02/09/2025 (problema 11).
 
 D: Il vettore $(1, 1, 0)$ è un autovettore della matrice simmetrica $A = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 5 \end{pmatrix}$. Qual è il suo autovalore?
 N: 3

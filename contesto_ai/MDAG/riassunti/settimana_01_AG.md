@@ -152,7 +152,7 @@ D: Appello del 07/02/2025, domanda 2. Qual è la risposta corretta alla domanda 
 - No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.
 - No, in quanto $\C$ e $\R$ sono campi diversi.
 + Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$ e $\cdot$ su $\R$ sono le stesse che in $\C$.
-= Il punto chiave è della settimana 1: $\R$ sta dentro $\C$, e un reale per un complesso dà ancora un complesso. La risposta più insidiosa è «ogni campo è uno spazio vettoriale su $\R$»: è falsa, per esempio $\Q$ non contiene $\R$. La soluzione ufficiale nota che la prima e la quarta dicono cose vere che non rispondono alla domanda. Che cosa sia uno spazio vettoriale lo vedrai nella lezione L05.
+= Il punto chiave è della settimana 1: $\R$ sta dentro $\C$, e un reale per un complesso dà ancora un complesso. La risposta più insidiosa è «ogni campo è uno spazio vettoriale su $\R$»: è falsa, per esempio $\Q$ non contiene $\R$. La soluzione ufficiale nota che la risposta su $\C$ spazio vettoriale su sé stesso e quella sui campi diversi dicono cose vere che non rispondono alla domanda. Che cosa sia uno spazio vettoriale lo vedrai nella lezione L05.
 ```
 
 ## Fonti

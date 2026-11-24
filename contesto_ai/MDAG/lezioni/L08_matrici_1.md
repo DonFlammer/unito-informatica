@@ -1529,7 +1529,7 @@ D: Appello del 10/07/2025, domanda 9. Data la matrice $A = \begin{pmatrix} 2 & 1
 - non si può calcolare, poiché $A$ non è una matrice quadrata
 - 6
 - 0
-= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata, e ogni casella diagonale è una riga di $A$ per sé stessa: $4 + 1 = 5$, poi $1$, poi $1$. La traccia è 7: è la (a) della soluzione ufficiale. La risposta più insidiosa è la (c): a non essere quadrata è $A$, non il prodotto.
+= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata, e ogni casella diagonale è una riga di $A$ per sé stessa: $4 + 1 = 5$, poi $1$, poi $1$. La traccia è 7: è la (a) della soluzione ufficiale. La risposta più insidiosa è «non si può calcolare»: a non essere quadrata è $A$, non il prodotto.
 
 D: Siano $A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix}$. Quale identità vale?
 + $AB = BA$
@@ -1577,7 +1577,7 @@ D: $A$ è una matrice $2 \times 3$ e $B$ è una matrice $3 \times 4$. Quale affe
 - $AB$ è una matrice $3 \times 3$.
 - $AB$ non è definito, $BA$ è una matrice $4 \times 3$.
 - $AB$ è $2 \times 4$ e $BA$ è $4 \times 2$.
-= La domanda chiede quali prodotti si possono fare e di che taglia vengono. Si scrivono le due taglie una accanto all'altra. Per $AB$: $(2 \times 3) \cdot (3 \times 4)$. I numeri interni sono 3 e 3, quindi il prodotto esiste. I numeri esterni sono 2 e 4, quindi è una matrice $2 \times 4$. Per $BA$: $(3 \times 4) \cdot (2 \times 3)$. I numeri interni sono 4 e 2: sono diversi, quindi $BA$ non esiste. «Non è definito» vuol dire proprio «non esiste». L'ultima risposta è la più tentatrice, perché la taglia di $AB$ è giusta: ma sbaglia su $BA$.
+= La domanda chiede quali prodotti si possono fare e di che taglia vengono. Si scrivono le due taglie una accanto all'altra. Per $AB$: $(2 \times 3) \cdot (3 \times 4)$. I numeri interni sono 3 e 3, quindi il prodotto esiste. I numeri esterni sono 2 e 4, quindi è una matrice $2 \times 4$. Per $BA$: $(3 \times 4) \cdot (2 \times 3)$. I numeri interni sono 4 e 2: sono diversi, quindi $BA$ non esiste. «Non è definito» vuol dire proprio «non esiste». La risposta «$AB$ è $2 \times 4$ e $BA$ è $4 \times 2$» è la più tentatrice, perché la taglia di $AB$ è giusta: ma sbaglia su $BA$.
 
 D: Per matrici $A$ e $B$ per cui il prodotto $AB$ è definito, ${}^t(AB)$ è uguale a:
 + ${}^tB\,{}^tA$

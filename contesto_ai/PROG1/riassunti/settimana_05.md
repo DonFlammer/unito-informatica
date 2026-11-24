@@ -243,7 +243,7 @@ D: Sul modello dello stato della memoria. Dopo `char s[6] = "ciao";`, quanto val
 - `s[4]` è 0 e `s[5]` è indeterminato
 - tutti e due indeterminati
 - il codice non compila: la stringa ha 4 caratteri e l'array 6
-= `s[4]` è il terminatore. `s[5]` vale 0 perché un array inizializzato in parte ha il resto a zero. La più insidiosa è la terza: le celle mai scritte sono indeterminate solo se l'array non è inizializzato affatto.
+= `s[4]` è il terminatore. `s[5]` vale 0 perché un array inizializzato in parte ha il resto a zero. La più insidiosa è «`s[4]` è 0 e `s[5]` è indeterminato»: le celle mai scritte sono indeterminate solo se l'array non è inizializzato affatto.
 
 D: Sul modello dello stato della memoria. Con `int v[4] = {10, 20, 30, 40};` e `int *p = v + 1;`, quanto vale `p[-1]`?
 + 10

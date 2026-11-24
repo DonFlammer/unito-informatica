@@ -325,7 +325,7 @@ D: Per contrapposizione, che cosa si dimostra al posto di «se $n^2$ è pari, $n
 - Se $n^2$ è dispari, $n$ è dispari
 - $n^2$ è pari e $n$ è dispari
 - Se $n$ è pari, $n^2$ è dispari
-= La contronominale nega e scambia: $\neg Q \to \neg P$. La risposta più insidiosa è la seconda, che è l'inversa: vera anche lei, ma non equivalente.
+= La contronominale nega e scambia: $\neg Q \to \neg P$. La risposta più insidiosa è «Se $n$ è pari, $n^2$ è pari», che è l'inversa: vera anche lei, ma non equivalente.
 
 D: Qual è la negazione della tesi «$x \ge 1$ oppure $y \ge 1$», da supporre in una dimostrazione per assurdo?
 + $x < 1$ e $y < 1$
@@ -333,7 +333,7 @@ D: Qual è la negazione della tesi «$x \ge 1$ oppure $y \ge 1$», da supporre i
 - $x \le 1$ e $y \le 1$
 - $x > 1$ e $y > 1$
 - $x + y < 2$
-= De Morgan: la negazione di un «o» è un «e», e il contrario di $\ge$ è $<$. La risposta più insidiosa è la terza: con $\le$ include $x = 1$, che non nega $x \ge 1$.
+= De Morgan: la negazione di un «o» è un «e», e il contrario di $\ge$ è $<$. La risposta più insidiosa è «$x \le 1$ e $y \le 1$»: con $\le$ include $x = 1$, che non nega $x \ge 1$.
 
 D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, dove sta la contraddizione?
 + $p$ e $q$ risultano tutti e due pari, ma la frazione era ridotta ai minimi termini
@@ -341,7 +341,7 @@ D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, dove sta la contraddizione
 - $\sqrt{2}$ risulta negativo
 - $q$ risulta 0
 - $p$ risulta dispari
-= Si suppone la frazione ridotta, poi si dimostra che numeratore e denominatore sono pari. La risposta più insidiosa è la seconda: $p^2 = 2q^2$ è il passaggio da cui si parte; la contraddizione arriva solo confrontando quello che se ne ricava con l'ipotesi della frazione ridotta.
+= Si suppone la frazione ridotta, poi si dimostra che numeratore e denominatore sono pari. La risposta più insidiosa è «$p^2 = 2q^2$ è impossibile»: $p^2 = 2q^2$ è il passaggio da cui si parte; la contraddizione arriva solo confrontando quello che se ne ricava con l'ipotesi della frazione ridotta.
 
 D: 40 monete in 9 borse non vuote. Quante monete servirebbero almeno se le borse avessero numeri di monete tutti diversi?
 N: 45
@@ -353,7 +353,7 @@ D: Che cos'è una dimostrazione di esistenza non costruttiva?
 - Mostra un elemento esplicito
 - Dimostra un «per ogni»
 - Usa solo esempi
-= È la domanda di ripasso 14 del §2.2. La risposta più insidiosa è la terza, che è la definizione di costruttiva.
+= È la domanda di ripasso 14 del §2.2. La risposta più insidiosa è «Mostra un elemento esplicito», che è la definizione di costruttiva.
 
 D: Nel paradosso del bevitore, chi si sceglie se almeno un cliente non beve?
 + Proprio un cliente che non beve

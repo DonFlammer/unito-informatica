@@ -3,6 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L17
 titolo: Autovalori e autovettori I
+data: 2026-11-17
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L17
 descrizione: >-
@@ -36,7 +37,7 @@ genera_html: true
 - All'esame serve in ogni appello: riconoscere un autovettore, trovare gli autovalori di una matrice con 2 o 3 righe, scrivere le due matrici della diagonalizzazione.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 17/11/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 17. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Le direzioni che non girano: autovettori (p. 85)
 

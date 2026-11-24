@@ -1273,7 +1273,7 @@ D: Appello del 16/01/2025, domanda 10. Il sistema lineare con matrice completa $
 - Infinite, che dipendono da 1 parametro.
 - Un numero finito, maggiore di 1.
 - Una.
-= Dopo lo scambio delle prime due righe e due mosse, la terza riga diventa nulla e restano 2 pivot, nessuno dopo la barra (i passaggi sono in «Verso l'esame»). Le incognite sono 4, quindi i parametri sono $4 - 2 = 2$: è la (b) della soluzione ufficiale. La risposta più insidiosa è la (c), di chi conta le righe, 3, al posto delle incognite.
+= Dopo lo scambio delle prime due righe e due mosse, la terza riga diventa nulla e restano 2 pivot, nessuno dopo la barra (i passaggi sono in «Verso l'esame»). Le incognite sono 4, quindi i parametri sono $4 - 2 = 2$: è la (b) della soluzione ufficiale. La risposta più insidiosa è «1 parametro», di chi conta le righe, 3, al posto delle incognite.
 
 D: Appello del 15/01/2026, domanda 6. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 0 & 1 & 2 & 3 \\ 4 & 5 & 6 & 7 \\ 8 & 9 & 10 & 11 \end{array}\right)$ ha un numero di soluzioni pari a:
 - Un numero finito, maggiore di 1.
@@ -1321,7 +1321,7 @@ D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 3 & 12 & 
 - Un numero finito, maggiore di 1.
 - Una.
 - Infinite, che dipendono da 1 parametro.
-= È la domanda 1 dell'appello del 02/09/2025. Prima di fare conti guarda le righe. La prima è 3 volte $(1, 4, 2 \mid 7)$, la seconda è 5 volte la stessa riga, la terza è 4 volte. Sono tre volte la stessa condizione. Dopo Gauss resta una sola riga non nulla, con un solo pivot, e nessun pivot dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 1 = 2$. La risposta con 1 parametro è sbagliata perché qui il pivot è uno solo, non due.
+= È la domanda 1 dell'appello del 02/09/2025. Prima di fare conti guarda le righe. La prima riga è 3 volte $(1, 4, 2 \mid 7)$, la seconda riga è 5 volte la stessa, la terza riga è 4 volte. Sono tre volte la stessa condizione. Dopo Gauss resta una sola riga non nulla, con un solo pivot, e nessun pivot dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 1 = 2$. La risposta con 1 parametro è sbagliata perché qui il pivot è uno solo, non due.
 
 D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 2 & 3 & 4 \\ 2 & 3 & 4 & 5 \\ 3 & 4 & 5 & 7 \end{array}\right)$ ha un numero di soluzioni pari a:
 + Zero.
@@ -1337,7 +1337,7 @@ D: La forma ridotta della matrice completa di un sistema nelle incognite $x, y, 
 - Solo $x = 3,\ y = 1,\ z = 0$
 - $x = -2t,\ y = t,\ z = t$
 - Il sistema non ha soluzioni.
-= Simile alla domanda 6 dell'appello del 10/07/2024. I pivot sono nelle colonne 1 e 2. La colonna 3, quella di $z$, è senza pivot: $z = t$. La riga 1 dice $x + 2z = 3$, quindi $x = 3 - 2t$. La riga 2 dice $y - z = 1$, quindi $y = 1 + t$. La seconda risposta ha i segni al contrario: quando porti $t$ a destra dell'uguale il segno cambia. La terza è una soluzione vera, quella con $t$ uguale a 0, ma è una sola: la domanda le chiede tutte.
+= Simile alla domanda 6 dell'appello del 10/07/2024. I pivot sono nelle colonne 1 e 2. La colonna 3, quella di $z$, è senza pivot: $z = t$. La riga 1 dice $x + 2z = 3$, quindi $x = 3 - 2t$. La riga 2 dice $y - z = 1$, quindi $y = 1 + t$. La risposta $x = 3 + 2t,\ y = 1 - t,\ z = t$ ha i segni al contrario: quando porti $t$ a destra dell'uguale il segno cambia. La risposta «Solo $x = 3,\ y = 1,\ z = 0$» è una soluzione vera, quella con $t$ uguale a 0, ma è una sola: la domanda le chiede tutte.
 
 D: Riducendo a scalini la matrice completa di un sistema in 3 incognite compare la riga $(0, 0, 0 \mid 5)$. Che cosa puoi concludere?
 + Il sistema non ha soluzioni.
@@ -1353,7 +1353,7 @@ D: Nella matrice $\left(\begin{array}{cc|c} 1 & 2 & 4 \\ 3 & 1 & 7 \end{array}\r
 - $(0, 5 \mid 5)$
 - $(0, -5 \mid 19)$
 - $(2, -1 \mid 3)$
-= Tre volte la riga 1 fa $(3, 6 \mid 12)$. Poi sottrai dalla riga 2, un numero alla volta: $3 - 3 = 0$, poi $1 - 6 = -5$, poi $7 - 12 = -5$. La mossa vale anche per il numero dopo la barra. Chi lì somma al posto di sottrarre trova 19. Chi sbaglia il segno trova 5. L'ultima risposta è la riga 2 meno la riga 1 una volta sola, non 3 volte.
+= Tre volte la riga 1 fa $(3, 6 \mid 12)$. Poi sottrai dalla riga 2, un numero alla volta: $3 - 3 = 0$, poi $1 - 6 = -5$, poi $7 - 12 = -5$. La mossa vale anche per il numero dopo la barra. Chi lì somma al posto di sottrarre trova 19. Chi sbaglia il segno trova 5. La risposta $(2, -1 \mid 3)$ è la riga 2 meno la riga 1 una volta sola, non 3 volte.
 
 D: Un sistema di 3 equazioni in 5 incognite, ridotto a scalini, ha 3 pivot e nessuno di questi è nell'ultima colonna. Quante sono le soluzioni?
 + Infinite, che dipendono da 2 parametri.

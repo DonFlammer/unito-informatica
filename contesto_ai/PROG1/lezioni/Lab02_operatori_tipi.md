@@ -556,7 +556,7 @@ D: Quale espressione calcola $ax^3 + 7$?
 - `a * x * (x * x + 7)`
 - `(a * x) * x * (x + 7)`
 - `a * x * x * x * 7`
-= Le moltiplicazioni prima, poi si somma 7. La risposta più insidiosa è `a * x * x * (x + 7)`: la parentesi fa sommare 7 a `x` prima di moltiplicare. L'ultima moltiplica per 7 invece di sommarlo.
+= Le moltiplicazioni prima, poi si somma 7. La risposta più insidiosa è `a * x * x * (x + 7)`: la parentesi fa sommare 7 a `x` prima di moltiplicare. La risposta `a * x * x * x * 7` moltiplica per 7 invece di sommarlo.
 
 D: Con `int x = 1, y = 2, z = 5;` quanto vale `(double)((x + y + z) / 3)`?
 + 2.0

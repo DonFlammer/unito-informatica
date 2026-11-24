@@ -236,7 +236,7 @@ D: Appello del 04/02/2025, domanda 2. Sia $S = \{a, c, f, h, m, t, v\}$. Quale d
 - $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$
 - $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$
 - $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$
-= I tre controlli: parti non vuote, che non si toccano, che coprono tutto. La prima li passa. La seconda dimentica la $h$. La terza ha una parte vuota. La quarta e la quinta ripetono una lettera, la $c$ e la $h$: sono ricoprimenti, non partizioni.
+= I tre controlli: parti non vuote, che non si toccano, che coprono tutto. La risposta giusta li passa. La risposta $\{f, m\} \cup \{a, t\} \cup \{c, v\}$ dimentica la $h$. La risposta $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$ ha una parte vuota. La risposta $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$ e la risposta $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$ ripetono una lettera, la $c$ e la $h$: sono ricoprimenti, non partizioni.
 
 D: Appello del 07/07/2025, domanda 2. Sia $X = \{b, c, f, h, k, m, r, u, v, z\}$. Quale è un ricoprimento di $X$ ma non una partizione?
 - $\{f, h, k, u, v\} \cup \{b, c, k, r, z\}$
@@ -244,7 +244,7 @@ D: Appello del 07/07/2025, domanda 2. Sia $X = \{b, c, f, h, k, m, r, u, v, z\}$
 + $\{b, f, k, m, r\} \cup \{c, h, r, u, v, z\}$
 - $\{b, c, m, v, z\} \cup \{f, h, k, u\}$
 - $\{b, f, k, r, u, z\} \cup \{c, m, t, v\}$
-= La terza copre tutte e dieci le lettere e ripete la $r$: è un ricoprimento ma non una partizione. La risposta più insidiosa è la prima, che ripete la $k$ ma dimentica la $m$: non copre tutto. La seconda e la quinta contengono lettere che in $X$ non ci sono ($s$ e $t$); la quarta dimentica la $r$.
+= La risposta giusta copre tutte e dieci le lettere e ripete la $r$: è un ricoprimento ma non una partizione. La risposta più insidiosa è $\{f, h, k, u, v\} \cup \{b, c, k, r, z\}$, che ripete la $k$ ma dimentica la $m$: non copre tutto. La risposta $\{b, c, k, r, s, z\} \cup \{f, h, m, u, v\}$ e la risposta $\{b, f, k, r, u, z\} \cup \{c, m, t, v\}$ contengono lettere che in $X$ non ci sono ($s$ e $t$); la risposta $\{b, c, m, v, z\} \cup \{f, h, k, u\}$ dimentica la $r$.
 
 D: Appello del 06/06/2025, domanda 2. L'affermazione «per ogni $x \in \N$ e per ogni $y \in \N$, $x^2 + x \ge y$» è contraddetta da:
 - $(x, y) = (2, 5)$

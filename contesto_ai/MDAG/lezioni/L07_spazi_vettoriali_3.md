@@ -585,7 +585,7 @@ D: Appello del 16/01/2025, domanda 2. I polinomi $1$, $x$, $x^2$ e $1 + 2x + x^2
 - La domanda è mal posta: i polinomi non sono vettori.
 + Sono generatori, ma non linearmente indipendenti.
 - Sono sia generatori che linearmente indipendenti.
-= Quattro polinomi in uno spazio di dimensione 3 sono per forza dipendenti, e infatti $1 + 2x + x^2$ è combinazione degli altri tre. I primi tre sono la base canonica, quindi generano. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (c): i polinomi sono vettori dello spazio $\R_2[x]$ (lezione L05).
+= Quattro polinomi in uno spazio di dimensione 3 sono per forza dipendenti, e infatti $1 + 2x + x^2$ è combinazione degli altri tre. I primi tre sono la base canonica, quindi generano. È la (d) della soluzione ufficiale. La risposta più insidiosa è «la domanda è mal posta»: i polinomi sono vettori dello spazio $\R_2[x]$ (lezione L05).
 
 D: Appello del 15/01/2026, domanda 4. La dimensione dello spazio $S(3)$ delle matrici $3 \times 3$ simmetriche è:
 - nove
@@ -617,7 +617,7 @@ D: Appello del 07/09/2026, domanda 2. Siano $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 
 + $\{A, B, E, F\}$
 - $\{B, C, D, E, F\}$
 - $\{B, C, F\}$
-= Le matrici $2 \times 2$ hanno dimensione 4, quindi restano solo la (b) e la (c). Nella (b) $C + D = A$: dipendenti. Nella (c) la combinazione $x_1 A + x_2 B + x_3 E + x_4 F$ è nulla solo con tutti i coefficienti zero, quindi per il Teorema 7.12 è una base: è la (c) della soluzione ufficiale. La risposta più insidiosa è la (b), che ha il numero giusto di matrici.
+= Le matrici $2 \times 2$ hanno dimensione 4, quindi restano solo $\{A, C, D, E\}$ e $\{A, B, E, F\}$. Nel primo $C + D = A$: dipendenti. Nel secondo la combinazione $x_1 A + x_2 B + x_3 E + x_4 F$ è nulla solo con tutti i coefficienti zero, quindi per il Teorema 7.12 è una base: è la (c) della soluzione ufficiale. La risposta più insidiosa è $\{A, C, D, E\}$, che ha il numero giusto di matrici.
 
 D: Appello del 15/01/2026, domanda 3. Dato uno spazio vettoriale $V$ e vettori $v_1, v_2, v_3 \in V$, sia $X = \Span(v_1, v_2, v_3)$. Quale delle seguenti affermazioni è vera?
 - $\dim X = 3$
@@ -625,7 +625,7 @@ D: Appello del 15/01/2026, domanda 3. Dato uno spazio vettoriale $V$ e vettori $
 - $\dim X \ge 3$
 + $\dim X \le 3$
 - $\dim X$ non è ben definito: $X$ non è necessariamente uno spazio vettoriale
-= Togliendo i vettori di troppo da $v_1, v_2, v_3$ resta una base di $X$ con al massimo 3 vettori. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (a): vale solo se i tre vettori sono indipendenti, e con $v_1 = v_2 = v_3$ diverso da zero $X$ è una retta. La (e) è falsa per la Proposizione 6.7, la (b) confronta un numero con un insieme.
+= Togliendo i vettori di troppo da $v_1, v_2, v_3$ resta una base di $X$ con al massimo 3 vettori. È la (d) della soluzione ufficiale. La risposta più insidiosa è $\dim X = 3$: vale solo se i tre vettori sono indipendenti, e con $v_1 = v_2 = v_3$ diverso da zero $X$ è una retta. «Non è ben definito» è falsa per la Proposizione 6.7, e $\dim X = \{v_1, v_2, v_3\}$ confronta un numero con un insieme.
 
 D: I vettori $(1, 0, 1)$, $(0, 1, 1)$, $(1, 1, 2)$, $(0, 0, 1)$ di $\R^3$ sono generatori e/o linearmente indipendenti?
 - Sono linearmente indipendenti, ma non generatori.

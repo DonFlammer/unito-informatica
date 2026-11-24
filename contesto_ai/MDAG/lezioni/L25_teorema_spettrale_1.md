@@ -1387,7 +1387,7 @@ D: Scriviamo $x = (x_1, x_2)$, $y = (y_1, y_2) \in \C^2$. Quale delle seguenti �
 - $i x_1 \bar y_1 + x_1 \bar y_2 + x_2 \bar y_1 + x_2 \bar y_2$
 - $x_1 y_1 + (1 - i) x_1 y_2 + (1 + i) x_2 y_1 + 3 x_2 y_2$
 - $x_1 \bar y_1 + 2 x_1 \bar y_2 - 2 x_2 \bar y_1 + x_2 \bar y_2$
-= La domanda chiede quale formula rispetta le regole del prodotto hermitiano. Il metodo: controlla le lineette, scrivi la matrice dei coefficienti e guarda se è hermitiana. La prima formula ha matrice $\begin{pmatrix} 1 & 1 - i \\ 1 + i & 3 \end{pmatrix}$: la diagonale è reale e il coniugato di $1 + i$ è $1 - i$, quindi va bene. La risposta più insidiosa è la seconda: ha $1 - i$ in tutti e due i posti fuori dalla diagonale, cioè è simmetrica, ma il coniugato di $1 - i$ è $1 + i$. Nella terza c'è $i$ sulla diagonale. La quarta non ha le lineette. Nella quinta il coniugato di $-2$ è $-2$, non $2$. Domande così sono negli appelli del 24/01/2024, 16/01/2025, 07/02/2025, 02/09/2025 e 15/01/2026.
+= La domanda chiede quale formula rispetta le regole del prodotto hermitiano. Il metodo: controlla le lineette, scrivi la matrice dei coefficienti e guarda se è hermitiana. La formula giusta ha matrice $\begin{pmatrix} 1 & 1 - i \\ 1 + i & 3 \end{pmatrix}$: la diagonale è reale e il coniugato di $1 + i$ è $1 - i$, quindi va bene. La risposta più insidiosa è $x_1 \bar y_1 + (1 - i) x_1 \bar y_2 + (1 - i) x_2 \bar y_1 + 3 x_2 \bar y_2$: ha $1 - i$ in tutti e due i posti fuori dalla diagonale, cioè è simmetrica, ma il coniugato di $1 - i$ è $1 + i$. Nella formula che comincia con $i x_1 \bar y_1$ c'è $i$ sulla diagonale. La risposta $x_1 y_1 + (1 - i) x_1 y_2 + (1 + i) x_2 y_1 + 3 x_2 y_2$ non ha le lineette. Nella formula con $2 x_1 \bar y_2 - 2 x_2 \bar y_1$ il coniugato di $-2$ è $-2$, non $2$. Domande così sono negli appelli del 24/01/2024, 16/01/2025, 07/02/2025, 02/09/2025 e 15/01/2026.
 
 D: Quale di queste matrici è hermitiana?
 + $\begin{pmatrix} 3 & 2 + i \\ 2 - i & 0 \end{pmatrix}$
@@ -1395,7 +1395,7 @@ D: Quale di queste matrici è hermitiana?
 - $\begin{pmatrix} i & 1 \\ 1 & i \end{pmatrix}$
 - $\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 + i \\ -1 + i & 2 \end{pmatrix}$
-= Una matrice è hermitiana quando la diagonale è reale e ogni numero è il coniugato del suo specchio. Nella prima la diagonale è fatta da $3$ e $0$, e il coniugato di $2 - i$ è $2 + i$: va bene. Le risposte più insidiose sono la seconda e la quarta, perché sono simmetriche. Ma il coniugato di $2 + i$ è $2 - i$ e il coniugato di $i$ è $-i$: gli specchi non sono coniugati. La terza ha $i$ sulla diagonale. Nella quinta il coniugato di $-1 + i$ è $-1 - i$, non $1 + i$: è stato cambiato il segno della parte reale invece di quello davanti alla $i$. Domande così sono negli appelli del 10/06/2024 e del 10/07/2024.
+= Una matrice è hermitiana quando la diagonale è reale e ogni numero è il coniugato del suo specchio. Nella matrice giusta la diagonale è fatta da $3$ e $0$, e il coniugato di $2 - i$ è $2 + i$: va bene. Le risposte più insidiose sono $\begin{pmatrix} 3 & 2 + i \\ 2 + i & 0 \end{pmatrix}$ e $\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$, perché sono simmetriche. Ma il coniugato di $2 + i$ è $2 - i$ e il coniugato di $i$ è $-i$: gli specchi non sono coniugati. La risposta $\begin{pmatrix} i & 1 \\ 1 & i \end{pmatrix}$ ha $i$ sulla diagonale. Nella matrice con $1 + i$ e $-1 + i$ il coniugato di $-1 + i$ è $-1 - i$, non $1 + i$: è stato cambiato il segno della parte reale invece di quello davanti alla $i$. Domande così sono negli appelli del 10/06/2024 e del 10/07/2024.
 
 D: Con il prodotto hermitiano euclideo di $\C^2$, quanto vale $\langle (1, i), (i, 1) \rangle$?
 + $0$
@@ -1415,7 +1415,7 @@ D: Sia $\langle\ ,\ \rangle$ un prodotto hermitiano su $V$ e $\lambda \in \C$. Q
 - $\langle \lambda v, w \rangle = \bar\lambda \langle v, w \rangle$
 - $\langle v, \lambda w \rangle = \lvert \lambda \rvert \langle v, w \rangle$
 - $\langle v, \lambda w \rangle = \lambda \langle w, v \rangle$
-= La domanda chiede come esce un numero dal prodotto. La regola: dal primo posto esce così com'è, dal secondo posto esce coniugato. La prima risposta è la proprietà (5). La risposta più insidiosa è la seconda: sarebbe giusta per un prodotto scalare tra vettori reali, ma qui il numero che esce dal secondo posto va coniugato. La terza mette il coniugato sul posto sbagliato. Un controllo con i numeri: se $v = w = (1, 0)$ e $\lambda = i$, il prodotto euclideo dà $\langle v, i w \rangle = 1 \cdot (-i) = -i$, cioè proprio $\bar\lambda$.
+= La domanda chiede come esce un numero dal prodotto. La regola: dal primo posto esce così com'è, dal secondo posto esce coniugato. L'uguaglianza giusta è la proprietà (5). La risposta più insidiosa è $\langle v, \lambda w \rangle = \lambda \langle v, w \rangle$: sarebbe giusta per un prodotto scalare tra vettori reali, ma qui il numero che esce dal secondo posto va coniugato. La risposta $\langle \lambda v, w \rangle = \bar\lambda \langle v, w \rangle$ mette il coniugato sul posto sbagliato. Un controllo con i numeri: se $v = w = (1, 0)$ e $\lambda = i$, il prodotto euclideo dà $\langle v, i w \rangle = 1 \cdot (-i) = -i$, cioè proprio $\bar\lambda$.
 
 D: In una matrice hermitiana gli elementi della diagonale sono:
 + sempre reali
@@ -1431,7 +1431,7 @@ D: Quale di queste applicazioni $T \colon \R^2 \to \R^2$ è autoaggiunta rispett
 - $T(x, y) = (x + y,\ y)$
 - $T(x, y) = (y,\ -x)$
 - $T(x, y) = (2x,\ x + y)$
-= Per il Corollario 25.7 basta scrivere la matrice nella base canonica, una riga per ogni componente, e controllare che sia simmetrica. La prima dà $\begin{pmatrix} 3 & 2 \\ 2 & -1 \end{pmatrix}$: fuori dalla diagonale c'è $2$ in tutti e due i posti, quindi è simmetrica. La risposta più insidiosa è la seconda: dà $\begin{pmatrix} 3 & 2 \\ -2 & -1 \end{pmatrix}$, con $2$ e $-2$, che sono diversi. Le altre danno $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, poi $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$ (una rotazione), poi $\begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix}$: nessuna è simmetrica. Una domanda così è nell'appello del 03/06/2026 (domanda 9).
+= Per il Corollario 25.7 basta scrivere la matrice nella base canonica, una riga per ogni componente, e controllare che sia simmetrica. La risposta giusta dà $\begin{pmatrix} 3 & 2 \\ 2 & -1 \end{pmatrix}$: fuori dalla diagonale c'è $2$ in tutti e due i posti, quindi è simmetrica. La risposta più insidiosa è $T(x, y) = (3x + 2y,\ -2x - y)$: dà $\begin{pmatrix} 3 & 2 \\ -2 & -1 \end{pmatrix}$, con $2$ e $-2$, che sono diversi. Le altre danno $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, poi $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$ (una rotazione), poi $\begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix}$: nessuna è simmetrica. Una domanda così è nell'appello del 03/06/2026 (domanda 9).
 
 D: Quale di queste applicazioni $T \colon \C^2 \to \C^2$ **non** è autoaggiunta rispetto al prodotto hermitiano euclideo?
 + $T(x, y) = (x + iy,\ ix + y)$
@@ -1439,7 +1439,7 @@ D: Quale di queste applicazioni $T \colon \C^2 \to \C^2$ **non** è autoaggiunta
 - $T(x, y) = (2x,\ 3y)$
 - $T(x, y) = \big((1 + i)y,\ (1 - i)x\big)$
 - $T(x, y) = (x + 2y,\ 2x)$
-= Con i numeri complessi un'applicazione è autoaggiunta quando la sua matrice nella base canonica è hermitiana. La prima dà $\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$: è simmetrica, ma il coniugato di $i$ è $-i$, quindi non è hermitiana. È lei quella che non è autoaggiunta. Le altre matrici sono $\begin{pmatrix} 1 & i \\ -i & 1 \end{pmatrix}$, poi $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$, poi $\begin{pmatrix} 0 & 1 + i \\ 1 - i & 0 \end{pmatrix}$, poi $\begin{pmatrix} 1 & 2 \\ 2 & 0 \end{pmatrix}$. Hanno tutte la diagonale reale e gli specchi coniugati. La risposta più insidiosa è proprio la prima: chi si ferma a «è simmetrica, quindi va bene» la scarta. Una domanda così è nell'appello del 08/02/2024 (domanda 9).
+= Con i numeri complessi un'applicazione è autoaggiunta quando la sua matrice nella base canonica è hermitiana. $T(x, y) = (x + iy,\ ix + y)$ dà $\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$: è simmetrica, ma il coniugato di $i$ è $-i$, quindi non è hermitiana. È lei quella che non è autoaggiunta. Le altre matrici sono $\begin{pmatrix} 1 & i \\ -i & 1 \end{pmatrix}$, poi $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$, poi $\begin{pmatrix} 0 & 1 + i \\ 1 - i & 0 \end{pmatrix}$, poi $\begin{pmatrix} 1 & 2 \\ 2 & 0 \end{pmatrix}$. Hanno tutte la diagonale reale e gli specchi coniugati. La risposta più insidiosa è proprio quella giusta: chi si ferma a «è simmetrica, quindi va bene» la scarta. Una domanda così è nell'appello del 08/02/2024 (domanda 9).
 
 D: Sia $T$ un endomorfismo autoaggiunto di $\R^2$ con il prodotto scalare euclideo. Rispetto a quale tipo di base la matrice di $T$ è **sicuramente** simmetrica?
 + Una qualsiasi base ortonormale.
@@ -1447,7 +1447,7 @@ D: Sia $T$ un endomorfismo autoaggiunto di $\R^2$ con il prodotto scalare euclid
 - Una base che contiene il vettore $e_1$.
 - Una base formata da vettori di norma $2$.
 - Una base la cui matrice di cambiamento ha determinante positivo.
-= È la Proposizione 25.6: in una base ortonormale la matrice di una macchina autoaggiunta è simmetrica. La risposta più insidiosa è «una base qualsiasi», ma è falsa. L'Esempio 25.8 lo mostra: nella base fatta da $(-1, 1)$ e $(1, 0)$, che non è ortonormale, la matrice viene $\begin{pmatrix} 0 & 1 \\ -1 & 3 \end{pmatrix}$, che non è simmetrica. Quella base contiene il vettore $e_1$: quindi anche la terza risposta è falsa.
+= È la Proposizione 25.6: in una base ortonormale la matrice di una macchina autoaggiunta è simmetrica. La risposta più insidiosa è «una base qualsiasi», ma è falsa. L'Esempio 25.8 lo mostra: nella base fatta da $(-1, 1)$ e $(1, 0)$, che non è ortonormale, la matrice viene $\begin{pmatrix} 0 & 1 \\ -1 & 3 \end{pmatrix}$, che non è simmetrica. Quella base contiene il vettore $e_1$: quindi anche la risposta «Una base che contiene il vettore $e_1$» è falsa.
 
 D: Sia $T$ un endomorfismo autoaggiunto di $\R^3$ e sia $v$ un vettore con $T(v) = 2v$. Detto $U = \Span(v)$, quale affermazione è vera?
 + $U^\perp$ è $T$-invariante.
@@ -1455,7 +1455,7 @@ D: Sia $T$ un endomorfismo autoaggiunto di $\R^3$ e sia $v$ un vettore con $T(v)
 - $T(U^\perp) \subseteq U$.
 - $T(U^\perp) = \{0\}$.
 - Ogni vettore di $U^\perp$ è un autovettore con autovalore $2$.
-= La retta $U$ dei multipli di $v$ è invariante, perché $v$ è un autovettore: la macchina lo manda nel suo doppio. Per la Proposizione 25.10 anche $U^\perp$ è invariante. Le altre risposte sono false; la più insidiosa è l'ultima, perché fa pensare che l'autovalore di $v$ passi ai vettori perpendicolari. Un esempio che le smentisce tutte: la matrice diagonale con $2$, $1$ e $3$ sulla diagonale, e $v = e_1$. Qui $U^\perp$ è il piano di $e_2$ ed $e_3$. La macchina manda $e_2$ in $e_2$ e manda $e_3$ in $3e_3$: non li manda in zero, non li porta in $U$, e il loro autovalore non è $2$.
+= La retta $U$ dei multipli di $v$ è invariante, perché $v$ è un autovettore: la macchina lo manda nel suo doppio. Per la Proposizione 25.10 anche $U^\perp$ è invariante. Le altre risposte sono false; la più insidiosa è «Ogni vettore di $U^\perp$ è un autovettore con autovalore $2$», perché fa pensare che l'autovalore di $v$ passi ai vettori perpendicolari. Un esempio che le smentisce tutte: la matrice diagonale con $2$, $1$ e $3$ sulla diagonale, e $v = e_1$. Qui $U^\perp$ è il piano di $e_2$ ed $e_3$. La macchina manda $e_2$ in $e_2$ e manda $e_3$ in $3e_3$: non li manda in zero, non li porta in $U$, e il loro autovalore non è $2$.
 ```
 
 ## Esercizi

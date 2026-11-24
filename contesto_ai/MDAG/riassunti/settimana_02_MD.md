@@ -227,7 +227,7 @@ D: Appello del 14/01/2025, domanda 3. Sia $f \colon \Z \to \N$ la funzione $f(n)
 + $f(m) = f(n)$ se e solo se $m = \pm n$
 - $f$ è iniettiva
 - $f$ è suriettiva
-= $n$ e $-n$ sono tutti e due pari o tutti e due dispari, quindi hanno lo stesso valore. Al contrario, due numeri con lo stesso valore hanno lo stesso quadrato, oppure i quadrati differiscono di 2, che tra quadrati di interi non succede. La risposta più insidiosa è «iniettiva»: $f(1) = f(-1) = 0$. $f(0) = 1$ e $f(1) = 0$ smentiscono la prima; $f(2) = 5$ è primo; il 2 non è mai raggiunto, quindi non è suriettiva.
+= $n$ e $-n$ sono tutti e due pari o tutti e due dispari, quindi hanno lo stesso valore. Al contrario, due numeri con lo stesso valore hanno lo stesso quadrato, oppure i quadrati differiscono di 2, che tra quadrati di interi non succede. La risposta più insidiosa è «iniettiva»: $f(1) = f(-1) = 0$. $f(0) = 1$ e $f(1) = 0$ smentiscono la frase su $m + 1$; $f(2) = 5$ è primo; il 2 non è mai raggiunto, quindi non è suriettiva.
 
 D: Appello del 14/01/2025, domanda 3, altra versione. Sia $f \colon \Z \to \N$ la funzione $f(n) = n^2 + 2$ se $n$ è pari, $f(n) = n^2$ se $n$ è dispari. Allora:
 - se $s$ sta nell'immagine di $f$, allora $s + 1$ non ci sta
@@ -235,7 +235,7 @@ D: Appello del 14/01/2025, domanda 3, altra versione. Sia $f \colon \Z \to \N$ l
 - $f(2n) = 4n^2 + 4$ per ogni $n$
 + $f$ non è iniettiva
 - $f$ è suriettiva
-= $f(1) = f(-1) = 1$: due numeri diversi con lo stesso valore. La risposta più insidiosa è $f(2n) = 4n^2 + 4$: $2n$ è pari, quindi $f(2n) = 4n^2 + 2$. $f(0) = 2$ e $f(1) = 1$ smentiscono la prima; $f(0) = 2$ è primo; il 3 non è mai raggiunto.
+= $f(1) = f(-1) = 1$: due numeri diversi con lo stesso valore. La risposta più insidiosa è $f(2n) = 4n^2 + 4$: $2n$ è pari, quindi $f(2n) = 4n^2 + 2$. $f(0) = 2$ e $f(1) = 1$ smentiscono la frase su $s + 1$; $f(0) = 2$ è primo; il 3 non è mai raggiunto.
 
 D: Quiz 2021–2025. Sia $f \colon \Z \to \Z$ la funzione $f(n) = 2n$ se $n$ è dispari, $f(n) = 2$ se $n$ è pari. Allora:
 - $f$ è suriettiva

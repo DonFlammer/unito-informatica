@@ -200,7 +200,7 @@ D: Appello del 03/06/2025, domanda 2. Quale dei seguenti insiemi è un sottospaz
 - $\{(x, y, z) \in \R^3 \mid -x + 7y + z = 5\}$
 + $\{(x, y, z) \in \R^3 \mid x + \frac y2 - 5\pi z = 0\}$
 - $\{(x, y, z) \in \R^3 \mid x + 3iy + 5z = 0\}$
-= Un'equazione lineare, con numeri reali e senza termine noto. La risposta più insidiosa è la prima: sembra senza termine noto, ma è $(x - 1)^2 = 0$, cioè $x = 1$, e l'origine non la rispetta. La seconda e la terza hanno il termine noto; l'ultima ha un numero non reale, e la soluzione ufficiale la scarta perché «non è definita sui numeri reali».
+= Un'equazione lineare, con numeri reali e senza termine noto. La risposta più insidiosa è $\{(x, y, z) \in \R^3 \mid x^2 - 2x + 1 = 0\}$: sembra senza termine noto, ma è $(x - 1)^2 = 0$, cioè $x = 1$, e l'origine non la rispetta. La risposta $\{(x, y, z) \in \R^3 \mid x + 2yz + 3z = 7\}$ e la risposta $\{(x, y, z) \in \R^3 \mid -x + 7y + z = 5\}$ hanno il termine noto; la risposta $\{(x, y, z) \in \R^3 \mid x + 3iy + 5z = 0\}$ ha un numero non reale, e la soluzione ufficiale la scarta perché «non è definita sui numeri reali».
 
 D: Appello del 08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(0) = 0\}$
@@ -208,7 +208,7 @@ D: Appello del 08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sotto
 - $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 0\}$
 + $\{(1 + t)x^2 + tx \mid t \in \R\}$
 - $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$
-= Per avere il polinomio nullo servirebbero $1 + t = 0$ e $t = 0$ insieme: impossibile. La risposta più insidiosa è la seconda, che ha una forma simile: ma $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$ è uno Span, quindi è un sottospazio. Le altre sono equazioni lineari senza termine noto.
+= Per avere il polinomio nullo servirebbero $1 + t = 0$ e $t = 0$ insieme: impossibile. La risposta più insidiosa è $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$, che ha una forma simile: ma $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$ è uno Span, quindi è un sottospazio. Le altre sono equazioni lineari senza termine noto.
 
 D: Appello del 05/02/2026, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(1) = p(2)\}$
@@ -224,7 +224,7 @@ D: Appello del 07/09/2026, domanda 3. Quale dei seguenti insiemi è un sottospaz
 + $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(-1)\}$
 - $\{tx^2 + sx + 1 \mid s, t \in \R\}$
 - $\{(1 + t)x^2 + tx \mid t \in \R\}$
-= È l'unico insieme che contiene il polinomio nullo, e le condizioni $p(1) = 0$ e $p(-1) = 0$ restano vere per somme e multipli. La risposta più insidiosa è la prima: $a = 2c$ va bene, ma $b = 2$ esclude il polinomio nullo. Nelle altre il termine noto è fissato a 1, oppure nessun $t$ dà lo zero.
+= È l'unico insieme che contiene il polinomio nullo, e le condizioni $p(1) = 0$ e $p(-1) = 0$ restano vere per somme e multipli. La risposta più insidiosa è $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 2\}$: $a = 2c$ va bene, ma $b = 2$ esclude il polinomio nullo. Nelle altre il termine noto è fissato a 1, oppure nessun $t$ dà lo zero.
 
 D: Appello del 24/01/2024, domanda 1. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) = x + 2$, $c(x) = 2x^2 - 2$, $d(x) = x^2 - x$, $e(x) = 2x^3 + 1$, $f(x) = x^3 - x^2$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale:
 - $U = \Span(a, c)$

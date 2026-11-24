@@ -805,7 +805,7 @@ D: Con la congruenza modulo 3 negli interi, quale di queste uguaglianze tra clas
 - $[0] = [1]$
 - $[3] = [6] = [10]$
 - $[-1] = [1]$
-= Due interi hanno la stessa classe quando la loro differenza è un multiplo di 3. $4 - 1 = 3$ e $1 - (-2) = 3$: quindi $[1] = [4] = [-2]$. Nella prima, $7 - 5 = 2$ non è un multiplo di 3. Nella quarta, $10 - 6 = 4$ non lo è. $[0] = [1]$ è falsa perché la differenza è 1. La più tentatrice è $[-1] = [1]$: sembra simmetrica, ma $1 - (-1) = 2$ non è un multiplo di 3; infatti $[-1] = [2]$.
+= Due interi hanno la stessa classe quando la loro differenza è un multiplo di 3. $4 - 1 = 3$ e $1 - (-2) = 3$: quindi $[1] = [4] = [-2]$. In $[2] = [5] = [7]$, $7 - 5 = 2$ non è un multiplo di 3. In $[3] = [6] = [10]$, $10 - 6 = 4$ non lo è. $[0] = [1]$ è falsa perché la differenza è 1. La più tentatrice è $[-1] = [1]$: sembra simmetrica, ma $1 - (-1) = 2$ non è un multiplo di 3; infatti $[-1] = [2]$.
 
 D: Quante relazioni di equivalenza ci sono nell'insieme $\{1, 2, 3\}$?
 - $3$

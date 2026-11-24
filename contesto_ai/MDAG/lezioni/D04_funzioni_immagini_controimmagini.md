@@ -430,7 +430,7 @@ D: Con $A = \{1, 2, 3\}$ e $B = \{x, y\}$, quale di questi sottoinsiemi di $A \t
 - $\{(1, x), (1, y), (2, x), (3, y)\}$
 - $\{(x, 1), (y, 2), (x, 3)\}$
 - $\{(1, x), (2, x), (3, x), (3, y)\}$
-= Ogni elemento di $A$ deve comparire una volta sola come primo pezzo: succede solo nella prima. La risposta più insidiosa è $\{(x, 1), (y, 2), (x, 3)\}$: le coppie sono scritte al contrario, quindi stanno in $B \times A$. La seconda dimentica 3; la terza e l'ultima danno due valori a 1 o a 3.
+= Ogni elemento di $A$ deve comparire una volta sola come primo pezzo: succede solo in $\{(1, y), (2, y), (3, x)\}$. La risposta più insidiosa è $\{(x, 1), (y, 2), (x, 3)\}$: le coppie sono scritte al contrario, quindi stanno in $B \times A$. La risposta $\{(1, x), (2, y)\}$ dimentica 3; la risposta $\{(1, x), (1, y), (2, x), (3, y)\}$ e la risposta $\{(1, x), (2, x), (3, x), (3, y)\}$ danno due valori a 1 o a 3.
 
 D: Sia $f \colon \Z \to \Z$, $f(n) = 2n + 1$. Quale affermazione è vera?
 + $f$ è iniettiva ma non suriettiva
@@ -486,7 +486,7 @@ D: (Appello del 14/01/2025, domanda 3, versione C) Sia $f \colon \Z \to \N$ la f
 - $f(n) \neq n$ per ogni $n$
 - $f$ è suriettiva
 - $f$ è iniettiva
-= $n^2 + n = n(n + 1)$ è sempre pari; per $n$ dispari, $n^2$ è dispari e $n^2 + 1$ è pari. Nessun valore è dispari, quindi ogni dispari ha controimmagine vuota. La risposta più insidiosa è $f(2n) = 4n^2 + n$: il conto giusto è $(2n)^2 + 2n = 4n^2 + 2n$. $f(0) = 0$ smentisce la terza; non è suriettiva (mai dispari); $f(1) = f(-1) = 2$, quindi non è iniettiva.
+= $n^2 + n = n(n + 1)$ è sempre pari; per $n$ dispari, $n^2$ è dispari e $n^2 + 1$ è pari. Nessun valore è dispari, quindi ogni dispari ha controimmagine vuota. La risposta più insidiosa è $f(2n) = 4n^2 + n$: il conto giusto è $(2n)^2 + 2n = 4n^2 + 2n$. $f(0) = 0$ smentisce $f(n) \neq n$; non è suriettiva (mai dispari); $f(1) = f(-1) = 2$, quindi non è iniettiva.
 
 D: (Appello del 14/01/2025, domanda 3, versione D) Sia $f \colon \Z \to \N$ la funzione $f(n) = n^2 + 1$ se $n \ge 0$, $f(n) = n^2 - 1$ se $n < 0$. Allora
 + $f$ è iniettiva
@@ -494,7 +494,7 @@ D: (Appello del 14/01/2025, domanda 3, versione D) Sia $f \colon \Z \to \N$ la f
 - $f^{-1}(\{4, 8, 9\}) = \emptyset$
 - $f(n) > f(m)$ per ogni $n > m$
 - $f(f(n)) = n^2 + 1$ per ogni $n$
-= I non negativi danno $1, 2, 5, 10, \dots$, i negativi $0, 3, 8, 15, \dots$: nessun valore si ripete. La risposta più insidiosa è $f^{-1}(\{4, 8, 9\}) = \emptyset$: 4 e 9 non vengono raggiunti, ma $f(-3) = 8$. 4 non è mai raggiunto, quindi non è suriettiva; $f(-3) = 8 > f(0) = 1$ smentisce la quarta; $f(f(1)) = f(2) = 5$, non 2.
+= I non negativi danno $1, 2, 5, 10, \dots$, i negativi $0, 3, 8, 15, \dots$: nessun valore si ripete. La risposta più insidiosa è $f^{-1}(\{4, 8, 9\}) = \emptyset$: 4 e 9 non vengono raggiunti, ma $f(-3) = 8$. 4 non è mai raggiunto, quindi non è suriettiva; $f(-3) = 8 > f(0) = 1$ smentisce «$f(n) > f(m)$ per ogni $n > m$»; $f(f(1)) = f(2) = 5$, non 2.
 
 D: Alla mensa del testo ($f(\text{Anna}) = f(\text{Bruno}) = \text{pasta}$, $f(\text{Carla}) = \text{zuppa}$, $f(\text{Dario}) = \text{riso}$, menu con anche gli gnocchi), quanti elementi ha la controimmagine $f^{-1}(\{\text{pasta}, \text{gnocchi}\})$?
 N: 2

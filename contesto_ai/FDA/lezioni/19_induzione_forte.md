@@ -397,7 +397,7 @@ D: Dalla simulazione 1 del 2023/24, quiz 9, adattata a una risposta sola. Quale 
 - può essere usato per svolgere dimostrazioni sui numeri reali
 - non può mai sostituire l'induzione semplice
 - non ha bisogno di un caso base
-= È l'affermazione d del quiz; le prime tre sono del quiz, le ultime due le ho aggiunte io. Nel quiz vero è giusta anche la b: la forma forte può sempre sostituire quella semplice. La più insidiosa è quella sui numeri reali: l'induzione, in tutte e due le forme, lavora sugli interi.
+= È l'affermazione d del quiz. Le risposte «non può mai sostituire l'induzione semplice» e «non ha bisogno di un caso base» le ho aggiunte io, le altre sono del quiz. Nel quiz vero è giusta anche la b: la forma forte può sempre sostituire quella semplice. La più insidiosa è quella sui numeri reali: l'induzione, in tutte e due le forme, lavora sugli interi.
 
 D: Nel ciclo `i = 0; ris = 1; while (i < n) { ris = ris * a; i = i + 1; }`, a che cosa serve la parte `i <= n` dell'invariante?
 + a concludere che all'uscita `i == n`
@@ -405,7 +405,7 @@ D: Nel ciclo `i = 0; ris = 1; while (i < n) { ris = ris * a; i = i + 1; }`, a ch
 - a far terminare il ciclo
 - a evitare che `ris` diventi negativo
 - a niente: è vera ma inutile
-= All'uscita si sa `i >= n`; con `i <= n` si ottiene `i == n`, e quindi `ris == a^n`. La più insidiosa è l'ultima: senza quella parte il risultato non si può scrivere.
+= All'uscita si sa `i >= n`; con `i <= n` si ottiene `i == n`, e quindi `ris == a^n`. La più insidiosa è «a niente: è vera ma inutile»: senza quella parte il risultato non si può scrivere.
 
 D: Nello stesso ciclo, con `a = 2` e `n = 6`, quanto vale `ris` dopo 4 giri?
 N: 16
@@ -417,7 +417,7 @@ D: Nella dimostrazione dei francobolli da 2 e da 5, perché servono due casi bas
 - perché l'induzione forte chiede sempre due casi base
 - perché 4 e 5 sono gli unici casi veri
 - perché il passo usa il caso $n - 1$
-= Il passo vale da 6 in su, perché deve essere $n - 2 \ge 4$: il 5 resta fuori e va verificato a mano. La più insidiosa è la terza: il numero di casi base dipende dal passo, non dal principio.
+= Il passo vale da 6 in su, perché deve essere $n - 2 \ge 4$: il 5 resta fuori e va verificato a mano. La più insidiosa è «perché l'induzione forte chiede sempre due casi base»: il numero di casi base dipende dal passo, non dal principio.
 
 D: Con l'induzione forte, quali casi si possono usare per dimostrare $S(12)$, se si parte da $n_0 = 4$?
 + tutti quelli da $S(4)$ a $S(11)$
@@ -425,7 +425,7 @@ D: Con l'induzione forte, quali casi si possono usare per dimostrare $S(12)$, se
 - solo $S(4)$
 - quelli da $S(1)$ a $S(11)$
 - quelli da $S(4)$ a $S(12)$
-= L'ipotesi forte copre i $k$ con $n_0 \le k < n$. La più insidiosa è l'ultima: $S(12)$ è quella da dimostrare.
+= L'ipotesi forte copre i $k$ con $n_0 \le k < n$. La più insidiosa è «quelli da $S(4)$ a $S(12)$»: $S(12)$ è quella da dimostrare.
 
 D: Quanti prodotti servono per moltiplicare 10 fattori, mettendo le parentesi nel modo più conveniente?
 N: 9

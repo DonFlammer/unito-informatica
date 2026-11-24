@@ -272,7 +272,7 @@ D: Quale sequenza scambia correttamente `x` e `y`?
 - `temp = x; y = x; x = temp;`
 - `x = y; y = x;`
 - `temp = y; x = y; y = temp;`
-= Si salva `x`, poi si sovrascrive `x`, poi si mette il vecchio `x` in `y`. La risposta più insidiosa è `x = y; temp = x; y = temp;`: ha gli stessi tre pezzi, ma salva `x` quando il suo valore è già perso. L'ultima salva `y` e poi sovrascrive `x` senza averlo salvato.
+= Si salva `x`, poi si sovrascrive `x`, poi si mette il vecchio `x` in `y`. La risposta più insidiosa è `x = y; temp = x; y = temp;`: ha gli stessi tre pezzi, ma salva `x` quando il suo valore è già perso. La risposta `temp = y; x = y; y = temp;` salva `y` e poi sovrascrive `x` senza averlo salvato.
 
 D: Con `int a = 1, b = 2;` che cosa stampa `int t = a; a = b; b = t; printf("%d %d", a, b);`?
 + `2 1`

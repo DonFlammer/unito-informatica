@@ -722,7 +722,7 @@ D: Con 8 bit in complemento a 2, quali numeri si possono scrivere?
 - da $-127$ a $127$
 - da $-127$ a $128$
 - da $-256$ a $255$
-= Con $n$ bit si va da $-2^{n-1}$ a $2^{n-1} - 1$, e con 8 bit $2^7 = 128$: da −128 a 127. È la domanda 4 del §1.6. La risposta da 0 a 255 vale senza segno. Quella da −127 a 127 dimentica 10000000, che è −128: è l'intervallo del complemento a 1 e del segno e modulo, che hanno due zeri. Quella con 128 sbaglia il lato: lo zero toglie un posto ai positivi, non ai negativi. L'ultima conta 512 numeri, ma 8 bit ne danno 256.
+= Con $n$ bit si va da $-2^{n-1}$ a $2^{n-1} - 1$, e con 8 bit $2^7 = 128$: da −128 a 127. È la domanda 4 del §1.6. La risposta da 0 a 255 vale senza segno. Quella da −127 a 127 dimentica 10000000, che è −128: è l'intervallo del complemento a 1 e del segno e modulo, che hanno due zeri. Quella con 128 sbaglia il lato: lo zero toglie un posto ai positivi, non ai negativi. La risposta «da $-256$ a $255$» conta 512 numeri, ma 8 bit ne danno 256.
 
 D: Con 4 bit in complemento a 2, quale di queste somme va in overflow?
 + $0101 + 0110$
@@ -794,7 +794,7 @@ D: Nel formato del libro si calcola 2 e 1/2 + 1/8 + 1/8, da sinistra a destra, t
 - $2\tfrac58$
 - $2\tfrac14$
 - $3$
-= 2 e 1/2 + 1/8 fa 2 e 5/8, cioè 10,101: cinque cifre. La mantissa ne tiene quattro e torna 2 e 1/2. Con il secondo 1/8 succede lo stesso. Il risultato è 2 e 1/2. La risposta $2\tfrac34$ è il risultato giusto, che si ottiene sommando prima i due ottavi: è l'esempio del libro sull'ordine delle somme. La risposta $2\tfrac58$ dimentica che anche il primo risultato si tronca. Le ultime due non vengono in nessun ordine.
+= 2 e 1/2 + 1/8 fa 2 e 5/8, cioè 10,101: cinque cifre. La mantissa ne tiene quattro e torna 2 e 1/2. Con il secondo 1/8 succede lo stesso. Il risultato è 2 e 1/2. La risposta $2\tfrac34$ è il risultato giusto, che si ottiene sommando prima i due ottavi: è l'esempio del libro sull'ordine delle somme. La risposta $2\tfrac58$ dimentica che anche il primo risultato si tronca. Le risposte $2\tfrac14$ e $3$ non vengono in nessun ordine.
 
 D: Quale di questi numeri NON si scrive in modo esatto nel formato in virgola mobile del libro?
 - $2\tfrac34$

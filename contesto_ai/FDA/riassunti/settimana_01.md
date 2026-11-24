@@ -173,7 +173,7 @@ D: Simulazione d'esame 1, 2023/24, domanda 5. La tabella di verità ha $y = 1$ s
 + $\overline{x_1}\,x_2\,\overline{x_3} + \overline{x_1}\,x_2\,x_3 + x_1\,\overline{x_2}\,x_3 + x_1\,x_2\,\overline{x_3}$
 - $x_1\,x_2\,x_3$
 - $\overline{x_1}\,\overline{x_2}\,\overline{x_3} + x_1\,x_2\,x_3$
-= Un AND per ogni riga con $y = 1$, con il NOT sugli ingressi a 0, poi tutti uniti da OR: è la terza. La risposta più insidiosa è la prima: è giusta in quasi tutte le righe, ma vale 1 anche in 111, dove $y = 0$, e vale 0 in 101 e 110. La seconda sbaglia le righe 001 e 111.
+= Un AND per ogni riga con $y = 1$, con il NOT sugli ingressi a 0, poi tutti uniti da OR: è la formula con un AND di tre ingressi per ogni riga. La risposta più insidiosa è $\overline{x_1}\,x_2 + x_1\,x_2\,x_3$: è giusta in quasi tutte le righe, ma vale 1 anche in 111, dove $y = 0$, e vale 0 in 101 e 110. La risposta $x_1\,x_2 + \overline{x_2}\,x_3$ sbaglia le righe 001 e 111.
 
 D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola (A AND NOT C) OR (NOT C AND B). Quale formula NON lo descrive?
 - $(\neg C \land A) \lor (\neg C \land B)$
@@ -181,7 +181,7 @@ D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola (A AND NOT C) 
 - $\neg((C \lor \neg A) \land (C \lor \neg B))$
 - $\neg C \land (A \lor B)$
 - $(A \land \neg C) \lor (B \land \neg C)$
-= Basta una riga diversa: con $A = B = C = 0$ il circuito dà 0, perché tutte e due le AND ricevono uno 0, mentre la seconda formula dà 1, perché $\neg C$ rende veri tutti e due gli OR. La risposta più insidiosa è la terza, con la negazione davanti: per De Morgan è uguale al circuito in tutte le 8 righe.
+= Basta una riga diversa: con $A = B = C = 0$ il circuito dà 0, perché tutte e due le AND ricevono uno 0, mentre la seconda formula dà 1, perché $\neg C$ rende veri tutti e due gli OR. La risposta più insidiosa è $\neg((C \lor \neg A) \land (C \lor \neg B))$, con la negazione davanti: per De Morgan è uguale al circuito in tutte le 8 righe.
 
 D: Simulazione d'esame 2, 2023/24, domanda 3. Due NAND si richiamano: quello in alto riceve l'ingresso in alto e l'uscita dell'altro; quello in basso riceve l'ingresso in basso e l'uscita del primo, che è $y$. Con l'ingresso in alto a 1 e quello in basso a 0, su che valore si stabilizza $y$?
 + $0$

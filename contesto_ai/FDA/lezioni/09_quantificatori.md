@@ -423,7 +423,7 @@ D: Sugli interi positivi, con $P(n)$ = «$n^2 + 2n$ è dispari», quale affermaz
 - tutte e due sono false
 - $\exists n\, P(n)$ è falsa e $\forall n\, P(n)$ è vera
 - $P(n)$ è una proposizione vera
-= Con $n = 2$ viene 8, pari: è un controesempio, e il «per ogni» è falso. Con $n = 1$ viene 3, dispari: è un testimone, e l'«esiste» è vero. La risposta più insidiosa è l'ultima: $P(n)$ da sola non è una proposizione, perché non si sa chi è $n$.
+= Con $n = 2$ viene 8, pari: è un controesempio, e il «per ogni» è falso. Con $n = 1$ viene 3, dispari: è un testimone, e l'«esiste» è vero. La risposta più insidiosa è «$P(n)$ è una proposizione vera»: $P(n)$ da sola non è una proposizione, perché non si sa chi è $n$.
 
 D: Che cosa basta per dimostrare che $\forall x\, P(x)$ è falsa?
 + un valore di $x$ per cui $P(x)$ è falsa
@@ -439,7 +439,7 @@ D: Qual è la negazione di $\exists x\,(x^2 = 2)$?
 - $\forall x\,(x^2 = 2)$
 - $\neg\,\forall x\,(x^2 = 2)$
 - $\exists x\,\neg(x^2 = 2)$
-= Il $\neg$ gira $\exists$ in $\forall$ e nega la frase interna. La risposta più insidiosa è $\exists x\,(x^2 \neq 2)$: nega la frase interna ma lascia il quantificatore com'è. Anche l'ultima è la stessa cosa scritta in un altro modo.
+= Il $\neg$ gira $\exists$ in $\forall$ e nega la frase interna. La risposta più insidiosa è $\exists x\,(x^2 \neq 2)$: nega la frase interna ma lascia il quantificatore com'è. Anche $\exists x\,\neg(x^2 = 2)$ è la stessa cosa, scritta in un altro modo.
 
 D: Quale formula traduce «ogni ragioniere ha una Porsche», con $P(x)$ = «$x$ è un ragioniere» e $Q(x)$ = «$x$ ha una Porsche», sul dominio di tutte le persone?
 + $\forall x\,(P(x) \to Q(x))$
@@ -447,7 +447,7 @@ D: Quale formula traduce «ogni ragioniere ha una Porsche», con $P(x)$ = «$x$ 
 - $\exists x\,(P(x) \wedge Q(x))$
 - $\exists x\,(P(x) \to Q(x))$
 - $\forall x\,(Q(x) \to P(x))$
-= «Per ogni» va con la freccia. La risposta più insidiosa è $\forall x\,(P(x) \wedge Q(x))$: direbbe che tutte le persone sono ragionieri. L'ultima gira la freccia: «chi ha una Porsche è un ragioniere».
+= «Per ogni» va con la freccia. La risposta più insidiosa è $\forall x\,(P(x) \wedge Q(x))$: direbbe che tutte le persone sono ragionieri. La risposta $\forall x\,(Q(x) \to P(x))$ gira la freccia: «chi ha una Porsche è un ragioniere».
 
 D: Qual è la negazione di «ogni studente segue un corso di matematica»?
 + Qualche studente non segue un corso di matematica
@@ -463,7 +463,7 @@ D: Sui numeri reali, quale di queste frasi è vera?
 - $\exists x\,\bigl(\frac{1}{x^2 + 1} > 1\bigr)$
 - $\forall x\,(x^2 \ge x)$
 - $\exists x\,(x^2 < 0)$
-= Con $x = 2$: $\frac{2}{5}$. La risposta più insidiosa è $\forall x\,(x^2 \ge x)$: è vera sugli interi, ma sui reali $x = \frac12$ è un controesempio. La terza è falsa perché $x^2 + 1 \ge 1$.
+= Con $x = 2$: $\frac{2}{5}$. La risposta più insidiosa è $\forall x\,(x^2 \ge x)$: è vera sugli interi, ma sui reali $x = \frac12$ è un controesempio. La risposta $\exists x\,\bigl(\frac{1}{x^2 + 1} > 1\bigr)$ è falsa perché $x^2 + 1 \ge 1$.
 
 D: Un programma controlla $\forall n\, P(n)$ sugli interi da 1 a 1000 e risponde «vero». Che cosa si può concludere sugli interi positivi?
 + niente su $\forall n\, P(n)$: un controesempio potrebbe essere più grande di 1000
@@ -479,7 +479,7 @@ D: Con $L(x)$ = «$x$ luccica» e $O(x)$ = «$x$ è oro», quale formula dice «
 - $\exists x\,(L(x) \to \neg O(x))$
 - $\forall x\,(\neg L(x) \to O(x))$
 - $\neg\,\exists x\,(L(x) \wedge O(x))$
-= È $\neg\,\forall x\,(L(x) \to O(x))$, che per De Morgan e per $\neg(p \to q) \equiv p \wedge \neg q$ diventa «qualcosa luccica e non è oro». La risposta più insidiosa è $\forall x\,(L(x) \to \neg O(x))$, la lettura alla lettera: «niente di ciò che luccica è oro». L'ultima dice la stessa cosa.
+= È $\neg\,\forall x\,(L(x) \to O(x))$, che per De Morgan e per $\neg(p \to q) \equiv p \wedge \neg q$ diventa «qualcosa luccica e non è oro». La risposta più insidiosa è $\forall x\,(L(x) \to \neg O(x))$, la lettura alla lettera: «niente di ciò che luccica è oro». La risposta $\neg\,\exists x\,(L(x) \wedge O(x))$ dice la stessa cosa.
 ```
 
 ## Esercizi

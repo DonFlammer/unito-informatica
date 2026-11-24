@@ -365,7 +365,7 @@ D: Appello del 06/06/2025, quiz versione 1, domanda 5. La decomposizione della p
 - $(1\ 4\ 7)(5\ 6)$
 - $(1\ 7\ 4)(2\ 3\ 5\ 6)$
 + $(1\ 4\ 7)(2\ 3)(5\ 6)$
-= Seguendo ogni numero da destra si trovano $1 \mapsto 4 \mapsto 7 \mapsto 1$, $2 \mapsto 3 \mapsto 2$ e $5 \mapsto 6 \mapsto 5$: è la risposta 5 della soluzione ufficiale. La più insidiosa è la seconda, con il primo ciclo al contrario, che viene leggendo i cicli da sinistra; in più manca $(5\ 6)$.
+= Seguendo ogni numero da destra si trovano $1 \mapsto 4 \mapsto 7 \mapsto 1$, $2 \mapsto 3 \mapsto 2$ e $5 \mapsto 6 \mapsto 5$: è la risposta 5 della soluzione ufficiale. La più insidiosa è $(1\ 7\ 4)(2\ 3)$, con il primo ciclo al contrario, che viene leggendo i cicli da sinistra; in più manca $(5\ 6)$.
 
 D: Appello del 06/06/2025, quiz versione 2, domanda 5. La decomposizione della permutazione $(1\ 6\ 3\ 7\ 2)(4\ 5)(4\ 1\ 7\ 6)$ in cicli disgiunti è:
 - $(4\ 6\ 5)(1\ 3)(2\ 7)$
@@ -373,7 +373,7 @@ D: Appello del 06/06/2025, quiz versione 2, domanda 5. La decomposizione della p
 - $(4\ 6\ 5)(1\ 2)$
 - $(1\ 7\ 4)(7\ 3\ 1\ 2)$
 - $(1\ 7\ 4)(7\ 3)$
-= Da destra: il 4 va nell'1, poi resta, poi nel 6; il 6 va nel 4 e poi nel 5; il 5 resta, va nel 4, poi resta. Primo ciclo $(4\ 6\ 5)$. Poi $1 \mapsto 2 \mapsto 1$ e $3 \mapsto 7 \mapsto 3$: è la risposta 2 della soluzione ufficiale. La più insidiosa è la terza, che dimentica lo scambio $(7\ 3)$; la quarta non è nemmeno fatta di cicli disgiunti.
+= Da destra: il 4 va nell'1, poi resta, poi nel 6; il 6 va nel 4 e poi nel 5; il 5 resta, va nel 4, poi resta. Primo ciclo $(4\ 6\ 5)$. Poi $1 \mapsto 2 \mapsto 1$ e $3 \mapsto 7 \mapsto 3$: è la risposta 2 della soluzione ufficiale. La più insidiosa è $(4\ 6\ 5)(1\ 2)$, che dimentica lo scambio $(7\ 3)$; la risposta $(1\ 7\ 4)(7\ 3\ 1\ 2)$ non è nemmeno fatta di cicli disgiunti.
 
 D: Qual è l'inverso del ciclo $(2\ 5\ 3\ 7\ 4\ 8)$?
 + $(8\ 4\ 7\ 3\ 5\ 2)$
@@ -381,7 +381,7 @@ D: Qual è l'inverso del ciclo $(2\ 5\ 3\ 7\ 4\ 8)$?
 - $(5\ 3\ 7\ 4\ 8\ 2)$
 - $(2\ 8\ 7\ 4\ 3\ 5)$
 - $(8\ 2\ 5\ 3\ 7\ 4)$
-= L'inverso è lo stesso ciclo letto al contrario (proposizione 5.5). La risposta più insidiosa è la terza: è lo stesso ciclo di partenza, solo cominciato dal 5, come anche l'ultima, cominciata dall'8.
+= L'inverso è lo stesso ciclo letto al contrario (proposizione 5.5). La risposta più insidiosa è $(5\ 3\ 7\ 4\ 8\ 2)$: è lo stesso ciclo di partenza, solo cominciato dal 5, come anche $(8\ 2\ 5\ 3\ 7\ 4)$, cominciato dall'8.
 
 D: Quale di queste scritture è lo **stesso** ciclo di $(1\ 6\ 4\ 2)$?
 + $(4\ 2\ 1\ 6)$
@@ -405,7 +405,7 @@ D: Quali di queste coppie di cicli commutano sicuramente?
 - $(1\ 2)$ e $(2\ 3)$
 - $(1\ 2\ 3)$ e $(3\ 4\ 5)$
 - $(4\ 6)$ e $(6\ 4\ 1)$
-= Commutano i cicli disgiunti (proposizione 5.7), e solo la prima coppia non ha numeri in comune. La più insidiosa è l'ultima, in cui i numeri si ripetono: $(4\ 6)(6\ 4\ 1)$ e $(6\ 4\ 1)(4\ 6)$ sono diverse.
+= Commutano i cicli disgiunti (proposizione 5.7), e solo la prima coppia non ha numeri in comune. La più insidiosa è «$(4\ 6)$ e $(6\ 4\ 1)$», in cui i numeri si ripetono: $(4\ 6)(6\ 4\ 1)$ e $(6\ 4\ 1)(4\ 6)$ sono diverse.
 
 D: Quanti numeri lascia fermi il ciclo $(2\ 5\ 3\ 7\ 4\ 8)$ in $S_9$?
 N: 3

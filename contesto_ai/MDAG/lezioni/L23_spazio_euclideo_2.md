@@ -741,7 +741,7 @@ D: I piani $\pi_1 = \{x + y + z = 3\}$ e $\pi_2 = \{x - y = 1\}$ si intersecano 
 - $(0, 0, 3) + \Span((1, 1, -2))$
 - $(1, 0, 2) + \Span((1, -1, 0))$
 - $(2, 1, 1) + \Span((1, 1, -2))$
-= Dalla seconda equazione $x = 1 + y$; nella prima $1 + 2y + z = 3$, cioè $z = 2 - 2y$. Con $y = t$: $(1 + t, t, 2 - 2t)$. Controllo: $(1, 1, 1) \times (1, -1, 0) = (1, 1, -2)$. La risposta più insidiosa è la seconda: il punto è giusto, ma $(1, 1, 1)$ è il vettore normale del primo piano, che è perpendicolare al piano invece di starci dentro. $(0, 0, 3)$ non sta sul secondo piano; $(2, 1, 1)$ non sta sul primo. Simile agli appelli del 24/01/2024 e del 10/07/2024 (problema 12, punto 1).
+= Dalla seconda equazione $x = 1 + y$; nella prima $1 + 2y + z = 3$, cioè $z = 2 - 2y$. Con $y = t$: $(1 + t, t, 2 - 2t)$. Controllo: $(1, 1, 1) \times (1, -1, 0) = (1, 1, -2)$. La risposta più insidiosa è $(1, 0, 2) + \Span((1, 1, 1))$: il punto è giusto, ma $(1, 1, 1)$ è il vettore normale del primo piano, che è perpendicolare al piano invece di starci dentro. $(0, 0, 3)$ non sta sul secondo piano; $(2, 1, 1)$ non sta sul primo. Simile agli appelli del 24/01/2024 e del 10/07/2024 (problema 12, punto 1).
 
 D: Il piano $\pi = \{s\,e_1 + t\,(e_2 + e_3) \mid s, t \in \R\}$ in forma cartesiana è:
 + $\{y - z = 0\}$
@@ -777,7 +777,7 @@ D: L'intersezione delle rette $r = (1, 0, 1) + t\,(1, 1, 0)$ e $r' = (0, 3, -1) 
 - il punto $(0, 3, -1)$
 - il punto $(3, 2, 1)$
 - vuota: le rette sono sghembe
-= Uguagliando: $1 + t = s$, $t = 3 - s$, $1 = -1 + s$. Dalla terza $s = 2$, dalla prima $t = 1$, e la seconda torna. Il punto è $(2, 1, 1)$. La risposta più insidiosa è $(3, 2, 1)$: sta sulla prima retta, con $t = 2$, ma non sulla seconda. Gli altri due punti sono i punti di partenza, ognuno su una retta sola. Simile agli appelli del 03/06/2025 e del 10/07/2025 (domanda 10).
+= Uguagliando: $1 + t = s$, $t = 3 - s$, $1 = -1 + s$. Dalla terza equazione $s = 2$, dalla prima equazione $t = 1$, e la seconda equazione torna. Il punto è $(2, 1, 1)$. La risposta più insidiosa è $(3, 2, 1)$: sta sulla prima retta, con $t = 2$, ma non sulla seconda. Gli altri due punti sono i punti di partenza, ognuno su una retta sola. Simile agli appelli del 03/06/2025 e del 10/07/2025 (domanda 10).
 
 D: Quale coppia di sottospazi affini di $\R^3$ ha **sicuramente** intersezione non vuota?
 + Due piani i cui vettori normali non sono proporzionali.

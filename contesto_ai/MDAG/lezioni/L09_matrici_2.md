@@ -751,7 +751,7 @@ D: Quale di queste affermazioni è **falsa** per matrici quadrate reali?
 - $\det(I_n) = 1$.
 - Se una colonna di $A$ è nulla, allora $\det A = 0$.
 - $\det(-A) = \det A$ per ogni $A \in M(2)$.
-= Basta un esempio: con $A = I_2$ e $B = -I_2$ la somma è la matrice nulla, con determinante 0, mentre $\det A + \det B = 1 + 1 = 2$. Quindi il determinante non si spezza sulle somme. Le altre sono vere: la trasposta ha lo stesso determinante (Proposizione 9.5), l'identità ha determinante 1 (Definizione 9.4 con la Proposizione 9.3), una colonna di zeri dà zero (Proposizione 9.10). La più insidiosa è l'ultima, che sembra falsa: ma per le $2 \times 2$ il $-1$ esce due volte, e $(-1)^2 = 1$ (Corollario 9.12).
+= Basta un esempio: con $A = I_2$ e $B = -I_2$ la somma è la matrice nulla, con determinante 0, mentre $\det A + \det B = 1 + 1 = 2$. Quindi il determinante non si spezza sulle somme. Le altre sono vere: la trasposta ha lo stesso determinante (Proposizione 9.5), l'identità ha determinante 1 (Definizione 9.4 con la Proposizione 9.3), una colonna di zeri dà zero (Proposizione 9.10). La più insidiosa è «$\det(-A) = \det A$ per ogni $A \in M(2)$», che sembra falsa: ma per le $2 \times 2$ il $-1$ esce due volte, e $(-1)^2 = 1$ (Corollario 9.12).
 
 D: Calcola il determinante di $\begin{pmatrix} 3 & 1 & 0 \\ 0 & 2 & 5 \\ 1 & 0 & 4 \end{pmatrix}$.
 N: 29

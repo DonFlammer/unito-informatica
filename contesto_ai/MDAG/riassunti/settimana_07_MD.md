@@ -234,7 +234,7 @@ D: Dalla prova scritta del 15/06/2020, esercizio 1. L'algoritmo di Euclide dà $
 - $2 = 15 \cdot 142 + 19 \cdot 112$
 - $2 = 4 \cdot 142 - 5 \cdot 112$
 - $2 = 142 - 112$
-= $2130 - 2128 = 2$. Nella soluzione ufficiale c'è una svista di stampa, «$19 \cdot 56$» al posto di $19 \cdot 112$: il conto giusto è questo. La più insidiosa è la quarta, che dà $568 - 560 = 8$.
+= $2130 - 2128 = 2$. Nella soluzione ufficiale c'è una svista di stampa, «$19 \cdot 56$» al posto di $19 \cdot 112$: il conto giusto è questo. La più insidiosa è $2 = 4 \cdot 142 - 5 \cdot 112$, che dà $568 - 560 = 8$.
 
 D: Dalle prove scritte del 2022/23, problema 2. $\mathrm{MCD}(3522, 321) = 3$. Quale affermazione è vera?
 + $3522x + 321y = 12$ ha soluzioni intere, $3522x + 321y = 10$ no

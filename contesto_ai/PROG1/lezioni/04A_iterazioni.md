@@ -791,7 +791,7 @@ D: Quale condizione ripete la lettura finché `x` non è tra 1 e 10 inclusi?
 - `while (1 <= x && x <= 10);`
 - `while (1 <= x <= 10);`
 - `while (x < 1 && x > 10);`
-= Si ripete quando x **non** è nell'intervallo. La risposta più insidiosa è la seconda, quella delle slide: con `||` la parte tra parentesi è sempre vera e il ciclo non ripete mai. La quarta è il confronto doppio che in C non funziona, la quinta non è mai vera.
+= Si ripete quando x **non** è nell'intervallo. La risposta più insidiosa è `while (!(1 <= x || x <= 10));`, quella delle slide: con `||` la parte tra parentesi è sempre vera e il ciclo non ripete mai. La risposta `while (1 <= x <= 10);` è il confronto doppio che in C non funziona, la risposta `while (x < 1 && x > 10);` non è mai vera.
 
 D: Quante volte viene eseguito `t++` in `for (int r = 0; r < 3; r++) { for (int q = r; q < 3; q++) { t++; } }`?
 N: 6
@@ -803,7 +803,7 @@ D: Quale ciclo calcola la somma dei pari da 2 a 100 senza `if`?
 - `for (int k = 0; k <= 100; k++) { s += k; }`
 - `for (int k = 2; k <= 100; k++) { s += 2; }`
 - `while (k <= 100) { s += k; }`
-= Si parte da 2 e si avanza di 2, con il 100 incluso. La risposta più insidiosa è la seconda, che si ferma a 98: il classico errore di uno. La terza somma tutti i numeri, la quarta somma 2 per 99 volte, la quinta non aggiorna `k`.
+= Si parte da 2 e si avanza di 2, con il 100 incluso. La risposta più insidiosa è `for (int k = 2; k < 100; k += 2) { s += k; }`, che si ferma a 98: il classico errore di uno. La terza somma tutti i numeri, la quarta somma 2 per 99 volte, la risposta `while (k <= 100) { s += k; }` non aggiorna `k`.
 ```
 
 ## Esercizi

@@ -881,7 +881,7 @@ D: Quale affermazione è vera per **ogni** $z \in \C$?
 - $z^2 = |z|^2$.
 - $|z| = \operatorname{Re}(z) + \operatorname{Im}(z)$.
 - $\bar z = -z$.
-= «Per ogni $z \in \C$» vuol dire che la frase deve valere qualunque numero complesso tu scelga. Scrivi $z = a + bi$, quindi $\bar z = a - bi$. La somma $z + \bar z$ fa $2a$: le parti immaginarie si cancellano e resta un numero reale. Per scartare le altre basta un esempio in cui falliscono. Con $z = i$ la differenza $z - \bar z$ vale $2i$, che non è reale. Sempre con $z = i$, il quadrato è $-1$ mentre il quadrato del modulo è $1$. Con $z = 1 + i$ il modulo è $\sqrt 2$, non $1 + 1 = 2$. Con $z = 1$ il coniugato è $1$, non $-1$. La più tentatrice è la seconda: nella differenza si cancellano le parti reali, e resta un immaginario puro.
+= «Per ogni $z \in \C$» vuol dire che la frase deve valere qualunque numero complesso tu scelga. Scrivi $z = a + bi$, quindi $\bar z = a - bi$. La somma $z + \bar z$ fa $2a$: le parti immaginarie si cancellano e resta un numero reale. Per scartare le altre basta un esempio in cui falliscono. Con $z = i$ la differenza $z - \bar z$ vale $2i$, che non è reale. Sempre con $z = i$, il quadrato è $-1$ mentre il quadrato del modulo è $1$. Con $z = 1 + i$ il modulo è $\sqrt 2$, non $1 + 1 = 2$. Con $z = 1$ il coniugato è $1$, non $-1$. La più tentatrice è «$z - \bar z$ è un numero reale»: nella differenza si cancellano le parti reali, e resta un immaginario puro.
 
 D: L'inverso di $3 - 4i$ è:
 + $\frac{3 + 4i}{25}$

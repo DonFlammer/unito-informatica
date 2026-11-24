@@ -680,7 +680,7 @@ D: Una variabile `tutti` deve dire se tutti i numeri letti sono positivi. Quale 
 - `bool tutti = true;` e nel ciclo `tutti = (n > 0);`
 - `bool tutti = false;` e nel ciclo `tutti = (n > 0);`
 - `bool tutti = true;` e nel ciclo `if (n > 0) tutti = true;`
-= «Per ogni» parte da vero e diventa falso al primo controesempio. La risposta più insidiosa è `tutti = (n > 0);`: alla fine dice solo se l'ultimo numero è positivo. La seconda risponde a «esiste un positivo».
+= «Per ogni» parte da vero e diventa falso al primo controesempio. La risposta più insidiosa è `tutti = (n > 0);`: alla fine dice solo se l'ultimo numero è positivo. La risposta «`bool tutti = false;` e nel ciclo `if (n > 0) tutti = true;`» risponde a «esiste un positivo».
 
 D: Che cosa stampa il programma della media con l'input `0` se manca il controllo `quanti > 0`?
 + `-nan` o `-nan(ind)`: è una divisione 0.0 / 0, il risultato non è un numero
@@ -696,7 +696,7 @@ D: Nell'aggiornamento di Fibonacci, quale sequenza di istruzioni è giusta?
 - `m = n + m; n = m;`
 - `n = n + m; m = n;`
 - `int somma = n + m; m = somma; n = m;`
-= Si salva la somma, poi `n` prende il vecchio `m` e `m` la somma. La risposta più insidiosa è l'ultima: aggiorna `m` prima di copiarlo in `n`, così `n` e `m` diventano uguali.
+= Si salva la somma, poi `n` prende il vecchio `m` e `m` la somma. La risposta più insidiosa è `int somma = n + m; m = somma; n = m;`: aggiorna `m` prima di copiarlo in `n`, così `n` e `m` diventano uguali.
 
 D: Con la ricerca per dimezzamento tra 0 e 99, quanti tentativi servono al massimo?
 N: 7

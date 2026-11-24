@@ -643,7 +643,7 @@ D: Appello del 03/06/2025, domanda 9. Data la matrice $A = \begin{pmatrix} 2 & 1
 - non si può calcolare, poiché $A$ non è una matrice quadrata
 - 3
 - 2
-= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata. La sua terza riga è la terza riga di $A$, fatta di zeri, per le colonne di ${}^tA$: è nulla, e il determinante è 0. È la (a) della soluzione ufficiale. La risposta più insidiosa è la (c): a non essere quadrata è $A$, non il prodotto; e Binet qui non si usa, perché $\det A$ non esiste.
+= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata. La sua terza riga è la terza riga di $A$, fatta di zeri, per le colonne di ${}^tA$: è nulla, e il determinante è 0. È la (a) della soluzione ufficiale. La risposta più insidiosa è «non si può calcolare»: a non essere quadrata è $A$, non il prodotto; e Binet qui non si usa, perché $\det A$ non esiste.
 
 D: Appello del 16/01/2025, domanda 3. Date $A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 1 & 2 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$, calcolare traccia e determinante di $AB$.
 - $\det(AB) = 1$, $\tr(AB) = 9$
@@ -651,7 +651,7 @@ D: Appello del 16/01/2025, domanda 3. Date $A = \begin{pmatrix} 1 & 0 & 0 \\ 0 &
 + $\det(AB) = 1$, $\tr(AB) = 4$
 - $\det(AB) = 3$, $\tr(AB) = 36$
 - $\det(AB) = 3$, $\tr(AB) = 3$
-= $A$ e $B$ sono triangolari con diagonale di 1, quindi per Binet $\det(AB) = 1 \cdot 1 = 1$. La diagonale di $AB$ è $1$, $1$ e $(1, 2, 1) \cdot (1, 0, 1) = 2$: la traccia è 4. È la (c) della soluzione ufficiale. La risposta più insidiosa è la (a), che moltiplica le tracce: per la traccia non c'è una regola come Binet.
+= $A$ e $B$ sono triangolari con diagonale di 1, quindi per Binet $\det(AB) = 1 \cdot 1 = 1$. La diagonale di $AB$ è $1$, $1$ e $(1, 2, 1) \cdot (1, 0, 1) = 2$: la traccia è 4. È la (c) della soluzione ufficiale. La risposta più insidiosa è quella con traccia 9, che moltiplica le tracce: per la traccia non c'è una regola come Binet.
 
 D: Appello del 10/06/2024, domanda 2. Sia $A = \begin{pmatrix} 11 & 12 & 13 & 14 \\ 21 & 22 & 23 & 24 \\ 31 & 32 & 33 & 34 \\ 41 & 42 & 43 & 44 \end{pmatrix}$. Il determinante di $A$ è:
 - $24 \cdot 10^3$

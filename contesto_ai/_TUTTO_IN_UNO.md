@@ -378,6 +378,8 @@ Ricostruita dai Moodle 2025/26 degli stessi docenti; da confermare lezione per l
 | 11 | Ricerca binaria · correttezza (invarianti, sentinelle, asserzioni) | Lab10 ricorsione 2: intervalli, dicotomica, coppie di array, matrici |
 | 12 | Ultime lezioni (dicembre) | — |
 
+Nel 2026/27 il canale B ha scambiato due argomenti rispetto a questa tabella: la memoria dinamica (slide 08A) è stata fatta nella settimana 8, martedì 17 e mercoledì 18/11, e le matrici (slide 09A) sono cominciate nella settimana 9, martedì 24/11. Il laboratorio del turno B2 di lunedì 16/11 è stato annullato.
+
 Nota: la colonna laboratori è indicativa e assume un laboratorio a settimana. Nel 2025/26 (Moodle id=3461) le settimane 4 e 8 sono state senza laboratorio e la sequenza reale è stata Lab01 sett. 2, Lab02 sett. 3, Lab03 sett. 5, Lab04 sett. 6, Lab05 sett. 7, Lab06 sett. 9, Lab07 sett. 10, Lab08 sett. 11, Lab09 sett. 12, Lab10 sett. 13. Nel 2026/27 (University Planner) il turno T2 ha 13 date, ogni lunedì dal 05/10 al 21/12 più l'11/01; il turno T1 ne ha 11, ogni martedì dal 06/10 al 22/12 tranne il 27/10 e l'08/12 (festivo), più il 12/01. Quale laboratorio si fa in ciascuna settimana va verificato sul Moodle del canale B.
 
 **Laboratori:** stessa sequenza Lab01–Lab10 e stessi quiz CodeRunner in tutti i canali (introduzione e compilatore → operatori e tipi → condizioni booleane → iterazioni → array e stringhe → funzioni → operazioni su array con heap → matrici → ricorsione 1 → ricorsione 2).
@@ -496,6 +498,8 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 | 06B | 03/11 e 04/11/2026 | Chiamata di funzione e ritorno | `lezioni/06B_chiamata_funzioni.md` · HTML: `appunti/PROG1/06B_chiamata_funzioni.html` | stack delle chiamate (Bauer e Samelson, Dijkstra, B5000), stack frame, SP e FP, offset positivi e negativi, `sumSquares`/`square` frame per frame, `sommaProdotto` con lo stack della slide 12, chiamata e prologo, ritorno ed epilogo in 5 passi, record di attivazione e stack frame, `swapSbagliato` e `swap` con i puntatori, passaggio per riferimento simulato, array come puntatore (`sizeof-array-argument`), `const` (errori veri di gcc 16), stringhe, `strlen`/`strcmp`/`strncpy` (**`strncpy` può lasciare la stringa senza terminatore**), `assert`, `-DNDEBUG`; esercizio d'esame sullo stato dello stack; 5 disegni. Offset di esempio diversi tra le slide 7 e 14 |
 | Lab06 | 09/11/2026 (B2); B1 probabilmente 17/11 | Laboratorio 06: funzioni | `lezioni/Lab06_funzioni.md` · HTML: `appunti/PROG1/Lab06_funzioni.html` | progettare una funzione (nome, parametri, tipo restituito; quattro intestazioni a confronto), `verifica_primalita` con `d * d <= n` e sentinella, funzioni iterative su interi, cambio delle monete (`cambio_taglio`, `ptrdiff_t`; **`size_t i >= 0` non finisce**), statistiche su sequenze (Lab06-Es1; il `while (scanf(...) && n != 0)` ufficiale non termina a fine input), passaggio di array (slide 14–15), Lab06-Es2 (`leggi_array`, `conta_univoci`, `stampa_elementi_ripetuti`; `%zu` e non `%lu`), vocali, palindroma (Lab06-Es3), Scale e serpi (Lab06-Es4); 3 disegni. Testi CodeRunner 2025/26 dalle soluzioni del canale A (su Moodle 2026/27 gli esercizi hanno gli stessi nomi); codice di partenza 2025/26 |
 | 07A | 10/11/2026 | Algoritmi su array | `lezioni/07A_algoritmi_su_array.md` · HTML: `appunti/PROG1/07A_algoritmi_su_array.html` | ricerca lineare con sentinella (**il ciclo della slide 7 non termina se trova `key`**), «esiste» come OR e «per ogni» come AND, test d'ipotesi $H_0$/$H_1$, cortocircuito, invariante, dominio vuoto (vero per vacuità / falso), `tuttiPositivi` ed `esistePari` con i test della slide, selezione e modello dimensione-capacità, `selectInRange`, ordinamento sulle coppie `[1, aLen)`, `aLen - 1` con `size_t` = 18446744073709551615, bubble sort con uscita anticipata e la versione con `newLast` (provata contro `qsort` su 20 000 array), `e1` del pre-esame 2023/24; 4 disegni. Slide 49: `int b[bLen] = ...` non compila |
+| 08A | 17/11 e 18/11/2026 | Memoria dinamica | `lezioni/08A_memoria_dinamica.md` · HTML: `appunti/PROG1/08A_memoria_dinamica.html` | limiti dello stack e puntatore pendente (`function returns address of local variable`), heap, `malloc` e `free` con `<stdlib.h>`, `sizeof`, controllo del `NULL`, tabella dei blocchi dello heap, `leggiArray`, sei errori tipici con i messaggi veri di gcc 16.1 (uso dopo `free`, doppia `free`, memoria non inizializzata, perdita di memoria), stack e heap a confronto, `selectCopy` in tre fasi (contare, allocare, copiare), proprietà della memoria e `strdup`, funzione d'esame `e3` sul modello degli appelli; disegni dello stato della memoria. Lezioni di martedì 17 e mercoledì 18/11 (registrazioni su Moodle) |
+| 09A | 24/11/2026 | Matrici | `lezioni/09A_matrici.md` · HTML: `appunti/PROG1/09A_matrici.html` | matrici in C (`int m[ROWS][COLS]`), inizializzazione, ordine per righe e formula `i * COLS + j`, cicli annidati, matrici come parametri (dimensioni prima della matrice; `int m[][]` non compila), `sommaMatrice`, `sommaMatrici`, `trasponiMatrice` (ciclo interno da `i + 1`), `prodottoScalareMatrice`, `prodottoMatrici`, `ricercaMaxPos`, `verificaTuttiPari`, `existsRowAllZeros`, funzione d'esame `e1` (esiste una riga non decrescente); soluzioni mie per gli esercizi della slide 58; disegni della memoria. Lezione di martedì 24/11; le slide sono 58 e possono continuare mercoledì 25/11 |
 
 ## Fili conduttori (da ricollegare nelle prossime lezioni)
 
@@ -4773,7 +4777,7 @@ D: Quale sequenza scambia correttamente `x` e `y`?
 - `temp = x; y = x; x = temp;`
 - `x = y; y = x;`
 - `temp = y; x = y; y = temp;`
-= Si salva `x`, poi si sovrascrive `x`, poi si mette il vecchio `x` in `y`. La risposta più insidiosa è `x = y; temp = x; y = temp;`: ha gli stessi tre pezzi, ma salva `x` quando il suo valore è già perso. L'ultima salva `y` e poi sovrascrive `x` senza averlo salvato.
+= Si salva `x`, poi si sovrascrive `x`, poi si mette il vecchio `x` in `y`. La risposta più insidiosa è `x = y; temp = x; y = temp;`: ha gli stessi tre pezzi, ma salva `x` quando il suo valore è già perso. La risposta `temp = y; x = y; y = temp;` salva `y` e poi sovrascrive `x` senza averlo salvato.
 
 D: Con `int a = 1, b = 2;` che cosa stampa `int t = a; a = b; b = t; printf("%d %d", a, b);`?
 + `2 1`
@@ -5436,7 +5440,7 @@ D: Come si legge un `double` chiamato `d` con `scanf`?
 - `scanf("%d", &d);`
 - `scanf("%lf", d);`
 - `scanf("%e", d);`
-= Per un `double` serve `%lf`, e `scanf` vuole l'indirizzo. La risposta più insidiosa è `scanf("%f", &d);`: `%f` va bene in `printf`, ma in `scanf` è per i `float`, e con `-Wall -Werror` non compila. Le ultime due passano il valore invece dell'indirizzo.
+= Per un `double` serve `%lf`, e `scanf` vuole l'indirizzo. La risposta più insidiosa è `scanf("%f", &d);`: `%f` va bene in `printf`, ma in `scanf` è per i `float`, e con `-Wall -Werror` non compila. Le risposte `scanf("%lf", d);` e `scanf("%e", d);` passano il valore invece dell'indirizzo.
 
 D: Che cosa stampa `printf("%.2f\n", 2.0 / 3);`?
 + `0.67`
@@ -6080,7 +6084,7 @@ D: Quale espressione dice se `x` è tra 1 e 10, estremi compresi?
 - `1 <= x || x <= 10`
 - `x >= 1 && x < 10`
 - `!(x < 1 && x > 10)`
-= Servono due confronti uniti da `&&`. La risposta più insidiosa è `1 <= x <= 10`: si calcola da sinistra e vale sempre 1. Con `||` è vera per ogni numero; con `x < 10` il 10 resta fuori; l'ultima nega una condizione che non è mai vera.
+= Servono due confronti uniti da `&&`. La risposta più insidiosa è `1 <= x <= 10`: si calcola da sinistra e vale sempre 1. Con `||` è vera per ogni numero; con `x < 10` il 10 resta fuori; la risposta `!(x < 1 && x > 10)` nega una condizione che non è mai vera.
 
 D: Con `int d = 0, n = 10;`, che cosa succede con `bool c = (d != 0) && (n / d > 2);`?
 + `c` vale 0 e la divisione non viene fatta
@@ -6781,7 +6785,7 @@ D: Che cosa stampa questo codice con `x = -3`? `if (x > 0) printf("P"); printf("
 - niente
 - `P`
 - non compila mai
-= Senza graffe l'`if` comanda solo la prima `printf`. La seconda si esegue sempre. La risposta più insidiosa è «niente»: il rientro e la riga sotto fanno credere che anche `Q` dipenda dall'`if`. Scritto su due righe rientrate, gcc con `-Wall -Werror` lo ferma.
+= Senza graffe l'`if` comanda solo la prima `printf`. La seconda `printf` si esegue sempre. La risposta più insidiosa è «niente»: il rientro e la riga sotto fanno credere che anche `Q` dipenda dall'`if`. Scritto su due righe rientrate, gcc con `-Wall -Werror` lo ferma.
 
 D: Con `int a = 0;`, che cosa stampa `if (a = 7) { printf("%d", a); }` compilato senza opzioni?
 + `7`
@@ -6813,7 +6817,7 @@ D: Quale catena dà il prezzo giusto per ogni età: gratis sotto i 6, ridotto da
 - `if (eta < 6) … if (eta < 18) … else …`
 - `if (eta <= 6) … else if (eta <= 18) … else …`
 - `if (eta < 6) … else if (eta > 18) … else …`
-= Le domande vanno dalla più specifica. La risposta più insidiosa è la seconda: con 3 anni `eta < 18` è già vera, e il caso gratuito non arriva mai. La terza, con due `if` separati, a 3 anni stampa due messaggi; la quarta sbaglia i confini 6 e 18; la quinta dà il ridotto a 18 anni.
+= Le domande vanno dalla più specifica. La risposta più insidiosa è `if (eta < 18) … else if (eta < 6) … else …`: con 3 anni `eta < 18` è già vera, e il caso gratuito non arriva mai. La risposta `if (eta < 6) … if (eta < 18) … else …`, con due `if` separati, a 3 anni stampa due messaggi; la risposta `if (eta <= 6) … else if (eta <= 18) … else …` sbaglia i confini 6 e 18; la risposta `if (eta < 6) … else if (eta > 18) … else …` dà il ridotto a 18 anni.
 
 D: Con `int x = 7, y = 3, z;` e poi `if (x > y) { z = x - y; } else { z = y - x; }`, quanto vale `z`?
 N: 4
@@ -6825,7 +6829,7 @@ D: Quale riga legge un intero e lo usa solo se la lettura è riuscita?
 - `if (scanf("%d", v) == 1) { … }`
 - `if (v == scanf("%d", &v)) { … }`
 - `if (scanf("%d", &v) = 1) { … }`
-= `scanf` restituisce quanti valori ha letto, e serve la `&`. La risposta più insidiosa è quella con `= 1`: è un assegnamento, e non compila nemmeno, perché non si può assegnare al risultato di una funzione. La seconda ha le parentesi nel posto sbagliato.
+= `scanf` restituisce quanti valori ha letto, e serve la `&`. La risposta più insidiosa è quella con `= 1`: è un assegnamento, e non compila nemmeno, perché non si può assegnare al risultato di una funzione. La risposta `if (scanf("%d", &v)) == 1 { … }` ha le parentesi nel posto sbagliato.
 ```
 
 ## Esercizi
@@ -7822,7 +7826,7 @@ D: Quale condizione ripete la lettura finché `x` non è tra 1 e 10 inclusi?
 - `while (1 <= x && x <= 10);`
 - `while (1 <= x <= 10);`
 - `while (x < 1 && x > 10);`
-= Si ripete quando x **non** è nell'intervallo. La risposta più insidiosa è la seconda, quella delle slide: con `||` la parte tra parentesi è sempre vera e il ciclo non ripete mai. La quarta è il confronto doppio che in C non funziona, la quinta non è mai vera.
+= Si ripete quando x **non** è nell'intervallo. La risposta più insidiosa è `while (!(1 <= x || x <= 10));`, quella delle slide: con `||` la parte tra parentesi è sempre vera e il ciclo non ripete mai. La risposta `while (1 <= x <= 10);` è il confronto doppio che in C non funziona, la risposta `while (x < 1 && x > 10);` non è mai vera.
 
 D: Quante volte viene eseguito `t++` in `for (int r = 0; r < 3; r++) { for (int q = r; q < 3; q++) { t++; } }`?
 N: 6
@@ -7834,7 +7838,7 @@ D: Quale ciclo calcola la somma dei pari da 2 a 100 senza `if`?
 - `for (int k = 0; k <= 100; k++) { s += k; }`
 - `for (int k = 2; k <= 100; k++) { s += 2; }`
 - `while (k <= 100) { s += k; }`
-= Si parte da 2 e si avanza di 2, con il 100 incluso. La risposta più insidiosa è la seconda, che si ferma a 98: il classico errore di uno. La terza somma tutti i numeri, la quarta somma 2 per 99 volte, la quinta non aggiorna `k`.
+= Si parte da 2 e si avanza di 2, con il 100 incluso. La risposta più insidiosa è `for (int k = 2; k < 100; k += 2) { s += k; }`, che si ferma a 98: il classico errore di uno. La terza somma tutti i numeri, la quarta somma 2 per 99 volte, la risposta `while (k <= 100) { s += k; }` non aggiorna `k`.
 ```
 
 ## Esercizi
@@ -8996,7 +9000,7 @@ D: Quale di queste dichiarazioni crea una stringa **non** terminata?
 - `char n[5] = "Anna";`
 - `char n[5] = {'A', 'n', 'n', 'a', '\0'};`
 - `char n[10] = "Anna";`
-= `"Anna"` vuole 5 byte; con 4 il C lascia fuori il `'\0'` senza avvisi. La risposta più insidiosa è l'ultima: 10 posti sono troppi, ma gli avanzati valgono 0, quindi la stringa è terminata.
+= `"Anna"` vuole 5 byte; con 4 il C lascia fuori il `'\0'` senza avvisi. La risposta più insidiosa è `char n[10] = "Anna";`: 10 posti sono troppi, ma gli avanzati valgono 0, quindi la stringa è terminata.
 ```
 
 ## Esercizi
@@ -9841,7 +9845,7 @@ D: Quale riga è un **prototipo**?
 - `float r = square(2.0f);`
 - `square(float x);`
 - `return square;`
-= Il prototipo ha tipo di ritorno, nome e parametri, e finisce con il punto e virgola, senza corpo. La più insidiosa è la seconda: è la definizione, che contiene anche il codice.
+= Il prototipo ha tipo di ritorno, nome e parametri, e finisce con il punto e virgola, senza corpo. La più insidiosa è `float square(float x) { return x * x; }`: è la definizione, che contiene anche il codice.
 
 D: Che cosa stampa `void incr(int x) { x++; }` chiamata con `int a = 5; incr(a); printf("%d", a);`?
 + 5
@@ -9865,7 +9869,7 @@ D: Che cosa dice gcc 16 con `-Wall -Werror` per `int square(int x) { x * x; }`?
 - solo un avviso, e il programma si compila lo stesso
 - `conflicting types for 'square'`
 - `implicit declaration of function 'square'`
-= Senza `return` il valore calcolato si perde, e la funzione `int` finisce senza risultato: `statement with no effect` e `control reaches end of non-void function`, errori con `-Werror`. La più insidiosa è la seconda: in C l'ultimo valore calcolato non viene restituito da solo.
+= Senza `return` il valore calcolato si perde, e la funzione `int` finisce senza risultato: `statement with no effect` e `control reaches end of non-void function`, errori con `-Werror`. La più insidiosa è «niente: compila e restituisce `x * x`»: in C l'ultimo valore calcolato non viene restituito da solo.
 
 D: Quale intestazione va bene per una funzione che stampa una riga di `n` asterischi e non restituisce niente?
 + `void stampaRiga(int n)`
@@ -9873,7 +9877,7 @@ D: Quale intestazione va bene per una funzione che stampa una riga di `n` asteri
 - `void stampaRiga(void n)`
 - `stampaRiga(int n) void`
 - `int stampaRiga(int n);` senza corpo
-= Riceve un intero e non restituisce niente: `void` davanti, `int n` tra le parentesi. La più insidiosa è l'ultima, che è un prototipo con il tipo di ritorno sbagliato.
+= Riceve un intero e non restituisce niente: `void` davanti, `int n` tra le parentesi. La più insidiosa è «`int stampaRiga(int n);` senza corpo», che è un prototipo con il tipo di ritorno sbagliato.
 
 D: Una funzione deve calcolare quoziente e resto di una divisione. Come restituisce i due valori?
 + ne restituisce uno con `return` e scrive l'altro attraverso un parametro puntatore
@@ -9889,7 +9893,7 @@ D: Il programma del cerchio delle slide riceve `abc` come raggio. Che cosa succe
 - usa il raggio 0
 - termina con un errore di esecuzione
 - `scanf` legge `abc` come 0 e stampa i risultati
-= `scanf` fallisce, restituisce 0 e lascia `abc` nell'input, che al giro dopo fa fallire di nuovo la lettura. La più insidiosa è la seconda: è quello che il programma vorrebbe fare, ma senza scartare `abc` non ci riesce.
+= `scanf` fallisce, restituisce 0 e lascia `abc` nell'input, che al giro dopo fa fallire di nuovo la lettura. La più insidiosa è «stampa l'errore una volta e chiede di nuovo il raggio»: è quello che il programma vorrebbe fare, ma senza scartare `abc` non ci riesce.
 
 D: Quante funzioni del programma del cerchio hanno effetti collaterali?
 N: 2
@@ -10714,7 +10718,7 @@ D: Nel modello delle slide, dove stanno le variabili locali della funzione attiv
 - in un'area fissa, uguale per tutte le chiamate
 - nel codice del programma
 - nei registri SP e FP
-= Il frame della funzione attiva va da FP a SP, e lo stack cresce verso il basso. La più insidiosa è la seconda: sopra FP ci sono i parametri e i dati di controllo.
+= Il frame della funzione attiva va da FP a SP, e lo stack cresce verso il basso. La più insidiosa è «sopra FP, a offset positivi»: sopra FP ci sono i parametri e i dati di controllo.
 
 D: Qual è l'ordine giusto del ritorno da funzione?
 + scrive il risultato, SP = FP, ripristina FP, ripristina il PC, toglie i parametri
@@ -10722,7 +10726,7 @@ D: Qual è l'ordine giusto del ritorno da funzione?
 - toglie i parametri, ripristina FP, SP = FP, scrive il risultato
 - SP = FP, scrive il risultato, ripristina il PC, ripristina FP
 - ripristina FP, ripristina il PC, SP = FP, scrive il risultato
-= Il ritorno disfa la chiamata in ordine inverso. La più insidiosa è la quarta: se si libera il frame prima di scrivere il risultato, la funzione perde accesso alle sue variabili locali.
+= Il ritorno disfa la chiamata in ordine inverso. La più insidiosa è «SP = FP, scrive il risultato, ripristina il PC, ripristina FP»: se si libera il frame prima di scrivere il risultato, la funzione perde accesso alle sue variabili locali.
 
 D: Perché il prologo salva il valore di FP sullo stack?
 + perché al ritorno il chiamante deve riavere il suo FP
@@ -10730,7 +10734,7 @@ D: Perché il prologo salva il valore di FP sullo stack?
 - per liberare le variabili locali
 - per passare i parametri alla funzione
 - perché FP contiene l'indirizzo di ritorno
-= Subito dopo il salvataggio il prologo pone FP = SP: senza la copia, il FP del chiamante andrebbe perso. La più insidiosa è l'ultima: l'indirizzo di ritorno è un dato diverso, salvato prima, al momento del salto.
+= Subito dopo il salvataggio il prologo pone FP = SP: senza la copia, il FP del chiamante andrebbe perso. La più insidiosa è «perché FP contiene l'indirizzo di ritorno»: l'indirizzo di ritorno è un dato diverso, salvato prima, al momento del salto.
 
 D: Che cosa restituisce `sizeof(v)` dentro `size_t lunghezza(int v[])`, compilata su un PC a 64 bit senza `-Werror`?
 + 8, la dimensione di un puntatore
@@ -10738,7 +10742,7 @@ D: Che cosa restituisce `sizeof(v)` dentro `size_t lunghezza(int v[])`, compilat
 - il numero di byte dell'array
 - 0
 - 4, la dimensione di un `int`
-= Un array passato a funzione arriva come puntatore. gcc lo segnala con `sizeof-array-argument`, che con `-Werror` è un errore. La più insidiosa è la terza: è quello che dà `sizeof` in `main`, dove l'array è dichiarato.
+= Un array passato a funzione arriva come puntatore. gcc lo segnala con `sizeof-array-argument`, che con `-Werror` è un errore. La più insidiosa è «il numero di byte dell'array»: è quello che dà `sizeof` in `main`, dove l'array è dichiarato.
 
 D: Una funzione ha il parametro `const int dati[]` e contiene `dati[0] = 5;`. Che cosa succede con `-Wall -Werror`?
 + non compila: assegnamento a una zona in sola lettura
@@ -10746,7 +10750,7 @@ D: Una funzione ha il parametro `const int dati[]` e contiene `dati[0] = 5;`. Ch
 - compila e modifica l'array del chiamante
 - compila e modifica solo una copia dell'array
 - compila con un avviso
-= `const` è un vincolo controllato dal compilatore: `assignment of read-only location`. La più insidiosa è la quarta: gli array non vengono mai copiati quando si passano.
+= `const` è un vincolo controllato dal compilatore: `assignment of read-only location`. La più insidiosa è «compila e modifica solo una copia dell'array»: gli array non vengono mai copiati quando si passano.
 
 D: Con `char d[4];`, che cosa contiene `d[3]` dopo `strncpy(d, s, 4)`, se `s` è `"ciao"`?
 + il carattere `'o'`: la stringa resta senza terminatore
@@ -10754,7 +10758,7 @@ D: Con `char d[4];`, che cosa contiene `d[3]` dopo `strncpy(d, s, 4)`, se `s` è
 - il carattere `'a'`
 - non compila mai
 - `strncpy` si ferma a 3 caratteri e mette `'\0'`
-= `strncpy` copia 4 caratteri e il terminatore non ci sta. La più insidiosa è la seconda, che segue alla lettera la slide 59.
+= `strncpy` copia 4 caratteri e il terminatore non ci sta. La più insidiosa è «il terminatore `'\0'`», che segue alla lettera la slide 59.
 
 D: Quale uso di `assert` è sbagliato?
 + controllare che il numero scritto dall'utente sia positivo
@@ -11701,7 +11705,7 @@ D: Che cosa succede con `for (size_t i = 1; i <= aLen - 1; i++)` e `aLen == 0`?
 - il ciclo fa un giro solo
 - non compila con `-Wall -Werror`
 - `aLen - 1` vale −1 e il ciclo si ferma
-= `size_t` non ha segno: 0 − 1 dà 18446744073709551615. La più insidiosa è l'ultima, che sarebbe vera con un `int`.
+= `size_t` non ha segno: 0 − 1 dà 18446744073709551615. La più insidiosa è «`aLen - 1` vale −1 e il ciclo si ferma», che sarebbe vera con un `int`.
 
 D: Quante fasi fa il bubble sort con la sentinella su `{6, 2, -8, 10, 4}`?
 + 3
@@ -11717,7 +11721,7 @@ D: Una funzione riempie un array `a` con dimensione e capacità. Quale intestazi
 - `void f(size_t aCap, int a[])`
 - `void f(const size_t *p_aLen, size_t aCap, int a[])`
 - `void f(size_t aLen, const int a[])`
-= La dimensione cambia, quindi passa per puntatore. La più insidiosa è la quarta: con `const` la funzione non potrebbe scrivere in `*p_aLen`.
+= La dimensione cambia, quindi passa per puntatore. La più insidiosa è `void f(const size_t *p_aLen, size_t aCap, int a[])`: con `const` la funzione non potrebbe scrivere in `*p_aLen`.
 
 D: Dopo la prima fase del bubble sort, quale elemento è sicuramente al suo posto finale?
 + il più grande, nell'ultima casella
@@ -11725,7 +11729,7 @@ D: Dopo la prima fase del bubble sort, quale elemento è sicuramente al suo post
 - nessuno
 - quello che era nella prima casella
 - tutti quelli già scambiati
-= Il più grande vince tutti i confronti e viene spinto fino in fondo. La più insidiosa è la seconda: il più piccolo scende di una sola casella per fase.
+= Il più grande vince tutti i confronti e viene spinto fino in fondo. La più insidiosa è «il più piccolo, nella prima casella»: il più piccolo scende di una sola casella per fase.
 ```
 
 ## Esercizi
@@ -11885,6 +11889,1999 @@ Sul posto | Detto di un algoritmo che modifica l'array stesso, senza copiarlo.
 - Slide «Algoritmi su array. Ricerca, filtro e ordinamento» (07A_algoritmi_su_array), Programmazione I – Teoria, canale B, A.A. 2026/27, E. G. Amparore: ricerca lineare (slide 3–9), quantificazione esistenziale come test d'ipotesi (10–18), specifica, strategia e invarianti (19–22), verifica di proprietà e quantificazione universale (23–28), casi limite e dominio vuoto (29–36), esercizi `tuttiPositivi` ed `esistePari` con i test (37–39), selezione e modello dimensione-capacità (40–50), esercizio `selectInRange` (51–54), test di ordinamento (55–64), bubble sort, esecuzione nello stack e test d'ipotesi (65–83), esercizio su `new_last` (84).
 - Esercizio `e1` del pre-esame 2023/24: [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md); regole d'esame dalla [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/corso.md).
 - Tutti i programmi delle slide e delle soluzioni li ho compilati con gcc 16.1 su Windows 11, con `-Wall -Werror`, ed eseguiti; il ciclo della slide 7 con un tempo massimo. Gli errori e le stampe citati sono quelli veri. Quiz, esercizi e figure sono di questi appunti.
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/lezioni/08A_memoria_dinamica.md -->
+> File: `contesto_ai/PROG1/lezioni/08A_memoria_dinamica.md`
+
+```yaml
+corso: PROG1
+lezione: 08A
+titolo: Memoria dinamica
+data: 2026-11-17
+docenti: Elvio Amparore
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 08A
+descrizione: >-
+  Appunti della lezione 08A di Programmazione I (canale B): perché lo stack non basta, il puntatore appeso, lo heap,
+  malloc e free nel modello della memoria, l'array allocato nello heap, gli errori tipici (memory leak, uso dopo la
+  free, doppia free, memoria non inizializzata), la selezione con copia in tre fasi e la responsabilità della memoria,
+  con tutti i programmi provati, quiz ed esercizi.
+lede: >-
+  Finora ogni variabile nasceva e spariva da sola, insieme alla funzione che la dichiarava. Per restituire un array
+  costruito dentro una funzione questo non basta: serve memoria che resti viva finché lo decidi tu. Si chiede con
+  malloc, si restituisce con free, e da quel momento gli errori di memoria sono affare tuo.
+materiale: slide
+scheda:
+  Slide: 08A_memoria_dinamica («Memoria Dinamica. Gestione non automatica della memoria, lo heap e le funzioni malloc/free») · 50 pagine
+  Lezione: martedì 17/11 e mercoledì 18/11
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 100 minuti, con carta e penna per disegnare stack e heap
+fonte: >-
+  Slide «Memoria Dinamica. Gestione non automatica della memoria, lo heap e le funzioni malloc/free»
+  (08A_memoria_dinamica), Programmazione I – Teoria, canale B, A.A. 2026/27
+appunti_html: appunti/PROG1/08A_memoria_dinamica.html
+genera_html: true
+```
+
+## In breve
+
+- Le variabili locali stanno nello **stack** e spariscono quando la funzione ritorna. Un puntatore a una di loro, restituito al chiamante, è un **puntatore appeso** (*dangling pointer*): l'indirizzo c'è ancora, la variabile no.
+- Lo **heap** è una zona di memoria che gestisci a mano: un blocco esiste da quando lo chiedi a quando lo restituisci, in qualunque funzione tu sia.
+- `malloc(n * sizeof(int))` chiede un blocco di `n` interi **contigui** e **non inizializzati**, e ritorna l'indirizzo del primo; ritorna `NULL` se la memoria non c'è.
+- `free(p)` restituisce il blocco. Dopo, `p` non si può più usare: si scrive `free(p); p = NULL;`.
+- **Ogni `malloc` ha la sua `free`**. Un blocco mai liberato è un **memory leak**.
+- Gli errori tipici: dimenticare la `free`, usare il puntatore dopo la `free`, fare due `free`, perdere l'indirizzo del blocco, leggere memoria non inizializzata, credere che due blocchi siano vicini.
+- **Selezione con copia in tre fasi**: conta quanti elementi servono, alloca un array di quella misura, copia.
+- **Responsabilità** (*ownership*): per ogni blocco c'è un punto del programma che deve liberarlo. Una funzione che ritorna un blocco allocato passa la responsabilità a chi la chiama.
+
+> [!CANALI]
+> **Canale B.** Lezioni di martedì 17/11, dalle 11 alle 13, e di mercoledì 18/11, dalle 9 alle 11: sul Moodle del corso queste slide sono nella settimana del 16 novembre, «Memoria Dinamica», con le registrazioni dei due giorni. Dove sia finita la prima lezione non lo so: gli appunti seguono le slide dall'inizio alla fine. Il laboratorio del turno B2 di lunedì 16/11 è stato annullato. Servono lo stack e i frame della [06B](06B_chiamata_funzioni.html), i puntatori come parametri di uscita della stessa lezione, gli array e i VLA della [05A](05A_array_stringhe.html) e la selezione con dimensione e capacità della [07A](07A_algoritmi_su_array.html).
+>
+> **Canali A e C.** Le slide 2026/27 dei canali A e C su questo argomento non le ho viste. L'esame è unico.
+>
+> **Tre avvisi sulle slide.**
+>
+> - Il programma `leggiArraySbagliato` (slide 3–12) con le opzioni d'esame **non si compila**: gcc si accorge che la funzione ritorna l'indirizzo di una variabile locale. Lo stesso vale per tre degli «errori comuni». I messaggi sono riportati sotto.
+> - Il programma con `strdup` (slide 49) usa `assert` senza `#include <assert.h>`: così non si compila.
+> - `leggiArray` (slide 21) non controlla il risultato di `malloc`. Va bene per seguire la memoria passo per passo; negli esercizi il controllo va messo, come fa `selectCopy`.
+>
+> Tutti i programmi li ho compilati con gcc 16.1, con `-Wall -Werror`, ed eseguiti.
+
+## Perché lo stack non basta (slide 2–13)
+
+Il problema di partenza sembra innocuo: una funzione `leggiArray` che legge un numero `n`, poi `n` interi, e restituisce al chiamante la sequenza letta.
+
+Il chiamante non può preparare l'array, perché non sa quanto è lungo: `n` lo conosce solo la funzione, dopo averlo letto. Quindi l'array deve crearlo la funzione. Il primo tentativo usa un array a lunghezza variabile, un VLA:
+
+```c
+int* leggiArraySbagliato(size_t* out_n) {
+    size_t n;
+    scanf("%zu", &n);
+    int a[n];    // VLA su stack (vita limitata al frame)
+    for (size_t i = 0; i < n; ++i)
+        scanf("%d", &a[i]);
+    *out_n = n;
+    return a;    // ERRORE: l'array a sparisce al ritorno
+}
+```
+
+La lunghezza esce da un parametro puntatore, come nella [06B](06B_chiamata_funzioni.html). L'errore è nell'ultima riga. `a` è una variabile locale: sta nel frame di `leggiArraySbagliato`, e il frame viene tolto dallo stack al momento del `return`. La funzione restituisce l'indirizzo di una zona che un istante dopo non le appartiene più.
+
+```grafico
+titolo: Lo stack prima e dopo il ritorno di leggiArraySbagliato. A sinistra il frame della funzione esiste e contiene l'array. A destra il frame è stato tolto: il puntatore a di main contiene ancora quell'indirizzo, ma lì non c'è più niente di valido
+x: 0 12
+y: 0 6.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.6 6.2 | grigio | "durante la chiamata"
+poligono: 0.6 4.2 4.6 4.2 4.6 5.6 0.6 5.6 | blu | tenue
+testo: 2.6 5.2 | blu | "main"
+testo: 2.6 4.6 | blu | "aLen: ?   a: ?"
+poligono: 0.6 1.0 4.6 1.0 4.6 4.2 0.6 4.2 | viola | tenue
+testo: 2.6 3.7 | viola | "la funzione"
+testo: 2.6 3.1 | viola | "n: 3"
+poligono: 1.0 1.3 4.2 1.3 4.2 2.5 1.0 2.5 | verde | tenue
+testo: 2.6 1.9 | verde | "a: 10 20 30"
+testo: 8.9 6.2 | grigio | "dopo il return"
+poligono: 6.9 4.2 10.9 4.2 10.9 5.6 6.9 5.6 | blu | tenue
+testo: 8.9 5.2 | blu | "main"
+testo: 8.9 4.6 | blu | "aLen: 3   a: •"
+poligono: 6.9 1.0 10.9 1.0 10.9 4.2 6.9 4.2 | grigio | tratteggio
+testo: 8.6 3.6 | grigio | "frame tolto"
+testo: 8.9 2.3 | rosa | "?? ?? ??"
+freccia: 10.4 4.4 10.0 2.7 | rosa | tratteggio
+testo: 8.9 1.5 | rosa | "a è appeso"
+```
+
+> [!DEF] Puntatore appeso (slide 12–13)
+> Un **puntatore appeso** (*dangling pointer*) è un puntatore che contiene l'indirizzo di una zona di memoria che non è più valida.
+
+**Come si legge.** Il puntatore non cambia: il numero che contiene è lo stesso di prima. È cambiato quello che c'è a quell'indirizzo. Lo spazio del frame tolto verrà riusato dalla prossima chiamata di funzione, e già la `printf` del `main` ci scrive sopra. Usare quel puntatore è un comportamento indefinito: può stampare i numeri giusti, numeri a caso, o far terminare il programma.
+
+Con le opzioni d'esame il programma non arriva nemmeno a partire. Questo è il messaggio vero di gcc:
+
+```text
+sbagliato.c: In function 'leggiArraySbagliato':
+sbagliato.c:11:12: error: function returns address of local variable [-Werror=return-local-addr]
+   11 |     return a;    // ERRORE
+      |            ^
+```
+
+La regola che ne esce vale per ogni variabile locale, non solo per i VLA:
+
+> [!TRAPPOLA] Mai ritornare l'indirizzo di una variabile locale
+> Non si ritorna un array locale, e non si ritorna `&x` con `x` variabile locale. Il compilatore se ne accorge solo nei casi più diretti: se l'indirizzo passa prima per un'altra variabile o per un'altra funzione, non avvisa, e l'errore resta.
+
+Serve una zona di memoria che non segua le regole dello stack.
+
+::: prova Una funzione dichiara `int x = 5;` e fa `return &x;`. Che cosa riceve il chiamante? E se la funzione facesse `return x;`?
+Con `return &x` riceve un puntatore appeso: l'indirizzo di una variabile che non esiste più. Con `return x` riceve il valore 5, copiato: quello va benissimo, perché i valori si copiano e gli indirizzi no.
+:::
+
+> [!RICORDA]
+> - Le variabili locali, VLA compresi, vivono quanto il frame della loro funzione.
+> - Ritornare il loro indirizzo dà un puntatore appeso.
+> - gcc: `function returns address of local variable`.
+
+## Lo heap, malloc e free (slide 14–17)
+
+Lo **heap** è una zona di memoria gestita dal programmatore, non dal meccanismo delle chiamate. Un blocco nello heap comincia a esistere quando lo chiedi e smette quando lo restituisci: i ritorni delle funzioni non lo toccano.
+
+Si chiama memoria **dinamica** perché non è fissata alla compilazione, come le variabili globali, e non è creata in automatico durante l'esecuzione, come lo stack: viene chiesta e restituita dal programma mentre gira.
+
+Nel modello della memoria di Amparore i segmenti sono quattro:
+
+```grafico
+titolo: Il modello della memoria, con gli indirizzi che crescono verso l'alto. Codice e dati hanno dimensione fissa. Heap e stack si dividono lo spazio libero in mezzo: lo heap cresce verso l'alto, lo stack verso il basso
+x: 0 10
+y: 0 8.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 2.5 0.4 6.5 0.4 6.5 1.4 2.5 1.4 | grigio | tenue
+testo: 4.5 0.9 | grigio | "codice"
+poligono: 2.5 1.4 6.5 1.4 6.5 2.4 2.5 2.4 | grigio | tenue
+testo: 4.5 1.9 | grigio | "dati"
+poligono: 2.5 2.4 6.5 2.4 6.5 3.8 2.5 3.8 | verde | tenue
+testo: 4.5 3.1 | verde | "heap"
+poligono: 2.5 3.8 6.5 3.8 6.5 6.0 2.5 6.0 | grigio | tratteggio
+testo: 4.5 4.9 | grigio | "memoria libera"
+poligono: 2.5 6.0 6.5 6.0 6.5 7.6 2.5 7.6 | blu | tenue
+testo: 4.5 6.8 | blu | "stack"
+freccia: 7.0 2.9 7.0 3.8 | verde
+freccia: 7.0 7.0 7.0 6.1 | blu
+testo: 8.4 3.3 | verde | "malloc"
+testo: 8.4 6.6 | blu | "chiamate"
+freccia: 1.5 0.6 1.5 7.4 | grigio | sottile
+testo: 0.9 4.0 | grigio | "↑"
+```
+
+- **codice**: le istruzioni del programma;
+- **dati**: le variabili globali e statiche;
+- **heap**: la memoria dinamica;
+- **stack**: i frame, con le variabili automatiche.
+
+### Chiedere memoria: malloc
+
+Per avere un blocco nello heap si chiama una funzione di libreria, dicendole quanti byte servono. Per tre interi da 4 byte si chiedono 12 byte, e si riceve l'indirizzo del primo.
+
+> [!DEF] malloc (slide 16)
+> `void* malloc(size_t sz);`, dichiarata in `<stdlib.h>`, riserva nello heap `sz` byte **contigui** e ritorna un puntatore al primo byte del blocco. Se la memoria non è disponibile ritorna `NULL`. I byte **non sono inizializzati**.
+
+**Come si legge.** `malloc` ragiona in byte e non sa che cosa metterai nel blocco. Per questo il tipo di ritorno è `void*`: un indirizzo a cui non è ancora stato dato un tipo. Il tipo arriva con l'assegnamento a un puntatore.
+
+```c
+int* a = malloc(n * sizeof(int));
+if (a == NULL) {
+    printf("Memoria insufficiente\n");
+}
+```
+
+Tre cose in due righe:
+
+1. **La misura.** Un array è una fila di valori dello stesso tipo in posizioni contigue. `n` interi occupano `n * sizeof(int)` byte: su questo PC `sizeof(int)` vale 4, quindi tre interi sono 12 byte. Non si scrive il 4 a mano: `sizeof` lo calcola il compilatore, ed è giusto su ogni macchina.
+2. **Il tipo.** L'assegnamento a un `int*` dice che quel blocco verrà letto come interi. Da qui in poi `a[0]`, `a[1]`, … funzionano come per un array: l'operatore `[]` lavora su un puntatore al primo elemento, come nella [06B](06B_chiamata_funzioni.html).
+3. **Il controllo.** Se `malloc` ritorna `NULL`, usare `a[0]` fa terminare il programma. Prima di usare il blocco si controlla.
+
+### Restituire memoria: free
+
+Quando il blocco non serve più lo si restituisce allo heap, che potrà darlo a una `malloc` successiva. Nessuno lo fa al posto tuo.
+
+> [!DEF] free (slide 17)
+> `void free(void* ptr);`, dichiarata in `<stdlib.h>`, libera il blocco che era stato ottenuto con `malloc` e di cui `ptr` è l'indirizzo.
+
+**Come si legge.** `free` vuole **lo stesso indirizzo** che aveva dato `malloc`: quello del primo byte. Non serve dire quanto è lungo il blocco, lo heap lo sa. Dopo la `free` la variabile `ptr` contiene ancora il vecchio indirizzo, ma è diventata un puntatore appeso. Per questo Amparore scrive sempre le due istruzioni insieme:
+
+```c
+free(a);
+a = NULL;
+```
+
+Con `NULL` dentro, un uso sbagliato fa fermare subito il programma invece di lavorare in silenzio su memoria non sua. E `free(NULL)` è permesso: non fa niente.
+
+**Regola: ogni `malloc` deve avere una `free` corrispondente.**
+
+::: prova Che cosa chiede `malloc(10 * sizeof(double))`? Di che tipo dev'essere la variabile che riceve il risultato?
+Un blocco per 10 `double` contigui: 80 byte, perché su questo PC `sizeof(double)` vale 8. La variabile dev'essere un `double*`.
+:::
+
+> [!RICORDA]
+> - `malloc(n * sizeof(T))`: `n` elementi di tipo `T`, contigui, non inizializzati. Ritorna `NULL` se non c'è memoria.
+> - Dopo `malloc` si controlla il risultato.
+> - `free(p); p = NULL;`, sempre insieme.
+> - Ogni `malloc` ha la sua `free`.
+
+## I blocchi nello heap, passo per passo (slide 18–19)
+
+Le slide seguono sei istruzioni guardando che cosa succede nello heap:
+
+```c
+int* p1 = malloc(20);
+int* p2 = malloc(32);
+double* p3 = malloc(16);
+free(p2); p2 = NULL;
+char* p4 = malloc(20);
+free(p1); p1 = NULL;
+```
+
+| Dopo l'istruzione | Blocchi nello heap | `p1` | `p2` | `p3` | `p4` |
+|---|---|---|---|---|---|
+| `p1 = malloc(20)` | 1 | blocco 1 | ?? | ?? | ?? |
+| `p2 = malloc(32)` | 1, 2 | blocco 1 | blocco 2 | ?? | ?? |
+| `p3 = malloc(16)` | 1, 2, 3 | blocco 1 | blocco 2 | blocco 3 | ?? |
+| `free(p2); p2 = NULL` | 1, 3 | blocco 1 | `NULL` | blocco 3 | ?? |
+| `p4 = malloc(20)` | 1, 3, 4 | blocco 1 | `NULL` | blocco 3 | blocco 4 |
+| `free(p1); p1 = NULL` | 3, 4 | `NULL` | `NULL` | blocco 3 | blocco 4 |
+
+Che cosa mostra:
+
+- le variabili `p1`, …, `p4` stanno nello **stack**, nel frame di `main`; i blocchi stanno nello **heap**. Sono due cose diverse: il puntatore è la maniglia, il blocco è l'oggetto;
+- ogni blocco vive per conto suo. Liberare il 2 non tocca l'1 e il 3;
+- lo spazio liberato può essere riusato: nelle slide il blocco 4 finisce dove stava il 2. È una possibilità, non una garanzia: sul mio PC è finito da un'altra parte;
+- alla fine il blocco 3 e il blocco 4 sono ancora allocati. Se il programma finisse così, sarebbero due blocchi mai liberati.
+
+Lo stesso blocco di 20 byte è usato una volta come interi (`p1`, cinque `int`) e una volta come caratteri (`p4`): `malloc` dà byte, il tipo lo decide il puntatore.
+
+::: prova Nella tabella, dopo la quarta istruzione, che cosa succede se scrivi `p2[0] = 7;`?
+`p2` vale `NULL`: il programma termina con un errore di accesso alla memoria. Senza il `p2 = NULL`, la stessa istruzione avrebbe scritto in un blocco già restituito, senza nessun segnale.
+:::
+
+> [!RICORDA]
+> - Il puntatore sta nello stack, il blocco nello heap.
+> - Un blocco resta allocato finché non lo liberi, qualunque cosa succeda agli altri.
+> - Dove finisce un blocco nuovo lo decide lo heap: non ci si conta.
+
+## leggiArray con lo heap (slide 20–32)
+
+Con `malloc` il problema iniziale si risolve cambiando una riga: l'array non è più una variabile locale, è un blocco nello heap.
+
+```c
+#include <stdlib.h>
+#include <stdio.h>
+
+int* leggiArray(size_t* out_n) {
+    size_t n;
+    scanf("%zu", &n);
+    int* a = malloc(n * sizeof(int));
+    for (size_t i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+    *out_n = n;
+    return a;
+}
+
+int main(void) {
+    size_t aLen;
+    int* a = leggiArray(&aLen);
+    for (size_t i = 0; i < aLen; i++)
+        printf("a[%zu] = %d\n", i, a[i]);
+    free(a); a = NULL;
+}
+```
+
+Scrivendo `3` e poi `10 20 30`, stampa:
+
+```text
+a[0] = 10
+a[1] = 20
+a[2] = 30
+```
+
+Ora `return a` è corretto. La variabile `a` di `leggiArray` è locale e sparisce, ma quello che viene ritornato è il suo **valore**, cioè l'indirizzo del blocco. Il blocco sta nello heap e il ritorno della funzione non lo tocca.
+
+```grafico
+titolo: La memoria dopo il ritorno di leggiArray. Il frame della funzione non c'è più, ma il blocco nello heap sì. La variabile a di main contiene il suo indirizzo: il puntatore è valido
+x: 0 12
+y: 0 5.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.4 5.2 | blu | "stack"
+poligono: 0.6 1.6 4.2 1.6 4.2 4.6 0.6 4.6 | blu | tenue
+testo: 2.4 4.1 | blu | "main"
+poligono: 1.0 2.9 3.8 2.9 3.8 3.7 1.0 3.7 | blu
+testo: 2.4 3.3 | blu | "aLen: 3"
+poligono: 1.0 1.9 3.8 1.9 3.8 2.7 1.0 2.7 | blu
+testo: 2.4 2.3 | blu | "a: •"
+testo: 8.8 5.2 | verde | "heap"
+poligono: 6.8 1.9 8.1 1.9 8.1 2.7 6.8 2.7 | verde | tenue
+poligono: 8.1 1.9 9.4 1.9 9.4 2.7 8.1 2.7 | verde | tenue
+poligono: 9.4 1.9 10.7 1.9 10.7 2.7 9.4 2.7 | verde | tenue
+testo: 7.45 2.3 | verde | "10"
+testo: 8.75 2.3 | verde | "20"
+testo: 10.05 2.3 | verde | "30"
+testo: 7.45 1.4 | grigio | "a[0]"
+testo: 8.75 1.4 | grigio | "a[1]"
+testo: 10.05 1.4 | grigio | "a[2]"
+freccia: 3.2 2.3 6.7 2.3 | ambra
+testo: 8.75 3.3 | verde | "3 * sizeof(int) byte"
+```
+
+Seguendo le slide, la memoria passa per questi stati:
+
+| Momento | Stack | Heap |
+|---|---|---|
+| in `main`, prima della chiamata | `aLen: ??`, `a: ??` | vuoto |
+| in `leggiArray`, dopo `malloc` | in più il frame con `n: 3`, `a:` indirizzo | un blocco di 3 interi, `?? ?? ??` |
+| dopo il ciclo di lettura | uguale | `10 20 30` |
+| dopo il `return` | solo `main`: `aLen: 3`, `a:` indirizzo | `10 20 30` |
+| dopo `free(a); a = NULL` | `aLen: 3`, `a: NULL` | vuoto |
+
+La `malloc` è in una funzione e la `free` in un'altra. È normale, ed è il motivo per cui lo heap esiste: il blocco deve vivere più a lungo della funzione che lo crea.
+
+> [!NOTA] La versione con i controlli
+> Il codice delle slide è ridotto al minimo per seguire la memoria. Una versione da esercizio controlla la lettura, il caso `n == 0` e il risultato di `malloc`, con una sola `return`:
+>
+> ```c
+> int* leggiArray(size_t* out_n) {
+>     size_t n = 0;
+>     int* a = NULL;
+>     *out_n = 0;
+>     if (scanf("%zu", &n) == 1 && n > 0) {
+>         a = malloc(n * sizeof(int));
+>         if (a != NULL) {
+>             for (size_t i = 0; i < n; i++) {
+>                 scanf("%d", &a[i]);
+>             }
+>             *out_n = n;
+>         }
+>     }
+>     return a;
+> }
+> ```
+>
+> Se qualcosa va storto ritorna `NULL` con lunghezza 0, e il `main` di prima funziona lo stesso: il ciclo non fa giri e `free(NULL)` non fa niente.
+
+::: prova Nel `main`, che cosa succede se togli la riga `free(a); a = NULL;`? Il programma stampa cose diverse?
+Stampa le stesse cose. Ma il blocco resta allocato fino alla fine del programma: è un memory leak. In un programma così corto non si nota; in uno che gira a lungo sì.
+:::
+
+> [!RICORDA]
+> - Si ritorna l'indirizzo del blocco: il blocco è nello heap e sopravvive al ritorno.
+> - `malloc` in una funzione, `free` in un'altra: è il caso normale.
+> - Negli esercizi: controllo di `malloc`, una sola `return`.
+
+## Gli errori tipici (slide 33–38)
+
+La memoria dinamica si gestisce solo attraverso i puntatori, e niente controlla che lo si faccia bene. Amparore lo riassume così: «Chi semina `malloc`, raccoglie memory leaks», intendendo le `malloc` senza la loro `free`.
+
+> [!DEF] Memory leak (slide 33)
+> Un **memory leak**, o perdita di memoria, è un blocco allocato che non viene mai liberato. Il caso peggiore è il blocco di cui si è perso l'indirizzo: non è più raggiungibile, e non si può più liberare.
+
+**Come si legge.** Il blocco resta occupato fino alla fine del programma. Non c'è nessun errore visibile: il programma usa solo più memoria del necessario. Se la perdita è dentro un ciclo, la memoria usata cresce a ogni giro finché finisce.
+
+I sei errori delle slide, con quello che dice gcc quando dice qualcosa:
+
+**1. Allocare senza liberare.**
+
+```c
+void f(void) {
+    int* a = malloc(100 * sizeof(int));
+    // uso dell'array
+} // MEMORY LEAK: manca free(a)
+```
+
+Al ritorno di `f` la variabile `a` sparisce, ed era l'unica a contenere l'indirizzo. Il blocco resta nello heap, irraggiungibile. gcc non dice niente. Per trovare questi errori esistono strumenti appositi, come Valgrind.
+
+**2. Perdere l'indirizzo prima di liberare.**
+
+```c
+int* p = malloc(10 * sizeof(int));
+p = malloc(20 * sizeof(int)); // MEMORY LEAK: il primo blocco è perso per sempre
+```
+
+Il secondo assegnamento sovrascrive l'unico indirizzo del primo blocco. Anche qui gcc non dice niente.
+
+**3. Usare un puntatore dopo la free.**
+
+```c
+int* p = malloc(sizeof(int));
+*p = 5;
+free(p);
+printf("%d\n", *p); // ERRORE: uso di memoria già liberata
+```
+
+Dopo la `free`, `p` è un puntatore appeso. Il comportamento è indefinito: può sembrare che funzioni. In questo caso diretto gcc se ne accorge:
+
+```text
+uaf.c:8:5: error: pointer 'p' used after 'free' [-Werror=use-after-free]
+    8 |     printf("%d\n", *p); // ERRORE: uso di memoria gia' liberata
+      |     ^~~~~~~~~~~~~~~~~~
+uaf.c:7:5: note: call to 'free' here
+```
+
+**4. Liberare due volte lo stesso blocco.**
+
+```c
+int* p = malloc(sizeof(int));
+free(p);
+free(p); // ERRORE: doppia free
+```
+
+La seconda `free` restituisce una zona già restituita: il programma può terminare subito o rovinare la struttura interna dello heap. gcc dà lo stesso messaggio di prima, `pointer 'p' used after 'free'`. Con `p = NULL` dopo la prima, la seconda sarebbe una `free(NULL)`, che non fa danni.
+
+**5. Leggere memoria non inizializzata.**
+
+```c
+int* a = malloc(5 * sizeof(int));
+printf("%d", a[0]); // ERRORE: a[0] non è stato inizializzato
+```
+
+`malloc` riserva il blocco ma non ci scrive niente: finché non assegni un valore, quello che leggi è indeterminato. gcc, in questo caso diretto:
+
+```text
+noninit.c:6:5: error: '*a' is used uninitialized [-Werror=uninitialized]
+```
+
+**6. Fare ipotesi sugli indirizzi.**
+
+```c
+int* p1 = malloc(sizeof(int));
+int* p2 = malloc(sizeof(int));
+p1[0] = 10;
+p1[1] = 20; // ERRORE: non sto accedendo a p2
+```
+
+La contiguità è garantita **dentro** un blocco, non tra due blocchi. Sul mio PC, in una prova, i due blocchi sono finiti a quasi 26 000 byte di distanza. `p1[1]` scrive fuori dal blocco di `p1`, in memoria che non è sua.
+
+> [!TRAPPOLA] Il compilatore vede solo i casi diretti
+> I messaggi di sopra compaiono perché `free` e uso sbagliato sono nella stessa funzione, uno sotto l'altro. Appena il puntatore passa per un'altra funzione o per un `if`, gcc non riesce più a seguirlo e non avvisa. E sui memory leak non avvisa mai. Che il programma si compili non dice niente sulla gestione della memoria.
+
+::: prova Che errore c'è in `int* a = malloc(4 * sizeof(int)); a = a + 1; free(a);`?
+`free` riceve un indirizzo che non è quello dato da `malloc`: è spostato di un elemento. Il comportamento è indefinito. A `free` va passato l'indirizzo del primo byte del blocco, quindi il puntatore originale va conservato.
+:::
+
+> [!RICORDA]
+> - Leak: blocco mai liberato, o indirizzo perso.
+> - Dopo `free`: niente uso, niente seconda `free`. `p = NULL` protegge da tutti e due.
+> - La memoria di `malloc` va inizializzata prima di leggerla.
+> - Due blocchi diversi non sono vicini.
+
+## Stack o heap? (slide 39)
+
+Con due posti dove mettere i dati serve un criterio. Quello delle slide:
+
+| Nello heap | Nello stack |
+|---|---|
+| i dati di dimensione non nota in anticipo: array, matrici, strutture | le variabili locali piccole |
+| i dati che devono sopravvivere alla funzione che li crea | puntatori, indici, contatori |
+| | gli array di dimensione fissa o limitata |
+
+Lo stack è comodo perché si gestisce da solo, ma è piccolo, di solito pochi megabyte, e ogni cosa ci vive solo quanto il suo blocco. Lo heap è grande e i suoi blocchi vivono quanto vuoi, ma ogni blocco è una responsabilità.
+
+Prima dello standard C99 i VLA non esistevano: anche per un piccolo array di dimensione decisa durante l'esecuzione bisognava usare lo heap.
+
+::: prova Dove metti: (a) un contatore `size_t i`; (b) un array la cui lunghezza viene letta da tastiera e che va restituito al chiamante; (c) un array di 7 temperature usato solo dentro la funzione?
+(a) Stack. (b) Heap: la dimensione non è nota e deve sopravvivere al ritorno. (c) Stack: dimensione fissa e piccola, vita limitata alla funzione.
+:::
+
+> [!RICORDA]
+> - Heap: dimensione non nota in anticipo, o vita più lunga della funzione.
+> - Stack: variabili piccole e array di dimensione fissa.
+
+## Selezione con copia in tre fasi (slide 40–47)
+
+La selezione della [07A](07A_algoritmi_su_array.html) copia in un secondo array gli elementi che rispettano una condizione. Lì il secondo array aveva una capacità fissata prima, e bisognava controllare di non superarla. Con lo heap l'array del risultato si può creare **della misura esatta**.
+
+> [!DEF] Selezione (slide 42)
+> Presi un array `b` di lunghezza `bLen` e una condizione `Cond`, la **selezione** copia in un altro array `a` tutti e soli gli elementi `b[i]` per cui `Cond(b[i])` è vera, nello stesso ordine.
+
+**Come si legge.** «Tutti e soli»: nessuno di quelli che rispettano la condizione resta fuori, e nessun altro entra. La lunghezza di `a` non si conosce finché non si è guardato tutto `b`: per questo le fasi sono tre.
+
+1. **Calcolo della dimensione.** Si scorre `b` senza copiare niente, contando quanti elementi rispettano la condizione. Il risultato `count` è la lunghezza esatta del nuovo array.
+2. **Allocazione.** Si chiede allo heap un array di `count` elementi.
+3. **Selezione e copia.** Si scorre `b` una seconda volta e si copia ogni elemento buono nel primo posto libero di `a`. Servono due indici: `i` per `b`, `j` per `a`.
+
+```grafico
+titolo: La selezione dei numeri pari da b verso un array nuovo nello heap. Prima si conta: i pari sono 3. Poi si alloca un blocco di 3 interi. Poi si copia: l'indice i scorre tutto b, l'indice j avanza solo quando si copia
+x: 0 11
+y: 0 5.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.7 4.3 | blu | "b"
+poligono: 1.4 3.8 2.8 3.8 2.8 4.8 1.4 4.8 | ambra | tenue
+poligono: 2.8 3.8 4.2 3.8 4.2 4.8 2.8 4.8 | grigio | tenue
+poligono: 4.2 3.8 5.6 3.8 5.6 4.8 4.2 4.8 | grigio | tenue
+poligono: 5.6 3.8 7.0 3.8 7.0 4.8 5.6 4.8 | ambra | tenue
+poligono: 7.0 3.8 8.4 3.8 8.4 4.8 7.0 4.8 | ambra | tenue
+testo: 2.1 4.3 | ambra | "12"
+testo: 3.5 4.3 | grigio | "1"
+testo: 4.9 4.3 | grigio | "3"
+testo: 6.3 4.3 | ambra | "4"
+testo: 7.7 4.3 | ambra | "8"
+testo: 9.6 4.3 | blu | "stack"
+testo: 0.7 1.3 | verde | "a"
+poligono: 1.4 0.8 2.8 0.8 2.8 1.8 1.4 1.8 | verde | tenue
+poligono: 2.8 0.8 4.2 0.8 4.2 1.8 2.8 1.8 | verde | tenue
+poligono: 4.2 0.8 5.6 0.8 5.6 1.8 4.2 1.8 | verde | tenue
+testo: 2.1 1.3 | verde | "12"
+testo: 3.5 1.3 | verde | "4"
+testo: 4.9 1.3 | verde | "8"
+testo: 6.8 1.3 | verde | "heap"
+freccia: 2.1 3.7 2.1 1.9 | ambra
+freccia: 6.3 3.7 3.6 1.9 | ambra
+freccia: 7.7 3.7 5.0 1.9 | ambra
+testo: 9.0 2.7 | grigio | "count = 3"
+```
+
+La funzione delle slide, `selectCopy`:
+
+```c
+int* selectCopy(size_t bLen, const int b[], size_t* out_len) {
+    assert(bLen == 0 || b != NULL);
+    assert(out_len != NULL);
+    *out_len = 0;
+    int* a = NULL;
+
+    // 1) Calcolo della dimensione
+    size_t count = 0;
+    for (size_t i = 0; i < bLen; i++)
+        if (Cond(b[i]))
+            count++;
+
+    // 2) Allocazione
+    if (count > 0) {
+        a = malloc(count * sizeof(int));
+        if (a != NULL) {
+            // 3) Selezione e copia
+            size_t j = 0;
+            for (size_t i = 0; i < bLen; i++) {
+                if (Cond(b[i])) {
+                    a[j] = b[i];
+                    j++;
+                }
+            }
+            assert(count == j);
+            *out_len = count;
+        }
+    }
+    return a;
+}
+```
+
+Con `Cond(x)` uguale a `x % 2 == 0` e `b = {12, 1, 3, 4, 8}`, il programma delle slide stampa:
+
+```text
+Selezionati 3 elementi:
+a[0] = 12
+a[1] = 4
+a[2] = 8
+```
+
+Come è costruita:
+
+- **I valori di partenza sono già la risposta del caso peggiore**: `*out_len = 0` e `a = NULL`. Se niente va a buon fine, non serve toccarli. È lo stesso modo di ragionare delle sentinelle della 07A.
+- **Il caso limite**: se nessun elemento è selezionato, `count` è 0, non si alloca niente e la funzione ritorna `NULL` con lunghezza 0. L'ho provato con `{1, 3, 5}` e con l'array vuoto.
+- **Il controllo di `malloc`**: la copia si fa solo se `a != NULL`.
+- **`assert(count == j)`**: le due scansioni devono aver trovato lo stesso numero di elementi. È un controllo sul programma, non sui dati: se fallisse, ci sarebbe un errore nel codice.
+- **Una sola `return`**, alla fine: va bene per le regole d'esame.
+- **`const int b[]`**: la funzione legge `b` e non lo modifica.
+
+Nel `main` delle slide, dopo la stampa, c'è `free(a); a = NULL;`. Funziona anche quando `a` è `NULL`.
+
+::: prova Con `b = {5, 6, 7, 8, 10}` e la stessa condizione, quanto vale `count` dopo la prima fase? Che cosa contiene `a` alla fine, e quanto vale `j`?
+`count` vale 3. `a` contiene 6, 8, 10 e `j` vale 3: per questo l'`assert` passa.
+:::
+
+> [!RICORDA]
+> - Tre fasi: conta, alloca, copia.
+> - Due scansioni di `b`, due indici nella copia.
+> - Nessun elemento selezionato: `NULL` e lunghezza 0.
+> - Il chiamante deve fare la `free`.
+
+## Di chi è il blocco: la responsabilità (slide 48–50)
+
+`selectCopy` alloca un blocco e non lo libera. Non è un leak, perché lo consegna a qualcuno: chi l'ha chiamata.
+
+> [!DEF] Responsabilità della memoria (slide 48)
+> Per ogni blocco allocato c'è un punto del programma che ha la **responsabilità** (*ownership*) di liberarlo. Chi chiama `malloc` ce l'ha per primo; ritornando il puntatore la **trasferisce** al chiamante, che può trasferirla ancora. L'ultimo che usa il blocco chiama `free`.
+
+**Come si legge.** È una convenzione tra chi scrive una funzione e chi la usa, e il linguaggio non la controlla. Per questo va scritta nel commento della funzione: «ritorna un array allocato nello heap; il chiamante deve liberarlo con `free`». In ogni momento un blocco ha un solo responsabile: così non viene liberato due volte e non viene dimenticato.
+
+Lo fa anche la libreria standard. `strdup`, in `<string.h>`, crea nello heap una copia di una stringa, terminatore compreso, e ne ritorna l'indirizzo: chi la chiama deve fare la `free`.
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+
+int main(void) {
+    const char* src = "Programmazione 1";
+    char* copy = strdup(src);  // copia nello heap
+    assert(copy != NULL);
+    printf("Originale: %s\nCopia: %s\n", src, copy);
+    free(copy); copy = NULL; // il chiamante è responsabile della deallocazione
+}
+```
+
+Stampa due volte `Programmazione 1`. La copia è un blocco diverso dall'originale: ho controllato che i due indirizzi sono diversi, e cambiando `copy[0]` l'originale resta com'era.
+
+Nelle slide manca la riga `#include <assert.h>`. Senza, gcc dice:
+
+```text
+strdup_slide.c:8:5: error: implicit declaration of function 'assert' [-Wimplicit-function-declaration]
+strdup_slide.c:4:1: note: 'assert' is defined in header '<assert.h>'; this is probably fixable by adding '#include <assert.h>'
+```
+
+In Programmazione II e in Algoritmi la memoria dinamica servirà per le strutture dati che cambiano dimensione e non sono contigue: liste, alberi, grafi.
+
+::: prova Una funzione `int* creaTabella(size_t n)` ritorna un array allocato con `malloc`. Chi la chiama la usa così: `stampa(n, creaTabella(n));`. Che cosa non va?
+L'indirizzo ritornato viene passato a `stampa` e non viene salvato da nessuna parte: dopo la chiamata nessuno può più fare la `free`. È un memory leak. Bisogna salvare il puntatore in una variabile, usarlo, e poi liberarlo.
+:::
+
+> [!RICORDA]
+> - Ogni blocco ha un responsabile, che deve liberarlo.
+> - Ritornare il puntatore trasferisce la responsabilità al chiamante.
+> - Va scritto nel commento della funzione.
+> - `strdup` alloca: dopo serve una `free`.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `malloc(sz)` | «malloc di sz» | chiede `sz` byte contigui nello heap; ritorna l'indirizzo o `NULL` | `malloc(3 * sizeof(int))` |
+| `free(p)` | «free di p» | restituisce il blocco di indirizzo `p` | `free(a); a = NULL;` |
+| `sizeof(T)` | «sizeof di T» | quanti byte occupa un valore di tipo `T` | `sizeof(int)` vale 4 su questo PC |
+| `void*` | «puntatore a void» | un indirizzo senza un tipo | il risultato di `malloc` |
+| `NULL` | «null» | il puntatore che non indica niente | `if (a == NULL)` |
+| `size_t* out_len` | «puntatore a size_t» | parametro di uscita per una lunghezza | `*out_len = count;` |
+| `??` | «valore sconosciuto» | memoria non inizializzata, nei disegni | il blocco appena allocato |
+
+## Verso l'esame
+
+All'esame si scrive al PC con CodeRunner, e le funzioni vengono compilate con `-Wall -Werror`. Le regole restano quelle di sempre: una sola `return` nelle funzioni iterative, niente `break`. Di questa lezione servono:
+
+1. **lo schema a tre fasi** per restituire un array nuovo: conta, alloca, copia, con la lunghezza in un parametro di uscita;
+2. **il controllo di `malloc`** e il caso in cui non c'è niente da restituire;
+3. **non ritornare mai l'indirizzo di una variabile locale**: con `-Werror` è un errore di compilazione, e l'esercizio vale zero;
+4. **disegnare stack e heap** dopo una serie di istruzioni: è il modo più sicuro per trovare leak e puntatori appesi, ed era un esercizio fisso negli esami degli anni in cui il corso si faceva in Java.
+
+### Una domanda sul modello, letta insieme
+
+Nella [raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md) questa tipologia c'è per il canale C del 2025/26: una funzione che restituisce un array allocato e la lunghezza in un parametro di uscita. Un testo d'esame vero non ce l'ho; questo è nello stesso stile.
+
+«Scrivere una funzione `e3` che riceve un array di interi (`aLen`, `a`) e restituisce un nuovo array, allocato nello heap, con gli elementi strettamente positivi di `a`, nell'ordine in cui compaiono. La lunghezza del nuovo array va scritta in `*out_len`. Se non ci sono elementi positivi, `e3` restituisce `NULL` e scrive 0.»
+
+**In pratica chiede:** `selectCopy` con la condizione `x > 0`.
+
+**Soluzione.**
+
+1. Valori di partenza: risultato `NULL`, `*out_len = 0`.
+2. Prima scansione: conto i positivi.
+3. Se ce ne sono, alloco `count * sizeof(int)` byte e controllo il risultato.
+4. Seconda scansione: copio con un secondo indice.
+5. Una sola `return`.
+
+```c
+int* e3(size_t aLen, const int a[], size_t* out_len) {
+    int* p = NULL;
+    size_t count = 0;
+    *out_len = 0;
+    for (size_t i = 0; i < aLen; i++) {
+        if (a[i] > 0) {
+            count++;
+        }
+    }
+    if (count > 0) {
+        p = malloc(count * sizeof(int));
+        if (p != NULL) {
+            size_t j = 0;
+            for (size_t i = 0; i < aLen; i++) {
+                if (a[i] > 0) {
+                    p[j] = a[i];
+                    j++;
+                }
+            }
+            *out_len = count;
+        }
+    }
+    return p;
+}
+```
+
+Provata: con `{7, -2, 0, 9}` ritorna un array di 2 elementi, 7 e 9. Lo zero non è strettamente positivo.
+
+> [!METODO] Una funzione che restituisce un array nuovo
+> 1. Prototipo: ritorna `int*`, riceve la lunghezza di uscita come `size_t* out_len`.
+> 2. Parti dal caso peggiore: puntatore `NULL`, lunghezza 0.
+> 3. Calcola quanti elementi servono.
+> 4. `malloc(count * sizeof(int))`, e continua solo se il risultato non è `NULL`.
+> 5. Riempi **tutte** le caselle: quello che `malloc` dà non è inizializzato.
+> 6. Scrivi la lunghezza, ritorna il puntatore, e nel commento di' che il chiamante deve fare la `free`.
+
+### Errori da evitare
+
+- Ritornare un array locale o un VLA.
+- Scrivere `malloc(n)` invece di `malloc(n * sizeof(int))`: alloca `n` byte, non `n` interi.
+- Dimenticare la `free`, o farla nella funzione che deve restituire l'array.
+- Usare il puntatore dopo la `free`.
+- Passare a `free` un puntatore spostato rispetto a quello dato da `malloc`.
+- Leggere il blocco prima di averci scritto.
+
+## Quiz
+
+```quiz
+D: Che cosa ritorna al chiamante una funzione che fa `int a[n]; ... return a;`?
++ un puntatore appeso: l'indirizzo di un array che dopo il ritorno non esiste più
+- una copia dell'array
+- un puntatore a un blocco nello heap
+- `NULL`
+- l'array stesso, che resta valido finché il chiamante lo usa
+= L'array è nel frame della funzione, che viene tolto dallo stack al ritorno. La più insidiosa è «una copia dell'array»: in C un array non si copia con `return`; quello che viaggia è l'indirizzo del primo elemento.
+
+D: Quale istruzione alloca un array di 10 interi nello heap?
++ `int* a = malloc(10 * sizeof(int));`
+- `int* a = malloc(10);`
+- `int a[10] = malloc(sizeof(int));`
+- `int* a = malloc(sizeof(10));`
+- `int a = malloc(10 * sizeof(int));`
+= `malloc` vuole il numero di byte: 10 volte la misura di un intero. La più insidiosa è `malloc(10)`: si compila, ma alloca 10 byte, che bastano per due interi e mezzo.
+
+D: Che cosa contiene il blocco subito dopo `int* a = malloc(5 * sizeof(int));`?
++ valori indeterminati
+- cinque zeri
+- cinque volte `NULL`
+- i valori dell'ultimo array liberato
+- niente: il blocco è vuoto finché non ci si scrive
+= `malloc` riserva la memoria e non la inizializza. La più insidiosa è «cinque zeri»: a volte succede davvero, per caso, e il programma sembra funzionare.
+
+D: Dopo `free(p);`, che cosa vale `p`?
++ lo stesso indirizzo di prima, che ora non è più valido
+- `NULL`
+- 0
+- l'indirizzo del prossimo blocco libero
+- un valore indeterminato
+= `free` riceve una copia dell'indirizzo e non può cambiare la variabile. Per questo si scrive `p = NULL` subito dopo. La più insidiosa è `NULL`: è quello che vorresti, ma devi farlo tu.
+
+D: Quale di questi frammenti produce un memory leak?
++ `int* p = malloc(8); p = malloc(16); free(p);`
+- `int* p = malloc(8); free(p); p = NULL;`
+- `int* p = NULL; free(p);`
+- `int* p = malloc(8); int* q = p; free(q);`
+- `int x = 3; int* p = &x;`
+= Il primo blocco perde il suo unico indirizzo quando `p` viene riassegnato. La più insidiosa è `int* p = malloc(8); int* q = p; free(q);`: `q` e `p` contengono lo stesso indirizzo, e una sola `free` basta, con uno qualunque dei due.
+
+D: Nel programma `int* p1 = malloc(20); int* p2 = malloc(32); double* p3 = malloc(16); free(p2); char* p4 = malloc(20); free(p1);`, quanti blocchi sono ancora allocati alla fine?
+N: 2
+= Quattro `malloc` e due `free`: restano i blocchi di `p3` e di `p4`.
+
+D: In `selectCopy`, con `b = {12, 1, 3, 4, 8}` e la condizione «pari», quanti byte chiede la `malloc`, se `sizeof(int)` vale 4?
+N: 12
+= I pari sono tre: 12, 4 e 8. Tre interi da 4 byte.
+
+D: Una funzione ritorna un array allocato con `malloc`. Chi deve chiamare `free`?
++ il chiamante, quando l'array non gli serve più
+- la funzione stessa, prima della `return`
+- nessuno: lo heap si libera da solo al ritorno
+- il sistema operativo, a ogni chiamata
+- chiunque, anche più volte
+= La funzione trasferisce la responsabilità del blocco a chi la chiama. La più insidiosa è «la funzione stessa, prima della `return`»: se la funzione liberasse il blocco prima di ritornarlo, il chiamante riceverebbe un puntatore appeso.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: stack o heap
+Per ogni riga di' dove sta l'oggetto nominato: (a) la variabile `p` in `int* p = malloc(4 * sizeof(int));` dentro `main`; (b) i quattro interi; (c) `size_t n` dichiarata in una funzione; (d) l'array `int v[3]` dichiarato in una funzione.
+::: soluzione
+(a) Nello stack, nel frame di `main`: è una variabile locale, anche se contiene un indirizzo dello heap. (b) Nello heap. (c) Nello stack. (d) Nello stack.
+:::
+
+::: esercizio base Riscaldamento: segui i blocchi
+Per `int* a = malloc(8); int* b = malloc(8); int* c = a; free(a); a = NULL; b = malloc(8);` di' quanti blocchi sono allocati alla fine, quali sono persi e quali puntatori sono appesi.
+::: soluzione
+Tre `malloc` e una `free`: due blocchi allocati. Il secondo, quello che era di `b`, è **perso**: `b` è stato riassegnato senza liberarlo. `c` è **appeso**: contiene l'indirizzo del primo blocco, che è stato liberato attraverso `a`. Mettere `a = NULL` non ha protetto `c`.
+:::
+
+::: esercizio medio Copia di un array
+Scrivi `int* copiaArray(size_t aLen, const int a[])`, che ritorna una copia di `a` nello heap, oppure `NULL` se `aLen` è 0 o manca la memoria.
+::: soluzione
+```c
+int* copiaArray(size_t aLen, const int a[]) {
+    int* c = NULL;
+    if (aLen > 0) {
+        c = malloc(aLen * sizeof(int));
+        if (c != NULL) {
+            for (size_t i = 0; i < aLen; i++) {
+                c[i] = a[i];
+            }
+        }
+    }
+    return c;
+}
+```
+Qui la lunghezza del risultato è quella di partenza: non serve la fase di conteggio. Provata: cambiando `c[0]` l'originale non cambia, perché sono due blocchi diversi.
+:::
+
+::: esercizio medio Concatenare due array
+Scrivi `int* concatena(size_t aLen, const int a[], size_t bLen, const int b[], size_t* out_len)`: ritorna un array nuovo con gli elementi di `a` seguiti da quelli di `b`.
+::: soluzione
+```c
+int* concatena(size_t aLen, const int a[], size_t bLen, const int b[], size_t* out_len) {
+    int* c = NULL;
+    *out_len = 0;
+    if (aLen + bLen > 0) {
+        c = malloc((aLen + bLen) * sizeof(int));
+        if (c != NULL) {
+            for (size_t i = 0; i < aLen; i++) {
+                c[i] = a[i];
+            }
+            for (size_t i = 0; i < bLen; i++) {
+                c[aLen + i] = b[i];
+            }
+            *out_len = aLen + bLen;
+        }
+    }
+    return c;
+}
+```
+Il secondo ciclo scrive a partire dal posto `aLen`. Provata con `{7, -2, 0, 9}` e `{5, 6}`: dà 7, −2, 0, 9, 5, 6.
+:::
+
+::: esercizio esame Trova gli errori
+Di' tutti gli errori di memoria di questa funzione, e riscrivila.
+```c
+int* doppi(size_t n, const int a[]) {
+    int* d = malloc(n);
+    for (size_t i = 0; i <= n; i++)
+        d[i] = 2 * a[i];
+    free(d);
+    return d;
+}
+```
+::: soluzione
+Quattro errori. **(1)** `malloc(n)` alloca `n` byte, non `n` interi. **(2)** Manca il controllo del risultato. **(3)** `i <= n` scrive `d[n]` e legge `a[n]`, fuori dai due array. **(4)** `free(d)` prima della `return`: il chiamante riceve un puntatore appeso. La `free` spetta al chiamante.
+```c
+int* doppi(size_t n, const int a[]) {
+    int* d = NULL;
+    if (n > 0) {
+        d = malloc(n * sizeof(int));
+        if (d != NULL) {
+            for (size_t i = 0; i < n; i++) {
+                d[i] = 2 * a[i];
+            }
+        }
+    }
+    return d;
+}
+```
+:::
+
+::: esercizio difficile Rovesciare in un array nuovo
+Scrivi `int* rovescia(size_t aLen, const int a[])`, che ritorna un array nuovo con gli elementi di `a` in ordine inverso. Poi scrivi il `main` che la usa su `{7, -2, 0, 9}`, stampa il risultato e non perde memoria.
+::: soluzione
+```c
+int* rovescia(size_t aLen, const int a[]) {
+    int* r = NULL;
+    if (aLen > 0) {
+        r = malloc(aLen * sizeof(int));
+        if (r != NULL) {
+            for (size_t i = 0; i < aLen; i++) {
+                r[i] = a[aLen - 1 - i];
+            }
+        }
+    }
+    return r;
+}
+```
+Nel `main`: `int* r = rovescia(4, a);`, poi, se `r != NULL`, il ciclo di stampa, e alla fine `free(r); r = NULL;`. Provata: stampa 9, 0, −2, 7. L'indice `aLen - 1 - i` è sicuro perché si calcola solo con `i < aLen`: con `size_t` una sottrazione che va sotto zero darebbe un numero enorme.
+:::
+
+## Domande di ripasso
+
+::: domanda Perché non si può ritornare un array locale?
+Perché sta nel frame della funzione, che viene tolto dallo stack al ritorno: il chiamante riceverebbe un puntatore appeso.
+:::
+
+::: domanda Che cosa fa `malloc`, e che cosa ritorna?
+Riserva nello heap il numero di byte chiesto, contigui e non inizializzati, e ritorna l'indirizzo del primo. Ritorna `NULL` se la memoria non c'è.
+:::
+
+::: domanda Perché dopo `free(p)` si scrive `p = NULL`?
+Perché `p` contiene ancora il vecchio indirizzo. Con `NULL`, un uso sbagliato ferma subito il programma e una seconda `free` non fa danni.
+:::
+
+::: domanda Che cos'è un memory leak?
+Un blocco allocato e mai liberato, per esempio perché si è perso il suo indirizzo.
+:::
+
+::: domanda Quali sono le tre fasi della selezione con copia?
+Contare gli elementi da selezionare, allocare un array di quella misura, copiare gli elementi con un secondo indice.
+:::
+
+::: domanda Che cosa vuol dire che il chiamante ha la responsabilità del blocco?
+Che la funzione gli ha consegnato il puntatore a un blocco allocato, e tocca a lui chiamare `free` quando non gli serve più.
+:::
+
+## Glossario
+
+```glossario
+Heap | Zona di memoria gestita a mano dal programma, con malloc e free.
+Memoria dinamica | Memoria chiesta e restituita dal programma durante l'esecuzione.
+malloc | Funzione di <stdlib.h> che riserva un blocco di byte contigui nello heap.
+free | Funzione di <stdlib.h> che restituisce allo heap un blocco ottenuto con malloc.
+Blocco | Una zona contigua dello heap ottenuta con una chiamata a malloc.
+Puntatore appeso (dangling pointer) | Puntatore che contiene l'indirizzo di memoria non più valida.
+Memory leak | Blocco allocato e mai liberato.
+Doppia free | Liberare due volte lo stesso blocco: comportamento indefinito.
+void* | Puntatore a una zona di memoria senza un tipo assegnato.
+Responsabilità (ownership) | Il dovere di liberare un blocco; passa a chi riceve il puntatore.
+```
+
+## Checklist
+
+```checklist
+- So spiegare perché un array locale non si può ritornare.
+- So che cos'è un puntatore appeso e riconosco i due modi in cui nasce.
+- So disegnare codice, dati, heap e stack nel modello della memoria.
+- So scrivere una malloc per n elementi di un tipo, con sizeof e con il controllo del risultato.
+- So che la memoria di malloc non è inizializzata.
+- So scrivere free seguita da NULL, e so perché.
+- So riconoscere i sei errori tipici in un frammento di codice.
+- So seguire una serie di malloc e free dicendo quali blocchi restano.
+- So scrivere la selezione con copia in tre fasi, con una sola return.
+- So dire chi deve liberare un blocco ritornato da una funzione.
+```
+
+## Fonti
+
+- Slide «Memoria Dinamica. Gestione non automatica della memoria, lo heap e le funzioni malloc/free» (08A_memoria_dinamica), Programmazione I – Teoria, canale B, prof. Elvio Amparore, A.A. 2026/27: 50 pagine. Sul Moodle del corso sono nella settimana del 16 novembre.
+- Tutti i programmi sono stati compilati con gcc 16.1 (`-Wall -Werror`) ed eseguiti; i messaggi di errore riportati sono quelli veri del compilatore.
+- [Raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md), tipologia «heap».
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/lezioni/09A_matrici.md -->
+> File: `contesto_ai/PROG1/lezioni/09A_matrici.md`
+
+```yaml
+corso: PROG1
+lezione: 09A
+titolo: Matrici
+data: 2026-11-24
+docenti: Elvio Amparore
+simboli_logici: quantificatori
+sopratitolo: Programmazione I · Teoria · Canale B · Lezione 09A
+descrizione: >-
+  Appunti della lezione 09A di Programmazione I (canale B): le matrici in C come array a due dimensioni, la
+  disposizione in memoria per righe e la formula dell'indirizzo, i cicli annidati, le matrici come parametri di
+  funzione, somma degli elementi, somma, trasposta e prodotto di matrici, ricerca del massimo con selezione, verifica
+  di proprietà e test d'ipotesi annidati, con tutti i programmi provati, quiz ed esercizi.
+lede: >-
+  Una tabella di voti, un'immagine, una mappa: dati con due dimensioni. In C si mettono in una matrice, che in memoria
+  è una sola fila di caselle letta riga per riga. Sopra ci girano due cicli, uno dentro l'altro, e gli stessi schemi
+  degli array: accumulatori, sentinelle, «per ogni» ed «esiste».
+materiale: slide
+scheda:
+  Slide: 09A_matrici («Matrici. Array multidimensionali, algoritmi per gestire dati su più dimensioni») · 58 pagine
+  Lezione: martedì 24/11
+  Corso: Prof. Elvio Amparore · A.A. 2026/27
+  Tempo di studio: 110 minuti, con gcc a portata di mano
+fonte: >-
+  Slide «Matrici. Array multidimensionali, algoritmi per gestire dati su più dimensioni» (09A_matrici), Programmazione
+  I – Teoria, canale B, A.A. 2026/27
+appunti_html: appunti/PROG1/09A_matrici.html
+genera_html: true
+```
+
+## In breve
+
+- Una **matrice** è una tabella di valori dello stesso tipo, con righe e colonne. In C: `int m[ROWS][COLS];`.
+- L'elemento della riga `i` e della colonna `j` è `m[i][j]`: **prima la riga, poi la colonna**, tutti e due contati da 0.
+- In memoria la matrice è **una sola fila contigua**, con le righe una dopo l'altra (*row-major order*). `m[i][j]` è l'elemento di posto `i * COLS + j` di quella fila.
+- Per scorrerla servono **due cicli annidati**: quello esterno sulle righe, quello interno sulle colonne. Ogni indice ha il suo ciclo.
+- Per passarla a una funzione si passano **prima le dimensioni, poi la matrice**: `(size_t rows, size_t cols, const int m[rows][cols])`.
+- `m[i]` è la riga `i`, e si può passare alle funzioni che lavorano su un array.
+- Gli schemi sono quelli degli array: accumulatore per la somma, sentinelle per «per ogni» ed «esiste», parametri puntatore per restituire una posizione.
+- Una proprietà come «esiste una riga di soli zeri» è un «esiste» con dentro un «per ogni»: due sentinelle, una per ciclo.
+
+> [!CANALI]
+> **Canale B.** Lezione di martedì 24/11, dalle 11 alle 13: sul Moodle del corso queste slide sono nella settimana del 23 novembre, «Matrici». Le slide sono 58: se Amparore non le ha finite, il resto va alla lezione di mercoledì 25/11, e aggiorno qui. Servono gli array della [05A](05A_array_stringhe.html), i cicli annidati della [04A](04A_iterazioni.html), i parametri array e puntatore della [06B](06B_chiamata_funzioni.html) e le sentinelle della [07A](07A_algoritmi_su_array.html).
+>
+> **Canali A e C.** Le slide 2026/27 dei canali A e C su questo argomento non le ho viste. L'esame è unico.
+>
+> **Due avvisi sulle slide.**
+>
+> - Il `main` di prova del prodotto di matrici (slide 40) stampa `stampaMatrice(M, P, s)`, ma la matrice si chiama `prod`: così non si compila. Il messaggio è riportato sotto.
+> - L'output della somma di matrici (slide 33) è scritto senza parentesi quadre; la funzione `stampaMatrice` della slide 20 le mette.
+>
+> La trasposizione, il prodotto per uno scalare, il prodotto di matrici e i due esercizi finali nelle slide sono lasciati da fare: le soluzioni qui sono mie. Tutti i programmi li ho compilati con gcc 16.1, con `-Wall -Werror`, ed eseguiti.
+>
+> **Per chi segue Algebra lineare.** Somma, trasposta e prodotto di matrici sono nelle lezioni [L08](../MDAG/L08_matrici_1.html), [L09](../MDAG/L09_matrici_2.html) e [L10](../MDAG/L10_matrici_3.html). Lì gli indici partono da 1, in C da 0.
+
+## Dati con due dimensioni (slide 2–5)
+
+Un array rappresenta una sequenza: le temperature di una settimana, i voti di uno studente. Molti dati però hanno due dimensioni, e metterli in fila fa perdere la loro forma.
+
+Le slide fanno quattro esempi:
+
+- **i voti**, studenti per materie. Si possono fare le medie per studente, lungo una riga, e per materia, lungo una colonna;
+- **un'immagine in scala di grigi**: ogni numero è l'intensità di un pixel, da 0 (nero) a 255 (bianco);
+- **le vendite**, prodotti per mesi, e **una mappa di altitudini**;
+- **le reti neurali**, dove i pesi tra uno strato e il successivo sono una tabella.
+
+La tabella dei voti delle slide:
+
+| | Matematica Discreta | Fondamenti | Programmazione 1 |
+|---|---|---|---|
+| Anna | 28 | 30 | 27 |
+| Luca | 25 | 24 | 30 |
+| Giulia | 30 | 29 | 30 |
+
+> [!DEF] Matrice (slide 5)
+> Fissati un insieme di valori $T$ e due numeri naturali `rows` e `cols`, una **matrice** è una tabella rettangolare di valori di $T$, con `rows` righe e `cols` colonne.
+
+**Come si legge.** «Rettangolare» vuol dire che tutte le righe hanno la stessa lunghezza. $T$ è il tipo degli elementi: interi, reali, booleani, caratteri. L'insieme di tutte le matrici di quella forma si scrive $T^{rows \times cols}$: quella dei voti sta in $\mathbb{Z}^{3 \times 3}$.
+
+::: prova Nella tabella dei voti, che cosa calcoli sommando una riga? E sommando una colonna?
+Sommando una riga, il totale dei voti di uno studente: per Anna 85. Sommando una colonna, il totale di una materia: per Programmazione 1 è 87.
+:::
+
+> [!RICORDA]
+> - Matrice: tabella rettangolare di valori dello stesso tipo.
+> - Due dimensioni: righe e colonne.
+
+## Le matrici in C (slide 6–7)
+
+In C una matrice si dichiara come un array con due coppie di parentesi quadre: prima il numero di righe, poi quello di colonne.
+
+```c
+#define ROWS 2
+#define COLS 3
+int m[ROWS][COLS] = { {0,1,2}, {3,4,5} };
+printf("%d", m[1][2]); // stampa 5
+```
+
+L'inizializzazione ha una coppia di graffe per ogni riga. L'accesso è `m[i][j]`, con:
+
+- `i` **indice di riga**, valido nell'intervallo semiaperto `[0, ROWS)`;
+- `j` **indice di colonna**, valido in `[0, COLS)`.
+
+```grafico
+titolo: La matrice m con 2 righe e 3 colonne. L'indice di riga i sta a sinistra, l'indice di colonna j in alto. L'elemento evidenziato è m[1][2]: riga 1, colonna 2, valore 5
+x: -1.6 6.4
+y: 0 4.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0 2 2 2 2 3 0 3 | blu | tenue
+poligono: 2 2 4 2 4 3 2 3 | blu | tenue
+poligono: 4 2 6 2 6 3 4 3 | blu | tenue
+poligono: 0 1 2 1 2 2 0 2 | blu | tenue
+poligono: 2 1 4 1 4 2 2 2 | blu | tenue
+poligono: 4 1 6 1 6 2 4 2 | ambra | pieno
+testo: 1 2.5 | blu | "0"
+testo: 3 2.5 | blu | "1"
+testo: 5 2.5 | blu | "2"
+testo: 1 1.5 | blu | "3"
+testo: 3 1.5 | blu | "4"
+testo: 5 1.5 | ambra | "5"
+testo: 1 3.5 | grigio | "j = 0"
+testo: 3 3.5 | grigio | "j = 1"
+testo: 5 3.5 | grigio | "j = 2"
+testo: -0.8 2.5 | grigio | "i = 0"
+testo: -0.8 1.5 | grigio | "i = 1"
+testo: 3 0.45 | ambra | "m[1][2] vale 5"
+```
+
+Come per gli array, gli indici partono da 0: l'ultima riga è la `ROWS - 1`, l'ultima colonna la `COLS - 1`. La dichiarazione dice **quante** righe e colonne ci sono, l'accesso dice **quale**: `m[2][3]` nella dichiarazione è la forma, `m[1][2]` nell'accesso è l'angolo in basso a destra.
+
+Se l'inizializzazione ha meno valori del necessario, il resto è zero: `int t[2][3] = { {1, 2}, {3} };` dà le righe `1 2 0` e `3 0 0`. Provato.
+
+::: prova Per `int v[3][4]`, quanti elementi ci sono? Qual è l'elemento in basso a destra? `v[3][0]` esiste?
+12 elementi. In basso a destra c'è `v[2][3]`. `v[3][0]` non esiste: le righe valide sono 0, 1 e 2.
+:::
+
+> [!RICORDA]
+> - `int m[ROWS][COLS]`: prima le righe, poi le colonne.
+> - `m[i][j]`: riga `i`, colonna `j`, da 0.
+> - Indici validi: `[0, ROWS)` e `[0, COLS)`.
+
+## Come sta in memoria (slide 8–10)
+
+La memoria è una fila di celle: non ha righe e colonne. Il C mette la matrice in una zona contigua, **una riga dopo l'altra**. Si chiama *row-major order*, ordine per righe.
+
+```grafico
+titolo: La stessa matrice vista come tabella e come sta in memoria. Le due righe sono messe in fila: prima tutta la riga 0, poi tutta la riga 1. Sotto ogni cella c'è il suo posto nella fila, che vale i per 3 più j
+x: -0.4 12.4
+y: 0 6.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 3 4.8 5 4.8 5 5.8 3 5.8 | blu | tenue
+poligono: 5 4.8 7 4.8 7 5.8 5 5.8 | blu | tenue
+poligono: 7 4.8 9 4.8 9 5.8 7 5.8 | blu | tenue
+poligono: 3 3.8 5 3.8 5 4.8 3 4.8 | verde | tenue
+poligono: 5 3.8 7 3.8 7 4.8 5 4.8 | verde | tenue
+poligono: 7 3.8 9 3.8 9 4.8 7 4.8 | verde | tenue
+testo: 4 5.3 | blu | "0"
+testo: 6 5.3 | blu | "1"
+testo: 8 5.3 | blu | "2"
+testo: 4 4.3 | verde | "3"
+testo: 6 4.3 | verde | "4"
+testo: 8 4.3 | verde | "5"
+testo: 1.6 5.3 | blu | "riga 0"
+testo: 1.6 4.3 | verde | "riga 1"
+poligono: 0 1.6 2 1.6 2 2.6 0 2.6 | blu | tenue
+poligono: 2 1.6 4 1.6 4 2.6 2 2.6 | blu | tenue
+poligono: 4 1.6 6 1.6 6 2.6 4 2.6 | blu | tenue
+poligono: 6 1.6 8 1.6 8 2.6 6 2.6 | verde | tenue
+poligono: 8 1.6 10 1.6 10 2.6 8 2.6 | verde | tenue
+poligono: 10 1.6 12 1.6 12 2.6 10 2.6 | verde | tenue
+testo: 1 2.1 | blu | "0"
+testo: 3 2.1 | blu | "1"
+testo: 5 2.1 | blu | "2"
+testo: 7 2.1 | verde | "3"
+testo: 9 2.1 | verde | "4"
+testo: 11 2.1 | verde | "5"
+testo: 1 1.1 | grigio | "posto 0"
+testo: 3 1.1 | grigio | "1"
+testo: 5 1.1 | grigio | "2"
+testo: 7 1.1 | grigio | "3"
+testo: 9 1.1 | grigio | "4"
+testo: 11 1.1 | grigio | "5"
+freccia: 6 3.6 6 2.8 | ambra
+testo: 6 0.4 | grigio | "memoria: indirizzi crescenti"
+```
+
+Per arrivare a `m[i][j]` bisogna saltare `i` righe intere, ognuna di `COLS` elementi, e poi altri `j` elementi.
+
+> [!DEF] Indirizzo di un elemento (slide 10)
+> L'elemento `m[i][j]` di una matrice con `COLS` colonne e tipo `T` sta all'indirizzo
+>
+> `base(m) + (i * COLS + j) * sizeof(T)` byte
+>
+> dove `base(m)` è l'indirizzo di `m[0][0]`.
+
+**Come si legge.** `i * COLS + j` è il posto dell'elemento nella fila: per `m[1][2]`, con 3 colonne, è $1 \cdot 3 + 2 = 5$, l'ultimo. Moltiplicato per la misura di un elemento dà la distanza in byte dall'inizio. Nelle slide `m[0][0]` è a `0x3E8` e `m[1][2]` a `0x3FC`, 20 byte dopo: 5 elementi da 4 byte.
+
+Ho stampato le distanze sul mio PC: 0, 4, 8, 12, 16, 20 byte, come dice la formula. E `sizeof(m)` vale 24, `sizeof(m[0])` vale 12: una riga è un array di 3 interi.
+
+Nella formula compare `COLS` e non `ROWS`. Per trovare un elemento il compilatore deve sapere **quanto è lunga una riga**, non quante righe ci sono. È il motivo per cui, più avanti, nei parametri di una funzione il numero di colonne è obbligatorio e quello di righe no.
+
+> [!TRAPPOLA] Fuori riga non vuol dire fuori matrice
+> Con 3 colonne, `m[0][3]` non esiste. Ma la formula dà il posto $0 \cdot 3 + 3 = 3$, che è quello di `m[1][0]`: ho controllato, i due indirizzi coincidono. Un indice di colonna troppo grande non dà errore: legge o scrive **un'altra riga**. È comunque un accesso non valido, e non va usato.
+
+::: prova In `int a[4][5]`, qual è il posto nella fila di `a[2][3]`? Quanti byte dopo l'inizio sta, se un `int` occupa 4 byte?
+$2 \cdot 5 + 3 = 13$. Sta 52 byte dopo l'inizio.
+:::
+
+> [!RICORDA]
+> - In memoria: una fila contigua, riga dopo riga.
+> - Posto di `m[i][j]`: `i * COLS + j`.
+> - Serve la lunghezza della riga, non il numero di righe.
+
+## Due cicli annidati (slide 11–13)
+
+Per visitare tutti gli elementi servono due cicli, uno dentro l'altro: quello esterno sceglie la riga, quello interno scorre le colonne di quella riga. Il principio delle slide: **ogni indice ha il suo ciclo**.
+
+```c
+for (size_t i = 0; i < ROWS; i++) {      // ciclo esterno
+    for (size_t j = 0; j < COLS; j++) {  // ciclo interno
+        // uso m[i][j]
+    }
+}
+```
+
+Per ogni valore di `i` il ciclo interno riparte da `j = 0` e fa tutti i suoi giri. Con 2 righe e 3 colonne il corpo viene eseguito 6 volte, in quest'ordine:
+
+| `i` | `j` | Elemento | Valore |
+|---|---|---|---|
+| 0 | 0 | `m[0][0]` | 0 |
+| 0 | 1 | `m[0][1]` | 1 |
+| 0 | 2 | `m[0][2]` | 2 |
+| 1 | 0 | `m[1][0]` | 3 |
+| 1 | 1 | `m[1][1]` | 4 |
+| 1 | 2 | `m[1][2]` | 5 |
+
+È lo stesso ordine in cui gli elementi stanno in memoria.
+
+Quello che si scrive **tra** i due cicli viene eseguito una volta per riga. Serve per le cose «di riga»: aprire e chiudere una parentesi, andare a capo, azzerare un accumulatore di riga.
+
+```c
+for (size_t i = 0; i < ROWS; i++) {
+    // INIZIO RIGA
+    printf("[ ");
+    for (size_t j = 0; j < COLS; j++) {
+        // stampa elementi della riga
+        printf("%d ", m[i][j]);
+    }
+    // FINE RIGA
+    printf("]\n");
+}
+```
+
+Stampa:
+
+```text
+[ 0 1 2 ]
+[ 3 4 5 ]
+```
+
+::: prova Scambiando i due cicli, con `j` fuori e `i` dentro, e lasciando `m[i][j]` nel corpo, in che ordine vengono visitati i valori?
+Per colonne: 0, 3, 1, 4, 2, 5. Va bene quando serve lavorare colonna per colonna, per esempio per la media di ogni materia.
+:::
+
+> [!RICORDA]
+> - Ciclo esterno: righe. Ciclo interno: colonne.
+> - Il ciclo interno riparte da capo per ogni riga.
+> - Tra i due cicli: quello che va fatto una volta per riga.
+
+## Le matrici come parametri (slide 14–20)
+
+Una matrice si passa a una funzione, ma il modo di scrivere il parametro dipende da come sono note le dimensioni. Prima serve sapere di che tipo sono i pezzi di una matrice.
+
+| Espressione | Che cos'è | Tipo |
+|---|---|---|
+| `m` | la matrice; usata in un'espressione diventa un puntatore alla prima riga | `int[ROWS][COLS]`, convertibile in `int(*)[COLS]` |
+| `m[i]` | la riga `i`: un array di `COLS` interi | `int[COLS]`, convertibile in `int*` |
+| `m[i][j]` | il valore di un elemento | `int` |
+| `&m[i][j]` | l'indirizzo di un elemento | `int*` |
+
+Una matrice è un **array di array**: un array di `ROWS` elementi, ognuno dei quali è un array di `COLS` interi. Come per gli array della [06B](06B_chiamata_funzioni.html), alla funzione arriva un indirizzo, non una copia: la funzione lavora sulla matrice del chiamante.
+
+### Dimensioni fisse
+
+Se le dimensioni sono costanti definite con `#define`, il prototipo le riporta:
+
+```c
+void fn(int m[ROWS][COLS]); // prototipo
+fn(mat);                    // chiamata
+```
+
+`ROWS` qui documenta la forma attesa, ma non fa parte del tipo: il C permette di ometterlo e scrivere `int m[][COLS]` oppure `int (*m)[COLS]`. `COLS` invece è obbligatorio, per la formula dell'indirizzo. Senza, gcc dice:
+
+```text
+senzacols.c:3:13: error: array type has incomplete element type 'int[]'
+    3 | void fn(int m[][]);
+      |             ^
+senzacols.c:3:13: note: declaration of 'm' as multidimensional array must have bounds for all dimensions except the first
+```
+
+### Dimensioni variabili
+
+Dal C99 righe e colonne possono essere decise durante l'esecuzione, e la funzione le riceve come parametri:
+
+```c
+void fn(const size_t rows, const size_t cols, int m[rows][cols]);
+fn(rows, cols, mat);        // chiamata
+```
+
+È la forma che Amparore usa di più, ed è quella degli esercizi d'esame. **L'ordine dei parametri conta**: `rows` e `cols` devono venire prima di `m`, perché il tipo di `m` li usa. Al contrario gcc dice:
+
+```text
+ordine.c:4:30: error: 'rows' undeclared here (not in a function)
+    4 | int sommaMatrice(const int m[rows][cols], size_t rows, size_t cols);
+      |                              ^~~~
+```
+
+Una matrice a dimensioni variabili non si può inizializzare con una lista: `int mat[rows][cols] = { {0,1,2}, {3,4,5} };` dà `variable-sized object may not be initialized except with an empty initializer`. Si riempie con i cicli.
+
+### Una riga come array
+
+`m[i]` è un array di `COLS` interi, e si passa a qualunque funzione che lavora su un array:
+
+```c
+void fn_su_array(const size_t aLen, int a[]);
+fn_su_array(COLS, mat[i]);       // qui aLen = COLS
+```
+
+Tutte le funzioni della [07A](07A_algoritmi_su_array.html) funzionano così su una riga, senza cambiare una virgola: con una `sommaArray` ho calcolato la somma della riga 1 della matrice di prima, 12.
+
+### La funzione di stampa
+
+```c
+// Stampa gli elementi di una matrice di interi m[rows][cols].
+// Ogni riga della matrice è visualizzata tra parentesi quadre.
+void stampaMatrice(size_t rows, size_t cols, const int m[rows][cols]) {
+    for (size_t i = 0; i < rows; i++) {
+        printf("[ ");
+        for (size_t j = 0; j < cols; j++) {
+            printf("%d ", m[i][j]);   // stampa elementi della riga
+        }
+        printf("]\n");
+    }
+}
+```
+
+`const` dice che la funzione legge la matrice e non la modifica. La chiamata è `stampaMatrice(ROWS, COLS, m);`.
+
+::: prova Scrivi il prototipo di una funzione `azzera` che mette a 0 tutti gli elementi di una matrice di `double` a dimensioni variabili. Ci va `const`?
+`void azzera(size_t rows, size_t cols, double m[rows][cols]);`. Niente `const` sulla matrice: la funzione la modifica.
+:::
+
+> [!RICORDA]
+> - Prima `rows` e `cols`, poi `m[rows][cols]`.
+> - Il numero di colonne nel parametro è obbligatorio.
+> - Arriva l'indirizzo: la funzione lavora sulla matrice del chiamante.
+> - `m[i]` è un array: si passa alle funzioni sugli array.
+> - `const` se la funzione non modifica.
+
+## Somma degli elementi ed errori tipici (slide 21–27)
+
+Sommare tutti i valori di una matrice è una sommatoria doppia: per ogni riga, per ogni colonna, si aggiunge `m[i][j]` a un accumulatore. L'accumulatore parte da 0, il valore che non cambia una somma, come nella [04A](04A_iterazioni.html).
+
+```c
+int sommaMatrice(const size_t rows, const size_t cols, const int m[rows][cols]) {
+    int s = 0; // accumulatore
+    for (size_t i = 0; i < rows; i++) {        // ciclo righe
+        for (size_t j = 0; j < cols; j++) {    // ciclo colonne
+            s += m[i][j];                      // accumulo elemento
+        }
+    }
+    return s;
+}
+```
+
+Con la matrice `{ {0,1,2}, {3,4,5} }` e la chiamata `sommaMatrice(ROWS, COLS, m)` dà 15. Si chiama **scansione completa**: ogni elemento viene visitato una volta. La versione a dimensioni fisse è identica, con `ROWS` e `COLS` al posto dei parametri e il prototipo `int sommaMatrice(const int m[ROWS][COLS]);`.
+
+L'accumulatore è dichiarato **fuori** dai due cicli, perché la somma è di tutta la matrice. Se servisse la somma di ogni riga, andrebbe azzerato tra i due cicli, a ogni riga nuova.
+
+Gli errori tipici delle slide:
+
+- **accumulatore o indici inizializzati male**: `s` non azzerato, o un ciclo che parte da 1;
+- **indici scambiati**: `m[j][i]` al posto di `m[i][j]`. In una matrice quadrata legge la matrice per colonne, e la somma torna lo stesso; in una rettangolare esce dalla matrice;
+- **accesso fuori intervallo**: il C non controlla gli indici. Con `i >= rows` o `j >= cols` il comportamento è indefinito: si leggono o si scrivono celle di altre variabili.
+
+> [!TRAPPOLA] gcc non avvisa sugli indici
+> `printf("%d\n", m[2][0]);` su una matrice con 2 righe si compila con `-Wall -Werror` senza nessun messaggio. Che il programma si compili non dice che gli indici siano giusti.
+
+Le buone pratiche:
+
+- **`size_t` per gli indici**: è il tipo delle dimensioni e non può essere negativo;
+- **dimensioni con un nome**, `ROWS` e `COLS`, invece di numeri scritti nel codice;
+- **una funzione per ogni operazione**: si riusa e si prova da sola;
+- **`const` sui parametri che non vengono modificati**: evita modifiche per sbaglio e dice a chi legge che la funzione fa solo lettura.
+
+::: prova Che cosa cambia in `sommaMatrice` per ottenere la somma della sola riga `r`?
+Sparisce il ciclo esterno: resta `for (size_t j = 0; j < cols; j++) { s += m[r][j]; }`, con `r` come parametro in più. Oppure si chiama una funzione sugli array con `m[r]`.
+:::
+
+> [!RICORDA]
+> - Somma: accumulatore a 0, due cicli, `s += m[i][j]`.
+> - `m[i][j]`, non `m[j][i]`.
+> - Nessun controllo sugli indici, né dal compilatore né durante l'esecuzione.
+
+## Somma, trasposta e prodotto (slide 28–40)
+
+Sono le operazioni di Algebra lineare, tradotte in cicli. In tutte la matrice del risultato è un parametro in più, senza `const`: la prepara il chiamante e la funzione la riempie.
+
+### Somma di due matrici
+
+La somma di due matrici della stessa forma si fa elemento per elemento: $C_{ij} = A_{ij} + B_{ij}$. Nell'esempio delle slide:
+
+$$\begin{bmatrix} 0 & 1 & 2 \\ 3 & 4 & 5 \end{bmatrix} + \begin{bmatrix} 6 & 7 & 8 \\ 9 & 10 & 11 \end{bmatrix} = \begin{bmatrix} 6 & 8 & 10 \\ 12 & 14 & 16 \end{bmatrix}$$
+
+```c
+void sommaMatrici(size_t rows, size_t cols,
+                  const int a[rows][cols],
+                  const int b[rows][cols],
+                        int c[rows][cols])
+{
+    for (size_t i = 0; i < rows; i++) {
+        for (size_t j = 0; j < cols; j++) {
+            c[i][j] = a[i][j] + b[i][j];
+        }
+    }
+}
+```
+
+La stessa coppia `(i, j)` serve per le tre matrici. `const` separa i due ingressi dall'uscita. Provata: stampa `[ 6 8 10 ]` e `[ 12 14 16 ]`.
+
+### Trasposta sul posto
+
+La trasposta scambia righe e colonne: $(A^T)_{ij} = A_{ji}$. Per una matrice quadrata si può fare **sul posto** (*in-place*), cioè modificando la matrice stessa senza usarne un'altra: ogni elemento sopra la diagonale si scambia con quello nella posizione speculare.
+
+$$A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix} \qquad A^T = \begin{bmatrix} 1 & 4 & 7 \\ 2 & 5 & 8 \\ 3 & 6 & 9 \end{bmatrix}$$
+
+Le slide danno il prototipo e lasciano il corpo come esercizio. La mia soluzione:
+
+```c
+// Trasposizione in-place di una matrice quadrata n×n
+void trasponiMatrice(size_t n, int a[n][n]) {
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = i + 1; j < n; j++) {   // solo sopra la diagonale
+            int tmp = a[i][j];
+            a[i][j] = a[j][i];
+            a[j][i] = tmp;
+        }
+    }
+}
+```
+
+> [!TRAPPOLA] Con `j` da 0 non succede niente
+> Se il ciclo interno parte da `j = 0`, ogni coppia viene scambiata **due volte**: una quando si passa da `(i, j)` e una quando si passa da `(j, i)`. La matrice torna com'era. L'ho provato: l'uscita è uguale all'ingresso. Il ciclo interno deve partire da `i + 1`, così ogni coppia si incontra una volta sola; gli elementi della diagonale restano dove sono.
+
+### Prodotto per uno scalare
+
+Ogni elemento viene moltiplicato per lo stesso numero `k`: $C_{ij} = k \cdot A_{ij}$.
+
+```c
+void prodottoScalareMatrice(size_t rows, size_t cols, int k,
+                            const int a[rows][cols],
+                                  int c[rows][cols]) {
+    for (size_t i = 0; i < rows; i++) {
+        for (size_t j = 0; j < cols; j++) {
+            c[i][j] = k * a[i][j];
+        }
+    }
+}
+```
+
+### Prodotto di due matrici
+
+Il prodotto di una matrice $A$ con `m` righe e `n` colonne per una matrice $B$ con `n` righe e `p` colonne è una matrice $C$ con `m` righe e `p` colonne. Le colonne di $A$ devono essere tante quante le righe di $B$.
+
+$$C_{ij} = \sum_{k=0}^{n-1} A_{ik} \cdot B_{kj}$$
+
+A parole: l'elemento `(i, j)` del risultato si ottiene dalla **riga `i` di $A$** e dalla **colonna `j` di $B$**, moltiplicando gli elementi che hanno lo stesso posto e sommando i prodotti. Nell'esempio delle slide:
+
+$$\begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} \times \begin{bmatrix} 7 & 8 \\ 9 & 10 \\ 11 & 12 \end{bmatrix} = \begin{bmatrix} 58 & 64 \\ 139 & 154 \end{bmatrix}$$
+
+Il primo elemento: $1 \cdot 7 + 2 \cdot 9 + 3 \cdot 11 = 7 + 18 + 33 = 58$.
+
+La formula ha tre indici, e ogni indice ha il suo ciclo: i cicli sono **tre**. I due esterni scelgono l'elemento del risultato; il terzo è la sommatoria, con il suo accumulatore.
+
+```c
+// Calcola il prodotto di due matrici A (m×n) e B (n×p)
+void prodottoMatrici(size_t m, size_t n, size_t p,
+                     const int a[m][n],
+                     const int b[n][p],
+                           int c[m][p]) {
+    for (size_t i = 0; i < m; i++) {
+        for (size_t j = 0; j < p; j++) {
+            int s = 0;                      // accumulatore per c[i][j]
+            for (size_t k = 0; k < n; k++) {
+                s += a[i][k] * b[k][j];
+            }
+            c[i][j] = s;
+        }
+    }
+}
+```
+
+L'accumulatore `s` è dichiarato dentro il secondo ciclo: riparte da 0 per ogni elemento del risultato. Provata con le matrici delle slide: stampa `[ 58 64 ]` e `[ 139 154 ]`.
+
+Nel `main` di prova della slide 40 l'ultima riga è `stampaMatrice(M, P, s);`, ma la matrice del risultato si chiama `prod`. gcc:
+
+```text
+slide40.c:17:25: error: 's' undeclared (first use in this function)
+   17 |     stampaMatrice(M, P, s);
+      |                         ^
+```
+
+::: prova Nel prodotto delle slide, come si calcola l'elemento in basso a destra, 154?
+Riga 1 di $A$ per colonna 1 di $B$: $4 \cdot 8 + 5 \cdot 10 + 6 \cdot 12 = 32 + 50 + 72 = 154$.
+:::
+
+> [!RICORDA]
+> - Il risultato è un parametro senza `const`, preparato dal chiamante.
+> - Trasposta sul posto: il ciclo interno parte da `i + 1`.
+> - Prodotto: tre cicli, e un accumulatore azzerato per ogni elemento.
+
+## Il massimo con selezione (slide 41–46)
+
+Il problema: trovare **dove** sta l'elemento positivo più grande. Gli elementi che non sono positivi non contano, e può darsi che non ce ne sia nessuno.
+
+> [!DEF] Ricerca del massimo positivo (slide 42)
+> **Ingresso**: una matrice `m` di interi, `rows` per `cols`, di cui si considerano solo gli elementi strettamente positivi. **Uscita**: la posizione `(iMax, jMax)` dell'elemento positivo di valore massimo, e `true`. Se non ci sono elementi positivi: `false`, con `iMax = rows` e `jMax = cols`.
+
+**Come si legge.** La funzione deve restituire tre cose: un booleano e due indici. Con `return` ne esce una sola, quindi i due indici escono da parametri puntatore, come nella [06B](06B_chiamata_funzioni.html). I valori `rows` e `cols` sono **sentinelle**: non sono indici validi, e per questo possono voler dire «non trovato», come `aLen` nella ricerca lineare della [07A](07A_algoritmi_su_array.html).
+
+Per `{ {0, -1, 2}, {3, 5, 4} }` il massimo positivo è 5, in posizione `(1, 1)`.
+
+```c
+bool ricercaMaxPos(size_t rows, size_t cols, const int m[rows][cols],
+                   size_t *iMax, size_t *jMax)
+{
+    int max = 0;                // valore sentinella per il massimo
+    *iMax = rows;               // valori sentinella iniziali per le posizioni
+    *jMax = cols;
+    bool esistePos = false;     // non abbiamo ancora iniziato la scansione
+
+    for (size_t i = 0; i < rows; i++) { // ciclo esterno sulle righe
+        for (size_t j = 0; j < cols; j++) { // ciclo interno sulle colonne
+            if (m[i][j] > 0 && m[i][j] > max) {
+                max = m[i][j];
+                *iMax = i;
+                *jMax = j;
+                esistePos = true; // trovato un elemento positivo
+            }
+        }
+    }
+    return esistePos;
+}
+```
+
+Come è costruita:
+
+- **I valori di partenza sono già la risposta del caso «nessun positivo»**: posizioni sentinella e `false`. Se la scansione non trova niente, non c'è altro da fare.
+- **`max = 0`** va bene solo perché si cercano i positivi: qualunque elemento positivo supera 0. Per il massimo di una matrice qualunque, 0 sarebbe sbagliato: con tutti gli elementi negativi resterebbe 0, che nella matrice non c'è.
+- **Le due condizioni in una**: `m[i][j] > 0 && m[i][j] > max` è «selezionato» e «migliore del massimo finora».
+- **La scansione è completa**: nessuna sentinella nelle condizioni dei cicli. Per il massimo bisogna guardare tutto, perché l'ultimo elemento potrebbe essere il più grande.
+
+Provata: `(1, 1)` e `true` per l'esempio; `(2, 3)` e `false` per una matrice 2 per 3 senza positivi. Con il massimo ripetuto, `{ {5, 1, 5}, {2, 5, 0} }`, dà `(0, 0)`: il confronto è `>`, quindi vince il **primo** incontrato.
+
+::: prova Che cosa cambierebbe scrivendo `m[i][j] >= max` al posto di `m[i][j] > max`?
+Con il massimo ripetuto verrebbe restituita la posizione dell'**ultimo**: nell'esempio `(1, 1)` invece di `(0, 0)`. Il valore massimo sarebbe lo stesso.
+:::
+
+> [!RICORDA]
+> - Più risultati: uno con `return`, gli altri con parametri puntatore.
+> - Posizioni sentinella `(rows, cols)`: fuori intervallo, quindi «non trovato».
+> - Il massimo vuole una scansione completa.
+> - `max = 0` va bene solo per i positivi.
+
+## Verificare una proprietà (slide 47–51)
+
+Il problema: dire se **tutti** gli elementi di una matrice rispettano una condizione `Cond`. Con «pari» come condizione, `{ {2,4}, {6,8} }` dà `true` e `{ {2,3}, {6,8} }` dà `false`, perché 3 non è pari.
+
+È il test d'ipotesi della [07A](07A_algoritmi_su_array.html), su due indici invece di uno:
+
+- **ipotesi di partenza**: tutti gli elementi rispettano la condizione, $\forall (i,j) : Cond(m[i][j])$;
+- **ipotesi alternativa**: ce n'è almeno uno che non la rispetta, $\exists (i,j) : \lnot Cond(m[i][j])$.
+
+Si parte credendo alla prima, con una sentinella a `true`, e si cerca un controesempio. Al primo che si trova la sentinella diventa `false` e la ricerca si ferma. Se si arriva in fondo senza trovarne, l'ipotesi di partenza è confermata.
+
+```c
+// Verifica che tutti gli elementi della matrice siano pari
+bool verificaTuttiPari(size_t rows, size_t cols, const int m[rows][cols]) {
+    bool tuttiOk = true; // Assumiamo H0 inizialmente vera, tutti soddisfano
+    for (size_t i = 0; i < rows && tuttiOk; i++) {
+        for (size_t j = 0; j < cols && tuttiOk; j++) {
+            if (m[i][j] % 2 != 0) {
+                tuttiOk = false; // violazione trovata, H0 rifiutata
+            }
+        }
+    }
+    return tuttiOk; // H0 accettata
+}
+```
+
+La sentinella sta nella condizione di **tutti e due** i cicli. Nel ciclo interno ferma la scansione della riga; nel ciclo esterno impedisce di cominciare le righe successive. Se la si mette solo nel ciclo interno, il risultato è giusto lo stesso, ma dopo il controesempio il ciclo esterno fa ancora un giro a vuoto per ogni riga rimasta.
+
+Niente `break`, che all'esame è vietato, e una sola `return`.
+
+Il test è `m[i][j] % 2 != 0`, non `== 1`: con un numero negativo dispari il resto è −1, e il confronto con 1 lo prenderebbe per pari.
+
+::: prova Come cambia la funzione per rispondere a «esiste un elemento negativo»?
+La sentinella parte da `false`, per esempio `bool esiste = false;`. Le condizioni dei cicli diventano `i < rows && !esiste` e `j < cols && !esiste`. Il test è `m[i][j] < 0`, e quando è vero si mette `esiste = true`.
+:::
+
+> [!RICORDA]
+> - «Per ogni»: sentinella a `true`, si cerca un controesempio.
+> - La sentinella va nella condizione di tutti e due i cicli.
+> - Niente `break`, una sola `return`.
+
+## Due test uno dentro l'altro (slide 52–58)
+
+La proprietà «**esiste una riga di soli zeri**» ha due quantificatori. Le slide la scrivono in due passi: prima che cosa vuol dire che la riga `i` è di soli zeri, poi che una riga così esiste.
+
+$$RowZero(i) : \ \forall j \in [0, cols) : M_{ij} = 0 \qquad\qquad \exists i \in [0, rows) : RowZero(i)$$
+
+Un «esiste» sulle righe, con dentro un «per ogni» sulle colonne. Ogni quantificatore ha la sua sentinella, con il valore di partenza giusto per lui, e il suo ciclo.
+
+```c
+bool existsRowAllZeros(size_t rows, size_t cols, const int m[rows][cols]) {
+    bool esisteRiga = false;      // ipotesi H0: non ci sono righe di tutti zeri
+    for (size_t i = 0; i < rows && !esisteRiga; ++i) {
+        bool allZero = true;      // ipotesi H0b: la riga i è tutta a zeri
+        for (size_t j = 0; j < cols && allZero; ++j) {
+            if (m[i][j] != 0) {   // trovato un elemento ≠ 0 nella riga i
+                allZero = false;  // H1b: la riga i NON è tutta a zeri
+            }
+        }
+        if (allZero) { // trovata riga tutta zero
+            esisteRiga = true;    // H1: esiste riga di soli zeri
+        }
+    }
+    return esisteRiga;
+}
+```
+
+```grafico
+titolo: I due test sulla matrice di prova delle slide. La riga 0 viene scartata al primo elemento, che non è zero. La riga 1 viene letta tutta: è di soli zeri, e la ricerca si ferma. La riga 2 non viene nemmeno guardata
+x: -2.6 11.6
+y: 0 4.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0 3 1.6 3 1.6 4 0 4 | rosa | tenue
+poligono: 1.6 3 3.2 3 3.2 4 1.6 4 | grigio | tenue
+poligono: 3.2 3 4.8 3 4.8 4 3.2 4 | grigio | tenue
+poligono: 4.8 3 6.4 3 6.4 4 4.8 4 | grigio | tenue
+testo: 0.8 3.5 | rosa | "1"
+testo: 2.4 3.5 | grigio | "0"
+testo: 4.0 3.5 | grigio | "2"
+testo: 5.6 3.5 | grigio | "0"
+poligono: 0 2 1.6 2 1.6 3 0 3 | verde | tenue
+poligono: 1.6 2 3.2 2 3.2 3 1.6 3 | verde | tenue
+poligono: 3.2 2 4.8 2 4.8 3 3.2 3 | verde | tenue
+poligono: 4.8 2 6.4 2 6.4 3 4.8 3 | verde | tenue
+testo: 0.8 2.5 | verde | "0"
+testo: 2.4 2.5 | verde | "0"
+testo: 4.0 2.5 | verde | "0"
+testo: 5.6 2.5 | verde | "0"
+poligono: 0 1 1.6 1 1.6 2 0 2 | grigio | tenue
+poligono: 1.6 1 3.2 1 3.2 2 1.6 2 | grigio | tenue
+poligono: 3.2 1 4.8 1 4.8 2 3.2 2 | grigio | tenue
+poligono: 4.8 1 6.4 1 6.4 2 4.8 2 | grigio | tenue
+testo: 0.8 1.5 | grigio | "5"
+testo: 2.4 1.5 | grigio | "6"
+testo: 4.0 1.5 | grigio | "0"
+testo: 5.6 1.5 | grigio | "7"
+testo: -1.3 3.5 | grigio | "riga 0"
+testo: -1.3 2.5 | grigio | "riga 1"
+testo: -1.3 1.5 | grigio | "riga 2"
+testo: 9.0 3.5 | rosa | "allZero: false"
+testo: 9.0 2.5 | verde | "allZero: true"
+testo: 9.0 1.5 | grigio | "non guardata"
+testo: 3.2 0.4 | verde | "esisteRiga: true"
+```
+
+I due test, uno per livello:
+
+| | Test esterno, sulla matrice | Test interno, sulla riga `i` |
+|---|---|---|
+| Quantificatore | esiste una riga… | per ogni colonna… |
+| Sentinella | `esisteRiga = false` | `allZero = true` |
+| Si ferma quando | trova una riga di soli zeri | trova un elemento diverso da 0 |
+| Condizione del ciclo | `i < rows && !esisteRiga` | `j < cols && allZero` |
+
+Tre dettagli che nel codice contano:
+
+- **`allZero` è dichiarata dentro il ciclo esterno**: è una domanda sulla riga, e riparte da `true` a ogni riga nuova. Dichiarata fuori, dopo la prima riga scartata resterebbe `false` per sempre.
+- **Il collegamento tra i due test** è l'`if (allZero)` dopo il ciclo interno: la risposta del test interno diventa il «trovato» del test esterno.
+- **Alla fine** `esisteRiga` falso vuol dire che ogni riga ha almeno un elemento diverso da zero: è la negazione della formula, con i quantificatori scambiati, come in [Fondamenti](../FDA/11_quantificatori_annidati.html).
+
+I casi limite seguono dalle sentinelle, senza codice in più:
+
+- con **zero righe** la risposta è `false`: non esiste nessuna riga;
+- con **zero colonne** e almeno una riga la risposta è `true`: una riga senza elementi è di soli zeri a vuoto, perché non ha controesempi.
+
+I cinque test delle slide passano tutti, compreso `existsRowAllZeros(0, 0, NULL)`.
+
+Le slide finiscono con due esercizi da fare; li trovi svolti negli esercizi qui sotto.
+
+::: prova Per «**ogni** riga contiene **almeno uno** zero», quali sono le due sentinelle e i loro valori di partenza?
+Fuori un «per ogni»: `bool tutte = true;`. Dentro un «esiste»: `bool trovato = false;`, dichiarata nel ciclo esterno. Dopo il ciclo interno: `if (!trovato) { tutte = false; }`.
+:::
+
+> [!RICORDA]
+> - Un quantificatore, una sentinella, un ciclo.
+> - «Esiste» parte da `false`, «per ogni» da `true`.
+> - La sentinella interna si dichiara dentro il ciclo esterno.
+> - Dopo il ciclo interno, il suo risultato aggiorna la sentinella esterna.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `int m[R][C]` | «m, R per C» | matrice di interi con `R` righe e `C` colonne | `int m[2][3]` |
+| `m[i][j]` | «m di i, j» | l'elemento della riga `i` e della colonna `j` | `m[1][2]` vale 5 |
+| `m[i]` | «m di i» | la riga `i`, un array di `C` elementi | `sommaArray(COLS, m[1])` |
+| `i * COLS + j` | «i per COLS più j» | il posto di `m[i][j]` nella fila in memoria | $1 \cdot 3 + 2 = 5$ |
+| $T^{rows \times cols}$ | «T alla rows per cols» | l'insieme delle matrici di quella forma | $\mathbb{Z}^{2 \times 3}$ |
+| $A^T$ | «A trasposta» | la matrice con righe e colonne scambiate | $(A^T)_{ij} = A_{ji}$ |
+| $\sum_{k=0}^{n-1}$ | «somma per k da 0 a n meno 1» | un ciclo con accumulatore | il terzo ciclo del prodotto |
+| $\forall$, $\exists$ | «per ogni», «esiste» | i due quantificatori | $\exists i : \forall j : M_{ij} = 0$ |
+
+## Verso l'esame
+
+All'esame l'esercizio di programmazione iterativa (`e1`) è molto spesso su una matrice, con una proprietà fatta di «per ogni» ed «esiste» annidati. Le regole: una sola `return`, niente `break`, compilazione con `-Wall -Werror`. Di questa lezione servono:
+
+1. **il prototipo con le dimensioni prima della matrice**, e `const` se la matrice è solo letta;
+2. **i due cicli annidati** con gli intervalli semiaperti, senza scambiare `i` e `j`;
+3. **una sentinella per quantificatore**, con il valore di partenza giusto, nella condizione dei cicli;
+4. **dove dichiarare le variabili di riga**: dentro il ciclo esterno;
+5. **i casi limite**, zero righe e zero colonne, controllati a mano.
+
+L'esercizio vero che ho, quello del pre-esame 2023/24, è svolto nella [07A](07A_algoritmi_su_array.html): «per ogni riga, la riga è lunga almeno `rows` ed esiste un multiplo di 7». Usa una matrice irregolare, con un array `rags` che dà la lunghezza di ogni riga: è un argomento delle prossime lezioni, ma lo schema dei due test annidati è quello di oggi.
+
+### Una domanda sul modello, letta insieme
+
+È il secondo esercizio della slide 58, scritto come un testo d'esame.
+
+«Scrivere una funzione iterativa `e1` che riceve una matrice di interi (`rows`, `cols`, `m`) e ritorna `true` se esiste almeno una riga in cui tutte le coppie di elementi adiacenti sono in ordine non decrescente, `false` altrimenti.»
+
+**In pratica chiede:** esiste una riga `i` in cui, per ogni `j` da 1 a `cols - 1`, vale `m[i][j-1] <= m[i][j]`. Un «esiste» con dentro un «per ogni»: la stessa struttura della riga di zeri, con il test di ordinamento della 07A al posto del confronto con zero.
+
+**Soluzione.**
+
+1. Sentinella esterna `esiste = false`, condizione `i < rows && !esiste`.
+2. Per ogni riga, sentinella interna `ordinata = true`.
+3. Il ciclo interno parte da `j = 1` e confronta ogni elemento con il precedente; condizione `j < cols && ordinata`.
+4. Al primo `m[i][j-1] > m[i][j]`, `ordinata = false`.
+5. Dopo il ciclo interno: se `ordinata`, allora `esiste = true`.
+
+```c
+bool e1(size_t rows, size_t cols, const int m[rows][cols]) {
+    bool esiste = false;               // "esiste una riga": parte da false
+    for (size_t i = 0; i < rows && !esiste; i++) {
+        bool ordinata = true;          // "per ogni coppia adiacente": parte da true
+        for (size_t j = 1; j < cols && ordinata; j++) {
+            if (m[i][j - 1] > m[i][j]) {
+                ordinata = false;
+            }
+        }
+        if (ordinata) {
+            esiste = true;
+        }
+    }
+    return esiste;
+}
+```
+
+Provata: `{ {3, 1, 2}, {5, 4, 6} }` dà `false`; `{ {3, 1, 2}, {4, 4, 6} }` dà `true`, perché «non decrescente» permette i valori uguali. Con zero righe dà `false`. Con una sola colonna dà `true`: una riga di un elemento non ha coppie, ed è ordinata a vuoto.
+
+> [!METODO] Da una proprietà con due quantificatori al codice
+> 1. Scrivi la proprietà con «per ogni» ed «esiste», dicendo su che cosa corre ogni indice.
+> 2. Il quantificatore esterno è il ciclo esterno, quello interno il ciclo interno.
+> 3. Una sentinella per ciascuno: `true` per «per ogni», `false` per «esiste». Quella interna dichiarata dentro il ciclo esterno.
+> 4. Ogni ciclo ha nella condizione la sua sentinella, e si ferma appena la risposta è decisa.
+> 5. Dopo il ciclo interno, un `if` passa il suo risultato alla sentinella esterna.
+> 6. Controlla zero righe e zero colonne: le sentinelle devono già dare la risposta giusta.
+
+### Errori da evitare
+
+- Scrivere il parametro matrice prima di `rows` e `cols`.
+- Scambiare `i` e `j`, o usare `rows` come limite del ciclo sulle colonne.
+- Dichiarare la sentinella di riga fuori dal ciclo esterno.
+- Dimenticare la sentinella nella condizione del ciclo esterno.
+- Nella trasposta sul posto, far partire il ciclo interno da 0.
+- Nel prodotto, non azzerare l'accumulatore per ogni elemento.
+
+## Quiz
+
+```quiz
+D: Dopo `int m[2][3] = { {0,1,2}, {3,4,5} };`, quanto vale `m[1][0]`?
+N: 3
+= Riga 1, colonna 0: il primo elemento della seconda riga.
+
+D: In `int a[4][6]`, in quale posto della fila in memoria sta `a[2][5]`, contando da 0?
+N: 17
+= Si saltano 2 righe da 6 elementi e poi altri 5: 12 + 5.
+
+D: Qual è il prototipo giusto per una funzione che legge una matrice a dimensioni variabili?
++ `int f(size_t rows, size_t cols, const int m[rows][cols]);`
+- `int f(const int m[rows][cols], size_t rows, size_t cols);`
+- `int f(size_t rows, size_t cols, const int m[][]);`
+- `int f(const int m[][]);`
+- `int f(size_t rows, size_t cols, const int m);`
+= Le dimensioni devono essere dichiarate prima di essere usate nel tipo di `m`. La più insidiosa è `int f(const int m[rows][cols], size_t rows, size_t cols);`: sembra la stessa cosa in un altro ordine, ma gcc dice `'rows' undeclared here`.
+
+D: Perché nel parametro di una funzione il numero di colonne è obbligatorio e quello di righe no?
++ perché per trovare `m[i][j]` serve sapere quanto è lunga una riga
+- perché le righe si contano da sole con `sizeof`
+- perché le colonne sono sempre più delle righe
+- perché il C controlla gli indici di colonna ma non quelli di riga
+- non è vero: sono obbligatori tutti e due
+= Il posto dell'elemento è `i * COLS + j`: il numero di righe non compare. La più insidiosa è «perché il C controlla gli indici di colonna ma non quelli di riga»: il C non controlla nessun indice.
+
+D: Che cosa stampa il ciclo `for (size_t j = 0; j < 3; j++) { for (size_t i = 0; i < 2; i++) { printf("%d ", m[i][j]); } }` sulla matrice `{ {0,1,2}, {3,4,5} }`?
++ `0 3 1 4 2 5`
+- `0 1 2 3 4 5`
+- `0 3 1 4`
+- `3 4 5 0 1 2`
+- `0 1 3 4 2 5`
+= Il ciclo esterno è sulle colonne: la matrice viene letta colonna per colonna. La più insidiosa è `0 1 2 3 4 5`, che è l'ordine per righe.
+
+D: In `verificaTuttiPari`, quale valore ha la sentinella `tuttiOk` all'inizio, e perché?
++ `true`: si parte dall'ipotesi che tutti rispettino la condizione e si cerca un controesempio
+- `false`: finché non si è guardato niente non si sa
+- `true`: perché la matrice ha almeno un elemento
+- `false`: diventa `true` al primo elemento pari
+- non importa, viene assegnata nel ciclo
+= È un «per ogni». Con `false` e «diventa `true` al primo pari» si risponderebbe a «esiste un pari», che è un'altra domanda: è la più insidiosa.
+
+D: Nel prodotto di una matrice 2 per 3 per una matrice 3 per 2, quante volte viene eseguita l'istruzione `s += a[i][k] * b[k][j];`?
+N: 12
+= Il risultato ha 2 per 2 elementi, e per ognuno la sommatoria ha 3 termini: 4 per 3.
+
+D: `existsRowAllZeros` riceve una matrice con 3 righe e 0 colonne. Che cosa ritorna?
++ `true`: la prima riga non ha elementi, quindi non ha controesempi
+- `false`: senza elementi non ci sono zeri
+- `false`: il ciclo esterno non parte
+- dipende dal contenuto della memoria
+- non termina
+= Il ciclo interno non fa giri, `allZero` resta `true`, e la riga 0 conta come riga di soli zeri. La più insidiosa è «`false`: il ciclo esterno non parte»: quello succede con zero **righe**.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: indici e posti
+Per `int m[3][4]`: (a) quanti elementi ha; (b) il posto in memoria di `m[2][1]`; (c) a quale elemento corrisponde il posto 7; (d) quali di `m[3][0]`, `m[0][3]`, `m[2][4]` sono validi.
+::: soluzione
+(a) 12. (b) $2 \cdot 4 + 1 = 9$. (c) $7 = 1 \cdot 4 + 3$: è `m[1][3]`. (d) Solo `m[0][3]`: le righe valide sono da 0 a 2, le colonne da 0 a 3.
+:::
+
+::: esercizio base Riscaldamento: la traccia
+Scrivi `int traccia(size_t n, const int a[n][n])`, che ritorna la somma degli elementi della diagonale principale. Quanti cicli servono?
+::: soluzione
+Uno solo: gli elementi della diagonale hanno i due indici uguali.
+```c
+int traccia(size_t n, const int a[n][n]) {
+    int s = 0;
+    for (size_t i = 0; i < n; i++) {
+        s += a[i][i];
+    }
+    return s;
+}
+```
+Provata: per `{ {1,2,3}, {4,5,6}, {7,8,9} }` dà 15.
+:::
+
+::: esercizio medio Il massimo di ogni colonna
+Scrivi `void massimiColonne(size_t rows, size_t cols, const int m[rows][cols], int out[cols])`, che mette in `out[j]` il massimo della colonna `j`. Supponi `rows >= 1`.
+::: soluzione
+Il ciclo esterno è sulle colonne, perché il risultato è uno per colonna. Il massimo parte dal primo elemento della colonna, non da 0.
+```c
+void massimiColonne(size_t rows, size_t cols, const int m[rows][cols], int out[cols]) {
+    for (size_t j = 0; j < cols; j++) {
+        int max = m[0][j];
+        for (size_t i = 1; i < rows; i++) {
+            if (m[i][j] > max) {
+                max = m[i][j];
+            }
+        }
+        out[j] = max;
+    }
+}
+```
+Provata sulla tabella dei voti: 30, 30, 30.
+:::
+
+::: esercizio medio Matrice simmetrica
+Scrivi `bool simmetrica(size_t n, const int a[n][n])`, che ritorna `true` se `a[i][j] == a[j][i]` per ogni coppia di indici.
+::: soluzione
+Un solo «per ogni», su due indici: una sentinella. Basta controllare sopra la diagonale, come nella trasposta.
+```c
+bool simmetrica(size_t n, const int a[n][n]) {
+    bool ok = true;
+    for (size_t i = 0; i < n && ok; i++) {
+        for (size_t j = i + 1; j < n && ok; j++) {
+            if (a[i][j] != a[j][i]) {
+                ok = false;
+            }
+        }
+    }
+    return ok;
+}
+```
+Provata: `{ {1,2,3}, {2,5,6}, {3,6,9} }` dà `true`, la trasposta dell'esempio delle slide dà `false`.
+:::
+
+::: esercizio esame Ogni riga ha un elemento nell'intervallo (slide 58)
+Scrivi una funzione che riceve una matrice di interi e due valori `minVal` e `maxVal`, e ritorna `true` se **tutte** le righe hanno **almeno un** elemento compreso in `[minVal, maxVal]`.
+::: soluzione
+Un «per ogni» sulle righe con dentro un «esiste» sulle colonne: le sentinelle sono al contrario rispetto alla riga di zeri.
+```c
+bool ogniRigaHaInIntervallo(size_t rows, size_t cols, const int m[rows][cols], int minVal, int maxVal) {
+    bool tutte = true;                 // "per ogni riga": parte da true
+    for (size_t i = 0; i < rows && tutte; i++) {
+        bool trovato = false;          // "esiste un elemento": parte da false
+        for (size_t j = 0; j < cols && !trovato; j++) {
+            if (minVal <= m[i][j] && m[i][j] <= maxVal) {
+                trovato = true;
+            }
+        }
+        if (!trovato) {
+            tutte = false;
+        }
+    }
+    return tutte;
+}
+```
+Provata su `{ {1, 9, 20}, {4, 30, 2}, {7, 7, 7} }`: con `[1, 7]` dà `true`; con `[3, 8]` dà `false`, perché la riga 0 non ha elementi tra 3 e 8. Con zero righe dà `true`; con zero colonne e almeno una riga dà `false`. L'intervallo si scrive con due confronti uniti da `&&`: `minVal <= x <= maxVal` in C vuol dire un'altra cosa, come nel [Lab03](Lab03_condizioni_booleane.html).
+:::
+
+::: esercizio difficile Quante righe hanno somma pari
+Scrivi `size_t righeSommaPari(size_t rows, size_t cols, const int m[rows][cols])`, che conta le righe la cui somma è pari. Dove va dichiarato l'accumulatore della somma? Qui servono le sentinelle?
+::: soluzione
+L'accumulatore `s` è una variabile di riga: va dichiarato dentro il ciclo esterno, così riparte da 0 a ogni riga. Niente sentinelle: è un conteggio, quindi una scansione completa.
+```c
+size_t righeSommaPari(size_t rows, size_t cols, const int m[rows][cols]) {
+    size_t count = 0;
+    for (size_t i = 0; i < rows; i++) {
+        int s = 0;
+        for (size_t j = 0; j < cols; j++) {
+            s += m[i][j];
+        }
+        if (s % 2 == 0) {
+            count++;
+        }
+    }
+    return count;
+}
+```
+Provata: per `{ {1,2,3}, {4,5,6}, {7,8,9} }` le somme sono 6, 15 e 24, e il risultato è 2. Per la tabella dei voti le somme sono 85, 79 e 89: il risultato è 0.
+:::
+
+## Domande di ripasso
+
+::: domanda Come si dichiara una matrice e come si accede a un elemento?
+`int m[ROWS][COLS];`, con le righe prima delle colonne. L'elemento della riga `i` e della colonna `j` è `m[i][j]`, con gli indici da 0.
+:::
+
+::: domanda Come è disposta una matrice in memoria?
+In una zona contigua, una riga dopo l'altra. `m[i][j]` è l'elemento di posto `i * COLS + j`.
+:::
+
+::: domanda Perché servono due cicli annidati?
+Perché ci sono due indici, e ogni indice ha il suo ciclo: quello esterno sceglie la riga, quello interno scorre le colonne.
+:::
+
+::: domanda Come si passa una matrice a dimensioni variabili a una funzione?
+Con le dimensioni prima della matrice: `(size_t rows, size_t cols, int m[rows][cols])`. Alla funzione arriva l'indirizzo, non una copia.
+:::
+
+::: domanda Perché `ricercaMaxPos` usa parametri puntatore?
+Perché deve restituire tre cose, un booleano e due indici, e con `return` ne esce una sola.
+:::
+
+::: domanda Come si traduce «esiste una riga in cui tutti gli elementi…» in codice?
+Con due sentinelle: una esterna che parte da `false`, per «esiste», e una interna che parte da `true`, per «tutti», dichiarata dentro il ciclo esterno.
+:::
+
+## Glossario
+
+```glossario
+Matrice | Tabella rettangolare di valori dello stesso tipo, con righe e colonne.
+Indice di riga, indice di colonna | I due numeri che individuano un elemento; in C partono da 0.
+Row-major order | Disposizione in memoria per righe: prima tutta la riga 0, poi la riga 1, e così via.
+Cicli annidati | Un ciclo dentro un altro: quello interno fa tutti i suoi giri per ogni giro di quello esterno.
+Scansione completa | Visita di tutti gli elementi, senza fermarsi prima.
+Trasposta | La matrice che si ottiene scambiando righe e colonne.
+In-place (sul posto) | Detto di un'operazione che modifica la matrice stessa, senza usarne una seconda.
+Valore sentinella | Valore fuori dall'intervallo valido usato per dire «non trovato»: qui rows e cols.
+Test d'ipotesi | Schema con una variabile sentinella: si parte da un'ipotesi e si cerca un elemento che la smentisce.
+```
+
+## Checklist
+
+```checklist
+- So dichiarare e inizializzare una matrice, e accedere a un elemento.
+- So calcolare il posto in memoria di un elemento con la formula.
+- So scrivere i due cicli annidati, per righe e per colonne.
+- So scrivere il prototipo di una funzione che riceve una matrice a dimensioni variabili.
+- So passare una riga a una funzione che lavora su un array.
+- So scrivere la somma degli elementi, e dire dove va l'accumulatore.
+- So scrivere somma, trasposta sul posto e prodotto di matrici.
+- So restituire una posizione con due parametri puntatore e valori sentinella.
+- So verificare una proprietà «per ogni» con una sentinella nei due cicli.
+- So tradurre in codice una proprietà con due quantificatori annidati.
+- So controllare a mano i casi con zero righe e con zero colonne.
+```
+
+## Fonti
+
+- Slide «Matrici. Array multidimensionali, algoritmi per gestire dati su più dimensioni» (09A_matrici), Programmazione I – Teoria, canale B, prof. Elvio Amparore, A.A. 2026/27: 58 pagine. Sul Moodle del corso sono nella settimana del 23 novembre.
+- Tutti i programmi sono stati compilati con gcc 16.1 (`-Wall -Werror`) ed eseguiti; i messaggi di errore riportati sono quelli veri del compilatore. I corpi di `trasponiMatrice`, `prodottoScalareMatrice` e `prodottoMatrici` e le soluzioni dei due esercizi della slide 58 sono miei.
+- [Raccolta di esercizi d'esame](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/PROG1/esercizi_esame.md): esercizio iterativo del pre-esame 2023/24.
 
 
 ---
@@ -12990,7 +14987,7 @@ D: Sei in `C:\Users\jon_snow\Documenti`. In quale cartella arriva il percorso `.
 + `C:\Users`
 - `C:\`
 - `C:\Users\jon_snow\Documenti\..\..`
-= Ogni `..` sale di un gradino nell'albero. Il primo porta da Documenti a jon_snow, il secondo da jon_snow a Users. Con un solo `..` saresti in jon_snow; per arrivare alla radice C:\ ne servono tre. L'ultima risposta è il percorso scritto per intero, non la cartella in cui arriva.
+= Ogni `..` sale di un gradino nell'albero. Il primo porta da Documenti a jon_snow, il secondo da jon_snow a Users. Con un solo `..` saresti in jon_snow; per arrivare alla radice C:\ ne servono tre. La risposta `C:\Users\jon_snow\Documenti\..\..` è il percorso scritto per intero, non la cartella in cui arriva.
 
 D: Su Linux scrivi `rmdir PROVA`, e `PROVA` contiene un file. Che cosa succede?
 - PROVA viene cancellata con il file dentro.
@@ -13038,7 +15035,7 @@ D: Che cosa stampa `echo 7 | ./scrivi_intero`, con il programma della slide 48?
 - `Hai scritto: 7`
 - `7`
 - Il programma resta fermo ad aspettare il numero.
-= Il programma stampa la domanda senza andare a capo. Il 7 arriva dalla pipe, non dalla tastiera, quindi non viene scritto sul terminale e `Hai scritto: 7` segue la domanda sulla stessa riga. La prima risposta è quello che vedi scrivendo 7 a mano. La domanda viene stampata comunque, prima della lettura. Il programma non aspetta, perché il numero è già arrivato.
+= Il programma stampa la domanda senza andare a capo. Il 7 arriva dalla pipe, non dalla tastiera, quindi non viene scritto sul terminale e `Hai scritto: 7` segue la domanda sulla stessa riga. La risposta «`Scrivi un numero intero: 7`, poi a capo `Hai scritto: 7`» è quello che vedi scrivendo 7 a mano. La domanda viene stampata comunque, prima della lettura. Il programma non aspetta, perché il numero è già arrivato.
 
 D: Quale riga legge correttamente un intero nella variabile `n`?
 - `scanf("%d", n);`
@@ -14015,7 +16012,7 @@ D: Quale espressione calcola $ax^3 + 7$?
 - `a * x * (x * x + 7)`
 - `(a * x) * x * (x + 7)`
 - `a * x * x * x * 7`
-= Le moltiplicazioni prima, poi si somma 7. La risposta più insidiosa è `a * x * x * (x + 7)`: la parentesi fa sommare 7 a `x` prima di moltiplicare. L'ultima moltiplica per 7 invece di sommarlo.
+= Le moltiplicazioni prima, poi si somma 7. La risposta più insidiosa è `a * x * x * (x + 7)`: la parentesi fa sommare 7 a `x` prima di moltiplicare. La risposta `a * x * x * x * 7` moltiplica per 7 invece di sommarlo.
 
 D: Con `int x = 1, y = 2, z = 5;` quanto vale `(double)((x + y + z) / 3)`?
 + 2.0
@@ -15614,7 +17611,7 @@ D: Una variabile `tutti` deve dire se tutti i numeri letti sono positivi. Quale 
 - `bool tutti = true;` e nel ciclo `tutti = (n > 0);`
 - `bool tutti = false;` e nel ciclo `tutti = (n > 0);`
 - `bool tutti = true;` e nel ciclo `if (n > 0) tutti = true;`
-= «Per ogni» parte da vero e diventa falso al primo controesempio. La risposta più insidiosa è `tutti = (n > 0);`: alla fine dice solo se l'ultimo numero è positivo. La seconda risponde a «esiste un positivo».
+= «Per ogni» parte da vero e diventa falso al primo controesempio. La risposta più insidiosa è `tutti = (n > 0);`: alla fine dice solo se l'ultimo numero è positivo. La risposta «`bool tutti = false;` e nel ciclo `if (n > 0) tutti = true;`» risponde a «esiste un positivo».
 
 D: Che cosa stampa il programma della media con l'input `0` se manca il controllo `quanti > 0`?
 + `-nan` o `-nan(ind)`: è una divisione 0.0 / 0, il risultato non è un numero
@@ -15630,7 +17627,7 @@ D: Nell'aggiornamento di Fibonacci, quale sequenza di istruzioni è giusta?
 - `m = n + m; n = m;`
 - `n = n + m; m = n;`
 - `int somma = n + m; m = somma; n = m;`
-= Si salva la somma, poi `n` prende il vecchio `m` e `m` la somma. La risposta più insidiosa è l'ultima: aggiorna `m` prima di copiarlo in `n`, così `n` e `m` diventano uguali.
+= Si salva la somma, poi `n` prende il vecchio `m` e `m` la somma. La risposta più insidiosa è `int somma = n + m; m = somma; n = m;`: aggiorna `m` prima di copiarlo in `n`, così `n` e `m` diventano uguali.
 
 D: Con la ricerca per dimezzamento tra 0 e 99, quanti tentativi servono al massimo?
 N: 7
@@ -16417,7 +18414,7 @@ D: Con `int risposte[] = {2, 2, 5}` e `int frequenze[5] = {0}`, che cosa contien
 - `{2, 2, 5, 0, 0}`
 - `{0, 2, 0, 1, 0}`
 - `{1, 1, 1, 0, 0}`
-= Il voto 2 va nella casella 1 (due volte), il voto 5 nella casella 4. La più insidiosa è la quarta: dimentica che anche il 5 va spostato di uno.
+= Il voto 2 va nella casella 1 (due volte), il voto 5 nella casella 4. La più insidiosa è `{0, 2, 0, 1, 0}`: dimentica che anche il 5 va spostato di uno.
 
 D: Che cosa stampa `printf("%s", t)` dopo `char t[] = "testo"; t[3] = '\0';`?
 + `tes`
@@ -16433,7 +18430,7 @@ D: Perché la somma selettiva deve memorizzare la sequenza in un array?
 - perché la somma di più di 20 numeri va in overflow
 - perché CodeRunner lo richiede
 - non serve: si può fare con una passata sola
-= Un elemento escluso con il minimo attuale può diventare buono quando arriva un minimo più piccolo. La più insidiosa è l'ultima: con una passata sola non si può decidere elemento per elemento.
+= Un elemento escluso con il minimo attuale può diventare buono quando arriva un minimo più piccolo. La più insidiosa è «non serve: si può fare con una passata sola»: con una passata sola non si può decidere elemento per elemento.
 
 D: Quanto vale `'9' - '0'`?
 + 9
@@ -16457,7 +18454,7 @@ D: Nel programma Passwords, perché `len >= 2` va scritto prima di `ispunct(pwd[
 - per una regola di stile senza effetti
 - perché altrimenti non compila
 - perché `len` potrebbe essere negativo
-= Cortocircuito: l'`&&` si ferma al primo falso. La più insidiosa è l'ultima: `len` è `size_t`, mai negativo; il problema è che `len - 2` con `len == 1` dà un numero enorme.
+= Cortocircuito: l'`&&` si ferma al primo falso. La più insidiosa è «perché `len` potrebbe essere negativo»: `len` è `size_t`, mai negativo; il problema è che `len - 2` con `len == 1` dà un numero enorme.
 
 D: Qual è la dichiarazione giusta per leggere con `scanf` una parola di al massimo 50 caratteri?
 + `char nome[51];` e `scanf("%50s", nome);`
@@ -16465,7 +18462,7 @@ D: Qual è la dichiarazione giusta per leggere con `scanf` una parola di al mass
 - `char nome[51];` e `scanf("%50s", &nome);`
 - `char nome[51];` e `scanf("%51s", nome);`
 - `char nome;` e `scanf("%s", &nome);`
-= 50 caratteri più il terminatore fanno 51 posti, e la larghezza in `%50s` non conta il terminatore. La più insidiosa è la seconda: 50 posti lasciano fuori il terminatore.
+= 50 caratteri più il terminatore fanno 51 posti, e la larghezza in `%50s` non conta il terminatore. La più insidiosa è «`char nome[50];` e `scanf("%50s", nome);`»: 50 posti lasciano fuori il terminatore.
 ```
 
 ## Esercizi
@@ -17416,7 +19413,7 @@ D: Una funzione deve leggere una sequenza e restituire al chiamante somma, massi
 - `bool leggi(int somma, int massimo)`
 - `void leggi(void)`
 - `int, int, bool leggi(void)`
-= I risultati sono tre: uno torna con la `return`, gli altri due attraverso puntatori. La più insidiosa è la terza: con parametri `int` la funzione riceve copie, e le variabili del chiamante non cambiano.
+= I risultati sono tre: uno torna con la `return`, gli altri due attraverso puntatori. La più insidiosa è `bool leggi(int somma, int massimo)`: con parametri `int` la funzione riceve copie, e le variabili del chiamante non cambiano.
 
 D: Dentro `void fn(int dati[])`, chiamata con un array di 10 `int`, quanto vale `sizeof(dati)` su questo PC a 64 bit?
 + 8
@@ -17440,7 +19437,7 @@ D: Nella funzione `bool muovi_giocatore(int dado, int *pos)`, quale istruzione f
 - `&pos += dado;`
 - `pos = dado;`
 - `return pos + dado;`
-= Con l'asterisco si modifica la variabile del chiamante. La più insidiosa è la seconda: `pos += dado` sposta il puntatore, non il giocatore, e compila.
+= Con l'asterisco si modifica la variabile del chiamante. La più insidiosa è `pos += dado;`: `pos += dado` sposta il puntatore, non il giocatore, e compila.
 
 D: Perché a `esistono_vocali(const char *s)` non serve la lunghezza della stringa?
 + perché la stringa finisce con il terminatore, e il ciclo si ferma lì
@@ -17448,7 +19445,7 @@ D: Perché a `esistono_vocali(const char *s)` non serve la lunghezza della strin
 - perché le stringhe hanno sempre 100 caratteri
 - perché `const` contiene la lunghezza
 - perché `scanf` la salva in una variabile globale
-= La fine di una stringa è segnata da `'\0'`. La più insidiosa è la seconda: `sizeof(s)` è la dimensione del puntatore, 8.
+= La fine di una stringa è segnata da `'\0'`. La più insidiosa è «perché `sizeof(s)` dà la lunghezza»: `sizeof(s)` è la dimensione del puntatore, 8.
 
 D: Quante volte gira il ciclo di `palindroma` sulla parola `anna`?
 N: 2
@@ -17460,7 +19457,7 @@ D: `cambio_taglio(45, 20)` che cosa stampa e che cosa restituisce?
 - stampa `5 da 20 cent` e restituisce 2
 - non stampa niente e restituisce 45
 - stampa `2 da 20 cent` e restituisce 40
-= 45 / 20 fa 2 tra interi, e restano 45 − 40 = 5. La più insidiosa è la seconda: la funzione restituisce il resto, non il numero di monete.
+= 45 / 20 fa 2 tra interi, e restano 45 − 40 = 5. La più insidiosa è «stampa `2 da 20 cent` e restituisce 2»: la funzione restituisce il resto, non il numero di monete.
 
 D: Quale intestazione promette di non modificare l'array ricevuto?
 + `size_t conta(const int *a, size_t n)`
@@ -17468,7 +19465,7 @@ D: Quale intestazione promette di non modificare l'array ricevuto?
 - `size_t conta(int a[], const size_t n)`
 - `const size_t conta(int *a, size_t n)`
 - `size_t conta(int *const a, size_t n)`
-= `const int *a` vuol dire «puntatore a interi che non cambio». La più insidiosa è l'ultima: `int *const a` blocca il puntatore, non i dati.
+= `const int *a` vuol dire «puntatore a interi che non cambio». La più insidiosa è `size_t conta(int *const a, size_t n)`: `int *const a` blocca il puntatore, non i dati.
 ```
 
 ## Esercizi
@@ -18964,7 +20961,7 @@ D: Sul modello dello stato della memoria. Dopo `char s[6] = "ciao";`, quanto val
 - `s[4]` è 0 e `s[5]` è indeterminato
 - tutti e due indeterminati
 - il codice non compila: la stringa ha 4 caratteri e l'array 6
-= `s[4]` è il terminatore. `s[5]` vale 0 perché un array inizializzato in parte ha il resto a zero. La più insidiosa è la terza: le celle mai scritte sono indeterminate solo se l'array non è inizializzato affatto.
+= `s[4]` è il terminatore. `s[5]` vale 0 perché un array inizializzato in parte ha il resto a zero. La più insidiosa è «`s[4]` è 0 e `s[5]` è indeterminato»: le celle mai scritte sono indeterminate solo se l'array non è inizializzato affatto.
 
 D: Sul modello dello stato della memoria. Con `int v[4] = {10, 20, 30, 40};` e `int *p = v + 1;`, quanto vale `p[-1]`?
 + 10
@@ -19200,7 +21197,7 @@ D: Sul modello dello stato della memoria. Con `int f(int a, int *p) { a = a + 1;
 - 4, 10, 10
 - 5, 10, 8
 - 4, 15, 8
-= `a` è una copia di `u`: diventa 5 nel frame di `f`, e `u` resta 4. `*p` è `w`: diventa 10 + 5. Il ritorno è 5 · 2. La più insidiosa è la seconda, che fa cambiare anche `u`.
+= `a` è una copia di `u`: diventa 5 nel frame di `f`, e `u` resta 4. `*p` è `w`: diventa 10 + 5. Il ritorno è 5 · 2. La più insidiosa è «5, 15, 10», che fa cambiare anche `u`.
 
 D: Sul modello dello stato della memoria. Mentre è in esecuzione `swap`, chiamata da `main` con `swap(&x, &y)`, quanti frame ci sono sullo stack e quale è in cima?
 + due, e in cima c'è quello di `swap`
@@ -19208,7 +21205,7 @@ D: Sul modello dello stato della memoria. Mentre è in esecuzione `swap`, chiama
 - uno solo, quello di `swap`
 - uno solo, quello di `main`
 - tre: `main`, `swap` e uno per i puntatori
-= Il frame di `main` resta sotto, quello di `swap` viene aggiunto sopra e tolto al ritorno. La più insidiosa è la terza: il frame del chiamante non sparisce durante la chiamata.
+= Il frame di `main` resta sotto, quello di `swap` viene aggiunto sopra e tolto al ritorno. La più insidiosa è «uno solo, quello di `swap`»: il frame del chiamante non sparisce durante la chiamata.
 
 D: Sul modello della correttezza. Dopo `int x = 3, y = 8; swapSbagliato(x, y);`, dove `void swapSbagliato(int a, int b) { int t = a; a = b; b = t; }`, che cosa stampa `printf("%d %d", x, y)`?
 + `3 8`
@@ -19228,7 +21225,7 @@ D: Sul modello degli errori della 06B. Dopo `char t[6] = "cane"; t[2] = '\0';`, 
 - stampa `ca e`, e `strlen` vale 4
 - stampa `ca`, e `strlen` vale 6
 - stampa `can`, e `strlen` vale 3
-= La stringa finisce al primo terminatore, nella casella 2. La più insidiosa è l'ultima: il terminatore sostituisce la `n`, non viene dopo.
+= La stringa finisce al primo terminatore, nella casella 2. La più insidiosa è «stampa `can`, e `strlen` vale 3»: il terminatore sostituisce la `n`, non viene dopo.
 
 D: Sul modello degli errori della 06B. Con `char d[4];` e `const char *s = "ciao";`, che cosa c'è in `d` dopo `strncpy(d, s, 4)`?
 + i quattro caratteri `c`, `i`, `a`, `o`, senza terminatore
@@ -19236,7 +21233,7 @@ D: Sul modello degli errori della 06B. Con `char d[4];` e `const char *s = "ciao
 - `ciao` seguito da `'\0'`
 - niente: `strncpy` non copia se non c'è posto
 - quattro terminatori
-= `strncpy` copia al massimo 4 caratteri, e il terminatore sarebbe il quinto. La più insidiosa è la seconda: sarebbe comodo, ma `strncpy` non accorcia la copia per fare posto al terminatore.
+= `strncpy` copia al massimo 4 caratteri, e il terminatore sarebbe il quinto. La più insidiosa è «`cia` seguito da `'\0'`»: sarebbe comodo, ma `strncpy` non accorcia la copia per fare posto al terminatore.
 
 D: Sul modello degli errori del Lab05A. Con gcc 16 su Windows `islower('q')` vale 2. Quale condizione è scritta bene per «`c` è una lettera minuscola»?
 + `if (islower(c))`
@@ -19244,7 +21241,7 @@ D: Sul modello degli errori del Lab05A. Con gcc 16 su Windows `islower('q')` val
 - `if (islower(c) == true)`
 - `if (islower(c) == 'q')`
 - `if (!islower(c))`
-= Le funzioni di `ctype.h` restituiscono zero oppure un numero diverso da zero, non per forza 1. La più insidiosa è la terza: `true` vale 1, quindi è lo stesso errore della seconda.
+= Le funzioni di `ctype.h` restituiscono zero oppure un numero diverso da zero, non per forza 1. La più insidiosa è `if (islower(c) == true)`: `true` vale 1, quindi è lo stesso errore di `islower(c) == 1`.
 
 D: Sul modello degli esercizi del Lab05A. Quanti elementi deve avere, come minimo, l'array `nome` per leggere con `scanf("%20s", nome)`?
 N: 21
@@ -19256,7 +21253,7 @@ D: Sul modello delle intestazioni d'esame. Quale intestazione va bene per una fu
 - `void contaPari(size_t n, int a[])`
 - `size_t contaPari(int n, int *a[])`
 - `bool contaPari(size_t n, const int a[])`
-= Servono la lunghezza e l'array in sola lettura, e il risultato è un conteggio. La più insidiosa è la seconda: senza la lunghezza la funzione non sa dove fermarsi.
+= Servono la lunghezza e l'array in sola lettura, e il risultato è un conteggio. La più insidiosa è `size_t contaPari(const int a[])`: senza la lunghezza la funzione non sa dove fermarsi.
 ```
 
 ## Fonti
@@ -19471,7 +21468,7 @@ D: Sul modello dello stato della memoria. Con `int v[] = {4, -2, 9, 0}, mn, mx;`
 - 4 e 4
 - 0 e 9
 - -2 e 4
-= La funzione scrive nelle variabili del `main` attraverso i due puntatori. La più insidiosa è la seconda: sarebbe vera se i parametri fossero `int` e non `int *`.
+= La funzione scrive nelle variabili del `main` attraverso i due puntatori. La più insidiosa è «restano non inizializzate»: sarebbe vera se i parametri fossero `int` e non `int *`.
 
 D: Sul modello degli esercizi del Lab06. `conta_univoci` conta gli elementi che compaiono una volta sola. Che cosa restituisce su `{1, 2, 2, 3, 3, 3, 7}`?
 N: 2
@@ -19483,7 +21480,7 @@ D: Sul modello della correttezza. Che cosa succede con `for (size_t i = 2; i >= 
 - stampa 2 1 e si ferma
 - non compila con `-Wall -Werror`
 - non stampa niente
-= Un `size_t` non è mai negativo: dopo lo 0 viene 18446744073709551615. La più insidiosa è la quarta: con `-Wall -Werror` compila, l'avviso arriva solo con `-Wextra`.
+= Un `size_t` non è mai negativo: dopo lo 0 viene 18446744073709551615. La più insidiosa è «non compila con `-Wall -Werror`»: con `-Wall -Werror` compila, l'avviso arriva solo con `-Wextra`.
 
 D: Sul modello della programmazione iterativa. `bool tuttiPositivi(size_t n, const int a[])` usa una sentinella che parte da `true`. Che cosa restituisce con `n == 0`?
 + `true`
@@ -19503,7 +21500,7 @@ D: Sul modello della programmazione iterativa. In una selezione, `a` ha capacit�
 - si copia in `a[aCap]`
 - si sovrascrive `a[0]`
 - si incrementa `aCap`
-= L'array è pieno: scrivere in `a[aLen]` sarebbe fuori dai limiti. La più insidiosa è la seconda, che è il caso normale, con `aLen < aCap`.
+= L'array è pieno: scrivere in `a[aLen]` sarebbe fuori dai limiti. La più insidiosa è «si copia in `a[aLen]` e si incrementa `aLen`», che è il caso normale, con `aLen < aCap`.
 
 D: Sul modello degli esercizi del Lab06. `bool palindroma(const char *s)` confronta il primo carattere con l'ultimo, il secondo con il penultimo, e così via, con `i < n / 2`. Che cosa restituisce sulla stringa vuota?
 + `true`
@@ -19518,6 +21515,227 @@ D: Sul modello degli esercizi del Lab06. `bool palindroma(const char *s)` confro
 
 - Le lezioni complete: [Lab06 · Funzioni](Lab06_funzioni.html) e [07A · Algoritmi su array](07A_algoritmi_su_array.html), con gli esempi, i disegni e gli esercizi.
 - Slide di E. G. Amparore «07A Algoritmi su array» e slide del laboratorio «Funzioni» (Lab06), canale B, A.A. 2026/27; pagina Moodle del corso per le date e gli avvisi.
+- Le domande del quiz sono di questi appunti, sul modello degli esercizi d'esame; il codice è compilato con gcc 16.1 e `-Wall -Werror` ed eseguito.
+
+
+---
+
+<!-- FILE: contesto_ai/PROG1/riassunti/settimana_08.md -->
+> File: `contesto_ai/PROG1/riassunti/settimana_08.md`
+
+```yaml
+corso: PROG1
+lezione: S8
+tipo: riassunto
+titolo: "Settimana 8: la memoria dinamica"
+data: 2026-11-18
+docenti: Elvio Amparore
+sopratitolo: Riassunto settimanale · Programmazione I · Canale B · 16/11 – 20/11/2026
+descrizione: >-
+  Riassunto della settimana 8 di Programmazione I (canale B): la lezione 08A sulla memoria dinamica, con il puntatore
+  appeso, lo heap, malloc e free, l'array allocato nello heap, gli errori tipici, la selezione con copia in tre fasi e
+  la responsabilità della memoria.
+lede: >-
+  Una settimana su un solo argomento: la memoria che si chiede e si restituisce a mano. Perché un array locale non si
+  può ritornare, come si usa malloc, quali errori si fanno con free, e lo schema in tre fasi per restituire un array
+  nuovo da una funzione.
+materiale: slide
+scheda:
+  Lezioni: "[08A](08A_memoria_dinamica.html) mar 17/11 e mer 18/11"
+  Tempo di ripasso: 30 minuti
+fonte: >-
+  Gli appunti della lezione 08A di Programmazione I (canale B), scritti sulle slide di E. G. Amparore
+appunti_html: appunti/PROG1/riassunto_settimana_08.html
+genera_html: true
+```
+
+## In breve
+
+- Una variabile locale, anche un array a lunghezza variabile, vive quanto il **frame** della sua funzione. Ritornarne l'indirizzo dà un **puntatore appeso**: con `-Wall -Werror` è un errore di compilazione.
+- Lo **heap** è la zona di memoria che si gestisce a mano: un blocco esiste da `malloc` a `free`, in qualunque funzione ci si trovi.
+- `malloc(n * sizeof(int))` dà un blocco di `n` interi contigui e **non inizializzati**, oppure `NULL`. Il risultato si controlla.
+- `free(p); p = NULL;` vanno scritte insieme. **Ogni `malloc` ha la sua `free`.**
+- Gli errori: blocco mai liberato (**memory leak**), indirizzo perso, uso dopo la `free`, doppia `free`, lettura di memoria non inizializzata, ipotesi sulla vicinanza di due blocchi.
+- Per restituire un array di lunghezza non nota: **conta, alloca, copia**, con la lunghezza in un parametro di uscita.
+- Chi riceve da una funzione un blocco allocato ne ha la **responsabilità**: deve liberarlo lui.
+
+> [!NOTA] Le lezioni della settimana
+> Due lezioni di teoria, martedì 17/11 e mercoledì 18/11, tutte e due sulle slide 08A: sul Moodle del corso la settimana si intitola «Memoria Dinamica». Il laboratorio del turno B2 di lunedì 16/11 è stato annullato. Il riassunto è diviso in due parti per argomento: dove sia finita la prima lezione non lo so.
+
+## 08A · Dallo stack allo heap (mar 17/11 e mer 18/11)
+
+Il problema di partenza: una funzione che legge `n` e poi `n` interi, e restituisce la sequenza. L'array deve crearlo la funzione, perché solo lei conosce `n`.
+
+- **Perché lo stack non basta.** Con `int a[n]; ... return a;` l'array sta nel frame della funzione, che al `return` viene tolto. Il chiamante riceve l'indirizzo di una zona non più valida: un puntatore appeso. gcc dice `function returns address of local variable`.
+- **Lo heap.** Nel modello della memoria i segmenti sono codice, dati, heap e stack. Heap e stack si dividono lo spazio libero e crescono uno verso l'altro.
+- **`malloc`.** `void* malloc(size_t sz)` riserva `sz` byte contigui e ne ritorna l'indirizzo; `void*` è un indirizzo senza tipo, che lo prende quando lo si assegna a un `int*`. Per `n` interi i byte sono `n * sizeof(int)`.
+- **`free`.** Restituisce il blocco. Vuole lo stesso indirizzo dato da `malloc`. Dopo, il puntatore contiene ancora il vecchio indirizzo: per questo lo si mette a `NULL`. `free(NULL)` non fa niente.
+- **La soluzione.** `int* a = malloc(n * sizeof(int));` al posto di `int a[n];`. Ora `return a` è giusto: si ritorna l'indirizzo di un blocco che sopravvive al ritorno. La `free` la fa il `main`.
+
+```grafico
+titolo: La memoria dopo il ritorno di leggiArray, con l'input 3 e poi 10 20 30. Nello stack resta solo il frame di main, con la lunghezza e un puntatore. Il blocco con i tre interi sta nello heap, e ci resta finché main non chiama free
+x: 0 12
+y: 0 5.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.4 5.2 | blu | "stack"
+poligono: 0.6 1.6 4.2 1.6 4.2 4.6 0.6 4.6 | blu | tenue
+testo: 2.4 4.1 | blu | "main"
+poligono: 1.0 2.9 3.8 2.9 3.8 3.7 1.0 3.7 | blu
+testo: 2.4 3.3 | blu | "aLen: 3"
+poligono: 1.0 1.9 3.8 1.9 3.8 2.7 1.0 2.7 | blu
+testo: 2.4 2.3 | blu | "a: •"
+testo: 8.8 5.2 | verde | "heap"
+poligono: 6.8 1.9 8.1 1.9 8.1 2.7 6.8 2.7 | verde | tenue
+poligono: 8.1 1.9 9.4 1.9 9.4 2.7 8.1 2.7 | verde | tenue
+poligono: 9.4 1.9 10.7 1.9 10.7 2.7 9.4 2.7 | verde | tenue
+testo: 7.45 2.3 | verde | "10"
+testo: 8.75 2.3 | verde | "20"
+testo: 10.05 2.3 | verde | "30"
+freccia: 3.2 2.3 6.7 2.3 | ambra
+testo: 8.75 1.3 | grigio | "blocco di 3 interi"
+```
+
+Il puntatore `a` sta nello stack, il blocco nello heap: sono due oggetti diversi, e vivono per tempi diversi.
+
+::: prova Quanti byte chiede `malloc(6 * sizeof(double))`, se un `double` occupa 8 byte? Di che tipo è la variabile che riceve il risultato?
+48 byte. La variabile è un `double*`.
+:::
+
+> [!RICORDA]
+> - Mai ritornare l'indirizzo di una variabile locale.
+> - `malloc(n * sizeof(T))`, poi il controllo con `NULL`.
+> - `free(p); p = NULL;`
+> - `malloc` in una funzione e `free` in un'altra è il caso normale.
+
+## 08A · Errori, selezione e responsabilità
+
+Niente controlla che la memoria dinamica sia gestita bene. I sei errori delle slide:
+
+| Errore | Che cosa succede | gcc avvisa? |
+|---|---|---|
+| allocare senza liberare | memory leak: il blocco resta occupato fino alla fine | mai |
+| riassegnare il puntatore prima della `free` | il primo blocco è perso per sempre | mai |
+| usare il puntatore dopo la `free` | comportamento indefinito | solo nei casi diretti: `pointer 'p' used after 'free'` |
+| fare due `free` dello stesso blocco | crash o heap rovinato | solo nei casi diretti |
+| leggere il blocco prima di scriverci | valori indeterminati | solo nei casi diretti: `'*a' is used uninitialized` |
+| trattare due blocchi come vicini | si scrive fuori dal blocco | mai |
+
+**Stack o heap.** Nello heap i dati di dimensione non nota in anticipo e quelli che devono sopravvivere alla funzione. Nello stack le variabili piccole e gli array di dimensione fissa.
+
+**Selezione con copia.** Copiare in un array nuovo gli elementi di `b` che rispettano una condizione. La lunghezza del risultato non si sa prima di aver guardato tutto `b`, quindi:
+
+1. **conta**: una scansione di `b` che conta gli elementi buoni;
+2. **alloca**: `malloc(count * sizeof(int))`, solo se `count > 0`, e si continua solo se il risultato non è `NULL`;
+3. **copia**: una seconda scansione, con un indice `j` per l'array nuovo.
+
+La funzione `selectCopy` delle slide parte da `a = NULL` e `*out_len = 0`, che sono già la risposta giusta se non c'è niente da selezionare, e ha una sola `return`. Con `b = {12, 1, 3, 4, 8}` e la condizione «pari» ritorna 12, 4, 8 e scrive 3 nella lunghezza.
+
+**Responsabilità.** `selectCopy` alloca e non libera: consegna il blocco al chiamante, che dovrà fare la `free`. Lo fa anche `strdup` della libreria, che ritorna una copia di una stringa nello heap. Va scritto nel commento della funzione.
+
+::: prova In `int* p = malloc(8); int* q = p; free(p); p = NULL;`, quanti blocchi restano allocati? C'è un puntatore appeso?
+Nessun blocco: c'è una `malloc` e una `free`. `q` è appeso: contiene ancora l'indirizzo del blocco liberato, e mettere `p` a `NULL` non lo protegge.
+:::
+
+> [!RICORDA]
+> - Leak, indirizzo perso, uso dopo `free`, doppia `free`, memoria non inizializzata, blocchi «vicini».
+> - Il compilatore vede solo i casi diretti, e i leak mai.
+> - Conta, alloca, copia.
+> - Chi riceve il blocco fa la `free`.
+
+## Verso l'esame
+
+- **Funzione che restituisce un array nuovo**: ritorna `int*`, lunghezza in `size_t* out_len`, valori di partenza `NULL` e 0, controllo di `malloc`, una sola `return`. È la tipologia «heap» della raccolta di esercizi d'esame.
+- **Stato della memoria**: disegnare stack e heap dopo una serie di istruzioni, dicendo quali blocchi restano e quali puntatori sono appesi.
+- **Correttezza**: riconoscere in un frammento un leak, un uso dopo la `free`, una `malloc` con la misura sbagliata.
+- **Compilazione**: con `-Wall -Werror` ritornare un array locale non compila, e l'esercizio vale zero.
+- Appelli 2026/27: lunedì 25/01/2027 e giovedì 11/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Perché una funzione non può ritornare un suo array locale?
+Perché l'array sta nel suo frame, che viene tolto dallo stack al ritorno: l'indirizzo ritornato non è più valido.
+:::
+
+::: domanda Che cosa ritorna `malloc`, e che cosa contiene il blocco?
+L'indirizzo del primo byte di un blocco contiguo, oppure `NULL`. Il contenuto non è inizializzato.
+:::
+
+::: domanda Perché si scrive `p = NULL` dopo `free(p)`?
+Perché `p` contiene ancora il vecchio indirizzo. Con `NULL` un uso sbagliato ferma subito il programma, e una seconda `free` non fa danni.
+:::
+
+::: domanda Che cos'è un memory leak?
+Un blocco allocato e mai liberato, per esempio perché si è perso il suo indirizzo.
+:::
+
+::: domanda Quali sono le tre fasi della selezione con copia, e perché servono due scansioni?
+Conta, alloca, copia. La prima scansione serve a sapere quanto dev'essere grande l'array, la seconda a riempirlo.
+:::
+
+::: domanda Chi deve liberare un array ritornato da una funzione?
+Il chiamante: ritornando il puntatore la funzione gli passa la responsabilità del blocco.
+:::
+
+## Quiz d'esame
+
+L'esame di Programmazione I non ha domande a crocette. Ha due esercizi di teoria su CodeRunner, «correttezza» e «stato della memoria», e tre di programmazione. Le domande qui sotto sono **sul modello** di questi esercizi, con gli argomenti della settimana. Ho compilato e provato tutto il codice con gcc 16.1 e `-Wall -Werror`.
+
+```quiz
+D: Sul modello della correttezza. Che cosa succede compilando con `-Wall -Werror` una funzione che finisce con `int a[n]; ... return a;`?
++ non compila: `function returns address of local variable`
+- compila, e il chiamante riceve una copia dell'array
+- compila, e il chiamante riceve `NULL`
+- compila, ma dà errore solo durante l'esecuzione
+- non compila: gli array a lunghezza variabile sono vietati
+= gcc riconosce il ritorno diretto dell'indirizzo di una variabile locale, e con `-Werror` l'avviso diventa un errore. La più insidiosa è «compila, ma dà errore solo durante l'esecuzione»: è quello che succede senza `-Werror`, o quando l'indirizzo passa per un'altra variabile.
+
+D: Sul modello dello stato della memoria. Dopo `int* p1 = malloc(20); int* p2 = malloc(32); double* p3 = malloc(16); free(p2); p2 = NULL; char* p4 = malloc(20); free(p1); p1 = NULL;`, quanti blocchi sono allocati nello heap?
+N: 2
+= Quattro `malloc` e due `free`: restano i blocchi di `p3` e di `p4`. È l'esempio delle slide 18–19.
+
+D: Sul modello della correttezza. Quanti byte alloca `malloc(10 * sizeof(int))`, con `sizeof(int)` uguale a 4?
+N: 40
+= Dieci interi da 4 byte. Con `malloc(10)` sarebbero 10 byte, che non bastano nemmeno per tre interi.
+
+D: Sul modello dello stato della memoria. Il programma `leggiArray` della lezione riceve in input `3` e poi `10 20 30`. Dopo `int* a = leggiArray(&aLen);`, dove stanno `aLen`, `a` e i tre interi?
++ `aLen` e `a` nello stack, nel frame di `main`; i tre interi nello heap
+- tutti nello stack, nel frame di `leggiArray`
+- tutti nello heap
+- `aLen` nello stack; `a` e i tre interi nello heap
+- `a` nello stack; `aLen` e i tre interi nello heap
+= `aLen` e `a` sono variabili locali di `main`; `a` contiene l'indirizzo del blocco, che è nello heap. La più insidiosa è «`aLen` nello stack; `a` e i tre interi nello heap»: il puntatore è una variabile come le altre, e sta nello stack.
+
+D: Sul modello della correttezza. Quale frammento produce un memory leak?
++ `int* p = malloc(8); p = malloc(16); free(p);`
+- `int* p = malloc(8); free(p); p = NULL;`
+- `int* p = NULL; free(p);`
+- `int* p = malloc(8); int* q = p; free(q);`
+- `int x = 3; int* p = &x;`
+= Il primo blocco perde il suo unico indirizzo quando `p` viene riassegnato. La più insidiosa è `int* p = malloc(8); int* q = p; free(q);`: `p` e `q` contengono lo stesso indirizzo, e una sola `free` basta.
+
+D: Sul modello della programmazione iterativa. `selectCopy` con la condizione «pari» riceve `b = {12, 1, 3, 4, 8}`. Quanto vale `*out_len` alla fine?
+N: 3
+= I pari sono 12, 4 e 8. Provato.
+
+D: Sul modello della programmazione iterativa. La stessa `selectCopy` riceve `b = {1, 3, 5}`. Che cosa ritorna?
++ `NULL`, con `*out_len` uguale a 0
+- un blocco vuoto, con `*out_len` uguale a 0
+- un blocco di 3 interi non inizializzati
+- un puntatore a `b`
+- dipende da `malloc`
+= `count` è 0: la funzione non alloca niente e restano i valori di partenza. Provato. La più insidiosa è «un blocco vuoto, con `*out_len` uguale a 0»: la funzione chiama `malloc` solo se `count > 0`.
+
+D: Sul modello della programmazione iterativa. Una funzione `e3` restituisce un array nuovo con gli elementi strettamente positivi di `{7, -2, 0, 9}`. Quanti elementi ha l'array restituito?
+N: 2
+= 7 e 9: lo zero non è strettamente positivo. Provato.
+```
+
+## Fonti
+
+- La lezione completa: [08A · Memoria dinamica](08A_memoria_dinamica.html), con gli esempi, i disegni e gli esercizi.
+- Slide di E. G. Amparore «08A Memoria Dinamica», canale B, A.A. 2026/27; pagina Moodle del corso per le date e gli avvisi.
 - Le domande del quiz sono di questi appunti, sul modello degli esercizi d'esame; il codice è compilato con gcc 16.1 e `-Wall -Werror` ed eseguito.
 
 
@@ -19634,6 +21852,10 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - lun 09/11: fine del capitolo 2.2: altri 4 esempi, ancora prove per contraddizione. Omessi l'esempio 2.2.8 e gli esempi dal 2.2.10 in poi; omesso il capitolo 2.3 (risoluzione). Negli appunti è la lezione 17: contrapposizione, casi ed equivalenze.
 - gio 12/11: capitolo 2.4, induzione. Esempio 2.4.8: invariante di ciclo per il fattoriale, svolto sia informalmente sia come quiz. Omessi l'equazione 2.4.4 (somma dei primi n interi positivi) e gli esempi 2.4.4 e 2.4.6 (somma di potenze, numero di elementi dell'insieme delle parti). Negli appunti è la lezione 18, scritta prima della lezione.
 - ven 13/11: invariante del ciclo che calcola la potenza (ris = a^i, i <= n) e correttezza del risultato; capitolo 2.5, induzione in forma forte; esempio 2.5.1 (francobolli da 2 e 5 centesimi); esempio 2.5.4 (n − 1 prodotti per n fattori); esercizio 39 a pagina 98 (forma a L ricoperta di tromini). Negli appunti è la lezione 19, scritta prima della lezione.
+- lun 16/11: esercizi su invarianti: la potenza veloce, svolta informalmente e come quiz. Negli appunti è la lezione 20.
+- gio 19/11: invariante di ciclo per la ricerca degli 0 in un vettore e per la somma di un vettore. Negli appunti è la lezione 21.
+- ven 20/11: ripasso delle funzioni (funzioni come relazioni, funzioni iniettive, suriettive, biiettive, funzione inversa); esercizio su funzione caratteristica e unione (Problem Solving Corner del capitolo 3.1); sezione 3.2, sequenze, esempi dal 3.2.1 al 3.2.19 (omessi 3.2.20, 21 e 22); stringhe, dalla definizione 3.2.23 all'esempio 3.2.25 (lunghezza di una stringa); esercizi 5–9 di pagina 137. Negli appunti è la lezione 22.
+- lun 23/11: lezione svolta; non ho ancora il diario, quindi negli appunti manca.
 
 ## Materiale
 
@@ -20319,7 +22541,7 @@ D: Il flip-flop della figura 1.3 ha uscita 1. Arriva un impulso sull'ingresso in
 - $0$, perché ogni impulso scambia l'uscita.
 - Dipende da quanto è durato l'impulso.
 - Non si può sapere senza conoscere l'ingresso in basso.
-= L'uscita valeva già 1. Durante l'impulso l'OR riceve 1, il NOT dà 1 perché l'ingresso in basso vale 0, e l'AND dà 1. Quando l'impulso finisce, l'OR riceve ancora l'uscita, che vale 1, e l'uscita resta 1. La prima risposta è la più tentatrice: varrebbe per una porta normale, che non ricorda, ma non per un flip-flop. L'ingresso in basso è fermo a 0, come in tutti gli esempi del libro.
+= L'uscita valeva già 1. Durante l'impulso l'OR riceve 1, il NOT dà 1 perché l'ingresso in basso vale 0, e l'AND dà 1. Quando l'impulso finisce, l'OR riceve ancora l'uscita, che vale 1, e l'uscita resta 1. La risposta «$0$, perché l'ingresso in alto è tornato a 0» è la più tentatrice: varrebbe per una porta normale, che non ricorda, ma non per un flip-flop. L'ingresso in basso è fermo a 0, come in tutti gli esempi del libro.
 
 D: Come si scrive in notazione esadecimale la fila di bit 11010011?
 - $\text{C}3$
@@ -20355,7 +22577,7 @@ D: Le celle 2 e 3 contengono due valori diversi. Quale sequenza di passi scambia
 + Copia la cella 2 nella 1, poi la cella 3 nella 2, poi la cella 1 nella 3.
 - Copia la cella 2 nella 1, poi la cella 1 nella 3, poi la cella 3 nella 2.
 - Non si può fare: copiare una cella cancella sempre quella di partenza.
-= Serve una cella di appoggio, qui la 1. Si mette da parte il valore della cella 2, poi si copia la 3 nella 2, infine si porta nella 3 il valore messo da parte. Le prime due risposte perdono un valore al primo passo: alla fine le due celle contengono lo stesso valore. La quarta copia nella 3 il valore della 2 prima di aver salvato quello della 3, che va perso. L'ultima è falsa: copiare legge la cella di partenza senza cambiarla.
+= Serve una cella di appoggio, qui la 1. Si mette da parte il valore della cella 2, poi si copia la 3 nella 2, infine si porta nella 3 il valore messo da parte. Le risposte «Copia la cella 2 nella 3, poi copia la cella 3 nella 2» e «Copia la cella 3 nella 2, poi copia la cella 2 nella 3» perdono un valore al primo passo: alla fine le due celle contengono lo stesso valore. La risposta «Copia la cella 2 nella 1, poi la cella 1 nella 3, poi la cella 3 nella 2» copia nella 3 il valore della 2 prima di aver salvato quello della 3, che va perso. La risposta «Non si può fare: copiare una cella cancella sempre quella di partenza» è falsa: copiare legge la cella di partenza senza cambiarla.
 
 D: Un disco magnetico deve leggere un settore che sta su un'altra traccia. Che cosa si somma per avere il tempo di accesso?
 + Il tempo di ricerca e il ritardo di rotazione.
@@ -21364,7 +23586,7 @@ D: Un'immagine di 640 × 480 pixel in RGB, senza compressione, quanti byte occup
 - $307200$
 + $921600$
 - $7372800$
-= I pixel sono $640 \cdot 480 = 307200$, ognuno di 3 byte: $307200 \cdot 3 = 921600$ byte. La risposta $307200$ dimentica i 3 byte per pixel. La risposta $7372800$ conta i bit, non i byte. Le prime due sommano larghezza e altezza invece di moltiplicarle.
+= I pixel sono $640 \cdot 480 = 307200$, ognuno di 3 byte: $307200 \cdot 3 = 921600$ byte. La risposta $307200$ dimentica i 3 byte per pixel. La risposta $7372800$ conta i bit, non i byte. Le risposte $1120$ e $3360$ sommano larghezza e altezza invece di moltiplicarle.
 
 D: Dieci secondi di audio mono con 44 100 campioni al secondo e 16 bit per campione: quanti byte?
 - $44100$
@@ -21396,7 +23618,7 @@ D: Con 8 bit, interi senza segno, si calcola 11110000 + 00100000. Che cosa si ot
 - 100010000, senza overflow: 8 bit bastano.
 - 11010000, con overflow.
 - 11111111, perché con 8 bit non si va oltre 255.
-= 11110000 vale 240 e 00100000 vale 32: la somma è 272, cioè 100010000, che ha 9 bit. Con 8 bit il riporto finale a sinistra si perde e resta 00010000, cioè 16: è l'overflow, perché con 8 bit si arriva solo a 255. La terza risposta scrive giusto il numero, ma con 9 bit. Un computer non si ferma a 255: tiene gli 8 bit di destra.
+= 11110000 vale 240 e 00100000 vale 32: la somma è 272, cioè 100010000, che ha 9 bit. Con 8 bit il riporto finale a sinistra si perde e resta 00010000, cioè 16: è l'overflow, perché con 8 bit si arriva solo a 255. La risposta «100010000, senza overflow: 8 bit bastano» scrive giusto il numero, ma con 9 bit. Un computer non si ferma a 255: tiene gli 8 bit di destra.
 
 D: Quanto vale il numero binario 10,011?
 - 2 e 11/100
@@ -21404,7 +23626,7 @@ D: Quanto vale il numero binario 10,011?
 + 2 e 3/8
 - 2 e 3/4
 - 3 e 3/8
-= Prima della virgola 10 vale 2. Dopo la virgola le posizioni valgono 1/2, 1/4 e 1/8: ci sono 1/4 e 1/8, cioè $2/8 + 1/8 = 3/8$. In tutto 2 e 3/8. Le prime due risposte leggono le cifre dopo la virgola come in base dieci. La risposta 2 e 3/4 sbaglia i valori delle posizioni, come se fossero 1/2 e 1/4.
+= Prima della virgola 10 vale 2. Dopo la virgola le posizioni valgono 1/2, 1/4 e 1/8: ci sono 1/4 e 1/8, cioè $2/8 + 1/8 = 3/8$. In tutto 2 e 3/8. Le risposte «2 e 11/100» e «2,11» leggono le cifre dopo la virgola come in base dieci. La risposta 2 e 3/4 sbaglia i valori delle posizioni, come se fossero 1/2 e 1/4.
 
 D: Quale di questi numeri, scritto in base 2, ha infinite cifre dopo la virgola?
 - $0{,}5$
@@ -22401,7 +24623,7 @@ D: Con 8 bit in complemento a 2, quali numeri si possono scrivere?
 - da $-127$ a $127$
 - da $-127$ a $128$
 - da $-256$ a $255$
-= Con $n$ bit si va da $-2^{n-1}$ a $2^{n-1} - 1$, e con 8 bit $2^7 = 128$: da −128 a 127. È la domanda 4 del §1.6. La risposta da 0 a 255 vale senza segno. Quella da −127 a 127 dimentica 10000000, che è −128: è l'intervallo del complemento a 1 e del segno e modulo, che hanno due zeri. Quella con 128 sbaglia il lato: lo zero toglie un posto ai positivi, non ai negativi. L'ultima conta 512 numeri, ma 8 bit ne danno 256.
+= Con $n$ bit si va da $-2^{n-1}$ a $2^{n-1} - 1$, e con 8 bit $2^7 = 128$: da −128 a 127. È la domanda 4 del §1.6. La risposta da 0 a 255 vale senza segno. Quella da −127 a 127 dimentica 10000000, che è −128: è l'intervallo del complemento a 1 e del segno e modulo, che hanno due zeri. Quella con 128 sbaglia il lato: lo zero toglie un posto ai positivi, non ai negativi. La risposta «da $-256$ a $255$» conta 512 numeri, ma 8 bit ne danno 256.
 
 D: Con 4 bit in complemento a 2, quale di queste somme va in overflow?
 + $0101 + 0110$
@@ -22473,7 +24695,7 @@ D: Nel formato del libro si calcola 2 e 1/2 + 1/8 + 1/8, da sinistra a destra, t
 - $2\tfrac58$
 - $2\tfrac14$
 - $3$
-= 2 e 1/2 + 1/8 fa 2 e 5/8, cioè 10,101: cinque cifre. La mantissa ne tiene quattro e torna 2 e 1/2. Con il secondo 1/8 succede lo stesso. Il risultato è 2 e 1/2. La risposta $2\tfrac34$ è il risultato giusto, che si ottiene sommando prima i due ottavi: è l'esempio del libro sull'ordine delle somme. La risposta $2\tfrac58$ dimentica che anche il primo risultato si tronca. Le ultime due non vengono in nessun ordine.
+= 2 e 1/2 + 1/8 fa 2 e 5/8, cioè 10,101: cinque cifre. La mantissa ne tiene quattro e torna 2 e 1/2. Con il secondo 1/8 succede lo stesso. Il risultato è 2 e 1/2. La risposta $2\tfrac34$ è il risultato giusto, che si ottiene sommando prima i due ottavi: è l'esempio del libro sull'ordine delle somme. La risposta $2\tfrac58$ dimentica che anche il primo risultato si tronca. Le risposte $2\tfrac14$ e $3$ non vengono in nessun ordine.
 
 D: Quale di questi numeri NON si scrive in modo esatto nel formato in virgola mobile del libro?
 - $2\tfrac34$
@@ -23608,7 +25830,7 @@ D: Il codice ASCII di C è 01000011. Che cosa si spedisce con il bit di parità 
 - 010000110
 - 010000111
 - 01000011
-= Il byte ha tre 1, già un numero dispari: il bit di parità è 0, e si mette davanti. Si spedisce 001000011. La risposta 101000011 usa la parità pari, perché porta gli 1 a quattro. Le risposte 010000110 e 010000111 mettono il bit in fondo invece che a sinistra. L'ultima dimentica il bit di parità.
+= Il byte ha tre 1, già un numero dispari: il bit di parità è 0, e si mette davanti. Si spedisce 001000011. La risposta 101000011 usa la parità pari, perché porta gli 1 a quattro. Le risposte 010000110 e 010000111 mettono il bit in fondo invece che a sinistra. La risposta «01000011» dimentica il bit di parità.
 
 D: Con il codice del libro (A 000000, B 001111, C 010011, D 011100, E 100110, F 101001, G 110101, H 111010) arriva 101011. Come si decodifica?
 - A
@@ -23640,7 +25862,7 @@ D: Quale caratteristica dell'occhio sfrutta lo standard di base di JPEG?
 - L'occhio vede solo 256 colori.
 - L'occhio non nota i fotogrammi che cambiano poco.
 - L'occhio vede meglio i colori della luminosità.
-= È la domanda 5 del §1.9. JPEG tiene la luminosità di ogni pixel e solo la media del colore, perché l'occhio è più sensibile alla luminosità. L'ultima risposta dice il contrario. I 256 colori sono di GIF, i fotogrammi di MPEG. I blocchi di 8 × 8 sono un passo del procedimento, non un limite dell'occhio.
+= È la domanda 5 del §1.9. JPEG tiene la luminosità di ogni pixel e solo la media del colore, perché l'occhio è più sensibile alla luminosità. La risposta «L'occhio vede meglio i colori della luminosità» dice il contrario. I 256 colori sono di GIF, i fotogrammi di MPEG. I blocchi di 8 × 8 sono un passo del procedimento, non un limite dell'occhio.
 
 D: Che cosa sfrutta MP3?
 - Il fatto che l'orecchio non sente i suoni sopra i 128 000 bit al secondo.
@@ -23664,7 +25886,7 @@ D: Con LZW come nel libro, partendo da x = 1, y = 2, spazio = 3, come si comprim
 - 113213434
 - 1121345
 - 445566
-= La parola xx è nuova: si scrive 1 1, poi lo spazio 3, e xx diventa la voce 4. Anche yx è nuova: 2 1, poi 3, e yx diventa la voce 5. Poi xx è già la 4, poi 3, poi yx è già la 5. Il risultato è 113213435. La prima risposta non usa il dizionario. La terza scrive 4 anche al posto di yx. Le ultime due saltano gli spazi o le parole nuove.
+= La parola xx è nuova: si scrive 1 1, poi lo spazio 3, e xx diventa la voce 4. Anche yx è nuova: 2 1, poi 3, e yx diventa la voce 5. Poi xx è già la 4, poi 3, poi yx è già la 5. Il risultato è 113213435. La risposta «113213113» non usa il dizionario. La risposta «113213434» scrive 4 anche al posto di yx. Le risposte «1121345» e «445566» saltano gli spazi o le parole nuove.
 
 D: Con un codice di Huffman, quanti bit occupa la parola BANANA?
 - $6$
@@ -25075,7 +27297,7 @@ D: Simulazione d'esame 2, 2023/24, domanda 8. Quale riga dà i valori giusti di 
 - $-1$, $-85$, $-15$
 - $-127$, $85$, $15$
 - $-1$, $-43$, $15$
-= 11111111 è fatto di soli 1: in complemento a 2 vale −1, perché −128 + 127 = −1. Gli altri due hanno il bit di segno a 0 e si leggono come senza segno: 64 + 16 + 4 + 1 = 85 e 8 + 4 + 2 + 1 = 15. La prima riga legge tutto senza segno. La terza mette il meno ai positivi. −127 è 10000001.
+= 11111111 è fatto di soli 1: in complemento a 2 vale −1, perché −128 + 127 = −1. Gli altri due hanno il bit di segno a 0 e si leggono come senza segno: 64 + 16 + 4 + 1 = 85 e 8 + 4 + 2 + 1 = 15. La risposta «$255$, $85$, $15$» legge tutto senza segno. La risposta «$-1$, $-85$, $-15$» mette il meno ai positivi. −127 è 10000001.
 
 D: Simulazione d'esame 2, 2023/24, domanda 3. Due NAND si richiamano: quello in alto riceve l'ingresso in alto e l'uscita dell'altro; quello in basso riceve l'ingresso in basso e l'uscita del primo, che è y. Con l'ingresso in alto a 1 e quello in basso a 0, su che valore si stabilizza y?
 + $0$
@@ -25107,7 +27329,7 @@ D: Simulazione d'esame 1, 2023/24, domanda 5. La tabella ha y = 1 solo nelle rig
 + $\overline{x_1}\,x_2\,\overline{x_3} + \overline{x_1}\,x_2\,x_3 + x_1\,\overline{x_2}\,x_3 + x_1\,x_2\,\overline{x_3}$
 - $x_1\,x_2\,x_3$
 - $\overline{x_1}\,\overline{x_2}\,\overline{x_3} + x_1\,x_2\,x_3$
-= Il metodo: un AND per ogni riga con y = 1, con il NOT sugli ingressi che valgono 0, poi tutti uniti da OR. La riga 010 dà NOT x1 AND x2 AND NOT x3, e così via: è la terza formula. La prima vale 1 nella riga 111, dove y = 0. La seconda vale 1 nella riga 001, dove y = 0. Le ultime due danno 1 proprio nelle righe in cui y = 0.
+= Il metodo: un AND per ogni riga con y = 1, con il NOT sugli ingressi che valgono 0, poi tutti uniti da OR. La riga 010 dà NOT x1 AND x2 AND NOT x3, e così via: è la formula con un AND di tre ingressi per ogni riga. La risposta $\overline{x_1}\,x_2 + x_1\,x_2\,x_3$ vale 1 nella riga 111, dove y = 0. La risposta $x_1\,x_2 + \overline{x_2}\,x_3$ vale 1 nella riga 001, dove y = 0. Le risposte $x_1\,x_2\,x_3$ e $\overline{x_1}\,\overline{x_2}\,\overline{x_3} + x_1\,x_2\,x_3$ danno 1 proprio nelle righe in cui y = 0.
 
 D: Domanda 5 del §1.1. Come si scrive in esadecimale 111010000101010100010111?
 - E85171
@@ -25115,7 +27337,7 @@ D: Domanda 5 del §1.1. Come si scrive in esadecimale 111010000101010100010111?
 - 8E5571
 - E8551
 - 1E85517
-= Gruppi di 4 bit da destra: 1110, 1000, 0101, 0101, 0001, 0111, cioè E, 8, 5, 5, 1, 7. Il risultato è E85517, la risposta del libro. La prima e la terza scambiano l'ordine di alcuni gruppi. La quarta ne perde uno. L'ultima aggiunge una cifra che non c'è: i 24 bit fanno esattamente 6 gruppi.
+= Gruppi di 4 bit da destra: 1110, 1000, 0101, 0101, 0001, 0111, cioè E, 8, 5, 5, 1, 7. Il risultato è E85517, la risposta del libro. La risposta «E85171» e la risposta «8E5571» scambiano l'ordine di alcuni gruppi. La risposta «E8551» ne perde uno. La risposta «1E85517» aggiunge una cifra che non c'è: i 24 bit fanno esattamente 6 gruppi.
 
 D: Una memoria ha 64 KB, con celle di un byte. Quanti bit servono per l'indirizzo di una cella?
 - $6$
@@ -25147,7 +27369,7 @@ D: Come si scrive 6,375 in base 2?
 + $110{,}011$
 - $110{,}101$
 - $111{,}011$
-= 6 è 110. Per 0,375 si raddoppia: 0,75 dà 0, 1,5 dà 1, 1 dà 1. Quindi 0,375 = 0,011 e 6,375 = 110,011. Controllo: 4 + 2 + 1/4 + 1/8 = 6,375. La prima copia le cifre decimali. 110,11 vale 6 e 3/4. 110,101 vale 6 e 5/8: ha le cifre dopo la virgola al contrario. 111,011 vale 7 e 3/8.
+= 6 è 110. Per 0,375 si raddoppia: 0,75 dà 0, 1,5 dà 1, 1 dà 1. Quindi 0,375 = 0,011 e 6,375 = 110,011. Controllo: 4 + 2 + 1/4 + 1/8 = 6,375. La risposta $110{,}375$ copia le cifre decimali. 110,11 vale 6 e 3/4. 110,101 vale 6 e 5/8: ha le cifre dopo la virgola al contrario. 111,011 vale 7 e 3/8.
 
 D: Con 8 bit senza segno si calcola 10010110 + 01101010. Che cosa resta negli 8 bit?
 + 00000000, con overflow.
@@ -25155,7 +27377,7 @@ D: Con 8 bit senza segno si calcola 10010110 + 01101010. Che cosa resta negli 8 
 - 11111111, senza overflow.
 - 00000000, senza overflow.
 - 11111110, con overflow.
-= I due numeri valgono 150 e 106, e la somma è 256, cioè 100000000: 9 bit. Il riporto dell'ultima colonna non ha posto, quindi negli 8 bit resta 00000000. È overflow, perché senza segno con 8 bit si arriva a 255. La seconda risposta scrive giusto il numero, ma con 9 bit. 11111111 è 255, il massimo, ma il computer non si ferma lì.
+= I due numeri valgono 150 e 106, e la somma è 256, cioè 100000000: 9 bit. Il riporto dell'ultima colonna non ha posto, quindi negli 8 bit resta 00000000. È overflow, perché senza segno con 8 bit si arriva a 255. La risposta «100000000, senza overflow» scrive giusto il numero, ma con 9 bit. 11111111 è 255, il massimo, ma il computer non si ferma lì.
 
 D: Domanda 9 del §1.6. Quanto vale 0010 in notazione in eccesso 8?
 - $2$
@@ -25187,7 +27409,7 @@ D: Domanda 4 del §1.10. Con la parità dispari del libro, bit di parità a sini
 - $010001001$
 - $010001000$
 - $01000100$
-= 01000100 ha due 1, un numero pari. Per avere un totale dispari il bit di parità deve essere 1, e il libro lo mette a sinistra: 101000100, la risposta del libro. 001000100 lascia il totale pari. La terza mette il bit di parità a destra, come la quarta che ha anche il bit sbagliato. L'ultima dimentica il bit di parità.
+= 01000100 ha due 1, un numero pari. Per avere un totale dispari il bit di parità deve essere 1, e il libro lo mette a sinistra: 101000100, la risposta del libro. 001000100 lascia il totale pari. La risposta $010001001$ mette il bit di parità a destra, come la risposta $010001000$, che ha anche il bit sbagliato. La risposta $01000100$ dimentica il bit di parità.
 
 D: Con il codice a 6 bit del libro (A 000000, B 001111, C 010011, D 011100, E 100110, F 101001, G 110101, H 111010) arriva 001011. Come si decodifica?
 - A
@@ -25203,7 +27425,7 @@ D: Domanda 2 del §1.9. Con LZW come nel libro, partendo da x = 1, y = 2, spazio
 - $1213211123434$
 - $12132111234353$
 - $45453$
-= xyx è nuova: si scrive 121 e diventa la parola 4. Lo spazio è 3. yxxxy è nuova: si scrive 21112 e diventa la parola 5. Poi xyx è 4, spazio 3, yxxxy è 5, spazio 3, yxxxy è 5. In fila: 121 3 21112 3 4 3 5 3 5. La prima non usa il dizionario. La terza e la quarta perdono le ultime parole. L'ultima usa parole che all'inizio il dizionario non ha.
+= xyx è nuova: si scrive 121 e diventa la parola 4. Lo spazio è 3. yxxxy è nuova: si scrive 21112 e diventa la parola 5. Poi xyx è 4, spazio 3, yxxxy è 5, spazio 3, yxxxy è 5. In fila: 121 3 21112 3 4 3 5 3 5. La risposta $121321112121321112$ non usa il dizionario. La risposta $1213211123434$ e la risposta $12132111234353$ perdono le ultime parole. La risposta $45453$ usa parole che all'inizio il dizionario non ha.
 
 D: Domande 3 e 4 del §1.9. Quale affermazione su GIF e JPEG è giusta?
 - GIF e JPEG sono tutti e due senza perdita.
@@ -25902,7 +28124,7 @@ D: Quale di queste frasi è una proposizione?
 - «Studia il capitolo 1.»
 - «$x$ è un numero pari.»
 - «Speriamo che il concerto cominci presto!»
-= Una proposizione è vera o falsa: la prima lo è, ed è vera. La risposta più insidiosa è «$x$ è un numero pari»: sembra una frase di matematica, ma finché non sai chi è $x$ non è né vera né falsa. Una domanda, un ordine e un augurio non sono proposizioni.
+= Una proposizione è vera o falsa: «Il 2 è l'unico numero primo pari» lo è, ed è vera. La risposta più insidiosa è «$x$ è un numero pari»: sembra una frase di matematica, ma finché non sai chi è $x$ non è né vera né falsa. Una domanda, un ordine e un augurio non sono proposizioni.
 
 D: Con $p$ falsa e $q$ vera, quale formula è vera?
 + $p \vee q$
@@ -25942,7 +28164,7 @@ D: Qual è la negazione di «Tutti gli spettatori hanno il biglietto»?
 - «Tutti gli spettatori non hanno il biglietto.»
 - «Almeno uno spettatore ha il biglietto.»
 - «Qualche spettatore ha due biglietti.»
-= La negazione deve essere vera in tutti i casi in cui la frase è falsa: basta uno senza biglietto. La risposta più insidiosa è «Nessuno spettatore ha il biglietto»: è l'opposto, ma resta falsa quando metà degli spettatori ha il biglietto e metà no. La terza dice la stessa cosa della seconda.
+= La negazione deve essere vera in tutti i casi in cui la frase è falsa: basta uno senza biglietto. La risposta più insidiosa è «Nessuno spettatore ha il biglietto»: è l'opposto, ma resta falsa quando metà degli spettatori ha il biglietto e metà no. La risposta «Tutti gli spettatori non hanno il biglietto.» dice la stessa cosa.
 
 D: Quale formula traduce «Non ho né contanti né la carta», con $p$: «ho contanti» e $q$: «ho la carta»?
 + $\neg p \wedge \neg q$
@@ -26643,7 +28865,7 @@ D: (Simulazione d'esame 1 del 2023/24, domanda 3) Qual è il valore di $(A \to B
 - dipende dall'ordine delle righe
 - non si può calcolare senza tutta la tavola
 - V, perché $A \to B$ è vera a vuoto
-= $A \to B$ è vera, a vuoto; $B \to A$ è falsa, ipotesi vera e conclusione falsa. I due pezzi hanno valori diversi, quindi il «se e solo se» è falso. La risposta più insidiosa è l'ultima: guarda solo il primo pezzo. Nel quiz era l'ultima riga.
+= $A \to B$ è vera, a vuoto; $B \to A$ è falsa, ipotesi vera e conclusione falsa. I due pezzi hanno valori diversi, quindi il «se e solo se» è falso. La risposta più insidiosa è «V, perché $A \to B$ è vera a vuoto»: guarda solo il primo pezzo. Nel quiz era l'ultima riga.
 
 D: Quale di queste formule **non** è una tautologia?
 + $(p \to q) \to (q \to p)$
@@ -26651,7 +28873,7 @@ D: Quale di queste formule **non** è una tautologia?
 - $p \to (p \vee q)$
 - $(p \to q) \vee (q \to p)$
 - $p \vee \neg p$
-= Con $p$ = F e $q$ = V, $p \to q$ è vera e $q \to p$ è falsa: la formula è falsa. Dall'implicazione non segue l'inversa. La risposta più insidiosa è $(p \to q) \vee (q \to p)$, che sembra strana ma è sempre vera: se $q$ è vera è vera la prima, se $q$ è falsa è vera la seconda.
+= Con $p$ = F e $q$ = V, $p \to q$ è vera e $q \to p$ è falsa: la formula è falsa. Dall'implicazione non segue l'inversa. La risposta più insidiosa è $(p \to q) \vee (q \to p)$, che sembra strana ma è sempre vera: se $q$ è vera è vera la prima freccia, se $q$ è falsa è vera la seconda freccia.
 
 D: In quante righe della sua tavola è vera la formula $(p \to q) \wedge (q \to r)$?
 N: 4
@@ -27957,7 +30179,7 @@ D: Sugli interi positivi, con $P(n)$ = «$n^2 + 2n$ è dispari», quale affermaz
 - tutte e due sono false
 - $\exists n\, P(n)$ è falsa e $\forall n\, P(n)$ è vera
 - $P(n)$ è una proposizione vera
-= Con $n = 2$ viene 8, pari: è un controesempio, e il «per ogni» è falso. Con $n = 1$ viene 3, dispari: è un testimone, e l'«esiste» è vero. La risposta più insidiosa è l'ultima: $P(n)$ da sola non è una proposizione, perché non si sa chi è $n$.
+= Con $n = 2$ viene 8, pari: è un controesempio, e il «per ogni» è falso. Con $n = 1$ viene 3, dispari: è un testimone, e l'«esiste» è vero. La risposta più insidiosa è «$P(n)$ è una proposizione vera»: $P(n)$ da sola non è una proposizione, perché non si sa chi è $n$.
 
 D: Che cosa basta per dimostrare che $\forall x\, P(x)$ è falsa?
 + un valore di $x$ per cui $P(x)$ è falsa
@@ -27973,7 +30195,7 @@ D: Qual è la negazione di $\exists x\,(x^2 = 2)$?
 - $\forall x\,(x^2 = 2)$
 - $\neg\,\forall x\,(x^2 = 2)$
 - $\exists x\,\neg(x^2 = 2)$
-= Il $\neg$ gira $\exists$ in $\forall$ e nega la frase interna. La risposta più insidiosa è $\exists x\,(x^2 \neq 2)$: nega la frase interna ma lascia il quantificatore com'è. Anche l'ultima è la stessa cosa scritta in un altro modo.
+= Il $\neg$ gira $\exists$ in $\forall$ e nega la frase interna. La risposta più insidiosa è $\exists x\,(x^2 \neq 2)$: nega la frase interna ma lascia il quantificatore com'è. Anche $\exists x\,\neg(x^2 = 2)$ è la stessa cosa, scritta in un altro modo.
 
 D: Quale formula traduce «ogni ragioniere ha una Porsche», con $P(x)$ = «$x$ è un ragioniere» e $Q(x)$ = «$x$ ha una Porsche», sul dominio di tutte le persone?
 + $\forall x\,(P(x) \to Q(x))$
@@ -27981,7 +30203,7 @@ D: Quale formula traduce «ogni ragioniere ha una Porsche», con $P(x)$ = «$x$ 
 - $\exists x\,(P(x) \wedge Q(x))$
 - $\exists x\,(P(x) \to Q(x))$
 - $\forall x\,(Q(x) \to P(x))$
-= «Per ogni» va con la freccia. La risposta più insidiosa è $\forall x\,(P(x) \wedge Q(x))$: direbbe che tutte le persone sono ragionieri. L'ultima gira la freccia: «chi ha una Porsche è un ragioniere».
+= «Per ogni» va con la freccia. La risposta più insidiosa è $\forall x\,(P(x) \wedge Q(x))$: direbbe che tutte le persone sono ragionieri. La risposta $\forall x\,(Q(x) \to P(x))$ gira la freccia: «chi ha una Porsche è un ragioniere».
 
 D: Qual è la negazione di «ogni studente segue un corso di matematica»?
 + Qualche studente non segue un corso di matematica
@@ -27997,7 +30219,7 @@ D: Sui numeri reali, quale di queste frasi è vera?
 - $\exists x\,\bigl(\frac{1}{x^2 + 1} > 1\bigr)$
 - $\forall x\,(x^2 \ge x)$
 - $\exists x\,(x^2 < 0)$
-= Con $x = 2$: $\frac{2}{5}$. La risposta più insidiosa è $\forall x\,(x^2 \ge x)$: è vera sugli interi, ma sui reali $x = \frac12$ è un controesempio. La terza è falsa perché $x^2 + 1 \ge 1$.
+= Con $x = 2$: $\frac{2}{5}$. La risposta più insidiosa è $\forall x\,(x^2 \ge x)$: è vera sugli interi, ma sui reali $x = \frac12$ è un controesempio. La risposta $\exists x\,\bigl(\frac{1}{x^2 + 1} > 1\bigr)$ è falsa perché $x^2 + 1 \ge 1$.
 
 D: Un programma controlla $\forall n\, P(n)$ sugli interi da 1 a 1000 e risponde «vero». Che cosa si può concludere sugli interi positivi?
 + niente su $\forall n\, P(n)$: un controesempio potrebbe essere più grande di 1000
@@ -28013,7 +30235,7 @@ D: Con $L(x)$ = «$x$ luccica» e $O(x)$ = «$x$ è oro», quale formula dice «
 - $\exists x\,(L(x) \to \neg O(x))$
 - $\forall x\,(\neg L(x) \to O(x))$
 - $\neg\,\exists x\,(L(x) \wedge O(x))$
-= È $\neg\,\forall x\,(L(x) \to O(x))$, che per De Morgan e per $\neg(p \to q) \equiv p \wedge \neg q$ diventa «qualcosa luccica e non è oro». La risposta più insidiosa è $\forall x\,(L(x) \to \neg O(x))$, la lettura alla lettera: «niente di ciò che luccica è oro». L'ultima dice la stessa cosa.
+= È $\neg\,\forall x\,(L(x) \to O(x))$, che per De Morgan e per $\neg(p \to q) \equiv p \wedge \neg q$ diventa «qualcosa luccica e non è oro». La risposta più insidiosa è $\forall x\,(L(x) \to \neg O(x))$, la lettura alla lettera: «niente di ciò che luccica è oro». La risposta $\neg\,\exists x\,(L(x) \wedge O(x))$ dice la stessa cosa.
 ```
 
 ## Esercizi
@@ -28426,7 +30648,7 @@ D: Sul dominio $\{1, 2, 3\}$, a che cosa equivale $\exists x\, P(x)$?
 - $P(1)$
 - $\neg P(1) \vee \neg P(2) \vee \neg P(3)$
 - $P(1) \to P(2) \to P(3)$
-= «Esiste» vuol dire che almeno una delle tre è vera: una disgiunzione. La risposta più insidiosa è la congiunzione, che corrisponde a $\forall x\, P(x)$. La quarta è $\exists x\,\neg P(x)$.
+= «Esiste» vuol dire che almeno una delle tre è vera: una disgiunzione. La risposta più insidiosa è la congiunzione, che corrisponde a $\forall x\, P(x)$. La risposta $\neg P(1) \vee \neg P(2) \vee \neg P(3)$ è $\exists x\,\neg P(x)$.
 
 D: Quale equivalenza è **sempre** vera?
 + $\forall x\,(P(x) \wedge Q(x)) \equiv \forall x\, P(x) \wedge \forall x\, Q(x)$
@@ -28434,7 +30656,7 @@ D: Quale equivalenza è **sempre** vera?
 - $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$
 - $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$
 - $\exists x\, P(x) \equiv \forall x\, P(x)$
-= $\forall$ si distribuisce su $\wedge$. La risposta più insidiosa è la terza: «esiste un pari ed esiste un dispari» è vera, «esiste un numero pari e dispari» no. La quarta confonde «non tutti» con «nessuno».
+= $\forall$ si distribuisce su $\wedge$. La risposta più insidiosa è $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$: «esiste un pari ed esiste un dispari» è vera, «esiste un numero pari e dispari» no. La risposta $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$ confonde «non tutti» con «nessuno».
 
 D: Da $\forall x\,(U(x) \to M(x))$ e $U(\text{Socrate})$, quali regole danno $M(\text{Socrate})$?
 + particolarizzazione universale, poi modus ponens
@@ -28450,7 +30672,7 @@ D: Quale passaggio è **sbagliato**?
 - da $\forall x\, P(x)$ dedurre $P(2)$
 - da $\forall x\, P(x)$ dedurre $\exists x\, P(x)$, su un dominio non vuoto
 - da $\neg\,\exists x\, P(x)$ dedurre $\neg P(2)$
-= La generalizzazione universale chiede un elemento qualsiasi, non il 2. La risposta più insidiosa è l'ultima, che è corretta: $\neg\,\exists x\, P(x)$ equivale a $\forall x\,\neg P(x)$, e da lì si passa al caso del 2.
+= La generalizzazione universale chiede un elemento qualsiasi, non il 2. La risposta più insidiosa è «da $\neg\,\exists x\, P(x)$ dedurre $\neg P(2)$», che è corretta: $\neg\,\exists x\, P(x)$ equivale a $\forall x\,\neg P(x)$, e da lì si passa al caso del 2.
 
 D: L'argomentazione $p \vee q,\ p \;/\; \therefore \neg q$ è valida?
 + No: con $p$ e $q$ vere le premesse sono vere e la conclusione falsa
@@ -28893,7 +31115,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Una donn
 - Una donna non ha ballato con nessun uomo
 - Ogni uomo ha ballato con qualche donna
 - Qualche donna non ha ballato con qualche uomo
-= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è l'ultima, $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo». Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
+= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è «Qualche donna non ha ballato con qualche uomo», $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo». Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Qualche donna ha ballato con qualche uomo»?
 + Nessuna donna ha ballato con nessun uomo
@@ -28901,7 +31123,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Qualche 
 - Ogni donna non ha ballato con qualche uomo
 - Ogni donna ha ballato con ogni uomo
 - Qualche donna non ha ballato con nessun uomo
-= $\neg\,\exists d\, \exists u\, B \equiv \forall d\, \forall u\, \neg B$: nessuna coppia ha ballato. La risposta più insidiosa è la seconda, che nega solo la frase interna e lascia i due «qualche».
+= $\neg\,\exists d\, \exists u\, B \equiv \forall d\, \forall u\, \neg B$: nessuna coppia ha ballato. La risposta più insidiosa è «Qualche donna non ha ballato con qualche uomo», che nega solo la frase interna e lascia i due «qualche».
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gli uomini hanno ballato con qualche donna»?
 + Qualche uomo non ha ballato con nessuna donna
@@ -28909,7 +31131,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gl
 - Tutti gli uomini non hanno ballato con qualche donna
 - Qualche donna non ha ballato con nessun uomo
 - Qualche uomo ha ballato con tutte le donne
-= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è la quarta, che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
+= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è «Qualche donna non ha ballato con nessun uomo», che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Ogni donna ha ballato con ogni uomo»?
 + Qualche donna non ha ballato con qualche uomo
@@ -28925,7 +31147,7 @@ D: Sugli interi, quale frase è vera?
 - $\exists x\, \forall y\,(x \le y)$
 - $\forall x\, \forall y\,(x < y)$
 - $\exists x\, \forall y\,(x \ge y)$
-= Per ogni intero c'è un intero più grande, per esempio $x + 1$. La risposta più insidiosa è la seconda: direbbe che c'è un intero più grande di tutti. La terza e l'ultima chiedono un minimo o un massimo degli interi, che non esistono.
+= Per ogni intero c'è un intero più grande, per esempio $x + 1$. La risposta più insidiosa è $\exists y\, \forall x\,(x < y)$: direbbe che c'è un intero più grande di tutti. La risposta $\exists x\, \forall y\,(x \le y)$ e la risposta $\exists x\, \forall y\,(x \ge y)$ chiedono un minimo o un massimo degli interi, che non esistono.
 
 D: Qual è la negazione di $\forall x\, \exists y\, \forall z\, P(x, y, z)$?
 + $\exists x\, \forall y\, \exists z\, \neg P(x, y, z)$
@@ -28933,7 +31155,7 @@ D: Qual è la negazione di $\forall x\, \exists y\, \forall z\, P(x, y, z)$?
 - $\forall x\, \exists y\, \forall z\, \neg P(x, y, z)$
 - $\exists z\, \forall y\, \exists x\, \neg P(x, y, z)$
 - $\exists x\, \forall y\, \forall z\, \neg P(x, y, z)$
-= Si gira ogni quantificatore nell'ordine: è la domanda 23 dell'autoverifica del libro. La risposta più insidiosa è la quarta, che gira i quantificatori ma inverte anche l'ordine delle variabili.
+= Si gira ogni quantificatore nell'ordine: è la domanda 23 dell'autoverifica del libro. La risposta più insidiosa è $\exists z\, \forall y\, \exists x\, \neg P(x, y, z)$, che gira i quantificatori ma inverte anche l'ordine delle variabili.
 
 D: Sui numeri reali, chi vince il gioco per $\exists y\, \forall x\,(x + y = 0)$?
 + L'avversario: per qualunque $y$, sceglie un $x$ diverso da $-y$
@@ -29400,7 +31622,7 @@ D: Simulazione d'esame 2 del 2023/24, domanda 2, con le voci in forma di scelta.
 - le algebre booleane sono definite solo su insiemi con esattamente due elementi
 - $x + x = 1$ vale in tutte le algebre booleane
 - $x \cdot x' = 1$ vale in tutte le algebre booleane
-= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è la seconda, che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0. La terza è falsa: i sottoinsiemi di un insieme formano un'algebra booleana con più di due elementi. Le ultime due cambiano le voci vere $x + x = x$ e $x \cdot x' = 0$.
+= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è «$x + (y \cdot z) = (x \cdot y) + (x \cdot z)$ vale in tutte le algebre booleane», che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0. La risposta «le algebre booleane sono definite solo su insiemi con esattamente due elementi» è falsa: i sottoinsiemi di un insieme formano un'algebra booleana con più di due elementi. Le risposte «$x + x = 1$ vale in tutte le algebre booleane» e «$x \cdot x' = 1$ vale in tutte le algebre booleane» cambiano le voci vere $x + x = x$ e $x \cdot x' = 0$.
 
 D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \wedge A) \vee (\neg C \wedge B)$. Quale formula ha la stessa tavola?
 + $\neg((C \vee \neg A) \wedge (C \vee \neg B))$
@@ -29408,7 +31630,7 @@ D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \w
 - $\neg C \wedge A \wedge B$
 - $\neg(C \wedge (A \vee B))$
 - $\neg C \vee A \vee B$
-= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è la seconda, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
+= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è $(\neg C \vee A) \wedge (\neg C \vee B)$, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
 
 D: Simulazione d'esame 2 del 2023/24, domanda 6. Qual è la negazione di «Tutti gli uomini hanno ballato con qualche donna»?
 + Qualche uomo non ha ballato con nessuna donna
@@ -29416,7 +31638,7 @@ D: Simulazione d'esame 2 del 2023/24, domanda 6. Qual è la negazione di «Tutti
 - Tutti gli uomini non hanno ballato con qualche donna
 - Qualche donna non ha ballato con nessun uomo
 - Qualche uomo ha ballato con tutte le donne
-= $\neg\,\forall u\, \exists d\, B(d, u) \equiv \exists u\, \forall d\, \neg B(d, u)$. La risposta più insidiosa è la quarta, che scambia i ruoli di uomini e donne. Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
+= $\neg\,\forall u\, \exists d\, B(d, u) \equiv \exists u\, \forall d\, \neg B(d, u)$. La risposta più insidiosa è «Qualche donna non ha ballato con nessun uomo», che scambia i ruoli di uomini e donne. Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
 
 D: Domanda 15 dell'autoverifica del capitolo 1. Quante righe della tavola di $\neg(p \wedge q) \vee (p \vee \neg r)$ hanno il valore falso?
 N: 0
@@ -29428,7 +31650,7 @@ D: Domanda 9 dell'autoverifica. L'argomentazione $p \to q,\ q \to r \;/\; \there
 - Sì, è il modus ponens
 - No: con $p$, $q$, $r$ tutte vere la conclusione è falsa
 - Non si può dire senza sapere che cosa sono $p$, $q$, $r$
-= Il sillogismo ipotetico darebbe $p \to r$, non $r \to p$. La risposta più insidiosa è la quarta: con tutte vere la conclusione è vera, quindi non è un controesempio.
+= Il sillogismo ipotetico darebbe $p \to r$, non $r \to p$. La risposta più insidiosa è «No: con $p$, $q$, $r$ tutte vere la conclusione è falsa»: con tutte vere la conclusione è vera, quindi non è un controesempio.
 
 D: «Tutti sono protestanti tranne gli svedesi», nel senso di Cardone. Quale formula la traduce?
 + $\forall x\,(P(x) \leftrightarrow \neg S(x))$
@@ -29436,7 +31658,7 @@ D: «Tutti sono protestanti tranne gli svedesi», nel senso di Cardone. Quale fo
 - $\forall x\,(P(x) \wedge \neg S(x))$
 - $\exists x\,(P(x) \wedge \neg S(x))$
 - $\forall x\,(S(x) \to P(x))$
-= «Tranne» dice due cose: chi non è svedese è protestante, e nessuno svedese è protestante. Insieme fanno un «se e solo se». La risposta più insidiosa è la seconda, che dice solo la prima delle due e permetterebbe uno svedese protestante.
+= «Tranne» dice due cose: chi non è svedese è protestante, e nessuno svedese è protestante. Insieme fanno un «se e solo se». La risposta più insidiosa è $\forall x\,(\neg S(x) \to P(x))$, che dice solo la prima delle due e permetterebbe uno svedese protestante.
 
 D: Qual è la negazione di $\forall x\,(x > 5 \to x > 3)$?
 + $\exists x\,(x > 5 \wedge x \le 3)$
@@ -29444,7 +31666,7 @@ D: Qual è la negazione di $\forall x\,(x > 5 \to x > 3)$?
 - $\forall x\,(x \le 5 \to x \le 3)$
 - $\exists x\,(x \le 5 \wedge x > 3)$
 - $\forall x\,(x > 5 \wedge x \le 3)$
-= Si gira il quantificatore e si nega la freccia, che diventa un «e». La risposta più insidiosa è la seconda: lascia la freccia, e una freccia dentro un «esiste» è vera a vuoto per ogni $x \le 5$.
+= Si gira il quantificatore e si nega la freccia, che diventa un «e». La risposta più insidiosa è $\exists x\,(x > 5 \to x \le 3)$: lascia la freccia, e una freccia dentro un «esiste» è vera a vuoto per ogni $x \le 5$.
 
 D: Con $A = \{1, 5\}$ e $B = \{2, 3\}$, quale frase è vera?
 + $\exists x \in A\; \forall y \in B\; (x \ge y)$
@@ -29452,7 +31674,7 @@ D: Con $A = \{1, 5\}$ e $B = \{2, 3\}$, quale frase è vera?
 - $\forall x \in A\; \forall y \in B\; (x < y)$
 - $\exists x \in A\; \forall y \in B\; (x < y \wedge x > 1)$
 - $\forall y \in B\; \exists x \in A\; (x = y)$
-= Il testimone è $x = 5$, maggiore di 2 e di 3. La risposta più insidiosa è la seconda, che è la negazione della prima: fallisce proprio con $x = 5$. L'ultima chiede che 2 e 3 stiano in $A$.
+= Il testimone è $x = 5$, maggiore di 2 e di 3. La risposta più insidiosa è $\forall x \in A\; \exists y \in B\; (x < y)$, che è la negazione della risposta giusta: fallisce proprio con $x = 5$. La risposta $\forall y \in B\; \exists x \in A\; (x = y)$ chiede che 2 e 3 stiano in $A$.
 ```
 
 ## Esercizi
@@ -29860,7 +32082,7 @@ D: Che cos'è un assioma?
 - Un teorema che serve a dimostrarne altri
 - Una parola usata senza definirla
 - Una frase vera in tutte le righe della tavola
-= È la domanda di ripasso 2 del libro. La risposta più insidiosa è la terza, che descrive un lemma; la quarta è un termine non definito; l'ultima è una tautologia.
+= È la domanda di ripasso 2 del libro. La risposta più insidiosa è «Un teorema che serve a dimostrarne altri», che descrive un lemma; la risposta «Una parola usata senza definirla» è un termine non definito; la risposta «Una frase vera in tutte le righe della tavola» è una tautologia.
 
 D: Per dimostrare in modo diretto «se $n$ è dispari ed $m$ è pari, allora $n + m$ è dispari», come si comincia?
 + Siano $n = 2\ell + 1$ e $m = 2k$, con $\ell$ e $k$ interi qualsiasi
@@ -29868,7 +32090,7 @@ D: Per dimostrare in modo diretto «se $n$ è dispari ed $m$ è pari, allora $n 
 - Prendo $n = 3$ e $m = 4$
 - Suppongo che $n + m$ sia pari
 - Provo tutti i numeri da 1 a 100
-= Ogni numero ha il suo intero. La risposta più insidiosa è la seconda: con lo stesso $k$ si dimostra la frase solo per $m = n - 1$. La quarta comincerebbe una dimostrazione per assurdo, della lezione 14.
+= Ogni numero ha il suo intero. La risposta più insidiosa è «Siano $n = 2k + 1$ e $m = 2k$, con lo stesso $k$»: con lo stesso $k$ si dimostra la frase solo per $m = n - 1$. La risposta «Suppongo che $n + m$ sia pari» comincerebbe una dimostrazione per assurdo, della lezione 14.
 
 D: «Per ogni intero positivo $n$, $n^2 + n + 41$ è primo.» Quale valore di $n$ è un controesempio?
 + 40
@@ -29884,7 +32106,7 @@ D: Per mostrare che un «per ogni» è falso, che cosa serve?
 - Che sia falsa per tutti gli elementi
 - Una dimostrazione diretta della sua negazione per ogni elemento
 - Un elemento che la rende vera
-= È la domanda di ripasso 12 del libro: $\neg\,\forall x\, P(x) \equiv \exists x\, \neg P(x)$. La risposta più insidiosa è la terza, che confonde «non tutti» con «nessuno».
+= È la domanda di ripasso 12 del libro: $\neg\,\forall x\, P(x) \equiv \exists x\, \neg P(x)$. La risposta più insidiosa è «Che sia falsa per tutti gli elementi», che confonde «non tutti» con «nessuno».
 
 D: Quale frase sugli insiemi è falsa?
 + Per tutti gli insiemi $X$ e $Y$, $X \subseteq Y$ oppure $Y \subseteq X$
@@ -29900,7 +32122,7 @@ D: Come si dimostra che due insiemi $X$ e $Y$ sono uguali?
 - Dimostrando $X \subseteq Y$ e basta
 - Disegnando il diagramma di Venn
 - Contando gli elementi
-= Servono le due inclusioni. La risposta più insidiosa è la quarta: il disegno aiuta a capire, ma non è una dimostrazione. Contare gli elementi non basta: $\{1\}$ e $\{2\}$ hanno lo stesso numero di elementi.
+= Servono le due inclusioni. La risposta più insidiosa è «Disegnando il diagramma di Venn»: il disegno aiuta a capire, ma non è una dimostrazione. Contare gli elementi non basta: $\{1\}$ e $\{2\}$ hanno lo stesso numero di elementi.
 
 D: Che cos'è un corollario?
 + Un teorema che segue subito da un altro teorema
@@ -29908,7 +32130,7 @@ D: Che cos'è un corollario?
 - Un teorema non ancora dimostrato
 - Una definizione che usa un teorema
 - Un controesempio
-= Lemma e corollario sono teoremi: il lemma prepara, il corollario segue. La risposta più insidiosa è la terza: un teorema è per definizione dimostrato.
+= Lemma e corollario sono teoremi: il lemma prepara, il corollario segue. La risposta più insidiosa è «Un teorema non ancora dimostrato»: un teorema è per definizione dimostrato.
 
 D: Nella dimostrazione che il prodotto di due dispari è dispari, a che cosa si arriva?
 + $mn = 2(2k_1k_2 + k_1 + k_2) + 1$
@@ -29916,7 +32138,7 @@ D: Nella dimostrazione che il prodotto di due dispari è dispari, a che cosa si 
 - $mn = 2(k_1 + k_2)$
 - $mn = (2k + 1)^2$
 - $mn = 2k_1k_2 + 1$
-= Sviluppando $(2k_1 + 1)(2k_2 + 1)$ e raccogliendo il 2. La risposta più insidiosa è la quarta: usa lo stesso $k$, e varrebbe solo per $m = n$.
+= Sviluppando $(2k_1 + 1)(2k_2 + 1)$ e raccogliendo il 2. La risposta più insidiosa è $mn = (2k + 1)^2$: usa lo stesso $k$, e varrebbe solo per $m = n$.
 ```
 
 ## Esercizi
@@ -30345,7 +32567,7 @@ D: Per contrapposizione, che cosa si dimostra al posto di «se $n^2$ è pari, $n
 - Se $n^2$ è dispari, $n$ è dispari
 - $n^2$ è pari e $n$ è dispari
 - Se $n$ è pari, $n^2$ è dispari
-= La contronominale nega e scambia: $\neg Q \to \neg P$. La risposta più insidiosa è la seconda, che è l'inversa: vera anche lei, ma non equivalente.
+= La contronominale nega e scambia: $\neg Q \to \neg P$. La risposta più insidiosa è «Se $n$ è pari, $n^2$ è pari», che è l'inversa: vera anche lei, ma non equivalente.
 
 D: Qual è la negazione della tesi «$x \ge 1$ oppure $y \ge 1$», da supporre in una dimostrazione per assurdo?
 + $x < 1$ e $y < 1$
@@ -30353,7 +32575,7 @@ D: Qual è la negazione della tesi «$x \ge 1$ oppure $y \ge 1$», da supporre i
 - $x \le 1$ e $y \le 1$
 - $x > 1$ e $y > 1$
 - $x + y < 2$
-= De Morgan: la negazione di un «o» è un «e», e il contrario di $\ge$ è $<$. La risposta più insidiosa è la terza: con $\le$ include $x = 1$, che non nega $x \ge 1$.
+= De Morgan: la negazione di un «o» è un «e», e il contrario di $\ge$ è $<$. La risposta più insidiosa è «$x \le 1$ e $y \le 1$»: con $\le$ include $x = 1$, che non nega $x \ge 1$.
 
 D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, dove sta la contraddizione?
 + $p$ e $q$ risultano tutti e due pari, ma la frazione era ridotta ai minimi termini
@@ -30361,7 +32583,7 @@ D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, dove sta la contraddizione
 - $\sqrt{2}$ risulta negativo
 - $q$ risulta 0
 - $p$ risulta dispari
-= Si suppone la frazione ridotta, poi si dimostra che numeratore e denominatore sono pari. La risposta più insidiosa è la seconda: $p^2 = 2q^2$ è il passaggio da cui si parte; la contraddizione arriva solo confrontando quello che se ne ricava con l'ipotesi della frazione ridotta.
+= Si suppone la frazione ridotta, poi si dimostra che numeratore e denominatore sono pari. La risposta più insidiosa è «$p^2 = 2q^2$ è impossibile»: $p^2 = 2q^2$ è il passaggio da cui si parte; la contraddizione arriva solo confrontando quello che se ne ricava con l'ipotesi della frazione ridotta.
 
 D: 40 monete in 9 borse non vuote. Quante monete servirebbero almeno se le borse avessero numeri di monete tutti diversi?
 N: 45
@@ -30373,7 +32595,7 @@ D: Che cos'è una dimostrazione di esistenza non costruttiva?
 - Mostra un elemento esplicito
 - Dimostra un «per ogni»
 - Usa solo esempi
-= È la domanda di ripasso 14 del §2.2. La risposta più insidiosa è la terza, che è la definizione di costruttiva.
+= È la domanda di ripasso 14 del §2.2. La risposta più insidiosa è «Mostra un elemento esplicito», che è la definizione di costruttiva.
 
 D: Nel paradosso del bevitore, chi si sceglie se almeno un cliente non beve?
 + Proprio un cliente che non beve
@@ -30797,7 +33019,7 @@ D: Da $p \to q$ e $\neg q$, quale regola permette di concludere $\neg p$?
 - sillogismo disgiuntivo
 - negazione dell'antecedente
 - sillogismo ipotetico
-= Si nega la conclusione della freccia e si ricava la negazione dell'ipotesi. La risposta più insidiosa è la quarta: è il nome di una fallacia, con $\neg p$ tra le premesse e non nella conclusione.
+= Si nega la conclusione della freccia e si ricava la negazione dell'ipotesi. La risposta più insidiosa è «negazione dell'antecedente»: è il nome di una fallacia, con $\neg p$ tra le premesse e non nella conclusione.
 
 D: Quale di questi ragionamenti **non** è valido?
 + «Se Anna vince, festeggia. Festeggia. Quindi ha vinto.»
@@ -30813,7 +33035,7 @@ D: L'argomentazione $p \to q$, $q \to r$, quindi $r \to p$ non è valida. Quale 
 - $p$ vera, $q$ falsa, $r$ falsa
 - $p$ falsa, $q$ falsa, $r$ falsa
 - nessuna: è valida
-= È la soluzione ufficiale della domanda 9 dell'autoverifica del capitolo 1: premesse vere, conclusione $r \to p$ falsa. La risposta più insidiosa è la terza: con $p$ vera e $q$ falsa la prima premessa è falsa, quindi la riga non è critica.
+= È la soluzione ufficiale della domanda 9 dell'autoverifica del capitolo 1: premesse vere, conclusione $r \to p$ falsa. La risposta più insidiosa è «$p$ vera, $q$ falsa, $r$ falsa»: con $p$ vera e $q$ falsa la prima premessa è falsa, quindi la riga non è critica.
 
 D: Con le premesse $p \to q$, $q \to r$, $\neg r$, quali due regole portano a $\neg p$?
 + sillogismo ipotetico, poi modus tollens
@@ -30821,7 +33043,7 @@ D: Con le premesse $p \to q$, $q \to r$, $\neg r$, quali due regole portano a $\
 - addizione, poi modus tollens
 - semplificazione, poi modus ponens
 - non si può ottenere
-= Dal sillogismo ipotetico $p \to r$, poi con $\neg r$ il modus tollens dà $\neg p$. La risposta più insidiosa è l'ultima: l'argomentazione è valida, come quella delle Olimpiadi della lezione 12.
+= Dal sillogismo ipotetico $p \to r$, poi con $\neg r$ il modus tollens dà $\neg p$. La risposta più insidiosa è «non si può ottenere»: l'argomentazione è valida, come quella delle Olimpiadi della lezione 12.
 
 D: Come comincia la dimostrazione diretta di «se $n$ è dispari, allora $n^2$ è dispari»?
 + Supponiamo $n$ dispari: $n = 2k + 1$ per un intero $k$.
@@ -30829,7 +33051,7 @@ D: Come comincia la dimostrazione diretta di «se $n$ è dispari, allora $n^2$ �
 - Supponiamo $n$ pari: $n = 2k$.
 - Proviamo con $n = 3$: $n^2 = 9$ è dispari.
 - Supponiamo $n^2$ pari e cerchiamo una contraddizione.
-= Si suppone l'ipotesi e la si riscrive con la definizione. La risposta più insidiosa è la quarta: un esempio non dimostra un «per ogni».
+= Si suppone l'ipotesi e la si riscrive con la definizione. La risposta più insidiosa è «Proviamo con $n = 3$: $n^2 = 9$ è dispari»: un esempio non dimostra un «per ogni».
 
 D: Per dimostrare $A \subseteq B$ in modo diretto, da dove si parte?
 + da un elemento qualsiasi di $A$, per mostrare che sta in $B$
@@ -30837,7 +33059,7 @@ D: Per dimostrare $A \subseteq B$ in modo diretto, da dove si parte?
 - da un elemento che sta in tutti e due
 - dall'insieme vuoto
 - da un esempio concreto di $A$ e $B$
-= È la definizione di sottoinsieme. La risposta più insidiosa è la seconda, che dimostra l'inclusione al contrario.
+= È la definizione di sottoinsieme. La risposta più insidiosa è «da un elemento qualsiasi di $B$, per mostrare che sta in $A$», che dimostra l'inclusione al contrario.
 
 D: Quale frase è smentita dal controesempio $n = 11$?
 + per ogni primo $n$, $2^n - 1$ è primo
@@ -30845,7 +33067,7 @@ D: Quale frase è smentita dal controesempio $n = 11$?
 - per ogni intero $n$, $n^2 \ge n$
 - per ogni primo $n$, $2^n$ è pari
 - esiste un primo $n$ con $2^n - 1$ primo
-= $2^{11} - 1 = 2047 = 23 \cdot 89$. La risposta più insidiosa è l'ultima: è un «esiste», vero (con $n = 2$), e un controesempio non smentisce un «esiste».
+= $2^{11} - 1 = 2047 = 23 \cdot 89$. La risposta più insidiosa è «esiste un primo $n$ con $2^n - 1$ primo»: è un «esiste», vero (con $n = 2$), e un controesempio non smentisce un «esiste».
 
 D: Quante righe ha la tavola di verità di un'argomentazione con le lettere $p$, $q$, $r$?
 N: 8
@@ -31331,7 +33553,7 @@ D: Che cosa si suppone in una dimostrazione per assurdo di «se $P$ allora $Q$»
 - solo $Q$ falsa, senza usare $P$
 - $Q$ vera, per vedere se segue $P$
 - $P$ e $Q$ tutte e due false
-= È la domanda di ripasso 1 del §2.2: le ipotesi vere e la conclusione falsa. La risposta più insidiosa è la terza, che è la contrapposizione: lì si suppone solo non $Q$ e si deve arrivare a non $P$.
+= È la domanda di ripasso 1 del §2.2: le ipotesi vere e la conclusione falsa. La risposta più insidiosa è «solo $Q$ falsa, senza usare $P$», che è la contrapposizione: lì si suppone solo non $Q$ e si deve arrivare a non $P$.
 
 D: Qual è il contrario di «$x \ge 1$ oppure $y \ge 1$», da supporre in una dimostrazione per assurdo?
 + $x < 1$ e $y < 1$
@@ -31339,7 +33561,7 @@ D: Qual è il contrario di «$x \ge 1$ oppure $y \ge 1$», da supporre in una di
 - $x \le 1$ e $y \le 1$
 - $x \le -1$ e $y \le -1$
 - $x + y < 2$
-= De Morgan: la negazione di un «oppure» è un «e» delle negazioni, e la negazione di $\ge$ è $<$. La risposta più insidiosa è la seconda: nega le due parti ma dimentica di cambiare il connettivo.
+= De Morgan: la negazione di un «oppure» è un «e» delle negazioni, e la negazione di $\ge$ è $<$. La risposta più insidiosa è «$x < 1$ oppure $y < 1$»: nega le due parti ma dimentica di cambiare il connettivo.
 
 D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, a che cosa serve supporre la frazione $\frac{p}{q}$ ridotta ai minimi termini?
 + a ottenere la contraddizione, quando si scopre che $p$ e $q$ sono tutti e due pari
@@ -31347,7 +33569,7 @@ D: Nella dimostrazione che $\sqrt{2}$ è irrazionale, a che cosa serve supporre 
 - a far sì che $p$ sia dispari
 - a poter elevare al quadrato
 - non serve, è una precisione di stile
-= La contraddizione è proprio «ridotta» contro «$p$ e $q$ pari». La risposta più insidiosa è la terza: «ridotta» vuol dire che $p$ e $q$ non sono **tutti e due** pari, non che $p$ è dispari.
+= La contraddizione è proprio «ridotta» contro «$p$ e $q$ pari». La risposta più insidiosa è «a far sì che $p$ sia dispari»: «ridotta» vuol dire che $p$ e $q$ non sono **tutti e due** pari, non che $p$ è dispari.
 
 D: Qual è il contrario di «per ogni $i$, $s_i > A$»?
 + esiste un $i$ con $s_i \le A$
@@ -31355,7 +33577,7 @@ D: Qual è il contrario di «per ogni $i$, $s_i > A$»?
 - esiste un $i$ con $s_i < A$
 - per ogni $i$, $s_i < A$
 - nessun $s_i$ è maggiore di $A$
-= Il «per ogni» diventa «esiste», e $>$ diventa $\le$. La risposta più insidiosa è la terza, che dimentica il caso $s_i = A$.
+= Il «per ogni» diventa «esiste», e $>$ diventa $\le$. La risposta più insidiosa è «esiste un $i$ con $s_i < A$», che dimentica il caso $s_i = A$.
 
 D: Una dimostrazione suppone «$n^2$ pari e $n$ dispari» e arriva a «$n^2$ dispari». Che cosa ha dimostrato?
 + se $n^2$ è pari allora $n$ è pari
@@ -31363,7 +33585,7 @@ D: Una dimostrazione suppone «$n^2$ pari e $n$ dispari» e arriva a «$n^2$ dis
 - se $n^2$ è dispari allora $n$ è dispari
 - che non esistono interi dispari
 - niente, perché non ha usato l'ipotesi
-= È l'esempio 2.2.1: «$n^2$ dispari» contraddice l'ipotesi «$n^2$ pari». La risposta più insidiosa è la terza, che è un'altra frase vera (esercizio 4) ma non è quella dimostrata.
+= È l'esempio 2.2.1: «$n^2$ dispari» contraddice l'ipotesi «$n^2$ pari». La risposta più insidiosa è «se $n^2$ è dispari allora $n$ è dispari», che è un'altra frase vera (esercizio 4) ma non è quella dimostrata.
 
 D: Quale frase si dimostra meglio per assurdo che in modo diretto?
 + $(X - Y) \cap (Y - X) = \varnothing$
@@ -31379,7 +33601,7 @@ D: Che differenza c'è tra dimostrazione diretta e per assurdo, secondo l'autove
 - la diretta vale solo per i numeri, quella per assurdo per gli insiemi
 - quella per assurdo non ha ipotesi
 - non c'è differenza: sono due nomi dello stesso metodo
-= È la risposta ufficiale alla domanda 2. La risposta più insidiosa è la quarta: per assurdo si usano sia le ipotesi sia la negazione della tesi.
+= È la risposta ufficiale alla domanda 2. La risposta più insidiosa è «quella per assurdo non ha ipotesi»: per assurdo si usano sia le ipotesi sia la negazione della tesi.
 ```
 
 ## Esercizi
@@ -31815,7 +34037,7 @@ D: Qual è la contronominale di «se $x^2$ è irrazionale, allora $x$ è irrazio
 - se $x^2$ è razionale, allora $x$ è razionale
 - se $x$ è razionale, allora $x^2$ è irrazionale
 - $x^2$ è irrazionale e $x$ è razionale
-= Si scambiano le due parti e si negano tutte e due. La più insidiosa è la terza: nega senza scambiare, e non è equivalente alla frase di partenza. L'ultima è la supposizione di una dimostrazione per assurdo.
+= Si scambiano le due parti e si negano tutte e due. La più insidiosa è «se $x^2$ è razionale, allora $x$ è razionale»: nega senza scambiare, e non è equivalente alla frase di partenza. La risposta «$x^2$ è irrazionale e $x$ è razionale» è la supposizione di una dimostrazione per assurdo.
 
 D: Una dimostrazione di «se $P$ allora $Q$» comincia con «supponiamo non $Q$» e finisce con «quindi non $P$». Che metodo è?
 + per contrapposizione
@@ -31831,7 +34053,7 @@ D: Qual è il contrario di «$m$ è pari oppure $n$ è pari», da usare in una c
 - $m$ è pari e $n$ è pari
 - $mn$ è dispari
 - $m$ è dispari e $n$ è pari
-= De Morgan: il contrario di un «oppure» è un «e» dei contrari. La più insidiosa è la seconda, che nega le parti ma tiene «oppure».
+= De Morgan: il contrario di un «oppure» è un «e» dei contrari. La più insidiosa è «$m$ è dispari oppure $n$ è dispari», che nega le parti ma tiene «oppure».
 
 D: Per dimostrare per casi una proprietà di tutti i reali $x$, quale coppia di casi va bene?
 + $x \ge 0$ e $x < 0$
@@ -31839,7 +34061,7 @@ D: Per dimostrare per casi una proprietà di tutti i reali $x$, quale coppia di 
 - $x \ge 1$ e $x \le -1$
 - $x$ intero e $x$ irrazionale
 - $x > 0$ e $x \ge 1$
-= I casi devono coprire tutti i reali. La più insidiosa è la seconda, che dimentica lo 0.
+= I casi devono coprire tutti i reali. La più insidiosa è «$x > 0$ e $x < 0$», che dimentica lo 0.
 
 D: Quanti casi ha la dimostrazione di $\lvert xy \rvert = \lvert x \rvert \cdot \lvert y \rvert$ nella soluzione del libro?
 N: 4
@@ -31851,7 +34073,7 @@ D: Che cosa bisogna dimostrare per provare «$P$ se e solo se $Q$»?
 - «se $P$ allora $Q$» e la sua contronominale
 - che $P$ e $Q$ sono tutte e due vere
 - «se $P$ allora $Q$» oppure «se $Q$ allora $P$»
-= Servono le due direzioni. La più insidiosa è la terza: la contronominale è equivalente alla prima freccia, quindi si dimostrerebbe due volte la stessa direzione.
+= Servono le due direzioni. La più insidiosa è ««se $P$ allora $Q$» e la sua contronominale»: la contronominale è equivalente alla prima freccia, quindi si dimostrerebbe due volte la stessa direzione.
 
 D: Tre frasi $P$, $Q$, $R$ sono equivalenti. Quale gruppo di dimostrazioni basta?
 + $P \to Q$, $Q \to R$, $R \to P$
@@ -31859,7 +34081,7 @@ D: Tre frasi $P$, $Q$, $R$ sono equivalenti. Quale gruppo di dimostrazioni basta
 - $P \to Q$, $P \to R$
 - $P \to Q$, $Q \to P$
 - $Q \to P$, $R \to P$
-= Il giro chiuso permette di andare da ognuna a ogni altra. La più insidiosa è la seconda: senza $R \to P$ non si torna indietro.
+= Il giro chiuso permette di andare da ognuna a ogni altra. La più insidiosa è «$P \to Q$, $Q \to R$»: senza $R \to P$ non si torna indietro.
 ```
 
 ## Esercizi
@@ -32361,7 +34583,7 @@ D: Simulazione 2 del 2023/24, quiz 7. Nel frammento `i = 1; s = 0; while (i < n)
 - `s == 1 + … + n`
 - `i == n`
 - `i < n`
-= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Nella simulazione è invariante anche `i >= 1`. La più insidiosa è la seconda: prima del ciclo direbbe $0 = 1$.
+= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Nella simulazione è invariante anche `i >= 1`. La più insidiosa è `s == 1 + … + i`: prima del ciclo direbbe $0 = 1$.
 
 D: Che cosa si suppone nel passo induttivo di una dimostrazione di «$S(n)$ per ogni $n \ge 1$»?
 + che $S(n)$ sia vera per un $n$ generico
@@ -32369,7 +34591,7 @@ D: Che cosa si suppone nel passo induttivo di una dimostrazione di «$S(n)$ per 
 - che $S(n + 1)$ sia vera
 - che $S(1)$ sia falsa
 - niente: si dimostra $S(n + 1)$ da zero
-= È l'ipotesi induttiva. La più insidiosa è la seconda: supporre $S(n)$ per ogni $n$ vuol dire supporre la conclusione.
+= È l'ipotesi induttiva. La più insidiosa è «che $S(n)$ sia vera per ogni $n$»: supporre $S(n)$ per ogni $n$ vuol dire supporre la conclusione.
 
 D: Si dimostrano $S(4)$ e, per ogni $n \ge 4$, «se $S(n)$ allora $S(n + 1)$». Che cosa si può concludere?
 + $S(n)$ è vera per ogni $n \ge 4$
@@ -32377,7 +34599,7 @@ D: Si dimostrano $S(4)$ e, per ogni $n \ge 4$, «se $S(n)$ allora $S(n + 1)$». 
 - $S(n)$ è vera solo per $n = 4$ e $n = 5$
 - niente, perché la base deve essere $S(1)$
 - $S(n)$ è falsa per $n < 4$
-= La fila di tessere comincia da 4. La più insidiosa è l'ultima: sui casi prima della base il principio non dice niente, né vero né falso.
+= La fila di tessere comincia da 4. La più insidiosa è «$S(n)$ è falsa per $n < 4$»: sui casi prima della base il principio non dice niente, né vero né falso.
 
 D: Nel passo induttivo di «$5^n - 1$ è divisibile per 4», quale riscrittura fa comparire il caso $n$?
 + $5^{n+1} - 1 = 5 \cdot (5^n - 1) + 4$
@@ -32385,7 +34607,7 @@ D: Nel passo induttivo di «$5^n - 1$ è divisibile per 4», quale riscrittura f
 - $5^{n+1} - 1 = (5^n - 1) + 5$
 - $5^{n+1} - 1 = 5 \cdot (5^n - 1)$
 - $5^{n+1} - 1 = 4 \cdot 5^n$
-= Sviluppando: $5^{n+1} - 5 + 4$. La più insidiosa è la quarta, che dimentica il $+4$: $5 \cdot (5^n - 1)$ fa $5^{n+1} - 5$.
+= Sviluppando: $5^{n+1} - 5 + 4$. La più insidiosa è $5^{n+1} - 1 = 5 \cdot (5^n - 1)$, che dimentica il $+4$: $5 \cdot (5^n - 1)$ fa $5^{n+1} - 5$.
 
 D: Nel ciclo del fattoriale `i = 1; fact = 1; while (i < n) { i = i + 1; fact = fact * i; }`, con `n = 5`, quanto vale `fact` dopo 2 giri?
 N: 6
@@ -32917,7 +35139,7 @@ D: Dalla simulazione 1 del 2023/24, quiz 9, adattata a una risposta sola. Quale 
 - può essere usato per svolgere dimostrazioni sui numeri reali
 - non può mai sostituire l'induzione semplice
 - non ha bisogno di un caso base
-= È l'affermazione d del quiz; le prime tre sono del quiz, le ultime due le ho aggiunte io. Nel quiz vero è giusta anche la b: la forma forte può sempre sostituire quella semplice. La più insidiosa è quella sui numeri reali: l'induzione, in tutte e due le forme, lavora sugli interi.
+= È l'affermazione d del quiz. Le risposte «non può mai sostituire l'induzione semplice» e «non ha bisogno di un caso base» le ho aggiunte io, le altre sono del quiz. Nel quiz vero è giusta anche la b: la forma forte può sempre sostituire quella semplice. La più insidiosa è quella sui numeri reali: l'induzione, in tutte e due le forme, lavora sugli interi.
 
 D: Nel ciclo `i = 0; ris = 1; while (i < n) { ris = ris * a; i = i + 1; }`, a che cosa serve la parte `i <= n` dell'invariante?
 + a concludere che all'uscita `i == n`
@@ -32925,7 +35147,7 @@ D: Nel ciclo `i = 0; ris = 1; while (i < n) { ris = ris * a; i = i + 1; }`, a ch
 - a far terminare il ciclo
 - a evitare che `ris` diventi negativo
 - a niente: è vera ma inutile
-= All'uscita si sa `i >= n`; con `i <= n` si ottiene `i == n`, e quindi `ris == a^n`. La più insidiosa è l'ultima: senza quella parte il risultato non si può scrivere.
+= All'uscita si sa `i >= n`; con `i <= n` si ottiene `i == n`, e quindi `ris == a^n`. La più insidiosa è «a niente: è vera ma inutile»: senza quella parte il risultato non si può scrivere.
 
 D: Nello stesso ciclo, con `a = 2` e `n = 6`, quanto vale `ris` dopo 4 giri?
 N: 16
@@ -32937,7 +35159,7 @@ D: Nella dimostrazione dei francobolli da 2 e da 5, perché servono due casi bas
 - perché l'induzione forte chiede sempre due casi base
 - perché 4 e 5 sono gli unici casi veri
 - perché il passo usa il caso $n - 1$
-= Il passo vale da 6 in su, perché deve essere $n - 2 \ge 4$: il 5 resta fuori e va verificato a mano. La più insidiosa è la terza: il numero di casi base dipende dal passo, non dal principio.
+= Il passo vale da 6 in su, perché deve essere $n - 2 \ge 4$: il 5 resta fuori e va verificato a mano. La più insidiosa è «perché l'induzione forte chiede sempre due casi base»: il numero di casi base dipende dal passo, non dal principio.
 
 D: Con l'induzione forte, quali casi si possono usare per dimostrare $S(12)$, se si parte da $n_0 = 4$?
 + tutti quelli da $S(4)$ a $S(11)$
@@ -32945,7 +35167,7 @@ D: Con l'induzione forte, quali casi si possono usare per dimostrare $S(12)$, se
 - solo $S(4)$
 - quelli da $S(1)$ a $S(11)$
 - quelli da $S(4)$ a $S(12)$
-= L'ipotesi forte copre i $k$ con $n_0 \le k < n$. La più insidiosa è l'ultima: $S(12)$ è quella da dimostrare.
+= L'ipotesi forte copre i $k$ con $n_0 \le k < n$. La più insidiosa è «quelli da $S(4)$ a $S(12)$»: $S(12)$ è quella da dimostrare.
 
 D: Quanti prodotti servono per moltiplicare 10 fattori, mettendo le parentesi nel modo più conveniente?
 N: 9
@@ -33057,6 +35279,1832 @@ Forma a L | Figura fatta di tre quadrati uguali disposti a L: una scacchiera sen
 - Simulazione d'esame 1 del 2023/24, quiz 9 (testo dalla trascrizione delle schermate, con le risposte segnate da uno studente).
 - Diario delle lezioni del canale B (Berardi), lezione 20 del docente, 13/11/2026.
 - Le tabelle, i disegni, i quiz senza indicazione e gli esercizi sui francobolli da 3 e da 5 e «trova l'errore» sono di questi appunti. Il ciclo della potenza l'ho trascritto in C, compilato con `gcc -Wall -Werror` e provato con gli invarianti controllati da `assert`; francobolli, prodotti e coperture con i tromini li ho controllati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/20_invarianti_potenza_veloce.md -->
+> File: `contesto_ai/FDA/lezioni/20_invarianti_potenza_veloce.md`
+
+```yaml
+corso: FDA
+lezione: "20"
+titolo: "Esercizi sugli invarianti: divisione intera e potenza veloce"
+data: 2026-11-16
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 20 · Esercizi sugli invarianti di ciclo
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 20 di Fondamenti dell'Informatica (canale B): esercizi sugli invarianti di ciclo. Il programma
+  della divisione intera con condizione di ingresso e di uscita, correttezza parziale e totale, la terminazione; la
+  potenza veloce con i quadrati successivi, il suo invariante dimostrato per induzione, la correttezza e la versione
+  «come quiz».
+lede: >-
+  Per calcolare una potenza con esponente 1000 non servono mille moltiplicazioni: ne bastano una quindicina, elevando
+  al quadrato. Il ciclo che lo fa è corto ma non si capisce a occhio perché funzioni. L'invariante lo spiega in una
+  riga, ed è l'esercizio tipico del quiz sugli invarianti.
+materiale: libro
+scheda:
+  Lucidi: F. Cardone, «Invarianti, principio di induzione e correttezza dei programmi» e «Il principio di induzione»
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  Diario delle lezioni del canale B (lezione 21 del docente); F. Cardone, «Invarianti, principio di induzione e
+  correttezza dei programmi» (divisione intera, quadrato di un numero) e lucidi «Il principio di induzione»;
+  simulazione d'esame 2 del 2023/24, quiz 7; l'algoritmo della potenza per quadrati successivi nella sua forma
+  consueta
+appunti_html: appunti/FDA/20_invarianti_potenza_veloce.html
+genera_html: true
+```
+
+## In breve
+
+- Un programma è **corretto** rispetto a una **condizione di ingresso** e a una **condizione di uscita**: se i dati rispettano la prima, alla fine i risultati rispettano la seconda.
+- **Correttezza parziale**: se il programma termina, il risultato è giusto. **Correttezza totale**: in più, termina sempre.
+- La **terminazione** di un ciclo si dimostra trovando una quantità intera che non scende sotto zero e cala a ogni giro.
+- La **divisione intera** per sottrazioni ripetute ha l'invariante `X == q * D + r`.
+- La **potenza veloce** calcola una potenza con pochi giri: se l'esponente è pari eleva la base al quadrato e dimezza l'esponente, se è dispari toglie 1 all'esponente e moltiplica il risultato.
+- Il suo invariante è `ris * x^y == a^n`: quello che è già nel risultato, per quello che resta da calcolare, dà sempre la potenza cercata.
+- All'uscita `y` vale 0, e l'invariante diventa `ris == a^n`.
+- Nel quiz si controlla ogni affermazione in due momenti: prima del ciclo e dopo un giro qualsiasi.
+
+> [!CANALI]
+> Nel canale B è la lezione di lunedì 16/11, dalle 9 alle 11. Per il docente è la lezione 21: qui è la 20. Il diario del canale B dice: «Esercizi su invarianti: potenza veloce, svolta informalmente e come quiz».
+>
+> **Che cosa non so.** Il codice esatto usato dal docente non ce l'ho. La potenza veloce si scrive in più modi equivalenti: qui uso quello in cui ogni giro fa una sola cosa, perché l'invariante si controlla più facilmente, e riporto in una nota la versione più compatta. Se in aula i nomi delle variabili erano altri, l'invariante è lo stesso con i nomi cambiati.
+>
+> **I lucidi.** L'esempio della divisione intera e quello del quadrato vengono dai lucidi di Felice Cardone (canale A) sugli invarianti, che spiegano le parole che servono: condizione di ingresso, condizione di uscita, correttezza parziale e totale. Nei lucidi i programmi sono in Java; qui sono riscritti in C, e cambia solo la stampa.
+>
+> Servono la [lezione 18](18_induzione.html), con l'invariante del fattoriale, e la [19](19_induzione_forte.html), con quello della potenza calcolata un fattore alla volta.
+
+## Che cosa vuol dire «corretto»: la divisione intera
+
+Dividere 14 per 3 senza usare la divisione si può: si toglie 3 finché si riesce, e si contano le volte. Da 14 si passa a 11, 8, 5, 2: quattro sottrazioni, e avanza 2.
+
+```c
+q = 0;
+r = X;
+while (r >= D) {
+    r = r - D;
+    q = q + 1;
+}
+```
+
+Con `X = 14` e `D = 3`:
+
+| Giri fatti | `q` | `r` | `q * D + r` |
+|---|---|---|---|
+| 0 | 0 | 14 | 14 |
+| 1 | 1 | 11 | 14 |
+| 2 | 2 | 8 | 14 |
+| 3 | 3 | 5 | 14 |
+| 4 | 4 | 2 | 14 |
+
+```grafico
+titolo: La divisione di 14 per 3 come salti all'indietro di 3 sulla retta. Ogni salto è un giro del ciclo: q conta i salti, r è il punto in cui si è arrivati. Dopo quattro salti r vale 2, che è minore di 3, e il ciclo si ferma
+x: -0.8 15
+y: 0 3.2
+assi: no
+griglia: no
+proporzioni: libere
+segmento: -0.4 1.0 14.6 1.0 | grigio
+punto: 0 1.0 | grigio
+testo: 0 0.45 | grigio | "0"
+punto: 2 1.0 | verde
+testo: 2 0.45 | verde | "2"
+punto: 5 1.0 | blu
+testo: 5 0.45 | blu | "5"
+punto: 8 1.0 | blu
+testo: 8 0.45 | blu | "8"
+punto: 11 1.0 | blu
+testo: 11 0.45 | blu | "11"
+punto: 14 1.0 | blu
+testo: 14 0.45 | blu | "14"
+freccia: 14 1.3 11.2 1.3 | ambra
+freccia: 11 1.3 8.2 1.3 | ambra
+freccia: 8 1.3 5.2 1.3 | ambra
+freccia: 5 1.3 2.2 1.3 | ambra
+testo: 12.5 1.75 | ambra | "− 3"
+testo: 9.5 1.75 | ambra | "− 3"
+testo: 6.5 1.75 | ambra | "− 3"
+testo: 3.5 1.75 | ambra | "− 3"
+testo: 2 2.6 | verde | "resto"
+testo: 8 2.6 | ambra | "4 salti: quoziente 4"
+```
+
+Per dire che il programma è giusto bisogna prima dire **che cosa deve fare**. Lo si fa con due condizioni.
+
+> [!DEF] Condizione di ingresso, condizione di uscita, correttezza
+> La **condizione di ingresso** è la proprietà che i dati devono avere all'inizio. La **condizione di uscita** è la proprietà che i risultati devono avere alla fine.
+>
+> Il programma è **parzialmente corretto** se, per ogni dato che rispetta la condizione di ingresso, quando il programma termina i risultati rispettano la condizione di uscita. È **totalmente corretto** se, in più, termina per ogni dato che rispetta la condizione di ingresso.
+
+**Come si legge.** Per la divisione la condizione di ingresso è $X \ge 0$ e $D > 0$; quella di uscita è $X = q \cdot D + r$ con $r < D$, cioè «`q` è il quoziente e `r` è il resto». «Parzialmente» vuol dire che si promette solo questo: se arriva in fondo, il risultato è giusto. Che arrivi in fondo è un'altra dimostrazione.
+
+L'invariante è la colonna che nella tabella non cambia: **`X == q * D + r`**.
+
+> [!ESEMPIO] · `X == q * D + r` è un invariante
+> **Passo base: dopo 0 giri.** `q = 0` e `r = X`: $0 \cdot D + X = X$. Vero.
+>
+> **Passo induttivo.** Suppongo che dopo $k$ giri valga $X = q \cdot D + r$, e che il ciclo faccia un altro giro. I valori nuovi sono $r' = r - D$ e $q' = q + 1$.
+>
+> Allora $q' \cdot D + r' = (q + 1) \cdot D + (r - D) = q \cdot D + r$.
+>
+> Per ipotesi induttiva l'ultima espressione vale $X$. Quindi l'invariante vale anche dopo $k + 1$ giri.
+
+**Dall'invariante al risultato.** Il ciclo finisce quando `r >= D` è falsa, cioè con `r < D`. Insieme all'invariante è proprio la condizione di uscita. Questa è la correttezza parziale.
+
+**La terminazione.** A ogni giro `r` cala di `D`, che è almeno 1 per la condizione di ingresso. E `r` non scende mai sotto zero, perché il giro si fa solo se `r >= D`. Un intero non negativo che cala a ogni giro non può calare per sempre: il ciclo si ferma. Con questo la correttezza è totale.
+
+> [!TRAPPOLA] La condizione di ingresso non è un dettaglio
+> Con `D = 0` l'invariante resta vero a ogni giro, ma `r` non cala più e il ciclo non finisce mai. Il programma è parzialmente corretto anche in quel caso, perché «se termina» non succede. È la condizione $D > 0$ a garantire la terminazione.
+
+::: prova Con `X = 17` e `D = 5`, scrivi `q` e `r` dopo ogni giro. Quanti giri fa il ciclo?
+Dopo 0 giri: 0 e 17. Poi 1 e 12, 2 e 7, 3 e 2. Tre giri: 2 è minore di 5 e il ciclo si ferma. In ogni riga $q \cdot 5 + r = 17$.
+:::
+
+> [!RICORDA]
+> - Corretto = rispetta la condizione di uscita, per i dati che rispettano quella di ingresso.
+> - Parziale: se termina, il risultato è giusto. Totale: in più, termina.
+> - Terminazione: una quantità intera, mai negativa, che cala a ogni giro.
+
+## La potenza veloce: l'idea
+
+Il ciclo della [lezione 19](19_induzione_forte.html) calcola una potenza moltiplicando per la base un fattore alla volta: per l'esponente 1000 fa mille giri. Si può fare molto meglio usando i quadrati.
+
+Per calcolare $3^{16}$ bastano quattro moltiplicazioni: $3^2 = 9$, poi $9^2 = 3^4$, poi il quadrato di questo, che è $3^8$, e ancora un quadrato per $3^{16}$. Ogni quadrato **raddoppia** l'esponente.
+
+Se l'esponente non è una potenza di 2, si usano due regole:
+
+- esponente **pari**: $x^y = (x^2)^{y/2}$. Si eleva la base al quadrato e si dimezza l'esponente;
+- esponente **dispari**: $x^y = x \cdot x^{y-1}$. Si mette da parte un fattore $x$ e l'esponente diventa pari.
+
+Per $3^{13}$: il 13 è dispari, quindi $3^{13} = 3 \cdot 3^{12}$. Il 12 è pari: $3^{12} = 9^6$. Il 6 è pari: $9^6 = 81^3$. E così via, finché l'esponente arriva a zero.
+
+```grafico
+titolo: Come scende l'esponente 13 nella potenza veloce. Quando è dispari si toglie 1 (frecce ambra), quando è pari si dimezza (frecce blu). In sei passi si arriva a 0; un fattore alla volta ne servirebbero tredici
+x: 0 12.4
+y: 0 3.2
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.8 1.4 | grigio | "13"
+freccia: 1.3 1.4 2.3 1.4 | ambra
+testo: 1.8 1.9 | ambra | "− 1"
+testo: 2.8 1.4 | grigio | "12"
+freccia: 3.3 1.4 4.3 1.4 | blu
+testo: 3.8 1.9 | blu | ": 2"
+testo: 4.7 1.4 | grigio | "6"
+freccia: 5.1 1.4 6.1 1.4 | blu
+testo: 5.6 1.9 | blu | ": 2"
+testo: 6.5 1.4 | grigio | "3"
+freccia: 6.9 1.4 7.9 1.4 | ambra
+testo: 7.4 1.9 | ambra | "− 1"
+testo: 8.3 1.4 | grigio | "2"
+freccia: 8.7 1.4 9.7 1.4 | blu
+testo: 9.2 1.9 | blu | ": 2"
+testo: 10.1 1.4 | grigio | "1"
+freccia: 10.5 1.4 11.5 1.4 | ambra
+testo: 11.0 1.9 | ambra | "− 1"
+testo: 11.9 1.4 | verde | "0"
+testo: 6.2 0.5 | grigio | "pari: si dimezza · dispari: si toglie 1"
+```
+
+Il programma tiene tre variabili: `x` è la base che via via viene elevata al quadrato, `y` è l'esponente che resta, `ris` raccoglie i fattori messi da parte.
+
+```c
+x = a;
+y = n;
+ris = 1;
+while (y > 0) {
+    if (y % 2 == 1) {
+        ris = ris * x;
+        y = y - 1;
+    } else {
+        x = x * x;
+        y = y / 2;
+    }
+}
+```
+
+Condizione di ingresso: `n >= 0`. Condizione di uscita: `ris == a^n`.
+
+::: prova Quali passi fa l'esponente 10 fino a 0?
+10 è pari: 5. 5 è dispari: 4. Poi 2, poi 1, poi 0. Cinque passi.
+:::
+
+> [!RICORDA]
+> - Esponente pari: base al quadrato, esponente dimezzato.
+> - Esponente dispari: un fattore nel risultato, esponente meno 1.
+> - Il numero di giri cresce come il numero di cifre binarie dell'esponente, non come l'esponente.
+
+## L'invariante della potenza veloce
+
+Guardando solo il codice non si vede perché alla fine `ris` contenga la potenza. Lo si vede seguendo i valori, con `a = 3` e `n = 13`:
+
+| Giri fatti | `x` | `y` | `ris` | `ris * x^y` |
+|---|---|---|---|---|
+| 0 | 3 | 13 | 1 | $1 \cdot 3^{13}$ |
+| 1 | 3 | 12 | 3 | $3 \cdot 3^{12}$ |
+| 2 | 9 | 6 | 3 | $3 \cdot 9^{6}$ |
+| 3 | 81 | 3 | 3 | $3 \cdot 81^{3}$ |
+| 4 | 81 | 2 | 243 | $243 \cdot 81^{2}$ |
+| 5 | 6561 | 1 | 243 | $243 \cdot 6561$ |
+| 6 | 6561 | 0 | 1594323 | $1594323$ |
+
+L'ultima colonna vale sempre $3^{13} = 1594323$, scritto in modi diversi. L'invariante è:
+
+> [!DEF] L'invariante della potenza veloce
+> Dopo ogni numero di giri vale `ris * x^y == a^n`, insieme a `y >= 0`.
+
+**Come si legge.** `ris` è la parte del risultato già calcolata; `x^y` è la parte che resta da calcolare. Il loro prodotto è sempre la potenza cercata. A ogni giro un pezzo passa dalla seconda parte alla prima, oppure la seconda parte viene riscritta con altri numeri senza cambiare valore.
+
+La frase $S(k)$ da dimostrare per induzione è: «dopo $k$ giri, $ris \cdot x^y = a^n$».
+
+> [!ESEMPIO] · La dimostrazione, per induzione sul numero di giri
+> **Passo base: dopo 0 giri.** `x = a`, `y = n`, `ris = 1`: il prodotto è $1 \cdot a^n$. Vero.
+>
+> **Passo induttivo.** Suppongo $ris \cdot x^y = a^n$ dopo $k$ giri (ipotesi induttiva), e che il ciclo faccia un altro giro: quindi $y > 0$. Ci sono due casi.
+>
+> **Caso $y$ dispari.** I valori nuovi sono $ris' = ris \cdot x$ e $y' = y - 1$, mentre $x$ non cambia. Allora $ris' \cdot x^{y'} = ris \cdot x \cdot x^{y-1} = ris \cdot x^y$.
+>
+> **Caso $y$ pari.** I valori nuovi sono $x' = x^2$ e $y' = \frac{y}{2}$, mentre $ris$ non cambia. Allora $ris \cdot (x')^{y'} = ris \cdot (x^2)^{y/2} = ris \cdot x^y$.
+>
+> In tutti e due i casi il prodotto nuovo è uguale a quello vecchio, che per ipotesi induttiva vale $a^n$.
+
+È una dimostrazione per induzione con dentro una dimostrazione **per casi**, come quelle della [lezione 17](17_contrapposizione_casi_equivalenze.html): i due casi sono i due rami dell'`if`, e insieme coprono tutto.
+
+Nel caso pari c'è un punto da non saltare: `y / 2` in C è una divisione tra interi. Qui `y` è pari, quindi la divisione è esatta, e $\frac{y}{2}$ è proprio la metà. Con `y` dispari la formula $(x^2)^{y/2}$ con la divisione intera sarebbe sbagliata: $9^{6}$ non è $3^{13}$.
+
+::: prova Con `a = 2` e `n = 10`, quanto valgono `x`, `y` e `ris` dopo 2 giri? L'invariante vale?
+Dopo il primo giro: `x = 4`, `y = 5`, `ris = 1`. Dopo il secondo: `x = 4`, `y = 4`, `ris = 4`. Sì: $4 \cdot 4^4 = 1024 = 2^{10}$.
+:::
+
+> [!RICORDA]
+> - Invariante: `ris * x^y == a^n`. Già calcolato per ancora da calcolare.
+> - Passo induttivo per casi: un caso per ogni ramo dell'`if`.
+> - Nel ramo pari la divisione per 2 è esatta, e per questo il valore non cambia.
+
+## Correttezza e terminazione
+
+Con l'invariante in mano la correttezza si scrive in poche righe, sempre con lo stesso schema: invariante più condizione di uscita.
+
+1. Il ciclo finisce quando `y > 0` è falsa: quindi `y <= 0`.
+2. Per l'invariante `y >= 0`. Insieme: `y == 0`.
+3. Per l'invariante `ris * x^y == a^n`, e con `y == 0` la potenza `x^y` vale 1.
+4. Quindi **`ris == a^n`**: è la condizione di uscita.
+
+Perché `y >= 0` è un invariante: all'inizio `y` è `n`, che non è negativo per la condizione di ingresso. Il giro si fa solo con `y > 0`; nel ramo dispari `y` diventa `y - 1`, che è almeno 0, e nel ramo pari diventa la metà di un numero positivo.
+
+**La terminazione.** La quantità che cala è `y`: nel ramo dispari diminuisce di 1, nel ramo pari si dimezza, e un numero positivo dimezzato è più piccolo. È un intero che non scende sotto zero e cala a ogni giro: il ciclo termina. La correttezza è totale.
+
+**Quanti giri.** Dopo un giro «dispari» l'esponente è pari, quindi il giro dopo lo dimezza: ogni due giri l'esponente si dimezza almeno una volta. Per `n = 13` i giri sono 6; per `n = 60` sono 9, al posto di 60. In generale non superano il doppio del numero di cifre binarie di `n`.
+
+Ho trascritto il ciclo in C con l'invariante controllato da un `assert` prima del ciclo e dopo ogni giro, e l'ho provato per le basi da 0 a 3 e gli esponenti da 0 a 30: nessun `assert` fallisce, e il risultato è sempre la potenza giusta.
+
+> [!NOTA] La versione compatta
+> Si trova anche scritta così: `while (y > 0) { if (y % 2 == 1) { ris = ris * x; } x = x * x; y = y / 2; }`. A ogni giro guarda l'ultima cifra binaria di `y`, e poi la butta via con la divisione intera. L'invariante è lo stesso, `ris * x^y == a^n`. Nel caso dispari il conto usa che `y / 2` è $\frac{y - 1}{2}$: il fattore tolto è quello che finisce in `ris`. Fa un giro per ogni cifra binaria: 4 per `n = 13`. Provata anche questa.
+
+::: prova Perché all'uscita dal ciclo si può dire `y == 0` e non solo `y <= 0`?
+Perché `y >= 0` è un invariante: con la condizione del ciclo falsa, cioè `y <= 0`, resta solo lo zero.
+:::
+
+> [!RICORDA]
+> - Uscita: `y == 0`, quindi `x^y` vale 1 e `ris == a^n`.
+> - Terminazione: `y` è un intero non negativo che cala a ogni giro.
+> - Giri: al massimo il doppio delle cifre binarie dell'esponente.
+
+## Come quiz: invariante o no?
+
+Il quiz d'esame dà un ciclo e una lista di affermazioni, e chiede quali sono invarianti. Per la potenza veloce, con `a >= 1`:
+
+| Affermazione | Prima del ciclo | Dopo un giro qualsiasi | Invariante? |
+|---|---|---|---|
+| `ris * x^y == a^n` | vera | vera | **sì** |
+| `y >= 0` | vera | vera | **sì** |
+| `y > 0` | falsa se `n` è 0 | falsa dopo l'ultimo giro | no |
+| `x == a` | vera | falsa dopo un giro «pari» | no |
+| `ris == a^(n-y)` | vera | falsa: riga 2 della tabella | no |
+| `y <= n` | vera | vera | **sì** |
+| `ris == a^n` | falsa, se `a^n` non è 1 | vera solo alla fine | no |
+
+La più insidiosa è la quinta. Nel ciclo della lezione 19, quello che moltiplica un fattore alla volta, `ris` è una potenza di `a` con l'esponente «già consumato». Qui no: nella riga 2 della tabella `ris` vale 3, mentre $a^{n-y}$ sarebbe $3^{7}$. La base `x` cambia per strada, e l'invariante deve tenerne conto.
+
+Il metodo è quello della [lezione 18](18_induzione.html):
+
+1. controlla l'affermazione **prima del ciclo**, con i valori iniziali;
+2. controllala **dopo un giro**, supponendola vera prima: se il ciclo ha un `if`, in tutti e due i rami;
+3. se hai un dubbio, fai la tabella con numeri piccoli e cerca una riga che la smentisce.
+
+Un'affermazione vera solo all'uscita, come `ris == a^n`, è la **condizione di uscita**, non un invariante.
+
+::: prova `x^y <= a^n` è un invariante, per `a >= 1`?
+Sì. Prima del ciclo è un'uguaglianza. Nel ramo pari `x^y` non cambia valore; nel ramo dispari perde un fattore `x`, che è almeno 1, quindi non cresce.
+:::
+
+> [!RICORDA]
+> - Invariante: vero prima del ciclo **e** dopo ogni giro, in tutti i rami.
+> - Vero solo alla fine: è la condizione di uscita.
+> - Nel dubbio, una tabella con numeri piccoli.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `X == q * D + r` | «X uguale q per D più r» | invariante della divisione | $14 = 3 \cdot 3 + 5$ |
+| `ris * x^y == a^n` | «ris per x alla y uguale a alla n» | invariante della potenza veloce | $3 \cdot 9^6 = 3^{13}$ |
+| `y % 2 == 1` | «y modulo 2 uguale a 1» | `y` è dispari | `13 % 2` vale 1 |
+| `y / 2` | «y diviso 2» | divisione tra interi; esatta se `y` è pari | `12 / 2` vale 6 |
+| $x'$, $y'$, $ris'$ | «x primo», «y primo» | i valori dopo il giro | $y' = y - 1$ |
+| c.i., c.u. | «condizione di ingresso, di uscita» | che cosa si chiede ai dati e ai risultati | `n >= 0`; `ris == a^n` |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Il quiz «seleziona gli invarianti»**: c'era nella simulazione 2 del 2023/24 (quiz 7), con un ciclo che somma. La potenza veloce è lo stesso esercizio con un ciclo più difficile.
+2. **Dall'invariante al risultato**: saper dire che cosa vale all'uscita, usando la condizione del ciclo diventata falsa.
+3. **Parziale e totale**: sapere che cosa aggiunge la terminazione, e come si dimostra.
+
+### Una domanda sul modello, letta insieme
+
+**Sul modello del quiz 7 della simulazione 2.** «Sia `n >= 0` un intero e `a >= 1`. Considera il frammento `x = a; y = n; ris = 1; while (y > 0) { if (y % 2 == 1) { ris = ris * x; y = y - 1; } else { x = x * x; y = y / 2; } }`. Seleziona gli invarianti: (1) `ris * x^y == a^n`; (2) `y > 0`; (3) `y >= 0`; (4) `ris == a^(n - y)`; (5) `x >= a`.»
+
+**In pratica chiede:** per ogni affermazione, se è vera prima del ciclo e resta vera dopo ogni giro.
+
+> [!ESEMPIO] · la soluzione, affermazione per affermazione
+> **(1) Sì.** È l'invariante dimostrato sopra.
+>
+> **(2) No.** Con `n = 0` è falsa già prima del ciclo; e in ogni caso è falsa dopo l'ultimo giro.
+>
+> **(3) Sì.** `n` non è negativo, e nessuno dei due rami porta `y` sotto zero partendo da un `y` positivo.
+>
+> **(4) No.** Con `a = 3` e `n = 13`, dopo 2 giri `ris` vale 3 e `y` vale 6: $3^{7}$ non è 3.
+>
+> **(5) Sì.** `x` parte da `a` e cambia solo diventando il proprio quadrato; con `a >= 1` il quadrato non è più piccolo.
+>
+> Le affermazioni da selezionare sono la 1, la 3 e la 5. Controllate con un programma sui valori di `a` da 1 a 3 e di `n` da 0 a 30.
+
+> [!METODO] Trovare l'invariante di un ciclo che calcola qualcosa
+> 1. Scrivi che cosa deve valere alla fine: la condizione di uscita.
+> 2. Fai la tabella dei valori con numeri piccoli.
+> 3. Cerca una combinazione delle variabili che resta uguale in tutte le righe. Spesso ha la forma «già calcolato» combinato con «ancora da calcolare».
+> 4. Controlla che con la condizione del ciclo falsa diventi la condizione di uscita.
+> 5. Dimostrala per induzione sul numero di giri.
+
+### Errori da evitare
+
+- Scambiare la condizione di uscita per un invariante.
+- Controllare l'affermazione solo in un ramo dell'`if`.
+- Dimenticare che `y / 2` è una divisione tra interi.
+- Dire «corretto» senza aver detto che il ciclo termina, quando è chiesta la correttezza totale.
+
+## Quiz
+
+```quiz
+D: Nella potenza veloce `x = a; y = n; ris = 1; while (y > 0) { if (y % 2 == 1) { ris = ris * x; y = y - 1; } else { x = x * x; y = y / 2; } }`, quale affermazione è un invariante?
++ `ris * x^y == a^n`
+- `ris == a^n`
+- `ris == a^(n - y)`
+- `x == a`
+- `y > 0`
+= Il prodotto tra la parte già calcolata e quella ancora da calcolare non cambia. La più insidiosa è `ris == a^(n - y)`: vale per il ciclo che moltiplica un fattore alla volta, non qui, dove la base cambia.
+
+D: Nello stesso ciclo, con `a = 3` e `n = 13`, quanto vale `x` dopo 3 giri?
+N: 81
+= Giro 1: `y` da 13 a 12. Giro 2: `x` diventa 9, `y` 6. Giro 3: `x` diventa 81, `y` 3.
+
+D: Nello stesso ciclo, con `a = 2` e `n = 10`, quanti giri fa il ciclo?
+N: 5
+= L'esponente scende così: 10, 5, 4, 2, 1, 0. Provato.
+
+D: Nel programma della divisione `q = 0; r = X; while (r >= D) { r = r - D; q = q + 1; }`, che cosa garantisce la terminazione?
++ `r` è un intero che non scende sotto zero e cala di `D > 0` a ogni giro
+- l'invariante `X == q * D + r`
+- il fatto che `q` cresce
+- la condizione di uscita `r < D`
+- niente: il ciclo può non terminare anche con `D > 0`
+= Serve una quantità che cala e non può calare per sempre. La più insidiosa è «l'invariante `X == q * D + r`»: l'invariante dà la correttezza parziale, ma resta vero anche con `D = 0`, dove il ciclo non finisce.
+
+D: Che differenza c'è tra correttezza parziale e correttezza totale?
++ quella totale chiede anche che il programma termini
+- quella parziale vale solo per alcuni dati in ingresso
+- quella totale non ha bisogno di un invariante
+- quella parziale non usa la condizione di uscita
+- nessuna, per i programmi con un solo ciclo
+= Parziale: se termina, il risultato rispetta la condizione di uscita. Totale: termina, e il risultato la rispetta. La più insidiosa è «quella parziale vale solo per alcuni dati in ingresso»: tutte e due valgono per tutti i dati che rispettano la condizione di ingresso.
+
+D: Nella dimostrazione dell'invariante della potenza veloce, quale uguaglianza si usa nel caso `y` pari?
++ $(x^2)^{y/2} = x^y$
+- $x \cdot x^{y-1} = x^y$
+- $x^2 \cdot x^{y/2} = x^y$
+- $(x^2)^{y} = x^y$
+- $x^{y/2} \cdot x^{y/2} = x^2$
+= La base diventa il quadrato e l'esponente la metà. La più insidiosa è $x \cdot x^{y-1} = x^y$, che è l'uguaglianza del caso dispari.
+
+D: Dai lucidi di Cardone. Nel ciclo `X = 0; Y = 0; while (X < N) { Y = Y + 2 * X + 1; X = X + 1; }`, quale invariante dà il risultato?
++ `Y == X * X`
+- `Y == 2 * X + 1`
+- `Y == N * N`
+- `X < N`
+- `Y == X + 1`
+= $(X + 1)^2 = X^2 + 2X + 1$: aggiungendo $2X + 1$ si passa da un quadrato al successivo. All'uscita `X == N`, quindi `Y == N * N`. La più insidiosa è `Y == N * N`, che è la condizione di uscita.
+
+D: Con `D = 0` e `X = 5`, che cosa succede al programma della divisione?
++ non termina, e l'invariante resta vero a ogni giro
+- termina con `q = 0` e `r = 5`
+- l'invariante diventa falso al primo giro
+- termina con un resto negativo
+- dà errore di divisione per zero
+= `r` non cala più e la condizione `r >= 0` resta vera. Il programma non divide mai, quindi nessun errore: sottrae. La più insidiosa è «l'invariante diventa falso al primo giro»: $q \cdot 0 + 5 = 5$ resta vero qualunque sia `q`.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: la tabella della divisione
+Per `X = 23` e `D = 6` scrivi `q` e `r` prima del ciclo e dopo ogni giro, e controlla l'invariante in ogni riga.
+::: soluzione
+0 e 23; 1 e 17; 2 e 11; 3 e 5. Il ciclo si ferma perché 5 è minore di 6. In ogni riga $q \cdot 6 + r = 23$: per esempio $2 \cdot 6 + 11$.
+:::
+
+::: esercizio base Riscaldamento: la tabella della potenza veloce
+Per `a = 2` e `n = 11` scrivi `x`, `y` e `ris` prima del ciclo e dopo ogni giro.
+::: soluzione
+Inizio: 2, 11, 1. Giro 1 (dispari): 2, 10, 2. Giro 2 (pari): 4, 5, 2. Giro 3 (dispari): 4, 4, 8. Giro 4 (pari): 16, 2, 8. Giro 5 (pari): 256, 1, 8. Giro 6 (dispari): 256, 0, 2048. In ogni riga `ris * x^y` vale 2048.
+:::
+
+::: esercizio medio Il quadrato per somme (lucidi di Cardone)
+Dimostra che `Y == X * X` è un invariante di `X = 0; Y = 0; while (X < N) { Y = Y + 2 * X + 1; X = X + 1; }`, e ricava il risultato. Che quantità dimostra la terminazione?
+::: soluzione
+**Base.** $0 = 0 \cdot 0$. **Passo.** Se $Y = X^2$, dopo il giro $Y' = X^2 + 2X + 1 = (X + 1)^2$ e $X' = X + 1$: quindi $Y' = X'^2$. **Uscita.** La condizione falsa dà `X >= N`; con l'invariante `X <= N`, che vale perché `X` cresce di uno solo quando è minore di `N`, si ha `X == N` e `Y == N * N`. **Terminazione.** La quantità `N - X` è un intero non negativo che cala di 1 a ogni giro. Nei lucidi c'è anche la versione ricorsiva, in cui il passo è scritto come `Q(n-1) + 2 * n - 1`.
+:::
+
+::: esercizio medio Un invariante in più per la potenza veloce
+Dimostra che `y >= 0` è un invariante della potenza veloce, e spiega dove serve.
+::: soluzione
+**Base.** `y = n` e `n >= 0` per la condizione di ingresso. **Passo.** Il giro si fa solo se `y > 0`. Nel ramo dispari $y' = y - 1 \ge 0$. Nel ramo pari $y' = \frac{y}{2} > 0$. **Dove serve.** All'uscita, per passare da `y <= 0` a `y == 0`: senza, non si potrebbe dire che `x^y` vale 1.
+:::
+
+::: esercizio esame La versione compatta, come quiz
+Nel ciclo `while (y > 0) { if (y % 2 == 1) { ris = ris * x; } x = x * x; y = y / 2; }`, con `x = a`, `y = n`, `ris = 1` all'inizio, dimostra che `ris * x^y == a^n` è un invariante.
+::: soluzione
+**Base.** Come prima: $1 \cdot a^n$. **Passo, caso $y$ pari.** $ris$ non cambia, $x' = x^2$, $y' = \frac{y}{2}$: $ris \cdot (x^2)^{y/2} = ris \cdot x^y$. **Caso $y$ dispari.** $ris' = ris \cdot x$, $x' = x^2$, e la divisione intera dà $y' = \frac{y - 1}{2}$. Allora $ris' \cdot (x')^{y'} = ris \cdot x \cdot (x^2)^{(y-1)/2} = ris \cdot x \cdot x^{y-1} = ris \cdot x^y$. In tutti e due i casi il prodotto non cambia.
+:::
+
+::: esercizio difficile Quante moltiplicazioni
+Quante moltiplicazioni fa la potenza veloce della lezione per `n = 16`, per `n = 15` e per `n = 32`? Perché 15 costa più di 16?
+::: soluzione
+Ogni giro fa una moltiplicazione. Per 16: l'esponente scende 16, 8, 4, 2, 1, 0, cioè 5 giri. Per 32: 6 giri. Per 15: 15, 14, 7, 6, 3, 2, 1, 0, cioè 7 giri. Il 15 in binario è 1111: ogni cifra 1 costa un giro «dispari» in più, mentre 16 è 10000 e ha una sola cifra 1. Contati con un programma.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cosa sono la condizione di ingresso e la condizione di uscita?
+Le proprietà che devono avere i dati all'inizio e i risultati alla fine. Sono la specifica del programma: dicono che cosa deve fare.
+:::
+
+::: domanda Come si dimostra che un ciclo termina?
+Si trova una quantità intera che non scende mai sotto zero e che cala a ogni giro.
+:::
+
+::: domanda Qual è l'invariante della potenza veloce, e come si legge?
+`ris * x^y == a^n`: la parte già calcolata per la parte ancora da calcolare dà sempre la potenza cercata.
+:::
+
+::: domanda Perché il passo induttivo della potenza veloce ha due casi?
+Perché il corpo del ciclo ha un `if`: l'invariante va controllato nel ramo dell'esponente dispari e in quello dell'esponente pari.
+:::
+
+::: domanda Perché `ris == a^n` non è un invariante?
+Perché è vero solo alla fine: è la condizione di uscita.
+:::
+
+## Glossario
+
+```glossario
+Condizione di ingresso | Proprietà che i dati devono avere all'inizio del programma.
+Condizione di uscita | Proprietà che i risultati devono avere alla fine.
+Correttezza parziale | Se il programma termina, i risultati rispettano la condizione di uscita.
+Correttezza totale | Correttezza parziale più terminazione.
+Invariante di ciclo | Affermazione vera prima del ciclo e dopo ogni giro.
+Terminazione | Il fatto che il ciclo si fermi; si dimostra con una quantità intera non negativa che cala.
+Potenza veloce | Calcolo di una potenza con quadrati successivi, in un numero di giri proporzionale alle cifre binarie dell'esponente.
+```
+
+## Checklist
+
+```checklist
+- So dire che cosa sono condizione di ingresso e condizione di uscita.
+- So la differenza tra correttezza parziale e totale.
+- So dimostrare l'invariante della divisione intera e ricavarne il risultato.
+- So spiegare perché la divisione termina, e che cosa succede con D uguale a 0.
+- So seguire la potenza veloce con una tabella.
+- So scrivere l'invariante della potenza veloce e dimostrarlo, con i due casi.
+- So ricavare il risultato dall'invariante e dalla condizione di uscita.
+- So decidere se un'affermazione è un invariante, controllando prima del ciclo e dopo un giro.
+```
+
+## Fonti
+
+- Diario delle lezioni del canale B (Berardi), lezione 21 del docente, 16/11/2026: «Esercizi su invarianti: potenza veloce, svolta informalmente e come quiz».
+- F. Cardone, «Invarianti, principio di induzione e correttezza dei programmi» (canale A): divisione intera con condizione di ingresso e di uscita, correttezza parziale e totale, quadrato di un numero naturale; lucidi «Introduzione alla correttezza dei programmi. Il principio di induzione».
+- Simulazione d'esame 2 del 2023/24, quiz 7 (il modello del quiz sugli invarianti).
+- Il codice della potenza veloce, le tabelle, i disegni, i quiz e gli esercizi sono di questi appunti. Tutti i cicli li ho trascritti in C, compilati con `gcc -Wall -Werror` e provati con gli invarianti controllati da `assert`.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/21_invarianti_vettori_somma_zeri.md -->
+> File: `contesto_ai/FDA/lezioni/21_invarianti_vettori_somma_zeri.md`
+
+```yaml
+corso: FDA
+lezione: "21"
+titolo: "Invarianti sui vettori: la somma e la ricerca degli zeri"
+data: 2026-11-19
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 21 · Invarianti di ciclo sui vettori
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 21 di Fondamenti dell'Informatica (canale B): gli invarianti dei cicli che scorrono un vettore.
+  L'indice che divide il vettore in parte già guardata e parte da guardare, l'invariante della somma, quello del
+  conteggio degli zeri e quello della ricerca del primo zero, con la condizione di uscita e la terminazione.
+lede: >-
+  Un ciclo che scorre un vettore ha sempre la stessa forma: un indice che avanza, e una variabile che riassume quello
+  che si è visto fin lì. L'invariante dice che cosa contiene quella variabile a metà strada. Trovato per la somma, si
+  adatta con poche parole al conteggio e alla ricerca.
+materiale: libro
+scheda:
+  Lucidi: F. Cardone, «Invarianti, principio di induzione e correttezza dei programmi»
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  Diario delle lezioni del canale B (lezione 22 del docente); F. Cardone, «Invarianti, principio di induzione e
+  correttezza dei programmi» (schema della dimostrazione per induzione sul numero di giri); simulazione d'esame 2 del
+  2023/24, quiz 7; i cicli sui vettori nella loro forma consueta
+appunti_html: appunti/FDA/21_invarianti_vettori_somma_zeri.html
+genera_html: true
+```
+
+## In breve
+
+- Un ciclo che scorre un vettore `v` di `n` elementi usa un indice `i` che parte da 0 e arriva a `n`. In ogni momento `i` divide il vettore in due: i **primi `i` elementi**, già guardati, e gli altri.
+- L'invariante parla sempre della parte già guardata: dice che cosa si è calcolato **fin lì**.
+- **Somma**: `s == v[0] + … + v[i-1]`, cioè `s` è la somma dei primi `i` elementi.
+- **Conteggio degli zeri**: `c` è il numero di zeri tra i primi `i` elementi.
+- **Ricerca del primo zero**: nessuno dei primi `i` elementi è zero.
+- In tutti e tre serve anche l'invariante `i <= n`: con la condizione del ciclo falsa dà `i == n`, cioè «ho guardato tutto».
+- Prima del ciclo `i` vale 0 e la parte già guardata è vuota: la somma di nessun numero è 0, e una frase «per ogni» su nessun elemento è vera.
+- La terminazione è la stessa per tutti: la quantità `n - i` non è mai negativa e cala a ogni giro.
+
+> [!CANALI]
+> Nel canale B è la lezione di giovedì 19/11, dalle 9 alle 11. Per il docente è la lezione 22: qui è la 21. Il diario del canale B dice: «Invariante di ciclo per la ricerca degli 0 in un vettore e per la somma di un vettore».
+>
+> **Che cosa non so.** Il codice usato dal docente non ce l'ho, e «ricerca degli 0» si può intendere in due modi: contare quanti zeri ci sono, oppure fermarsi al primo zero che si incontra. Li ho messi tutti e due, perché gli invarianti sono diversi e il secondo è quello che insegna di più. Se in aula i nomi delle variabili erano altri, gli invarianti sono gli stessi con i nomi cambiati.
+>
+> **L'ordine.** Comincio dalla somma, che è il caso più pulito, e poi passo agli zeri: il diario li nomina nell'ordine opposto.
+>
+> Servono la [lezione 18](18_induzione.html), con la definizione di invariante, e la [lezione 20](20_invarianti_potenza_veloce.html), con condizione di ingresso, condizione di uscita e terminazione. I programmi sono in C, il linguaggio di Programmazione I.
+
+## Un indice che divide il vettore in due
+
+Un **vettore** è una fila di caselle numerate a partire da 0. Se `v` ha `n` elementi, le caselle sono `v[0]`, `v[1]`, fino a `v[n-1]`: l'ultima ha il numero `n - 1`, e `v[n]` **non esiste**.
+
+In tutta la lezione uso questo vettore di 6 elementi:
+
+```c
+int v[6] = {4, 0, 7, 0, 0, 3};
+```
+
+Un ciclo lo scorre con un indice `i` che parte da 0 e cresce di uno a ogni giro. Fermati a metà, quando `i` vale 3:
+
+```grafico
+titolo: Il vettore v con l'indice i fermo a 3. A sinistra della freccia ci sono gli elementi già guardati, quelli di posto 0, 1 e 2; a destra quelli ancora da guardare. L'invariante parla solo della parte a sinistra
+x: -0.5 6.5
+y: 0 3.7
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0 1 3 1 3 2 0 2 | verde | tenue
+poligono: 3 1 6 1 6 2 3 2 | grigio | tenue
+segmento: 1 1 1 2 | grigio | sottile
+segmento: 2 1 2 2 | grigio | sottile
+segmento: 4 1 4 2 | grigio | sottile
+segmento: 5 1 5 2 | grigio | sottile
+testo: 0.5 1.5 | verde | "4"
+testo: 1.5 1.5 | verde | "0"
+testo: 2.5 1.5 | verde | "7"
+testo: 3.5 1.5 | grigio | "0"
+testo: 4.5 1.5 | grigio | "0"
+testo: 5.5 1.5 | grigio | "3"
+testo: 0.5 0.55 | grigio | "0"
+testo: 1.5 0.55 | grigio | "1"
+testo: 2.5 0.55 | grigio | "2"
+testo: 3.5 0.55 | grigio | "3"
+testo: 4.5 0.55 | grigio | "4"
+testo: 5.5 0.55 | grigio | "5"
+freccia: 3 3.1 3 2.1 | ambra
+testo: 3 3.4 | ambra | "i = 3"
+testo: 1.5 2.5 | verde | "già guardati"
+testo: 4.5 2.5 | grigio | "da guardare"
+```
+
+Quando `i` vale 3 gli elementi già guardati sono **tre**: quelli di posto 0, 1 e 2. In generale:
+
+- i **primi `i` elementi** sono `v[0]`, …, `v[i-1]`: sono `i`, e l'ultimo ha il posto `i - 1`;
+- `v[i]` è il **prossimo** da guardare, non l'ultimo guardato;
+- con `i` uguale a 0 la parte già guardata è **vuota**; con `i` uguale a `n` è tutto il vettore.
+
+Quasi tutti gli errori sugli invarianti dei vettori sono errori di uno su questo punto: scrivere `v[i]` dove ci vuole `v[i-1]`.
+
+Tutti i cicli della lezione hanno questo scheletro:
+
+```c
+i = 0;
+while (i < n) {
+    /* usa v[i] */
+    i = i + 1;
+}
+```
+
+Due cose valgono per tutti, qualunque cosa si faccia con `v[i]`.
+
+**`i <= n` è un invariante.** Prima del ciclo `i` vale 0 e `n` non è negativo. Un giro si fa solo se `i < n`, e porta `i` a `i + 1`, che è al massimo `n`.
+
+**Il ciclo termina.** La quantità `n - i` è un intero, non è mai negativa per l'invariante appena visto, e cala di 1 a ogni giro: è il criterio di terminazione della [lezione 20](20_invarianti_potenza_veloce.html).
+
+All'uscita la condizione `i < n` è falsa, quindi `i >= n`; con l'invariante `i <= n` resta una sola possibilità: **`i == n`**. Tradotto: la parte già guardata è tutto il vettore.
+
+::: prova In un vettore di 10 elementi, con `i` uguale a 7, quanti elementi sono già stati guardati e qual è il posto dell'ultimo? Qual è il prossimo?
+Sette elementi, da `v[0]` a `v[6]`. Il prossimo è `v[7]`.
+:::
+
+> [!RICORDA]
+> - I primi `i` elementi sono `v[0]`, …, `v[i-1]`. `v[i]` è il prossimo.
+> - `i <= n` è un invariante; all'uscita dà `i == n`.
+> - Terminazione: `n - i` cala a ogni giro e non scende sotto zero.
+
+## La somma di un vettore
+
+Per sommare gli elementi si parte da 0 e si aggiunge un elemento per giro.
+
+```c
+i = 0;
+s = 0;
+while (i < n) {
+    s = s + v[i];
+    i = i + 1;
+}
+```
+
+Con il vettore di prima:
+
+| Giri fatti | `i` | `s` | Che cos'è `s` |
+|---|---|---|---|
+| 0 | 0 | 0 | somma di nessun elemento |
+| 1 | 1 | 4 | 4 |
+| 2 | 2 | 4 | 4 + 0 |
+| 3 | 3 | 11 | 4 + 0 + 7 |
+| 4 | 4 | 11 | 4 + 0 + 7 + 0 |
+| 5 | 5 | 11 | 4 + 0 + 7 + 0 + 0 |
+| 6 | 6 | 14 | 4 + 0 + 7 + 0 + 0 + 3 |
+
+In ogni riga `s` è la somma della parte già guardata. È l'invariante.
+
+> [!DEF] L'invariante della somma
+> Per il ciclo della somma, l'invariante è
+>
+> `s == v[0] + v[1] + … + v[i-1]`
+>
+> cioè: `s` è la somma dei primi `i` elementi di `v`.
+
+**Come si legge.** A destra ci sono tanti addendi quanti sono gli elementi già guardati: tre quando `i` vale 3, nessuno quando `i` vale 0. Una somma senza addendi vale 0, per convenzione: è il valore che non cambia il risultato quando si comincia ad aggiungere. Per questo `s` parte da 0.
+
+> [!ESEMPIO] · La dimostrazione, per induzione sul numero di giri
+> **Passo base: dopo 0 giri.** `i = 0` e `s = 0`. I primi 0 elementi non hanno addendi, e la loro somma è 0. Vero.
+>
+> **Passo induttivo.** Suppongo che dopo $k$ giri valga $s = v[0] + \dots + v[i-1]$, e che il ciclo faccia un altro giro. I valori nuovi sono $s' = s + v[i]$ e $i' = i + 1$.
+>
+> Allora $s' = v[0] + \dots + v[i-1] + v[i]$.
+>
+> L'ultimo addendo ha il posto $i$, che è $i' - 1$. Quindi $s' = v[0] + \dots + v[i'-1]$: l'invariante vale con i valori nuovi.
+
+**Dall'invariante al risultato.** All'uscita `i == n`, come per ogni ciclo con questo scheletro. Sostituendo nell'invariante: `s == v[0] + … + v[n-1]`, la somma di tutto il vettore. Questa è la condizione di uscita. La condizione di ingresso è solo che `v` abbia `n` elementi, con `n >= 0`: per un vettore vuoto il ciclo non parte e `s` resta 0.
+
+Ho trascritto il ciclo con l'invariante controllato da un `assert` prima del ciclo e dopo ogni giro. Su ventimila vettori casuali di lunghezza da 0 a 8 non fallisce mai.
+
+> [!TRAPPOLA] Tre errori di uno
+> - **`while (i <= n)`**: l'ultimo giro legge `v[n]`, che non esiste. In C il programma non si ferma: somma un valore qualunque che si trova in memoria dopo il vettore.
+> - **`i = 1` all'inizio**: il ciclo dimentica `v[0]`. Con il vettore di prima dà 10 invece di 14.
+> - **Invariante scritto con `v[i]`**: `s == v[0] + … + v[i]` è falso già prima del ciclo, dove `s` vale 0 e `v[0]` vale 4.
+
+::: prova Per il vettore `{2, 9, 4, 1}` scrivi `i` e `s` prima del ciclo e dopo ogni giro.
+0 e 0; 1 e 2; 2 e 11; 3 e 15; 4 e 16. In ogni riga `s` è la somma dei primi `i` elementi.
+:::
+
+> [!RICORDA]
+> - Invariante: `s` è la somma dei primi `i` elementi.
+> - Base: la somma di nessun elemento è 0.
+> - All'uscita `i == n`: `s` è la somma di tutto il vettore.
+
+## Contare gli zeri
+
+Per contare quanti elementi sono uguali a 0 lo scheletro è lo stesso, con un contatore `c` al posto di `s`. Il contatore sale solo quando l'elemento guardato è 0.
+
+```c
+i = 0;
+c = 0;
+while (i < n) {
+    if (v[i] == 0) {
+        c = c + 1;
+    }
+    i = i + 1;
+}
+```
+
+| Giri fatti | `i` | Elemento appena guardato | `c` |
+|---|---|---|---|
+| 0 | 0 | nessuno | 0 |
+| 1 | 1 | `v[0]`, che vale 4 | 0 |
+| 2 | 2 | `v[1]`, che vale 0 | 1 |
+| 3 | 3 | `v[2]`, che vale 7 | 1 |
+| 4 | 4 | `v[3]`, che vale 0 | 2 |
+| 5 | 5 | `v[4]`, che vale 0 | 3 |
+| 6 | 6 | `v[5]`, che vale 3 | 3 |
+
+L'invariante si ottiene da quello della somma cambiando una parola: **`c` è il numero di zeri tra i primi `i` elementi**.
+
+> [!ESEMPIO] · La dimostrazione: il passo ha due casi
+> **Passo base.** Tra i primi 0 elementi non ci sono zeri, e `c` vale 0. Vero.
+>
+> **Passo induttivo.** Suppongo che `c` sia il numero di zeri tra `v[0]`, …, `v[i-1]`, e che il ciclo faccia un altro giro. Il corpo ha un `if`, quindi i casi sono due.
+>
+> **Caso `v[i]` uguale a 0.** I primi $i + 1$ elementi hanno uno zero in più dei primi $i$, e il contatore diventa $c' = c + 1$.
+>
+> **Caso `v[i]` diverso da 0.** I primi $i + 1$ elementi hanno gli stessi zeri dei primi $i$, e il contatore non cambia: $c' = c$.
+>
+> In tutti e due i casi $c'$ è il numero di zeri tra i primi $i' = i + 1$ elementi.
+
+All'uscita `i == n`, e `c` è il numero di zeri di tutto il vettore: 3, per il vettore dell'esempio.
+
+Come per la potenza veloce della [lezione 20](20_invarianti_potenza_veloce.html), un `if` nel corpo vuol dire un passo induttivo con due casi. Chi controlla l'invariante in un ramo solo non l'ha dimostrato.
+
+Un secondo invariante dello stesso ciclo è `c <= i`: non si possono aver trovato più zeri degli elementi guardati. È vero, ma da solo non dice che cosa calcola il ciclo. Un ciclo ha molti invarianti; quello che serve è quello che, all'uscita, diventa la condizione di uscita.
+
+::: prova Per il vettore `{1, 0, 0, 6, 0, 2, 0}` scrivi `c` dopo ogni giro. Quanto vale alla fine?
+0, 1, 2, 2, 3, 3, 4. Alla fine vale 4, dopo 7 giri.
+:::
+
+> [!RICORDA]
+> - Invariante: `c` è il numero di zeri tra i primi `i` elementi.
+> - Un `if` nel corpo: due casi nel passo induttivo.
+> - Tra gli invarianti serve quello che all'uscita dà il risultato.
+
+## Cercare il primo zero
+
+Se interessa solo sapere **se c'è** uno zero, e dove, non serve arrivare in fondo: ci si ferma al primo. Il ciclo ha una condizione in più.
+
+```c
+i = 0;
+while (i < n && v[i] != 0) {
+    i = i + 1;
+}
+```
+
+Il ciclo avanza finché ci sono elementi da guardare **e** quello sotto l'indice non è zero. Non c'è una variabile per il risultato: il risultato è `i` stesso.
+
+```grafico
+titolo: I due modi in cui la ricerca finisce. Sopra: il ciclo si ferma con i uguale a 1, perché v[1] è zero. Sotto: nel vettore non ci sono zeri e i arriva a 3, la lunghezza. In tutti e due i casi a sinistra della freccia non ci sono zeri
+x: -0.5 8.2
+y: 0 6.4
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0 4 1 4 1 5 0 5 | verde | tenue
+poligono: 1 4 2 4 2 5 1 5 | ambra | tenue
+poligono: 2 4 6 4 6 5 2 5 | grigio | tenue
+segmento: 3 4 3 5 | grigio | sottile
+segmento: 4 4 4 5 | grigio | sottile
+segmento: 5 4 5 5 | grigio | sottile
+testo: 0.5 4.5 | verde | "4"
+testo: 1.5 4.5 | ambra | "0"
+testo: 2.5 4.5 | grigio | "7"
+testo: 3.5 4.5 | grigio | "0"
+testo: 4.5 4.5 | grigio | "0"
+testo: 5.5 4.5 | grigio | "3"
+freccia: 1 6.0 1 5.1 | ambra
+testo: 1.9 5.75 | ambra | "i = 1"
+testo: 7.1 4.5 | ambra | "trovato"
+poligono: 0 1 3 1 3 2 0 2 | verde | tenue
+segmento: 1 1 1 2 | grigio | sottile
+segmento: 2 1 2 2 | grigio | sottile
+testo: 0.5 1.5 | verde | "5"
+testo: 1.5 1.5 | verde | "2"
+testo: 2.5 1.5 | verde | "9"
+freccia: 3 3.0 3 2.1 | ambra
+testo: 3.9 2.75 | ambra | "i = 3"
+testo: 5.6 1.5 | verde | "nessuno zero"
+```
+
+L'invariante dice che nella parte già guardata non c'è quello che si cerca.
+
+> [!DEF] L'invariante della ricerca
+> Per il ciclo della ricerca, l'invariante è: **nessuno dei primi `i` elementi è zero**. Con i simboli:
+>
+> $$\forall j\,(0 \le j < i \rightarrow v[j] \ne 0)$$
+
+**Come si legge.** «Per ogni posto $j$, se $j$ è tra 0 e $i - 1$, allora l'elemento di posto $j$ non è zero». È un «per ogni» ristretto ai posti già guardati, scritto con la freccia come nella [lezione 10](10_quantificatori_e_connettivi.html). Con `i` uguale a 0 nessun $j$ rispetta l'ipotesi, e la frase è vera a vuoto: su una parte vuota non c'è niente da smentire.
+
+> [!ESEMPIO] · La dimostrazione
+> **Passo base.** Con `i = 0` la parte già guardata è vuota: la frase è vera a vuoto.
+>
+> **Passo induttivo.** Suppongo che nessuno tra `v[0]`, …, `v[i-1]` sia zero, e che il ciclo faccia un altro giro. Il giro si fa solo se la condizione è vera, quindi so anche che `v[i] != 0`.
+>
+> Dopo il giro $i' = i + 1$, e i primi $i'$ elementi sono quelli di prima più `v[i]`. Quelli di prima non sono zero per ipotesi induttiva; `v[i]` non è zero per la condizione del ciclo. Quindi nessuno dei primi $i'$ elementi è zero.
+
+Qui il passo induttivo usa **la condizione del ciclo**: è un'informazione in più, vera all'inizio di ogni giro, e si può sempre usare.
+
+**Dall'invariante al risultato.** All'uscita la condizione `i < n && v[i] != 0` è falsa. Per le leggi di De Morgan della [lezione 07](07_condizionali_equivalenza_logica.html), la negazione di una «e» è la «o» delle negazioni: `i >= n` oppure `v[i] == 0`. Con l'invariante `i <= n` i casi sono due.
+
+| Come finisce | Che cosa so | Che cosa vuol dire |
+|---|---|---|
+| `i == n` | nessuno dei primi `n` elementi è zero | nel vettore **non ci sono zeri** |
+| `i < n` e `v[i] == 0` | nessuno dei primi `i` è zero, e `v[i]` lo è | `i` è il posto del **primo zero** |
+
+La condizione di uscita è la «o» delle due righe. Dopo il ciclo basta controllare `i < n` per sapere in quale caso si è. Con il vettore dell'esempio il ciclo si ferma con `i` uguale a 1; con `{5, 2, 9}` arriva a 3.
+
+L'invariante da solo direbbe solo «fin qui niente zeri». È la seconda riga a dare di più: non uno zero qualunque, ma **il primo**, perché tutti i posti prima sono esclusi dall'invariante.
+
+> [!TRAPPOLA] L'ordine dentro la condizione conta
+> In C la «e» `&&` valuta prima la parte sinistra, e se è falsa non guarda la destra. Con `i < n` a sinistra, `v[i]` viene letto solo quando esiste. Scritta al contrario, `v[i] != 0 && i < n`, in un vettore senza zeri l'ultima valutazione legge `v[n]`, fuori dal vettore.
+
+**La terminazione** è quella di sempre: `n - i` cala a ogni giro. La condizione in più può solo far finire il ciclo prima.
+
+::: prova Per il vettore `{3, 5, 0, 2, 0}`, con quale valore di `i` finisce la ricerca? In quale dei due casi si è?
+Con `i` uguale a 2: `v[0]` e `v[1]` non sono zero, `v[2]` sì. È il secondo caso, `i < n` e `v[i] == 0`: il primo zero è al posto 2.
+:::
+
+> [!RICORDA]
+> - Invariante: nessuno dei primi `i` elementi è zero.
+> - Uscita con `i == n`: non ci sono zeri. Uscita con `i < n`: `i` è il posto del primo zero.
+> - Nel passo induttivo si può usare la condizione del ciclo.
+> - `i < n` va scritto prima di `v[i] != 0`.
+
+## Come quiz: invariante o no?
+
+Il quiz d'esame dà il ciclo e una lista di affermazioni. Per il ciclo della somma, con il vettore `{4, 0, 7, 0, 0, 3}` come banco di prova:
+
+| Affermazione | Prima del ciclo | Dopo un giro qualsiasi | Invariante? |
+|---|---|---|---|
+| `s == v[0] + … + v[i-1]` | vera | vera | **sì** |
+| `i <= n` | vera | vera | **sì** |
+| `i >= 0` | vera | vera | **sì** |
+| `i < n` | falsa se `n` è 0 | falsa dopo l'ultimo giro | no |
+| `s == v[0] + … + v[i]` | falsa: 0 non è 4 | falsa dopo 2 giri: 4 non è 11 | no |
+| `s == v[0] + … + v[n-1]` | falsa: 0 non è 14 | vera solo alla fine | no |
+| `s >= 0` | vera | dipende dal vettore | no, in generale |
+
+L'ultima merita una riga in più. Se il testo dice che gli elementi sono numeri naturali, `s >= 0` è un invariante. Se sono interi qualunque no: con `{-2, 5}` dopo un giro `s` vale −2. **Leggi sempre la condizione di ingresso**: la stessa affermazione può essere un invariante con un'ipotesi e non esserlo senza.
+
+Il metodo resta quello delle lezioni [18](18_induzione.html) e [20](20_invarianti_potenza_veloce.html): si controlla prima del ciclo, poi dopo un giro supponendo l'affermazione vera prima; nel dubbio si fa la tabella su un vettore corto e si cerca la riga che la smentisce. Un vettore con dentro uno zero, un numero ripetuto e, se sono ammessi, un negativo smaschera quasi tutte le affermazioni false.
+
+::: prova Nel ciclo che conta gli zeri, `c == i` è un invariante?
+No. È vera prima del ciclo, ma con il vettore dell'esempio dopo un giro `c` vale 0 e `i` vale 1. Sarebbe un invariante solo per un vettore fatto tutto di zeri. L'invariante vero è `c <= i`.
+:::
+
+> [!RICORDA]
+> - Si controlla prima del ciclo e dopo un giro qualsiasi.
+> - Scritta con `v[i]` al posto di `v[i-1]`: quasi sempre falsa.
+> - Scritta con `n` al posto di `i`: è la condizione di uscita, non un invariante.
+> - La condizione di ingresso può cambiare la risposta.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `v[i]` | «v di i» | l'elemento di posto `i`, contando da 0 | con `{4, 0, 7}`, `v[2]` vale 7 |
+| `v[0] + … + v[i-1]` | «la somma da v di 0 a v di i meno 1» | la somma dei primi `i` elementi; vale 0 se `i` è 0 | con `i = 3`: 4 + 0 + 7 |
+| `&&` | «e» | vera se tutte e due le parti sono vere; la destra è valutata solo se la sinistra è vera | `i < n && v[i] != 0` |
+| `!=` | «diverso da» | il contrario di `==` | `v[0] != 0` |
+| $\forall j\,(0 \le j < i \rightarrow \dots)$ | «per ogni j tra 0 e i meno 1» | un «per ogni» ristretto ai posti già guardati | nessuno dei primi `i` è zero |
+| $i'$, $s'$, $c'$ | «i primo», «s primo» | i valori dopo il giro | $i' = i + 1$ |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Il quiz «seleziona gli invarianti»** su un ciclo che scorre un vettore o che somma. Quello della simulazione 2 del 2023/24 (quiz 7) è un ciclo di somma: `i = 1; s = 0; while (i < n) { s = s + i; i++; } s = s + i;`. È svolto nella [lezione 18](18_induzione.html).
+2. **Gli errori di uno**: distinguere `v[i-1]` da `v[i]`, `i < n` da `i <= n`.
+3. **Dall'invariante al risultato**, compreso il caso con due modi di uscire dal ciclo.
+
+### Una domanda sul modello, letta insieme
+
+**Sul modello del quiz 7 della simulazione 2.** «Sia `v` un vettore di `n >= 0` interi. Considera il frammento `i = 0; s = 0; while (i < n) { s = s + v[i]; i = i + 1; }`. Seleziona gli invarianti, cioè le affermazioni vere dopo ogni numero di esecuzioni del corpo del while: (1) `s == v[0] + … + v[i-1]`; (2) `i <= n`; (3) `i < n`; (4) `s == v[0] + … + v[i]`; (5) `s == v[0] + … + v[n-1]`.»
+
+**In pratica chiede:** per ogni affermazione, se è vera con i valori iniziali e resta vera dopo ogni giro. «Dopo ogni numero di esecuzioni» comprende zero esecuzioni.
+
+> [!ESEMPIO] · la soluzione, affermazione per affermazione
+> **(1) Sì.** È l'invariante della somma, dimostrato sopra.
+>
+> **(2) Sì.** `i` parte da 0, e cresce di uno solo quando è minore di `n`.
+>
+> **(3) No.** Dopo l'ultimo giro `i` vale `n`. Con `n = 0` è falsa già prima del ciclo.
+>
+> **(4) No.** Prima del ciclo `s` vale 0, e a destra ci sarebbe `v[0]`: con il vettore `{4, 0, 7, 0, 0, 3}` è 4. Dopo l'ultimo giro la formula nominerebbe `v[n]`, che non esiste.
+>
+> **(5) No.** È vera alla fine, ma non prima: è la condizione di uscita.
+>
+> Le affermazioni da selezionare sono la 1 e la 2. Controllate con un programma su ventimila vettori casuali.
+
+> [!METODO] L'invariante di un ciclo che scorre un vettore
+> 1. Scrivi la condizione di uscita: che cosa deve valere per **tutto** il vettore.
+> 2. Sostituisci «tutto il vettore» con «i primi `i` elementi»: di solito è l'invariante.
+> 3. Controlla il caso `i = 0`, dove la parte guardata è vuota: i valori iniziali devono andare d'accordo.
+> 4. Aggiungi `i <= n`, che serve per ottenere `i == n` all'uscita.
+> 5. Se il ciclo può finire in più modi, scrivi un caso per ogni modo.
+
+### Errori da evitare
+
+- Contare i posti da 1: i primi `i` elementi finiscono a `v[i-1]`.
+- Dimenticare il vettore vuoto e il caso `i = 0`.
+- Controllare un ciclo con un `if` in un ramo solo.
+- Dare per invariante un'affermazione che dipende da un'ipotesi sugli elementi che il testo non dà.
+- Dopo una ricerca, usare `v[i]` senza aver controllato `i < n`.
+
+## Quiz
+
+```quiz
+D: Nel ciclo `i = 0; s = 0; while (i < n) { s = s + v[i]; i = i + 1; }`, quale affermazione è un invariante?
++ `s == v[0] + … + v[i-1]`
+- `s == v[0] + … + v[i]`
+- `s == v[0] + … + v[n-1]`
+- `i < n`
+- `s == v[i]`
+= `s` è la somma degli elementi già guardati, che finiscono al posto `i - 1`. La più insidiosa è `s == v[0] + … + v[i]`: sbaglia di un posto, ed è falsa già prima del ciclo.
+
+D: Nello stesso ciclo, con `v = {4, 0, 7, 0, 0, 3}`, quanto vale `s` dopo 3 giri?
+N: 11
+= I primi tre elementi sono 4, 0 e 7.
+
+D: Nel ciclo che conta gli zeri, `i = 0; c = 0; while (i < n) { if (v[i] == 0) { c = c + 1; } i = i + 1; }`, con `v = {4, 0, 7, 0, 0, 3}`, quanto vale `c` dopo 4 giri?
+N: 2
+= Tra i primi quattro elementi, 4, 0, 7 e 0, gli zeri sono due. Provato.
+
+D: Nel ciclo della somma, perché il passo base dell'induzione è vero?
++ perché la somma di nessun elemento vale 0, e `s` parte da 0
+- perché `v[0]` vale 0
+- perché il ciclo fa almeno un giro
+- perché `i < n` è vera all'inizio
+- perché `s` è uguale a `v[0]` prima del ciclo
+= Con `i = 0` la parte già guardata è vuota, e una somma senza addendi vale 0. La più insidiosa è «perché `s` è uguale a `v[0]` prima del ciclo»: prima del ciclo nessun elemento è stato sommato, nemmeno `v[0]`.
+
+D: Nel ciclo `i = 0; while (i < n && v[i] != 0) { i = i + 1; }`, che cosa si sa all'uscita se `i < n`?
++ `v[i]` è zero e nessun elemento prima di lui lo è
+- nel vettore non ci sono zeri
+- `v[i]` è l'unico zero del vettore
+- `v[i-1]` è zero
+- `v[i]` è l'ultimo zero del vettore
+= La condizione è falsa e `i < n` è vera: quindi è falsa l'altra parte, cioè `v[i] == 0`. L'invariante esclude gli zeri prima. La più insidiosa è «`v[i]` è l'unico zero del vettore»: dopo `i` il ciclo non ha guardato niente, e possono esserci altri zeri.
+
+D: Nello stesso ciclo di ricerca, con `v = {5, 2, 9}` e `n = 3`, quanto vale `i` all'uscita?
+N: 3
+= Nessun elemento è zero: `i` arriva a `n`. È il caso «non ci sono zeri».
+
+D: Che cosa dimostra che il ciclo `i = 0; while (i < n) { …; i = i + 1; }` termina?
++ `n - i` è un intero mai negativo che cala di 1 a ogni giro
+- l'invariante `s == v[0] + … + v[i-1]`
+- il fatto che `i` parte da 0
+- la condizione di uscita `i == n`
+- il fatto che il vettore ha un numero pari di elementi
+= Serve una quantità che cala e non può scendere sotto zero. La più insidiosa è «l'invariante `s == v[0] + … + v[i-1]`»: l'invariante della somma dice che cosa si calcola, non che il ciclo si ferma.
+
+D: Nel ciclo della ricerca, perché `i < n` va scritto prima di `v[i] != 0`?
++ perché `&&` non valuta la parte destra quando la sinistra è falsa, e così `v[n]` non viene mai letto
+- perché altrimenti l'invariante sarebbe falso
+- perché altrimenti il ciclo non terminerebbe
+- perché in C i confronti tra indici hanno la precedenza
+- per abitudine: l'ordine non cambia niente
+= Con `i == n` la parte sinistra è falsa e `v[i]` non viene letto. La più insidiosa è «per abitudine: l'ordine non cambia niente»: per la logica «e» è commutativa, ma in C l'ordine decide che cosa viene valutato.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: due tabelle
+Per il vettore `{3, 5, 0, 2, 0}` scrivi `i`, `s` e `c` prima del ciclo e dopo ogni giro, per un ciclo che fa insieme la somma e il conteggio degli zeri.
+::: soluzione
+`i`, `s`, `c`: 0, 0, 0; poi 1, 3, 0; 2, 8, 0; 3, 8, 1; 4, 10, 1; 5, 10, 2. In ogni riga `s` è la somma dei primi `i` elementi e `c` il numero di zeri tra loro.
+:::
+
+::: esercizio base Riscaldamento: quale posto
+In un vettore di `n` elementi, scrivi il posto del primo elemento, dell'ultimo, e dell'ultimo tra i primi `i`. Per quali valori di `i` l'espressione `v[i]` ha senso?
+::: soluzione
+Il primo è `v[0]`, l'ultimo `v[n-1]`, l'ultimo tra i primi `i` è `v[i-1]`, se `i` è almeno 1. `v[i]` ha senso per `i` da 0 a `n - 1`: con `i == n` non esiste.
+:::
+
+::: esercizio medio Il massimo di un vettore
+Il ciclo `i = 1; m = v[0]; while (i < n) { if (v[i] > m) { m = v[i]; } i = i + 1; }` calcola il massimo. Scrivi la condizione di ingresso, l'invariante e la dimostrazione. Per `{4, 0, 7, 0, 0, 3}` fai la tabella.
+::: soluzione
+**Condizione di ingresso.** `n >= 1`: un vettore vuoto non ha massimo, e `v[0]` non esisterebbe. **Invariante.** `m` è il massimo dei primi `i` elementi, con `1 <= i <= n`. **Base.** Con `i = 1` i primi elementi sono il solo `v[0]`, e `m` è `v[0]`. **Passo.** Se `v[i] > m`, il massimo dei primi $i + 1$ è `v[i]`, e $m' = v[i]$; altrimenti resta `m`. **Uscita.** `i == n`: `m` è il massimo di tutto il vettore. **Tabella** (`i`, `m`): 1, 4; 2, 4; 3, 7; 4, 7; 5, 7; 6, 7. Qui `i` parte da 1 perché la parte già guardata non può essere vuota.
+:::
+
+::: esercizio medio La ricerca con una variabile booleana
+Nel ciclo `i = 0; trovato = false; while (i < n && !trovato) { if (v[i] == 0) { trovato = true; } i = i + 1; }` scrivi l'invariante e che cosa si sa all'uscita. Con `{4, 0, 7, 0, 0, 3}`, con quali valori finisce?
+::: soluzione
+**Invariante.** `trovato` è vero se e solo se c'è uno zero tra i primi `i` elementi; in più `i <= n`. **Base.** Tra i primi 0 elementi non ci sono zeri, e `trovato` è falso. **Passo.** Il giro si fa solo con `trovato` falso, cioè senza zeri tra i primi `i`. Se `v[i]` è zero, `trovato` diventa vero e tra i primi $i + 1$ c'è uno zero; altrimenti resta falso e non ce ne sono. **Uscita.** Se `trovato` è vero, c'è uno zero. Se è falso, la condizione falsa dà `i == n`, e tra i primi `n` non ci sono zeri. **Con l'esempio**: finisce con `i` uguale a 2 e `trovato` vero. Qui `i` è un posto **dopo** lo zero, perché l'indice avanza anche nel giro in cui lo trova.
+:::
+
+::: esercizio esame Come quiz: il conteggio
+Per il ciclo che conta gli zeri, di' quali sono invarianti: (a) `c <= i`; (b) `c < i`; (c) `c` è il numero di zeri tra `v[0]`, …, `v[i]`; (d) `i <= n`; (e) `c >= 0`.
+::: soluzione
+**(a) Sì**: il contatore sale al massimo di uno per giro, come `i`. **(b) No**: prima del ciclo valgono tutti e due 0. **(c) No**: sbaglia di un posto; con `{0, 5}` prima del ciclo `c` vale 0, ma tra i primi elementi fino a `v[0]` c'è uno zero. **(d) Sì**. **(e) Sì**: parte da 0 e non cala mai. Provate con un programma.
+:::
+
+::: esercizio difficile La somma all'indietro
+Il ciclo `i = n; s = 0; while (i > 0) { i = i - 1; s = s + v[i]; }` somma il vettore partendo dal fondo. Qual è l'invariante? Che cosa cambia nella terminazione? Per `{2, 9, 4, 1}` fai la tabella.
+::: soluzione
+**Invariante.** `s == v[i] + … + v[n-1]`, la somma degli elementi dal posto `i` in poi, con `0 <= i <= n`. Ora la parte già guardata è quella a **destra** di `i`, e qui `v[i]` ne fa parte. **Base.** Con `i = n` non c'è nessun elemento dal posto `n` in poi: somma 0. **Passo.** $i' = i - 1$ e $s' = s + v[i']$: si aggiunge l'elemento subito a sinistra. **Uscita.** `i == 0`: la somma di tutto. **Terminazione.** La quantità che cala è `i` stesso. **Tabella** (`i`, `s`): 4, 0; 3, 1; 2, 5; 1, 14; 0, 16. L'ordine delle due istruzioni nel corpo conta: prima si abbassa `i`, poi si legge `v[i]`.
+:::
+
+## Domande di ripasso
+
+::: domanda Quali sono i primi `i` elementi di un vettore, e qual è il prossimo?
+Sono `v[0]`, …, `v[i-1]`. Il prossimo da guardare è `v[i]`.
+:::
+
+::: domanda Qual è l'invariante del ciclo della somma?
+`s` è la somma dei primi `i` elementi: `s == v[0] + … + v[i-1]`.
+:::
+
+::: domanda Perché il passo base funziona anche se non si è guardato niente?
+Perché la somma di nessun elemento è 0, il numero di zeri tra nessun elemento è 0, e «nessuno di loro è zero» è vera a vuoto.
+:::
+
+::: domanda Come si ottiene `i == n` all'uscita?
+Dalla condizione del ciclo falsa, `i >= n`, insieme all'invariante `i <= n`.
+:::
+
+::: domanda Nella ricerca del primo zero, quali sono i due modi di uscire e che cosa dicono?
+Con `i == n`: nel vettore non ci sono zeri. Con `i < n`: `v[i]` è zero, ed è il primo.
+:::
+
+::: domanda Che cosa cambia nella dimostrazione quando il corpo del ciclo ha un `if`?
+Il passo induttivo ha un caso per ogni ramo.
+:::
+
+## Glossario
+
+```glossario
+Vettore | Fila di caselle dello stesso tipo, numerate a partire da 0. In C si chiama array.
+Indice | Il numero della casella. In un vettore di n elementi va da 0 a n − 1.
+Primi i elementi | Gli elementi di posto da 0 a i − 1: la parte del vettore già guardata.
+Somma vuota | La somma di nessun addendo. Vale 0.
+Vero a vuoto | Detto di un «per ogni» su un insieme senza elementi: è vero perché niente lo smentisce.
+Condizione di uscita | Che cosa vale alla fine: si ottiene dall'invariante più la condizione del ciclo diventata falsa.
+Errore di uno | Sbagliare un indice o un confine di una unità: v[i] per v[i-1], oppure <= per <.
+```
+
+## Checklist
+
+```checklist
+- So dire quali sono i primi i elementi di un vettore e qual è il prossimo.
+- So perché i <= n è un invariante e come dà i == n all'uscita.
+- So scrivere e dimostrare l'invariante della somma.
+- So spiegare il passo base con la parte già guardata vuota.
+- So scrivere e dimostrare l'invariante del conteggio degli zeri, con i due casi.
+- So scrivere l'invariante della ricerca del primo zero, a parole e con il «per ogni».
+- So ricavare i due casi di uscita della ricerca.
+- So riconoscere un errore di uno in un'affermazione o in una condizione.
+- So dimostrare la terminazione con la quantità n − i.
+```
+
+## Fonti
+
+- Diario delle lezioni del canale B (Berardi), lezione 22 del docente, 19/11/2026: «Invariante di ciclo per la ricerca degli 0 in un vettore e per la somma di un vettore».
+- F. Cardone, «Invarianti, principio di induzione e correttezza dei programmi» (canale A): lo schema della dimostrazione di un invariante per induzione sul numero di giri, condizione di ingresso e di uscita, terminazione.
+- Simulazione d'esame 2 del 2023/24, quiz 7 (il modello del quiz sugli invarianti).
+- I cicli di somma, conteggio, ricerca e massimo sono scritti da me nella forma consueta e provati con un programma in C, con gli invarianti controllati a ogni giro.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/22_funzioni_sequenze_stringhe.md -->
+> File: `contesto_ai/FDA/lezioni/22_funzioni_sequenze_stringhe.md`
+
+```yaml
+corso: FDA
+lezione: "22"
+titolo: "Funzioni in ripasso, sequenze e stringhe"
+data: 2026-11-20
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 22 · Libro, parte 2, §3.1 (ripasso) e §3.2
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 22 di Fondamenti dell'Informatica (canale B): ripasso delle funzioni come relazioni, funzioni
+  iniettive, suriettive, biiettive e funzione inversa; la funzione caratteristica e l'unione; le sequenze, crescenti e
+  decrescenti, le sottosequenze, le somme e i prodotti con sigma e pi greco; le stringhe, la stringa vuota e la
+  lunghezza.
+lede: >-
+  Si apre il capitolo 3 del libro, quello degli oggetti di base: funzioni, sequenze, stringhe. Le funzioni sono un
+  ripasso di Matematica Discreta, con i nomi inglesi del libro. Sequenze e stringhe sono nuove, e le stringhe sono il
+  materiale con cui lavorano automi e grammatiche, alla fine del corso.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, parte 2, §3.1 (solo ripasso e Problem-Solving Corner) e §3.2 fino alla lunghezza di una stringa
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore e mezza
+fonte: >-
+  Diario delle lezioni del canale B (lezione 23 del docente); risposte ufficiali alle domande di ripasso e agli
+  esercizi dei §3.1 e §3.2 (appendice pubblicata sul Moodle del canale A); simulazioni d'esame 2023/24, quiz sulle
+  proprietà di una relazione
+appunti_html: appunti/FDA/22_funzioni_sequenze_stringhe.html
+genera_html: true
+```
+
+## In breve
+
+- Una **funzione** è un insieme di coppie in cui ogni elemento del dominio compare come primo elemento **esattamente una volta**. Nel disegno: da ogni punto del dominio parte una freccia sola.
+- **Iniettiva** (*one-to-one*): in ogni punto del codominio arriva al massimo una freccia. **Suriettiva** (*onto*): ne arriva almeno una. **Biiettiva**: esattamente una.
+- Solo una funzione biiettiva ha un'**inversa**, che si ottiene girando tutte le frecce.
+- La **funzione caratteristica** di un insieme $X$ vale 1 sugli elementi di $X$ e 0 sugli altri. Quella dell'unione è la somma delle due solo se i due insiemi sono disgiunti.
+- Una **sequenza** è una funzione che ha per dominio un insieme di interi: $s_n$ è l'elemento di **indice** $n$.
+- Una sequenza è **crescente** se ogni elemento è minore di tutti quelli che vengono dopo; **non decrescente** se è minore o uguale. Lo stesso per decrescente e non crescente.
+- $\sum$ è la somma e $\prod$ il prodotto degli elementi di una sequenza, tra un indice di partenza e uno di arrivo.
+- Una **stringa** è una sequenza finita di simboli presi da un insieme fissato, scritta senza virgole. La stringa vuota si indica con $\lambda$; la **lunghezza** di una stringa è il numero dei suoi elementi.
+
+> [!CANALI]
+> Nel canale B è la lezione di venerdì 20/11, dalle 11 alle 13. Per il docente è la lezione 23: qui è la 22. Il diario del canale B dice: prima ora, ripasso delle funzioni (funzioni come relazioni, iniettive, suriettive, biiettive, inversa), l'esercizio su funzione caratteristica e unione del Problem-Solving Corner del §3.1, e gli esempi del §3.2 dal 3.2.1 al 3.2.19, omessi il 3.2.20, il 3.2.21 e il 3.2.22; seconda ora, le stringhe dalla definizione 3.2.23 all'esempio 3.2.25, cioè fino alla lunghezza. Esercizi proposti: dal 5 al 9 di pagina 137.
+>
+> **Che cosa non so.** Il libro non ce l'ho; ho le risposte ufficiali alle domande di ripasso e a una parte degli esercizi. Le definizioni sono quelle delle risposte ufficiali, tradotte. Gli esempi sono miei, salvo dove dico il contrario: i numeri degli esempi del libro non li posso abbinare uno per uno. Dei cinque esercizi proposti ho solo le risposte del 5 e dell'8, senza i testi: sono commentate negli esercizi.
+>
+> **Che cosa resta fuori.** Concatenazione e sottostringhe vengono dopo l'esempio 3.2.25: non sono in questa lezione.
+>
+> **Per chi segue Matematica Discreta.** Le funzioni sono già nelle lezioni [D04](../MDAG/D04_funzioni_immagini_controimmagini.html) e [D05](../MDAG/D05_composizione_funzioni_inverse.html), con più dettagli. Qui c'è quello che serve a Fondamenti, con i nomi del libro: *one-to-one*, *onto*, *bijection*.
+
+## Le funzioni come insiemi di coppie
+
+A ogni studente corrisponde un numero di matricola, e uno solo. Questa è una funzione: una regola che a ogni elemento di un insieme ne abbina **uno solo** di un altro.
+
+Il libro la definisce senza la parola «regola», con le coppie della [lezione 11](11_quantificatori_annidati.html). Prendi $X = \{a, b, c\}$ e $Y = \{0, 1, 2, 3\}$, e scrivi gli abbinamenti come coppie:
+
+$$f = \{(a, 1),\ (b, 3),\ (c, 0)\}$$
+
+La coppia $(a, 1)$ dice «ad $a$ è abbinato 1», e si scrive $f(a) = 1$. Ogni elemento di $X$ compare a sinistra in una coppia sola.
+
+```grafico
+titolo: Due insiemi di coppie disegnati con le frecce. A sinistra f è una funzione: da ogni punto di X parte una freccia sola. A destra g non lo è, per due motivi: da a partono due frecce, e da c nessuna
+x: 0 11
+y: 0 5.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.4 5.0 | grigio | "f: funzione"
+punto: 1.2 3.8 | blu
+punto: 1.2 2.6 | blu
+punto: 1.2 1.4 | blu
+testo: 0.6 3.8 | blu | "a"
+testo: 0.6 2.6 | blu | "b"
+testo: 0.6 1.4 | blu | "c"
+punto: 3.6 4.2 | verde
+punto: 3.6 3.2 | verde
+punto: 3.6 2.2 | verde
+punto: 3.6 1.2 | verde
+testo: 4.2 4.2 | verde | "0"
+testo: 4.2 3.2 | verde | "1"
+testo: 4.2 2.2 | verde | "2"
+testo: 4.2 1.2 | verde | "3"
+freccia: 1.35 3.75 3.45 3.25 | ambra
+freccia: 1.35 2.5 3.45 1.3 | ambra
+freccia: 1.35 1.55 3.45 4.1 | ambra
+testo: 8.4 5.0 | grigio | "g: non è una funzione"
+punto: 7.2 3.8 | blu
+punto: 7.2 2.6 | blu
+punto: 7.2 1.4 | blu
+testo: 6.6 3.8 | blu | "a"
+testo: 6.6 2.6 | blu | "b"
+testo: 6.6 1.4 | blu | "c"
+punto: 9.6 4.2 | verde
+punto: 9.6 3.2 | verde
+punto: 9.6 2.2 | verde
+punto: 9.6 1.2 | verde
+testo: 10.2 4.2 | verde | "0"
+testo: 10.2 3.2 | verde | "1"
+testo: 10.2 2.2 | verde | "2"
+testo: 10.2 1.2 | verde | "3"
+freccia: 7.35 3.85 9.45 4.2 | rosa
+freccia: 7.35 3.75 9.45 3.25 | rosa
+freccia: 7.35 2.55 9.45 2.25 | ambra
+```
+
+> [!DEF] Funzione (libro, §3.1)
+> Presi due insiemi $X$ e $Y$, una **funzione** $f$ da $X$ a $Y$ è un sottoinsieme del prodotto cartesiano $X \times Y$ con questa proprietà: per ogni $x \in X$ c'è **esattamente un** $y \in Y$ con $(x, y) \in f$.
+>
+> Si scrive $f : X \to Y$, e $f(x) = y$ al posto di $(x, y) \in f$. $X$ è il **dominio**, $Y$ il **codominio**. L'insieme dei valori che $f$ assume davvero è l'**immagine** (*range*).
+
+**Come si legge.** Un sottoinsieme di $X \times Y$ è una **relazione** da $X$ a $Y$: un insieme qualunque di coppie. Una funzione è una relazione con una regola in più sulle frecce che **partono**: da ogni $x$ ne parte una, non zero e non due. «Esattamente uno» sono due richieste insieme:
+
+- **almeno uno**: nessun elemento di $X$ resta senza immagine. Nel linguaggio dei quiz d'esame la relazione è **totale**;
+- **al massimo uno**: nessun elemento di $X$ ha due immagini.
+
+Per la $f$ di prima il dominio è $\{a, b, c\}$, il codominio $\{0, 1, 2, 3\}$ e l'immagine $\{0, 1, 3\}$: il 2 è nel codominio ma nessuna freccia ci arriva. La definizione non lo vieta: la regola riguarda solo le frecce che partono.
+
+::: prova Quali di questi insiemi di coppie sono funzioni da $\{1, 2, 3\}$ a $\{a, b\}$? (i) $\{(1, a), (2, a), (3, a)\}$; (ii) $\{(1, a), (2, b)\}$; (iii) $\{(1, a), (1, b), (2, a), (3, b)\}$.
+Solo (i): è la funzione costante, e va bene che più frecce arrivino in $a$. In (ii) il 3 non ha immagine. In (iii) l'1 ne ha due.
+:::
+
+> [!RICORDA]
+> - Funzione: da ogni elemento del dominio parte esattamente una freccia.
+> - Dominio: da dove partono. Codominio: dove possono arrivare. Immagine: dove arrivano davvero.
+> - Una funzione è una relazione con una proprietà in più.
+
+## Iniettive, suriettive, biiettive e l'inversa
+
+La definizione di funzione guarda le frecce che partono. Queste tre proprietà guardano le frecce che **arrivano**, e si contano allo stesso modo.
+
+```grafico
+titolo: Tre funzioni, guardando le frecce che arrivano a destra. Nella prima in ogni punto ne arriva al massimo una, ma un punto resta vuoto. Nella seconda nessun punto resta vuoto, ma in uno ne arrivano due. Nella terza in ogni punto ne arriva esattamente una
+x: 0 12
+y: 0 5.2
+assi: no
+griglia: no
+proporzioni: libere
+punto: 0.8 3.6 | blu
+punto: 0.8 2.4 | blu
+punto: 2.8 4.2 | verde
+punto: 2.8 3.0 | verde
+punto: 2.8 1.8 | verde
+freccia: 0.95 3.65 2.65 4.15 | ambra
+freccia: 0.95 2.35 2.65 1.85 | ambra
+testo: 1.8 0.6 | ambra | "iniettiva"
+punto: 4.8 4.2 | blu
+punto: 4.8 3.0 | blu
+punto: 4.8 1.8 | blu
+punto: 6.8 3.6 | verde
+punto: 6.8 2.4 | verde
+freccia: 4.95 4.15 6.65 3.65 | ambra
+freccia: 4.95 3.05 6.65 3.55 | ambra
+freccia: 4.95 1.85 6.65 2.35 | ambra
+testo: 5.8 0.6 | ambra | "suriettiva"
+punto: 8.8 4.2 | blu
+punto: 8.8 3.0 | blu
+punto: 8.8 1.8 | blu
+punto: 10.8 4.2 | verde
+punto: 10.8 3.0 | verde
+punto: 10.8 1.8 | verde
+freccia: 8.95 4.1 10.65 3.1 | ambra
+freccia: 8.95 3.1 10.65 4.1 | ambra
+freccia: 8.95 1.8 10.65 1.8 | ambra
+testo: 9.8 0.6 | ambra | "biiettiva"
+```
+
+> [!DEF] Iniettiva, suriettiva, biiettiva (libro, §3.1)
+> Una funzione $f : X \to Y$ è:
+>
+> - **iniettiva** (*one-to-one*) se per ogni $y \in Y$ c'è **al massimo un** $x \in X$ con $f(x) = y$;
+> - **suriettiva** (*onto* $Y$) se la sua immagine è tutto $Y$: per ogni $y \in Y$ c'è **almeno un** $x$ con $f(x) = y$;
+> - **biiettiva**, o una **biiezione**, se è iniettiva e suriettiva: per ogni $y$ c'è **esattamente un** $x$.
+
+**Come si legge.** Iniettiva vuol dire «niente scontri»: due elementi diversi non finiscono mai nello stesso posto. Suriettiva vuol dire «niente buchi»: tutto il codominio è raggiunto. La tabella mette in ordine le quattro parole:
+
+| Frecce | che partono da ogni $x$ | che arrivano in ogni $y$ |
+|---|---|---|
+| almeno una | totale | suriettiva |
+| al massimo una | senza doppie immagini | iniettiva |
+| esattamente una | **è una funzione** | biiettiva |
+
+Un modo equivalente di dire «iniettiva», che è quello che si usa nelle dimostrazioni: se $f(x_1) = f(x_2)$, allora $x_1 = x_2$.
+
+La funzione $f = \{(a, 1), (b, 3), (c, 0)\}$, che è l'esempio delle risposte ufficiali del libro:
+
+- è **iniettiva**: 1, 3 e 0 sono tre valori diversi;
+- verso $Y = \{0, 1, 2, 3\}$ **non è suriettiva**: il 2 non è raggiunto;
+- verso $\{0, 1, 3\}$ **è suriettiva**, e quindi biiettiva.
+
+La stessa lista di coppie è suriettiva o no secondo il codominio che si dichiara. Per questo il libro scrive «*onto* $Y$», nominando l'insieme.
+
+> [!ESEMPIO] · Due funzioni sugli interi
+> **$f(n) = 2n + 1$, da $\mathbb{Z}$ a $\mathbb{Z}$.**
+>
+> Iniettiva: se $2n_1 + 1 = 2n_2 + 1$, togliendo 1 e dividendo per 2 resta $n_1 = n_2$.
+>
+> Non suriettiva: $2n + 1$ è sempre dispari, quindi 0 non è raggiunto. Un solo valore mancante basta.
+>
+> **$g(n) = n \bmod 3$, da $\mathbb{Z}$ a $\{0, 1, 2\}$** (il resto della divisione per 3).
+>
+> Non iniettiva: $g(0) = g(3) = 0$. Una sola coppia che si scontra basta.
+>
+> Suriettiva: $g(0) = 0$, $g(1) = 1$, $g(2) = 2$.
+
+### La funzione inversa
+
+Se $f$ è biiettiva, girando tutte le frecce si ottiene di nuovo una funzione, da $Y$ a $X$.
+
+> [!DEF] Funzione inversa (libro, §3.1)
+> Se $f : X \to Y$ è biiettiva, la sua **inversa** è la funzione da $Y$ a $X$
+>
+> $$f^{-1} = \{(y, x) \mid (x, y) \in f\}$$
+
+**Come si legge.** Ogni coppia viene scambiata: l'inversa riporta ogni elemento da dove $f$ l'ha mandato a dove era partito. Per $f = \{(a, 1), (b, 3), (c, 0)\}$ verso $\{0, 1, 3\}$ l'inversa è $\{(1, a), (3, b), (0, c)\}$.
+
+Le coppie si possono scambiare sempre; il risultato è una funzione solo se $f$ è biiettiva. Se $f$ non è iniettiva, in qualche $y$ arrivano due frecce, e girandole da $y$ ne partirebbero due. Se non è suriettiva, da qualche $y$ non partirebbe niente.
+
+::: prova La funzione $h(n) = n + 5$ da $\mathbb{Z}$ a $\mathbb{Z}$ è biiettiva? Se sì, qual è l'inversa?
+Sì. Iniettiva: da $n_1 + 5 = n_2 + 5$ viene $n_1 = n_2$. Suriettiva: un intero $m$ è raggiunto da $m - 5$. L'inversa è $h^{-1}(m) = m - 5$.
+:::
+
+> [!RICORDA]
+> - Iniettiva: al massimo una freccia in arrivo. Suriettiva: almeno una. Biiettiva: esattamente una.
+> - Non iniettiva: basta una coppia di elementi con la stessa immagine. Non suriettiva: basta un valore non raggiunto.
+> - L'inversa esiste solo per le biiezioni, e si ottiene scambiando le coppie.
+
+## La funzione caratteristica e l'unione
+
+Un modulo con le caselle da spuntare descrive un insieme: la casella vale 1 per chi è dentro, 0 per chi è fuori. È la funzione caratteristica.
+
+> [!DEF] Funzione caratteristica (libro, §3.1)
+> Fissato un insieme universo $U$ e un suo sottoinsieme $X$, la **funzione caratteristica** di $X$ è la funzione $C_X$ da $U$ a $\{0, 1\}$ che vale
+>
+> $$C_X(x) = 1 \text{ se } x \in X, \qquad C_X(x) = 0 \text{ se } x \notin X$$
+
+**Come si legge.** $C_X$ risponde con un bit alla domanda «$x$ sta in $X$?». Scrivendo i suoi valori in fila, un insieme diventa una sequenza di bit: con $U = \{1, 2, 3, 4, 5, 6\}$ l'insieme $\{1, 2, 3\}$ è 111000. È il modo in cui un programma tiene in memoria un insieme.
+
+Con $U = \{1, \dots, 6\}$, $X = \{1, 2, 3\}$ e $Y = \{3, 4\}$:
+
+| $x$ | 1 | 2 | 3 | 4 | 5 | 6 |
+|---|---|---|---|---|---|---|
+| $C_X(x)$ | 1 | 1 | 1 | 0 | 0 | 0 |
+| $C_Y(x)$ | 0 | 0 | 1 | 1 | 0 | 0 |
+| $C_X(x) \cdot C_Y(x)$ | 0 | 0 | 1 | 0 | 0 | 0 |
+| $C_X(x) + C_Y(x)$ | 1 | 1 | **2** | 1 | 0 | 0 |
+| $C_{X \cup Y}(x)$ | 1 | 1 | 1 | 1 | 0 | 0 |
+
+La riga del prodotto è la funzione caratteristica dell'**intersezione** $\{3\}$: il prodotto di due bit vale 1 solo se valgono 1 tutti e due, come la «e» della logica. Vale sempre: $C_{X \cap Y} = C_X \cdot C_Y$.
+
+Per l'unione verrebbe da usare la somma, e quasi funziona: sbaglia solo sul 3, dove dà 2. Il 3 è l'elemento che sta in **tutti e due** gli insiemi, e la somma lo conta due volte.
+
+```grafico
+titolo: Il valore della somma delle due funzioni caratteristiche, zona per zona. Vale 1 dove c'è un insieme solo, 2 nella zona comune, 0 fuori. La funzione caratteristica dell'unione vale 1 in tutte e tre le zone colorate: le due coincidono solo se la zona comune è vuota
+x: -4.2 4.2
+y: -2.6 3.0
+assi: no
+griglia: no
+cerchio: -1 0 2 | blu
+cerchio: 1 0 2 | verde
+testo: -2.6 2.3 | blu | "X"
+testo: 2.6 2.3 | verde | "Y"
+testo: -1.9 0 | blu | "1"
+testo: 1.9 0 | verde | "1"
+testo: 0 0 | ambra | "2"
+testo: 3.6 -2.0 | grigio | "0"
+```
+
+L'esercizio del Problem-Solving Corner chiede di dimostrare proprio questo.
+
+> [!PROP] Funzione caratteristica dell'unione (libro, §3.1, Problem-Solving Corner)
+> Per due sottoinsiemi $X$ e $Y$ di $U$: vale $C_{X \cup Y}(x) = C_X(x) + C_Y(x)$ per ogni $x \in U$ **se e solo se** $X \cap Y = \varnothing$.
+
+**Come si legge.** «Se e solo se» sono due implicazioni, e si dimostrano una alla volta, come nella [lezione 17](17_contrapposizione_casi_equivalenze.html). Da destra a sinistra: se gli insiemi sono disgiunti, la formula vale. Da sinistra a destra: se la formula vale, sono disgiunti.
+
+> [!ESEMPIO] · La dimostrazione
+> **Se $X \cap Y = \varnothing$, la formula vale.** Prendo un $x$ qualunque di $U$. I casi sono tre, perché $x$ non può stare in tutti e due:
+>
+> - $x$ in $X$ e non in $Y$: a sinistra 1, perché $x$ è nell'unione; a destra $1 + 0$;
+> - $x$ in $Y$ e non in $X$: a sinistra 1; a destra $0 + 1$;
+> - $x$ in nessuno dei due: a sinistra 0; a destra $0 + 0$.
+>
+> **Se la formula vale, $X \cap Y = \varnothing$.** Per assurdo: suppongo che ci sia un $x$ in $X \cap Y$. Allora a destra c'è $1 + 1 = 2$, e a sinistra 1, perché una funzione caratteristica non supera 1. La formula sarebbe falsa per quell'$x$, contro l'ipotesi.
+
+La formula che vale **sempre** toglie quello che la somma conta due volte:
+
+$$C_{X \cup Y} = C_X + C_Y - C_X \cdot C_Y$$
+
+Nella colonna del 3: $1 + 1 - 1 = 1$. È la stessa correzione del principio di inclusione-esclusione della lezione [D06](../MDAG/D06_insiemi_finiti_inclusione_esclusione.html) di Matematica Discreta.
+
+::: prova Con $U = \{1, \dots, 6\}$, $X = \{1, 2, 3\}$ e $Y = \{3, 4\}$, scrivi i valori di $C_X(x) \cdot (1 - C_Y(x))$ per $x$ da 1 a 6. Di quale insieme è la funzione caratteristica?
+1, 1, 0, 0, 0, 0. È l'insieme $\{1, 2\}$, cioè la differenza $X - Y$: vale 1 per chi sta in $X$ e non in $Y$. È uno degli esercizi del libro con la soluzione ufficiale.
+:::
+
+> [!RICORDA]
+> - $C_X$ vale 1 dentro $X$ e 0 fuori.
+> - Intersezione: prodotto. Unione: somma meno prodotto.
+> - La somma da sola dà l'unione solo per insiemi disgiunti.
+> - «Se e solo se»: due dimostrazioni.
+
+## Le sequenze
+
+Una lista ordinata ha un primo elemento, un secondo, un terzo. Le temperature di una settimana, i resti di una divisione ripetuta, i valori di una variabile giro dopo giro: sono sequenze.
+
+Prendi la lista $2, 4, 6, 8, 10$. Al posto 1 c'è 2, al posto 2 c'è 4, al posto 3 c'è 6. È una funzione: a ogni posto abbina un valore.
+
+> [!DEF] Sequenza (libro, §3.2)
+> Una **sequenza** è una funzione il cui dominio è un insieme di numeri interi. Il valore nel posto $n$ si scrive $s_n$ invece di $s(n)$, e $n$ si chiama **indice**.
+
+**Come si legge.** $s_3$ si legge «s con 3», ed è l'elemento di indice 3. La sequenza intera si indica con $s$ o con $\{s_n\}$. Il dominio di solito è fatto di interi consecutivi che partono da 1 o da 0, e può essere finito o infinito. Una sequenza non è un insieme: l'ordine conta, e un valore può comparire più volte.
+
+Una sequenza si dà con la lista o con una formula per l'elemento di indice $n$:
+
+| Formula | Indice a partire da | Primi elementi |
+|---|---|---|
+| $s_n = 2n$ | 1 | 2, 4, 6, 8, 10 |
+| $t_n = 2^n$ | 0 | 1, 2, 4, 8, 16 |
+| $u_n = n^2 - 1$ | 1 | 0, 3, 8, 15, 24 |
+| $w_n = (-1)^n$ | 0 | 1, −1, 1, −1, 1 |
+
+Da dove parte l'indice va sempre detto: la stessa formula $2^n$ con l'indice da 1 comincia con 2, non con 1. I vettori della [lezione 21](21_invarianti_vettori_somma_zeri.html) sono sequenze finite con l'indice che parte da 0.
+
+Una lista può anche non essere fatta di numeri: $c, d, d, c, d, c$ è una sequenza di lettere, con $s_1 = c$ e $s_4 = c$.
+
+::: prova Per $z_n = 3n - 2$ con l'indice da 1, scrivi i primi quattro elementi. Quanto vale $z_{10}$?
+1, 4, 7, 10. $z_{10} = 28$.
+:::
+
+> [!RICORDA]
+> - Sequenza: funzione con dominio fatto di interi. $s_n$ è l'elemento di indice $n$.
+> - L'ordine conta e le ripetizioni sono ammesse.
+> - Bisogna sempre dire da dove parte l'indice.
+
+## Crescenti, decrescenti e le altre due
+
+Guarda queste quattro liste: (a) 2, 5, 13, 40; (b) 9, 6, 6, 1; (c) 3, 3, 3; (d) 1, 4, 2, 8.
+
+La (a) sale sempre. La (b) non sale mai, ma ha due valori uguali vicini. La (c) sta ferma. La (d) va su e giù. Il libro ha quattro parole, e la differenza è tutta nel permettere o no i valori uguali.
+
+> [!DEF] Sequenze crescenti e decrescenti (libro, §3.2)
+> Una sequenza $s$ è:
+>
+> - **crescente** se per ogni $i < j$ nel dominio vale $s_i < s_j$;
+> - **decrescente** se per ogni $i < j$ vale $s_i > s_j$;
+> - **non decrescente** se per ogni $i < j$ vale $s_i \le s_j$;
+> - **non crescente** se per ogni $i < j$ vale $s_i \ge s_j$.
+
+**Come si legge.** «Crescente» è severa: ogni elemento è più piccolo di **tutti** quelli che vengono dopo, e due valori uguali la rovinano. «Non decrescente» permette i tratti piatti: non scende mai, ma può fermarsi. Il nome dice quello che la sequenza non fa.
+
+| Lista | Crescente | Decrescente | Non decrescente | Non crescente |
+|---|---|---|---|---|
+| 2, 5, 13, 40 | sì | no | sì | no |
+| 9, 6, 6, 1 | no | no | no | sì |
+| 3, 3, 3 | no | no | sì | sì |
+| 1, 4, 2, 8 | no | no | no | no |
+
+```grafico
+titolo: La sequenza 9, 6, 6, 1 disegnata un punto per indice. Non sale mai: è non crescente. Tra il secondo e il terzo punto è piatta: per questo non è decrescente
+x: 0 5
+y: 0 10
+proporzioni: libere
+punto: 1 9 | blu
+punto: 2 6 | blu
+punto: 3 6 | blu
+punto: 4 1 | blu
+segmento: 1 9 2 6 | grigio | sottile
+segmento: 2 6 3 6 | ambra
+segmento: 3 6 4 1 | grigio | sottile
+testo: 2.5 6.8 | ambra | "piatta"
+```
+
+Tre cose da notare nella tabella:
+
+- una sequenza crescente è anche non decrescente, perché $<$ è più forte di $\le$;
+- una sequenza **costante** è non decrescente e non crescente insieme, e non è né crescente né decrescente;
+- una sequenza può non essere nessuna delle quattro.
+
+> [!TRAPPOLA] «Non crescente» non è la negazione di «crescente»
+> La lista 1, 4, 2, 8 non è crescente, ma non è nemmeno «non crescente» nel senso della definizione, perché da 1 a 4 sale. «Non crescente» è il nome di una proprietà precisa: non sale **mai**. La negazione di «crescente» è solo «c'è una coppia $i < j$ con $s_i \ge s_j$», per la regola della [lezione 10](10_quantificatori_e_connettivi.html) sulla negazione di un «per ogni».
+
+Per una sequenza data con una formula si confronta ogni elemento con il successivo. Per $s_n = 2n$: $s_{n+1} - s_n = 2$, positivo per ogni $n$, quindi è crescente. Basta il confronto con il successivo, perché da $s_1 < s_2$ e $s_2 < s_3$ viene $s_1 < s_3$, e così via.
+
+### Sottosequenze
+
+Da una sequenza se ne ricava un'altra tenendo solo alcuni elementi, **nello stesso ordine**. Da $2, 4, 6, 8, 10, 12$ tenendo i posti 2, 4 e 6 viene $4, 8, 12$.
+
+> [!DEF] Sottosequenza (libro, §3.2)
+> Presa una sequenza $\{s_n\}$ e una sequenza **crescente** di indici $n_1, n_2, n_3, \dots$ del suo dominio, la sequenza $\{s_{n_k}\}$ è una **sottosequenza** di $\{s_n\}$.
+
+**Come si legge.** $n_1, n_2, \dots$ è l'elenco dei posti che si tengono, e deve essere crescente: così non si torna indietro e non si prende due volte lo stesso posto. $s_{n_k}$ è «l'elemento che sta nel $k$-esimo posto tenuto». Nell'esempio $n_k = 2k$ e $s_{n_k} = 2 \cdot 2k = 4k$.
+
+Da $a, a, b, c, q$: la lista $b, c$ è una sottosequenza (posti 3 e 4); anche $a, q$ lo è (posti 1 e 5: non serve che siano vicini); $c, b$ no, perché inverte l'ordine.
+
+::: prova La sequenza $s_n = 2n - 1$, con l'indice da 1, è crescente? Scrivi i primi quattro elementi della sottosequenza con $n_k = 2k - 1$.
+Sì: ogni elemento supera il precedente di 2. Gli indici tenuti sono 1, 3, 5, 7, e gli elementi sono 1, 5, 9, 13. In formula $s_{n_k} = 2(2k - 1) - 1 = 4k - 3$, come nelle risposte ufficiali del libro.
+:::
+
+> [!RICORDA]
+> - Crescente: $<$ tra ogni elemento e tutti i successivi. Non decrescente: $\le$.
+> - Costante: non crescente e non decrescente insieme.
+> - Sottosequenza: alcuni elementi, nello stesso ordine, anche non vicini.
+
+## Somme e prodotti in forma compatta
+
+Scrivere «la somma dei primi cento elementi» con i puntini è lungo e ambiguo. La notazione con la sigma dice in poco spazio che cosa si somma, da dove e fino a dove.
+
+> [!DEF] Sommatoria e produttoria (libro, §3.2)
+> Per una sequenza $\{a_i\}$ e due indici $m \le n$:
+>
+> $$\sum_{i=m}^{n} a_i = a_m + a_{m+1} + \dots + a_n \qquad\qquad \prod_{i=m}^{n} a_i = a_m \cdot a_{m+1} \cdots a_n$$
+
+**Come si legge.** $\sum$ è la sigma maiuscola, la S di «somma»; $\prod$ è il pi greco maiuscolo, la P di «prodotto». Sotto c'è l'**indice** con il valore di partenza $m$, sopra il valore di arrivo $n$, a destra la formula da calcolare per ogni valore dell'indice. Si legge «somma per $i$ da $m$ a $n$ di $a_i$».
+
+> [!ESEMPIO] · Tre conti
+> $\displaystyle\sum_{i=1}^{4} (2i - 1) = 1 + 3 + 5 + 7 = 16$
+>
+> $\displaystyle\sum_{i=0}^{3} 2^i = 1 + 2 + 4 + 8 = 15$
+>
+> $\displaystyle\prod_{i=1}^{4} i = 1 \cdot 2 \cdot 3 \cdot 4 = 24$, che è $4!$.
+
+È un ciclo scritto in matematica. La somma dei primi `n` elementi di un vettore, della [lezione 21](21_invarianti_vettori_somma_zeri.html), è $\sum_{j=0}^{n-1} v_j$, e l'invariante di quel ciclo è $s = \sum_{j=0}^{i-1} v_j$.
+
+**Il nome dell'indice non conta.** $\sum_{i=1}^{4} i^2$ e $\sum_{k=1}^{4} k^2$ sono lo stesso numero, 30: l'indice è una variabile che esiste solo dentro la somma, come la variabile legata di un quantificatore.
+
+**Cambiare l'indice.** Si può far partire l'indice da un altro valore, se si corregge la formula. Nella prima somma dell'esempio pongo $j = i - 1$, cioè $i = j + 1$:
+
+1. gli estremi: $i = 1$ diventa $j = 0$; $i = 4$ diventa $j = 3$;
+2. la formula: $2i - 1$ diventa $2(j + 1) - 1 = 2j + 1$;
+3. il risultato: $\sum_{j=0}^{3} (2j + 1) = 1 + 3 + 5 + 7 = 16$, come prima.
+
+Gli addendi sono gli stessi quattro numeri: è cambiato solo il modo di numerarli. Serve nelle dimostrazioni per induzione, per far combaciare due somme.
+
+::: prova Calcola $\sum_{i=2}^{5} i$ e $\prod_{i=1}^{3} 2i$. Poi riscrivi la prima somma con un indice $j$ che parte da 0.
+$2 + 3 + 4 + 5 = 14$ e $2 \cdot 4 \cdot 6 = 48$. Con $j = i - 2$: $\sum_{j=0}^{3} (j + 2) = 2 + 3 + 4 + 5 = 14$.
+:::
+
+> [!RICORDA]
+> - $\sum$: somma. $\prod$: prodotto. Sotto la partenza, sopra l'arrivo.
+> - Il nome dell'indice non conta.
+> - Cambio di indice: si spostano gli estremi e si corregge la formula.
+
+## Le stringhe e la loro lunghezza
+
+Una parola è una fila di lettere, un numero binario una fila di bit, un programma una fila di caratteri. In tutti i casi c'è un insieme di simboli ammessi e una sequenza finita di quei simboli.
+
+> [!DEF] Stringa (libro, §3.2, definizione 3.2.23)
+> Una **stringa** su un insieme finito $X$ è una sequenza **finita** di elementi di $X$.
+
+**Come si legge.** $X$ è l'insieme dei simboli che si possono usare: più avanti si chiamerà **alfabeto**. Una stringa si scrive senza virgole e senza parentesi: con $X = \{a, b, c\}$ la sequenza $b, a, a, c$ si scrive $baac$. Come in ogni sequenza l'ordine conta, quindi $baac$ e $acab$ sono stringhe diverse, anche se hanno le stesse lettere.
+
+Le ripetizioni si possono abbreviare con un esponente: $bbaaac$ si scrive anche $b^2a^3c$. Qui l'esponente non è una potenza di numeri: vuol dire «il simbolo ripetuto tante volte».
+
+Tre simboli da conoscere:
+
+- $\lambda$ (lambda) è la **stringa vuota**, quella senza elementi. È una stringa su qualunque $X$, e non è un simbolo di $X$;
+- $X^*$ («X star») è l'insieme di **tutte** le stringhe su $X$, vuota compresa;
+- $X^+$ («X più») è l'insieme delle stringhe **non vuote** su $X$.
+
+Con $X = \{a, b\}$, in ordine di lunghezza:
+
+$$X^* = \{\lambda,\ a,\ b,\ aa,\ ab,\ ba,\ bb,\ aaa,\ \dots\}$$
+
+Ogni stringa è finita, ma $X^*$ è infinito: non c'è una stringa più lunga di tutte. $X^+$ è lo stesso elenco senza $\lambda$.
+
+> [!DEF] Lunghezza di una stringa (libro, §3.2)
+> La **lunghezza** di una stringa $\alpha$ è il numero di elementi di $\alpha$. Si scrive $|\alpha|$.
+
+**Come si legge.** Si contano i posti, non i simboli diversi: $|aabab| = 5$, anche se le lettere usate sono due. Con gli esponenti si sommano: $|b^2a^3c| = 2 + 3 + 1 = 6$. La stringa vuota ha lunghezza zero: $|\lambda| = 0$.
+
+Le sbarre sono le stesse della cardinalità di un insieme, e il senso è lo stesso: «quanti elementi». La lunghezza è una funzione da $X^*$ ai numeri naturali. È suriettiva, perché per ogni $n$ c'è una stringa lunga $n$, e non è iniettiva appena $X$ ha due simboli: $|ab| = |ba|$.
+
+> [!TRAPPOLA] La stringa vuota, l'insieme vuoto e lo spazio
+> $\lambda$ è una stringa, di lunghezza 0. $\varnothing$ è un insieme, senza elementi. $\{\lambda\}$ è un insieme con **un** elemento, la stringa vuota. E uno spazio bianco, in un testo, è un carattere: la stringa fatta di un solo spazio ha lunghezza 1.
+
+::: prova Con $X = \{0, 1\}$: quanto valgono $|0110|$, $|1^50^2|$ e $|\lambda|$? Quante sono le stringhe di lunghezza 2, e quali?
+4, 7 e 0. Le stringhe di lunghezza 2 sono quattro: 00, 01, 10, 11.
+:::
+
+> [!RICORDA]
+> - Stringa su $X$: sequenza finita di elementi di $X$, scritta senza virgole.
+> - $\lambda$: stringa vuota, lunghezza 0. $X^*$: tutte le stringhe. $X^+$: quelle non vuote.
+> - $|\alpha|$: il numero di posti, contando le ripetizioni.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $f : X \to Y$ | «f da X a Y» | funzione con dominio $X$ e codominio $Y$ | $f(n) = 2n + 1$ da $\mathbb{Z}$ a $\mathbb{Z}$ |
+| $f^{-1}$ | «f alla meno uno» | la funzione inversa di una biiezione | $h(n) = n + 5$, $h^{-1}(m) = m - 5$ |
+| $C_X$ | «C con X» | funzione caratteristica: 1 dentro $X$, 0 fuori | $C_{\{1,2\}}(2) = 1$ |
+| $n \bmod 3$ | «n modulo 3» | il resto della divisione di $n$ per 3 | $7 \bmod 3 = 1$ |
+| $s_n$ | «s con n» | l'elemento di indice $n$ della sequenza $s$ | per $s_n = 2n$, $s_3 = 6$ |
+| $s_{n_k}$ | «s con n con k» | il $k$-esimo elemento di una sottosequenza | $n_k = 2k$: $s_{n_k} = 4k$ |
+| $\sum_{i=m}^{n} a_i$ | «somma per i da m a n di a con i» | $a_m + \dots + a_n$ | $\sum_{i=1}^{3} i = 6$ |
+| $\prod_{i=m}^{n} a_i$ | «prodotto per i da m a n» | $a_m \cdots a_n$ | $\prod_{i=1}^{3} i = 6$ |
+| $\lambda$ | «lambda» | la stringa vuota | $\lvert\lambda\rvert = 0$ |
+| $X^*$, $X^+$ | «X star», «X più» | tutte le stringhe su $X$; quelle non vuote | $ab \in \{a, b\}^*$ |
+| $\lvert\alpha\rvert$ | «lunghezza di alfa» | il numero di elementi della stringa | $\lvert baac\rvert = 4$ |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Il quiz sulle proprietà di una relazione**, che c'era in tutte e due le simulazioni del 2023/24. Tra le voci: «è totale?», «individua una funzione?», «è suriettiva?», «è una biiezione?». Le altre voci (riflessiva, simmetrica…) sono delle lezioni sulle relazioni, più avanti.
+2. **Le stringhe**: lunghezza, stringa vuota, $X^*$. Sono il vocabolario dei quiz su automi e grammatiche, che chiedono se una stringa è accettata o generata.
+3. **Classificare una sequenza** e **calcolare una somma** scritta con la sigma.
+
+### Una domanda d'esame, letta insieme
+
+**Simulazioni d'esame 2023/24, quiz sulle proprietà di una relazione.** La relazione è $R = \{(1,1), (1,2), (1,3), (3,1), (3,3), (4,4), (5,5)\}$ sull'insieme $\{1, 2, 3, 4, 5\}$. Tra le voci: «È totale?», «Individua una funzione?», «È una biiezione?».
+
+**In pratica chiede:** di guardare le frecce che partono da ogni elemento. Totale: ne parte almeno una da ognuno. Funzione: ne parte esattamente una da ognuno.
+
+> [!ESEMPIO] · la soluzione, voce per voce
+> Conto le coppie che cominciano con ogni elemento:
+>
+> | Elemento | Coppie che partono da lui | Quante |
+> |---|---|---|
+> | 1 | $(1,1)$, $(1,2)$, $(1,3)$ | 3 |
+> | 2 | nessuna | 0 |
+> | 3 | $(3,1)$, $(3,3)$ | 2 |
+> | 4 | $(4,4)$ | 1 |
+> | 5 | $(5,5)$ | 1 |
+>
+> **È totale? No.** Dal 2 non parte nessuna coppia.
+>
+> **Individua una funzione? No**, per due motivi che bastano ognuno da solo: il 2 non ha immagine, e l'1 ne ha tre.
+>
+> **È una biiezione? No.** Una biiezione è prima di tutto una funzione.
+>
+> Sono le risposte segnate nella copia compilata da uno studente, e tornano con le definizioni.
+
+> [!METODO] Decidere se un insieme di coppie è una funzione, e di che tipo
+> 1. Per ogni elemento del dominio conta le coppie che **cominciano** con lui. Tutti 1: è una funzione. Uno 0 o un 2: non lo è, e ci si ferma.
+> 2. Per ogni elemento del codominio conta le coppie che **finiscono** con lui.
+> 3. Nessun conteggio sopra 1: iniettiva. Nessun conteggio a 0: suriettiva. Tutti 1: biiettiva.
+
+### Errori da evitare
+
+- Pensare che una funzione debba raggiungere tutto il codominio: quella è la suriettività.
+- Dire che una funzione non è tale perché due frecce arrivano nello stesso punto: quello riguarda l'iniettività.
+- Leggere «non crescente» come «non è crescente».
+- Dimenticare da dove parte l'indice di una sequenza o di una somma.
+- Confondere $\lambda$ con $\varnothing$, o contare i simboli diversi invece dei posti nella lunghezza.
+
+## Quiz
+
+```quiz
+D: Quale di questi insiemi di coppie è una funzione da $\{1, 2, 3\}$ a $\{a, b, c\}$?
++ $\{(1, b), (2, b), (3, a)\}$
+- $\{(1, a), (2, b)\}$
+- $\{(1, a), (1, b), (2, c), (3, c)\}$
+- $\{(1, a), (2, b), (3, c), (3, a)\}$
+- $\{(a, 1), (b, 2), (c, 3)\}$
+= Da ogni elemento del dominio deve partire esattamente una coppia; che due finiscano in $b$ non importa. La più insidiosa è $\{(a, 1), (b, 2), (c, 3)\}$: è una funzione, ma da $\{a, b, c\}$ a $\{1, 2, 3\}$, nel verso opposto.
+
+D: La funzione $f(n) = 2n + 1$ da $\mathbb{Z}$ a $\mathbb{Z}$ è:
++ iniettiva ma non suriettiva
+- suriettiva ma non iniettiva
+- biiettiva
+- né iniettiva né suriettiva
+- non è una funzione
+= Valori diversi di $n$ danno risultati diversi; i numeri pari non sono mai raggiunti. La più insidiosa è «biiettiva»: lo sarebbe da $\mathbb{R}$ a $\mathbb{R}$, dove $2x + 1 = 0$ ha soluzione.
+
+D: Con $U = \{1, \dots, 6\}$, $X = \{1, 2, 3\}$ e $Y = \{3, 4\}$, quanto vale $C_X(3) + C_Y(3)$?
+N: 2
+= Il 3 sta in tutti e due gli insiemi. Per questo la somma non è la funzione caratteristica dell'unione, che vale al massimo 1.
+
+D: Per quali insiemi $X$ e $Y$ vale $C_{X \cup Y}(x) = C_X(x) + C_Y(x)$ per ogni $x$?
++ solo quando $X \cap Y = \varnothing$
+- sempre
+- solo quando $X = Y$
+- solo quando $X \subseteq Y$
+- mai
+= Su un elemento comune la somma darebbe 2. La più insidiosa è «sempre»: quella che vale sempre è la formula con il prodotto sottratto.
+
+D: La sequenza 7, 7, 4, 4, 1 è:
++ non crescente, ma non decrescente
+- decrescente
+- crescente
+- non decrescente
+- nessuna delle quattro
+= Non sale mai, quindi è non crescente; ha valori uguali vicini, quindi non è decrescente. La più insidiosa è «decrescente»: nel parlare comune lo diresti, ma la definizione chiede $>$ stretto.
+
+D: Quanto vale $\sum_{i=1}^{5} (2i - 1)$?
+N: 25
+= $1 + 3 + 5 + 7 + 9$. La somma dei primi 5 dispari è il quadrato di 5.
+
+D: Con $X = \{a, b, c\}$, quanto vale $|a^3bc^2|$?
+N: 6
+= $3 + 1 + 2$: si contano i posti, con le ripetizioni.
+
+D: Quale affermazione sulla stringa vuota $\lambda$ è vera, per $X = \{a, b\}$?
++ $\lambda \in X^*$ e $\lambda \notin X^+$
+- $\lambda \in X$
+- $\lambda = \varnothing$
+- $|\lambda| = 1$
+- $\lambda \in X^+$ e $\lambda \notin X^*$
+= $X^*$ contiene tutte le stringhe, vuota compresa; $X^+$ solo quelle non vuote. La più insidiosa è $\lambda \in X$: $\lambda$ è una stringa, non un simbolo dell'alfabeto.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: frecce che partono e che arrivano
+Per $f = \{(1, c), (2, a), (3, c), (4, b)\}$ da $\{1, 2, 3, 4\}$ a $\{a, b, c\}$: è una funzione? È iniettiva? È suriettiva? Ha un'inversa?
+::: soluzione
+È una funzione: ogni elemento da 1 a 4 compare a sinistra una volta. Non è iniettiva: in $c$ arrivano due frecce, da 1 e da 3. È suriettiva: $a$, $b$ e $c$ sono raggiunti. Non ha un'inversa, perché non è biiettiva: girando le frecce, da $c$ ne partirebbero due.
+:::
+
+::: esercizio base Riscaldamento: una sequenza di lettere (libro, §3.2, esercizi 1–3)
+Per la sequenza $s$ definita da $c, d, d, c, d, c$, con l'indice che parte da 1: quanto valgono $s_1$ e $s_4$? Come si scrive $s$ come stringa?
+::: soluzione
+$s_1 = c$ e $s_4 = c$. Come stringa: $cddcdc$. Sono le risposte ufficiali del libro. La lunghezza della stringa è 6.
+:::
+
+::: esercizio medio Le quattro parole (sul modello degli esercizi 5–9)
+Per ognuna di' se è crescente, decrescente, non crescente, non decrescente: (a) $s_n = n^2$ per $n \ge 1$; (b) $s_n = n^2$ per tutti gli interi $n$; (c) $s_n = 5$ per $n \ge 1$; (d) $s_n = 10 - 2n$ per $n \ge 1$; (e) una sequenza con un solo indice nel dominio.
+::: soluzione
+**(a)** Crescente, e quindi non decrescente: 1, 4, 9, 16. **(b)** Nessuna delle quattro: da $n = -2$ a $n = 0$ scende (4, 1, 0), poi sale. **(c)** Non crescente e non decrescente. **(d)** Decrescente, e quindi non crescente: 8, 6, 4, 2. **(e)** Tutte e quattro: le definizioni parlano di coppie $i < j$ nel dominio, e con un indice solo non ce ne sono, quindi sono vere a vuoto. Le risposte ufficiali del libro agli esercizi proposti dicono «tutte e quattro» per il 5 e «nessuna» per l'8: i casi (e) e (b) mostrano come può succedere. I testi di quei due esercizi non li ho.
+:::
+
+::: esercizio medio Funzione caratteristica dell'intersezione (libro, §3.1)
+Dimostra che $C_{X \cap Y}(x) = C_X(x) \cdot C_Y(x)$ per ogni $x \in U$.
+::: soluzione
+Due casi. **$x$ sta in $X \cap Y$.** Allora sta in $X$ e in $Y$: a sinistra 1, a destra $1 \cdot 1$. **$x$ non sta in $X \cap Y$.** A sinistra 0. E $x$ manca da almeno uno dei due insiemi, quindi almeno uno dei due fattori è 0, e il prodotto è 0. È la soluzione ufficiale del libro.
+:::
+
+::: esercizio esame Una relazione, come nel quiz delle simulazioni
+Per $S = \{(1,2), (2,3), (3,1), (4,4)\}$ sull'insieme $\{1, 2, 3, 4\}$: è totale? Individua una funzione? È iniettiva? È suriettiva? È una biiezione? Se sì, scrivi l'inversa.
+::: soluzione
+Da ogni elemento parte una coppia sola: è totale e **individua una funzione**. In ogni elemento ne arriva una sola (in 2 da 1, in 3 da 2, in 1 da 3, in 4 da 4): è iniettiva e suriettiva, quindi una **biiezione**. L'inversa: $\{(2,1), (3,2), (1,3), (4,4)\}$.
+:::
+
+::: esercizio difficile Cambio di indice e sottosequenza
+(a) Riscrivi $\sum_{i=1}^{n} i \cdot 2^{n-i}$ con l'indice $j = i - 1$. Controlla con $n = 3$. (b) Per $s_n = 2n - 1$ e $n_k = 2k - 1$, scrivi i primi sette elementi di $s$ e della sottosequenza.
+::: soluzione
+**(a)** $i = j + 1$; gli estremi diventano 0 e $n - 1$; l'esponente $n - i$ diventa $n - j - 1$. Risultato: $\sum_{j=0}^{n-1} (j + 1) \cdot 2^{n-j-1}$. Con $n = 3$ la prima dà $1 \cdot 4 + 2 \cdot 2 + 3 \cdot 1 = 11$, e la seconda gli stessi tre addendi. **(b)** $s$: 1, 3, 5, 7, 9, 11, 13. Sottosequenza: 1, 5, 9, 13, 17, 21, 25, con $s_{n_k} = 4k - 3$. Sono le risposte ufficiali del libro.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è una funzione da $X$ a $Y$, secondo il libro?
+Un sottoinsieme di $X \times Y$ in cui per ogni $x$ di $X$ c'è esattamente una coppia che comincia con $x$.
+:::
+
+::: domanda Che differenza c'è tra iniettiva e suriettiva?
+Iniettiva: in ogni elemento del codominio arriva al massimo una freccia. Suriettiva: ne arriva almeno una.
+:::
+
+::: domanda Quando esiste la funzione inversa, e come si ottiene?
+Quando la funzione è biiettiva. Si scambiano i due elementi di ogni coppia.
+:::
+
+::: domanda Quando la funzione caratteristica dell'unione è la somma delle due?
+Solo quando i due insiemi sono disgiunti. In generale bisogna sottrarre il prodotto.
+:::
+
+::: domanda Che cos'è una sequenza?
+Una funzione il cui dominio è un insieme di interi. $s_n$ è l'elemento di indice $n$.
+:::
+
+::: domanda Che differenza c'è tra crescente e non decrescente?
+Crescente chiede $<$ tra ogni elemento e i successivi; non decrescente chiede $\le$, e permette valori uguali.
+:::
+
+::: domanda Che cosa sono $\lambda$, $X^*$ e $X^+$?
+La stringa vuota; l'insieme di tutte le stringhe su $X$; l'insieme delle stringhe non vuote.
+:::
+
+## Glossario
+
+```glossario
+Funzione | Insieme di coppie in cui ogni elemento del dominio compare a sinistra esattamente una volta.
+Dominio, codominio, immagine | Da dove partono le frecce; dove possono arrivare; dove arrivano davvero.
+Iniettiva (one-to-one) | Funzione in cui elementi diversi hanno immagini diverse.
+Suriettiva (onto) | Funzione che raggiunge tutto il codominio.
+Biiettiva (bijection) | Iniettiva e suriettiva.
+Funzione inversa | Per una biiezione, la funzione che si ottiene scambiando le coppie.
+Funzione caratteristica | Funzione che vale 1 sugli elementi di un insieme e 0 sugli altri.
+Sequenza | Funzione che ha per dominio un insieme di interi.
+Indice | Il numero del posto in una sequenza.
+Sottosequenza | Sequenza ottenuta tenendo alcuni elementi nello stesso ordine.
+Stringa | Sequenza finita di elementi di un insieme, scritta senza virgole.
+Stringa vuota | La stringa senza elementi, di lunghezza 0. Si scrive lambda.
+Lunghezza | Il numero di elementi di una stringa.
+```
+
+## Checklist
+
+```checklist
+- So dire quando un insieme di coppie è una funzione.
+- So distinguere dominio, codominio e immagine.
+- So riconoscere una funzione iniettiva, suriettiva, biiettiva, da un disegno e da una formula.
+- So scrivere l'inversa di una biiezione e dire perché le altre funzioni non ce l'hanno.
+- So calcolare la funzione caratteristica di un insieme, dell'intersezione e dell'unione.
+- So dimostrare quando la funzione caratteristica dell'unione è la somma.
+- So scrivere i primi elementi di una sequenza data con una formula.
+- So dire se una sequenza è crescente, decrescente, non crescente, non decrescente.
+- So ricavare una sottosequenza.
+- So calcolare somme e prodotti scritti con sigma e pi greco, e cambiare l'indice.
+- So che cosa sono una stringa, la stringa vuota, X star e X più.
+- So calcolare la lunghezza di una stringa.
+```
+
+## Fonti
+
+- Diario delle lezioni del canale B (Berardi), lezione 23 del docente, 20/11/2026: ripasso delle funzioni, funzione caratteristica e unione (Problem-Solving Corner del §3.1), §3.2 dagli esempi 3.2.1–3.2.19 (omessi 3.2.20–22) e stringhe dalla definizione 3.2.23 all'esempio 3.2.25; esercizi 5–9 di pagina 137.
+- Johnsonbaugh, parte 2 del libro di testo, §3.1 e §3.2: risposte ufficiali alle domande di ripasso e agli esercizi (appendice «Soluzioni di altri esercizi del testo», Moodle del canale A, aperto agli ospiti). Da lì vengono le definizioni, l'esempio $\{(a,1), (b,3), (c,0)\}$, le soluzioni sulle funzioni caratteristiche di intersezione e differenza, le risposte agli esercizi 1–3, 5 e 8 del §3.2 e la sottosequenza $4k - 3$.
+- Simulazioni d'esame 2023/24, quiz sulle proprietà di una relazione (testo dalla trascrizione delle schermate, con le risposte segnate da uno studente, ricontrollate).
+- Per le funzioni in Matematica Discreta: lezioni [D04](../MDAG/D04_funzioni_immagini_controimmagini.html) e [D05](../MDAG/D05_composizione_funzioni_inverse.html).
 
 
 ---
@@ -33239,7 +37287,7 @@ D: Simulazione d'esame 1, 2023/24, domanda 5. La tabella di verità ha $y = 1$ s
 + $\overline{x_1}\,x_2\,\overline{x_3} + \overline{x_1}\,x_2\,x_3 + x_1\,\overline{x_2}\,x_3 + x_1\,x_2\,\overline{x_3}$
 - $x_1\,x_2\,x_3$
 - $\overline{x_1}\,\overline{x_2}\,\overline{x_3} + x_1\,x_2\,x_3$
-= Un AND per ogni riga con $y = 1$, con il NOT sugli ingressi a 0, poi tutti uniti da OR: è la terza. La risposta più insidiosa è la prima: è giusta in quasi tutte le righe, ma vale 1 anche in 111, dove $y = 0$, e vale 0 in 101 e 110. La seconda sbaglia le righe 001 e 111.
+= Un AND per ogni riga con $y = 1$, con il NOT sugli ingressi a 0, poi tutti uniti da OR: è la formula con un AND di tre ingressi per ogni riga. La risposta più insidiosa è $\overline{x_1}\,x_2 + x_1\,x_2\,x_3$: è giusta in quasi tutte le righe, ma vale 1 anche in 111, dove $y = 0$, e vale 0 in 101 e 110. La risposta $x_1\,x_2 + \overline{x_2}\,x_3$ sbaglia le righe 001 e 111.
 
 D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola (A AND NOT C) OR (NOT C AND B). Quale formula NON lo descrive?
 - $(\neg C \land A) \lor (\neg C \land B)$
@@ -33247,7 +37295,7 @@ D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola (A AND NOT C) 
 - $\neg((C \lor \neg A) \land (C \lor \neg B))$
 - $\neg C \land (A \lor B)$
 - $(A \land \neg C) \lor (B \land \neg C)$
-= Basta una riga diversa: con $A = B = C = 0$ il circuito dà 0, perché tutte e due le AND ricevono uno 0, mentre la seconda formula dà 1, perché $\neg C$ rende veri tutti e due gli OR. La risposta più insidiosa è la terza, con la negazione davanti: per De Morgan è uguale al circuito in tutte le 8 righe.
+= Basta una riga diversa: con $A = B = C = 0$ il circuito dà 0, perché tutte e due le AND ricevono uno 0, mentre la seconda formula dà 1, perché $\neg C$ rende veri tutti e due gli OR. La risposta più insidiosa è $\neg((C \lor \neg A) \land (C \lor \neg B))$, con la negazione davanti: per De Morgan è uguale al circuito in tutte le 8 righe.
 
 D: Simulazione d'esame 2, 2023/24, domanda 3. Due NAND si richiamano: quello in alto riceve l'ingresso in alto e l'uscita dell'altro; quello in basso riceve l'ingresso in basso e l'uscita del primo, che è $y$. Con l'ingresso in alto a 1 e quello in basso a 0, su che valore si stabilizza $y$?
 + $0$
@@ -33488,7 +37536,7 @@ D: Simulazioni d'esame 1 (domanda 2) e 2 (domanda 1), 2023/24. Il numero 3,625 n
 + In virgola fissa è 11.101; in virgola mobile è 01101110, e c'è troncamento solo in virgola mobile.
 - In virgola fissa è 111.01, e c'è troncamento in tutte e due.
 - In virgola mobile è 01101110, senza troncamento.
-= 3,625 = 11,101. Spostando la virgola di due posti a sinistra viene 0,11101: esponente 2, cioè 110 in eccesso 4, e cinque cifre. La mantissa tiene 1110 e perde l'ultimo 1: il byte 01101110 vale 3,5, quindi c'è troncamento. La risposta più insidiosa è l'ultima: il byte è giusto, ma il troncamento c'è.
+= 3,625 = 11,101. Spostando la virgola di due posti a sinistra viene 0,11101: esponente 2, cioè 110 in eccesso 4, e cinque cifre. La mantissa tiene 1110 e perde l'ultimo 1: il byte 01101110 vale 3,5, quindi c'è troncamento. La risposta più insidiosa è «In virgola mobile è 01101110, senza troncamento»: il byte è giusto, ma il troncamento c'è.
 
 D: Simulazione d'esame 2, 2023/24, domanda 8. Quanto vale 10000001 in complemento a 2 su 8 bit?
 - $-1$
@@ -33504,7 +37552,7 @@ D: Simulazione d'esame 2, 2023/24, domanda 8. Quale riga dà i valori giusti di 
 - $-1$, $-85$, $-15$
 - $-127$, $85$, $15$
 - $-1$, $-43$, $15$
-= 11111111 vale $-128 + 127 = -1$. Gli altri due cominciano con 0, quindi si leggono come senza segno: 85 e 15. La risposta più insidiosa è la prima: legge tutto senza segno. $-127$ sarebbe 10000001.
+= 11111111 vale $-128 + 127 = -1$. Gli altri due cominciano con 0, quindi si leggono come senza segno: 85 e 15. La risposta più insidiosa è «$255$, $85$, $15$»: legge tutto senza segno. $-127$ sarebbe 10000001.
 ```
 
 ## Fonti
@@ -33743,7 +37791,7 @@ D: Simulazione d'esame 2, 2023/24, domanda 2, con una risposta cambiata. Quale d
 - $x + x = x$
 - $x + x' = 1$ e $x \cdot x' = 0$
 - $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$
-= Con $x = 1$, $y = 0$, $z = 0$ la sinistra vale 1 e la destra 0. La risposta più insidiosa è la seconda, che con i numeri sembra sbagliata: in logica però l'«o» si distribuisce sull'«e», $p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$. Le altre sono l'idempotenza, il complemento e la distributiva dell'«e» sull'«o». L'ultima risposta l'ho messa io al posto di un'affermazione sugli insiemi con due elementi, falsa anche lei.
+= Con $x = 1$, $y = 0$, $z = 0$ la sinistra vale 1 e la destra 0. La risposta più insidiosa è $x + (y \cdot z) = (y + x) \cdot (z + x)$, che con i numeri sembra sbagliata: in logica però l'«o» si distribuisce sull'«e», $p \vee (q \wedge r) \equiv (p \vee q) \wedge (p \vee r)$. Le altre sono l'idempotenza, il complemento e la distributiva dell'«e» sull'«o». La risposta $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$ l'ho messa io al posto di un'affermazione sugli insiemi con due elementi, falsa anche lei.
 
 D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola $(A \wedge \neg C) \vee (\neg C \wedge B)$. Quale formula descrive la stessa funzione?
 - $(\neg C \vee A) \wedge (\neg C \vee B)$
@@ -33751,7 +37799,7 @@ D: Simulazione d'esame 1, 2023/24, domanda 6. Un circuito calcola $(A \wedge \ne
 - $\neg C \wedge A \wedge B$
 - $\neg(C \wedge (A \vee B))$
 - $\neg C \vee A \vee B$
-= Con De Morgan sulla parentesi grande: $\neg(C \vee \neg A) \vee \neg(C \vee \neg B)$, e di nuovo: $(\neg C \wedge A) \vee (\neg C \wedge B)$. La risposta più insidiosa è la prima, che scambia «e» e «o»: con $A$, $B$ e $C$ tutte false vale V, mentre il circuito dà F. La terza vuole $A$ e $B$ vere tutte e due; la quarta e la quinta sono vere anche con le tre lettere false.
+= Con De Morgan sulla parentesi grande: $\neg(C \vee \neg A) \vee \neg(C \vee \neg B)$, e di nuovo: $(\neg C \wedge A) \vee (\neg C \wedge B)$. La risposta più insidiosa è $(\neg C \vee A) \wedge (\neg C \vee B)$, che scambia «e» e «o»: con $A$, $B$ e $C$ tutte false vale V, mentre il circuito dà F. La risposta $\neg C \wedge A \wedge B$ vuole $A$ e $B$ vere tutte e due; la risposta $\neg(C \wedge (A \vee B))$ e la risposta $\neg C \vee A \vee B$ sono vere anche con le tre lettere false.
 
 D: Sul modello degli esercizi del §1.3. Con $p$ = «passo l'esame» e $q$ = «studio», come si scrive «passo l'esame solo se studio»?
 + $p \to q$
@@ -33767,7 +37815,7 @@ D: Sul modello della simulazione 2, domanda 6, che chiede le negazioni di frasi.
 + Il treno è in ritardo e non perdo la coincidenza.
 - Il treno non è in ritardo e perdo la coincidenza.
 - Il treno non è in ritardo o non perdo la coincidenza.
-= $\neg(p \to q) \equiv p \wedge \neg q$: la promessa è smentita solo se il treno è in ritardo e la coincidenza non si perde. La risposta più insidiosa è la prima, l'opposta: è un'altra promessa, non la negazione, e con il treno in ritardo e la coincidenza persa è vera come la frase di partenza.
+= $\neg(p \to q) \equiv p \wedge \neg q$: la promessa è smentita solo se il treno è in ritardo e la coincidenza non si perde. La risposta più insidiosa è «Se il treno non è in ritardo, non perdo la coincidenza», l'opposta: è un'altra promessa, non la negazione, e con il treno in ritardo e la coincidenza persa è vera come la frase di partenza.
 
 D: Sul modello degli esercizi del §1.4. L'argomentazione «se piove, la strada è bagnata; la strada è bagnata; quindi piove» è:
 - valida, per il modus ponens
@@ -34045,7 +38093,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Una donn
 - Una donna non ha ballato con nessun uomo
 - Ogni uomo ha ballato con qualche donna
 - Qualche donna non ha ballato con qualche uomo
-= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è l'ultima, $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo».
+= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è «Qualche donna non ha ballato con qualche uomo», $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo».
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gli uomini hanno ballato con qualche donna»?
 + Qualche uomo non ha ballato con nessuna donna
@@ -34053,7 +38101,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gl
 - Tutti gli uomini non hanno ballato con qualche donna
 - Qualche donna non ha ballato con nessun uomo
 - Qualche uomo ha ballato con tutte le donne
-= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è la quarta, che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
+= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è «Qualche donna non ha ballato con nessun uomo», che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Ogni donna ha ballato con ogni uomo»?
 + Qualche donna non ha ballato con qualche uomo
@@ -34069,7 +38117,7 @@ D: Sul modello della simulazione 2. Sugli interi, quale frase è vera?
 - $\forall x\, \exists y\, (x \cdot y = 1)$
 - $\forall x\, (x^2 > 0)$
 - $\forall x\, \forall y\, (x + y \ne 0)$
-= Con $x = 0$ il prodotto è 0 per ogni $y$. La risposta più insidiosa è la seconda, che scambia l'ordine di «ogni numero ha un numero più grande»: un numero più grande di tutti non c'è. La terza è falsa per $x = 2$, la quarta per $x = 0$, l'ultima per $x = 1$, $y = -1$.
+= Con $x = 0$ il prodotto è 0 per ogni $y$. La risposta più insidiosa è $\exists y\, \forall x\, (y > x)$, che scambia l'ordine di «ogni numero ha un numero più grande»: un numero più grande di tutti non c'è. La risposta $\forall x\, \exists y\, (x \cdot y = 1)$ è falsa per $x = 2$, la risposta $\forall x\, (x^2 > 0)$ per $x = 0$, la risposta $\forall x\, \forall y\, (x + y \ne 0)$ per $x = 1$, $y = -1$.
 
 D: Sul modello della simulazione 2. Qual è la negazione di $\forall x\,(P(x) \to Q(x))$?
 + $\exists x\,(P(x) \wedge \neg Q(x))$
@@ -34077,7 +38125,7 @@ D: Sul modello della simulazione 2. Qual è la negazione di $\forall x\,(P(x) \t
 - $\exists x\,(\neg P(x) \to \neg Q(x))$
 - $\forall x\,(\neg P(x) \wedge Q(x))$
 - $\exists x\,(P(x) \to \neg Q(x))$
-= Il «per ogni» diventa «esiste», e la negazione di $P \to Q$ è $P \wedge \neg Q$ (lezione 07). «Non tutti i P sono Q» vuol dire «c'è un P che non è Q». La risposta più insidiosa è l'ultima: nega la conclusione ma lascia la freccia, che con $P$ falsa è vera a vuoto.
+= Il «per ogni» diventa «esiste», e la negazione di $P \to Q$ è $P \wedge \neg Q$ (lezione 07). «Non tutti i P sono Q» vuol dire «c'è un P che non è Q». La risposta più insidiosa è $\exists x\,(P(x) \to \neg Q(x))$: nega la conclusione ma lascia la freccia, che con $P$ falsa è vera a vuoto.
 
 D: Sul modello delle domande sì/no della lezione 10. Quale equivalenza vale per ogni dominio?
 + $\forall x\,(P(x) \wedge Q(x)) \equiv \forall x\, P(x) \wedge \forall x\, Q(x)$
@@ -34085,7 +38133,7 @@ D: Sul modello delle domande sì/no della lezione 10. Quale equivalenza vale per
 - $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$
 - $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$
 - $\forall x\, \exists y\, P(x, y) \equiv \exists y\, \forall x\, P(x, y)$
-= «Per ogni» è una lunga «e», e si distribuisce sulla «e». La risposta più insidiosa è la terza: due testimoni diversi non fanno un testimone comune (un intero pari e uno dispari esistono, uno pari e dispari no). La quarta sbaglia De Morgan, l'ultima scambia l'ordine.
+= «Per ogni» è una lunga «e», e si distribuisce sulla «e». La risposta più insidiosa è $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$: due testimoni diversi non fanno un testimone comune (un intero pari e uno dispari esistono, uno pari e dispari no). La risposta $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$ sbaglia De Morgan, la risposta $\forall x\, \exists y\, P(x, y) \equiv \exists y\, \forall x\, P(x, y)$ scambia l'ordine.
 
 D: Sul modello delle domande sì/no della lezione 10. «Tutti gli iscritti hanno la matricola. Luca è iscritto. Quindi Luca ha la matricola.» Quale regola serve, oltre al modus ponens?
 + La particolarizzazione universale
@@ -34101,7 +38149,7 @@ D: Sul modello della simulazione 2. Sul dominio delle persone, con $A(x, y)$ = �
 - $\forall y\, \exists x\, A(x, y)$
 - $\exists x\, \forall y\, A(x, y)$
 - $\forall x\, \forall y\, A(x, y)$
-= Per ogni persona $x$ c'è una persona $y$, che può cambiare con $x$, amata da $x$. La risposta più insidiosa è la seconda, «c'è qualcuno amato da tutti»: l'ordine scambiato. La terza dice «tutti sono amati da qualcuno».
+= Per ogni persona $x$ c'è una persona $y$, che può cambiare con $x$, amata da $x$. La risposta più insidiosa è $\exists y\, \forall x\, A(x, y)$, «c'è qualcuno amato da tutti»: l'ordine scambiato. La risposta $\forall y\, \exists x\, A(x, y)$ dice «tutti sono amati da qualcuno».
 ```
 
 ## Fonti
@@ -34316,7 +38364,7 @@ D: Simulazione d'esame 2 del 2023/24, domanda 2, con le voci in forma di scelta.
 - le algebre booleane sono definite solo su insiemi con esattamente due elementi
 - $x + x = 1$ vale in tutte le algebre booleane
 - $x \cdot x' = 1$ vale in tutte le algebre booleane
-= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è la seconda, che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0.
+= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è «$x + (y \cdot z) = (x \cdot y) + (x \cdot z)$ vale in tutte le algebre booleane», che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0.
 
 D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \wedge A) \vee (\neg C \wedge B)$. Quale formula ha la stessa tavola?
 + $\neg((C \vee \neg A) \wedge (C \vee \neg B))$
@@ -34324,7 +38372,7 @@ D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \w
 - $\neg C \wedge A \wedge B$
 - $\neg(C \wedge (A \vee B))$
 - $\neg C \vee A \vee B$
-= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è la seconda, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
+= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è $(\neg C \vee A) \wedge (\neg C \vee B)$, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
 
 D: Sul modello dei quiz di logica. Quale di queste formule è una tautologia?
 + $(p \to q) \vee (q \to p)$
@@ -34332,7 +38380,7 @@ D: Sul modello dei quiz di logica. Quale di queste formule è una tautologia?
 - $(p \vee q) \to p$
 - $(p \to q) \wedge (q \to p)$
 - $\neg p \to (p \wedge q)$
-= Per rendere falsa la prima servirebbero $p \to q$ e $q \to p$ tutte e due false, cioè $p$ vera e $q$ falsa e insieme il contrario: impossibile. La più insidiosa è la seconda, che passa dalla freccia alla sua inversa: con $p$ falsa e $q$ vera è falsa.
+= Per rendere falsa $(p \to q) \vee (q \to p)$ servirebbero $p \to q$ e $q \to p$ tutte e due false, cioè $p$ vera e $q$ falsa e insieme il contrario: impossibile. La più insidiosa è $(p \to q) \to (q \to p)$, che passa dalla freccia alla sua inversa: con $p$ falsa e $q$ vera è falsa.
 
 D: Sul modello degli esercizi del §2.1. «Per ogni intero $n \ge 0$, $n^2 - n + 11$ è primo.» Qual è il più piccolo controesempio?
 - $n = 1$
@@ -34340,7 +38388,7 @@ D: Sul modello degli esercizi del §2.1. «Per ogni intero $n \ge 0$, $n^2 - n +
 - $n = 10$
 + $n = 11$
 - non ce ne sono: la frase è vera
-= Per $n$ da 0 a 10 i valori sono 11, 11, 13, 17, 23, 31, 41, 53, 67, 83 e 101, tutti primi. Con $n = 11$ viene $121 - 11 + 11 = 121 = 11^2$. La più insidiosa è l'ultima: tanti esempi giusti non dimostrano un «per ogni».
+= Per $n$ da 0 a 10 i valori sono 11, 11, 13, 17, 23, 31, 41, 53, 67, 83 e 101, tutti primi. Con $n = 11$ viene $121 - 11 + 11 = 121 = 11^2$. La più insidiosa è «non ce ne sono: la frase è vera»: tanti esempi giusti non dimostrano un «per ogni».
 
 D: Sul modello degli esercizi del §2.1. Quale frase vale per tutti gli insiemi $A$ e $B$?
 + $A - B \subseteq A$
@@ -34348,7 +38396,7 @@ D: Sul modello degli esercizi del §2.1. Quale frase vale per tutti gli insiemi 
 - $A - B = B - A$
 - $A \subseteq A \cap B$
 - $(A \cap B) \cup A = B$
-= Un elemento di $A - B$ sta in $A$ per definizione. Le altre si smentiscono con $A = \{1\}$ e $B = \varnothing$. La più insidiosa è la terza, che è vera solo quando $A = B$.
+= Un elemento di $A - B$ sta in $A$ per definizione. Le altre si smentiscono con $A = \{1\}$ e $B = \varnothing$. La più insidiosa è $A - B = B - A$, che è vera solo quando $A = B$.
 
 D: Sul modello delle domande sulla contrapposizione. Per dimostrare per contrapposizione «se $n^2$ è multiplo di 3, allora $n$ è multiplo di 3», che cosa si dimostra?
 + se $n$ non è multiplo di 3, allora $n^2$ non è multiplo di 3
@@ -34356,7 +38404,7 @@ D: Sul modello delle domande sulla contrapposizione. Per dimostrare per contrapp
 - se $n^2$ non è multiplo di 3, allora $n$ non è multiplo di 3
 - $n^2$ è multiplo di 3 e $n$ non lo è
 - $n$ è multiplo di 3 oppure $n^2$ non lo è
-= La contronominale nega le due parti e le scambia. La più insidiosa è la seconda: è l'inversa, che è vera ma non equivalente alla frase di partenza. La quarta è la negazione, da supporre in una dimostrazione per assurdo.
+= La contronominale nega le due parti e le scambia. La più insidiosa è «se $n$ è multiplo di 3, allora $n^2$ è multiplo di 3»: è l'inversa, che è vera ma non equivalente alla frase di partenza. La risposta «$n^2$ è multiplo di 3 e $n$ non lo è» è la negazione, da supporre in una dimostrazione per assurdo.
 
 D: Sul modello del paradosso del bevitore. In un bar dove **nessuno** beve, chi rende vera la frase «se lui beve, allora bevono tutti»?
 + chiunque
@@ -34560,7 +38608,7 @@ D: Sul modello dei quiz sulle regole. Quale di queste argomentazioni è valida?
 - $p \to q$, $q$, quindi $p$
 - $p \to q$, $\neg p$, quindi $\neg q$
 - $p \vee q$, $p$, quindi $\neg q$
-= È la dimostrazione per casi: uno dei due vale, e tutti e due portano a $r$. La più insidiosa è la seconda: con $p$ e $r$ false e $q$ vera le premesse sono vere e la conclusione falsa.
+= È la dimostrazione per casi: uno dei due vale, e tutti e due portano a $r$. La più insidiosa è «$p \to q$, $r \to q$, $q$, quindi $p \vee r$»: con $p$ e $r$ false e $q$ vera le premesse sono vere e la conclusione falsa.
 
 D: Sul modello dei quiz sulle regole. L'argomentazione «$p \to q$, $\neg q \vee r$, $\neg r$, quindi $\neg p$» è valida. Con quali regole si dimostra?
 + sillogismo disgiuntivo, poi modus tollens
@@ -34568,7 +38616,7 @@ D: Sul modello dei quiz sulle regole. L'argomentazione «$p \to q$, $\neg q \vee
 - due volte modus ponens
 - sillogismo ipotetico, poi modus ponens
 - non si può: non è valida
-= Da $\neg q \vee r$ e $\neg r$ segue $\neg q$; da $p \to q$ e $\neg q$ segue $\neg p$. La più insidiosa è l'ultima: l'ho controllata su tutte le otto righe, è valida.
+= Da $\neg q \vee r$ e $\neg r$ segue $\neg q$; da $p \to q$ e $\neg q$ segue $\neg p$. La più insidiosa è «non si può: non è valida»: l'ho controllata su tutte le otto righe, è valida.
 
 D: Dall'autoverifica del capitolo 2, domanda 2. Che differenza c'è tra una dimostrazione diretta e una per assurdo?
 + in quella per assurdo si suppone anche la negazione della conclusione, in quella diretta no
@@ -34576,7 +38624,7 @@ D: Dall'autoverifica del capitolo 2, domanda 2. Che differenza c'è tra una dimo
 - quella per assurdo vale solo per i numeri interi
 - in quella per assurdo si suppone la negazione delle ipotesi
 - nessuna: sono due nomi dello stesso metodo
-= È la risposta ufficiale. La più insidiosa è la quarta: si nega la conclusione, non l'ipotesi.
+= È la risposta ufficiale. La più insidiosa è «in quella per assurdo si suppone la negazione delle ipotesi»: si nega la conclusione, non l'ipotesi.
 
 D: Sul modello delle domande sulle negazioni. Qual è il contrario di «per ogni $x$ esiste un $y$ con $x < y$»?
 + esiste un $x$ per cui, per ogni $y$, $x \ge y$
@@ -34584,7 +38632,7 @@ D: Sul modello delle domande sulle negazioni. Qual è il contrario di «per ogni
 - esiste un $x$ ed esiste un $y$ con $x \ge y$
 - per ogni $x$ e per ogni $y$, $x \ge y$
 - esiste un $x$ per cui, per ogni $y$, $x < y$
-= Negando si scambiano i quantificatori e si nega la frase finale. La più insidiosa è la seconda, che nega solo la disuguaglianza.
+= Negando si scambiano i quantificatori e si nega la frase finale. La più insidiosa è «per ogni $x$ esiste un $y$ con $x \ge y$», che nega solo la disuguaglianza.
 
 D: Sul modello degli esercizi del §2.1. «Per ogni intero $n \ge 0$, $n^2 + n + 17$ è primo.» Qual è il più piccolo controesempio?
 N: 16
@@ -34596,7 +38644,7 @@ D: Sul modello degli esercizi del §2.2. Una dimostrazione suppone «$a + b > 10
 - se $a \le 5$ e $b \le 5$, allora $a + b > 10$
 - che $a + b = 10$
 - niente: è arrivata a una contraddizione
-= Ha supposto l'ipotesi e il contrario della tesi: la tesi è il contrario di «$a \le 5$ e $b \le 5$», cioè un «oppure». La più insidiosa è la seconda, con «e» al posto di «oppure».
+= Ha supposto l'ipotesi e il contrario della tesi: la tesi è il contrario di «$a \le 5$ e $b \le 5$», cioè un «oppure». La più insidiosa è «se $a + b > 10$, allora $a > 5$ e $b > 5$», con «e» al posto di «oppure».
 
 D: Sul modello degli esercizi del §2.1. Per dimostrare in modo diretto che $A \cap B \subseteq A$, come si comincia?
 + sia $x$ un elemento di $A \cap B$
@@ -34604,7 +38652,7 @@ D: Sul modello degli esercizi del §2.1. Per dimostrare in modo diretto che $A \
 - supponiamo che $A \cap B$ non sia contenuto in $A$
 - sia $A = \{1, 2\}$ e $B = \{2, 3\}$
 - supponiamo che $A \cap B = A$
-= Per un'inclusione si prende un elemento qualsiasi del primo insieme. La più insidiosa è la quarta: un esempio non è una dimostrazione. La terza sarebbe l'inizio di una dimostrazione per assurdo.
+= Per un'inclusione si prende un elemento qualsiasi del primo insieme. La più insidiosa è «sia $A = \{1, 2\}$ e $B = \{2, 3\}$»: un esempio non è una dimostrazione. La risposta «supponiamo che $A \cap B$ non sia contenuto in $A$» sarebbe l'inizio di una dimostrazione per assurdo.
 
 D: Sul modello degli esercizi sui conteggi. Quattro squadre giocano sette partite. Perché almeno una coppia di squadre si è incontrata due volte?
 + perché le coppie di squadre sono solo 6
@@ -34612,7 +38660,7 @@ D: Sul modello degli esercizi sui conteggi. Quattro squadre giocano sette partit
 - perché ogni squadra gioca contro tutte le altre due volte
 - perché le squadre sono pari
 - non è detto che sia successo
-= È la domanda 3 dell'autoverifica del capitolo 2: se ogni coppia giocasse al massimo una volta, le partite sarebbero al massimo 6. La più insidiosa è l'ultima: 7 partite in 6 coppie obbligano a una ripetizione.
+= È la domanda 3 dell'autoverifica del capitolo 2: se ogni coppia giocasse al massimo una volta, le partite sarebbero al massimo 6. La più insidiosa è «non è detto che sia successo»: 7 partite in 6 coppie obbligano a una ripetizione.
 ```
 
 ## Fonti
@@ -34826,7 +38874,7 @@ D: Simulazione 2 del 2023/24, quiz 7. Nel frammento `i=1; s=0; while (i < n) { s
 - `i == n` e `s == 1 + … + n`
 - `i >= 1` e `s == 1 + … + i`
 - `i < n` e `s == 1 + … + (i - 1)`
-= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Sono le due affermazioni segnate «sì» nella simulazione. La più insidiosa è la quarta: `s == 1 + … + i` è falsa già prima del ciclo, dove darebbe 1.
+= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Sono le due affermazioni segnate «sì» nella simulazione. La più insidiosa è «`i >= 1` e `s == 1 + … + i`»: `s == 1 + … + i` è falsa già prima del ciclo, dove darebbe 1.
 
 D: Dalla stessa domanda della simulazione 2. Con `n = 5`, quanto vale `s` dopo l'ultima istruzione `s = s + i`?
 N: 15
@@ -34838,7 +38886,7 @@ D: Simulazione 1 del 2023/24, quiz 9, adattata a una risposta sola. Quale di que
 - può essere usato per svolgere dimostrazioni sui numeri reali
 - richiede sempre almeno due casi base
 - dimostra frasi che con l'induzione semplice non si possono dimostrare
-= È l'affermazione b del quiz; le prime due sbagliate sono del quiz, le ultime due le ho aggiunte io. Nel quiz vero è giusta anche la d. La più insidiosa è l'ultima: le due forme dimostrano le stesse cose.
+= È l'affermazione b del quiz. Le risposte «richiede sempre almeno due casi base» e «dimostra frasi che con l'induzione semplice non si possono dimostrare» le ho aggiunte io, le altre due sbagliate sono del quiz. Nel quiz vero è giusta anche la d. La più insidiosa è «dimostra frasi che con l'induzione semplice non si possono dimostrare»: le due forme dimostrano le stesse cose.
 
 D: Sul modello delle domande sui metodi. Una dimostrazione di «se $P$ allora $Q$» comincia con «supponiamo $P$ e non $Q$» e finisce con «$0 = 1$». Che metodo è?
 + per assurdo
@@ -34854,7 +38902,7 @@ D: Sul modello degli esercizi del §2.2. Per dimostrare per casi una proprietà 
 - $n \ge 0$ e $n < 0$
 - $n = 3k$, $n = 3k + 1$ e $n = 3k + 2$
 - $n \le 5$ e $n > 5$
-= Manca lo zero: i casi non coprono tutto. La più insidiosa è la quarta, che sembra strana ma copre tutti gli interi, uno per ogni resto della divisione per 3.
+= Manca lo zero: i casi non coprono tutto. La più insidiosa è «$n = 3k$, $n = 3k + 1$ e $n = 3k + 2$», che sembra strana ma copre tutti gli interi, uno per ogni resto della divisione per 3.
 
 D: Sul modello degli esercizi del §2.4. Nel passo induttivo di «$7^n - 1$ è divisibile per 6», quale riscrittura fa comparire l'ipotesi induttiva?
 + $7^{n+1} - 1 = 7 \cdot (7^n - 1) + 6$
@@ -34862,7 +38910,7 @@ D: Sul modello degli esercizi del §2.4. Nel passo induttivo di «$7^n - 1$ è d
 - $7^{n+1} - 1 = (7^n - 1)^2$
 - $7^{n+1} - 1 = 7 \cdot 7^n - 7$
 - $7^{n+1} - 1 = 6 \cdot 7^n$
-= $7 \cdot (7^n - 1) + 6 = 7^{n+1} - 7 + 6$. Il primo addendo è divisibile per 6 per ipotesi, il secondo è 6. La più insidiosa è la quarta: vale $7^{n+1} - 7$, non $7^{n+1} - 1$.
+= $7 \cdot (7^n - 1) + 6 = 7^{n+1} - 7 + 6$. Il primo addendo è divisibile per 6 per ipotesi, il secondo è 6. La più insidiosa è $7^{n+1} - 1 = 7 \cdot 7^n - 7$: vale $7^{n+1} - 7$, non $7^{n+1} - 1$.
 
 D: Sul modello del quiz sugli invarianti. Nel ciclo `i = 0; ris = 1; while (i < n) { ris = ris * a; i = i + 1; }`, quale affermazione **non** è un invariante?
 + `i < n`
@@ -34882,6 +38930,318 @@ N: 4
 - Le lezioni complete: [17 · Contrapposizione, casi ed equivalenze](17_contrapposizione_casi_equivalenze.html), [18 · Il principio di induzione e gli invarianti di ciclo](18_induzione.html), [19 · Induzione forte, invariante della potenza e tromini](19_induzione_forte.html), con gli esempi, i disegni e gli esercizi.
 - Libro di testo del corso, parte 2 (Johnsonbaugh, cap. 2), §2.2, §2.4 e §2.5, con le soluzioni ufficiali pubblicate sul Moodle del canale A; F. Cardone, «Induzione e ricorsione».
 - Simulazioni d'esame 1 e 2 del 2023/24 (quiz 9 e quiz 7), dalla trascrizione delle schermate con le risposte di uno studente; diario delle lezioni del canale B (Berardi).
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/riassunti/settimana_08.md -->
+> File: `contesto_ai/FDA/riassunti/settimana_08.md`
+
+```yaml
+corso: FDA
+lezione: S8
+tipo: riassunto
+titolo: "Settimana 8: invarianti di ciclo, funzioni, sequenze e stringhe"
+data: 2026-11-20
+docenti: Stefano Berardi
+sopratitolo: Riassunto settimanale · Fondamenti dell'Informatica · Canale B · 16/11 – 20/11/2026
+descrizione: >-
+  Riassunto della settimana 8 di Fondamenti dell'Informatica (canale B): gli esercizi sugli invarianti, con la
+  divisione intera e la potenza veloce; gli invarianti dei cicli sui vettori, somma e ricerca degli zeri; l'inizio
+  del capitolo 3 della parte 2 del libro, con il ripasso delle funzioni, la funzione caratteristica, le sequenze e le
+  stringhe.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: due sugli invarianti di ciclo, che chiudono il capitolo sulle
+  dimostrazioni, e una che apre il capitolo 3 con funzioni, sequenze e stringhe, il vocabolario che servirà per automi
+  e grammatiche.
+materiale: libro
+simboli_logici: quantificatori
+scheda:
+  Lezioni: "[20](20_invarianti_potenza_veloce.html) lun 16/11 · [21](21_invarianti_vettori_somma_zeri.html) gio 19/11 · [22](22_funzioni_sequenze_stringhe.html) ven 20/11, §3.1 e §3.2"
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni 20, 21 e 22 di Fondamenti dell'Informatica (canale B), scritti sul diario del docente,
+  sui lucidi di F. Cardone (canale A) e sulle risposte ufficiali agli esercizi del libro di testo, parte 2
+  (Johnsonbaugh, cap. 3)
+appunti_html: appunti/FDA/riassunto_settimana_08.html
+genera_html: true
+```
+
+## In breve
+
+- Un programma è **corretto** rispetto a una condizione di ingresso e a una di uscita. **Parzialmente**: se termina, il risultato è giusto. **Totalmente**: in più, termina.
+- La **terminazione** di un ciclo si dimostra con una quantità intera che non scende sotto zero e cala a ogni giro.
+- L'invariante della **potenza veloce** è `ris * x^y == a^n`: il già calcolato per il resto da calcolare.
+- In un ciclo che scorre un **vettore**, l'invariante parla dei **primi `i` elementi**, cioè di quelli da `v[0]` a `v[i-1]`.
+- Con `i <= n` come invariante, all'uscita si ottiene `i == n`: tutto il vettore è stato guardato.
+- Una **funzione** è un insieme di coppie in cui ogni elemento del dominio compare a sinistra una volta sola. **Iniettiva**: al massimo una freccia in arrivo. **Suriettiva**: almeno una.
+- Una **sequenza** è una funzione con dominio fatto di interi; una **stringa** è una sequenza finita di simboli, e la sua **lunghezza** è il numero dei suoi posti.
+
+> [!NOTA] Le lezioni della settimana
+> Tre lezioni: lunedì 16/11, giovedì 19/11 e venerdì 20/11. Per il docente sono le lezioni 21, 22 e 23; negli appunti sono la 20, la 21 e la 22. Con la lezione di venerdì comincia il capitolo 3 della parte 2 del libro.
+
+## 20 · Divisione intera e potenza veloce (lun 16/11)
+
+Dire che un programma è giusto vuol dire fissare **che cosa deve fare**: una condizione di ingresso sui dati e una condizione di uscita sui risultati.
+
+**La divisione per sottrazioni.** `q = 0; r = X; while (r >= D) { r = r - D; q = q + 1; }`, con ingresso `X >= 0` e `D > 0`.
+
+- Invariante: `X == q * D + r`. Vero all'inizio, perché `0 * D + X` vale `X`; resta vero perché togliere `D` da `r` e aggiungere 1 a `q` non cambia la somma.
+- All'uscita `r < D`: insieme all'invariante dice che `q` è il quoziente e `r` il resto. È la correttezza **parziale**.
+- Terminazione: `r` è un intero non negativo che cala di `D` a ogni giro. Con `D = 0` l'invariante resta vero ma il ciclo non finisce: l'invariante da solo non dà la terminazione.
+
+**La potenza veloce.** Invece di moltiplicare `n` volte per la base, si eleva al quadrato quando si può:
+
+```c
+x = a; y = n; ris = 1;
+while (y > 0) {
+    if (y % 2 == 1) { ris = ris * x; y = y - 1; }
+    else            { x = x * x;     y = y / 2; }
+}
+```
+
+- Invariante: **`ris * x^y == a^n`**. Nel ramo dispari un fattore `x` passa da `x^y` a `ris`. Nel ramo pari la base diventa il quadrato e l'esponente la metà: $(x^2)^{y/2} = x^y$.
+- All'uscita `y == 0`, e l'invariante diventa `ris == a^n`.
+- Terminazione: `y` cala a ogni giro e non scende sotto zero.
+
+```grafico
+titolo: Il cammino dell'esponente y nella potenza veloce con n uguale a 13. Quando y è dispari cala di 1, quando è pari si dimezza. Sei giri invece di tredici
+x: -0.5 14
+y: 0 3.4
+assi: no
+griglia: no
+proporzioni: libere
+segmento: -0.2 1.0 13.6 1.0 | grigio | sottile
+punto: 13 1.0 | blu
+punto: 12 1.0 | blu
+punto: 6 1.0 | blu
+punto: 3 1.0 | blu
+punto: 2 1.0 | blu
+punto: 1 1.0 | blu
+punto: 0 1.0 | verde
+testo: 13 0.45 | blu | "13"
+testo: 12 0.45 | blu | "12"
+testo: 6 0.45 | blu | "6"
+testo: 3 0.45 | blu | "3"
+testo: 2 0.45 | blu | "2"
+testo: 1 0.45 | blu | "1"
+testo: 0 0.45 | verde | "0"
+freccia: 12 1.5 6.2 1.5 | ambra
+freccia: 6 1.9 3.2 1.9 | ambra
+freccia: 2 1.5 1.15 1.5 | ambra
+testo: 9.2 2.0 | ambra | "diviso 2"
+testo: 5.0 2.5 | ambra | "diviso 2"
+```
+
+Un `if` nel corpo del ciclo vuol dire un passo induttivo con **due casi**, uno per ramo.
+
+::: prova Nella divisione con `X = 29` e `D = 4`, quanti giri fa il ciclo e con quali valori finisce?
+Sette giri: `q = 7` e `r = 1`. Infatti $7 \cdot 4 + 1 = 29$, e 1 è minore di 4.
+:::
+
+> [!RICORDA]
+> - Parziale: se termina, è giusto. Totale: in più termina.
+> - Divisione: `X == q * D + r`. Potenza veloce: `ris * x^y == a^n`.
+> - Vero solo alla fine: è la condizione di uscita, non un invariante.
+
+## 21 · Invarianti sui vettori (gio 19/11)
+
+Un ciclo che scorre un vettore `v` di `n` elementi usa un indice `i` che va da 0 a `n`. In ogni momento `i` divide il vettore in due.
+
+```grafico
+titolo: Il vettore v con l'indice i fermo a 3. I primi tre elementi, quelli di posto 0, 1 e 2, sono già stati guardati. L'elemento v[i] è il prossimo. Gli invarianti parlano solo della parte a sinistra
+x: -0.5 6.5
+y: 0 3.7
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0 1 3 1 3 2 0 2 | verde | tenue
+poligono: 3 1 6 1 6 2 3 2 | grigio | tenue
+segmento: 1 1 1 2 | grigio | sottile
+segmento: 2 1 2 2 | grigio | sottile
+segmento: 4 1 4 2 | grigio | sottile
+segmento: 5 1 5 2 | grigio | sottile
+testo: 0.5 1.5 | verde | "4"
+testo: 1.5 1.5 | verde | "0"
+testo: 2.5 1.5 | verde | "7"
+testo: 3.5 1.5 | grigio | "0"
+testo: 4.5 1.5 | grigio | "0"
+testo: 5.5 1.5 | grigio | "3"
+testo: 0.5 0.55 | grigio | "0"
+testo: 1.5 0.55 | grigio | "1"
+testo: 2.5 0.55 | grigio | "2"
+testo: 3.5 0.55 | grigio | "3"
+testo: 4.5 0.55 | grigio | "4"
+testo: 5.5 0.55 | grigio | "5"
+freccia: 3 3.1 3 2.1 | ambra
+testo: 3 3.4 | ambra | "i = 3"
+testo: 1.5 2.5 | verde | "già guardati"
+testo: 4.5 2.5 | grigio | "da guardare"
+```
+
+I tre cicli della lezione, con il vettore `{4, 0, 7, 0, 0, 3}`:
+
+| Ciclo | Che cosa fa nel corpo | Invariante | All'uscita |
+|---|---|---|---|
+| somma | `s = s + v[i]` | `s` è la somma dei primi `i` elementi | `s` vale 14 |
+| conta gli zeri | `if (v[i] == 0) c = c + 1` | `c` è il numero di zeri tra i primi `i` | `c` vale 3 |
+| cerca il primo zero | niente: avanza finché `v[i] != 0` | nessuno dei primi `i` è zero | `i` vale 1 |
+
+- **Il passo base** funziona con la parte guardata vuota: la somma di nessun elemento è 0, e «nessuno di loro è zero» è vera a vuoto.
+- **`i <= n`** è un invariante di tutti e tre; con la condizione del ciclo falsa dà `i == n`.
+- **La ricerca** ha la condizione `i < n && v[i] != 0` e due modi di finire. Con `i == n`: non ci sono zeri. Con `i < n`: `v[i]` è zero, ed è il **primo**, perché l'invariante esclude i posti prima.
+- **Gli errori di uno**: scrivere `v[i]` dove ci vuole `v[i-1]`, o `i <= n` nella condizione del ciclo, che fa leggere `v[n]`.
+- **Terminazione**: `n - i` cala di 1 a ogni giro e non scende sotto zero.
+
+::: prova Nel ciclo della somma, `s == v[0] + … + v[i]` è un invariante?
+No. Prima del ciclo `s` vale 0, e a destra ci sarebbe `v[0]`, che nell'esempio vale 4. L'invariante finisce a `v[i-1]`.
+:::
+
+> [!RICORDA]
+> - I primi `i` elementi vanno da `v[0]` a `v[i-1]`; `v[i]` è il prossimo.
+> - Invariante: la condizione di uscita con «i primi `i`» al posto di «tutti».
+> - Ricerca: due casi di uscita, e `i < n` va scritto per primo.
+
+## 22 · Funzioni, sequenze, stringhe (ven 20/11)
+
+**Funzioni.** Una funzione è un insieme di coppie in cui ogni elemento del dominio compare a sinistra **esattamente una volta**. Si scrive $f : X \to Y$, con $X$ dominio e $Y$ codominio. Tre proprietà guardano le frecce che arrivano:
+
+| | Frecce in arrivo in ogni elemento di $Y$ | Nome inglese del libro |
+|---|---|---|
+| iniettiva | al massimo una | *one-to-one* |
+| suriettiva | almeno una | *onto* |
+| biiettiva | esattamente una | *bijection* |
+
+Solo una funzione biiettiva ha un'**inversa**, che si ottiene scambiando i due elementi di ogni coppia.
+
+**Funzione caratteristica.** $C_X$ vale 1 sugli elementi di $X$ e 0 sugli altri. Per l'intersezione si moltiplica: $C_{X \cap Y} = C_X \cdot C_Y$. Per l'unione la somma $C_X + C_Y$ va bene **se e solo se** i due insiemi sono disgiunti: su un elemento comune darebbe 2. La formula che vale sempre toglie il prodotto.
+
+**Sequenze.** Una sequenza è una funzione con dominio fatto di interi; $s_n$ è l'elemento di indice $n$. Le quattro parole:
+
+| | Condizione per ogni $i < j$ | Esempio |
+|---|---|---|
+| crescente | $s_i < s_j$ | 2, 5, 13, 40 |
+| decrescente | $s_i > s_j$ | 8, 6, 4, 2 |
+| non decrescente | $s_i \le s_j$ | 3, 3, 5 |
+| non crescente | $s_i \ge s_j$ | 9, 6, 6, 1 |
+
+Una sequenza costante è non crescente e non decrescente insieme. «Non crescente» è il nome di una proprietà, e non la negazione di «crescente»: 1, 4, 2, 8 non è nessuna delle quattro.
+
+Una **sottosequenza** tiene alcuni elementi nello stesso ordine. $\sum_{i=m}^{n} a_i$ è la somma degli elementi dall'indice $m$ all'indice $n$, e $\prod$ il prodotto.
+
+**Stringhe.** Una stringa su un insieme $X$ è una sequenza finita di elementi di $X$, scritta senza virgole. $\lambda$ è la stringa vuota; $X^*$ è l'insieme di tutte le stringhe su $X$, e $X^+$ di quelle non vuote. La lunghezza $|\alpha|$ conta i posti, ripetizioni comprese: $|aabab| = 5$ e $|\lambda| = 0$.
+
+::: prova La funzione $f(n) = 2n$ da $\mathbb{Z}$ a $\mathbb{Z}$ è iniettiva? È suriettiva?
+Iniettiva sì: da $2n_1 = 2n_2$ viene $n_1 = n_2$. Suriettiva no: i numeri dispari non sono raggiunti.
+:::
+
+> [!RICORDA]
+> - Funzione: una freccia sola in partenza da ogni elemento del dominio.
+> - Iniettiva, suriettiva, biiettiva: al massimo, almeno, esattamente una freccia in arrivo.
+> - Crescente vuole il minore stretto; non decrescente permette i valori uguali.
+> - $\lambda$ è una stringa, di lunghezza 0; non è l'insieme vuoto.
+
+## Verso l'esame
+
+- **Quiz «seleziona gli invarianti»**: simulazione 2 del 2023/24, quiz 7. Con un vettore si controlla anche il caso `i = 0`.
+- **Quiz sulle proprietà di una relazione**: nelle simulazioni del 2023/24, quiz 4, con le voci «è totale?», «individua una funzione?», «è una biiezione?».
+- **Stringhe e lunghezze** sono il vocabolario dei quiz su automi e grammatiche.
+- **Domanda aperta facoltativa**: una dimostrazione corta, come quella di un invariante per induzione sul numero di giri.
+- Appelli 2026/27: venerdì 29/01/2027 e giovedì 18/02/2027, alle 9:00.
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra correttezza parziale e totale?
+Parziale: se il programma termina, il risultato rispetta la condizione di uscita. Totale: in più termina sempre.
+:::
+
+::: domanda Qual è l'invariante della potenza veloce, e come dà il risultato?
+`ris * x^y == a^n`. All'uscita `y` vale 0, quindi `x^y` vale 1 e resta `ris == a^n`.
+:::
+
+::: domanda Di quale parte del vettore parla l'invariante di un ciclo che lo scorre?
+Dei primi `i` elementi, quelli già guardati: da `v[0]` a `v[i-1]`.
+:::
+
+::: domanda Nella ricerca del primo zero, che cosa vuol dire uscire con `i == n`?
+Che nel vettore non ci sono zeri: l'invariante dice che nessuno dei primi `n` elementi è zero.
+:::
+
+::: domanda Quando un insieme di coppie è una funzione?
+Quando ogni elemento del dominio compare come primo elemento in una coppia sola.
+:::
+
+::: domanda Che cosa sono $\lambda$, $X^*$ e la lunghezza di una stringa?
+La stringa vuota; l'insieme di tutte le stringhe su $X$; il numero di elementi della stringa.
+:::
+
+## Quiz d'esame
+
+Le prime due vengono da una domanda vera: il quiz 4 delle simulazioni d'esame 2023/24, sulle proprietà di una relazione, messo in forma di scelta singola. Le risposte giuste sono quelle segnate nella copia compilata da uno studente, ricontrollate con le definizioni. Le altre sono **sul modello** del quiz 7 della simulazione 2 e degli esercizi del libro; i cicli li ho provati con un programma.
+
+```quiz
+D: Simulazioni 2023/24, quiz 4. La relazione $R = \{(1,1), (1,2), (1,3), (3,1), (3,3), (4,4), (5,5)\}$, con dominio e codominio $\{1, 2, 3, 4, 5\}$, individua una funzione?
++ no: il 2 non ha immagine e l'1 ne ha tre
+- sì: ogni coppia ha un primo e un secondo elemento
+- sì, ma non è iniettiva
+- no, solo perché non è riflessiva
+- sì, ed è una biiezione
+= Una funzione vuole esattamente una coppia per ogni elemento del dominio. La più insidiosa è «no, solo perché non è riflessiva»: la riflessività è un'altra proprietà e non c'entra con l'essere una funzione.
+
+D: Dallo stesso quiz. La relazione $R$ è totale?
++ no: nessuna coppia comincia con 2
+- sì: tutti gli elementi da 1 a 5 compaiono in qualche coppia
+- sì: ha 7 coppie e gli elementi sono 5
+- no: manca la coppia $(2, 2)$
+- no: l'1 compare in troppe coppie
+= Totale vuol dire che da ogni elemento parte almeno una coppia. Il 2 compare solo come secondo elemento. La più insidiosa è «sì: tutti gli elementi da 1 a 5 compaiono in qualche coppia»: non basta comparire, bisogna comparire a sinistra.
+
+D: Sul modello del quiz 7 della simulazione 2. Nel ciclo `x = a; y = n; ris = 1; while (y > 0) { if (y % 2 == 1) { ris = ris * x; y = y - 1; } else { x = x * x; y = y / 2; } }`, con `n >= 0`, quale coppia è fatta di due invarianti?
++ `ris * x^y == a^n` e `y >= 0`
+- `ris == a^n` e `y >= 0`
+- `ris * x^y == a^n` e `y > 0`
+- `ris == a^(n - y)` e `y >= 0`
+- `x == a` e `y <= n`
+= Il prodotto tra il già calcolato e il resto non cambia, e `y` non scende sotto zero. La più insidiosa è «`ris == a^(n - y)` e `y >= 0`»: `ris == a^(n - y)` vale per il ciclo che moltiplica un fattore alla volta, non qui, dove la base cambia.
+
+D: Nello stesso ciclo, con `a = 2` e `n = 10`, quanti giri fa il ciclo?
+N: 5
+= L'esponente scende così: 10, 5, 4, 2, 1, 0. Provato.
+
+D: Sul modello del quiz 7 della simulazione 2. Nel ciclo `i = 0; s = 0; while (i < n) { s = s + v[i]; i = i + 1; }` su un vettore `v` di `n` interi, quale affermazione è un invariante?
++ `s == v[0] + … + v[i-1]`
+- `s == v[0] + … + v[i]`
+- `s == v[0] + … + v[n-1]`
+- `i < n`
+- `s >= 0`
+= `s` è la somma degli elementi già guardati. La più insidiosa è `s >= 0`: è un invariante solo se il testo dice che gli elementi non sono negativi.
+
+D: Il ciclo `i = 0; while (i < n && v[i] != 0) { i = i + 1; }` gira sul vettore `{3, 5, 0, 2, 0}`, con `n = 5`. Quanto vale `i` all'uscita?
+N: 2
+= `v[0]` e `v[1]` non sono zero, `v[2]` sì. È il posto del primo zero. Provato.
+
+D: La sequenza 5, 5, 8, 8, 9 è:
++ non decrescente, ma non crescente
+- crescente
+- non crescente
+- decrescente
+- nessuna delle quattro
+= Non scende mai, ma ha valori uguali vicini. La più insidiosa è «non crescente»: nel parlare comune vorrebbe dire «non è crescente», ma è il nome della proprietà «non sale mai».
+
+D: Quanto vale $\sum_{i=2}^{5} i^2$?
+N: 54
+= $4 + 9 + 16 + 25$. L'indice parte da 2, non da 1.
+
+D: Quante sono le stringhe di lunghezza 3 su $X = \{0, 1\}$?
+N: 8
+= Due scelte per ognuno dei tre posti: 000, 001, 010, 011, 100, 101, 110, 111.
+```
+
+## Fonti
+
+- Le lezioni complete: [20 · Esercizi sugli invarianti](20_invarianti_potenza_veloce.html), [21 · Invarianti sui vettori](21_invarianti_vettori_somma_zeri.html) e [22 · Funzioni, sequenze e stringhe](22_funzioni_sequenze_stringhe.html), con gli esempi, i disegni e gli esercizi.
+- Diario delle lezioni del canale B (Berardi), lezioni 21, 22 e 23 del docente; lucidi di F. Cardone (canale A) su invarianti e induzione; risposte ufficiali agli esercizi dei §3.1 e §3.2 del libro di testo.
+- Simulazioni d'esame 2023/24, quiz 4, dalla trascrizione delle schermate con le risposte segnate da uno studente; quiz 7 della simulazione 2 come modello.
 
 
 ---
@@ -35034,6 +39394,9 @@ Le lezioni seguono il libro di Andrea Mori e gli argomenti indicati per il canal
 | D14 | Numeri interi, divisibilità e divisione euclidea | cap. 4, pp. 67–73 | `lezioni/D14_interi_divisibilita_divisione_euclidea.md` · HTML: `appunti/MDAG/D14_interi_divisibilita_divisione_euclidea.html` | somma e prodotto tra interi, invertibili, divisibilità (definizione 4.1, proposizione 4.2), irriducibili, riducibili e primi (definizione 4.3), massimo comun divisore (definizione 4.4), divisione euclidea con resto mai negativo (teorema 4.5, esempi con i numeri negativi, confronto con `/` e `%` del C), notazione posizionale e cambi di base (definizione 4.6); quiz del 06/06/2025 e 07/07/2025, quiz 2021–25, prove del 2021/22 ($\mathrm{MCD}(n, n + 3)$, $\mathrm{MCD}(n, n^2 + 1)$), riepilogo 2018; 3 disegni. Lezione del 09/11/2026; argomenti ricostruiti dal diario 2025/26 (lezione 14) |
 | D15 | L'algoritmo di Euclide e l'identità di Bézout | cap. 4, pp. 73–76 | `lezioni/D15_algoritmo_euclide_bezout.md` · HTML: `appunti/MDAG/D15_algoritmo_euclide_bezout.html` | $\mathrm{MCD}(a, b) = \mathrm{MCD}(b, r)$ (proposizione 4.9), algoritmo di Euclide e perché finisce, ultimo resto non nullo, coprimi, identità di Bézout (teorema 4.10) e risalita delle divisioni, combinazioni e multipli del massimo comun divisore (nota 4.11), quando $ax + by = c$ ha soluzioni intere, coppie non uniche (nota 4.12); problema 1 dell'08/06/2026 (versioni A–D), 08/09/2025, prove 2022/23, riepilogo 2019, quiz 2021–25; 2 disegni. Lezione dell'11/11/2026; argomenti ricostruiti dal diario 2025/26 (lezione 15). Refuso del libro a p. 74 |
 | D16 | Numeri primi e teorema fondamentale dell'aritmetica | cap. 4, pp. 76–80 | `lezioni/D16_primi_teorema_fondamentale_aritmetica.md` · HTML: `appunti/MDAG/D16_primi_teorema_fondamentale_aritmetica.html` | irriducibile se e solo se primo (teorema 4.13, con Bézout), teorema fondamentale dell'aritmetica (4.14: esistenza per induzione forte, unicità), come si fattorizza e il controllo fino alla radice quadrata, infiniti primi (teorema 4.15) e il numero $30031 = 59 \cdot 509$, perché 1 non è primo, massimo comun divisore e minimo comune multiplo dalle fattorizzazioni (nota 4.16); problema 1 del 01/07/2026 (versioni A, B, C); 2 disegni. Lezione del 13/11/2026; argomenti ricostruiti dal diario 2025/26 (lezione 16) |
+| D17 | Congruenze e classi resto | cap. 7, pp. 131–137 e 142–143 | `lezioni/D17_congruenze_classi_resto.md` · HTML: `appunti/MDAG/D17_congruenze_classi_resto.html` | congruenza modulo $N$ (definizione 7.20), stesso resto, classi resto e partizione (proposizione 7.1), $\mathbb{Z}_N$, rappresentanti, somma e prodotto tra classi (definizione 7.3), buona definizione (proposizione 7.4), proprietà delle operazioni, regole delle congruenze (7.21), resto di un'espressione e di una potenza, ultima cifra; quiz dell'08/06/2026 (domanda 7) e problemi 2023/24; 2 disegni. Lezione del 16/11/2026; argomenti ricostruiti dal diario 2025/26 (lezione 17) |
+| D18 | Classi invertibili, divisori dello zero e funzione di Eulero | cap. 7, pp. 136–141 | `lezioni/D18_invertibili_divisori_zero_eulero.md` · HTML: `appunti/MDAG/D18_invertibili_divisori_zero_eulero.html` | tabella di $\mathbb{Z}_{10}$, classi invertibili e divisori dello zero (definizione 7.11), criterio del massimo comun divisore (teorema 7.12, con dimostrazione), inversa con Euclide e Bézout ($\overline{17}$ in $\mathbb{Z}_{54}$), $\mathbb{Z}_N^\times$, funzione di Eulero (definizione 7.15), $\varphi(p^e)$ (proposizione 7.18), formula per più primi (7.17, solo enunciato); quiz del 14/01/2025, 08/06/2026, 10/09/2026, quiz 2021–25, prova del 23/01/2020; 2 disegni. Refuso del libro a p. 141 («59825» per 59895). Lezione del 20/11/2026; argomenti ricostruiti dal diario 2025/26 (lezione 18) |
+| D19 | Operazioni e gruppi | cap. 2, pp. 29–34 e cap. 6, pp. 107–111 | `lezioni/D19_operazioni_gruppi.md` · HTML: `appunti/MDAG/D19_operazioni_gruppi.html` | operazione binaria (definizione 2.26), sottoinsieme chiuso, associativa e commutativa, elemento neutro e sua unicità, elementi invertibili, inverso di un prodotto, semigruppi, monoidi e gruppi (definizione 6.1), gruppo degli invertibili di un monoide, gruppi commutativi, notazione additiva e moltiplicativa, proprietà di ogni gruppo (6.6) e legge di cancellazione, gruppo prodotto; problema 2 del 04/02/2025 (versione A); 2 disegni. Lezione del 23/11/2026; argomenti ricostruiti dal diario 2025/26 (lezione 19) |
 
 ## Algebra lineare e Geometria (parte 2, modB)
 
@@ -37035,7 +41398,7 @@ D: (Appello del 06/06/2025, domanda 1) Siano $A = \{3, 4, 7, 9\}$, $B = \{1, 3, 
 - $B \cap C \subset A$
 - $A \cap B \subset C$
 + $A \cap B \cap C \neq \emptyset$
-= Calcola un pezzo alla volta. $A \cap B = \{3, 9\}$, e di questi sta in $C$ solo il 9, quindi $A \cap B \cap C = \{9\}$, che non è vuoto: la risposta giusta è l'ultima. Il 4 non sta in $B$, quindi non sta nell'intersezione dei tre. $A \subset B \cup C$ è falsa per il 7, che non sta né in $B$ né in $C$. $B \cap C = \{5, 8, 9\}$ non è contenuto in $A$, perché 5 e 8 non stanno in $A$. La più tentatrice è $A \cap B \subset C$: il 9 sta in $C$, ma il 3 no.
+= Calcola un pezzo alla volta. $A \cap B = \{3, 9\}$, e di questi sta in $C$ solo il 9, quindi $A \cap B \cap C = \{9\}$, che non è vuoto: la risposta giusta è $A \cap B \cap C \neq \emptyset$. Il 4 non sta in $B$, quindi non sta nell'intersezione dei tre. $A \subset B \cup C$ è falsa per il 7, che non sta né in $B$ né in $C$. $B \cap C = \{5, 8, 9\}$ non è contenuto in $A$, perché 5 e 8 non stanno in $A$. La più tentatrice è $A \cap B \subset C$: il 9 sta in $C$, ma il 3 no.
 
 D: (Appello del 08/06/2026, domanda 1) Ricordando che $n\Z = \{nk \mid k \in \Z\}$, dire quale delle seguenti affermazioni è vera.
 - $7 \in 3\Z \cup 5\Z$
@@ -37051,7 +41414,7 @@ D: (Appello del 04/02/2025, domanda 2) Sia $S = \{a, c, f, h, m, t, v\}$. Quale 
 - $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$
 - $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$
 - $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$
-= Fai i tre controlli. La prima famiglia copre tutte e sette le lettere, non ha parti vuote e nessuna lettera si ripete: è una partizione. La seconda non copre la $h$. La terza è la più tentatrice: copre tutto e non ha ripetizioni, ma ha una parte vuota, che una partizione non può avere. La quarta ripete la $c$. La quinta ripete la $h$ e non copre la $v$.
+= Fai i tre controlli. La famiglia $\{m\} \cup \{a, c, t\} \cup \{f, h, v\}$ copre tutte e sette le lettere, non ha parti vuote e nessuna lettera si ripete: è una partizione. La risposta $\{f, m\} \cup \{a, t\} \cup \{c, v\}$ non copre la $h$. La risposta $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$ è la più tentatrice: copre tutto e non ha ripetizioni, ma ha una parte vuota, che una partizione non può avere. La risposta $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$ ripete la $c$. La risposta $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$ ripete la $h$ e non copre la $v$.
 
 D: (Prova scritta del 10/07/2023, domanda 2) Sia $S = \{0, 1, 2, 3, 4, 5, 6\}$. Quale delle seguenti scelte definisce una partizione di $S$?
 - $A = \{4, 6\}$, $B = \{0, 1, 2\}$, $C = \{3\}$
@@ -37059,7 +41422,7 @@ D: (Prova scritta del 10/07/2023, domanda 2) Sia $S = \{0, 1, 2, 3, 4, 5, 6\}$. 
 + $A = \{1, 3, 5\}$, $B = \{0, 2, 4\}$, $C = \{6\}$
 - $A = \{0, 2\}$, $B = \{1, 3, 4, 5\}$, $C = \{4, 6\}$
 - $A = \{2, 4, 6\}$, $B = \emptyset$, $C = \{0, 1, 3, 5\}$
-= La scelta giusta divide i sette numeri in dispari, pari fino a 4, e il 6 da solo: ognuno sta in una parte e nessuna parte è vuota. Nella prima manca il 5. Nella seconda il 6 sta in due parti e manca il 5. Nella quarta il 4 sta in due parti. L'ultima è la più tentatrice: copre tutto senza ripetizioni, ma $B$ è vuoto.
+= La scelta giusta divide i sette numeri in dispari, pari fino a 4, e il 6 da solo: ognuno sta in una parte e nessuna parte è vuota. Nella scelta con $C = \{3\}$ manca il 5. In quella con $C = \{2\}$ il 6 sta in due parti e manca il 5. In quella con $C = \{4, 6\}$ il 4 sta in due parti. La risposta «$A = \{2, 4, 6\}$, $B = \emptyset$, $C = \{0, 1, 3, 5\}$» è la più tentatrice: copre tutto senza ripetizioni, ma $B$ è vuoto.
 
 D: Siano $X = \{1, 2, 3, 4, 5, 6, 7, 8\}$, $A = \{1, 2, 3\}$ e $B = \{3, 4, 5\}$. Quanto fa $C_X(A \cup B)$?
 - $\{3\}$
@@ -37083,7 +41446,7 @@ D: Vuoi dimostrare per induzione che $1 + 3 + \dots + (2n - 1) = n^2$. Nel passo
 - $1 + 3 + \dots + (2n + 1) = n^2 + 1$
 - $1 = 1^2$
 - $(2n - 1) + (2n + 1) = 4n$
-= Nel passo induttivo si scrive la formula con $n + 1$ al posto di $n$. L'ultimo dispari diventa $2(n + 1) - 1 = 2n + 1$ e il lato destro diventa $(n + 1)^2$. La prima risposta è l'ipotesi induttiva: si usa, ma non è il punto d'arrivo, ed è la più tentatrice. $1 = 1^2$ è il passo base.
+= Nel passo induttivo si scrive la formula con $n + 1$ al posto di $n$. L'ultimo dispari diventa $2(n + 1) - 1 = 2n + 1$ e il lato destro diventa $(n + 1)^2$. La risposta $1 + 3 + \dots + (2n - 1) = n^2$ è l'ipotesi induttiva: si usa, ma non è il punto d'arrivo, ed è la più tentatrice. $1 = 1^2$ è il passo base.
 
 D: Quante sono le partizioni dell'insieme $\{1, 2, 3\}$?
 - $3$
@@ -38128,7 +42491,7 @@ D: Con la congruenza modulo 3 negli interi, quale di queste uguaglianze tra clas
 - $[0] = [1]$
 - $[3] = [6] = [10]$
 - $[-1] = [1]$
-= Due interi hanno la stessa classe quando la loro differenza è un multiplo di 3. $4 - 1 = 3$ e $1 - (-2) = 3$: quindi $[1] = [4] = [-2]$. Nella prima, $7 - 5 = 2$ non è un multiplo di 3. Nella quarta, $10 - 6 = 4$ non lo è. $[0] = [1]$ è falsa perché la differenza è 1. La più tentatrice è $[-1] = [1]$: sembra simmetrica, ma $1 - (-1) = 2$ non è un multiplo di 3; infatti $[-1] = [2]$.
+= Due interi hanno la stessa classe quando la loro differenza è un multiplo di 3. $4 - 1 = 3$ e $1 - (-2) = 3$: quindi $[1] = [4] = [-2]$. In $[2] = [5] = [7]$, $7 - 5 = 2$ non è un multiplo di 3. In $[3] = [6] = [10]$, $10 - 6 = 4$ non lo è. $[0] = [1]$ è falsa perché la differenza è 1. La più tentatrice è $[-1] = [1]$: sembra simmetrica, ma $1 - (-1) = 2$ non è un multiplo di 3; infatti $[-1] = [2]$.
 
 D: Quante relazioni di equivalenza ci sono nell'insieme $\{1, 2, 3\}$?
 - $3$
@@ -38796,7 +43159,7 @@ D: Con $A = \{1, 2, 3\}$ e $B = \{x, y\}$, quale di questi sottoinsiemi di $A \t
 - $\{(1, x), (1, y), (2, x), (3, y)\}$
 - $\{(x, 1), (y, 2), (x, 3)\}$
 - $\{(1, x), (2, x), (3, x), (3, y)\}$
-= Ogni elemento di $A$ deve comparire una volta sola come primo pezzo: succede solo nella prima. La risposta più insidiosa è $\{(x, 1), (y, 2), (x, 3)\}$: le coppie sono scritte al contrario, quindi stanno in $B \times A$. La seconda dimentica 3; la terza e l'ultima danno due valori a 1 o a 3.
+= Ogni elemento di $A$ deve comparire una volta sola come primo pezzo: succede solo in $\{(1, y), (2, y), (3, x)\}$. La risposta più insidiosa è $\{(x, 1), (y, 2), (x, 3)\}$: le coppie sono scritte al contrario, quindi stanno in $B \times A$. La risposta $\{(1, x), (2, y)\}$ dimentica 3; la risposta $\{(1, x), (1, y), (2, x), (3, y)\}$ e la risposta $\{(1, x), (2, x), (3, x), (3, y)\}$ danno due valori a 1 o a 3.
 
 D: Sia $f \colon \Z \to \Z$, $f(n) = 2n + 1$. Quale affermazione è vera?
 + $f$ è iniettiva ma non suriettiva
@@ -38852,7 +43215,7 @@ D: (Appello del 14/01/2025, domanda 3, versione C) Sia $f \colon \Z \to \N$ la f
 - $f(n) \neq n$ per ogni $n$
 - $f$ è suriettiva
 - $f$ è iniettiva
-= $n^2 + n = n(n + 1)$ è sempre pari; per $n$ dispari, $n^2$ è dispari e $n^2 + 1$ è pari. Nessun valore è dispari, quindi ogni dispari ha controimmagine vuota. La risposta più insidiosa è $f(2n) = 4n^2 + n$: il conto giusto è $(2n)^2 + 2n = 4n^2 + 2n$. $f(0) = 0$ smentisce la terza; non è suriettiva (mai dispari); $f(1) = f(-1) = 2$, quindi non è iniettiva.
+= $n^2 + n = n(n + 1)$ è sempre pari; per $n$ dispari, $n^2$ è dispari e $n^2 + 1$ è pari. Nessun valore è dispari, quindi ogni dispari ha controimmagine vuota. La risposta più insidiosa è $f(2n) = 4n^2 + n$: il conto giusto è $(2n)^2 + 2n = 4n^2 + 2n$. $f(0) = 0$ smentisce $f(n) \neq n$; non è suriettiva (mai dispari); $f(1) = f(-1) = 2$, quindi non è iniettiva.
 
 D: (Appello del 14/01/2025, domanda 3, versione D) Sia $f \colon \Z \to \N$ la funzione $f(n) = n^2 + 1$ se $n \ge 0$, $f(n) = n^2 - 1$ se $n < 0$. Allora
 + $f$ è iniettiva
@@ -38860,7 +43223,7 @@ D: (Appello del 14/01/2025, domanda 3, versione D) Sia $f \colon \Z \to \N$ la f
 - $f^{-1}(\{4, 8, 9\}) = \emptyset$
 - $f(n) > f(m)$ per ogni $n > m$
 - $f(f(n)) = n^2 + 1$ per ogni $n$
-= I non negativi danno $1, 2, 5, 10, \dots$, i negativi $0, 3, 8, 15, \dots$: nessun valore si ripete. La risposta più insidiosa è $f^{-1}(\{4, 8, 9\}) = \emptyset$: 4 e 9 non vengono raggiunti, ma $f(-3) = 8$. 4 non è mai raggiunto, quindi non è suriettiva; $f(-3) = 8 > f(0) = 1$ smentisce la quarta; $f(f(1)) = f(2) = 5$, non 2.
+= I non negativi danno $1, 2, 5, 10, \dots$, i negativi $0, 3, 8, 15, \dots$: nessun valore si ripete. La risposta più insidiosa è $f^{-1}(\{4, 8, 9\}) = \emptyset$: 4 e 9 non vengono raggiunti, ma $f(-3) = 8$. 4 non è mai raggiunto, quindi non è suriettiva; $f(-3) = 8 > f(0) = 1$ smentisce «$f(n) > f(m)$ per ogni $n > m$»; $f(f(1)) = f(2) = 5$, non 2.
 
 D: Alla mensa del testo ($f(\text{Anna}) = f(\text{Bruno}) = \text{pasta}$, $f(\text{Carla}) = \text{zuppa}$, $f(\text{Dario}) = \text{riso}$, menu con anche gli gnocchi), quanti elementi ha la controimmagine $f^{-1}(\{\text{pasta}, \text{gnocchi}\})$?
 N: 2
@@ -42411,7 +46774,7 @@ D: Appello del 14/01/2025, problema 1 (versione A). Con $\tau = \begin{pmatrix} 
 - 5 6 2 4 1 3
 - 2 1 4 3 5 6
 - 3 4 1 2 6 5
-= Si gira ogni freccia: l'1 sta sotto il 2, quindi $\tau^{-1}(1) = 2$, e così via. È la tabella della soluzione ufficiale. La risposta più insidiosa è la seconda, che è $\tau$ stessa: si sono scambiate le righe senza riordinare.
+= Si gira ogni freccia: l'1 sta sotto il 2, quindi $\tau^{-1}(1) = 2$, e così via. È la tabella della soluzione ufficiale. La risposta più insidiosa è «3 1 4 2 6 5», che è $\tau$ stessa: si sono scambiate le righe senza riordinare.
 
 D: Sul modello degli esercizi sul binomio: qual è il coefficiente di $x^3$ in $(2x - 3)^5$?
 + 720
@@ -42443,7 +46806,7 @@ D: Quale di queste tabelle è una permutazione di $\{1, 2, 3, 4, 5\}$? (Si scriv
 - 2 3 4 5 6
 - 3 1 2 5 3
 - 1 2 3 4
-= Nella riga sotto devono comparire 1, 2, 3, 4, 5 una volta ciascuno. La risposta più insidiosa è «2 3 4 5 6»: i valori sono tutti diversi, ma il 6 non è nell'insieme e l'1 manca. L'ultima ha solo 4 numeri: manca l'immagine del 5.
+= Nella riga sotto devono comparire 1, 2, 3, 4, 5 una volta ciascuno. La risposta più insidiosa è «2 3 4 5 6»: i valori sono tutti diversi, ma il 6 non è nell'insieme e l'1 manca. La risposta «1 2 3 4» ha solo 4 numeri: manca l'immagine del 5.
 
 D: $\pi$ scambia 1 e 2, $\sigma$ scambia 1 e 3, ed entrambe lasciano fermo il terzo numero. Quanto vale $(\pi \circ \sigma)(1)$?
 + 3
@@ -42925,7 +47288,7 @@ D: Appello del 06/06/2025, quiz versione 1, domanda 5. La decomposizione della p
 - $(1\ 4\ 7)(5\ 6)$
 - $(1\ 7\ 4)(2\ 3\ 5\ 6)$
 + $(1\ 4\ 7)(2\ 3)(5\ 6)$
-= Seguendo ogni numero da destra si trovano $1 \mapsto 4 \mapsto 7 \mapsto 1$, $2 \mapsto 3 \mapsto 2$ e $5 \mapsto 6 \mapsto 5$: è la risposta 5 della soluzione ufficiale. La più insidiosa è la seconda, con il primo ciclo al contrario, che viene leggendo i cicli da sinistra; in più manca $(5\ 6)$.
+= Seguendo ogni numero da destra si trovano $1 \mapsto 4 \mapsto 7 \mapsto 1$, $2 \mapsto 3 \mapsto 2$ e $5 \mapsto 6 \mapsto 5$: è la risposta 5 della soluzione ufficiale. La più insidiosa è $(1\ 7\ 4)(2\ 3)$, con il primo ciclo al contrario, che viene leggendo i cicli da sinistra; in più manca $(5\ 6)$.
 
 D: Appello del 06/06/2025, quiz versione 2, domanda 5. La decomposizione della permutazione $(1\ 6\ 3\ 7\ 2)(4\ 5)(4\ 1\ 7\ 6)$ in cicli disgiunti è:
 - $(4\ 6\ 5)(1\ 3)(2\ 7)$
@@ -42933,7 +47296,7 @@ D: Appello del 06/06/2025, quiz versione 2, domanda 5. La decomposizione della p
 - $(4\ 6\ 5)(1\ 2)$
 - $(1\ 7\ 4)(7\ 3\ 1\ 2)$
 - $(1\ 7\ 4)(7\ 3)$
-= Da destra: il 4 va nell'1, poi resta, poi nel 6; il 6 va nel 4 e poi nel 5; il 5 resta, va nel 4, poi resta. Primo ciclo $(4\ 6\ 5)$. Poi $1 \mapsto 2 \mapsto 1$ e $3 \mapsto 7 \mapsto 3$: è la risposta 2 della soluzione ufficiale. La più insidiosa è la terza, che dimentica lo scambio $(7\ 3)$; la quarta non è nemmeno fatta di cicli disgiunti.
+= Da destra: il 4 va nell'1, poi resta, poi nel 6; il 6 va nel 4 e poi nel 5; il 5 resta, va nel 4, poi resta. Primo ciclo $(4\ 6\ 5)$. Poi $1 \mapsto 2 \mapsto 1$ e $3 \mapsto 7 \mapsto 3$: è la risposta 2 della soluzione ufficiale. La più insidiosa è $(4\ 6\ 5)(1\ 2)$, che dimentica lo scambio $(7\ 3)$; la risposta $(1\ 7\ 4)(7\ 3\ 1\ 2)$ non è nemmeno fatta di cicli disgiunti.
 
 D: Qual è l'inverso del ciclo $(2\ 5\ 3\ 7\ 4\ 8)$?
 + $(8\ 4\ 7\ 3\ 5\ 2)$
@@ -42941,7 +47304,7 @@ D: Qual è l'inverso del ciclo $(2\ 5\ 3\ 7\ 4\ 8)$?
 - $(5\ 3\ 7\ 4\ 8\ 2)$
 - $(2\ 8\ 7\ 4\ 3\ 5)$
 - $(8\ 2\ 5\ 3\ 7\ 4)$
-= L'inverso è lo stesso ciclo letto al contrario (proposizione 5.5). La risposta più insidiosa è la terza: è lo stesso ciclo di partenza, solo cominciato dal 5, come anche l'ultima, cominciata dall'8.
+= L'inverso è lo stesso ciclo letto al contrario (proposizione 5.5). La risposta più insidiosa è $(5\ 3\ 7\ 4\ 8\ 2)$: è lo stesso ciclo di partenza, solo cominciato dal 5, come anche $(8\ 2\ 5\ 3\ 7\ 4)$, cominciato dall'8.
 
 D: Quale di queste scritture è lo **stesso** ciclo di $(1\ 6\ 4\ 2)$?
 + $(4\ 2\ 1\ 6)$
@@ -42965,7 +47328,7 @@ D: Quali di queste coppie di cicli commutano sicuramente?
 - $(1\ 2)$ e $(2\ 3)$
 - $(1\ 2\ 3)$ e $(3\ 4\ 5)$
 - $(4\ 6)$ e $(6\ 4\ 1)$
-= Commutano i cicli disgiunti (proposizione 5.7), e solo la prima coppia non ha numeri in comune. La più insidiosa è l'ultima, in cui i numeri si ripetono: $(4\ 6)(6\ 4\ 1)$ e $(6\ 4\ 1)(4\ 6)$ sono diverse.
+= Commutano i cicli disgiunti (proposizione 5.7), e solo la prima coppia non ha numeri in comune. La più insidiosa è «$(4\ 6)$ e $(6\ 4\ 1)$», in cui i numeri si ripetono: $(4\ 6)(6\ 4\ 1)$ e $(6\ 4\ 1)(4\ 6)$ sono diverse.
 
 D: Quanti numeri lascia fermi il ciclo $(2\ 5\ 3\ 7\ 4\ 8)$ in $S_9$?
 N: 3
@@ -43533,7 +47896,7 @@ D: Appello del 06/06/2025, quiz versione 1, domanda 6. Una permutazione $\pi$ ha
 - $\pi^{-1} = \pi^4$
 + $\pi^{-3} = \pi^5$
 - $\pi^{-3} = \pi^3$
-= $5 - (-3) = 8$, un multiplo del periodo. È la risposta 4 della soluzione ufficiale. La più insidiosa è l'ultima, di chi toglie solo il segno meno.
+= $5 - (-3) = 8$, un multiplo del periodo. È la risposta 4 della soluzione ufficiale. La più insidiosa è $\pi^{-3} = \pi^3$, di chi toglie solo il segno meno.
 
 D: Appello del 08/06/2026, quiz versione 1, domanda 6. Sia $\sigma$ una permutazione tale che $\sigma^{10} = \sigma^{-2}$. Allora il periodo di $\sigma$ NON può essere:
 - 4
@@ -44056,7 +48419,7 @@ D: Appello del 13/01/2026, quiz, domanda 6. Siano $\pi$ e $\sigma$ permutazioni 
 - $\tau^4 \circ \pi^5 \circ \tau$
 - $\pi \circ \sigma \circ \tau^5$
 - $\sigma \circ \tau^5 \circ \pi^3$
-= Si contano le $\tau$, le uniche dispari: 4 nella prima (pari), 3, 5, 5 e 5 nelle altre (dispari). È la risposta giusta della soluzione ufficiale. La più insidiosa è la terza: $\tau^4$ è pari, ma c'è un'altra $\tau$ a destra.
+= Si contano le $\tau$, le uniche dispari: 4 in $\pi^2 \circ \sigma^3 \circ \tau^4$ (pari); nelle altre sono 3 oppure 5 (dispari). È la risposta giusta della soluzione ufficiale. La più insidiosa è $\tau^4 \circ \pi^5 \circ \tau$: $\tau^4$ è pari, ma c'è un'altra $\tau$ a destra.
 
 D: Quanti scambi servono per scrivere il ciclo $(2\ 7\ 5\ 1\ 9)$ con la proposizione 5.13?
 + 4
@@ -44064,7 +48427,7 @@ D: Quanti scambi servono per scrivere il ciclo $(2\ 7\ 5\ 1\ 9)$ con la proposiz
 - 2
 - 10
 - dipende dalla scrittura, quindi non si può dire
-= Un ciclo di lunghezza $\ell$ si scrive con $\ell - 1$ scambi: $(2\ 9)(2\ 1)(2\ 5)(2\ 7)$. La più insidiosa è l'ultima: altre scritture possono usare più scambi (6, 8…), ma la proposizione ne usa 4, e il numero resta comunque pari.
+= Un ciclo di lunghezza $\ell$ si scrive con $\ell - 1$ scambi: $(2\ 9)(2\ 1)(2\ 5)(2\ 7)$. La più insidiosa è «dipende dalla scrittura, quindi non si può dire»: altre scritture possono usare più scambi (6, 8…), ma la proposizione ne usa 4, e il numero resta comunque pari.
 
 D: Quale delle seguenti è una permutazione **pari**?
 + $(1\ 2\ 3)(4\ 5\ 6\ 7\ 8)$
@@ -44072,7 +48435,7 @@ D: Quale delle seguenti è una permutazione **pari**?
 - $(1\ 2\ 3\ 4)$
 - $(1\ 2\ 3)(4\ 5)$
 - $(1\ 2\ 3\ 4\ 5\ 6)$
-= Lunghezze 3 e 5, nessun ciclo di lunghezza pari: $p = 2 + 4 = 6$, pari. Le altre hanno un ciclo di lunghezza pari ciascuna. La più insidiosa è la terza: lunghezza 4, ma 3 scambi.
+= Lunghezze 3 e 5, nessun ciclo di lunghezza pari: $p = 2 + 4 = 6$, pari. Le altre hanno un ciclo di lunghezza pari ciascuna. La più insidiosa è $(1\ 2\ 3\ 4)$: lunghezza 4, ma 3 scambi.
 
 D: Quante sono le permutazioni pari in $S_4$?
 N: 12
@@ -44084,7 +48447,7 @@ D: $(1\ 3)$ si scrive anche come $(1\ 2)(2\ 3)(1\ 2)$. Che cosa dice questo esem
 - che gli scambi commutano
 - che il teorema 5.16 è falso
 - che $(1\ 3)$ ha periodo 3
-= 1 scambio e 3 scambi: numeri diversi, ma tutti e due dispari. La più insidiosa è la terza: proprio perché gli scambi non commutano, $(1\ 2)$ non si può semplificare con l'altro $(1\ 2)$.
+= 1 scambio e 3 scambi: numeri diversi, ma tutti e due dispari. La più insidiosa è «che gli scambi commutano»: proprio perché gli scambi non commutano, $(1\ 2)$ non si può semplificare con l'altro $(1\ 2)$.
 
 D: Una permutazione dispari $\sigma$ ha periodo 8. Di che parità è $\sigma^{-3}$?
 + dispari
@@ -44636,7 +48999,7 @@ D: Quali sono il quoziente e il resto della divisione euclidea di $-17$ per 5?
 - quoziente $-3$, resto 2
 - quoziente $-4$, resto $-3$
 - quoziente 3, resto $-2$
-= $(-4) \cdot 5 + 3 = -17$, con il resto tra 0 e 4. La più insidiosa è la seconda: l'uguaglianza $(-3) \cdot 5 - 2 = -17$ è vera, ma il resto è negativo. È quello che calcola il C.
+= $(-4) \cdot 5 + 3 = -17$, con il resto tra 0 e 4. La più insidiosa è «quoziente $-3$, resto $-2$»: l'uguaglianza $(-3) \cdot 5 - 2 = -17$ è vera, ma il resto è negativo. È quello che calcola il C.
 
 D: Quale affermazione è vera?
 + ogni intero divide 0
@@ -44644,7 +49007,7 @@ D: Quale affermazione è vera?
 - 1 è un numero primo
 - $\mathrm{MCD}(0, 0) = 0$
 - se $a$ divide $b$, allora $b$ divide $a$
-= $n \cdot 0 = 0$ per ogni $n$. La più insidiosa è la seconda, che scambia i ruoli: 0 divide solo 0. 1 è escluso dalla definizione di primo, e il MCD di due zeri non è definito.
+= $n \cdot 0 = 0$ per ogni $n$. La più insidiosa è «0 divide ogni intero», che scambia i ruoli: 0 divide solo 0. 1 è escluso dalla definizione di primo, e il MCD di due zeri non è definito.
 
 D: Quanto vale $\mathrm{MCD}(0, -9)$?
 N: 9
@@ -44656,7 +49019,7 @@ D: Perché 6 non è primo, secondo la definizione 4.3?
 - perché $6 = 6 \cdot 1$
 - perché non divide 30
 - perché ha un divisore negativo
-= Primo vuol dire: se divide un prodotto, divide un fattore. La più insidiosa è la terza: $6 \cdot 1$ usa un invertibile e non dice niente; per mostrare che 6 è **riducibile** servirebbe $6 = 2 \cdot 3$.
+= Primo vuol dire: se divide un prodotto, divide un fattore. La più insidiosa è «perché $6 = 6 \cdot 1$»: $6 \cdot 1$ usa un invertibile e non dice niente; per mostrare che 6 è **riducibile** servirebbe $6 = 2 \cdot 3$.
 
 D: Un intero $d$ divide $n$ e divide $n + 5$. Che cosa si può concludere?
 + $d$ divide 5
@@ -45112,7 +49475,7 @@ D: Quiz 2021–25, primo quiz. Posto che $111268 = 256 \cdot 434 + 164$, si ha:
 - $\mathrm{MCD}(111268, 434) = 164$
 - $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(111268, 164)$
 - $\mathrm{MCD}(111268, 434) = \mathrm{MCD}(256, 164)$
-= È la proposizione 4.9: si tengono divisore e resto. La più insidiosa è la terza: il resto 164 non è ancora il massimo comun divisore, perché l'algoritmo non è finito (il valore vero è 2).
+= È la proposizione 4.9: si tengono divisore e resto. La più insidiosa è $\mathrm{MCD}(111268, 434) = 164$: il resto 164 non è ancora il massimo comun divisore, perché l'algoritmo non è finito (il valore vero è 2).
 
 D: Dal problema 1 dell'appello dell'08/06/2026, versione B. Quanto vale il massimo comun divisore di 1008 e 132?
 N: 12
@@ -45124,7 +49487,7 @@ D: Dal problema 1 dell'appello dell'08/06/2026, versione C. $\mathrm{MCD}(936, 1
 - $936x + 168y = 12$
 - $936x + 168y = 100$
 - $936x + 168y = 1$
-= Servono i multipli di 24, e $72 = 3 \cdot 24$. Le prime due sono le equazioni del testo d'esame. La più insidiosa è 12: divide 24, ma è 24 che deve dividere il termine noto.
+= Servono i multipli di 24, e $72 = 3 \cdot 24$. Le equazioni con 72 e con 18 sono quelle del testo d'esame. La più insidiosa è 12: divide 24, ma è 24 che deve dividere il termine noto.
 
 D: Dal problema 1 dell'appello dell'08/06/2026, versione D. Quanto vale il massimo comun divisore di 1287 e 165?
 N: 33
@@ -45136,7 +49499,7 @@ D: Dalle prove del 2022/23. L'algoritmo di Euclide dà $\mathrm{MCD}(231, 143) =
 - $11 = 5 \cdot 231 + 8 \cdot 143$
 - $11 = 3 \cdot 231 - 5 \cdot 143$
 - $11 = 2 \cdot 143 - 231$
-= $1155 - 1144 = 11$: è l'identità della soluzione ufficiale. La più insidiosa è la seconda, con i coefficienti scambiati: dà $1848 - 715 = 1133$.
+= $1155 - 1144 = 11$: è l'identità della soluzione ufficiale. La più insidiosa è $11 = 8 \cdot 231 - 5 \cdot 143$, con i coefficienti scambiati: dà $1848 - 715 = 1133$.
 
 D: Dal riepilogo degli esami 2019, esercizio 3. Risalendo le divisioni per 57 e 25 si trova $1 = B \cdot 25 - 7 \cdot 57$. Quanto vale $B$?
 N: 16
@@ -45156,7 +49519,7 @@ D: Due interi $a$ e $b$ verificano $5a - 3b = 1$. Che cosa si può dire?
 - il massimo comun divisore di $a$ e $b$ è 3
 - $a$ divide $b$
 - niente: dipende dai numeri
-= Il massimo comun divisore divide ogni combinazione, quindi divide 1. La più insidiosa è l'ultima: con un termine noto diverso da 1 sarebbe vera, con 1 no.
+= Il massimo comun divisore divide ogni combinazione, quindi divide 1. La più insidiosa è «niente: dipende dai numeri»: con un termine noto diverso da 1 sarebbe vera, con 1 no.
 ```
 
 ## Esercizi
@@ -45310,7 +49673,7 @@ genera_html: true
 > [!CANALI]
 > Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di venerdì 13/11/2026, dalle 9 alle 11, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la sedicesima lezione era «Equivalenza primo/irriducibile. Il teorema fondamentale dell'aritmetica. Esistenza di infiniti primi». Nel libro sono le pp. 76–80, la fine del capitolo 4. Quando il docente pubblica gli argomenti, controllo e aggiorno.
 >
-> Servono le definizioni di irriducibile e primo della [D14](D14_interi_divisibilita_divisione_euclidea.html) e l'identità di Bézout della [D15](D15_algoritmo_euclide_bezout.html). L'induzione forte usata qui è quella della [lezione 19 di Fondamenti](../FDA/19_induzione_forte.html). La lezione successiva del diario sono le congruenze modulo $N$ (capitolo 6 del libro).
+> Servono le definizioni di irriducibile e primo della [D14](D14_interi_divisibilita_divisione_euclidea.html) e l'identità di Bézout della [D15](D15_algoritmo_euclide_bezout.html). L'induzione forte usata qui è quella della [lezione 19 di Fondamenti](../FDA/19_induzione_forte.html). La lezione successiva del diario sono le congruenze modulo $N$ (capitolo 7 del libro): è la [D17](D17_congruenze_classi_resto.html).
 >
 > **Che cosa ho aggiunto.** La sezione su come si fattorizza un numero non è nel libro, che dice solo che il problema è difficile per numeri grandi: l'ho messa perché serve per fare gli esercizi. Anche il minimo comune multiplo dalle fattorizzazioni è un'aggiunta mia.
 
@@ -45607,7 +49970,7 @@ D: Il numero 6 divide $4 \cdot 9$, ma non divide né 4 né 9. Che cosa mostra qu
 - che 4 e 9 non sono coprimi
 - che il teorema 4.13 è falso
 - che 36 non ha una fattorizzazione unica
-= Un primo che divide un prodotto divide uno dei fattori: 6 non lo fa. La più insidiosa è la quarta: il teorema dice che irriducibile e primo coincidono, e 6 non è né l'uno né l'altro.
+= Un primo che divide un prodotto divide uno dei fattori: 6 non lo fa. La più insidiosa è «che il teorema 4.13 è falso»: il teorema dice che irriducibile e primo coincidono, e 6 non è né l'uno né l'altro.
 
 D: Qual è la fattorizzazione in primi di 360?
 + $2^3 \cdot 3^2 \cdot 5$
@@ -45615,7 +49978,7 @@ D: Qual è la fattorizzazione in primi di 360?
 - $2^2 \cdot 3^2 \cdot 10$
 - $2^3 \cdot 45$
 - $1 \cdot 2^3 \cdot 3^2 \cdot 5$
-= Tutti i fattori devono essere primi. La più insidiosa è l'ultima: il prodotto è giusto, ma 1 non è primo e non compare nelle fattorizzazioni.
+= Tutti i fattori devono essere primi. La più insidiosa è $1 \cdot 2^3 \cdot 3^2 \cdot 5$: il prodotto è giusto, ma 1 non è primo e non compare nelle fattorizzazioni.
 
 D: Dall'esempio del libro (nota 4.16). Con $32775 = 3 \cdot 5^2 \cdot 19 \cdot 23$ e $6120 = 2^3 \cdot 3^2 \cdot 5 \cdot 17$, quanto vale il massimo comun divisore?
 N: 15
@@ -45627,7 +49990,7 @@ D: $2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 + 1 = 30031 = 59 \cdot 509$. Che
 - che 59 era nell'elenco di partenza
 - che i primi finiscono a 13
 - che 30031 è primo
-= La dimostrazione usa solo il fatto che il numero ha un fattore primo nuovo. La più insidiosa è la seconda: chi ricorda «prodotto più uno è primo» pensa a un controesempio, ma il teorema non lo afferma.
+= La dimostrazione usa solo il fatto che il numero ha un fattore primo nuovo. La più insidiosa è «che la dimostrazione è sbagliata»: chi ricorda «prodotto più uno è primo» pensa a un controesempio, ma il teorema non lo afferma.
 
 D: Perché 1 non si considera primo?
 + perché altrimenti la fattorizzazione non sarebbe unica
@@ -45635,7 +49998,7 @@ D: Perché 1 non si considera primo?
 - perché non ha divisori
 - perché è troppo piccolo
 - perché divide tutti i numeri
-= Con 1 tra i primi, $6 = 2 \cdot 3 = 1 \cdot 2 \cdot 3$ avrebbe più fattorizzazioni. La più insidiosa è l'ultima: è vero che 1 divide tutto, ma il motivo della convenzione è l'unicità.
+= Con 1 tra i primi, $6 = 2 \cdot 3 = 1 \cdot 2 \cdot 3$ avrebbe più fattorizzazioni. La più insidiosa è «perché divide tutti i numeri»: è vero che 1 divide tutto, ma il motivo della convenzione è l'unicità.
 
 D: Per controllare che 97 è primo provando i primi in ordine, qual è l'ultimo primo che serve provare?
 N: 7
@@ -45743,6 +50106,1933 @@ Minimo comune multiplo | Il più piccolo multiplo positivo comune a due interi.
 - Diario delle lezioni di Matematica Discreta del canale B 2025/26 (Mori), lezione 16: «Equivalenza primo/irriducibile. Il teorema fondamentale dell'aritmetica. Esistenza di infiniti primi».
 - Appelli di Matematica Discreta (Moodle MDAG1 2025/26, aperto agli ospiti): appello del 01/07/2026, problema 1, versioni A, B e C, con la soluzione ufficiale della versione A; appello del 07/07/2025, problema 1 (il modulo 1843).
 - L'esempio del 6, l'albero di 360, il metodo per fattorizzare, il minimo comune multiplo, i disegni, i quiz senza data e gli esercizi di riscaldamento sono di questi appunti. Fattorizzazioni, conteggi e numeri primi li ho controllati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D17_congruenze_classi_resto.md -->
+> File: `contesto_ai/MDAG/lezioni/D17_congruenze_classi_resto.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D17
+titolo: Congruenze e classi resto
+data: 2026-11-16
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D17
+descrizione: >-
+  Appunti della lezione D17 di Matematica Discreta (MDAG, parte 1, canali A, B e C): la congruenza modulo N, le classi
+  resto e l'insieme delle classi, i rappresentanti, somma e prodotto tra classi con la loro buona definizione, le
+  proprietà delle due operazioni, il calcolo di resti, ultime cifre e potenze, con le domande d'esame dell'08/06/2026.
+lede: >-
+  Sull'orologio 10 più 5 fa 3: si conta in tondo, e dopo il 12 si ricomincia. La stessa aritmetica si può fare con
+  qualunque numero al posto del 12. Due interi diventano «lo stesso» quando hanno lo stesso resto, e con i resti si
+  fanno somme e prodotti come con i numeri.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 7, pp. 131–137 e 142–143
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 7 «Aritmetica modulare», sezioni «Classi resto e
+  loro operazioni», pp. 131–137 (proposizione 7.1, definizione 7.3, proposizioni 7.4, 7.5, 7.9 e 7.10), e
+  «Congruenze», pp. 142–143 (definizione 7.20, proposizione 7.21); diario delle lezioni del canale B 2025/26, lezione
+  17; appello di Matematica Discreta dell'08/06/2026 e problemi 2023/24
+appunti_html: appunti/MDAG/D17_congruenze_classi_resto.html
+genera_html: true
+```
+
+## In breve
+
+- Si fissa un intero almeno uguale a 2, il **modulo**. Due interi sono **congruenti** rispetto a quel modulo quando la loro differenza ne è un multiplo. È lo stesso che dire: divisi per il modulo danno lo stesso resto.
+- La **classe resto** di un intero è l'insieme di tutti gli interi congruenti a lui. Le classi sono tante quante i resti possibili, e formano una partizione degli interi.
+- $\mathbb{Z}_N$ è l'insieme delle classi modulo $N$. Ogni classe ha infiniti **rappresentanti**; quello canonico è il resto.
+- Le classi si **sommano** e si **moltiplicano** usando un rappresentante qualunque: il risultato non dipende da quale si sceglie. Questo fatto si chiama **buona definizione**, e va dimostrato.
+- Somma e prodotto tra classi hanno le proprietà di quelle tra interi: associativa, commutativa, distributiva, con la classe di 0 e la classe di 1 come elementi neutri.
+- Nei conti si può **ridurre** ogni numero al suo resto in qualunque momento, prima di sommare o moltiplicare.
+- L'**ultima cifra** di un numero è la sua classe modulo 10.
+- Due cose non passano dalle classi: la divisione, che è l'argomento della prossima lezione, e l'esponente di una potenza, che non si può ridurre modulo $N$.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di lunedì 16/11/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la diciassettesima lezione era «Relazione di congruenza modulo N. Classi di congruenza (o classi resto). Operazioni tra classi resto e loro buona definizione». Quando il docente pubblica gli argomenti, controllo e aggiorno.
+>
+> **Dove sta nel libro.** Il docente salta dal capitolo 4 al capitolo 7, «Aritmetica modulare»: pp. 131–137, più la definizione di congruenza delle pp. 142–143. Il capitolo 6 sui gruppi viene dopo. Per questo lascio fuori le parti del capitolo 7 che usano i gruppi: la nota 7.2 sui laterali e le proposizioni 7.6, 7.7 e 7.8 sui gruppi ciclici e gli omomorfismi. Le riprendo quando serviranno.
+>
+> **L'ordine.** Il libro parte dalle classi resto e arriva alle congruenze alla fine; qui la congruenza viene prima, come nel titolo del diario, perché è l'idea più vicina ai conti.
+>
+> Servono la divisione euclidea della [D14](D14_interi_divisibilita_divisione_euclidea.html), e le relazioni di equivalenza con le loro classi della [D03](D03_prodotto_cartesiano_relazioni.html), dove la congruenza modulo $N$ era già comparsa come esempio.
+>
+> **Che cosa ho aggiunto.** La sezione finale sui conti (ultime cifre, potenze, criterio del 9) non è nel libro in questa forma: l'ho messa perché i quiz d'esame chiedono proprio quello.
+
+## L'aritmetica dell'orologio
+
+Sono le 10, e tra 5 ore saranno le 3. Sull'orologio $10 + 5 = 3$, e nessuno lo trova strano: le ore sono 12, e dopo il 12 si ricomincia. Per i minuti è lo stesso con 60: alle 8 e 45, tra 40 minuti saranno le 9 e 25, cioè $45 + 40 = 25$.
+
+```grafico
+titolo: Le ore sul quadrante. Partendo dal 10 e andando avanti di 5 si arriva al 3: si passa dal 12 e si ricomincia. In questa aritmetica il 12 vale come lo 0
+x: -3.4 3.4
+y: -3.2 3.2
+assi: no
+griglia: no
+cerchio: 0 0 2 | grigio
+punto: 0 2 | grigio
+punto: 1 1.73 | grigio
+punto: 1.73 1 | grigio
+punto: 2 0 | verde
+punto: 1.73 -1 | grigio
+punto: 1 -1.73 | grigio
+punto: 0 -2 | grigio
+punto: -1 -1.73 | grigio
+punto: -1.73 -1 | grigio
+punto: -2 0 | grigio
+punto: -1.73 1 | blu
+punto: -1 1.73 | grigio
+testo: 0 2.5 | grigio | "12"
+testo: 1.25 2.17 | grigio | "1"
+testo: 2.17 1.25 | grigio | "2"
+testo: 2.55 0 | verde | "3"
+testo: 2.17 -1.25 | grigio | "4"
+testo: 1.25 -2.17 | grigio | "5"
+testo: 0 -2.5 | grigio | "6"
+testo: -1.25 -2.17 | grigio | "7"
+testo: -2.17 -1.25 | grigio | "8"
+testo: -2.5 0 | grigio | "9"
+testo: -2.25 1.3 | blu | "10"
+testo: -1.25 2.17 | grigio | "11"
+freccia: -1.5 0.9 1.7 0.1 | ambra
+testo: 0.1 0.95 | ambra | "+ 5"
+```
+
+Quelle uguaglianze diventano vere se si decide che 12, o 60, «vale come 0». Il conto è $10 + 5 = 15$, e 15 e 3 indicano la stessa posizione sul quadrante perché differiscono di 12.
+
+La lezione fa questo con un numero qualunque al posto di 12, e con tutti gli interi, anche negativi, al posto delle ore. Due numeri contano come lo stesso quando differiscono di un multiplo del numero scelto.
+
+::: prova Sono le 9. Che ore saranno tra 50 ore?
+$9 + 50 = 59$, e $59 = 4 \cdot 12 + 11$: saranno le 11. Si può anche ridurre prima il 50: $50 = 4 \cdot 12 + 2$, quindi basta andare avanti di 2 ore.
+:::
+
+> [!RICORDA]
+> - Sull'orologio si conta a meno di multipli di 12.
+> - Due numeri indicano la stessa posizione quando differiscono di un multiplo di 12.
+
+## La congruenza modulo N
+
+Si fissa un intero, almeno uguale a 2, che si chiama **modulo**. Lo indico con $N$. Con $N = 5$: i numeri 2, 7, 12, 17 e −3 distano l'uno dall'altro di multipli di 5, e divisi per 5 danno tutti resto 2.
+
+> [!DEF] Congruenza modulo N (libro, definizione 7.20)
+> Fissato un intero $N \ge 2$, due interi $a$ e $b$ sono **congruenti modulo $N$** se $N$ divide $a - b$. Si scrive
+>
+> $$a \equiv b \pmod N$$
+
+**Come si legge.** «$a$ è congruo a $b$ modulo $N$»: $a$ e $b$ differiscono di un multiplo di $N$, cioè $a = b + kN$ per qualche intero $k$. Il simbolo $\equiv$ è un uguale con una riga in più: dice «uguali, per quello che interessa qui». Per esempio $17 \equiv 2 \pmod 5$, perché $17 - 2 = 15$; e $17 \not\equiv 3 \pmod 5$, perché 14 non è multiplo di 5.
+
+C'è un secondo modo di dire la stessa cosa, ed è quello che si usa nei conti.
+
+> [!PROP] Congruenti vuol dire stesso resto (libro, p. 132)
+> Due interi sono congruenti modulo $N$ se e solo se, divisi per $N$, danno lo stesso resto.
+
+**Come si legge.** Ogni intero è congruo al proprio resto, e a nessun altro numero tra 0 e $N - 1$. Per sapere se due numeri sono congruenti si possono confrontare i resti, oppure guardare la differenza: si sceglie il più comodo.
+
+> [!DIM]- Perché vale
+> **Se hanno lo stesso resto.** Per la divisione euclidea $a = qN + r$ e $b = q'N + r$. Sottraendo: $a - b = (q - q')N$, un multiplo di $N$.
+>
+> **Se $N$ divide la differenza.** Allora $a = b + kN$. Divido $b$ per $N$: $b = qN + r$, con $0 \le r < N$. Sostituendo, $a = (k + q)N + r$. Questa è una divisione di $a$ per $N$ con resto $r$, e per l'unicità della divisione euclidea ([D14](D14_interi_divisibilita_divisione_euclidea.html)) il resto di $a$ è proprio $r$.
+
+Con i negativi bisogna ricordare che il resto è sempre tra 0 e $N - 1$. Per $-17$ diviso 5: $-17 = (-4) \cdot 5 + 3$, quindi il resto è 3 e $-17 \equiv 3 \pmod 5$. Controllo con la differenza: $-17 - 3 = -20$, multiplo di 5.
+
+La congruenza modulo $N$ è una **relazione di equivalenza**, come si è visto nella [D03](D03_prodotto_cartesiano_relazioni.html): ogni numero è congruo a sé stesso; se $a \equiv b$ allora $b \equiv a$; se $a \equiv b$ e $b \equiv c$ allora $a \equiv c$. Con il «stesso resto» le tre proprietà si vedono da sole.
+
+::: prova Vero o falso: (a) $38 \equiv 2 \pmod{12}$; (b) $100 \equiv 1 \pmod 9$; (c) $-1 \equiv 11 \pmod{12}$; (d) $25 \equiv 4 \pmod 6$.
+(a) Vero: $38 - 2 = 36$. (b) Vero: $99 = 9 \cdot 11$. (c) Vero: $-1 - 11 = -12$. (d) Falso: $25 - 4 = 21$ non è multiplo di 6; il resto di 25 è 1.
+:::
+
+> [!RICORDA]
+> - $a \equiv b \pmod N$: $N$ divide $a - b$.
+> - È lo stesso che avere lo stesso resto nella divisione per $N$.
+> - Il resto di un negativo è comunque tra 0 e $N - 1$.
+
+## Le classi resto
+
+Mettendo insieme tutti i numeri congruenti tra loro, gli interi si dividono in gruppi. Con $N = 3$ i gruppi sono tre:
+
+```grafico
+titolo: Gli interi da −4 a 10 colorati secondo il resto della divisione per 3. Ogni colore è una classe: i suoi numeri distano di 3 l'uno dall'altro. Ogni intero ha un colore, e uno solo
+x: -5 11
+y: 0 3.4
+assi: no
+griglia: no
+proporzioni: libere
+segmento: -4.6 1.5 10.6 1.5 | grigio | sottile
+punto: -3 1.5 | blu
+punto: 0 1.5 | blu
+punto: 3 1.5 | blu
+punto: 6 1.5 | blu
+punto: 9 1.5 | blu
+punto: -2 1.5 | verde
+punto: 1 1.5 | verde
+punto: 4 1.5 | verde
+punto: 7 1.5 | verde
+punto: 10 1.5 | verde
+punto: -4 1.5 | ambra
+punto: -1 1.5 | ambra
+punto: 2 1.5 | ambra
+punto: 5 1.5 | ambra
+punto: 8 1.5 | ambra
+testo: -3 0.9 | blu | "−3"
+testo: 0 0.9 | blu | "0"
+testo: 3 0.9 | blu | "3"
+testo: 6 0.9 | blu | "6"
+testo: 9 0.9 | blu | "9"
+testo: -2 2.1 | verde | "−2"
+testo: 1 2.1 | verde | "1"
+testo: 4 2.1 | verde | "4"
+testo: 7 2.1 | verde | "7"
+testo: 10 2.1 | verde | "10"
+testo: -4 0.9 | ambra | "−4"
+testo: -1 0.9 | ambra | "−1"
+testo: 2 0.9 | ambra | "2"
+testo: 5 0.9 | ambra | "5"
+testo: 8 0.9 | ambra | "8"
+testo: -2 3.0 | blu | "resto 0"
+testo: 3 3.0 | verde | "resto 1"
+testo: 8 3.0 | ambra | "resto 2"
+```
+
+> [!DEF] Classe resto (libro, p. 131)
+> Fissato il modulo $N \ge 2$, per ogni $r$ tra 0 e $N - 1$ la **classe resto** di $r$ modulo $N$ è l'insieme
+>
+> $$[r]_N = \{\, n \in \mathbb{Z} : \text{la divisione di } n \text{ per } N \text{ ha resto } r \,\}$$
+
+**Come si legge.** $[r]_N$ è un insieme di numeri, infinito: tutti quelli con resto $r$. Si ottengono partendo da $r$ e aggiungendo o togliendo $N$ quante volte si vuole. Per esempio, dal libro:
+
+$$[3]_7 = \{\dots, -18, -11, -4, 3, 10, 17, 24, \dots\}$$
+
+La classe di 0 è fatta dei multipli di $N$: $[0]_N = \{\dots, -2N, -N, 0, N, 2N, \dots\}$.
+
+> [!PROP] Le classi resto sono una partizione (libro, proposizione 7.1)
+> Fissato $N \ge 2$, le classi resto $[0]_N, [1]_N, \dots, [N-1]_N$ formano una partizione di $\mathbb{Z}$.
+
+**Come si legge.** Partizione, come nella [D02](D02_complementare_induzione_partizioni.html): nessuna classe è vuota, ogni intero sta in una classe, e due classi diverse non hanno elementi in comune. Ogni intero sta nella classe del suo resto, e il resto è uno solo. Con $N = 2$ la partizione è quella nota: i pari e i dispari.
+
+L'insieme delle classi ha un nome.
+
+> [!DEF] L'insieme delle classi resto
+> $\mathbb{Z}_N$ è l'insieme delle classi resto modulo $N$:
+>
+> $$\mathbb{Z}_N = \{[0]_N, [1]_N, \dots, [N-1]_N\}$$
+
+**Come si legge.** $\mathbb{Z}_N$ ha esattamente $N$ elementi, e ogni elemento è una classe, cioè un insieme infinito di interi. $\mathbb{Z}_2$ ha due elementi, $\mathbb{Z}_3$ tre, $\mathbb{Z}_{12}$ dodici: le posizioni del quadrante. È l'insieme quoziente della [D03](D03_prodotto_cartesiano_relazioni.html) per la relazione di congruenza.
+
+### I rappresentanti
+
+Una classe si può indicare con **uno qualunque** dei suoi elementi, non solo con il resto. Si scrive $[a]_N$ per la classe che contiene $a$, e $a$ è un **rappresentante** della classe. La stessa classe ha infiniti nomi:
+
+$$\dots = [-3]_{11} = [8]_{11} = [19]_{11} = [107]_{11} = \dots$$
+
+I quattro numeri hanno tutti resto 8 nella divisione per 11. Il collegamento con la congruenza è questo:
+
+$$[a]_N = [b]_N \quad \text{se e solo se} \quad a \equiv b \pmod N$$
+
+Tra i rappresentanti ce n'è uno speciale, quello tra 0 e $N - 1$: è il resto, e nei testi d'esame si chiama **rappresentante canonico**. «Calcolare il rappresentante canonico di $[107]_{11}$» vuol dire trovare il resto di 107 diviso 11, che è 8.
+
+Quando il modulo è chiaro si scrive $\overline{a}$ al posto di $[a]_N$: in $\mathbb{Z}_{11}$, $\overline{19} = \overline{8}$.
+
+> [!TRAPPOLA] Stessa classe, numeri diversi
+> $\overline{19} = \overline{8}$ in $\mathbb{Z}_{11}$ è un'uguaglianza tra **classi**, cioè tra insiemi. I numeri 19 e 8 restano diversi. Scrivere $19 = 8$ è sbagliato; si scrive $\overline{19} = \overline{8}$ oppure $19 \equiv 8 \pmod{11}$.
+
+::: prova Scrivi il rappresentante canonico di $[2026]_7$, di $[-17]_5$ e di $[-1]_{12}$.
+$2026 = 289 \cdot 7 + 3$: è 3. $-17 = -4 \cdot 5 + 3$: è 3. $-1 = -1 \cdot 12 + 11$: è 11.
+:::
+
+> [!RICORDA]
+> - $[a]_N$: tutti gli interi congruenti ad $a$ modulo $N$.
+> - $\mathbb{Z}_N$ ha $N$ elementi: le classi dei resti da 0 a $N - 1$.
+> - $[a]_N = [b]_N$ se e solo se $a \equiv b \pmod N$.
+> - Rappresentante canonico: il resto.
+
+## Somma e prodotto tra classi
+
+Sull'orologio si sommano le ore sommando i numeri e poi riducendo. Per le classi si fa lo stesso: si prende un rappresentante per ciascuna, si fa l'operazione tra interi, e si prende la classe del risultato.
+
+> [!DEF] Addizione e moltiplicazione in $\mathbb{Z}_N$ (libro, definizione 7.3)
+> Per ogni $\overline{a}$ e $\overline{b}$ in $\mathbb{Z}_N$:
+>
+> $$\overline{a} + \overline{b} = \overline{a + b} \qquad\qquad \overline{a} \cdot \overline{b} = \overline{a \cdot b}$$
+
+**Come si legge.** A sinistra i simboli $+$ e $\cdot$ sono le operazioni nuove, tra classi; a destra, sotto la barra, sono le solite operazioni tra interi. In $\mathbb{Z}_7$: $\overline{3} + \overline{5} = \overline{8} = \overline{1}$ e $\overline{3} \cdot \overline{5} = \overline{15} = \overline{1}$.
+
+Siccome le classi sono poche, le due operazioni si possono scrivere per intero in una tabella. Per $\mathbb{Z}_5$, senza le barre:
+
+| $+$ | 0 | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|---|
+| **0** | 0 | 1 | 2 | 3 | 4 |
+| **1** | 1 | 2 | 3 | 4 | 0 |
+| **2** | 2 | 3 | 4 | 0 | 1 |
+| **3** | 3 | 4 | 0 | 1 | 2 |
+| **4** | 4 | 0 | 1 | 2 | 3 |
+
+| $\cdot$ | 0 | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|---|
+| **0** | 0 | 0 | 0 | 0 | 0 |
+| **1** | 0 | 1 | 2 | 3 | 4 |
+| **2** | 0 | 2 | 4 | 1 | 3 |
+| **3** | 0 | 3 | 1 | 4 | 2 |
+| **4** | 0 | 4 | 3 | 2 | 1 |
+
+Nella tabella della somma ogni riga è la precedente spostata di un posto: è l'orologio con 5 ore. Quella del prodotto si legge allo stesso modo: $\overline{3} \cdot \overline{4} = \overline{12} = \overline{2}$.
+
+::: prova In $\mathbb{Z}_6$ calcola $\overline{4} + \overline{5}$, $\overline{4} \cdot \overline{5}$ e $\overline{2} \cdot \overline{3}$.
+$\overline{9} = \overline{3}$; $\overline{20} = \overline{2}$; $\overline{6} = \overline{0}$. Nell'ultimo conto il prodotto di due classi diverse da zero dà zero: tra interi non succede mai, ed è l'argomento della prossima lezione.
+:::
+
+> [!RICORDA]
+> - Si opera sui rappresentanti, poi si prende la classe.
+> - $\mathbb{Z}_N$ è finito: le operazioni stanno in una tabella.
+
+## La buona definizione
+
+La definizione di prima nasconde un problema. La classe $\overline{3}$ di $\mathbb{Z}_7$ si chiama anche $\overline{10}$ e $\overline{17}$; la classe $\overline{5}$ si chiama anche $\overline{12}$ e $\overline{-2}$. Se scegliendo altri nomi venisse un altro risultato, la «somma di due classi» non sarebbe una cosa sola, e la definizione non definirebbe niente.
+
+Si prova:
+
+| Rappresentanti scelti | Somma | Prodotto |
+|---|---|---|
+| 3 e 5 | $8 \equiv 1$ | $15 \equiv 1$ |
+| 10 e 12 | $22 \equiv 1$ | $120 \equiv 1$ |
+| 17 e −2 | $15 \equiv 1$ | $-34 \equiv 1$ |
+
+Viene sempre la stessa classe. Non è un caso.
+
+> [!PROP] Le operazioni sono ben definite (libro, proposizione 7.4)
+> In $\mathbb{Z}_N$ il risultato di $\overline{a} + \overline{b}$ e di $\overline{a} \cdot \overline{b}$ non dipende dai rappresentanti scelti: se $\overline{a} = \overline{a'}$ e $\overline{b} = \overline{b'}$, allora $\overline{a + b} = \overline{a' + b'}$ e $\overline{a \cdot b} = \overline{a' \cdot b'}$.
+
+**Come si legge.** Cambiare rappresentante vuol dire aggiungere un multiplo di $N$. La proposizione dice che, sommando o moltiplicando, quei multipli in più producono solo altri multipli di $N$, che dentro una classe non contano.
+
+> [!ESEMPIO] · La dimostrazione
+> Altri rappresentanti delle stesse classi si scrivono $a' = a + kN$ e $b' = b + k'N$, con $k$ e $k'$ interi.
+>
+> **Somma.** $a' + b' = a + b + (k + k')N$. La differenza da $a + b$ è un multiplo di $N$: stessa classe.
+>
+> **Prodotto.** $a' \cdot b' = (a + kN)(b + k'N) = ab + (ak' + bk + kk'N)N$. Anche qui la differenza da $ab$ è un multiplo di $N$: stessa classe.
+
+La domanda «è ben definita?» va fatta ogni volta che si definisce qualcosa su una classe usando un suo rappresentante. Non sempre la risposta è sì.
+
+> [!TRAPPOLA] L'esponente non si riduce
+> Viene da pensare che anche nelle potenze si possa ridurre tutto. La base sì, l'esponente no. In $\mathbb{Z}_5$ gli esponenti 3 e 8 sono congruenti, ma $2^3 = 8 \equiv 3$ e $2^8 = 256 \equiv 1$. «$\overline{2}$ elevato alla classe $\overline{3}$» non è ben definito. L'esponente di una potenza conta quante volte si moltiplica: è un intero vero, non una classe modulo $N$.
+
+::: prova Controlla la buona definizione su un caso: in $\mathbb{Z}_5$ calcola $\overline{37} + \overline{48}$ e $\overline{37} \cdot \overline{48}$ in due modi, con i numeri dati e con i rappresentanti canonici.
+Con i numeri dati: $85 \equiv 0$ e $1776 \equiv 1$. I canonici sono 2 e 3: $2 + 3 = 5 \equiv 0$ e $2 \cdot 3 = 6 \equiv 1$. Stessi risultati, con conti molto più corti.
+:::
+
+> [!RICORDA]
+> - Ben definita: il risultato non dipende dal rappresentante scelto.
+> - Per somma e prodotto è vero, e si dimostra scrivendo $a' = a + kN$.
+> - Per l'esponente di una potenza è falso.
+
+## Le proprietà delle due operazioni
+
+Le operazioni tra classi sono costruite su quelle tra interi, e ne ereditano le proprietà.
+
+> [!PROP] Proprietà di somma e prodotto in $\mathbb{Z}_N$ (libro, proposizioni 7.5, 7.9 e 7.10)
+> In $\mathbb{Z}_N$:
+>
+> - l'**addizione** è associativa e commutativa, $\overline{0}$ è il suo elemento neutro, e ogni classe $\overline{a}$ ha un'**opposta**, che è $\overline{-a}$;
+> - la **moltiplicazione** è associativa e commutativa, e $\overline{1}$ è il suo elemento neutro;
+> - vale la proprietà **distributiva**: $\overline{a} \cdot (\overline{b} + \overline{c}) = \overline{a} \cdot \overline{b} + \overline{a} \cdot \overline{c}$.
+
+**Come si legge.** Si calcola come con i numeri: si possono spostare le parentesi, scambiare gli addendi e i fattori, raccogliere. Ogni proprietà si dimostra portando tutto sotto una sola barra e usando la stessa proprietà degli interi; per esempio $\overline{a} + \overline{b} = \overline{a + b} = \overline{b + a} = \overline{b} + \overline{a}$.
+
+L'opposta di una classe si trova sottraendo da $N$: in $\mathbb{Z}_{12}$ l'opposta di $\overline{5}$ è $\overline{-5} = \overline{7}$, e infatti $5 + 7 = 12 \equiv 0$.
+
+Nell'elenco c'è una riga in meno per la moltiplicazione: **non si parla di inversi**. L'opposta c'è sempre; l'inversa, cioè una classe che moltiplicata per $\overline{a}$ dia $\overline{1}$, a volte c'è e a volte no. Dalle tabelle di $\mathbb{Z}_5$ e dal «Prova tu» su $\mathbb{Z}_6$ si vedono già tre fatti che tra gli interi non esistono:
+
+- una classe diversa da zero può **non avere inversa**: in $\mathbb{Z}_6$ nessuna classe moltiplicata per $\overline{2}$ dà $\overline{1}$;
+- il prodotto di due classi diverse da zero **può essere zero**: $\overline{2} \cdot \overline{3} = \overline{0}$ in $\mathbb{Z}_6$;
+- **non si può semplificare**: in $\mathbb{Z}_6$, $\overline{2} \cdot \overline{1} = \overline{2} \cdot \overline{4}$, ma $\overline{1} \ne \overline{4}$.
+
+In $\mathbb{Z}_5$ invece non succede niente di tutto questo. Capire per quali moduli e per quali classi succede è il contenuto della prossima lezione.
+
+Le stesse proprietà, scritte con le congruenze:
+
+> [!PROP] Le regole delle congruenze (libro, proposizione 7.21)
+> Fissato $N \ge 2$, per interi qualunque:
+>
+> 1. se $a \equiv b$ allora $b \equiv a$;
+> 2. se $a \equiv b$ e $b \equiv c$ allora $a \equiv c$;
+> 3. se $a \equiv b$ e $c \equiv d$ allora $a + c \equiv b + d$ e $ac \equiv bd$.
+>
+> Tutte le congruenze sono modulo $N$.
+
+**Come si legge.** La terza è la buona definizione detta in un altro modo: due congruenze con lo stesso modulo si possono sommare e moltiplicare membro a membro, come le uguaglianze. Applicandola più volte: se $a \equiv b$, allora $a^k \equiv b^k$ per ogni esponente $k \ge 1$. La base si può sostituire con un numero congruo; l'esponente resta quello.
+
+::: prova In $\mathbb{Z}_{10}$ trova l'opposta di $\overline{3}$. Poi cerca nella riga del 3, facendo i prodotti $3 \cdot 1, 3 \cdot 2, \dots$, una classe che moltiplicata per $\overline{3}$ dia $\overline{1}$.
+L'opposta è $\overline{7}$: $3 + 7 = 10 \equiv 0$. Per il prodotto: $3 \cdot 7 = 21 \equiv 1$, quindi la classe cercata è ancora $\overline{7}$. In questo caso l'inversa esiste.
+:::
+
+> [!RICORDA]
+> - Somma e prodotto tra classi: associative, commutative, distributive.
+> - Neutri: $\overline{0}$ per la somma, $\overline{1}$ per il prodotto.
+> - L'opposta c'è sempre: $\overline{-a}$. L'inversa non sempre.
+> - Le congruenze si sommano e si moltiplicano membro a membro.
+
+## Calcolare con le classi
+
+La buona definizione dà una regola pratica: in un conto modulo $N$ ogni numero si può sostituire con il suo resto, **in qualunque momento**, e il risultato non cambia. I numeri restano piccoli.
+
+> [!METODO] Il resto di un'espressione
+> 1. Sostituisci ogni numero con il suo rappresentante canonico, o con un rappresentante comodo, anche negativo.
+> 2. Fai somme e prodotti, riducendo di nuovo appena i numeri crescono.
+> 3. Nelle potenze riduci la **base**, mai l'esponente.
+> 4. Alla fine porta il risultato tra 0 e $N - 1$.
+
+> [!ESEMPIO] · Il resto di $123 \cdot 456 + 789$ diviso 7
+> $123 = 17 \cdot 7 + 4$, $456 = 65 \cdot 7 + 1$, $789 = 112 \cdot 7 + 5$.
+>
+> $123 \cdot 456 + 789 \equiv 4 \cdot 1 + 5 = 9 \equiv 2 \pmod 7$.
+>
+> Il resto è 2, senza aver calcolato il prodotto.
+
+**L'ultima cifra.** L'ultima cifra di un intero positivo è il suo resto nella divisione per 10, cioè la sua classe in $\mathbb{Z}_{10}$. Per l'ultima cifra di una somma o di un prodotto bastano le ultime cifre dei termini.
+
+**Le potenze.** Le potenze di una classe prima o poi si ripetono, perché le classi sono finite. Per l'ultima cifra di $3^{2026}$ si guardano le potenze di 3 modulo 10:
+
+| $k$ | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| $3^k$ modulo 10 | 3 | 9 | 7 | 1 | 3 |
+
+Da $3^4 \equiv 1$ in poi tutto si ripete ogni 4 passi. Divido l'esponente per 4: $2026 = 4 \cdot 506 + 2$. Allora $3^{2026} = (3^4)^{506} \cdot 3^2 \equiv 1 \cdot 9 = 9$. L'ultima cifra è 9. Qui l'esponente è stato ridotto, ma **modulo 4**, la lunghezza del ciclo, non modulo 10. Quanto è lungo il ciclo in generale lo dirà il teorema di Eulero, tra qualche lezione.
+
+**Un rappresentante negativo** a volte accorcia i conti: modulo 10, $9 \equiv -1$, quindi $9^{100} \equiv (-1)^{100} = 1$.
+
+> [!OLTRE]- Il criterio di divisibilità per 9
+> Siccome $10 \equiv 1 \pmod 9$, anche ogni potenza di 10 è congrua a 1. Un numero scritto in base 10 è una somma di cifre moltiplicate per potenze di 10, quindi modulo 9 è congruo alla **somma delle sue cifre**: $5823 \equiv 5 + 8 + 2 + 3 = 18 \equiv 0$. Per questo un numero è divisibile per 9 quando lo è la somma delle cifre. Per 3 vale lo stesso, perché $10 \equiv 1$ anche modulo 3.
+
+::: prova Qual è l'ultima cifra di $7^{2026}$?
+Le potenze di 7 modulo 10 sono 7, 9, 3, 1, e poi si ripetono ogni 4. $2026 = 4 \cdot 506 + 2$, quindi $7^{2026} \equiv 7^2 = 49 \equiv 9$. L'ultima cifra è 9.
+:::
+
+> [!RICORDA]
+> - Si riduce ogni numero al resto prima di operare.
+> - Ultima cifra: la classe modulo 10.
+> - Potenze: si cerca dove la potenza torna a 1, e si divide l'esponente per quella lunghezza.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $a \equiv b \pmod N$ | «a congruo a b modulo N» | $N$ divide $a - b$ | $17 \equiv 2 \pmod 5$ |
+| $[a]_N$ | «la classe di a modulo N» | tutti gli interi congruenti ad $a$ | $[3]_7 \ni 10$ |
+| $\overline{a}$ | «a barra» | la stessa classe, a modulo sottinteso | in $\mathbb{Z}_{11}$, $\overline{19} = \overline{8}$ |
+| $\mathbb{Z}_N$ | «Z con N» | l'insieme delle $N$ classi resto | $\mathbb{Z}_3 = \{\overline{0}, \overline{1}, \overline{2}\}$ |
+| $\overline{a} + \overline{b}$ | «a barra più b barra» | $\overline{a + b}$ | in $\mathbb{Z}_7$, $\overline{3} + \overline{5} = \overline{1}$ |
+| $\overline{a} \cdot \overline{b}$ | «a barra per b barra» | $\overline{a \cdot b}$ | in $\mathbb{Z}_7$, $\overline{3} \cdot \overline{5} = \overline{1}$ |
+| $\overline{-a}$ | «meno a, barra» | l'opposta della classe di $a$ | in $\mathbb{Z}_{12}$, $\overline{-5} = \overline{7}$ |
+| $n!$ | «n fattoriale» | $1 \cdot 2 \cdots n$ | $5! = 120$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Le regole del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)).
+
+**Che cosa serve di questa lezione**
+
+1. **Ridurre modulo $N$** è dentro quasi tutti gli esercizi della seconda metà del corso: inversi, congruenze da risolvere, potenze, gruppi di classi.
+2. **Ultime cifre e resti di somme**: quiz dell'08/06/2026, domanda 7, in quattro versioni.
+3. **I rappresentanti canonici**: problema 2 degli appelli 2023/24.
+4. La **dimostrazione della buona definizione** negli appelli 2021–2026 non è stata chiesta; il problema della buona definizione torna però nei problemi sugli omomorfismi tra gruppi di classi.
+
+### Una domanda vera, letta insieme
+
+**Appello dell'08/06/2026, quiz, domanda 7 (prima versione).** «L'ultima cifra del numero $2! + 3! + 22! + 2026!$ è: 0; 4; 2; 8; 7.»
+
+**In pratica chiede:** la classe di quella somma in $\mathbb{Z}_{10}$. I due fattoriali grandi non si calcolano: basta sapere quanto valgono modulo 10.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **I fattoriali piccoli.** $2! = 2$ e $3! = 6$.
+>
+> **I fattoriali grandi.** $5! = 120$ finisce per 0, perché tra i suoi fattori ci sono 2 e 5. Ogni fattoriale più grande contiene $5!$ come fattore: $n! = 5! \cdot 6 \cdot 7 \cdots n$. Quindi per ogni $n \ge 5$ vale $n! \equiv 0 \pmod{10}$. In particolare $22! \equiv 0$ e $2026! \equiv 0$.
+>
+> **La somma.** $2 + 6 + 0 + 0 = 8$.
+>
+> L'ultima cifra è **8**, che è la risposta segnata come giusta nel foglio delle soluzioni.
+
+Le altre tre versioni si fanno allo stesso modo, ricordando che $1! = 1$ e $4! = 24 \equiv 4$: $1! + 3! + 27! + 2026!$ finisce per 7; $1! + 4! + 26! + 2026!$ finisce per 5; $2! + 4! + 29! + 2026!$ finisce per 6.
+
+### Errori da evitare
+
+- Scrivere $=$ tra numeri al posto di $\equiv$, o dimenticare il modulo.
+- Dare un resto negativo, o un resto maggiore o uguale a $N$.
+- Ridurre l'esponente di una potenza modulo $N$.
+- Semplificare un fattore in una congruenza come in un'uguaglianza.
+- Sommare congruenze con moduli diversi.
+
+## Quiz
+
+```quiz
+D: Appello dell'08/06/2026, quiz, domanda 7 (seconda versione). L'ultima cifra del numero $1! + 3! + 27! + 2026!$ è:
++ 7
+- 0
+- 5
+- 1
+- 8
+= $1 + 6 = 7$, e i due fattoriali grandi finiscono per 0 perché contengono i fattori 2 e 5. La risposta più insidiosa è 0: è l'ultima cifra dei due addendi grandi, non della somma.
+
+D: Appello dell'08/06/2026, quiz, domanda 7 (terza versione). L'ultima cifra del numero $1! + 4! + 26! + 2026!$ è:
++ 5
+- 0
+- 8
+- 7
+- 1
+= $1 + 24 = 25$, che finisce per 5; gli altri due addendi finiscono per 0. La risposta più insidiosa è 7: viene sommando 1 e 6, cioè usando $3!$ al posto di $4!$.
+
+D: Problemi 2023/24, problema 2, punto b), con $N = 1147$ e $M = 5$. Il rappresentante canonico della classe $[N - 1]_M$ è:
++ 1
+- 2
+- 0
+- 4
+- 1146
+= $1146 = 229 \cdot 5 + 1$. La risposta più insidiosa è 1146: è un rappresentante della classe, ma quello canonico sta tra 0 e 4.
+
+D: Dallo stesso problema. Il rappresentante canonico della classe $[M^{10} - 7]_M$, con $M = 5$, è:
++ 3
+- 2
+- 0
+- −7
+- 4
+= $5^{10}$ è multiplo di 5, quindi resta $-7$, e $-7 = -2 \cdot 5 + 3$. È la risposta della soluzione ufficiale. La più insidiosa è 2: è il resto di 7, non di −7.
+
+D: Quale di queste affermazioni è vera?
++ $-5 \equiv 19 \pmod 8$
+- $-5 \equiv 5 \pmod 8$
+- $19 \equiv 2 \pmod 8$
+- $8 \equiv 1 \pmod 8$
+- $-5 \equiv 4 \pmod 8$
+= $-5 - 19 = -24$, multiplo di 8; tutti e due hanno resto 3. La più insidiosa è $-5 \equiv 5 \pmod 8$: un numero e il suo opposto sono congruenti solo se la loro differenza è multipla del modulo, e 10 non lo è di 8.
+
+D: Quanti elementi ha $\mathbb{Z}_{12}$?
++ 12
+- infiniti
+- 11
+- 13
+- 6
+= Le classi sono una per ogni resto da 0 a 11. La risposta più insidiosa è «infiniti»: infiniti sono gli elementi di ogni singola classe, non le classi.
+
+D: Che cosa vuol dire che la somma in $\mathbb{Z}_N$ è ben definita?
++ che $\overline{a + b}$ non cambia se al posto di $a$ e $b$ si usano altri rappresentanti delle stesse classi
+- che la somma di due classi è sempre una classe diversa dalle due di partenza
+- che la somma è commutativa
+- che ogni classe ha un'opposta
+- che $\overline{a} + \overline{b}$ si può calcolare solo con i rappresentanti canonici
+= Una classe ha infiniti nomi, e la definizione usa un nome: bisogna controllare che il risultato sia lo stesso con tutti. La più insidiosa è «che $\overline{a} + \overline{b}$ si può calcolare solo con i rappresentanti canonici»: è il contrario, si può usare qualunque rappresentante.
+
+D: Qual è l'ultima cifra di $3^{2026}$?
++ 9
+- 3
+- 7
+- 1
+- 6
+= Le potenze di 3 modulo 10 sono 3, 9, 7, 1 e si ripetono ogni 4; $2026 = 4 \cdot 506 + 2$, quindi conta $3^2$. La più insidiosa è 1: viene se si crede che l'esponente sia multiplo di 4.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: congruenti o no
+Di' quali sono vere: (a) $45 \equiv 3 \pmod 7$; (b) $-8 \equiv 4 \pmod 6$; (c) $1000 \equiv 1 \pmod{37}$; (d) $51 \equiv 15 \pmod{12}$.
+::: soluzione
+(a) Vera: $45 - 3 = 42 = 6 \cdot 7$. (b) Vera: $-8 - 4 = -12$. (c) Vera: $999 = 27 \cdot 37$. (d) Vera: $51 - 15 = 36$.
+:::
+
+::: esercizio base Riscaldamento: rappresentanti canonici
+Trova il rappresentante canonico di $[100]_7$, $[-3]_{11}$, $[365]_7$ e $[-100]_9$.
+::: soluzione
+$100 = 14 \cdot 7 + 2$: è 2. $-3 = -1 \cdot 11 + 8$: è 8. $365 = 52 \cdot 7 + 1$: è 1. $-100 = -12 \cdot 9 + 8$: è 8.
+:::
+
+::: esercizio base Riscaldamento: una classe scritta per esteso
+Scrivi i cinque elementi di $[2]_6$ più vicini a zero, e di' quali tra 20, 32, −10 e 44 stanno nella classe.
+::: soluzione
+$-10, -4, 2, 8, 14$. Stanno nella classe quelli con resto 2 nella divisione per 6: 20 sì ($18 + 2$), 32 sì ($30 + 2$), −10 sì, 44 sì ($42 + 2$).
+:::
+
+::: esercizio base Riscaldamento: conti in una tabella
+Scrivi la tabella della moltiplicazione di $\mathbb{Z}_4$. Ci sono due classi diverse da zero con prodotto zero?
+::: soluzione
+Righe, per 0, 1, 2, 3: `0 0 0 0`; `0 1 2 3`; `0 2 0 2`; `0 3 2 1`. Sì: $\overline{2} \cdot \overline{2} = \overline{4} = \overline{0}$.
+:::
+
+::: esercizio medio Il resto senza fare il conto
+Calcola il resto di $2026 \cdot 2027 + 2028$ nella divisione per 9.
+::: soluzione
+$2026 = 225 \cdot 9 + 1$, quindi $2026 \equiv 1$, $2027 \equiv 2$, $2028 \equiv 3$. Allora $1 \cdot 2 + 3 = 5$. Il resto è 5. I resti si trovano anche con la somma delle cifre: $2 + 0 + 2 + 6 = 10 \equiv 1$.
+:::
+
+::: esercizio medio Una potenza modulo 7
+Calcola il resto di $2^{100}$ nella divisione per 7.
+::: soluzione
+Le potenze di 2 modulo 7: $2, 4, 1$. Da $2^3 \equiv 1$ tutto si ripete ogni 3. $100 = 3 \cdot 33 + 1$, quindi $2^{100} = (2^3)^{33} \cdot 2 \equiv 2$. Il resto è 2.
+:::
+
+::: esercizio esame Ultima cifra, come nel quiz dell'08/06/2026
+Qual è l'ultima cifra di $3! + 5! + 100!$? E di $4! \cdot 7 + 9^{15}$?
+::: soluzione
+**Primo.** $3! = 6$; $5!$ e $100!$ finiscono per 0. Ultima cifra 6. **Secondo.** $4! = 24 \equiv 4$, e $4 \cdot 7 = 28 \equiv 8$. Poi $9 \equiv -1$, e l'esponente 15 è dispari: $9^{15} \equiv -1 \equiv 9$. In tutto $8 + 9 = 17 \equiv 7$. Ultima cifra 7.
+:::
+
+::: esercizio difficile Una funzione tra classi è ben definita?
+Considera le due regole da $\mathbb{Z}_6$ a $\mathbb{Z}_3$ e da $\mathbb{Z}_3$ a $\mathbb{Z}_6$: $f([a]_6) = [a]_3$ e $g([a]_3) = [a]_6$. Quale delle due è ben definita?
+::: soluzione
+**$f$ sì.** Se $[a]_6 = [a']_6$, allora 6 divide $a - a'$; siccome 3 divide 6, anche 3 divide $a - a'$, e $[a]_3 = [a']_3$. **$g$ no.** $[1]_3 = [4]_3$, ma $[1]_6 \ne [4]_6$: la stessa classe di partenza darebbe due risultati diversi. Funziona solo quando il modulo di arrivo divide quello di partenza: è la proposizione 7.8 del libro, e l'esempio del libro è $[3]_8 = [11]_8$ ma $[3]_5 \ne [11]_5$.
+:::
+
+## Domande di ripasso
+
+::: domanda Quando due interi sono congruenti modulo $N$?
+Quando $N$ divide la loro differenza; è lo stesso che avere lo stesso resto nella divisione per $N$.
+:::
+
+::: domanda Che cos'è una classe resto, e quante sono?
+È l'insieme di tutti gli interi con lo stesso resto nella divisione per $N$. Sono $N$, e formano una partizione degli interi.
+:::
+
+::: domanda Che cos'è un rappresentante, e qual è quello canonico?
+Un rappresentante è un elemento qualunque della classe, usato per indicarla. Quello canonico è il resto, tra 0 e $N - 1$.
+:::
+
+::: domanda Come si sommano e si moltiplicano due classi?
+Si sommano o si moltiplicano due rappresentanti e si prende la classe del risultato.
+:::
+
+::: domanda Che cosa vuol dire «ben definita», e come si dimostra per la somma?
+Che il risultato non dipende dai rappresentanti scelti. Si scrivono gli altri rappresentanti come $a + kN$ e $b + k'N$: la somma cambia di un multiplo di $N$.
+:::
+
+::: domanda In una potenza modulo $N$, che cosa si può ridurre?
+La base, non l'esponente.
+:::
+
+## Glossario
+
+```glossario
+Modulo | L'intero N, almeno 2, rispetto a cui si prendono i resti.
+Congruenza modulo N | Relazione tra due interi la cui differenza è multipla di N.
+Classe resto | L'insieme degli interi con lo stesso resto nella divisione per N.
+Rappresentante | Un elemento di una classe, usato per indicarla.
+Rappresentante canonico | Il rappresentante compreso tra 0 e N − 1: il resto.
+Z con N | L'insieme delle N classi resto modulo N.
+Buona definizione | Il fatto che un'operazione definita con i rappresentanti dia lo stesso risultato qualunque rappresentante si scelga.
+Opposta di una classe | La classe che sommata a quella data dà la classe di 0.
+```
+
+## Checklist
+
+```checklist
+- So dire quando due interi sono congruenti modulo N, con la differenza e con i resti.
+- So trovare il resto di un numero negativo.
+- So scrivere gli elementi di una classe resto.
+- So dire quanti elementi ha Z con N e che cosa sono.
+- So trovare il rappresentante canonico di una classe.
+- So sommare e moltiplicare due classi, e scrivere le tabelle per un modulo piccolo.
+- So spiegare che cosa vuol dire buona definizione e dimostrarla per somma e prodotto.
+- So perché l'esponente di una potenza non si può ridurre modulo N.
+- So calcolare il resto di un'espressione riducendo prima i numeri.
+- So trovare l'ultima cifra di una somma, di un prodotto e di una potenza.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta* (testo del canale B), cap. 7 «Aritmetica modulare»: «Classi resto e loro operazioni», pp. 131–137 (classi resto, proposizione 7.1, definizione 7.3, proposizioni 7.4, 7.5, 7.9 e 7.10); «Congruenze», pp. 142–143 (definizione 7.20, proposizione 7.21).
+- Diario delle lezioni del canale B 2025/26, lezione 17 (11/11/2025): «Relazione di congruenza modulo N. Classi di congruenza (o classi resto). Operazioni tra classi resto e loro buona definizione».
+- Appello di Matematica Discreta dell'08/06/2026, quiz, domanda 7 (quattro versioni, con le risposte del foglio delle soluzioni); problemi 2023/24, problema 2 (rappresentanti canonici, con la soluzione ufficiale).
+- I conti degli esempi e degli esercizi sono ricontrollati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D18_invertibili_divisori_zero_eulero.md -->
+> File: `contesto_ai/MDAG/lezioni/D18_invertibili_divisori_zero_eulero.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D18
+titolo: Classi invertibili, divisori dello zero e funzione di Eulero
+data: 2026-11-20
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D18
+descrizione: >-
+  Appunti della lezione D18 di Matematica Discreta (MDAG, parte 1, canali A, B e C): classi invertibili e divisori
+  dello zero, il criterio del massimo comun divisore con il modulo, il calcolo dell'inverso con l'identità di Bézout,
+  la funzione di Eulero e il suo valore sulle potenze di un primo, con le domande d'esame del 14/01/2025,
+  dell'08/06/2026 e del 10/09/2026.
+lede: >-
+  Tra le classi resto si somma, si sottrae e si moltiplica sempre. Dividere invece si può solo per alcune classi:
+  quelle che hanno un'inversa. Quali sono lo decide un solo conto, il massimo comun divisore con il modulo, e lo
+  stesso algoritmo di Euclide che lo calcola dà anche l'inversa. Contarle porta alla funzione di Eulero.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 7, pp. 136–141
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 7 «Aritmetica modulare»: la tabella di p. 136 e
+  la sezione «Il gruppo moltiplicativo», pp. 137–141 (definizione 7.11, teorema 7.12, note 7.13 e 7.14, definizione
+  7.15, proposizioni 7.17 e 7.18); diario delle lezioni del canale B 2025/26, lezione 18; appelli di Matematica
+  Discreta del 14/01/2025, dell'08/06/2026 e del 10/09/2026, prova del 23/01/2020, quiz 2021–25
+appunti_html: appunti/MDAG/D18_invertibili_divisori_zero_eulero.html
+genera_html: true
+```
+
+## In breve
+
+- Una classe è **invertibile** se ce n'è un'altra che moltiplicata per lei dà la classe di 1. Quell'altra è la sua **inversa**.
+- Una classe diversa da zero è un **divisore dello zero** se moltiplicata per un'altra classe diversa da zero dà zero.
+- Le due cose si escludono, e non c'è una terza possibilità: ogni classe diversa da zero è invertibile oppure è un divisore dello zero.
+- **Il criterio**: una classe è invertibile quando il suo rappresentante e il modulo hanno massimo comun divisore 1; altrimenti è un divisore dello zero.
+- **L'inversa si calcola** con l'algoritmo di Euclide e l'identità di Bézout: è il coefficiente che nell'identità moltiplica il rappresentante.
+- Se il modulo è un numero **primo**, tutte le classi diverse da zero sono invertibili.
+- La **funzione di Eulero** $\varphi(n)$ conta i numeri da 1 a $n$ senza fattori in comune con lui: è il numero delle classi invertibili con quel modulo.
+- Per una potenza di un primo: $\varphi(p^e) = p^{e-1}(p - 1)$.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di venerdì 20/11/2026, dalle 9 alle 11, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la diciottesima lezione era «Classi di congruenza modulo N invertibili e divisori dello zero. Caratterizzazione in termini del MCD col modulo. Funzione φ di Eulero. Calcolo di φ(N) per N potenza di un primo». Nel libro sono le pp. 136–141. Quando il docente pubblica gli argomenti, controllo e aggiorno.
+>
+> **Che cosa lascio fuori.** Il libro chiama l'insieme delle classi invertibili «gruppo moltiplicativo»: la parola gruppo arriva nella prossima lezione, e qui dico solo quali proprietà ha. La formula di $\varphi$ per un prodotto (proposizione 7.17) nel libro si dimostra con un isomorfismo di gruppi, e nel diario dell'anno scorso arriva sei lezioni dopo. La enuncio in una nota, senza dimostrazione, perché i quiz d'esame la usano.
+>
+> Servono le classi resto della [D17](D17_congruenze_classi_resto.html), il massimo comun divisore della [D14](D14_interi_divisibilita_divisione_euclidea.html) e l'algoritmo di Euclide con l'identità di Bézout della [D15](D15_algoritmo_euclide_bezout.html), che qui diventa lo strumento di tutti i conti.
+>
+> **Una svista del libro.** A p. 141, nel primo esempio, c'è scritto $59825 = 3^2 \cdot 5 \cdot 11^3$: quel prodotto fa 59895. Il valore $\varphi = 29040$ è giusto per 59895.
+
+## Che cosa si vede nella tabella di Z₁₀
+
+La [D17](D17_congruenze_classi_resto.html) si è chiusa con tre stranezze della moltiplicazione tra classi. Il libro le fa vedere tutte nella tabella di $\mathbb{Z}_{10}$, scritta senza le barre:
+
+| $\cdot$ | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **0** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **1** | 0 | **1** | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+| **2** | 0 | 2 | 4 | 6 | 8 | 0 | 2 | 4 | 6 | 8 |
+| **3** | 0 | 3 | 6 | 9 | 2 | 5 | 8 | **1** | 4 | 7 |
+| **4** | 0 | 4 | 8 | 2 | 6 | 0 | 4 | 8 | 2 | 6 |
+| **5** | 0 | 5 | 0 | 5 | 0 | 5 | 0 | 5 | 0 | 5 |
+| **6** | 0 | 6 | 2 | 8 | 4 | 0 | 6 | 2 | 8 | 4 |
+| **7** | 0 | 7 | 4 | **1** | 8 | 5 | 2 | 9 | 6 | 3 |
+| **8** | 0 | 8 | 6 | 4 | 2 | 0 | 8 | 6 | 4 | 2 |
+| **9** | 0 | 9 | 8 | 7 | 6 | 5 | 4 | 3 | 2 | **1** |
+
+Tre cose da guardare:
+
+1. **Dove compare l'1.** Solo nelle righe di 1, 3, 7 e 9: $3 \cdot 7 = 21 \equiv 1$ e $9 \cdot 9 = 81 \equiv 1$. Nelle righe di 2, 4, 5, 6 e 8 l'1 non c'è.
+2. **Dove compare lo 0** fuori dalla prima riga e dalla prima colonna. Proprio nelle righe di 2, 4, 5, 6 e 8: per esempio $4 \cdot 5 = 20 \equiv 0$.
+3. **Dove una riga ripete un valore.** Sempre nelle stesse cinque: $2 \cdot 4 = 8$ e $7 \cdot 4 = 28 \equiv 8$. Due classi diverse, moltiplicate per la stessa classe, danno lo stesso risultato: il fattore comune non si può togliere.
+
+Le righe di 1, 3, 7 e 9 invece contengono ogni classe una volta sola.
+
+Le classi diverse da zero si dividono quindi in due famiglie, e le righe «con l'1» sono proprio quelle «senza lo 0». La lezione dà un nome alle due famiglie, spiega perché non si mescolano e dice come riconoscerle senza scrivere la tabella.
+
+::: prova Nella tabella, qual è l'inversa di $\overline{7}$? E quella di $\overline{9}$? Quale classe diversa da zero moltiplicata per $\overline{6}$ dà zero?
+L'inversa di $\overline{7}$ è $\overline{3}$; quella di $\overline{9}$ è $\overline{9}$ stessa. $\overline{6} \cdot \overline{5} = \overline{30} = \overline{0}$.
+:::
+
+> [!RICORDA]
+> - In $\mathbb{Z}_{10}$: 1, 3, 7, 9 hanno un'inversa; 2, 4, 5, 6, 8 danno zero con un'altra classe non nulla.
+> - Le due famiglie non hanno elementi in comune.
+
+## Invertibili e divisori dello zero
+
+Tra gli interi, gli unici numeri con un inverso intero sono 1 e −1. Tra le classi resto ce ne sono di più, e conviene dare la definizione con precisione.
+
+> [!DEF] Classe invertibile
+> Una classe $\overline{a}$ di $\mathbb{Z}_N$ è **invertibile** se esiste una classe $\overline{b}$ con $\overline{a} \cdot \overline{b} = \overline{1}$. La classe $\overline{b}$ è l'**inversa** di $\overline{a}$ e si scrive $\overline{a}^{-1}$.
+
+**Come si legge.** L'inversa è la classe che «disfa» la moltiplicazione per $\overline{a}$. Con le congruenze: $ab \equiv 1 \pmod N$. Se esiste è una sola, e per questo ha un simbolo. La classe di 0 non è mai invertibile: moltiplicata per qualunque classe dà ancora la classe di 0. L'inversa non è una frazione: nella tabella di prima l'inversa della classe di 3 è la classe di 7, e un terzo non c'entra.
+
+> [!DEF] Divisore dello zero (libro, definizione 7.11)
+> Una classe $\overline{a} \ne \overline{0}$ di $\mathbb{Z}_N$ è un **divisore dello zero**, o 0-divisore, se esiste una classe $\overline{b} \ne \overline{0}$ con $\overline{a} \cdot \overline{b} = \overline{0}$.
+
+**Come si legge.** Due classi che non sono zero, il cui prodotto è zero. Nella tabella di prima la classe di 4 è un divisore dello zero, perché $\overline{4} \cdot \overline{5} = \overline{0}$; lo è anche $\overline{5}$, per lo stesso conto. La seconda classe può essere la stessa: in $\mathbb{Z}_9$, $\overline{3} \cdot \overline{3} = \overline{9} = \overline{0}$.
+
+Le due proprietà non possono stare insieme.
+
+> [!PROP] Un divisore dello zero non è invertibile (libro, p. 137)
+> Se $\overline{a}$ è invertibile e $\overline{a} \cdot \overline{b} = \overline{0}$, allora $\overline{b} = \overline{0}$.
+
+**Come si legge.** Una classe invertibile dà zero solo se moltiplicata per zero: non può essere un divisore dello zero. La dimostrazione è una riga: si moltiplica per l'inversa.
+
+> [!ESEMPIO] · La dimostrazione
+> Parto da $\overline{a} \cdot \overline{b} = \overline{0}$ e moltiplico tutti e due i membri per $\overline{a}^{-1}$:
+>
+> $\overline{a}^{-1} \cdot \overline{a} \cdot \overline{b} = \overline{a}^{-1} \cdot \overline{0}$
+>
+> A sinistra $\overline{a}^{-1} \cdot \overline{a} = \overline{1}$, e resta $\overline{b}$. A destra c'è $\overline{0}$. Quindi $\overline{b} = \overline{0}$.
+
+Lo stesso conto dà la **legge di cancellazione** per le classi invertibili: da $\overline{a} \cdot \overline{x} = \overline{a} \cdot \overline{y}$, con il fattore comune invertibile, moltiplicando per la sua inversa resta $\overline{x} = \overline{y}$. Per i divisori dello zero non vale, come si è visto con $\overline{4}$.
+
+::: prova In $\mathbb{Z}_{12}$, $\overline{8}$ è un divisore dello zero? E $\overline{5}$ è invertibile?
+$\overline{8} \cdot \overline{3} = \overline{24} = \overline{0}$: sì, è un divisore dello zero. $\overline{5} \cdot \overline{5} = \overline{25} = \overline{1}$: sì, è invertibile, ed è l'inversa di sé stessa.
+:::
+
+> [!RICORDA]
+> - Invertibile: c'è una classe che moltiplicata per lei dà $\overline{1}$.
+> - Divisore dello zero: classe non nulla che moltiplicata per una classe non nulla dà $\overline{0}$.
+> - Una classe non può essere tutte e due le cose.
+> - Per le classi invertibili si può semplificare.
+
+## Il criterio del massimo comun divisore
+
+Guarda di nuovo la tabella. Le classi invertibili sono 1, 3, 7, 9: i numeri che non hanno fattori in comune con 10. I divisori dello zero sono 2, 4, 5, 6, 8: quelli che hanno in comune con 10 il fattore 2 o il fattore 5.
+
+```grafico
+titolo: Le dieci classi di Z₁₀. Quelle verdi hanno massimo comun divisore 1 con 10 e sono invertibili. Quelle ambra hanno un fattore in comune con 10 e sono divisori dello zero. La classe di 0 sta per conto suo
+x: -0.3 10.3
+y: 0 3.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0 1.2 1 1.2 1 2.2 0 2.2 | grigio | tenue
+poligono: 1 1.2 2 1.2 2 2.2 1 2.2 | verde | tenue
+poligono: 2 1.2 3 1.2 3 2.2 2 2.2 | ambra | tenue
+poligono: 3 1.2 4 1.2 4 2.2 3 2.2 | verde | tenue
+poligono: 4 1.2 5 1.2 5 2.2 4 2.2 | ambra | tenue
+poligono: 5 1.2 6 1.2 6 2.2 5 2.2 | ambra | tenue
+poligono: 6 1.2 7 1.2 7 2.2 6 2.2 | ambra | tenue
+poligono: 7 1.2 8 1.2 8 2.2 7 2.2 | verde | tenue
+poligono: 8 1.2 9 1.2 9 2.2 8 2.2 | ambra | tenue
+poligono: 9 1.2 10 1.2 10 2.2 9 2.2 | verde | tenue
+testo: 0.5 1.7 | grigio | "0"
+testo: 1.5 1.7 | verde | "1"
+testo: 2.5 1.7 | ambra | "2"
+testo: 3.5 1.7 | verde | "3"
+testo: 4.5 1.7 | ambra | "4"
+testo: 5.5 1.7 | ambra | "5"
+testo: 6.5 1.7 | ambra | "6"
+testo: 7.5 1.7 | verde | "7"
+testo: 8.5 1.7 | ambra | "8"
+testo: 9.5 1.7 | verde | "9"
+testo: 2.5 3.0 | verde | "MCD con 10 uguale a 1"
+testo: 7.3 0.5 | ambra | "MCD con 10 maggiore di 1"
+```
+
+> [!TEOREMA] Invertibile o divisore dello zero (libro, teorema 7.12)
+> Per una classe $\overline{a} \ne \overline{0}$ di $\mathbb{Z}_N$:
+>
+> - se $\mathrm{MCD}(a, N) = 1$, la classe è **invertibile**;
+> - se $\mathrm{MCD}(a, N) > 1$, la classe è un **divisore dello zero**.
+
+**Come si legge.** Un massimo comun divisore è 1 oppure è più grande: i casi sono due e li coprono tutti. Quindi ogni classe diversa da zero è di un tipo o dell'altro, e per sapere quale basta un conto sugli interi. «Invertibile» e «coprimo con il modulo» diventano la stessa cosa.
+
+La dimostrazione è da leggere, perché dice anche **come si trova** l'inversa.
+
+> [!ESEMPIO] · La dimostrazione
+> **Caso MCD uguale a 1.** Per l'identità di Bézout della [D15](D15_algoritmo_euclide_bezout.html) ci sono due interi $A$ e $B$ con
+>
+> $aA + NB = 1$
+>
+> Passo alle classi modulo $N$. Il termine $NB$ è un multiplo di $N$, e la sua classe è $\overline{0}$. Resta
+>
+> $\overline{a} \cdot \overline{A} = \overline{1}$
+>
+> Quindi $\overline{a}$ è invertibile, e la sua inversa è $\overline{A}$.
+>
+> **Caso MCD uguale a $d$, con $d > 1$.** Scrivo $a = d \cdot s$ e $N = d \cdot t$. Il numero $t$ è positivo e più piccolo di $N$, quindi $\overline{t} \ne \overline{0}$. Calcolo:
+>
+> $a \cdot t = d \cdot s \cdot t = s \cdot (d \cdot t) = s \cdot N$
+>
+> Il prodotto è un multiplo di $N$: $\overline{a} \cdot \overline{t} = \overline{0}$, con $\overline{t}$ non nulla. Quindi $\overline{a}$ è un divisore dello zero.
+
+Il secondo caso dice anche **per chi moltiplicare** per ottenere zero: per $N$ diviso il massimo comun divisore. In $\mathbb{Z}_{10}$, per $\overline{4}$: $\mathrm{MCD}(4, 10) = 2$ e $10 : 2 = 5$, e infatti $4 \cdot 5 = 20$.
+
+Il criterio non dipende dal rappresentante: aggiungere al numero un multiplo del modulo non cambia i loro divisori comuni (libro, nota 7.13).
+
+> [!ESEMPIO] · Le classi di $\mathbb{Z}_{35}$ (libro, p. 138)
+> $35 = 5 \cdot 7$. Una classe è un divisore dello zero quando il suo rappresentante è multiplo di 5 o di 7:
+>
+> 5, 7, 10, 14, 15, 20, 21, 25, 28, 30: sono 10.
+>
+> Tutte le altre classi non nulle sono invertibili: sono $34 - 10 = 24$.
+
+**Il caso più pulito: il modulo primo.** Se il modulo è un numero primo, nessun numero più piccolo, da 1 in su, ha fattori in comune con lui. Tutte le classi diverse da zero sono invertibili, e non ci sono divisori dello zero. In $\mathbb{Z}_7$ si divide per qualunque classe non nulla, come tra i numeri razionali. Per questo nella tabella di $\mathbb{Z}_5$ della D17 non c'era niente di strano.
+
+::: prova Quali classi di $\mathbb{Z}_{12}$ sono invertibili? Quali sono divisori dello zero?
+$12 = 2^2 \cdot 3$. Invertibili sono le classi dei numeri che non sono multipli né di 2 né di 3: 1, 5, 7, 11. Le altre sette, cioè 2, 3, 4, 6, 8, 9, 10, sono divisori dello zero.
+:::
+
+> [!RICORDA]
+> - MCD con il modulo uguale a 1: invertibile. Maggiore di 1: divisore dello zero.
+> - Si controlla con le fattorizzazioni o con l'algoritmo di Euclide.
+> - Modulo primo: tutte le classi non nulle sono invertibili.
+
+## Calcolare l'inversa
+
+Sapere che l'inversa c'è non basta: nei quiz bisogna dire quanto vale. I modi sono due, secondo la grandezza del modulo.
+
+**Con un modulo piccolo** si prova. In $\mathbb{Z}_{10}$, per l'inversa di $\overline{3}$ si scorrono i multipli di 3 finché uno finisce per 1: $3, 6, 9, 12, 15, 18, 21$. Il settimo: l'inversa è $\overline{7}$. Un altro modo di vedere lo stesso conto: si cerca un numero congruo a 1, cioè della forma $1 + 10k$, che sia multiplo di 3: 11 no, 21 sì.
+
+**Con un modulo grande** si usa la dimostrazione del teorema: algoritmo di Euclide, poi risalita fino all'identità di Bézout.
+
+> [!METODO] L'inversa di $\overline{a}$ in $\mathbb{Z}_N$
+> 1. Fai l'algoritmo di Euclide tra $N$ e $a$. Se l'ultimo resto non nullo non è 1, l'inversa **non esiste**: fine.
+> 2. Risali le divisioni, dall'ultima alla prima, fino a scrivere $1 = aA + NB$.
+> 3. L'inversa è la classe di $A$. Se $A$ è negativo, aggiungi $N$ per avere il rappresentante canonico.
+> 4. **Controlla**: $a \cdot A$ deve dare resto 1 nella divisione per $N$.
+
+> [!ESEMPIO] · L'inversa di $\overline{17}$ in $\mathbb{Z}_{54}$ (appello del 14/01/2025)
+> **Euclide.**
+>
+> $54 = 3 \cdot 17 + 3$
+>
+> $17 = 5 \cdot 3 + 2$
+>
+> $3 = 1 \cdot 2 + 1$
+>
+> L'ultimo resto non nullo è 1: l'inversa esiste.
+>
+> **Risalita.** Dall'ultima riga $1 = 3 - 2$. Dalla seconda $2 = 17 - 5 \cdot 3$, quindi
+>
+> $1 = 3 - (17 - 5 \cdot 3) = 6 \cdot 3 - 17$
+>
+> Dalla prima $3 = 54 - 3 \cdot 17$, quindi
+>
+> $1 = 6 \cdot (54 - 3 \cdot 17) - 17 = 6 \cdot 54 - 19 \cdot 17$
+>
+> **L'inversa.** $A = -19$, e $-19 + 54 = 35$. L'inversa è $\overline{35}$.
+>
+> **Controllo.** $17 \cdot 35 = 595 = 11 \cdot 54 + 1$.
+
+Il libro riprende i numeri della [D15](D15_algoritmo_euclide_bezout.html): da $1219 \cdot 654 - 223 \cdot 3575 = 1$ si legge che l'inversa di $\overline{654}$ in $\mathbb{Z}_{3575}$ è $\overline{1219}$.
+
+> [!TRAPPOLA] Quale dei due coefficienti
+> Nell'identità $aA + NB = 1$ l'inversa di $\overline{a}$ è il coefficiente **di $a$**, non quello del modulo. E il segno conta: nell'esempio il coefficiente di 17 è $-19$, non 19. Infatti $17 \cdot 19 = 323 = 5 \cdot 54 + 53$: darebbe $-1$, non 1. Il controllo finale costa dieci secondi e toglie il dubbio.
+
+**A che cosa serve l'inversa.** A dividere. Per risolvere $\overline{3} \cdot \overline{x} = \overline{4}$ in $\mathbb{Z}_{10}$ si moltiplicano i due membri per l'inversa di $\overline{3}$, che è $\overline{7}$: $\overline{x} = \overline{7} \cdot \overline{4} = \overline{28} = \overline{8}$. Controllo: $3 \cdot 8 = 24 \equiv 4$. Le congruenze con l'incognita sono l'argomento di una delle prossime lezioni.
+
+::: prova Trova l'inversa di $\overline{11}$ in $\mathbb{Z}_{57}$, con Euclide.
+$57 = 5 \cdot 11 + 2$ e $11 = 5 \cdot 2 + 1$. Risalita: $1 = 11 - 5 \cdot 2 = 11 - 5 \cdot (57 - 5 \cdot 11) = 26 \cdot 11 - 5 \cdot 57$. L'inversa è $\overline{26}$. Controllo: $11 \cdot 26 = 286 = 5 \cdot 57 + 1$. È la domanda 9 del quiz del 10/09/2026.
+:::
+
+> [!RICORDA]
+> - Modulo piccolo: si provano i multipli.
+> - Modulo grande: Euclide, risalita, e il coefficiente di $a$ è l'inversa.
+> - Coefficiente negativo: si aggiunge il modulo.
+> - Si controlla sempre con una moltiplicazione.
+
+## L'insieme delle classi invertibili
+
+Le classi invertibili con un certo modulo formano un insieme, che ha un simbolo suo. Il libro lo indica con $\mathbb{Z}_N^\times$. Per esempio $\mathbb{Z}_{10}^\times = \{\overline{1}, \overline{3}, \overline{7}, \overline{9}\}$.
+
+Ha tre proprietà che lo rendono un posto dove la moltiplicazione funziona bene (libro, p. 138):
+
+1. **il prodotto di due classi invertibili è invertibile**: l'inversa di $\overline{a} \cdot \overline{b}$ è $\overline{b}^{-1} \cdot \overline{a}^{-1}$;
+2. **$\overline{1}$ è invertibile**, ed è l'inversa di sé stessa;
+3. **l'inversa di una classe invertibile è invertibile**: l'inversa di $\overline{a}^{-1}$ è $\overline{a}$.
+
+La tabella della moltiplicazione ristretta a queste classi non esce mai dall'insieme, e in ogni riga compare l'1:
+
+| $\cdot$ | 1 | 3 | 7 | 9 |
+|---|---|---|---|---|
+| **1** | 1 | 3 | 7 | 9 |
+| **3** | 3 | 9 | 1 | 7 |
+| **7** | 7 | 1 | 9 | 3 |
+| **9** | 9 | 7 | 3 | 1 |
+
+Un insieme con un'operazione associativa, un elemento neutro e un inverso per ogni elemento si chiama **gruppo**: è la definizione della prossima lezione, e $\mathbb{Z}_N^\times$ sarà uno degli esempi principali. Per questo il libro lo chiama già qui «gruppo moltiplicativo di $\mathbb{Z}_N$».
+
+::: prova Scrivi gli elementi di $\mathbb{Z}_8^\times$ e l'inversa di ciascuno.
+Le classi di 1, 3, 5 e 7, cioè dei dispari. Ognuna è l'inversa di sé stessa: $3 \cdot 3 = 9 \equiv 1$, $5 \cdot 5 = 25 \equiv 1$, $7 \cdot 7 = 49 \equiv 1$.
+:::
+
+> [!RICORDA]
+> - $\mathbb{Z}_N^\times$: l'insieme delle classi invertibili modulo $N$.
+> - Prodotti e inverse di classi invertibili sono invertibili.
+
+## La funzione di Eulero
+
+Quante sono le classi invertibili? Per il teorema, tante quanti i numeri tra 1 e $N$ che hanno massimo comun divisore 1 con $N$. Questo conteggio ha un nome.
+
+> [!DEF] Funzione di Eulero (libro, definizione 7.15)
+> Per ogni intero $n \ge 1$, $\varphi(n)$ è il numero degli interi $r$ con $1 \le r \le n$ e $\mathrm{MCD}(r, n) = 1$.
+
+**Come si legge.** $\varphi$ è la lettera greca «fi». Conta i numeri da 1 a $n$ **coprimi** con $n$. Per il teorema 7.12 è il numero delle classi invertibili con quel modulo. Per $n = 10$ i coprimi sono 1, 3, 7, 9, e $\varphi(10) = 4$.
+
+Per i numeri piccoli si conta a mano. La tabella del libro:
+
+| $n$ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| $\varphi(n)$ | 1 | 1 | 2 | 2 | 4 | 2 | 6 | 4 | 6 | 4 | 10 | 4 |
+
+| $n$ | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| $\varphi(n)$ | 12 | 6 | 8 | 8 | 16 | 6 | 18 | 8 | 12 | 10 | 22 | 8 |
+
+I valori non seguono una regola che si veda a occhio: salgono e scendono. La regola c'è, ma passa per i fattori primi di $n$.
+
+**Se $n$ è un numero primo**, tutti i numeri più piccoli, da 1 in su, sono coprimi con lui: $\varphi(p) = p - 1$ per ogni primo $p$. Nella tabella: $\varphi(7) = 6$, $\varphi(13) = 12$, $\varphi(23) = 22$.
+
+**Se $n$ è una potenza di un primo**, conviene contare al contrario: quanti numeri **non** vanno bene. Per $n = 9 = 3^2$:
+
+```grafico
+titolo: I numeri da 1 a 9. Quelli in ambra sono i multipli di 3: hanno un fattore in comune con 9. Sono 3, uno ogni tre. Gli altri 6 sono coprimi con 9: la funzione di Eulero di 9 vale 6
+x: 0.2 9.8
+y: 0 3.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.6 1 1.4 1 1.4 2 0.6 2 | verde | tenue
+poligono: 1.6 1 2.4 1 2.4 2 1.6 2 | verde | tenue
+poligono: 2.6 1 3.4 1 3.4 2 2.6 2 | ambra | pieno
+poligono: 3.6 1 4.4 1 4.4 2 3.6 2 | verde | tenue
+poligono: 4.6 1 5.4 1 5.4 2 4.6 2 | verde | tenue
+poligono: 5.6 1 6.4 1 6.4 2 5.6 2 | ambra | pieno
+poligono: 6.6 1 7.4 1 7.4 2 6.6 2 | verde | tenue
+poligono: 7.6 1 8.4 1 8.4 2 7.6 2 | verde | tenue
+poligono: 8.6 1 9.4 1 9.4 2 8.6 2 | ambra | pieno
+testo: 1 1.5 | verde | "1"
+testo: 2 1.5 | verde | "2"
+testo: 3 1.5 | ambra | "3"
+testo: 4 1.5 | verde | "4"
+testo: 5 1.5 | verde | "5"
+testo: 6 1.5 | ambra | "6"
+testo: 7 1.5 | verde | "7"
+testo: 8 1.5 | verde | "8"
+testo: 9 1.5 | ambra | "9"
+testo: 5 2.7 | ambra | "multipli di 3: 3 numeri"
+testo: 5 0.4 | verde | "coprimi con 9: 9 − 3 = 6"
+```
+
+> [!PROP] La funzione di Eulero di una potenza di un primo (libro, proposizione 7.18)
+> Se $p$ è un numero primo ed $e \ge 1$, allora
+>
+> $$\varphi(p^e) = p^e - p^{e-1} = p^{e-1}(p - 1)$$
+
+**Come si legge.** Dal totale si tolgono i multipli di $p$, che sono uno ogni $p$ numeri. In pratica: si abbassa l'esponente di uno e si moltiplica per $p - 1$. Per esempio $\varphi(8) = 4 \cdot 1 = 4$, $\varphi(27) = 9 \cdot 2 = 18$, $\varphi(125) = 25 \cdot 4 = 100$.
+
+> [!ESEMPIO] · La dimostrazione
+> L'unico divisore primo di $p^e$ è $p$. Quindi un numero $r$ ha un fattore in comune con $p^e$ esattamente quando $r$ è multiplo di $p$.
+>
+> I multipli di $p$ tra 1 e $p^e$ sono $p, 2p, 3p, \dots, p^e$. L'ultimo è $p^{e-1} \cdot p$: sono $p^{e-1}$.
+>
+> I coprimi sono tutti gli altri: $\varphi(p^e) = p^e - p^{e-1}$. Raccogliendo $p^{e-1}$ viene la seconda forma.
+
+> [!NOTA] Per i numeri con più fattori primi: una formula in anticipo
+> Se $a$ e $b$ sono coprimi, allora $\varphi(ab) = \varphi(a) \cdot \varphi(b)$ (libro, proposizione 7.17). Il libro la dimostra con i gruppi, e in aula arriva più avanti; la scrivo qui perché nei quiz serve subito. Con questa e con la formula delle potenze si calcola $\varphi$ di qualunque numero di cui si conosca la fattorizzazione:
+>
+> $\varphi(88) = \varphi(8) \cdot \varphi(11) = 4 \cdot 10 = 40$
+>
+> $\varphi(12) = \varphi(4) \cdot \varphi(3) = 2 \cdot 2 = 4$
+>
+> **I due fattori devono essere coprimi.** $24 = 4 \cdot 6$, ma $\varphi(24) = 8$ mentre $\varphi(4) \cdot \varphi(6) = 2 \cdot 2 = 4$: 4 e 6 hanno il fattore 2 in comune. Il modo sicuro è spezzare il numero in potenze di primi diversi: $24 = 8 \cdot 3$, e $\varphi(24) = 4 \cdot 2 = 8$.
+
+::: prova Calcola $\varphi(49)$, $\varphi(32)$ e $\varphi(97)$. Quante sono le classi invertibili di $\mathbb{Z}_{32}$?
+$\varphi(49) = 7 \cdot 6 = 42$. $\varphi(32) = \varphi(2^5) = 16 \cdot 1 = 16$. 97 è primo: $\varphi(97) = 96$. Le classi invertibili di $\mathbb{Z}_{32}$ sono 16: le classi dei numeri dispari.
+:::
+
+> [!RICORDA]
+> - $\varphi(n)$: quanti numeri tra 1 e $n$ sono coprimi con $n$; è il numero delle classi invertibili.
+> - $\varphi(p) = p - 1$ per $p$ primo.
+> - $\varphi(p^e) = p^{e-1}(p - 1)$.
+> - Per fattori coprimi, $\varphi$ del prodotto è il prodotto delle $\varphi$.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\overline{a}^{-1}$ | «a barra alla meno uno» | l'inversa della classe di $a$ | in $\mathbb{Z}_{10}$, $\overline{3}^{-1} = \overline{7}$ |
+| $\mathrm{MCD}(a, N)$ | «massimo comun divisore di a e N» | il più grande divisore comune | $\mathrm{MCD}(4, 10) = 2$ |
+| $\mathbb{Z}_N^\times$ | «Z N per» | l'insieme delle classi invertibili modulo $N$ | $\mathbb{Z}_8^\times = \{\overline{1}, \overline{3}, \overline{5}, \overline{7}\}$ |
+| $\varphi(n)$ | «fi di n» | quanti numeri tra 1 e $n$ sono coprimi con $n$ | $\varphi(10) = 4$ |
+| $aA + NB = 1$ | «identità di Bézout» | scrittura di 1 con $a$ e $N$ | $-19 \cdot 17 + 6 \cdot 54 = 1$ |
+| $p^e$ | «p alla e» | potenza di un primo | $125 = 5^3$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Le regole del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)).
+
+**Che cosa serve di questa lezione**
+
+Questa è una delle lezioni più chieste all'esame: negli appelli dal 2025 c'è quasi sempre almeno una domanda.
+
+1. **«L'inverso moltiplicativo di … modulo … è»**: quiz del 14/01/2025 (domanda 8) e del 10/09/2026 (domanda 9), e primo punto di un problema negli appelli del 13/01/2026 e del 10/09/2026. Tra le risposte c'è sempre «non esiste».
+2. **«Il numero delle classi invertibili in $\mathbb{Z}_N$»**, cioè $\varphi(N)$: quiz dell'08/06/2026, domanda 9.
+3. **Dire quale classe è invertibile**: prova del 23/01/2020, esercizio 3.
+4. Il **teorema 7.12** come motivazione: nei problemi bisogna scrivere «è invertibile perché il massimo comun divisore con il modulo è 1».
+
+### Una domanda vera, letta insieme
+
+**Appello del 14/01/2025, quiz, domanda 8 (prima versione).** «In $\mathbb{Z}_{54}$ l'inverso moltiplicativo di 17 è: 11; 26; 29; non esiste; 35.»
+
+**In pratica chiede:** di decidere se 17 e 54 sono coprimi e, se sì, di trovare il numero tra 0 e 53 che moltiplicato per 17 dà resto 1 nella divisione per 54.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **Esiste?** $54 = 2 \cdot 3^3$, e 17 è un primo diverso da 2 e da 3: il massimo comun divisore è 1. L'inverso esiste, e «non esiste» è scartata.
+>
+> **Quanto vale.** È il conto svolto nella sezione sull'inversa: Euclide dà $1 = 6 \cdot 54 - 19 \cdot 17$, quindi l'inverso è $-19 \equiv 35$.
+>
+> **Più in fretta, con le risposte davanti.** Basta provare le quattro candidate: $17 \cdot 11 = 187 = 3 \cdot 54 + 25$; $17 \cdot 26 = 442 = 8 \cdot 54 + 10$; $17 \cdot 29 = 493 = 9 \cdot 54 + 7$; $17 \cdot 35 = 595 = 11 \cdot 54 + 1$.
+>
+> La risposta è **35**, quella segnata come giusta nel foglio delle soluzioni.
+
+Nelle altre tre versioni il modulo cambia: in $\mathbb{Z}_{86}$ l'inverso di 17 è 81, in $\mathbb{Z}_{76}$ è 9, in $\mathbb{Z}_{58}$ è 41. Controllati con un programma.
+
+### Errori da evitare
+
+- Cercare l'inversa senza aver controllato il massimo comun divisore.
+- Prendere il coefficiente del modulo invece di quello di $a$, o perdere il segno nella risalita.
+- Lasciare l'inversa negativa quando il testo chiede un numero tra 0 e $N - 1$.
+- Calcolare $\varphi$ di un prodotto con fattori non coprimi.
+- Scrivere $\varphi(p^e) = p^e - 1$: vale solo per $e = 1$.
+- Confondere l'inversa, per il prodotto, con l'opposta, per la somma.
+
+## Quiz
+
+```quiz
+D: Appello dell'08/06/2026, quiz, domanda 9 (prima versione). Determinare il numero delle classi invertibili in $\mathbb{Z}_{88}$.
++ 40
+- 28
+- 44
+- 50
+- 36
+= $88 = 8 \cdot 11$, con 8 e 11 coprimi: $\varphi(88) = \varphi(8) \cdot \varphi(11) = 4 \cdot 10 = 40$. La risposta più insidiosa è 44: sono i numeri dispari fino a 88, ma tra quelli vanno tolti i quattro multipli dispari di 11.
+
+D: Appello del 10/09/2026, quiz, domanda 9 (prima versione). L'inverso moltiplicativo di 11 modulo 57 è:
++ 26
+- 2
+- 13
+- 20
+- non esiste
+= $57 = 5 \cdot 11 + 2$ e $11 = 5 \cdot 2 + 1$; risalendo, $1 = 26 \cdot 11 - 5 \cdot 57$. Controllo: $11 \cdot 26 = 286 = 5 \cdot 57 + 1$. La più insidiosa è «non esiste»: 57 non è primo, ma $57 = 3 \cdot 19$ non ha fattori in comune con 11.
+
+D: Quiz 2021–25. La classe $\overline{7}$ in $\mathbb{Z}_{45}$:
++ ha inversa 13
+- non è invertibile
+- ha inversa 7
+- ha inversa 25
+- ha inversa 33
+= $\mathrm{MCD}(7, 45) = 1$, quindi è invertibile, e $7 \cdot 13 = 91 = 2 \cdot 45 + 1$. La più insidiosa è «ha inversa 7»: $7 \cdot 7 = 49 \equiv 4$, non 1.
+
+D: Quiz 2021–25. Sia $\varphi$ la funzione di Eulero. Allora $\varphi(62)$ vale:
++ 30
+- 42
+- 61
+- 26
+- nessuno di questi
+= $62 = 2 \cdot 31$: $\varphi(62) = 1 \cdot 30 = 30$. La più insidiosa è 61: sarebbe giusta se 62 fosse primo.
+
+D: Prova del 23/01/2020, esercizio 3. Solo una tra le classi 5, 6 e 14 è invertibile in $\mathbb{Z}_{28}$. Qual è, e qual è la sua inversa?
++ 5, con inversa 17
+- 5, con inversa 11
+- 6, con inversa 5
+- 14, con inversa 2
+- 5, con inversa 23
+= $\mathrm{MCD}(5, 28) = 1$, mentre 6 e 14 hanno fattori in comune con 28. Da $1 = 2 \cdot 28 - 11 \cdot 5$ l'inversa è $-11 \equiv 17$. La più insidiosa è 11: è il coefficiente senza il segno.
+
+D: In $\mathbb{Z}_{15}$, quale di queste classi è un divisore dello zero?
++ $\overline{10}$
+- $\overline{2}$
+- $\overline{7}$
+- $\overline{11}$
+- $\overline{14}$
+= $\mathrm{MCD}(10, 15) = 5$, e $10 \cdot 3 = 30 \equiv 0$. Le altre sono coprime con 15. La più insidiosa è $\overline{14}$: è pari, ma 15 non ha il fattore 2.
+
+D: Quanto vale $\varphi(125)$?
+N: 100
+= $125 = 5^3$: $\varphi = 5^2 \cdot 4 = 100$. Si tolgono da 125 i 25 multipli di 5.
+
+D: Se $N$ è un numero primo, quante sono le classi invertibili di $\mathbb{Z}_N$?
++ $N - 1$
+- $N$
+- 1
+- 2
+- dipende da $N$
+= Tutte le classi tranne quella di 0. La più insidiosa è $N$: la classe $\overline{0}$ non è mai invertibile.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: invertibile o divisore dello zero
+In $\mathbb{Z}_{18}$ di' per ogni classe se è invertibile o è un divisore dello zero: $\overline{4}$, $\overline{5}$, $\overline{9}$, $\overline{13}$, $\overline{15}$.
+::: soluzione
+$18 = 2 \cdot 3^2$. $\overline{4}$: divisore dello zero (fattore 2), $4 \cdot 9 = 36 \equiv 0$. $\overline{5}$: invertibile. $\overline{9}$: divisore dello zero, $9 \cdot 2 = 18$. $\overline{13}$: invertibile. $\overline{15}$: divisore dello zero (fattore 3), $15 \cdot 6 = 90 = 5 \cdot 18$.
+:::
+
+::: esercizio base Riscaldamento: inverse con un modulo piccolo
+Trova l'inversa di ogni classe non nulla di $\mathbb{Z}_7$.
+::: soluzione
+$1 \cdot 1 = 1$; $2 \cdot 4 = 8 \equiv 1$; $3 \cdot 5 = 15 \equiv 1$; $6 \cdot 6 = 36 \equiv 1$. Quindi le inverse di 1, 2, 3, 4, 5, 6 sono 1, 4, 5, 2, 3, 6. Tutte le classi non nulle sono invertibili perché 7 è primo.
+:::
+
+::: esercizio base Riscaldamento: la funzione di Eulero
+Calcola $\varphi(16)$, $\varphi(81)$, $\varphi(25)$ e $\varphi(31)$.
+::: soluzione
+$\varphi(2^4) = 8$. $\varphi(3^4) = 27 \cdot 2 = 54$. $\varphi(5^2) = 5 \cdot 4 = 20$. 31 è primo: $\varphi(31) = 30$.
+:::
+
+::: esercizio base Riscaldamento: per chi moltiplicare
+In $\mathbb{Z}_{30}$ trova una classe non nulla che moltiplicata per $\overline{12}$ dia $\overline{0}$.
+::: soluzione
+$\mathrm{MCD}(12, 30) = 6$ e $30 : 6 = 5$. Infatti $12 \cdot 5 = 60 = 2 \cdot 30$. La classe è $\overline{5}$.
+:::
+
+::: esercizio medio Un'inversa con Euclide
+Trova l'inversa di $\overline{13}$ in $\mathbb{Z}_{30}$.
+::: soluzione
+$30 = 2 \cdot 13 + 4$; $13 = 3 \cdot 4 + 1$. Risalita: $1 = 13 - 3 \cdot 4 = 13 - 3 \cdot (30 - 2 \cdot 13) = 7 \cdot 13 - 3 \cdot 30$. L'inversa è $\overline{7}$. Controllo: $13 \cdot 7 = 91 = 3 \cdot 30 + 1$.
+:::
+
+::: esercizio medio Contare le classi invertibili
+Quante classi invertibili hanno $\mathbb{Z}_{75}$, $\mathbb{Z}_{78}$ e $\mathbb{Z}_{90}$? Sono le altre tre versioni della domanda 9 del quiz dell'08/06/2026.
+::: soluzione
+$75 = 3 \cdot 5^2$: $\varphi = 2 \cdot 20 = 40$. $78 = 2 \cdot 3 \cdot 13$: $\varphi = 1 \cdot 2 \cdot 12 = 24$. $90 = 2 \cdot 3^2 \cdot 5$: $\varphi = 1 \cdot 6 \cdot 4 = 24$. Sono le risposte del foglio delle soluzioni.
+:::
+
+::: esercizio esame Dal problema 1 dei problemi 2021/22
+In $\mathbb{Z}_{125}$: (a) quanti sono gli elementi invertibili; (b) calcola, se esiste, l'inverso moltiplicativo di 27.
+::: soluzione
+**(a)** $\varphi(125) = \varphi(5^3) = 25 \cdot 4 = 100$. **(b)** $27 = 3^3$ non ha il fattore 5: esiste. Euclide: $125 = 4 \cdot 27 + 17$; $27 = 1 \cdot 17 + 10$; $17 = 1 \cdot 10 + 7$; $10 = 1 \cdot 7 + 3$; $7 = 2 \cdot 3 + 1$. Risalita: $1 = 7 - 2 \cdot 3 = 3 \cdot 7 - 2 \cdot 10 = 3 \cdot 17 - 5 \cdot 10 = 8 \cdot 17 - 5 \cdot 27 = 8 \cdot 125 - 37 \cdot 27$. L'inverso è $-37 \equiv 88$, come nella soluzione ufficiale. Controllo: $27 \cdot 88 = 2376 = 19 \cdot 125 + 1$.
+:::
+
+::: esercizio difficile Quando il prodotto di due numeri è congruo a zero
+Dimostra che, se $p$ è primo e $ab \equiv 0 \pmod p$, allora $a \equiv 0$ oppure $b \equiv 0$. Mostra con un esempio che per un modulo non primo è falso.
+::: soluzione
+**Con le classi.** Se $\overline{a} \ne \overline{0}$ in $\mathbb{Z}_p$, allora $\overline{a}$ è invertibile, perché il modulo è primo. Una classe invertibile non è un divisore dello zero: da $\overline{a} \cdot \overline{b} = \overline{0}$ viene $\overline{b} = \overline{0}$. **Con gli interi** è la proprietà dei primi della [D16](D16_primi_teorema_fondamentale_aritmetica.html): se $p$ divide $ab$, divide $a$ o divide $b$. **Modulo non primo.** In $\mathbb{Z}_6$: $2 \cdot 3 \equiv 0$, ma né 2 né 3 sono congrui a 0.
+:::
+
+## Domande di ripasso
+
+::: domanda Quando una classe è invertibile, e quando è un divisore dello zero?
+È invertibile se c'è una classe che moltiplicata per lei dà $\overline{1}$. È un divisore dello zero se non è nulla e c'è una classe non nulla che moltiplicata per lei dà $\overline{0}$.
+:::
+
+::: domanda Come si riconosce una classe invertibile senza cercare l'inversa?
+Con il teorema 7.12: la classe di $a$ modulo $N$ è invertibile se e solo se il massimo comun divisore di $a$ e $N$ è 1.
+:::
+
+::: domanda Come si calcola l'inversa con un modulo grande?
+Con l'algoritmo di Euclide e la risalita fino all'identità di Bézout $aA + NB = 1$: l'inversa è la classe di $A$.
+:::
+
+::: domanda Perché con un modulo primo tutte le classi non nulle sono invertibili?
+Perché un primo non ha fattori in comune con nessun numero tra 1 e sé stesso meno 1.
+:::
+
+::: domanda Che cosa conta la funzione di Eulero?
+I numeri tra 1 e $n$ coprimi con $n$, cioè le classi invertibili modulo $n$.
+:::
+
+::: domanda Quanto vale la funzione di Eulero di una potenza di un primo, e perché?
+$p^{e-1}(p - 1)$: dal totale $p^e$ si tolgono i multipli di $p$, che sono $p^{e-1}$.
+:::
+
+## Glossario
+
+```glossario
+Classe invertibile | Classe che ha un'inversa: moltiplicata per lei dà la classe di 1.
+Inversa di una classe | La classe che moltiplicata per quella data dà la classe di 1.
+Divisore dello zero | Classe non nulla che moltiplicata per un'altra classe non nulla dà la classe di 0.
+Coprimi | Due interi con massimo comun divisore 1.
+Legge di cancellazione | Da ax = ay ricavare x = y: vale quando a è invertibile.
+Classi invertibili modulo N | L'insieme delle classi coprime con il modulo; il libro lo chiama gruppo moltiplicativo.
+Funzione di Eulero | La funzione che conta i numeri tra 1 e n coprimi con n.
+```
+
+## Checklist
+
+```checklist
+- So dire che cosa sono una classe invertibile e un divisore dello zero.
+- So dimostrare che un divisore dello zero non è invertibile.
+- So enunciare il criterio del massimo comun divisore e ripeterne la dimostrazione.
+- So elencare le classi invertibili e i divisori dello zero per un modulo dato.
+- So trovare l'inversa per tentativi con un modulo piccolo.
+- So trovare l'inversa con Euclide e Bézout, e controllarla.
+- So dire perché con un modulo primo si può dividere per ogni classe non nulla.
+- So che cosa conta la funzione di Eulero.
+- So calcolarla per un primo e per una potenza di un primo, e so perché.
+- So calcolarla per un numero qualunque spezzandolo in potenze di primi diversi.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta* (testo del canale B), cap. 7 «Aritmetica modulare»: tabella della moltiplicazione di $\mathbb{Z}_{10}$ (p. 136); «Il gruppo moltiplicativo», pp. 137–141 (definizione 7.11, teorema 7.12 con la dimostrazione, note 7.13 e 7.14, definizione 7.15 con la tabella, proposizione 7.17 solo enunciata, proposizione 7.18 con la dimostrazione).
+- Diario delle lezioni del canale B 2025/26, lezione 18 (13/11/2025): «Classi di congruenza modulo N invertibili e divisori dello zero. Caratterizzazione in termini del MCD col modulo. Funzione φ di Eulero. Calcolo di φ(N) per N potenza di un primo».
+- Appelli di Matematica Discreta: 14/01/2025 (quiz, domanda 8), 08/06/2026 (quiz, domanda 9), 10/09/2026 (quiz, domanda 9); prova del 23/01/2020 (esercizio 3); quiz 2021–25; problemi 2021/22 (problema 1). Le risposte sono quelle dei fogli delle soluzioni, ricontrollate con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/lezioni/D19_operazioni_gruppi.md -->
+> File: `contesto_ai/MDAG/lezioni/D19_operazioni_gruppi.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: D19
+titolo: Operazioni e gruppi
+data: 2026-11-23
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Parte 1 (modA) · Matematica Discreta · Canali A, B e C · Lezione D19
+descrizione: >-
+  Appunti della lezione D19 di Matematica Discreta (MDAG, parte 1, canali A, B e C): operazioni su un insieme,
+  proprietà associativa e commutativa, elemento neutro, elementi invertibili, semigruppi, monoidi e gruppi, gruppi
+  commutativi, notazione additiva e moltiplicativa, le prime proprietà dei gruppi e il gruppo prodotto, con il
+  problema d'esame del 04/02/2025.
+lede: >-
+  Gli interi con la somma, le permutazioni con la composizione, le classi invertibili con il prodotto: tre mondi
+  diversi che si comportano allo stesso modo. Quello che hanno in comune sono tre regole, e un insieme che le rispetta
+  si chiama gruppo. Quello che si dimostra per un gruppo qualunque vale poi per tutti e tre.
+materiale: libro
+scheda:
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 2, pp. 29–34, e cap. 6, pp. 107–111
+  Docenti: Andrea Mori (canale B), Ignazio Longhi e Lea Terracini (canali A e C) · A.A. 2026/27
+  Tempo di studio: 2 ore
+fonte: >-
+  A. Mori, Lezioni di Matematica Discreta (testo del canale B), cap. 2 «Funzioni», sezione «Operazioni», pp. 29–34
+  (definizioni 2.26, 2.28, 2.30, 2.32 e 2.34, proposizioni 2.29, 2.31, 2.33 e 2.35), e cap. 6 «Gruppi», sezione
+  «Definizione ed esempi», pp. 107–111 (definizione 6.1, note 6.2–6.5 e 6.7, proposizione 6.6, gruppo prodotto);
+  diario delle lezioni del canale B 2025/26, lezione 19; appello di Matematica Discreta del 04/02/2025
+appunti_html: appunti/MDAG/D19_operazioni_gruppi.html
+genera_html: true
+```
+
+## In breve
+
+- Un'**operazione** su un insieme è una regola che a due suoi elementi ne fa corrispondere un terzo, **dello stesso insieme**.
+- Un'operazione può essere **associativa** (le parentesi non contano) e **commutativa** (l'ordine non conta). Sono due proprietà diverse.
+- Un **elemento neutro** è un elemento che, operato con qualunque altro, lo lascia com'è. Se c'è, è uno solo.
+- Un elemento è **invertibile** se ce n'è un altro che, operato con lui, dà il neutro. Con un'operazione associativa l'inverso, se c'è, è uno solo.
+- **Semigruppo**: operazione associativa. **Monoide**: in più c'è il neutro. **Gruppo**: in più ogni elemento è invertibile.
+- Un gruppo è **commutativo**, o **abeliano**, se la sua operazione è commutativa. Non tutti lo sono: le permutazioni no.
+- In ogni gruppo l'inverso di un prodotto è il prodotto degli inversi **in ordine rovesciato**, e vale la **legge di cancellazione**.
+- Gli esempi da avere in testa: gli interi con la somma, le classi resto con la somma, le classi invertibili con il prodotto, le permutazioni con la composizione.
+
+> [!CANALI]
+> Matematica Discreta ha **lo stesso programma e la stessa prova d'esame** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di lunedì 23/11/2026, dalle 11 alle 13, con Andrea Mori. Gli argomenti di questa lezione non li ho: li ho ricostruiti dal diario dell'anno scorso, in cui la diciannovesima lezione era «Insiemi con operazioni. Definizione di gruppo (commutativo). Esempi e prime proprietà». Quando il docente pubblica gli argomenti, controllo e aggiorno.
+>
+> **Dove sta nel libro.** In due posti. Le operazioni in generale sono alla fine del capitolo 2, pp. 29–34, che finora era stata saltata. La definizione di gruppo, gli esempi e le prime proprietà sono all'inizio del capitolo 6, pp. 107–111. Le metto insieme, nell'ordine in cui servono.
+>
+> **Rispetto al libro.** Il libro scrive il capitolo 6 prima del 7, e quindi tra gli esempi di gruppo non ha ancora le classi resto. In aula l'ordine è stato l'opposto: le classi resto ci sono già, e le uso come esempi fin dall'inizio.
+>
+> Servono le classi resto e le classi invertibili della [D17](D17_congruenze_classi_resto.html) e della [D18](D18_invertibili_divisori_zero_eulero.html), le permutazioni della [D10](D10_binomio_newton_permutazioni.html), e composizione e funzioni inverse della [D05](D05_composizione_funzioni_inverse.html). I sottogruppi, con cui il capitolo 6 continua, sono la prossima lezione.
+
+## Che cos'è un'operazione
+
+Sommare due numeri, comporre due funzioni, unire due insiemi: in tutti i casi si prendono due oggetti dello stesso tipo e se ne ottiene un terzo, ancora dello stesso tipo.
+
+```grafico
+titolo: Un'operazione vista come una macchina con due ingressi e un'uscita. Entrano due elementi dell'insieme A, in un certo ordine, ed esce un elemento che deve stare ancora in A
+x: 0 10
+y: 0 4.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.0 3.3 | blu | "a"
+testo: 1.0 1.1 | blu | "b"
+freccia: 1.5 3.3 3.5 2.6 | blu
+freccia: 1.5 1.1 3.5 1.8 | blu
+poligono: 3.6 1.2 6.2 1.2 6.2 3.2 3.6 3.2 | ambra | tenue
+testo: 4.9 2.2 | ambra | "∗"
+freccia: 6.3 2.2 8.0 2.2 | verde
+testo: 8.9 2.2 | verde | "a ∗ b"
+testo: 1.0 0.3 | grigio | "in A"
+testo: 8.9 1.5 | grigio | "in A"
+```
+
+> [!DEF] Operazione binaria (libro, definizione 2.26)
+> Un'**operazione binaria**, o solo operazione, su un insieme non vuoto $A$ è una funzione
+>
+> $$* : A \times A \longrightarrow A$$
+
+**Come si legge.** Una funzione che prende una coppia di elementi di $A$ e restituisce un elemento di $A$. Invece di $*((a_1, a_2))$ si scrive $a_1 * a_2$, come si fa con $+$ e $\cdot$; il simbolo $*$ sta per un'operazione qualunque. Dentro la definizione ci sono due richieste: il risultato deve esistere **per ogni** coppia, e deve stare **ancora in $A$**.
+
+Per questo la stessa regola può essere un'operazione su un insieme e non su un altro:
+
+| Regola | Insieme | È un'operazione? |
+|---|---|---|
+| somma | $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$ | sì |
+| sottrazione | $\mathbb{Z}$ | sì |
+| sottrazione | $\mathbb{N}$ | no: $1 - 2$ non sta in $\mathbb{N}$ |
+| divisione | $\mathbb{Q}$ | no: la divisione per 0 non è definita |
+| unione, intersezione | i sottoinsiemi di un insieme $X$ | sì |
+| composizione | le funzioni da $X$ in $X$ | sì |
+| somma e prodotto tra classi | $\mathbb{Z}_N$ | sì: è la buona definizione della [D17](D17_congruenze_classi_resto.html) |
+
+Lo stesso controllo si fa per un **sottoinsieme**.
+
+> [!DEF] Sottoinsieme chiuso (libro, definizione 2.34)
+> Un sottoinsieme non vuoto $S$ di $A$ è **chiuso** rispetto all'operazione $*$ se, per ogni $s_1$ e $s_2$ in $S$, anche $s_1 * s_2$ sta in $S$.
+
+**Come si legge.** Operando tra elementi di $S$ non si esce da $S$. I numeri pari sono chiusi rispetto alla somma: pari più pari fa pari. I dispari no: dispari più dispari fa pari. Le classi invertibili di $\mathbb{Z}_N$ sono chiuse rispetto al prodotto, come si è visto nella [D18](D18_invertibili_divisori_zero_eulero.html).
+
+::: prova La regola $a * b = \frac{a + b}{2}$, la media, è un'operazione su $\mathbb{Z}$? E su $\mathbb{Q}$?
+Su $\mathbb{Z}$ no: la media di 1 e 2 è $\frac{3}{2}$, che non è un intero. Su $\mathbb{Q}$ sì: la media di due razionali è un razionale.
+:::
+
+> [!RICORDA]
+> - Operazione su $A$: da due elementi di $A$ a un elemento di $A$.
+> - Il risultato deve esistere sempre e restare in $A$.
+> - Sottoinsieme chiuso: operando tra i suoi elementi non si esce.
+
+## Associativa, commutativa, elemento neutro
+
+Presa da sola, un'operazione può comportarsi in qualunque modo. Diventa utile quando ha alcune delle proprietà delle operazioni tra numeri.
+
+Con la sottrazione, per esempio, le parentesi contano: $(5 - 3) - 1 = 1$, mentre $5 - (3 - 1) = 3$. E conta l'ordine: $5 - 3$ non è $3 - 5$.
+
+> [!DEF] Proprietà di un'operazione (libro, definizione 2.28)
+> Un'operazione $*$ su $A$ è:
+>
+> - **associativa** se $(a_1 * a_2) * a_3 = a_1 * (a_2 * a_3)$ per ogni $a_1, a_2, a_3$ in $A$;
+> - **commutativa** se $a_1 * a_2 = a_2 * a_1$ per ogni $a_1, a_2$ in $A$.
+>
+> Un elemento $e$ di $A$ è **neutro** per $*$ se $a * e = e * a = a$ per ogni $a$ in $A$.
+
+**Come si legge.** Associativa: in una fila di tre o più elementi non importa dove si mettono le parentesi, e quindi si possono non scrivere. Commutativa: non importa l'ordine dei due elementi. Neutro: un elemento che non fa niente, da tutti e due i lati.
+
+Le due proprietà sono indipendenti. La composizione di funzioni è associativa e non commutativa: l'hai visto con le permutazioni nella [D10](D10_binomio_newton_permutazioni.html). La media dell'ultimo «Prova tu» è commutativa e non associativa: con 2, 4 e 8, mettendo le parentesi a sinistra viene 5,5 e a destra viene 4.
+
+| Operazione | Associativa | Commutativa | Elemento neutro |
+|---|---|---|---|
+| somma su $\mathbb{Z}$ | sì | sì | 0 |
+| prodotto su $\mathbb{Z}$ | sì | sì | 1 |
+| sottrazione su $\mathbb{Z}$ | no | no | non c'è |
+| unione sui sottoinsiemi di $X$ | sì | sì | $\varnothing$ |
+| intersezione sui sottoinsiemi di $X$ | sì | sì | $X$ |
+| composizione sulle funzioni da $X$ in $X$ | sì | no | la funzione identità |
+| somma su $\mathbb{Z}_N$ | sì | sì | $\overline{0}$ |
+| prodotto su $\mathbb{Z}_N$ | sì | sì | $\overline{1}$ |
+
+Per la sottrazione lo zero funziona solo a destra: $a - 0 = a$, ma $0 - a$ non è $a$. Un neutro deve funzionare da tutti e due i lati.
+
+Nella tabella, quando il neutro c'è, è uno. Non è un caso.
+
+> [!PROP] L'elemento neutro è unico (libro, proposizione 2.29)
+> Se un'operazione $*$ su $A$ ha un elemento neutro, ne ha uno solo.
+
+**Come si legge.** Si può dire «**il** neutro» e dargli un simbolo, di solito $e$. La dimostrazione è un trucco che torna spesso: si calcola la stessa cosa in due modi.
+
+> [!ESEMPIO] · La dimostrazione
+> Suppongo che $e$ ed $e'$ siano tutti e due neutri, e guardo il prodotto $e * e'$.
+>
+> Siccome $e$ è neutro, $e * e' = e'$.
+>
+> Siccome $e'$ è neutro, $e * e' = e$.
+>
+> È lo stesso prodotto: quindi $e = e'$.
+
+::: prova Sull'insieme $\{0, 1, 2, 3, 4\}$ considera l'operazione «il più grande dei due», $a * b = \max(a, b)$. È associativa? Commutativa? Ha un elemento neutro?
+È associativa e commutativa: il più grande di tre numeri non dipende da come li si confronta. Il neutro è 0: il più grande tra $a$ e 0 è $a$. Controllato con un programma su tutte le terne.
+:::
+
+> [!RICORDA]
+> - Associativa: le parentesi non contano. Commutativa: l'ordine non conta.
+> - Le due proprietà sono indipendenti.
+> - Neutro: non cambia niente, da tutti e due i lati. Se c'è, è unico.
+
+## Gli elementi invertibili
+
+Avere un neutro permette di chiedersi se un elemento si può «disfare». Nella [D18](D18_invertibili_divisori_zero_eulero.html) lo si è fatto per il prodotto tra classi; qui la stessa idea per un'operazione qualunque.
+
+> [!DEF] Elemento invertibile (libro, definizione 2.30)
+> In un insieme $A$ con un'operazione $*$ che ha l'elemento neutro $e$, un elemento $a$ è **invertibile** se esiste un elemento $b$ di $A$ con
+>
+> $$a * b = b * a = e$$
+
+**Come si legge.** $b$ annulla l'effetto di $a$, da tutti e due i lati. Che cosa voglia dire dipende dall'operazione, perché dipende da chi è il neutro:
+
+| Operazione | Neutro | Chi è invertibile | Inverso di $a$ |
+|---|---|---|---|
+| somma su $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$ | 0 | tutti | l'opposto $-a$ |
+| somma su $\mathbb{N}$ | 0 | solo 0 | |
+| prodotto su $\mathbb{Q}$, $\mathbb{R}$ | 1 | tutti tranne 0 | $\frac{1}{a}$ |
+| prodotto su $\mathbb{Z}$ | 1 | solo 1 e −1 | sé stesso |
+| composizione sulle funzioni da $X$ in $X$ | identità | le funzioni biettive | la funzione inversa |
+| somma su $\mathbb{Z}_N$ | $\overline{0}$ | tutte le classi | l'opposta $\overline{-a}$ |
+| prodotto su $\mathbb{Z}_N$ | $\overline{1}$ | le classi coprime con $N$ | l'inversa della D18 |
+
+La riga della composizione è il teorema della [D05](D05_composizione_funzioni_inverse.html): una funzione ha un'inversa esattamente quando è biettiva.
+
+> [!PROP] L'inverso è unico (libro, proposizione 2.31)
+> Se l'operazione $*$ è **associativa** e ha il neutro $e$, un elemento invertibile ha un solo inverso: se $b * a = e$ e $a * b' = e$, allora $b = b'$.
+
+**Come si legge.** Si può dire «**l'**inverso di $a$» e scriverlo $a^{-1}$. L'enunciato dice anche qualcosa in più: un elemento che funziona da inverso a sinistra e uno che funziona a destra sono per forza lo stesso. Qui serve l'associativa, ed è il motivo per cui la si chiede sempre.
+
+> [!ESEMPIO] · La dimostrazione
+> Calcolo $b * a * b'$ in due modi, mettendo le parentesi in due posti.
+>
+> $(b * a) * b' = e * b' = b'$
+>
+> $b * (a * b') = b * e = b$
+>
+> Per la proprietà associativa i due risultati sono uguali: $b = b'$.
+
+Con due elementi invertibili, anche il loro prodotto lo è.
+
+> [!PROP] L'inverso di un prodotto (libro, proposizione 2.35)
+> Se $*$ è associativa con neutro, e $a$ e $b$ sono invertibili, allora $a * b$ è invertibile e
+>
+> $$(a * b)^{-1} = b^{-1} * a^{-1}$$
+
+**Come si legge.** L'inverso di un prodotto è il prodotto degli inversi, **nell'ordine rovesciato**. È la regola «calze e scarpe» della [D05](D05_composizione_funzioni_inverse.html): per disfare «prima le calze, poi le scarpe» si tolgono prima le scarpe. Se l'operazione è commutativa l'ordine non si vede; con le permutazioni sì. Quindi gli elementi invertibili formano un sottoinsieme chiuso.
+
+> [!DIM]- Perché vale
+> Basta controllare che $b^{-1} * a^{-1}$ faccia da inverso, usando l'associativa per spostare le parentesi:
+>
+> $(a * b) * (b^{-1} * a^{-1}) = a * (b * b^{-1}) * a^{-1} = a * e * a^{-1} = a * a^{-1} = e$
+>
+> Dall'altro lato il conto è lo stesso, con i ruoli scambiati.
+
+::: prova In $\mathbb{Z}_7$ con il prodotto, l'inversa di $\overline{3}$ è $\overline{5}$ e quella di $\overline{2}$ è $\overline{4}$. Senza altri tentativi, qual è l'inversa di $\overline{3} \cdot \overline{2} = \overline{6}$?
+$\overline{4} \cdot \overline{5} = \overline{20} = \overline{6}$. Controllo: $6 \cdot 6 = 36 \equiv 1$.
+:::
+
+> [!RICORDA]
+> - Invertibile: c'è un elemento che operato con lui, da tutti e due i lati, dà il neutro.
+> - Con l'associativa, l'inverso è unico.
+> - Inverso di un prodotto: gli inversi in ordine rovesciato.
+
+## Semigruppi, monoidi, gruppi
+
+Le tre proprietà viste finora, messe una sopra l'altra, danno tre nomi. Ogni gradino chiede una cosa in più del precedente.
+
+```grafico
+titolo: I tre tipi di struttura, uno dentro l'altro. Ogni gruppo è anche un monoide, e ogni monoide è anche un semigruppo. Scendendo verso l'interno si aggiunge una richiesta: prima il neutro, poi gli inversi
+x: 0 12
+y: 0 7.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.3 0.3 11.7 0.3 11.7 6.9 0.3 6.9 | blu | tenue
+testo: 6 6.3 | blu | "semigruppo: associativa"
+testo: 6 5.6 | grigio | "interi positivi con +"
+poligono: 1.3 0.7 10.7 0.7 10.7 4.9 1.3 4.9 | viola | tenue
+testo: 6 4.3 | viola | "monoide: in più il neutro"
+testo: 6 3.6 | grigio | "parole con la concatenazione"
+poligono: 2.5 1.0 9.5 1.0 9.5 2.9 2.5 2.9 | verde | tenue
+testo: 6 2.3 | verde | "gruppo: in più gli inversi"
+testo: 6 1.6 | grigio | "interi con +, permutazioni"
+```
+
+> [!DEF] Semigruppo, monoide, gruppo (libro, definizione 6.1)
+> Una coppia $(A, *)$, fatta di un insieme non vuoto $A$ e di un'operazione $*$ su $A$, è:
+>
+> 1. un **semigruppo** se $*$ è associativa;
+> 2. un **monoide** se $*$ è associativa e ha un elemento neutro;
+> 3. un **gruppo** se $*$ è associativa, ha un elemento neutro, e **ogni** elemento di $A$ è invertibile.
+
+**Come si legge.** Un gruppo non è un insieme: è un insieme **insieme a** un'operazione. Lo stesso insieme può essere un gruppo con un'operazione e non con un'altra. Le richieste per un gruppo sono tre, e una quarta è nascosta nella parola «operazione»: il risultato deve restare nell'insieme.
+
+Gli esempi del libro, più le classi resto:
+
+| Coppia | Che cos'è | Perché non di più |
+|---|---|---|
+| gli interi positivi con la somma | semigruppo | manca il neutro: 0 non è positivo |
+| i sottoinsiemi di $X$ con l'unione | monoide | solo $\varnothing$ è invertibile |
+| le funzioni da $X$ in $X$ con la composizione | monoide | le funzioni non biettive non hanno inversa |
+| le parole su un alfabeto con la concatenazione | monoide | una parola non vuota non si accorcia concatenando |
+| $(\mathbb{Z}, +)$, $(\mathbb{Q}, +)$, $(\mathbb{R}, +)$ | **gruppo** | |
+| $(\mathbb{Z}, \cdot)$, $(\mathbb{Q}, \cdot)$, $(\mathbb{R}, \cdot)$ | monoide | 0 non è invertibile; in $\mathbb{Z}$ nemmeno 2 |
+| $(S_n, \circ)$, le permutazioni | **gruppo** | |
+| $(\mathbb{Z}_N, +)$ | **gruppo** | |
+| $(\mathbb{Z}_N, \cdot)$ | monoide | $\overline{0}$ non è invertibile |
+
+Le parole con la concatenazione sono le stringhe della [lezione 22 di Fondamenti](../FDA/22_funzioni_sequenze_stringhe.html): il neutro è la parola vuota. La concatenazione allunga, quindi da una parola non vuota non si torna mai alla vuota.
+
+### Da un monoide a un gruppo: tenere solo gli invertibili
+
+Un monoide che non è un gruppo ha elementi senza inverso. Buttandoli via e tenendo **solo gli elementi invertibili** si ottiene un gruppo: gli invertibili sono chiusi rispetto all'operazione (proposizione 2.35), il neutro è invertibile, e l'inverso di un invertibile è invertibile.
+
+| Monoide | I suoi invertibili | Gruppo che ne viene |
+|---|---|---|
+| $(\mathbb{Q}, \cdot)$ | tutti tranne 0 | $\mathbb{Q}^\times$, il gruppo moltiplicativo dei razionali |
+| $(\mathbb{R}, \cdot)$ | tutti tranne 0 | $\mathbb{R}^\times$ |
+| $(\mathbb{Z}, \cdot)$ | 1 e −1 | $\mathbb{Z}^\times = \{1, -1\}$ |
+| le funzioni da $\{1, \dots, n\}$ in sé | le biettive | $S_n$ |
+| $(\mathbb{Z}_N, \cdot)$ | le classi coprime con $N$ | $\mathbb{Z}_N^\times$ |
+
+L'ultima riga è la [D18](D18_invertibili_divisori_zero_eulero.html): ora si capisce perché il libro chiamava $\mathbb{Z}_N^\times$ «gruppo moltiplicativo». Il piccolo $\times$ in alto vuol dire sempre «gli invertibili rispetto al prodotto».
+
+> [!METODO] Controllare che una coppia è un gruppo
+> 1. **Operazione**: il risultato esiste sempre e resta nell'insieme.
+> 2. **Associativa**. Spesso è ereditata da un'operazione già nota: somma o prodotto di numeri, composizione.
+> 3. **Neutro**: di' chi è, e controlla che funzioni dai due lati.
+> 4. **Inversi**: per ogni elemento di' chi è il suo inverso, e che sta nell'insieme.
+>
+> Per dire che **non** è un gruppo basta far cadere una richiesta, con un esempio.
+
+> [!ESEMPIO] · Le classi non nulle di $\mathbb{Z}_5$ e di $\mathbb{Z}_6$, con il prodotto
+> **$\mathbb{Z}_5$ senza $\overline{0}$.** La tabella:
+>
+> | $\cdot$ | 1 | 2 | 3 | 4 |
+> |---|---|---|---|---|
+> | **1** | 1 | 2 | 3 | 4 |
+> | **2** | 2 | 4 | 1 | 3 |
+> | **3** | 3 | 1 | 4 | 2 |
+> | **4** | 4 | 3 | 2 | 1 |
+>
+> Nella tabella non compare mai 0: l'insieme è chiuso. L'associativa viene dal prodotto in $\mathbb{Z}_5$. Il neutro è 1. In ogni riga c'è un 1: gli inversi di 1, 2, 3, 4 sono 1, 3, 2, 4. **È un gruppo**, ed è $\mathbb{Z}_5^\times$.
+>
+> **$\mathbb{Z}_6$ senza $\overline{0}$.** $\overline{2} \cdot \overline{3} = \overline{0}$, che non sta nell'insieme. Cade la prima richiesta: **non è un gruppo**. Il gruppo è $\mathbb{Z}_6^\times = \{\overline{1}, \overline{5}\}$, con due soli elementi.
+
+::: prova $(\mathbb{N}, +)$, i naturali con lo zero e la somma, è un semigruppo, un monoide o un gruppo?
+Un monoide: la somma è associativa e 0 è il neutro. Non è un gruppo: l'opposto di 3 sarebbe −3, che non è un naturale. L'unico elemento invertibile è 0.
+:::
+
+> [!RICORDA]
+> - Semigruppo: associativa. Monoide: più il neutro. Gruppo: più tutti gli inversi.
+> - Un gruppo è una coppia: insieme e operazione.
+> - Gli invertibili di un monoide formano un gruppo.
+> - Quattro controlli: operazione, associativa, neutro, inversi.
+
+## Gruppi commutativi e i due modi di scrivere
+
+Nella definizione di gruppo la proprietà commutativa non c'è. Alcuni gruppi ce l'hanno, altri no.
+
+> [!DEF] Gruppo commutativo (libro, nota 6.3)
+> Un gruppo $(G, *)$ è **commutativo**, o **abeliano**, se $g * h = h * g$ per ogni $g$ e $h$ in $G$.
+
+**Come si legge.** «Abeliano» viene dal matematico Niels Abel, e vuol dire la stessa cosa di commutativo. $(\mathbb{Z}, +)$, $(\mathbb{Z}_N, +)$ e $\mathbb{Z}_N^\times$ sono abeliani, perché somma e prodotto di numeri lo sono. $S_n$ per $n \ge 3$ non lo è: in $S_3$, componendo gli scambi $(1\,2)$ e $(1\,3)$ nei due ordini vengono due cicli diversi, $(1\,3\,2)$ e $(1\,2\,3)$.
+
+Per mostrare che un gruppo **non** è commutativo basta una coppia di elementi che non commutano. Per mostrare che lo è serve un argomento valido per tutte le coppie.
+
+Per i gruppi si usano due modi di scrivere (libro, nota 6.5). Sono solo notazioni: le regole sono le stesse.
+
+| | Notazione moltiplicativa | Notazione additiva |
+|---|---|---|
+| Quando si usa | per un gruppo qualunque | solo per gruppi commutativi |
+| Operazione | $g * h$, o $gh$: «prodotto» | $g + h$: «somma» |
+| Neutro | $e$, o 1 | 0 |
+| Inverso di $g$ | $g^{-1}$: «inverso» | $-g$: «opposto» |
+| Ripetere $n$ volte | $g^n$: «potenza» | $n \cdot g$: «multiplo» |
+
+In $(\mathbb{Z}_{12}, +)$ si scrive $3 \cdot \overline{5} = \overline{5} + \overline{5} + \overline{5} = \overline{3}$; in $\mathbb{Z}_{7}^\times$ si scrive $\overline{2}^3 = \overline{8} = \overline{1}$. Stessa idea, due scritture.
+
+Le potenze seguono la regola che ci si aspetta (libro, definizione 2.32 e proposizione 2.33): $g^0 = e$, $g^{-n} = (g^{-1})^n$, e $g^{m+n} = g^m * g^n$ per esponenti interi qualunque.
+
+Per dire «il gruppo $\mathbb{Z}$» o «il gruppo $S_n$» senza nominare l'operazione, si sottintende quella naturale: la somma per $\mathbb{Z}$ e $\mathbb{Z}_N$, il prodotto per gli insiemi con il $\times$ in alto, la composizione per $S_n$ (libro, nota 6.4).
+
+::: prova Traduci in notazione additiva, per il gruppo $(\mathbb{Z}_{10}, +)$: «l'inverso di $g$», «$g^3$», «$g * h^{-1}$». Poi calcola le tre cose per $g = \overline{4}$ e $h = \overline{7}$.
+«L'opposto $-g$», «$3 \cdot g$», «$g - h$». Con i numeri: $-\overline{4} = \overline{6}$; $3 \cdot \overline{4} = \overline{12} = \overline{2}$; $\overline{4} - \overline{7} = \overline{-3} = \overline{7}$.
+:::
+
+> [!RICORDA]
+> - Commutativo, o abeliano: l'ordine non conta. Non è richiesto dalla definizione di gruppo.
+> - $S_n$ non è commutativo per $n \ge 3$.
+> - Notazione additiva solo per i gruppi commutativi: 0, $-g$, $n \cdot g$.
+
+## Le prime proprietà dei gruppi
+
+Il vantaggio della definizione astratta è che una proprietà dimostrata una volta vale per tutti i gruppi, qualunque cosa siano i loro elementi.
+
+> [!PROP] Proprietà di ogni gruppo (libro, proposizione 6.6)
+> In un gruppo $(G, *)$:
+>
+> 1. l'elemento neutro $e$ è **unico**;
+> 2. ogni elemento $g$ ha un **unico** inverso $g^{-1}$;
+> 3. per ogni $g$ e $h$: $(g * h)^{-1} = h^{-1} * g^{-1}$;
+> 4. **legge di cancellazione**: se $g * h = g' * h$, oppure $h * g = h * g'$, allora $g = g'$.
+
+**Come si legge.** Le prime tre sono le proposizioni 2.29, 2.31 e 2.35 delle sezioni precedenti: valevano già per un'operazione associativa con neutro. La quarta è nuova, e dice che in un gruppo si può «semplificare», a destra o a sinistra, come nelle equazioni tra numeri. In un gruppo ogni elemento è invertibile: per questo vale sempre.
+
+> [!ESEMPIO] · La dimostrazione della legge di cancellazione
+> Parto da $g * h = g' * h$ e moltiplico **a destra** i due membri per $h^{-1}$:
+>
+> $(g * h) * h^{-1} = (g' * h) * h^{-1}$
+>
+> Sposto le parentesi con l'associativa:
+>
+> $g * (h * h^{-1}) = g' * (h * h^{-1})$
+>
+> Dentro le parentesi c'è il neutro: $g * e = g' * e$, cioè $g = g'$.
+>
+> Per l'altra uguaglianza si moltiplica **a sinistra** per $h^{-1}$.
+
+Nella dimostrazione il lato conta: $h^{-1}$ va messo dallo stesso lato in cui sta $h$. In un gruppo non commutativo da $g * h = h * g'$ non si può concludere $g = g'$.
+
+La cancellazione spiega la differenza tra un gruppo e un monoide come $(\mathbb{Z}_{10}, \cdot)$. Lì $\overline{2} \cdot \overline{4} = \overline{7} \cdot \overline{4}$ con $\overline{2} \ne \overline{7}$: non si può semplificare, perché $\overline{4}$ non è invertibile.
+
+> [!NOTA] Come si vede nella tabella
+> Nella tabella dell'operazione di un gruppo finito, in ogni riga e in ogni colonna **ogni elemento compare una volta sola**. Se in una riga un elemento comparisse due volte, si avrebbe $g * h = g * h'$ con $h \ne h'$, contro la cancellazione. È un'aggiunta mia, utile come controllo: una tabella con una ripetizione in una riga non è la tabella di un gruppo. Guarda quella di $\mathbb{Z}_5^\times$ di prima.
+
+::: prova In un gruppo, risolvi l'equazione $a * x = b$: quanto vale $x$? E per $x * a = b$?
+Per la prima si moltiplica a sinistra per $a^{-1}$: $x = a^{-1} * b$. Per la seconda a destra: $x = b * a^{-1}$. In un gruppo non commutativo le due soluzioni possono essere diverse.
+:::
+
+> [!RICORDA]
+> - In un gruppo: neutro unico, inverso unico.
+> - $(g * h)^{-1} = h^{-1} * g^{-1}$.
+> - Cancellazione: si semplifica, dallo stesso lato.
+> - Ogni equazione $a * x = b$ ha una sola soluzione.
+
+## Il gruppo prodotto
+
+Da due gruppi se ne costruisce un terzo prendendo le coppie, e operando su ogni componente con l'operazione del suo gruppo.
+
+> [!DEF] Gruppo prodotto (libro, p. 111)
+> Dati due gruppi $(G_1, *)$ e $(G_2, \star)$, sul prodotto cartesiano $G_1 \times G_2$ si definisce l'operazione
+>
+> $$(g_1, g_2) \cdot (g_1', g_2') = (g_1 * g_1',\ g_2 \star g_2')$$
+>
+> Con questa operazione $G_1 \times G_2$ è un gruppo, il **gruppo prodotto**.
+
+**Come si legge.** Si opera «componente per componente»: la prima con la prima, la seconda con la seconda, senza mescolarle. Le tre richieste si controllano una componente alla volta: l'associativa vale in ciascuna; il neutro è la coppia dei due neutri, $(e_1, e_2)$; l'inverso di $(g_1, g_2)$ è $(g_1^{-1}, g_2^{-1})$.
+
+In $\mathbb{Z}_2 \times \mathbb{Z}_3$, con la somma in tutte e due le componenti: $(\overline{1}, \overline{2}) + (\overline{1}, \overline{2}) = (\overline{0}, \overline{1})$. Il neutro è $(\overline{0}, \overline{0})$, e l'opposto di $(\overline{1}, \overline{2})$ è $(\overline{1}, \overline{1})$. Il gruppo ha $2 \cdot 3 = 6$ elementi.
+
+Se i due gruppi sono commutativi, lo è anche il prodotto. È il fatto usato nel problema d'esame qui sotto.
+
+::: prova In $\mathbb{Z}_4 \times \mathbb{Z}_5^\times$, con la somma nella prima componente e il prodotto nella seconda, calcola $(\overline{3}, \overline{2}) \cdot (\overline{2}, \overline{4})$. Qual è il neutro?
+$(\overline{3 + 2}, \overline{2 \cdot 4}) = (\overline{5}, \overline{8}) = (\overline{1}, \overline{3})$: la prima componente è modulo 4, la seconda modulo 5. Il neutro è $(\overline{0}, \overline{1})$.
+:::
+
+> [!RICORDA]
+> - Gruppo prodotto: coppie, operazione componente per componente.
+> - Neutro: la coppia dei neutri. Inverso: la coppia degli inversi.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $a * b$ | «a per b», «a star b» | il risultato di un'operazione qualunque | $a + b$, $a \cdot b$, $f \circ g$ |
+| $(A, *)$ | «A con star» | un insieme con la sua operazione | $(\mathbb{Z}, +)$ |
+| $e$ | «e» | l'elemento neutro | 0 per la somma, 1 per il prodotto |
+| $a^{-1}$ | «a alla meno uno» | l'inverso di $a$ | in $\mathbb{Z}_7^\times$, $\overline{3}^{-1} = \overline{5}$ |
+| $-g$, $n \cdot g$ | «meno g», «n per g» | inverso e ripetizione, in notazione additiva | in $\mathbb{Z}_{12}$, $3 \cdot \overline{5} = \overline{3}$ |
+| $g^n$ | «g alla n» | $g$ operato con sé stesso $n$ volte | in $\mathbb{Z}_7^\times$, $\overline{2}^3 = \overline{1}$ |
+| $\mathbb{Q}^\times$, $\mathbb{Z}_N^\times$ | «Q per», «Z N per» | gli elementi invertibili rispetto al prodotto | $\mathbb{Z}^\times = \{1, -1\}$ |
+| $S_n$ | «S n» | il gruppo delle permutazioni di $n$ oggetti | $S_3$ ha 6 elementi |
+| $G_1 \times G_2$ | «G uno per G due» | il gruppo prodotto | $\mathbb{Z}_2 \times \mathbb{Z}_3$ |
+
+## Verso l'esame
+
+La prova di **Matematica Discreta**, la parte 1 di MDAG, è scritta ed è la stessa per i canali A, B e C. Le regole del 2025/26: 10 domande a risposta multipla da 1 punto, con sbarramento a 6, e 2 problemi; 2 ore; libro, appunti e calcolatrice non programmabile ammessi. Gli appelli 2026/27 sono il 19/01/2027 e il 03/02/2027 alle 14:00 ([scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/MDAG/corso.md)).
+
+**Che cosa serve di questa lezione**
+
+1. **Il linguaggio**: da qui in poi i testi d'esame dicono «il gruppo additivo $\mathbb{Z}_n$», «il gruppo moltiplicativo $\mathbb{Z}_n^\times$», «elemento neutro», «abeliano», «gruppo prodotto». Vanno riconosciuti al volo.
+2. **Calcolare in un gruppo dato con una formula**: prodotti, potenze, inverso, e dire se è abeliano. Appello del 04/02/2025, problema 2.
+3. **La regola dell'inverso di un prodotto** e la **cancellazione**, come passaggi dentro i problemi.
+4. Le domande dei quiz sui gruppi riguardano quasi tutte periodi, generatori e sottogruppi: sono le prossime lezioni. Per questo nel quiz qui sotto le domande vere vengono dal problema, e le altre sono sul modello.
+
+### Una domanda vera, letta insieme
+
+**Appello del 04/02/2025, problema 2, versione A, punto a) e inizio del punto c).** «Si consideri l'insieme $X = \mathbb{Z}_5^\times \times \mathbb{Z}_5$, con l'operazione definita da $(a, b) * (c, d) = (ac, ad + b)$. Si dia per noto che $(X, *)$ è un gruppo con elemento neutro $(1, 0)$. Calcolare $(2, 3) * (1, 4)$, $(1, 4) * (2, 3)$, $(2, 3)^3$, $(2, 3)^{-1}$. Dire se $(X, *)$ è abeliano.»
+
+**In pratica chiede:** di applicare la formula, facendo i conti modulo 5 in tutte e due le componenti. L'operazione **non** è quella del gruppo prodotto: la seconda componente mescola $a$, $d$ e $b$.
+
+> [!ESEMPIO] · la soluzione, passo per passo
+> **I due prodotti.**
+>
+> $(2, 3) * (1, 4) = (2 \cdot 1,\ 2 \cdot 4 + 3) = (2, 11) = (2, 1)$
+>
+> $(1, 4) * (2, 3) = (1 \cdot 2,\ 1 \cdot 3 + 4) = (2, 7) = (2, 2)$
+>
+> **È abeliano?** No: i due risultati sono diversi. Basta questa coppia.
+>
+> **Il cubo.** Prima il quadrato: $(2, 3) * (2, 3) = (4,\ 2 \cdot 3 + 3) = (4, 9) = (4, 4)$.
+>
+> Poi $(4, 4) * (2, 3) = (8,\ 4 \cdot 3 + 4) = (8, 16) = (3, 1)$.
+>
+> **L'inverso.** Cerco $(a, b)$ con $(2, 3) * (a, b) = (1, 0)$, cioè $(2a,\ 2b + 3) = (1, 0)$.
+>
+> Prima componente: $2a \equiv 1$, quindi $a = 3$, l'inversa di 2 in $\mathbb{Z}_5$.
+>
+> Seconda: $2b \equiv -3 \equiv 2$, quindi $b = 1$.
+>
+> L'inverso è $(3, 1)$. Controllo: $(2, 3) * (3, 1) = (6, 2 + 3) = (1, 0)$.
+>
+> Sono i risultati della soluzione ufficiale. Il cubo e l'inverso coincidono: vuol dire che $(2, 3)^4$ è il neutro.
+
+La soluzione ufficiale finisce così il punto c): il gruppo prodotto $\mathbb{Z}_5^\times \times \mathbb{Z}_5$ è abeliano, perché prodotto di due gruppi abeliani, mentre $(X, *)$ non lo è. Stesso insieme, due operazioni, due gruppi diversi.
+
+Ho controllato con un programma, su tutti i 20 elementi, che $(X, *)$ è davvero un gruppo: associativa, neutro $(1, 0)$, un inverso per ognuno.
+
+### Errori da evitare
+
+- Chiamare gruppo un insieme senza dire con quale operazione.
+- Dimenticare di controllare che l'operazione non esca dall'insieme.
+- Confondere commutativa e associativa.
+- Scrivere $(g * h)^{-1} = g^{-1} * h^{-1}$ in un gruppo non commutativo.
+- Semplificare da lati diversi.
+- Usare la notazione additiva in un gruppo non commutativo.
+- In un gruppo prodotto, ridurre le due componenti con lo stesso modulo.
+
+## Quiz
+
+```quiz
+D: Appello del 04/02/2025, problema 2, versione A. In $X = \mathbb{Z}_5^\times \times \mathbb{Z}_5$ con $(a, b) * (c, d) = (ac, ad + b)$, quanto vale $(2, 3) * (1, 4)$?
++ $(2, 1)$
+- $(2, 2)$
+- $(2, 12)$
+- $(3, 1)$
+- $(2, 7)$
+= $(2 \cdot 1,\ 2 \cdot 4 + 3) = (2, 11)$, e 11 modulo 5 fa 1. La risposta più insidiosa è $(2, 2)$: è il prodotto nell'altro ordine, e il gruppo non è commutativo.
+
+D: Dallo stesso problema. Qual è l'inverso di $(2, 3)$ in $(X, *)$?
++ $(3, 1)$
+- $(3, 2)$
+- $(2, 3)$
+- $(3, 3)$
+- $(1, 0)$
+= Serve $2a \equiv 1$ e $2b + 3 \equiv 0$ modulo 5: $a = 3$ e $b = 1$. La più insidiosa è $(3, 2)$: è la coppia degli inversi componente per componente, che andrebbe bene nel gruppo prodotto, non qui.
+
+D: Quale di queste coppie è un gruppo?
++ $(\mathbb{Z}_6, +)$
+- $(\mathbb{Z}_6, \cdot)$
+- $(\mathbb{N}, +)$
+- $(\mathbb{Z}, \cdot)$
+- le classi non nulle di $\mathbb{Z}_6$, con il prodotto
+= Con la somma ogni classe ha un'opposta. $(\mathbb{Z}_6, \cdot)$ e $(\mathbb{Z}, \cdot)$ sono monoidi con elementi non invertibili; $(\mathbb{N}, +)$ pure. La più insidiosa è «le classi non nulle di $\mathbb{Z}_6$, con il prodotto»: $\overline{2} \cdot \overline{3} = \overline{0}$ esce dall'insieme.
+
+D: Che cosa distingue un monoide da un gruppo?
++ in un gruppo ogni elemento è invertibile
+- in un gruppo l'operazione è commutativa
+- in un monoide non c'è l'elemento neutro
+- in un monoide l'operazione non è associativa
+- un gruppo ha un numero finito di elementi
+= Monoide: associativa e neutro. Gruppo: in più tutti gli inversi. La più insidiosa è «in un gruppo l'operazione è commutativa»: la commutativa non fa parte della definizione di gruppo.
+
+D: In un gruppo qualunque, $(g * h)^{-1}$ è uguale a:
++ $h^{-1} * g^{-1}$
+- $g^{-1} * h^{-1}$
+- $g * h^{-1}$
+- $(h * g)^{-1}$
+- $h * g$
+= Per disfare «prima $h$, poi $g$» si disfa prima $g$. La più insidiosa è $g^{-1} * h^{-1}$: coincide con quella giusta solo nei gruppi commutativi.
+
+D: Quale di questi gruppi **non** è commutativo?
++ $S_3$
+- $(\mathbb{Z}, +)$
+- $\mathbb{Z}_{10}^\times$
+- $(\mathbb{Z}_{12}, +)$
+- $\mathbb{Z}_2 \times \mathbb{Z}_3$
+= In $S_3$ due scambi diversi composti nei due ordini danno due cicli diversi. Gli altri sono fatti con somme e prodotti di numeri. La più insidiosa è $\mathbb{Z}_2 \times \mathbb{Z}_3$: un prodotto di gruppi commutativi è commutativo.
+
+D: Quanti elementi ha il gruppo $\mathbb{Z}_{10}^\times$?
+N: 4
+= Le classi coprime con 10: 1, 3, 7, 9. È $\varphi(10)$.
+
+D: In $(\mathbb{Z}_{12}, +)$, quanto vale $5 \cdot \overline{4}$, in notazione additiva? Scrivi il rappresentante canonico.
+N: 8
+= $\overline{4}$ sommato cinque volte: $20 = 12 + 8$.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: è un'operazione?
+Di' se è un'operazione sull'insieme indicato: (a) la sottrazione sui numeri pari; (b) il prodotto sui numeri dispari; (c) la somma sui numeri dispari; (d) $a * b = a^b$ sui naturali positivi.
+::: soluzione
+(a) Sì: pari meno pari è pari. (b) Sì: dispari per dispari è dispari. (c) No: dispari più dispari è pari. (d) Sì: una potenza di naturali positivi è un naturale positivo. Non è però né commutativa ($2^3 \ne 3^2$) né associativa.
+:::
+
+::: esercizio base Riscaldamento: neutro e inversi
+Per $(\mathbb{Z}_8, +)$ scrivi il neutro e l'opposto di ogni elemento. Per $\mathbb{Z}_8^\times$ scrivi gli elementi, il neutro e l'inverso di ognuno.
+::: soluzione
+In $(\mathbb{Z}_8, +)$ il neutro è $\overline{0}$; gli opposti di 0, 1, 2, 3, 4, 5, 6, 7 sono 0, 7, 6, 5, 4, 3, 2, 1. $\mathbb{Z}_8^\times = \{\overline{1}, \overline{3}, \overline{5}, \overline{7}\}$, il neutro è $\overline{1}$, e ogni elemento è l'inverso di sé stesso: $9$, $25$ e $49$ sono congrui a 1 modulo 8.
+:::
+
+::: esercizio base Riscaldamento: semigruppo, monoide o gruppo
+Classifica: (a) i sottoinsiemi di $\{1, 2, 3\}$ con l'intersezione; (b) $(\mathbb{Q}, +)$; (c) gli interi pari con la somma; (d) gli interi pari con il prodotto.
+::: soluzione
+(a) Monoide: il neutro è $\{1, 2, 3\}$, ed è l'unico invertibile. (b) Gruppo. (c) Gruppo: è chiuso, contiene 0 e l'opposto di un pari è pari. (d) Semigruppo: il neutro del prodotto sarebbe 1, che non è pari.
+:::
+
+::: esercizio base Riscaldamento: la tabella di un gruppo
+Scrivi la tabella di $\mathbb{Z}_{10}^\times$ e controlla che in ogni riga ogni elemento compaia una volta.
+::: soluzione
+Righe, per 1, 3, 7, 9: `1 3 7 9`; `3 9 1 7`; `7 1 9 3`; `9 7 3 1`. Ogni riga contiene 1, 3, 7 e 9 una volta ciascuno.
+:::
+
+::: esercizio medio Un'operazione strana sugli interi
+Su $\mathbb{Z}$ considera $a * b = a + b + 1$. Dimostra che $(\mathbb{Z}, *)$ è un gruppo commutativo, e di' chi sono il neutro e l'inverso di $a$.
+::: soluzione
+**Operazione**: il risultato è un intero. **Associativa**: $(a * b) * c = a + b + 1 + c + 1 = a + b + c + 2$, e $a * (b * c) = a + b + c + 1 + 1$: uguali. **Commutativa**: $a + b + 1 = b + a + 1$. **Neutro**: serve $a + e + 1 = a$, quindi $e = -1$. **Inverso**: serve $a + x + 1 = -1$, quindi $x = -a - 2$. Controllato con un programma su un campione di interi. Il neutro non è 0: dipende dall'operazione.
+:::
+
+::: esercizio medio Il gruppo prodotto, a mano
+Elenca gli elementi di $\mathbb{Z}_2 \times \mathbb{Z}_3$ con la somma. Calcola $(\overline{1}, \overline{1}) + (\overline{1}, \overline{1})$ e l'opposto di $(\overline{1}, \overline{2})$.
+::: soluzione
+Sei elementi: $(0,0)$, $(0,1)$, $(0,2)$, $(1,0)$, $(1,1)$, $(1,2)$. $(1,1) + (1,1) = (0, 2)$: la prima componente è modulo 2. L'opposto di $(1,2)$ è $(1,1)$, perché $(1,2) + (1,1) = (2, 3) = (0, 0)$.
+:::
+
+::: esercizio esame Dallo stesso problema del 04/02/2025
+Nel gruppo $(X, *)$ dell'appello, con $(a, b) * (c, d) = (ac, ad + b)$ modulo 5: (a) controlla che $(1, 0)$ è neutro da tutti e due i lati; (b) trova l'inverso di un elemento generico $(a, b)$; (c) calcola $(2, 3)^4$.
+::: soluzione
+**(a)** $(a, b) * (1, 0) = (a, a \cdot 0 + b) = (a, b)$ e $(1, 0) * (a, b) = (a, 1 \cdot b + 0) = (a, b)$. **(b)** Serve $(a, b) * (c, d) = (1, 0)$: $ac = 1$, quindi $c = a^{-1}$; e $ad + b = 0$, quindi $d = -a^{-1} b$. L'inverso è $(a^{-1}, -a^{-1}b)$. Per $(2, 3)$: $a^{-1} = 3$ e $-3 \cdot 3 = -9 \equiv 1$, cioè $(3, 1)$, come sopra. **(c)** $(2, 3)^4 = (2, 3)^3 * (2, 3) = (3, 1) * (2, 3) = (6, 3 \cdot 3 + 1) = (1, 10) = (1, 0)$: il neutro.
+:::
+
+::: esercizio difficile Un gruppo in cui ogni elemento è inverso di sé stesso
+Dimostra che, se in un gruppo $G$ vale $g * g = e$ per ogni $g$, allora $G$ è commutativo.
+::: soluzione
+L'ipotesi dice che ogni elemento è l'inverso di sé stesso: $g^{-1} = g$. Prendo due elementi $g$ e $h$. Anche $g * h$ è un elemento del gruppo, quindi $(g * h)^{-1} = g * h$. Ma per la regola dell'inverso di un prodotto $(g * h)^{-1} = h^{-1} * g^{-1} = h * g$. Quindi $g * h = h * g$. Un esempio è $\mathbb{Z}_8^\times$, dove ogni elemento al quadrato dà 1.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è un'operazione su un insieme?
+Una funzione che a ogni coppia di elementi dell'insieme associa un elemento dello stesso insieme.
+:::
+
+::: domanda Che differenza c'è tra associativa e commutativa?
+Associativa: non importa dove si mettono le parentesi. Commutativa: non importa l'ordine dei due elementi. Una non implica l'altra.
+:::
+
+::: domanda Perché l'elemento neutro è unico?
+Se $e$ ed $e'$ sono neutri, $e * e'$ vale $e'$ perché $e$ è neutro e vale $e$ perché $e'$ è neutro.
+:::
+
+::: domanda Che cosa sono un semigruppo, un monoide e un gruppo?
+Un insieme con un'operazione associativa; in più con il neutro; in più con tutti gli elementi invertibili.
+:::
+
+::: domanda Come si ottiene un gruppo da un monoide?
+Tenendo solo gli elementi invertibili: così nascono $\mathbb{Q}^\times$, $\mathbb{Z}_N^\times$ e $S_n$.
+:::
+
+::: domanda Che cosa dice la legge di cancellazione, e perché vale in un gruppo?
+Da $g * h = g' * h$ segue $g = g'$. Vale perché si può moltiplicare per l'inverso di $h$, che in un gruppo esiste sempre.
+:::
+
+::: domanda Com'è fatto il gruppo prodotto?
+Gli elementi sono le coppie; si opera componente per componente; il neutro è la coppia dei neutri.
+:::
+
+## Glossario
+
+```glossario
+Operazione binaria | Funzione che a due elementi di un insieme ne associa un terzo dello stesso insieme.
+Sottoinsieme chiuso | Sottoinsieme da cui non si esce operando tra i suoi elementi.
+Associativa | Proprietà per cui le parentesi non contano.
+Commutativa | Proprietà per cui l'ordine dei due elementi non conta.
+Elemento neutro | Elemento che operato con qualunque altro lo lascia com'è.
+Elemento invertibile | Elemento per cui ne esiste un altro che, operato con lui, dà il neutro.
+Semigruppo | Insieme con un'operazione associativa.
+Monoide | Semigruppo con elemento neutro.
+Gruppo | Monoide in cui ogni elemento è invertibile.
+Gruppo abeliano | Gruppo con operazione commutativa.
+Legge di cancellazione | In un gruppo, da gh = g'h segue g = g'.
+Gruppo prodotto | L'insieme delle coppie di due gruppi, con l'operazione componente per componente.
+```
+
+## Checklist
+
+```checklist
+- So dire che cos'è un'operazione e controllare se una regola lo è su un insieme dato.
+- So dire che cosa vuol dire che un sottoinsieme è chiuso.
+- So distinguere associativa e commutativa, con un esempio per ciascun caso.
+- So dimostrare che il neutro è unico e che l'inverso è unico.
+- So la regola dell'inverso di un prodotto.
+- So le definizioni di semigruppo, monoide e gruppo, con un esempio per ognuno.
+- So controllare in quattro passi che una coppia è un gruppo.
+- So elencare i gruppi principali del corso e dire quali sono commutativi.
+- So passare dalla notazione moltiplicativa a quella additiva.
+- So dimostrare la legge di cancellazione.
+- So calcolare nel gruppo prodotto.
+- So fare prodotti, potenze e inversi in un gruppo dato con una formula.
+```
+
+## Fonti
+
+- A. Mori, *Lezioni di Matematica Discreta* (testo del canale B), cap. 2 «Funzioni», sezione «Operazioni», pp. 29–34: definizioni 2.26, 2.28, 2.30, 2.32 e 2.34, proposizioni 2.29, 2.31, 2.33 e 2.35, con gli esempi; cap. 6 «Gruppi», sezione «Definizione ed esempi», pp. 107–111: definizione 6.1, note 6.2–6.5 e 6.7, esempi, proposizione 6.6, gruppo prodotto.
+- Diario delle lezioni del canale B 2025/26, lezione 19 (18/11/2025): «Insiemi con operazioni. Definizione di gruppo (commutativo). Esempi e prime proprietà».
+- Appello di Matematica Discreta del 04/02/2025, problema 2, versione A, con la soluzione ufficiale.
+- I conti degli esempi e degli esercizi sono ricontrollati con un programma.
 
 
 ---
@@ -47668,7 +53958,7 @@ D: Quale affermazione è vera per **ogni** $z \in \C$?
 - $z^2 = |z|^2$.
 - $|z| = \operatorname{Re}(z) + \operatorname{Im}(z)$.
 - $\bar z = -z$.
-= «Per ogni $z \in \C$» vuol dire che la frase deve valere qualunque numero complesso tu scelga. Scrivi $z = a + bi$, quindi $\bar z = a - bi$. La somma $z + \bar z$ fa $2a$: le parti immaginarie si cancellano e resta un numero reale. Per scartare le altre basta un esempio in cui falliscono. Con $z = i$ la differenza $z - \bar z$ vale $2i$, che non è reale. Sempre con $z = i$, il quadrato è $-1$ mentre il quadrato del modulo è $1$. Con $z = 1 + i$ il modulo è $\sqrt 2$, non $1 + 1 = 2$. Con $z = 1$ il coniugato è $1$, non $-1$. La più tentatrice è la seconda: nella differenza si cancellano le parti reali, e resta un immaginario puro.
+= «Per ogni $z \in \C$» vuol dire che la frase deve valere qualunque numero complesso tu scelga. Scrivi $z = a + bi$, quindi $\bar z = a - bi$. La somma $z + \bar z$ fa $2a$: le parti immaginarie si cancellano e resta un numero reale. Per scartare le altre basta un esempio in cui falliscono. Con $z = i$ la differenza $z - \bar z$ vale $2i$, che non è reale. Sempre con $z = i$, il quadrato è $-1$ mentre il quadrato del modulo è $1$. Con $z = 1 + i$ il modulo è $\sqrt 2$, non $1 + 1 = 2$. Con $z = 1$ il coniugato è $1$, non $-1$. La più tentatrice è «$z - \bar z$ è un numero reale»: nella differenza si cancellano le parti reali, e resta un immaginario puro.
 
 D: L'inverso di $3 - 4i$ è:
 + $\frac{3 + 4i}{25}$
@@ -49166,7 +55456,7 @@ D: Appello del 15/01/2026, domanda 5. Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, a
 - $-\frac{9\sqrt 3}2 + \frac 92 i$
 + $i$
 - $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$
-= $z = e^{-i\pi/6}$, quindi $z^9 = e^{-3\pi i/2} = e^{i\pi/2} = i$: la risposta (d) della soluzione ufficiale. La risposta più insidiosa è l'ultima, che eleva alla nona le due parti separatamente: per i complessi non si fa.
+= $z = e^{-i\pi/6}$, quindi $z^9 = e^{-3\pi i/2} = e^{i\pi/2} = i$: la risposta (d) della soluzione ufficiale. La risposta più insidiosa è $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$, che eleva alla nona le due parti separatamente: per i complessi non si fa.
 
 D: Appello del 16/01/2025, domanda 1. Dato $z = 2\cos\frac\pi4 + 2i\sin\frac\pi4$, allora $-3iz$ in coordinate polari è uguale a:
 - $-6i\cos\frac\pi4 - 6i\sin\frac\pi4$
@@ -49222,7 +55512,7 @@ D: Quale dei seguenti numeri è una radice terza di $8i$?
 - $2e^{i\pi/3}$
 - $8e^{i\pi/6}$
 - $\frac 83\,i$
-= Una radice terza di $8i$ è un numero che elevato al cubo dà $8i$. In forma polare $8i = 8e^{i\pi/2}$: le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi6$, $\frac\pi6 + \frac{2\pi}3 = \frac{5\pi}6$ e $\frac{5\pi}6 + \frac{2\pi}3 = \frac{3\pi}2$. L'ultima è $2e^{3\pi i/2} = -2i$. Controllo: $(-2i)^3 = -8i^3 = -8 \cdot (-i) = 8i$. La risposta più insidiosa è $2i$, che sembra «la radice di $8i$», ma $(2i)^3 = 8i^3 = -8i$: il segno è sbagliato. $\left(2e^{i\pi/3}\right)^3 = 8e^{i\pi} = -8$; $8e^{i\pi/6}$ e $\frac 83 i$ hanno la distanza sbagliata. Simile all'appello del 02/09/2025, domanda 2.
+= Una radice terza di $8i$ è un numero che elevato al cubo dà $8i$. In forma polare $8i = 8e^{i\pi/2}$: le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi6$, $\frac\pi6 + \frac{2\pi}3 = \frac{5\pi}6$ e $\frac{5\pi}6 + \frac{2\pi}3 = \frac{3\pi}2$. L'ultimo angolo dà $2e^{3\pi i/2} = -2i$. Controllo: $(-2i)^3 = -8i^3 = -8 \cdot (-i) = 8i$. La risposta più insidiosa è $2i$, che sembra «la radice di $8i$», ma $(2i)^3 = 8i^3 = -8i$: il segno è sbagliato. $\left(2e^{i\pi/3}\right)^3 = 8e^{i\pi} = -8$; $8e^{i\pi/6}$ e $\frac 83 i$ hanno la distanza sbagliata. Simile all'appello del 02/09/2025, domanda 2.
 
 D: Quale dei seguenti numeri **non** è soluzione di $z^6 = 1$?
 + $e^{i\pi/6}$
@@ -50493,7 +56783,7 @@ D: Appello del 03/07/2026, domanda 7. Quale dei seguenti è una radice del polin
 - $z = 1 + i$
 - $z = 1$
 - $z^3 + 2z^2 + z + 2 = 0$
-= Raccogliendo, $p(z) = (z^2 + 1)(z + 2)$: radici $-2$, $i$, $-i$. È la (b) della soluzione ufficiale; controllo $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è l'ultima, che non è un numero ma l'equazione stessa.
+= Raccogliendo, $p(z) = (z^2 + 1)(z + 2)$: radici $-2$, $i$, $-i$. È la (b) della soluzione ufficiale; controllo $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è $z^3 + 2z^2 + z + 2 = 0$, che non è un numero ma l'equazione stessa.
 
 D: Quale dei seguenti è una radice di $p(z) = z^4 + 10z^2 + 9$?
 + $z = 3i$
@@ -50529,7 +56819,7 @@ D: Quoziente e resto della divisione di $x^3 + 2x^2 - x + 3$ per $x^2 + 1$ sono:
 - $q(x) = x + 2$ e $r(x) = -2x + 5$
 - $q(x) = x$ e $r(x) = 2x^2 - 2x + 3$
 - $q(x) = x + 2$ e $r(x) = -2x - 1$
-= Primo passo: $x^3$ diviso $x^2$ fa $x$; togliendo $x(x^2 + 1) = x^3 + x$ resta $2x^2 - 2x + 3$. Secondo passo: $2x^2$ diviso $x^2$ fa 2; togliendo $2(x^2 + 1) = 2x^2 + 2$ resta $-2x + 1$, di grado 1, più basso di 2: fine. La risposta più insidiosa è la quarta: $x \cdot (x^2 + 1) + (2x^2 - 2x + 3)$ ridà davvero il dividendo, ma quel «resto» ha grado 2, uguale al divisore, quindi la divisione non è finita. Le altre hanno sbagliato un segno nelle sottrazioni.
+= Primo passo: $x^3$ diviso $x^2$ fa $x$; togliendo $x(x^2 + 1) = x^3 + x$ resta $2x^2 - 2x + 3$. Secondo passo: $2x^2$ diviso $x^2$ fa 2; togliendo $2(x^2 + 1) = 2x^2 + 2$ resta $-2x + 1$, di grado 1, più basso di 2: fine. La risposta più insidiosa è «$q(x) = x$ e $r(x) = 2x^2 - 2x + 3$»: $x \cdot (x^2 + 1) + (2x^2 - 2x + 3)$ ridà davvero il dividendo, ma quel «resto» ha grado 2, uguale al divisore, quindi la divisione non è finita. Le altre hanno sbagliato un segno nelle sottrazioni.
 
 D: Un polinomio a coefficienti **reali** di grado $4$ ha le radici $1 + i$ e $2i$. Quali sono le altre due radici?
 + $1 - i$ e $-2i$
@@ -50553,7 +56843,7 @@ D: Quale di questi polinomi appartiene a $\R_2[x]$?
 - $ix + 1$
 - $(x - 1)(x^2 + 1)$
 - $\frac 1x + x$
-= $\R_2[x]$ sono i polinomi con numeri reali e grado al massimo 2. La prima risposta sembra di grado 2, ma svolgendo diventa $2x + 1$, di grado 1: va bene. $x^3 - 1$ e $(x - 1)(x^2 + 1)$ hanno grado 3. $ix + 1$ ha un numero non reale, quindi sta in $\C_1[x]$ ma non in $\R_2[x]$. $\frac 1x + x$ non è nemmeno un polinomio, perché divide per la lettera. Lo spazio $\R_2[x]$ compare in molte domande sui sottospazi, per esempio negli appelli del 08/02/2024 e del 05/02/2026 (domanda 2).
+= $\R_2[x]$ sono i polinomi con numeri reali e grado al massimo 2. $(x + 1)^2 - x^2$ sembra di grado 2, ma svolgendo diventa $2x + 1$, di grado 1: va bene. $x^3 - 1$ e $(x - 1)(x^2 + 1)$ hanno grado 3. $ix + 1$ ha un numero non reale, quindi sta in $\C_1[x]$ ma non in $\R_2[x]$. $\frac 1x + x$ non è nemmeno un polinomio, perché divide per la lettera. Lo spazio $\R_2[x]$ compare in molte domande sui sottospazi, per esempio negli appelli del 08/02/2024 e del 05/02/2026 (domanda 2).
 
 D: Le radici complesse di $z^2 - 2z + 5$ sono:
 + $1 \pm 2i$
@@ -50569,7 +56859,7 @@ D: Il polinomio $x^2 - (1 + i)x + i$ ha la radice $i$. Quale affermazione è ver
 - $i$ è una radice doppia.
 - Ha tre radici, contate con molteplicità.
 - Non ha altre radici oltre a $i$.
-= Il prodotto delle due radici è il termine noto diviso il primo coefficiente, cioè $i$. Una radice è $i$, quindi l'altra è 1; infatti $(x - i)(x - 1) = x^2 - (1 + i)x + i$. La risposta più insidiosa è la seconda: la Proposizione 4.11 vale solo con numeri reali, e qui il coefficiente $1 + i$ non lo è. Infatti in $-i$ il polinomio vale $-2 + 2i$, non zero. Il grado è 2, quindi le radici contate con molteplicità sono esattamente due, non tre e non una. Anche nel problema 11 dell'appello del 03/06/2026 un polinomio a coefficienti complessi aveva $i$ e $-i$ come radici con molteplicità diverse.
+= Il prodotto delle due radici è il termine noto diviso il primo coefficiente, cioè $i$. Una radice è $i$, quindi l'altra è 1; infatti $(x - i)(x - 1) = x^2 - (1 + i)x + i$. La risposta più insidiosa è «Anche $-i$ è radice, per la Proposizione 4.11»: la Proposizione 4.11 vale solo con numeri reali, e qui il coefficiente $1 + i$ non lo è. Infatti in $-i$ il polinomio vale $-2 + 2i$, non zero. Il grado è 2, quindi le radici contate con molteplicità sono esattamente due, non tre e non una. Anche nel problema 11 dell'appello del 03/06/2026 un polinomio a coefficienti complessi aveva $i$ e $-i$ come radici con molteplicità diverse.
 ```
 
 ## Esercizi
@@ -52249,7 +58539,7 @@ D: Appello del 07/02/2025, domanda 2. Identificate la risposta corretta alla dom
 - No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.
 - No, in quanto $\C$ e $\R$ sono campi diversi.
 + Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$, $\cdot$ su $\R$ sono le stesse che in $\C$.
-= Sommando due complessi, o moltiplicando un complesso per un reale, si resta tra i complessi, e le regole sono quelle dei conti tra complessi: la risposta è sì, con il motivo della (e), come nella soluzione ufficiale. La risposta più insidiosa è la (b): dice sì, ma con un motivo falso, perché $\Q$ non è uno spazio vettoriale su $\R$ ($\sqrt 2 \cdot 1$ non è razionale). La (a) e la (d) dicono cose vere che non rispondono alla domanda; la (c) è falsa, perché $i \cdot 1 = i$ non è reale.
+= Sommando due complessi, o moltiplicando un complesso per un reale, si resta tra i complessi, e le regole sono quelle dei conti tra complessi: la risposta è sì, con il motivo che $\R$ sta dentro $\C$ con le stesse operazioni: è la (e) della soluzione ufficiale. La risposta più insidiosa è «Sì, perché ogni campo è uno spazio vettoriale su $\R$»: dice sì, ma con un motivo falso, perché $\Q$ non è uno spazio vettoriale su $\R$ ($\sqrt 2 \cdot 1$ non è razionale). Le due risposte «No» che parlano di $\C$ su sé stesso e di campi diversi dicono cose vere che non rispondono alla domanda; quella con «$\R$ è uno spazio vettoriale su $\C$» è falsa, perché $i \cdot 1 = i$ non è reale.
 
 D: Appello dell'08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(0) = 0\}$
@@ -52257,7 +58547,7 @@ D: Appello dell'08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sott
 - $\{ax^2 + bx + c \mid a = 2c,\ b = 0\}$
 + $\{(1 + t)x^2 + tx \mid t \in \R\}$
 - $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$
-= «Sottospazio» vuol dire un pezzo di $\R_2[x]$ che con le stesse operazioni è uno spazio vettoriale (lezione L06): bastano i tre controlli. Nella (d) il polinomio nullo manca, perché servirebbero insieme $1 + t = 0$ e $t = 0$; anche la somma esce, perché il coefficiente di $x^2$ diventa $2 + t + s$. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (b), che sembra strana ma con $s = t = 0$ dà il polinomio nullo, e la somma di due suoi elementi ha ancora la stessa forma.
+= «Sottospazio» vuol dire un pezzo di $\R_2[x]$ che con le stesse operazioni è uno spazio vettoriale (lezione L06): bastano i tre controlli. In $\{(1 + t)x^2 + tx \mid t \in \R\}$ il polinomio nullo manca, perché servirebbero insieme $1 + t = 0$ e $t = 0$; anche la somma esce, perché il coefficiente di $x^2$ diventa $2 + t + s$. È la (d) della soluzione ufficiale. La risposta più insidiosa è $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$, che sembra strana ma con $s = t = 0$ dà il polinomio nullo, e la somma di due suoi elementi ha ancora la stessa forma.
 
 D: Appello del 07/09/2026, domanda 6. Quale dei seguenti insiemi è un sottospazio di $\R_2[x]$?
 + $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(-1)\}$
@@ -52265,7 +58555,7 @@ D: Appello del 07/09/2026, domanda 6. Quale dei seguenti insiemi è un sottospaz
 - $\{tx^2 + sx + 1 \mid s, t \in \R\}$
 - $\{p(x) \in \R_2[x] \mid p(0) = 1\}$
 - $\{ax^2 + bx + c \mid a = 2c,\ b = 2\}$
-= Le ultime quattro non contengono il polinomio nullo: la (b) come nell'appello dell'08/02/2024, la (c) e la (d) perché il termine noto è 1, la (e) perché il coefficiente di $x$ è 2. Nella (a) il polinomio nullo c'è, e se due polinomi valgono 0 in 1 e in $-1$, lì valgono 0 anche la somma e i multipli. È la (a) del foglio d'esame; nel file delle soluzioni la domanda è la 3, con le risposte in un altro ordine. La risposta più insidiosa è la (c): due parametri liberi fanno pensare a uno spazio, ma il termine noto fisso esclude lo zero.
+= Quattro insiemi non contengono il polinomio nullo: quello con $(1 + t)x^2 + tx$ come nell'appello dell'08/02/2024, quelli con $tx^2 + sx + 1$ e con $p(0) = 1$ perché il termine noto è 1, quello con $b = 2$ perché il coefficiente di $x$ è 2. Nell'insieme con $p(1) = 0 = p(-1)$ il polinomio nullo c'è, e se due polinomi valgono 0 in 1 e in $-1$, lì valgono 0 anche la somma e i multipli. È la (a) del foglio d'esame; nel file delle soluzioni la domanda è la 3, con le risposte in un altro ordine. La risposta più insidiosa è $\{tx^2 + sx + 1 \mid s, t \in \R\}$: due parametri liberi fanno pensare a uno spazio, ma il termine noto fisso esclude lo zero.
 
 D: Appello del 05/02/2026, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(1) = p(2)\}$
@@ -52273,7 +58563,7 @@ D: Appello del 05/02/2026, domanda 2. Quale dei seguenti insiemi non è un sotto
 + $\{x^2 + tx \mid t \in \R\}$
 - $\{ax^2 + bx + c \mid a + b - c = 0\}$
 - $\R_1[x]^\perp$
-= Nella (c) tutti i polinomi hanno il coefficiente di $x^2$ uguale a 1, quindi il polinomio nullo manca: è la (c) della soluzione ufficiale. Lo $\Span$ della (b) (lezione L06) e il complemento ortogonale della (e) (lezione L19) sono sempre sottospazi. La risposta più insidiosa è la (a): la condizione non è «uguale a zero», ma si riscrive $p(1) - p(2) = 0$, e il polinomio nullo la rispetta.
+= In $\{x^2 + tx \mid t \in \R\}$ tutti i polinomi hanno il coefficiente di $x^2$ uguale a 1, quindi il polinomio nullo manca: è la (c) della soluzione ufficiale. Uno $\Span$ (lezione L06) e un complemento ortogonale come $\R_1[x]^\perp$ (lezione L19) sono sempre sottospazi. La risposta più insidiosa è quella con $p(1) = p(2)$: la condizione non è «uguale a zero», ma si riscrive $p(1) - p(2) = 0$, e il polinomio nullo la rispetta.
 
 D: Con la somma e il prodotto per scalare usuali (coordinata per coordinata), $\R^2$ è uno spazio vettoriale sul campo $\C$?
 - Sì, perché $\R \subset \C$.
@@ -53639,7 +59929,7 @@ D: Appello del 15/01/2026, domanda 7. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) =
 - $U = \Span(e, f)$
 + $U = \Span(c, e, f)$
 - $U = \Span(c, d, e, f)$
-= Con $p(x) = qx^3 + rx^2 + sx + t$ la condizione $p(1) = p(-1)$ diventa $q + s = 0$. Quindi $U$ è fatto dei polinomi $q(x^3 - x) + rx^2 + t$, cioè $U = \Span(x^3 - x,\ x^2,\ 1)$. Anche $\Span(c, e, f)$ è questo, perché $x^2 = \frac{e + f}2$ e $1 = \frac{f - e}2$: è la (d) della soluzione ufficiale. (a), (b) ed (e) escono da $U$, perché $a(1) = 0$ ma $a(-1) = -2$, e $d(1) = 2$ ma $d(-1) = -2$. La risposta più insidiosa è la (c): $e$ e $f$ stanno in $U$, ma le loro combinazioni hanno grado al massimo 2 e manca $x^3 - x$.
+= Con $p(x) = qx^3 + rx^2 + sx + t$ la condizione $p(1) = p(-1)$ diventa $q + s = 0$. Quindi $U$ è fatto dei polinomi $q(x^3 - x) + rx^2 + t$, cioè $U = \Span(x^3 - x,\ x^2,\ 1)$. Anche $\Span(c, e, f)$ è questo, perché $x^2 = \frac{e + f}2$ e $1 = \frac{f - e}2$: è la (d) della soluzione ufficiale. Le risposte che contengono $a$ oppure $d$ escono da $U$, perché $a(1) = 0$ ma $a(-1) = -2$, e $d(1) = 2$ ma $d(-1) = -2$. La risposta più insidiosa è $\Span(e, f)$: $e$ e $f$ stanno in $U$, ma le loro combinazioni hanno grado al massimo 2 e manca $x^3 - x$.
 
 D: Appello del 24/01/2024, domanda 1. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) = x + 2$, $c(x) = 2x^2 - 2$, $d(x) = x^2 - x$, $e(x) = 2x^3 + 1$, $f(x) = x^3 - x^2$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale:
 - $U = \Span(a, c)$
@@ -53647,7 +59937,7 @@ D: Appello del 24/01/2024, domanda 1. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) =
 - $U = \Span(c, d, e, f)$
 - $U = \Span(b, e, f)$
 - $U = \Span(a, c, d)$
-= È la (b) della soluzione ufficiale; lo svolgimento completo è in «Verso l'esame». La (c) e la (d) contengono $e$ o $b$, che in 1 valgono 3. La (a) e la (e) hanno solo generatori di grado al massimo 2, mentre $U$ contiene $x^3 - 1$. La risposta più insidiosa è la (e): $a$, $c$, $d$ stanno tutti in $U$, ma non bastano per i polinomi di grado 3.
+= È la (b) della soluzione ufficiale; lo svolgimento completo è in «Verso l'esame». Le risposte che contengono $e$ oppure $b$ escono da $U$, perché in 1 valgono 3. $\Span(a, c)$ e $\Span(a, c, d)$ hanno solo generatori di grado al massimo 2, mentre $U$ contiene $x^3 - 1$. La risposta più insidiosa è $\Span(a, c, d)$: $a$, $c$, $d$ stanno tutti in $U$, ma non bastano per i polinomi di grado 3.
 
 D: Appello del 03/06/2025, domanda 2. Quale dei seguenti insiemi è un sottospazio vettoriale di $\R^3$?
 - $\{(x, y, z) \in \R^3 \mid x^2 - 2x + 1 = 0\}$
@@ -53655,7 +59945,7 @@ D: Appello del 03/06/2025, domanda 2. Quale dei seguenti insiemi è un sottospaz
 - $\{(x, y, z) \in \R^3 \mid -x + 7y + z = 5\}$
 + $\{(x, y, z) \in \R^3 \mid x + \frac y2 - 5\pi z = 0\}$
 - $\{(x, y, z) \in \R^3 \mid x + 3iy + 5z = 0\}$
-= La (d) è un'equazione lineare a coefficienti reali senza termine noto: è la risposta della soluzione ufficiale. La (a) è $(x - 1)^2 = 0$, cioè $x = 1$; la (b) e la (c) hanno un termine noto diverso da zero: nessuna delle tre contiene l'origine. La risposta più insidiosa è la (e), che la soluzione scarta perché ha un coefficiente non reale. A rigore, per punti reali equivale a $x + 5z = 0$ e $y = 0$, una retta per l'origine; ma la risposta attesa è la (d).
+= $x + \frac y2 - 5\pi z = 0$ è un'equazione lineare a coefficienti reali senza termine noto: è la risposta della soluzione ufficiale. $x^2 - 2x + 1 = 0$ è $(x - 1)^2 = 0$, cioè $x = 1$; le equazioni con 7 e con 5 hanno un termine noto diverso da zero: nessuna delle tre contiene l'origine. La risposta più insidiosa è quella con $3iy$, che la soluzione scarta perché ha un coefficiente non reale. A rigore, per punti reali equivale a $x + 5z = 0$ e $y = 0$, una retta per l'origine; ma la risposta attesa resta quella con coefficienti reali e senza termine noto.
 
 D: Quale di questi insiemi **non** è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(2) = 0\}$
@@ -53671,7 +59961,7 @@ D: Quale di questi insiemi è un sottospazio vettoriale di $\R^3$?
 - $\{(x, y, z) \mid xyz = 0\}$
 - $\{(x, y, z) \mid x \ge 0\}$
 - $\{(x, y, z) \mid x = y^2\}$
-= La prima è un'equazione con le lettere alla prima potenza e senza termine noto: se due punti la rispettano, la rispettano anche la somma e i multipli. Per le altre basta un esempio che non funziona: l'origine non rispetta $x + y + z = 1$; $(1, 1, 0)$ e $(0, 0, 1)$ hanno prodotto delle coordinate zero, ma la loro somma $(1, 1, 1)$ no; $(1, 0, 0)$ ha $x \ge 0$, ma moltiplicato per $-1$ no. La risposta più insidiosa è $x = y^2$, che contiene l'origine: però $(1, 1, 0)$ la rispetta e il suo doppio $(2, 2, 0)$ no, perché $2$ non è $4$. Simile all'appello del 03/06/2025, domanda 2.
+= $x - 2y + 3z = 0$ è un'equazione con le lettere alla prima potenza e senza termine noto: se due punti la rispettano, la rispettano anche la somma e i multipli. Per le altre basta un esempio che non funziona: l'origine non rispetta $x + y + z = 1$; $(1, 1, 0)$ e $(0, 0, 1)$ hanno prodotto delle coordinate zero, ma la loro somma $(1, 1, 1)$ no; $(1, 0, 0)$ ha $x \ge 0$, ma moltiplicato per $-1$ no. La risposta più insidiosa è $x = y^2$, che contiene l'origine: però $(1, 1, 0)$ la rispetta e il suo doppio $(2, 2, 0)$ no, perché $2$ non è $4$. Simile all'appello del 03/06/2025, domanda 2.
 
 D: La matrice $\begin{pmatrix} 0 & 2 \\ -2 & 0 \end{pmatrix}$ è:
 + antisimmetrica, e di nessuna delle altre quattro classi
@@ -53703,7 +59993,7 @@ D: L'insieme delle matrici $A \in M(2, \R)$ con $a_{11} = 1$ è:
 + non un sottospazio: per esempio non contiene la matrice nulla
 - un sottospazio, perché è chiuso rispetto al prodotto per scalare
 - uguale a tutto $M(2, \R)$
-= Si fa il controllo dello zero: la matrice nulla ha la prima casella uguale a 0, non a 1, quindi non c'è. La risposta più insidiosa è la prima: l'equazione $a_{11} = 1$ è lineare, ma ha un termine noto diverso da zero, e allora lo zero manca. Contenere l'identità non basta; e l'insieme non è nemmeno chiuso rispetto ai multipli, perché $2A$ ha la prima casella uguale a 2. Simile all'appello del 10/07/2024, domanda 2 ($O(2)$ non è un sottospazio perché non contiene la matrice nulla).
+= Si fa il controllo dello zero: la matrice nulla ha la prima casella uguale a 0, non a 1, quindi non c'è. La risposta più insidiosa è «un sottospazio, perché è definito da un'equazione lineare»: l'equazione $a_{11} = 1$ è lineare, ma ha un termine noto diverso da zero, e allora lo zero manca. Contenere l'identità non basta; e l'insieme non è nemmeno chiuso rispetto ai multipli, perché $2A$ ha la prima casella uguale a 2. Simile all'appello del 10/07/2024, domanda 2 ($O(2)$ non è un sottospazio perché non contiene la matrice nulla).
 
 D: Per quale valore di $k$ il vettore $(1, k, 3)$ appartiene a $\Span\big((1, 0, 1),\ (0, 1, 1)\big)$?
 N: 2
@@ -54684,7 +60974,7 @@ D: Appello del 16/01/2025, domanda 2. I polinomi $1$, $x$, $x^2$ e $1 + 2x + x^2
 - La domanda è mal posta: i polinomi non sono vettori.
 + Sono generatori, ma non linearmente indipendenti.
 - Sono sia generatori che linearmente indipendenti.
-= Quattro polinomi in uno spazio di dimensione 3 sono per forza dipendenti, e infatti $1 + 2x + x^2$ è combinazione degli altri tre. I primi tre sono la base canonica, quindi generano. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (c): i polinomi sono vettori dello spazio $\R_2[x]$ (lezione L05).
+= Quattro polinomi in uno spazio di dimensione 3 sono per forza dipendenti, e infatti $1 + 2x + x^2$ è combinazione degli altri tre. I primi tre sono la base canonica, quindi generano. È la (d) della soluzione ufficiale. La risposta più insidiosa è «la domanda è mal posta»: i polinomi sono vettori dello spazio $\R_2[x]$ (lezione L05).
 
 D: Appello del 15/01/2026, domanda 4. La dimensione dello spazio $S(3)$ delle matrici $3 \times 3$ simmetriche è:
 - nove
@@ -54716,7 +61006,7 @@ D: Appello del 07/09/2026, domanda 2. Siano $A = \begin{pmatrix} 0 & 1 \\ 1 & 0 
 + $\{A, B, E, F\}$
 - $\{B, C, D, E, F\}$
 - $\{B, C, F\}$
-= Le matrici $2 \times 2$ hanno dimensione 4, quindi restano solo la (b) e la (c). Nella (b) $C + D = A$: dipendenti. Nella (c) la combinazione $x_1 A + x_2 B + x_3 E + x_4 F$ è nulla solo con tutti i coefficienti zero, quindi per il Teorema 7.12 è una base: è la (c) della soluzione ufficiale. La risposta più insidiosa è la (b), che ha il numero giusto di matrici.
+= Le matrici $2 \times 2$ hanno dimensione 4, quindi restano solo $\{A, C, D, E\}$ e $\{A, B, E, F\}$. Nel primo $C + D = A$: dipendenti. Nel secondo la combinazione $x_1 A + x_2 B + x_3 E + x_4 F$ è nulla solo con tutti i coefficienti zero, quindi per il Teorema 7.12 è una base: è la (c) della soluzione ufficiale. La risposta più insidiosa è $\{A, C, D, E\}$, che ha il numero giusto di matrici.
 
 D: Appello del 15/01/2026, domanda 3. Dato uno spazio vettoriale $V$ e vettori $v_1, v_2, v_3 \in V$, sia $X = \Span(v_1, v_2, v_3)$. Quale delle seguenti affermazioni è vera?
 - $\dim X = 3$
@@ -54724,7 +61014,7 @@ D: Appello del 15/01/2026, domanda 3. Dato uno spazio vettoriale $V$ e vettori $
 - $\dim X \ge 3$
 + $\dim X \le 3$
 - $\dim X$ non è ben definito: $X$ non è necessariamente uno spazio vettoriale
-= Togliendo i vettori di troppo da $v_1, v_2, v_3$ resta una base di $X$ con al massimo 3 vettori. È la (d) della soluzione ufficiale. La risposta più insidiosa è la (a): vale solo se i tre vettori sono indipendenti, e con $v_1 = v_2 = v_3$ diverso da zero $X$ è una retta. La (e) è falsa per la Proposizione 6.7, la (b) confronta un numero con un insieme.
+= Togliendo i vettori di troppo da $v_1, v_2, v_3$ resta una base di $X$ con al massimo 3 vettori. È la (d) della soluzione ufficiale. La risposta più insidiosa è $\dim X = 3$: vale solo se i tre vettori sono indipendenti, e con $v_1 = v_2 = v_3$ diverso da zero $X$ è una retta. «Non è ben definito» è falsa per la Proposizione 6.7, e $\dim X = \{v_1, v_2, v_3\}$ confronta un numero con un insieme.
 
 D: I vettori $(1, 0, 1)$, $(0, 1, 1)$, $(1, 1, 2)$, $(0, 0, 1)$ di $\R^3$ sono generatori e/o linearmente indipendenti?
 - Sono linearmente indipendenti, ma non generatori.
@@ -56689,7 +62979,7 @@ D: Appello del 10/07/2025, domanda 9. Data la matrice $A = \begin{pmatrix} 2 & 1
 - non si può calcolare, poiché $A$ non è una matrice quadrata
 - 6
 - 0
-= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata, e ogni casella diagonale è una riga di $A$ per sé stessa: $4 + 1 = 5$, poi $1$, poi $1$. La traccia è 7: è la (a) della soluzione ufficiale. La risposta più insidiosa è la (c): a non essere quadrata è $A$, non il prodotto.
+= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata, e ogni casella diagonale è una riga di $A$ per sé stessa: $4 + 1 = 5$, poi $1$, poi $1$. La traccia è 7: è la (a) della soluzione ufficiale. La risposta più insidiosa è «non si può calcolare»: a non essere quadrata è $A$, non il prodotto.
 
 D: Siano $A = \begin{pmatrix} 1 & 0 & 0 \\ 1 & 1 & 0 \\ 1 & 1 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & -1 & 1 \end{pmatrix}$. Quale identità vale?
 + $AB = BA$
@@ -56737,7 +63027,7 @@ D: $A$ è una matrice $2 \times 3$ e $B$ è una matrice $3 \times 4$. Quale affe
 - $AB$ è una matrice $3 \times 3$.
 - $AB$ non è definito, $BA$ è una matrice $4 \times 3$.
 - $AB$ è $2 \times 4$ e $BA$ è $4 \times 2$.
-= La domanda chiede quali prodotti si possono fare e di che taglia vengono. Si scrivono le due taglie una accanto all'altra. Per $AB$: $(2 \times 3) \cdot (3 \times 4)$. I numeri interni sono 3 e 3, quindi il prodotto esiste. I numeri esterni sono 2 e 4, quindi è una matrice $2 \times 4$. Per $BA$: $(3 \times 4) \cdot (2 \times 3)$. I numeri interni sono 4 e 2: sono diversi, quindi $BA$ non esiste. «Non è definito» vuol dire proprio «non esiste». L'ultima risposta è la più tentatrice, perché la taglia di $AB$ è giusta: ma sbaglia su $BA$.
+= La domanda chiede quali prodotti si possono fare e di che taglia vengono. Si scrivono le due taglie una accanto all'altra. Per $AB$: $(2 \times 3) \cdot (3 \times 4)$. I numeri interni sono 3 e 3, quindi il prodotto esiste. I numeri esterni sono 2 e 4, quindi è una matrice $2 \times 4$. Per $BA$: $(3 \times 4) \cdot (2 \times 3)$. I numeri interni sono 4 e 2: sono diversi, quindi $BA$ non esiste. «Non è definito» vuol dire proprio «non esiste». La risposta «$AB$ è $2 \times 4$ e $BA$ è $4 \times 2$» è la più tentatrice, perché la taglia di $AB$ è giusta: ma sbaglia su $BA$.
 
 D: Per matrici $A$ e $B$ per cui il prodotto $AB$ è definito, ${}^t(AB)$ è uguale a:
 + ${}^tB\,{}^tA$
@@ -58143,7 +64433,7 @@ D: Quale di queste affermazioni è **falsa** per matrici quadrate reali?
 - $\det(I_n) = 1$.
 - Se una colonna di $A$ è nulla, allora $\det A = 0$.
 - $\det(-A) = \det A$ per ogni $A \in M(2)$.
-= Basta un esempio: con $A = I_2$ e $B = -I_2$ la somma è la matrice nulla, con determinante 0, mentre $\det A + \det B = 1 + 1 = 2$. Quindi il determinante non si spezza sulle somme. Le altre sono vere: la trasposta ha lo stesso determinante (Proposizione 9.5), l'identità ha determinante 1 (Definizione 9.4 con la Proposizione 9.3), una colonna di zeri dà zero (Proposizione 9.10). La più insidiosa è l'ultima, che sembra falsa: ma per le $2 \times 2$ il $-1$ esce due volte, e $(-1)^2 = 1$ (Corollario 9.12).
+= Basta un esempio: con $A = I_2$ e $B = -I_2$ la somma è la matrice nulla, con determinante 0, mentre $\det A + \det B = 1 + 1 = 2$. Quindi il determinante non si spezza sulle somme. Le altre sono vere: la trasposta ha lo stesso determinante (Proposizione 9.5), l'identità ha determinante 1 (Definizione 9.4 con la Proposizione 9.3), una colonna di zeri dà zero (Proposizione 9.10). La più insidiosa è «$\det(-A) = \det A$ per ogni $A \in M(2)$», che sembra falsa: ma per le $2 \times 2$ il $-1$ esce due volte, e $(-1)^2 = 1$ (Corollario 9.12).
 
 D: Calcola il determinante di $\begin{pmatrix} 3 & 1 & 0 \\ 0 & 2 & 5 \\ 1 & 0 & 4 \end{pmatrix}$.
 N: 29
@@ -59120,7 +65410,7 @@ D: Appello del 03/06/2025, domanda 9. Data la matrice $A = \begin{pmatrix} 2 & 1
 - non si può calcolare, poiché $A$ non è una matrice quadrata
 - 3
 - 2
-= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata. La sua terza riga è la terza riga di $A$, fatta di zeri, per le colonne di ${}^tA$: è nulla, e il determinante è 0. È la (a) della soluzione ufficiale. La risposta più insidiosa è la (c): a non essere quadrata è $A$, non il prodotto; e Binet qui non si usa, perché $\det A$ non esiste.
+= $A \cdot {}^tA$ è $3 \times 3$, quindi quadrata. La sua terza riga è la terza riga di $A$, fatta di zeri, per le colonne di ${}^tA$: è nulla, e il determinante è 0. È la (a) della soluzione ufficiale. La risposta più insidiosa è «non si può calcolare»: a non essere quadrata è $A$, non il prodotto; e Binet qui non si usa, perché $\det A$ non esiste.
 
 D: Appello del 16/01/2025, domanda 3. Date $A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 1 & 2 & 1 \end{pmatrix}$ e $B = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$, calcolare traccia e determinante di $AB$.
 - $\det(AB) = 1$, $\tr(AB) = 9$
@@ -59128,7 +65418,7 @@ D: Appello del 16/01/2025, domanda 3. Date $A = \begin{pmatrix} 1 & 0 & 0 \\ 0 &
 + $\det(AB) = 1$, $\tr(AB) = 4$
 - $\det(AB) = 3$, $\tr(AB) = 36$
 - $\det(AB) = 3$, $\tr(AB) = 3$
-= $A$ e $B$ sono triangolari con diagonale di 1, quindi per Binet $\det(AB) = 1 \cdot 1 = 1$. La diagonale di $AB$ è $1$, $1$ e $(1, 2, 1) \cdot (1, 0, 1) = 2$: la traccia è 4. È la (c) della soluzione ufficiale. La risposta più insidiosa è la (a), che moltiplica le tracce: per la traccia non c'è una regola come Binet.
+= $A$ e $B$ sono triangolari con diagonale di 1, quindi per Binet $\det(AB) = 1 \cdot 1 = 1$. La diagonale di $AB$ è $1$, $1$ e $(1, 2, 1) \cdot (1, 0, 1) = 2$: la traccia è 4. È la (c) della soluzione ufficiale. La risposta più insidiosa è quella con traccia 9, che moltiplica le tracce: per la traccia non c'è una regola come Binet.
 
 D: Appello del 10/06/2024, domanda 2. Sia $A = \begin{pmatrix} 11 & 12 & 13 & 14 \\ 21 & 22 & 23 & 24 \\ 31 & 32 & 33 & 34 \\ 41 & 42 & 43 & 44 \end{pmatrix}$. Il determinante di $A$ è:
 - $24 \cdot 10^3$
@@ -60825,7 +67115,7 @@ D: Appello del 16/01/2025, domanda 10. Il sistema lineare con matrice completa $
 - Infinite, che dipendono da 1 parametro.
 - Un numero finito, maggiore di 1.
 - Una.
-= Dopo lo scambio delle prime due righe e due mosse, la terza riga diventa nulla e restano 2 pivot, nessuno dopo la barra (i passaggi sono in «Verso l'esame»). Le incognite sono 4, quindi i parametri sono $4 - 2 = 2$: è la (b) della soluzione ufficiale. La risposta più insidiosa è la (c), di chi conta le righe, 3, al posto delle incognite.
+= Dopo lo scambio delle prime due righe e due mosse, la terza riga diventa nulla e restano 2 pivot, nessuno dopo la barra (i passaggi sono in «Verso l'esame»). Le incognite sono 4, quindi i parametri sono $4 - 2 = 2$: è la (b) della soluzione ufficiale. La risposta più insidiosa è «1 parametro», di chi conta le righe, 3, al posto delle incognite.
 
 D: Appello del 15/01/2026, domanda 6. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 0 & 1 & 2 & 3 \\ 4 & 5 & 6 & 7 \\ 8 & 9 & 10 & 11 \end{array}\right)$ ha un numero di soluzioni pari a:
 - Un numero finito, maggiore di 1.
@@ -60873,7 +67163,7 @@ D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 3 & 12 & 
 - Un numero finito, maggiore di 1.
 - Una.
 - Infinite, che dipendono da 1 parametro.
-= È la domanda 1 dell'appello del 02/09/2025. Prima di fare conti guarda le righe. La prima è 3 volte $(1, 4, 2 \mid 7)$, la seconda è 5 volte la stessa riga, la terza è 4 volte. Sono tre volte la stessa condizione. Dopo Gauss resta una sola riga non nulla, con un solo pivot, e nessun pivot dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 1 = 2$. La risposta con 1 parametro è sbagliata perché qui il pivot è uno solo, non due.
+= È la domanda 1 dell'appello del 02/09/2025. Prima di fare conti guarda le righe. La prima riga è 3 volte $(1, 4, 2 \mid 7)$, la seconda riga è 5 volte la stessa, la terza riga è 4 volte. Sono tre volte la stessa condizione. Dopo Gauss resta una sola riga non nulla, con un solo pivot, e nessun pivot dopo la barra. Le incognite sono 3, quindi i parametri sono $3 - 1 = 2$. La risposta con 1 parametro è sbagliata perché qui il pivot è uno solo, non due.
 
 D: Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 2 & 3 & 4 \\ 2 & 3 & 4 & 5 \\ 3 & 4 & 5 & 7 \end{array}\right)$ ha un numero di soluzioni pari a:
 + Zero.
@@ -60889,7 +67179,7 @@ D: La forma ridotta della matrice completa di un sistema nelle incognite $x, y, 
 - Solo $x = 3,\ y = 1,\ z = 0$
 - $x = -2t,\ y = t,\ z = t$
 - Il sistema non ha soluzioni.
-= Simile alla domanda 6 dell'appello del 10/07/2024. I pivot sono nelle colonne 1 e 2. La colonna 3, quella di $z$, è senza pivot: $z = t$. La riga 1 dice $x + 2z = 3$, quindi $x = 3 - 2t$. La riga 2 dice $y - z = 1$, quindi $y = 1 + t$. La seconda risposta ha i segni al contrario: quando porti $t$ a destra dell'uguale il segno cambia. La terza è una soluzione vera, quella con $t$ uguale a 0, ma è una sola: la domanda le chiede tutte.
+= Simile alla domanda 6 dell'appello del 10/07/2024. I pivot sono nelle colonne 1 e 2. La colonna 3, quella di $z$, è senza pivot: $z = t$. La riga 1 dice $x + 2z = 3$, quindi $x = 3 - 2t$. La riga 2 dice $y - z = 1$, quindi $y = 1 + t$. La risposta $x = 3 + 2t,\ y = 1 - t,\ z = t$ ha i segni al contrario: quando porti $t$ a destra dell'uguale il segno cambia. La risposta «Solo $x = 3,\ y = 1,\ z = 0$» è una soluzione vera, quella con $t$ uguale a 0, ma è una sola: la domanda le chiede tutte.
 
 D: Riducendo a scalini la matrice completa di un sistema in 3 incognite compare la riga $(0, 0, 0 \mid 5)$. Che cosa puoi concludere?
 + Il sistema non ha soluzioni.
@@ -60905,7 +67195,7 @@ D: Nella matrice $\left(\begin{array}{cc|c} 1 & 2 & 4 \\ 3 & 1 & 7 \end{array}\r
 - $(0, 5 \mid 5)$
 - $(0, -5 \mid 19)$
 - $(2, -1 \mid 3)$
-= Tre volte la riga 1 fa $(3, 6 \mid 12)$. Poi sottrai dalla riga 2, un numero alla volta: $3 - 3 = 0$, poi $1 - 6 = -5$, poi $7 - 12 = -5$. La mossa vale anche per il numero dopo la barra. Chi lì somma al posto di sottrarre trova 19. Chi sbaglia il segno trova 5. L'ultima risposta è la riga 2 meno la riga 1 una volta sola, non 3 volte.
+= Tre volte la riga 1 fa $(3, 6 \mid 12)$. Poi sottrai dalla riga 2, un numero alla volta: $3 - 3 = 0$, poi $1 - 6 = -5$, poi $7 - 12 = -5$. La mossa vale anche per il numero dopo la barra. Chi lì somma al posto di sottrarre trova 19. Chi sbaglia il segno trova 5. La risposta $(2, -1 \mid 3)$ è la riga 2 meno la riga 1 una volta sola, non 3 volte.
 
 D: Un sistema di 3 equazioni in 5 incognite, ridotto a scalini, ha 3 pivot e nessuno di questi è nell'ultima colonna. Quante sono le soluzioni?
 + Infinite, che dipendono da 2 parametri.
@@ -64264,7 +70554,7 @@ D: Quale delle funzioni sotto definisce un'applicazione lineare $T: \R^3 \to \R^
 - $T(x, y, z) = (x^2 + y,\ x - 2z^2)$
 - $T(x, y, z) = (2x + 1,\ y + z)$
 - $T(x, y) = (x + 2y,\ y + 2z,\ x - 3z)$
-= Appello del 10/07/2024, domanda 7. Servono due cose insieme: la macchina deve prendere tre numeri e restituirne due, e deve essere lineare. La prima formula lo fa, e in uscita ha solo multipli delle entrate sommati: è la macchina della matrice $\begin{pmatrix} 2 & 3 & 0 \\ 1 & 0 & 2 \end{pmatrix}$. La risposta più tentatrice è la seconda: è lineare, ma prende solo due numeri, quindi parte da $\R^2$. La terza ha dei quadrati. La quarta ha un numero fisso aggiunto: manda lo zero in $(1, 0)$. L'ultima prende due numeri ma usa anche $z$, e restituisce tre numeri.
+= Appello del 10/07/2024, domanda 7. Servono due cose insieme: la macchina deve prendere tre numeri e restituirne due, e deve essere lineare. La formula $T(x, y, z) = (2x + 3y,\ x + 2z)$ lo fa, e in uscita ha solo multipli delle entrate sommati: è la macchina della matrice $\begin{pmatrix} 2 & 3 & 0 \\ 1 & 0 & 2 \end{pmatrix}$. La risposta più tentatrice è $T(x, y) = (2x - 3y,\ x + 2y)$: è lineare, ma prende solo due numeri, quindi parte da $\R^2$. La risposta $T(x, y, z) = (x^2 + y,\ x - 2z^2)$ ha dei quadrati. La risposta $T(x, y, z) = (2x + 1,\ y + z)$ ha un numero fisso aggiunto: manda lo zero in $(1, 0)$. La risposta $T(x, y) = (x + 2y,\ y + 2z,\ x - 3z)$ prende due numeri ma usa anche $z$, e restituisce tre numeri.
 
 D: Sia $f: V \to W$ una mappa lineare, con $\dim V = 4$ e $\dim W = 2$. Quale delle seguenti è necessariamente vera?
 - $f$ deve essere suriettiva.
@@ -64288,7 +70578,7 @@ D: L'immagine dell'applicazione lineare $T: \R_2[x] \to \R_2[x]$, $T(ax^2 + bx +
 - $\Span(x^2,\ x)$
 - $\R_1[x]$
 - $\{p \in \R_2[x] \mid p(0) = 0\}$
-= Simile all'appello del 07/09/2026, domanda 4. La domanda chiede quali polinomi possono uscire. Si raccoglie: $(b - a)x$ è lo stesso di $-(a - b)x$, quindi l'uscita è $(a - b)(x^2 - x) + c \cdot 1$. Ogni uscita è una ricetta dei polinomi $x^2 - x$ e $1$, con coefficienti qualsiasi: l'immagine è il loro Span, di dimensione 2. La risposta tentatrice è $\R_2[x]$, che però ha dimensione 3. La terza e la quinta risposta non contengono il polinomio $1$. La quarta non contiene $x^2 - x$.
+= Simile all'appello del 07/09/2026, domanda 4. La domanda chiede quali polinomi possono uscire. Si raccoglie: $(b - a)x$ è lo stesso di $-(a - b)x$, quindi l'uscita è $(a - b)(x^2 - x) + c \cdot 1$. Ogni uscita è una ricetta dei polinomi $x^2 - x$ e $1$, con coefficienti qualsiasi: l'immagine è il loro Span, di dimensione 2. La risposta tentatrice è $\R_2[x]$, che però ha dimensione 3. La risposta $\Span(x^2,\ x)$ e la risposta $\{p \in \R_2[x] \mid p(0) = 0\}$ non contengono il polinomio $1$. La risposta $\R_1[x]$ non contiene $x^2 - x$.
 
 D: Sia $T: \R^5 \to \R_2[x]$ un'applicazione lineare suriettiva. Allora $\Ker T$ ha dimensione:
 - $1$
@@ -65374,7 +71664,7 @@ D: La matrice associata a $f : \R^3 \to \R^2$, $f(x, y, z) = (x - z,\ 2y + z)$, 
 - $\begin{pmatrix} 1 & -1 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 & 0 \\ 0 & 1 & -1 \end{pmatrix}$
-= Le colonne sono le uscite della base canonica: $f(e_1) = (1, 0)$, $f(e_2) = (0, 2)$, $f(e_3) = (-1, 1)$. La matrice è $2 \times 3$, perché si arriva nel piano partendo dallo spazio, e si legge dai numeri davanti alle lettere riga per riga. La risposta più insidiosa è la seconda, la trasposta, con le uscite messe in riga. La quarta sbaglia il segno di $-z$.
+= Le colonne sono le uscite della base canonica: $f(e_1) = (1, 0)$, $f(e_2) = (0, 2)$, $f(e_3) = (-1, 1)$. La matrice è $2 \times 3$, perché si arriva nel piano partendo dallo spazio, e si legge dai numeri davanti alle lettere riga per riga. La risposta più insidiosa è $\begin{pmatrix} 1 & 0 \\ 0 & 2 \\ -1 & 1 \end{pmatrix}$, la trasposta, con le uscite messe in riga. La risposta $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 1 \end{pmatrix}$ sbaglia il segno di $-z$.
 
 D: La matrice della derivata $D : \R_2[x] \to \R_1[x]$, $D(p) = p'$, rispetto alle basi $\{1, x, x^2\}$ e $\{1, x\}$ è:
 + $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$
@@ -65382,7 +71672,7 @@ D: La matrice della derivata $D : \R_2[x] \to \R_1[x]$, $D(p) = p'$, rispetto al
 - $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
-= $D(1) = 0$ ha coordinate $(0, 0)$, $D(x) = 1$ ha coordinate $(1, 0)$, $D(x^2) = 2x$ ha coordinate $(0, 2)$: sono le tre colonne. La taglia è $2 \times 3$, perché l'arrivo ha dimensione 2 e la partenza 3. La seconda risposta è la trasposta; la terza, la più insidiosa, ha la taglia di una macchina che arriva nei polinomi di grado al massimo 2, non 1.
+= $D(1) = 0$ ha coordinate $(0, 0)$, $D(x) = 1$ ha coordinate $(1, 0)$, $D(x^2) = 2x$ ha coordinate $(0, 2)$: sono le tre colonne. La taglia è $2 \times 3$, perché l'arrivo ha dimensione 2 e la partenza 3. La risposta $\begin{pmatrix} 0 & 0 \\ 1 & 0 \\ 0 & 2 \end{pmatrix}$ è la trasposta; la risposta $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}$, la più insidiosa, ha la taglia di una macchina che arriva nei polinomi di grado al massimo 2, non 1.
 
 D: Sia $T : \R^2 \to \R^2$, $T(x, y) = (x + y,\ 2x)$, e sia $\mathcal B = \{v_1 = (1, 0),\ v_2 = (1, 1)\}$. Il vettore di coordinate $[T(v_1)]_{\mathcal B}$ è:
 + $(-1, 2)$
@@ -65398,7 +71688,7 @@ D: Sia $T(x, y) = (y, x)$ e sia $\mathcal B = \{(1, 2), (0, 1)\}$. La matrice $[
 - $\begin{pmatrix} 2 & -3 \\ 1 & -2 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix}$
-= $T(1, 2) = (2, 1) = 2(1, 2) - 3(0, 1)$ e $T(0, 1) = (1, 0) = 1(1, 2) - 2(0, 1)$: le colonne sono $(2, -3)$ e $(1, -2)$. La risposta più insidiosa è la seconda, la matrice nella base canonica. La terza è la trasposta; la quinta mette le uscite senza passare alle coordinate; la quarta ha i vettori della base. Simile agli appelli del 24/01/2024 (domanda 3) e del 15/01/2026 (domanda 8).
+= $T(1, 2) = (2, 1) = 2(1, 2) - 3(0, 1)$ e $T(0, 1) = (1, 0) = 1(1, 2) - 2(0, 1)$: le colonne sono $(2, -3)$ e $(1, -2)$. La risposta più insidiosa è $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$, la matrice nella base canonica. La risposta $\begin{pmatrix} 2 & -3 \\ 1 & -2 \end{pmatrix}$ è la trasposta; la risposta $\begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix}$ mette le uscite senza passare alle coordinate; la risposta $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$ ha i vettori della base. Simile agli appelli del 24/01/2024 (domanda 3) e del 15/01/2026 (domanda 8).
 
 D: Sia $f(p) = (p(2), p(-2))$ con matrice $\begin{pmatrix} 1 & 2 & 4 \\ 1 & -2 & 4 \end{pmatrix}$ rispetto a $\{1, x, x^2\}$ e alla base canonica. Quanto vale $f(1 - x + x^2)$?
 + $(3, 7)$
@@ -65422,7 +71712,7 @@ D: La matrice associata all'inversa di $f = L_A : \R^2 \to \R^2$, con $A = \begi
 - $\begin{pmatrix} 2 & -1 \\ -1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1/2 & 1 \\ 1 & 1 \end{pmatrix}$
 - $f$ non è invertibile.
-= Il determinante è $2 - 1 = 1$, non zero: $f$ è un isomorfismo, e la sua inversa è la macchina della matrice inversa. Con la regola delle $2 \times 2$ (lezione L10): scambio la diagonale, cambio segno agli altri due, divido per 1. Viene $\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$; controllo: $A A^{-1} = I_2$. La risposta più insidiosa è la terza, che cambia i segni ma non scambia la diagonale. La quarta inverte casella per casella. Simile all'appello del 10/07/2024, problema 11, punto 2.
+= Il determinante è $2 - 1 = 1$, non zero: $f$ è un isomorfismo, e la sua inversa è la macchina della matrice inversa. Con la regola delle $2 \times 2$ (lezione L10): scambio la diagonale, cambio segno agli altri due, divido per 1. Viene $\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}$; controllo: $A A^{-1} = I_2$. La risposta più insidiosa è $\begin{pmatrix} 2 & -1 \\ -1 & 1 \end{pmatrix}$, che cambia i segni ma non scambia la diagonale. La risposta $\begin{pmatrix} 1/2 & 1 \\ 1 & 1 \end{pmatrix}$ inverte casella per casella. Simile all'appello del 10/07/2024, problema 11, punto 2.
 
 D: Qual è la dimensione dello spazio vettoriale di tutte le applicazioni lineari $\R^3 \to \R^2$?
 N: 6
@@ -66252,7 +72542,7 @@ D: In $\R_1[x]$, la matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal
 - $\begin{pmatrix} 1/3 & 1/3 \\ 1/2 & -1/2 \end{pmatrix}$
 - $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$
 - $\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}$
-= Nelle colonne vanno le coordinate dei vettori di $\mathcal B$ rispetto a $\mathcal C$. Per $3x = a(x + 1) + b(x - 1)$ servono $a + b = 3$ e $a - b = 0$, cioè $a = b = \frac 32$. Per $2 = a(x + 1) + b(x - 1)$ servono $a + b = 0$ e $a - b = 2$, cioè $a = 1$ e $b = -1$. La risposta più insidiosa è la seconda, la trasposta, con le coordinate in riga. La terza è il traduttore nel verso opposto, $[\id]^{\mathcal C}_{\mathcal B}$. Simile all'appello del 10/06/2024, domanda 8.
+= Nelle colonne vanno le coordinate dei vettori di $\mathcal B$ rispetto a $\mathcal C$. Per $3x = a(x + 1) + b(x - 1)$ servono $a + b = 3$ e $a - b = 0$, cioè $a = b = \frac 32$. Per $2 = a(x + 1) + b(x - 1)$ servono $a + b = 0$ e $a - b = 2$, cioè $a = 1$ e $b = -1$. La risposta più insidiosa è $\begin{pmatrix} 3/2 & 3/2 \\ 1 & -1 \end{pmatrix}$, la trasposta, con le coordinate in riga. La risposta $\begin{pmatrix} 1/3 & 1/3 \\ 1/2 & -1/2 \end{pmatrix}$ è il traduttore nel verso opposto, $[\id]^{\mathcal C}_{\mathcal B}$. Simile all'appello del 10/06/2024, domanda 8.
 
 D: La matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal C}$ da $\mathcal B = \{e_3, e_1, e_2\}$ a $\mathcal C = \{e_1, e_2, e_3\}$ in $\R^3$ è:
 + $\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}$
@@ -66260,7 +72550,7 @@ D: La matrice di cambiamento di base $[\id]^{\mathcal B}_{\mathcal C}$ da $\math
 - $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ 1 & 0 & 0 \end{pmatrix}$
 - Il problema non è ben definito.
-= La colonna $j$ contiene le coordinate del vettore $j$ di $\mathcal B$ nella base canonica: $e_3$ dà $(0, 0, 1)$, $e_1$ dà $(1, 0, 0)$, $e_2$ dà $(0, 1, 0)$. La risposta più insidiosa è la seconda, la trasposta, che è il traduttore nel verso opposto. L'identità sarebbe giusta solo con le due basi nello stesso ordine. Simile all'appello del 10/07/2025, domanda 6.
+= La colonna $j$ contiene le coordinate del vettore $j$ di $\mathcal B$ nella base canonica: $e_3$ dà $(0, 0, 1)$, $e_1$ dà $(1, 0, 0)$, $e_2$ dà $(0, 1, 0)$. La risposta più insidiosa è $\begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}$, la trasposta, che è il traduttore nel verso opposto. L'identità sarebbe giusta solo con le due basi nello stesso ordine. Simile all'appello del 10/07/2025, domanda 6.
 
 D: Siano $\mathcal A, \mathcal B, \mathcal C$ tre basi di $\R^2$ con $[\id]^{\mathcal A}_{\mathcal B} = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ e $[\id]^{\mathcal C}_{\mathcal B} = \begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}$. Allora $[\id]^{\mathcal A}_{\mathcal C}$ è:
 + $\begin{pmatrix} 1 & 1 \\ -2 & -1 \end{pmatrix}$
@@ -66268,7 +72558,7 @@ D: Siano $\mathcal A, \mathcal B, \mathcal C$ tre basi di $\R^2$ con $[\id]^{\ma
 - $\begin{pmatrix} -1 & 1 \\ -2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} -1 & -1 \\ 2 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
-= Le basi si incastrano come nel domino: $[\id]^{\mathcal A}_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[\id]^{\mathcal A}_{\mathcal B}$. Il primo fattore è il traduttore inverso di quello dato: $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}^{-1} = \begin{pmatrix} 1 & 0 \\ -2 & 1 \end{pmatrix}$. Il prodotto è $\begin{pmatrix} 1 & 1 \\ -2 & -1 \end{pmatrix}$. La risposta più insidiosa è la seconda: è il prodotto delle due matrici date, senza invertire. Le altre vengono da prodotti nell'ordine sbagliato. Simile all'appello del 02/09/2025, domanda 8.
+= Le basi si incastrano come nel domino: $[\id]^{\mathcal A}_{\mathcal C} = [\id]^{\mathcal B}_{\mathcal C}[\id]^{\mathcal A}_{\mathcal B}$. Il primo fattore è il traduttore inverso di quello dato: $\begin{pmatrix} 1 & 0 \\ 2 & 1 \end{pmatrix}^{-1} = \begin{pmatrix} 1 & 0 \\ -2 & 1 \end{pmatrix}$. Il prodotto è $\begin{pmatrix} 1 & 1 \\ -2 & -1 \end{pmatrix}$. La risposta più insidiosa è $\begin{pmatrix} 1 & 1 \\ 2 & 3 \end{pmatrix}$: è il prodotto delle due matrici date, senza invertire. Le altre vengono da prodotti nell'ordine sbagliato. Simile all'appello del 02/09/2025, domanda 8.
 
 D: Siano $f : \R^2 \to \R_2[x]$, $f(u, v) = ux^2 + v$, e $g : \R_2[x] \to \R^2$, $g(p) = (p(1),\ p(2))$. La matrice di $g \circ f$ rispetto alla base canonica di $\R^2$ è:
 + $\begin{pmatrix} 1 & 1 \\ 4 & 1 \end{pmatrix}$
@@ -66276,7 +72566,7 @@ D: Siano $f : \R^2 \to \R_2[x]$, $f(u, v) = ux^2 + v$, e $g : \R_2[x] \to \R^2$,
 - $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix}$
 - $\begin{pmatrix} u & 1 \\ v & 4 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 5 & 2 \end{pmatrix}$
-= Le due macchine in fila sui vettori della base: $(g \circ f)(e_1) = g(x^2) = (1, 4)$ e $(g \circ f)(e_2) = g(1) = (1, 1)$. Sono le due colonne. La risposta più insidiosa è la seconda, la trasposta. In una matrice associata non compaiono le lettere $u$ e $v$; la terza risposta è la sola matrice di $g$, che è $2 \times 3$. Simile all'appello del 16/01/2025, domanda 5.
+= Le due macchine in fila sui vettori della base: $(g \circ f)(e_1) = g(x^2) = (1, 4)$ e $(g \circ f)(e_2) = g(1) = (1, 1)$. Sono le due colonne. La risposta più insidiosa è $\begin{pmatrix} 1 & 4 \\ 1 & 1 \end{pmatrix}$, la trasposta. In una matrice associata non compaiono le lettere $u$ e $v$; la risposta $\begin{pmatrix} 1 & 1 & 1 \\ 1 & 2 & 4 \end{pmatrix}$ è la sola matrice di $g$, che è $2 \times 3$. Simile all'appello del 16/01/2025, domanda 5.
 
 D: Sia $\mathcal B = \{(1, 1), (0, 1)\}$ e sia $A \in M(2, \R)$ tale che $[L_A]^{\mathcal B}_{\mathcal B} = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$. Allora $A$ è:
 + $\begin{pmatrix} -1 & 2 \\ -2 & 3 \end{pmatrix}$
@@ -66284,7 +72574,7 @@ D: Sia $\mathcal B = \{(1, 1), (0, 1)\}$ e sia $A \in M(2, \R)$ tale che $[L_A]^
 - $\begin{pmatrix} 3 & 2 \\ -2 & -1 \end{pmatrix}$
 - $\begin{pmatrix} -1 & -2 \\ 2 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 1 & 3 \end{pmatrix}$
-= Il traduttore ha i vettori di $\mathcal B$ in colonna, $M = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$, e vale $[L_A]^{\mathcal B}_{\mathcal B} = M^{-1}AM$. Per ricavare $A$ si gira la formula: $A = M\,[L_A]^{\mathcal B}_{\mathcal B}\,M^{-1} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} -1 & 2 \\ -2 & 3 \end{pmatrix}$. Controllo: $A(1, 1) = (1, 1)$, con coordinate $(1, 0)$ nella base $\mathcal B$, la prima colonna data. La risposta più insidiosa è la terza, che usa la formula al contrario, $M^{-1}\,[L_A]^{\mathcal B}_{\mathcal B}\,M$. Simile all'appello del 03/06/2025, domanda 5.
+= Il traduttore ha i vettori di $\mathcal B$ in colonna, $M = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}$, e vale $[L_A]^{\mathcal B}_{\mathcal B} = M^{-1}AM$. Per ricavare $A$ si gira la formula: $A = M\,[L_A]^{\mathcal B}_{\mathcal B}\,M^{-1} = \begin{pmatrix} 1 & 0 \\ 1 & 1 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ -1 & 1 \end{pmatrix} = \begin{pmatrix} -1 & 2 \\ -2 & 3 \end{pmatrix}$. Controllo: $A(1, 1) = (1, 1)$, con coordinate $(1, 0)$ nella base $\mathcal B$, la prima colonna data. La risposta più insidiosa è $\begin{pmatrix} 3 & 2 \\ -2 & -1 \end{pmatrix}$, che usa la formula al contrario, $M^{-1}\,[L_A]^{\mathcal B}_{\mathcal B}\,M$. Simile all'appello del 03/06/2025, domanda 5.
 
 D: Se $A, B \in M(2, \R)$ sono simili, quale affermazione è necessariamente vera?
 + $\det A = \det B$
@@ -66292,7 +72582,7 @@ D: Se $A, B \in M(2, \R)$ sono simili, quale affermazione è necessariamente ver
 - $AB = BA$
 - $A$ e $B$ hanno la stessa prima riga.
 - $\rk(A) = \rk(B) + 1$
-= Per la Proposizione 16.13 matrici simili hanno lo stesso determinante e lo stesso rango; quindi l'ultima risposta è sempre falsa. Le altre tre non sono obbligatorie: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ e $\begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$ sono simili (Esempio 16.10), ma sono diverse, non si scambiano nel prodotto e hanno prima riga diversa. La più insidiosa è $A = B$: simili vuol dire stessa macchina, non stessa matrice.
+= Per la Proposizione 16.13 matrici simili hanno lo stesso determinante e lo stesso rango; quindi la risposta $\rk(A) = \rk(B) + 1$ è sempre falsa. Le altre tre non sono obbligatorie: $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ e $\begin{pmatrix} 1 & 1 \\ 0 & -1 \end{pmatrix}$ sono simili (Esempio 16.10), ma sono diverse, non si scambiano nel prodotto e hanno prima riga diversa. La più insidiosa è $A = B$: simili vuol dire stessa macchina, non stessa matrice.
 
 D: Quale di queste matrici è simile alla matrice identità $I_2$?
 + $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
@@ -66316,7 +72606,7 @@ D: Siano $T : \R^2 \to \R^3$, $T(x, y) = (x,\ x + y,\ y)$, e $S : \R^3 \to \R^2$
 - $(x, y) \mapsto (x - y,\ 2y)$
 - $(x, y, z) \mapsto (x - y,\ x + z,\ y + z)$
 - Non è ben definita.
-= Prima agisce $T$, poi $S$: $S(T(x, y)) = S(x,\ x + y,\ y) = \big(x - (x + y),\ (x + y) + y\big) = (-y,\ x + 2y)$. È una macchina dal piano al piano, quindi le risposte con tre lettere in entrata sono sbagliate già per la partenza. La più insidiosa è la seconda, che è $S$ da sola. Simile all'appello dell'08/02/2024, domanda 5.
+= Prima agisce $T$, poi $S$: $S(T(x, y)) = S(x,\ x + y,\ y) = \big(x - (x + y),\ (x + y) + y\big) = (-y,\ x + 2y)$. È una macchina dal piano al piano, quindi le risposte con tre lettere in entrata sono sbagliate già per la partenza. La più insidiosa è $(x, y, z) \mapsto (x - y,\ y + z)$, che è $S$ da sola. Simile all'appello dell'08/02/2024, domanda 5.
 
 D: Sia $T(x, y) = (4x - 2y,\ x + y)$ e sia $\mathcal B = \{(1, 1), (2, 1)\}$. La matrice $[T]^{\mathcal B}_{\mathcal B}$ è:
 + $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$
@@ -66324,7 +72614,7 @@ D: Sia $T(x, y) = (4x - 2y,\ x + y)$ e sia $\mathcal B = \{(1, 1), (2, 1)\}$. La
 - $\begin{pmatrix} 4 & -2 \\ 1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 6 \\ 2 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}$
-= $T(1, 1) = (2, 2) = 2 \cdot (1, 1)$ e $T(2, 1) = (6, 3) = 3 \cdot (2, 1)$: le coordinate sono $(2, 0)$ e $(0, 3)$. La risposta più insidiosa è $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$: i numeri giusti, ma l'ordine sulla diagonale segue l'ordine della base. La quarta mette le uscite senza passare alle coordinate; la terza è la matrice nella base canonica.
+= $T(1, 1) = (2, 2) = 2 \cdot (1, 1)$ e $T(2, 1) = (6, 3) = 3 \cdot (2, 1)$: le coordinate sono $(2, 0)$ e $(0, 3)$. La risposta più insidiosa è $\begin{pmatrix} 3 & 0 \\ 0 & 2 \end{pmatrix}$: i numeri giusti, ma l'ordine sulla diagonale segue l'ordine della base. La risposta $\begin{pmatrix} 2 & 6 \\ 2 & 3 \end{pmatrix}$ mette le uscite senza passare alle coordinate; la risposta $\begin{pmatrix} 4 & -2 \\ 1 & 1 \end{pmatrix}$ è la matrice nella base canonica.
 ```
 
 ## Esercizi
@@ -66621,6 +72911,7 @@ corso: MDAG
 modulo: AG
 lezione: L17
 titolo: Autovalori e autovettori I
+data: 2026-11-17
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L17
 descrizione: >-
@@ -66654,7 +72945,7 @@ genera_html: true
 - All'esame serve in ogni appello: riconoscere un autovettore, trovare gli autovalori di una matrice con 2 o 3 righe, scrivere le due matrici della diagonalizzazione.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 17/11/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 17. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Le direzioni che non girano: autovettori (p. 85)
 
@@ -68521,6 +74812,7 @@ corso: MDAG
 modulo: AG
 lezione: L18
 titolo: Autovalori e autovettori II
+data: 2026-11-18
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L18
 descrizione: >-
@@ -68554,7 +74846,7 @@ genera_html: true
 - Con un parametro: si trovano gli autovalori in funzione del parametro. Dove sono tutti diversi la matrice è diagonalizzabile; nei valori in cui due autovalori coincidono si calcola un rango.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di mercoledì 18/11/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 18. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Autovalori diversi, autovettori indipendenti (p. 90)
 
@@ -68993,7 +75285,7 @@ D: La matrice $A = \begin{pmatrix} 1 & 2 & -2 \\ 0 & 3 & 0 \\ 0 & 0 & 3 \end{pma
 - $\Span\big((1, 0, 0)\big)$
 - $\Span\big((1, 1, 0), (1, 0, 1)\big)$
 - $\Span\big((1, 0, 0), (0, 1, 1)\big)$
-= $A - 3I_3 = \begin{pmatrix} -2 & 2 & -2 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$ ha rango 1, quindi l'autospazio ha dimensione 2 e l'unica equazione è $x = y - z$. I vettori $(1, 1, 0)$ e $(-1, 0, 1)$ la soddisfano e sono indipendenti. La risposta più insidiosa è la quarta: $(1, 1, 0)$ va bene, ma $(1, 0, 1)$ dà $1 = 0 - 1$, falso. La seconda ha il vettore giusto ma una retta sola, e ne servono due. $(1, 0, 0)$ è un autovettore, ma di autovalore 1. Simile all'appello del 24/01/2024, domanda 9.
+= $A - 3I_3 = \begin{pmatrix} -2 & 2 & -2 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$ ha rango 1, quindi l'autospazio ha dimensione 2 e l'unica equazione è $x = y - z$. I vettori $(1, 1, 0)$ e $(-1, 0, 1)$ la soddisfano e sono indipendenti. La risposta più insidiosa è $\Span\big((1, 1, 0), (1, 0, 1)\big)$: $(1, 1, 0)$ va bene, ma $(1, 0, 1)$ dà $1 = 0 - 1$, falso. La risposta $\Span\big((1, 1, 0)\big)$ ha il vettore giusto ma una retta sola, e ne servono due. $(1, 0, 0)$ è un autovettore, ma di autovalore 1. Simile all'appello del 24/01/2024, domanda 9.
 
 D: L'endomorfismo $T : \R_2[x] \to \R_2[x]$, $T(a + bx + cx^2) = (a + c) + 2bx + (a + c)x^2$, ha autovalore $2$. Qual è l'autospazio $V_2$?
 + $\Span(x,\ 1 + x^2)$
@@ -69001,7 +75293,7 @@ D: L'endomorfismo $T : \R_2[x] \to \R_2[x]$, $T(a + bx + cx^2) = (a + c) + 2bx +
 - $\Span(x,\ 1 - x^2)$
 - $\Span(1,\ x^2)$
 - $\Span(x)$
-= Nella base $\{1, x, x^2\}$ la matrice è $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}$, e $A - 2I_3 = \begin{pmatrix} -1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & -1 \end{pmatrix}$ dà l'equazione $a = c$, con $b$ libero. Le soluzioni $(0, 1, 0)$ e $(1, 0, 1)$ sono i polinomi $x$ e $1 + x^2$. Controllo: $T(x) = 2x$ e $T(1 + x^2) = 2 + 2x^2$. La risposta più insidiosa è la terza: $T(1 - x^2) = 0$, quindi $1 - x^2$ è un autovettore, ma di autovalore 0. Simile agli appelli del 10/06/2024 (domanda 6), del 07/02/2025 (domanda 9) e del 05/02/2026 (domanda 9).
+= Nella base $\{1, x, x^2\}$ la matrice è $\begin{pmatrix} 1 & 0 & 1 \\ 0 & 2 & 0 \\ 1 & 0 & 1 \end{pmatrix}$, e $A - 2I_3 = \begin{pmatrix} -1 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & -1 \end{pmatrix}$ dà l'equazione $a = c$, con $b$ libero. Le soluzioni $(0, 1, 0)$ e $(1, 0, 1)$ sono i polinomi $x$ e $1 + x^2$. Controllo: $T(x) = 2x$ e $T(1 + x^2) = 2 + 2x^2$. La risposta più insidiosa è $\Span(x,\ 1 - x^2)$: $T(1 - x^2) = 0$, quindi $1 - x^2$ è un autovettore, ma di autovalore 0. Simile agli appelli del 10/06/2024 (domanda 6), del 07/02/2025 (domanda 9) e del 05/02/2026 (domanda 9).
 
 D: Una matrice $A$ ha polinomio caratteristico $p_A(\lambda) = (\lambda - 2)^2(\lambda + 1)(\lambda - 3)$. Quale affermazione **non** è necessariamente vera?
 + $A$ è diagonalizzabile.
@@ -69037,7 +75329,7 @@ D: Quale di queste affermazioni è vera?
 - La molteplicità geometrica di un autovalore può essere 0.
 - Può capitare che $m_g(\lambda) > m_a(\lambda)$.
 - Gli autospazi di un endomorfismo $T : V \to V$ hanno sempre somma uguale a $V$.
-= La prima è il Corollario 18.2. La più insidiosa è la seconda, che è il corollario letto al contrario: la matrice identità è diagonale e ha un solo autovalore. Per il Teorema 18.9 la molteplicità geometrica è almeno 1 e non supera quella algebrica. E per $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ l'unico autospazio è una retta del piano.
+= La frase giusta è il Corollario 18.2. La più insidiosa è «Se $A \in M(n, \R)$ è diagonalizzabile, allora ha $n$ autovalori distinti», che è il corollario letto al contrario: la matrice identità è diagonale e ha un solo autovalore. Per il Teorema 18.9 la molteplicità geometrica è almeno 1 e non supera quella algebrica. E per $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ l'unico autospazio è una retta del piano.
 
 D: Quale di queste matrici è diagonalizzabile su $\C$ ma **non** su $\R$?
 + $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$
@@ -69045,7 +75337,7 @@ D: Quale di queste matrici è diagonalizzabile su $\C$ ma **non** su $\R$?
 - $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$
-= Il polinomio della prima è $\lambda^2 + 1$, con radici $\pm i$ diverse: diagonalizzabile sui complessi, e sui reali manca la condizione 1. La più insidiosa è la seconda, che non è diagonalizzabile sui reali ma nemmeno sui complessi: il suo autovalore doppio occupa un posto solo, e lo stesso vale per la quarta. La terza (autovalori 1 e 2) e la quinta (autovalori 1 e 3) lo sono su tutti e due i campi.
+= Il polinomio di $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ è $\lambda^2 + 1$, con radici $\pm i$ diverse: diagonalizzabile sui complessi, e sui reali manca la condizione 1. La più insidiosa è $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, che non è diagonalizzabile sui reali ma nemmeno sui complessi: il suo autovalore doppio occupa un posto solo, e lo stesso vale per $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$. La risposta $\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}$ (autovalori 1 e 2) e la risposta $\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$ (autovalori 1 e 3) lo sono su tutti e due i campi.
 
 D: Sia $A = \begin{pmatrix} k & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0 \end{pmatrix}$ con $k \in \C$. Per quali $k$ la matrice è diagonalizzabile su $\C$?
 + Per ogni $k \in \C$.
@@ -69373,6 +75665,7 @@ corso: MDAG
 modulo: AG
 lezione: L19
 titolo: Prodotti scalari I
+data: 2026-11-19
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L19
 descrizione: >-
@@ -69407,7 +75700,7 @@ genera_html: true
 - All'esame la domanda tipica è: calcolare la matrice associata a un prodotto scalare in una base data. Si fa una casella alla volta.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 19/11/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 19. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Da due vettori a un numero: il conto della spesa (p. 96)
 
@@ -70865,7 +77158,7 @@ D: Quale di queste formule definisce un prodotto scalare su $\R^2$? (Qui $x = (x
 - $g(x, y) = x_1y_1 + x_2$
 - $g(x, y) = x_1x_2y_1y_2$
 - $g(x, y) = x_1y_1 + x_2y_2 + 1$
-= La domanda chiede quale formula rispetta i tre assiomi. La regola pratica: ogni pezzo deve essere un numero per una $x$ per una $y$, e davanti a $x_1y_2$ e a $x_2y_1$ deve esserci lo stesso numero. La prima formula è a posto: i suoi pesi formano la matrice $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, che è simmetrica. La seconda è la più tentatrice, perché ha i pezzi della forma giusta. Ma non è simmetrica: $g(e_1, e_2) = 1$ e $g(e_2, e_1) = -1$. La terza ha il pezzo $x_2$ senza nessuna $y$: con $x = e_2$ e $y$ nullo dà 1 invece di 0. La quarta ha due $x$ nello stesso pezzo: raddoppiando $x$ il risultato si moltiplica per 4, non per 2. La quinta ha un $+1$: con i due vettori nulli dà 1 invece di 0.
+= La domanda chiede quale formula rispetta i tre assiomi. La regola pratica: ogni pezzo deve essere un numero per una $x$ per una $y$, e davanti a $x_1y_2$ e a $x_2y_1$ deve esserci lo stesso numero. La formula $x_1y_1 + x_1y_2 + x_2y_1$ è a posto: i suoi pesi formano la matrice $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, che è simmetrica. La risposta $g(x, y) = x_1y_2 - x_2y_1$ è la più tentatrice, perché ha i pezzi della forma giusta. Ma non è simmetrica: $g(e_1, e_2) = 1$ e $g(e_2, e_1) = -1$. La risposta $g(x, y) = x_1y_1 + x_2$ ha il pezzo $x_2$ senza nessuna $y$: con $x = e_2$ e $y$ nullo dà 1 invece di 0. La risposta $g(x, y) = x_1x_2y_1y_2$ ha due $x$ nello stesso pezzo: raddoppiando $x$ il risultato si moltiplica per 4, non per 2. La risposta $g(x, y) = x_1y_1 + x_2y_2 + 1$ ha un $+1$: con i due vettori nulli dà 1 invece di 0.
 
 D: Su $\R_1[x]$ sia $g(p, q) = p(1)q(2) + p(2)q(1)$ e sia $\mathcal B = \{x - 1, x - 2\}$. Allora $[g]_{\mathcal B}$ è:
 + $\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}$
@@ -70897,7 +77190,7 @@ D: Su $\R^2$ sia $g(x, y) = x_1y_1 + x_1y_2 + x_2y_1$ e sia $\mathcal B = \{{}^t
 - $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 1 & -1 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra $v_1 = (1, 0)$ e $v_2 = (1, -1)$, con la formula data, che ha tre pezzi. Primo vettore con sé stesso: $1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1$. Primo con secondo, cioè $x = (1, 0)$ e $y = (1, -1)$: $1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$. Secondo con sé stesso: $1 \cdot 1 + 1 \cdot (-1) + (-1) \cdot 1 = -1$. La seconda risposta è la più tentatrice: è la matrice dei pesi della formula, cioè la matrice associata nella base canonica e non nella base data. L'ultima risposta non è simmetrica, quindi non può essere una matrice associata. È simile alla domanda 9 dell'appello del 15/01/2026.
+= La domanda chiede la tabellina dei prodotti tra $v_1 = (1, 0)$ e $v_2 = (1, -1)$, con la formula data, che ha tre pezzi. Primo vettore con sé stesso: $1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1$. Primo con secondo, cioè $x = (1, 0)$ e $y = (1, -1)$: $1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$. Secondo con sé stesso: $1 \cdot 1 + 1 \cdot (-1) + (-1) \cdot 1 = -1$. La risposta $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$ è la più tentatrice: è la matrice dei pesi della formula, cioè la matrice associata nella base canonica e non nella base data. La risposta $\begin{pmatrix} 1 & 0 \\ 1 & -1 \end{pmatrix}$ non è simmetrica, quindi non può essere una matrice associata. È simile alla domanda 9 dell'appello del 15/01/2026.
 
 D: Quale matrice simmetrica definisce un prodotto scalare **degenere** su $\R^2$?
 + $\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$
@@ -70913,7 +77206,7 @@ D: Quale affermazione è vera per ogni prodotto scalare su uno spazio vettoriale
 - Se $\langle v, v\rangle = 0$ per qualche $v \neq 0$, allora è degenere.
 - Ogni matrice simmetrica $S$ definisce un prodotto scalare definito positivo.
 - Può succedere che $\langle v, 0\rangle \neq 0$.
-= La domanda chiede quale frase vale per tutti i prodotti scalari. La prima è la Proposizione 19.3: un vettore che dà zero con tutti darebbe zero anche con sé stesso, e in un prodotto definito positivo questo non succede. La seconda è la più tentatrice, perché è la prima letta al contrario. Ma il prodotto $x_1y_1 - x_2y_2$ non è degenere e non è definito positivo. Lo stesso prodotto smentisce la terza: il vettore $(1, 1)$ dà zero con sé stesso, eppure il prodotto non è degenere. La quarta è falsa per la matrice diagonale con $-1$ e $-1$ sulla diagonale. La quinta è falsa perché con il vettore nullo ogni prodotto scalare dà zero.
+= La domanda chiede quale frase vale per tutti i prodotti scalari. La frase giusta è la Proposizione 19.3: un vettore che dà zero con tutti darebbe zero anche con sé stesso, e in un prodotto definito positivo questo non succede. La risposta «Se non è degenere, allora è definito positivo» è la più tentatrice, perché è la frase giusta letta al contrario. Ma il prodotto $x_1y_1 - x_2y_2$ non è degenere e non è definito positivo. Lo stesso prodotto smentisce «Se $\langle v, v\rangle = 0$ per qualche $v \neq 0$, allora è degenere»: il vettore $(1, 1)$ dà zero con sé stesso, eppure il prodotto non è degenere. La risposta «Ogni matrice simmetrica $S$ definisce un prodotto scalare definito positivo» è falsa per la matrice diagonale con $-1$ e $-1$ sulla diagonale. La risposta «Può succedere che $\langle v, 0\rangle \neq 0$» è falsa perché con il vettore nullo ogni prodotto scalare dà zero.
 
 D: Sia $S = \begin{pmatrix} 4 & 1 & -2 \\ 1 & 0 & 5 \\ -2 & 5 & 3 \end{pmatrix}$. Quanto vale $g_S(e_1 + e_2, e_3)$?
 N: 3
@@ -70925,7 +77218,7 @@ D: Sia $S = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 1 & 1 \\ 0 & 1 & 3 \end{pmatrix}$ e
 - $\begin{pmatrix} 4 & 2 & 0 \\ 2 & 1 & 1 \\ 0 & 1 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 4 & 0 \\ 2 & 1 & -1 \\ 0 & 1 & -3 \end{pmatrix}$
 - $\begin{pmatrix} 4 & 4 & 0 \\ 4 & 1 & 1 \\ 0 & 1 & 3 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra i tre vettori della base. Ogni vettore è un multiplo di un vettore della base canonica: $v_1 = 2e_1$, $v_2 = e_2$, $v_3 = -e_3$. I numeri escono fuori dal prodotto, e quello che resta è una casella di $S$. I sei conti: $g_S(v_1, v_1) = 2 \cdot 2 \cdot 1 = 4$; $g_S(v_1, v_2) = 2 \cdot 1 \cdot 2 = 4$; $g_S(v_1, v_3) = 2 \cdot (-1) \cdot 0 = 0$; $g_S(v_2, v_2) = 1 \cdot 1 \cdot 1 = 1$; $g_S(v_2, v_3) = 1 \cdot (-1) \cdot 1 = -1$; $g_S(v_3, v_3) = (-1) \cdot (-1) \cdot 3 = 3$. La più tentatrice è l'ultima risposta, che dimentica il segno meno di $v_3$ nella casella con $-1$. La quarta non è simmetrica. È simile alla domanda 4 degli appelli del 10/06/2024 e del 03/06/2026.
+= La domanda chiede la tabellina dei prodotti tra i tre vettori della base. Ogni vettore è un multiplo di un vettore della base canonica: $v_1 = 2e_1$, $v_2 = e_2$, $v_3 = -e_3$. I numeri escono fuori dal prodotto, e quello che resta è una casella di $S$. I sei conti: $g_S(v_1, v_1) = 2 \cdot 2 \cdot 1 = 4$; $g_S(v_1, v_2) = 2 \cdot 1 \cdot 2 = 4$; $g_S(v_1, v_3) = 2 \cdot (-1) \cdot 0 = 0$; $g_S(v_2, v_2) = 1 \cdot 1 \cdot 1 = 1$; $g_S(v_2, v_3) = 1 \cdot (-1) \cdot 1 = -1$; $g_S(v_3, v_3) = (-1) \cdot (-1) \cdot 3 = 3$. La più tentatrice è la risposta $\begin{pmatrix} 4 & 4 & 0 \\ 4 & 1 & 1 \\ 0 & 1 & 3 \end{pmatrix}$, che dimentica il segno meno di $v_3$ nella casella con $-1$. La risposta $\begin{pmatrix} 2 & 4 & 0 \\ 2 & 1 & -1 \\ 0 & 1 & -3 \end{pmatrix}$ non è simmetrica. È simile alla domanda 4 degli appelli del 10/06/2024 e del 03/06/2026.
 
 D: Su $\R_2[x]$, quale di questi prodotti scalari è **definito positivo**?
 + $\langle p, q\rangle = p(0)q(0) + p(1)q(1) + p(2)q(2)$
@@ -71381,6 +77674,7 @@ corso: MDAG
 modulo: AG
 lezione: L20
 titolo: Prodotti scalari II
+data: 2026-11-24
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L20
 descrizione: >-
@@ -71416,7 +77710,7 @@ genera_html: true
 - All'esame: norme e angoli con un prodotto scalare dato, la matrice di una forma quadratica, il cambiamento di base. Tutto senza calcolatrice: servono i coseni degli angoli notevoli.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di martedì 24/11/2026, dalle 9 alle 11, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 20. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## La stessa misura in un'altra base (p. 100)
 
@@ -71892,7 +78186,7 @@ D: La forma quadratica $q(x) = x_1^2 - 4x_1x_2 + 3x_3^2$ si scrive come $q_S(x) 
 - $\begin{pmatrix} 1 & -4 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & -2 & 0 \\ -2 & 3 & 0 \\ 0 & 0 & 0 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 & 0 \\ 2 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$
-= Sulla diagonale i numeri dei quadrati: 1 per $x_1^2$, 0 per $x_2^2$, 3 per $x_3^2$. Il $-4$ di $x_1x_2$ si divide: $-2$ ai posti $(1, 2)$ e $(2, 1)$. La risposta più insidiosa è la seconda, che non dimezza e quindi dà $-8x_1x_2$. La terza dà la forma giusta ma non è simmetrica; la quarta mette il 3 su $x_2^2$; l'ultima ha il segno sbagliato. Simile all'appello dell'08/02/2024, domanda 7.
+= Sulla diagonale i numeri dei quadrati: 1 per $x_1^2$, 0 per $x_2^2$, 3 per $x_3^2$. Il $-4$ di $x_1x_2$ si divide: $-2$ ai posti $(1, 2)$ e $(2, 1)$. La risposta più insidiosa è $\begin{pmatrix} 1 & -4 & 0 \\ -4 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$, che non dimezza e quindi dà $-8x_1x_2$. La risposta $\begin{pmatrix} 1 & -4 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$ dà la forma giusta ma non è simmetrica; la risposta $\begin{pmatrix} 1 & -2 & 0 \\ -2 & 3 & 0 \\ 0 & 0 & 0 \end{pmatrix}$ mette il 3 su $x_2^2$; la risposta $\begin{pmatrix} 1 & 2 & 0 \\ 2 & 0 & 0 \\ 0 & 0 & 3 \end{pmatrix}$ ha il segno sbagliato. Simile all'appello dell'08/02/2024, domanda 7.
 
 D: Quale forma quadratica è definita dalla matrice $S = \begin{pmatrix} 0 & 1 & -1 \\ 1 & 2 & 0 \\ -1 & 0 & 0 \end{pmatrix}$?
 + $2x_2^2 + 2x_1x_2 - 2x_1x_3$
@@ -71900,7 +78194,7 @@ D: Quale forma quadratica è definita dalla matrice $S = \begin{pmatrix} 0 & 1 &
 - $2x_2^2 + 2x_1x_2 + 2x_1x_3$
 - $x_1^2 + 2x_2^2 + 2x_1x_2 - 2x_1x_3$
 - $2x_2^2 + 4x_1x_2 - 4x_1x_3$
-= Dalla diagonale viene solo $2x_2^2$. Fuori dalla diagonale ogni numero si raddoppia: $2 \cdot 1 \cdot x_1x_2$ e $2 \cdot (-1) \cdot x_1x_3$; il posto $(2, 3)$ ha 0. La risposta più insidiosa è la seconda, di chi dimentica di raddoppiare. L'ultima raddoppia due volte; la terza sbaglia un segno; la quarta inventa un $x_1^2$.
+= Dalla diagonale viene solo $2x_2^2$. Fuori dalla diagonale ogni numero si raddoppia: $2 \cdot 1 \cdot x_1x_2$ e $2 \cdot (-1) \cdot x_1x_3$; il posto $(2, 3)$ ha 0. La risposta più insidiosa è $2x_2^2 + x_1x_2 - x_1x_3$, di chi dimentica di raddoppiare. La risposta $2x_2^2 + 4x_1x_2 - 4x_1x_3$ raddoppia due volte; la risposta $2x_2^2 + 2x_1x_2 + 2x_1x_3$ sbaglia un segno; la risposta $x_1^2 + 2x_2^2 + 2x_1x_2 - 2x_1x_3$ inventa un $x_1^2$.
 
 D: Su $\R^3$ sia $g_S$ il prodotto scalare con $S = \begin{pmatrix} 1 & 1 & 0 \\ 1 & 3 & 1 \\ 0 & 1 & 2 \end{pmatrix}$. Qual è la norma di $v = {}^t(1, 1, 1)$ rispetto a $g_S$?
 + $\sqrt{10}$
@@ -71940,7 +78234,7 @@ D: Siano $S = [g]_{\mathcal B}$ e $S' = [g]_{\mathcal B'}$ le matrici dello stes
 - $S' = M\,S\,{}^tM$
 - $S' = {}^tM\,S$
 - $S' = S$
-= È la Proposizione 20.1: la casella $(i, j)$ di $S'$ è il prodotto dei vettori nuovi $i$ e $j$, cioè la riga $i$ di ${}^tM$ per $S$ per la colonna $j$ di $M$. La risposta più insidiosa è la seconda, che è la formula delle macchine lineari. La matrice di un prodotto scalare cambia con la base, quindi $S' = S$ è falsa in generale. Serve negli appelli del 10/06/2024 e del 03/06/2026, domanda 4.
+= È la Proposizione 20.1: la casella $(i, j)$ di $S'$ è il prodotto dei vettori nuovi $i$ e $j$, cioè la riga $i$ di ${}^tM$ per $S$ per la colonna $j$ di $M$. La risposta più insidiosa è $S' = M^{-1}S\,M$, che è la formula delle macchine lineari. La matrice di un prodotto scalare cambia con la base, quindi $S' = S$ è falsa in generale. Serve negli appelli del 10/06/2024 e del 03/06/2026, domanda 4.
 
 D: Quale affermazione è vera per ogni coppia di vettori $v, w$ di uno spazio con prodotto scalare definito positivo?
 + $|\langle v, w\rangle| \le \|v\|\,\|w\|$
@@ -71948,7 +78242,7 @@ D: Quale affermazione è vera per ogni coppia di vettori $v, w$ di uno spazio co
 - $\|v + w\|^2 = \|v\|^2 + \|w\|^2$
 - $\|\lambda v\| = \lambda\,\|v\|$ per ogni $\lambda \in \R$
 - $\langle v, w\rangle \ge 0$
-= È Cauchy–Schwarz. La più insidiosa è la quarta: sembra giusta, ma con un numero negativo darebbe una lunghezza negativa, e serve il valore assoluto. La seconda vale solo per vettori paralleli con lo stesso verso; la terza, Pitagora, solo se il prodotto scalare è zero; l'ultima è falsa con $w = -v$.
+= È Cauchy–Schwarz. La più insidiosa è «$\|\lambda v\| = \lambda\,\|v\|$ per ogni $\lambda \in \R$»: sembra giusta, ma con un numero negativo darebbe una lunghezza negativa, e serve il valore assoluto. La risposta $\|v + w\| = \|v\| + \|w\|$ vale solo per vettori paralleli con lo stesso verso; la risposta $\|v + w\|^2 = \|v\|^2 + \|w\|^2$, Pitagora, solo se il prodotto scalare è zero; la risposta $\langle v, w\rangle \ge 0$ è falsa con $w = -v$.
 
 D: Quanto vale la distanza euclidea tra i punti $P = (1, 2, 3)$ e $Q = (3, 3, 5)$?
 N: 3
@@ -72892,7 +79186,7 @@ D: Applicando Gram–Schmidt (prodotto euclideo) a $v_1 = {}^t(1, 1, 0)$ e $v_2 
 - ${}^t(1, 0, 1)$
 - ${}^t\left(\frac12, \frac12, 1\right)$
 - ${}^t\left(-\frac12, \frac12, 1\right)$
-= Si toglie a $v_2$ la sua ombra su $v_1$: $(1, 0, 1) - \frac12(1, 1, 0) = \left(\frac12, -\frac12, 1\right)$. La risposta più insidiosa è l'ultima: è perpendicolare a $v_1$, ma non sta nel piano di $v_1$ e $v_2$. $(0, -1, 1)$ toglie tutto $v_1$ invece di metà. Simile al punto (1) dei problemi 12 del 07/09/2026 e del 03/06/2026.
+= Si toglie a $v_2$ la sua ombra su $v_1$: $(1, 0, 1) - \frac12(1, 1, 0) = \left(\frac12, -\frac12, 1\right)$. La risposta più insidiosa è ${}^t\left(-\frac12, \frac12, 1\right)$: è perpendicolare a $v_1$, ma non sta nel piano di $v_1$ e $v_2$. $(0, -1, 1)$ toglie tutto $v_1$ invece di metà. Simile al punto (1) dei problemi 12 del 07/09/2026 e del 03/06/2026.
 
 D: Sia $W$ un sottospazio di dimensione 2 di $\R^5$, con il prodotto scalare euclideo. Qual è la dimensione di $W^\perp$?
 N: 3
@@ -72904,7 +79198,7 @@ D: Sia $V$ di dimensione finita con un prodotto scalare definito positivo e sia 
 - $W^\perp$ è l'insieme dei vettori di $V$ che non stanno in $W$
 - $\dim W^\perp = \dim W$
 - $W^\perp$ è un sottospazio solo se $W$ è una retta
-= È il Teorema 21.8. La risposta più insidiosa è la terza: «tutto quello che non sta in $W$» non contiene lo zero e non è un sottospazio, mentre il complemento ortogonale è fatto dei vettori perpendicolari. L'intersezione è solo lo zero; le dimensioni sommano alla dimensione dello spazio, non sono uguali; il complemento è sempre un sottospazio (Proposizione 21.4).
+= È il Teorema 21.8. La risposta più insidiosa è «$W^\perp$ è l'insieme dei vettori di $V$ che non stanno in $W$»: «tutto quello che non sta in $W$» non contiene lo zero e non è un sottospazio, mentre il complemento ortogonale è fatto dei vettori perpendicolari. L'intersezione è solo lo zero; le dimensioni sommano alla dimensione dello spazio, non sono uguali; il complemento è sempre un sottospazio (Proposizione 21.4).
 
 D: Il vettore $x_0$ è una soluzione ai minimi quadrati del sistema $Ax = b$ se e solo se:
 + ${}^tA\,A\,x_0 = {}^tA\,b$
@@ -72932,7 +79226,7 @@ D: Se $\{v_1, \dots, v_n\}$ è una base **ortonormale** di $V$, la coordinata $i
 - $\langle v_i, v_i\rangle$
 - $\langle v, v\rangle$
 - $\langle v, v_1\rangle + \dots + \langle v, v_n\rangle$
-= Per la Proposizione 21.6 la coordinata è $\frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}$, e in una base ortonormale il denominatore vale 1. La risposta più insidiosa è l'ultima, che somma tutti i coefficienti invece di prenderne uno. Le altre non dipendono da $i$, oppure valgono sempre 1.
+= Per la Proposizione 21.6 la coordinata è $\frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}$, e in una base ortonormale il denominatore vale 1. La risposta più insidiosa è $\langle v, v_1\rangle + \dots + \langle v, v_n\rangle$, che somma tutti i coefficienti invece di prenderne uno. Le altre non dipendono da $i$, oppure valgono sempre 1.
 ```
 
 ## Esercizi
@@ -74726,7 +81020,7 @@ D: Quale di queste matrici è ortogonale?
 - $\begin{pmatrix} 2 & 0 \\ 0 & \frac12 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 0 & 2 \\ \frac12 & 0 \end{pmatrix}$
-= La domanda chiede quale matrice ha le colonne lunghe 1 e perpendicolari tra loro. Nella prima le colonne sono $\frac15(3, 4)$ e $\frac15(-4, 3)$. Il quadrato della lunghezza è $\frac{9 + 16}{25} = 1$ per tutte e due, e il prodotto scalare è $\frac{-12 + 12}{25} = 0$. Le altre falliscono sulla lunghezza. La seconda ha le colonne perpendicolari ma lunghe $\sqrt2$: è la risposta che tenta di più. La terza e l'ultima hanno determinante $1$ e $-1$, ma colonne lunghe $2$ e $\frac12$. La quarta, un taglio, ha la seconda colonna lunga $\sqrt2$. È il controllo che serve per domande come la 2 dell'appello del 10/07/2024, sulle matrici ortogonali.
+= La domanda chiede quale matrice ha le colonne lunghe 1 e perpendicolari tra loro. Nella matrice con $\frac15$ davanti le colonne sono $\frac15(3, 4)$ e $\frac15(-4, 3)$. Il quadrato della lunghezza è $\frac{9 + 16}{25} = 1$ per tutte e due, e il prodotto scalare è $\frac{-12 + 12}{25} = 0$. Le altre falliscono sulla lunghezza. La risposta $\begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix}$ ha le colonne perpendicolari ma lunghe $\sqrt2$: è la risposta che tenta di più. La risposta $\begin{pmatrix} 2 & 0 \\ 0 & \frac12 \end{pmatrix}$ e la risposta $\begin{pmatrix} 0 & 2 \\ \frac12 & 0 \end{pmatrix}$ hanno determinante $1$ e $-1$, ma colonne lunghe $2$ e $\frac12$. La risposta $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, un taglio, ha la seconda colonna lunga $\sqrt2$. È il controllo che serve per domande come la 2 dell'appello del 10/07/2024, sulle matrici ortogonali.
 
 D: Qual è l'immagine di $v = (3, 1)$ tramite la rotazione antioraria di angolo $\frac\pi2$?
 + $(-1, 3)$
@@ -76030,7 +82324,7 @@ D: I piani $\pi_1 = \{x + y + z = 3\}$ e $\pi_2 = \{x - y = 1\}$ si intersecano 
 - $(0, 0, 3) + \Span((1, 1, -2))$
 - $(1, 0, 2) + \Span((1, -1, 0))$
 - $(2, 1, 1) + \Span((1, 1, -2))$
-= Dalla seconda equazione $x = 1 + y$; nella prima $1 + 2y + z = 3$, cioè $z = 2 - 2y$. Con $y = t$: $(1 + t, t, 2 - 2t)$. Controllo: $(1, 1, 1) \times (1, -1, 0) = (1, 1, -2)$. La risposta più insidiosa è la seconda: il punto è giusto, ma $(1, 1, 1)$ è il vettore normale del primo piano, che è perpendicolare al piano invece di starci dentro. $(0, 0, 3)$ non sta sul secondo piano; $(2, 1, 1)$ non sta sul primo. Simile agli appelli del 24/01/2024 e del 10/07/2024 (problema 12, punto 1).
+= Dalla seconda equazione $x = 1 + y$; nella prima $1 + 2y + z = 3$, cioè $z = 2 - 2y$. Con $y = t$: $(1 + t, t, 2 - 2t)$. Controllo: $(1, 1, 1) \times (1, -1, 0) = (1, 1, -2)$. La risposta più insidiosa è $(1, 0, 2) + \Span((1, 1, 1))$: il punto è giusto, ma $(1, 1, 1)$ è il vettore normale del primo piano, che è perpendicolare al piano invece di starci dentro. $(0, 0, 3)$ non sta sul secondo piano; $(2, 1, 1)$ non sta sul primo. Simile agli appelli del 24/01/2024 e del 10/07/2024 (problema 12, punto 1).
 
 D: Il piano $\pi = \{s\,e_1 + t\,(e_2 + e_3) \mid s, t \in \R\}$ in forma cartesiana è:
 + $\{y - z = 0\}$
@@ -76066,7 +82360,7 @@ D: L'intersezione delle rette $r = (1, 0, 1) + t\,(1, 1, 0)$ e $r' = (0, 3, -1) 
 - il punto $(0, 3, -1)$
 - il punto $(3, 2, 1)$
 - vuota: le rette sono sghembe
-= Uguagliando: $1 + t = s$, $t = 3 - s$, $1 = -1 + s$. Dalla terza $s = 2$, dalla prima $t = 1$, e la seconda torna. Il punto è $(2, 1, 1)$. La risposta più insidiosa è $(3, 2, 1)$: sta sulla prima retta, con $t = 2$, ma non sulla seconda. Gli altri due punti sono i punti di partenza, ognuno su una retta sola. Simile agli appelli del 03/06/2025 e del 10/07/2025 (domanda 10).
+= Uguagliando: $1 + t = s$, $t = 3 - s$, $1 = -1 + s$. Dalla terza equazione $s = 2$, dalla prima equazione $t = 1$, e la seconda equazione torna. Il punto è $(2, 1, 1)$. La risposta più insidiosa è $(3, 2, 1)$: sta sulla prima retta, con $t = 2$, ma non sulla seconda. Gli altri due punti sono i punti di partenza, ognuno su una retta sola. Simile agli appelli del 03/06/2025 e del 10/07/2025 (domanda 10).
 
 D: Quale coppia di sottospazi affini di $\R^3$ ha **sicuramente** intersezione non vuota?
 + Due piani i cui vettori normali non sono proporzionali.
@@ -77062,7 +83356,7 @@ D: Quale di queste rette interseca il piano $\pi = \{2x - y + 2z = 3\}$ **perpen
 - $(2, -1, 2) + t\,(1, 1, 1)$
 - $\{2x - y + 2z = 0\}$
 - $(0, 3, 0) + t\,(2, 1, 2)$
-= Una retta è perpendicolare al piano quando la sua direzione è proporzionale al vettore normale $(2, -1, 2)$. La risposta più insidiosa è la terza, che usa la normale come **punto** invece che come direzione. $(1, 2, 0)$ è perpendicolare alla normale, quindi quella retta è parallela al piano; $\{2x - y + 2z = 0\}$ è un piano; $(2, 1, 2)$ ha un segno diverso. Simile all'appello del 02/09/2025 (domanda 9).
+= Una retta è perpendicolare al piano quando la sua direzione è proporzionale al vettore normale $(2, -1, 2)$. La risposta più insidiosa è $(2, -1, 2) + t\,(1, 1, 1)$, che usa la normale come **punto** invece che come direzione. $(1, 2, 0)$ è perpendicolare alla normale, quindi quella retta è parallela al piano; $\{2x - y + 2z = 0\}$ è un piano; $(2, 1, 2)$ ha un segno diverso. Simile all'appello del 02/09/2025 (domanda 9).
 
 D: Qual è la distanza fra i piani paralleli $\{x + 2y + 2z = 1\}$ e $\{x + 2y + 2z = 7\}$?
 N: 2
@@ -78721,7 +85015,7 @@ D: Scriviamo $x = (x_1, x_2)$, $y = (y_1, y_2) \in \C^2$. Quale delle seguenti �
 - $i x_1 \bar y_1 + x_1 \bar y_2 + x_2 \bar y_1 + x_2 \bar y_2$
 - $x_1 y_1 + (1 - i) x_1 y_2 + (1 + i) x_2 y_1 + 3 x_2 y_2$
 - $x_1 \bar y_1 + 2 x_1 \bar y_2 - 2 x_2 \bar y_1 + x_2 \bar y_2$
-= La domanda chiede quale formula rispetta le regole del prodotto hermitiano. Il metodo: controlla le lineette, scrivi la matrice dei coefficienti e guarda se è hermitiana. La prima formula ha matrice $\begin{pmatrix} 1 & 1 - i \\ 1 + i & 3 \end{pmatrix}$: la diagonale è reale e il coniugato di $1 + i$ è $1 - i$, quindi va bene. La risposta più insidiosa è la seconda: ha $1 - i$ in tutti e due i posti fuori dalla diagonale, cioè è simmetrica, ma il coniugato di $1 - i$ è $1 + i$. Nella terza c'è $i$ sulla diagonale. La quarta non ha le lineette. Nella quinta il coniugato di $-2$ è $-2$, non $2$. Domande così sono negli appelli del 24/01/2024, 16/01/2025, 07/02/2025, 02/09/2025 e 15/01/2026.
+= La domanda chiede quale formula rispetta le regole del prodotto hermitiano. Il metodo: controlla le lineette, scrivi la matrice dei coefficienti e guarda se è hermitiana. La formula giusta ha matrice $\begin{pmatrix} 1 & 1 - i \\ 1 + i & 3 \end{pmatrix}$: la diagonale è reale e il coniugato di $1 + i$ è $1 - i$, quindi va bene. La risposta più insidiosa è $x_1 \bar y_1 + (1 - i) x_1 \bar y_2 + (1 - i) x_2 \bar y_1 + 3 x_2 \bar y_2$: ha $1 - i$ in tutti e due i posti fuori dalla diagonale, cioè è simmetrica, ma il coniugato di $1 - i$ è $1 + i$. Nella formula che comincia con $i x_1 \bar y_1$ c'è $i$ sulla diagonale. La risposta $x_1 y_1 + (1 - i) x_1 y_2 + (1 + i) x_2 y_1 + 3 x_2 y_2$ non ha le lineette. Nella formula con $2 x_1 \bar y_2 - 2 x_2 \bar y_1$ il coniugato di $-2$ è $-2$, non $2$. Domande così sono negli appelli del 24/01/2024, 16/01/2025, 07/02/2025, 02/09/2025 e 15/01/2026.
 
 D: Quale di queste matrici è hermitiana?
 + $\begin{pmatrix} 3 & 2 + i \\ 2 - i & 0 \end{pmatrix}$
@@ -78729,7 +85023,7 @@ D: Quale di queste matrici è hermitiana?
 - $\begin{pmatrix} i & 1 \\ 1 & i \end{pmatrix}$
 - $\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 + i \\ -1 + i & 2 \end{pmatrix}$
-= Una matrice è hermitiana quando la diagonale è reale e ogni numero è il coniugato del suo specchio. Nella prima la diagonale è fatta da $3$ e $0$, e il coniugato di $2 - i$ è $2 + i$: va bene. Le risposte più insidiose sono la seconda e la quarta, perché sono simmetriche. Ma il coniugato di $2 + i$ è $2 - i$ e il coniugato di $i$ è $-i$: gli specchi non sono coniugati. La terza ha $i$ sulla diagonale. Nella quinta il coniugato di $-1 + i$ è $-1 - i$, non $1 + i$: è stato cambiato il segno della parte reale invece di quello davanti alla $i$. Domande così sono negli appelli del 10/06/2024 e del 10/07/2024.
+= Una matrice è hermitiana quando la diagonale è reale e ogni numero è il coniugato del suo specchio. Nella matrice giusta la diagonale è fatta da $3$ e $0$, e il coniugato di $2 - i$ è $2 + i$: va bene. Le risposte più insidiose sono $\begin{pmatrix} 3 & 2 + i \\ 2 + i & 0 \end{pmatrix}$ e $\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$, perché sono simmetriche. Ma il coniugato di $2 + i$ è $2 - i$ e il coniugato di $i$ è $-i$: gli specchi non sono coniugati. La risposta $\begin{pmatrix} i & 1 \\ 1 & i \end{pmatrix}$ ha $i$ sulla diagonale. Nella matrice con $1 + i$ e $-1 + i$ il coniugato di $-1 + i$ è $-1 - i$, non $1 + i$: è stato cambiato il segno della parte reale invece di quello davanti alla $i$. Domande così sono negli appelli del 10/06/2024 e del 10/07/2024.
 
 D: Con il prodotto hermitiano euclideo di $\C^2$, quanto vale $\langle (1, i), (i, 1) \rangle$?
 + $0$
@@ -78749,7 +85043,7 @@ D: Sia $\langle\ ,\ \rangle$ un prodotto hermitiano su $V$ e $\lambda \in \C$. Q
 - $\langle \lambda v, w \rangle = \bar\lambda \langle v, w \rangle$
 - $\langle v, \lambda w \rangle = \lvert \lambda \rvert \langle v, w \rangle$
 - $\langle v, \lambda w \rangle = \lambda \langle w, v \rangle$
-= La domanda chiede come esce un numero dal prodotto. La regola: dal primo posto esce così com'è, dal secondo posto esce coniugato. La prima risposta è la proprietà (5). La risposta più insidiosa è la seconda: sarebbe giusta per un prodotto scalare tra vettori reali, ma qui il numero che esce dal secondo posto va coniugato. La terza mette il coniugato sul posto sbagliato. Un controllo con i numeri: se $v = w = (1, 0)$ e $\lambda = i$, il prodotto euclideo dà $\langle v, i w \rangle = 1 \cdot (-i) = -i$, cioè proprio $\bar\lambda$.
+= La domanda chiede come esce un numero dal prodotto. La regola: dal primo posto esce così com'è, dal secondo posto esce coniugato. L'uguaglianza giusta è la proprietà (5). La risposta più insidiosa è $\langle v, \lambda w \rangle = \lambda \langle v, w \rangle$: sarebbe giusta per un prodotto scalare tra vettori reali, ma qui il numero che esce dal secondo posto va coniugato. La risposta $\langle \lambda v, w \rangle = \bar\lambda \langle v, w \rangle$ mette il coniugato sul posto sbagliato. Un controllo con i numeri: se $v = w = (1, 0)$ e $\lambda = i$, il prodotto euclideo dà $\langle v, i w \rangle = 1 \cdot (-i) = -i$, cioè proprio $\bar\lambda$.
 
 D: In una matrice hermitiana gli elementi della diagonale sono:
 + sempre reali
@@ -78765,7 +85059,7 @@ D: Quale di queste applicazioni $T \colon \R^2 \to \R^2$ è autoaggiunta rispett
 - $T(x, y) = (x + y,\ y)$
 - $T(x, y) = (y,\ -x)$
 - $T(x, y) = (2x,\ x + y)$
-= Per il Corollario 25.7 basta scrivere la matrice nella base canonica, una riga per ogni componente, e controllare che sia simmetrica. La prima dà $\begin{pmatrix} 3 & 2 \\ 2 & -1 \end{pmatrix}$: fuori dalla diagonale c'è $2$ in tutti e due i posti, quindi è simmetrica. La risposta più insidiosa è la seconda: dà $\begin{pmatrix} 3 & 2 \\ -2 & -1 \end{pmatrix}$, con $2$ e $-2$, che sono diversi. Le altre danno $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, poi $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$ (una rotazione), poi $\begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix}$: nessuna è simmetrica. Una domanda così è nell'appello del 03/06/2026 (domanda 9).
+= Per il Corollario 25.7 basta scrivere la matrice nella base canonica, una riga per ogni componente, e controllare che sia simmetrica. La risposta giusta dà $\begin{pmatrix} 3 & 2 \\ 2 & -1 \end{pmatrix}$: fuori dalla diagonale c'è $2$ in tutti e due i posti, quindi è simmetrica. La risposta più insidiosa è $T(x, y) = (3x + 2y,\ -2x - y)$: dà $\begin{pmatrix} 3 & 2 \\ -2 & -1 \end{pmatrix}$, con $2$ e $-2$, che sono diversi. Le altre danno $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$, poi $\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$ (una rotazione), poi $\begin{pmatrix} 2 & 0 \\ 1 & 1 \end{pmatrix}$: nessuna è simmetrica. Una domanda così è nell'appello del 03/06/2026 (domanda 9).
 
 D: Quale di queste applicazioni $T \colon \C^2 \to \C^2$ **non** è autoaggiunta rispetto al prodotto hermitiano euclideo?
 + $T(x, y) = (x + iy,\ ix + y)$
@@ -78773,7 +85067,7 @@ D: Quale di queste applicazioni $T \colon \C^2 \to \C^2$ **non** è autoaggiunta
 - $T(x, y) = (2x,\ 3y)$
 - $T(x, y) = \big((1 + i)y,\ (1 - i)x\big)$
 - $T(x, y) = (x + 2y,\ 2x)$
-= Con i numeri complessi un'applicazione è autoaggiunta quando la sua matrice nella base canonica è hermitiana. La prima dà $\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$: è simmetrica, ma il coniugato di $i$ è $-i$, quindi non è hermitiana. È lei quella che non è autoaggiunta. Le altre matrici sono $\begin{pmatrix} 1 & i \\ -i & 1 \end{pmatrix}$, poi $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$, poi $\begin{pmatrix} 0 & 1 + i \\ 1 - i & 0 \end{pmatrix}$, poi $\begin{pmatrix} 1 & 2 \\ 2 & 0 \end{pmatrix}$. Hanno tutte la diagonale reale e gli specchi coniugati. La risposta più insidiosa è proprio la prima: chi si ferma a «è simmetrica, quindi va bene» la scarta. Una domanda così è nell'appello del 08/02/2024 (domanda 9).
+= Con i numeri complessi un'applicazione è autoaggiunta quando la sua matrice nella base canonica è hermitiana. $T(x, y) = (x + iy,\ ix + y)$ dà $\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$: è simmetrica, ma il coniugato di $i$ è $-i$, quindi non è hermitiana. È lei quella che non è autoaggiunta. Le altre matrici sono $\begin{pmatrix} 1 & i \\ -i & 1 \end{pmatrix}$, poi $\begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}$, poi $\begin{pmatrix} 0 & 1 + i \\ 1 - i & 0 \end{pmatrix}$, poi $\begin{pmatrix} 1 & 2 \\ 2 & 0 \end{pmatrix}$. Hanno tutte la diagonale reale e gli specchi coniugati. La risposta più insidiosa è proprio quella giusta: chi si ferma a «è simmetrica, quindi va bene» la scarta. Una domanda così è nell'appello del 08/02/2024 (domanda 9).
 
 D: Sia $T$ un endomorfismo autoaggiunto di $\R^2$ con il prodotto scalare euclideo. Rispetto a quale tipo di base la matrice di $T$ è **sicuramente** simmetrica?
 + Una qualsiasi base ortonormale.
@@ -78781,7 +85075,7 @@ D: Sia $T$ un endomorfismo autoaggiunto di $\R^2$ con il prodotto scalare euclid
 - Una base che contiene il vettore $e_1$.
 - Una base formata da vettori di norma $2$.
 - Una base la cui matrice di cambiamento ha determinante positivo.
-= È la Proposizione 25.6: in una base ortonormale la matrice di una macchina autoaggiunta è simmetrica. La risposta più insidiosa è «una base qualsiasi», ma è falsa. L'Esempio 25.8 lo mostra: nella base fatta da $(-1, 1)$ e $(1, 0)$, che non è ortonormale, la matrice viene $\begin{pmatrix} 0 & 1 \\ -1 & 3 \end{pmatrix}$, che non è simmetrica. Quella base contiene il vettore $e_1$: quindi anche la terza risposta è falsa.
+= È la Proposizione 25.6: in una base ortonormale la matrice di una macchina autoaggiunta è simmetrica. La risposta più insidiosa è «una base qualsiasi», ma è falsa. L'Esempio 25.8 lo mostra: nella base fatta da $(-1, 1)$ e $(1, 0)$, che non è ortonormale, la matrice viene $\begin{pmatrix} 0 & 1 \\ -1 & 3 \end{pmatrix}$, che non è simmetrica. Quella base contiene il vettore $e_1$: quindi anche la risposta «Una base che contiene il vettore $e_1$» è falsa.
 
 D: Sia $T$ un endomorfismo autoaggiunto di $\R^3$ e sia $v$ un vettore con $T(v) = 2v$. Detto $U = \Span(v)$, quale affermazione è vera?
 + $U^\perp$ è $T$-invariante.
@@ -78789,7 +85083,7 @@ D: Sia $T$ un endomorfismo autoaggiunto di $\R^3$ e sia $v$ un vettore con $T(v)
 - $T(U^\perp) \subseteq U$.
 - $T(U^\perp) = \{0\}$.
 - Ogni vettore di $U^\perp$ è un autovettore con autovalore $2$.
-= La retta $U$ dei multipli di $v$ è invariante, perché $v$ è un autovettore: la macchina lo manda nel suo doppio. Per la Proposizione 25.10 anche $U^\perp$ è invariante. Le altre risposte sono false; la più insidiosa è l'ultima, perché fa pensare che l'autovalore di $v$ passi ai vettori perpendicolari. Un esempio che le smentisce tutte: la matrice diagonale con $2$, $1$ e $3$ sulla diagonale, e $v = e_1$. Qui $U^\perp$ è il piano di $e_2$ ed $e_3$. La macchina manda $e_2$ in $e_2$ e manda $e_3$ in $3e_3$: non li manda in zero, non li porta in $U$, e il loro autovalore non è $2$.
+= La retta $U$ dei multipli di $v$ è invariante, perché $v$ è un autovettore: la macchina lo manda nel suo doppio. Per la Proposizione 25.10 anche $U^\perp$ è invariante. Le altre risposte sono false; la più insidiosa è «Ogni vettore di $U^\perp$ è un autovettore con autovalore $2$», perché fa pensare che l'autovalore di $v$ passi ai vettori perpendicolari. Un esempio che le smentisce tutte: la matrice diagonale con $2$, $1$ e $3$ sulla diagonale, e $v = e_1$. Qui $U^\perp$ è il piano di $e_2$ ed $e_3$. La macchina manda $e_2$ in $e_2$ e manda $e_3$ in $3e_3$: non li manda in zero, non li porta in $U$, e il loro autovalore non è $2$.
 ```
 
 ## Esercizi
@@ -79711,7 +86005,7 @@ D: Con il prodotto scalare euclideo di $\R^2$, quale di queste matrici ha **sicu
 - $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$
-= Per il Corollario 26.2 le matrici reali con una base ortonormale di autovettori sono esattamente le simmetriche: solo la prima. La risposta più insidiosa è la quarta: è diagonalizzabile, ma i suoi autovettori $(1, 0)$ e $(1, 1)$ non sono perpendicolari. La seconda ha autovalori non reali, $1 \pm 3i$; la terza non è diagonalizzabile; la quinta non è simmetrica. Simile all'appello del 15/01/2026 (problema 11, punto 2).
+= Per il Corollario 26.2 le matrici reali con una base ortonormale di autovettori sono esattamente le simmetriche: solo $\begin{pmatrix} 1 & 3 \\ 3 & -2 \end{pmatrix}$. La risposta più insidiosa è $\begin{pmatrix} 2 & 1 \\ 0 & 3 \end{pmatrix}$: è diagonalizzabile, ma i suoi autovettori $(1, 0)$ e $(1, 1)$ non sono perpendicolari. La risposta $\begin{pmatrix} 1 & 3 \\ -3 & 1 \end{pmatrix}$ ha autovalori non reali, $1 \pm 3i$; la risposta $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$ non è diagonalizzabile; la risposta $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ non è simmetrica. Simile all'appello del 15/01/2026 (problema 11, punto 2).
 
 D: Sia $A \in M(3, \R)$ simmetrica con esattamente due autovalori distinti. Quale affermazione è vera?
 + Uno dei due autospazi ha dimensione 2.
@@ -79719,7 +86013,7 @@ D: Sia $A \in M(3, \R)$ simmetrica con esattamente due autovalori distinti. Qual
 - $A$ non è diagonalizzabile.
 - $A$ ha un autovalore non reale.
 - Ogni base di autovettori di $A$ è ortonormale.
-= $A$ è diagonalizzabile per il teorema spettrale, quindi le dimensioni dei due autospazi sommano a 3: una è 2 e l'altra 1. La risposta più insidiosa è l'ultima: una base ortonormale di autovettori **esiste**, ma non tutte lo sono, per esempio $e_1, 2e_2, e_3$ con $\operatorname{diag}(1, 1, 2)$. La stessa matrice mostra che $A$ può non essere ortogonale. Simile all'appello del 16/01/2025 (domanda 7).
+= $A$ è diagonalizzabile per il teorema spettrale, quindi le dimensioni dei due autospazi sommano a 3: una è 2 e l'altra 1. La risposta più insidiosa è «Ogni base di autovettori di $A$ è ortonormale»: una base ortonormale di autovettori **esiste**, ma non tutte lo sono, per esempio $e_1, 2e_2, e_3$ con $\operatorname{diag}(1, 1, 2)$. La stessa matrice mostra che $A$ può non essere ortogonale. Simile all'appello del 16/01/2025 (domanda 7).
 
 D: Gli autovalori di una matrice reale simmetrica sono:
 + sempre reali
@@ -79751,7 +86045,7 @@ D: Quale matrice $M$ è ortogonale e rende ${}^tM A M$ diagonale per $A = \begin
 - $\frac 12\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
 - $\frac{1}{\sqrt 2}\begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$
 - $\frac{1}{\sqrt 5}\begin{pmatrix} 1 & 2 \\ 2 & -1 \end{pmatrix}$
-= Le colonne devono essere autovettori lunghi 1 e perpendicolari: $\frac{1}{\sqrt 2}(1, 1)$ e $\frac{1}{\sqrt 2}(1, -1)$. La risposta più insidiosa è la seconda: le colonne sono gli autovettori giusti, ma non sono lunghe 1, quindi la matrice non è ortogonale. Con $\frac 12$ succede lo stesso; con due colonne uguali $M$ non è invertibile; l'ultima è ortogonale, ma le sue colonne non sono autovettori. Simile agli appelli del 15/01/2026 e del 02/09/2025 (problema 11).
+= Le colonne devono essere autovettori lunghi 1 e perpendicolari: $\frac{1}{\sqrt 2}(1, 1)$ e $\frac{1}{\sqrt 2}(1, -1)$. La risposta più insidiosa è $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$: le colonne sono gli autovettori giusti, ma non sono lunghe 1, quindi la matrice non è ortogonale. Con $\frac 12$ succede lo stesso; con due colonne uguali $M$ non è invertibile; la risposta $\frac{1}{\sqrt 5}\begin{pmatrix} 1 & 2 \\ 2 & -1 \end{pmatrix}$ è ortogonale, ma le sue colonne non sono autovettori. Simile agli appelli del 15/01/2026 e del 02/09/2025 (problema 11).
 
 D: Il vettore $(1, 1, 0)$ è un autovettore della matrice simmetrica $A = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 5 \end{pmatrix}$. Qual è il suo autovalore?
 N: 3
@@ -80242,7 +86536,7 @@ D: Appello del 07/02/2025, domanda 2. Qual è la risposta corretta alla domanda 
 - No, ma poiché $\C$ contiene $\R$, $\R$ è uno spazio vettoriale su $\C$.
 - No, in quanto $\C$ e $\R$ sono campi diversi.
 + Sì, $\R$ è sottoinsieme di $\C$ e le operazioni $+$ e $\cdot$ su $\R$ sono le stesse che in $\C$.
-= Il punto chiave è della settimana 1: $\R$ sta dentro $\C$, e un reale per un complesso dà ancora un complesso. La risposta più insidiosa è «ogni campo è uno spazio vettoriale su $\R$»: è falsa, per esempio $\Q$ non contiene $\R$. La soluzione ufficiale nota che la prima e la quarta dicono cose vere che non rispondono alla domanda. Che cosa sia uno spazio vettoriale lo vedrai nella lezione L05.
+= Il punto chiave è della settimana 1: $\R$ sta dentro $\C$, e un reale per un complesso dà ancora un complesso. La risposta più insidiosa è «ogni campo è uno spazio vettoriale su $\R$»: è falsa, per esempio $\Q$ non contiene $\R$. La soluzione ufficiale nota che la risposta su $\C$ spazio vettoriale su sé stesso e quella sui campi diversi dicono cose vere che non rispondono alla domanda. Che cosa sia uno spazio vettoriale lo vedrai nella lezione L05.
 ```
 
 ## Fonti
@@ -80495,7 +86789,7 @@ D: Appello del 04/02/2025, domanda 2. Sia $S = \{a, c, f, h, m, t, v\}$. Quale d
 - $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$
 - $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$
 - $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$
-= I tre controlli: parti non vuote, che non si toccano, che coprono tutto. La prima li passa. La seconda dimentica la $h$. La terza ha una parte vuota. La quarta e la quinta ripetono una lettera, la $c$ e la $h$: sono ricoprimenti, non partizioni.
+= I tre controlli: parti non vuote, che non si toccano, che coprono tutto. La risposta giusta li passa. La risposta $\{f, m\} \cup \{a, t\} \cup \{c, v\}$ dimentica la $h$. La risposta $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$ ha una parte vuota. La risposta $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$ e la risposta $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$ ripetono una lettera, la $c$ e la $h$: sono ricoprimenti, non partizioni.
 
 D: Appello del 07/07/2025, domanda 2. Sia $X = \{b, c, f, h, k, m, r, u, v, z\}$. Quale è un ricoprimento di $X$ ma non una partizione?
 - $\{f, h, k, u, v\} \cup \{b, c, k, r, z\}$
@@ -80503,7 +86797,7 @@ D: Appello del 07/07/2025, domanda 2. Sia $X = \{b, c, f, h, k, m, r, u, v, z\}$
 + $\{b, f, k, m, r\} \cup \{c, h, r, u, v, z\}$
 - $\{b, c, m, v, z\} \cup \{f, h, k, u\}$
 - $\{b, f, k, r, u, z\} \cup \{c, m, t, v\}$
-= La terza copre tutte e dieci le lettere e ripete la $r$: è un ricoprimento ma non una partizione. La risposta più insidiosa è la prima, che ripete la $k$ ma dimentica la $m$: non copre tutto. La seconda e la quinta contengono lettere che in $X$ non ci sono ($s$ e $t$); la quarta dimentica la $r$.
+= La risposta giusta copre tutte e dieci le lettere e ripete la $r$: è un ricoprimento ma non una partizione. La risposta più insidiosa è $\{f, h, k, u, v\} \cup \{b, c, k, r, z\}$, che ripete la $k$ ma dimentica la $m$: non copre tutto. La risposta $\{b, c, k, r, s, z\} \cup \{f, h, m, u, v\}$ e la risposta $\{b, f, k, r, u, z\} \cup \{c, m, t, v\}$ contengono lettere che in $X$ non ci sono ($s$ e $t$); la risposta $\{b, c, m, v, z\} \cup \{f, h, k, u\}$ dimentica la $r$.
 
 D: Appello del 06/06/2025, domanda 2. L'affermazione «per ogni $x \in \N$ e per ogni $y \in \N$, $x^2 + x \ge y$» è contraddetta da:
 - $(x, y) = (2, 5)$
@@ -80761,7 +87055,7 @@ D: Appello del 02/09/2025, domanda 2. Quale dei seguenti è una radice terza di 
 - $8e^{\pi i/3 + 2\pi ik}$
 - $2e^{3\pi i/5}$
 - $2e^{3\pi i/5 + \pi i/3}$
-= Le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi5 + \frac{2k\pi}3$: con $k = 1$ è la seconda risposta. La risposta più insidiosa è $2e^{3\pi i/5}$: la distanza è giusta, ma l'angolo non è stato diviso per 3. Le risposte con 4 e con 8 hanno la distanza sbagliata.
+= Le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi5 + \frac{2k\pi}3$: con $k = 1$ viene $2e^{\pi i/5 + 2\pi i/3}$. La risposta più insidiosa è $2e^{3\pi i/5}$: la distanza è giusta, ma l'angolo non è stato diviso per 3. Le risposte con 4 e con 8 hanno la distanza sbagliata.
 
 D: Appello del 07/09/2026, domanda 1. Quale dei seguenti è una radice del polinomio $p(z) = z^4 + 5z^2 + 4$?
 - $z = -3 + i$
@@ -80785,7 +87079,7 @@ D: Appello del 03/07/2026, domanda 7. Quale dei seguenti è una radice del polin
 - $z = 1 + i$
 - $z = 1$
 - $z^3 + 2z^2 + z + 2 = 0$
-= Raccogliendo a coppie, $p(z) = z^2(z + 2) + (z + 2) = (z^2 + 1)(z + 2)$: le radici sono $-2$, $i$, $-i$. Controllo diretto: $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è l'ultima: è l'equazione, non un numero. $p(0) = 2$ e $p(1) = 6$.
+= Raccogliendo a coppie, $p(z) = z^2(z + 2) + (z + 2) = (z^2 + 1)(z + 2)$: le radici sono $-2$, $i$, $-i$. Controllo diretto: $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è $z^3 + 2z^2 + z + 2 = 0$: è l'equazione, non un numero. $p(0) = 2$ e $p(1) = 6$.
 ```
 
 ## Fonti
@@ -81029,7 +87323,7 @@ D: Appello del 14/01/2025, domanda 3. Sia $f \colon \Z \to \N$ la funzione $f(n)
 + $f(m) = f(n)$ se e solo se $m = \pm n$
 - $f$ è iniettiva
 - $f$ è suriettiva
-= $n$ e $-n$ sono tutti e due pari o tutti e due dispari, quindi hanno lo stesso valore. Al contrario, due numeri con lo stesso valore hanno lo stesso quadrato, oppure i quadrati differiscono di 2, che tra quadrati di interi non succede. La risposta più insidiosa è «iniettiva»: $f(1) = f(-1) = 0$. $f(0) = 1$ e $f(1) = 0$ smentiscono la prima; $f(2) = 5$ è primo; il 2 non è mai raggiunto, quindi non è suriettiva.
+= $n$ e $-n$ sono tutti e due pari o tutti e due dispari, quindi hanno lo stesso valore. Al contrario, due numeri con lo stesso valore hanno lo stesso quadrato, oppure i quadrati differiscono di 2, che tra quadrati di interi non succede. La risposta più insidiosa è «iniettiva»: $f(1) = f(-1) = 0$. $f(0) = 1$ e $f(1) = 0$ smentiscono la frase su $m + 1$; $f(2) = 5$ è primo; il 2 non è mai raggiunto, quindi non è suriettiva.
 
 D: Appello del 14/01/2025, domanda 3, altra versione. Sia $f \colon \Z \to \N$ la funzione $f(n) = n^2 + 2$ se $n$ è pari, $f(n) = n^2$ se $n$ è dispari. Allora:
 - se $s$ sta nell'immagine di $f$, allora $s + 1$ non ci sta
@@ -81037,7 +87331,7 @@ D: Appello del 14/01/2025, domanda 3, altra versione. Sia $f \colon \Z \to \N$ l
 - $f(2n) = 4n^2 + 4$ per ogni $n$
 + $f$ non è iniettiva
 - $f$ è suriettiva
-= $f(1) = f(-1) = 1$: due numeri diversi con lo stesso valore. La risposta più insidiosa è $f(2n) = 4n^2 + 4$: $2n$ è pari, quindi $f(2n) = 4n^2 + 2$. $f(0) = 2$ e $f(1) = 1$ smentiscono la prima; $f(0) = 2$ è primo; il 3 non è mai raggiunto.
+= $f(1) = f(-1) = 1$: due numeri diversi con lo stesso valore. La risposta più insidiosa è $f(2n) = 4n^2 + 4$: $2n$ è pari, quindi $f(2n) = 4n^2 + 2$. $f(0) = 2$ e $f(1) = 1$ smentiscono la frase su $s + 1$; $f(0) = 2$ è primo; il 3 non è mai raggiunto.
 
 D: Quiz 2021–2025. Sia $f \colon \Z \to \Z$ la funzione $f(n) = 2n$ se $n$ è dispari, $f(n) = 2$ se $n$ è pari. Allora:
 - $f$ è suriettiva
@@ -81270,7 +87564,7 @@ D: Appello del 03/06/2025, domanda 2. Quale dei seguenti insiemi è un sottospaz
 - $\{(x, y, z) \in \R^3 \mid -x + 7y + z = 5\}$
 + $\{(x, y, z) \in \R^3 \mid x + \frac y2 - 5\pi z = 0\}$
 - $\{(x, y, z) \in \R^3 \mid x + 3iy + 5z = 0\}$
-= Un'equazione lineare, con numeri reali e senza termine noto. La risposta più insidiosa è la prima: sembra senza termine noto, ma è $(x - 1)^2 = 0$, cioè $x = 1$, e l'origine non la rispetta. La seconda e la terza hanno il termine noto; l'ultima ha un numero non reale, e la soluzione ufficiale la scarta perché «non è definita sui numeri reali».
+= Un'equazione lineare, con numeri reali e senza termine noto. La risposta più insidiosa è $\{(x, y, z) \in \R^3 \mid x^2 - 2x + 1 = 0\}$: sembra senza termine noto, ma è $(x - 1)^2 = 0$, cioè $x = 1$, e l'origine non la rispetta. La risposta $\{(x, y, z) \in \R^3 \mid x + 2yz + 3z = 7\}$ e la risposta $\{(x, y, z) \in \R^3 \mid -x + 7y + z = 5\}$ hanno il termine noto; la risposta $\{(x, y, z) \in \R^3 \mid x + 3iy + 5z = 0\}$ ha un numero non reale, e la soluzione ufficiale la scarta perché «non è definita sui numeri reali».
 
 D: Appello del 08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(0) = 0\}$
@@ -81278,7 +87572,7 @@ D: Appello del 08/02/2024, domanda 2. Quale dei seguenti insiemi non è un sotto
 - $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 0\}$
 + $\{(1 + t)x^2 + tx \mid t \in \R\}$
 - $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(2)\}$
-= Per avere il polinomio nullo servirebbero $1 + t = 0$ e $t = 0$ insieme: impossibile. La risposta più insidiosa è la seconda, che ha una forma simile: ma $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$ è uno Span, quindi è un sottospazio. Le altre sono equazioni lineari senza termine noto.
+= Per avere il polinomio nullo servirebbero $1 + t = 0$ e $t = 0$ insieme: impossibile. La risposta più insidiosa è $\{(t + s)x^2 - tx - s \mid s, t \in \R\}$, che ha una forma simile: ma $(t + s)x^2 - tx - s = t(x^2 - x) + s(x^2 - 1)$ è uno Span, quindi è un sottospazio. Le altre sono equazioni lineari senza termine noto.
 
 D: Appello del 05/02/2026, domanda 2. Quale dei seguenti insiemi non è un sottospazio di $\R_2[x]$?
 - $\{p(x) \in \R_2[x] \mid p(1) = p(2)\}$
@@ -81294,7 +87588,7 @@ D: Appello del 07/09/2026, domanda 3. Quale dei seguenti insiemi è un sottospaz
 + $\{p(x) \in \R_2[x] \mid p(1) = 0 = p(-1)\}$
 - $\{tx^2 + sx + 1 \mid s, t \in \R\}$
 - $\{(1 + t)x^2 + tx \mid t \in \R\}$
-= È l'unico insieme che contiene il polinomio nullo, e le condizioni $p(1) = 0$ e $p(-1) = 0$ restano vere per somme e multipli. La risposta più insidiosa è la prima: $a = 2c$ va bene, ma $b = 2$ esclude il polinomio nullo. Nelle altre il termine noto è fissato a 1, oppure nessun $t$ dà lo zero.
+= È l'unico insieme che contiene il polinomio nullo, e le condizioni $p(1) = 0$ e $p(-1) = 0$ restano vere per somme e multipli. La risposta più insidiosa è $\{p(x) = ax^2 + bx + c \mid a = 2c,\ b = 2\}$: $a = 2c$ va bene, ma $b = 2$ esclude il polinomio nullo. Nelle altre il termine noto è fissato a 1, oppure nessun $t$ dà lo zero.
 
 D: Appello del 24/01/2024, domanda 1. In $\R_3[x]$ siano $a(x) = x - 1$, $b(x) = x + 2$, $c(x) = 2x^2 - 2$, $d(x) = x^2 - x$, $e(x) = 2x^3 + 1$, $f(x) = x^3 - x^2$, e sia $U = \{p(x) \in \R_3[x] \mid p(1) = 0\}$. Vale:
 - $U = \Span(a, c)$
@@ -81616,7 +87910,7 @@ D: Appello del 14/01/2025, domanda 4, versione 2. Quanti modi ci sono per far se
 - $\frac{12!}{4!}$
 - $12!$
 - $4^{12}$
-= La prima persona ha 12 sedie, la seconda 11, la terza 10, la quarta 9: $12 \cdot 11 \cdot 10 \cdot 9 = \frac{12!}{8!}$. La risposta più insidiosa è $12^4$: permetterebbe a due persone di sedersi sulla stessa sedia. $\frac{12!}{4!}$ divide per le persone invece che per le sedie vuote.
+= Le quattro persone scelgono una dopo l'altra tra 12, 11, 10 e 9 sedie: $12 \cdot 11 \cdot 10 \cdot 9 = \frac{12!}{8!}$. La risposta più insidiosa è $12^4$: permetterebbe a due persone di sedersi sulla stessa sedia. $\frac{12!}{4!}$ divide per le persone invece che per le sedie vuote.
 
 D: Quiz 2021–2025, domanda 4. Un DJ deve scegliere 4 canzoni da un catalogo di 15 da suonare in sequenza. Quante sono le possibili sequenze di tali 4 canzoni?
 - $15!$
@@ -82129,7 +88423,7 @@ D: Appello del 06/06/2025. Quanti sono i modi di scegliere due numeri divisibili
 - $\frac{20!}{14!}$
 - $4! \cdot 16!$
 - $\frac{4!}{2!} \cdot \frac{16!}{12!}$
-= Tra 1 e 20 i multipli di 5 sono 4 e gli altri 16: $6 \cdot 1820 = 10\,920$. La risposta più insidiosa è l'ultima: sono le stesse scelte, ma con l'ordine.
+= Tra 1 e 20 i multipli di 5 sono 4 e gli altri 16: $6 \cdot 1820 = 10\,920$. La risposta più insidiosa è $\frac{4!}{2!} \cdot \frac{16!}{12!}$: sono le stesse scelte, ma con l'ordine.
 
 D: Appello del 14/01/2025. Quanti modi ci sono per far sedere 6 persone in una fila di 10 sedie?
 + $\frac{10!}{4!}$
@@ -82363,7 +88657,7 @@ D: Appello del 24/01/2024, domanda 10. Il sistema lineare con matrice completa $
 - Zero.
 - Infinite, che dipendono da 2 parametri.
 - Un numero finito, maggiore di 1.
-= $R_2 - 4R_1$ e $R_3 - 7R_1$ danno $(0, -3, -6 \mid -29)$ e $(0, -6, -12 \mid -58)$; la terza è il doppio della seconda e si azzera tutta. Restano 2 pivot su 3 incognite, nessuna riga impossibile: un parametro, la (b) della soluzione ufficiale. La più insidiosa è «Una», perché equazioni e incognite sono tante uguali.
+= $R_2 - 4R_1$ e $R_3 - 7R_1$ danno $(0, -3, -6 \mid -29)$ e $(0, -6, -12 \mid -58)$; la terza riga è il doppio della seconda riga e si azzera tutta. Restano 2 pivot su 3 incognite, nessuna riga impossibile: un parametro, la (b) della soluzione ufficiale. La più insidiosa è «Una», perché equazioni e incognite sono tante uguali.
 
 D: Appello del 10/07/2024, domanda 5. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 3 & 5 & 2 \\ 7 & 9 & 11 & 2 \\ 6 & 6 & 6 & -2 \end{array}\right)$ ha un numero di soluzioni pari a:
 - Una.
@@ -82395,7 +88689,7 @@ D: Appello del 10/07/2024, domanda 6. Trovare tutte le soluzioni del sistema lin
 - $x = 1 - 2s$, $y = 2t - s - 1$, $z = -s$, con $t$ e $s$ reali.
 + $x = 2t + 1$, $y = 3t - 1$, $z = t$, con $t$ reale.
 - Il sistema non ha soluzioni.
-= A scalini restano 2 pivot su 3 incognite: con $z = t$ vengono $y = 3t - 1$ e $x = 2t + 1$. È la (d) della soluzione ufficiale. La più insidiosa è la (a): è davvero una soluzione, quella con $t = -1$, ma la domanda chiede **tutte** le soluzioni.
+= A scalini restano 2 pivot su 3 incognite: con $z = t$ vengono $y = 3t - 1$ e $x = 2t + 1$. È la (d) della soluzione ufficiale. La più insidiosa è $x = -1$, $y = -4$, $z = -1$: è davvero una soluzione, quella con $t = -1$, ma la domanda chiede **tutte** le soluzioni.
 
 D: Sul modello delle domande sull'inversa. L'inversa di $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}$ è:
 + $\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}$
@@ -82403,7 +88697,7 @@ D: Sul modello delle domande sull'inversa. L'inversa di $\begin{pmatrix} 3 & 1 \
 - $\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$
 - $\begin{pmatrix} 1/3 & 1 \\ 1/5 & 1/2 \end{pmatrix}$
 - non esiste
-= Il determinante è $6 - 5 = 1$: si scambiano 3 e 2, si cambia segno a 1 e 5, si divide per 1. La più insidiosa è la terza, che cambia i segni ma non scambia la diagonale; la quarta fa l'inverso di ogni numero, che non è l'inversa di una matrice.
+= Il determinante è $6 - 5 = 1$: si scambiano 3 e 2, si cambia segno a 1 e 5, si divide per 1. La più insidiosa è $\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$, che cambia i segni ma non scambia la diagonale; la risposta $\begin{pmatrix} 1/3 & 1 \\ 1/5 & 1/2 \end{pmatrix}$ fa l'inverso di ogni numero, che non è l'inversa di una matrice.
 ```
 
 ## Fonti
@@ -82987,7 +89281,7 @@ D: Appello del 10/07/2025, domanda 3. Sia $T \colon \R_3[x] \to \R$ la funzione 
 - No, perché $p(7) \neq 0$ per qualche $p(x)$
 + Sì
 - No, perché il polinomio zero non vale 0 in 7
-= Il valore in 7 di una somma è la somma dei valori, e lo stesso per i multipli. È la risposta (d) della soluzione ufficiale. La più insidiosa è la terza: una mappa lineare manda lo zero nello zero, ma può benissimo mandare altri polinomi in numeri diversi da zero.
+= Il valore in 7 di una somma è la somma dei valori, e lo stesso per i multipli. È la risposta (d) della soluzione ufficiale. La più insidiosa è «No, perché $p(7) \neq 0$ per qualche $p(x)$»: una mappa lineare manda lo zero nello zero, ma può benissimo mandare altri polinomi in numeri diversi da zero.
 
 D: Appello del 03/06/2025, domanda 7. Il rango dell'applicazione lineare $T \colon \R^3 \to \R^3$, data da $T(a, b, c) = (a - b,\ b - c,\ c - a)$, è:
 + 2
@@ -83011,7 +89305,7 @@ D: Appello del 05/02/2026, domanda 7. L'immagine dell'applicazione lineare $T \c
 - $\R_1[x]^\perp$
 + $\Span(1 - x, x^2)$
 - $\{ax^2 + bx + c \in \R_2[x] : a - b = 0\}$
-= L'immagine è generata da $T(1) = 1 - x$, $T(x) = -x^2$ e $T(x^2) = x^2$, cioè da $1 - x$ e $x^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è l'ultima, che descrive una condizione sul polinomio di partenza, non sull'immagine.
+= L'immagine è generata da $T(1) = 1 - x$, $T(x) = -x^2$ e $T(x^2) = x^2$, cioè da $1 - x$ e $x^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è $\{ax^2 + bx + c \in \R_2[x] : a - b = 0\}$, che descrive una condizione sul polinomio di partenza, non sull'immagine.
 ```
 
 ## Fonti
@@ -83177,7 +89471,7 @@ D: Appello del 10/09/2026, quiz, domanda 5 (un'altra versione). Siano $\tau$ una
 - $\sigma \circ \tau \circ \sigma \circ \tau^2$ è pari
 - $\sigma^3 \circ \tau \circ \sigma^2$ è pari
 - $\sigma \circ \tau^3 \circ \sigma$ è pari
-= Si contano le $\tau$, le uniche dispari: una nella prima, quindi dispari. Nelle altre sono 5, 3, 1 e 3, sempre in numero dispari, e l'affermazione «pari» è falsa. È la risposta 1 della soluzione ufficiale. La più insidiosa è la terza: $\tau$ e $\tau^2$ insieme fanno tre $\tau$.
+= Si contano le $\tau$, le uniche dispari: una in $\tau \circ \sigma^4$, quindi dispari. Nelle altre sono 1, 3 oppure 5, sempre in numero dispari, e l'affermazione «pari» è falsa. È la risposta 1 della soluzione ufficiale. La più insidiosa è «$\sigma \circ \tau \circ \sigma \circ \tau^2$ è pari»: $\tau$ e $\tau^2$ insieme fanno tre $\tau$.
 
 D: Appello del 13/01/2026, quiz, domanda 6 (un'altra versione). Siano $\pi$ e $\sigma$ permutazioni dispari e $\tau$ una permutazione pari. Quale delle seguenti è una permutazione dispari?
 + $\tau^3 \circ \pi \circ \sigma^2$
@@ -83185,7 +89479,7 @@ D: Appello del 13/01/2026, quiz, domanda 6 (un'altra versione). Siano $\pi$ e $\
 - $\pi \circ \sigma^5 \circ \pi^2$
 - $\pi \circ \sigma \circ \tau^5$
 - $\sigma^2 \circ \tau \circ \pi^4$
-= Si contano $\pi$ e $\sigma$: nella prima sono $1 + 2 = 3$, dispari. Nelle altre 6, 8, 2 e 6. È la risposta 1 della soluzione ufficiale. La più insidiosa è la quarta: $\pi \circ \sigma$ sono due dispari, e insieme danno una pari.
+= Si contano $\pi$ e $\sigma$: in $\tau^3 \circ \pi \circ \sigma^2$ sono $1 + 2 = 3$, dispari. Nelle altre sono 2, 6 oppure 8, sempre pari. È la risposta 1 della soluzione ufficiale. La più insidiosa è $\pi \circ \sigma \circ \tau^5$: $\pi \circ \sigma$ sono due dispari, e insieme danno una pari.
 
 D: Appello del 14/01/2025, quiz, domanda 5 (una delle versioni). Una permutazione $\pi$ ha tipo $(6, 3, 2)$. Allora $\pi$:
 - è pari ed ha periodo 12
@@ -83225,7 +89519,7 @@ D: Dal problema 1 dell'appello del 14/01/2025, versione D. Sia $\tau$ la permuta
 - tipo $(3, 2)$, dispari
 - tipo $(6)$, dispari
 - tipo $(2, 2, 2)$, dispari
-= $1 \mapsto 3 \mapsto 2 \mapsto 4 \mapsto 1$ e $5 \mapsto 6 \mapsto 5$: $\tau = (1\ 3\ 2\ 4)(5\ 6)$. Due cicli di lunghezza pari: pari. La più insidiosa è la seconda: ogni ciclo è dispari, ma due dispari danno una pari.
+= $1 \mapsto 3 \mapsto 2 \mapsto 4 \mapsto 1$ e $5 \mapsto 6 \mapsto 5$: $\tau = (1\ 3\ 2\ 4)(5\ 6)$. Due cicli di lunghezza pari: pari. La più insidiosa è «tipo $(4, 2)$, dispari»: ogni ciclo è dispari, ma due dispari danno una pari.
 
 D: Sul modello della proposizione 5.22. Quante sono le permutazioni dispari di $S_5$?
 N: 60
@@ -83439,7 +89733,7 @@ D: Appello del 10/06/2024, domanda 8. Nello spazio $\R_1[x]$, la matrice del cam
 - $\begin{pmatrix} 1 & 2/3 \\ 1/3 & -1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 0 & 3/2 \end{pmatrix}$
-= Si scrivono i vettori di $\mathcal B$ nella base $\mathcal C$: $2x = 1 \cdot (x + 1) + 1 \cdot (x - 1)$ e $3 = \frac{3}{2}(x + 1) - \frac{3}{2}(x - 1)$. Le coordinate vanno in colonna. È la risposta (a) della soluzione ufficiale. La più insidiosa è la quarta, che ha in colonna i vettori di $\mathcal C$ nella base $\{x, 1\}$: è il cambiamento da $\mathcal C$ alla canonica.
+= Si scrivono i vettori di $\mathcal B$ nella base $\mathcal C$: $2x = 1 \cdot (x + 1) + 1 \cdot (x - 1)$ e $3 = \frac{3}{2}(x + 1) - \frac{3}{2}(x - 1)$. Le coordinate vanno in colonna. È la risposta (a) della soluzione ufficiale. La più insidiosa è $\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$, che ha in colonna i vettori di $\mathcal C$ nella base $\{x, 1\}$: è il cambiamento da $\mathcal C$ alla canonica.
 
 D: Appello del 10/07/2025, domanda 6. La matrice associata all'identità $\mathrm{Id} \colon \R^3 \to \R^3$ dalla base $\mathcal B = \{e_2, e_3, e_1\}$ alla base $\mathcal C = \{e_3, e_2, e_1\}$ è:
 - $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
@@ -83455,7 +89749,7 @@ D: Appello del 02/09/2025, domanda 8. Siano date tre basi $\mathcal A, \mathcal 
 - $\begin{pmatrix} 1 & 2 \\ -1 & -1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 + $\begin{pmatrix} 1 & 2 \\ 1 & 3 \end{pmatrix}$
-= Da $\mathcal A$ a $\mathcal C$ si passa per $\mathcal B$: $[\mathrm{Id}]^{\mathcal A}_{\mathcal C} = \left([\mathrm{Id}]^{\mathcal C}_{\mathcal B}\right)^{-1} [\mathrm{Id}]^{\mathcal A}_{\mathcal B}$. L'inversa della seconda matrice ha $+1$ al posto di $-1$, e il prodotto dà la risposta (e) della soluzione ufficiale. La più insidiosa è la terza, che viene moltiplicando senza invertire.
+= Da $\mathcal A$ a $\mathcal C$ si passa per $\mathcal B$: $[\mathrm{Id}]^{\mathcal A}_{\mathcal C} = \left([\mathrm{Id}]^{\mathcal C}_{\mathcal B}\right)^{-1} [\mathrm{Id}]^{\mathcal A}_{\mathcal B}$. L'inversa della seconda matrice ha $+1$ al posto di $-1$, e il prodotto dà la risposta (e) della soluzione ufficiale. La più insidiosa è $\begin{pmatrix} 1 & 2 \\ -1 & -1 \end{pmatrix}$, che viene moltiplicando senza invertire.
 
 D: Appello del 03/06/2025, domanda 5. Sia $L_A \colon \R^2 \to \R^2$ la moltiplicazione a sinistra per una matrice $A$. Rispetto alla base $\mathcal B = \{(1, 0), (1, 1)\}$, $L_A$ ha matrice associata $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$. La matrice $A$ è:
 - $\begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix}$
@@ -83463,7 +89757,7 @@ D: Appello del 03/06/2025, domanda 5. Sia $L_A \colon \R^2 \to \R^2$ la moltipli
 + $\begin{pmatrix} 3 & 0 \\ 2 & -1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 3 \\ 2 & 1 \end{pmatrix}$
-= Qui si torna dalla base $\mathcal B$ alla canonica: $A = M \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix} M^{-1}$, con $M = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$. È la risposta (c) della soluzione ufficiale. La più insidiosa è la seconda: la matrice nella base $\mathcal B$ non è la matrice $A$.
+= Qui si torna dalla base $\mathcal B$ alla canonica: $A = M \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix} M^{-1}$, con $M = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$. È la risposta (c) della soluzione ufficiale. La più insidiosa è $\begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix}$: la matrice nella base $\mathcal B$ non è la matrice $A$.
 
 D: Appello dell'08/02/2024, domanda 5. La composizione $S \circ T$ di $S \colon \R^3 \to \R^2$, $S(x, y, z) = (x + y, 2z)$, e $T \colon \R^2 \to \R^3$, $T(x, y) = (x + y, x - y, y)$, è:
 - $(x, y, z) \mapsto (2x, 2y, 2z)$
@@ -83471,7 +89765,7 @@ D: Appello dell'08/02/2024, domanda 5. La composizione $S \circ T$ di $S \colon 
 - $(x, y, z) \mapsto (x + y + 2z, x + y - 2z, 2z)$
 + $(x, y) \mapsto (2x, 2y)$
 - non è ben definita
-= Agisce prima $T$: $S(x + y, x - y, y) = ((x + y) + (x - y),\ 2y) = (2x, 2y)$. Parte da $\R^2$ e arriva in $\R^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è la terza, che è $T \circ S$.
+= Agisce prima $T$: $S(x + y, x - y, y) = ((x + y) + (x - y),\ 2y) = (2x, 2y)$. Parte da $\R^2$ e arriva in $\R^2$. È la risposta (d) della soluzione ufficiale. La più insidiosa è $(x, y, z) \mapsto (x + y + 2z, x + y - 2z, 2z)$, che è $T \circ S$.
 
 D: Appello del 03/07/2026, domanda 5. Dati spazi vettoriali $U, V, W$, siano $S \colon U \to V$ e $T \colon V \to W$ applicazioni lineari con $T \circ S(u) = 0_W$ per ogni $u \in U$. Quale informazione si può dedurre?
 - $\ker(T) \subseteq \mathrm{Im}(S)$
@@ -83495,7 +89789,7 @@ D: Sul modello delle domande sugli isomorfismi. Quale coppia è fatta di due spa
 - $\R^3$ e le matrici $2 \times 2$
 - $\R_3[x]$ e $\R^3$
 - $\R^2$ e $\R^3$
-= Conta solo la dimensione: i polinomi di grado al massimo 3 hanno dimensione 4, come le matrici $2 \times 2$. La più insidiosa è la quarta: il 3 di $\R_3[x]$ è il grado massimo, e la dimensione è 4.
+= Conta solo la dimensione: i polinomi di grado al massimo 3 hanno dimensione 4, come le matrici $2 \times 2$. La più insidiosa è «$\R_3[x]$ e $\R^3$»: il 3 di $\R_3[x]$ è il grado massimo, e la dimensione è 4.
 ```
 
 ## Fonti
@@ -83746,7 +90040,7 @@ D: Dalla prova scritta del 15/06/2020, esercizio 1. L'algoritmo di Euclide dà $
 - $2 = 15 \cdot 142 + 19 \cdot 112$
 - $2 = 4 \cdot 142 - 5 \cdot 112$
 - $2 = 142 - 112$
-= $2130 - 2128 = 2$. Nella soluzione ufficiale c'è una svista di stampa, «$19 \cdot 56$» al posto di $19 \cdot 112$: il conto giusto è questo. La più insidiosa è la quarta, che dà $568 - 560 = 8$.
+= $2130 - 2128 = 2$. Nella soluzione ufficiale c'è una svista di stampa, «$19 \cdot 56$» al posto di $19 \cdot 112$: il conto giusto è questo. La più insidiosa è $2 = 4 \cdot 142 - 5 \cdot 112$, che dà $568 - 560 = 8$.
 
 D: Dalle prove scritte del 2022/23, problema 2. $\mathrm{MCD}(3522, 321) = 3$. Quale affermazione è vera?
 + $3522x + 321y = 12$ ha soluzioni intere, $3522x + 321y = 10$ no
@@ -83770,6 +90064,586 @@ N: 120
 - Le lezioni complete: [D14 · Numeri interi, divisibilità e divisione euclidea](D14_interi_divisibilita_divisione_euclidea.html), [D15 · L'algoritmo di Euclide e l'identità di Bézout](D15_algoritmo_euclide_bezout.html), [D16 · Numeri primi e teorema fondamentale dell'aritmetica](D16_primi_teorema_fondamentale_aritmetica.html), con gli esempi, i quiz e gli esercizi.
 - A. Mori, *Lezioni di Matematica Discreta*, cap. 4, pp. 67–80.
 - Quiz degli appelli del 04/02/2025, 06/06/2025 e 10/09/2026 (domanda 7); prova scritta del 15/06/2020 (esercizio 1); prove scritte del 2022/23 (problema 2); appello del 01/07/2026 (problema 1, versioni B e C), con le soluzioni ufficiali dove ci sono.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_08_AG.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_08_AG.md`
+
+```yaml
+corso: MDAG
+modulo: AG
+lezione: S8
+tipo: riassunto
+titolo: "Settimana 8: autovalori, diagonalizzazione, prodotti scalari"
+data: 2026-11-19
+docenti: Reto Buzano e Marco Radeschi
+sopratitolo: Riassunto settimanale · Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · 16/11 – 20/11/2026
+descrizione: >-
+  Riassunto della settimana 8 di Algebra lineare e Geometria (MDAG, parte 2): autovalori e autovettori, il polinomio
+  caratteristico, la diagonalizzazione; autospazi, molteplicità algebrica e geometrica e il teorema di
+  diagonalizzabilità; prodotti scalari, matrici simmetriche e matrice associata a un prodotto scalare.
+lede: >-
+  Le tre lezioni della settimana in poche pagine: come si trovano le direzioni che una matrice non gira, quando
+  bastano per fare una base, e come si riassume in una tabella un prodotto tra vettori, con le domande vere degli
+  appelli.
+materiale: dispense
+scheda:
+  Lezioni: "[L17](L17_autovalori_autovettori_1.html) mar 17/11 · [L18](L18_autovalori_autovettori_2.html) mer 18/11 · [L19](L19_prodotti_scalari_1.html) gio 19/11, nel canale B"
+  Dispense: Buzano e Radeschi 2026, pp. 85–99
+  Tempo di ripasso: 45 minuti
+fonte: >-
+  Gli appunti delle lezioni L17, L18 e L19 di Algebra lineare e Geometria, scritti sulle dispense 2026 del corso
+  (R. Buzano, M. Radeschi)
+appunti_html: appunti/MDAG/riassunto_settimana_08_AG.html
+genera_html: true
+```
+
+## In breve
+
+- Un **autovettore** di una matrice è un vettore non nullo che la matrice manda in un suo multiplo. Il fattore è l'**autovalore**.
+- Gli autovalori sono le radici del **polinomio caratteristico**, il determinante della matrice con $\lambda$ tolto dalla diagonale.
+- Una matrice è **diagonalizzabile** se c'è una base fatta di autovettori. In quella base diventa diagonale, con gli autovalori sulla diagonale.
+- L'**autospazio** di un autovalore è l'insieme dei suoi autovettori, con lo zero: è il nucleo della matrice con quell'autovalore tolto dalla diagonale.
+- Ogni autovalore ha una **molteplicità algebrica**, quante volte è radice, e una **geometrica**, la dimensione dell'autospazio. La seconda non supera la prima.
+- **Teorema**: diagonalizzabile vuol dire tutte le radici nel campo, e le due molteplicità uguali per ogni autovalore.
+- Un **prodotto scalare** prende due vettori e dà un numero, in modo lineare e simmetrico. In una base si riassume nella **matrice associata**, che è simmetrica.
+
+> [!NOTA] Le lezioni della settimana
+> Nel canale B le lezioni sono state tre: martedì 17/11, mercoledì 18/11 e giovedì 19/11. Le dispense hanno una lezione per incontro, e ho messo le date seguendo il calendario: che in aula il ritmo sia rimasto quello non l'ho controllato.
+
+## L17 · Autovalori e autovettori (mar 17/11)
+
+Una matrice trasforma vettori in vettori, e quasi sempre li fa girare. Le direzioni che non girano sono quelle che servono.
+
+Prendi $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$. Il vettore $(1, 0)$ va in $(2, 1)$: ha cambiato direzione. Il vettore $(1, 1)$ va in $(3, 3)$, tre volte sé stesso. Il vettore $(1, -1)$ va in $(1, -1)$: resta fermo.
+
+```grafico
+titolo: Che cosa fa la matrice A a tre vettori. I vettori tratteggiati sono quelli di partenza, quelli pieni le loro immagini. Il vettore blu viene girato. Quello verde viene allungato tre volte sulla sua retta, quello ambra resta com'è: sono i due autovettori
+x: -1 4
+y: -2 4
+freccia: 0 0 1 0 | blu | tratteggio
+freccia: 0 0 2 1 | blu
+freccia: 0 0 1 1 | verde | tratteggio
+freccia: 0 0 3 3 | verde
+freccia: 0 0 1 -1 | ambra
+testo: 2.5 0.75 | blu | "girato"
+testo: 2.2 3.3 | verde | "per 3"
+testo: 1.9 -1.3 | ambra | "per 1"
+```
+
+- **Definizione.** $v \ne 0$ è un autovettore di $A$ con autovalore $\lambda$ se $Av = \lambda v$. L'autovalore può essere 0; l'autovettore no.
+- **Multipli.** Ogni multiplo non nullo di un autovettore è un autovettore con lo stesso autovalore: conta la retta, non il singolo vettore.
+- **Le rotazioni** girano tutto: sui reali non hanno autovettori.
+- **Polinomio caratteristico.** $p(\lambda) = \det(A - \lambda I)$. Gli autovalori sono le sue radici. Per l'esempio: $(2 - \lambda)^2 - 1 = (\lambda - 1)(\lambda - 3)$, radici 1 e 3.
+- **Matrici triangolari**: gli autovalori sono i numeri sulla diagonale.
+- **Gli autovettori.** Per ogni autovalore si risolve $(A - \lambda I)v = 0$. Per $\lambda = 3$: $-x + y = 0$, cioè i multipli di $(1, 1)$.
+- **Diagonalizzare.** Con gli autovettori nelle colonne di $M$, vale $M^{-1}AM = D$, diagonale, con gli autovalori **nello stesso ordine** delle colonne.
+- **Potenze.** $A^k = M D^k M^{-1}$, e la potenza di una diagonale si fa numero per numero. Per l'esempio, $A^5 = \begin{pmatrix} 122 & 121 \\ 121 & 122 \end{pmatrix}$.
+
+::: prova Trova gli autovalori di $\begin{pmatrix} 4 & 1 \\ 2 & 3 \end{pmatrix}$ e un autovettore per il più grande.
+$(4 - \lambda)(3 - \lambda) - 2 = \lambda^2 - 7\lambda + 10 = (\lambda - 2)(\lambda - 5)$: autovalori 2 e 5. Per 5: $-x + y = 0$, quindi $(1, 1)$. Controllo: la matrice manda $(1, 1)$ in $(5, 5)$.
+:::
+
+> [!RICORDA]
+> - $Av = \lambda v$ con $v \ne 0$.
+> - Autovalori: radici di $\det(A - \lambda I)$.
+> - Autovettori: soluzioni di $(A - \lambda I)v = 0$.
+> - Diagonalizzabile: una base di autovettori.
+
+## L18 · Quando si può diagonalizzare (mer 18/11)
+
+Non tutte le matrici hanno abbastanza autovettori per fare una base. La lezione dice come accorgersene con due conteggi per ogni autovalore.
+
+- **Autovalori diversi.** Autovettori con autovalori diversi sono indipendenti. Una matrice $n \times n$ con $n$ autovalori tutti diversi è diagonalizzabile. Il viceversa non vale: l'identità è diagonale e ha un solo autovalore.
+- **Autospazio.** $V_\lambda = \operatorname{Ker}(A - \lambda I)$: gli autovettori di $\lambda$, più lo zero.
+- **Molteplicità algebrica** $m_a$: quante volte $\lambda$ è radice del polinomio caratteristico. Sono i posti che l'autovalore **prenota** sulla diagonale.
+- **Molteplicità geometrica** $m_g$: la dimensione dell'autospazio, cioè $n$ meno il rango di $A - \lambda I$. Sono i posti che riesce a **occupare**.
+- Vale sempre $1 \le m_g \le m_a$. Un autovalore con $m_a = 1$ non dà mai problemi.
+
+Due matrici con lo stesso polinomio caratteristico, $(\lambda - 3)^2(\lambda - 5)$:
+
+```grafico
+titolo: I posti sulla diagonale per due matrici con autovalori 3, due volte, e 5. Nella prima l'autovalore 3 occupa tutti e due i posti che prenota: diagonalizzabile. Nella seconda ne occupa uno solo, e un posto resta vuoto: non diagonalizzabile
+x: 0 12
+y: 0 5.2
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.6 4.7 | grigio | "autospazio: dim 2"
+poligono: 0.5 2.6 1.9 2.6 1.9 3.8 0.5 3.8 | verde | pieno
+poligono: 1.9 2.6 3.3 2.6 3.3 3.8 1.9 3.8 | verde | pieno
+poligono: 3.3 2.6 4.7 2.6 4.7 3.8 3.3 3.8 | blu | pieno
+testo: 1.2 3.2 | verde | "3"
+testo: 2.6 3.2 | verde | "3"
+testo: 4.0 3.2 | blu | "5"
+testo: 2.6 2.0 | verde | "diagonalizzabile"
+testo: 9.0 4.7 | grigio | "autospazio: dim 1"
+poligono: 6.9 2.6 8.3 2.6 8.3 3.8 6.9 3.8 | verde | pieno
+poligono: 8.3 2.6 9.7 2.6 9.7 3.8 8.3 3.8 | rosa | tratteggio
+poligono: 9.7 2.6 11.1 2.6 11.1 3.8 9.7 3.8 | blu | pieno
+testo: 7.6 3.2 | verde | "3"
+testo: 9.0 3.2 | rosa | "?"
+testo: 10.4 3.2 | blu | "5"
+testo: 9.0 2.0 | rosa | "non diagonalizzabile"
+testo: 6.0 0.7 | grigio | "posti prenotati: 2 per il 3, 1 per il 5"
+```
+
+La prima è $\begin{pmatrix} 3 & 0 & 0 \\ 0 & 3 & 0 \\ 1 & 0 & 5 \end{pmatrix}$, la seconda $\begin{pmatrix} 3 & 1 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 5 \end{pmatrix}$. Si distinguono solo calcolando il rango di $A - 3I$: 1 nella prima, 2 nella seconda.
+
+> [!TEOREMA] Diagonalizzabilità (dispense, pp. 92–93)
+> Una matrice è diagonalizzabile su un campo se e solo se il suo polinomio caratteristico ha tutte le radici in quel campo, e per ogni autovalore $m_g = m_a$.
+
+**Come si legge.** Due controlli. Il primo riguarda il campo: la rotazione di un quarto di giro ha autovalori $i$ e $-i$, quindi è diagonalizzabile sui complessi e non sui reali. Il secondo si fa solo per gli autovalori con $m_a$ almeno 2: per gli altri è automatico.
+
+**Con un parametro.** Si trovano gli autovalori in funzione di $k$. Per i valori di $k$ in cui sono tutti diversi la matrice è diagonalizzabile. Restano da controllare, uno per uno, i valori di $k$ in cui due autovalori coincidono: lì si calcola un rango.
+
+::: prova La matrice $\begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}$ è diagonalizzabile?
+No. L'unico autovalore è 2, con $m_a = 2$. $A - 2I$ ha rango 1, quindi $m_g = 2 - 1 = 1$: un posto resta vuoto.
+:::
+
+> [!RICORDA]
+> - $n$ autovalori diversi: diagonalizzabile.
+> - $m_g = n - \operatorname{rg}(A - \lambda I)$, e $1 \le m_g \le m_a$.
+> - Diagonalizzabile: radici tutte nel campo e $m_g = m_a$ per ognuna.
+> - Con un parametro: i casi da controllare sono quelli con autovalori coincidenti.
+
+## L19 · Prodotti scalari (gio 19/11)
+
+Il prodotto scalare più usato è quello del conto della spesa: quantità per prezzi, sommati. Per $(1, 3)$ e $(-2, 1)$: $1 \cdot (-2) + 3 \cdot 1 = 1$. Si chiama **prodotto euclideo**.
+
+- **In generale** un prodotto scalare $g$ su uno spazio reale è una regola che a due vettori associa un numero, con tre proprietà: una somma si spezza, uno scalare esce, e l'ordine non conta. Cioè è lineare nei due posti e **simmetrico**.
+- **Definito positivo**: $g(v, v) > 0$ per ogni $v \ne 0$. **Degenere**: c'è un $v \ne 0$ con $g(v, w) = 0$ per ogni $w$.
+- **Da una matrice simmetrica.** Se $S$ è simmetrica, $g_S(x, y) = {}^t x\,S\,y$ è un prodotto scalare. Con $S$ uguale all'identità è quello euclideo.
+- **Matrice associata.** Scelta una base $\mathcal B = \{v_1, \dots, v_n\}$, la matrice $[g]_{\mathcal B}$ ha nella casella $(i, j)$ il numero $g(v_i, v_j)$. È la tabella dei prodotti tra i vettori della base, ed è simmetrica.
+- **In una base nuova.** Per $g_S$, con i vettori della base nelle colonne di $M$: $[g_S]_{\mathcal B} = {}^t M\,S\,M$.
+
+Un esempio con $S = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix}$ e la base $\{(1, 0), (1, 1)\}$, una casella alla volta:
+
+| Casella | Conto | Valore |
+|---|---|---|
+| $g(v_1, v_1)$ | la casella in alto a sinistra di $S$ | 2 |
+| $g(v_1, v_2)$ | $2 \cdot 1 + 1 \cdot 1$ | 3 |
+| $g(v_2, v_2)$ | la somma di tutte le caselle di $S$ | 7 |
+
+La matrice associata è $\begin{pmatrix} 2 & 3 \\ 3 & 7 \end{pmatrix}$: la casella in basso a sinistra è uguale a quella in alto a destra, per simmetria.
+
+> [!TRAPPOLA] La trasposta, non l'inversa
+> Per un prodotto scalare il cambio di base è ${}^t M\,S\,M$. Per un endomorfismo era $M^{-1}AM$, come nella [L16](L16_applicazioni_lineari_3.html). Le due formule si somigliano e nei quiz ci sono tutte e due tra le risposte.
+
+::: prova Per il prodotto $g(p, q) = p(0)\,q(0) + p(1)\,q(1)$ sui polinomi di grado al massimo 1, calcola la matrice associata nella base $\{1, x\}$.
+I valori: il polinomio 1 vale 1 in 0 e in 1; il polinomio $x$ vale 0 e 1. $g(1, 1) = 1 + 1 = 2$; $g(1, x) = 0 + 1 = 1$; $g(x, x) = 0 + 1 = 1$. La matrice è $\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$.
+:::
+
+> [!RICORDA]
+> - Prodotto scalare: due vettori, un numero; lineare e simmetrico.
+> - Euclideo: prodotti posto per posto, sommati.
+> - $[g]_{\mathcal B}$: nella casella $(i, j)$ c'è $g(v_i, v_j)$.
+> - Cambio di base: ${}^t M\,S\,M$.
+
+## Verso l'esame
+
+- **L'insieme degli autovalori** di una matrice o di un endomorfismo: 06/09/2024, 07/02/2025, 05/02/2026, 03/07/2026.
+- **L'autospazio di un autovalore dato**, spesso per un endomorfismo di $\R_2[x]$: 24/01/2024, 10/06/2024, 07/02/2025, 05/02/2026.
+- **Diagonalizzabilità con un parametro**: è il problema lungo di quasi tutti gli appelli.
+- **La matrice associata a un prodotto scalare** in una base: 24/01/2024, 10/06/2024, 10/07/2024, 15/01/2026, 03/06/2026.
+- La prova è la stessa per i canali A, B e C: 4 facciate scritte a mano, niente calcolatrice. Appelli 2026/27: 22/01/2027 e 05/02/2027, alle 14:00.
+
+## Domande di ripasso
+
+::: domanda Che cos'è un autovettore, e che cos'è il suo autovalore?
+Un vettore non nullo che la matrice manda in un suo multiplo. L'autovalore è il fattore.
+:::
+
+::: domanda Come si trovano gli autovalori e poi gli autovettori?
+Gli autovalori sono le radici di $\det(A - \lambda I)$. Per ognuno, gli autovettori sono le soluzioni non nulle di $(A - \lambda I)v = 0$.
+:::
+
+::: domanda Che cosa vuol dire diagonalizzabile?
+Che esiste una base fatta di autovettori. Con quei vettori nelle colonne di $M$, la matrice $M^{-1}AM$ è diagonale.
+:::
+
+::: domanda Che cosa sono le molteplicità algebrica e geometrica?
+L'algebrica è quante volte l'autovalore è radice del polinomio caratteristico. La geometrica è la dimensione del suo autospazio.
+:::
+
+::: domanda Che cosa dice il teorema di diagonalizzabilità?
+Diagonalizzabile se e solo se tutte le radici stanno nel campo e, per ogni autovalore, le due molteplicità sono uguali.
+:::
+
+::: domanda Come si calcola la matrice associata a un prodotto scalare in una base?
+Una casella alla volta: nella casella $(i, j)$ va il prodotto del vettore $i$ con il vettore $j$ della base.
+:::
+
+## Quiz d'esame
+
+Sono tutte domande vere degli appelli, che nelle lezioni L17, L18 e L19 sono solo citate. Le risposte giuste sono ricontrollate con un programma.
+
+```quiz
+D: Appello del 06/09/2024, domanda 10. Trovare l'insieme degli autovalori di $A = \begin{pmatrix} 1 & -2 & 1 \\ 0 & 1 & 0 \\ 1 & -3 & 1 \end{pmatrix}$.
++ $\{0, 1, 2\}$
+- $\{1, -2, -3\}$
+- $\{1\}$
+- $\{\}$
+- $\{0\}$
+= Sviluppando lungo la seconda riga: $(1 - \lambda)\big((1 - \lambda)^2 - 1\big) = (1 - \lambda)\,\lambda\,(\lambda - 2)$. La risposta più insidiosa è $\{1\}$: sono i numeri sulla diagonale, ma la matrice non è triangolare.
+
+D: Appello del 07/02/2025, domanda 8. Trovare l'insieme degli autovalori dell'endomorfismo di $\R^3$ dato da $T(x, y, z) = (x + 2z,\ -2x + 3y - z,\ x + 2z)$.
++ $\{0, 3\}$
+- $\{-1, 2, -3\}$
+- $\{-1, -3\}$
+- $\{\}$
+- $\{\pm 1, \pm 3\}$
+= La matrice ha righe $(1, 0, 2)$, $(-2, 3, -1)$, $(1, 0, 2)$. Sviluppando lungo la seconda colonna: $(3 - \lambda)(\lambda^2 - 3\lambda) = -\lambda(\lambda - 3)^2$. Due righe uguali vogliono dire determinante zero, quindi 0 è un autovalore. La più insidiosa è $\{\}$: un endomorfismo di $\R^3$ ha sempre almeno un autovalore reale.
+
+D: Appello del 03/07/2026, domanda 3. Trovare l'insieme degli autovalori dell'endomorfismo di $\R^3$ dato da $T(x, y, z) = (2x,\ x + 3y,\ z)$.
++ $\{1, 2, 3\}$
+- $T$ non ammette autovalori reali
+- $\{1, 2\}$
+- $\{2, 3\}$
+- $\{0, 1, 5\}$
+= La matrice ha righe $(2, 0, 0)$, $(1, 3, 0)$, $(0, 0, 1)$: è triangolare, e gli autovalori sono i numeri sulla diagonale. La più insidiosa è $\{2, 3\}$: dimentica la terza coordinata, che $T$ lascia com'è.
+
+D: Appello del 10/06/2024, domanda 6. L'endomorfismo di $\R_2[x]$ dato da $T(ax^2 + bx + c) = (2a - 9b)x^2 - bx + (6b + 2c)$ ha autovalore $\lambda = 2$. Qual è l'autospazio?
++ $\operatorname{Span}(x^2, 1)$
+- $\operatorname{Span}(2x^2 - 1)$
+- $\operatorname{Span}(x^2, 3x^2 + x - 2)$
+- $\operatorname{Span}(x^2 - 2, x + 1)$
+- $\operatorname{Span}(x - 2)$
+= Serve $T(p) = 2p$. Il coefficiente di $x$ dà $-b = 2b$, quindi $b = 0$; con $b = 0$ le altre due condizioni sono sempre vere. Restano i polinomi $ax^2 + c$. La più insidiosa è $\operatorname{Span}(x^2, 3x^2 + x - 2)$: ha dimensione 2 e contiene $x^2$, ma il suo secondo polinomio ha $b = 1$.
+
+D: Appello del 07/02/2025, domanda 9. L'endomorfismo di $\R_2[x]$ dato da $T(ax^2 + bx + c) = (2a - c)x^2 + (a - b + c)x + a$ ha autovalore $\lambda = -1$. Qual è l'autospazio?
++ $\operatorname{Span}(x)$
+- $\operatorname{Span}(x, x + 1)$
+- $\operatorname{Span}(x^2, x)$
+- $\operatorname{Span}(2x + 1)$
+- $\operatorname{Span}(x^2 + x + 1)$
+= Serve $T(p) = -p$. Dal coefficiente di $x^2$: $c = 3a$. Dal termine noto: $a = -c$. Insieme danno $a = c = 0$, e $b$ resta libero. Controllo: $T(x) = -x$. La più insidiosa è $\operatorname{Span}(x^2, x)$: $T(x^2) = 2x^2 + x + 1$, che non è $-x^2$.
+
+D: Appello del 05/02/2026, domanda 9. L'endomorfismo di $\R_2[x]$ dato da $T(ax^2 + bx + c) = (a + b - c)x^2 + (a + b + c)x + (a + 2b)$ ha autovalore $\lambda = 2$. Qual è l'autospazio?
++ $\operatorname{Span}(x + 1)$
+- $\operatorname{Span}(x^2 - 1, x + 1)$
+- $\operatorname{Span}(x^2 + 1, x - 1)$
+- $\operatorname{Span}(x^2 + x)$
+- $\operatorname{Span}(x^2 - 1)$
+= Serve $T(p) = 2p$. Le prime due condizioni danno tutte e due $a = b - c$; la terza condizione, $a + 2b = 2c$, dà allora $b = c$ e $a = 0$. Controllo: $T(x + 1) = 2x + 2$. La più insidiosa è $\operatorname{Span}(x^2 - 1, x + 1)$: contiene $x + 1$, ma $T(x^2 - 1) = 2x^2 + 1$ non è il doppio di $x^2 - 1$.
+
+D: Appello del 10/07/2024, domanda 9. Dato il prodotto scalare $g(p, q) = p(1)\,q(-1) + p(-1)\,q(1)$ su $\R_1[x]$ e la base $\mathcal B = \{x + 1, x - 1\}$, la matrice $[g]_{\mathcal B}$ è:
++ $\begin{pmatrix} 0 & -4 \\ -4 & 0 \end{pmatrix}$
+- $\begin{pmatrix} 1 & -4 \\ 2 & 3 \end{pmatrix}$
+- $\begin{pmatrix} 4 & 2 \\ 2 & 4 \end{pmatrix}$
+- $\begin{pmatrix} 0 & 2 \\ 2 & 0 \end{pmatrix}$
+- $\begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix}$
+= Il polinomio $x + 1$ vale 2 in 1 e 0 in $-1$; $x - 1$ vale 0 in 1 e $-2$ in $-1$. Sulla diagonale viene $2 \cdot 0 + 0 \cdot 2 = 0$ in tutti e due i posti; fuori, $2 \cdot (-2) + 0 \cdot 0 = -4$. $\begin{pmatrix} 1 & -4 \\ 2 & 3 \end{pmatrix}$ si scarta senza conti: non è simmetrica. La più insidiosa è $\begin{pmatrix} 0 & 2 \\ 2 & 0 \end{pmatrix}$, con gli zeri al posto giusto e il 2 al posto di $-4$.
+
+D: Appello del 03/06/2026, domanda 4. Data $S = \begin{pmatrix} 2 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}$, la matrice associata al prodotto scalare $g_S(x, y) = {}^t x\,S\,y$ rispetto alla base $\{(1, 0, 0), (0, 2, 0), (0, 0, 3)\}$ è:
++ $\begin{pmatrix} 2 & 2 & 3 \\ 2 & 4 & 0 \\ 3 & 0 & 9 \end{pmatrix}$
+- $\begin{pmatrix} 2 & 1 & 1 \\ 1 & 2 & 0 \\ 0 & 0 & 3 \end{pmatrix}$
+- $\begin{pmatrix} 2 & 1 & 1 \\ 2 & 2 & 0 \\ 3 & 0 & 3 \end{pmatrix}$
+- $\begin{pmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3 \end{pmatrix}$
+- $\begin{pmatrix} 2 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}$
+= I vettori della base sono $e_1$, $2e_2$ e $3e_3$: la casella $(i, j)$ di $S$ viene moltiplicata per i due fattori dei vettori $i$ e $j$. Sulla diagonale: $2$, $1 \cdot 4$, $1 \cdot 9$. La più insidiosa è $\begin{pmatrix} 2 & 1 & 1 \\ 2 & 2 & 0 \\ 3 & 0 & 3 \end{pmatrix}$: moltiplica solo le righe, e infatti non è simmetrica.
+```
+
+## Fonti
+
+- Le lezioni complete: [L17 · Autovalori e autovettori I](L17_autovalori_autovettori_1.html), [L18 · Autovalori e autovettori II](L18_autovalori_autovettori_2.html) e [L19 · Prodotti scalari I](L19_prodotti_scalari_1.html), con le dimostrazioni, i disegni e gli esercizi.
+- Dispense 2026 di R. Buzano e M. Radeschi, lezioni 17, 18 e 19, pp. 85–99.
+- Appelli di Algebra lineare e Geometria del 10/06/2024, 10/07/2024, 06/09/2024, 07/02/2025, 05/02/2026, 03/06/2026 e 03/07/2026, dal Moodle del corso.
+
+
+---
+
+<!-- FILE: contesto_ai/MDAG/riassunti/settimana_08_MD.md -->
+> File: `contesto_ai/MDAG/riassunti/settimana_08_MD.md`
+
+```yaml
+corso: MDAG
+modulo: MD
+lezione: S8
+tipo: riassunto
+titolo: "Settimana 8 (MD): classi resto, invertibili e funzione di Eulero"
+data: 2026-11-20
+docenti: Andrea Mori, Ignazio Longhi e Lea Terracini
+sopratitolo: Riassunto settimanale · Parte 1 (modA) · Matematica Discreta · Canali A, B e C · 16/11 – 20/11/2026
+descrizione: >-
+  Riassunto della settimana 8 di Matematica Discreta (MDAG, parte 1): la congruenza modulo N, le classi resto e le
+  loro operazioni con la buona definizione; le classi invertibili e i divisori dello zero, il criterio del massimo
+  comun divisore, il calcolo dell'inversa e la funzione di Eulero, con le domande vere degli appelli 2025 e 2026.
+lede: >-
+  Le due lezioni della settimana in poche pagine: come si fanno i conti con i resti, quando una classe ha un'inversa e
+  come si trova, quante sono le classi invertibili. È l'inizio dell'aritmetica modulare, la parte del corso da cui
+  vengono più domande d'esame.
+materiale: libro
+scheda:
+  Lezioni: "[D17](D17_congruenze_classi_resto.html) lun 16/11 · [D18](D18_invertibili_divisori_zero_eulero.html) ven 20/11"
+  Libro: A. Mori, Lezioni di Matematica Discreta, cap. 7, pp. 131–143
+  Tempo di ripasso: 40 minuti
+fonte: >-
+  Gli appunti delle lezioni D17 e D18 di Matematica Discreta, scritti sul libro di A. Mori (cap. 7) e sul diario delle
+  lezioni del canale B 2025/26; appelli di Matematica Discreta 2025 e 2026
+appunti_html: appunti/MDAG/riassunto_settimana_08_MD.html
+genera_html: true
+```
+
+## In breve
+
+- Due interi sono **congruenti modulo $N$** quando la loro differenza è un multiplo di $N$, cioè quando hanno lo stesso resto.
+- La **classe resto** di un intero è l'insieme di tutti gli interi congruenti a lui. Le classi sono tante quanti i resti possibili, e il loro insieme si scrive $\mathbb{Z}_N$.
+- Le classi si **sommano** e si **moltiplicano** con un rappresentante qualunque: il risultato non dipende dalla scelta (**buona definizione**).
+- In un conto modulo $N$ ogni numero si può sostituire con il suo resto. Nelle potenze si riduce la base, **non l'esponente**.
+- Una classe non nulla è **invertibile** se il suo rappresentante è coprimo con il modulo, ed è un **divisore dello zero** altrimenti.
+- L'**inversa** si trova con l'algoritmo di Euclide e l'identità di Bézout: è il coefficiente del rappresentante.
+- La **funzione di Eulero** conta le classi invertibili. Per una potenza di un primo: $\varphi(p^e) = p^{e-1}(p - 1)$.
+
+> [!NOTA] Le lezioni della settimana
+> Nel canale B le lezioni di Matematica Discreta sono state due: lunedì 16/11 e venerdì 20/11. Gli argomenti sono ricostruiti dal diario dell'anno scorso, lezioni 17 e 18. Il docente passa dal capitolo 4 al capitolo 7 del libro; il capitolo 6, sui gruppi, comincia la settimana dopo.
+
+## D17 · Congruenze e classi resto (lun 16/11)
+
+Sull'orologio dieci più cinque fa tre: si conta a meno di multipli di 12. La lezione fa lo stesso con un modulo $N$ qualunque.
+
+- **Congruenza.** $a \equiv b \pmod N$ vuol dire che $N$ divide $a - b$. È lo stesso che avere lo stesso resto nella divisione per $N$. Il resto di un negativo sta comunque tra 0 e $N - 1$: $-17 \equiv 3 \pmod 5$.
+- **Classi resto.** $[a]_N$ è l'insieme di tutti gli interi congruenti ad $a$: per esempio $[3]_7 = \{\dots, -4, 3, 10, 17, \dots\}$. Le classi sono una partizione degli interi.
+- **$\mathbb{Z}_N$.** L'insieme delle $N$ classi. Ogni classe ha infiniti rappresentanti; quello tra 0 e $N - 1$ è il **rappresentante canonico**, cioè il resto.
+- **Operazioni.** $\overline{a} + \overline{b} = \overline{a + b}$ e $\overline{a} \cdot \overline{b} = \overline{a \cdot b}$.
+- **Buona definizione.** Cambiando rappresentanti, $a' = a + kN$ e $b' = b + k'N$, somma e prodotto cambiano di un multiplo di $N$: la classe del risultato è la stessa.
+- **Proprietà.** Associativa, commutativa, distributiva; neutri $\overline{0}$ e $\overline{1}$; ogni classe ha un'opposta. Sull'inversa la lezione si ferma: è l'argomento della D18.
+
+```grafico
+titolo: Gli interi da −4 a 10 colorati secondo il resto della divisione per 3. Ogni colore è una classe resto, e i suoi numeri distano di 3. Sommando un numero blu e uno verde viene sempre un numero verde: è la buona definizione
+x: -5 11
+y: 0 3.4
+assi: no
+griglia: no
+proporzioni: libere
+segmento: -4.6 1.5 10.6 1.5 | grigio | sottile
+punto: -3 1.5 | blu
+punto: 0 1.5 | blu
+punto: 3 1.5 | blu
+punto: 6 1.5 | blu
+punto: 9 1.5 | blu
+punto: -2 1.5 | verde
+punto: 1 1.5 | verde
+punto: 4 1.5 | verde
+punto: 7 1.5 | verde
+punto: 10 1.5 | verde
+punto: -4 1.5 | ambra
+punto: -1 1.5 | ambra
+punto: 2 1.5 | ambra
+punto: 5 1.5 | ambra
+punto: 8 1.5 | ambra
+testo: -3 0.9 | blu | "−3"
+testo: 0 0.9 | blu | "0"
+testo: 3 0.9 | blu | "3"
+testo: 6 0.9 | blu | "6"
+testo: 9 0.9 | blu | "9"
+testo: -2 2.1 | verde | "−2"
+testo: 1 2.1 | verde | "1"
+testo: 4 2.1 | verde | "4"
+testo: 7 2.1 | verde | "7"
+testo: 10 2.1 | verde | "10"
+testo: -4 0.9 | ambra | "−4"
+testo: -1 0.9 | ambra | "−1"
+testo: 2 0.9 | ambra | "2"
+testo: 5 0.9 | ambra | "5"
+testo: 8 0.9 | ambra | "8"
+testo: -2 3.0 | blu | "resto 0"
+testo: 3 3.0 | verde | "resto 1"
+testo: 8 3.0 | ambra | "resto 2"
+```
+
+**Nei conti.** Si riduce ogni numero prima di operare. L'**ultima cifra** è la classe modulo 10. Per le **potenze** si cerca dove la potenza torna a 1: le potenze di 3 modulo 10 sono 3, 9, 7, 1 e si ripetono ogni 4, quindi $3^{2026}$ finisce come $3^2$, per 9, perché 2026 diviso 4 dà resto 2.
+
+> [!TRAPPOLA] L'esponente non si riduce modulo N
+> In $\mathbb{Z}_5$ gli esponenti 3 e 8 sono congruenti, ma $2^3 \equiv 3$ e $2^8 \equiv 1$. L'esponente si riduce rispetto alla lunghezza del ciclo delle potenze, non rispetto al modulo.
+
+::: prova Qual è il rappresentante canonico di $[-20]_7$? Quanto vale $\overline{5} \cdot \overline{6}$ in $\mathbb{Z}_7$?
+$-20 = -3 \cdot 7 + 1$: è 1. $\overline{30} = \overline{2}$, perché $30 = 4 \cdot 7 + 2$.
+:::
+
+> [!RICORDA]
+> - $a \equiv b \pmod N$: stessa differenza da un multiplo di $N$, stesso resto.
+> - $\mathbb{Z}_N$ ha $N$ elementi; ogni classe ha infiniti nomi.
+> - Somma e prodotto non dipendono dal rappresentante.
+> - Si riduce la base, non l'esponente.
+
+## D18 · Classi invertibili ed Eulero (ven 20/11)
+
+Nella tabella della moltiplicazione modulo 10 le classi non nulle si dividono in due famiglie: quelle con un 1 nella loro riga, e quelle con uno 0.
+
+```grafico
+titolo: Le dieci classi di Z₁₀. Quelle verdi sono coprime con 10 e hanno un'inversa. Quelle ambra hanno un fattore in comune con 10: moltiplicate per un'altra classe non nulla danno zero
+x: -0.3 10.3
+y: 0 3.6
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0 1.2 1 1.2 1 2.2 0 2.2 | grigio | tenue
+poligono: 1 1.2 2 1.2 2 2.2 1 2.2 | verde | tenue
+poligono: 2 1.2 3 1.2 3 2.2 2 2.2 | ambra | tenue
+poligono: 3 1.2 4 1.2 4 2.2 3 2.2 | verde | tenue
+poligono: 4 1.2 5 1.2 5 2.2 4 2.2 | ambra | tenue
+poligono: 5 1.2 6 1.2 6 2.2 5 2.2 | ambra | tenue
+poligono: 6 1.2 7 1.2 7 2.2 6 2.2 | ambra | tenue
+poligono: 7 1.2 8 1.2 8 2.2 7 2.2 | verde | tenue
+poligono: 8 1.2 9 1.2 9 2.2 8 2.2 | ambra | tenue
+poligono: 9 1.2 10 1.2 10 2.2 9 2.2 | verde | tenue
+testo: 0.5 1.7 | grigio | "0"
+testo: 1.5 1.7 | verde | "1"
+testo: 2.5 1.7 | ambra | "2"
+testo: 3.5 1.7 | verde | "3"
+testo: 4.5 1.7 | ambra | "4"
+testo: 5.5 1.7 | ambra | "5"
+testo: 6.5 1.7 | ambra | "6"
+testo: 7.5 1.7 | verde | "7"
+testo: 8.5 1.7 | ambra | "8"
+testo: 9.5 1.7 | verde | "9"
+testo: 2.5 3.0 | verde | "invertibili"
+testo: 7.0 0.5 | ambra | "divisori dello zero"
+```
+
+- **Invertibile**: c'è una classe che moltiplicata per lei dà $\overline{1}$. **Divisore dello zero**: classe non nulla che moltiplicata per un'altra classe non nulla dà $\overline{0}$. Una classe non può essere tutte e due le cose.
+- **Il criterio (teorema 7.12).** La classe di $a$ è invertibile se $\mathrm{MCD}(a, N) = 1$, ed è un divisore dello zero se il massimo comun divisore è maggiore di 1.
+- **Modulo primo**: tutte le classi non nulle sono invertibili.
+- **L'inversa.** Dall'identità di Bézout $aA + NB = 1$, passando alle classi resta $\overline{a} \cdot \overline{A} = \overline{1}$: l'inversa è la classe di $A$.
+
+Il calcolo, sull'inverso di 17 in $\mathbb{Z}_{54}$ (quiz del 14/01/2025):
+
+| Euclide | Risalita |
+|---|---|
+| $54 = 3 \cdot 17 + 3$ | $1 = 3 - 2$ |
+| $17 = 5 \cdot 3 + 2$ | $1 = 6 \cdot 3 - 17$ |
+| $3 = 1 \cdot 2 + 1$ | $1 = 6 \cdot 54 - 19 \cdot 17$ |
+
+Il coefficiente di 17 è $-19$, e $-19 + 54 = 35$: l'inversa è $\overline{35}$. Controllo: $17 \cdot 35 = 595 = 11 \cdot 54 + 1$.
+
+**La funzione di Eulero.** $\varphi(n)$ è il numero degli interi tra 1 e $n$ coprimi con $n$, cioè il numero delle classi invertibili modulo $n$.
+
+| $n$ | Come si calcola | $\varphi(n)$ |
+|---|---|---|
+| primo $p$ | tutti i numeri da 1 a $p - 1$ | $p - 1$ |
+| potenza $p^e$ | si tolgono i $p^{e-1}$ multipli di $p$ | $p^{e-1}(p - 1)$ |
+| prodotto di fattori coprimi | si moltiplicano le $\varphi$ dei fattori | $\varphi(88) = 4 \cdot 10 = 40$ |
+
+L'ultima riga è la proposizione 7.17, che in aula si dimostra più avanti: nei quiz serve già.
+
+::: prova In $\mathbb{Z}_{21}$, $\overline{14}$ è invertibile? Per quale classe non nulla moltiplicarla per avere zero? Quanto vale $\varphi(21)$?
+Non è invertibile: $\mathrm{MCD}(14, 21) = 7$. $21 : 7 = 3$, e $14 \cdot 3 = 42 = 2 \cdot 21$. $\varphi(21) = \varphi(3) \cdot \varphi(7) = 2 \cdot 6 = 12$.
+:::
+
+> [!RICORDA]
+> - Coprimo con il modulo: invertibile. Altrimenti: divisore dello zero.
+> - Inversa: Euclide, risalita, coefficiente del rappresentante, più il modulo se è negativo.
+> - $\varphi(p^e) = p^{e-1}(p - 1)$; per fattori coprimi si moltiplica.
+> - Il risultato si controlla con una moltiplicazione.
+
+## Verso l'esame
+
+- **«L'inverso moltiplicativo di … modulo … è»**: quiz del 14/01/2025 e del 10/09/2026; primo punto di un problema il 13/01/2026 e il 10/09/2026. Con le risposte davanti conviene provarle una per una.
+- **«Il numero delle classi invertibili in $\mathbb{Z}_N$»**: quiz dell'08/06/2026. Si fattorizza $N$ e si usa la formula.
+- **Ultime cifre e resti**: quiz dell'08/06/2026, domanda 7.
+- Nei problemi la motivazione va scritta: «è invertibile perché il massimo comun divisore con il modulo è 1».
+- La prova è la stessa per i canali A, B e C: 10 domande a risposta multipla e 2 problemi, in 2 ore, con libro e appunti. Appelli 2026/27: 19/01/2027 e 03/02/2027, alle 14:00.
+
+## Domande di ripasso
+
+::: domanda Quando due interi sono congruenti modulo $N$?
+Quando $N$ divide la loro differenza, cioè quando hanno lo stesso resto nella divisione per $N$.
+:::
+
+::: domanda Che cosa vuol dire che somma e prodotto tra classi sono ben definiti?
+Che il risultato non cambia se si scelgono altri rappresentanti delle stesse classi.
+:::
+
+::: domanda Perché non si può ridurre l'esponente modulo $N$?
+Perché l'esponente conta quante volte si moltiplica: è un intero, non una classe. In $\mathbb{Z}_5$, $2^3$ e $2^8$ danno classi diverse.
+:::
+
+::: domanda Come si riconosce una classe invertibile?
+Il massimo comun divisore tra il suo rappresentante e il modulo è 1.
+:::
+
+::: domanda Come si calcola l'inversa con un modulo grande?
+Algoritmo di Euclide e risalita fino a $aA + NB = 1$: l'inversa è la classe di $A$.
+:::
+
+::: domanda Che cosa conta $\varphi(n)$, e quanto vale per una potenza di un primo?
+Le classi invertibili modulo $n$. Per $p^e$ vale $p^{e-1}(p - 1)$.
+:::
+
+## Quiz d'esame
+
+Sono tutte domande vere degli appelli, nelle versioni che le lezioni D17 e D18 non svolgono per intero. Le risposte giuste sono quelle dei fogli delle soluzioni, ricontrollate con un programma.
+
+```quiz
+D: Appello dell'08/06/2026, quiz, domanda 7 (quarta versione). L'ultima cifra del numero $2! + 4! + 29! + 2026!$ è:
++ 6
+- 0
+- 5
+- 1
+- 8
+= $2 + 24 = 26$, e i due fattoriali grandi finiscono per 0 perché contengono i fattori 2 e 5. La risposta più insidiosa è 8: viene usando $3! = 6$ al posto di $4!$.
+
+D: Appello del 14/01/2025, quiz, domanda 8 (seconda versione). In $\mathbb{Z}_{86}$ l'inverso moltiplicativo di 17 è:
++ 81
+- 11
+- 24
+- 29
+- non esiste
+= $86 = 5 \cdot 17 + 1$, quindi $1 = 86 - 5 \cdot 17$ e l'inverso è $-5 \equiv 81$. La più insidiosa è «non esiste»: 86 è pari, ma 17 è primo e non divide 86.
+
+D: Appello del 14/01/2025, quiz, domanda 8 (terza versione). In $\mathbb{Z}_{76}$ l'inverso moltiplicativo di 17 è:
++ 9
+- 33
+- 19
+- 42
+- non esiste
+= $76 = 4 \cdot 17 + 8$ e $17 = 2 \cdot 8 + 1$; risalendo, $1 = 9 \cdot 17 - 2 \cdot 76$. Controllo: $17 \cdot 9 = 153 = 2 \cdot 76 + 1$. La più insidiosa è 19: è un divisore di 76, non l'inverso.
+
+D: Appello del 10/09/2026, quiz, domanda 9 (seconda versione). L'inverso moltiplicativo di 29 modulo 57 è:
++ 2
+- 13
+- 20
+- 26
+- non esiste
+= $2 \cdot 29 = 58 = 57 + 1$. La più insidiosa è 26: è la risposta giusta di un'altra versione, quella con 11 al posto di 29.
+
+D: Appello dell'08/06/2026, quiz, domanda 9 (quarta versione). Determinare il numero delle classi invertibili in $\mathbb{Z}_{90}$.
++ 24
+- 28
+- 20
+- 32
+- 30
+= $90 = 2 \cdot 3^2 \cdot 5$: $\varphi(90) = 1 \cdot 6 \cdot 4 = 24$. La più insidiosa è 30: viene dimenticando di togliere i multipli di 5.
+
+D: Appello dell'08/06/2026, quiz, domanda 9 (terza versione). Determinare il numero delle classi invertibili in $\mathbb{Z}_{75}$.
++ 40
+- 42
+- 20
+- 28
+- 32
+= $75 = 3 \cdot 5^2$: $\varphi(75) = 2 \cdot 20 = 40$. La più insidiosa è 20: è $\varphi(25)$ da sola, senza il fattore di 3.
+
+D: Quiz 2021–25. In $\mathbb{Z}_{56}$ la classe $\overline{51}$:
++ ha inversa 11
+- non è invertibile
+- ha inversa 5
+- ha inversa 42
+- ha inversa 33
+= $51 = 3 \cdot 17$ e $56 = 2^3 \cdot 7$ sono coprimi; $51 \cdot 11 = 561 = 10 \cdot 56 + 1$. Più in fretta: $51 \equiv -5$, e $-5 \cdot 11 = -55 \equiv 1$. La più insidiosa è 5: è il numero che viene in mente da $51 \equiv -5$, ma $-5 \cdot 5 = -25$ non è congruo a 1.
+
+D: Appello del 13/01/2026, problema 2, punto a). L'inverso moltiplicativo di 35 in $\mathbb{Z}_{97}$, come numero tra 0 e 96, è:
+N: 61
+= 97 è primo, quindi 35 è invertibile. Con Euclide e la risalita viene 61; controllo: $35 \cdot 61 = 2135 = 22 \cdot 97 + 1$. È il risultato della soluzione ufficiale.
+```
+
+## Fonti
+
+- Le lezioni complete: [D17 · Congruenze e classi resto](D17_congruenze_classi_resto.html) e [D18 · Classi invertibili, divisori dello zero e funzione di Eulero](D18_invertibili_divisori_zero_eulero.html), con le dimostrazioni, i disegni e gli esercizi.
+- A. Mori, *Lezioni di Matematica Discreta*, cap. 7, pp. 131–143; diario delle lezioni del canale B 2025/26, lezioni 17 e 18.
+- Appelli di Matematica Discreta del 14/01/2025, del 13/01/2026, dell'08/06/2026 e del 10/09/2026, e quiz 2021–25, con le soluzioni ufficiali.
 
 
 ---

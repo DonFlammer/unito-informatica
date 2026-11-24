@@ -159,7 +159,7 @@ D: Sul modello dello stato della memoria. Con `int f(int a, int *p) { a = a + 1;
 - 4, 10, 10
 - 5, 10, 8
 - 4, 15, 8
-= `a` è una copia di `u`: diventa 5 nel frame di `f`, e `u` resta 4. `*p` è `w`: diventa 10 + 5. Il ritorno è 5 · 2. La più insidiosa è la seconda, che fa cambiare anche `u`.
+= `a` è una copia di `u`: diventa 5 nel frame di `f`, e `u` resta 4. `*p` è `w`: diventa 10 + 5. Il ritorno è 5 · 2. La più insidiosa è «5, 15, 10», che fa cambiare anche `u`.
 
 D: Sul modello dello stato della memoria. Mentre è in esecuzione `swap`, chiamata da `main` con `swap(&x, &y)`, quanti frame ci sono sullo stack e quale è in cima?
 + due, e in cima c'è quello di `swap`
@@ -167,7 +167,7 @@ D: Sul modello dello stato della memoria. Mentre è in esecuzione `swap`, chiama
 - uno solo, quello di `swap`
 - uno solo, quello di `main`
 - tre: `main`, `swap` e uno per i puntatori
-= Il frame di `main` resta sotto, quello di `swap` viene aggiunto sopra e tolto al ritorno. La più insidiosa è la terza: il frame del chiamante non sparisce durante la chiamata.
+= Il frame di `main` resta sotto, quello di `swap` viene aggiunto sopra e tolto al ritorno. La più insidiosa è «uno solo, quello di `swap`»: il frame del chiamante non sparisce durante la chiamata.
 
 D: Sul modello della correttezza. Dopo `int x = 3, y = 8; swapSbagliato(x, y);`, dove `void swapSbagliato(int a, int b) { int t = a; a = b; b = t; }`, che cosa stampa `printf("%d %d", x, y)`?
 + `3 8`
@@ -187,7 +187,7 @@ D: Sul modello degli errori della 06B. Dopo `char t[6] = "cane"; t[2] = '\0';`, 
 - stampa `ca e`, e `strlen` vale 4
 - stampa `ca`, e `strlen` vale 6
 - stampa `can`, e `strlen` vale 3
-= La stringa finisce al primo terminatore, nella casella 2. La più insidiosa è l'ultima: il terminatore sostituisce la `n`, non viene dopo.
+= La stringa finisce al primo terminatore, nella casella 2. La più insidiosa è «stampa `can`, e `strlen` vale 3»: il terminatore sostituisce la `n`, non viene dopo.
 
 D: Sul modello degli errori della 06B. Con `char d[4];` e `const char *s = "ciao";`, che cosa c'è in `d` dopo `strncpy(d, s, 4)`?
 + i quattro caratteri `c`, `i`, `a`, `o`, senza terminatore
@@ -195,7 +195,7 @@ D: Sul modello degli errori della 06B. Con `char d[4];` e `const char *s = "ciao
 - `ciao` seguito da `'\0'`
 - niente: `strncpy` non copia se non c'è posto
 - quattro terminatori
-= `strncpy` copia al massimo 4 caratteri, e il terminatore sarebbe il quinto. La più insidiosa è la seconda: sarebbe comodo, ma `strncpy` non accorcia la copia per fare posto al terminatore.
+= `strncpy` copia al massimo 4 caratteri, e il terminatore sarebbe il quinto. La più insidiosa è «`cia` seguito da `'\0'`»: sarebbe comodo, ma `strncpy` non accorcia la copia per fare posto al terminatore.
 
 D: Sul modello degli errori del Lab05A. Con gcc 16 su Windows `islower('q')` vale 2. Quale condizione è scritta bene per «`c` è una lettera minuscola»?
 + `if (islower(c))`
@@ -203,7 +203,7 @@ D: Sul modello degli errori del Lab05A. Con gcc 16 su Windows `islower('q')` val
 - `if (islower(c) == true)`
 - `if (islower(c) == 'q')`
 - `if (!islower(c))`
-= Le funzioni di `ctype.h` restituiscono zero oppure un numero diverso da zero, non per forza 1. La più insidiosa è la terza: `true` vale 1, quindi è lo stesso errore della seconda.
+= Le funzioni di `ctype.h` restituiscono zero oppure un numero diverso da zero, non per forza 1. La più insidiosa è `if (islower(c) == true)`: `true` vale 1, quindi è lo stesso errore di `islower(c) == 1`.
 
 D: Sul modello degli esercizi del Lab05A. Quanti elementi deve avere, come minimo, l'array `nome` per leggere con `scanf("%20s", nome)`?
 N: 21
@@ -215,7 +215,7 @@ D: Sul modello delle intestazioni d'esame. Quale intestazione va bene per una fu
 - `void contaPari(size_t n, int a[])`
 - `size_t contaPari(int n, int *a[])`
 - `bool contaPari(size_t n, const int a[])`
-= Servono la lunghezza e l'array in sola lettura, e il risultato è un conteggio. La più insidiosa è la seconda: senza la lunghezza la funzione non sa dove fermarsi.
+= Servono la lunghezza e l'array in sola lettura, e il risultato è un conteggio. La più insidiosa è `size_t contaPari(const int a[])`: senza la lunghezza la funzione non sa dove fermarsi.
 ```
 
 ## Fonti

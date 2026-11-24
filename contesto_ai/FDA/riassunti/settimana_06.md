@@ -175,7 +175,7 @@ D: Sul modello dei quiz sulle regole. Quale di queste argomentazioni è valida?
 - $p \to q$, $q$, quindi $p$
 - $p \to q$, $\neg p$, quindi $\neg q$
 - $p \vee q$, $p$, quindi $\neg q$
-= È la dimostrazione per casi: uno dei due vale, e tutti e due portano a $r$. La più insidiosa è la seconda: con $p$ e $r$ false e $q$ vera le premesse sono vere e la conclusione falsa.
+= È la dimostrazione per casi: uno dei due vale, e tutti e due portano a $r$. La più insidiosa è «$p \to q$, $r \to q$, $q$, quindi $p \vee r$»: con $p$ e $r$ false e $q$ vera le premesse sono vere e la conclusione falsa.
 
 D: Sul modello dei quiz sulle regole. L'argomentazione «$p \to q$, $\neg q \vee r$, $\neg r$, quindi $\neg p$» è valida. Con quali regole si dimostra?
 + sillogismo disgiuntivo, poi modus tollens
@@ -183,7 +183,7 @@ D: Sul modello dei quiz sulle regole. L'argomentazione «$p \to q$, $\neg q \vee
 - due volte modus ponens
 - sillogismo ipotetico, poi modus ponens
 - non si può: non è valida
-= Da $\neg q \vee r$ e $\neg r$ segue $\neg q$; da $p \to q$ e $\neg q$ segue $\neg p$. La più insidiosa è l'ultima: l'ho controllata su tutte le otto righe, è valida.
+= Da $\neg q \vee r$ e $\neg r$ segue $\neg q$; da $p \to q$ e $\neg q$ segue $\neg p$. La più insidiosa è «non si può: non è valida»: l'ho controllata su tutte le otto righe, è valida.
 
 D: Dall'autoverifica del capitolo 2, domanda 2. Che differenza c'è tra una dimostrazione diretta e una per assurdo?
 + in quella per assurdo si suppone anche la negazione della conclusione, in quella diretta no
@@ -191,7 +191,7 @@ D: Dall'autoverifica del capitolo 2, domanda 2. Che differenza c'è tra una dimo
 - quella per assurdo vale solo per i numeri interi
 - in quella per assurdo si suppone la negazione delle ipotesi
 - nessuna: sono due nomi dello stesso metodo
-= È la risposta ufficiale. La più insidiosa è la quarta: si nega la conclusione, non l'ipotesi.
+= È la risposta ufficiale. La più insidiosa è «in quella per assurdo si suppone la negazione delle ipotesi»: si nega la conclusione, non l'ipotesi.
 
 D: Sul modello delle domande sulle negazioni. Qual è il contrario di «per ogni $x$ esiste un $y$ con $x < y$»?
 + esiste un $x$ per cui, per ogni $y$, $x \ge y$
@@ -199,7 +199,7 @@ D: Sul modello delle domande sulle negazioni. Qual è il contrario di «per ogni
 - esiste un $x$ ed esiste un $y$ con $x \ge y$
 - per ogni $x$ e per ogni $y$, $x \ge y$
 - esiste un $x$ per cui, per ogni $y$, $x < y$
-= Negando si scambiano i quantificatori e si nega la frase finale. La più insidiosa è la seconda, che nega solo la disuguaglianza.
+= Negando si scambiano i quantificatori e si nega la frase finale. La più insidiosa è «per ogni $x$ esiste un $y$ con $x \ge y$», che nega solo la disuguaglianza.
 
 D: Sul modello degli esercizi del §2.1. «Per ogni intero $n \ge 0$, $n^2 + n + 17$ è primo.» Qual è il più piccolo controesempio?
 N: 16
@@ -211,7 +211,7 @@ D: Sul modello degli esercizi del §2.2. Una dimostrazione suppone «$a + b > 10
 - se $a \le 5$ e $b \le 5$, allora $a + b > 10$
 - che $a + b = 10$
 - niente: è arrivata a una contraddizione
-= Ha supposto l'ipotesi e il contrario della tesi: la tesi è il contrario di «$a \le 5$ e $b \le 5$», cioè un «oppure». La più insidiosa è la seconda, con «e» al posto di «oppure».
+= Ha supposto l'ipotesi e il contrario della tesi: la tesi è il contrario di «$a \le 5$ e $b \le 5$», cioè un «oppure». La più insidiosa è «se $a + b > 10$, allora $a > 5$ e $b > 5$», con «e» al posto di «oppure».
 
 D: Sul modello degli esercizi del §2.1. Per dimostrare in modo diretto che $A \cap B \subseteq A$, come si comincia?
 + sia $x$ un elemento di $A \cap B$
@@ -219,7 +219,7 @@ D: Sul modello degli esercizi del §2.1. Per dimostrare in modo diretto che $A \
 - supponiamo che $A \cap B$ non sia contenuto in $A$
 - sia $A = \{1, 2\}$ e $B = \{2, 3\}$
 - supponiamo che $A \cap B = A$
-= Per un'inclusione si prende un elemento qualsiasi del primo insieme. La più insidiosa è la quarta: un esempio non è una dimostrazione. La terza sarebbe l'inizio di una dimostrazione per assurdo.
+= Per un'inclusione si prende un elemento qualsiasi del primo insieme. La più insidiosa è «sia $A = \{1, 2\}$ e $B = \{2, 3\}$»: un esempio non è una dimostrazione. La risposta «supponiamo che $A \cap B$ non sia contenuto in $A$» sarebbe l'inizio di una dimostrazione per assurdo.
 
 D: Sul modello degli esercizi sui conteggi. Quattro squadre giocano sette partite. Perché almeno una coppia di squadre si è incontrata due volte?
 + perché le coppie di squadre sono solo 6
@@ -227,7 +227,7 @@ D: Sul modello degli esercizi sui conteggi. Quattro squadre giocano sette partit
 - perché ogni squadra gioca contro tutte le altre due volte
 - perché le squadre sono pari
 - non è detto che sia successo
-= È la domanda 3 dell'autoverifica del capitolo 2: se ogni coppia giocasse al massimo una volta, le partite sarebbero al massimo 6. La più insidiosa è l'ultima: 7 partite in 6 coppie obbligano a una ripetizione.
+= È la domanda 3 dell'autoverifica del capitolo 2: se ogni coppia giocasse al massimo una volta, le partite sarebbero al massimo 6. La più insidiosa è «non è detto che sia successo»: 7 partite in 6 coppie obbligano a una ripetizione.
 ```
 
 ## Fonti

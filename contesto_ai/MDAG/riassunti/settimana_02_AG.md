@@ -233,7 +233,7 @@ D: Appello del 02/09/2025, domanda 2. Quale dei seguenti è una radice terza di 
 - $8e^{\pi i/3 + 2\pi ik}$
 - $2e^{3\pi i/5}$
 - $2e^{3\pi i/5 + \pi i/3}$
-= Le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi5 + \frac{2k\pi}3$: con $k = 1$ è la seconda risposta. La risposta più insidiosa è $2e^{3\pi i/5}$: la distanza è giusta, ma l'angolo non è stato diviso per 3. Le risposte con 4 e con 8 hanno la distanza sbagliata.
+= Le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi5 + \frac{2k\pi}3$: con $k = 1$ viene $2e^{\pi i/5 + 2\pi i/3}$. La risposta più insidiosa è $2e^{3\pi i/5}$: la distanza è giusta, ma l'angolo non è stato diviso per 3. Le risposte con 4 e con 8 hanno la distanza sbagliata.
 
 D: Appello del 07/09/2026, domanda 1. Quale dei seguenti è una radice del polinomio $p(z) = z^4 + 5z^2 + 4$?
 - $z = -3 + i$
@@ -257,7 +257,7 @@ D: Appello del 03/07/2026, domanda 7. Quale dei seguenti è una radice del polin
 - $z = 1 + i$
 - $z = 1$
 - $z^3 + 2z^2 + z + 2 = 0$
-= Raccogliendo a coppie, $p(z) = z^2(z + 2) + (z + 2) = (z^2 + 1)(z + 2)$: le radici sono $-2$, $i$, $-i$. Controllo diretto: $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è l'ultima: è l'equazione, non un numero. $p(0) = 2$ e $p(1) = 6$.
+= Raccogliendo a coppie, $p(z) = z^2(z + 2) + (z + 2) = (z^2 + 1)(z + 2)$: le radici sono $-2$, $i$, $-i$. Controllo diretto: $p(i) = -i - 2 + i + 2 = 0$. La risposta più insidiosa è $z^3 + 2z^2 + z + 2 = 0$: è l'equazione, non un numero. $p(0) = 2$ e $p(1) = 6$.
 ```
 
 ## Fonti

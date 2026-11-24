@@ -1050,7 +1050,7 @@ D: Simulazione d'esame 2, 2023/24, domanda 8. Quale riga dà i valori giusti di 
 - $-1$, $-85$, $-15$
 - $-127$, $85$, $15$
 - $-1$, $-43$, $15$
-= 11111111 è fatto di soli 1: in complemento a 2 vale −1, perché −128 + 127 = −1. Gli altri due hanno il bit di segno a 0 e si leggono come senza segno: 64 + 16 + 4 + 1 = 85 e 8 + 4 + 2 + 1 = 15. La prima riga legge tutto senza segno. La terza mette il meno ai positivi. −127 è 10000001.
+= 11111111 è fatto di soli 1: in complemento a 2 vale −1, perché −128 + 127 = −1. Gli altri due hanno il bit di segno a 0 e si leggono come senza segno: 64 + 16 + 4 + 1 = 85 e 8 + 4 + 2 + 1 = 15. La risposta «$255$, $85$, $15$» legge tutto senza segno. La risposta «$-1$, $-85$, $-15$» mette il meno ai positivi. −127 è 10000001.
 
 D: Simulazione d'esame 2, 2023/24, domanda 3. Due NAND si richiamano: quello in alto riceve l'ingresso in alto e l'uscita dell'altro; quello in basso riceve l'ingresso in basso e l'uscita del primo, che è y. Con l'ingresso in alto a 1 e quello in basso a 0, su che valore si stabilizza y?
 + $0$
@@ -1082,7 +1082,7 @@ D: Simulazione d'esame 1, 2023/24, domanda 5. La tabella ha y = 1 solo nelle rig
 + $\overline{x_1}\,x_2\,\overline{x_3} + \overline{x_1}\,x_2\,x_3 + x_1\,\overline{x_2}\,x_3 + x_1\,x_2\,\overline{x_3}$
 - $x_1\,x_2\,x_3$
 - $\overline{x_1}\,\overline{x_2}\,\overline{x_3} + x_1\,x_2\,x_3$
-= Il metodo: un AND per ogni riga con y = 1, con il NOT sugli ingressi che valgono 0, poi tutti uniti da OR. La riga 010 dà NOT x1 AND x2 AND NOT x3, e così via: è la terza formula. La prima vale 1 nella riga 111, dove y = 0. La seconda vale 1 nella riga 001, dove y = 0. Le ultime due danno 1 proprio nelle righe in cui y = 0.
+= Il metodo: un AND per ogni riga con y = 1, con il NOT sugli ingressi che valgono 0, poi tutti uniti da OR. La riga 010 dà NOT x1 AND x2 AND NOT x3, e così via: è la formula con un AND di tre ingressi per ogni riga. La risposta $\overline{x_1}\,x_2 + x_1\,x_2\,x_3$ vale 1 nella riga 111, dove y = 0. La risposta $x_1\,x_2 + \overline{x_2}\,x_3$ vale 1 nella riga 001, dove y = 0. Le risposte $x_1\,x_2\,x_3$ e $\overline{x_1}\,\overline{x_2}\,\overline{x_3} + x_1\,x_2\,x_3$ danno 1 proprio nelle righe in cui y = 0.
 
 D: Domanda 5 del §1.1. Come si scrive in esadecimale 111010000101010100010111?
 - E85171
@@ -1090,7 +1090,7 @@ D: Domanda 5 del §1.1. Come si scrive in esadecimale 111010000101010100010111?
 - 8E5571
 - E8551
 - 1E85517
-= Gruppi di 4 bit da destra: 1110, 1000, 0101, 0101, 0001, 0111, cioè E, 8, 5, 5, 1, 7. Il risultato è E85517, la risposta del libro. La prima e la terza scambiano l'ordine di alcuni gruppi. La quarta ne perde uno. L'ultima aggiunge una cifra che non c'è: i 24 bit fanno esattamente 6 gruppi.
+= Gruppi di 4 bit da destra: 1110, 1000, 0101, 0101, 0001, 0111, cioè E, 8, 5, 5, 1, 7. Il risultato è E85517, la risposta del libro. La risposta «E85171» e la risposta «8E5571» scambiano l'ordine di alcuni gruppi. La risposta «E8551» ne perde uno. La risposta «1E85517» aggiunge una cifra che non c'è: i 24 bit fanno esattamente 6 gruppi.
 
 D: Una memoria ha 64 KB, con celle di un byte. Quanti bit servono per l'indirizzo di una cella?
 - $6$
@@ -1122,7 +1122,7 @@ D: Come si scrive 6,375 in base 2?
 + $110{,}011$
 - $110{,}101$
 - $111{,}011$
-= 6 è 110. Per 0,375 si raddoppia: 0,75 dà 0, 1,5 dà 1, 1 dà 1. Quindi 0,375 = 0,011 e 6,375 = 110,011. Controllo: 4 + 2 + 1/4 + 1/8 = 6,375. La prima copia le cifre decimali. 110,11 vale 6 e 3/4. 110,101 vale 6 e 5/8: ha le cifre dopo la virgola al contrario. 111,011 vale 7 e 3/8.
+= 6 è 110. Per 0,375 si raddoppia: 0,75 dà 0, 1,5 dà 1, 1 dà 1. Quindi 0,375 = 0,011 e 6,375 = 110,011. Controllo: 4 + 2 + 1/4 + 1/8 = 6,375. La risposta $110{,}375$ copia le cifre decimali. 110,11 vale 6 e 3/4. 110,101 vale 6 e 5/8: ha le cifre dopo la virgola al contrario. 111,011 vale 7 e 3/8.
 
 D: Con 8 bit senza segno si calcola 10010110 + 01101010. Che cosa resta negli 8 bit?
 + 00000000, con overflow.
@@ -1130,7 +1130,7 @@ D: Con 8 bit senza segno si calcola 10010110 + 01101010. Che cosa resta negli 8 
 - 11111111, senza overflow.
 - 00000000, senza overflow.
 - 11111110, con overflow.
-= I due numeri valgono 150 e 106, e la somma è 256, cioè 100000000: 9 bit. Il riporto dell'ultima colonna non ha posto, quindi negli 8 bit resta 00000000. È overflow, perché senza segno con 8 bit si arriva a 255. La seconda risposta scrive giusto il numero, ma con 9 bit. 11111111 è 255, il massimo, ma il computer non si ferma lì.
+= I due numeri valgono 150 e 106, e la somma è 256, cioè 100000000: 9 bit. Il riporto dell'ultima colonna non ha posto, quindi negli 8 bit resta 00000000. È overflow, perché senza segno con 8 bit si arriva a 255. La risposta «100000000, senza overflow» scrive giusto il numero, ma con 9 bit. 11111111 è 255, il massimo, ma il computer non si ferma lì.
 
 D: Domanda 9 del §1.6. Quanto vale 0010 in notazione in eccesso 8?
 - $2$
@@ -1162,7 +1162,7 @@ D: Domanda 4 del §1.10. Con la parità dispari del libro, bit di parità a sini
 - $010001001$
 - $010001000$
 - $01000100$
-= 01000100 ha due 1, un numero pari. Per avere un totale dispari il bit di parità deve essere 1, e il libro lo mette a sinistra: 101000100, la risposta del libro. 001000100 lascia il totale pari. La terza mette il bit di parità a destra, come la quarta che ha anche il bit sbagliato. L'ultima dimentica il bit di parità.
+= 01000100 ha due 1, un numero pari. Per avere un totale dispari il bit di parità deve essere 1, e il libro lo mette a sinistra: 101000100, la risposta del libro. 001000100 lascia il totale pari. La risposta $010001001$ mette il bit di parità a destra, come la risposta $010001000$, che ha anche il bit sbagliato. La risposta $01000100$ dimentica il bit di parità.
 
 D: Con il codice a 6 bit del libro (A 000000, B 001111, C 010011, D 011100, E 100110, F 101001, G 110101, H 111010) arriva 001011. Come si decodifica?
 - A
@@ -1178,7 +1178,7 @@ D: Domanda 2 del §1.9. Con LZW come nel libro, partendo da x = 1, y = 2, spazio
 - $1213211123434$
 - $12132111234353$
 - $45453$
-= xyx è nuova: si scrive 121 e diventa la parola 4. Lo spazio è 3. yxxxy è nuova: si scrive 21112 e diventa la parola 5. Poi xyx è 4, spazio 3, yxxxy è 5, spazio 3, yxxxy è 5. In fila: 121 3 21112 3 4 3 5 3 5. La prima non usa il dizionario. La terza e la quarta perdono le ultime parole. L'ultima usa parole che all'inizio il dizionario non ha.
+= xyx è nuova: si scrive 121 e diventa la parola 4. Lo spazio è 3. yxxxy è nuova: si scrive 21112 e diventa la parola 5. Poi xyx è 4, spazio 3, yxxxy è 5, spazio 3, yxxxy è 5. In fila: 121 3 21112 3 4 3 5 3 5. La risposta $121321112121321112$ non usa il dizionario. La risposta $1213211123434$ e la risposta $12132111234353$ perdono le ultime parole. La risposta $45453$ usa parole che all'inizio il dizionario non ha.
 
 D: Domande 3 e 4 del §1.9. Quale affermazione su GIF e JPEG è giusta?
 - GIF e JPEG sono tutti e due senza perdita.

@@ -442,7 +442,7 @@ D: Quali sono il quoziente e il resto della divisione euclidea di $-17$ per 5?
 - quoziente $-3$, resto 2
 - quoziente $-4$, resto $-3$
 - quoziente 3, resto $-2$
-= $(-4) \cdot 5 + 3 = -17$, con il resto tra 0 e 4. La più insidiosa è la seconda: l'uguaglianza $(-3) \cdot 5 - 2 = -17$ è vera, ma il resto è negativo. È quello che calcola il C.
+= $(-4) \cdot 5 + 3 = -17$, con il resto tra 0 e 4. La più insidiosa è «quoziente $-3$, resto $-2$»: l'uguaglianza $(-3) \cdot 5 - 2 = -17$ è vera, ma il resto è negativo. È quello che calcola il C.
 
 D: Quale affermazione è vera?
 + ogni intero divide 0
@@ -450,7 +450,7 @@ D: Quale affermazione è vera?
 - 1 è un numero primo
 - $\mathrm{MCD}(0, 0) = 0$
 - se $a$ divide $b$, allora $b$ divide $a$
-= $n \cdot 0 = 0$ per ogni $n$. La più insidiosa è la seconda, che scambia i ruoli: 0 divide solo 0. 1 è escluso dalla definizione di primo, e il MCD di due zeri non è definito.
+= $n \cdot 0 = 0$ per ogni $n$. La più insidiosa è «0 divide ogni intero», che scambia i ruoli: 0 divide solo 0. 1 è escluso dalla definizione di primo, e il MCD di due zeri non è definito.
 
 D: Quanto vale $\mathrm{MCD}(0, -9)$?
 N: 9
@@ -462,7 +462,7 @@ D: Perché 6 non è primo, secondo la definizione 4.3?
 - perché $6 = 6 \cdot 1$
 - perché non divide 30
 - perché ha un divisore negativo
-= Primo vuol dire: se divide un prodotto, divide un fattore. La più insidiosa è la terza: $6 \cdot 1$ usa un invertibile e non dice niente; per mostrare che 6 è **riducibile** servirebbe $6 = 2 \cdot 3$.
+= Primo vuol dire: se divide un prodotto, divide un fattore. La più insidiosa è «perché $6 = 6 \cdot 1$»: $6 \cdot 1$ usa un invertibile e non dice niente; per mostrare che 6 è **riducibile** servirebbe $6 = 2 \cdot 3$.
 
 D: Un intero $d$ divide $n$ e divide $n + 5$. Che cosa si può concludere?
 + $d$ divide 5

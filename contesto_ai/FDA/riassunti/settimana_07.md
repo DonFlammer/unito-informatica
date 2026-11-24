@@ -197,7 +197,7 @@ D: Simulazione 2 del 2023/24, quiz 7. Nel frammento `i=1; s=0; while (i < n) { s
 - `i == n` e `s == 1 + … + n`
 - `i >= 1` e `s == 1 + … + i`
 - `i < n` e `s == 1 + … + (i - 1)`
-= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Sono le due affermazioni segnate «sì» nella simulazione. La più insidiosa è la quarta: `s == 1 + … + i` è falsa già prima del ciclo, dove darebbe 1.
+= Prima del ciclo `i = 1` e `s = 0`, la somma vuota; a ogni giro si aggiunge `i` e poi `i` cresce. Sono le due affermazioni segnate «sì» nella simulazione. La più insidiosa è «`i >= 1` e `s == 1 + … + i`»: `s == 1 + … + i` è falsa già prima del ciclo, dove darebbe 1.
 
 D: Dalla stessa domanda della simulazione 2. Con `n = 5`, quanto vale `s` dopo l'ultima istruzione `s = s + i`?
 N: 15
@@ -209,7 +209,7 @@ D: Simulazione 1 del 2023/24, quiz 9, adattata a una risposta sola. Quale di que
 - può essere usato per svolgere dimostrazioni sui numeri reali
 - richiede sempre almeno due casi base
 - dimostra frasi che con l'induzione semplice non si possono dimostrare
-= È l'affermazione b del quiz; le prime due sbagliate sono del quiz, le ultime due le ho aggiunte io. Nel quiz vero è giusta anche la d. La più insidiosa è l'ultima: le due forme dimostrano le stesse cose.
+= È l'affermazione b del quiz. Le risposte «richiede sempre almeno due casi base» e «dimostra frasi che con l'induzione semplice non si possono dimostrare» le ho aggiunte io, le altre due sbagliate sono del quiz. Nel quiz vero è giusta anche la d. La più insidiosa è «dimostra frasi che con l'induzione semplice non si possono dimostrare»: le due forme dimostrano le stesse cose.
 
 D: Sul modello delle domande sui metodi. Una dimostrazione di «se $P$ allora $Q$» comincia con «supponiamo $P$ e non $Q$» e finisce con «$0 = 1$». Che metodo è?
 + per assurdo
@@ -225,7 +225,7 @@ D: Sul modello degli esercizi del §2.2. Per dimostrare per casi una proprietà 
 - $n \ge 0$ e $n < 0$
 - $n = 3k$, $n = 3k + 1$ e $n = 3k + 2$
 - $n \le 5$ e $n > 5$
-= Manca lo zero: i casi non coprono tutto. La più insidiosa è la quarta, che sembra strana ma copre tutti gli interi, uno per ogni resto della divisione per 3.
+= Manca lo zero: i casi non coprono tutto. La più insidiosa è «$n = 3k$, $n = 3k + 1$ e $n = 3k + 2$», che sembra strana ma copre tutti gli interi, uno per ogni resto della divisione per 3.
 
 D: Sul modello degli esercizi del §2.4. Nel passo induttivo di «$7^n - 1$ è divisibile per 6», quale riscrittura fa comparire l'ipotesi induttiva?
 + $7^{n+1} - 1 = 7 \cdot (7^n - 1) + 6$
@@ -233,7 +233,7 @@ D: Sul modello degli esercizi del §2.4. Nel passo induttivo di «$7^n - 1$ è d
 - $7^{n+1} - 1 = (7^n - 1)^2$
 - $7^{n+1} - 1 = 7 \cdot 7^n - 7$
 - $7^{n+1} - 1 = 6 \cdot 7^n$
-= $7 \cdot (7^n - 1) + 6 = 7^{n+1} - 7 + 6$. Il primo addendo è divisibile per 6 per ipotesi, il secondo è 6. La più insidiosa è la quarta: vale $7^{n+1} - 7$, non $7^{n+1} - 1$.
+= $7 \cdot (7^n - 1) + 6 = 7^{n+1} - 7 + 6$. Il primo addendo è divisibile per 6 per ipotesi, il secondo è 6. La più insidiosa è $7^{n+1} - 1 = 7 \cdot 7^n - 7$: vale $7^{n+1} - 7$, non $7^{n+1} - 1$.
 
 D: Sul modello del quiz sugli invarianti. Nel ciclo `i = 0; ris = 1; while (i < n) { ris = ris * a; i = i + 1; }`, quale affermazione **non** è un invariante?
 + `i < n`

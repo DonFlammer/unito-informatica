@@ -801,7 +801,7 @@ D: (Appello del 06/06/2025, domanda 1) Siano $A = \{3, 4, 7, 9\}$, $B = \{1, 3, 
 - $B \cap C \subset A$
 - $A \cap B \subset C$
 + $A \cap B \cap C \neq \emptyset$
-= Calcola un pezzo alla volta. $A \cap B = \{3, 9\}$, e di questi sta in $C$ solo il 9, quindi $A \cap B \cap C = \{9\}$, che non è vuoto: la risposta giusta è l'ultima. Il 4 non sta in $B$, quindi non sta nell'intersezione dei tre. $A \subset B \cup C$ è falsa per il 7, che non sta né in $B$ né in $C$. $B \cap C = \{5, 8, 9\}$ non è contenuto in $A$, perché 5 e 8 non stanno in $A$. La più tentatrice è $A \cap B \subset C$: il 9 sta in $C$, ma il 3 no.
+= Calcola un pezzo alla volta. $A \cap B = \{3, 9\}$, e di questi sta in $C$ solo il 9, quindi $A \cap B \cap C = \{9\}$, che non è vuoto: la risposta giusta è $A \cap B \cap C \neq \emptyset$. Il 4 non sta in $B$, quindi non sta nell'intersezione dei tre. $A \subset B \cup C$ è falsa per il 7, che non sta né in $B$ né in $C$. $B \cap C = \{5, 8, 9\}$ non è contenuto in $A$, perché 5 e 8 non stanno in $A$. La più tentatrice è $A \cap B \subset C$: il 9 sta in $C$, ma il 3 no.
 
 D: (Appello del 08/06/2026, domanda 1) Ricordando che $n\Z = \{nk \mid k \in \Z\}$, dire quale delle seguenti affermazioni è vera.
 - $7 \in 3\Z \cup 5\Z$
@@ -817,7 +817,7 @@ D: (Appello del 04/02/2025, domanda 2) Sia $S = \{a, c, f, h, m, t, v\}$. Quale 
 - $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$
 - $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$
 - $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$
-= Fai i tre controlli. La prima famiglia copre tutte e sette le lettere, non ha parti vuote e nessuna lettera si ripete: è una partizione. La seconda non copre la $h$. La terza è la più tentatrice: copre tutto e non ha ripetizioni, ma ha una parte vuota, che una partizione non può avere. La quarta ripete la $c$. La quinta ripete la $h$ e non copre la $v$.
+= Fai i tre controlli. La famiglia $\{m\} \cup \{a, c, t\} \cup \{f, h, v\}$ copre tutte e sette le lettere, non ha parti vuote e nessuna lettera si ripete: è una partizione. La risposta $\{f, m\} \cup \{a, t\} \cup \{c, v\}$ non copre la $h$. La risposta $\emptyset \cup \{a, f, h, m\} \cup \{c, t, v\}$ è la più tentatrice: copre tutto e non ha ripetizioni, ma ha una parte vuota, che una partizione non può avere. La risposta $\{a, c\} \cup \{c, f, h, m\} \cup \{t, v\}$ ripete la $c$. La risposta $\{a, h, m\} \cup \{h, t\} \cup \{c, f\}$ ripete la $h$ e non copre la $v$.
 
 D: (Prova scritta del 10/07/2023, domanda 2) Sia $S = \{0, 1, 2, 3, 4, 5, 6\}$. Quale delle seguenti scelte definisce una partizione di $S$?
 - $A = \{4, 6\}$, $B = \{0, 1, 2\}$, $C = \{3\}$
@@ -825,7 +825,7 @@ D: (Prova scritta del 10/07/2023, domanda 2) Sia $S = \{0, 1, 2, 3, 4, 5, 6\}$. 
 + $A = \{1, 3, 5\}$, $B = \{0, 2, 4\}$, $C = \{6\}$
 - $A = \{0, 2\}$, $B = \{1, 3, 4, 5\}$, $C = \{4, 6\}$
 - $A = \{2, 4, 6\}$, $B = \emptyset$, $C = \{0, 1, 3, 5\}$
-= La scelta giusta divide i sette numeri in dispari, pari fino a 4, e il 6 da solo: ognuno sta in una parte e nessuna parte è vuota. Nella prima manca il 5. Nella seconda il 6 sta in due parti e manca il 5. Nella quarta il 4 sta in due parti. L'ultima è la più tentatrice: copre tutto senza ripetizioni, ma $B$ è vuoto.
+= La scelta giusta divide i sette numeri in dispari, pari fino a 4, e il 6 da solo: ognuno sta in una parte e nessuna parte è vuota. Nella scelta con $C = \{3\}$ manca il 5. In quella con $C = \{2\}$ il 6 sta in due parti e manca il 5. In quella con $C = \{4, 6\}$ il 4 sta in due parti. La risposta «$A = \{2, 4, 6\}$, $B = \emptyset$, $C = \{0, 1, 3, 5\}$» è la più tentatrice: copre tutto senza ripetizioni, ma $B$ è vuoto.
 
 D: Siano $X = \{1, 2, 3, 4, 5, 6, 7, 8\}$, $A = \{1, 2, 3\}$ e $B = \{3, 4, 5\}$. Quanto fa $C_X(A \cup B)$?
 - $\{3\}$
@@ -849,7 +849,7 @@ D: Vuoi dimostrare per induzione che $1 + 3 + \dots + (2n - 1) = n^2$. Nel passo
 - $1 + 3 + \dots + (2n + 1) = n^2 + 1$
 - $1 = 1^2$
 - $(2n - 1) + (2n + 1) = 4n$
-= Nel passo induttivo si scrive la formula con $n + 1$ al posto di $n$. L'ultimo dispari diventa $2(n + 1) - 1 = 2n + 1$ e il lato destro diventa $(n + 1)^2$. La prima risposta è l'ipotesi induttiva: si usa, ma non è il punto d'arrivo, ed è la più tentatrice. $1 = 1^2$ è il passo base.
+= Nel passo induttivo si scrive la formula con $n + 1$ al posto di $n$. L'ultimo dispari diventa $2(n + 1) - 1 = 2n + 1$ e il lato destro diventa $(n + 1)^2$. La risposta $1 + 3 + \dots + (2n - 1) = n^2$ è l'ipotesi induttiva: si usa, ma non è il punto d'arrivo, ed è la più tentatrice. $1 = 1^2$ è il passo base.
 
 D: Quante sono le partizioni dell'insieme $\{1, 2, 3\}$?
 - $3$

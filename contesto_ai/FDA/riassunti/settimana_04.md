@@ -244,7 +244,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Una donn
 - Una donna non ha ballato con nessun uomo
 - Ogni uomo ha ballato con qualche donna
 - Qualche donna non ha ballato con qualche uomo
-= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è l'ultima, $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo».
+= $\neg\,\exists d\, \forall u\, B(d, u) \equiv \forall d\, \exists u\, \neg B(d, u)$: per ogni donna c'è un uomo con cui non ha ballato. La risposta più insidiosa è «Qualche donna non ha ballato con qualche uomo», $\exists d\, \exists u\, \neg B$: è la negazione di «ogni donna ha ballato con ogni uomo».
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gli uomini hanno ballato con qualche donna»?
 + Qualche uomo non ha ballato con nessuna donna
@@ -252,7 +252,7 @@ D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Tutti gl
 - Tutti gli uomini non hanno ballato con qualche donna
 - Qualche donna non ha ballato con nessun uomo
 - Qualche uomo ha ballato con tutte le donne
-= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è la quarta, che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
+= $\neg\,\forall u\, \exists d\, B \equiv \exists u\, \forall d\, \neg B$. La risposta più insidiosa è «Qualche donna non ha ballato con nessun uomo», che scambia i ruoli di uomini e donne: la variabile scelta per prima resta l'uomo.
 
 D: Simulazione d'esame 2 del 2023/24, quiz 6. Qual è la negazione di «Ogni donna ha ballato con ogni uomo»?
 + Qualche donna non ha ballato con qualche uomo
@@ -268,7 +268,7 @@ D: Sul modello della simulazione 2. Sugli interi, quale frase è vera?
 - $\forall x\, \exists y\, (x \cdot y = 1)$
 - $\forall x\, (x^2 > 0)$
 - $\forall x\, \forall y\, (x + y \ne 0)$
-= Con $x = 0$ il prodotto è 0 per ogni $y$. La risposta più insidiosa è la seconda, che scambia l'ordine di «ogni numero ha un numero più grande»: un numero più grande di tutti non c'è. La terza è falsa per $x = 2$, la quarta per $x = 0$, l'ultima per $x = 1$, $y = -1$.
+= Con $x = 0$ il prodotto è 0 per ogni $y$. La risposta più insidiosa è $\exists y\, \forall x\, (y > x)$, che scambia l'ordine di «ogni numero ha un numero più grande»: un numero più grande di tutti non c'è. La risposta $\forall x\, \exists y\, (x \cdot y = 1)$ è falsa per $x = 2$, la risposta $\forall x\, (x^2 > 0)$ per $x = 0$, la risposta $\forall x\, \forall y\, (x + y \ne 0)$ per $x = 1$, $y = -1$.
 
 D: Sul modello della simulazione 2. Qual è la negazione di $\forall x\,(P(x) \to Q(x))$?
 + $\exists x\,(P(x) \wedge \neg Q(x))$
@@ -276,7 +276,7 @@ D: Sul modello della simulazione 2. Qual è la negazione di $\forall x\,(P(x) \t
 - $\exists x\,(\neg P(x) \to \neg Q(x))$
 - $\forall x\,(\neg P(x) \wedge Q(x))$
 - $\exists x\,(P(x) \to \neg Q(x))$
-= Il «per ogni» diventa «esiste», e la negazione di $P \to Q$ è $P \wedge \neg Q$ (lezione 07). «Non tutti i P sono Q» vuol dire «c'è un P che non è Q». La risposta più insidiosa è l'ultima: nega la conclusione ma lascia la freccia, che con $P$ falsa è vera a vuoto.
+= Il «per ogni» diventa «esiste», e la negazione di $P \to Q$ è $P \wedge \neg Q$ (lezione 07). «Non tutti i P sono Q» vuol dire «c'è un P che non è Q». La risposta più insidiosa è $\exists x\,(P(x) \to \neg Q(x))$: nega la conclusione ma lascia la freccia, che con $P$ falsa è vera a vuoto.
 
 D: Sul modello delle domande sì/no della lezione 10. Quale equivalenza vale per ogni dominio?
 + $\forall x\,(P(x) \wedge Q(x)) \equiv \forall x\, P(x) \wedge \forall x\, Q(x)$
@@ -284,7 +284,7 @@ D: Sul modello delle domande sì/no della lezione 10. Quale equivalenza vale per
 - $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$
 - $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$
 - $\forall x\, \exists y\, P(x, y) \equiv \exists y\, \forall x\, P(x, y)$
-= «Per ogni» è una lunga «e», e si distribuisce sulla «e». La risposta più insidiosa è la terza: due testimoni diversi non fanno un testimone comune (un intero pari e uno dispari esistono, uno pari e dispari no). La quarta sbaglia De Morgan, l'ultima scambia l'ordine.
+= «Per ogni» è una lunga «e», e si distribuisce sulla «e». La risposta più insidiosa è $\exists x\,(P(x) \wedge Q(x)) \equiv \exists x\, P(x) \wedge \exists x\, Q(x)$: due testimoni diversi non fanno un testimone comune (un intero pari e uno dispari esistono, uno pari e dispari no). La risposta $\neg\,\forall x\, P(x) \equiv \forall x\, \neg P(x)$ sbaglia De Morgan, la risposta $\forall x\, \exists y\, P(x, y) \equiv \exists y\, \forall x\, P(x, y)$ scambia l'ordine.
 
 D: Sul modello delle domande sì/no della lezione 10. «Tutti gli iscritti hanno la matricola. Luca è iscritto. Quindi Luca ha la matricola.» Quale regola serve, oltre al modus ponens?
 + La particolarizzazione universale
@@ -300,7 +300,7 @@ D: Sul modello della simulazione 2. Sul dominio delle persone, con $A(x, y)$ = �
 - $\forall y\, \exists x\, A(x, y)$
 - $\exists x\, \forall y\, A(x, y)$
 - $\forall x\, \forall y\, A(x, y)$
-= Per ogni persona $x$ c'è una persona $y$, che può cambiare con $x$, amata da $x$. La risposta più insidiosa è la seconda, «c'è qualcuno amato da tutti»: l'ordine scambiato. La terza dice «tutti sono amati da qualcuno».
+= Per ogni persona $x$ c'è una persona $y$, che può cambiare con $x$, amata da $x$. La risposta più insidiosa è $\exists y\, \forall x\, A(x, y)$, «c'è qualcuno amato da tutti»: l'ordine scambiato. La risposta $\forall y\, \exists x\, A(x, y)$ dice «tutti sono amati da qualcuno».
 ```
 
 ## Fonti

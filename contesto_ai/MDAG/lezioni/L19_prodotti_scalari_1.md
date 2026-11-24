@@ -3,6 +3,7 @@ corso: MDAG
 modulo: AG
 lezione: L19
 titolo: Prodotti scalari I
+data: 2026-11-19
 docenti: Reto Buzano e Marco Radeschi
 sopratitolo: Parte 2 (modB) · Algebra lineare e Geometria · Canali A, B e C · Lezione L19
 descrizione: >-
@@ -37,7 +38,7 @@ genera_html: true
 - All'esame la domanda tipica è: calcolare la matrice associata a un prodotto scalare in una base data. Si fa una casella alla volta.
 
 > [!CANALI]
-> Le dispense di Algebra lineare e Geometria sono le stesse per i canali A, B e C (Buzano insegna nei canali A e B, Radeschi nei canali B e C), quindi questi appunti valgono per tutti e tre. Cambiano solo i giorni delle lezioni: gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)). Esame e quiz sono comuni.
+> Algebra lineare e Geometria ha **le stesse dispense e la stessa prova** nei canali A, B e C: questi appunti valgono per tutti e tre. Nel canale B è la lezione di giovedì 19/11/2026, dalle 11 alle 13, con Reto Buzano e Marco Radeschi (dal calendario ufficiale del canale B). Le dispense hanno una lezione per incontro, e questa è la lezione 19. Gli avvisi sono sulla pagina Moodle del corso (MDAG2, [id 3831](https://informatica.i-learn.unito.it/course/view.php?id=3831)).
 
 ## Da due vettori a un numero: il conto della spesa (p. 96)
 
@@ -1495,7 +1496,7 @@ D: Quale di queste formule definisce un prodotto scalare su $\R^2$? (Qui $x = (x
 - $g(x, y) = x_1y_1 + x_2$
 - $g(x, y) = x_1x_2y_1y_2$
 - $g(x, y) = x_1y_1 + x_2y_2 + 1$
-= La domanda chiede quale formula rispetta i tre assiomi. La regola pratica: ogni pezzo deve essere un numero per una $x$ per una $y$, e davanti a $x_1y_2$ e a $x_2y_1$ deve esserci lo stesso numero. La prima formula è a posto: i suoi pesi formano la matrice $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, che è simmetrica. La seconda è la più tentatrice, perché ha i pezzi della forma giusta. Ma non è simmetrica: $g(e_1, e_2) = 1$ e $g(e_2, e_1) = -1$. La terza ha il pezzo $x_2$ senza nessuna $y$: con $x = e_2$ e $y$ nullo dà 1 invece di 0. La quarta ha due $x$ nello stesso pezzo: raddoppiando $x$ il risultato si moltiplica per 4, non per 2. La quinta ha un $+1$: con i due vettori nulli dà 1 invece di 0.
+= La domanda chiede quale formula rispetta i tre assiomi. La regola pratica: ogni pezzo deve essere un numero per una $x$ per una $y$, e davanti a $x_1y_2$ e a $x_2y_1$ deve esserci lo stesso numero. La formula $x_1y_1 + x_1y_2 + x_2y_1$ è a posto: i suoi pesi formano la matrice $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, che è simmetrica. La risposta $g(x, y) = x_1y_2 - x_2y_1$ è la più tentatrice, perché ha i pezzi della forma giusta. Ma non è simmetrica: $g(e_1, e_2) = 1$ e $g(e_2, e_1) = -1$. La risposta $g(x, y) = x_1y_1 + x_2$ ha il pezzo $x_2$ senza nessuna $y$: con $x = e_2$ e $y$ nullo dà 1 invece di 0. La risposta $g(x, y) = x_1x_2y_1y_2$ ha due $x$ nello stesso pezzo: raddoppiando $x$ il risultato si moltiplica per 4, non per 2. La risposta $g(x, y) = x_1y_1 + x_2y_2 + 1$ ha un $+1$: con i due vettori nulli dà 1 invece di 0.
 
 D: Su $\R_1[x]$ sia $g(p, q) = p(1)q(2) + p(2)q(1)$ e sia $\mathcal B = \{x - 1, x - 2\}$. Allora $[g]_{\mathcal B}$ è:
 + $\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}$
@@ -1527,7 +1528,7 @@ D: Su $\R^2$ sia $g(x, y) = x_1y_1 + x_1y_2 + x_2y_1$ e sia $\mathcal B = \{{}^t
 - $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & -1 \\ -1 & 1 \end{pmatrix}$
 - $\begin{pmatrix} 1 & 0 \\ 1 & -1 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra $v_1 = (1, 0)$ e $v_2 = (1, -1)$, con la formula data, che ha tre pezzi. Primo vettore con sé stesso: $1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1$. Primo con secondo, cioè $x = (1, 0)$ e $y = (1, -1)$: $1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$. Secondo con sé stesso: $1 \cdot 1 + 1 \cdot (-1) + (-1) \cdot 1 = -1$. La seconda risposta è la più tentatrice: è la matrice dei pesi della formula, cioè la matrice associata nella base canonica e non nella base data. L'ultima risposta non è simmetrica, quindi non può essere una matrice associata. È simile alla domanda 9 dell'appello del 15/01/2026.
+= La domanda chiede la tabellina dei prodotti tra $v_1 = (1, 0)$ e $v_2 = (1, -1)$, con la formula data, che ha tre pezzi. Primo vettore con sé stesso: $1 \cdot 1 + 1 \cdot 0 + 0 \cdot 1 = 1$. Primo con secondo, cioè $x = (1, 0)$ e $y = (1, -1)$: $1 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 = 0$. Secondo con sé stesso: $1 \cdot 1 + 1 \cdot (-1) + (-1) \cdot 1 = -1$. La risposta $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$ è la più tentatrice: è la matrice dei pesi della formula, cioè la matrice associata nella base canonica e non nella base data. La risposta $\begin{pmatrix} 1 & 0 \\ 1 & -1 \end{pmatrix}$ non è simmetrica, quindi non può essere una matrice associata. È simile alla domanda 9 dell'appello del 15/01/2026.
 
 D: Quale matrice simmetrica definisce un prodotto scalare **degenere** su $\R^2$?
 + $\begin{pmatrix} 1 & 2 \\ 2 & 4 \end{pmatrix}$
@@ -1543,7 +1544,7 @@ D: Quale affermazione è vera per ogni prodotto scalare su uno spazio vettoriale
 - Se $\langle v, v\rangle = 0$ per qualche $v \neq 0$, allora è degenere.
 - Ogni matrice simmetrica $S$ definisce un prodotto scalare definito positivo.
 - Può succedere che $\langle v, 0\rangle \neq 0$.
-= La domanda chiede quale frase vale per tutti i prodotti scalari. La prima è la Proposizione 19.3: un vettore che dà zero con tutti darebbe zero anche con sé stesso, e in un prodotto definito positivo questo non succede. La seconda è la più tentatrice, perché è la prima letta al contrario. Ma il prodotto $x_1y_1 - x_2y_2$ non è degenere e non è definito positivo. Lo stesso prodotto smentisce la terza: il vettore $(1, 1)$ dà zero con sé stesso, eppure il prodotto non è degenere. La quarta è falsa per la matrice diagonale con $-1$ e $-1$ sulla diagonale. La quinta è falsa perché con il vettore nullo ogni prodotto scalare dà zero.
+= La domanda chiede quale frase vale per tutti i prodotti scalari. La frase giusta è la Proposizione 19.3: un vettore che dà zero con tutti darebbe zero anche con sé stesso, e in un prodotto definito positivo questo non succede. La risposta «Se non è degenere, allora è definito positivo» è la più tentatrice, perché è la frase giusta letta al contrario. Ma il prodotto $x_1y_1 - x_2y_2$ non è degenere e non è definito positivo. Lo stesso prodotto smentisce «Se $\langle v, v\rangle = 0$ per qualche $v \neq 0$, allora è degenere»: il vettore $(1, 1)$ dà zero con sé stesso, eppure il prodotto non è degenere. La risposta «Ogni matrice simmetrica $S$ definisce un prodotto scalare definito positivo» è falsa per la matrice diagonale con $-1$ e $-1$ sulla diagonale. La risposta «Può succedere che $\langle v, 0\rangle \neq 0$» è falsa perché con il vettore nullo ogni prodotto scalare dà zero.
 
 D: Sia $S = \begin{pmatrix} 4 & 1 & -2 \\ 1 & 0 & 5 \\ -2 & 5 & 3 \end{pmatrix}$. Quanto vale $g_S(e_1 + e_2, e_3)$?
 N: 3
@@ -1555,7 +1556,7 @@ D: Sia $S = \begin{pmatrix} 1 & 2 & 0 \\ 2 & 1 & 1 \\ 0 & 1 & 3 \end{pmatrix}$ e
 - $\begin{pmatrix} 4 & 2 & 0 \\ 2 & 1 & 1 \\ 0 & 1 & 3 \end{pmatrix}$
 - $\begin{pmatrix} 2 & 4 & 0 \\ 2 & 1 & -1 \\ 0 & 1 & -3 \end{pmatrix}$
 - $\begin{pmatrix} 4 & 4 & 0 \\ 4 & 1 & 1 \\ 0 & 1 & 3 \end{pmatrix}$
-= La domanda chiede la tabellina dei prodotti tra i tre vettori della base. Ogni vettore è un multiplo di un vettore della base canonica: $v_1 = 2e_1$, $v_2 = e_2$, $v_3 = -e_3$. I numeri escono fuori dal prodotto, e quello che resta è una casella di $S$. I sei conti: $g_S(v_1, v_1) = 2 \cdot 2 \cdot 1 = 4$; $g_S(v_1, v_2) = 2 \cdot 1 \cdot 2 = 4$; $g_S(v_1, v_3) = 2 \cdot (-1) \cdot 0 = 0$; $g_S(v_2, v_2) = 1 \cdot 1 \cdot 1 = 1$; $g_S(v_2, v_3) = 1 \cdot (-1) \cdot 1 = -1$; $g_S(v_3, v_3) = (-1) \cdot (-1) \cdot 3 = 3$. La più tentatrice è l'ultima risposta, che dimentica il segno meno di $v_3$ nella casella con $-1$. La quarta non è simmetrica. È simile alla domanda 4 degli appelli del 10/06/2024 e del 03/06/2026.
+= La domanda chiede la tabellina dei prodotti tra i tre vettori della base. Ogni vettore è un multiplo di un vettore della base canonica: $v_1 = 2e_1$, $v_2 = e_2$, $v_3 = -e_3$. I numeri escono fuori dal prodotto, e quello che resta è una casella di $S$. I sei conti: $g_S(v_1, v_1) = 2 \cdot 2 \cdot 1 = 4$; $g_S(v_1, v_2) = 2 \cdot 1 \cdot 2 = 4$; $g_S(v_1, v_3) = 2 \cdot (-1) \cdot 0 = 0$; $g_S(v_2, v_2) = 1 \cdot 1 \cdot 1 = 1$; $g_S(v_2, v_3) = 1 \cdot (-1) \cdot 1 = -1$; $g_S(v_3, v_3) = (-1) \cdot (-1) \cdot 3 = 3$. La più tentatrice è la risposta $\begin{pmatrix} 4 & 4 & 0 \\ 4 & 1 & 1 \\ 0 & 1 & 3 \end{pmatrix}$, che dimentica il segno meno di $v_3$ nella casella con $-1$. La risposta $\begin{pmatrix} 2 & 4 & 0 \\ 2 & 1 & -1 \\ 0 & 1 & -3 \end{pmatrix}$ non è simmetrica. È simile alla domanda 4 degli appelli del 10/06/2024 e del 03/06/2026.
 
 D: Su $\R_2[x]$, quale di questi prodotti scalari è **definito positivo**?
 + $\langle p, q\rangle = p(0)q(0) + p(1)q(1) + p(2)q(2)$

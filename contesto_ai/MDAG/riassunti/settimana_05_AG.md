@@ -185,7 +185,7 @@ D: Appello del 24/01/2024, domanda 10. Il sistema lineare con matrice completa $
 - Zero.
 - Infinite, che dipendono da 2 parametri.
 - Un numero finito, maggiore di 1.
-= $R_2 - 4R_1$ e $R_3 - 7R_1$ danno $(0, -3, -6 \mid -29)$ e $(0, -6, -12 \mid -58)$; la terza è il doppio della seconda e si azzera tutta. Restano 2 pivot su 3 incognite, nessuna riga impossibile: un parametro, la (b) della soluzione ufficiale. La più insidiosa è «Una», perché equazioni e incognite sono tante uguali.
+= $R_2 - 4R_1$ e $R_3 - 7R_1$ danno $(0, -3, -6 \mid -29)$ e $(0, -6, -12 \mid -58)$; la terza riga è il doppio della seconda riga e si azzera tutta. Restano 2 pivot su 3 incognite, nessuna riga impossibile: un parametro, la (b) della soluzione ufficiale. La più insidiosa è «Una», perché equazioni e incognite sono tante uguali.
 
 D: Appello del 10/07/2024, domanda 5. Il sistema lineare con matrice completa $\left(\begin{array}{ccc|c} 1 & 3 & 5 & 2 \\ 7 & 9 & 11 & 2 \\ 6 & 6 & 6 & -2 \end{array}\right)$ ha un numero di soluzioni pari a:
 - Una.
@@ -217,7 +217,7 @@ D: Appello del 10/07/2024, domanda 6. Trovare tutte le soluzioni del sistema lin
 - $x = 1 - 2s$, $y = 2t - s - 1$, $z = -s$, con $t$ e $s$ reali.
 + $x = 2t + 1$, $y = 3t - 1$, $z = t$, con $t$ reale.
 - Il sistema non ha soluzioni.
-= A scalini restano 2 pivot su 3 incognite: con $z = t$ vengono $y = 3t - 1$ e $x = 2t + 1$. È la (d) della soluzione ufficiale. La più insidiosa è la (a): è davvero una soluzione, quella con $t = -1$, ma la domanda chiede **tutte** le soluzioni.
+= A scalini restano 2 pivot su 3 incognite: con $z = t$ vengono $y = 3t - 1$ e $x = 2t + 1$. È la (d) della soluzione ufficiale. La più insidiosa è $x = -1$, $y = -4$, $z = -1$: è davvero una soluzione, quella con $t = -1$, ma la domanda chiede **tutte** le soluzioni.
 
 D: Sul modello delle domande sull'inversa. L'inversa di $\begin{pmatrix} 3 & 1 \\ 5 & 2 \end{pmatrix}$ è:
 + $\begin{pmatrix} 2 & -1 \\ -5 & 3 \end{pmatrix}$
@@ -225,7 +225,7 @@ D: Sul modello delle domande sull'inversa. L'inversa di $\begin{pmatrix} 3 & 1 \
 - $\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$
 - $\begin{pmatrix} 1/3 & 1 \\ 1/5 & 1/2 \end{pmatrix}$
 - non esiste
-= Il determinante è $6 - 5 = 1$: si scambiano 3 e 2, si cambia segno a 1 e 5, si divide per 1. La più insidiosa è la terza, che cambia i segni ma non scambia la diagonale; la quarta fa l'inverso di ogni numero, che non è l'inversa di una matrice.
+= Il determinante è $6 - 5 = 1$: si scambiano 3 e 2, si cambia segno a 1 e 5, si divide per 1. La più insidiosa è $\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$, che cambia i segni ma non scambia la diagonale; la risposta $\begin{pmatrix} 1/3 & 1 \\ 1/5 & 1/2 \end{pmatrix}$ fa l'inverso di ogni numero, che non è l'inversa di una matrice.
 ```
 
 ## Fonti

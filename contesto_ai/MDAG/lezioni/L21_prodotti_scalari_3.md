@@ -644,7 +644,7 @@ D: Applicando Gram–Schmidt (prodotto euclideo) a $v_1 = {}^t(1, 1, 0)$ e $v_2 
 - ${}^t(1, 0, 1)$
 - ${}^t\left(\frac12, \frac12, 1\right)$
 - ${}^t\left(-\frac12, \frac12, 1\right)$
-= Si toglie a $v_2$ la sua ombra su $v_1$: $(1, 0, 1) - \frac12(1, 1, 0) = \left(\frac12, -\frac12, 1\right)$. La risposta più insidiosa è l'ultima: è perpendicolare a $v_1$, ma non sta nel piano di $v_1$ e $v_2$. $(0, -1, 1)$ toglie tutto $v_1$ invece di metà. Simile al punto (1) dei problemi 12 del 07/09/2026 e del 03/06/2026.
+= Si toglie a $v_2$ la sua ombra su $v_1$: $(1, 0, 1) - \frac12(1, 1, 0) = \left(\frac12, -\frac12, 1\right)$. La risposta più insidiosa è ${}^t\left(-\frac12, \frac12, 1\right)$: è perpendicolare a $v_1$, ma non sta nel piano di $v_1$ e $v_2$. $(0, -1, 1)$ toglie tutto $v_1$ invece di metà. Simile al punto (1) dei problemi 12 del 07/09/2026 e del 03/06/2026.
 
 D: Sia $W$ un sottospazio di dimensione 2 di $\R^5$, con il prodotto scalare euclideo. Qual è la dimensione di $W^\perp$?
 N: 3
@@ -656,7 +656,7 @@ D: Sia $V$ di dimensione finita con un prodotto scalare definito positivo e sia 
 - $W^\perp$ è l'insieme dei vettori di $V$ che non stanno in $W$
 - $\dim W^\perp = \dim W$
 - $W^\perp$ è un sottospazio solo se $W$ è una retta
-= È il Teorema 21.8. La risposta più insidiosa è la terza: «tutto quello che non sta in $W$» non contiene lo zero e non è un sottospazio, mentre il complemento ortogonale è fatto dei vettori perpendicolari. L'intersezione è solo lo zero; le dimensioni sommano alla dimensione dello spazio, non sono uguali; il complemento è sempre un sottospazio (Proposizione 21.4).
+= È il Teorema 21.8. La risposta più insidiosa è «$W^\perp$ è l'insieme dei vettori di $V$ che non stanno in $W$»: «tutto quello che non sta in $W$» non contiene lo zero e non è un sottospazio, mentre il complemento ortogonale è fatto dei vettori perpendicolari. L'intersezione è solo lo zero; le dimensioni sommano alla dimensione dello spazio, non sono uguali; il complemento è sempre un sottospazio (Proposizione 21.4).
 
 D: Il vettore $x_0$ è una soluzione ai minimi quadrati del sistema $Ax = b$ se e solo se:
 + ${}^tA\,A\,x_0 = {}^tA\,b$
@@ -684,7 +684,7 @@ D: Se $\{v_1, \dots, v_n\}$ è una base **ortonormale** di $V$, la coordinata $i
 - $\langle v_i, v_i\rangle$
 - $\langle v, v\rangle$
 - $\langle v, v_1\rangle + \dots + \langle v, v_n\rangle$
-= Per la Proposizione 21.6 la coordinata è $\frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}$, e in una base ortonormale il denominatore vale 1. La risposta più insidiosa è l'ultima, che somma tutti i coefficienti invece di prenderne uno. Le altre non dipendono da $i$, oppure valgono sempre 1.
+= Per la Proposizione 21.6 la coordinata è $\frac{\langle v, v_i\rangle}{\langle v_i, v_i\rangle}$, e in una base ortonormale il denominatore vale 1. La risposta più insidiosa è $\langle v, v_1\rangle + \dots + \langle v, v_n\rangle$, che somma tutti i coefficienti invece di prenderne uno. Le altre non dipendono da $i$, oppure valgono sempre 1.
 ```
 
 ## Esercizi

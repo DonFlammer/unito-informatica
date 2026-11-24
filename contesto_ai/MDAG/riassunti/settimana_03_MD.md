@@ -297,7 +297,7 @@ D: Appello del 14/01/2025, domanda 4, versione 2. Quanti modi ci sono per far se
 - $\frac{12!}{4!}$
 - $12!$
 - $4^{12}$
-= La prima persona ha 12 sedie, la seconda 11, la terza 10, la quarta 9: $12 \cdot 11 \cdot 10 \cdot 9 = \frac{12!}{8!}$. La risposta più insidiosa è $12^4$: permetterebbe a due persone di sedersi sulla stessa sedia. $\frac{12!}{4!}$ divide per le persone invece che per le sedie vuote.
+= Le quattro persone scelgono una dopo l'altra tra 12, 11, 10 e 9 sedie: $12 \cdot 11 \cdot 10 \cdot 9 = \frac{12!}{8!}$. La risposta più insidiosa è $12^4$: permetterebbe a due persone di sedersi sulla stessa sedia. $\frac{12!}{4!}$ divide per le persone invece che per le sedie vuote.
 
 D: Quiz 2021–2025, domanda 4. Un DJ deve scegliere 4 canzoni da un catalogo di 15 da suonare in sequenza. Quante sono le possibili sequenze di tali 4 canzoni?
 - $15!$

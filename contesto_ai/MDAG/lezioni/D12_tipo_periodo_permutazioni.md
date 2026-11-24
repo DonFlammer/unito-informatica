@@ -459,7 +459,7 @@ D: Appello del 06/06/2025, quiz versione 1, domanda 6. Una permutazione $\pi$ ha
 - $\pi^{-1} = \pi^4$
 + $\pi^{-3} = \pi^5$
 - $\pi^{-3} = \pi^3$
-= $5 - (-3) = 8$, un multiplo del periodo. È la risposta 4 della soluzione ufficiale. La più insidiosa è l'ultima, di chi toglie solo il segno meno.
+= $5 - (-3) = 8$, un multiplo del periodo. È la risposta 4 della soluzione ufficiale. La più insidiosa è $\pi^{-3} = \pi^3$, di chi toglie solo il segno meno.
 
 D: Appello del 08/06/2026, quiz versione 1, domanda 6. Sia $\sigma$ una permutazione tale che $\sigma^{10} = \sigma^{-2}$. Allora il periodo di $\sigma$ NON può essere:
 - 4

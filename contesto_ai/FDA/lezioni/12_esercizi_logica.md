@@ -356,7 +356,7 @@ D: Simulazione d'esame 2 del 2023/24, domanda 2, con le voci in forma di scelta.
 - le algebre booleane sono definite solo su insiemi con esattamente due elementi
 - $x + x = 1$ vale in tutte le algebre booleane
 - $x \cdot x' = 1$ vale in tutte le algebre booleane
-= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è la seconda, che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0. La terza è falsa: i sottoinsiemi di un insieme formano un'algebra booleana con più di due elementi. Le ultime due cambiano le voci vere $x + x = x$ e $x \cdot x' = 0$.
+= In logica l'«o» si distribuisce sull'«e». La risposta più insidiosa è «$x + (y \cdot z) = (x \cdot y) + (x \cdot z)$ vale in tutte le algebre booleane», che somiglia alla distributiva dei numeri: con $x = 1$ e $y = z = 0$ la sinistra vale 1 e la destra 0. La risposta «le algebre booleane sono definite solo su insiemi con esattamente due elementi» è falsa: i sottoinsiemi di un insieme formano un'algebra booleana con più di due elementi. Le risposte «$x + x = 1$ vale in tutte le algebre booleane» e «$x \cdot x' = 1$ vale in tutte le algebre booleane» cambiano le voci vere $x + x = x$ e $x \cdot x' = 0$.
 
 D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \wedge A) \vee (\neg C \wedge B)$. Quale formula ha la stessa tavola?
 + $\neg((C \vee \neg A) \wedge (C \vee \neg B))$
@@ -364,7 +364,7 @@ D: Simulazione d'esame 1 del 2023/24, domanda 6. Un circuito calcola $(\neg C \w
 - $\neg C \wedge A \wedge B$
 - $\neg(C \wedge (A \vee B))$
 - $\neg C \vee A \vee B$
-= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è la seconda, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
+= Con De Morgan due volte si torna alla formula del circuito. La risposta più insidiosa è $(\neg C \vee A) \wedge (\neg C \vee B)$, che scambia «e» e «o»: con le tre lettere false vale V, mentre il circuito dà F.
 
 D: Simulazione d'esame 2 del 2023/24, domanda 6. Qual è la negazione di «Tutti gli uomini hanno ballato con qualche donna»?
 + Qualche uomo non ha ballato con nessuna donna
@@ -372,7 +372,7 @@ D: Simulazione d'esame 2 del 2023/24, domanda 6. Qual è la negazione di «Tutti
 - Tutti gli uomini non hanno ballato con qualche donna
 - Qualche donna non ha ballato con nessun uomo
 - Qualche uomo ha ballato con tutte le donne
-= $\neg\,\forall u\, \exists d\, B(d, u) \equiv \exists u\, \forall d\, \neg B(d, u)$. La risposta più insidiosa è la quarta, che scambia i ruoli di uomini e donne. Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
+= $\neg\,\forall u\, \exists d\, B(d, u) \equiv \exists u\, \forall d\, \neg B(d, u)$. La risposta più insidiosa è «Qualche donna non ha ballato con nessun uomo», che scambia i ruoli di uomini e donne. Le opzioni del menù non si vedono nella schermata: queste sono ricostruite.
 
 D: Domanda 15 dell'autoverifica del capitolo 1. Quante righe della tavola di $\neg(p \wedge q) \vee (p \vee \neg r)$ hanno il valore falso?
 N: 0
@@ -384,7 +384,7 @@ D: Domanda 9 dell'autoverifica. L'argomentazione $p \to q,\ q \to r \;/\; \there
 - Sì, è il modus ponens
 - No: con $p$, $q$, $r$ tutte vere la conclusione è falsa
 - Non si può dire senza sapere che cosa sono $p$, $q$, $r$
-= Il sillogismo ipotetico darebbe $p \to r$, non $r \to p$. La risposta più insidiosa è la quarta: con tutte vere la conclusione è vera, quindi non è un controesempio.
+= Il sillogismo ipotetico darebbe $p \to r$, non $r \to p$. La risposta più insidiosa è «No: con $p$, $q$, $r$ tutte vere la conclusione è falsa»: con tutte vere la conclusione è vera, quindi non è un controesempio.
 
 D: «Tutti sono protestanti tranne gli svedesi», nel senso di Cardone. Quale formula la traduce?
 + $\forall x\,(P(x) \leftrightarrow \neg S(x))$
@@ -392,7 +392,7 @@ D: «Tutti sono protestanti tranne gli svedesi», nel senso di Cardone. Quale fo
 - $\forall x\,(P(x) \wedge \neg S(x))$
 - $\exists x\,(P(x) \wedge \neg S(x))$
 - $\forall x\,(S(x) \to P(x))$
-= «Tranne» dice due cose: chi non è svedese è protestante, e nessuno svedese è protestante. Insieme fanno un «se e solo se». La risposta più insidiosa è la seconda, che dice solo la prima delle due e permetterebbe uno svedese protestante.
+= «Tranne» dice due cose: chi non è svedese è protestante, e nessuno svedese è protestante. Insieme fanno un «se e solo se». La risposta più insidiosa è $\forall x\,(\neg S(x) \to P(x))$, che dice solo la prima delle due e permetterebbe uno svedese protestante.
 
 D: Qual è la negazione di $\forall x\,(x > 5 \to x > 3)$?
 + $\exists x\,(x > 5 \wedge x \le 3)$
@@ -400,7 +400,7 @@ D: Qual è la negazione di $\forall x\,(x > 5 \to x > 3)$?
 - $\forall x\,(x \le 5 \to x \le 3)$
 - $\exists x\,(x \le 5 \wedge x > 3)$
 - $\forall x\,(x > 5 \wedge x \le 3)$
-= Si gira il quantificatore e si nega la freccia, che diventa un «e». La risposta più insidiosa è la seconda: lascia la freccia, e una freccia dentro un «esiste» è vera a vuoto per ogni $x \le 5$.
+= Si gira il quantificatore e si nega la freccia, che diventa un «e». La risposta più insidiosa è $\exists x\,(x > 5 \to x \le 3)$: lascia la freccia, e una freccia dentro un «esiste» è vera a vuoto per ogni $x \le 5$.
 
 D: Con $A = \{1, 5\}$ e $B = \{2, 3\}$, quale frase è vera?
 + $\exists x \in A\; \forall y \in B\; (x \ge y)$
@@ -408,7 +408,7 @@ D: Con $A = \{1, 5\}$ e $B = \{2, 3\}$, quale frase è vera?
 - $\forall x \in A\; \forall y \in B\; (x < y)$
 - $\exists x \in A\; \forall y \in B\; (x < y \wedge x > 1)$
 - $\forall y \in B\; \exists x \in A\; (x = y)$
-= Il testimone è $x = 5$, maggiore di 2 e di 3. La risposta più insidiosa è la seconda, che è la negazione della prima: fallisce proprio con $x = 5$. L'ultima chiede che 2 e 3 stiano in $A$.
+= Il testimone è $x = 5$, maggiore di 2 e di 3. La risposta più insidiosa è $\forall x \in A\; \exists y \in B\; (x < y)$, che è la negazione della risposta giusta: fallisce proprio con $x = 5$. La risposta $\forall y \in B\; \exists x \in A\; (x = y)$ chiede che 2 e 3 stiano in $A$.
 ```
 
 ## Esercizi

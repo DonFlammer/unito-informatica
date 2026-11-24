@@ -922,7 +922,7 @@ D: Appello del 15/01/2026, domanda 5. Dato $z = \frac{\sqrt 3}2 - \frac 12 i$, a
 - $-\frac{9\sqrt 3}2 + \frac 92 i$
 + $i$
 - $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$
-= $z = e^{-i\pi/6}$, quindi $z^9 = e^{-3\pi i/2} = e^{i\pi/2} = i$: la risposta (d) della soluzione ufficiale. La risposta più insidiosa è l'ultima, che eleva alla nona le due parti separatamente: per i complessi non si fa.
+= $z = e^{-i\pi/6}$, quindi $z^9 = e^{-3\pi i/2} = e^{i\pi/2} = i$: la risposta (d) della soluzione ufficiale. La risposta più insidiosa è $-\frac{\sqrt 3^9}{2^9} + \frac 1{2^9}i$, che eleva alla nona le due parti separatamente: per i complessi non si fa.
 
 D: Appello del 16/01/2025, domanda 1. Dato $z = 2\cos\frac\pi4 + 2i\sin\frac\pi4$, allora $-3iz$ in coordinate polari è uguale a:
 - $-6i\cos\frac\pi4 - 6i\sin\frac\pi4$
@@ -978,7 +978,7 @@ D: Quale dei seguenti numeri è una radice terza di $8i$?
 - $2e^{i\pi/3}$
 - $8e^{i\pi/6}$
 - $\frac 83\,i$
-= Una radice terza di $8i$ è un numero che elevato al cubo dà $8i$. In forma polare $8i = 8e^{i\pi/2}$: le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi6$, $\frac\pi6 + \frac{2\pi}3 = \frac{5\pi}6$ e $\frac{5\pi}6 + \frac{2\pi}3 = \frac{3\pi}2$. L'ultima è $2e^{3\pi i/2} = -2i$. Controllo: $(-2i)^3 = -8i^3 = -8 \cdot (-i) = 8i$. La risposta più insidiosa è $2i$, che sembra «la radice di $8i$», ma $(2i)^3 = 8i^3 = -8i$: il segno è sbagliato. $\left(2e^{i\pi/3}\right)^3 = 8e^{i\pi} = -8$; $8e^{i\pi/6}$ e $\frac 83 i$ hanno la distanza sbagliata. Simile all'appello del 02/09/2025, domanda 2.
+= Una radice terza di $8i$ è un numero che elevato al cubo dà $8i$. In forma polare $8i = 8e^{i\pi/2}$: le radici terze hanno distanza $\sqrt[3]8 = 2$ e angoli $\frac\pi6$, $\frac\pi6 + \frac{2\pi}3 = \frac{5\pi}6$ e $\frac{5\pi}6 + \frac{2\pi}3 = \frac{3\pi}2$. L'ultimo angolo dà $2e^{3\pi i/2} = -2i$. Controllo: $(-2i)^3 = -8i^3 = -8 \cdot (-i) = 8i$. La risposta più insidiosa è $2i$, che sembra «la radice di $8i$», ma $(2i)^3 = 8i^3 = -8i$: il segno è sbagliato. $\left(2e^{i\pi/3}\right)^3 = 8e^{i\pi} = -8$; $8e^{i\pi/6}$ e $\frac 83 i$ hanno la distanza sbagliata. Simile all'appello del 02/09/2025, domanda 2.
 
 D: Quale dei seguenti numeri **non** è soluzione di $z^6 = 1$?
 + $e^{i\pi/6}$

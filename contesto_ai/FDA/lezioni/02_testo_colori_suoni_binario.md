@@ -705,7 +705,7 @@ D: Un'immagine di 640 × 480 pixel in RGB, senza compressione, quanti byte occup
 - $307200$
 + $921600$
 - $7372800$
-= I pixel sono $640 \cdot 480 = 307200$, ognuno di 3 byte: $307200 \cdot 3 = 921600$ byte. La risposta $307200$ dimentica i 3 byte per pixel. La risposta $7372800$ conta i bit, non i byte. Le prime due sommano larghezza e altezza invece di moltiplicarle.
+= I pixel sono $640 \cdot 480 = 307200$, ognuno di 3 byte: $307200 \cdot 3 = 921600$ byte. La risposta $307200$ dimentica i 3 byte per pixel. La risposta $7372800$ conta i bit, non i byte. Le risposte $1120$ e $3360$ sommano larghezza e altezza invece di moltiplicarle.
 
 D: Dieci secondi di audio mono con 44 100 campioni al secondo e 16 bit per campione: quanti byte?
 - $44100$
@@ -737,7 +737,7 @@ D: Con 8 bit, interi senza segno, si calcola 11110000 + 00100000. Che cosa si ot
 - 100010000, senza overflow: 8 bit bastano.
 - 11010000, con overflow.
 - 11111111, perché con 8 bit non si va oltre 255.
-= 11110000 vale 240 e 00100000 vale 32: la somma è 272, cioè 100010000, che ha 9 bit. Con 8 bit il riporto finale a sinistra si perde e resta 00010000, cioè 16: è l'overflow, perché con 8 bit si arriva solo a 255. La terza risposta scrive giusto il numero, ma con 9 bit. Un computer non si ferma a 255: tiene gli 8 bit di destra.
+= 11110000 vale 240 e 00100000 vale 32: la somma è 272, cioè 100010000, che ha 9 bit. Con 8 bit il riporto finale a sinistra si perde e resta 00010000, cioè 16: è l'overflow, perché con 8 bit si arriva solo a 255. La risposta «100010000, senza overflow: 8 bit bastano» scrive giusto il numero, ma con 9 bit. Un computer non si ferma a 255: tiene gli 8 bit di destra.
 
 D: Quanto vale il numero binario 10,011?
 - 2 e 11/100
@@ -745,7 +745,7 @@ D: Quanto vale il numero binario 10,011?
 + 2 e 3/8
 - 2 e 3/4
 - 3 e 3/8
-= Prima della virgola 10 vale 2. Dopo la virgola le posizioni valgono 1/2, 1/4 e 1/8: ci sono 1/4 e 1/8, cioè $2/8 + 1/8 = 3/8$. In tutto 2 e 3/8. Le prime due risposte leggono le cifre dopo la virgola come in base dieci. La risposta 2 e 3/4 sbaglia i valori delle posizioni, come se fossero 1/2 e 1/4.
+= Prima della virgola 10 vale 2. Dopo la virgola le posizioni valgono 1/2, 1/4 e 1/8: ci sono 1/4 e 1/8, cioè $2/8 + 1/8 = 3/8$. In tutto 2 e 3/8. Le risposte «2 e 11/100» e «2,11» leggono le cifre dopo la virgola come in base dieci. La risposta 2 e 3/4 sbaglia i valori delle posizioni, come se fossero 1/2 e 1/4.
 
 D: Quale di questi numeri, scritto in base 2, ha infinite cifre dopo la virgola?
 - $0{,}5$

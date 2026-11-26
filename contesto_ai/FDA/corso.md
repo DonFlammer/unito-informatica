@@ -72,7 +72,7 @@ Riferimento 2025/26 (iscritti): 19/01 (309), 13/02 (441), 04/06 (132), 02/07 (10
 
 **Programma del canale B** (Moodle B 2026/27, voce "Programma per il 2026"; il testo è in parte al passato, forse ripreso dall'anno scorso): tutto il libro **tranne** §1.8 (linguaggio Python), §2.3 (risoluzione), il cap. 3 salvo §3.2 (sequenze e stringhe), l'intero cap. 5 (teoria dei numeri) e, in §12.3, l'Example 12.3.9 e le grammatiche di Lindenmayer (dalla Definition 12.3.17 in poi). Il dettaglio arriva con i riassunti delle singole lezioni su Moodle.
 
-**Attenzione per il canale B:** la mappa comune include §1.8, §2.3 e §3.1–3.4; la stessa pagina B elenca le proprietà delle relazioni tra gli argomenti del corso; i quiz degli anni passati chiedono proprietà di relazioni e funzioni. Dato che l'esame è unico, non saltare queste parti senza averlo chiesto al docente.
+**Attenzione per il canale B:** la mappa comune include §1.8, §2.3 e §3.1–3.4; la stessa pagina B elenca le proprietà delle relazioni tra gli argomenti del corso; i quiz degli anni passati chiedono proprietà di relazioni e funzioni. Dato che l'esame è unico, non saltare queste parti senza averlo chiesto al docente. Il 23/11/2026 il docente ha fatto in aula anche l'inizio del §3.3: relazioni riflessive, simmetriche e antisimmetriche (lezione 23 degli appunti).
 
 ## Sequenza tipica (canale A 2025/26, lezioni dal 18/09 al 15/12/2025)
 
@@ -109,7 +109,9 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - lun 16/11: esercizi su invarianti: la potenza veloce, svolta informalmente e come quiz. Negli appunti è la lezione 20.
 - gio 19/11: invariante di ciclo per la ricerca degli 0 in un vettore e per la somma di un vettore. Negli appunti è la lezione 21.
 - ven 20/11: ripasso delle funzioni (funzioni come relazioni, funzioni iniettive, suriettive, biiettive, funzione inversa); esercizio su funzione caratteristica e unione (Problem Solving Corner del capitolo 3.1); sezione 3.2, sequenze, esempi dal 3.2.1 al 3.2.19 (omessi 3.2.20, 21 e 22); stringhe, dalla definizione 3.2.23 all'esempio 3.2.25 (lunghezza di una stringa); esercizi 5–9 di pagina 137. Negli appunti è la lezione 22.
-- lun 23/11: lezione svolta; non ho ancora il diario, quindi negli appunti manca.
+- lun 23/11: sezione 3.2 dalla 3.2.26 (definizione della concatenazione di stringhe) fino alla fine: definizione di sottostringa, iniettività e suriettività dell'inversione di stringhe, suriettività e non iniettività della composizione di stringhe; sezione 3.3: relazioni riflessive, simmetriche e antisimmetriche, fino all'esempio 3.3.15 (una relazione sia simmetrica sia antisimmetrica). Negli appunti è la lezione 23.
+- gio 26/11: sezioni 11.1 e 11.2, circuiti combinatori e loro proprietà; sezione 11.3, algebre di Boole. Negli appunti è la lezione 24.
+- ven 27/11: sezione 11.3, algebre di Boole e deduzioni equazionali. Negli appunti è la lezione 25, scritta prima della lezione.
 
 ## Materiale
 

@@ -378,7 +378,7 @@ Ricostruita dai Moodle 2025/26 degli stessi docenti; da confermare lezione per l
 | 11 | Ricerca binaria · correttezza (invarianti, sentinelle, asserzioni) | Lab10 ricorsione 2: intervalli, dicotomica, coppie di array, matrici |
 | 12 | Ultime lezioni (dicembre) | — |
 
-Nel 2026/27 il canale B ha scambiato due argomenti rispetto a questa tabella: la memoria dinamica (slide 08A) è stata fatta nella settimana 8, martedì 17 e mercoledì 18/11, e le matrici (slide 09A) sono state fatte nella settimana 9, martedì 24 e mercoledì 25/11. Il laboratorio del turno B2 di lunedì 16/11 è stato annullato.
+Nel 2026/27 il canale B ha scambiato due argomenti rispetto a questa tabella: la memoria dinamica (slide 08A) è stata fatta nella settimana 8, martedì 17 e mercoledì 18/11, e le matrici (slide 09A) sono state fatte nella settimana 9, martedì 24 e mercoledì 25/11. Il laboratorio del turno B2 di lunedì 16/11 è stato annullato; il Lab07 (operazioni su array) è stato lunedì 23/11.
 
 Nota: la colonna laboratori è indicativa e assume un laboratorio a settimana. Nel 2025/26 (Moodle id=3461) le settimane 4 e 8 sono state senza laboratorio e la sequenza reale è stata Lab01 sett. 2, Lab02 sett. 3, Lab03 sett. 5, Lab04 sett. 6, Lab05 sett. 7, Lab06 sett. 9, Lab07 sett. 10, Lab08 sett. 11, Lab09 sett. 12, Lab10 sett. 13. Nel 2026/27 (University Planner) il turno T2 ha 13 date, ogni lunedì dal 05/10 al 21/12 più l'11/01; il turno T1 ne ha 11, ogni martedì dal 06/10 al 22/12 tranne il 27/10 e l'08/12 (festivo), più il 12/01. Quale laboratorio si fa in ciascuna settimana va verificato sul Moodle del canale B.
 
@@ -499,6 +499,7 @@ Scheda completa del corso: `corso.md`. Esercizi d'esame tipo: `esercizi_esame.md
 | Lab06 | 09/11/2026 (B2); B1 probabilmente 17/11 | Laboratorio 06: funzioni | `lezioni/Lab06_funzioni.md` · HTML: `appunti/PROG1/Lab06_funzioni.html` | progettare una funzione (nome, parametri, tipo restituito; quattro intestazioni a confronto), `verifica_primalita` con `d * d <= n` e sentinella, funzioni iterative su interi, cambio delle monete (`cambio_taglio`, `ptrdiff_t`; **`size_t i >= 0` non finisce**), statistiche su sequenze (Lab06-Es1; il `while (scanf(...) && n != 0)` ufficiale non termina a fine input), passaggio di array (slide 14–15), Lab06-Es2 (`leggi_array`, `conta_univoci`, `stampa_elementi_ripetuti`; `%zu` e non `%lu`), vocali, palindroma (Lab06-Es3), Scale e serpi (Lab06-Es4); 3 disegni. Testi CodeRunner 2025/26 dalle soluzioni del canale A (su Moodle 2026/27 gli esercizi hanno gli stessi nomi); codice di partenza 2025/26 |
 | 07A | 10/11/2026 | Algoritmi su array | `lezioni/07A_algoritmi_su_array.md` · HTML: `appunti/PROG1/07A_algoritmi_su_array.html` | ricerca lineare con sentinella (**il ciclo della slide 7 non termina se trova `key`**), «esiste» come OR e «per ogni» come AND, test d'ipotesi $H_0$/$H_1$, cortocircuito, invariante, dominio vuoto (vero per vacuità / falso), `tuttiPositivi` ed `esistePari` con i test della slide, selezione e modello dimensione-capacità, `selectInRange`, ordinamento sulle coppie `[1, aLen)`, `aLen - 1` con `size_t` = 18446744073709551615, bubble sort con uscita anticipata e la versione con `newLast` (provata contro `qsort` su 20 000 array), `e1` del pre-esame 2023/24; 4 disegni. Slide 49: `int b[bLen] = ...` non compila |
 | 08A | 17/11 e 18/11/2026 | Memoria dinamica | `lezioni/08A_memoria_dinamica.md` · HTML: `appunti/PROG1/08A_memoria_dinamica.html` | limiti dello stack e puntatore pendente (`function returns address of local variable`), heap, `malloc` e `free` con `<stdlib.h>`, `sizeof`, controllo del `NULL`, tabella dei blocchi dello heap, `leggiArray`, sei errori tipici con i messaggi veri di gcc 16.1 (uso dopo `free`, doppia `free`, memoria non inizializzata, perdita di memoria), stack e heap a confronto, `selectCopy` in tre fasi (contare, allocare, copiare), proprietà della memoria e `strdup`, funzione d'esame `e3` sul modello degli appelli; disegni dello stato della memoria. Lezioni di martedì 17 e mercoledì 18/11 (registrazioni su Moodle) |
+| Lab07 | 23/11/2026 (B2); B1 probabilmente 24/11 | Laboratorio 07: operazioni su array | `lezioni/Lab07_operazioni_su_array.md` · HTML: `appunti/PROG1/Lab07_operazioni_su_array.html` | tre domande sui puntatori (`int* a, b;`, puntatore a puntatore `int**`, `*p++` e `(*p)++`), modello dimensione-capacità e parametri (`size_t* p_aLen` quando la dimensione cambia; la dimensione passata per valore compila e non funziona), trasformazione, filtro selettivo, riduzione sul posto, duplicazione selettiva (controllo della capacità prima di ogni scrittura), Lab07-Es1 «Regole trasformazione array» (`trasforma_array`), le stesse operazioni con lo heap in tre fasi (`filtra_heap`, `duplica_heap`), stringhe con l'aritmetica dei puntatori (`codifica`, `decodifica`; `const char*` solo per chi legge), `elimina_vocali` con `pSrc` e `pDst` (Lab07-Es3), intervalli semiaperti `[left, right)` (`somma_intervallo`, `intervallo_uguale`, `cerca_sottosequenza`; `assert(len >= 0)` con `size_t` è sempre vero; `i + 1 < right` e non `i < right - 1`), `my_strlen` e `my_strcmp`, match con al più n errori (Lab07-Es4), funzione `solo_ultime` sul modello del pre-esame 2023/24; 6 disegni. Codice di partenza e testi CodeRunner non disponibili: regole e formati dalle soluzioni di uno studente del 2025/26, soluzioni mie |
 | 09A | 24/11 e 25/11/2026 | Matrici | `lezioni/09A_matrici.md` · HTML: `appunti/PROG1/09A_matrici.html` | matrici in C (`int m[ROWS][COLS]`), inizializzazione, ordine per righe e formula `i * COLS + j`, cicli annidati, matrici come parametri (dimensioni prima della matrice; `int m[][]` non compila), `sommaMatrice`, `sommaMatrici`, `trasponiMatrice` (ciclo interno da `i + 1`), `prodottoScalareMatrice`, `prodottoMatrici`, `ricercaMaxPos`, `verificaTuttiPari`, `existsRowAllZeros`, funzione d'esame `e1` (esiste una riga non decrescente); soluzioni mie per gli esercizi della slide 58; disegni della memoria. Lezioni di martedì 24 e mercoledì 25/11 (registrazioni su Moodle) |
 
 ## Fili conduttori (da ricollegare nelle prossime lezioni)
@@ -19647,6 +19648,1320 @@ CodeRunner | Il sistema di Moodle che compila il programma e confronta l'output 
 
 ---
 
+<!-- FILE: contesto_ai/PROG1/lezioni/Lab07_operazioni_su_array.md -->
+> File: `contesto_ai/PROG1/lezioni/Lab07_operazioni_su_array.md`
+
+```yaml
+corso: PROG1
+lezione: Lab07
+titolo: "Laboratorio 07: operazioni su array"
+data: 2026-11-23
+docenti: Elisa Marengo (turno B2) e Valerio Basile (turno B1); teoria Elvio Amparore
+sopratitolo: Canale B · Laboratorio 07 · Programmazione I
+descrizione: >-
+  Appunti del settimo laboratorio di Programmazione I (canale B, Lab07): tre domande sui puntatori, il modello
+  dimensione-capacità, trasformazione, filtro, riduzione sul posto e duplicazione di un array, le stesse operazioni
+  con la memoria dinamica, stringhe con l'aritmetica dei puntatori, eliminare le vocali sul posto, intervalli
+  semiaperti di indici e match con errori, con tutti i programmi provati.
+lede: >-
+  Il settimo laboratorio mette insieme array, puntatori e heap delle ultime lezioni di teoria. Gli esercizi sembrano
+  tanti, ma girano intorno a quattro schemi e a una convenzione sugli indici: una volta presi quelli, il codice si
+  scrive quasi da solo.
+materiale: slide
+scheda:
+  Slide: Lab07 «Operazioni su array», laboratorio canale B · 46 pagine, quattro esercizi su CodeRunner
+  Laboratorio: Elisa Marengo (turno B2, lun 23/11) e Valerio Basile (turno B1) · 14–17 · laboratorio Turing
+  Tempo di studio: 3 ore, davanti a un computer
+fonte: >-
+  Slide «Operazioni su array» (Lezione nº 7 di laboratorio), Programmazione I – Laboratorio, canale B, A.A. 2026/27;
+  per il formato di tre esercizi CodeRunner, le soluzioni di uno studente del 2025/26
+appunti_html: appunti/PROG1/Lab07_operazioni_su_array.html
+genera_html: true
+```
+
+## In breve
+
+- Un array con dello spazio di riserva si descrive con due numeri: la **dimensione**, cioè quanti elementi sono in uso, e la **capacità**, cioè quanti ce ne stanno.
+- Una funzione che **cambia la dimensione** la riceve attraverso un puntatore. Una che la legge soltanto la riceve per valore.
+- Quattro schemi coprono quasi tutti gli esercizi: **trasformazione**, **filtro** in un secondo array, **riduzione sul posto**, **duplicazione** selettiva.
+- Quando si scrive in un array con capacità limitata, la condizione del ciclo controlla anche che ci sia ancora posto.
+- Con lo **heap** il risultato ha la misura esatta: si conta, si alloca, si copia. Chi riceve il blocco fa la `free`.
+- Una stringa si scorre con un puntatore fino al terminatore. Per togliere caratteri sul posto servono due puntatori: uno legge, l'altro scrive.
+- Un pezzo di array si indica con un **intervallo semiaperto** di indici: il sinistro è compreso, il destro è escluso.
+
+> [!CANALI]
+> **Canale B.** È il settimo laboratorio, al laboratorio Turing, dalle 14 alle 17: turno **B2** lunedì 23/11 con **Elisa Marengo** (sul Moodle del corso c'è la registrazione di quel giorno). Il turno **B1** con **Valerio Basile** dovrebbe averlo fatto martedì 24/11: il laboratorio B2 annullato del 16/11 ha rimesso in pari i due turni. Gli esercizi usano il modello dimensione-capacità della [07A](07A_algoritmi_su_array.html), `malloc` e `free` della [08A](08A_memoria_dinamica.html), le stringhe della [05A](05A_array_stringhe.html) e il passaggio di puntatori della [06B](06B_chiamata_funzioni.html).
+>
+> **Canali A e C.** Le slide 2026/27 dei canali A e C non le ho viste. Negli anni scorsi i laboratori erano gli stessi nei tre canali.
+>
+> **Il materiale che ho e quello che non ho.** Ho le slide. Non ho il «codice iniziale07» (`modifica_array.c`, `modifica_array_memoria_dinamica.c`, `codifica.c`, `sottosequenze.c`, `my_string.c`), che è su Moodle: le funzioni di questi appunti le ho scritte io seguendo le slide, e nei file veri i nomi e i parametri possono essere diversi. Non ho nemmeno i testi dei quattro esercizi CodeRunner. Per tre di loro (Regole trasformazione array, Elimina vocali, Sottosequenze con errori) ho ricavato il formato di ingresso e di uscita dalle soluzioni di uno studente del 2025/26: i testi 2026/27 possono essere diversi. Del quarto (Funzioni su array, memoria dinamica) conosco solo il titolo. Tutti i programmi li ho compilati con `gcc -Wall -Werror` (gcc 16.1, Windows 11 a 64 bit) ed eseguiti.
+
+## Tre domande sui puntatori (slide 2–7)
+
+Il laboratorio comincia con tre pezzi di codice da leggere. Sono tre errori che si fanno davvero.
+
+**Prima domanda.** Che cosa definisce questa riga?
+
+```c
+int* countPtr, count;
+```
+
+Definisce un puntatore a `int`, `countPtr`, e un `int` normale, `count`. L'asterisco appartiene al nome che lo segue, non al tipo: vale solo per `countPtr`. Per avere due puntatori si scrive `int *p, *q;`, oppure una dichiarazione per riga. Nessuna delle due variabili è inizializzata; la slide 3 propone `int* countPtr = NULL, count = 0;`.
+
+**Seconda domanda.** Che cosa fa questo codice?
+
+```c
+int count = 3;
+int* pC = &count;
+int* pC2 = &pC;
+printf("%d %d\n", count, pC);
+```
+
+Non compila. Gli errori sono due, e gcc li dice così:
+
+```text
+error: initialization of 'int *' from incompatible pointer type 'int **' [-Wincompatible-pointer-types]
+error: format '%d' expects argument of type 'int', but argument 3 has type 'int *' [-Werror=format=]
+```
+
+Il primo: `&pC` è l'indirizzo di un puntatore a `int`, quindi è un puntatore a puntatore, di tipo `int**`, e non può finire in una variabile `int*`. Con gcc 16 è un errore anche senza opzioni. Il secondo: `pC` è un indirizzo, e `%d` vuole un intero; per stampare il valore puntato serve `*pC`. La versione giusta:
+
+```c
+int count = 3;
+int* pC = &count;
+int** pC2 = &pC;
+printf("%d %d %d\n", count, *pC, **pC2);   // stampa: 3 3 3
+```
+
+Nella slide 5, quella della soluzione, la riga `int* pC2 = &pC;` è rimasta com'era: il testo accanto dice che è sbagliata, ma il codice non è stato corretto.
+
+**Terza domanda.** Quali di queste istruzioni spostano il puntatore, e quali cambiano il valore puntato?
+
+```c
+*p++;      // sposta il puntatore
+*(p++);    // sposta il puntatore: è la stessa cosa
+(*p)++;    // incrementa il valore puntato
+*p += 1;   // incrementa il valore puntato
+```
+
+Il `++` scritto dopo ha la precedenza sull'asterisco. Quindi `*p++` vuol dire `*(p++)`: legge il valore puntato, e poi sposta `p` sull'elemento dopo. Per incrementare il valore servono le parentesi intorno a `*p`.
+
+L'ho provato su un array `{10, 20, 30}`, partendo con `p` sul primo elemento:
+
+```text
+dopo p++:      *p = 20, v = {10, 20, 30}
+dopo (*p)++:   *p = 21, v = {10, 21, 30}
+dopo *p += 1:  *p = 22, v = {10, 22, 30}
+dopo x = *p++: x = 22, *p = 30
+```
+
+Il codice della slide 6, scritto così com'è, con `-Wall -Werror` non compila: `*p++;` da solo legge un valore e lo butta via (`value computed is not used`), e `p` non è inizializzato (`'p' is used uninitialized`).
+
+Un ultimo pezzo, con le due scritture una dopo l'altra:
+
+```c
+int v[3] = {5, 6, 7};
+int* p = v;
+int x = *p++;
+int y = (*p)++;
+printf("%d %d %d %d\n", x, y, v[0], v[1]);
+```
+
+::: prova Che cosa stampa il codice qui sopra? Decidilo prima di compilarlo.
+`5 6 5 7`. `x = *p++` legge `v[0]`, che vale 5, e sposta `p` su `v[1]`. `y = (*p)++` legge `v[1]`, che vale 6, e poi lo porta a 7. `v[0]` non è cambiato. Provato.
+:::
+
+> [!RICORDA]
+> - In una dichiarazione l'asterisco vale solo per il nome che lo segue.
+> - L'indirizzo di un `int*` è un `int**`.
+> - `*p++` sposta il puntatore; `(*p)++` incrementa il valore puntato.
+
+## Il modello dimensione-capacità (slide 8–12)
+
+Molti esercizi lavorano su array il cui numero di elementi cambia: se ne tolgono alcuni, se ne aggiungono altri. Un array del C però non si allunga e non si accorcia. Si prepara allora un array più grande del necessario, e si tiene a parte il conto di quanti elementi sono davvero in uso. È il modello della [07A](07A_algoritmi_su_array.html).
+
+```grafico
+titolo: Un array di capacità 10 con 6 elementi in uso. Gli indici validi vanno da 0 a 5. Le caselle da 6 a 9 esistono, ma il loro contenuto non conta: aLen dice dove finisce la parte in uso, ed è anche l'indice della prima casella libera
+x: 0 12
+y: 0 4.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.5 2 1.6 2 1.6 3 0.5 3 | blu | tenue
+poligono: 1.6 2 2.7 2 2.7 3 1.6 3 | blu | tenue
+poligono: 2.7 2 3.8 2 3.8 3 2.7 3 | blu | tenue
+poligono: 3.8 2 4.9 2 4.9 3 3.8 3 | blu | tenue
+poligono: 4.9 2 6 2 6 3 4.9 3 | blu | tenue
+poligono: 6 2 7.1 2 7.1 3 6 3 | blu | tenue
+poligono: 7.1 2 8.2 2 8.2 3 7.1 3 | grigio | tratteggio
+poligono: 8.2 2 9.3 2 9.3 3 8.2 3 | grigio | tratteggio
+poligono: 9.3 2 10.4 2 10.4 3 9.3 3 | grigio | tratteggio
+poligono: 10.4 2 11.5 2 11.5 3 10.4 3 | grigio | tratteggio
+testo: 1.05 2.5 | blu | "17"
+testo: 2.15 2.5 | blu | "21"
+testo: 3.25 2.5 | blu | "−3"
+testo: 4.35 2.5 | blu | "8"
+testo: 5.45 2.5 | blu | "19"
+testo: 6.55 2.5 | blu | "7"
+testo: 7.65 2.5 | grigio | "??"
+testo: 8.75 2.5 | grigio | "??"
+testo: 9.85 2.5 | grigio | "??"
+testo: 10.95 2.5 | grigio | "??"
+testo: 1.05 1.5 | grigio | "0"
+testo: 2.15 1.5 | grigio | "1"
+testo: 3.25 1.5 | grigio | "2"
+testo: 4.35 1.5 | grigio | "3"
+testo: 5.45 1.5 | grigio | "4"
+testo: 6.55 1.5 | grigio | "5"
+testo: 7.65 1.5 | grigio | "6"
+testo: 8.75 1.5 | grigio | "7"
+testo: 9.85 1.5 | grigio | "8"
+testo: 10.95 1.5 | grigio | "9"
+testo: 3.8 3.6 | blu | "aLen = 6: in uso"
+testo: 9.3 3.6 | grigio | "liberi"
+freccia: 7.1 0.9 7.1 1.9 | ambra
+testo: 7.1 0.5 | ambra | "aLen"
+testo: 3.2 0.5 | grigio | "capacità AMAX = 10"
+```
+
+> [!DEF] Dimensione e capacità (slide 9)
+> - La **capacità** è il numero di caselle dell'array: quanti elementi ci stanno al massimo. Non cambia.
+> - La **dimensione** è il numero di elementi in uso, che occupano le prime caselle. Può crescere e calare, restando tra 0 e la capacità.
+> - Gli **indici validi** sono quelli da 0 alla dimensione esclusa.
+
+**Come si legge.** Con dimensione `aLen` e capacità `AMAX`, vale sempre `0 <= aLen <= AMAX`, e un indice `i` è valido quando `0 <= i < aLen`. Le caselle da `aLen` in poi esistono, ma contengono valori che non contano: leggerle è un errore di logica, anche se il programma non si ferma. La dimensione ha un secondo significato utile: è l'indice della **prima casella libera**, quella in cui scrivere per aggiungere un elemento.
+
+Le dichiarazioni (slide 10):
+
+```c
+#define AMAX 10
+int a[AMAX];        // capacità fissata nel programma
+size_t aLen = 0;    // dimensione: all'inizio l'array è vuoto
+```
+
+Con una capacità decisa mentre il programma gira, si usano una variabile `size_t aCap` e un array `int a[aCap]`.
+
+Il punto delicato è come si passano queste cose a una funzione. Le slide 11–12 danno due forme: `const size_t aLen, const size_t aCap, int a[]` se la dimensione non cambia, e `size_t* p_aLen, const size_t aCap, int a[]` se la funzione la cambia. In pratica si passa solo quello che alla funzione serve:
+
+| La funzione | Parametri |
+|---|---|
+| legge soltanto | `const size_t aLen, const int a[]` |
+| cambia gli elementi, non il loro numero | `const size_t aLen, int a[]` |
+| scrive in un array che può riempirsi | `const size_t aCap, int a[]`, e restituisce la dimensione |
+| cambia la dimensione di un array già pieno di dati | `size_t* p_aLen, const size_t aCap, int a[]` |
+
+Nell'ultima riga la dimensione arriva come **puntatore**: la funzione la legge con `*p_aLen`, la cambia, e il chiamante vede il valore nuovo. È lo stesso meccanismo dello scambio con i puntatori della [06B](06B_chiamata_funzioni.html).
+
+> [!TRAPPOLA] La dimensione passata per valore
+> Questa funzione toglie dall'array gli elementi minori di 3, ma riceve `aLen` per valore:
+>
+> ```c
+> void riduci_sbagliata(size_t aLen, int a[]) {
+>     size_t j = 0;
+>     for (size_t i = 0; i < aLen; i++) {
+>         if (a[i] >= 3) {
+>             a[j] = a[i];
+>             j++;
+>         }
+>     }
+>     aLen = j;   // cambia solo la copia locale
+> }
+> ```
+>
+> Con `{0, 3, 2, 4, 3}` il chiamante dopo la chiamata stampa `len=5: 3 4 3 4 3`. Gli elementi sono stati spostati, perché l'array è condiviso, ma la dimensione nel chiamante è rimasta 5. Compila senza nessun avviso, anche con `-Wall -Werror`: se ne accorge solo chi prova il programma.
+
+::: prova Un array ha capacità 8 e dimensione 5. Quali indici sono validi? In quale casella si scrive un elemento nuovo, e quanto vale la dimensione subito dopo? Quanti elementi si possono ancora aggiungere, dopo quello?
+Sono validi gli indici da 0 a 4. L'elemento nuovo va nella casella 5, e la dimensione diventa 6. Poi restano due caselle libere, la 6 e la 7.
+:::
+
+> [!RICORDA]
+> - Dimensione: elementi in uso. Capacità: caselle disponibili. Sempre `0 <= aLen <= aCap`.
+> - Indici validi: da 0 ad `aLen` escluso. `aLen` è la prima casella libera.
+> - Se la funzione cambia la dimensione, la riceve come `size_t*`.
+
+## Quattro schemi sugli array (slide 13–19)
+
+Le slide presentano quattro operazioni. Negli esempi il criterio `Cond` tiene i numeri maggiori o uguali a 3, e l'array di partenza è sempre `{0, 3, 2, 4, 3}`.
+
+### Trasformazione
+
+Ogni elemento viene sostituito dal risultato di una funzione applicata a lui stesso. La dimensione non cambia, quindi arriva per valore.
+
+```c
+void trasforma(const size_t aLen, int a[]) {
+    for (size_t i = 0; i < aLen; i++) {
+        a[i] = tr(a[i]);
+    }
+}
+```
+
+### Filtro in un secondo array
+
+Si copiano in un altro array `b` solo gli elementi che rispettano il criterio. In `b` si scrive sempre nella prima casella libera, che è `bLen`.
+
+```grafico
+titolo: Il filtro con il criterio «maggiore o uguale a 3». L'indice iA scorre tutto a; in b si scrive solo quando l'elemento passa il criterio, nella prima casella libera, che è bLen. Alla fine bLen vale 3 e tre caselle di b restano libere
+x: 0 11
+y: 0 5.2
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.7 4.3 | blu | "a"
+poligono: 1.4 3.8 2.8 3.8 2.8 4.8 1.4 4.8 | grigio | tenue
+poligono: 2.8 3.8 4.2 3.8 4.2 4.8 2.8 4.8 | ambra | tenue
+poligono: 4.2 3.8 5.6 3.8 5.6 4.8 4.2 4.8 | grigio | tenue
+poligono: 5.6 3.8 7 3.8 7 4.8 5.6 4.8 | ambra | tenue
+poligono: 7 3.8 8.4 3.8 8.4 4.8 7 4.8 | ambra | tenue
+testo: 2.1 4.3 | grigio | "0"
+testo: 3.5 4.3 | ambra | "3"
+testo: 4.9 4.3 | grigio | "2"
+testo: 6.3 4.3 | ambra | "4"
+testo: 7.7 4.3 | ambra | "3"
+testo: 0.7 1.3 | verde | "b"
+poligono: 1.4 0.8 2.8 0.8 2.8 1.8 1.4 1.8 | verde | tenue
+poligono: 2.8 0.8 4.2 0.8 4.2 1.8 2.8 1.8 | verde | tenue
+poligono: 4.2 0.8 5.6 0.8 5.6 1.8 4.2 1.8 | verde | tenue
+poligono: 5.6 0.8 7 0.8 7 1.8 5.6 1.8 | grigio | tratteggio
+poligono: 7 0.8 8.4 0.8 8.4 1.8 7 1.8 | grigio | tratteggio
+poligono: 8.4 0.8 9.8 0.8 9.8 1.8 8.4 1.8 | grigio | tratteggio
+testo: 2.1 1.3 | verde | "3"
+testo: 3.5 1.3 | verde | "4"
+testo: 4.9 1.3 | verde | "3"
+testo: 6.3 1.3 | grigio | "??"
+testo: 7.7 1.3 | grigio | "??"
+testo: 9.1 1.3 | grigio | "??"
+freccia: 3.5 3.7 2.2 1.9 | ambra
+freccia: 6.3 3.7 3.6 1.9 | ambra
+freccia: 7.7 3.7 5.0 1.9 | ambra
+testo: 3.5 0.3 | verde | "bLen = 3"
+testo: 8.2 0.3 | grigio | "BMAX = 6"
+testo: 9.6 4.3 | blu | "aLen = 5"
+```
+
+```c
+size_t filtra(const size_t aLen, const int a[], const size_t bCap, int b[]) {
+    size_t bLen = 0;
+    for (size_t iA = 0; iA < aLen && bLen < bCap; iA++) {
+        if (Cond(a[iA])) {
+            b[bLen] = a[iA];
+            bLen++;
+        }
+    }
+    return bLen;
+}
+```
+
+Gli indici sono due e avanzano a velocità diverse: `iA` a ogni giro, `bLen` solo quando si copia. La condizione del ciclo ha due parti: ci sono ancora elementi da guardare, **e** in `b` c'è ancora posto. Se `b` si riempie il ciclo si ferma, e gli elementi rimasti non vengono copiati: con una capacità di 2, il filtro dell'esempio dà solo `3 4`.
+
+### Riduzione sul posto
+
+Stessa selezione, ma senza un secondo array: gli elementi che restano vengono ricopiati all'inizio dello stesso array.
+
+```grafico
+titolo: La riduzione sul posto con lo stesso criterio. Gli elementi che restano scivolano verso sinistra, nella casella j. Alla fine j vale 3: è la nuova dimensione. Nelle ultime due caselle restano i valori vecchi, che non fanno più parte dell'array
+x: 0 11
+y: 0 5.2
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.9 4.3 | grigio | "prima"
+poligono: 2 3.8 3.4 3.8 3.4 4.8 2 4.8 | grigio | tenue
+poligono: 3.4 3.8 4.8 3.8 4.8 4.8 3.4 4.8 | ambra | tenue
+poligono: 4.8 3.8 6.2 3.8 6.2 4.8 4.8 4.8 | grigio | tenue
+poligono: 6.2 3.8 7.6 3.8 7.6 4.8 6.2 4.8 | ambra | tenue
+poligono: 7.6 3.8 9 3.8 9 4.8 7.6 4.8 | ambra | tenue
+testo: 2.7 4.3 | grigio | "0"
+testo: 4.1 4.3 | ambra | "3"
+testo: 5.5 4.3 | grigio | "2"
+testo: 6.9 4.3 | ambra | "4"
+testo: 8.3 4.3 | ambra | "3"
+testo: 0.9 1.3 | grigio | "dopo"
+poligono: 2 0.8 3.4 0.8 3.4 1.8 2 1.8 | verde | tenue
+poligono: 3.4 0.8 4.8 0.8 4.8 1.8 3.4 1.8 | verde | tenue
+poligono: 4.8 0.8 6.2 0.8 6.2 1.8 4.8 1.8 | verde | tenue
+poligono: 6.2 0.8 7.6 0.8 7.6 1.8 6.2 1.8 | grigio | tratteggio
+poligono: 7.6 0.8 9 0.8 9 1.8 7.6 1.8 | grigio | tratteggio
+testo: 2.7 1.3 | verde | "3"
+testo: 4.1 1.3 | verde | "4"
+testo: 5.5 1.3 | verde | "3"
+testo: 6.9 1.3 | grigio | "4"
+testo: 8.3 1.3 | grigio | "3"
+freccia: 4.1 3.7 2.8 1.9 | ambra
+freccia: 6.9 3.7 4.2 1.9 | ambra
+freccia: 8.3 3.7 5.6 1.9 | ambra
+freccia: 6.2 0.1 6.2 0.7 | verde
+testo: 4.3 0.3 | verde | "j = 3"
+testo: 8.6 0.3 | grigio | "non più in uso"
+```
+
+```c
+void riduci(size_t* p_aLen, int a[]) {
+    size_t j = 0;
+    for (size_t i = 0; i < *p_aLen; i++) {
+        if (Cond(a[i])) {
+            a[j] = a[i];
+            j++;
+        }
+    }
+    *p_aLen = j;
+}
+```
+
+L'indice `i` legge, l'indice `j` scrive. Funziona perché `j` non supera mai `i`: si scrive sempre in una casella già letta, quindi non si perde nessun elemento ancora da guardare. Alla fine `j` è il numero di elementi rimasti, cioè la nuova dimensione, che esce dal puntatore.
+
+### Duplicazione selettiva
+
+Si copiano in `b` tutti gli elementi, e quelli che rispettano il criterio si copiano due volte.
+
+```c
+size_t duplica(const size_t aLen, const int a[], const size_t bCap, int b[]) {
+    size_t bLen = 0;
+    for (size_t iA = 0; iA < aLen && bLen < bCap; iA++) {
+        b[bLen] = a[iA];
+        bLen++;
+        if (Cond(a[iA]) && bLen < bCap) {
+            b[bLen] = a[iA];
+            bLen++;
+        }
+    }
+    return bLen;
+}
+```
+
+Qui il controllo sul posto libero compare **due volte**: nella condizione del ciclo, e di nuovo prima della seconda copia. Tra le due scritture `bLen` è cresciuto, e l'array potrebbe essersi riempito proprio in quel momento.
+
+I risultati sull'array dell'esempio. Il filtro con capacità 6, la riduzione e la duplicazione danno gli stessi valori delle slide 15, 17 e 19:
+
+| Operazione | Risultato |
+|---|---|
+| filtro, capacità 6 | `len=3: [ 3 4 3 ]` |
+| filtro, capacità 2 | `len=2: [ 3 4 ]` |
+| riduzione sul posto | `len=3: [ 3 4 3 ]` |
+| duplicazione, capacità 5 | `len=5: [ 0 3 3 2 4 ]` |
+| trasformazione con il doppio, dopo la riduzione | `len=3: [ 6 8 6 ]` |
+
+Nella duplicazione con capacità 5 il 4 entra una volta sola e l'ultimo 3 resta fuori: l'array si è riempito.
+
+::: prova Esegui a mano la riduzione sul posto su `{5, 1, 8, 2}` con lo stesso criterio. Quanto vale `j` alla fine? Che cosa contengono le quattro caselle?
+`j` vale 2. Le caselle contengono `5 8 8 2`: il 5 viene ricopiato su sé stesso, l'8 va nella casella 1, e nelle ultime due caselle restano i valori vecchi, che non fanno più parte dell'array. Provato.
+:::
+
+> [!RICORDA]
+> - Due indici: uno legge e avanza sempre, l'altro scrive e avanza solo quando si copia.
+> - Scrivendo in un array con capacità: `bLen < bCap` nella condizione, prima di **ogni** scrittura.
+> - Sul posto: l'indice che scrive non supera mai quello che legge.
+
+## Regole di copia: Lab07-Es1 (slide 20–21)
+
+Il primo esercizio chiede di completare le funzioni di `modifica_array.c`, che non ho: sono con ogni probabilità le quattro operazioni della sezione precedente. Il secondo è su Moodle, **Lab07-Es1 «Regole trasformazione array»**: completare una funzione `trasforma_array`, con il `main` e le funzioni di lettura e stampa già scritti.
+
+Il testo non ce l'ho. Dalla soluzione di uno studente del 2025/26 le regole risultano queste: per ogni elemento dell'array `A`, si decide quante volte copiarlo in `B`.
+
+| L'elemento è | Copie in `B` |
+|---|---|
+| minore di 10 | nessuna |
+| multiplo di 4 | quattro |
+| pari, ma non multiplo di 4 | due |
+| dispari e multiplo di 3 | nessuna |
+| tutti gli altri | una |
+
+È la duplicazione selettiva, con più casi. Conviene separare le due domande: una funzione dice **quante copie**, l'altra **copia** stando attenta alla capacità.
+
+```c
+size_t copie(const int x) {
+    size_t n = 1;
+    if (x < 10) {
+        n = 0;
+    } else if (x % 4 == 0) {
+        n = 4;
+    } else if (x % 2 == 0) {
+        n = 2;
+    } else if (x % 3 == 0) {
+        n = 0;
+    }
+    return n;
+}
+
+size_t trasforma_array(const int* pA, const size_t lenA,
+                       int* pB, const size_t nmaxB) {
+    size_t lenB = 0;
+    for (size_t i = 0; i < lenA && lenB < nmaxB; i++) {
+        size_t n = copie(pA[i]);
+        for (size_t k = 0; k < n && lenB < nmaxB; k++) {
+            pB[lenB] = pA[i];
+            lenB++;
+        }
+    }
+    return lenB;
+}
+```
+
+L'ordine degli `if` conta: un multiplo di 4 è anche pari, quindi il controllo sul 4 va prima di quello sul 2. Il programma legge il numero di elementi e poi gli elementi, con una capacità di 10 per tutti e due gli array. Con l'ingresso `8 3 12 14 9 15 25 16 10` stampa:
+
+```text
+len=10: [ 12 12 12 12 14 14 25 16 16 16 ]
+```
+
+Il 3 e il 9 sono minori di 10; il 15 è dispari e multiplo di 3; il 16 entra solo tre volte perché `B` si riempie, e il 10 resta fuori.
+
+::: prova Con le stesse regole, che cosa stampa il programma con l'ingresso `4 11 22 33 44`?
+`len=7: [ 11 22 22 44 44 44 44 ]`. L'11 è dispari e non multiplo di 3: una copia. Il 22 è pari e non multiplo di 4: due. Il 33 è dispari e multiplo di 3: nessuna. Il 44 è multiplo di 4: quattro. Provato.
+:::
+
+> [!RICORDA]
+> - Più regole: una funzione che decide quante copie, una che copia.
+> - Negli `if` in cascata i casi più specifici vanno prima.
+
+## Le stesse operazioni con lo heap (slide 22–31)
+
+Con gli array statici il risultato di un filtro ha un difetto: non si sa prima quanto sarà lungo, quindi si prepara un array grande e si spera che basti. Con la memoria dinamica della [08A](08A_memoria_dinamica.html) si alloca un blocco della **misura esatta**. Le slide 23–26 ripassano `malloc` e `free`; le slide 28–29 riprendono la selezione in tre fasi.
+
+> [!METODO] Costruire un array nello heap in tre fasi (slide 29)
+> 1. **Calcolo della dimensione**: un primo ciclo conta quanti elementi avrà il risultato.
+> 2. **Allocazione**: `malloc(count * sizeof(int))`, controllando che non ritorni `NULL`.
+> 3. **Copia**: un secondo ciclo, uguale al primo, che questa volta scrive.
+
+Il filtro diventa:
+
+```c
+int* filtra_heap(const size_t bLen, const int b[], size_t* p_aLen) {
+    assert(p_aLen != NULL);
+    int* a = NULL;
+    *p_aLen = 0;
+
+    size_t count = 0;                       // 1) quanti sono?
+    for (size_t i = 0; i < bLen; i++) {
+        if (Cond(b[i])) {
+            count++;
+        }
+    }
+    if (count > 0) {                        // 2) allocazione
+        a = malloc(count * sizeof(int));
+    }
+    if (a != NULL) {                        // 3) copia
+        size_t j = 0;
+        for (size_t i = 0; i < bLen; i++) {
+            if (Cond(b[i])) {
+                a[j] = b[i];
+                j++;
+            }
+        }
+        *p_aLen = count;
+    }
+    return a;
+}
+```
+
+La funzione restituisce due cose: l'indirizzo del blocco, con la `return`, e la sua lunghezza, attraverso `p_aLen`. Se nessun elemento passa il criterio, o se la memoria non basta, ritorna `NULL` con lunghezza 0. Non c'è più una capacità che taglia il risultato: per questo nella copia non serve il controllo `j < count`.
+
+Per la duplicazione cambia solo il conteggio: ogni elemento vale uno, e quelli che rispettano il criterio valgono due. Con `{0, 3, 2, 4, 3}` il blocco ha $5 + 3 = 8$ interi:
+
+```text
+filtro:       len=3: [ 3 4 3 ]
+duplicazione: len=8: [ 0 3 3 2 4 4 3 3 ]
+```
+
+Rispetto alla versione statica con capacità 5, qui non si perde niente.
+
+Il blocco è di chi chiama la funzione, che deve liberarlo:
+
+```c
+size_t aLen = 0;
+int* a = filtra_heap(5, b, &aLen);
+// ... usa a[0] ... a[aLen - 1] ...
+free(a);
+a = NULL;
+```
+
+La slide 25 consiglia di azzerare il puntatore dopo la `free`: così un uso sbagliato dopo la liberazione si nota subito. `free(NULL)` non fa niente, quindi la `free` va bene anche quando la funzione ha ritornato `NULL`.
+
+Gli esercizi sono due: completare `modifica_array_memoria_dinamica.c`, e su Moodle **Lab07-Es2 «Funzioni su array (memoria dinamica)»**. Di tutti e due non ho il testo.
+
+::: prova Una funzione costruisce nello heap un array con tutti gli elementi di `b`, tre volte quelli pari e una volta gli altri. Con `b = {4, 7, 10}`, quanti `int` deve allocare?
+Sette: $3 + 1 + 3$. Il conteggio della prima fase somma 3 per ogni pari e 1 per ogni dispari.
+:::
+
+> [!RICORDA]
+> - Tre fasi: contare, allocare, copiare.
+> - Il blocco e la sua lunghezza escono insieme: indirizzo con la `return`, lunghezza con un puntatore.
+> - Ogni `malloc` ha la sua `free`, e la fa chi ha ricevuto il blocco.
+
+## Stringhe e aritmetica dei puntatori (slide 32–34)
+
+Una stringa è un array di `char` che finisce con il terminatore. Non serve la lunghezza: si parte dal primo carattere e si avanza finché non si incontra il terminatore. Con un puntatore, invece che con un indice:
+
+```c
+while (*pStr != '\0') {
+    /* usa *pStr */
+    pStr++;
+}
+```
+
+`*pStr` è il carattere corrente, `pStr++` passa al successivo. Spostare `pStr` non crea problemi al chiamante: il parametro è una copia del suo puntatore. Nella slide 33 il parametro si chiama `pStrInput` e il ciclo usa `pStr`: è uno schizzo, i due nomi vanno resi uguali.
+
+L'esercizio 5 chiede due funzioni in `codifica.c`. `codifica` cambia sul posto le lettere maiuscole, ognuna con la successiva, e la Z con la A; `decodifica` fa il contrario. Gli altri caratteri restano come sono.
+
+```c
+void codifica(char* pStr) {
+    while (*pStr != '\0') {
+        if (*pStr >= 'A' && *pStr < 'Z') {
+            (*pStr)++;
+        } else if (*pStr == 'Z') {
+            *pStr = 'A';
+        }
+        pStr++;
+    }
+}
+
+void decodifica(char* pStr) {
+    for ( ; *pStr != '\0'; pStr++) {
+        if (*pStr > 'A' && *pStr <= 'Z') {
+            (*pStr)--;
+        } else if (*pStr == 'A') {
+            *pStr = 'Z';
+        }
+    }
+}
+```
+
+Qui tornano le due scritture della terza domanda iniziale: `(*pStr)++` cambia il carattere, `pStr++` sposta il puntatore. Le lettere maiuscole nella tabella ASCII sono una dopo l'altra, quindi «la lettera successiva» è il codice più uno ([05A](05A_array_stringhe.html)). Con la stringa `"ABC, Zoo e XYZ"`:
+
+```text
+BCD, Aoo e YZA
+ABC, Zoo e XYZ
+```
+
+> [!TRAPPOLA] `const char*` per una stringa da modificare
+> La slide 33 passa la stringa come `const char*`. Va bene per una funzione che **legge**. Una funzione che modifica i caratteri con quel parametro non compila:
+>
+> ```text
+> error: assignment of read-only location '*pStr'
+> ```
+>
+> Per `codifica` il parametro è `char*`. Il `const` protegge i caratteri, non il puntatore: `pStr++` si può fare in tutti e due i casi.
+
+::: prova Che cosa diventa la stringa `"ZAINO 2026"` dopo `codifica`?
+`"ABJOP 2026"`. Z diventa A, A diventa B, I diventa J, N diventa O, O diventa P. Lo spazio e le cifre non cambiano. Provato.
+:::
+
+> [!RICORDA]
+> - Una stringa si scorre finché `*pStr != '\0'`.
+> - `(*pStr)++` cambia il carattere; `pStr++` passa al successivo.
+> - `const char*` se la funzione legge, `char*` se modifica.
+
+## Eliminare caratteri sul posto (slide 35–38)
+
+Togliere le vocali da una stringa è la riduzione sul posto di prima, con i puntatori al posto degli indici e il terminatore al posto della dimensione. La funzione `elimina_vocali` trasforma `"informazione"` in `"nfrmzn"`.
+
+Servono due puntatori, che partono tutti e due dall'inizio della stringa. `pSrc` legge: scorre ogni carattere. `pDst` scrive: riceve il carattere e avanza solo quando il carattere va tenuto.
+
+```grafico
+titolo: La stringa «informazione» prima e dopo. Le consonanti, in verde, vengono ricopiate verso sinistra una dopo l'altra. Alla fine pSrc è arrivato al terminatore vecchio e pDst è fermo dove va scritto quello nuovo. I caratteri in grigio dopo il terminatore nuovo sono ancora in memoria, ma la stringa finisce prima
+x: 0 12.4
+y: -0.2 5.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 6.2 5.0 | grigio | "prima"
+poligono: 0.35 3.6 1.25 3.6 1.25 4.6 0.35 4.6 | grigio | tenue
+poligono: 1.25 3.6 2.15 3.6 2.15 4.6 1.25 4.6 | verde | tenue
+poligono: 2.15 3.6 3.05 3.6 3.05 4.6 2.15 4.6 | verde | tenue
+poligono: 3.05 3.6 3.95 3.6 3.95 4.6 3.05 4.6 | grigio | tenue
+poligono: 3.95 3.6 4.85 3.6 4.85 4.6 3.95 4.6 | verde | tenue
+poligono: 4.85 3.6 5.75 3.6 5.75 4.6 4.85 4.6 | verde | tenue
+poligono: 5.75 3.6 6.65 3.6 6.65 4.6 5.75 4.6 | grigio | tenue
+poligono: 6.65 3.6 7.55 3.6 7.55 4.6 6.65 4.6 | verde | tenue
+poligono: 7.55 3.6 8.45 3.6 8.45 4.6 7.55 4.6 | grigio | tenue
+poligono: 8.45 3.6 9.35 3.6 9.35 4.6 8.45 4.6 | grigio | tenue
+poligono: 9.35 3.6 10.25 3.6 10.25 4.6 9.35 4.6 | verde | tenue
+poligono: 10.25 3.6 11.15 3.6 11.15 4.6 10.25 4.6 | grigio | tenue
+poligono: 11.15 3.6 12.05 3.6 12.05 4.6 11.15 4.6 | ambra | tenue
+testo: 0.8 4.1 | grigio | "i"
+testo: 1.7 4.1 | verde | "n"
+testo: 2.6 4.1 | verde | "f"
+testo: 3.5 4.1 | grigio | "o"
+testo: 4.4 4.1 | verde | "r"
+testo: 5.3 4.1 | verde | "m"
+testo: 6.2 4.1 | grigio | "a"
+testo: 7.1 4.1 | verde | "z"
+testo: 8 4.1 | grigio | "i"
+testo: 8.9 4.1 | grigio | "o"
+testo: 9.8 4.1 | verde | "n"
+testo: 10.7 4.1 | grigio | "e"
+testo: 11.6 4.1 | ambra | "\0"
+testo: 6.2 2.7 | grigio | "dopo"
+poligono: 0.35 1.3 1.25 1.3 1.25 2.3 0.35 2.3 | verde | tenue
+poligono: 1.25 1.3 2.15 1.3 2.15 2.3 1.25 2.3 | verde | tenue
+poligono: 2.15 1.3 3.05 1.3 3.05 2.3 2.15 2.3 | verde | tenue
+poligono: 3.05 1.3 3.95 1.3 3.95 2.3 3.05 2.3 | verde | tenue
+poligono: 3.95 1.3 4.85 1.3 4.85 2.3 3.95 2.3 | verde | tenue
+poligono: 4.85 1.3 5.75 1.3 5.75 2.3 4.85 2.3 | verde | tenue
+poligono: 5.75 1.3 6.65 1.3 6.65 2.3 5.75 2.3 | ambra | tenue
+poligono: 6.65 1.3 7.55 1.3 7.55 2.3 6.65 2.3 | grigio | tratteggio
+poligono: 7.55 1.3 8.45 1.3 8.45 2.3 7.55 2.3 | grigio | tratteggio
+poligono: 8.45 1.3 9.35 1.3 9.35 2.3 8.45 2.3 | grigio | tratteggio
+poligono: 9.35 1.3 10.25 1.3 10.25 2.3 9.35 2.3 | grigio | tratteggio
+poligono: 10.25 1.3 11.15 1.3 11.15 2.3 10.25 2.3 | grigio | tratteggio
+poligono: 11.15 1.3 12.05 1.3 12.05 2.3 11.15 2.3 | grigio | tratteggio
+testo: 0.8 1.8 | verde | "n"
+testo: 1.7 1.8 | verde | "f"
+testo: 2.6 1.8 | verde | "r"
+testo: 3.5 1.8 | verde | "m"
+testo: 4.4 1.8 | verde | "z"
+testo: 5.3 1.8 | verde | "n"
+testo: 6.2 1.8 | ambra | "\0"
+testo: 7.1 1.8 | grigio | "z"
+testo: 8 1.8 | grigio | "i"
+testo: 8.9 1.8 | grigio | "o"
+testo: 9.8 1.8 | grigio | "n"
+testo: 10.7 1.8 | grigio | "e"
+testo: 11.6 1.8 | grigio | "\0"
+freccia: 6.2 0.4 6.2 1.2 | ambra
+testo: 6.2 0.1 | ambra | "pDst"
+freccia: 11.6 0.4 11.6 1.2 | blu
+testo: 11.6 0.1 | blu | "pSrc"
+```
+
+```c
+void elimina_vocali(char* pStr) {
+    const char* pSrc = pStr;   // legge
+    char* pDst = pStr;         // scrive
+    while (*pSrc != '\0') {
+        if (!is_vocale(*pSrc)) {
+            *pDst = *pSrc;
+            pDst++;
+        }
+        pSrc++;
+    }
+    *pDst = '\0';
+}
+```
+
+L'ultima riga è quella che si dimentica. Finito il ciclo, `pDst` indica la prima posizione non più usata: lì va scritto il terminatore nuovo. Senza, la stringa continuerebbe fino al terminatore vecchio, e stamperebbe `nfrmznazione`. La stringa si è accorciata senza che nessuno abbia passato o restituito una lunghezza: nelle stringhe la dimensione è la posizione del terminatore.
+
+Per decidere se un carattere è una vocale basta un «esiste» su un elenco:
+
+```c
+bool is_vocale(const char ch) {
+    const char vocali[] = "aeiouAEIOU";
+    bool trovata = false;
+    for (size_t i = 0; vocali[i] != '\0' && !trovata; i++) {
+        if (ch == vocali[i]) {
+            trovata = true;
+        }
+    }
+    return trovata;
+}
+```
+
+Su Moodle l'esercizio è **Lab07-Es3 «Elimina vocali»**. Dalla soluzione del 2025/26 il programma legge una parola e la stampa senza vocali. Il mio `main` legge con `scanf("%49s", parola)` in un array di 50 caratteri. Prove: `informazione` dà `nfrmzn`; `Rhythm` resta `Rhythm`; `AEIOU` dà una riga vuota.
+
+::: prova Con la stringa `"AEIOU"`, dove si trova `pDst` alla fine del ciclo? Che cosa contiene la memoria dopo l'ultima riga della funzione?
+`pDst` non si è mai mosso: indica ancora il primo carattere. L'ultima riga scrive lì il terminatore. La memoria contiene il terminatore seguito da `EIOU` e dal terminatore vecchio, ma la stringa è vuota: finisce al primo terminatore.
+:::
+
+> [!RICORDA]
+> - `pSrc` legge e avanza sempre; `pDst` scrive e avanza solo quando si tiene il carattere.
+> - Alla fine il terminatore va scritto in `*pDst`.
+> - In una stringa accorciata i caratteri vecchi restano in memoria dopo il terminatore, senza farne parte.
+
+## Intervalli semiaperti di indici (slide 39–45)
+
+Molte funzioni non lavorano su tutto l'array ma su un suo pezzo: «la somma dal terzo al sesto elemento», «cerca nella seconda metà». Per indicare un pezzo servono due indici, e una convenzione su quale dei due è compreso.
+
+La convenzione del corso è l'**intervallo semiaperto**: il sinistro compreso, il destro escluso. È la stessa degli indici validi, che vanno da 0 alla dimensione esclusa.
+
+```grafico
+titolo: L'intervallo semiaperto [2, 6) in un array di 10 elementi. L'indice left è compreso, l'indice right è escluso: gli elementi sono quelli di indice 2, 3, 4 e 5. Sono right meno left, cioè 4
+x: 0 12
+y: -0.2 4.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.5 2 1.6 2 1.6 3 0.5 3 | blu | tenue
+poligono: 1.6 2 2.7 2 2.7 3 1.6 3 | blu | tenue
+poligono: 2.7 2 3.8 2 3.8 3 2.7 3 | ambra | tenue
+poligono: 3.8 2 4.9 2 4.9 3 3.8 3 | ambra | tenue
+poligono: 4.9 2 6 2 6 3 4.9 3 | ambra | tenue
+poligono: 6 2 7.1 2 7.1 3 6 3 | ambra | tenue
+poligono: 7.1 2 8.2 2 8.2 3 7.1 3 | blu | tenue
+poligono: 8.2 2 9.3 2 9.3 3 8.2 3 | blu | tenue
+poligono: 9.3 2 10.4 2 10.4 3 9.3 3 | blu | tenue
+poligono: 10.4 2 11.5 2 11.5 3 10.4 3 | blu | tenue
+testo: 1.05 2.5 | blu | "17"
+testo: 2.15 2.5 | blu | "21"
+testo: 3.25 2.5 | ambra | "−3"
+testo: 4.35 2.5 | ambra | "8"
+testo: 5.45 2.5 | ambra | "19"
+testo: 6.55 2.5 | ambra | "7"
+testo: 7.65 2.5 | blu | "2"
+testo: 8.75 2.5 | blu | "61"
+testo: 9.85 2.5 | blu | "1"
+testo: 10.95 2.5 | blu | "11"
+testo: 1.05 1.5 | grigio | "0"
+testo: 2.15 1.5 | grigio | "1"
+testo: 3.25 1.5 | grigio | "2"
+testo: 4.35 1.5 | grigio | "3"
+testo: 5.45 1.5 | grigio | "4"
+testo: 6.55 1.5 | grigio | "5"
+testo: 7.65 1.5 | grigio | "6"
+testo: 8.75 1.5 | grigio | "7"
+testo: 9.85 1.5 | grigio | "8"
+testo: 10.95 1.5 | grigio | "9"
+freccia: 3.25 0.5 3.25 1.2 | ambra
+testo: 3.25 0.15 | ambra | "left = 2"
+freccia: 7.65 0.5 7.65 1.2 | rosa
+testo: 7.65 0.15 | rosa | "right = 6"
+testo: 4.9 3.6 | ambra | "[2, 6): 4 elementi"
+```
+
+> [!DEF] Intervallo semiaperto di indici (slide 40–42)
+> L'intervallo $[\mathit{left}, \mathit{right})$ di un array di dimensione `len` è l'insieme degli indici `i` con `left <= i < right`. Deve valere `0 <= left <= right <= len`.
+
+**Come si legge.** La parentesi quadra vuol dire «compreso», la tonda «escluso». Tutto l'array è l'intervallo da 0 a `len`. Da questa scelta escono formule senza «più uno» e «meno uno» da ricordare:
+
+| Domanda | Risposta |
+|---|---|
+| quanti elementi ha? | `right - left` |
+| è vuoto? | `left == right` |
+| l'indice `i` ci sta? | `left <= i && i < right` |
+| primo elemento, se non è vuoto | `a[left]` |
+| ultimo elemento, se non è vuoto | `a[right - 1]` |
+| come si scorre | `for (size_t i = left; i < right; i++)` |
+
+Due intervalli consecutivi si attaccano senza buchi e senza doppioni: l'intervallo da 0 a `m` e quello da `m` a `len` insieme fanno tutto l'array, e `m` sta solo nel secondo. Per questo la convenzione va bene per gli algoritmi che dividono un array in due, come la ricerca binaria, che la slide 44 cita tra gli usi degli intervalli.
+
+La slide 41 scrive `assert(len >= 0)`. Con `len` di tipo `size_t` il controllo è sempre vero, perché un `size_t` non è mai negativo: compila con `-Wall`, ma non controlla niente. Il controllo che serve è quello della slide 42, `assert(right >= left)`.
+
+Tre funzioni nello stile dell'esercizio 7 (`sottosequenze.c`, che non ho):
+
+```c
+// somma degli elementi con indice in [left, right)
+int somma_intervallo(const int a[], const size_t left, const size_t right) {
+    assert(right >= left);
+    int somma = 0;
+    for (size_t i = left; i < right; i++) {
+        somma += a[i];
+    }
+    return somma;
+}
+
+// vero se gli elementi di a in [left, right) sono uguali, uno per uno, a quelli di b
+bool intervallo_uguale(const int a[], const size_t left, const size_t right,
+                       const int b[], const size_t bLen) {
+    assert(right >= left);
+    bool uguali = (right - left == bLen);
+    for (size_t k = 0; k < bLen && uguali; k++) {
+        if (a[left + k] != b[k]) {
+            uguali = false;
+        }
+    }
+    return uguali;
+}
+
+// cerca b dentro a: ritorna l'indice sinistro della prima occorrenza, oppure aLen
+size_t cerca_sottosequenza(const int a[], const size_t aLen,
+                           const int b[], const size_t bLen) {
+    size_t pos = aLen;
+    for (size_t left = 0; left + bLen <= aLen && pos == aLen; left++) {
+        if (intervallo_uguale(a, left, left + bLen, b, bLen)) {
+            pos = left;
+        }
+    }
+    return pos;
+}
+```
+
+Nella ricerca, `left + bLen <= aLen` garantisce che l'intervallo da provare stia tutto dentro `a`. Il valore «non trovato» è `aLen`, che non è un indice valido: con `size_t` non si può usare $-1$. Sull'array della figura la somma in $[2, 6)$ vale 31, la somma in $[4, 4)$ vale 0, la sequenza `{8, 19, 7}` si trova all'indice 3 e `{7, 3}` non si trova: la funzione ritorna 10.
+
+> [!TRAPPOLA] `right - 1` con `size_t`
+> In un ciclo che guarda le coppie di vicini viene da scrivere `i < right - 1`. Se `right` vale 0, con `size_t` la sottrazione dà un numero enorme e il ciclo esce dall'array. Si scrive `i + 1 < right`, che è la stessa condizione senza sottrazioni.
+
+L'esercizio 8 chiede di riscrivere in `my_string.c` alcune funzioni sulle stringhe **senza** `<string.h>`. Non sapendo quali, ne ho scritte quattro classiche; le due più istruttive:
+
+```c
+size_t my_strlen(const char* pStr) {
+    const char* p = pStr;
+    while (*p != '\0') {
+        p++;
+    }
+    return (size_t)(p - pStr);
+}
+
+int my_strcmp(const char* pA, const char* pB) {
+    while (*pA != '\0' && *pA == *pB) {
+        pA++;
+        pB++;
+    }
+    return (unsigned char)*pA - (unsigned char)*pB;
+}
+```
+
+In `my_strlen` la lunghezza è la **differenza tra due puntatori**: quello arrivato al terminatore meno quello di partenza. È un intervallo semiaperto di puntatori: la slide 43 lo presenta, e dice che non verrà trattato. `my_strcmp` si ferma alla prima posizione in cui le stringhe differiscono, o alla fine, e restituisce la differenza tra i due caratteri: zero se sono uguali.
+
+::: prova Nell'array della figura, quali elementi stanno nell'intervallo $[6, 9)$, e quanti sono? E nell'intervallo $[4, 4)$?
+In $[6, 9)$ ci sono gli elementi di indice 6, 7 e 8: 2, 61 e 1. Sono $9 - 6 = 3$. L'intervallo $[4, 4)$ è vuoto: sinistro e destro coincidono.
+:::
+
+> [!RICORDA]
+> - Sinistro compreso, destro escluso. Elementi: `right - left`. Vuoto: `left == right`.
+> - Si scorre con `for (size_t i = left; i < right; i++)`.
+> - «Non trovato» si segnala con la dimensione, non con un numero negativo.
+> - Mai `right - 1` in una condizione con `size_t` senza sapere che `right` è positivo.
+
+## Match con al più n errori (slide 46)
+
+L'ultimo esercizio, segnato come extra, confronta due sequenze in modo tollerante: possono differire in qualche posizione, purché non troppe.
+
+```grafico
+titolo: Due sequenze di lunghezza 5 confrontate posizione per posizione. Sono diverse in due posizioni, la 2 e la 4: sono in match con al più 2 errori, e anche con al più 3, ma non con al più 1
+x: 0 11.5
+y: 0 5.2
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.0 4.3 | blu | "a"
+poligono: 2 3.8 3.4 3.8 3.4 4.8 2 4.8 | blu | tenue
+poligono: 3.4 3.8 4.8 3.8 4.8 4.8 3.4 4.8 | blu | tenue
+poligono: 4.8 3.8 6.2 3.8 6.2 4.8 4.8 4.8 | rosa | tenue
+poligono: 6.2 3.8 7.6 3.8 7.6 4.8 6.2 4.8 | blu | tenue
+poligono: 7.6 3.8 9 3.8 9 4.8 7.6 4.8 | rosa | tenue
+testo: 2.7 4.3 | blu | "0"
+testo: 4.1 4.3 | blu | "3"
+testo: 5.5 4.3 | rosa | "2"
+testo: 6.9 4.3 | blu | "4"
+testo: 8.3 4.3 | rosa | "3"
+testo: 1.0 1.3 | verde | "b"
+poligono: 2 0.8 3.4 0.8 3.4 1.8 2 1.8 | verde | tenue
+poligono: 3.4 0.8 4.8 0.8 4.8 1.8 3.4 1.8 | verde | tenue
+poligono: 4.8 0.8 6.2 0.8 6.2 1.8 4.8 1.8 | rosa | tenue
+poligono: 6.2 0.8 7.6 0.8 7.6 1.8 6.2 1.8 | verde | tenue
+poligono: 7.6 0.8 9 0.8 9 1.8 7.6 1.8 | rosa | tenue
+testo: 2.7 1.3 | verde | "0"
+testo: 4.1 1.3 | verde | "3"
+testo: 5.5 1.3 | rosa | "1"
+testo: 6.9 1.3 | verde | "4"
+testo: 8.3 1.3 | rosa | "5"
+testo: 2.7 2.8 | grigio | "="
+testo: 4.1 2.8 | grigio | "="
+testo: 5.5 2.8 | rosa | "≠"
+testo: 6.9 2.8 | grigio | "="
+testo: 8.3 2.8 | rosa | "≠"
+testo: 10.2 2.8 | rosa | "2 errori"
+```
+
+> [!DEF] Match con al più n errori (slide 46)
+> Due sequenze `a` e `b` della stessa lunghezza `len` sono in **match con al più n errori** se gli elementi nelle stesse posizioni sono uguali, tranne al più `n` posizioni.
+
+**Come si legge.** Si confrontano il primo con il primo, il secondo con il secondo, e così via. Ogni coppia diversa è un errore. Si contano gli errori e si confrontano con `n`. Con `n` uguale a 0 è l'uguaglianza normale.
+
+```c
+size_t conta_errori(const int a[], const int b[], const size_t len) {
+    size_t errori = 0;
+    for (size_t i = 0; i < len; i++) {
+        if (a[i] != b[i]) {
+            errori++;
+        }
+    }
+    return errori;
+}
+
+bool match_con_errori(const int a[], const int b[], const size_t len, const size_t n) {
+    return conta_errori(a, b, len) <= n;
+}
+```
+
+Su Moodle l'esercizio è **Lab07-Es4 «Sottosequenze con errori»**. Dalla soluzione del 2025/26 il programma legge una sequenza modello, il numero massimo di errori, e poi una serie di sequenze. Per ognuna cerca il primo intervallo in match con il modello e lo stampa, oppure stampa `NO`. La ricerca è `cerca_sottosequenza`, con il conteggio degli errori al posto dell'uguaglianza:
+
+```c
+size_t cerca_con_errori(const int seq[], const size_t seqLen,
+                        const int pat[], const size_t patLen,
+                        const size_t n, size_t* p_errori) {
+    size_t pos = seqLen;
+    for (size_t left = 0; left + patLen <= seqLen && pos == seqLen; left++) {
+        size_t e = conta_errori(seq + left, pat, patLen);
+        if (e <= n) {
+            pos = left;
+            *p_errori = e;
+        }
+    }
+    return pos;
+}
+```
+
+`seq + left` è l'indirizzo dell'elemento di indice `left`: passarlo a `conta_errori` vuol dire «considera la sequenza che comincia da lì». Con il modello `{3, 2, 4}` e al più 1 errore:
+
+| Sequenza | Uscita |
+|---|---|
+| `0 3 2 4 3` | `[1, 4) errori=0` |
+| `0 3 1 4 5` | `[1, 4) errori=1` |
+| `9 9 9 9` | `NO` |
+| `3 2` | `NO` |
+
+L'uscita usa gli intervalli semiaperti: il match occupa gli indici 1, 2 e 3. L'ultima sequenza è più corta del modello, quindi nessun intervallo va bene. Il formato esatto delle righe viene dalla soluzione del 2025/26: quello di quest'anno va controllato su Moodle.
+
+::: prova Le sequenze `{1, 2, 3, 4}` e `{1, 5, 3, 7}` sono in match con al più 1 errore? E con al più 2?
+Differiscono in due posizioni, la 1 e la 3. Con al più 1 errore no; con al più 2 sì.
+:::
+
+> [!RICORDA]
+> - Match con al più `n` errori: stessa lunghezza, al più `n` posizioni diverse.
+> - Cercare un modello in una sequenza: un ciclo sugli intervalli possibili, con `left + patLen <= seqLen`.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| `aLen` | «a len» | dimensione: elementi in uso | `aLen = 6` |
+| `aCap`, `AMAX` | «a cap», «a max» | capacità: caselle disponibili | `int a[AMAX]` |
+| `size_t* p_aLen` | «puntatore alla dimensione» | la funzione può cambiare la dimensione | `riduci(&aLen, a)` |
+| `[0, aLen)` | «da zero ad a len escluso» | gli indici validi | con `aLen = 6`: da 0 a 5 |
+| `[left, right)` | «da left a right escluso» | un intervallo semiaperto di indici | `[2, 6)`: indici 2, 3, 4, 5 |
+| `*p++` | «il valore puntato, poi avanti» | legge e sposta il puntatore | `x = *p++` |
+| `(*p)++` | «incrementa il puntato» | cambia il valore, non il puntatore | `(*pStr)++` |
+| `pSrc`, `pDst` | «sorgente», «destinazione» | il puntatore che legge e quello che scrive | `*pDst = *pSrc` |
+| `int**` | «puntatore a puntatore a intero» | l'indirizzo di un `int*` | `int** pp = &p` |
+
+## Verso l'esame
+
+All'esame si programma al PC con CodeRunner, che compila con `-Wall -Werror` e confronta l'output carattere per carattere. Di questo laboratorio servono:
+
+1. **gli schemi con due indici**: filtro, riduzione sul posto, duplicazione, anche sulle stringhe;
+2. **la dimensione che cambia**, passata come puntatore, e la capacità da non superare;
+3. **le tre fasi con lo heap**, per le funzioni che restituiscono un array nuovo;
+4. **gli intervalli semiaperti**, che tornano nella ricerca binaria e nella ricorsione;
+5. **le regole**: una sola `return` nelle funzioni iterative, niente `break`, quindi sentinelle nelle condizioni dei cicli.
+
+### Una domanda sul modello, letta insieme
+
+Viene dal pre-esame 2023/24, dove una funzione doveva filtrare una stringa sul posto con questa regola: un carattere si tiene solo se non compare di nuovo nel resto della stringa. Lì la funzione era ricorsiva; questa è la versione con un ciclo, che è quella di questo laboratorio.
+
+«Scrivere una funzione iterativa `solo_ultime` che modifica sul posto una stringa: un carattere viene mantenuto solo se non esistono altre sue occorrenze nel resto della stringa. La stringa va terminata con il terminatore.»
+
+**In pratica chiede:** `elimina_vocali` con un altro criterio. Il criterio è un «non esiste» sul pezzo di stringa che viene dopo.
+
+```c
+// vero se il carattere c compare nella stringa pStr
+bool compare_in(const char c, const char* pStr) {
+    bool trovato = false;
+    while (*pStr != '\0' && !trovato) {
+        if (*pStr == c) {
+            trovato = true;
+        }
+        pStr++;
+    }
+    return trovato;
+}
+
+void solo_ultime(char* pStr) {
+    const char* pSrc = pStr;
+    char* pDst = pStr;
+    while (*pSrc != '\0') {
+        if (!compare_in(*pSrc, pSrc + 1)) {
+            *pDst = *pSrc;
+            pDst++;
+        }
+        pSrc++;
+    }
+    *pDst = '\0';
+}
+```
+
+`pSrc + 1` è «il resto della stringa», da passare alla ricerca. Il resto non è ancora stato toccato, perché `pDst` scrive solo in posizioni già lette: per questo si può cercare lì mentre si modifica. Con `"abracadabra"` il risultato è `"cdbra"`; con `"aaa"` è `"a"`; la stringa vuota resta vuota. Provato.
+
+> [!METODO] Un filtro sul posto all'esame
+> 1. Due indici, o due puntatori: uno legge, uno scrive, tutti e due dall'inizio.
+> 2. Il ciclo avanza sempre con quello che legge.
+> 3. Dentro il ciclo: se l'elemento resta, si copia e avanza anche quello che scrive.
+> 4. Alla fine si sistema la dimensione: `*p_aLen = j` per un array, il terminatore per una stringa.
+> 5. Il criterio complicato va in una funzione a parte.
+
+### Errori da evitare
+
+- Passare la dimensione per valore a una funzione che la deve cambiare.
+- Dimenticare il controllo sulla capacità prima di una scrittura, soprattutto della seconda.
+- Scrivere `*p++` per incrementare il valore puntato.
+- Dimenticare il terminatore dopo aver accorciato una stringa.
+- Usare `const char*` per una stringa che la funzione modifica.
+- Scrivere `i < right - 1` con indici `size_t`.
+- Restituire $-1$ come «non trovato» da una funzione che ritorna `size_t`.
+- Dimenticare la `free` di un array costruito da una funzione.
+
+## Quiz
+
+```quiz
+D: Dopo `int* a, b;`, di che tipo sono `a` e `b`?
++ `a` è un puntatore a `int`, `b` è un `int`
+- sono tutti e due puntatori a `int`
+- sono tutti e due `int`
+- `a` è un `int`, `b` è un puntatore a `int`
+- la riga non compila
+= L'asterisco vale solo per il nome che lo segue. La più insidiosa è «sono tutti e due puntatori a `int`»: è quello che la scrittura `int*` fa pensare, ed è il motivo per cui conviene una dichiarazione per riga.
+
+D: `p` punta a un elemento di un array di `int`. Quale istruzione incrementa di uno il valore puntato, senza spostare `p`?
++ `(*p)++;`
+- `*p++;`
+- `*(p++);`
+- `p++;`
+- `&p++;`
+= Le parentesi fanno applicare il `++` al valore puntato. La più insidiosa è `*p++;`: il `++` ha la precedenza sull'asterisco, quindi sposta il puntatore, come `*(p++);`.
+
+D: Un array ha capacità 10 e dimensione 6. Quali indici sono validi?
++ da 0 a 5
+- da 0 a 6
+- da 1 a 6
+- da 0 a 9
+- da 0 a 10
+= Gli indici validi vanno da 0 alla dimensione esclusa. La più insidiosa è «da 0 a 9»: quelle caselle esistono tutte, ma dalla 6 in poi il contenuto non fa parte dell'array.
+
+D: Una funzione toglie da un array gli elementi negativi, sul posto. Quale intestazione va bene?
++ `void togli(size_t* p_aLen, int a[])`
+- `void togli(size_t aLen, int a[])`
+- `void togli(const size_t aLen, const int a[])`
+- `void togli(int a[])`
+- `void togli(size_t* p_aLen, const int a[])`
+= La dimensione cambia, quindi serve un puntatore, e gli elementi vengono spostati, quindi l'array non può essere `const`. La più insidiosa è `void togli(size_t aLen, int a[])`: compila e sposta gli elementi, ma il chiamante non vede la dimensione nuova.
+
+D: Nel filtro `for (size_t iA = 0; iA < aLen && bLen < bCap; iA++)`, a che cosa serve la parte `bLen < bCap`?
++ a fermarsi quando l'array di destinazione è pieno
+- a fermarsi quando l'array di partenza è finito
+- a saltare gli elementi che non rispettano il criterio
+- a inizializzare `bLen`
+- a niente: è sempre vera
+= `bLen` è la prima casella libera di `b`: quando arriva alla capacità non c'è più posto. La più insidiosa è «a fermarsi quando l'array di partenza è finito»: quello lo fa l'altra metà della condizione, `iA < aLen`.
+
+D: Una funzione costruisce nello heap un array con gli elementi di `b`, due volte quelli pari. Con `b = {2, 5, 8, 8}`, quanti `int` alloca?
+N: 7
+= Uno per ogni elemento, più uno per ogni pari: $4 + 3 = 7$.
+
+D: Quanti elementi ha l'intervallo semiaperto di indici `[3, 8)`?
+N: 5
+= `right - left`, cioè $8 - 3$: gli indici 3, 4, 5, 6 e 7.
+
+D: In `elimina_vocali`, che cosa succede se manca l'ultima riga, `*pDst = '\0';`?
++ la stringa continua con i caratteri vecchi fino al terminatore di prima
+- la stringa resta uguale a quella di partenza
+- il programma non compila
+- la stringa diventa vuota
+- le vocali tornano al loro posto
+= I caratteri tenuti sono stati ricopiati all'inizio, ma senza un terminatore nuovo la stringa finisce dove finiva prima: `"informazione"` diventa `"nfrmznazione"`. La più insidiosa è «la stringa resta uguale a quella di partenza»: i primi caratteri sono già stati sovrascritti.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: leggere una dichiarazione
+Per ogni riga di' il tipo di ogni variabile: (a) `char* s, c;` (b) `int *p, *q;` (c) `int x, *px = &x;` (d) `int** pp, *p;`
+::: soluzione
+(a) `s` è un puntatore a `char`, `c` è un `char`. (b) Due puntatori a `int`. (c) `x` è un `int`, `px` è un puntatore a `int` inizializzato con l'indirizzo di `x`. (d) `pp` è un puntatore a puntatore a `int`, `p` è un puntatore a `int`.
+:::
+
+::: esercizio base Riscaldamento: aggiungere in fondo
+Scrivi `bool aggiungi(size_t* p_aLen, const size_t aCap, int a[], const int x)`, che aggiunge `x` in fondo all'array se c'è posto, e dice se ci è riuscita.
+::: soluzione
+```c
+bool aggiungi(size_t* p_aLen, const size_t aCap, int a[], const int x) {
+    bool fatto = false;
+    if (*p_aLen < aCap) {
+        a[*p_aLen] = x;
+        (*p_aLen)++;
+        fatto = true;
+    }
+    return fatto;
+}
+```
+La casella in cui scrivere è proprio la dimensione. Attenzione a `(*p_aLen)++`: senza parentesi si sposterebbe il puntatore.
+:::
+
+::: esercizio base Riscaldamento: intervalli
+Per un array di dimensione 12: (a) quanti elementi ha `[5, 12)`? (b) quale intervallo indica gli ultimi tre elementi? (c) quali due intervalli dividono l'array a metà?
+::: soluzione
+(a) Sette. (b) `[9, 12)`. (c) `[0, 6)` e `[6, 12)`: l'indice 6 sta solo nel secondo.
+:::
+
+::: esercizio base Riscaldamento: contare le maiuscole
+Scrivi `size_t conta_maiuscole(const char* pStr)` usando un puntatore e non un indice.
+::: soluzione
+```c
+size_t conta_maiuscole(const char* pStr) {
+    size_t quante = 0;
+    while (*pStr != '\0') {
+        if (*pStr >= 'A' && *pStr <= 'Z') {
+            quante++;
+        }
+        pStr++;
+    }
+    return quante;
+}
+```
+Il parametro è `const char*`: la funzione legge soltanto.
+:::
+
+::: esercizio medio Togliere i negativi e contarli
+Scrivi una funzione che toglie sul posto gli elementi negativi di un array e restituisce quanti ne ha tolti.
+::: soluzione
+```c
+size_t togli_negativi(size_t* p_aLen, int a[]) {
+    size_t j = 0;
+    for (size_t i = 0; i < *p_aLen; i++) {
+        if (a[i] >= 0) {
+            a[j] = a[i];
+            j++;
+        }
+    }
+    size_t tolti = *p_aLen - j;
+    *p_aLen = j;
+    return tolti;
+}
+```
+Con `{4, -1, 0, -7, -2, 9, 3, -5}` ne toglie 4 e restano `4 0 9 3`. Il numero dei tolti va calcolato **prima** di aggiornare la dimensione. Provato.
+:::
+
+::: esercizio medio La duplicazione nello heap
+Scrivi `duplica_heap`, che restituisce un array nuovo con tutti gli elementi di `b`, due volte quelli che rispettano `Cond`.
+::: soluzione
+```c
+int* duplica_heap(const size_t bLen, const int b[], size_t* p_aLen) {
+    assert(p_aLen != NULL);
+    int* a = NULL;
+    *p_aLen = 0;
+
+    size_t count = bLen;
+    for (size_t i = 0; i < bLen; i++) {
+        if (Cond(b[i])) {
+            count++;
+        }
+    }
+    if (count > 0) {
+        a = malloc(count * sizeof(int));
+    }
+    if (a != NULL) {
+        size_t j = 0;
+        for (size_t i = 0; i < bLen; i++) {
+            a[j] = b[i];
+            j++;
+            if (Cond(b[i])) {
+                a[j] = b[i];
+                j++;
+            }
+        }
+        *p_aLen = count;
+    }
+    return a;
+}
+```
+Con `{0, 3, 2, 4, 3}` e il criterio «maggiore o uguale a 3» dà `0 3 3 2 4 4 3 3`, lunghezza 8. Il conteggio parte da `bLen` e non da 0. Provato.
+:::
+
+::: esercizio medio Un intervallo è ordinato?
+Scrivi `bool intervallo_ordinato(const int a[], size_t left, size_t right)`: vero se gli elementi dell'intervallo sono in ordine non decrescente.
+::: soluzione
+```c
+bool intervallo_ordinato(const int a[], const size_t left, const size_t right) {
+    assert(right >= left);
+    bool ordinato = true;
+    for (size_t i = left; i + 1 < right && ordinato; i++) {
+        if (a[i] > a[i + 1]) {
+            ordinato = false;
+        }
+    }
+    return ordinato;
+}
+```
+Sull'array della figura è vero per `[2, 5)`, cioè $-3$, 8, 19, e falso per `[2, 6)`, perché dopo il 19 viene il 7. Un intervallo vuoto o con un solo elemento è ordinato. La condizione è `i + 1 < right`, non `i < right - 1`. Provato.
+:::
+
+::: esercizio esame Copiare e concatenare senza la libreria
+Scrivi `my_strcpy` e `my_strcat` senza `<string.h>`, con i puntatori.
+::: soluzione
+```c
+void my_strcpy(char* pDst, const char* pSrc) {
+    while (*pSrc != '\0') {
+        *pDst = *pSrc;
+        pDst++;
+        pSrc++;
+    }
+    *pDst = '\0';
+}
+
+void my_strcat(char* pDst, const char* pSrc) {
+    while (*pDst != '\0') {
+        pDst++;
+    }
+    my_strcpy(pDst, pSrc);
+}
+```
+`my_strcat` porta `pDst` sul terminatore della prima stringa e da lì copia la seconda. Copiando `"infor"` e concatenando `"matica"` viene `"informatica"`, di lunghezza 11. Tutte e due danno per scontato che la destinazione abbia spazio a sufficienza: è il chiamante a doverlo garantire. Provato.
+:::
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra dimensione e capacità?
+La capacità è il numero di caselle dell'array e non cambia. La dimensione è il numero di elementi in uso, tra 0 e la capacità.
+:::
+
+::: domanda Quando la dimensione va passata come puntatore?
+Quando la funzione la cambia: aggiunge o toglie elementi. Se la legge soltanto basta il valore.
+:::
+
+::: domanda Perché nella riduzione sul posto non si perde nessun elemento?
+Perché l'indice che scrive non supera mai quello che legge: si sovrascrivono solo caselle già lette.
+:::
+
+::: domanda Quali sono le tre fasi per costruire un array filtrato nello heap?
+Contare quanti elementi avrà, allocare un blocco di quella misura, copiare.
+:::
+
+::: domanda Che differenza c'è tra `*p++` e `(*p)++`?
+La prima legge il valore puntato e sposta il puntatore. La seconda incrementa il valore puntato e lascia fermo il puntatore.
+:::
+
+::: domanda Come si accorcia una stringa sul posto?
+Con due puntatori: uno legge tutti i caratteri, l'altro scrive quelli da tenere. Alla fine si scrive il terminatore dove è arrivato il secondo.
+:::
+
+::: domanda Che cos'è un intervallo semiaperto di indici, e quanti elementi ha?
+L'insieme degli indici dal sinistro compreso al destro escluso. Ha tanti elementi quanti la differenza tra destro e sinistro.
+:::
+
+## Glossario
+
+```glossario
+Capacità | Numero di caselle di un array: il massimo di elementi che può contenere.
+Dimensione | Numero di elementi in uso, nelle prime caselle dell'array.
+Filtro selettivo | Copia in un secondo array dei soli elementi che rispettano un criterio.
+Riduzione sul posto | Selezione fatta nello stesso array, ricopiando all'inizio gli elementi che restano.
+Duplicazione selettiva | Copia in cui gli elementi che rispettano un criterio compaiono due volte.
+Puntatore a puntatore | Variabile che contiene l'indirizzo di un puntatore; per gli interi il tipo è int**.
+Intervallo semiaperto | Insieme di indici con il sinistro compreso e il destro escluso.
+Match con errori | Uguaglianza tra due sequenze della stessa lunghezza, a meno di un numero massimo di posizioni diverse.
+```
+
+## Checklist
+
+```checklist
+- So leggere una dichiarazione con più nomi e un asterisco.
+- So distinguere `*p++` da `(*p)++`.
+- So dire quali indici sono validi in un array con dimensione e capacità.
+- So scegliere i parametri di una funzione secondo quello che fa all'array.
+- So scrivere trasformazione, filtro, riduzione sul posto e duplicazione.
+- So dove va il controllo sulla capacità, e perché nella duplicazione compare due volte.
+- So costruire un array nello heap in tre fasi e dire chi fa la `free`.
+- So scorrere una stringa con un puntatore.
+- So togliere caratteri da una stringa sul posto, terminatore compreso.
+- So contare gli elementi di un intervallo semiaperto e scorrerlo.
+- So cercare una sequenza dentro un'altra, anche con un numero massimo di errori.
+```
+
+## Fonti
+
+- Slide «Operazioni su array» (Lezione nº 7 di laboratorio, Lab07), Programmazione I – Laboratorio, canale B, A.A. 2026/27: tre domande sui puntatori (slide 2–7), modello dimensione-capacità (8–12), trasformazione, filtro, riduzione sul posto e duplicazione (13–19), esercizi sugli array statici (20–21), array dinamici e selezione in tre fasi (22–31), stringhe e aritmetica dei puntatori (32–34), elimina caratteri (35–38), intervalli semiaperti (39–45), sottosequenze con errori (46).
+- Moodle del corso, settimana del 23 novembre (pagina visibile agli ospiti): i titoli dei quattro esercizi CodeRunner e la data della registrazione del laboratorio.
+- Soluzioni di uno studente del 2025/26 per tre esercizi CodeRunner del Lab07: da lì vengono le regole dell'esercizio sulla trasformazione e il formato di ingresso e di uscita. I testi ufficiali, e quelli del 2026/27, non li ho.
+- Tutti i programmi li ho compilati con gcc 16.1 su Windows 11, con `-Wall -Werror`, ed eseguiti sugli esempi citati; i messaggi del compilatore riportati sono quelli veri. Le funzioni, la domanda sul modello, i quiz e gli esercizi sono di questi appunti.
+
+
+---
+
 <!-- FILE: contesto_ai/PROG1/riassunti/settimana_01.md -->
 > File: `contesto_ai/PROG1/riassunti/settimana_01.md`
 
@@ -21818,7 +23133,7 @@ Riferimento 2025/26 (iscritti): 19/01 (309), 13/02 (441), 04/06 (132), 02/07 (10
 
 **Programma del canale B** (Moodle B 2026/27, voce "Programma per il 2026"; il testo è in parte al passato, forse ripreso dall'anno scorso): tutto il libro **tranne** §1.8 (linguaggio Python), §2.3 (risoluzione), il cap. 3 salvo §3.2 (sequenze e stringhe), l'intero cap. 5 (teoria dei numeri) e, in §12.3, l'Example 12.3.9 e le grammatiche di Lindenmayer (dalla Definition 12.3.17 in poi). Il dettaglio arriva con i riassunti delle singole lezioni su Moodle.
 
-**Attenzione per il canale B:** la mappa comune include §1.8, §2.3 e §3.1–3.4; la stessa pagina B elenca le proprietà delle relazioni tra gli argomenti del corso; i quiz degli anni passati chiedono proprietà di relazioni e funzioni. Dato che l'esame è unico, non saltare queste parti senza averlo chiesto al docente.
+**Attenzione per il canale B:** la mappa comune include §1.8, §2.3 e §3.1–3.4; la stessa pagina B elenca le proprietà delle relazioni tra gli argomenti del corso; i quiz degli anni passati chiedono proprietà di relazioni e funzioni. Dato che l'esame è unico, non saltare queste parti senza averlo chiesto al docente. Il 23/11/2026 il docente ha fatto in aula anche l'inizio del §3.3: relazioni riflessive, simmetriche e antisimmetriche (lezione 23 degli appunti).
 
 ## Sequenza tipica (canale A 2025/26, lezioni dal 18/09 al 15/12/2025)
 
@@ -21855,7 +23170,9 @@ Il canale C è partito con le slide "Azzeramento" e "Rappresentazione", in linea
 - lun 16/11: esercizi su invarianti: la potenza veloce, svolta informalmente e come quiz. Negli appunti è la lezione 20.
 - gio 19/11: invariante di ciclo per la ricerca degli 0 in un vettore e per la somma di un vettore. Negli appunti è la lezione 21.
 - ven 20/11: ripasso delle funzioni (funzioni come relazioni, funzioni iniettive, suriettive, biiettive, funzione inversa); esercizio su funzione caratteristica e unione (Problem Solving Corner del capitolo 3.1); sezione 3.2, sequenze, esempi dal 3.2.1 al 3.2.19 (omessi 3.2.20, 21 e 22); stringhe, dalla definizione 3.2.23 all'esempio 3.2.25 (lunghezza di una stringa); esercizi 5–9 di pagina 137. Negli appunti è la lezione 22.
-- lun 23/11: lezione svolta; non ho ancora il diario, quindi negli appunti manca.
+- lun 23/11: sezione 3.2 dalla 3.2.26 (definizione della concatenazione di stringhe) fino alla fine: definizione di sottostringa, iniettività e suriettività dell'inversione di stringhe, suriettività e non iniettività della composizione di stringhe; sezione 3.3: relazioni riflessive, simmetriche e antisimmetriche, fino all'esempio 3.3.15 (una relazione sia simmetrica sia antisimmetrica). Negli appunti è la lezione 23.
+- gio 26/11: sezioni 11.1 e 11.2, circuiti combinatori e loro proprietà; sezione 11.3, algebre di Boole. Negli appunti è la lezione 24.
+- ven 27/11: sezione 11.3, algebre di Boole e deduzioni equazionali. Negli appunti è la lezione 25, scritta prima della lezione.
 
 ## Materiale
 
@@ -37105,6 +38422,2343 @@ Lunghezza | Il numero di elementi di una stringa.
 - Johnsonbaugh, parte 2 del libro di testo, §3.1 e §3.2: risposte ufficiali alle domande di ripasso e agli esercizi (appendice «Soluzioni di altri esercizi del testo», Moodle del canale A, aperto agli ospiti). Da lì vengono le definizioni, l'esempio $\{(a,1), (b,3), (c,0)\}$, le soluzioni sulle funzioni caratteristiche di intersezione e differenza, le risposte agli esercizi 1–3, 5 e 8 del §3.2 e la sottosequenza $4k - 3$.
 - Simulazioni d'esame 2023/24, quiz sulle proprietà di una relazione (testo dalla trascrizione delle schermate, con le risposte segnate da uno studente, ricontrollate).
 - Per le funzioni in Matematica Discreta: lezioni [D04](../MDAG/D04_funzioni_immagini_controimmagini.html) e [D05](../MDAG/D05_composizione_funzioni_inverse.html).
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/23_stringhe_concatenazione_relazioni.md -->
+> File: `contesto_ai/FDA/lezioni/23_stringhe_concatenazione_relazioni.md`
+
+```yaml
+corso: FDA
+lezione: "23"
+titolo: "Concatenazione, sottostringhe e proprietà delle relazioni"
+data: 2026-11-23
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 23 · Libro, parte 2, fine del §3.2 e §3.3
+simboli_logici: quantificatori
+descrizione: >-
+  Appunti della lezione 23 di Fondamenti dell'Informatica (canale B): la concatenazione di due stringhe, le
+  sottostringhe, l'inversione di una stringa come funzione biiettiva, la concatenazione come funzione suriettiva e non
+  iniettiva; le relazioni su un insieme, il loro grafo orientato, le relazioni riflessive, simmetriche e
+  antisimmetriche.
+lede: >-
+  Si chiude la parte sulle stringhe con le due operazioni che servono per automi e grammatiche: attaccare due stringhe
+  e riconoscere un pezzo dentro un'altra. Poi cominciano le relazioni, con tre proprietà che nel quiz d'esame si
+  controllano guardando le frecce di un disegno.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, parte 2, §3.2 dalla concatenazione alla fine e §3.3 fino all'esempio 3.3.15
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore e mezza
+fonte: >-
+  Diario delle lezioni del canale B (lezione 24 del docente); risposte ufficiali alle domande di ripasso e agli
+  esercizi dei §3.2 e §3.3 e all'autoverifica del capitolo 3 (appendice pubblicata sul Moodle del canale A);
+  simulazione d'esame 1 del 2023/24, quiz sulle proprietà di una relazione
+appunti_html: appunti/FDA/23_stringhe_concatenazione_relazioni.html
+genera_html: true
+```
+
+## In breve
+
+- La **concatenazione** di due stringhe si ottiene scrivendo la prima e subito dopo la seconda: «casa» e «matta» danno «casamatta». Le lunghezze si sommano, e l'ordine conta.
+- Una **sottostringa** è un pezzo di simboli **consecutivi**: «forma» è una sottostringa di «informatica», «forca» no.
+- **Rovesciare** una stringa è una funzione **biiettiva** dall'insieme di tutte le stringhe in sé: rovesciando due volte si torna alla partenza.
+- La concatenazione, vista come funzione che a una **coppia** di stringhe ne abbina una, è **suriettiva** ma **non iniettiva**: una stringa lunga $n$ si ottiene da $n + 1$ coppie.
+- Una **relazione** su un insieme $X$ è un insieme di coppie di elementi di $X$. Si disegna con un punto per elemento e una freccia per coppia.
+- **Riflessiva**: ogni punto ha un cappio, cioè una freccia verso sé stesso. **Simmetrica**: ogni freccia ha la freccia di ritorno. **Antisimmetrica**: tra due punti diversi non ci sono mai andata e ritorno insieme.
+- «Antisimmetrica» non vuol dire «non simmetrica»: una relazione può essere tutte e due le cose, o nessuna delle due.
+
+> [!CANALI]
+> Nel canale B è la lezione di lunedì 23/11, dalle 11 alle 13. Per il docente è la lezione 24: qui è la 23. Il diario del canale B dice: §3.2 dalla 3.2.26 (definizione della concatenazione di stringhe) fino alla fine, con la definizione di sottostringa, iniettività e suriettività dell'inversione di stringhe, suriettività e non iniettività della composizione di stringhe; poi §3.3, relazioni riflessive, simmetriche e antisimmetriche, fino all'esempio 3.3.15, una relazione che è sia simmetrica sia antisimmetrica.
+>
+> **Che cosa non so.** Il libro non ce l'ho; ho le risposte ufficiali alle domande di ripasso e a una parte degli esercizi. Le definizioni sono quelle delle risposte ufficiali, tradotte. Gli esempi sono miei, salvo dove dico il contrario: i numeri degli esempi del libro non li posso abbinare uno per uno. L'esempio 3.3.15, che il diario descrive, c'è.
+>
+> **Che cosa resta fuori.** Relazioni transitive, ordini parziali, relazione inversa e composizione di relazioni vengono dopo l'esempio 3.3.15: non sono in questa lezione.
+>
+> **Per chi segue Matematica Discreta.** Le stesse proprietà sono nella lezione [D03](../MDAG/D03_prodotto_cartesiano_relazioni.html), insieme alla transitiva e alle relazioni di equivalenza. Qui i nomi e l'ordine sono quelli del libro di Fondamenti.
+
+## Attaccare due stringhe: la concatenazione
+
+Dalle stringhe della [lezione 22](22_funzioni_sequenze_stringhe.html) se ne costruiscono altre attaccandole una dopo l'altra. Prendi $\gamma = aab$ e $\theta = cabd$. Scrivendo prima tutta $\gamma$ e poi tutta $\theta$ viene $aabcabd$. Nell'ordine opposto viene $cabdaab$.
+
+```grafico
+titolo: La concatenazione di aab e cabd. I simboli della prima stringa restano nell'ordine in cui erano, seguiti da quelli della seconda: niente si mescola e niente si perde, quindi le lunghezze si sommano
+x: 0 12
+y: 0 5.3
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.45 3.9 | blu | "$\gamma$"
+poligono: 0.9 3.4 1.9 3.4 1.9 4.4 0.9 4.4 | blu | tenue
+poligono: 1.9 3.4 2.9 3.4 2.9 4.4 1.9 4.4 | blu | tenue
+poligono: 2.9 3.4 3.9 3.4 3.9 4.4 2.9 4.4 | blu | tenue
+testo: 1.4 3.9 | blu | "a"
+testo: 2.4 3.9 | blu | "a"
+testo: 3.4 3.9 | blu | "b"
+testo: 5.75 3.9 | verde | "$\theta$"
+poligono: 6.2 3.4 7.2 3.4 7.2 4.4 6.2 4.4 | verde | tenue
+poligono: 7.2 3.4 8.2 3.4 8.2 4.4 7.2 4.4 | verde | tenue
+poligono: 8.2 3.4 9.2 3.4 9.2 4.4 8.2 4.4 | verde | tenue
+poligono: 9.2 3.4 10.2 3.4 10.2 4.4 9.2 4.4 | verde | tenue
+testo: 6.7 3.9 | verde | "c"
+testo: 7.7 3.9 | verde | "a"
+testo: 8.7 3.9 | verde | "b"
+testo: 9.7 3.9 | verde | "d"
+testo: 1.75 1.4 | grigio | "$\gamma\theta$"
+poligono: 2.5 0.9 3.5 0.9 3.5 1.9 2.5 1.9 | blu | tenue
+poligono: 3.5 0.9 4.5 0.9 4.5 1.9 3.5 1.9 | blu | tenue
+poligono: 4.5 0.9 5.5 0.9 5.5 1.9 4.5 1.9 | blu | tenue
+poligono: 5.5 0.9 6.5 0.9 6.5 1.9 5.5 1.9 | verde | tenue
+poligono: 6.5 0.9 7.5 0.9 7.5 1.9 6.5 1.9 | verde | tenue
+poligono: 7.5 0.9 8.5 0.9 8.5 1.9 7.5 1.9 | verde | tenue
+poligono: 8.5 0.9 9.5 0.9 9.5 1.9 8.5 1.9 | verde | tenue
+testo: 3 1.4 | blu | "a"
+testo: 4 1.4 | blu | "a"
+testo: 5 1.4 | blu | "b"
+testo: 6 1.4 | verde | "c"
+testo: 7 1.4 | verde | "a"
+testo: 8 1.4 | verde | "b"
+testo: 9 1.4 | verde | "d"
+freccia: 2.4 3.3 3.9 2.05 | blu
+freccia: 8.2 3.3 7.6 2.05 | verde
+testo: 2.4 4.8 | blu | "lunghezza 3"
+testo: 8.2 4.8 | verde | "lunghezza 4"
+testo: 6.0 0.4 | grigio | "lunghezza 3 + 4 = 7"
+```
+
+> [!DEF] Concatenazione (libro, §3.2, domanda di ripasso 15)
+> La **concatenazione** delle stringhe $\alpha$ e $\beta$ è la stringa formata da $\alpha$ seguita da $\beta$. Si scrive $\alpha\beta$.
+
+**Come si legge.** Non c'è un segno di operazione: due nomi di stringhe scritti attaccati vogliono dire «prima tutti i simboli della prima, poi tutti quelli della seconda». Le lettere greche sono **nomi** di stringhe, come $x$ è il nome di un numero: non sono simboli dell'insieme $X$.
+
+Quattro fatti, che si vedono sull'esempio:
+
+1. **Le lunghezze si sommano**: $|\alpha\beta| = |\alpha| + |\beta|$. Qui $3 + 4 = 7$.
+2. **La stringa vuota non cambia niente**: $\alpha\lambda = \lambda\alpha = \alpha$. Attaccare zero simboli lascia la stringa com'è.
+3. **L'ordine conta**: $aabcabd$ e $cabdaab$ sono diverse. In generale $\alpha\beta \ne \beta\alpha$.
+4. **Le parentesi non servono**: $(\alpha\beta)\gamma$ e $\alpha(\beta\gamma)$ sono la stessa stringa, e si scrive $\alpha\beta\gamma$.
+
+In altre parole la concatenazione è un'**operazione** sull'insieme $X^*$: prende due stringhe su $X$ e ne restituisce una terza, ancora su $X$. Somiglia alla somma dei numeri, con $\lambda$ al posto dello zero. La differenza è il punto 3: $2 + 5 = 5 + 2$, mentre con le stringhe scambiare i pezzi di solito cambia il risultato.
+
+> [!NOTA] Per chi segue Matematica Discreta
+> Con le parole della [D19](../MDAG/D19_operazioni_gruppi.html): la concatenazione è un'operazione associativa su $X^*$, con elemento neutro $\lambda$. Quindi $X^*$ è un **monoide**. Non è commutativo, e non è un gruppo: attaccando simboli la lunghezza non cala mai, quindi nessuna stringa non vuota ha un'inversa.
+
+**Le potenze.** Nella lezione 22 l'esponente ripeteva un simbolo: $a^3 = aaa$. Con le parentesi ripete una stringa intera: $(ab)^3 = ababab$.
+
+> [!TRAPPOLA] L'esponente vale solo per quello che ha subito a sinistra
+> $ab^3$ è $abbb$: l'esponente tocca solo la $b$. $(ab)^3$ è $ababab$. E $(ab)^2 = abab$ non è $a^2b^2 = aabb$. Con i numeri le due scritture coincidono; con le stringhe no, perché l'ordine conta.
+
+> [!ESEMPIO] Autoverifica del capitolo 3, domanda 10
+> Il testo della domanda non ce l'ho. Le quattro risposte ufficiali sono $ccddccccdd$, $cccddccddc$, 5 e 20, e tornano con questi dati: $\alpha = ccddc$ e $\beta = c^3d^2$.
+>
+> - $\beta$ scritta per esteso è $cccdd$.
+> - $\alpha\beta$: prima $ccddc$, poi $cccdd$. Viene $ccddccccdd$.
+> - $\beta\alpha$: prima $cccdd$, poi $ccddc$. Viene $cccddccddc$, diversa dalla precedente.
+> - $|\alpha| = 5$, e anche $|\beta| = 3 + 2 = 5$.
+> - Una concatenazione di quattro pezzi, per esempio $\alpha\alpha\beta\alpha$, è lunga $5 + 5 + 5 + 5 = 20$.
+
+::: prova Con $\alpha = ab$ e $\beta = ba$: scrivi $\alpha\beta$, $\beta\alpha$ e $\alpha\alpha\beta$. Quanto vale $|\alpha\beta\alpha|$?
+$\alpha\beta = abba$, $\beta\alpha = baab$, $\alpha\alpha\beta = ababba$. La lunghezza di $\alpha\beta\alpha$ è $2 + 2 + 2 = 6$.
+:::
+
+> [!RICORDA]
+> - $\alpha\beta$: tutta $\alpha$, poi tutta $\beta$. Le lunghezze si sommano.
+> - $\lambda$ non cambia niente; l'ordine conta; le parentesi non servono.
+> - $(ab)^2 = abab$, diverso da $a^2b^2$.
+
+## Sottostringhe
+
+Cercare una parola in un testo con Ctrl+F è chiedere se quella parola è una **sottostringa** del testo: se compare da qualche parte, tutta di seguito.
+
+Nella stringa «informatica» compare «forma»: prima c'è «in», dopo c'è «tica». Compare anche «mati». Non compare «forca»: le sue lettere ci sono, e nell'ordine giusto, ma non una accanto all'altra.
+
+```grafico
+titolo: La stringa «informatica» tagliata in tre pezzi attaccati: «in», «forma», «tica». Il pezzo in mezzo è una sottostringa perché i suoi simboli sono tutti di seguito; i due pezzi intorno sono quello che resta prima e dopo
+x: 0 12
+y: 0.6 4.2
+assi: no
+griglia: no
+proporzioni: libere
+poligono: 0.5 1.9 1.5 1.9 1.5 2.9 0.5 2.9 | grigio | tenue
+poligono: 1.5 1.9 2.5 1.9 2.5 2.9 1.5 2.9 | grigio | tenue
+poligono: 2.5 1.9 3.5 1.9 3.5 2.9 2.5 2.9 | ambra | tenue
+poligono: 3.5 1.9 4.5 1.9 4.5 2.9 3.5 2.9 | ambra | tenue
+poligono: 4.5 1.9 5.5 1.9 5.5 2.9 4.5 2.9 | ambra | tenue
+poligono: 5.5 1.9 6.5 1.9 6.5 2.9 5.5 2.9 | ambra | tenue
+poligono: 6.5 1.9 7.5 1.9 7.5 2.9 6.5 2.9 | ambra | tenue
+poligono: 7.5 1.9 8.5 1.9 8.5 2.9 7.5 2.9 | grigio | tenue
+poligono: 8.5 1.9 9.5 1.9 9.5 2.9 8.5 2.9 | grigio | tenue
+poligono: 9.5 1.9 10.5 1.9 10.5 2.9 9.5 2.9 | grigio | tenue
+poligono: 10.5 1.9 11.5 1.9 11.5 2.9 10.5 2.9 | grigio | tenue
+testo: 1 2.4 | grigio | "i"
+testo: 2 2.4 | grigio | "n"
+testo: 3 2.4 | ambra | "f"
+testo: 4 2.4 | ambra | "o"
+testo: 5 2.4 | ambra | "r"
+testo: 6 2.4 | ambra | "m"
+testo: 7 2.4 | ambra | "a"
+testo: 8 2.4 | grigio | "t"
+testo: 9 2.4 | grigio | "i"
+testo: 10 2.4 | grigio | "c"
+testo: 11 2.4 | grigio | "a"
+testo: 1.5 1.35 | grigio | "$\gamma$"
+testo: 5.0 1.35 | ambra | "$\beta$"
+testo: 9.5 1.35 | grigio | "$\delta$"
+testo: 1.5 3.45 | grigio | "prima"
+testo: 5.0 3.45 | ambra | "sottostringa"
+testo: 9.5 3.45 | grigio | "dopo"
+```
+
+> [!DEF] Sottostringa (libro, §3.2, domanda di ripasso 16)
+> Una stringa $\beta$ è una **sottostringa** della stringa $\alpha$ se esistono due stringhe $\gamma$ e $\delta$ con $\alpha = \gamma\beta\delta$.
+
+**Come si legge.** $\gamma$ è il pezzo di $\alpha$ che viene prima di $\beta$, e $\delta$ quello che viene dopo. La definizione usa solo la concatenazione: «$\beta$ compare dentro $\alpha$» vuol dire che $\alpha$ si può scrivere come tre pezzi attaccati, con $\beta$ in mezzo. Per «forma» il pezzo prima è «in» e il pezzo dopo è «tica».
+
+I due pezzi intorno possono essere vuoti. Da qui quattro casi particolari:
+
+| Caso | Che cosa dice | Esempio in «informatica» |
+|---|---|---|
+| $\gamma = \lambda$ | $\beta$ sta all'inizio | «info» |
+| $\delta = \lambda$ | $\beta$ sta alla fine | «tica» |
+| $\gamma = \delta = \lambda$ | $\beta$ è tutta $\alpha$ | «informatica» |
+| $\beta = \lambda$ | la stringa vuota sta dentro ogni stringa | $\lambda$ |
+
+L'ultimo caso sorprende, ma viene dalla definizione: $\alpha = \lambda\lambda\alpha$, con niente prima, niente in mezzo e tutta la stringa dopo.
+
+Per elencare **tutte** le sottostringhe conviene andare per lunghezza. Quelle di $abc$:
+
+| Lunghezza | Sottostringhe |
+|:-:|---|
+| 0 | $\lambda$ |
+| 1 | $a$, $b$, $c$ |
+| 2 | $ab$, $bc$ |
+| 3 | $abc$ |
+
+Sono 7. Manca $ac$: la $a$ e la $c$ non sono vicine.
+
+> [!TRAPPOLA] Sottostringa e sottosequenza
+> Una **sottosequenza** ([lezione 22](22_funzioni_sequenze_stringhe.html)) tiene alcuni elementi nello stesso ordine, e ne può saltare altri. Una **sottostringa** non salta niente: è un pezzo tutto di seguito. «forca» è una sottosequenza di «informatica», non una sottostringa. Ogni sottostringa è anche una sottosequenza; il contrario non vale.
+
+::: prova Elenca tutte le sottostringhe di $abab$. Quante sono?
+Otto: $\lambda$; $a$, $b$; $ab$, $ba$; $aba$, $bab$; $abab$. Con le lettere ripetute lo stesso pezzo compare in più punti, ma si conta una volta: $ab$ compare due volte ed è una sola sottostringa.
+:::
+
+> [!RICORDA]
+> - $\beta$ è sottostringa di $\alpha$ se $\alpha = \gamma\beta\delta$: un pezzo prima, $\beta$, un pezzo dopo.
+> - I pezzi intorno possono essere vuoti: $\lambda$ e $\alpha$ stessa sono sottostringhe di $\alpha$.
+> - Sottostringa: simboli consecutivi. Sottosequenza: nello stesso ordine, anche con salti.
+
+## Rovesciare una stringa
+
+Una stringa letta da destra a sinistra è un'altra stringa sugli stessi simboli. Si scrive $\alpha^R$, «alfa rovesciata»: se $\alpha = abb$, allora $\alpha^R = bba$. La stringa vuota e le stringhe di un solo simbolo, rovesciate, restano uguali. Lo stesso vale per le **palindrome**, come «radar» o $abba$, già incontrate nel [Lab06 di Programmazione I](../PROG1/Lab06_funzioni.html): sono le stringhe con $\alpha^R = \alpha$.
+
+Il diario chiede di guardare l'inversione come **funzione**. Fissato $X = \{a, b\}$, a ogni stringa si abbina la sua rovesciata:
+
+$$f : X^* \to X^*, \qquad f(\alpha) = \alpha^R$$
+
+Le domande sono quelle della lezione 22: è iniettiva? È suriettiva?
+
+```grafico
+titolo: L'inversione sulle quattro stringhe di lunghezza 2. In ogni stringa di destra arriva esattamente una freccia: nessuna resta vuota e in nessuna ne arrivano due. Succede lo stesso per ogni lunghezza, perché rovesciare non cambia la lunghezza
+x: 0 10
+y: 0.3 5.5
+assi: no
+griglia: no
+proporzioni: libere
+testo: 2.6 4.95 | blu | "$\alpha$"
+testo: 7.4 4.95 | verde | "$\alpha^R$"
+testo: 2.6 4 | blu | "aa"
+testo: 7.4 4 | verde | "aa"
+testo: 2.6 3 | blu | "ab"
+testo: 7.4 3 | verde | "ab"
+testo: 2.6 2 | blu | "ba"
+testo: 7.4 2 | verde | "ba"
+testo: 2.6 1 | blu | "bb"
+testo: 7.4 1 | verde | "bb"
+freccia: 3.2 4.0 6.8 4.0 | ambra
+freccia: 3.2 3.0 6.8 2.1 | ambra
+freccia: 3.2 2.0 6.8 2.9 | ambra
+freccia: 3.2 1.0 6.8 1.0 | ambra
+```
+
+Il fatto che decide tutto è questo: **rovesciando due volte si torna alla stringa di partenza**. In simboli, $(\alpha^R)^R = \alpha$.
+
+> [!PROP] L'inversione è una biiezione
+> La funzione $f(\alpha) = \alpha^R$, da $X^*$ a $X^*$, è iniettiva e suriettiva.
+
+**Come si legge.** Due stringhe diverse hanno rovesciate diverse, e ogni stringa è la rovesciata di qualche stringa. Le due dimostrazioni seguono gli schemi della [lezione 13](13_dimostrazioni_dirette_controesempi.html).
+
+> [!ESEMPIO] La dimostrazione, un passo per riga
+> **Iniettiva.** Devo mostrare: se $f(\alpha) = f(\beta)$, allora $\alpha = \beta$.
+>
+> 1. Suppongo $f(\alpha) = f(\beta)$, cioè $\alpha^R = \beta^R$.
+> 2. Due stringhe uguali, rovesciate, restano uguali: $(\alpha^R)^R = (\beta^R)^R$.
+> 3. Rovesciare due volte riporta alla partenza: $\alpha = \beta$.
+>
+> **Suriettiva.** Devo mostrare: per ogni stringa $\beta$ c'è una stringa che $f$ manda in $\beta$.
+>
+> 1. Prendo una stringa $\beta$ qualunque.
+> 2. Come candidata scelgo $\beta^R$.
+> 3. Controllo: $f(\beta^R) = (\beta^R)^R = \beta$.
+
+Una funzione biiettiva ha un'inversa. Qui l'inversa è $f$ stessa: per tornare indietro da una stringa rovesciata basta rovesciarla di nuovo.
+
+Un'ultima regola, utile nei conti: la rovesciata di una concatenazione è la concatenazione delle rovesciate **in ordine scambiato**.
+
+$$(\alpha\beta)^R = \beta^R\alpha^R$$
+
+Con $\alpha = ab$ e $\beta = cd$: $(abcd)^R = dcba$, che è $dc$ seguito da $ba$. L'ultimo pezzo attaccato è il primo che si incontra leggendo al contrario. Per chi segue Matematica Discreta è la regola «calze e scarpe» della [D05](../MDAG/D05_composizione_funzioni_inverse.html).
+
+::: prova Con $f(\alpha) = \alpha^R$: quanto vale $f(f(abca))$? Quali stringhe di lunghezza 3 su $\{a, b\}$ restano uguali a sé stesse?
+$f(abca) = acba$ e $f(acba) = abca$: si torna alla partenza. Restano uguali le palindrome: $aaa$, $aba$, $bab$, $bbb$.
+:::
+
+> [!RICORDA]
+> - $\alpha^R$: la stringa letta al contrario. $(\alpha^R)^R = \alpha$.
+> - L'inversione è iniettiva e suriettiva: una biiezione, che è l'inversa di sé stessa.
+> - $(\alpha\beta)^R = \beta^R\alpha^R$.
+
+## La concatenazione come funzione
+
+La concatenazione prende **due** stringhe e ne restituisce una: è una funzione con due argomenti. Il suo dominio è fatto di coppie di stringhe, cioè è il prodotto cartesiano $X^* \times X^*$ ([lezione 11](11_quantificatori_annidati.html)).
+
+$$g : X^* \times X^* \to X^*, \qquad g(\alpha, \beta) = \alpha\beta$$
+
+Il diario la chiama «composizione di stringhe». Le domande sono le stesse di prima, e le risposte sono diverse.
+
+**È suriettiva.** Ogni stringa $\gamma$ è il risultato di qualche coppia: basta attaccarle la stringa vuota. $g(\gamma, \lambda) = \gamma\lambda = \gamma$.
+
+**Non è iniettiva.** Per dirlo basta un controesempio: due coppie **diverse** con lo stesso risultato.
+
+$$g(a, \lambda) = a \qquad\qquad g(\lambda, a) = a$$
+
+Le coppie $(a, \lambda)$ e $(\lambda, a)$ sono diverse, perché in una coppia l'ordine conta, ma hanno la stessa immagine.
+
+Si può dire di più: quante coppie danno la stessa stringa? Tante quanti sono i punti in cui la si può **tagliare** in due.
+
+```grafico
+titolo: I quattro modi di tagliare in due la stringa aba, che è lunga 3. Ogni taglio, la linea tratteggiata, dà una coppia diversa: il pezzo a sinistra e il pezzo a destra. Tutte e quattro le coppie, concatenate, ridanno aba
+x: 0 11
+y: 0.2 5.6
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.75 4.8 | blu | "$\lambda$"
+segmento: 1.55 4.23 1.55 5.37 | ambra | tratteggio
+poligono: 1.9 4.35 2.8 4.35 2.8 5.25 1.9 5.25 | verde | tenue
+poligono: 2.8 4.35 3.7 4.35 3.7 5.25 2.8 5.25 | verde | tenue
+poligono: 3.7 4.35 4.6 4.35 4.6 5.25 3.7 5.25 | verde | tenue
+testo: 2.35 4.8 | verde | "a"
+testo: 3.25 4.8 | verde | "b"
+testo: 4.15 4.8 | verde | "a"
+freccia: 5.9 4.8 7.3 4.8 | grigio
+testo: 9.0 4.8 | grigio | "$(\lambda,\ aba)$"
+poligono: 1.2 3.1 2.1 3.1 2.1 4 1.2 4 | blu | tenue
+testo: 1.65 3.55 | blu | "a"
+segmento: 2.45 2.98 2.45 4.12 | ambra | tratteggio
+poligono: 2.8 3.1 3.7 3.1 3.7 4 2.8 4 | verde | tenue
+poligono: 3.7 3.1 4.6 3.1 4.6 4 3.7 4 | verde | tenue
+testo: 3.25 3.55 | verde | "b"
+testo: 4.15 3.55 | verde | "a"
+freccia: 5.9 3.55 7.3 3.55 | grigio
+testo: 9.0 3.55 | grigio | "$(a,\ ba)$"
+poligono: 1.2 1.85 2.1 1.85 2.1 2.75 1.2 2.75 | blu | tenue
+poligono: 2.1 1.85 3 1.85 3 2.75 2.1 2.75 | blu | tenue
+testo: 1.65 2.3 | blu | "a"
+testo: 2.55 2.3 | blu | "b"
+segmento: 3.35 1.73 3.35 2.87 | ambra | tratteggio
+poligono: 3.7 1.85 4.6 1.85 4.6 2.75 3.7 2.75 | verde | tenue
+testo: 4.15 2.3 | verde | "a"
+freccia: 5.9 2.3 7.3 2.3 | grigio
+testo: 9.0 2.3 | grigio | "$(ab,\ a)$"
+poligono: 1.2 0.6 2.1 0.6 2.1 1.5 1.2 1.5 | blu | tenue
+poligono: 2.1 0.6 3 0.6 3 1.5 2.1 1.5 | blu | tenue
+poligono: 3 0.6 3.9 0.6 3.9 1.5 3 1.5 | blu | tenue
+testo: 1.65 1.05 | blu | "a"
+testo: 2.55 1.05 | blu | "b"
+testo: 3.45 1.05 | blu | "a"
+segmento: 4.25 0.48 4.25 1.62 | ambra | tratteggio
+testo: 5.05 1.05 | verde | "$\lambda$"
+freccia: 5.9 1.05 7.3 1.05 | grigio
+testo: 9.0 1.05 | grigio | "$(aba,\ \lambda)$"
+```
+
+Una stringa di lunghezza $n$ ha $n + 1$ punti di taglio: prima del primo simbolo, tra un simbolo e l'altro, dopo l'ultimo. Quindi sono $n + 1$ le coppie che la producono. L'unica stringa prodotta da una coppia sola è $\lambda$, con la coppia $(\lambda, \lambda)$.
+
+Le tre funzioni sulle stringhe viste finora, a confronto, con $X = \{a, b\}$:
+
+| Funzione | Da dove a dove | Iniettiva | Suriettiva |
+|---|---|:-:|:-:|
+| lunghezza | da $X^*$ ai numeri naturali | no | sì |
+| inversione | da $X^*$ a $X^*$ | sì | sì |
+| concatenazione | da $X^* \times X^*$ a $X^*$ | no | sì |
+
+> [!ESEMPIO] Esercizio 155 del §3.2: attaccare sempre lo stesso pezzo
+> Il testo non ce l'ho. La risposta ufficiale parla della funzione $h(\alpha) = \alpha ab$, da $X^*$ a $X^*$, e dice: iniettiva, non suriettiva.
+>
+> **Iniettiva.** Se $h(\alpha) = h(\beta)$, allora $\alpha ab = \beta ab$. Due stringhe uguali hanno gli stessi simboli negli stessi posti. Togliendo a tutte e due gli ultimi due simboli restano $\alpha$ e $\beta$, che quindi sono uguali.
+>
+> **Non suriettiva.** Ogni risultato finisce con $ab$, quindi è lungo almeno 2. La stringa vuota non è mai un risultato. Nemmeno $a$, e nemmeno $ba$.
+
+::: prova Quante coppie $(\alpha, \beta)$ hanno $\alpha\beta = abcd$? Elencale.
+Cinque, perché la stringa è lunga 4: $(\lambda, abcd)$, $(a, bcd)$, $(ab, cd)$, $(abc, d)$, $(abcd, \lambda)$.
+:::
+
+> [!RICORDA]
+> - La concatenazione è una funzione da coppie di stringhe a stringhe.
+> - Suriettiva: $\gamma = \gamma\lambda$. Non iniettiva: $(a, \lambda)$ e $(\lambda, a)$ danno tutte e due $a$.
+> - Una stringa lunga $n$ si ottiene da $n + 1$ coppie.
+
+## Relazioni: coppie e frecce
+
+«È più vecchio di», «ha sostenuto l'esame di», «divide»: sono legami tra due cose, che per certe coppie valgono e per altre no. Il libro li tratta tutti nello stesso modo: una relazione **è** l'insieme delle coppie per cui il legame vale. L'idea c'era già nella lezione 22, dove una funzione era un insieme di coppie con una regola in più.
+
+Un esempio tra due insiemi diversi. Prendi $X = \{2, 3, 4\}$ e $Y = \{3, 4, 5, 6, 7\}$. Un numero del primo insieme è in relazione con uno del secondo quando lo divide:
+
+$$R = \{(2, 4),\ (2, 6),\ (3, 3),\ (3, 6),\ (4, 4)\}$$
+
+> [!DEF] Relazione (libro, §3.3, domanda di ripasso 1)
+> Una **relazione** (binaria) da un insieme $X$ a un insieme $Y$ è un sottoinsieme del prodotto cartesiano $X \times Y$. Se $X = Y$ si chiama relazione **su** $X$.
+
+**Come si legge.** $R$ è un insieme di coppie: la coppia $(x, y)$ sta in $R$ quando $x$ è legato a $y$. Invece di $(x, y) \in R$ si scrive anche $x\,R\,y$, «$x$ è in relazione con $y$». Non c'è nessuna regola sul numero di coppie: un elemento può comparire in molte coppie o in nessuna. È la differenza con le funzioni.
+
+Da qui in poi servono le relazioni **su** un insieme, dove i due elementi della coppia vengono dallo stesso insieme. Per esempio «minore o uguale» su $X = \{1, 2, 3\}$:
+
+$$R = \{(1,1),\ (1,2),\ (1,3),\ (2,2),\ (2,3),\ (3,3)\}$$
+
+Una relazione su un insieme si disegna con il suo **grafo orientato** (il libro dice *digraph*): un punto per ogni elemento di $X$, e una freccia da $x$ a $y$ per ogni coppia $(x, y)$ di $R$. Una coppia $(x, x)$ diventa una freccia che parte da un punto e torna sullo stesso punto: un **cappio**.
+
+```grafico
+titolo: Due relazioni disegnate. A sinistra R = {(a,a), (b,c), (c,b), (d,d)}: due cappi, e tra b e c una freccia per verso. A destra «minore o uguale» su {1, 2, 3}: sei coppie, quindi sei frecce, di cui tre sono cappi
+x: 0 12
+y: 0 5
+assi: no
+griglia: no
+testo: 3.2 4.6 | grigio | "R su {a, b, c, d}"
+testo: 9.2 4.6 | grigio | "≤ su {1, 2, 3}"
+segmento: 6.25 0.3 6.25 4.8 | grigio | sottile
+cerchio: 0.9 1.9 0.1 | blu | spesso
+testo: 0.9 1.3 | blu | "a"
+cerchio: 2.5 1.9 0.1 | blu | spesso
+testo: 2.5 1.3 | blu | "b"
+cerchio: 4.3 1.9 0.1 | blu | spesso
+testo: 4.3 1.3 | blu | "c"
+cerchio: 5.6 1.9 0.1 | blu | spesso
+testo: 5.6 1.3 | blu | "d"
+arco: 0.900 2.400 0.5 5.376 10.332 | ambra
+freccia: 0.592 2.006 0.777 1.942 | ambra
+arco: 5.600 2.400 0.5 5.376 10.332 | ambra
+freccia: 5.292 2.006 5.477 1.942 | ambra
+freccia: 2.70 2.07 4.10 2.07 | ambra
+freccia: 4.10 1.73 2.70 1.73 | ambra
+cerchio: 7.6 1.3 0.1 | verde | spesso
+cerchio: 9.2 3.1 0.1 | verde | spesso
+cerchio: 10.8 1.3 0.1 | verde | spesso
+testo: 7.6 0.7 | verde | "1"
+testo: 9.2 2.5 | verde | "2"
+testo: 10.8 0.7 | verde | "3"
+arco: 7.100 1.300 0.5 6.946 11.903 | ambra
+freccia: 7.494 0.992 7.558 1.177 | ambra
+arco: 9.200 3.600 0.5 5.376 10.332 | ambra
+freccia: 8.892 3.206 9.077 3.142 | ambra
+arco: 11.300 1.300 0.5 3.805 8.762 | ambra
+freccia: 10.906 1.608 10.842 1.423 | ambra
+freccia: 7.73 1.45 9.07 2.95 | ambra
+freccia: 9.33 2.95 10.67 1.45 | ambra
+freccia: 7.80 1.30 10.60 1.30 | ambra
+```
+
+Le tre proprietà di questa lezione si leggono tutte sul disegno. Conviene abituarsi a passare dall'elenco delle coppie al grafo, e viceversa.
+
+::: prova Scrivi le coppie della relazione «$x$ divide $y$» sull'insieme $\{1, 2, 3, 4\}$. Quanti cappi ha il suo grafo?
+$(1,1)$, $(1,2)$, $(1,3)$, $(1,4)$, $(2,2)$, $(2,4)$, $(3,3)$, $(4,4)$: otto coppie. I cappi sono quattro, perché ogni numero divide sé stesso.
+:::
+
+> [!RICORDA]
+> - Relazione da $X$ a $Y$: un insieme di coppie di $X \times Y$. Relazione su $X$: coppie di elementi di $X$.
+> - $x\,R\,y$ vuol dire $(x, y) \in R$.
+> - Grafo orientato: un punto per elemento, una freccia per coppia, un cappio per ogni coppia $(x, x)$.
+
+## Riflessiva: un cappio su ogni punto
+
+Ogni numero è minore o uguale a sé stesso, e nessun numero è minore di sé stesso. Nella relazione «minore o uguale» ci sono quindi tutte le coppie $(x, x)$; nella relazione «minore» non ce n'è nessuna.
+
+> [!DEF] Relazione riflessiva (libro, §3.3, domanda di ripasso 3)
+> Una relazione $R$ su un insieme $X$ è **riflessiva** se $(x, x) \in R$ per ogni $x \in X$.
+
+**Come si legge.** Ogni elemento è in relazione con sé stesso. Nel grafo c'è un cappio su **ogni** punto. Per controllare si passano gli elementi di $X$ uno per uno: basta un punto senza cappio, e la relazione non è riflessiva.
+
+I due esempi minimi delle risposte ufficiali, sull'insieme $\{1, 2\}$: la relazione $\{(1,1), (2,2)\}$ è riflessiva; la relazione $\{(1,1)\}$ non lo è, perché manca $(2,2)$.
+
+Due cose a cui stare attenti.
+
+**La riflessività dipende dall'insieme.** Le coppie $\{(1,1), (2,2)\}$ formano una relazione riflessiva su $\{1, 2\}$, ma non su $\{1, 2, 3\}$: lì manca $(3,3)$. Per questo i quiz dicono sempre su quale insieme è definita la relazione.
+
+**«Non riflessiva» non vuol dire «senza cappi».** Tra «tutti i cappi» e «nessun cappio» c'è il caso di mezzo, con alcuni cappi sì e altri no. Anche quello è «non riflessiva».
+
+| Relazione sugli interi positivi | Riflessiva? | Perché |
+|---|:-:|---|
+| $x \le y$ | sì | $x \le x$ sempre |
+| $x < y$ | no | $1 < 1$ è falso |
+| $x$ divide $y$ | sì | $x = 1 \cdot x$ |
+| $x + y$ è pari | sì | $x + x = 2x$ |
+| 3 divide $x + y$ | no | $1 + 1 = 2$ |
+
+::: prova Sull'insieme $\{a, b, c, d\}$, la relazione $\{(a,a), (b,c), (c,b), (d,d)\}$ è riflessiva? Quali coppie bisogna aggiungere perché lo diventi?
+No: mancano i cappi su $b$ e su $c$. Bisogna aggiungere $(b,b)$ e $(c,c)$.
+:::
+
+> [!RICORDA]
+> - Riflessiva: $(x, x) \in R$ per **ogni** $x$ dell'insieme. Nel grafo, un cappio su ogni punto.
+> - Per dire «non riflessiva» basta un elemento senza cappio, da nominare.
+> - Le stesse coppie possono essere riflessive su un insieme e non su uno più grande.
+
+## Simmetrica: ogni freccia ha il ritorno
+
+«Abita nello stesso palazzo di» vale sempre nei due sensi; «è più alto di» non vale mai nei due sensi. La prima relazione è simmetrica.
+
+> [!DEF] Relazione simmetrica (libro, §3.3, domanda di ripasso 4)
+> Una relazione $R$ su un insieme $X$ è **simmetrica** se per ogni $x, y \in X$: se $(x, y) \in R$, allora $(y, x) \in R$.
+
+**Come si legge.** È un «se… allora»: non chiede che ci siano frecce, chiede che **ogni** freccia presente abbia la freccia di ritorno. Nel grafo le frecce tra punti diversi vanno a coppie, andata e ritorno. Un cappio è già il ritorno di sé stesso, quindi i cappi non danno mai problemi.
+
+Gli esempi minimi delle risposte ufficiali, su $\{1, 2\}$: la relazione $\{(1,2), (2,1)\}$ è simmetrica; la relazione $\{(1,2)\}$ non lo è, perché manca $(2,1)$.
+
+Per dire che una relazione **non** è simmetrica basta una freccia senza ritorno. «Minore o uguale» su $\{1, 2, 3\}$ non è simmetrica: $(1, 2)$ c'è, $(2, 1)$ no.
+
+> [!TRAPPOLA] Una relazione senza frecce da controllare è simmetrica
+> Un «se… allora» con la premessa falsa è vero ([lezione 07](07_condizionali_equivalenza_logica.html)). La relazione $\{(1,1), (2,2)\}$ è simmetrica: le uniche frecce sono cappi. Anche la relazione vuota, senza nessuna coppia, è simmetrica: non c'è nessuna freccia che possa restare senza ritorno.
+
+| Relazione sugli interi positivi | Simmetrica? | Perché |
+|---|:-:|---|
+| $x + y$ è pari | sì | $x + y = y + x$ |
+| 3 divide $x + y$ | sì | stesso motivo |
+| $x \le y$ | no | $1 \le 2$, ma non $2 \le 1$ |
+| $x$ divide $y$ | no | 2 divide 4, ma 4 non divide 2 |
+
+::: prova La relazione $\{(1,2), (2,1), (2,3), (3,3)\}$ su $\{1, 2, 3\}$ è simmetrica? Se no, quale coppia lo impedisce?
+No. $(2,3)$ c'è e $(3,2)$ manca. Le altre non danno problemi: $(1,2)$ ha il suo ritorno, e $(3,3)$ è un cappio.
+:::
+
+> [!RICORDA]
+> - Simmetrica: ogni freccia ha la freccia di ritorno.
+> - Per dire «non simmetrica» basta una coppia $(x, y)$ presente con $(y, x)$ assente.
+> - I cappi non contano; una relazione fatta solo di cappi è simmetrica.
+
+## Antisimmetrica: mai andata e ritorno
+
+Se un numero è minore o uguale a un altro, e l'altro è minore o uguale al primo, i due numeri sono lo stesso numero. È la proprietà che «minore o uguale» ha, e che manca a «abita nello stesso palazzo di».
+
+> [!DEF] Relazione antisimmetrica (libro, §3.3, domanda di ripasso 5)
+> Una relazione $R$ su un insieme $X$ è **antisimmetrica** se per ogni $x, y \in X$: se $(x, y) \in R$ e $(y, x) \in R$, allora $x = y$.
+
+**Come si legge.** Andata e ritorno insieme sono permessi solo quando partenza e arrivo coincidono, cioè per un cappio. Si capisce meglio con la contronominale ([lezione 17](17_contrapposizione_casi_equivalenze.html)): se $x$ e $y$ sono **diversi**, allora almeno una tra $(x, y)$ e $(y, x)$ manca. Nel grafo, tra due punti diversi c'è al massimo una freccia. I cappi, di nuovo, non contano.
+
+Gli esempi minimi delle risposte ufficiali, su $\{1, 2\}$: la relazione $\{(1,2)\}$ è antisimmetrica; la relazione $\{(1,2), (2,1)\}$ non lo è.
+
+Per dire che una relazione **non** è antisimmetrica serve una coppia di punti diversi con tutte e due le frecce.
+
+| Relazione | Antisimmetrica? | Perché |
+|---|:-:|---|
+| $x \le y$ sugli interi | sì | $x \le y$ e $y \le x$ danno $x = y$ |
+| $x$ divide $y$ sugli interi positivi | sì | se ognuno divide l'altro, sono uguali |
+| $x$ divide $y$ sugli interi diversi da 0 | no | 2 divide $-2$, e $-2$ divide 2 |
+| $x + y$ è pari, sugli interi positivi | no | $(1, 3)$ e $(3, 1)$ |
+
+### Simmetrica e antisimmetrica non sono opposte
+
+Il nome inganna: «antisimmetrica» sembra il contrario di «simmetrica». Non lo è. Le due proprietà vietano cose diverse:
+
+- **simmetrica** vieta le frecce **senza** ritorno;
+- **antisimmetrica** vieta le frecce **con** il ritorno, tra punti diversi.
+
+Una relazione può violare tutti e due i divieti, o nessuno dei due. L'esempio su cui si ferma il diario, il 3.3.15 del libro, è il secondo caso. Sull'insieme $\{a, b, c\}$ la relazione
+
+$$R = \{(a,a),\ (b,b),\ (c,c)\}$$
+
+è **sia simmetrica sia antisimmetrica**. Simmetrica, perché ogni freccia è un cappio e ha sé stessa come ritorno. Antisimmetrica, perché non ci sono due punti diversi collegati nei due sensi.
+
+Ecco i quattro casi, tutti sullo stesso insieme:
+
+```grafico
+titolo: I quattro casi su {a, b, c}. In alto a sinistra solo cappi: nessuna freccia senza ritorno e nessuna andata e ritorno tra punti diversi, quindi tutte e due le proprietà. In basso a destra a e b sono collegati nei due sensi, e la freccia da b a c non ha ritorno: nessuna delle due
+x: 0 12
+y: 0 7
+assi: no
+griglia: no
+segmento: 6 0.1 6 6.9 | grigio | sottile
+segmento: 0.2 3.5 11.8 3.5 | grigio | sottile
+testo: 3 6.55 | verde | "simmetrica: sì"
+testo: 3 6 | verde | "antisimmetrica: sì"
+cerchio: 1.2 4.55 0.1 | blu | spesso
+testo: 1.2 4 | blu | "a"
+cerchio: 3 4.55 0.1 | blu | spesso
+testo: 3 4 | blu | "b"
+cerchio: 4.8 4.55 0.1 | blu | spesso
+testo: 4.8 4 | blu | "c"
+arco: 1.200 4.950 0.4 5.376 10.332 | ambra
+freccia: 0.954 4.635 1.077 4.592 | ambra
+arco: 3.000 4.950 0.4 5.376 10.332 | ambra
+freccia: 2.754 4.635 2.877 4.592 | ambra
+arco: 4.800 4.950 0.4 5.376 10.332 | ambra
+freccia: 4.554 4.635 4.677 4.592 | ambra
+testo: 9 6.55 | verde | "simmetrica: sì"
+testo: 9 6 | rosa | "antisimmetrica: no"
+cerchio: 7.2 4.55 0.1 | blu | spesso
+testo: 7.2 4 | blu | "a"
+cerchio: 9 4.55 0.1 | blu | spesso
+testo: 9 4 | blu | "b"
+cerchio: 10.8 4.55 0.1 | blu | spesso
+testo: 10.8 4 | blu | "c"
+freccia: 7.40 4.72 8.80 4.72 | ambra
+freccia: 8.80 4.38 7.40 4.38 | ambra
+testo: 3 3.05 | rosa | "simmetrica: no"
+testo: 3 2.5 | verde | "antisimmetrica: sì"
+cerchio: 1.2 1.05 0.1 | blu | spesso
+testo: 1.2 0.5 | blu | "a"
+cerchio: 3 1.05 0.1 | blu | spesso
+testo: 3 0.5 | blu | "b"
+cerchio: 4.8 1.05 0.1 | blu | spesso
+testo: 4.8 0.5 | blu | "c"
+freccia: 1.40 1.05 2.80 1.05 | ambra
+testo: 9 3.05 | rosa | "simmetrica: no"
+testo: 9 2.5 | rosa | "antisimmetrica: no"
+cerchio: 7.2 1.05 0.1 | blu | spesso
+testo: 7.2 0.5 | blu | "a"
+cerchio: 9 1.05 0.1 | blu | spesso
+testo: 9 0.5 | blu | "b"
+cerchio: 10.8 1.05 0.1 | blu | spesso
+testo: 10.8 0.5 | blu | "c"
+freccia: 7.40 1.22 8.80 1.22 | ambra
+freccia: 8.80 0.88 7.40 0.88 | ambra
+freccia: 9.20 1.05 10.60 1.05 | ambra
+```
+
+| | Antisimmetrica | Non antisimmetrica |
+|---|---|---|
+| **Simmetrica** | $\{(a,a), (b,b), (c,c)\}$ | $\{(a,b), (b,a)\}$ |
+| **Non simmetrica** | $\{(a,b)\}$ | $\{(a,b), (b,a), (b,c)\}$ |
+
+> [!IDEA] Quali relazioni sono tutte e due le cose
+> Solo quelle fatte di soli cappi. Se una relazione simmetrica e antisimmetrica contiene $(x, y)$, per la simmetria contiene anche $(y, x)$; allora l'antisimmetria dice $x = y$. Quindi ogni sua coppia è un cappio. Non serve che i cappi ci siano tutti: anche la relazione vuota va bene.
+
+::: prova La relazione $\{(1,2), (2,3), (3,1)\}$ su $\{1, 2, 3\}$ è riflessiva? Simmetrica? Antisimmetrica?
+Non è riflessiva: nessun cappio. Non è simmetrica: $(1,2)$ c'è e $(2,1)$ no. È antisimmetrica: le tre frecce girano in tondo, e tra due punti ce n'è sempre una sola.
+:::
+
+> [!RICORDA]
+> - Antisimmetrica: tra due punti **diversi** mai andata e ritorno insieme.
+> - Per dire «non antisimmetrica» servono due elementi diversi con $(x, y)$ e $(y, x)$ tutte e due presenti.
+> - Antisimmetrica non è «non simmetrica»: una relazione di soli cappi è tutte e due le cose.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $\alpha\beta$ | «alfa beta» | concatenazione: $\alpha$ seguita da $\beta$ | $ab$ e $ba$ danno $abba$ |
+| $\alpha^n$ | «alfa alla n» | $\alpha$ ripetuta $n$ volte | $(ab)^3 = ababab$ |
+| $\alpha = \gamma\beta\delta$ | «alfa è gamma beta delta» | $\beta$ è una sottostringa di $\alpha$ | «in», «forma», «tica» |
+| $\alpha^R$ | «alfa rovesciata» | $\alpha$ letta da destra a sinistra | $(abb)^R = bba$ |
+| $X^* \times X^*$ | «X star per X star» | le coppie di stringhe su $X$ | $(ab, \lambda)$ |
+| $x\,R\,y$ | «x è in relazione con y» | la coppia $(x, y)$ sta in $R$ | $1 \le 2$ |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Il quiz sulle proprietà di una relazione**, presente nelle simulazioni del 2023/24. Dopo «è totale?» e «individua una funzione?» della lezione 22, le voci di oggi: «è riflessiva?», «è simmetrica?», «è antisimmetrica?». Si risponde guardando il grafo.
+2. **Concatenazione e sottostringhe**: sono le parole con cui i quiz su automi e grammatiche descrivono i linguaggi («le stringhe che contengono $ab$», «le stringhe che finiscono con $b$»).
+3. **Iniettiva o suriettiva** per una funzione sulle stringhe, con una dimostrazione corta o un controesempio.
+
+### Una domanda d'esame, letta insieme
+
+**Simulazione d'esame 1 del 2023/24, quiz sulle proprietà di una relazione.** «Considera la relazione R con dominio e codominio {1,2,3,4,5} definita come segue: R = {(1,1), (1,2), (1,3), (3,1), (3,3), (4,4), (5,5)}.» Seguono sette voci, ognuna con un menù sì/no. Tre sono di questa lezione: «È riflessiva?», «È simmetrica?», «È antisimmetrica?».
+
+**In pratica chiede:** di disegnare il grafo e fare tre controlli sulle frecce.
+
+```grafico
+titolo: Il grafo della relazione del quiz. Il punto 2 non ha il cappio: non è riflessiva. La freccia da 1 a 2, in rosa, va in un verso solo: non è simmetrica. Tra 1 e 3, in ambra, ci sono i due versi: non è antisimmetrica
+x: 0 12
+y: 0 4.4
+assi: no
+griglia: no
+cerchio: 1.6 3.2 0.1 | blu | spesso
+cerchio: 6 3.2 0.1 | blu | spesso
+cerchio: 3.8 1.3 0.1 | rosa | spesso
+cerchio: 8.9 2.4 0.1 | blu | spesso
+cerchio: 10.9 2.4 0.1 | blu | spesso
+testo: 1.6 3.85 | blu | "1"
+testo: 6.0 3.85 | blu | "3"
+testo: 3.3 1.3 | rosa | "2"
+testo: 8.9 1.8 | blu | "4"
+testo: 10.9 1.8 | blu | "5"
+arco: 1.100 3.200 0.5 6.946 11.903 | blu
+freccia: 1.494 2.892 1.558 3.077 | blu
+arco: 6.500 3.200 0.5 3.805 8.762 | blu
+freccia: 6.106 3.508 6.042 3.323 | blu
+arco: 8.900 2.900 0.5 5.376 10.332 | blu
+freccia: 8.592 2.506 8.777 2.442 | blu
+arco: 10.900 2.900 0.5 5.376 10.332 | blu
+freccia: 10.592 2.506 10.777 2.442 | blu
+freccia: 1.75 3.07 3.65 1.43 | rosa
+freccia: 1.80 3.37 5.80 3.37 | ambra
+freccia: 5.80 3.03 1.80 3.03 | ambra
+testo: 3.8 3.85 | ambra | "due versi"
+testo: 5.3 2.1 | rosa | "un verso solo"
+testo: 3.8 0.6 | rosa | "senza cappio"
+```
+
+> [!ESEMPIO] · la soluzione, voce per voce
+> **È riflessiva? No.** I cappi sono su 1, 3, 4 e 5. Manca $(2, 2)$.
+>
+> **È simmetrica? No.** $(1, 2)$ c'è e $(2, 1)$ manca. Che $(1, 3)$ abbia il suo ritorno non basta: devono averlo tutte le frecce.
+>
+> **È antisimmetrica? No.** $(1, 3)$ e $(3, 1)$ ci sono tutte e due, e 1 è diverso da 3.
+>
+> Sono le risposte segnate nella copia compilata da uno studente («manca (2,2)», «manca (2,1)», «per (1,3) e (3,1)»), e tornano con le definizioni. La relazione non è né simmetrica né antisimmetrica: è il quarto caso della tabella.
+
+> [!METODO] Le tre proprietà sul grafo
+> 1. Disegna un punto per ogni elemento dell'insieme, **anche** per quelli che non compaiono in nessuna coppia.
+> 2. Disegna una freccia per ogni coppia.
+> 3. **Riflessiva**: conta i cappi. Devono essere tanti quanti i punti.
+> 4. **Simmetrica**: per ogni freccia tra due punti diversi cerca il ritorno. Una sola senza ritorno, e la risposta è no.
+> 5. **Antisimmetrica**: cerca due punti diversi con andata e ritorno. Se li trovi, la risposta è no.
+> 6. Ogni «no» va con il suo testimone: l'elemento o la coppia che lo prova.
+
+### Errori da evitare
+
+- Rispondere «antisimmetrica» solo perché la relazione non è simmetrica.
+- Dimenticare un elemento dell'insieme che non compare in nessuna coppia: è lui a far fallire la riflessività.
+- Pensare che i cappi rompano l'antisimmetria: $(x, x)$ è sempre permesso.
+- Dire «simmetrica» dopo aver trovato una sola coppia con il ritorno.
+- Scrivere $\alpha\beta = \beta\alpha$ come se le stringhe fossero numeri.
+- Contare come sottostringa un pezzo con lettere non consecutive.
+- Dimenticare $\lambda$ e la stringa intera nell'elenco delle sottostringhe.
+
+## Quiz
+
+```quiz
+D: Con $\alpha = ab$ e $\beta = ba$, quale stringa è $\alpha\beta\alpha$?
++ $abbaab$
+- $ababab$
+- $abbaba$
+- $baabba$
+- $abab$
+= Si scrivono i tre pezzi di seguito: $ab$, poi $ba$, poi $ab$. La più insidiosa è $ababab$, che è $\alpha\alpha\alpha$: in mezzo va $\beta$, che comincia con $b$.
+
+D: Autoverifica del capitolo 3, domanda 10, con i dati ricostruiti dalle risposte ufficiali: $\alpha = ccddc$ e $\beta = c^3d^2$. Quanto è lunga la stringa $\alpha\alpha\beta\alpha$?
+N: 20
+= $\alpha$ è lunga 5 e $\beta$ è lunga $3 + 2 = 5$. Le lunghezze si sommano: $5 + 5 + 5 + 5 = 20$, la risposta ufficiale.
+
+D: Quale di queste NON è una sottostringa di $abcabc$?
++ $acb$
+- $bca$
+- $cab$
+- $\lambda$
+- $abcabc$
+= I pezzi di tre simboli consecutivi sono $abc$, $bca$ e $cab$: $acb$ non c'è. La più insidiosa è $\lambda$: la stringa vuota è una sottostringa di ogni stringa.
+
+D: Esercizio 155 del §3.2, dalla risposta ufficiale. Con $X = \{a, b\}$, la funzione $h(\alpha) = \alpha ab$ da $X^*$ a $X^*$ è:
++ iniettiva ma non suriettiva
+- suriettiva ma non iniettiva
+- biiettiva
+- né iniettiva né suriettiva
+- una funzione solo sulle stringhe che finiscono con $ab$
+= Da $\alpha ab = \beta ab$ viene $\alpha = \beta$, quindi è iniettiva. Ogni risultato è lungo almeno 2, quindi $\lambda$ non è mai raggiunta. La più insidiosa è «biiettiva»: lo è l'inversione, non questa.
+
+D: La concatenazione $g(\alpha, \beta) = \alpha\beta$ va da $X^* \times X^*$ a $X^*$. Quante coppie hanno come immagine la stringa $abba$?
+N: 5
+= Una coppia per ogni punto di taglio: una stringa lunga 4 ne ha $4 + 1 = 5$. Le coppie sono $(\lambda, abba)$, $(a, bba)$, $(ab, ba)$, $(abb, a)$, $(abba, \lambda)$.
+
+D: Simulazione d'esame 1 del 2023/24. La relazione $R = \{(1,1), (1,2), (1,3), (3,1), (3,3), (4,4), (5,5)\}$ ha dominio e codominio $\{1, 2, 3, 4, 5\}$. Quale affermazione è vera?
++ non è riflessiva, non è simmetrica e non è antisimmetrica
+- è riflessiva, perché contiene $(1,1)$, $(3,3)$, $(4,4)$ e $(5,5)$
+- è simmetrica, perché contiene sia $(1,3)$ sia $(3,1)$
+- è antisimmetrica, perché non è simmetrica
+- è riflessiva e simmetrica, ma non antisimmetrica
+= Manca $(2,2)$, quindi non è riflessiva. $(1,2)$ non ha il ritorno, quindi non è simmetrica. $(1,3)$ e $(3,1)$ ci sono tutte e due, quindi non è antisimmetrica. La più insidiosa è «è antisimmetrica, perché non è simmetrica»: le due proprietà non sono una il contrario dell'altra.
+
+D: La relazione $R = \{(a,a), (b,b), (c,c)\}$ sull'insieme $\{a, b, c\}$ è:
++ riflessiva, simmetrica e antisimmetrica
+- riflessiva e simmetrica, ma non antisimmetrica
+- riflessiva e antisimmetrica, ma non simmetrica
+- solo riflessiva
+- riflessiva, e né simmetrica né antisimmetrica
+= È l'esempio 3.3.15 citato dal diario. Ci sono tutti i cappi; ogni freccia è il ritorno di sé stessa; non ci sono due punti diversi collegati nei due sensi. La più insidiosa è «riflessiva e simmetrica, ma non antisimmetrica»: nasce dall'idea che una relazione simmetrica non possa essere antisimmetrica.
+
+D: Sul modello dell'autoverifica del capitolo 3. Sugli interi positivi, $(x, y) \in R$ quando 3 divide $x + y$. Quali proprietà ha, tra riflessiva, simmetrica e antisimmetrica?
++ solo simmetrica
+- riflessiva e simmetrica
+- solo antisimmetrica
+- tutte e tre
+- nessuna delle tre
+= Simmetrica perché $x + y = y + x$. Non riflessiva: $1 + 1 = 2$ non è multiplo di 3. Non antisimmetrica: $(1,2)$ e $(2,1)$ ci sono tutte e due. La più insidiosa è «riflessiva e simmetrica»: con «$x + y$ è pari» sarebbe giusta, perché $x + x$ è sempre pari, ma non è sempre multiplo di 3.
+
+D: Quale di queste relazioni sull'insieme $\{1, 2, 3\}$ è antisimmetrica ma NON riflessiva?
++ $\{(1,2), (2,3), (1,3)\}$
+- $\{(1,1), (2,2), (3,3)\}$
+- $\{(1,2), (2,1)\}$
+- $\{(1,1), (2,2), (3,3), (1,2)\}$
+- $\{(1,2), (2,1), (3,3)\}$
+= È la relazione «minore»: nessun cappio, e mai andata e ritorno. La più insidiosa è $\{(1,1), (2,2), (3,3), (1,2)\}$: è antisimmetrica, ma ha tutti i cappi, quindi è anche riflessiva.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: concatenare e misurare
+Con $\alpha = aab$, $\beta = ba$ e $\gamma = \lambda$: scrivi $\alpha\beta$, $\beta\alpha$, $\alpha\gamma\beta$ e $\beta^2\alpha$. Quanto è lunga ognuna?
+::: soluzione
+$\alpha\beta = aabba$, lunga 5. $\beta\alpha = baaab$, lunga 5. $\alpha\gamma\beta = aabba$, ancora lunga 5: la stringa vuota non aggiunge niente. $\beta^2\alpha = babaaab$, lunga 7.
+:::
+
+::: esercizio base Riscaldamento: stringhe corte su due simboli (libro, §3.2, esercizi 143 e 146)
+Elenca le stringhe su $\{0, 1\}$ di lunghezza 2. Quante sono quelle di lunghezza al più 3?
+::: soluzione
+Di lunghezza 2: 00, 01, 10, 11. Di lunghezza al più 3 sono $1 + 2 + 4 + 8 = 15$: la stringa vuota, le due di lunghezza 1, le quattro di lunghezza 2, le otto di lunghezza 3. Sono le risposte ufficiali del libro; i testi dei due esercizi li ricavo dalle risposte.
+:::
+
+::: esercizio base Riscaldamento: sottostringhe
+Elenca tutte le sottostringhe di $aba$. Poi di' se $bb$, $\lambda$ e $ab$ sono sottostringhe di $abab$.
+::: soluzione
+Di $aba$: $\lambda$, $a$, $b$, $ab$, $ba$, $aba$. Sono sei. Per $abab$: $bb$ no, perché le due $b$ non sono vicine; $\lambda$ sì, come per ogni stringa; $ab$ sì, e compare due volte.
+:::
+
+::: esercizio base Riscaldamento: dalla regola alle coppie
+Su $\{1, 2, 3, 4\}$ scrivi le coppie della relazione «$x + y = 5$». È riflessiva? Simmetrica? Antisimmetrica?
+::: soluzione
+$\{(1,4), (2,3), (3,2), (4,1)\}$. Non è riflessiva: nessun cappio, perché $x + x = 5$ non ha soluzioni intere. È simmetrica: $x + y = y + x$. Non è antisimmetrica: $(1,4)$ e $(4,1)$ ci sono tutte e due.
+:::
+
+::: esercizio medio La rovesciata di una concatenazione
+Con $\alpha = abb$ e $\beta = ca$ calcola $(\alpha\beta)^R$, $\beta^R\alpha^R$ e $\alpha^R\beta^R$. Quale delle ultime due coincide con la prima? Poi spiega perché la regola vale sempre.
+::: soluzione
+$\alpha\beta = abbca$, quindi $(\alpha\beta)^R = acbba$. $\beta^R = ac$ e $\alpha^R = bba$: $\beta^R\alpha^R = acbba$, uguale. $\alpha^R\beta^R = bbaac$, diversa. La regola vale sempre: leggendo $\alpha\beta$ da destra si incontrano prima i simboli di $\beta$ dall'ultimo al primo, cioè $\beta^R$, e poi quelli di $\alpha$ dall'ultimo al primo, cioè $\alpha^R$.
+:::
+
+::: esercizio medio Una funzione che raddoppia
+Con $X = \{a, b\}$, sia $d : X^* \to X^*$ la funzione $d(\alpha) = \alpha\alpha$. È iniettiva? È suriettiva?
+::: soluzione
+**Iniettiva: sì.** Se $\alpha\alpha = \beta\beta$, le due stringhe hanno la stessa lunghezza, quindi $|\alpha| = |\beta|$. Allora $\alpha$ e $\beta$ sono la prima metà della stessa stringa, e coincidono. **Suriettiva: no.** Ogni risultato ha lunghezza pari, quindi $a$ non è mai un risultato. Nemmeno $ab$ lo è: ha lunghezza pari, ma le sue due metà sono diverse.
+:::
+
+::: esercizio esame Tre proprietà per due relazioni (sul modello dell'autoverifica del capitolo 3)
+Sugli interi positivi, di' se è riflessiva, simmetrica, antisimmetrica: (a) $(x, y) \in R$ quando 2 divide $x + y$; (b) $(x, y) \in R$ quando $x$ divide $y$.
+::: soluzione
+**(a)** Riflessiva: $x + x = 2x$ è pari. Simmetrica: $x + y = y + x$. Non antisimmetrica: $(1, 3)$ e $(3, 1)$ ci sono tutte e due. **(b)** Riflessiva: $x = 1 \cdot x$. Non simmetrica: 2 divide 4, e 4 non divide 2. Antisimmetrica: se $x$ divide $y$ allora $x \le y$, e se $y$ divide $x$ allora $y \le x$; quindi $x = y$.
+:::
+
+::: esercizio esame Una relazione dall'autoverifica (capitolo 3, domanda 15)
+La risposta ufficiale alla domanda 15 è la relazione $R = \{(1,1), (2,2), (3,3), (4,4), (1,2), (2,1), (2,3)\}$ su $\{1, 2, 3, 4\}$; il testo della domanda non ce l'ho. Disegna il grafo e di' se è riflessiva, simmetrica, antisimmetrica, ogni volta con il testimone.
+::: soluzione
+**Riflessiva: sì**, ci sono i quattro cappi. **Simmetrica: no**, $(2,3)$ c'è e $(3,2)$ manca. **Antisimmetrica: no**, $(1,2)$ e $(2,1)$ ci sono tutte e due. È un altro esempio del quarto caso: né simmetrica né antisimmetrica.
+:::
+
+::: esercizio difficile Contare le relazioni su due elementi
+Sull'insieme $\{1, 2\}$: quante relazioni ci sono in tutto? Quante sono riflessive? Quante simmetriche? Quante antisimmetriche? Quante simmetriche e antisimmetriche insieme?
+::: soluzione
+Le coppie possibili sono 4: $(1,1)$, $(1,2)$, $(2,1)$, $(2,2)$. Una relazione è un sottoinsieme di queste quattro, quindi le relazioni sono $2^4 = 16$. **Riflessive: 4.** I due cappi sono obbligati; $(1,2)$ e $(2,1)$ si scelgono liberamente, $2 \cdot 2$ modi. **Simmetriche: 8.** $(1,2)$ e $(2,1)$ entrano insieme o restano fuori insieme, 2 scelte; i due cappi sono liberi, 4 scelte. **Antisimmetriche: 12.** $(1,2)$ e $(2,1)$ non possono esserci tutte e due: 3 scelte; per i cappi, 4. **Tutte e due: 4.** Né $(1,2)$ né $(2,1)$; restano le 4 scelte sui cappi. Controllato con un programma.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è la concatenazione di due stringhe, e quanto è lunga?
+La stringa formata dalla prima seguita dalla seconda. La sua lunghezza è la somma delle due lunghezze.
+:::
+
+::: domanda Quando una stringa è sottostringa di un'altra?
+Quando la seconda si può scrivere come un pezzo, poi la prima, poi un altro pezzo. I due pezzi intorno possono essere vuoti.
+:::
+
+::: domanda Che differenza c'è tra sottostringa e sottosequenza?
+La sottostringa è fatta di simboli consecutivi. La sottosequenza tiene l'ordine ma può saltare dei simboli.
+:::
+
+::: domanda Perché l'inversione di una stringa è una biiezione?
+Perché rovesciando due volte si torna alla stringa di partenza: da qui vengono sia l'iniettività sia la suriettività.
+:::
+
+::: domanda Perché la concatenazione, come funzione di due stringhe, non è iniettiva?
+Perché coppie diverse danno la stessa stringa: per esempio la coppia con $a$ e la stringa vuota, nei due ordini.
+:::
+
+::: domanda Come si disegna una relazione su un insieme?
+Un punto per ogni elemento e una freccia per ogni coppia. Una coppia con i due elementi uguali è un cappio.
+:::
+
+::: domanda Quando una relazione è riflessiva, simmetrica, antisimmetrica?
+Riflessiva: un cappio su ogni punto. Simmetrica: ogni freccia ha il ritorno. Antisimmetrica: tra due punti diversi mai andata e ritorno insieme.
+:::
+
+::: domanda Una relazione può essere simmetrica e antisimmetrica insieme?
+Sì, quando tutte le sue coppie sono cappi.
+:::
+
+## Glossario
+
+```glossario
+Concatenazione | La stringa formata da una stringa seguita da un'altra.
+Sottostringa | Un pezzo di simboli consecutivi di una stringa; anche la stringa vuota e la stringa intera.
+Inversione | La funzione che a ogni stringa abbina la stessa stringa letta al contrario.
+Palindroma | Stringa uguale alla sua rovesciata.
+Relazione | Insieme di coppie; da X a Y se le coppie stanno nel prodotto cartesiano di X per Y.
+Relazione su un insieme | Relazione in cui i due elementi di ogni coppia vengono dallo stesso insieme.
+Grafo orientato (digraph) | Disegno di una relazione: un punto per elemento, una freccia per coppia.
+Cappio | Freccia da un punto a sé stesso: una coppia con i due elementi uguali.
+Riflessiva | Relazione che contiene il cappio di ogni elemento dell'insieme.
+Simmetrica | Relazione in cui ogni freccia ha la freccia di ritorno.
+Antisimmetrica | Relazione in cui due elementi diversi non sono mai collegati nei due sensi.
+```
+
+## Checklist
+
+```checklist
+- So concatenare due stringhe e calcolare la lunghezza del risultato.
+- So leggere le potenze di una stringa, con e senza parentesi.
+- So dire se una stringa è sottostringa di un'altra, ed elencare tutte le sottostringhe.
+- So distinguere una sottostringa da una sottosequenza.
+- So dimostrare che l'inversione è iniettiva e suriettiva.
+- So dire perché la concatenazione è suriettiva e non iniettiva, e contare le coppie che danno una stringa.
+- So scrivere una relazione come insieme di coppie e disegnarne il grafo.
+- So controllare se una relazione è riflessiva, e dire quale cappio manca.
+- So controllare se una relazione è simmetrica, e indicare la freccia senza ritorno.
+- So controllare se una relazione è antisimmetrica, e indicare i due punti con andata e ritorno.
+- So fare un esempio di relazione per ognuno dei quattro casi simmetrica/antisimmetrica.
+```
+
+## Fonti
+
+- Diario delle lezioni del canale B (Berardi), lezione 24 del docente, 23/11/2026: «Sezione 3.2 da 3.2.26 (definizione della concatenazione di stringhe) fino alla fine. Definizione di sotto-stringa, iniettività e suriettività dell'inversione di stringhe, suriettività e non iniettività della composizione di stringhe. Sezione 3.3: relazioni riflessive, simmetriche e antisimmetriche, fino all'esempio 3.3.15 (una relazione sia simmetrica che antisimmetrica)».
+- Johnsonbaugh, parte 2 del libro di testo, §3.2 e §3.3: risposte ufficiali alle domande di ripasso (15 e 16 del §3.2; da 1 a 5 del §3.3), agli esercizi 143, 146 e 155 del §3.2 e all'autoverifica del capitolo 3 (domande 3, 4, 10 e 15), nell'appendice «Soluzioni di altri esercizi del testo» (Moodle del canale A, aperto agli ospiti). Il libro non ce l'ho: i testi degli esercizi citati sono ricostruiti dalle risposte.
+- Simulazione d'esame 1 del 2023/24, quiz sulle proprietà di una relazione (dalla copia compilata da uno studente, ricontrollata).
+- Per le relazioni in Matematica Discreta: lezione [D03](../MDAG/D03_prodotto_cartesiano_relazioni.html).
+- Gli esempi senza altra indicazione, i disegni, i quiz e gli esercizi sono di questi appunti; i conti li ho ricontrollati con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/24_circuiti_combinatori_algebre_boole.md -->
+> File: `contesto_ai/FDA/lezioni/24_circuiti_combinatori_algebre_boole.md`
+
+```yaml
+corso: FDA
+lezione: "24"
+titolo: "Circuiti combinatori, espressioni booleane e algebre di Boole"
+data: 2026-11-26
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 24 · Libro, parte 2, §11.1, §11.2 e inizio del §11.3
+simboli_logici: si
+descrizione: >-
+  Appunti della lezione 24 di Fondamenti dell'Informatica (canale B): circuiti combinatori e sequenziali, porte AND, OR
+  e NOT, tabelle logiche, espressioni booleane e letterali, le cinque coppie di leggi delle operazioni sui bit,
+  espressioni uguali e circuiti equivalenti, la definizione di algebra di Boole con gli esempi dei bit e dei
+  sottoinsiemi.
+lede: >-
+  Si salta al capitolo 11 del libro, e si torna ai circuiti della prima lezione con un'altra domanda. Non interessa
+  più solo che cosa calcola un circuito, ma quando due circuiti diversi calcolano la stessa cosa: lo decidono poche
+  leggi, le stesse che valgono per gli insiemi e per le proposizioni.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, parte 2, §11.1, §11.2 e §11.3 fino agli esempi di algebra di Boole
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore e mezza
+fonte: >-
+  Diario delle lezioni del canale B (lezione 25 del docente); risposte ufficiali alle domande di ripasso e agli
+  esercizi dei §11.1, §11.2 e §11.3 (appendice pubblicata sul Moodle del canale A); simulazioni d'esame 1 e 2 del
+  2023/24, quiz sul circuito e sulle algebre booleane
+appunti_html: appunti/FDA/24_circuiti_combinatori_algebre_boole.html
+genera_html: true
+```
+
+## In breve
+
+- Un **circuito combinatorio** ha un'uscita decisa solo dagli ingressi di quel momento: non ha memoria, e nessun filo torna indietro.
+- Le porte sono tre: **AND**, **OR**, **NOT**. La **tabella logica** di un circuito elenca tutte le combinazioni degli ingressi con l'uscita di ognuna.
+- Un'**espressione booleana** è la formula di un circuito: si costruisce con 0, 1, le variabili, le parentesi e le tre operazioni.
+- Le operazioni sui bit rispettano cinque coppie di leggi: **associativa, commutativa, distributiva, identità, complemento**.
+- Due espressioni sono **uguali** se danno lo stesso valore per ogni scelta dei bit. Due circuiti sono **equivalenti** se a ingressi uguali danno uscite uguali. Le due cose coincidono.
+- Un'**algebra di Boole** è un insieme con due operazioni, un complemento, uno 0 e un 1 che rispettano quelle cinque coppie di leggi. I bit sono un esempio; i sottoinsiemi di un insieme sono un altro.
+
+> [!CANALI]
+> Nel canale B è la lezione di giovedì 26/11, dalle 9 alle 11. Per il docente è la lezione 25: qui è la 24. Il diario del canale B dice: «Sezione 11.1 e 11.2: circuiti combinatori e loro proprietà. Sezione 11.3: Algebre di Boole.» Dal capitolo 3 si passa al capitolo 11.
+>
+> **Che cosa non so.** Il libro non ce l'ho; ho le risposte ufficiali alle domande di ripasso e a una parte degli esercizi dei tre paragrafi. Definizioni ed enunciati sono quelli delle risposte ufficiali, tradotti. Gli esempi sono miei, salvo dove dico il contrario. Non so fino a che punto del §11.3 è arrivata la lezione: qui ci sono la definizione e i due esempi principali. Le leggi che si ricavano dalla definizione sono nella [lezione 25](25_algebre_boole_deduzioni_equazionali.html), che secondo il diario continua lo stesso paragrafo.
+>
+> **Che cosa è ripasso.** Le porte e le tabelle sono nella [lezione 01](01_bit_porte_esadecimale.html), i quiz sui circuiti nella [lezione 05](05_esercizi_circuiti_rappresentazioni.html), le equivalenze logiche nella [lezione 07](07_condizionali_equivalenza_logica.html). Qui cambiano i simboli, che sono quelli del capitolo 11, e lo scopo: confrontare circuiti.
+>
+> **Canali A e C.** Lo stesso capitolo è nella mappa comune del corso (§11.1–11.5).
+
+## Circuiti senza memoria (libro, §11.1)
+
+Dentro un computer un bit viaggia come una tensione: alta per 1, bassa per 0. Un circuito riceve alcuni bit in ingresso e produce un bit in uscita. La prima distinzione del capitolo è tra i circuiti che ricordano e quelli che non ricordano.
+
+> [!DEF] Circuito combinatorio e circuito sequenziale (libro, §11.1, domande di ripasso 1 e 2)
+> Un circuito è **combinatorio** se la sua uscita è definita in modo unico per ogni combinazione degli ingressi. È **sequenziale** se l'uscita dipende dagli ingressi e dallo stato del sistema.
+
+**Come si legge.** In un circuito combinatorio gli stessi ingressi danno sempre la stessa uscita, qualunque cosa sia successa prima: il circuito non ha memoria. In uno sequenziale conta anche la storia. Il flip-flop della [lezione 01](01_bit_porte_esadecimale.html) è sequenziale: con gli stessi ingressi può dare 0 o 1, secondo l'ultimo impulso ricevuto. I circuiti sequenziali tornano nel capitolo 12, con gli automi.
+
+I circuiti combinatori si costruiscono con tre **porte**. Sono quelle della lezione 01; il capitolo 11 le scrive con i simboli della logica.
+
+| Porta | Si scrive | Uscita 1 quando | Nella lezione 01 |
+|---|---|---|---|
+| AND | $x_1 \wedge x_2$ | tutti e due gli ingressi valgono 1 | A AND B |
+| OR | $x_1 \vee x_2$ | almeno un ingresso vale 1 | A OR B |
+| NOT | $\overline{x}$ | l'ingresso vale 0 | NOT A |
+
+La porta NOT si chiama anche **invertitore**. La barra copre tutto quello che viene negato: $\overline{x_1 \wedge x_2}$ nega l'uscita della AND, mentre $\overline{x_1} \wedge x_2$ nega solo il primo ingresso.
+
+```widget porte
+titolo: Le porte della lezione 01: clicca sugli ingressi A e B
+modo: porte
+a: 1
+b: 0
+```
+
+Lo strumento mostra anche lo XOR, che il libro riprende più avanti, nel §11.4.
+
+::: prova Quanto valgono $\overline{1 \wedge 0}$, $\overline{1} \wedge 0$ e $\overline{0} \vee \overline{1}$?
+Nel primo $1 \wedge 0 = 0$, e la barra lo porta a 1. Nel secondo la barra copre solo l'1: $0 \wedge 0 = 0$. Nel terzo: $1 \vee 0 = 1$.
+:::
+
+> [!RICORDA]
+> - Combinatorio: l'uscita dipende solo dagli ingressi di quel momento. Sequenziale: anche dallo stato.
+> - AND si scrive $\wedge$, OR si scrive $\vee$, NOT è la barra sopra.
+> - La barra nega tutto quello che copre.
+
+## La tabella logica di un circuito
+
+Di un circuito combinatorio si può scrivere tutto il comportamento in una tabella. È possibile proprio perché non ha memoria: le situazioni da considerare sono solo le combinazioni degli ingressi.
+
+```grafico
+titolo: Un circuito combinatorio con tre ingressi e tre porte. I fili vanno tutti da sinistra a destra. Sopra ogni filo interno c'è scritto che cosa trasporta: sono le colonne della tabella logica
+x: 0 12
+y: 0.6 5.1
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.5 4.2 | grigio | "$x_1$"
+testo: 0.5 3.2 | grigio | "$x_2$"
+testo: 0.5 1.4 | grigio | "$x_3$"
+poligono: 2.25 3.2 3.75 3.2 3.75 4.2 2.25 4.2 | blu | tenue
+testo: 3 3.7 | blu | "AND"
+freccia: 0.95 4.2 2.2 3.95 | grigio
+freccia: 0.95 3.2 2.2 3.45 | grigio
+poligono: 5.25 2.1 6.75 2.1 6.75 3.1 5.25 3.1 | verde | tenue
+testo: 6 2.6 | verde | "OR"
+freccia: 3.8 3.7 5.2 2.9 | grigio
+freccia: 0.95 1.4 5.2 2.3 | grigio
+poligono: 8.25 2.1 9.75 2.1 9.75 3.1 8.25 3.1 | ambra | tenue
+testo: 9 2.6 | ambra | "NOT"
+freccia: 6.8 2.6 8.2 2.6 | grigio
+freccia: 9.8 2.6 11.0 2.6 | grigio
+testo: 11.45 2.6 | grigio | "$y$"
+testo: 4.9 4.5 | blu | "$x_1 \wedge x_2$"
+testo: 7.6 3.65 | verde | "$(x_1 \wedge x_2) \vee x_3$"
+```
+
+> [!DEF] Tabella logica (libro, §11.1, domanda di ripasso 7)
+> La **tabella logica** di un circuito combinatorio elenca tutti i possibili ingressi insieme alle uscite che ne risultano.
+
+**Come si legge.** È la tavola di verità della [lezione 06](06_proposizioni_connettivi_tavole.html), con 1 e 0 al posto di vero e falso. Con $n$ ingressi le righe sono $2^n$. Si riempie una colonna per porta, andando dagli ingressi verso l'uscita.
+
+Per il circuito della figura:
+
+| $x_1$ | $x_2$ | $x_3$ | $x_1 \wedge x_2$ | $(x_1 \wedge x_2) \vee x_3$ | $y$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 | 0 | 1 |
+| 0 | 0 | 1 | 0 | 1 | 0 |
+| 0 | 1 | 0 | 0 | 0 | 1 |
+| 0 | 1 | 1 | 0 | 1 | 0 |
+| 1 | 0 | 0 | 0 | 0 | 1 |
+| 1 | 0 | 1 | 0 | 1 | 0 |
+| 1 | 1 | 0 | 1 | 1 | 0 |
+| 1 | 1 | 1 | 1 | 1 | 0 |
+
+L'uscita vale 1 in tre righe: quando il terzo ingresso è 0 e i primi due non sono tutti e due 1.
+
+Le risposte ufficiali del libro scrivono le righe nell'ordine opposto, da 111 a 000. Non cambia niente: l'importante è che le righe ci siano tutte, una volta sola. Qui tengo l'ordine da 000 a 111, quello delle lezioni 01 e 05 e delle simulazioni d'esame.
+
+### Un circuito che non è combinatorio
+
+Che cosa va storto se un filo torna indietro? Nel circuito qui sotto l'uscita $y$ rientra nella porta AND insieme all'ingresso $x$, e l'uscita della AND passa da una NOT.
+
+```grafico
+titolo: Un circuito in cui l'uscita y, seguendo il filo rosa, rientra nella porta AND. Per sapere quanto vale y bisognerebbe saperlo già: con x = 1 nessun valore di y è coerente con le porte
+x: 0 12
+y: 0.2 4.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.6 3.4 | grigio | "$x$"
+freccia: 1.0 3.4 2.7 3.4 | grigio
+poligono: 2.75 2.6 4.25 2.6 4.25 3.6 2.75 3.6 | blu | tenue
+testo: 3.5 3.1 | blu | "AND"
+freccia: 4.3 3.1 5.7 3.1 | grigio
+poligono: 5.75 2.6 7.25 2.6 7.25 3.6 5.75 3.6 | ambra | tenue
+testo: 6.5 3.1 | ambra | "NOT"
+segmento: 7.25 3.1 9.2 3.1 | grigio
+freccia: 9.2 3.1 10.2 3.1 | grigio
+testo: 10.7 3.1 | grigio | "$y$"
+punto: 8.6 3.1 | rosa
+segmento: 8.6 3.1 8.6 1.2 | rosa
+segmento: 8.6 1.2 1.9 1.2 | rosa
+segmento: 1.9 1.2 1.9 2.8 | rosa
+freccia: 1.9 2.8 2.7 2.8 | rosa
+testo: 5.2 0.7 | rosa | "l'uscita torna in ingresso"
+```
+
+> [!ESEMPIO] Esercizio 7 del §11.1 (dalla risposta ufficiale)
+> Il circuito impone che valga $y = \overline{x \wedge y}$. Provo i due valori dell'ingresso.
+>
+> **Con $x = 0$.** La AND dà 0 qualunque sia $y$, e la NOT dà 1. L'uscita è 1, senza dubbi.
+>
+> **Con $x = 1$.** Provo $y = 0$: la AND riceve 1 e 0 e dà 0, la NOT dà 1. Ma allora $y$ vale 1, non 0. Provo $y = 1$: la AND riceve 1 e 1 e dà 1, la NOT dà 0. Ma allora $y$ vale 0, non 1. Nessuno dei due valori regge.
+>
+> Con l'ingresso a 1 l'uscita non è definita: il circuito non è combinatorio. È la risposta del libro.
+
+Per questo nei circuiti combinatori i fili vanno solo in avanti, dagli ingressi verso l'uscita. Nei quiz il primo controllo è proprio questo: c'è un filo che torna indietro?
+
+::: prova Un circuito ha quattro ingressi. Quante righe ha la sua tabella logica? Con due ingressi, quale porta ha uscita 1 in una riga sola, quella con tutti gli ingressi a 1?
+$2^4 = 16$ righe. La porta è la AND: dà 1 solo quando tutti gli ingressi valgono 1.
+:::
+
+> [!RICORDA]
+> - Tabella logica: tutte le combinazioni degli ingressi, $2^n$ righe, con l'uscita di ognuna.
+> - Una colonna per porta, dagli ingressi verso l'uscita.
+> - Un filo che torna indietro può rendere l'uscita non definita: il circuito non è combinatorio.
+
+## Espressioni booleane
+
+Il circuito della prima figura si può descrivere senza disegno, con una formula. Si scrive un'operazione per ogni porta, seguendo i fili:
+
+$$y = \overline{(x_1 \wedge x_2) \vee x_3}$$
+
+Una formula così si chiama **espressione booleana**. Il libro dice con precisione quali scritture lo sono, con una definizione **ricorsiva**: prima i casi di partenza, poi le regole per costruire espressioni nuove da quelle già fatte.
+
+> [!DEF] Espressione booleana (libro, §11.1, domanda di ripasso 8)
+> Le **espressioni booleane** nei simboli $x_1, \dots, x_n$ sono definite così:
+>
+> - $0$, $1$, $x_1$, …, $x_n$ sono espressioni booleane;
+> - se $X_1$ e $X_2$ sono espressioni booleane, lo sono anche $(X_1)$, $\overline{X_1}$, $X_1 \vee X_2$ e $X_1 \wedge X_2$.
+
+**Come si legge.** Si parte dai mattoni: le due costanti e le variabili. Poi ogni regola è un modo di allungare un circuito: mettere una NOT in fondo, oppure unire due circuiti con una OR o con una AND. Le parentesi non aggiungono porte: dicono solo in che ordine si fanno le operazioni. Quello che non si ottiene così non è un'espressione booleana. Per esempio $x_1 \wedge \vee\, x_2$ non lo è: nessuna regola mette due operazioni di seguito.
+
+Un **letterale** è una variabile da sola o con la barra, cioè $x$ oppure $\overline{x}$ (domanda di ripasso 9). L'espressione $(x_1 \wedge \overline{x_2}) \vee x_3$ ha tre letterali.
+
+> [!ESEMPIO] Esercizio 16 del §11.1 (dalla risposta ufficiale): costruire un'espressione passo per passo
+> $x_1 \wedge (x_2 \vee x_3)$ è un'espressione booleana? Sì, e si vede costruendola:
+>
+> 1. $x_1$, $x_2$ e $x_3$ sono espressioni booleane: sono variabili. Il libro numera questa regola (11.1.2).
+> 2. $x_2 \vee x_3$ lo è, per la regola della OR, la (11.1.3c).
+> 3. $(x_2 \vee x_3)$ lo è, per la regola delle parentesi, la (11.1.3a).
+> 4. $x_1 \wedge (x_2 \vee x_3)$ lo è, per la regola della AND, la (11.1.3d).
+
+**L'ordine delle operazioni.** Senza parentesi la AND si fa prima della OR, come la moltiplicazione prima della somma: $x_1 \vee x_2 \wedge x_3$ vuol dire $x_1 \vee (x_2 \wedge x_3)$. La barra fa da parentesi per quello che copre.
+
+**Calcolare un'espressione.** Dati i valori delle variabili, si sostituiscono e si fanno i conti partendo dall'interno. Per $(x_1 \wedge \overline{x_2}) \vee x_3$ con i valori 1, 0, 0:
+
+$$(1 \wedge \overline{0}) \vee 0 = (1 \wedge 1) \vee 0 = 1 \vee 0 = 1$$
+
+**Dall'espressione al circuito.** Si guarda l'operazione più esterna: è l'ultima porta, quella che dà l'uscita. I suoi argomenti sono i circuiti che entrano in quella porta. Nell'espressione appena calcolata l'ultima porta è una OR. In un suo ingresso entra $x_3$; nell'altro entra una AND, che riceve $x_1$ e la NOT di $x_2$.
+
+::: prova Calcola $x_1 \vee x_2 \wedge x_3$ con i valori 1, 0, 0. Che cosa verrebbe facendo prima la OR?
+Prima la AND: $0 \wedge 0 = 0$, poi $1 \vee 0 = 1$. Facendo prima la OR verrebbe $(1 \vee 0) \wedge 0 = 0$: un risultato diverso, e sbagliato.
+:::
+
+> [!RICORDA]
+> - Espressione booleana: costanti e variabili, combinate con parentesi, barra, $\vee$ e $\wedge$.
+> - Letterale: una variabile, con o senza barra.
+> - La AND prima della OR; la barra fa da parentesi.
+> - Ogni operazione dell'espressione è una porta del circuito.
+
+## Cinque coppie di leggi (libro, §11.2)
+
+Con i numeri si sa che scambiando due addendi la somma non cambia, senza provare tutti i numeri: è una legge. Anche le operazioni sui bit hanno le loro leggi, e il libro ne sceglie cinque coppie. In ogni coppia c'è una legge per la OR e una per la AND.
+
+> [!PROP] Le leggi delle operazioni sui bit (libro, §11.2, teorema 11.2.1)
+> Per tutti i bit $a$, $b$, $c$:
+>
+> | Legge | Per la OR | Per la AND |
+> |---|---|---|
+> | associativa | $(a \vee b) \vee c = a \vee (b \vee c)$ | $(a \wedge b) \wedge c = a \wedge (b \wedge c)$ |
+> | commutativa | $a \vee b = b \vee a$ | $a \wedge b = b \wedge a$ |
+> | distributiva | $a \vee (b \wedge c) = (a \vee b) \wedge (a \vee c)$ | $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge c)$ |
+> | identità | $a \vee 0 = a$ | $a \wedge 1 = a$ |
+> | complemento | $a \vee \overline{a} = 1$ | $a \wedge \overline{a} = 0$ |
+
+**Come si legge.** Associativa: in una fila di sole OR, o di sole AND, le parentesi non servono. Commutativa: i due ingressi di una porta si possono scambiare. Identità: lo 0 non cambia una OR, l'1 non cambia una AND. Complemento: un bit e il suo contrario, messi in OR, danno sempre 1; messi in AND, sempre 0. Il libro indica l'insieme dei due bit con $Z_2$.
+
+La distributiva è quella da guardare bene. La versione per la AND somiglia a quella dei numeri, con la AND al posto del prodotto e la OR al posto della somma. La versione per la OR, con i numeri, è **falsa**: $2 + 3 \cdot 4 = 14$, mentre $(2 + 3) \cdot (2 + 4) = 30$. Con i bit è vera.
+
+**Perché sono vere.** I bit sono due, quindi basta provare tutti i casi: due per le leggi con una lettera, quattro per quelle con due, otto per quelle con tre. Ecco la tabella della distributiva per la OR:
+
+| $a$ | $b$ | $c$ | $b \wedge c$ | $a \vee (b \wedge c)$ | $a \vee b$ | $a \vee c$ | $(a \vee b) \wedge (a \vee c)$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 | **0** | 0 | 0 | **0** |
+| 0 | 0 | 1 | 0 | **0** | 0 | 1 | **0** |
+| 0 | 1 | 0 | 0 | **0** | 1 | 0 | **0** |
+| 0 | 1 | 1 | 1 | **1** | 1 | 1 | **1** |
+| 1 | 0 | 0 | 0 | **1** | 1 | 1 | **1** |
+| 1 | 0 | 1 | 0 | **1** | 1 | 1 | **1** |
+| 1 | 1 | 0 | 0 | **1** | 1 | 1 | **1** |
+| 1 | 1 | 1 | 1 | **1** | 1 | 1 | **1** |
+
+Le due colonne in grassetto coincidono in tutte le righe. Con lo strumento puoi rifare la prova, e cambiare le formule per controllare le altre leggi.
+
+```widget logica
+titolo: La distributiva della OR sulla AND: le due formule hanno la stessa tavola
+modo: equivalenza
+a: a ∨ (b ∧ c)
+b: (a ∨ b) ∧ (a ∨ c)
+```
+
+Sono le equivalenze logiche della [lezione 07](07_condizionali_equivalenza_logica.html), scritte con il segno di uguale e con 1 e 0 al posto di vero e falso.
+
+::: prova Quale legge giustifica ogni uguaglianza? (a) $x \wedge (y \vee z) = (y \vee z) \wedge x$. (b) $(x \wedge y) \vee \overline{(x \wedge y)} = 1$. (c) $x \vee (y \wedge \overline{y}) = x \vee 0$.
+(a) Commutativa della AND: i due ingressi scambiati sono $x$ e $y \vee z$. (b) Complemento, applicata al blocco $x \wedge y$: una legge vale anche quando al posto di una lettera c'è un'espressione intera. (c) Complemento della AND, dentro la parentesi.
+:::
+
+> [!RICORDA]
+> - Cinque coppie: associativa, commutativa, distributiva, identità, complemento.
+> - Le distributive sono due: anche la OR si distribuisce sulla AND.
+> - Si dimostrano provando tutti i casi, perché i bit sono solo due.
+> - Una legge si può applicare a un'espressione intera al posto di una lettera.
+
+## Espressioni uguali, circuiti equivalenti
+
+Due circuiti diversi possono fare lo stesso lavoro. Se uno dei due ha meno porte, costa meno, occupa meno spazio ed è più veloce: per questo interessa sapere quando due circuiti sono intercambiabili.
+
+> [!DEF] Espressioni uguali e circuiti equivalenti (libro, §11.2, domande di ripasso 6 e 7)
+> Due espressioni booleane sono **uguali** se hanno lo stesso valore per ogni assegnazione di bit alle variabili. Due circuiti combinatori sono **equivalenti** se, ogni volta che ricevono gli stessi ingressi, producono le stesse uscite.
+
+**Come si legge.** «Uguali» non vuol dire scritte allo stesso modo: vuol dire stessa tabella. Lo stesso per i circuiti: possono avere porte diverse, in numero diverso. Le due definizioni dicono una cosa sola in due lingue, e il libro lo scrive come teorema (domanda di ripasso 8): due circuiti sono equivalenti **se e solo se** le loro espressioni sono uguali.
+
+```grafico
+titolo: Due circuiti equivalenti. A sinistra una OR seguita da una NOT; a destra due NOT seguite da una AND. Hanno porte diverse e la stessa tabella logica: è la legge di De Morgan
+x: 0 12
+y: 0.3 5.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.4 3.6 | grigio | "$x$"
+testo: 0.4 2.4 | grigio | "$y$"
+poligono: 1.55 2.5 2.85 2.5 2.85 3.5 1.55 3.5 | verde | tenue
+testo: 2.2 3 | verde | "OR"
+freccia: 0.75 3.6 1.5 3.25 | grigio
+freccia: 0.75 2.4 1.5 2.75 | grigio
+poligono: 3.55 2.5 4.85 2.5 4.85 3.5 3.55 3.5 | ambra | tenue
+testo: 4.2 3 | ambra | "NOT"
+freccia: 2.9 3.0 3.5 3.0 | grigio
+freccia: 4.9 3.0 5.6 3.0 | grigio
+testo: 3.0 1.2 | grigio | "$\overline{x \vee y}$"
+testo: 3.0 4.95 | grigio | "due porte"
+segmento: 6.0 0.4 6.0 5.2 | grigio | sottile
+testo: 6.6 3.9 | grigio | "$x$"
+testo: 6.6 2.1 | grigio | "$y$"
+poligono: 7.55 3.45 8.85 3.45 8.85 4.35 7.55 4.35 | ambra | tenue
+testo: 8.2 3.9 | ambra | "NOT"
+poligono: 7.55 1.65 8.85 1.65 8.85 2.55 7.55 2.55 | ambra | tenue
+testo: 8.2 2.1 | ambra | "NOT"
+freccia: 6.95 3.9 7.5 3.9 | grigio
+freccia: 6.95 2.1 7.5 2.1 | grigio
+poligono: 9.65 2.5 10.95 2.5 10.95 3.5 9.65 3.5 | blu | tenue
+testo: 10.3 3 | blu | "AND"
+freccia: 8.9 3.9 9.6 3.25 | grigio
+freccia: 8.9 2.1 9.6 2.75 | grigio
+freccia: 11.0 3.0 11.7 3.0 | grigio
+testo: 9.3 0.9 | grigio | "$\overline{x} \wedge \overline{y}$"
+testo: 9.3 4.95 | grigio | "tre porte"
+```
+
+L'esempio più usato è una delle **leggi di De Morgan**: $\overline{x \vee y} = \overline{x} \wedge \overline{y}$. A sinistra una OR seguita da una NOT; a destra due NOT seguite da una AND.
+
+| $x$ | $y$ | $x \vee y$ | $\overline{x \vee y}$ | $\overline{x}$ | $\overline{y}$ | $\overline{x} \wedge \overline{y}$ |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | **1** | 1 | 1 | **1** |
+| 0 | 1 | 1 | **0** | 1 | 0 | **0** |
+| 1 | 0 | 1 | **0** | 0 | 1 | **0** |
+| 1 | 1 | 1 | **0** | 0 | 0 | **0** |
+
+Le due colonne in grassetto sono uguali: le espressioni sono uguali e i circuiti equivalenti. Il primo ha due porte, il secondo tre.
+
+> [!METODO] Decidere se due espressioni sono uguali
+> **Per dire di sì** ci sono due strade:
+>
+> 1. la tabella completa, con le due colonne finali uguali in **tutte** le righe;
+> 2. una catena di uguaglianze, in cui ogni passo applica una legge già nota.
+>
+> **Per dire di no** basta una riga: una scelta dei bit in cui le due espressioni danno valori diversi.
+
+> [!ESEMPIO] Un «no» con una riga sola
+> $x_1 \wedge (x_2 \vee x_3)$ e $(x_1 \wedge x_2) \vee x_3$ sono uguali? Provo con i valori 0, 0, 1. La prima dà $0 \wedge 1 = 0$. La seconda dà $0 \vee 1 = 1$. Non sono uguali: tra una AND e una OR le parentesi non si possono spostare.
+
+> [!ESEMPIO] Esercizio 18 del §11.2 (dalla risposta ufficiale): un «sì» con una legge
+> Due circuiti sono descritti dalle espressioni $(A \wedge B) \vee (A \wedge C)$ e $A \wedge (B \vee C)$. Sono equivalenti?
+>
+> Le due espressioni sono i due lati della distributiva della AND, la parte (c) del teorema 11.2.1. Quindi sono uguali, e i circuiti sono equivalenti. Il primo ha tre porte, il secondo due: la legge ha tolto una porta.
+
+::: prova $\overline{x \wedge y}$ è uguale a $\overline{x} \wedge \overline{y}$? Se no, trova una riga in cui differiscono.
+No. Con $x = 0$ e $y = 1$ la prima vale $\overline{0} = 1$ e la seconda $1 \wedge 0 = 0$. La legge di De Morgan giusta scambia anche l'operazione: $\overline{x \wedge y} = \overline{x} \vee \overline{y}$.
+:::
+
+> [!RICORDA]
+> - Espressioni uguali: stessa tabella. Circuiti equivalenti: stesse uscite per gli stessi ingressi. È la stessa cosa.
+> - Per il sì: tabella completa, o catena di leggi. Per il no: basta una riga.
+> - De Morgan: la barra su una OR diventa una AND di barre, e viceversa.
+
+## Dai bit alle algebre di Boole (libro, §11.3)
+
+Le cinque coppie di leggi non sono una particolarità dei bit. Valgono identiche per le proposizioni, con «o», «e», «non» ([lezione 07](07_condizionali_equivalenza_logica.html)), e per gli insiemi, con unione, intersezione e complementare. Il libro dà allora un nome a **qualunque** sistema in cui valgono.
+
+Cambia anche la scrittura, per non legarsi a un esempio: il segno $+$ al posto della OR, il punto al posto della AND, un apice al posto della barra.
+
+> [!DEF] Algebra di Boole (libro, §11.3, domanda di ripasso 1)
+> Un'**algebra di Boole** è fatta da un insieme $S$ che contiene due elementi distinti $0$ e $1$, da due operazioni binarie $+$ e $\cdot$ su $S$ e da un'operazione unaria $'$ su $S$, per cui valgono queste leggi, per tutti gli $x$, $y$, $z$ di $S$:
+>
+> | Legge | Per $+$ | Per $\cdot$ |
+> |---|---|---|
+> | associativa | $(x + y) + z = x + (y + z)$ | $(x \cdot y) \cdot z = x \cdot (y \cdot z)$ |
+> | commutativa | $x + y = y + x$ | $x \cdot y = y \cdot x$ |
+> | distributiva | $x + (y \cdot z) = (x + y) \cdot (x + z)$ | $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$ |
+> | identità | $x + 0 = x$ | $x \cdot 1 = x$ |
+> | complemento | $x + x' = 1$ | $x \cdot x' = 0$ |
+
+**Come si legge.** È un elenco di richieste. L'insieme può essere qualunque, e le tre operazioni pure: basta che rispettino le dieci leggi. «Operazione binaria su $S$» vuol dire che prende due elementi di $S$ e ne restituisce uno di $S$; «unaria», che ne prende uno. $0$ e $1$ sono i nomi di due elementi speciali, non per forza i numeri zero e uno. Come per il prodotto dei numeri, $x \cdot y$ si scrive anche $xy$, e il punto si fa prima del più.
+
+> [!TRAPPOLA] Il segno + non è la somma
+> Nell'algebra dei bit il più è la OR, quindi $1 + 1 = 1$. E la distributiva del più sul punto, $x + yz = (x + y)(x + z)$, con i numeri è falsa. I simboli sono presi in prestito dall'aritmetica; le leggi no.
+
+I due esempi da conoscere:
+
+| | I bit | I sottoinsiemi di un insieme $U$ |
+|---|---|---|
+| l'insieme $S$ | $Z_2 = \{0, 1\}$ | tutti i sottoinsiemi di $U$ |
+| $x + y$ | $x \vee y$ | $X \cup Y$ |
+| $x \cdot y$ | $x \wedge y$ | $X \cap Y$ |
+| $x'$ | $\overline{x}$ | il complementare di $X$ in $U$ |
+| l'elemento $0$ | il bit 0 | $\varnothing$ |
+| l'elemento $1$ | il bit 1 | $U$ |
+
+Per i bit le dieci leggi sono il teorema del paragrafo precedente. Per i sottoinsiemi sono proprietà note di unione e intersezione. L'identità dice $X \cup \varnothing = X$ e $X \cap U = X$. Il complemento dice che un insieme e il suo complementare, uniti, danno tutto $U$, e che non hanno elementi in comune.
+
+```grafico
+titolo: I quattro elementi dell'algebra di Boole dei sottoinsiemi di {a, b}. Ogni linea sale da un insieme a uno che lo contiene. In basso l'insieme vuoto, che fa da 0; in alto l'insieme intero, che fa da 1. I due elementi di mezzo sono uno il complemento dell'altro
+x: 0 10
+y: 0.2 5.3
+assi: no
+griglia: no
+proporzioni: libere
+testo: 5 0.7 | blu | "∅"
+testo: 2.6 2.7 | blu | "{a}"
+testo: 7.4 2.7 | blu | "{b}"
+testo: 5 4.7 | blu | "{a, b}"
+segmento: 4.7 1.0 2.9 2.35 | grigio
+segmento: 5.3 1.0 7.1 2.35 | grigio
+segmento: 2.9 3.05 4.5 4.35 | grigio
+segmento: 7.1 3.05 5.5 4.35 | grigio
+testo: 7.3 0.7 | ambra | "fa da 0"
+testo: 7.8 4.7 | ambra | "fa da 1"
+```
+
+Il secondo esempio risponde a una domanda d'esame. La simulazione 2 del 2023/24 chiede: «Le algebre booleane sono definite solo su insiemi che contengono esattamente due elementi (come vero e falso)?» **No.** Con $U = \{a, b\}$ i sottoinsiemi sono quattro, e formano un'algebra di Boole con quattro elementi.
+
+Il vantaggio della definizione: una proprietà ricavata usando **solo** le dieci leggi vale in tutte le algebre di Boole, senza rifare la dimostrazione per i bit, per gli insiemi e per le proposizioni. È il lavoro della [lezione 25](25_algebre_boole_deduzioni_equazionali.html).
+
+::: prova Nell'algebra dei sottoinsiemi di $U = \{a, b\}$: quanto valgono $\{a\} + \{b\}$, $\{a\} \cdot \{b\}$ e $\{a\}'$? Quale legge dice che $\{a\} + \{a\}' = 1$?
+$\{a\} + \{b\} = \{a, b\}$, che è l'elemento 1. $\{a\} \cdot \{b\} = \varnothing$, che è l'elemento 0. $\{a\}' = \{b\}$. L'ultima uguaglianza è la legge del complemento.
+:::
+
+> [!RICORDA]
+> - Algebra di Boole: un insieme con $+$, $\cdot$, $'$, $0$, $1$ e le cinque coppie di leggi.
+> - Esempi: i bit con OR, AND, NOT; i sottoinsiemi con unione, intersezione, complementare.
+> - Un'algebra di Boole può avere più di due elementi.
+> - Il più non è la somma: nei bit $1 + 1 = 1$.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $x_1 \wedge x_2$ | «x uno e x due» | AND: 1 solo se tutti e due valgono 1 | $1 \wedge 0 = 0$ |
+| $x_1 \vee x_2$ | «x uno o x due» | OR: 1 se almeno uno vale 1 | $1 \vee 0 = 1$ |
+| $\overline{x}$ | «x negato» | NOT: scambia 0 e 1 | $\overline{0} = 1$ |
+| $Z_2$ | «zeta due» | l'insieme dei due bit | $\{0, 1\}$ |
+| $X_1 = X_2$ | «uguali» | due espressioni con la stessa tabella | $\overline{x \vee y} = \overline{x} \wedge \overline{y}$ |
+| $x + y$ | «x più y» | l'operazione che fa da OR in un'algebra di Boole | nei bit $1 + 1 = 1$ |
+| $x \cdot y$, $xy$ | «x per y» | l'operazione che fa da AND | negli insiemi $X \cap Y$ |
+| $x'$ | «x primo» | il complemento di $x$ | nei bit $0' = 1$ |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Il quiz sul circuito**, presente nelle due simulazioni del 2023/24: dire se è combinatorio o sequenziale, e quali formule descrivono la funzione calcolata.
+2. **Riconoscere due espressioni uguali**, con la tabella o con le leggi; in particolare De Morgan e le due distributive.
+3. **La definizione di algebra di Boole**: che cosa chiede, e che non riguarda solo i due bit. Il quiz della simulazione 2 è svolto per intero nella lezione 25.
+
+### Una domanda d'esame, letta insieme
+
+**Simulazione d'esame 1 del 2023/24, quiz sul circuito.** Il circuito ha tre ingressi $A$, $B$, $C$. $C$ passa da una NOT. Una AND riceve $A$ e la NOT di $C$; un'altra AND riceve la NOT di $C$ e $B$. Le due AND entrano in una OR, che dà l'uscita $Y$. Tra le voci: «Il circuito è combinatorio», «Il circuito è sequenziale», e tre formule di cui dire se descrivono la funzione calcolata.
+
+Nella [lezione 05](05_esercizi_circuiti_rappresentazioni.html) l'ho risolto con la tabella. Qui lo rifaccio con le leggi.
+
+```grafico
+titolo: Il circuito del quiz, ridisegnato. L'ingresso C passa dalla NOT e poi entra in tutte e due le AND; la OR raccoglie le due uscite. Nessun filo torna indietro
+x: 0 12
+y: 0.4 5.4
+assi: no
+griglia: no
+proporzioni: libere
+testo: 0.5 4.7 | grigio | "A"
+testo: 0.5 2.9 | grigio | "C"
+testo: 0.5 1.1 | grigio | "B"
+poligono: 1.85 2.45 3.15 2.45 3.15 3.35 1.85 3.35 | ambra | tenue
+testo: 2.5 2.9 | ambra | "NOT"
+freccia: 0.9 2.9 1.8 2.9 | grigio
+poligono: 4.95 3.85 6.25 3.85 6.25 4.75 4.95 4.75 | blu | tenue
+testo: 5.6 4.3 | blu | "AND"
+freccia: 0.9 4.7 4.9 4.5 | grigio
+freccia: 3.2 3.05 4.9 4.1 | grigio
+poligono: 4.95 1.05 6.25 1.05 6.25 1.95 4.95 1.95 | blu | tenue
+testo: 5.6 1.5 | blu | "AND"
+freccia: 3.2 2.75 4.9 1.7 | grigio
+freccia: 0.9 1.1 4.9 1.3 | grigio
+poligono: 7.95 2.45 9.25 2.45 9.25 3.35 7.95 3.35 | verde | tenue
+testo: 8.6 2.9 | verde | "OR"
+freccia: 6.3 4.3 7.9 3.15 | grigio
+freccia: 6.3 1.5 7.9 2.65 | grigio
+freccia: 9.3 2.9 10.6 2.9 | grigio
+testo: 11.1 2.9 | grigio | "Y"
+```
+
+**In pratica chiede:** di scrivere l'espressione del circuito e di confrontarla con le tre formule.
+
+> [!ESEMPIO] · la soluzione, voce per voce
+> **Combinatorio o sequenziale.** Tutti i fili vanno dagli ingressi verso l'uscita, nessuno torna indietro: è combinatorio, non sequenziale.
+>
+> **L'espressione del circuito.** Seguendo i fili: $Y = (A \wedge \overline{C}) \vee (\overline{C} \wedge B)$.
+>
+> **La formula $(\neg C \wedge A) \vee (\neg C \wedge B)$.** È l'espressione del circuito, con i due ingressi della prima AND scambiati: legge commutativa. Sì.
+>
+> **La formula $\neg((C \vee \neg A) \wedge (C \vee \neg B))$.** Porto dentro la negazione con De Morgan, un passo per riga:
+>
+> $$\overline{(C \vee \overline{A}) \wedge (C \vee \overline{B})} = \overline{C \vee \overline{A}} \vee \overline{C \vee \overline{B}}$$
+>
+> $$= (\overline{C} \wedge \overline{\overline{A}}) \vee (\overline{C} \wedge \overline{\overline{B}})$$
+>
+> $$= (\overline{C} \wedge A) \vee (\overline{C} \wedge B)$$
+>
+> Primo passo: la barra su una AND diventa una OR di barre. Secondo: la barra su ogni OR diventa una AND di barre. Terzo: due barre una sopra l'altra si cancellano, perché negare due volte un bit lo lascia com'era. È la formula di prima. Sì.
+>
+> **La formula $(\neg C \vee A) \wedge (\neg C \vee B)$.** Somiglia alla prima con AND e OR scambiate, e basta una riga per scartarla. Con i tre ingressi a 0 il circuito dà 0, perché le due AND ricevono uno 0. La formula dà $(1 \vee 0) \wedge (1 \vee 0) = 1$. No.
+>
+> Le risposte tornano con quelle della lezione 05, trovate con la tabella.
+
+**Un circuito più piccolo.** La distributiva della AND, letta da destra a sinistra, raccoglie il pezzo comune: $Y = \overline{C} \wedge (A \vee B)$. Tre porte al posto di quattro, con la stessa tabella.
+
+> [!METODO] Un quiz su un circuito
+> 1. Cerca un filo che torna indietro. Non c'è: combinatorio. C'è: sequenziale.
+> 2. Scrivi l'espressione seguendo i fili, un'operazione per porta.
+> 3. Una formula uguale alla tua a meno di scambi è la stessa, per la commutativa.
+> 4. Una formula con una negazione davanti a una parentesi: porta dentro la negazione con De Morgan.
+> 5. Una formula che sembra diversa: cerca una riga che la smentisca, cominciando da tutti 0 e tutti 1.
+> 6. In caso di dubbio la tabella completa decide sempre.
+
+### Errori da evitare
+
+- Dire «sequenziale» solo perché il circuito ha molte porte: conta il filo che torna indietro.
+- Applicare De Morgan senza scambiare l'operazione: $\overline{x \vee y}$ non è $\overline{x} \vee \overline{y}$.
+- Spostare le parentesi tra una AND e una OR: la legge associativa vale solo tra operazioni dello stesso tipo.
+- Dimenticare la seconda distributiva, quella della OR sulla AND.
+- Concludere che due espressioni sono uguali dopo aver provato solo alcune righe.
+- Leggere il più come la somma dei numeri: nei bit $1 + 1 = 1$.
+- Pensare che un'algebra di Boole abbia sempre due elementi.
+
+## Quiz
+
+```quiz
+D: Simulazione d'esame 1 del 2023/24, quiz sul circuito. Il circuito calcola $Y = (A \wedge \overline{C}) \vee (\overline{C} \wedge B)$. Quale formula NON descrive la funzione calcolata?
++ $(\neg C \vee A) \wedge (\neg C \vee B)$
+- $(\neg C \wedge A) \vee (\neg C \wedge B)$
+- $\neg((C \vee \neg A) \wedge (C \vee \neg B))$
+- $\neg C \wedge (A \vee B)$
+- $(B \wedge \neg C) \vee (A \wedge \neg C)$
+= Con i tre ingressi a 0 il circuito dà 0 e $(\neg C \vee A) \wedge (\neg C \vee B)$ dà 1. La più insidiosa è $\neg((C \vee \neg A) \wedge (C \vee \neg B))$: sembra un'altra cosa, ma con De Morgan diventa l'espressione del circuito.
+
+D: Quale affermazione descrive un circuito combinatorio?
++ a ingressi uguali dà sempre la stessa uscita, perché l'uscita dipende solo dagli ingressi
+- contiene solo porte AND e OR, senza porte NOT
+- ha almeno un filo che riporta l'uscita in ingresso
+- la sua uscita dipende dagli ingressi e dallo stato in cui si trova
+- ha esattamente due ingressi e un'uscita
+= È la definizione del libro: l'uscita è definita in modo unico per ogni combinazione degli ingressi. La più insidiosa è «la sua uscita dipende dagli ingressi e dallo stato in cui si trova»: è la definizione di circuito sequenziale.
+
+D: Quante righe ha la tabella logica di un circuito combinatorio con 5 ingressi?
+N: 32
+= Ogni ingresso raddoppia le righe: $2^5 = 32$.
+
+D: Quanto vale $(x_1 \wedge \overline{x_2}) \vee x_3$ con $x_1 = 1$, $x_2 = 1$, $x_3 = 0$?
+N: 0
+= $\overline{x_2} = 0$, quindi $1 \wedge 0 = 0$, e $0 \vee 0 = 0$.
+
+D: Quale di queste uguaglianze tra espressioni booleane è FALSA?
++ $x \wedge (y \vee z) = (x \wedge y) \vee z$
+- $x \vee (y \wedge z) = (x \vee y) \wedge (x \vee z)$
+- $\overline{x \vee y} = \overline{x} \wedge \overline{y}$
+- $x \wedge (y \vee z) = (x \wedge y) \vee (x \wedge z)$
+- $x \vee \overline{x} = 1$
+= Con $x = 0$, $y = 0$, $z = 1$ il lato sinistro di $x \wedge (y \vee z) = (x \wedge y) \vee z$ vale 0 e il destro 1. La più insidiosa è $x \vee (y \wedge z) = (x \vee y) \wedge (x \vee z)$: con i numeri sarebbe falsa, con i bit è la seconda legge distributiva.
+
+D: Quale legge giustifica $\overline{y} \wedge (x \vee z) = (\overline{y} \wedge x) \vee (\overline{y} \wedge z)$?
++ distributiva
+- associativa
+- commutativa
+- complemento
+- De Morgan
+= La AND con $\overline{y}$ viene distribuita sui due pezzi della OR. La più insidiosa è «De Morgan»: la barra c'è, ma resta ferma sulla $y$ da tutte e due le parti.
+
+D: Simulazione d'esame 2 del 2023/24, prima voce del quiz sulle algebre booleane: «Le algebre booleane sono definite solo su insiemi che contengono esattamente due elementi (come vero e falso)?»
++ No: per esempio i sottoinsiemi di un insieme con due elementi ne formano una con quattro elementi
+- Sì: gli elementi sono solo 0 e 1
+- Sì: altrimenti non varrebbero le leggi del complemento
+- No: ma devono avere un numero dispari di elementi
+- No: l'insieme può anche avere un elemento solo
+= La definizione chiede due elementi distinti 0 e 1 e le dieci leggi: l'insieme può averne altri. La più insidiosa è «No: l'insieme può anche avere un elemento solo»: 0 e 1 devono essere distinti, quindi gli elementi sono almeno due.
+
+D: Nell'algebra di Boole dei sottoinsiemi di $U = \{1, 2, 3\}$, quanto vale $\{1, 2\} \cdot \{2, 3\}'$?
++ $\{1\}$
+- $\{2\}$
+- $\{1, 2, 3\}$
+- $\varnothing$
+- $\{1, 3\}$
+= L'apice è il complementare: $\{2, 3\}' = \{1\}$. Il punto è l'intersezione: $\{1, 2\} \cap \{1\} = \{1\}$. La più insidiosa è $\{2\}$: è $\{1, 2\} \cdot \{2, 3\}$, senza il complementare.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: calcolare con le tre porte
+Calcola: (a) $\overline{1 \vee 0}$; (b) $\overline{1} \vee 0$; (c) $(1 \wedge 0) \vee \overline{0}$; (d) $1 \wedge \overline{(0 \vee 0)}$.
+::: soluzione
+(a) $1 \vee 0 = 1$, negato: 0. (b) $0 \vee 0 = 0$. (c) $0 \vee 1 = 1$. (d) $0 \vee 0 = 0$, negato dà 1, e $1 \wedge 1 = 1$.
+:::
+
+::: esercizio base Riscaldamento: è un'espressione booleana?
+Quali di queste scritture sono espressioni booleane nelle variabili $x_1$, $x_2$? (a) $x_1 \wedge (\overline{x_2} \vee 1)$; (b) $x_1 \vee \wedge\, x_2$; (c) $\overline{\overline{x_1}}$; (d) $(x_1\, \wedge)\, x_2$.
+::: soluzione
+(a) Sì: la variabile, poi la barra, poi la OR con la costante 1, le parentesi, la AND. (b) No: due operazioni di seguito. (c) Sì: la regola della barra applicata due volte. (d) No: la AND dentro la parentesi ha un solo argomento.
+:::
+
+::: esercizio base Riscaldamento: dal circuito all'espressione
+Un circuito ha ingressi $x$, $y$, $z$. Una OR riceve $x$ e $y$; una NOT riceve $z$; una AND riceve le loro due uscite. Scrivi l'espressione, e calcolala per $x = 0$, $y = 1$, $z = 0$.
+::: soluzione
+$(x \vee y) \wedge \overline{z}$. Con quei valori: $0 \vee 1 = 1$, $\overline{0} = 1$, $1 \wedge 1 = 1$.
+:::
+
+::: esercizio base Riscaldamento: dare un nome alle leggi
+Quale legge è? (a) $x \vee 0 = x$; (b) $(x \wedge y) \wedge z = x \wedge (y \wedge z)$; (c) $x \wedge \overline{x} = 0$; (d) $x \vee (y \wedge z) = (x \vee y) \wedge (x \vee z)$.
+::: soluzione
+(a) Identità. (b) Associativa. (c) Complemento. (d) Distributiva, quella della OR sulla AND.
+:::
+
+::: esercizio medio La tabella di un'espressione (autoverifica del capitolo 11, domanda 1)
+La risposta ufficiale è una tabella con uscita 0 in una riga sola, quella con $x = 1$, $y = 0$, $z = 0$. Il testo non ce l'ho; la tabella torna con l'espressione $\overline{(x \wedge \overline{y})} \vee z$. Scrivi la tabella di questa espressione e controlla.
+::: soluzione
+$x \wedge \overline{y}$ vale 1 solo quando $x = 1$ e $y = 0$; negato, vale 0 solo lì. La OR con $z$ lascia lo 0 solo se anche $z = 0$. Quindi l'uscita è 0 nella riga 1, 0, 0 e 1 nelle altre sette.
+
+| $x$ | $y$ | $z$ | $x \wedge \overline{y}$ | negato | uscita |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| 0 | 0 | 0 | 0 | 1 | 1 |
+| 0 | 0 | 1 | 0 | 1 | 1 |
+| 0 | 1 | 0 | 0 | 1 | 1 |
+| 0 | 1 | 1 | 0 | 1 | 1 |
+| 1 | 0 | 0 | 1 | 0 | 0 |
+| 1 | 0 | 1 | 1 | 0 | 1 |
+| 1 | 1 | 0 | 0 | 1 | 1 |
+| 1 | 1 | 1 | 0 | 1 | 1 |
+:::
+
+::: esercizio medio Uguali o no?
+Per ogni coppia di' se le espressioni sono uguali. Se sì, indica le leggi; se no, una riga in cui differiscono. (a) $x \vee (y \wedge z)$ e $(x \vee y) \wedge z$; (b) $(x \wedge y) \vee (x \wedge \overline{y})$ e $x$; (c) $\overline{x \wedge y}$ e $\overline{x} \vee \overline{y}$.
+::: soluzione
+**(a)** No. Con $x = 1$, $y = 0$, $z = 0$ la prima dà 1 e la seconda 0. **(b)** Sì. Distributiva letta al contrario: $x \wedge (y \vee \overline{y})$. Poi complemento: $x \wedge 1$. Poi identità: $x$. **(c)** Sì: è l'altra legge di De Morgan. Con la tabella: $\overline{x \wedge y}$ vale 0 solo quando $x = y = 1$, e $\overline{x} \vee \overline{y}$ pure.
+:::
+
+::: esercizio esame Un quiz sul circuito, come nelle simulazioni
+Un circuito ha ingressi $A$ e $B$. Una NOT riceve $A$, un'altra NOT riceve $B$; una OR riceve le due uscite; una terza NOT riceve l'uscita della OR e dà $Y$. (a) È combinatorio? (b) Scrivi l'espressione. (c) Quale porta, da sola, fa lo stesso lavoro?
+::: soluzione
+**(a)** Sì: nessun filo torna indietro. **(b)** $Y = \overline{\overline{A} \vee \overline{B}}$. **(c)** Con De Morgan la barra sulla OR diventa una AND di barre: $\overline{\overline{A}} \wedge \overline{\overline{B}}$. Le doppie barre si cancellano: $A \wedge B$. Basta una porta AND al posto di quattro porte.
+:::
+
+::: esercizio esame I sottoinsiemi come algebra di Boole (autoverifica del capitolo 11, domanda 4)
+Sia $U$ un insieme e $S$ l'insieme di tutti i suoi sottoinsiemi, con l'unione come $+$, l'intersezione come $\cdot$, il complementare come $'$, $\varnothing$ come 0 e $U$ come 1. Scrivi in questa algebra le leggi dell'identità e del complemento. Poi scrivi le uguaglianze $x + 1 = 1$ e $x \cdot 0 = 0$, e di' se sono vere.
+::: soluzione
+Identità: $X \cup \varnothing = X$ e $X \cap U = X$. Complemento: $X \cup X' = U$ e $X \cap X' = \varnothing$. Le altre due diventano $X \cup U = U$ e $X \cap \varnothing = \varnothing$: vere per ogni sottoinsieme. Il libro le chiama *bound laws* e le ricava dalle dieci leggi ([lezione 25](25_algebre_boole_deduzioni_equazionali.html)); la risposta ufficiale alla domanda 4 le scrive proprio così.
+:::
+
+::: esercizio difficile Un'algebra di Boole fatta di divisori (libro, §11.3, esercizio 2)
+Sull'insieme $S = \{1, 2, 3, 6\}$ dei divisori di 6 definisci $x + y$ come il minimo comune multiplo, $x \cdot y$ come il massimo comun divisore, e $x' = 6 / x$. Chi fa da $0$ e chi da $1$? Controlla le leggi dell'identità e del complemento.
+::: soluzione
+Fa da $0$ il numero 1, e fa da $1$ il numero 6. **Identità**: il mcm di $x$ e 1 è $x$; il MCD di $x$ e 6 è $x$, perché $x$ divide 6. **Complemento**: il mcm di $x$ e $6/x$ è 6, e il loro MCD è 1. Per esempio $2' = 3$: mcm 6, MCD 1. La risposta ufficiale aggiunge che associativa e distributiva si controllano direttamente; la commutativa vale perché mcm e MCD non dipendono dall'ordine. È un'algebra di Boole con quattro elementi, in cui l'elemento «zero» è il numero 1.
+:::
+
+## Domande di ripasso
+
+::: domanda Che differenza c'è tra un circuito combinatorio e uno sequenziale?
+Nel combinatorio l'uscita è decisa solo dagli ingressi di quel momento. Nel sequenziale dipende anche dallo stato, cioè da quello che è successo prima.
+:::
+
+::: domanda Che cos'è la tabella logica di un circuito?
+L'elenco di tutte le combinazioni degli ingressi, ognuna con la sua uscita. Con $n$ ingressi ha $2^n$ righe.
+:::
+
+::: domanda Come sono definite le espressioni booleane?
+In modo ricorsivo: lo sono le costanti 0 e 1 e le variabili; e da espressioni già fatte se ne ottengono altre con le parentesi, la barra, la OR e la AND.
+:::
+
+::: domanda Quali sono le cinque coppie di leggi delle operazioni sui bit?
+Associativa, commutativa, distributiva, identità, complemento. Ognuna ha una versione per la OR e una per la AND.
+:::
+
+::: domanda Quando due espressioni booleane sono uguali?
+Quando hanno lo stesso valore per ogni scelta dei bit, cioè la stessa tabella.
+:::
+
+::: domanda Come si mostra che due espressioni non sono uguali?
+Con una riga sola: una scelta dei bit in cui danno valori diversi.
+:::
+
+::: domanda Che cos'è un'algebra di Boole?
+Un insieme con due elementi distinti 0 e 1, due operazioni binarie e un'operazione unaria, che rispettano le leggi associativa, commutativa, distributiva, dell'identità e del complemento.
+:::
+
+::: domanda Fai due esempi di algebra di Boole.
+I due bit con OR, AND e NOT. I sottoinsiemi di un insieme con unione, intersezione e complementare, dove l'insieme vuoto fa da 0 e l'insieme intero fa da 1.
+:::
+
+## Glossario
+
+```glossario
+Circuito combinatorio | Circuito in cui l'uscita è definita in modo unico per ogni combinazione degli ingressi.
+Circuito sequenziale | Circuito in cui l'uscita dipende dagli ingressi e dallo stato del sistema.
+Porta | Circuito elementare che esegue AND, OR o NOT.
+Invertitore | Un altro nome della porta NOT.
+Tabella logica | Elenco di tutte le combinazioni degli ingressi di un circuito con le uscite.
+Espressione booleana | Formula costruita con 0, 1, variabili, parentesi, barra, OR e AND.
+Letterale | Una variabile, con o senza barra.
+Espressioni uguali | Espressioni booleane con lo stesso valore per ogni scelta dei bit.
+Circuiti equivalenti | Circuiti che a ingressi uguali danno uscite uguali.
+Leggi di De Morgan | La negazione di una OR è la AND delle negazioni, e viceversa.
+Algebra di Boole | Insieme con due operazioni, un complemento, uno 0 e un 1 che rispettano le cinque coppie di leggi.
+```
+
+## Checklist
+
+```checklist
+- So dire che cosa distingue un circuito combinatorio da uno sequenziale.
+- So scrivere la tabella logica di un circuito, una colonna per porta.
+- So spiegare perché un filo che torna indietro può rendere l'uscita non definita.
+- So riconoscere un'espressione booleana e contare i suoi letterali.
+- So passare da un circuito alla sua espressione e viceversa.
+- So enunciare le cinque coppie di leggi, comprese le due distributive.
+- So dimostrare una legge con la tabella.
+- So decidere se due espressioni sono uguali, con la tabella, con le leggi o con una riga che le distingue.
+- So usare De Morgan per portare dentro una negazione.
+- So dire che cos'è un'algebra di Boole e fare i due esempi principali.
+- So tradurre una legge dall'algebra dei bit a quella dei sottoinsiemi.
+```
+
+## Fonti
+
+- Diario delle lezioni del canale B (Berardi), lezione 25 del docente, 26/11/2026: «Sezione 11.1 e 11.2: circuiti combinatori e loro proprietà. Sezione 11.3: Algebre di Boole.»
+- Johnsonbaugh, parte 2 del libro di testo, §11.1, §11.2 e §11.3: risposte ufficiali alle domande di ripasso, agli esercizi 7 e 16 del §11.1, 18 del §11.2 e 2 del §11.3, e all'autoverifica del capitolo 11 (domande 1 e 4), nell'appendice «Soluzioni di altri esercizi del testo» (Moodle del canale A, aperto agli ospiti). Il libro non ce l'ho: i testi degli esercizi citati sono ricostruiti dalle risposte.
+- Simulazione d'esame 1 del 2023/24, quiz sul circuito combinatorio, e simulazione d'esame 2 del 2023/24, quiz sulle algebre booleane (dalle copie compilate da uno studente, ricontrollate).
+- Per le porte e i quiz sui circuiti: lezioni [01](01_bit_porte_esadecimale.html) e [05](05_esercizi_circuiti_rappresentazioni.html).
+- Gli esempi senza altra indicazione, i disegni, i quiz e gli esercizi sono di questi appunti; le tabelle le ho ricontrollate con un programma.
+
+
+---
+
+<!-- FILE: contesto_ai/FDA/lezioni/25_algebre_boole_deduzioni_equazionali.md -->
+> File: `contesto_ai/FDA/lezioni/25_algebre_boole_deduzioni_equazionali.md`
+
+```yaml
+corso: FDA
+lezione: "25"
+titolo: "Algebre di Boole: deduzioni equazionali"
+docenti: Stefano Berardi
+sopratitolo: Canale B · Lezione 25 · Libro, parte 2, §11.3
+simboli_logici: si
+descrizione: >-
+  Appunti della lezione 25 di Fondamenti dell'Informatica (canale B): le deduzioni equazionali nelle algebre di Boole,
+  l'unicità del complemento, le leggi di idempotenza, del limite, di assorbimento, di involuzione e di De Morgan
+  ricavate dalla definizione, il principio di dualità e il quiz d'esame sulle proprietà valide in tutte le algebre
+  booleane.
+lede: >-
+  Dalle dieci leggi della definizione si ricavano tutte le altre, con catene di uguaglianze in cui ogni passo cita la
+  legge che usa. Quello che si ottiene così vale in ogni algebra di Boole: per i bit, per gli insiemi, per le
+  proposizioni. Il diario chiama questo modo di ragionare deduzione equazionale.
+materiale: libro
+scheda:
+  Libro: Johnsonbaugh, parte 2, §11.3
+  Docente: Stefano Berardi · canale B · A.A. 2026/27
+  Tempo di studio: 2 ore e mezza
+fonte: >-
+  Diario delle lezioni del canale B (lezione 26 del docente); risposte ufficiali alle domande di ripasso e agli
+  esercizi del §11.3 e all'autoverifica del capitolo 11 (appendice pubblicata sul Moodle del canale A); simulazione
+  d'esame 2 del 2023/24, quiz sulle algebre booleane
+appunti_html: appunti/FDA/25_algebre_boole_deduzioni_equazionali.html
+genera_html: true
+```
+
+## In breve
+
+- Una **deduzione equazionale** è una catena di uguaglianze: ogni passo sostituisce un pezzo con uno uguale, e dice quale legge usa.
+- Dalle dieci leggi della definizione se ne ricavano altre, valide in **ogni** algebra di Boole: idempotenza, limite, assorbimento, involuzione, De Morgan.
+- Il **complemento è unico**: se la somma di due elementi è 1 e il loro prodotto è 0, il secondo è il complemento del primo. Bastano quei due controlli per riconoscerlo.
+- **Dualità**: scambiando il più con il punto e lo 0 con l'1 in una legge vera se ne ottiene un'altra vera.
+- Per dire che un'uguaglianza **non** vale in tutte le algebre di Boole basta un caso in cui fallisce, e di solito lo si trova nei bit.
+
+> [!CANALI]
+> Nel canale B è la lezione di venerdì 27/11, dalle 11 alle 13. Per il docente è la lezione 26: qui è la 25. Questi appunti li ho scritti **prima** della lezione, dal diario del canale B: «Sezione 11.3: Algebre di Boole e deduzioni equazionali.»
+>
+> **Che cosa non so.** Il libro non ce l'ho. Gli enunciati sono quelli delle risposte ufficiali alle domande di ripasso del §11.3, tradotti. Due deduzioni sono quelle delle risposte ufficiali, e lo dico dove compaiono; le altre le ho scritte io, usando solo le dieci leggi, e nel libro o in aula i passaggi possono essere in un altro ordine. Non so quali deduzioni ha scelto il docente.
+>
+> **Da dove si parte.** Dalla definizione di algebra di Boole e dai due esempi della [lezione 24](24_circuiti_combinatori_algebre_boole.html).
+>
+> **Canali A e C.** Lo stesso capitolo è nella mappa comune del corso (§11.1–11.5).
+
+## La regola del gioco
+
+In un'algebra di Boole si sa solo quello che dice la definizione: dieci leggi, e nient'altro. Tutto il resto va ricavato da lì.
+
+> [!RIPASSO] Le dieci leggi della definizione (lezione 24)
+> | Legge | Per il più | Per il punto |
+> |---|---|---|
+> | associativa | $(x + y) + z = x + (y + z)$ | $(xy)z = x(yz)$ |
+> | commutativa | $x + y = y + x$ | $xy = yx$ |
+> | distributiva | $x + yz = (x + y)(x + z)$ | $x(y + z) = xy + xz$ |
+> | identità | $x + 0 = x$ | $x \cdot 1 = x$ |
+> | complemento | $x + x' = 1$ | $x x' = 0$ |
+>
+> Il punto si può non scrivere, e si fa prima del più.
+
+Una **deduzione equazionale** parte da un'espressione e arriva a un'altra con una catena di uguaglianze. Le mosse permesse sono due.
+
+1. **Sostituire uguali con uguali.** Un pezzo dell'espressione che ha la forma di un lato di una legge si rimpiazza con l'altro lato. Le leggi si leggono in tutti e due i versi: da sinistra a destra e da destra a sinistra.
+2. **Mettere un'espressione al posto di una lettera.** Una legge vale per tutti gli elementi. Quindi al posto di $x$ può esserci un'espressione qualunque, purché sia la stessa in tutti i punti della legge.
+
+Accanto a ogni passo si scrive la legge usata. Se l'enunciato ha delle ipotesi, anche quelle si possono usare come passi.
+
+Prima deduzione: $x + x = x$. Con i numeri sarebbe falsa, perché $x + x$ fa $2x$. Qui il più non è la somma, e l'uguaglianza si ricava in cinque passi. L'idea è moltiplicare per 1, e poi scrivere l'1 in un modo comodo.
+
+```grafico
+titolo: La deduzione di x + x = x come un percorso. Ogni freccia è un passo, con il nome della legge che lo permette. L'espressione prima si allunga, per far comparire un pezzo che la legge del complemento manda a 0, e poi si accorcia
+x: 0 12
+y: 0.5 5.3
+assi: no
+griglia: no
+proporzioni: libere
+testo: 1.4 4.2 | blu | "$x + x$"
+testo: 5.2 4.2 | blu | "$(x + x) \cdot 1$"
+testo: 9.9 4.2 | blu | "$(x + x)(x + x^\prime)$"
+testo: 9.9 1.6 | blu | "$x + x x^\prime$"
+testo: 5.2 1.6 | blu | "$x + 0$"
+testo: 1.4 1.6 | verde | "$x$"
+freccia: 2.2 4.2 3.8 4.2 | ambra
+freccia: 6.6 4.2 7.8 4.2 | ambra
+freccia: 9.9 3.7 9.9 2.1 | ambra
+freccia: 8.8 1.6 6.1 1.6 | ambra
+freccia: 4.3 1.6 1.9 1.6 | ambra
+testo: 3.0 4.75 | ambra | "identità"
+testo: 7.2 4.75 | ambra | "complemento"
+testo: 8.25 2.9 | ambra | "distributiva"
+testo: 7.45 1.05 | ambra | "complemento"
+testo: 3.1 1.05 | ambra | "identità"
+```
+
+| Passo | Legge usata |
+|---|---|
+| $x + x = (x + x) \cdot 1$ | identità, da destra a sinistra |
+| $= (x + x)(x + x')$ | complemento: l'1 diventa $x + x'$ |
+| $= x + x x'$ | distributiva del più sul punto, da destra a sinistra |
+| $= x + 0$ | complemento: $x x' = 0$ |
+| $= x$ | identità |
+
+Nel terzo passo la legge è $x + yz = (x + y)(x + z)$, con $x$ al posto di $y$ e $x'$ al posto di $z$. È la distributiva che con i numeri non vale: qui fa il lavoro principale.
+
+**Che cosa non si può fare.** Tutto quello che non è una delle leggi, o una legge già ricavata. In particolare:
+
+- scrivere $x + x = 2x$: in un'algebra di Boole il 2 non c'è;
+- **semplificare**: da $x + y = x + z$ non si ricava $y = z$. Nei bit $1 + 0 = 1 + 1$, ma 0 e 1 sono diversi. Manca la sottrazione;
+- concludere da $xy = 0$ che uno dei due fattori è 0. Nei sottoinsiemi di $\{a, b\}$ l'intersezione di $\{a\}$ e $\{b\}$ è vuota, e nessuno dei due lo è.
+
+**Perché non basta una tabella.** Una tabella con 0 e 1 controlla la legge nell'algebra dei bit. La deduzione usa solo le dieci leggi, quindi vale in tutte le algebre di Boole insieme. Eccone tre su cui provare ogni risultato della lezione:
+
+| | I bit | I sottoinsiemi di $\{a, b\}$ | I divisori di 6 |
+|---|---|---|---|
+| elementi | 0, 1 | $\varnothing$, $\{a\}$, $\{b\}$, $\{a, b\}$ | 1, 2, 3, 6 |
+| $x + y$ | OR | unione | minimo comune multiplo |
+| $xy$ | AND | intersezione | massimo comun divisore |
+| $x'$ | NOT | complementare | $6 / x$ |
+| lo 0 e l'1 | 0 e 1 | $\varnothing$ e $\{a, b\}$ | 1 e 6 |
+
+La terza viene dall'esercizio 2 del §11.3, che ha la risposta ufficiale. La legge appena ricavata, letta nelle tre algebre, dice: $1 \vee 1 = 1$; un insieme unito a sé stesso è sé stesso; il minimo comune multiplo di 2 e 2 è 2.
+
+```grafico
+titolo: Due algebre di Boole con quattro elementi. In tutte e due l'elemento in basso fa da 0 e quello in alto fa da 1; i due di mezzo sono uno il complemento dell'altro, la loro somma è l'elemento in alto e il loro prodotto quello in basso. Cambiano i nomi, non la forma
+x: 0 12
+y: 0.3 5.5
+assi: no
+griglia: no
+proporzioni: libere
+testo: 3.0 5.0 | grigio | "sottoinsiemi di {a, b}"
+testo: 9.0 5.0 | grigio | "divisori di 6"
+testo: 3.0 0.8 | blu | "∅"
+testo: 1.4 2.5 | blu | "{a}"
+testo: 4.6 2.5 | blu | "{b}"
+testo: 3.0 4.2 | blu | "{a, b}"
+segmento: 2.75 1.1 1.65 2.2 | grigio
+segmento: 3.25 1.1 4.35 2.2 | grigio
+segmento: 1.65 2.8 2.7 3.9 | grigio
+segmento: 4.35 2.8 3.3 3.9 | grigio
+testo: 9.0 0.8 | verde | "1"
+testo: 7.4 2.5 | verde | "2"
+testo: 10.6 2.5 | verde | "3"
+testo: 9.0 4.2 | verde | "6"
+segmento: 8.75 1.1 7.65 2.2 | grigio
+segmento: 9.25 1.1 10.35 2.2 | grigio
+segmento: 7.65 2.8 8.7 3.9 | grigio
+segmento: 10.35 2.8 9.3 3.9 | grigio
+segmento: 6.0 0.5 6.0 5.3 | grigio | sottile
+```
+
+::: prova Completa la deduzione di $xx = x$, scrivendo la legge di ogni passo: $xx = xx + 0 = xx + xx' = x(x + x') = x \cdot 1 = x$.
+Identità, da destra a sinistra. Complemento: lo 0 diventa $xx'$. Distributiva del punto sul più, da destra a sinistra. Complemento: $x + x' = 1$. Identità.
+:::
+
+> [!RICORDA]
+> - Deduzione equazionale: una catena di uguaglianze, ogni passo con la sua legge.
+> - Due mosse: sostituire un lato di una legge con l'altro; mettere espressioni al posto delle lettere.
+> - Niente $2x$, niente semplificazioni: valgono solo le leggi.
+> - Una deduzione vale in tutte le algebre di Boole; una tabella solo nei bit.
+
+## Il complemento è unico
+
+La legge del complemento dice che ogni elemento ha un compagno che, sommato a lui, dà 1 e, moltiplicato per lui, dà 0. Non dice se di compagni così ce n'è uno solo. Si ricava.
+
+> [!PROP] Unicità del complemento (libro, §11.3)
+> In un'algebra di Boole, se $x + y = 1$ e $xy = 0$, allora $y = x'$.
+
+**Come si legge.** $x'$ è l'**unico** elemento che fa quelle due cose con $x$. Da qui un metodo: per dimostrare che un elemento è il complemento di un altro bastano due controlli, la somma che dà 1 e il prodotto che dà 0. Per gli insiemi è la risposta ufficiale all'esercizio 7: se $X \cup Y = U$ e $X \cap Y = \varnothing$, allora $Y$ è il complementare di $X$.
+
+La deduzione parte da $y$ e arriva a $x'$. Usa le due ipotesi, una a metà e una alla fine.
+
+| Passo | Legge usata |
+|---|---|
+| $y = y \cdot 1$ | identità |
+| $= y(x + x')$ | complemento |
+| $= yx + yx'$ | distributiva |
+| $= xy + yx'$ | commutativa |
+| $= 0 + yx'$ | ipotesi: $xy = 0$ |
+| $= xx' + yx'$ | complemento: lo 0 diventa $xx'$ |
+| $= x'x + x'y$ | commutativa, due volte |
+| $= x'(x + y)$ | distributiva, da destra a sinistra |
+| $= x' \cdot 1$ | ipotesi: $x + y = 1$ |
+| $= x'$ | identità |
+
+Con l'unicità tre leggi si ricavano senza catene lunghe: basta fare i due controlli.
+
+> [!ESEMPIO] Tre complementi trovati con due controlli
+> **$(x')' = x$.** Cerco il complemento di $x'$. Il candidato è $x$: $x' + x = 1$ e $x'x = 0$, per le leggi del complemento con i termini scambiati. Quindi $x$ è il complemento di $x'$.
+>
+> **$0' = 1$.** Il candidato è 1: $0 + 1 = 1$ e $0 \cdot 1 = 0$, per le leggi dell'identità, con la commutativa nella prima. Quindi 1 è il complemento di 0.
+>
+> **$1' = 0$.** Il candidato è 0: $1 + 0 = 1$ e $1 \cdot 0 = 0$, di nuovo per l'identità, con la commutativa nella seconda.
+
+La prima si chiama **involuzione**: negare due volte riporta alla partenza. Nei circuiti sono due NOT di seguito, che si possono togliere.
+
+::: prova In un'algebra di Boole si sa che $a + b = 1$ e $ab = 0$. Quanto vale $b'$?
+Per l'unicità $b = a'$. Allora $b' = (a')' = a$, per l'involuzione.
+:::
+
+> [!RICORDA]
+> - Se $x + y = 1$ e $xy = 0$, allora $y = x'$.
+> - Per riconoscere un complemento: due controlli, somma 1 e prodotto 0.
+> - Da qui: $(x')' = x$, $0' = 1$, $1' = 0$.
+
+## Le leggi che si ricavano
+
+Con questi strumenti il libro ricava sei gruppi di leggi. Una volta ricavate si usano come le dieci di partenza.
+
+> [!PROP] Leggi valide in ogni algebra di Boole (libro, §11.3, domande di ripasso 2–7)
+> | Nome | Per il più | Per il punto |
+> |---|---|---|
+> | idempotenza | $x + x = x$ | $xx = x$ |
+> | limite (*bound laws*) | $x + 1 = 1$ | $x \cdot 0 = 0$ |
+> | assorbimento | $x + xy = x$ | $x(x + y) = x$ |
+> | involuzione | $(x')' = x$ | |
+> | dello 0 e dell'1 | $0' = 1$ | $1' = 0$ |
+> | De Morgan | $(x + y)' = x'y'$ | $(xy)' = x' + y'$ |
+
+**Come si legge.** Idempotenza: un elemento sommato o moltiplicato con sé stesso non cambia. Limite: nella somma l'1 vince su tutto, nel prodotto vince lo 0. Assorbimento: un termine che contiene già $x$ come fattore non aggiunge niente a $x$. De Morgan: il complemento di una somma è il prodotto dei complementi, e viceversa. Sono leggi note per gli insiemi e per le proposizioni; la novità è che vengono tutte dalle dieci leggi.
+
+Idempotenza, involuzione e leggi dello 0 e dell'1 sono già ricavate. Restano limite, assorbimento e De Morgan.
+
+**Limite: $x + 1 = 1$.**
+
+| Passo | Legge usata |
+|---|---|
+| $x + 1 = (x + 1) \cdot 1$ | identità |
+| $= (x + 1)(x + x')$ | complemento |
+| $= x + 1 \cdot x'$ | distributiva del più sul punto, da destra a sinistra |
+| $= x + x'$ | commutativa e identità: $1 \cdot x' = x'$ |
+| $= 1$ | complemento |
+
+**Assorbimento: $x(x + y) = x$.** Questa è la deduzione della risposta ufficiale all'esercizio 18 del §11.3.
+
+| Passo | Legge usata |
+|---|---|
+| $x(x + y) = (x + 0)(x + y)$ | identità: $x$ diventa $x + 0$ |
+| $= x + 0 \cdot y$ | distributiva del più sul punto, da destra a sinistra |
+| $= x + y \cdot 0$ | commutativa |
+| $= x + 0$ | limite: $y \cdot 0 = 0$ |
+| $= x$ | identità |
+
+```grafico
+titolo: L'assorbimento negli insiemi. La zona comune sta tutta dentro X: unendola a X non si aggiunge niente, quindi X unito all'intersezione è ancora X. E X intersecato con l'unione dei due cerchi è ancora X, perché X sta tutto dentro l'unione
+x: -4.2 4.2
+y: -2.6 3.0
+assi: no
+griglia: no
+cerchio: -1 0 2 | blu
+cerchio: 1 0 2 | verde
+testo: -2.7 2.3 | blu | "X"
+testo: 2.7 2.3 | verde | "Y"
+testo: 0 0 | ambra | "$X \cap Y$"
+testo: -1.9 -0.2 | blu | "solo X"
+testo: 1.9 -0.2 | verde | "solo Y"
+```
+
+**De Morgan: $(x + y)' = x'y'$.** Qui serve l'unicità del complemento. Il candidato complemento di $x + y$ è $x'y'$; i due controlli sono lunghi, ma ogni passo è una legge già vista.
+
+> [!DIM] I due controlli per De Morgan
+> **La somma dà 1.**
+>
+> | Passo | Legge usata |
+> |---|---|
+> | $(x + y) + x'y' = ((x + y) + x')((x + y) + y')$ | distributiva del più sul punto |
+> | $= (y + (x + x'))(x + (y + y'))$ | commutativa e associativa |
+> | $= (y + 1)(x + 1)$ | complemento |
+> | $= 1 \cdot 1$ | limite |
+> | $= 1$ | identità |
+>
+> **Il prodotto dà 0.**
+>
+> | Passo | Legge usata |
+> |---|---|
+> | $(x + y)(x'y') = (x'y')(x + y)$ | commutativa |
+> | $= (x'y')x + (x'y')y$ | distributiva |
+> | $= (xx')y' + x'(yy')$ | commutativa e associativa |
+> | $= 0 \cdot y' + x' \cdot 0$ | complemento |
+> | $= 0 + 0$ | limite, con la commutativa |
+> | $= 0$ | identità |
+>
+> Per l'unicità del complemento, $x'y'$ è il complemento di $x + y$.
+
+Le stesse leggi, lette nelle tre algebre di prima:
+
+| Legge | Nei bit | Nei sottoinsiemi | Nei divisori di 6 |
+|---|---|---|---|
+| $x + 1 = 1$ | $x \vee 1 = 1$ | $X \cup U = U$ | mcm di $x$ e 6: 6 |
+| $x \cdot 0 = 0$ | $x \wedge 0 = 0$ | $X \cap \varnothing = \varnothing$ | MCD di $x$ e 1: 1 |
+| $x(x + y) = x$ | $x \wedge (x \vee y) = x$ | $X \cap (X \cup Y) = X$ | MCD di $x$ e del mcm di $x$ e $y$: $x$ |
+
+Le righe dei sottoinsiemi sono le risposte ufficiali all'autoverifica del capitolo 11, domanda 4.
+
+::: prova Ricava $x + xy = x$, scrivendo la legge di ogni passo. Comincia scrivendo il primo $x$ come $x \cdot 1$.
+$x + xy = x \cdot 1 + xy$, per l'identità. Poi $= x(1 + y)$, distributiva da destra a sinistra. Poi $= x(y + 1)$, commutativa. Poi $= x \cdot 1$, limite. Infine $= x$, identità.
+:::
+
+> [!RICORDA]
+> - Idempotenza: $x + x = x$ e $xx = x$. Limite: $x + 1 = 1$ e $x \cdot 0 = 0$.
+> - Assorbimento: $x + xy = x$ e $x(x + y) = x$.
+> - De Morgan: $(x + y)' = x'y'$ e $(xy)' = x' + y'$.
+> - Si ricavano tutte dalle dieci leggi, quindi valgono in ogni algebra di Boole.
+
+## La dualità
+
+In tutte le tabelle di questa lezione le leggi vanno a coppie, e da una colonna all'altra succede sempre la stessa cosa: il più e il punto si scambiano, e così lo 0 e l'1.
+
+```grafico
+titolo: Quattro coppie di leggi duali. Da una colonna all'altra si scambiano il più con il punto e lo 0 con l'1; le lettere e gli apici restano dove sono. Le prime due coppie sono nella definizione, le altre due si ricavano
+x: 0 12
+y: 0.7 5.7
+assi: no
+griglia: no
+proporzioni: libere
+testo: 3.0 5.2 | grigio | "una legge"
+testo: 9.0 5.2 | grigio | "la sua duale"
+testo: 3.0 4.3 | blu | "$x + 0 = x$"
+testo: 9.0 4.3 | verde | "$x \cdot 1 = x$"
+freccia: 5.1 4.37 6.9 4.37 | ambra
+freccia: 6.9 4.23 5.1 4.23 | ambra
+testo: 3.0 3.3 | blu | "$x + x^\prime = 1$"
+testo: 9.0 3.3 | verde | "$x \cdot x^\prime = 0$"
+freccia: 5.1 3.37 6.9 3.37 | ambra
+freccia: 6.9 3.23 5.1 3.23 | ambra
+testo: 3.0 2.3 | blu | "$x + x = x$"
+testo: 9.0 2.3 | verde | "$x \cdot x = x$"
+freccia: 5.1 2.37 6.9 2.37 | ambra
+freccia: 6.9 2.23 5.1 2.23 | ambra
+testo: 3.0 1.3 | blu | "$x + 1 = 1$"
+testo: 9.0 1.3 | verde | "$x \cdot 0 = 0$"
+freccia: 5.1 1.37 6.9 1.37 | ambra
+freccia: 6.9 1.23 5.1 1.23 | ambra
+```
+
+> [!DEF] Duale (libro, §11.3, domanda di ripasso 8)
+> Il **duale** di un'affermazione sulle algebre di Boole si ottiene sostituendo $0$ con $1$, $1$ con $0$, $+$ con $\cdot$ e $\cdot$ con $+$.
+
+**Come si legge.** Le lettere e gli apici restano dove sono; cambiano solo le due operazioni e le due costanti. Attenzione alle parentesi: il punto si fa prima del più, quindi prima di scambiare conviene scrivere tutte le parentesi. Il duale di $x + yz$ è $x(y + z)$, non $xy + z$.
+
+> [!PROP] Principio di dualità (libro, §11.3, domanda di ripasso 9)
+> Il duale di un teorema sulle algebre di Boole è ancora un teorema.
+
+**Come si legge.** Ogni legge ricavata ne regala un'altra, senza una seconda deduzione. Il motivo è nella definizione: le dieci leggi sono cinque coppie di duali. Presa una deduzione, se si scambiano più e punto, 0 e 1 in ogni passo, ogni passo resta l'applicazione di una legge: di quella duale. Si vede confrontando le due deduzioni dell'idempotenza:
+
+| Per $x + x = x$ | Per $xx = x$ | Legge usata |
+|---|---|---|
+| $x + x = (x + x) \cdot 1$ | $xx = xx + 0$ | identità |
+| $= (x + x)(x + x')$ | $= xx + xx'$ | complemento |
+| $= x + xx'$ | $= x(x + x')$ | distributiva |
+| $= x + 0$ | $= x \cdot 1$ | complemento |
+| $= x$ | $= x$ | identità |
+
+> [!ESEMPIO] Esercizi 8, 11 e 14 del §11.3 (dalle risposte ufficiali): scrivere il duale
+> Le risposte ufficiali danno i tre duali. Scambiando di nuovo si ritrovano le affermazioni di partenza.
+>
+> | Affermazione | Il suo duale |
+> |---|---|
+> | $(x + y)(x + 1) = x + xy + y$ | $xy + x \cdot 0 = x(x + y)y$ |
+> | $xy' = 0$ se e solo se $xy = x$ | $x + y' = 1$ se e solo se $x + y = x$ |
+> | $x + x(y + 1) = x$ | $x(x + y \cdot 0) = x$ |
+>
+> Nella prima riga il lato destro $x + xy + y$ diventa un prodotto di tre fattori, e il fattore di mezzo prende le parentesi: $x(x + y)y$.
+
+::: prova Scrivi il duale di $x + x'y = x + y$. Le due uguaglianze sono vere?
+Il duale è $x(x' + y) = xy$. Sono vere tutte e due. La prima: $x + x'y = (x + x')(x + y) = 1 \cdot (x + y) = x + y$. La seconda viene dalla dualità, oppure direttamente: $x(x' + y) = xx' + xy = 0 + xy = xy$.
+:::
+
+> [!RICORDA]
+> - Duale: si scambiano il più con il punto e lo 0 con l'1. Lettere e apici restano.
+> - Prima di scambiare, scrivi le parentesi.
+> - Il duale di un teorema è un teorema: ogni legge ne dà due.
+
+## Vale in tutte le algebre di Boole?
+
+Il quiz d'esame su questo argomento propone delle uguaglianze e chiede, per ognuna, se è una proprietà valida in tutte le algebre booleane. Le risposte possibili hanno pesi diversi: per il sì serve un motivo generale, per il no basta un caso.
+
+> [!METODO] Decidere se un'uguaglianza vale in tutte le algebre di Boole
+> 1. **Riconoscila.** È una delle dieci leggi, o una di quelle ricavate, magari con le lettere cambiate o i due lati scambiati? Allora sì.
+> 2. **Provala nei bit.** Metti 0 e 1 al posto delle lettere, in tutti i modi. Se in un caso i due lati sono diversi, la risposta è no: hai un controesempio in un'algebra di Boole.
+> 3. **Se nei bit torna sempre**, cerca la deduzione: quasi sempre bastano due o tre passi con le leggi note.
+
+> [!ESEMPIO] Un sì con due passi e un no con un caso
+> **$x + x'y = x + y$.** Non è nella tabella. Con la distributiva del più sul punto: $x + x'y = (x + x')(x + y)$. Con il complemento e l'identità: $= 1 \cdot (x + y) = x + y$. Sì.
+>
+> **$x + yz = xy + xz$.** Somiglia alla distributiva, ma mescola i due lati di due leggi diverse. Nei bit, con $x = 1$ e $y = z = 0$: a sinistra $1 + 0 = 1$, a destra $0 + 0 = 0$. No.
+
+Anche le ipotesi entrano in una deduzione, come nell'unicità del complemento. Un altro esempio, con la deduzione ufficiale:
+
+> [!ESEMPIO] Esercizio 13 del §11.3 (dalla risposta ufficiale all'esercizio 15): una somma che fa 0
+> Se $x + y = 0$, allora $x = 0$ e $y = 0$.
+>
+> | Passo | Legge usata |
+> |---|---|
+> | $0 = x + y$ | ipotesi |
+> | $= (x + x) + y$ | idempotenza, da destra a sinistra |
+> | $= x + (x + y)$ | associativa |
+> | $= x + 0$ | ipotesi |
+> | $= x$ | identità |
+>
+> Quindi $x = 0$. Per $y$ si fa lo stesso, dopo aver scambiato i due addendi con la commutativa. Negli insiemi dice: se un'unione è vuota, sono vuoti tutti e due i pezzi.
+
+> [!APPROFONDIMENTO] Se torna nei bit, torna ovunque
+> C'è un teorema, che il corso non dimostra: un'**uguaglianza** tra due espressioni che vale nell'algebra dei bit, per tutti i valori delle lettere, vale in ogni algebra di Boole. Quindi nel metodo il passo 3 riesce sempre. Il teorema riguarda solo le uguaglianze. Un'affermazione di un altro tipo può valere nei bit e non altrove: «se $xy = 0$, allora $x = 0$ oppure $y = 0$» è vera nei bit e falsa nei sottoinsiemi di $\{a, b\}$.
+
+::: prova Vale in tutte le algebre di Boole? (a) $(x + y)' = x' + y'$; (b) $x + xy = x$; (c) $x + y = xy$.
+(a) No. Nei bit, con $x = 1$ e $y = 0$: a sinistra $1' = 0$, a destra $0 + 1 = 1$. La legge di De Morgan ha il punto a destra. (b) Sì: è l'assorbimento. (c) No: con $x = 1$ e $y = 0$ viene $1 = 0$.
+:::
+
+> [!RICORDA]
+> - Sì: una legge riconosciuta, o una deduzione.
+> - No: un controesempio, di solito nei bit.
+> - Le ipotesi dell'enunciato si usano come passi della catena.
+
+## I simboli di questa lezione
+
+| Simbolo | Si legge | Vuol dire | Esempio |
+|---|---|---|---|
+| $x + y$ | «x più y» | la prima operazione di un'algebra di Boole | nei bit la OR |
+| $xy$, $x \cdot y$ | «x per y» | la seconda operazione | negli insiemi l'intersezione |
+| $x'$ | «x primo» | il complemento di $x$ | nei divisori di 6, $2' = 3$ |
+| $(x')'$ | «x primo primo» | il complemento del complemento | $(x')' = x$ |
+| $0$, $1$ | «zero», «uno» | i due elementi speciali | negli insiemi $\varnothing$ e $U$ |
+
+## Verso l'esame
+
+Le regole dell'esame, uguali per i tre canali, sono nella [lezione 01](01_bit_porte_esadecimale.html) e nella [scheda del corso](https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/FDA/corso.md): 9 quiz in 45 minuti al computer, con Safe Exam Browser; chi arriva a 24 punti può fare una domanda aperta facoltativa.
+
+**Che cosa serve di questa lezione**
+
+1. **Il quiz sulle algebre booleane**, presente nella simulazione 2 del 2023/24: cinque affermazioni, per ognuna sì o no.
+2. **Conoscere le leggi con il loro nome**: le dieci della definizione e le sei ricavate.
+3. **Semplificare un'espressione** con le leggi, che è anche il modo di semplificare un circuito.
+4. Per la domanda aperta: saper scrivere una deduzione corta, con la legge accanto a ogni passo.
+
+### Una domanda d'esame, letta insieme
+
+**Simulazione d'esame 2 del 2023/24, quiz sulle algebre booleane.** «Quali tra le seguenti affermazioni sono valide per le algebre booleane?» Le voci, ognuna con un menù sì/no:
+
+1. «Le algebre booleane sono definite solo su insiemi che contengono esattamente due elementi (come vero e falso)?»
+2. «x+(y·z)=(x·y)+(x·z) è una proprietà valida per tutte le algebre booleane?»
+3. «x+(y·z)=(y+x)·(z+x) è una proprietà valida per tutte le algebre booleane?»
+4. «x+x=x è una proprietà valida per tutte le algebre booleane?»
+5. «x+x'=1 e x·x'=0 sono proprietà valide per tutte le algebre booleane?»
+
+Nella [lezione 12](12_esercizi_logica.html) l'ho risolta traducendo tutto in «e», «o», «non», perché le algebre di Boole non c'erano ancora. Ora si risponde con la definizione.
+
+**In pratica chiede:** per ogni voce, di riconoscere una legge o di trovare un controesempio.
+
+> [!ESEMPIO] · la soluzione, voce per voce
+> **Voce 1: no.** La definizione chiede due elementi distinti 0 e 1, non che siano gli unici. I sottoinsiemi di $\{a, b\}$ e i divisori di 6 formano algebre di Boole con quattro elementi.
+>
+> **Voce 2: no.** Nei bit, con $x = 1$ e $y = z = 0$: a sinistra $1 + 0 = 1$, a destra $0 + 0 = 0$.
+>
+> **Voce 3: sì.** È la distributiva del più sul punto, $x + yz = (x + y)(x + z)$, con i due addendi di ogni parentesi scambiati per la commutativa.
+>
+> **Voce 4: sì.** È l'idempotenza, ricavata in cinque passi all'inizio della lezione.
+>
+> **Voce 5: sì.** Sono le due leggi del complemento: fanno parte della definizione.
+>
+> Le risposte, nell'ordine: **no, no, sì, sì, sì**. Nella copia compilata da uno studente sono le stesse, con qualche esitazione sulle ultime due; accanto all'ultima c'è scritto che con l'apice si intende il NOT.
+
+### Errori da evitare
+
+- Trattare il più come la somma dei numeri: $x + x$ non è $2x$.
+- Semplificare un termine da tutti e due i lati di un'uguaglianza.
+- Confondere le due distributive, o mescolarle: $x + yz$ non è $xy + xz$.
+- Scrivere De Morgan senza scambiare l'operazione: $(x + y)'$ non è $x' + y'$.
+- Fare il duale senza le parentesi, o cambiando anche gli apici.
+- Rispondere «sì» a un'uguaglianza dopo averla provata con una sola scelta dei valori.
+- Dire che una legge ricavata «fa parte della definizione»: nella definizione ci sono solo le dieci leggi.
+
+## Quiz
+
+```quiz
+D: Simulazione d'esame 2 del 2023/24, seconda voce: «x+(y·z)=(x·y)+(x·z) è una proprietà valida per tutte le algebre booleane?»
++ No: nei bit, con $x = 1$ e $y = z = 0$, a sinistra viene 1 e a destra 0
+- Sì: è la legge distributiva
+- Sì: vale nei bit, quindi vale in tutte le algebre di Boole
+- No: nelle algebre di Boole non c'è nessuna legge distributiva
+- No: vale solo quando $x = 0$
+= Basta un controesempio. La più insidiosa è «Sì: è la legge distributiva»: le due leggi distributive sono $x + yz = (x + y)(x + z)$ e $x(y + z) = xy + xz$, e questa uguaglianza prende il lato sinistro della prima e il lato destro della seconda.
+
+D: Simulazione d'esame 2 del 2023/24, quarta voce: «x+x=x è una proprietà valida per tutte le algebre booleane?»
++ Sì: è l'idempotenza, che si ricava dalle dieci leggi della definizione
+- No: $x + x$ fa $2x$
+- Sì, ma solo nell'algebra dei bit
+- No: vale solo per $x = 0$
+- Sì: è una delle dieci leggi della definizione
+= Si ricava moltiplicando per 1 e scrivendo l'1 come $x + x'$. La più insidiosa è «Sì: è una delle dieci leggi della definizione»: il sì è giusto, il motivo no, perché nella definizione l'idempotenza non c'è.
+
+D: In una deduzione compare il passo $(x + x)(x + x') = x + xx'$. Quale legge usa?
++ distributiva
+- complemento
+- idempotenza
+- assorbimento
+- De Morgan
+= È $x + yz = (x + y)(x + z)$ letta da destra a sinistra, con $x$ e $x'$ al posto di $y$ e $z$. La più insidiosa è «complemento»: quella legge serve nel passo dopo, per trasformare $xx'$ in 0.
+
+D: Nell'algebra di Boole dei divisori di 6, dove il più è il minimo comune multiplo, il punto è il massimo comun divisore e $x' = 6/x$, quanto vale $(2 + 3)'$?
+N: 1
+= $2 + 3$ è il mcm di 2 e 3, cioè 6. Il complemento di 6 è $6/6 = 1$. Con De Morgan viene lo stesso: $2' \cdot 3'$ è il MCD di 3 e 2, cioè 1.
+
+D: Qual è il duale di $x + xy = x$?
++ $x(x + y) = x$
+- $xy + x = x$
+- $x' + x'y' = x'$
+- $x \cdot x + y = x$
+- $x + (x + y) = x$
+= Si scambiano più e punto: la somma esterna diventa un prodotto, e il prodotto $xy$ diventa la somma $x + y$, tra parentesi. La più insidiosa è $x \cdot x + y = x$: è lo scambio fatto senza parentesi, che cambia l'ordine delle operazioni.
+
+D: In un'algebra di Boole si sa che $a + b = 1$ e $ab = 0$. Che cosa si può concludere?
++ $b = a'$
+- $a = b$
+- $a = 1$ e $b = 0$
+- $a = 0$ oppure $b = 0$
+- niente, senza altre ipotesi
+= È l'unicità del complemento. La più insidiosa è «$a = 0$ oppure $b = 0$»: nei bit è vera, ma nei sottoinsiemi di $\{a, b\}$ i due insiemi con un elemento hanno unione piena e intersezione vuota, e nessuno dei due è vuoto.
+
+D: Quale di queste affermazioni NON vale in tutte le algebre di Boole?
++ se $x + y = x + z$, allora $y = z$
+- $x + xy = x$
+- $(x')' = x$
+- $x + 1 = 1$
+- $(xy)' = x' + y'$
+= Nei bit $1 + 0 = 1 + 1$, ma 0 e 1 sono diversi: non si può semplificare. Le altre sono assorbimento, involuzione, limite e De Morgan. La più insidiosa è $x + 1 = 1$: con i numeri è falsa, qui è la legge del limite.
+
+D: Nell'algebra dei sottoinsiemi di $U = \{1, 2, 3, 4\}$, con $X = \{1, 2\}$ e $Y = \{2, 3\}$, quanto vale $(X + Y)'$?
++ $\{4\}$
+- $\{1, 3, 4\}$
+- $\{2\}$
+- $\varnothing$
+- $\{1, 2, 3\}$
+= $X + Y$ è l'unione $\{1, 2, 3\}$, e il suo complementare è $\{4\}$. Con De Morgan: $X'Y'$ è l'intersezione di $\{3, 4\}$ e $\{1, 4\}$. La più insidiosa è $\{1, 3, 4\}$: è $X' + Y'$, cioè De Morgan senza scambiare l'operazione.
+```
+
+## Esercizi
+
+::: esercizio base Riscaldamento: dare il nome alle leggi
+Di' quale legge è: (a) $x + xy = x$; (b) $x \cdot 0 = 0$; (c) $(xy)' = x' + y'$; (d) $xx = x$; (e) $x + x' = 1$. Quali fanno parte della definizione?
+::: soluzione
+(a) Assorbimento. (b) Limite. (c) De Morgan. (d) Idempotenza. (e) Complemento. Solo la (e) è nella definizione; le altre si ricavano.
+:::
+
+::: esercizio base Riscaldamento: le leggi nei divisori di 6
+Nell'algebra dei divisori di 6 calcola: (a) $2 + 2$; (b) $3 \cdot 6$; (c) $2 + 2 \cdot 3$; (d) $(2 \cdot 3)'$ e $2' + 3'$.
+::: soluzione
+(a) mcm di 2 e 2: 2, idempotenza. (b) MCD di 3 e 6: 3, identità, perché 6 fa da 1. (c) $2 \cdot 3$ è il MCD, 1; poi il mcm di 2 e 1 è 2: assorbimento. (d) $2 \cdot 3 = 1$, e $1' = 6$. Dall'altra parte $2' = 3$ e $3' = 2$, con mcm 6. Uguali: De Morgan.
+:::
+
+::: esercizio base Riscaldamento: scrivere i duali
+Scrivi il duale di: (a) $x + 0 = x$; (b) $x(y + z) = xy + xz$; (c) $(x + y)' = x'y'$; (d) $x + x'y = x + y$.
+::: soluzione
+(a) $x \cdot 1 = x$. (b) $x + yz = (x + y)(x + z)$. (c) $(xy)' = x' + y'$. (d) $x(x' + y) = xy$. In tutti i casi gli apici restano dove sono.
+:::
+
+::: esercizio base Riscaldamento: una legge negli insiemi
+Scrivi le due leggi di assorbimento nell'algebra dei sottoinsiemi di un insieme $U$, e controllale con $U = \{1, 2, 3\}$, $X = \{1, 2\}$, $Y = \{2, 3\}$.
+::: soluzione
+$X \cup (X \cap Y) = X$ e $X \cap (X \cup Y) = X$. Controllo: $X \cap Y = \{2\}$, e $\{1, 2\} \cup \{2\} = \{1, 2\}$. Poi $X \cup Y = \{1, 2, 3\}$, e $\{1, 2\} \cap \{1, 2, 3\} = \{1, 2\}$.
+:::
+
+::: esercizio medio Il duale di una deduzione
+La deduzione di $x + 1 = 1$ è nella lezione. Scrivi, passo per passo, la deduzione duale, e di' che cosa dimostra.
+::: soluzione
+Dimostra $x \cdot 0 = 0$.
+
+| Passo | Legge usata |
+|---|---|
+| $x \cdot 0 = x \cdot 0 + 0$ | identità |
+| $= x \cdot 0 + xx'$ | complemento |
+| $= x(0 + x')$ | distributiva del punto sul più, da destra a sinistra |
+| $= xx'$ | commutativa e identità: $0 + x' = x'$ |
+| $= 0$ | complemento |
+:::
+
+::: esercizio medio Semplificare un'espressione
+Semplifica con le leggi, dicendo quale usi: (a) $xy + xy'$; (b) $(x + y)(x + y')$; (c) $x + x'y + xy$.
+::: soluzione
+**(a)** $xy + xy' = x(y + y')$, distributiva; $= x \cdot 1$, complemento; $= x$, identità. **(b)** $(x + y)(x + y') = x + yy'$, distributiva del più sul punto; $= x + 0 = x$, complemento e identità. È il duale di (a). **(c)** $x + xy = x$ per l'assorbimento, quindi resta $x + x'y$; poi $x + x'y = (x + x')(x + y) = x + y$.
+:::
+
+::: esercizio esame Cinque affermazioni, come nel quiz della simulazione
+Per ognuna di' se è valida in tutte le algebre di Boole: (a) $x + (y + z) = (x + y) + z$; (b) $x(y + z) = (x + y)(x + z)$; (c) $x + x' = 0$; (d) $(x + y)' = x'y'$; (e) $x \cdot 1 = 1$.
+::: soluzione
+**(a)** Sì: associativa. **(b)** No: nei bit, con $x = 0$ e $y = z = 1$, a sinistra viene 0 e a destra 1. **(c)** No: la legge del complemento dice $x + x' = 1$, e 0 e 1 sono distinti. **(d)** Sì: De Morgan. **(e)** No: è $x \cdot 1 = x$; con $x = 0$ viene $0 = 1$.
+:::
+
+::: esercizio difficile Una regola per semplificare (libro, §11.3, esercizio 21, prima parte)
+La risposta ufficiale all'esercizio 21 comincia così: se $ba = ca$ e $ba' = ca'$, allora $b = c$. Scrivi la deduzione.
+::: soluzione
+| Passo | Legge usata |
+|---|---|
+| $b = b \cdot 1$ | identità |
+| $= b(a + a')$ | complemento |
+| $= ba + ba'$ | distributiva |
+| $= ca + ca'$ | le due ipotesi |
+| $= c(a + a')$ | distributiva, da destra a sinistra |
+| $= c \cdot 1$ | complemento |
+| $= c$ | identità |
+
+È il modo corretto di «semplificare» in un'algebra di Boole: un'ipotesi sola non basta, ne servono due, una con $a$ e una con $a'$.
+:::
+
+::: esercizio difficile I divisori di 12 non formano un'algebra di Boole
+Con le stesse operazioni dei divisori di 6, ma su $S = \{1, 2, 3, 4, 6, 12\}$ e $x' = 12/x$: quale legge fallisce? Usa l'elemento 2.
+::: soluzione
+Il complemento. $2' = 6$, ma il mcm di 2 e 6 è 6, non 12, e il loro MCD è 2, non 1. E nessun altro divisore fa da complemento di 2: servirebbe un numero con mcm 12 e MCD 1 insieme a 2, e non c'è. La risposta ufficiale all'esercizio 23 dà la regola generale: i divisori di $n$ formano un'algebra di Boole quando nessun primo compare due volte nella fattorizzazione di $n$. In 12 il 2 compare due volte.
+:::
+
+## Domande di ripasso
+
+::: domanda Che cos'è una deduzione equazionale?
+Una catena di uguaglianze in cui ogni passo sostituisce un pezzo con uno uguale, secondo una legge o un'ipotesi, che si scrive accanto.
+:::
+
+::: domanda Perché una deduzione dalle dieci leggi vale più di una tabella?
+La tabella controlla l'uguaglianza solo nei bit. La deduzione usa solo le leggi della definizione, quindi vale in ogni algebra di Boole.
+:::
+
+::: domanda Che cosa dice l'unicità del complemento, e a che cosa serve?
+Se la somma di due elementi è 1 e il prodotto è 0, il secondo è il complemento del primo. Serve per riconoscere un complemento con due controlli.
+:::
+
+::: domanda Quali leggi si ricavano dalla definizione?
+Idempotenza, limite, assorbimento, involuzione, le leggi dello 0 e dell'1, De Morgan.
+:::
+
+::: domanda Come si scrive il duale di un'affermazione?
+Si scambiano il più con il punto e lo 0 con l'1, dopo aver scritto le parentesi. Lettere e apici non cambiano.
+:::
+
+::: domanda Che cosa dice il principio di dualità?
+Che il duale di un teorema sulle algebre di Boole è ancora un teorema.
+:::
+
+::: domanda Come si mostra che un'uguaglianza non vale in tutte le algebre di Boole?
+Con un controesempio: un'algebra di Boole, di solito i bit, e dei valori per le lettere con cui i due lati sono diversi.
+:::
+
+## Glossario
+
+```glossario
+Deduzione equazionale | Dimostrazione fatta di una catena di uguaglianze, ognuna giustificata da una legge o da un'ipotesi.
+Complemento | L'elemento che sommato a x dà 1 e moltiplicato per x dà 0; è unico.
+Idempotenza | Le leggi x + x = x e xx = x.
+Leggi del limite (bound laws) | Le leggi x + 1 = 1 e x · 0 = 0.
+Assorbimento | Le leggi x + xy = x e x(x + y) = x.
+Involuzione | La legge per cui il complemento del complemento di x è x.
+Leggi di De Morgan | Il complemento di una somma è il prodotto dei complementi, e viceversa.
+Duale | L'affermazione ottenuta scambiando il più con il punto e lo 0 con l'1.
+Principio di dualità | Il duale di un teorema sulle algebre di Boole è ancora un teorema.
+```
+
+## Checklist
+
+```checklist
+- So scrivere le dieci leggi della definizione di algebra di Boole.
+- So spiegare che cos'è una deduzione equazionale e quali mosse sono permesse.
+- So ricavare l'idempotenza, scrivendo la legge di ogni passo.
+- So enunciare l'unicità del complemento e usarla per riconoscere un complemento.
+- So ricavare le leggi del limite e dell'assorbimento.
+- So enunciare le leggi di De Morgan nelle tre scritture: bit, insiemi, algebra di Boole.
+- So scrivere il duale di un'affermazione, con le parentesi giuste.
+- So dire che cosa garantisce il principio di dualità.
+- So decidere se un'uguaglianza vale in tutte le algebre di Boole, con una legge o con un controesempio.
+- So leggere una stessa legge nei bit, nei sottoinsiemi e nei divisori di 6.
+```
+
+## Fonti
+
+- Diario delle lezioni del canale B (Berardi), lezione 26 del docente, 27/11/2026: «Sezione 11.3: Algebre di Boole e deduzioni equazionali.» Appunti scritti prima della lezione.
+- Johnsonbaugh, parte 2 del libro di testo, §11.3: risposte ufficiali alle domande di ripasso (da 1 a 9), agli esercizi 2, 7, 8, 11, 14, 15, 18, 21 e 23 e all'autoverifica del capitolo 11 (domanda 4), nell'appendice «Soluzioni di altri esercizi del testo» (Moodle del canale A, aperto agli ospiti). Da lì vengono gli enunciati delle leggi, le deduzioni dell'assorbimento e dell'esercizio 13, i tre duali e l'esempio dei divisori di 6. Il libro non ce l'ho: i testi degli esercizi citati sono ricostruiti dalle risposte.
+- Simulazione d'esame 2 del 2023/24, quiz sulle algebre booleane (dalla copia compilata da uno studente, ricontrollata).
+- Le altre deduzioni, i disegni, i quiz e gli esercizi sono di questi appunti; le leggi le ho ricontrollate con un programma nelle algebre dei bit, dei sottoinsiemi e dei divisori di 6 e di 30.
 
 
 ---

@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'sha256-YcsbHcuMuVAacs70R2MUzu76uz9nI9XrvmmdRH+Bzzg='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<script src="../../assets/js/memoria.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab07 · Laboratorio 07: operazioni su array</title>
+<meta name="lezione" content="Lab07">
+<meta name="data" content="2026-11-23">
+<meta name="description" content="Appunti del settimo laboratorio di Programmazione I (canale B, Lab07): tre domande sui puntatori, il modello dimensione-capacità, trasformazione, filtro, riduzione sul posto e duplicazione di un array, le stesse operazioni con la memoria dinamica, stringhe con l'aritmetica dei puntatori, eliminare le vocali sul posto, intervalli semiaperti di indici e match con errori, con tutti i programmi provati.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23080d19'/%3E%3Crect x='1' y='1' width='30' height='30' rx='7' fill='none' stroke='%233fe0cc' stroke-opacity='.55'/%3E%3Ctext x='16' y='22.5' font-family='Consolas,monospace' font-size='18' font-weight='700' text-anchor='middle' fill='%233fe0cc'%3E%C2%A7%3C/text%3E%3C/svg%3E">
+<script>
+  var t = null; try { t = localStorage.getItem('appunti:tema'); if (localStorage.getItem('appunti:moto') === 'ridotto') document.documentElement.classList.add('meno-moto'); } catch (e) {} if (t !== 'dark') document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'oled');
+</script>
+<link rel="preload" href="../../assets/fonts/plex-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/appunti.css">
+<link rel="stylesheet" href="../../assets/katex/katex.min.css">
+<link rel="expect" href="#barra" blocking="render">
+<!-- pagina generata da strumenti/lezioni.mjs a partire da contesto_ai/PROG1/lezioni/Lab07_operazioni_su_array.md: modifica il Markdown, non questa pagina -->
+</head>
+<body>
+<!-- TESTATA:INIZIO (generata da strumenti/genera_materie.py) -->
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+<div class="sfondo" aria-hidden="true"><canvas class="incroci"></canvas><canvas id="rete"></canvas></div>
+<script src="../../assets/js/rete.js"></script>
+<header class="barra" id="barra">
+  <div class="barra-in">
+    <a class="marchio" href="../../index.html"><span class="glifo" aria-hidden="true">§</span><span class="nome"><b>Appunti di Informatica</b><small>UniTo · 2026/27</small></span></a>
+    <button type="button" class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span></button>
+    <nav aria-label="Sito">
+      <a href="../../index.html#corsi">Corsi</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni</a>
+      <a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Per le AI</a>
+      <a href="https://donflammer.github.io/unito-ofa-matematica/">OFA</a>
+      <a href="https://github.com/DonFlammer/unito-informatica">GitHub</a>
+      <button type="button" class="theme solo-icona" id="theme-toggle" aria-label="Tema: scuro" title="Tema: scuro"><span class="testo-btn">Tema: scuro</span></button>
+      <button type="button" class="theme oled-btn" id="oled-toggle" aria-pressed="true" title="Nero OLED: sfondo nero e colore principale bianco">OLED</button>
+      <button type="button" class="theme solo-icona anim-btn" id="anim-toggle" aria-pressed="true" aria-label="Animazioni: attive" title="Animazioni: attive"><span class="testo-btn">Animazioni: attive</span></button>
+    </nav>
+  </div>
+  <div class="avanzamento" aria-hidden="true"></div>
+</header>
+<!-- TESTATA:FINE -->
+
+<div class="shell">
+  <nav class="toc" aria-label="Indice della lezione">
+    <details id="toc-details" open>
+      <summary>Indice</summary>
+      <ol>
+<li><a href="#in-breve"><span class="n">→</span><span>In breve</span></a></li>
+<li><a href="#tre-domande-sui-puntatori"><span class="n">§1</span><span>Tre domande sui puntatori</span></a></li>
+<li><a href="#il-modello-dimensione-capacita"><span class="n">§2</span><span>Il modello dimensione-capacità</span></a></li>
+<li><a href="#quattro-schemi-sugli-array"><span class="n">§3</span><span>Quattro schemi sugli array</span></a></li>
+<li><a href="#regole-di-copia-lab07-es1"><span class="n">§4</span><span>Regole di copia: Lab07-Es1</span></a></li>
+<li><a href="#le-stesse-operazioni-con-lo-heap"><span class="n">§5</span><span>Le stesse operazioni con lo heap</span></a></li>
+<li><a href="#stringhe-e-aritmetica-dei-puntatori"><span class="n">§6</span><span>Stringhe e aritmetica dei puntatori</span></a></li>
+<li><a href="#eliminare-caratteri-sul-posto"><span class="n">§7</span><span>Eliminare caratteri sul posto</span></a></li>
+<li><a href="#intervalli-semiaperti-di-indici"><span class="n">§8</span><span>Intervalli semiaperti di indici</span></a></li>
+<li><a href="#match-con-al-piu-n-errori"><span class="n">§9</span><span>Match con al più n errori</span></a></li>
+<li><a href="#i-simboli-di-questa-lezione"><span class="n">§10</span><span>I simboli di questa lezione</span></a></li>
+<li><a href="#esame"><span class="n">§11</span><span>Verso l&#39;esame</span></a></li>
+<li><a href="#quiz"><span class="n">§12</span><span>Quiz</span></a></li>
+<li><a href="#esercizi"><span class="n">§13</span><span>Esercizi</span></a></li>
+<li><a href="#domande"><span class="n">§14</span><span>Domande di ripasso</span></a></li>
+<li><a href="#glossario"><span class="n">§15</span><span>Glossario</span></a></li>
+<li><a href="#checklist"><span class="n">§16</span><span>Checklist</span></a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main id="contenuto" class="foglio">
+    <header>
+<!-- VICINE:INIZIO (generato da strumenti/genera_materie.py) -->
+<nav class="vicine" aria-label="Lezioni vicine">
+  <a class="vicina prec" href="08A_memoria_dinamica.html" rel="prev" title="08A · Memoria dinamica"><span class="dir">← Lezione precedente</span><span class="vt">08A · Memoria dinamica</span></a>
+  <a class="vicina succ" href="09A_matrici.html" rel="next" title="09A · Matrici"><span class="dir">Lezione successiva →</span><span class="vt">09A · Matrici</span></a>
+</nav>
+<!-- VICINE:FINE -->
+      <nav class="crumbs" aria-label="Percorso"><a href="../../index.html">Appunti</a> › <a href="index.html">Programmazione I</a> › Lezione Lab07</nav>
+      <p class="eyebrow">Canale B · Laboratorio 07 · Programmazione I</p>
+      <h1>Laboratorio 07: operazioni su array</h1>
+      <p class="lede">Il settimo laboratorio mette insieme array, puntatori e heap delle ultime lezioni di teoria. Gli esercizi sembrano tanti, ma girano intorno a quattro schemi e a una convenzione sugli indici: una volta presi quelli, il codice si scrive quasi da solo.</p>
+      <dl class="meta"><div><dt>Slide</dt><dd>Lab07 «Operazioni su array», laboratorio canale B · 46 pagine, quattro esercizi su CodeRunner</dd></div><div><dt>Laboratorio</dt><dd>Elisa Marengo (turno B2, lun 23/11) e Valerio Basile (turno B1) · 14–17 · laboratorio Turing</dd></div><div><dt>Tempo di studio</dt><dd>3 ore, davanti a un computer</dd></div></dl>
+      <ul class="legend" aria-label="Legenda dei riquadri">
+        <li class="l-def"><i></i>Definizione o risultato da sapere</li>
+        <li class="l-trap"><i></i>Trappola / errore tipico</li>
+        <li class="l-exam"><i></i>Conta all'esame</li>
+        <li class="l-extra"><i></i>Oltre le slide</li>
+        <li class="l-idea"><i></i>L'idea e il metodo, passo per passo</li>
+        <li class="l-ricorda"><i></i>Da ricordare</li>
+      </ul>
+    </header>
+
+<section class="tldr" id="in-breve" aria-labelledby="tldr-title" style="--h:610px">
+<h2 id="tldr-title">La lezione in 7 punti</h2>
+<ul>
+<li>Un array con dello spazio di riserva si descrive con due numeri: la <strong>dimensione</strong>, cioè quanti elementi sono in uso, e la <strong>capacità</strong>, cioè quanti ce ne stanno.</li>
+<li>Una funzione che <strong>cambia la dimensione</strong> la riceve attraverso un puntatore. Una che la legge soltanto la riceve per valore.</li>
+<li>Quattro schemi coprono quasi tutti gli esercizi: <strong>trasformazione</strong>, <strong>filtro</strong> in un secondo array, <strong>riduzione sul posto</strong>, <strong>duplicazione</strong> selettiva.</li>
+<li>Quando si scrive in un array con capacità limitata, la condizione del ciclo controlla anche che ci sia ancora posto.</li>
+<li>Con lo <strong>heap</strong> il risultato ha la misura esatta: si conta, si alloca, si copia. Chi riceve il blocco fa la <code>free</code>.</li>
+<li>Una stringa si scorre con un puntatore fino al terminatore. Per togliere caratteri sul posto servono due puntatori: uno legge, l&#39;altro scrive.</li>
+<li>Un pezzo di array si indica con un <strong>intervallo semiaperto</strong> di indici: il sinistro è compreso, il destro è escluso.</li>
+</ul>
+</section>
+
+<div class="box extra" id="altri-canali"><p class="box-label"><span>Canali A, B e C</span></p><p><strong>Canale B.</strong> È il settimo laboratorio, al laboratorio Turing, dalle 14 alle 17: turno <strong>B2</strong> lunedì 23/11 con <strong>Elisa Marengo</strong> (sul Moodle del corso c&#39;è la registrazione di quel giorno). Il turno <strong>B1</strong> con <strong>Valerio Basile</strong> dovrebbe averlo fatto martedì 24/11: il laboratorio B2 annullato del 16/11 ha rimesso in pari i due turni. Gli esercizi usano il modello dimensione-capacità della <a href="07A_algoritmi_su_array.html">07A</a>, <code>malloc</code> e <code>free</code> della <a href="08A_memoria_dinamica.html">08A</a>, le stringhe della <a href="05A_array_stringhe.html">05A</a> e il passaggio di puntatori della <a href="06B_chiamata_funzioni.html">06B</a>.</p>
+<p><strong>Canali A e C.</strong> Le slide 2026/27 dei canali A e C non le ho viste. Negli anni scorsi i laboratori erano gli stessi nei tre canali.</p>
+<p><strong>Il materiale che ho e quello che non ho.</strong> Ho le slide. Non ho il «codice iniziale07» (<code>modifica_array.c</code>, <code>modifica_array_memoria_dinamica.c</code>, <code>codifica.c</code>, <code>sottosequenze.c</code>, <code>my_string.c</code>), che è su Moodle: le funzioni di questi appunti le ho scritte io seguendo le slide, e nei file veri i nomi e i parametri possono essere diversi. Non ho nemmeno i testi dei quattro esercizi CodeRunner. Per tre di loro (Regole trasformazione array, Elimina vocali, Sottosequenze con errori) ho ricavato il formato di ingresso e di uscita dalle soluzioni di uno studente del 2025/26: i testi 2026/27 possono essere diversi. Del quarto (Funzioni su array, memoria dinamica) conosco solo il titolo. Tutti i programmi li ho compilati con <code>gcc -Wall -Werror</code> (gcc 16.1, Windows 11 a 64 bit) ed eseguiti.</p>
+</div>
+
+
+<section id="tre-domande-sui-puntatori" aria-labelledby="h-tre-domande-sui-puntatori" style="--h:2050px">
+<div class="sec-head"><span class="sec-num">§1</span><h2 id="h-tre-domande-sui-puntatori">Tre domande sui puntatori</h2><span class="slides">slide 2–7</span></div>
+<p>Il laboratorio comincia con tre pezzi di codice da leggere. Sono tre errori che si fanno davvero.</p>
+<p><strong>Prima domanda.</strong> Che cosa definisce questa riga?</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* countPtr, count;</code></pre>
+<p>Definisce un puntatore a <code>int</code>, <code>countPtr</code>, e un <code>int</code> normale, <code>count</code>. L&#39;asterisco appartiene al nome che lo segue, non al tipo: vale solo per <code>countPtr</code>. Per avere due puntatori si scrive <code>int *p, *q;</code>, oppure una dichiarazione per riga. Nessuna delle due variabili è inizializzata; la slide 3 propone <code>int* countPtr = NULL, count = 0;</code>.</p>
+<p><strong>Seconda domanda.</strong> Che cosa fa questo codice?</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> count = 3;
+<span class="kw">int</span>* pC = &amp;count;
+<span class="kw">int</span>* pC2 = &amp;pC;
+printf(<span class="str">&quot;%d %d\n&quot;</span>, count, pC);</code></pre>
+<p>Non compila. Gli errori sono due, e gcc li dice così:</p>
+<pre class="code" data-lingua="text"><code>error: initialization of 'int *' from incompatible pointer type 'int **' [-Wincompatible-pointer-types]
+error: format '%d' expects argument of type 'int', but argument 3 has type 'int *' [-Werror=format=]</code></pre>
+<p>Il primo: <code>&amp;pC</code> è l&#39;indirizzo di un puntatore a <code>int</code>, quindi è un puntatore a puntatore, di tipo <code>int**</code>, e non può finire in una variabile <code>int*</code>. Con gcc 16 è un errore anche senza opzioni. Il secondo: <code>pC</code> è un indirizzo, e <code>%d</code> vuole un intero; per stampare il valore puntato serve <code>*pC</code>. La versione giusta:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> count = 3;
+<span class="kw">int</span>* pC = &amp;count;
+<span class="kw">int</span>** pC2 = &amp;pC;
+printf(<span class="str">&quot;%d %d %d\n&quot;</span>, count, *pC, **pC2);   <span class="cm">// stampa: 3 3 3</span></code></pre>
+<p>Nella slide 5, quella della soluzione, la riga <code>int* pC2 = &amp;pC;</code> è rimasta com&#39;era: il testo accanto dice che è sbagliata, ma il codice non è stato corretto.</p>
+<p><strong>Terza domanda.</strong> Quali di queste istruzioni spostano il puntatore, e quali cambiano il valore puntato?</p>
+<pre class="code" data-lingua="c"><code>*p++;      <span class="cm">// sposta il puntatore</span>
+*(p++);    <span class="cm">// sposta il puntatore: è la stessa cosa</span>
+(*p)++;    <span class="cm">// incrementa il valore puntato</span>
+*p += 1;   <span class="cm">// incrementa il valore puntato</span></code></pre>
+<p>Il <code>++</code> scritto dopo ha la precedenza sull&#39;asterisco. Quindi <code>*p++</code> vuol dire <code>*(p++)</code>: legge il valore puntato, e poi sposta <code>p</code> sull&#39;elemento dopo. Per incrementare il valore servono le parentesi intorno a <code>*p</code>.</p>
+<p>L&#39;ho provato su un array <code>{10, 20, 30}</code>, partendo con <code>p</code> sul primo elemento:</p>
+<pre class="code" data-lingua="text"><code>dopo p++:      *p = 20, v = {10, 20, 30}
+dopo (*p)++:   *p = 21, v = {10, 21, 30}
+dopo *p += 1:  *p = 22, v = {10, 22, 30}
+dopo x = *p++: x = 22, *p = 30</code></pre>
+<p>Il codice della slide 6, scritto così com&#39;è, con <code>-Wall -Werror</code> non compila: <code>*p++;</code> da solo legge un valore e lo butta via (<code>value computed is not used</code>), e <code>p</code> non è inizializzato (<code>'p' is used uninitialized</code>).</p>
+<p>Un ultimo pezzo, con le due scritture una dopo l&#39;altra:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span> v[3] = {5, 6, 7};
+<span class="kw">int</span>* p = v;
+<span class="kw">int</span> x = *p++;
+<span class="kw">int</span> y = (*p)++;
+printf(<span class="str">&quot;%d %d %d %d\n&quot;</span>, x, y, v[0], v[1]);</code></pre>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa stampa il codice qui sopra? Decidilo prima di compilarlo.</span></summary><div class="ans"><p><code>5 6 5 7</code>. <code>x = *p++</code> legge <code>v[0]</code>, che vale 5, e sposta <code>p</code> su <code>v[1]</code>. <code>y = (*p)++</code> legge <code>v[1]</code>, che vale 6, e poi lo porta a 7. <code>v[0]</code> non è cambiato. Provato.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>In una dichiarazione l&#39;asterisco vale solo per il nome che lo segue.</li>
+<li>L&#39;indirizzo di un <code>int*</code> è un <code>int**</code>.</li>
+<li><code>*p++</code> sposta il puntatore; <code>(*p)++</code> incrementa il valore puntato.</li>
+</ul>
+</div>
+</section>
+
+<section id="il-modello-dimensione-capacita" aria-labelledby="h-il-modello-dimensione-capacita" style="--h:2830px">
+<div class="sec-head"><span class="sec-num">§2</span><h2 id="h-il-modello-dimensione-capacita">Il modello dimensione-capacità</h2><span class="slides">slide 8–12</span></div>
+<p>Molti esercizi lavorano su array il cui numero di elementi cambia: se ne tolgono alcuni, se ne aggiungono altri. Un array del C però non si allunga e non si accorcia. Si prepara allora un array più grande del necessario, e si tiene a parte il conto di quanti elementi sono davvero in uso. È il modello della <a href="07A_algoritmi_su_array.html">07A</a>.</p>
+<figure class="grafico" id="grafico-1"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Un array di capacità 10 con 6 elementi in uso. Gli indici validi vanno da 0 a 5. Le caselle da 6 a 9 esistono, ma il loro contenuto non conta: aLen dice dove finisce la parte in uso, ed è anche l'indice della prima casella libera" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-1-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-1-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-1-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-1-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-1-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-1-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-1-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-1-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-tenue" d="M23.33 178.1L74.67 178.1L74.67 97.14L23.33 97.14Z"/><path class="g-poligono g-blu g-tenue" d="M74.67 178.1L126 178.1L126 97.14L74.67 97.14Z"/><path class="g-poligono g-blu g-tenue" d="M126 178.1L177.33 178.1L177.33 97.14L126 97.14Z"/><path class="g-poligono g-blu g-tenue" d="M177.33 178.1L228.67 178.1L228.67 97.14L177.33 97.14Z"/><path class="g-poligono g-blu g-tenue" d="M228.67 178.1L280 178.1L280 97.14L228.67 97.14Z"/><path class="g-poligono g-blu g-tenue" d="M280 178.1L331.33 178.1L331.33 97.14L280 97.14Z"/><path class="g-poligono g-grigio g-tratteggio" d="M331.33 178.1L382.67 178.1L382.67 97.14L331.33 97.14Z"/><path class="g-poligono g-grigio g-tratteggio" d="M382.67 178.1L434 178.1L434 97.14L382.67 97.14Z"/><path class="g-poligono g-grigio g-tratteggio" d="M434 178.1L485.33 178.1L485.33 97.14L434 97.14Z"/><path class="g-poligono g-grigio g-tratteggio" d="M485.33 178.1L536.67 178.1L536.67 97.14L485.33 97.14Z"/><path class="g-linea g-ambra" d="M331.33 267.14L331.33 186.19" marker-end="url(#g-freccia-1-ambra)"/></svg><span class="g-et g-c g-testo g-blu" style="left:8.75%;top:40.48%">17</span><span class="g-et g-c g-testo g-blu" style="left:17.92%;top:40.48%">21</span><span class="g-et g-c g-testo g-blu" style="left:27.08%;top:40.48%">−3</span><span class="g-et g-c g-testo g-blu" style="left:36.25%;top:40.48%">8</span><span class="g-et g-c g-testo g-blu" style="left:45.42%;top:40.48%">19</span><span class="g-et g-c g-testo g-blu" style="left:54.58%;top:40.48%">7</span><span class="g-et g-c g-testo g-grigio" style="left:63.75%;top:40.48%">??</span><span class="g-et g-c g-testo g-grigio" style="left:72.92%;top:40.48%">??</span><span class="g-et g-c g-testo g-grigio" style="left:82.08%;top:40.48%">??</span><span class="g-et g-c g-testo g-grigio" style="left:91.25%;top:40.48%">??</span><span class="g-et g-c g-testo g-grigio" style="left:8.75%;top:64.29%">0</span><span class="g-et g-c g-testo g-grigio" style="left:17.92%;top:64.29%">1</span><span class="g-et g-c g-testo g-grigio" style="left:27.08%;top:64.29%">2</span><span class="g-et g-c g-testo g-grigio" style="left:36.25%;top:64.29%">3</span><span class="g-et g-c g-testo g-grigio" style="left:45.42%;top:64.29%">4</span><span class="g-et g-c g-testo g-grigio" style="left:54.58%;top:64.29%">5</span><span class="g-et g-c g-testo g-grigio" style="left:63.75%;top:64.29%">6</span><span class="g-et g-c g-testo g-grigio" style="left:72.92%;top:64.29%">7</span><span class="g-et g-c g-testo g-grigio" style="left:82.08%;top:64.29%">8</span><span class="g-et g-c g-testo g-grigio" style="left:91.25%;top:64.29%">9</span><span class="g-et g-c g-testo g-blu" style="left:31.67%;top:14.29%">aLen = 6: in uso</span><span class="g-et g-c g-testo g-grigio" style="left:77.50%;top:14.29%">liberi</span><span class="g-et g-c g-testo g-ambra" style="left:59.17%;top:88.09%">aLen</span><span class="g-et g-c g-testo g-grigio" style="left:26.67%;top:88.09%">capacità AMAX = 10</span></div><figcaption>Un array di capacità 10 con 6 elementi in uso. Gli indici validi vanno da 0 a 5. Le caselle da 6 a 9 esistono, ma il loro contenuto non conta: aLen dice dove finisce la parte in uso, ed è anche l&#39;indice della prima casella libera</figcaption></figure>
+<div class="box def"><p class="box-label"><span>Definizione · Dimensione e capacità (slide 9)</span></p><ul>
+<li>La <strong>capacità</strong> è il numero di caselle dell&#39;array: quanti elementi ci stanno al massimo. Non cambia.</li>
+<li>La <strong>dimensione</strong> è il numero di elementi in uso, che occupano le prime caselle. Può crescere e calare, restando tra 0 e la capacità.</li>
+<li>Gli <strong>indici validi</strong> sono quelli da 0 alla dimensione esclusa.</li>
+</ul>
+</div>
+<p><strong>Come si legge.</strong> Con dimensione <code>aLen</code> e capacità <code>AMAX</code>, vale sempre <code>0 &lt;= aLen &lt;= AMAX</code>, e un indice <code>i</code> è valido quando <code>0 &lt;= i &lt; aLen</code>. Le caselle da <code>aLen</code> in poi esistono, ma contengono valori che non contano: leggerle è un errore di logica, anche se il programma non si ferma. La dimensione ha un secondo significato utile: è l&#39;indice della <strong>prima casella libera</strong>, quella in cui scrivere per aggiungere un elemento.</p>
+<p>Le dichiarazioni (slide 10):</p>
+<pre class="code" data-lingua="c"><code><span class="kw">#define</span> AMAX 10
+<span class="kw">int</span> a[AMAX];        <span class="cm">// capacità fissata nel programma</span>
+<span class="kw">size_t</span> aLen = 0;    <span class="cm">// dimensione: all'inizio l'array è vuoto</span></code></pre>
+<p>Con una capacità decisa mentre il programma gira, si usano una variabile <code>size_t aCap</code> e un array <code>int a[aCap]</code>.</p>
+<p>Il punto delicato è come si passano queste cose a una funzione. Le slide 11–12 danno due forme: <code>const size_t aLen, const size_t aCap, int a[]</code> se la dimensione non cambia, e <code>size_t* p_aLen, const size_t aCap, int a[]</code> se la funzione la cambia. In pratica si passa solo quello che alla funzione serve:</p>
+<div class="table-wrap"><table><thead><tr><th>La funzione</th><th>Parametri</th></tr></thead><tbody><tr><td>legge soltanto</td><td><code>const size_t aLen, const int a[]</code></td></tr>
+<tr><td>cambia gli elementi, non il loro numero</td><td><code>const size_t aLen, int a[]</code></td></tr>
+<tr><td>scrive in un array che può riempirsi</td><td><code>const size_t aCap, int a[]</code>, e restituisce la dimensione</td></tr>
+<tr><td>cambia la dimensione di un array già pieno di dati</td><td><code>size_t* p_aLen, const size_t aCap, int a[]</code></td></tr></tbody></table></div>
+<p>Nell&#39;ultima riga la dimensione arriva come <strong>puntatore</strong>: la funzione la legge con <code>*p_aLen</code>, la cambia, e il chiamante vede il valore nuovo. È lo stesso meccanismo dello scambio con i puntatori della <a href="06B_chiamata_funzioni.html">06B</a>.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · La dimensione passata per valore</span></p><p>Questa funzione toglie dall&#39;array gli elementi minori di 3, ma riceve <code>aLen</code> per valore:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> riduci_sbagliata(<span class="kw">size_t</span> aLen, <span class="kw">int</span> a[]) {
+    <span class="kw">size_t</span> j = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; aLen; i++) {
+        <span class="kw">if</span> (a[i] &gt;= 3) {
+            a[j] = a[i];
+            j++;
+        }
+    }
+    aLen = j;   <span class="cm">// cambia solo la copia locale</span>
+}</code></pre>
+<p>Con <code>{0, 3, 2, 4, 3}</code> il chiamante dopo la chiamata stampa <code>len=5: 3 4 3 4 3</code>. Gli elementi sono stati spostati, perché l&#39;array è condiviso, ma la dimensione nel chiamante è rimasta 5. Compila senza nessun avviso, anche con <code>-Wall -Werror</code>: se ne accorge solo chi prova il programma.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Un array ha capacità 8 e dimensione 5. Quali indici sono validi? In quale casella si scrive un elemento nuovo, e quanto vale la dimensione subito dopo? Quanti elementi si possono ancora aggiungere, dopo quello?</span></summary><div class="ans"><p>Sono validi gli indici da 0 a 4. L&#39;elemento nuovo va nella casella 5, e la dimensione diventa 6. Poi restano due caselle libere, la 6 e la 7.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Dimensione: elementi in uso. Capacità: caselle disponibili. Sempre <code>0 &lt;= aLen &lt;= aCap</code>.</li>
+<li>Indici validi: da 0 ad <code>aLen</code> escluso. <code>aLen</code> è la prima casella libera.</li>
+<li>Se la funzione cambia la dimensione, la riceve come <code>size_t*</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="quattro-schemi-sugli-array" aria-labelledby="h-quattro-schemi-sugli-array" style="--h:3330px">
+<div class="sec-head"><span class="sec-num">§3</span><h2 id="h-quattro-schemi-sugli-array">Quattro schemi sugli array</h2><span class="slides">slide 13–19</span></div>
+<p>Le slide presentano quattro operazioni. Negli esempi il criterio <code>Cond</code> tiene i numeri maggiori o uguali a 3, e l&#39;array di partenza è sempre <code>{0, 3, 2, 4, 3}</code>.</p>
+<h3 id="trasformazione">Trasformazione</h3>
+<p>Ogni elemento viene sostituito dal risultato di una funzione applicata a lui stesso. La dimensione non cambia, quindi arriva per valore.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> trasforma(<span class="kw">const</span> <span class="kw">size_t</span> aLen, <span class="kw">int</span> a[]) {
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; aLen; i++) {
+        a[i] = tr(a[i]);
+    }
+}</code></pre>
+<h3 id="filtro-in-un-secondo-array">Filtro in un secondo array</h3>
+<p>Si copiano in un altro array <code>b</code> solo gli elementi che rispettano il criterio. In <code>b</code> si scrive sempre nella prima casella libera, che è <code>bLen</code>.</p>
+<figure class="grafico" id="grafico-2"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Il filtro con il criterio «maggiore o uguale a 3». L'indice iA scorre tutto a; in b si scrive solo quando l'elemento passa il criterio, nella prima casella libera, che è bLen. Alla fine bLen vale 3 e tre caselle di b restano libere" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-2-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-2-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-2-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-2-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-2-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-2-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-2-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-2-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-grigio g-tenue" d="M71.27 91.54L142.55 91.54L142.55 26.15L71.27 26.15Z"/><path class="g-poligono g-ambra g-tenue" d="M142.55 91.54L213.82 91.54L213.82 26.15L142.55 26.15Z"/><path class="g-poligono g-grigio g-tenue" d="M213.82 91.54L285.09 91.54L285.09 26.15L213.82 26.15Z"/><path class="g-poligono g-ambra g-tenue" d="M285.09 91.54L356.36 91.54L356.36 26.15L285.09 26.15Z"/><path class="g-poligono g-ambra g-tenue" d="M356.36 91.54L427.64 91.54L427.64 26.15L356.36 26.15Z"/><path class="g-poligono g-verde g-tenue" d="M71.27 287.69L142.55 287.69L142.55 222.31L71.27 222.31Z"/><path class="g-poligono g-verde g-tenue" d="M142.55 287.69L213.82 287.69L213.82 222.31L142.55 222.31Z"/><path class="g-poligono g-verde g-tenue" d="M213.82 287.69L285.09 287.69L285.09 222.31L213.82 222.31Z"/><path class="g-poligono g-grigio g-tratteggio" d="M285.09 287.69L356.36 287.69L356.36 222.31L285.09 222.31Z"/><path class="g-poligono g-grigio g-tratteggio" d="M356.36 287.69L427.64 287.69L427.64 222.31L356.36 222.31Z"/><path class="g-poligono g-grigio g-tratteggio" d="M427.64 287.69L498.91 287.69L498.91 222.31L427.64 222.31Z"/><path class="g-linea g-ambra" d="M178.18 98.08L112 215.77" marker-end="url(#g-freccia-2-ambra)"/><path class="g-linea g-ambra" d="M320.73 98.08L183.27 215.77" marker-end="url(#g-freccia-2-ambra)"/><path class="g-linea g-ambra" d="M392 98.08L254.55 215.77" marker-end="url(#g-freccia-2-ambra)"/></svg><span class="g-et g-c g-testo g-blu" style="left:6.36%;top:17.31%">a</span><span class="g-et g-c g-testo g-grigio" style="left:19.09%;top:17.31%">0</span><span class="g-et g-c g-testo g-ambra" style="left:31.82%;top:17.31%">3</span><span class="g-et g-c g-testo g-grigio" style="left:44.54%;top:17.31%">2</span><span class="g-et g-c g-testo g-ambra" style="left:57.27%;top:17.31%">4</span><span class="g-et g-c g-testo g-ambra" style="left:70.00%;top:17.31%">3</span><span class="g-et g-c g-testo g-verde" style="left:6.36%;top:75.00%">b</span><span class="g-et g-c g-testo g-verde" style="left:19.09%;top:75.00%">3</span><span class="g-et g-c g-testo g-verde" style="left:31.82%;top:75.00%">4</span><span class="g-et g-c g-testo g-verde" style="left:44.54%;top:75.00%">3</span><span class="g-et g-c g-testo g-grigio" style="left:57.27%;top:75.00%">??</span><span class="g-et g-c g-testo g-grigio" style="left:70.00%;top:75.00%">??</span><span class="g-et g-c g-testo g-grigio" style="left:82.73%;top:75.00%">??</span><span class="g-et g-c g-testo g-verde" style="left:31.82%;top:94.23%">bLen = 3</span><span class="g-et g-c g-testo g-grigio" style="left:74.54%;top:94.23%">BMAX = 6</span><span class="g-et g-c g-testo g-blu" style="left:87.27%;top:17.31%">aLen = 5</span></div><figcaption>Il filtro con il criterio «maggiore o uguale a 3». L&#39;indice iA scorre tutto a; in b si scrive solo quando l&#39;elemento passa il criterio, nella prima casella libera, che è bLen. Alla fine bLen vale 3 e tre caselle di b restano libere</figcaption></figure>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> filtra(<span class="kw">const</span> <span class="kw">size_t</span> aLen, <span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">const</span> <span class="kw">size_t</span> bCap, <span class="kw">int</span> b[]) {
+    <span class="kw">size_t</span> bLen = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> iA = 0; iA &lt; aLen &amp;&amp; bLen &lt; bCap; iA++) {
+        <span class="kw">if</span> (Cond(a[iA])) {
+            b[bLen] = a[iA];
+            bLen++;
+        }
+    }
+    <span class="kw">return</span> bLen;
+}</code></pre>
+<p>Gli indici sono due e avanzano a velocità diverse: <code>iA</code> a ogni giro, <code>bLen</code> solo quando si copia. La condizione del ciclo ha due parti: ci sono ancora elementi da guardare, <strong>e</strong> in <code>b</code> c&#39;è ancora posto. Se <code>b</code> si riempie il ciclo si ferma, e gli elementi rimasti non vengono copiati: con una capacità di 2, il filtro dell&#39;esempio dà solo <code>3 4</code>.</p>
+<h3 id="riduzione-sul-posto">Riduzione sul posto</h3>
+<p>Stessa selezione, ma senza un secondo array: gli elementi che restano vengono ricopiati all&#39;inizio dello stesso array.</p>
+<figure class="grafico" id="grafico-3"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La riduzione sul posto con lo stesso criterio. Gli elementi che restano scivolano verso sinistra, nella casella j. Alla fine j vale 3: è la nuova dimensione. Nelle ultime due caselle restano i valori vecchi, che non fanno più parte dell'array" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-3-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-3-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-3-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-3-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-3-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-3-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-3-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-3-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-grigio g-tenue" d="M101.82 91.54L173.09 91.54L173.09 26.15L101.82 26.15Z"/><path class="g-poligono g-ambra g-tenue" d="M173.09 91.54L244.36 91.54L244.36 26.15L173.09 26.15Z"/><path class="g-poligono g-grigio g-tenue" d="M244.36 91.54L315.64 91.54L315.64 26.15L244.36 26.15Z"/><path class="g-poligono g-ambra g-tenue" d="M315.64 91.54L386.91 91.54L386.91 26.15L315.64 26.15Z"/><path class="g-poligono g-ambra g-tenue" d="M386.91 91.54L458.18 91.54L458.18 26.15L386.91 26.15Z"/><path class="g-poligono g-verde g-tenue" d="M101.82 287.69L173.09 287.69L173.09 222.31L101.82 222.31Z"/><path class="g-poligono g-verde g-tenue" d="M173.09 287.69L244.36 287.69L244.36 222.31L173.09 222.31Z"/><path class="g-poligono g-verde g-tenue" d="M244.36 287.69L315.64 287.69L315.64 222.31L244.36 222.31Z"/><path class="g-poligono g-grigio g-tratteggio" d="M315.64 287.69L386.91 287.69L386.91 222.31L315.64 222.31Z"/><path class="g-poligono g-grigio g-tratteggio" d="M386.91 287.69L458.18 287.69L458.18 222.31L386.91 222.31Z"/><path class="g-linea g-ambra" d="M208.73 98.08L142.55 215.77" marker-end="url(#g-freccia-3-ambra)"/><path class="g-linea g-ambra" d="M351.27 98.08L213.82 215.77" marker-end="url(#g-freccia-3-ambra)"/><path class="g-linea g-ambra" d="M422.55 98.08L285.09 215.77" marker-end="url(#g-freccia-3-ambra)"/><path class="g-linea g-verde" d="M315.64 333.46L315.64 294.23" marker-end="url(#g-freccia-3-verde)"/></svg><span class="g-et g-c g-testo g-grigio" style="left:8.18%;top:17.31%">prima</span><span class="g-et g-c g-testo g-grigio" style="left:24.54%;top:17.31%">0</span><span class="g-et g-c g-testo g-ambra" style="left:37.27%;top:17.31%">3</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:17.31%">2</span><span class="g-et g-c g-testo g-ambra" style="left:62.73%;top:17.31%">4</span><span class="g-et g-c g-testo g-ambra" style="left:75.46%;top:17.31%">3</span><span class="g-et g-c g-testo g-grigio" style="left:8.18%;top:75.00%">dopo</span><span class="g-et g-c g-testo g-verde" style="left:24.54%;top:75.00%">3</span><span class="g-et g-c g-testo g-verde" style="left:37.27%;top:75.00%">4</span><span class="g-et g-c g-testo g-verde" style="left:50.00%;top:75.00%">3</span><span class="g-et g-c g-testo g-grigio" style="left:62.73%;top:75.00%">4</span><span class="g-et g-c g-testo g-grigio" style="left:75.46%;top:75.00%">3</span><span class="g-et g-c g-testo g-verde" style="left:39.09%;top:94.23%">j = 3</span><span class="g-et g-c g-testo g-grigio" style="left:78.18%;top:94.23%">non più in uso</span></div><figcaption>La riduzione sul posto con lo stesso criterio. Gli elementi che restano scivolano verso sinistra, nella casella j. Alla fine j vale 3: è la nuova dimensione. Nelle ultime due caselle restano i valori vecchi, che non fanno più parte dell&#39;array</figcaption></figure>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> riduci(<span class="kw">size_t</span>* p_aLen, <span class="kw">int</span> a[]) {
+    <span class="kw">size_t</span> j = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; *p_aLen; i++) {
+        <span class="kw">if</span> (Cond(a[i])) {
+            a[j] = a[i];
+            j++;
+        }
+    }
+    *p_aLen = j;
+}</code></pre>
+<p>L&#39;indice <code>i</code> legge, l&#39;indice <code>j</code> scrive. Funziona perché <code>j</code> non supera mai <code>i</code>: si scrive sempre in una casella già letta, quindi non si perde nessun elemento ancora da guardare. Alla fine <code>j</code> è il numero di elementi rimasti, cioè la nuova dimensione, che esce dal puntatore.</p>
+<h3 id="duplicazione-selettiva">Duplicazione selettiva</h3>
+<p>Si copiano in <code>b</code> tutti gli elementi, e quelli che rispettano il criterio si copiano due volte.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> duplica(<span class="kw">const</span> <span class="kw">size_t</span> aLen, <span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">const</span> <span class="kw">size_t</span> bCap, <span class="kw">int</span> b[]) {
+    <span class="kw">size_t</span> bLen = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> iA = 0; iA &lt; aLen &amp;&amp; bLen &lt; bCap; iA++) {
+        b[bLen] = a[iA];
+        bLen++;
+        <span class="kw">if</span> (Cond(a[iA]) &amp;&amp; bLen &lt; bCap) {
+            b[bLen] = a[iA];
+            bLen++;
+        }
+    }
+    <span class="kw">return</span> bLen;
+}</code></pre>
+<p>Qui il controllo sul posto libero compare <strong>due volte</strong>: nella condizione del ciclo, e di nuovo prima della seconda copia. Tra le due scritture <code>bLen</code> è cresciuto, e l&#39;array potrebbe essersi riempito proprio in quel momento.</p>
+<p>I risultati sull&#39;array dell&#39;esempio. Il filtro con capacità 6, la riduzione e la duplicazione danno gli stessi valori delle slide 15, 17 e 19:</p>
+<div class="table-wrap"><table><thead><tr><th>Operazione</th><th>Risultato</th></tr></thead><tbody><tr><td>filtro, capacità 6</td><td><code>len=3: [ 3 4 3 ]</code></td></tr>
+<tr><td>filtro, capacità 2</td><td><code>len=2: [ 3 4 ]</code></td></tr>
+<tr><td>riduzione sul posto</td><td><code>len=3: [ 3 4 3 ]</code></td></tr>
+<tr><td>duplicazione, capacità 5</td><td><code>len=5: [ 0 3 3 2 4 ]</code></td></tr>
+<tr><td>trasformazione con il doppio, dopo la riduzione</td><td><code>len=3: [ 6 8 6 ]</code></td></tr></tbody></table></div>
+<p>Nella duplicazione con capacità 5 il 4 entra una volta sola e l&#39;ultimo 3 resta fuori: l&#39;array si è riempito.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Esegui a mano la riduzione sul posto su <code>{5, 1, 8, 2}</code> con lo stesso criterio. Quanto vale <code>j</code> alla fine? Che cosa contengono le quattro caselle?</span></summary><div class="ans"><p><code>j</code> vale 2. Le caselle contengono <code>5 8 8 2</code>: il 5 viene ricopiato su sé stesso, l&#39;8 va nella casella 1, e nelle ultime due caselle restano i valori vecchi, che non fanno più parte dell&#39;array. Provato.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Due indici: uno legge e avanza sempre, l&#39;altro scrive e avanza solo quando si copia.</li>
+<li>Scrivendo in un array con capacità: <code>bLen &lt; bCap</code> nella condizione, prima di <strong>ogni</strong> scrittura.</li>
+<li>Sul posto: l&#39;indice che scrive non supera mai quello che legge.</li>
+</ul>
+</div>
+</section>
+
+<section id="regole-di-copia-lab07-es1" aria-labelledby="h-regole-di-copia-lab07-es1" style="--h:1530px">
+<div class="sec-head"><span class="sec-num">§4</span><h2 id="h-regole-di-copia-lab07-es1">Regole di copia: Lab07-Es1</h2><span class="slides">slide 20–21</span></div>
+<p>Il primo esercizio chiede di completare le funzioni di <code>modifica_array.c</code>, che non ho: sono con ogni probabilità le quattro operazioni della sezione precedente. Il secondo è su Moodle, <strong>Lab07-Es1 «Regole trasformazione array»</strong>: completare una funzione <code>trasforma_array</code>, con il <code>main</code> e le funzioni di lettura e stampa già scritti.</p>
+<p>Il testo non ce l&#39;ho. Dalla soluzione di uno studente del 2025/26 le regole risultano queste: per ogni elemento dell&#39;array <code>A</code>, si decide quante volte copiarlo in <code>B</code>.</p>
+<div class="table-wrap"><table><thead><tr><th>L&#39;elemento è</th><th>Copie in <code>B</code></th></tr></thead><tbody><tr><td>minore di 10</td><td>nessuna</td></tr>
+<tr><td>multiplo di 4</td><td>quattro</td></tr>
+<tr><td>pari, ma non multiplo di 4</td><td>due</td></tr>
+<tr><td>dispari e multiplo di 3</td><td>nessuna</td></tr>
+<tr><td>tutti gli altri</td><td>una</td></tr></tbody></table></div>
+<p>È la duplicazione selettiva, con più casi. Conviene separare le due domande: una funzione dice <strong>quante copie</strong>, l&#39;altra <strong>copia</strong> stando attenta alla capacità.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> copie(<span class="kw">const</span> <span class="kw">int</span> x) {
+    <span class="kw">size_t</span> n = 1;
+    <span class="kw">if</span> (x &lt; 10) {
+        n = 0;
+    } <span class="kw">else</span> <span class="kw">if</span> (x % 4 == 0) {
+        n = 4;
+    } <span class="kw">else</span> <span class="kw">if</span> (x % 2 == 0) {
+        n = 2;
+    } <span class="kw">else</span> <span class="kw">if</span> (x % 3 == 0) {
+        n = 0;
+    }
+    <span class="kw">return</span> n;
+}
+
+<span class="kw">size_t</span> trasforma_array(<span class="kw">const</span> <span class="kw">int</span>* pA, <span class="kw">const</span> <span class="kw">size_t</span> lenA,
+                       <span class="kw">int</span>* pB, <span class="kw">const</span> <span class="kw">size_t</span> nmaxB) {
+    <span class="kw">size_t</span> lenB = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; lenA &amp;&amp; lenB &lt; nmaxB; i++) {
+        <span class="kw">size_t</span> n = copie(pA[i]);
+        <span class="kw">for</span> (<span class="kw">size_t</span> k = 0; k &lt; n &amp;&amp; lenB &lt; nmaxB; k++) {
+            pB[lenB] = pA[i];
+            lenB++;
+        }
+    }
+    <span class="kw">return</span> lenB;
+}</code></pre>
+<p>L&#39;ordine degli <code>if</code> conta: un multiplo di 4 è anche pari, quindi il controllo sul 4 va prima di quello sul 2. Il programma legge il numero di elementi e poi gli elementi, con una capacità di 10 per tutti e due gli array. Con l&#39;ingresso <code>8 3 12 14 9 15 25 16 10</code> stampa:</p>
+<pre class="code" data-lingua="text"><code>len=10: [ 12 12 12 12 14 14 25 16 16 16 ]</code></pre>
+<p>Il 3 e il 9 sono minori di 10; il 15 è dispari e multiplo di 3; il 16 entra solo tre volte perché <code>B</code> si riempie, e il 10 resta fuori.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con le stesse regole, che cosa stampa il programma con l&#39;ingresso <code>4 11 22 33 44</code>?</span></summary><div class="ans"><p><code>len=7: [ 11 22 22 44 44 44 44 ]</code>. L&#39;11 è dispari e non multiplo di 3: una copia. Il 22 è pari e non multiplo di 4: due. Il 33 è dispari e multiplo di 3: nessuna. Il 44 è multiplo di 4: quattro. Provato.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Più regole: una funzione che decide quante copie, una che copia.</li>
+<li>Negli <code>if</code> in cascata i casi più specifici vanno prima.</li>
+</ul>
+</div>
+</section>
+
+<section id="le-stesse-operazioni-con-lo-heap" aria-labelledby="h-le-stesse-operazioni-con-lo-heap" style="--h:1850px">
+<div class="sec-head"><span class="sec-num">§5</span><h2 id="h-le-stesse-operazioni-con-lo-heap">Le stesse operazioni con lo heap</h2><span class="slides">slide 22–31</span></div>
+<p>Con gli array statici il risultato di un filtro ha un difetto: non si sa prima quanto sarà lungo, quindi si prepara un array grande e si spera che basti. Con la memoria dinamica della <a href="08A_memoria_dinamica.html">08A</a> si alloca un blocco della <strong>misura esatta</strong>. Le slide 23–26 ripassano <code>malloc</code> e <code>free</code>; le slide 28–29 riprendono la selezione in tre fasi.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Costruire un array nello heap in tre fasi (slide 29)</span></p><ol>
+<li><strong>Calcolo della dimensione</strong>: un primo ciclo conta quanti elementi avrà il risultato.</li>
+<li><strong>Allocazione</strong>: <code>malloc(count * sizeof(int))</code>, controllando che non ritorni <code>NULL</code>.</li>
+<li><strong>Copia</strong>: un secondo ciclo, uguale al primo, che questa volta scrive.</li>
+</ol>
+</div>
+<p>Il filtro diventa:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">int</span>* filtra_heap(<span class="kw">const</span> <span class="kw">size_t</span> bLen, <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">size_t</span>* p_aLen) {
+    assert(p_aLen != <span class="kw">NULL</span>);
+    <span class="kw">int</span>* a = <span class="kw">NULL</span>;
+    *p_aLen = 0;
+
+    <span class="kw">size_t</span> count = 0;                       <span class="cm">// 1) quanti sono?</span>
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; bLen; i++) {
+        <span class="kw">if</span> (Cond(b[i])) {
+            count++;
+        }
+    }
+    <span class="kw">if</span> (count &gt; 0) {                        <span class="cm">// 2) allocazione</span>
+        a = malloc(count * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+    }
+    <span class="kw">if</span> (a != <span class="kw">NULL</span>) {                        <span class="cm">// 3) copia</span>
+        <span class="kw">size_t</span> j = 0;
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; bLen; i++) {
+            <span class="kw">if</span> (Cond(b[i])) {
+                a[j] = b[i];
+                j++;
+            }
+        }
+        *p_aLen = count;
+    }
+    <span class="kw">return</span> a;
+}</code></pre>
+<p>La funzione restituisce due cose: l&#39;indirizzo del blocco, con la <code>return</code>, e la sua lunghezza, attraverso <code>p_aLen</code>. Se nessun elemento passa il criterio, o se la memoria non basta, ritorna <code>NULL</code> con lunghezza 0. Non c&#39;è più una capacità che taglia il risultato: per questo nella copia non serve il controllo <code>j &lt; count</code>.</p>
+<p>Per la duplicazione cambia solo il conteggio: ogni elemento vale uno, e quelli che rispettano il criterio valgono due. Con <code>{0, 3, 2, 4, 3}</code> il blocco ha <span class="katex" role="math" aria-label="5 + 3 = 8"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">8</span></span></span></span> interi:</p>
+<pre class="code" data-lingua="text"><code>filtro:       len=3: [ 3 4 3 ]
+duplicazione: len=8: [ 0 3 3 2 4 4 3 3 ]</code></pre>
+<p>Rispetto alla versione statica con capacità 5, qui non si perde niente.</p>
+<p>Il blocco è di chi chiama la funzione, che deve liberarlo:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> aLen = 0;
+<span class="kw">int</span>* a = filtra_heap(5, b, &amp;aLen);
+<span class="cm">// ... usa a[0] ... a[aLen - 1] ...</span>
+free(a);
+a = <span class="kw">NULL</span>;</code></pre>
+<p>La slide 25 consiglia di azzerare il puntatore dopo la <code>free</code>: così un uso sbagliato dopo la liberazione si nota subito. <code>free(NULL)</code> non fa niente, quindi la <code>free</code> va bene anche quando la funzione ha ritornato <code>NULL</code>.</p>
+<p>Gli esercizi sono due: completare <code>modifica_array_memoria_dinamica.c</code>, e su Moodle <strong>Lab07-Es2 «Funzioni su array (memoria dinamica)»</strong>. Di tutti e due non ho il testo.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Una funzione costruisce nello heap un array con tutti gli elementi di <code>b</code>, tre volte quelli pari e una volta gli altri. Con <code>b = {4, 7, 10}</code>, quanti <code>int</code> deve allocare?</span></summary><div class="ans"><p>Sette: <span class="katex" role="math" aria-label="3 + 1 + 3"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>. Il conteggio della prima fase somma 3 per ogni pari e 1 per ogni dispari.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Tre fasi: contare, allocare, copiare.</li>
+<li>Il blocco e la sua lunghezza escono insieme: indirizzo con la <code>return</code>, lunghezza con un puntatore.</li>
+<li>Ogni <code>malloc</code> ha la sua <code>free</code>, e la fa chi ha ricevuto il blocco.</li>
+</ul>
+</div>
+</section>
+
+<section id="stringhe-e-aritmetica-dei-puntatori" aria-labelledby="h-stringhe-e-aritmetica-dei-puntatori" style="--h:1520px">
+<div class="sec-head"><span class="sec-num">§6</span><h2 id="h-stringhe-e-aritmetica-dei-puntatori">Stringhe e aritmetica dei puntatori</h2><span class="slides">slide 32–34</span></div>
+<p>Una stringa è un array di <code>char</code> che finisce con il terminatore. Non serve la lunghezza: si parte dal primo carattere e si avanza finché non si incontra il terminatore. Con un puntatore, invece che con un indice:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">while</span> (*pStr != <span class="str">'\0'</span>) {
+    <span class="cm">/* usa *pStr */</span>
+    pStr++;
+}</code></pre>
+<p><code>*pStr</code> è il carattere corrente, <code>pStr++</code> passa al successivo. Spostare <code>pStr</code> non crea problemi al chiamante: il parametro è una copia del suo puntatore. Nella slide 33 il parametro si chiama <code>pStrInput</code> e il ciclo usa <code>pStr</code>: è uno schizzo, i due nomi vanno resi uguali.</p>
+<p>L&#39;esercizio 5 chiede due funzioni in <code>codifica.c</code>. <code>codifica</code> cambia sul posto le lettere maiuscole, ognuna con la successiva, e la Z con la A; <code>decodifica</code> fa il contrario. Gli altri caratteri restano come sono.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> codifica(<span class="kw">char</span>* pStr) {
+    <span class="kw">while</span> (*pStr != <span class="str">'\0'</span>) {
+        <span class="kw">if</span> (*pStr &gt;= <span class="str">'A'</span> &amp;&amp; *pStr &lt; <span class="str">'Z'</span>) {
+            (*pStr)++;
+        } <span class="kw">else</span> <span class="kw">if</span> (*pStr == <span class="str">'Z'</span>) {
+            *pStr = <span class="str">'A'</span>;
+        }
+        pStr++;
+    }
+}
+
+<span class="kw">void</span> decodifica(<span class="kw">char</span>* pStr) {
+    <span class="kw">for</span> ( ; *pStr != <span class="str">'\0'</span>; pStr++) {
+        <span class="kw">if</span> (*pStr &gt; <span class="str">'A'</span> &amp;&amp; *pStr &lt;= <span class="str">'Z'</span>) {
+            (*pStr)--;
+        } <span class="kw">else</span> <span class="kw">if</span> (*pStr == <span class="str">'A'</span>) {
+            *pStr = <span class="str">'Z'</span>;
+        }
+    }
+}</code></pre>
+<p>Qui tornano le due scritture della terza domanda iniziale: <code>(*pStr)++</code> cambia il carattere, <code>pStr++</code> sposta il puntatore. Le lettere maiuscole nella tabella ASCII sono una dopo l&#39;altra, quindi «la lettera successiva» è il codice più uno (<a href="05A_array_stringhe.html">05A</a>). Con la stringa <code>&quot;ABC, Zoo e XYZ&quot;</code>:</p>
+<pre class="code" data-lingua="text"><code>BCD, Aoo e YZA
+ABC, Zoo e XYZ</code></pre>
+<div class="box trap"><p class="box-label"><span>Trappola · <code>const char*</code> per una stringa da modificare</span></p><p>La slide 33 passa la stringa come <code>const char*</code>. Va bene per una funzione che <strong>legge</strong>. Una funzione che modifica i caratteri con quel parametro non compila:</p>
+<pre class="code" data-lingua="text"><code>error: assignment of read-only location '*pStr'</code></pre>
+<p>Per <code>codifica</code> il parametro è <code>char*</code>. Il <code>const</code> protegge i caratteri, non il puntatore: <code>pStr++</code> si può fare in tutti e due i casi.</p>
+</div>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Che cosa diventa la stringa <code>&quot;ZAINO 2026&quot;</code> dopo <code>codifica</code>?</span></summary><div class="ans"><p><code>&quot;ABJOP 2026&quot;</code>. Z diventa A, A diventa B, I diventa J, N diventa O, O diventa P. Lo spazio e le cifre non cambiano. Provato.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Una stringa si scorre finché <code>*pStr != '\0'</code>.</li>
+<li><code>(*pStr)++</code> cambia il carattere; <code>pStr++</code> passa al successivo.</li>
+<li><code>const char*</code> se la funzione legge, <code>char*</code> se modifica.</li>
+</ul>
+</div>
+</section>
+
+<section id="eliminare-caratteri-sul-posto" aria-labelledby="h-eliminare-caratteri-sul-posto" style="--h:1920px">
+<div class="sec-head"><span class="sec-num">§7</span><h2 id="h-eliminare-caratteri-sul-posto">Eliminare caratteri sul posto</h2><span class="slides">slide 35–38</span></div>
+<p>Togliere le vocali da una stringa è la riduzione sul posto di prima, con i puntatori al posto degli indici e il terminatore al posto della dimensione. La funzione <code>elimina_vocali</code> trasforma <code>&quot;informazione&quot;</code> in <code>&quot;nfrmzn&quot;</code>.</p>
+<p>Servono due puntatori, che partono tutti e due dall&#39;inizio della stringa. <code>pSrc</code> legge: scorre ogni carattere. <code>pDst</code> scrive: riceve il carattere e avanza solo quando il carattere va tenuto.</p>
+<figure class="grafico" id="grafico-4"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="La stringa «informazione» prima e dopo. Le consonanti, in verde, vengono ricopiate verso sinistra una dopo l'altra. Alla fine pSrc è arrivato al terminatore vecchio e pDst è fermo dove va scritto quello nuovo. I caratteri in grigio dopo il terminatore nuovo sono ancora in memoria, ma la stringa finisce prima" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-4-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-4-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-4-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-4-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-4-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-4-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-4-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-4-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-grigio g-tenue" d="M15.81 109.29L56.45 109.29L56.45 48.57L15.81 48.57Z"/><path class="g-poligono g-verde g-tenue" d="M56.45 109.29L97.1 109.29L97.1 48.57L56.45 48.57Z"/><path class="g-poligono g-verde g-tenue" d="M97.1 109.29L137.74 109.29L137.74 48.57L97.1 48.57Z"/><path class="g-poligono g-grigio g-tenue" d="M137.74 109.29L178.39 109.29L178.39 48.57L137.74 48.57Z"/><path class="g-poligono g-verde g-tenue" d="M178.39 109.29L219.03 109.29L219.03 48.57L178.39 48.57Z"/><path class="g-poligono g-verde g-tenue" d="M219.03 109.29L259.68 109.29L259.68 48.57L219.03 48.57Z"/><path class="g-poligono g-grigio g-tenue" d="M259.68 109.29L300.32 109.29L300.32 48.57L259.68 48.57Z"/><path class="g-poligono g-verde g-tenue" d="M300.32 109.29L340.97 109.29L340.97 48.57L300.32 48.57Z"/><path class="g-poligono g-grigio g-tenue" d="M340.97 109.29L381.61 109.29L381.61 48.57L340.97 48.57Z"/><path class="g-poligono g-grigio g-tenue" d="M381.61 109.29L422.26 109.29L422.26 48.57L381.61 48.57Z"/><path class="g-poligono g-verde g-tenue" d="M422.26 109.29L462.9 109.29L462.9 48.57L422.26 48.57Z"/><path class="g-poligono g-grigio g-tenue" d="M462.9 109.29L503.55 109.29L503.55 48.57L462.9 48.57Z"/><path class="g-poligono g-ambra g-tenue" d="M503.55 109.29L544.19 109.29L544.19 48.57L503.55 48.57Z"/><path class="g-poligono g-verde g-tenue" d="M15.81 248.93L56.45 248.93L56.45 188.21L15.81 188.21Z"/><path class="g-poligono g-verde g-tenue" d="M56.45 248.93L97.1 248.93L97.1 188.21L56.45 188.21Z"/><path class="g-poligono g-verde g-tenue" d="M97.1 248.93L137.74 248.93L137.74 188.21L97.1 188.21Z"/><path class="g-poligono g-verde g-tenue" d="M137.74 248.93L178.39 248.93L178.39 188.21L137.74 188.21Z"/><path class="g-poligono g-verde g-tenue" d="M178.39 248.93L219.03 248.93L219.03 188.21L178.39 188.21Z"/><path class="g-poligono g-verde g-tenue" d="M219.03 248.93L259.68 248.93L259.68 188.21L219.03 188.21Z"/><path class="g-poligono g-ambra g-tenue" d="M259.68 248.93L300.32 248.93L300.32 188.21L259.68 188.21Z"/><path class="g-poligono g-grigio g-tratteggio" d="M300.32 248.93L340.97 248.93L340.97 188.21L300.32 188.21Z"/><path class="g-poligono g-grigio g-tratteggio" d="M340.97 248.93L381.61 248.93L381.61 188.21L340.97 188.21Z"/><path class="g-poligono g-grigio g-tratteggio" d="M381.61 248.93L422.26 248.93L422.26 188.21L381.61 188.21Z"/><path class="g-poligono g-grigio g-tratteggio" d="M422.26 248.93L462.9 248.93L462.9 188.21L422.26 188.21Z"/><path class="g-poligono g-grigio g-tratteggio" d="M462.9 248.93L503.55 248.93L503.55 188.21L462.9 188.21Z"/><path class="g-poligono g-grigio g-tratteggio" d="M503.55 248.93L544.19 248.93L544.19 188.21L503.55 188.21Z"/><path class="g-linea g-ambra" d="M280 303.57L280 255" marker-end="url(#g-freccia-4-ambra)"/><path class="g-linea g-blu" d="M523.87 303.57L523.87 255" marker-end="url(#g-freccia-4-blu)"/></svg><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:7.14%">prima</span><span class="g-et g-c g-testo g-grigio" style="left:6.45%;top:23.21%">i</span><span class="g-et g-c g-testo g-verde" style="left:13.71%;top:23.21%">n</span><span class="g-et g-c g-testo g-verde" style="left:20.97%;top:23.21%">f</span><span class="g-et g-c g-testo g-grigio" style="left:28.23%;top:23.21%">o</span><span class="g-et g-c g-testo g-verde" style="left:35.48%;top:23.21%">r</span><span class="g-et g-c g-testo g-verde" style="left:42.74%;top:23.21%">m</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:23.21%">a</span><span class="g-et g-c g-testo g-verde" style="left:57.26%;top:23.21%">z</span><span class="g-et g-c g-testo g-grigio" style="left:64.52%;top:23.21%">i</span><span class="g-et g-c g-testo g-grigio" style="left:71.78%;top:23.21%">o</span><span class="g-et g-c g-testo g-verde" style="left:79.03%;top:23.21%">n</span><span class="g-et g-c g-testo g-grigio" style="left:86.29%;top:23.21%">e</span><span class="g-et g-c g-testo g-ambra" style="left:93.55%;top:23.21%">\0</span><span class="g-et g-c g-testo g-grigio" style="left:50.00%;top:48.21%">dopo</span><span class="g-et g-c g-testo g-verde" style="left:6.45%;top:64.29%">n</span><span class="g-et g-c g-testo g-verde" style="left:13.71%;top:64.29%">f</span><span class="g-et g-c g-testo g-verde" style="left:20.97%;top:64.29%">r</span><span class="g-et g-c g-testo g-verde" style="left:28.23%;top:64.29%">m</span><span class="g-et g-c g-testo g-verde" style="left:35.48%;top:64.29%">z</span><span class="g-et g-c g-testo g-verde" style="left:42.74%;top:64.29%">n</span><span class="g-et g-c g-testo g-ambra" style="left:50.00%;top:64.29%">\0</span><span class="g-et g-c g-testo g-grigio" style="left:57.26%;top:64.29%">z</span><span class="g-et g-c g-testo g-grigio" style="left:64.52%;top:64.29%">i</span><span class="g-et g-c g-testo g-grigio" style="left:71.78%;top:64.29%">o</span><span class="g-et g-c g-testo g-grigio" style="left:79.03%;top:64.29%">n</span><span class="g-et g-c g-testo g-grigio" style="left:86.29%;top:64.29%">e</span><span class="g-et g-c g-testo g-grigio" style="left:93.55%;top:64.29%">\0</span><span class="g-et g-c g-testo g-ambra" style="left:50.00%;top:94.64%">pDst</span><span class="g-et g-c g-testo g-blu" style="left:93.55%;top:94.64%">pSrc</span></div><figcaption>La stringa «informazione» prima e dopo. Le consonanti, in verde, vengono ricopiate verso sinistra una dopo l&#39;altra. Alla fine pSrc è arrivato al terminatore vecchio e pDst è fermo dove va scritto quello nuovo. I caratteri in grigio dopo il terminatore nuovo sono ancora in memoria, ma la stringa finisce prima</figcaption></figure>
+<pre class="code" data-lingua="c"><code><span class="kw">void</span> elimina_vocali(<span class="kw">char</span>* pStr) {
+    <span class="kw">const</span> <span class="kw">char</span>* pSrc = pStr;   <span class="cm">// legge</span>
+    <span class="kw">char</span>* pDst = pStr;         <span class="cm">// scrive</span>
+    <span class="kw">while</span> (*pSrc != <span class="str">'\0'</span>) {
+        <span class="kw">if</span> (!is_vocale(*pSrc)) {
+            *pDst = *pSrc;
+            pDst++;
+        }
+        pSrc++;
+    }
+    *pDst = <span class="str">'\0'</span>;
+}</code></pre>
+<p>L&#39;ultima riga è quella che si dimentica. Finito il ciclo, <code>pDst</code> indica la prima posizione non più usata: lì va scritto il terminatore nuovo. Senza, la stringa continuerebbe fino al terminatore vecchio, e stamperebbe <code>nfrmznazione</code>. La stringa si è accorciata senza che nessuno abbia passato o restituito una lunghezza: nelle stringhe la dimensione è la posizione del terminatore.</p>
+<p>Per decidere se un carattere è una vocale basta un «esiste» su un elenco:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">bool</span> is_vocale(<span class="kw">const</span> <span class="kw">char</span> ch) {
+    <span class="kw">const</span> <span class="kw">char</span> vocali[] = <span class="str">&quot;aeiouAEIOU&quot;</span>;
+    <span class="kw">bool</span> trovata = <span class="kw">false</span>;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; vocali[i] != <span class="str">'\0'</span> &amp;&amp; !trovata; i++) {
+        <span class="kw">if</span> (ch == vocali[i]) {
+            trovata = <span class="kw">true</span>;
+        }
+    }
+    <span class="kw">return</span> trovata;
+}</code></pre>
+<p>Su Moodle l&#39;esercizio è <strong>Lab07-Es3 «Elimina vocali»</strong>. Dalla soluzione del 2025/26 il programma legge una parola e la stampa senza vocali. Il mio <code>main</code> legge con <code>scanf(&quot;%49s&quot;, parola)</code> in un array di 50 caratteri. Prove: <code>informazione</code> dà <code>nfrmzn</code>; <code>Rhythm</code> resta <code>Rhythm</code>; <code>AEIOU</code> dà una riga vuota.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Con la stringa <code>&quot;AEIOU&quot;</code>, dove si trova <code>pDst</code> alla fine del ciclo? Che cosa contiene la memoria dopo l&#39;ultima riga della funzione?</span></summary><div class="ans"><p><code>pDst</code> non si è mai mosso: indica ancora il primo carattere. L&#39;ultima riga scrive lì il terminatore. La memoria contiene il terminatore seguito da <code>EIOU</code> e dal terminatore vecchio, ma la stringa è vuota: finisce al primo terminatore.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li><code>pSrc</code> legge e avanza sempre; <code>pDst</code> scrive e avanza solo quando si tiene il carattere.</li>
+<li>Alla fine il terminatore va scritto in <code>*pDst</code>.</li>
+<li>In una stringa accorciata i caratteri vecchi restano in memoria dopo il terminatore, senza farne parte.</li>
+</ul>
+</div>
+</section>
+
+<section id="intervalli-semiaperti-di-indici" aria-labelledby="h-intervalli-semiaperti-di-indici" style="--h:3600px">
+<div class="sec-head"><span class="sec-num">§8</span><h2 id="h-intervalli-semiaperti-di-indici">Intervalli semiaperti di indici</h2><span class="slides">slide 39–45</span></div>
+<p>Molte funzioni non lavorano su tutto l&#39;array ma su un suo pezzo: «la somma dal terzo al sesto elemento», «cerca nella seconda metà». Per indicare un pezzo servono due indici, e una convenzione su quale dei due è compreso.</p>
+<p>La convenzione del corso è l&#39;<strong>intervallo semiaperto</strong>: il sinistro compreso, il destro escluso. È la stessa degli indici validi, che vanno da 0 alla dimensione esclusa.</p>
+<figure class="grafico" id="grafico-5"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="L'intervallo semiaperto [2, 6) in un array di 10 elementi. L'indice left è compreso, l'indice right è escluso: gli elementi sono quelli di indice 2, 3, 4 e 5. Sono right meno left, cioè 4" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-5-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-5-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-5-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-5-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-5-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-5-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-5-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-5-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-tenue" d="M23.33 170L74.67 170L74.67 92.73L23.33 92.73Z"/><path class="g-poligono g-blu g-tenue" d="M74.67 170L126 170L126 92.73L74.67 92.73Z"/><path class="g-poligono g-ambra g-tenue" d="M126 170L177.33 170L177.33 92.73L126 92.73Z"/><path class="g-poligono g-ambra g-tenue" d="M177.33 170L228.67 170L228.67 92.73L177.33 92.73Z"/><path class="g-poligono g-ambra g-tenue" d="M228.67 170L280 170L280 92.73L228.67 92.73Z"/><path class="g-poligono g-ambra g-tenue" d="M280 170L331.33 170L331.33 92.73L280 92.73Z"/><path class="g-poligono g-blu g-tenue" d="M331.33 170L382.67 170L382.67 92.73L331.33 92.73Z"/><path class="g-poligono g-blu g-tenue" d="M382.67 170L434 170L434 92.73L382.67 92.73Z"/><path class="g-poligono g-blu g-tenue" d="M434 170L485.33 170L485.33 92.73L434 92.73Z"/><path class="g-poligono g-blu g-tenue" d="M485.33 170L536.67 170L536.67 92.73L485.33 92.73Z"/><path class="g-linea g-ambra" d="M151.67 285.91L151.67 231.82" marker-end="url(#g-freccia-5-ambra)"/><path class="g-linea g-rosa" d="M357 285.91L357 231.82" marker-end="url(#g-freccia-5-rosa)"/></svg><span class="g-et g-c g-testo g-blu" style="left:8.75%;top:38.64%">17</span><span class="g-et g-c g-testo g-blu" style="left:17.92%;top:38.64%">21</span><span class="g-et g-c g-testo g-ambra" style="left:27.08%;top:38.64%">−3</span><span class="g-et g-c g-testo g-ambra" style="left:36.25%;top:38.64%">8</span><span class="g-et g-c g-testo g-ambra" style="left:45.42%;top:38.64%">19</span><span class="g-et g-c g-testo g-ambra" style="left:54.58%;top:38.64%">7</span><span class="g-et g-c g-testo g-blu" style="left:63.75%;top:38.64%">2</span><span class="g-et g-c g-testo g-blu" style="left:72.92%;top:38.64%">61</span><span class="g-et g-c g-testo g-blu" style="left:82.08%;top:38.64%">1</span><span class="g-et g-c g-testo g-blu" style="left:91.25%;top:38.64%">11</span><span class="g-et g-c g-testo g-grigio" style="left:8.75%;top:61.36%">0</span><span class="g-et g-c g-testo g-grigio" style="left:17.92%;top:61.36%">1</span><span class="g-et g-c g-testo g-grigio" style="left:27.08%;top:61.36%">2</span><span class="g-et g-c g-testo g-grigio" style="left:36.25%;top:61.36%">3</span><span class="g-et g-c g-testo g-grigio" style="left:45.42%;top:61.36%">4</span><span class="g-et g-c g-testo g-grigio" style="left:54.58%;top:61.36%">5</span><span class="g-et g-c g-testo g-grigio" style="left:63.75%;top:61.36%">6</span><span class="g-et g-c g-testo g-grigio" style="left:72.92%;top:61.36%">7</span><span class="g-et g-c g-testo g-grigio" style="left:82.08%;top:61.36%">8</span><span class="g-et g-c g-testo g-grigio" style="left:91.25%;top:61.36%">9</span><span class="g-et g-c g-testo g-ambra" style="left:27.08%;top:92.04%">left = 2</span><span class="g-et g-c g-testo g-rosa" style="left:63.75%;top:92.04%">right = 6</span><span class="g-et g-c g-testo g-ambra" style="left:40.83%;top:13.64%">[2, 6): 4 elementi</span></div><figcaption>L&#39;intervallo semiaperto [2, 6) in un array di 10 elementi. L&#39;indice left è compreso, l&#39;indice right è escluso: gli elementi sono quelli di indice 2, 3, 4 e 5. Sono right meno left, cioè 4</figcaption></figure>
+<div class="box def"><p class="box-label"><span>Definizione · Intervallo semiaperto di indici (slide 40–42)</span></p><p>L&#39;intervallo <span class="katex" role="math" aria-label="[\mathit{left}, \mathit{right})"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord"><span class="mord mathit">left</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathit">right</span></span><span class="mclose">)</span></span></span></span> di un array di dimensione <code>len</code> è l&#39;insieme degli indici <code>i</code> con <code>left &lt;= i &lt; right</code>. Deve valere <code>0 &lt;= left &lt;= right &lt;= len</code>.</p>
+</div>
+<p><strong>Come si legge.</strong> La parentesi quadra vuol dire «compreso», la tonda «escluso». Tutto l&#39;array è l&#39;intervallo da 0 a <code>len</code>. Da questa scelta escono formule senza «più uno» e «meno uno» da ricordare:</p>
+<div class="table-wrap"><table><thead><tr><th>Domanda</th><th>Risposta</th></tr></thead><tbody><tr><td>quanti elementi ha?</td><td><code>right - left</code></td></tr>
+<tr><td>è vuoto?</td><td><code>left == right</code></td></tr>
+<tr><td>l&#39;indice <code>i</code> ci sta?</td><td><code>left &lt;= i &amp;&amp; i &lt; right</code></td></tr>
+<tr><td>primo elemento, se non è vuoto</td><td><code>a[left]</code></td></tr>
+<tr><td>ultimo elemento, se non è vuoto</td><td><code>a[right - 1]</code></td></tr>
+<tr><td>come si scorre</td><td><code>for (size_t i = left; i &lt; right; i++)</code></td></tr></tbody></table></div>
+<p>Due intervalli consecutivi si attaccano senza buchi e senza doppioni: l&#39;intervallo da 0 a <code>m</code> e quello da <code>m</code> a <code>len</code> insieme fanno tutto l&#39;array, e <code>m</code> sta solo nel secondo. Per questo la convenzione va bene per gli algoritmi che dividono un array in due, come la ricerca binaria, che la slide 44 cita tra gli usi degli intervalli.</p>
+<p>La slide 41 scrive <code>assert(len &gt;= 0)</code>. Con <code>len</code> di tipo <code>size_t</code> il controllo è sempre vero, perché un <code>size_t</code> non è mai negativo: compila con <code>-Wall</code>, ma non controlla niente. Il controllo che serve è quello della slide 42, <code>assert(right &gt;= left)</code>.</p>
+<p>Tre funzioni nello stile dell&#39;esercizio 7 (<code>sottosequenze.c</code>, che non ho):</p>
+<pre class="code" data-lingua="c"><code><span class="cm">// somma degli elementi con indice in [left, right)</span>
+<span class="kw">int</span> somma_intervallo(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">const</span> <span class="kw">size_t</span> left, <span class="kw">const</span> <span class="kw">size_t</span> right) {
+    assert(right &gt;= left);
+    <span class="kw">int</span> somma = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = left; i &lt; right; i++) {
+        somma += a[i];
+    }
+    <span class="kw">return</span> somma;
+}
+
+<span class="cm">// vero se gli elementi di a in [left, right) sono uguali, uno per uno, a quelli di b</span>
+<span class="kw">bool</span> intervallo_uguale(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">const</span> <span class="kw">size_t</span> left, <span class="kw">const</span> <span class="kw">size_t</span> right,
+                       <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">const</span> <span class="kw">size_t</span> bLen) {
+    assert(right &gt;= left);
+    <span class="kw">bool</span> uguali = (right - left == bLen);
+    <span class="kw">for</span> (<span class="kw">size_t</span> k = 0; k &lt; bLen &amp;&amp; uguali; k++) {
+        <span class="kw">if</span> (a[left + k] != b[k]) {
+            uguali = <span class="kw">false</span>;
+        }
+    }
+    <span class="kw">return</span> uguali;
+}
+
+<span class="cm">// cerca b dentro a: ritorna l'indice sinistro della prima occorrenza, oppure aLen</span>
+<span class="kw">size_t</span> cerca_sottosequenza(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">const</span> <span class="kw">size_t</span> aLen,
+                           <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">const</span> <span class="kw">size_t</span> bLen) {
+    <span class="kw">size_t</span> pos = aLen;
+    <span class="kw">for</span> (<span class="kw">size_t</span> left = 0; left + bLen &lt;= aLen &amp;&amp; pos == aLen; left++) {
+        <span class="kw">if</span> (intervallo_uguale(a, left, left + bLen, b, bLen)) {
+            pos = left;
+        }
+    }
+    <span class="kw">return</span> pos;
+}</code></pre>
+<p>Nella ricerca, <code>left + bLen &lt;= aLen</code> garantisce che l&#39;intervallo da provare stia tutto dentro <code>a</code>. Il valore «non trovato» è <code>aLen</code>, che non è un indice valido: con <code>size_t</code> non si può usare <span class="katex" role="math" aria-label="-1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>. Sull&#39;array della figura la somma in <span class="katex" role="math" aria-label="[2, 6)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">6</span><span class="mclose">)</span></span></span></span> vale 31, la somma in <span class="katex" role="math" aria-label="[4, 4)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">)</span></span></span></span> vale 0, la sequenza <code>{8, 19, 7}</code> si trova all&#39;indice 3 e <code>{7, 3}</code> non si trova: la funzione ritorna 10.</p>
+<div class="box trap"><p class="box-label"><span>Trappola · <code>right - 1</code> con <code>size_t</code></span></p><p>In un ciclo che guarda le coppie di vicini viene da scrivere <code>i &lt; right - 1</code>. Se <code>right</code> vale 0, con <code>size_t</code> la sottrazione dà un numero enorme e il ciclo esce dall&#39;array. Si scrive <code>i + 1 &lt; right</code>, che è la stessa condizione senza sottrazioni.</p>
+</div>
+<p>L&#39;esercizio 8 chiede di riscrivere in <code>my_string.c</code> alcune funzioni sulle stringhe <strong>senza</strong> <code>&lt;string.h&gt;</code>. Non sapendo quali, ne ho scritte quattro classiche; le due più istruttive:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> my_strlen(<span class="kw">const</span> <span class="kw">char</span>* pStr) {
+    <span class="kw">const</span> <span class="kw">char</span>* p = pStr;
+    <span class="kw">while</span> (*p != <span class="str">'\0'</span>) {
+        p++;
+    }
+    <span class="kw">return</span> (<span class="kw">size_t</span>)(p - pStr);
+}
+
+<span class="kw">int</span> my_strcmp(<span class="kw">const</span> <span class="kw">char</span>* pA, <span class="kw">const</span> <span class="kw">char</span>* pB) {
+    <span class="kw">while</span> (*pA != <span class="str">'\0'</span> &amp;&amp; *pA == *pB) {
+        pA++;
+        pB++;
+    }
+    <span class="kw">return</span> (<span class="kw">unsigned</span> <span class="kw">char</span>)*pA - (<span class="kw">unsigned</span> <span class="kw">char</span>)*pB;
+}</code></pre>
+<p>In <code>my_strlen</code> la lunghezza è la <strong>differenza tra due puntatori</strong>: quello arrivato al terminatore meno quello di partenza. È un intervallo semiaperto di puntatori: la slide 43 lo presenta, e dice che non verrà trattato. <code>my_strcmp</code> si ferma alla prima posizione in cui le stringhe differiscono, o alla fine, e restituisce la differenza tra i due caratteri: zero se sono uguali.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Nell&#39;array della figura, quali elementi stanno nell&#39;intervallo <span class="katex" role="math" aria-label="[6, 9)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">9</span><span class="mclose">)</span></span></span></span>, e quanti sono? E nell&#39;intervallo <span class="katex" role="math" aria-label="[4, 4)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">)</span></span></span></span>?</span></summary><div class="ans"><p>In <span class="katex" role="math" aria-label="[6, 9)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">9</span><span class="mclose">)</span></span></span></span> ci sono gli elementi di indice 6, 7 e 8: 2, 61 e 1. Sono <span class="katex" role="math" aria-label="9 - 6 = 3"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>. L&#39;intervallo <span class="katex" role="math" aria-label="[4, 4)"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">4</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">4</span><span class="mclose">)</span></span></span></span> è vuoto: sinistro e destro coincidono.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Sinistro compreso, destro escluso. Elementi: <code>right - left</code>. Vuoto: <code>left == right</code>.</li>
+<li>Si scorre con <code>for (size_t i = left; i &lt; right; i++)</code>.</li>
+<li>«Non trovato» si segnala con la dimensione, non con un numero negativo.</li>
+<li>Mai <code>right - 1</code> in una condizione con <code>size_t</code> senza sapere che <code>right</code> è positivo.</li>
+</ul>
+</div>
+</section>
+
+<section id="match-con-al-piu-n-errori" aria-labelledby="h-match-con-al-piu-n-errori" style="--h:2290px">
+<div class="sec-head"><span class="sec-num">§9</span><h2 id="h-match-con-al-piu-n-errori">Match con al più n errori</h2><span class="slides">slide 46</span></div>
+<p>L&#39;ultimo esercizio, segnato come extra, confronta due sequenze in modo tollerante: possono differire in qualche posizione, purché non troppe.</p>
+<figure class="grafico" id="grafico-6"><div class="g-quadro" style="aspect-ratio:560/340"><svg viewBox="0 0 560 340" role="img" aria-label="Due sequenze di lunghezza 5 confrontate posizione per posizione. Sono diverse in due posizioni, la 2 e la 4: sono in match con al più 2 errori, e anche con al più 3, ma non con al più 1" preserveAspectRatio="none"><defs><marker id="g-punta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta"/></marker><marker id="g-freccia-6-base" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-base"/></marker><marker id="g-freccia-6-accento" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-accento"/></marker><marker id="g-freccia-6-blu" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-blu"/></marker><marker id="g-freccia-6-ambra" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-ambra"/></marker><marker id="g-freccia-6-rosa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-rosa"/></marker><marker id="g-freccia-6-viola" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-viola"/></marker><marker id="g-freccia-6-verde" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-verde"/></marker><marker id="g-freccia-6-grigio" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 1L10 5L0 9z" class="g-punta-freccia g-grigio"/></marker></defs><path class="g-poligono g-blu g-tenue" d="M97.39 91.54L165.57 91.54L165.57 26.15L97.39 26.15Z"/><path class="g-poligono g-blu g-tenue" d="M165.57 91.54L233.74 91.54L233.74 26.15L165.57 26.15Z"/><path class="g-poligono g-rosa g-tenue" d="M233.74 91.54L301.91 91.54L301.91 26.15L233.74 26.15Z"/><path class="g-poligono g-blu g-tenue" d="M301.91 91.54L370.09 91.54L370.09 26.15L301.91 26.15Z"/><path class="g-poligono g-rosa g-tenue" d="M370.09 91.54L438.26 91.54L438.26 26.15L370.09 26.15Z"/><path class="g-poligono g-verde g-tenue" d="M97.39 287.69L165.57 287.69L165.57 222.31L97.39 222.31Z"/><path class="g-poligono g-verde g-tenue" d="M165.57 287.69L233.74 287.69L233.74 222.31L165.57 222.31Z"/><path class="g-poligono g-rosa g-tenue" d="M233.74 287.69L301.91 287.69L301.91 222.31L233.74 222.31Z"/><path class="g-poligono g-verde g-tenue" d="M301.91 287.69L370.09 287.69L370.09 222.31L301.91 222.31Z"/><path class="g-poligono g-rosa g-tenue" d="M370.09 287.69L438.26 287.69L438.26 222.31L370.09 222.31Z"/></svg><span class="g-et g-c g-testo g-blu" style="left:8.70%;top:17.31%">a</span><span class="g-et g-c g-testo g-blu" style="left:23.48%;top:17.31%">0</span><span class="g-et g-c g-testo g-blu" style="left:35.65%;top:17.31%">3</span><span class="g-et g-c g-testo g-rosa" style="left:47.83%;top:17.31%">2</span><span class="g-et g-c g-testo g-blu" style="left:60.00%;top:17.31%">4</span><span class="g-et g-c g-testo g-rosa" style="left:72.17%;top:17.31%">3</span><span class="g-et g-c g-testo g-verde" style="left:8.70%;top:75.00%">b</span><span class="g-et g-c g-testo g-verde" style="left:23.48%;top:75.00%">0</span><span class="g-et g-c g-testo g-verde" style="left:35.65%;top:75.00%">3</span><span class="g-et g-c g-testo g-rosa" style="left:47.83%;top:75.00%">1</span><span class="g-et g-c g-testo g-verde" style="left:60.00%;top:75.00%">4</span><span class="g-et g-c g-testo g-rosa" style="left:72.17%;top:75.00%">5</span><span class="g-et g-c g-testo g-grigio" style="left:23.48%;top:46.15%">=</span><span class="g-et g-c g-testo g-grigio" style="left:35.65%;top:46.15%">=</span><span class="g-et g-c g-testo g-rosa" style="left:47.83%;top:46.15%">≠</span><span class="g-et g-c g-testo g-grigio" style="left:60.00%;top:46.15%">=</span><span class="g-et g-c g-testo g-rosa" style="left:72.17%;top:46.15%">≠</span><span class="g-et g-c g-testo g-rosa" style="left:88.70%;top:46.15%">2 errori</span></div><figcaption>Due sequenze di lunghezza 5 confrontate posizione per posizione. Sono diverse in due posizioni, la 2 e la 4: sono in match con al più 2 errori, e anche con al più 3, ma non con al più 1</figcaption></figure>
+<div class="box def"><p class="box-label"><span>Definizione · Match con al più n errori (slide 46)</span></p><p>Due sequenze <code>a</code> e <code>b</code> della stessa lunghezza <code>len</code> sono in <strong>match con al più n errori</strong> se gli elementi nelle stesse posizioni sono uguali, tranne al più <code>n</code> posizioni.</p>
+</div>
+<p><strong>Come si legge.</strong> Si confrontano il primo con il primo, il secondo con il secondo, e così via. Ogni coppia diversa è un errore. Si contano gli errori e si confrontano con <code>n</code>. Con <code>n</code> uguale a 0 è l&#39;uguaglianza normale.</p>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> conta_errori(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">const</span> <span class="kw">size_t</span> len) {
+    <span class="kw">size_t</span> errori = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; len; i++) {
+        <span class="kw">if</span> (a[i] != b[i]) {
+            errori++;
+        }
+    }
+    <span class="kw">return</span> errori;
+}
+
+<span class="kw">bool</span> match_con_errori(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">const</span> <span class="kw">size_t</span> len, <span class="kw">const</span> <span class="kw">size_t</span> n) {
+    <span class="kw">return</span> conta_errori(a, b, len) &lt;= n;
+}</code></pre>
+<p>Su Moodle l&#39;esercizio è <strong>Lab07-Es4 «Sottosequenze con errori»</strong>. Dalla soluzione del 2025/26 il programma legge una sequenza modello, il numero massimo di errori, e poi una serie di sequenze. Per ognuna cerca il primo intervallo in match con il modello e lo stampa, oppure stampa <code>NO</code>. La ricerca è <code>cerca_sottosequenza</code>, con il conteggio degli errori al posto dell&#39;uguaglianza:</p>
+<pre class="code" data-lingua="c"><code><span class="kw">size_t</span> cerca_con_errori(<span class="kw">const</span> <span class="kw">int</span> seq[], <span class="kw">const</span> <span class="kw">size_t</span> seqLen,
+                        <span class="kw">const</span> <span class="kw">int</span> pat[], <span class="kw">const</span> <span class="kw">size_t</span> patLen,
+                        <span class="kw">const</span> <span class="kw">size_t</span> n, <span class="kw">size_t</span>* p_errori) {
+    <span class="kw">size_t</span> pos = seqLen;
+    <span class="kw">for</span> (<span class="kw">size_t</span> left = 0; left + patLen &lt;= seqLen &amp;&amp; pos == seqLen; left++) {
+        <span class="kw">size_t</span> e = conta_errori(seq + left, pat, patLen);
+        <span class="kw">if</span> (e &lt;= n) {
+            pos = left;
+            *p_errori = e;
+        }
+    }
+    <span class="kw">return</span> pos;
+}</code></pre>
+<p><code>seq + left</code> è l&#39;indirizzo dell&#39;elemento di indice <code>left</code>: passarlo a <code>conta_errori</code> vuol dire «considera la sequenza che comincia da lì». Con il modello <code>{3, 2, 4}</code> e al più 1 errore:</p>
+<div class="table-wrap"><table><thead><tr><th>Sequenza</th><th>Uscita</th></tr></thead><tbody><tr><td><code>0 3 2 4 3</code></td><td><code>[1, 4) errori=0</code></td></tr>
+<tr><td><code>0 3 1 4 5</code></td><td><code>[1, 4) errori=1</code></td></tr>
+<tr><td><code>9 9 9 9</code></td><td><code>NO</code></td></tr>
+<tr><td><code>3 2</code></td><td><code>NO</code></td></tr></tbody></table></div>
+<p>L&#39;uscita usa gli intervalli semiaperti: il match occupa gli indici 1, 2 e 3. L&#39;ultima sequenza è più corta del modello, quindi nessun intervallo va bene. Il formato esatto delle righe viene dalla soluzione del 2025/26: quello di quest&#39;anno va controllato su Moodle.</p>
+<div class="prova"><p class="box-label">Prova tu</p><div class="qa-list qa-prova"><details class="qa"><summary><span>Le sequenze <code>{1, 2, 3, 4}</code> e <code>{1, 5, 3, 7}</code> sono in match con al più 1 errore? E con al più 2?</span></summary><div class="ans"><p>Differiscono in due posizioni, la 1 e la 3. Con al più 1 errore no; con al più 2 sì.</p>
+</div></details></div></div>
+<div class="box ricorda"><p class="box-label"><span>Da ricordare</span></p><ul>
+<li>Match con al più <code>n</code> errori: stessa lunghezza, al più <code>n</code> posizioni diverse.</li>
+<li>Cercare un modello in una sequenza: un ciclo sugli intervalli possibili, con <code>left + patLen &lt;= seqLen</code>.</li>
+</ul>
+</div>
+</section>
+
+<section id="i-simboli-di-questa-lezione" aria-labelledby="h-i-simboli-di-questa-lezione" style="--h:780px">
+<div class="sec-head"><span class="sec-num">§10</span><h2 id="h-i-simboli-di-questa-lezione">I simboli di questa lezione</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Simbolo</th><th>Si legge</th><th>Vuol dire</th><th>Esempio</th></tr></thead><tbody><tr><td><code>aLen</code></td><td>«a len»</td><td>dimensione: elementi in uso</td><td><code>aLen = 6</code></td></tr>
+<tr><td><code>aCap</code>, <code>AMAX</code></td><td>«a cap», «a max»</td><td>capacità: caselle disponibili</td><td><code>int a[AMAX]</code></td></tr>
+<tr><td><code>size_t* p_aLen</code></td><td>«puntatore alla dimensione»</td><td>la funzione può cambiare la dimensione</td><td><code>riduci(&amp;aLen, a)</code></td></tr>
+<tr><td><code>[0, aLen)</code></td><td>«da zero ad a len escluso»</td><td>gli indici validi</td><td>con <code>aLen = 6</code>: da 0 a 5</td></tr>
+<tr><td><code>[left, right)</code></td><td>«da left a right escluso»</td><td>un intervallo semiaperto di indici</td><td><code>[2, 6)</code>: indici 2, 3, 4, 5</td></tr>
+<tr><td><code>*p++</code></td><td>«il valore puntato, poi avanti»</td><td>legge e sposta il puntatore</td><td><code>x = *p++</code></td></tr>
+<tr><td><code>(*p)++</code></td><td>«incrementa il puntato»</td><td>cambia il valore, non il puntatore</td><td><code>(*pStr)++</code></td></tr>
+<tr><td><code>pSrc</code>, <code>pDst</code></td><td>«sorgente», «destinazione»</td><td>il puntatore che legge e quello che scrive</td><td><code>*pDst = *pSrc</code></td></tr>
+<tr><td><code>int**</code></td><td>«puntatore a puntatore a intero»</td><td>l&#39;indirizzo di un <code>int*</code></td><td><code>int** pp = &amp;p</code></td></tr></tbody></table></div>
+</section>
+
+<section id="esame" aria-labelledby="h-esame" style="--h:1820px">
+<div class="sec-head"><span class="sec-num">§11</span><h2 id="h-esame">Verso l&#39;esame</h2><span class="slides">esame</span></div>
+<p>All&#39;esame si programma al PC con CodeRunner, che compila con <code>-Wall -Werror</code> e confronta l&#39;output carattere per carattere. Di questo laboratorio servono:</p>
+<ol>
+<li><strong>gli schemi con due indici</strong>: filtro, riduzione sul posto, duplicazione, anche sulle stringhe;</li>
+<li><strong>la dimensione che cambia</strong>, passata come puntatore, e la capacità da non superare;</li>
+<li><strong>le tre fasi con lo heap</strong>, per le funzioni che restituiscono un array nuovo;</li>
+<li><strong>gli intervalli semiaperti</strong>, che tornano nella ricerca binaria e nella ricorsione;</li>
+<li><strong>le regole</strong>: una sola <code>return</code> nelle funzioni iterative, niente <code>break</code>, quindi sentinelle nelle condizioni dei cicli.</li>
+</ol>
+<h3 id="una-domanda-sul-modello-letta-insieme">Una domanda sul modello, letta insieme</h3>
+<p>Viene dal pre-esame 2023/24, dove una funzione doveva filtrare una stringa sul posto con questa regola: un carattere si tiene solo se non compare di nuovo nel resto della stringa. Lì la funzione era ricorsiva; questa è la versione con un ciclo, che è quella di questo laboratorio.</p>
+<p>«Scrivere una funzione iterativa <code>solo_ultime</code> che modifica sul posto una stringa: un carattere viene mantenuto solo se non esistono altre sue occorrenze nel resto della stringa. La stringa va terminata con il terminatore.»</p>
+<p><strong>In pratica chiede:</strong> <code>elimina_vocali</code> con un altro criterio. Il criterio è un «non esiste» sul pezzo di stringa che viene dopo.</p>
+<pre class="code" data-lingua="c"><code><span class="cm">// vero se il carattere c compare nella stringa pStr</span>
+<span class="kw">bool</span> compare_in(<span class="kw">const</span> <span class="kw">char</span> c, <span class="kw">const</span> <span class="kw">char</span>* pStr) {
+    <span class="kw">bool</span> trovato = <span class="kw">false</span>;
+    <span class="kw">while</span> (*pStr != <span class="str">'\0'</span> &amp;&amp; !trovato) {
+        <span class="kw">if</span> (*pStr == c) {
+            trovato = <span class="kw">true</span>;
+        }
+        pStr++;
+    }
+    <span class="kw">return</span> trovato;
+}
+
+<span class="kw">void</span> solo_ultime(<span class="kw">char</span>* pStr) {
+    <span class="kw">const</span> <span class="kw">char</span>* pSrc = pStr;
+    <span class="kw">char</span>* pDst = pStr;
+    <span class="kw">while</span> (*pSrc != <span class="str">'\0'</span>) {
+        <span class="kw">if</span> (!compare_in(*pSrc, pSrc + 1)) {
+            *pDst = *pSrc;
+            pDst++;
+        }
+        pSrc++;
+    }
+    *pDst = <span class="str">'\0'</span>;
+}</code></pre>
+<p><code>pSrc + 1</code> è «il resto della stringa», da passare alla ricerca. Il resto non è ancora stato toccato, perché <code>pDst</code> scrive solo in posizioni già lette: per questo si può cercare lì mentre si modifica. Con <code>&quot;abracadabra&quot;</code> il risultato è <code>&quot;cdbra&quot;</code>; con <code>&quot;aaa&quot;</code> è <code>&quot;a&quot;</code>; la stringa vuota resta vuota. Provato.</p>
+<div class="box idea metodo"><p class="box-label"><span>Metodo · Un filtro sul posto all&#39;esame</span></p><ol>
+<li>Due indici, o due puntatori: uno legge, uno scrive, tutti e due dall&#39;inizio.</li>
+<li>Il ciclo avanza sempre con quello che legge.</li>
+<li>Dentro il ciclo: se l&#39;elemento resta, si copia e avanza anche quello che scrive.</li>
+<li>Alla fine si sistema la dimensione: <code>*p_aLen = j</code> per un array, il terminatore per una stringa.</li>
+<li>Il criterio complicato va in una funzione a parte.</li>
+</ol>
+</div>
+<h3 id="errori-da-evitare">Errori da evitare</h3>
+<ul>
+<li>Passare la dimensione per valore a una funzione che la deve cambiare.</li>
+<li>Dimenticare il controllo sulla capacità prima di una scrittura, soprattutto della seconda.</li>
+<li>Scrivere <code>*p++</code> per incrementare il valore puntato.</li>
+<li>Dimenticare il terminatore dopo aver accorciato una stringa.</li>
+<li>Usare <code>const char*</code> per una stringa che la funzione modifica.</li>
+<li>Scrivere <code>i &lt; right - 1</code> con indici <code>size_t</code>.</li>
+<li>Restituire <span class="katex" role="math" aria-label="-1"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span> come «non trovato» da una funzione che ritorna <code>size_t</code>.</li>
+<li>Dimenticare la <code>free</code> di un array costruito da una funzione.</li>
+</ul>
+</section>
+
+<section id="quiz" aria-labelledby="h-quiz" style="--h:2080px">
+<div class="sec-head"><span class="sec-num">§12</span><h2 id="h-quiz">Quiz</h2><span class="slides">come all'esame</span></div>
+<div class="quiz" id="quiz-1"><ol class="q-lista"><li class="q" data-tipo="singola"><div class="q-testo">Dopo <code>int* a, b;</code>, di che tipo sono <code>a</code> e <code>b</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">la riga non compila</span></label><label class="opz"><input type="radio" name="q1-0" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a</code> è un puntatore a <code>int</code>, <code>b</code> è un <code>int</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>a</code> è un <code>int</code>, <code>b</code> è un puntatore a <code>int</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">sono tutti e due puntatori a <code>int</code></span></label><label class="opz"><input type="radio" name="q1-0" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">sono tutti e due <code>int</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>L&#39;asterisco vale solo per il nome che lo segue. La più insidiosa è «sono tutti e due puntatori a <code>int</code>»: è quello che la scrittura <code>int*</code> fa pensare, ed è il motivo per cui conviene una dichiarazione per riga.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo"><code>p</code> punta a un elemento di un array di <code>int</code>. Quale istruzione incrementa di uno il valore puntato, senza spostare <code>p</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>&amp;p++;</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>p++;</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>(*p)++;</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>*(p++);</code></span></label><label class="opz"><input type="radio" name="q1-1" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>*p++;</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Le parentesi fanno applicare il <code>++</code> al valore puntato. La più insidiosa è <code>*p++;</code>: il <code>++</code> ha la precedenza sull&#39;asterisco, quindi sposta il puntatore, come <code>*(p++);</code>.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Un array ha capacità 10 e dimensione 6. Quali indici sono validi?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-2" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">da 0 a 5</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">da 0 a 10</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">da 1 a 6</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">da 0 a 6</span></label><label class="opz"><input type="radio" name="q1-2" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">da 0 a 9</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Gli indici validi vanno da 0 alla dimensione esclusa. La più insidiosa è «da 0 a 9»: quelle caselle esistono tutte, ma dalla 6 in poi il contenuto non fa parte dell&#39;array.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Una funzione toglie da un array gli elementi negativi, sul posto. Quale intestazione va bene?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void togli(int a[])</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void togli(size_t* p_aLen, const int a[])</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void togli(size_t aLen, int a[])</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void togli(const size_t aLen, const int a[])</code></span></label><label class="opz"><input type="radio" name="q1-3" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo"><code>void togli(size_t* p_aLen, int a[])</code></span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>La dimensione cambia, quindi serve un puntatore, e gli elementi vengono spostati, quindi l&#39;array non può essere <code>const</code>. La più insidiosa è <code>void togli(size_t aLen, int a[])</code>: compila e sposta gli elementi, ma il chiamante non vede la dimensione nuova.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">Nel filtro <code>for (size_t iA = 0; iA &lt; aLen &amp;&amp; bLen &lt; bCap; iA++)</code>, a che cosa serve la parte <code>bLen &lt; bCap</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">a saltare gli elementi che non rispettano il criterio</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">a fermarsi quando l&#39;array di destinazione è pieno</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">a fermarsi quando l&#39;array di partenza è finito</span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">a inizializzare <code>bLen</code></span></label><label class="opz"><input type="radio" name="q1-4" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">a niente: è sempre vera</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>bLen</code> è la prima casella libera di <code>b</code>: quando arriva alla capacità non c&#39;è più posto. La più insidiosa è «a fermarsi quando l&#39;array di partenza è finito»: quello lo fa l&#39;altra metà della condizione, <code>iA &lt; aLen</code>.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Una funzione costruisce nello heap un array con gli elementi di <code>b</code>, due volte quelli pari. Con <code>b = {2, 5, 8, 8}</code>, quanti <code>int</code> alloca?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="7" data-toll="1e-9"><span class="q-giusto" hidden>7</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>Uno per ogni elemento, più uno per ogni pari: <span class="katex" role="math" aria-label="4 + 3 = 7"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">7</span></span></span></span>.</div></li>
+<li class="q" data-tipo="numerica"><div class="q-testo">Quanti elementi ha l&#39;intervallo semiaperto di indici <code>[3, 8)</code>?</div><div class="q-numero"><input type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="La tua risposta" aria-label="Risposta numerica" data-valore="5" data-toll="1e-9"><span class="q-giusto" hidden>5</span></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden><code>right - left</code>, cioè <span class="katex" role="math" aria-label="8 - 3"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>: gli indici 3, 4, 5, 6 e 7.</div></li>
+<li class="q" data-tipo="singola"><div class="q-testo">In <code>elimina_vocali</code>, che cosa succede se manca l&#39;ultima riga, <code>*pDst = '\0';</code>?</div><div class="q-opzioni"><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">le vocali tornano al loro posto</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">la stringa resta uguale a quella di partenza</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">il programma non compila</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="1"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">la stringa continua con i caratteri vecchi fino al terminatore di prima</span></label><label class="opz"><input type="radio" name="q1-7" data-ok="0"><span class="opz-segno" aria-hidden="true"></span><span class="opz-testo">la stringa diventa vuota</span></label></div><div class="q-azioni"><button type="button" class="btn q-verifica">Verifica</button><span class="q-esito" aria-live="polite"></span></div><div class="q-spiega" hidden>I caratteri tenuti sono stati ricopiati all&#39;inizio, ma senza un terminatore nuovo la stringa finisce dove finiva prima: <code>&quot;informazione&quot;</code> diventa <code>&quot;nfrmznazione&quot;</code>. La più insidiosa è «la stringa resta uguale a quella di partenza»: i primi caratteri sono già stati sovrascritti.</div></li></ol></div>
+</section>
+
+<section id="esercizi" aria-labelledby="h-esercizi" style="--h:1550px">
+<div class="sec-head"><span class="sec-num">§13</span><h2 id="h-esercizi">Esercizi</h2><span class="slides">con soluzioni</span></div>
+<article class="ex" id="esercizio-1"><h3>1 · Riscaldamento: leggere una dichiarazione <span class="lvl">base</span></h3><p>Per ogni riga di&#39; il tipo di ogni variabile: (a) <code>char* s, c;</code> (b) <code>int *p, *q;</code> (c) <code>int x, *px = &amp;x;</code> (d) <code>int** pp, *p;</code></p>
+<details class="sol"><summary>Soluzione</summary><p>(a) <code>s</code> è un puntatore a <code>char</code>, <code>c</code> è un <code>char</code>. (b) Due puntatori a <code>int</code>. (c) <code>x</code> è un <code>int</code>, <code>px</code> è un puntatore a <code>int</code> inizializzato con l&#39;indirizzo di <code>x</code>. (d) <code>pp</code> è un puntatore a puntatore a <code>int</code>, <code>p</code> è un puntatore a <code>int</code>.</p>
+</details></article>
+<article class="ex" id="esercizio-2"><h3>2 · Riscaldamento: aggiungere in fondo <span class="lvl">base</span></h3><p>Scrivi <code>bool aggiungi(size_t* p_aLen, const size_t aCap, int a[], const int x)</code>, che aggiunge <code>x</code> in fondo all&#39;array se c&#39;è posto, e dice se ci è riuscita.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">bool</span> aggiungi(<span class="kw">size_t</span>* p_aLen, <span class="kw">const</span> <span class="kw">size_t</span> aCap, <span class="kw">int</span> a[], <span class="kw">const</span> <span class="kw">int</span> x) {
+    <span class="kw">bool</span> fatto = <span class="kw">false</span>;
+    <span class="kw">if</span> (*p_aLen &lt; aCap) {
+        a[*p_aLen] = x;
+        (*p_aLen)++;
+        fatto = <span class="kw">true</span>;
+    }
+    <span class="kw">return</span> fatto;
+}</code></pre>
+<p>La casella in cui scrivere è proprio la dimensione. Attenzione a <code>(*p_aLen)++</code>: senza parentesi si sposterebbe il puntatore.</p>
+</details></article>
+<article class="ex" id="esercizio-3"><h3>3 · Riscaldamento: intervalli <span class="lvl">base</span></h3><p>Per un array di dimensione 12: (a) quanti elementi ha <code>[5, 12)</code>? (b) quale intervallo indica gli ultimi tre elementi? (c) quali due intervalli dividono l&#39;array a metà?</p>
+<details class="sol"><summary>Soluzione</summary><p>(a) Sette. (b) <code>[9, 12)</code>. (c) <code>[0, 6)</code> e <code>[6, 12)</code>: l&#39;indice 6 sta solo nel secondo.</p>
+</details></article>
+<article class="ex" id="esercizio-4"><h3>4 · Riscaldamento: contare le maiuscole <span class="lvl">base</span></h3><p>Scrivi <code>size_t conta_maiuscole(const char* pStr)</code> usando un puntatore e non un indice.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">size_t</span> conta_maiuscole(<span class="kw">const</span> <span class="kw">char</span>* pStr) {
+    <span class="kw">size_t</span> quante = 0;
+    <span class="kw">while</span> (*pStr != <span class="str">'\0'</span>) {
+        <span class="kw">if</span> (*pStr &gt;= <span class="str">'A'</span> &amp;&amp; *pStr &lt;= <span class="str">'Z'</span>) {
+            quante++;
+        }
+        pStr++;
+    }
+    <span class="kw">return</span> quante;
+}</code></pre>
+<p>Il parametro è <code>const char*</code>: la funzione legge soltanto.</p>
+</details></article>
+<article class="ex" id="esercizio-5"><h3>5 · Togliere i negativi e contarli <span class="lvl">medio</span></h3><p>Scrivi una funzione che toglie sul posto gli elementi negativi di un array e restituisce quanti ne ha tolti.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">size_t</span> togli_negativi(<span class="kw">size_t</span>* p_aLen, <span class="kw">int</span> a[]) {
+    <span class="kw">size_t</span> j = 0;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; *p_aLen; i++) {
+        <span class="kw">if</span> (a[i] &gt;= 0) {
+            a[j] = a[i];
+            j++;
+        }
+    }
+    <span class="kw">size_t</span> tolti = *p_aLen - j;
+    *p_aLen = j;
+    <span class="kw">return</span> tolti;
+}</code></pre>
+<p>Con <code>{4, -1, 0, -7, -2, 9, 3, -5}</code> ne toglie 4 e restano <code>4 0 9 3</code>. Il numero dei tolti va calcolato <strong>prima</strong> di aggiornare la dimensione. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-6"><h3>6 · La duplicazione nello heap <span class="lvl">medio</span></h3><p>Scrivi <code>duplica_heap</code>, che restituisce un array nuovo con tutti gli elementi di <code>b</code>, due volte quelli che rispettano <code>Cond</code>.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">int</span>* duplica_heap(<span class="kw">const</span> <span class="kw">size_t</span> bLen, <span class="kw">const</span> <span class="kw">int</span> b[], <span class="kw">size_t</span>* p_aLen) {
+    assert(p_aLen != <span class="kw">NULL</span>);
+    <span class="kw">int</span>* a = <span class="kw">NULL</span>;
+    *p_aLen = 0;
+
+    <span class="kw">size_t</span> count = bLen;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; bLen; i++) {
+        <span class="kw">if</span> (Cond(b[i])) {
+            count++;
+        }
+    }
+    <span class="kw">if</span> (count &gt; 0) {
+        a = malloc(count * <span class="kw">sizeof</span>(<span class="kw">int</span>));
+    }
+    <span class="kw">if</span> (a != <span class="kw">NULL</span>) {
+        <span class="kw">size_t</span> j = 0;
+        <span class="kw">for</span> (<span class="kw">size_t</span> i = 0; i &lt; bLen; i++) {
+            a[j] = b[i];
+            j++;
+            <span class="kw">if</span> (Cond(b[i])) {
+                a[j] = b[i];
+                j++;
+            }
+        }
+        *p_aLen = count;
+    }
+    <span class="kw">return</span> a;
+}</code></pre>
+<p>Con <code>{0, 3, 2, 4, 3}</code> e il criterio «maggiore o uguale a 3» dà <code>0 3 3 2 4 4 3 3</code>, lunghezza 8. Il conteggio parte da <code>bLen</code> e non da 0. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-7"><h3>7 · Un intervallo è ordinato? <span class="lvl">medio</span></h3><p>Scrivi <code>bool intervallo_ordinato(const int a[], size_t left, size_t right)</code>: vero se gli elementi dell&#39;intervallo sono in ordine non decrescente.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">bool</span> intervallo_ordinato(<span class="kw">const</span> <span class="kw">int</span> a[], <span class="kw">const</span> <span class="kw">size_t</span> left, <span class="kw">const</span> <span class="kw">size_t</span> right) {
+    assert(right &gt;= left);
+    <span class="kw">bool</span> ordinato = <span class="kw">true</span>;
+    <span class="kw">for</span> (<span class="kw">size_t</span> i = left; i + 1 &lt; right &amp;&amp; ordinato; i++) {
+        <span class="kw">if</span> (a[i] &gt; a[i + 1]) {
+            ordinato = <span class="kw">false</span>;
+        }
+    }
+    <span class="kw">return</span> ordinato;
+}</code></pre>
+<p>Sull&#39;array della figura è vero per <code>[2, 5)</code>, cioè <span class="katex" role="math" aria-label="-3"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">3</span></span></span></span>, 8, 19, e falso per <code>[2, 6)</code>, perché dopo il 19 viene il 7. Un intervallo vuoto o con un solo elemento è ordinato. La condizione è <code>i + 1 &lt; right</code>, non <code>i &lt; right - 1</code>. Provato.</p>
+</details></article>
+<article class="ex" id="esercizio-8"><h3>8 · Copiare e concatenare senza la libreria <span class="lvl">tipo esame</span></h3><p>Scrivi <code>my_strcpy</code> e <code>my_strcat</code> senza <code>&lt;string.h&gt;</code>, con i puntatori.</p>
+<details class="sol"><summary>Soluzione</summary><pre class="code" data-lingua="c"><code><span class="kw">void</span> my_strcpy(<span class="kw">char</span>* pDst, <span class="kw">const</span> <span class="kw">char</span>* pSrc) {
+    <span class="kw">while</span> (*pSrc != <span class="str">'\0'</span>) {
+        *pDst = *pSrc;
+        pDst++;
+        pSrc++;
+    }
+    *pDst = <span class="str">'\0'</span>;
+}
+
+<span class="kw">void</span> my_strcat(<span class="kw">char</span>* pDst, <span class="kw">const</span> <span class="kw">char</span>* pSrc) {
+    <span class="kw">while</span> (*pDst != <span class="str">'\0'</span>) {
+        pDst++;
+    }
+    my_strcpy(pDst, pSrc);
+}</code></pre>
+<p><code>my_strcat</code> porta <code>pDst</code> sul terminatore della prima stringa e da lì copia la seconda. Copiando <code>&quot;infor&quot;</code> e concatenando <code>&quot;matica&quot;</code> viene <code>&quot;informatica&quot;</code>, di lunghezza 11. Tutte e due danno per scontato che la destinazione abbia spazio a sufficienza: è il chiamante a doverlo garantire. Provato.</p>
+</details></article>
+</section>
+
+<section id="domande" aria-labelledby="h-domande" style="--h:660px">
+<div class="sec-head"><span class="sec-num">§14</span><h2 id="h-domande">Domande di ripasso</h2><span class="slides">autoverifica</span></div>
+<div class="toolbar"><p>Rispondi a voce alta o per iscritto, poi apri la risposta.</p><button type="button" class="btn qa-toggle">Mostra tutte le risposte</button></div>
+<div class="qa-list"><details class="qa"><summary><span>Che differenza c&#39;è tra dimensione e capacità?</span></summary><div class="ans"><p>La capacità è il numero di caselle dell&#39;array e non cambia. La dimensione è il numero di elementi in uso, tra 0 e la capacità.</p>
+</div></details>
+<details class="qa"><summary><span>Quando la dimensione va passata come puntatore?</span></summary><div class="ans"><p>Quando la funzione la cambia: aggiunge o toglie elementi. Se la legge soltanto basta il valore.</p>
+</div></details>
+<details class="qa"><summary><span>Perché nella riduzione sul posto non si perde nessun elemento?</span></summary><div class="ans"><p>Perché l&#39;indice che scrive non supera mai quello che legge: si sovrascrivono solo caselle già lette.</p>
+</div></details>
+<details class="qa"><summary><span>Quali sono le tre fasi per costruire un array filtrato nello heap?</span></summary><div class="ans"><p>Contare quanti elementi avrà, allocare un blocco di quella misura, copiare.</p>
+</div></details>
+<details class="qa"><summary><span>Che differenza c&#39;è tra <code>*p++</code> e <code>(*p)++</code>?</span></summary><div class="ans"><p>La prima legge il valore puntato e sposta il puntatore. La seconda incrementa il valore puntato e lascia fermo il puntatore.</p>
+</div></details>
+<details class="qa"><summary><span>Come si accorcia una stringa sul posto?</span></summary><div class="ans"><p>Con due puntatori: uno legge tutti i caratteri, l&#39;altro scrive quelli da tenere. Alla fine si scrive il terminatore dove è arrivato il secondo.</p>
+</div></details>
+<details class="qa"><summary><span>Che cos&#39;è un intervallo semiaperto di indici, e quanti elementi ha?</span></summary><div class="ans"><p>L&#39;insieme degli indici dal sinistro compreso al destro escluso. Ha tanti elementi quanti la differenza tra destro e sinistro.</p>
+</div></details></div>
+</section>
+
+<section id="glossario" aria-labelledby="h-glossario" style="--h:520px">
+<div class="sec-head"><span class="sec-num">§15</span><h2 id="h-glossario">Glossario</h2><span class="slides">termini</span></div>
+<dl class="gloss">
+<div><dt>Capacità</dt><dd>Numero di caselle di un array: il massimo di elementi che può contenere.</dd></div>
+<div><dt>Dimensione</dt><dd>Numero di elementi in uso, nelle prime caselle dell&#39;array.</dd></div>
+<div><dt>Filtro selettivo</dt><dd>Copia in un secondo array dei soli elementi che rispettano un criterio.</dd></div>
+<div><dt>Riduzione sul posto</dt><dd>Selezione fatta nello stesso array, ricopiando all&#39;inizio gli elementi che restano.</dd></div>
+<div><dt>Duplicazione selettiva</dt><dd>Copia in cui gli elementi che rispettano un criterio compaiono due volte.</dd></div>
+<div><dt>Puntatore a puntatore</dt><dd>Variabile che contiene l&#39;indirizzo di un puntatore; per gli interi il tipo è int**.</dd></div>
+<div><dt>Intervallo semiaperto</dt><dd>Insieme di indici con il sinistro compreso e il destro escluso.</dd></div>
+<div><dt>Match con errori</dt><dd>Uguaglianza tra due sequenze della stessa lunghezza, a meno di un numero massimo di posizioni diverse.</dd></div>
+</dl>
+</section>
+
+<section id="checklist" aria-labelledby="h-checklist" style="--h:570px">
+<div class="sec-head"><span class="sec-num">§16</span><h2 id="h-checklist">Checklist</h2><span class="pill" id="check-progress">0 su 11</span></div>
+<p>Spunta quando sai fare la cosa senza guardare gli appunti. Le spunte restano salvate in questo browser.</p>
+<ul class="checklist" data-chiave="prog1-Lab07-checklist">
+<li><label><input type="checkbox" id="chk-1"><span>So leggere una dichiarazione con più nomi e un asterisco.</span></label></li>
+<li><label><input type="checkbox" id="chk-2"><span>So distinguere <code>*p++</code> da <code>(*p)++</code>.</span></label></li>
+<li><label><input type="checkbox" id="chk-3"><span>So dire quali indici sono validi in un array con dimensione e capacità.</span></label></li>
+<li><label><input type="checkbox" id="chk-4"><span>So scegliere i parametri di una funzione secondo quello che fa all&#39;array.</span></label></li>
+<li><label><input type="checkbox" id="chk-5"><span>So scrivere trasformazione, filtro, riduzione sul posto e duplicazione.</span></label></li>
+<li><label><input type="checkbox" id="chk-6"><span>So dove va il controllo sulla capacità, e perché nella duplicazione compare due volte.</span></label></li>
+<li><label><input type="checkbox" id="chk-7"><span>So costruire un array nello heap in tre fasi e dire chi fa la <code>free</code>.</span></label></li>
+<li><label><input type="checkbox" id="chk-8"><span>So scorrere una stringa con un puntatore.</span></label></li>
+<li><label><input type="checkbox" id="chk-9"><span>So togliere caratteri da una stringa sul posto, terminatore compreso.</span></label></li>
+<li><label><input type="checkbox" id="chk-10"><span>So contare gli elementi di un intervallo semiaperto e scorrerlo.</span></label></li>
+<li><label><input type="checkbox" id="chk-11"><span>So cercare una sequenza dentro un&#39;altra, anche con un numero massimo di errori.</span></label></li>
+</ul>
+</section>
+
+    <footer class="sources">
+      <h2>Fonti e note</h2>
+<ul>
+<li>Slide «Operazioni su array» (Lezione nº 7 di laboratorio, Lab07), Programmazione I – Laboratorio, canale B, A.A. 2026/27: tre domande sui puntatori (slide 2–7), modello dimensione-capacità (8–12), trasformazione, filtro, riduzione sul posto e duplicazione (13–19), esercizi sugli array statici (20–21), array dinamici e selezione in tre fasi (22–31), stringhe e aritmetica dei puntatori (32–34), elimina caratteri (35–38), intervalli semiaperti (39–45), sottosequenze con errori (46).</li>
+<li>Moodle del corso, settimana del 23 novembre (pagina visibile agli ospiti): i titoli dei quattro esercizi CodeRunner e la data della registrazione del laboratorio.</li>
+<li>Soluzioni di uno studente del 2025/26 per tre esercizi CodeRunner del Lab07: da lì vengono le regole dell&#39;esercizio sulla trasformazione e il formato di ingresso e di uscita. I testi ufficiali, e quelli del 2026/27, non li ho.</li>
+<li>Tutti i programmi li ho compilati con gcc 16.1 su Windows 11, con <code>-Wall -Werror</code>, ed eseguiti sugli esempi citati; i messaggi del compilatore riportati sono quelli veri. Le funzioni, la domanda sul modello, i quiz e gli esercizi sono di questi appunti.</li>
+</ul>
+
+      <p class="box trap avvertenza"><strong>Avvertenze.</strong> Appunti non ufficiali, rielaborati dalle slide della lezione; le informazioni su corso ed esami vengono da ricerche su fonti pubbliche. Possono contenere errori. <strong>Non mi assumo alcuna responsabilità, per niente.</strong> Chiunque può leggerli e usarli, a proprio rischio. Vengono aggiornati lezione per lezione, niente di più. Non è materiale ufficiale: fanno fede solo il materiale dei docenti, Moodle e il sito del corso di laurea. <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md" target="_blank" rel="noopener">Testo completo delle avvertenze</a>.</p>
+      <p>Appunti di DonFlammer (Telegram <a href="https://t.me/rapsodico" target="_blank" rel="noopener">@rapsodico</a>), licenza <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> · sorgente su <a href="https://github.com/DonFlammer/unito-informatica" target="_blank" rel="noopener">GitHub</a>. Le citazioni dalle slide restano dei rispettivi autori.</p>
+    </footer>
+  </main>
+</div>
+<!-- PIEDE:INIZIO (generato da strumenti/genera_materie.py) -->
+<footer class="piede">
+  <div class="piede-in">
+    <div>
+      <h2>Appunti di Informatica</h2>
+      <p>Appunti del primo anno di Informatica all'Università di Torino, A.A. 2026/27, per i canali A, B e C. Possono contenere errori; non mi assumo alcuna responsabilità: leggi le <a href="https://github.com/DonFlammer/unito-informatica/blob/main/AVVERTENZE.md">avvertenze</a>.</p>
+      <p>Le citazioni dalle slide restano dei rispettivi autori. Per date, regole e scadenze fanno fede solo Moodle, il sito del corso di laurea ed Esse3.</p>
+    </div>
+    <div>
+      <h2>Il sito</h2>
+      <ul>
+        <li><a href="../../index.html#corsi">Corsi del primo anno</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/blob/main/contesto_ai/unito_informatica.md">Informazioni generali</a></li>
+        <li><a href="https://github.com/DonFlammer/unito-informatica/tree/main/contesto_ai">Contesto per le AI</a></li>
+        <li><a href="https://donflammer.github.io/unito-ofa-matematica/">Guida all'OFA di matematica</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Progetto</h2>
+      <ul>
+        <li><a href="https://github.com/DonFlammer/unito-informatica">Sorgente su GitHub</a></li>
+        <li><a href="https://t.me/rapsodico">Telegram @rapsodico</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.it">Licenza CC BY-NC-SA 4.0</a></li>
+      </ul>
+    </div>
+    <div class="piede-fondo"><span>Appunti di DonFlammer · CC BY-NC-SA 4.0 · non è un sito dell'Università di Torino</span><button type="button" class="interruttore" id="interruttore-moto" aria-pressed="false"><span class="pista" aria-hidden="true"></span>Animazioni</button></div>
+  </div>
+</footer>
+<script src="../../assets/js/appunti.js" defer></script>
+<script src="../../assets/js/studio.js" defer></script>
+<!-- PIEDE:FINE -->
+<script src="../../assets/js/lezione.js" defer></script>
+</body>
+</html>

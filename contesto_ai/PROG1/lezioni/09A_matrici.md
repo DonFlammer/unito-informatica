@@ -18,7 +18,7 @@ lede: >-
 materiale: slide
 scheda:
   Slide: 09A_matrici («Matrici. Array multidimensionali, algoritmi per gestire dati su più dimensioni») · 58 pagine
-  Lezione: martedì 24/11
+  Lezione: martedì 24/11 e mercoledì 25/11
   Corso: Prof. Elvio Amparore · A.A. 2026/27
   Tempo di studio: 110 minuti, con gcc a portata di mano
 fonte: >-
@@ -40,7 +40,7 @@ genera_html: true
 - Una proprietà come «esiste una riga di soli zeri» è un «esiste» con dentro un «per ogni»: due sentinelle, una per ciclo.
 
 > [!CANALI]
-> **Canale B.** Lezione di martedì 24/11, dalle 11 alle 13: sul Moodle del corso queste slide sono nella settimana del 23 novembre, «Matrici». Le slide sono 58: se Amparore non le ha finite, il resto va alla lezione di mercoledì 25/11, e aggiorno qui. Servono gli array della [05A](05A_array_stringhe.html), i cicli annidati della [04A](04A_iterazioni.html), i parametri array e puntatore della [06B](06B_chiamata_funzioni.html) e le sentinelle della [07A](07A_algoritmi_su_array.html).
+> **Canale B.** Lezioni di martedì 24/11, dalle 11 alle 13, e di mercoledì 25/11, dalle 9 alle 11: sul Moodle del corso queste slide sono nella settimana del 23 novembre, «Matrici», con le registrazioni dei due giorni. Dove si è fermata la prima lezione non lo so. Sullo stesso Moodle ci sono anche le soluzioni degli esercizi sulle matrici svolti a lezione, con i test: quelle di questi appunti sono mie. Servono gli array della [05A](05A_array_stringhe.html), i cicli annidati della [04A](04A_iterazioni.html), i parametri array e puntatore della [06B](06B_chiamata_funzioni.html) e le sentinelle della [07A](07A_algoritmi_su_array.html).
 >
 > **Canali A e C.** Le slide 2026/27 dei canali A e C su questo argomento non le ho viste. L'esame è unico.
 >

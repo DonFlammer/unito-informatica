@@ -64,7 +64,7 @@ Ricostruita dai Moodle 2025/26 degli stessi docenti; da confermare lezione per l
 | 11 | Ricerca binaria · correttezza (invarianti, sentinelle, asserzioni) | Lab10 ricorsione 2: intervalli, dicotomica, coppie di array, matrici |
 | 12 | Ultime lezioni (dicembre) | — |
 
-Nel 2026/27 il canale B ha scambiato due argomenti rispetto a questa tabella: la memoria dinamica (slide 08A) è stata fatta nella settimana 8, martedì 17 e mercoledì 18/11, e le matrici (slide 09A) sono cominciate nella settimana 9, martedì 24/11. Il laboratorio del turno B2 di lunedì 16/11 è stato annullato.
+Nel 2026/27 il canale B ha scambiato due argomenti rispetto a questa tabella: la memoria dinamica (slide 08A) è stata fatta nella settimana 8, martedì 17 e mercoledì 18/11, e le matrici (slide 09A) sono state fatte nella settimana 9, martedì 24 e mercoledì 25/11. Il laboratorio del turno B2 di lunedì 16/11 è stato annullato.
 
 Nota: la colonna laboratori è indicativa e assume un laboratorio a settimana. Nel 2025/26 (Moodle id=3461) le settimane 4 e 8 sono state senza laboratorio e la sequenza reale è stata Lab01 sett. 2, Lab02 sett. 3, Lab03 sett. 5, Lab04 sett. 6, Lab05 sett. 7, Lab06 sett. 9, Lab07 sett. 10, Lab08 sett. 11, Lab09 sett. 12, Lab10 sett. 13. Nel 2026/27 (University Planner) il turno T2 ha 13 date, ogni lunedì dal 05/10 al 21/12 più l'11/01; il turno T1 ne ha 11, ogni martedì dal 06/10 al 22/12 tranne il 27/10 e l'08/12 (festivo), più il 12/01. Quale laboratorio si fa in ciascuna settimana va verificato sul Moodle del canale B.
 
